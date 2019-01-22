@@ -1,0 +1,11 @@
+ - Macro DIFFICULTYSETTING -> CampaignDifficultySetting || TacticalDifficultySetting || StrategyDifficultySetting
+ 
+ General notes:
+ 
+  * Enabling the building of weapons is handled in `LWTemplateMods.ReconfigGear()`
+  
+  TODO:
+  
+   * Migrate perk pack
+   * Migrate Officer pack
+   * Enable squad management (XComGameState_LWSquadManager)

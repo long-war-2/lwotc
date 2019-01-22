@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>7a03fe19-6291-4b95-ba1c-3ec505fa8c0b</Guid>
+    <Name>Long War of the Chosen</Name>
+    <Description>Description of My XCOM 2 Mod.</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>lwotc</AssemblyName>
+    <RootNamespace>lwotc</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
+    <Folder Include="Content\" />
+    <Folder Include="Content\LW_SMGPack_Integrated" />
+    <Folder Include="Content\LW_LaserPack_Integrated" />
+    <Folder Include="Localization\" />
+    <Folder Include="Localization\LW_SMGPack_Integrated" />
+    <Folder Include="Localization\LW_LaserPack_Integrated" />
+    <Folder Include="Localization\LongWaroftheChosen" />
+    <Folder Include="Src\" />
+    <Folder Include="Src\LW_LaserPack_Integrated\Classes" />
+    <Folder Include="Src\LW_Overhaul\Classes" />
+    <Folder Include="Src\LW_SMGPack_Integrated\Classes" />
+    <Folder Include="Src\LW_Tuple" />
+    <Folder Include="Src\LW_Tuple\Classes" />
+    <Folder Include="Src\LW_XCGS_ModOptions" />
+    <Folder Include="Src\LW_XCGS_ModOptions\Classes" />
+    <Folder Include="Src\LW_SMGPack_Integrated" />
+    <Folder Include="Src\LW_LaserPack_Integrated" />
+    <Folder Include="Src\LW_Overhaul" />
+    <Folder Include="Src\XComGame\" />
+    <Folder Include="Src\XComGame\Classes\" />
+    <Folder Include="Src\LongWaroftheChosen\" />
+    <Folder Include="Src\LongWaroftheChosen\Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\XComEditor.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEngine.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGame.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData_WeaponData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_Overhaul.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Cannon_NoShake_LW.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWArcthrower.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWCombatKnife.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWEvacZone.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWGauntlet.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWHolotargeter.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWNarrativeMoments.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWNarrativeMoments_Bink.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWResistanceMEC.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWSawedoffShotgun.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWSmashNGrab.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWSoldierSockets.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LWSword_LS.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_LaserPack_Integrated\LWAssaultRifle_LS.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_LaserPack_Integrated\LWAttachments_LS.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_LaserPack_Integrated\LWCannon_LS.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_LaserPack_Integrated\LWPistol_LS.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_LaserPack_Integrated\LWShotgun_LS.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_LaserPack_Integrated\LWSMG_LS.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_LaserPack_Integrated\LWSniperRifle_LS.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_LaserPack_Integrated\UILibrary_LW_LaserPack.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_Overhaul_ModShaderCache.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_Overhaul_SoundFX.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_ShapedCharge.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_SMGPack_Integrated\LWSMG_BM.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_SMGPack_Integrated\LWSMG_CV.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_SMGPack_Integrated\LWSMG_MG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_SMGPack_Integrated\UILibrary_SMG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\UILibrary_LW_Overhaul.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_LaserPack_Integrated\XComGame.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Overhaul.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_SMGPack_Integrated\XComGame.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe.txt" />
+    <Content Include="ModPreview.jpg" />
+    <Content Include="Localization\XComGame.int" />
+    <Content Include="Src\LongWaroftheChosen\Classes\LWTemplateMods.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\LWTemplateMods_Utilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Condition_MasteredEnemy.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2DownloadableContentInfo_LongWaroftheChosen.uc" />
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_AbilityDamageMult.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_AddAmmo.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_ApplyAltWeaponDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_ApplyExplosiveFalloffWeaponDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_ApplyFireToWorld_Limited.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_Arcthrower.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_ArcthrowerStunned.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_BiggestBooms_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_Bombard.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_BonusGrenadeSlotUse.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_BonusRocketCharges.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_CancelLongRangePenalty.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_CoupDeGrace.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_CoupDeGrace2.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_DeathFromAbove_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_DLC2_HideSpecialTurnOverlay.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_DoubleDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_DoubleTap.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_Failsafe.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_Guardian_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_HairTrigger.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_HEATGrenades.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_HunkerDown_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_HuntersInstinctDamage_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_ImmediateMultiTargetAbilityActivation.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_InfiltrationModifier.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_ItemWeight.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_JavelinRockets.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_LWHolotarget.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_MaybeApplyDirectionalWorldDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_ModifyNonReactionFire.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_Phosphorus.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_Quickburn.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_ReflexShotModifier.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_RemoveItemWeight.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_RoustDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_SerialCritReduction.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_StilettoRounds.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_StreetSweeper.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_StunGunner.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_TransferMecToOutpost.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_Whirlwind2.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_LWUtilityItems.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2LWTemplateModTemplate.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2MultiWeaponTemplate.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2StrategyElement_NewTechs_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_Effect_Bombard.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_Effect_Failsafe.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_Effect_ImmediateMultiTarget.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_Effect_JavelinRockets.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_Effect_TransferMecToOutpost.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_LaserPack_Integrated\Classes\X2Ability_LaserSMGAbilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_LaserPack_Integrated\Classes\X2DownloadableContentInfo_LWLaserPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_LaserPack_Integrated\Classes\X2Item_LaserWeapons.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul.uci">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\LWTemplateMods.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Condition_MasteredEnemy.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2DownloadableContentInfo_LW_Overhaul.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_AbilityDamageMult.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_AddAmmo.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyAltWeaponDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyExplosiveFalloffWeaponDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyFireToWorld_Limited.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Arcthrower.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ArcthrowerStunned.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_BiggestBooms_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Bombard.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_BonusGrenadeSlotUse.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_BonusRocketCharges.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_CancelLongRangePenalty.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_CoupDeGrace.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_CoupDeGrace2.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_DeathFromAbove_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_DLC2_HideSpecialTurnOverlay.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_DoubleDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_DoubleTap.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Failsafe.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Guardian_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_HairTrigger.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_HEATGrenades.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_HunkerDown_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_HuntersInstinctDamage_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ImmediateMultiTargetAbilityActivation.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_InfiltrationModifier.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ItemWeight.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_JavelinRockets.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_LWHolotarget.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_MaybeApplyDirectionalWorldDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ModifyNonReactionFire.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Phosphorus.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Quickburn.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ReflexShotModifier.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_RemoveItemWeight.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_RoustDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_SerialCritReduction.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_StilettoRounds.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_StreetSweeper.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_StunGunner.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_TransferMecToOutpost.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Whirlwind2.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2Item_LWUtilityItems.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2LWTemplateModTemplate.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2MultiWeaponTemplate.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_NewTechs_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_Bombard.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_Failsafe.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_ImmediateMultiTarget.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_JavelinRockets.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_TransferMecToOutpost.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_SMGPack_Integrated\Classes\X2Ability_SMGAbilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_SMGPack_Integrated\Classes\X2DownloadableContentInfo_LWSMGPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_SMGPack_Integrated\Classes\X2Item_SMGWeapon.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Tuple\Classes\LWTuple.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_XCGS_ModOptions\Classes\XComGameState_LWModOptions.uc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>

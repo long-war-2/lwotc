@@ -1,0 +1,13 @@
+[LaserWeapons X2TechTemplate]
+DisplayName="Laser Weapons"
+Summary="Using our new understanding of magnetism and the alien elerium substance, we should be able develop designs for powerful laser weaponry."
+CodeName="Linebacker"
+LongDescription="By studying the methods used by the aliens to manage energy consumption and heat dissipation in their weapons, we've built a working prototype of what we're calling a pulsed laser weapon, although some of the troops prefer to call them 'blasters' for reasons that are obscure to me. The power we are able to put through these weapons is immense, but the system cannot maintain a continuous beam of such immense energies, so it insted relies on a series of picosecond-long pulses of intense energy density to break down any chemical bonds the beam encounters. These weapons should be more accurate and do more damage, on average, than the ballistic weapons we have been using, although they don't quite match the firepower of the weaponry we have seen the aliens operating. R. Tygan."
+UnlockedDescription="Prototype added to inventory"
+
+[AdvancedLasers X2TechTemplate]
+DisplayName="Advanced Laser Weapons"
+Summary="With the basics of combat laser technology fully understood, we believe we can now develop specialized weapons for the troops."
+CodeName="Fulcrum"
+LongDescription="With a fuller understanding of laser weapon technology thanks to feedback from the troops and the engineering team, we were able to refine our weapon designs with a variety of changes to optics, pulse rate and capacitors to develop a series of specialty weapons usable in a variety of roles in the field. R. Tygan."
+UnlockedDescription="Prototype added to inventory"

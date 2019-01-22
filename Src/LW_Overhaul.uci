@@ -1,0 +1,20 @@
+
+/* LWS Overhaul debug messages. Can be independently enabled/disabled via the Suppress directive in XComEngine.ini */
+`define LWDebug(msg,cond,tag) `Log(`msg, `cond, 'LWDebug')
+
+/* LWS Overhaul trace messages, e.g. super log spam with lots of detail. Can be independently enabled/disabled via the Suppress directive
+   in XComEngine.ini */
+`define LWTrace(msg,cond,tag) `Log(`msg, `cond, 'LWTrace')
+
+`define LWOUTPOSTMGR class'XComGameState_LWOutpostManager'.static.GetOutpostManager()
+
+`define LWSQUADMGR class'XComGameState_LWSquadManager'.static.GetSquadManager()
+
+`define LWACTIVITYMGR class'XComGameState_LWAlienActivityManager'.static.GetAlienActivityManager()
+
+`define LWOVERHAULOPTIONS class'XComGameState_LWOverhaulOptions'.static.GetLWOverhaulOptions()
+
+`define LWPODMGR class'XComGameState_LWPodManager'.static.GetPodManager()
+
+/* Pod Manager tracing */
+`define LWPMTrace(msg, cond, tag) `Log(`msg, `cond, 'LWPMTrace')

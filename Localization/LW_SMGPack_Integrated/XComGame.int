@@ -1,0 +1,24 @@
+; SMG item localization 
+; this includes schematics, as of 13 Oct 2015 update
+; this includes ability descriptor, as of 5 Jan 2016 update
+
+[SMG_CV X2WeaponTemplate]
+FriendlyName="SMG"
+FriendlyNamePlural="SMGs"
+BriefSummary="Submachine guns offer a lighter, more concealable alternative to the standard assault rifle, although they lack the same punch and are less accurate at long range."
+TacticalText="<Bullet/> Firing the primary weapon ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the SMG's tactical effectiveness. \n<Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage, have less ammo, and suffer accuracy penalties at long range."
+AbilityDescName="SMG"
+
+[SMG_MG X2WeaponTemplate]
+FriendlyName="Stuttermag"
+FriendlyNamePlural="Stuttermags"
+BriefSummary="The Stuttermag is a lightweight version of the Magnetic Rifle and fills a similar role to the SMG, trading power, ammo and accuracy at range for increased soldier mobility and concealment."
+TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the Stuttermag's tactical effectiveness. \n<Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage, have less ammo, and suffer accuracy penalties at long range."
+AbilityDescName="SMG"
+
+[SMG_BM X2WeaponTemplate]
+FriendlyName="Scramgun"
+FriendlyNamePlural="Scramguns"
+BriefSummary="The Scramgun, like the SMG and Stuttermag, is a smaller primary weapon that grants mobility and concealment bonuses, but does less damage and suffers accuracy penalties at longer ranges. Still, it is a personal weapon of significant power."
+TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the Scramgun's tactical effectiveness. \n<Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage, have less ammo, and suffer accuracy penalties at long range.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
+AbilityDescName="SMG"
