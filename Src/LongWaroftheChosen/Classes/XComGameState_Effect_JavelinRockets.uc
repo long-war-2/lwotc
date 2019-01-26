@@ -21,7 +21,7 @@ function XComGameState_Effect GetOwningEffect()
 //this is triggered when checking range on an item
 function EventListenerReturn OnGetItemRange(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	local LWTuple					OverrideTuple;
+	local XComLWTuple				OverrideTuple;
 	local XComGameState_Item		Item;
 	//local int						Range;  // in tiles -- either bonus or override
 	local XComGameState_Ability		Ability;
@@ -30,7 +30,7 @@ function EventListenerReturn OnGetItemRange(Object EventData, Object EventSource
 	local XComGameState_Item		SourceWeapon;
 	local X2MultiWeaponTemplate		WeaponTemplate;
 
-	OverrideTuple = LWTuple(EventData);
+	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
 	{
 		`REDSCREEN("OverrideGetPCSImage event triggered with invalid event data.");

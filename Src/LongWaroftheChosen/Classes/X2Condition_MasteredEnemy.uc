@@ -22,7 +22,8 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
 	{
 		return 'AA_Success';
 	}
-	*/
 
 	return 'AA_AbilityUnavailable';
+	*/
+	return 'AA_Success';
 }

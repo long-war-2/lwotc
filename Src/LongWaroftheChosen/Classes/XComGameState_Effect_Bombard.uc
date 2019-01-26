@@ -24,7 +24,7 @@ function EventListenerReturn OnGetItemRange(
 		Name InEventID,
 		Object CallbackData)
 {
-	local LWTuple					OverrideTuple;
+	local XComLWTuple				OverrideTuple;
 	local XComGameState_Item		Item;
 	//local int						Range;  // in tiles -- either bonus or override
 	local XComGameState_Ability		Ability;
@@ -32,7 +32,7 @@ function EventListenerReturn OnGetItemRange(
 	local XComGameState_Item		SourceWeapon;
 	local X2WeaponTemplate			WeaponTemplate;
 
-	OverrideTuple = LWTuple(EventData);
+	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
 	{
 		`REDSCREEN("OverrideGetPCSImage event triggered with invalid event data.");

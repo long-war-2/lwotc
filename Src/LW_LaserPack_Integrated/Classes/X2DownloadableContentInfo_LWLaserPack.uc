@@ -21,13 +21,13 @@ static event OnLoadedSavedGame()
 /// </summary>
 static event OnPostTemplatesCreated()
 {
-	UpdateWeaponAttachments();
+	UpdateWeaponAttachmentsForLaser();
 }
 
 
 // ******** HANDLE UPDATING WEAPON ATTACHMENTS ************* //
 // This provides the artwork/assets for weapon attachments for SMGs
-static function UpdateWeaponAttachments()
+static function UpdateWeaponAttachmentsForLaser()
 {
 	local X2ItemTemplateManager ItemTemplateManager;
 

@@ -13,27 +13,40 @@
     <Folder Include="Content\" />
     <Folder Include="Content\LW_SMGPack_Integrated" />
     <Folder Include="Content\LW_LaserPack_Integrated" />
+    <Folder Include="Content\LW_PerkPack_Integrated" />
+    <Folder Include="Content\LW_OfficerPack_Integrated" />
+    <Folder Include="Content\robojumperSquadSelect_Integrated" />
     <Folder Include="Localization\" />
     <Folder Include="Localization\LW_SMGPack_Integrated" />
     <Folder Include="Localization\LW_LaserPack_Integrated" />
     <Folder Include="Localization\LongWaroftheChosen" />
+    <Folder Include="Localization\LW_PerkPack_Integrated" />
+    <Folder Include="Localization\LW_OfficerPack_Integrated" />
     <Folder Include="Src\" />
+    <Folder Include="Src\LongWaroftheChosen\Src" />
+    <Folder Include="Src\LWUtilities\Classes" />
     <Folder Include="Src\LW_LaserPack_Integrated\Classes" />
-    <Folder Include="Src\LW_Overhaul\Classes" />
+    <Folder Include="Src\LW_OfficerPack_Integrated\Classes" />
+    <Folder Include="Src\LW_PerkPack_Integrated\" />
+    <Folder Include="Src\LW_PerkPack_Integrated\Classes" />
     <Folder Include="Src\LW_SMGPack_Integrated\Classes" />
-    <Folder Include="Src\LW_Tuple" />
-    <Folder Include="Src\LW_Tuple\Classes" />
     <Folder Include="Src\LW_XCGS_ModOptions" />
     <Folder Include="Src\LW_XCGS_ModOptions\Classes" />
     <Folder Include="Src\LW_SMGPack_Integrated" />
     <Folder Include="Src\LW_LaserPack_Integrated" />
-    <Folder Include="Src\LW_Overhaul" />
+    <Folder Include="Src\LW_OfficerPack_Integrated" />
+    <Folder Include="Src\LWUtilities" />
+    <Folder Include="Src\robojumperSquadSelect_Integrated" />
+    <Folder Include="Src\robojumperSquadSelect_Integrated\Classes" />
     <Folder Include="Src\XComGame\" />
     <Folder Include="Src\XComGame\Classes\" />
     <Folder Include="Src\LongWaroftheChosen\" />
     <Folder Include="Src\LongWaroftheChosen\Classes\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\XComClassData.ini">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Config\XComEditor.ini">
       <SubType>Content</SubType>
     </Content>
@@ -46,10 +59,25 @@
     <Content Include="Config\XComGameData.ini">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Config\XComGameData_CharacterStats.ini">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Config\XComGameData_WeaponData.ini">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Config\XComGameData_XpData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_OfficerPack.ini">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Config\XComLW_Overhaul.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_PerkPack.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_SoldierSkills.ini">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Content\Cannon_NoShake_LW.upk">
@@ -115,10 +143,52 @@
     <Content Include="Content\LW_LaserPack_Integrated\UILibrary_LW_LaserPack.upk">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Content\LW_OfficerPack_Integrated\LWCommandRange.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_OfficerPack_Integrated\LWOfficerPack_SoundFX.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_OfficerPack_Integrated\Perk_LWFocusFire.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_OfficerPack_Integrated\UILibrary_LW_OfficerPack.upk">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Content\LW_Overhaul_ModShaderCache.upk">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Content\LW_Overhaul_SoundFX.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_PerkPack_Integrated\gfxArmory_LW.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_CloseEncounters.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_PCS_AbsorptionFields.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_PCS_BodyShield.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_PCS_CombatRush.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_PCS_DamageControl.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_PCS_DepthPerception.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_Psi_Bastion.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_Psi_MindMerge.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_PerkPack_Integrated\UILibrary_LW_PerkPack.upk">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Content\LW_ShapedCharge.upk">
@@ -134,6 +204,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Content\LW_SMGPack_Integrated\UILibrary_SMG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\robojumperSquadSelect_Integrated\UILibrary_robojumperSquadSelect.upk">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Content\UILibrary_LW_Overhaul.upk">
@@ -175,6 +248,72 @@
     <Content Include="Localization\LW_LaserPack_Integrated\XComGame.rus">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\LW_OfficerPack_Integrated.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.rus">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Localization\LW_Overhaul.chn">
       <SubType>Content</SubType>
     </Content>
@@ -206,6 +345,72 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Localization\LW_Overhaul.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_PerkPack_Integrated\XComGame.rus">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Localization\LW_SMGPack_Integrated\XComGame.chn">
@@ -244,13 +449,88 @@
     <Content Include="ReadMe.txt" />
     <Content Include="ModPreview.jpg" />
     <Content Include="Localization\XComGame.int" />
+    <Content Include="Src\LongWaroftheChosen\Classes\Helpers_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\LWTemplateMods.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\LWTemplateMods_Utilities.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\LWVersion.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\SeqAct_InitializeMissionTimer.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\UIScrollingTextField.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\UIUtilities_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2AbilityCharges_BonusCharges.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2AbilityCharges_RescueProtocol.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2AbilityCharges_TakeThisCharge.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2AbilityMultiTarget_Cone_LWFlamethrower.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_AssaultAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_DefaultAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_GearAbilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_GrenadierAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_GunnerAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_PsiOperativeAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_RangerAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_SharpshooterAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_ShinobiAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_SpecialistAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_TechnicalAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Condition_CoupDeGrace.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2Condition_MasteredEnemy.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Condition_Phosphorus.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Condition_Sedate.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Condition_Solace_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Condition_UnitDoesNotHaveItem.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2DownloadableContentInfo_LongWaroftheChosen.uc" />
@@ -380,6 +660,36 @@
     <Content Include="Src\LongWaroftheChosen\Classes\X2Effect_Whirlwind2.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_ArcthrowerWeapon.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_Coilguns.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_DefaultMissionItems_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_DefaultWeaponMods_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_EvacFlare.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_LWCombatKnife.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_LWGauntlet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_LWHolotargeter.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_LWPistol.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Item_LWSawedOffShotgun.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2Item_LWUtilityItems.uc">
       <SubType>Content</SubType>
     </Content>
@@ -390,6 +700,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2StrategyElement_NewTechs_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2TargetingMethod_LWRocketLauncher.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_Effect_Bombard.uc">
@@ -407,6 +720,15 @@
     <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_Effect_TransferMecToOutpost.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_LWListenerManager.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Src\LW_Overhaul.uci">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LWUtilities\Classes\LWUtilities_Ranks.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LW_LaserPack_Integrated\Classes\X2Ability_LaserSMGAbilities.uc">
       <SubType>Content</SubType>
     </Content>
@@ -416,172 +738,487 @@
     <Content Include="Src\LW_LaserPack_Integrated\Classes\X2Item_LaserWeapons.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\LWCommandRange_Actor.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\LWOfficerUtilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIAlert_LWOfficerTrainingComplete.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIArmory_LWOfficerPromotion.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIArmory_LWOfficerPromotionItem.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIFacilityStaffContainer_LWOTS.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIFacility_LWOfficerSlot.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIListItemString_SelfContained.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIPersonnel_ListItem_SquadSelect_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIPersonnel_LWOfficer.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIPersonnel_SquadSelect_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_Armory_MainMenu_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_Armory_PromotionPsiOp_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_Armory_Promotion_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_ChooseUpgrade_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_FacilityUpgrade_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_Facility_Academy_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_SquadSelect_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_TacticalHUD_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UISquadSelect_ListItem_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UISquadSelect_OfficerIcon.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UISquadSelect_UtilityItem_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UITacticalHUD_MouseControls_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2AbilityCharges_Command.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2AbilityMultiTarget_LWOfficerCommandRange.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2AbilityToHitCalc_LWCommandRange.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Ability_OfficerAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Ability_OfficerAbilitySet_PassiveAuras.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Ability_ToggleCommandRange.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Condition_EspritDeCorps.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Condition_HasEnoughIntel.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Condition_Intervention.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2DownloadableContentInfo_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_AirController.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_Collector.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_CombinedArms.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_Defilade.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_EspritdeCorps.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_FallBack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_FireDiscipline.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_FocusFire.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_Incoming.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_LeadByExample.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_LeadByExample_old.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_LWOfficerCommandAura.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_Scavenger.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2StrategyElement_LW_OTS_OfficerStaffSlot.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Effect_AirController.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Effect_Collector.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Effect_FocusFire.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Effect_Scavenger.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_HeadquartersProjectTrainLWOfficer.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Unit_LWOfficer.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComHQPresentationLayer_LWOfficerPack.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LW_Overhaul.uci">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\LWTemplateMods.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIArmory_LWExpandedPromotion.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIArmory_LWExpandedPromotionItem.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Condition_MasteredEnemy.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIArmory_LWExpandedPromotionSummaryItem.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2DownloadableContentInfo_LW_Overhaul.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIArmory_MainMenu_LW.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_AbilityDamageMult.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_MainMenu_LWExpandedPerkTree.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_AddAmmo.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_MainMenu_LW_LWExpandedPerkTree.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyAltWeaponDamage.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_Promotion.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyExplosiveFalloffWeaponDamage.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_PromotionPsi_LW.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyFireToWorld_Limited.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_SquadSelect.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Arcthrower.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_TacticalHUD_LW.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ArcthrowerStunned.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_UIAlert.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_BiggestBooms_LW.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UITacticalHUD_AbilityContainer_LWExtended.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Bombard.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIVerticalScrollingText.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_BonusGrenadeSlotUse.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIVerticalScrollingText2.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_BonusRocketCharges.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\Utilities_PP_LW.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_CancelLongRangePenalty.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityCharges_Interference.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_CoupDeGrace.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityCooldown_MindMerge.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_CoupDeGrace2.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityCooldown_RunAndGun_LW.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_DeathFromAbove_LW.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityCost_Ammo_AllAmmo.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_DLC2_HideSpecialTurnOverlay.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityCost_QuickdrawActionPoints_LW.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_DoubleDamage.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityTarget_Single_CCS.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_DoubleTap.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Failsafe.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet2.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Guardian_LW.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_CoverStatus.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_HairTrigger.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_OverwatchLimit.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_HEATGrenades.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RequireConcealed.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_HunkerDown_LW.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RequiredToHitChance.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_HuntersInstinctDamage_LW.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2DownloadableContentInfo_LWPerkPack.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ImmediateMultiTargetAbilityActivation.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_AbsorptionFields.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_InfiltrationModifier.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Aggression.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ItemWeight.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ApplyDenseSmokeGrenadeToWorld.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_JavelinRockets.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_AreaSuppression.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_LWHolotarget.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Bastion.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_MaybeApplyDirectionalWorldDamage.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_BodyShield.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ModifyNonReactionFire.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_BringEmOn.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Phosphorus.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_CloseandPersonal.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Quickburn.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_CloseEncounters.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ReflexShotModifier.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_CombatAwareness.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_RemoveItemWeight.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Commissar.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_RoustDamage.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Cutthroat.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_SerialCritReduction.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_DamageControl.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_StilettoRounds.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_DamnGoodGround.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_StreetSweeper.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_DenseSmokeGrenade.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_StunGunner.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_DepthPerception.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_TransferMecToOutpost.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_EmergencyLifeSupport.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Whirlwind2.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Executioner_LW.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2Item_LWUtilityItems.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FieldSurgeon.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2LWTemplateModTemplate.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FlecheBonusDamage.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2MultiWeaponTemplate.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Formidable.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_NewTechs_LW.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FullKit.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_Bombard.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FullOrdnance.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_Failsafe.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_GrazingFire.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_ImmediateMultiTarget.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HardTarget.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_JavelinRockets.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HitandRun.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_TransferMecToOutpost.uc">
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HyperReactivePupils.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Infighter.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Interference.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_IronCurtain.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_IronCurtainStatDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_KilledEnemy.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_KillerInstinct.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Kubikuri.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_LightningReflexes_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_LockdownDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_LockedOn.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_LoneWolf.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_LowProfile_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Mayhem.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_MeleeDamageAdjust_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_MindMerge.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_PrecisionShotCritDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_PrimaryHitBonusDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_RapidDeployment.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_RapidReaction.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_RemoveAreaSuppressionEffect.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Resilience.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Savior.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Sentinel_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_SlugShot.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_SmartMacrophages.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_SnapShotAimModifier.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_SoulSteal_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_SteadyWeapon.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_TacticalSense.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_TemporaryItem.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_TraverseFire.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Trojan.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_TrojanVirus.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_WalkFireDamage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Whirlwind.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_WilltoSurvive.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Item_DenseSmokeGrenade.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Item_PerkPCS.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Item_StingGrenade.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2TargetingMethod_AreaSuppression.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_EffectCounter.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_IncomingReactionFire.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_LastShotDetails.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_Savior.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_SteadyWeaponListener.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_TemporaryItem.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_Trojan.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_Whirlwind.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_LWPerkPackOptions.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_PerkPack_Integrated\LW_PerkPack.uci">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LW_SMGPack_Integrated\Classes\X2Ability_SMGAbilities.uc">
@@ -591,9 +1228,6 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LW_SMGPack_Integrated\Classes\X2Item_SMGWeapon.uc">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Src\LW_Tuple\Classes\LWTuple.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LW_XCGS_ModOptions\Classes\XComGameState_LWModOptions.uc">

@@ -7,7 +7,7 @@
 
 class LWTemplateMods extends X2StrategyElement config(LW_Overhaul);
 
-`include(LW_Overhaul\Src\LW_Overhaul.uci)
+`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 struct ItemTableEntry
 {
@@ -294,7 +294,9 @@ static function array<X2DataTemplate> CreateTemplates()
 {
     local array<X2DataTemplate> Templates;
 
-    Templates.AddItem(CreateDelayedEvacTemplate());
+	`Log("LWTemplateMods.CreateTemplates --------------------------------");
+
+    //Templates.AddItem(CreateDelayedEvacTemplate());
 	Templates.Additem(CreateReconfigGearTemplate());
 	Templates.Additem(CreateRewireTechTreeTemplate());
 	Templates.AddItem(CreateEditGTSProjectsTemplate());
@@ -313,6 +315,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateReconfigFacilityUpgradesTemplate());
 	Templates.AddItem(CreateModifyStaffSlotsTemplate());
 	Templates.AddItem(CreateModifyRewardsTemplate());
+	`Log("    Done");
     return Templates;
 }
 
@@ -808,7 +811,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2EFfect_HuntersInstinctDamage_LW	DamageModifier;
 	local X2AbilityCooldown					Cooldown;
-	//local X2AbilityCost_QuickdrawActionPoints_LW	QuickdrawActionPointCost;   // WOTC TODO: Restore this once perk pack is added
+	local X2AbilityCost_QuickdrawActionPoints_LW	QuickdrawActionPointCost;
 	local X2Effect_Squadsight				Squadsight;
 	local X2Effect_ToHitModifier			ToHitModifier;
 	local X2Effect_Persistent				Effect, PersistentEffect, HaywiredEffect;
@@ -830,6 +833,13 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_MaybeApplyDirectionalWorldDamage WorldDamage;
 	local X2Effect_DeathFromAbove_LW		DeathEffect;
 	local X2Effect_ApplyWeaponDamage		WeaponDamageEffect;
+
+	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
+	if (Template.DataName == 'ReflexShotModifier')
+	{
+		`Log("TRACE: Using AbilityTemplateManager to get 'StandardShot'");
+		Template.LocFriendlyName = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('StandardShot').LocFriendlyName;
+	}
 
 	if (Template.DataName == 'Grapple')
 	{
@@ -1217,7 +1227,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	}
 
 	// can't shoot when on FIRE
-	/* WOTC TODO: Restore when Í've added the Perk Pack
 	if (class'X2Ability_PerkPackAbilitySet'.default.NO_STANDARD_ATTACKS_WHEN_ON_FIRE)
 	{
 		switch (Template.DataName)
@@ -1244,7 +1253,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			Template.AbilityShooterConditions.AddItem(UnitEffects);
 		}
 	}
-	*/
 
 	if (Template.DataName == 'StandardShot')
 	{
@@ -1305,8 +1313,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		case 'Suppression':
 			SuppressedCondition = new class'X2Condition_UnitEffects';
 			SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
-			// WOTC TODO: Restore (probably with Perk Pack)
-			//SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+			SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 			Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 			break;
 		case 'Overwatch':
@@ -1315,8 +1322,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		case 'LongWatch':
 		case 'Killzone':		
 			SuppressedCondition = new class'X2Condition_UnitEffects';
-			// WOTC TODO: Restore (probably with Perk Pack)
-			//SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+			SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 			Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 			break;
 		case 'MarkTarget':
@@ -1327,8 +1333,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			Template.AddShooterEffectExclusions();
 			SuppressedCondition = new class'X2Condition_UnitEffects';
 			SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
-			// WOTC TODO: Restore (probably with Perk Pack)
-			//SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+			SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 			Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 			break;
 		default:
@@ -1351,8 +1356,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		SuppressedCondition = new class'X2Condition_UnitEffects';
 		SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
-		// WOTC TODO: Restore (probably with Perk Pack)
-		//SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+		SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 		SuppressedCondition.AddExcludeEffect(class'X2AbilityTemplateManager'.default.StunnedName, 'AA_UnitIsStunned');
 		Template.AbilityTargetConditions.AddItem(SuppressedCondition);
 	}
@@ -1379,7 +1383,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bGuaranteedHit = true;
 	}
 
-	/* WOTC TODO: Restore this once perk pack is added
 	if (Template.DataName == 'PistolStandardShot')
 	{
 		Template.AbilityCosts.length = 0;
@@ -1391,7 +1394,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		AmmoCost.iAmmo = 1;
 		Template.AbilityCosts.AddItem(AmmoCost);
 	}
-	*/
 
 	if (Template.DataName == 'Faceoff')
 	{
@@ -1495,14 +1497,14 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		case 'SuppressionShot':
 		case 'AreaSuppressionShot_LW':
 		case 'CloseCombatSpecialistAttack':
-			/* WOTC TODO: Restore when I've added the Perk Pack
 			ShotEffect = class'X2Ability_PerkPackAbilitySet'.static.CoveringFireMalusEffect();
 			ShotEffect.TargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
 			Template.AddTargetEffect(ShotEffect);
-			*/
 			break;
 	}
 
+	/* WOTC TODO: The "Variable" icon color type requires a modified version of UITacticalHUD_Ability
+	   that isn't available with X2WOTCCommunityHighlander right now. */
 	if (default.USE_ACTION_ICON_COLORS)
 	{
 		for (k = 0; k < Template.AbilityCosts.length; k++)
@@ -1572,6 +1574,14 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 				Template.AbilityIconColor = GetIconColorByActionPoints (Template); break;
 		}
 	}
+	
+	// WOTC TODO: Remove this when the above block is restored.
+	/*
+	if (default.USE_ACTION_ICON_COLORS)
+	{
+		Template.AbilityIconColor = GetIconColorByActionPoints(Template);
+	}
+	*/
 
     // Yellow alert scamper ability table. Search these abilities for an X2AbilityCost_ActionPoints
     // and add the special 'ReflexActionPoint_LW' to the list of valid action points that can be used
@@ -1579,21 +1589,18 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
     // they will only be able to use the abilities configured here.
     if (OffensiveReflexAbilities.Find(Template.DataName) >= 0)
     {
-		// WOTC TODO: Restore this
-        //AddReflexActionPoint(Template, class'XComGameState_LWListenerManager'.const.OffensiveReflexAction);
+        AddReflexActionPoint(Template, class'XComGameState_LWListenerManager'.const.OffensiveReflexAction);
     }
 
     if (DefensiveReflexAbilities.Find(Template.DataName) >= 0)
     {
-		// WOTC TODO: Restore this
-        //AddReflexActionPoint(Template, class'XComGameState_LWListenerManager'.const.DefensiveReflexAction);
+        AddReflexActionPoint(Template, class'XComGameState_LWListenerManager'.const.DefensiveReflexAction);
     }
 
 	if (DoubleTapAbilities.Find(Template.DataName) >= 0)
 	{
 		`LOG ("Adding Double Tap to" @ Template.DataName);
-		// WOTC TODO: Restore this
-		//AddDoubleTapActionPoint (Template, class'X2Ability_LW_SharpshooterAbilitySet'.default.DoubleTapActionPoint);
+		AddDoubleTapActionPoint (Template, class'X2Ability_LW_SharpshooterAbilitySet'.default.DoubleTapActionPoint);
 	}
 
 	// bugfix, hat tip to BountyGiver, needs test
@@ -2872,6 +2879,7 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 	FacilityTemplate = X2FacilityTemplate (Template);
 	if (FacilityTemplate != none)
 	{
+		/* WOTC TODO: Restore with Officer pack
 		if (FacilityTemplate.DataName == 'OfficerTrainingSchool')
 		{
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('HuntersInstinctUnlock');
@@ -2883,6 +2891,7 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration1Unlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration2Unlock');
 		}
+		*/
 		if (FacilityTemplate.DataName == 'Laboratory')
 		{
 			StaffSlotDef.StaffSlotTemplateName = 'LaboratoryStaffSlot';
@@ -3068,8 +3077,12 @@ static function bool IsUnitValidForPsiChamberSoldierSlot(XComGameState_StaffSlot
 	local X2SoldierClassTemplate SoldierClassTemplate;
 	local SCATProgression ProgressAbility;
 	local name AbilityName;
+	local array<SoldierClassAbilityType> AllPsiAbilities;
+	local SoldierClassAbilityType PsiAbility;
 
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
+	
+	`LWTrace("Checking whether " $ Unit.GetName(eNameType_Full) $ " is valid for PsiChamber");
 	/* WOTC TODO: Restore this
 	if(class'LWDLCHelpers'.static.IsUnitOnMission(Unit)) // needed to work with infiltration system
 		return false;
@@ -3085,24 +3098,27 @@ static function bool IsUnitValidForPsiChamberSoldierSlot(XComGameState_StaffSlot
 	{
 		if (Unit.GetRank() == 0 && !Unit.CanRankUpSoldier()) // All rookies who have not yet ranked up can be trained as Psi Ops
 		{
+			`LWTrace("Rookie! Can train as PsiOp");
 			return true;
 		}
-		else if (Unit.IsPsiOperative()) // Psi Ops can only train if there are abilities leftes
+		else if (Unit.IsPsiOperative()) // Psi Ops can only train if there are abilities left
 		{ 
-			/* WOTC TODO: Restore when perk pack is added
+			`LWTrace("This is a PsiOp - need to check whether they can rank up");
 			SoldierClassTemplate = Unit.GetSoldierClassTemplate();
 			if (class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(Unit)) // LW2 override, this limits to 8 abilities
 			{
-				foreach Unit.PsiAbilities(ProgressAbility)
+				// WOTC TODO: This may not work as this includes the a random deck of abilities. I don't know if it's
+				// possible to distinguish between Psi abilities and others
+				AllPsiAbilities = SoldierClassTemplate.GetAllPossibleAbilities();
+				foreach AllPsiAbilities(PsiAbility)
 				{
-					AbilityName = SoldierClassTemplate.GetAbilityName(ProgressAbility.iRank, ProgressAbility.iBranch);
-					if (AbilityName != '' && !Unit.HasSoldierAbility(AbilityName))
+					`Log("Checking for (Psi?) ability " $ PsiAbility.AbilityName $ " (" $ PsiAbility.UtilityCat $ ")");
+					if (PsiAbility.AbilityName != '' && !Unit.HasSoldierAbility(PsiAbility.AbilityName))
 					{
 						return true; // If we find an ability that the soldier hasn't learned yet, they are valid
 					}
 				}
 			}
-			*/
 		}
 	}
 	return false;

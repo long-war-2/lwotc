@@ -1,11 +1,46 @@
  - Macro DIFFICULTYSETTING -> CampaignDifficultySetting || TacticalDifficultySetting || StrategyDifficultySetting
+ - UIAlert.eAlert -> eAlertName
+ - UIAlert.UnitInfo.UnitRef -> class'X2StrategyGameRulesetDataStructures'.static.GetDynamicIntProperty(UIAlert.DisplayPropertySet, 'UnitRef')));
+ - Long War does some stuff around Bladestorm and Rapid Fire in X2Ability_RangerAbilitySet. No idea if it's still necessary.
+ - 
+ 
+ VisualizationTrack:
+ 
+  - VisualizationTrack -> VisualizationActionMetadata
+  - VisualizationTrack.TrackActor -> VisualizationActionMetadata.VisualizeActor
+  - AddToVisualizationTrack(p1, p2) -> AddToVisualizationTree(p1, p2, false, VisualizationActionMetadata.LastActionAdded)
  
  General notes:
  
   * Enabling the building of weapons is handled in `LWTemplateMods.ReconfigGear()`
   
+  
   TODO:
   
-   * Migrate perk pack
-   * Migrate Officer pack
+   * Migrate useful parts of ToolBox (or maybe just all of it)
+   X Migrate perk pack
+   X Migrate Officer pack
+   X Don't override promotion screen for faction soldiers
+   X Fix Officer Training Complete dialog
+   X Add secondary weapons (holotargeter, combat knife, pump-action shotgun, arc thrower)
+   X Fix evac!
+   X Enable larger squads on missions (can do this with robojumper's Squad Select)
+   X Open up utility slots
+   X Restore grenade ability/perk icons in tactical HUD
+   * Migrate alien pack
+   * Add robojumper's squad select (currently crashes start of tactical missions when I integrate it)
+   * Fix rank names for normal soldiers and officers (requires overriding a
+     bunch of classes in the highlander as there is no easy way to inject a
+	 different display rank for soldiers)
    * Enable squad management (XComGameState_LWSquadManager)
+   * Test abilities: double tap, combat rush, suppression, area suppression, rapid fire, bastion, sedate, full override
+   * Make sure faction weapons can be upgraded (and armour?)
+   * Fix technical abilities (particularly first one!)
+   * Switch over to Alien AI
+   * Make sure utility slots remain at 3, and don't show an upgrade slot that comes with armour
+   * See if it's possible to add extra utility slots to faction soldiers that works
+   
+   Acknowledgements:
+   
+    * X2WOTCCommunityHighlander
+	* Author of WOTC officer pack, from which I cribbed some solutions

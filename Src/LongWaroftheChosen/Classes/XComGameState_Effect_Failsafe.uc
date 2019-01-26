@@ -19,13 +19,13 @@ function XComGameState_Effect GetOwningEffect()
 // this is triggered just before acquiring a hack reward, giving a chance to skip adding the negative one
 function EventListenerReturn PreAcquiredHackReward(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	local LWTuple					OverrideHackRewardTuple;
+	local XComLWTuple				OverrideHackRewardTuple;
 	local XComGameState_Unit		Hacker;
 	local XComGameState_BaseObject	HackTarget;
 	local X2HackRewardTemplate		HackTemplate;
 	local XComGameState_Ability		AbilityState;
 
-	OverrideHackRewardTuple = LWTuple(EventData);
+	OverrideHackRewardTuple = XComLWTuple(EventData);
 	if(OverrideHackRewardTuple == none)
 	{
 		`REDSCREEN("OverrideGetPCSImage event triggered with invalid event data.");

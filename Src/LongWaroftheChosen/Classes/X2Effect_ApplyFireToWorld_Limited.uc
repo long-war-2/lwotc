@@ -225,7 +225,6 @@ event AddWorldEffectTickEvents( XComGameState NewGameState, XComGameState_WorldE
 			DamageEvent.DamageTypeTemplateName = 'Fire';
 			DamageEvent.bRadialDamage = false;
 
-			/* WOTC TODO: Restore when we have Helpers_LW in. Also remove the default damage amount after this commented section
 			if (NumTurns >= class'Helpers_LW'.default.FireEnvironmentDamageAfterNumTurns.Length)
 			{
 				DamageEvent.DamageAmount = 5; // default to some low value
@@ -236,8 +235,6 @@ event AddWorldEffectTickEvents( XComGameState NewGameState, XComGameState_WorldE
 				NumTurnEnvDamIdx = Clamp(NumTurns, 0, class'Helpers_LW'.default.FireEnvironmentDamageAfterNumTurns.Length);
 				DamageEvent.DamageAmount = class'Helpers_LW'.default.FireEnvironmentDamageAfterNumTurns[NumTurnEnvDamIdx]; 
 			}
-			*/
-			DamageEvent.DamageAmount = 5; // WOTC TODO: Remove this!
 			DamageEvent.bAffectFragileOnly = bDamageFragileOnly;
 			//loop over indices of all tiles with fire terminating this turn
 			foreach FireEndingIndices( Index )
@@ -280,7 +277,7 @@ event AddWorldEffectTickEvents( XComGameState NewGameState, XComGameState_WorldE
 }
 
 /* WOTC TODO: Fix this for WOTC
-simulated function AddX2ActionsForVisualization(XComGameState VisualizeGameState, out VisualizationTrack BuildTrack, name EffectApplyResult)
+simulated function AddX2ActionsForVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata BuildTrack, name EffectApplyResult)
 {
 	local X2Action_UpdateWorldEffects_Fire AddFireAction;
 	local XComGameState_WorldEffectTileData GameplayTileUpdate;
@@ -290,7 +287,7 @@ simulated function AddX2ActionsForVisualization(XComGameState VisualizeGameState
 	// since we also make smoke, we don't want to add fire effects for those track states
 	if((GameplayTileUpdate != none) && (GameplayTileUpdate.WorldEffectClassName == 'X2Effect_ApplyFireToWorld') && (GameplayTileUpdate.SparseArrayIndex > -1))
 	{
-		AddFireAction = X2Action_UpdateWorldEffects_Fire(class'X2Action_UpdateWorldEffects_Fire'.static.AddToVisualizationTrack(BuildTrack, VisualizeGameState.GetContext()));
+		AddFireAction = X2Action_UpdateWorldEffects_Fire(class'X2Action_UpdateWorldEffects_Fire'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded));
 		AddFireAction.bCenterTile = bCenterTile;
 		AddFireAction.SetParticleSystems(GetParticleSystem_Fill());
 	}

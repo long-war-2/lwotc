@@ -26,7 +26,7 @@ Static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(AddSMGConventionalBonusAbility());
 	Templates.AddItem(AddSMGMagneticBonusAbility());
-	//Templates.AddItem(AddSMGCoilBonusAbility());
+	Templates.AddItem(AddSMGCoilBonusAbility());
 	Templates.AddItem(AddSMGBeamBonusAbility());
 
 	return Templates;

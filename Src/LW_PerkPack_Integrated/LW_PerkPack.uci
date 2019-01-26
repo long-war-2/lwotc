@@ -1,0 +1,8 @@
+
+/* LW PerkPack debug messages. Can be independently enabled/disabled via the Suppress directive in XComEngine.ini */
+`define PPDebug(msg,cond,tag) if(class'XComGameState_LWPerkPackOptions'.default.Suppress.Find('PPDebug') == -1) `Log(`msg, `cond, 'LW_PerkPack_Debug')
+
+/* LW PerkPack trace messages, e.g. super log spam with lots of detail. Can be independently enabled/disabled via the Suppress directive
+   in XComEngine.ini */
+`define PPTrace(msg,cond,tag) if(class'XComGameState_LWPerkPackOptions'.default.Suppress.Find('PPTrace') == -1) `Log(`msg, `cond, 'LW_PerkPack_Trace')
+
