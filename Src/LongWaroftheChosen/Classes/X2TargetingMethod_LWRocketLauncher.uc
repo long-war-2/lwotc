@@ -120,7 +120,6 @@ function Update(float DeltaTime)
 		ScatterAmountText.SetPosition(vMouseCursorPos.X + 2, vMouseCursorPos.Y + 14); // this follows cursor
 		ExpectedScatter = class'X2Ability_LW_TechnicalAbilitySet'.static.GetExpectedScatter(UnitState, NewTargetLocation);
 		ScatterAmountText.SetHTMLText(class'UIUtilities_LW'.static.GetHTMLAverageScatterText(ExpectedScatter));
-		ScatterAmountText.SetHTMLText("**** TBD ****");
 	}
 
 	super(X2TargetingMethod_Grenade).UpdateTargetLocation(DeltaTime);
