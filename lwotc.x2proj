@@ -479,6 +479,9 @@
     <Content Include="Src\LongWaroftheChosen\Classes\X2AbilityCharges_TakeThisCharge.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2AbilityCooldown_AllInstances.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2AbilityMultiTarget_Cone_LWFlamethrower.uc">
       <SubType>Content</SubType>
     </Content>

@@ -28,8 +28,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddCombatFitness());
 	Templates.AddItem(AddFortify());
 	Templates.AddItem(AddSprinter());
-	// WOTC TODO: Requires Officer Perk Pack
-	//Templates.AddItem(AddPassSidearm());
+	Templates.AddItem(AddPassSidearm());
 	return Templates;
 }
 

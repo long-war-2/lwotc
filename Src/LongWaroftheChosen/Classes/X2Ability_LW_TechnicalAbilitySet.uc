@@ -306,8 +306,7 @@ static function X2AbilityTemplate CreateRoustAbility()
 	local X2Effect_Burning						BurningEffect;
 	local X2AbilityCharges_BonusCharges			Charges;
 	local X2AbilityCost_Charges					ChargeCost;
-	// WOTC TODO: Requires Officer Perk Pack
-	//local X2Effect_FallBack						FallBackEffect;
+	local X2Effect_FallBack						FallBackEffect;
 	local X2Condition_UnitEffects				SuppressedCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Roust');
@@ -392,11 +391,9 @@ static function X2AbilityTemplate CreateRoustAbility()
 	Template.AddMultiTargetEffect(CreateFlamethrowerDamageAbility());
 	Template.AddMultiTargetEffect(FireToWorldEffect);
 
-	/* WOTC TODO: Requires Officer Perk Pack
 	FallBackEffect = new class'X2Effect_FallBack';
 	FallBackEffect.BehaviorTree = 'FlushRoot';
 	Template.AddMultiTargetEffect(FallBackEffect);
-	*/
 
 	Template.bCheckCollision = true;
 	Template.bAffectNeighboringTiles = true;

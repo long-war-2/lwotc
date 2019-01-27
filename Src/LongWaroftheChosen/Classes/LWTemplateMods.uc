@@ -629,12 +629,10 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 	{
 		case 'FlashbangGrenade':
 		case 'StingGrenade':
-			/* WOTC TODO: Restore this
 			GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Ability_LW_GrenadierAbilitySet'.static.CreateBluescreenBombsHackReductionEffect());
 			GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Ability_LW_GrenadierAbilitySet'.static.CreateBluescreenBombsDisorientEffect());		
 			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Ability_LW_GrenadierAbilitySet'.static.CreateBluescreenBombsHackReductionEffect());
 			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Ability_LW_GrenadierAbilitySet'.static.CreateBluescreenBombsDisorientEffect());
-			*/
 			GrenadeTemplate.bAllowVolatileMix = false;
 
 			for (k = 0; k < GrenadeTemplate.ThrownGrenadeEffects.Length; k++)
@@ -910,15 +908,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		SerialCritReduction.AimReductionPerKill = default.SERIAL_AIM_MALUS_PER_KILL;
 		SerialCritReduction.Damage_Falloff = default.SERIAL_DAMAGE_FALLOFF;
 		SerialCritReduction.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true,, Template.AbilitySourceName);
-		/* WOTC TODO: Restore this once I know how to work around the array being const
 		Template.AbilityTargetEffects.AddItem(SerialCritReduction);
-		*/
 	}
 
 	// Disables the effect so they get full turns on alien turn
 	if (Template.DataName == 'AlienRulerInitialState')
 	{
-		/* WOTC TODO: AbilityTargetEffects is const
 		Template.AbilityTargetEffects.length = 0;
 		DamageImmunity = new class'X2Effect_DamageImmunity';
 	    DamageImmunity.BuildPersistentEffect(1, true, true, true);
@@ -928,13 +923,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 		//Requires listeners set up so that "RULER REACTION" overlay gets removed
 		Template.AddTargetEffect(new class'X2Effect_DLC2_HideSpecialTurnOverlay');
-		*/
 	}
 
 	// Use alternate DFA effect so it's compatible with Double Tap 2, and add additional ability of canceling long-range sniper rifle penalty
 	if (Template.DataName == 'DeathFromAbove')
 	{
-		/* WOTC TODO: AbilityTargetEffects is const
 		Template.AbilityTargetEffects.Length = 0;
 		DFAEffect = New class'X2Effect_CancelLongRangePenalty';
 		DFAEffect.BuildPersistentEffect (1, true, false);
@@ -944,7 +937,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		DeathEffect.BuildPersistentEffect(1, true, false, false);
 		DeathEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DeathEffect);
-		*/
 	}
 
 	// and partial turns only sometimes
@@ -1043,7 +1035,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	// bugfix for Flashbangs doing damage
 	if (Template.DataName == 'HuntersInstinct')
 	{
-		/* WOTC TODO: AbilityTargetEffects is const
 		Template.AbilityTargetEffects.length = 0;
 		DamageModifier = new class'X2Effect_HuntersInstinctDamage_LW';
 		DamageModifier.BonusDamage = class'X2Ability_RangerAbilitySet'.default.INSTINCT_DMG;
@@ -1051,59 +1042,49 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		DamageModifier.BuildPersistentEffect(1, true, false, true);
 		DamageModifier.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DamageModifier);
-		*/
 	}
 
 	// bugfix for several vanilla perks being lost after bleeding out/revive
 	if (Template.DataName == 'Squadsight')
 	{
-		/* WOTC TODO: AbilityTargetEffects is const
 		Template.AbilityTargetEffects.length = 0;
 	    Squadsight = new class'X2Effect_Squadsight';
 	    Squadsight.BuildPersistentEffect(1, true, false, true);
 		Squadsight.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
 		Template.AddTargetEffect(Squadsight);
-		*/
 	}
 
 	if (Template.DataName == 'HitWhereItHurts')
 	{
-		/* WOTC TODO: AbilityTargetEffects is const
 		Template.AbilityTargetEffects.length = 0;
 		ToHitModifier = new class'X2Effect_ToHitModifier';
 		ToHitModifier.BuildPersistentEffect(1, true, false, true);
 		ToHitModifier.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
 		ToHitModifier.AddEffectHitModifier(1, class'X2Ability_SharpshooterAbilitySet'.default.HITWHEREITHURTS_CRIT, Template.LocFriendlyName,, false, true, true, true);
 		Template.AddTargetEffect(ToHitModifier);
-		*/
 	}
 
 	if (Template.DataName == 'HoloTargeting')
 	{
-		/* WOTC TODO: AbilityTargetEffects is const
 		Template.AbilityTargetEffects.length = 0;
 	    PersistentEffect = new class'X2Effect_Persistent';
 		PersistentEffect.BuildPersistentEffect(1, true, false);
 		PersistentEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(PersistentEffect);
-		*/
 	}
 
 	if (Template.DataName == 'VolatileMix')
 	{
-		/* WOTC TODO: AbilityTargetEffects is const
 		Template.AbilityTargetEffects.length = 0;
 	    MixEffect = new class'X2Effect_VolatileMix';
 	    MixEffect.BuildPersistentEffect(1, true, false, true);
 	    MixEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
 	    MixEffect.BonusDamage = class'X2Ability_GrenadierAbilitySet'.default.VOLATILE_DAMAGE;
 	    Template.AddTargetEffect(MixEffect);
-		*/
 	}	
 	
 	if (Template.DataName == 'CoolUnderPressure')
 	{
-		/* WOTC TODO: AbilityTargetEffects is const
 		Template.AbilityTargetEffects.length = 0;
 		ReactionFire = new class'X2Effect_ModifyReactionFire';
 		ReactionFire.bAllowCrit = true;
@@ -1111,7 +1092,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		ReactionFire.BuildPersistentEffect(1, true, false, true);
 		ReactionFire.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
 		Template.AddTargetEffect(ReactionFire);
-		*/
 	}	
 
 	if (Template.DataName == 'BulletShred')
@@ -1202,9 +1182,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 				X2AbilityCost_Ammo(Template.AbilityCosts[k]).iAmmo = default.SATURATION_FIRE_AMMO_COST;
 			}
 		}
-		/* WOTC TODO: Work out how to remove items from this const array!
+
 		Template.AbilityMultiTargetEffects.length = 0;
-		*/
 		Template.AddMultiTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
 		WorldDamage = new class'X2Effect_MaybeApplyDirectionalWorldDamage';
 		WorldDamage.bUseWeaponDamageType = true;
@@ -1370,12 +1349,10 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'ThrowGrenade')
 	{
-		/* WOTC TODO: Restore this
 		Cooldown = new class'X2AbilityCooldown_AllInstances';
 		Cooldown.iNumTurns = default.THROW_GRENADE_COOLDOWN;
 		Template.AbilityCooldown = Cooldown;
 		X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bGuaranteedHit = true;
-		*/
 	}
 
 	if (Template.DataName == 'LaunchGrenade')
@@ -1414,7 +1391,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'HunkerDown')
 	{
-		/* WOTC TODO: AbilityTargetEffects is const
 		Template.AbilityTargetEffects.length = 0;
 		HunkerDownEffect = new class 'X2Effect_HunkerDown_LW';
 		HunkerDownEffect.EffectName = 'HunkerDown';
@@ -1423,7 +1399,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		HunkerDownEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
 		Template.AddTargetEffect(HunkerDownEffect);
 		Template.AddTargetEffect(class'X2Ability_SharpshooterAbilitySet'.static.SharpshooterAimEffect());
-		*/
 	}
 
 	if (Template.DataName == 'Fuse' && default.FUSE_COOLDOWN > 0)
@@ -1436,14 +1411,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	// Sets to one shot per target a turn
 	if (Template.DataName == 'Sentinel')
 	{
-		/* WOTC TODO: AbilityTargetEffects is const
 		Template.AbilityTargetEffects.length = 0;
 	    GuardianEffect = new class'X2Effect_Guardian_LW';
 	    GuardianEffect.BuildPersistentEffect(1, true, false);
 	    GuardianEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	    GuardianEffect.ProcChance = class'X2Ability_SpecialistAbilitySet'.default.GUARDIAN_PROC;
 	    Template.AddTargetEffect(GuardianEffect);
-		*/
 	}
 
 	// Adds shieldHP bonus
@@ -1503,8 +1476,9 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			break;
 	}
 
-	/* WOTC TODO: The "Variable" icon color type requires a modified version of UITacticalHUD_Ability
-	   that isn't available with X2WOTCCommunityHighlander right now. */
+	// WOTC TODO: The "Variable" icon color type requires a modified version of UITacticalHUD_Ability
+	// that isn't available with X2WOTCCommunityHighlander right now. I'm building against a custom
+	// version right now.
 	if (default.USE_ACTION_ICON_COLORS)
 	{
 		for (k = 0; k < Template.AbilityCosts.length; k++)
@@ -1575,14 +1549,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 	
-	// WOTC TODO: Remove this when the above block is restored.
-	/*
-	if (default.USE_ACTION_ICON_COLORS)
-	{
-		Template.AbilityIconColor = GetIconColorByActionPoints(Template);
-	}
-	*/
-
     // Yellow alert scamper ability table. Search these abilities for an X2AbilityCost_ActionPoints
     // and add the special 'ReflexActionPoint_LW' to the list of valid action points that can be used
     // for these actions. These special action points are awarded to some units during a scamper, and
@@ -1759,10 +1725,8 @@ function SwapExplosiveFalloffAbility(X2AbilityTemplate Template, int Difficulty)
 		FalloffDamageEffect.EnvironmentDamageSteps=default.EnvironmentDamageSteps;
 
 		//`LOG("Swapping AbilityMultiTargetEffects DamageEffect for item " $ Template.DataName);
-		/* WOTC TODO: Restore this once I know how to workaround the array now being const
 		Template.AbilityMultiTargetEffects.RemoveItem(DamageEffect);
 		Template.AbilityMultiTargetEffects.AddItem(FalloffDamageEffect);
-		*/
 	}
 	else
 	{
@@ -1948,8 +1912,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		// substitute cannon range table
 		if (WeaponTemplate.WeaponCat == 'cannon')
 		{
-			// WOTC TODO: Restore this		
-			//WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LMG_ALL_RANGE;
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LMG_ALL_RANGE;
 		}
 		if (WeaponTemplate.DataName == 'Medikit')
 		{
@@ -2230,13 +2193,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			if (GrenadeTemplate.DataName == 'ProximityMine')
 			{
-				// WOTC TODO: Restore this
-				//GrenadeTemplate.iEnvironmentDamage = class'X2Item_DefaultWeaponMods_LW'.default.PROXIMITYMINE_iENVIRONMENTDAMAGE;
+				GrenadeTemplate.iEnvironmentDamage = class'X2Item_DefaultWeaponMods_LW'.default.PROXIMITYMINE_iENVIRONMENTDAMAGE;
 			}
 			if (GrenadeTemplate.DataName == 'MutonGrenade')
 			{
-				// WOTC TODO: Restore this
-				//GrenadeTemplate.iEnvironmentDamage = class'X2Item_DefaultWeaponMods_LW'.default.MUTONGRENADE_iENVIRONMENTDAMAGE;
+				GrenadeTemplate.iEnvironmentDamage = class'X2Item_DefaultWeaponMods_LW'.default.MUTONGRENADE_iENVIRONMENTDAMAGE;
 			}
 			if (GrenadeTemplate.DataName == 'FragGrenade')
 			{
@@ -2879,7 +2840,6 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 	FacilityTemplate = X2FacilityTemplate (Template);
 	if (FacilityTemplate != none)
 	{
-		/* WOTC TODO: Restore with Officer pack
 		if (FacilityTemplate.DataName == 'OfficerTrainingSchool')
 		{
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('HuntersInstinctUnlock');
@@ -2891,7 +2851,6 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration1Unlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration2Unlock');
 		}
-		*/
 		if (FacilityTemplate.DataName == 'Laboratory')
 		{
 			StaffSlotDef.StaffSlotTemplateName = 'LaboratoryStaffSlot';
@@ -3107,7 +3066,7 @@ static function bool IsUnitValidForPsiChamberSoldierSlot(XComGameState_StaffSlot
 			SoldierClassTemplate = Unit.GetSoldierClassTemplate();
 			if (class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(Unit)) // LW2 override, this limits to 8 abilities
 			{
-				// WOTC TODO: This may not work as this includes the a random deck of abilities. I don't know if it's
+				// WOTC TODO: This may not work as this includes a random deck of abilities. I don't know if it's
 				// possible to distinguish between Psi abilities and others
 				AllPsiAbilities = SoldierClassTemplate.GetAllPossibleAbilities();
 				foreach AllPsiAbilities(PsiAbility)
@@ -3370,7 +3329,7 @@ function bool DelayGrenades(XComGameState_PointOfInterest POIState)
 	return true;
 }
 
-// This also modifies the description of hte city center in invasion missions
+// This also modifies the description of the city center in invasion missions
 function ModifyPOIs (X2StrategyElementTemplate Template, int Difficulty)
 {
 	/* WOTC TODO: Restore this

@@ -320,8 +320,7 @@ static function X2AbilityTemplate AddFlushAbility()
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityCooldown					Cooldown;
 	local X2Condition_Visibility            VisibilityCondition;
-	// WOTC TODO: Requires officer perk pack
-	//local X2Effect_FallBack					FallBackEffect;
+	local X2Effect_FallBack					FallBackEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_UnitProperty			ShooterCondition;
 	local X2Effect_PersistentStatChange		NerfEffect;
@@ -385,11 +384,9 @@ static function X2AbilityTemplate AddFlushAbility()
 	Template.AssociatedPassives.AddItem('HoloTargeting');
 	Template.bAllowAmmoEffects = false;
 
-	/* WOTC TODO: Requires Officer Perk Pack
 	FallBackEffect = new class'X2Effect_FallBack';
 	FallBackEffect.BehaviorTree = 'FlushRoot';
 	Template.AddTargetEffect(FallBackEffect);
-	*/
 
 	NerfEffect = new class'X2Effect_PersistentStatChange';
 	NerfEffect.BuildPersistentEffect(default.FLUSH_STATEFFECT_DURATION, false, false, true, eGameRule_PlayerTurnBegin);
