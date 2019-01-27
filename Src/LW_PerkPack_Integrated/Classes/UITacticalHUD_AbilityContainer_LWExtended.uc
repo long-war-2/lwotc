@@ -150,14 +150,7 @@ simulated function UpdateAbilitiesArray()
 	{	
 		// Obtain unit's ability
 		AbilityAvailableInfo = UnitInfoCache.AvailableActions[i];
-
-		// WOTC:
-		AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(AbilityAvailableInfo.AbilityObjectRef.ObjectID));
-		if (AbilityState != none)
-		{
-			`Log("Should we show ability icon for " $ AbilityState.GetMyTemplateName() $ " (" $ AbilityState.GetMyIconImage() $ ")?");
-		}
-
+		
 		if (ShouldShowAbilityIcon(AbilityAvailableInfo, bCommanderAbility))
 		{
 			`Log("    Yes!!!");
@@ -264,16 +257,9 @@ simulated function PopulateFlash()
 
 		AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(AvailableActionInfo.AbilityObjectRef.ObjectID));
 		AbilityTemplate = AbilityState.GetMyTemplate();
-
-		// WOTC:
-		if (AbilityState != none)
-		{
-			`Log("Should we show ability icon for " $ AbilityState.GetMyTemplateName() $ " (" $ AbilityTemplate.AbilityIconColor $ ")?");
-		}
-
+		
 		if (!AbilityTemplate.bCommanderAbility)
 		{
-			`Log("    Yes! (It's not a command ability)");
 			item = m_arrUIAbilities[numActiveAbilities];
 			item.UpdateData(i, AvailableActionInfo);
 			// Update hotkey label
