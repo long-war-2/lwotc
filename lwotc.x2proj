@@ -212,6 +212,39 @@
     <Content Include="Content\UILibrary_LW_Overhaul.upk">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Localization\LongWaroftheChosen.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LongWaroftheChosen.rus">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Localization\LongWaroftheChosen\XComGame.int">
       <SubType>Content</SubType>
     </Content>
@@ -312,39 +345,6 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Localization\LW_OfficerPack_Integrated\XComGame.rus">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.chn">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.cht">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.deu">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.esn">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.fra">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.int">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.ita">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.jpn">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.kor">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.pol">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Localization\LW_Overhaul.rus">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Localization\LW_PerkPack_Integrated\LW_PerkPack_Integrated.chn">
