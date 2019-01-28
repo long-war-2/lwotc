@@ -7,10 +7,6 @@ class X2AbilityMultiTarget_Cone_LWFlamethrower extends X2AbilityMultiTarget_Cone
 
 `include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
-//var float ConeEndDiameter;
-//var float ConeLength;
-//var bool bUseWeaponRangeForLength;
-
 struct TileDistancePair
 {
 	var TTile Tile;
@@ -84,7 +80,7 @@ simulated function GetValidTilesForLocation(const XComGameState_Ability Ability,
 		ShooterVisualizer.GetDirectionInfoForPosition(Location, VisibilityInfo, CoverDirection, UsePeek, bCanSeeFromDefault, bRequiresLean, true);
 		ShooterPos = ShooterVisualizer.GetExitCoverPosition(CoverDirection, UsePeek);
 		ShooterPos.Z = WorldData.GetFloorZForPosition(ShooterPos);
-		//`LWTRACE("MultiTargetFlamethrower ShooterPosition = (" $ ShooterPos.X $ ", " $ ShooterPos.Y $ ", " $ ShooterPos.Z $ ")"); 
+		`LWTRACE("MultiTargetFlamethrower ShooterPosition = (" $ ShooterPos.X $ ", " $ ShooterPos.Y $ ", " $ ShooterPos.Z $ ")"); 
 	}
 	ShooterPos.Z += class'XComWorldData'.const.WORLD_FloorHeight;
 	ConeAxis = Normal(Location - ShooterPos) * GetConeLength(Ability);
@@ -117,7 +113,7 @@ simulated function GetValidTilesForLocation(const XComGameState_Ability Ability,
 		}
 	}
 
-	//`LWTRACE("MultiTargetFlamethrower NumTiles=" $ TileCollection.length);
+	`LWTRACE("MultiTargetFlamethrower NumTiles=" $ TileCollection.length);
 	//UnvisitedTiles.Sort(SortTilesByDistance);  // TODO : implement sorting for O(n log n) instead of O(n^2) if performance required
 	CurrentTile = UnvisitedTiles[GetSmallestDistanceTile(UnvisitedTiles, LargestDistance)];
 	while (LargestDistance > CurrentConeLength && CurrentTile.Distance <= CurrentConeLength)
@@ -305,7 +301,8 @@ simulated function GetTargetedStateObjects(XComGameState_Ability Ability, Vector
 	local array<StateObjectReference> ObjectRefList;
 	local StateObjectReference ObjectRef;
 	local XComGameState_BaseObject UseStateObject;
-
+	
+	`Log("GetTargetedStateObjects");
 	History = `XCOMHISTORY;
 	WorldData = `XWORLD;
 	GetValidTilesForLocation(Ability, Location, ValidTiles);
@@ -339,7 +336,8 @@ simulated function UpdateParameters(XComGameState_Ability Ability)
 	local int idx;
 	local XComGameState_Item SourceItemState;
 	local X2MultiWeaponTemplate MultiWeaponTemplate;
-
+	
+	`Log("X2ABilityMultiTarget_Cone.UpdateParameters for " $ Ability.GetMyTemplateName());
 	History = `XCOMHISTORY;
 	SourceItemState = XComGameState_Item( History.GetGameStateForObjectID( Ability.SourceWeapon.ObjectID ) );
 	MultiWeaponTemplate = X2MultiWeaponTemplate(SourceItemState.GetMyTemplate());
@@ -347,15 +345,6 @@ simulated function UpdateParameters(XComGameState_Ability Ability)
 	{
 		ConeEndDiameter = MultiWeaponTemplate.iAltRadius * class'XComWorldData'.const.WORLD_StepSize;
 		ConeLength = MultiWeaponTemplate.iAltRange * class'XComWorldData'.const.WORLD_StepSize;
-
-		//if(Original_ConeEndDiameter == 0)
-			//Original_ConeEndDiameter = ConeEndDiameter;
-//
-		//if(Original_ConeLength == 0)
-			//Original_ConeLength = ConeLength;
-//
-		//ConeEndDiameter = Original_ConeEndDiameter;
-		//ConeLength = Original_ConeLength;
 
 		SourceUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(Ability.OwnerStateObject.ObjectID));
 		if(SourceUnit == none)

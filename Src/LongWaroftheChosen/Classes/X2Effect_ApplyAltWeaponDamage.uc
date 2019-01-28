@@ -60,6 +60,8 @@ simulated function ApplyEffectToWorld(const out EffectAppliedData ApplyEffectPar
 			}
 			AbilityRadius = AbilityStateObject.GetAbilityRadius();
 
+			`Log("ApplyEffectToWorld for ability " $ AbilityTemplate.DataName $ " (radius = " $ AbilityRadius);
+
 			//Here, we want to use the target location as the input for the direction info since a miss location might possibly want a different step out
 			SourceUnit = XGUnit(History.GetVisualizer(SourceStateObject.ObjectID));
 			SourceUnit.GetDirectionInfoForPosition(ApplyEffectParameters.AbilityInputContext.TargetLocations[0], OutVisibilityInfo, OutCoverIndex, OutPeekSide, bOutCanSeeFromDefault, OutRequiresLean);

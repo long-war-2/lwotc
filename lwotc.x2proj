@@ -485,6 +485,9 @@
     <Content Include="Src\LongWaroftheChosen\Classes\X2AbilityMultiTarget_Cone_LWFlamethrower.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2AbilityToHitCalc_StatCheck_LWFlamethrower.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_AssaultAbilitySet.uc">
       <SubType>Content</SubType>
     </Content>
@@ -516,6 +519,12 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2Ability_LW_TechnicalAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Action_Fire_Firestorm.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2Action_Fire_Flamethrower_LW.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2Condition_CoupDeGrace.uc">
@@ -703,6 +712,12 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2StrategyElement_NewTechs_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2TargetingMethod_Cone_Flamethrower_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2TargetingMethod_LWBlasterLauncher.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2TargetingMethod_LWRocketLauncher.uc">

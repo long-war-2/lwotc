@@ -135,16 +135,6 @@ simulated function UpdateAbilitiesArray()
 	Ruleset = `XCOMGAME.GameRuleset;
 	Ruleset.GetGameRulesCache_Unit(XComTacticalController(PC).GetActiveUnitStateRef(), UnitInfoCache);
 
-	// WOTC debugging:
-	History = Ruleset.CachedHistory;
-	Unit = XComGameState_Unit(History.GetGameStateForObjectID(UnitInfoCache.UnitObjectRef.ObjectID));
-	if (Unit.FindComponentObject(class'XComGameState_Unit_LWOfficer') != none)
-	{
-		`Log("Updating abilities for officer " $ Unit.GetName(eNameType_Full));
-	}
-	// END
-
-
 	len = UnitInfoCache.AvailableActions.Length;
 	for (i = 0; i < len; i++)
 	{	
@@ -153,7 +143,6 @@ simulated function UpdateAbilitiesArray()
 		
 		if (ShouldShowAbilityIcon(AbilityAvailableInfo, bCommanderAbility))
 		{
-			`Log("    Yes!!!");
 			// Separate out the command abilities to send to the CommandHUD, and do not want to show them in the regular list
 			// Commented out in case we bring CommanderHUD back
 			if( bCommanderAbility == 1 )
