@@ -23,7 +23,7 @@ static event OnLoadedSavedGame()
 	class'X2DownloadableContentInfo_LWLaserPack'.static.OnLoadedSavedGame();
 	class'X2DownloadableContentInfo_LWOfficerPack'.static.OnLoadedSavedGame();
 
-	UpdateAllSoldiers();
+	UpdateUtilityItemSlotsForAllSoldiers();
 }
 
 /// <summary>
@@ -32,7 +32,9 @@ static event OnLoadedSavedGame()
 static event InstallNewCampaign(XComGameState StartState)
 {
 	class'XComGameState_LWListenerManager'.static.CreateListenerManager(StartState);
-	UpdateStartingSoldiers(StartState);
+
+	UpdateUtilityItemSlotsForStartingSoldiers(StartState);
+	LimitStartingSquadSize(StartState);
 }
 
 /// <summary>
@@ -41,17 +43,13 @@ static event InstallNewCampaign(XComGameState StartState)
 static event OnPostTemplatesCreated()
 {
 	class'LWTemplateMods_Utilities'.static.UpdateTemplates();
-	class'X2DownloadableContentInfo_LWSMGPack'.static.OnPostTemplatesCreated();
-	class'X2DownloadableContentInfo_LWLaserPack'.static.OnPostTemplatesCreated();
-	class'X2DownloadableContentInfo_LWOfficerPack'.static.OnPostTemplatesCreated();
-	//class'X2DownloadableContentInfo_robojumperSquadSelect'.static.OnPostTemplatesCreated();
 	UpdateWeaponAttachmentsForCoilgun();
 }
 
 
 // ******** Give soldiers 3 utility item slots ************* //
 //
-static function UpdateAllSoldiers()
+static function UpdateUtilityItemSlotsForAllSoldiers()
 {
 	local XComGameState NewGameState;
 	local XComGameStateHistory History;
@@ -64,33 +62,39 @@ static function UpdateAllSoldiers()
 
 	foreach History.IterateByClassType(class'XComGameState_Unit', UnitState)
 	{
-		if(UnitState.IsSoldier())
+		if (UnitState.IsSoldier())
 		{
-			if(UpdateOneSoldier(UnitState, NewGameState))
+			if (UpdateSoldierUtilityItemSlots(UnitState, NewGameState))
+			{
 				bUpdatedAnySoldier = true;
+			}
 		}
 	}
 
-	if(bUpdatedAnySoldier)
+	if (bUpdatedAnySoldier)
+	{
 		History.AddGameStateToHistory(NewGameState);
+	}
 	else
+	{
 		History.CleanupPendingGameState(NewGameState);
+	}
 }
 
-static function UpdateStartingSoldiers(XComGameState StartState)
+static function UpdateUtilityItemSlotsForStartingSoldiers(XComGameState StartState)
 {
 	local XComGameState_Unit UnitState;
 
 	foreach StartState.IterateByClassType(class'XComGameState_Unit', UnitState)
 	{
-		if(UnitState.IsSoldier())
+		if (UnitState.IsSoldier())
 		{
-			UpdateOneSoldier(UnitState, StartState);
+			UpdateSoldierUtilityItemSlots(UnitState, StartState);
 		}
 	}
 }
 
-static function bool UpdateOneSoldier(XComGameState_Unit UnitState, XComGameState StartState)
+static function bool UpdateSoldierUtilityItemSlots(XComGameState_Unit UnitState, XComGameState StartState)
 {
 	UnitState.SetBaseMaxStat(eStat_UtilityItems, 3.0f);
 	UnitState.SetCurrentStat(eStat_UtilityItems, 3.0f);
