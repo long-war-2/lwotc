@@ -17,28 +17,37 @@
   
   TODO:
   
-   * Migrate useful parts of ToolBox (or maybe just all of it)
    X Migrate perk pack
    X Migrate Officer pack
    X Don't override promotion screen for faction soldiers
    X Fix Officer Training Complete dialog
-   X Add secondary weapons (holotargeter, combat knife, pump-action shotgun, arc thrower)
+   X Add secondary weapons (holotargeter, combat knife, sawed-off shotgun, arc thrower)
    X Fix evac!
    X Enable larger squads on missions (can do this with robojumper's Squad Select)
    X Open up utility slots
    X Restore grenade ability/perk icons in tactical HUD
-   * Migrate alien pack
+   X Port alien pack
+   X Enable LW2 Gatecrasher with 8-man squad (and rainbow pod?)
+   * Switch over to Alien tactical AI
+   * Ensure rookies get promotion after 1st mission
+   * Show all soldiers of a > 6 man squad after a mission (currently just shows first 6)
+   * Buff soldier stats to LW levels and randomize
+   * Port useful parts of ToolBox (like randomisation of soldier stats)
+   * Disable sitreps for LW missions
+   * Disable LW strategic objectives for now
+   * Fix Technical abilities (animations and burn tiles aren't matching targeting and damage/pawn tiles)
+   * Cancelling hack before it completes crashes the game (I'm sure this used to happen in a previous version of LW2)
    * Add robojumper's squad select (currently crashes start of tactical missions when I integrate it)
    * Fix rank names for normal soldiers and officers (requires overriding a
      bunch of classes in the highlander as there is no easy way to inject a
 	 different display rank for soldiers)
-   * Enable squad management (XComGameState_LWSquadManager)
    * Test abilities: double tap, combat rush, suppression, area suppression, rapid fire, bastion, sedate, full override
    * Make sure faction weapons can be upgraded (and armour?)
-   * Fix technical abilities (particularly first one!)
-   * Switch over to Alien AI
    * Make sure utility slots remain at 3, and don't show an upgrade slot that comes with armour
    * See if it's possible to add extra utility slots to faction soldiers that works
+   * Add WOTC units to encounter lists
+   * Enable LW2 strategy layer
+   * Enable squad management (XComGameState_LWSquadManager)
    
    Acknowledgements:
    

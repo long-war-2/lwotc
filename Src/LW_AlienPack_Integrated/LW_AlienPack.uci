@@ -1,0 +1,8 @@
+
+/* LW AlienPack debug messages. Can be independently enabled/disabled via the Suppress directive in XComEngine.ini */
+`define APDebug(msg,cond,tag) if(class'LWAlienPack_Utilities'.default.Suppress.Find('APDebug') == -1) `Log(`msg, `cond, 'LW_AlienPack_Debug')
+
+/* LW AlienPack trace messages, e.g. super log spam with lots of detail. Can be independently enabled/disabled via the Suppress directive
+   in XComEngine.ini */
+`define APTrace(msg,cond,tag) if(class'LWAlienPack_Utilities'.default.Suppress.Find('APTrace') == -1) `Log(`msg, `cond, 'LW_AlienPack_Trace')
+

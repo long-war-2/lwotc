@@ -7,6 +7,7 @@
     <SteamPublishID>0</SteamPublishID>
     <AssemblyName>lwotc</AssemblyName>
     <RootNamespace>lwotc</RootNamespace>
+    <ProjectGuid>{c6d96315-2f7d-4066-a9c7-6b9d4264751d}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Config\" />
@@ -15,6 +16,10 @@
     <Folder Include="Content\LW_LaserPack_Integrated" />
     <Folder Include="Content\LW_PerkPack_Integrated" />
     <Folder Include="Content\LW_OfficerPack_Integrated" />
+    <Folder Include="Content\LW_AlienPack_Integrated" />
+    <Folder Include="Content\LW_Coilguns" />
+    <Folder Include="Content\Missions" />
+    <Folder Include="Content\Maps" />
     <Folder Include="Content\robojumperSquadSelect_Integrated" />
     <Folder Include="Localization\" />
     <Folder Include="Localization\LW_SMGPack_Integrated" />
@@ -22,20 +27,27 @@
     <Folder Include="Localization\LongWaroftheChosen" />
     <Folder Include="Localization\LW_PerkPack_Integrated" />
     <Folder Include="Localization\LW_OfficerPack_Integrated" />
+    <Folder Include="Localization\LW_AlienPack_Integrated" />
     <Folder Include="Src\" />
     <Folder Include="Src\LongWaroftheChosen\Src" />
     <Folder Include="Src\LWUtilities\Classes" />
+    <Folder Include="Src\LW_AlienPack_Integrated\Classes" />
     <Folder Include="Src\LW_LaserPack_Integrated\Classes" />
+    <Folder Include="Src\LW_Missions\Classes" />
     <Folder Include="Src\LW_OfficerPack_Integrated\Classes" />
     <Folder Include="Src\LW_PerkPack_Integrated\" />
     <Folder Include="Src\LW_PerkPack_Integrated\Classes" />
     <Folder Include="Src\LW_SMGPack_Integrated\Classes" />
+    <Folder Include="Src\LW_Squads\Classes" />
     <Folder Include="Src\LW_XCGS_ModOptions" />
     <Folder Include="Src\LW_XCGS_ModOptions\Classes" />
     <Folder Include="Src\LW_SMGPack_Integrated" />
     <Folder Include="Src\LW_LaserPack_Integrated" />
     <Folder Include="Src\LW_OfficerPack_Integrated" />
     <Folder Include="Src\LWUtilities" />
+    <Folder Include="Src\LW_Missions" />
+    <Folder Include="Src\LW_Squads" />
+    <Folder Include="Src\LW_AlienPack_Integrated" />
     <Folder Include="Src\robojumperSquadSelect_Integrated" />
     <Folder Include="Src\robojumperSquadSelect_Integrated\Classes" />
     <Folder Include="Src\XComGame\" />
@@ -47,7 +59,13 @@
     <Content Include="Config\XComClassData.ini">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Config\XComContent.ini">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Config\XComEditor.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEncounters.ini">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Config\XComEngine.ini">
@@ -68,6 +86,15 @@
     <Content Include="Config\XComGameData_XpData.ini">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Config\XComLW_AlienPack.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_AlienVariations.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_InfiltrationSettings.ini">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Config\XComLW_OfficerPack.ini">
       <SubType>Content</SubType>
     </Content>
@@ -78,6 +105,18 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Config\XComLW_SoldierSkills.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComMissionDefs.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComMissions.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComMissionSources.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComSchedules.ini">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Content\Cannon_NoShake_LW.upk">
@@ -117,6 +156,105 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Content\LWSword_LS.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\AdvGrenadeLauncher.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWAdvGrenadier.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWAdvGunner.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWAdvMec.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWAdvMecArcher.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWAdvRocketeer.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWAdvSentry.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWDrone.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWDroneWeapon.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWDroneWeapon_alternate_beam.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWHiveQueen.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWMutonM2.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWMutonM3.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWMutonM3Rifle.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWNaja.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWSectoidM2.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWSidewinder.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LWSidewinderSMG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LW_Perk_MutonM3.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LW_Perk_Psi_MassMindspin.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LW_Perk_Psi_MassReanimation.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\LW_Perk_RepairServos.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\NajaRifle.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\UILibrary_LWAlienPack.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_AlienPack_Integrated\XAdventTrooper.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_Coilguns\LWAccessories_CG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_Coilguns\LWAssaultRifle_CG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_Coilguns\LWCannon_CG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_Coilguns\LWPistol_CG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_Coilguns\LWShotgun_CG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_Coilguns\LWSMG_CG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_Coilguns\LWSniperRifle_CG.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\LW_Coilguns\UILibrary_LW_Coilguns.upk">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Content\LW_LaserPack_Integrated\LWAssaultRifle_LS.upk">
@@ -206,6 +344,93 @@
     <Content Include="Content\LW_SMGPack_Integrated\UILibrary_SMG.upk">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Content\Maps\CIN_AvDf_Intro_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Maps\CIN_Loading_Infiltration_CityCenter.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Maps\CIN_Loading_Infiltration_SmallTown.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Maps\CIN_SkyrangerIntros_Infiltration.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_AssaultAlienBase_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_AssaultNetworkTower_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_Blacksite_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_Defend_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_Forge_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_Fortress_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_IntelRaid_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_Jailbreak_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_LWAvengerDefense.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_LWDestroyObject.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_LWExtractVIP.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_LWHackWorkstation.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_LWInvasion.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_LWNeutralizeTarget.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_LWRecoverItem.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_LWRescueVIP.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_LWSecureUFO.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_LWTerror.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_RecruitRaid_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_Rendezvous_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_SabotageCC_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_SmashNGrab_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_SupplyConvoy_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\Obj_TroopManeuvers_LW.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Missions\SubSystem_ContinuousRNF.umap">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Content\robojumperSquadSelect_Integrated\UILibrary_robojumperSquadSelect.upk">
       <SubType>Content</SubType>
     </Content>
@@ -246,6 +471,72 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Localization\LongWaroftheChosen\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\LW_AlienPack_Integrated.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_AlienPack_Integrated\XComGame.rus">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Localization\LW_LaserPack_Integrated\XComGame.chn">
@@ -708,7 +999,22 @@
     <Content Include="Src\LongWaroftheChosen\Classes\X2LWTemplateModTemplate.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2MissionNarrative_LWNarrativeSet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2MissionSet_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2MultiWeaponTemplate.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2StrategyElement_LWMissionSources.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2StrategyElement_LWObjectives.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\X2StrategyElement_MissionSiteDescriptions_LW.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2StrategyElement_NewTechs_LW.uc">
@@ -745,6 +1051,69 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LWUtilities\Classes\LWUtilities_Ranks.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\LWAlienPack_Utilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\LWUpdateAlienCustomizationAction.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\UIScreenListener_Shell_LWAlienPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\UIScreenListener_TacticalHUD_LWAlienPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Ability_LWAlienAbilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Action_MoveClimbWall_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Character_AlienPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2DownloadableContentInfo_LWAlienPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_AdventGrenadeLauncher.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_BeastMaster.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_HiveQueenSlash.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_ReadyForAnything.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_RepairServos.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_SimpleHeal.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_WarCry.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Item_LWAlienWeapons.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Item_Resources_AlienPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2TargetingMethod_MassMindspin.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\XComGameState_AlienCustomizationManager.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\XComGameState_Unit_AlienCustomization.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_AlienPack_Integrated\LW_AlienPack.uci">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LW_LaserPack_Integrated\Classes\X2Ability_LaserSMGAbilities.uc">
@@ -1246,6 +1615,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LW_SMGPack_Integrated\Classes\X2Item_SMGWeapon.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Squads\Classes\XComGameState_LWSquadManager.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LW_XCGS_ModOptions\Classes\XComGameState_LWModOptions.uc">

@@ -42,10 +42,102 @@ static event InstallNewCampaign(XComGameState StartState)
 /// </summary>
 static event OnPostTemplatesCreated()
 {
+	// WOTC DEBUGGING:
+	local X2MissionSourceTemplate MissionSource;
+	local MissionSourceRewardMapping MissionReward;
+	local MissionDefinition StartingMissionDef;
+	// END
+
+	`Log(">>>> LongWaroftheChosen OnPostTemplates");
 	class'LWTemplateMods_Utilities'.static.UpdateTemplates();
 	UpdateWeaponAttachmentsForCoilgun();
+	UpdateFirstMissionTemplate();
+
+	// WOTC DEBUGGING:
+	`Log("Starting mission definition: " $ StartingMissionDef.MissionName $ " - " $ StartingMissionDef.sType $ " - " $ StartingMissionDef.MissionFamily);
+
+	foreach `TACTICALMISSIONMGR.arrSourceRewardMissionTypes(MissionReward)
+	{
+		`Log("Found mission mapping for source " $ MissionReward.MissionSource $ " and reward " $ MissionReward.RewardType $ " (" $ MissionReward.MissionFamily $ ")");
+		if (MissionReward.MissionSource == 'MissionSource_Start' && MissionReward.MissionFamily == "SabotageCC")
+		{
+			`Log(">>>> Trying to overwrite default starting mission family");
+			MissionReward.MissionFamily = "TroopManeuvers_LW";
+		}
+	}
+	// END
 }
 
+// ******** Starting mission (Gate Crasher) ******** //
+
+// The starting mission uses `X2StrategyGameRulesetDataStructures.m_iMaxSoldiersOnMission`
+// for the starting squad size, but this is probably (the values are configurable) larger
+// than the squad size we actually want to start with.
+//
+// This method truncates the active squad in XComGameState_HeadquartersXCom if it's too large.
+static function LimitStartingSquadSize(XComGameState StartState)
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	`Log("Limiting starting squad size");
+
+	if (class'XComGameState_LWSquadManager'.default.MAX_FIRST_MISSION_SQUAD_SIZE <= 0) // 0 or less means unlimited
+	{
+		return;
+	}
+
+	foreach StartState.IterateByClassType(class'XComGameState_HeadquartersXCom', XComHQ)
+	{
+		break;
+	}
+	`Log("Current squad size = " $ XComHQ.Squad.Length);
+	if (XComHQ.Squad.Length > class'XComGameState_LWSquadManager'.default.MAX_FIRST_MISSION_SQUAD_SIZE)
+	{
+		XComHQ.Squad.Length = class'XComGameState_LWSquadManager'.default.MAX_FIRST_MISSION_SQUAD_SIZE;
+		`Log("After adjustment = " $ XComHQ.Squad.Length);
+	}
+}
+
+static function UpdateFirstMissionTemplate()
+{
+	local X2StrategyElementTemplateManager TemplateMgr;
+	local X2ObjectiveTemplate Template;
+
+	TemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	Template = X2ObjectiveTemplate(TemplateMgr.FindStrategyElementTemplate('T1_M0_FirstMission'));
+	if(Template == none)
+		return;
+
+	//Template.AddNarrativeTrigger("X2NarrativeMoments.Strategy.GP_WelcomeToTheLabsShort", NAW_OnCompletion, 'OnEnteredFacility_CommandersQuarters', '', ELD_OnStateSubmitted, NPC_Once, '');
+	Template.AddNarrativeTrigger("LWNarrativeMoments_Bink.TACTICAL.CIN_WelcomeToTheResistance_LW", NAW_OnCompletion, 'OnEnteredFacility_CommandersQuarters', '', ELD_OnStateSubmitted, NPC_Once, '');
+	Template.CompleteObjectiveFn = FirstMissionComplete;
+}
+
+// add TriggerNeedsAttention to Commander's quarters for the new WelcomeToResistance
+static function FirstMissionComplete(XComGameState NewGameState, XComGameState_Objective ObjectiveState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_FacilityXCom CommandersQuarters;
+	local int idx;
+
+	class'X2StrategyElement_DefaultObjectives'.static.FirstMissionComplete(NewGameState, ObjectiveState);
+
+	History = `XCOMHISTORY;
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+	for( idx = 0; idx < XComHQ.Facilities.Length; idx++ )
+	{
+		CommandersQuarters = XComGameState_FacilityXCom(History.GetGameStateForObjectID(XComHQ.Facilities[idx].ObjectID));
+
+		if( CommandersQuarters.GetMyTemplateName() == 'CommandersQuarters' )
+		{
+			CommandersQuarters = XComGameState_FacilityXCom(NewGameState.CreateStateObject(class'XComGameState_FacilityXCom', CommandersQuarters.ObjectID));
+			NewGameState.AddStateObject(CommandersQuarters);
+			CommandersQuarters.TriggerNeedsAttention();
+		}
+	}
+	`HQPRES.m_kFacilityGrid.UpdateData();
+}
 
 // ******** Give soldiers 3 utility item slots ************* //
 //

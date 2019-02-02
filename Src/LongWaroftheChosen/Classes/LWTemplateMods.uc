@@ -2112,7 +2112,6 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	EquipmentTemplate = X2EquipmentTemplate(Template);
 	if (EquipmentTemplate != none)
 	{
-		`LWTrace("Processing equipment template " $ EquipmentTemplate.DataName);
 		if (EquipmentTemplate.DataName == 'HazmatVest') // BUGFIX TO INCLUDE ACID IMMUNITY
 		{
 			EquipmentTemplate.Abilities.Length = 0;
@@ -2301,12 +2300,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			EquipmentTemplate.UpgradeItem = '';
 		}
 		// Mod
-		`LWTrace("Searching for matching ItemTable entry...");
 		for (i=0; i < ItemTable.Length; ++i)
 		{			
 			if (EquipmentTemplate.DataName == ItemTable[i].ItemTemplateName)
 			{
-				`LWTrace("Found (" $ ItemTable[i].Starting $ ", " $  ItemTable[i].Infinite $ ")");
 				EquipmentTemplate.StartingItem = ItemTable[i].Starting;
 				EquipmentTemplate.bInfiniteItem = ItemTable[i].Infinite;
 				if (!ItemTable[i].Buildable)
@@ -2314,7 +2311,6 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 
 				if (ItemTable[i].Buildable)
 				{
-					`LWTrace("Making " $ EquipmentTemplate.DataName $ "buildable");
 					EquipmentTemplate.CanBeBuilt = true;
 					EquipmentTemplate.Requirements.RequiredEngineeringScore = ItemTable[i].RequiredEngineeringScore;
 					EquipmentTemplate.PointsToComplete = ItemTable[i].PointsToComplete;

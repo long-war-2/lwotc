@@ -166,6 +166,10 @@ function InitListeners()
 	// Override Ability Icons with the special color set as "variable." This enables on-the-fly changes to ability icons
 	EventMgr.RegisterForEvent(ThisObj, 'OverrideAbilityIconColor', OnOverrideAbilityIconColor, ELD_Immediate,,, true);
 	EventMgr.RegisterForEvent(ThisObj, 'OverrideObjectiveAbilityIconColor', OnOverrideObjectiveAbilityIconColor, ELD_Immediate,,, true);
+	
+	//Can Unequip items
+	EventMgr.RegisterForEvent(ThisObj, 'OverrideItemCanBeUnequipped', OverrideItemCanBeUnequipped,,,,true);
+
 	/*
 	EventMgr.RegisterForEvent(ThisObj, 'OnUpdateSquadSelect_ListItem', UpdateSquadSelectUtilitySlots,,,,true);
 	//to hit
@@ -178,8 +182,6 @@ function InitListeners()
 	//OnMission status in UIPersonnel
 	EventMgr.RegisterForEvent(ThisObj, 'OverrideGetPersonnelStatusSeparate', OverrideGetPersonnelStatusSeparate,, 40,,true); // slight higher priority so it takes precedence over officer status
 
-	//Can Unequip items
-	EventMgr.RegisterForEvent(ThisObj, 'OverrideItemCanBeUnequipped', OverrideItemCanBeUnequipped,,,,true);
 
 	//end of month and reward soldier handling of new soldiers
 	EventMgr.RegisterForEvent(ThisObj, 'OnMonthlyReportAlert', OnMonthEnd, ELD_OnStateSubmitted,,,true);
@@ -252,15 +254,15 @@ function InitListeners()
 
     // AI Patrol/Intercept behavior override
     EventMgr.RegisterForEvent(ThisObj, 'ShouldMoveToIntercept', OnShouldMoveToIntercept, ELD_Immediate,,,true);
+	
+	// Override IsUnRevealedAI in patrol manager in XGAIplayer so aliens don't stop patrolling when an unrevealed soldier sees them
+	EventMgr.RegisterForEvent(ThisObj, 'ShouldUnitPatrolUnderway', OnShouldUnitPatrol, ELD_Immediate,,, true);
 
 	// Override KilledbyExplosion variable to conditionally allow loot to survive
 	EventMgr.RegisterForEvent(ThisObj, 'KilledbyExplosion', OnKilledbyExplosion,,,,true);
 
 	// Recalculate respec time so it goes up with soldier rank
 	EventMgr.RegisterForEvent(ThisObj, 'SoldierRespecced', OnSoldierRespecced,,,,true);
-
-	// Override IsUnRevealedAI in patrol manager in XGAIplayer so aliens don't stop patrolling when an unrevealed soldier sees them
-	EventMgr.RegisterForEvent(ThisObj, 'ShouldUnitPatrolUnderway', OnShouldUnitPatrol, ELD_Immediate,,, true);
 
 	//Override Bleed Out Chance
 	EventMgr.RegisterForEvent(ThisObj, 'OverrideBleedoutChance', OnOverrideBleedOutChance, ELD_Immediate,,, true);
@@ -1791,45 +1793,45 @@ static function array<x2equipmenttemplate> getcompletedefaultloadout(xcomgamesta
 	return completedefaultloadout;
 }
 
-//// allows overriding of unequipping items, allowing even infinite utility slot items to be unequipped
-//function EventListenerReturn OverrideItemCanBeUnequipped(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
-//{
-	//local XComLWTuple			OverrideTuple;
-	//local XComGameState_Item	ItemState;
-	//local X2EquipmentTemplate	EquipmentTemplate;
-//
-	//`LWTRACE("OverrideItemCanBeUnequipped : Starting listener.");
-	//OverrideTuple = XComLWTuple(EventData);
-	//if(OverrideTuple == none)
-	//{
-		//`REDSCREEN("OverrideItemCanBeUnequipped event triggered with invalid event data.");
-		//return ELR_NoInterrupt;
-	//}
-	//`LWTRACE("OverrideItemCanBeUnequipped : Parsed XComLWTuple.");
-//
-	//ItemState = XComGameState_Item(EventSource);
-	//if(ItemState == none)
-	//{
-		//`REDSCREEN("OverrideItemCanBeUnequipped event triggered with invalid source data.");
-		//return ELR_NoInterrupt;
-	//}
-	//`LWTRACE("OverrideItemCanBeUnequipped : EventSource valid.");
-//
-	//if(OverrideTuple.Id != 'OverrideItemCanBeUnequipped')
-		//return ELR_NoInterrupt;
-//
-	////check if item is a utility slot item
-	//EquipmentTemplate = X2EquipmentTemplate(ItemState.GetMyTemplate());
-	//if(EquipmentTemplate != none)
-	//{
-		//if(EquipmentTemplate.InventorySlot == eInvSlot_Utility)
-		//{
-			//OverrideTuple.Data[0].b = true;  // item can be unequipped
-		//}
-	//}
-//
-	//return ELR_NoInterrupt;
-//}
+// allows overriding of unequipping items, allowing even infinite utility slot items to be unequipped
+function EventListenerReturn OverrideItemCanBeUnequipped(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple			OverrideTuple;
+	local XComGameState_Item	ItemState;
+	local X2EquipmentTemplate	EquipmentTemplate;
+
+	`LWTRACE("OverrideItemCanBeUnequipped : Starting listener.");
+	OverrideTuple = XComLWTuple(EventData);
+	if(OverrideTuple == none)
+	{
+		`REDSCREEN("OverrideItemCanBeUnequipped event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+	`LWTRACE("OverrideItemCanBeUnequipped : Parsed XComLWTuple.");
+
+	ItemState = XComGameState_Item(EventSource);
+	if(ItemState == none)
+	{
+		`REDSCREEN("OverrideItemCanBeUnequipped event triggered with invalid source data.");
+		return ELR_NoInterrupt;
+	}
+	`LWTRACE("OverrideItemCanBeUnequipped : EventSource valid.");
+
+	if(OverrideTuple.Id != 'OverrideItemCanBeUnequipped')
+		return ELR_NoInterrupt;
+
+	//check if item is a utility slot item
+	EquipmentTemplate = X2EquipmentTemplate(ItemState.GetMyTemplate());
+	if(EquipmentTemplate != none)
+	{
+		if(EquipmentTemplate.InventorySlot == eInvSlot_Utility)
+		{
+			OverrideTuple.Data[0].b = true;  // item can be unequipped
+		}
+	}
+
+	return ELR_NoInterrupt;
+}
 
 // updates status info for soldiers with mission and squad info
 function EventListenerReturn OverrideGetPersonnelStatusSeparate(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)

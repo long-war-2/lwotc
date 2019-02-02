@@ -115,7 +115,8 @@ function int GetDefendingDamageModifier(
 		Damageable TargetDamageable,
 		XComGameState_Ability AbilityState,
 		const out EffectAppliedData AppliedData,
-		const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+		const int CurrentDamage,
+		X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 		optional XComGameState NewGameState)
 {
 	local int DamageMod, iRoll;
