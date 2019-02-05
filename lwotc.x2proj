@@ -33,7 +33,6 @@
     <Folder Include="Src\LWUtilities\Classes" />
     <Folder Include="Src\LW_AlienPack_Integrated\Classes" />
     <Folder Include="Src\LW_LaserPack_Integrated\Classes" />
-    <Folder Include="Src\LW_Missions\Classes" />
     <Folder Include="Src\LW_OfficerPack_Integrated\Classes" />
     <Folder Include="Src\LW_PerkPack_Integrated\" />
     <Folder Include="Src\LW_PerkPack_Integrated\Classes" />
@@ -45,7 +44,6 @@
     <Folder Include="Src\LW_LaserPack_Integrated" />
     <Folder Include="Src\LW_OfficerPack_Integrated" />
     <Folder Include="Src\LWUtilities" />
-    <Folder Include="Src\LW_Missions" />
     <Folder Include="Src\LW_Squads" />
     <Folder Include="Src\LW_AlienPack_Integrated" />
     <Folder Include="Src\robojumperSquadSelect_Integrated" />
@@ -56,6 +54,12 @@
     <Folder Include="Src\LongWaroftheChosen\Classes\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\XComAI.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComAIJobs.ini">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Config\XComClassData.ini">
       <SubType>Content</SubType>
     </Content>
@@ -74,10 +78,16 @@
     <Content Include="Config\XComGame.ini">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Config\XComGameCore.ini">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Config\XComGameData.ini">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Config\XComGameData_CharacterStats.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData_SoldierSkills.ini">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Config\XComGameData_WeaponData.ini">
@@ -102,6 +112,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Config\XComLW_PerkPack.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_PodManager.ini">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Config\XComLW_SoldierSkills.ini">
@@ -743,6 +756,15 @@
     <Content Include="Src\LongWaroftheChosen\Classes\Helpers_LW.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\LWPodJobs_DefaultJobSet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\LWPodJobTemplate.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\LWTacticalMissionUnitSpawner.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\LWTemplateMods.uc">
       <SubType>Content</SubType>
     </Content>
@@ -752,13 +774,25 @@
     <Content Include="Src\LongWaroftheChosen\Classes\LWVersion.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\LWVisualizedInterface.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\SeqAct_InitializeMissionTimer.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\UIScreenListener_Shell.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\UIScreenListener_TacticalHUD.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\UIScrollingTextField.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\UIUtilities_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\Utilities_LW.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\X2AbilityCharges_BonusCharges.uc">
@@ -1044,7 +1078,25 @@
     <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_Effect_TransferMecToOutpost.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_LWEvacSpawner.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_LWListenerManager.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_LWPodJob.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_LWPodJob_Flank.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_LWPodJob_MoveToLocation.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_LWPodManager.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LongWaroftheChosen\Classes\XComGameState_LWReinforcements.uc">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LongWaroftheChosen\Src\LW_Overhaul.uci">

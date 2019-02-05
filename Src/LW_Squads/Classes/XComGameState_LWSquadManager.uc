@@ -538,12 +538,12 @@ function InitSquadManagerListeners()
 function EventListenerReturn ValidateDeployableSoldiersForSquads(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local int idx;
-	local LWTuple DeployableSoldiers;
+	local XComLWTuple DeployableSoldiers;
 	local UISquadSelect SquadSelect;
 	local XComGameState_Unit UnitState;
 	local XComGameState_LWPersistentSquad CurrentSquad, TestUnitSquad;
 
-	DeployableSoldiers = LWTuple(EventData);
+	DeployableSoldiers = XComLWTuple(EventData);
 	if(DeployableSoldiers == none)
 	{
 		`REDSCREEN("Validate Deployable Soldiers event triggered with invalid event data.");
@@ -565,7 +565,7 @@ function EventListenerReturn ValidateDeployableSoldiersForSquads(Object EventDat
 	}
 	for(idx = DeployableSoldiers.Data.Length - 1; idx >= 0; idx--)
 	{
-		if(DeployableSoldiers.Data[idx].kind == LWTVObject)
+		if(DeployableSoldiers.Data[idx].kind == XComLWTVObject)
 		{
 			UnitState = XComGameState_Unit(DeployableSoldiers.Data[idx].o);
 			if(UnitState != none)

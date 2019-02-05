@@ -170,6 +170,38 @@ function InitListeners()
 	//Can Unequip items
 	EventMgr.RegisterForEvent(ThisObj, 'OverrideItemCanBeUnequipped', OverrideItemCanBeUnequipped,,,,true);
 
+	//end of month and reward soldier handling of new soldiers
+	EventMgr.RegisterForEvent(ThisObj, 'OnMonthlyReportAlert', OnMonthEnd, ELD_OnStateSubmitted,,,true);
+	EventMgr.RegisterForEvent(ThisObj, 'SoldierCreatedEvent', OnSoldierCreatedEvent, ELD_OnStateSubmitted,,,true);
+	
+	//xp system modifications -- handles assigning of mission "encounters" as well as adding to effective kills based on the value
+	// WOTC TODO: Requires change to CHL XComGameState_XpManager
+	EventMgr.RegisterForEvent(ThisObj, 'OnDistributeTacticalGameEndXP', OnAddMissionEncountersToUnits, ELD_OnStateSubmitted,,,true);
+	// WOTC TODO: Requires change to CHL XComGameState_Unit
+	EventMgr.RegisterForEvent(ThisObj, 'GetNumKillsForRankUpSoldier', OnGetNumKillsForMissionEncounters, ELD_Immediate,,,true);
+	// WOTC TODO: Requires change to CHL XComGameState_Unit
+	EventMgr.RegisterForEvent(ThisObj, 'ShouldShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate,,,true);
+	EventMgr.RegisterForEvent(ThisObj, 'XpKillShot', OnRewardKillXp, ELD_Immediate,,,true);
+	EventMgr.RegisterForEvent(ThisObj, 'OverrideCollectorActivation', OverrideCollectorActivation, ELD_Immediate,,,true);
+	EventMgr.RegisterForEvent(ThisObj, 'OverrideScavengerActivation', OverrideScavengerActivation, ELD_Immediate,,,true);
+	
+	// Mission summary civilian counts
+	// WOTC TODO: Requires change to CHL Helpers and UIMissionSummary
+	EventMgr.RegisterForEvent(ThisObj, 'GetNumCiviliansKilled', OnNumCiviliansKilled, ELD_Immediate,,,true);
+	
+	// AI Patrol/Intercept behavior override
+	// WOTC TODO: Requires change to CHL XComGameState_AIGroup - although I haven't seen any intercept behaviour
+	// on the first mission. Will need to test some "normal" missions with standard objectives like hacks
+	EventMgr.RegisterForEvent(ThisObj, 'ShouldMoveToIntercept', OnShouldMoveToIntercept, ELD_Immediate,,,true);
+	
+	// Override IsUnRevealedAI in patrol manager in XGAIplayer so aliens don't stop patrolling when an unrevealed soldier sees them
+	// WOTC TODO: Requires change to CHL XGAIPlayer - not sure it's need though because so far enemies aren't stopping their
+	// patrol patterns, at least on the first mission.
+	EventMgr.RegisterForEvent(ThisObj, 'ShouldUnitPatrolUnderway', OnShouldUnitPatrol, ELD_Immediate,,, true);
+	
+	// listener for turn change
+	EventMgr.RegisterForEvent(ThisObj, 'PlayerTurnBegun', LW2OnPlayerTurnBegun);
+
 	/*
 	EventMgr.RegisterForEvent(ThisObj, 'OnUpdateSquadSelect_ListItem', UpdateSquadSelectUtilitySlots,,,,true);
 	//to hit
@@ -182,10 +214,6 @@ function InitListeners()
 	//OnMission status in UIPersonnel
 	EventMgr.RegisterForEvent(ThisObj, 'OverrideGetPersonnelStatusSeparate', OverrideGetPersonnelStatusSeparate,, 40,,true); // slight higher priority so it takes precedence over officer status
 
-
-	//end of month and reward soldier handling of new soldiers
-	EventMgr.RegisterForEvent(ThisObj, 'OnMonthlyReportAlert', OnMonthEnd, ELD_OnStateSubmitted,,,true);
-	EventMgr.RegisterForEvent(ThisObj, 'SoldierCreatedEvent', OnSoldierCreatedEvent, ELD_OnStateSubmitted,,,true);
 
     // Various end of month handling, especially for supply income determination.
     // Note: this is very fiddly. There are several events fired from different parts of the end-of-month processing
@@ -226,9 +254,6 @@ function InitListeners()
 	// WOTC TODO: Restore this
 	//EventMgr.RegisterForEvent(ThisObj, 'GetEvacPlacementDelay', OnPlacedDelayedEvacZone, ELD_Immediate,,,true);
 
-    // Mission summary civilian counts
-    EventMgr.RegisterForEvent(ThisObj, 'GetNumCiviliansKilled', OnNumCiviliansKilled, ELD_Immediate,,,true);
-
 	// Armory Main Menu - disable buttons for On-Mission soldiers
 	 EventMgr.RegisterForEvent(ThisObj, 'OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate,,,true);
 
@@ -238,25 +263,12 @@ function InitListeners()
 	//Mission Icon handling -- several sub events handled under this one
 	EventMgr.RegisterForEvent(ThisObj, 'OverrideMissionIcon', OnOverrideMissionIcon, ELD_Immediate,,,true);
 
-	//xp system modifications -- handles assigning of mission "encounters" as well as adding to effective kills based on the value
-	EventMgr.RegisterForEvent(ThisObj, 'OnDistributeTacticalGameEndXP', OnAddMissionEncountersToUnits, ELD_OnStateSubmitted,,,true);
-	EventMgr.RegisterForEvent(ThisObj, 'GetNumKillsForRankUpSoldier', OnGetNumKillsForMissionEncounters, ELD_Immediate,,,true);
-	EventMgr.RegisterForEvent(ThisObj, 'ShouldShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate,,,true);
-	EventMgr.RegisterForEvent(ThisObj, 'XpKillShot', OnRewardKillXp, ELD_Immediate,,,true);
-	EventMgr.RegisterForEvent(ThisObj, 'OverrideCollectorActivation', OverrideCollectorActivation, ELD_Immediate,,,true);
-	EventMgr.RegisterForEvent(ThisObj, 'OverrideScavengerActivation', OverrideScavengerActivation, ELD_Immediate,,,true);
 
 	 //activity-related listeners
  	EventMgr.RegisterForEvent(ThisObj, 'OnMissionSelectedUI', SelectMissionUIListener,,,,true);
 
 	//listener to interrupt OnSkyrangerArrives to not play narrative event -- we will manually trigger it when appropriate in screen listener
 	EventMgr.RegisterForEvent(ThisObj, 'OnSkyrangerArrives', OnSkyrangerArrives, ELD_OnStateSubmitted, 100,,true);
-
-    // AI Patrol/Intercept behavior override
-    EventMgr.RegisterForEvent(ThisObj, 'ShouldMoveToIntercept', OnShouldMoveToIntercept, ELD_Immediate,,,true);
-	
-	// Override IsUnRevealedAI in patrol manager in XGAIplayer so aliens don't stop patrolling when an unrevealed soldier sees them
-	EventMgr.RegisterForEvent(ThisObj, 'ShouldUnitPatrolUnderway', OnShouldUnitPatrol, ELD_Immediate,,, true);
 
 	// Override KilledbyExplosion variable to conditionally allow loot to survive
 	EventMgr.RegisterForEvent(ThisObj, 'KilledbyExplosion', OnKilledbyExplosion,,,,true);
@@ -321,9 +333,6 @@ function InitListeners()
 	// Attempt to tame Serial
 	EventMgr.RegisterForEvent(ThisObj, 'SerialKiller', OnSerialKill, ELD_OnStateSubmitted);
 
-	// listener for turn change
-	EventMgr.RegisterForEvent(ThisObj, 'PlayerTurnBegun', LW2OnPlayerTurnBegun);
-
 	// initial psi training time override
 	EventMgr.RegisterForEvent(ThisObj, 'PsiTrainingBegun', OnOverrideInitialPsiTrainingTime, ELD_Immediate,,, true);
 
@@ -332,12 +341,12 @@ function InitListeners()
 	*/
 }
 
-function EventListenerReturn OnSkyrangerArrives(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+function EventListenerReturn OnSkyrangerArrives(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	return ELR_InterruptListeners;
 }
 
-function EventListenerReturn SelectMissionUIListener(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+function EventListenerReturn SelectMissionUIListener(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
 	local XComGameState_MissionSite		MissionSite;
@@ -357,9 +366,8 @@ function EventListenerReturn SelectMissionUIListener(Object EventData, Object Ev
 	return ELR_NoInterrupt;
 }
 
-function EventListenerReturn OnAddMissionEncountersToUnits(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+function EventListenerReturn OnAddMissionEncountersToUnits(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
-	/* WOTC TODO: Restore this
 	local XComGameState_BattleData BattleState;
 	local XComGameState_MissionSite MissionState;
 	local XComGameStateHistory History;
@@ -371,15 +379,16 @@ function EventListenerReturn OnAddMissionEncountersToUnits(Object EventData, Obj
 	local array<XComGameState_Unit> UnitStates;
 	local UnitValue Value, TestValue, Value2;
 	local float MissionWeight, UnitShare, MissionExperienceWeighting, UnitShareDivisor;
-    local MissionSettings_LW Settings;
-    local XComGameState_LWOutpost Outpost;
 	local bool TBFInEffect;
 	local int TrialByFireKills, KillsNeededForLevelUp, WeightedBonusKills, idx;
 	local XComGameState_Unit_LWOfficer OfficerState;
 	local X2MissionSourceTemplate MissionSource;
 	local bool PlayerWonMission;
+	// WOTC TODO: Restore with outpost management
+    //local MissionSettings_LW Settings;
+    //local XComGameState_LWOutpost Outpost;
 
-	//`LWTRACE ("OnAddMissionEncountersToUnits triggered");
+	`LWTRACE ("OnAddMissionEncountersToUnits triggered");
 
 	XComHQ = XComGameState_HeadquartersXCom(EventData);
 	if(XComHQ == none)
@@ -427,6 +436,7 @@ function EventListenerReturn OnAddMissionEncountersToUnits(Object EventData, Obj
 	}
 
     // Include the adviser if they were on this mission too
+	/* WOTC TODO: Restore when outpost management is back
     if (class'Utilities_LW'.static.GetMissionSettings(MissionState, Settings))
     {
         if (Settings.RestrictsLiaison)
@@ -454,6 +464,7 @@ function EventListenerReturn OnAddMissionEncountersToUnits(Object EventData, Obj
             }
         }
     }
+	*/
 
 	PlayerWonMission = true;
 	MissionSource = MissionState.GetMissionSource();
@@ -576,7 +587,6 @@ function EventListenerReturn OnAddMissionEncountersToUnits(Object EventData, Obj
 		}
 	}
 	`GAMERULES.SubmitGameState(NewGameState);
-	*/
 	return ELR_NoInterrupt;
 }
 
@@ -615,238 +625,238 @@ function int GetNumEnemiesOnMission(XComGameState_MissionSite MissionState)
  * number of aliens killed to the number originally on the mission, and a further configurable
  * amount.
  */
-//function float GetMissionWeight(XComGameStateHistory History, XComGameState_HeadquartersXCom XComHQ, XComGameState_BattleData BattleState, XComGameState_MissionSite MissionState)
-//{
-	//local X2MissionSourceTemplate MissionSource;
-	//local bool PlayerWonMission;
-	//local float fTotal;
-	//local int AliensSeen, AliensKilled, OrigMissionAliens;
-//
-	//AliensKilled = class'UIMissionSummary'.static.GetNumEnemiesKilled(AliensSeen);
-	//OrigMissionAliens = GetNumEnemiesOnMission(MissionState);
-//
-	//PlayerWonMission = true;
-	//MissionSource = MissionState.GetMissionSource();
-	//if(MissionSource.WasMissionSuccessfulFn != none)
-	//{
-		//PlayerWonMission = MissionSource.WasMissionSuccessfulFn(BattleState);
-	//}
-//
-	//fTotal = float (OrigMissionAliens);
-//
-	//if (!PlayerWonMission)
-	//{
-		//fTotal *= default.MAX_RATIO_MISSION_XP_ON_FAILED_MISSION * FMin (1.0, float (AliensKilled) / float(OrigMissionAliens));
-	//}
-//
-	//return fTotal;
-//}
-//
-//function EventListenerReturn OnGetNumKillsForMissionEncounters(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
-//{
-	//local XComLWTuple Tuple;
-	//local XComGameState_Unit UnitState;
-	//local UnitValue MissionExperienceValue, OfficerBonusKillsValue;
-	//local float MissionExperienceWeighting;
-	//local int WeightedBonusKills, idx, TrialByFireKills, XpKills, UnitKills;
-//
-	//Tuple = XComLWTuple(EventData);
-	//if(Tuple == none)
-		//return ELR_NoInterrupt;
-//
-	//UnitState = XComGameState_Unit(EventSource);
-	//if(UnitState == none)
-	//{
-		//`REDSCREEN("OnGetNumKillsForMissionEncounters event triggered with invalid event source.");
-		//return ELR_NoInterrupt;
-	//}
-//
-	//if (Tuple.Data[0].kind != XComLWTVInt)
-		//return ELR_NoInterrupt;
-//
-	//UnitState.GetUnitValue('MissionExperience', MissionExperienceValue);
-//
-	//idx = CLASS_MISSION_EXPERIENCE_WEIGHTS.Find('SoldierClass', UnitState.GetSoldierClassTemplateName());
-	//if (idx != -1)
-		//MissionExperienceWeighting = CLASS_MISSION_EXPERIENCE_WEIGHTS[idx].MissionExperienceWeight;
-	//else
-		//MissionExperienceWeighting = DEFAULT_MISSION_EXPERIENCE_WEIGHT;
-//
-	//WeightedBonusKills = Round(MissionExperienceValue.fValue * MissionExperienceWeighting);
-//
-	////check for officer with trial by and folks under rank, give them sufficient kills to level-up
-//
-	//OfficerBonusKillsValue.fValue = 0;
-	//UnitState.GetUnitValue ('OfficerBonusKills', OfficerBonusKillsValue);
-	//TrialByFireKills = int(OfficerBonusKillsValue.fValue);
-//
-	////`LWTRACE (UnitState.GetLastName() @ "has" @ WeightedBonusKills @ "bonus kills from Mission XP and" @ TrialByFireKills @ "bonus kills from Trial By Fire.");
-//
-	//// We need to add in our own xp tracking and remove the unit kills
-	//// that are added by vanilla
-	//XpKills = GetUnitValue(UnitState, 'KillXp');
-	//UnitKills = UnitState.GetNumKills();
-//
-	//Tuple.Data[0].i = WeightedBonusKills + TrialByFireKills + XpKills - UnitKills;
-//
-	//return ELR_NoInterrupt;
-//}
-//
-//function EventListenerReturn OnCheckForPsiPromotion(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
-//{
-	//local XComLWTuple Tuple;
-	//local XComGameState_Unit UnitState;
-//
-	//Tuple = XComLWTuple(EventData);
-	//if(Tuple == none)
-		//return ELR_NoInterrupt;
-//
-	//UnitState = XComGameState_Unit(EventSource);
-	//if(UnitState == none)
-	//{
-		//`REDSCREEN("OnCheckForPsiPromotion event triggered with invalid event source.");
-		//return ELR_NoInterrupt;
-	//}
-//
-	//if (Tuple.Data[0].kind != XComLWTVBool)
-		//return ELR_NoInterrupt;
-//
-	//if (UnitState.IsPsiOperative())
-	//{
-		//if (class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(UnitState))
-		//{
-			//Tuple.Data[0].B = true;
-		//}
-	//}
-	//return ELR_NoInterrupt;
-//}
+function float GetMissionWeight(XComGameStateHistory History, XComGameState_HeadquartersXCom XComHQ, XComGameState_BattleData BattleState, XComGameState_MissionSite MissionState)
+{
+	local X2MissionSourceTemplate MissionSource;
+	local bool PlayerWonMission;
+	local float fTotal;
+	local int AliensSeen, AliensKilled, OrigMissionAliens;
+
+	AliensKilled = class'UIMissionSummary'.static.GetNumEnemiesKilled(AliensSeen);
+	OrigMissionAliens = GetNumEnemiesOnMission(MissionState);
+
+	PlayerWonMission = true;
+	MissionSource = MissionState.GetMissionSource();
+	if(MissionSource.WasMissionSuccessfulFn != none)
+	{
+		PlayerWonMission = MissionSource.WasMissionSuccessfulFn(BattleState);
+	}
+
+	fTotal = float (OrigMissionAliens);
+
+	if (!PlayerWonMission)
+	{
+		fTotal *= default.MAX_RATIO_MISSION_XP_ON_FAILED_MISSION * FMin (1.0, float (AliensKilled) / float(OrigMissionAliens));
+	}
+
+	return fTotal;
+}
+
+function EventListenerReturn OnGetNumKillsForMissionEncounters(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Unit UnitState;
+	local UnitValue MissionExperienceValue, OfficerBonusKillsValue;
+	local float MissionExperienceWeighting;
+	local int WeightedBonusKills, idx, TrialByFireKills, XpKills, UnitKills;
+
+	Tuple = XComLWTuple(EventData);
+	if(Tuple == none)
+		return ELR_NoInterrupt;
+
+	UnitState = XComGameState_Unit(EventSource);
+	if(UnitState == none)
+	{
+		`REDSCREEN("OnGetNumKillsForMissionEncounters event triggered with invalid event source.");
+		return ELR_NoInterrupt;
+	}
+
+	if (Tuple.Data[0].kind != XComLWTVInt)
+		return ELR_NoInterrupt;
+
+	UnitState.GetUnitValue('MissionExperience', MissionExperienceValue);
+
+	idx = CLASS_MISSION_EXPERIENCE_WEIGHTS.Find('SoldierClass', UnitState.GetSoldierClassTemplateName());
+	if (idx != -1)
+		MissionExperienceWeighting = CLASS_MISSION_EXPERIENCE_WEIGHTS[idx].MissionExperienceWeight;
+	else
+		MissionExperienceWeighting = DEFAULT_MISSION_EXPERIENCE_WEIGHT;
+
+	WeightedBonusKills = Round(MissionExperienceValue.fValue * MissionExperienceWeighting);
+
+	//check for officer with trial by and folks under rank, give them sufficient kills to level-up
+
+	OfficerBonusKillsValue.fValue = 0;
+	UnitState.GetUnitValue ('OfficerBonusKills', OfficerBonusKillsValue);
+	TrialByFireKills = int(OfficerBonusKillsValue.fValue);
+
+	//`LWTRACE (UnitState.GetLastName() @ "has" @ WeightedBonusKills @ "bonus kills from Mission XP and" @ TrialByFireKills @ "bonus kills from Trial By Fire.");
+
+	// We need to add in our own xp tracking and remove the unit kills
+	// that are added by vanilla
+	XpKills = GetUnitValue(UnitState, 'KillXp');
+	UnitKills = UnitState.GetNumKills();
+
+	Tuple.Data[0].i = WeightedBonusKills + TrialByFireKills + XpKills - UnitKills;
+
+	return ELR_NoInterrupt;
+}
+
+function EventListenerReturn OnCheckForPsiPromotion(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Unit UnitState;
+
+	Tuple = XComLWTuple(EventData);
+	if(Tuple == none)
+		return ELR_NoInterrupt;
+
+	UnitState = XComGameState_Unit(EventSource);
+	if(UnitState == none)
+	{
+		`REDSCREEN("OnCheckForPsiPromotion event triggered with invalid event source.");
+		return ELR_NoInterrupt;
+	}
+
+	if (Tuple.Data[0].kind != XComLWTVBool)
+		return ELR_NoInterrupt;
+
+	if (UnitState.IsPsiOperative())
+	{
+		if (class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(UnitState))
+		{
+			Tuple.Data[0].B = true;
+		}
+	}
+	return ELR_NoInterrupt;
+}
 
 /* Triggered by XpKillShot event so that we can increment the kill xp for the
 	killer as long as the total gained kill xp does not exceed the number of
 	enemy units that were initially spawned.
 */
-//function EventListenerReturn OnRewardKillXp(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
-//{
-	//local XComGameState_Unit NewUnitState;
-	//local XpEventData XpEvent;
-//
-	//XpEvent = XpEventData(EventData);
-//
-	//// Create a new unit state if we need one.
-	//NewUnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(XpEvent.XpEarner.ObjectID));
-	//if(NewUnitState == none)
-	//{
-		//NewUnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', XpEvent.XpEarner.ObjectID));
-		//NewGameState.AddStateObject(NewUnitState);
-	//}
-//
-	//// Ensure we don't award xp kills beyond what was originally on the mission
-	//if(!KillXpIsCapped())
-	//{
-		//NewUnitState.SetUnitFloatValue('MissionKillXp', GetUnitValue(NewUnitState, 'MissionKillXp') + 1, eCleanup_BeginTactical);
-		//NewUnitState.SetUnitFloatValue('KillXp', GetUnitValue(NewUnitState, 'KillXp') + 1, eCleanup_Never);
-	//}
-//
-	//return ELR_NoInterrupt;
-//}
-//
-//function EventListenerReturn OverrideCollectorActivation(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
-//{
-	//local XComLWTuple OverrideActivation;
-//
-	//OverrideActivation = XComLWTuple(EventData);
-//
-	//if(OverrideActivation != none && OverrideActivation.Id == 'OverrideCollectorActivation' && OverrideActivation.Data[0].kind == XComLWTVBool)
-	//{
-		//OverrideActivation.Data[0].b = KillXpIsCapped();
-	//}
-//
-	//return ELR_NoInterrupt;
-//}
-//
-//function EventListenerReturn OverrideScavengerActivation(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
-//{
-	//local XComLWTuple OverrideActivation;
-//
-	//OverrideActivation = XComLWTuple(EventData);
-//
-	//if(OverrideActivation != none && OverrideActivation.Id == 'OverrideScavengerActivation' && OverrideActivation.Data[0].kind == XComLWTVBool)
-	//{
-		//OverrideActivation.Data[0].b = KillXpIsCapped();
-	//}
-//
-	//return ELR_NoInterrupt;
-//}
-//
-//function bool KillXpIsCapped()
-//{
-	//local XComGameStateHistory History;
-	//local XComGameState_Unit UnitState;
-	//local XComGameState_BattleData BattleState;
-	//local XComGameState_MissionSite MissionState;
-	//local int MissionKillXp, MaxKillXp;
-//
-	//History = `XCOMHISTORY;
-//
-	//BattleState = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-	//if(BattleState == none)
-		//return false;
-//
-	//MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleState.m_iMissionID));
-	//if(MissionState == none)
-		//return false;
-//
-	//MaxKillXp = GetNumEnemiesOnMission(MissionState);
-//
-	//// Get the sum of xp kills so far this mission
-	//MissionKillXp = 0;
-	//foreach History.IterateByClassType(class'XComGameState_Unit', UnitState)
-	//{
-		//if(UnitState.IsSoldier() && UnitState.IsPlayerControlled())
-			//MissionKillXp += int(GetUnitValue(UnitState, 'MissionKillXp'));
-	//}
-//
-	//return MissionKillXp >= MaxKillXp;
-//}
-//
-//function float GetUnitValue(XComGameState_Unit UnitState, Name ValueName)
-//{
-	//local UnitValue Value;
-//
-	//Value.fValue = 0.0;
-	//UnitState.GetUnitValue(ValueName, Value);
-	//return Value.fValue;
-//}
-//
-//function EventListenerReturn OnInsertFirstMissionIcon(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
-//{
-	//local XComLWTuple Tuple;
-	//local UIStrategyMap_MissionIcon MissionIcon;
-	//local UIStrategyMap StrategyMap;
-//
-	//Tuple = XComLWTuple(EventData);
-	//if(Tuple == none)
-		//return ELR_NoInterrupt;
-//
-	//StrategyMap = UIStrategyMap(EventSource);
-	//if(StrategyMap == none)
-	//{
-		//`REDSCREEN("OnInsertFirstMissionIcon event triggered with invalid event source.");
-		//return ELR_NoInterrupt;
-	//}
-//
-	//MissionIcon = StrategyMap.MissionItemUI.MissionIcons[0];
-	//MissionIcon.LoadIcon("img:///UILibrary_StrategyImages.X2StrategyMap.MissionIcon_ResHQ");
-	//MissionIcon.OnClickedDelegate = SelectOutpostManager;
-	//MissionIcon.HideTooltip();
-	//MissionIcon.SetMissionIconTooltip(StrategyMap.m_ResHQLabel, ResistanceHQBodyText);
-//
-	//MissionIcon.Show();
-//
-	//Tuple.Data[0].b = true; // skip to the next mission icon
-//
-	//return ELR_NoInterrupt;
-//}
+function EventListenerReturn OnRewardKillXp(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComGameState_Unit NewUnitState;
+	local XpEventData XpEvent;
+
+	XpEvent = XpEventData(EventData);
+
+	// Create a new unit state if we need one.
+	NewUnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(XpEvent.XpEarner.ObjectID));
+	if(NewUnitState == none)
+	{
+		NewUnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', XpEvent.XpEarner.ObjectID));
+		NewGameState.AddStateObject(NewUnitState);
+	}
+
+	// Ensure we don't award xp kills beyond what was originally on the mission
+	if(!KillXpIsCapped())
+	{
+		NewUnitState.SetUnitFloatValue('MissionKillXp', GetUnitValue(NewUnitState, 'MissionKillXp') + 1, eCleanup_BeginTactical);
+		NewUnitState.SetUnitFloatValue('KillXp', GetUnitValue(NewUnitState, 'KillXp') + 1, eCleanup_Never);
+	}
+
+	return ELR_NoInterrupt;
+}
+
+function EventListenerReturn OverrideCollectorActivation(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple OverrideActivation;
+
+	OverrideActivation = XComLWTuple(EventData);
+
+	if(OverrideActivation != none && OverrideActivation.Id == 'OverrideCollectorActivation' && OverrideActivation.Data[0].kind == XComLWTVBool)
+	{
+		OverrideActivation.Data[0].b = KillXpIsCapped();
+	}
+
+	return ELR_NoInterrupt;
+}
+
+function EventListenerReturn OverrideScavengerActivation(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple OverrideActivation;
+
+	OverrideActivation = XComLWTuple(EventData);
+
+	if(OverrideActivation != none && OverrideActivation.Id == 'OverrideScavengerActivation' && OverrideActivation.Data[0].kind == XComLWTVBool)
+	{
+		OverrideActivation.Data[0].b = KillXpIsCapped();
+	}
+
+	return ELR_NoInterrupt;
+}
+
+function bool KillXpIsCapped()
+{
+	local XComGameStateHistory History;
+	local XComGameState_Unit UnitState;
+	local XComGameState_BattleData BattleState;
+	local XComGameState_MissionSite MissionState;
+	local int MissionKillXp, MaxKillXp;
+
+	History = `XCOMHISTORY;
+
+	BattleState = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	if(BattleState == none)
+		return false;
+
+	MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleState.m_iMissionID));
+	if(MissionState == none)
+		return false;
+
+	MaxKillXp = GetNumEnemiesOnMission(MissionState);
+
+	// Get the sum of xp kills so far this mission
+	MissionKillXp = 0;
+	foreach History.IterateByClassType(class'XComGameState_Unit', UnitState)
+	{
+		if(UnitState.IsSoldier() && UnitState.IsPlayerControlled())
+			MissionKillXp += int(GetUnitValue(UnitState, 'MissionKillXp'));
+	}
+
+	return MissionKillXp >= MaxKillXp;
+}
+
+function float GetUnitValue(XComGameState_Unit UnitState, Name ValueName)
+{
+	local UnitValue Value;
+
+	Value.fValue = 0.0;
+	UnitState.GetUnitValue(ValueName, Value);
+	return Value.fValue;
+}
+
+function EventListenerReturn OnInsertFirstMissionIcon(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local UIStrategyMap_MissionIcon MissionIcon;
+	local UIStrategyMap StrategyMap;
+
+	Tuple = XComLWTuple(EventData);
+	if(Tuple == none)
+		return ELR_NoInterrupt;
+
+	StrategyMap = UIStrategyMap(EventSource);
+	if(StrategyMap == none)
+	{
+		`REDSCREEN("OnInsertFirstMissionIcon event triggered with invalid event source.");
+		return ELR_NoInterrupt;
+	}
+
+	MissionIcon = StrategyMap.MissionItemUI.MissionIcons[0];
+	MissionIcon.LoadIcon("img:///UILibrary_StrategyImages.X2StrategyMap.MissionIcon_ResHQ");
+	MissionIcon.OnClickedDelegate = SelectOutpostManager;
+	MissionIcon.HideTooltip();
+	MissionIcon.SetMissionIconTooltip(StrategyMap.m_ResHQLabel, ResistanceHQBodyText);
+
+	MissionIcon.Show();
+
+	Tuple.Data[0].b = true; // skip to the next mission icon
+
+	return ELR_NoInterrupt;
+}
 
 function SelectOutpostManager()
 {
@@ -869,7 +879,7 @@ function SelectOutpostManager()
 	*/
 }
 
-function EventListenerReturn OnOverrideMissionIcon(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+function EventListenerReturn OnOverrideMissionIcon(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
 	local XComLWTuple Tuple;
@@ -981,7 +991,7 @@ function GetMissionSiteUIButtonToolTip(out string Title, out string Body, UIStra
 }
 */
 
-function EventListenerReturn UpdateArmoryMainMenuItems(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+function EventListenerReturn UpdateArmoryMainMenuItems(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
 	local UIList List;
@@ -1169,7 +1179,7 @@ function EventListenerReturn OnPlacedDelayedEvacZone(Object EventData, Object Ev
 
 // override black market to make items be purchasable with supplies, remove the supplies reward from being purchasable
 
-//function EventListenerReturn OnOverrideBlackMarketGoods(Object EventData, Object EventSource, XComGameState GameState, Name EventID)
+//function EventListenerReturn OnOverrideBlackMarketGoods(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 //{
 	//local XComGameState NewGameState;
 	//local XComGameStateHistory History;
@@ -1402,7 +1412,7 @@ function EventListenerReturn OnPlacedDelayedEvacZone(Object EventData, Object Ev
 //}
 
 // custom selection of UIStrategyMapItem type for mission sites -- deprecated -- now use UI Recursive override
-function EventListenerReturn GetUIClassForMissionSite(Object EventData, Object EventSource, XComGameState GameState, Name EventID)
+function EventListenerReturn GetUIClassForMissionSite(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	//local XComGameState_MissionSite MissionState;
     //local XComLWTuple Tuple;
@@ -1433,36 +1443,36 @@ function EventListenerReturn GetUIClassForMissionSite(Object EventData, Object E
 }
 
 // DEPRECATED -- allows doom from activities (in general those without attached missions) to contribute to total doom
-//function EventListenerReturn AddActivityDoomEvent(Object EventData, Object EventSource, XComGameState GameState, Name EventID)
+//function EventListenerReturn AddActivityDoomEvent(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 //{
-	//return ELR_NoInterrupt;
-//}
-//
-//function EventListenerReturn OnSoldierCreatedEvent(Object EventData, Object EventSource, XComGameState GameState, Name EventID)
-//{
-	//local XComGameState_Unit Unit, UpdatedUnit;
-	//local XComGameState NewGameState;
-//
-	//Unit = XComGameState_Unit(EventData);
-	//if(Unit == none)
-	//{
-		//`REDSCREEN("OnSoldierCreatedEvent with no UnitState EventData");
-		//return ELR_NoInterrupt;
-	//}
-//
-	////Build NewGameState change container
-	//NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update newly created soldier");
-	//UpdatedUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
-	//NewGameState.AddStateObject(UpdatedUnit);
-	//GiveDefaultUtilityItemsToSoldier(UpdatedUnit, NewGameState);
-	//`GAMERULES.SubmitGameState(NewGameState);
-//
 	//return ELR_NoInterrupt;
 //}
 
+function EventListenerReturn OnSoldierCreatedEvent(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Unit Unit, UpdatedUnit;
+	local XComGameState NewGameState;
+
+	Unit = XComGameState_Unit(EventData);
+	if(Unit == none)
+	{
+		`REDSCREEN("OnSoldierCreatedEvent with no UnitState EventData");
+		return ELR_NoInterrupt;
+	}
+
+	//Build NewGameState change container
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update newly created soldier");
+	UpdatedUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
+	NewGameState.AddStateObject(UpdatedUnit);
+	GiveDefaultUtilityItemsToSoldier(UpdatedUnit, NewGameState);
+	`GAMERULES.SubmitGameState(NewGameState);
+
+	return ELR_NoInterrupt;
+}
+
 // Pre end-of month processing. The HQ object responsible for triggering end of month gets ticked before our outposts, so
 // we haven't yet run the update routine for the last day of the month. Run it now.
-function EventListenerReturn PreEndOfMonth(Object EventData, Object EventSource, XComGameState NewGameState, Name EventID)
+function EventListenerReturn PreEndOfMonth(Object EventData, Object EventSource, XComGameState NewGameState, Name EventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
     local XComGameState_LWOutpost Outpost, NewOutpost;
@@ -1509,7 +1519,7 @@ function EventListenerReturn PreEndOfMonth(Object EventData, Object EventSource,
 // first to get the value to put in the supply cache, and then again to get the string to display in the UI report. The first
 // time will have a non-none GameState that must be used to get the latest outpost states rather than the history, as the history
 // won't yet have the state including the last day update from the pre event above.
-function EventListenerReturn OnMonthlySuppliesReward(Object EventData, Object EventSource, XComGameState GameState, Name EventID)
+function EventListenerReturn OnMonthlySuppliesReward(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
 	local XComGameStateHistory History;
@@ -1550,7 +1560,7 @@ function EventListenerReturn OnMonthlySuppliesReward(Object EventData, Object Ev
 }
 
 // Process Negative Supply income events on EndOfMonth processing
-//function EventListenerReturn OnMonthlyNegativeSupplyIncome(Object EventData, Object EventSource, XComGameState GameState, Name EventID)
+//function EventListenerReturn OnMonthlyNegativeSupplyIncome(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 //{
 	//local XComGameStateHistory History;
     //local XComLWTuple Tuple;
@@ -1622,38 +1632,38 @@ function EventListenerReturn OnMonthlySuppliesReward(Object EventData, Object Ev
     //return ELR_NoInterrupt;
 //}
 //
-//// Recruit updating.
-//function EventListenerReturn OnMonthEnd(Object EventData, Object EventSource, XComGameState GameState, Name EventID)
-//{
-	//local XComGameStateHistory History;
-	//local XComGameState NewGameState;
-    //local XComGameState_HeadquartersResistance ResistanceHQ;
-	//local XComGameState_Unit UnitState;
-	//local StateObjectReference UnitRef;
-//
-	//History = `XCOMHISTORY;
-	//ResistanceHQ = XComGameState_HeadquartersResistance(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
-//
-	//NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("");
-//
-    //// Add utility items to each recruit
-	//foreach ResistanceHQ.Recruits(UnitRef)
-	//{
-		//UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitRef.ObjectID));
-		//NewGameState.AddStateObject(UnitState);
-		//GiveDefaultUtilityItemsToSoldier(UnitState, NewGameState);
-	//}
-//
-	//if (NewGameState.GetNumGameStateObjects() > 0)
-		//`GAMERULES.SubmitGameState(NewGameState);
-	//else
-		//History.CleanupPendingGameState(NewGameState);
-//
-	//return ELR_NoInterrupt;
-//}
+// Recruit updating.
+function EventListenerReturn OnMonthEnd(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+    local XComGameState_HeadquartersResistance ResistanceHQ;
+	local XComGameState_Unit UnitState;
+	local StateObjectReference UnitRef;
+
+	History = `XCOMHISTORY;
+	ResistanceHQ = XComGameState_HeadquartersResistance(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("");
+
+    // Add utility items to each recruit
+	foreach ResistanceHQ.Recruits(UnitRef)
+	{
+		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitRef.ObjectID));
+		NewGameState.AddStateObject(UnitState);
+		GiveDefaultUtilityItemsToSoldier(UnitState, NewGameState);
+	}
+
+	if (NewGameState.GetNumGameStateObjects() > 0)
+		`GAMERULES.SubmitGameState(NewGameState);
+	else
+		History.CleanupPendingGameState(NewGameState);
+
+	return ELR_NoInterrupt;
+}
 
 // Post end of month processing: called after closing the report UI.
-function EventListenerReturn PostEndOfMonth(Object EventData, Object EventSource, XComGameState GameState, Name EventID)
+function EventListenerReturn PostEndOfMonth(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
     local XComGameStateHistory History;
@@ -1834,7 +1844,7 @@ function EventListenerReturn OverrideItemCanBeUnequipped(Object EventData, Objec
 }
 
 // updates status info for soldiers with mission and squad info
-function EventListenerReturn OverrideGetPersonnelStatusSeparate(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+function EventListenerReturn OverrideGetPersonnelStatusSeparate(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
 	local string				Status, TimeLabel;
@@ -1969,7 +1979,7 @@ function EventListenerReturn OverrideGetPersonnelStatusSeparate(Object EventData
 
 
 // disable auto-fill mechanism in UISquadSelect
-//function EventListenerReturn DisableAutoFillSquad(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+//function EventListenerReturn DisableAutoFillSquad(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
 	//local XComLWTuple				OverrideTuple;
 	//local UISquadSelect			SquadSelect;
@@ -2002,7 +2012,7 @@ function EventListenerReturn OverrideGetPersonnelStatusSeparate(Object EventData
 //}
 
 // add restrictions on when units can be editted, have loadout changed, or dismissed, based on status
-//function EventListenerReturn OverrideSquadSelectDisableFlags(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+//function EventListenerReturn OverrideSquadSelectDisableFlags(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
 	//local XComLWTuple				OverrideTuple;
 	//local UISquadSelect			SquadSelect;
@@ -2094,7 +2104,7 @@ function EventListenerReturn OverrideGetPersonnelStatusSeparate(Object EventData
 //////////////////////  UTILITY SLOT LISTENERS ////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function EventListenerReturn UpdateSquadSelectUtilitySlots(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+function EventListenerReturn UpdateSquadSelectUtilitySlots(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Requires UISquadSelect_UtilityItem
 	//reference to the list item
@@ -2205,7 +2215,7 @@ function EventListenerReturn UpdateSquadSelectUtilitySlots(Object EventData, Obj
 //////////////////////  TO HIT MOD LISTENERS //////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//function EventListenerReturn ToHitOverrideListener(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+//function EventListenerReturn ToHitOverrideListener(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
 	//local XComLWTuple						OverrideToHit;
 	//local X2AbilityToHitCalc				ToHitCalc;
@@ -2420,7 +2430,7 @@ function EventListenerReturn UpdateSquadSelectUtilitySlots(Object EventData, Obj
 //}
 
 // Fetch the true supply reward for a region. This only gets the value, it doesn't reset the accumulated pool to zero.
-function EventListenerReturn OnGetSupplyDrop(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+function EventListenerReturn OnGetSupplyDrop(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
     local XComGameState_WorldRegion Region;
@@ -2447,9 +2457,8 @@ function EventListenerReturn OnGetSupplyDrop(Object EventData, Object EventSourc
     return ELR_NoInterrupt;
 }
 
-function EventListenerReturn OnNumCiviliansKilled(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+function EventListenerReturn OnNumCiviliansKilled(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	/* WOTC TODO: Restore this when Utilities_LW has been added
     local XComLWTuple Tuple;
     local XComLWTValue Value;
     local XGBattle_SP Battle;
@@ -2559,7 +2568,6 @@ function EventListenerReturn OnNumCiviliansKilled(Object EventData, Object Event
 
     Value.i = Total;
     Tuple.Data.AddItem(Value);
-	*/
     return ELR_NoInterrupt;
 }
 
@@ -2568,9 +2576,8 @@ function EventListenerReturn OnNumCiviliansKilled(Object EventData, Object Event
 // For the overhaul mod we will not use either upthrottling or the 'intercept' behavior if XCOM passes
 // the pod along the LoP. Instead we will use the pod manager to control movement. But we still want pods
 // with no jobs to patrol as normal.
-function EventListenerReturn OnShouldMoveToIntercept(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+function EventListenerReturn OnShouldMoveToIntercept(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	/* WOTC TODO: Restore when LW pod management is back in
     local XComLWTuple Tuple;
     local XComLWTValue Value;
     local XComGameState_AIGroup Group;
@@ -2604,11 +2611,9 @@ function EventListenerReturn OnShouldMoveToIntercept(Object EventData, Object Ev
         Tuple.Data.AddItem(Value);
         return ELR_NoInterrupt;
     }
-	*/
-	return ELR_NoInterrupt; // WOTC TODO: Remove this when the above is restored
 }
 
-//function EventListenerReturn OnSoldierRespecced (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+//function EventListenerReturn OnSoldierRespecced (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
 	//local XComLWTuple OverrideTuple;
 //
@@ -2637,7 +2642,7 @@ function EventListenerReturn OnShouldMoveToIntercept(Object EventData, Object Ev
 //
 //}
 //
-//function EventListenerReturn OnKilledByExplosion(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+//function EventListenerReturn OnKilledByExplosion(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
 	//local XComLWTuple				OverrideTuple;
 	//local XComGameState_Unit		Killer, Target;
@@ -2670,71 +2675,71 @@ function EventListenerReturn OnShouldMoveToIntercept(Object EventData, Object Ev
 	//return ELR_NoInterrupt;
 //}
 //
-//function EventListenerReturn OnShouldUnitPatrol (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
-//{
-	//local XComLWTuple				OverrideTuple;
-	//local XComGameState_Unit		UnitState;
-	//local XComGameState_AIUnitData	AIData;
-	//local int						AIUnitDataID, idx;
-	//local XComGameState_Player		ControllingPlayer;
-	//local bool						bHasValidAlert;
-//
-	////`LOG ("Firing OnShouldUnitPatrol");
-	//OverrideTuple = XComLWTuple(EventData);
-	//if(OverrideTuple == none)
-	//{
-		//`REDSCREEN("OnShouldUnitPatrol event triggered with invalid event data.");
-		//return ELR_NoInterrupt;
-	//}
-	//UnitState = XComGameState_Unit(OverrideTuple.Data[1].o);
-	//if (default.AI_PATROLS_WHEN_SIGHTED_BY_HIDDEN_XCOM)
-	//{
-		//if (UnitState.GetCurrentStat(eStat_AlertLevel) <= `ALERT_LEVEL_YELLOW)
-		//{
-			//if (UnitState.GetCurrentStat(eStat_AlertLevel) == `ALERT_LEVEL_YELLOW)
-			//{
-				//// don't do normal patrolling if the unit has current AlertData
-				//AIUnitDataID = UnitState.GetAIUnitDataID();
-				//if (AIUnitDataID > 0)
-				//{
-					//if (NewGameState != none)
-						//AIData = XComGameState_AIUnitData(NewGameState.GetGameStateForObjectID(AIUnitDataID));
-//
-					//if (AIData == none)
-					//{
-						//AIData = XComGameState_AIUnitData(`XCOMHISTORY.GetGameStateForObjectID(AIUnitDataID));
-					//}
-					//if (AIData != none)
-					//{
-						//if (AIData.m_arrAlertData.length == 0)
-						//{
-							//OverrideTuple.Data[0].b = true;
-						//}
-						//else // there is some alert data, but how old ?
-						//{
-							//ControllingPlayer = XComGameState_Player(`XCOMHISTORY.GetGameStateForObjectID(UnitState.ControllingPlayer.ObjectID));
-							//for (idx = 0; idx < AIData.m_arrAlertData.length; idx++)
-							//{
-								//if (ControllingPlayer.PlayerTurnCount - AIData.m_arrAlertData[idx].PlayerTurn < 3)
-								//{
-									//bHasValidAlert = true;
-									//break;
-								//}
-							//}
-							//if (!bHasValidAlert)
-							//{
-								//OverrideTuple.Data[0].b = true;
-							//}
-						//}
-					//}
-				//}
-			//}
-			//OverrideTuple.Data[0].b = true;
-		//}
-	//}
-	//return ELR_NoInterrupt;
-//}
-//
+function EventListenerReturn OnShouldUnitPatrol (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple				OverrideTuple;
+	local XComGameState_Unit		UnitState;
+	local XComGameState_AIUnitData	AIData;
+	local int						AIUnitDataID, idx;
+	local XComGameState_Player		ControllingPlayer;
+	local bool						bHasValidAlert;
+
+	//`LOG ("Firing OnShouldUnitPatrol");
+	OverrideTuple = XComLWTuple(EventData);
+	if(OverrideTuple == none)
+	{
+		`REDSCREEN("OnShouldUnitPatrol event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+	UnitState = XComGameState_Unit(OverrideTuple.Data[1].o);
+	if (default.AI_PATROLS_WHEN_SIGHTED_BY_HIDDEN_XCOM)
+	{
+		if (UnitState.GetCurrentStat(eStat_AlertLevel) <= `ALERT_LEVEL_YELLOW)
+		{
+			if (UnitState.GetCurrentStat(eStat_AlertLevel) == `ALERT_LEVEL_YELLOW)
+			{
+				// don't do normal patrolling if the unit has current AlertData
+				AIUnitDataID = UnitState.GetAIUnitDataID();
+				if (AIUnitDataID > 0)
+				{
+					if (NewGameState != none)
+						AIData = XComGameState_AIUnitData(NewGameState.GetGameStateForObjectID(AIUnitDataID));
+
+					if (AIData == none)
+					{
+						AIData = XComGameState_AIUnitData(`XCOMHISTORY.GetGameStateForObjectID(AIUnitDataID));
+					}
+					if (AIData != none)
+					{
+						if (AIData.m_arrAlertData.length == 0)
+						{
+							OverrideTuple.Data[0].b = true;
+						}
+						else // there is some alert data, but how old ?
+						{
+							ControllingPlayer = XComGameState_Player(`XCOMHISTORY.GetGameStateForObjectID(UnitState.ControllingPlayer.ObjectID));
+							for (idx = 0; idx < AIData.m_arrAlertData.length; idx++)
+							{
+								if (ControllingPlayer.PlayerTurnCount - AIData.m_arrAlertData[idx].PlayerTurn < 3)
+								{
+									bHasValidAlert = true;
+									break;
+								}
+							}
+							if (!bHasValidAlert)
+							{
+								OverrideTuple.Data[0].b = true;
+							}
+						}
+					}
+				}
+			}
+			OverrideTuple.Data[0].b = true;
+		}
+	}
+	return ELR_NoInterrupt;
+}
+
 function EventListenerReturn OnOverrideObjectiveAbilityIconColor (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local XComLWTuple				OverrideTuple;
@@ -2937,7 +2942,7 @@ function EventListenerReturn OnOverrideAbilityIconColor (Object EventData, Objec
 	return ELR_NoInterrupt;
 }
 //
-//function EventListenerReturn  OnOverrideBleedOutChance (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+//function EventListenerReturn  OnOverrideBleedOutChance (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
 	//local XComLWTuple				OverrideTuple;
 	//local int						BleedOutChance;
@@ -2959,7 +2964,7 @@ function EventListenerReturn OnOverrideAbilityIconColor (Object EventData, Objec
 //
 //}
 //
-//function EventListenerReturn GetPCSImage(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+//function EventListenerReturn GetPCSImage(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
 	//local XComLWTuple			OverridePCSImageTuple;
 	//local string				ReturnImagePath;
@@ -3017,7 +3022,7 @@ function EventListenerReturn OnOverrideAbilityIconColor (Object EventData, Objec
 	//return ELR_NoInterrupt;
 //}
 //
-//function EventListenerReturn OnIsCauseAllowedForNonvisibleUnits(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+//function EventListenerReturn OnIsCauseAllowedForNonvisibleUnits(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
     //local XComLWTuple Tuple;
     //local EAlertCause AlertCause;
@@ -3045,7 +3050,7 @@ function EventListenerReturn OnOverrideAbilityIconColor (Object EventData, Objec
     //return ELR_NoInterrupt;
 //}
 //
-//function EventListenerReturn OnCleanupTacticalMission(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+//function EventListenerReturn OnCleanupTacticalMission(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
     //local XComGameState_BattleData BattleData;
     //local XComGameState_Unit Unit;
@@ -3131,7 +3136,7 @@ function EventListenerReturn OnOverrideAbilityIconColor (Object EventData, Objec
     //return ELR_NoInterrupt;
 //}
 //
-//function EventListenerReturn OnRegionBuiltOutpost(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+//function EventListenerReturn OnRegionBuiltOutpost(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 //{
     //local XComGameStateHistory History;
     //local XComGameState_WorldRegion Region;
@@ -3160,7 +3165,7 @@ function EventListenerReturn OnOverrideAbilityIconColor (Object EventData, Objec
     //return ELR_NoInterrupt;
 //}
 
-function EventListenerReturn OnProcessReflexMove(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+function EventListenerReturn OnProcessReflexMove(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
     local XComGameState_Unit Unit;
@@ -3283,7 +3288,7 @@ function EventListenerReturn OnProcessReflexMove(Object EventData, Object EventS
     return ELR_NoInterrupt;
 }
 
-//function EventListenerReturn OnGetRewardVIPStatus(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+//function EventListenerReturn OnGetRewardVIPStatus(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 //{
     //local XComLWTuple Tuple;
     //local XComLWTValue Value;
@@ -3332,7 +3337,7 @@ function EventListenerReturn OnProcessReflexMove(Object EventData, Object EventS
 //
 //// Allow mods to query the LW version number. Trigger the 'GetLWVersion' event with an empty tuple as the eventdata and it will
 //// return a 3-tuple of ints with Data[0]=Major, Data[1]=Minor, and Data[2]=Build.
-//function EventListenerReturn OnGetLWVersion(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+//function EventListenerReturn OnGetLWVersion(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 //{
     //local XComLWTuple Tuple;
     //local int Major, Minor, Build;
@@ -3355,7 +3360,7 @@ function EventListenerReturn OnProcessReflexMove(Object EventData, Object EventS
 //}
 
 // It's school picture day. Add all the rebels.
-function EventListenerReturn OnRefreshCrewPhotographs(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+function EventListenerReturn OnRefreshCrewPhotographs(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
     local XComLWTuple Tuple;
@@ -3388,7 +3393,7 @@ function EventListenerReturn OnRefreshCrewPhotographs(Object EventData, Object E
 }
 
 // Override how the UFO interception works, since we don't use the calendar
-//function EventListenerReturn OnUFOSetInfiltrationTime(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+//function EventListenerReturn OnUFOSetInfiltrationTime(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 //{
     //local XComGameState_UFO UFO;
 	//local int HoursUntilIntercept;
@@ -3410,7 +3415,7 @@ function EventListenerReturn OnRefreshCrewPhotographs(Object EventData, Object E
     //return ELR_NoInterrupt;
 //}
 
-function EventListenerReturn OnGetSupplyDropDecreaseStrings(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+function EventListenerReturn OnGetSupplyDropDecreaseStrings(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
     local XComGameState_LWOutpost Outpost;
@@ -3449,7 +3454,7 @@ function EventListenerReturn OnGetSupplyDropDecreaseStrings(Object EventData, Ob
     return ELR_NoInterrupt;
 }
 
-//function EventListenerReturn OnUnitTookDamage(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+//function EventListenerReturn OnUnitTookDamage(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 //{
     //local XComGameState_Unit Unit;
     //local XComGameState NewGameState;
@@ -3474,7 +3479,7 @@ function EventListenerReturn OnGetSupplyDropDecreaseStrings(Object EventData, Ob
 //}
 //
 //// Grants bonus psi abilities after promotion to squaddie
-//function EventListenerReturn OnPsiProjectCompleted (Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+//function EventListenerReturn OnPsiProjectCompleted (Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 //{
 	//local StateObjectReference ProjectFocus;
 	//local XComGameState_Unit UnitState;
@@ -3546,7 +3551,7 @@ function EventListenerReturn OnGetSupplyDropDecreaseStrings(Object EventData, Ob
 //
 //// A RNF pod has spawned. Mark the units with a special marker to indicate they shouldn't be eligible for
 //// reflex actions this turn.
-//function EventListenerReturn OnSpawnReinforcementsComplete (Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+//function EventListenerReturn OnSpawnReinforcementsComplete (Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 //{
 	//local XComGameState_Unit Unit;
 	//local XComGameState NewGameState;
@@ -3568,7 +3573,7 @@ function EventListenerReturn OnGetSupplyDropDecreaseStrings(Object EventData, Ob
 //}
 
 //listener that adds an extra NavHelp button
-function EventListenerReturn AddSquadSelectStripWeaponsButton (Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+function EventListenerReturn AddSquadSelectStripWeaponsButton (Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
 	local UINavigationHelp NavHelp;
@@ -3580,7 +3585,7 @@ function EventListenerReturn AddSquadSelectStripWeaponsButton (Object EventData,
 	return ELR_NoInterrupt;
 }
 
-function EventListenerReturn AddArmoryStripWeaponsButton (Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+function EventListenerReturn AddArmoryStripWeaponsButton (Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
 	local UINavigationHelp NavHelp;
@@ -3820,7 +3825,7 @@ function EventListenerReturn AddArmoryStripWeaponsButton (Object EventData, Obje
 
 
 // return true to override XComSquadStartsConcealed=true setting in mission schedule and have the game function as if it was false
-function EventListenerReturn CheckForConcealOverride(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+function EventListenerReturn CheckForConcealOverride(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
 	local XComLWTuple						OverrideTuple;
@@ -3865,7 +3870,7 @@ function EventListenerReturn CheckForConcealOverride(Object EventData, Object Ev
 	return ELR_NoInterrupt;
 }
 
-function EventListenerReturn CheckForUnitAlertOverride(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+function EventListenerReturn CheckForUnitAlertOverride(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
 	local XComLWTuple						OverrideTuple;
@@ -3908,7 +3913,7 @@ function EventListenerReturn CheckForUnitAlertOverride(Object EventData, Object 
 	return ELR_NoInterrupt;
 }
 
-function EventListenerReturn OnAbilityActivated(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+function EventListenerReturn OnAbilityActivated(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
 	/* WOTC TODO: Restore this
     local XComGameState_Ability ActivatedAbilityState;
@@ -3937,7 +3942,7 @@ function EventListenerReturn OnAbilityActivated(Object EventData, Object EventSo
 	return ELR_NoInterrupt;
 }
 
-//function EventListenerReturn OnSerialKill(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+//function EventListenerReturn OnSerialKill(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 //{
 	//local XComGameState_Unit ShooterState;
     //local UnitValue UnitVal;
@@ -3952,31 +3957,31 @@ function EventListenerReturn OnAbilityActivated(Object EventData, Object EventSo
 	//return ELR_NoInterrupt;
 //}
 //
-//
-//function EventListenerReturn LW2OnPlayerTurnBegun(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
-//{
-	//local XComGameState_Player PlayerState;
-//
-	//PlayerState = XComGameState_Player (EventData);
-	//if (PlayerState == none)
-	//{
-		//`LOG ("LW2OnPlayerTurnBegun: PlayerState Not Found");
-		//return ELR_NoInterrupt;
-	//}
-//
-	//if(PlayerState.GetTeam() == eTeam_XCom)
-	//{
-		//`XEVENTMGR.TriggerEvent('XComTurnBegun', PlayerState, PlayerState);
-	//}
-	//if(PlayerSTate.GetTeam() == eTeam_Alien)
-	//{
-		//`XEVENTMGR.TriggerEvent('AlienTurnBegun', PlayerState, PlayerState);
-	//}
-//
-	//return ELR_NoInterrupt;
-//}
-//
-//function EventListenerReturn OnOverrideInitialPsiTrainingTime(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+
+function EventListenerReturn LW2OnPlayerTurnBegun(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	local XComGameState_Player PlayerState;
+
+	PlayerState = XComGameState_Player (EventData);
+	if (PlayerState == none)
+	{
+		`LOG ("LW2OnPlayerTurnBegun: PlayerState Not Found");
+		return ELR_NoInterrupt;
+	}
+
+	if(PlayerState.GetTeam() == eTeam_XCom)
+	{
+		`XEVENTMGR.TriggerEvent('XComTurnBegun', PlayerState, PlayerState);
+	}
+	if(PlayerSTate.GetTeam() == eTeam_Alien)
+	{
+		`XEVENTMGR.TriggerEvent('AlienTurnBegun', PlayerState, PlayerState);
+	}
+
+	return ELR_NoInterrupt;
+}
+
+//function EventListenerReturn OnOverrideInitialPsiTrainingTime(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 //{
 	//local XComLWTuple Tuple;
 //
@@ -3990,7 +3995,7 @@ function EventListenerReturn OnAbilityActivated(Object EventData, Object EventSo
 //}
 //
 //// This sets a flag that skips the automatic alert placed on the squad when reinfs land.
-//function EventListenerReturn OnOverrideReinforcementsAlert(Object EventData, Object EventSource, XComGameState GameState, Name InEventID)
+//function EventListenerReturn OnOverrideReinforcementsAlert(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 //{
 	///* WOTC TODO: Restore this
 	//local XComLWTuple Tuple;
@@ -4009,7 +4014,7 @@ function EventListenerReturn OnAbilityActivated(Object EventData, Object EventSo
 //}
 //
 //// this function cleans up some weird objective states by firing specific events
-//function EventListenerReturn OnGeoscapeEntry(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID)
+//function EventListenerReturn OnGeoscapeEntry(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
 	//local XComGameState_MissionSite					MissionState;
 //

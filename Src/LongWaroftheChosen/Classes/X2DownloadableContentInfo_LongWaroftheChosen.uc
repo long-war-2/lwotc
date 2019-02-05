@@ -10,6 +10,55 @@
 
 class X2DownloadableContentInfo_LongWaroftheChosen extends X2DownloadableContentInfo;
 
+`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+
+//----------------------------------------------------------------
+// A random selection of data and data structures from LW Overhaul
+
+struct ArchetypeToHealth
+{
+	var name ArchetypeName;
+	var int Health;
+	var int Difficulty;
+	structDefaultProperties
+	{
+		Difficulty = -1;
+	}
+};
+
+struct PlotObjectiveMod
+{
+	var string MapName;
+	var array<String> ObjectiveTags;
+};
+
+var config array<ArchetypeToHealth> DestructibleActorHealthOverride;
+var config array<bool> DISABLE_REINFORCEMENT_FLARES;
+var config array<float> SOUND_RANGE_DIFFICULTY_MODIFIER;
+
+struct SocketReplacementInfo
+{
+	var name TorsoName;
+	var string SocketMeshString;
+	var bool Female;
+};
+
+var config array<SocketReplacementInfo> SocketReplacements;
+
+var config bool ShouldCleanupObsoleteUnits;
+var config array<name> CharacterTypesExemptFromCleanup;
+
+var config array<name> CharacterTypesExceptFromInfiltrationModifiers;
+
+var config array<PlotObjectiveMod> PlotObjectiveMods;
+
+// Configurable list of parcels to remove from the game.
+var config array<String> ParcelsToRemove;
+var bool bDebugPodJobs;
+
+// End data and data structures
+//-----------------------------
+
 /// <summary>
 /// This method is run if the player loads a saved game that was created prior to this DLC / Mod being installed, and allows the 
 /// DLC / Mod to perform custom processing in response. This will only be called once the first time a player loads a save that was
@@ -52,6 +101,7 @@ static event OnPostTemplatesCreated()
 	class'LWTemplateMods_Utilities'.static.UpdateTemplates();
 	UpdateWeaponAttachmentsForCoilgun();
 	UpdateFirstMissionTemplate();
+	AddObjectivesToParcels();
 
 	// WOTC DEBUGGING:
 	`Log("Starting mission definition: " $ StartingMissionDef.MissionName $ " - " $ StartingMissionDef.sType $ " - " $ StartingMissionDef.MissionFamily);
@@ -66,6 +116,227 @@ static event OnPostTemplatesCreated()
 		}
 	}
 	// END
+}
+
+// *****************************************************
+// XCOM tactical mission adjustments
+//
+
+static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSite MissionState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_PointOfInterest POIState;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_MissionCalendar CalendarState;
+
+	// WOTC TODO: Restore these as the associated code becomes available
+	//`LWACTIVITYMGR.UpdatePreMission (StartGameState, MissionState);
+	//ResetDelayedEvac(StartGameState);
+	//ResetReinforcements(StartGameState);
+	InitializePodManager(StartGameState);
+
+	// Test Code to see if DLC POI replacement is working
+	if (MissionState.POIToSpawn.ObjectID > 0)
+	{
+		POIState = XComGameState_PointOfInterest(StartGameState.GetGameStateForObjectID(MissionState.POIToSpawn.ObjectID));
+		if (POIState == none)
+		{
+			POIState = XComGameState_PointOfInterest(`XCOMHISTORY.GetGameStateForObjectID(MissionState.POIToSpawn.ObjectID));
+		}
+	}
+	`LWTRACE("PreMission : MissonPOI ObjectID = " $ MissionState.POIToSpawn.ObjectID);
+	if (POIState != none)
+	{
+		`LWTRACE("PreMission : MissionPOI name = " $ POIState.GetMyTemplateName());
+	}
+
+	History = `XCOMHISTORY;
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	CalendarState = XComGameState_MissionCalendar(History.GetSingleGameStateObjectForClass(class'XComGameState_MissionCalendar'));
+	//log some info relating to the AH POI 2 replacement conditions to see what might be causing it to not spawn
+	`LWTRACE("============= POI_AlienNest Debug Info ========================");
+	`LWTRACE("Mission POI to Replace                  : " $ string(MissionState.POIToSpawn.ObjectID > 0));
+	foreach History.IterateByClassType(class'XComGameState_PointOfInterest', POIState)
+	{
+	`LWTRACE("     XCGS_PointOfInterest found : " $ POIState.GetMyTemplateName());
+		if (POIState.GetMyTemplateName() == 'POI_AlienNest')
+		{
+			break;
+		}
+	}
+	if (POIState != none && POIState.GetMyTemplateName() == 'POI_AlienNest')
+	{
+		`LWTRACE("XCGS_PointOfInterest for POI_AlienNest  : found");
+	}
+	else
+	{
+		`LWTRACE("XCGS_PointOfInterest for POI_AlienNest  : NOT found");
+	}
+	`LWTRACE("DLC_HunterWeapons objective complete    : " $ string(`XCOMHQ.IsObjectiveCompleted('DLC_HunterWeapons')));
+	`LWTRACE("Time Test Passed                        : " $ string(class'X2StrategyGameRulesetDataStructures'.static.LessThan(AlienHQ.ForceLevelIntervalEndTime, CalendarState.CurrentMissionMonth[0].SpawnDate)));
+	`LWTRACE("     AlienHQ       ForceLevelIntervalEndTime        : " $ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(AlienHQ.ForceLevelIntervalEndTime) $ ", " $ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(AlienHQ.ForceLevelIntervalEndTime));
+	`LWTRACE("     CalendarState CurrentMissionMonth[0] SpawnDate : " $ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(CalendarState.CurrentMissionMonth[0].SpawnDate) $ ", " $ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(CalendarState.CurrentMissionMonth[0].SpawnDate));
+	`LWTRACE("ForceLevel Test Passed                  : " $ string(AlienHQ.GetForceLevel() + 1 >= 4));
+	`LWTRACE("     AlienHQ ForceLevel  : " $ AlienHQ.GetForceLevel());
+	`LWTRACE("     Required ForceLevel : 4");
+	`LWTRACE("===============================================================");
+}
+
+/// <summary>
+/// Called when the player completes a mission while this DLC / Mod is installed.
+/// </summary>
+static event OnPostMission()
+{
+
+	class'XComGameState_LWListenerManager'.static.RefreshListeners();
+
+	// WOTC TODO: Restore when we sort out the black market
+	//UpdateBlackMarket();
+
+	// WOTC TODO: Restore when we have the squad manager
+	//`LWSQUADMGR.UpdateSquadPostMission(, true); // completed mission
+	
+	// WOTC TODO: Restore when we have the outpost manager
+	//`LWOUTPOSTMGR.UpdateOutpostsPostMission();
+}
+
+static event OnExitPostMissionSequence()
+{
+	CleanupObsoleteTacticalGamestate();
+}
+
+static function CleanupObsoleteTacticalGamestate()
+{
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+	local XComGameState_Unit UnitState;
+	local XComGameState_BaseObject BaseObject;
+	local int idx, idx2;
+	local XComGameState ArchiveState;
+	local int LastArchiveStateIndex;
+	local XComGameInfo GameInfo;
+	local array<XComGameState_Item> InventoryItems;
+	local XComGameState_Item Item;
+
+	History = `XCOMHISTORY;
+	//mark all transient tactical gamestates as removed
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Test remove all ability gamestates");
+	// grab the archived strategy state from the history and the headquarters object
+	LastArchiveStateIndex = History.FindStartStateIndex() - 1;
+	ArchiveState = History.GetGameStateFromHistory(LastArchiveStateIndex, eReturnType_Copy, false);
+	GameInfo = `XCOMGAME;
+	idx = 0;
+	/* WOTC TODO: WOTC no longer seems to have TransientTacticalClassNames, so not sure whether
+	   we need to do something here or not.
+	foreach ArchiveState.IterateByClassType(class'XComGameState_BaseObject', BaseObject)
+	{
+		if (GameInfo.TransientTacticalClassNames.Find( BaseObject.Class.Name ) != -1)
+		{
+			NewGameState.RemoveStateObject(BaseObject.ObjectID);
+			idx++;
+		}
+	}
+	*/
+	`LWTRACE("REMOVED " $ idx $ " tactical transient gamestates when loading into strategy");
+	if (default.ShouldCleanupObsoleteUnits)
+	{
+		idx = 0;
+		idx2 = 0;
+		foreach ArchiveState.IterateByClassType(class'XComGameState_Unit', UnitState)
+		{
+			if (UnitTypeShouldBeCleanedUp(UnitState))
+			{
+				InventoryItems = UnitState.GetAllInventoryItems(ArchiveState);
+				foreach InventoryItems (Item)
+				{
+					NewGameState.RemoveStateObject (Item.ObjectID);
+					idx2++;
+				}
+				NewGameState.RemoveStateObject (UnitState.ObjectID);
+				idx++;
+			}
+		}
+	}
+	`LWTRACE("REMOVED " $ idx $ " obsolete enemy unit gamestates when loading into strategy");
+	`LWTRACE("REMOVED " $ idx2 $ " obsolete enemy item gamestates when loading into strategy");
+
+	History.AddGameStateToHistory(NewGameState);
+}
+
+static function bool UnitTypeShouldBeCleanedUp(XComGameState_Unit UnitState)
+{
+	local X2CharacterTemplate CharTemplate;
+	local name CharTemplateName;
+	local int ExcludeIdx;
+
+	CharTemplate = UnitState.GetMyTemplate();
+	if (CharTemplate == none) { return false; }
+	CharTemplateName = UnitState.GetMyTemplateName();
+	if (CharTemplateName == '') { return false; }
+	// WOTC TODO: Restore when we have LWDLCHelpers
+	//if (class'LWDLCHelpers'.static.IsAlienRuler(CharTemplateName)) { return false; }
+	if (!CharTemplate.bIsSoldier)
+	{
+		if (CharTemplate.bIsAlien || CharTemplate.bIsAdvent || CharTemplate.bIsCivilian)
+		{
+			ExcludeIdx = default.CharacterTypesExemptFromCleanup.Find(CharTemplateName);
+			if (ExcludeIdx == -1)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+static function AddObjectivesToParcels()
+{
+	local XComParcelManager ParcelMgr;
+	local int i, j, k;
+
+	// Go over the plot list and add new objectives to certain plots.
+	ParcelMgr = `PARCELMGR;
+	if (ParcelMgr != none)
+	{
+		`LWTrace("Modding plot objectives");
+		for (i = 0; i < default.PlotObjectiveMods.Length; ++i)
+		{
+			for (j = 0; j < ParcelMgr.arrPlots.Length; ++j)
+			{
+				if (ParcelMgr.arrPlots[j].MapName == default.PlotObjectiveMods[i].MapName)
+				{
+					for (k = 0; k < default.PlotObjectiveMods[i].ObjectiveTags.Length; ++k)
+					{
+						// WOTC TODO: Requires modified version of XComParcelManager
+						//ParcelMgr.arrPlots[j].ObjectiveTags.AddItem(default.PlotObjectiveMods[i].ObjectiveTags[k]);
+						`LWTrace("Adding objective " $ default.PlotObjectiveMods[i].ObjectiveTags[k] $ " to plot " $ ParcelMgr.arrPlots[j].MapName);
+					}
+					break;
+				}
+			}
+		}
+
+		// Remove a mod-specified set of parcels (e.g. to replace them with modded versions).
+		for (i = 0; i < default.ParcelsToRemove.Length; ++i)
+		{
+			j = ParcelMgr.arrAllParcelDefinitions.Find('MapName', default.ParcelsToRemove[i]);
+			if (j >= 0)
+			{
+				`LWTrace("Removing parcel definition " $ default.ParcelsToRemove[i]);
+				// WOTC TODO: Requires modified version of XComParcelManager
+				//ParcelMgr.arrAllParcelDefinitions.Remove(j, 1);
+			}
+		}
+	}
+}
+
+static function InitializePodManager(XComGameState StartGameState)
+{
+	local XComGameState_LWPodManager PodManager;
+
+	PodManager = XComGameState_LWPodManager(StartGameState.CreateStateObject(class'XComGameState_LWPodManager'));
+	`LWTrace("Created pod manager");
+	StartGameState.AddStateObject(PodManager);
 }
 
 // ******** Starting mission (Gate Crasher) ******** //
@@ -195,9 +466,73 @@ static function bool UpdateSoldierUtilityItemSlots(XComGameState_Unit UnitState,
 	return true;
 }
 
+// WOTC TODO: Requires changes in XComBase to call this
+// prevent removal of unlimited quanity items when making items available
+static function bool CanRemoveItemFromInventory(out int bCanRemoveItem,  XComGameState_Item Item, XComGameState_Unit UnitState, XComGameState CheckGameState)
+{
+	if (Item.GetMyTemplate().bInfiniteItem && !Item.HasBeenModified())
+	{
+		bCanRemoveItem = 0;
+		return true;
+	}
+	return false;
+}
 
+// ******** HANDLE SECONDARY WEAPON VISUALS ******** //
+
+// append sockets to the human skeletal meshes for the new secondary weapons
+static function string DLCAppendSockets(XComUnitPawn Pawn)
+{
+	local SocketReplacementInfo SocketReplacement;
+	local name TorsoName;
+	local bool bIsFemale;
+	local string DefaultString, ReturnString;
+	local XComHumanPawn HumanPawn;
+
+	HumanPawn = XComHumanPawn(Pawn);
+	if (HumanPawn == none) { return ""; }
+
+	TorsoName = HumanPawn.m_kAppearance.nmTorso;
+	bIsFemale = HumanPawn.m_kAppearance.iGender == eGender_Female;
+
+	//`LWTRACE("DLCAppendSockets: Torso= " $ TorsoName $ ", Female= " $ string(bIsFemale));
+
+	foreach default.SocketReplacements(SocketReplacement)
+	{
+		if (TorsoName != 'None' && TorsoName == SocketReplacement.TorsoName && bIsFemale == SocketReplacement.Female)
+		{
+			ReturnString = SocketReplacement.SocketMeshString;
+			break;
+		}
+		else
+		{
+			if (SocketReplacement.TorsoName == 'Default' && SocketReplacement.Female == bIsFemale)
+			{
+				DefaultString = SocketReplacement.SocketMeshString;
+			}
+		}
+	}
+	if (ReturnString == "")
+	{
+		// did not find, so use default
+		ReturnString = DefaultString;
+	}
+	//`LWTRACE("Returning mesh string: " $ ReturnString);
+	return ReturnString;
+}
 
 // ******** HANDLE UPDATING WEAPON ATTACHMENTS ************* //
+
+// WOTC TODO: Called from highlander - check whether CHL does it
+// always allow removal of weapon upgrades
+static function bool CanRemoveWeaponUpgrade(XComGameState_Item Weapon, X2WeaponUpgradeTemplate UpgradeTemplate, int SlotIndex)
+{
+	if (UpgradeTemplate == none)
+		return false;
+	else
+		return true;
+}
+
 // This provides the artwork/assets for weapon attachments for SMGs
 static function UpdateWeaponAttachmentsForCoilgun()
 {
