@@ -40,47 +40,6 @@ event OnInit(UIScreen Screen)
 		RegisterForEvents();
 		bRegisteredForEvents = true;
 	}
-
-	//local bool bNeedsUpdate;
-	//local bool bIsInStrategy;
-	//local bool bIsInTactical;
-//
-	//bIsInStrategy = IsInStrategy();
-	//bIsInTactical = UITacticalHUD(Screen) != none;
-//
-	//if (!bIsInStrategy && !bIsInTactical)
-		//return;
-
-	//reset switch in tactical so we re-register back in strategy
-	// JL fix 11/4 switch == to !=
-	//if(UITacticalHUD(Screen) != none)
-	//{
-		//RegisterForEvents();
-	//}
-	//else if(UIAvengerHUD(Screen) != none)
-	//{
-		//RegisterForEvents();
-	//}
-
-	////if (!bRegisteredForEvents)
-		//bNeedsUpdate = true;
-	////else if (bIsInStrategy && !bLastUpdateStrategy)
-	////{
-		////bNeedsUpdate = true;
-		////bLastUpdateStrategy = true;
-	////}
-	////else if (bIsInTactical && bLastUpdateStrategy)
-	////{
-		////bNeedsUpdate = true;
-		////bLastUpdateStrategy = false;
-	////}
-//
-	//if(bNeedsUpdate)
-	//{
-		////`LOG("OfficerPack_LWS : Registering for events");
-		//RegisterForEvents();
-		//bRegisteredForEvents = true;
-	//}
 }
 
 function RegisterForEvents()
@@ -93,9 +52,6 @@ function RegisterForEvents()
 	EventManager = `XEVENTMGR;
 	EventManager.UnRegisterFromAllEvents(ThisObj);
 
-	//EventManager.RegisterForEvent(ThisObj, 'EnterSquadSelect', RemoveInvalidSoldiers,,,,true); // hook to remove invalid soldiers if someone in squad became on officer since last time
-	//EventManager.RegisterForEvent(ThisObj, 'OnValidateDeployableSoldiers', ValidateDeployableSoldiersForOfficer,,,,true); // hook to prevent second officer on mission
-
 	EventManager.RegisterForEvent(ThisObj, 'OnUpdateSquadSelect_ListItem', AddOfficerIcon_SquadSelectListItem,,,,true); // hook to add officer icon to SquadSelect_ListItem
 
 	EventManager.RegisterForEvent(ThisObj, 'OnSoldierListItemUpdateDisabled', SetDisabledOfficerListItems,,,,true);  // hook to disable selecting officers if officer already on mission
@@ -106,9 +62,9 @@ function RegisterForEvents()
 
 	EventManager.RegisterForEvent(ThisObj, 'OnDismissSoldier', CleanUpComponentStateOnDismiss,,,,true);
 
-	EventManager.RegisterForEvent(ThisObj, 'GetRankName', OverrideOfficerRankName,,,,true);
-	EventManager.RegisterForEvent(ThisObj, 'GetShortRankName', OverrideOfficerShortRankName,,,,true);
-	EventManager.RegisterForEvent(ThisObj, 'GetRankIcon', OverrideOfficerRankIcon,,,,true);
+	EventManager.RegisterForEvent(ThisObj, 'SoldierRankName', OverrideOfficerRankName,,,,true);
+	EventManager.RegisterForEvent(ThisObj, 'SoldierShortRankName', OverrideOfficerShortRankName,,,,true);
+	EventManager.RegisterForEvent(ThisObj, 'SoldierRankIcon', OverrideOfficerRankIcon,,,,true);
 
 	EventManager.RegisterForEvent(ThisObj, 'OnDistributeTacticalGameEndXP', UpdateOfficerLeadership, ELD_OnStateSubmitted,,,true); 
 }
@@ -227,27 +183,23 @@ function EventListenerReturn OverrideOfficerRankName(Object EventData, Object Ev
 		`REDSCREEN("Override event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
-	//`LOG("OverrideTuple : Parsed XComLWTuple.");
 
 	UnitState = XComGameState_Unit(EventSource);
 	if(UnitState == none)
 		return ELR_NoInterrupt;
-	//`LOG("OverrideTuple : EventSource valid.");
 
-	if(OverrideTuple.Id != 'OverrideGetRankName')
+	if(OverrideTuple.Id != 'SoldierRankName')
 		return ELR_NoInterrupt;
 
-	if(OverrideTuple.Data[1].s != "") // already overridden by another listener
+	if(OverrideTuple.Data[2].s != "") // already overridden by another listener
 		return ELR_NoInterrupt;
 
 	OfficerState = class'LWOfficerUtilities'.static.GetOfficerComponent(UnitState);
-	if(OfficerState != none && OfficerState.GetOfficerRank() > 0)
+	if(OfficerState != none && OfficerState.GetOfficerRank() > 0 && OverrideTuple.Data[0].i == -1)
 	{
-		OverrideTuple.Data[0].b = true;
-		//OverrideTuple.Data[1].s = class'LWOfficerUtilities'.static.GetLWOfficerRankName(UnitState.GetRank()-1);
-		OverrideTuple.Data[1].s = class'LWOfficerUtilities'.static.GetLWOfficerRankName(OfficerState.GetOfficerRank());
+		OverrideTuple.Data[1].b = true;
+		OverrideTuple.Data[2].s = class'LWOfficerUtilities'.static.GetLWOfficerRankName(OfficerState.GetOfficerRank());
 	}
-	//`LOG("OverrideOfficerRankName : working!.");
 
 	return ELR_NoInterrupt;
 }
@@ -264,26 +216,23 @@ function EventListenerReturn OverrideOfficerShortRankName(Object EventData, Obje
 		`REDSCREEN("Override event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
-	//`LOG("OverrideTuple : Parsed XComLWTuple.");
 
 	UnitState = XComGameState_Unit(EventSource);
 	if(UnitState == none)
 		return ELR_NoInterrupt;
-	//`LOG("OverrideTuple : EventSource valid.");
 
-	if(OverrideTuple.Id != 'OverrideGetShortRankName')
+	if(OverrideTuple.Id != 'SoldierShortRankName')
 		return ELR_NoInterrupt;
 
-	if(OverrideTuple.Data[1].s != "") // already overridden by another listener
+	if(OverrideTuple.Data[2].s != "") // already overridden by another listener
 		return ELR_NoInterrupt;
 
 	OfficerState = class'LWOfficerUtilities'.static.GetOfficerComponent(UnitState);
-	if(OfficerState != none && OfficerState.GetOfficerRank() > 0)
+	if(OfficerState != none && OfficerState.GetOfficerRank() > 0 && OverrideTuple.Data[0].i == -1)
 	{
-		OverrideTuple.Data[0].b = true;
-		OverrideTuple.Data[1].s = class'LWOfficerUtilities'.static.GetLWOfficerShortRankName(OfficerState.GetOfficerRank());
+		OverrideTuple.Data[1].b = true;
+		OverrideTuple.Data[2].s = class'LWOfficerUtilities'.static.GetLWOfficerShortRankName(OfficerState.GetOfficerRank());
 	}
-	//`LOG("OverrideOfficerShortRankName : working!.");
 
 	return ELR_NoInterrupt;
 }
@@ -300,26 +249,23 @@ function EventListenerReturn OverrideOfficerRankIcon(Object EventData, Object Ev
 		`REDSCREEN("Override event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
-	//`LOG("OverrideTuple : Parsed XComLWTuple.");
 
 	UnitState = XComGameState_Unit(EventSource);
 	if(UnitState == none)
 		return ELR_NoInterrupt;
-	//`LOG("OverrideTuple : EventSource valid.");
 
-	if(OverrideTuple.Id != 'OverrideGetRankIcon')
+	if(OverrideTuple.Id != 'SoldierRankIcon')
 		return ELR_NoInterrupt;
 
-	if(OverrideTuple.Data[1].s != "") // already overridden by another listener
+	if(OverrideTuple.Data[2].s != "") // already overridden by another listener
 		return ELR_NoInterrupt;
 
 	OfficerState = class'LWOfficerUtilities'.static.GetOfficerComponent(UnitState);
-	if(OfficerState != none && OfficerState.GetOfficerRank() > 0)
+	if(OfficerState != none && OfficerState.GetOfficerRank() > 0 && OverrideTuple.Data[0].i == -1)
 	{
-		OverrideTuple.Data[0].b = true;
-		OverrideTuple.Data[1].s = class'LWOfficerUtilities'.static.GetRankIcon(OfficerState.GetOfficerRank());
+		OverrideTuple.Data[1].b = true;
+		OverrideTuple.Data[2].s = class'LWOfficerUtilities'.static.GetRankIcon(OfficerState.GetOfficerRank());
 	}
-	//`LOG("OverrideOfficerRankIcon : working!.");
 
 	return ELR_NoInterrupt;
 }
@@ -397,88 +343,6 @@ simulated function UIListItemString FindDismissListItem(UIList List)
 			return Current;
 	}
 	return none;
-}
-
-//removed above
-function EventListenerReturn RemoveInvalidSoldiers(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-	local XComGameState_HeadquartersXCom XComHQ;
-	local XComGameState_Unit UnitState;
-	local int idx;
-	local bool bFoundOfficer;
-	local XComGameStateHistory History;
-
-	History = `XCOMHISTORY;
-
-	XComHQ = `XCOMHQ;
-	XComHQ = XComGameState_HeadquartersXCom(NewGameState.CreateStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
-	for(idx = XComHQ.Squad.Length - 1; idx >= 0; idx--)
-	{
-		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(XComHQ.Squad[idx].ObjectID));
-		if(UnitState != none)
-		{
-			if(class'LWOfficerUtilities'.static.IsOfficer(UnitState))
-			{
-				if(!bFoundOfficer)
-					bFoundOfficer = true;
-				else
-				{
-					XComHQ.Squad.Remove(idx, 1);
-				}
-			}
-		}
-	}
-	NewGameState.AddStateObject(XComHQ);
-	return ELR_NoInterrupt;
-}
-
-//disabled above
-function EventListenerReturn ValidateDeployableSoldiersForOfficer(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-	local int idx;
-	local XComLWTuple DeployableSoldiers;
-	local UISquadSelect SquadSelect;
-	local XComGameState_Unit UnitState;
-	local GeneratedMissionData MissionData;
-	local bool bAllowWoundedSoldiers;
-
-	DeployableSoldiers = XComLWTuple(EventData);
-	if(DeployableSoldiers == none)
-	{
-		`REDSCREEN("Validate Deployable Soldiers event triggered with invalid event data.");
-		return ELR_NoInterrupt;
-	}
-	SquadSelect = UISquadSelect(EventSource);
-	if(SquadSelect == none)
-	{
-		`REDSCREEN("Validate Deployable Soldiers event triggered with invalid source data.");
-		return ELR_NoInterrupt;
-	}
-
-	MissionData = SquadSelect.XComHQ.GetGeneratedMissionData(SquadSelect.XComHQ.MissionRef.ObjectID);
-	bAllowWoundedSoldiers = MissionData.Mission.AllowDeployWoundedUnits;
-
-	if(!class'LWOfficerUtilities'.static.HasOfficerInSquad(SquadSelect.XComHQ) || bAllowWoundedSoldiers)
-		return ELR_NoInterrupt;
-
-	if(DeployableSoldiers.Id != 'DeployableSoldiers')
-		return ELR_NoInterrupt;
-
-	for(idx = DeployableSoldiers.Data.Length - 1; idx >= 0; idx--)
-	{
-		if(DeployableSoldiers.Data[idx].kind == XComLWTVObject)
-		{
-			UnitState = XComGameState_Unit(DeployableSoldiers.Data[idx].o);
-			if(UnitState != none)
-			{
-				if(class'LWOfficerUtilities'.static.IsOfficer(UnitState))
-				{
-					DeployableSoldiers.Data.Remove(idx, 1);
-				}
-			}
-		}
-	}
-	return ELR_NoInterrupt;
 }
 
 function EventListenerReturn AddOfficerIcon_SquadSelectListItem(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)

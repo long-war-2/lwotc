@@ -22,6 +22,7 @@ static event OnPostTemplatesCreated()
 	local X2FacilityTemplate FacilityTemplate;
 	local array<X2FacilityTemplate> FacilityTemplates;
 	local StaffSlotDefinition StaffSlotDef;
+	`Log(">>>> LWOfficerPack OnPostTemplates");
 
 	// ***  OFFICER TRAINING SCHOOL *** //
 	FindFacilityTemplateAllDifficulties('OfficerTrainingSchool', FacilityTemplates);
@@ -138,8 +139,6 @@ static function ModifyEarnedSoldierAbilities(out array<SoldierClassAbilityType> 
 	local XComGameState_Unit_LWOfficer OfficerState;
 	local ClassAgnosticAbility Ability;
 	local string CallStack;
-
-	`Log(">>>> Entering ModifyEarnedSoldierAbilities....");
 
 	if(UnitState == none)
 	{
