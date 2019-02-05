@@ -1478,7 +1478,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	// WOTC TODO: The "Variable" icon color type requires a modified version of UITacticalHUD_Ability
 	// that isn't available with X2WOTCCommunityHighlander right now. I'm building against a custom
-	// version right now.
+	// version.
 	if (default.USE_ACTION_ICON_COLORS)
 	{
 		for (k = 0; k < Template.AbilityCosts.length; k++)
@@ -2042,7 +2042,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'HunterPistol_BM_Schematic':
 			case 'HunterAxe_MG_Schematic':
 			case 'HunterAxe_BM_Schematic':
-				/* WOTC TODO: Restore this
+				/* WOTC TODO: Restore this with LWDLCHelpers
 				class'LWDLCHelpers'.static.GetAlienHunterWeaponSpecialRequirementFunction(SpecialRequirement, SchematicTemplate.DataName);
 				SchematicTemplate.Requirements.SpecialRequirementsFn = SpecialRequirement;
 				SchematicTemplate.AlternateRequirements[0].SpecialRequirementsFn = SpecialRequirement;
@@ -2380,7 +2380,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					case 'PoweredSparkArmor':
 					case 'SparkBit_MG':
 					case 'SparkBit_BM':
-						/* WOTC TODO: Restore this
+						/* WOTC TODO: Restore this with LWDLCHelpers
 						AltReq.SpecialRequirementsFn = class'LWDLCHelpers'.static.IsLostTowersNarrativeContentComplete;
 						if (ItemTable[i].RequiredTech1 != '')
 							AltReq.RequiredTechs.AddItem(ItemTable[i].RequiredTech1);
@@ -3016,7 +3016,7 @@ static function bool IsUnitValidForOTSSoldierSlot(XComGameState_StaffSlot SlotSt
 	local XComGameState_Unit Unit;
 
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
-	/* WOTC TODO: Restore this
+	/* WOTC TODO: Restore this with LWDLCHelpers
 	if(class'LWDLCHelpers'.static.IsUnitOnMission(Unit))
 		return false;
 	*/
@@ -3038,7 +3038,7 @@ static function bool IsUnitValidForPsiChamberSoldierSlot(XComGameState_StaffSlot
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
 	
 	`LWTrace("Checking whether " $ Unit.GetName(eNameType_Full) $ " is valid for PsiChamber");
-	/* WOTC TODO: Restore this
+	/* WOTC TODO: Restore this with LWDLCHelpers
 	if(class'LWDLCHelpers'.static.IsUnitOnMission(Unit)) // needed to work with infiltration system
 		return false;
 	*/
@@ -3062,8 +3062,9 @@ static function bool IsUnitValidForPsiChamberSoldierSlot(XComGameState_StaffSlot
 			SoldierClassTemplate = Unit.GetSoldierClassTemplate();
 			if (class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(Unit)) // LW2 override, this limits to 8 abilities
 			{
-				// WOTC TODO: This may not work as this includes a random deck of abilities. I don't know if it's
-				// possible to distinguish between Psi abilities and others
+				// WOTC TODO: Need to test soldier selection for Psi Chamber. This may not work as it includes
+				// a random deck of abilities. I don't know if it's possible to distinguish between Psi abilities
+				// and others
 				AllPsiAbilities = SoldierClassTemplate.GetAllPossibleAbilities();
 				foreach AllPsiAbilities(PsiAbility)
 				{
@@ -3085,7 +3086,7 @@ static function bool IsUnitValidForAWCSoldierSlot(XComGameState_StaffSlot SlotSt
 	local XComGameState_Unit Unit;
 
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
-	/* WOTC TODO: Restore this
+	/* WOTC TODO: Restore this with LWDLCHelpers
 	if(class'LWDLCHelpers'.static.IsUnitOnMission(Unit))
 		return false;
 	*/
@@ -3105,7 +3106,7 @@ static function bool IsUnitValidForSparkSlotWithInfiltration(XComGameState_Staff
 		&& Unit.IsSoldier()
 		&& Unit.IsInjured()
 		&& Unit.GetMyTemplateName() == 'SparkSoldier')
-	// WOTC TODO: Restore this
+	// WOTC TODO: Restore this with LWDLCHelpers
 		//&& !class'LWDLCHelpers'.static.IsUnitOnMission(Unit)) // added condition to prevent healing spark units on mission here
     {
         return true;
@@ -3218,7 +3219,7 @@ function ModifyDarkEvents (X2StrategyElementTemplate Template, int Difficulty)
 {
 	local X2DarkEventTemplate DarkEventTemplate;
 	
-	/* WOTC TODO: Restore this
+	/* WOTC TODO: Restore this - overrides dark events
 	DarkEventTemplate = X2DarkEventTemplate (Template);
 	if (DarkEventTemplate != none)
 	{
@@ -3277,7 +3278,7 @@ function string GetResistanceInformantSummary(string strSummaryText)
 
 	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
 
-	// WOTC TODO: Restore this
+	// WOTC TODO: Restore this when alien activities and output management are back in
 	//Divider = class'X2LWActivityDetectionCalc_Terror'.default.RESISTANCE_INFORMANT_DETECTION_DIVIDER[`STRATEGYDIFFICULTYSETTING];
 	Divider = 1.0f;
 	TempInt = Round(Divider);
@@ -3328,7 +3329,7 @@ function bool DelayGrenades(XComGameState_PointOfInterest POIState)
 // This also modifies the description of the city center in invasion missions
 function ModifyPOIs (X2StrategyElementTemplate Template, int Difficulty)
 {
-	/* WOTC TODO: Restore this
+	/* WOTC TODO: Restore this - customises Places of Interest (POIs)
     local X2PointOfInterestTemplate POITemplate;
 	local X2MissionSiteDescriptionTemplate MissionSiteDescription;
 
@@ -3376,7 +3377,7 @@ function ModifyHackRewards (X2HackRewardTemplate Template, int Difficulty)
 {
     local X2HackRewardTemplate HackRewardTemplate;
 
-	/* WOTC TODO: Restore this
+	/* WOTC TODO: Restore this when strategy layer is back in - modifies hack rewards
 	if (Template != none)
 	{
 		HackRewardTemplate = Template;

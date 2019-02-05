@@ -4,7 +4,7 @@
 //  PURPOSE: This singleton object manages general persistent listeners that should live for both strategy and tactical play
 //---------------------------------------------------------------------------------------
 class XComGameState_LWListenerManager extends XComGameState_BaseObject config(LW_Overhaul);
-// WOTC TODO: Restore this
+// WOTC TODO: Restore this with squad management
  //dependson(XComGameState_LWPersistentSquad);
 
 `include(LongWaroftheChosen\Src\LW_Overhaul.uci)
