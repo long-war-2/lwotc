@@ -28,6 +28,7 @@
     <Folder Include="Localization\LW_PerkPack_Integrated" />
     <Folder Include="Localization\LW_OfficerPack_Integrated" />
     <Folder Include="Localization\LW_AlienPack_Integrated" />
+    <Folder Include="Localization\LW_Toolbox_Integrated" />
     <Folder Include="Src\" />
     <Folder Include="Src\LongWaroftheChosen\Src" />
     <Folder Include="Src\LWUtilities\Classes" />
@@ -38,6 +39,7 @@
     <Folder Include="Src\LW_PerkPack_Integrated\Classes" />
     <Folder Include="Src\LW_SMGPack_Integrated\Classes" />
     <Folder Include="Src\LW_Squads\Classes" />
+    <Folder Include="Src\LW_Toolbox_Integrated\Classes" />
     <Folder Include="Src\LW_XCGS_ModOptions" />
     <Folder Include="Src\LW_XCGS_ModOptions\Classes" />
     <Folder Include="Src\LW_SMGPack_Integrated" />
@@ -46,6 +48,9 @@
     <Folder Include="Src\LWUtilities" />
     <Folder Include="Src\LW_Squads" />
     <Folder Include="Src\LW_AlienPack_Integrated" />
+    <Folder Include="Src\LW_XCGS_ToolboxOptions" />
+    <Folder Include="Src\LW_XCGS_ToolboxOptions\Classes" />
+    <Folder Include="Src\LW_Toolbox_Integrated" />
     <Folder Include="Src\robojumperSquadSelect_Integrated" />
     <Folder Include="Src\robojumperSquadSelect_Integrated\Classes" />
     <Folder Include="Src\XComGame\" />
@@ -118,6 +123,9 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Config\XComLW_SoldierSkills.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_Toolbox.ini">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Config\XComMissionDefs.ini">
@@ -748,6 +756,72 @@
       <SubType>Content</SubType>
     </Content>
     <Content Include="Localization\LW_SMGPack_Integrated\XComGame.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\LW_Toolbox_Integrated.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.chn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.cht">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.deu">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.esn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.fra">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.ita">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.jpn">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.kor">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.pol">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\LW_Toolbox_Integrated\XComGame.rus">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ReadMe.txt" />
@@ -1672,7 +1746,55 @@
     <Content Include="Src\LW_Squads\Classes\XComGameState_LWSquadManager.uc">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\LWSpawnUnitFromAvenger.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\UIAfterAction_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\UIOptionsPCScreen_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\UIRecruitmentListItem_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\UIScreenListener_Armory_MainMenu.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\UIScreenListener_GameLoad.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\UIScreenListener_ScreenUpdates.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\X2Ability_RedFog_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\X2DownloadableContentInfo_LWToolbox.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\X2Effect_RedFog_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\X2StrategyElement_RandomizedSoldierRewards.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\XComGameState_Effect_RedFog_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\XComGameState_Unit_LWRandomizedStats.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\XComTacticalInput_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LW_XCGS_ModOptions\Classes\XComGameState_LWModOptions.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_XCGS_ToolboxOptions\Classes\XComGameState_LWToolboxPrototype.uc">
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>
