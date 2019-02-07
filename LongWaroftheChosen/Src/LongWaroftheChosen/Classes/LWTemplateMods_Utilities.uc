@@ -7,7 +7,7 @@
 
 class LWTemplateMods_Utilities extends Object;
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 static function UpdateTemplates()
 {

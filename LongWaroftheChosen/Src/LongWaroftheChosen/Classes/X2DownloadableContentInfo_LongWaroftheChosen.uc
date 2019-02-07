@@ -10,7 +10,7 @@
 
 class X2DownloadableContentInfo_LongWaroftheChosen extends X2DownloadableContentInfo;
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 //----------------------------------------------------------------
 // A random selection of data and data structures from LW Overhaul

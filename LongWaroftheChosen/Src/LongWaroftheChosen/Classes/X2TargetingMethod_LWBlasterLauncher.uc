@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 class X2TargetingMethod_LWBlasterLauncher extends X2TargetingMethod_BlasterLauncher;
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var UIScrollingTextField ScatterAmountText;
 

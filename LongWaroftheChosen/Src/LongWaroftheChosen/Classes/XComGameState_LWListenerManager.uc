@@ -7,7 +7,7 @@ class XComGameState_LWListenerManager extends XComGameState_BaseObject config(LW
 // WOTC TODO: Restore this with squad management
  //dependson(XComGameState_LWPersistentSquad);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 const OffensiveReflexAction = 'OffensiveReflexActionPoint_LW';
 const DefensiveReflexAction = 'DefensiveReflexActionPoint_LW';

@@ -7,7 +7,7 @@
 
 class LWTemplateMods extends X2StrategyElement config(LW_Overhaul);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 struct ItemTableEntry
 {

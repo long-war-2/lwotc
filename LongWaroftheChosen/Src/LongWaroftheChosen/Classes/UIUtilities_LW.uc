@@ -7,7 +7,7 @@
 
 class UIUtilities_LW extends Object config(LW_Overhaul);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var config array<name> EvacFlareMissions;
 var config array<name> EvacFlareEscapeMissions;

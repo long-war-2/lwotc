@@ -5,7 +5,7 @@
 //----------------------------------------------------------------------------
 class UIScrollingTextField extends UIPanel;
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 // UIText member variables
 var string text;

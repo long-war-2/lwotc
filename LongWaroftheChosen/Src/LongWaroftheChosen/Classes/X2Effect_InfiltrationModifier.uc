@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_InfiltrationModifier extends X2Effect_ModifyStats config (LW_InfiltrationSettings);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var config array<float> MAX_INFILTRATION_DETECTION_MULT;
 var config array<float> MIN_INFILTRATION_DETECTION_MULT;

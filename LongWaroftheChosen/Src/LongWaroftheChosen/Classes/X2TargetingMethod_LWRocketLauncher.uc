@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 class X2TargetingMethod_LWRocketLauncher extends X2TargetingMethod_RocketLauncher;
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 //var bool SnapToTile;
 var UIScrollingTextField ScatterAmountText;

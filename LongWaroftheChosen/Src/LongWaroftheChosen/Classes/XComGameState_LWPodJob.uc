@@ -6,7 +6,7 @@
 class XComGameState_LWPodJob extends XComGameState_BaseObject
     config(LW_PodManager);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var config const int MAX_TURNS_FOR_JOB;
 

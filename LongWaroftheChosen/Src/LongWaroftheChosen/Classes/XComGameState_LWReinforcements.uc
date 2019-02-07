@@ -9,7 +9,7 @@
 class XComGameState_LWReinforcements extends XComGameState_BaseObject
     config(LW_Overhaul);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 enum Reinforcements_Timer_Trigger
 {

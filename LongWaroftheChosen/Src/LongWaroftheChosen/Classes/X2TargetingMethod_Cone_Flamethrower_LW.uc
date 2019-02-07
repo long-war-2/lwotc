@@ -7,7 +7,7 @@
 //---------------------------------------------------------------------------------------
 class X2TargetingMethod_Cone_Flamethrower_LW extends X2TargetingMethod_Cone config(Game);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var float CumulativeUpdateTime;
 

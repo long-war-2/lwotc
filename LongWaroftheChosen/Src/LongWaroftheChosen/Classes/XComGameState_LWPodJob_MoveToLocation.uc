@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_LWPodJob_MoveToLocation extends XComGameState_LWPodJob config(LW_PodManager);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var config const int DESTINATION_REACHED_SIZE_SQ;
 

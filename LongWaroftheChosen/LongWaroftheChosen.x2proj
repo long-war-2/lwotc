@@ -1416,7 +1416,7 @@
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComHQPresentationLayer_LWOfficerPack.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\LW_Overhaul.uci">
+    <Content Include="Src\extra_globals.uci">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIArmory_LWExpandedPromotion.uc">
@@ -1798,5 +1798,48 @@
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>
-  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+  <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
+  <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(XCOM2_GamePath)\..\Binaries\Win64\Launcher\StartDebugging.bat</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Default|XCOM 2' ">
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectDir Condition="'$(BuildPath)'==''">$(MSBuildProjectDirectory)</ProjectDir>
+    <ModsDir>$(XCOM2_UserPath)\Mods\</ModsDir>
+    <OutputDir>$(ModsDir)$(SafeName)\</OutputDir>
+  </PropertyGroup>
+  <Target Name="Clean">
+    <Message Text="Cleaning Mod project..." />
+    <RemoveDir Directories="$(OutputDir)" />
+  </Target>
+  <Target Name="ReBuild">
+    <Message Text="Rebuilding Mod project..." />
+    <CallTarget Targets="Clean" />
+    <CallTarget Targets="Default" />
+  </Target>
+  <Target Name="BuildCustom">
+    <PropertyGroup>
+      <GameInstallPath>$(XCOM2_GamePath)..</GameInstallPath>
+      <SDKInstallPath>$(XCOM2_UserPath)..</SDKInstallPath>
+	  <SolutionRoot>$(MSBuildProjectDirectory)\..</SolutionRoot>
+      <ScriptsDir>$(SolutionRoot)\.scripts</ScriptsDir>
+      <PowershellBuildCommand>powershell.exe –NonInteractive –ExecutionPolicy Unrestricted  -file "$(ScriptsDir)\build.ps1" -mod "LongWaroftheChosen" -srcDirectory "$(SolutionRoot)" -sdkPath "$(SDKInstallPath)" -gamePath "$(GameInstallPath)"</PowershellBuildCommand>
+      <PowershellBuildCommand Condition="'$(Configuration)'=='Debug'">$(PowershellBuildCommand) -debug</PowershellBuildCommand>
+    </PropertyGroup>
+    <Message Text="Starting custom build $(Configuration)" />
+    <Exec Command="$(PowershellBuildCommand)" />
+  </Target>
+  <Target Name="Default" DependsOnTargets="BuildCustom">
+    <!-- Do nothing. All actual work is done in the "BuildCustom" task. -->
+  </Target>
 </Project>

@@ -8,7 +8,7 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_LWPodJob_Flank extends XComGameState_LWPodJob_MoveToLocation;
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var config const int FLANK_DISTANCE;
 

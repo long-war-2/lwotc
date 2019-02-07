@@ -7,7 +7,7 @@
 class X2Ability_LW_TechnicalAbilitySet extends X2Ability
 	dependson (XComGameStateContext_Ability) config(LW_SoldierSkills);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var config int FLAMETHROWER_BURNING_BASE_DAMAGE;
 var config int FLAMETHROWER_BURNING_DAMAGE_SPREAD;

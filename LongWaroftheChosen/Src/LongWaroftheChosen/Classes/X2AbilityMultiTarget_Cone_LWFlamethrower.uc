@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 class X2AbilityMultiTarget_Cone_LWFlamethrower extends X2AbilityMultiTarget_Cone;
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 struct TileDistancePair
 {

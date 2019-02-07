@@ -6,7 +6,7 @@
 class LWPodJobs_DefaultJobSet extends X2StrategyElement
     config(LW_PodManager);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var config int GUARD_PATROL_DISTANCE;
 

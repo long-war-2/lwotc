@@ -6,7 +6,7 @@
 class XComGameState_LWPodManager extends XComGameState_BaseObject
 	config(LW_PodManager);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 // Specifies jobs to be added to a mission, and a set of constraints
 // indicating which missions, when in the mission, and which pods should

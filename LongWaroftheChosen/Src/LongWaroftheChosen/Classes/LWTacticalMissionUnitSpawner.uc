@@ -6,7 +6,7 @@
 //           Primarily: rebels, resistance mecs, liaisons.
 //--------------------------------------------------------------------------------------- 
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 class LWTacticalMissionUnitSpawner extends Object config(LW_Overhaul);
 

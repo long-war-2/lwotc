@@ -1,6 +1,6 @@
 class X2StrategyElement_NewTechs_LW extends X2StrategyElement_DefaultTechs config(GameData);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var config int RENDER_REWARD_ELERIUM_CORE;
 var config int RENDER_REWARD_SECTOID_CORPSE;

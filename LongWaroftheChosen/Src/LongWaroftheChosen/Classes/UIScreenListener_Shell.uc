@@ -7,7 +7,7 @@
 
 class UIScreenListener_Shell extends UIScreenListener config(AI);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var config array<name> BehaviorRemovals;
 var config array<BehaviorTreeNode> NewBehaviors;

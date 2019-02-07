@@ -7,7 +7,7 @@
 class XComGameState_LWOverhaulOptions extends XComGameState_LWModOptions
 	config(LW_Overhaul);
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 var localized string LWOverhaulTabName;
 

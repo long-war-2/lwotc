@@ -5,7 +5,7 @@
 //  PURPOSE: Miscellaneous helper routines.
 //--------------------------------------------------------------------------------------- 
 
-`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
+//`include(LongWaroftheChosen\Src\LW_Overhaul.uci)
 
 class Utilities_LW extends Object;
 // WOTC TODO: Restore when we have DefaultAlienActivities
