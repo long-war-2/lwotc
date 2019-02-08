@@ -13,9 +13,9 @@ to install it. Use ModBuddy to load the solution file at the root of the reposit
 Building and running the mod has these requirements:
 
  * X2WOTCCommunityHighlander with the following patches:
-  - [Pull request #401](https://github.com/X2CommunityCore/X2WOTCCommunityHighlander/pull/401)
-  - [Pull request #411](https://github.com/X2CommunityCore/X2WOTCCommunityHighlander/pull/411)
-  - [Pull request #416](https://github.com/X2CommunityCore/X2WOTCCommunityHighlander/pull/416)
+   - [Pull request #401](https://github.com/X2CommunityCore/X2WOTCCommunityHighlander/pull/401)
+   - [Pull request #411](https://github.com/X2CommunityCore/X2WOTCCommunityHighlander/pull/411)
+   - [Pull request #416](https://github.com/X2CommunityCore/X2WOTCCommunityHighlander/pull/416)
  * robojumper's Squad Select for WOTC (you may want to change the default max squad size)
 
 If and when the mod reaches a playable state, I'll publish it and make sure that these
