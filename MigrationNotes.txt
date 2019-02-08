@@ -28,28 +28,40 @@
    X Restore grenade ability/perk icons in tactical HUD
    X Port alien pack
    X Enable LW2 Gatecrasher with 8-man squad (and rainbow pod?)
-   * Switch over to Alien tactical AI
-   * Ensure rookies get promotion after 1st mission
-   * Show all soldiers of a > 6 man squad after a mission (currently just shows first 6)
-   * Buff soldier stats to LW levels and randomize
-   * Port useful parts of ToolBox (like randomisation of soldier stats)
-   * Disable sitreps for LW missions
-   * Disable LW strategic objectives for now
-   * Fix Technical abilities (animations and burn tiles aren't matching targeting and damage/pawn tiles)
-   * Cancelling hack before it completes crashes the game (I'm sure this used to happen in a previous version of LW2)
-   * Add robojumper's squad select (currently crashes start of tactical missions when I integrate it)
-   * Fix rank names for normal soldiers and officers (requires overriding a
+   X Switch over to Alien tactical AI
+   X Ensure rookies get promotion after 1st mission
+   X Buff soldier stats to LW levels and randomize
+   X Fix rank names for normal soldiers and officers (requires overriding a
      bunch of classes in the highlander as there is no easy way to inject a
 	 different display rank for soldiers)
+   X Show all soldiers of a > 6 man squad after a mission (currently just shows first 6 - probably needs Toolbox)
+   X Remove AWC from build facilities (it's actually a localization issue for the infirmary)
+   X Make sure faction weapons can be upgraded (and armour? Armour gets upgraded with normal soldier armour. Weapons have a schematic)
+   * Display combat intelligence, bond, and AP in armory screen for soldier
+   * Enable second-wave options like red fog (Just need to test that it works - might be worth adding Yet Another F1 Mod to help)
+   * Allow configuration of graze band (requires override of ToHitCalc_StandardAim)
+   * Allow removal of infinite items from squad loadout (see LWListenerManager and search for 'infinite' - think this requires change in the highlander)
+   * Don't make it so easy to contact new factions
+   * Faction soldier reward for contacting a faction doesn't get 3 utility slots
+   * Disable sitreps for LW missions?
+   * Disable LW strategic objectives for now
+   * Fix Technical abilities (animations and burn tiles aren't matching targeting and damage/pawn tiles
+     - see https://github.com/shiremct/WOTC_LW2Secondaries/pull/1 for potential fix [UPDATE Doesn't seem to work])
+   * Cancelling hack before it completes crashes the game (I'm sure this used to happen in a previous version of LW2)
+   * Add robojumper's squad select (currently crashes start of tactical missions when I integrate it)
    * Test abilities: double tap, combat rush, suppression, area suppression, rapid fire, bastion, sedate, full override
-   * Make sure faction weapons can be upgraded (and armour?)
-   * Make sure utility slots remain at 3, and don't show an upgrade slot that comes with armour
-   * See if it's possible to add extra utility slots to faction soldiers that works
+   * Make sure utility slots remain at 3, and don't show an upgrade slot that comes with armour (an issue with robojumper's SquadSelect?)
+   * See if it's possible to add extra utility slots to faction soldiers in a way that works consistently
    * Add WOTC units to encounter lists
-   * Enable LW2 strategy layer
+   * Replace ADVENT General with WOTC Field Marshall? I think they share the same template name...
+   -- [I think I'll pass on this and go straight to strategy overhaul] Spawn LW missions (see XComGameState_MissionCalendar, X2StrategyElement_DefaultMissionSources and X2StrategyElement_XpackMissionSources)
    * Enable squad management (XComGameState_LWSquadManager)
+   * Update Psi handling
+   * Enable LW2 strategy layer
    
    Acknowledgements:
    
     * X2WOTCCommunityHighlander
 	* Author of WOTC officer pack, from which I cribbed some solutions
+	* Musashi for fix to flamethrower and rocket launcher animations
+	* robojumper for the custom build script and many answers to questions
