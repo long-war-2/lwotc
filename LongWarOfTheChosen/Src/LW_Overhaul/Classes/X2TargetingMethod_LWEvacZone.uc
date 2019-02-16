@@ -47,7 +47,6 @@ function Update(float DeltaTime)
 
 	if(NewTargetLocation != CachedTargetLocation)
 	{
-		/* WOTC TODO: Requires X2TM_EvacZone in highlander to have protected vars
 		EvacZoneTarget.SetLocation(NewTargetLocation);
 		EvacZoneTarget.SetRotation( rot(0,0,1) );
 		CachedTargetLocation = NewTargetLocation;
@@ -61,7 +60,6 @@ function Update(float DeltaTime)
 		{
 			EvacZoneTarget.ShowBadMesh( );
 		}
-		*/
 	}
 }
 
