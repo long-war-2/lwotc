@@ -7,6 +7,9 @@ can be removed, they will be.
 
 ## Building and running the mod
 
+**WARNING** If you want to build this mod, make sure you install [git lfs](https://git-lfs.github.com/)
+before cloning this repository!
+
 Building and running this mod requires several steps:
 
  1. Either clone [my fork of the X2WOTCCommunityHighlander repository](https://github.com/pledbrook/X2WOTCCommunityHighlander)

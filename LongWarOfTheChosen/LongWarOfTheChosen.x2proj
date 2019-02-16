@@ -59,7 +59,6 @@
     <Folder Include="Src\LW_XCGS_ToolboxOptions\Classes\" />
     <Folder Include="Src\ModConfigMenuAPI\Classes\" />
     <Folder Include="Src\robojumperSquadSelect_Integrated\Classes\" />
-    <Folder Include="Src\LW_Squads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
