@@ -1,0 +1,17 @@
+// Contains helper functions for doing proper user-configurable save data. See documentation for patterns on how to do it.
+
+`define MCM_CH_VersionChecker(SrcVer,TrgVer)\
+	function bool MCM_CH_IMPL_VersionChecker()\
+	{\
+		return (`{TrgVer} < `{SrcVer});\
+	}\
+	function int MCM_CH_IMPL_VersionMax()\
+	{\
+		return (MCM_CH_IMPL_VersionChecker() ? (`{SrcVer}) : (`{TrgVer}));\
+	}
+
+`define MCM_CH_GetValue(SrcVal, TrgVal)\
+	((MCM_CH_IMPL_VersionChecker()) ? (`{SrcVal}) : (`{TrgVal}))
+
+`define MCM_CH_GetCompositeVersion()\
+	MCM_CH_IMPL_VersionMax()

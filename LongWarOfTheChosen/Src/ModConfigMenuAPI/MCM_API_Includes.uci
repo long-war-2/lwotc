@@ -1,0 +1,21 @@
+`define MCM_MAJOR_VERSION 1
+`define MCM_MINOR_VERSION 0
+
+`define MCM_API_Register(screenInst, handler)\
+    if (MCM_API(`{screenInst}) != none){MCM_API(`{screenInst}).RegisterClientMod(`{MCM_MAJOR_VERSION}, `{MCM_MINOR_VERSION}, `{handler});}
+
+
+`define MCM_API_BasicButtonHandler(FuncName)\
+    simulated function `{FuncName} (MCM_API_Setting Setting)
+
+`define MCM_API_BasicCheckboxSaveHandler(FuncName,VarName)\
+    simulated function `{FuncName} (MCM_API_Setting _Setting, bool _SettingValue) { `{VarName} = _SettingValue; }
+
+`define MCM_API_BasicSliderSaveHandler(FuncName,VarName)\
+    simulated function `{FuncName} (MCM_API_Setting _Setting, float _SettingValue) { `{VarName} = _SettingValue; }
+
+`define MCM_API_BasicSpinnerSaveHandler(FuncName,VarName)\
+    simulated function `{FuncName} (MCM_API_Setting _Setting, string _SettingValue) { `{VarName} = _SettingValue; }
+
+`define MCM_API_BasicDropdownSaveHandler(FuncName,VarName)\
+    simulated function `{FuncName} (MCM_API_Setting _Setting, string _SettingValue) { `{VarName} = _SettingValue; }

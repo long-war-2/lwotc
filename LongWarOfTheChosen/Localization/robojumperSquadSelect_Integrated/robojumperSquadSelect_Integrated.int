@@ -1,0 +1,43 @@
+[robojumper_UISquadSelect]
+strSwitchPerspective=Switch View
+strSwitchPerspectiveTooltip=Switch between the overview and the normal perspective.
+
+strCycleLists=Cycle Lists
+
+strUnequipSquad=Unequip Squad
+strUnequipSquadTooltip=Strip gear and equipment from all units currently selected for the mission.
+strUnequipSquadConfirm=Confirm unequip squad
+strUnequipSquadWarning=This will unequip all items from all soldiers selected for current mission duty. This gear will become available for any soldier to equip immediately.
+
+strUnequipBarracks=Unequip Barracks
+strUnequipBarracksTooltip=Strip gear and equipment from all units NOT currently selected for the mission.
+strUnequipBarracksConfirm=Confirm unequip barracks
+strUnequipBarracksWarning=This will unequip all items from all soldiers NOT selected for current mission duty. This gear will become available for any soldier to equip immediately.
+
+[robojumper_SquadSelect_UISL_MCM]
+strModTitle="robojumper's Squad Select"
+strLabel="Squad Select"
+strGroupTitle="General Settings"
+
+strShowWeaponUpgradeIcons=Show Upgrade Icons
+strSkipSecondaryUpgradeIconsAvailable=Upgrade Icons Only For Primaries
+strShowBGImages=Show Item Background Images
+strShowMeTheSkills=Show Me The Skills
+strShowStats=Show Me The Stats
+strSkipInitialAbilities=Skip Initial Abilities
+strAutofillSquad=Autofill Squad
+
+strDisallowInfiniteScrolling=Disallow Infinite Scrolling
+strSkipIntro=Skip Intro
+
+strSquadSize=Squad Size
+
+strSquadSizeSpawnWarning=Squads larger than 9 soldiers cause problems because the spawn points only support 9 units. See the workshop page for solutions!
+
+
+strHideTrainingCenterButton=Hide Training Center Button
+
+[robojumper_UISquadSelect_SkillsPanel]
+strTrainingCenter=%SOLDIERPOINTS Soldier AP
+; removed because duplicate info bad
+; (%TOTALPOINTS in Shared Pool)
