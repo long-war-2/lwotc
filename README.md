@@ -12,24 +12,27 @@ before cloning this repository!
 
 Building and running this mod requires several steps:
 
- 1. Either clone [my fork of the X2WOTCCommunityHighlander repository](https://github.com/pledbrook/X2WOTCCommunityHighlander)
+ 1. The media assets (video, graphics and sound) are kept as a [zip on Dropbox](https://www.dropbox.com/s/5wtqt5xjg8mde02/lwotc-content.zip?dl=0).
+    Download that file and unpack it into this projects _LongWarOfTheChosen/Content_ directory.
+
+ 2. Either clone [my fork of the X2WOTCCommunityHighlander repository](https://github.com/pledbrook/X2WOTCCommunityHighlander)
     or download the [`lwotc-dev` branch](https://github.com/pledbrook/X2WOTCCommunityHighlander/archive/lwotc-dev.zip)
 	from GitHub.
 	
- 2. If you have cloned the repository, switch your clone to the `lwotc-dev` branch.
+ 3. If you have cloned the repository, switch your clone to the `lwotc-dev` branch.
  
- 3. Follow that [project's instructions](https://github.com/pledbrook/X2WOTCCommunityHighlander/blob/lwotc-dev/README.md)
+ 4. Follow that [project's instructions](https://github.com/pledbrook/X2WOTCCommunityHighlander/blob/lwotc-dev/README.md)
     for building the highlander. I recommend that after building it in ModBuddy, you cook a release of it.
 	That's because the cooked version runs _much_ more quickly than the noseekfreeloading version.
 
- 4. Set up the following environment variables:
+ 5. Set up the following environment variables:
     * `XCOM2SDKPATH` — typically <path to Steam>\steamapps\common\XCOM 2 War Of The Chosen SDK
     * `XCOM2GAMEPATH` — typically <path to Steam>\steamapps\common\XCOM 2\XCom2-WarOfTheChosen
     Don't put these paths in quotes.
 	
- 5. Run the `build-lwotc.bat` file that you find in the root of the LWOTC project.
+ 6. Run the `build-lwotc.bat` file that you find in the root of the LWOTC project.
  
- 6. When the build has finished, launch XCOM 2 WOTC and select both X2WOTCCommunityHighlander and
+ 7. When the build has finished, launch XCOM 2 WOTC and select both X2WOTCCommunityHighlander and
     LongWarOfTheChosen mods
 
 **Note** The game is not playable right now. It builds and runs, but there are many game-breaking bugs, so it won't
