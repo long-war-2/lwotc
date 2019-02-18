@@ -242,7 +242,7 @@ function InitListeners()
 	//EventMgr.RegisterForEvent(ThisObj, 'GetEvacPlacementDelay', OnPlacedDelayedEvacZone, ELD_Immediate,,,true);
 
 	// Armory Main Menu - disable buttons for On-Mission soldiers
-	 EventMgr.RegisterForEvent(ThisObj, 'OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate,,,true);
+	EventMgr.RegisterForEvent(ThisObj, 'OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate,,,true);
 
 	// WOTC TODO: Get this done! Need it for early missions.
 	//Special First Mission Icon handling -- only for replacing the Resistance HQ icon functionality
@@ -838,7 +838,6 @@ function SelectOutpostManager()
 
 function EventListenerReturn UpdateArmoryMainMenuItems(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	/* WOTC TODO: Restore this
 	local UIList List;
 	local XComGameState_Unit Unit;
 	local UIArmory_MainMenu ArmoryMainMenu;
@@ -921,7 +920,6 @@ function EventListenerReturn UpdateArmoryMainMenuItems(Object EventData, Object 
 		default:
 			break;
 	}
-	*/
 	return ELR_NoInterrupt;
 }
 

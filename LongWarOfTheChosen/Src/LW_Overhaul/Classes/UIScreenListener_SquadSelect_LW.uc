@@ -34,7 +34,6 @@ event OnInit(UIScreen Screen)
 	local float RequiredInfiltrationPct;
 	local string BriefingString;
 
-	// if(!Screen.IsA('UISquadSelect_LW')) return;
 	if(!Screen.IsA('UISquadSelect')) return;
 
 	`Log("UIScreenListener_SquadSelect_LW: Initializing");
@@ -208,8 +207,6 @@ event OnReceiveFocus(UIScreen Screen)
 	local UISquadSelect SquadSelect;
 	local UISquadSelect_InfiltrationPanel InfiltrationInfo;
 
-	// WOTC TODO: Find out whether a dedicated screen is necessary or we can use
-	// a normal one
 	if(!Screen.IsA('UISquadSelect')) return;
 
 	SquadSelect = UISquadSelect(Screen);

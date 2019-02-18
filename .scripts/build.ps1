@@ -465,7 +465,7 @@ Write-Host "Compiled base game scripts."
 
 # build the mod's scripts
 Write-Host "Compiling mod scripts..."
-if ($debug -eq $true)
+if ($debug)
 {
     Launch-Make "$sdkPath/binaries/Win64/XComGame.com" "make -debug -nopause -mods $modNameCanonical $stagingPath" $sdkPath $modSrcRoot
 } else {
