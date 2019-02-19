@@ -5,6 +5,11 @@
 //			 This is used for initiating infiltration/investigation of a mission site 
 //			 Launching a mission after investigation has begun is handled in UIMission_LWLaunchDelayedMission
 //--------------------------------------------------------------------------------------- 
+
+// WOTC TODO - This file is probably better split up into separate versions for particular mission sub-types like
+// they are in WOTC. These sub-classes involve many override functions called from the base UIMission and may need
+// to take different actions depending on which mission type is involved.
+
 class UIMission_LWCustomMission extends UIMission config(LW_Overhaul);
 
 enum EMissionUIType
@@ -175,21 +180,26 @@ simulated function String GetMissionTitle()
 
 simulated function BuildScreen()
 {
-	// Add Interception warning and Shadow Chamber info 
-	BindLibraryItem();
-	`LWACTIVITYMGR.UpdateMissionData(GetMission());
-	BuildMissionPanel();
-	BuildOptionsPanel();
-	class'UIUtilities_LW'.static.BuildMissionInfoPanel(self, MissionRef);
-
 	PlaySFX(GetSFX());
-
 	XComHQPresentationLayer(Movie.Pres).CAMSaveCurrentLocation();
+	`HQPres.StrategyMap2D.HideCursor();
 
 	if(bInstantInterp)
 		XComHQPresentationLayer(Movie.Pres).CAMLookAtEarth(GetMission().Get2DLocation(), CAMERA_ZOOM, 0);
 	else
 		XComHQPresentationLayer(Movie.Pres).CAMLookAtEarth(GetMission().Get2DLocation(), CAMERA_ZOOM);
+
+	// Add Interception warning and Shadow Chamber info
+	`LWACTIVITYMGR.UpdateMissionData(GetMission());
+
+	// Base version is responsible for showing most mission info, including the mission and options panels,
+	// shadow chamber, chosen, sitreps, etc.
+	super.BuildScreen();
+
+	// Add the LW-specific mission info: squad size, concealment type, evac mode, etc.
+	class'UIUtilities_LW'.static.BuildMissionInfoPanel(self, MissionRef);
+
+	BuildConfirmPanel();
 }
 
 // Called when screen is removed from Stack
@@ -316,6 +326,28 @@ simulated function AddIgnoreButton()
 	{
 		IgnoreButton.InitButton('IgnoreButton').Hide();
 	}
+}
+
+simulated function OnButtonSizeRealized()
+{
+	// Override - do nothing
+}
+
+simulated function UpdateData()
+{
+	// WOTC TODO different sfx for different missions?
+	`XSTRATEGYSOUNDMGR.PlaySoundEvent("Geoscape_AlienOperation");
+	XComHQPresentationLayer(Movie.Pres).CAMLookAtEarth(GetMission().Get2DLocation(), CAMERA_ZOOM);
+
+	BuildMissionPanel();
+	//RefreshNavigation();
+
+	super.UpdateData();
+}
+
+simulated function bool CanBackOut()
+{
+	return (super.CanBackOut() && class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('T0_M7_WelcomeToGeoscape'));
 }
 
 // ----------------------------------------------------------------------
@@ -475,22 +507,26 @@ simulated function BuildGuerrillaOpsMissionPanel()
 		MissionInfoText.Hide();		
 }
 
+simulated function UpdateGOpButtons()
+{
+	// GOps have no button2/3 for extra missions
+	Button2.MC.FunctionVoid("Hide");
+	Button3.MC.FunctionVoid("Hide");
+	RefreshNavigation();
+}
+
 simulated function BuildGuerrillaOpsOptionsPanel()
 {
-	local bool bCanBackOut;
-
 	// only allowing one mission option here
 	// Mission 1
 	Button1.SetText(GetRegionName());
-	//Button1.OnClickedDelegate = OnLaunchClicked;
-	//Button1.OnDoubleClickedDelegate = OnLaunchClicked;
 	Button1.Show();
-	//Button1.Hide();
+	Button2.DisableNavigation();
 	Button2.Hide();
+	Button2.Remove();
+	Button3.DisableNavigation();
 	Button3.Hide();
-
-	// for compatibility with tutorial sequence
-	bCanBackOut = (class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('T0_M7_WelcomeToGeoscape'));
+	Button3.Remove();
 
 	// Send over to flash ---------------------------------------------------
 
@@ -501,14 +537,16 @@ simulated function BuildGuerrillaOpsOptionsPanel()
 	LibraryPanel.MC.QueueString(""); //GetGOpsMissionLocString(1));
 	LibraryPanel.MC.QueueString(""); //GetGOpsMissionLocString(2));
 	LibraryPanel.MC.QueueString(class'UIUtilities_Text'.default.m_strGenericConfirm);
-	LibraryPanel.MC.QueueString(bCanBackOut ? m_strIgnore : ""); // defined in UIX2SimpleScreen
+	LibraryPanel.MC.QueueString(CanBackOut() ? m_strIgnore : ""); // defined in UIX2SimpleScreen
 	LibraryPanel.MC.EndOp();
 
 	// ----------------------------------------------------------------------
 
+	// WOTC TODO Other mission types may be missing these
 	BuildConfirmPanel();
+	AddIgnoreButton();
+	SetTimer(0.3, false, 'UpdateGOpButtons');
 }
-
 
 // ---- COUNCIL ----
 
