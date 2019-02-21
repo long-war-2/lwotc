@@ -2,9 +2,9 @@
 //  FILE:    UIMission_LWCustomMission.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
 //  PURPOSE: Provides controls viewing a generic mission, including multiple of the same type in a region
-//			 This is used for initiating infiltration/investigation of a mission site 
+//			 This is used for initiating infiltration/investigation of a mission site
 //			 Launching a mission after investigation has begun is handled in UIMission_LWLaunchDelayedMission
-//--------------------------------------------------------------------------------------- 
+//---------------------------------------------------------------------------------------
 
 // WOTC TODO - This file is probably better split up into separate versions for particular mission sub-types like
 // they are in WOTC. These sub-classes involve many override functions called from the base UIMission and may need
@@ -153,15 +153,15 @@ simulated function string GetSFX()
 		case eMissionUI_GuerrillaOps:
 			return "GeoscapeFanfares_GuerillaOps";
 		case eMissionUI_SupplyRaid:
-			return "Geoscape_Supply_Raid_Popup";  
+			return "Geoscape_Supply_Raid_Popup";
 		case eMissionUI_LandedUFO:
-			return "Geoscape_UFO_Landed";  
+			return "Geoscape_UFO_Landed";
 		case eMissionUI_GoldenPath:
 		case eMissionUI_GPIntel:
-			return "GeoscapeFanfares_GoldenPath"; 
+			return "GeoscapeFanfares_GoldenPath";
 		case eMissionUI_AlienFacility:
         case eMissionUI_Rendezvous:
-			return "GeoscapeFanfares_AlienFacility"; 
+			return "GeoscapeFanfares_AlienFacility";
 		case eMissionUI_Council:
 			return "Geoscape_NewResistOpsMissions";
 		case eMissionUI_Retaliation:
@@ -197,9 +197,10 @@ simulated function BuildScreen()
 	super.BuildScreen();
 
 	// Add the LW-specific mission info: squad size, concealment type, evac mode, etc.
-	class'UIUtilities_LW'.static.BuildMissionInfoPanel(self, MissionRef);
+	class'UIUtilities_LW'.static.BuildMissionInfoPanel(self, MissionRef, false);
 
-	BuildConfirmPanel();
+	// This call does nothing, but is left in for comparison to the original UIMission_GOps class.
+	//BuildConfirmPanel();
 }
 
 // Called when screen is removed from Stack
@@ -226,10 +227,10 @@ simulated function BuildMissionPanel()
 			BuildGuerrillaOpsMissionPanel();
 			break;
 		case eMissionUI_SupplyRaid:
-			BuildSupplyRaidMissionPanel(); 
+			BuildSupplyRaidMissionPanel();
 			break;
 		case eMissionUI_LandedUFO:
-			BuildLandedUFOMissionPanel(); 
+			BuildLandedUFOMissionPanel();
 			break;
 		case eMissionUI_GoldenPath:
 			BuildGoldenPathMissionPanel();
@@ -266,10 +267,10 @@ simulated function BuildOptionsPanel()
 			BuildGuerrillaOpsOptionsPanel();
 			break;
 		case eMissionUI_SupplyRaid:
-			BuildSupplyRaidOptionsPanel(); 
+			BuildSupplyRaidOptionsPanel();
 			break;
 		case eMissionUI_LandedUFO:
-			BuildLandedUFOOptionsPanel(); 
+			BuildLandedUFOOptionsPanel();
 			break;
 		case eMissionUI_GoldenPath:
 			BuildGoldenPathOptionsPanel();
@@ -300,8 +301,8 @@ simulated function BuildOptionsPanel()
 
 simulated function AddIgnoreButton()
 {
-	//Button is controlled by flash and shows by default. Hide if need to. 
-	//local UIButton IgnoreButton; 
+	//Button is controlled by flash and shows by default. Hide if need to.
+	//local UIButton IgnoreButton;
 
 	IgnoreButton = Spawn(class'UIButton', LibraryPanel);
 	if(CanBackOut())
@@ -330,7 +331,8 @@ simulated function AddIgnoreButton()
 
 simulated function OnButtonSizeRealized()
 {
-	// Override - do nothing
+	// Override - do nothing. The base version will alter the position of the
+	// confirm button, so an empty version is necessary to suppress that.
 }
 
 simulated function UpdateData()
@@ -395,7 +397,7 @@ simulated function String GetObjectiveString()
 	ObjectiveString $= "\n";
 
 	AlienActivity = GetAlienActivity();
-	
+
 	if (AlienActivity != none)
 	{
 		ActivityTemplate = AlienActivity.GetMyTemplate();
@@ -489,7 +491,7 @@ simulated function BuildGuerrillaOpsMissionPanel()
 
 	if (MissionInfoText == none)
 	{
-		MissionInfoText = Spawn(class'UITextContainer', LibraryPanel);	
+		MissionInfoText = Spawn(class'UITextContainer', LibraryPanel);
 		MissionInfoText.bAnimateOnInit = false;
 		MissionInfoText.MCName = 'MissionInfoText_LW';
 		if (bHasDarkEvent)
@@ -504,7 +506,7 @@ simulated function BuildGuerrillaOpsMissionPanel()
 	if(AlienActivity != none)
 		MissionInfoText.SetHTMLText(class'UIUtilities_Text'.static.GetColoredText(AlienActivity.GetMissionDescriptionForActivity(), eUIState_Normal));
 	else
-		MissionInfoText.Hide();		
+		MissionInfoText.Hide();
 }
 
 simulated function UpdateGOpButtons()
@@ -543,7 +545,8 @@ simulated function BuildGuerrillaOpsOptionsPanel()
 	// ----------------------------------------------------------------------
 
 	// WOTC TODO Other mission types may be missing these
-	BuildConfirmPanel();
+	// BuildConfirmPanel does nothing, but left in for comparison with UIMission_GOps.
+	// BuildConfirmPanel();
 	AddIgnoreButton();
 	SetTimer(0.3, false, 'UpdateGOpButtons');
 }
@@ -554,7 +557,7 @@ simulated function BuildCouncilMissionPanel()
 {
 	LibraryPanel.MC.BeginFunctionOp("UpdateCouncilInfoBlade");
 	LibraryPanel.MC.QueueString(GetMissionImage());					// defined in UIMission
-	LibraryPanel.MC.QueueString("../AssetLibraries/ProtoImages/Proto_HeadFirebrand.tga"); 
+	LibraryPanel.MC.QueueString("../AssetLibraries/ProtoImages/Proto_HeadFirebrand.tga");
 	LibraryPanel.MC.QueueString("../AssetLibraries/TacticalIcons/Objective_VIPGood.tga");
 	LibraryPanel.MC.QueueString(class'UIMission_Council'.default.m_strImageGreeble);
 	LibraryPanel.MC.QueueString(GetRegion().GetMyTemplate().DisplayName);
@@ -682,7 +685,7 @@ simulated function BuildRetaliationOptionsPanel()
 
 	LibraryPanel.MC.BeginFunctionOp("UpdateRetaliationButtonBlade");
 	LibraryPanel.MC.QueueString(class'UIMission_Retaliation'.default.m_strRetaliationWarning);
-	LibraryPanel.MC.QueueString(GetRegionLocalizedDesc(class'UIMission_Retaliation'.default.m_strRetaliationDesc));	
+	LibraryPanel.MC.QueueString(GetRegionLocalizedDesc(class'UIMission_Retaliation'.default.m_strRetaliationDesc));
 	LibraryPanel.MC.QueueString(class'UIUtilities_Text'.default.m_strGenericConfirm);
 	LibraryPanel.MC.QueueString(class'UIUtilities_Text'.default.m_strGenericCancel);
 	LibraryPanel.MC.QueueString("" /*LockedTitle*/);
@@ -725,7 +728,7 @@ simulated function BuildRendezvousOptionsPanel()
 
 	LibraryPanel.MC.BeginFunctionOp("UpdateRetaliationButtonBlade");
 	LibraryPanel.MC.QueueString(m_strUrgent);
-	LibraryPanel.MC.QueueString(GetRegionLocalizedDesc(m_strRendezvousDesc));	
+	LibraryPanel.MC.QueueString(GetRegionLocalizedDesc(m_strRendezvousDesc));
 	LibraryPanel.MC.QueueString(class'UIUtilities_Text'.default.m_strGenericConfirm);
 	LibraryPanel.MC.QueueString(class'UIUtilities_Text'.default.m_strGenericCancel);
 	LibraryPanel.MC.QueueString("" /*LockedTitle*/);
@@ -769,7 +772,7 @@ simulated function BuildInvasionOptionsPanel()
 
 	LibraryPanel.MC.BeginFunctionOp("UpdateRetaliationButtonBlade");
 	LibraryPanel.MC.QueueString(m_strInvasionWarning);
-	LibraryPanel.MC.QueueString(GetRegionLocalizedDesc(m_strInvasionDesc));	
+	LibraryPanel.MC.QueueString(GetRegionLocalizedDesc(m_strInvasionDesc));
 	LibraryPanel.MC.QueueString(class'UIUtilities_Text'.default.m_strGenericConfirm);
 	LibraryPanel.MC.QueueString(class'UIUtilities_Text'.default.m_strGenericCancel);
 	LibraryPanel.MC.QueueString("" /*LockedTitle*/);
@@ -821,7 +824,7 @@ simulated function BuildAlienFacilityMissionPanel()
 }
 
 simulated function bool CanTakeAlienFacilityMission()
-{	
+{
 	return GetRegion().HaveMadeContact();
 }
 
@@ -871,7 +874,7 @@ simulated function BuildAlienFacilityOptionsPanel()
 		Button1.OnClickedDelegate = OnLaunchClicked;
 		Button2.OnClickedDelegate = OnCancelClicked;
 	}
-	
+
 	Button1.SetBad(true);
 	Button2.SetBad(true);
 
@@ -922,7 +925,7 @@ simulated function BuildGoldenPathOptionsPanel()
 	{
 		LibraryPanel.MC.QueueString(m_strLocked);
 		LibraryPanel.MC.QueueString(class'UIMission_GoldenPath'.default.m_strLockedHelp);
-		
+
 		LibraryPanel.MC.QueueString(m_strOK); //OnCancelClicked
 	}
 	LibraryPanel.MC.EndOp();
