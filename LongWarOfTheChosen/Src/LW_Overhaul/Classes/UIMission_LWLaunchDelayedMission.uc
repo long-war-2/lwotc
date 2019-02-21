@@ -2,7 +2,7 @@
 //  FILE:    UIMission_LWLaunchDelayedMission.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
 //  PURPOSE: Provides controls for actually launching a mission that has been infiltrated
-//--------------------------------------------------------------------------------------- 
+//---------------------------------------------------------------------------------------
 class UIMission_LWLaunchDelayedMission extends UIMission config(LW_InfiltrationSettings);
 
 var UITextContainer InfiltrationInfoText;
@@ -35,8 +35,6 @@ var UIButton IgnoreButton;
 var bool bCachedMustLaunch;
 var bool bAborted;
 
-
-
 simulated function InitScreen(XComPlayerController InitController, UIMovie InitMovie, optional name InitName)
 {
 	local XComGameState_LWAlienActivity AlienActivity;
@@ -56,25 +54,25 @@ simulated function Name GetLibraryID()
 
 simulated function BuildScreen()
 {
-
-	// Add Interception warning and Shadow Chamber info 
-	BindLibraryItem();
-	`LWACTIVITYMGR.UpdateMissionData(GetMission());
-	BuildMissionPanel();
-	BuildOptionsPanel();
-	class'UIUtilities_LW'.static.BuildMissionInfoPanel(self, MissionRef);
-
-	// Set  up the navigation *after* the alert is built, so that the button visibility can be used. 
-	RefreshNavigation();
-
 	PlaySFX("Geoscape_NewResistOpsMissions");
 	XComHQPresentationLayer(Movie.Pres).CAMSaveCurrentLocation();
+	`HQPres.StrategyMap2D.HideCursor();
 
 	if(bInstantInterp)
 		XComHQPresentationLayer(Movie.Pres).CAMLookAtEarth(GetMission().Get2DLocation(), CAMERA_ZOOM, 0);
 	else
 		XComHQPresentationLayer(Movie.Pres).CAMLookAtEarth(GetMission().Get2DLocation(), CAMERA_ZOOM);
 
+	// Add Interception warning and Shadow Chamber info
+	`LWACTIVITYMGR.UpdateMissionData(GetMission());
+
+	// Base version is responsible for showing most mission info, including the mission and options panels,
+	// shadow chamber, chosen, sitreps, etc.
+	super.BuildScreen();
+	class'UIUtilities_LW'.static.BuildMissionInfoPanel(self, MissionRef, true);
+
+	// This call does nothing, but is left in for comparison to the original UIMission_GOps class.
+	//BuildConfirmPanel();
 }
 
 // Called when screen is removed from Stack
@@ -103,7 +101,7 @@ simulated function BuildMissionPanel()
 	local XComGameState_MissionSite Mission;
 	local X2StrategyElementTemplateManager TemplateMgr;
 	local X2ObjectiveTemplate Template;
-	
+
 	Mission = GetMission();
 
 	bHasDarkEvent = Mission.HasDarkEvent();
@@ -151,7 +149,7 @@ simulated function BuildMissionPanel()
 
 	if (MissionInfoText == none)
 	{
-		MissionInfoText = Spawn(class'UITextContainer', LibraryPanel);	
+		MissionInfoText = Spawn(class'UITextContainer', LibraryPanel);
 		MissionInfoText.bAnimateOnInit = false;
 		MissionInfoText.MCName = 'MissionInfoText_LW';
 		if (bHasDarkEvent)
@@ -190,13 +188,13 @@ simulated function BuildMissionPanel()
 					}
 					break;
 				default:
-					MissionInfoText.Hide();	
+					MissionInfoText.Hide();
 					break;
 			}
 		}
 		else
 		{
-			MissionInfoText.Hide();	
+			MissionInfoText.Hide();
 		}
 	}
 }
@@ -208,7 +206,7 @@ simulated function BuildOptionsPanel()
 	LibraryPanel.MC.BeginFunctionOp("UpdateGuerrillaOpsButtonBlade");
 	LibraryPanel.MC.QueueString(m_strOptions);
 	LibraryPanel.MC.QueueString(""); //// left blank in favor of a separately placed string, InfiltrationInfoText
-	//LibraryPanel.MC.QueueString(GetInfiltrationString()); 
+	//LibraryPanel.MC.QueueString(GetInfiltrationString());
 	LibraryPanel.MC.QueueString(m_strBoostInfiltration);
 	LibraryPanel.MC.QueueString(m_strViewSquad);
 	LibraryPanel.MC.QueueString(m_strAbort);
@@ -233,16 +231,10 @@ simulated function BuildOptionsPanel()
 	else
 		ConfirmButton.SetDisabled(true, Reason);
 
-	if (InfiltrationInfoText == none)
-	{
-		InfiltrationInfoText = Spawn(class'UITextContainer', self);	
-		InfiltrationInfoText.bAnimateOnInit = false;
-		InfiltrationInfoText.InitTextContainer( , "TEST TEXT", 100+1283-17, 100+501, 320, 93);
-	}
-
-	InfiltrationInfoText.SetHTMLText(class'UIUtilities_Text'.static.GetColoredText(GetInfiltrationString(), eUIState_Normal));
-
-		
+	// BuildConfirmPanel does nothing, but left in for comparison with UIMission_GOps.
+	// BuildConfirmPanel();
+	AddIgnoreButton();
+	RefreshNavigation();
 }
 
 simulated function String GetObjectiveString()
@@ -284,7 +276,7 @@ simulated function bool CanBoostInfiltration(out string Reason)
 	local bool bCanBoost, bCanAfford;
 	local StrategyCost BoostInfiltrationCost;
 	local array<StrategyCostScalar> CostScalars;
-	
+
 	bCanBoost = true;
 	Squad =  GetInfiltratingSquad();
 	BoostInfiltrationCost = Squad.GetBoostInfiltrationCost();
@@ -324,7 +316,6 @@ simulated function bool CanLaunchInfiltration(out string Reason)
 	return Squad.HasSufficientInfiltrationToStartMission(MissionState);
 }
 
-
 simulated function string GetMissionImage()
 {
 	local XComGameState_LWAlienActivity AlienActivity;
@@ -336,106 +327,57 @@ simulated function string GetMissionImage()
 	return "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Guerrilla_Ops";
 }
 
-simulated function string GetInfiltrationString()
-{
-	local string InfiltrationString;
-	local XComGameState_LWPersistentSquad InfiltratingSquad;
-	local XComGameState_LWAlienActivity AlienActivity;
-	local XComGameState_MissionSite MissionState;
-	local XGParamTag ParamTag;
-	local float TotalSeconds_Mission, TotalSeconds_Infiltration;
-	local float TotalSeconds, TotalHours, TotalDays;
-	local bool bExpiringMission, bCanFullyInfiltrate;
-	local int AlertnessIndex, AlertModifier;
-
-	InfiltratingSquad = GetInfiltratingSquad();
-	MissionState = GetMission();
-	AlienActivity = GetActivity();
-
-	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-	ParamTag.IntValue0 = int(InfiltratingSquad.CurrentInfiltration * 100.0);
-	
-	bExpiringMission = MissionState.ExpirationDateTime.m_iYear < 2050;
-	if(bCachedMustLaunch)
-	{
-		InfiltrationString = `XEXPAND.ExpandString(m_strInfiltrationStatusNonExpiring);
-	}
-	else if(bExpiringMission)
-	{
-		//determine if can fully infiltrate before mission expires
-		TotalSeconds_Mission = AlienActivity.SecondsRemainingCurrentMission();
-		TotalSeconds_Infiltration = InfiltratingSquad.GetSecondsRemainingToFullInfiltration();
-
-		bCanFullyInfiltrate = (TotalSeconds_Infiltration < TotalSeconds_Mission) && (InfiltratingSquad.CurrentInfiltration < 1.0);
-		if(bCanFullyInfiltrate)
-		{
-			TotalSeconds = TotalSeconds_Infiltration;
-		}
-		else
-		{
-			TotalSeconds = TotalSeconds_Mission;
-		}
-		TotalHours = int(TotalSeconds / 3600.0) % 24;
-		TotalDays = TotalSeconds / 86400.0;
-		ParamTag.IntValue1 = int(TotalDays);
-		ParamTag.IntValue2 = int(TotalHours);
-
-		if(bCanFullyInfiltrate && InfiltratingSquad.CurrentInfiltration < 1.0)
-			InfiltrationString = `XEXPAND.ExpandString(m_strInfiltrationStatusExpiring);
-		else
-			InfiltrationString = `XEXPAND.ExpandString(m_strInfiltrationStatusMissionEnding);
-	}
-	else // mission does not expire
-	{
-		//ID 619 - allow non-expiring missions to show remaining time until 100% infiltration will be reached
-		if (InfiltratingSquad.CurrentInfiltration < 1.0)
-		{
-			TotalSeconds = InfiltratingSquad.GetSecondsRemainingToFullInfiltration();
-			TotalHours = int(TotalSeconds / 3600.0) % 24;
-			TotalDays = TotalSeconds / 86400.0;
-			ParamTag.IntValue1 = int(TotalDays);
-			ParamTag.IntValue2 = int(TotalHours);
-			InfiltrationString = `XEXPAND.ExpandString(m_strInfiltrationStatusExpiring);
-		}
-		else
-		{
-			InfiltrationString = `XEXPAND.ExpandString(m_strInfiltrationStatusNonExpiring);
-		}
-	}
-
-	InfiltrationString $= "\n";
-
-	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-	AlertModifier = InfiltratingSquad.GetAlertnessModifierForCurrentInfiltration(,, AlertnessIndex);
-	ParamTag.StrValue0 = default.m_strAlertnessModifierDescriptions[AlertnessIndex];  
-	if (false) // for debugging only !
-		ParamTag.StrValue0 $= " (" $ AlertModifier $ ")";
-	InfiltrationString $= `XEXPAND.ExpandString(m_strInfiltrationConsequence);
-	
-	if(bCachedMustLaunch)
-	{
-		InfiltrationString $= "\n";
-		InfiltrationString $= m_strMustLaunchMission;
-	}
-
-	InfiltrationString = class'UIUtilities_Text'.static.AlignCenter(InfiltrationString);
-	return InfiltrationString;
-}
-
 simulated function AddIgnoreButton()
 {
-	//Button is controlled by flash and shows by default. Hide if need to. 
-	//local UIButton IgnoreButton; 
+	//Button is controlled by flash and shows by default. Hide if need to.
+	//local UIButton IgnoreButton;
 
 	IgnoreButton = Spawn(class'UIButton', LibraryPanel);
-	IgnoreButton.SetResizeToText( false );
-	IgnoreButton.InitButton('IgnoreButton', "", OnCancelClicked);
+	if(CanBackOut())
+	{
+		if( `ISCONTROLLERACTIVE == false )
+		{
+			IgnoreButton.SetResizeToText(false);
+			IgnoreButton.InitButton('IgnoreButton', "", OnCancelClicked);
+		}
+		else
+		{
+			IgnoreButton.InitButton('IgnoreButton', "", OnCancelClicked, eUIButtonStyle_HOTLINK_WHEN_SANS_MOUSE);
+			IgnoreButton.SetGamepadIcon(class'UIUtilities_Input'.static.GetBackButtonIcon());
+			//IgnoreButton.OnSizeRealized = OnIgnoreButtonSizeRealized;
+			IgnoreButton.SetX(1450.0);
+			IgnoreButton.SetY(644.0);
+		}
+
+		IgnoreButton.DisableNavigation();
+	}
+	else
+	{
+		IgnoreButton.InitButton('IgnoreButton').Hide();
+	}
+}
+
+simulated function OnButtonSizeRealized()
+{
+	// Override - do nothing. The base version will alter the position of the
+	// confirm button, so an empty version is necessary to suppress that.
+}
+
+simulated function UpdateData()
+{
+	`XSTRATEGYSOUNDMGR.PlaySoundEvent("Geoscape_AlienOperation");
+	XComHQPresentationLayer(Movie.Pres).CAMLookAtEarth(GetMission().Get2DLocation(), CAMERA_ZOOM);
+
+	BuildMissionPanel();
+	//RefreshNavigation();
+
+	super.UpdateData();
 }
 
 simulated function XComGameState_LWPersistentSquad GetInfiltratingSquad()
 {
 	local XComGameState_LWSquadManager SquadMgr;
-	
+
 	SquadMgr = `LWSQUADMGR;
 	if(SquadMgr == none)
 	{
@@ -450,7 +392,7 @@ simulated public function OnLaunchClicked(UIButton button)
 	local XComGameState_LWPersistentSquad InfiltratingSquad;
 	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameState UpdateState;
-	
+
 	InfiltratingSquad = GetInfiltratingSquad();
 	if(InfiltratingSquad == none)
 	{
@@ -535,8 +477,8 @@ simulated function ConfirmBoostInfiltrationCallback(Name Action)
 
 		// rebuild the panels to display the updated status
 		BuildMissionPanel();
-		BuildOptionsPanel(); 
-		class'UIUtilities_LW'.static.BuildMissionInfoPanel(self, MissionRef);
+		BuildOptionsPanel();
+		class'UIUtilities_LW'.static.BuildMissionInfoPanel(self, MissionRef, true);
 
 		Movie.Pres.PlayUISound(eSUISound_SoldierPromotion);
 	}
