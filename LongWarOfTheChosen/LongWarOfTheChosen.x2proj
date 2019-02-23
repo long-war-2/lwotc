@@ -1044,6 +1044,8 @@
     <Content Include="Localization\LongWarOfTheChosen.rus" />
     <Content Include="Content\.gitignore" />
     <Content Include="Content\README.md" />
+    <Content Include="Content\Missions\UMS_LWMissionTimer.umap" />
+    <Content Include="Content\Missions\UMS_LWContinuousReinforcements.umap" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

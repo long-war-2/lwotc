@@ -4,3 +4,5 @@
 *.webm
 *.bk2
 /*/*.txt
+!/Missions/UMS_LWMissionTimer.umap
+!/Missions/UMS_LWContinuousReinforcements.umap

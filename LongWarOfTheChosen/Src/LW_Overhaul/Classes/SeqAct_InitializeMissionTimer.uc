@@ -10,6 +10,10 @@
 //           value in a kismet variable.
 //--------------------------------------------------------------------------------------- 
 
+// LWOTC: This is used by `UMS_LWMissionTimer` to modify the starting
+// number of turns remaining in Kismet. The base number of turns that
+// the UMS_SetupMissionTimer sequence configures is provided in the
+// `BaseTurns` variable.
 class SeqAct_InitializeMissionTimer extends SequenceAction config(LW_Overhaul);
 
 struct TimerMap
@@ -23,6 +27,10 @@ var config array<TimerMap> InitialTurnCounts;
 var config array<int> TimerDifficultyMod;
 var config int VERY_LARGE_MAP_BONUS;
 var config int LARGE_MAP_BONUS;
+
+// The base number of turns set from config. Feel free to ignore
+// this number and just set `Turns`.
+var private int BaseTurns;
 
 // The number of turns to return to Kismet (optional)
 var private int Turns;
@@ -45,7 +53,7 @@ static function int GetInitialTimer(string MissionFamily)
         //`redscreen("Failed to locate an initial mission count value for " $ MissionFamily);
         return -1;
     }
-	TurnValue += default.TimerDifficultyMod[`STRATEGYDIFFICULTYSETTING];
+	TurnValue += default.TimerDifficultyMod[`TACTICALDIFFICULTYSETTING];
 
     BattleData = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
 	
@@ -108,5 +116,6 @@ defaultproperties
     bAutoActivateOutputLinks=true
 
     VariableLinks.Empty
-    VariableLinks(0)=(ExpectedType=class'SeqVar_Int',LinkDesc="Turns",PropertyName=Turns, bWriteable=true)
+    VariableLinks(0)=(ExpectedType=class'SeqVar_Int',LinkDesc="Base Turns",PropertyName=BaseTurns)
+    VariableLinks(1)=(ExpectedType=class'SeqVar_Int',LinkDesc="Turns",PropertyName=Turns, bWriteable=true)
 }
