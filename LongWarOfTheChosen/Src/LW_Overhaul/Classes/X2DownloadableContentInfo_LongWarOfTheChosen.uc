@@ -94,10 +94,6 @@ static event InstallNewCampaign(XComGameState StartState)
 	UnlockBlackMarket(StartState);
 	UpdateLockAndLoadBonus(StartState);  // update XComHQ and Continent states to remove LockAndLoad bonus if it was selected
 	LimitStartingSquadSize(StartState); // possibly limit the starting squad size to something smaller than the maximum
-
-	// WOTC TODO: Check whether this is still needed. I don't think so.
-	// UpdateUtilityItemSlotsForStartingSoldiers(StartState);
-	LimitStartingSquadSize(StartState);
 	
 	class'XComGameState_LWSquadManager'.static.CreateFirstMissionSquad(StartState);
 }
