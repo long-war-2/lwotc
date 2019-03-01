@@ -405,7 +405,8 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 	local XComGameState_Player PlayerState;
 	local XComGameStateContext_TacticalGameRule NewGameStateContext;
 	local XComGameState NewGameState;
-	local XComGameState_Unit Unit;
+	local XComGameState_Unit Unit, CurrentUnit;
+	local XComGameState_AIGroup Group;
 	local TTile UnitTile;
 	local StateObjectReference ItemReference;
 	local XComGameState_Item ItemState;
@@ -449,6 +450,20 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		NewGameState.AddStateObject(Unit);
 
 		PlayerState = class'Utilities_LW'.static.FindPlayer(Team);
+		
+		// Need to search through all current units to find a squad member
+		// whose initiative group we can grab.
+		foreach History.IterateByClassType(class'XComGameState_Unit', CurrentUnit)
+		{
+			if (CurrentUnit.ControllingPlayer.ObjectID == PlayerState.ObjectID)
+			{
+				// Found a squad member. Grab that unit's initiative group and add the
+				// liaison to it.
+				Group = CurrentUnit.GetGroupMembership();
+				Group.AddUnitToGroup(Unit.ObjectID, NewGameState);
+			}
+		}
+		
 		// If the adviser is not a soldier, we want it to start on the neutral team.
 		if (!Unit.IsSoldier())
 		{

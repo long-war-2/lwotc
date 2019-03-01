@@ -619,7 +619,9 @@ static function bool UnitTypeShouldBeCleanedUp(XComGameState_Unit UnitState)
 static function AddObjectivesToParcels()
 {
 	local XComParcelManager ParcelMgr;
+	local PlotDefinition PlotDef;
 	local int i, j, k;
+	local string Tag; // WOTC DEBUGGING
 
 	// Go over the plot list and add new objectives to certain plots.
 	ParcelMgr = `PARCELMGR;
@@ -634,9 +636,8 @@ static function AddObjectivesToParcels()
 				{
 					for (k = 0; k < default.PlotObjectiveMods[i].ObjectiveTags.Length; ++k)
 					{
-						// WOTC TODO: Requires modified version of XComParcelManager
-						//ParcelMgr.arrPlots[j].ObjectiveTags.AddItem(default.PlotObjectiveMods[i].ObjectiveTags[k]);
 						`LWTrace("Adding objective " $ default.PlotObjectiveMods[i].ObjectiveTags[k] $ " to plot " $ ParcelMgr.arrPlots[j].MapName);
+						ParcelMgr.arrPlots[j].ObjectiveTags.AddItem(default.PlotObjectiveMods[i].ObjectiveTags[k]);
 					}
 					break;
 				}
@@ -650,10 +651,32 @@ static function AddObjectivesToParcels()
 			if (j >= 0)
 			{
 				`LWTrace("Removing parcel definition " $ default.ParcelsToRemove[i]);
-				// WOTC TODO: Requires modified version of XComParcelManager
-				//ParcelMgr.arrAllParcelDefinitions.Remove(j, 1);
+				ParcelMgr.arrAllParcelDefinitions.Remove(j, 1);
 			}
 		}
+		
+		// LWOTC: Add size-based objective tags using the plot name to infer the
+		// appropriate tag ('LargePlot' or 'MediumPlot')
+		//
+		// Note that foreach uses pass-by-value, so we can't modify the objective
+		// tags that way.
+		for (i = 0; i < ParcelMgr.arrPlots.Length; ++i)
+		{
+			PlotDef = ParcelMgr.arrPlots[i];
+			if ((InStr(PlotDef.MapName, "_LgObj_") != INDEX_NONE || InStr(PlotDef.MapName, "_vlgObj_") != INDEX_NONE)
+					&& PlotDef.ObjectiveTags.Find("LargePlot") == INDEX_NONE)
+			{
+				`LWTrace("Adding 'LargePlot' objective tag to " $ PlotDef.MapName);
+				ParcelMgr.arrPlots[i].ObjectiveTags.AddItem("LargePlot");
+			}
+			else if (InStr(PlotDef.MapName, "_MdObj_") != INDEX_NONE && PlotDef.ObjectiveTags.Find("MediumPlot") == INDEX_NONE)
+			{
+				`LWTrace("Adding 'MediumPlot' objective tag to " $ PlotDef.MapName);
+				ParcelMgr.arrPlots[i].ObjectiveTags.AddItem("MediumPlot");
+			}
+		}
+		
+		i = 0;
 	}
 }
 
@@ -2050,42 +2073,6 @@ exec function LWSetEvacCounter(int Turns)
 		NewGameState.AddStateObject(EvacState);
 		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 	}
-}
-
-// Clean up any stale delayed evac spawners that may be left over from a previous mission that ended while
-// a counter was active.
-static function ResetDelayedEvac(XComGameState StartGameState)
-{
-	local XComGameState_LWEvacSpawner EvacState;
-
-	EvacState = XComGameState_LWEvacSpawner(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWEvacSpawner', true));
-
-	if (EvacState != none && EvacState.GetCountdown() >= 0)
-	{
-		EvacState = XComGameState_LWEvacSpawner(StartGameState.CreateStateObject(class'XComGameState_LWEvacSpawner', EvacState.ObjectID));
-		EvacState.ResetCountdown();
-		StartGameState.AddStateObject(EvacState);
-	}
-}
-
-// Reset the reinforcements system for the new mission.
-static function ResetReinforcements(XComGameState StartGameState)
-{
-	local XComGameState_LWReinforcements Reinforcements;
-
-	Reinforcements = XComGameState_LWReinforcements(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWReinforcements', true));
-
-	if (Reinforcements == none)
-	{
-		Reinforcements = XComGameState_LWReinforcements(StartGameState.CreateStateObject(class'XComGameState_LWReinforcements'));
-	}
-	else
-	{
-		Reinforcements = XComGameState_LWReinforcements(StartGameState.CreateStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
-	}
-
-	Reinforcements.Reset();
-	StartGameState.AddStateObject(Reinforcements);
 }
 
 function static XComGameState_LWOutpost FindCurrentOutpostFromScreenStack()

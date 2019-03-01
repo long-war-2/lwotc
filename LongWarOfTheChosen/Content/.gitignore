@@ -6,3 +6,6 @@
 /*/*.txt
 !/Missions/UMS_LWMissionTimer.umap
 !/Missions/UMS_LWContinuousReinforcements.umap
+!/Missions/Obj_Jailbreak_LW.umap
+!/Missions/Obj_Defend_LW.umap
+!/Missions/Obj_LWTerror.umap
