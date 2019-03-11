@@ -102,7 +102,10 @@ function SetupFacelessUnits()
     // Locate our special encounter IDs
     foreach History.IterateByClassType(class'XComGameState_AIGroup', Group)
     {
-        break;
+        if (Group.TeamName == ETeam.eTeam_Alien)
+        {
+            break;
+        }
     }
 
     for (i = 0; i < FacelessSpies.Length; ++i)
