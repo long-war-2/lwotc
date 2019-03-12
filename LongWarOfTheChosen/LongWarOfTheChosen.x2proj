@@ -1048,6 +1048,9 @@
     <Content Include="Content\Missions\UMS_LWContinuousReinforcements.umap" />
     <Content Include="Config\XComPlots.ini" />
     <Content Include="Src\XComGame\Classes\UITacticalQuickLaunch_MapData.uc" />
+    <Content Include="Content\Missions\Obj_HackWorkstation_LW.umap" />
+    <Content Include="Content\Missions\Obj_DestroyObject_LW.umap" />
+    <Content Include="Content\Missions\Obj_RecoverItem_LW.umap" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
