@@ -4,11 +4,4 @@
 *.webm
 *.bk2
 /*/*.txt
-!/Missions/UMS_LWMissionTimer.umap
-!/Missions/UMS_LWContinuousReinforcements.umap
-!/Missions/Obj_Jailbreak_LW.umap
-!/Missions/Obj_Defend_LW.umap
-!/Missions/Obj_LWTerror.umap
-!/Missions/Obj_RecoverItem_LW.umap
-!/Missions/Obj_DestroyObject_LW.umap
-!/Missions/Obj_HackWorkstation_LW.umap
+!/Missions/*
