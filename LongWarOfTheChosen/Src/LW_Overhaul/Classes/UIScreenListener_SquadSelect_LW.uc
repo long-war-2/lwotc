@@ -214,6 +214,7 @@ event OnReceiveFocus(UIScreen Screen)
 
 	`Log("UIScreenListener_SquadSelect_LW: Received focus");
 	
+	SquadSelect.bDirty = true; // Workaround for bug in currently published version of squad select
 	SquadSelect.UpdateData();
 	SquadSelect.UpdateNavHelp();
 
