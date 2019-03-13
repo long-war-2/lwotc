@@ -204,17 +204,11 @@
     <Content Include="Content\Missions\Obj_Blacksite_LW.umap" />
     <Content Include="Content\Missions\Obj_Defend_LW.umap" />
     <Content Include="Content\Missions\Obj_Forge_LW.umap" />
-    <Content Include="Content\Missions\Obj_Fortress_LW.umap" />
     <Content Include="Content\Missions\Obj_IntelRaid_LW.umap" />
     <Content Include="Content\Missions\Obj_Jailbreak_LW.umap" />
     <Content Include="Content\Missions\Obj_LWAvengerDefense.umap" />
-    <Content Include="Content\Missions\Obj_LWDestroyObject.umap" />
-    <Content Include="Content\Missions\Obj_LWExtractVIP.umap" />
-    <Content Include="Content\Missions\Obj_LWHackWorkstation.umap" />
     <Content Include="Content\Missions\Obj_LWInvasion.umap" />
     <Content Include="Content\Missions\Obj_LWNeutralizeTarget.umap" />
-    <Content Include="Content\Missions\Obj_LWRecoverItem.umap" />
-    <Content Include="Content\Missions\Obj_LWRescueVIP.umap" />
     <Content Include="Content\Missions\Obj_LWSecureUFO.umap" />
     <Content Include="Content\Missions\Obj_LWTerror.umap" />
     <Content Include="Content\Missions\Obj_RecruitRaid_LW.umap" />
