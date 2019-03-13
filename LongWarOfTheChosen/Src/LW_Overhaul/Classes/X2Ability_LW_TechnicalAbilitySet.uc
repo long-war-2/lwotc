@@ -12,6 +12,8 @@ var config int FLAMETHROWER_BURNING_DAMAGE_SPREAD;
 var config int FLAMETHROWER_DIRECT_APPLY_CHANCE;
 var config int FLAMETHROWER_CHARGES;
 var config int FLAMETHROWER_HIGH_PRESSURE_CHARGES;
+var config int FLAMETHROWER_TILE_WIDTH;
+var config int FLAMETHROWER_TILE_LENGTH;
 
 var config float ROUST_CONEEND_DIAMETER_MODIFIER;
 var config float ROUST_CONELENGTH_MODIFIER;
@@ -19,6 +21,8 @@ var config int ROUST_DIRECT_APPLY_CHANCE;
 var config int ROUST_CHARGES;
 var config float ROUST_DAMAGE_PENALTY;
 var config int ROUST_HIGH_PRESSURE_CHARGES;
+var config int ROUST_TILE_WIDTH;
+var config int ROUST_TILE_LENGTH;
 
 var config int INCINERATOR_CONEEND_DIAMETER_MODIFIER;
 var config int INCINERATOR_CONELENGTH_MODIFIER;
@@ -152,7 +156,7 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 	local X2AbilityTemplate						Template;
 	local X2AbilityCost_ActionPoints			ActionPointCost;
 	local X2AbilityTarget_Cursor				CursorTarget;
-	local X2AbilityMultiTarget_Cone_LWFlamethrower	ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone				ConeMultiTarget;
 	local X2Condition_UnitProperty				UnitPropertyCondition;
 	local X2AbilityTrigger_PlayerInput			InputTrigger;
 	local X2Effect_ApplyFireToWorld_Limited		FireToWorldEffect;
@@ -208,14 +212,17 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 	CursorTarget.bRestrictToWeaponRange = true;
 	Template.AbilityTargetStyle = CursorTarget;
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone';
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
 	ConeMultiTarget.bUseWeaponRadius = true;
-	//base values are now pulled from the X2MultiWeaponTemplate alt range/radius values
-	ConeMultiTarget.AbilityModifiers.AddItem('Incinerator');
-	ConeMultiTarget.ConeEndDiameterModifiers.AddItem(default.INCINERATOR_CONEEND_DIAMETER_MODIFIER);
-	ConeMultiTarget.ConeLengthModifiers.AddItem(default.INCINERATOR_CONELENGTH_MODIFIER);
+	// WOTC TODO: In LW2, X2AbilityMultiTarget_Cone_LWFlamethrower used the range
+	// and radius values from the Alt weapon of the Guantlet's X2MultiWeaponTemplate.
+	// All the values for all tiers were the same, so I don't think it's necessary
+	// to do that, but it may be something to consider in the future.
+	ConeMultiTarget.ConeEndDiameter = default.FLAMETHROWER_TILE_WIDTH * class'XComWorldData'.const.WORLD_StepSize;
+	ConeMultiTarget.ConeLength = default.FLAMETHROWER_TILE_LENGTH * class'XComWorldData'.const.WORLD_StepSize;
+	ConeMultiTarget.AddBonusConeSize('Incinerator', default.INCINERATOR_CONEEND_DIAMETER_MODIFIER, default.INCINERATOR_CONELENGTH_MODIFIER);
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	Template.AbilityMultiTargetStyle = ConeMultiTarget;
 
@@ -249,7 +256,7 @@ static function X2AbilityTemplate CreateLWFlamethrowerAbility()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = true;
 
-	Template.ActionFireClass = class'X2Action_Fire_Flamethrower_LW';
+	Template.ActionFireClass = class'X2Action_Fire_Flamethrower';
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
@@ -296,7 +303,7 @@ static function X2AbilityTemplate CreateRoustAbility()
 	local X2AbilityTemplate						Template;
 	local X2AbilityCost_ActionPoints			ActionPointCost;
 	local X2AbilityTarget_Cursor				CursorTarget;
-	local X2AbilityMultiTarget_Cone_LWFlamethrower	ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone				ConeMultiTarget;
 	local X2Condition_UnitProperty				UnitPropertyCondition, ShooterCondition;
 	local X2AbilityTrigger_PlayerInput			InputTrigger;
 	local X2Effect_ApplyFireToWorld_Limited		FireToWorldEffect;
@@ -357,16 +364,13 @@ static function X2AbilityTemplate CreateRoustAbility()
 	CursorTarget.bRestrictToWeaponRange = true;
 	Template.AbilityTargetStyle = CursorTarget;
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone';
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
 	ConeMultiTarget.bUseWeaponRadius = false;
-	ConeMultiTarget.AbilityModifiers.AddItem('Incinerator');
-	ConeMultiTarget.ConeEndDiameterModifiers.AddItem(default.INCINERATOR_CONEEND_DIAMETER_MODIFIER);
-	ConeMultiTarget.ConeLengthModifiers.AddItem(default.INCINERATOR_CONELENGTH_MODIFIER);
-	ConeMultiTarget.AbilityModifiers.AddItem('Roust');
-	ConeMultiTarget.ConeEndDiameterModifiers.AddItem(default.ROUST_CONEEND_DIAMETER_MODIFIER);
-	ConeMultiTarget.ConeLengthModifiers.AddItem(default.ROUST_CONELENGTH_MODIFIER);
+	ConeMultiTarget.ConeEndDiameter = default.ROUST_TILE_WIDTH * class'XComWorldData'.const.WORLD_StepSize;
+	ConeMultiTarget.ConeLength = default.ROUST_TILE_LENGTH * class'XComWorldData'.const.WORLD_StepSize;
+	ConeMultiTarget.AddBonusConeSize('Incinerator', default.INCINERATOR_CONEEND_DIAMETER_MODIFIER, default.INCINERATOR_CONELENGTH_MODIFIER);
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	Template.AbilityMultiTargetStyle = ConeMultiTarget;
 
@@ -397,7 +401,7 @@ static function X2AbilityTemplate CreateRoustAbility()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = true;
 
-	Template.ActionFireClass = class'X2Action_Fire_Flamethrower_LW';
+	Template.ActionFireClass = class'X2Action_Fire_Flamethrower';
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 

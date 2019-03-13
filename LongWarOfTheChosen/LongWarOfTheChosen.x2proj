@@ -701,7 +701,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2AbilityCharges_TakeThisCharge.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2AbilityCooldown_AllInstances.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2AbilityCooldown_LWFlamethrower.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2AbilityMultiTarget_Cone_LWFlamethrower.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2AbilityToHitCalc_StatCheck_LWFlamethrower.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_HackRewards_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_InfiltrationModifier.uc" />
@@ -719,7 +718,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_LW_TechnicalAbilitySet.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_PlaceDelayedEvacZone.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Action_Fire_Firestorm.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Action_Fire_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Action_ToggleUnitFlag.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Character_Resistance.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_CoupDeGrace.uc" />
@@ -846,7 +844,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_MissionSiteDescriptions_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_NewTechs_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_PointsofInterest_LW.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_Cone_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWBlasterLauncher.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWEvacZone.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWRocketLauncher.uc" />
