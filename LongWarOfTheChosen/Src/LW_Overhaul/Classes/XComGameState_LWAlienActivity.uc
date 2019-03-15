@@ -502,7 +502,6 @@ function bool SpawnMission(XComGameState NewGameState)
     else
 	    MissionState = XComGameState_MissionSite(NewGameState.CreateNewStateObject(class'XComGameState_MissionSite'));
 
-	NewGameState.AddStateObject(MissionState);
 	// Add Dark Event if appropriate
 	if(ActivityTemplate.GetMissionDarkEventFn != none)
 		MissionState.DarkEvent = ActivityTemplate.GetMissionDarkEventFn(self, MissionFamily, NewGameState);

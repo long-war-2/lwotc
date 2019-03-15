@@ -2400,7 +2400,7 @@ static function XComGameState_MissionSite GetRendezvousMissionSite(XComGameState
 
     if (MissionFamily == 'Rendezvous_LW')
     {
-        RendezvousMission = XComGameState_MissionSiteRendezvous_LW(NewGameState.CreateStateobject(class'XComGameState_MissionSiteRendezvous_LW'));
+        RendezvousMission = XComGameState_MissionSiteRendezvous_LW(NewGameState.CreateNewStateobject(class'XComGameState_MissionSiteRendezvous_LW'));
 
 		// There's always at least one faceless
         i = `SYNC_RAND_STATIC(arrFaceless.Length);
@@ -2419,7 +2419,7 @@ static function XComGameState_MissionSite GetRendezvousMissionSite(XComGameState
     }
     else
     {
-        return XComGameState_MissionSite(NewGameState.CreateStateObject(class'XComGameState_MissionSite'));
+        return XComGameState_MissionSite(NewGameState.CreateNewStateObject(class'XComGameState_MissionSite'));
     }
 }
 
@@ -4390,7 +4390,7 @@ static function XComGameState_MissionSite GetRebelRaidMissionSite(XComGameState_
         default:
             `Redscreen("GetRebelRaidMissionSite called for an unsupported family: " $ MissionFamily);
             // Not a supported mission.
-            return XComGameState_MissionSite(NewGameState.CreateStateObject(class'XComGameState_MissionSite'));
+            return XComGameState_MissionSite(NewGameState.CreateNewStateObject(class'XComGameState_MissionSite'));
     }
 
     for (i = 0; i < Outpost.Rebels.Length; ++i)
@@ -4401,7 +4401,7 @@ static function XComGameState_MissionSite GetRebelRaidMissionSite(XComGameState_
         }
     }
 
-    RaidMission = XComGameState_MissionSiteRebelRaid_LW(NewGameState.CreateStateobject(class'XComGameState_MissionSiteRebelRaid_LW'));
+    RaidMission = XComGameState_MissionSiteRebelRaid_LW(NewGameState.CreateNewStateobject(class'XComGameState_MissionSiteRebelRaid_LW'));
 
     NumRebelsToChoose = default.RAID_MISSION_MIN_REBELS +
         `SYNC_RAND_STATIC(default.RAID_MISSION_MAX_REBELS - default.RAID_MISSION_MIN_REBELS);
