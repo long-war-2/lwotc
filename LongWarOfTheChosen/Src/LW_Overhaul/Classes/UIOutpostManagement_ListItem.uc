@@ -76,7 +76,6 @@ simulated function SetMugShot(StateObjectReference InRebel)
     // Remember which rebel we are taking a picture for
     RebelRef = InRebel;
 
-	/* WOTC TODO: Restore when I know how to take photos.
     RebelPicture = class'UIUtilities_LW'.static.TakeUnitPicture(RebelRef, UpdateMugShot);
     if (RebelPicture != none)
     {
@@ -86,21 +85,19 @@ simulated function SetMugShot(StateObjectReference InRebel)
     {
         MugShot.Hide();
     }
-	*/
 }
 
-simulated function UpdateMugShot(const out HeadshotRequestInfo ReqInfo, TextureRenderTarget2D RenderTarget)
+simulated function UpdateMugShot(StateObjectReference UnitRef)
 {
     local Texture2D RebelPicture;
-	/* WOTC TODO: Restore when I know how to take photos.
-    RebelPicture = class'UIUtilities_LW'.static.FinishUnitPicture(RebelRef, ReqInfo, RenderTarget);
+	
+    RebelPicture = class'UIUtilities_LW'.static.FinishUnitPicture(UnitRef);
 
     if (RebelPicture != none)
     {
         MugShot.LoadImage(PathName(RebelPicture));
         MugShot.Show();
     }
-	*/
 }
 
 simulated function SetRebelName(String RebelName)

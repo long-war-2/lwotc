@@ -380,14 +380,12 @@ simulated function UpdateLiaison()
         }
         LiaisonName.SetText(Str);
 
-		/* WOTC TODO: Restore when I know how to take pictures!
         LiaisonPicture = class'UIUtilities_LW'.static.TakeUnitPicture(CachedLiaison, OnPictureTaken);
         if (LiaisonPicture != none)
         {
             LiaisonImage.LoadImage(PathName(LiaisonPicture));
             LiaisonImage.Show();
         }
-		*/
     }
 }
 
@@ -736,17 +734,16 @@ simulated function SaveLiaison()
     }
 }
 
-simulated function OnPictureTaken(const out HeadshotRequestInfo ReqInfo, TextureRenderTarget2D RenderTarget)
+simulated function OnPictureTaken(StateObjectReference UnitRef)
 {
     local Texture2D LiaisonPicture;
-	/* WOTC TODO: Restore when I know how to take photos.
-    LiaisonPicture = class'UIUtilities_LW'.static.FinishUnitPicture(CachedLiaison, ReqInfo, RenderTarget);
+	
+    LiaisonPicture = class'UIUtilities_LW'.static.FinishUnitPicture(UnitRef);
     if (LiaisonPicture != none)
     {
         LiaisonImage.LoadImage(PathName(LiaisonPicture));
         LiaisonImage.Show();
     }
-	*/
 }
 
 defaultproperties

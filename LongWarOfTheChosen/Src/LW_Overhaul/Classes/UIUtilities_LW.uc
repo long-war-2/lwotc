@@ -46,28 +46,20 @@ var localized string m_strVIPCaptureReward;
 // Initiate the process of taking a unit's picture. May immediately return the picture if it's available, or return none if the
 // picture isn't yet available but will be taken asynchronously. The provided callback will be invoked when the picture is ready, and
 // the caller should call FinishUnitPicture() when the callback is invoked.
-/* WOTC TODO: Restore when I know how to take photos. Looks like the new Photo Booth may be able to do the job. Required
-   by UIOutpostManagement.
-function static Texture2D TakeUnitPicture(StateObjectReference UnitRef, delegate<XComPhotographer_Strategy.OnPhotoRequestFinished> Callback)
+function static Texture2D TakeUnitPicture(
+	StateObjectReference UnitRef,
+	delegate<X2Photobooth_AutoGenBase.OnAutoGenPhotoFinished> Callback)
 {
-    local XComPhotographer_Strategy Photographer;
-	local X2ImageCaptureManager CapMan;
 	local Texture2D Pic;
 
-    CapMan = X2ImageCaptureManager(`XENGINE.GetImageCaptureManager());
-	Photographer = `GAME.StrategyPhotographer;
-
     // First check to see if we already have one
-	Pic = CapMan.GetStoredImage(UnitRef, name("UnitPictureSmall"$UnitRef.ObjectID));
-
+	Pic = GetUnitPictureIfExists(UnitRef);
+	
     // Nope: queue one up
 	if (Pic == none)
 	{
-		// if we have a photo queued then setup a callback so we can swap in the image when it is taken
-		if (!Photographer.HasPendingHeadshot(UnitRef, Callback, true))
-		{
-			Photographer.AddHeadshotRequest(UnitRef, 'UIPawnLocation_ArmoryPhoto', 'SoldierPicture_Passport_Armory', 128, 128, Callback, class'X2StrategyElement_DefaultSoldierPersonalities'.static.Personality_ByTheBook(),,true);
-		}
+		`HQPRES.GetPhotoboothAutoGen().AddHeadShotRequest(UnitRef, 128, 128, Callback, , , true);
+		`HQPRES.GetPhotoboothAutoGen().RequestPhotos();
 
 		`GAME.GetGeoscape().m_kBase.m_kCrewMgr.TakeCrewPhotobgraph(UnitRef,,true);
 	}
@@ -75,29 +67,21 @@ function static Texture2D TakeUnitPicture(StateObjectReference UnitRef, delegate
     return Pic;
 }
 
-// Complete an asynchronous unit picture request. May return 'none' if the callback was invoked for a picture other than the one we expected.
-function static Texture2D FinishUnitPicture(StateObjectReference UnitRef, const out HeadshotRequestInfo ReqInfo, TextureRenderTarget2D RenderTarget)
+// Complete an asynchronous unit picture request. Pass in the unit reference that is sent
+// to the callback provided with TakeUnitPicture.
+function static Texture2D FinishUnitPicture(StateObjectReference UnitRef)
 {
-    local X2ImageCaptureManager CapMan;
-    local Texture2D Picture;
-    local String TextureName;
-
-    // Is this our picture?
-    if (ReqInfo.UnitRef.ObjectID != UnitRef.ObjectID)
-        return none;
-
-    // Is it the right size?
-    if (ReqInfo.Height != 128)
-        return none;
-
-    TextureName = "UnitPictureSmall"$ReqInfo.UnitRef.ObjectID;
-    CapMan = X2ImageCaptureManager(`XENGINE.GetImageCaptureManager());
-    Picture = RenderTarget.ConstructTexture2DScript(CapMan, TextureName, false, false, false);
-    CapMan.StoreImage(ReqInfo.UnitRef, Picture, name(TextureName));
-
-    return Picture;
+	return GetUnitPictureIfExists(UnitRef);
 }
-*/
+
+function static Texture2D GetUnitPictureIfExists(StateObjectReference UnitRef)
+{
+	local XComGameState_CampaignSettings SettingsState;
+
+	SettingsState = XComGameState_CampaignSettings(
+		`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_CampaignSettings'));
+	return `XENGINE.m_kPhotoManager.GetHeadshotTexture(SettingsState.GameIndex, UnitRef.ObjectID, 128, 128);
+}
 
 
 // Read the evac delay in the strat layer
