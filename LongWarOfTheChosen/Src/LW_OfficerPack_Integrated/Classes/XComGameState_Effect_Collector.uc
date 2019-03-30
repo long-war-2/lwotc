@@ -18,7 +18,8 @@ function XComGameState_Effect GetOwningEffect()
 	return XComGameState_Effect(`XCOMHISTORY.GetGameStateForObjectID(OwningObjectId));
 }
 
-// WOTC TODO: Work out why there's another version of this method in X2Ability_OfficerAbilitySet
+// The following methods supersede the ones with the same names
+// in X2Ability_OfficerAbilitySet
 function EventListenerReturn CollectionCheck(Object EventData, Object EventSource, XComGameState GameState, name EventID, Object CallbackData)
 {
 	local XComGameStateHistory				History;

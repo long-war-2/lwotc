@@ -247,9 +247,6 @@ event OnRemoved(UIScreen Screen)
 	local XComGameState NewGameState;
 	local UISquadSelect SquadSelect;
 
-	// WOTC TODO: Find out whether a dedicated screen is necessary or we can use
-	// a normal one
-	// if(!Screen.IsA('UISquadSelect_LW')) return;
 	if(!Screen.IsA('UISquadSelect')) return;
 
 	SquadSelect = UISquadSelect(Screen);

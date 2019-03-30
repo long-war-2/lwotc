@@ -195,13 +195,21 @@ function InitListeners()
 	// EventMgr.RegisterForEvent(ThisObj, 'OnFinalizeHitChance', ToHitOverrideListener,,,,true);
 	
 	// WOTC TODO: This disables buttons in the armory main menu based on soldier
-	// status. Leave alone for now and see whether it's needed in practice.
+	// status. See issue https://github.com/pledbrook/lwotc/issues/40 for an alternative
+	// approach.
 	//override disable flags
 	// EventMgr.RegisterForEvent(ThisObj, 'OverrideSquadSelectDisableFlags', OverrideSquadSelectDisableFlags,,,,true);
 
-	// WOTC TODO: Requires a change to CHL's `UIUtilities_Strategy`
+	// WOTC TODO: Requires a change to CHL's `UIUtilities_Strategy`. See issue
+	// https://github.com/pledbrook/lwotc/issues/40 for an alternative approach.
 	//OnMission status in UIPersonnel
 	// EventMgr.RegisterForEvent(ThisObj, 'OverrideGetPersonnelStatusSeparate', OverrideGetPersonnelStatusSeparate,, 40,,true); // slight higher priority so it takes precedence over officer status
+
+	// WOTC TODO: See issue above for alternative approach. Although we may need it
+	// to handle Haven liaisons and those in psi training. Perhaps officer training
+	// as well? Need to check all of those.
+	// Armory Main Menu - disable buttons for On-Mission soldiers
+	EventMgr.RegisterForEvent(ThisObj, 'OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate,,,true);
 
 
     // Various end of month handling, especially for supply income determination.
@@ -238,11 +246,7 @@ function InitListeners()
 	//EventMgr.RegisterforEvent(ThisObj, 'OverrideBlackMarketInterests', OnOverrideBlackMarketInterests, ELD_Immediate,,,true);
 
 	// Evac timer modifiers -- modifiers for squad size, infiltration status, number of concurrent missions
-	// WOTC TODO: Restore this
-	//EventMgr.RegisterForEvent(ThisObj, 'GetEvacPlacementDelay', OnPlacedDelayedEvacZone, ELD_Immediate,,,true);
-
-	// Armory Main Menu - disable buttons for On-Mission soldiers
-	EventMgr.RegisterForEvent(ThisObj, 'OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate,,,true);
+	EventMgr.RegisterForEvent(ThisObj, 'GetEvacPlacementDelay', OnPlacedDelayedEvacZone, ELD_Immediate,,,true);
 
 	// WOTC TODO: Get this done! Need it for early missions.
 	//Special First Mission Icon handling -- only for replacing the Resistance HQ icon functionality

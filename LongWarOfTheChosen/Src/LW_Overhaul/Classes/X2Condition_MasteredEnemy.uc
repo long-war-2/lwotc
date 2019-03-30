@@ -16,7 +16,6 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
 		return 'AA_NotAUnit';
 
 	// If this unit is not mind-controlled, or is affected by permanent override we're good.
-	/* WOTC TODO: Restore when TransferMecToOutpost is back
 	if (UnitState.AffectedByEffectNames.Find(class'X2Effect_MindControl'.default.EffectName) == -1 ||
 		UnitState.AffectedByEffectNames.Find(class'X2Effect_TransferMecToOutpost'.default.EffectName) != -1)
 	{
@@ -24,6 +23,4 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
 	}
 
 	return 'AA_AbilityUnavailable';
-	*/
-	return 'AA_Success';
 }

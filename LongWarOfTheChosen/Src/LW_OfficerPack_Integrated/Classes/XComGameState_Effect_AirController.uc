@@ -5,7 +5,8 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_Effect_AirController extends XComGameState_Effect;
 
-// WOTC TODO: Check why this exists as well as the one in XComGameState_LWListenerManager
+// Adjust the number of turns it takes for the evac zone to appear
+// once it's placed
 static function EventListenerReturn OnPlacedDelayedEvacZone(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComLWTuple EvacDelayTuple;
