@@ -1042,6 +1042,8 @@
     <Content Include="Content\Missions\Obj_HackWorkstation_LW.umap" />
     <Content Include="Content\Missions\Obj_DestroyObject_LW.umap" />
     <Content Include="Content\Missions\Obj_RecoverItem_LW.umap" />
+    <Content Include="Content\Parcels\md_InterrogationCompound_01.umap" />
+    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Reinforcements.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

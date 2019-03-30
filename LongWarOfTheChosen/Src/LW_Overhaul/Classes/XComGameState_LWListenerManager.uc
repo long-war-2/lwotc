@@ -39,6 +39,8 @@ var localized string m_strSoldierInfiltrating;
 
 var localized string CannotModifyOnMissionSoldierTooltip;
 
+var config int DEFAULT_LISTENER_PRIORITY;
+
 var config bool ALLOW_NEGATIVE_DODGE;
 var config bool DODGE_CONVERTS_GRAZE_TO_MISS;
 var config bool GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND;

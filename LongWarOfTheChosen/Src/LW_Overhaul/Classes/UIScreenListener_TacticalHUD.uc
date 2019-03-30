@@ -11,10 +11,6 @@ class UIScreenListener_TacticalHUD extends UIScreenListener
 var localized string strEvacRequestTitle;
 var localized string strEvacRequestSubtitle;
 
-// Config knob for mods to disable LW2's override of the reinforement timer so they can implement their own.
-// With the default false value, LW2 will override the rnf UI.
-var config bool DisableReinforcementOverride;
-
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
 {
@@ -36,14 +32,6 @@ event OnInit(UIScreen Screen)
 	// Update the evac timer so it will appear if we are loading a save with an active evac timer.
 	UpdateEvacTimer(false);
 
-	// Register the delegate for the reinforcement override. As the evac timer update, we need to
-	// do this on a game load.
-	/* WOTC TODO: Work out what this is for and how it works. There may be an alternative WOTC
-	   approach
-	if (!DisableReinforcementOverride)
-		RegisterReinforcementOverride();
-	*/
-
 	// WOTC TODO: I wonder if this is necessary
 	ListenerMgr = class'XComGameState_LWListenerManager'.static.GetListenerManager(true);
 	if(ListenerMgr != none)
@@ -60,10 +48,6 @@ function EventListenerReturn OnTacticalBeginPlay(Object EventData, Object EventS
 	local XComGameStateHistory History;
 	local XComGameState_HeadquartersXCom XComHQ;
 	local Object ThisObj;
-	local XComGameState_BattleData BattleData;
-	local XComGameState_LWPodManager PodManager;
-	local XComGameState_LWReinforcements Reinforcements;
-	local XComGameState NewGameState;
 
 	History = `XCOMHISTORY;
 	XComHQ = `XCOMHQ;
@@ -72,94 +56,15 @@ function EventListenerReturn OnTacticalBeginPlay(Object EventData, Object EventS
 
 	// Hack for tactical quick launch: Set up our pod manager & reinforcements. This is usually done by DLCInfo.OnPreMission, which is not
 	// called for TQL.
-	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-	if (BattleData.bIsTacticalQuickLaunch)
-	{
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Create Pod Manager for TQL");
-		PodManager = XComGameState_LWPodManager(NewGameState.CreateStateObject(class'XComGameState_LWPodManager'));
-		NewGameState.AddStateObject(PodManager);
-		PodManager.OnBeginTacticalPlay(NewGameState);
-		Reinforcements = XComGameState_LWReinforcements(NewGameState.CreateStateObject(class'XComGameState_LWReinforcements'));
-		NewGameState.AddStateObject(Reinforcements);
-		Reinforcements.Reset();
-		`TACTICALRULES.SubmitGameState(NewGameState);
-	}
+	SetUpForTQL(History);
 
 	class 'LWTacticalMissionUnitSpawner'.static.SpawnUnitsForMission(Mission);
-
-	/* WOTC TODO: Work out what this is for and how it works. There may be an alternative WOTC
-	   approach
-	// Register the delegate for the reinforcement override
-	if (!DisableReinforcementOverride)
-		RegisterReinforcementOverride();
-	*/
 
 	ThisObj = self;
 	`XEVENTMGR.UnRegisterFromEvent(ThisObj, EventID);
 	return ELR_NoInterrupt;
 }
 
-/* WOTC TODO: As above, may need to find an alternative as ReinforcementOverride no longer exists
-function RegisterReinforcementOverride()
-{
-	local UITacticalHUD TacticalHUD;
-	local UITacticalHUD_Countdown Countdown;
-
-	TacticalHUD = `PRES.GetTacticalHUD();
-	Countdown = TacticalHUD.m_kCountdown;
-	if (Countdown != none)
-	{
-		Countdown.ReinforcementOverride = ReinforcementOverride;
-	}
-}
-
-function bool ReinforcementOverride(out string title, out string body, out string clr)
-{
-	local XComGameState_AIReinforcementSpawner AISpawnerState;
-	local XComGameState_LWReinforcements LWReinforcements;
-	local int ReinfColor;
-	local String ReinfState;
-
-	// Look for an active reinforcement spawner.
-	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_AIReinforcementSpawner', AISpawnerState)
-	{
-		if (AISpawnerState.Countdown > 0)
-		{
-			// Reinforcements are pending. Show the normal indicator.
-			title = class'UITacticalHUD_Countdown'.default.m_strReinforcementsTitle;
-			body = class'UITacticalHUD_Countdown'.default.m_strReinforcementsBody;
-			clr = class'UIUtilities_Colors'.const.BAD_HTML_COLOR;
-			return true;
-		}
-	}
-
-	// Look for a LW reinforcements object.
-	LWReinforcements = XComGameState_LWReinforcements(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWReinforcements', true));
-	if (LWReinforcements != none && LWReinforcements.ReinforcementsArePossible())
-	{
-		// If the reinf system is initialized, show reinforcements as possible.
-		if (LWReinforcements.Bucket < 0.5)
-		{
-			ReinfColor = eUIState_Good;
-			ReinfState = class'UIMission_Retaliation'.default.m_strRetaliationWarning;
-		}
-		else
-		{
-			ReinfColor = eUIState_Warning;
-			ReinfState = class 'UIAdventOperations'.default.m_strImminent;
-		}
-
-		ReinfColor = LWReinforcements.Bucket < 0.5 ? eUIState_Good : eUIState_Warning;
-		title = class'UIUtilities_Text'.static.GetColoredText(class'UITacticalHUD_Countdown'.default.m_strReinforcementsTitle, ReinfColor);
-		body = class'UIUtilities_Text'.static.GetColoredText(ReinfState, ReinfColor);
-		clr = class'UIUtilities_Colors'.static.GetHexColorFromState(ReinfColor);
-		return true;
-	}
-
-	// No active reinforcements incoming, and we aren't building toward reinforcements on this mission: no override.
-	return false;
-}
-*/
 // Update/refresh the evac timer.
 function UpdateEvacTimer(bool DecrementCounter)
 {
@@ -271,6 +176,27 @@ function EventListenerReturn OnTileDataChanged(Object EventData, Object EventSou
 	}
 
 	return ELR_NoInterrupt;
+}
+
+function SetUpForTQL(XComGameStateHistory History)
+{
+	local XComGameState_BattleData BattleData;
+	local XComGameState_LWPodManager PodManager;
+	local XComGameState_LWReinforcements Reinforcements;
+	local XComGameState NewGameState;
+	
+	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	if (BattleData.bIsTacticalQuickLaunch)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Create Pod Manager for TQL");
+		PodManager = XComGameState_LWPodManager(NewGameState.CreateStateObject(class'XComGameState_LWPodManager'));
+		NewGameState.AddStateObject(PodManager);
+		PodManager.OnBeginTacticalPlay(NewGameState);
+		Reinforcements = XComGameState_LWReinforcements(NewGameState.CreateStateObject(class'XComGameState_LWReinforcements'));
+		NewGameState.AddStateObject(Reinforcements);
+		Reinforcements.Reset();
+		`TACTICALRULES.SubmitGameState(NewGameState);
+	}
 }
 
 defaultProperties
