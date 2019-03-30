@@ -1748,7 +1748,6 @@ static function GetHPChangedObjectList(XComGameState NewGameState, out array<XCo
 {
 	local XComGameStateHistory History;
 	local int StateObjectIndex;
-	local XComGameState_BaseObject StateObjectCurrent;
 	local XComGameState_BaseObject StateObjectPrevious;
 	local XComGameState_Unit UnitStateCurrent, UnitStatePrevious;
 
@@ -1756,7 +1755,7 @@ static function GetHPChangedObjectList(XComGameState NewGameState, out array<XCo
 	
 	foreach NewGameState.IterateByClassType(class'XComGameState_Unit', UnitStateCurrent)
 	{
-		StateObjectPrevious = History.GetGameStateForObjectID(StateObjectCurrent.ObjectID, , NewGameState.HistoryIndex - 1);
+		StateObjectPrevious = History.GetGameStateForObjectID(UnitStateCurrent.ObjectID, , NewGameState.HistoryIndex - 1);
 		UnitStatePrevious = XComGameState_Unit(StateObjectPrevious);
 
 		if(UnitStatePrevious != none && UnitStateCurrent.GetCurrentStat(eStat_HP) != UnitStatePrevious.GetCurrentStat(eStat_HP))
