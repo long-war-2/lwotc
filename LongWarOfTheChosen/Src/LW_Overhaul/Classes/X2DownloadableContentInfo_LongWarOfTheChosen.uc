@@ -524,6 +524,285 @@ static event OnPostMission()
 	`LWOUTPOSTMGR.UpdateOutpostsPostMission();
 }
 
+// WOTC TODO: Determine whether this pod diversification is necessary still
+// diversify pods, in particular all-alien pods of all the same type
+/*
+static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo SpawnInfo, int ForceLevel, int AlertLevel, optional XComGameState_BaseObject SourceObject)
+{
+	local XComGameStateHistory History;
+	local XComGameState_BattleData BattleData;
+	local name								CharacterTemplateName, FirstFollowerName;
+	local int								idx, Tries, PodSize, k;
+	local X2CharacterTemplateManager		TemplateManager;
+	local X2CharacterTemplate				LeaderCharacterTemplate, FollowerCharacterTemplate, CurrentCharacterTemplate;
+	local bool								Swap, Satisfactory;
+	local XComGameState_MissionSite			MissionState;
+	local XComGameState_AIReinforcementSpawner	RNFSpawnerState;
+	local XComGameState_HeadquartersXCom XCOMHQ;
+
+	`LWTRACE("Parsing Encounter : " $ EncounterName);
+
+	History = `XCOMHISTORY;
+	MissionState = XComGameState_MissionSite(SourceObject);
+	if (MissionState == none)
+	{
+		BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData', true));
+		if (BattleData == none)
+		{
+			`LWTRACE("Could not detect mission type. Aborting with no mission variations applied.");
+			return;
+		}
+		else
+		{
+			MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleData.m_iMissionID));
+		}
+	}
+
+	`LWTRACE("Mission type = " $ MissionState.GeneratedMission.Mission.sType $ " detected.");
+	switch(MissionState.GeneratedMission.Mission.sType)
+	{
+		case "GP_Fortress":
+		case "GP_Fortress_LW":
+			`LWTRACE("Fortress mission detected. Aborting with no mission variations applied.");
+			return;
+		case "AlienNest":
+		case "LastGift":
+		case "LastGiftB":
+		case "LastGiftC":
+			`LWTRACE("DLC mission detected. Aborting with no mission variations applied.");
+			return;
+		default:
+			break;
+	}
+	if (Left(string(EncounterName), 11) == "GP_Fortress")
+	{
+		`LWTRACE("Fortress mission detected. Aborting with no mission variations applied.");
+		return;
+	}
+	switch (EncounterName)
+	{
+		case 'LoneAvatar':
+		case 'LoneCodex':
+			return;
+		default:
+			break;
+	}
+
+	if (InStr (EncounterName,"PROTECTED") != -1)
+	{
+		return;
+	}
+
+	//`LWTRACE("PE1");
+	RNFSpawnerState = XComGameState_AIReinforcementSpawner(SourceObject);
+
+	//	`LWTRACE ("PE2");
+	if (RNFSpawnerState != none)
+	{
+		`LWTRACE("Called from AIReinforcementSpawner.OnReinforcementSpawnerCreated -- modifying reinforcement spawninfo");
+	}
+	else
+	{
+		if (MissionState != none)
+		{
+			`LWTRACE("Called from MissionSite.CacheSelectedMissionData -- modifying preplaced spawninfo");
+		}
+	}
+
+	//`LWTRACE ("PE3");
+
+	`LWTRACE("Encounter composition:");
+	foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
+	{
+		`LWTRACE("Character[" $ idx $ "] = " $ CharacterTemplateName);
+	}
+
+	PodSize = SpawnInfo.SelectedCharacterTemplateNames.length;
+
+	TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+	LeaderCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[0]);
+
+	swap = false;
+
+	// override native insisting every mission have a codex while certain tactical options are active
+	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
+
+	// Swap out forced Codices on regular encounters
+	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == -1 && EncounterName != 'LoneCodex')
+	{
+		swap = true;
+		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader (SpawnInfo, ForceLevel, true, true, InStr(EncounterName,"TER") != -1);
+		`LWTRACE ("Swapping Codex leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+	}
+
+	// forces special conditions for avatar to pop
+	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'AdvPsiWitchM3')
+	{
+		if (XCOMHQ.GetObjectiveStatus('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
+		{
+			switch (EncounterName)
+			{
+				case 'LoneAvatar' :
+				case 'GP_Fortress_AvatarGroup_First_LW' :
+				case 'GP_Fortress_AvatarGroup_First' :
+					break;
+				default:
+					swap = true;
+					SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader (SpawnInfo, ForceLevel, true, true, InStr(EncounterName,"TER") != -1);
+					`LWTRACE ("Swapping Avatar leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+					break;
+			}
+		}
+	}
+
+	// reroll advent captains when the game is forcing captains
+	if (RNFSpawnerState != none && InStr(SpawnInfo.SelectedCharacterTemplateNames[0],"Captain") != -1)
+	{
+		if (XCOMHQ.GetObjectiveStatus('T1_M3_KillCodex') == eObjectiveState_InProgress ||
+			XCOMHQ.GetObjectiveStatus('T1_M5_SKULLJACKCodex') == eObjectiveState_InProgress ||
+			XCOMHQ.GetObjectiveStatus('T1_M6_KillAvatar') == eObjectiveState_InProgress ||
+			XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') == eObjectiveState_InProgress)
+		swap = true;
+		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader (SpawnInfo, ForceLevel, true, true, InStr(EncounterName,"TER") != -1);
+		`LWTRACE ("Swapping Reinf Captain leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+	}
+
+	if (PodSize > 1)
+	{
+		TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+		LeaderCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[0]);
+		// Find whatever the pod has the most of
+		FirstFollowerName = FindMostCommonMember (SpawnInfo.SelectedCharacterTemplateNames);
+		FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(FirstFollowerName);
+
+		`LWTRACE ("Pod Leader:" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+		`LWTRACE ("Pod Follower:" @ FirstFollowerName);
+
+		if (LeaderCharacterTemplate.bIsTurret)
+			return;
+
+		if (InStr(EncounterName,"LIST_BOSSx") != -1 && InStr(EncounterName,"_LW") == -1)
+		{
+			`LWTRACE ("Don't Edit certain vanilla Boss pods");
+			return;
+		}
+		if (Instr(EncounterName,"Chryssalids") != -1)
+		{
+			`LWTRACE ("Don't edit Chryssypods");
+			return;
+		}
+
+		// Handle vanilla pod construction of one type of alien follower;
+		if (!swap && LeaderCharacterTemplate.bIsAlien && FollowerCharacterTemplate.bIsAlien && CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) > 1)
+		{
+			`LWTRACE ("Mixing up alien-dominant pod");
+			swap = true;
+		}
+
+		// Check for pod members that shouldn't appear yet for plot reaons
+		if (CountMembers ('Cyberus', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed)
+		{
+			`LWTRACE ("Removing Codex for objective reasons");
+			swap = true;
+		}
+
+		if (CountMembers ('AdvPsiWitch', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
+		{
+			`LWTRACE ("Exicising Avatar for objective reasons");
+			swap = true;
+		}
+
+		if (!swap)
+		{
+			for (k = 0; k < SpawnInfo.SelectedCharacterTemplateNames.length; k++)
+			{
+				FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate (SpawnInfo.SelectedCharacterTemplateNames[k]);
+				if (CountMembers (SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) > FollowerCharacterTemplate.default.MaxCharactersPerGroup)
+				{
+					swap = true;
+				}
+			}
+			if (swap)
+			{
+				`LWTRACE ("Mixing up pod that violates MCPG setting");
+			}
+		}
+
+		// if size 4 && at least 3 are the same
+		if (!swap && (PodSize == 4 || PodSize == 5))
+		{
+			if (CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 1)
+			{
+				`LWTRACE ("Mixing up undiverse 4/5-enemy pod");
+				swap = true;
+			}
+		}
+
+		// if larger && at least size - 2 are the same
+		if (!swap && PodSize >= 6)
+		{
+			// if a max of one guy is different
+			if (!swap && CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+			{
+				`LWTRACE ("Mixing up undiverse 5+ enemy pod");
+				swap = true;
+			}
+		}
+
+		if (swap)
+		{
+			Satisfactory = false;
+			Tries = 0;
+			While (!Satisfactory && Tries < 12)
+			{
+				// let's look at
+				foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
+				{
+					if (idx <= 2)
+						continue;
+
+					if (SpawnInfo.SelectedCharacterTemplateNames[idx] != FirstFollowerName)
+						continue;
+
+					CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
+					if (CurrentCharacterTemplate.bIsTurret)
+						continue;
+
+					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower (SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, InStr(EncounterName,"ADVx") == -1, InStr(EncounterName,"Alien") == -1 && InStr(EncounterName,"ALNx") == -1, InStr(EncounterName,"TER") != -1);
+				}
+				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
+				// Let's look over our outcome and see if it's any better
+				if ((PodSize == 4 || PodSize == 5) && CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
+				{
+					Tries += 1;
+				}
+				else
+				{
+					if (PodSize >= 6 && CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+					{
+						Tries += 1;
+					}
+					else
+					{
+						Satisfactory = true;
+					}
+				}
+			}
+			`LWTRACE("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory) @ "New encounter composition:");
+			foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
+			{
+				`LWTRACE("Character[" $ idx $ "] = " $ CharacterTemplateName);
+			}
+		}
+	}
+	return;
+}
+
+static function PostReinforcementCreation(out name EncounterName, out PodSpawnInfo Encounter, int ForceLevel, int AlertLevel, optional XComGameState_BaseObject SourceObject, optional XComGameState_BaseObject ReinforcementState)
+{
+}
+*/
+
 static event OnExitPostMissionSequence()
 {
 	CleanupObsoleteTacticalGamestate();
