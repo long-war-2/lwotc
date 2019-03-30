@@ -191,14 +191,10 @@ function EventListenerReturn OverrideOfficerRankName(Object EventData, Object Ev
 	if(OverrideTuple.Id != 'SoldierRankName')
 		return ELR_NoInterrupt;
 
-	if(OverrideTuple.Data[2].s != "") // already overridden by another listener
-		return ELR_NoInterrupt;
-
 	OfficerState = class'LWOfficerUtilities'.static.GetOfficerComponent(UnitState);
 	if(OfficerState != none && OfficerState.GetOfficerRank() > 0 && OverrideTuple.Data[0].i == -1)
 	{
-		OverrideTuple.Data[1].b = true;
-		OverrideTuple.Data[2].s = class'LWOfficerUtilities'.static.GetLWOfficerRankName(OfficerState.GetOfficerRank());
+		OverrideTuple.Data[1].s = class'LWOfficerUtilities'.static.GetLWOfficerRankName(OfficerState.GetOfficerRank());
 	}
 
 	return ELR_NoInterrupt;
@@ -224,14 +220,10 @@ function EventListenerReturn OverrideOfficerShortRankName(Object EventData, Obje
 	if(OverrideTuple.Id != 'SoldierShortRankName')
 		return ELR_NoInterrupt;
 
-	if(OverrideTuple.Data[2].s != "") // already overridden by another listener
-		return ELR_NoInterrupt;
-
 	OfficerState = class'LWOfficerUtilities'.static.GetOfficerComponent(UnitState);
 	if(OfficerState != none && OfficerState.GetOfficerRank() > 0 && OverrideTuple.Data[0].i == -1)
 	{
-		OverrideTuple.Data[1].b = true;
-		OverrideTuple.Data[2].s = class'LWOfficerUtilities'.static.GetLWOfficerShortRankName(OfficerState.GetOfficerRank());
+		OverrideTuple.Data[1].s = class'LWOfficerUtilities'.static.GetLWOfficerShortRankName(OfficerState.GetOfficerRank());
 	}
 
 	return ELR_NoInterrupt;
@@ -257,14 +249,10 @@ function EventListenerReturn OverrideOfficerRankIcon(Object EventData, Object Ev
 	if(OverrideTuple.Id != 'SoldierRankIcon')
 		return ELR_NoInterrupt;
 
-	if(OverrideTuple.Data[2].s != "") // already overridden by another listener
-		return ELR_NoInterrupt;
-
 	OfficerState = class'LWOfficerUtilities'.static.GetOfficerComponent(UnitState);
 	if(OfficerState != none && OfficerState.GetOfficerRank() > 0 && OverrideTuple.Data[0].i == -1)
 	{
-		OverrideTuple.Data[1].b = true;
-		OverrideTuple.Data[2].s = class'LWOfficerUtilities'.static.GetRankIcon(OfficerState.GetOfficerRank());
+		OverrideTuple.Data[1].s = class'LWOfficerUtilities'.static.GetRankIcon(OfficerState.GetOfficerRank());
 	}
 
 	return ELR_NoInterrupt;
