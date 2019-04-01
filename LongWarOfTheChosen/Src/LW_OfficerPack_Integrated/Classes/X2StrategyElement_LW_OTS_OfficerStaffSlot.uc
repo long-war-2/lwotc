@@ -261,7 +261,7 @@ static function bool IsUnitValidForOTSOfficerSlot(XComGameState_StaffSlot SlotSt
 		&& !Unit.CanRankUpSoldier()
 		&& !AtMaxOfficerRank
 		&& HasEligibleRegularRank
-		&& Unit.GetStatus() != eStatus_OnMission // don't use DLC helpers here since sparks can't train as officers
+		&& Unit.GetStatus() != eStatus_CovertAction // don't use DLC helpers here since sparks can't train as officers
 		&& Unit.GetSoldierClassTemplate() != none && Unit.GetSoldierClassTemplate().DataName != 'Spark')
 	{
 		return true;

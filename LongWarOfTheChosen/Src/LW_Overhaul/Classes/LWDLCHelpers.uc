@@ -170,7 +170,7 @@ static function bool IsUnitOnMission(XComGameState_Unit UnitState)
 	{
 		case  'SparkSoldier':
 			//sparks can be wounded and on a mission, so instead we have to do a more brute force check of existing squads and havens
-			if (UnitState.GetStatus() == eStatus_OnMission)
+			if (UnitState.GetStatus() == eStatus_CovertAction)
 			{
 				return true;
 			}
@@ -184,7 +184,7 @@ static function bool IsUnitOnMission(XComGameState_Unit UnitState)
 			}
 			break;
 		default:
-			return UnitState.GetStatus() == eStatus_OnMission;
+			return UnitState.GetStatus() == eStatus_CovertAction;
 			break;
 	}
 	return false;
@@ -220,7 +220,7 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 		default:
 			break;
 	}
-	UnitState.SetStatus(eStatus_OnMission);
+	UnitState.SetStatus(eStatus_CovertAction);
 }
 
 //helper to retrieve spark heal project -- note that we can't retrieve the proper project, since it is in the DLC3.u

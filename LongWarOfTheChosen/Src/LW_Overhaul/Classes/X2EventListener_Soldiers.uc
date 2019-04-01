@@ -1,10 +1,14 @@
 class X2EventListener_Soldiers extends X2EventListener;
 
+var localized string OnLiaisonDuty;
+var localized string OnInfiltrationMission;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
 	Templates.AddItem(CreateUtilityItemListeners());
+	Templates.AddItem(CreateStatusListeners());
 
 	return Templates;
 }
@@ -20,6 +24,17 @@ static function CHEventListenerTemplate CreateUtilityItemListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierUtilityItems');
 	Template.AddCHEvent('OverrideItemUnequipBehavior', OnOverrideItemUnequipBehavior, ELD_Immediate);
 	Template.AddCHEvent('OverrideItemMinEquipped', OnOverrideItemMinEquipped, ELD_Immediate);
+	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreateStatusListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierStatus');
+	Template.AddCHEvent('CustomizeStatusStringsSeparate', OnCustomizeStatusStringsSeparate, ELD_Immediate);
 	Template.RegisterInStrategy = true;
 
 	return Template;
@@ -103,6 +118,52 @@ static protected function EventListenerReturn OnOverrideItemMinEquipped(Object E
 			
 		default:
 			break;
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// Sets the status string for liaisons and soldiers on missions.
+static protected function EventListenerReturn OnCustomizeStatusStringsSeparate(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple				OverrideTuple;
+	local XComGameState_Unit		UnitState;
+    local XComGameState_WorldRegion	WorldRegion;
+
+	OverrideTuple = XComLWTuple(EventData);
+	if (OverrideTuple == none)
+	{
+		`REDSCREEN("CustomizeStatusStringsSeparate event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	UnitState = XComGameState_Unit(EventSource);
+	if (UnitState == none)
+	{
+		`REDSCREEN("CustomizeStatusStringsSeparate event triggered with invalid source data.");
+		return ELR_NoInterrupt;
+	}
+
+	if (OverrideTuple.Id != 'CustomizeStatusStringsSeparate')
+	{
+		return ELR_NoInterrupt;
+	}
+
+	// Check if the unit is a liaison or a soldier on a mission.
+	if (`LWOUTPOSTMGR.IsUnitAHavenLiaison(UnitState.GetReference()))
+	{
+		WorldRegion = `LWOUTPOSTMGR.GetRegionForLiaison(UnitState.GetReference());
+		OverrideTuple.Data[0].b = true;
+		OverrideTuple.Data[1].s = default.OnLiaisonDuty @ "-" @ WorldRegion.GetDisplayName();
+		OverrideTuple.Data[2].s = "";
+		OverrideTuple.Data[3].i = 0;
+	}
+	else if (`LWSQUADMGR.UnitIsOnMission(UnitState.GetReference()))
+	{
+		OverrideTuple.Data[0].b = true;
+		OverrideTuple.Data[1].s = default.OnInfiltrationMission;
+		OverrideTuple.Data[2].s = "";
+		OverrideTuple.Data[3].i = 0;
 	}
 
 	return ELR_NoInterrupt;

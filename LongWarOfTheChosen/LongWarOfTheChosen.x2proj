@@ -59,6 +59,9 @@
     <Folder Include="Src\LW_XCGS_ToolboxOptions\Classes\" />
     <Folder Include="Src\ModConfigMenuAPI\Classes\" />
     <Folder Include="Src\robojumperSquadSelect_Integrated\Classes\" />
+    <Folder Include="Content\DetailedSoldierListWOTC_Integrated\" />
+    <Folder Include="Localization\DetailedSoldierListWOTC_Integrated\" />
+    <Folder Include="Src\DetailedSoldierListWOTC_Integrated\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -1044,6 +1047,13 @@
     <Content Include="Content\Missions\Obj_RecoverItem_LW.umap" />
     <Content Include="Content\Parcels\md_InterrogationCompound_01.umap" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Reinforcements.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelLists.uc" />
+    <Content Include="Content\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_ModShaderCache.upk" />
+    <Content Include="Localization\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_Integrated.INT" />
+    <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\MoreDetailsManager.uc" />
+    <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\MoreDetailsNavigatorWrapper.uc" />
+    <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\UIPersonnel_SoldierListItemDetailed.uc" />
+    <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\X2DownloadableContentInfo_DetailedSoldierListWOTC.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

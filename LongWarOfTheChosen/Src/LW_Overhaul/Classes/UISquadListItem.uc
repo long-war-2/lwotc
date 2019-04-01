@@ -183,7 +183,7 @@ simulated function int GetClassIconAlphaStatus(XComGameState_Unit UnitState, XCo
 				return 50;
 			else
 				return 100;
-		case eStatus_OnMission:
+		case eStatus_CovertAction:
 			// Ensure Liaisons dimmed when viewing a squad so they appear unavailable
 			return `LWOUTPOSTMGR.IsUnitAHavenLiaison(UnitState.GetReference()) ? 50 : 100;
 		case eStatus_PsiTraining:
