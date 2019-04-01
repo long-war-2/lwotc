@@ -107,6 +107,7 @@ static event OnPostTemplatesCreated()
 	class'LWTemplateMods_Utilities'.static.UpdateTemplates();
 	UpdateWeaponAttachmentsForCoilgun();
 	UpdateFirstMissionTemplate();
+	DisableFirstPOI();
 	AddObjectivesToParcels();
 }
 
@@ -1220,6 +1221,23 @@ static function FirstMissionComplete(XComGameState NewGameState, XComGameState_O
 		}
 	}
 	`HQPRES.m_kFacilityGrid.UpdateData();
+}
+
+static function DisableFirstPOI()
+{
+	local X2StrategyElementTemplateManager TemplateMgr;
+	local X2ObjectiveTemplate Template;
+
+	TemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	Template = X2ObjectiveTemplate(TemplateMgr.FindStrategyElementTemplate('XP3_M0_NonLostAndAbandoned'));
+	if(Template == none)
+	{
+		`LWTrace("Didn't find the objective template 'XP3_M0_NonLostAndAbandoned'");
+		return;
+	}
+	
+	`LWTrace("Found the objective template 'XP3_M0_NonLostAndAbandoned' - removing the SpawnFirstPOI objective");
+	Template.NextObjectives.RemoveItem('XP3_M2_SpawnFirstPOI');
 }
 
 // ******** HANDLE SECONDARY WEAPON VISUALS ******** //

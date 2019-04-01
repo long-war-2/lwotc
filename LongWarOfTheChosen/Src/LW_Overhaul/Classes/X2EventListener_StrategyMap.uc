@@ -8,6 +8,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> Templates;
 
 	Templates.AddItem(CreateMissionSiteListeners());
+	Templates.AddItem(CreateGeoscapeEntryListeners());
 
 	return Templates;
 }
@@ -23,6 +24,18 @@ static function CHEventListenerTemplate CreateMissionSiteListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionSiteListeners');
 	Template.AddCHEvent('StrategyMapMissionSiteSelected', OnMissionSiteSelected, ELD_Immediate);
 	Template.AddCHEvent('OverrideMissionIcon', OnOverrideMissionIcon, ELD_Immediate);
+
+	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreateGeoscapeEntryListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'GeoscapeEntryListeners');
+	Template.AddCHEvent('OnGeoscapeEntry', StopFirstPOISpawn, ELD_Immediate);
 
 	Template.RegisterInStrategy = true;
 
@@ -161,4 +174,16 @@ protected static function GetMissionSiteUIButtonToolTip(out string Title, out st
 	}
 
 	Body = MissionSite.GetMissionObjectiveText();
+}
+
+// On Geoscape Entry, hack the resistance HQ so that it appears to have spawned the
+// first POI.
+static function EventListenerReturn StopFirstPOISpawn(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComGameState_HeadquartersResistance ResHQ;
+	
+	ResHQ = XComGameState_HeadquartersResistance(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
+	ResHQ.bFirstPOISpawned = true;
+	
+	return ELR_NoInterrupt;	
 }
