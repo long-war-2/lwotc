@@ -11,10 +11,11 @@ var localized string strLaunchInfiltration;
 var localized string strAbortInfiltration;
 var localized string strContinueInfiltration;
 
+var private UISkyrangerArrives SkyrangerArrives;
+
 event OnInit(UIScreen Screen)
 {
 	local XComGameState_HeadquartersXCom XComHQ;
-	local UISkyrangerArrives SkyrangerArrives;
 	local XComGameState_LWSquadManager SquadMgr;
 	local XComGameState_LWPersistentSquad Squad;
 
@@ -44,7 +45,12 @@ event OnInit(UIScreen Screen)
 			}
 		}
 		else  // no current squad, so are starting infiltration
-		{
+		{	
+			// LWOTC: Override SkyrangerArrives screen's input handler so that
+			// enter, spacebar and controller A button all launch the infiltration
+			// rather than the mission.
+			SkyrangerArrives.Movie.Stack.SubscribeToOnInput(ChangeEnterBehavior);
+			
 			SkyrangerArrives.Button1.OnClickedDelegate = OnLaunchInfiltration;
 			SkyrangerArrives.Button1.SetText(strLaunchInfiltration);
 
@@ -193,6 +199,25 @@ simulated function OnLaunchInfiltration(UIButton Button)
 	NewGameState.AddStateObject(XComHQ);
 	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 
+}
+
+function bool ChangeEnterBehavior(int iInput, int ActionMask)
+{
+	if ((ActionMask & class'UIUtilities_Input'.const.FXS_ACTION_RELEASE) == 0)
+	{
+		return false;
+	}
+	
+	switch (iInput)
+	{
+	case class'UIUtilities_Input'.const.FXS_BUTTON_A:
+	case class'UIUtilities_Input'.const.FXS_KEY_ENTER:
+	case class'UIUtilities_Input'.const.FXS_KEY_SPACEBAR:
+		OnLaunchInfiltration(SkyrangerArrives.Button1);
+		return true;
+		
+	default: return false;
+	}
 }
 
 defaultproperties
