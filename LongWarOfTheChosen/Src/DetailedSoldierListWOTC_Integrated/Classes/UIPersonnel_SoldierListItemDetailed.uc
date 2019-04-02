@@ -253,9 +253,13 @@ static function GetPersonnelStatusSeparate(XComGameState_Unit Unit, out string S
 		}
 		else
 		{
-			Status = class'UIUtilities_Strategy'.default.m_strAvailableStatus;
+			GetStatusStringsSeparate(Unit, Status, TimeLabel, TimeNum);
+			if (Status == "")
+			{
+				Status = class'UIUtilities_Strategy'.default.m_strAvailableStatus;
+				TimeNum = 0;
+			}
 			eState = eUIState_Good;
-			TimeNum = 0;
 		}
 	}
 

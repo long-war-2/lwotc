@@ -33,9 +33,6 @@ struct MinimumInfilForConcealEntry
 };
 
 var localized string strCritReductionFromConditionalToHit;
-var localized string m_strOnLiaisonMission;
-
-var localized string m_strSoldierInfiltrating;
 
 var localized string CannotModifyOnMissionSoldierTooltip;
 
@@ -63,9 +60,6 @@ var config int SQUAD_SIZE_MIN_FOR_XP_CALCS;
 var config float TOP_RANK_XP_TRANSFER_FRACTION;
 var localized string ResistanceHQBodyText;
 
-var localized string strUnitAlreadyInSquadStatus;
-var localized string strUnitInSquadStatus;
-var localized string strRankTooLow;
 
 var config bool TIERED_RESPEC_TIMES;
 var config bool AI_PATROLS_WHEN_SIGHTED_BY_HIDDEN_XCOM;
@@ -1559,127 +1553,6 @@ static function array<X2EquipmentTemplate> GetCompleteDefaultLoadout(XComGameSta
 	}
 
 	return completedefaultloadout;
-}
-
-// updates status info for soldiers with mission and squad info
-function EventListenerReturn OverrideGetPersonnelStatusSeparate(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-	/* WOTC TODO: Restore this
-	local string				Status, TimeLabel;
-	local int					TimeNum, TextState;
-	local XComLWTuple			OverrideTuple;
-	local XComGameState_Unit	Unit;
-    local XComGameState_LWOutpostManager OutpostMgr;
-    local XComGameState_WorldRegion WorldRegion;
-	local bool bUpdateStrings;
-	local XComGameState_LWPersistentSquad Squad;
-	local XComGameState_LWSquadManager SquadMgr;
-
-	//`LWTRACE("OverrideGetPersonnelStatusSeparate : Starting listener.");
-	OverrideTuple = XComLWTuple(EventData);
-	if(OverrideTuple == none)
-	{
-		`REDSCREEN("OverrideGetPersonnelStatusSeparate event triggered with invalid event data.");
-		return ELR_NoInterrupt;
-	}
-	//`LWTRACE("OverrideGetPersonnelStatusSeparate : Parsed XComLWTuple.");
-
-	Unit = XComGameState_Unit(EventSource);
-	if(Unit == none)
-	{
-		`REDSCREEN("OverrideGetPersonnelStatusSeparate event triggered with invalid source data.");
-		return ELR_NoInterrupt;
-	}
-	//`LWTRACE("OverrideGetPersonnelStatusSeparate : EventSource valid.");
-
-	if(OverrideTuple.Id != 'OverrideGetPersonnelStatusSeparate')
-		return ELR_NoInterrupt;
-
-	if(class'LWDLCHelpers'.static.IsUnitOnMission(Unit))
-	{
-        // On-mission: This could mean they're infiltrating, or they could be a liaison.
-        OutpostMgr = `LWOUTPOSTMGR;
-        if (OutpostMgr.IsUnitAHavenLiaison(Unit.GetReference()))
-        {
-            Status = default.m_strOnLiaisonMission;
-            WorldRegion = OutpostMgr.GetRegionForLiaison(Unit.GetReference());
-            Status @= "-" @ WorldRegion.GetDisplayName();
-            // Abuse the time label to show what region they're in
-            TimeLabel = "";
-            TimeNum = 0;
-            TextState = eUIState_Bad;
-        }
-        else
-        {
-		    Status = default.m_strSoldierInfiltrating;
-		    TimeLabel = "";  // TODO: Update with mission time
-		    TimeNum = 0;
-		    TextState = eUIState_Bad;
-       }
-	   bUpdateStrings = true;
-	}
-	else if (GetScreenOrChild('UIPersonnel_SquadBarracks') == none)
-	{
-		SquadMgr = `LWSQUADMGR;
-		if (`XCOMHQ.IsUnitInSquad(Unit.GetReference()) && GetScreenOrChild('UISquadSelect') != none)
-		{
-			Status = class'UIUtilities_Strategy'.default.m_strOnMissionStatus;
-			TextState = eUIState_Highlight;
-		}
-		else if (SquadMgr != none && SquadMgr.UnitIsInAnySquad(Unit.GetReference(), Squad))
-		{
-			if (SquadMgr.LaunchingMissionSquad.ObjectID != Squad.ObjectID)
-			{
-				if (Unit.GetStatus() != eStatus_Healing && Unit.GetStatus() != eStatus_Training)
-				{
-					if (GetScreenOrChild('UISquadSelect') != none)
-					{
-						Status = default.strUnitAlreadyInSquadStatus;
-						TextState = eUIState_Warning;
-					}
-					else if (GetScreenOrChild('UIPersonnel_Liaison') != none)
-					{
-						Status = default.strUnitInSquadStatus;
-						TextState = eUIState_Warning;
-					}
-				}
-			}
-		}
-		else if (Unit.GetRank() < class'XComGameState_LWOutpost'.default.REQUIRED_RANK_FOR_LIAISON_DUTY)
-		{
-			if (GetScreenOrChild('UIPersonnel_Liaison') != none)
-			{
-				Status = default.strRankTooLow;
-				TextState = eUIState_Bad;
-			}
-		}
-		if (Status != "")
-		{
-			TimeLabel = "";  // TODO: Update with mission time
-			TimeNum = 0;
-			bUpdateStrings = true;
-		}
-	}
-
-	if (bUpdateStrings)
-	{
-		OverrideTuple.Data.Add(4-OverrideTuple.Data.Length);
-		OverrideTuple.Data[0].s = Status;
-		OverrideTuple.Data[0].kind = XComLWTVString;
-
-		OverrideTuple.Data[1].s = TimeLabel;
-		OverrideTuple.Data[1].kind = XComLWTVString;
-
-		OverrideTuple.Data[2].i = TimeNum;
-		OverrideTuple.Data[2].kind = XComLWTVInt;
-
-		OverrideTuple.Data[3].i = TextState;
-		OverrideTuple.Data[3].kind = XComLWTVInt;
-	}
-
-
-	*/
-	return ELR_NoInterrupt;
 }
 
 function UIScreen GetScreenOrChild(name ScreenType)

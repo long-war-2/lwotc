@@ -2,6 +2,9 @@ class X2EventListener_Soldiers extends X2EventListener;
 
 var localized string OnLiaisonDuty;
 var localized string OnInfiltrationMission;
+var localized string UnitAlreadyInSquad;
+var localized string UnitInSquad;
+var localized string RankTooLow;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -129,6 +132,8 @@ static protected function EventListenerReturn OnCustomizeStatusStringsSeparate(O
 	local XComLWTuple				OverrideTuple;
 	local XComGameState_Unit		UnitState;
     local XComGameState_WorldRegion	WorldRegion;
+	local XComGameState_LWPersistentSquad Squad;
+	local XComGameState_LWSquadManager SquadMgr;
 
 	OverrideTuple = XComLWTuple(EventData);
 	if (OverrideTuple == none)
@@ -149,22 +154,77 @@ static protected function EventListenerReturn OnCustomizeStatusStringsSeparate(O
 		return ELR_NoInterrupt;
 	}
 
-	// Check if the unit is a liaison or a soldier on a mission.
-	if (`LWOUTPOSTMGR.IsUnitAHavenLiaison(UnitState.GetReference()))
+	
+	if (class'LWDLCHelpers'.static.IsUnitOnMission(UnitState))
 	{
-		WorldRegion = `LWOUTPOSTMGR.GetRegionForLiaison(UnitState.GetReference());
-		OverrideTuple.Data[0].b = true;
-		OverrideTuple.Data[1].s = default.OnLiaisonDuty @ "-" @ WorldRegion.GetDisplayName();
-		OverrideTuple.Data[2].s = "";
-		OverrideTuple.Data[3].i = 0;
+		// Check if the unit is a liaison or a soldier on a mission.
+		if (`LWOUTPOSTMGR.IsUnitAHavenLiaison(UnitState.GetReference()))
+		{
+			WorldRegion = `LWOUTPOSTMGR.GetRegionForLiaison(UnitState.GetReference());
+			SetTupleData(OverrideTuple, default.OnLiaisonDuty @ "-" @ WorldRegion.GetDisplayName(), "", 0);
+		}
+		else if (`LWSQUADMGR.UnitIsOnMission(UnitState.GetReference()))
+		{
+			SetTupleData(OverrideTuple, default.OnInfiltrationMission, "", 0);
+		}
 	}
-	else if (`LWSQUADMGR.UnitIsOnMission(UnitState.GetReference()))
+	else if (GetScreenOrChild('UIPersonnel_SquadBarracks') == none)
 	{
-		OverrideTuple.Data[0].b = true;
-		OverrideTuple.Data[1].s = default.OnInfiltrationMission;
-		OverrideTuple.Data[2].s = "";
-		OverrideTuple.Data[3].i = 0;
+		SquadMgr = `LWSQUADMGR;
+		if (`XCOMHQ.IsUnitInSquad(UnitState.GetReference()) && GetScreenOrChild('UISquadSelect') != none)
+		{
+			SetTupleData(OverrideTuple, class'UIUtilities_Strategy'.default.m_strOnMissionStatus, "", 0);
+			// TextState = eUIState_Highlight;
+		}
+		else if (SquadMgr != none && SquadMgr.UnitIsInAnySquad(UnitState.GetReference(), Squad))
+		{
+			if (SquadMgr.LaunchingMissionSquad.ObjectID != Squad.ObjectID)
+			{
+				if (UnitState.GetStatus() != eStatus_Healing && UnitState.GetStatus() != eStatus_Training)
+				{
+					if (GetScreenOrChild('UISquadSelect') != none)
+					{
+						SetTupleData(OverrideTuple, default.UnitAlreadyInSquad, "", 0);
+						// TextState = eUIState_Warning;
+					}
+					else if (GetScreenOrChild('UIPersonnel_Liaison') != none)
+					{
+						SetTupleData(OverrideTuple, default.UnitInSquad, "", 0);
+						// TextState = eUIState_Warning;
+					}
+				}
+			}
+		}
+		else if (UnitState.GetRank() < class'XComGameState_LWOutpost'.default.REQUIRED_RANK_FOR_LIAISON_DUTY)
+		{
+			if (GetScreenOrChild('UIPersonnel_Liaison') != none)
+			{
+				SetTupleData(OverrideTuple, default.RankTooLow, "", 0);
+				// TextState = eUIState_Bad;
+			}
+		}
 	}
 
 	return ELR_NoInterrupt;
+}
+
+static private function UIScreen GetScreenOrChild(name ScreenType)
+{
+	local UIScreenStack ScreenStack;
+	local int Index;
+	ScreenStack = `SCREENSTACK;
+	for( Index = 0; Index < ScreenStack.Screens.Length;  ++Index)
+	{
+		if(ScreenStack.Screens[Index].IsA(ScreenType))
+			return ScreenStack.Screens[Index];
+	}
+	return none;
+}
+
+static private function SetTupleData(XComLWTuple Tuple, string Status, string TimeLabel, int TimeValue)
+{
+	Tuple.Data[0].b = true;
+	Tuple.Data[1].s = Status;
+	Tuple.Data[2].s = TimeLabel;
+	Tuple.Data[3].i = TimeValue;
 }
