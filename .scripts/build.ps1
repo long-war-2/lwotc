@@ -4,7 +4,8 @@ Param(
     [string]$sdkPath, # the path to your SDK installation ending in "XCOM 2 War of the Chosen SDK"
     [string]$gamePath, # the path to your XCOM 2 installation ending in "XCOM 2"
     [switch]$forceFullBuild, # force the script to rebuild the base game's scripts, even if they're already built
-    [switch]$debug
+    [switch]$debug,
+    [switch]$final_release
 )
 
 function WriteModMetadata([string]$mod, [string]$sdkPath, [int]$publishedId, [string]$title, [string]$description, [string]$writeTo) {
@@ -322,7 +323,7 @@ function HaveDirectoryContentsChanged ([string] $srcDirPath, [string] $destDirPa
 }
 
 # list of all native script packages
-[System.String[]]$basegamescriptpackages = "XComGame", "Core", "Engine", "GFxUI", "AkAudio", "GameFramework", "UnrealEd", "GFxUIEditor", "IpDrv", "OnlineSubsystemPC", "OnlineSubsystemLive", "OnlineSubsystemSteamworks", "OnlineSubsystemPSN"
+[System.String[]]$nativescriptpackages = "XComGame", "Core", "Engine", "GFxUI", "AkAudio", "GameFramework", "UnrealEd", "GFxUIEditor", "IpDrv", "OnlineSubsystemPC", "OnlineSubsystemLive", "OnlineSubsystemSteamworks", "OnlineSubsystemPSN"
 
 # alias params for clarity in the script (we don't want the person invoking this script to have to type the name -modNameCanonical)
 $modNameCanonical = $mod
@@ -474,12 +475,84 @@ if ($debug)
 CheckErrorCode "Failed to compile mod scripts!"
 Write-Host "Compiled mod scripts."
 
+# Check if this is a Highlander and we need to cook things
+$needscooking = $false
+for ($i=0; $i -lt $thismodpackages.length; $i++)
+{
+    $name = $thismodpackages[$i]
+    if ($nativescriptpackages.Contains($name))
+    {
+        $needscooking = $true
+        break;
+    }
+}
+
+if ($needscooking)
+{
+    # Cook it
+    # First, make sure the cooking directory is set up
+    $modcookdir = [io.path]::combine($sdkPath, 'XComGame', 'Published', 'CookedPCConsole')
+    # Normally, the mod tools create a symlink in the SDK directory to the game CookedPCConsole directory,
+    # but we'll just be using the game one to make it more robust
+    $cookedpcconsoledir = [io.path]::combine($gamePath, 'XComGame', 'CookedPCConsole')
+    if(-not(Test-Path $modcookdir))
+    {
+        Write-Host "Creating Published/CookedPCConsole directory"
+        New-Item $modcookdir -ItemType Directory
+    }
+
+    [System.String[]]$files = "GuidCache.upk", "GlobalPersistentCookerData.upk", "PersistentCookerShaderData.bin"
+    for ($i=0; $i -lt $files.length; $i++) {
+        $name = $files[$i]
+        if(-not(Test-Path ([io.path]::combine($modcookdir, $name))))
+        {
+            Write-Host "Copying $name"
+            Copy-Item ([io.path]::combine($cookedpcconsoledir, $name)) $modcookdir
+        }
+    }
+
+    # Ideally, the cooking process wouldn't modify the big *.tfc files, but it does, so we don't overwrite existing ones (/XC /XN /XO)
+    # In order to "reset" the cooking direcory, just delete it and let the script recreate them
+    Write-Host "Copying Texture File Caches"
+    Robocopy.exe "$cookedpcconsoledir" "$modcookdir" *.tfc /NJH /XC /XN /XO
+
+    # Cook it!
+    # The CookPackages commandlet generally is super unhelpful. The output is basically always the same and errors
+    # don't occur -- it rather just crashes the game. Hence, we just pipe the output to $null
+    Write-Host "Invoking CookPackages (this may take a while)"
+    if ($final_release -eq $true)
+    {
+        & "$sdkPath/binaries/Win64/XComGame.com" CookPackages -platform=pcconsole -final_release -quickanddirty -modcook -sha -multilanguagecook=INT+FRA+ITA+DEU+RUS+POL+KOR+ESN -singlethread -nopause #>$null 2>&1
+    } else {
+        & "$sdkPath/binaries/Win64/XComGame.com" CookPackages -platform=pcconsole -quickanddirty -modcook -sha -multilanguagecook=INT+FRA+ITA+DEU+RUS+POL+KOR+ESN -singlethread -nopause #>$null 2>&1
+    }
+
+    if ($LASTEXITCODE -ne 0)
+    {
+        FailureMessage "Failed to cook packages"
+    }
+
+    Write-Host "Cooked packages"
+
+    # Create CookedPCConsole folder for the mod
+    New-Item "$stagingPath/CookedPCConsole" -ItemType Directory
+}
+
 # copy compiled mod scripts to the staging area
-Write-Host "Copying the compiled mod scripts to staging..."
+Write-Host "Copying the compiled and cooked mod scripts to staging..."
 for ($i=0; $i -lt $thismodpackages.length; $i++) {
     $name = $thismodpackages[$i]
-    Copy-Item "$sdkPath/XComGame/Script/$name.u" "$stagingPath/Script" -Force -WarningAction SilentlyContinue
-    Write-Host "$sdkPath/XComGame/Script/$name.u"
+    if ($nativescriptpackages.Contains($name))
+    {
+        # This is a native (cooked) script package -- copy important upks
+        Copy-Item "$modcookdir/$name.upk" "$stagingPath/CookedPCConsole" -Force -WarningAction SilentlyContinue
+        Copy-Item "$modcookdir/$name.upk.uncompressed_size" "$stagingPath/CookedPCConsole" -Force -WarningAction SilentlyContinue
+        Write-Host "$modcookdir/$name.upk"
+    } else {
+        # This is a normal script package
+        Copy-Item "$sdkPath/XComGame/Script/$name.u" "$stagingPath/Script" -Force -WarningAction SilentlyContinue
+        Write-Host "$sdkPath/XComGame/Script/$name.u"
+    }
 }
 Write-Host "Copied compiled script packages."
 

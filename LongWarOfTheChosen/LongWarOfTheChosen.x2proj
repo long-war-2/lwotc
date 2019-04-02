@@ -1041,7 +1041,6 @@
     <Content Include="Content\Missions\UMS_LWMissionTimer.umap" />
     <Content Include="Content\Missions\UMS_LWContinuousReinforcements.umap" />
     <Content Include="Config\XComPlots.ini" />
-    <Content Include="Src\XComGame\Classes\UITacticalQuickLaunch_MapData.uc" />
     <Content Include="Content\Missions\Obj_HackWorkstation_LW.umap" />
     <Content Include="Content\Missions\Obj_DestroyObject_LW.umap" />
     <Content Include="Content\Missions\Obj_RecoverItem_LW.umap" />
