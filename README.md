@@ -1,4 +1,4 @@
-# Long War of the Chosen
+# Long War 2 for War of the Chosen (WOTC)
 
 This is an attempt to port the Long War 2 (LW2) overhaul mod for XCOM 2 to the War
 of the Chosen (WOTC) expansion. The scope is limited to getting the base LW2 experience
@@ -7,13 +7,10 @@ can be removed, they will be.
 
 ## Building and running the mod
 
-**WARNING** If you want to build this mod, make sure you install [git lfs](https://git-lfs.github.com/)
-before cloning this repository!
-
 Building and running this mod requires several steps:
 
  1. The media assets (video, graphics and sound) are kept as a [zip on Dropbox](https://www.dropbox.com/s/5wtqt5xjg8mde02/lwotc-content.zip?dl=0).
-    Download that file and unpack it into this projects _LongWarOfTheChosen/Content_ directory.
+    Download that file and unpack it into this project's _LongWarOfTheChosen/Content_ directory.
 
  2. Either clone [my fork of the X2WOTCCommunityHighlander repository](https://github.com/pledbrook/X2WOTCCommunityHighlander)
     or download the [`lwotc-dev` branch](https://github.com/pledbrook/X2WOTCCommunityHighlander/archive/lwotc-dev.zip)
@@ -35,10 +32,6 @@ Building and running this mod requires several steps:
  7. When the build has finished, launch XCOM 2 WOTC and select both X2WOTCCommunityHighlander and
     LongWarOfTheChosen mods
 
-**Note** The game is not playable right now. It builds and runs, but there are many game-breaking bugs, so it won't
-be fun. For example, you won't be able to complete some missions, which will effectively ruin the campaign as you
-can only continue by aborting.
-
 ## Contributing
 
 Contributions are welcome. If you just want to raise issues, please do so [on GitHub](https://github.com/pledbrook/lwotc/issues),
@@ -53,7 +46,11 @@ All contributions are welcome, but bug fixes are _extremely_ welcome!
 
 ## Acknowledgements
 
- * The folks behind X2WOTCCommunityHighlander
- * All the folks in XCOM 2 modders' Discord who have answered my questions
- * All the authors of the mods that are integrated into this port (and there will be more to come)
+ * Track Two, who has provided a huge amount of advice and insight that saved me lots of time
+   and ensured certain bugs got fixed at all.
+ * The folks behind X2WOTCCommunityHighlander.
+ * All the folks in XCOM 2 modders' Discord who have answered my questions.
+ * All the authors of the mods that are integrated into this port:
+   - robojumper's Squad Select
+   - Detailed Soldier List
  * The Long War 2 team for producing the mod in the first place!
