@@ -339,7 +339,6 @@ static function CreateBlacksiteMission_LW(XComGameState NewGameState, XComGameSt
 	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_None')); // no rewards for completing story objectives
 	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
-	NewGameState.AddStateObject(RewardState);
 	Rewards.AddItem(RewardState);
 	MissionState = CreateMission(NewGameState, Rewards, 'MissionSource_BlackSite', 8); // as far away from player as possible, because reasons
 

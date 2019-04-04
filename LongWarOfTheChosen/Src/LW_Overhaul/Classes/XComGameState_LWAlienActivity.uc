@@ -478,7 +478,6 @@ function bool SpawnMission(XComGameState NewGameState)
 	{
 		RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate(RewardName)); 
 		RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
-		NewGameState.AddStateObject(RewardState);
 		RewardState.GenerateReward(NewGameState, 1.0 /*reward scalar */ , PrimaryRegion);
 		MissionRewards.AddItem(RewardState);
 	}

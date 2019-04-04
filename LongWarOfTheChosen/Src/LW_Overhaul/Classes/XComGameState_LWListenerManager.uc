@@ -1071,7 +1071,6 @@ function EventListenerReturn OnOverrideBlackMarketGoods(Object EventData, Object
 	{
 		ForSaleItem = EmptyForSaleItem;
 		RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
-		NewGameState.AddStateObject(RewardState);
 		RewardState.SetReward(TechList[idx].GetReference());
 		ForSaleItem.RewardRef = RewardState.GetReference();
 
@@ -1149,7 +1148,6 @@ function EventListenerReturn OnOverrideBlackMarketGoods(Object EventData, Object
     {
         ForSaleItem = EmptyForSaleItem;
         RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
-        NewGameState.AddStateObject(RewardState);
         RewardState.SetReward(ItemList[Idx].GetReference());
         ForSaleItem.RewardRef = RewardState.GetReference();
         ForSaleItem.Title = RewardState.GetRewardString();
