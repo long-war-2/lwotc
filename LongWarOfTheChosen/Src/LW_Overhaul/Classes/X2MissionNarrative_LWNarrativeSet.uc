@@ -1120,16 +1120,36 @@ static function X2MissionNarrativeTemplate AddDefaultSmashNGrabMissionNarrativeT
 
     `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultSmashNGrab_LW');
 
-	Template.MissionType = "SmashNGrab_LW";
+	Template.MissionType = "SupplyExtraction_LW";
 
-    Template.NarrativeMoments[0]="X2NarrativeMoments.TACTICAL.General.GenTactical_SecureRetreat";
-    Template.NarrativeMoments[1]="X2NarrativeMoments.TACTICAL.General.GenTactical_ConsiderRetreat";
-    Template.NarrativeMoments[2]="X2NarrativeMoments.TACTICAL.General.GenTactical_PartialEVAC";
-    Template.NarrativeMoments[3]="X2NarrativeMoments.TACTICAL.General.GenTactical_FullEVAC";
-    Template.NarrativeMoments[4]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
-    Template.NarrativeMoments[5]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroFailure";
-    Template.NarrativeMoments[6]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroTotalSuccess";
-    Template.NarrativeMoments[7]="X2NarrativeMoments.TACTICAL.Recover.SKY_RecoGEN_ItemSecured";
-    Template.NarrativeMoments[8]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Rescue_VIP_EvacDestroyed";
+    Template.NarrativeMoments[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_XCOM_Taking_Losses";
+    Template.NarrativeMoments[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_XCOM_Marked_First_Crate";
+    Template.NarrativeMoments[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_XCOM_Marked_ADVENT_crate";
+    Template.NarrativeMoments[3]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Supplies_Recovered_Heavy_Losses";
+    Template.NarrativeMoments[4]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Squad_Wiped";
+    Template.NarrativeMoments[5]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_No_Supplies_Recovered";
+    Template.NarrativeMoments[6]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_No_Additional_Enemies";
+    Template.NarrativeMoments[7]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Mission_Complete";
+    Template.NarrativeMoments[8]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Mission_Aborted";
+    Template.NarrativeMoments[9]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Late_Crate_Recovered";
+    Template.NarrativeMoments[10]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Intro";
+    Template.NarrativeMoments[11]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_First_Crate_Sighted";
+    Template.NarrativeMoments[12]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_First_Crate_Recovered";
+    Template.NarrativeMoments[13]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Dont_Destroy_Crates";
+    Template.NarrativeMoments[14]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_ADVENT_Marked_More_Crates";
+    Template.NarrativeMoments[15]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_ADVENT_Marked_LoS_Crate";
+    Template.NarrativeMoments[16]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_ADVENT_Marked_First_Crates";
+    Template.NarrativeMoments[17]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_ADVENT_Airlifted_First_Crate";
+	
+	// These are the old SmashNGrab narrative entries.
+    // Template.NarrativeMoments[0]="X2NarrativeMoments.TACTICAL.General.GenTactical_SecureRetreat";
+    // Template.NarrativeMoments[1]="X2NarrativeMoments.TACTICAL.General.GenTactical_ConsiderRetreat";
+    // Template.NarrativeMoments[2]="X2NarrativeMoments.TACTICAL.General.GenTactical_PartialEVAC";
+    // Template.NarrativeMoments[3]="X2NarrativeMoments.TACTICAL.General.GenTactical_FullEVAC";
+    // Template.NarrativeMoments[4]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
+    // Template.NarrativeMoments[5]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroFailure";
+    // Template.NarrativeMoments[6]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroTotalSuccess";
+    // Template.NarrativeMoments[7]="X2NarrativeMoments.TACTICAL.Recover.SKY_RecoGEN_ItemSecured";
+    // Template.NarrativeMoments[8]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Rescue_VIP_EvacDestroyed";
     return Template;
 }
