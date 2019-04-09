@@ -236,9 +236,6 @@ function InitListeners()
 	//Override the interest items
 	//EventMgr.RegisterforEvent(ThisObj, 'OverrideBlackMarketInterests', OnOverrideBlackMarketInterests, ELD_Immediate,,,true);
 
-	// Evac timer modifiers -- modifiers for squad size, infiltration status, number of concurrent missions
-	EventMgr.RegisterForEvent(ThisObj, 'GetEvacPlacementDelay', OnPlacedDelayedEvacZone, ELD_Immediate,,,true);
-
 	// WOTC TODO: Get this done! Need it for early missions.
 	//Special First Mission Icon handling -- only for replacing the Resistance HQ icon functionality
 	EventMgr.RegisterForEvent(ThisObj, 'OnInsertFirstMissionIcon', OnInsertFirstMissionIcon, ELD_Immediate,,,true);
@@ -959,59 +956,6 @@ simulated function OnLoadoutLocked(UIButton kButton)
 	if( HQPres != none )
 		HQPres.UIArmory_Loadout(MainMenu.UnitReference, CannotEditSlots);
 	`XSTRATEGYSOUNDMGR.PlaySoundEvent("Play_MenuSelect");
-}
-
-//handles modification of evac timer based on various conditions
-function EventListenerReturn OnPlacedDelayedEvacZone(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
-{
-	local XComLWTuple EvacDelayTuple;
-	local XComGameState_HeadquartersXCom XComHQ;
-	local XComGameState_LWSquadManager SquadMgr;
-	local XComGameState_LWPersistentSquad Squad;
-	local XComGameState_MissionSite MissionState;
-	local XComGameState_LWAlienActivity CurrentActivity;
-
-	EvacDelayTuple = XComLWTuple(EventData);
-	if(EvacDelayTuple == none)
-		return ELR_NoInterrupt;
-
-	if(EvacDelayTuple.Id != 'DelayedEvacTurns')
-		return ELR_NoInterrupt;
-
-	if(EvacDelayTuple.Data[0].Kind != XComLWTVInt)
-		return ELR_NoInterrupt;
-
-	XComHQ = `XCOMHQ;
-	SquadMgr = class'XComGameState_LWSquadManager'.static.GetSquadManager();
-	if(SquadMgr == none)
-		return ELR_NoInterrupt;
-
-	Squad = SquadMgr.GetSquadOnMission(XComHQ.MissionRef);
-
-	`LWTRACE("**** Evac Delay Calculations ****");
-	`LWTRACE("Base Delay : " $ EvacDelayTuple.Data[0].i);
-
-	// adjustments based on squad size
-	EvacDelayTuple.Data[0].i += Squad.EvacDelayModifier_SquadSize();
-	`LWTRACE("After Squadsize Adjustment : " $ EvacDelayTuple.Data[0].i);
-
-	// adjustments based on infiltration
-	EvacDelayTuple.Data[0].i += Squad.EvacDelayModifier_Infiltration();
-	`LWTRACE("After Infiltration Adjustment : " $ EvacDelayTuple.Data[0].i);
-
-	// adjustments based on number of active missions engaged with
-	EvacDelayTuple.Data[0].i += Squad.EvacDelayModifier_Missions();
-	`LWTRACE("After NumMissions Adjustment : " $ EvacDelayTuple.Data[0].i);
-
-	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(`XCOMHQ.MissionRef.ObjectID));
-	CurrentActivity = class'XComGameState_LWAlienActivityManager'.static.FindAlienActivityByMission(MissionState);
-
-	EvacDelayTuple.Data[0].i += CurrentActivity.GetMyTemplate().MissionTree[CurrentActivity.CurrentMissionLevel].EvacModifier;
-
-	`LWTRACE("After Activity Adjustment : " $ EvacDelayTuple.Data[0].i);
-	
-	return ELR_NoInterrupt;
-
 }
 
 // override black market to make items be purchasable with supplies, remove the supplies reward from being purchasable

@@ -1054,6 +1054,7 @@
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\UIPersonnel_SoldierListItemDetailed.uc" />
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\X2DownloadableContentInfo_DetailedSoldierListWOTC.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Missions.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Tactical.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
