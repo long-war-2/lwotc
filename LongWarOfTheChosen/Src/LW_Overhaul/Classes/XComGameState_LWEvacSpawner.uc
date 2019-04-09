@@ -340,3 +340,8 @@ function vector GetLocation()
 {
     return SpawnLocation;
 }
+
+defaultproperties
+{
+	bTacticalTransient=true
+}

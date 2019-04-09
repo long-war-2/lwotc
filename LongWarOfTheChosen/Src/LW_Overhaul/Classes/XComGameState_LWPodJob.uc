@@ -187,3 +187,7 @@ function DrawDebugLabel(Canvas kCanvas)
 {
 }
 
+defaultproperties
+{
+	bTacticalTransient=true
+}

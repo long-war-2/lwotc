@@ -936,6 +936,7 @@ function DrawDebugLabel(Canvas kCanvas)
 
 defaultproperties
 {
+	bTacticalTransient=true
 	LastKnownXComPositionTurn=-1
 }
 

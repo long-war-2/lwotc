@@ -722,3 +722,8 @@ function AddGenericBodyPartContent()
 		}
 	}	
 }
+
+defaultproperties
+{
+	bTacticalTransient=true
+}
