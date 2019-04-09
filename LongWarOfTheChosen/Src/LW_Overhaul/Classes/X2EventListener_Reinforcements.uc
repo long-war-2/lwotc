@@ -86,14 +86,12 @@ static protected function EventListenerReturn OnOverrideReinforcementsAlert(Obje
 	local int ReinfColor;
 	local String ReinfState;
 	
-	`LWTRACE("OverrideReinforcementsAlert : Starting listener.");
 	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
 	{
 		`REDSCREEN("OverrideReinforcementsAlert event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideReinforcementsAlert : Parsed XComLWTuple.");
 
 	if(OverrideTuple.Id != 'OverrideReinforcementsAlert')
 		return ELR_NoInterrupt;
