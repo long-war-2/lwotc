@@ -8,10 +8,7 @@ class X2StrategyElement_LWObjectives extends X2StrategyElement_DefaultObjectives
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Objectives;
-	// WOTC DEBUGGING:
-	`Log(">>> Creating strategy objective templates...");
-	// END
-	/* WOTC TODO: Restore when I want the LW strategic objectives back in the game
+	
 	Objectives.AddItem(CreateLW_T2_M0_Outpost_Template());
 	Objectives.AddItem(CreateLW_T2_M0_S1_ReviewOutpostTemplate());
 
@@ -28,91 +25,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	Objectives.AddItem(CreateLW_T2_M1_N1_RevealBlacksiteObjectiveTemplate());
 	Objectives.AddItem(CreateLW_T2_M1_N2_RevealAvatarProjectTemplate());
 
-	//DisableBaseAvatarProjectRevealTemplate();
-	RemoveProvingGroundSubobjective();
-	UpdateBroadcastTheTruthTemplate();
-	*/
-	// WOTC DEBUGGING:
-	`Log(">>>    Done");
-	// END
-	
 	return Objectives;
 }
 
-static function UpdateBroadcastTheTruthTemplate()
-{
-	local X2StrategyElementTemplateManager TemplateMgr;
-	local X2ObjectiveTemplate Template;
-
-	TemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
-	Template = X2ObjectiveTemplate(TemplateMgr.FindStrategyElementTemplate('T5_M2_CompleteBroadcastTheTruthMission'));
-	if(Template == none)
-		return;
-
-	Template.AssignObjectiveFn = CreateBroadcastTheTruthMission_LW;
-
-}
-
-static function CreateBroadcastTheTruthMission_LW(XComGameState NewGameState, XComGameState_Objective ObjectiveState)
-{
-	local XComGameStateHistory History;
-	local XComGameState_MissionCalendar CalendarState;
-	local array<XComGameState_Reward> Rewards;
-
-	CreateMission(NewGameState, Rewards, 'MissionSource_Broadcast', 2); // remove the bForceAtThreshold flag
-
-	// Update the calendar to use the end game mission decks
-	foreach NewGameState.IterateByClassType(class'XComGameState_MissionCalendar', CalendarState)
-	{
-		break;
-	}
-
-	if (CalendarState == none)
-	{
-		History = `XCOMHISTORY;
-		CalendarState = XComGameState_MissionCalendar(History.GetSingleGameStateObjectForClass(class'XComGameState_MissionCalendar'));
-		CalendarState = XComGameState_MissionCalendar(NewGameState.CreateStateObject(class'XComGameState_MissionCalendar', CalendarState.ObjectID));
-		NewGameState.AddStateObject(CalendarState);
-	}
-
-	CalendarState.SwitchToEndGameMissions(NewGameState);
-}
-
-static function RemoveProvingGroundSubobjective()
-{
-	local X2StrategyElementTemplateManager TemplateMgr;
-	local X2ObjectiveTemplate Template;
-
-	TemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
-	Template = X2ObjectiveTemplate(TemplateMgr.FindStrategyElementTemplate('T1_M2_HackACaptain'));
-	if(Template == none)
-		return;
-
-	Template.Steps.RemoveItem('T1_M2_S1_BuildProvingGrounds');
-
-	`LOG("Removed T1_M2_S1_BuildProvingGrounds from objective T1_M2_HackACaptain");
-}
-
-//static function DisableBaseAvatarProjectRevealTemplate()
-//{
-	//local X2StrategyElementTemplateManager TemplateMgr;
-	//local X2ObjectiveTemplate Template;
-	//
-	//TemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
-	//Template = X2ObjectiveTemplate(TemplateMgr.FindStrategyElementTemplate('S0_RevealAvatarProject'));
-	//if(Template == none)
-		//return;
-//
-	//Template.RevealEvent = 'LW_NULL_EVENT';
-	//Template.CompletionEvent = 'LW_NULL_EVENT';
-	//Template.NarrativeTriggers.Length = 0;
-//
-//}
-
-
 // #######################################################################################
 // -------------------- LW T2 M0 --------------------------------------------------
-/* WOTC TODO: Restore when I want all these LW objectives back
 static function X2DataTemplate CreateLW_T2_M0_Outpost_Template()
 {
 	local X2ObjectiveTemplate Template;
@@ -257,7 +174,6 @@ function bool AnyProtectRegion3ActivityVisible()
 	}
 	return false;
 }
-*/
 
 // #######################################################################################
 // -------------------- LW T2 M1 --------------------------------------------------
