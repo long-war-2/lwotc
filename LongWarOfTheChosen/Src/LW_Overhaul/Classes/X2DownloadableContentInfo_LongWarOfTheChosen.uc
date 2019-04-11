@@ -91,7 +91,6 @@ static event InstallNewCampaign(XComGameState StartState)
 
 
 	SetStartingLocationToStartingRegion(StartState);
-	UnlockBlackMarket(StartState);
 	UpdateLockAndLoadBonus(StartState);  // update XComHQ and Continent states to remove LockAndLoad bonus if it was selected
 	LimitStartingSquadSize(StartState); // possibly limit the starting squad size to something smaller than the maximum
 	
@@ -135,7 +134,6 @@ static event OnLoadedSavedGameToStrategy()
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
 
-	UpdateBlackMarket();
 	RemoveDarkEventObjectives();
 
 	//make sure that critical narrative moments are active
@@ -302,62 +300,6 @@ static function UpdateLockAndLoadBonus(optional XComGameState StartState)
 }
 
 // *****************************************************
-// Black market
-//
-static function UnlockBlackMarket(XComGameState StartState)
-{
-	local XComGameState_BlackMarket BlackMarket;
-	local XComGameState_LWListenerManager ListenerMgr;
-
-	foreach StartState.IterateByClassType(class'XComGameState_BlackMarket', BlackMarket)
-	{
-		break;
-	}
-	BlackMarket.ShowBlackMarket(StartState, true);
-
-	foreach StartState.IterateByClassType(class'XComGameState_LWListenerManager', ListenerMgr)
-	{
-		break;
-	}
-	if (ListenerMgr != none)
-	{
-		ListenerMgr.OnOverrideBlackMarketGoods(BlackMarket, BlackMarket, StartState, '', None);
-	}
-}
-
-//for existing campaigns
-static function UpdateBlackMarket()
-{
-	local XComGameState NewGameState;
-	local XComGameStateHistory History;
-	local XComGameState_BlackMarket BlackMarket;
-	local XComGameState_LWListenerManager ListenerMgr;
-
-	History = `XCOMHISTORY;
-	BlackMarket = XComGameState_BlackMarket(History.GetSingleGameStateObjectForClass(class'XComGameState_BlackMarket'));
-
-	if(!BlackMarket.bIsOpen && !BlackMarket.bNeedsScan)
-	{
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Opening up Black Market");
-
-		BlackMarket = XComGameState_BlackMarket(NewGameState.CreateStateObject(class'XComGameState_BlackMarket', BlackMarket.ObjectID));
-		NewGameState.AddStateObject(BlackMarket);
-
-		BlackMarket.ShowBlackMarket(NewGameState, true);
-
-		History.AddGameStateToHistory(NewGameState);
-
-		ListenerMgr = class'XComGameState_LWListenerManager'.static.GetListenerManager();
-		if (ListenerMgr != none)
-		{
-			ListenerMgr.OnOverrideBlackMarketGoods(BlackMarket, BlackMarket, none, '', None);
-		}
-
-	}
-}
-
-
-// *****************************************************
 // XCOM tactical mission adjustments
 //
 
@@ -427,7 +369,6 @@ static event OnPostMission()
 {
 	class'XComGameState_LWListenerManager'.static.RefreshListeners();
 
-	UpdateBlackMarket();
 	`LWSQUADMGR.UpdateSquadPostMission(, true); // completed mission
 	`LWOUTPOSTMGR.UpdateOutpostsPostMission();
 }
