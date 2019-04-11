@@ -440,8 +440,8 @@ simulated function UpdateData()
 
 	AS_UpdateDataSoldier(Caps(Unit.GetName(eNameType_Full)),
 					Caps(Unit.GetName(eNameType_Nick)),
-					Caps(`GET_RANK_ABBRV(Unit.GetRank(), SoldierClass.DataName)),
-					rankIcon,
+					Caps(Unit.GetSoldierShortRankName()),
+					Unit.GetSoldierRankIcon(),
 					Caps(SoldierClass != None ? SoldierClass.DisplayName : ""),
 					classIcon,
 					status,
