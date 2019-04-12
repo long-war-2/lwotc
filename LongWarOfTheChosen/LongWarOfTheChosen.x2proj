@@ -1053,6 +1053,7 @@
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\UIPersonnel_SoldierListItemDetailed.uc" />
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\X2DownloadableContentInfo_DetailedSoldierListWOTC.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Missions.uc" />
+    <Content Include="Config\XComEncounterLists.ini" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Tactical.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWObjectivesModTemplate.uc" />
     <Content Include="Content\FX_Explosion_Rocket_Launcher.upk" />

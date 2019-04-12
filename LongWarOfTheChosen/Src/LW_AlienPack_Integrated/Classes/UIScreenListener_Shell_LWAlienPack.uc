@@ -51,32 +51,13 @@ event OnInit(UIScreen Screen)
     HasInited = true;
 
 	/* WOTC TODO: Check whether this is needed. I don't think so considering we integrate
-	   all the new aliens into the mission schedules, etc.
-
-	   If it does prove necessary, be sure to switch from InclusionExclusionLists to
-	   SpawnDistributionLists.
+	   all the new aliens into the mission schedules, etc. And LW2 uses the pod manager
+	   instead of AI Jobs.
     // Apply all AI Jobs, adding new items as needed
     UpdateAIJobs();
-
-	//update all InclusionExclusion Lists
-	UpdateInclusionExclusionLists();
 	*/
 }
 /*
-simulated function UpdateInclusionExclusionLists()
-{
-	local XComTacticalMissionManager MissionManager;
-	local int ListIdx;
-	local InclusionExclusionList_Addition Addition;
-
-	MissionManager = `TACTICALMISSIONMGR;
-
-	foreach InclusionExclusionMods(Addition)
-	{
-		ListIdx = MissionManager.InclusionExclusionLists.Find('ListID', Addition.ListID);
-		MissionManager.InclusionExclusionLists[ListIdx].TemplateName.AddItem(Addition.NewName);
-	}
-}
 
 simulated function UpdateAIJobs()
 {
