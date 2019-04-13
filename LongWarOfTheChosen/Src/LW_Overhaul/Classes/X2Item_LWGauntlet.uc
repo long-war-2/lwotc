@@ -152,7 +152,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Conventional()
 	Template.StowedLocation = eSlot_HeavyWeapon;
 	
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "LWGauntlet.Archetypes.WP_Gauntlet_RocketLauncher_CV";
+	Template.GameArchetype = "LWGauntletWOTC.Archetypes.WP_Gauntlet_RocketLauncher_CV";
 
 	Template.Abilities.AddItem('LWRocketLauncher');
 	Template.Abilities.AddItem('RocketFuse');
@@ -211,7 +211,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Mag()
 	Template.StowedLocation = eSlot_HeavyWeapon;
 	
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "LWGauntlet.Archetypes.WP_Gauntlet_RocketLauncher_MG";
+	Template.GameArchetype = "LWGauntletWOTC.Archetypes.WP_Gauntlet_RocketLauncher_MG";
 
 	Template.Abilities.AddItem('LWRocketLauncher');
 	Template.Abilities.AddItem('RocketFuse');
@@ -270,7 +270,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_COIL()
 	Template.StowedLocation = eSlot_HeavyWeapon;
 	
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "LWGauntlet.Archetypes.WP_Gauntlet_RocketLauncher_CG";
+	Template.GameArchetype = "LWGauntletWOTC.Archetypes.WP_Gauntlet_RocketLauncher_CG";
 
 	Template.Abilities.AddItem('LWRocketLauncher');
 	Template.Abilities.AddItem('RocketFuse');
@@ -329,7 +329,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Beam()
 	Template.StowedLocation = eSlot_HeavyWeapon;
 	
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "LWGauntlet.Archetypes.WP_Gauntlet_BlasterLauncher_BM";
+	Template.GameArchetype = "LWGauntletWOTC.Archetypes.WP_Gauntlet_BlasterLauncher_BM";
 
 	Template.Abilities.AddItem('LWBlasterLauncher');
 	Template.Abilities.AddItem('RocketFuse');
