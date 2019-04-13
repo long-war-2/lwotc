@@ -11,13 +11,15 @@ var localized string strLaunchInfiltration;
 var localized string strAbortInfiltration;
 var localized string strContinueInfiltration;
 
-var private UISkyrangerArrives SkyrangerArrives;
+var bool IsInfiltrationMission;
 
 event OnInit(UIScreen Screen)
 {
 	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameState_LWSquadManager SquadMgr;
 	local XComGameState_LWPersistentSquad Squad;
+	local UISkyrangerArrives SkyrangerArrives;
+
 
 	if(!Screen.IsA('UISkyrangerArrives')) return;
 
@@ -29,6 +31,8 @@ event OnInit(UIScreen Screen)
 
 	if(SquadMgr.IsValidInfiltrationMission(XComHQ.SelectedDestination))
 	{
+		InstallInputHandler(true);
+		
 		Squad = SquadMgr.GetSquadOnMission(XComHQ.SelectedDestination);
 		if (Squad != none) // there was a squad so we are aborting
 		{
@@ -45,12 +49,7 @@ event OnInit(UIScreen Screen)
 			}
 		}
 		else  // no current squad, so are starting infiltration
-		{	
-			// LWOTC: Override SkyrangerArrives screen's input handler so that
-			// enter, spacebar and controller A button all launch the infiltration
-			// rather than the mission.
-			SkyrangerArrives.Movie.Stack.SubscribeToOnInput(ChangeEnterBehavior);
-			
+		{
 			SkyrangerArrives.Button1.OnClickedDelegate = OnLaunchInfiltration;
 			SkyrangerArrives.Button1.SetText(strLaunchInfiltration);
 
@@ -60,6 +59,33 @@ event OnInit(UIScreen Screen)
 	else // not an infiltration
 	{
 		PlaySkyrangerArrivesNarrativeMoment();
+	}
+}
+
+event OnReceiveFocus(UIScreen Screen)
+{
+	InstallInputHandler();
+}
+
+event OnLoseFocus(UIScreen Screen)
+{
+	`SCREENSTACK.UnsubscribeFromOnInput(ChangeEnterBehavior);
+}
+
+event OnRemoved(UIScreen Screen)
+{
+	`SCREENSTACK.UnsubscribeFromOnInput(ChangeEnterBehavior);
+}
+
+// LWOTC: Override SkyrangerArrives screen's input handler so that
+// enter, spacebar and controller A button all launch the infiltration
+// (or abort it if there is a squad already there) rather than launch
+// the mission immediately.
+function InstallInputHandler(optional bool ForceInstall = false)
+{
+	if (ForceInstall || `LWSQUADMGR.IsValidInfiltrationMission(`XCOMHQ.SelectedDestination))
+	{
+		`SCREENSTACK.SubscribeToOnInput(ChangeEnterBehavior);
 	}
 }
 
@@ -201,19 +227,36 @@ simulated function OnLaunchInfiltration(UIButton Button)
 
 }
 
+// Overrides the Enter and Spacebar buttons and the controller's
+// A button to launch infiltration. This is to get round some
+// hard-coded logic in the base UIMission classes that bypass the
+// button delegates.
 function bool ChangeEnterBehavior(int iInput, int ActionMask)
 {
+	local UISkyrangerArrives SkyrangerArrives;
+	
 	if ((ActionMask & class'UIUtilities_Input'.const.FXS_ACTION_RELEASE) == 0)
 	{
 		return false;
 	}
+	
+	SkyrangerArrives = UISkyrangerArrives(`SCREENSTACK.GetFirstInstanceOf(class'UISkyrangerArrives'));
 	
 	switch (iInput)
 	{
 	case class'UIUtilities_Input'.const.FXS_BUTTON_A:
 	case class'UIUtilities_Input'.const.FXS_KEY_ENTER:
 	case class'UIUtilities_Input'.const.FXS_KEY_SPACEBAR:
-		OnLaunchInfiltration(SkyrangerArrives.Button1);
+		// If there is a squad at the mission site, then they're already
+		// infiltrating and we should abort the mission. Otherwise, launch
+		// the mission.
+		if (`LWSQUADMGR.GetSquadOnMission(`XCOMHQ.SelectedDestination) != none)
+		{
+			OnAbortInfiltration(SkyrangerArrives.Button1);
+		}
+		else {
+			OnLaunchInfiltration(SkyrangerArrives.Button1);
+		}
 		return true;
 		
 	default: return false;
