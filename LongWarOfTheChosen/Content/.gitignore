@@ -5,3 +5,4 @@
 *.bk2
 /*/*.txt
 !/Missions/*
+!/Plots/Plot_ALB_AlienBase*
