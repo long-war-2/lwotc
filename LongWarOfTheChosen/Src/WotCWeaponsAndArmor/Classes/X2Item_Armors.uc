@@ -54,10 +54,6 @@ static function X2DataTemplate CreatePlatedReaperArmor()
     Resources.Quantity = 5;
     Template.Cost.ResourceCosts.AddItem(Resources);
 
-	Artifacts.ItemTemplateName = 'CorpseAdventTrooper';
-	Artifacts.Quantity = 3;
-	Template.Cost.ArtifactCosts.AddItem(Artifacts);
-
 	return Template;
 }
 
@@ -140,10 +136,6 @@ static function X2DataTemplate CreatePlatedSkirmisherArmor()
     Resources.Quantity = 5;
     Template.Cost.ResourceCosts.AddItem(Resources);
 
-	Artifacts.ItemTemplateName = 'CorpseAdventTrooper';
-	Artifacts.Quantity = 3;
-	Template.Cost.ArtifactCosts.AddItem(Artifacts);
-
 	return Template;
 }
 
@@ -225,11 +217,7 @@ static function X2DataTemplate CreatePlatedTemplarArmor()
     Resources.ItemTemplateName = 'AlienAlloy';
     Resources.Quantity = 5;
     Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Artifacts.ItemTemplateName = 'CorpseAdventTrooper';
-	Artifacts.Quantity = 3;
-	Template.Cost.ArtifactCosts.AddItem(Artifacts);
-
+    
 	return Template;
 }
 
