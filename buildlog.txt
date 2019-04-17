@@ -1,0 +1,2820 @@
+c:\Vagrant\boxes\shared\lwotc\
+Checking and cleaning .x2proj file...
+No patching required.
+No cleaning required.
+Can't skip shader precompliation.
+Cleaning mod project at H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\XComGame\Mods\LongWarOfTheChosen...
+Cleaned.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wed Apr 17 01:40:03 2019
+
+   Source : c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\
+     Dest : H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\XComGame\Mods\LongWarOfTheChosen\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /COPY:DAT /PURGE /MIR /NP /R:1 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          3	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\
+	    New File  		   86127	LongWarOfTheChosen.x2proj
+	    New File  		    5363	ModPreview.jpg
+	    New File  		      37	ReadMe.txt
+	  New Dir         45	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Config\
+	    New File  		   76458	XComAI.ini
+	    New File  		   35186	XComAIJobs.ini
+	    New File  		      72	XComAnimation.ini
+	    New File  		     754	XComCamera.ini
+	    New File  		   47593	XComClassData.ini
+	    New File  		   29356	XComContent.ini
+	    New File  		      38	XComEditor.ini
+	    New File  		   58457	XComEncounterLists.ini
+	    New File  		   84919	XComEncounters.ini
+	    New File  		    7875	XComEncyclopedia.ini
+	    New File  		    4163	XComEngine.ini
+	    New File  		    6430	XComGame.ini
+	    New File  		   12013	XComGameBoard.ini
+	    New File  		  113230	XComGameCore.ini
+	    New File  		   48139	XComGameData.ini
+	    New File  		  395189	XComGameData_CharacterStats.ini
+	    New File  		    2159	XComGameData_SoldierSkills.ini
+	    New File  		   79883	XComGameData_WeaponData.ini
+	    New File  		    1413	XComGameData_XpData.ini
+	    New File  		   48559	XComLW_Activities.ini
+	    New File  		    7941	XComLW_AlienPack.ini
+	    New File  		   28384	XComLW_AlienVariations.ini
+	    New File  		    3286	XComLW_Content.ini
+	    New File  		   15459	XComLW_InfiltrationSettings.ini
+	    New File  		    6495	XComLW_OfficerPack.ini
+	    New File  		    5334	XComLW_Outposts.ini
+	    New File  		  158974	XComLW_Overhaul.ini
+	    New File  		     515	XComLW_PerkPack.ini
+	    New File  		   25199	XComLW_PodManager.ini
+	    New File  		   19180	XComLW_SoldierSkills.ini
+	    New File  		    9783	XComLW_Toolbox.ini
+	    New File  		    6853	XComMaps.ini
+	    New File  		  146362	XComMissionDefs.ini
+	    New File  		    5139	XComMissions.ini
+	    New File  		    3002	XComMissionSources.ini
+	    New File  		     971	XComNarrative.ini
+	    New File  		    7461	XComParcels.ini
+	    New File  		     251	XComPCPs.ini
+	    New File  		    5322	XComPlots.ini
+	    New File  		    1705	XComrobojumperSquadSelect.ini
+	    New File  		      85	XComrobojumperSquadSelect_NullConfig.ini
+	    New File  		     938	XComrobojumperSquadSelect_World.ini
+	    New File  		   1.0 m	XComSchedules.ini
+	    New File  		    2271	XComUI.ini
+	    New File  		     415	XComWeaponAbilities.ini
+	  New Dir         32	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\
+	    New File  		      82	.gitignore
+	    New File  		  19.0 m	Cannon_NoShake_LW.upk
+	    New File  		   38042	CIN_BasicColors.upk
+	    New File  		   2.4 m	EditorMeshes.upk
+	    New File  		  359851	EngineMeshes.upk
+	    New File  		  996777	FX_Exhaust_Vapors.upk
+	    New File  		  113298	FX_Exhaust_Vapors_Env.upk
+	    New File  		 250.2 m	FX_Globe.upk
+	    New File  		  650045	FX_Glows.upk
+	    New File  		   73294	FX_Glows_Env.upk
+	    New File  		   9.6 m	FX_Holograms.upk
+	    New File  		  125402	FX_Holograms_Env.upk
+	    New File  		  272957	LW_Overhaul_ModShaderCache.upk
+	    New File  		  863379	LW_Overhaul_SoundFX.upk
+	    New File  		    5567	LW_ShapedCharge.upk
+	    New File  		  77.8 m	LWArcthrower.upk
+	    New File  		  56.1 m	LWCombatKnife.upk
+	    New File  		  116068	LWEvacZone.upk
+	    New File  		  29.0 m	LWGauntlet.upk
+	    New File  		  48.2 m	LWHolotargeter.upk
+	    New File  		    8357	LWNarrativeMoments.upk
+	    New File  		    2110	LWNarrativeMoments_Bink.upk
+	    New File  		  51.6 m	LWResistanceMEC.upk
+	    New File  		  46.9 m	LWSawedoffShotgun.upk
+	    New File  		   44486	LWSmashNGrab.upk
+	    New File  		   2.1 m	LWSoldierSockets.upk
+	    New File  		  310732	LWSword_LS.upk
+	    New File  		     234	README.md
+	    New File  		  27.9 m	UILibrary_LW_Overhaul.upk
+	    New File  		  215548	WP_AssaultRiflePlasma_ICON.upk
+	    New File  		  150378	WP_CombatKnife_ICON.upk
+	    New File  		  36.9 m	WP_RocketLauncher.upk
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\Blueprints\
+	    New File  		   13505	AdventCrate_LoCov_1x1_SmashNGrab_LW.umap
+	  New Dir         25	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\LW_AlienPack_Integrated\
+	    New File  		  23.8 m	AdvGrenadeLauncher.upk
+	    New File  		   85975	LW_Perk_MutonM3.upk
+	    New File  		    3102	LW_Perk_Psi_MassMindspin.upk
+	    New File  		    2965	LW_Perk_Psi_MassReanimation.upk
+	    New File  		    2694	LW_Perk_RepairServos.upk
+	    New File  		   11915	LWAdvGrenadier.upk
+	    New File  		   3.0 m	LWAdvGunner.upk
+	    New File  		   2.6 m	LWAdvMec.upk
+	    New File  		   7.5 m	LWAdvMecArcher.upk
+	    New File  		   11925	LWAdvRocketeer.upk
+	    New File  		   11900	LWAdvSentry.upk
+	    New File  		  31.3 m	LWDrone.upk
+	    New File  		   2.1 m	LWDroneWeapon.upk
+	    New File  		   2.1 m	LWDroneWeapon_alternate_beam.upk
+	    New File  		  42.5 m	LWHiveQueen.upk
+	    New File  		  59.9 m	LWMutonM2.upk
+	    New File  		  38.8 m	LWMutonM3.upk
+	    New File  		   2.5 m	LWMutonM3Rifle.upk
+	    New File  		  34.9 m	LWNaja.upk
+	    New File  		  71.2 m	LWSectoidM2.upk
+	    New File  		  34.8 m	LWSidewinder.upk
+	    New File  		  18.5 m	LWSidewinderSMG.upk
+	    New File  		  555266	NajaRifle.upk
+	    New File  		  839326	UILibrary_LWAlienPack.upk
+	    New File  		  42.6 m	XAdventTrooper.upk
+	  New Dir          8	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\LW_Coilguns\
+	    New File  		  22.6 m	LWAccessories_CG.upk
+	    New File  		  44.3 m	LWAssaultRifle_CG.upk
+	    New File  		  49.3 m	LWCannon_CG.upk
+	    New File  		  22.8 m	LWPistol_CG.upk
+	    New File  		  45.8 m	LWShotgun_CG.upk
+	    New File  		  23.3 m	LWSMG_CG.upk
+	    New File  		  48.2 m	LWSniperRifle_CG.upk
+	    New File  		   6.7 m	UILibrary_LW_Coilguns.upk
+	  New Dir          8	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\LW_LaserPack_Integrated\
+	    New File  		  29.4 m	LWAssaultRifle_LS.upk
+	    New File  		  61.0 m	LWAttachments_LS.upk
+	    New File  		  66.5 m	LWCannon_LS.upk
+	    New File  		  41.4 m	LWPistol_LS.upk
+	    New File  		  33.5 m	LWShotgun_LS.upk
+	    New File  		  26.7 m	LWSMG_LS.upk
+	    New File  		  50.0 m	LWSniperRifle_LS.upk
+	    New File  		   6.5 m	UILibrary_LW_LaserPack.upk
+	  New Dir          4	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\LW_OfficerPack_Integrated\
+	    New File  		  128417	LWCommandRange.upk
+	    New File  		    1754	LWOfficerPack_SoundFX.upk
+	    New File  		  204008	Perk_LWFocusFire.upk
+	    New File  		  172601	UILibrary_LW_OfficerPack.upk
+	  New Dir         10	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\LW_PerkPack_Integrated\
+	    New File  		   1.8 m	gfxArmory_LW.upk
+	    New File  		  136259	LW_Perk_CloseEncounters.upk
+	    New File  		    2531	LW_Perk_PCS_AbsorptionFields.upk
+	    New File  		   84733	LW_Perk_PCS_BodyShield.upk
+	    New File  		    2561	LW_Perk_PCS_CombatRush.upk
+	    New File  		    2346	LW_Perk_PCS_DamageControl.upk
+	    New File  		    2390	LW_Perk_PCS_DepthPerception.upk
+	    New File  		   81352	LW_Perk_Psi_Bastion.upk
+	    New File  		   1.4 m	LW_Perk_Psi_MindMerge.upk
+	    New File  		   2.9 m	UILibrary_LW_PerkPack.upk
+	  New Dir          4	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\LW_SMGPack_Integrated\
+	    New File  		  21.4 m	LWSMG_BM.upk
+	    New File  		  61.4 m	LWSMG_CV.upk
+	    New File  		  25.4 m	LWSMG_MG.upk
+	    New File  		   2.8 m	UILibrary_SMG.upk
+	  New Dir          2	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\LW_Toolbox_Integrated\
+	    New File  		  533123	CIN_PostMission1.umap
+	    New File  		   50268	UILibrary_LWToolbox.upk
+	  New Dir          4	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\Maps\
+	    New File  		  174225	CIN_AvDf_Intro_LW.umap
+	    New File  		  427611	CIN_Loading_Infiltration_CityCenter.umap
+	    New File  		  470047	CIN_Loading_Infiltration_SmallTown.umap
+	    New File  		  227942	CIN_SkyrangerIntros_Infiltration.umap
+	  New Dir         24	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\Missions\
+	    New File  		  123366	Obj_AssaultAlienBase_LW.umap
+	    New File  		  125915	Obj_AssaultNetworkTower_LW.umap
+	    New File  		  382218	Obj_Blacksite_LW.umap
+	    New File  		  294824	Obj_Defend_LW.umap
+	    New File  		  260108	Obj_DestroyObject_LW.umap
+	    New File  		  412174	Obj_Forge_LW.umap
+	    New File  		  289537	Obj_HackWorkstation_LW.umap
+	    New File  		  253014	Obj_IntelRaid_LW.umap
+	    New File  		  532010	Obj_Jailbreak_LW.umap
+	    New File  		  388422	Obj_LWAvengerDefense.umap
+	    New File  		  343947	Obj_LWInvasion.umap
+	    New File  		  362394	Obj_LWNeutralizeTarget.umap
+	    New File  		  279468	Obj_LWSecureUFO.umap
+	    New File  		  275982	Obj_LWTerror.umap
+	    New File  		  449034	Obj_RecoverItem_LW.umap
+	    New File  		  198181	Obj_RecruitRaid_LW.umap
+	    New File  		  148991	Obj_Rendezvous_LW.umap
+	    New File  		  354043	Obj_SabotageCC_LW.umap
+	    New File  		  397251	Obj_SmashNGrab_LW.umap
+	    New File  		  205489	Obj_SupplyConvoy_LW.umap
+	    New File  		  124567	Obj_TroopManeuvers_LW.umap
+	    New File  		   48892	SubSystem_ContinuousRNF.umap
+	    New File  		   52750	UMS_LWContinuousReinforcements.umap
+	    New File  		  170930	UMS_LWMissionTimer.umap
+	  New Dir         29	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\Movies\
+	    New File  		  29.7 m	1080_LoadingScreen_LWS_DarkAdvent_1.bk2
+	    New File  		  20.1 m	1080_LoadingScreen_LWS_DarkAdvent_1.webm
+	    New File  		  29.7 m	1080_LoadingScreen_LWS_DarkAdvent_2.bk2
+	    New File  		  22.6 m	1080_LoadingScreen_LWS_DarkAdvent_2.webm
+	    New File  		  29.7 m	1080_LoadingScreen_LWS_DarkAdvent_3.bk2
+	    New File  		  18.7 m	1080_LoadingScreen_LWS_DarkAdvent_3.webm
+	    New File  		  29.7 m	1080_LoadingScreen_LWS_DarkAdvent_4.bk2
+	    New File  		  21.3 m	1080_LoadingScreen_LWS_DarkAdvent_4.webm
+	    New File  		  29.8 m	1080_LoadingScreen_LWS_DarkAdvent_5.bk2
+	    New File  		  20.1 m	1080_LoadingScreen_LWS_DarkAdvent_5.webm
+	    New File  		  29.7 m	1080_LoadingScreen_LWS_DarkAdvent_6.bk2
+	    New File  		  22.7 m	1080_LoadingScreen_LWS_DarkAdvent_6.webm
+	    New File  		  29.7 m	1080_LoadingScreen_LWS_DarkAdvent_7.bk2
+	    New File  		  17.4 m	1080_LoadingScreen_LWS_DarkAdvent_7.webm
+	    New File  		  29.7 m	1080_LoadingScreen_LWS_DarkAdvent_8.bk2
+	    New File  		  21.1 m	1080_LoadingScreen_LWS_DarkAdvent_8.webm
+	    New File  		  29.7 m	1080_LoadingScreen_LWS_DarkAdvent_9.bk2
+	    New File  		  20.3 m	1080_LoadingScreen_LWS_DarkAdvent_9.webm
+	    New File  		  17.3 m	CIN_Autopsy_MutonM3_LW.bk2
+	    New File  		      40	CIN_Autopsy_MutonM3_LW.txt
+	    New File  		  13.2 m	CIN_Autopsy_MutonM3_LW.webm
+	    New File  		  33.9 m	CIN_HackNetworkTower_Cut.bik
+	    New File  		   6.0 m	CIN_HackNetworkTower_Cut.webm
+	    New File  		 124.6 m	CIN_TP_BlacksiteIntro_LW.bik
+	    New File  		      85	CIN_TP_BlacksiteIntro_LW.txt
+	    New File  		  54.8 m	CIN_TP_BlacksiteIntro_LW.webm
+	    New File  		 121.7 m	CIN_TP_WelcomeToResistance_LW.bik
+	    New File  		      87	CIN_TP_WelcomeToResistance_LW.txt
+	    New File  		  51.5 m	CIN_TP_WelcomeToResistance_LW.webm
+	  New Dir         27	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\Parcels\
+	    New File  		   3.2 m	lg_Advent_Recruitment_01_LW.umap
+	    New File  		   3.4 m	lg_ChipTransmitter_01_LW.umap
+	    New File  		   3.2 m	lg_CloneStorage_01_LW.umap
+	    New File  		   3.7 m	lg_GeneClinic_01_LW.umap
+	    New File  		   4.3 m	lg_HumanBodyStorage_01_LW.umap
+	    New File  		   3.6 m	lg_Museum_01_LW_PD.umap
+	    New File  		   3.2 m	lg_PropagandaCenter_02_LW.umap
+	    New File  		   3.6 m	lg_RemoteScienceStation_01_LW.umap
+	    New File  		   2.9 m	lg_RemoteScienceStation_01_SG_LW.umap
+	    New File  		   4.6 m	lg_Shopping_Center_01_LW_PD.umap
+	    New File  		   1.3 m	md_Advent_Security_03_LW.umap
+	    New File  		  515308	md_AdventLandingPad_03.umap
+	    New File  		  509052	md_AdventLandingPad_04.umap
+	    New File  		   2.6 m	md_AlienEntertainment_01_LW.umap
+	    New File  		   2.1 m	md_Bank_01_LW_PD.umap
+	    New File  		   1.1 m	md_Boardroom_01_LW.umap
+	    New File  		   1.8 m	md_ClothingStore_01_LW_PD.umap
+	    New File  		   1.9 m	md_GasStation_01_LW_PD.umap
+	    New File  		   2.8 m	md_GeneClinic_01_LW.umap
+	    New File  		   1.8 m	md_Office_03_LW_PD.umap
+	    New File  		   2.9 m	md_RegionalNetwork_01_LW.umap
+	    New File  		   2.4 m	md_RemoteScienceStation_01_LW.umap
+	    New File  		   2.2 m	md_Restaurant_01_LW_PD.umap
+	    New File  		   1.8 m	md_ShootingRange_01_LW.umap
+	    New File  		   1.1 m	md_Studio_01_LW.umap
+	    New File  		  808213	sm_ServerRoom_01_LW.umap
+	    New File  		  694499	sm_VipOffice_01_LW.umap
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\PCPs\
+	    New File  		  938622	WLD_SupplyConvoy_16x64_LW_01.umap
+	  New Dir         23	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\Plots\
+	    New File  		   93628	Plot_ALB_AlienBase_01_LW.umap
+	    New File  		  104309	Plot_ALB_AlienBase_02_LW.umap
+	    New File  		   91179	Plot_ALB_AlienBase_03_LW.umap
+	    New File  		  110370	Plot_CTY_LgObj_Civic_10_LW.umap
+	    New File  		  105168	Plot_CTY_LgObj_Civic_11_LW.umap
+	    New File  		  107170	Plot_CTY_LgObj_Mixed_10_LW.umap
+	    New File  		  116766	Plot_CTY_vlgObj_PedShoppingCenter_01_LW.umap
+	    New File  		  115663	Plot_CTY_vlgObj_PedShoppingCenter_02_LW.umap
+	    New File  		   2.9 m	Plot_CVY_ResistanceConvoy_01_LW.umap
+	    New File  		   56906	Plot_RFT_01_LW.umap
+	    New File  		   57583	Plot_RFT_02_LW.umap
+	    New File  		   88929	Plot_RFT_CentralBroadcastTower_01_LW.umap
+	    New File  		   90356	Plot_RVS_Highway_LgObj_01_LW.umap
+	    New File  		   83305	Plot_RVS_Highway_MdObj_01_LW.umap
+	    New File  		   91006	Plot_SLM_LgObj_10_LW.umap
+	    New File  		   85940	Plot_SLM_LgObj_11_LW.umap
+	    New File  		   86178	Plot_SLM_LgObj_12_LW.umap
+	    New File  		   92880	Plot_SLM_MdObj_10_LW.umap
+	    New File  		   76617	Plot_SLM_Overpass_LgObj_10_LW.umap
+	    New File  		   92579	Plot_TWN_Mixed_LgObj_10_LW.umap
+	    New File  		   89039	Plot_TWN_Mixed_LgObj_11_LW.umap
+	    New File  		   89039	Plot_TWN_Mixed_LgObj_20_LW.umap
+	    New File  		   92494	Plot_TWN_Mixed_MdObj_10_LW.umap
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\robojumperSquadSelect_Integrated\
+	    New File  		   60988	UILibrary_robojumperSquadSelect.upk
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\ShellMaps\
+	    New File  		   1.8 m	XComShell_Wilderness_PsiGate_LW.umap
+	  New Dir          3	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\Sounds\
+	    New File  		    1415	LWSoundSpeechStrategyTygan_Cue.upk
+	    New File  		    6617	LWSoundSpeechTacticalCentral_Cue.upk
+	    New File  		    1331	LWSoundSpeechTacticalFirebrand_Cue.upk
+	  New Dir          3	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Content\Sounds\INT\
+	    New File  		   3.8 m	LWSoundSpeechStrategyTygan.upk
+	    New File  		   9.3 m	LWSoundSpeechTacticalCentral.upk
+	    New File  		  119935	LWSoundSpeechTacticalFirebrand.upk
+	  New Dir         66	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\
+	    New File  		   49234	LongWarOfTheChosen.chn
+	    New File  		   49510	LongWarOfTheChosen.cht
+	    New File  		   82706	LongWarOfTheChosen.deu
+	    New File  		   83194	LongWarOfTheChosen.esn
+	    New File  		   82170	LongWarOfTheChosen.fra
+	    New File  		   78928	LongWarOfTheChosen.int
+	    New File  		   81144	LongWarOfTheChosen.ita
+	    New File  		   54528	LongWarOfTheChosen.jpn
+	    New File  		   55848	LongWarOfTheChosen.kor
+	    New File  		   79616	LongWarOfTheChosen.pol
+	    New File  		   77774	LongWarOfTheChosen.rus
+	    New File  		   49288	LW_Overhaul.chn
+	    New File  		   49564	LW_Overhaul.cht
+	    New File  		   82760	LW_Overhaul.deu
+	    New File  		   83248	LW_Overhaul.esn
+	    New File  		   82224	LW_Overhaul.fra
+	    New File  		   78982	LW_Overhaul.int
+	    New File  		   81198	LW_Overhaul.ita
+	    New File  		   54582	LW_Overhaul.jpn
+	    New File  		   55902	LW_Overhaul.kor
+	    New File  		   79670	LW_Overhaul.pol
+	    New File  		   77828	LW_Overhaul.rus
+	    New File  		    3760	LWSoundSpeechTacticalCentral.chn
+	    New File  		    3768	LWSoundSpeechTacticalCentral.cht
+	    New File  		    8638	LWSoundSpeechTacticalCentral.deu
+	    New File  		    8770	LWSoundSpeechTacticalCentral.esn
+	    New File  		    8694	LWSoundSpeechTacticalCentral.fra
+	    New File  		    8478	LWSoundSpeechTacticalCentral.INT
+	    New File  		    8056	LWSoundSpeechTacticalCentral.ita
+	    New File  		    4470	LWSoundSpeechTacticalCentral.jpn
+	    New File  		    4942	LWSoundSpeechTacticalCentral.kor
+	    New File  		    8086	LWSoundSpeechTacticalCentral.pol
+	    New File  		    8316	LWSoundSpeechTacticalCentral.rus
+	    New File  		     128	LWSoundSpeechTacticalFirebrand.chn
+	    New File  		     128	LWSoundSpeechTacticalFirebrand.cht
+	    New File  		     176	LWSoundSpeechTacticalFirebrand.deu
+	    New File  		     170	LWSoundSpeechTacticalFirebrand.esn
+	    New File  		     194	LWSoundSpeechTacticalFirebrand.fra
+	    New File  		     176	LWSoundSpeechTacticalFirebrand.INT
+	    New File  		     164	LWSoundSpeechTacticalFirebrand.ita
+	    New File  		     138	LWSoundSpeechTacticalFirebrand.jpn
+	    New File  		     152	LWSoundSpeechTacticalFirebrand.kor
+	    New File  		     158	LWSoundSpeechTacticalFirebrand.pol
+	    New File  		     178	LWSoundSpeechTacticalFirebrand.rus
+	    New File  		     234	Subtitles.chn
+	    New File  		     234	Subtitles.cht
+	    New File  		     716	Subtitles.deu
+	    New File  		     688	Subtitles.esn
+	    New File  		     700	Subtitles.fra
+	    New File  		     596	Subtitles.int
+	    New File  		     644	Subtitles.ita
+	    New File  		     316	Subtitles.jpn
+	    New File  		     340	Subtitles.kor
+	    New File  		     596	Subtitles.pol
+	    New File  		     520	Subtitles.rus
+	    New File  		  329476	XComGame.chn
+	    New File  		  330514	XComGame.cht
+	    New File  		  632500	XComGame.deu
+	    New File  		  638866	XComGame.esn
+	    New File  		  627706	XComGame.fra
+	    New File  		  575042	XComGame.int
+	    New File  		  611188	XComGame.ita
+	    New File  		  386030	XComGame.jpn
+	    New File  		  395342	XComGame.kor
+	    New File  		  612270	XComGame.pol
+	    New File  		  577716	XComGame.rus
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\DetailedSoldierListWOTC_Integrated\
+	    New File  		      56	DetailedSoldierListWOTC_Integrated.INT
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\LongWaroftheChosen\
+	    New File  		    1689	XComGame.int
+	  New Dir         22	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\LW_AlienPack_Integrated\
+	    New File  		     338	LW_AlienPack_Integrated.chn
+	    New File  		     338	LW_AlienPack_Integrated.cht
+	    New File  		     570	LW_AlienPack_Integrated.deu
+	    New File  		     476	LW_AlienPack_Integrated.esn
+	    New File  		     436	LW_AlienPack_Integrated.fra
+	    New File  		     442	LW_AlienPack_Integrated.int
+	    New File  		     462	LW_AlienPack_Integrated.ita
+	    New File  		     360	LW_AlienPack_Integrated.jpn
+	    New File  		     380	LW_AlienPack_Integrated.kor
+	    New File  		     492	LW_AlienPack_Integrated.pol
+	    New File  		     472	LW_AlienPack_Integrated.rus
+	    New File  		   23540	XComGame.chn
+	    New File  		   23628	XComGame.cht
+	    New File  		   38778	XComGame.deu
+	    New File  		   38600	XComGame.esn
+	    New File  		   38286	XComGame.fra
+	    New File  		   17522	XComGame.int
+	    New File  		   37246	XComGame.ita
+	    New File  		   26866	XComGame.jpn
+	    New File  		   26738	XComGame.kor
+	    New File  		   37002	XComGame.pol
+	    New File  		   36546	XComGame.rus
+	  New Dir         11	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\LW_LaserPack_Integrated\
+	    New File  		    3056	XComGame.chn
+	    New File  		    3088	XComGame.cht
+	    New File  		    7112	XComGame.deu
+	    New File  		    7198	XComGame.esn
+	    New File  		    7284	XComGame.fra
+	    New File  		    6216	XComGame.int
+	    New File  		    7032	XComGame.ita
+	    New File  		    3604	XComGame.jpn
+	    New File  		    3908	XComGame.kor
+	    New File  		    6922	XComGame.pol
+	    New File  		    6852	XComGame.rus
+	  New Dir         22	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\LW_OfficerPack_Integrated\
+	    New File  		    6102	LW_OfficerPack_Integrated.chn
+	    New File  		    6086	LW_OfficerPack_Integrated.cht
+	    New File  		    8658	LW_OfficerPack_Integrated.deu
+	    New File  		    8802	LW_OfficerPack_Integrated.esn
+	    New File  		    8702	LW_OfficerPack_Integrated.fra
+	    New File  		    8004	LW_OfficerPack_Integrated.int
+	    New File  		    8616	LW_OfficerPack_Integrated.ita
+	    New File  		    6620	LW_OfficerPack_Integrated.jpn
+	    New File  		    6580	LW_OfficerPack_Integrated.kor
+	    New File  		    8326	LW_OfficerPack_Integrated.pol
+	    New File  		    8418	LW_OfficerPack_Integrated.rus
+	    New File  		   17168	XComGame.chn
+	    New File  		   17182	XComGame.cht
+	    New File  		   35984	XComGame.deu
+	    New File  		   35804	XComGame.esn
+	    New File  		   35498	XComGame.fra
+	    New File  		   31620	XComGame.int
+	    New File  		   34452	XComGame.ita
+	    New File  		   20470	XComGame.jpn
+	    New File  		   21178	XComGame.kor
+	    New File  		   33578	XComGame.pol
+	    New File  		   32294	XComGame.rus
+	  New Dir         22	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\LW_PerkPack_Integrated\
+	    New File  		    2758	LW_PerkPack_Integrated.chn
+	    New File  		    2768	LW_PerkPack_Integrated.cht
+	    New File  		    5114	LW_PerkPack_Integrated.deu
+	    New File  		    4880	LW_PerkPack_Integrated.esn
+	    New File  		    4712	LW_PerkPack_Integrated.fra
+	    New File  		    4566	LW_PerkPack_Integrated.int
+	    New File  		    4806	LW_PerkPack_Integrated.ita
+	    New File  		    3186	LW_PerkPack_Integrated.jpn
+	    New File  		    3182	LW_PerkPack_Integrated.kor
+	    New File  		    4582	LW_PerkPack_Integrated.pol
+	    New File  		    4894	LW_PerkPack_Integrated.rus
+	    New File  		  103670	XComGame.chn
+	    New File  		  104024	XComGame.cht
+	    New File  		  202284	XComGame.deu
+	    New File  		  200418	XComGame.esn
+	    New File  		  196054	XComGame.fra
+	    New File  		  178266	XComGame.int
+	    New File  		  192452	XComGame.ita
+	    New File  		  120760	XComGame.jpn
+	    New File  		  126768	XComGame.kor
+	    New File  		  189780	XComGame.pol
+	    New File  		  181868	XComGame.rus
+	  New Dir         11	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\LW_SMGPack_Integrated\
+	    New File  		    2328	XComGame.chn
+	    New File  		    2370	XComGame.cht
+	    New File  		    5594	XComGame.deu
+	    New File  		    5662	XComGame.esn
+	    New File  		    5832	XComGame.fra
+	    New File  		    2413	XComGame.int
+	    New File  		    5608	XComGame.ita
+	    New File  		    2704	XComGame.jpn
+	    New File  		    2974	XComGame.kor
+	    New File  		    5636	XComGame.pol
+	    New File  		    6066	XComGame.rus
+	  New Dir         22	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\LW_Toolbox_Integrated\
+	    New File  		    3830	LW_Toolbox_Integrated.chn
+	    New File  		    3856	LW_Toolbox_Integrated.cht
+	    New File  		    7296	LW_Toolbox_Integrated.deu
+	    New File  		    7744	LW_Toolbox_Integrated.esn
+	    New File  		    7546	LW_Toolbox_Integrated.fra
+	    New File  		    6662	LW_Toolbox_Integrated.int
+	    New File  		    7380	LW_Toolbox_Integrated.ita
+	    New File  		    4438	LW_Toolbox_Integrated.jpn
+	    New File  		    4642	LW_Toolbox_Integrated.kor
+	    New File  		    7040	LW_Toolbox_Integrated.pol
+	    New File  		    6842	LW_Toolbox_Integrated.rus
+	    New File  		    1408	XComGame.chn
+	    New File  		    1406	XComGame.cht
+	    New File  		    2608	XComGame.deu
+	    New File  		    2690	XComGame.esn
+	    New File  		    2718	XComGame.fra
+	    New File  		    2290	XComGame.int
+	    New File  		    2626	XComGame.ita
+	    New File  		    1678	XComGame.jpn
+	    New File  		    1730	XComGame.kor
+	    New File  		    2372	XComGame.pol
+	    New File  		    2298	XComGame.rus
+	  New Dir         55	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\Parcels\
+	    New File  		    1522	lg_GeneClinic_01_LW.chn
+	    New File  		    1522	lg_GeneClinic_01_LW.cht
+	    New File  		    1656	lg_GeneClinic_01_LW.deu
+	    New File  		    1730	lg_GeneClinic_01_LW.esn
+	    New File  		    1694	lg_GeneClinic_01_LW.fra
+	    New File  		    1646	lg_GeneClinic_01_LW.INT
+	    New File  		    1688	lg_GeneClinic_01_LW.ita
+	    New File  		    1532	lg_GeneClinic_01_LW.jpn
+	    New File  		    1536	lg_GeneClinic_01_LW.kor
+	    New File  		    1722	lg_GeneClinic_01_LW.pol
+	    New File  		    1658	lg_GeneClinic_01_LW.rus
+	    New File  		    1092	lg_PropagandaCenter_02_LW.chn
+	    New File  		    1092	lg_PropagandaCenter_02_LW.cht
+	    New File  		    1182	lg_PropagandaCenter_02_LW.deu
+	    New File  		    1236	lg_PropagandaCenter_02_LW.esn
+	    New File  		    1216	lg_PropagandaCenter_02_LW.fra
+	    New File  		    1184	lg_PropagandaCenter_02_LW.INT
+	    New File  		    1214	lg_PropagandaCenter_02_LW.ita
+	    New File  		    1098	lg_PropagandaCenter_02_LW.jpn
+	    New File  		    1102	lg_PropagandaCenter_02_LW.kor
+	    New File  		    1228	lg_PropagandaCenter_02_LW.pol
+	    New File  		    1188	lg_PropagandaCenter_02_LW.rus
+	    New File  		    1300	md_Advent_Security_03_LW.chn
+	    New File  		    1300	md_Advent_Security_03_LW.cht
+	    New File  		    1402	md_Advent_Security_03_LW.deu
+	    New File  		    1468	md_Advent_Security_03_LW.esn
+	    New File  		    1450	md_Advent_Security_03_LW.fra
+	    New File  		    1414	md_Advent_Security_03_LW.INT
+	    New File  		    1450	md_Advent_Security_03_LW.ita
+	    New File  		    1306	md_Advent_Security_03_LW.jpn
+	    New File  		    1312	md_Advent_Security_03_LW.kor
+	    New File  		    1456	md_Advent_Security_03_LW.pol
+	    New File  		    1414	md_Advent_Security_03_LW.rus
+	    New File  		    1298	md_AlienEntertainment_01_LW.chn
+	    New File  		    1298	md_AlienEntertainment_01_LW.cht
+	    New File  		    1410	md_AlienEntertainment_01_LW.deu
+	    New File  		    1474	md_AlienEntertainment_01_LW.esn
+	    New File  		    1446	md_AlienEntertainment_01_LW.fra
+	    New File  		    1406	md_AlienEntertainment_01_LW.INT
+	    New File  		    1442	md_AlienEntertainment_01_LW.ita
+	    New File  		    1306	md_AlienEntertainment_01_LW.jpn
+	    New File  		    1310	md_AlienEntertainment_01_LW.kor
+	    New File  		    1466	md_AlienEntertainment_01_LW.pol
+	    New File  		    1414	md_AlienEntertainment_01_LW.rus
+	    New File  		    1306	md_geneclinic_01_LW.chn
+	    New File  		    1306	md_geneclinic_01_LW.cht
+	    New File  		    1418	md_geneclinic_01_LW.deu
+	    New File  		    1482	md_geneclinic_01_LW.esn
+	    New File  		    1454	md_geneclinic_01_LW.fra
+	    New File  		    1414	md_geneclinic_01_LW.INT
+	    New File  		    1450	md_geneclinic_01_LW.ita
+	    New File  		    1314	md_geneclinic_01_LW.jpn
+	    New File  		    1318	md_geneclinic_01_LW.kor
+	    New File  		    1474	md_geneclinic_01_LW.pol
+	    New File  		    1422	md_geneclinic_01_LW.rus
+	  New Dir          3	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Localization\robojumperSquadSelect_Integrated\
+	    New File  		    2248	robojumperSquadSelect_Integrated.chn
+	    New File  		    1808	robojumperSquadSelect_Integrated.int
+	    New File  		      82	XComGame.int
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\
+	    New File  		    1280	extra_globals.uci
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\DetailedSoldierListWOTC_Integrated\
+	  New Dir          4	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\DetailedSoldierListWOTC_Integrated\Classes\
+	    New File  		    2593	MoreDetailsManager.uc
+	    New File  		    2842	MoreDetailsNavigatorWrapper.uc
+	    New File  		   36218	UIPersonnel_SoldierListItemDetailed.uc
+	    New File  		    6657	X2DownloadableContentInfo_DetailedSoldierListWOTC.uc
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_AlienPack_Integrated\
+	    New File  		     567	LW_AlienPack.uci
+	  New Dir         20	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_AlienPack_Integrated\Classes\
+	    New File  		     459	LWAlienPack_Utilities.uc
+	    New File  		    2035	LWUpdateAlienCustomizationAction.uc
+	    New File  		    5974	UIScreenListener_Shell_LWAlienPack.uc
+	    New File  		    1225	UIScreenListener_TacticalHUD_LWAlienPack.uc
+	    New File  		   53246	X2Ability_LWAlienAbilities.uc
+	    New File  		    3882	X2Action_MoveClimbWall_LW.uc
+	    New File  		   66675	X2Character_AlienPack.uc
+	    New File  		    5504	X2DownloadableContentInfo_LWAlienPack.uc
+	    New File  		    2296	X2Effect_AdventGrenadeLauncher.uc
+	    New File  		     921	X2Effect_BeastMaster.uc
+	    New File  		     714	X2Effect_HiveQueenSlash.uc
+	    New File  		    1863	X2Effect_ReadyForAnything.uc
+	    New File  		     684	X2Effect_RepairServos.uc
+	    New File  		    1949	X2Effect_SimpleHeal.uc
+	    New File  		    2528	X2Effect_WarCry.uc
+	    New File  		   47497	X2Item_LWAlienWeapons.uc
+	    New File  		    1083	X2Item_Resources_AlienPack.uc
+	    New File  		    1296	X2TargetingMethod_MassMindspin.uc
+	    New File  		    8899	XComGameState_AlienCustomizationManager.uc
+	    New File  		   23353	XComGameState_Unit_AlienCustomization.uc
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_LaserPack_Integrated\
+	  New Dir          3	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_LaserPack_Integrated\Classes\
+	    New File  		    2401	X2Ability_LaserSMGAbilities.uc
+	    New File  		   20343	X2DownloadableContentInfo_LWLaserPack.uc
+	    New File  		   19541	X2Item_LaserWeapons.uc
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_OfficerPack_Integrated\
+	  New Dir         55	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_OfficerPack_Integrated\Classes\
+	    New File  		    6237	LWCommandRange_Actor.uc
+	    New File  		   18474	LWOfficerUtilities.uc
+	    New File  		    3903	UIAlert_LWOfficerTrainingComplete.uc
+	    New File  		   25179	UIArmory_LWOfficerPromotion.uc
+	    New File  		    2593	UIArmory_LWOfficerPromotionItem.uc
+	    New File  		    6563	UIFacility_LWOfficerSlot.uc
+	    New File  		    2436	UIFacilityStaffContainer_LWOTS.uc
+	    New File  		     891	UIListItemString_SelfContained.uc
+	    New File  		    6491	UIPersonnel_ListItem_SquadSelect_LWOfficerPack.uc
+	    New File  		    2077	UIPersonnel_LWOfficer.uc
+	    New File  		    3187	UIPersonnel_SquadSelect_LWOfficerPack.uc
+	    New File  		     820	UIScreenListener_Armory_MainMenu_LWOfficerPack.uc
+	    New File  		    2161	UIScreenListener_Armory_Promotion_LWOfficerPack.uc
+	    New File  		    2220	UIScreenListener_Armory_PromotionPsiOp_LWOfficerPack.uc
+	    New File  		    4233	UIScreenListener_ChooseUpgrade_LWOfficerPack.uc
+	    New File  		    5254	UIScreenListener_Facility_Academy_LWOfficerPack.uc
+	    New File  		    7601	UIScreenListener_FacilityUpgrade_LWOfficerPack.uc
+	    New File  		   21437	UIScreenListener_LWOfficerPack.uc
+	    New File  		    5410	UIScreenListener_SquadSelect_LWOfficerPack.uc
+	    New File  		    2295	UIScreenListener_TacticalHUD_LWOfficerPack.uc
+	    New File  		    6736	UISquadSelect_ListItem_LWOfficerPack.uc
+	    New File  		    1658	UISquadSelect_OfficerIcon.uc
+	    New File  		     818	UISquadSelect_UtilityItem_LWOfficerPack.uc
+	    New File  		    6850	UITacticalHUD_MouseControls_LWOfficerPack.uc
+	    New File  		   67156	X2Ability_OfficerAbilitySet.uc
+	    New File  		   16104	X2Ability_OfficerAbilitySet_PassiveAuras.uc
+	    New File  		    4644	X2Ability_ToggleCommandRange.uc
+	    New File  		     858	X2AbilityCharges_Command.uc
+	    New File  		    5650	X2AbilityMultiTarget_LWOfficerCommandRange.uc
+	    New File  		    2220	X2AbilityToHitCalc_LWCommandRange.uc
+	    New File  		    2073	X2Condition_EspritDeCorps.uc
+	    New File  		     825	X2Condition_HasEnoughIntel.uc
+	    New File  		    1321	X2Condition_Intervention.uc
+	    New File  		   14513	X2DownloadableContentInfo_LWOfficerPack.uc
+	    New File  		     866	X2Effect_AirController.uc
+	    New File  		    2674	X2Effect_Collector.uc
+	    New File  		    1570	X2Effect_CombinedArms.uc
+	    New File  		    1390	X2Effect_Defilade.uc
+	    New File  		    3824	X2Effect_EspritdeCorps.uc
+	    New File  		    1850	X2Effect_FallBack.uc
+	    New File  		     750	X2Effect_FireDiscipline.uc
+	    New File  		    4760	X2Effect_FocusFire.uc
+	    New File  		    1815	X2Effect_Incoming.uc
+	    New File  		    3789	X2Effect_LeadByExample.uc
+	    New File  		    5065	X2Effect_LeadByExample_old.uc
+	    New File  		    2685	X2Effect_LWOfficerCommandAura.uc
+	    New File  		    5344	X2Effect_Scavenger.uc
+	    New File  		   12976	X2StrategyElement_LW_OTS_OfficerStaffSlot.uc
+	    New File  		    1114	XComGameState_Effect_AirController.uc
+	    New File  		    7403	XComGameState_Effect_Collector.uc
+	    New File  		    4246	XComGameState_Effect_FocusFire.uc
+	    New File  		   12798	XComGameState_Effect_Scavenger.uc
+	    New File  		    9191	XComGameState_HeadquartersProjectTrainLWOfficer.uc
+	    New File  		    4663	XComGameState_Unit_LWOfficer.uc
+	    New File  		     544	XComHQPresentationLayer_LWOfficerPack.uc
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_Overhaul\
+	  New Dir        262	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_Overhaul\Classes\
+	    New File  		    7739	LWDLCHelpers.uc
+	    New File  		     995	LWHelp_Default.uc
+	    New File  		    3493	LWHelpTemplate.uc
+	    New File  		    7411	LWPodJobs_DefaultJobSet.uc
+	    New File  		     734	LWPodJobTemplate.uc
+	    New File  		   19160	LWRebelJob_DefaultJobSet.uc
+	    New File  		     811	LWRebelJobIncomeModifier.uc
+	    New File  		    1510	LWRebelJobIncomeModifier_DarkEvent.uc
+	    New File  		    1032	LWRebelJobIncomeModifier_DiminishingSupplies.uc
+	    New File  		    1185	LWRebelJobIncomeModifier_Liaison.uc
+	    New File  		    1155	LWRebelJobIncomeModifier_Liberated.uc
+	    New File  		     901	LWRebelJobIncomeModifier_LocalFaceless.uc
+	    New File  		     820	LWRebelJobIncomeModifier_Prohibited.uc
+	    New File  		     948	LWRebelJobIncomeModifier_Radio.uc
+	    New File  		     793	LWRebelJobIncomeModifier_Range.uc
+	    New File  		    1035	LWRebelJobIncomeModifier_SoldierLiaison.uc
+	    New File  		    2625	LWRebelJobTemplate.uc
+	    New File  		   22561	LWTacticalMissionUnitSpawner.uc
+	    New File  		  122370	LWTemplateMods.uc
+	    New File  		    9608	LWTemplateMods_Utilities.uc
+	    New File  		    1735	LWVersion.uc
+	    New File  		     476	LWVisualizedInterface.uc
+	    New File  		     833	LWXComGameVersion.uc
+	    New File  		    2777	LWXComGameVersionTemplate.uc
+	    New File  		    2384	SeqAct_AwardLoot.uc
+	    New File  		    1614	SeqAct_ControlCivilian.uc
+	    New File  		    2953	SeqAct_GetAssociatedObjectiveObjects.uc
+	    New File  		    1774	SeqAct_GetInteractiveObjectHacked.uc
+	    New File  		    1029	SeqAct_GetMissionTimer.uc
+	    New File  		    1880	SeqAct_GetRegionInfo.uc
+	    New File  		    4545	SeqAct_InitializeMissionTimer.uc
+	    New File  		    7512	SeqAct_LWCallReinforcements.uc
+	    New File  		    2220	SeqAct_RemoveItemFromInventory.uc
+	    New File  		    1206	SeqAct_ResetCivilians.uc
+	    New File  		    1488	SeqAct_SetInteractiveObjectHacked.uc
+	    New File  		    5377	SeqAct_SpawnDelayedEvacZone.uc
+	    New File  		    1430	SeqAct_ToggleUnitFlag.uc
+	    New File  		    1600	SeqAct_VectorOps.uc
+	    New File  		    1141	SeqAct_XComSpawnLocation.uc
+	    New File  		     901	SeqEvent_EvacSpawnerDestroyed.uc
+	    New File  		    6613	SeqEvent_LWTeamHasNoFilteredPlayableUnitsRemaining.uc
+	    New File  		     818	SeqEvent_UnitRemovedFromPlay.uc
+	    New File  		    3934	UIAvengerShortcuts_LW.uc
+	    New File  		    3184	UIButtonIconPC.uc
+	    New File  		    5757	UIDarkEventListItem.uc
+	    New File  		   33129	UIMission_LWCustomMission.uc
+	    New File  		   20015	UIMission_LWLaunchDelayedMission.uc
+	    New File  		   24537	UIOutpostManagement.uc
+	    New File  		    4628	UIOutpostManagement_ListItem.uc
+	    New File  		    2018	UIPersonnel_Liaison.uc
+	    New File  		   27054	UIPersonnel_SquadBarracks.uc
+	    New File  		    7559	UIResistanceManagement_ListItem.uc
+	    New File  		   12496	UIResistanceManagement_LW.uc
+	    New File  		    2278	UIScreenListener_AcquireHackRewardOverride.uc
+	    New File  		    8841	UIScreenListener_AdventOperations.uc
+	    New File  		   10124	UIScreenListener_Alert.uc
+	    New File  		    3709	UIScreenListener_Armory_MainMenu_LW.uc
+	    New File  		    7568	UIScreenListener_ArmoryWeaponUpgrade_LW.uc
+	    New File  		    1101	UIScreenListener_AvengerHUD.uc
+	    New File  		    7813	UIScreenListener_CanAddInventoryOverride.uc
+	    New File  		    1450	UIScreenListener_DropShipBriefing_MissionStart.uc
+	    New File  		    5721	UIScreenListener_GetPCSImageOverride.uc
+	    New File  		    1725	UIScreenListener_LivingQuarters.uc
+	    New File  		    2246	UIScreenListener_OverrideItemRange.uc
+	    New File  		    1517	UIScreenListener_PersonnelLists.uc
+	    New File  		    6578	UIScreenListener_ResistanceReport.uc
+	    New File  		    1888	UIScreenListener_Shell.uc
+	    New File  		    4557	UIScreenListener_ShellDifficulty.uc
+	    New File  		    8600	UIScreenListener_SkyrangerArrives_LW.uc
+	    New File  		   10893	UIScreenListener_SquadSelect_LW.uc
+	    New File  		    7862	UIScreenListener_TacticalHUD.uc
+	    New File  		    2008	UIScreenListener_ViewObjectives.uc
+	    New File  		    5071	UIScrollingTextField.uc
+	    New File  		    5300	UISquad_DropDown.uc
+	    New File  		    1411	UISquadClassItem.uc
+	    New File  		    5534	UISquadContainer.uc
+	    New File  		    9476	UISquadListItem.uc
+	    New File  		    6697	UISquadListItem_Small.uc
+	    New File  		    1575	UISquadSelect_InfiltrationItem.uc
+	    New File  		   10287	UISquadSelect_InfiltrationPanel.uc
+	    New File  		    9960	UIStrategyMapItem_Mission_LW.uc
+	    New File  		   17531	UIStrategyMapItem_Region_LW.uc
+	    New File  		   19562	UIUtilities_LW.uc
+	    New File  		    1954	UIUtilities_Text_LW.uc
+	    New File  		   21468	Utilities_LW.uc
+	    New File  		    7751	X2Ability_HackRewards_LW.uc
+	    New File  		    2094	X2Ability_InfiltrationModifier.uc
+	    New File  		   26042	X2Ability_LW_AssaultAbilitySet.uc
+	    New File  		    6234	X2Ability_LW_DefaultAbilitySet.uc
+	    New File  		   25967	X2Ability_LW_GearAbilities.uc
+	    New File  		   19197	X2Ability_LW_GrenadierAbilitySet.uc
+	    New File  		   20900	X2Ability_LW_GunnerAbilitySet.uc
+	    New File  		    4137	X2Ability_LW_PsiOperativeAbilitySet.uc
+	    New File  		   19471	X2Ability_LW_RangerAbilitySet.uc
+	    New File  		    5168	X2Ability_LW_RebelAbilitySet.uc
+	    New File  		   17897	X2Ability_LW_SharpshooterAbilitySet.uc
+	    New File  		   24073	X2Ability_LW_ShinobiAbilitySet.uc
+	    New File  		   22224	X2Ability_LW_SpecialistAbilitySet.uc
+	    New File  		   60876	X2Ability_LW_TechnicalAbilitySet.uc
+	    New File  		    7406	X2Ability_PlaceDelayedEvacZone.uc
+	    New File  		     468	X2AbilityCharges_BonusCharges.uc
+	    New File  		     852	X2AbilityCharges_RescueProtocol.uc
+	    New File  		     421	X2AbilityCharges_TakeThisCharge.uc
+	    New File  		    1585	X2AbilityCooldown_AllInstances.uc
+	    New File  		     921	X2AbilityCooldown_LWFlamethrower.uc
+	    New File  		    1561	X2AbilityToHitCalc_StatCheck_LWFlamethrower.uc
+	    New File  		   12683	X2Action_Fire_Firestorm.uc
+	    New File  		    1089	X2Action_ToggleUnitFlag.uc
+	    New File  		   19235	X2Character_Resistance.uc
+	    New File  		     750	X2Condition_CoupDeGrace.uc
+	    New File  		    1127	X2Condition_MasteredEnemy.uc
+	    New File  		    1035	X2Condition_Phosphorus.uc
+	    New File  		     855	X2Condition_PlaceDelayedEvacZonePermitted.uc
+	    New File  		     857	X2Condition_Sedate.uc
+	    New File  		    1104	X2Condition_Solace_LW.uc
+	    New File  		     990	X2Condition_Soldier.uc
+	    New File  		    1116	X2Condition_UnitDoesNotHaveItem.uc
+	    New File  		  110289	X2DownloadableContentInfo_LongWarOfTheChosen.uc
+	    New File  		    1537	X2Effect_AbilityDamageMult.uc
+	    New File  		    1113	X2Effect_AddAmmo.uc
+	    New File  		   31237	X2Effect_ApplyAltWeaponDamage.uc
+	    New File  		   16670	X2Effect_ApplyExplosiveFalloffWeaponDamage.uc
+	    New File  		   10618	X2Effect_ApplyFireToWorld_Limited.uc
+	    New File  		    1040	X2Effect_Arcthrower.uc
+	    New File  		    1113	X2Effect_ArcthrowerStunned.uc
+	    New File  		    2018	X2Effect_BiggestBooms_LW.uc
+	    New File  		    1991	X2Effect_Bombard.uc
+	    New File  		    2857	X2Effect_BonusGrenadeSlotUse.uc
+	    New File  		    1983	X2Effect_BonusRocketCharges.uc
+	    New File  		    1912	X2Effect_CancelLongRangePenalty.uc
+	    New File  		    4290	X2Effect_CoupDeGrace.uc
+	    New File  		    2617	X2Effect_CoupDeGrace2.uc
+	    New File  		    2162	X2Effect_DeathFromAbove_LW.uc
+	    New File  		    1358	X2Effect_DLC2_HideSpecialTurnOverlay.uc
+	    New File  		    1175	X2Effect_DoubleDamage.uc
+	    New File  		    1714	X2Effect_DoubleTap.uc
+	    New File  		    2352	X2Effect_Failsafe.uc
+	    New File  		    1696	X2Effect_Guardian_LW.uc
+	    New File  		    1012	X2Effect_HairTrigger.uc
+	    New File  		    2074	X2Effect_HEATGrenades.uc
+	    New File  		    1526	X2Effect_HunkerDown_LW.uc
+	    New File  		    2156	X2Effect_HuntersInstinctDamage_LW.uc
+	    New File  		    2835	X2Effect_ImmediateMultiTargetAbilityActivation.uc
+	    New File  		    2672	X2Effect_InfiltrationModifier.uc
+	    New File  		    1375	X2Effect_ItemWeight.uc
+	    New File  		    2096	X2Effect_JavelinRockets.uc
+	    New File  		    6888	X2Effect_LWHolotarget.uc
+	    New File  		     684	X2Effect_MaybeApplyDirectionalWorldDamage.uc
+	    New File  		    1350	X2Effect_ModifyNonReactionFire.uc
+	    New File  		     780	X2Effect_Phosphorus.uc
+	    New File  		    1589	X2Effect_Quickburn.uc
+	    New File  		    1248	X2Effect_ReflexShotModifier.uc
+	    New File  		    1484	X2Effect_RemoveItemWeight.uc
+	    New File  		    1268	X2Effect_RoustDamage.uc
+	    New File  		    1568	X2Effect_SerialCritReduction.uc
+	    New File  		     914	X2Effect_StilettoRounds.uc
+	    New File  		     857	X2Effect_StreetSweeper.uc
+	    New File  		    1708	X2Effect_StunGunner.uc
+	    New File  		    3852	X2Effect_TransferMecToOutpost.uc
+	    New File  		    3100	X2Effect_Whirlwind2.uc
+	    New File  		    2055	X2EventListener_Missions.uc
+	    New File  		    5266	X2EventListener_Reinforcements.uc
+	    New File  		    7149	X2EventListener_Soldiers.uc
+	    New File  		   16627	X2EventListener_StrategyMap.uc
+	    New File  		    3282	X2EventListener_Tactical.uc
+	    New File  		   22022	X2HackReward_LWOverhaul.uc
+	    New File  		   11125	X2Item_ArcthrowerWeapon.uc
+	    New File  		   13090	X2Item_Coilguns.uc
+	    New File  		     652	X2Item_DefaultMissionItems_LW.uc
+	    New File  		     782	X2Item_DefaultWeaponMods_LW.uc
+	    New File  		    1739	X2Item_EvacFlare.uc
+	    New File  		   10893	X2Item_LWCombatKnife.uc
+	    New File  		   15260	X2Item_LWGauntlet.uc
+	    New File  		   11680	X2Item_LWHolotargeter.uc
+	    New File  		   13031	X2Item_LWPistol.uc
+	    New File  		   11404	X2Item_LWSawedOffShotgun.uc
+	    New File  		   17017	X2Item_LWUtilityItems.uc
+	    New File  		    2868	X2Item_ResistanceMECWeapons.uc
+	    New File  		     668	X2LWActivityCondition.uc
+	    New File  		    3893	X2LWActivityCondition_AlertVigilance.uc
+	    New File  		     822	X2LWActivityCondition_AvatarRevealed.uc
+	    New File  		     886	X2LWActivityCondition_Days.uc
+	    New File  		    3029	X2LWActivityCondition_FacilityLeadItem.uc
+	    New File  		    1776	X2LWActivityCondition_FullOutpostJobBuckets.uc
+	    New File  		    1121	X2LWActivityCondition_GeneralOpsCap.uc
+	    New File  		    1249	X2LWActivityCondition_HasAdviserofClass.uc
+	    New File  		     720	X2LWActivityCondition_HasFaceless.uc
+	    New File  		    1137	X2LWActivityCondition_LiberatedDays.uc
+	    New File  		    1806	X2LWActivityCondition_LiberationStage.uc
+	    New File  		     904	X2LWActivityCondition_MaxRebels.uc
+	    New File  		    1362	X2LWActivityCondition_MinLiberatedRegions.uc
+	    New File  		    1121	X2LWActivityCondition_MinRebels.uc
+	    New File  		    1646	X2LWActivityCondition_MinRebelsOnJob.uc
+	    New File  		    1259	X2LWActivityCondition_MinWorkingRebels.uc
+	    New File  		    1052	X2LWActivityCondition_Month.uc
+	    New File  		    2316	X2LWActivityCondition_NumberActivities.uc
+	    New File  		     868	X2LWActivityCondition_POIAvailable.uc
+	    New File  		    2356	X2LWActivityCondition_RegionStatus.uc
+	    New File  		    3274	X2LWActivityCondition_ResearchFacility.uc
+	    New File  		    2413	X2LWActivityCondition_RestrictedActivity.uc
+	    New File  		    1769	X2LWActivityCondition_RetalMixer.uc
+	    New File  		     679	X2LWActivityCondition_RNG.uc
+	    New File  		    2512	X2LWActivityCondition_RNG_Region.uc
+	    New File  		    2039	X2LWActivityCooldown.uc
+	    New File  		    1238	X2LWActivityCooldown_Global.uc
+	    New File  		     988	X2LWActivityCooldown_UFO.uc
+	    New File  		    3521	X2LWActivityCreation.uc
+	    New File  		    5067	X2LWActivityCreation_AlertUFOLandingRegion.uc
+	    New File  		    1418	X2LWActivityCreation_FurthestAway.uc
+	    New File  		    5243	X2LWActivityCreation_Invasion.uc
+	    New File  		    1775	X2LWActivityCreation_MostDangerous.uc
+	    New File  		     869	X2LWActivityCreation_ProtectResearch.uc
+	    New File  		   11337	X2LWActivityCreation_Reinforce.uc
+	    New File  		    1756	X2LWActivityCreation_SafestRegion.uc
+	    New File  		    8003	X2LWActivityDetectionCalc.uc
+	    New File  		    1482	X2LWActivityDetectionCalc_ProtectResearch.uc
+	    New File  		    3220	X2LWActivityDetectionCalc_Rendezvous.uc
+	    New File  		    1829	X2LWActivityDetectionCalc_Terror.uc
+	    New File  		    1248	X2LWActivityDetectionCalc_TroopManeuvers.uc
+	    New File  		   11189	X2LWAlienActivityTemplate.uc
+	    New File  		    2476	X2LWObjectivesModTemplate.uc
+	    New File  		    1782	X2LWTemplateModTemplate.uc
+	    New File  		   79632	X2MissionNarrative_LWNarrativeSet.uc
+	    New File  		    2966	X2MissionSet_LW.uc
+	    New File  		    2853	X2MultiWeaponTemplate.uc
+	    New File  		    2071	X2StrategyElement_AcademyUnlocks_LW.uc
+	    New File  		    1174	X2StrategyElement_ContinentBonuses_LW.uc
+	    New File  		   35223	X2StrategyElement_DarkEvents_LW.uc
+	    New File  		  188898	X2StrategyElement_DefaultAlienActivities.uc
+	    New File  		   12682	X2StrategyElement_DefaultRewards_LW.uc
+	    New File  		    7809	X2StrategyElement_DefaultStaffSlots_LW.uc
+	    New File  		    6604	X2StrategyElement_LWAlienAI.uc
+	    New File  		    9745	X2StrategyElement_LWMissionSources.uc
+	    New File  		   13207	X2StrategyElement_LWObjectives.uc
+	    New File  		     841	X2StrategyElement_MissionSiteDescriptions_LW.uc
+	    New File  		   69333	X2StrategyElement_NewTechs_LW.uc
+	    New File  		    4568	X2StrategyElement_PointsofInterest_LW.uc
+	    New File  		    4204	X2TargetingMethod_LWBlasterLauncher.uc
+	    New File  		    2504	X2TargetingMethod_LWEvacZone.uc
+	    New File  		    4820	X2TargetingMethod_LWRocketLauncher.uc
+	    New File  		    2410	XComGameState_Effect_Bombard.uc
+	    New File  		    2463	XComGameState_Effect_Failsafe.uc
+	    New File  		    3927	XComGameState_Effect_ImmediateMultiTarget.uc
+	    New File  		    2802	XComGameState_Effect_JavelinRockets.uc
+	    New File  		    5392	XComGameState_Effect_TransferMecToOutpost.uc
+	    New File  		   34044	XComGameState_LWAlienActivity.uc
+	    New File  		   25300	XComGameState_LWAlienActivityManager.uc
+	    New File  		   13799	XComGameState_LWEvacSpawner.uc
+	    New File  		  124756	XComGameState_LWListenerManager.uc
+	    New File  		   53192	XComGameState_LWOutpost.uc
+	    New File  		   10015	XComGameState_LWOutpostManager.uc
+	    New File  		    6117	XComGameState_LWOverhaulOptions.uc
+	    New File  		   46839	XComGameState_LWPersistentSquad.uc
+	    New File  		    5881	XComGameState_LWPodJob.uc
+	    New File  		    7154	XComGameState_LWPodJob_Flank.uc
+	    New File  		    3260	XComGameState_LWPodJob_MoveToLocation.uc
+	    New File  		   25824	XComGameState_LWPodManager.uc
+	    New File  		   17646	XComGameState_LWReinforcements.uc
+	    New File  		   25174	XComGameState_LWSquadManager.uc
+	    New File  		    2663	XComGameState_MissionSiteRebelRaid_LW.uc
+	    New File  		    5261	XComGameState_MissionSiteRendezvous_LW.uc
+	    New File  		   15517	XComGameState_WorldRegion_LWStrategyAI.uc
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_PerkPack_Integrated\
+	    New File  		     583	LW_PerkPack.uci
+	  New Dir        104	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\
+	    New File  		   40822	UIArmory_LWExpandedPromotion.uc
+	    New File  		   11485	UIArmory_LWExpandedPromotionItem.uc
+	    New File  		    4932	UIArmory_LWExpandedPromotionSummaryItem.uc
+	    New File  		     578	UIArmory_MainMenu_LW.uc
+	    New File  		    4777	UIScreenListener_Armory_MainMenu_LW_LWExpandedPerkTree.uc
+	    New File  		    3571	UIScreenListener_Armory_MainMenu_LWExpandedPerkTree.uc
+	    New File  		    4221	UIScreenListener_Armory_Promotion.uc
+	    New File  		    1950	UIScreenListener_Armory_PromotionPsi_LW.uc
+	    New File  		    1360	UIScreenListener_SquadSelect.uc
+	    New File  		    2056	UIScreenListener_TacticalHUD_LW.uc
+	    New File  		    1266	UIScreenListener_UIAlert.uc
+	    New File  		   14228	UITacticalHUD_AbilityContainer_LWExtended.uc
+	    New File  		    2431	UIVerticalScrollingText.uc
+	    New File  		    4874	UIVerticalScrollingText2.uc
+	    New File  		    2920	Utilities_PP_LW.uc
+	    New File  		  188686	X2Ability_PerkPackAbilitySet.uc
+	    New File  		   42540	X2Ability_PerkPackAbilitySet2.uc
+	    New File  		     850	X2AbilityCharges_Interference.uc
+	    New File  		     619	X2AbilityCooldown_MindMerge.uc
+	    New File  		    1020	X2AbilityCooldown_RunAndGun_LW.uc
+	    New File  		     241	X2AbilityCost_Ammo_AllAmmo.uc
+	    New File  		     338	X2AbilityCost_QuickdrawActionPoints_LW.uc
+	    New File  		    2310	X2AbilityTarget_Single_CCS.uc
+	    New File  		    1251	X2Condition_CoverStatus.uc
+	    New File  		    1080	X2Condition_OverwatchLimit.uc
+	    New File  		     678	X2Condition_RequireConcealed.uc
+	    New File  		    3206	X2Condition_RequiredToHitChance.uc
+	    New File  		    7995	X2DownloadableContentInfo_LWPerkPack.uc
+	    New File  		     888	X2Effect_AbsorptionFields.uc
+	    New File  		    1747	X2Effect_Aggression.uc
+	    New File  		    2364	X2Effect_ApplyDenseSmokeGrenadeToWorld.uc
+	    New File  		    7705	X2Effect_AreaSuppression.uc
+	    New File  		    5344	X2Effect_Bastion.uc
+	    New File  		    1623	X2Effect_BodyShield.uc
+	    New File  		    2797	X2Effect_BringEmOn.uc
+	    New File  		    1551	X2Effect_CloseandPersonal.uc
+	    New File  		    3389	X2Effect_CloseEncounters.uc
+	    New File  		    1804	X2Effect_CombatAwareness.uc
+	    New File  		    3773	X2Effect_Commissar.uc
+	    New File  		    3007	X2Effect_Cutthroat.uc
+	    New File  		     641	X2Effect_DamageControl.uc
+	    New File  		    1962	X2Effect_DamnGoodGround.uc
+	    New File  		    2300	X2Effect_DenseSmokeGrenade.uc
+	    New File  		    1556	X2Effect_DepthPerception.uc
+	    New File  		    4027	X2Effect_EmergencyLifeSupport.uc
+	    New File  		    1497	X2Effect_Executioner_LW.uc
+	    New File  		    4809	X2Effect_FieldSurgeon.uc
+	    New File  		    2486	X2Effect_FlecheBonusDamage.uc
+	    New File  		    1842	X2Effect_Formidable.uc
+	    New File  		    2608	X2Effect_FullKit.uc
+	    New File  		    2470	X2Effect_FullOrdnance.uc
+	    New File  		    1213	X2Effect_GrazingFire.uc
+	    New File  		    1701	X2Effect_HardTarget.uc
+	    New File  		    3679	X2Effect_HitandRun.uc
+	    New File  		    3690	X2Effect_HyperReactivePupils.uc
+	    New File  		    1334	X2Effect_Infighter.uc
+	    New File  		     709	X2Effect_Interference.uc
+	    New File  		    1083	X2Effect_IronCurtain.uc
+	    New File  		    1002	X2Effect_IronCurtainStatDamage.uc
+	    New File  		    2124	X2Effect_KilledEnemy.uc
+	    New File  		    1566	X2Effect_KillerInstinct.uc
+	    New File  		    3911	X2Effect_Kubikuri.uc
+	    New File  		    4207	X2Effect_LightningReflexes_LW.uc
+	    New File  		    1404	X2Effect_LockdownDamage.uc
+	    New File  		    3835	X2Effect_LockedOn.uc
+	    New File  		    3139	X2Effect_LoneWolf.uc
+	    New File  		    2501	X2Effect_LowProfile_LW.uc
+	    New File  		    1036	X2Effect_Mayhem.uc
+	    New File  		    2166	X2Effect_MeleeDamageAdjust_LW.uc
+	    New File  		    5568	X2Effect_MindMerge.uc
+	    New File  		     823	X2Effect_PrecisionShotCritDamage.uc
+	    New File  		    2010	X2Effect_PrimaryHitBonusDamage.uc
+	    New File  		    3326	X2Effect_RapidDeployment.uc
+	    New File  		    5238	X2Effect_RapidReaction.uc
+	    New File  		    3609	X2Effect_RemoveAreaSuppressionEffect.uc
+	    New File  		     914	X2Effect_Resilience.uc
+	    New File  		    2986	X2Effect_Savior.uc
+	    New File  		    4797	X2Effect_Sentinel_LW.uc
+	    New File  		    2154	X2Effect_SlugShot.uc
+	    New File  		    2339	X2Effect_SmartMacrophages.uc
+	    New File  		    1761	X2Effect_SnapShotAimModifier.uc
+	    New File  		     960	X2Effect_SoulSteal_LW.uc
+	    New File  		    3882	X2Effect_SteadyWeapon.uc
+	    New File  		    1695	X2Effect_TacticalSense.uc
+	    New File  		   14262	X2Effect_TemporaryItem.uc
+	    New File  		    4676	X2Effect_TraverseFire.uc
+	    New File  		    2852	X2Effect_Trojan.uc
+	    New File  		    2944	X2Effect_TrojanVirus.uc
+	    New File  		    1060	X2Effect_WalkFireDamage.uc
+	    New File  		    3707	X2Effect_Whirlwind.uc
+	    New File  		    3167	X2Effect_WilltoSurvive.uc
+	    New File  		    6905	X2Item_DenseSmokeGrenade.uc
+	    New File  		   17513	X2Item_PerkPCS.uc
+	    New File  		    3734	X2Item_StingGrenade.uc
+	    New File  		     851	X2TargetingMethod_AreaSuppression.uc
+	    New File  		    2343	XComGameState_Effect_EffectCounter.uc
+	    New File  		    4208	XComGameState_Effect_IncomingReactionFire.uc
+	    New File  		    2593	XComGameState_Effect_LastShotDetails.uc
+	    New File  		    3785	XComGameState_Effect_Savior.uc
+	    New File  		    3562	XComGameState_Effect_SteadyWeaponListener.uc
+	    New File  		    1998	XComGameState_Effect_TemporaryItem.uc
+	    New File  		    7090	XComGameState_Effect_Trojan.uc
+	    New File  		    9369	XComGameState_Effect_Whirlwind.uc
+	    New File  		   11251	XComGameState_LWPerkPackOptions.uc
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_SMGPack_Integrated\
+	  New Dir          3	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_SMGPack_Integrated\Classes\
+	    New File  		    6930	X2Ability_SMGAbilities.uc
+	    New File  		   18911	X2DownloadableContentInfo_LWSMGPack.uc
+	    New File  		   12506	X2Item_SMGWeapon.uc
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_Toolbox_Integrated\
+	  New Dir         15	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_Toolbox_Integrated\Classes\
+	    New File  		    6693	LWSpawnUnitFromAvenger.uc
+	    New File  		   12528	UIAfterAction_LW.uc
+	    New File  		   15136	UIOptionsPCScreen_LW.uc
+	    New File  		    5153	UIRecruitmentListItem_LW.uc
+	    New File  		     803	UIScreenListener_Armory_MainMenu.uc
+	    New File  		    1506	UIScreenListener_GameLoad.uc
+	    New File  		    3548	UIScreenListener_ScreenUpdates.uc
+	    New File  		    3278	X2Ability_RedFog_LW.uc
+	    New File  		    9051	X2DownloadableContentInfo_LWToolbox.uc
+	    New File  		    4067	X2Effect_RedFog_LW.uc
+	    New File  		    5723	X2StrategyElement_RandomizedSoldierRewards.uc
+	    New File  		    8581	XComGameState_Effect_RedFog_LW.uc
+	    New File  		   70812	XComGameState_LWToolboxOptions.uc
+	    New File  		    8020	XComGameState_Unit_LWRandomizedStats.uc
+	    New File  		    4169	XComTacticalInput_LW.uc
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_XCGS_ModOptions\
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_XCGS_ModOptions\Classes\
+	    New File  		    5446	XComGameState_LWModOptions.uc
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_XCGS_ToolboxOptions\
+	  New Dir          1	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LW_XCGS_ToolboxOptions\Classes\
+	    New File  		    3863	XComGameState_LWToolboxPrototype.uc
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LWUtilities\
+	  New Dir          3	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\LWUtilities\Classes\
+	    New File  		   13468	Helpers_LW.uc
+	    New File  		    2878	LWUtilities_Ranks.uc
+	    New File  		     695	X2DownloadableContentInfo_LWUtilities.uc
+	  New Dir          2	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\ModConfigMenuAPI\
+	    New File  		     544	MCM_API_CfgHelpers.uci
+	    New File  		    1054	MCM_API_Includes.uci
+	  New Dir         11	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\ModConfigMenuAPI\Classes\
+	    New File  		     515	MCM_API.uc
+	    New File  		      76	MCM_API_Button.uc
+	    New File  		     131	MCM_API_Checkbox.uc
+	    New File  		     229	MCM_API_Dropdown.uc
+	    New File  		     914	MCM_API_Instance.uc
+	    New File  		      48	MCM_API_Label.uc
+	    New File  		     982	MCM_API_Setting.uc
+	    New File  		    2125	MCM_API_SettingsGroup.uc
+	    New File  		    1077	MCM_API_SettingsPage.uc
+	    New File  		     351	MCM_API_Slider.uc
+	    New File  		     228	MCM_API_Spinner.uc
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\robojumperSquadSelect_Integrated\
+	  New Dir         15	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\robojumperSquadSelect_Integrated\Classes\
+	    New File  		     748	robojumper_SquadSelect_Helpers.uc
+	    New File  		    7769	robojumper_SquadSelect_UISL_MCM.uc
+	    New File  		    3210	robojumper_SquadSelect_WorldConfiguration.uc
+	    New File  		    4469	robojumper_SquadSelectConfig.uc
+	    New File  		    2122	robojumper_SquadSelectControllerMap.uc
+	    New File  		    7447	robojumper_UIList_SquadEditor.uc
+	    New File  		    2473	robojumper_UIMouseGuard_SquadSelect.uc
+	    New File  		   53342	robojumper_UISquadSelect.uc
+	    New File  		   12233	robojumper_UISquadSelect_EquipItem.uc
+	    New File  		   20496	robojumper_UISquadSelect_ListItem.uc
+	    New File  		    8709	robojumper_UISquadSelect_SkillsPanel.uc
+	    New File  		   14038	robojumper_UISquadSelect_SoldierPanel.uc
+	    New File  		    4808	robojumper_UISquadSelect_StatsPanel.uc
+	    New File  		    7865	robojumper_UISquadSelect_UtilityItem.uc
+	    New File  		    3767	X2DownloadableContentInfo_robojumperSquadSelect.uc
+	  New Dir          0	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\WotCWeaponsAndArmor\
+	  New Dir          4	c:\Vagrant\boxes\shared\lwotc\LongWarOfTheChosen\Src\WotCWeaponsAndArmor\Classes\
+	    New File  		    5562	X2Ability_WeaponAbilities.uc
+	    New File  		    1563	X2DownloadableContentInfo_WotCWeaponsAndArmor.uc
+	    New File  		   10257	X2Item_Armors.uc
+	    New File  		   36599	X2Item_Weapons.uc
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        61        61         0         0         0         0
+   Files :      1000      1000         0         0         0         0
+   Bytes :   2.701 g   2.701 g         0         0         0         0
+   Times :   0:00:02   0:00:02                       0:00:00   0:00:00
+
+
+   Speed :           1030477729 Bytes/sec.
+   Speed :            58964.408 MegaBytes/min.
+
+   Ended : Wed Apr 17 01:40:06 2019
+
+
+    Directory: H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen 
+    SDK\XComGame\Mods\LongWarOfTheChosen
+
+
+Mode                LastWriteTime     Length Name                              
+----                -------------     ------ ----                              
+d----         4/17/2019   1:40 AM            Script                            
+Reading mod metadata from c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen/LongWarOfTheChosen.x2proj...
+Read.
+Writing mod metadata...
+Written.
+Mirroring SrcOrig to Src...
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wed Apr 17 01:40:06 2019
+
+   Source : H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\
+     Dest : H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\
+
+    Files : *.uc
+	    *.uci
+	    
+  Options : /S /E /COPY:DAT /PURGE /MIR /NP /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\DetailedSoldierListWOTC_Integrated\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\DetailedSoldierListWOTC_Integrated\Classes\
+	  *EXTRA File 		    2593	MoreDetailsManager.uc
+	  *EXTRA File 		    2842	MoreDetailsNavigatorWrapper.uc
+	  *EXTRA File 		   36218	UIPersonnel_SoldierListItemDetailed.uc
+	  *EXTRA File 		    6657	X2DownloadableContentInfo_DetailedSoldierListWOTC.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_AlienPack_Integrated\
+	  *EXTRA File 		     567	LW_AlienPack.uci
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_AlienPack_Integrated\Classes\
+	  *EXTRA File 		     459	LWAlienPack_Utilities.uc
+	  *EXTRA File 		    2035	LWUpdateAlienCustomizationAction.uc
+	  *EXTRA File 		    5974	UIScreenListener_Shell_LWAlienPack.uc
+	  *EXTRA File 		    1225	UIScreenListener_TacticalHUD_LWAlienPack.uc
+	  *EXTRA File 		   53246	X2Ability_LWAlienAbilities.uc
+	  *EXTRA File 		    3882	X2Action_MoveClimbWall_LW.uc
+	  *EXTRA File 		   66675	X2Character_AlienPack.uc
+	  *EXTRA File 		    5504	X2DownloadableContentInfo_LWAlienPack.uc
+	  *EXTRA File 		    2296	X2Effect_AdventGrenadeLauncher.uc
+	  *EXTRA File 		     921	X2Effect_BeastMaster.uc
+	  *EXTRA File 		     714	X2Effect_HiveQueenSlash.uc
+	  *EXTRA File 		    1863	X2Effect_ReadyForAnything.uc
+	  *EXTRA File 		     684	X2Effect_RepairServos.uc
+	  *EXTRA File 		    1949	X2Effect_SimpleHeal.uc
+	  *EXTRA File 		    2528	X2Effect_WarCry.uc
+	  *EXTRA File 		   47497	X2Item_LWAlienWeapons.uc
+	  *EXTRA File 		    1083	X2Item_Resources_AlienPack.uc
+	  *EXTRA File 		    1296	X2TargetingMethod_MassMindspin.uc
+	  *EXTRA File 		    8899	XComGameState_AlienCustomizationManager.uc
+	  *EXTRA File 		   23353	XComGameState_Unit_AlienCustomization.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_LaserPack_Integrated\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_LaserPack_Integrated\Classes\
+	  *EXTRA File 		    2401	X2Ability_LaserSMGAbilities.uc
+	  *EXTRA File 		   20343	X2DownloadableContentInfo_LWLaserPack.uc
+	  *EXTRA File 		   19541	X2Item_LaserWeapons.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_OfficerPack_Integrated\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_OfficerPack_Integrated\Classes\
+	  *EXTRA File 		    6237	LWCommandRange_Actor.uc
+	  *EXTRA File 		   18474	LWOfficerUtilities.uc
+	  *EXTRA File 		    3903	UIAlert_LWOfficerTrainingComplete.uc
+	  *EXTRA File 		   25179	UIArmory_LWOfficerPromotion.uc
+	  *EXTRA File 		    2593	UIArmory_LWOfficerPromotionItem.uc
+	  *EXTRA File 		    6563	UIFacility_LWOfficerSlot.uc
+	  *EXTRA File 		    2436	UIFacilityStaffContainer_LWOTS.uc
+	  *EXTRA File 		     891	UIListItemString_SelfContained.uc
+	  *EXTRA File 		    6491	UIPersonnel_ListItem_SquadSelect_LWOfficerPack.uc
+	  *EXTRA File 		    2077	UIPersonnel_LWOfficer.uc
+	  *EXTRA File 		    3187	UIPersonnel_SquadSelect_LWOfficerPack.uc
+	  *EXTRA File 		     820	UIScreenListener_Armory_MainMenu_LWOfficerPack.uc
+	  *EXTRA File 		    2161	UIScreenListener_Armory_Promotion_LWOfficerPack.uc
+	  *EXTRA File 		    2220	UIScreenListener_Armory_PromotionPsiOp_LWOfficerPack.uc
+	  *EXTRA File 		    4233	UIScreenListener_ChooseUpgrade_LWOfficerPack.uc
+	  *EXTRA File 		    5254	UIScreenListener_Facility_Academy_LWOfficerPack.uc
+	  *EXTRA File 		    7601	UIScreenListener_FacilityUpgrade_LWOfficerPack.uc
+	  *EXTRA File 		   21437	UIScreenListener_LWOfficerPack.uc
+	  *EXTRA File 		    5410	UIScreenListener_SquadSelect_LWOfficerPack.uc
+	  *EXTRA File 		    2295	UIScreenListener_TacticalHUD_LWOfficerPack.uc
+	  *EXTRA File 		    6736	UISquadSelect_ListItem_LWOfficerPack.uc
+	  *EXTRA File 		    1658	UISquadSelect_OfficerIcon.uc
+	  *EXTRA File 		     818	UISquadSelect_UtilityItem_LWOfficerPack.uc
+	  *EXTRA File 		    6850	UITacticalHUD_MouseControls_LWOfficerPack.uc
+	  *EXTRA File 		   67156	X2Ability_OfficerAbilitySet.uc
+	  *EXTRA File 		   16104	X2Ability_OfficerAbilitySet_PassiveAuras.uc
+	  *EXTRA File 		    4644	X2Ability_ToggleCommandRange.uc
+	  *EXTRA File 		     858	X2AbilityCharges_Command.uc
+	  *EXTRA File 		    5650	X2AbilityMultiTarget_LWOfficerCommandRange.uc
+	  *EXTRA File 		    2220	X2AbilityToHitCalc_LWCommandRange.uc
+	  *EXTRA File 		    2073	X2Condition_EspritDeCorps.uc
+	  *EXTRA File 		     825	X2Condition_HasEnoughIntel.uc
+	  *EXTRA File 		    1321	X2Condition_Intervention.uc
+	  *EXTRA File 		   14513	X2DownloadableContentInfo_LWOfficerPack.uc
+	  *EXTRA File 		     866	X2Effect_AirController.uc
+	  *EXTRA File 		    2674	X2Effect_Collector.uc
+	  *EXTRA File 		    1570	X2Effect_CombinedArms.uc
+	  *EXTRA File 		    1390	X2Effect_Defilade.uc
+	  *EXTRA File 		    3824	X2Effect_EspritdeCorps.uc
+	  *EXTRA File 		    1850	X2Effect_FallBack.uc
+	  *EXTRA File 		     750	X2Effect_FireDiscipline.uc
+	  *EXTRA File 		    4760	X2Effect_FocusFire.uc
+	  *EXTRA File 		    1815	X2Effect_Incoming.uc
+	  *EXTRA File 		    3789	X2Effect_LeadByExample.uc
+	  *EXTRA File 		    5065	X2Effect_LeadByExample_old.uc
+	  *EXTRA File 		    2685	X2Effect_LWOfficerCommandAura.uc
+	  *EXTRA File 		    5344	X2Effect_Scavenger.uc
+	  *EXTRA File 		   12976	X2StrategyElement_LW_OTS_OfficerStaffSlot.uc
+	  *EXTRA File 		    1114	XComGameState_Effect_AirController.uc
+	  *EXTRA File 		    7403	XComGameState_Effect_Collector.uc
+	  *EXTRA File 		    4246	XComGameState_Effect_FocusFire.uc
+	  *EXTRA File 		   12798	XComGameState_Effect_Scavenger.uc
+	  *EXTRA File 		    9191	XComGameState_HeadquartersProjectTrainLWOfficer.uc
+	  *EXTRA File 		    4663	XComGameState_Unit_LWOfficer.uc
+	  *EXTRA File 		     544	XComHQPresentationLayer_LWOfficerPack.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_Overhaul\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_Overhaul\Classes\
+	  *EXTRA File 		    7739	LWDLCHelpers.uc
+	  *EXTRA File 		     995	LWHelp_Default.uc
+	  *EXTRA File 		    3493	LWHelpTemplate.uc
+	  *EXTRA File 		    7411	LWPodJobs_DefaultJobSet.uc
+	  *EXTRA File 		     734	LWPodJobTemplate.uc
+	  *EXTRA File 		   19160	LWRebelJob_DefaultJobSet.uc
+	  *EXTRA File 		     811	LWRebelJobIncomeModifier.uc
+	  *EXTRA File 		    1510	LWRebelJobIncomeModifier_DarkEvent.uc
+	  *EXTRA File 		    1032	LWRebelJobIncomeModifier_DiminishingSupplies.uc
+	  *EXTRA File 		    1185	LWRebelJobIncomeModifier_Liaison.uc
+	  *EXTRA File 		    1155	LWRebelJobIncomeModifier_Liberated.uc
+	  *EXTRA File 		     901	LWRebelJobIncomeModifier_LocalFaceless.uc
+	  *EXTRA File 		     820	LWRebelJobIncomeModifier_Prohibited.uc
+	  *EXTRA File 		     948	LWRebelJobIncomeModifier_Radio.uc
+	  *EXTRA File 		     793	LWRebelJobIncomeModifier_Range.uc
+	  *EXTRA File 		    1035	LWRebelJobIncomeModifier_SoldierLiaison.uc
+	  *EXTRA File 		    2625	LWRebelJobTemplate.uc
+	  *EXTRA File 		   22561	LWTacticalMissionUnitSpawner.uc
+	  *EXTRA File 		  122370	LWTemplateMods.uc
+	  *EXTRA File 		    9608	LWTemplateMods_Utilities.uc
+	  *EXTRA File 		    1735	LWVersion.uc
+	  *EXTRA File 		     476	LWVisualizedInterface.uc
+	  *EXTRA File 		     833	LWXComGameVersion.uc
+	  *EXTRA File 		    2777	LWXComGameVersionTemplate.uc
+	  *EXTRA File 		    2384	SeqAct_AwardLoot.uc
+	  *EXTRA File 		    1614	SeqAct_ControlCivilian.uc
+	  *EXTRA File 		    2953	SeqAct_GetAssociatedObjectiveObjects.uc
+	  *EXTRA File 		    1774	SeqAct_GetInteractiveObjectHacked.uc
+	  *EXTRA File 		    1029	SeqAct_GetMissionTimer.uc
+	  *EXTRA File 		    1880	SeqAct_GetRegionInfo.uc
+	  *EXTRA File 		    4545	SeqAct_InitializeMissionTimer.uc
+	  *EXTRA File 		    7512	SeqAct_LWCallReinforcements.uc
+	  *EXTRA File 		    2220	SeqAct_RemoveItemFromInventory.uc
+	  *EXTRA File 		    1206	SeqAct_ResetCivilians.uc
+	  *EXTRA File 		    1488	SeqAct_SetInteractiveObjectHacked.uc
+	  *EXTRA File 		    5377	SeqAct_SpawnDelayedEvacZone.uc
+	  *EXTRA File 		    1430	SeqAct_ToggleUnitFlag.uc
+	  *EXTRA File 		    1600	SeqAct_VectorOps.uc
+	  *EXTRA File 		    1141	SeqAct_XComSpawnLocation.uc
+	  *EXTRA File 		     901	SeqEvent_EvacSpawnerDestroyed.uc
+	  *EXTRA File 		    6613	SeqEvent_LWTeamHasNoFilteredPlayableUnitsRemaining.uc
+	  *EXTRA File 		     818	SeqEvent_UnitRemovedFromPlay.uc
+	  *EXTRA File 		    3934	UIAvengerShortcuts_LW.uc
+	  *EXTRA File 		    3184	UIButtonIconPC.uc
+	  *EXTRA File 		    5757	UIDarkEventListItem.uc
+	  *EXTRA File 		   33129	UIMission_LWCustomMission.uc
+	  *EXTRA File 		   20015	UIMission_LWLaunchDelayedMission.uc
+	  *EXTRA File 		   24537	UIOutpostManagement.uc
+	  *EXTRA File 		    4628	UIOutpostManagement_ListItem.uc
+	  *EXTRA File 		    2018	UIPersonnel_Liaison.uc
+	  *EXTRA File 		   27054	UIPersonnel_SquadBarracks.uc
+	  *EXTRA File 		    7559	UIResistanceManagement_ListItem.uc
+	  *EXTRA File 		   12496	UIResistanceManagement_LW.uc
+	  *EXTRA File 		    2278	UIScreenListener_AcquireHackRewardOverride.uc
+	  *EXTRA File 		    8841	UIScreenListener_AdventOperations.uc
+	  *EXTRA File 		   10124	UIScreenListener_Alert.uc
+	  *EXTRA File 		    3709	UIScreenListener_Armory_MainMenu_LW.uc
+	  *EXTRA File 		    7568	UIScreenListener_ArmoryWeaponUpgrade_LW.uc
+	  *EXTRA File 		    1101	UIScreenListener_AvengerHUD.uc
+	  *EXTRA File 		    7813	UIScreenListener_CanAddInventoryOverride.uc
+	  *EXTRA File 		    1450	UIScreenListener_DropShipBriefing_MissionStart.uc
+	  *EXTRA File 		    5721	UIScreenListener_GetPCSImageOverride.uc
+	  *EXTRA File 		    1725	UIScreenListener_LivingQuarters.uc
+	  *EXTRA File 		    2246	UIScreenListener_OverrideItemRange.uc
+	  *EXTRA File 		    1517	UIScreenListener_PersonnelLists.uc
+	  *EXTRA File 		    6578	UIScreenListener_ResistanceReport.uc
+	  *EXTRA File 		    1888	UIScreenListener_Shell.uc
+	  *EXTRA File 		    4557	UIScreenListener_ShellDifficulty.uc
+	  *EXTRA File 		    8600	UIScreenListener_SkyrangerArrives_LW.uc
+	  *EXTRA File 		   10893	UIScreenListener_SquadSelect_LW.uc
+	  *EXTRA File 		    7862	UIScreenListener_TacticalHUD.uc
+	  *EXTRA File 		    2008	UIScreenListener_ViewObjectives.uc
+	  *EXTRA File 		    5071	UIScrollingTextField.uc
+	  *EXTRA File 		    5300	UISquad_DropDown.uc
+	  *EXTRA File 		    1411	UISquadClassItem.uc
+	  *EXTRA File 		    5534	UISquadContainer.uc
+	  *EXTRA File 		    9476	UISquadListItem.uc
+	  *EXTRA File 		    6697	UISquadListItem_Small.uc
+	  *EXTRA File 		    1575	UISquadSelect_InfiltrationItem.uc
+	  *EXTRA File 		   10287	UISquadSelect_InfiltrationPanel.uc
+	  *EXTRA File 		    9960	UIStrategyMapItem_Mission_LW.uc
+	  *EXTRA File 		   17531	UIStrategyMapItem_Region_LW.uc
+	  *EXTRA File 		   19562	UIUtilities_LW.uc
+	  *EXTRA File 		    1954	UIUtilities_Text_LW.uc
+	  *EXTRA File 		   21468	Utilities_LW.uc
+	  *EXTRA File 		    7751	X2Ability_HackRewards_LW.uc
+	  *EXTRA File 		    2094	X2Ability_InfiltrationModifier.uc
+	  *EXTRA File 		   26042	X2Ability_LW_AssaultAbilitySet.uc
+	  *EXTRA File 		    6234	X2Ability_LW_DefaultAbilitySet.uc
+	  *EXTRA File 		   25967	X2Ability_LW_GearAbilities.uc
+	  *EXTRA File 		   19197	X2Ability_LW_GrenadierAbilitySet.uc
+	  *EXTRA File 		   20900	X2Ability_LW_GunnerAbilitySet.uc
+	  *EXTRA File 		    4137	X2Ability_LW_PsiOperativeAbilitySet.uc
+	  *EXTRA File 		   19471	X2Ability_LW_RangerAbilitySet.uc
+	  *EXTRA File 		    5168	X2Ability_LW_RebelAbilitySet.uc
+	  *EXTRA File 		   17897	X2Ability_LW_SharpshooterAbilitySet.uc
+	  *EXTRA File 		   24073	X2Ability_LW_ShinobiAbilitySet.uc
+	  *EXTRA File 		   22224	X2Ability_LW_SpecialistAbilitySet.uc
+	  *EXTRA File 		   60876	X2Ability_LW_TechnicalAbilitySet.uc
+	  *EXTRA File 		    7406	X2Ability_PlaceDelayedEvacZone.uc
+	  *EXTRA File 		     468	X2AbilityCharges_BonusCharges.uc
+	  *EXTRA File 		     852	X2AbilityCharges_RescueProtocol.uc
+	  *EXTRA File 		     421	X2AbilityCharges_TakeThisCharge.uc
+	  *EXTRA File 		    1585	X2AbilityCooldown_AllInstances.uc
+	  *EXTRA File 		     921	X2AbilityCooldown_LWFlamethrower.uc
+	  *EXTRA File 		    1561	X2AbilityToHitCalc_StatCheck_LWFlamethrower.uc
+	  *EXTRA File 		   12683	X2Action_Fire_Firestorm.uc
+	  *EXTRA File 		    1089	X2Action_ToggleUnitFlag.uc
+	  *EXTRA File 		   19235	X2Character_Resistance.uc
+	  *EXTRA File 		     750	X2Condition_CoupDeGrace.uc
+	  *EXTRA File 		    1127	X2Condition_MasteredEnemy.uc
+	  *EXTRA File 		    1035	X2Condition_Phosphorus.uc
+	  *EXTRA File 		     855	X2Condition_PlaceDelayedEvacZonePermitted.uc
+	  *EXTRA File 		     857	X2Condition_Sedate.uc
+	  *EXTRA File 		    1104	X2Condition_Solace_LW.uc
+	  *EXTRA File 		     990	X2Condition_Soldier.uc
+	  *EXTRA File 		    1116	X2Condition_UnitDoesNotHaveItem.uc
+	  *EXTRA File 		  110289	X2DownloadableContentInfo_LongWarOfTheChosen.uc
+	  *EXTRA File 		    1537	X2Effect_AbilityDamageMult.uc
+	  *EXTRA File 		    1113	X2Effect_AddAmmo.uc
+	  *EXTRA File 		   31237	X2Effect_ApplyAltWeaponDamage.uc
+	  *EXTRA File 		   16670	X2Effect_ApplyExplosiveFalloffWeaponDamage.uc
+	  *EXTRA File 		   10618	X2Effect_ApplyFireToWorld_Limited.uc
+	  *EXTRA File 		    1040	X2Effect_Arcthrower.uc
+	  *EXTRA File 		    1113	X2Effect_ArcthrowerStunned.uc
+	  *EXTRA File 		    2018	X2Effect_BiggestBooms_LW.uc
+	  *EXTRA File 		    1991	X2Effect_Bombard.uc
+	  *EXTRA File 		    2857	X2Effect_BonusGrenadeSlotUse.uc
+	  *EXTRA File 		    1983	X2Effect_BonusRocketCharges.uc
+	  *EXTRA File 		    1912	X2Effect_CancelLongRangePenalty.uc
+	  *EXTRA File 		    4290	X2Effect_CoupDeGrace.uc
+	  *EXTRA File 		    2617	X2Effect_CoupDeGrace2.uc
+	  *EXTRA File 		    2162	X2Effect_DeathFromAbove_LW.uc
+	  *EXTRA File 		    1358	X2Effect_DLC2_HideSpecialTurnOverlay.uc
+	  *EXTRA File 		    1175	X2Effect_DoubleDamage.uc
+	  *EXTRA File 		    1714	X2Effect_DoubleTap.uc
+	  *EXTRA File 		    2352	X2Effect_Failsafe.uc
+	  *EXTRA File 		    1696	X2Effect_Guardian_LW.uc
+	  *EXTRA File 		    1012	X2Effect_HairTrigger.uc
+	  *EXTRA File 		    2074	X2Effect_HEATGrenades.uc
+	  *EXTRA File 		    1526	X2Effect_HunkerDown_LW.uc
+	  *EXTRA File 		    2156	X2Effect_HuntersInstinctDamage_LW.uc
+	  *EXTRA File 		    2835	X2Effect_ImmediateMultiTargetAbilityActivation.uc
+	  *EXTRA File 		    2672	X2Effect_InfiltrationModifier.uc
+	  *EXTRA File 		    1375	X2Effect_ItemWeight.uc
+	  *EXTRA File 		    2096	X2Effect_JavelinRockets.uc
+	  *EXTRA File 		    6888	X2Effect_LWHolotarget.uc
+	  *EXTRA File 		     684	X2Effect_MaybeApplyDirectionalWorldDamage.uc
+	  *EXTRA File 		    1350	X2Effect_ModifyNonReactionFire.uc
+	  *EXTRA File 		     780	X2Effect_Phosphorus.uc
+	  *EXTRA File 		    1589	X2Effect_Quickburn.uc
+	  *EXTRA File 		    1248	X2Effect_ReflexShotModifier.uc
+	  *EXTRA File 		    1484	X2Effect_RemoveItemWeight.uc
+	  *EXTRA File 		    1268	X2Effect_RoustDamage.uc
+	  *EXTRA File 		    1568	X2Effect_SerialCritReduction.uc
+	  *EXTRA File 		     914	X2Effect_StilettoRounds.uc
+	  *EXTRA File 		     857	X2Effect_StreetSweeper.uc
+	  *EXTRA File 		    1708	X2Effect_StunGunner.uc
+	  *EXTRA File 		    3852	X2Effect_TransferMecToOutpost.uc
+	  *EXTRA File 		    3100	X2Effect_Whirlwind2.uc
+	  *EXTRA File 		    2055	X2EventListener_Missions.uc
+	  *EXTRA File 		    5266	X2EventListener_Reinforcements.uc
+	  *EXTRA File 		    7149	X2EventListener_Soldiers.uc
+	  *EXTRA File 		   16627	X2EventListener_StrategyMap.uc
+	  *EXTRA File 		    3282	X2EventListener_Tactical.uc
+	  *EXTRA File 		   22022	X2HackReward_LWOverhaul.uc
+	  *EXTRA File 		   11125	X2Item_ArcthrowerWeapon.uc
+	  *EXTRA File 		   13090	X2Item_Coilguns.uc
+	  *EXTRA File 		     652	X2Item_DefaultMissionItems_LW.uc
+	  *EXTRA File 		     782	X2Item_DefaultWeaponMods_LW.uc
+	  *EXTRA File 		    1739	X2Item_EvacFlare.uc
+	  *EXTRA File 		   10893	X2Item_LWCombatKnife.uc
+	  *EXTRA File 		   15260	X2Item_LWGauntlet.uc
+	  *EXTRA File 		   11680	X2Item_LWHolotargeter.uc
+	  *EXTRA File 		   13031	X2Item_LWPistol.uc
+	  *EXTRA File 		   11404	X2Item_LWSawedOffShotgun.uc
+	  *EXTRA File 		   17017	X2Item_LWUtilityItems.uc
+	  *EXTRA File 		    2868	X2Item_ResistanceMECWeapons.uc
+	  *EXTRA File 		     668	X2LWActivityCondition.uc
+	  *EXTRA File 		    3893	X2LWActivityCondition_AlertVigilance.uc
+	  *EXTRA File 		     822	X2LWActivityCondition_AvatarRevealed.uc
+	  *EXTRA File 		     886	X2LWActivityCondition_Days.uc
+	  *EXTRA File 		    3029	X2LWActivityCondition_FacilityLeadItem.uc
+	  *EXTRA File 		    1776	X2LWActivityCondition_FullOutpostJobBuckets.uc
+	  *EXTRA File 		    1121	X2LWActivityCondition_GeneralOpsCap.uc
+	  *EXTRA File 		    1249	X2LWActivityCondition_HasAdviserofClass.uc
+	  *EXTRA File 		     720	X2LWActivityCondition_HasFaceless.uc
+	  *EXTRA File 		    1137	X2LWActivityCondition_LiberatedDays.uc
+	  *EXTRA File 		    1806	X2LWActivityCondition_LiberationStage.uc
+	  *EXTRA File 		     904	X2LWActivityCondition_MaxRebels.uc
+	  *EXTRA File 		    1362	X2LWActivityCondition_MinLiberatedRegions.uc
+	  *EXTRA File 		    1121	X2LWActivityCondition_MinRebels.uc
+	  *EXTRA File 		    1646	X2LWActivityCondition_MinRebelsOnJob.uc
+	  *EXTRA File 		    1259	X2LWActivityCondition_MinWorkingRebels.uc
+	  *EXTRA File 		    1052	X2LWActivityCondition_Month.uc
+	  *EXTRA File 		    2316	X2LWActivityCondition_NumberActivities.uc
+	  *EXTRA File 		     868	X2LWActivityCondition_POIAvailable.uc
+	  *EXTRA File 		    2356	X2LWActivityCondition_RegionStatus.uc
+	  *EXTRA File 		    3274	X2LWActivityCondition_ResearchFacility.uc
+	  *EXTRA File 		    2413	X2LWActivityCondition_RestrictedActivity.uc
+	  *EXTRA File 		    1769	X2LWActivityCondition_RetalMixer.uc
+	  *EXTRA File 		     679	X2LWActivityCondition_RNG.uc
+	  *EXTRA File 		    2512	X2LWActivityCondition_RNG_Region.uc
+	  *EXTRA File 		    2039	X2LWActivityCooldown.uc
+	  *EXTRA File 		    1238	X2LWActivityCooldown_Global.uc
+	  *EXTRA File 		     988	X2LWActivityCooldown_UFO.uc
+	  *EXTRA File 		    3521	X2LWActivityCreation.uc
+	  *EXTRA File 		    5067	X2LWActivityCreation_AlertUFOLandingRegion.uc
+	  *EXTRA File 		    1418	X2LWActivityCreation_FurthestAway.uc
+	  *EXTRA File 		    5243	X2LWActivityCreation_Invasion.uc
+	  *EXTRA File 		    1775	X2LWActivityCreation_MostDangerous.uc
+	  *EXTRA File 		     869	X2LWActivityCreation_ProtectResearch.uc
+	  *EXTRA File 		   11337	X2LWActivityCreation_Reinforce.uc
+	  *EXTRA File 		    1756	X2LWActivityCreation_SafestRegion.uc
+	  *EXTRA File 		    8003	X2LWActivityDetectionCalc.uc
+	  *EXTRA File 		    1482	X2LWActivityDetectionCalc_ProtectResearch.uc
+	  *EXTRA File 		    3220	X2LWActivityDetectionCalc_Rendezvous.uc
+	  *EXTRA File 		    1829	X2LWActivityDetectionCalc_Terror.uc
+	  *EXTRA File 		    1248	X2LWActivityDetectionCalc_TroopManeuvers.uc
+	  *EXTRA File 		   11189	X2LWAlienActivityTemplate.uc
+	  *EXTRA File 		    2476	X2LWObjectivesModTemplate.uc
+	  *EXTRA File 		    1782	X2LWTemplateModTemplate.uc
+	  *EXTRA File 		   79632	X2MissionNarrative_LWNarrativeSet.uc
+	  *EXTRA File 		    2966	X2MissionSet_LW.uc
+	  *EXTRA File 		    2853	X2MultiWeaponTemplate.uc
+	  *EXTRA File 		    2071	X2StrategyElement_AcademyUnlocks_LW.uc
+	  *EXTRA File 		    1174	X2StrategyElement_ContinentBonuses_LW.uc
+	  *EXTRA File 		   35223	X2StrategyElement_DarkEvents_LW.uc
+	  *EXTRA File 		  188898	X2StrategyElement_DefaultAlienActivities.uc
+	  *EXTRA File 		   12682	X2StrategyElement_DefaultRewards_LW.uc
+	  *EXTRA File 		    7809	X2StrategyElement_DefaultStaffSlots_LW.uc
+	  *EXTRA File 		    6604	X2StrategyElement_LWAlienAI.uc
+	  *EXTRA File 		    9745	X2StrategyElement_LWMissionSources.uc
+	  *EXTRA File 		   13207	X2StrategyElement_LWObjectives.uc
+	  *EXTRA File 		     841	X2StrategyElement_MissionSiteDescriptions_LW.uc
+	  *EXTRA File 		   69333	X2StrategyElement_NewTechs_LW.uc
+	  *EXTRA File 		    4568	X2StrategyElement_PointsofInterest_LW.uc
+	  *EXTRA File 		    4204	X2TargetingMethod_LWBlasterLauncher.uc
+	  *EXTRA File 		    2504	X2TargetingMethod_LWEvacZone.uc
+	  *EXTRA File 		    4820	X2TargetingMethod_LWRocketLauncher.uc
+	  *EXTRA File 		    2410	XComGameState_Effect_Bombard.uc
+	  *EXTRA File 		    2463	XComGameState_Effect_Failsafe.uc
+	  *EXTRA File 		    3927	XComGameState_Effect_ImmediateMultiTarget.uc
+	  *EXTRA File 		    2802	XComGameState_Effect_JavelinRockets.uc
+	  *EXTRA File 		    5392	XComGameState_Effect_TransferMecToOutpost.uc
+	  *EXTRA File 		   34044	XComGameState_LWAlienActivity.uc
+	  *EXTRA File 		   25300	XComGameState_LWAlienActivityManager.uc
+	  *EXTRA File 		   13799	XComGameState_LWEvacSpawner.uc
+	  *EXTRA File 		  124756	XComGameState_LWListenerManager.uc
+	  *EXTRA File 		   53192	XComGameState_LWOutpost.uc
+	  *EXTRA File 		   10015	XComGameState_LWOutpostManager.uc
+	  *EXTRA File 		    6117	XComGameState_LWOverhaulOptions.uc
+	  *EXTRA File 		   46839	XComGameState_LWPersistentSquad.uc
+	  *EXTRA File 		    5881	XComGameState_LWPodJob.uc
+	  *EXTRA File 		    7154	XComGameState_LWPodJob_Flank.uc
+	  *EXTRA File 		    3260	XComGameState_LWPodJob_MoveToLocation.uc
+	  *EXTRA File 		   25824	XComGameState_LWPodManager.uc
+	  *EXTRA File 		   17646	XComGameState_LWReinforcements.uc
+	  *EXTRA File 		   25174	XComGameState_LWSquadManager.uc
+	  *EXTRA File 		    2663	XComGameState_MissionSiteRebelRaid_LW.uc
+	  *EXTRA File 		    5261	XComGameState_MissionSiteRendezvous_LW.uc
+	  *EXTRA File 		   15517	XComGameState_WorldRegion_LWStrategyAI.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_PerkPack_Integrated\
+	  *EXTRA File 		     583	LW_PerkPack.uci
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_PerkPack_Integrated\Classes\
+	  *EXTRA File 		   40822	UIArmory_LWExpandedPromotion.uc
+	  *EXTRA File 		   11485	UIArmory_LWExpandedPromotionItem.uc
+	  *EXTRA File 		    4932	UIArmory_LWExpandedPromotionSummaryItem.uc
+	  *EXTRA File 		     578	UIArmory_MainMenu_LW.uc
+	  *EXTRA File 		    4777	UIScreenListener_Armory_MainMenu_LW_LWExpandedPerkTree.uc
+	  *EXTRA File 		    3571	UIScreenListener_Armory_MainMenu_LWExpandedPerkTree.uc
+	  *EXTRA File 		    4221	UIScreenListener_Armory_Promotion.uc
+	  *EXTRA File 		    1950	UIScreenListener_Armory_PromotionPsi_LW.uc
+	  *EXTRA File 		    1360	UIScreenListener_SquadSelect.uc
+	  *EXTRA File 		    2056	UIScreenListener_TacticalHUD_LW.uc
+	  *EXTRA File 		    1266	UIScreenListener_UIAlert.uc
+	  *EXTRA File 		   14228	UITacticalHUD_AbilityContainer_LWExtended.uc
+	  *EXTRA File 		    2431	UIVerticalScrollingText.uc
+	  *EXTRA File 		    4874	UIVerticalScrollingText2.uc
+	  *EXTRA File 		    2920	Utilities_PP_LW.uc
+	  *EXTRA File 		  188686	X2Ability_PerkPackAbilitySet.uc
+	  *EXTRA File 		   42540	X2Ability_PerkPackAbilitySet2.uc
+	  *EXTRA File 		     850	X2AbilityCharges_Interference.uc
+	  *EXTRA File 		     619	X2AbilityCooldown_MindMerge.uc
+	  *EXTRA File 		    1020	X2AbilityCooldown_RunAndGun_LW.uc
+	  *EXTRA File 		     241	X2AbilityCost_Ammo_AllAmmo.uc
+	  *EXTRA File 		     338	X2AbilityCost_QuickdrawActionPoints_LW.uc
+	  *EXTRA File 		    2310	X2AbilityTarget_Single_CCS.uc
+	  *EXTRA File 		    1251	X2Condition_CoverStatus.uc
+	  *EXTRA File 		    1080	X2Condition_OverwatchLimit.uc
+	  *EXTRA File 		     678	X2Condition_RequireConcealed.uc
+	  *EXTRA File 		    3206	X2Condition_RequiredToHitChance.uc
+	  *EXTRA File 		    7995	X2DownloadableContentInfo_LWPerkPack.uc
+	  *EXTRA File 		     888	X2Effect_AbsorptionFields.uc
+	  *EXTRA File 		    1747	X2Effect_Aggression.uc
+	  *EXTRA File 		    2364	X2Effect_ApplyDenseSmokeGrenadeToWorld.uc
+	  *EXTRA File 		    7705	X2Effect_AreaSuppression.uc
+	  *EXTRA File 		    5344	X2Effect_Bastion.uc
+	  *EXTRA File 		    1623	X2Effect_BodyShield.uc
+	  *EXTRA File 		    2797	X2Effect_BringEmOn.uc
+	  *EXTRA File 		    1551	X2Effect_CloseandPersonal.uc
+	  *EXTRA File 		    3389	X2Effect_CloseEncounters.uc
+	  *EXTRA File 		    1804	X2Effect_CombatAwareness.uc
+	  *EXTRA File 		    3773	X2Effect_Commissar.uc
+	  *EXTRA File 		    3007	X2Effect_Cutthroat.uc
+	  *EXTRA File 		     641	X2Effect_DamageControl.uc
+	  *EXTRA File 		    1962	X2Effect_DamnGoodGround.uc
+	  *EXTRA File 		    2300	X2Effect_DenseSmokeGrenade.uc
+	  *EXTRA File 		    1556	X2Effect_DepthPerception.uc
+	  *EXTRA File 		    4027	X2Effect_EmergencyLifeSupport.uc
+	  *EXTRA File 		    1497	X2Effect_Executioner_LW.uc
+	  *EXTRA File 		    4809	X2Effect_FieldSurgeon.uc
+	  *EXTRA File 		    2486	X2Effect_FlecheBonusDamage.uc
+	  *EXTRA File 		    1842	X2Effect_Formidable.uc
+	  *EXTRA File 		    2608	X2Effect_FullKit.uc
+	  *EXTRA File 		    2470	X2Effect_FullOrdnance.uc
+	  *EXTRA File 		    1213	X2Effect_GrazingFire.uc
+	  *EXTRA File 		    1701	X2Effect_HardTarget.uc
+	  *EXTRA File 		    3679	X2Effect_HitandRun.uc
+	  *EXTRA File 		    3690	X2Effect_HyperReactivePupils.uc
+	  *EXTRA File 		    1334	X2Effect_Infighter.uc
+	  *EXTRA File 		     709	X2Effect_Interference.uc
+	  *EXTRA File 		    1083	X2Effect_IronCurtain.uc
+	  *EXTRA File 		    1002	X2Effect_IronCurtainStatDamage.uc
+	  *EXTRA File 		    2124	X2Effect_KilledEnemy.uc
+	  *EXTRA File 		    1566	X2Effect_KillerInstinct.uc
+	  *EXTRA File 		    3911	X2Effect_Kubikuri.uc
+	  *EXTRA File 		    4207	X2Effect_LightningReflexes_LW.uc
+	  *EXTRA File 		    1404	X2Effect_LockdownDamage.uc
+	  *EXTRA File 		    3835	X2Effect_LockedOn.uc
+	  *EXTRA File 		    3139	X2Effect_LoneWolf.uc
+	  *EXTRA File 		    2501	X2Effect_LowProfile_LW.uc
+	  *EXTRA File 		    1036	X2Effect_Mayhem.uc
+	  *EXTRA File 		    2166	X2Effect_MeleeDamageAdjust_LW.uc
+	  *EXTRA File 		    5568	X2Effect_MindMerge.uc
+	  *EXTRA File 		     823	X2Effect_PrecisionShotCritDamage.uc
+	  *EXTRA File 		    2010	X2Effect_PrimaryHitBonusDamage.uc
+	  *EXTRA File 		    3326	X2Effect_RapidDeployment.uc
+	  *EXTRA File 		    5238	X2Effect_RapidReaction.uc
+	  *EXTRA File 		    3609	X2Effect_RemoveAreaSuppressionEffect.uc
+	  *EXTRA File 		     914	X2Effect_Resilience.uc
+	  *EXTRA File 		    2986	X2Effect_Savior.uc
+	  *EXTRA File 		    4797	X2Effect_Sentinel_LW.uc
+	  *EXTRA File 		    2154	X2Effect_SlugShot.uc
+	  *EXTRA File 		    2339	X2Effect_SmartMacrophages.uc
+	  *EXTRA File 		    1761	X2Effect_SnapShotAimModifier.uc
+	  *EXTRA File 		     960	X2Effect_SoulSteal_LW.uc
+	  *EXTRA File 		    3882	X2Effect_SteadyWeapon.uc
+	  *EXTRA File 		    1695	X2Effect_TacticalSense.uc
+	  *EXTRA File 		   14262	X2Effect_TemporaryItem.uc
+	  *EXTRA File 		    4676	X2Effect_TraverseFire.uc
+	  *EXTRA File 		    2852	X2Effect_Trojan.uc
+	  *EXTRA File 		    2944	X2Effect_TrojanVirus.uc
+	  *EXTRA File 		    1060	X2Effect_WalkFireDamage.uc
+	  *EXTRA File 		    3707	X2Effect_Whirlwind.uc
+	  *EXTRA File 		    3167	X2Effect_WilltoSurvive.uc
+	  *EXTRA File 		    6905	X2Item_DenseSmokeGrenade.uc
+	  *EXTRA File 		   17513	X2Item_PerkPCS.uc
+	  *EXTRA File 		    3734	X2Item_StingGrenade.uc
+	  *EXTRA File 		     851	X2TargetingMethod_AreaSuppression.uc
+	  *EXTRA File 		    2343	XComGameState_Effect_EffectCounter.uc
+	  *EXTRA File 		    4208	XComGameState_Effect_IncomingReactionFire.uc
+	  *EXTRA File 		    2593	XComGameState_Effect_LastShotDetails.uc
+	  *EXTRA File 		    3785	XComGameState_Effect_Savior.uc
+	  *EXTRA File 		    3562	XComGameState_Effect_SteadyWeaponListener.uc
+	  *EXTRA File 		    1998	XComGameState_Effect_TemporaryItem.uc
+	  *EXTRA File 		    7090	XComGameState_Effect_Trojan.uc
+	  *EXTRA File 		    9369	XComGameState_Effect_Whirlwind.uc
+	  *EXTRA File 		   11251	XComGameState_LWPerkPackOptions.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_SMGPack_Integrated\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_SMGPack_Integrated\Classes\
+	  *EXTRA File 		    6930	X2Ability_SMGAbilities.uc
+	  *EXTRA File 		   18911	X2DownloadableContentInfo_LWSMGPack.uc
+	  *EXTRA File 		   12506	X2Item_SMGWeapon.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_Toolbox_Integrated\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_Toolbox_Integrated\Classes\
+	  *EXTRA File 		    6693	LWSpawnUnitFromAvenger.uc
+	  *EXTRA File 		   12528	UIAfterAction_LW.uc
+	  *EXTRA File 		   15136	UIOptionsPCScreen_LW.uc
+	  *EXTRA File 		    5153	UIRecruitmentListItem_LW.uc
+	  *EXTRA File 		     803	UIScreenListener_Armory_MainMenu.uc
+	  *EXTRA File 		    1506	UIScreenListener_GameLoad.uc
+	  *EXTRA File 		    3548	UIScreenListener_ScreenUpdates.uc
+	  *EXTRA File 		    3278	X2Ability_RedFog_LW.uc
+	  *EXTRA File 		    9051	X2DownloadableContentInfo_LWToolbox.uc
+	  *EXTRA File 		    4067	X2Effect_RedFog_LW.uc
+	  *EXTRA File 		    5723	X2StrategyElement_RandomizedSoldierRewards.uc
+	  *EXTRA File 		    8581	XComGameState_Effect_RedFog_LW.uc
+	  *EXTRA File 		   70812	XComGameState_LWToolboxOptions.uc
+	  *EXTRA File 		    8020	XComGameState_Unit_LWRandomizedStats.uc
+	  *EXTRA File 		    4169	XComTacticalInput_LW.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_XCGS_ModOptions\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_XCGS_ModOptions\Classes\
+	  *EXTRA File 		    5446	XComGameState_LWModOptions.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_XCGS_ToolboxOptions\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LW_XCGS_ToolboxOptions\Classes\
+	  *EXTRA File 		    3863	XComGameState_LWToolboxPrototype.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LWUtilities\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\LWUtilities\Classes\
+	  *EXTRA File 		   13468	Helpers_LW.uc
+	  *EXTRA File 		    2878	LWUtilities_Ranks.uc
+	  *EXTRA File 		     695	X2DownloadableContentInfo_LWUtilities.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\ModConfigMenuAPI\
+	  *EXTRA File 		     544	MCM_API_CfgHelpers.uci
+	  *EXTRA File 		    1054	MCM_API_Includes.uci
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\ModConfigMenuAPI\Classes\
+	  *EXTRA File 		     515	MCM_API.uc
+	  *EXTRA File 		      76	MCM_API_Button.uc
+	  *EXTRA File 		     131	MCM_API_Checkbox.uc
+	  *EXTRA File 		     229	MCM_API_Dropdown.uc
+	  *EXTRA File 		     914	MCM_API_Instance.uc
+	  *EXTRA File 		      48	MCM_API_Label.uc
+	  *EXTRA File 		     982	MCM_API_Setting.uc
+	  *EXTRA File 		    2125	MCM_API_SettingsGroup.uc
+	  *EXTRA File 		    1077	MCM_API_SettingsPage.uc
+	  *EXTRA File 		     351	MCM_API_Slider.uc
+	  *EXTRA File 		     228	MCM_API_Spinner.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\robojumperSquadSelect_Integrated\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\robojumperSquadSelect_Integrated\Classes\
+	  *EXTRA File 		     748	robojumper_SquadSelect_Helpers.uc
+	  *EXTRA File 		    7769	robojumper_SquadSelect_UISL_MCM.uc
+	  *EXTRA File 		    3210	robojumper_SquadSelect_WorldConfiguration.uc
+	  *EXTRA File 		    4469	robojumper_SquadSelectConfig.uc
+	  *EXTRA File 		    2122	robojumper_SquadSelectControllerMap.uc
+	  *EXTRA File 		    7447	robojumper_UIList_SquadEditor.uc
+	  *EXTRA File 		    2473	robojumper_UIMouseGuard_SquadSelect.uc
+	  *EXTRA File 		   53342	robojumper_UISquadSelect.uc
+	  *EXTRA File 		   12233	robojumper_UISquadSelect_EquipItem.uc
+	  *EXTRA File 		   20496	robojumper_UISquadSelect_ListItem.uc
+	  *EXTRA File 		    8709	robojumper_UISquadSelect_SkillsPanel.uc
+	  *EXTRA File 		   14038	robojumper_UISquadSelect_SoldierPanel.uc
+	  *EXTRA File 		    4808	robojumper_UISquadSelect_StatsPanel.uc
+	  *EXTRA File 		    7865	robojumper_UISquadSelect_UtilityItem.uc
+	  *EXTRA File 		    3767	X2DownloadableContentInfo_robojumperSquadSelect.uc
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\WotCWeaponsAndArmor\
+	*EXTRA Dir        -1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\Src\WotCWeaponsAndArmor\Classes\
+	  *EXTRA File 		    5562	X2Ability_WeaponAbilities.uc
+	  *EXTRA File 		    1563	X2DownloadableContentInfo_WotCWeaponsAndArmor.uc
+	  *EXTRA File 		   10257	X2Item_Armors.uc
+	  *EXTRA File 		   36599	X2Item_Weapons.uc
+	  *EXTRA File 		    1280	extra_globals.uci
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\AkAudio\
+	                  16	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\AkAudio\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\AkAudio\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\AkAudio\Src\
+	                   1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Core\
+	    Older     		   23881	Globals.uci
+	                  10	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Core\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Core\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Core\Inc\Licensee\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Core\Src\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\DLC_1\
+	                   2	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\DLC_1\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\DLC_2\
+	                  57	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\DLC_2\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\DLC_3\
+	                  68	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\DLC_3\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\Bink\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\Bink\Src\
+	                1235	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\Debugger\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\FaceFX\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\Inc\DwTrioviz\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\SQL\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\Src\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\Engine\Textures\
+	                   1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GameFramework\
+	                  17	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GameFramework\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GameFramework\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GameFramework\Src\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GFxUI\
+	                  17	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GFxUI\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GFxUI\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GFxUI\Src\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GFxUI\VTune\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GFxUIEditor\
+	                   4	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GFxUIEditor\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GFxUIEditor\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\GFxUIEditor\Src\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\IpDrv\
+	                  26	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\IpDrv\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\IpDrv\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\IpDrv\Src\
+	                   1	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\OnlineSubsystemSteamworks\
+	                   6	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\OnlineSubsystemSteamworks\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\OnlineSubsystemSteamworks\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\OnlineSubsystemSteamworks\Src\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\TLE\
+	                  11	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\TLE\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\UnrealEd\
+	                 189	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\UnrealEd\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\UnrealEd\FaceFX\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\UnrealEd\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\UnrealEd\Models\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\UnrealEd\SQL\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\UnrealEd\Src\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComEditor\
+	                  17	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComEditor\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComEditor\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComEditor\Src\
+	                   2	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\
+	                2475	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\Classes\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\Inc\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\Live\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\Live\Images\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\Live\Images\AchievementIcons\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\Live\Online\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\Live\TU0\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\PSN\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\PSN\TU0\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\PSN\TU0\TargetDir\
+	                   0	H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\Development\SrcOrig\XComGame\Src\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :        73         0        73         0         0        28
+   Files :      4155         1      4154         0         0       506
+   Bytes :   30.16 m    23.3 k   30.14 m         0         0    3.86 m
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+
+
+   Speed :            11940500 Bytes/sec.
+   Speed :             683.240 MegaBytes/min.
+
+   Ended : Wed Apr 17 01:40:07 2019
+Mirrored.
+Copying the mod's scripts to Src...
+Copied.
+Cleaning existing mod's compiled script from H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script...
+Cleaned.
+Compiling base game scripts...
+Log: Executing Class UnrealEd.MakeCommandlet
+--------------------Core - Release--------------------
+--------------------Engine - Release--------------------
+--------------------GFxUI - Release--------------------
+--------------------AkAudio - Release--------------------
+--------------------GameFramework - Release--------------------
+--------------------UnrealEd - Release--------------------
+--------------------GFxUIEditor - Release--------------------
+--------------------IpDrv - Release--------------------
+--------------------OnlineSubsystemSteamworks - Release--------------------
+--------------------XComGame - Release--------------------
+--------------------XComEditor - Release--------------------
+--------------------XCom_DLC_Day0 - Release--------------------
+Warning, Can't find files matching H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\Development\Src\XCom_DLC_Day0\Classes\*.uc
+--------------------DLC_1 - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\DLC_1.u'
+--------------------DLC_2 - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\DLC_2.u'
+--------------------DLC_3 - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\DLC_3.u'
+--------------------TLE - Release--------------------
+Analyzing...
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\UIScreenListener_UICustomize_TLE.uc : Warning, Duplicate class name: UIScreenListener_UICustomize_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Ability_TLE_Abilities.uc : Warning, Duplicate class name: X2Ability_TLE_Abilities also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Characters_TLE_Characters.uc : Warning, Duplicate class name: X2Characters_TLE_Characters also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2DownloadableContentInfo_DLC_TLE.uc : Warning, Duplicate class name: X2DownloadableContentInfo_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Helpers_DLC_TLE.uc : Warning, Duplicate class name: X2Helpers_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_Armor.uc : Warning, Duplicate class name: X2Item_TLE_Armor also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_QuestItems.uc : Warning, Duplicate class name: X2Item_TLE_QuestItems also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_Weapons.uc : Warning, Duplicate class name: X2Item_TLE_Weapons also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2MissionNarrative_DLC_TLE.uc : Warning, Duplicate class name: X2MissionNarrative_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2MissionSet_DLC_TLE.uc : Warning, Duplicate class name: X2MissionSet_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2StrategyElement_TLESoldierPersonalities.uc : Warning, Duplicate class name: X2StrategyElement_TLESoldierPersonalities also exists in package DLC_3
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\TLE.u'
+
+---------------------
+Warning/Error Summary
+Warning, Can't find files matching H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\Development\Src\XCom_DLC_Day0\Classes\*.uc
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\UIScreenListener_UICustomize_TLE.uc : Warning, Duplicate class name: UIScreenListener_UICustomize_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Characters_TLE_Characters.uc : Warning, Duplicate class name: X2Characters_TLE_Characters also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2DownloadableContentInfo_DLC_TLE.uc : Warning, Duplicate class name: X2DownloadableContentInfo_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Ability_TLE_Abilities.uc : Warning, Duplicate class name: X2Ability_TLE_Abilities also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_Armor.uc : Warning, Duplicate class name: X2Item_TLE_Armor also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_QuestItems.uc : Warning, Duplicate class name: X2Item_TLE_QuestItems also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_Weapons.uc : Warning, Duplicate class name: X2Item_TLE_Weapons also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2MissionNarrative_DLC_TLE.uc : Warning, Duplicate class name: X2MissionNarrative_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2MissionSet_DLC_TLE.uc : Warning, Duplicate class name: X2MissionSet_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2StrategyElement_TLESoldierPersonalities.uc : Warning, Duplicate class name: X2StrategyElement_TLESoldierPersonalities also exists in package DLC_3
+
+Success - 0 error(s), 12 warning(s) (0 Unique Errors, 12 Unique Warnings)
+
+Execution of commandlet took:  9.01 seconds
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Helpers_DLC_TLE.uc : Warning, Duplicate class name: X2Helpers_DLC_TLE also exists in package DLC_3
+
+
+Compiled base game scripts.
+Compiling mod scripts...
+Log: Executing Class UnrealEd.MakeCommandlet
+--------------------Core - Release--------------------
+--------------------Engine - Release--------------------
+--------------------GFxUI - Release--------------------
+--------------------AkAudio - Release--------------------
+--------------------GameFramework - Release--------------------
+--------------------UnrealEd - Release--------------------
+--------------------GFxUIEditor - Release--------------------
+--------------------IpDrv - Release--------------------
+--------------------OnlineSubsystemSteamworks - Release--------------------
+--------------------XComGame - Release--------------------
+--------------------XComEditor - Release--------------------
+--------------------XCom_DLC_Day0 - Release--------------------
+Warning, Can't find files matching H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\Development\Src\XCom_DLC_Day0\Classes\*.uc
+--------------------DLC_1 - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\DLC_1.u'
+--------------------DLC_2 - Release--------------------
+Analyzing...
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Grenades.uc(11) : Warning, INI file contains an incorrect case for (FROSTBOMB_iSoundRange) should be (FROSTBOMB_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(43) : Warning, INI file contains an incorrect case for (HUNTERRIFLE_CONVENTIONAL_iSoundRange) should be (HUNTERRIFLE_CONVENTIONAL_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(50) : Warning, INI file contains an incorrect case for (HUNTERRIFLE_MAGNETIC_iSoundRange) should be (HUNTERRIFLE_MAGNETIC_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(57) : Warning, INI file contains an incorrect case for (HUNTERRIFLE_BEAM_iSoundRange) should be (HUNTERRIFLE_BEAM_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(66) : Warning, INI file contains an incorrect case for (HUNTERPISTOL_CONVENTIONAL_iSoundRange) should be (HUNTERPISTOL_CONVENTIONAL_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(73) : Warning, INI file contains an incorrect case for (HUNTERPISTOL_MAGNETIC_iSoundRange) should be (HUNTERPISTOL_MAGNETIC_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(80) : Warning, INI file contains an incorrect case for (HUNTERPISTOL_BEAM_iSoundRange) should be (HUNTERPISTOL_BEAM_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(87) : Warning, INI file contains an incorrect case for (HUNTERAXE_CONVENTIONAL_iSoundRange) should be (HUNTERAXE_CONVENTIONAL_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(94) : Warning, INI file contains an incorrect case for (HUNTERAXE_MAGNETIC_iSoundRange) should be (HUNTERAXE_MAGNETIC_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(102) : Warning, INI file contains an incorrect case for (HUNTERAXE_BEAM_iSoundRange) should be (HUNTERAXE_BEAM_ISOUNDRANGE)
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\DLC_2.u'
+--------------------DLC_3 - Release--------------------
+Analyzing...
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_3\Classes\X2Item_DLC_Day90Weapons.uc(30) : Warning, INI file contains an incorrect case for (SPARKRIFLE_CONVENTIONAL_iSoundRange) should be (SPARKRIFLE_CONVENTIONAL_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_3\Classes\X2Item_DLC_Day90Weapons.uc(37) : Warning, INI file contains an incorrect case for (SPARKRIFLE_MAGNETIC_iSoundRange) should be (SPARKRIFLE_MAGNETIC_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_3\Classes\X2Item_DLC_Day90Weapons.uc(44) : Warning, INI file contains an incorrect case for (SPARKRIFLE_BEAM_iSoundRange) should be (SPARKRIFLE_BEAM_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_3\Classes\X2Item_DLC_Day90Weapons.uc(48) : Warning, INI file contains an incorrect case for (SPARKBIT_iSoundRange) should be (SPARKBIT_ISOUNDRANGE)
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\DLC_3.u'
+--------------------TLE - Release--------------------
+Analyzing...
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\UIScreenListener_UICustomize_TLE.uc : Warning, Duplicate class name: UIScreenListener_UICustomize_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Ability_TLE_Abilities.uc : Warning, Duplicate class name: X2Ability_TLE_Abilities also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Characters_TLE_Characters.uc : Warning, Duplicate class name: X2Characters_TLE_Characters also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2DownloadableContentInfo_DLC_TLE.uc : Warning, Duplicate class name: X2DownloadableContentInfo_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Helpers_DLC_TLE.uc : Warning, Duplicate class name: X2Helpers_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_Armor.uc : Warning, Duplicate class name: X2Item_TLE_Armor also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_QuestItems.uc : Warning, Duplicate class name: X2Item_TLE_QuestItems also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_Weapons.uc : Warning, Duplicate class name: X2Item_TLE_Weapons also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2MissionNarrative_DLC_TLE.uc : Warning, Duplicate class name: X2MissionNarrative_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2MissionSet_DLC_TLE.uc : Warning, Duplicate class name: X2MissionSet_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2StrategyElement_TLESoldierPersonalities.uc : Warning, Duplicate class name: X2StrategyElement_TLESoldierPersonalities also exists in package DLC_3
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\TLE.u'
+--------------------LWUtilities - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\LWUtilities.u'
+--------------------ModConfigMenuAPI - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\ModConfigMenuAPI.u'
+--------------------LW_XCGS_ModOptions - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\LW_XCGS_ModOptions.u'
+--------------------LW_XCGS_ToolboxOptions - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\LW_XCGS_ToolboxOptions.u'
+--------------------LW_SMGPack_Integrated - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\LW_SMGPack_Integrated.u'
+--------------------LW_LaserPack_Integrated - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\LW_LaserPack_Integrated.u'
+--------------------robojumperSquadSelect_Integrated - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\robojumperSquadSelect_Integrated.u'
+--------------------DetailedSoldierListWOTC_Integrated - Release--------------------
+Analyzing...
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DetailedSoldierListWOTC_Integrated\Classes\UIPersonnel_SoldierListItemDetailed.uc(370) : Warning, 'rankIcon' : unused local variable
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\DetailedSoldierListWOTC_Integrated.u'
+--------------------LW_PerkPack_Integrated - Release--------------------
+Analyzing...
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_MainMenu_LW_LWExpandedPerkTree.uc(29) : Warning, 'Button' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_MainMenu_LW_LWExpandedPerkTree.uc(30) : Warning, 'BG' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\UITacticalHUD_AbilityContainer_LWExtended.uc(118) : Warning, 'History' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\UITacticalHUD_AbilityContainer_LWExtended.uc(119) : Warning, 'AbilityState' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\UITacticalHUD_AbilityContainer_LWExtended.uc(120) : Warning, 'Unit' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(3201) : Warning, 'VisMgr' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(1042) : Warning, 'context' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(1044) : Warning, 'TrackIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(1044) : Warning, 'ActionIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(992) : Warning, 'TrackIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(992) : Warning, 'ActionIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet2.uc(566) : Warning, 'VisMgr' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Effect_AreaSuppression.uc(139) : Warning, 'Action' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Effect_AreaSuppression.uc(132) : Warning, 'UnitState' : unused local variable
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\LW_PerkPack_Integrated.u'
+--------------------LW_OfficerPack_Integrated - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\LW_OfficerPack_Integrated.u'
+--------------------LW_AlienPack_Integrated - Release--------------------
+Analyzing...
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\LW_AlienPack_Integrated.u'
+--------------------LW_Toolbox_Integrated - Release--------------------
+Analyzing...
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc(1750) : Warning, 'StateObjectIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc(1383) : Warning, 'StateObjectCurrent' : local variable used before assigned a value
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc(1374) : Warning, 'StateObjectIndex' : unreferenced local variable
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\LW_Toolbox_Integrated.u'
+--------------------LW_Overhaul - Release--------------------
+Analyzing...
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods.uc(3046) : Warning, 'ProgressAbility' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods.uc(3047) : Warning, 'AbilityName' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc(133) : Warning, 'TemplateNames' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc(134) : Warning, 'TemplateName' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc(135) : Warning, 'DataTemplates' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc(137) : Warning, 'Difficulty' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\UIScreenListener_Alert.uc(164) : Warning, 'History' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\UIScreenListener_Alert.uc(33) : Warning, 'HQPRES' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\UIScreenListener_Alert.uc(34) : Warning, 'testCallback1' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\UIScreenListener_Alert.uc(34) : Warning, 'testCallback2' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\UIScreenListener_CanAddInventoryOverride.uc(85) : Warning, Unresolved reference to Class 'UISquadSelect_UtilityItem_LW'
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2Ability_LW_DefaultAbilitySet.uc(119) : Warning, 'AbilityTemplate' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2Ability_LW_DefaultAbilitySet.uc(121) : Warning, 'AbilityTemplateManager' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2DownloadableContentInfo_LongWarOfTheChosen.uc(748) : Warning, 'Tag' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2DownloadableContentInfo_LongWarOfTheChosen.uc(665) : Warning, 'BaseObject' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2DownloadableContentInfo_LongWarOfTheChosen.uc(679) : Warning, 'GameInfo' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2EventListener_Soldiers.uc(91) : Warning, 'EquipmentTemplate' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2EventListener_StrategyMap.uc(259) : Warning, 'Photo' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2EventListener_StrategyMap.uc(247) : Warning, ShowBlackMarket: Missing return value
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2Item_Coilguns.uc(53) : Warning, 'ItemTemplateManager' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2StrategyElement_DefaultStaffSlots_LW.uc(168) : Warning, 'StratTemplate' : local variable used before assigned a value
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2StrategyElement_DefaultStaffSlots_LW.uc(143) : Warning, 'StratTemplate' : local variable used before assigned a value
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\XComGameState_LWAlienActivityManager.uc(121) : Warning, 'NewActivityState' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\XComGameState_LWAlienActivityManager.uc(47) : Warning, 'ActivityMgr' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\XComGameState_LWListenerManager.uc(538) : Warning, 'Region' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\XComGameState_LWListenerManager.uc(543) : Warning, 'History' : unused local variable
+Scripts successfully compiled - saving package 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Script\LW_Overhaul.u'
+
+Warning/Error Summary
+---------------------
+Warning, Can't find files matching H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\Development\Src\XCom_DLC_Day0\Classes\*.uc
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Grenades.uc(11) : Warning, INI file contains an incorrect case for (FROSTBOMB_iSoundRange) should be (FROSTBOMB_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(43) : Warning, INI file contains an incorrect case for (HUNTERRIFLE_CONVENTIONAL_iSoundRange) should be (HUNTERRIFLE_CONVENTIONAL_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(50) : Warning, INI file contains an incorrect case for (HUNTERRIFLE_MAGNETIC_iSoundRange) should be (HUNTERRIFLE_MAGNETIC_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(57) : Warning, INI file contains an incorrect case for (HUNTERRIFLE_BEAM_iSoundRange) should be (HUNTERRIFLE_BEAM_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(66) : Warning, INI file contains an incorrect case for (HUNTERPISTOL_CONVENTIONAL_iSoundRange) should be (HUNTERPISTOL_CONVENTIONAL_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(73) : Warning, INI file contains an incorrect case for (HUNTERPISTOL_MAGNETIC_iSoundRange) should be (HUNTERPISTOL_MAGNETIC_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(80) : Warning, INI file contains an incorrect case for (HUNTERPISTOL_BEAM_iSoundRange) should be (HUNTERPISTOL_BEAM_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(87) : Warning, INI file contains an incorrect case for (HUNTERAXE_CONVENTIONAL_iSoundRange) should be (HUNTERAXE_CONVENTIONAL_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(94) : Warning, INI file contains an incorrect case for (HUNTERAXE_MAGNETIC_iSoundRange) should be (HUNTERAXE_MAGNETIC_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_2\Classes\X2Item_DLC_Day60Weapons.uc(102) : Warning, INI file contains an incorrect case for (HUNTERAXE_BEAM_iSoundRange) should be (HUNTERAXE_BEAM_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_3\Classes\X2Item_DLC_Day90Weapons.uc(30) : Warning, INI file contains an incorrect case for (SPARKRIFLE_CONVENTIONAL_iSoundRange) should be (SPARKRIFLE_CONVENTIONAL_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_3\Classes\X2Item_DLC_Day90Weapons.uc(37) : Warning, INI file contains an incorrect case for (SPARKRIFLE_MAGNETIC_iSoundRange) should be (SPARKRIFLE_MAGNETIC_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_3\Classes\X2Item_DLC_Day90Weapons.uc(44) : Warning, INI file contains an incorrect case for (SPARKRIFLE_BEAM_iSoundRange) should be (SPARKRIFLE_BEAM_ISOUNDRANGE)
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DLC_3\Classes\X2Item_DLC_Day90Weapons.uc(48) : Warning, INI file contains an incorrect case for (SPARKBIT_iSoundRange) should be (SPARKBIT_ISOUNDRANGE)
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\UIScreenListener_UICustomize_TLE.uc : Warning, Duplicate class name: UIScreenListener_UICustomize_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Ability_TLE_Abilities.uc : Warning, Duplicate class name: X2Ability_TLE_Abilities also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Characters_TLE_Characters.uc : Warning, Duplicate class name: X2Characters_TLE_Characters also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2DownloadableContentInfo_DLC_TLE.uc : Warning, Duplicate class name: X2DownloadableContentInfo_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Helpers_DLC_TLE.uc : Warning, Duplicate class name: X2Helpers_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_Armor.uc : Warning, Duplicate class name: X2Item_TLE_Armor also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_QuestItems.uc : Warning, Duplicate class name: X2Item_TLE_QuestItems also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2Item_TLE_Weapons.uc : Warning, Duplicate class name: X2Item_TLE_Weapons also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2MissionNarrative_DLC_TLE.uc : Warning, Duplicate class name: X2MissionNarrative_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2MissionSet_DLC_TLE.uc : Warning, Duplicate class name: X2MissionSet_DLC_TLE also exists in package DLC_3
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\..\Development\Src\TLE\Classes\X2StrategyElement_TLESoldierPersonalities.uc : Warning, Duplicate class name: X2StrategyElement_TLESoldierPersonalities also exists in package DLC_3
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\DetailedSoldierListWOTC_Integrated\Classes\UIPersonnel_SoldierListItemDetailed.uc(370) : Warning, 'rankIcon' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_MainMenu_LW_LWExpandedPerkTree.uc(29) : Warning, 'Button' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_MainMenu_LW_LWExpandedPerkTree.uc(30) : Warning, 'BG' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\UITacticalHUD_AbilityContainer_LWExtended.uc(118) : Warning, 'History' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\UITacticalHUD_AbilityContainer_LWExtended.uc(119) : Warning, 'AbilityState' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\UITacticalHUD_AbilityContainer_LWExtended.uc(120) : Warning, 'Unit' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(3201) : Warning, 'VisMgr' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(1042) : Warning, 'context' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(1044) : Warning, 'TrackIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(1044) : Warning, 'ActionIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(992) : Warning, 'TrackIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc(992) : Warning, 'ActionIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet2.uc(566) : Warning, 'VisMgr' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Effect_AreaSuppression.uc(139) : Warning, 'Action' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_PerkPack_Integrated\Classes\X2Effect_AreaSuppression.uc(132) : Warning, 'UnitState' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc(1750) : Warning, 'StateObjectIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc(1374) : Warning, 'StateObjectIndex' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc(1383) : Warning, 'StateObjectCurrent' : local variable used before assigned a value
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods.uc(3046) : Warning, 'ProgressAbility' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods.uc(3047) : Warning, 'AbilityName' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc(133) : Warning, 'TemplateNames' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc(134) : Warning, 'TemplateName' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc(135) : Warning, 'DataTemplates' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc(137) : Warning, 'Difficulty' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\UIScreenListener_Alert.uc(164) : Warning, 'History' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\UIScreenListener_Alert.uc(33) : Warning, 'HQPRES' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\UIScreenListener_Alert.uc(34) : Warning, 'testCallback1' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\UIScreenListener_Alert.uc(34) : Warning, 'testCallback2' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\UIScreenListener_CanAddInventoryOverride.uc(85) : Warning, Unresolved reference to Class 'UISquadSelect_UtilityItem_LW'
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2Ability_LW_DefaultAbilitySet.uc(119) : Warning, 'AbilityTemplate' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2Ability_LW_DefaultAbilitySet.uc(121) : Warning, 'AbilityTemplateManager' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2DownloadableContentInfo_LongWarOfTheChosen.uc(748) : Warning, 'Tag' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2DownloadableContentInfo_LongWarOfTheChosen.uc(665) : Warning, 'BaseObject' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2DownloadableContentInfo_LongWarOfTheChosen.uc(679) : Warning, 'GameInfo' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2EventListener_Soldiers.uc(91) : Warning, 'EquipmentTemplate' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2EventListener_StrategyMap.uc(259) : Warning, 'Photo' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2EventListener_StrategyMap.uc(247) : Warning, ShowBlackMarket: Missing return value
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2Item_Coilguns.uc(53) : Warning, 'ItemTemplateManager' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2StrategyElement_DefaultStaffSlots_LW.uc(168) : Warning, 'StratTemplate' : local variable used before assigned a value
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\X2StrategyElement_DefaultStaffSlots_LW.uc(143) : Warning, 'StratTemplate' : local variable used before assigned a value
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\XComGameState_LWAlienActivityManager.uc(121) : Warning, 'NewActivityState' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\XComGameState_LWAlienActivityManager.uc(47) : Warning, 'ActivityMgr' : unused local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\XComGameState_LWListenerManager.uc(538) : Warning, 'Region' : unreferenced local variable
+c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen\Src\LW_Overhaul\Classes\XComGameState_LWListenerManager.uc(543) : Warning, 'History' : unused local variable
+
+Success - 0 error(s), 70 warning(s) (0 Unique Errors, 70 Unique Warnings)
+
+Execution of commandlet took:  22.09 seconds
+
+
+Compiled mod scripts.
+Copying the compiled and cooked mod scripts to staging...
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/DetailedSoldierListWOTC_Integrated.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/LWUtilities.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/LW_AlienPack_Integrated.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/LW_LaserPack_Integrated.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/LW_OfficerPack_Integrated.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/LW_Overhaul.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/LW_PerkPack_Integrated.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/LW_SMGPack_Integrated.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/LW_Toolbox_Integrated.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/LW_XCGS_ModOptions.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/LW_XCGS_ToolboxOptions.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/ModConfigMenuAPI.u
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/robojumperSquadSelect_Integrated.u
+Copy-Item : Cannot find path 'H:\WotC Dev Kit\steamapps\common\XCOM 2 War of 
+the Chosen SDK\XComGame\Script\WotCWeaponsAndArmor.u' because it does not 
+exist.
+At C:\Vagrant\boxes\shared\lwotc\.scripts\build.ps1:553 char:9
++         Copy-Item "$sdkPath/XComGame/Script/$name.u" "$stagingPath/Script" 
+-Forc ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo          : ObjectNotFound: (H:\WotC Dev Kit...aponsAndArmor 
+   .u:String) [Copy-Item], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.CopyI 
+   temCommand
+ 
+H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK/XComGame/Script/WotCWeaponsAndArmor.u
+Copied compiled script packages.
+Testing c:\Vagrant\boxes\shared\lwotc\/LongWarOfTheChosen/Content
+Exists
+Precompiling Shaders...
+Log: Executing Class UnrealEd.PrecompileShadersCommandlet
+LoadAnIniFile was unable to find FilenameToLoad: H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Config\DefaultPlaylist.ini 
+LoadAnIniFile was unable to find FilenameToLoad: H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Config\XComPlaylist.ini 
+LoadAnIniFile was unable to find FilenameToLoad: H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Config\DefaultWeb.ini 
+LoadAnIniFile was unable to find FilenameToLoad: H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Config\XComWeb.ini 
+Compiling shaders for PC-D3D-SM4
+Starting package 1 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Blueprints\AdventCrate_LoCov_1x1_SmashNGrab_LW.umap...
+Starting package 2 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\AdvGrenadeLauncher.upk...
+Processing AdvGrenadeLauncher.Materials.AdvGrenadeLauncher_MATINST...
+Starting package 3 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWAdvGrenadier.upk...
+Starting package 4 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWAdvGunner.upk...
+Processing LWAdvGunner.Materials.AdventHeadGunner...
+Processing LWAdvGunner.Materials.AdvGunnerM1...
+Processing LWAdvGunner.Materials.MagCannon_MATINST...
+Processing LWAdvGunner.Materials.MagMag_MATINST...
+Processing LWAdvGunner.Materials.MagStock_MATINST...
+Starting package 5 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWAdvMec.upk...
+Starting package 6 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWAdvMecArcher.upk...
+Processing LWAdvMecArcher.Materials.AdvMECArcher...
+Processing LWAdvMecArcher.Materials.AdvMecArcherExtendedBarrel_INST...
+Processing LWAdvMecArcher.Materials.AdvMecArcherLauncher_INST...
+Starting package 7 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWAdvRocketeer.upk...
+Starting package 8 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWAdvSentry.upk...
+Starting package 9 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWDrone.upk...
+Processing LWDrone.Materials.AdventDroneM1_INST...
+Processing LWDrone.Materials.AdventDroneM2_INST...
+Processing LWDrone.Materials.AdventDroneM3_INST...
+Starting package 10 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWDroneWeapon.upk...
+Processing LWDroneWeapon.Materials.M_AdvStunLancer_Beam_Bright...
+Warning, Failed to compile Material LWDroneWeapon.Materials.M_Drone_Electricity_Pulse_Beam for platform PC-D3D-SM4, Default Material will be used in game.
+Processing LWDroneWeapon.Materials.M_Drone_Electricity_Pulse_Beam...
+Warning, Failed to compile Material LWDroneWeapon.Materials.M_Drone_Electricity_Pulse_Beam for platform PC-D3D-SM4.
+Warning,     (Node TextureSample) TextureSample> Missing input texture
+Warning, Failed to compile Material LWDroneWeapon.Materials.M_Glow for platform PC-D3D-SM4, Default Material will be used in game.
+Processing LWDroneWeapon.Materials.M_Glow...
+Warning, Failed to compile Material LWDroneWeapon.Materials.M_Glow for platform PC-D3D-SM4.
+Warning,     (Node TextureSample) TextureSample> Missing input texture
+Starting package 11 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWDroneWeapon_alternate_beam.upk...
+Processing LWDroneWeapon_alternate_beam.Materials.M_Drone_Beam_modded_alternate...
+Starting package 12 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWHiveQueen.upk...
+Processing LWHiveQueen.Materials.ChryssalidM2_MATINST...
+Processing LWHiveQueen.Materials.ChryssalidM3_Addons_MATINST...
+Processing LWHiveQueen.Materials.ChryssalidM3_MATINST...
+Starting package 13 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWMutonM2.upk...
+Processing LWMutonM2.Materials.MutonM2_Body...
+Processing LWMutonM2.Materials.MutonM2_Helmet...
+Starting package 14 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWMutonM3.upk...
+Processing LWMutonM3.Materials.MutonM3_Attachments_MATINST...
+Processing LWMutonM3.Materials.MutonM3_MATINST...
+Starting package 15 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWMutonM3Rifle.upk...
+Processing LWMutonM3Rifle.Materials.MutonM3Rifle_Mag_MATINST...
+Processing LWMutonM3Rifle.Materials.MutonM3Rifle_MATINST...
+Processing LWMutonM3Rifle.Materials.MutonM3Rifle_Suppressor_MATINST...
+Starting package 16 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWNaja.upk...
+Processing LWNaja.Materials.Naja_MATINST...
+Starting package 17 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWSectoidM2.upk...
+Processing LWSectoidM2.Materials.MINST_SectoidM2...
+Processing LWSectoidM2.Materials.MINST_SectoidM2_Cranium...
+Starting package 18 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWSidewinder.upk...
+Processing LWSidewinder.Materials.Sidewinder_MATINST...
+Starting package 19 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWSidewinderSMG.upk...
+Processing LWSidewinderSMG.Materials.BeamAssaultRifle_MATINST...
+Processing LWSidewinderSMG.Materials.BeamAttachments_Mag_MATINST...
+Processing LWSidewinderSMG.Materials.SMG_BM_Base_MATINST...
+Starting package 20 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LW_Perk_MutonM3.upk...
+Starting package 21 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LW_Perk_Psi_MassMindspin.upk...
+Starting package 22 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LW_Perk_Psi_MassReanimation.upk...
+Starting package 23 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LW_Perk_RepairServos.upk...
+Starting package 24 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\NajaRifle.upk...
+Processing NajaRifle.Materials.BeamAttachments_AutoLoader_MATINST...
+Processing NajaRifle.Materials.BeamAttachments_Mag_MATINST...
+Processing NajaRifle.Materials.BeamAttachments_Suppressor_MATINST...
+Processing NajaRifle.Materials.BeamSniper_MATINST...
+Starting package 25 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\UILibrary_LWAlienPack.upk...
+Starting package 26 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\XAdventTrooper.upk...
+Processing XAdventTrooper.Materials.AdvCaptainCapeTintable...
+Processing XAdventTrooper.Materials.AdvCaptainTintable...
+Processing XAdventTrooper.Materials.AdvShieldBearerTintable...
+Processing XAdventTrooper.Materials.AdvStunLancerHelmTintable...
+Processing XAdventTrooper.Materials.AdvStunLancerTintable...
+Starting package 27 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Coilguns\LWAccessories_CG.upk...
+Processing LWAccessories_CG.Materials.LW_CoilAccessories_MATINST...
+Starting package 28 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Coilguns\LWAssaultRifle_CG.upk...
+Processing LWAssaultRifle_CG.Materials.LW_CoilRifle_MATINST...
+Processing LWAssaultRifle_CG.Materials.LW_CoilRifleAccessories_MATINST...
+Starting package 29 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Coilguns\LWCannon_CG.upk...
+Processing LWCannon_CG.Materials.LW_CoilCannon_Accessories_MATINST...
+Processing LWCannon_CG.Materials.LW_CoilCannon_MATINST...
+Starting package 30 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Coilguns\LWPistol_CG.upk...
+Processing LWPistol_CG.Materials.LW_CoilPistol_MATINST...
+Starting package 31 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Coilguns\LWShotgun_CG.upk...
+Processing LWShotgun_CG.Materials.LW_CoilShotgun_MATINST...
+Processing LWShotgun_CG.Materials.LW_CoilShotgunAccessories_MATINST...
+Starting package 32 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Coilguns\LWSMG_CG.upk...
+Processing LWSMG_CG.Materials.LW_CoilSMG_MATINST...
+Starting package 33 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Coilguns\LWSniperRifle_CG.upk...
+Processing LWSniperRifle_CG.Materials.LW_CoilSniper_MATINST...
+Processing LWSniperRifle_CG.Materials.LW_CoilSniperAccessories_MATINST...
+Starting package 34 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Coilguns\UILibrary_LW_Coilguns.upk...
+Starting package 35 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_LaserPack_Integrated\LWAssaultRifle_LS.upk...
+Processing LWAssaultRifle_LS.Materials.LaserAssaultRifle_MATINST...
+Starting package 36 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_LaserPack_Integrated\LWAttachments_LS.upk...
+Processing LWAttachments_LS.Materials.M_Flash_Sparks...
+Processing LWAttachments_LS.Materials.MAT_Attachments1_LS...
+Processing LWAttachments_LS.Materials.MAT_Attachments2_LS...
+Processing LWAttachments_LS.Materials.MAT_Attachments3_LS...
+Starting package 37 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_LaserPack_Integrated\LWCannon_LS.upk...
+Processing LWCannon_LS.Materials.LaserCannon_Attachments_MATINST...
+Processing LWCannon_LS.Materials.LaserCannon_MATINST...
+Starting package 38 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_LaserPack_Integrated\LWPistol_LS.upk...
+Processing LWPistol_LS.Materials.LaserPistol_MATINST...
+Starting package 39 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_LaserPack_Integrated\LWShotgun_LS.upk...
+Processing LWShotgun_LS.Materials.MAT_Shotgun_LS...
+Starting package 40 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_LaserPack_Integrated\LWSMG_LS.upk...
+Processing LWSMG_LS.Materials.LaserSMG_MATINST...
+Starting package 41 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_LaserPack_Integrated\LWSniperRifle_LS.upk...
+Processing LWSniperRifle_LS.Materials.LaserSniper_MATINST...
+Starting package 42 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_LaserPack_Integrated\UILibrary_LW_LaserPack.upk...
+Starting package 43 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_OfficerPack_Integrated\LWCommandRange.upk...
+Warning, Failed to load 'Class LW_OfficerPack.LWCommandRange_Actor': Failed to find object 'Class LW_OfficerPack.LWCommandRange_Actor'
+Warning, Failed to load 'Class LW_OfficerPack.LWCommandRange_Actor': Failed to find object 'Class LW_OfficerPack.LWCommandRange_Actor'
+Warning, Failed to load 'Class LW_OfficerPack.LWCommandRange_Actor': Failed to find object 'Class LW_OfficerPack.LWCommandRange_Actor'
+Warning, Failed to load 'Class LW_OfficerPack.LWCommandRange_Actor': Failed to find object 'Class LW_OfficerPack.LWCommandRange_Actor'
+Warning, Failed to compile Material LWCommandRange.Boundary.M_Shared_Meshes for platform PC-D3D-SM4, Default Material will be used in game.
+Processing LWCommandRange.Boundary.M_Shared_Meshes...
+Warning, Failed to compile Material LWCommandRange.Boundary.M_Shared_Meshes for platform PC-D3D-SM4.
+Warning,     (Node TextureSample) TextureSample> Missing input texture
+Starting package 44 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_OfficerPack_Integrated\LWOfficerPack_SoundFX.upk...
+Starting package 45 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_OfficerPack_Integrated\Perk_LWFocusFire.upk...
+Starting package 46 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_OfficerPack_Integrated\UILibrary_LW_OfficerPack.upk...
+Starting package 47 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_PerkPack_Integrated\gfxArmory_LW.upk...
+Starting package 48 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_PerkPack_Integrated\LW_Perk_CloseEncounters.upk...
+Starting package 49 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_PerkPack_Integrated\LW_Perk_PCS_AbsorptionFields.upk...
+Starting package 50 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_PerkPack_Integrated\LW_Perk_PCS_BodyShield.upk...
+Starting package 51 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_PerkPack_Integrated\LW_Perk_PCS_CombatRush.upk...
+Starting package 52 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_PerkPack_Integrated\LW_Perk_PCS_DamageControl.upk...
+Starting package 53 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_PerkPack_Integrated\LW_Perk_PCS_DepthPerception.upk...
+Starting package 54 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_PerkPack_Integrated\LW_Perk_Psi_Bastion.upk...
+Starting package 55 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_PerkPack_Integrated\LW_Perk_Psi_MindMerge.upk...
+Starting package 56 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_PerkPack_Integrated\UILibrary_LW_PerkPack.upk...
+Starting package 57 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_SMGPack_Integrated\LWSMG_BM.upk...
+Processing LWSMG_BM.Materials.Laser...
+Processing LWSMG_BM.Materials.BeamAttachments_CoreB_MATINST...
+Processing LWSMG_BM.Materials.BeamAttachments_HeatSink_MATINST...
+Processing LWSMG_BM.Materials.BeamAttachments_OpticB_MATINST...
+Processing LWSMG_BM.Materials.ConvLaserSight_MATINST...
+Processing LWSMG_BM.Materials.SMG_BM_Base_MATINST...
+Starting package 58 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_SMGPack_Integrated\LWSMG_CV.upk...
+Processing LWSMG_CV.Materials.Laser...
+Processing LWSMG_CV.Materials.ConvLaserSight_MATINST...
+Processing LWSMG_CV.Materials.ConvOpticB_MATINST...
+Processing LWSMG_CV.Materials.ConvOpticC_MATINST...
+Processing LWSMG_CV.Materials.ConvSuppressor_MATINST...
+Processing LWSMG_CV.Materials.LWSMG_CV_MATINST...
+Processing LWSMG_CV.Materials.SMGMag_CV_MATINST...
+Processing LWSMG_CV.Materials.SMGStock_CV_MATINST...
+Starting package 59 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_SMGPack_Integrated\LWSMG_MG.upk...
+Processing LWSMG_MG.Materials.Laser...
+Processing LWSMG_MG.Materials.ConvLaserSight_MATINST...
+Processing LWSMG_MG.Materials.ConvOpticB_MATINST...
+Processing LWSMG_MG.Materials.ConvOpticC_MATINST...
+Processing LWSMG_MG.Materials.LWSMG_MG_MATINST...
+Starting package 60 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_SMGPack_Integrated\UILibrary_SMG.upk...
+Starting package 61 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Toolbox_Integrated\CIN_PostMission1.umap...
+Starting package 62 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Toolbox_Integrated\UILibrary_LWToolbox.upk...
+Starting package 63 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Maps\CIN_AvDf_Intro_LW.umap...
+Starting package 64 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Maps\CIN_Loading_Infiltration_CityCenter.umap...
+Starting package 65 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Maps\CIN_Loading_Infiltration_SmallTown.umap...
+Starting package 66 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Maps\CIN_SkyrangerIntros_Infiltration.umap...
+Starting package 67 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_AssaultAlienBase_LW.umap...
+Starting package 68 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_AssaultNetworkTower_LW.umap...
+Starting package 69 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_Blacksite_LW.umap...
+Starting package 70 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_Defend_LW.umap...
+Starting package 71 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_DestroyObject_LW.umap...
+Starting package 72 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_Forge_LW.umap...
+Starting package 73 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_HackWorkstation_LW.umap...
+Starting package 74 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_IntelRaid_LW.umap...
+Starting package 75 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_Jailbreak_LW.umap...
+Starting package 76 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_LWAvengerDefense.umap...
+Starting package 77 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_LWInvasion.umap...
+Starting package 78 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_LWNeutralizeTarget.umap...
+Starting package 79 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_LWSecureUFO.umap...
+Starting package 80 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_LWTerror.umap...
+Starting package 81 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_RecoverItem_LW.umap...
+Starting package 82 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_RecruitRaid_LW.umap...
+Starting package 83 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_Rendezvous_LW.umap...
+Starting package 84 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_SabotageCC_LW.umap...
+Starting package 85 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_SmashNGrab_LW.umap...
+Starting package 86 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_SupplyConvoy_LW.umap...
+Starting package 87 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\Obj_TroopManeuvers_LW.umap...
+Starting package 88 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\SubSystem_ContinuousRNF.umap...
+Starting package 89 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\UMS_LWContinuousReinforcements.umap...
+Starting package 90 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Missions\UMS_LWMissionTimer.umap...
+Starting package 91 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\lg_Advent_Recruitment_01_LW.umap...
+Starting package 92 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\lg_ChipTransmitter_01_LW.umap...
+Starting package 93 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\lg_CloneStorage_01_LW.umap...
+Starting package 94 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\lg_GeneClinic_01_LW.umap...
+Starting package 95 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\lg_HumanBodyStorage_01_LW.umap...
+Starting package 96 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\lg_Museum_01_LW_PD.umap...
+Starting package 97 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\lg_PropagandaCenter_02_LW.umap...
+Starting package 98 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\lg_RemoteScienceStation_01_LW.umap...
+Starting package 99 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\lg_RemoteScienceStation_01_SG_LW.umap...
+Starting package 100 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\lg_Shopping_Center_01_LW_PD.umap...
+Starting package 101 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_AdventLandingPad_03.umap...
+Starting package 102 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_AdventLandingPad_04.umap...
+Starting package 103 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_Advent_Security_03_LW.umap...
+Starting package 104 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_AlienEntertainment_01_LW.umap...
+Starting package 105 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_Bank_01_LW_PD.umap...
+Starting package 106 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_Boardroom_01_LW.umap...
+Starting package 107 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_ClothingStore_01_LW_PD.umap...
+Starting package 108 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_GasStation_01_LW_PD.umap...
+Starting package 109 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_GeneClinic_01_LW.umap...
+Starting package 110 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_Office_03_LW_PD.umap...
+Starting package 111 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_RegionalNetwork_01_LW.umap...
+Starting package 112 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_RemoteScienceStation_01_LW.umap...
+Starting package 113 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_Restaurant_01_LW_PD.umap...
+Starting package 114 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_ShootingRange_01_LW.umap...
+Starting package 115 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_Studio_01_LW.umap...
+Starting package 116 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\sm_ServerRoom_01_LW.umap...
+Starting package 117 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\sm_VipOffice_01_LW.umap...
+Starting package 118 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\PCPs\WLD_SupplyConvoy_16x64_LW_01.umap...
+Starting package 119 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_ALB_AlienBase_01_LW.umap...
+Starting package 120 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_ALB_AlienBase_02_LW.umap...
+Starting package 121 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_ALB_AlienBase_03_LW.umap...
+Starting package 122 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_CTY_LgObj_Civic_10_LW.umap...
+Starting package 123 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_CTY_LgObj_Civic_11_LW.umap...
+Starting package 124 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_CTY_LgObj_Mixed_10_LW.umap...
+Starting package 125 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_CTY_vlgObj_PedShoppingCenter_01_LW.umap...
+Starting package 126 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_CTY_vlgObj_PedShoppingCenter_02_LW.umap...
+Starting package 127 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_CVY_ResistanceConvoy_01_LW.umap...
+Starting package 128 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_RFT_01_LW.umap...
+Starting package 129 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_RFT_02_LW.umap...
+Starting package 130 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_RFT_CentralBroadcastTower_01_LW.umap...
+Starting package 131 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_RVS_Highway_LgObj_01_LW.umap...
+Starting package 132 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_RVS_Highway_MdObj_01_LW.umap...
+Starting package 133 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_SLM_LgObj_10_LW.umap...
+Starting package 134 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_SLM_LgObj_11_LW.umap...
+Starting package 135 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_SLM_LgObj_12_LW.umap...
+Starting package 136 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_SLM_MdObj_10_LW.umap...
+Starting package 137 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_SLM_Overpass_LgObj_10_LW.umap...
+Starting package 138 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_TWN_Mixed_LgObj_10_LW.umap...
+Starting package 139 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_TWN_Mixed_LgObj_11_LW.umap...
+Starting package 140 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_TWN_Mixed_LgObj_20_LW.umap...
+Starting package 141 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Plots\Plot_TWN_Mixed_MdObj_10_LW.umap...
+Starting package 142 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\robojumperSquadSelect_Integrated\UILibrary_robojumperSquadSelect.upk...
+Starting package 143 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\ShellMaps\XComShell_Wilderness_PsiGate_LW.umap...
+Starting package 144 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Sounds\INT\LWSoundSpeechStrategyTygan.upk...
+Starting package 145 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Sounds\INT\LWSoundSpeechTacticalCentral.upk...
+Starting package 146 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Sounds\INT\LWSoundSpeechTacticalFirebrand.upk...
+Starting package 147 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Sounds\LWSoundSpeechStrategyTygan_Cue.upk...
+Starting package 148 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Sounds\LWSoundSpeechTacticalCentral_Cue.upk...
+Starting package 149 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Sounds\LWSoundSpeechTacticalFirebrand_Cue.upk...
+Starting package 150 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\Cannon_NoShake_LW.upk...
+Starting package 151 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\CIN_BasicColors.upk...
+Processing CIN_BasicColors.Emissive.Emissive_Black...
+Processing CIN_BasicColors.Emissive.Emissive_Blue...
+Processing CIN_BasicColors.Emissive.Emissive_Gray...
+Processing CIN_BasicColors.Emissive.Emissive_Green...
+Processing CIN_BasicColors.Emissive.Emissive_Purple...
+Processing CIN_BasicColors.Emissive.Emissive_Red...
+Processing CIN_BasicColors.Emissive.Emissive_Teal...
+Processing CIN_BasicColors.Emissive.Emissive_White...
+Processing CIN_BasicColors.Emissive.Emissive_Yellow...
+Processing CIN_BasicColors.Materials.Black...
+Processing CIN_BasicColors.Materials.CoolBlue...
+Processing CIN_BasicColors.Materials.DarkGrey...
+Processing CIN_BasicColors.Materials.DarkRed...
+Processing CIN_BasicColors.Materials.LightGrey...
+Processing CIN_BasicColors.Materials.MilitaryGreen...
+Processing CIN_BasicColors.Materials.Skin_Dark...
+Processing CIN_BasicColors.Materials.Skin_Light...
+Processing CIN_BasicColors.Materials.White...
+Processing CIN_BasicColors.Materials.WhiteEmissive...
+Starting package 152 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\EditorMeshes.upk...
+Starting package 153 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\EngineMeshes.upk...
+Processing EngineMeshes.BackgroundMaterial...
+Starting package 154 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\FX_Exhaust_Vapors.upk...
+Processing FX_Exhaust_Vapors.M_Exhaust_Vapor...
+Processing FX_Exhaust_Vapors.M_Exhaust_Vapor_NonDirectional...
+Processing FX_Exhaust_Vapors.M_Exhaust_Vapor_Unlit...
+Processing FX_Exhaust_Vapors.M_Smoke_Wispy...
+Starting package 155 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\FX_Exhaust_Vapors_Env.upk...
+Processing FX_Exhaust_Vapors_Env.M_Distortion_BehindTrans...
+Processing FX_Exhaust_Vapors_Env.M_Distortion_Flexible_InFrontOfTrans...
+Starting package 156 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\FX_Globe.upk...
+Processing FX_Globe.M_Band...
+Processing FX_Globe.M_BG_Darkener...
+Processing FX_Globe.M_Black...
+Processing FX_Globe.M_City_Lights...
+Processing FX_Globe.M_City_Lights_Obsolete...
+Processing FX_Globe.M_Cone_Glow...
+Processing FX_Globe.M_Cone_Noise...
+Processing FX_Globe.M_Council_of_Nations...
+Processing FX_Globe.M_Earth...
+Processing FX_Globe.M_Earth_Clouds...
+Processing FX_Globe.M_Earth_Clouds_Flowing...
+Processing FX_Globe.M_Earth_Clouds_obsolete...
+Processing FX_Globe.M_Earth_Main...
+Processing FX_Globe.M_Galaxy_Far...
+Processing FX_Globe.M_Globe_Hollow_Dots...
+Processing FX_Globe.M_Globe_Hollow_Dots_Exalt...
+Processing FX_Globe.M_Globe_Holo...
+Processing FX_Globe.M_Globe_Holo_Exalt...
+Processing FX_Globe.M_Globe_Holo_Glow...
+Processing FX_Globe.M_Globe_Holo_Glow_Exalt...
+Processing FX_Globe.M_Globe_Holo_HQ_Assault...
+Processing FX_Globe.M_Globe_Holo_Hyperlink...
+Processing FX_Globe.M_Globe_Holo_Opaque...
+Processing FX_Globe.M_Globe_HoloPixels...
+Processing FX_Globe.M_Globe_HoloPixels_B...
+Processing FX_Globe.M_Globe_HoloPixels_Border...
+Processing FX_Globe.M_Globe_Satellite_Coverage...
+Processing FX_Globe.M_HoloPixels_Sprite...
+Processing FX_Globe.M_Light_Ray_Additive...
+Processing FX_Globe.M_Light_Ray_Additive_Simple...
+Processing FX_Globe.M_Light_Ray_Complex_Additive...
+Processing FX_Globe.M_Light_Ray_Complex_Additive_Thick...
+Processing FX_Globe.M_Mist_Midground...
+Processing FX_Globe.M_Modulate_Simple...
+Processing FX_Globe.M_Moon_Main...
+Processing FX_Globe.M_Mote...
+Processing FX_Globe.M_Mote_Circ_Add...
+Processing FX_Globe.M_Mote_Circ_Add_ScreenSpace...
+Processing FX_Globe.M_Mote_Circ_Trans...
+Processing FX_Globe.M_Mote_Trans...
+Processing FX_Globe.M_Nebula...
+Processing FX_Globe.M_Nebula_Reveal...
+Processing FX_Globe.M_Plane_Rim...
+Processing FX_Globe.M_Pole_Cyl_Noise...
+Processing FX_Globe.M_Poles_Noise...
+Processing FX_Globe.M_Projection_Cone...
+Processing FX_Globe.M_Projection_Dots...
+Processing FX_Globe.M_Projector_Glass...
+Processing FX_Globe.M_Rim...
+Processing FX_Globe.M_Scale_by_Camera...
+Processing FX_Globe.M_Star_Flare...
+Processing FX_Globe.M_starfield...
+Processing FX_Globe.M_SunFlare...
+Processing FX_Globe.M_Globe_Holo_Hyperlink_Cin...
+Processing FX_Globe.MI_Globe_Holo_Cube_1...
+Processing FX_Globe.MI_Globe_Holo_Cube_2...
+Processing FX_Globe.MI_Globe_Holo_Cube_3...
+Processing FX_Globe.MI_Globe_Holo_Cube_4...
+Processing FX_Globe.MI_Globe_Holo_Cube_5...
+Processing FX_Globe.MI_Globe_Holo_Cube_6...
+Processing FX_Globe.MI_Globe_Holo_Dark...
+Processing FX_Globe.MI_Globe_Holo_Plane...
+Processing FX_Globe.M_Globe_Holo_Hyperlink_Cin_MITV...
+Starting package 157 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\FX_Glows.upk...
+Processing FX_Glows.M_Light_Cone...
+Processing FX_Glows.M_Light_Cone_A...
+Processing FX_Glows.M_Light_Cone_Locked_Orientation...
+Processing FX_Glows.M_Point_Glow...
+Starting package 158 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\FX_Glows_Env.upk...
+Starting package 159 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\FX_Holograms.upk...
+Processing FX_Holograms.M_AdventFencing_Hologram_Interfer_MatSwap_A...
+Processing FX_Holograms.M_AdventProjector_Interference_A...
+Processing FX_Holograms.M_Billboard_Interference_01...
+Processing FX_Holograms.M_Cylinder_Glowing...
+Processing FX_Holograms.M_Cylinder_Glowing_Interference...
+Processing FX_Holograms.M_Demo_Billboard_Interference_A...
+Warning, Failed to compile Material FX_Holograms.M_Flipbook_Loop_A for platform PC-D3D-SM4, Default Material will be used in game.
+Processing FX_Holograms.M_Flipbook_Loop_A...
+Warning, Failed to compile Material FX_Holograms.M_Flipbook_Loop_A for platform PC-D3D-SM4.
+Warning,     (Node TextureSampleParameterFlipbook) ParamFlipbook 'MaterialExpressionTextureSampleParameterFlipbook_0'> Requires TextureFlipbook
+Processing FX_Holograms.M_FX_Hologram_Projection_Translucent_A...
+Processing FX_Holograms.M_Glow_Simple_A...
+Processing FX_Holograms.M_Glow_Simple_A_Atten...
+Processing FX_Holograms.M_Hologram_Advent_01...
+Processing FX_Holograms.M_Hologram_Generic_BkGrn_NonParticle_A...
+Processing FX_Holograms.M_Hologram_Generic_BkGrnd_A...
+Processing FX_Holograms.M_Hologram_Generic_BkGrnd_Mesh_A...
+Processing FX_Holograms.M_Hologram_Interference_A...
+Processing FX_Holograms.M_Hologram_Translucent_A...
+Processing FX_Holograms.M_HoloSign_Interfer_MatSwap_A...
+Processing FX_Holograms.M_Holosphere_ScanLines_A...
+Processing FX_Holograms.M_Placards_Cylinder...
+Processing FX_Holograms.M_Placards_Rectangle...
+Processing FX_Holograms.M_Rectangle_Glowing...
+Processing FX_Holograms.M_Rectangle_Glowing_Interference...
+Processing FX_Holograms.MI_AdventProjector_D_Interference_INST...
+Processing FX_Holograms.MI_AdventScanner_Hologram_Interfer_MatSwap_A...
+Processing FX_Holograms.MI_Billboard_AdventPropaganda_Wide2_CIN_Interf...
+Processing FX_Holograms.MI_Display_Jail_A_Interfer_MatSwap...
+Processing FX_Holograms.MI_Display_Jail_B_Interfer_MatSwap...
+Processing FX_Holograms.MI_FX_Hologram_Projection_Trans_A...
+Processing FX_Holograms.MI_Hologram_Advent_Proj_D_INST...
+Processing FX_Holograms.MI_Hologram_Advent_Security_Proj...
+Processing FX_Holograms.MI_Hologram_GeneClinic_Proj_D_INST...
+Processing FX_Holograms.MI_HoloSphere_Interfer_MatSwap_A...
+Processing FX_Holograms.MI_IntSignA_Bank_Interfer_A...
+Processing FX_Holograms.MI_IntSignA_Office_Interfer_A...
+Processing FX_Holograms.MI_IntSignA_PropCnt_Interfer_A...
+Processing FX_Holograms.MI_IntSignA_Security_Interfer_A...
+Processing FX_Holograms.MI_Slum_Billboard_SedanAd_Interfer_A...
+Processing FX_Holograms.MI_Slum_Billboard_SportAd_Interfer_A...
+Processing FX_Holograms.MI_Slum_Kiosk_FshnAdB_Interfer_A...
+Processing FX_Holograms.MI_Slum_Kiosk_LightPost_Interfer_MatSwap_A...
+Processing FX_Holograms.MI_Slum_Kiosk_Map_Interfer_MatSwap_A...
+Processing FX_Holograms.MI_Slum_Kiosk_TrikeAd_Interfer_A...
+Processing FX_Holograms.MI_Slum_MrktStrtSgn_Interfer_A...
+Processing FX_Holograms.MI_Slum_MrktStrtSgn_Interfer_A_Pizza...
+Processing FX_Holograms.MI_SlumStreetSign_Interfer_MatSwap_A...
+Processing FX_Holograms.PropCenterLogo_B_01...
+Starting package 160 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\FX_Holograms_Env.upk...
+Starting package 161 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWArcthrower.upk...
+Warning, Failed to compile Material LWArcthrower.Materials.M_Arc_Halo_Ball for platform PC-D3D-SM4, Default Material will be used in game.
+Processing LWArcthrower.Materials.M_Arc_Halo_Ball...
+Warning, Failed to compile Material LWArcthrower.Materials.M_Arc_Halo_Ball for platform PC-D3D-SM4.
+Warning,     (Node TextureSample) TextureSample> Missing input texture
+Processing LWArcthrower.Materials.M_Arc_Lightning...
+Processing LWArcthrower.Materials.M_Arcs_Hit_EnshroudTarget...
+Warning, Failed to compile Material LWArcthrower.Materials.M_Ball_Lightning for platform PC-D3D-SM4, Default Material will be used in game.
+Processing LWArcthrower.Materials.M_Ball_Lightning...
+Warning, Failed to compile Material LWArcthrower.Materials.M_Ball_Lightning for platform PC-D3D-SM4.
+Warning,     (Node TextureSample) TextureSample> Missing input texture
+Warning, Failed to compile Material LWArcthrower.Materials.M_Distortion_Glow for platform PC-D3D-SM4, Default Material will be used in game.
+Processing LWArcthrower.Materials.M_Distortion_Glow...
+Warning, Failed to compile Material LWArcthrower.Materials.M_Distortion_Glow for platform PC-D3D-SM4.
+Warning,     (Node TextureSample) TextureSample> Missing input texture
+Warning, Failed to compile Material LWArcthrower.Materials.M_EM_FlashBang for platform PC-D3D-SM4, Default Material will be used in game.
+Processing LWArcthrower.Materials.M_EM_FlashBang...
+Warning, Failed to compile Material LWArcthrower.Materials.M_EM_FlashBang for platform PC-D3D-SM4.
+Warning,     (Node TextureSample) TextureSample> Missing input texture
+Warning,     (Node Splice) Splice input R must be a single float
+Warning, Failed to compile Material LWArcthrower.Materials.M_Muzzle_Flash_for_AT for platform PC-D3D-SM4, Default Material will be used in game.
+Processing LWArcthrower.Materials.M_Muzzle_Flash_for_AT...
+Warning, Failed to compile Material LWArcthrower.Materials.M_Muzzle_Flash_for_AT for platform PC-D3D-SM4.
+Warning,     (Node TextureSample) TextureSample> Missing input texture
+Processing LWArcthrower.Materials.BeamArcthrower_MATINST...
+Processing LWArcthrower.Materials.ConvArcthrower_MATINST...
+Processing LWArcthrower.Materials.MagArcthrower_MATINST...
+Starting package 162 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWCombatKnife.upk...
+Processing LWCombatKnife.Materials.LWCombatKnife_Sheath_MINST...
+Processing LWCombatKnife.Materials.LWConvKnife_MINST...
+Processing LWCombatKnife.Materials.LWVibroblade_INST...
+Starting package 163 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWEvacZone.upk...
+Starting package 164 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWGauntlet.upk...
+Processing LWGauntlet.Materials.LWConvGauntlet_MINST...
+Starting package 165 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWHolotargeter.upk...
+Processing LWHolotargeter.Materials.LW_Holotargeter_Glass...
+Processing LWHolotargeter.Materials.LW_Holotargeter_MATINST...
+Processing LWHolotargeter.Materials.LW_HolotargeterBeam_MATINST...
+Processing LWHolotargeter.Materials.LW_HolotargeterBeamAttachments_MATINST...
+Processing LWHolotargeter.Materials.LW_HolotargeterMag_MATINST...
+Processing LWHolotargeter.Materials.LW_HolotargeterMagAttachments_MATINST...
+Starting package 166 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWNarrativeMoments.upk...
+Starting package 167 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWNarrativeMoments_Bink.upk...
+Starting package 168 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWResistanceMEC.upk...
+Processing LWResistanceMEC.Materials.LWResistanceLauncher_MATINST...
+Processing LWResistanceMEC.Materials.LWResistanceMecM1_MATINST...
+Starting package 169 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWSawedoffShotgun.upk...
+Processing LWSawedoffShotgun.Materials.CoilSawedoff_MATINST...
+Processing LWSawedoffShotgun.Materials.ConvSawedOffl_MATINST...
+Starting package 170 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWSmashNGrab.upk...
+Starting package 171 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWSoldierSockets.upk...
+Starting package 172 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LWSword_LS.upk...
+Processing LWSword_LS.Materials.LaserSword_MATINST...
+Starting package 173 of 192...
+Skipping shader cache ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Overhaul_ModShaderCache.upk...
+Starting package 174 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_Overhaul_SoundFX.upk...
+Starting package 175 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_ShapedCharge.upk...
+Starting package 176 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\UILibrary_LW_Overhaul.upk...
+Starting package 177 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\WP_AssaultRiflePlasma_ICON.upk...
+Starting package 178 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\WP_CombatKnife_ICON.upk...
+Starting package 179 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Content\WP_RocketLauncher.upk...
+Processing WP_RocketLauncher.Materials.MInst_RocketLauncher...
+Processing WP_RocketLauncher.Materials.MInst_RocketLauncherKit...
+Processing WP_RocketLauncher.Materials.MInst_RocketLauncherKitFem...
+Starting package 180 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\DetailedSoldierListWOTC_Integrated.u...
+Starting package 181 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\LWUtilities.u...
+Starting package 182 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\LW_AlienPack_Integrated.u...
+Starting package 183 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\LW_LaserPack_Integrated.u...
+Starting package 184 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\LW_OfficerPack_Integrated.u...
+Starting package 185 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\LW_Overhaul.u...
+LoadAnIniFile was unable to find FilenameToLoad: H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Config\DefaultLW_MissionData.ini 
+LoadAnIniFile was unable to find FilenameToLoad: H:\WotC Dev Kit\steamapps\common\XCOM 2 War of the Chosen SDK\binaries\Win64\..\..\XComGame\Config\XComLW_MissionData.ini 
+Starting package 186 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\LW_PerkPack_Integrated.u...
+Starting package 187 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\LW_SMGPack_Integrated.u...
+Starting package 188 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\LW_Toolbox_Integrated.u...
+Starting package 189 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\LW_XCGS_ModOptions.u...
+Starting package 190 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\LW_XCGS_ToolboxOptions.u...
+Starting package 191 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\ModConfigMenuAPI.u...
+Starting package 192 of 192...
+Loading ../../XcomGame/Mods/LongWarOfTheChosen\Script\robojumperSquadSelect_Integrated.u...
+Package processing complete.
+	TotalProcessingTime      = 0.30 min
+	Material                 = 0.00 min
+	Material Instance        = 0.00 min
+	Terrain                  = 0.00 min
+	PackageLoopSetupTime     = 0.01 min
+	PackagePrologueTime      = 0.09 min
+	PackageLoadingTime       = 0.00 min
+	  NumFullyLoadedPackages = 0
+	  NumFastPackages        = 191
+	ObjectLoadingTime        = 0.18 min
+	GCTime                   = 0.02 min
+	DistributedCompiling     = 0.00 min
+	ShaderCacheSavingTime    = 0.00 min
+	RHIShaderCompileTime     = 0.08 min
+	  PS3                    = 0.00 min
+	  XBOXD3D                = 0.00 min
+	  NGP                    = 0.00 min
+	  WIIU                   = 0.00 min
+	  PCD3D_SM3              = 0.00 min
+	  PCD3D_SM4              = 0.08 min
+	  PCD3D_SM5              = 0.00 min
+	  PCOGL                  = 0.00 min
+	UnaccountedTime          = 0.00 min
+
+
+Warning: Package time greater than 3 standard deviations!
+    Name = ../../XcomGame/Mods/LongWarOfTheChosen\Content\LW_AlienPack_Integrated\LWHiveQueen.upk
+    Time = 0.03 min
+
+
+Warning: Package time greater than 3 standard deviations!
+    Name = ../../XcomGame/Mods/LongWarOfTheChosen\Content\Parcels\md_AdventLandingPad_03.umap
+    Time = 0.03 min
+
+
+Warning: Package time greater than 3 standard deviations!
+    Name = ../../XcomGame/Mods/LongWarOfTheChosen\Content\ShellMaps\XComShell_Wilderness_PsiGate_LW.umap
+    Time = 0.03 min
+
+
+Warning: Package time greater than 3 standard deviations!
+    Name = ../../XcomGame/Mods/LongWarOfTheChosen\Script\LW_Overhaul.u
+    Time = 0.01 min
+
+
+
+Warning/Error Summary
+---------------------
+Warning, Failed to compile Material LWDroneWeapon.Materials.M_Drone_Electricity_Pulse_Beam for platform PC-D3D-SM4, Default Material will be used in game.
+Warning, Failed to compile Material LWDroneWeapon.Materials.M_Drone_Electricity_Pulse_Beam for platform PC-D3D-SM4.
+Warning,     (Node TextureSample) TextureSample> Missing input texture
+Warning, Failed to compile Material LWDroneWeapon.Materials.M_Glow for platform PC-D3D-SM4, Default Material will be used in game.
+Warning, Failed to compile Material LWDroneWeapon.Materials.M_Glow for platform PC-D3D-SM4.
+Warning, Failed to load 'Class LW_OfficerPack.LWCommandRange_Actor': Failed to find object 'Class LW_OfficerPack.LWCommandRange_Actor'
+Warning, Failed to compile Material LWCommandRange.Boundary.M_Shared_Meshes for platform PC-D3D-SM4, Default Material will be used in game.
+Warning, Failed to compile Material LWCommandRange.Boundary.M_Shared_Meshes for platform PC-D3D-SM4.
+Warning, Failed to compile Material FX_Holograms.M_Flipbook_Loop_A for platform PC-D3D-SM4, Default Material will be used in game.
+Warning, Failed to compile Material FX_Holograms.M_Flipbook_Loop_A for platform PC-D3D-SM4.
+Warning,     (Node TextureSampleParameterFlipbook) ParamFlipbook 'MaterialExpressionTextureSampleParameterFlipbook_0'> Requires TextureFlipbook
+Warning, Failed to compile Material LWArcthrower.Materials.M_Arc_Halo_Ball for platform PC-D3D-SM4, Default Material will be used in game.
+Warning, Failed to compile Material LWArcthrower.Materials.M_Arc_Halo_Ball for platform PC-D3D-SM4.
+Warning, Failed to compile Material LWArcthrower.Materials.M_Ball_Lightning for platform PC-D3D-SM4, Default Material will be used in game.
+Warning, Failed to compile Material LWArcthrower.Materials.M_Ball_Lightning for platform PC-D3D-SM4.
+Warning, Failed to compile Material LWArcthrower.Materials.M_Distortion_Glow for platform PC-D3D-SM4, Default Material will be used in game.
+Warning, Failed to compile Material LWArcthrower.Materials.M_Distortion_Glow for platform PC-D3D-SM4.
+Warning, Failed to compile Material LWArcthrower.Materials.M_EM_FlashBang for platform PC-D3D-SM4, Default Material will be used in game.
+Warning, Failed to compile Material LWArcthrower.Materials.M_EM_FlashBang for platform PC-D3D-SM4.
+Warning,     (Node Splice) Splice input R must be a single float
+Warning, Failed to compile Material LWArcthrower.Materials.M_Muzzle_Flash_for_AT for platform PC-D3D-SM4, Default Material will be used in game.
+Warning, Failed to compile Material LWArcthrower.Materials.M_Muzzle_Flash_for_AT for platform PC-D3D-SM4.
+
+Success - 0 error(s), 32 warning(s) (0 Unique Errors, 22 Unique Warnings)
+
+Execution of commandlet took:  17.91 seconds
+Generated Shader Cache.
+Copying all staging files to production...
+Copied mod to game directory.
+*** SUCCESS! ***
+LongWarOfTheChosen ready to run.
+
+
