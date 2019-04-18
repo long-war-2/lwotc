@@ -2197,7 +2197,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					ArmorTemplate.bAddsUtilitySlot = true;
 				case 'MediumPlatedArmor':
 					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, 14, default.MEDIUM_PLATED_MITIGATION_AMOUNT);
-					break;k;
+					break;
 
 				case 'SparkArmor':
 				case 'PlatedSparkArmor':
