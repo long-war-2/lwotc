@@ -8,7 +8,7 @@
 //  Copyright (c) 2016 Firaxis Games, Inc. All rights reserved.
 //---------------------------------------------------------------------------------------
 
-class X2DownloadableContentInfo_WotCWeaponsAndArmor extends X2DownloadableContentInfo;
+class X2DownloadableContentInfo_LW_WeaponsAndArmor extends X2DownloadableContentInfo;
 
 
 /// <summary>

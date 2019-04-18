@@ -1,5 +1,5 @@
 // This is an Unreal Script
-class X2Item_Armors extends X2Item;
+class X2Item_FactionArmors extends X2Item;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -41,18 +41,18 @@ static function X2DataTemplate CreatePlatedReaperArmor()
 	Template.EquipNarrative = "X2NarrativeMoments.Strategy.CIN_ArmorIntro_PlatedMedium";
 	Template.EquipSound = "StrategyUI_Armor_Equip_Plated";
 
-    Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
+	Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_PLATED_HEALTH_BONUS, true);
 
 	// Cost
-    Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 30;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'Supplies';
+	Resources.Quantity = 30;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
-    Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 5;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'AlienAlloy';
+	Resources.Quantity = 5;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	return Template;
 }
@@ -85,17 +85,17 @@ static function X2DataTemplate CreatePoweredReaperArmor()
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_MITIGATION_AMOUNT);
 
 	// Cost
-    Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 80;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'Supplies';
+	Resources.Quantity = 80;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
-    Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 10;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'AlienAlloy';
+	Resources.Quantity = 10;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
-    Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 10;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'EleriumDust';
+	Resources.Quantity = 10;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	return Template;
 }
@@ -123,18 +123,18 @@ static function X2DataTemplate CreatePlatedSkirmisherArmor()
 	Template.EquipNarrative = "X2NarrativeMoments.Strategy.CIN_ArmorIntro_PlatedMedium";
 	Template.EquipSound = "StrategyUI_Armor_Equip_Plated";
 
-    Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
+	Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_PLATED_HEALTH_BONUS, true);
 
 	// Cost
-    Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 30;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'Supplies';
+	Resources.Quantity = 30;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
-    Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 5;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'AlienAlloy';
+	Resources.Quantity = 5;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	return Template;
 }
@@ -167,17 +167,17 @@ static function X2DataTemplate CreatePoweredSkirmisherArmor()
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_MITIGATION_AMOUNT);
 
 	// Cost
-    Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 80;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'Supplies';
+	Resources.Quantity = 80;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
-    Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 10;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'AlienAlloy';
+	Resources.Quantity = 10;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
-    Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 10;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'EleriumDust';
+	Resources.Quantity = 10;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	return Template;
 }
@@ -205,19 +205,19 @@ static function X2DataTemplate CreatePlatedTemplarArmor()
 	Template.EquipNarrative = "X2NarrativeMoments.Strategy.CIN_ArmorIntro_PlatedMedium";
 	Template.EquipSound = "StrategyUI_Armor_Equip_Plated";
 
-    Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
+	Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_PLATED_HEALTH_BONUS, true);
 
 	// Cost
-    Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 30;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'Supplies';
+	Resources.Quantity = 30;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
-    Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 5;
-    Template.Cost.ResourceCosts.AddItem(Resources);
-    
+	Resources.ItemTemplateName = 'AlienAlloy';
+	Resources.Quantity = 5;
+	Template.Cost.ResourceCosts.AddItem(Resources);
+	
 	return Template;
 }
 
@@ -249,17 +249,17 @@ static function X2DataTemplate CreatePoweredTemplarArmor()
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_MITIGATION_AMOUNT);
 
 	// Cost
-    Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 80;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'Supplies';
+	Resources.Quantity = 80;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
-    Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 10;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'AlienAlloy';
+	Resources.Quantity = 10;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
-    Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 10;
-    Template.Cost.ResourceCosts.AddItem(Resources);
+	Resources.ItemTemplateName = 'EleriumDust';
+	Resources.Quantity = 10;
+	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	return Template;
 }

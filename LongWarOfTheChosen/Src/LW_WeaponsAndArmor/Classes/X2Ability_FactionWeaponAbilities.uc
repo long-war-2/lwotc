@@ -1,11 +1,12 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Ability_SMGAbilities.uc
-//  AUTHOR:  Amineri (Long War Studios)
-//  PURPOSE: Adds stat modifier abilities for all tech tiers of SMG
+//  AUTHOR:  Joey Martinez (jmartinez989)
+//  CREDIT TO: Amineri (Long War Studios)
+//  PURPOSE: Adds stat modifier abilities for all tech tiers of Bullpups.
 //           
 //---------------------------------------------------------------------------------------
-class X2Ability_WeaponAbilities extends X2Ability config(WeaponAbilities);
-	
+class X2Ability_FactionWeaponAbilities extends X2Ability config(GameData_WeaponData);
+
 // ***** Mobility bonuses for Bullpups
 var config int BULLPUP_CONVENTIONAL_MOBILITY_BONUS;
 var config int BULLPUP_MAGNETIC_MOBILITY_BONUS;

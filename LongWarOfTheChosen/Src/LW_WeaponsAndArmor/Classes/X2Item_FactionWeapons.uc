@@ -1,5 +1,5 @@
 // This is an Unreal Script
-class X2Item_Weapons extends X2Item config(GameData_WeaponData);
+class X2Item_FactionWeapons extends X2Item config(GameData_WeaponData);
 
 /******************************************************************
 **
@@ -233,18 +233,20 @@ static function X2DataTemplate CreateTemplate_Bullpup_Magnetic()
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
 
+	/*
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 40;
+	Resources.Quantity = 40;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 3;
+	Resources.Quantity = 3;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 3;
+	Resources.Quantity = 3;
 	Template.Cost.ResourceCosts.AddItem(Resources);
+	*/
 
 	Template.DamageTypeTemplateName = 'Projectile_MagXCom';
 
@@ -255,7 +257,7 @@ static function X2DataTemplate CreateTemplate_Bullpup_Beam()
 {
 	local X2WeaponTemplate Template;
 	local ArtifactCost Artifacts;
-    local ArtifactCost Resources;
+	local ArtifactCost Resources;
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Bullpup_BM');
 	Template.WeaponPanelImage = "_BeamShotgun";
@@ -309,15 +311,15 @@ static function X2DataTemplate CreateTemplate_Bullpup_Beam()
 
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 70;
+	Resources.Quantity = 70;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 6;
+	Resources.Quantity = 6;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 6;
+	Resources.Quantity = 6;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Artifacts.ItemTemplateName = 'EleriumCore';
@@ -332,7 +334,7 @@ static function X2DataTemplate CreateTemplate_Bullpup_Beam()
 static function X2DataTemplate CreateTemplate_VektorRifle_Magnetic()
 {
 	local X2WeaponTemplate Template;
-    local ArtifactCost Resources;
+	local ArtifactCost Resources;
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'VektorRifle_MG');
 	Template.WeaponPanelImage = "_MagneticSniperRifle";                       // used by the UI. Probably determines iconview of the weapon.
@@ -381,15 +383,15 @@ static function X2DataTemplate CreateTemplate_VektorRifle_Magnetic()
 
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 50;
+	Resources.Quantity = 50;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 3;
+	Resources.Quantity = 3;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 3;
+	Resources.Quantity = 3;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Template.DamageTypeTemplateName = 'Projectile_MagXCom';
@@ -401,7 +403,7 @@ static function X2DataTemplate CreateTemplate_VektorRifle_Beam()
 {
 	local X2WeaponTemplate Template;
 	local ArtifactCost Artifacts;
-    local ArtifactCost Resources;
+	local ArtifactCost Resources;
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'VektorRifle_BM');
 	Template.WeaponPanelImage = "_BeamSniperRifle";                       // used by the UI. Probably determines iconview of the weapon.
@@ -453,15 +455,15 @@ static function X2DataTemplate CreateTemplate_VektorRifle_Beam()
 
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 80;
+	Resources.Quantity = 80;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 6;
+	Resources.Quantity = 6;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 6;
+	Resources.Quantity = 6;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Artifacts.ItemTemplateName = 'EleriumCore';
@@ -526,22 +528,22 @@ static function X2DataTemplate CreateTemplate_WristBlade_Magnetic()
 
 	Template.BonusWeaponEffects.AddItem(class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, default.WRISTBLADE_MAGNETIC_STUNCHANCE, false));
 
-    Template.Requirements.RequiredTechs.AddItem('AutopsyAdventStunLancer');
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventStunLancer');
 
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
 
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 30;
+	Resources.Quantity = 30;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 3;
+	Resources.Quantity = 3;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 3;
+	Resources.Quantity = 3;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Artifacts.ItemTemplateName = 'CorpseAdventStunLancer';
@@ -616,15 +618,15 @@ static function X2DataTemplate CreateTemplate_WristBlade_Beam()
 
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 50;
+	Resources.Quantity = 50;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 4;
+	Resources.Quantity = 4;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 4;
+	Resources.Quantity = 4;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Artifacts.ItemTemplateName = 'CorpseArchon';
@@ -680,22 +682,22 @@ static function X2DataTemplate CreateTemplate_ShardGauntlet_Magnetic()
 	Template.iEnvironmentDamage = default.SHARDGAUNTLET_MAGNETIC_IENVIRONMENTDAMAGE;
 	Template.BaseDamage.DamageType = 'Psi';
 
-    Template.Requirements.RequiredTechs.AddItem('AutopsyAdventStunLancer');
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventStunLancer');
 
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
 
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 35;
+	Resources.Quantity = 35;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 3;
+	Resources.Quantity = 3;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 3;
+	Resources.Quantity = 3;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Artifacts.ItemTemplateName = 'CorpseAdventStunLancer';
@@ -753,15 +755,15 @@ static function X2DataTemplate CreateTemplate_ShardGauntlet_Beam()
 
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 55;
+	Resources.Quantity = 55;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 4;
+	Resources.Quantity = 4;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 4;
+	Resources.Quantity = 4;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Artifacts.ItemTemplateName = 'CorpseArchon';
@@ -829,15 +831,15 @@ static function X2DataTemplate CreateTemplate_Sidearm_Magnetic()
 
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 15;
+	Resources.Quantity = 15;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 2;
+	Resources.Quantity = 2;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 2;
+	Resources.Quantity = 2;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Template.DamageTypeTemplateName = 'Projectile_MagXCom';
@@ -897,18 +899,18 @@ static function X2DataTemplate CreateTemplate_Sidearm_Beam()
 
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
-
+    
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 35;
+	Resources.Quantity = 35;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 5;
+	Resources.Quantity = 5;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'EleriumDust';
-    Resources.Quantity = 5;
+	Resources.Quantity = 5;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Artifacts.ItemTemplateName = 'EleriumCore';
