@@ -45,6 +45,7 @@
     <Folder Include="Src\LW_PerkPack_Integrated\" />
     <Folder Include="Src\LW_SMGPack_Integrated\" />
     <Folder Include="Src\LW_Toolbox_Integrated\" />
+    <Folder Include="Src\LW_WeaponsAndArmor\Classes\" />
     <Folder Include="Src\LW_XCGS_ModOptions\" />
     <Folder Include="Src\LW_XCGS_ToolboxOptions\" />
     <Folder Include="Src\ModConfigMenuAPI\" />
@@ -67,8 +68,7 @@
     <Folder Include="Content\LW_Coilguns\" />
     <Folder Include="Content\Movies\" />
     <Folder Include="Content\ShellMaps\" />
-    <Folder Include="Src\WotCWeaponsAndArmor\" />
-    <Folder Include="Src\WotCWeaponsAndArmor\Classes\" />
+    <Folder Include="Src\LW_WeaponsAndArmor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -1062,12 +1062,10 @@
     <Content Include="Content\Sounds\INT\LWSoundSpeechStrategyTygan.upk" />
     <Content Include="Content\Sounds\INT\LWSoundSpeechTacticalCentral.upk" />
     <Content Include="Content\Sounds\INT\LWSoundSpeechTacticalFirebrand.upk" />
-    <Content Include="Config\XComWeaponAbilities.ini" />
-    <Content Include="Src\WotCWeaponsAndArmor\Classes\X2Ability_WeaponAbilities.uc" />
-    <Content Include="Src\WotCWeaponsAndArmor\Classes\X2DownloadableContentInfo_WotCWeaponsAndArmor.uc" />
-    <Content Include="Src\WotCWeaponsAndArmor\Classes\X2Item_Armors.uc" />
-    <Content Include="Src\WotCWeaponsAndArmor\Classes\X2Item_Weapons.uc" />
-    <Content Include="Src\WotCWeaponsAndArmor\Classes\X2Item_Schematics.uc" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Ability_FactionWeaponAbilities.uc" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2DownloadableContentInfo_LW_WeaponsAndArmor.uc" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionArmors.uc" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionWeapons.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

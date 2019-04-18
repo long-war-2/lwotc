@@ -135,7 +135,7 @@ static function X2DataTemplate CreateTemplate_Bullpup_Conventional()
 	Template.Tier = 0;
 
 	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
-	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_WeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
+	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
 
 	Template.RangeAccuracy = default.SKIRMISHER_SMG_RANGE;
 	Template.BaseDamage = default.BULLPUP_CONVENTIONAL_BASEDAMAGE;
@@ -194,7 +194,7 @@ static function X2DataTemplate CreateTemplate_Bullpup_Magnetic()
 	Template.Tier = 3;
 
 	Template.Abilities.AddItem('Bullpup_MG_StatBonus');
-	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_WeaponAbilities'.default.BULLPUP_MAGNETIC_MOBILITY_BONUS);
+	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_MAGNETIC_MOBILITY_BONUS);
 
 	Template.RangeAccuracy = default.SKIRMISHER_SMG_RANGE;
 	Template.BaseDamage = default.BULLPUP_MAGNETIC_BASEDAMAGE;
@@ -233,7 +233,6 @@ static function X2DataTemplate CreateTemplate_Bullpup_Magnetic()
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
 
-	/*
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
 	Resources.Quantity = 40;
@@ -246,7 +245,6 @@ static function X2DataTemplate CreateTemplate_Bullpup_Magnetic()
 	Resources.ItemTemplateName = 'EleriumDust';
 	Resources.Quantity = 3;
 	Template.Cost.ResourceCosts.AddItem(Resources);
-	*/
 
 	Template.DamageTypeTemplateName = 'Projectile_MagXCom';
 
@@ -270,7 +268,7 @@ static function X2DataTemplate CreateTemplate_Bullpup_Beam()
 	Template.Tier = 5;
 
 	Template.Abilities.AddItem('Bullpup_BM_StatBonus');
-	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_WeaponAbilities'.default.BULLPUP_BEAM_MOBILITY_BONUS);
+	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_BEAM_MOBILITY_BONUS);
 
 	Template.RangeAccuracy = default.SKIRMISHER_SMG_RANGE;
 	Template.BaseDamage = default.BULLPUP_BEAM_BASEDAMAGE;
@@ -899,7 +897,7 @@ static function X2DataTemplate CreateTemplate_Sidearm_Beam()
 
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
-    
+
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
 	Resources.Quantity = 35;
