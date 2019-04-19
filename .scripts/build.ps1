@@ -391,7 +391,7 @@ if (Test-Path $stagingPath) {
 Write-Host "Cleaned."
 
 # copy source to staging
-Robocopy.exe "$modSrcRoot" "$sdkPath\XComGame\Mods\$modNameCanonical" *.* /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /NP /R:1 /W:30
+Robocopy.exe "$modSrcRoot" "$sdkPath\XComGame\Mods\$modNameCanonical" *.* /S /E /COPY:DAT /PURGE /MIR /NP /R:1 /W:30
 if (Test-Path "$stagingPath\$modNameCanonical.x2proj") {
     Remove-Item "$stagingPath\$modNameCanonical.x2proj"
 }
@@ -416,7 +416,7 @@ Write-Host "Written."
 
 # mirror the SDK's SrcOrig to its Src
 Write-Host "Mirroring SrcOrig to Src..."
-Robocopy.exe "$sdkPath/Development/SrcOrig" "$sdkPath/Development/Src" *.uc *.uci /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /NP /R:1000000 /W:30
+Robocopy.exe "$sdkPath/Development/SrcOrig" "$sdkPath/Development/Src" *.uc *.uci /S /E /COPY:DAT /PURGE /MIR /NP /R:1000000 /W:30
 Write-Host "Mirrored."
 
 # copying the mod's scripts to the script staging location
