@@ -99,11 +99,11 @@ struct TechTableEntry
 
 struct GTSTableEntry
 {
-	var name	GTSProjectTemplateName;
-	var	int		SupplyCost;
-	var int		RankRequired;
-	var	bool	HideifInsufficientRank;
-	var name	UniqueClass;
+	var name    GTSProjectTemplateName;
+	var int     SupplyCost;
+	var int     RankRequired;
+	var bool    HideifInsufficientRank;
+	var name    UniqueClass;
 	structdefaultproperties
 	{
 		GTSProjectTemplateName=None
@@ -290,11 +290,11 @@ var config array<FlashbangResistEntry> ENEMY_FLASHBANG_RESIST;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
-    local array<X2DataTemplate> Templates;
+	local array<X2DataTemplate> Templates;
 
 	`LWTrace("LWTemplateMods.CreateTemplates --------------------------------");
 
-    Templates.AddItem(CreateDelayedEvacTemplate());
+	Templates.AddItem(CreateDelayedEvacTemplate());
 	Templates.Additem(CreateReconfigGearTemplate());
 	Templates.Additem(CreateRewireTechTreeTemplate());
 	Templates.AddItem(CreateEditGTSProjectsTemplate());
@@ -303,7 +303,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateModifyGrenadeEffects());
 	Templates.AddItem(CreateReconfigFacilitiesTemplate());
 	Templates.AddItem(CreateReconfigStaffSlotsTemplate());
-    Templates.AddItem(CreateRecoverItemTemplate());
+	Templates.AddItem(CreateRecoverItemTemplate());
 	Templates.AddItem(CreateRemovePPClassesTemplate());
 	Templates.AddItem(CreateUpdateQuestItemsTemplate());
 	TEmplates.AddItem(CreateGeneralCharacterModTemplate());
@@ -315,28 +315,28 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateModifyRewardsTemplate());
 	Templates.AddItem(CreateModifyStrategyObjectivesTemplate());
 	`Log("    Done");
-    return Templates;
+	return Templates;
 }
 
 // Update existing strategic objective templates
 static function X2LWTemplateModTemplate CreateModifyStrategyObjectivesTemplate()
 {
-    local X2LWTemplateModTemplate Template;
+	local X2LWTemplateModTemplate Template;
 
-    `CREATE_X2TEMPLATE(class'X2LWObjectivesModTemplate', Template, 'UpdateObjectives');
-    return Template;
+	`CREATE_X2TEMPLATE(class'X2LWObjectivesModTemplate', Template, 'UpdateObjectives');
+	return Template;
 }
 
 // Update StaffSlotTemplates as needed
 static function X2LWTemplateModTemplate CreateModifyRewardsTemplate()
 {
-    local X2LWTemplateModTemplate Template;
+	local X2LWTemplateModTemplate Template;
 
-    `CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'UpdateRewards');
+	`CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'UpdateRewards');
 
-    // We need to modify grenade items and ability templates
-    Template.StrategyElementTemplateModFn = UpdateRewardTemplate;
-    return Template;
+	// We need to modify grenade items and ability templates
+	Template.StrategyElementTemplateModFn = UpdateRewardTemplate;
+	return Template;
 }
 
 function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameState NewGameState, optional float RewardScalar = 1.0, optional StateObjectReference RegionRef)
@@ -421,7 +421,7 @@ function GenerateRandomSoldierReward(XComGameState_Reward RewardState, XComGameS
 		{
 			NewUnitState.RankUpSoldier(NewGameState, NewUnitState.GetSoldierClassTemplate().DataName);
 		}
-	}	
+	}   
 	RewardState.RewardObjectReference = NewUnitState.GetReference();
 }
 
@@ -450,13 +450,13 @@ function UpdateRewardTemplate(X2StrategyElementTemplate Template, int Difficulty
 // Update StaffSlotTemplates as needed
 static function X2LWTemplateModTemplate CreateModifyStaffSlotsTemplate()
 {
-    local X2LWTemplateModTemplate Template;
+	local X2LWTemplateModTemplate Template;
 
-    `CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'UpdateStaffSlots');
+	`CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'UpdateStaffSlots');
 
-    // We need to modify grenade items and ability templates
-    Template.StrategyElementTemplateModFn = UpdateStaffSlotTemplate;
-    return Template;
+	// We need to modify grenade items and ability templates
+	Template.StrategyElementTemplateModFn = UpdateStaffSlotTemplate;
+	return Template;
 }
 
 function UpdateStaffSlotTemplate(X2StrategyElementTemplate Template, int Difficulty)
@@ -550,13 +550,13 @@ static function string GetAWCBonusDisplayString_LW(XComGameState_StaffSlot SlotS
 // Update QuestItemTemplates to include the new _LW MissionTypes
 static function X2LWTemplateModTemplate CreateUpdateQuestItemsTemplate()
 {
-    local X2LWTemplateModTemplate Template;
+	local X2LWTemplateModTemplate Template;
 
-    `CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'UpdateQuestItems');
+	`CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'UpdateQuestItems');
 
-    // We need to modify grenade items and ability templates
-    Template.ItemTemplateModFn = UpdateQuestItemsTemplate;
-    return Template;
+	// We need to modify grenade items and ability templates
+	Template.ItemTemplateModFn = UpdateQuestItemsTemplate;
+	return Template;
 }
 
 function UpdateQuestItemsTemplate(X2ItemTemplate Template, int Difficulty)
@@ -585,13 +585,13 @@ function UpdateQuestItemsTemplate(X2ItemTemplate Template, int Difficulty)
 
 static function X2LWTemplateModTemplate CreateModifyGrenadeEffects()
 {
-    local X2LWTemplateModTemplate Template;
+	local X2LWTemplateModTemplate Template;
 
-    `CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'ModifyGrenadeEffects');
+	`CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'ModifyGrenadeEffects');
 
-    // We need to modify grenade items and ability templates
-    Template.ItemTemplateModFn = ModifyGrenadeEffects;
-    return Template;
+	// We need to modify grenade items and ability templates
+	Template.ItemTemplateModFn = ModifyGrenadeEffects;
+	return Template;
 }
 
 
@@ -626,9 +626,9 @@ delegate name ResistFlashbang(const out EffectAppliedData ApplyEffectParameters,
 
 function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 {
-	local X2GrenadeTemplate								GrenadeTemplate;
+	local X2GrenadeTemplate                             GrenadeTemplate;
 	local int k;
-	local X2Effect_Persistent							Effect;
+	local X2Effect_Persistent                           Effect;
 
 	GrenadeTemplate = X2GrenadeTemplate(Template);
 	if(GrenadeTemplate == none)
@@ -638,7 +638,7 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 		case 'FlashbangGrenade':
 		case 'StingGrenade':
 			GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Ability_LW_GrenadierAbilitySet'.static.CreateBluescreenBombsHackReductionEffect());
-			GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Ability_LW_GrenadierAbilitySet'.static.CreateBluescreenBombsDisorientEffect());		
+			GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2Ability_LW_GrenadierAbilitySet'.static.CreateBluescreenBombsDisorientEffect());        
 			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Ability_LW_GrenadierAbilitySet'.static.CreateBluescreenBombsHackReductionEffect());
 			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2Ability_LW_GrenadierAbilitySet'.static.CreateBluescreenBombsDisorientEffect());
 			GrenadeTemplate.bAllowVolatileMix = false;
@@ -709,12 +709,12 @@ static function string GetIconColorByActionPoints (X2AbilityTemplate Template)
 {
 	local int k, k2;
 	local bool pass, found;
-	local X2AbilityCost_ActionPoints		ActionPoints;
+	local X2AbilityCost_ActionPoints        ActionPoints;
 	local string AbilityIconColor;
 
 	AbilityIconColor = "";
 	for (k = 0; k < Template.AbilityCosts.Length; ++k)
-	{	
+	{   
 		ActionPoints = X2AbilityCost_ActionPoints(Template.AbilityCosts[k]);
 		if (ActionPoints != none)
 		{
@@ -744,7 +744,7 @@ static function string GetIconColorByActionPoints (X2AbilityTemplate Template)
 								AbilityIconColor = default.ICON_COLOR_PSIONIC_1; // light lavender
 							}
 							else
-							{	
+							{   
 								AbilityIconColor = default.ICON_COLOR_PSIONIC_FREE; // lavender-white
 							}
 						}
@@ -784,7 +784,7 @@ static function string GetIconColorByActionPoints (X2AbilityTemplate Template)
 		pass= false;
 		for (k2 = 0; k2 < Template.AbilityTriggers.Length; k2++)
 		{
-	       if(Template.AbilityTriggers[k2].IsA('X2AbilityTrigger_PlayerInput'))
+		   if(Template.AbilityTriggers[k2].IsA('X2AbilityTrigger_PlayerInput'))
 			{
 				pass = true;
 			}
@@ -806,39 +806,39 @@ static function string GetIconColorByActionPoints (X2AbilityTemplate Template)
 
 function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 {
-	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
-	local X2Condition_UnitEffects			UnitEffects;
-	local X2AbilityToHitCalc_StandardAim	StandardAim;
-	local X2AbilityCharges_RevivalProtocol	RPCharges;
-	local X2Condition_UnitInventory			InventoryCondition, InventoryCondition2;
-	local X2Condition_UnitEffects			SuppressedCondition, UnitEffectsCondition, NotHaywiredCondition;
-	local int								k;
-	local X2AbilityCost_Ammo				AmmoCost;
-	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2EFfect_HuntersInstinctDamage_LW	DamageModifier;
-	local X2AbilityCooldown					Cooldown;
-	local X2AbilityCost_QuickdrawActionPoints_LW	QuickdrawActionPointCost;
-	local X2Effect_Squadsight				Squadsight;
-	local X2Effect_ToHitModifier			ToHitModifier;
-	local X2Effect_Persistent				Effect, PersistentEffect, HaywiredEffect;
-	local X2Effect_VolatileMix				MixEffect;
-	local X2Effect_ModifyReactionFire		ReactionFire;
-	local X2Effect_DamageImmunity	 		DamageImmunity;
-	local X2Effect_HunkerDown_LW			HunkerDownEffect;
-	local X2Effect_CancelLongRangePenalty	DFAEffect;
-	local X2Condition_Visibility			VisibilityCondition, TargetVisibilityCondition;
-	local X2Condition_UnitProperty			UnitPropertyCondition;
-	//local X2AbilityTarget_Single			PrimaryTarget;
-	//local X2AbilityMultiTarget_Radius		RadiusMultiTarget;
-	local X2Effect_SerialCritReduction		SerialCritReduction;
-    local X2AbilityCharges					Charges;
-    local X2AbilityCost_Charges				ChargeCost;
-	//local X2Effect_SoulSteal_LW			StealEffect;
-	local X2Effect_Guardian_LW				GuardianEffect;
-	local X2Effect							ShotEffect;
+	local X2Effect_PersistentStatChange     PersistentStatChangeEffect;
+	local X2Condition_UnitEffects           UnitEffects;
+	local X2AbilityToHitCalc_StandardAim    StandardAim;
+	local X2AbilityCharges_RevivalProtocol  RPCharges;
+	local X2Condition_UnitInventory         InventoryCondition, InventoryCondition2;
+	local X2Condition_UnitEffects           SuppressedCondition, UnitEffectsCondition, NotHaywiredCondition;
+	local int                               k;
+	local X2AbilityCost_Ammo                AmmoCost;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2EFfect_HuntersInstinctDamage_LW DamageModifier;
+	local X2AbilityCooldown                 Cooldown;
+	local X2AbilityCost_QuickdrawActionPoints_LW    QuickdrawActionPointCost;
+	local X2Effect_Squadsight               Squadsight;
+	local X2Effect_ToHitModifier            ToHitModifier;
+	local X2Effect_Persistent               Effect, PersistentEffect, HaywiredEffect;
+	local X2Effect_VolatileMix              MixEffect;
+	local X2Effect_ModifyReactionFire       ReactionFire;
+	local X2Effect_DamageImmunity           DamageImmunity;
+	local X2Effect_HunkerDown_LW            HunkerDownEffect;
+	local X2Effect_CancelLongRangePenalty   DFAEffect;
+	local X2Condition_Visibility            VisibilityCondition, TargetVisibilityCondition;
+	local X2Condition_UnitProperty          UnitPropertyCondition;
+	//local X2AbilityTarget_Single          PrimaryTarget;
+	//local X2AbilityMultiTarget_Radius     RadiusMultiTarget;
+	local X2Effect_SerialCritReduction      SerialCritReduction;
+	local X2AbilityCharges                  Charges;
+	local X2AbilityCost_Charges             ChargeCost;
+	//local X2Effect_SoulSteal_LW           StealEffect;
+	local X2Effect_Guardian_LW              GuardianEffect;
+	local X2Effect                          ShotEffect;
 	local X2Effect_MaybeApplyDirectionalWorldDamage WorldDamage;
-	local X2Effect_DeathFromAbove_LW		DeathEffect;
-	local X2Effect_ApplyWeaponDamage		WeaponDamageEffect;
+	local X2Effect_DeathFromAbove_LW        DeathEffect;
+	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
@@ -924,10 +924,10 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		Template.AbilityTargetEffects.length = 0;
 		DamageImmunity = new class'X2Effect_DamageImmunity';
-	    DamageImmunity.BuildPersistentEffect(1, true, true, true);
-	    DamageImmunity.ImmuneTypes.AddItem('Unconscious');
-	    DamageImmunity.EffectName = 'RulerImmunity';
-	    Template.AddTargetEffect(DamageImmunity);
+		DamageImmunity.BuildPersistentEffect(1, true, true, true);
+		DamageImmunity.ImmuneTypes.AddItem('Unconscious');
+		DamageImmunity.EffectName = 'RulerImmunity';
+		Template.AddTargetEffect(DamageImmunity);
 
 		//Requires listeners set up so that "RULER REACTION" overlay gets removed
 		Template.AddTargetEffect(new class'X2Effect_DLC2_HideSpecialTurnOverlay');
@@ -1056,8 +1056,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'Squadsight')
 	{
 		Template.AbilityTargetEffects.length = 0;
-	    Squadsight = new class'X2Effect_Squadsight';
-	    Squadsight.BuildPersistentEffect(1, true, false, true);
+		Squadsight = new class'X2Effect_Squadsight';
+		Squadsight.BuildPersistentEffect(1, true, false, true);
 		Squadsight.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
 		Template.AddTargetEffect(Squadsight);
 	}
@@ -1075,7 +1075,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'HoloTargeting')
 	{
 		Template.AbilityTargetEffects.length = 0;
-	    PersistentEffect = new class'X2Effect_Persistent';
+		PersistentEffect = new class'X2Effect_Persistent';
 		PersistentEffect.BuildPersistentEffect(1, true, false);
 		PersistentEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(PersistentEffect);
@@ -1084,12 +1084,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'VolatileMix')
 	{
 		Template.AbilityTargetEffects.length = 0;
-	    MixEffect = new class'X2Effect_VolatileMix';
-	    MixEffect.BuildPersistentEffect(1, true, false, true);
-	    MixEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
-	    MixEffect.BonusDamage = class'X2Ability_GrenadierAbilitySet'.default.VOLATILE_DAMAGE;
-	    Template.AddTargetEffect(MixEffect);
-	}	
+		MixEffect = new class'X2Effect_VolatileMix';
+		MixEffect.BuildPersistentEffect(1, true, false, true);
+		MixEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
+		MixEffect.BonusDamage = class'X2Ability_GrenadierAbilitySet'.default.VOLATILE_DAMAGE;
+		Template.AddTargetEffect(MixEffect);
+	}   
 	
 	if (Template.DataName == 'CoolUnderPressure')
 	{
@@ -1100,7 +1100,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		ReactionFire.BuildPersistentEffect(1, true, false, true);
 		ReactionFire.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
 		Template.AddTargetEffect(ReactionFire);
-	}	
+	}   
 
 	if (Template.DataName == 'BulletShred')
 	{
@@ -1229,12 +1229,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 				break;
 			default:
 				break;
-		}	
+		}   
 	}
 	if (class'X2Ability_PerkPackAbilitySet'.default.NO_MELEE_ATTACKS_WHEN_ON_FIRE)
 	{
 		if (Template.IsMelee())
-		{			
+		{           
 			UnitEffects = new class'X2Condition_UnitEffects';
 			UnitEffects.AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
 			Template.AbilityShooterConditions.AddItem(UnitEffects);
@@ -1307,7 +1307,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		case 'PistolOverwatch':
 		case 'SniperRifleOverwatch':
 		case 'LongWatch':
-		case 'Killzone':		
+		case 'Killzone':        
 			SuppressedCondition = new class'X2Condition_UnitEffects';
 			SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 			Template.AbilityShooterConditions.AddItem(SuppressedCondition);
@@ -1420,11 +1420,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'Sentinel')
 	{
 		Template.AbilityTargetEffects.length = 0;
-	    GuardianEffect = new class'X2Effect_Guardian_LW';
-	    GuardianEffect.BuildPersistentEffect(1, true, false);
-	    GuardianEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
-	    GuardianEffect.ProcChance = class'X2Ability_SpecialistAbilitySet'.default.GUARDIAN_PROC;
-	    Template.AddTargetEffect(GuardianEffect);
+		GuardianEffect = new class'X2Effect_Guardian_LW';
+		GuardianEffect.BuildPersistentEffect(1, true, false);
+		GuardianEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+		GuardianEffect.ProcChance = class'X2Ability_SpecialistAbilitySet'.default.GUARDIAN_PROC;
+		Template.AddTargetEffect(GuardianEffect);
 	}
 
 	// Adds shieldHP bonus
@@ -1502,31 +1502,31 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 		switch (Template.DataName)
 		{
-			case 'LaunchGrenade':				// Salvo, Rapid Deployment
-			case 'ThrowGrenade':				// Salvo, Rapid Deployment
-			case 'LWFlamethrower':				// Quickburn
-			case 'Roust':						// Quickburn
-			case 'Firestorm':					// Quickburn
-			case 'LWRocketLauncher':			// Salvo
-			case 'LWBlasterLauncher':			// Salvo
-			case 'RocketLauncher':				// Salvo
-			case 'ConcussionRocket':			// Salvo
-			case 'ShredderGun':					// Salvo
-			case 'PlasmaBlaster':				// Salvo
-			case 'ShredstormCannon':			// Salvo
-			case 'Flamethrower':				// Salvo
-			case 'FlamethrowerMk2':				// Salvo
-			case 'Holotarget':					// Rapid Targeting (passive)
-			case 'Reload':						// Weapon Upgrade
+			case 'LaunchGrenade':               // Salvo, Rapid Deployment
+			case 'ThrowGrenade':                // Salvo, Rapid Deployment
+			case 'LWFlamethrower':              // Quickburn
+			case 'Roust':                       // Quickburn
+			case 'Firestorm':                   // Quickburn
+			case 'LWRocketLauncher':            // Salvo
+			case 'LWBlasterLauncher':           // Salvo
+			case 'RocketLauncher':              // Salvo
+			case 'ConcussionRocket':            // Salvo
+			case 'ShredderGun':                 // Salvo
+			case 'PlasmaBlaster':               // Salvo
+			case 'ShredstormCannon':            // Salvo
+			case 'Flamethrower':                // Salvo
+			case 'FlamethrowerMk2':             // Salvo
+			case 'Holotarget':                  // Rapid Targeting (passive)
+			case 'Reload':                      // Weapon Upgrade
 			case 'PlaceEvacZone':
 			case 'PlaceDelayedEvacZone':
-			case 'PistolStandardShot':			// Quickdraw
-			case 'ClutchShot':					// Quickdraw
-			case 'KillZone':					// Varies by weapon type
-			case 'DeadEye':						// Varies by weapon type
-			case 'Flush':						// Varies by weapon type
-			case 'PrecisionShot':				// Varies by weapon type
-			case 'BulletShred':					// varies by weapon type
+			case 'PistolStandardShot':          // Quickdraw
+			case 'ClutchShot':                  // Quickdraw
+			case 'KillZone':                    // Varies by weapon type
+			case 'DeadEye':                     // Varies by weapon type
+			case 'Flush':                       // Varies by weapon type
+			case 'PrecisionShot':               // Varies by weapon type
+			case 'BulletShred':                 // varies by weapon type
 				Template.AbilityIconColor = "Variable"; break; // This calls a function that changes the color on the fly
 			case 'EVAC': 
 				Template.AbilityIconColor = default.ICON_COLOR_FREE; break;
@@ -1556,19 +1556,19 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 	
-    // Yellow alert scamper ability table. Search these abilities for an X2AbilityCost_ActionPoints
-    // and add the special 'ReflexActionPoint_LW' to the list of valid action points that can be used
-    // for these actions. These special action points are awarded to some units during a scamper, and
-    // they will only be able to use the abilities configured here.
-    if (OffensiveReflexAbilities.Find(Template.DataName) >= 0)
-    {
-        AddReflexActionPoint(Template, class'XComGameState_LWListenerManager'.const.OffensiveReflexAction);
-    }
+	// Yellow alert scamper ability table. Search these abilities for an X2AbilityCost_ActionPoints
+	// and add the special 'ReflexActionPoint_LW' to the list of valid action points that can be used
+	// for these actions. These special action points are awarded to some units during a scamper, and
+	// they will only be able to use the abilities configured here.
+	if (OffensiveReflexAbilities.Find(Template.DataName) >= 0)
+	{
+		AddReflexActionPoint(Template, class'XComGameState_LWListenerManager'.const.OffensiveReflexAction);
+	}
 
-    if (DefensiveReflexAbilities.Find(Template.DataName) >= 0)
-    {
-        AddReflexActionPoint(Template, class'XComGameState_LWListenerManager'.const.DefensiveReflexAction);
-    }
+	if (DefensiveReflexAbilities.Find(Template.DataName) >= 0)
+	{
+		AddReflexActionPoint(Template, class'XComGameState_LWListenerManager'.const.DefensiveReflexAction);
+	}
 
 	if (DoubleTapAbilities.Find(Template.DataName) >= 0)
 	{
@@ -1591,7 +1591,7 @@ static function XComGameState SkullOuch_BuildGameState (XComGameStateContext con
 
 	NewGameState = class'X2Ability'.static.TypicalAbility_BuildGameState(context);
 	AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext()); // or should it be just context
-    UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
+	UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
 	UnitState.Abilities.RemoveItem(AbilityContext.InputContext.AbilityRef);
 	NewGameState.AddStateObject(UnitState);
 	return NewGameState;
@@ -1600,33 +1600,33 @@ static function XComGameState SkullOuch_BuildGameState (XComGameStateContext con
 
 function AddReflexActionPoint(X2AbilityTemplate Template, Name ActionPointName)
 {
-    local X2AbilityCost_ActionPoints        ActionPointCost;
-    local X2AbilityCost                     Cost;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2AbilityCost                     Cost;
 
-    foreach Template.AbilityCosts(Cost)
-    {
-        ActionPointCost = X2AbilityCost_ActionPoints(Cost);
-        if (ActionPointCost != none)
-        {
-            ActionPointCost.AllowedTypes.AddItem(ActionPointName);
-            `LWTrace("Adding reflex action point " $ ActionPointName $ " to " $ Template.DataName);
-            return;
-        }
-    }
+	foreach Template.AbilityCosts(Cost)
+	{
+		ActionPointCost = X2AbilityCost_ActionPoints(Cost);
+		if (ActionPointCost != none)
+		{
+			ActionPointCost.AllowedTypes.AddItem(ActionPointName);
+			`LWTrace("Adding reflex action point " $ ActionPointName $ " to " $ Template.DataName);
+			return;
+		}
+	}
 
-    `Log("Cannot add reflex ability " $ Template.DataName $ ": Has no action point cost");
+	`Log("Cannot add reflex ability " $ Template.DataName $ ": Has no action point cost");
 }
 
 function AddDoubleTapActionPoint(X2AbilityTemplate Template, Name ActionPointName)
 {
 	local X2AbilityCost_ActionPoints        ActionPointCost;
-    local X2AbilityCost                     Cost;
+	local X2AbilityCost                     Cost;
 
 	foreach Template.AbilityCosts(Cost)
-    {
-        ActionPointCost = X2AbilityCost_ActionPoints(Cost);
-        if (ActionPointCost != none)
-        {
+	{
+		ActionPointCost = X2AbilityCost_ActionPoints(Cost);
+		if (ActionPointCost != none)
+		{
 			ActionPointCost.AllowedTypes.AddItem(ActionPointName);
 		}
 	}
@@ -1643,22 +1643,22 @@ function AddDoubleTapActionPoint(X2AbilityTemplate Template, Name ActionPointNam
 // Replace the base game X2Effect_ApplyWeaponDamage with the new X2Effect_ApplyExplosiveFalloffWeaponDamage.
 static function X2LWTemplateModTemplate CreateSwapExplosiveDamageFalloff()
 {
-    local X2LWTemplateModTemplate Template;
+	local X2LWTemplateModTemplate Template;
 
-    `CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'SwapExplosiveDamageFalloff');
+	`CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'SwapExplosiveDamageFalloff');
 
-    // We need to modify grenade items and ability templates
-    Template.ItemTemplateModFn = SwapExplosiveFalloffItem;
-    Template.AbilityTemplateModFn = SwapExplosiveFalloffAbility;
-    return Template;
+	// We need to modify grenade items and ability templates
+	Template.ItemTemplateModFn = SwapExplosiveFalloffItem;
+	Template.AbilityTemplateModFn = SwapExplosiveFalloffAbility;
+	return Template;
 }
 
 function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 {
-	local X2GrenadeTemplate								GrenadeTemplate;
-	local X2Effect_ApplyWeaponDamage					ThrownDamageEffect, LaunchedDamageEffect;
-	local X2Effect_ApplyExplosiveFalloffWeaponDamage	FalloffDamageEffect;
-	local X2Effect										GrenadeEffect;
+	local X2GrenadeTemplate                             GrenadeTemplate;
+	local X2Effect_ApplyWeaponDamage                    ThrownDamageEffect, LaunchedDamageEffect;
+	local X2Effect_ApplyExplosiveFalloffWeaponDamage    FalloffDamageEffect;
+	local X2Effect                                      GrenadeEffect;
 
 	GrenadeTemplate = X2GrenadeTemplate(Template);
 	if(GrenadeTemplate == none)
@@ -1707,9 +1707,9 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 
 function SwapExplosiveFalloffAbility(X2AbilityTemplate Template, int Difficulty)
 {
-	local X2Effect_ApplyWeaponDamage					DamageEffect;
-	local X2Effect_ApplyExplosiveFalloffWeaponDamage	FalloffDamageEffect;
-	local X2Effect										MultiTargetEffect;
+	local X2Effect_ApplyWeaponDamage                    DamageEffect;
+	local X2Effect_ApplyExplosiveFalloffWeaponDamage    FalloffDamageEffect;
+	local X2Effect                                      MultiTargetEffect;
 
 	//`LOG("Testing Ability " $ Template.DataName);
 
@@ -1783,13 +1783,13 @@ function bool ValidExplosiveFalloffAbility(X2AbilityTemplate Template, X2Effect_
 // Replace the base game "PlaceEvacZone" ability with a new "PlaceDelayedEvacZone" ability.
 static function X2LWTemplateModTemplate CreateDelayedEvacTemplate()
 {
-    local X2LWTemplateModTemplate Template;
+	local X2LWTemplateModTemplate Template;
 
-    `CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'DelayedEvacMod');
+	`CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'DelayedEvacMod');
 
-    // We need to modify character templates
-    Template.CharacterTemplateModFn = ReplacePlaceEvacAbility;
-    return Template;
+	// We need to modify character templates
+	Template.CharacterTemplateModFn = ReplacePlaceEvacAbility;
+	return Template;
 }
 
 // Remove the 'PlaceEvacZone' ability from all characters. This has been replaced by
@@ -1797,21 +1797,21 @@ static function X2LWTemplateModTemplate CreateDelayedEvacTemplate()
 // it to be visualized as a thrown flare (grenade). See X2Item_EvacFlare.
 function ReplacePlaceEvacAbility(X2CharacterTemplate Template, int Difficulty)
 {
-    if (Template.Abilities.Find('PlaceEvacZone') != -1)
-    {
-        Template.Abilities.RemoveItem('PlaceEvacZone');
-    }
+	if (Template.Abilities.Find('PlaceEvacZone') != -1)
+	{
+		Template.Abilities.RemoveItem('PlaceEvacZone');
+	}
 }
 
 static function X2LWTemplateModTemplate CreateGeneralCharacterModTemplate()
 {
-    local X2LWTemplateModTemplate Template;
+	local X2LWTemplateModTemplate Template;
 
-    `CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'GeneralCharacterMod');
+	`CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'GeneralCharacterMod');
 
-    // We need to modify character templates
-    Template.CharacterTemplateModFn = GeneralCharacterMod;
-    return Template;
+	// We need to modify character templates
+	Template.CharacterTemplateModFn = GeneralCharacterMod;
+	return Template;
 }
 
 function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
@@ -1873,7 +1873,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			break;
 		case 'LostTowersSpark':
 		case 'SparkSoldier':
-			Template.bIgnoreEndTacticalHealthMod = false;		// This means Repair perk won't permanently fix Sparks
+			Template.bIgnoreEndTacticalHealthMod = false;       // This means Repair perk won't permanently fix Sparks
 			Template.OnEndTacticalPlayFn = none;
 			break;
 		default:
@@ -1907,7 +1907,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	local int i, k;
 	local ArtifactCost Resources;
 	local X2ArmorTemplate ArmorTemplate;
-    local StrategyRequirement AltReq;
+	local StrategyRequirement AltReq;
 	local X2GremlinTemplate GremlinTemplate;
 	local delegate<X2StrategyGameRulesetDataStructures.SpecialRequirementsDelegate> SpecialRequirement;
 	local X2Effect_Persistent Effect;
@@ -1999,7 +1999,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			}
 
 		}
-	}	
+	}   
 
 	GremlinTemplate = X2GremlinTemplate(Template);
 	if (GremlinTemplate != none)
@@ -2060,7 +2060,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	}
 	// ALL ITEMS, including resources -- config art and trading post value
 	for (i=0; i < ItemTable.Length; ++i)
-	{			
+	{           
 		if (Template.DataName == ItemTable[i].ItemTemplateName)
 		{
 			if (ItemTable[i].TradingPostValue != 0)
@@ -2183,17 +2183,18 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				case 'LightPoweredArmor':
 				case 'HeavyPoweredArmor':
 				case 'ReaperArmor':
-				case 'PlatedReaperArmor':
 				case 'PoweredReaperArmor':
 				case 'SkirmisherArmor':
-				case 'PlatedSkirmisherArmor':
 				case 'PoweredSkirmisherArmor':
 				case 'TemplarArmor':
-				case 'PlatedTemplarArmor':
 				case 'PoweredTemplarArmor':
 					ArmorTemplate.bAddsUtilitySlot = true;
 					break;
-					
+				
+				case 'PlatedReaperArmor':
+				case 'PlatedSkirmisherArmor':
+				case 'PlatedTemplarArmor':
+					ArmorTemplate.bAddsUtilitySlot = true;
 				case 'MediumPlatedArmor':
 					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, 14, default.MEDIUM_PLATED_MITIGATION_AMOUNT);
 					break;
@@ -2320,7 +2321,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		}
 		// Mod
 		for (i=0; i < ItemTable.Length; ++i)
-		{			
+		{           
 			if (EquipmentTemplate.DataName == ItemTable[i].ItemTemplateName)
 			{
 				EquipmentTemplate.StartingItem = ItemTable[i].Starting;
@@ -2500,7 +2501,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 
 		//Config-able items array -- Weapon Upgrades
 		for (i=0; i < ItemTable.Length; ++i)
-		{			
+		{           
 			if (WeaponUpgradeTemplate.DataName == ItemTable[i].ItemTemplateName)
 			{
 				WeaponUpgradeTemplate.StartingItem = ItemTable[i].Starting;
@@ -2554,7 +2555,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					}
 
 					if (default.INSTANT_BUILD_TIMES)
-					{		
+					{       
 						WeaponUpgradeTemplate.PointsToComplete = 0;
 					}
 
@@ -2575,9 +2576,9 @@ static function X2LWTemplateModTemplate CreateRewireTechTreeTemplate()
 
 function RewireTechTree(X2StrategyElementTemplate Template, int Difficulty)
 {
-	local int						i;
-	local ArtifactCost				Resources;
-	local X2TechTemplate			TechTemplate;
+	local int                       i;
+	local ArtifactCost              Resources;
+	local X2TechTemplate            TechTemplate;
 	
 	TechTemplate=X2TechTemplate(Template);
 	If (TechTemplate != none)
@@ -2794,9 +2795,9 @@ static function X2LWTemplateModTemplate CreateEditGTSProjectsTemplate()
 
 function EditGTSProjects(X2StrategyElementTemplate Template, int Difficulty)
 {
-	local int						i;
-	local ArtifactCost				Resources;
-	local X2SoldierUnlockTemplate	GTSTemplate;
+	local int                       i;
+	local ArtifactCost              Resources;
+	local X2SoldierUnlockTemplate   GTSTemplate;
 
 	GTSTemplate = X2SoldierUnlockTemplate (Template);
 	if (GTSTemplate != none)
@@ -2843,10 +2844,10 @@ static function X2LWTemplateModTemplate CreateReconfigFacilitiesTemplate()
 
 function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 {
-	local int						i;
-	local ArtifactCost				Resources;
-	local X2FacilityTemplate		FacilityTemplate;
-	local StaffSlotDefinition		StaffSlotDef;
+	local int                       i;
+	local ArtifactCost              Resources;
+	local X2FacilityTemplate        FacilityTemplate;
+	local StaffSlotDefinition       StaffSlotDef;
 
 	FacilityTemplate = X2FacilityTemplate (Template);
 	if (FacilityTemplate != none)
@@ -2890,32 +2891,32 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			//FacilityTemplate.StaffSlotsLocked = 3;
 		//}
 
-        // --- HACK HACK HACK --- 
-        //
-        // To allow debugging XcomGame with AH installed you need to uncomment this to strip the aux map from the hangar template.
-        // The game will loop forever in the avenger waiting for the aux content to load unless this is done, because the content
-        // is provided only in a cooked seek-free package and debugging always loads -noseekfreepackages. Thus the package is never
-        // loaded and the process will never complete. I am not leaving this uncommented because doing so will leave a gap in the
-        // avenger map where the hangar is supposed to be. Even with this expect a bazillion redscreens about missing content for
-        // DLC1/2/3. If you need to do a lot of debugging in XComGame consider uninstalling the DLCs first to cut down redscreen spam.
-        //
-        // --- HACK HACK HACK ---
-        /*
-        if (FacilityTemplate.DataName == 'Hangar')
-        {
-            `Log("Found hangar with " $ FacilityTemplate.AuxMaps.Length $ " aux maps");
-            for( i = 0; i < FacilityTemplate.AuxMaps.length; ++i)
-            {
-                `Log("Aux map: " $ FacilityTemplate.AuxMaps[i].MapName);
-                if (InStr(FacilityTemplate.AuxMaps[i].MapName, "DLC2") >= 0)
-                {
-                    FacilityTemplate.AuxMaps.Remove(i, 1);
-                    --i;
-                }
-            }
-            FacilityTemplate.AuxMaps.Length = 0;
-        }
-        */
+		// --- HACK HACK HACK --- 
+		//
+		// To allow debugging XcomGame with AH installed you need to uncomment this to strip the aux map from the hangar template.
+		// The game will loop forever in the avenger waiting for the aux content to load unless this is done, because the content
+		// is provided only in a cooked seek-free package and debugging always loads -noseekfreepackages. Thus the package is never
+		// loaded and the process will never complete. I am not leaving this uncommented because doing so will leave a gap in the
+		// avenger map where the hangar is supposed to be. Even with this expect a bazillion redscreens about missing content for
+		// DLC1/2/3. If you need to do a lot of debugging in XComGame consider uninstalling the DLCs first to cut down redscreen spam.
+		//
+		// --- HACK HACK HACK ---
+		/*
+		if (FacilityTemplate.DataName == 'Hangar')
+		{
+			`Log("Found hangar with " $ FacilityTemplate.AuxMaps.Length $ " aux maps");
+			for( i = 0; i < FacilityTemplate.AuxMaps.length; ++i)
+			{
+				`Log("Aux map: " $ FacilityTemplate.AuxMaps[i].MapName);
+				if (InStr(FacilityTemplate.AuxMaps[i].MapName, "DLC2") >= 0)
+				{
+					FacilityTemplate.AuxMaps.Remove(i, 1);
+					--i;
+				}
+			}
+			FacilityTemplate.AuxMaps.Length = 0;
+		}
+		*/
 
 		for (i=0; i < FacilityTable.Length; ++i)
 		{
@@ -2929,7 +2930,7 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 					FacilityTemplate.Requirements.RequiredTechs.AddItem(FacilityTable[i].RequiredTech);
 				
 				FacilityTemplate.Cost.ResourceCosts.Length = 0;
-				FacilityTemplate.Cost.ArtifactCosts.Length = 0;				
+				FacilityTemplate.Cost.ArtifactCosts.Length = 0;             
 
 				if (FacilityTable[i].SupplyCost > 0)
 				{
@@ -2971,7 +2972,7 @@ static function X2LWTemplateModTemplate CreateReconfigStaffSlotsTemplate()
 
 function ReconfigStaffSlots(X2StrategyElementTemplate Template, int Difficulty)
 {
-	local X2StaffSlotTemplate	StaffSlotTemplate;
+	local X2StaffSlotTemplate   StaffSlotTemplate;
 
 	StaffSlotTemplate = X2StaffSlotTemplate (Template);
 	if (StaffSlotTemplate != none)
@@ -3110,71 +3111,71 @@ static function bool IsUnitValidForSparkSlotWithInfiltration(XComGameState_Staff
 
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
 	
-    if(Unit.CanBeStaffed() 
+	if(Unit.CanBeStaffed() 
 		&& Unit.GetReference().ObjectID != SlotState.GetAssignedStaffRef().ObjectID
 		&& Unit.IsSoldier()
 		&& Unit.IsInjured()
 		&& Unit.GetMyTemplateName() == 'SparkSoldier'
 		&& !class'LWDLCHelpers'.static.IsUnitOnMission(Unit)) // added condition to prevent healing spark units on mission here
-    {
-        return true;
-    }
+	{
+		return true;
+	}
 
 	return false;
 }
 
 static function X2LWTemplateModTemplate CreateRecoverItemTemplate()
 {
-    local X2LWTemplateModTemplate Template;
+	local X2LWTemplateModTemplate Template;
 
-    `CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'RecoverItem');
-    Template.MissionNarrativeTemplateModFn = RecoverItemNarrativeMod;
-    return Template;
+	`CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'RecoverItem');
+	Template.MissionNarrativeTemplateModFn = RecoverItemNarrativeMod;
+	return Template;
 }
 
 function bool ExpectNarrativeCount(X2MissionNarrativeTemplate Template, int Cnt)
 {
-    // We better have 24 items as the narrative # we want is in the objective map Kismet.
-    if(Template.NarrativeMoments.Length != Cnt)
-    {
-        `redscreen("LWTemplateMods: Found too many narrative moments for " $ Template.DataName);
+	// We better have 24 items as the narrative # we want is in the objective map Kismet.
+	if(Template.NarrativeMoments.Length != Cnt)
+	{
+		`redscreen("LWTemplateMods: Found too many narrative moments for " $ Template.DataName);
 		`log("LWTemplateMods: Found too many narrative moments for " $ Template.DataName);
-        return false;
-    }
+		return false;
+	}
 
-    return true;
+	return true;
 }
 
 function RecoverItemNarrativeMod(X2MissionNarrativeTemplate Template)
 {
-    switch(Template.DataName)
-    {
-    case 'DefaultRecover':
-    case 'DefaultRecover_ADV':
-    case 'DefaultRecover_Train':
-    case 'DefaultRecover_Vehicle':
-        if (ExpectNarrativeCount(Template, 24))
-        {
-            Template.NarrativeMoments[24] = "X2NarrativeMoments.TACTICAL.Blacksite.BlackSite_SecureRetreat";
-        }
-        break;
-    case 'DefaultHack':
-    case 'DefaultHack_ADV':
-    case 'DefaultHack_Train':
-        if (ExpectNarrativeCount(Template, 22))
-        {
-            Template.NarrativeMoments[22] = "X2NarrativeMoments.TACTICAL.Blacksite.BlackSite_SecureRetreat";
-        }
-        break;
-    case 'DefaultDestroyRelay':
-        if (ExpectNarrativeCount(Template, 20))
-        {
-            Template.NarrativeMoments[20] = "X2NarrativeMoments.TACTICAL.Blacksite.BlackSite_SecureRetreat";
-            Template.NarrativeMoments[21] = "X2NarrativeMoments.TACTICAL.General.CEN_Gen_SecureRetreat_03";
-        }
-    default:
-        break;
-    }
+	switch(Template.DataName)
+	{
+	case 'DefaultRecover':
+	case 'DefaultRecover_ADV':
+	case 'DefaultRecover_Train':
+	case 'DefaultRecover_Vehicle':
+		if (ExpectNarrativeCount(Template, 24))
+		{
+			Template.NarrativeMoments[24] = "X2NarrativeMoments.TACTICAL.Blacksite.BlackSite_SecureRetreat";
+		}
+		break;
+	case 'DefaultHack':
+	case 'DefaultHack_ADV':
+	case 'DefaultHack_Train':
+		if (ExpectNarrativeCount(Template, 22))
+		{
+			Template.NarrativeMoments[22] = "X2NarrativeMoments.TACTICAL.Blacksite.BlackSite_SecureRetreat";
+		}
+		break;
+	case 'DefaultDestroyRelay':
+		if (ExpectNarrativeCount(Template, 20))
+		{
+			Template.NarrativeMoments[20] = "X2NarrativeMoments.TACTICAL.Blacksite.BlackSite_SecureRetreat";
+			Template.NarrativeMoments[21] = "X2NarrativeMoments.TACTICAL.General.CEN_Gen_SecureRetreat_03";
+		}
+	default:
+		break;
+	}
 }
 
 static function X2LWTemplateModTemplate CreateRemovePPClassesTemplate()
@@ -3303,7 +3304,7 @@ function string GetResistanceInformantSummary(string strSummaryText)
 
 function bool DisablePOI(XComGameState_PointOfInterest POIState)
 {
-    return false;
+	return false;
 }
 
 static function X2LWTemplateModTemplate CreateModifyPOIsTemplate()
@@ -3334,7 +3335,7 @@ function bool DelayGrenades(XComGameState_PointOfInterest POIState)
 // This also modifies the description of the city center in invasion missions
 function ModifyPOIs (X2StrategyElementTemplate Template, int Difficulty)
 {
-    local X2PointOfInterestTemplate POITemplate;
+	local X2PointOfInterestTemplate POITemplate;
 	local X2MissionSiteDescriptionTemplate MissionSiteDescription;
 
 	POITemplate = X2PointofInterestTemplate(Template);
@@ -3378,7 +3379,7 @@ static function X2LWTemplateModTemplate CreateModifyHackRewardsTemplate()
 
 function ModifyHackRewards (X2HackRewardTemplate Template, int Difficulty)
 {
-    local X2HackRewardTemplate HackRewardTemplate;
+	local X2HackRewardTemplate HackRewardTemplate;
 
 	if (Template != none)
 	{
@@ -3410,7 +3411,7 @@ static function X2LWTemplateModTemplate CreateReconfigFacilityUpgradesTemplate()
 // THIS DOES NOT MODIFY REQUIREMENTS (TECHS, SPECIAL ARTIFACTS, RANK ACHIEVED) WHICH ARE HARDCODED, CAN ADD SCI/ENG SCORE REQUIREMENT IF SET
 function ModifyFacilityUpgrades(X2StrategyElementTemplate Template, int Difficulty)
 {
-	local X2FacilityUpgradeTemplate	FacilityUpgradeTemplate;
+	local X2FacilityUpgradeTemplate FacilityUpgradeTemplate;
 	local int k;
 	local ArtifactCost Resources;
 
@@ -3437,25 +3438,25 @@ function ModifyFacilityUpgrades(X2StrategyElementTemplate Template, int Difficul
 				{
 					Resources.ItemTemplateName = 'Supplies';
 					Resources.Quantity = FacilityUpgradeTable[k].SupplyCost;
-					FacilityUpgradeTemplate.Cost.ResourceCosts.AddItem(Resources);					
+					FacilityUpgradeTemplate.Cost.ResourceCosts.AddItem(Resources);                  
 				}
 				if (FacilityUpgradeTable[k].AlloyCost > 0)
 				{
 					Resources.ItemTemplateName = 'AlienAlloy';
 					Resources.Quantity = FacilityUpgradeTable[k].AlloyCost;
-					FacilityUpgradeTemplate.Cost.ResourceCosts.AddItem(Resources);					
+					FacilityUpgradeTemplate.Cost.ResourceCosts.AddItem(Resources);                  
 				}
 				if (FacilityUpgradeTable[k].CrystalCost > 0)
 				{
 					Resources.ItemTemplateName = 'EleriumDust';
 					Resources.Quantity = FacilityUpgradeTable[k].CrystalCost;
-					FacilityUpgradeTemplate.Cost.ResourceCosts.AddItem(Resources);					
+					FacilityUpgradeTemplate.Cost.ResourceCosts.AddItem(Resources);                  
 				}
 				if (FacilityUpgradeTable[k].CoreCost > 0)
 				{
 					Resources.ItemTemplateName = 'EleriumCore';
 					Resources.Quantity = FacilityUpgradeTable[k].CoreCost;
-					FacilityUpgradeTemplate.Cost.ResourceCosts.AddItem(Resources);					
+					FacilityUpgradeTemplate.Cost.ResourceCosts.AddItem(Resources);                  
 				}
 				if (FacilityUpgradeTable[k].ReqItemCost1 > 0)
 				{
