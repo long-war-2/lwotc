@@ -109,7 +109,6 @@
     <Content Include="Config\XComParcels.ini" />
     <Content Include="Config\XComPCPs.ini" />
     <Content Include="Config\XComrobojumperSquadSelect.ini" />
-    <Content Include="Config\XComrobojumperSquadSelect_NullConfig.ini" />
     <Content Include="Config\XComrobojumperSquadSelect_World.ini" />
     <Content Include="Config\XComSchedules.ini" />
     <Content Include="Config\XComUI.ini" />
