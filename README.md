@@ -19,8 +19,9 @@ Building and running this mod requires several steps:
  3. If you have cloned the repository, switch your clone to the `lwotc-dev` branch.
  
  4. Follow that [project's instructions](https://github.com/pledbrook/X2WOTCCommunityHighlander/blob/lwotc-dev/README.md)
-    for building the highlander. I recommend that after building it in ModBuddy, you cook a release of it.
-	That's because the cooked version runs _much_ more quickly than the noseekfreeloading version.
+    for building the highlander. In particular, make sure you copy the files in the highlander's _Src/XComGame/Classes_ to the WOTC SDK's _Development/SrcOrig_ directory, as described in the [_Building Against the Highlander_](https://github.com/X2CommunityCore/X2WOTCCommunityHighlander/#building-against-the-highlander) section.
+    
+    I recommend that after building it in ModBuddy, you cook a release of it. That's because the cooked version runs _much_ more quickly than the noseekfreeloading version. Alternatively, use the highlander's build script, which will build _and_ cook the highlander.
 
  5. Set up the following environment variables:
     * `XCOM2SDKPATH` — typically <path to Steam>\steamapps\common\XCOM 2 War Of The Chosen SDK
