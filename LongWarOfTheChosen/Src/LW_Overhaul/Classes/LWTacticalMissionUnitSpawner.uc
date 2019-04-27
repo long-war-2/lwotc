@@ -350,11 +350,14 @@ static function LoadResistanceMECsFromOutpost(XComGameState_LWOutpost Outpost, b
 			// can't be found by the visualizer. We need to create a new unit/inventory proxy for use during the mission.
 			Unit = XComGameState_Unit(History.GetGameStateForObjectID(Outpost.ResistanceMecs[i].Unit.ObjectID));
 			ProxyUnit = class'Utilities_LW'.static.CreateProxyUnit(Unit, 'ResistanceMEC', true, NewGameState, 'ResistanceMecM1_Loadout');
-			NewGameState.AddStateObject(ProxyUnit);
+
+			// Make sure the unit is added to XCOM's initiative group so that it's
+			// controllable by the player
+			class'Utilities_LW'.static.AddUnitToXComGroup(NewGameState, ProxyUnit, PlayerState, History);
+			
 			ProxyUnit.SetVisibilityLocation(UnitTile);
 			ProxyUnit.SetControllingPlayer(PlayerState.GetReference());
-			NewOutpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
-			NewGameState.AddStateObject(NewOutpost);
+			NewOutpost = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
 			NewOutpost.SetMecProxy(Unit.GetReference(), ProxyUnit.GetReference());
 			NewOutpost.SetMecOnMission(Unit.GetReference());
 			// submit it
@@ -367,14 +370,12 @@ static function LoadResistanceMECsFromOutpost(XComGameState_LWOutpost Outpost, b
 			// add abilities
 			// Must happen after unit is submitted, or it gets confused about when the unit is in play or not 
 			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Adding Resistance MEC Unit Abilities");
-			ProxyUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', ProxyUnit.ObjectID));
-			NewGameState.AddStateObject(ProxyUnit);
+			ProxyUnit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', ProxyUnit.ObjectID));
 
 			// add the items to the gamestate for ammo merging
 			foreach ProxyUnit.InventoryItems(ItemReference)
 			{
-				ItemState = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', ItemReference.ObjectID));
-				NewGameState.AddStateObject(ItemState);
+				ItemState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', ItemReference.ObjectID));
 			}
 
 			Rules.InitializeUnitAbilities(NewGameState, ProxyUnit);
@@ -445,8 +446,7 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 	{
 		NewGameStateContext = class'XComGameStateContext_TacticalGameRule'.static.BuildContextFromGameRule(eGameRule_UnitAdded);
 		NewGameState = History.CreateNewGameState(true, NewGameStateContext);
-		Unit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
-		NewGameState.AddStateObject(Unit);
+		Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
 
 		PlayerState = class'Utilities_LW'.static.FindPlayer(Team);
 		class'Utilities_LW'.static.AddUnitToXComGroup(NewGameState, Unit, PlayerState, History);
