@@ -21,8 +21,6 @@ static function array<X2DataTemplate> CreateTemplates()
 {
     local array<X2DataTemplate> Templates;
 
-	`LWTrace("  >> X2Ability_PlaceDelayedEvacZone.CreateTemplates()");
-	
     Templates.AddItem(PlaceDelayedEvacZone());
     return Templates;
 }
@@ -66,6 +64,7 @@ static function X2AbilityTemplate PlaceDelayedEvacZone()
     CursorTarget.bRestrictToWeaponRange = true;
     Template.AbilityTargetStyle = CursorTarget;
     Template.TargetingMethod = class'X2TargetingMethod_LWEvacZone';
+    // Template.TargetingMethod = class'X2TargetingMethod_EvacZone';
 
     ActionPointCost = new class'X2AbilityCost_ActionPoints';
     ActionPointCost.iNumPoints = 1;
@@ -154,6 +153,10 @@ simulated function XComGameState PlaceDelayedEvacZone_BuildGameState(XComGameSta
 
     History = `XCOMHISTORY;
 
+    // WOTC DEBUGGING:
+    `LWTrace("PlaceDelayedEvacZone debugging: X2Ability_PlaceDelayedEvacZone - start building game state");
+    // END
+
     NewGameState = History.CreateNewGameState(true, Context);
 
     AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext());
@@ -170,6 +173,10 @@ simulated function XComGameState PlaceDelayedEvacZone_BuildGameState(XComGameSta
 
     Delay = GetEvacDelay();
     class'XComGameState_LWEvacSpawner'.static.InitiateEvacZoneDeployment(Delay, SpawnLocation, NewGameState);
+
+    // WOTC DEBUGGING:
+    `LWTrace("PlaceDelayedEvacZone debugging: X2Ability_PlaceDelayedEvacZone - finish building game state");
+    // END
 
     return NewGameState;
 }

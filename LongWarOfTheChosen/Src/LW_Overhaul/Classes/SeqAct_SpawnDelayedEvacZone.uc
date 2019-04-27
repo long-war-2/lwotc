@@ -30,6 +30,10 @@ event Activated()
 
 function ModifyKismetGameState(out XComGameState GameState)
 {
+    // WOTC DEBUGGING:
+    `LWTrace("PlaceDelayedEvacZone debugging: SeqAct_SpawnDelayedEvacZone - start ModifyKismetGameState");
+	// END
+	
     class'XComGameState_LWEvacSpawner'.static.InitiateEvacZoneDeployment(TurnsRemaining, ActualSpawnLocation, GameState, SkipCreationNarrative);
 }
 
@@ -50,6 +54,10 @@ private function Vector GetSpawnLocation()
 	local float BiasHalfAngleDot;
 	local float SpawnDot;
 	local TTile Tile;
+
+    // WOTC DEBUGGING:
+    `LWTrace("PlaceDelayedEvacZone debugging: SeqAct_SpawnDelayedEvacZone - start GetSpawnLocation");
+	// END
 
 	if(MinimumTilesFromLocation < 0 && MaximumTilesFromLocation < 0)
 	{
@@ -122,6 +130,10 @@ private function Vector GetSpawnLocation()
 			}
 		}
 	}
+
+		// WOTC DEBUGGING:
+		`LWTrace("PlaceDelayedEvacZone debugging: SeqAct_SpawnDelayedEvacZone - end GetSpawnLocation");
+		// END
 
 	// random pick
 	return SpawnsInRange[`SYNC_RAND(SpawnsInRange.Length)].Location;
