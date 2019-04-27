@@ -11,8 +11,6 @@ var localized string strLaunchInfiltration;
 var localized string strAbortInfiltration;
 var localized string strContinueInfiltration;
 
-var bool IsInfiltrationMission;
-
 event OnInit(UIScreen Screen)
 {
 	local XComGameState_HeadquartersXCom XComHQ;
