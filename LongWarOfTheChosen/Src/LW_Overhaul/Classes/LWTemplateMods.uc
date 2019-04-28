@@ -2860,6 +2860,11 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('BiggestBoomsUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('SquadSizeIUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('SquadSizeIIUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('LightningStrikeUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('IntegratedWarfareUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration1Unlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration2Unlock');
 		}
