@@ -430,7 +430,7 @@ static function X2DataTemplate CreateTemplate_Naja_WPN(name TemplateName)
 	}
 	if (TemplateName == 'NajaM2_WPN' || TemplateName == 'NajaM3_WPN')
 	{
-		Template.Abilities.AddItem('Executioner'); //weapon perk
+		Template.Abilities.AddItem('Executioner_LW'); //weapon perk
 		Template.Abilities.AddItem('LongWatch'); // weapon perk
 	}
 	if (TemplateName == 'NajaM3_WPN')
