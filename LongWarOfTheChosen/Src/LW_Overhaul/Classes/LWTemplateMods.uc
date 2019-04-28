@@ -2865,6 +2865,7 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('LightningStrikeUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('IntegratedWarfareUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('StayWithMeUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration1Unlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration2Unlock');
 		}
