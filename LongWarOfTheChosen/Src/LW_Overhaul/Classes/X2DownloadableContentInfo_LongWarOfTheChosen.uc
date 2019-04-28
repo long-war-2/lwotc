@@ -1071,6 +1071,49 @@ static function FirstMissionComplete(XComGameState NewGameState, XComGameState_O
 	`HQPRES.m_kFacilityGrid.UpdateData();
 }
 
+// ******** HANDLE CUSTOM WEAPON RESTRICTIONS ******** //
+
+// Disable heavy weapons items based on soldier class
+static function bool CanAddItemToInventory_CH_Improved(
+	out int bCanAddItem,
+	const EInventorySlot Slot,
+	const X2ItemTemplate ItemTemplate,
+	int Quantity,
+	XComGameState_Unit UnitState,
+	optional XComGameState CheckGameState,
+	optional out string DisabledReason,
+	optional XComGameState_Item ItemState)
+{
+	local X2SoldierClassTemplate SoldierClassTemplate;
+	local X2WeaponTemplate WeaponTemplate;
+	local int i;
+
+	// Ignore all slots other than HeavyWeapons
+	if (Slot != eInvSlot_HeavyWeapon)
+	{
+		bCanAddItem = 1;
+		return true;
+	}
+
+	SoldierClassTemplate = UnitState.GetSoldierClassTemplate();
+	WeaponTemplate = X2WeaponTemplate(ItemTemplate);
+	
+	for (i = 0; i < SoldierClassTemplate.AllowedWeapons.Length; ++i)
+	{
+		if (WeaponTemplate.WeaponCat == SoldierClassTemplate.AllowedWeapons[i].WeaponType)
+		{
+			bCanAddItem = 1;
+			return true;
+		}
+	}
+	
+	// The soldier class isn't allowed to use this weapon
+	DisabledReason = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(
+		`XEXPAND.ExpandString(class'UIArmory_Loadout'.default.m_strUnavailableToClass));
+	bCanAddItem = 0;
+	return CheckGameState != none;  // false if called from armory, true if called from XCGS_Unit
+}
+
 // ******** HANDLE SECONDARY WEAPON VISUALS ******** //
 
 // append sockets to the human skeletal meshes for the new secondary weapons
