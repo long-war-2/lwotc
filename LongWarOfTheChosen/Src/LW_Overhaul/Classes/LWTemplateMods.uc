@@ -3045,13 +3045,13 @@ static function bool IsUnitValidForPsiChamberSoldierSlot(XComGameState_StaffSlot
 	local XComGameState_Unit Unit;
 	local X2SoldierClassTemplate SoldierClassTemplate;
 	local SCATProgression ProgressAbility;
-	local name AbilityName;
 	local array<SoldierClassAbilityType> AllPsiAbilities;
 	local SoldierClassAbilityType PsiAbility;
 
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
 	
 	`LWTrace("Checking whether " $ Unit.GetName(eNameType_Full) $ " is valid for PsiChamber");
+
 	if(class'LWDLCHelpers'.static.IsUnitOnMission(Unit)) // needed to work with infiltration system
 		return false;
 
@@ -3072,19 +3072,18 @@ static function bool IsUnitValidForPsiChamberSoldierSlot(XComGameState_StaffSlot
 		{ 
 			`LWTrace("This is a PsiOp - need to check whether they can rank up");
 			SoldierClassTemplate = Unit.GetSoldierClassTemplate();
-			if (class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(Unit)) // LW2 override, this limits to 8 abilities
+
+			// WOTC TODO: Need to test soldier selection for Psi Chamber. This may not work as it includes
+			// a random deck of abilities. I don't know if it's possible to distinguish between Psi abilities
+			// and others
+			AllPsiAbilities = SoldierClassTemplate.GetAllPossibleAbilities();
+
+			foreach AllPsiAbilities(PsiAbility)
 			{
-				// WOTC TODO: Need to test soldier selection for Psi Chamber. This may not work as it includes
-				// a random deck of abilities. I don't know if it's possible to distinguish between Psi abilities
-				// and others
-				AllPsiAbilities = SoldierClassTemplate.GetAllPossibleAbilities();
-				foreach AllPsiAbilities(PsiAbility)
+				`Log("Checking for (Psi?) ability " $ PsiAbility.AbilityName $ " (" $ PsiAbility.UtilityCat $ ")");
+				if (PsiAbility.AbilityName != '' && !Unit.HasSoldierAbility(PsiAbility.AbilityName))
 				{
-					`Log("Checking for (Psi?) ability " $ PsiAbility.AbilityName $ " (" $ PsiAbility.UtilityCat $ ")");
-					if (PsiAbility.AbilityName != '' && !Unit.HasSoldierAbility(PsiAbility.AbilityName))
-					{
-						return true; // If we find an ability that the soldier hasn't learned yet, they are valid
-					}
+					return true; // If we find an ability that the soldier hasn't learned yet, they are valid
 				}
 			}
 		}
