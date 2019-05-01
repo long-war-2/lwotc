@@ -31,7 +31,6 @@ struct InclusionExclusionList_Addition
 };
 
 var config array<AIJobInfo_Addition> JobListingAdditions; // Definition of qualifications for each job for this new character
-var config array<InclusionExclusionList_Addition> InclusionExclusionMods; 
 var config array<AIJobInfo_MoveOrderPriorityOverride> MoveOrderOverrides;
 
 var private bool HasInited;
@@ -50,14 +49,9 @@ event OnInit(UIScreen Screen)
 
     HasInited = true;
 
-	/* WOTC TODO: Check whether this is needed. I don't think so considering we integrate
-	   all the new aliens into the mission schedules, etc. And LW2 uses the pod manager
-	   instead of AI Jobs.
     // Apply all AI Jobs, adding new items as needed
     UpdateAIJobs();
-	*/
 }
-/*
 
 simulated function UpdateAIJobs()
 {
@@ -168,7 +162,7 @@ simulated function UpdateAIJobs()
 	}
 
 }
-*/
+
 defaultProperties
 {
     ScreenClass = none

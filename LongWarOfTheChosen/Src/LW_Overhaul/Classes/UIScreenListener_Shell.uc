@@ -35,11 +35,9 @@ event OnInit(UIScreen Screen)
 	}
 
     // Apply all AI Jobs, adding new items as needed
-	// WOTC TODO: Is this needed?
-    //UpdateAIBehaviors();
+    UpdateAIBehaviors();
 }
 
-/* WOTC TODO: Is this needed? I'm trying with pure config adjustments as `Behaviors` property is unmodifiable
 static function UpdateAIBehaviors()
 {
 	local X2AIBTBehaviorTree BehaviorTree;
@@ -65,7 +63,6 @@ static function UpdateAIBehaviors()
 
 	BehaviorTree.InitBehaviors();
 }
-*/
 
 defaultProperties
 {
