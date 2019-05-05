@@ -344,7 +344,7 @@ simulated function UpdateData()
 	SoldierClass = Unit.GetSoldierClassTemplate();
 	FactionState = Unit.GetResistanceFaction();
 
-	GetPersonnelStatusSeparate(Unit, status, statusTimeLabel, statusTimeValue);
+	class'UIUtilities_Strategy'.static.GetPersonnelStatusSeparate(Unit, status, statusTimeLabel, statusTimeValue);
 	mentalStatus = "";
 
 	if(Unit.IsActive())
@@ -454,7 +454,10 @@ simulated function UpdateData()
 					mentalStatus,
 					BondLevel);
 
-	AS_SetFactionIcon(FactionState.GetFactionIcon());
+	if (FactionState != none)
+	{
+		AS_SetFactionIcon(FactionState.GetFactionIcon());
+	}
 	AddAdditionalItems(self);
 	RefreshTooltipText();
 

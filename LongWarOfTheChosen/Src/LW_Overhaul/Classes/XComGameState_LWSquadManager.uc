@@ -348,15 +348,17 @@ function bool UnitIsInAnySquad(StateObjectReference UnitRef, optional out XComGa
 	return false;
 }
 
-function bool UnitIsOnMission(StateObjectReference UnitRef)
+function bool UnitIsOnMission(StateObjectReference UnitRef, optional out XComGameState_LWPersistentSquad SquadState)
 {
 	local int idx;
 
 	for(idx = 0; idx < Squads.Length; idx++)
 	{
-		if(GetSquad(idx).UnitIsInSquadOnMission(UnitRef))
+		SquadState = GetSquad(idx);
+		if(SquadState.UnitIsInSquadOnMission(UnitRef))
 			return true;
 	}
+	SquadState = none;
 	return false;
 }
 
@@ -364,7 +366,7 @@ function RemoveSquad_Internal(int idx, XComGameState NewGameState)
 {
 	local XComGameState_LWSquadManager UpdatedSquadMgr;
 	local XComGameState_LWPersistentSquad SquadState;
-	
+
 	UpdatedSquadMgr = XComGameState_LWSquadManager(NewGameState.CreateStateObject(Class, ObjectID));
 	NewGameState.AddStateObject(UpdatedSquadMgr);
 	if(idx >= 0 && idx < UpdatedSquadMgr.Squads.Length )

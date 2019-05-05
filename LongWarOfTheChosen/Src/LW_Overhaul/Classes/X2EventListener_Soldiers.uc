@@ -38,7 +38,8 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	local CHEventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierStatus');
-	Template.AddCHEvent('CustomizeStatusStringsSeparate', OnCustomizeStatusStringsSeparate, ELD_Immediate);
+	Template.AddCHEvent('OverridePersonnelStatus', OnOverridePersonnelStatus, ELD_Immediate);
+	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
 	Template.RegisterInStrategy = true;
 
 	return Template;
@@ -139,7 +140,7 @@ static protected function EventListenerReturn OnOverrideItemMinEquipped(Object E
 }
 
 // Sets the status string for liaisons and soldiers on missions.
-static protected function EventListenerReturn OnCustomizeStatusStringsSeparate(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+static protected function EventListenerReturn OnOverridePersonnelStatus(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local XComLWTuple				OverrideTuple;
 	local XComGameState_Unit		UnitState;
@@ -150,43 +151,53 @@ static protected function EventListenerReturn OnCustomizeStatusStringsSeparate(O
 	OverrideTuple = XComLWTuple(EventData);
 	if (OverrideTuple == none)
 	{
-		`REDSCREEN("CustomizeStatusStringsSeparate event triggered with invalid event data.");
+		`REDSCREEN("OverridePersonnelStatus event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
 
 	UnitState = XComGameState_Unit(EventSource);
 	if (UnitState == none)
 	{
-		`REDSCREEN("CustomizeStatusStringsSeparate event triggered with invalid source data.");
+		`REDSCREEN("OverridePersonnelStatus event triggered with invalid source data.");
 		return ELR_NoInterrupt;
 	}
 
-	if (OverrideTuple.Id != 'CustomizeStatusStringsSeparate')
+	if (OverrideTuple.Id != 'OverridePersonnelStatus')
 	{
 		return ELR_NoInterrupt;
 	}
 
-	
+	SquadMgr = `LWSQUADMGR;
 	if (class'LWDLCHelpers'.static.IsUnitOnMission(UnitState))
 	{
 		// Check if the unit is a liaison or a soldier on a mission.
 		if (`LWOUTPOSTMGR.IsUnitAHavenLiaison(UnitState.GetReference()))
 		{
 			WorldRegion = `LWOUTPOSTMGR.GetRegionForLiaison(UnitState.GetReference());
-			SetTupleData(OverrideTuple, default.OnLiaisonDuty @ "-" @ WorldRegion.GetDisplayName(), "", 0);
+			SetStatusTupleData(
+				OverrideTuple,
+				default.OnLiaisonDuty @ "-" @ WorldRegion.GetDisplayName(),
+				"",
+				0,
+				eUIState_Warning,
+				true);
 		}
-		else if (`LWSQUADMGR.UnitIsOnMission(UnitState.GetReference()))
+		else if (SquadMgr.UnitIsOnMission(UnitState.GetReference(), Squad))
 		{
-			SetTupleData(OverrideTuple, default.OnInfiltrationMission, "", 0);
+			SetStatusTupleData(
+				OverrideTuple,
+				default.OnInfiltrationMission,
+				"",
+				GetHoursLeftToInfiltrate(Squad),
+				eUIState_Warning,
+				false);
 		}
 	}
 	else if (GetScreenOrChild('UIPersonnel_SquadBarracks') == none)
 	{
-		SquadMgr = `LWSQUADMGR;
 		if (`XCOMHQ.IsUnitInSquad(UnitState.GetReference()) && GetScreenOrChild('UISquadSelect') != none)
 		{
-			SetTupleData(OverrideTuple, class'UIUtilities_Strategy'.default.m_strOnMissionStatus, "", 0);
-			// TextState = eUIState_Highlight;
+			SetStatusTupleData(OverrideTuple, class'UIUtilities_Strategy'.default.m_strOnMissionStatus, "", 0, eUIState_Highlight, true);
 		}
 		else if (SquadMgr != none && SquadMgr.UnitIsInAnySquad(UnitState.GetReference(), Squad))
 		{
@@ -196,13 +207,11 @@ static protected function EventListenerReturn OnCustomizeStatusStringsSeparate(O
 				{
 					if (GetScreenOrChild('UISquadSelect') != none)
 					{
-						SetTupleData(OverrideTuple, default.UnitAlreadyInSquad, "", 0);
-						// TextState = eUIState_Warning;
+						SetStatusTupleData(OverrideTuple, default.UnitAlreadyInSquad, "", 0, eUIState_Warning, true);
 					}
 					else if (GetScreenOrChild('UIPersonnel_Liaison') != none)
 					{
-						SetTupleData(OverrideTuple, default.UnitInSquad, "", 0);
-						// TextState = eUIState_Warning;
+						SetStatusTupleData(OverrideTuple, default.UnitInSquad, "", 0, eUIState_Warning, true);
 					}
 				}
 			}
@@ -211,13 +220,68 @@ static protected function EventListenerReturn OnCustomizeStatusStringsSeparate(O
 		{
 			if (GetScreenOrChild('UIPersonnel_Liaison') != none)
 			{
-				SetTupleData(OverrideTuple, default.RankTooLow, "", 0);
-				// TextState = eUIState_Bad;
+				SetStatusTupleData(OverrideTuple, default.RankTooLow, "", 0, eUIState_Bad, true);
 			}
 		}
 	}
 
 	return ELR_NoInterrupt;
+}
+
+static private function int GetHoursLeftToInfiltrate(XComGameState_LWPersistentSquad Squad)
+{
+	local int TotalSecondsForInfiltration;
+	local bool bCanFullyInfiltrate;
+
+	TotalSecondsForInfiltration = Squad.GetSecondsRemainingToFullInfiltration();
+
+	return int(TotalSecondsForInfiltration / 3600.0);
+}
+
+static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple			OverrideTuple;
+	local XComGameState_Unit	UnitState;
+	local int					Hours, Days;
+
+	OverrideTuple = XComLWTuple(EventData);
+	if (OverrideTuple == none)
+	{
+		`REDSCREEN("OverridePersonnelStatusTime event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	UnitState = XComGameState_Unit(EventSource);
+	if (UnitState == none)
+	{
+		`REDSCREEN("OverridePersonnelStatusTime event triggered with invalid source data.");
+		return ELR_NoInterrupt;
+	}
+
+	if (OverrideTuple.Id != 'OverridePersonnelStatusTime')
+	{
+		return ELR_NoInterrupt;
+	}
+
+	Hours = OverrideTuple.Data[2].i;
+	if (Hours < 0 || Hours > 24 * 30 * 12) // Ignore year long missions
+	{
+		OverrideTuple.Data[1].s = "";
+		OverrideTuple.Data[2].i = 0;
+		return ELR_NoInterrupt;
+	}
+
+	if (Hours > class'UIPersonnel_SoldierListItemDetailed'.default.NUM_HOURS_TO_DAYS)
+	{
+		Days = FCeil(float(Hours) / 24.0f);
+		OverrideTuple.Data[1].s = class'UIUtilities_Text'.static.GetDaysString(Days);
+		OverrideTuple.Data[2].i = Days;
+	}
+	else
+	{
+		OverrideTuple.Data[1].s = class'UIUtilities_Text'.static.GetHoursString(Hours);
+		OverrideTuple.Data[2].i = Hours;
+	}
 }
 
 static private function UIScreen GetScreenOrChild(name ScreenType)
@@ -233,12 +297,20 @@ static private function UIScreen GetScreenOrChild(name ScreenType)
 	return none;
 }
 
-static private function SetTupleData(XComLWTuple Tuple, string Status, string TimeLabel, int TimeValue)
+static private function SetStatusTupleData(
+	XComLWTuple Tuple,
+	string Status,
+	string TimeLabel,
+	int TimeValue,
+	EUIState State,
+	bool HideTime)
 {
-	Tuple.Data[0].b = true;
-	Tuple.Data[1].s = Status;
-	Tuple.Data[2].s = TimeLabel;
-	Tuple.Data[3].i = TimeValue;
+	Tuple.Data[0].s = Status;
+	Tuple.Data[1].s = TimeLabel;
+	Tuple.Data[2].i = TimeValue;
+	Tuple.Data[3].i = int(State);
+	Tuple.Data[4].b = HideTime;
+	Tuple.Data[5].b = !HideTime;
 }
 
 // This takes on a bunch of exceptions to color ability icons
@@ -417,3 +489,4 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 
 	return ELR_NoInterrupt;
 }
+	
