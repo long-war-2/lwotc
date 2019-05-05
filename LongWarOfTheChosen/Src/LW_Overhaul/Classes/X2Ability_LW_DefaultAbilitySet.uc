@@ -81,7 +81,7 @@ static function X2AbilityTemplate CreateReflexShotAbility()
     ActionPointCost = new class'X2AbilityCost_ActionPoints';
     ActionPointCost.iNumPoints = 1;
 	ActionPointCost.AllowedTypes.length = 0;
-	ActionPointCost.AllowedTypes.AddItem (class'XComGameState_LWListenerManager'.const.OffensiveReflexAction);
+	ActionPointCost.AllowedTypes.AddItem (class'Utilities_LW'.const.OffensiveReflexAction);
     ActionPointCost.bConsumeAllPoints = true;
     Template.AbilityCosts.AddItem(ActionPointCost);
     AmmoCost = new class'X2AbilityCost_Ammo';

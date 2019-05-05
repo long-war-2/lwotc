@@ -1562,12 +1562,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	// they will only be able to use the abilities configured here.
 	if (OffensiveReflexAbilities.Find(Template.DataName) >= 0)
 	{
-		AddReflexActionPoint(Template, class'XComGameState_LWListenerManager'.const.OffensiveReflexAction);
+		AddReflexActionPoint(Template, class'Utilities_LW'.const.OffensiveReflexAction);
 	}
 
 	if (DefensiveReflexAbilities.Find(Template.DataName) >= 0)
 	{
-		AddReflexActionPoint(Template, class'XComGameState_LWListenerManager'.const.DefensiveReflexAction);
+		AddReflexActionPoint(Template, class'Utilities_LW'.const.DefensiveReflexAction);
 	}
 
 	if (DoubleTapAbilities.Find(Template.DataName) >= 0)

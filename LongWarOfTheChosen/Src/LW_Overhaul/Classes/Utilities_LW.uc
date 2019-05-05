@@ -5,7 +5,18 @@
 //  PURPOSE: Miscellaneous helper routines.
 //--------------------------------------------------------------------------------------- 
 
-class Utilities_LW extends Object dependson(X2StrategyElement_DefaultAlienActivities);
+class Utilities_LW extends Object dependson(X2StrategyElement_DefaultAlienActivities) config(LW_Overhaul);
+
+var config array<float> REFLEX_ACTION_CHANCE_YELLOW;
+var config array<float> REFLEX_ACTION_CHANCE_GREEN;
+var config float REFLEX_ACTION_CHANCE_REDUCTION;
+
+var config array<float> LOW_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
+var config array<float> HIGH_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
+
+const OffensiveReflexAction = 'OffensiveReflexActionPoint_LW';
+const DefensiveReflexAction = 'DefensiveReflexActionPoint_LW';
+const NoReflexActionUnitValue = 'NoReflexAction_LW';
 
 function static XComGameState_Unit CreateProxyUnit(XComGameState_Unit OriginalUnit, Name ProxyTemplateName, bool GiveAbilities, XComGameState NewGameState, optional Name Loadout)
 {

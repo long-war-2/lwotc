@@ -11,7 +11,8 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	if (AbilityState.GetMyTemplateName() == 'StandardShot')
 	{
 		//`LOG ("Check 2");
-		if (Attacker.ActionPoints.Find(class'XComGameState_LWListenerManager'.const.OffensiveReflexAction) != -1 || Attacker.ActionPoints.Find(class'XComGameState_LWListenerManager'.const.DefensiveReflexAction) != -1)
+		if (Attacker.ActionPoints.Find(class'Utilities_LW'.const.OffensiveReflexAction) != -1
+			 || Attacker.ActionPoints.Find(class'Utilities_LW'.const.DefensiveReflexAction) != -1)
 		{
 			//`LOG ("Check 3");
 			ShotInfo.ModType = eHit_Success;

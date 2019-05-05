@@ -5,10 +5,6 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_LWListenerManager extends XComGameState_BaseObject config(LW_Overhaul) dependson(XComGameState_LWPersistentSquad);
 
-const OffensiveReflexAction = 'OffensiveReflexActionPoint_LW';
-const DefensiveReflexAction = 'DefensiveReflexActionPoint_LW';
-const NoReflexActionUnitValue = 'NoReflexAction_LW';
-
 struct ToHitAdjustments
 {
 	var int ConditionalCritAdjust;	// reduction in bonus damage chance from it being conditional on hitting
@@ -63,24 +59,12 @@ var config bool USE_ALT_BLEEDOUT_RULES;
 var config int BLEEDOUT_CHANCE_BASE;
 var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE;
 
-var config array<float> REFLEX_ACTION_CHANCE_YELLOW;
-var config array<float> REFLEX_ACTION_CHANCE_GREEN;
-var config float REFLEX_ACTION_CHANCE_REDUCTION;
-
-var config array<float> LOW_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
-var config array<float> HIGH_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
-
 var config int PSI_SQUADDIE_BONUS_ABILITIES;
 
 var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
 var config array<float> MINIMUM_INFIL_FOR_GREEN_ALERT;
 
 var config array<int>INITIAL_PSI_TRAINING;
-
-// Transient helper vars for alien reflex actions. These are not persisted.
-var transient int LastReflexGroupId;          // ObjectID of the last group member we processed
-var transient int NumSuccessfulReflexActions; // The number of successful reflex actions we've added for the current pod
-
 
 static function XComGameState_LWListenerManager GetListenerManager(optional bool AllowNULL = false)
 {
@@ -227,17 +211,11 @@ function InitListeners()
 	//PCS Images
 	EventMgr.RegisterForEvent(ThisObj, 'OnGetPCSImage', GetPCSImage,,,,true);
 
-    // Alert visibility overrides
-    EventMgr.RegisterForEvent(ThisObj, 'IsCauseAllowedForNonvisibleUnits', OnIsCauseAllowedForNonvisibleUnits, ELD_Immediate,,, true);
-
     // Tactical mission cleanup hook
     EventMgr.RegisterForEvent(ThisObj, 'CleanupTacticalMission', OnCleanupTacticalMission, ELD_Immediate,,, true);
 
     // Outpost built
     EventMgr.RegisterForEvent(ThisObj, 'RegionBuiltOutpost', OnRegionBuiltOutpost, ELD_OnStateSubmitted,,, true);
-
-    // Scamper
-    EventMgr.RegisterForEvent(ThisObj, 'ProcessReflexMove', OnProcessReflexMove, ELD_Immediate,,, true);
 
     // VIP Recovery screen
     EventMgr.RegisterForEvent(ThisObj, 'GetRewardVIPStatus', OnGetRewardVIPStatus, ELD_Immediate,,, true);
@@ -254,13 +232,8 @@ function InitListeners()
     // Supply decrease monthly report string replacement
     EventMgr.RegisterForEvent(ThisObj, 'GetSupplyDropDecreaseStrings', OnGetSupplyDropDecreaseStrings, ELD_Immediate,,, true);
 
-    // Unit taking damage
-    EventMgr.RegisterForEvent(ThisObj, 'UnitTakeEffectDamage', OnUnitTookDamage, ELD_OnStateSubmitted);
-
 	//
 	EventMgr.RegisterForEvent(ThisObj, 'PostPsiProjectCompleted', OnPsiProjectCompleted, ELD_Immediate,,, true);
-
-	EventMgr.RegisterForEvent(ThisObj, 'SpawnReinforcementsComplete', OnSpawnReinforcementsComplete, ELD_OnStateSubmitted,,, true);
 
 	// listeners for weapon mod stripping
 	EventMgr.RegisterForEvent(ThisObj, 'OnCheckBuildItemsNavHelp', AddSquadSelectStripWeaponsButton, ELD_Immediate);
@@ -1954,34 +1927,6 @@ function EventListenerReturn GetPCSImage(Object EventData, Object EventSource, X
 	return ELR_NoInterrupt;
 }
 
-function EventListenerReturn OnIsCauseAllowedForNonvisibleUnits(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-    local XComLWTuple Tuple;
-    local EAlertCause AlertCause;
-    local XComLWTValue Value;
-
-    Tuple = XComLWTuple(EventData);
-    if (Tuple != none && Tuple.Data.Length == 1 && class'Helpers_LW'.static.YellowAlertEnabled())
-    {
-        AlertCause = EAlertCause(Tuple.Data[0].i);
-        switch(AlertCause)
-        {
-            case eAC_DetectedSound:
-            case eAC_DetectedAllyTakingDamage:
-            case eAC_DetectedNewCorpse:
-            case eAC_SeesExplosion:
-            case eAC_SeesSmoke:
-            case eAC_SeesFire:
-            case eAC_AlertedByYell:
-                Value.Kind = XComLWTVBool;
-                Value.b = true;
-                Tuple.Data.AddItem(Value);
-        }
-    }
-
-    return ELR_NoInterrupt;
-}
-
 function EventListenerReturn OnCleanupTacticalMission(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
     local XComGameState_BattleData BattleData;
@@ -2094,129 +2039,6 @@ function EventListenerReturn OnRegionBuiltOutpost(Object EventData, Object Event
         }
     }
 
-    return ELR_NoInterrupt;
-}
-
-function EventListenerReturn OnProcessReflexMove(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	/* WOTC TODO: Restore this
-    local XComGameState_Unit Unit;
-	local XComGameState_Unit PreviousUnit;
-	local XComGameStateHistory History;
-	local XComGameState_AIGroup Group;
-    local bool IsYellow;
-    local float Chance;
-	local UnitValue Value;
-	local XComGameState_MissionSite			MissionState;
-	local XComGameState_LWPersistentSquad	SquadState;
-	local XComGameState_BattleData			BattleData;
-
-    Unit = XComGameState_Unit(GameState.GetGameStateForObjectID(XComGameState_Unit(EventData).ObjectID));
-    `LWTrace(GetFuncName() $ ": Processing reflex move for unit " $ Unit.GetMyTemplateName());
-	History = `XCOMHISTORY;
-
-	// Note: We don't currently support reflex actions on XCOM's turn. Doing so requires
-	// adjustments to how scampers are processed so the units would use their extra action
-	// point. Also note that giving units a reflex action point while it's not their turn
-	// can break stun animations unless those action points are used: see X2Effect_Stunned
-	// where action points are only removed if it's the units turn, and the effect actions
-	// (including the stunned idle anim override) are only visualized if the unit has no
-	// action points left. If the unit has stray reflex actions they haven't used they
-	// will stand back up and perform the normal idle animation (although they are still
-	// stunned and won't act).
-    if (Unit.ControllingPlayer != `TACTICALRULES.GetCachedUnitActionPlayerRef())
-    {
-        `LWTrace(GetFuncName() $ ": Not the alien turn: aborting");
-        return ELR_NoInterrupt;
-    }
-
-	Group = Unit.GetGroupMembership();
-    if (Group == none)
-    {
-        `LWTrace(GetFuncName() $ ": Can't find group: aborting");
-        return ELR_NoInterrupt;
-    }
-
-    if (Unit.GetCurrentStat(eStat_AlertLevel) <= 1)
-	{
-		// This unit isn't in red alert. If a scampering unit is not in red, this generally means they're a reinforcement
-		// pod. Skip them.
-		`LWTrace(GetFuncName() $ ": Reinforcement unit: aborting");
-		return ELR_NoInterrupt;
-	}
-
-	// Look for the special 'NoReflexAction' unit value. If present, this unit isn't allowed to take an action.
-	// This is typically set on reinforcements on the turn they spawn. But if they spawn out of LoS they are
-	// eligible, just like any other yellow unit, on subsequent turns. Both this check and the one above are needed.
-	Unit.GetUnitValue(NoReflexActionUnitValue, Value);
- 	if (Value.fValue == 1)
-	{
-		`LWTrace(GetFuncName() $ ": Unit with no reflex action value: aborting");
-		return ELR_NoInterrupt;
-	}
-
-	// Walk backwards through history for this unit until we find a state in which this unit wasn't in red
-	// alert to see if we entered from yellow or from green.
-	PreviousUnit = Unit;
-	while (PreviousUnit != none && PreviousUnit.GetCurrentStat(eStat_AlertLevel) > 1)
-	{
-		PreviousUnit = XComGameState_Unit(History.GetPreviousGameStateForObject(PreviousUnit));
-	}
-
-    IsYellow = PreviousUnit != none && PreviousUnit.GetCurrentStat(eStat_AlertLevel) == 1;
-    Chance = IsYellow ? REFLEX_ACTION_CHANCE_YELLOW[`TACTICALDIFFICULTYSETTING] : REFLEX_ACTION_CHANCE_GREEN[`TACTICALDIFFICULTYSETTING];
-
-    // Did our current pod change? If so reset the number of successful reflex actions we've had so far.
-    if (Group.ObjectID != LastReflexGroupID)
-    {
-        NumSuccessfulReflexActions = 0;
-        LastReflexGroupId = Group.ObjectID;
-    }
-
-	// if is infiltration mission, get infiltration % and modify yellow and green alert chances by how much you missed 100%, diff modifier, positive boolean
-	BattleData = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(BattleData.m_iMissionID));
-
-	// Infiltration modifier
-	if (`LWSQUADMGR.IsValidInfiltrationMission(MissionState.GetReference()))
-	{
-		SquadState = `LWSQUADMGR.GetSquadOnMission(MissionState.GetReference());
-		if (SquadState.CurrentInfiltration <= 1)
-		{
-			Chance += (1.0 - SquadState.CurrentInfiltration) * default.LOW_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS[`TACTICALDIFFICULTYSETTING];
-		}
-		else
-		{
-			Chance -= (SquadState.CurrentInfiltration - 1.0) * default.HIGH_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS[`TACTICALDIFFICULTYSETTING];
-		}
-	}
-
-    if (REFLEX_ACTION_CHANCE_REDUCTION > 0 && NumSuccessfulReflexActions > 0)
-    {
-        `LWTrace(GetFuncName() $ ": Reducing reflex chance due to " $ NumSuccessfulReflexActions $ " successes");
-        Chance -= NumSuccessfulReflexActions * REFLEX_ACTION_CHANCE_REDUCTION;
-    }
-
-    if (`SYNC_FRAND() < Chance)
-    {
-        `LWTrace(GetFuncName() $ ": Awarding an extra action point to unit");
-        // Award the unit a special kind of action point. These are more restricted than standard action points.
-        // See the 'OffensiveReflexAbilities' and 'DefensiveReflexAbilities' arrays in LW_Overhaul.ini for the list
-        // of abilities that have been modified to allow these action points.
-        //
-        // Damaged units, and units in green (if enabled) get 'defensive' action points. Others get 'offensive' action points.
-        if (Unit.IsInjured() || !IsYellow)
-        {
-            Unit.ActionPoints.AddItem(DefensiveReflexAction);
-        }
-        else
-        {
-            Unit.ActionPoints.AddItem(OffensiveReflexAction);
-        }
-
-        ++NumSuccessfulReflexActions;
-    }
-	*/
     return ELR_NoInterrupt;
 }
 
@@ -2386,30 +2208,6 @@ function EventListenerReturn OnGetSupplyDropDecreaseStrings(Object EventData, Ob
     return ELR_NoInterrupt;
 }
 
-function EventListenerReturn OnUnitTookDamage(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-    local XComGameState_Unit Unit;
-    local XComGameState NewGameState;
-
-    Unit = XComGameState_Unit(EventSource);
-    if (Unit.ControllingPlayerIsAI() &&
-        Unit.IsInjured() &&
-        `BEHAVIORTREEMGR.IsScampering() &&
-        Unit.ActionPoints.Find(OffensiveReflexAction) >= 0)
-    {
-        // This unit has taken damage, is scampering, and has an 'offensive' reflex action point. Replace it with
-        // a defensive action point.
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Replacing reflex action for injured unit");
-        Unit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
-        NewGameState.AddStateObject(Unit);
-        Unit.ActionPoints.RemoveItem(OffensiveReflexAction);
-        Unit.ActionPoints.AddItem(DefensiveReflexAction);
-        `TACTICALRULES.SubmitGameState(NewGameState);
-    }
-
-    return ELR_NoInterrupt;
-}
-
 // Grants bonus psi abilities after promotion to squaddie
 function EventListenerReturn OnPsiProjectCompleted (Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
@@ -2477,29 +2275,6 @@ function EventListenerReturn OnPsiProjectCompleted (Object EventData, Object Eve
 	{
 		`XCOMHISTORY.CleanupPendingGameState(NewGameState);
 	}
-
-	return ELR_NoInterrupt;
-}
-
-// A RNF pod has spawned. Mark the units with a special marker to indicate they shouldn't be eligible for
-// reflex actions this turn.
-function EventListenerReturn OnSpawnReinforcementsComplete (Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	local XComGameState_Unit Unit;
-	local XComGameState NewGameState;
-	local XComGameState_AIReinforcementSpawner Spawner;
-	local int i;
-
-	Spawner = XComGameState_AIReinforcementSpawner(EventSource);
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Prevent RNF units from getting yellow actions");
-	for (i = 0; i < Spawner.SpawnedUnitIDs.Length; ++i)
-	{
-		Unit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Spawner.SpawnedUnitIDs[i]));
-		NewGameState.AddStateObject(Unit);
-		Unit.SetUnitFloatValue(NoReflexActionUnitValue, 1, eCleanup_BeginTurn);
-	}
-
-	`TACTICALRULES.SubmitGameState(NewGameState);
 
 	return ELR_NoInterrupt;
 }

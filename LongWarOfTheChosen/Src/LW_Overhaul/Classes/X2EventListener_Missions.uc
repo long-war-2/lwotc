@@ -46,6 +46,7 @@ static function CHEventListenerTemplate CreateMissionPrepListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionPrepListeners');
 	Template.AddCHEvent('OverrideEncounterZoneAnchorPoint', DisableAutoAdjustingPatrolZones, ELD_Immediate);
 	Template.AddCHEvent('OverridePatrolBehavior', DisableDefaultPatrolBehavior, ELD_Immediate);
+	Template.AddCHEvent('SpawnReinforcementsComplete', OnSpawnReinforcementsComplete, ELD_OnStateSubmitted);
 	Template.AddCHEvent('OnTacticalBeginPlay', DisableInterceptAIBehavior, ELD_Immediate);
 
 	Template.RegisterInTactical = true;
@@ -192,6 +193,33 @@ function EventListenerReturn DisableDefaultPatrolBehavior(
 		// No job. Let the base game patrol, but don't try to use the intercept mechanic.
 		Tuple.Data[0].b = false;
 	}
+
+	return ELR_NoInterrupt;
+}
+
+// A RNF pod has spawned. Mark the units with a special marker to indicate they shouldn't be eligible for
+// reflex actions this turn.
+function EventListenerReturn OnSpawnReinforcementsComplete (
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_Unit Unit;
+	local XComGameState NewGameState;
+	local XComGameState_AIReinforcementSpawner Spawner;
+	local int i;
+
+	Spawner = XComGameState_AIReinforcementSpawner(EventSource);
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Prevent RNF units from getting yellow actions");
+	for (i = 0; i < Spawner.SpawnedUnitIDs.Length; ++i)
+	{
+		Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Spawner.SpawnedUnitIDs[i]));
+		Unit.SetUnitFloatValue(class'Utilities_LW'.const.NoReflexActionUnitValue, 1, eCleanup_BeginTurn);
+	}
+
+	`TACTICALRULES.SubmitGameState(NewGameState);
 
 	return ELR_NoInterrupt;
 }
