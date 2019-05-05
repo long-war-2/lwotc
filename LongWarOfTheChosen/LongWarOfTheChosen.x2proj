@@ -894,7 +894,6 @@
     <Content Include="Content\LWArcthrower.upk" />
     <Content Include="Content\LWCombatKnife.upk" />
     <Content Include="Content\LWEvacZone.upk" />
-    <Content Include="Content\LWGauntlet.upk" />
     <Content Include="Content\LWHolotargeter.upk" />
     <Content Include="Content\LWNarrativeMoments.upk" />
     <Content Include="Content\LWNarrativeMoments_Bink.upk" />
@@ -1064,6 +1063,15 @@
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2DownloadableContentInfo_LW_WeaponsAndArmor.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionArmors.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionWeapons.uc" />
+    <Content Include="Content\FX_Explosion_Rocket_Launcher.upk" />
+    <Content Include="Content\FX_Heavy_Blaster_Launcher.upk" />
+    <Content Include="Content\FX_Heavy_RocketLauncher.upk" />
+    <Content Include="Content\LWGauntletWOTC.upk" />
+    <Content Include="Content\LWZ_PerkContent_BlasterLauncher.upk" />
+    <Content Include="Content\LWZ_PerkContent_BunkerBusterProjectile.upk" />
+    <Content Include="Content\LWZ_PerkContent_ConcussionRocket.upk" />
+    <Content Include="Content\LWZ_PerkContent_RocketProjectile.upk" />
+    <Content Include="Content\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_ModShaderCache.upk" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
