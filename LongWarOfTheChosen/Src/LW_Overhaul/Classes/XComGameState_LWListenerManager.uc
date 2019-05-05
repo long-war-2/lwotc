@@ -159,17 +159,7 @@ function InitListeners()
 	// Mission summary civilian counts
 	// WOTC TODO: Requires change to CHL Helpers and UIMissionSummary
 	EventMgr.RegisterForEvent(ThisObj, 'GetNumCiviliansKilled', OnNumCiviliansKilled, ELD_Immediate,,,true);
-	
-	// AI Patrol/Intercept behavior override
-	// WOTC TODO: Requires change to CHL XComGameState_AIGroup - although I haven't seen any intercept behaviour
-	// on the first mission. Will need to test some "normal" missions with standard objectives like hacks
-	EventMgr.RegisterForEvent(ThisObj, 'ShouldMoveToIntercept', OnShouldMoveToIntercept, ELD_Immediate,,,true);
-	
-	// Override IsUnRevealedAI in patrol manager in XGAIplayer so aliens don't stop patrolling when an unrevealed soldier sees them
-	// WOTC TODO: Requires change to CHL XGAIPlayer - not sure it's needed though because so far enemies aren't stopping their
-	// patrol patterns, at least on the first mission.
-	EventMgr.RegisterForEvent(ThisObj, 'ShouldUnitPatrolUnderway', OnShouldUnitPatrol, ELD_Immediate,,, true);
-	
+		
 	// listener for turn change
 	EventMgr.RegisterForEvent(ThisObj, 'PlayerTurnBegun', LW2OnPlayerTurnBegun);
 
@@ -1755,48 +1745,6 @@ function EventListenerReturn OnNumCiviliansKilled(Object EventData, Object Event
     Value.i = Total;
     Tuple.Data.AddItem(Value);
     return ELR_NoInterrupt;
-}
-
-// Override AI intercept/patrol behavior. The base game uses a function to control pod movement.
-//
-// For the overhaul mod we will not use either upthrottling or the 'intercept' behavior if XCOM passes
-// the pod along the LoP. Instead we will use the pod manager to control movement. But we still want pods
-// with no jobs to patrol as normal.
-function EventListenerReturn OnShouldMoveToIntercept(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-    local XComLWTuple Tuple;
-    local XComLWTValue Value;
-    local XComGameState_AIGroup Group;
-
-    Tuple = XComLWTuple(EventData);
-    if (Tuple == none || Tuple.Data.Length != 2 || Tuple.Data[0].Kind != XComLWTVObject || Tuple.Data[1].Kind != XComLWTVBool)
-    {
-        // Not ours or someone already modded it.
-        `LWTrace("OnShouldMoveToIntercept: Bad Tuple");
-        return ELR_NoInterrupt;
-    }
-
-    Group = XComGameState_AIGroup(Tuple.Data[0].o);
-
-    if (Group != none && `LWPODMGR.PodHasJob(Group) || `LWPODMGR.GroupIsInYellowAlert(Group))
-    {
-        // This pod has a job, or is in yellow alert. Don't let the base game alter its alert.
-		// For pods with jobs, we want the game to use the throttling beacon we have set for them.
-		// For yellow alert pods, either they have a job, in which case they should go where that job
-		// says they should, or they should be investigating their yellow alert cause.
-        Value.i = 0;
-        Value.Kind = XComLWTVInt;
-        Tuple.Data.AddItem(Value);
-        return ELR_NoInterrupt;
-    }
-    else
-    {
-        // No job. Let the base game patrol, but don't try to use the intercept mechanic.
-        Value.i = 1;
-        Value.Kind = XComLWTVInt;
-        Tuple.Data.AddItem(Value);
-        return ELR_NoInterrupt;
-    }
 }
 
 function EventListenerReturn OnSoldierRespecced (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
