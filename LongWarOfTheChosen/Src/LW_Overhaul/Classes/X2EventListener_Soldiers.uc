@@ -12,6 +12,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateUtilityItemListeners());
 	Templates.AddItem(CreateStatusListeners());
+	Templates.AddItem(CreateTacticalListeners());
 
 	return Templates;
 }
@@ -39,6 +40,17 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierStatus');
 	Template.AddCHEvent('CustomizeStatusStringsSeparate', OnCustomizeStatusStringsSeparate, ELD_Immediate);
 	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreateTacticalListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'TacticalEvents');
+	Template.AddCHEvent('OverrideAbilityIconColor', OnOverrideAbilityIconColor, ELD_Immediate);
+	Template.RegisterInTactical = true;
 
 	return Template;
 }
@@ -227,4 +239,181 @@ static private function SetTupleData(XComLWTuple Tuple, string Status, string Ti
 	Tuple.Data[1].s = Status;
 	Tuple.Data[2].s = TimeLabel;
 	Tuple.Data[3].i = TimeValue;
+}
+
+// This takes on a bunch of exceptions to color ability icons
+static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple				OverrideTuple;
+	local Name						AbilityName;
+	local XComGameState_Ability		AbilityState;
+	local X2AbilityTemplate			AbilityTemplate;
+	local XComGameState_Unit		UnitState;
+	local string					IconColor;
+	local XComGameState_Item		WeaponState;
+	local array<X2WeaponUpgradeTemplate> WeaponUpgrades;
+	local int k, k2;
+	local bool Changed;
+	local UnitValue FreeReloadValue;
+	local X2AbilityCost_ActionPoints		ActionPoints;
+
+	OverrideTuple = XComLWTuple(EventData);
+	if(OverrideTuple == none)
+	{
+		`REDSCREEN("OnOverrideAbilityIconColor event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	AbilityState = XComGameState_Ability(EventSource);
+	if (AbilityState == none)
+	{
+		`LWTRACE ("No ability state fed to OnOverrideAbilityIconColor");
+		return ELR_NoInterrupt;
+	}
+
+	// Easy handling of abilities that target objectives
+	if (OverrideTuple.Data[0].b && class'LWTemplateMods'.default.USE_ACTION_ICON_COLORS)
+	{
+		OverrideTuple.Data[1].s = class'LWTemplateMods'.default.ICON_COLOR_OBJECTIVE;
+		return ELR_NoInterrupt;
+	}
+
+	// Drop out if the existing icon color is not "Variable"
+	if (OverrideTuple.Data[1].s != "Variable")
+	{
+		return ELR_NoInterrupt;
+	}
+
+	// Now deal with the "Variable" ability icons
+	Changed = false;
+	AbilityTemplate = AbilityState.GetMyTemplate();
+	AbilityName = AbilityState.GetMyTemplateName();
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
+	WeaponState = AbilityState.GetSourceWeapon();
+
+	if (UnitState == none)
+	{
+		`LWTRACE ("No UnitState found for OnOverrideAbilityIconColor");
+		return ELR_NoInterrupt;
+	}
+
+	// Salvo, Quickburn, Holotarget
+	for (k = 0; k < AbilityTemplate.AbilityCosts.Length; k++)
+	{
+		ActionPoints = X2AbilityCost_ActionPoints(AbilityTemplate.AbilityCosts[k]);
+		if (ActionPoints != none)
+		{
+			if (ActionPoints.bConsumeAllPoints)
+			{
+				for (k2 = 0; k2 < ActionPoints.DoNotConsumeAllSoldierAbilities.Length; k2++)
+				{
+					if (UnitState.HasSoldierAbility(ActionPoints.DoNotConsumeAllSoldierAbilities[k2], true))
+					{
+						IconColor = class'LWTemplateMods'.default.ICON_COLOR_1;
+						Changed = true;
+						break;
+					}
+				}
+			}
+			if (ActionPoints.bAddWeaponTypicalCost)
+			{
+				if (X2WeaponTemplate(WeaponState.GetMyTemplate()).iTypicalActionCost >= 2)
+				{
+					IconColor = class'LWTemplateMods'.default.ICON_COLOR_2; // yellow
+					Changed = true;
+					break;
+				}
+				else
+				{
+					if (ActionPoints.bConsumeAllPoints)
+					{
+						IconColor = class'LWTemplateMods'.default.ICON_COLOR_END; // cyan
+						Changed = true;
+						break;
+					}
+					else
+					{
+						IconColor = class'LWTemplateMods'.default.ICON_COLOR_1;
+						Changed = true;
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	switch (AbilityName)
+	{
+		case 'ThrowGrenade':
+			if (UnitState.AffectedByEffectNames.Find('RapidDeploymentEffect') != -1)
+			{
+				if (class'X2Effect_RapidDeployment'.default.VALID_GRENADE_TYPES.Find(WeaponState.GetMyTemplateName()) != -1)
+				{
+					IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
+					Changed = true;
+				}
+			}
+			break;
+		case 'LaunchGrenade':
+			if (UnitState.AffectedByEffectNames.Find('RapidDeploymentEffect') != -1)
+			{
+				if (class'X2Effect_RapidDeployment'.default.VALID_GRENADE_TYPES.Find(WeaponState.GetLoadedAmmoTemplate(AbilityState).DataName) != -1)
+				{
+					IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
+					Changed = true;
+				}
+			}
+			break;
+		case 'LWFlamethrower':
+		case 'Roust':
+		case 'Firestorm':
+			if (UnitState.AffectedByEffectNames.Find('QuickburnEffect') != -1)
+			{
+					IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
+					Changed = true;
+			}
+			break;
+		case 'Reload':
+			WeaponUpgrades = WeaponState.GetMyWeaponUpgradeTemplates();
+			for (k = 0; k < WeaponUpgrades.Length; k++)
+			{
+				if (WeaponUpgrades[k].NumFreeReloads > 0)
+				{
+					UnitState.GetUnitValue ('FreeReload', FreeReloadValue);
+					if (FreeReloadValue.fValue < WeaponUpgrades[k].NumFreeReloads)
+					{
+						IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
+						Changed = true;
+					}
+					break;
+				}
+			}
+			break;
+		case 'PistolStandardShot':
+		case 'ClutchShot':
+			if (UnitState.HasSoldierAbility('Quickdraw'))
+			{
+				IconColor = class'LWTemplateMods'.default.ICON_COLOR_1;
+				Changed = true;
+			}
+			break;
+		case 'PlaceEvacZone':
+		case 'PlaceDelayedEvacZone':
+			`LWTRACE ("Attempting to change EVAC color");
+			class'XComGameState_BattleData'.static.HighlightObjectiveAbility(AbilityName, true);
+			return ELR_NoInterrupt;
+			break;
+		default: break;
+	}
+
+	if (Changed)
+	{
+		OverrideTuple.Data[1].s = IconColor;
+	}
+	else
+	{
+		OverrideTuple.Data[1].s = class'LWTemplateMods'.static.GetIconColorByActionPoints(AbilityTemplate);
+	}
+
+	return ELR_NoInterrupt;
 }
