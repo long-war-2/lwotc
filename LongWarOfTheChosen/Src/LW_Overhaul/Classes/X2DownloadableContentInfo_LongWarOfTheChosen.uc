@@ -1091,8 +1091,12 @@ static function bool CanAddItemToInventory_CH_Improved(
 	// Ignore all slots other than HeavyWeapons
 	if (Slot != eInvSlot_HeavyWeapon)
 	{
-		bCanAddItem = 1;
-		return true;
+		// We want this hook to be ignored from both the armory
+		// screen and the unit's CanAddItemToInventory() method,
+		// but they expect different return values to indicate
+		// that. CheckGameState is the only way to distinguish
+		// between them.
+		return CheckGameState == none;
 	}
 
 	SoldierClassTemplate = UnitState.GetSoldierClassTemplate();
@@ -1102,8 +1106,12 @@ static function bool CanAddItemToInventory_CH_Improved(
 	{
 		if (WeaponTemplate.WeaponCat == SoldierClassTemplate.AllowedWeapons[i].WeaponType)
 		{
-			bCanAddItem = 1;
-			return true;
+			// We think the item can be added, but we should leave it to
+			// the default base game logic to make the final determination.
+			// Otherwise we would have to handle the case where a weapon is
+			// already in the slot. We would also have to consider that the
+			// highlander supports multiple heavy weapons on a soldier.
+			return CheckGameState == none;
 		}
 	}
 	
