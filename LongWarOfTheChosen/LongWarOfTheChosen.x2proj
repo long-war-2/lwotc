@@ -1071,7 +1071,7 @@
     <Content Include="Content\LWZ_PerkContent_BunkerBusterProjectile.upk" />
     <Content Include="Content\LWZ_PerkContent_ConcussionRocket.upk" />
     <Content Include="Content\LWZ_PerkContent_RocketProjectile.upk" />
-    <Content Include="Content\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_ModShaderCache.upk" />
+    <Content Include="Src\LW_Overhaul\Classes\UIStrategyMapItem_AlienNetworkComponent_LW.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
