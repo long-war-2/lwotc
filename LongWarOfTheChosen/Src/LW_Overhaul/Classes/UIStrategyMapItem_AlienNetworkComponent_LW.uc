@@ -2,6 +2,14 @@
 //  FILE:    UIStrategyMapItem_AlienNetworkComponent_LW
 //  AUTHOR:  Joey Martinez -- 05/06/2019
 //  PURPOSE: This file represents an alien network spot on the StrategyMap for Long War of the Chosen.
+//           The base game class is being overridden because the infiltration label was not showing
+//           up when you sent a squad to infiltrate an alien facility with the base implentation of
+//           the parent class.
+// 
+//           This class' code is a literal copy paste of the UIStrategyMapItem_Mission_LW classs so
+//           that the alien facility strategy item has the same infiltration mechanics as other missions
+//           do. All of the code in this class is unique to this class and does not override any of the
+//           parent class behavior.
 //--------------------------------------------------------------------------------------- 
 
 class UIStrategyMapItem_AlienNetworkComponent_LW extends UIStrategyMapItem_AlienNetworkComponent;
@@ -13,7 +21,6 @@ var UIText InfilLabel;
 var UIImage SquadImage; // for cases where there is an infiltrating squad
 var string CachedImageName;
 
-//var UIStrategyMap_MissionIcon_LW MissionSiteIcon; // used for pending missions not yet infiltrated 
 var UIProgressBar ProgressBar; // used to show remaining time for missions not yet infiltrated
 
 var int InDepth; // tracks depth of mouse in and outs, since it's recording from two possibly overlapping elements (2D and 3D icons)
@@ -58,8 +65,6 @@ simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntit
 	InfilLabel.SetPosition(154 - 5, 23);
 
 	ProgressBar = Spawn(class'UIProgressBar', self).InitProgressBar('MissionInfiltrationProgress', -32, 5, 64, 8, 0.5, eUIState_Normal);
-	//MissionSiteIcon = Spawn(class'UIStrategyMap_MissionIcon_LW', self);
-	//MissionSiteIcon.InitMissionIcon(-1);
 
 	bScanButtonResized = false;
 
@@ -204,10 +209,6 @@ function OpenInfiltrationMissionScreen()
 	local UIMission_LWLaunchDelayedMission MissionScreen;
 	local XComHQPresentationLayer HQPres;
 	
-	// WOTC DEBUGGING
-	`LWTrace(">> Launching delayed mission UI");
-	// END
-
 	HQPres = `HQPRES;
 	MissionScreen = HQPres.Spawn(class'UIMission_LWLaunchDelayedMission', HQPres);
 	MissionScreen.MissionRef = GeoscapeEntityRef;
@@ -309,14 +310,12 @@ simulated function OnMouseIn()
 			AnimMapItem3D.SetHoverMaterialValue(1);
 	}
 	InDepth++;
-	//`LOG ("Mouse IN  : In Depth = " $ InDepth);
 }
 
 // Clear mouse hover special behavior
 simulated function OnMouseOut()
 {
 	InDepth--;
-	//`LOG ("Mouse OUT : In Depth = " $ InDepth);
 
 	if (InDepth <= 0)
 	{
