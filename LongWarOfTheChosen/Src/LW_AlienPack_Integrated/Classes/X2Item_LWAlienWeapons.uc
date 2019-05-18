@@ -424,6 +424,9 @@ static function X2DataTemplate CreateTemplate_Naja_WPN(name TemplateName)
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
 
+	//Issue #162, Naja should not be able to move and shoot so made rifle shot cost 2 AP.
+	Template.iTypicalActionCost = 2;
+
 	if (TemplateName == 'NajaM1_WPN' || TemplateName == 'NajaM2_WPN' || TemplateName == 'NajaM3_WPN')
 	{
 		Template.Abilities.AddItem('DamnGoodGround');
