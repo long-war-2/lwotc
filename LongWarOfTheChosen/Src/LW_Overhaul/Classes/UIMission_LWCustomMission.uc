@@ -138,79 +138,11 @@ simulated function BindLibraryItem()
 
 			break;
 		default:
-			/*********************************** Issue #140 ***********************************
-			* The code for this default case replaces the call to super.BindLibraryItem(). It's actually just a copy/paste
-			* of the super.BindLibraryItem() function with the below 2 lines taken out:
-			*     ShadowChamber = Spawn(class'UIAlertShadowChamberPanel', LibraryPanel);
-			*     ShadowChamber.InitPanel('UIAlertShadowChamberPanel', 'Alert_ShadowChamber');
-			*
-			* This is done so that normal missionss (gops, suply raids etc..) do not show shadow chamber information as
-			* this behavior is what vanilla LW2 implemented.
-		    **********************************************************************************/
-			AlertLibID = GetLibraryID();
+			super.BindLibraryItem();
 
-			if( AlertLibID != '' )
-			{
-				LibraryPanel = Spawn(class'UIPanel', self);
-				LibraryPanel.bAnimateOnInit = false;
-				LibraryPanel.InitPanel('LibraryPanel', AlertLibID);
-		
-				ButtonGroup = Spawn(class'UIPanel', LibraryPanel);
-				ButtonGroup.InitPanel('ButtonGroup', '');
-		
-				Button1 = Spawn(class'UIButton', ButtonGroup);
-				Button2 = Spawn(class'UIButton', ButtonGroup);
-		
-				Button3 = Spawn(class'UIButton', ButtonGroup);
-				Button3.SetResizeToText( false );
-				Button3.InitButton('Button2', "",, eUIButtonStyle_NONE);
-				Button3.OnSizeRealized = OnButtonSizeRealized;
-		
-				ConfirmButton = Spawn(class'UIButton', LibraryPanel);
-		
-				if( `ISCONTROLLERACTIVE == false )
-				{
-					ConfirmButton.InitButton('ConfirmButton', "", OnLaunchClicked);
-					Button1.InitButton('Button0', "",, eUIButtonStyle_NONE);
-					Button2.InitButton('Button1', "",, eUIButtonStyle_NONE);
-					ConfirmButton.SetResizeToText(false);
-					Button1.SetResizeToText( false );
-					Button2.SetResizeToText(false);
-					Button1.OnSizeRealized = OnButtonSizeRealized;
-					Button2.OnSizeRealized = OnButtonSizeRealized;
-				}
-				else
-				{
-					//bsg-jneal (5.11.17): fix buttons styles on UIMissions
-					Button1.InitButton('Button0', "", OnLaunchClicked, eUIButtonStyle_NONE);
-					Button1.SetGamepadIcon(class'UIUtilities_Input'.static.GetAdvanceButtonIcon());
-					Button1.OnSizeRealized = OnButtonSizeRealized;
-					Button1.SetResizeToText(false);
-					
-					Button2.InitButton('Button1', "", OnCancelClicked, eUIButtonStyle_NONE);
-					Button2.SetGamepadIcon(class'UIUtilities_Input'.static.GetBackButtonIcon());
-					Button2.OnSizeRealized = OnButtonSizeRealized;
-					Button2.SetResizeToText(false);
-					//bsg-jneal (5.11.17): end
-		
-					ConfirmButton.InitButton('ConfirmButton', "", OnLaunchClicked, eUIButtonStyle_HOTLINK_WHEN_SANS_MOUSE);
-					ConfirmButton.SetGamepadIcon(class'UIUtilities_Input'.static.GetAdvanceButtonIcon());
-					ConfirmButton.OnSizeRealized = OnButtonSizeRealized;
-					ConfirmButton.SetX(1450.0);
-					ConfirmButton.SetY(617.0);
-					ConfirmButton.SetWidth(300);
-				}
-		
-				ConfirmButton.DisableNavigation();
-		
-				SitrepPanel = Spawn(class'UIAlertSitRepPanel', LibraryPanel);
-				SitrepPanel.InitPanel('SitRep', 'Alert_SitRep');
-				SitrepPanel.SetTitle(m_strSitrepTitle);
-		
-				ChosenPanel = Spawn(class'UIPanel', LibraryPanel).InitPanel(, 'Alert_ChosenRegionInfo');
-				ChosenPanel.DisableNavigation();
-			}
-
+			//Issue #140 Hide the Shadow Chamber panel. Do not want to show for anything other than
+			//Golden Path missions.
+			ShadowChamber.Hide();
 		    break;
 	}
 }
@@ -425,8 +357,8 @@ simulated function UpdateData()
 	}
 	
 	/*********************************** Issue #140 ***********************************
-	* THe below code is replacing the call to super.UpdateData(). The code from the parent
-	* class verion of UpdateData() is pasted here except the call to UpdateMissionSchedules()
+	* The below code is replacing the call to super.UpdateData(). The code from the parent
+	* class version of UpdateData() is pasted here except the call to UpdateMissionSchedules()
 	* was removed as it was doing something to the mission schedules where it would create
 	* a new schedule for the mission with alert level of 1 so all missions would have
 	* much lower alert levels than they should causing baseline enemy activity to be wrong.
