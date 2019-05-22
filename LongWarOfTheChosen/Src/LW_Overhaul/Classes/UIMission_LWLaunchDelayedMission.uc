@@ -78,7 +78,7 @@ simulated function BindLibraryItem()
 		case eMissionUI_GPIntel:
 		case eMissionUI_Council:
 		case eMissionUI_Retaliation:
-        case eMissionUI_Rendezvous:
+		case eMissionUI_Rendezvous:
 		case eMissionUI_Invasion:
 			//Issue #140 Hide the Shadow Chamber panel. Do not want to show for anything other than
 			//Golden Path missions.
