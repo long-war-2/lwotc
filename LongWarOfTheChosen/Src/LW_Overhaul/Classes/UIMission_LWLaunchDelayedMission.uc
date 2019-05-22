@@ -65,26 +65,15 @@ simulated function Name GetLibraryID()
 **********************************************************************************/
 simulated function BindLibraryItem()
 {
-	local Name AlertLibID;
-	local UIPanel DefaultPanel;
-	
 	super.BindLibraryItem();
 	
-	switch(MissionUIType)
+	if(MissionUIType != eMissionUI_GoldenPath)
 	{
-		case eMissionUI_GuerrillaOps:
-		case eMissionUI_SupplyRaid:
-		case eMissionUI_LandedUFO:
-		case eMissionUI_GPIntel:
-		case eMissionUI_Council:
-		case eMissionUI_Retaliation:
-		case eMissionUI_Rendezvous:
-		case eMissionUI_Invasion:
-			//Issue #140 Hide the Shadow Chamber panel. Do not want to show for anything other than
-			//Golden Path missions.
-			ShadowChamber.Hide();
+		//Issue #140 Hide the Shadow Chamber panel. Do not want to show for anything other than
+		//Golden Path missions.
+		ShadowChamber.Hide();
 
-		    break;
+		break;
 	}
 }
 
