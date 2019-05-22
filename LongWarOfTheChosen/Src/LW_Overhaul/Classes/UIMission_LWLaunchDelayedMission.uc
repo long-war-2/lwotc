@@ -72,8 +72,6 @@ simulated function BindLibraryItem()
 		//Issue #140 Hide the Shadow Chamber panel. Do not want to show for anything other than
 		//Golden Path missions.
 		ShadowChamber.Hide();
-
-		break;
 	}
 }
 
