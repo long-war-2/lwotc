@@ -131,7 +131,6 @@ simulated function BindLibraryItem()
 				Button3.SetResizeToText(false);
 				Button3.InitButton('Button2', "");
 
-				// WOTC TODO: Changed `UIPanel` to `UIAlertShadowChamberPanel` - check it works!
 				ShadowChamber = Spawn(class'UIAlertShadowChamberPanel', LibraryPanel);
 				ShadowChamber.InitPanel('ShadowChamber');
 			}

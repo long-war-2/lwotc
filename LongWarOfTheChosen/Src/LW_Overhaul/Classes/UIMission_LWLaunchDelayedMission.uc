@@ -67,53 +67,19 @@ simulated function BindLibraryItem()
 {
 	local Name AlertLibID;
 	local UIPanel DefaultPanel;
-
+	
+	super.BindLibraryItem();
+	
 	switch(MissionUIType)
 	{
-		case eMissionUI_AlienFacility:
-		case eMissionUI_GoldenPath:
-			AlertLibID = GetLibraryID();
-			if( AlertLibID != '' )
-			{
-				LibraryPanel = Spawn(class'UIPanel', self);
-				LibraryPanel.bAnimateOnInit = false;
-				LibraryPanel.InitPanel('', AlertLibID);
-				LibraryPanel.SetSelectedNavigation();
-
-				DefaultPanel = Spawn(class'UIPanel', LibraryPanel);
-				DefaultPanel.bAnimateOnInit = false;
-				DefaultPanel.bCascadeFocus = false;
-				DefaultPanel.InitPanel('DefaultPanel');
-				DefaultPanel.SetSelectedNavigation();
-
-				ConfirmButton = Spawn(class'UIButton', DefaultPanel);
-				ConfirmButton.SetResizeToText(false);
-				ConfirmButton.InitButton('ConfirmButton', "", OnLaunchClicked);
-
-				ButtonGroup = Spawn(class'UIPanel', DefaultPanel);
-				ButtonGroup.InitPanel('ButtonGroup', '');
-
-				Button1 = Spawn(class'UIButton', ButtonGroup);
-				Button1.SetResizeToText(false);
-				Button1.InitButton('Button0', "");
-
-				Button2 = Spawn(class'UIButton', ButtonGroup);
-				Button2.SetResizeToText(false);
-				Button2.InitButton('Button1', "");
-
-				Button3 = Spawn(class'UIButton', ButtonGroup);
-				Button3.SetResizeToText(false);
-				Button3.InitButton('Button2', "");
-
-				// WOTC TODO: Changed `UIPanel` to `UIAlertShadowChamberPanel` - check it works!
-				ShadowChamber = Spawn(class'UIAlertShadowChamberPanel', LibraryPanel);
-				ShadowChamber.InitPanel('ShadowChamber');
-			}
-
-			break;
-		default:
-			super.BindLibraryItem();
-
+		case eMissionUI_GuerrillaOps:
+		case eMissionUI_SupplyRaid:
+		case eMissionUI_LandedUFO:
+		case eMissionUI_GPIntel:
+		case eMissionUI_Council:
+		case eMissionUI_Retaliation:
+        case eMissionUI_Rendezvous:
+		case eMissionUI_Invasion:
 			//Issue #140 Hide the Shadow Chamber panel. Do not want to show for anything other than
 			//Golden Path missions.
 			ShadowChamber.Hide();
