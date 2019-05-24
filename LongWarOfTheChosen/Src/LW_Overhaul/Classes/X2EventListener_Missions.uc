@@ -199,7 +199,7 @@ function EventListenerReturn DisableDefaultPatrolBehavior(
 
 // A RNF pod has spawned. Mark the units with a special marker to indicate they shouldn't be eligible for
 // reflex actions this turn.
-function EventListenerReturn OnSpawnReinforcementsComplete (
+static function EventListenerReturn OnSpawnReinforcementsComplete (
 	Object EventData,
 	Object EventSource,
 	XComGameState GameState,
@@ -218,6 +218,13 @@ function EventListenerReturn OnSpawnReinforcementsComplete (
 		Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Spawner.SpawnedUnitIDs[i]));
 		Unit.SetUnitFloatValue(class'Utilities_LW'.const.NoReflexActionUnitValue, 1, eCleanup_BeginTurn);
 	}
+	
+	// Issue #117
+	//
+	// Alien pack enemies within reinforcements need their pawns updating to look the way
+	// they should (rather than as disembodied heads). This is a small hack that uses the
+	// new game state to activate a visualization that fixes the enemy RNF pawns.
+	XComGameStateContext_ChangeContainer(NewGameState.GetContext()).BuildVisualizationFn = CustomizeAliens_BuildVisualization;
 
 	`TACTICALRULES.SubmitGameState(NewGameState);
 
@@ -249,5 +256,37 @@ static function EventListenerReturn DisableInterceptAIBehavior(Object EventData,
 	if (SubmitGameState)
 	{
 		`TACTICALRULES.SubmitGameState(NewGameState);
+	}
+}
+
+// A BuildVisualization function that ensures that alien pack enemies have their
+// pawns updated via X2Action_CustomizeAlienPackRNFs.
+static simulated function CustomizeAliens_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameState_Unit UnitState;
+	local VisualizationActionMetadata EmptyMetadata, ActionMetadata;
+	local XComGameState_Unit_AlienCustomization AlienCustomization;
+
+	if (VisualizeGameState.GetNumGameStateObjects() > 0)
+	{
+		foreach VisualizeGameState.IterateByClassType( class'XComGameState_Unit', UnitState )
+		{
+			AlienCustomization = class'XComGameState_Unit_AlienCustomization'.static.GetCustomizationComponent(UnitState);
+			if (AlienCustomization == none)
+			{
+				continue;
+			}
+			
+			ActionMetadata = EmptyMetadata;
+			ActionMetadata.StateObject_OldState = UnitState;
+			ActionMetadata.StateObject_NewState = UnitState;
+
+			ActionMetadata.VisualizeActor = UnitState.GetVisualizer();
+
+			class'X2Action_CustomizeAlienPackRNFs'.static.AddToVisualizationTree(
+				ActionMetadata,
+				VisualizeGameState.GetContext(),
+				false);
+		}
 	}
 }
