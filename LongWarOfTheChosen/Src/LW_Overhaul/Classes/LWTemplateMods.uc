@@ -1743,6 +1743,12 @@ function SwapExplosiveFalloffAbility(X2AbilityTemplate Template, int Difficulty)
 
 function bool ValidExplosiveFalloffAbility(X2AbilityTemplate Template, X2Effect_ApplyWeaponDamage DamageEffect)
 {
+	if (!ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', DamageEffect.Class))
+	{
+		// Make
+		`REDSCREEN("Can't apply explosive falloff to" @ DamageEffect.Class @ "as it's not a super class");
+		return false;
+	}
 
 	//check specific exclusions
 	if(default.ExplosiveFalloffAbility_Exclusions.Find(Template.DataName) != -1)
