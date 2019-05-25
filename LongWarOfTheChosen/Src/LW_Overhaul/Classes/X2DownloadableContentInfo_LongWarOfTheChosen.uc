@@ -23,7 +23,7 @@ var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
 
 struct ArchetypeToHealth
 {
-	var name ArchetypeName;
+	var string ArchetypeName;
 	var int Health;
 	var int Difficulty;
 	structDefaultProperties
@@ -382,6 +382,7 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	ResetReinforcements(StartGameState);
 	InitializePodManager(StartGameState);
 	OverrideConcealmentAtStart(MissionState);
+	OverrideDestructibleHealths(StartGameState);
 
 	// Test Code to see if DLC POI replacement is working
 	if (MissionState.POIToSpawn.ObjectID > 0)
@@ -1130,6 +1131,26 @@ static function OverrideConcealmentAtStart(XComGameState_MissionSite MissionStat
 				`LWTRACE ("OverrideConcealmentAtStart: Conditions met to start squad revealed");
 				BattleData.bForceNoSquadConcealment = true;
 			}
+		}
+	}
+}
+
+static function OverrideDestructibleHealths(XComGameState StartGameState)
+{
+	local XComContentManager ContentMgr;
+	local ArchetypeToHealth DestructibleActorConfig;
+	local XComDestructibleActor_Toughness Toughness;
+	local int CurrentDifficulty;
+
+	ContentMgr = `CONTENT;
+	CurrentDifficulty = `TacticalDifficultySetting;
+	foreach default.DestructibleActorHealthOverride(DestructibleActorConfig)
+	{
+		Toughness = XComDestructibleActor_Toughness(ContentMgr.RequestGameArchetype(DestructibleActorConfig.ArchetypeName));
+		if (Toughness != none && (DestructibleActorConfig.Difficulty == CurrentDifficulty || DestructibleActorConfig.Difficulty == -1))
+		{
+			`LWTrace("Updating" @ DestructibleActorConfig.ArchetypeName @ "max health to" @ DestructibleActorConfig.Health);
+			Toughness.Health = DestructibleActorConfig.Health;
 		}
 	}
 }

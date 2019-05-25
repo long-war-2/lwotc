@@ -38,6 +38,7 @@ static function CHEventListenerTemplate CreateObjectivesListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionObjectivesListeners');
 	Template.AddCHEvent('OverrideObjectiveSpawnCount', OnOverrideObjectiveSpawnCount, ELD_Immediate);
+	Template.AddCHEvent('OverrideObjectiveSpawnCount', OverrideObjectiveDestructibleHealths, ELD_Immediate);
 	Template.AddCHEvent('OverrideBodyAndLootRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
 
 	Template.RegisterInTactical = true;
@@ -112,6 +113,15 @@ static function EventListenerReturn OnOverrideObjectiveSpawnCount(Object EventDa
 		Tuple.Data[1].i = MissionSite.Rewards.Length;
 	}
 
+	return ELR_NoInterrupt;
+}
+
+// The destructible health overrides performed in `OnPreMission` don't seem to have an effect
+// on objectives, like the alien relay or resistance data transmitter. Performing the same
+// work here apparently does the job.
+static function EventListenerReturn OverrideObjectiveDestructibleHealths(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.OverrideDestructibleHealths(NewGameState);
 	return ELR_NoInterrupt;
 }
 
@@ -210,7 +220,7 @@ static function EventListenerReturn DisableAutoAdjustingPatrolZones(
 // For the overhaul mod we will not use either upthrottling or the 'intercept' behavior if XCOM passes
 // the pod along the LoP. Instead we will use the pod manager to control movement. But we still want pods
 // with no jobs to patrol as normal.
-function EventListenerReturn DisableDefaultPatrolBehavior(
+static function EventListenerReturn DisableDefaultPatrolBehavior(
 	Object EventData,
 	Object EventSource,
 	XComGameState NewGameState,
