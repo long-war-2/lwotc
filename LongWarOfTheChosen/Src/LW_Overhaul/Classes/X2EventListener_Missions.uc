@@ -224,6 +224,11 @@ static function EventListenerReturn OnSpawnReinforcementsComplete (
 	// Alien pack enemies within reinforcements need their pawns updating to look the way
 	// they should (rather than as disembodied heads). This is a small hack that uses the
 	// new game state to activate a visualization that fixes the enemy RNF pawns.
+	//
+	// WOTC TODO: Perhaps this could be attached to the original spawn reinforcements game
+	// state change, either via a PostBuildVisualizationFn or by using
+	// ELD_OnVisualizationBlockStarted/Completed. The main requirement is that the visualization
+	// function has access to the pending unit states in the game state change.
 	XComGameStateContext_ChangeContainer(NewGameState.GetContext()).BuildVisualizationFn = CustomizeAliens_BuildVisualization;
 
 	`TACTICALRULES.SubmitGameState(NewGameState);
