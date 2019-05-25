@@ -2210,6 +2210,12 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				case 'PoweredSparkArmor':
 					ArmorTemplate.Abilities.AddItem('Carapace_Plating_Ability');
 					break;
+				
+				default:
+					// Assume any other armors we don't know about should get the extra
+					// utility slot. (Issue #89)
+					ArmorTemplate.bAddsUtilitySlot = true;
+					break;
 			}
 		}
 
