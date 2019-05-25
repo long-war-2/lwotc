@@ -31,6 +31,7 @@ event OnInit(UIScreen Screen)
 	// As this handler updates the UI, don't do it on the game state thread but within a visualization
 	// block instead.
 	EventMgr.RegisterForEvent(ThisObj, 'EvacRequested', OnEvacRequested, ELD_OnVisualizationBlockStarted);
+	EventMgr.RegisterForEvent(ThisObj, 'PlayerTurnBegun', OnEvacRequested, ELD_OnVisualizationBlockStarted);
 
 	// Update the evac timer so it will appear if we are loading a save with an active evac timer.
 	UpdateEvacTimer(false);
@@ -85,22 +86,6 @@ function UpdateEvacTimer(bool DecrementCounter)
 		return;
 	}
 
-	if (EvacState.GetCountdown() > 0 && DecrementCounter)
-	{
-		// Decrement the counter if necessary
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("UpdateEvacCountdown");
-		EvacState = XComGameState_LWEvacSpawner(NewGameState.CreateStateObject(class'XComGameState_LWEvacSpawner', EvacState.ObjectID));
-		EvacState.SetCountdown(EvacState.GetCountdown() - 1);
-		NewGameState.AddStateObject(EvacState);
-		`TACTICALRULES.SubmitGameState(NewGameState);
-
-		// We've hit zero: time to spawn the evac zone!
-		if (EvacState.GetCountdown() == 0)
-		{
-			EvacState.SpawnEvacZone();
-		}
-	}
-
 	// Update the UI
 	if (EvacState.GetCountdown() > 0)
 	{
@@ -120,11 +105,34 @@ function UpdateEvacTimer(bool DecrementCounter)
 function EventListenerReturn OnTurnBegun(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameState_Player Player;
+	local XComGameState_LWEvacSpawner EvacState;
+	local XComGameStateHistory History;
+	local UISpecialMissionHUD SpecialMissionHUD;
+	local XComGameState NewGameState;
 	local bool NeedsUpdate;
+
+	History = `XCOMHISTORY;
+	EvacState = XComGameState_LWEvacSpawner(History.GetSingleGameStateObjectForClass(class'XComGameState_LWEvacSpawner', true));
 
 	Player = XComGameState_Player(EventData);
 	NeedsUpdate = Player != none && Player.GetTeam() == eTeam_XCom;
-	UpdateEvacTimer(NeedsUpdate);
+
+	if (EvacState.GetCountdown() > 0 && NeedsUpdate)
+	{
+		// Decrement the counter if necessary
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("UpdateEvacCountdown");
+		EvacState = XComGameState_LWEvacSpawner(NewGameState.CreateStateObject(class'XComGameState_LWEvacSpawner', EvacState.ObjectID));
+		EvacState.SetCountdown(EvacState.GetCountdown() - 1);
+		NewGameState.AddStateObject(EvacState);
+		`TACTICALRULES.SubmitGameState(NewGameState);
+
+		// We've hit zero: time to spawn the evac zone!
+		if (EvacState.GetCountdown() == 0)
+		{
+			EvacState.SpawnEvacZone();
+		}
+	}
+
 	return ELR_NoInterrupt;
 }
 
