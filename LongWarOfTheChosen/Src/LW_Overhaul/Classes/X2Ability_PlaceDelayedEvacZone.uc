@@ -82,6 +82,8 @@ static function X2AbilityTemplate PlaceDelayedEvacZone()
     Template.BuildNewGameStateFn = PlaceDelayedEvacZone_BuildGameState;
     Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
+	Template.bDontDisplayInAbilitySummary = true;
+
     return Template;
 }
 
@@ -163,10 +165,8 @@ simulated function XComGameState PlaceDelayedEvacZone_BuildGameState(XComGameSta
     AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID, eReturnType_Reference));
     AbilityTemplate = AbilityState.GetMyTemplate();
 
-    UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
+    UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
     AbilityTemplate.ApplyCost(AbilityContext, AbilityState, UnitState, none, NewGameState);
-    
-    NewGameState.AddStateObject(UnitState);
 
     `assert(AbilityContext.InputContext.TargetLocations.Length == 1);
     SpawnLocation = AbilityContext.InputContext.TargetLocations[0];

@@ -26,16 +26,19 @@ event OnInit(UIScreen Screen)
 
 	// Event management for evac zones.
 	EventMgr.RegisterForEvent(ThisObj, 'PlayerTurnBegun', OnTurnBegun, ELD_OnStateSubmitted);
-	EventMgr.RegisterForEvent(ThisObj, 'EvacRequested', OnEvacRequested, ELD_OnStateSubmitted);
 	EventMgr.RegisterForEvent(ThisObj, 'TileDataChanged', OnTileDataChanged, ELD_OnStateSubmitted);
+	
+	// As this handler updates the UI, don't do it on the game state thread but within a visualization
+	// block instead.
+	EventMgr.RegisterForEvent(ThisObj, 'EvacRequested', OnEvacRequested, ELD_OnVisualizationBlockStarted);
 
 	// Update the evac timer so it will appear if we are loading a save with an active evac timer.
 	UpdateEvacTimer(false);
 
 	// WOTC TODO: I wonder if this is necessary
-	ListenerMgr = class'XComGameState_LWListenerManager'.static.GetListenerManager(true);
-	if(ListenerMgr != none)
-		ListenerMgr.InitListeners();
+	// ListenerMgr = class'XComGameState_LWListenerManager'.static.GetListenerManager(true);
+	// if(ListenerMgr != none)
+	// 	ListenerMgr.InitListeners();
 
 	// WOTC TODO: Restore this (if it's necessary)
 	//if (`LWOVERHAULOPTIONS == none)

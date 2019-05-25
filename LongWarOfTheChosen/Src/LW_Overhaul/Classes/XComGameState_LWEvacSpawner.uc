@@ -40,14 +40,14 @@ function EventListenerReturn OnEvacSpawnerCreated(Object EventData, Object Event
 
     // Set up visualization to drop the flare.
     NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
+    NewSpawnerState = XComGameState_LWEvacSpawner(NewGameState.ModifyStateObject(class'XComGameState_LWEvacSpawner', ObjectID));
     XComGameStateContext_ChangeContainer(NewGameState.GetContext()).BuildVisualizationFn = BuildVisualizationForSpawnerCreation;
-    NewSpawnerState = XComGameState_LWEvacSpawner(NewGameState.CreateStateObject(class'XComGameState_LWEvacSpawner', ObjectID));
-    NewGameState.AddStateObject(NewSpawnerState);
+    NewGameState.GetContext().SetAssociatedPlayTiming(SPT_AfterSequential);
     `TACTICALRULES.SubmitGameState(NewGameState);
 
     // no countdown specified, spawn the evac zone immediately. Otherwise we'll tick down each turn start (handled in
     // UIScreenListener_TacticalHUD to also display the counter).
-    if(Countdown == 0)
+    if (Countdown == 0)
     {
         NewSpawnerState.SpawnEvacZone();
     }
@@ -268,11 +268,19 @@ static function InitiateEvacZoneDeployment(
     NewEvacSpawnerState = XComGameState_LWEvacSpawner(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWEvacSpawner', true));
     if (NewEvacSpawnerState != none)
     {
-        NewEvacSpawnerState = XComGameState_LWEvacSpawner(NewGameState.CreateStateObject(class'XComGameState_LWEvacSpawner', NewEvacSpawnerState.ObjectID));
+        NewEvacSpawnerState = XComGameState_LWEvacSpawner(NewGameState.ModifyStateObject(class'XComGameState_LWEvacSpawner', NewEvacSpawnerState.ObjectID));
+    
+        // WOTC DEBUGGING:
+        `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - Modifying existing evac spawner");
+        // END
     }
     else
     {
-        NewEvacSpawnerState = XComGameState_LWEvacSpawner(NewGameState.CreateStateObject(class'XComGameState_LWEvacSpawner'));
+        NewEvacSpawnerState = XComGameState_LWEvacSpawner(NewGameState.CreateNewStateObject(class'XComGameState_LWEvacSpawner'));
+    
+        // WOTC DEBUGGING:
+        `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - Creating new evac spawner");
+        // END
     }
 
     // Clean up any existing evac zone.
@@ -280,8 +288,6 @@ static function InitiateEvacZoneDeployment(
 
     NewEvacSpawnerState.InitEvac(InitialCountdown, DeploymentLocation);
     NewEvacSpawnerState.SkipCreationNarrative = bSkipCreationNarrative;
-
-    NewGameState.AddStateObject(NewEvacSpawnerState);
 
     // Let others know we've requested an evac.
     EventManager.TriggerEvent('EvacRequested', NewEvacSpawnerState, NewEvacSpawnerState, NewGameState);
