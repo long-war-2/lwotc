@@ -5,6 +5,8 @@
 //---------------------------------------------------------------------------------------
 class X2StrategyElement_LWObjectives extends X2StrategyElement_DefaultObjectives config(LW_Overhaul);
 
+var config bool ACTIVATE_CHOSEN;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Objectives;
@@ -108,6 +110,11 @@ static function X2DataTemplate CreateLW_T2_M0_S3_DefeatLiberation2ActivityTempla
 	Template.NextObjectives.AddItem('LW_T2_M0_S4_AssaultNetworkTower');
 	Template.CompletionEvent = 'LiberateStage2Complete';
 	Template.InProgressFn = Mission2SearchInProgress;
+
+	if (default.ACTIVATE_CHOSEN)
+	{
+		Template.CompleteObjectiveFn = class'X2StrategyElement_XpackObjectives'.static.ActivateChosen;
+	}
 
 	return Template;
 }

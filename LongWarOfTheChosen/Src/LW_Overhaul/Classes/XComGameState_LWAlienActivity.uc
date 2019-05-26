@@ -43,6 +43,9 @@ var array<float>				arrDuration_Hours;			//randomized duration of all missions i
 
 var MissionDefinition ForceMission;                         // A mission type to force to occur next.
 
+// LWOTC: Allow configuration of which mission types the Chosen should be excluded from
+var config array<string> ExcludeChosenFromMissionTypes;
+
 //#############################################################################################
 //----------------   REQUIRED FROM BASEOBJECT   -----------------------------------------------
 //#############################################################################################
@@ -619,6 +622,15 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	local XComTacticalMissionManager MissionMgr;
 	local XComParcelManager ParcelMgr;
 	local string Biome;
+	// LWOTC vars
+	local XComHeadquartersCheatManager CheatManager;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local X2MissionSourceTemplate MissionSource;
+	local array<name> SourceSitReps;
+	local name SitRepName;
+	local array<name> SitRepNames;
+	local String AdditionalTag;
+	// End LWOTC vars
 
 	MissionMgr = `TACTICALMISSIONMGR;
 	ParcelMgr = `PARCELMGR;
@@ -640,6 +652,53 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 
 	MissionState.GeneratedMission.LevelSeed = (bUseSpecifiedLevelSeed) ? LevelSeedOverride : class'Engine'.static.GetEngine().GetSyncSeed();
 	MissionState.GeneratedMission.BattleDesc = "";
+
+	// LWOTC - copied from WOTC `XComGameState_MissionSite.SetMissionData()`
+	//
+	// This block basically adds support for spawning Chosen and adding SitReps
+	MissionState.GeneratedMission.SitReps.Length = 0;
+	SitRepNames.Length = 0;
+
+	// Add Chosen to the mission based on various criteria (see method for info on what those criteria are)
+	MaybeAddChosenToMission(MissionState);
+
+	// Add additional required plot objective tags
+	foreach MissionState.AdditionalRequiredPlotObjectiveTags(AdditionalTag)
+	{
+		MissionState.GeneratedMission.Mission.RequiredPlotObjectiveTags.AddItem(AdditionalTag);
+	}
+
+	MissionState.GeneratedMission.SitReps = MissionState.GeneratedMission.Mission.ForcedSitreps;
+	SitRepNames = MissionState.GeneratedMission.Mission.ForcedSitreps;
+
+	// Add Forced SitReps from Cheats
+	CheatManager = XComHeadquartersCheatManager(class'WorldInfo'.static.GetWorldInfo().GetALocalPlayerController().CheatManager);
+	if (CheatManager != none && CheatManager.ForceSitRepTemplate != '')
+	{
+		MissionState.GeneratedMission.SitReps.AddItem(CheatManager.ForceSitRepTemplate);
+		SitRepNames.AddItem(CheatManager.ForceSitRepTemplate);
+		CheatManager.ForceSitRepTemplate = '';
+	}
+	else if (!MissionState.bForceNoSitRep)
+	{
+		// No cheats, add SitReps from the Mission Source
+		MissionSource = MissionState.GetMissionSource();
+
+		if (MissionSource.GetSitrepsFn != none)
+		{
+			SourceSitReps = MissionSource.GetSitrepsFn(MissionState);
+
+			foreach SourceSitReps(SitRepName)
+			{
+				if (MissionState.GeneratedMission.SitReps.Find(SitRepName) == INDEX_NONE)
+				{
+					MissionState.GeneratedMission.SitReps.AddItem(SitRepName);
+					SitRepNames.AddItem(SitRepName);
+				}
+			}
+		}
+	}
+	// End LWOTC additions
 
 	MissionState.GeneratedMission.MissionQuestItemTemplate = MissionMgr.ChooseQuestItemTemplate(MissionState.Source, MissionReward, MissionState.GeneratedMission.Mission, (MissionState.DarkEvent.ObjectID > 0));
 
@@ -754,6 +813,90 @@ function string GetMissionDescriptionForActivity()
 		DescriptionText = "MISSING DESCRIPTION ASSIGNED FOR THIS COMBINATION: \n" $ Template.DataName $ ", " $ MissionFamily $ ", " $ CurrentMissionLevel;
 
 	return DescriptionText;
+}
+
+// (Copied from XCGS_HeadquartersAlien.AddChosenTacticalTagsToMission())
+//
+// Add the Chosen tactical tags to the mission if any of the following criteria
+// are met:
+//
+//  * It's the final mission (Golden Path fortress)
+//  * The Chosen has control of the region, is active, and:
+//    - hasn't been encountered yet
+//    - it's a Golden Path mission
+//    - 20% chance on all other missions
+//
+// Note that if the mission type is configured to exclude Chosen, then of course
+// the tactical tags aren't added for the given mission.
+function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_MissionSiteChosenAssault ChosenAssaultMission;
+	local int AppearanceChance;
+	local float AppearChanceScalar;
+	local name ChosenSpawningTag;
+
+	History = `XCOMHISTORY;
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+
+	// LWOTC: If Chosen are disabled, don't add them at all
+	if (!class'X2StrategyElement_LWObjectives'.default.ACTIVATE_CHOSEN)
+	{
+		return;
+	}
+
+	if(AlienHQ.bChosenActive)
+	{
+		AllChosen = AlienHQ.GetAllChosen(, true);
+		ChosenAssaultMission = XComGameState_MissionSiteChosenAssault(MissionState);
+
+		foreach AllChosen(ChosenState)
+		{
+			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+			if(MissionState.TacticalGameplayTags.Find(ChosenSpawningTag) != INDEX_NONE)
+			{
+				continue;
+			}
+
+			if(ChosenState.ChosenControlsRegion(MissionState.Region))
+			{
+				if(default.ExcludeChosenFromMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
+				{
+					// Can't be on this mission no matter what
+					break;
+				}
+
+				if(ChosenState.NumEncounters == 0 || MissionState.GetMissionSource().bGoldenPath)
+				{
+					// Guaranteed on this mission
+					MissionState.TacticalGameplayTags.AddItem(ChosenSpawningTag);
+					break;
+				}
+
+				// WOTC TODO: Make this configurable or use a different formula
+				`LWTrace("Rolling for Chosen on mission " $ MissionState.GeneratedMission.Mission.MissionName);
+				if(`SYNC_RAND(100) < 25)
+				{
+					`LWTrace("    Chosen added!");
+					MissionState.TacticalGameplayTags.AddItem(ChosenSpawningTag);
+				}
+
+				break;
+			}
+		}
+	}
+
+	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
+	{
+		if(ChosenState.bDefeated)
+		{
+			ChosenState.PurgeMissionOfTags(MissionState);
+		}
+	}
 }
 
 /////////////////////////////////////////////////////
