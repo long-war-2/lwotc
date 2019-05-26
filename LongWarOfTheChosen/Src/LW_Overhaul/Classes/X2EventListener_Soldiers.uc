@@ -1,10 +1,13 @@
-class X2EventListener_Soldiers extends X2EventListener;
+class X2EventListener_Soldiers extends X2EventListener config(LW_Overhaul);
 
 var localized string OnLiaisonDuty;
 var localized string OnInfiltrationMission;
 var localized string UnitAlreadyInSquad;
 var localized string UnitInSquad;
 var localized string RankTooLow;
+
+var config int BLEEDOUT_CHANCE_BASE;
+var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -45,12 +48,17 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	return Template;
 }
 
+////////////////
+/// Tactical ///
+////////////////
+
 static function CHEventListenerTemplate CreateTacticalListeners()
 {
 	local CHEventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'TacticalEvents');
 	Template.AddCHEvent('OverrideAbilityIconColor', OnOverrideAbilityIconColor, ELD_Immediate);
+	Template.AddCHEvent('OverrideBleedoutChance', OnOverrideBleedOutChance, ELD_Immediate);
 	Template.RegisterInTactical = true;
 
 	return Template;
@@ -489,4 +497,27 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 
 	return ELR_NoInterrupt;
 }
-	
+
+static function EventListenerReturn  OnOverrideBleedOutChance(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple				OverrideTuple;
+	local int						BleedOutChance;
+
+	OverrideTuple = XComLWTuple(EventData);
+	if(OverrideTuple == none)
+	{
+		`REDSCREEN("OnOverrideBleedOutChance event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	// Tuple data consists of:
+	//   0: Bleed out chance
+	//   1: Size of die to roll
+	//   2: Overkill damage, i.e. how much damage was dealt over and above what was needed
+	//      to take the solider to 0 health.
+	BleedOutChance = default.BLEEDOUT_CHANCE_BASE - (OverrideTuple.Data[2].i * default.DEATH_CHANCE_PER_OVERKILL_DAMAGE);
+	OverrideTuple.Data[0].i = BleedOutChance;
+
+	return ELR_NoInterrupt;
+
+}

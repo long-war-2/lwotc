@@ -55,10 +55,6 @@ var localized string ResistanceHQBodyText;
 var config bool TIERED_RESPEC_TIMES;
 var config bool AI_PATROLS_WHEN_SIGHTED_BY_HIDDEN_XCOM;
 
-var config bool USE_ALT_BLEEDOUT_RULES;
-var config int BLEEDOUT_CHANCE_BASE;
-var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE;
-
 var config int PSI_SQUADDIE_BONUS_ABILITIES;
 
 var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
@@ -204,9 +200,6 @@ function InitListeners()
 
 	// Recalculate respec time so it goes up with soldier rank
 	EventMgr.RegisterForEvent(ThisObj, 'SoldierRespecced', OnSoldierRespecced,,,,true);
-
-	//Override Bleed Out Chance
-	EventMgr.RegisterForEvent(ThisObj, 'OverrideBleedoutChance', OnOverrideBleedOutChance, ELD_Immediate,,, true);
 
 	//PCS Images
 	EventMgr.RegisterForEvent(ThisObj, 'OnGetPCSImage', GetPCSImage,,,,true);
@@ -1845,28 +1838,6 @@ function EventListenerReturn OnShouldUnitPatrol (Object EventData, Object EventS
 		}
 	}
 	return ELR_NoInterrupt;
-}
-
-function EventListenerReturn  OnOverrideBleedOutChance (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-	local XComLWTuple				OverrideTuple;
-	local int						BleedOutChance;
-
-	if (!default.USE_ALT_BLEEDOUT_RULES)
-		return ELR_NoInterrupt;
-
-	OverrideTuple = XComLWTuple(EventData);
-	if(OverrideTuple == none)
-	{
-		`REDSCREEN("OnOverrideAbilityIconColor event triggered with invalid event data.");
-		return ELR_NoInterrupt;
-	}
-	//
-	BleedOutChance = default.BLEEDOUT_CHANCE_BASE - (OverrideTuple.Data[1].i * default.DEATH_CHANCE_PER_OVERKILL_DAMAGE);
-	OverrideTuple.Data[0].i = BleedOutChance;
-
-	return ELR_NoInterrupt;
-
 }
 
 function EventListenerReturn GetPCSImage(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
