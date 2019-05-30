@@ -494,7 +494,6 @@
     <Content Include="Src\LW_Overhaul\Classes\UIResistanceManagement_ListItem.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIResistanceManagement_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_AcquireHackRewardOverride.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_AdventOperations.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Alert.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ArmoryWeaponUpgrade_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Armory_MainMenu_LW.uc" />
