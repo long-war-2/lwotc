@@ -532,3 +532,9 @@ static function string GetHTMLAverageScatterText(float value, optional int place
 
 	return class'UIUtilities_Text'.static.GetColoredText(ReturnString, eUIState_Bad, class'UIUtilities_Text'.const.BODY_FONT_SIZE_3D);
 }
+
+static function bool ShouldShowPsiOffense(XComGameState_Unit UnitState)
+{
+	return UnitState.IsPsiOperative() ||
+		(UnitState.GetRank() == 0 && !UnitState.CanRankUpSoldier() && `XCOMHQ.IsTechResearched('AutopsySectoid'));
+}

@@ -43,6 +43,7 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierStatus');
 	Template.AddCHEvent('OverridePersonnelStatus', OnOverridePersonnelStatus, ELD_Immediate);
 	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
+	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
 	Template.RegisterInStrategy = true;
 
 	return Template;
@@ -290,6 +291,38 @@ static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventDa
 		OverrideTuple.Data[1].s = class'UIUtilities_Text'.static.GetHoursString(Hours);
 		OverrideTuple.Data[2].i = Hours;
 	}
+}
+
+static function EventListenerReturn OnShouldShowPsi(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple			Tuple;
+	local XComGameState_Unit	UnitState;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+	{
+		`REDSCREEN("OnShouldShowPsi event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	UnitState = XComGameState_Unit(EventSource);
+	if (UnitState == none)
+	{
+		`REDSCREEN("OnShouldShowPsi event triggered with invalid source data.");
+		return ELR_NoInterrupt;
+	}
+
+	if (Tuple.Id != 'ShouldShowPsi')
+	{
+		return ELR_NoInterrupt;
+	}
+	
+	if (class'UIUtilities_LW'.static.ShouldShowPsiOffense(UnitState))
+	{
+		Tuple.Data[0].b = true;
+	}
+
+	return ELR_NoInterrupt;
 }
 
 static private function UIScreen GetScreenOrChild(name ScreenType)
