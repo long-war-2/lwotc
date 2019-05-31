@@ -402,8 +402,8 @@ New-Item "$stagingPath/Script" -ItemType Directory
 
 Write-Host "Reading mod metadata from $modSrcRoot/$modNameCanonical.x2proj..."
 [xml]$x2projXml = Get-Content -Path "$modSrcRoot/$modNameCanonical.x2proj"
-$modProperties = $x2projXml.Project.PropertyGroup
-$modPublishedId = $modProperties.SteamPublishID[0]
+$modProperties = $x2projXml.Project.PropertyGroup[0]
+$modPublishedId = $modProperties.SteamPublishID
 $modTitle = $modProperties.Name
 $modDescription = $modProperties.Description
 Write-Host "Read."
