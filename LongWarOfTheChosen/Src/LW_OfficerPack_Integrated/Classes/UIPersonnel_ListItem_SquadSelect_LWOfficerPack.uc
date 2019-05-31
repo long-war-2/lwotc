@@ -114,7 +114,7 @@ simulated function UpdateData()
 
 	AS_UpdateDataSoldier(Caps(Unit.GetName(eNameType_Full)),
 					Caps(Unit.GetName(eNameType_Nick)),
-					Caps(class'LWUtilities_Ranks'.static.GetShortRankName(Unit.GetRank(), SoldierClass.DataName, Unit)),
+					Caps(Unit.GetSoldierShortRankName()),
 					rankIcon,
 					Caps(SoldierClass != None ? SoldierClass.DisplayName : ""),
 					classIcon,

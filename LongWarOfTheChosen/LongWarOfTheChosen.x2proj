@@ -359,7 +359,6 @@
     <Content Include="Localization\robojumperSquadSelect_Integrated\XComGame.int" />
     <Content Include="Src\extra_globals.uci" />
     <Content Include="Src\LWUtilities\Classes\Helpers_LW.uc" />
-    <Content Include="Src\LWUtilities\Classes\LWUtilities_Ranks.uc" />
     <Content Include="Src\LWUtilities\Classes\X2DownloadableContentInfo_LWUtilities.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\LW_AlienPack.uci" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\LWAlienPack_Utilities.uc" />
