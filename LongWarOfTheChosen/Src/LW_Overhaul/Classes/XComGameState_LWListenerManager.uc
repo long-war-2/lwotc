@@ -488,23 +488,20 @@ function int GetNumEnemiesOnMission(XComGameState_MissionSite MissionState)
 	local int OrigMissionAliens;
 	local array<X2CharacterTemplate> UnitTemplatesThatWillSpawn;
 	local XComGameState_WorldRegion Region;
-	// WOTC TODO: Restore this
-	//local XComGameState_WorldRegion_LWStrategyAI RegionAI;
+	local XComGameState_WorldRegion_LWStrategyAI RegionAI;
 	local XComGameStateHistory History;
 
 	History = `XCOMHISTORY;
 
 	MissionState.GetShadowChamberMissionInfo(OrigMissionAliens, UnitTemplatesThatWillSpawn);
 
-	// Handle missions built primarily around RNF by granting a minimum alien count
-	/* WOTC TODO: Restore this
+	// Handle missions built primarily around RNFs by granting a minimum alien count
 	if (OrigMissionAliens <= 6)
 	{
 		Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(MissionState.Region.ObjectID));
 		RegionAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region);
 		OrigMissionAliens = 7 + RegionAI.LocalAlertLevel;
 	}
-	*/
 
 	return OrigMissionAliens;
 }
