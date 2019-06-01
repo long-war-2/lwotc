@@ -447,6 +447,8 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		NewGameStateContext = class'XComGameStateContext_TacticalGameRule'.static.BuildContextFromGameRule(eGameRule_UnitAdded);
 		NewGameState = History.CreateNewGameState(true, NewGameStateContext);
 		Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
+		//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
+		Unit.BeginTacticalPlay(NewGameState);
 
 		PlayerState = class'Utilities_LW'.static.FindPlayer(Team);
 		class'Utilities_LW'.static.AddUnitToXComGroup(NewGameState, Unit, PlayerState, History);
@@ -475,8 +477,9 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 
 		foreach Unit.InventoryItems(ItemReference)
 		{
-			ItemState = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', ItemReference.ObjectID));
-			NewGameState.AddStateObject(ItemState);
+			ItemState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', ItemReference.ObjectID));
+			//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
+			ItemState.BeginTacticalPlay(NewGameState);
 
 			// add any cosmetic items that might exists
 			ItemState.CreateCosmeticItemUnit(NewGameState);
@@ -497,9 +500,11 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		// add the items to the gamestate for ammo merging
 		foreach Unit.InventoryItems(ItemReference)
 		{
-			ItemState = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', ItemReference.ObjectID));
-			NewGameState.AddStateObject(ItemState);
+			ItemState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', ItemReference.ObjectID));
+			//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
+			ItemState.BeginTacticalPlay(NewGameState);
 		}
+
 		Rules.InitializeUnitAbilities(NewGameState, Unit);
 
 		// make the unit concealed, if they have Phantom
