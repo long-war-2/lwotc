@@ -412,7 +412,6 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 	local XComGameState_Item ItemState;
 	local XComGameState_BattleData BattleData;
 	local bool FoundTile;
-	local int NumAbilities;
 
 	if (!Outpost.HasLiaison())
 	{
