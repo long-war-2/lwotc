@@ -478,8 +478,7 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 
 		foreach Unit.InventoryItems(ItemReference)
 		{
-			ItemState = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', ItemReference.ObjectID));
-			NewGameState.AddStateObject(ItemState);
+			ItemState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', ItemReference.ObjectID));
 			//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
 			ItemState.BeginTacticalPlay(NewGameState);
 
@@ -502,13 +501,11 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		// add the items to the gamestate for ammo merging
 		foreach Unit.InventoryItems(ItemReference)
 		{
-			ItemState = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', ItemReference.ObjectID));
-			NewGameState.AddStateObject(ItemState);
+			ItemState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', ItemReference.ObjectID));
 			//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
 			ItemState.BeginTacticalPlay(NewGameState);
 		}
-		//NumAbilities = Unit.GatherUnitAbilitiesForInit(NewGameState, PlayerState).Length;
-		//`Log("Number of unit abilities: " $ NumAbilities);
+
 		Rules.InitializeUnitAbilities(NewGameState, Unit);
 
 		// make the unit concealed, if they have Phantom
