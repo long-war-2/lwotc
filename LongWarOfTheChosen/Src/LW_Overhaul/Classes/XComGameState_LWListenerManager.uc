@@ -55,8 +55,6 @@ var localized string ResistanceHQBodyText;
 var config bool TIERED_RESPEC_TIMES;
 var config bool AI_PATROLS_WHEN_SIGHTED_BY_HIDDEN_XCOM;
 
-var config int PSI_SQUADDIE_BONUS_ABILITIES;
-
 var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
 var config array<float> MINIMUM_INFIL_FOR_GREEN_ALERT;
 
@@ -224,9 +222,6 @@ function InitListeners()
 
     // Supply decrease monthly report string replacement
     EventMgr.RegisterForEvent(ThisObj, 'GetSupplyDropDecreaseStrings', OnGetSupplyDropDecreaseStrings, ELD_Immediate,,, true);
-
-	//
-	EventMgr.RegisterForEvent(ThisObj, 'PostPsiProjectCompleted', OnPsiProjectCompleted, ELD_Immediate,,, true);
 
 	// listeners for weapon mod stripping
 	EventMgr.RegisterForEvent(ThisObj, 'OnCheckBuildItemsNavHelp', AddSquadSelectStripWeaponsButton, ELD_Immediate);
@@ -2174,77 +2169,6 @@ function EventListenerReturn OnGetSupplyDropDecreaseStrings(Object EventData, Ob
     }
 	*/
     return ELR_NoInterrupt;
-}
-
-// Grants bonus psi abilities after promotion to squaddie
-function EventListenerReturn OnPsiProjectCompleted (Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	local StateObjectReference ProjectFocus;
-	local XComGameState_Unit UnitState;
-	local X2SoldierClassTemplate SoldierClassTemplate;
-	local int BonusAbilityRank, BonusAbilityBranch, BonusAbilitiesGranted, Tries;
-	local name BonusAbility;
-	local XComGameState NewGameState;
-
-	if (XComGameState_HeadquartersProjectPsiTraining(EventSource) == none)
-	{
-		`LWTRACE ("OnPsiProjectCompleted called with invalid EventSource.");
-		return ELR_NoInterrupt;
-	}
-	ProjectFocus = XComGameState_HeadquartersProjectPsiTraining(EventSource).ProjectFocus;
-
-	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ProjectFocus.ObjectID));
-
-	if (UnitState == none || UnitState.GetRank() != 1)
-	{
-		`LWTRACE ("OnPsiProjectCompleted could not find valid unit state.");
-		return ELR_NoInterrupt;
-	}
-
-	BonusAbilitiesGranted = 0;
-
-	SoldierClassTemplate = UnitState.GetSoldierClassTemplate();
-	if (SoldierClassTemplate == none)
-	{
-		`LWTRACE ("OnPsiProjectCompleted could not find valid class template for unit.");
-		return ELR_NoInterrupt;
-	}
-
-	Tries = 0;
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Granting Bonus Psi Starter abilities");
-	while (BonusAbilitiesGranted < default.PSI_SQUADDIE_BONUS_ABILITIES)
-	{
-		BonusAbilityRank = `SYNC_RAND(1 + (default.PSI_SQUADDIE_BONUS_ABILITIES / 2));
-		BonusAbilityBranch = `SYNC_RAND(2);
-		BonusAbility = SoldierClassTemplate.GetAbilitySlots(BonusAbilityRank)[BonusAbilityBranch].AbilityType.AbilityName;
-		Tries += 1;
-
-		if (!UnitState.HasSoldierAbility(BonusAbility, true))
-		{
-			if (UnitState.BuySoldierProgressionAbility(NewGameState,BonusAbilityRank,BonusAbilityBranch))
-			{
-				BonusAbilitiesGranted += 1;
-				`LWTRACE("OnPsiProjectCompleted granted bonus ability " $ string(BonusAbility));
-			}
-		}
-		if (Tries > 999)
-		{
-			`LWTRACE ("OnPsiProjectCompleted Can't find an ability");
-			break;
-		}
-	}
-
-	if (BonusAbilitiesGranted > 0)
-	{
-		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
-		`LWTRACE("OnPsiProjectCompleted granted unit " $ UnitState.GetFullName() @ string(BonusAbilitiesGranted) $ " extra psi abilities.");
-	}
-	else
-	{
-		`XCOMHISTORY.CleanupPendingGameState(NewGameState);
-	}
-
-	return ELR_NoInterrupt;
 }
 
 //listener that adds an extra NavHelp button

@@ -6,6 +6,8 @@ var localized string UnitAlreadyInSquad;
 var localized string UnitInSquad;
 var localized string RankTooLow;
 
+var config int PSI_SQUADDIE_BONUS_ABILITIES;
+
 var config int BLEEDOUT_CHANCE_BASE;
 var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE;
 
@@ -15,6 +17,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateUtilityItemListeners());
 	Templates.AddItem(CreateStatusListeners());
+	Templates.AddItem(CreateTrainingListeners());
 	Templates.AddItem(CreateTacticalListeners());
 
 	return Templates;
@@ -48,6 +51,18 @@ static function CHEventListenerTemplate CreateStatusListeners()
 
 	return Template;
 }
+
+static function CHEventListenerTemplate CreateTrainingListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierTraining');
+	Template.AddCHEvent('PsiProjectCompleted', OnPsiProjectCompleted, ELD_Immediate);
+	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
 
 ////////////////
 /// Tactical ///
@@ -320,6 +335,81 @@ static function EventListenerReturn OnShouldShowPsi(Object EventData, Object Eve
 	if (class'UIUtilities_LW'.static.ShouldShowPsiOffense(UnitState))
 	{
 		Tuple.Data[0].b = true;
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// Grants bonus psi abilities after promotion to squaddie
+static function EventListenerReturn OnPsiProjectCompleted(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local StateObjectReference ProjectFocus;
+	local XComGameState_Unit UnitState;
+	local X2SoldierClassTemplate SoldierClassTemplate;
+	local int BonusAbilityRank, BonusAbilityBranch, BonusAbilitiesGranted, Tries;
+	local name BonusAbility;
+	local XComGameState NewGameState;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+	{
+		`LWTRACE("OnPsiProjectCompleted event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	UnitState = XComGameState_Unit(Tuple.Data[0].o);
+	if (UnitState == none || UnitState.GetRank() != 1)
+	{
+		`LWTRACE ("OnPsiProjectCompleted could not find valid unit state.");
+		return ELR_NoInterrupt;
+	}
+
+	BonusAbilitiesGranted = 0;
+	SoldierClassTemplate = UnitState.GetSoldierClassTemplate();
+	if (SoldierClassTemplate == none)
+	{
+		`LWTRACE ("OnPsiProjectCompleted could not find valid class template for unit.");
+		return ELR_NoInterrupt;
+	}
+
+	Tries = 0;
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Granting Bonus Psi Starter abilities");
+	while (BonusAbilitiesGranted < default.PSI_SQUADDIE_BONUS_ABILITIES)
+	{
+		BonusAbilityRank = `SYNC_RAND_STATIC(1 + (default.PSI_SQUADDIE_BONUS_ABILITIES / 2));
+		BonusAbilityBranch = `SYNC_RAND_STATIC(2);
+		BonusAbility = SoldierClassTemplate.GetAbilitySlots(BonusAbilityRank)[BonusAbilityBranch].AbilityType.AbilityName;
+		Tries += 1;
+
+		if (!UnitState.HasSoldierAbility(BonusAbility, true))
+		{
+			if (UnitState.BuySoldierProgressionAbility(NewGameState,BonusAbilityRank,BonusAbilityBranch))
+			{
+				BonusAbilitiesGranted += 1;
+				`LWTRACE("OnPsiProjectCompleted granted bonus ability " $ string(BonusAbility));
+			}
+		}
+		if (Tries > 999)
+		{
+			`LWTRACE ("OnPsiProjectCompleted Can't find an ability");
+			break;
+		}
+	}
+
+	if (BonusAbilitiesGranted > 0)
+	{
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+		`LWTRACE("OnPsiProjectCompleted granted unit " $ UnitState.GetFullName() @ string(BonusAbilitiesGranted) $ " extra psi abilities.");
+	}
+	else
+	{
+		`XCOMHISTORY.CleanupPendingGameState(NewGameState);
 	}
 
 	return ELR_NoInterrupt;
