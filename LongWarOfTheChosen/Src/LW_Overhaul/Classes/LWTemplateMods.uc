@@ -3252,10 +3252,19 @@ function ModifyDarkEvents (X2StrategyElementTemplate Template, int Difficulty)
 		DarkEventTemplate.bNeverShowObjective = true; // this is added so no Dark Events show in the objective list, since it would get overwhelmed
 		switch (DarkEventTemplate.DataName)
 		{
+			case 'DarkEvent_NewConstruction':
+			case 'DarkEvent_RuralCheckpoints':
+			case 'DarkEvent_BendingReed':
+			case 'DarkEvent_CollateralDamage':
+			case 'DarkEvent_StilettoRounds':
+			case 'DarkEvent_SignalJamming':
+				// Remove these from play
+				DarkEventTemplate.StartingWeight = 0;
+				DarkEventTemplate.MinWeight = 0;
+				DarkEventTemplate.MaxWeight = 0;
+				break;
 			case 'DarkEvent_AlloyPadding': DarkEventTemplate.bInfiniteDuration = true; DarkEventTemplate.bRepeatable = false; DarkEventTemplate.CanActivateFn = class 'X2StrategyElement_DarkEvents_LW'.static.CanActivateCodexUpgrade; break;
 			case 'DarkEvent_ViperRounds': DarkEventTemplate.bInfiniteDuration = true; DarkEventTemplate.bRepeatable = false; break;
-			case 'DarkEvent_NewConstruction': DarkEventTemplate.StartingWeight = 0; DarkEventTemplate.MinWeight = 0; DarkEventTemplate.MaxWeight = 0; break; //REMOVES FROM PLAY, I THINK
-			case 'DarkEvent_RuralCheckpoints':  DarkEventTemplate.StartingWeight = 0; DarkEventTemplate.MinWeight = 0; DarkEventTemplate.MaxWeight = 0; break; //REMOVES FROM PLAY, I THINK
 			case 'DarkEvent_AlienCypher': 
 				DarkEventTemplate.OnActivatedFn = class'X2StrategyElement_DarkEvents_LW'.static.ActivateAlienCypher_LW; 
 				DarkEventTemplate.OnDeactivatedFn = class'X2StrategyElement_DarkEvents_LW'.static.DeactivateAlienCypher_LW;
@@ -3285,14 +3294,48 @@ function ModifyDarkEvents (X2StrategyElementTemplate Template, int Difficulty)
 				DarkEventTemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.CanActivateHunterClass_LW;
 				break;
 			case 'DarkEvent_RapidResponse':
-				DarkEventTEmplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.CanActivateAdvCaptainM2Upgrade;
+				DarkEventTemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.CanActivateAdvCaptainM2Upgrade;
 				DarkEventTemplate.bRepeatable = true;
+				break;
+			case 'DarkEvent_HighAlert':
+			case 'DarkEvent_UndyingLoyalty':
+				DarkEventTemplate.MinDurationDays = 12;
+				DarkEventTemplate.MaxDurationDays = 18;
+				break;
+			case 'DarkEvent_TheCollectors':
+			case 'DarkEvent_MadeWhole':
+			case 'DarkEvent_WildHunt':
+				// Remove these from play when the Chosen are all dead
+				DarkEventTemplate.CanActivateFn = ChosenAliveCheck;
 				break;
 			default: break;
 		}
 	}
 }
 
+//---------------------------------------------------------------------------------------
+static function bool ChosenAliveCheck(XComGameState_DarkEvent DarkEventState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_AdventChosen ChosenState;
+	local int NumActiveChosen;
+	local bool bSpecifiedChosenActive;
+
+	History = `XCOMHISTORY;
+	NumActiveChosen = 0;
+	bSpecifiedChosenActive = false;
+
+	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
+	{
+		if (ChosenState.bMetXCom && !ChosenState.bDefeated)
+		{
+			// At least one Chosen is alive
+			return true;
+		}
+	}
+
+	return false;
+}
 
 //---------------------------------------------------------------------------------------
 function string GetResistanceInformantSummary(string strSummaryText)
