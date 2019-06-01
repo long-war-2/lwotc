@@ -412,6 +412,7 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 	local XComGameState_Item ItemState;
 	local XComGameState_BattleData BattleData;
 	local bool FoundTile;
+	local int NumAbilities;
 
 	if (!Outpost.HasLiaison())
 	{
@@ -447,6 +448,8 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		NewGameStateContext = class'XComGameStateContext_TacticalGameRule'.static.BuildContextFromGameRule(eGameRule_UnitAdded);
 		NewGameState = History.CreateNewGameState(true, NewGameStateContext);
 		Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
+		//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
+		Unit.BeginTacticalPlay(NewGameState);
 
 		PlayerState = class'Utilities_LW'.static.FindPlayer(Team);
 		class'Utilities_LW'.static.AddUnitToXComGroup(NewGameState, Unit, PlayerState, History);
@@ -477,6 +480,8 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		{
 			ItemState = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', ItemReference.ObjectID));
 			NewGameState.AddStateObject(ItemState);
+			//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
+			ItemState.BeginTacticalPlay(NewGameState);
 
 			// add any cosmetic items that might exists
 			ItemState.CreateCosmeticItemUnit(NewGameState);
@@ -499,7 +504,11 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		{
 			ItemState = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', ItemReference.ObjectID));
 			NewGameState.AddStateObject(ItemState);
+			//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
+			ItemState.BeginTacticalPlay(NewGameState);
 		}
+		//NumAbilities = Unit.GatherUnitAbilitiesForInit(NewGameState, PlayerState).Length;
+		//`Log("Number of unit abilities: " $ NumAbilities);
 		Rules.InitializeUnitAbilities(NewGameState, Unit);
 
 		// make the unit concealed, if they have Phantom
