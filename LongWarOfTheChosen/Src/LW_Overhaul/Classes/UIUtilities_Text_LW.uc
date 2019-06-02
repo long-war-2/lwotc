@@ -10,20 +10,31 @@ var localized string m_strHelp;
 
 static function String GetDifficultyString(XComGameState_MissionSite MissionState)
 {
-	local string Text;
+	local string Text, nums;
 	local int Difficulty, LabelsLength, EnemyUnits;
 	local array<X2CharacterTemplate> Dummy;
 
 	MissionState.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
 	Difficulty = Max (1, (EnemyUnits-4) / 3);
 	LabelsLength = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels.Length;
-	if(Difficulty >= LabelsLength)
-		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[LabelsLength - 1];
+	if(Difficulty >= LabelsLength - 1)
+	{
+		nums = " (" $ ((LabelsLength * 3) + 1) $ "+)";
+		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[LabelsLength - 1] $ nums;
+	}
 	else
-		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[Difficulty];
+	{
+		if (Difficulty == 1)
+			nums = " (7-9)";
+		else
+			nums = " (" $ ((Difficulty * 3) + 4) $ "-" $ ((Difficulty * 3) + 6) $ ")";
 
+		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[Difficulty] $ nums;
+	}
 	if (EnemyUnits <= 0)
-		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[0];
+	{
+		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[0] $ " (???)";
+	}
 
 	return Caps(Text);
 }
