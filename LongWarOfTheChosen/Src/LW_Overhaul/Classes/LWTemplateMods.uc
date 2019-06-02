@@ -2899,7 +2899,7 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 		if (FacilityTemplate.DataName == 'PsiChamber')
 		{
 			StaffSlotDef.StaffSlotTemplateName = 'PsiChamberScientistStaffSlot';
-			StaffSlotDef.bStartsLocked = true;
+			StaffSlotDef.bStartsLocked = false;
 			FacilityTemplate.StaffSlotDefs.InsertItem(1, StaffSlotDef);
 		}
 		//if (FacilityTemplate.DataName == 'Storage') Didn't work
