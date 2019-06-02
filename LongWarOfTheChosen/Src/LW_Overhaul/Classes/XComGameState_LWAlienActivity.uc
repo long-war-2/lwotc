@@ -928,7 +928,7 @@ simulated function EMissionUIType GetMissionUIType(XComGameState_MissionSite Mis
 }
 
 //function used to determine what mission icon to display on Geoscape
-simulated function string UpdateMissionIcon(UIStrategyMap_MissionIcon MissionIcon, XComGameState_MissionSite MissionSite)
+simulated function string GetMissionIconImage(XComGameState_MissionSite MissionSite)
 {
 	local MissionSettings_LW MissionSettings;
 

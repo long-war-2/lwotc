@@ -33,9 +33,10 @@ static function CHEventListenerTemplate CreateMissionSiteListeners()
 	local CHEventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionSiteListeners');
-	Template.AddCHEvent('StrategyMapMissionSiteSelected', OnMissionSiteSelected, ELD_Immediate);
-	Template.AddCHEvent('OverrideMissionIcon', OnOverrideMissionIcon, ELD_Immediate, GetListenerPriority());
-
+	Template.AddCHEvent('StrategyMapMissionSiteSelected', OnMissionSiteSelected, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideMissionSiteTooltip', OnOverrideMissionSiteTooltip, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('MissionIconSetMissionSite', CustomizeMissionSiteIcon, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideMissionSiteIconImage', CustomizeMissionSiteIconImage, ELD_Immediate, GetListenerPriority());
 	Template.RegisterInStrategy = true;
 
 	return Template;
@@ -92,15 +93,16 @@ static function EventListenerReturn OnMissionSiteSelected(Object EventData, Obje
 	return ELR_NoInterrupt;
 }
 
-// Customises the mission icon tooltip to display expiry time. Also ensures that
-// clicking a mission icon pops up the mission infiltration screen if that mission
-// has a squad currently infiltrating.
-static function EventListenerReturn OnOverrideMissionIcon(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+// Overrides the mission icon tooltip to display expiry time.
+static function EventListenerReturn OnOverrideMissionSiteTooltip(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
 {
 	local XComLWTuple Tuple;
-	local XComGameState_LWAlienActivity AlienActivity;
 	local UIStrategyMap_MissionIcon MissionIcon;
-	local XComGameState_LWPersistentSquad InfiltratingSquad;
 	local string Title, Body;
 	
 	Tuple = XComLWTuple(EventData);
@@ -110,43 +112,84 @@ static function EventListenerReturn OnOverrideMissionIcon(Object EventData, Obje
 	MissionIcon = UIStrategyMap_MissionIcon(EventSource);
 	if(MissionIcon == none)
 	{
-		`REDSCREEN("OverrideMissionIcon event triggered with invalid event source.");
+		`REDSCREEN("OnOverrideMissionSiteTooltip event triggered with invalid event source.");
 		return ELR_NoInterrupt;
 	}
 
-	`LWTrace("Received OverrideMissionIcon event of type " $ Tuple.Id);
+	GetMissionSiteUIButtonToolTip(Title, Body, MissionIcon);
+	Tuple.Data[0].Kind = XComLWTVString;
+	Tuple.Data[0].s = Title;
+	Tuple.Data[1].Kind = XComLWTVString;
+	Tuple.Data[1].s = Body;
+	return ELR_NoInterrupt;
+}
 
-	switch (Tuple.Id)
+// Overrides the mission icon image path so that the mission icon displays
+// the appropriate GOp or Council mission image.
+static function EventListenerReturn CustomizeMissionSiteIconImage(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_MissionSite MissionSite;
+	local XComGameState_LWAlienActivity AlienActivity;
+	
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	MissionSite = XComGameState_MissionSite(EventSource);
+	if (MissionSite == none)
 	{
-		case 'OverrideMissionIcon_MissionTooltip':
-			GetMissionSiteUIButtonToolTip(Title, Body, MissionIcon);
-			Tuple.Data[0].Kind = XComLWTVString;
-			Tuple.Data[0].s = Title;
-			Tuple.Data[1].Kind = XComLWTVString;
-			Tuple.Data[1].s = Body;
-			break;
-		case 'OverrideMissionIcon_SetMissionSite':
-			InfiltratingSquad = `LWSQUADMGR.GetSquadOnMission(MissionIcon.MissionSite.GetReference());
-			if(InfiltratingSquad != none && UIStrategyMapItem_Mission_LW(MissionIcon.MapItem) != none)
-			{
-				// A squad is infiltrating this mission, so bring up the infiltration screen
-				// (UIMission_LWDelayedLaunch) so that the player can launch it or just see
-				// details of the squad, etc.
-				MissionIcon.OnClickedDelegate = UIStrategyMapItem_Mission_LW(MissionIcon.MapItem).OpenInfiltrationMissionScreen;
-			}
-			AlienActivity = class'XComGameState_LWAlienActivityManager'.static.FindAlienActivityByMission(MissionIcon.MissionSite);
-			
-			if (AlienActivity != none )
-				MissionIcon.LoadIcon(AlienActivity.UpdateMissionIcon(MissionIcon, MissionIcon.MissionSite));
-
-			GetMissionSiteUIButtonToolTip(Title, Body, MissionIcon);
-			MissionIcon.SetMissionIconTooltip(Title, Body);
-			break;
-		case 'OverrideMissionIcon_ScanSiteTooltip': // we don't do anything with this currently
-		case 'OverrideMissionIcon_SetScanSite': // we don't do anything with this currently
-		default:
-			break;
+		`REDSCREEN("CustomizeMissionSiteIconImage event triggered with invalid event source.");
+		return ELR_NoInterrupt;
 	}
+
+	AlienActivity = class'XComGameState_LWAlienActivityManager'.static.FindAlienActivityByMission(MissionSite);
+	if (AlienActivity != none )
+	{
+		Tuple.Data[0].s = AlienActivity.GetMissionIconImage(MissionSite);
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// Ensures that clicking a mission icon pops up the mission infiltration screen if that mission
+// has a squad currently infiltrating.
+static function EventListenerReturn CustomizeMissionSiteIcon(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_LWAlienActivity AlienActivity;
+	local UIStrategyMap_MissionIcon MissionIcon;
+	local XComGameState_LWPersistentSquad InfiltratingSquad;
+	local string Title, Body;
+	
+	MissionIcon = UIStrategyMap_MissionIcon(EventSource);
+	if (MissionIcon == none)
+	{
+		`REDSCREEN("CustomizeMissionSiteIcon event triggered with invalid event source.");
+		return ELR_NoInterrupt;
+	}
+
+	InfiltratingSquad = `LWSQUADMGR.GetSquadOnMission(MissionIcon.MissionSite.GetReference());
+	if (InfiltratingSquad != none && UIStrategyMapItem_Mission_LW(MissionIcon.MapItem) != none)
+	{
+		// A squad is infiltrating this mission, so bring up the infiltration screen
+		// (UIMission_LWDelayedLaunch) so that the player can launch it or just see
+		// details of the squad, etc.
+		MissionIcon.OnClickedDelegate = UIStrategyMapItem_Mission_LW(MissionIcon.MapItem).OpenInfiltrationMissionScreen;
+	}
+
+	GetMissionSiteUIButtonToolTip(Title, Body, MissionIcon);
+	MissionIcon.SetMissionIconTooltip(Title, Body);
+
 	return ELR_NoInterrupt;
 }
 
