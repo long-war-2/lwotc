@@ -299,7 +299,7 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 	local int ResourceIdx, Idx, ItemIdx;
  	local bool bStartState;
 	local XComGameState_Item ItemState;
-    local XComPhotographer_Strategy Photo;
+	local XComPhotographer_Strategy Photo;
 	local X2StrategyElementTemplateManager StratMgr;
 	local X2RewardTemplate RewardTemplate;
 	local array<XComGameState_Tech> TechList;
@@ -314,11 +314,11 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 
 	BlackMarket = XComGameState_BlackMarket(EventData);
 
-    if (BlackMarket == none)
-    {
-        `REDSCREEN("BlackMarketGoodsReset called with no object");
-        return ELR_NoInterrupt;
-    }
+	if (BlackMarket == none)
+	{
+		`REDSCREEN("BlackMarketGoodsReset called with no object");
+		return ELR_NoInterrupt;
+	}
 
 	if (NewGameState == none)
 	{
@@ -371,10 +371,10 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 
 	// Dudes, one each per month
 	PersonnelRewardNames.AddItem('Reward_Scientist');
-    PersonnelRewardNames.AddItem('Reward_Engineer');
-    PersonnelRewardNames.AddItem('Reward_Soldier');
+	PersonnelRewardNames.AddItem('Reward_Engineer');
+	PersonnelRewardNames.AddItem('Reward_Soldier');
 
-    AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 	if (AlienHQ.GetForceLevel() >= default.BLACK_MARKET_2ND_SOLDIER_FL)
 		PersonnelRewardNames.AddItem('Reward_Soldier');
 
@@ -386,10 +386,10 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 		ForSaleItem = EmptyForSaleItem;
 		RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate(PersonnelRewardNames[idx]));
 		RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
-        RewardState.GenerateReward(NewGameState,, BlackMarket.Region);
-        ForSaleItem.RewardRef = RewardState.GetReference();
-        ForSaleItem.Title = RewardState.GetRewardString();
-        ForSaleItem.Cost = BlackMarket.GetPersonnelForSaleItemCost();
+		RewardState.GenerateReward(NewGameState,, BlackMarket.Region);
+		ForSaleItem.RewardRef = RewardState.GetReference();
+		ForSaleItem.Title = RewardState.GetRewardString();
+		ForSaleItem.Cost = BlackMarket.GetPersonnelForSaleItemCost();
 
 		for (ResourceIdx = 0; ResourceIdx < ForSaleItem.Cost.ResourceCosts.Length; ResourceIdx ++)
 		{
@@ -402,19 +402,19 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 			}
 		}
 
-        ForSaleItem.Desc = RewardState.GetBlackMarketString();
-        ForSaleItem.Image = RewardState.GetRewardImage();
+		ForSaleItem.Desc = RewardState.GetBlackMarketString();
+		ForSaleItem.Image = RewardState.GetRewardImage();
 		ForSaleItem.CostScalars = BlackMarket.GoodsCostScalars;
 		ForSaleItem.DiscountPercent = BlackMarket.GoodsCostPercentDiscount;
-        if(ForSaleItem.Image == "")
-        {
+		if(ForSaleItem.Image == "")
+		{
 			`HQPRES.GetPhotoboothAutogen().AddHeadshotRequest(
 					RewardState.RewardObjectReference,
 					512, 512,
 					None);
 			`HQPRES.GetPhotoboothAutogen().RequestPhotos();
-        }
-        BlackMarket.ForSaleItems.AddItem(ForSaleItem);
+		}
+		BlackMarket.ForSaleItems.AddItem(ForSaleItem);
 	}
 
 	ItemList = BlackMarket.RollForBlackMarketLoot (NewGameState);
@@ -423,20 +423,20 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 
 	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Item'));
 	for (Idx = 0; idx < ItemList.Length; idx++)
-    {
-        ForSaleItem = EmptyForSaleItem;
-        RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
-        RewardState.SetReward(ItemList[Idx].GetReference());
-        ForSaleItem.RewardRef = RewardState.GetReference();
-        ForSaleItem.Title = RewardState.GetRewardString();
+	{
+		ForSaleItem = EmptyForSaleItem;
+		RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+		RewardState.SetReward(ItemList[Idx].GetReference());
+		ForSaleItem.RewardRef = RewardState.GetReference();
+		ForSaleItem.Title = RewardState.GetRewardString();
 
 		//ForSaleItem.Title = class'UIUtilities_Text_LW'.static.StripHTML (ForSaleItem.Title); // StripHTML not needed and doesn't work yet
 
 		ItemState = XComGameState_Item (History.GetGameStateForObjectID(RewardState.RewardObjectReference.ObjectID));
-        ForSaleItem.Desc = RewardState.GetBlackMarketString() $ "\n\n" $ ItemState.GetMyTemplate().GetItemBriefSummary();// REPLACE WITH ITEM DESCRIPTION!
-        ForSaleItem.Image = RewardState.GetRewardImage();
-        ForSaleItem.CostScalars = BlackMarket.GoodsCostScalars;
-        ForSaleItem.DiscountPercent = BlackMarket.GoodsCostPercentDiscount;
+		ForSaleItem.Desc = RewardState.GetBlackMarketString() $ "\n\n" $ ItemState.GetMyTemplate().GetItemBriefSummary();// REPLACE WITH ITEM DESCRIPTION!
+		ForSaleItem.Image = RewardState.GetRewardImage();
+		ForSaleItem.CostScalars = BlackMarket.GoodsCostScalars;
+		ForSaleItem.DiscountPercent = BlackMarket.GoodsCostPercentDiscount;
 
 		ResourceCost.ItemTemplateName = 'Supplies';
 		ResourceCost.Quantity = ItemState.GetMyTemplate().TradingPostValue * default.BLACK_MARKET_PROFIT_MARGIN[`STRATEGYDIFFICULTYSETTING];
@@ -448,8 +448,8 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 			ResourceCost.Quantity *= ItemState.Quantity;
 		}
 		ForSaleItem.Cost.ResourceCosts.AddItem (ResourceCost);
-        BlackMarket.ForSaleItems.AddItem(ForSaleItem);
-    }
+		BlackMarket.ForSaleItems.AddItem(ForSaleItem);
+	}
 
 	// switch to supplies cost, fix items sale price to TPV
 	for (ItemIdx = BlackMarket.ForSaleItems.Length - 1; ItemIdx >= 0; ItemIdx--)
