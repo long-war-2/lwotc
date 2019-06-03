@@ -2412,7 +2412,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					case 'PoweredSparkArmor':
 					case 'SparkBit_MG':
 					case 'SparkBit_BM':
-						AltReq.SpecialRequirementsFn = class'LWDLCHelpers'.static.IsLostTowersNarrativeContentComplete;
+						AltReq.SpecialRequirementsFn = class'X2Helpers_DLC_Day90'.static.IsLostTowersNarrativeContentComplete;
 						if (ItemTable[i].RequiredTech1 != '')
 							AltReq.RequiredTechs.AddItem(ItemTable[i].RequiredTech1);
 						Template.AlternateRequirements.AddItem(AltReq);
