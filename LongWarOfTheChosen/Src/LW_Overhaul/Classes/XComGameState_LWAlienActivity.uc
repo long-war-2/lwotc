@@ -616,6 +616,8 @@ function name GetNextMissionFamily(XComGameState NewGameState)
 	return '';
 }
 
+// WOTC TODO: There has to be a better way to implement this than copy all the
+// relevant code from XComGameState_MissionSite with a few changes!
 function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionState, X2RewardTemplate MissionReward, XComGameState NewGameState, bool bUseSpecifiedLevelSeed, int LevelSeedOverride)
 {
 	local GeneratedMissionData EmptyData;
@@ -626,11 +628,17 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	local XComHeadquartersCheatManager CheatManager;
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local X2MissionSourceTemplate MissionSource;
+	local PlotDefinition SelectedPlotDef;
+	local PlotTypeDefinition PlotTypeDef;
 	local array<name> SourceSitReps;
 	local name SitRepName;
 	local array<name> SitRepNames;
 	local String AdditionalTag;
 	// End LWOTC vars
+	// Variables for Issue #157
+	local array<X2DownloadableContentInfo> DLCInfos; 
+	local int i; 
+	// Variables for Issue #157
 
 	MissionMgr = `TACTICALMISSIONMGR;
 	ParcelMgr = `PARCELMGR;
@@ -702,10 +710,6 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 
 	MissionState.GeneratedMission.MissionQuestItemTemplate = MissionMgr.ChooseQuestItemTemplate(MissionState.Source, MissionReward, MissionState.GeneratedMission.Mission, (MissionState.DarkEvent.ObjectID > 0));
 
-	// WOTC TODO: Find out whether this is needed - SetBuildTime is no longer available on XCGS_MissionSite
-	// MissionState.SetBuildTime(0);
-	MissionState.bHasSeenSkipPopup = true;
-
 	if(MissionState.GeneratedMission.Mission.sType == "")
 	{
 		`Redscreen("GetMissionDefinitionForFamily() failed to generate a mission with: \n"
@@ -713,11 +717,44 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	}
 
 	// find a plot that supports the biome and the mission
-	Biome = class'X2StrategyGameRulesetDataStructures'.static.GetBiome(MissionState.Get2DLocation());
+	SelectBiomeAndPlotDefinition(MissionState.GeneratedMission.Mission, Biome, SelectedPlotDef, SitRepNames);
 
 	// do a weighted selection of our plot
-	MissionState.GeneratedMission.Plot = SelectPlotDefinition(MissionState.GeneratedMission.Mission, Biome);  // have to use custom one because XCGS_MissionSite version is private
+	MissionState.GeneratedMission.Plot = SelectedPlotDef;
 	MissionState.GeneratedMission.Biome = ParcelMgr.GetBiomeDefinition(Biome);
+	`LWTrace(" >>> Selected plot " $ SelectedPlotDef.MapName $ " (" $ SelectedPlotDef.strType $ ") for mission " $
+		MissionState.GeneratedMission.Mission.MissionName);
+
+	// Add SitReps forced by Plot Type
+	// Make sure The Lost are added to Abandoned City plots
+	PlotTypeDef = ParcelMgr.GetPlotTypeDefinition(MissionState.GeneratedMission.Plot.strType);
+
+	foreach PlotTypeDef.ForcedSitReps(SitRepName)
+	{
+		if(MissionState.GeneratedMission.SitReps.Find(SitRepName) == INDEX_NONE && 
+			(SitRepName != 'TheLost' || MissionState.GeneratedMission.SitReps.Find('TheHorde') == INDEX_NONE))
+		{
+			MissionState.GeneratedMission.SitReps.AddItem(SitRepName);
+		}
+	}
+
+	// Start Issue #157
+	DLCInfos = `ONLINEEVENTMGR.GetDLCInfos(false);
+	for(i = 0; i < DLCInfos.Length; ++i)
+	{
+		DLCInfos[i].PostSitRepCreation(MissionState.GeneratedMission, self);
+	}
+	// End Issue #157
+
+	// Now that all sitreps have been chosen, add any sitrep tactical tags to the mission list
+	MissionState.UpdateSitrepTags();
+
+	// the plot we find should either have no defined biomes, or the requested biome type
+	//`assert( (GeneratedMission.Plot.ValidBiomes.Length == 0) || (GeneratedMission.Plot.ValidBiomes.Find( Biome ) != -1) );
+	if (MissionState.GeneratedMission.Plot.ValidBiomes.Length > 0)
+	{
+		MissionState.GeneratedMission.Biome = ParcelMgr.GetBiomeDefinition(Biome);
+	}
 
 	if(MissionState.GetMissionSource().BattleOpName != "")
 	{
@@ -740,8 +777,10 @@ function MissionDefinition GetMissionDefinitionForFamily(name MissionFamily)
 	local XComTacticalMissionManager MissionMgr;
 
 	MissionMgr = `TACTICALMISSIONMGR;
-	// WOTC TODO: Cards should be cached by now! Maybe verify that's the case.
-	// MissionMgr.CacheMissionManagerCards();  
+	// LWOTC: Testing this line to see whether it helps even out the
+	// plots selected for missions so players don't see the same two
+	// types of plot all the time.
+	MissionMgr.CacheMissionManagerCards();  
 	CardManager = class'X2CardManager'.static.GetCardManager();
 
 	// now that we have a mission family, determine the mission type to use
@@ -763,24 +802,143 @@ function MissionDefinition GetMissionDefinitionForFamily(name MissionFamily)
 	return MissionMgr.arrMissions[0];
 }
 
-function PlotDefinition SelectPlotDefinition(MissionDefinition MissionDef, string Biome)
+//---------------------------------------------------------------------------------------
+// Code (next 3 functions) copied from XComGameState_MissionSite
+//
+function SelectBiomeAndPlotDefinition(MissionDefinition MissionDef, out string Biome, out PlotDefinition SelectedDef, optional array<name> SitRepNames)
+{
+	local XComParcelManager ParcelMgr;
+	local string PrevBiome;
+	local array<string> ExcludeBiomes;
+
+	ParcelMgr = `PARCELMGR;
+	ExcludeBiomes.Length = 0;
+	
+	Biome = SelectBiome(MissionDef, ExcludeBiomes);
+	PrevBiome = Biome;
+
+	while(!SelectPlotDefinition(MissionDef, Biome, SelectedDef, ExcludeBiomes, SitRepNames))
+	{
+		Biome = SelectBiome(MissionDef, ExcludeBiomes);
+
+		if(Biome == PrevBiome)
+		{
+			`Redscreen("Could not find valid plot for mission!\n" $ " MissionType: " $ MissionDef.MissionName);
+			SelectedDef = ParcelMgr.arrPlots[0];
+			return;
+		}
+	}
+}
+
+//---------------------------------------------------------------------------------------
+function string SelectBiome(MissionDefinition MissionDef, out array<string> ExcludeBiomes)
+{
+	local string Biome;
+	local int TotalValue, RollValue, CurrentValue, idx, BiomeIndex;
+	local array<BiomeChance> BiomeChances;
+	local string TestBiome;
+
+	if(MissionDef.ForcedBiome != "")
+	{
+		return MissionDef.ForcedBiome;
+	}
+
+	// Grab Biome from location
+	Biome = class'X2StrategyGameRulesetDataStructures'.static.GetBiome(Get2DLocation());
+
+	if(ExcludeBiomes.Find(Biome) != INDEX_NONE)
+	{
+		Biome = "";
+	}
+
+	// Grab "extra" biomes which we could potentially swap too (used for Xenoform)
+	BiomeChances = class'X2StrategyGameRulesetDataStructures'.default.m_arrBiomeChances;
+
+	// Not all plots support these "extra" biomes, check if excluded
+	foreach ExcludeBiomes(TestBiome)
+	{
+		BiomeIndex = BiomeChances.Find('BiomeName', TestBiome);
+
+		if(BiomeIndex != INDEX_NONE)
+		{
+			BiomeChances.Remove(BiomeIndex, 1);
+		}
+	}
+
+	// If no "extra" biomes just return the world map biome
+	if(BiomeChances.Length == 0)
+	{
+		return Biome;
+	}
+
+	// Calculate total value of roll to see if we want to swap to another biome
+	TotalValue = 0;
+
+	for(idx = 0; idx < BiomeChances.Length; idx++)
+	{
+		TotalValue += BiomeChances[idx].Chance;
+	}
+
+	// Chance to use location biome is remainder of 100
+	if(TotalValue < 100)
+	{
+		TotalValue = 100;
+	}
+
+	// Do the roll
+	RollValue = `SYNC_RAND(TotalValue);
+	CurrentValue = 0;
+
+	for(idx = 0; idx < BiomeChances.Length; idx++)
+	{
+		CurrentValue += BiomeChances[idx].Chance;
+
+		if(RollValue < CurrentValue)
+		{
+			Biome = BiomeChances[idx].BiomeName;
+			break;
+		}
+	}
+
+	return Biome;
+}
+
+//---------------------------------------------------------------------------------------
+function bool SelectPlotDefinition(MissionDefinition MissionDef, string Biome, out PlotDefinition SelectedDef, out array<string> ExcludeBiomes, optional array<name> SitRepNames)
 {
 	local XComParcelManager ParcelMgr;
 	local array<PlotDefinition> ValidPlots;
-	local PlotDefinition SelectedDef;
+	local X2SitRepTemplateManager SitRepMgr;
+	local name SitRepName;
+	local X2SitRepTemplate SitRep;
 
 	ParcelMgr = `PARCELMGR;
 	ParcelMgr.GetValidPlotsForMission(ValidPlots, MissionDef, Biome);
+	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
 
 	// pull the first one that isn't excluded from strategy, they are already in order by weight
 	foreach ValidPlots(SelectedDef)
 	{
+		foreach SitRepNames(SitRepName)
+		{
+			SitRep = SitRepMgr.FindSitRepTemplate(SitRepName);
+
+			if(SitRep != none && SitRep.ExcludePlotTypes.Find(SelectedDef.strType) != INDEX_NONE)
+			{
+				continue;
+			}
+		}
+
 		if(!SelectedDef.ExcludeFromStrategy)
-			return SelectedDef;
+		{
+			return true;
+		}
 	}
-	`Redscreen("Could not find valid plot for mission!\n" $ " MissionType: " $ MissionDef.MissionName);
-	return ParcelMgr.arrPlots[0];
+
+	ExcludeBiomes.AddItem(Biome);
+	return false;
 }
+// End copied code
 
 function string GetMissionDescriptionForActivity()
 {
