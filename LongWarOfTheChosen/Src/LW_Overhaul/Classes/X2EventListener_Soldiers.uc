@@ -202,6 +202,7 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 				OverrideTuple,
 				default.OnLiaisonDuty @ "-" @ WorldRegion.GetDisplayName(),
 				"",
+				"",
 				0,
 				eUIState_Warning,
 				true);
@@ -212,6 +213,7 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 				OverrideTuple,
 				default.OnInfiltrationMission,
 				"",
+				"",
 				GetHoursLeftToInfiltrate(Squad),
 				eUIState_Warning,
 				false);
@@ -221,7 +223,7 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 	{
 		if (`XCOMHQ.IsUnitInSquad(UnitState.GetReference()) && GetScreenOrChild('UISquadSelect') != none)
 		{
-			SetStatusTupleData(OverrideTuple, class'UIUtilities_Strategy'.default.m_strOnMissionStatus, "", 0, eUIState_Highlight, true);
+			SetStatusTupleData(OverrideTuple, class'UIUtilities_Strategy'.default.m_strOnMissionStatus, "", "", 0, eUIState_Highlight, true);
 		}
 		else if (SquadMgr != none && SquadMgr.UnitIsInAnySquad(UnitState.GetReference(), Squad))
 		{
@@ -231,11 +233,11 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 				{
 					if (GetScreenOrChild('UISquadSelect') != none)
 					{
-						SetStatusTupleData(OverrideTuple, default.UnitAlreadyInSquad, "", 0, eUIState_Warning, true);
+						SetStatusTupleData(OverrideTuple, default.UnitAlreadyInSquad, "", "", 0, eUIState_Warning, true);
 					}
 					else if (GetScreenOrChild('UIPersonnel_Liaison') != none)
 					{
-						SetStatusTupleData(OverrideTuple, default.UnitInSquad, "", 0, eUIState_Warning, true);
+						SetStatusTupleData(OverrideTuple, default.UnitInSquad, "", "", 0, eUIState_Warning, true);
 					}
 				}
 			}
@@ -244,7 +246,7 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 		{
 			if (GetScreenOrChild('UIPersonnel_Liaison') != none)
 			{
-				SetStatusTupleData(OverrideTuple, default.RankTooLow, "", 0, eUIState_Bad, true);
+				SetStatusTupleData(OverrideTuple, default.RankTooLow, "", "", 0, eUIState_Bad, true);
 			}
 		}
 	}
@@ -432,16 +434,18 @@ static private function SetStatusTupleData(
 	XComLWTuple Tuple,
 	string Status,
 	string TimeLabel,
+	string TimeValueOverride,
 	int TimeValue,
 	EUIState State,
 	bool HideTime)
 {
 	Tuple.Data[0].s = Status;
 	Tuple.Data[1].s = TimeLabel;
-	Tuple.Data[2].i = TimeValue;
-	Tuple.Data[3].i = int(State);
-	Tuple.Data[4].b = HideTime;
-	Tuple.Data[5].b = !HideTime;
+	Tuple.Data[2].s = TimeValueOverride;
+	Tuple.Data[3].i = TimeValue;
+	Tuple.Data[4].i = int(State);
+	Tuple.Data[5].b = HideTime;
+	Tuple.Data[6].b = !HideTime;
 }
 
 // This takes on a bunch of exceptions to color ability icons
