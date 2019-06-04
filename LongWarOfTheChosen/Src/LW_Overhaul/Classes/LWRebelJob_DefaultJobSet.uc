@@ -257,7 +257,7 @@ function IncomeEvent_Recruit(XComGameState_LWOutpost Outpost, XComGameState NewG
                 class'UIUtilities_Strategy'.static.GetResistanceHQ().ObjectID));
             ResistanceHQ.Recruits.AddItem(Unit.GetReference());
 			`XEVENTMGR.TriggerEvent('SoldierCreatedEvent', Unit, Unit, NewGameState); // event to trigger NCE as needed for new soldier
-			class'XComGameState_LWListenerManager'.static.GiveDefaultUtilityItemsToSoldier(Unit, NewGameState);
+			class'Utilities_LW'.static.GiveDefaultUtilityItemsToSoldier(Unit, NewGameState);
             NewGameState.AddStateObject(ResistanceHQ);
             str = Repl(strSoldierRecruited, "%UNIT", Unit.GetName(eNameType_RankFull));
             str = Repl(str, "%REGION", Region.GetDisplayName());

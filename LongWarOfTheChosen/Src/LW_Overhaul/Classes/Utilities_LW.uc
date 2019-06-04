@@ -320,6 +320,106 @@ static function ApplyLoadout(XComGameState_Unit Unit, name UseLoadoutName, XComG
 	}
 }
 
+static function GiveDefaultUtilityItemsToSoldier(XComGameState_Unit UnitState, XComGameState NewGameState)
+{
+	local array<XComGameState_Item> CurrentInventory;
+	local XComGameState_Item InventoryItem;
+	local array<X2EquipmentTemplate> DefaultEquipment;
+	local X2EquipmentTemplate EquipmentTemplate;
+	local XComGameState_Item ItemState;
+	local X2ItemTemplateManager ItemTemplateManager;
+	local InventoryLoadout RequiredLoadout;
+	local array<name> RequiredNames;
+	local InventoryLoadoutItem LoadoutItem;
+	local bool bRequired;
+	local int idx;
+
+	UnitState.bIgnoreItemEquipRestrictions = true;
+
+	//first remove any existing utility slot items the unit has, that aren't on the RequiredLoadout
+	ItemTemplateManager = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	idx = ItemTemplateManager.Loadouts.Find('LoadoutName', UnitState.GetMyTemplate().RequiredLoadout);
+	if(idx != -1)
+	{
+		RequiredLoadout = ItemTemplateManager.Loadouts[idx];
+		foreach RequiredLoadout.Items(LoadoutItem)
+		{
+			RequiredNames.AddItem(LoadoutItem.Item);
+		}
+	}
+	CurrentInventory = UnitState.GetAllInventoryItems(NewGameState);
+	foreach CurrentInventory(InventoryItem)
+	{
+		bRequired = RequiredNames.Find(InventoryItem.GetMyTemplateName()) != -1;
+		if(!bRequired && InventoryItem.InventorySlot == eInvSlot_Utility)
+		{
+			UnitState.RemoveItemFromInventory(InventoryItem, NewGameState);
+		}
+	}
+
+	//equip the default loadout
+	DefaultEquipment = GetCompleteDefaultLoadout(UnitState);
+	foreach DefaultEquipment(EquipmentTemplate)
+	{
+		if(EquipmentTemplate.InventorySlot == eInvSlot_Utility)
+		{
+			ItemState = EquipmentTemplate.CreateInstanceFromTemplate(NewGameState);
+			NewGameState.AddStateObject(ItemState);
+			UnitState.AddItemToInventory(ItemState, eInvSlot_Utility, NewGameState);
+		}
+	}
+	UnitState.bIgnoreItemEquipRestrictions = false;
+}
+
+// combines rookie and squaddie loadouts so that things like kevlar armor and grenades are included
+// but without the silliness of "only one item per slot type"
+static function array<X2EquipmentTemplate> GetCompleteDefaultLoadout(XComGameState_Unit UnitState)
+{
+	local x2itemtemplatemanager itemtemplatemanager;
+	local x2soldierclasstemplate soldierclasstemplate;
+	local inventoryloadout loadout;
+	local inventoryloadoutitem loadoutitem;
+	local x2equipmenttemplate equipmenttemplate;
+	local array<x2equipmenttemplate> completedefaultloadout;
+	local int idx;
+
+	itemtemplatemanager = class'x2itemtemplatemanager'.static.getitemtemplatemanager();
+
+	// first grab squaddie loadout if possible
+	soldierclasstemplate = UnitState.getsoldierclasstemplate();
+
+	if(soldierclasstemplate != none && soldierclasstemplate.squaddieloadout != '')
+	{
+		idx = itemtemplatemanager.loadouts.find('loadoutname', soldierclasstemplate.squaddieloadout);
+		if(idx != -1)
+		{
+			loadout = itemtemplatemanager.loadouts[idx];
+			foreach loadout.items(loadoutitem)
+			{
+				equipmenttemplate = x2equipmenttemplate(itemtemplatemanager.finditemtemplate(loadoutitem.item));
+				if(equipmenttemplate != none)
+					completedefaultloadout.additem(equipmenttemplate);
+			}
+		}
+		return completedefaultloadout;
+	}
+
+	// grab default loadout
+	idx = itemtemplatemanager.loadouts.find('loadoutname', UnitState.getmytemplate().defaultloadout);
+	if(idx != -1)
+	{
+		loadout = itemtemplatemanager.loadouts[idx];
+		foreach loadout.items(loadoutitem)
+		{
+			equipmenttemplate = x2equipmenttemplate(itemtemplatemanager.finditemtemplate(loadoutitem.item));
+			if(equipmenttemplate != none)
+					completedefaultloadout.additem(equipmenttemplate);
+		}
+	}
+
+	return completedefaultloadout;
+}
+
 // Create a soldier proxy for the given rebel, set them as on-mission, and give them a loadout. All done within the
 // provided game state.
 function static XComGameState_Unit CreateRebelSoldier(StateObjectReference RebelRef, StateObjectReference OutpostRef, XComGameState NewGameState, optional name Loadout)
