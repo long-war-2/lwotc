@@ -2689,6 +2689,12 @@ function RewireTechTree(X2StrategyElementTemplate Template, int Difficulty)
 		if (TechTemplate.DataName == 'HeavyWeapons') // remove the alternative access to the heavy weapons proving ground project for sparks
 			TechTemplate.AlternateRequirements.Length = 0;
 
+		// Change the special requirements functions for Mechanized Warfare & SPARKs.
+		if (TechTemplate.DataName == 'MechanizedWarfare')
+			TechTemplate.Requirements.SpecialRequirementsFn = class'LWDLCHelpers'.static.IsMechanizedWarfareAvailable;
+		if (TechTemplate.DataName == 'BuildSpark')
+			TechTemplate.Requirements.SpecialRequirementsFn = class'LWDLCHelpers'.static.IsLostTowersNarrativeContentComplete;
+
 		// remove the alternative access to the advanced heavy weapons proving ground project HeavyAlienArmorMk2_Schematic
 		// from Alien Hunters.
 		if (TechTemplate.DataName == 'AdvancedHeavyWeapons')

@@ -1070,7 +1070,6 @@
     <Content Include="Content\LWZ_PerkContent_ConcussionRocket.upk" />
     <Content Include="Content\LWZ_PerkContent_RocketProjectile.upk" />
     <Content Include="Src\LW_Overhaul\Classes\UIStrategyMapItem_AlienNetworkComponent_LW.uc" />
-    <Content Include="Content\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_ModShaderCache.upk" />
     <Content Include="Content\Missions\Obj_SupplyExtraction_LW.umap" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Action_CustomizeAlienPackRNFs.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIAdventOperations_LW.uc" />
