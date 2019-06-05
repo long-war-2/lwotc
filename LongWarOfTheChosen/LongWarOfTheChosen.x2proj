@@ -69,6 +69,8 @@
     <Folder Include="Content\Movies\" />
     <Folder Include="Content\ShellMaps\" />
     <Folder Include="Src\LW_WeaponsAndArmor\" />
+    <Folder Include="Localization\NewPromotionScreenByDefault_Integrated\" />
+    <Folder Include="Src\NewPromotionScreenByDefault_Integrated\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -1077,6 +1079,10 @@
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_XP.uc" />
     <Content Include="Config\XComPromotionUIMod.ini" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelSquadSelect.uc" />
+    <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NewPromotionScreenByDefault_PromotionScreenListener.uc" />
+    <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHero.uc" />
+    <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHeroColumn.uc" />
+    <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\X2DownloadableContentInfo_NewPromotionScreenbyDefault.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
