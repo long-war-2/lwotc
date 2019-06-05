@@ -411,10 +411,10 @@ function EventListenerReturn OnAddMissionEncountersToUnits(Object EventData, Obj
 				UnitState.GetUnitValue ('OfficerBonusKills', Value2);
 				TrialByFireKills = int(Value2.fValue);
 				KillsNeededForLevelUp = class'X2ExperienceConfig'.static.GetRequiredKills(UnitState.GetRank() + 1);
-				`LWTRACE (UnitState.GetLastName() @ "needs" @ KillsNeededForLevelUp @ "kills to level up. Base kills:" @UnitState.GetNumKills() @ "Mission Kill-eqivalents:" @  WeightedBonusKills @ "Old TBF Kills:" @ TrialByFireKills);
+				`LWTRACE (UnitState.GetLastName() @ "needs" @ KillsNeededForLevelUp @ "kills to level up. Base kills:" @ UnitState.KillCount @ "Mission Kill-eqivalents:" @  WeightedBonusKills @ "Old TBF Kills:" @ TrialByFireKills);
 
 				// Replace tracking num kills for XP with our own custom kill tracking
-				//KillsNeededForLevelUp -= UnitState.GetNumKills();
+				//KillsNeededForLevelUp -= UnitState.KillCount;
 				KillsNeededForLevelUp -= GetUnitValue(UnitState, 'XpKills');
 				KillsNeededForLevelUp -= Round(float(UnitState.WetWorkKills) * class'X2ExperienceConfig'.default.NumKillsBonus);
 				KillsNeededForLevelUp -= UnitState.GetNumKillsFromAssists();
@@ -509,7 +509,7 @@ function EventListenerReturn OnGetNumKillsForMissionEncounters(Object EventData,
 	local XComGameState_Unit UnitState;
 	local UnitValue MissionExperienceValue, OfficerBonusKillsValue;
 	local float MissionExperienceWeighting;
-	local int WeightedBonusKills, idx, TrialByFireKills, XpKills, UnitKills;
+	local int WeightedBonusKills, idx, TrialByFireKills, XpKills;
 
 	Tuple = XComLWTuple(EventData);
 	if(Tuple == none)
@@ -546,9 +546,8 @@ function EventListenerReturn OnGetNumKillsForMissionEncounters(Object EventData,
 	// We need to add in our own xp tracking and remove the unit kills
 	// that are added by vanilla
 	XpKills = GetUnitValue(UnitState, 'KillXp');
-	UnitKills = UnitState.GetNumKills();
 
-	Tuple.Data[0].i = WeightedBonusKills + TrialByFireKills + XpKills - UnitKills;
+	Tuple.Data[0].i = WeightedBonusKills + TrialByFireKills + XpKills - UnitState.KillCount;
 
 	return ELR_NoInterrupt;
 }
