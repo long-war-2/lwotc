@@ -48,6 +48,7 @@ var localized string m_strLiberated;
 var localized string m_strIncomeLabel;
 var localized string m_strADVENTUnitSingular;
 var localized string m_strADVENTUnitPlural;
+var localized string m_strResistanceManagementLevels;
 
 var UIList List;
 var UIBGBox ListBG;

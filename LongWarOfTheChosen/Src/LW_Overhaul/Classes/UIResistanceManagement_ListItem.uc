@@ -69,7 +69,7 @@ simulated function UpdateData(bool Focused = false)
 	local XComGameState_Unit Liaison;
 	local StateObjectReference LiaisonRef;
 
-
+	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
     Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
     Region = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(Outpost.Region.ObjectID));
 	RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region);
@@ -112,7 +112,9 @@ simulated function UpdateData(bool Focused = false)
 	}
 	else
 	{
-		strStatus = string (RegionalAI.LocalAlertLevel);
+		ParamTag.IntValue0 = RegionalAI.LocalAlertLevel;
+		ParamTag.IntValue1 = RegionalAI.LocalVigilanceLevel;
+		strStatus = `XEXPAND.ExpandString(class'UIResistanceManagement_LW'.default.m_strResistanceManagementLevels);
 	}
 	RegionStatusLabel.SetCenteredText (class'UIUtilities_Text'.static.GetColoredText(strStatus, Focused ? -1: eUIState_Normal, class'UIUtilities_Text'.const.BODY_FONT_SIZE_3D));
 

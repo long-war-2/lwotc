@@ -338,7 +338,11 @@ function string GetContactedRegionInfo(XComGameState_WorldRegion RegionState)
 		else
 		{
 			ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+			//Primary text display
 			ParamTag.IntValue0 = RegionalAIState.LocalAlertLevel;
+			ParamTag.IntValue1 = RegionalAIState.LocalForceLevel;
+			ParamTag.IntValue2 = RegionalAIState.LocalVigilanceLevel;
+			// Re-did the main m_strAlertLevel to be the mod's previous "short version"
 			ScanInfo = `XEXPAND.ExpandString(m_strAlertLevel);
 		}
 	}
