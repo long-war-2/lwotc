@@ -299,6 +299,65 @@ static function UpdateLockAndLoadBonus(optional XComGameState StartState)
 	}
 }
 
+// use new infiltration loading screens when loading into tactical missions
+static function bool LoadingScreenOverrideTransitionMap(optional out string OverrideMapName, optional XComGameState_Unit UnitState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_BattleData BattleData;
+	local XComGameState_MissionSite MissionSiteState;
+
+	History = `XCOMHISTORY;
+	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	MissionSiteState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleData.m_iMissionID));
+
+	if (`LWSQUADMGR.IsValidInfiltrationMission(MissionSiteState.GetReference()) || class'Utilities_LW'.static.CurrentMissionType() == "Rendezvous_LW")
+	{
+		if (`TACTICALGRI != none )  // only pre tactical
+		{
+			switch (MissionSiteState.GeneratedMission.Plot.strType)
+			{
+				case "CityCenter" :
+				case "Rooftops" :
+				case "Slums" :
+				case "Facility" :
+					OverrideMapName = "CIN_Loading_Infiltration_CityCenter";
+					break;
+				case "Shanty" :
+				case "SmallTown" :
+				case "Wilderness" :
+					OverrideMapName = "CIN_Loading_Infiltration_SmallTown";
+					break;
+				// WOTC TODO: Consider creating intros for these plot types
+				case "Abandoned":
+				case "Tunnels_Sewer":
+				case "Stronghold":
+				case "Tunnels_Subway":
+				default :
+					OverrideMapName = "CIN_Loading_Infiltration_CityCenter";
+					break;
+			}
+			return true;
+		}
+	}
+
+	return false;
+}
+
+// set up alternate Mission Intro for infiltration missions
+static function bool UseAlternateMissionIntroDefinition(MissionDefinition ActiveMission, int OverrideType, string OverrideTag, out MissionIntroDefinition MissionIntro)
+{
+	local XComGameState_LWSquadManager SquadMgr;
+
+	SquadMgr = `LWSQUADMGR;
+
+	if(SquadMgr.IsValidInfiltrationMission(`XCOMHQ.MissionRef) || class'Utilities_LW'.static.CurrentMissionType() == "Rendezvous_LW")
+	{
+		MissionIntro = SquadMgr.default.InfiltrationMissionIntroDefinition;
+		return true;
+	}
+	return false;
+}
+
 // *****************************************************
 // XCOM tactical mission adjustments
 //
