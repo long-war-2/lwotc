@@ -445,7 +445,7 @@ static private function SetStatusTupleData(
 	Tuple.Data[3].i = TimeValue;
 	Tuple.Data[4].i = int(State);
 	Tuple.Data[5].b = HideTime;
-	Tuple.Data[6].b = !HideTime;
+	Tuple.Data[6].b = TimeValueOverride == "";
 }
 
 // This takes on a bunch of exceptions to color ability icons
