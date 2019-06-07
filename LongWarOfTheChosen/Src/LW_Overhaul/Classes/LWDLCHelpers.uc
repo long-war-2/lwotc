@@ -137,6 +137,21 @@ static function bool IsLostTowersNarrativeEnabled()
 	return false;
 }
 
+// Replaces X2StrategyElement_DLC_Day90Techs.static.IsMechanizedWarfareAvailable()
+static function bool IsMechanizedWarfareAvailable()
+{
+    // We need MechanizedWarfare to be available in Integrated DLC mode. This function replaces the
+	// default SpecialRequirementsFn for MechanizedWarfare from WOTC with our own, making the tree
+	// function in the expected LW2 style. See also LWTemplateMods.uc for the actual replacement.
+	local XComGameState_CampaignSettings CampaignSettings;
+
+	CampaignSettings = XComGameState_CampaignSettings(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_CampaignSettings'));
+
+	if (CampaignSettings != none)
+		return (!CampaignSettings.HasOptionalNarrativeDLCEnabled(name(class'X2DownloadableContentInfo_DLC_Day90'.default.DLCIdentifier)));
+	return false;
+}
+
 static function bool IsLostTowersNarrativeContentComplete()
 {
     if(IsLostTowersNarrativeEnabled())
