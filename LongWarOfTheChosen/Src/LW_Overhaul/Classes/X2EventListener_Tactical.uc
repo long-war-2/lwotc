@@ -19,10 +19,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	return Templates;
 }
 
-////////////////
-/// Strategy ///
-////////////////
-
 static function CHEventListenerTemplate CreateEvacListeners()
 {
 	local CHEventListenerTemplate Template;
