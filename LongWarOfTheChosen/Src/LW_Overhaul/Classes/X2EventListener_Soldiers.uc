@@ -127,14 +127,12 @@ static protected function EventListenerReturn OnOverrideItemMinEquipped(Object E
 	local XComGameState_Unit	UnitState;
 	local X2EquipmentTemplate	EquipmentTemplate;
 
-	`LWTRACE("OverrideItemMinEquipped : Starting listener.");
 	OverrideTuple = XComLWTuple(EventData);
 	if (OverrideTuple == none)
 	{
 		`REDSCREEN("OverrideItemMinEquipped event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideItemMinEquipped : Parsed XComLWTuple.");
 
 	UnitState = XComGameState_Unit(EventSource);
 	if (UnitState == none)
@@ -142,7 +140,6 @@ static protected function EventListenerReturn OnOverrideItemMinEquipped(Object E
 		`REDSCREEN("OverrideItemMinEquipped event triggered with invalid source data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideItemMinEquipped : EventSource valid.");
 
 	if (OverrideTuple.Id != 'OverrideItemMinEquipped')
 	{
