@@ -34,7 +34,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 static function CHEventListenerTemplate CreateListeners()
 {
-    local CHEventListenerTemplate Template;
+	local CHEventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'GrazeBandListeners');
 	Template.AddCHEvent('OverrideFinalHitChance', ToHitOverrideListener, ELD_Immediate, GetListenerPriority());
@@ -166,19 +166,26 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 	}
 
 	HitChance = ShotBreakdown.ResultTable[eHit_Success];
-	if(HitChance < 0)
+	// LWOTC: If hit chance is within grazeband of either 0 or 100%, then adjust
+	// the band so that 100% is a hit and 0% is a miss.
+	if (HitChance < GrazeBand)
 	{
-		GrazeChance = Max(0, GrazeBand + HitChance); // if hit drops too low, there's not even a chance to graze
-	} else if(HitChance > 100)
-	{
-		GrazeChance = Max(0, GrazeBand - (HitChance-100));  // if hit is high enough, there's not even a chance to graze
-	} else {
-		GrazeChance_Hit = Clamp(HitChance, 0, GrazeBand); // captures the "low" side where you just barely hit
-		GrazeChance_Miss = Clamp(100 - HitChance, 0, GrazeBand);  // captures the "high" side where  you just barely miss
-		GrazeChance = GrazeChance_Hit + GrazeChance_Miss;
+		GrazeBand = Max(0, HitChance);
 	}
-	if(bLogHitChance)
+	else if (HitChance > (100 - GrazeBand))
+	{
+		GrazeBand = Max(0, 100 - HitChance);
+	}
+	// End LWOTC change
+
+	GrazeChance_Hit = Clamp(HitChance, 0, GrazeBand); // captures the "low" side where you just barely hit
+	GrazeChance_Miss = Clamp(100 - HitChance, 0, GrazeBand);  // captures the "high" side where  you just barely miss
+	GrazeChance = GrazeChance_Hit + GrazeChance_Miss;
+
+	if (bLogHitChance)
+	{
 		`LWTRACE("Graze Chance from band = " $ GrazeChance, bLogHitChance);
+	}
 
 	//STEP 2 Update Hit Chance to remove GrazeChance -- for low to-hits this can be zero
 	HitChance = Clamp(Min(100, HitChance)-GrazeChance_Hit, 0, 100-GrazeChance);

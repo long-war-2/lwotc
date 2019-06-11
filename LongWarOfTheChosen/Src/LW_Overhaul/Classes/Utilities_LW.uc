@@ -658,3 +658,70 @@ function static AddUnitToXComGroup(XComGameState NewGameState, XComGameState_Uni
         }
     }
 }
+
+/* Find the number of enemies that were on the original mission schedule.
+ * If the mission was an RNF-only mission then it returns 8 + the region alert
+ * the mission is in.
+ */
+ static function int GetNumEnemiesOnMission(XComGameState_MissionSite MissionState)
+{
+	local int OrigMissionAliens;
+	local array<X2CharacterTemplate> UnitTemplatesThatWillSpawn;
+	local XComGameState_WorldRegion Region;
+	local XComGameState_WorldRegion_LWStrategyAI RegionAI;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+
+	MissionState.GetShadowChamberMissionInfo(OrigMissionAliens, UnitTemplatesThatWillSpawn);
+
+	// Handle missions built primarily around RNFs by granting a minimum alien count
+	if (OrigMissionAliens <= 6)
+	{
+		Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(MissionState.Region.ObjectID));
+		RegionAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region);
+		OrigMissionAliens = 7 + RegionAI.LocalAlertLevel;
+	}
+
+	return OrigMissionAliens;
+}
+
+static function bool KillXpIsCapped()
+{
+	local XComGameStateHistory History;
+	local XComGameState_Unit UnitState;
+	local XComGameState_BattleData BattleState;
+	local XComGameState_MissionSite MissionState;
+	local int MissionKillXp, MaxKillXp;
+
+	History = `XCOMHISTORY;
+
+	BattleState = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	if(BattleState == none)
+		return false;
+
+	MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleState.m_iMissionID));
+	if(MissionState == none)
+		return false;
+
+	MaxKillXp = GetNumEnemiesOnMission(MissionState);
+
+	// Get the sum of xp kills so far this mission
+	MissionKillXp = 0;
+	foreach History.IterateByClassType(class'XComGameState_Unit', UnitState)
+	{
+		if(UnitState.IsSoldier() && UnitState.IsPlayerControlled())
+			MissionKillXp += int(GetUnitValue(UnitState, 'MissionKillXp'));
+	}
+
+	return MissionKillXp >= MaxKillXp;
+}
+
+static function float GetUnitValue(XComGameState_Unit UnitState, Name ValueName)
+{
+	local UnitValue Value;
+
+	Value.fValue = 0.0;
+	UnitState.GetUnitValue(ValueName, Value);
+	return Value.fValue;
+}

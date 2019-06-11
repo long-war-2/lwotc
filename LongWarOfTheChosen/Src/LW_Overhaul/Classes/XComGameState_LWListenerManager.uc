@@ -5,12 +5,6 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_LWListenerManager extends XComGameState_BaseObject config(LW_Overhaul) dependson(XComGameState_LWPersistentSquad);
 
-struct ClassMissionExperienceWeighting
-{
-	var name SoldierClass;
-	var float MissionExperienceWeight;
-};
-
 struct MinimumInfilForConcealEntry
 {
 	var string MissionType;
@@ -26,12 +20,6 @@ var config int SNARE_EVAC_DELAY; // deprecated
 
 var int OverrideNumUtilitySlots;
 
-var config float DEFAULT_MISSION_EXPERIENCE_WEIGHT;
-var config array<ClassMissionExperienceWeighting> CLASS_MISSION_EXPERIENCE_WEIGHTS;
-
-var config float MAX_RATIO_MISSION_XP_ON_FAILED_MISSION;
-var config int SQUAD_SIZE_MIN_FOR_XP_CALCS;
-var config float TOP_RANK_XP_TRANSFER_FRACTION;
 var localized string ResistanceHQBodyText;
 
 
@@ -105,12 +93,6 @@ function InitListeners()
 	//end of month and reward soldier handling of new soldiers
 	EventMgr.RegisterForEvent(ThisObj, 'SoldierCreatedEvent', OnSoldierCreatedEvent, ELD_OnStateSubmitted,,,true);
 	
-	//xp system modifications -- handles assigning of mission "encounters" as well as adding to effective kills based on the value
-	// WOTC TODO: Requires change to CHL XComGameState_XpManager
-	EventMgr.RegisterForEvent(ThisObj, 'OnDistributeTacticalGameEndXP', OnAddMissionEncountersToUnits, ELD_OnStateSubmitted,,,true);
-	// WOTC TODO: Requires change to CHL XComGameState_Unit
-	EventMgr.RegisterForEvent(ThisObj, 'GetNumKillsForRankUpSoldier', OnGetNumKillsForMissionEncounters, ELD_Immediate,,,true);
-	EventMgr.RegisterForEvent(ThisObj, 'XpKillShot', OnRewardKillXp, ELD_Immediate,,,true);
 	// WOTC TODO: Requires change to CHL XComGameState_Unit
 	EventMgr.RegisterForEvent(ThisObj, 'ShouldShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate,,,true);
 	EventMgr.RegisterForEvent(ThisObj, 'OverrideCollectorActivation', OverrideCollectorActivation, ELD_Immediate,,,true);
@@ -201,335 +183,6 @@ function EventListenerReturn OnSkyrangerArrives(Object EventData, Object EventSo
 	return ELR_InterruptListeners;
 }
 
-function EventListenerReturn OnAddMissionEncountersToUnits(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	local XComGameState_BattleData BattleState;
-	local XComGameState_MissionSite MissionState;
-	local XComGameStateHistory History;
-	local XComGameState_XpManager XpManager;
-	local XComGameState_HeadquartersXCom XComHQ;
-	local XComGameState NewGameState;
-	local StateObjectReference UnitRef;
-	local XComGameState_Unit UnitState;
-	local array<XComGameState_Unit> UnitStates;
-	local UnitValue Value, TestValue, Value2;
-	local float MissionWeight, UnitShare, MissionExperienceWeighting, UnitShareDivisor;
-	local bool TBFInEffect;
-	local int TrialByFireKills, KillsNeededForLevelUp, WeightedBonusKills, idx;
-	local XComGameState_Unit_LWOfficer OfficerState;
-	local X2MissionSourceTemplate MissionSource;
-	local bool PlayerWonMission;
-    local MissionSettings_LW Settings;
-    local XComGameState_LWOutpost Outpost;
-
-	`LWTRACE ("OnAddMissionEncountersToUnits triggered");
-
-	XComHQ = XComGameState_HeadquartersXCom(EventData);
-	if(XComHQ == none)
-		return ELR_NoInterrupt;
-
-	XpManager = XComGameState_XpManager(EventSource);
-	if(XpManager == none)
-	{
-		`REDSCREEN("OnAddMissionEncountersToUnits event triggered with invalid event source.");
-		return ELR_NoInterrupt;
-	}
-
-	History = `XCOMHISTORY;
-
-	BattleState = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-	if (BattleState.m_iMissionID != XComHQ.MissionRef.ObjectID)
-	{
-		`REDSCREEN("LongWar: Mismatch in BattleState and XComHQ MissionRef when assigning XP");
-		return ELR_NoInterrupt;
-	}
-
-	MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleState.m_iMissionID));
-	if(MissionState == none)
-		return ELR_NoInterrupt;
-
-	MissionWeight = GetMissionWeight(History, XComHQ, BattleState, MissionState);
-
-	//Build NewGameState change container
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Add Mission Encounter Values");
-	foreach XComHQ.Squad(UnitRef)
-	{
-		if (UnitRef.ObjectID == 0)
-			continue;
-
-		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitRef.ObjectID));
-		if (UnitState.IsSoldier())
-		{
-			NewGameState.AddStateObject(UnitState);
-			UnitStates.AddItem(UnitState);
-		}
-		else
-		{
-			NewGameState.PurgeGameStateForObjectID(UnitState.ObjectID);
-		}
-	}
-
-    // Include the adviser if they were on this mission too
-    if (class'Utilities_LW'.static.GetMissionSettings(MissionState, Settings))
-    {
-        if (Settings.RestrictsLiaison)
-        {
-            Outpost = `LWOUTPOSTMGR.GetOutpostForRegion(MissionState.GetWorldRegion());
-            UnitRef = Outpost.GetLiaison();
-            if (UnitRef.ObjectID > 0)
-            {
-                UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitRef.ObjectID));
-                if (UnitState.IsSoldier())
-                {
-                    NewGameState.AddStateObject(UnitState);
-                    UnitStates.AddItem(UnitState);
-                    // Set the liaison as not ranked up. This is handled in DistributeTacticalGameEndXp but only
-                    // for members of the squad.
-                    if (!class'X2ExperienceConfig'.default.bUseFullXpSystem)
-                    {
-                        UnitState.bRankedUp = false;
-                    }
-                }
-                else
-                {
-                    NewGameState.PurgeGameStateForObjectID(UnitState.ObjectID);
-                }
-            }
-        }
-    }
-
-	PlayerWonMission = true;
-	MissionSource = MissionState.GetMissionSource();
-	if(MissionSource.WasMissionSuccessfulFn != none)
-	{
-		PlayerWonMission = MissionSource.WasMissionSuccessfulFn(BattleState);
-	}
-
-
-	TBFInEffect = false;
-
-	if (PlayerWonMission)
-	{
-		foreach UnitStates(UnitState)
-		{
-			if (UnitState.IsSoldier() && !UnitState.IsDead() && !UnitState.bCaptured)
-			{
-				if (class'LWOfficerUtilities'.static.IsOfficer(UnitState))
-				{
-					if (class'LWOfficerUtilities'.static.IsHighestRankOfficerinSquad(UnitState))
-					{
-						OfficerState = class'LWOfficerUtilities'.static.GetOfficerComponent(UnitState);
-						if (OfficerState.HasOfficerAbility('TrialByFire'))
-						{
-							TBFInEffect = true;
-							`LWTRACE ("TBFInEffect set from" @ UnitState.GetLastName());
-						}
-					}
-				}
-			}
-		}
-	}
-
-	UnitShareDivisor = UnitStates.Length;
-
-	// Count top rank
-	foreach UnitStates(UnitState)
-	{
-		if (UnitState.IsSoldier() && !UnitState.IsDead() && !UnitState.bCaptured)
-		{
-			if (UnitState.GetRank() >= class'X2ExperienceConfig'.static.GetMaxRank())
-			{
-				UnitShareDivisor -= default.TOP_RANK_XP_TRANSFER_FRACTION;
-			}
-		}
-	}
-
-	UnitShareDivisor = Max (UnitShareDivisor, default.SQUAD_SIZE_MIN_FOR_XP_CALCS);
-
-	if (UnitShareDivisor < 1) 
-		UnitShareDivisor = 1;
-
-	UnitShare = MissionWeight / UnitShareDivisor;
-
-	foreach UnitStates(UnitState)
-	{
-
-		// Zero out any previous value from an earlier iteration: GetUnitValue will return without zeroing
-		// the out param if the value doesn't exist on the unit. If this is the first mission this unit went
-		// on they will "inherit" the total XP of the unit immediately before them in the squad unless this
-		// is cleared.
-		Value.fValue = 0;
-		UnitState.GetUnitValue('MissionExperience', Value);
-		UnitState.SetUnitFloatValue('MissionExperience', UnitShare + Value.fValue, eCleanup_Never);
-		UnitState.GetUnitValue('MissionExperience', TestValue);
-		`LWTRACE("MissionXP: PreXp=" $ Value.fValue $ ", PostXP=" $ TestValue.fValue $ ", UnitShare=" $ UnitShare $ ", Unit=" $ UnitState.GetFullName());
-
-		if (TBFInEffect)
-		{
-			if (class'LWOfficerUtilities'.static.IsOfficer(UnitState))
-			{
-				if (class'LWOfficerUtilities'.static.IsHighestRankOfficerinSquad(UnitState))
-				{
-					`LWTRACE (UnitState.GetLastName() @ "is the TBF officer.");
-					continue;
-				}
-			}
-
-			if (UnitState.GetRank() < class'LW_OfficerPack_Integrated.X2Ability_OfficerAbilitySet'.default.TRIAL_BY_FIRE_RANK_CAP)
-			{
-				idx = CLASS_MISSION_EXPERIENCE_WEIGHTS.Find('SoldierClass', UnitState.GetSoldierClassTemplateName());
-				if (idx != -1)
-					MissionExperienceWeighting = CLASS_MISSION_EXPERIENCE_WEIGHTS[idx].MissionExperienceWeight;
-				else
-					MissionExperienceWeighting = DEFAULT_MISSION_EXPERIENCE_WEIGHT;
-
-				WeightedBonusKills = Round(Value.fValue * MissionExperienceWeighting);
-
-				Value2.fValue = 0;
-				UnitState.GetUnitValue ('OfficerBonusKills', Value2);
-				TrialByFireKills = int(Value2.fValue);
-				KillsNeededForLevelUp = class'X2ExperienceConfig'.static.GetRequiredKills(UnitState.GetRank() + 1);
-				`LWTRACE (UnitState.GetLastName() @ "needs" @ KillsNeededForLevelUp @ "kills to level up. Base kills:" @ UnitState.KillCount @ "Mission Kill-eqivalents:" @  WeightedBonusKills @ "Old TBF Kills:" @ TrialByFireKills);
-
-				// Replace tracking num kills for XP with our own custom kill tracking
-				//KillsNeededForLevelUp -= UnitState.KillCount;
-				KillsNeededForLevelUp -= GetUnitValue(UnitState, 'XpKills');
-				KillsNeededForLevelUp -= Round(float(UnitState.WetWorkKills) * class'X2ExperienceConfig'.default.NumKillsBonus);
-				KillsNeededForLevelUp -= UnitState.GetNumKillsFromAssists();
-				KillsNeededForLevelUp -= class'X2ExperienceConfig'.static.GetRequiredKills(UnitState.StartingRank);
-				KillsNeededForLevelUp -= WeightedBonusKills;
-				KillsNeededForLevelUp -= TrialByFireKills;
-
-				if (KillsNeededForLevelUp > 0)
-				{
-					`LWTRACE ("Granting" @ KillsNeededForLevelUp @ "TBF kills to" @ UnitState.GetLastName());
-					TrialByFireKills += KillsNeededForLevelUp;
-					UnitState.SetUnitFloatValue ('OfficerBonusKills', TrialByFireKills, eCleanup_Never);
-					`LWTRACE (UnitState.GetLastName() @ "now has" @ TrialByFireKills @ "total TBF bonus Kills");
-				}
-				else
-				{
-					`LWTRACE (UnitState.GetLastName() @ "already ranking up so TBF has no effect.");
-				}
-			}
-			else
-			{
-				`LWTRACE (UnitState.GetLastName() @ "rank too high for TBF");
-			}
-		}
-	}
-	`GAMERULES.SubmitGameState(NewGameState);
-	return ELR_NoInterrupt;
-}
-
-/* Find the number of enemies that were on the original mission schedule.
- * If the mission was an RNF-only mission then it returns 8 + the region alert
- * the mission is in.
- */
-function int GetNumEnemiesOnMission(XComGameState_MissionSite MissionState)
-{
-	local int OrigMissionAliens;
-	local array<X2CharacterTemplate> UnitTemplatesThatWillSpawn;
-	local XComGameState_WorldRegion Region;
-	local XComGameState_WorldRegion_LWStrategyAI RegionAI;
-	local XComGameStateHistory History;
-
-	History = `XCOMHISTORY;
-
-	MissionState.GetShadowChamberMissionInfo(OrigMissionAliens, UnitTemplatesThatWillSpawn);
-
-	// Handle missions built primarily around RNFs by granting a minimum alien count
-	if (OrigMissionAliens <= 6)
-	{
-		Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(MissionState.Region.ObjectID));
-		RegionAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region);
-		OrigMissionAliens = 7 + RegionAI.LocalAlertLevel;
-	}
-
-	return OrigMissionAliens;
-}
-
-/* Finds the number of aliens that should be used in determining distributed mission xp.
- * If the mission was a failure then it will scale the amount down by the ratio of the
- * number of aliens killed to the number originally on the mission, and a further configurable
- * amount.
- */
-function float GetMissionWeight(XComGameStateHistory History, XComGameState_HeadquartersXCom XComHQ, XComGameState_BattleData BattleState, XComGameState_MissionSite MissionState)
-{
-	local X2MissionSourceTemplate MissionSource;
-	local bool PlayerWonMission;
-	local float fTotal;
-	local int AliensSeen, AliensKilled, OrigMissionAliens;
-
-	AliensKilled = class'UIMissionSummary'.static.GetNumEnemiesKilled(AliensSeen);
-	OrigMissionAliens = GetNumEnemiesOnMission(MissionState);
-
-	PlayerWonMission = true;
-	MissionSource = MissionState.GetMissionSource();
-	if(MissionSource.WasMissionSuccessfulFn != none)
-	{
-		PlayerWonMission = MissionSource.WasMissionSuccessfulFn(BattleState);
-	}
-
-	fTotal = float (OrigMissionAliens);
-
-	if (!PlayerWonMission)
-	{
-		fTotal *= default.MAX_RATIO_MISSION_XP_ON_FAILED_MISSION * FMin (1.0, float (AliensKilled) / float(OrigMissionAliens));
-	}
-
-	return fTotal;
-}
-
-function EventListenerReturn OnGetNumKillsForMissionEncounters(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	local XComLWTuple Tuple;
-	local XComGameState_Unit UnitState;
-	local UnitValue MissionExperienceValue, OfficerBonusKillsValue;
-	local float MissionExperienceWeighting;
-	local int WeightedBonusKills, idx, TrialByFireKills, XpKills;
-
-	Tuple = XComLWTuple(EventData);
-	if(Tuple == none)
-		return ELR_NoInterrupt;
-
-	UnitState = XComGameState_Unit(EventSource);
-	if(UnitState == none)
-	{
-		`REDSCREEN("OnGetNumKillsForMissionEncounters event triggered with invalid event source.");
-		return ELR_NoInterrupt;
-	}
-
-	if (Tuple.Data[0].kind != XComLWTVInt)
-		return ELR_NoInterrupt;
-
-	UnitState.GetUnitValue('MissionExperience', MissionExperienceValue);
-
-	idx = CLASS_MISSION_EXPERIENCE_WEIGHTS.Find('SoldierClass', UnitState.GetSoldierClassTemplateName());
-	if (idx != -1)
-		MissionExperienceWeighting = CLASS_MISSION_EXPERIENCE_WEIGHTS[idx].MissionExperienceWeight;
-	else
-		MissionExperienceWeighting = DEFAULT_MISSION_EXPERIENCE_WEIGHT;
-
-	WeightedBonusKills = Round(MissionExperienceValue.fValue * MissionExperienceWeighting);
-
-	//check for officer with trial by and folks under rank, give them sufficient kills to level-up
-
-	OfficerBonusKillsValue.fValue = 0;
-	UnitState.GetUnitValue ('OfficerBonusKills', OfficerBonusKillsValue);
-	TrialByFireKills = int(OfficerBonusKillsValue.fValue);
-
-	//`LWTRACE (UnitState.GetLastName() @ "has" @ WeightedBonusKills @ "bonus kills from Mission XP and" @ TrialByFireKills @ "bonus kills from Trial By Fire.");
-
-	// We need to add in our own xp tracking and remove the unit kills
-	// that are added by vanilla
-	XpKills = GetUnitValue(UnitState, 'KillXp');
-
-	Tuple.Data[0].i = WeightedBonusKills + TrialByFireKills + XpKills - UnitState.KillCount;
-
-	return ELR_NoInterrupt;
-}
-
 function EventListenerReturn OnCheckForPsiPromotion(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
 	local XComLWTuple Tuple;
@@ -559,35 +212,6 @@ function EventListenerReturn OnCheckForPsiPromotion(Object EventData, Object Eve
 	return ELR_NoInterrupt;
 }
 
-/* Triggered by XpKillShot event so that we can increment the kill xp for the
-	killer as long as the total gained kill xp does not exceed the number of
-	enemy units that were initially spawned.
-*/
-function EventListenerReturn OnRewardKillXp(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-	local XComGameState_Unit NewUnitState;
-	local XpEventData XpEvent;
-
-	XpEvent = XpEventData(EventData);
-
-	// Create a new unit state if we need one.
-	NewUnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(XpEvent.XpEarner.ObjectID));
-	if(NewUnitState == none)
-	{
-		NewUnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', XpEvent.XpEarner.ObjectID));
-		NewGameState.AddStateObject(NewUnitState);
-	}
-
-	// Ensure we don't award xp kills beyond what was originally on the mission
-	if(!KillXpIsCapped())
-	{
-		NewUnitState.SetUnitFloatValue('MissionKillXp', GetUnitValue(NewUnitState, 'MissionKillXp') + 1, eCleanup_BeginTactical);
-		NewUnitState.SetUnitFloatValue('KillXp', GetUnitValue(NewUnitState, 'KillXp') + 1, eCleanup_Never);
-	}
-
-	return ELR_NoInterrupt;
-}
-
 function EventListenerReturn OverrideCollectorActivation(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local XComLWTuple OverrideActivation;
@@ -596,7 +220,7 @@ function EventListenerReturn OverrideCollectorActivation(Object EventData, Objec
 
 	if(OverrideActivation != none && OverrideActivation.Id == 'OverrideCollectorActivation' && OverrideActivation.Data[0].kind == XComLWTVBool)
 	{
-		OverrideActivation.Data[0].b = KillXpIsCapped();
+		OverrideActivation.Data[0].b = class'Utilities_LW'.static.KillXpIsCapped();
 	}
 
 	return ELR_NoInterrupt;
@@ -610,50 +234,10 @@ function EventListenerReturn OverrideScavengerActivation(Object EventData, Objec
 
 	if(OverrideActivation != none && OverrideActivation.Id == 'OverrideScavengerActivation' && OverrideActivation.Data[0].kind == XComLWTVBool)
 	{
-		OverrideActivation.Data[0].b = KillXpIsCapped();
+		OverrideActivation.Data[0].b = class'Utilities_LW'.static.KillXpIsCapped();
 	}
 
 	return ELR_NoInterrupt;
-}
-
-function bool KillXpIsCapped()
-{
-	local XComGameStateHistory History;
-	local XComGameState_Unit UnitState;
-	local XComGameState_BattleData BattleState;
-	local XComGameState_MissionSite MissionState;
-	local int MissionKillXp, MaxKillXp;
-
-	History = `XCOMHISTORY;
-
-	BattleState = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-	if(BattleState == none)
-		return false;
-
-	MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleState.m_iMissionID));
-	if(MissionState == none)
-		return false;
-
-	MaxKillXp = GetNumEnemiesOnMission(MissionState);
-
-	// Get the sum of xp kills so far this mission
-	MissionKillXp = 0;
-	foreach History.IterateByClassType(class'XComGameState_Unit', UnitState)
-	{
-		if(UnitState.IsSoldier() && UnitState.IsPlayerControlled())
-			MissionKillXp += int(GetUnitValue(UnitState, 'MissionKillXp'));
-	}
-
-	return MissionKillXp >= MaxKillXp;
-}
-
-function float GetUnitValue(XComGameState_Unit UnitState, Name ValueName)
-{
-	local UnitValue Value;
-
-	Value.fValue = 0.0;
-	UnitState.GetUnitValue(ValueName, Value);
-	return Value.fValue;
 }
 
 function EventListenerReturn OnInsertFirstMissionIcon(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
