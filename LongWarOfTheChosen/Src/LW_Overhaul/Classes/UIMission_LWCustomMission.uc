@@ -133,6 +133,13 @@ simulated function BindLibraryItem()
 
 				ShadowChamber = Spawn(class'UIAlertShadowChamberPanel', LibraryPanel);
 				ShadowChamber.InitPanel('ShadowChamber');
+
+				SitrepPanel = Spawn(class'UIAlertSitRepPanel', LibraryPanel);
+				SitrepPanel.InitPanel('SitRep', 'Alert_SitRep');
+				SitrepPanel.SetTitle(m_strSitrepTitle);
+
+				ChosenPanel = Spawn(class'UIPanel', LibraryPanel).InitPanel(, 'Alert_ChosenRegionInfo');
+				ChosenPanel.DisableNavigation();
 			}
 
 			break;
