@@ -3135,7 +3135,8 @@ static function bool IsUnitValidForSparkSlotWithInfiltration(XComGameState_Staff
 
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
 	
-	if(Unit.CanBeStaffed() 
+	if (Unit.IsAlive()
+		&& Unit.GetMyTemplate().bStaffingAllowed
 		&& Unit.GetReference().ObjectID != SlotState.GetAssignedStaffRef().ObjectID
 		&& Unit.IsSoldier()
 		&& Unit.IsInjured()
