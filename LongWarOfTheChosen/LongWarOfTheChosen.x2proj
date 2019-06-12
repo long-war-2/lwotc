@@ -409,11 +409,9 @@
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\UISquadSelect_UtilityItem_LWOfficerPack.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\UITacticalHUD_MouseControls_LWOfficerPack.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2AbilityCharges_Command.uc" />
-    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2AbilityMultiTarget_LWOfficerCommandRange.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2AbilityToHitCalc_LWCommandRange.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Ability_OfficerAbilitySet.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Ability_OfficerAbilitySet_PassiveAuras.uc" />
-    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Ability_ToggleCommandRange.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Condition_EspritDeCorps.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Condition_HasEnoughIntel.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Condition_Intervention.uc" />
@@ -1075,6 +1073,7 @@
     <Content Include="Src\LW_Overhaul\Classes\UIAdventOperations_LW.uc" />
     <Content Include="Content\CIN_TroopTransport.upk" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_GrazeBand.uc" />
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2TargetingMethod_CommandRange.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

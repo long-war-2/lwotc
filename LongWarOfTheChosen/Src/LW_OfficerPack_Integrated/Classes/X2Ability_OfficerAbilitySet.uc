@@ -53,6 +53,7 @@ var const name OfficerSourceName; // change this once UI work is done
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
+	local int i;
 
 	`LWTrace("  >> X2Ability_OfficerAbilitySet.CreateTemplates()");
 	
@@ -77,6 +78,16 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddEspritdeCorpsAbility());
 
 	Templates.AddItem(PurePassive('TrialByFire', "img:///UILibrary_LW_Overhaul.UIPerk_TrialByFire", true));
+
+	// Add the command bonus range ability templates, one for each officer rank.
+	// i == 1 is 2nd Lieutenant.
+	for (i = 1; i < class'LWOfficerUtilities'.default.MaxOfficerRank; i++)
+	{
+		Templates.AddItem(PurePassive(
+			class'LWOfficerUtilities'.static.GetCommandRangeAbilityName(i),
+			"img:///UILibrary_LW_OfficerPack.LWOfficers_Generic",
+			true, 'eAbilitySource_Perk'));
+	}
 
 	return Templates;
 }
@@ -146,8 +157,6 @@ static function X2AbilityTemplate AddGetSomeAbility()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
 
-	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_AllAllies';
-
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
 	MultiTargetProperty = new class'X2Condition_UnitProperty';
@@ -162,7 +171,8 @@ static function X2AbilityTemplate AddGetSomeAbility()
 	MultiTargetProperty.ExcludeCivilian = true;
 
 	//add command range
-	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_LWOfficerCommandRange';
+	ConfigureCommandRangeMultiTargetStyle(Template, true);
+	Template.AbilityMultiTargetConditions.AddItem(MultiTargetProperty);
 
 	StatEffect = new class'X2Effect_PersistentStatChange';
 	StatEffect.BuildPersistentEffect(default.GETSOME_DURATION, false, true, false, eGameRule_PlayerTurnBegin);
@@ -618,7 +628,8 @@ static function X2AbilityTemplate AddOscarMikeAbility()
 	MultiTargetProperty.TreatMindControlledSquadmateAsHostile = true;
 
 	//add command range
-	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_LWOfficerCommandRange';
+	ConfigureCommandRangeMultiTargetStyle(Template, true);
+	Template.AbilityMultiTargetConditions.AddItem(MultiTargetProperty);
 
 	StatEffect = new class'X2Effect_PersistentStatChange';
 	StatEffect.BuildPersistentEffect(default.OSCARMIKE_DURATION, false, true, false, eGameRule_PlayerTurnBegin);
@@ -1031,17 +1042,18 @@ static function X2AbilityTemplate AddIncomingAbility()
 	Cooldown.iNumTurns = default.INCOMING_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
-	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_LWOfficerCommandRange';
+	ConfigureCommandRangeMultiTargetStyle(Template);
+
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
-    UnitPropertyCondition.ExcludeDead = true;
-    UnitPropertyCondition.ExcludeFriendlyToSource = false;
-    UnitPropertyCondition.ExcludeUnrevealedAI = true;
+	UnitPropertyCondition.ExcludeDead = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	UnitPropertyCondition.ExcludeUnrevealedAI = true;
 	UnitPropertyCondition.ExcludeConcealed = false;
 	UnitPropertyCondition.TreatMindControlledSquadmateAsHostile = true;
 	UnitPropertyCondition.ExcludeAlive = false;
-    UnitPropertyCondition.ExcludeHostileToSource = true;
-    UnitPropertyCondition.RequireSquadmates = true;
-    UnitPropertyCondition.ExcludePanicked = true;
+	UnitPropertyCondition.ExcludeHostileToSource = true;
+	UnitPropertyCondition.RequireSquadmates = true;
+	UnitPropertyCondition.ExcludePanicked = true;
 	UnitPropertyCondition.ExcludeRobotic = false;
 	UnitPropertyCondition.ExcludeStunned = true;
 	UnitPropertyCondition.ExcludeNoCover = false;
@@ -1488,6 +1500,34 @@ static function X2AbilityTemplate AddEspritdeCorpsAbility()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
+}
+
+// Configures the given template to use a radius-based multi-target style centered
+// on the officer. In addition, it attaches the various command bonus range abilities
+// so that the correct radius is used for the officer's rank.
+static function ConfigureCommandRangeMultiTargetStyle(X2AbilityTemplate Template, optional bool ExcludeSelf)
+{
+	local X2AbilityMultiTarget_Radius MultiTarget;
+	local int i;
+
+	MultiTarget = new class'X2AbilityMultiTarget_Radius';
+	MultiTarget.fTargetRadius = `UNITSTOMETERS(`TILESTOUNITS(default.BaseCommandRange));
+	MultiTarget.bUseWeaponRadius = false;
+	MultiTarget.bIgnoreBlockingCover = true;
+	MultiTarget.bAddPrimaryTargetAsMultiTarget = false;
+	MultiTarget.bAllowDeadMultiTargetUnits = false;
+	MultiTarget.bAllowSameTarget = false;
+	MultiTarget.bExcludeSelfAsTargetIfWithinRadius = ExcludeSelf;
+
+	for (i = 1; i < class'LWOfficerUtilities'.default.MaxOfficerRank; i++)
+	{
+		MultiTarget.AddAbilityBonusRadius(
+			class'LWOfficerUtilities'.static.GetCommandRangeAbilityName(i),
+			`UNITSTOMETERS(`TILESTOUNITS(default.CommandRangePerRank * i)));
+	}
+
+	Template.AbilityMultiTargetStyle = MultiTarget;
+	Template.TargetingMethod = class'X2TargetingMethod_CommandRange';
 }
 
 

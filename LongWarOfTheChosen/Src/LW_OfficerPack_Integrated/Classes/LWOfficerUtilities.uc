@@ -278,6 +278,13 @@ static function name GetAbilityName(const int Rank, const int Option)
 	return '';
 }
 
+// Returns the name of the Command Range ability that grants bonus command
+// range at the given rank.
+static function name GetCommandRangeAbilityName(const int Rank)
+{
+	return name("CommandRange" $ Rank);
+}
+
 //Returns the path to the Officer rank icon of the given rank
 static function string GetRankIcon(const int Rank)
 {
@@ -367,7 +374,7 @@ static function XComGameState_Unit AddInitialAbilities(XComGameState_Unit Update
 		{
 			if (default.OfficerAbilityTree[i].Rank == 0)
 			{
-				StarterAbility.AbilityName = class'LWOfficerUtilities'.default.OfficerAbilityTree[i].AbilityName;
+				StarterAbility.AbilityName = default.OfficerAbilityTree[i].AbilityName;
 				StarterAbility.ApplyToWeaponSlot = eInvSlot_Unknown;
 				StarterAbility.UtilityCat = '';
 				NewStarterAbility.AbilityType = StarterAbility;

@@ -96,7 +96,7 @@ function OnProjectCompleted()
 	local XComGameState UpdateState;
 	local XComGameStateContext_ChangeContainer ChangeContainer;
 	local SoldierClassAbilityType Ability;
-	local ClassAgnosticAbility NewOfficerAbility;
+	local ClassAgnosticAbility NewOfficerAbility, CommandBonusRangeAbility;
 	local XComGameState_HeadquartersProjectTrainLWOfficer ProjectState;
 	local XComGameState_StaffSlot StaffSlotState;
 
@@ -125,6 +125,21 @@ function OnProjectCompleted()
 	//OfficerState.SetRankTraining(-1, '');
 	//UpdatedUnit.AWCAbilities.AddItem(NewOfficerAbility);
 	OfficerState.OfficerAbilities.AddItem(NewOfficerAbility);
+
+	// Remove the previous command range buff ability if there is one and attach
+	// the new one.
+	if (NewRank > 1)
+	{
+		foreach OfficerState.OfficerAbilities(CommandBonusRangeAbility)
+		{
+			if (CommandBonusRangeAbility.AbilityType.AbilityName == class'LWOfficerUtilities'.static.GetCommandRangeAbilityName(NewRank - 1))
+			{
+				OfficerState.OfficerAbilities.RemoveItem(CommandBonusRangeAbility);
+			}
+		}
+	}
+	OfficerState.OfficerAbilities.AddItem(CreateCommandBonusRangeAbility(NewRank));
+
 	UpdatedUnit.SetStatus(eStatus_Active);
 
 	//ProjectState = XComGameState_HeadquartersProjectTrainLWOfficer(`XCOMHISTORY.GetGameStateForObjectID(ProjectRef.ObjectID));
@@ -232,6 +247,24 @@ simulated function GoToArmoryLWOfficerPromotion(StateObjectReference UnitRef, op
 function string GetDisplayName()
 {
 	return "";
+}
+
+// Creates a command bonus range ability for the given rank. This is just a convenience
+// for creating the ability and its ability type using the appropriate ability name for
+// the rank.
+function ClassAgnosticAbility CreateCommandBonusRangeAbility(int Rank)
+{
+	local SoldierClassAbilityType AbilityType;
+	local ClassAgnosticAbility NewAbility;
+
+	AbilityType.AbilityName = class'LWOfficerUtilities'.static.GetCommandRangeAbilityName(Rank);
+	AbilityType.ApplyToWeaponSlot = eInvSlot_Unknown;
+	AbilityType.UtilityCat = '';
+	NewAbility.AbilityType = AbilityType;
+	NewAbility.iRank = Rank;
+	NewAbility.bUnlocked = true;
+
+	return NewAbility;
 }
 
 //---------------------------------------------------------------------------------------
