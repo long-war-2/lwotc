@@ -19,7 +19,6 @@ function bool NearestAllyBeyondRange (XComGameState_Unit LWUnit)
 	local XComUnitPawn	TestAllyPawn;
 	local XGUnit TestAllyVisualizer;
 
-	`PPTRACE ("LONE WOLF START");
 	foreach `XCOMHISTORY.IterateByClassType (class'XComGameState_Unit', TestAlly)
 	{
 		if (LWUnit == none || TestAlly == none) { continue; }
