@@ -3036,6 +3036,11 @@ function ReconfigStaffSlots(X2StrategyElementTemplate Template, int Difficulty)
 		else if (StaffSlotTemplate.DataName == 'SparkStaffSlot')
 		{
 			StaffSlotTemplate.IsUnitValidForSlotFn = IsUnitValidForSparkSlotWithInfiltration;
+
+			// DLC3 doesn't update the unit status when adding units to or removing them
+			// from the repair slot. So provide our own that do that.
+			StaffSlotTemplate.FillFn = FillSparkSlotAndSetHealing;
+			StaffSlotTemplate.EmptyFn = EmptySparkSlotAndSetActive;
 		}
 	}
 }
@@ -3147,6 +3152,30 @@ static function bool IsUnitValidForSparkSlotWithInfiltration(XComGameState_Staff
 	}
 
 	return false;
+}
+
+static function FillSparkSlotAndSetHealing(XComGameState NewGameState, StateObjectReference SlotRef, StaffUnitInfo UnitInfo, optional bool bTemporary = false)
+{
+	local XComGameState_Unit NewUnitState;
+
+	NewUnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitInfo.UnitRef.ObjectID));
+
+	class'X2StrategyElement_DLC_Day90StaffSlots'.static.FillSparkSlot(NewGameState, SlotRef, UnitInfo, bTemporary);
+
+	NewUnitState.SetStatus(eStatus_Healing);
+}
+
+static function EmptySparkSlotAndSetActive(XComGameState NewGameState, StateObjectReference SlotRef)
+{
+	local XComGameState_StaffSlot SlotState;
+	local XComGameState_Unit NewUnitState;
+
+	SlotState = XComGameState_StaffSlot(`XCOMHISTORY.GetGameStateForObjectID(SlotRef.ObjectID));
+	NewUnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', SlotState.AssignedStaff.UnitRef.ObjectID));
+
+	class'X2StrategyElement_DLC_Day90StaffSlots'.static.EmptySparkSlot(NewGameState, SlotRef);
+
+	NewUnitState.SetStatus(eStatus_Active);
 }
 
 static function X2LWTemplateModTemplate CreateRecoverItemTemplate()

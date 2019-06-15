@@ -630,10 +630,10 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 			}
 		}
 
-		//if soldier still has OnMission status, set status to active
-		if(class'LWDLCHelpers'.static.IsUnitOnMission(UnitState))
+		//if soldier still has OnMission status, set status to active (unless it's a SPARK that's healing)
+		if(class'LWDLCHelpers'.static.IsUnitOnMission(UnitState) && UnitState.GetStatus() != eStatus_Healing)
 		{
-			UnitState.SetStatus(eStatus_Active);		
+			UnitState.SetStatus(eStatus_Active);
 		}
 	}
 }
