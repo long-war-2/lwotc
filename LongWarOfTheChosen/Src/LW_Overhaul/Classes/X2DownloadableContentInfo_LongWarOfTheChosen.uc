@@ -715,6 +715,233 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	return;
 }
 
+static function int CountMembers (name CountItem, array<name> ArrayToScan)
+{
+	local int idx, k;
+
+	k = 0;
+	for (idx = 0; idx < ArrayToScan.Length; idx++)
+	{
+		if (ArrayToScan[idx] == CountItem)
+		{
+			k += 1;
+		}
+	}
+	return k;
+}
+
+static function name FindMostCommonMember (array<name>ArrayToScan)
+{
+	local int idx, highest, highestidx;
+	local array<int> kount;
+
+	kount.length = 0;
+	for (idx = 0; idx < ArrayToScan.Length; idx++)
+	{
+		kount.AddItem(CountMembers(ArrayToScan[idx], ArrayToScan));
+	}
+	highest = 1;
+	for (idx = 0; idx < kount.length; idx ++)
+	{
+		if (kount[idx] > highest)
+		{
+			Highest = kount[idx];
+			HighestIdx = Idx;
+		}
+	}
+	return ArrayToScan[highestidx];
+}
+
+
+static function name SelectNewPodLeader (PodSpawnInfo SpawnInfo, int ForceLevel, bool AlienAllowed, bool AdventAllowed, bool TerrorAllowed)
+{
+	local X2CharacterTemplateManager CharacterTemplateMgr;
+	local X2DataTemplate Template;
+	local X2CharacterTemplate CharacterTemplate;
+	local array<name> PossibleChars, RestrictedChars;
+	local array<float> PossibleWeights;
+	local float TotalWeight, TestWeight, RandomWeight;
+	local int k;
+	local XComGameState_HeadquartersXCom XCOMHQ;
+
+	`LWTRACE ("Initiating SelectNewPodLeader" @ ForceLevel @ AlienAllowed @ AdventAllowed @ TerrorAllowed);
+
+	PossibleChars.length = 0;
+	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
+
+	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+	foreach CharacterTemplateMgr.IterateTemplates (Template, None)
+	{
+		CharacterTemplate = X2CharacterTemplate(Template);
+		if (CharacterTemplate == none)
+			continue;
+		if (!(CharacterTemplate.bIsAdvent || CharacterTemplate.bIsAlien))
+			continue;
+		if (CharacterTemplate.bIsTurret)
+			continue;
+		if (!AlienAllowed && CharacterTemplate.bIsAlien)
+			continue;
+		if (!AdventAllowed && CharacterTemplate.bIsAdvent)
+			continue;
+		if (CharacterTemplate.DataName == 'Cyberus' && XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed)
+			continue;
+		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
+			continue;
+
+		if (!TerrorAllowed)
+		{
+			for (k = 0; k < class'XComTacticalMissionManager'.default.InclusionExclusionLists.length; k++)
+			{
+				if (class'XComTacticalMissionManager'.default.InclusionExclusionLists[k].ListID == 'NoTerror_LW')
+				{
+					RestrictedChars = class'XComTacticalMissionManager'.default.InclusionExclusionLists[k].TemplateName;
+				}
+			}
+			if (RestrictedChars.Find(CharacterTemplate.DataName) != -1)
+			{
+				continue;
+			}
+		}
+		TestWeight = GetLeaderSpawnWeight(CharacterTemplate, ForceLevel);
+		// this is a valid character type, so store off data for later random selection
+		if (TestWeight > 0.0)
+		{
+			PossibleChars.AddItem (CharacterTemplate.DataName);
+			PossibleWeights.AddItem (TestWeight);
+			TotalWeight += TestWeight;
+		}
+	}
+
+	if (PossibleChars.length == 0)
+	{
+		return 'AdvCaptainM1';
+	}
+
+	RandomWeight = `SYNC_FRAND_STATIC() * TotalWeight;
+	TestWeight = 0.0;
+	for (k = 0; k < PossibleChars.length; k++)
+	{
+		TestWeight += PossibleWeights[k];
+		if (RandomWeight < TestWeight)
+		{
+			return PossibleChars[k];
+		}
+	}
+	return PossibleChars[PossibleChars.length - 1];
+}
+
+static function float GetLeaderSpawnWeight(X2CharacterTemplate CharacterTemplate, int ForceLevel)
+{
+	local int k;
+	local float ReturnWeight;
+	for (k = 0; k < CharacterTemplate.default.LeaderLevelSpawnWeights.length; k++)
+	{
+		if (ForceLevel >= CharacterTemplate.default.LeaderLevelSpawnWeights[k].MinForceLevel && ForceLevel <= CharacterTemplate.default.LeaderLevelSpawnWeights[k].MaxForceLevel && CharacterTemplate.default.LeaderLevelSpawnWeights[k].SpawnWeight > 0)
+		{
+			ReturnWeight += CharacterTemplate.default.LeaderLevelSpawnWeights[k].SpawnWeight;
+		}
+	}
+	return ReturnWeight;
+}
+
+static function name SelectRandomPodFollower (PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, bool AlienAllowed, bool AdventAllowed, bool TerrorAllowed)
+{
+	local X2CharacterTemplateManager CharacterTemplateMgr;
+	local X2DataTemplate Template;
+	local X2CharacterTemplate CharacterTemplate;
+	local array<name> PossibleChars, RestrictedChars;
+	local array<float> PossibleWeights;
+	local float TotalWeight, TestWeight, RandomWeight;
+	local int k;
+	local XComGameState_HeadquartersXCom XCOMHQ;
+
+	PossibleChars.length = 0;
+	//`LWTRACE ("Initiating SelectRandomPodFollower" @ ForceLevel @ AlienAllowed @ AdventAllowed @ TerrorAllowed);
+	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+	foreach CharacterTemplateMgr.IterateTemplates (Template, None)
+	{
+		CharacterTemplate = X2CharacterTemplate(Template);
+		if (CharacterTemplate == none)
+			continue;
+		if (!(CharacterTemplate.bIsAdvent || CharacterTemplate.bIsAlien))
+			continue;
+		if (CharacterTemplate.bIsTurret)
+			continue;
+		if (SupportedFollowers.Find(CharacterTemplate.DataName) == -1)
+			continue;
+		if (!AlienAllowed && CharacterTemplate.bIsAlien)
+			continue;
+		if (!AdventAllowed && CharacterTemplate.bIsAdvent)
+			continue;
+
+		if (!TerrorAllowed)
+		{
+			for (k = 0; k < class'XComTacticalMissionManager'.default.InclusionExclusionLists.length; k++)
+			{
+				if (class'XComTacticalMissionManager'.default.InclusionExclusionLists[k].ListID == 'NoTerror_LW')
+				{
+					RestrictedChars = class'XComTacticalMissionManager'.default.InclusionExclusionLists[k].TemplateName;
+				}
+			}
+			if (RestrictedChars.Find(CharacterTemplate.DataName) != -1)
+			{
+				continue;
+			}
+		}
+
+		if (CountMembers (CharacterTemplate.DataName, SpawnInfo.SelectedCharacterTemplateNames) >= CharacterTemplate.default.MaxCharactersPerGroup)
+			continue;
+
+		XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
+
+		// don't let cyberuses in yet
+		if (CharacterTemplate.DataName == 'Cyberus' && XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed)
+			continue;
+
+		// don't let Avatars in yet
+		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
+			continue;
+
+		TestWeight = GetCharacterSpawnWeight(CharacterTemplate, ForceLevel);
+		if (TestWeight > 0.0)
+		{
+			// this is a valid character type, so store off data for later random selection
+			PossibleChars.AddItem (CharacterTemplate.DataName);
+			PossibleWeights.AddItem (TestWeight);
+			TotalWeight += TestWeight;
+		}
+	}
+	if (PossibleChars.length == 0)
+	{
+		return 'AdvTrooperM1';
+	}
+	RandomWeight = `SYNC_FRAND_STATIC() * TotalWeight;
+	TestWeight = 0.0;
+	for (k = 0; k < PossibleChars.length; k++)
+	{
+		TestWeight += PossibleWeights[k];
+		if (RandomWeight < TestWeight)
+		{
+			return PossibleChars[k];
+		}
+	}
+	return PossibleChars[PossibleChars.length - 1];
+}
+
+static function float GetCharacterSpawnWeight(X2CharacterTemplate CharacterTemplate, int ForceLevel)
+{
+	local int k;
+	local float ReturnWeight;
+	for (k = 0; k < CharacterTemplate.default.FollowerLevelSpawnWeights.length; k++)
+	{
+		if (ForceLevel >= CharacterTemplate.default.FollowerLevelSpawnWeights[k].MinForceLevel && ForceLevel <= CharacterTemplate.default.FollowerLevelSpawnWeights[k].MaxForceLevel  && CharacterTemplate.default.FollowerLevelSpawnWeights[k].SpawnWeight > 0)
+		{
+			ReturnWeight += CharacterTemplate.default.FollowerLevelSpawnWeights[k].SpawnWeight;
+		}
+	}
+	return ReturnWeight;
+}
+
 static function PostReinforcementCreation(out name EncounterName, out PodSpawnInfo Encounter, int ForceLevel, int AlertLevel, optional XComGameState_BaseObject SourceObject, optional XComGameState_BaseObject ReinforcementState)
 {
 }
