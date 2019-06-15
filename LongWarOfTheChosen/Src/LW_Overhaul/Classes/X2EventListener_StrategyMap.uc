@@ -18,7 +18,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> Templates;
 
 	Templates.AddItem(CreateMissionSiteListeners());
-	Templates.AddItem(CreateGeoscapeEntryListeners());
+	Templates.AddItem(CreateMiscellaneousListeners());
 	Templates.AddItem(CreateBlackMarketListeners());
 	Templates.AddItem(CreateEndOfMonthListeners());
 
@@ -43,13 +43,16 @@ static function CHEventListenerTemplate CreateMissionSiteListeners()
 	return Template;
 }
 
-static function CHEventListenerTemplate CreateGeoscapeEntryListeners()
+static function CHEventListenerTemplate CreateMiscellaneousListeners()
 {
 	local CHEventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'GeoscapeEntryListeners');
 	Template.AddCHEvent('OnGeoscapeEntry', StopFirstPOISpawn, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OnGeoscapeEntry', ShowBlackMarket, ELD_Immediate, GetListenerPriority());
+
+	//Added for fix to issue #100
+	Template.AddCHEvent('OverrideCurrentDoom', OverrideCurrentDoom, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -111,6 +114,46 @@ static function CHEventListenerTemplate CreateEndOfMonthListeners()
 static protected function int GetListenerPriority()
 {
 	return default.LISTENER_PRIORITY != -1 ? default.LISTENER_PRIORITY : class'XComGameState_LWListenerManager'.default.DEFAULT_LISTENER_PRIORITY;
+}
+
+//Issue #100. This just iterates through all of the missions that have doom (whether the mission is available or not) and adds their doom values up
+//and adds that total value to the current doom for overall doom so that the game displays the correct amount of current doom in the avatar meter.
+static function EventListenerReturn OverrideCurrentDoom(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComGameStateHistory History;
+	local XComGameState_LWAlienActivity ActivityState;
+	local XComGameState_MissionSite MissionState;
+	local int DoomMod;
+	local XComLWTuple Tuple;
+
+	Tuple = XComLWTuple(EventData);
+	if(Tuple == none)
+		return ELR_NoInterrupt;
+
+	if( class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('S0_RevealAvatarProject') ) // only show activity doom if AVATAR project revealed
+	{
+		History = `XCOMHISTORY;
+		foreach History.IterateByClassType(class'XComGameState_LWAlienActivity', ActivityState)
+		{
+			if(ActivityState.Doom > 0)
+				DoomMod += ActivityState.Doom;
+
+			// base game only adds doom for visible missions, so add doom for hidden missions here
+			if (ActivityState.CurrentMissionRef.ObjectID > 0)
+			{
+				MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(ActivityState.CurrentMissionRef.ObjectID));
+				if (MissionState != none && !MissionState.Available)
+				{
+					if (MissionState.Doom > 0)
+						DoomMod += MissionState.Doom;
+				}
+			}
+		}
+	}
+	
+	Tuple.Data[0].i += DoomMod;
+
+	return ELR_NoInterrupt;
 }
 
 // Launches the mission information screen on the Geoscape for missions that don't
