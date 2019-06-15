@@ -13,6 +13,14 @@ class X2DownloadableContentInfo_LongWarOfTheChosen extends X2DownloadableContent
 //----------------------------------------------------------------
 // A random selection of data and data structures from LW Overhaul
 
+struct MinimumInfilForConcealEntry
+{
+	var string MissionType;
+	var float MinInfiltration;
+};
+
+var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
+
 struct ArchetypeToHealth
 {
 	var name ArchetypeName;
@@ -373,6 +381,7 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	ResetDelayedEvac(StartGameState);
 	ResetReinforcements(StartGameState);
 	InitializePodManager(StartGameState);
+	OverrideConcealmentAtStart(MissionState);
 
 	// Test Code to see if DLC POI replacement is working
 	if (MissionState.POIToSpawn.ObjectID > 0)
@@ -870,6 +879,32 @@ static function InitializePodManager(XComGameState StartGameState)
 	PodManager = XComGameState_LWPodManager(StartGameState.CreateStateObject(class'XComGameState_LWPodManager'));
 	`LWTrace("Created pod manager");
 	StartGameState.AddStateObject(PodManager);
+}
+
+// Start missions unconcealed if infiltration is below 100% and the mission type
+// is configured as such.
+static function OverrideConcealmentAtStart(XComGameState_MissionSite MissionState)
+{
+	local XComGameState_LWPersistentSquad	SquadState;
+	local XComGameState_BattleData			BattleData;
+	local int k;
+
+	// If within a configurable list of mission types, and infiltration below a set value, set it to true
+	BattleData = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+
+	for (k = 0; k < default.MINIMUM_INFIL_FOR_CONCEAL.length; k++)
+	{
+		if (MissionState.GeneratedMission.Mission.sType == default.MINIMUM_INFIL_FOR_CONCEAL[k].MissionType)
+		{
+			SquadState = `LWSQUADMGR.GetSquadOnMission(MissionState.GetReference());
+			//`LWTRACE ("CheckForConcealOverride: Mission Type correct. Infiltration:" @ SquadState.CurrentInfiltration);
+			If (SquadState.CurrentInfiltration < default.MINIMUM_INFIL_FOR_CONCEAL[k].MinInfiltration)
+			{
+				`LWTRACE ("OverrideConcealmentAtStart: Conditions met to start squad revealed");
+				BattleData.bForceNoSquadConcealment = true;
+			}
+		}
+	}
 }
 
 // WOTC TODO: Perhaps this is supposed to honour the SpawnSizeOverride parameter somehow. Seems to work

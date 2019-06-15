@@ -5,12 +5,6 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_LWListenerManager extends XComGameState_BaseObject config(LW_Overhaul) dependson(XComGameState_LWPersistentSquad);
 
-struct MinimumInfilForConcealEntry
-{
-	var string MissionType;
-	var float MinInfiltration;
-};
-
 var localized string CannotModifyOnMissionSoldierTooltip;
 
 var config int DEFAULT_LISTENER_PRIORITY;
@@ -26,7 +20,6 @@ var localized string ResistanceHQBodyText;
 var config bool TIERED_RESPEC_TIMES;
 var config bool AI_PATROLS_WHEN_SIGHTED_BY_HIDDEN_XCOM;
 
-var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
 var config array<float> MINIMUM_INFIL_FOR_GREEN_ALERT;
 
 var config array<int>INITIAL_PSI_TRAINING;
@@ -156,9 +149,6 @@ function InitListeners()
 	// listeners for weapon mod stripping
 	EventMgr.RegisterForEvent(ThisObj, 'OnCheckBuildItemsNavHelp', AddSquadSelectStripWeaponsButton, ELD_Immediate);
 	EventMgr.RegisterForEvent(ThisObj, 'ArmoryLoadout_PostUpdateNavHelp', AddArmoryStripWeaponsButton, ELD_Immediate);
-
-	// listener for when squad conceal is set
-	EventMgr.RegisterForEvent(ThisObj, 'OnSetMissionConceal', CheckForConcealOverride, ELD_Immediate,,, true);
 
 	// listener for when an enemy unit's alert status is set -- not working
 	//EventMgr.RegisterForEvent(ThisObj, 'OnSetUnitAlert', CheckForUnitAlertOverride, ELD_Immediate,,, true);
@@ -1327,53 +1317,6 @@ function StripWeaponUpgradesFromItem(XComGameState_Item ItemState, XComGameState
 
 	UpdateItemState.NickName = "";
 	UpdateItemState.WipeUpgradeTemplates();
-}
-
-
-// return true to override XComSquadStartsConcealed=true setting in mission schedule and have the game function as if it was false
-function EventListenerReturn CheckForConcealOverride(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	/* WOTC TODO: Restore this
-	local XComLWTuple						OverrideTuple;
-	local XComGameState_MissionSite			MissionState;
-	local XComGameState_LWPersistentSquad	SquadState;
-	local XComGameState_BattleData			BattleData;
-	local int k;
-
-	//`LWTRACE("CheckForConcealOverride : Starting listener.");
-
-	OverrideTuple = XComLWTuple(EventData);
-	if(OverrideTuple == none)
-	{
-		`REDSCREEN("CheckForConcealOverride event triggered with invalid event data.");
-		return ELR_NoInterrupt;
-	}
-	OverrideTuple.Data[0].b = false;
-
-	// If within a configurable list of mission types, and infiltration below a set value, set it to true
-	BattleData = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(BattleData.m_iMissionID));
-
-    if (MissionState == none)
-    {
-        return ELR_NoInterrupt;
-    }
-
-	//`LWTRACE ("CheckForConcealOverride: Found MissionState");
-
-	for (k = 0; k < default.MINIMUM_INFIL_FOR_CONCEAL.length; k++)
-    if (MissionState.GeneratedMission.Mission.sType == MINIMUM_INFIL_FOR_CONCEAL[k].MissionType)
-	{
-		SquadState = `LWSQUADMGR.GetSquadOnMission(MissionState.GetReference());
-		//`LWTRACE ("CheckForConcealOverride: Mission Type correct. Infiltration:" @ SquadState.CurrentInfiltration);
-		If (SquadState.CurrentInfiltration < MINIMUM_INFIL_FOR_CONCEAL[k].MinInfiltration)
-		{
-			//`LWTRACE ("CheckForConcealOverride: Conditions met to start squad revealed");
-			OverrideTuple.Data[0].b = true;
-		}
-	}
-	*/
-	return ELR_NoInterrupt;
 }
 
 function EventListenerReturn CheckForUnitAlertOverride(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)

@@ -198,12 +198,12 @@ static function string GetMissionConcealStatusString (StateObjectReference Missi
 
 	if (CurrentSchedule.XComSquadStartsConcealed)
 	{
-		for (k = 0; k < class'XComGameState_LWListenerManager'.default.MINIMUM_INFIL_FOR_CONCEAL.length; k++)
+		for (k = 0; k < `MIN_INFIL_FOR_CONCEAL.Length; k++)
 		{
-			if (MissionState.GeneratedMission.Mission.sType == class'XComGameState_LWListenerManager'.default.MINIMUM_INFIL_FOR_CONCEAL[k].MissionType)
+			if (MissionState.GeneratedMission.Mission.sType == `MIN_INFIL_FOR_CONCEAL[k].MissionType)
 			{
 				LocTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-				LocTag.IntValue0 = round (100 * class'XComGameState_LWListenerManager'.default.MINIMUM_INFIL_FOR_CONCEAL[k].MinInfiltration);
+				LocTag.IntValue0 = round (100 * `MIN_INFIL_FOR_CONCEAL[k].MinInfiltration);
 				ExpandedString = `XEXPAND.ExpandString(default.m_strMinimumInfiltration);
 				return default.m_strConcealedStart @ ExpandedString;
 			}
