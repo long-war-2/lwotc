@@ -188,6 +188,17 @@ simulated function PopulateData()
 		}
 	}
 
+	// LWOTC
+	// Check to see if Unit needs to show a "new class" popup.
+	if (Unit.bNeedsNewClassPopup)
+	{
+		`HQPRES.UIClassEarned(Unit.GetReference());
+		Unit.bNeedsNewClassPopup = false;  //Prevent from queueing up more of these popups on toggling soldiers.
+
+		Unit = GetUnit(); // we've updated the UnitState, update the Unit to reflect the latest changes
+	}
+	// End LWOTC
+
 	AS_SetRank(rankIcon);
 	AS_SetClass(classIcon);
 	AS_SetFaction(FactionState.GetFactionIcon());

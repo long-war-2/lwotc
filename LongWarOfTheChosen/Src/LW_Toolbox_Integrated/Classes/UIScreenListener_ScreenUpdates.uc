@@ -10,14 +10,6 @@ class UIScreenListener_ScreenUpdates extends UIScreenListener dependson(X2Downlo
 
 var bool bCapturedDefaultBaseDamage;
 
-//struct DefaultBaseDamageEntry
-//{
-	//var name WeaponTemplateName;
-	//var WeaponDamageValue BaseDamage;
-//};
-//var transient array<DefaultBaseDamageEntry> arrDefaultBaseDamage;
-
-
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
 {
@@ -29,24 +21,6 @@ event OnInit(UIScreen Screen)
 		// capture default spread settings for all weapons
 		StoreDefaultWeaponBaseDamageValues();
 		bCapturedDefaultBaseDamage = true;
-	}
-
-	if(Screen.IsA('UIArmory_Promotion'))
-	{
-		//`LOG("ScreenUpdates : Entering UIArmory_Promotion or derivative.",, 'LW_Toolbox');
-		AfterActionScreen = UIAfterAction(GetScreen('UIAfterAction_LW'));
-		if(AfterActionScreen != none)
-		{
-			`LOG("ScreenUpdates : AfterAction in stack, updating UIPromotion.",, 'LW_Toolbox');
-			PromotionScreen = UIArmory_Promotion(Screen);
-
-			PromotionScreen.AfterActionScreen = AfterActionScreen;
-			PromotionScreen.bAfterActionPromotion = true;
-			PromotionScreen.PawnLocationTag = AfterActionScreen.GetPawnLocationTag(PromotionScreen.UnitReference);
-			PromotionScreen.CameraTag = AfterActionScreen.GetPromotionBlueprintTag(PromotionScreen.UnitReference);
-			PromotionScreen.DisplayTag = name(AfterActionScreen.GetPromotionBlueprintTag(PromotionScreen.UnitReference));
-			PromotionScreen.OnReceiveFocus();
-		}
 	}
 }
 

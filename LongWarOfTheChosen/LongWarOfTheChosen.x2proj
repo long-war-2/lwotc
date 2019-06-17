@@ -696,15 +696,9 @@
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_MissionSiteRendezvous_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_WorldRegion_LWStrategyAI.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\LW_PerkPack.uci" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIArmory_LWExpandedPromotion.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIArmory_LWExpandedPromotionItem.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIArmory_LWExpandedPromotionSummaryItem.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIArmory_MainMenu_LW.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_MainMenu_LWExpandedPerkTree.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_MainMenu_LW_LWExpandedPerkTree.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_Promotion.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_PromotionPsi_LW.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_SquadSelect.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_TacticalHUD_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_UIAlert.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UITacticalHUD_AbilityContainer_LWExtended.uc" />
