@@ -5,5 +5,6 @@
 *.bk2
 /*/*.txt
 !/Missions/*
+!/Parcels/*
 !/Plots/Plot_ALB_AlienBase*
 !/CIN_TroopTransport.upk
