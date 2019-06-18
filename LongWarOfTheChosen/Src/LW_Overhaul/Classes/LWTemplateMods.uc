@@ -244,6 +244,7 @@ var config bool LATE_TURRET_SQUADSIGHT;
 
 var config bool EXPLOSIVES_NUKE_CORPSES;
 
+var config float CIVILIAN_PANIC_RANGE;
 
 var config array<float> UnitDistanceRatios;
 var config array<float> UnitDamageRatios;
@@ -845,6 +846,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		`Log("TRACE: Using AbilityTemplateManager to get 'StandardShot'");
 		Template.LocFriendlyName = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('StandardShot').LocFriendlyName;
+	}
+
+	if (Template.DataName == 'CivilianPanicked')
+	{
+		FixCivilianPanicOnApproach(Template);
 	}
 
 	if (Template.DataName == 'Grapple')
@@ -1581,6 +1587,37 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		Template.BuildNewGameStateFn = SkullOuch_BuildGameState;
 	}
+}
+
+// Rather than having the loss of squad concealment panic all civilians on the
+// map, only panic those that XCOM get close to. This has the added benefit of
+// working on missions with either concealed or unconcealed starts.
+static function FixCivilianPanicOnApproach(X2AbilityTemplate Template)
+{
+	local X2AbilityMultiTarget_Radius RadiusMultiTarget;
+	local X2Condition_UnitProperty UnitPropertyCondition;
+	local X2AbilityTrigger_EventListener EventListener;
+	
+	// Clear the 'SquadConcealmentBroken' ability trigger first
+	Template.AbilityTriggers.Length = 0;
+	
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.bUseWeaponRadius = false;
+	RadiusMultiTarget.fTargetRadius = `TILESTOMETERS(default.CIVILIAN_PANIC_RANGE);
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+	// Only triggers from player controlled units moving in range
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.IsPlayerControlled = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	UnitPropertyCondition.ExcludeConcealed = true;
+	Template.AbilityMultiTargetConditions.AddItem(UnitPropertyCondition);
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.CheckForVisibleMovementInRadius_Self;
+	EventListener.ListenerData.EventID = 'UnitMoveFinished';
+	Template.AbilityTriggers.AddItem(EventListener);
 }
 
 static function XComGameState SkullOuch_BuildGameState (XComGameStateContext context)
