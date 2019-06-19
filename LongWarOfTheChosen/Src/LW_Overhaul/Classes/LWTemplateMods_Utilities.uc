@@ -135,13 +135,20 @@ static function PerformItemTemplateMod(X2LWTemplateModTemplate Template, X2ItemT
 	local array<X2DataTemplate> DataTemplates;
 	local X2DataTemplate DataTemplate;
     local int Difficulty;
-    
-	foreach TemplateManager.IterateTemplates(DataTemplate)
+
+	TemplateManager.GetTemplateNames(TemplateNames);
+
+	foreach TemplateNames(TemplateName)
 	{
-		ItemTemplate = X2ItemTemplate(DataTemplate);
-		if(ItemTemplate != none)
+		TemplateManager.FindDataTemplateAllDifficulties(TemplateName, DataTemplates);
+		foreach DataTemplates(DataTemplate)
 		{
-			Template.ItemTemplateModFn(ItemTemplate, 0);
+			ItemTemplate = X2ItemTemplate(DataTemplate);
+			if (ItemTemplate != none)
+			{
+				Difficulty = GetDifficultyFromTemplateName(TemplateName);
+				Template.ItemTemplateModFn(ItemTemplate, Difficulty);
+			}
 		}
 	}
 }
