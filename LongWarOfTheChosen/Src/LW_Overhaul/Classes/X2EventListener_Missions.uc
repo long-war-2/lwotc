@@ -22,7 +22,7 @@ static function CHEventListenerTemplate CreateObjectivesListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionObjectivesListeners');
 	Template.AddCHEvent('OverrideObjectiveSpawnCount', OnOverrideObjectiveSpawnCount, ELD_Immediate);
 
-	Template.RegisterInStrategy = true;
+	Template.RegisterInTactical = true;
 
 	return Template;
 }
