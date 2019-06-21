@@ -13,23 +13,10 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
-	Templates.AddItem(CreateEvacListeners());
 	Templates.AddItem(CreateYellowAlertListeners());
+	Templates.AddItem(CreateMiscellaneousListeners());
 
 	return Templates;
-}
-
-static function CHEventListenerTemplate CreateEvacListeners()
-{
-	local CHEventListenerTemplate Template;
-	
-	`LWTrace("Registering evac event listeners");
-
-	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'EvacListeners');
-	Template.AddCHEvent('GetEvacPlacementDelay', OnPlacedDelayedEvacZone, ELD_Immediate, GetListenerPriority());
-	Template.RegisterInTactical = true;
-
-	return Template;
 }
 
 static function CHEventListenerTemplate CreateYellowAlertListeners()
@@ -45,6 +32,23 @@ static function CHEventListenerTemplate CreateYellowAlertListeners()
 	Template.AddCHEvent('UnitTakeEffectDamage', OnUnitTookDamage, ELD_OnStateSubmitted);
 	Template.AddCHEvent('OverrideAllowedAlertCause', OnOverrideAllowedAlertCause, ELD_Immediate);
 	
+	Template.RegisterInTactical = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreateMiscellaneousListeners()
+{
+	local CHEventListenerTemplate Template;
+	
+	`LWTrace("Registering miscellaneous tactical event listeners");
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MiscellaneousTacticalListeners');
+	Template.AddCHEvent('GetEvacPlacementDelay', OnPlacedDelayedEvacZone, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('KilledbyExplosion', OnKilledbyExplosion, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('CleanupTacticalMission', OnCleanupTacticalMission, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('AbilityActivated', OnAbilityActivated, ELD_OnStateSubmitted, GetListenerPriority());
+
 	Template.RegisterInTactical = true;
 
 	return Template;
@@ -448,7 +452,6 @@ static function int ProcessReflexActionsForUnit(
 
 	if (`SYNC_FRAND_STATIC() < Chance)
 	{
-		`LWTrace(GetFuncName() $ ": Awarding an extra action point to unit " $ Unit.GetMyTemplateName());
 		// Award the unit a special kind of action point. These are more restricted than standard action points.
 		// See the 'OffensiveReflexAbilities' and 'DefensiveReflexAbilities' arrays in LW_Overhaul.ini for the list
 		// of abilities that have been modified to allow these action points.
@@ -456,10 +459,12 @@ static function int ProcessReflexActionsForUnit(
 		// Damaged units, and units in green (if enabled) get 'defensive' action points. Others get 'offensive' action points.
 		if (Unit.IsInjured() || !IsYellowAlert)
 		{
+			`LWTrace(GetFuncName() $ ": Awarding an extra defensive action point to unit " $ Unit.GetMyTemplateName());
 			Unit.ActionPoints.AddItem(class'Utilities_LW'.const.DefensiveReflexAction);
 		}
 		else
 		{
+			`LWTrace(GetFuncName() $ ": Awarding an extra offensive action point to unit " $ Unit.GetMyTemplateName());
 			Unit.ActionPoints.AddItem(class'Utilities_LW'.const.OffensiveReflexAction);
 		}
 
@@ -469,4 +474,143 @@ static function int ProcessReflexActionsForUnit(
 	{
 		return 0;
 	}
+}
+
+// Prevent Needle grenades from blowing up the corpse.
+static function EventListenerReturn OnKilledByExplosion(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple				OverrideTuple;
+	local XComGameState_Unit		Killer, Target;
+
+	OverrideTuple = XComLWTuple(EventData);
+	`assert(OverrideTuple != none);
+
+	Target = XComGameState_Unit(EventSource);
+	`assert(Target != none);
+	`assert(OverrideTuple.Id == 'OverrideKilledbyExplosion');
+
+	Killer = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(OverrideTuple.Data[1].i));
+
+	if (OverrideTuple.Data[0].b && Killer.HasSoldierAbility('NeedleGrenades', true))
+	{
+		OverrideTuple.Data[0].b = false;
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// Additional tactical mission cleanup, including Field Surgeon, turret wreck
+// recovery and transferring Full Override MECs to havens.
+static function EventListenerReturn OnCleanupTacticalMission(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+    local XComGameState_BattleData BattleData;
+    local XComGameState_Unit Unit;
+    local XComGameStateHistory History;
+	local XComGameState_Effect EffectState;
+	local StateObjectReference EffectRef;
+	local bool AwardWrecks;
+
+    History = `XCOMHISTORY;
+    BattleData = XComGameState_BattleData(EventData);
+    BattleData = XComGameState_BattleData(NewGameState.GetGameStateForObjectID(BattleData.ObjectID));
+
+	// If we completed this mission with corpse recovery, you get the wreck/loot from any turret
+	// left on the map as well as any Mastered unit that survived but is not eligible to be
+	// transferred to a haven.
+	AwardWrecks = BattleData.AllTacticalObjectivesCompleted();
+
+    if (AwardWrecks)
+    {
+        // If we have completed the tactical objectives (e.g. sweep) we are collecting corpses.
+        // Generate wrecks for each of the turrets left on the map that XCOM didn't kill before
+        // ending the mission.
+        foreach History.IterateByClassType(class'XComGameState_Unit', Unit)
+        {
+            if (Unit.IsTurret() && !Unit.IsDead())
+            {
+                // We can't call the RollForAutoLoot() function here because we have a pending
+                // gamestate with a modified BattleData already. Just add a corpse to the list
+                // of pending auto loot.
+                BattleData.AutoLootBucket.AddItem('CorpseAdventTurret');
+            }
+        }
+    }
+
+	// Handle effects that can only be performed at mission end:
+	//
+	// Handle full override mecs. Look for units with a full override effect that are not dead
+	// or captured. This is done here instead of in an OnEffectRemoved hook, because effect removal
+	// isn't fired when the mission ends on a sweep, just when they evac. Other effect cleanup
+	// typically happens in UnitEndedTacticalPlay, but since we need to update the haven gamestate
+	// we can't use that: we don't get a reference to the current XComGameState being submitted.
+	// This works because the X2Effect_TransferMecToOutpost code sets up its own UnitRemovedFromPlay
+	// event listener, overriding the standard one in XComGameState_Effect, so the effect won't get
+	// removed when the unit is removed from play and we'll see it here.
+	//
+	// Handle Field Surgeon. We can't let the effect get stripped on evac via OnEffectRemoved because
+	// the surgeon themself may die later in the mission. We need to wait til mission end and figure out
+	// which effects to apply.
+	//
+	// Also handle units that are still living but are affected by mind-control - if this is a corpse
+	// recovering mission, roll their auto-loot so that corpses etc. are granted despite them not actually
+	// being killed.
+
+	foreach History.IterateByClassType(class'XComGameState_Unit', Unit)
+	{
+		if(Unit.IsAlive() && !Unit.bCaptured)
+		{
+			foreach Unit.AffectedByEffects(EffectRef)
+			{
+				EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+				if (EffectState.GetX2Effect().EffectName == class'X2Effect_TransferMecToOutpost'.default.EffectName)
+				{
+					X2Effect_TransferMecToOutpost(EffectState.GetX2Effect()).AddMECToOutpostIfValid(EffectState, Unit, NewGameState, AwardWrecks);
+				}
+				else if (EffectState.GetX2Effect().EffectName == class'X2Effect_FieldSurgeon'.default.EffectName)
+				{
+					X2Effect_FieldSurgeon(EffectState.GetX2Effect()).ApplyFieldSurgeon(EffectState, Unit, NewGameState);
+				}
+				else if (EffectState.GetX2Effect().EffectName == class'X2Effect_MindControl'.default.EffectName && AwardWrecks)
+				{
+					Unit.RollForAutoLoot(NewGameState);
+
+					// Super hacks for andromedon, since only the robot drops a corpse.
+					if (Unit.GetMyTemplateName() == 'Andromedon')
+					{
+						BattleData.AutoLootBucket.AddItem('CorpseAndromedon');
+					}
+				}
+			}
+		}
+	}
+
+    return ELR_NoInterrupt;
+}
+
+// Make sure reinforcements arrive in red alert if any aliens on the map are
+// already in red alert.
+static function EventListenerReturn OnAbilityActivated(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+    local XComGameState_Ability ActivatedAbilityState;
+	local XComGameState_LWReinforcements Reinforcements;
+	local XComGameState NewGameState;
+
+	//ActivatedAbilityStateContext = XComGameStateContext_Ability(GameState.GetContext());
+	ActivatedAbilityState = XComGameState_Ability(EventData);
+	if (ActivatedAbilityState.GetMyTemplate().DataName == 'RedAlert')
+	{
+		Reinforcements = XComGameState_LWReinforcements(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWReinforcements', true));
+		if (Reinforcements == none)
+			return ELR_NoInterrupt;
+
+		if (Reinforcements.RedAlertTriggered)
+			return ELR_NoInterrupt;
+
+		Reinforcements.RedAlertTriggered = true;
+
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Check for reinforcements");
+		Reinforcements = XComGameState_LWReinforcements(NewGameState.ModifyStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
+		`TACTICALRULES.SubmitGameState(NewGameState);
+	}
+	return ELR_NoInterrupt;
 }

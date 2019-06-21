@@ -19,7 +19,6 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateMissionSiteListeners());
 	Templates.AddItem(CreateMiscellaneousListeners());
-	Templates.AddItem(CreateBlackMarketListeners());
 	Templates.AddItem(CreateEndOfMonthListeners());
 
 	return Templates;
@@ -38,6 +37,8 @@ static function CHEventListenerTemplate CreateMissionSiteListeners()
 	Template.AddCHEvent('OverrideMissionSiteTooltip', OnOverrideMissionSiteTooltip, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('MissionIconSetMissionSite', CustomizeMissionSiteIcon, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OverrideMissionSiteIconImage', CustomizeMissionSiteIconImage, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OnSkyrangerArrives', OnSkyrangerArrives, ELD_OnStateSubmitted, GetListenerPriority());
+
 	Template.RegisterInStrategy = true;
 
 	return Template;
@@ -50,21 +51,11 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'GeoscapeEntryListeners');
 	Template.AddCHEvent('OnGeoscapeEntry', StopFirstPOISpawn, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OnGeoscapeEntry', ShowBlackMarket, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('BlackMarketGoodsReset', OnBlackMarketGoodsReset, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('RegionBuiltOutpost', OnRegionBuiltOutpost, ELD_OnStateSubmitted, GetListenerPriority());
 
 	//Added for fix to issue #100
 	Template.AddCHEvent('OverrideCurrentDoom', OverrideCurrentDoom, ELD_Immediate, GetListenerPriority());
-
-	Template.RegisterInStrategy = true;
-
-	return Template;
-}
-
-static function CHEventListenerTemplate CreateBlackMarketListeners()
-{
-	local CHEventListenerTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'BlackMarketListeners');
-	Template.AddCHEvent('BlackMarketGoodsReset', OnBlackMarketGoodsReset, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -822,4 +813,39 @@ static function EventListenerReturn OnGetSupplyDropDecreaseStrings(Object EventD
 	}
 
 	return ELR_NoInterrupt;
+}
+
+// Listener to interrupt OnSkyrangerArrives so that it doesn't play the narrative event.
+// We will manually trigger the narrative event in a screen listener when appropriate.
+static function EventListenerReturn OnSkyrangerArrives(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	return ELR_InterruptListeners;
+}
+
+static function EventListenerReturn OnRegionBuiltOutpost(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+    local XComGameStateHistory History;
+    local XComGameState_WorldRegion Region;
+    local XComGameState NewGameState;
+
+    History = `XCOMHISTORY;
+    foreach History.IterateByClassType(class'XComGameState_WorldRegion', Region)
+    {
+        // Look for regions that have an outpost built, which have their "bScanforOutpost" flag reset
+        // (this is cleared by XCGS_WorldRegion.Update() when the scan finishes) and the scan has begun.
+        // For these regions, reset the scan. This will reset the scanner UI to "empty". The reset
+        // call will reset the scan started flag so subsequent triggers will not redo this change
+        // for this region.
+        if (Region.ResistanceLevel == eResLevel_Outpost &&
+            !Region.bCanScanForOutpost &&
+            Region.GetScanPercentComplete() > 0)
+        {
+            NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Reset outpost scanner");
+            Region = XComGameState_WorldRegion(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion', Region.ObjectID));
+            Region.ResetScan();
+            `GAMERULES.SubmitGameState(NewGameState);
+        }
+    }
+
+    return ELR_NoInterrupt;
 }

@@ -5,6 +5,7 @@ var localized string OnInfiltrationMission;
 var localized string UnitAlreadyInSquad;
 var localized string UnitInSquad;
 var localized string RankTooLow;
+var localized string CannotModifyOnMissionSoldierTooltip;
 
 var config int PSI_SQUADDIE_BONUS_ABILITIES;
 
@@ -15,7 +16,7 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
-	Templates.AddItem(CreateUtilityItemListeners());
+	Templates.AddItem(CreateEquipmentListeners());
 	Templates.AddItem(CreateStatusListeners());
 	Templates.AddItem(CreateTrainingListeners());
 	Templates.AddItem(CreateTacticalListeners());
@@ -27,13 +28,16 @@ static function array<X2DataTemplate> CreateTemplates()
 /// Strategy ///
 ////////////////
 
-static function CHEventListenerTemplate CreateUtilityItemListeners()
+static function CHEventListenerTemplate CreateEquipmentListeners()
 {
 	local CHEventListenerTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierUtilityItems');
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierEquipmentListeners');
 	Template.AddCHEvent('OverrideItemUnequipBehavior', OnOverrideItemUnequipBehavior, ELD_Immediate);
 	Template.AddCHEvent('OverrideItemMinEquipped', OnOverrideItemMinEquipped, ELD_Immediate);
+	Template.AddCHEvent('SoldierCreatedEvent', EquipNewSoldier, ELD_OnStateSubmitted);
+	Template.AddCHEvent('OnGetPCSImage', GetPCSImage, ELD_OnStateSubmitted);
+
 	Template.RegisterInStrategy = true;
 
 	return Template;
@@ -43,10 +47,14 @@ static function CHEventListenerTemplate CreateStatusListeners()
 {
 	local CHEventListenerTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierStatus');
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierStatusListeners');
 	Template.AddCHEvent('OverridePersonnelStatus', OnOverridePersonnelStatus, ELD_Immediate);
 	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
 	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
+
+	// Armory Main Menu - disable buttons for On-Mission soldiers
+	Template.AddCHEvent('OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate);
+
 	Template.RegisterInStrategy = true;
 
 	return Template;
@@ -75,6 +83,9 @@ static function CHEventListenerTemplate CreateTacticalListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'TacticalEvents');
 	Template.AddCHEvent('OverrideAbilityIconColor', OnOverrideAbilityIconColor, ELD_Immediate);
 	Template.AddCHEvent('OverrideBleedoutChance', OnOverrideBleedOutChance, ELD_Immediate);
+	Template.AddCHEvent('OverrideCollectorActivation', OverrideCollectorActivation, ELD_Immediate);
+	Template.AddCHEvent('OverrideScavengerActivation', OverrideScavengerActivation, ELD_Immediate);
+	Template.AddCHEvent('SerialKiller', OnSerialKill, ELD_OnStateSubmitted);
 	Template.RegisterInTactical = true;
 
 	return Template;
@@ -644,4 +655,239 @@ static function EventListenerReturn  OnOverrideBleedOutChance(Object EventData, 
 
 	return ELR_NoInterrupt;
 
+}
+
+// Equips new soldiers with the default utility items.
+static function EventListenerReturn EquipNewSoldier(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Unit Unit, UpdatedUnit;
+	local XComGameState NewGameState;
+
+	Unit = XComGameState_Unit(EventData);
+	if (Unit == none)
+	{
+		`REDSCREEN("OnSoldierCreatedEvent with no UnitState EventData");
+		return ELR_NoInterrupt;
+	}
+
+	//Build NewGameState change container
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update newly created soldier");
+	UpdatedUnit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
+	class'Utilities_LW'.static.GiveDefaultUtilityItemsToSoldier(UpdatedUnit, NewGameState);
+	`GAMERULES.SubmitGameState(NewGameState);
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OverrideCollectorActivation(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple OverrideActivation;
+
+	OverrideActivation = XComLWTuple(EventData);
+	`assert(OverrideActivation != none);
+	`assert(OverrideActivation.Id == 'OverrideCollectorActivation');
+	`assert(OverrideActivation.Data[0].kind == XComLWTVBool);
+
+	OverrideActivation.Data[0].b = class'Utilities_LW'.static.KillXpIsCapped();
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OverrideScavengerActivation(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple OverrideActivation;
+
+	OverrideActivation = XComLWTuple(EventData);
+	`assert(OverrideActivation != none);
+	`assert(OverrideActivation.Id == 'OverrideScavengerActivation');
+	`assert(OverrideActivation.Data[0].kind == XComLWTVBool);
+
+	OverrideActivation.Data[0].b = class'Utilities_LW'.static.KillXpIsCapped();
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn UpdateArmoryMainMenuItems(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local UIList List;
+	local XComGameState_Unit Unit;
+	local UIArmory_MainMenu ArmoryMainMenu;
+	local array<name> ButtonToDisableMCNames;
+	local int idx;
+	local UIListItemString CurrentButton;
+	local XComGameState_StaffSlot StaffSlotState;
+
+	List = UIList(EventData);
+	`assert(List != none);
+
+	ArmoryMainMenu = UIArmory_MainMenu(EventSource);
+	`assert(ArmoryMainMenu != none);
+
+	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ArmoryMainMenu.UnitReference.ObjectID));
+	if (class'LWDLCHelpers'.static.IsUnitOnMission(Unit))
+	{
+		//ButtonToDisableMCNames.AddItem('ArmoryMainMenu_LoadoutButton'); // adding ability to view loadout, but not modifiy it
+
+		// If this unit isn't a haven adviser, or is a haven adviser that is locked, disable loadout
+		// changing. (Allow changing equipment on haven advisers in regions where you can change the
+		// adviser to save some clicks).
+		if (!`LWOUTPOSTMGR.IsUnitAHavenLiaison(Unit.GetReference()) ||
+			`LWOUTPOSTMGR.IsUnitALockedHavenLiaison(Unit.GetReference()))
+		{
+			ButtonToDisableMCNames.AddItem('ArmoryMainMenu_PCSButton');
+			ButtonToDisableMCNames.AddItem('ArmoryMainMenu_WeaponUpgradeButton');
+
+			//update the Loadout button handler to one that locks all of the items
+			CurrentButton = FindButton(0, 'ArmoryMainMenu_LoadoutButton', ArmoryMainMenu);
+			CurrentButton.ButtonBG.OnClickedDelegate = OnLoadoutLocked;
+		}
+
+		// Dismiss is still disabled for all on-mission units, including liaisons.
+		ButtonToDisableMCNames.AddItem('ArmoryMainMenu_DismissButton');
+
+
+		// -------------------------------------------------------------------------------
+		// Disable Buttons:
+		for (idx = 0; idx < ButtonToDisableMCNames.Length; idx++)
+		{
+			CurrentButton = FindButton(idx, ButtonToDisableMCNames[idx], ArmoryMainMenu);
+			if(CurrentButton != none)
+			{
+				CurrentButton.SetDisabled(true, default.CannotModifyOnMissionSoldierTooltip);
+			}
+		}
+
+		return ELR_NoInterrupt;
+	}
+
+	switch (Unit.GetStatus())
+	{
+		case eStatus_PsiTraining:
+		case eStatus_PsiTesting:
+		case eStatus_Training:
+			CurrentButton = FindButton(idx, 'ArmoryMainMenu_DismissButton', ArmoryMainMenu);
+			if (CurrentButton != none)
+			{
+				StaffSlotState = Unit.GetStaffSlot();
+				if (StaffSlotState != none)
+				{
+					CurrentButton.SetDisabled(true, StaffSlotState.GetBonusDisplayString());
+				}
+				else
+				{
+					CurrentButton.SetDisabled(true, "");
+				}
+			}
+			break;
+		default:
+			break;
+	}
+	return ELR_NoInterrupt;
+}
+
+static function UIListItemString FindButton(int DefaultIdx, name ButtonName, UIArmory_MainMenu MainMenu)
+{
+	if(ButtonName == '')
+		return none;
+
+	return UIListItemString(MainMenu.List.GetChildByName(ButtonName, false));
+}
+
+static function OnLoadoutLocked(UIButton kButton)
+{
+	local XComHQPresentationLayer HQPres;
+	local array<EInventorySlot> CannotEditSlots;
+	local UIArmory_MainMenu MainMenu;
+
+	CannotEditSlots.AddItem(eInvSlot_Utility);
+	CannotEditSlots.AddItem(eInvSlot_Armor);
+	CannotEditSlots.AddItem(eInvSlot_GrenadePocket);
+	CannotEditSlots.AddItem(eInvSlot_GrenadePocket);
+	CannotEditSlots.AddItem(eInvSlot_PrimaryWeapon);
+	CannotEditSlots.AddItem(eInvSlot_SecondaryWeapon);
+	CannotEditSlots.AddItem(eInvSlot_HeavyWeapon);
+	CannotEditSlots.AddItem(eInvSlot_TertiaryWeapon);
+	CannotEditSlots.AddItem(eInvSlot_QuaternaryWeapon);
+	CannotEditSlots.AddItem(eInvSlot_QuinaryWeapon);
+	CannotEditSlots.AddItem(eInvSlot_SenaryWeapon);
+	CannotEditSlots.AddItem(eInvSlot_SeptenaryWeapon);
+	CannotEditSlots.AddItem(eInvSlot_AmmoPocket);
+
+	MainMenu = UIArmory_MainMenu(GetScreenOrChild('UIArmory_MainMenu'));
+	if (MainMenu == none) { return; }
+
+	if( UIListItemString(kButton.ParentPanel) != none && UIListItemString(kButton.ParentPanel).bDisabled )
+	{
+		`XSTRATEGYSOUNDMGR.PlaySoundEvent("Play_MenuClickNegative");
+		return;
+	}
+
+	HQPres = `HQPRES;
+	if( HQPres != none )
+		HQPres.UIArmory_Loadout(MainMenu.UnitReference, CannotEditSlots);
+	`XSTRATEGYSOUNDMGR.PlaySoundEvent("Play_MenuSelect");
+}
+
+// Provide images for all the new PCSes LWOTC adds.
+static function EventListenerReturn GetPCSImage(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple			OverridePCSImageTuple;
+	local string				ReturnImagePath;
+	local XComGameState_Item	ItemState;
+
+	OverridePCSImageTuple = XComLWTuple(EventData);
+	`assert(OverridePCSImageTuple != none);
+
+	ItemState = XComGameState_Item(EventSource);
+	`assert(ItemState != none);
+	`assert(OverridePCSImageTuple.Id == 'OverrideGetPCSImage');
+
+	switch (ItemState.GetMyTemplateName())
+	{
+		case 'DepthPerceptionPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_depthperception"; break;
+		case 'HyperReactivePupilsPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hyperreactivepupils"; break;
+		case 'CombatAwarenessPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_threatassessment"; break;
+		case 'DamageControlPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_damagecontrol"; break;
+		case 'AbsorptionFieldsPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_impactfield"; break;
+		case 'BodyShieldPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_bodyshield"; break;
+		case 'EmergencyLifeSupportPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_emergencylifesupport"; break;
+		case 'IronSkinPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_ironskin"; break;
+		case 'SmartMacrophagesPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_smartmacrophages"; break;
+		case 'CombatRushPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_combatrush"; break;
+		case 'CommonPCSDefense': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
+		case 'RarePCSDefense': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
+		case 'EpicPCSDefense': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
+		case 'CommonPCSAgility': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
+		case 'RarePCSAgility': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
+		case 'EpicPCSAgility': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
+		case 'CommonPCSHacking': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
+		case 'RarePCSHacking': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
+		case 'EpicPCSHacking': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
+		case 'FireControl25PCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
+		case 'FireControl50PCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
+		case 'FireControl75PCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
+
+		default:  OverridePCSImageTuple.Data[0].b = false;
+	}
+	ReturnImagePath = OverridePCSImageTuple.Data[1].s;  // anything set by any other listener that went first
+	ReturnImagePath = ReturnImagePath;
+
+	return ELR_NoInterrupt;
+}
+
+// Attempt to tame Serial by tracking kills and reducing crit for each kill.
+static function EventListenerReturn OnSerialKill(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	local XComGameState_Unit ShooterState;
+    local UnitValue UnitVal;
+
+	ShooterState = XComGameState_Unit (EventSource);
+	if (ShooterState == none)
+	{
+		return ELR_NoInterrupt;
+	}
+
+	ShooterState.GetUnitValue ('SerialKills', UnitVal);
+	ShooterState.SetUnitFloatValue ('SerialKills', UnitVal.fValue + 1.0, eCleanup_BeginTurn);
+	return ELR_NoInterrupt;
 }

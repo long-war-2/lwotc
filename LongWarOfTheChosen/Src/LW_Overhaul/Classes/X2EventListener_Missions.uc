@@ -7,6 +7,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateObjectivesListeners());
 	Templates.AddItem(CreateSquadListeners());
 	Templates.AddItem(CreateMissionPrepListeners());
+	Templates.AddItem(CreateMiscellaneousListeners());
 
 	return Templates;
 }
@@ -14,18 +15,6 @@ static function array<X2DataTemplate> CreateTemplates()
 ////////////////
 /// Strategy ///
 ////////////////
-
-static function CHEventListenerTemplate CreateObjectivesListeners()
-{
-	local CHEventListenerTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionObjectivesListeners');
-	Template.AddCHEvent('OverrideObjectiveSpawnCount', OnOverrideObjectiveSpawnCount, ELD_Immediate);
-
-	Template.RegisterInTactical = true;
-
-	return Template;
-}
 
 static function CHEventListenerTemplate CreateSquadListeners()
 {
@@ -35,6 +24,23 @@ static function CHEventListenerTemplate CreateSquadListeners()
 	Template.AddCHEvent('rjSquadSelect_AllowAutoFilling', DisableSquadAutoFill, ELD_Immediate);
 
 	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+////////////////
+/// Tactical ///
+////////////////
+
+static function CHEventListenerTemplate CreateObjectivesListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionObjectivesListeners');
+	Template.AddCHEvent('OverrideObjectiveSpawnCount', OnOverrideObjectiveSpawnCount, ELD_Immediate);
+	Template.AddCHEvent('OverrideBodyAndLootRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
+
+	Template.RegisterInTactical = true;
 
 	return Template;
 }
@@ -54,6 +60,17 @@ static function CHEventListenerTemplate CreateMissionPrepListeners()
 	return Template;
 }
 
+static function CHEventListenerTemplate CreateMiscellaneousListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MiscMissionListeners');
+	Template.AddCHEvent('PlayerTurnBegun', LW2OnPlayerTurnBegun, ELD_Immediate);
+
+	Template.RegisterInTactical = true;
+
+	return Template;
+}
 
 static function EventListenerReturn OnOverrideObjectiveSpawnCount(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
@@ -96,6 +113,42 @@ static function EventListenerReturn OnOverrideObjectiveSpawnCount(Object EventDa
 	}
 
 	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OnOverrideBodyAndLootRecovery(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_BattleData BattleData;
+	
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	BattleData = XComGameState_BattleData(EventSource);
+	if (BattleData == none)
+	{
+		`REDSCREEN("BattleData not provided with 'OverrideBodyAndLootRecovery' event");
+		return ELR_NoInterrupt;
+	}
+
+	Tuple.Data[0].b = (HasAnyTriadObjective(BattleData) && BattleData.AllTriadObjectivesCompleted()) || Tuple.Data[0].b;
+
+	return ELR_NoInterrupt;
+}
+
+static function bool HasAnyTriadObjective(XComGameState_BattleData Battle)
+{
+	local int ObjectiveIndex;
+
+	for( ObjectiveIndex = 0; ObjectiveIndex < Battle.MapData.ActiveMission.MissionObjectives.Length; ++ObjectiveIndex )
+	{
+		if( Battle.MapData.ActiveMission.MissionObjectives[ObjectiveIndex].bIsTriadObjective )
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 // Disable autofilling of the mission squad in robojumper's Squad Select screen
@@ -294,4 +347,27 @@ static simulated function CustomizeAliens_BuildVisualization(XComGameState Visua
 				false);
 		}
 	}
+}
+
+static function EventListenerReturn LW2OnPlayerTurnBegun(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	local XComGameState_Player PlayerState;
+
+	PlayerState = XComGameState_Player (EventData);
+	if (PlayerState == none)
+	{
+		`LOG ("LW2OnPlayerTurnBegun: PlayerState Not Found");
+		return ELR_NoInterrupt;
+	}
+
+	if(PlayerState.GetTeam() == eTeam_XCom)
+	{
+		`XEVENTMGR.TriggerEvent('XComTurnBegun', PlayerState, PlayerState);
+	}
+	if(PlayerSTate.GetTeam() == eTeam_Alien)
+	{
+		`XEVENTMGR.TriggerEvent('AlienTurnBegun', PlayerState, PlayerState);
+	}
+
+	return ELR_NoInterrupt;
 }
