@@ -520,21 +520,34 @@ simulated function ConfirmBoostInfiltrationCallback(Name Action)
 		Movie.Pres.PlayUISound(eSUISound_MenuClickNegative);
 }
 
+// START Copied from View Infiltrating Squad mod by LeaderEnemyBoss
 simulated public function OnViewSquadClicked(UIButton button)
 {
-	local UIPersonnel_SquadBarracks kPersonnelList;
-	local XComHQPresentationLayer HQPres;
+	local UIPersonnel_LEBVS kPersonnelList;
+	local UIMission_LWLaunchDelayedMission LWLaunchScreen;
+	local UIScreen Screen;
 
-	HQPres = `HQPRES;
-
-	if (HQPres.ScreenStack.IsNotInStack(class'UIPersonnel_SquadBarracks'))
+	foreach `SCREENSTACK.Screens(Screen)
 	{
-		kPersonnelList = HQPres.Spawn(class'UIPersonnel_SquadBarracks', HQPres);
-		kPersonnelList.bHideSelect = true;
-		kPersonnelList.ExternalSelectedSquadRef = GetInfiltratingSquad().GetReference();
-		HQPres.ScreenStack.Push(kPersonnelList);
+		if(UIMission_LWLaunchDelayedMission(Screen) != none ) break;
+	}
+
+	LWLaunchScreen = UIMission_LWLaunchDelayedMission(Screen);
+
+	if (`HQPRES.ScreenStack.IsNotInStack(class'UIPersonnel_LEBVS'))
+	{
+		kPersonnelList = `HQPRES.Spawn(class'UIPersonnel_LEBVS', `HQPRES);
+		kPersonnelList.SoldierList = LWLaunchScreen.GetInfiltratingSquad().SquadSoldiersOnMission;
+		kPersonnelList.onSelectedDelegate = OnPersonnelSelected;
+		`HQPRES.ScreenStack.Push(kPersonnelList);
 	}
 }
+
+simulated function OnPersonnelSelected(StateObjectReference selectedUnitRef)
+{
+	`HQPRES.UIArmory_MainMenu(selectedUnitRef);
+}
+// END
 
 simulated public function OnAbortClicked(UIButton button)
 {

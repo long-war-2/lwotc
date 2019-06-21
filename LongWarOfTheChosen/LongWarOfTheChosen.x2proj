@@ -488,6 +488,7 @@
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWLaunchDelayedMission.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIOutpostManagement.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIOutpostManagement_ListItem.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIPersonnel_LEBVS.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIPersonnel_Liaison.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIPersonnel_SquadBarracks.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIResistanceManagement_ListItem.uc" />
