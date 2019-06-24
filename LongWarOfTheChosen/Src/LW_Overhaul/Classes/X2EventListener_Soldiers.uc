@@ -837,10 +837,13 @@ static function EventListenerReturn GetPCSImage(Object EventData, Object EventSo
 
 	OverridePCSImageTuple = XComLWTuple(EventData);
 	`assert(OverridePCSImageTuple != none);
+	`assert(OverridePCSImageTuple.Id == 'OverrideGetPCSImage');
 
 	ItemState = XComGameState_Item(EventSource);
-	`assert(ItemState != none);
-	`assert(OverridePCSImageTuple.Id == 'OverrideGetPCSImage');
+	if (ItemState == none)
+	{
+		return ELR_NoInterrupt;
+	}
 
 	switch (ItemState.GetMyTemplateName())
 	{
