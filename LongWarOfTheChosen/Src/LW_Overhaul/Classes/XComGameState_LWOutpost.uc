@@ -533,6 +533,13 @@ function bool UnitSurvived(XComGameState_Unit Unit, bool IsFaceless, String Miss
 		return false;
 	}
 
+	// Haven adviser will have returned from the mission as long as they
+	// aren't dead or captured.
+	if (Unit.ObjectID == GetLiaison().ObjectID)
+	{
+		return true;
+	}
+
 	// The IntelRaid and SupplyRaid missions are sweeps, so any rebels/mecs that are not dead lived. Likewise for
 	// rendezvous. Note that the faceless spies will be counted as 'survived' here because when they transform
 	// they are removed from play but not killed. The caller will handle those separately. Here we need to ensure
@@ -869,19 +876,17 @@ function RemoveAndCaptureLiaison(XComGameState NewGameState)
 	SetLiaison(EmptyRef, NewGameState);
 	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(
 				class'XComGameState_HeadquartersXCom'));
-	XComHQ = XComGameState_HeadquartersXCom(NewGameState.CreateStateObject(
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(
 				class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 	XComHQ.RemoveFromCrew(Unit.GetReference());
-	NewGameState.AddStateObject(XComHQ);
 
 	// If they're not dead and they're a soldier, capture them.
-	if (!Unit.IsDead() && Unit.IsSoldier())
+	if (!Unit.IsDead() && !Unit.bCaptured && Unit.IsSoldier())
 	{
 		AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(
 					class'XComGameState_HeadquartersAlien'));
-		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.CreateStateObject(
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(
 					class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
-		NewGameState.AddStateObject(AlienHQ);
 		AlienHQ.CapturedSoldiers.AddItem(Unit.GetReference());
 	}
 }
