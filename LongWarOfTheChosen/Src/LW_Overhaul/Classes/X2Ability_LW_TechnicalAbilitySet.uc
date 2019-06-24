@@ -667,6 +667,11 @@ static function X2AbilityTemplate CreateBurnoutAbility()
 	WeaponEffect = new class'X2Effect_ApplySmokeGrenadeToWorld';
 	Template.AddTargetEffect (WeaponEffect);
 
+	// Fix for issue #233. Need to add a single target effect as well because for some
+	// reason the multi target effect for this does not update to give the smoke cover
+	// on the tile the soldier is on even though smoke is actually created there.
+	Template.AddTargetEffect(class'X2Item_DefaultGrenades'.static.SmokeGrenadeEffect());
+
 	Template.AddMultiTargetEffect(class'X2Item_DefaultGrenades'.static.SmokeGrenadeEffect());
 
 	Template.AdditionalAbilities.AddItem('BurnoutPassive');
