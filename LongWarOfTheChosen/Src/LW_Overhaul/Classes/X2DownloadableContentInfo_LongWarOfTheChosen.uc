@@ -1409,8 +1409,11 @@ static function bool CanAddItemToInventory_CH_Improved(
 	local X2WeaponTemplate WeaponTemplate;
 	local int i;
 
-	// Ignore all slots other than HeavyWeapons
-	if (Slot != eInvSlot_HeavyWeapon)
+	SoldierClassTemplate = UnitState.GetSoldierClassTemplate();
+
+	// Ignore all slots other than HeavyWeapons and any units that don't have
+	// a soldier class template (like ADVENT Rocketeers!)
+	if (Slot != eInvSlot_HeavyWeapon || SoldierClassTemplate == none)
 	{
 		// We want this hook to be ignored from both the armory
 		// screen and the unit's CanAddItemToInventory() method,
@@ -1420,7 +1423,6 @@ static function bool CanAddItemToInventory_CH_Improved(
 		return CheckGameState == none;
 	}
 
-	SoldierClassTemplate = UnitState.GetSoldierClassTemplate();
 	WeaponTemplate = X2WeaponTemplate(ItemTemplate);
 	
 	for (i = 0; i < SoldierClassTemplate.AllowedWeapons.Length; ++i)
