@@ -22,16 +22,16 @@ static function array<X2DataTemplate> CreateTemplates()
 static function CHEventListenerTemplate CreateYellowAlertListeners()
 {
 	local CHEventListenerTemplate Template;
-	
+
 	`LWTrace("Registering evac event listeners");
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'YellowAlertListeners');
 	Template.AddCHEvent('OverrideSoundRange', OnOverrideSoundRange, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OverrideSeesAlertedAllies', DisableSeesAlertedAlliesAlert, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('ScamperBegin', OnScamperBegin, ELD_Immediate);
+	Template.AddCHEvent('ProcessReflexMove', OnScamperBegin, ELD_Immediate);
 	Template.AddCHEvent('UnitTakeEffectDamage', OnUnitTookDamage, ELD_OnStateSubmitted);
 	Template.AddCHEvent('OverrideAllowedAlertCause', OnOverrideAllowedAlertCause, ELD_Immediate);
-	
+
 	Template.RegisterInTactical = true;
 
 	return Template;
