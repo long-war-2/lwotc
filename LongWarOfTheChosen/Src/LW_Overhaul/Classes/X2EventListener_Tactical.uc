@@ -9,6 +9,11 @@ class X2EventListener_Tactical extends X2EventListener config(LW_Overhaul);
 var config int LISTENER_PRIORITY;
 var config array<float> SOUND_RANGE_DIFFICULTY_MODIFIER;
 
+var localized string HIT_CHANCE_MSG;
+var localized string CRIT_CHANCE_MSG;
+var localized string DODGE_CHANCE_MSG;
+var localized string MISS_CHANCE_MSG;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -47,6 +52,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('GetEvacPlacementDelay', OnPlacedDelayedEvacZone, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('KilledbyExplosion', OnKilledbyExplosion, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CleanupTacticalMission', OnCleanupTacticalMission, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('AbilityActivated', AddPerfectInfoFlyover, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('AbilityActivated', OnAbilityActivated, ELD_OnStateSubmitted, GetListenerPriority());
 
 	Template.RegisterInTactical = true;
@@ -585,6 +591,128 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
 	}
 
     return ELR_NoInterrupt;
+}
+
+// Make sure reinforcements arrive in red alert if any aliens on the map are
+// already in red alert.
+static function EventListenerReturn AddPerfectInfoFlyover(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	local UnitValue	LastShotBreakdownValue;
+	local XComGameState NewGameState;
+	local AvailableTarget Target;
+	local XComGameState_Unit UnitState;
+	local XComGameState_Ability AbilityState;
+	local XComGameStateContext_Ability Context;
+	local X2AbilityToHitCalc_StandardAim ToHitCalc;
+	local XComGameState_LastShotBreakdown LastShotBreakdown;
+
+	//ActivatedAbilityStateContext = XComGameStateContext_Ability(GameState.GetContext());
+	AbilityState = XComGameState_Ability(EventData);
+	UnitState = XComGameState_Unit(EventSource);
+	ToHitCalc = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
+	if (ToHitCalc == None)
+	{
+		// Ignore any abilities that don't use StandardAim
+		return ELR_NoInterrupt;
+	}
+
+	Context = XComGameStateContext_Ability(GameState.GetContext());
+
+	if (Context.InterruptionStatus != eInterruptionStatus_Interrupt)
+	{
+		// We want to use the shot breakdown from the last interrupt state
+		// (because Steady Weapon loses its buff just before the resume state)
+		// but we only want one flyover. If we add the flyover to the interrupt
+		// state, it will be copied to the resume state and *both* will execute
+		// and you'll see the flyover twice.
+		//
+		// However, we do want to add the visualization for eInterruptionStatus_None.
+		GameState.GetContext().PostBuildVisualizationFn.AddItem(PIFlyover_BuildVisualization);
+	}
+
+	if (Context.InterruptionStatus == eInterruptionStatus_Resume)
+	{
+		// Don't build the shot breakdown info for resumed contexts, primarily because
+		// Steady Weapon loses its buff by this point.
+		return ELR_NoInterrupt;
+	}
+
+	// Add the ID of the last shotbreakdown to the unit state so that the
+	// flyover visualisation actually has a reference it can use to get the
+	// shot breakdown info it needs.
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Record Last Shot Breakdown");
+	LastShotBreakdown = XComGameState_LastShotBreakdown(NewGameState.CreateNewStateObject(class'XComGameState_LastShotBreakdown'));
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+	UnitState.SetUnitFloatValue('LW_LastShotBreakdownId', LastShotBreakdown.ObjectID, eCleanup_BeginTactical);
+	
+	// Calculate the shotbreakdown from this interrupt state and save it
+	// to game state, from where the flyover visualisation can pick it up.
+	Target.PrimaryTarget = Context.InputContext.PrimaryTarget;
+	ToHitCalc.GetShotBreakdown(AbilityState, Target, LastShotBreakdown.ShotBreakdown);
+	
+	`TACTICALRULES.SubmitGameState(NewGameState);
+	return ELR_NoInterrupt;
+}
+
+static function PIFlyover_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameStateHistory				History;
+	local XComGameStateContext_Ability		Context;
+	local VisualizationActionMetadata		EmptyTrack, BuildTrack;
+	local XComGameState_Ability				AbilityState;
+	local XComGameState_Unit				UnitState, ShooterState;
+	local X2Action_PlaySoundAndFlyOver		MessageAction;
+	local ShotBreakdown						TargetBreakdown;
+	local AvailableTarget					Target;
+	local XComGameState_LastShotBreakdown	LastShotBreakdown;
+	local UnitValue							ShotBreakdownValue;
+
+	History = `XCOMHISTORY;
+	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+	AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID));
+
+	ShooterState = XComGameState_Unit(History.GetGameStateForObjectID(Context.InputContext.SourceObject.ObjectID));
+	if (!ShooterState.GetUnitValue('LW_LastShotBreakdownId', ShotBreakdownValue))
+	{
+		return;
+	}
+	LastShotBreakdown = XComGameState_LastShotBreakdown(History.GetGameStateForObjectID(int(ShotBreakdownValue.fValue)));
+	TargetBreakdown = LastShotBreakdown.ShotBreakdown;
+
+	BuildTrack = EmptyTrack;
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(Context.InputContext.PrimaryTarget.ObjectID));
+	BuildTrack.StateObject_NewState = UnitState;
+	BuildTrack.StateObject_OldState = UnitState;
+	BuildTrack.VisualizeActor = UnitState.GetVisualizer();
+	MessageAction = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+	MessageAction.SetSoundAndFlyOverParameters(None, GetHitChanceText(TargetBreakdown), '', eColor_Gray,, 5.0f);
+}
+
+// Return with chance string
+static function string GetHitChanceText(ShotBreakdown TargetBreakdown)
+{
+	local string HitText;
+	local string GrazeText;
+	local string CritText;
+	local string ReturnText;
+	local int SomeDamageHitChance;
+
+	HitText = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(class'XLocalizedData'.default.HitLabel);
+	CritText = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(class'XLocalizedData'.default.CritLabel);
+	GrazeText = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(
+		class'X2TacticalGameRulesetDataStructures'.default.m_aAbilityHitResultStrings[eHit_Graze]);
+
+	SomeDamageHitChance = TargetBreakdown.ResultTable[eHit_Success] + TargetBreakdown.ResultTable[eHit_Crit] + TargetBreakdown.ResultTable[eHit_Graze];
+
+	ReturnText = (ReturnText @ HitText @ SomeDamageHitChance $ "% ");
+
+	//Add Dodge Chance to ReturnText
+	ReturnText = (ReturnText @ GrazeText @ TargetBreakdown.ResultTable[eHit_Graze] $ "% ");
+
+	//Add Crit Chance to ReturnText
+	ReturnText = (ReturnText @ CritText @ TargetBreakdown.ResultTable[eHit_Crit] $ "% ");
+
+	return ReturnText;
 }
 
 // Make sure reinforcements arrive in red alert if any aliens on the map are

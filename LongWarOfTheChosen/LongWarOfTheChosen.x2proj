@@ -71,6 +71,8 @@
     <Folder Include="Src\LW_WeaponsAndArmor\" />
     <Folder Include="Localization\NewPromotionScreenByDefault_Integrated\" />
     <Folder Include="Src\NewPromotionScreenByDefault_Integrated\" />
+    <Folder Include="Localization\PI_Integrated\" />
+    <Folder Include="Src\PI_Integrated\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -1063,6 +1065,27 @@
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHeroColumn.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\X2DownloadableContentInfo_NewPromotionScreenbyDefault.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc" />
+    <Content Include="Config\XComPerfectInformation.ini" />
+    <Content Include="Localization\PI_Integrated\PerfectInformation.fra" />
+    <Content Include="Localization\PI_Integrated\PerfectInformation.ger" />
+    <Content Include="Localization\PI_Integrated\PerfectInformation.int" />
+    <Content Include="Localization\PI_Integrated\PerfectInformation.pol" />
+    <Content Include="Localization\PI_Integrated\PerfectInformation.rus" />
+    <Content Include="Src\PI_Integrated\Classes\PI_MCMListener.uc" />
+    <Content Include="Src\PI_Integrated\Classes\X2DownloadableContentInfo_PerfectInformation.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UIEffectListItem.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UIScreenListener.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UITacticalHUD_AbilityTooltip.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UITacticalHUD_BuffsTooltip.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UITacticalHUD_Enemies.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UITacticalHUD_EnemyTooltip.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UITacticalHUD_ShotHUD.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UITacticalHUD_ShotWings.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UITacticalHUD_SoldierInfoTooltip.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UITacticalHUD_Tooltips.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_UITooltipInfoList.uc" />
+    <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_X2Action_ApplyWeaponDamageToUnit.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\XComGameState_LastShotBreakdown.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

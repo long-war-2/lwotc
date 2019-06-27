@@ -55,7 +55,6 @@ static protected function int GetListenerPriority()
 static function EventListenerReturn ToHitOverrideListener(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local XComLWTuple						OverrideToHit;
-	// local X2AbilityToHitCalc				ToHitCalc;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local ToHitAdjustments					Adjustments;
 	local ShotModifierInfo					ModInfo;
@@ -94,7 +93,10 @@ static function EventListenerReturn ToHitOverrideListener(Object EventData, Obje
 	ShotBreakdownWrapper = CHShotBreakdownWrapper(OverrideToHit.Data[1].o);
 	GetUpdatedHitChances(StandardAim, ShotBreakdownWrapper.m_ShotBreakdown, Adjustments);
 
-	ShotBreakdownWrapper.m_ShotBreakdown.FinalHitChance = ShotBreakdownWrapper.m_ShotBreakdown.ResultTable[eHit_Success] + Adjustments.DodgeHitAdjust;
+	// LWOTC Replacing the old FinalHitChance calculation with one that treats all graze
+	// as a hit.
+	// ShotBreakdownWrapper.m_ShotBreakdown.FinalHitChance = ShotBreakdownWrapper.m_ShotBreakdown.ResultTable[eHit_Success] + Adjustments.DodgeHitAdjust;
+	ShotBreakdownWrapper.m_ShotBreakdown.FinalHitChance = Adjustments.FinalSuccessChance + Adjustments.FinalGrazeChance + Adjustments.FinalCritChance;
 	ShotBreakdownWrapper.m_ShotBreakdown.ResultTable[eHit_Crit] = Adjustments.FinalCritChance;
 	ShotBreakdownWrapper.m_ShotBreakdown.ResultTable[eHit_Success] = Adjustments.FinalSuccessChance;
 	ShotBreakdownWrapper.m_ShotBreakdown.ResultTable[eHit_Graze] = Adjustments.FinalGrazeChance;
@@ -130,6 +132,7 @@ static function EventListenerReturn ToHitOverrideListener(Object EventData, Obje
 // doesn't actually assign anything to the ToHitCalc, just computes relative to-hit adjustments
 static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, out ShotBreakdown ShotBreakdown, out ToHitAdjustments Adjustments)
 {
+	local ShotModifierInfo ModInfo;
 	local int GrazeBand;
 	local int CriticalChance, DodgeChance;
 	local int MissChance, HitChance, CritChance;
@@ -181,6 +184,14 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 	GrazeChance_Hit = Clamp(HitChance, 0, GrazeBand); // captures the "low" side where you just barely hit
 	GrazeChance_Miss = Clamp(100 - HitChance, 0, GrazeBand);  // captures the "high" side where  you just barely miss
 	GrazeChance = GrazeChance_Hit + GrazeChance_Miss;
+
+	if (GrazeChance_Hit > 0)
+	{
+		ModInfo.ModType = eHit_Success;
+		ModInfo.Value   = GrazeChance_Hit;
+		ModInfo.Reason  = class'X2TacticalGameRulesetDataStructures'.default.m_aAbilityHitResultStrings[eHit_Graze];
+		Shotbreakdown.Modifiers.AddItem(ModInfo);
+	}
 
 	if (bLogHitChance)
 	{

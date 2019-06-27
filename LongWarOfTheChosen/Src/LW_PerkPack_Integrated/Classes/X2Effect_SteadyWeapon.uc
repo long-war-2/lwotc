@@ -27,7 +27,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	// This is a fix for Deep Cover triggering when you Steady Weapon
 	UnitState = XComGameState_Unit(kNewTargetState);
 	UnitState.GetUnitValue('AttacksThisTurn', AttacksThisTurn);
-AttacksThisTurn.fValue += float(1);
+	AttacksThisTurn.fValue += float(1);
 	UnitState.SetUnitFloatValue('AttacksThisTurn', AttacksThisTurn.fValue, eCleanup_BeginTurn);
 	
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
