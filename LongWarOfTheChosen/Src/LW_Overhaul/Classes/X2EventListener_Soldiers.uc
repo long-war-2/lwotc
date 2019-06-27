@@ -179,6 +179,7 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
     local XComGameState_WorldRegion	WorldRegion;
 	local XComGameState_LWPersistentSquad Squad;
 	local XComGameState_LWSquadManager SquadMgr;
+	local int						HoursToInfiltrate;
 
 	OverrideTuple = XComLWTuple(EventData);
 	if (OverrideTuple == none)
@@ -217,14 +218,31 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 		}
 		else if (SquadMgr.UnitIsOnMission(UnitState.GetReference(), Squad))
 		{
-			SetStatusTupleData(
-				OverrideTuple,
-				default.OnInfiltrationMission,
-				"",
-				"",
-				GetHoursLeftToInfiltrate(Squad),
-				eUIState_Warning,
-				false);
+			HoursToInfiltrate = GetHoursLeftToInfiltrate(Squad);
+			if (HoursToInfiltrate <= 0)
+			{
+				// Show percentage infiltration once we've reached 100%
+				SetStatusTupleData(
+					OverrideTuple,
+					default.OnInfiltrationMission,	// Status
+					"",								// TimeLabel
+					int(Squad.CurrentInfiltration * 100.0) $ "%",
+					0,								// TimeValue
+					eUIState_Warning,
+					false);
+			}
+			else
+			{
+				// Show time left to reach 100% infiltration
+				SetStatusTupleData(
+					OverrideTuple,
+					default.OnInfiltrationMission,	// Status
+					"",								// TimeLabel
+					"",								// TimeLabelOverride
+					HoursToInfiltrate,				// TimeValue
+					eUIState_Warning,
+					false);
+			}
 		}
 	}
 	else if (GetScreenOrChild('UIPersonnel_SquadBarracks') == none)
