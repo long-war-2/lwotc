@@ -25,6 +25,15 @@ var name ExistingItemName;
 var bool bOverrideInventorySlot;
 var EInventorySlot InventorySlotOverride;
 
+function RegisterForEvents(XComGameState_Effect EffectGameState)
+{
+	local Object EffectObj;
+
+	EffectObj = EffectGameState;
+
+	`XEVENTMGR.RegisterForEvent(EffectObj, 'TacticalGameEnd', OnTacticalGameEnd, ELD_OnStateSubmitted,,,, EffectObj);
+}
+
 simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
 	local XComGameState_HeadquartersXCom		XComHQ;
@@ -34,10 +43,9 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	local XComGameState_Item					OldItemState, UpdatedItemState, NewItemState;
 	local X2EquipmentTemplate					EquipmentTemplate;
 	local X2WeaponTemplate						WeaponTemplate;
-	local XComGameState_Effect_TemporaryItem	EffectComponent;
+	local XComGameState_Effect_TemporaryItem	EffectState;
 	local Object								ListenerObj;
 	local EInventorySlot						InventorySlot;
-
 
 	UnitState = XComGameState_Unit(kNewTargetState);
 	if (UnitState == none)
@@ -94,9 +102,8 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 		WeaponTemplate = X2WeaponTemplate(EquipmentTemplate);
 		if (WeaponTemplate != none && WeaponTemplate.bMergeAmmo)
 		{
-			UpdatedItemState = XComGameState_Item(NewGameState.CreateStateObject(OldItemState.Class, OldItemState.ObjectID));
+			UpdatedItemState = XComGameState_Item(NewGameState.ModifyStateObject(OldItemState.Class, OldItemState.ObjectID));
 			UpdatedItemState.Ammo += WeaponTemplate.iClipSize;
-			NewGameState.AddStateObject(UpdatedItemState);
 		}
 	}
 	else // Unit either doesn't have item, or it has it and it has to be replaced
@@ -114,25 +121,10 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 			OldItemState.Ammo = 0;
 			OldItemState.MergedItemCount = 0;
 			OldItemState.bMergedOut = true;
-			NewGameState.AddStateObject(OldItemState);
 		}
 
-		//check and see if the effect component has already been created by another temporary item
-		EffectComponent = GetEffectComponent(NewEffectState);
-
-		if(EffectComponent == none) // doesn't exist, so create and link it
-		{
-			EffectComponent = XComGameState_Effect_TemporaryItem(NewGameState.CreateStateObject(class'XComGameState_Effect_TemporaryItem'));
-			NewEffectState.AddComponentObject(EffectComponent);
-			NewGameState.AddStateObject(NewEffectState);
-		}
-
-		EffectComponent.TemporaryItems.AddItem(NewItemState.GetReference());
-		NewGameState.AddStateObject(EffectComponent);
+		EffectState.TemporaryItems.AddItem(NewItemState.GetReference());
 	}
-
-	ListenerObj = EffectComponent;
-	`XEVENTMGR.RegisterForEvent(ListenerObj, 'TacticalGameEnd', EffectComponent.OnTacticalGameEnd, ELD_OnStateSubmitted);
 
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
 }
@@ -232,13 +224,6 @@ simulated function XComGameState_Item AddNewItemToUnit(X2EquipmentTemplate Equip
 	return ItemState;
 }
 
-static function XComGameState_Effect_TemporaryItem GetEffectComponent(XComGameState_Effect Effect)
-{
-	if (Effect != none) 
-		return XComGameState_Effect_TemporaryItem(Effect.FindComponentObject(class'XComGameState_Effect_TemporaryItem'));
-	return none;
-}
-
 static function XComGameState_Item GetItem(XComGameState_Unit Unit, name TemplateName, optional XComGameState CheckGameState)
 {
 	local array<XComGameState_Item> Items;
@@ -328,38 +313,53 @@ function array<X2AbilityTemplate> AddAbilityToUnit(name AbilityName, XComGameSta
 			ReturnAbilityTemplates.AddItem(AbilityTemplate);
 		}
 
-		AbilityState = XComGameState_Ability(NewGameState.CreateStateObject(class'XComGameState_Ability', AbilityRef.ObjectID));
-		NewGameState.AddStateObject(AbilityState);
+		AbilityState = XComGameState_Ability(NewGameState.ModifyStateObject(class'XComGameState_Ability', AbilityRef.ObjectID));
 	}
 	return ReturnAbilityTemplates;
 }
 
-simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
+simulated function EventListenerReturn OnTacticalGameEnd(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComGameState_BaseObject EffectComponent;
-	local XComGameState_Effect_TemporaryItem TempItemComponent;
-	local Object EffectComponentObj;
+	local XComGameStateHistory		History;
+	local XComGameState				NewGameState;
+	local StateObjectReference		ItemRef;
+	local XComGameState_Item		ItemState;
+	local XComGameState_Unit		UnitState;
+	local XComGameState_Effect_TemporaryItem EffectState;
 	
-	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
+	History = `XCOMHISTORY;
+	EffectState = XComGameState_Effect_TemporaryItem(CallbackData);
+	//XComHQ = `XCOMHQ;
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Temporary Item Cleanup");
+	foreach EffectState.TemporaryItems(ItemRef)
+	{
+		if (ItemRef.ObjectID > 0)
+		{
+			ItemState = XComGameState_Item(History.GetGameStateForObjectID(ItemRef.ObjectID));
+			if (ItemState != none)
+			{
+				UnitState = XComGameState_Unit(History.GetGameStateForObjectID(ItemState.OwnerStateObject.ObjectID));
+				if (UnitState != none)
+					UnitState.RemoveItemFromInventory(ItemState); // Remove the item from the unit's inventory
+		
+				// Remove the temporary item's gamestate object from history
+				NewGameState.RemoveStateObject(ItemRef.ObjectID);
+			}
+		}
+	}
+	// Remove this gamestate object from history
+	NewGameState.RemoveStateObject(EffectState.ObjectID);
 
-	EffectComponent = GetEffectComponent(RemovedEffectState);
-	if (EffectComponent == none)
-		return;
+	if( NewGameState.GetNumGameStateObjects() > 0 )
+		`GAMERULES.SubmitGameState(NewGameState);
+	else
+		History.CleanupPendingGameState(NewGameState);
 
-	TempItemComponent = XComGameState_Effect_TemporaryItem(EffectComponent);
-	if (TempItemComponent == none)
-		return;
-
-	//manually clean up the temporary items
-	TempItemComponent.OnTacticalGameEnd(none, none, none, '', none);
-
-	EffectComponentObj = EffectComponent;
-	`XEVENTMGR.UnRegisterFromAllEvents(EffectComponentObj);
-
-	NewGameState.RemoveStateObject(EffectComponent.ObjectID);
+	return ELR_NoInterrupt;
 }
 
 defaultProperties
 {
 	bInfiniteDuration = true;
+	GameStateEffectClass=class'XComGameState_Effect_TemporaryItem';
 }

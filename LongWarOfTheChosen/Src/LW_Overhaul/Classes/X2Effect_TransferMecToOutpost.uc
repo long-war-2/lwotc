@@ -88,6 +88,6 @@ defaultproperties
 {
 	bRemoveWhenTargetDies=true
 	bRemoveWhenSourceDies=false
-	GameStateEffectClass = class'XComGameState_Effect_TransferMecToOutpost';
+	GameStateEffectClass=class'XComGameState_Effect_TransferMecToOutpost';
 	EffectName="TransferMecToOutpost"
 }

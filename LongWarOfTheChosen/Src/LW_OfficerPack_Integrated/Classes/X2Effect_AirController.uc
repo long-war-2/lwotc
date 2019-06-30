@@ -17,7 +17,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 
 DefaultProperties
 {
-	DuplicateResponse = eDupe_Ignore 
-	GameStateEffectClass = class'XComGameState_Effect_AirController'
-	EffectName = "AirControllerEffect"
+	DuplicateResponse=eDupe_Ignore 
+	GameStateEffectClass=class'XComGameState_Effect_AirController'
+	EffectName="AirControllerEffect"
 }

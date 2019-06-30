@@ -5,38 +5,69 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_Bombard extends X2Effect_Persistent;
 
-//add a component to XComGameState_Effect to listen for successful unit hacks
-simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
+function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
-	local XComGameState_Effect_Bombard BombardEffectState;
-	local X2EventManager EventMgr;
-	local Object								ListenerObj;
+	local Object EffectObj;
 
-	EventMgr = `XEVENTMGR;
-	if (GetEffectComponent(NewEffectState) == none)
-	{
-		//create component and attach it to GameState_Effect, adding the new state object to the NewGameState container
-		BombardEffectState = XComGameState_Effect_Bombard(NewGameState.CreateStateObject(class'XComGameState_Effect_Bombard'));
-		BombardEffectState.InitComponent();
-		NewEffectState.AddComponentObject(BombardEffectState);
-		NewGameState.AddStateObject(BombardEffectState);
-	}
+	EffectObj = EffectGameState;
 
-	//add listener to new component effect -- do it here because the RegisterForEvents call happens before OnEffectAdded, so component doesn't yet exist
-	ListenerObj = BombardEffectState;
-	if (ListenerObj == none)
-	{
-		`Redscreen("Bombard: Failed to find Bombard Component when registering listener");
-		return;
-	}
-	EventMgr.RegisterForEvent(ListenerObj, 'OnGetItemRange', BombardEffectState.OnGetItemRange);
+	// allows activation/deactivation of effect
+	`XEVENTMGR.RegisterForEvent(EffectObj, 'OnGetItemRange', OnGetItemRange,,,,, EffectObj);
 }
 
-static function XComGameState_Effect_Bombard GetEffectComponent(XComGameState_Effect Effect)
+//this is triggered when checking range on an item
+static function EventListenerReturn OnGetItemRange(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
 {
-	if (Effect != none) 
-		return XComGameState_Effect_Bombard(Effect.FindComponentObject(class'XComGameState_Effect_Bombard'));
-	return none;
+	local XComLWTuple				OverrideTuple;
+	local XComGameState_Item		Item;
+	local XComGameState_Ability		Ability;
+	local XComGameState_Effect		EffectState;
+	local XComGameState_Item		SourceWeapon;
+	local X2WeaponTemplate			WeaponTemplate;
+
+	OverrideTuple = XComLWTuple(EventData);
+	if (OverrideTuple == none)
+	{
+		`REDSCREEN("OverrideGetPCSImage event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	Item = XComGameState_Item(EventSource);
+	if (Item == none)
+		return ELR_NoInterrupt;
+
+	if (OverrideTuple.Id != 'GetItemRange')
+		return ELR_NoInterrupt;
+
+	Ability = XComGameState_Ability(OverrideTuple.Data[2].o);  // optional ability
+	EffectState = XComGameState_Effect(CallbackData);
+
+	//verify the owner of the item matches
+	if (Item.OwnerStateObject != EffectState.ApplyEffectParameters.SourceStateObjectRef)
+		return ELR_NoInterrupt;
+
+	if (Ability == none)
+		return ELR_NoInterrupt;
+
+	//get the source weapon and weapon template
+	SourceWeapon = Ability.GetSourceWeapon();
+	WeaponTemplate = X2WeaponTemplate(SourceWeapon.GetMyTemplate());
+
+	if (WeaponTemplate == none)
+		return ELR_NoInterrupt;
+
+	// make sure the weapon is either a grenade or a grenade launcher
+	if (X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none || WeaponTemplate.DataName == 'Battlescanner')
+	{
+		OverrideTuple.Data[1].i = class'X2Ability_LW_GrenadierAbilitySet'.default.BOMBARD_BONUS_RANGE_TILES;
+	}
+
+	return ELR_NoInterrupt;
 }
 
 defaultproperties

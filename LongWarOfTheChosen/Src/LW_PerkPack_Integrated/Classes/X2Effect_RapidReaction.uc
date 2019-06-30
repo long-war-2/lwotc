@@ -9,67 +9,26 @@ Class X2Effect_RapidReaction extends X2Effect_Persistent config (LW_SoldierSkill
 var config int RAPID_REACTION_USES_PER_TURN;
 var config array<name> RAPID_REACTION_ABILITYNAMES;
 
-simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
+function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
-	local XComGameState_Effect_EffectCounter	RapidReactionEffectState;
-	local X2EventManager						EventMgr;
-	local Object								ListenerObj, EffectObj;
-	local XComGameState_Unit					UnitState;
+	local X2EventManager EventMgr;
+	local XComGameState_Unit UnitState;
+	local Object EffectObj;
 
 	EventMgr = `XEVENTMGR;
-	EffectObj = NewEffectState;
-	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(NewEffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 
-	if (GetRapidReactionCounter(NewEffectState) == none)
-	{
-		RapidReactionEffectState = XComGameState_Effect_EffectCounter(NewGameState.CreateStateObject(class'XComGameState_Effect_EffectCounter'));
-		RapidReactionEffectState.InitComponent();
-		NewEffectState.AddComponentObject(RapidReactionEffectState);
-		NewGameState.AddStateObject(RapidReactionEffectState);
-	}
-	ListenerObj = RapidReactionEffectState;
-	if (ListenerObj == none)
-	{
-		`Redscreen("RapidReaction: Failed to find RapidReaction Component when registering listener");
-		return;
-	}
+	EffectObj = EffectGameState;
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 
 	if (UnitState.GetTeam() == eTeam_XCom)
 	{
-		EventMgr.RegisterForEvent(ListenerObj, 'XComTurnBegun', RapidReactionEffectState.ResetUses, ELD_OnStateSubmitted);
+		EventMgr.RegisterForEvent(EffectObj, 'XComTurnBegun', class'XComGameState_Effect_EffectCounter'.static.ResetUses, ELD_OnStateSubmitted,,,, EffectObj);
 	}
-	else
+	else if (UnitState.GetTeam() == eTeam_Alien)
 	{
-		if (UnitState.GetTeam() == eTeam_Alien)
-		{
-			EventMgr.RegisterForEvent(ListenerObj, 'AlienTurnBegun', RapidReactionEffectState.ResetUses, ELD_OnStateSubmitted);
-		}
+		EventMgr.RegisterForEvent(EffectObj, 'AlienTurnBegun', class'XComGameState_Effect_EffectCounter'.static.ResetUses, ELD_OnStateSubmitted,,,, EffectObj);
 	}
-	EventMgr.RegisterForEvent(EffectObj, 'RapidReactionTriggered', NewEffectState.TriggerAbilityFlyover, ELD_OnStateSubmitted, , UnitState);
-}
-
-simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
-{
-	local XComGameState_BaseObject EffectComponent;
-	local Object EffectComponentObj;
-	
-	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
-
-	EffectComponent = GetRapidReactionCounter(RemovedEffectState);
-	if (EffectComponent == none)
-		return;
-
-	EffectComponentObj = EffectComponent;
-	`XEVENTMGR.UnRegisterFromAllEvents(EffectComponentObj);
-
-	NewGameState.RemoveStateObject(EffectComponent.ObjectID);
-}
-
-static function XComGameState_Effect_EffectCounter GetRapidReactionCounter(XComGameState_Effect Effect)
-{
-	if (Effect != none) 
-		return XComGameState_Effect_EffectCounter(Effect.FindComponentObject(class'XComGameState_Effect_EffectCounter'));
-	return none;
+	EventMgr.RegisterForEvent(EffectObj, 'RapidReactionTriggered', EffectGameState.TriggerAbilityFlyover, ELD_OnStateSubmitted,, UnitState);
 }
 
 function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStateContext_Ability AbilityContext, XComGameState_Ability kAbility, XComGameState_Unit SourceUnit, XComGameState_Item AffectWeapon, XComGameState NewGameState, const array<name> PreCostActionPoints, const array<name> PreCostReservePoints)
@@ -80,7 +39,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	local XComGameState_Unit					TargetUnit;
 	local name ValueName;
 
-	CurrentRapidReactionCounter = GetRapidReactionCounter(EffectState);
+	CurrentRapidReactionCounter = XComGameState_Effect_EffectCounter(EffectState);
 	If (CurrentRapidReactionCounter != none)	 
 	{
 		if (CurrentRapidReactionCounter.uses >= default.RAPID_REACTION_USES_PER_TURN)		
@@ -99,13 +58,16 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 			ValueName = name("OverwatchShot" $ TargetUnit.ObjectID);
 			SourceUnit.SetUnitFloatValue (ValueName, 1.0, eCleanup_BeginTurn);
 			SourceUnit.ReserveActionPoints = PreCostReservePoints;
-			UpdatedRapidReactionCounter = XComGameState_Effect_EffectCounter(NewGameState.CreateStateObject(class'XComGameState_Effect_EffectCounter', CurrentRapidReactionCounter.ObjectID));
+			UpdatedRapidReactionCounter = XComGameState_Effect_EffectCounter(NewGameState.ModifyStateObject(class'XComGameState_Effect_EffectCounter', CurrentRapidReactionCounter.ObjectID));
 			UpdatedRapidReactionCounter.uses += 1;
-			NewGameState.AddStateObject(UpdatedRapidReactionCounter);
-			NewGameState.AddStateObject(SourceUnit);
 			EventMgr = `XEVENTMGR;
 			EventMgr.TriggerEvent('RapidReactionTriggered', AbilityState, SourceUnit, NewGameState);
 		}
 	}
 	return false;
+}
+
+defaultproperties
+{
+	GameStateEffectClass=class'XComGameState_Effect_EffectCounter';
 }

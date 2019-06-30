@@ -841,9 +841,6 @@ function EventListenerReturn OnTacticalBeginPlay(Object EventData, Object EventS
 		}
 	}
 
-	//test removing this now that the persistent flag has been removed from the event listener
-	//CleanupRedFog();
-
 	//re-register the HP gamestate listener, since this appears to be cleaned up when switching from strategy to tactical
 	if(bRedFogXComActive || bRedFogAliensActive)
 		History.RegisterOnNewGameStateDelegate(OnNewGameState_HealthWatcher);
@@ -1708,9 +1705,9 @@ static function OnNewGameState_HealthWatcher(XComGameState GameState)
 {
 	local XComGameState NewGameState;
 	local int StateObjectIndex;
-	local XComGameState_Effect RedFogEffect;
-	local XComGameState_Effect_RedFog_LW RFEComponent;
+	local XComGameState_Effect RedFogEffectState;
 	local XComGameState_Unit HPChangedUnit, UpdatedUnit;
+	local X2Effect_RedFog_LW RedFogEffect;
 	local array<XComGameState_Unit> HPChangedObjects;  // is generically just a pair of XComGameState_BaseObjects, pre and post the change
 
 	if(`TACTICALRULES == none || !`TACTICALRULES.TacticalGameIsInPlay()) return; // only do this checking when in tactical battle
@@ -1724,16 +1721,12 @@ static function OnNewGameState_HealthWatcher(XComGameState GameState)
 		HPChangedUnit = HPChangedObjects[StateObjectIndex];
 		if(HPChangedUnit.IsUnitAffectedByEffectName(class'X2Effect_RedFog_LW'.default.EffectName))
 		{
-			RedFogEffect = HPChangedUnit.GetUnitAffectedByEffectState(class'X2Effect_RedFog_LW'.default.EffectName);
-			if(RedFogEffect != none)
+			RedFogEffectState = HPChangedUnit.GetUnitAffectedByEffectState(class'X2Effect_RedFog_LW'.default.EffectName);
+			if(RedFogEffectState != none)
 			{
-				RFEComponent = XComGameState_Effect_RedFog_LW(RedFogEffect.FindComponentObject(class'XComGameState_Effect_RedFog_LW'));
-				if(RFEComponent != none)
-				{
-					UpdatedUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', HPChangedUnit.ObjectID));
-					NewGameState.AddStateObject(UpdatedUnit);
-					RFEComponent.UpdateRedFogPenalties(UpdatedUnit, NewGameState);
-				}
+				RedFogEffect = X2Effect_RedFog_LW(RedFogEffectState.GetX2Effect());
+				UpdatedUnit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', HPChangedUnit.ObjectID));
+				RedFogEffect.UpdateRedFogPenalties(RedFogEffectState, UpdatedUnit, NewGameState);
 			}
 		}
 	}
@@ -1763,43 +1756,6 @@ static function GetHPChangedObjectList(XComGameState NewGameState, out array<XCo
 			OutHPChangedObjects.AddItem(UnitStateCurrent);
 		}
 	}
-}
-
-function CleanupRedFog()
-{
-	local XComGameStateHistory History;
-	local XComGameState_Effect EffectState;
-	local XComGameState_Effect_RedFog_LW RFEState;
-	local XComGameState NewGameState;
-	local Object ThisObj;
-	local X2EventManager EventManager;
-
-	EventManager = `XEVENTMGR;
-	History = `XCOMHISTORY;
-
-	//make sure all of our RedFog states are cleaned up like they should be
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Clean up Red Fog effects");
-	foreach History.IterateByClassType(class'XComGameState_Effect_RedFog_LW', RFEState)
-	{
-		`LOG("CleanupRedFog: Found RedFog Effect gamestate, cleaning up",,'LW_Toolbox');
-		ThisObj = RFEState;
-		EventManager.UnRegisterFromEvent(ThisObj, 'UpdateRedFogActivation');
-
-		EffectState = XComGameState_Effect(History.GetGameStateForObjectID(RFEState.OwningObjectId));
-		if(EffectState != none && !EffectState.bRemoved)
-		{
-			`LOG("CleanupRedFog: Found owning XCGS_Effect, removing",, 'LW_Toolbox');
-			NewGameState.RemoveStateObject(EffectState.ObjectID);
-		}
-
-		NewGameState.RemoveStateObject(RFEState.ObjectID);
-	}
-
-	if(NewGameState.GetNumGameStateObjects() > 0)
-		History.AddGameStateToHistory(NewGameState);
-	else
-		History.CleanupPendingGameState(NewGameState);
-
 }
 
 function EventListenerReturn OnPostInitAbilities(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)

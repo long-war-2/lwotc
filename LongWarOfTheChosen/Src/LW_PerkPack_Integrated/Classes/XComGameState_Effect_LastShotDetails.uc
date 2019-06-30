@@ -6,7 +6,7 @@
 //			Used for HyperReactivePupils, 
 //---------------------------------------------------------------------------------------
 
-class XComGameState_Effect_LastShotDetails extends XComGameState_BaseObject config (LW_SoldierSkills);
+class XComGameState_Effect_LastShotDetails extends XComGameState_Effect config (LW_SoldierSkills);
 
 `include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
@@ -17,24 +17,20 @@ var bool				b_LastShotHit;
 var XComGameState_Unit	LastShotTarget;
 var int					LSTObjID;
 
-function XComGameState_Effect_LastShotDetails InitComponent()
-{
-	b_AnyShotTaken = false;
-	return self;
-}
-
-function XComGameState_Effect GetOwningEffect()
-{
-	return XComGameState_Effect(`XCOMHISTORY.GetGameStateForObjectID(OwningObjectId));
-}
-
-simulated function EventListenerReturn RecordShot(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+static function EventListenerReturn RecordShot(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
     local XComGameState								NewGameState;
 	local XComGameState_Effect_LastShotDetails		ThisEffect;		
 	local XComGameState_Ability						ActivatedAbilityState;
     local XComGameStateContext_Ability				ActivatedAbilityStateContext;
 	local XComGameState_Unit						TargetUnit;
+
+	ThisEffect = XComGameState_Effect_LastShotDetails(CallbackData);
+	if (ThisEffect == None)
+	{
+		`REDSCREEN("Wrong callback data passed to XComGameState_Effect_LastShotDetails.RecordShot()");
+		return ELR_NoInterrupt;
+	}
 
 	ActivatedAbilityState = XComGameState_Ability(EventData);
 	if (ActivatedAbilityState != none)
@@ -46,13 +42,12 @@ simulated function EventListenerReturn RecordShot(Object EventData, Object Event
 			If (TargetUnit != none)
 			{
 				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update: Gather Shot Details");
-				ThisEffect=XComGameState_Effect_LastShotDetails(NewGameState.CreateStateObject(Class,ObjectID));
+				ThisEffect = XComGameState_Effect_LastShotDetails(NewGameState.ModifyStateObject(ThisEffect.Class, ThisEffect.ObjectID));
 				ThisEffect.b_AnyShotTaken = true;
 				ThisEffect.LastShotTarget = TargetUnit;
 				ThisEffect.LSTObjID = TargetUnit.ObjectID;
 				`PPTRACE("Record Shot Target:" @ TargetUnit.GetMyTemplateName());
 				ThisEffect.b_LastShotHit = !ActivatedAbilityStateContext.IsResultContextMiss();
-				NewGameState.AddStateObject(ThisEffect);
 				`TACTICALRULES.SubmitGameState(NewGameState);    
 			}
 		}
@@ -60,3 +55,7 @@ simulated function EventListenerReturn RecordShot(Object EventData, Object Event
 	return ELR_NoInterrupt;
 }
 
+defaultproperties
+{
+	bTacticalTransient=true;
+}

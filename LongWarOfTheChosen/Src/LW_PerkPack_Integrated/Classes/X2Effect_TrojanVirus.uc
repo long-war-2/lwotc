@@ -4,61 +4,77 @@
 //  PURPOSE: Implements effect for TrojanVirus ability -- hacked target has special effects at end of hack
 //--------------------------------------------------------------------------------------- 
 //---------------------------------------------------------------------------------------
-class X2Effect_TrojanVirus extends X2Effect_Persistent;
+class X2Effect_TrojanVirus extends X2Effect_Persistent config(LW_SoldierSkills);
 
-//add a component to XComGameState_Effect to listen for PlayerTurnBegun (after stun/mind control tick effects)
-simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
+var config int TROJANVIRUSROLLS;
+
+function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
-	local XComGameState_Effect_Trojan TrojanEffectState;
 	local X2EventManager EventMgr;
-	local Object ListenerObj;
+	local Object EffectObj;
 
 	EventMgr = `XEVENTMGR;
 
-	if (GetEffectComponent(NewEffectState) == none)
-	{
-		//create component and attach it to GameState_Effect, adding the new state object to the NewGameState container
-		TrojanEffectState = XComGameState_Effect_Trojan(NewGameState.CreateStateObject(class'XComGameState_Effect_Trojan'));
-		TrojanEffectState.InitComponent();
-		NewEffectState.AddComponentObject(TrojanEffectState);
-		NewGameState.AddStateObject(TrojanEffectState);
-	}
+	EffectObj = EffectGameState;
 
-	//add listener to new component effect -- do it here because the RegisterForEvents call happens before OnEffectAdded, so component doesn't yet exist
-	ListenerObj = TrojanEffectState;
-	if (ListenerObj == none)
-	{
-		`Redscreen("Trojan: Failed to find Trojan Component when registering listener");
-		return;
-	}
-	//set priority lower than default 50 to trigger after Effect Tick effects have been processed
-	EventMgr.RegisterForEvent(ListenerObj, 'PlayerTurnBegun', TrojanEffectState.PostEffectTickCheck, ELD_OnStateSubmitted, 25,,true);
+	EventMgr.RegisterForEvent(EffectObj,  'UnitGroupTurnBegun', PostEffectTickCheck, ELD_OnStateSubmitted, 25,,, EffectObj);
 }
 
-simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
+//This is triggered at the start of each turn, after OnTickEffects (so after Hack stun/Mind Control effects are lost)
+//The purpose is to check and see if those effects have been removed, in which case the Trojan Virus effects activate, then the effect is removed
+static function EventListenerReturn PostEffectTickCheck(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local X2EventManager EventMgr;
-	local XComGameState_BaseObject EffectComponent;
-	local Object EffectComponentObj;
-	
-	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
-	
-	EventMgr = `XEVENTMGR;
-	
-	EffectComponent = GetEffectComponent(RemovedEffectState);
-	if(EffectComponent == none)
-		return;
-	
-	EffectComponentObj = EffectComponent;
-	EventMgr.UnRegisterFromAllEvents(EffectComponentObj);
+	local XComGameStateHistory History;
+	local XComGameStateContext_TickEffect TickContext;
+	local XComGameState NewGameState;
+	local XComGameState_Unit OldTargetState, NewTargetState, SourceState;
+	local XComGameState_Effect EffectState;
+	local float AttackerHackStat, DefenderHackDefense, Damage;
+	local int idx;
 
-	NewGameState.RemoveStateObject(EffectComponent.ObjectID);
-}
-static function XComGameState_Effect_Trojan GetEffectComponent(XComGameState_Effect Effect)
-{
-	if (Effect != none) 
-		return XComGameState_Effect_Trojan(Effect.FindComponentObject(class'XComGameState_Effect_Trojan'));
-	return none;
+	History = `XCOMHISTORY;
+	EffectState = XComGameState_Effect(CallbackData);
+	OldTargetState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	SourceState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+
+	// don't do anything if unit is still mind controlled or stunned
+	if(OldTargetState.IsMindControlled() || OldTargetState.IsStunned())
+		return ELR_NoInterrupt;
+
+	//NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Apply Trojan Virus Effects");
+	TickContext = class'XComGameStateContext_TickEffect'.static.CreateTickContext(EffectState);
+	NewGameState = History.CreateNewGameState(true, TickContext);
+	NewTargetState = XComGameState_Unit(NewGameState.ModifyStateObject(OldTargetState.Class, OldTargetState.ObjectID));
+
+	// effect has worn off, Trojan Virus now kicks in
+	// Compute damage
+	Damage = 0;
+	AttackerHackStat = SourceState.GetCurrentStat(eStat_Hacking);
+	DefenderHackDefense = OldTargetState.GetCurrentStat(eStat_HackDefense);
+	for(idx = 0; idx < default.TROJANVIRUSROLLS; idx++)
+	{
+		if(`SYNC_RAND_STATIC(100) < 50 + AttackerHackStat - DefenderHackDefense)
+			Damage += 1.0;
+	}
+	NewTargetState.TakeEffectDamage(EffectState.GetX2Effect(), Damage, 0, 0, EffectState.ApplyEffectParameters,  NewGameState, false, false, true);
+
+	//remove actions
+	if(NewTargetState.IsAlive())
+	{
+		NewTargetState.ActionPoints.Length = 0;
+		NewTargetState.ReserveActionPoints.Length = 0;
+		NewTargetState.SkippedActionPoints.Length = 0;
+	}
+
+	//check that it wasn't removed already because of the unit being killed from damage
+	if(!EffectState.bRemoved)
+	EffectState.RemoveEffect(NewGameState, NewGameState);
+	if( NewGameState.GetNumGameStateObjects() > 0 )
+		`TACTICALRULES.SubmitGameState(NewGameState);
+	else
+		History.CleanupPendingGameState(NewGameState);
+
+	return ELR_NoInterrupt;
 }
 
 defaultproperties

@@ -13,67 +13,97 @@ var config int ARMORPIERCINGEFFECT;
 var config int AIMBONUSPERATTACK;
 var config array<name> VALIDWEAPONCATEGORIES;
 
-//add a component to XComGameState_Effect to track cumulative number of attacks
-simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
+function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
-	local XComGameState_Effect_FocusFire FFEffectState;
-	local X2EventManager EventMgr;
-	local Object ListenerObj;
+	local Object EffectObj;
 
-	EventMgr = `XEVENTMGR;
+	EffectObj = EffectGameState;
 
-	if (GetFocusFireComponent(NewEffectState) == none)
-	{
-		//create component and attach it to GameState_Effect, adding the new state object to the NewGameState container
-		FFEffectState = XComGameState_Effect_FocusFire(NewGameState.CreateStateObject(class'XComGameState_Effect_FocusFire'));
-		FFEffectState.InitComponent();
-		NewEffectState.AddComponentObject(FFEffectState);
-		NewGameState.AddStateObject(FFEffectState);
-	}
-
-	//add listener to new component effect -- do it here because the RegisterForEvents call happens before OnEffectAdded, so component doesn't yet exist
-	ListenerObj = FFEffectState;
-	if (ListenerObj == none)
-	{
-		`Redscreen("FocusFire: Failed to find FocusFire Component when registering listener");
-		return;
-	}
-	EventMgr.RegisterForEvent(ListenerObj, 'AbilityActivated', FFEffectState.FocusFireCheck, ELD_OnStateSubmitted,,,true);
+	// allows activation/deactivation of effect
+	`XEVENTMGR.RegisterForEvent(EffectObj, 'AbilityActivated', FocusFireCheck, ELD_OnStateSubmitted,,, true, EffectObj);
 }
 
-simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
+static function EventListenerReturn FocusFireCheck(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComGameState_BaseObject EffectComponent;
-	local Object EffectComponentObj;
-	
-	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
+	local XComGameState NewGameState;
+	local XComGameState_Unit AttackingUnit, AbilityTargetUnit, FocussedUnit;
+	local XComGameState_Effect EffectState;
+	local XComGameStateHistory History;
+	local XComGameState_Ability AbilityState;
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameState_Item SourceWeapon;
+	local UnitValue AttackCount;
 
-	EffectComponent = GetFocusFireComponent(RemovedEffectState);
-	if (EffectComponent == none)
-		return;
+	AbilityState = XComGameState_Ability(EventData);
+	if (AbilityState == none)
+	{
+		`RedScreen("FocusFireCheck: no ability");
+		return ELR_NoInterrupt;
+	}
+	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+	if (AbilityContext == none)
+	{
+		`RedScreen("FocusFireCheck: no context");
+		return ELR_NoInterrupt;
+	}
 
-	EffectComponentObj = EffectComponent;
-	`XEVENTMGR.UnRegisterFromAllEvents(EffectComponentObj);
+	EffectState = XComGameState_Effect(CallbackData);
 
-	NewGameState.RemoveStateObject(EffectComponent.ObjectID);
+	//  non-pre emptive, so don't process during the interrupt step
+	if (AbilityContext.InterruptionStatus == eInterruptionStatus_Interrupt)
+		return ELR_NoInterrupt;
+
+	SourceWeapon = AbilityState.GetSourceWeapon();
+	if ((SourceWeapon == none) || (class'X2Effect_FocusFire'.default.VALIDWEAPONCATEGORIES.Find(SourceWeapon.GetWeaponCategory()) == -1))
+	{
+		return ELR_NoInterrupt;
+	}
+
+	History = `XCOMHISTORY;
+	AbilityTargetUnit = XComGameState_Unit(GameState.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+	if (AbilityTargetUnit == none)
+		AbilityTargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+	AttackingUnit = XComGameState_Unit(EventSource);
+	FocussedUnit = XComGameState_Unit(GameState.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	if (FocussedUnit == none)
+		FocussedUnit = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+
+	if (AttackingUnit == none)
+	{
+		`RedScreen("FocusFireCheck: no attacking unit");
+		return ELR_NoInterrupt;
+	}
+	if (AbilityTargetUnit == none)
+	{
+		`RedScreen("FocusFireCheck: no target unit");
+		return ELR_NoInterrupt;
+	}
+	if (FocussedUnit == none) 
+	{
+		return ELR_NoInterrupt;
+	}
+	if (FocussedUnit != AbilityTargetUnit)
+	{
+		return ELR_NoInterrupt;
+	}
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
+	AbilityTargetUnit = XComGameState_Unit(NewGameState.ModifyStateObject(AbilityTargetUnit.Class, AbilityTargetUnit.ObjectID));
+	AbilityTargetUnit.SetUnitFloatValue('FocusFireAttacks_LW', AttackCount.fValue + 1, eCleanup_BeginTurn);
+	`TACTICALRULES.SubmitGameState(NewGameState);
+
+	return ELR_NoInterrupt;
 }
 
 simulated function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
 	local ShotModifierInfo AccuracyInfo;
-	local XComGameState_Effect_FocusFire FFEffect;
+	local UnitValue AttackCount;
+
+	Target.GetUnitValue('FocusFireAttacks_LW', AttackCount);
 
 	AccuracyInfo.ModType = eHit_Success;
-	FFEffect = GetFocusFireComponent(EffectState);
-	FFEffect = XComGameState_Effect_FocusFire(`XCOMHISTORY.GetGameStateForObjectID(FFEffect.ObjectID));
-	if (FFEffect != none)
-	{
-		//`log("FocusFire : Found FocusFire component, CumulativeAttacks=" $ FFEffect.CumulativeAttacks);
-		AccuracyInfo.Value = default.AIMBONUSPERATTACK * Max(1, FFEffect.CumulativeAttacks);
-	} else {
-		//`log("FocusFire : FocusFire component not found");
-		AccuracyInfo.Value = default.AIMBONUSPERATTACK;
-	}
+	AccuracyInfo.Value = default.AIMBONUSPERATTACK * Max(1, AttackCount.fValue);
 	AccuracyInfo.Reason = FriendlyName;
 	ShotModifiers.AddItem(AccuracyInfo);
 }
@@ -87,13 +117,6 @@ simulated function AddX2ActionsForVisualization_Tick(XComGameState VisualizeGame
 	
 	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded));
 	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, FriendlyName, '', eColor_Bad);
-}
-
-static function XComGameState_Effect_FocusFire GetFocusFireComponent(XComGameState_Effect Effect)
-{
-	if (Effect != none) 
-		return XComGameState_Effect_FocusFire(Effect.FindComponentObject(class'XComGameState_Effect_FocusFire'));
-	return none;
 }
 
 defaultproperties

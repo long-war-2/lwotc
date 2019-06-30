@@ -433,9 +433,6 @@
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2Effect_Scavenger.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2StrategyElement_LW_OTS_OfficerStaffSlot.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Effect_AirController.uc" />
-    <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Effect_Collector.uc" />
-    <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Effect_FocusFire.uc" />
-    <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Effect_Scavenger.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_HeadquartersProjectTrainLWOfficer.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Unit_LWOfficer.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComHQPresentationLayer_LWOfficerPack.uc" />
@@ -597,7 +594,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_StreetSweeper.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_StunGunner.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_TransferMecToOutpost.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Whirlwind2.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Soldiers.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_StrategyMap.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2HackReward_LWOverhaul.uc" />
@@ -674,10 +670,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWBlasterLauncher.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWEvacZone.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWRocketLauncher.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_Bombard.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_Failsafe.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_ImmediateMultiTarget.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_JavelinRockets.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_TransferMecToOutpost.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LWAlienActivity.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LWAlienActivityManager.uc" />
@@ -780,20 +772,14 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Trojan.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_TrojanVirus.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_WalkFireDamage.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Whirlwind.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_WilltoSurvive.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Item_DenseSmokeGrenade.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Item_PerkPCS.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Item_StingGrenade.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2TargetingMethod_AreaSuppression.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_EffectCounter.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_IncomingReactionFire.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_LastShotDetails.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_Savior.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_SteadyWeaponListener.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_TemporaryItem.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_Trojan.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_Whirlwind.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_LWPerkPackOptions.uc" />
     <Content Include="Src\LW_SMGPack_Integrated\Classes\X2Ability_SMGAbilities.uc" />
     <Content Include="Src\LW_SMGPack_Integrated\Classes\X2DownloadableContentInfo_LWSMGPack.uc" />
@@ -809,8 +795,6 @@
     <Content Include="Src\LW_Toolbox_Integrated\Classes\X2DownloadableContentInfo_LWToolbox.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\X2Effect_RedFog_LW.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\X2StrategyElement_RandomizedSoldierRewards.uc" />
-    <Content Include="Src\LW_Toolbox_Integrated\Classes\XComGameState_Effect_RedFog_LW.uc" />
-    <Content Include="Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\XComGameState_Unit_LWRandomizedStats.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\XComTacticalInput_LW.uc" />
     <Content Include="Src\LW_XCGS_ModOptions\Classes\XComGameState_LWModOptions.uc" />
@@ -1078,6 +1062,7 @@
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHero.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHeroColumn.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\X2DownloadableContentInfo_NewPromotionScreenbyDefault.uc" />
+    <Content Include="Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

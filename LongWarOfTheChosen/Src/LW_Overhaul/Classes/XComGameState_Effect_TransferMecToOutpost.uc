@@ -140,3 +140,8 @@ function bool AnyPendingReinforcements()
 	// true if there are any active reinforcement spawners
 	return (AISPawnerState != None);
 }
+
+defaultproperties
+{
+	bTacticalTransient=true;
+}
