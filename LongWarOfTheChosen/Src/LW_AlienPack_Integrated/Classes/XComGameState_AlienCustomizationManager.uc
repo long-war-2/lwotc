@@ -196,22 +196,3 @@ function EventListenerReturn OnUnitBeginPlay(Object EventData, Object EventSourc
 
 	return ELR_NoInterrupt;
 }
-
-function UpdateAllCustomizations()
-{
-	local XComGameState_Unit Unit;
-	local XComGameState_Unit_AlienCustomization AlienCustomization;
-
-	// this may need to be sped up with a map and a hash
-	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_Unit', Unit )
-	{
-		`APTRACE("UpdateCustomization : Unit = " $ Unit.GetFullName());
-		AlienCustomization = class'XComGameState_Unit_AlienCustomization'.static.GetCustomizationComponent(Unit);
-		if(AlienCustomization != none)
-		{
-			AlienCustomization.ApplyCustomization();
-			`APTRACE("UpdateCustomization : Applied");
-		}
-	}
-}
-

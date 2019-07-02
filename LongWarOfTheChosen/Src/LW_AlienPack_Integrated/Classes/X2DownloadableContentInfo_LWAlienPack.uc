@@ -60,10 +60,6 @@ static function AddAndRegisterCustomizationManager()
 		AlienCustomizationManager = class'XComGameState_AlienCustomizationManager'.static.CreateAlienCustomizationManager();
 		AlienCustomizationManager.RegisterListeners();
 	}
-
-	// not needed since we aren't going to try and install the AlienCustomization manager when loading into tactical mission
-	//if(`TACTICALRULES.TacticalGameIsInPlay())
-		//AlienCustomizationManager.UpdateAllCustomizations();
 }
 
 /// <summary>

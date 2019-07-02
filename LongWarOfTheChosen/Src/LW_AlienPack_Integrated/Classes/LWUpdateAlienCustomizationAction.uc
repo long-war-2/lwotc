@@ -46,7 +46,7 @@ auto state Idle
 			{
 				if(AlienCustomization.ApplyCustomization())
 				{
-					//UnitsToUpdate.RemoveItem(Unit);
+					UnitsToUpdate.RemoveItem(Unit);
 				}
 			}
 		}
