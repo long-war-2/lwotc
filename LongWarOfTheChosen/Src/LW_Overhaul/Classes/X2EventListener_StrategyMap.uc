@@ -86,9 +86,10 @@ static function CHEventListenerTemplate CreateEndOfMonthListeners()
 	// game state. The second is called after the update is submitted and is passed a null game state, so it can read the
 	// outpost from the history.
 	Template.AddCHEvent('OverrideSupplyDrop', OnMonthlySuppliesReward, ELD_Immediate, GetListenerPriority());
-
+	
 	//process negative monthly income -- this happens after deductions for maint, so can't go into the OnMonthlySuppliesReward
-	Template.AddCHEvent('NegativeMonthlyIncome', OnMonthlyNegativeSupplyIncome, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('ProcessNegativeIncome', OnMonthlyNegativeSupplyIncome, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideDisplayNegativeIncome', ForceDisplayNegativeIncome, ELD_Immediate, GetListenerPriority());
 
 	// After closing the monthly report dialog. This is responsible for doing outpost end-of-month processing including
 	// resetting the supply state.
@@ -646,16 +647,9 @@ static function EventListenerReturn OnMonthlyNegativeSupplyIncome(Object EventDa
 
 	History = `XCOMHISTORY;
 	Tuple = XComLWTuple(EventData);
-	if (Tuple == none || Tuple.Id != 'NegativeMonthlyIncome')
+	if (Tuple == none)
 	{
 		// Not an expected tuple
-		return ELR_NoInterrupt;
-	}
-
-	Tuple.Data[0].b = true; // allow display of negative supplies
-
-	if (GameState == none)
-	{
 		return ELR_NoInterrupt;
 	}
 
@@ -670,7 +664,7 @@ static function EventListenerReturn OnMonthlyNegativeSupplyIncome(Object EventDa
 		GameState.AddStateObject(XComHQ);
 	}
 
-	RemainingSupplyLoss = -Tuple.Data[1].i;
+	RemainingSupplyLoss = -Tuple.Data[0].i;
 	AvengerSupplyLoss = Min (RemainingSupplyLoss, XComHQ.GetResourceAmount('Supplies'));
 	XComHQ.AddResource(GameState, 'Supplies', -AvengerSupplyLoss);
 	`LWTrace("OnNegativeMonthlySupplies : Removed " $ AvengerSupplyLoss $ " supplies from XComHQ");
@@ -707,6 +701,23 @@ static function EventListenerReturn OnMonthlyNegativeSupplyIncome(Object EventDa
 			`LWTrace("OnNegativeMonthlySupplies : Removed " $ RemainingSupplyLoss $ " supplies from existing supply cache");
 		}
 	}
+
+	return ELR_NoInterrupt;
+}
+
+// Process Negative Supply income events on EndOfMonth processing
+static function EventListenerReturn ForceDisplayNegativeIncome(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+	{
+		// Not an expected tuple
+		return ELR_NoInterrupt;
+	}
+
+	Tuple.Data[0].b = true; // allow display of negative supplies
 
 	return ELR_NoInterrupt;
 }

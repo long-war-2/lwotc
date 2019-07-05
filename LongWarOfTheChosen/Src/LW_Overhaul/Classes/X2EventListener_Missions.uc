@@ -39,7 +39,8 @@ static function CHEventListenerTemplate CreateObjectivesListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionObjectivesListeners');
 	Template.AddCHEvent('OverrideObjectiveSpawnCount', OnOverrideObjectiveSpawnCount, ELD_Immediate);
 	Template.AddCHEvent('OverrideObjectiveSpawnCount', OverrideObjectiveDestructibleHealths, ELD_Immediate);
-	Template.AddCHEvent('OverrideBodyAndLootRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
+	Template.AddCHEvent('OverrideBodyRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
+	Template.AddCHEvent('OverrideLootRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
 
 	Template.RegisterInTactical = true;
 
