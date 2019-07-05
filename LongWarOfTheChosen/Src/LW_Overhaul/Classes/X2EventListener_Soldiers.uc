@@ -97,10 +97,10 @@ static function CHEventListenerTemplate CreateTacticalListeners()
 // from UISoldierHeader was copied in here to calculate the defense stat of a soldier.
 static function EventListenerReturn OverrideSoldierHeader(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-    local XComSoldierHeader Header;
+	local XComSoldierHeader Header;
 	local string Defense;
 	local int DefenseBonus;
-    local X2EquipmentTemplate EquipmentTemplate;
+ 	local X2EquipmentTemplate EquipmentTemplate;
 	local XComGameState_Item TmpItem;
 	local XComSoldierHeaderElement DefenseElement;
 	local StateObjectReference NewItem;
@@ -110,7 +110,7 @@ static function EventListenerReturn OverrideSoldierHeader(Object EventData, Obje
 	local XComGameStateHistory History;
 	local XComGameState_Unit Unit;
 
-    DefenseElement = new class 'XComSoldierHeaderElement';
+	DefenseElement = new class 'XComSoldierHeaderElement';
 
 	History = `XCOMHISTORY;
 
@@ -174,8 +174,8 @@ static function EventListenerReturn OverrideSoldierHeader(Object EventData, Obje
 	
 	// If unit is a psi operative then replace their tech stat with the defense stat so Psi stat can be displayed where it
 	// normally is. Otherwise display defense stat where Psi stat would be.
-    if(Unit.IsPsiOperative())
-    {
+	if(Unit.IsPsiOperative())
+	{
 		Header.Elements[6] = DefenseElement;
 	}
 	else
