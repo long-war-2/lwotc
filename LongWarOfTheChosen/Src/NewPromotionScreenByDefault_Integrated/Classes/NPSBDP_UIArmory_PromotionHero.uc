@@ -566,6 +566,13 @@ function bool CanPurchaseAbility(int Rank, int Branch, name AbilityName)
 		return false;
 	}
 
+	// LWOTC: Don't allow purchase of other class abilities at same rank as an already picked one
+	if (UnitState.HasPurchasedPerkAtRank(Rank) && Branch < AbilityRanks)
+	{
+		return false;
+	}
+	// End
+
 	//Normal behaviour
 	return (Rank < UnitState.GetRank() && CanAffordAbility(Rank, Branch) && UnitState.MeetsAbilityPrerequisites(AbilityName));
 }
