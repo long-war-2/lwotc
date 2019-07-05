@@ -51,6 +51,7 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	Template.AddCHEvent('OverridePersonnelStatus', OnOverridePersonnelStatus, ELD_Immediate);
 	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
 	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
+	Template.AddCHEvent('OverrideSoldierHeader', OverrideSoldierHeader, ELD_Immediate);
 
 	// Armory Main Menu - disable buttons for On-Mission soldiers
 	Template.AddCHEvent('OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate);
@@ -89,6 +90,100 @@ static function CHEventListenerTemplate CreateTacticalListeners()
 	Template.RegisterInTactical = true;
 
 	return Template;
+}
+
+// Issue 121. Allows overridding of the soldier header in UISoldierHeader to display stats in any order desired and even allows for other modifications
+// flags to indicate whether the max value of a stat should be shown and whether or not the values and their labels should be colored. A bit of the code
+// from UISoldierHeader was copied in here to calculate the defense stat of a soldier.
+static function EventListenerReturn OverrideSoldierHeader(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+    local XComSoldierHeader Header;
+	local string Defense;
+	local int DefenseBonus;
+    local X2EquipmentTemplate EquipmentTemplate;
+	local XComGameState_Item TmpItem;
+	local XComSoldierHeaderElement DefenseElement;
+	local StateObjectReference NewItem;
+	local StateObjectReference ReplacedItem;
+	local XComGameState CheckGameState;
+	local array<Name> EquipmentExcludedFromStatBoosts;
+	local XComGameStateHistory History;
+	local XComGameState_Unit Unit;
+
+    DefenseElement = new class 'XComSoldierHeaderElement';
+
+	History = `XCOMHISTORY;
+
+	Header = XComSoldierHeader(EventData);
+	NewItem = Header.NewItem;
+	ReplacedItem = Header.ReplacedItem;
+	CheckGameState = Header.NewCheckGameState;
+	EquipmentExcludedFromStatBoosts = Header.EquipmentExcludedFromStatBoosts;
+	Unit = Header.Unit;
+
+	DefenseElement.ElementValue = string(int(Unit.GetCurrentStat(eStat_Defense)) + Unit.GetUIStatFromAbilities(eStat_Defense));
+	DefenseElement.ElementLabel = "DEFENSE";
+	
+
+	if(Header == none)
+		return ELR_NoInterrupt;
+		
+	// Add bonus stats from an item that is about to be equipped
+	if(NewItem.ObjectID > 0)
+	{
+		if(CheckGameState != None)
+			TmpItem = XComGameState_Item(CheckGameState.GetGameStateForObjectID(NewItem.ObjectID));
+		else
+			TmpItem = XComGameState_Item(History.GetGameStateForObjectID(NewItem.ObjectID));
+			
+		EquipmentTemplate = X2EquipmentTemplate(TmpItem.GetMyTemplate());
+		
+		// Don't include sword boosts or any other equipment in the EquipmentExcludedFromStatBoosts array
+		if (EquipmentTemplate != none && EquipmentExcludedFromStatBoosts.Find(EquipmentTemplate.DataName) == INDEX_NONE)
+		{
+			DefenseBonus += Unit.GetUIStatFromInventory(eStat_Defense, CheckGameState);
+		}
+	}
+
+	// Subtract stats from an item that is about to be replaced
+	if(ReplacedItem.ObjectID > 0)
+	{
+		if(CheckGameState != None)
+			TmpItem = XComGameState_Item(CheckGameState.GetGameStateForObjectID(ReplacedItem.ObjectID));
+		else
+			TmpItem = XComGameState_Item(History.GetGameStateForObjectID(ReplacedItem.ObjectID));
+			
+		EquipmentTemplate = X2EquipmentTemplate(TmpItem.GetMyTemplate());
+		
+		// Don't include sword boosts or any other equipment in the EquipmentExcludedFromStatBoosts array
+		if (EquipmentTemplate != none && EquipmentExcludedFromStatBoosts.Find(EquipmentTemplate.DataName) == INDEX_NONE)
+		{
+			DefenseBonus -= Unit.GetUIStatFromInventory(eStat_Defense, CheckGameState);
+		}
+	}
+
+	if( DefenseBonus > 0 )
+		DefenseElement.ElementValueBonus = class'UIUtilities_Text'.static.GetColoredText("+" $ DefenseBonus, eUIState_Good);
+	else if ( DefenseBonus < 0 )
+		DefenseElement.ElementValueBonus = class'UIUtilities_Text'.static.GetColoredText("" $ DefenseBonus, eUIState_Bad);
+
+	DefenseElement.bShouldShowMax = false;
+	DefenseElement.bShouldColorLabel = false;
+	DefenseElement.bShouldColorValue = false;
+	DefenseElement.ElementType = eStat_Defense;
+	
+	// If unit is a psi operative then replace their tech stat with the defense stat so Psi stat can be displayed where it
+	// normally is. Otherwise display defense stat where Psi stat would be.
+    if(Unit.IsPsiOperative())
+    {
+		Header.Elements[6] = DefenseElement;
+	}
+	else
+	{
+		Header.Elements[7] = DefenseElement;
+	}
+
+	return ELR_NoInterrupt;
 }
 
 // allows overriding of unequipping items, allowing even infinite utility slot items to be unequipped
