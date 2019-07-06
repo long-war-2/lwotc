@@ -52,8 +52,13 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('GetEvacPlacementDelay', OnPlacedDelayedEvacZone, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('KilledbyExplosion', OnKilledbyExplosion, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CleanupTacticalMission', OnCleanupTacticalMission, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('AbilityActivated', AddPerfectInfoFlyover, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('AbilityActivated', OnAbilityActivated, ELD_OnStateSubmitted, GetListenerPriority());
+
+	// This seems to be causing stutter in the game, so commenting out for now.
+	// if (XCom_Perfect_Information_UIScreenListener.default.ENABLE_PERFECT_INFORMATION)
+	// {
+	// 	Template.AddCHEvent('AbilityActivated', AddPerfectInfoFlyover, ELD_OnStateSubmitted, GetListenerPriority());
+	// }
 
 	Template.RegisterInTactical = true;
 
