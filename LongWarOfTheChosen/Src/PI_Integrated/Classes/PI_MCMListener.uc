@@ -45,7 +45,7 @@ var localized string REPEATER_TITLE;
 
 event OnInit(UIScreen Screen)
 {
-	`MCM_API_Register(Screen, ClientModCallback);
+	// `MCM_API_Register(Screen, ClientModCallback);
 }
 
 simulated function ClientModCallback(MCM_API_Instance ConfigAPI, int GameMode)
