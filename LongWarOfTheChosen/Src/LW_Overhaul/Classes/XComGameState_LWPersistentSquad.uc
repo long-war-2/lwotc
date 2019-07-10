@@ -449,8 +449,7 @@ simulated function SetSquadCrew(optional XComGameState UpdateState, optional boo
 		bAllowWoundedSoldiers = MissionSite.GeneratedMission.Mission.AllowDeployWoundedUnits;
 	}
 
-	XComHQ = XComGameState_HeadquartersXCom(UpdateState.CreateStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
-	UpdateState.AddStateObject(XComHQ);
+	XComHQ = XComGameState_HeadquartersXCom(UpdateState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 
 	if (bOnMissionSoldiers)
 	{
@@ -509,12 +508,17 @@ simulated function SetSquadCrew(optional XComGameState UpdateState, optional boo
 		}
 	}
 
-	// Borrowed from Covert Infiltration mod:
-	// This isn't needed to properly spawn units into battle, but without this
-	// the transition screen shows last selection in strategy, not the soldiers
-	// on this mission.
-	XComHQ.AllSquads.Length = 1;
-	XComHQ.AllSquads[0].SquadMembers = XComHQ.Squad;
+	// Only update AllSquads if we're dealing with soldiers already
+	// on a mission (and ready to launch).
+	if (bOnMissionSoldiers)
+	{
+		// Borrowed from Covert Infiltration mod:
+		// This isn't needed to properly spawn units into battle, but without this
+		// the transition screen shows last selection in strategy, not the soldiers
+		// on this mission.
+		XComHQ.AllSquads.Length = 1;
+		XComHQ.AllSquads[0].SquadMembers = XComHQ.Squad;
+	}
 
 
 	if(bSubmitOwnGameState)
