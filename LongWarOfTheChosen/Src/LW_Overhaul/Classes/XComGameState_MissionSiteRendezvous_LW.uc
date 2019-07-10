@@ -84,6 +84,13 @@ function SelectSquad()
             break;
     }
 
+    // Borrowed from Covert Infiltration mod:
+	// This isn't needed to properly spawn units into battle, but without this
+	// the transition screen shows last selection in strategy, not the soldiers
+	// on this mission.
+	XComHQ.AllSquads.Length = 1;
+	XComHQ.AllSquads[0].SquadMembers = XComHQ.Squad;
+
 	`GAMERULES.SubmitGameState(NewGameState);
 
     // Start the mission
