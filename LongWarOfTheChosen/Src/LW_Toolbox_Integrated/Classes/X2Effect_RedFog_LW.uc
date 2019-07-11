@@ -122,9 +122,11 @@ function bool IsEffectCurrentlyRelevant(XComGameState_Effect EffectState, XComGa
 simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
 {
 	local XComGameState_Unit TargetUnit;
-	
+
 	TargetUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	TargetUnit.ClearUnitValue('RedFogActive_LW');
+
+	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
 }
 
 static function UpdateRedFogPenalties(XComGameState_Effect EffectState, XComGameState_Unit UnitState, XComGameState GameState)
