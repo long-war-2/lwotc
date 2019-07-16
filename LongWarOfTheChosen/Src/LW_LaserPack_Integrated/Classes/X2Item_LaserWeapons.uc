@@ -6,8 +6,8 @@
 //---------------------------------------------------------------------------------------
 class X2Item_LaserWeapons extends X2Item config(GameData_WeaponData);
 
-// Variables from config - GameData_WeaponData.ini
-// ***** Damage arrays for attack actions  *****
+//ï¿½Variablesï¿½fromï¿½configï¿½-ï¿½GameData_WeaponData.ini
+//ï¿½*****ï¿½Damageï¿½arraysï¿½forï¿½attackï¿½actionsï¿½ï¿½*****
 
 var config WeaponDamageValue ASSAULTRIFLE_LASER_BASEDAMAGE;
 var config WeaponDamageValue SMG_LASER_BASEDAMAGE;
@@ -17,7 +17,7 @@ var config WeaponDamageValue SNIPERRIFLE_LASER_BASEDAMAGE;
 var config WeaponDamageValue PISTOL_LASER_BASEDAMAGE;
 var config WeaponDamageValue SWORD_LASER_BASEDAMAGE;
 
-// ***** Core properties and variables for weapons *****
+//ï¿½*****ï¿½Core properties and variablesï¿½forï¿½weaponsï¿½*****
 var config int ASSAULTRIFLE_LASER_AIM;
 var config int ASSAULTRIFLE_LASER_CRITCHANCE;
 var config int ASSAULTRIFLE_LASER_ICLIPSIZE;
@@ -182,7 +182,7 @@ static function X2DataTemplate CreateTemplate_SMG_Laser()
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'SMG_LS');
 
-	Template.WeaponCat = 'rifle';
+	Template.WeaponCat = 'smg';
 	Template.WeaponTech = 'laser_lw';
 	Template.ItemCat = 'weapon';
 	Template.strImage = "img:///" $ default.SMG_Laser_ImagePath; 
