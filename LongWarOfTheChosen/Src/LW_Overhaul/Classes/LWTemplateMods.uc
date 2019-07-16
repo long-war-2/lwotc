@@ -2341,6 +2341,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 
 		switch (EquipmentTemplate.DataName)
 		{
+			case 'ChosenSniperPistol_XCOM':
 			case 'AlienHunterPistol_CV':
 			case 'AlienHunterPistol_MG':
 			case 'AlienHunterPistol_BM':
