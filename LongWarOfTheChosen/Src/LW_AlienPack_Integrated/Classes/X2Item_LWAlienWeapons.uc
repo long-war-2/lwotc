@@ -467,7 +467,7 @@ static function X2DataTemplate CreateTemplate_Sidewinder_WPN(name TemplateName)
 	
 	Template.WeaponPanelImage = "_ConventionalRifle";                       // used by the UI. Probably determines iconview of the weapon.
 	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'rifle';
+	Template.WeaponCat = 'smg';
 	Template.WeaponTech = 'beam';
 	Template.strImage = "img:///LWSidewinderSMG.Textures.LWBeamSMG_Common"; 
 	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer); //invalidates multiplayer availability

@@ -6,8 +6,8 @@
 //---------------------------------------------------------------------------------------
 class X2Item_LaserWeapons extends X2Item config(GameData_WeaponData);
 
-//�Variables�from�config�-�GameData_WeaponData.ini
-//�*****�Damage�arrays�for�attack�actions��*****
+// Variables from config - GameData_WeaponData.ini
+// ***** Damage arrays for attack actions  *****
 
 var config WeaponDamageValue ASSAULTRIFLE_LASER_BASEDAMAGE;
 var config WeaponDamageValue SMG_LASER_BASEDAMAGE;
@@ -17,7 +17,7 @@ var config WeaponDamageValue SNIPERRIFLE_LASER_BASEDAMAGE;
 var config WeaponDamageValue PISTOL_LASER_BASEDAMAGE;
 var config WeaponDamageValue SWORD_LASER_BASEDAMAGE;
 
-//�*****�Core properties and variables�for�weapons�*****
+// ***** Core properties and variables for weapons *****
 var config int ASSAULTRIFLE_LASER_AIM;
 var config int ASSAULTRIFLE_LASER_CRITCHANCE;
 var config int ASSAULTRIFLE_LASER_ICLIPSIZE;
