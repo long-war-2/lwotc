@@ -80,7 +80,7 @@ static function X2DataTemplate CreateTemplate_SMG_Conventional()
 	Template.EquipSound = "Conventional_Weapon_Equip";
 
 	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'rifle';
+	Template.WeaponCat = 'smg';
 	Template.WeaponTech = 'conventional';
 	Template.strImage = "img:///UILibrary_SMG.conventional.LWConvSMG_Base";
 	Template.WeaponPanelImage = "_ConventionalRifle";                       // used by the UI. Probably determines iconview of the weapon.
@@ -140,7 +140,7 @@ static function X2DataTemplate CreateTemplate_SMG_Magnetic()
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'SMG_MG');
 
-	Template.WeaponCat = 'rifle';
+	Template.WeaponCat = 'smg';
 	Template.WeaponTech = 'magnetic';
 	Template.ItemCat = 'weapon';
 	Template.strImage = "img:///UILibrary_SMG.magnetic.LWMagSMG_Base";
@@ -202,7 +202,7 @@ static function X2DataTemplate CreateTemplate_SMG_Beam()
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'SMG_BM');
 
-	Template.WeaponCat = 'rifle';
+	Template.WeaponCat = 'smg';
 	Template.WeaponTech = 'beam';
 	Template.ItemCat = 'weapon';
 	Template.strImage = "img:///UILibrary_SMG.Beam.LWBeamSMG_Base";

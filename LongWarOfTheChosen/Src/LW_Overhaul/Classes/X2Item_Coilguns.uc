@@ -117,7 +117,7 @@ static function X2DataTemplate CreateSMG_Coil_Template()
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'SMG_CG');
 
-	Template.WeaponCat = 'rifle';
+	Template.WeaponCat = 'smg';
 	Template.WeaponTech = 'coilgun_lw';
 	Template.ItemCat = 'weapon';
 	Template.strImage ="img:///" $ default.SMG_Coil_ImagePath;
