@@ -1,8 +1,12 @@
-// X2EventListener_GrazeBand.uc
-// 
-// A listener template that handles the graze band mechanic.
+//---------------------------------------------------------------------------------------
+//  FILE:    X2LWAbilitiesModTemplate.uc
+//  AUTHOR:  Peter Ledbrook
+//	PURPOSE: Modifies existing ability templates.
 //
-class X2EventListener_GrazeBand extends X2EventListener config(LW_Overhaul);
+//           In particular, it sets the final hit chance override delegate
+//           on X2AbilityToHitCalc_StandardAim instances.
+//---------------------------------------------------------------------------------------
+class X2LWAbilitiesModTemplate extends X2LWTemplateModTemplate config(LW_Overhaul);
 
 struct ToHitAdjustments
 {
@@ -21,112 +25,65 @@ var config bool ALLOW_NEGATIVE_DODGE;
 var config bool DODGE_CONVERTS_GRAZE_TO_MISS;
 var config bool GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND;
 
-var config int LISTENER_PRIORITY;
-
-static function array<X2DataTemplate> CreateTemplates()
+static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
-	local array<X2DataTemplate> Templates;
-
-	Templates.AddItem(CreateListeners());
-
-	return Templates;
+    // Override the FinalizeHitChance calculation for abilities that use standard aim
+    if (ClassIsChildOf(Template.AbilityToHitCalc.Class, class'X2AbilityToHitCalc_StandardAim'))
+    {
+        Template.AbilityToHitCalc.OverrideFinalHitChanceFns.AddItem(OverrideFinalHitChance);
+    }
 }
 
-static function CHEventListenerTemplate CreateListeners()
+static function bool OverrideFinalHitChance(X2AbilityToHitCalc AbilityToHitCalc, out ShotBreakdown ShotBreakdown)
 {
-	local CHEventListenerTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'GrazeBandListeners');
-	Template.AddCHEvent('OverrideFinalHitChance', ToHitOverrideListener, ELD_Immediate, GetListenerPriority());
-	Template.RegisterInTactical = true;
-
-	return Template;
-}
-
-static protected function int GetListenerPriority()
-{
-	return default.LISTENER_PRIORITY != -1 ? default.LISTENER_PRIORITY : class'XComGameState_LWListenerManager'.default.DEFAULT_LISTENER_PRIORITY;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////  TO HIT MOD LISTENERS //////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-static function EventListenerReturn ToHitOverrideListener(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-	local XComLWTuple						OverrideToHit;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local ToHitAdjustments					Adjustments;
 	local ShotModifierInfo					ModInfo;
-	local CHShotBreakdownWrapper ShotBreakdownWrapper;
 
-	//`LWTRACE("OverrideToHit : Starting listener delegate.");
-	OverrideToHit = XComLWTuple(EventData);
-	if(OverrideToHit == none)
-	{
-		`REDSCREEN("ToHitOverride event triggered with invalid event data.");
-		return ELR_NoInterrupt;
-	}
-	//`LWTRACE("OverrideToHit : Parsed XComLWTuple.");
+	// LWOTC DEBUGGING
+	`Log(" >>> OverrideFinalHitChance event fired");
+	// END
 
-	// ToHitCalc = X2AbilityToHitCalc(EventSource);
-	// if(ToHitCalc == none)
-	// {
-	// 	`REDSCREEN("ToHitOverride event triggered with invalid source data.");
-	// 	return ELR_NoInterrupt;
-	// }
-	//`LWTRACE("OverrideToHit : EventSource valid.");
-
-	StandardAim = X2AbilityToHitCalc_StandardAim(EventSource);
+	StandardAim = X2AbilityToHitCalc_StandardAim(AbilityToHitCalc);
 	if (StandardAim == none)
 	{
-		//exit silently with no error, since we're just intercepting StandardAim
-		return ELR_NoInterrupt;
+		return false;
 	}
-	//`LWTRACE("OverrideToHit : Is StandardAim.");
 
-	if (OverrideToHit.Id != 'OverrideFinalHitChance')
-		return ELR_NoInterrupt;
-
-	//`LWTRACE("OverrideToHit : XComLWTuple ID matches, ready to override!");
-
-	ShotBreakdownWrapper = CHShotBreakdownWrapper(OverrideToHit.Data[1].o);
-	GetUpdatedHitChances(StandardAim, ShotBreakdownWrapper.m_ShotBreakdown, Adjustments);
+	GetUpdatedHitChances(StandardAim, ShotBreakdown, Adjustments);
 
 	// LWOTC Replacing the old FinalHitChance calculation with one that treats all graze
 	// as a hit.
-	// ShotBreakdownWrapper.m_ShotBreakdown.FinalHitChance = ShotBreakdownWrapper.m_ShotBreakdown.ResultTable[eHit_Success] + Adjustments.DodgeHitAdjust;
-	ShotBreakdownWrapper.m_ShotBreakdown.FinalHitChance = Adjustments.FinalSuccessChance + Adjustments.FinalGrazeChance + Adjustments.FinalCritChance;
-	ShotBreakdownWrapper.m_ShotBreakdown.ResultTable[eHit_Crit] = Adjustments.FinalCritChance;
-	ShotBreakdownWrapper.m_ShotBreakdown.ResultTable[eHit_Success] = Adjustments.FinalSuccessChance;
-	ShotBreakdownWrapper.m_ShotBreakdown.ResultTable[eHit_Graze] = Adjustments.FinalGrazeChance;
-	ShotBreakdownWrapper.m_ShotBreakdown.ResultTable[eHit_Miss] = Adjustments.FinalMissChance;
+	// ShotBreakdown.FinalHitChance = ShotBreakdown.ResultTable[eHit_Success] + Adjustments.DodgeHitAdjust;
+	ShotBreakdown.FinalHitChance = Adjustments.FinalSuccessChance + Adjustments.FinalGrazeChance + Adjustments.FinalCritChance;
+	ShotBreakdown.ResultTable[eHit_Crit] = Adjustments.FinalCritChance;
+	ShotBreakdown.ResultTable[eHit_Success] = Adjustments.FinalSuccessChance;
+	ShotBreakdown.ResultTable[eHit_Graze] = Adjustments.FinalGrazeChance;
+	ShotBreakdown.ResultTable[eHit_Miss] = Adjustments.FinalMissChance;
 
 	if(Adjustments.DodgeHitAdjust != 0)
 	{
 		ModInfo.ModType = eHit_Success;
 		ModInfo.Value   = Adjustments.DodgeHitAdjust;
 		ModInfo.Reason  = class'XLocalizedData'.default.DodgeStat;
-		ShotBreakdownWrapper.m_ShotBreakdown.Modifiers.AddItem(ModInfo);
+		ShotBreakdown.Modifiers.AddItem(ModInfo);
 	}
 	if(Adjustments.ConditionalCritAdjust != 0)
 	{
 		ModInfo.ModType = eHit_Crit;
 		ModInfo.Value   = Adjustments.ConditionalCritAdjust;
 		ModInfo.Reason  = default.strCritReductionFromConditionalToHit;
-		ShotBreakdownWrapper.m_ShotBreakdown.Modifiers.AddItem(ModInfo);
+		ShotBreakdown.Modifiers.AddItem(ModInfo);
 	}
 	if(Adjustments.DodgeCritAdjust != 0)
 	{
 		ModInfo.ModType = eHit_Crit;
 		ModInfo.Value   = Adjustments.DodgeCritAdjust;
 		ModInfo.Reason  = class'XLocalizedData'.default.DodgeStat;
-		ShotBreakdownWrapper.m_ShotBreakdown.Modifiers.AddItem(ModInfo);
+		ShotBreakdown.Modifiers.AddItem(ModInfo);
 	}
 
-	OverrideToHit.Data[0].b = true;
-
-	return ELR_NoInterrupt;
+	return true;
 }
 
 // doesn't actually assign anything to the ToHitCalc, just computes relative to-hit adjustments
@@ -279,4 +236,9 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 		//This is an error so flag it
 		`REDSCREEN("OverrideToHit : Negative miss chance!");
 	}
+}
+
+defaultproperties
+{
+	AbilityTemplateModFn=UpdateAbilities
 }

@@ -299,6 +299,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.Additem(CreateReconfigGearTemplate());
 	Templates.Additem(CreateRewireTechTreeTemplate());
 	Templates.AddItem(CreateEditGTSProjectsTemplate());
+	Templates.AddItem(CreateModifyAbilitiesTemplate());
 	Templates.AddItem(CreateModifyAbilitiesGeneralTemplate());
 	Templates.AddItem(CreateSwapExplosiveDamageFalloff());
 	Templates.AddItem(CreateModifyGrenadeEffects());
@@ -317,6 +318,15 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateModifyStrategyObjectivesTemplate());
 	`Log("    Done");
 	return Templates;
+}
+
+// Modify abilities to use graze band
+static function X2LWTemplateModTemplate CreateModifyAbilitiesTemplate()
+{
+	local X2LWTemplateModTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2LWAbilitiesModTemplate', Template, 'UpdateAbilities');
+	return Template;
 }
 
 // Update existing strategic objective templates
