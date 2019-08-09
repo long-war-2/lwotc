@@ -204,10 +204,6 @@ function OpenInfiltrationMissionScreen()
 {
 	local UIMission_LWLaunchDelayedMission MissionScreen;
 	local XComHQPresentationLayer HQPres;
-	
-	// WOTC DEBUGGING
-	`LWTrace(">> Launching delayed mission UI");
-	// END
 
 	HQPres = `HQPRES;
 	MissionScreen = HQPres.Spawn(class'UIMission_LWLaunchDelayedMission', HQPres);

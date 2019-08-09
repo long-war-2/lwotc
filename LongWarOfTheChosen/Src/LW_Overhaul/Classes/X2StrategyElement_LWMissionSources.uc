@@ -38,14 +38,8 @@ var public localized String m_strFacilityDestroyed;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> MissionSources;
-	// WOTC DEBUGGING:
-	`Log(">>> Creating mission source templates...");
-	// END
 
 	MissionSources.AddItem(CreateGenericMissionSourceTemplate());
-	// WOTC DEBUGGING:
-	`Log(">>>    Done");
-	// END
 
 	return MissionSources;
 }

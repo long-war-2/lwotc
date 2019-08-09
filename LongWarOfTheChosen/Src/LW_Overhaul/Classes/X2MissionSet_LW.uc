@@ -5,9 +5,6 @@ class X2MissionSet_LW extends X2MissionSet;
 static function array<X2DataTemplate> CreateTemplates()
 {
     local array<X2MissionTemplate> Templates;
-	// WOTC DEBUGGING:
-	`Log(">>> Creating mission templates...");
-	// END
 
 	// Add LW variants of missions for re-definition without obliterating Mission.ini
     Templates.AddItem(AddMissionTemplate('RecoverItem_LW'));
@@ -53,9 +50,6 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddMissionTemplate('IntelRaid_LW'));
 	Templates.AddItem(AddMissionTemplate('SupplyConvoy_LW'));
 	Templates.AddItem(AddMissionTemplate('RecruitRaid_LW'));
-	// WOTC DEBUGGING:
-	`Log(">>>    Done");
-	// END
 
 	return Templates;
 }

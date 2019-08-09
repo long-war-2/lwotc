@@ -181,10 +181,6 @@ function EventListenerReturn OnAlienTurnBegin(Object EventData, Object EventSour
 		AlertLevel = `ALERT_LEVEL_YELLOW;
 	}
 
-	// WOTC DEBUGGING:
-	`Log(">>> Starting alien turn at alert level " $ AlertLevel);
-	// END
-
 	// Don't activate pod mechanics until both we have an alert activation on a pod
 	// and the squad isn't concealed.
 	if (AlertLevel == `ALERT_LEVEL_GREEN || XComPlayer.bSquadIsConcealed)

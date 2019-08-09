@@ -165,10 +165,6 @@ function EventListenerReturn OnTileDataChanged(Object EventData, Object EventSou
 	{
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Invalidating Delayed Evac Zone");
 
-		// WOTC DEBUGGING:
-		`LWTrace("PlaceDelayedEvacZone debugging: UIScreenListener_TacticalHUD - pre cooldown update");
-		// END
-
 		// update the cooldown on the player
 		NewPlayerState = class'Utilities_LW'.static.FindPlayer(eTeam_XCom);
 		if (NewPlayerState.GetCooldown('PlaceDelayedEvacZone') > 0)
@@ -177,10 +173,6 @@ function EventListenerReturn OnTileDataChanged(Object EventData, Object EventSou
 			NewPlayerState.SetCooldown('PlaceDelayedEvacZone', 0);
 			NewGameState.AddStateObject(NewPlayerState);
 		}
-
-		// WOTC DEBUGGING:
-		`LWTrace("PlaceDelayedEvacZone debugging: UIScreenListener_TacticalHUD - post cooldown update");
-		// END
 
 		// update the evac zone
 		EvacState = XComGameState_LWEvacSpawner(NewGameState.CreateStateObject(class'XComGameState_LWEvacSpawner', EvacState.ObjectID));

@@ -1041,7 +1041,6 @@ static function AddObjectivesToParcels()
 	local XComParcelManager ParcelMgr;
 	local PlotDefinition PlotDef;
 	local int i, j, k;
-	local string Tag; // WOTC DEBUGGING
 
 	// Go over the plot list and add new objectives to certain plots.
 	ParcelMgr = `PARCELMGR;

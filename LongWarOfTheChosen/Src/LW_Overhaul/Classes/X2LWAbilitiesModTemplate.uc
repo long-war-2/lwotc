@@ -40,10 +40,6 @@ static function bool OverrideFinalHitChance(X2AbilityToHitCalc AbilityToHitCalc,
 	local ToHitAdjustments					Adjustments;
 	local ShotModifierInfo					ModInfo;
 
-	// LWOTC DEBUGGING
-	`Log(" >>> OverrideFinalHitChance event fired");
-	// END
-
 	StandardAim = X2AbilityToHitCalc_StandardAim(AbilityToHitCalc);
 	if (StandardAim == none)
 	{

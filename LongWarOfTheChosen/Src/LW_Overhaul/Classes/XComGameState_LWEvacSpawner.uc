@@ -33,10 +33,6 @@ function EventListenerReturn OnEvacSpawnerCreated(Object EventData, Object Event
 {
     local XComGameState NewGameState;
     local XComGameState_LWEvacSpawner NewSpawnerState;
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - start OnEvacSpawnerCreated");
-    // END
 
     // Set up visualization to drop the flare.
     NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
@@ -52,10 +48,6 @@ function EventListenerReturn OnEvacSpawnerCreated(Object EventData, Object Event
         NewSpawnerState.SpawnEvacZone();
     }
 
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - end OnEvacSpawnerCreated");
-    // END
-
     return ELR_NoInterrupt;
 }
 
@@ -67,10 +59,6 @@ function BuildVisualizationForSpawnerCreation(XComGameState VisualizeGameState)
     local XComGameState_LWEvacSpawner EvacSpawnerState;
     local X2Action_PlayEffect EvacSpawnerEffectAction;
     local X2Action_PlayNarrative NarrativeAction;
-
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - start BuildVisualizationForSpawnerCreation");
-    // END
 
     History = `XCOMHISTORY;
     EvacSpawnerState = XComGameState_LWEvacSpawner(History.GetGameStateForObjectID(ObjectID));
@@ -93,10 +81,6 @@ function BuildVisualizationForSpawnerCreation(XComGameState VisualizeGameState)
         NarrativeAction.Moment = XComNarrativeMoment(DynamicLoadObject(EvacRequestedNarrativePathName, class'XComNarrativeMoment'));
         NarrativeAction.WaitForCompletion = false;
     }
-
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - end BuildVisualizationForSpawnerCreation");
-    // END
 }
 
 // Countdown complete: time to spawn the evac zone.
@@ -105,10 +89,6 @@ function SpawnEvacZone()
     local XComGameState NewGameState;
     local X2EventManager EventManager;
     local Object ThisObj;
-
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - start SpawnEvacZone");
-    // END
 
     EventManager = `XEVENTMGR;
 
@@ -125,10 +105,6 @@ function SpawnEvacZone()
     EventManager.TriggerEvent('SpawnEvacZoneComplete', ThisObj, ThisObj, NewGameState);
 
     `TACTICALRULES.SubmitGameState(NewGameState);
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - end SpawnEvacZone");
-    // END
 }
 
 // Evac zone has spawned. We can now clean ourselves up as this state object is no longer needed.
@@ -136,20 +112,12 @@ function EventListenerReturn OnSpawnEvacZoneComplete(Object EventData, Object Ev
 {
     local XComGameState NewGameState;
     local XComGameState_LWEvacSpawner NewSpawnerState;
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - start OnSpawnEvacZoneComplete");
-    // END
 
     NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Spawn Evac Zone Complete");
     NewSpawnerState = XComGameState_LWEvacSpawner(NewGameState.CreateStateObject(class'XComGameState_LWEvacSpawner', ObjectID));
     NewSpawnerState.ResetCountdown();
     NewGameState.AddStateObject(NewSpawnerState);
     `TACTICALRULES.SubmitGameState(NewGameState);
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - end OnSpawnEvacZoneComplete");
-    // END
 
     return ELR_NoInterrupt;
 }
@@ -158,10 +126,6 @@ function BuildVisualizationForFlareDestroyed(XComGameState VisualizeState)
 {
     local X2Action_PlayEffect EvacSpawnerEffectAction;
     local VisualizationActionMetadata BuildTrack;
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - start BuildVisualizationForFlareDestroyed");
-    // END
 
     EvacSpawnerEffectAction = X2Action_PlayEffect(class'X2Action_PlayEffect'.static.AddToVisualizationTree(BuildTrack, VisualizeState.GetContext(), false, BuildTrack.LastActionAdded));
     EvacSpawnerEffectAction.EffectName = FlareEffectPathName;
@@ -172,10 +136,6 @@ function BuildVisualizationForFlareDestroyed(XComGameState VisualizeState)
     
     BuildTrack.StateObject_OldState = self;
     BuildTrack.StateObject_NewState = self;
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - end BuildVisualizationForFlareDestroyed");
-    // END
 }
 
 // Visualize the evac spawn: turn off the flare we dropped as a countdown visualizer and visualize the evac zone dropping.
@@ -188,10 +148,6 @@ function BuildVisualizationForEvacSpawn(XComGameState VisualizeState)
     local XComGameState_LWEvacSpawner EvacSpawnerState;
     local X2Action_PlayEffect EvacSpawnerEffectAction;
     local X2Action_PlayNarrative NarrativeAction;
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - start BuildVisualizationForEvacSpawn");
-    // END
 
     History = `XCOMHISTORY;
 
@@ -224,10 +180,6 @@ function BuildVisualizationForEvacSpawn(XComGameState VisualizeState)
     NarrativeAction = X2Action_PlayNarrative(class'X2Action_PlayNarrative'.static.AddToVisualizationTree(BuildTrack, VisualizeState.GetContext(), false, BuildTrack.LastActionAdded));
     NarrativeAction.Moment = XComNarrativeMoment(DynamicLoadObject(FirebrandArrivedNarrativePathName, class'XComNarrativeMoment'));
     NarrativeAction.WaitForCompletion = false;
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - end BuildVisualizationForEvacSpawn");
-    // END
 }
 
 function InitEvac(int Turns, vector Loc)
@@ -249,10 +201,6 @@ static function InitiateEvacZoneDeployment(
     local XComGameState NewGameState;
     local X2EventManager EventManager;
     local Object EvacObj;
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - start InitiateEvacZoneDeployment");
-    // END
 
     EventManager = `XEVENTMGR;
 
@@ -269,18 +217,10 @@ static function InitiateEvacZoneDeployment(
     if (NewEvacSpawnerState != none)
     {
         NewEvacSpawnerState = XComGameState_LWEvacSpawner(NewGameState.ModifyStateObject(class'XComGameState_LWEvacSpawner', NewEvacSpawnerState.ObjectID));
-    
-        // WOTC DEBUGGING:
-        `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - Modifying existing evac spawner");
-        // END
     }
     else
     {
         NewEvacSpawnerState = XComGameState_LWEvacSpawner(NewGameState.CreateNewStateObject(class'XComGameState_LWEvacSpawner'));
-    
-        // WOTC DEBUGGING:
-        `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - Creating new evac spawner");
-        // END
     }
 
     // Clean up any existing evac zone.
@@ -305,10 +245,6 @@ static function InitiateEvacZoneDeployment(
     {
         `TACTICALRULES.SubmitGameState(NewGameState);
     }
-    
-        // WOTC DEBUGGING:
-        `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - end InitiateEvacZoneDeployment");
-        // END
 }
 
 // Nothing to do here.
@@ -322,10 +258,6 @@ function SyncVisualizer(optional XComGameState GameState = none)
 function AppendAdditionalSyncActions(out VisualizationActionMetadata ActionMetadata)
 {
     local X2Action_PlayEffect PlayEffect;
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - start AppendAdditionalSyncActions");
-    // END
 
     PlayEffect = X2Action_PlayEffect(class'X2Action_PlayEffect'.static.AddToVisualizationTree(ActionMetadata, GetParentGameState().GetContext(), false, ActionMetadata.LastActionAdded));
 
@@ -334,10 +266,6 @@ function AppendAdditionalSyncActions(out VisualizationActionMetadata ActionMetad
     PlayEffect.EffectLocation = SpawnLocation;
     PlayEffect.CenterCameraOnEffectDuration = 0;
     PlayEffect.bStopEffect = false;
-    
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: XCGS_LWEvacSpawner - end AppendAdditionalSyncActions");
-    // END
 }
 
 function int GetCountdown()

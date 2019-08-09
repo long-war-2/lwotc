@@ -155,10 +155,6 @@ simulated function XComGameState PlaceDelayedEvacZone_BuildGameState(XComGameSta
 
     History = `XCOMHISTORY;
 
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: X2Ability_PlaceDelayedEvacZone - start building game state");
-    // END
-
     NewGameState = History.CreateNewGameState(true, Context);
 
     AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext());
@@ -173,10 +169,6 @@ simulated function XComGameState PlaceDelayedEvacZone_BuildGameState(XComGameSta
 
     Delay = GetEvacDelay();
     class'XComGameState_LWEvacSpawner'.static.InitiateEvacZoneDeployment(Delay, SpawnLocation, NewGameState);
-
-    // WOTC DEBUGGING:
-    `LWTrace("PlaceDelayedEvacZone debugging: X2Ability_PlaceDelayedEvacZone - finish building game state");
-    // END
 
     return NewGameState;
 }

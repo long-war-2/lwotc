@@ -11,9 +11,7 @@ class X2MissionNarrative_LWNarrativeSet extends X2MissionNarrative;
 static function array<X2DataTemplate> CreateTemplates()
 {
     local array<X2MissionNarrativeTemplate> Templates;
-	// WOTC DEBUGGING:
-	`Log(">>> Creating mission narrative templates...");
-	// END
+
 	//recreation of base-game mission narratives for LW-specific variations
 	Templates.AddItem(AddDefaultRecoverMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultRecover_ADVMissionNarrativeTemplate_LW());
@@ -55,9 +53,6 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddDefaultSupplyConvoyMissionNarrativeTemplate());
     Templates.AddItem(AddDefaultRecruitRaidMissionNarrativeTemplate());
 	Templates.AddItem(AddDefaultSmashNGrabMissionNarrativeTemplate());
-	// WOTC DEBUGGING:
-	`Log(">>>    Done");
-	// END
 
     return Templates;
 }

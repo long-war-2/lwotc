@@ -410,10 +410,6 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 	History = `XCOMHISTORY;
 	bStartState = (NewGameState.GetContext().IsStartState());
 
-	// WOTC DEBUGGING:
-	`LWTrace("  >> Processing Black Market goods");
-	// END
-
 	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 	BlackMarket.ForSaleItems.Length = 0;
 

@@ -113,9 +113,6 @@ function bool IsEffectCurrentlyRelevant(XComGameState_Effect EffectState, XComGa
 	local bool Relevant;
 
 	Relevant = (ComputePctHPLost(TargetUnit) > 0.0f) && IsRedFogActive(TargetUnit);
-	// LWOTC DEBUGGING
-	`LOG("X2Effect_RedFog: Unit=" $ TargetUnit.GetFullName() $ ", Relevant=" $ Relevant $ ", PctLost=" $ ComputePctHPLost(TargetUnit),, 'LW_Toolbox');
-	// END
 	return Relevant;
 }
 
