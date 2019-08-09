@@ -81,6 +81,7 @@ static protected function EventListenerReturn OnOverrideDisableReinforcementsFla
 static protected function EventListenerReturn OnOverrideReinforcementsAlert(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local XComLWTuple OverrideTuple;
+	local XComGameState AssociatedGameState;
 	local XComGameState_AIReinforcementSpawner SpawnerState;
 	local XComGameState_LWReinforcements LWReinforcements;
 	local int ReinfColor;
@@ -96,8 +97,14 @@ static protected function EventListenerReturn OnOverrideReinforcementsAlert(Obje
 	if(OverrideTuple.Id != 'OverrideReinforcementsAlert')
 		return ELR_NoInterrupt;
 
+	AssociatedGameState = XComGameState(OverrideTuple.Data[4].o);
+	if (AssociatedGameState == none)
+	{
+		return ELR_NoInterrupt;
+	}
+
 	// Look for an active reinforcement spawner.
-	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_AIReinforcementSpawner', SpawnerState)
+	foreach AssociatedGameState.IterateByClassType(class'XComGameState_AIReinforcementSpawner', SpawnerState)
 	{
 		if (SpawnerState.Countdown > 0)
 		{

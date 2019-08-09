@@ -716,25 +716,6 @@ function StripWeaponUpgradesFromItem(XComGameState_Item ItemState, XComGameState
 	//return ELR_NoInterrupt;
 //}
 //
-//// This sets a flag that skips the automatic alert placed on the squad when reinfs land.
-//function EventListenerReturn OnOverrideReinforcementsAlert(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-//{
-	///* WOTC TODO: Restore this
-	//local XComLWTuple Tuple;
-	//local XComGameState_Player PlayerState;
-//
-	//Tuple = XComLWTuple(EventData);
-	//if (Tuple == none)
-	//{
-		//return ELR_NoInterrupt;
-	//}
-//
-	//PlayerState = class'Utilities_LW'.static.FindPlayer(eTeam_XCom);
-	//Tuple.Data[0].b = PlayerState.bSquadIsConcealed;
-	//*/
-	//return ELR_NoInterrupt;
-//}
-//
 //// this function cleans up some weird objective states by firing specific events
 //function EventListenerReturn OnGeoscapeEntry(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 //{
