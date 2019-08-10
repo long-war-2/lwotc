@@ -39,10 +39,6 @@ static function CHEventListenerTemplate CreateReinforcementsListeners()
 
 static protected function int GetListenerPriority()
 {
-	// WOTC DEBUGGING:
-	`Log("Listener priority = " $ default.LISTENER_PRIORITY $ ", default = " $ class'XComGameState_LWListenerManager'.default.DEFAULT_LISTENER_PRIORITY);
-	// END
-	
 	return default.LISTENER_PRIORITY != -1 ? default.LISTENER_PRIORITY : class'XComGameState_LWListenerManager'.default.DEFAULT_LISTENER_PRIORITY;
 }
 
