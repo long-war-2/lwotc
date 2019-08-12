@@ -1,7 +1,7 @@
 //-----------------------------------------------------------
 // Used by the visualizer system to control a Visualization Actor
 //-----------------------------------------------------------
-class X2Action_MoveClimbWall_LW extends X2Action_MoveClimbWall;
+class X2Action_MoveClimbWall_Override extends X2Action_MoveClimbWall;
 
 //var vector  Destination;
 //var vector	Source;

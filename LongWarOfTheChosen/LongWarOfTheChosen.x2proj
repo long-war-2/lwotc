@@ -73,6 +73,7 @@
     <Folder Include="Src\NewPromotionScreenByDefault_Integrated\" />
     <Folder Include="Localization\PI_Integrated\" />
     <Folder Include="Src\PI_Integrated\" />
+    <Folder Include="Src\WallClimbOverride\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -370,7 +371,6 @@
     <Content Include="Src\LW_AlienPack_Integrated\Classes\UIScreenListener_Shell_LWAlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\UIScreenListener_TacticalHUD_LWAlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Ability_LWAlienAbilities.uc" />
-    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Action_MoveClimbWall_LW.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Character_AlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2DownloadableContentInfo_LWAlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_AdventGrenadeLauncher.uc" />
@@ -1086,6 +1086,7 @@
     <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_X2Action_ApplyWeaponDamageToUnit.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LastShotBreakdown.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWAbilitiesModTemplate.uc" />
+    <Content Include="Src\WallClimbOverride\Classes\X2Action_MoveClimbWall_Override.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
