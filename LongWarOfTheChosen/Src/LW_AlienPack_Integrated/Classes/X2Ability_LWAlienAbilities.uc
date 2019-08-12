@@ -131,9 +131,9 @@ static function X2AbilityTemplate CreateMutonM2_LWAbility_BeastMaster()
 	local X2AbilityTemplate					Template;
 	local X2AbilityTargetStyle				TargetStyle;
 	local X2AbilityTrigger					Trigger;
-	local X2Effect_BeastMaster				BeastMasterEffect;
+	local X2Effect_BeastMaster_LW			BeastMasterEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'Beastmaster');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Beastmaster_LW');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -143,13 +143,13 @@ static function X2AbilityTemplate CreateMutonM2_LWAbility_BeastMaster()
 	Template.AbilityTargetStyle = TargetStyle;
 	Trigger = new class 'X2AbilityTrigger_UnitPostBeginPlay';
 	Template.AbilityTriggers.AddItem(Trigger);
-	BeastMasterEffect = new class'X2Effect_Beastmaster';
+	BeastMasterEffect = new class'X2Effect_BeastMaster_LW';
 	BeastMasterEffect.BuildPersistentEffect (1, true, false);
 		//BuildPersistentEffect(int _iNumTurns, optional bool _bInfiniteDuration, optional bool _bRemoveWhenSourceDies, optional bool _bIgnorePlayerCheckOnTick, optional XComGameStateContext_TacticalGameRule.GameRuleStateChange _WatchRule)
 	BeastMasterEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 		//SetDisplayInfo(X2TacticalGameRulesetDataStructures.EPerkBuffCategory BuffCat, string strName, string strDesc, string strIconLabel, optional bool DisplayInUI, optional string strStatusIcon, optional name opAbilitySource)
 
-	Template.AddTargetEffect(BeastmasterEffect);
+	Template.AddTargetEffect(BeastMasterEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
 }

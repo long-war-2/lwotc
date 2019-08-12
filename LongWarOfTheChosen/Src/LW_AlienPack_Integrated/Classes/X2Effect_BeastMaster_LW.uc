@@ -1,9 +1,9 @@
 //--------------------------------------------------------------------------------------- 
-//  FILE:    X2Effect_Beastmaster.uc
+//  FILE:    X2Effect_Beastmaster_LW.uc
 //  AUTHOR:	 John Lumpkin (Pavonis Interactive)
 //  PURPOSE: Creates Beastmaster effect, which makes Centurions immune to damage from Berserkers
 //--------------------------------------------------------------------------------------- 
-class X2Effect_Beastmaster extends X2Effect_BonusArmor;
+class X2Effect_Beastmaster_LW extends X2Effect_BonusArmor;
 
 function int GetDefendingDamageModifier (
 		XComGameState_Effect EffectState,

@@ -30,7 +30,7 @@ LocHelpText="Allows a melee attack anywhere within sprint distance."
 LocFlyOverText="Bayonet Charge"
 LocPromotionPopupText="<Bullet/> Allows a melee attack anywhere within sprint distance.<br/><Bullet/> 4-turn cooldown.<br/>"
 
-[Beastmaster X2AbilityTemplate]
+[Beastmaster_LW X2AbilityTemplate]
 LocFriendlyName="Beastmaster"
 LocLongDescription="Immune to damage from Berserkers."
 LocHelpText="Immune to damage from Berserkers."

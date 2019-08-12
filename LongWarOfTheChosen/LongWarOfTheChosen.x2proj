@@ -374,7 +374,7 @@
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Character_AlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2DownloadableContentInfo_LWAlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_AdventGrenadeLauncher.uc" />
-    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_BeastMaster.uc" />
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_BeastMaster_LW.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_HiveQueenSlash.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_ReadyForAnything.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_RepairServos.uc" />
