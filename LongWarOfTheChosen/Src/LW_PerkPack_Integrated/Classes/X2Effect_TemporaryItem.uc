@@ -318,7 +318,7 @@ function array<X2AbilityTemplate> AddAbilityToUnit(name AbilityName, XComGameSta
 	return ReturnAbilityTemplates;
 }
 
-simulated function EventListenerReturn OnTacticalGameEnd(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+static function EventListenerReturn OnTacticalGameEnd(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameStateHistory		History;
 	local XComGameState				NewGameState;
