@@ -62,6 +62,10 @@ var config array<PlotObjectiveMod> PlotObjectiveMods;
 var config array<String> ParcelsToRemove;
 var bool bDebugPodJobs;
 
+// An integer from between 0 and 100 inclusive that represents the percentage chance for
+// a Chosen to appear on a mission, excluding any modifying factors.
+var config int BaseChosenAppearanceChance;
+
 // End data and data structures
 //-----------------------------
 
@@ -383,6 +387,7 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	InitializePodManager(StartGameState);
 	OverrideConcealmentAtStart(MissionState);
 	OverrideDestructibleHealths(StartGameState);
+	MaybeAddChosenToMission(StartGameState, MissionState);
 
 	// Test Code to see if DLC POI replacement is working
 	if (MissionState.POIToSpawn.ObjectID > 0)
@@ -1151,6 +1156,119 @@ static function OverrideDestructibleHealths(XComGameState StartGameState)
 			`LWTrace("Updating" @ DestructibleActorConfig.ArchetypeName @ "max health to" @ DestructibleActorConfig.Health);
 			Toughness.Health = DestructibleActorConfig.Health;
 		}
+	}
+}
+
+// (Copied from XCGS_HeadquartersAlien.AddChosenTacticalTagsToMission())
+//
+// Add the Chosen tactical tags to the mission if any of the following criteria
+// are met:
+//
+//  * It's the final mission (Golden Path fortress)
+//  * The Chosen has control of the region, is active, and:
+//    - hasn't been encountered yet
+//    - it's a Golden Path mission
+//    - 25% chance on all other missions
+//
+// Note that if the mission type is configured to exclude Chosen, then of course
+// the tactical tags aren't added for the given mission.
+static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_MissionSite MissionState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local int AppearanceChance;
+	local float AppearChanceScalar;
+	local name ChosenSpawningTag;
+
+	History = `XCOMHISTORY;
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersAlien', AlienHQ)
+	{
+		break;
+	}
+
+	// LWOTC: If Chosen are disabled, don't add them at all
+	if (!class'X2StrategyElement_LWObjectives'.default.ACTIVATE_CHOSEN)
+	{
+		return;
+	}
+
+	if (AlienHQ.bChosenActive)
+	{
+		XComHQ = `XCOMHQ;
+		AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			if (ChosenState.bDefeated)
+			{
+				continue;
+			}
+
+			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+			// Remove the tag if it's already attached to this mission. This is the only
+			// place that should add Chosen tactical mission tags.
+			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTag);
+
+			// Roll for whether this Chosen will appear on this mission.
+			`LWTrace("Rolling for Chosen on mission " $ MissionState.GeneratedMission.Mission.MissionName);
+			if (`SYNC_RAND_STATIC(100) < GetChosenAppearanceChance(ChosenState, MissionState))
+			{
+				`LWTrace("    Chosen added!");
+				XComHQ.TacticalGameplayTags.AddItem(ChosenSpawningTag);
+			}
+		}
+	}
+
+	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
+	{
+		if (ChosenState.bDefeated)
+		{
+			ChosenState.PurgeMissionOfTags(MissionState);
+		}
+	}
+}
+
+// Returns the chance that the given Chosen will appear on the given mission. The chance
+// is a percentage between 0 and 100 inclusive.
+static function int GetChosenAppearanceChance(XComGameState_AdventChosen ChosenState, XComGameState_MissionSite MissionState)
+{
+	local XComGameState_LWPersistentSquad Squad;
+	local int AppearanceChance;
+
+	// If the Chosen doesn't control the region, they won't appear on the mission
+	if (!ChosenState.ChosenControlsRegion(MissionState.Region))
+	{
+		return 0;
+	}
+
+	if (class'XComGameState_LWAlienActivity'.default.ExcludeChosenFromMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
+	{
+		// Can't be on this mission no matter what
+		// LWOTC DEBUGGING
+		`LWTrace("Chosen can't be added to missions of type" @ MissionState.GeneratedMission.Mission.sType);
+		// END
+		return 0;
+	}
+	else if (ChosenState.NumEncounters == 0 || MissionState.GetMissionSource().bGoldenPath)
+	{
+		// Guaranteed on this mission
+		return 100;
+	}
+	else
+	{
+		AppearanceChance = default.BaseChosenAppearanceChance;
+
+		// Modify the base Chosen appearance chance by infiltration percentage
+		Squad = `LWSQUADMGR.GetSquadOnMission(MissionState.GetReference());
+		if (Squad != none)
+		{
+			AppearanceChance /= FMax(Squad.CurrentInfiltration, 0.1);
+		}
+		return Clamp(AppearanceChance, 0, 100);
 	}
 }
 
