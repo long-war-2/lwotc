@@ -478,6 +478,7 @@ static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienAc
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
 	local XComGameState_WorldRegion PrimaryRegionState;
 	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_ResistanceFaction FactionState;
 	local int k;
 
 	PrimaryRegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
@@ -511,10 +512,17 @@ static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienAc
 			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(PrimaryRegionState, NewGameState, true);
 			if (RegionalAI.NumTimesLiberated == 0)
 			{
+				FactionState = class'Helpers_LW'.static.GetFactionFromRegion(PrimaryRegionState.GetReference());
+				if (!class'X2StrategyElement_LWObjectives'.default.ACTIVATE_CHOSEN &&
+					FactionState.bMetXCom && FactionState.GetInfluence() < eFactionInfluence_MAX)
+				{
+					RewardArray.AddItem('Reward_FactionInfluence_LW');
+				}
+
 				if (CanAddPOI())
 				{
-					RewardArray[1] = 'Reward_POI_LW';
-					RewardArray[2] = 'Reward_Dummy_POI'; // The first POI rewarded on any mission doesn't display in rewards, so this corrects for that
+					RewardArray.AddItem('Reward_POI_LW');
+					RewardArray.AddItem('Reward_Dummy_POI'); // The first POI rewarded on any mission doesn't display in rewards, so this corrects for that
 				}
 			}
 			break;

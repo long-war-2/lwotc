@@ -12,11 +12,11 @@ const NEW_RESOURCES_REWARD_NAME='Reward_NewResources';
 
 static function array<X2DataTemplate> CreateTemplates()
 {
-    local array<X2DataTemplate> Rewards;
+	local array<X2DataTemplate> Rewards;
 
 	`LWTrace("  >> X2StrategyElement_DefaultRewards_LW.CreateTemplates()");
 	
-    Rewards.AddItem(CreateRebelRewardTemplate());
+	Rewards.AddItem(CreateRebelRewardTemplate());
 	Rewards.AddItem(CreatePOIRewardTemplate());
 	Rewards.AddItem(CreateNewResourcesRewardTemplate());
 	Rewards.AddItem(CreateDummyEnemyMaterielRewardTemplate());
@@ -26,7 +26,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Rewards.AddItem(CreateResistanceMECRewardTemplate());
 	Rewards.AddItem(CreateDummyRegionalNetworkTowerRewardTemplate());
 	Rewards.AddItem(CreateRadioRelayRewardTemplate());
-    return Rewards;
+	Rewards.AddItem(CreateFactionInfluenceRewardTemplate());
+	return Rewards;
 }
 
 static function X2DataTemplate CreateRebelRewardTemplate()
@@ -327,4 +328,49 @@ static function X2DataTemplate CreateRadioRelayRewardTemplate()
     Template.GetRewardStringFn = GetSimpleRewardString;
     Template.GetRewardIconFn = class'X2StrategyElement_DefaultRewards'.static.GetGenericRewardIcon;
     return Template;
+}
+
+static function X2DataTemplate CreateFactionInfluenceRewardTemplate()
+{
+	local X2RewardTemplate Template;
+
+	`CREATE_X2Reward_TEMPLATE(Template, 'Reward_FactionInfluence_LW');
+
+	Template.IsRewardAvailableFn = AlwaysFalseAvailable;
+	Template.IsRewardNeededFn = AlwaysFalseNeeded;
+	Template.GenerateRewardFn = GenerateFactionInfluenceReward;
+	Template.GiveRewardFn = GiveFactionInfluenceReward;
+	Template.GetRewardImageFn = GetFactionInfluenceRewardImage;
+	Template.GetRewardStringFn = GetFactionInfluenceRewardString;
+	Template.CleanUpRewardFn = class'X2StrategyElement_DefaultRewards'.static.CleanUpRewardWithoutRemoval;
+
+	return Template;
+}
+
+static function GenerateFactionInfluenceReward(XComGameState_Reward RewardState, XComGameState NewGameState, optional float RewardScalar = 1.0, optional StateObjectReference RegionRef)
+{
+	RewardState.RewardObjectReference = RegionRef;
+}
+
+static function GiveFactionInfluenceReward(XComGameState NewGameState, XComGameState_Reward RewardState, optional StateObjectReference RegionRef, optional bool bOrder = false, optional int OrderHours = -1)
+{
+	local XComGameState_ResistanceFaction FactionState;
+
+	FactionState = XComGameState_ResistanceFaction(NewGameState.ModifyStateObject(
+        class'XComGameState_ResistanceFaction', class'Helpers_LW'.static.GetFactionFromRegion(RegionRef).ObjectID));
+	FactionState.IncreaseInfluenceLevel(NewGameState);
+}
+
+static function string GetFactionInfluenceRewardImage(XComGameState_Reward RewardState)
+{
+	local XComGameState_AdventChosen ChosenState;
+
+	ChosenState = class'Helpers_LW'.static.GetFactionFromRegion(RewardState.RewardObjectReference).GetRivalChosen();
+
+	return ChosenState.GetHuntChosenImage(0);
+}
+
+static function string GetFactionInfluenceRewardString(XComGameState_Reward RewardState)
+{
+	return RewardState.GetMyTemplate().DisplayName;
 }

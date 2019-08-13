@@ -300,3 +300,33 @@ function static SoundCue FindDeathSound(String ObjectArchetypeName, int Index, o
 
 	return none;
 }
+
+// Returns the game state object reference for the faction whose rival
+// Chosen controls the given region.
+static function XComGameState_ResistanceFaction GetFactionFromRegion(StateObjectReference RegionRef)
+{
+	local XComGameStateHistory History;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_ResistanceFaction FactionState;
+
+	// First, find the Chosen that controls this region
+	History = `XCOMHISTORY;
+	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
+	{
+		if (ChosenState.ChosenControlsRegion(RegionRef))
+		{
+			break;
+		}
+	}
+
+	// Finally, get the faction who has this Chosen as their rival
+	foreach History.IterateByClassType(class'XComGameState_ResistanceFaction', FactionState)
+	{
+		if (FactionState.RivalChosen.ObjectID == ChosenState.ObjectID)
+		{
+			break;
+		}
+	}
+
+	return FactionState;
+}
