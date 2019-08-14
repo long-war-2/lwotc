@@ -5,8 +5,6 @@
 //---------------------------------------------------------------------------------------
 class X2StrategyElement_LWObjectives extends X2StrategyElement_DefaultObjectives config(LW_Overhaul);
 
-var config bool ACTIVATE_CHOSEN;
-
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Objectives;
@@ -145,7 +143,7 @@ static function X2DataTemplate CreateLW_T2_M0_S4_AssaultNetworkTowerTemplate()
 	Template.CompletionEvent = 'NetworkTowerDefeated';  // Do Blacksite after Network Tower, and move Avatar Project to after AssaultAlienBase
 	Template.InProgressFn = AnyProtectRegion3ActivityVisible;
 
-	if (default.ACTIVATE_CHOSEN)
+	if (`SecondWaveEnabled('EnableChosen'))
 	{
 		Template.CompleteObjectiveFn = class'X2StrategyElement_XpackObjectives'.static.ActivateChosen;
 	}

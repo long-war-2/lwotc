@@ -513,7 +513,7 @@ static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienAc
 			if (RegionalAI.NumTimesLiberated == 0)
 			{
 				FactionState = class'Helpers_LW'.static.GetFactionFromRegion(PrimaryRegionState.GetReference());
-				if (!class'X2StrategyElement_LWObjectives'.default.ACTIVATE_CHOSEN &&
+				if (!`SecondWaveEnabled('EnableChosen') &&
 					FactionState.bMetXCom && FactionState.GetInfluence() < eFactionInfluence_MAX)
 				{
 					RewardArray.AddItem('Reward_FactionInfluence_LW');
