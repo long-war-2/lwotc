@@ -1190,7 +1190,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	}
 
 	// LWOTC: If Chosen are disabled, don't add them at all
-	if (!class'X2StrategyElement_LWObjectives'.default.ACTIVATE_CHOSEN)
+	if (!`SecondWaveEnabled('EnableChosen'))
 	{
 		return;
 	}
