@@ -60,6 +60,12 @@ struct JobCooldown
 	var int ID;
 };
 
+struct JobAssignment
+{
+	var int GroupID;
+	var PodJob Job;
+};
+
 // Job config values
 var config array<PodJob> MissionJobs;
 
@@ -78,6 +84,11 @@ var array<StateObjectReference> ActiveJobs;
 
 // A list of jobs that are on cooldown.
 var array<JobCooldown> Cooldowns;
+
+// Jobs are assigned during the start of the alien turn, but the jobs need
+// to be initialised during 'UnitGroupTurnBegun'. This bridges the two bits
+// of code.
+var array<JobAssignment> AssignedJobs;
 
 // Keep track of the last spot aliens have seen XCOM.
 var Vector LastKnownXComPosition;
@@ -101,108 +112,6 @@ function XComGameState_AIPlayerData GetAIPlayerData()
 
 	AIPlayer = XGAIPlayer(`BATTLE.GetAIPlayer());
 	return XComGameState_AIPlayerData(`XCOMHISTORY.GetGameStateForObjectID(AIPlayer.m_iDataID));
-}
-
-function OnBeginTacticalPlay(XComGameState NewGameState)
-{
-	local X2EventManager EventManager;
-	local Object ThisObj;
-	local XComGameState_Player PlayerState;
-
-	super.OnBeginTacticalPlay(NewGameState);
-
-	`Log("PodManager.OnBeginTacticalPlay");
-
-	EventManager = `XEVENTMGR;
-	ThisObj = self;
-	PlayerState = `BATTLE.GetAIPlayerState();
-	EventManager.RegisterForEvent(ThisObj, 'PlayerTurnBegun', OnAlienTurnBegin, ELD_OnStateSubmitted, , PlayerState);
-	EventManager.RegisterForEvent(ThisObj, 'AbilityActivated', OnAbilityActivated, ELD_OnStateSubmitted);
-}
-
-function OnEndTacticalPlay(XComGameState NewGameState)
-{
-	local X2EventManager EventManager;
-	local Object ThisObj;
-
-	super.OnEndTacticalPlay(NewGameState);
-
-	EventManager = `XEVENTMGR;
-	ThisObj = self;
-	EventManager.UnRegisterFromEvent(ThisObj, 'PlayerTurnBegun');
-	EventManager.UnRegisterFromEvent(ThisObj, 'AbilityActivated');
-}
-
-// If we have a 'RedAlert' or 'YellowAlert' ability activation set the alert flag in the pod manager: we're on.
-function EventListenerReturn OnAbilityActivated(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
-{
-	local XComGameState_Ability Ability;
-	local XComGameState NewGameState;
-	local XComGameState_LWPodManager NewPodManager;
-	local Object ThisObj;
-
-	Ability = XComGameState_Ability(EventData);
-	if (Ability != none && 
-			(Ability.GetMyTemplateName() == 'RedAlert' || Ability.GetMyTemplateName() == 'YellowAlert') &&
-			GameState != none && 
-			XComGameStateContext_Ability(GameState.GetContext()).ResultContext.InterruptionStep <= 0)
-	{
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("PodManager: RedAlert");
-		NewPodManager = XComGameState_LWPodManager(
-				NewGameState.CreateStateObject(class'XComGameState_LWPodManager', ObjectID));
-		NewGameState.AddStateObject(NewPodManager);
-		NewPodManager.AlertLevel = (Ability.GetMyTemplateName() == 'RedAlert') ? `ALERT_LEVEL_RED : `ALERT_LEVEL_YELLOW;
-		`TACTICALRULES.SubmitGameState(NewGameState);
-
-		// If we're in alert level red we no longer care about activated abilities
-		if (NewPodManager.AlertLevel == `ALERT_LEVEL_RED)
-		{
-			ThisObj = self;
-			`XEVENTMGR.UnRegisterFromEvent(ThisObj, 'AbilityActivated');
-		}
-	}
-
-	return ELR_NoInterrupt;
-}
-
-function EventListenerReturn OnAlienTurnBegin(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
-{
-	local XComGameState_Player XComPlayer;
-	local XComGameState NewGameState;
-	local XComGameState_LWPodManager NewPodManager;
-
-	// If we're still concealed, don't take any actions yet.
-	XComPlayer = class'Utilities_LW'.static.FindPlayer(eTeam_XCom);
-
-	// If we're in green alert (from mission start) check if we should immediately bump it to yellow
-	// because of the mission type.
-	if (AlertLevel == `ALERT_LEVEL_GREEN && `TACTICALMISSIONMGR.ActiveMission.AliensAlerted)
-	{
-		AlertLevel = `ALERT_LEVEL_YELLOW;
-	}
-
-	// Don't activate pod mechanics until both we have an alert activation on a pod
-	// and the squad isn't concealed.
-	if (AlertLevel == `ALERT_LEVEL_GREEN || XComPlayer.bSquadIsConcealed)
-	{
-		return ELR_NoInterrupt;
-	}
-
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating Pod Jobs");
-	NewPodManager = XComGameState_LWPodManager(NewGameState.CreateStateObject(class'XComGameState_LWPodManager', ObjectID));
-	NewGameState.AddStateObject(NewPodManager);
-	NewPodManager.Update(NewGameState);
-
-	if (NewGameState.GetNumGameStateObjects() > 0)
-	{
-		`TACTICALRULES.SubmitGameState(NewGameState);
-	}
-	else
-	{
-		`XCOMHISTORY.CleanupPendingGameState(NewGameState);
-	}
-
-	return ELR_NoInterrupt;
 }
 
 function RemoveActiveJob(int JobIdx)
@@ -242,7 +151,7 @@ function ShuffleUnassignedPods(array<StateObjectReference> UnassignedPods)
 
 // Main update loop of the pod manager. Must be called on a new state of this object
 // added to the passed in game state.
-function Update(XComGameState NewGameState)
+function TurnInit(XComGameState NewGameState)
 {
 	local XComGameState_AIPlayerData AIPlayerData;
 	local int i;
@@ -256,6 +165,9 @@ function Update(XComGameState NewGameState)
 
 	// Update our cooldown timers
 	UpdateCooldowns();
+	
+	// Clear the previous turn's list of job assigments
+	AssignedJobs.Length = 0;
 
 	// Refresh our unassigned and active job lists.
 	UpdateJobList(AIPlayerData, UnassignedPods);
@@ -267,20 +179,43 @@ function Update(XComGameState NewGameState)
 	// Run the job assignment logic
 	AssignPodJobs(AIPlayerData, UnassignedPods, NewGameState);
 
-	// Run the active jobs
-	for (i = 0; i < ActiveJobs.Length; ++i)
-	{
-		ActiveJob = XComGameState_LWPodJob(NewGameState.CreateStateObject(class'XComGameState_LWPodJob', ActiveJobs[i].ObjectID));
-		NewGameState.AddStateObject(ActiveJob);
-		if (!ActiveJob.ProcessTurn(self, NewGameState))
-		{
-			RemoveActiveJob(i);
-			--i;
-		}
-	}
-
 	if (AlertLevel == `ALERT_LEVEL_RED)
 		++TurnCount;
+}
+
+function UpdatePod(XComGameState NewGameState, XComGameState_AIGroup GroupState)
+{
+	local XComGameState_LWPodJob PodJob;
+	local int i;
+
+	i = AssignedJobs.Find('GroupID', GroupState.ObjectID);
+	if (i != INDEX_NONE)
+	{
+		PodJob = InitializeJob(
+			AssignedJobs[i].Job.Jobs[`SYNC_RAND(AssignedJobs[i].Job.Jobs.Length)],
+			AssignedJobs[i].Job.ID, GroupState, NewGameState);
+	}
+
+	// If no job was assigned this turn, see if the group has an existing job
+	if (PodJob == none)
+	{
+		PodJob = FindPodJobForPod(GroupState);
+	}
+	
+	if (PodJob != none)
+	{
+		PodJob = XComGameState_LWPodJob(NewGameState.ModifyStateObject(class'XComGameState_LWPodJob', PodJob.ObjectID));
+		if (!PodJob.ProcessTurn(self, NewGameState))
+		{
+			for (i = 0; i < ActiveJobs.Length; i++)
+			{
+				if (ActiveJobs[i] == PodJob.GetReference())
+				{
+					RemoveActiveJob(i);
+				}
+			}
+		}
+	}
 }
 
 function UpdateXComPosition()
@@ -624,7 +559,7 @@ function LWPodJobTemplate GetJobTemplate(Name JobName)
 	return Template;
 }
 
-function AssignJob(Name JobName, int JobID, XComGameState_AIGroup Group, XComGameState NewGameState)
+function XComGameState_LWPodJob InitializeJob(Name JobName, int JobID, XComGameState_AIGroup Group, XComGameState NewGameState)
 {
 	local LWPodJobTemplate Template;
 	local XComGameState_LWPodJob JobObj;
@@ -671,6 +606,7 @@ function AssignJob(Name JobName, int JobID, XComGameState_AIGroup Group, XComGam
 	}
 
 	`LWPMTrace("Assigned job " $ JobObj.GetMyTemplateName() $ " to group " $ Group);
+	return JobObj;
 }
 
 function GetFilteredJobListForMission(out array<PodJob> JobList)
@@ -725,6 +661,7 @@ function AssignPodJobs(XComGameState_AIPlayerData AIPlayerData, array<StateObjec
 	local XComGameStateHistory History;
 	local array<PodJob> JobList;
 	local XComGameState_AIGroup Group;
+	local JobAssignment JobAssignment;
 	local int JobListIdx;
 	local PodJob Job;
 
@@ -732,8 +669,6 @@ function AssignPodJobs(XComGameState_AIPlayerData AIPlayerData, array<StateObjec
 
 	// Gather the list of jobs that meet the current battle criteria
 	GetFilteredJobListForMission(JobList);
-
-	// Build up a list of debug 
 
 	// Remove all jobs that are currently active.
 	RemoveActiveJobsFromJobList(JobList);
@@ -763,7 +698,9 @@ function AssignPodJobs(XComGameState_AIPlayerData AIPlayerData, array<StateObjec
 				Job = JobList[JobListIdx];
 
 				// We have a valid job. Assign it
-				AssignJob(Job.Jobs[`SYNC_RAND(Job.Jobs.Length)], Job.ID, Group, NewGameState);
+				JobAssignment.GroupID = Group.ObjectID;
+				JobAssignment.Job = JobList[JobListIdx];
+				AssignedJobs.AddItem(JobAssignment);
 				if (!Job.Unlimited)
 				{
 					JobList.Remove(JobListIdx, 1);

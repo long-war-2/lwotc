@@ -1108,9 +1108,8 @@ static function InitializePodManager(XComGameState StartGameState)
 {
 	local XComGameState_LWPodManager PodManager;
 
-	PodManager = XComGameState_LWPodManager(StartGameState.CreateStateObject(class'XComGameState_LWPodManager'));
+	PodManager = XComGameState_LWPodManager(StartGameState.CreateNewStateObject(class'XComGameState_LWPodManager'));
 	`LWTrace("Created pod manager");
-	StartGameState.AddStateObject(PodManager);
 }
 
 // Start missions unconcealed if infiltration is below 100% and the mission type
