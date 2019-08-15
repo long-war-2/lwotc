@@ -78,6 +78,7 @@ function bool HasJobExpired()
 // reach, returning the new, adjusted vector.
 function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 {
+	local XComGameState_Unit LeaderState;
 	local XGUnit Visualizer;
 	local XComWorldData WorldData;
 	local array<TTile> Path;
@@ -85,34 +86,48 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 
 	WorldData = `XWORLD;
 
-    // Make sure the target location is on the map. Just because it's on the map
+	// Make sure the target location is on the map. Just because it's on the map
 	// doesn't mean we can path there, though...
-    Loc = `XWORLD.FindClosestValidLocation(Loc, false, false);
+	Loc = `XWORLD.FindClosestValidLocation(Loc, false, false);
 
 	// Lookup the leader
-	Visualizer = XGUnit(`XCOMHISTORY.GetVisualizer(Group.m_arrMembers[0].ObjectID));
+	LeaderState = Group.GetGroupLeader();
+	Visualizer = XGUnit(`XCOMHISTORY.GetVisualizer(LeaderState.ObjectID));
 
 	if (Visualizer != none)
 	{
 		// Get the tile coordinates for this location
 		if (!WorldData.GetFloorTileForPosition(Loc, TileDest))
 		{
-			TIleDest = WorldData.GetTileCoordinatesFromPosition(Loc);
+			TileDest = WorldData.GetTileCoordinatesFromPosition(Loc);
 		}
 
-		// Do we have a valid path there?
-		if (!Visualizer.m_kReachableTilesCache.BuildPathToTile(TileDest, Path))
+		TileDest = class'Helpers'.static.GetClosestValidTile(TileDest); // Ensure the tile isn't occupied before finding a path to it.
+
+		if (!class'Helpers'.static.GetFurthestReachableTileOnPathToDestination(TileDest, TileDest, LeaderState, false))
 		{
-			// Nope, find the cloest tile we can reach
 			TileDest = Visualizer.m_kReachableTilesCache.GetClosestReachableDestination(TileDest);
-
-			// Can we find a path now?
-			if (!Visualizer.m_kReachableTilesCache.BuildPathToTile(TileDest, Path))
-			{
-				// Nope. Give up. So Sad.
-				`RedScreen("Unable to build path to job location.");
-			}
 		}
+
+		if (!Visualizer.m_kReachableTilesCache.IsTileReachable(TileDest) || TileDest == LeaderState.TileLocation)
+		{
+			// Nope. Give up. So Sad.
+			`RedScreen("Unable to build path to job location.");
+		}
+
+		// // Do we have a valid path there?
+		// if (!Visualizer.m_kReachableTilesCache.BuildPathToTile(TileDest, Path))
+		// {
+		// 	// Nope, find the cloest tile we can reach
+		// 	TileDest = Visualizer.m_kReachableTilesCache.GetClosestReachableDestination(TileDest);
+
+		// 	// Can we find a path now?
+		// 	if (!Visualizer.m_kReachableTilesCache.BuildPathToTile(TileDest, Path))
+		// 	{
+		// 		// Nope. Give up. So Sad.
+		// 		`RedScreen("Unable to build path to job location.");
+		// 	}
+		// }
 
 		// Set the location at the reachable tile.
 		Loc = WorldData.GetPositionFromTileCoordinates(TileDest);
