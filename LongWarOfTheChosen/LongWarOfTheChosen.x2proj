@@ -23,7 +23,6 @@
     <Folder Include="Content\Parcels\" />
     <Folder Include="Content\PCPs\" />
     <Folder Include="Content\Plots\" />
-    <Folder Include="Content\robojumperSquadSelect_Integrated\" />
     <Folder Include="Content\Sounds\" />
     <Folder Include="Content\Sounds\INT\" />
     <Folder Include="Localization\" />
@@ -34,7 +33,6 @@
     <Folder Include="Localization\LW_SMGPack_Integrated\" />
     <Folder Include="Localization\LW_Toolbox_Integrated\" />
     <Folder Include="Localization\Parcels\" />
-    <Folder Include="Localization\robojumperSquadSelect_Integrated\" />
     <Folder Include="Src\" />
     <Folder Include="Src\DetailedSoldierListWOTC_Integrated\Classes\" />
     <Folder Include="Src\LWUtilities\" />
@@ -49,7 +47,6 @@
     <Folder Include="Src\LW_XCGS_ModOptions\" />
     <Folder Include="Src\LW_XCGS_ToolboxOptions\" />
     <Folder Include="Src\ModConfigMenuAPI\" />
-    <Folder Include="Src\robojumperSquadSelect_Integrated\" />
     <Folder Include="Src\LWUtilities\Classes\" />
     <Folder Include="Src\LW_AlienPack_Integrated\Classes\" />
     <Folder Include="Src\LW_LaserPack_Integrated\Classes\" />
@@ -61,7 +58,6 @@
     <Folder Include="Src\LW_XCGS_ModOptions\Classes\" />
     <Folder Include="Src\LW_XCGS_ToolboxOptions\Classes\" />
     <Folder Include="Src\ModConfigMenuAPI\Classes\" />
-    <Folder Include="Src\robojumperSquadSelect_Integrated\Classes\" />
     <Folder Include="Localization\DetailedSoldierListWOTC_Integrated\" />
     <Folder Include="Src\DetailedSoldierListWOTC_Integrated\" />
     <Folder Include="Content\Blueprints\" />
@@ -113,8 +109,6 @@
     <Content Include="Config\XComNarrative.ini" />
     <Content Include="Config\XComParcels.ini" />
     <Content Include="Config\XComPCPs.ini" />
-    <Content Include="Config\XComrobojumperSquadSelect.ini" />
-    <Content Include="Config\XComrobojumperSquadSelect_World.ini" />
     <Content Include="Config\XComSchedules.ini" />
     <Content Include="Config\XComUI.ini" />
     <Content Include="Content\Missions\Obj_AssaultAlienBase_LW.umap" />
@@ -359,9 +353,6 @@
     <Content Include="Localization\Parcels\md_geneclinic_01_LW.kor" />
     <Content Include="Localization\Parcels\md_geneclinic_01_LW.pol" />
     <Content Include="Localization\Parcels\md_geneclinic_01_LW.rus" />
-    <Content Include="Localization\robojumperSquadSelect_Integrated\robojumperSquadSelect_Integrated.chn" />
-    <Content Include="Localization\robojumperSquadSelect_Integrated\robojumperSquadSelect_Integrated.int" />
-    <Content Include="Localization\robojumperSquadSelect_Integrated\XComGame.int" />
     <Content Include="Src\extra_globals.uci" />
     <Content Include="Src\LWUtilities\Classes\Helpers_LW.uc" />
     <Content Include="Src\LWUtilities\Classes\X2DownloadableContentInfo_LWUtilities.uc" />
@@ -814,21 +805,6 @@
     <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_SettingsPage.uc" />
     <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Slider.uc" />
     <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Spinner.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_SquadSelectConfig.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_SquadSelectControllerMap.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_SquadSelect_Helpers.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_SquadSelect_UISL_MCM.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_SquadSelect_WorldConfiguration.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_UIList_SquadEditor.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_UIMouseGuard_SquadSelect.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_UISquadSelect.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_UISquadSelect_EquipItem.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_UISquadSelect_ListItem.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_UISquadSelect_SkillsPanel.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_UISquadSelect_SoldierPanel.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_UISquadSelect_StatsPanel.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\robojumper_UISquadSelect_UtilityItem.uc" />
-    <Content Include="Src\robojumperSquadSelect_Integrated\Classes\X2DownloadableContentInfo_robojumperSquadSelect.uc" />
     <Content Include="Localization\LongWarOfTheChosen.chn" />
     <Content Include="Localization\LongWarOfTheChosen.cht" />
     <Content Include="Localization\LongWarOfTheChosen.deu" />
@@ -1030,7 +1006,6 @@
     <Content Include="Content\Plots\Plot_TWN_Mixed_LgObj_11_LW.umap" />
     <Content Include="Content\Plots\Plot_TWN_Mixed_LgObj_20_LW.umap" />
     <Content Include="Content\Plots\Plot_TWN_Mixed_MdObj_10_LW.umap" />
-    <Content Include="Content\robojumperSquadSelect_Integrated\UILibrary_robojumperSquadSelect.upk" />
     <Content Include="Content\ShellMaps\XComShell_Wilderness_PsiGate_LW.umap" />
     <Content Include="Content\Sounds\LWSoundSpeechStrategyTygan_Cue.upk" />
     <Content Include="Content\Sounds\LWSoundSpeechTacticalCentral_Cue.upk" />
