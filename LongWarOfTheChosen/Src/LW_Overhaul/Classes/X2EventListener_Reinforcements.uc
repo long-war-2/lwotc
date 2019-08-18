@@ -100,7 +100,7 @@ static protected function EventListenerReturn OnOverrideReinforcementsAlert(Obje
 	}
 
 	// Look for an active reinforcement spawner.
-	foreach AssociatedGameState.IterateByClassType(class'XComGameState_AIReinforcementSpawner', SpawnerState)
+	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_AIReinforcementSpawner', SpawnerState,,, AssociatedGameState.HistoryIndex)
 	{
 		if (SpawnerState.Countdown > 0)
 		{
