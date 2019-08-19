@@ -205,7 +205,7 @@ static function X2Effect_ArcthrowerStunned CreateArcthrowerStunnedStatusEffect(i
 	local X2Condition_UnitProperty UnitPropCondition;
 
 	StunnedEffect = new class'X2Effect_ArcthrowerStunned';
-	StunnedEffect.BuildPersistentEffect(1, true, false, false, eGameRule_PlayerTurnBegin);
+	StunnedEffect.BuildPersistentEffect(1, true, true, false, eGameRule_UnitGroupTurnBegin);
 	StunnedEffect.ApplyChance = Chance;
 	//StunnedEffect.StunLevel = StunLevel;
 	StunnedEffect.bIsImpairing = true;
@@ -214,7 +214,9 @@ static function X2Effect_ArcthrowerStunned CreateArcthrowerStunnedStatusEffect(i
 	StunnedEffect.VisualizationFn = class'X2StatusEffects'.static.StunnedVisualization;
 	StunnedEffect.EffectTickedVisualizationFn = class'X2StatusEffects'.static.StunnedVisualizationTicked;
 	StunnedEffect.EffectRemovedVisualizationFn = class'X2StatusEffects'.static.StunnedVisualizationRemoved;
+	StunnedEffect.EffectRemovedFn = class'X2StatusEffects'.static.StunnedEffectRemoved;
 	StunnedEffect.bRemoveWhenTargetDies = true;
+	StunnedEffect.bCanTickEveryAction = true;
 
 	if (class'X2StatusEffects'.default.StunnedParticle_Name != "")
 	{
