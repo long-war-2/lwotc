@@ -50,6 +50,10 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	UnitState = XComGameState_Unit(kNewTargetState);
 	if (UnitState == none)
 		return;
+	
+	EffectState = XComGameState_Effect_TemporaryItem(NewEffectState);
+	if (EffectState == none)
+		return;
 
 	XComHQ = `XCOMHQ;
 	UseItemName = ItemName;
