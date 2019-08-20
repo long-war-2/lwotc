@@ -70,7 +70,15 @@
     <Folder Include="Localization\PI_Integrated\" />
     <Folder Include="Src\PI_Integrated\" />
     <Folder Include="Src\WallClimbOverride\" />
+<<<<<<< HEAD
     <Folder Include="Src\LW_Tuple\" />
+=======
+    <Folder Include="Src\LW_FactionBalance\" />
+<<<<<<< HEAD
+    <Folder Include="Content\robojumperSquadSelect_Integrated\" />
+>>>>>>> 56aed72... Faction Unit Rebalance
+=======
+>>>>>>> d66b733... Update to pull request
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -847,7 +855,6 @@
     <Content Include="Content\LWSmashNGrab.upk" />
     <Content Include="Content\LWSoldierSockets.upk" />
     <Content Include="Content\LWSword_LS.upk" />
-    <Content Include="Content\LW_Overhaul_ModShaderCache.upk" />
     <Content Include="Content\LW_Overhaul_SoundFX.upk" />
     <Content Include="Content\LW_ShapedCharge.upk" />
     <Content Include="Content\UILibrary_LW_Overhaul.upk" />
@@ -1061,6 +1068,18 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Action_Fire_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_Cone_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWCovertActionsModTemplate.uc" />
+    <Content Include="Config\XComAcademyUnlocks.ini" />
+    <Content Include="Config\XComLW_FactionBalance.ini" />
+    <Content Include="Content\UICollection_SupremeFocus.upk" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2AbilityCooldown_Grapple.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_Parkour.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_ParryEdit.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2DownloadableContentInfo_LW_FactionBalance.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DeflectNew.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ParryNew.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2StrategyElement_AcademyUnlocks_GrappleParkour.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_SkimisherAbilitySet_LW.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_TemplarAbilitySet_LW.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

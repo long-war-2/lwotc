@@ -4704,4 +4704,184 @@ TacticalText="<Bullet/> The Plasma Blaster releases a beam of devastating energy
 [SparkRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Designed specifically for SPARKs to deal maximum damage, the Elerium Phase-Cannon is the epitome of powered rifle technology.\n<Bullet/> Firing the primary weapon ends the soldier's turn, in the absence of special training.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
 
+; LWOTC Needs Translation
+[Templar X2SoldierClassTemplate]
+RankNames[0]="Rookie"
+RankNames[1]="Initiate"
+RankNames[2]="Acolyte"
+RankNames[3]="Adept"
+RankNames[4]="Disciple"
+RankNames[5]="Mystic"
+RankNames[6]="Warlock"
+RankNames[7]="Magus"
+RankNames[8]="Master"
 
+ShortNames[0]="Rk."
+ShortNames[1]="Int."
+ShortNames[2]="Acl."
+ShortNames[3]="Adp."
+ShortNames[4]="Dsc."
+ShortNames[5]="Mys."
+ShortNames[6]="War."
+ShortNames[7]="Mag."
+ShortNames[8]="Mstr." 
+
+RankIcons[0]= "UILibrary_Common.rank_rookie"
+RankIcons[1]= "UILibrary_Common.psirank_initiate"
+RankIcons[2]= "UILibrary_Common.psirank_acolyte"
+RankIcons[3]= "UILibrary_Common.psirank_adept"
+RankIcons[4]= "UILibrary_Common.psirank_disciple"
+RankIcons[5]= "UILibrary_Common.psirank_mystic"
+RankIcons[6]= "UILibrary_Common.psirank_warlock"
+RankIcons[7]= "UILibrary_Common.psirank_magus"
+RankIcons[8]= "UILibrary_LW_PerkPack.psirank_Master"
+
+
+[Shadow X2AbilityTemplate]
+LocFriendlyName="Shadow"
+LocLongDescription="Grants the soldier Shadow, an advanced form of concealment where taking actions only has a chance to reveal the soldier. Reapers take longer to infiltrate"
+LocHelpText="Soldier enters Shadow, an advanced form of concealment."
+LocPromotionPopupText="<Bullet/> Chance to be revealed from Shadow increases as the soldier performs more actions.<br/><Bullet/> Soldier has increased mobility while in Shadow.<br/><Bullet/> Enemy detection radii are smaller to soldiers in Shadow.<br/>"
+
+
+[Retribution X2AbilityTemplate]
+LocFriendlyName="Retribution"
+LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
+LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
+LocFlyOverText="Retribution"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
+
+[RetributionAttack X2AbilityTemplate]
+LocFriendlyName="Retribution"
+LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
+LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
+LocFlyOverText="Retribution"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
+
+
+
+[Battlemaster X2AbilityTemplate]
+LocFriendlyName="Battlemaster"
+LocLongDescription="Gives Skirmishers Suppression, Damn Good Ground, and Grapple plus gives a grenade only slot."
+LocHelpText="Gives Skirmishers Suppression, Damn Good Ground, and Grapple plus gives a grenade only slot"
+LocPromotionPopupText="<Bullet/>Skirmisher is the best soldier in ADVENT and XCOM as a whole, and can handle all the company alone.<br/><Bullet/> "
+
+
+[Light_Shadow X2AbilityTemplate]
+LocFriendlyName="Training Shadow"
+LocLongDescription="This Reaper is still undergoing training in stealth and therefor can only do certain actions without breaking concealmeant eg. Throwing, Shooting Claymores and Remote Start. Shooting enemies will break concealment."
+LocHelpText="Soldier enters Shadow, an advanced form of concealment."
+LocPromotionPopupText="<Bullet/> Chance to be revealed from Shadow increases as the soldier performs more actions.<br/><Bullet/> Reaper will not have increased mobility while in Shadow.<br/><Bullet/> Enemy detection radii are reduced by 30% in Shadow.<br/>"
+
+
+
+[LW2WotC_Reckoning X2AbilityTemplate]
+LocFriendlyName="Reckoning"
+LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack.(Including Coup de Grâce)"
+LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack.(Including Coup de Grâce)"
+LocFlyOverText="Reckoning"
+LocPromotionPopupText="<Bullet/> You can trigger the Slash ability by placing the movement cursor over an enemy.<br/><Bullet/> A Skirmisher can perform a \"Dash\" move, using both actions to move, and still trigger a Charge against an adjacent enemy.<br/><Bullet/> Charge has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+
+[SkirmisherFleche X2AbilityTemplate]
+LocFriendlyName="Charge(Reckoning)"
+LocLongDescription="Attack any enemy within movement range with your <Ability:SecondaryWeaponName/> does not cost an action."
+LocHelpText="Attack an enemy within movement range with your <Ability:SecondaryWeaponName/> does not cost an action."
+LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy.<br/><Bullet/> A Skirmisher can perform a \"Dash\" move, using both actions to move, and still trigger a Charge against an adjacent enemy.<br/><Bullet/> Charge has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+
+[SkirmisherSlash X2AbilityTemplate]
+LocFriendlyName="Slash(Reckoning)"
+LocFlyOverText="Slash(Reckoning)"
+LocLongDescription="Attack an adjacent target with your Ripjack does not cost an action.(Cooldown: 2)"
+LocHelpText="Attack an adjacent target with your Ripjack does not cost an action.(Cooldown: 2)"
+LocPromotionPopupText="<Bullet/> Attack an adjacent target with your Ripjack does not cost an action.<br/><Bullet/> Slash(Reckoning) can combo well with other Skirmisher abilities, as it does not prevent the use of other abilities in the same turn.<br/>"
+
+
+[SkirmisherSecondGrapple X2AbilityTemplate]
+LocFriendlyName="Web Shooter"
+LocFlyOverText="Web Shooter"
+LocHelpText="Skirmisher can deploy another Grapple."
+LocLongDescription="Skirmisher can deploy another Grapple."
+LocPromotionPopupText="<Bullet/> Web Shooter allows the Skirmisher to get into position twice without using an action .<br/><Bullet/> Web Shooter has a 3 turn cooldown.<br/>"
+
+[Skirmisher2ndGrapple X2AbilityTemplate]
+LocFriendlyName="Grapple"
+LocHelpText="Deploy a grappling hook to move quickly to an elevated position."
+LocLongDescription="Mounts a Advanced grappling hook and cable on the left arm, permitting rapid elevation change and access to tactically advantageous positions."
+
+
+[SupremeFocus X2AbilityTemplate]
+LocFriendlyName="Supreme Focus"
+LocLongDescription="The maximum Focus level is increased to 4."
+LocHelpText="The maximum Focus level is increased to 4."
+LocPromotionPopupText="<Bullet/> Focus Level 4: Rend Damage +<Ability:FOCUS4RENDDAMAGE/>, Mobility +<Ability:FOCUS4MOBILITY/>, Dodge +<Ability:FOCUS4DODGE/><br/>"
+
+[UITacticalHUD_SoldierInfo]
+FocusLevelLabel="Focus Level"
+FocusLevelDescriptions[0]=""
+FocusLevelDescriptions[1]="Rend Damage +<Ability:FOCUS1RENDDAMAGE/>\nMobility +<Ability:FOCUS1MOBILITY/>\nDodge +<Ability:FOCUS1DODGE/>"
+FocusLevelDescriptions[2]="Rend Damage +<Ability:FOCUS2RENDDAMAGE/>\nMobility +<Ability:FOCUS2MOBILITY/>\nDodge +<Ability:FOCUS2DODGE/>"
+FocusLevelDescriptions[3]="Rend Damage +<Ability:FOCUS3RENDDAMAGE/>\nMobility +<Ability:FOCUS3MOBILITY/>\nDodge +<Ability:FOCUS3DODGE/>"
+FocusLevelDescriptions[4]="Rend Damage +<Ability:FOCUS4RENDDAMAGE/>\nMobility +<Ability:FOCUS4MOBILITY/>\nDodge +<Ability:FOCUS4DODGE/>"
+
+[TemplarFocus X2AbilityTemplate]
+LocFriendlyName="Focus"
+LocLongDescription="Gain Focus during missions, increasing stats, damage, and ability effectiveness. Focus can be spent on powerful abilities."
+LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels. Effectively managing Focus to get the most out of the stat boosts and each ability is critical to using a Templar.<br/><Bullet/> Focus is gained by killing enemies with Rend.<br/><Bullet/> Focus Level 1: Rend Damage +<Ability:FOCUS1RENDDAMAGE/>, Mobility +<Ability:FOCUS1MOBILITY/>, Dodge +<Ability:FOCUS1DODGE/><br/><Bullet/> Focus Level 2: Rend Damage +<Ability:FOCUS2RENDDAMAGE/>, Mobility +<Ability:FOCUS2MOBILITY/>, Dodge +<Ability:FOCUS2DODGE/><br/><Bullet/> Focus Level 3: Rend Damage +<Ability:FOCUS3RENDDAMAGE/>, Mobility +<Ability:FOCUS3MOBILITY/>, Dodge +<Ability:FOCUS3DODGE/><br/><Bullet/> Focus Level 4: Rend Damage +<Ability:FOCUS4RENDDAMAGE/>, Mobility +<Ability:FOCUS4MOBILITY/>, Dodge +<Ability:FOCUS4DODGE/>.<br/><Bullet/> Focus Level 5: Rend Damage +<Ability:FOCUS5RENDDAMAGE/>, Mobility +<Ability:FOCUS5MOBILITY/>, Dodge +<Ability:FOCUS5DODGE/>.<br/><Bullet/> Focus Level 6: Rend Damage +<Ability:FOCUS6RENDDAMAGE/>, Mobility +<Ability:FOCUS6MOBILITY/>, Dodge +<Ability:FOCUS6DODGE/>.<br/><Bullet/> Focus Level 7: Rend Damage +<Ability:FOCUS7RENDDAMAGE/>, Mobility +<Ability:FOCUS7MOBILITY/>, Dodge +<Ability:FOCUS7DODGE/>.<br/><Bullet/> Focus Level 8: Rend Damage +<Ability:FOCUS8RENDDAMAGE/>, Mobility +<Ability:FOCUS8MOBILITY/>, Dodge +<Ability:FOCUS8DODGE/>.<br/><Bullet/> Focus Level 9: Rend Damage +<Ability:FOCUS9RENDDAMAGE/>, Mobility +<Ability:FOCUS9MOBILITY/>, Dodge +<Ability:FOCUS9DODGE/>.<br/><Bullet/> Focus Level 10: Rend Damage +<Ability:FOCUS10RENDDAMAGE/>, Mobility +<Ability:FOCUS10MOBILITY/>, Dodge +<Ability:FOCUS10DODGE/>.<br/>"
+
+[Parkour X2AbilityTemplate]
+LocFriendlyName="Parkour"
+LocLongDescription="The cooldown for the Skrimisher's Grapple is reduced by one turn."
+LocHelpText="The cooldown for the Skrimisher's Grapple is reduced by one turn."
+LocFlyOverText="Parkour"
+
+[ParkourPassive X2AbilityTemplate]
+LocFriendlyName="Parkour"
+LocLongDescription="The Skirmisher's Grapple ability has it's cooldown reduced by one turn."
+LocHelpText="The Skirmisher's Grapple ability has it's cooldown reduced by one turn."
+
+[ParkourUnlock X2SoldierAbilityUnlockTemplate]
+DisplayName="Skirmisher: Parkour"
+Summary="The cooldown for the Skrimisher's grappling hook is reduced by one turn."
+
+[Whiplash X2AbilityTemplate]
+LocFriendlyName="Whiplash"
+LocLongDescription="Attack an enemy with an electrical lash. This attack does not cost an action and has a 4 turn cooldown."
+LocHelpText="A free attack with an electrical lash. Double damage to robotic units. 4 turn cooldown."
+LocPromotionPopupText="<Bullet/> Whiplash does double damage to robotic enemies. 4 turn cooldown."
+
+[SkirmisherInterrupt X2AbilityTemplate]
+LocFriendlyName="Interrupt"
+LocLongDescription="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
+LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
+LocFlyOverText="Interrupt"
+LocPromotionPopupText="<Bullet/> While Interrupt can be used without any action points available, it still depletes all of the Skirmisher's remaining actions.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:INTERRUPT_COOLDOWN/> turn cooldown."
+
+[SkirmisherInterruptInput X2AbilityTemplate]
+LocFriendlyName="Interrupt"
+LocLongDescription="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
+LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
+LocFlyOverText="Interrupt"
+LocPromotionPopupText="<Bullet/> While Interrupt can be used without any action points available, it still depletes all of the Skirmisher's remaining actions.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:INTERRUPT_COOLDOWN/> turn cooldown."
+
+
+[Solace X2AbilityTemplate]
+LocFriendlyName="Templar Aura"
+LocLongDescription="The Templar is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby squadmates."
+LocHelpText="The Templar is surrounded by an aura that immediately extinguishes or blocks any mental impairments for for themselves and any nearby squadmates."
+LocFlyOverText="Templar Aura"
+LocPromotionPopupText="<Bullet/> Templar Aura has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their mental impairments.<br/>"
+
+[SolaceCleanse X2AbilityTemplate]
+LocFriendlyName="Templar Aura"
+LocLongDescription="The Templar is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby squadmates."
+LocHelpText="The Templar is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby squadmates."
+LocFlyOverText="Templar Aura"
+LocPromotionPopupText="<Bullet/> Templar Aura has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their mental impairments.<br/>"
+
+[SolacePassive X2AbilityTemplate]
+LocFriendlyName="Templar Aura"
+LocLongDescription="The Templar is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby squadmates."
+LocHelpText="The Templar is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby squadmates."
+LocFlyOverText="Templar Aura"
+LocPromotionPopupText="<Bullet/> Templar Aura has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their mental impairments.<br/>"
+; End Translation
