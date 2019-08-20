@@ -70,6 +70,8 @@
     <Folder Include="Localization\PI_Integrated\" />
     <Folder Include="Src\PI_Integrated\" />
     <Folder Include="Src\WallClimbOverride\" />
+    <Folder Include="Src\LW_FactionBalance\" />
+    <Folder Include="Content\robojumperSquadSelect_Integrated\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -1066,6 +1068,21 @@
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_PodManagement.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Debug.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ChosenEvents.uc" />
+    <Content Include="Config\XComAcademyUnlocks.ini" />
+    <Content Include="Config\XComLW_FactionBalance.ini" />
+    <Content Include="Content\LW_FactionBalance_ModShaderCache.upk" />
+    <Content Include="Content\UICollection_SupremeFocus.upk" />
+    <Content Include="Content\robojumperSquadSelect_Integrated\UILibrary_robojumperSquadSelect.upk" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2AbilityCooldown_Grapple.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_LW_FactionBalance_FullOverrideAbilitySet.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_Parkour.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_ParryEdit.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_SkirmisherAbilitySet_SkillfulSkirmishing.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_TemplarAbilitySet_SupremeFocus.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2DownloadableContentInfo_LW_FactionBalance.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DeflectNew.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ParryNew.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2StrategyElement_AcademyUnlocks_GrappleParkour.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
