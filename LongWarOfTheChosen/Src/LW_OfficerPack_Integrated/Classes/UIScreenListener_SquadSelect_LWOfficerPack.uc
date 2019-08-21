@@ -18,6 +18,9 @@ event OnInit(UIScreen Screen)
 	local UISquadSelect SquadSelect;
 
 	SquadSelect = UISquadSelect(Screen);
+	if (SquadSelect == none)
+		return;
+
 	AddOfficerIcons(SquadSelect);
 
 	//ClearAndRecreateSolderSlots(SquadSelect);
@@ -174,5 +177,5 @@ simulated function OnAutoFillSquad()
 defaultproperties
 {
 	// Leaving this assigned to none will cause every screen to trigger its signals on this class
-	ScreenClass = UISquadSelect;
+	ScreenClass = none;
 }
