@@ -30,6 +30,21 @@ var UISquadSelect_InfiltrationItem LiberationValue;
 var UISquadSelect_InfiltrationItem MissionTimeTitleText;
 var UISquadSelect_InfiltrationItem MissionTimeText;
 
+// LWOTC: From Show Infiltration Percentage mod
+var UISquadSelect_InfiltrationItem BoostedInfiltrationText;
+var UISquadSelect_InfiltrationItem BoostedInfiltrationTime;
+var UISquadSelect_InfiltrationItem ExpectedActivityText;
+var UISquadSelect_InfiltrationItem ExpectedActivity;
+var UISquadSelect_InfiltrationItem BoostedExpectedActivityText;
+var UISquadSelect_InfiltrationItem BoostedExpectedActivity;
+
+var localized string UpToText;
+var localized string ExpectedActivityTextStr;
+var localized string BoostedActivityText;
+var localized string BoostTextPre;
+var localized string BoostTextPost;
+// End Show Infiltration Percentage mod
+
 var array<StateObjectReference> SquadSoldiers;
 
 var localized string strInfiltrationTitle;
@@ -53,17 +68,17 @@ function DelayedInit(float Delay)
 
 function StartDelayedInit()
 {
-	InitInfiltrationPanel(,,-375, 0, 375, 450);
+	InitInfiltrationPanel();
 	MCName = 'SquadSelect_InfiltrationInfo_LW';
 	Update(SquadSoldiers);
 }
 
-simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optional name InitName, 
-										  optional name InitLibID = '', 
-										  optional int InitX = 0, 
+simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optional name InitName,
+										  optional name InitLibID = '',
+										  optional int InitX = -375,
 										  optional int InitY = 0,
 										  optional int InitWidth = 375,
-										  optional int InitHeight = 450)  
+										  optional int InitHeight = 582)
 {
 	//local XComGameStateHistory History;
 	//local XComGameState_ObjectivesList ObjectiveList;
@@ -136,17 +151,67 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 	InfiltrationMask.SetPosition(6, 0);
 	InfiltrationMask.SetSize(InitWidth, InitHeight);
 
+	// Add extra infiltration information from Show Infiltration Percentage mod
+	OverallTime.SetY(113.5);
+	TitleText.SetY(72);
+	ExpectedActivityText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(20, 139.5);
+	ExpectedActivityText.SetSubTitle(default.ExpectedActivityTextStr);
+	ExpectedActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(20, 165.5);
+	BaseInfiltrationText.SetY(191);
+	BaseInfiltrationTime.SetY(217);
+	SquadSizeText.SetY(243);
+	SquadSizeValue.SetY(269);
+	CovertnessText.SetY(295);
+	SquadCovertnessValue.SetY(321);
+
+	BoostedInfiltrationText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(20, 480);
+	BoostedInfiltrationText.SetSubTitle(default.BoostTextPre @ int((class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING] - 1) * 100) $ "%" @ default.BoostTextPost);
+	BoostedInfiltrationTime = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(20, 506);
+	BoostedExpectedActivityText = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(20, 532);
+	BoostedExpectedActivityText.SetSubTitle(default.BoostedActivityText);
+	BoostedExpectedActivity = Spawn(class'UISquadSelect_InfiltrationItem', self).InitObjectiveListItem(20, 558);
+
 	return self;
+}
+
+// Function from Show Infiltration Percentage mod
+function string GetExpectedAlertness(int BaseAlert, float InfiltrationPct)
+{
+	local int i;
+	local string Text;
+	local int Difficulty, LabelsLength;
+	i = 0;
+	while (i + 1 < class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration.Length 
+			&& class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration[i + 1].Infiltration <= InfiltrationPct)
+	{
+		i++;
+	}
+
+	Difficulty = BaseAlert + class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration[i].Modifier;
+
+	LabelsLength = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels.Length;
+	if (Difficulty <= 0 && BaseAlert >= 1)
+		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[1];
+	else if (Difficulty >= LabelsLength)
+		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[LabelsLength - 1];
+	else if (Difficulty < 0)
+		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[0];
+	else
+		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[Difficulty];
+
+	return Caps(Text);
 }
 
 simulated function Update(array<StateObjectReference> Soldiers)
 {
 	local XComGameState_MissionSite MissionState;
-    local XComGameState_LWAlienActivity ActivityState;
-	local float TotalInfiltrationHours, TotalMissionHours;
+	local XComGameState_LWAlienActivity ActivityState;
+	local float TotalInfiltrationHours, TotalMissionHours, BoostedInfiltrationHours, InfiltratePct, BoostedInfiltratePct;
 	local int SquadSizeHours, CovertnessHours, NumSoldiers, LiberationHours;
-	local string OverallTimeColor;
+	local string OverallTimeColor, BoostedTimeColor;
 	local StateObjectReference Soldier;
+	local int Difficulty, EnemyUnits;
+	local array<X2CharacterTemplate> Dummy;
 	
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionData.MissionID));
 
@@ -189,6 +254,10 @@ simulated function Update(array<StateObjectReference> Soldiers)
 		CovertnessText.Hide();
 		SquadCovertnessValue.Hide();
 
+		ExpectedActivityText.Hide();
+		ExpectedActivity.Hide();
+		BoostedExpectedActivityText.Hide();
+		BoostedExpectedActivity.Hide();
 	}
 	else
 	{
@@ -201,7 +270,40 @@ simulated function Update(array<StateObjectReference> Soldiers)
 		else
 			OverallTimeColor = class'UIUtilities_Colors'.const.BAD_HTML_COLOR;
 
-		OverallTime.SetInfoValue(GetDaysAndHoursString(TotalInfiltrationHours), OverallTimeColor);
+		InfiltratePct = (TotalMissionHours / TotalInfiltrationHours) * 100;
+		InfiltratePct = Clamp(InfiltratePct, 0, 200);
+
+		BoostedInfiltrationHours = TotalInfiltrationHours / class'XComGameState_LWPersistentSquad'.default.DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+		BoostedInfiltratePct = (TotalMissionHours / BoostedInfiltrationHours) * 100;
+		BoostedInfiltratePct = Clamp(BoostedInfiltratePct, 0, 200);
+
+		if (TotalMissionHours > BoostedInfiltrationHours || NumSoldiers == 0)
+			BoostedTimeColor = class'UIUtilities_Colors'.const.GOOD_HTML_COLOR;
+		else if (TotalMissionHours > BoostedInfiltrationHours * 1.5)
+			BoostedTimeColor = class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR;
+		else if (TotalMissionHours > BoostedInfiltrationHours * (class'XComGameState_LWPersistentSquad'.static.GetRequiredPctInfiltrationToLaunch(MissionState) / 100.0))
+			BoostedTimeColor = class'UIUtilities_Colors'.const.WARNING2_HTML_COLOR;
+		else
+			BoostedTimeColor = class'UIUtilities_Colors'.const.BAD_HTML_COLOR;
+
+		OverallTime.SetInfoValue(GetDaysAndHoursString(TotalInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(InfiltratePct) $ "%)" : "", OverallTimeColor);
+
+		BoostedInfiltrationTime.SetInfoValue(GetDaysAndHoursString(BoostedInfiltrationHours) @ TotalMissionHours < 4320 ? "(" $ default.UpToText @ int(BoostedInfiltratePct) $ "%)" : "", BoostedTimeColor);
+
+		if (TotalMissionHours < 4320 && NumSoldiers > 0)
+		{
+			MissionState.GetShadowChamberMissionInfo(EnemyUnits, Dummy);
+			Difficulty = Max (1, (EnemyUnits-4) / 3);
+			ExpectedActivity.SetInfoValue(GetExpectedAlertness(Difficulty, InfiltratePct / 100), OverallTimeColor);
+			BoostedExpectedActivity.SetInfoValue(GetExpectedAlertness(Difficulty, BoostedInfiltratePct / 100), BoostedTimeColor);
+		}
+		else
+		{
+			ExpectedActivityText.Hide();
+			ExpectedActivity.Hide();
+			BoostedExpectedActivityText.Hide();
+			BoostedExpectedActivity.Hide();
+		}
 
 		if(SquadSizeHours < 0)
 			SquadSizeValue.SetInfoValue(GetDaysAndHoursString(Abs(SquadSizeHours), default.strMinusDaysAndHours), GetColorForHours(SquadSizeHours));

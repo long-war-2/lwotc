@@ -78,7 +78,7 @@ event OnInit(UIScreen Screen)
 			SquadSelect.LaunchButton.SetText(strStart);
 			SquadSelect.LaunchButton.SetTitle(strInfiltration);
 
-			InfiltrationInfo = SquadSelect.Spawn(class'UISquadSelect_InfiltrationPanel', SquadSelect); //.InitInfiltrationPanel(,,-375, 0, 375, 375);
+			InfiltrationInfo = SquadSelect.Spawn(class'UISquadSelect_InfiltrationPanel', SquadSelect);
 			InfiltrationInfo.MCName = 'SquadSelect_InfiltrationInfo_LW';
 			InfiltrationInfo.MissionData = MissionData;
 			InfiltrationInfo.SquadSoldiers = SquadSelect.XComHQ.Squad;
@@ -252,7 +252,7 @@ event OnReceiveFocus(UIScreen Screen)
 		//remove and recreate infiltration info in order to prevent issues with Flash text updates not getting processed
 		InfiltrationInfo.Remove();
 
-		InfiltrationInfo = SquadSelect.Spawn(class'UISquadSelect_InfiltrationPanel', SquadSelect).InitInfiltrationPanel(,,-375, 0, 375, 450);
+		InfiltrationInfo = SquadSelect.Spawn(class'UISquadSelect_InfiltrationPanel', SquadSelect).InitInfiltrationPanel();
 		InfiltrationInfo.MCName = 'SquadSelect_InfiltrationInfo_LW';
 		InfiltrationInfo.MissionData = MissionData;
 		InfiltrationInfo.Update(SquadSelect.XComHQ.Squad);
