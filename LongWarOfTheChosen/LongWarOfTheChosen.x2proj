@@ -805,17 +805,6 @@
     <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_SettingsPage.uc" />
     <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Slider.uc" />
     <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Spinner.uc" />
-    <Content Include="Localization\LongWarOfTheChosen.chn" />
-    <Content Include="Localization\LongWarOfTheChosen.cht" />
-    <Content Include="Localization\LongWarOfTheChosen.deu" />
-    <Content Include="Localization\LongWarOfTheChosen.esn" />
-    <Content Include="Localization\LongWarOfTheChosen.fra" />
-    <Content Include="Localization\LongWarOfTheChosen.int" />
-    <Content Include="Localization\LongWarOfTheChosen.ita" />
-    <Content Include="Localization\LongWarOfTheChosen.jpn" />
-    <Content Include="Localization\LongWarOfTheChosen.kor" />
-    <Content Include="Localization\LongWarOfTheChosen.pol" />
-    <Content Include="Localization\LongWarOfTheChosen.rus" />
     <Content Include="Content\.gitignore" />
     <Content Include="Content\README.md" />
     <Content Include="Content\Missions\UMS_LWMissionTimer.umap" />
