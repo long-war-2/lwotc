@@ -58,7 +58,7 @@ function SuccessMessage($message)
 # to the copies. If you try to jump to these files (e.g. by tying this output to the build commands in your editor)
 # you'll be editting the copies, which will then be overwritten the next time you build with the sources in your mod folder
 # that haven't been changed.
-function Launch-Make([string] $makeCmd, [string] $makeFlags, [string] $sdkPath, [string] $modSrcRoot) {
+function Invoke-Make([string] $makeCmd, [string] $makeFlags, [string] $sdkPath, [string] $modSrcRoot) {
     # Create a ProcessStartInfo object to hold the details of the make command, its arguments, and set up
     # stdout/stderr redirection.
     $pinfo = New-Object System.Diagnostics.ProcessStartInfo
@@ -340,13 +340,14 @@ $stagingPath = "{0}/XComGame/Mods/{1}/" -f $sdkPath, $modNameCanonical
 
 # determine whether or not there are changes to the Content directory before we clean
 # used later to determine if we can skip shader precompilation
-$shaderCachePath = "{0}/Content/{1}_ModShaderCache.upk" -f $stagingPath, $modNameCanonical
 $tempCachePath = "{0}/tmp/{1}_ModShaderCache.upk" -f $modSrcRoot, $modNameCanonical
 
 $canSkipShaderPrecompliation = $false
 
 # Need to store the ModShaderCache before we compare the Content directories, it will interfere with the check.
 # Also, if there are no changes and we skip precompliation, we will need a backup of the ModShaderCache since it won't be regenerated after the stagingPath is cleaned.
+#
+#$shaderCachePath = "{0}/Content/{1}_ModShaderCache.upk" -f $stagingPath, $modNameCanonical
 #if(Test-Path $tempCachePath) {
 #    # if we found a shadercache in here, that means that we found it last time and cached it, but the build failed and /tmp wasn't cleaned up... we can skip precompliation.
 #    $canSkipShaderPrecompliation = $true
@@ -433,8 +434,6 @@ Copy-Item "$stagingPath/Src/*" "$sdkPath/Development/Src/" -Force -Recurse -Warn
 Write-Host "Copied."
 
 # build package lists we'll need later and delete as appropriate
-# all packages we are about to compile
-[System.String[]]$allpackages = Get-ChildItem "$sdkPath/Development/Src" -Directory
 # the mod's packages, only those .u files will be copied to the output
 [System.String[]]$thismodpackages = Get-ChildItem "$modSrcRoot/Src" -Directory
 
@@ -465,9 +464,9 @@ else {
 Write-Host "Compiling base game scripts..."
 if ($debug)
 {
-    Launch-Make "$sdkPath/binaries/Win64/XComGame.com" "make -debug -nopause -unattended" $sdkPath $modSrcRoot
+    Invoke-Make "$sdkPath/binaries/Win64/XComGame.com" "make -debug -nopause -unattended" $sdkPath $modSrcRoot
 } else {
-    Launch-Make "$sdkPath/binaries/Win64/XComGame.com" "make -nopause -unattended" $sdkPath $modSrcRoot
+    Invoke-Make "$sdkPath/binaries/Win64/XComGame.com" "make -nopause -unattended" $sdkPath $modSrcRoot
 }
 CheckErrorCode "Failed to compile base game scripts!"
 Write-Host "Compiled base game scripts."
@@ -476,9 +475,9 @@ Write-Host "Compiled base game scripts."
 Write-Host "Compiling mod scripts..."
 if ($debug)
 {
-    Launch-Make "$sdkPath/binaries/Win64/XComGame.com" "make -debug -nopause -mods $modNameCanonical $stagingPath" $sdkPath $modSrcRoot
+    Invoke-Make "$sdkPath/binaries/Win64/XComGame.com" "make -debug -nopause -mods $modNameCanonical $stagingPath" $sdkPath $modSrcRoot
 } else {
-    Launch-Make "$sdkPath/binaries/Win64/XComGame.com" "make -nopause -mods $modNameCanonical $stagingPath" $sdkPath $modSrcRoot
+    Invoke-Make "$sdkPath/binaries/Win64/XComGame.com" "make -nopause -mods $modNameCanonical $stagingPath" $sdkPath $modSrcRoot
 }
 CheckErrorCode "Failed to compile mod scripts!"
 Write-Host "Compiled mod scripts."
