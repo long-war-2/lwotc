@@ -14,6 +14,8 @@ var localized string strSquad;
 var localized string strStart;
 var localized string strInfiltration;
 
+var localized string strAreaOfOperations;
+
 //var config array<name> NonInfiltrationMissions;
 
 var bool bInSquadEdit;
@@ -129,7 +131,7 @@ event OnInit(UIScreen Screen)
 		}
 		BriefingString $= class'UIUtilities_LW'.static.GetMissionConcealStatusString (XComHQ.MissionRef) $ "\n";
 		BriefingString $= "\n";
-		BriefingString $= "<font face='$TitleFont' size='22' color='#a7a085'>" $ CAPS("Area of Operations:") $ "</font>\n";
+		BriefingString $= "<font face='$TitleFont' size='22' color='#a7a085'>" $ CAPS(strAreaOfOperations) $ "</font>\n";
 		BriefingString $= "<font face='$NormalFont' size='22' color='#" $ class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR $ "'>";
 		BriefingString $= GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType);
 		BriefingString $= "\n";

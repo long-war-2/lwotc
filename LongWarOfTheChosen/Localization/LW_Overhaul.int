@@ -398,6 +398,10 @@ strSquad="Squad"
 strStart="Start"
 strInfiltration="Infiltration"
 
+; LWOTC Needs Translation
+strAreaOfOperations="Area of Operations:"
+; End Translation
+
 [UIScreenListener_SkyrangerArrives_LW]
 strLaunchInfiltration="START INFILTRATION"
 strAbortInfiltration="ABORT INFILTRATION"
