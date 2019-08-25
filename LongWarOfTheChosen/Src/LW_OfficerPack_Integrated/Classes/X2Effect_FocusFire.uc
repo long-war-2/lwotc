@@ -23,6 +23,24 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 	`XEVENTMGR.RegisterForEvent(EffectObj, 'AbilityActivated', FocusFireCheck, ELD_OnStateSubmitted,,, true, EffectObj);
 }
 
+simulated protected function OnEffectAdded(
+	const out EffectAppliedData ApplyEffectParameters,
+	XComGameState_BaseObject kNewTargetState,
+	XComGameState NewGameState,
+	XComGameState_Effect NewEffectState)
+{
+	local XComGameState_Unit TargetUnit;
+
+	TargetUnit = XComGameState_Unit(NewGameState.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	if (TargetUnit == none)
+		TargetUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	
+	// Initialise the attack count to 1 to get the initial 5% bonus
+	TargetUnit.SetUnitFloatValue('FocusFireAttacks_LW', 1.0, eCleanup_BeginTurn);
+
+	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
+}
+
 static function EventListenerReturn FocusFireCheck(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameState NewGameState;
@@ -89,6 +107,7 @@ static function EventListenerReturn FocusFireCheck(Object EventData, Object Even
 
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
 	AbilityTargetUnit = XComGameState_Unit(NewGameState.ModifyStateObject(AbilityTargetUnit.Class, AbilityTargetUnit.ObjectID));
+	AbilityTargetUnit.GetUnitValue('FocusFireAttacks_LW', AttackCount);
 	AbilityTargetUnit.SetUnitFloatValue('FocusFireAttacks_LW', AttackCount.fValue + 1, eCleanup_BeginTurn);
 	`TACTICALRULES.SubmitGameState(NewGameState);
 
