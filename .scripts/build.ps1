@@ -397,6 +397,13 @@ if (Test-Path "$stagingPath\$modNameCanonical.x2proj") {
     Remove-Item "$stagingPath\$modNameCanonical.x2proj"
 }
 
+# Convert localization files from UTF-8 to UTF-16
+Write-Host "Converting localization files to UTF-16...";
+Get-ChildItem "$stagingPath\Localization" -Recurse -File | Foreach-Object {
+    $content = Get-Content $_.FullName -Encoding UTF8
+    $content | Out-File $_.FullName -Encoding Unicode
+}
+
 New-Item "$stagingPath/Script" -ItemType Directory
 
 # read mod metadata from the x2proj file
