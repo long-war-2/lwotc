@@ -17,7 +17,7 @@ function Init(AvailableAction InActionAvailable, int NewTargetIndex)
 	ScatterAmountText = TacticalHUD.Spawn(class'UIScrollingTextField', TacticalHUD);
 	ScatterAmountText.bAnimateOnInit = false;
 	ScatterAmountText.InitScrollingText('AverageScatterText_LW', "", 400, 0, 0);
-	ScatterAmountText.SetHTMLText(class'UIUtilities_Text'.static.GetColoredText("± 1.4 Tiles", eUIState_Bad, class'UIUtilities_Text'.const.BODY_FONT_SIZE_3D));
+	ScatterAmountText.SetHTMLText(class'UIUtilities_Text'.static.GetColoredText("ï¿½ 1.4 Tiles", eUIState_Bad, class'UIUtilities_Text'.const.BODY_FONT_SIZE_3D));
 	ScatterAmountText.ShowShadow(0);
 }
 
@@ -50,7 +50,7 @@ function Update(float DeltaTime)
 	local GameRulesCache_VisibilityInfo VisibilityInfo;
 	local UnitPeekSide PeekSide;
 	local int OutRequiresLean;
-	local TTile BlockedTile, PeekTile, UnitTile, SnapTile;
+	local TTile BlockedTile, PeekTile, UnitTile, SnapTile, TargetTile;
 	local bool GoodView;
 	local CachedCoverAndPeekData PeekData;
 	local array<TTile> Tiles;
@@ -82,7 +82,8 @@ function Update(float DeltaTime)
 				else
 					PeekTile = PeekData.CoverDirectionInfo[Direction].RightPeek.PeekTile;
 
-				if (!World.VoxelRaytrace_Tiles(UnitTile, PeekTile, Raytrace))
+				TargetTile = World.GetTileCoordinatesFromPosition(NewTargetLocation);
+				if (!World.VoxelRaytrace_Tiles(PeekTile, TargetTile, Raytrace))
 					GoodView = true;
 				else
 					BlockedTile = Raytrace.BlockedTile;
