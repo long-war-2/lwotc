@@ -165,9 +165,9 @@ static function bool HasAnyTriadObjective(XComGameState_BattleData Battle)
 // Disable autofilling of the mission squad in robojumper's Squad Select screen
 static function EventListenerReturn DisableSquadAutoFill(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	local XComLWTuple Tuple;
+	local LWTuple Tuple;
 	
-	Tuple = XComLWTuple(EventData);
+	Tuple = LWTuple(EventData);
 	if (Tuple == none)
 		return ELR_NoInterrupt;
 

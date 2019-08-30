@@ -70,6 +70,7 @@
     <Folder Include="Localization\PI_Integrated\" />
     <Folder Include="Src\PI_Integrated\" />
     <Folder Include="Src\WallClimbOverride\" />
+    <Folder Include="Src\LW_Tuple\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -1055,6 +1056,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_PodManagement.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Debug.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ChosenEvents.uc" />
+    <Content Include="Src\LW_Tuple\Classes\LWTuple.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
