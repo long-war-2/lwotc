@@ -8,14 +8,14 @@ class UIUtilities_Text_LW extends object;
 
 var localized string m_strHelp;
 
-static function String GetDifficultyString(XComGameState_MissionSite MissionState)
+static function String GetDifficultyString(XComGameState_MissionSite MissionState, optional int AlertModifier = 0)
 {
 	local string Text, nums;
 	local int Difficulty, LabelsLength, EnemyUnits;
 	local array<X2CharacterTemplate> Dummy;
 
 	MissionState.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
-	Difficulty = Max (1, (EnemyUnits-4) / 3);
+	Difficulty = Max (1, (EnemyUnits-4) / 3) + AlertModifier;
 	LabelsLength = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels.Length;
 	if(Difficulty >= LabelsLength - 1)
 	{
@@ -24,10 +24,7 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 	}
 	else
 	{
-		if (Difficulty == 1)
-			nums = " (7-9)";
-		else
-			nums = " (" $ ((Difficulty * 3) + 4) $ "-" $ ((Difficulty * 3) + 6) $ ")";
+		nums = " (" $ ((Difficulty * 3) + 4) $ "-" $ ((Difficulty * 3) + 6) $ ")";
 
 		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[Difficulty] $ nums;
 	}

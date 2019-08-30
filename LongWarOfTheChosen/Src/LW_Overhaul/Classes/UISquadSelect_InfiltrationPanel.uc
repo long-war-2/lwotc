@@ -175,11 +175,9 @@ simulated function UISquadSelect_InfiltrationPanel InitInfiltrationPanel(optiona
 }
 
 // Function from Show Infiltration Percentage mod
-function string GetExpectedAlertness(int BaseAlert, float InfiltrationPct)
+function string GetExpectedAlertness(XComGameState_MissionSite MissionState, float InfiltrationPct)
 {
 	local int i;
-	local string Text;
-	local int Difficulty, LabelsLength;
 	i = 0;
 	while (i + 1 < class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration.Length 
 			&& class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration[i + 1].Infiltration <= InfiltrationPct)
@@ -187,19 +185,9 @@ function string GetExpectedAlertness(int BaseAlert, float InfiltrationPct)
 		i++;
 	}
 
-	Difficulty = BaseAlert + class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration[i].Modifier;
-
-	LabelsLength = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels.Length;
-	if (Difficulty <= 0 && BaseAlert >= 1)
-		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[1];
-	else if (Difficulty >= LabelsLength)
-		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[LabelsLength - 1];
-	else if (Difficulty < 0)
-		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[0];
-	else
-		Text = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels[Difficulty];
-
-	return Caps(Text);
+	return class'UIUtilities_Text_LW'.static.GetDifficultyString(
+		MissionState,
+		class'XComGameState_LWPersistentSquad'.default.AlertModifierAtInfiltration[i].Modifier);
 }
 
 simulated function Update(array<StateObjectReference> Soldiers)
@@ -292,10 +280,8 @@ simulated function Update(array<StateObjectReference> Soldiers)
 
 		if (TotalMissionHours < 4320 && NumSoldiers > 0)
 		{
-			MissionState.GetShadowChamberMissionInfo(EnemyUnits, Dummy);
-			Difficulty = Max (1, (EnemyUnits-4) / 3);
-			ExpectedActivity.SetInfoValue(GetExpectedAlertness(Difficulty, InfiltratePct / 100), OverallTimeColor);
-			BoostedExpectedActivity.SetInfoValue(GetExpectedAlertness(Difficulty, BoostedInfiltratePct / 100), BoostedTimeColor);
+			ExpectedActivity.SetInfoValue(GetExpectedAlertness(MissionState, InfiltratePct / 100), OverallTimeColor);
+			BoostedExpectedActivity.SetInfoValue(GetExpectedAlertness(MissionState, BoostedInfiltratePct / 100), BoostedTimeColor);
 		}
 		else
 		{
