@@ -1027,6 +1027,13 @@ LocHelpText="Your explosives can inflict critical damage."
 LocFlyOverText="Biggest Booms"
 LocPromotionPopupText="<Bullet/> Your explosive attacks can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage).<br/>"
 
+[RapidFire X2AbilityTemplate]
+LocFriendlyName="Rapid Fire"
+LocLongDescription="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>. There is no cooldown on this ability."
+LocHelpText="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>."
+LocFlyOverText="Rapid Fire"
+LocPromotionPopupText="<Bullet/> Rapid Fire has no cooldown, making it a devastating ability for dealing ranged damage.<br/>"
+
 ; New Class loc
 
 [PsiOperative X2SoldierClassTemplate]

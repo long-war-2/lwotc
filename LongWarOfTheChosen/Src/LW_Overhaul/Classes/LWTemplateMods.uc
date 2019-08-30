@@ -192,6 +192,7 @@ struct FlashbangResistEntry
 
 var config int SPIDER_GRAPPLE_COOLDOWN;
 var config int WRAITH_GRAPPLE_COOLDOWN;
+var config int RAPIDFIRE_COOLDOWN;
 var config int MEDIUM_PLATED_MITIGATION_AMOUNT;
 var config int SHIELDWALL_MITIGATION_AMOUNT;
 var config int SHIELDWALL_DEFENSE_AMOUNT;
@@ -1176,6 +1177,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 
+	if(Template.DataName == 'RapidFire') 
+	{
+		Cooldown = new class'X2AbilityCooldown';
+		Cooldown.iNumTurns = default.RAPIDFIRE_COOLDOWN;
+		Template.AbilityCooldown = Cooldown;
+	}
 	// Steady Hands
 	// Stasis Vest
 	// Air Controller
