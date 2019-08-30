@@ -68,7 +68,8 @@ function GetTargetLocations(out array<Vector> TargetLocations)
 		TargetLocations.Length = 0;
 		TargetLocations.AddItem(ScatteredTargetLoc);
 	}
-
+	
+	GrenadePath.bUseOverrideTargetLocation = false;
 }
 
 function Update(float DeltaTime)
