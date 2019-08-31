@@ -47,6 +47,7 @@ function bool UnitAvailableForLiaisonDuty(StateObjectReference UnitRef)
 		    && !Unit.IsPsiAbilityTraining()
 		    && !Unit.CanRankUpSoldier()
 			&& !Unit.IsRobotic()
+			&& Unit.GetMentalState() != eMentalState_Shaken
             // Need minimum rank to qualify for liaison duty
 		    && HasEligibleRegularRank
             //On mission handles existing liaisons and people currently infiltrating.
