@@ -251,12 +251,9 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 		{
 			SetStatusTupleData(OverrideTuple, class'UIUtilities_Strategy'.default.m_strOnMissionStatus, "", "", 0, eUIState_Highlight, true);
 		}
-		else if (UnitState.GetRank() < class'XComGameState_LWOutpost'.default.REQUIRED_RANK_FOR_LIAISON_DUTY)
+		else if (UnitState.GetRank() < class'XComGameState_LWOutpost'.default.REQUIRED_RANK_FOR_LIAISON_DUTY && GetScreenOrChild('UIPersonnel_Liaison') != none)
 		{
-			if (GetScreenOrChild('UIPersonnel_Liaison') != none)
-			{
-				SetStatusTupleData(OverrideTuple, default.RankTooLow, "", "", 0, eUIState_Bad, true);
-			}
+			SetStatusTupleData(OverrideTuple, default.RankTooLow, "", "", 0, eUIState_Bad, true);
 		}
 		else if (SquadMgr != none && SquadMgr.UnitIsInAnySquad(UnitState.GetReference(), Squad))
 		{
