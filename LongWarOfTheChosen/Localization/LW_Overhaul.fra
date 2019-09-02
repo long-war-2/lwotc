@@ -258,6 +258,13 @@ ResistanceHQBodyText="Accès aux informations des refuges de la résistance"
 [X2LWAbilitiesModTemplate]
 strCritReductionFromConditionalToHit="Précision"
 
+[X2EventListener_Missions]
+m_strClearSquad="VIDER ESCOUADE"
+m_strTooltipClearSquad="Retirez tous les soldats de l'escouade."
+
+m_strAutofillSquad="REMPLIR ESCOUADE AUTO."
+m_strTooltipAutofillSquad="Remplissez automatiquement l'escouade à son maximum."
+
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0> Heures"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1>J, <XGParam:IntValue0>H"

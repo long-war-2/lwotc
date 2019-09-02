@@ -258,6 +258,13 @@ ResistanceHQBodyText="レジスタンス解放区の情報にアクセスする"
 [X2LWAbilitiesModTemplate]
 strCritReductionFromConditionalToHit="命中"
 
+[X2EventListener_Missions]
+m_strClearSquad="部隊をクリア"
+m_strTooltipClearSquad="部隊から全ての兵士を外す。"
+
+m_strAutofillSquad="部隊自動補充"
+m_strTooltipAutofillSquad="部隊の空いた枠に自動的に兵士を補充する。"
+
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0>時間"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1>日、<XGParam:IntValue0>時間"

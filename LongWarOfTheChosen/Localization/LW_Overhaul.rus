@@ -258,6 +258,13 @@ ResistanceHQBodyText="Доступ к информации убежища Соп
 [X2LWAbilitiesModTemplate]
 strCritReductionFromConditionalToHit="Меткость"
 
+[X2EventListener_Missions]
+m_strClearSquad="ОЧИСТИТЬ ОТРЯД"
+m_strTooltipClearSquad="Убрать всех солдат из отряда."
+
+m_strAutofillSquad="СОБРАТЬ ОТРЯД АВТОМАТИЧЕСКИ"
+m_strTooltipAutofillSquad="Автоматически заполнить свободные позиции в отряде."
+
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0> ч."
 strTimeRemainingDaysAndHours="<XGParam:IntValue1> дн., <XGParam:IntValue0> ч."

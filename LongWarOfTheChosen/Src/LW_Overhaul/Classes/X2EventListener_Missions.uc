@@ -1,5 +1,11 @@
 class X2EventListener_Missions extends X2EventListener config(LW_Overhaul);
 
+var localized string m_strClearSquad;
+var localized string m_strTooltipClearSquad;
+
+var localized string m_strAutofillSquad;
+var localized string m_strTooltipAutofillSquad;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -22,6 +28,7 @@ static function CHEventListenerTemplate CreateSquadListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionSquadListeners');
 	Template.AddCHEvent('rjSquadSelect_AllowAutoFilling', DisableSquadAutoFill, ELD_Immediate);
+	Template.AddCHEvent('UISquadSelect_NavHelpUpdate', OverrideSquadSelectButtons, ELD_Immediate);
 
 	Template.RegisterInStrategy = true;
 
@@ -163,10 +170,13 @@ static function bool HasAnyTriadObjective(XComGameState_BattleData Battle)
 }
 
 // Disable autofilling of the mission squad in robojumper's Squad Select screen
+// unless there are no available soldiers for the current squad, i.e. there are
+// no soldiers in the current XCOM squad.
 static function EventListenerReturn DisableSquadAutoFill(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local LWTuple Tuple;
-	
+	local XComGameState_HeadquartersXCom XComHQ;
+
 	Tuple = LWTuple(EventData);
 	if (Tuple == none)
 		return ELR_NoInterrupt;
@@ -178,8 +188,107 @@ static function EventListenerReturn DisableSquadAutoFill(Object EventData, Objec
 		return ELR_NoInterrupt;
 	}
 
-	Tuple.Data[0].b = false;
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+	// Allow autofilling if the current squad length is 0
+	Tuple.Data[0].b = XComHQ.Squad.Length == 0;
 	return ELR_NoInterrupt;
+}
+
+static protected function EventListenerReturn OverrideSquadSelectButtons(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local UINavigationHelp NavHelp;
+
+	if (`ISCONTROLLERACTIVE)
+	{
+		// We add the button only if using mouse
+		return ELR_NoInterrupt;
+	}
+
+	NavHelp = UINavigationHelp(EventData);
+	NavHelp.AddCenterHelp(default.m_strAutofillSquad, "", OnAutoFillSquad, false, default.m_strTooltipAutofillSquad);
+	NavHelp.AddCenterHelp(default.m_strClearSquad, "", OnClearSquad, false, default.m_strTooltipClearSquad);
+
+	return ELR_NoInterrupt;
+}
+
+static function OnAutoFillSquad()
+{
+	local XComGameState UpdateState;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_Unit UnitState;
+	local UISquadSelect SquadSelect;
+	local bool bAllowWoundedSoldiers;
+	local int i;
+
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	SquadSelect = GetSquadSelect();
+
+	if (SquadSelect.SoldierSlotCount == XComHQ.Squad.Length) return;
+
+	UpdateState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Auto fill in Squad Select");
+	XComHQ = XComGameState_HeadquartersXCom(UpdateState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	bAllowWoundedSoldiers = XComHQ.GetGeneratedMissionData(XComHQ.MissionRef.ObjectID).Mission.AllowDeployWoundedUnits;
+
+	for (i = 0; i < SquadSelect.SoldierSlotCount; i++)
+	{
+		if (XComHQ.Squad.Length == i || XComHQ.Squad[i].ObjectID == 0)
+		{
+			if (SquadSelect.bHasRankLimits)
+			{
+				UnitState = XComHQ.GetBestDeployableSoldier(true, bAllowWoundedSoldiers, SquadSelect.MinRank, SquadSelect.MaxRank);
+			}
+			else
+			{
+				UnitState = XComHQ.GetBestDeployableSoldier(true, bAllowWoundedSoldiers);
+			}
+
+			if (UnitState != none)
+			{
+				XComHQ.Squad[i] = UnitState.GetReference();
+			}
+		}
+	}
+
+	`GAMERULES.SubmitGameState(UpdateState);
+
+	SquadSelect.bDirty = true;
+	SquadSelect.UpdateData();
+	SquadSelect.UpdateNavHelp();
+}
+
+static function OnClearSquad()
+{
+	local XComGameState UpdateState;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local UISquadSelect SquadSelect;
+
+	UpdateState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Clear squad from Squad Select");
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	XComHQ = XComGameState_HeadquartersXCom(UpdateState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	XComHQ.Squad.Length = 0;
+	`GAMERULES.SubmitGameState(UpdateState);
+
+	SquadSelect = GetSquadSelect();
+	SquadSelect.bDirty = true;
+	SquadSelect.UpdateData();
+	SquadSelect.UpdateNavHelp();
+}
+
+static function UISquadSelect GetSquadSelect()
+{
+	local UIScreenStack ScreenStack;
+	local int i;
+
+	ScreenStack = `SCREENSTACK;
+	for (i = 0; i < ScreenStack.Screens.Length;  ++i)
+	{
+		if (UISquadSelect(ScreenStack.Screens[i]) != none)
+		{
+			return UISquadSelect(ScreenStack.Screens[i]);
+		}
+	}
+	return none;
 }
 
 // Disable the vanilla behaviour of moving patrol zones to account for the

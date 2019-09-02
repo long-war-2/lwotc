@@ -271,6 +271,13 @@ ResistanceHQBodyText="Access Resistance Haven Information"
 [X2LWAbilitiesModTemplate]
 strCritReductionFromConditionalToHit="To Hit" ; To change
 
+[X2EventListener_Missions]
+m_strClearSquad="CLEAR SQUAD"
+m_strTooltipClearSquad="Remove all soldiers from squad."
+
+m_strAutofillSquad="AUTOFILL SQUAD"
+m_strTooltipAutofillSquad="Autofill empty squad positions."
+
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0> Hours"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1>D, <XGParam:IntValue0>H"

@@ -258,6 +258,13 @@ ResistanceHQBodyText="Uzyskaj dostęp do informacji kryjówki ruchu oporu"
 [X2LWAbilitiesModTemplate]
 strCritReductionFromConditionalToHit="Trafienie"
 
+[X2EventListener_Missions]
+m_strClearSquad="WYCZYŚĆ DRUŻYNĘ"
+m_strTooltipClearSquad="Usunięcie wszystkich żołnierzy z drużyny."
+
+m_strAutofillSquad="UZUPEŁNIENIE DRUŻYNY"
+m_strTooltipAutofillSquad="Automatyczne uzupełnienie pustych miejsc w drużynie."
+
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0> godz."
 strTimeRemainingDaysAndHours="<XGParam:IntValue1> d., <XGParam:IntValue0> godz."

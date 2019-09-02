@@ -258,6 +258,13 @@ ResistanceHQBodyText="Auf Informationen über das Widerstandsversteck zugreifen"
 [X2LWAbilitiesModTemplate]
 strCritReductionFromConditionalToHit="Trefferchance"
 
+[X2EventListener_Missions]
+m_strClearSquad="TRUPP LÖSCHEN"
+m_strTooltipClearSquad="Entfernt alle Soldaten aus dem Trupp."
+
+m_strAutofillSquad="TRUPP AUTOM. FÜLLEN"
+m_strTooltipAutofillSquad="Leere Trupp-Plätze automatisch füllen."
+
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0> Stunden"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1>T, <XGParam:IntValue0>S"

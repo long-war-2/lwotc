@@ -258,6 +258,13 @@ ResistanceHQBodyText="Accede a la información del refugio de la resistencia."
 [X2LWAbilitiesModTemplate]
 strCritReductionFromConditionalToHit="De acierto"
 
+[X2EventListener_Missions]
+m_strClearSquad="ELIMINAR PELOTÓN"
+m_strTooltipClearSquad="Elimina a todos los soldados del pelotón."
+
+m_strAutofillSquad="AUTOCOMPLETAR PELOTÓN"
+m_strTooltipAutofillSquad="Completa los puestos vacíos del pelotón automáticamente."
+
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0> horas"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1> d, <XGParam:IntValue0> h"

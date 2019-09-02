@@ -258,6 +258,13 @@ ResistanceHQBodyText="Accedi alle informazioni sul rifugio della Resistenza"
 [X2LWAbilitiesModTemplate]
 strCritReductionFromConditionalToHit="Per colpire"
 
+[X2EventListener_Missions]
+m_strClearSquad="RIMUOVI SQUADRA"
+m_strTooltipClearSquad="Rimuovi tutti i soldati dalla squadra."
+
+m_strAutofillSquad="SELEZIONE AUTOMATICA"
+m_strTooltipAutofillSquad="Riempimento automatico posizioni vuote in squadra."
+
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0> ore"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1> g, <XGParam:IntValue0> h"

@@ -258,6 +258,13 @@ ResistanceHQBodyText="저항군 피난처 정보 액세스"
 [X2LWAbilitiesModTemplate]
 strCritReductionFromConditionalToHit="명중"
 
+[X2EventListener_Missions]
+m_strClearSquad="분대 비우기"
+m_strTooltipClearSquad="분대의 모든 병사를 제거합니다."
+
+m_strAutofillSquad="분대 자동 선발"
+m_strTooltipAutofillSquad="분대의 빈자리를 자동으로 채웁니다."
+
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0>시간"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1>일, <XGParam:IntValue0>시간"

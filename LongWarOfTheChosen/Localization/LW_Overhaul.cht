@@ -258,6 +258,13 @@ ResistanceHQBodyText="獲取反抗軍避難所信息"
 [X2LWAbilitiesModTemplate]
 strCritReductionFromConditionalToHit="命中"
 
+[X2EventListener_Missions]
+m_strClearSquad="清空小隊"
+m_strTooltipClearSquad="從小隊中移除所有士兵。"
+
+m_strAutofillSquad="自動填補小隊"
+m_strTooltipAutofillSquad="自動填補小隊位置的空缺。"
+
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0>小時"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1>天，<XGParam:IntValue0>小時"
