@@ -53,6 +53,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('KilledbyExplosion', OnKilledbyExplosion, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CleanupTacticalMission', OnCleanupTacticalMission, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('AbilityActivated', OnAbilityActivated, ELD_OnStateSubmitted, GetListenerPriority());
+	Template.AddCHEvent('UnitChangedTeam', ClearUnitStateValues, ELD_Immediate, GetListenerPriority());
 
 	// This seems to be causing stutter in the game, so commenting out for now.
 	// if (XCom_Perfect_Information_UIScreenListener.default.ENABLE_PERFECT_INFORMATION)
@@ -745,5 +746,26 @@ static function EventListenerReturn OnAbilityActivated(Object EventData, Object 
 		Reinforcements = XComGameState_LWReinforcements(NewGameState.ModifyStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
 		`TACTICALRULES.SubmitGameState(NewGameState);
 	}
+	return ELR_NoInterrupt;
+}
+
+// This listener clears the `eCleanup_BeginTurn` unit values on units that
+// swap teams. This fixes a problem where those unit values don't get cleared
+// when team swapping happens after the turn begins.
+static protected function EventListenerReturn ClearUnitStateValues(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_Unit UnitState;
+
+	UnitState = XComGameState_Unit(EventData);
+	if (UnitState == none) return ELR_NoInterrupt;
+
+	UnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(UnitState.ObjectID));
+	UnitState.CleanupUnitValues(eCleanup_BeginTurn);
+
 	return ELR_NoInterrupt;
 }
