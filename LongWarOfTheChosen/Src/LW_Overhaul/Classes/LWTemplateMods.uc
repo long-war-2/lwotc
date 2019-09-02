@@ -1177,7 +1177,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 
-	if(Template.DataName == 'RapidFire') 
+	if (Template.DataName == 'RapidFire') 
 	{
 		Cooldown = new class'X2AbilityCooldown';
 		Cooldown.iNumTurns = default.RAPIDFIRE_COOLDOWN;
