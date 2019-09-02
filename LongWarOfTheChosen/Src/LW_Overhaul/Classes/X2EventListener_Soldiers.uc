@@ -251,11 +251,15 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 		{
 			SetStatusTupleData(OverrideTuple, class'UIUtilities_Strategy'.default.m_strOnMissionStatus, "", "", 0, eUIState_Highlight, true);
 		}
+		else if (UnitState.GetRank() < class'XComGameState_LWOutpost'.default.REQUIRED_RANK_FOR_LIAISON_DUTY && GetScreenOrChild('UIPersonnel_Liaison') != none)
+		{
+			SetStatusTupleData(OverrideTuple, default.RankTooLow, "", "", 0, eUIState_Bad, true);
+		}
 		else if (SquadMgr != none && SquadMgr.UnitIsInAnySquad(UnitState.GetReference(), Squad))
 		{
 			if (SquadMgr.LaunchingMissionSquad.ObjectID != Squad.ObjectID)
 			{
-				if (UnitState.GetStatus() != eStatus_Healing && UnitState.GetStatus() != eStatus_Training)
+				if (UnitState.GetStatus() != eStatus_Healing && UnitState.GetStatus() != eStatus_Training && UnitState.GetMentalState() != eMentalState_Shaken)
 				{
 					if (GetScreenOrChild('UISquadSelect') != none)
 					{
@@ -266,13 +270,6 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 						SetStatusTupleData(OverrideTuple, default.UnitInSquad, "", "", 0, eUIState_Warning, true);
 					}
 				}
-			}
-		}
-		else if (UnitState.GetRank() < class'XComGameState_LWOutpost'.default.REQUIRED_RANK_FOR_LIAISON_DUTY)
-		{
-			if (GetScreenOrChild('UIPersonnel_Liaison') != none)
-			{
-				SetStatusTupleData(OverrideTuple, default.RankTooLow, "", "", 0, eUIState_Bad, true);
 			}
 		}
 	}

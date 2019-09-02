@@ -719,9 +719,9 @@ function bool UpdatePostMission(XComGameState_MissionSite MissionSite, XComGameS
 			// Liaison didn't make it. Remove them from the haven and optionally capture them.
 			RemoveAndCaptureLiaison(NewGameState);
 		}
-		else if (Unit.IsInjured())
+		else if (Unit.IsInjured() || Unit.GetMentalState() == eMentalState_Shaken)
 		{
-			// Injured units are removed from the haven but remain on the avenger.
+			// Injured and shaken units are removed from the haven but remain on the avenger.
 			SetLiaison(EmptyRef, NewGameState);
 		}
 	}
