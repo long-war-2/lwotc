@@ -36,14 +36,9 @@ event OnInit(UIScreen Screen)
 	// Update the evac timer so it will appear if we are loading a save with an active evac timer.
 	UpdateEvacTimer(false);
 
-	// WOTC TODO: I wonder if this is necessary
-	// ListenerMgr = class'XComGameState_LWListenerManager'.static.GetListenerManager(true);
-	// if(ListenerMgr != none)
-	// 	ListenerMgr.InitListeners();
-
-	// WOTC TODO: Restore this (if it's necessary)
-	//if (`LWOVERHAULOPTIONS == none)
-		//class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
+	// Used for when a campaign is loaded from a save in tactical.
+	if (`LWOVERHAULOPTIONS == none)
+		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
 }
 
 function EventListenerReturn OnTacticalBeginPlay(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
