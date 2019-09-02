@@ -1665,7 +1665,7 @@ function array<ClassAgnosticAbility> GetValidAbilitiesForRebel(XComGameState_Uni
 	local array<ClassAgnosticAbility> Abilities;
 	local ClassAgnosticAbility NewAbility;
 	local RebelAbilityConfig PossibleAbility;
-    local X2AbilityTemplateManager AbilityTemplateManager;
+	local X2AbilityTemplateManager AbilityTemplateManager;
 	local X2AbilityTemplate AbilityTemplate;
 
 	AbilityTemplateManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
@@ -1678,9 +1678,9 @@ function array<ClassAgnosticAbility> GetValidAbilitiesForRebel(XComGameState_Uni
 
 		if (PossibleAbility.Level != AWCLevel)
 			continue;
-
-        if (HasEarnedAbility(UnitState, PossibleAbility.AbilityName))
-            continue;
+		
+		if (HasEarnedAbility(UnitState, PossibleAbility.AbilityName))
+			continue;
 
 		NewAbility.iRank = PossibleAbility.Level;
 		NewAbility.bUnlocked = false;
@@ -1694,17 +1694,17 @@ function array<ClassAgnosticAbility> GetValidAbilitiesForRebel(XComGameState_Uni
 
 function bool HasEarnedAbility(XComGameState_Unit Unit, name AbilityName)
 {
-    local array<SoldierClassAbilityType> EarnedAbilities;
-    local int i;
+	local array<SoldierClassAbilityType> EarnedAbilities;
+	local int i;
 
-    EarnedAbilities = Unit.GetEarnedSoldierAbilities();
-    for (i = 0; i < EarnedAbilities.Length; ++i)
-    {
-        if (EarnedAbilities[i].AbilityName == AbilityName)
-            return true;
-    }
+	EarnedAbilities = Unit.GetEarnedSoldierAbilities();
+	for (i = 0; i < EarnedAbilities.Length; ++i)
+	{
+		if (EarnedAbilities[i].AbilityName == AbilityName)
+			return true;
+	}
 
-    return false;
+	return false;
 }
 
 function StateObjectReference GetRebelByName(String FirstName, String LastName)
