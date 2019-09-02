@@ -1648,7 +1648,7 @@ function GiveAWCPerk(XComGameState_Unit Unit, array<RebelAbilityConfig> AbilityS
 	
 	if (Abilities.Length == 0)
 	{
-		`redscreen("No abilities left for unit promotion!");
+		`REDSCREEN("No abilities left for unit promotion!");
 	}
 
 	i = `SYNC_RAND(Abilities.Length);
@@ -1660,7 +1660,7 @@ function GiveAWCPerk(XComGameState_Unit Unit, array<RebelAbilityConfig> AbilityS
 	Unit.AWCAbilities.AddItem(Ability);
 }
 
-function array<ClassAgnosticAbility> GetValidAbilitiesForRebel(XComGameState_Unit UnitState, array<RebelAbilityConfig> SourceAbilities, int AWCLevel)
+static function array<ClassAgnosticAbility> GetValidAbilitiesForRebel(XComGameState_Unit UnitState, array<RebelAbilityConfig> SourceAbilities, int AWCLevel)
 {
 	local array<ClassAgnosticAbility> Abilities;
 	local ClassAgnosticAbility NewAbility;
@@ -1692,7 +1692,7 @@ function array<ClassAgnosticAbility> GetValidAbilitiesForRebel(XComGameState_Uni
 	return Abilities;
 }
 
-function bool HasEarnedAbility(XComGameState_Unit Unit, name AbilityName)
+static function bool HasEarnedAbility(XComGameState_Unit Unit, name AbilityName)
 {
 	local array<SoldierClassAbilityType> EarnedAbilities;
 	local int i;
@@ -1800,4 +1800,31 @@ function class<UIStrategyMapItem> GetUIClass()
 function bool ShouldBeVisible()
 {
 	return false;
+}
+
+function UpdateRebelAbilities(XComGameState NewGameState)
+{
+	local RebelUnit Rebel;
+	local XComGameState_Unit UnitState;
+
+	foreach Rebels(Rebel)
+	{
+		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Rebel.Unit.ObjectID));
+		NewGameState.AddStateObject(UnitState);
+		// Rebel has ranked up but has no abilities, so give them abilities
+		if (Rebel.Level > 0 && UnitState.GetAWCAbilityNames().Length == 0)
+		{
+			if (Rebel.Level >= 1)
+			{
+				GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_OFFENSE, 1); 
+				GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_DEFENSE, 1); 
+			}
+
+			if (Rebel.Level >= 2)
+			{
+				GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_OFFENSE, 2); 
+				GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_DEFENSE, 2); 
+			}
+		}
+	}
 }
