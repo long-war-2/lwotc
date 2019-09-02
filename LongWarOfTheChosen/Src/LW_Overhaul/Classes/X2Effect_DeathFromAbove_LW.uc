@@ -26,9 +26,18 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 		return false;
 	}
 
-	if(kAbility.GetMyTemplateName() == 'DoubleTap2' && !default.ALLOW_DFA_DT_COMBO)
+	if(kAbility.GetMyTemplateName() == 'DoubleTap2')
 	{
-		return false;
+        if (!default.ALLOW_DFA_DT_COMBO)
+        {
+            return false;
+        }
+        else
+        {
+            // Treat this as a free DfA usage so that the second
+            // shot can also proc DfA.
+            iUsesThisTurn--;
+        }
 	}
 
     if(kAbility.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
