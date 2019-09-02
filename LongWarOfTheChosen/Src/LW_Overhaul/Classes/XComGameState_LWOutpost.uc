@@ -49,6 +49,13 @@ struct RebelJobDays
 	var int Days;
 };
 
+struct RebelAbilityConfig
+{
+	var int Level;
+	var name AbilityName;
+	var EInventorySlot ApplyToWeaponSlot;
+};
+
 // The maximum number of rebels supported by this outpost.
 var protectedwrite int MaxRebels;
 
@@ -83,8 +90,9 @@ var const config int REQUIRED_RANK_FOR_LIAISON_DUTY;
 // Number of supplies drained from the outpost per faceless-day.
 var const config float FACELESS_SUPPLY_DRAIN;
 
-// Abilities that aren't permitted on Rebels.
-var config array<Name> DisallowedAWCAbilities;
+// Defines valid abilities for rebels
+var config array<RebelAbilityConfig> REBEL_AWC_ABILITIES_OFFENSE;
+var config array<RebelAbilityConfig> REBEL_AWC_ABILITIES_DEFENSE;
 
 // All rebels in this outpost & what they're up to
 var protectedwrite array<RebelUnit> Rebels;
@@ -1617,49 +1625,33 @@ function PromoteRebel(StateObjectReference UnitRef, XComGameState NewGameState)
 	Unit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitRef.ObjectID));
 	NewGameState.AddStateObject(Unit);
 
-	/* WOTC TODO: Once AWC stuff is sorted out, restore this
 	switch(Rebels[i].Level)
 	{
 		case 1:
-			GiveAWCPerk(Unit, class'LWAWCUtilities'.default.AWCAbilityTree_Offense, 1); 
-			GiveAWCPerk(Unit, class'LWAWCUtilities'.default.AWCAbilityTree_Defense, 1); 
+			GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_OFFENSE, 1); 
+			GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_DEFENSE, 1); 
 			break;
 		case 2:
-			GiveAWCPerk(Unit, class'LWAWCUtilities'.default.AWCAbilityTree_Offense, 2); 
-			GiveAWCPerk(Unit, class'LWAWCUtilities'.default.AWCAbilityTree_Defense, 2); 
+			GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_OFFENSE, 2); 
+			GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_DEFENSE, 2); 
 			break; 
 	}
-	*/
 }
 
-/* WOTC TODO: Once AWC/training center stuff is sorted out, restore this
-function GiveAWCPerk(XComGameState_Unit Unit, array<AWCAbilityConfig> AbilitySet, int Level)
+function GiveAWCPerk(XComGameState_Unit Unit, array<RebelAbilityConfig> AbilitySet, int Level)
 {
 	local array<ClassAgnosticAbility> Abilities;
 	local int i;
 	local ClassAgnosticAbility Ability;
 
-	Abilities = class'LWAWCUtilities'.static.GetValidAWCAbilitiesForUnit(Unit, AbilitySet, Level);
-
-	while (Abilities.Length > 0)
-	{
-		i = `SYNC_RAND(Abilities.Length);
-
-		// This ability is verboten. Remove it and find another.
-		if (DisallowedAWCAbilities.Find(Abilities[i].AbilityType.AbilityName) != -1)
-		{
-			Abilities.Remove(i, 1);
-		}
-		else
-		{
-			break;
-		}
-	}
-
+	Abilities = GetValidAbilitiesForRebel(Unit, AbilitySet, Level);
+	
 	if (Abilities.Length == 0)
 	{
 		`redscreen("No abilities left for unit promotion!");
 	}
+
+	i = `SYNC_RAND(Abilities.Length);
 
 	Ability = Abilities[i];
 	Ability.bUnlocked = true;
@@ -1667,7 +1659,53 @@ function GiveAWCPerk(XComGameState_Unit Unit, array<AWCAbilityConfig> AbilitySet
 	`LWTrace("Awarding ability " $ Ability.AbilityType.AbilityName $ " to " $ Unit.GetFullName());
 	Unit.AWCAbilities.AddItem(Ability);
 }
-*/
+
+function array<ClassAgnosticAbility> GetValidAbilitiesForRebel(XComGameState_Unit UnitState, array<RebelAbilityConfig> SourceAbilities, int AWCLevel)
+{
+	local array<ClassAgnosticAbility> Abilities;
+	local ClassAgnosticAbility NewAbility;
+	local RebelAbilityConfig PossibleAbility;
+    local X2AbilityTemplateManager AbilityTemplateManager;
+	local X2AbilityTemplate AbilityTemplate;
+
+	AbilityTemplateManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+
+	foreach SourceAbilities(PossibleAbility)
+	{
+		AbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(PossibleAbility.AbilityName);
+		if (AbilityTemplate == none)
+			continue;
+
+		if (PossibleAbility.Level != AWCLevel)
+			continue;
+
+        if (HasEarnedAbility(UnitState, PossibleAbility.AbilityName))
+            continue;
+
+		NewAbility.iRank = PossibleAbility.Level;
+		NewAbility.bUnlocked = false;
+		NewAbility.AbilityType.AbilityName = PossibleAbility.AbilityName;
+		NewAbility.AbilityType.ApplyToWeaponSlot = PossibleAbility.ApplyToWeaponSlot;
+		Abilities.AddItem(NewAbility);
+	}
+
+	return Abilities;
+}
+
+function bool HasEarnedAbility(XComGameState_Unit Unit, name AbilityName)
+{
+    local array<SoldierClassAbilityType> EarnedAbilities;
+    local int i;
+
+    EarnedAbilities = Unit.GetEarnedSoldierAbilities();
+    for (i = 0; i < EarnedAbilities.Length; ++i)
+    {
+        if (EarnedAbilities[i].AbilityName == AbilityName)
+            return true;
+    }
+
+    return false;
+}
 
 function StateObjectReference GetRebelByName(String FirstName, String LastName)
 {
