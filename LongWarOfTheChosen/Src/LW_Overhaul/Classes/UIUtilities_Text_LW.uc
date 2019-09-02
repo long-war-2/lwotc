@@ -15,7 +15,7 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 	local array<X2CharacterTemplate> Dummy;
 
 	MissionState.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
-	Difficulty = Max (1, (EnemyUnits-4) / 3) + AlertModifier;
+	Difficulty = Max (1, ((EnemyUnits-4) / 3) + AlertModifier);
 	LabelsLength = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels.Length;
 	if(Difficulty >= LabelsLength - 1)
 	{
