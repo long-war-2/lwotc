@@ -1625,17 +1625,8 @@ function PromoteRebel(StateObjectReference UnitRef, XComGameState NewGameState)
 	Unit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitRef.ObjectID));
 	NewGameState.AddStateObject(Unit);
 
-	switch(Rebels[i].Level)
-	{
-		case 1:
-			GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_OFFENSE, 1); 
-			GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_DEFENSE, 1); 
-			break;
-		case 2:
-			GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_OFFENSE, 2); 
-			GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_DEFENSE, 2); 
-			break; 
-	}
+	GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_OFFENSE, Rebels[i].Level);
+	GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_DEFENSE, Rebels[i].Level);
 }
 
 function GiveAWCPerk(XComGameState_Unit Unit, array<RebelAbilityConfig> AbilitySet, int Level)
@@ -1673,20 +1664,14 @@ static function array<ClassAgnosticAbility> GetValidAbilitiesForRebel(XComGameSt
 	foreach SourceAbilities(PossibleAbility)
 	{
 		AbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(PossibleAbility.AbilityName);
-		if (AbilityTemplate == none)
-			continue;
-
-		if (PossibleAbility.Level != AWCLevel)
-			continue;
-		
-		if (HasEarnedAbility(UnitState, PossibleAbility.AbilityName))
-			continue;
-
-		NewAbility.iRank = PossibleAbility.Level;
-		NewAbility.bUnlocked = false;
-		NewAbility.AbilityType.AbilityName = PossibleAbility.AbilityName;
-		NewAbility.AbilityType.ApplyToWeaponSlot = PossibleAbility.ApplyToWeaponSlot;
-		Abilities.AddItem(NewAbility);
+		if (AbilityTemplate != none && PossibleAbility.Level == AWCLevel &&!HasEarnedAbility(UnitState, PossibleAbility.AbilityName))
+		{
+			NewAbility.iRank = PossibleAbility.Level;
+			NewAbility.bUnlocked = false;
+			NewAbility.AbilityType.AbilityName = PossibleAbility.AbilityName;
+			NewAbility.AbilityType.ApplyToWeaponSlot = PossibleAbility.ApplyToWeaponSlot;
+			Abilities.AddItem(NewAbility);
+		}
 	}
 
 	return Abilities;
@@ -1812,7 +1797,7 @@ function UpdateRebelAbilities(XComGameState NewGameState)
 		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Rebel.Unit.ObjectID));
 		NewGameState.AddStateObject(UnitState);
 		// Rebel has ranked up but has no abilities, so give them abilities
-		if (Rebel.Level > 0 && UnitState.GetAWCAbilityNames().Length == 0)
+		if (Rebel.Level > 0 && UnitState.AWCAbilities.Length == 0)
 		{
 			if (Rebel.Level >= 1)
 			{
