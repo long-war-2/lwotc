@@ -461,9 +461,8 @@ static event OnPostMission()
 	`LWOUTPOSTMGR.UpdateOutpostsPostMission();
 }
 
-// WOTC TODO: Determine whether this pod diversification is necessary still
-// diversify pods, in particular all-alien pods of all the same type
-/*
+// Diversify pod makeup, especially with all-alien pods which typically consist
+// of the same alien unit. This also makes a few other adjustments to pods.
 static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo SpawnInfo, int ForceLevel, int AlertLevel, optional XComGameState_BaseObject SourceObject)
 {
 	local XComGameStateHistory History;
@@ -476,6 +475,10 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local XComGameState_MissionSite			MissionState;
 	local XComGameState_AIReinforcementSpawner	RNFSpawnerState;
 	local XComGameState_HeadquartersXCom XCOMHQ;
+	local array<SpawnDistributionListEntry>	LeaderSpawnList;
+	local array<SpawnDistributionListEntry>	FollowerSpawnList;
+	local name LeaderListID;
+	local name FollowerListID;
 
 	`LWTRACE("Parsing Encounter : " $ EncounterName);
 
@@ -495,6 +498,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		}
 	}
 
+	// Ignore the final and any DLC missions
 	`LWTRACE("Mission type = " $ MissionState.GeneratedMission.Mission.sType $ " detected.");
 	switch(MissionState.GeneratedMission.Mission.sType)
 	{
@@ -511,11 +515,17 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		default:
 			break;
 	}
+
+	// Double check for the final mission. [PAL Not sure this is necessary as the original
+	// code had no comment explaining why both the mission type and the encounter name are
+	// checked]
 	if (Left(string(EncounterName), 11) == "GP_Fortress")
 	{
 		`LWTRACE("Fortress mission detected. Aborting with no mission variations applied.");
 		return;
 	}
+
+	// Ignore story encounters
 	switch (EncounterName)
 	{
 		case 'LoneAvatar':
@@ -525,10 +535,15 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			break;
 	}
 
+	// Ignore explicitly protected encounters
 	if (InStr (EncounterName,"PROTECTED") != -1)
 	{
 		return;
 	}
+
+	// Get the corresponding spawn distribution lists for this mission.
+	GetLeaderSpawnDistributionList(EncounterName, MissionState, ForceLevel, LeaderSpawnList);
+	GetFollowerSpawnDistributionList(EncounterName, MissionState, ForceLevel, FollowerSpawnList);
 
 	//`LWTRACE("PE1");
 	RNFSpawnerState = XComGameState_AIReinforcementSpawner(SourceObject);
@@ -549,7 +564,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	//`LWTRACE ("PE3");
 
 	`LWTRACE("Encounter composition:");
-	foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
+	foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 	{
 		`LWTRACE("Character[" $ idx $ "] = " $ CharacterTemplateName);
 	}
@@ -568,7 +583,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == -1 && EncounterName != 'LoneCodex')
 	{
 		swap = true;
-		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader (SpawnInfo, ForceLevel, true, true, InStr(EncounterName,"TER") != -1);
+		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
 		`LWTRACE ("Swapping Codex leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 	}
 
@@ -585,7 +600,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					break;
 				default:
 					swap = true;
-					SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader (SpawnInfo, ForceLevel, true, true, InStr(EncounterName,"TER") != -1);
+					SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
 					`LWTRACE ("Swapping Avatar leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 					break;
 			}
@@ -600,75 +615,76 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			XCOMHQ.GetObjectiveStatus('T1_M6_KillAvatar') == eObjectiveState_InProgress ||
 			XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') == eObjectiveState_InProgress)
 		swap = true;
-		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader (SpawnInfo, ForceLevel, true, true, InStr(EncounterName,"TER") != -1);
+		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
 		`LWTRACE ("Swapping Reinf Captain leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 	}
 
+	// Now deal with followers
 	if (PodSize > 1)
 	{
 		TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
 		LeaderCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[0]);
 		// Find whatever the pod has the most of
-		FirstFollowerName = FindMostCommonMember (SpawnInfo.SelectedCharacterTemplateNames);
+		FirstFollowerName = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
 		FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(FirstFollowerName);
 
-		`LWTRACE ("Pod Leader:" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
-		`LWTRACE ("Pod Follower:" @ FirstFollowerName);
+		`LWTRACE("Pod Leader:" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+		`LWTRACE("Pod Follower:" @ FirstFollowerName);
 
 		if (LeaderCharacterTemplate.bIsTurret)
 			return;
 
-		if (InStr(EncounterName,"LIST_BOSSx") != -1 && InStr(EncounterName,"_LW") == -1)
+		if (InStr(EncounterName, "LIST_BOSSx") != -1 && InStr(EncounterName, "_LW") == -1)
 		{
-			`LWTRACE ("Don't Edit certain vanilla Boss pods");
+			`LWTRACE("Don't Edit certain vanilla Boss pods");
 			return;
 		}
-		if (Instr(EncounterName,"Chryssalids") != -1)
+		if (Instr(EncounterName, "Chryssalids") != -1)
 		{
-			`LWTRACE ("Don't edit Chryssypods");
+			`LWTRACE("Don't edit Chryssypods");
 			return;
 		}
 
 		// Handle vanilla pod construction of one type of alien follower;
-		if (!swap && LeaderCharacterTemplate.bIsAlien && FollowerCharacterTemplate.bIsAlien && CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) > 1)
+		if (!swap && LeaderCharacterTemplate.bIsAlien && FollowerCharacterTemplate.bIsAlien && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) > 1)
 		{
-			`LWTRACE ("Mixing up alien-dominant pod");
+			`LWTRACE("Mixing up alien-dominant pod");
 			swap = true;
 		}
 
 		// Check for pod members that shouldn't appear yet for plot reaons
-		if (CountMembers ('Cyberus', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed)
+		if (CountMembers('Cyberus', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed)
 		{
-			`LWTRACE ("Removing Codex for objective reasons");
+			`LWTRACE("Removing Codex for objective reasons");
 			swap = true;
 		}
 
 		if (CountMembers ('AdvPsiWitch', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 		{
-			`LWTRACE ("Exicising Avatar for objective reasons");
+			`LWTRACE("Exicising Avatar for objective reasons");
 			swap = true;
 		}
 
 		if (!swap)
 		{
-			for (k = 0; k < SpawnInfo.SelectedCharacterTemplateNames.length; k++)
+			for (k = 0; k < SpawnInfo.SelectedCharacterTemplateNames.Length; k++)
 			{
-				FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate (SpawnInfo.SelectedCharacterTemplateNames[k]);
-				if (CountMembers (SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) > FollowerCharacterTemplate.default.MaxCharactersPerGroup)
+				FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[k]);
+				if (CountMembers(SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) > FollowerCharacterTemplate.default.MaxCharactersPerGroup)
 				{
 					swap = true;
 				}
 			}
 			if (swap)
 			{
-				`LWTRACE ("Mixing up pod that violates MCPG setting");
+				`LWTRACE("Mixing up pod that violates MCPG setting");
 			}
 		}
 
 		// if size 4 && at least 3 are the same
 		if (!swap && (PodSize == 4 || PodSize == 5))
 		{
-			if (CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 1)
+			if (CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 1)
 			{
 				`LWTRACE ("Mixing up undiverse 4/5-enemy pod");
 				swap = true;
@@ -679,7 +695,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		if (!swap && PodSize >= 6)
 		{
 			// if a max of one guy is different
-			if (!swap && CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
 			{
 				`LWTRACE ("Mixing up undiverse 5+ enemy pod");
 				swap = true;
@@ -688,6 +704,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 		if (swap)
 		{
+			// Re-roll the follower character templates
 			Satisfactory = false;
 			Tries = 0;
 			While (!Satisfactory && Tries < 12)
@@ -705,17 +722,17 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					if (CurrentCharacterTemplate.bIsTurret)
 						continue;
 
-					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower (SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, InStr(EncounterName,"ADVx") == -1, InStr(EncounterName,"Alien") == -1 && InStr(EncounterName,"ALNx") == -1, InStr(EncounterName,"TER") != -1);
+					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
 				}
 				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
 				// Let's look over our outcome and see if it's any better
-				if ((PodSize == 4 || PodSize == 5) && CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
+				if ((PodSize == 4 || PodSize == 5) && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
 				{
 					Tries += 1;
 				}
 				else
 				{
-					if (PodSize >= 6 && CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
+					if (PodSize >= 6 && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
 					{
 						Tries += 1;
 					}
@@ -732,10 +749,85 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			}
 		}
 	}
+
 	return;
 }
 
-static function int CountMembers (name CountItem, array<name> ArrayToScan)
+static function name GetLeaderSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+{
+	return GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, true);
+}
+
+static function name GetFollowerSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+{
+	return GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, false);
+}
+	
+static function name GetSpawnDistributionList(
+	name EncounterName,
+	XComGameState_MissionSite MissionState,
+	int ForceLevel,
+	out array<SpawnDistributionListEntry> SpawnList,
+	bool IsLeaderList)
+{
+	local SpawnDistributionList CurrentList;
+	local SpawnDistributionListEntry CurrentListEntry;
+	local name SpawnListID;
+	local int idx;
+
+	idx = class'XComTacticalMissionManager'.default.ConfigurableEncounters.Find('EncounterID', EncounterName);
+	if (IsLeaderList)
+	{
+		if (class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterLeaderSpawnList != '')
+		{
+			SpawnListID = class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterLeaderSpawnList;
+		}
+	}
+	else
+	{
+		if (class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterFollowerSpawnList != '')
+		{
+			SpawnListID = class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterFollowerSpawnList;
+		}
+	}
+
+	// LWOTC TODO: Support SitRep overrides
+
+	// Fall back to using the schedule's default spawn distribution list
+	if (SpawnListID == '')
+	{
+		idx = class'XComTacticalMissionManager'.default.MissionSchedules.Find('ScheduleID', MissionState.SelectedMissionData.SelectedMissionScheduleName);
+		if (IsLeaderList)
+		{
+			SpawnListID = class'XComTacticalMissionManager'.default.MissionSchedules[idx].DefaultEncounterLeaderSpawnList;
+		}
+		else
+		{
+			SpawnListID = class'XComTacticalMissionManager'.default.MissionSchedules[idx].DefaultEncounterFollowerSpawnList;
+		}
+	}
+
+	`LWTrace("Using spawn distribution list " $ SpawnListID);
+	
+	// Build a merged list of all spawn distribution list entries that satisfy the selected
+	// list ID and force level.
+	foreach class'XComTacticalMissionManager'.default.SpawnDistributionLists(CurrentList)
+	{
+		if (CurrentList.ListID == SpawnListID)
+		{
+			foreach CurrentList.SpawnDistribution(CurrentListEntry)
+			{
+				if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
+				{
+					`LWTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+					SpawnList.AddItem(CurrentListEntry);
+				}
+			}
+		}
+	}
+}
+
+static function int CountMembers(name CountItem, array<name> ArrayToScan)
 {
 	local int idx, k;
 
@@ -750,11 +842,12 @@ static function int CountMembers (name CountItem, array<name> ArrayToScan)
 	return k;
 }
 
-static function name FindMostCommonMember (array<name>ArrayToScan)
+static function name FindMostCommonMember(array<name> ArrayToScan)
 {
 	local int idx, highest, highestidx;
 	local array<int> kount;
 
+	highestidx = 1; // Start with first follower rather than the leader
 	kount.length = 0;
 	for (idx = 0; idx < ArrayToScan.Length; idx++)
 	{
@@ -772,8 +865,37 @@ static function name FindMostCommonMember (array<name>ArrayToScan)
 	return ArrayToScan[highestidx];
 }
 
+static function SpawnDistributionListEntry GetCharacterSpawnEntry(out array<SpawnDistributionListEntry> SpawnList, X2CharacterTemplate CharacterTemplate, int ForceLevel)
+{
+	local SpawnDistributionListEntry SpawnEntry, NullEntry;
 
-static function name SelectNewPodLeader (PodSpawnInfo SpawnInfo, int ForceLevel, bool AlienAllowed, bool AdventAllowed, bool TerrorAllowed)
+	foreach SpawnList(SpawnEntry)
+	{
+		if (SpawnEntry.Template == CharacterTemplate.DataName && ForceLevel >= SpawnEntry.MinForceLevel && ForceLevel <= SpawnEntry.MaxForceLevel)
+		{
+			return SpawnEntry;
+		}
+	}
+
+	return NullEntry;
+}
+
+static function float GetCharacterSpawnWeight(out array<SpawnDistributionListEntry> SpawnList, X2CharacterTemplate CharacterTemplate, int ForceLevel)
+{
+	local SpawnDistributionListEntry SpawnEntry;
+
+	SpawnEntry = GetCharacterSpawnEntry(SpawnList, CharacterTemplate, ForceLevel);
+	if (SpawnEntry.Template != '')
+	{
+		return SpawnEntry.SpawnWeight;
+	}
+	else
+	{
+		return 0.0;
+	}
+}
+
+static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
 {
 	local X2CharacterTemplateManager CharacterTemplateMgr;
 	local X2DataTemplate Template;
@@ -784,7 +906,7 @@ static function name SelectNewPodLeader (PodSpawnInfo SpawnInfo, int ForceLevel,
 	local int k;
 	local XComGameState_HeadquartersXCom XCOMHQ;
 
-	`LWTRACE ("Initiating SelectNewPodLeader" @ ForceLevel @ AlienAllowed @ AdventAllowed @ TerrorAllowed);
+	`LWTRACE ("Initiating SelectNewPodLeader" @ ForceLevel);
 
 	PossibleChars.length = 0;
 	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
@@ -799,35 +921,17 @@ static function name SelectNewPodLeader (PodSpawnInfo SpawnInfo, int ForceLevel,
 			continue;
 		if (CharacterTemplate.bIsTurret)
 			continue;
-		if (!AlienAllowed && CharacterTemplate.bIsAlien)
-			continue;
-		if (!AdventAllowed && CharacterTemplate.bIsAdvent)
-			continue;
 		if (CharacterTemplate.DataName == 'Cyberus' && XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed)
 			continue;
 		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 			continue;
 
-		if (!TerrorAllowed)
-		{
-			for (k = 0; k < class'XComTacticalMissionManager'.default.InclusionExclusionLists.length; k++)
-			{
-				if (class'XComTacticalMissionManager'.default.InclusionExclusionLists[k].ListID == 'NoTerror_LW')
-				{
-					RestrictedChars = class'XComTacticalMissionManager'.default.InclusionExclusionLists[k].TemplateName;
-				}
-			}
-			if (RestrictedChars.Find(CharacterTemplate.DataName) != -1)
-			{
-				continue;
-			}
-		}
-		TestWeight = GetLeaderSpawnWeight(CharacterTemplate, ForceLevel);
+		TestWeight = GetCharacterSpawnWeight(SpawnList, CharacterTemplate, ForceLevel);
 		// this is a valid character type, so store off data for later random selection
 		if (TestWeight > 0.0)
 		{
-			PossibleChars.AddItem (CharacterTemplate.DataName);
-			PossibleWeights.AddItem (TestWeight);
+			PossibleChars.AddItem(CharacterTemplate.DataName);
+			PossibleWeights.AddItem(TestWeight);
 			TotalWeight += TestWeight;
 		}
 	}
@@ -850,35 +954,22 @@ static function name SelectNewPodLeader (PodSpawnInfo SpawnInfo, int ForceLevel,
 	return PossibleChars[PossibleChars.length - 1];
 }
 
-static function float GetLeaderSpawnWeight(X2CharacterTemplate CharacterTemplate, int ForceLevel)
-{
-	local int k;
-	local float ReturnWeight;
-	for (k = 0; k < CharacterTemplate.default.LeaderLevelSpawnWeights.length; k++)
-	{
-		if (ForceLevel >= CharacterTemplate.default.LeaderLevelSpawnWeights[k].MinForceLevel && ForceLevel <= CharacterTemplate.default.LeaderLevelSpawnWeights[k].MaxForceLevel && CharacterTemplate.default.LeaderLevelSpawnWeights[k].SpawnWeight > 0)
-		{
-			ReturnWeight += CharacterTemplate.default.LeaderLevelSpawnWeights[k].SpawnWeight;
-		}
-	}
-	return ReturnWeight;
-}
-
-static function name SelectRandomPodFollower (PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, bool AlienAllowed, bool AdventAllowed, bool TerrorAllowed)
+static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
 {
 	local X2CharacterTemplateManager CharacterTemplateMgr;
 	local X2DataTemplate Template;
 	local X2CharacterTemplate CharacterTemplate;
+	local SpawnDistributionListEntry SpawnEntry;
 	local array<name> PossibleChars, RestrictedChars;
 	local array<float> PossibleWeights;
 	local float TotalWeight, TestWeight, RandomWeight;
 	local int k;
 	local XComGameState_HeadquartersXCom XCOMHQ;
 
-	PossibleChars.length = 0;
+	PossibleChars.Length = 0;
 	//`LWTRACE ("Initiating SelectRandomPodFollower" @ ForceLevel @ AlienAllowed @ AdventAllowed @ TerrorAllowed);
 	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
-	foreach CharacterTemplateMgr.IterateTemplates (Template, None)
+	foreach CharacterTemplateMgr.IterateTemplates(Template, None)
 	{
 		CharacterTemplate = X2CharacterTemplate(Template);
 		if (CharacterTemplate == none)
@@ -889,27 +980,12 @@ static function name SelectRandomPodFollower (PodSpawnInfo SpawnInfo, array<name
 			continue;
 		if (SupportedFollowers.Find(CharacterTemplate.DataName) == -1)
 			continue;
-		if (!AlienAllowed && CharacterTemplate.bIsAlien)
-			continue;
-		if (!AdventAllowed && CharacterTemplate.bIsAdvent)
+
+		SpawnEntry = GetCharacterSpawnEntry(SpawnList, CharacterTemplate, ForceLevel);
+		if (SpawnEntry.Template == '')
 			continue;
 
-		if (!TerrorAllowed)
-		{
-			for (k = 0; k < class'XComTacticalMissionManager'.default.InclusionExclusionLists.length; k++)
-			{
-				if (class'XComTacticalMissionManager'.default.InclusionExclusionLists[k].ListID == 'NoTerror_LW')
-				{
-					RestrictedChars = class'XComTacticalMissionManager'.default.InclusionExclusionLists[k].TemplateName;
-				}
-			}
-			if (RestrictedChars.Find(CharacterTemplate.DataName) != -1)
-			{
-				continue;
-			}
-		}
-
-		if (CountMembers (CharacterTemplate.DataName, SpawnInfo.SelectedCharacterTemplateNames) >= CharacterTemplate.default.MaxCharactersPerGroup)
+		if (CountMembers(CharacterTemplate.DataName, SpawnInfo.SelectedCharacterTemplateNames) >= SpawnEntry.MaxCharactersPerGroup)
 			continue;
 
 		XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
@@ -922,7 +998,7 @@ static function name SelectRandomPodFollower (PodSpawnInfo SpawnInfo, array<name
 		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 			continue;
 
-		TestWeight = GetCharacterSpawnWeight(CharacterTemplate, ForceLevel);
+		TestWeight = SpawnEntry.SpawnWeight;
 		if (TestWeight > 0.0)
 		{
 			// this is a valid character type, so store off data for later random selection
@@ -948,24 +1024,9 @@ static function name SelectRandomPodFollower (PodSpawnInfo SpawnInfo, array<name
 	return PossibleChars[PossibleChars.length - 1];
 }
 
-static function float GetCharacterSpawnWeight(X2CharacterTemplate CharacterTemplate, int ForceLevel)
-{
-	local int k;
-	local float ReturnWeight;
-	for (k = 0; k < CharacterTemplate.default.FollowerLevelSpawnWeights.length; k++)
-	{
-		if (ForceLevel >= CharacterTemplate.default.FollowerLevelSpawnWeights[k].MinForceLevel && ForceLevel <= CharacterTemplate.default.FollowerLevelSpawnWeights[k].MaxForceLevel  && CharacterTemplate.default.FollowerLevelSpawnWeights[k].SpawnWeight > 0)
-		{
-			ReturnWeight += CharacterTemplate.default.FollowerLevelSpawnWeights[k].SpawnWeight;
-		}
-	}
-	return ReturnWeight;
-}
-
 static function PostReinforcementCreation(out name EncounterName, out PodSpawnInfo Encounter, int ForceLevel, int AlertLevel, optional XComGameState_BaseObject SourceObject, optional XComGameState_BaseObject ReinforcementState)
 {
 }
-*/
 
 static event OnExitPostMissionSequence()
 {
