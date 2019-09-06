@@ -139,6 +139,9 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local X2StrategyElementTemplateManager	StratMgr;
 	local MissionDefinition MissionDef;
+	local XComGameState_LWOutpostManager OutpostManager;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWOutpost OutpostState;
 
 	//this method can handle case where RegionalAI components already exist
 	class'XComGameState_WorldRegion_LWStrategyAI'.static.InitializeRegionalAIs();
@@ -236,6 +239,17 @@ static event OnLoadedSavedGameToStrategy()
 		NewGameState.AddStateObject(ResistanceHQ);
 		ResistanceHQ.SoldierClassDeck.Length = 0; // reset class deck for selecting reward soldiers
 		ResistanceHQ.BuildSoldierClassDeck();
+	}
+	
+	// If there are rebels that have already ranked up, make sure they have some abilities
+	OutpostManager = `LWOUTPOSTMGR;
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		if (RegionState.HaveMadeContact())
+		{
+			OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
+			OutpostState.UpdateRebelAbilities(NewGameState);
+		}
 	}
 
 	if (NewGameState.GetNumGameStateObjects() > 0)
@@ -2220,15 +2234,15 @@ function XComGameState_WorldRegion GetRandomContactedRegion()
 
 	History = `XCOMHISTORY;
 
-		foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
 	{
-			AllRegions.AddItem(RegionState);
+		AllRegions.AddItem(RegionState);
 
-			if(RegionState.ResistanceLevel >= eResLevel_Contact)
-			{
-				ValidRegions.AddItem(RegionState);
-			}
+		if(RegionState.ResistanceLevel >= eResLevel_Contact)
+		{
+			ValidRegions.AddItem(RegionState);
 		}
+	}
 
 	if(ValidRegions.Length > 0)
 	{
