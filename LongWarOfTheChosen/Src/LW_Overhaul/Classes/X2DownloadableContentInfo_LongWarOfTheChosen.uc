@@ -1054,17 +1054,7 @@ static function CleanupObsoleteTacticalGamestate()
 	ArchiveState = History.GetGameStateFromHistory(LastArchiveStateIndex, eReturnType_Copy, false);
 	GameInfo = `XCOMGAME;
 	idx = 0;
-	/* WOTC TODO: WOTC no longer seems to have TransientTacticalClassNames, so not sure whether
-	   we need to do something here or not.
-	foreach ArchiveState.IterateByClassType(class'XComGameState_BaseObject', BaseObject)
-	{
-		if (GameInfo.TransientTacticalClassNames.Find( BaseObject.Class.Name ) != -1)
-		{
-			NewGameState.RemoveStateObject(BaseObject.ObjectID);
-			idx++;
-		}
-	}
-	*/
+
 	`LWTRACE("REMOVED " $ idx $ " tactical transient gamestates when loading into strategy");
 	if (default.ShouldCleanupObsoleteUnits)
 	{
