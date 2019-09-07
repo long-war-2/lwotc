@@ -1,3 +1,9 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Effect_ApplyFireToWorld_Limited.uc
+//  AUTHOR:  Amineri / Pavonis Interactive
+//  PURPOSE: Similar to X2Effect_ApplyFireToWorld, except fire damage is applied to the world over time, instead of immediately
+//---------------------------------------------------------------------------------------
+
 class X2Effect_ApplyFireToWorld_Limited extends X2Effect_ApplyFireToWorld;
 
 static simulated function SharedApplyFireToTiles( Name EffectName, X2Effect_ApplyFireToWorld FireEffect, XComGameState NewGameState, array<TilePosPair> OutTiles, XComGameState_Unit SourceStateObject, int ForceIntensity = -1, optional bool UseFireChance = false )

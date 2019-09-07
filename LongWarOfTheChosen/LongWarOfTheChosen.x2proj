@@ -1057,6 +1057,9 @@
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Debug.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ChosenEvents.uc" />
     <Content Include="Src\LW_Tuple\Classes\LWTuple.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2AbilityMultiTarget_Cone_LWFlamethrower.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Action_Fire_Flamethrower_LW.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_Cone_Flamethrower_LW.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
