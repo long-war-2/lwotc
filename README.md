@@ -5,6 +5,9 @@ of the Chosen (WOTC) expansion. The scope is limited to getting the base LW2 exp
 working, but not necessarily balanced. If WOTC features severely unbalance the game and
 can be removed, they will be.
 
+## Testing the mod
+
+If you just want to playtest the mod and not work on the code see [Play testing Long War 2 [WOTC]](https://github.com/long-war-2/lwotc/wiki/Play-testing-Long-War-2-%5BWOTC%5D)
 ## Building and running the mod
 
 Building and running this mod requires several steps:
