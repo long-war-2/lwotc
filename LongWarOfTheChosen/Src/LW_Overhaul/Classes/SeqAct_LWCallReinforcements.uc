@@ -127,11 +127,10 @@ function SpawnReinforcements(int ReinforceIndex, XComGameState NewGameState)
 				IdealSpawnTilesOffset = default.DEFEND_SPAWN_DISTANCE_TILES_BEFORE_ZONE + `SYNC_RAND(default.DEFEND_SPAWN_DISTANCE_TILES_BEFORE_ZONE_RAND);
 			}
 		}
-		
+
 		// LWOTC: It appears that the second argument to InitiateReinforcements should
-		// be 1, not 0, in order to start reinforcements at *end* of XCOM's first turn
-		// rather than before it.
-		class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, 1, AlterSpawn, Location, IdealSpawnTilesOffset, NewGameState, true);
+		// be -1, not 0, in order to use the reinforcement countdown of the encounter.
+		class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, AlterSpawn, Location, IdealSpawnTilesOffset, NewGameState, true,,,,,,, true);
 	}
 	else
 	{
@@ -173,22 +172,20 @@ function SpawnReinforcements(int ReinforceIndex, XComGameState NewGameState)
 			if (AlterSpawn)
 			{
 				// LWOTC: It appears that the second argument to InitiateReinforcements should
-				// be 1, not 0, in order to start reinforcements at *end* of XCOM's first turn
-				// rather than before it.
+				// be -1, not 0, in order to use the reinforcement countdown of the encounter.
   				IdealSpawnTilesOffset = `SYNC_RAND(default.REINF_SPAWN_DISTANCE_FROM_OBJECTIVE_WHEN_SQUAD_IS_CONCEALED);
-				class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, 1, AlterSpawn, Location, IdealSpawnTilesOffset, NewGameState, true);
+				class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, AlterSpawn, Location, IdealSpawnTilesOffset, NewGameState, true,,,,,,, true);
 			}
 			else
 			{
-				class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, 1, false, Location, IdealSpawnTilesOffset, NewGameState, true);
+				class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, false, Location, IdealSpawnTilesOffset, NewGameState, true,,,,,,, true);
 			}
 		}
 		else
 		{
-				// LWOTC: It appears that the second argument to InitiateReinforcements should
-				// be 1, not 0, in order to start reinforcements at *end* of XCOM's first turn
-				// rather than before it.
-			class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, 1, false, Location, IdealSpawnTilesOffset, NewGameState, true);
+			// LWOTC: It appears that the second argument to InitiateReinforcements should
+			// be -1, not 0, in order to use the reinforcement countdown of the encounter.
+			class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, false, Location, IdealSpawnTilesOffset, NewGameState, true,,,,,,, true);
 		}
 	}
 }
