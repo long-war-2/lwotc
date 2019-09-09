@@ -2660,6 +2660,12 @@ function RewireTechTree(X2StrategyElementTemplate Template, int Difficulty)
 	TechTemplate=X2TechTemplate(Template);
 	If (TechTemplate != none)
 	{
+		// Disable breakthrough projects for now
+		if (TechTemplate.bBreakthrough)
+		{
+			TechTemplate.Requirements.RequiredScienceScore = 99999;
+		}
+
 		//required by objective rework
 		if (TechTemplate.DataName == 'ResistanceCommunications')
 		{
