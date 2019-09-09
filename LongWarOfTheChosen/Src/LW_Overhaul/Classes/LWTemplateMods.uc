@@ -947,18 +947,18 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	}
 
 	// Disables the effect so they get full turns on alien turn
-	if (Template.DataName == 'AlienRulerInitialState')
-	{
-		Template.AbilityTargetEffects.length = 0;
-		DamageImmunity = new class'X2Effect_DamageImmunity';
-		DamageImmunity.BuildPersistentEffect(1, true, true, true);
-		DamageImmunity.ImmuneTypes.AddItem('Unconscious');
-		DamageImmunity.EffectName = 'RulerImmunity';
-		Template.AddTargetEffect(DamageImmunity);
+	// if (Template.DataName == 'AlienRulerInitialState')
+	// {
+	// 	Template.AbilityTargetEffects.length = 0;
+	// 	DamageImmunity = new class'X2Effect_DamageImmunity';
+	// 	DamageImmunity.BuildPersistentEffect(1, true, true, true);
+	// 	DamageImmunity.ImmuneTypes.AddItem('Unconscious');
+	// 	DamageImmunity.EffectName = 'RulerImmunity';
+	// 	Template.AddTargetEffect(DamageImmunity);
 
-		//Requires listeners set up so that "RULER REACTION" overlay gets removed
-		Template.AddTargetEffect(new class'X2Effect_DLC2_HideSpecialTurnOverlay');
-	}
+	// 	//Requires listeners set up so that "RULER REACTION" overlay gets removed
+	// 	Template.AddTargetEffect(new class'X2Effect_DLC2_HideSpecialTurnOverlay');
+	// }
 
 	// Use alternate DFA effect so it's compatible with Double Tap 2, and add additional ability of canceling long-range sniper rifle penalty
 	if (Template.DataName == 'DeathFromAbove')
@@ -975,16 +975,16 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	}
 
 	// and partial turns only sometimes
-	if (Template.DataName == 'AlienRulerActionSystem')
-	{
-		for (k = 0; k < Template.AbilityTargetEffects.length; k++)
-		{
-			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_DLC_2RulerActionPoint'))
-			{
-				Template.AbilityTargetEffects[k].ApplyChance = default.ALIEN_RULER_ACTION_BONUS_APPLY_CHANCE;
-			}
-		}
-	}
+	// if (Template.DataName == 'AlienRulerActionSystem')
+	// {
+	// 	for (k = 0; k < Template.AbilityTargetEffects.length; k++)
+	// 	{
+	// 		if (Template.AbilityTargetEffects[k].IsA ('X2Effect_DLC_2RulerActionPoint'))
+	// 		{
+	// 			Template.AbilityTargetEffects[k].ApplyChance = default.ALIEN_RULER_ACTION_BONUS_APPLY_CHANCE;
+	// 		}
+	// 	}
+	// }
 
 	if (Template.DataName == 'Insanity')
 	{
@@ -1939,7 +1939,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'ViperKing':
 		case 'BerserkerQueen':
 		case 'ArchonKing':
-			Template.bCanTickEffectsEveryAction = false;
+			// LWOTC: Kaen and co. want ticks every action to apply to Rulers
+			// as well.
+			// Template.bCanTickEffectsEveryAction = false;
 			break;
 		case 'LostTowersSpark':
 		case 'SparkSoldier':
