@@ -3359,6 +3359,7 @@ function ModifyDarkEvents (X2StrategyElementTemplate Template, int Difficulty)
 			case 'DarkEvent_CollateralDamage':
 			case 'DarkEvent_StilettoRounds':
 			case 'DarkEvent_SignalJamming':
+			case 'DarkEvent_GoneToGround':
 				// Remove these from play
 				DarkEventTemplate.StartingWeight = 0;
 				DarkEventTemplate.MinWeight = 0;
