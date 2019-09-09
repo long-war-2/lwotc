@@ -317,6 +317,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateModifyStaffSlotsTemplate());
 	Templates.AddItem(CreateModifyRewardsTemplate());
 	Templates.AddItem(CreateModifyStrategyObjectivesTemplate());
+	Templates.AddItem(CreateModifyCovertActionsTemplate());
 	`Log("    Done");
 	return Templates;
 }
@@ -336,6 +337,15 @@ static function X2LWTemplateModTemplate CreateModifyStrategyObjectivesTemplate()
 	local X2LWTemplateModTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2LWObjectivesModTemplate', Template, 'UpdateObjectives');
+	return Template;
+}
+
+// Update existing strategic objective templates
+static function X2LWTemplateModTemplate CreateModifyCovertActionsTemplate()
+{
+	local X2LWTemplateModTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2LWCovertActionsModTemplate', Template, 'UpdateCovertActions');
 	return Template;
 }
 
