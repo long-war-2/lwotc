@@ -43,6 +43,7 @@ static function X2DataTemplate CreatePlatedReaperArmor()
 
 	Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
 	Template.Requirements.RequiredEngineeringScore = 10;
+	Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_PLATED_HEALTH_BONUS, true);
 
@@ -82,6 +83,7 @@ static function X2DataTemplate CreatePoweredReaperArmor()
 
 	Template.Requirements.RequiredTechs.AddItem('PoweredArmor');
 	Template.Requirements.RequiredEngineeringScore = 30;
+	Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_HEALTH_BONUS, true);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_MITIGATION_AMOUNT);
@@ -127,6 +129,7 @@ static function X2DataTemplate CreatePlatedSkirmisherArmor()
 
 	Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
 	Template.Requirements.RequiredEngineeringScore = 10;
+	Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_PLATED_HEALTH_BONUS, true);
 
@@ -166,6 +169,7 @@ static function X2DataTemplate CreatePoweredSkirmisherArmor()
 
 	Template.Requirements.RequiredTechs.AddItem('PoweredArmor');
 	Template.Requirements.RequiredEngineeringScore = 30;
+	Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_HEALTH_BONUS, true);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_MITIGATION_AMOUNT);
@@ -211,6 +215,7 @@ static function X2DataTemplate CreatePlatedTemplarArmor()
 
 	Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
 	Template.Requirements.RequiredEngineeringScore = 10;
+	Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_PLATED_HEALTH_BONUS, true);
 
@@ -250,6 +255,7 @@ static function X2DataTemplate CreatePoweredTemplarArmor()
 
 	Template.Requirements.RequiredTechs.AddItem('PoweredArmor');
 	Template.Requirements.RequiredEngineeringScore = 30;
+	Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_HEALTH_BONUS, true);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_MITIGATION_AMOUNT);
