@@ -198,7 +198,7 @@ function CheckX2ProjIncludes([string] $modProjectRoot, [string] $modName, [strin
             $isDir = $true
         }
 
-        If (!($projContent | Select-String -Pattern $_.Name)) {
+        If (!($projContent | Select-String -Pattern $_.Name) -AND !($_.Name -like "*ModShaderCache*")) {
             $missingEntries.Add($relative)
             if($isDir) {
                 $patchedFolders.Add($relative)
