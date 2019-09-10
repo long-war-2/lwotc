@@ -26,10 +26,12 @@ event OnInit(UIScreen Screen)
 
 	UIShellDifficulty(Screen).ForceTutorialOff();
 
-	if (UIShellDifficulty(Screen) != none)
-	{
-		AddLogoAndCredits(Screen);
-	}
+	// Disable credits for now. LWOTC TODO: Consider adding a button or something rather than
+	// overlapping screen real estate.
+	// if (UIShellDifficulty(Screen) != none)
+	// {
+	// 	AddLogoAndCredits(Screen);
+	// }
 }
 
 function AddLogoAndCredits(UIScreen Screen)
