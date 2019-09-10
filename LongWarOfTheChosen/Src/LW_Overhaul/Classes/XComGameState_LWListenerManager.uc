@@ -105,9 +105,6 @@ function InitListeners()
 
 	// initial psi training time override (this DOES require a change to the highlander)
 	// EventMgr.RegisterForEvent(ThisObj, 'PsiTrainingBegun', OnOverrideInitialPsiTrainingTime, ELD_Immediate,,, true);
-
-	//Help for some busted objective triggers (may not be needed?)
-	// EventMgr.RegisterForEvent(ThisObj, 'OnGeoscapeEntry', OnGeoscapeEntry, ELD_Immediate,,, true);
 }
 
 function EventListenerReturn OnCheckForPsiPromotion(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
@@ -716,42 +713,4 @@ function StripWeaponUpgradesFromItem(XComGameState_Item ItemState, XComGameState
 	//return ELR_NoInterrupt;
 //}
 //
-//// this function cleans up some weird objective states by firing specific events
-//function EventListenerReturn OnGeoscapeEntry(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-//{
-	//local XComGameState_MissionSite					MissionState;
-//
-	//if (`XCOMHQ.GetObjectiveStatus('T2_M1_S1_ResearchResistanceComms') <= eObjectiveState_InProgress)
-	//{
-		//if (`XCOMHQ.IsTechResearched ('ResistanceCommunications'))
-		//{
-			//foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_MissionSite', MissionState)
-			//{
-				//if (MissionState.GetMissionSource().DataName == 'MissionSource_Blacksite')
-				//{
-					//`XEVENTMGR.TriggerEvent('ResearchCompleted',,, NewGameState);
-					//break;
-				//}
-			//}
-		//}
-	//}
-//
-	//if (`XCOMHQ.GetObjectiveStatus('T2_M1_S2_MakeContactWithBlacksiteRegion') <= eObjectiveState_InProgress)
-	//{
-		//foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_MissionSite', MissionState)
-		//{
-			//if (MissionState.GetMissionSource().DataName == 'MissionSource_Blacksite')
-			//{
-				//if (MissionState.GetWorldRegion().ResistanceLevel >= eResLevel_Contact)
-				//{
-					//`XEVENTMGR.TriggerEvent('OnBlacksiteContacted',,, NewGameState);
-					//break;
-				//}
-			//}
-		//}
-	//}
-//
-	//return ELR_NoInterrupt;
-//}
-
 // TechState, TechState

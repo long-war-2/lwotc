@@ -51,6 +51,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'GeoscapeEntryListeners');
 	Template.AddCHEvent('OnGeoscapeEntry', StopFirstPOISpawn, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OnGeoscapeEntry', ShowBlackMarket, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OnGeoscapeEntry', FixBrokenObjectives, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('BlackMarketGoodsReset', OnBlackMarketGoodsReset, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('RegionBuiltOutpost', OnRegionBuiltOutpost, ELD_OnStateSubmitted, GetListenerPriority());
 
@@ -334,6 +335,44 @@ static function EventListenerReturn StopFirstPOISpawn(Object EventData, Object E
 	ResHQ.bFirstPOISpawned = true;
 	
 	return ELR_NoInterrupt;	
+}
+
+// This function cleans up some weird objective states by firing specific events
+static function EventListenerReturn FixBrokenObjectives(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComGameState_MissionSite MissionState;
+
+	if (`XCOMHQ.GetObjectiveStatus('T2_M1_S1_ResearchResistanceComms') <= eObjectiveState_InProgress)
+	{
+		if (`XCOMHQ.IsTechResearched ('ResistanceCommunications'))
+		{
+			foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+			{
+				if (MissionState.GetMissionSource().DataName == 'MissionSource_Blacksite')
+				{
+					`XEVENTMGR.TriggerEvent('ResearchCompleted',,, NewGameState);
+					break;
+				}
+			}
+		}
+	}
+
+	if (`XCOMHQ.GetObjectiveStatus('T2_M1_S2_MakeContactWithBlacksiteRegion') <= eObjectiveState_InProgress)
+	{
+		foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+		{
+			if (MissionState.GetMissionSource().DataName == 'MissionSource_Blacksite')
+			{
+				if (MissionState.GetWorldRegion().ResistanceLevel >= eResLevel_Contact)
+				{
+					`XEVENTMGR.TriggerEvent('OnBlacksiteContacted',,, NewGameState);
+					break;
+				}
+			}
+		}
+	}
+
+	return ELR_NoInterrupt;
 }
 
 static function EventListenerReturn ShowBlackMarket(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
