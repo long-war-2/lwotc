@@ -15,7 +15,9 @@ m_strMissionDifficulty_start="BASELINE ENEMY ACTIVITY"
 
 [ProtectRegionEarly X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion1Activity"
-ActivityObjectives[0]="Find a Lead"
+; LWOTC Needs Translation
+ActivityObjectives[0]="Start liberating the region"
+; End Translation
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
