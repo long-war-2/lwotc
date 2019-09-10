@@ -4737,13 +4737,6 @@ RankIcons[7]= "UILibrary_Common.psirank_magus"
 RankIcons[8]= "UILibrary_LW_PerkPack.psirank_Master"
 
 
-[Shadow X2AbilityTemplate]
-LocFriendlyName="Shadow"
-LocLongDescription="Grants the soldier Shadow, an advanced form of concealment where taking actions only has a chance to reveal the soldier. Reapers take longer to infiltrate"
-LocHelpText="Soldier enters Shadow, an advanced form of concealment."
-LocPromotionPopupText="<Bullet/> Chance to be revealed from Shadow increases as the soldier performs more actions.<br/><Bullet/> Soldier has increased mobility while in Shadow.<br/><Bullet/> Enemy detection radii are smaller to soldiers in Shadow.<br/>"
-
-
 [Retribution X2AbilityTemplate]
 LocFriendlyName="Retribution"
 LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
@@ -4762,51 +4755,32 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 
 [Battlemaster X2AbilityTemplate]
 LocFriendlyName="Battlemaster"
-LocLongDescription="Gives Skirmishers Suppression, Damn Good Ground, and Grapple plus gives a grenade only slot."
-LocHelpText="Gives Skirmishers Suppression, Damn Good Ground, and Grapple plus gives a grenade only slot"
+LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 more aim from high ground, and have significantly lower infiltration times. "
+LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 more aim from high ground, and have significantly lower infiltration times. "
 LocPromotionPopupText="<Bullet/>Skirmisher is the best soldier in ADVENT and XCOM as a whole, and can handle all the company alone.<br/><Bullet/> "
 
-
-[Light_Shadow X2AbilityTemplate]
-LocFriendlyName="Training Shadow"
-LocLongDescription="This Reaper is still undergoing training in stealth and therefor can only do certain actions without breaking concealmeant eg. Throwing, Shooting Claymores and Remote Start. Shooting enemies will break concealment."
-LocHelpText="Soldier enters Shadow, an advanced form of concealment."
-LocPromotionPopupText="<Bullet/> Chance to be revealed from Shadow increases as the soldier performs more actions.<br/><Bullet/> Reaper will not have increased mobility while in Shadow.<br/><Bullet/> Enemy detection radii are reduced by 30% in Shadow.<br/>"
 
 
 
 [LW2WotC_Reckoning X2AbilityTemplate]
 LocFriendlyName="Reckoning"
-LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack.(Including Coup de Grâce)"
-LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack.(Including Coup de Grâce)"
+LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack."
+LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack."
 LocFlyOverText="Reckoning"
 LocPromotionPopupText="<Bullet/> You can trigger the Slash ability by placing the movement cursor over an enemy.<br/><Bullet/> A Skirmisher can perform a \"Dash\" move, using both actions to move, and still trigger a Charge against an adjacent enemy.<br/><Bullet/> Charge has a <Ability:SelfCooldown/> turn cooldown.<br/>"
 
 [SkirmisherFleche X2AbilityTemplate]
-LocFriendlyName="Charge(Reckoning)"
-LocLongDescription="Attack any enemy within movement range with your <Ability:SecondaryWeaponName/> does not cost an action."
-LocHelpText="Attack an enemy within movement range with your <Ability:SecondaryWeaponName/> does not cost an action."
+LocFriendlyName="Skirmisher Fleche"
+LocLongDescription="Attack any enemy within movement range with your <Ability:SecondaryWeaponName/>."
+LocHelpText="Attack an enemy within movement range with your <Ability:SecondaryWeaponName/>."
 LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy.<br/><Bullet/> A Skirmisher can perform a \"Dash\" move, using both actions to move, and still trigger a Charge against an adjacent enemy.<br/><Bullet/> Charge has a <Ability:SelfCooldown/> turn cooldown.<br/>"
 
 [SkirmisherSlash X2AbilityTemplate]
-LocFriendlyName="Slash(Reckoning)"
-LocFlyOverText="Slash(Reckoning)"
-LocLongDescription="Attack an adjacent target with your Ripjack does not cost an action.(Cooldown: 2)"
-LocHelpText="Attack an adjacent target with your Ripjack does not cost an action.(Cooldown: 2)"
+LocFriendlyName="Skirmisher Slash"
+LocFlyOverText="Skirmisher Slash"
+LocLongDescription="Attack an adjacent target with your Ripjack does not cost an action.(Cooldown: 3)"
+LocHelpText="Attack an adjacent target with your Ripjack does not cost an action.(Cooldown: 3)"
 LocPromotionPopupText="<Bullet/> Attack an adjacent target with your Ripjack does not cost an action.<br/><Bullet/> Slash(Reckoning) can combo well with other Skirmisher abilities, as it does not prevent the use of other abilities in the same turn.<br/>"
-
-
-[SkirmisherSecondGrapple X2AbilityTemplate]
-LocFriendlyName="Web Shooter"
-LocFlyOverText="Web Shooter"
-LocHelpText="Skirmisher can deploy another Grapple."
-LocLongDescription="Skirmisher can deploy another Grapple."
-LocPromotionPopupText="<Bullet/> Web Shooter allows the Skirmisher to get into position twice without using an action .<br/><Bullet/> Web Shooter has a 3 turn cooldown.<br/>"
-
-[Skirmisher2ndGrapple X2AbilityTemplate]
-LocFriendlyName="Grapple"
-LocHelpText="Deploy a grappling hook to move quickly to an elevated position."
-LocLongDescription="Mounts a Advanced grappling hook and cable on the left arm, permitting rapid elevation change and access to tactically advantageous positions."
 
 
 [SupremeFocus X2AbilityTemplate]
