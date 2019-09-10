@@ -19,16 +19,28 @@ static function array<X2DataTemplate> CreateTemplates()
 
 
 
-static function X2AbilityTemplate Battlemaster() 
+	static function X2AbilityTemplate Battlemaster() 
 {
-	local X2AbilityTemplate             Template;
+	local X2AbilityTemplate             	Template;
+	local X2Effect_DamnGoodGround			AimandDefModifiers;
 
-	Template = PurePassive('Battlemaster',  "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_ManualOverride", , 'eAbilitySource_Standard');
-	Template.AdditionalAbilities.AddItem('SkirmisherGrapple');
-	Template.AdditionalAbilities.AddItem('Suppression');
-	Template.AdditionalAbilities.AddItem('DamnGoodGround');
-
-	return Template;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Battlemaster');
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_ManualOverride";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	AimandDefModifiers = new class 'X2Effect_DamnGoodGround';
+	AimandDefModifiers.BuildPersistentEffect (1, true, true);
+	AimandDefModifiers.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (AimandDefModifiers);
+	Template.bCrossClassEligible = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	
+	return Template;		
 }
 
 

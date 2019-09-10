@@ -3,7 +3,7 @@
 //  ORIGINAL FILE:    X2AbilityCooldown_RunAndGun_LW.uc
 //  ORIGINAL AUTHOR:  Amineri (Pavonis Interactive)
 //---------------------------------------------------------------------------------------
-class X2AbilityCooldown_Grapple extends X2AbilityCooldown config(GameData_SoldierSkills);
+class X2AbilityCooldown_Grapple extends X2AbilityCooldown config(LW_FactionBalance);
 
 // Set up config values so users can edit this
 var config int GRAPPLE_COOLDOWN;
