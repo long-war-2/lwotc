@@ -65,7 +65,7 @@ function AddLogoAndCredits(UIScreen Screen)
 
 	CreditsText	 = Screen.Spawn(class'UITextContainer', Screen);	
 	CreditsText.bAnimateOnInit = false;
-	CreditsText.InitTextContainer( , "", -283+70, 510, 618-70, 258, true, , true);
+	CreditsText.InitTextContainer( , "", 1050, 250, 618-70, 258, true, , true);
 	CreditsText.SetHTMLText(class'UIUtilities_Text'.static.GetColoredText(CreditsString, eUIState_Normal,,"CENTER"));
 	CreditsText.bg.SetAlpha(75);
 

@@ -42,6 +42,7 @@ static function X2DataTemplate CreatePlatedReaperArmor()
 	Template.EquipSound = "StrategyUI_Armor_Equip_Plated";
 
 	Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
+	Template.Requirements.RequiredEngineeringScore = 10;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_PLATED_HEALTH_BONUS, true);
 
@@ -80,6 +81,7 @@ static function X2DataTemplate CreatePoweredReaperArmor()
 	Template.EquipSound = "StrategyUI_Armor_Equip_Powered";
 
 	Template.Requirements.RequiredTechs.AddItem('PoweredArmor');
+	Template.Requirements.RequiredEngineeringScore = 30;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_HEALTH_BONUS, true);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_MITIGATION_AMOUNT);
@@ -124,6 +126,7 @@ static function X2DataTemplate CreatePlatedSkirmisherArmor()
 	Template.EquipSound = "StrategyUI_Armor_Equip_Plated";
 
 	Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
+	Template.Requirements.RequiredEngineeringScore = 10;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_PLATED_HEALTH_BONUS, true);
 
@@ -162,6 +165,7 @@ static function X2DataTemplate CreatePoweredSkirmisherArmor()
 	Template.EquipSound = "StrategyUI_Armor_Equip_Powered";
 
 	Template.Requirements.RequiredTechs.AddItem('PoweredArmor');
+	Template.Requirements.RequiredEngineeringScore = 30;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_HEALTH_BONUS, true);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_MITIGATION_AMOUNT);
@@ -206,6 +210,7 @@ static function X2DataTemplate CreatePlatedTemplarArmor()
 	Template.EquipSound = "StrategyUI_Armor_Equip_Plated";
 
 	Template.Requirements.RequiredTechs.AddItem('PlatedArmor');
+	Template.Requirements.RequiredEngineeringScore = 10;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_PLATED_HEALTH_BONUS, true);
 
@@ -244,6 +249,7 @@ static function X2DataTemplate CreatePoweredTemplarArmor()
 	Template.EquipSound = "StrategyUI_Armor_Equip_Powered";
 
 	Template.Requirements.RequiredTechs.AddItem('PoweredArmor');
+	Template.Requirements.RequiredEngineeringScore = 30;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_HEALTH_BONUS, true);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, class'X2Ability_ItemGrantedAbilitySet'.default.MEDIUM_POWERED_MITIGATION_AMOUNT);
