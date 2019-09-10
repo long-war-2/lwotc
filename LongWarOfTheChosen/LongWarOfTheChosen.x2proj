@@ -70,15 +70,8 @@
     <Folder Include="Localization\PI_Integrated\" />
     <Folder Include="Src\PI_Integrated\" />
     <Folder Include="Src\WallClimbOverride\" />
-<<<<<<< HEAD
     <Folder Include="Src\LW_Tuple\" />
-=======
     <Folder Include="Src\LW_FactionBalance\" />
-<<<<<<< HEAD
-    <Folder Include="Content\robojumperSquadSelect_Integrated\" />
->>>>>>> 56aed72... Faction Unit Rebalance
-=======
->>>>>>> d66b733... Update to pull request
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -1073,7 +1066,6 @@
     <Content Include="Content\UICollection_SupremeFocus.upk" />
     <Content Include="Src\LW_FactionBalance\Classes\X2AbilityCooldown_Grapple.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Ability_Parkour.uc" />
-    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_ParryEdit.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2DownloadableContentInfo_LW_FactionBalance.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DeflectNew.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ParryNew.uc" />
