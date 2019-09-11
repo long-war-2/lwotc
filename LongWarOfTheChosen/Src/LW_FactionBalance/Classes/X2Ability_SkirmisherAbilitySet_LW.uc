@@ -1,4 +1,4 @@
-class X2Ability_SkimisherAbilitySet_LW extends X2Ability config(LW_FactionBalance);
+class X2Ability_SkirmisherAbilitySet_LW extends X2Ability config(LW_FactionBalance);
 
 var config int LW2WotC_RECKONING_COOLDOWN;
 var config int RECKONING_SLASH_COOLDOWN;
