@@ -2593,7 +2593,7 @@ ObjectiveTextPools[3]="Extract all XCOM soldiers"
 ObjectiveTextPools[4]="Jailbreak"
 ObjectiveTextPools[5]="A group of Resistance contacts were rounded up during an ADVENT sweep and are being held in holding cells in the area. ADVENT vehicles are inbound to transfer the rebels to an unknown location, so we have a limited window to break in and get these people out. If we can safely extract them they would be an asset to Resistance operations in this region."
 
-[SmashNGrab_LW X2MissionTemplate]
+[SupplyExtraction_LW X2MissionTemplate]
 DisplayName="Smash and Grab"
 Briefing="Procure ADVENT Supplies"
 PostMissionType="Smash and Grab"
@@ -2601,11 +2601,27 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Secure and extract ADVENT supplies"
 ObjectiveTextPools[1]="Extract all XCOM soldiers"
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="Smash and Grab"
+Briefing="Raid an ADVENT depot"
+PostMissionType="Smash and Grab"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Recover as many resources as possible"
+ObjectiveTextPools[1]="Extract all XCOM soldiers"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Mark and recover ADVENT crates"
 ObjectiveTextPools[1]="Neutralize all enemy targets"
 ObjectiveTextPools[2]="Extract all XCOM soldiers"
 ObjectiveTextPools[3]="OR: Eliminate all remaining hostile targets"
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Acquire ADVENT resources"
+ObjectiveTextPools[1]="Extract ADVENT resources"
+ObjectiveTextPools[2]="Recover and extract additional resources (Optional)"
+ObjectiveTextPools[3]="Extract all XCOM soldiers"
+ObjectiveTextPools[4]="Smash and Grab"
+ObjectiveTextPools[5]="The Resistance has discovered a vulnerable ADVENT storehouse full of valuable supplies and resources. Break in, grab whatever you can, and get out before ADVENT's reinforcements arrive. There will be multiple objective caches on this mission, but soldiers may only carry one resource cache each."
 
 [TroopManeuvers_LW X2MissionTemplate]
 DisplayName="Ambush an ADVENT Troop Column"

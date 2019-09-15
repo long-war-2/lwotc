@@ -4534,7 +4534,7 @@ TacticalText="<Bullet/>サイキック・アンプは、サイキック兵のサ
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="無線中継器"
 
-[SmashNGrab_LW X2MissionTemplate]
+[SupplyExtraction_LW X2MissionTemplate]
 DisplayName="強奪"
 Briefing="アドヴェントの物資を回収する"
 PostMissionType="強奪"
@@ -4542,11 +4542,27 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="アドヴェントの補給物資を確保し回収する"
 ObjectiveTextPools[1]="XCOM兵を全員撤収させる"
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="強奪"
+Briefing="アドヴェントの物資集積地を強襲せよ"
+PostMissionType="強奪"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="可能な限り多くの物資を回収する"
+ObjectiveTextPools[1]="全てのXCOM兵士を回収する"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="アドヴェントのコンテナをマーキングして回収する"
 ObjectiveTextPools[1]="すべての敵を無力化する"
 ObjectiveTextPools[2]="XCOM兵を全員撤収させる"
 ObjectiveTextPools[3]="または：残っている敵をすべて排除する"
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="アドヴェントの物資を獲得する"
+ObjectiveTextPools[1]="アドヴェントの物資を回収する"
+ObjectiveTextPools[2]="さらに物資を回収する (任意)"
+ObjectiveTextPools[3]="全てのXCOM兵を回収する"
+ObjectiveTextPools[4]="強奪"
+ObjectiveTextPools[5]="貴重な物資や資源が蓄えられた守りの薄いアドヴェントの倉庫をレジスタンスが発見した。突入し、持てるだけの物資を持ってアドヴェントの増援が到着する前に脱出せよ。 このミッションでは複数の対象物資が存在するが, 兵士はそれぞれ一つしか物資を運ぶことができない。"
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="アドヴェントの物資"

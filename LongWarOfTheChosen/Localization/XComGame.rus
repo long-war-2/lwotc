@@ -4534,7 +4534,7 @@ TacticalText="<Bullet/> Пси-усилитель повышает псиони�
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="Радиоретранслятор"
 
-[SmashNGrab_LW X2MissionTemplate]
+[SupplyExtraction_LW X2MissionTemplate]
 DisplayName="Разбойное нападение"
 Briefing="Захват материалов \"Адвента\""
 PostMissionType="Разбойное нападение"
@@ -4542,11 +4542,27 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Захватите и вывезите материалы \"Адвента\""
 ObjectiveTextPools[1]="Эвакуируйте всех солдат XCOM"
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="Разбойное нападение"
+Briefing="Совершить налет на склад \"Адвента\""
+PostMissionType="Разбойное нападение"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Захватить как можно больше ресурсов"
+ObjectiveTextPools[1]="Эвакуировать всех XCOM солдат"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Найдите и отбейте контейнеры \"Адвента\""
 ObjectiveTextPools[1]="Уничтожьте всех врагов"
 ObjectiveTextPools[2]="Эвакуируйте всех солдат XCOM"
 ObjectiveTextPools[3]="ИЛИ ликвидируйте всех оставшихся врагов"
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Захватить ресурсы \"Адвента\""
+ObjectiveTextPools[1]="Эвакуировать ресурсы \"Адвента\""
+ObjectiveTextPools[2]="Захватить и эвакуировать дополнительные ресурсы (опционально)"
+ObjectiveTextPools[3]="Эвакуировать всех XCOM солдат"
+ObjectiveTextPools[4]="Разбойное нападение"
+ObjectiveTextPools[5]="Сопротивление обнаружило уязвимый склад \"Адвента\" который наполнен ценными запасами и ресурсами. Необходимо ворваться внутрь, взять то, что можно унести, и эвакуироваться до прибытия подкреплений \"Адвента\". На складе будет несколько целевых наборов ресурсов, но каждый солдат сможет унести только 1 набор."
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="Набор ресурсов \"Адвента\""

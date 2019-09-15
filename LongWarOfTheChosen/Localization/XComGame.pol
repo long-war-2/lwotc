@@ -4534,7 +4534,7 @@ TacticalText="<Bullet/> Wzmacniacz PSI zwiększa siłę psioniczną agenta PSI o
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="Przekaźnik Radiowy"
 
-[SmashNGrab_LW X2MissionTemplate]
+[SupplyExtraction_LW X2MissionTemplate]
 DisplayName="Włamanie"
 Briefing="Zdobądź zasoby ADVENT-u"
 PostMissionType="Włamanie"
@@ -4542,11 +4542,27 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Zdobądź i zabierz zasoby ADVENT-u"
 ObjectiveTextPools[1]="Ewakuuj wszystkich żołnierzy XCOM"
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="Włamanie"
+Briefing="Nalot na magazyn ADVENT-u"
+PostMissionType="Włamanie"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Przechwyć tyle zasobów ile dasz radę"
+ObjectiveTextPools[1]="Ewakuuj wszystkich żołnierzy XCOM"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Oznacz i zdobądź skrzynie ADVENT-u"
 ObjectiveTextPools[1]="Zneutralizuj wszystkich wrogów"
 ObjectiveTextPools[2]="Ewakuuj wszystkich żołnierzy XCOM"
 ObjectiveTextPools[3]="Albo: zneutralizuj resztę wrogów"
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Przechwyć zasoby od ADVENT-u"
+ObjectiveTextPools[1]="Ewakuuj się z przechwyconym zasobami od ADVENT-u"
+ObjectiveTextPools[2]="Przechwyć i zgarnij dodatkowe zasoby (opcjonalnie)"
+ObjectiveTextPools[3]="Ewakuuj wszystkich żołnierzy XCOM"
+ObjectiveTextPools[4]="Włamanie"
+ObjectiveTextPools[5]="Ruch oporu odkrył słabo zabezpieczony magazyn od ADVENT-u wypełniony sprzętem i zasobami. Dostań się do środka, zgarnij ile się tylko da i zabieraj się stąd zanim ADVENT sprowadzi posiłki. W magazynie znajduje się mnóstwo skrzynek z zasobami, ale twoi żołnierze mogą tylko nieść po jednej naraz."
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="Skrzynia z zapasami ADVENT-u"

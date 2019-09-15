@@ -4537,7 +4537,7 @@ TacticalText="<Bullet/> Gli amplificatori psionici aumentano la Forza psionica d
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="Ripetitore Radio"
 
-[SmashNGrab_LW X2MissionTemplate]
+[SupplyExtraction_LW X2MissionTemplate]
 DisplayName="Assalta e porta via"
 Briefing="Ottieni rifornimenti ADVENT"
 PostMissionType=" Assalta e porta via"
@@ -4545,11 +4545,27 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Recupera ed estrai i rifornimenti ADVENT"
 ObjectiveTextPools[1]="Estrai tutti i soldati XCOM"
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="Assalta e porta via"
+Briefing="Assalta un deposito della ADVENT"
+PostMissionType=" Assalta e porta via"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Recupera la massima quantità possibile di risorse "
+ObjectiveTextPools[1]="Estrai tutti i soldati XCOM"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Segnala e recupera le casse della ADVENT"
 ObjectiveTextPools[1]="Neutralizza i bersagli nemici"
 ObjectiveTextPools[2]="Estrai tutti i soldati XCOM"
 ObjectiveTextPools[3]="OPPURE: elimina tutti i bersagli nemici rimasti"
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Acquisisci risorse della ADVENT"
+ObjectiveTextPools[1]="Estrai le risorse della ADVENT acquisite"
+ObjectiveTextPools[2]="Recupera ed estrai risorse aggiuntive (Facoltativo) "
+ObjectiveTextPools[3]="Estrai tutti i soldati XCOM"
+ObjectiveTextPools[4]=" Assalta e porta via"
+ObjectiveTextPools[5]="La resistenza ha individuato un magazzino vulnerabile della ADVENT, contenente numerose risorse di valore e rifornimenti. Fai irruzione, recupera tutto quel che puoi e fuggi prima che arrivino i rinforzi della ADVENT. Incontrerai molti contenitori segreti in questi missione, ma i soldati possono trasportare solo un contenitore a testa."
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="Contenitore di risorse della ADVENT"

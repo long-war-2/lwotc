@@ -4538,7 +4538,7 @@ TacticalText="<Bullet/> Un amplificador psi aumenta la fuerza psiónica de un ag
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="Repetidor de Radio"
 
-[SmashNGrab_LW X2MissionTemplate]
+[SupplyExtraction_LW X2MissionTemplate]
 DisplayName="Robo Relámpago"
 Briefing="Conseguir los suministros de ADVENT"
 PostMissionType="Robo Relámpago"
@@ -4546,11 +4546,27 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Apodérate de los suministros de ADVENT y extráelos."
 ObjectiveTextPools[1]="Extrae a todos los soldados de XCOM."
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="Robo Relámpago"
+Briefing="Asalta un almacén ADVENT"
+PostMissionType="Robo Relámpago"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Recupera todos los recursos posibles"
+ObjectiveTextPools[1]="Extrae a todos los soldados de XCOM"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Señala y recupera las cajas de ADVENT."
 ObjectiveTextPools[1]="Neutraliza todos los objetivos enemigos."
 ObjectiveTextPools[2]="Extrae a todos los soldados de XCOM."
 ObjectiveTextPools[3]="O: Elimina a todos los objetivos hostiles restantes."
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Adquiere recursos de ADVENT"
+ObjectiveTextPools[1]="Extrae recursos de ADVENT"
+ObjectiveTextPools[2]="Recupera y extrae recursos adicionales (Opcional)"
+ObjectiveTextPools[3]="Extrae a todos los soldados de XCOM"
+ObjectiveTextPools[4]="Rompe y agarra"
+ObjectiveTextPools[5]="La resistencia ha descubierto un almacén ADVENT vulnerable lleno de suministros y recursos valiosos. Irrumpe, toma todo lo que puedas, y escapa antes de que lleguen refuerzos de ADVENT. Habrán múltiples alijos objetivo en esta misión, pero los soldados pueden cargar solo un alijo de recursos cada uno."
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="Alijo de recursos ADVENT"

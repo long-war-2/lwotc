@@ -4534,7 +4534,7 @@ TacticalText="<Bullet/>外星灵能增幅器能让灵能士兵的灵能强度+20
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="无线电中继站"
 
-[SmashNGrab_LW X2MissionTemplate]
+[SupplyExtraction_LW X2MissionTemplate]
 DisplayName="给养突袭"
 Briefing="取得变种人补给"
 PostMissionType="给养突袭"
@@ -4542,11 +4542,27 @@ BriefingImage="img:///UILibrary_StrategyImages。X2StrategyMap。Alert_Resistanc
 ObjectiveTextPools[0]="控制并夺取变种人补给"
 ObjectiveTextPools[1]="撤出所有XCOM士兵"
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="给养突袭"
+Briefing="掠夺变种人的补给站"
+PostMissionType="给养突袭"
+BriefingImage="img:///UILibrary_StrategyImages。X2StrategyMap。Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="尽可能多的获取变种人资源"
+ObjectiveTextPools[1]="撤离所有XCOM士兵"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="标记并回收变种人物资箱"
 ObjectiveTextPools[1]="消灭所有目标敌人"
 ObjectiveTextPools[2]="撤出所有XCOM士兵"
 ObjectiveTextPools[3]="或是：消灭所有残存敌方目标"
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="找到变种人资源"
+ObjectiveTextPools[1]="转移变种人资源"
+ObjectiveTextPools[2]="找到额外的变种人资源(可选)"
+ObjectiveTextPools[3]="撤离所有XCOM士兵"
+ObjectiveTextPools[4]="给养突袭"
+ObjectiveTextPools[5]="反抗军找到一个含有各种资源的变种人补给站。 突袭补给站，尽可能多的带走这些资源，在敌人增员赶来之前撤离。 该任务将会有多个给养目标, 但是一个士兵只能带走一个给养箱。"
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="变种人给养箱"

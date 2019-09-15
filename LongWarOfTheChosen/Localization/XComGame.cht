@@ -4534,7 +4534,7 @@ TacticalText="<Bullet/>靈能增幅器能讓靈能士兵的靈能之力增加20�
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="無線電中繼站"
 
-[SmashNGrab_LW X2MissionTemplate]
+[SupplyExtraction_LW X2MissionTemplate]
 DisplayName="打劫行動"
 Briefing="取得變種人補給"
 PostMissionType="打劫行動"
@@ -4542,11 +4542,27 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="控制並奪取變種人補給"
 ObjectiveTextPools[1]="撤出所有XCOM士兵"
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="打劫行動"
+Briefing="掠奪變種人貯藏所"
+PostMissionType="打劫行動"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="盡可能帶走變種人物資"
+ObjectiveTextPools[1]="撤離所有XCOM士兵"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="標記並回收變種人物資箱"
 ObjectiveTextPools[1]="消滅所有目標敵人"
 ObjectiveTextPools[2]="撤出所有XCOM士兵"
 ObjectiveTextPools[3]="或是：消滅所有殘存敵方目標"
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="尋找變種人物資"
+ObjectiveTextPools[1]="取出變種人物資"
+ObjectiveTextPools[2]="找出並帶走額外的物資 (可選)"
+ObjectiveTextPools[3]="撤離所有XCOM士兵"
+ObjectiveTextPools[4]="打劫行動"
+ObjectiveTextPools[5]="反抗軍發現了一個存放許多物資的變種人倉庫。突襲該地點，在變種人援軍抵達之前，盡可能帶走所有物資。本任務有多個目標物件，但一個士兵只能攜帶一個物資。"
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="變種人物資貯藏箱"

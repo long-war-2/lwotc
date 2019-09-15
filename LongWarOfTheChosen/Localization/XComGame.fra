@@ -4541,7 +4541,7 @@ TacticalText="<Bullet/> L'ampli psionique extraterrestre augmente la puissance p
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="Relais Radio"
 
-[SmashNGrab_LW X2MissionTemplate]
+[SupplyExtraction_LW X2MissionTemplate]
 DisplayName="Défoncer et Ramasser"
 Briefing="Voler du matériel à ADVENT"
 PostMissionType="Défoncer et Ramasser"
@@ -4549,11 +4549,27 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Sécuriser et extraire du matériel d'ADVENT"
 ObjectiveTextPools[1]="Évacuer tous les soldats d'XCOM"
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="Défoncer et Ramasser"
+Briefing="Piller un entrepôt ADVENT"
+PostMissionType="Défoncer et Ramasser"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Récupérer autant de ressources que possible"
+ObjectiveTextPools[1]="Évacuer tous les soldats XCOM"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Marquer et récupérer les caisses d'ADVENT"
 ObjectiveTextPools[1]="Neutraliser toutes les cibles ennemies"
 ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
 ObjectiveTextPools[3]="Éliminer toutes les cibles hostiles restantes"
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Obtenir des ressources ADVENT"
+ObjectiveTextPools[1]="Extraire les ressources ADVENT"
+ObjectiveTextPools[2]="Récupérer et extraire plus de ressources (Optionnel)"
+ObjectiveTextPools[3]="Évacuer tous les soldats XCOM"
+ObjectiveTextPools[4]="Défoncer et Ramasser"
+ObjectiveTextPools[5]="La Résistance a découvert un entrepôt ADVENT vulnérable rempli de provisions et ressources de valeur. Forcez l'entrée, ramassez ce que vous pouvez et quittez la région avant que les renforts ADVENT n'arrivent. Il y a aura plusieurs Caches de Ressources a récupérer au cours de cette mission mais chaque soldat ne pourra en porter qu'un."
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="Cache de Ressources ADVENT"

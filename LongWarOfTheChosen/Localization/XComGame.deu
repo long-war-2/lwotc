@@ -4535,7 +4535,7 @@ TacticalText="<Bullet/> Ein Psi-Verstärker steigert die Psi-Kraft von Psi-Solda
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="Funkrelais"
 
-[SmashNGrab_LW X2MissionTemplate]
+[SupplyExtraction_LW X2MissionTemplate]
 DisplayName="Raubzug"
 Briefing="Beschaffe ADVENT-Vorrat"
 PostMissionType="Raubzug"
@@ -4543,11 +4543,27 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Sichere und extrahiere ADVENT-Vorrat"
 ObjectiveTextPools[1]="Evakuiere alle XCOM-Soldaten"
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="Raubzug"
+Briefing="Überfalle ein ADVENT Nachschublager"
+PostMissionType="Raubzug"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Erbeute so viele Ressourcen wie möglich"
+ObjectiveTextPools[1]="Evakuiere alle XCOM-Soldaten"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Markiere und birg ADVENT-Kisten"
 ObjectiveTextPools[1]="Neutralisiere alle feindlichen Ziele"
 ObjectiveTextPools[2]="Evakuiere alle XCOM-Soldaten"
 ObjectiveTextPools[3]="ODER: Eliminiere alle übrigen feindlichen Ziele"
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Beschaffe ADVENT Material"
+ObjectiveTextPools[1]="Berge ADVENT Material"
+ObjectiveTextPools[2]="Sichere zusätzliches Beutegut (Optional)"
+ObjectiveTextPools[3]="Evakuiere alle XCOM-Soldaten"
+ObjectiveTextPools[4]="Raubzug"
+ObjectiveTextPools[5]="Der Widerstand hat ein schwach gesichertes ADVENT Lagerhaus mit wertvollem Militärgut ausgemacht. Brich ein, sichere die Beute und zieh dich zurück, bevor ADVENT Verstärkungen eintreffen. Es gibt mehrere Behälter mit Beutegut im Zielgebiet, aber jeder Soldat kann jeweils nur einen davon tragen."
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="ADVENT-Materialbehälter"
