@@ -7,7 +7,7 @@ can be removed, they will be.
 
 ## Installing and playing the mod
 
-If you just want to install and play the mod, check out our [wiki page](https://github.com/long-war-2/lwotc/wiki/Play-testing-Long-War-2-%5BWOTC%5D) that explains exactly how to do that.
+If you just want to install and play the mod, check out our [wiki page](https://github.com/long-war-2/lwotc/wiki/Play-testing-Long-War-of-the-Chosen) that explains exactly how to do that.
 
 ## Building and running the mod
 
