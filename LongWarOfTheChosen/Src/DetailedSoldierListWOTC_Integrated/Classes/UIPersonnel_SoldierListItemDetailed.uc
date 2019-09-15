@@ -64,24 +64,9 @@ simulated function string GetPromotionProgress(XComGameState_Unit Unit)
 		return "";
 	}
 
-	NumKills = Round(Unit.KillCount * ClassTemplate.KillAssistsPerKill);
+	NumKills = Unit.GetTotalNumKills();
 
-	// Increase kills for WetWork bonus if appropriate - DEPRECATED
-	NumKills += Round(Unit.WetWorkKills * class'X2ExperienceConfig'.default.NumKillsBonus * ClassTemplate.KillAssistsPerKill);
-
-	// Add in bonus kills
-	NumKills += Round(Unit.BonusKills * ClassTemplate.KillAssistsPerKill);
-
-	//  Add number of kills from assists
-	NumKills += Round(Unit.KillAssistsCount);
-
-	// Add required kills of StartingRank
-	NumKills += class'X2ExperienceConfig'.static.GetRequiredKills(Unit.StartingRank) * ClassTemplate.KillAssistsPerKill;
-
-	// Add Non-tactical kills (from covert actions)
-	NumKills += Unit.NonTacticalKills * ClassTemplate.KillAssistsPerKill;
-
-	promoteProgress = NumKills $ "/" $ class'X2ExperienceConfig'.static.GetRequiredKills(Unit.GetSoldierRank() + 1) * ClassTemplate.KillAssistsPerKill;
+	promoteProgress = NumKills $ "/" $ class'X2ExperienceConfig'.static.GetRequiredKills(Unit.GetSoldierRank() + 1);
 
 	return class'UIUtilities_Text'.static.InjectImage(class'UIUtilities_Image'.const.HTML_PromotionIcon, 16, 20, -6) $ "</img>" @ promoteProgress;
 }
