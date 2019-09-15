@@ -217,10 +217,10 @@ simulated function CreateSortHeaders()
 	m_kPersonnelSortHeader.Hide();
 
 	// Create Soldiers header
-	Spawn(class'UIFlipSortButton', m_kSoldierSortHeader).InitFlipSortButton("rank", ePersonnelSoldierSortType_Rank, m_strButtonLabels[ePersonnelSoldierSortType_Rank]);
-	Spawn(class'UIFlipSortButton', m_kSoldierSortHeader).InitFlipSortButton("name", ePersonnelSoldierSortType_Name, m_strButtonLabels[ePersonnelSoldierSortType_Name]);
-	Spawn(class'UIFlipSortButton', m_kSoldierSortHeader).InitFlipSortButton("class", ePersonnelSoldierSortType_Class, m_strButtonLabels[ePersonnelSoldierSortType_Class]);
-	Spawn(class'UIFlipSortButton', m_kSoldierSortHeader).InitFlipSortButton("status", ePersonnelSoldierSortType_Status, m_strButtonLabels[ePersonnelSoldierSortType_Status], m_strButtonValues[ePersonnelSoldierSortType_Status]);
+	Spawn(class'UIFlipSortButton', m_kSoldierSortHeader).InitFlipSortButton("rankButton", ePersonnelSoldierSortType_Rank, m_strButtonLabels[ePersonnelSoldierSortType_Rank]);
+	Spawn(class'UIFlipSortButton', m_kSoldierSortHeader).InitFlipSortButton("nameButton", ePersonnelSoldierSortType_Name, m_strButtonLabels[ePersonnelSoldierSortType_Name]);
+	Spawn(class'UIFlipSortButton', m_kSoldierSortHeader).InitFlipSortButton("classButton", ePersonnelSoldierSortType_Class, m_strButtonLabels[ePersonnelSoldierSortType_Class]);
+	Spawn(class'UIFlipSortButton', m_kSoldierSortHeader).InitFlipSortButton("statusButton", ePersonnelSoldierSortType_Status, m_strButtonLabels[ePersonnelSoldierSortType_Status], m_strButtonValues[ePersonnelSoldierSortType_Status]);
 
 	m_eSortType = ePersonnelSoldierSortType_Rank;
 	m_eCurrentTab = eUIPersonnel_Soldiers;
