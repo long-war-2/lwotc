@@ -667,3 +667,10 @@ m_strPrevHaven="PREV HAVEN"
 m_strNextHaven="NEXT HAVEN"
 
 m_strVIPCaptureReward="(VIP Capture Only)"
+
+[UIListener_CampaignStartMenu]
+; LWOTC Needs Translation
+strDisabledTutorialTooltip="Tutorial is disabled while running Long War of the Chosen"
+strDisabledNarrativeContentTooltip="Lost and Abandoned is disabled while running Long War of the Chosen"
+strDisabledPrecisionExplosivesTooltip="Precision Explosives is disabled while running Long War of the Chosen"
+; End Translation
