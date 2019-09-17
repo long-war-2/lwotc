@@ -801,8 +801,7 @@ static function X2DataTemplate CreateNapalmXPanicEffectAbility()
 
 	Template.AddShooterEffectExclusions();
 
-	// WOTC TODO: Restore this to get flamethrower panic to work
-	//Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_StatCheck_LWFlamethrower';
+	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_StatCheck_LWFlamethrower';
 
 	//  Panic effect for 3-4 unblocked psi hits
 	PanicEffect = class'X2StatusEffects'.static.CreatePanickedStatusEffect();
