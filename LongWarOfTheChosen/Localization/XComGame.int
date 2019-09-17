@@ -4752,6 +4752,13 @@ RankIcons[6]= "UILibrary_Common.psirank_warlock"
 RankIcons[7]= "UILibrary_Common.psirank_magus"
 RankIcons[8]= "UILibrary_LW_PerkPack.psirank_Master"
 
+[Retribution X2AbilityTemplate]
+LocFriendlyName="Retribution"
+LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
+LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
+LocFlyOverText="Retribution"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
+
 [RetributionAttack X2AbilityTemplate]
 LocFriendlyName="Retribution"
 LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
