@@ -4752,14 +4752,6 @@ RankIcons[6]= "UILibrary_Common.psirank_warlock"
 RankIcons[7]= "UILibrary_Common.psirank_magus"
 RankIcons[8]= "UILibrary_LW_PerkPack.psirank_Master"
 
-
-[Retribution X2AbilityTemplate]
-LocFriendlyName="Retribution"
-LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
-LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
-LocFlyOverText="Retribution"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
-
 [RetributionAttack X2AbilityTemplate]
 LocFriendlyName="Retribution"
 LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
@@ -4767,16 +4759,29 @@ LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that ent
 LocFlyOverText="Retribution"
 LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
 
+[SkirmisherGrapple X2AbilityTemplate]
+LocFriendlyName="Grapple"
+LocHelpText="Deploy a grappling hook to move quickly to an elevated position."
+LocLongDescription="Deploy a grappling hook to move quickly to an elevated position."
+LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into position without using an action.<br/><Bullet/> Grapple has a 3 turn cooldown."
 
+[Justice X2AbilityTemplate]
+LocFriendlyName="Justice"
+LocLongDescription="Use the Grapple to pull a humanoid target to you and deliver a <Ability:SecondaryWeaponName/> strike."
+LocHelpText="Use the Grapple to pull a humanoid target to you and deliver a <Ability:SecondaryWeaponName/> strike."
+LocPromotionPopupText="<Bullet/> Justice is a great way to pull an enemy out of position.<br/><Bullet/> The <Ability:SecondaryWeaponName/> strike is guaranteed to hit if the pull is successful.<br/><Bullet/> An open space adjacent to the Skirmisher is needed to use Justice.<br/><Bullet/> Justice has a 4 turn cooldown.<br/><Bullet/> Cost one action point."
+
+[SkirmisherVengeance X2AbilityTemplate]
+LocFriendlyName="Wrath"
+LocLongDescription="Use the Grapple to pull yourself to an enemy and deliver a <Ability:SecondaryWeaponName/> strike."
+LocHelpText="Use the Grapple to pull yourself to an enemy and deliver a <Ability:SecondaryWeaponName/> strike."
+LocPromotionPopupText="<Bullet/> Wrath adds extra mobility for the Skirmisher, and can be used while the Grapple is on cooldown.<br/><Bullet/> The <Ability:SecondaryWeaponName/> strike is guaranteed to hit if the Grapple is successful.<br/><Bullet/> An open space adjacent to the enemy is needed to use Wrath.<br/><Bullet/> Wrath has a 4 turn cooldown.<br/><Bullet/> Cost one action point."
 
 [Battlemaster X2AbilityTemplate]
 LocFriendlyName="Battlemaster"
-LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 more aim from high ground, and have significantly lower infiltration times. "
-LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 more aim from high ground, and have significantly lower infiltration times. "
-LocPromotionPopupText="<Bullet/>Skirmisher is the best soldier in ADVENT and XCOM as a whole, and can handle all the company alone.<br/><Bullet/> "
-
-
-
+LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim from high ground, and have lower infiltration times."
+LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim from high ground, and have lower infiltration times."
+LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/><Bullet/> Gain +10 aim from high ground.<br/><Bullet/> This soldier has reduced infiltration times while on missions."
 
 [LW2WotC_Reckoning X2AbilityTemplate]
 LocFriendlyName="Reckoning"
