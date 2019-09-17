@@ -7,6 +7,7 @@ var localized string UnitInSquad;
 var localized string RankTooLow;
 var localized string CannotModifyOnMissionSoldierTooltip;
 
+var config bool TIERED_RESPEC_TIMES;
 var config int PSI_SQUADDIE_BONUS_ABILITIES;
 
 var config int BLEEDOUT_CHANCE_BASE;
@@ -65,6 +66,7 @@ static function CHEventListenerTemplate CreateTrainingListeners()
 	local CHEventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierTraining');
+	Template.AddCHEvent('OverrideRespecSoldierProjectPoints', OverrideRespecSoldierProjectPoints, ELD_Immediate);
 	Template.AddCHEvent('PsiProjectCompleted', OnPsiProjectCompleted, ELD_Immediate);
 	Template.RegisterInStrategy = true;
 
@@ -360,6 +362,40 @@ static function EventListenerReturn OnShouldShowPsi(Object EventData, Object Eve
 	if (class'UIUtilities_LW'.static.ShouldShowPsiOffense(UnitState))
 	{
 		Tuple.Data[0].b = true;
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// Scale the respec time for soldiers based on their rank
+static function EventListenerReturn OverrideRespecSoldierProjectPoints(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Unit UnitState;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+	{
+		`LWTRACE("OverrideRespecSoldierProjectPoints event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	UnitState = XComGameState_Unit(Tuple.Data[0].o);
+	if (UnitState == none)
+	{
+		`LWTRACE ("OverrideRespecSoldierProjectPoints was not passed a valid unit state.");
+		return ELR_NoInterrupt;
+	}
+
+	if (default.TIERED_RESPEC_TIMES)
+	{
+		// Respec days = rank * difficulty setting
+		Tuple.Data[1].i = UnitState.GetRank() * class'XComGameState_HeadquartersXCom'.default.XComHeadquarters_DefaultRespecSoldierDays[`STRATEGYDIFFICULTYSETTING] * 24;
 	}
 
 	return ELR_NoInterrupt;

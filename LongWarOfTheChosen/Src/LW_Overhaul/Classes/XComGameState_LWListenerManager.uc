@@ -10,8 +10,6 @@ var config int DEFAULT_LISTENER_PRIORITY;
 var localized string ResistanceHQBodyText;
 
 
-var config bool TIERED_RESPEC_TIMES;
-
 var config array<int>INITIAL_PSI_TRAINING;
 
 static function XComGameState_LWListenerManager GetListenerManager(optional bool AllowNULL = false)
@@ -83,9 +81,6 @@ function InitListeners()
 	// WOTC TODO: Don't think this is needed as the game seems to work fine without it.
 	//Special First Mission Icon handling -- only for replacing the Resistance HQ icon functionality
 	// EventMgr.RegisterForEvent(ThisObj, 'OnInsertFirstMissionIcon', OnInsertFirstMissionIcon, ELD_Immediate,,,true);
-
-	// Recalculate respec time so it goes up with soldier rank
-	// EventMgr.RegisterForEvent(ThisObj, 'SoldierRespecced', OnSoldierRespecced,,,,true);
 
     // VIP Recovery screen
     // EventMgr.RegisterForEvent(ThisObj, 'GetRewardVIPStatus', OnGetRewardVIPStatus, ELD_Immediate,,, true);
@@ -297,35 +292,6 @@ function EventListenerReturn OnNumCiviliansKilled(Object EventData, Object Event
     Value.i = Total;
     Tuple.Data.AddItem(Value);
     return ELR_NoInterrupt;
-}
-
-function EventListenerReturn OnSoldierRespecced (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-	local XComLWTuple OverrideTuple;
-
-	//`LOG ("Firing OnSoldierRespecced");
-	OverrideTuple = XComLWTuple(EventData);
-	if(OverrideTuple == none)
-	{
-		`REDSCREEN("On Soldier Respecced event triggered with invalid event data.");
-		return ELR_NoInterrupt;
-	}
-	//`LOG("OverrideTuple : Parsed XComLWTuple.");
-
-	if(OverrideTuple.Id != 'OverrideRespecTimes')
-		return ELR_NoInterrupt;
-
-	//`LOG ("Point 2");
-
-	if (default.TIERED_RESPEC_TIMES)
-	{
-		//Respec days = rank * difficulty setting
-		OverrideTuple.Data[1].i = OverrideTuple.Data[0].i * class'XComGameState_HeadquartersXCom'.default.XComHeadquarters_DefaultRespecSoldierDays[`STRATEGYDIFFICULTYSETTING] * 24;
-		//`LOG ("Point 3" @ OverrideTuple.Data[1].i @ OverrideTuple.Data[0].i);
-	}
-
-	return ELR_NoInterrupt;
-
 }
 
 function EventListenerReturn OnGetRewardVIPStatus(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
