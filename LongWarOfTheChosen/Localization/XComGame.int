@@ -4886,4 +4886,10 @@ LocLongDescription="The Templar is surrounded by an aura that immediately exting
 LocHelpText="The Templar is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby squadmates."
 LocFlyOverText="Templar Aura"
 LocPromotionPopupText="<Bullet/> Templar Aura has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their mental impairments.<br/>"
+
+[Pillar X2AbilityTemplate]
+LocFriendlyName="Pillar"
+LocLongDescription="Summon a pillar of Psionic energy to act as a high cover point. Costs 1 Focus."
+LocHelpText="Summon high cover at a target location. Costs 1 Focus."
+LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equal to the Templar's Focus level when summoned.<br/><Bullet/> Pillar does not end the Templar's turn.<br/><Bullet/> Can be used after Rend.<br/><Bullet/> Pillar has 1 turn cooldown.<br/><Bullet/> Free action."
 ; End Translation
