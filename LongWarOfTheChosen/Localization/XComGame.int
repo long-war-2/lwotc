@@ -4282,7 +4282,7 @@ Description="Some ADVENT robots and some other units gain the Damage Control abi
 [DarkEvent_HardTarget X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Hard Target"
 SummaryText="Some alien units gain the Hard Target ability, granting bonus dodge."
-QuoteText="\".\""
+QuoteText="\"The aliens' reflexes are becoming adept in our environment. We should invest in our scopes and make sure no one leaves without one.\""
 QuoteTextAuthor="- Chief Shen"
 PreMissionText="Grants some alien units the Hard Target ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Hard Target)"
