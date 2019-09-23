@@ -70,10 +70,7 @@ function InitListeners()
 	ThisObj = self;
 	EventMgr = `XEVENTMGR;
 	EventMgr.UnregisterFromAllEvents(ThisObj); // clear all old listeners to clear out old stuff before re-registering
-	
-	// WOTC TODO: Requires change to CHL XComGameState_Unit
-	// EventMgr.RegisterForEvent(ThisObj, 'ShouldShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate,,,true);
-	
+
 	// Mission summary civilian counts
 	// WOTC TODO: Requires change to CHL Helpers and UIMissionSummary
 	// EventMgr.RegisterForEvent(ThisObj, 'GetNumCiviliansKilled', OnNumCiviliansKilled, ELD_Immediate,,,true);
@@ -100,35 +97,6 @@ function InitListeners()
 
 	// initial psi training time override (this DOES require a change to the highlander)
 	// EventMgr.RegisterForEvent(ThisObj, 'PsiTrainingBegun', OnOverrideInitialPsiTrainingTime, ELD_Immediate,,, true);
-}
-
-function EventListenerReturn OnCheckForPsiPromotion(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	local XComLWTuple Tuple;
-	local XComGameState_Unit UnitState;
-
-	Tuple = XComLWTuple(EventData);
-	if(Tuple == none)
-		return ELR_NoInterrupt;
-
-	UnitState = XComGameState_Unit(EventSource);
-	if(UnitState == none)
-	{
-		`REDSCREEN("OnCheckForPsiPromotion event triggered with invalid event source.");
-		return ELR_NoInterrupt;
-	}
-
-	if (Tuple.Data[0].kind != XComLWTVBool)
-		return ELR_NoInterrupt;
-
-	if (UnitState.IsPsiOperative())
-	{
-		if (class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(UnitState))
-		{
-			Tuple.Data[0].B = true;
-		}
-	}
-	return ELR_NoInterrupt;
 }
 
 function EventListenerReturn OnInsertFirstMissionIcon(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)

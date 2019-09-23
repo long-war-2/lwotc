@@ -52,6 +52,7 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	Template.AddCHEvent('OverridePersonnelStatus', OnOverridePersonnelStatus, ELD_Immediate);
 	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
 	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
+	Template.AddCHEvent('OverrideShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate);
 
 	// Armory Main Menu - disable buttons for On-Mission soldiers
 	Template.AddCHEvent('OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate);
@@ -364,6 +365,40 @@ static function EventListenerReturn OnShouldShowPsi(Object EventData, Object Eve
 		Tuple.Data[0].b = true;
 	}
 
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OnCheckForPsiPromotion(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Unit UnitState;
+
+	Tuple = XComLWTuple(EventData);
+	if(Tuple == none)
+		return ELR_NoInterrupt;
+
+	UnitState = XComGameState_Unit(EventSource);
+	if(UnitState == none)
+	{
+		`REDSCREEN("OnCheckForPsiPromotion event triggered with invalid event source.");
+		return ELR_NoInterrupt;
+	}
+
+	if (Tuple.Data[0].kind != XComLWTVBool)
+		return ELR_NoInterrupt;
+
+	if (UnitState.IsPsiOperative())
+	{
+		if (class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(UnitState))
+		{
+			Tuple.Data[0].B = true;
+		}
+	}
 	return ELR_NoInterrupt;
 }
 
