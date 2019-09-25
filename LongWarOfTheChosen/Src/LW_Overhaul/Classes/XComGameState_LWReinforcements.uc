@@ -14,6 +14,7 @@ enum Reinforcements_Timer_Trigger
 	eReinforcementsTrigger_MissionStart,
 	eReinforcementsTrigger_Reveal,
 	eReinforcementsTrigger_RedAlert,
+	eReinforcementsTrigger_ExternalTrigger,
 	eReinforcementsTrigger_MAX
 };
 
@@ -92,10 +93,12 @@ var privatewrite bool IsInitialized;
 var int TurnsSinceStart;
 var int TurnsSinceReveal;
 var int TurnsSinceRedAlert;
+var int TurnsSinceTriggered;
 var int TurnsSinceWin;
 var int CavalryTurn;
 var int CavalryOnWinTurn;
 var bool RedAlertTriggered;
+var bool ExternallyTriggered;
 var bool Disabled;
 var Mission_Reinforcements_Modifiers_Struct_LW ReinfRules;
 
@@ -108,7 +111,9 @@ function Reset()
 	TurnsSinceReveal = 0;
 	TurnsSinceStart = 0;
 	TurnsSinceRedAlert = 0;
+	TurnsSinceTriggered = 0;
 	IsInitialized = false;
+	ExternallyTriggered = false;
 	Disabled = false;
 }
 
@@ -127,8 +132,10 @@ function Initialize()
 	TurnsSinceReveal = 0;
 	TurnsSinceStart = 0;
 	TurnsSinceRedAlert = 0;
+	TurnsSinceTriggered = 0;
 	TurnsSinceWin = 0;
 	RedAlertTriggered = false;
+	ExternallyTriggered = false;
 	ReinfRules = EmptyReinfRules;
 
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(`XCOMHQ.MissionRef.ObjectID));
@@ -226,6 +233,10 @@ function bool AtTurnThreshhold (int Threshhold, optional bool Absolute = false)
 	{
 		return true;
 	}
+	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_ExternalTrigger && TurnsSinceTriggered == Threshhold)
+	{
+		return true;
+	}
 	return false;
 }
 
@@ -248,6 +259,10 @@ function bool ReachedTurnThreshhold (int Threshhold, optional bool CheckWin = fa
 		return true;
 	}
 	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_RedAlert && TurnsSinceRedAlert >= Threshhold)
+	{
+		return true;
+	}
+	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_ExternalTrigger && TurnsSinceTriggered >= Threshhold)
 	{
 		return true;
 	}
@@ -289,6 +304,11 @@ function bool CanAddToBucket()
 	}
 
 	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_RedAlert && RedAlertTriggered)
+	{
+		return true;
+	}
+
+	if (ReinfRules.ReinforcementsTrigger == eReinforcementsTrigger_ExternalTrigger && ExternallyTriggered)
 	{
 		return true;
 	}
@@ -340,7 +360,7 @@ function int CheckForReinforcements()
 		return -1;
 	}
 
-	// Prevent issues from too many aliens on the map)
+	// Prevent issues from too many aliens on the map
 	Player = XComTacticalGRI(class'Engine'.static.GetCurrentWorldInfo().GRI).m_kBattle.GetAIPlayer();
 	Player.GetAliveUnits(Units, false, true);
 	if (Units.length > 60)
@@ -594,6 +614,14 @@ function int ForceReinforcements()
 
     Bucket = 0;
     return ++Count;
+}
+
+// Starts the reinforcement drops if the current mission uses the
+// eReinforcementsTrigger_ExternalTrigger rule. Note that this must
+// be called on a modifiable game state object.
+function StartReinforcements()
+{
+	ExternallyTriggered = true;
 }
 
 // Turn off the reinforcement system. Once set reinforcements will not build again until the state
