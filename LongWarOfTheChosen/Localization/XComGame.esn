@@ -4539,7 +4539,7 @@ TacticalText="<Bullet/> Un amplificador psi aumenta la fuerza psiónica de un ag
 DisplayName="Repetidor de Radio"
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="Robo Relámpago"
+DisplayName="Extraer suministros de ADVENT"
 Briefing="Conseguir los suministros de ADVENT"
 PostMissionType="Robo Relámpago"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"

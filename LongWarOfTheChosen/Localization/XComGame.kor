@@ -4535,7 +4535,7 @@ TacticalText="<Bullet/> 사이오닉 증폭기는 사이오니스트의 사이�
 DisplayName="라디오 중계기"
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="탈취"
+DisplayName="어드밴트 보급품 빼내기"
 Briefing="어드밴트 보급품 입수"
 PostMissionType="탈취"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"

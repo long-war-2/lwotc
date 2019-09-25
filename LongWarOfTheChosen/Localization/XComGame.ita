@@ -4538,7 +4538,7 @@ TacticalText="<Bullet/> Gli amplificatori psionici aumentano la Forza psionica d
 DisplayName="Ripetitore Radio"
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="Assalta e porta via"
+DisplayName="Estrai i rifornimenti ADVENT"
 Briefing="Ottieni rifornimenti ADVENT"
 PostMissionType=" Assalta e porta via"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"

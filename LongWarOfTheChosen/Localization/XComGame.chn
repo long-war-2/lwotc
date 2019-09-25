@@ -4535,7 +4535,7 @@ TacticalText="<Bullet/>外星灵能增幅器能让灵能士兵的灵能强度+20
 DisplayName="无线电中继站"
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="给养突袭"
+DisplayName="夺取变种人补给"
 Briefing="取得变种人补给"
 PostMissionType="给养突袭"
 BriefingImage="img:///UILibrary_StrategyImages。X2StrategyMap。Alert_Resistance_Ops_Appear"

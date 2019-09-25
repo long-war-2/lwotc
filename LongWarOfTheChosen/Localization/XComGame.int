@@ -2594,7 +2594,7 @@ ObjectiveTextPools[4]="Jailbreak"
 ObjectiveTextPools[5]="A group of Resistance contacts were rounded up during an ADVENT sweep and are being held in holding cells in the area. ADVENT vehicles are inbound to transfer the rebels to an unknown location, so we have a limited window to break in and get these people out. If we can safely extract them they would be an asset to Resistance operations in this region."
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="Smash and Grab"
+DisplayName="Extract ADVENT Supplies"
 Briefing="Procure ADVENT Supplies"
 PostMissionType="Smash and Grab"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
