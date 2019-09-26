@@ -953,6 +953,64 @@ BriefSummary="A lightweight version of the coil rifle that fires a smaller round
 TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage, have less ammo, and suffer accuracy penalties at long range.<br/>"
 AbilityDescName="SMG"
 
+;LaserCoil Templates
+[Bullpup_LS X2WeaponTemplate]
+FriendlyName="Kal-13 \"Bullpup\""
+FriendlyNamePlural="Kal-13 Bullpups"
+BriefSummary="We can manufacture a modified Laser SMG That can be used by Skirmishers. While Dr.Tygan Has correctly stated that this is in fact not a bullpup, It's still a small, mobile gun that shoots lasers and that works for me."
+TacticalText="<Bullet/> Average Damage- 4,75 (75 plusone).\n<Bullet/> Damage increase over the previous Tier - 1,25. \n<Bullet/> Bullpup-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-15 Bullpup's tactical effectiveness."
+AbilityDescName="bullpup"
+
+[Bullpup_CG X2WeaponTemplate]
+FriendlyName="Kal-69 \"Bullpup\""
+FriendlyNamePlural="Kal-69 Bullpups"
+BriefSummary="We can manufacture a modified Laser SMG That can be used by Skirmishers. While Dr.Tygan Has correctly stated that this is in fact not a bullpup, It's still a small, mobile gun that shoots lasers and that works for me."
+TacticalText="<Bullet/> Average Damage- 7,5 (50 plusone).\n<Bullet/> Damage increase over the previous Tier - 1,5. \n<Bullet/> Bullpup-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-15 Bullpup's tactical effectiveness."
+AbilityDescName="bullpup"
+
+[CrossbowVektor_CV X2WeaponTemplate]
+FriendlyName="Ballistic Crossbow"
+FriendlyNamePlural="Ballistic Crossbows"
+BriefSummary="A silent compound crossbow many Reapers prefer to conventional firearms."
+TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms."
+AbilityDescName="crossbow"
+
+[Vektor_LS X2WeaponTemplate]
+FriendlyName="Arc Crossbow"
+FriendlyNamePlural="Arc Crossbows"
+BriefSummary="A silent compound crossbow many Reapers prefer to conventional firearms, bolts have been upgraded with an arc enhanced bolthead."
+TacticalText="<Bullet/> Average Damage- 7,5 (50 plusone).\n<Bullet/> Damage increase over the previous Tier - 1,5. \n<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms, bolts have been upgraded with an arc enhanced bolthead."
+AbilityDescName="vektor rifle"
+
+[Vektor_CG X2WeaponTemplate]
+FriendlyName="Fusion Crossbow"
+FriendlyNamePlural="Fusion Crossbows"
+BriefSummary="A silent compound crossbow many Reapers prefer to conventional firearms, bolts have been upgraded with an fusion enhanced bolthead."
+TacticalText="<Bullet/> Average Damage- 7,5 (50 plusone).\n<Bullet/> Damage increase over the previous Tier - 1,5. \n<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms, bolts have been upgraded with an fusion enhanced bolthead."
+AbilityDescName="crossbow"
+
+[SPARKChaingun X2WeaponTemplate]
+FriendlyName="Heavy Chaingun"
+FriendlyNamePlural="Heavy Chainguns"
+BriefSummary="A massive chaingun with devastating anti-personnel capabilities."
+TacticalText="<Bullet/> This weapon's design is based on R. Shen's blueprints from the original alien invasion.\n<Bullet/> Due to using lower caliber bullet, it's less effective against armor than the Autocannon."
+AbilityDescName="Heavy Chaingun"
+
+[SparkRifle_LS X2WeaponTemplate]
+FriendlyName="Heavy Railgun"
+FriendlyNamePlural="Heavy Railguns"
+BriefSummary="Heavy Railgun fires high-caliber projectiles at extreme velocities that pierce through enemy armor and deal massive internal damage."
+TacticalText="<Bullet/> Heavy Railgun is an alternative take on magnetic weapon technology. Rather than destroying enemy armor with multiple hits, Heavy Railgun pierces through it, dealing massive internal damage."
+AbilityDescName="Heavy Railgun"
+
+[SparkRifle_CG X2WeaponTemplate]
+FriendlyName="Particle Projection Cannon"
+FriendlyNamePlural="Particle Projection Cannons"
+BriefSummary="PPC uses several acceleration contours to create a focused beam of supercharged particles that remain effective at any range." 
+TacticalText="<Bullet/> Accelerated particles deal damage to the target directly, bypassing exterior armor. As a sideeffect, PPC is not effective at destroying enemy armor."
+AbilityDescName="Particle Projection Cannon"
+
+
 ;;;;;;;;;;;;;;;;;; GEAR LOC OVERRIDES ;;;;;;;;;;;;;;;;;;;;
 
 [LightPlatedArmor X2ArmorTemplate]
