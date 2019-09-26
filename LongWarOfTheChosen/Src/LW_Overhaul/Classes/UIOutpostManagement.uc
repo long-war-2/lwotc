@@ -707,14 +707,24 @@ simulated function SaveLiaison()
         // Clear the "on mission" status from the old one and add it to the new.
         if (OldLiaison.ObjectID != 0)
         {
-            Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', OldLiaison.ObjectID));
-            Unit.SetStatus(eStatus_Active);
+            Unit = XComGameState_Unit(History.GetGameStateForObjectID(OldLiaison.ObjectID));
+            if (Unit.IsSoldier())
+            {
+                NewGameState.AddStateObject(Unit);
+                // Liaisons are reset to active upon removal. Presumably they can't actually get hurt while liaison-ing.
+                Unit.SetStatus(eStatus_Active);
+            }
         }
         
         if (CachedLiaison.ObjectID != 0)
         {
-            Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', CachedLiaison.ObjectID));
-            class'LWDLCHelpers'.static.SetOnMissionStatus(Unit, NewGameState);
+            Unit = XComGameState_Unit(History.GetGameStateForObjectID(CachedLiaison.ObjectID));
+            if (Unit.IsSoldier())
+            {
+                NewGameState.AddStateObject(Unit);
+                // Mark the new liaison as "on mission". This prevents them from showing up in various places.
+                class'LWDLCHelpers'.static.SetOnMissionStatus(Unit, NewGameState);
+            }
         }
 
         // Tell XComHQ that we have a potential staffing change to update any sci/eng jobs.

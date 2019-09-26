@@ -241,9 +241,9 @@ function ValidatePendingDarkEvents(optional XComGameState NewGameState)
 	}
 	if (InvalidDarkEvents.length > 0)
 	{
-		`LWTRACE("------------------------------------------");
-		`LWTRACE ("Found invalid dark events when validating.");
-		`LWTRACE("------------------------------------------");
+		`LWTrACE("------------------------------------------");
+		`LWTrACE ("Found invalid dark events when validating.");
+		`LWTrACE("------------------------------------------");
 		foreach InvalidDarkEvents(DarkEventRef)
 		{
 			UpdateAlienHQ.ChosenDarkEvents.RemoveItem(DarkEventRef);
@@ -364,7 +364,7 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 		AlertLevel += InfiltratingSquad.GetAlertnessModifierForCurrentInfiltration(); // this submits its own gamestate update
 	AlertLevel = Max(AlertLevel, 1); // clamp to be no less than 1
 
-	`LWTRACE("Updating Mission Difficulty: ForceLevel=" $ ForceLevel $ ", AlertLevel=" $ AlertLevel);
+	`LWTrACE("Updating Mission Difficulty: ForceLevel=" $ ForceLevel $ ", AlertLevel=" $ AlertLevel);
 
 	// add explicit hook so that DLCs can update (e.g. AlienHunters to add Rulers) -- these are assumed to submit their own gamestate updates
 	DLCInfos = `ONLINEEVENTMGR.GetDLCInfos(false);
@@ -372,7 +372,7 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	{
 		if (DLCInfos[i].UpdateShadowChamberMissionInfo(MissionSite.GetReference()))
 		{
-			`LWTRACE("UpdateShadowChamberMissionInfo substituted in something -- probably an alien ruler");
+			`LWTrACE("UpdateShadowChamberMissionInfo substituted in something -- probably an alien ruler");
 		}
 	}
 

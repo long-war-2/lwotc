@@ -7,7 +7,7 @@
 
 class UIScreenListener_Shell_LWAlienPack extends UIScreenListener config(LW_AlienPack);
 
-`include(LW_AlienPack_Integrated\LW_AlienPack.uci)
+//`include(LW_AlienPack_Integrated\LW_AlienPack.uci)
 
 struct AIJobInfo_Addition
 {

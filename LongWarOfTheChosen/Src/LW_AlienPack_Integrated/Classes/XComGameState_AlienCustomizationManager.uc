@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_AlienCustomizationManager extends XComGameState_BaseObject config(LW_AlienVariations);
 
-`include(LW_AlienPack_Integrated\LW_AlienPack.uci)
+//`include(LW_AlienPack_Integrated\LW_AlienPack.uci)
 
 	// ADVENT Soldiers using the Props_SD_FX_Chunks material - 'TintColor', 'MetalColor'
 		// AdvTrooper(M1) - 'TintColor' (Detailing)

@@ -6,7 +6,7 @@
 
 class X2DownloadableContentInfo_LWPerkPack extends X2DownloadableContentInfo;	
 
-`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 /// <summary>
 /// This method is run if the player loads a saved game that was created prior to this DLC / Mod being installed, and allows the 

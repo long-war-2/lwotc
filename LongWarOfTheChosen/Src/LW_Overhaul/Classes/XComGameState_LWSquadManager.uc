@@ -638,14 +638,14 @@ function EventListenerReturn ConfigureSquadOnEnterSquadSelect(Object EventData, 
 	local GeneratedMissionData				MissionData;
 	local int								MaxSoldiersInSquad;
 
-	`LWTRACE("ConfigureSquadOnEnterSquadSelect : Starting listener.");
+	`LWTrACE("ConfigureSquadOnEnterSquadSelect : Starting listener.");
 	XComHQ = XComGameState_HeadquartersXCom(EventData);
 	if(XComHQ == none)
 	{
 		`REDSCREEN("OnUpdateSquadSelectSoldiers event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("ConfigureSquadOnEnterSquadSelect : Parsed XComHQ.");
+	`LWTrACE("ConfigureSquadOnEnterSquadSelect : Parsed XComHQ.");
 
 	SquadSelect = GetSquadSelect();
 	if(SquadSelect == none)
@@ -653,7 +653,7 @@ function EventListenerReturn ConfigureSquadOnEnterSquadSelect(Object EventData, 
 		`REDSCREEN("ConfigureSquadOnEnterSquadSelect event triggered with UISquadSelect not in screenstack.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("ConfigureSquadOnEnterSquadSelect : RetrievedSquadSelect.");
+	`LWTrACE("ConfigureSquadOnEnterSquadSelect : RetrievedSquadSelect.");
 
 	History = `XCOMHISTORY;
 

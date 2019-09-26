@@ -412,21 +412,21 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 			POIState = XComGameState_PointOfInterest(`XCOMHISTORY.GetGameStateForObjectID(MissionState.POIToSpawn.ObjectID));
 		}
 	}
-	`LWTRACE("PreMission : MissonPOI ObjectID = " $ MissionState.POIToSpawn.ObjectID);
+	`LWTrACE("PreMission : MissonPOI ObjectID = " $ MissionState.POIToSpawn.ObjectID);
 	if (POIState != none)
 	{
-		`LWTRACE("PreMission : MissionPOI name = " $ POIState.GetMyTemplateName());
+		`LWTrACE("PreMission : MissionPOI name = " $ POIState.GetMyTemplateName());
 	}
 
 	History = `XCOMHISTORY;
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 	CalendarState = XComGameState_MissionCalendar(History.GetSingleGameStateObjectForClass(class'XComGameState_MissionCalendar'));
 	//log some info relating to the AH POI 2 replacement conditions to see what might be causing it to not spawn
-	`LWTRACE("============= POI_AlienNest Debug Info ========================");
-	`LWTRACE("Mission POI to Replace                  : " $ string(MissionState.POIToSpawn.ObjectID > 0));
+	`LWTrACE("============= POI_AlienNest Debug Info ========================");
+	`LWTrACE("Mission POI to Replace                  : " $ string(MissionState.POIToSpawn.ObjectID > 0));
 	foreach History.IterateByClassType(class'XComGameState_PointOfInterest', POIState)
 	{
-	`LWTRACE("     XCGS_PointOfInterest found : " $ POIState.GetMyTemplateName());
+	`LWTrACE("     XCGS_PointOfInterest found : " $ POIState.GetMyTemplateName());
 		if (POIState.GetMyTemplateName() == 'POI_AlienNest')
 		{
 			break;
@@ -434,20 +434,20 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	}
 	if (POIState != none && POIState.GetMyTemplateName() == 'POI_AlienNest')
 	{
-		`LWTRACE("XCGS_PointOfInterest for POI_AlienNest  : found");
+		`LWTrACE("XCGS_PointOfInterest for POI_AlienNest  : found");
 	}
 	else
 	{
-		`LWTRACE("XCGS_PointOfInterest for POI_AlienNest  : NOT found");
+		`LWTrACE("XCGS_PointOfInterest for POI_AlienNest  : NOT found");
 	}
-	`LWTRACE("DLC_HunterWeapons objective complete    : " $ string(`XCOMHQ.IsObjectiveCompleted('DLC_HunterWeapons')));
-	`LWTRACE("Time Test Passed                        : " $ string(class'X2StrategyGameRulesetDataStructures'.static.LessThan(AlienHQ.ForceLevelIntervalEndTime, CalendarState.CurrentMissionMonth[0].SpawnDate)));
-	`LWTRACE("     AlienHQ       ForceLevelIntervalEndTime        : " $ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(AlienHQ.ForceLevelIntervalEndTime) $ ", " $ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(AlienHQ.ForceLevelIntervalEndTime));
-	`LWTRACE("     CalendarState CurrentMissionMonth[0] SpawnDate : " $ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(CalendarState.CurrentMissionMonth[0].SpawnDate) $ ", " $ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(CalendarState.CurrentMissionMonth[0].SpawnDate));
-	`LWTRACE("ForceLevel Test Passed                  : " $ string(AlienHQ.GetForceLevel() + 1 >= 4));
-	`LWTRACE("     AlienHQ ForceLevel  : " $ AlienHQ.GetForceLevel());
-	`LWTRACE("     Required ForceLevel : 4");
-	`LWTRACE("===============================================================");
+	`LWTrACE("DLC_HunterWeapons objective complete    : " $ string(`XCOMHQ.IsObjectiveCompleted('DLC_HunterWeapons')));
+	`LWTrACE("Time Test Passed                        : " $ string(class'X2StrategyGameRulesetDataStructures'.static.LessThan(AlienHQ.ForceLevelIntervalEndTime, CalendarState.CurrentMissionMonth[0].SpawnDate)));
+	`LWTrACE("     AlienHQ       ForceLevelIntervalEndTime        : " $ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(AlienHQ.ForceLevelIntervalEndTime) $ ", " $ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(AlienHQ.ForceLevelIntervalEndTime));
+	`LWTrACE("     CalendarState CurrentMissionMonth[0] SpawnDate : " $ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(CalendarState.CurrentMissionMonth[0].SpawnDate) $ ", " $ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(CalendarState.CurrentMissionMonth[0].SpawnDate));
+	`LWTrACE("ForceLevel Test Passed                  : " $ string(AlienHQ.GetForceLevel() + 1 >= 4));
+	`LWTrACE("     AlienHQ ForceLevel  : " $ AlienHQ.GetForceLevel());
+	`LWTrACE("     Required ForceLevel : 4");
+	`LWTrACE("===============================================================");
 }
 
 /// <summary>
@@ -480,7 +480,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local name LeaderListID;
 	local name FollowerListID;
 
-	`LWTRACE("Parsing Encounter : " $ EncounterName);
+	`LWTrACE("Parsing Encounter : " $ EncounterName);
 
 	History = `XCOMHISTORY;
 	MissionState = XComGameState_MissionSite(SourceObject);
@@ -489,7 +489,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData', true));
 		if (BattleData == none)
 		{
-			`LWTRACE("Could not detect mission type. Aborting with no mission variations applied.");
+			`LWTrACE("Could not detect mission type. Aborting with no mission variations applied.");
 			return;
 		}
 		else
@@ -499,18 +499,18 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	}
 
 	// Ignore the final and any DLC missions
-	`LWTRACE("Mission type = " $ MissionState.GeneratedMission.Mission.sType $ " detected.");
+	`LWTrACE("Mission type = " $ MissionState.GeneratedMission.Mission.sType $ " detected.");
 	switch(MissionState.GeneratedMission.Mission.sType)
 	{
 		case "GP_Fortress":
 		case "GP_Fortress_LW":
-			`LWTRACE("Fortress mission detected. Aborting with no mission variations applied.");
+			`LWTrACE("Fortress mission detected. Aborting with no mission variations applied.");
 			return;
 		case "AlienNest":
 		case "LastGift":
 		case "LastGiftB":
 		case "LastGiftC":
-			`LWTRACE("DLC mission detected. Aborting with no mission variations applied.");
+			`LWTrACE("DLC mission detected. Aborting with no mission variations applied.");
 			return;
 		default:
 			break;
@@ -521,7 +521,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	// checked]
 	if (Left(string(EncounterName), 11) == "GP_Fortress")
 	{
-		`LWTRACE("Fortress mission detected. Aborting with no mission variations applied.");
+		`LWTrACE("Fortress mission detected. Aborting with no mission variations applied.");
 		return;
 	}
 
@@ -545,28 +545,28 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	GetLeaderSpawnDistributionList(EncounterName, MissionState, ForceLevel, LeaderSpawnList);
 	GetFollowerSpawnDistributionList(EncounterName, MissionState, ForceLevel, FollowerSpawnList);
 
-	//`LWTRACE("PE1");
+	//`LWTrACE("PE1");
 	RNFSpawnerState = XComGameState_AIReinforcementSpawner(SourceObject);
 
-	//	`LWTRACE ("PE2");
+	//	`LWTrACE ("PE2");
 	if (RNFSpawnerState != none)
 	{
-		`LWTRACE("Called from AIReinforcementSpawner.OnReinforcementSpawnerCreated -- modifying reinforcement spawninfo");
+		`LWTrACE("Called from AIReinforcementSpawner.OnReinforcementSpawnerCreated -- modifying reinforcement spawninfo");
 	}
 	else
 	{
 		if (MissionState != none)
 		{
-			`LWTRACE("Called from MissionSite.CacheSelectedMissionData -- modifying preplaced spawninfo");
+			`LWTrACE("Called from MissionSite.CacheSelectedMissionData -- modifying preplaced spawninfo");
 		}
 	}
 
-	//`LWTRACE ("PE3");
+	//`LWTrACE ("PE3");
 
-	`LWTRACE("Encounter composition:");
+	`LWTrACE("Encounter composition:");
 	foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 	{
-		`LWTRACE("Character[" $ idx $ "] = " $ CharacterTemplateName);
+		`LWTrACE("Character[" $ idx $ "] = " $ CharacterTemplateName);
 	}
 
 	PodSize = SpawnInfo.SelectedCharacterTemplateNames.length;
@@ -584,7 +584,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	{
 		swap = true;
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
-		`LWTRACE ("Swapping Codex leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+		`LWTrACE ("Swapping Codex leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 	}
 
 	// forces special conditions for avatar to pop
@@ -601,7 +601,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				default:
 					swap = true;
 					SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
-					`LWTRACE ("Swapping Avatar leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+					`LWTrACE ("Swapping Avatar leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 					break;
 			}
 		}
@@ -616,7 +616,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') == eObjectiveState_InProgress)
 		swap = true;
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
-		`LWTRACE ("Swapping Reinf Captain leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+		`LWTrACE ("Swapping Reinf Captain leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 	}
 
 	// Now deal with followers
@@ -628,40 +628,40 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		FirstFollowerName = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
 		FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(FirstFollowerName);
 
-		`LWTRACE("Pod Leader:" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
-		`LWTRACE("Pod Follower:" @ FirstFollowerName);
+		`LWTrACE("Pod Leader:" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+		`LWTrACE("Pod Follower:" @ FirstFollowerName);
 
 		if (LeaderCharacterTemplate.bIsTurret)
 			return;
 
 		if (InStr(EncounterName, "LIST_BOSSx") != -1 && InStr(EncounterName, "_LW") == -1)
 		{
-			`LWTRACE("Don't Edit certain vanilla Boss pods");
+			`LWTrACE("Don't Edit certain vanilla Boss pods");
 			return;
 		}
 		if (Instr(EncounterName, "Chryssalids") != -1)
 		{
-			`LWTRACE("Don't edit Chryssypods");
+			`LWTrACE("Don't edit Chryssypods");
 			return;
 		}
 
 		// Handle vanilla pod construction of one type of alien follower;
 		if (!swap && LeaderCharacterTemplate.bIsAlien && FollowerCharacterTemplate.bIsAlien && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) > 1)
 		{
-			`LWTRACE("Mixing up alien-dominant pod");
+			`LWTrACE("Mixing up alien-dominant pod");
 			swap = true;
 		}
 
 		// Check for pod members that shouldn't appear yet for plot reaons
 		if (CountMembers('Cyberus', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed)
 		{
-			`LWTRACE("Removing Codex for objective reasons");
+			`LWTrACE("Removing Codex for objective reasons");
 			swap = true;
 		}
 
 		if (CountMembers ('AdvPsiWitch', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 		{
-			`LWTRACE("Exicising Avatar for objective reasons");
+			`LWTrACE("Exicising Avatar for objective reasons");
 			swap = true;
 		}
 
@@ -677,7 +677,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			}
 			if (swap)
 			{
-				`LWTRACE("Mixing up pod that violates MCPG setting");
+				`LWTrACE("Mixing up pod that violates MCPG setting");
 			}
 		}
 
@@ -686,7 +686,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		{
 			if (CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 1)
 			{
-				`LWTRACE ("Mixing up undiverse 4/5-enemy pod");
+				`LWTrACE ("Mixing up undiverse 4/5-enemy pod");
 				swap = true;
 			}
 		}
@@ -697,7 +697,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			// if a max of one guy is different
 			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
 			{
-				`LWTRACE ("Mixing up undiverse 5+ enemy pod");
+				`LWTrACE ("Mixing up undiverse 5+ enemy pod");
 				swap = true;
 			}
 		}
@@ -724,7 +724,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
 				}
-				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
+				//`LWTrACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
 				// Let's look over our outcome and see if it's any better
 				if ((PodSize == 4 || PodSize == 5) && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= Podsize - 1)
 				{
@@ -742,10 +742,10 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					}
 				}
 			}
-			`LWTRACE("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory) @ "New encounter composition:");
+			`LWTrACE("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory) @ "New encounter composition:");
 			foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
 			{
-				`LWTRACE("Character[" $ idx $ "] = " $ CharacterTemplateName);
+				`LWTrACE("Character[" $ idx $ "] = " $ CharacterTemplateName);
 			}
 		}
 	}
@@ -906,7 +906,7 @@ static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, 
 	local int k;
 	local XComGameState_HeadquartersXCom XCOMHQ;
 
-	`LWTRACE ("Initiating SelectNewPodLeader" @ ForceLevel);
+	`LWTrACE ("Initiating SelectNewPodLeader" @ ForceLevel);
 
 	PossibleChars.length = 0;
 	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
@@ -967,7 +967,7 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 	local XComGameState_HeadquartersXCom XCOMHQ;
 
 	PossibleChars.Length = 0;
-	//`LWTRACE ("Initiating SelectRandomPodFollower" @ ForceLevel @ AlienAllowed @ AdventAllowed @ TerrorAllowed);
+	//`LWTrACE ("Initiating SelectRandomPodFollower" @ ForceLevel @ AlienAllowed @ AdventAllowed @ TerrorAllowed);
 	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
 	foreach CharacterTemplateMgr.IterateTemplates(Template, None)
 	{
@@ -1055,7 +1055,7 @@ static function CleanupObsoleteTacticalGamestate()
 	GameInfo = `XCOMGAME;
 	idx = 0;
 
-	`LWTRACE("REMOVED " $ idx $ " tactical transient gamestates when loading into strategy");
+	`LWTrACE("REMOVED " $ idx $ " tactical transient gamestates when loading into strategy");
 	if (default.ShouldCleanupObsoleteUnits)
 	{
 		idx = 0;
@@ -1075,8 +1075,8 @@ static function CleanupObsoleteTacticalGamestate()
 			}
 		}
 	}
-	`LWTRACE("REMOVED " $ idx $ " obsolete enemy unit gamestates when loading into strategy");
-	`LWTRACE("REMOVED " $ idx2 $ " obsolete enemy item gamestates when loading into strategy");
+	`LWTrACE("REMOVED " $ idx $ " obsolete enemy unit gamestates when loading into strategy");
+	`LWTrACE("REMOVED " $ idx2 $ " obsolete enemy item gamestates when loading into strategy");
 
 	History.AddGameStateToHistory(NewGameState);
 }
@@ -1193,10 +1193,10 @@ static function OverrideConcealmentAtStart(XComGameState_MissionSite MissionStat
 		if (MissionState.GeneratedMission.Mission.sType == default.MINIMUM_INFIL_FOR_CONCEAL[k].MissionType)
 		{
 			SquadState = `LWSQUADMGR.GetSquadOnMission(MissionState.GetReference());
-			//`LWTRACE ("CheckForConcealOverride: Mission Type correct. Infiltration:" @ SquadState.CurrentInfiltration);
+			//`LWTrACE ("CheckForConcealOverride: Mission Type correct. Infiltration:" @ SquadState.CurrentInfiltration);
 			If (SquadState.CurrentInfiltration < default.MINIMUM_INFIL_FOR_CONCEAL[k].MinInfiltration)
 			{
-				`LWTRACE ("OverrideConcealmentAtStart: Conditions met to start squad revealed");
+				`LWTrACE ("OverrideConcealmentAtStart: Conditions met to start squad revealed");
 				BattleData.bForceNoSquadConcealment = true;
 			}
 		}
@@ -1419,11 +1419,11 @@ static function bool GetValidFloorSpawnLocations(out array<Vector> FloorPoints, 
 		Toggle = !Toggle;
 	}
 
-	`LWTRACE("GetValidFloorSpawnLocations called from : " $ GetScriptTrace());
-	`LWTRACE("Found " $ FloorPoints.Length $ " Valid Tiles to place units around location : " $ string(SpawnPoint.Location));
+	`LWTrACE("GetValidFloorSpawnLocations called from : " $ GetScriptTrace());
+	`LWTrACE("Found " $ FloorPoints.Length $ " Valid Tiles to place units around location : " $ string(SpawnPoint.Location));
 	for (Iters = 0; Iters < FloorPoints.Length; Iters++)
 	{
-		`LWTRACE("Point[" $ Iters $ "] = " $ string(FloorPoints[Iters]));
+		`LWTrACE("Point[" $ Iters $ "] = " $ string(FloorPoints[Iters]));
 	}
 
 	return true;
@@ -1664,7 +1664,7 @@ static function string DLCAppendSockets(XComUnitPawn Pawn)
 	TorsoName = HumanPawn.m_kAppearance.nmTorso;
 	bIsFemale = HumanPawn.m_kAppearance.iGender == eGender_Female;
 
-	//`LWTRACE("DLCAppendSockets: Torso= " $ TorsoName $ ", Female= " $ string(bIsFemale));
+	//`LWTrACE("DLCAppendSockets: Torso= " $ TorsoName $ ", Female= " $ string(bIsFemale));
 
 	foreach default.SocketReplacements(SocketReplacement)
 	{
@@ -1686,7 +1686,7 @@ static function string DLCAppendSockets(XComUnitPawn Pawn)
 		// did not find, so use default
 		ReturnString = DefaultString;
 	}
-	//`LWTRACE("Returning mesh string: " $ ReturnString);
+	//`LWTrACE("Returning mesh string: " $ ReturnString);
 	return ReturnString;
 }
 
@@ -1992,20 +1992,20 @@ static function bool AddItemToStorage(name ItemTemplateName, X2ItemTemplateManag
 	local X2ItemTemplate ItemTemplate;
 	local XComGameState_Item NewItemState;
 
-	`LWTRACE("Searching for item template:" @ ItemTemplateName);
+	`LWTrACE("Searching for item template:" @ ItemTemplateName);
 	ItemTemplate = ItemTemplateMgr.FindItemTemplate(ItemTemplateName);
 	if(ItemTemplate != none)
 	{
-		`LWTRACE("Found item template:" @ ItemTemplateName);
+		`LWTrACE("Found item template:" @ ItemTemplateName);
 		if (!XComHQ.HasItem(ItemTemplate))
 		{
-			`LWTRACE(ItemTemplateName $ " not found, adding to inventory");
+			`LWTrACE(ItemTemplateName $ " not found, adding to inventory");
 			NewItemState = ItemTemplate.CreateInstanceFromTemplate(NewGameState);
 			NewGameState.AddStateObject(NewItemState);
 			XComHQ.AddItemToHQInventory(NewItemState);
 			return true;
 		} else {
-			`LWTRACE(ItemTemplateName $ " found, skipping inventory add");
+			`LWTrACE(ItemTemplateName $ " found, skipping inventory add");
 			return false;
 		}
 	}

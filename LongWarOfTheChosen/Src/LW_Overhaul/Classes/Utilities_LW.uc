@@ -504,7 +504,7 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 				LoadoutStr $= "Shotgun";
 			}
 		}
-		//`LWTRACE ("Rebel Loadout" @ LoadoutStr);
+		//`LWTrACE ("Rebel Loadout" @ LoadoutStr);
 		Loadout = name(LoadOutStr);
 	}
 

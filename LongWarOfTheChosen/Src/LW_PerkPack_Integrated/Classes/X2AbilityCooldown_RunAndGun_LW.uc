@@ -4,7 +4,7 @@
 //---------------------------------------------------------------------------------------
 class X2AbilityCooldown_RunAndGun_LW extends X2AbilityCooldown config(LW_SoldierSkills);
 
-`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var config int RUN_AND_GUN_COOLDOWN;
 var config int EXTRA_CONDITIONING_COOLDOWN_REDUCTION;

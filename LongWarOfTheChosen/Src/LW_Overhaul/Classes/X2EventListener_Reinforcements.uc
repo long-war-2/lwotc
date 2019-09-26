@@ -48,14 +48,14 @@ static protected function EventListenerReturn OnOverrideDisableReinforcementsFla
 	local XComLWTuple OverrideTuple;
 	local XComGameState_AIReinforcementSpawner SpawnerState;
 
-	`LWTRACE("OverrideDisableReinforcementsFlare : Starting listener.");
+	`LWTrACE("OverrideDisableReinforcementsFlare : Starting listener.");
 	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
 	{
 		`REDSCREEN("OverrideDisableReinforcementsFlare event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideDisableReinforcementsFlare : Parsed XComLWTuple.");
+	`LWTrACE("OverrideDisableReinforcementsFlare : Parsed XComLWTuple.");
 
 	SpawnerState = XComGameState_AIReinforcementSpawner(EventSource);
 	if(SpawnerState == none)
@@ -63,12 +63,12 @@ static protected function EventListenerReturn OnOverrideDisableReinforcementsFla
 		`REDSCREEN("OverrideDisableReinforcementsFlare event triggered with invalid source data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideDisableReinforcementsFlare : EventSource valid.");
+	`LWTrACE("OverrideDisableReinforcementsFlare : EventSource valid.");
 
 	if(OverrideTuple.Id != 'OverrideDisableReinforcementsFlare')
 		return ELR_NoInterrupt;
 
-	`LWTRACE ("Disable Reinforcement Flares" @ default.DISABLE_REINFORCEMENT_FLARES[`TACTICALDIFFICULTYSETTING]);
+	`LWTrACE ("Disable Reinforcement Flares" @ default.DISABLE_REINFORCEMENT_FLARES[`TACTICALDIFFICULTYSETTING]);
 	OverrideTuple.Data[0].b = default.DISABLE_REINFORCEMENT_FLARES[`TACTICALDIFFICULTYSETTING];
 
 	return ELR_NoInterrupt;

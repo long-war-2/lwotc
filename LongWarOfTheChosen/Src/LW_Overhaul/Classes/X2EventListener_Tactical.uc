@@ -99,27 +99,27 @@ static function EventListenerReturn OnPlacedDelayedEvacZone(Object EventData, Ob
 
 	Squad = SquadMgr.GetSquadOnMission(XComHQ.MissionRef);
 
-	`LWTRACE("**** Evac Delay Calculations ****");
-	`LWTRACE("Base Delay : " $ EvacDelayTuple.Data[0].i);
+	`LWTrACE("**** Evac Delay Calculations ****");
+	`LWTrACE("Base Delay : " $ EvacDelayTuple.Data[0].i);
 
 	// adjustments based on squad size
 	EvacDelayTuple.Data[0].i += Squad.EvacDelayModifier_SquadSize();
-	`LWTRACE("After Squadsize Adjustment : " $ EvacDelayTuple.Data[0].i);
+	`LWTrACE("After Squadsize Adjustment : " $ EvacDelayTuple.Data[0].i);
 
 	// adjustments based on infiltration
 	EvacDelayTuple.Data[0].i += Squad.EvacDelayModifier_Infiltration();
-	`LWTRACE("After Infiltration Adjustment : " $ EvacDelayTuple.Data[0].i);
+	`LWTrACE("After Infiltration Adjustment : " $ EvacDelayTuple.Data[0].i);
 
 	// adjustments based on number of active missions engaged with
 	EvacDelayTuple.Data[0].i += Squad.EvacDelayModifier_Missions();
-	`LWTRACE("After NumMissions Adjustment : " $ EvacDelayTuple.Data[0].i);
+	`LWTrACE("After NumMissions Adjustment : " $ EvacDelayTuple.Data[0].i);
 
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(`XCOMHQ.MissionRef.ObjectID));
 	CurrentActivity = class'XComGameState_LWAlienActivityManager'.static.FindAlienActivityByMission(MissionState);
 
 	EvacDelayTuple.Data[0].i += CurrentActivity.GetMyTemplate().MissionTree[CurrentActivity.CurrentMissionLevel].EvacModifier;
 
-	`LWTRACE("After Activity Adjustment : " $ EvacDelayTuple.Data[0].i);
+	`LWTrACE("After Activity Adjustment : " $ EvacDelayTuple.Data[0].i);
 	
 	return ELR_NoInterrupt;
 

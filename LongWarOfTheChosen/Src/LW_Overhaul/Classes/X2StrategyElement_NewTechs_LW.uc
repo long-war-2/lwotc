@@ -368,7 +368,7 @@ function RenderTechCompleted(XComGameState NewGameState, XComGameState_Tech Tech
 
 	if (TechState.GetMyTemplate().ItemRewards.length > 0)
 	{
-		`LWTRACE("ITEM REWARD HIT");
+		`LWTrACE("ITEM REWARD HIT");
 
 		ItemTemplateManager = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
 		ItemTemplate = ItemTemplateManager.FindItemTemplate(TechState.GetMyTemplate().ItemRewards[TechState.GetMyTemplate().ItemRewards.length-1]);

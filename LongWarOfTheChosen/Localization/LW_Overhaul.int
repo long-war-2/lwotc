@@ -432,7 +432,7 @@ m_strAbort="ABORT"
 m_strBoostInfiltration="BOOST INFILTRATION"
 m_strAlreadyBoostedInfiltration="Squad <XGParam:StrValue0> has already boosted infiltration"
 m_strInsufficentIntelForBoostInfiltration="Insufficient Intel"
-m_strBoostInfiltrationDescription="You can spend <XGParam:StrValue0> to boost the infiltration rate of this squad by <XGParam:IntValue1>% for this mission. The boost is retroactive. Do you wish to spend the intel?"
+m_strBoostInfiltrationDescription="You can spend<XGParam:StrValue0> to boost the infiltration rate of this squad by <XGParam:IntValue1>% for this mission. The boost is retroactive. Do you wish to spend the intel?"
 m_strViewSquad="VIEW SQUAD"
 m_strInfiltrationStatusExpiring="<XGParam:IntValue0>% Infiltrated / <XGParam:IntValue1>d <XGParam:IntValue2>h until 100%"
 m_strInfiltrationStatusMissionEnding="<XGParam:IntValue0>% Infiltrated / <XGParam:IntValue1>d <XGParam:IntValue2>h until must launch"
@@ -667,10 +667,3 @@ m_strPrevHaven="PREV HAVEN"
 m_strNextHaven="NEXT HAVEN"
 
 m_strVIPCaptureReward="(VIP Capture Only)"
-
-[UIListener_CampaignStartMenu]
-; LWOTC Needs Translation
-strDisabledTutorialTooltip="Tutorial is disabled while running Long War of the Chosen"
-strDisabledNarrativeContentTooltip="Lost and Abandoned is disabled while running Long War of the Chosen"
-strDisabledPrecisionExplosivesTooltip="Precision Explosives is disabled while running Long War of the Chosen"
-; End Translation

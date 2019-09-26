@@ -18,10 +18,10 @@ simulated function bool MeetsConditionWithRegion(X2LWActivityCreation ActivityCr
 	OutpostState = OutpostManager.GetOutpostForRegion(Region);
 	if (OutPostState.Rebels.length >= MinRebels)
 	{
-		`LWTRACE ("Passed X2LWActivityCondition_MinRebels" @ ActivityCreation.ActivityTemplate.ActivityName);
+		`LWTrACE ("Passed X2LWActivityCondition_MinRebels" @ ActivityCreation.ActivityTemplate.ActivityName);
 		return true;
 	}
-	`LWTRACE ("Passed X2LWActivityCondition_MinRebels" @ ActivityCreation.ActivityTemplate.ActivityName);
+	`LWTrACE ("Passed X2LWActivityCondition_MinRebels" @ ActivityCreation.ActivityTemplate.ActivityName);
 	return false;
 
 }

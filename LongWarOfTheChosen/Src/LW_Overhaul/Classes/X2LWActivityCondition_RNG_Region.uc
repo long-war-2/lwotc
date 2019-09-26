@@ -30,7 +30,7 @@ simulated function bool MeetsConditionWithRegion(X2LWActivityCreation ActivityCr
 	OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
 	OutpostState = OutpostManager.GetOutpostForRegion(Region);
 
-	`LWTRACE ("Attempting to Create Retal/Invasion via RNG" @ ActivityCreation.ActivityTemplate.ActivityName);
+	`LWTrACE ("Attempting to Create Retal/Invasion via RNG" @ ActivityCreation.ActivityTemplate.ActivityName);
 
 	If(RegionalAI != none)
 	{
@@ -63,12 +63,12 @@ simulated function bool MeetsConditionWithRegion(X2LWActivityCreation ActivityCr
 		RandValue = `SYNC_FRAND() * 100.0;
 		if (RandValue <= CheckValue)
 		{
-			`LWTRACE (ActivityCreation.ActivityTemplate.ActivityName @ "Retal passes RNG roll");
+			`LWTrACE (ActivityCreation.ActivityTemplate.ActivityName @ "Retal passes RNG roll");
 			return true;
 		}
 		else
 		{
-			`LWTRACE (ActivityCreation.ActivityTemplate.ActivityName @ "fails RNG roll" @ string (RandValue) @ string (CheckValue));
+			`LWTrACE (ActivityCreation.ActivityTemplate.ActivityName @ "fails RNG roll" @ string (RandValue) @ string (CheckValue));
 		}
 	}
 

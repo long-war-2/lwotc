@@ -40,7 +40,7 @@ simulated function StateObjectReference FindBestPrimaryRegion(XComGameState NewG
 		
 		if (RegionalAI == none)
 		{
-			`LWTRACE("Picking Random Region, FindBestPrimaryRegion: Can't Find Regional AI for" @ RegionState.GetMyTemplate().DisplayName);
+			`LWTrACE("Picking Random Region, FindBestPrimaryRegion: Can't Find Regional AI for" @ RegionState.GetMyTemplate().DisplayName);
 			return PrimaryRegions[`SYNC_RAND(PrimaryRegions.Length)];
 		}
 

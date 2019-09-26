@@ -4536,7 +4536,7 @@ TacticalText="<Bullet/> Ein Psi-Verstärker steigert die Psi-Kraft von Psi-Solda
 DisplayName="Funkrelais"
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="Extrahiere ADVENT-Vorrat"
+DisplayName="Raubzug"
 Briefing="Beschaffe ADVENT-Vorrat"
 PostMissionType="Raubzug"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"

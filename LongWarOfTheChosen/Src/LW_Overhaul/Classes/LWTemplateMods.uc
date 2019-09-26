@@ -318,7 +318,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateModifyRewardsTemplate());
 	Templates.AddItem(CreateModifyStrategyObjectivesTemplate());
 	Templates.AddItem(CreateModifyCovertActionsTemplate());
-	Templates.AddItem(CreateModifyResistanceOrdersTemplate());
 	`Log("    Done");
 	return Templates;
 }
@@ -347,15 +346,6 @@ static function X2LWTemplateModTemplate CreateModifyCovertActionsTemplate()
 	local X2LWTemplateModTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2LWCovertActionsModTemplate', Template, 'UpdateCovertActions');
-	return Template;
-}
-
-// Update existing strategic objective templates
-static function X2LWTemplateModTemplate CreateModifyResistanceOrdersTemplate()
-{
-	local X2LWTemplateModTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'X2LWResistanceOrdersModTemplate', Template, 'UpdateResistanceOrders');
 	return Template;
 }
 
@@ -2027,7 +2017,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		//if (WeaponTemplate.Abilities.Find('StandardShot') != -1)
 		//{
 			//WeaponTemplate.Abilities.AddItem('ReflexShot');
-			//`LWTRACE ("Adding ReflexShot to" @ WeaponTemplate.DataName);
+			//`LWTrACE ("Adding ReflexShot to" @ WeaponTemplate.DataName);
 		//}
 
 		//switch (WeaponTemplate.DataName)
@@ -2188,12 +2178,12 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	if (Template.DataName == 'SmallIntelCache')
 	{
 		Template.ResourceQuantity = default.SMALL_INTEL_CACHE_REWARD;
-		`LWTRACE("SETTING SMALL INTEL CACHE REWARD TO" @ Template.ResourceQuantity);
+		`LWTrACE("SETTING SMALL INTEL CACHE REWARD TO" @ Template.ResourceQuantity);
 	}
 	if (Template.DataName == 'BigIntelCache')
 	{
 		Template.ResourceQuantity = default.LARGE_INTEL_CACHE_REWARD;
-		`LWTRACE("SETTING LARGE INTEL CACHE REWARD TO" @ Template.ResourceQuantity);
+		`LWTrACE("SETTING LARGE INTEL CACHE REWARD TO" @ Template.ResourceQuantity);
 	}
 
 	EquipmentTemplate = X2EquipmentTemplate(Template);
@@ -2345,7 +2335,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				case 'MutonM3_LWGrenade' :
 					GrenadeTemplate.AddAbilityIconOverride('ThrowGrenade', "img:///UILibrary_LW_Overhaul.UIPerk_grenade_aliengrenade");
 					GrenadeTemplate.AddAbilityIconOverride('LaunchGrenade', "img:///UILibrary_LW_Overhaul.UIPerk_grenade_aliengrenade");
-					`LWTRACE("Added Ability Icon Override for Alien Grenade");
+					`LWTrACE("Added Ability Icon Override for Alien Grenade");
 					break;
 				default :
 					break;
@@ -3401,14 +3391,14 @@ function ModifyDarkEvents (X2StrategyElementTemplate Template, int Difficulty)
 				DarkEventTemplate.MutuallyExclusiveEvents.AddItem('DarkEvent_MajorBreakthrough2');
 				DarkEventTemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.CanActivateMinorBreakthroughAlt; // Will check for whether avatar project has been revealed
 				DarkEventTemplate.OnActivatedFn = class'X2StrategyElement_DarkEvents_LW'.static.ActivateMinorBreakthroughMod;
-				`LWTRACE("Redefined Minor Breakthrough Dark Event Template");
+				`LWTrACE("Redefined Minor Breakthrough Dark Event Template");
 				break;
 			case 'DarkEvent_MajorBreakthrough':
 				DarkEventTemplate.MutuallyExclusiveEvents.AddItem('DarkEvent_MinorBreakthrough2');
 				DarkEventTemplate.MutuallyExclusiveEvents.AddItem('DarkEvent_MajorBreakthrough2');
 				DarkEventTemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.CanActivateMajorBreakthroughAlt;
 				DarkEventTemplate.OnActivatedFn = class'X2StrategyElement_DarkEvents_LW'.static.ActivateMajorBreakthroughMod;
-				`LWTRACE("Redefined Major Breakthrough Dark Event Template");
+				`LWTrACE("Redefined Major Breakthrough Dark Event Template");
 				break;
 			case 'DarkEvent_HunterClass':
 				DarkEventTemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.CanActivateHunterClass_LW;

@@ -4535,7 +4535,7 @@ TacticalText="<Bullet/> Пси-усилитель повышает псиони�
 DisplayName="Радиоретранслятор"
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="Вывезите материалы \"Адвента\""
+DisplayName="Разбойное нападение"
 Briefing="Захват материалов \"Адвента\""
 PostMissionType="Разбойное нападение"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"

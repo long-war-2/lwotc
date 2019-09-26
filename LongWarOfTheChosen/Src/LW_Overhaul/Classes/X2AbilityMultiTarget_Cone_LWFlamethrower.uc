@@ -129,7 +129,7 @@ simulated function GetValidTilesForLocation(const XComGameState_Ability Ability,
         ShooterVisualizer.GetDirectionInfoForPosition(Location, OutVisibilityInfo, CoverDirection, UsePeek, bCanSeeFromDefault, bRequiresLean, true);
         ShooterPos = ShooterVisualizer.GetExitCoverPosition(CoverDirection, UsePeek);
         ShooterPos.Z = WorldData.GetFloorZForPosition(ShooterPos);
-        //`LWTRACE("MultiTargetFlamethrower ShooterPosition = (" $ ShooterPos.X $ ", " $ ShooterPos.Y $ ", " $ ShooterPos.Z $ ")"); 
+        //`LWTrACE("MultiTargetFlamethrower ShooterPosition = (" $ ShooterPos.X $ ", " $ ShooterPos.Y $ ", " $ ShooterPos.Z $ ")"); 
     }
     ShooterPos.Z += class'XComWorldData'.const.WORLD_FloorHeight;
     ConeAxis = Normal(Location - ShooterPos) * GetConeLength(Ability);
@@ -162,7 +162,7 @@ simulated function GetValidTilesForLocation(const XComGameState_Ability Ability,
         }
     }
 
-    //`LWTRACE("MultiTargetFlamethrower NumTiles=" $ TileCollection.length);
+    //`LWTrACE("MultiTargetFlamethrower NumTiles=" $ TileCollection.length);
     //UnvisitedTiles.Sort(SortTilesByDistance);  // TODO : implement sorting for O(n log n) instead of O(n^2) if performance required
     CurrentTile = UnvisitedTiles[GetSmallestDistanceTile(UnvisitedTiles, LargestDistance)];
     while (LargestDistance > CurrentConeLength && CurrentTile.Distance <= CurrentConeLength)
@@ -195,7 +195,7 @@ simulated function GetValidTilesForLocation(const XComGameState_Ability Ability,
     {
         CachedValidTiles = ValidTiles;
     }
-    // `LWTRACE("MultiTargetFlamethrower NumTiles=" $ TileCollection.length $ ", VoxelChecks=" $ VoxelChecks);
+    // `LWTrACE("MultiTargetFlamethrower NumTiles=" $ TileCollection.length $ ", VoxelChecks=" $ VoxelChecks);
 }
 
 protected function array<int> GetAdjacentTiles(TTile CenterTile, array<TileDistancePair> Tiles)

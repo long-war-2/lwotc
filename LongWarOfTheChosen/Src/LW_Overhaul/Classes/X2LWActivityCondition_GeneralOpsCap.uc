@@ -11,10 +11,10 @@ simulated function bool MeetsConditionWithRegion(X2LWActivityCreation ActivityCr
 
 	ResistanceHQ = XComGameState_HeadquartersResistance(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
 	RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region, NewGameState);
-	`LWTRACE ("Monthly GeneralOps Count" @ RegionalAI.GeneralOpsCount @ "compared to monthly cap" @ MAX_GEN_OPS_PER_REGION_PER_MONTH[`STRATEGYDIFFICULTYSETTING] * (ResistanceHQ.NumMonths +1));
+	`LWTrACE ("Monthly GeneralOps Count" @ RegionalAI.GeneralOpsCount @ "compared to monthly cap" @ MAX_GEN_OPS_PER_REGION_PER_MONTH[`STRATEGYDIFFICULTYSETTING] * (ResistanceHQ.NumMonths +1));
 	if (RegionalAI.GeneralOpsCount > MAX_GEN_OPS_PER_REGION_PER_MONTH[`STRATEGYDIFFICULTYSETTING] * (ResistanceHQ.NumMonths +1))
 	{
-		`LWTRACE ("Activity disallowed, General Ops Cap exceeded for" @ Region.GetDisplayName());
+		`LWTrACE ("Activity disallowed, General Ops Cap exceeded for" @ Region.GetDisplayName());
 		return false;
 	}
 	return true;

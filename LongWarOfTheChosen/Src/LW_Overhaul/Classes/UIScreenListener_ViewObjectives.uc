@@ -33,7 +33,7 @@ function MakeDescriptionUseScrollbar(UIViewObjectives ViewObjectives)
 		ViewObjectives.ItemCard.MC.ChildFunctionString("description", "setHTML", "");
 		ListItem = ViewObjectives.arrItems[ViewObjectives.iSelectedItem];
 		Description = ListItem.Desc;
-		`LWTRACE("View Objectives description : " $ Description);
+		`LWTrACE("View Objectives description : " $ Description);
 
 		DescriptionText = UITextContainer(ViewObjectives.GetChild('ObjectivesDescription_LW'));
 		if (DescriptionText == none)

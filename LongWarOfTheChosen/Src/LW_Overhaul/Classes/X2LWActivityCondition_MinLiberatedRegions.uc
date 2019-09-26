@@ -35,7 +35,7 @@ simulated function bool MeetsCondition(X2LWActivityCreation ActivityCreation, XC
 		}
 	}
 
-	//`LWTRACE ("Foothold Test: Liberated:" @ string(LiberatedRegions) @ "MaxAlienRegions (to fire activity):" @ string (MaxAlienRegions) @ "NumRegions:" @ string (NumRegions));
+	//`LWTrACE ("Foothold Test: Liberated:" @ string(LiberatedRegions) @ "MaxAlienRegions (to fire activity):" @ string (MaxAlienRegions) @ "NumRegions:" @ string (NumRegions));
 
 	if (AlienRegions <= MaxAlienRegions)
 		return true;

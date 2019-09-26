@@ -801,7 +801,8 @@ static function X2DataTemplate CreateNapalmXPanicEffectAbility()
 
 	Template.AddShooterEffectExclusions();
 
-	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_StatCheck_LWFlamethrower';
+	// WOTC TODO: Restore this to get flamethrower panic to work
+	//Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_StatCheck_LWFlamethrower';
 
 	//  Panic effect for 3-4 unblocked psi hits
 	PanicEffect = class'X2StatusEffects'.static.CreatePanickedStatusEffect();
@@ -1363,7 +1364,7 @@ static function vector GetScatterAmount(XComGameState_Unit Unit, vector Scattere
 	local float AngleRadians;
 	local XComWorldData WorldData;
 
-	`LWTRACE("GetScatterAmount: Starting Calculation");
+	`LWTrACE("GetScatterAmount: Starting Calculation");
 
 	WorldData = `XWORLD;
 
@@ -1373,7 +1374,7 @@ static function vector GetScatterAmount(XComGameState_Unit Unit, vector Scattere
 
 	EffectiveOffense = GetEffectiveOffense(Unit, TileDistance);
 
-	`LWTRACE("GetScatterAmount: (Distance) Offense=" $ EffectiveOffense $ ", Rolls=" $ NumAimRolls $ ", Tiles=" $ TileDistance);
+	`LWTrACE("GetScatterAmount: (Distance) Offense=" $ EffectiveOffense $ ", Rolls=" $ NumAimRolls $ ", Tiles=" $ TileDistance);
 
 	for(Idx=0 ; Idx < NumAimRolls  ; Idx++)
 	{
@@ -1381,7 +1382,7 @@ static function vector GetScatterAmount(XComGameState_Unit Unit, vector Scattere
 			TileScatter += 1;
 	}
 
-	`LWTRACE("GetScatterAmount: (Select) TileScatter=" $ TileScatter);
+	`LWTrACE("GetScatterAmount: (Select) TileScatter=" $ TileScatter);
 
 	//pick a random direction in radians
 	AngleRadians = `SYNC_FRAND_STATIC() * 2.0 * 3.141592653589793;
@@ -1389,11 +1390,11 @@ static function vector GetScatterAmount(XComGameState_Unit Unit, vector Scattere
 	ScatterVector.y = Sin(AngleRadians) * TileScatter * WorldData.WORLD_StepSize;
 	ReturnPosition = ScatteredTargetLoc + ScatterVector;
 
-	`LWTRACE("GetScatterAmount: (FracResult) OutVector=" $ string(ReturnPosition) $ ", InVector=" $ string(ScatteredTargetLoc) $ ", ScatterVec=" $ string(ScatterVector) $ ", Angle=" $ AngleRadians);
+	`LWTrACE("GetScatterAmount: (FracResult) OutVector=" $ string(ReturnPosition) $ ", InVector=" $ string(ScatteredTargetLoc) $ ", ScatterVec=" $ string(ScatterVector) $ ", Angle=" $ AngleRadians);
 
 	ReturnPosition = WorldData.FindClosestValidLocation(ReturnPosition, true, true);
 
-	`LWTRACE("GetScatterAmount: (ValidResult) OutVector=" $ string(ReturnPosition) $ ", InVector=" $ string(ScatteredTargetLoc) $ ", ScatterVec=" $ string(ScatterVector) $ ", Angle=" $ AngleRadians);
+	`LWTrACE("GetScatterAmount: (ValidResult) OutVector=" $ string(ReturnPosition) $ ", InVector=" $ string(ScatteredTargetLoc) $ ", ScatterVec=" $ string(ScatterVector) $ ", Angle=" $ AngleRadians);
 
 	return ReturnPosition;
 }
@@ -1406,7 +1407,7 @@ static function float GetExpectedScatter(XComGameState_Unit Unit, vector TargetL
 	TileDistance = TileDistanceBetween(Unit, TargetLoc);
 	EffectiveOffense = GetEffectiveOffense(Unit, TileDistance);
 	ExpectedScatter = (100.0 - GetEffectiveOffense(Unit, TileDistance))/100.0 * float(GetNumAimRolls(Unit));
-	`LWTRACE("ExpectedScatter=" $ ExpectedScatter $ ", EffectiveOffense=" $ EffectiveOffense $ ", TileDistance=" $ TileDistance);
+	`LWTrACE("ExpectedScatter=" $ ExpectedScatter $ ", EffectiveOffense=" $ EffectiveOffense $ ", TileDistance=" $ TileDistance);
 	return ExpectedScatter;
 }
 

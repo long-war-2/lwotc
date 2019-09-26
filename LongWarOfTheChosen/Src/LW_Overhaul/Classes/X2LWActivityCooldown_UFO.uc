@@ -18,6 +18,6 @@ function float GetCooldownHours()
 	{
 		return (default.FORCE_UFO_COOLDOWN_DAYS[`STRATEGYDIFFICULTYSETTING] * 24) + (`SYNC_FRAND() * RandCooldown_Hours);
 	}
-	`LWTRACE ("Using UFO Alert Cooldown Table" @ ALERT_UFO_COOLDOWN_DAYS[`STRATEGYDIFFICULTYSETTING]);
+	`LWTrACE ("Using UFO Alert Cooldown Table" @ ALERT_UFO_COOLDOWN_DAYS[`STRATEGYDIFFICULTYSETTING]);
 	return (default.ALERT_UFO_COOLDOWN_DAYS[`STRATEGYDIFFICULTYSETTING] * 24) + (`SYNC_FRAND() * RandCooldown_Hours);
 }

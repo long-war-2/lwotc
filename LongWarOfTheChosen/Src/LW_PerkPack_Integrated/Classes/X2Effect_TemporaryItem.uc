@@ -6,7 +6,7 @@
 
 class X2Effect_TemporaryItem extends X2Effect_Persistent;
 
-`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 struct ResearchConditional
 {

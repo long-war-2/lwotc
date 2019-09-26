@@ -4535,7 +4535,7 @@ TacticalText="<Bullet/>サイキック・アンプは、サイキック兵のサ
 DisplayName="無線中継器"
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="アドヴェントの補給物資を回収"
+DisplayName="強奪"
 Briefing="アドヴェントの物資を回収する"
 PostMissionType="強奪"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"

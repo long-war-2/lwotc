@@ -124,7 +124,7 @@ simulated function UIList GetDarkEventListUI()
 
 simulated function DarkEventListButtonCallback( UIList kList, int index )
 {
-	`LWTRACE("DarkEventListButtonCallback: index=" @ index);
+	`LWTrACE("DarkEventListButtonCallback: index=" @ index);
 
 	BuildDarkEventPanel(index, bShowActiveEvents);
 }

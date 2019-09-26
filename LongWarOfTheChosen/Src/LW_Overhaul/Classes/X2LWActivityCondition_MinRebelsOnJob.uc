@@ -30,10 +30,10 @@ simulated function bool MeetsConditionWithRegion(X2LWActivityCreation ActivityCr
 
 	if (OutPostState.GetNumRebelsOnJob(Job) >= AdjustedMinRebelsOnJob)
 	{
-		`LWTRACE ("MinRebelsOnJob Pass" @ string(AdjustedMinRebelsOnJob) @ ActivityCreation.ActivityTemplate.ActivityName);
+		`LWTrACE ("MinRebelsOnJob Pass" @ string(AdjustedMinRebelsOnJob) @ ActivityCreation.ActivityTemplate.ActivityName);
 		return true;	
 	}
-	`LWTRACE ("MinRebelsOnJob Fail" @ string(AdjustedMinRebelsOnJob) @ ActivityCreation.ActivityTemplate.ActivityName);
+	`LWTrACE ("MinRebelsOnJob Fail" @ string(AdjustedMinRebelsOnJob) @ ActivityCreation.ActivityTemplate.ActivityName);
 	return false;
 }
 

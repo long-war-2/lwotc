@@ -264,7 +264,7 @@ simulated function OnReceiveFocus()
 		bRestoreCachedSquad = false;
 		CachedSquad.Length = 0;
 	}
-	`LWTRACE("OnReceiveFocus: CurrentSquadSelect=" $ CurrentSquadSelection);
+	`LWTrACE("OnReceiveFocus: CurrentSquadSelect=" $ CurrentSquadSelection);
 	RefreshAllData();
 
 	super(UIScreen).OnReceiveFocus();
@@ -513,12 +513,12 @@ simulated function UpdateList()
 //callback from clicking a squad list item
 simulated function SquadListButtonCallback( UIList kList, int index )
 {
-	`LWTRACE("SquadListButtonCallback: index=" @ index);
+	`LWTrACE("SquadListButtonCallback: index=" @ index);
 	if(CurrentSquadSelection == index)
 		return;
 
 	CurrentSquadSelection = index;
-	`LWTRACE("SquadListButtonCallback: CurrentSquadSelect=" $ CurrentSquadSelection);
+	`LWTrACE("SquadListButtonCallback: CurrentSquadSelect=" $ CurrentSquadSelection);
 	UpdateSquadHeader();
 	RefreshData(); // this is just the soldier list inherited from UIPersonnel
 }
@@ -531,7 +531,7 @@ simulated function OnSoldierSelected( UIList kList, int index )
 	local UIPersonnel_ListItem UnitItem;
 	local XComGameState_Unit UnitState;
 
-	`LWTRACE("OnSoldierSelected" @ index);
+	`LWTrACE("OnSoldierSelected" @ index);
 
 	//selecting soldiers does nothing if there's no current squad selected
 	if(CurrentSquadSelection < 0) 
@@ -566,7 +566,7 @@ function OnRenameClicked(UIButton Button)
 {
 	local TInputDialogData kData;
 
-	`LWTRACE("OnRenameClicked: CurrentSquadSelect=" $ CurrentSquadSelection);
+	`LWTrACE("OnRenameClicked: CurrentSquadSelect=" $ CurrentSquadSelection);
 
 	kData.strTitle = strRenameSquad;
 	kData.iMaxChars = SQUAD_MAX_NAME_LENGTH;
@@ -582,7 +582,7 @@ function OnNameInputBoxClosed(string text)
 	local XComGameState NewGameState;
 	local XComGameState_LWPersistentSquad Squad;
 
-	`LWTRACE("SquadBarracks: text=" $ text $ ", CurrentSquadSelect=" $ CurrentSquadSelection);
+	`LWTrACE("SquadBarracks: text=" $ text $ ", CurrentSquadSelect=" $ CurrentSquadSelection);
 	if(text != "" && CurrentSquadSelection >= 0)
 	{
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Renaming Squad");
@@ -696,7 +696,7 @@ function OnEditOrSelectClicked(UIButton Button)
 	local UISquadSelect SquadSelect;
 	local UISquadContainer SquadContainer;
 
-	`LWTRACE("OnEditOrSelectClicked: CurrentSquadSelect=" $ CurrentSquadSelection);
+	`LWTrACE("OnEditOrSelectClicked: CurrentSquadSelect=" $ CurrentSquadSelection);
 
 	SquadState = GetCurrentSquad();
 	if(bSelectSquad)

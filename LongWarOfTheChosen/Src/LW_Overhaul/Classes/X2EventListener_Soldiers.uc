@@ -7,7 +7,6 @@ var localized string UnitInSquad;
 var localized string RankTooLow;
 var localized string CannotModifyOnMissionSoldierTooltip;
 
-var config bool TIERED_RESPEC_TIMES;
 var config int PSI_SQUADDIE_BONUS_ABILITIES;
 
 var config int BLEEDOUT_CHANCE_BASE;
@@ -37,7 +36,7 @@ static function CHEventListenerTemplate CreateEquipmentListeners()
 	Template.AddCHEvent('OverrideItemUnequipBehavior', OnOverrideItemUnequipBehavior, ELD_Immediate);
 	Template.AddCHEvent('OverrideItemMinEquipped', OnOverrideItemMinEquipped, ELD_Immediate);
 	Template.AddCHEvent('SoldierCreatedEvent', EquipNewSoldier, ELD_OnStateSubmitted);
-	Template.AddCHEvent('OnGetPCSImage', GetPCSImage, ELD_Immediate);
+	Template.AddCHEvent('OnGetPCSImage', GetPCSImage, ELD_OnStateSubmitted);
 
 	Template.RegisterInStrategy = true;
 
@@ -52,7 +51,6 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	Template.AddCHEvent('OverridePersonnelStatus', OnOverridePersonnelStatus, ELD_Immediate);
 	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
 	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
-	Template.AddCHEvent('OverrideShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate);
 
 	// Armory Main Menu - disable buttons for On-Mission soldiers
 	Template.AddCHEvent('OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate);
@@ -67,7 +65,6 @@ static function CHEventListenerTemplate CreateTrainingListeners()
 	local CHEventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierTraining');
-	Template.AddCHEvent('OverrideRespecSoldierProjectPoints', OverrideRespecSoldierProjectPoints, ELD_Immediate);
 	Template.AddCHEvent('PsiProjectCompleted', OnPsiProjectCompleted, ELD_Immediate);
 	Template.RegisterInStrategy = true;
 
@@ -101,14 +98,14 @@ static protected function EventListenerReturn OnOverrideItemUnequipBehavior(Obje
 	local XComGameState_Item	ItemState;
 	local X2EquipmentTemplate	EquipmentTemplate;
 
-	`LWTRACE("OverrideItemUnequipBehavior : Starting listener.");
+	`LWTrACE("OverrideItemUnequipBehavior : Starting listener.");
 	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
 	{
 		`REDSCREEN("OverrideItemUnequipBehavior event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideItemUnequipBehavior : Parsed XComLWTuple.");
+	`LWTrACE("OverrideItemUnequipBehavior : Parsed XComLWTuple.");
 
 	ItemState = XComGameState_Item(EventSource);
 	if(ItemState == none)
@@ -116,7 +113,7 @@ static protected function EventListenerReturn OnOverrideItemUnequipBehavior(Obje
 		`REDSCREEN("OverrideItemUnequipBehavior event triggered with invalid source data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideItemUnequipBehavior : EventSource valid.");
+	`LWTrACE("OverrideItemUnequipBehavior : EventSource valid.");
 
 	if(OverrideTuple.Id != 'OverrideItemUnequipBehavior')
 		return ELR_NoInterrupt;
@@ -368,74 +365,6 @@ static function EventListenerReturn OnShouldShowPsi(Object EventData, Object Eve
 	return ELR_NoInterrupt;
 }
 
-static function EventListenerReturn OnCheckForPsiPromotion(
-	Object EventData,
-	Object EventSource,
-	XComGameState GameState,
-	Name InEventID,
-	Object CallbackData)
-{
-	local XComLWTuple Tuple;
-	local XComGameState_Unit UnitState;
-
-	Tuple = XComLWTuple(EventData);
-	if(Tuple == none)
-		return ELR_NoInterrupt;
-
-	UnitState = XComGameState_Unit(EventSource);
-	if(UnitState == none)
-	{
-		`REDSCREEN("OnCheckForPsiPromotion event triggered with invalid event source.");
-		return ELR_NoInterrupt;
-	}
-
-	if (Tuple.Data[0].kind != XComLWTVBool)
-		return ELR_NoInterrupt;
-
-	if (UnitState.IsPsiOperative())
-	{
-		if (class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(UnitState))
-		{
-			Tuple.Data[0].B = true;
-		}
-	}
-	return ELR_NoInterrupt;
-}
-
-// Scale the respec time for soldiers based on their rank
-static function EventListenerReturn OverrideRespecSoldierProjectPoints(
-	Object EventData,
-	Object EventSource,
-	XComGameState GameState,
-	Name InEventID,
-	Object CallbackData)
-{
-	local XComLWTuple Tuple;
-	local XComGameState_Unit UnitState;
-
-	Tuple = XComLWTuple(EventData);
-	if (Tuple == none)
-	{
-		`LWTRACE("OverrideRespecSoldierProjectPoints event triggered with invalid event data.");
-		return ELR_NoInterrupt;
-	}
-
-	UnitState = XComGameState_Unit(Tuple.Data[0].o);
-	if (UnitState == none)
-	{
-		`LWTRACE ("OverrideRespecSoldierProjectPoints was not passed a valid unit state.");
-		return ELR_NoInterrupt;
-	}
-
-	if (default.TIERED_RESPEC_TIMES)
-	{
-		// Respec days = rank * difficulty setting
-		Tuple.Data[1].i = UnitState.GetRank() * class'XComGameState_HeadquartersXCom'.default.XComHeadquarters_DefaultRespecSoldierDays[`STRATEGYDIFFICULTYSETTING] * 24;
-	}
-
-	return ELR_NoInterrupt;
-}
-
 // Grants bonus psi abilities after promotion to squaddie
 static function EventListenerReturn OnPsiProjectCompleted(
 	Object EventData,
@@ -455,14 +384,14 @@ static function EventListenerReturn OnPsiProjectCompleted(
 	Tuple = XComLWTuple(EventData);
 	if (Tuple == none)
 	{
-		`LWTRACE("OnPsiProjectCompleted event triggered with invalid event data.");
+		`LWTrACE("OnPsiProjectCompleted event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
 
 	UnitState = XComGameState_Unit(Tuple.Data[0].o);
 	if (UnitState == none || UnitState.GetRank() != 1)
 	{
-		`LWTRACE ("OnPsiProjectCompleted could not find valid unit state.");
+		`LWTrACE ("OnPsiProjectCompleted could not find valid unit state.");
 		return ELR_NoInterrupt;
 	}
 
@@ -470,7 +399,7 @@ static function EventListenerReturn OnPsiProjectCompleted(
 	SoldierClassTemplate = UnitState.GetSoldierClassTemplate();
 	if (SoldierClassTemplate == none)
 	{
-		`LWTRACE ("OnPsiProjectCompleted could not find valid class template for unit.");
+		`LWTrACE ("OnPsiProjectCompleted could not find valid class template for unit.");
 		return ELR_NoInterrupt;
 	}
 
@@ -488,12 +417,12 @@ static function EventListenerReturn OnPsiProjectCompleted(
 			if (UnitState.BuySoldierProgressionAbility(NewGameState,BonusAbilityRank,BonusAbilityBranch))
 			{
 				BonusAbilitiesGranted += 1;
-				`LWTRACE("OnPsiProjectCompleted granted bonus ability " $ string(BonusAbility));
+				`LWTrACE("OnPsiProjectCompleted granted bonus ability " $ string(BonusAbility));
 			}
 		}
 		if (Tries > 999)
 		{
-			`LWTRACE ("OnPsiProjectCompleted Can't find an ability");
+			`LWTrACE ("OnPsiProjectCompleted Can't find an ability");
 			break;
 		}
 	}
@@ -501,7 +430,7 @@ static function EventListenerReturn OnPsiProjectCompleted(
 	if (BonusAbilitiesGranted > 0)
 	{
 		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
-		`LWTRACE("OnPsiProjectCompleted granted unit " $ UnitState.GetFullName() @ string(BonusAbilitiesGranted) $ " extra psi abilities.");
+		`LWTrACE("OnPsiProjectCompleted granted unit " $ UnitState.GetFullName() @ string(BonusAbilitiesGranted) $ " extra psi abilities.");
 	}
 	else
 	{
@@ -568,7 +497,7 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 	AbilityState = XComGameState_Ability(EventSource);
 	if (AbilityState == none)
 	{
-		`LWTRACE ("No ability state fed to OnOverrideAbilityIconColor");
+		`LWTrACE ("No ability state fed to OnOverrideAbilityIconColor");
 		return ELR_NoInterrupt;
 	}
 
@@ -594,7 +523,7 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 
 	if (UnitState == none)
 	{
-		`LWTRACE ("No UnitState found for OnOverrideAbilityIconColor");
+		`LWTrACE ("No UnitState found for OnOverrideAbilityIconColor");
 		return ELR_NoInterrupt;
 	}
 
@@ -700,7 +629,7 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 			break;
 		case 'PlaceEvacZone':
 		case 'PlaceDelayedEvacZone':
-			`LWTRACE ("Attempting to change EVAC color");
+			`LWTrACE ("Attempting to change EVAC color");
 			class'XComGameState_BattleData'.static.HighlightObjectiveAbility(AbilityName, true);
 			return ELR_NoInterrupt;
 			break;
@@ -924,7 +853,7 @@ static function EventListenerReturn GetPCSImage(Object EventData, Object EventSo
 	OverridePCSImageTuple = XComLWTuple(EventData);
 	`assert(OverridePCSImageTuple != none);
 
-	ItemState = XComGameState_Item(OverridePCSImageTuple.Data[0].o);
+	ItemState = XComGameState_Item(EventSource);
 	if (ItemState == none)
 	{
 		return ELR_NoInterrupt;
@@ -932,31 +861,33 @@ static function EventListenerReturn GetPCSImage(Object EventData, Object EventSo
 
 	switch (ItemState.GetMyTemplateName())
 	{
-		case 'DepthPerceptionPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_depthperception"; break;
-		case 'HyperReactivePupilsPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hyperreactivepupils"; break;
-		case 'CombatAwarenessPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_threatassessment"; break;
-		case 'DamageControlPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_damagecontrol"; break;
-		case 'AbsorptionFieldsPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_impactfield"; break;
-		case 'BodyShieldPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_bodyshield"; break;
-		case 'EmergencyLifeSupportPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_emergencylifesupport"; break;
-		case 'IronSkinPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_ironskin"; break;
-		case 'SmartMacrophagesPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_smartmacrophages"; break;
-		case 'CombatRushPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_combatrush"; break;
-		case 'CommonPCSDefense': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
-		case 'RarePCSDefense': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
-		case 'EpicPCSDefense': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
-		case 'CommonPCSAgility': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
-		case 'RarePCSAgility': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
-		case 'EpicPCSAgility': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
-		case 'CommonPCSHacking': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
-		case 'RarePCSHacking': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
-		case 'EpicPCSHacking': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
-		case 'FireControl25PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
-		case 'FireControl50PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
-		case 'FireControl75PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
+		case 'DepthPerceptionPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_depthperception"; break;
+		case 'HyperReactivePupilsPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hyperreactivepupils"; break;
+		case 'CombatAwarenessPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_threatassessment"; break;
+		case 'DamageControlPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_damagecontrol"; break;
+		case 'AbsorptionFieldsPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_impactfield"; break;
+		case 'BodyShieldPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_bodyshield"; break;
+		case 'EmergencyLifeSupportPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_emergencylifesupport"; break;
+		case 'IronSkinPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_ironskin"; break;
+		case 'SmartMacrophagesPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_smartmacrophages"; break;
+		case 'CombatRushPCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_combatrush"; break;
+		case 'CommonPCSDefense': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
+		case 'RarePCSDefense': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
+		case 'EpicPCSDefense': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
+		case 'CommonPCSAgility': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
+		case 'RarePCSAgility': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
+		case 'EpicPCSAgility': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
+		case 'CommonPCSHacking': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
+		case 'RarePCSHacking': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
+		case 'EpicPCSHacking': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
+		case 'FireControl25PCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
+		case 'FireControl50PCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
+		case 'FireControl75PCS': OverridePCSImageTuple.Data[0].b = true; OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
 
-		default: break;
+		default:  OverridePCSImageTuple.Data[0].b = false;
 	}
+	ReturnImagePath = OverridePCSImageTuple.Data[1].s;  // anything set by any other listener that went first
+	ReturnImagePath = ReturnImagePath;
 
 	return ELR_NoInterrupt;
 }

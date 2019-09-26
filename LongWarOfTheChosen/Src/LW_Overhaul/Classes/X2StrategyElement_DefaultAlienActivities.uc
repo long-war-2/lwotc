@@ -379,9 +379,9 @@ static function OnLiberateStage2Complete(bool bAlienSuccess, XComGameState_LWAli
 
 		PrimaryRegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(PrimaryRegionState, NewGameState, true);
 		PrimaryRegionalAI.LiberateStage2Complete = true;
-		`LWTRACE("ProtectRegionMid Complete");
-		`LWTRACE("PrimaryRegionalAI.LiberateStage1Complete = " $ PrimaryRegionalAI.LiberateStage1Complete);
-		`LWTRACE("PrimaryRegionalAI.LiberateStage2Complete = " $ PrimaryRegionalAI.LiberateStage2Complete);
+		`LWTrACE("ProtectRegionMid Complete");
+		`LWTrACE("PrimaryRegionalAI.LiberateStage1Complete = " $ PrimaryRegionalAI.LiberateStage1Complete);
+		`LWTrACE("PrimaryRegionalAI.LiberateStage2Complete = " $ PrimaryRegionalAI.LiberateStage2Complete);
 
 		`XEVENTMGR.TriggerEvent('LiberateStage2Complete', , , NewGameState); // this is needed to advance objective LW_T2_M0_S3
 	}
@@ -909,7 +909,7 @@ static function int GetReinforceAlertLevel(XComGameState_LWAlienActivity Activit
 
 	if(default.ACTIVITY_LOGGING_ENABLED)
 	{
-		`LWTRACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Alert Level =" $ Max (OriginAIState.LocalAlertLevel, DestinationAIState.LocalAlertLevel) + ActivityState.GetMyTemplate().AlertLevelModifier );
+		`LWTrACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Alert Level =" $ Max (OriginAIState.LocalAlertLevel, DestinationAIState.LocalAlertLevel) + ActivityState.GetMyTemplate().AlertLevelModifier );
 	}
 	return Max (OriginAIState.LocalAlertLevel, DestinationAIState.LocalAlertLevel) + ActivityState.GetMyTemplate().AlertLevelModifier;
 }
@@ -944,7 +944,7 @@ static function OnReinforceActivityComplete(bool bAlienSuccess, XComGameState_LW
 
 	if(bAlienSuccess)
 	{
-		`LWTRACE("ReinforceRegion : Alien Success, moving force/alert levels");
+		`LWTrACE("ReinforceRegion : Alien Success, moving force/alert levels");
 
 		// reinforcements arrive, boost primary (destination) alert and force levels
 		// also make sure the origin didn't lose somebody in the meantime
@@ -964,7 +964,7 @@ static function OnReinforceActivityComplete(bool bAlienSuccess, XComGameState_LW
 	}
 	else
 	{
-		`LWTRACE("ReinforceRegion : XCOM Success, reducing alert level, increasing vigilance");
+		`LWTrACE("ReinforceRegion : XCOM Success, reducing alert level, increasing vigilance");
 		//reinforcements destroyed, increase orig vigilance and it loses the AlertLevel
 		OrigRegionalAI.LocalAlertLevel = Max(OrigRegionalAI.LocalAlertLevel - 1, 1);
 		OrigRegionalAI.AddVigilance (NewGameState, default.REINFORCEMENTS_STOPPED_ORIGIN_VIGILANCE_INCREASE);
@@ -1070,7 +1070,7 @@ static function  StateObjectReference GetMissionDarkEvent(XComGameState_LWAlienA
 {
 	if(default.ACTIVITY_LOGGING_ENABLED)
 	{
-		`LWTRACE("COIN Research : Retrieving DarkEvent ");
+		`LWTrACE("COIN Research : Retrieving DarkEvent ");
 	}
 	return ActivityState.DarkEvent;
 }
@@ -1127,7 +1127,7 @@ static function ChooseDarkEvent(bool bTactical, XComGameState_LWAlienActivity Ac
 		}
 		if(default.ACTIVITY_LOGGING_ENABLED)
 		{
-			`LWTRACE("COIN Research : Choosing DarkEvent " $ DarkEventState.GetMyTemplateName());
+			`LWTrACE("COIN Research : Choosing DarkEvent " $ DarkEventState.GetMyTemplateName());
 		}
 		ActivityState.DarkEvent = DarkEventState.GetReference();
 	}
@@ -1145,7 +1145,7 @@ static function OnCOINResearchComplete(bool bAlienSuccess, XComGameState_LWAlien
 	{
 		if(default.ACTIVITY_LOGGING_ENABLED)
 		{
-			`LWTRACE("COINResearchComplete : Alien Success, marking for immediate DarkEvent Activation");
+			`LWTrACE("COINResearchComplete : Alien Success, marking for immediate DarkEvent Activation");
 		}
 		// research complete, mark for immediate DarkEvent activation
 		DarkEventState = XComGameState_DarkEvent(NewGameState.CreateStateObject(class'XComGameState_DarkEvent', ActivityState.DarkEvent.ObjectID));
@@ -1158,7 +1158,7 @@ static function OnCOINResearchComplete(bool bAlienSuccess, XComGameState_LWAlien
 	{
 		if(default.ACTIVITY_LOGGING_ENABLED)
 		{
-			`LWTRACE("COINResearchComplete : XCOM Success, cancelling DarkEvent");
+			`LWTrACE("COINResearchComplete : XCOM Success, cancelling DarkEvent");
 		}
 		//research halted, cancel dark event
 		CancelActivityDarkEvent(ActivityState, NewGameState);
@@ -1178,18 +1178,18 @@ static function CancelActivityDarkEvent(XComGameState_LWAlienActivity ActivitySt
 	if (DarkEventRef.ObjectID <= 0)
 	{
 		`REDSCREEN ("Attempting to cancel dark event, but activity has invalid dark event reference");
-		`LWTRACE("------------------------------------------");
-		`LWTRACE("Attempted to cancel dark event for activity " $ string(ActivityState.GetMyTemplateName()) $ ", but the activity's dark event reference has ObjectID of 0.");
-		`LWTRACE("------------------------------------------");
+		`LWTrACE("------------------------------------------");
+		`LWTrACE("Attempted to cancel dark event for activity " $ string(ActivityState.GetMyTemplateName()) $ ", but the activity's dark event reference has ObjectID of 0.");
+		`LWTrACE("------------------------------------------");
 		return;
 	}
 	// 2) Make sure the reference is on the AlienHQ ChosenDarkEvents list
 	if (AlienHQ.ChosenDarkEvents.Find('ObjectID', DarkEventRef.ObjectID) == -1)
 	{
 		`REDSCREEN ("Attempting to cancel dark event, but dark event is not on AlienHQ.ChosenDarkEvents list");
-		`LWTRACE("------------------------------------------");
-		`LWTRACE("Attempted to cancel dark event for activity " $ string(ActivityState.GetMyTemplateName()) $ ", but the Alien HQ does not have the DE on the ChosenDarkEvents list.");
-		`LWTRACE("------------------------------------------");
+		`LWTrACE("------------------------------------------");
+		`LWTrACE("Attempted to cancel dark event for activity " $ string(ActivityState.GetMyTemplateName()) $ ", but the Alien HQ does not have the DE on the ChosenDarkEvents list.");
+		`LWTrACE("------------------------------------------");
 		return;
 	}
 	// 3) Check the referenced dark event has a retrievable state
@@ -1197,9 +1197,9 @@ static function CancelActivityDarkEvent(XComGameState_LWAlienActivity ActivitySt
 	if (DarkEventState == none)
 	{
 		`REDSCREEN ("Attempting to cancel dark event, but dark event has no valid gamestate");
-		`LWTRACE("------------------------------------------");
-		`LWTRACE("Attempted to cancel dark event for activity " $ string(ActivityState.GetMyTemplateName()) $ ", with ObjectID=" $ string(DarkEventRef.ObjectID) $ " but there is no such DE in the history.");
-		`LWTRACE("------------------------------------------");
+		`LWTrACE("------------------------------------------");
+		`LWTrACE("Attempted to cancel dark event for activity " $ string(ActivityState.GetMyTemplateName()) $ ", with ObjectID=" $ string(DarkEventRef.ObjectID) $ " but there is no such DE in the history.");
+		`LWTrACE("------------------------------------------");
 		return;
 	}
 
@@ -1311,7 +1311,7 @@ static function OnCOINOpsComplete(bool bAlienSuccess, XComGameState_LWAlienActiv
 	{
 		if(default.ACTIVITY_LOGGING_ENABLED)
 		{
-			`LWTRACE("COINOpsComplete : Alien Success, marking for immediate DarkEvent Activation");
+			`LWTrACE("COINOpsComplete : Alien Success, marking for immediate DarkEvent Activation");
 		}
 		// research complete, mark for immediate DarkEvent activation
 		DarkEventState = XComGameState_DarkEvent(NewGameState.CreateStateObject(class'XComGameState_DarkEvent', ActivityState.DarkEvent.ObjectID));
@@ -1324,7 +1324,7 @@ static function OnCOINOpsComplete(bool bAlienSuccess, XComGameState_LWAlienActiv
 	{
 		if(default.ACTIVITY_LOGGING_ENABLED)
 		{
-			`LWTRACE("COINOpsComplete : XCOM Success, cancelling DarkEvent");
+			`LWTrACE("COINOpsComplete : XCOM Success, cancelling DarkEvent");
 		}
 		//research halted, cancel dark event
 		CancelActivityDarkEvent(ActivityState, NewGameState);
@@ -1414,13 +1414,13 @@ static function OnBuildResearchFacilityComplete(bool bAlienSuccess, XComGameStat
 
 	if(bAlienSuccess)
 	{
-		`LWTRACE("BuildResearchFacilityComplete : Alien Success, marking region for research base creation");
+		`LWTrACE("BuildResearchFacilityComplete : Alien Success, marking region for research base creation");
 		// construction complete, mark for follow-up activity
 		RegionalAI.bHasResearchFacility = true;
 	}
 	else
 	{
-		`LWTRACE("BuildResearchFacilityComplete : XCOM Success, increasing vigilance");
+		`LWTrACE("BuildResearchFacilityComplete : XCOM Success, increasing vigilance");
 		//activity halted, boost vigilance by an extra point over the typical +1
 		RegionalAI.AddVigilance (NewGameState, 1);
 	}
@@ -1508,7 +1508,7 @@ static function FacilityLeadCompleted(XComGameState NewGameState, XComGameState_
 					{
 						MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.CurrentMissionRef.ObjectID));
 						// add a chance per doom
-						//`LWTRACE ("MissionState.Doom" @ string (MissionState.Doom));
+						//`LWTrACE ("MissionState.Doom" @ string (MissionState.Doom));
 						for (k = 0; k < MissionState.Doom; k++)
 						{
 							PossibleActivities.AddItem(ActivityState);
@@ -1751,12 +1751,12 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 		{
 			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
 			RegionalAI.LocalForceLevel += 1;
-			`LWTRACE("ScheduledOffworldReinforcements : Activity Complete, Alien Win, Increasing ForceLevel by 1 in " $ RegionState.GetMyTemplate().DisplayName );
+			`LWTrACE("ScheduledOffworldReinforcements : Activity Complete, Alien Win, Increasing ForceLevel by 1 in " $ RegionState.GetMyTemplate().DisplayName );
 		}
 	}
 	else
 	{
-		`LWTRACE("ScheduledOffworldReinforcementsComplete : XCOM Success, boosting vigilance by 2 in " $ RegionState.GetMyTemplate().DisplayName);
+		`LWTrACE("ScheduledOffworldReinforcementsComplete : XCOM Success, boosting vigilance by 2 in " $ RegionState.GetMyTemplate().DisplayName);
 		RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 		if(RegionState == none)
 			RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
@@ -1928,7 +1928,7 @@ static function OnEmergencyOffworldReinforcementsComplete(bool bAlienSuccess, XC
 	RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
 	if(bAlienSuccess)
 	{
-		`LWTRACE("EmergencyOffworldReinforcementsComplete : Alien Success, adding AlertLevel to primary and some surrounding regions");
+		`LWTrACE("EmergencyOffworldReinforcementsComplete : Alien Success, adding AlertLevel to primary and some surrounding regions");
 		// reinforcements have arrived
 		RegionalAI.LocalAlertLevel += default.EMERGENCY_REINFORCEMENT_PRIMARY_REGION_ALERT_BONUS;
 		RegionLinks = RegionState.LinkedRegions;
@@ -1951,7 +1951,7 @@ static function OnEmergencyOffworldReinforcementsComplete(bool bAlienSuccess, XC
 	{
 		if(default.ACTIVITY_LOGGING_ENABLED)
 		{
-			`LWTRACE("EmergencyOffworldReinforcementsComplete : XCOM Success, boosting vigilance");
+			`LWTrACE("EmergencyOffworldReinforcementsComplete : XCOM Success, boosting vigilance");
 		}
 		RegionalAI.AddVigilance (NewGameState, 2);
 	}
@@ -2033,7 +2033,7 @@ static function OnSuperEmergencyOffworldReinforcementsComplete(bool bAlienSucces
 
 	if(bAlienSuccess)
 	{
-		`LWTRACE("SuperEmergencyOffworldReinforcementsComplete : Alien Success, adding AlertLevel to primary and some surrounding regions");
+		`LWTrACE("SuperEmergencyOffworldReinforcementsComplete : Alien Success, adding AlertLevel to primary and some surrounding regions");
 		RegionalAI.LocalAlertLevel += default.SUPEREMERGENCY_REINFORCEMENT_PRIMARY_REGION_ALERT_BONUS;
 		RegionLinks = RegionState.LinkedRegions;
 		for (k=0; k < default.ADJACENT_REGIONS_REINFORCED_BY_SUPEREMERGENCY_ALERT_UFO; k++)
@@ -2052,7 +2052,7 @@ static function OnSuperEmergencyOffworldReinforcementsComplete(bool bAlienSucces
 	}
 	else
 	{
-		`LWTRACE("SuperEmergencyOffworldReinforcementsComplete : XCOM Success, boosting vigilance");
+		`LWTrACE("SuperEmergencyOffworldReinforcementsComplete : XCOM Success, boosting vigilance");
 		//activity halted, boost vigilance by an extra two points over the typical +1
 		RegionalAI.AddVigilance (NewGameState, 2);
 	}
@@ -2126,7 +2126,7 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 
 	If (RegionState == none)
 	{
-		`LWTRACE ("Repression activity created and ended with no primary region!");
+		`LWTrACE ("Repression activity created and ended with no primary region!");
 		return;
 	}
 
@@ -2207,7 +2207,7 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 	if (AIChange)
 		NewGameState.AddStateObject(NewRegionalAI);
 
-	`LWTRACE("Repression Finished" @ RegionState.GetMyTemplate().DisplayName @ "Roll:" @ string (iRoll) @ "Rebels left:" @ string (NewOutPostState.Rebels.length));
+	`LWTrACE("Repression Finished" @ RegionState.GetMyTemplate().DisplayName @ "Roll:" @ string (iRoll) @ "Rebels left:" @ string (NewOutPostState.Rebels.length));
 
 }
 
@@ -2539,7 +2539,7 @@ static function int GetInvasionForceLevel(XComGameState_LWAlienActivity Activity
 
 	if(default.ACTIVITY_LOGGING_ENABLED)
 	{
-		`LWTRACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Force Level =" $ RegionalAIState.LocalForceLevel + ActivityState.GetMyTemplate().ForceLevelModifier );
+		`LWTrACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Force Level =" $ RegionalAIState.LocalForceLevel + ActivityState.GetMyTemplate().ForceLevelModifier );
 	}
 	return RegionalAIState.LocalForceLevel + ActivityState.GetMyTemplate().ForceLevelModifier;
 }
@@ -2558,7 +2558,7 @@ static function int GetOriginAlertLevel(XComGameState_LWAlienActivity ActivitySt
 
 	if(default.ACTIVITY_LOGGING_ENABLED)
 	{
-		`LWTRACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Alert Level =" $ RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier );
+		`LWTrACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Alert Level =" $ RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier );
 	}
 	return RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier;
 }
@@ -2928,18 +2928,18 @@ static function TroopManeuversComplete (bool bAlienSuccess, XComGameState_LWAlie
 			RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 		if (RegionState == none)
 		{
-			`LWTRACE ("Error: Can't find region post Troop Maneuvers");
+			`LWTrACE ("Error: Can't find region post Troop Maneuvers");
 		}
 		RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
 		if (RegionalAI == none)
 		{
-			`LWTRACE ("Error: Can't find regional AI post Troop Maneuvers");
+			`LWTrACE ("Error: Can't find regional AI post Troop Maneuvers");
 		}
 		RegionalAI.AddVigilance(NewGameState, default.TROOP_MANEUVERS_VIGILANCE_GAIN);
 
 		if (`SYNC_RAND_STATIC(100) < default.TROOP_MANEUVERS_CHANCE_KILL_ALERT[`STRATEGYDIFFICULTYSETTING])
 		{
-			`LWTRACE ("TROOP MANEUVERS WIN, Old:" @ string (RegionalAI.LocalAlertLevel) @ "New:" @ string (Max(RegionalAI.LocalAlertLevel - 1, 1)));
+			`LWTrACE ("TROOP MANEUVERS WIN, Old:" @ string (RegionalAI.LocalAlertLevel) @ "New:" @ string (Max(RegionalAI.LocalAlertLevel - 1, 1)));
 			RegionalAI.LocalAlertLevel = Max(RegionalAI.LocalAlertLevel - 1, 1);
 			AddVigilanceNearby (NewGameState, RegionState, default.TROOP_MANEUVERS_NEIGHBOR_VIGILANCE_BASE, default.TROOP_MANEUVERS_NEIGHBOR_VIGILANCE_RAND);
 		}
@@ -3370,7 +3370,7 @@ static function ProhibitJob (XComGameState_LWAlienActivity ActivityState, XComGa
 	local string											AlertString;
 	local XGParamTag ParamTag;
 
-	`LWTRACE ("PROHIBITING JOB:" @ JobName);
+	`LWTrACE ("PROHIBITING JOB:" @ JobName);
 	Region = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 	Outpost = `LWOUTPOSTMGR.GetOutpostForRegion(Region);
 	Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', OutPost.ObjectID));
@@ -3389,7 +3389,7 @@ static function ProhibitJob (XComGameState_LWAlienActivity ActivityState, XComGa
 	if (!ExtendCurrent)
 	{
 		OutPost.AddProhibitedJob(JobName, default.PROHIBITED_JOB_DURATION);
-		//`LWTRACE ("ADDING PROHIBITED JOB:" @ JobName);
+		//`LWTrACE ("ADDING PROHIBITED JOB:" @ JobName);
 		ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
 		ParamTag.IntValue0 = default.PROHIBITED_JOB_DURATION;
 		ParamTag.StrValue0 = OutPost.GetJobName(JobName);
@@ -3400,7 +3400,7 @@ static function ProhibitJob (XComGameState_LWAlienActivity ActivityState, XComGa
 		{
 			if (OutPost.Rebels[k].Job == JobName)
 			{
-				//`LWTRACE ("SETTING REBEL JOB TO HIDING:" @ JobName);
+				//`LWTrACE ("SETTING REBEL JOB TO HIDING:" @ JobName);
 				OutPost.SetRebelJob (OutPost.Rebels[k].Unit, 'Hiding');
 			}
 		}
@@ -3699,7 +3699,7 @@ static function int GetTypicalMissionForceLevel(XComGameState_LWAlienActivity Ac
 
 	if(default.ACTIVITY_LOGGING_ENABLED)
 	{
-		`LWTRACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Force Level =" $ RegionalAIState.LocalForceLevel + ActivityState.GetMyTemplate().ForceLevelModifier );
+		`LWTrACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Force Level =" $ RegionalAIState.LocalForceLevel + ActivityState.GetMyTemplate().ForceLevelModifier );
 	}
 	return RegionalAIState.LocalForceLevel + ActivityState.GetMyTemplate().ForceLevelModifier;
 }
@@ -3714,7 +3714,7 @@ static function int GetTypicalMissionAlertLevel(XComGameState_LWAlienActivity Ac
 
 	if(default.ACTIVITY_LOGGING_ENABLED)
 	{
-		`LWTRACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Alert Level =" $ RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier );
+		`LWTrACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Alert Level =" $ RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier );
 	}
 	return RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier;
 }
@@ -4057,7 +4057,7 @@ static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActi
 			ActivityTemplateName='ResAct_RegionsLiberated';
 			if (RegionalAI.NumTimesLiberated <= 0)
 			{
-				`LWTRACE ("Removing one doom for capturing a region!");
+				`LWTrACE ("Removing one doom for capturing a region!");
 				DoomToRemove = default.ALIEN_BASE_DOOM_REMOVAL;
 			}
 			break;
@@ -4158,7 +4158,7 @@ static function GiveRewards(XComGameState NewGameState, XComGameState_MissionSit
 
 	History = `XCOMHISTORY;
 
-	`LWTRACE ("GiveRewards 1");
+	`LWTrACE ("GiveRewards 1");
 
 	// First Check if we need to exclude some rewards
 	for(idx = 0; idx < MissionState.Rewards.Length; idx++)
@@ -4179,7 +4179,7 @@ static function GiveRewards(XComGameState NewGameState, XComGameState_MissionSit
 		}
 	}
 
-	`LWTRACE ("GiveRewards 2");
+	`LWTrACE ("GiveRewards 2");
 
 	class'XComGameState_HeadquartersResistance'.static.SetRecapRewardString(NewGameState, MissionState.GetRewardAmountStringArray());
 
@@ -4199,11 +4199,11 @@ static function GiveRewards(XComGameState NewGameState, XComGameState_MissionSit
 		}
 	}
 
-	`LWTRACE ("GiveRewards 3");
+	`LWTrACE ("GiveRewards 3");
 
 	for(idx = 0; idx < MissionState.Rewards.Length; idx++)
 	{
-		`LWTRACE ("GiveRewards LOOP 1");
+		`LWTrACE ("GiveRewards LOOP 1");
 
         // Skip excluded rewards.
     	if(ExcludeIndices.Find(idx) != INDEX_NONE)
@@ -4211,25 +4211,25 @@ static function GiveRewards(XComGameState NewGameState, XComGameState_MissionSit
             continue;
         }
 
-		`LWTRACE ("GiveRewards LOOP 2");
+		`LWTrACE ("GiveRewards LOOP 2");
 
 		RewardState = XComGameState_Reward(History.GetGameStateForObjectID(MissionState.Rewards[idx].ObjectID));
 
 		// Give rewards
 		if(RewardState != none)
 		{
-			`LWTRACE ("GiveReward Loop Applying Reward" @ RewardState.GetMyTemplateName());
+			`LWTrACE ("GiveReward Loop Applying Reward" @ RewardState.GetMyTemplateName());
 			switch (RewardState.GetMyTemplateName())
 			{
 				case 'Reward_POI_LW':
-					`LWTRACE("TRIGGER POI REWARD");
+					`LWTrACE("TRIGGER POI REWARD");
 					SelectPOI(NewGameState, MissionState);
 					break;
 				case 'Reward_FacilityLead':
 					AddItemRewardToLoot(RewardState, NewGameState);
 					break;
 				default:
-					`LWTRACE("GiveRewards: Giving" @ RewardState.GetMyTemplateName());
+					`LWTrACE("GiveRewards: Giving" @ RewardState.GetMyTemplateName());
 					RewardState.GiveReward(NewGameState, MissionState.Region);
 				break;
 			}
@@ -4285,7 +4285,7 @@ static function array<int> GetRewardExcludeIndices(XComGameState_LWAlienActivity
 		{
 			if (Unit.IsDead() || !Unit.bRemovedFromPlay)
 			{
-				`LWTRACE ("Excluding Reward" @ Reward.GetMyTemplateName());
+				`LWTrACE ("Excluding Reward" @ Reward.GetMyTemplateName());
 				ExcludeIndices.AddItem(i);
 			}
 		}
@@ -4298,7 +4298,7 @@ static function array<int> GetRewardExcludeIndices(XComGameState_LWAlienActivity
 		if(BattleData.MapData.ActiveMission.MissionObjectives[i].ObjectiveName == 'Capture' &&
 		   !BattleData.MapData.ActiveMission.MissionObjectives[i].bCompleted)
 		{
-			`LWTRACE ("Excluding Reward index 0 because VIP not captured");
+			`LWTrACE ("Excluding Reward index 0 because VIP not captured");
 			ExcludeIndices.AddItem(0);
 		}
 	}

@@ -8,7 +8,7 @@
 
 class XComGameState_Effect_LastShotDetails extends XComGameState_Effect config (LW_SoldierSkills);
 
-`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var config array<name> SHOTFIRED_ABILITYNAMES;
 

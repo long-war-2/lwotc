@@ -59,7 +59,7 @@ simulated function bool MeetsCondition(X2LWActivityCreation ActivityCreation, XC
 			if (`LWACTIVITYMGR.GetGlobalAlert() - (default.GLOBAL_ALERT_DELTA_PER_EXTRA_FACILITY * (Facilities - default.MAX_UNOBSTRUCTED_FACILITIES + 1)) < `LWACTIVITYMGR.GetGlobalVigilance())
 			{
 				bMeetsCondition = false;
-				`LWTRACE("Bad guys can't build research facility because Global Vig is TOO HIGH");
+				`LWTrACE("Bad guys can't build research facility because Global Vig is TOO HIGH");
 			}
 		}
 	}

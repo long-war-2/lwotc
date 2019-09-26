@@ -27,7 +27,7 @@ simulated function StateObjectReference FindBestPrimaryRegion(XComGameState NewG
 		RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState);
 		if (RegionalAI == none)
 		{
-			`LWTRACE("GetScheduledOffworldReinforcementsPrimaryRegion: Can't Find Regional AI for" @ RegionState.GetMyTemplate().DisplayName);
+			`LWTrACE("GetScheduledOffworldReinforcementsPrimaryRegion: Can't Find Regional AI for" @ RegionState.GetMyTemplate().DisplayName);
 		}
 		else
 		{

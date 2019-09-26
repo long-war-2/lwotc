@@ -4535,7 +4535,7 @@ TacticalText="<Bullet/> Wzmacniacz PSI zwiększa siłę psioniczną agenta PSI o
 DisplayName="Przekaźnik Radiowy"
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="Pozyskanie zasobów ADVENT-u"
+DisplayName="Włamanie"
 Briefing="Zdobądź zasoby ADVENT-u"
 PostMissionType="Włamanie"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"

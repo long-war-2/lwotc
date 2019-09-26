@@ -7,7 +7,7 @@
 class XComGameState_LWPerkPackOptions extends XComGameState_LWModOptions
 	config(LW_PerkPack);
 
-`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var config array<name> Suppress;
 

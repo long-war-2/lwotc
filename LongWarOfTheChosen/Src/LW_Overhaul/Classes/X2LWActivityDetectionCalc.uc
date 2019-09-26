@@ -58,7 +58,7 @@ function bool CanBeDetected(XComGameState_LWAlienActivity ActivityState, XComGam
 	local X2LWAlienActivityTemplate ActivityTemplate;
 	local float DetectionChance, RandValue;
 
-	//`LWTRACE("TypicalActivity Discovery: Starting");
+	//`LWTrACE("TypicalActivity Discovery: Starting");
 	if(bAlwaysDetected)
 		return true;
 
@@ -102,12 +102,12 @@ function bool CanBeDetected(XComGameState_LWAlienActivity ActivityState, XComGam
 		{
 	
 			DetectionChance = GetDetectionChance(ActivityState, ActivityTemplate, OutpostState);
-			`LWTRACE("DISCOVERY:" @ RegionState.GetMyTemplate().DisplayName @ ": DetectionChance for" @ ActivityTemplate.DataName @ ":" @ string(DetectionChance));
+			`LWTrACE("DISCOVERY:" @ RegionState.GetMyTemplate().DisplayName @ ": DetectionChance for" @ ActivityTemplate.DataName @ ":" @ string(DetectionChance));
 
 			RandValue = `SYNC_FRAND() * 100.0;
 			if(RandValue < DetectionChance)  // pass random roll
 			{
-				`LWTRACE("SUCCESS: Roll was" @ string(Randvalue));
+				`LWTrACE("SUCCESS: Roll was" @ string(Randvalue));
 				//we found the activity (which will spawn the mission) so spend the income
 				ActivityState.MissionResourcePool = 0;
 				return true;
@@ -138,7 +138,7 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 	}
 
 	// insert something sort of cheaty
-	//`LWTRACE ("Bugcheck:" @ string(`STRATEGYDIFFICULTYSETTING) @ default.USE_DETECTION_FORCE_LEVEL_MODIFIERS[`STRATEGYDIFFICULTYSETTING]);
+	//`LWTrACE ("Bugcheck:" @ string(`STRATEGYDIFFICULTYSETTING) @ default.USE_DETECTION_FORCE_LEVEL_MODIFIERS[`STRATEGYDIFFICULTYSETTING]);
 	if (default.USE_DETECTION_FORCE_LEVEL_MODIFIERS[`STRATEGYDIFFICULTYSETTING])
 	{
 	    RegionState = GetRegion(ActivityState);

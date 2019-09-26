@@ -936,26 +936,26 @@ function bool CanActivateMajorBreakthroughAlt(XComGameState_DarkEvent DarkEventS
 	History = `XCOMHISTORY;
 	ResistanceHQ = XComGameState_HeadquartersResistance(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
 
-	`LWTRACE ("Checking activation criteria for Major Breakthrough Dark Event");
+	`LWTrACE ("Checking activation criteria for Major Breakthrough Dark Event");
 	bCanActivate = true;
 	if (ResistanceHQ.NumMonths < 2)
 	{
-		`LWTRACE ("--- Major Breakthrough : Invalid because in first two months");
+		`LWTrACE ("--- Major Breakthrough : Invalid because in first two months");
 		bCanActivate = false;
 	}
 	if (AtMaxDoom())
 	{
-		`LWTRACE ("--- Major Breakthrough : Invalid because at max doom");
+		`LWTrACE ("--- Major Breakthrough : Invalid because at max doom");
 		bCanActivate = false;
 	}
 	if (!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('S0_RevealAvatarProject'))
 	{
-		`LWTRACE ("--- Major Breakthrough : Invalid because at S0_RevealAvatarProject not complete");
+		`LWTrACE ("--- Major Breakthrough : Invalid because at S0_RevealAvatarProject not complete");
 		bCanActivate = false;
 	}
 	if (bCanActivate)
 	{
-		`LWTRACE ("--- Major Breakthrough : All conditions passed");
+		`LWTrACE ("--- Major Breakthrough : All conditions passed");
 	}
 	return bCanActivate;
 }
@@ -964,27 +964,27 @@ function bool CanActivateMinorBreakthroughAlt(XComGameState_DarkEvent DarkEventS
 {
 	local bool bCanActivate;
 
-	`LWTRACE ("Checking activation criteria for Minor Breakthrough Dark Event");
+	`LWTrACE ("Checking activation criteria for Minor Breakthrough Dark Event");
 	bCanActivate = true;
 	if (AtFirstMonth())
 	{
-		`LWTRACE ("--- Minor Breakthrough : Invalid because in first month");
+		`LWTrACE ("--- Minor Breakthrough : Invalid because in first month");
 		bCanActivate = false;
 	}
 	if (AtMaxDoom())
 	{
-		`LWTRACE ("--- Minor Breakthrough : Invalid because at max doom");
+		`LWTrACE ("--- Minor Breakthrough : Invalid because at max doom");
 		bCanActivate = false;
 	}
 	// Add condition that avatar project IS revealed
 	if (!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('S0_RevealAvatarProject'))
 	{
-		`LWTRACE ("--- Minor Breakthrough : Invalid because at S0_RevealAvatarProject not complete");
+		`LWTrACE ("--- Minor Breakthrough : Invalid because at S0_RevealAvatarProject not complete");
 		bCanActivate = false;
 	}
 	if (bCanActivate)
 	{
-		`LWTRACE ("--- Minor Breakthrough : All conditions passed");
+		`LWTrACE ("--- Minor Breakthrough : All conditions passed");
 	}
 	return bCanActivate;
 }

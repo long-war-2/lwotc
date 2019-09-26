@@ -240,7 +240,7 @@ static function XComGameState_WorldRegion_LWStrategyAI GetRegionalAI(XComGameSta
 
 	if (RegionState == none)
 	{
-		`LWTRACE("GetRegionalAI ERROR : NONE Region Passed");
+		`LWTrACE("GetRegionalAI ERROR : NONE Region Passed");
 		return none;
 	}
 	if (NewGameState != none)
@@ -288,7 +288,7 @@ function AddVigilance(optional XComGameState NewGameState, optional int Amount =
 
 	if (OldVigilanceLevel != UpdatedRegionalAIState.LocalVigilanceLevel)
 	{
-		`LWTRACE ("Updating LastVigilanceUpdateTime for" @ GetOwningRegion().GetMyTemplateName());
+		`LWTrACE ("Updating LastVigilanceUpdateTime for" @ GetOwningRegion().GetMyTemplateName());
 		UpdatedRegionalAIState.LastVigilanceUpdateTime = class'XComGameState_GeoscapeEntity'.static.GetCurrentTime();
 	}
 
@@ -311,13 +311,13 @@ function bool UpdateRegionalAI(XComGameState NewGameState)
 
 	//handle vigilance decay
 
-	//`LWTRACE ("Pretest" @ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(LastVigilanceUpdateTime) @ class'X2StrategyGameRulesetDataStructures'.static.GetMonth (LastVigilanceUpdateTime));
+	//`LWTrACE ("Pretest" @ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(LastVigilanceUpdateTime) @ class'X2StrategyGameRulesetDataStructures'.static.GetMonth (LastVigilanceUpdateTime));
 	// This is a fix for existing campaigns
 	if (class'X2StrategyGameRulesetDataStructures'.static.GetMonth(LastVigilanceUpdateTime) < 1 || class'X2StrategyGameRulesetDataStructures'.static.GetMonth(LastVigilanceUpdateTime) > 12)
 	{
 		`LOG ("Fixing bad LastVigilanceUpdateTime in" @ GetOwningRegion().GetMyTemplateName());
 		LastVigilanceUpdateTime = class'XComGameState_GeoscapeEntity'.static.GetCurrentTime();
-		//`LWTRACE (class'X2StrategyGameRulesetDataStructures'.static.GetDateString(LastVigilanceUpdateTime) @ class'X2StrategyGameRulesetDataStructures'.static.GetMonth (LastVigilanceUpdateTime));
+		//`LWTrACE (class'X2StrategyGameRulesetDataStructures'.static.GetDateString(LastVigilanceUpdateTime) @ class'X2StrategyGameRulesetDataStructures'.static.GetMonth (LastVigilanceUpdateTime));
 		bUpdated = true;
 	}
 	
@@ -335,15 +335,15 @@ function bool UpdateRegionalAI(XComGameState NewGameState)
 		EmptySlots = class'XComGameState_LWOutpost'.default.DEFAULT_OUTPOST_MAX_SIZE - WorkingRebels;
 		SlotsDelta = class'XComGameState_LWOutPost'.default.DEFAULT_OUTPOST_MAX_SIZE - default.BASELINE_OUTPOST_WORKERS_FOR_STD_VIG_DECAY - EmptySlots;
 		HoursMod = (float (SlotsDelta) / float (default.BASELINE_OUTPOST_WORKERS_FOR_STD_VIG_DECAY)) * default.MAX_VIG_DECAY_CHANGE_HOURS;
-		//`LWTRACE("Setting new HoursMod for this region" @ HoursMod @ EmptySlots @ SlotsDelta);
+		//`LWTrACE("Setting new HoursMod for this region" @ HoursMod @ EmptySlots @ SlotsDelta);
 		If (!default.BUSY_HAVENS_SLOW_VIGILANCE_DECAY && HoursMod > 0.0)
 		{
 			HoursMod = 0;
 		}
 		class'X2StrategyGameRulesetDataStructures'.static.AddHours(NextVigilanceDecayTime, HoursMod);
 
-		//`LWTRACE("Current Time:" @ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(CurrentTime) @ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(CurrentTime));
-		//`LWTRACE("Next Vigilance Decay for" @ GetOwningRegion().GetMyTemplateName() @ "scheduled for" @ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(NextVigilanceDecayTime) @ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(NextVigilanceDecayTime));
+		//`LWTrACE("Current Time:" @ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(CurrentTime) @ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(CurrentTime));
+		//`LWTrACE("Next Vigilance Decay for" @ GetOwningRegion().GetMyTemplateName() @ "scheduled for" @ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(NextVigilanceDecayTime) @ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(NextVigilanceDecayTime));
 		if (class'X2StrategyGameRulesetDataStructures'.static.LessThan(NextVigilanceDecayTime, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()))
 		{
 			OldLocalVigilanceLevel = LocalVigilanceLevel;
@@ -359,7 +359,7 @@ function bool UpdateRegionalAI(XComGameState NewGameState)
 			}
 			if (LocalVigilanceLevel != OldLocalVigilanceLevel)
 			{
-				//`LWTRACE("PASS: Region " $ GetOwningRegion().GetMyTemplateName() $ " Vigilance Decay by 1.");
+				//`LWTrACE("PASS: Region " $ GetOwningRegion().GetMyTemplateName() $ " Vigilance Decay by 1.");
 				LastVigilanceUpdateTime = CurrentTime;
 				bUpdated = true;	
 			}

@@ -1,6 +1,6 @@
 Class X2Effect_LightningReflexes_LW extends X2Effect_Persistent config (LW_SoldierSkills);
 
-`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var config int LR_LW_FIRST_SHOT_PENALTY;
 var config int LR_LW_PENALTY_REDUCTION_PER_SHOT;

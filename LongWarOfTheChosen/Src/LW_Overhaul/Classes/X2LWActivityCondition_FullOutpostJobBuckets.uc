@@ -47,7 +47,7 @@ simulated function bool MeetsCondition(X2LWActivityCreation ActivityCreation, XC
 	
 	BucketSize = BucketSize * (default.CONTACTED_REGIONS_BASE_BUCKET_MOD ** (ContactedRegions - 1));
 	BucketSize = Bucketsize * (default.LIBERATED_REGIONS_BASE_BUCKET_MOD ** (LiberatedRegions));
-	`LWTRACE ("Testing for Retalbucket (post adjustment):" @ (FullRetal ? "Full" : string(Job)) @ "Condition passed if" @ BucketSize @ ">=" @ RequiredDays);
+	`LWTrACE ("Testing for Retalbucket (post adjustment):" @ (FullRetal ? "Full" : string(Job)) @ "Condition passed if" @ BucketSize @ ">=" @ RequiredDays);
 
 	if (BucketSize >= RequiredDays)
 		return true;

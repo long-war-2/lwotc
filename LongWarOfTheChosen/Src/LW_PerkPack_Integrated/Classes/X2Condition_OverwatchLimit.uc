@@ -1,6 +1,6 @@
 class X2Condition_OverwatchLimit extends X2Condition;
 
-`include(LW_PerkPack_Integrated\LW_PerkPack.uci)// This is an Unreal Script
+//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)// This is an Unreal Script
 
 event name CallAbilityMeetsCondition(XComGameState_Ability kAbility, XComGameState_BaseObject kTarget)
 {

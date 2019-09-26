@@ -217,7 +217,7 @@ static function LoadCivilianUnitsFromOutpost(XComGameState_LWOutpost Outpost)
 	WorkingRebels = OutPost.Rebels.Length - OutPost.GetNumRebelsOnJob(class'LWRebelJob_DefaultJobSet'.const.HIDING_JOB);
 	HidingRebelsforMission = default.RebelCapOnRetals - WorkingRebels;
 
-	`LWTRACE("Outpost size:" @ OutPost.Rebels.length @ "Working Rebels:" @ string (WorkingRebels) @ "Hiding Rebels appearing on this mission");
+	`LWTrACE("Outpost size:" @ OutPost.Rebels.length @ "Working Rebels:" @ string (WorkingRebels) @ "Hiding Rebels appearing on this mission");
 
 	// All rebels with a job go on the mission, plus enough hiding to get us up to the cap
 	for (i = 0; i < Outpost.Rebels.Length; ++i)

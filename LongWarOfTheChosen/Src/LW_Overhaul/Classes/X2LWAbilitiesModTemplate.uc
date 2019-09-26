@@ -103,12 +103,12 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 
 	if(bLogHitChance)
 	{
-		`LWTRACE("==" $ GetFuncName() $ "==\n");
-		`LWTRACE("Starting values...", bLogHitChance);
+		`LWTrACE("==" $ GetFuncName() $ "==\n");
+		`LWTrACE("Starting values...", bLogHitChance);
 		for (i = 0; i < eHit_MAX; ++i)
 		{
 			HitResult = EAbilityHitResult(i);
-			`LWTRACE(HitResult $ ":" @ ShotBreakdown.ResultTable[i]);
+			`LWTrACE(HitResult $ ":" @ ShotBreakdown.ResultTable[i]);
 		}
 	}
 
@@ -148,13 +148,13 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 
 	if (bLogHitChance)
 	{
-		`LWTRACE("Graze Chance from band = " $ GrazeChance, bLogHitChance);
+		`LWTrACE("Graze Chance from band = " $ GrazeChance, bLogHitChance);
 	}
 
 	//STEP 2 Update Hit Chance to remove GrazeChance -- for low to-hits this can be zero
 	HitChance = Clamp(Min(100, HitChance)-GrazeChance_Hit, 0, 100-GrazeChance);
 	if(bLogHitChance)
-		`LWTRACE("HitChance after graze graze band removal = " $ HitChance, bLogHitChance);
+		`LWTrACE("HitChance after graze graze band removal = " $ HitChance, bLogHitChance);
 
 	//STEP 3 "Crits promote from graze to hit, hit to crit
 	CriticalChance = ShotBreakdown.ResultTable[eHit_Crit];
@@ -169,8 +169,8 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 	CritPromoteChance_GrazeToHit = Round(float(GrazeChance) * float(CriticalChance) / 100.0);
 	if(bLogHitChance)
 	{
-		`LWTRACE("CritPromoteChance_HitToCrit = " $ CritPromoteChance_HitToCrit, bLogHitChance);
-		`LWTRACE("CritPromoteChance_GrazeToHit = " $ CritPromoteChance_GrazeToHit, bLogHitChance);
+		`LWTrACE("CritPromoteChance_HitToCrit = " $ CritPromoteChance_HitToCrit, bLogHitChance);
+		`LWTrACE("CritPromoteChance_GrazeToHit = " $ CritPromoteChance_GrazeToHit, bLogHitChance);
 	}
 
 	CritChance = CritPromoteChance_HitToCrit; // crit chance is the chance you promoted to crit
@@ -178,10 +178,10 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 	GrazeChance = GrazeChance - CritPromoteChance_GrazeToHit; // remove chance for promote to hit
 	if(bLogHitChance)
 	{
-		`LWTRACE("PostCrit:", bLogHitChance);
-		`LWTRACE("CritChance  = " $ CritChance, bLogHitChance);
-		`LWTRACE("HitChance   = " $ HitChance, bLogHitChance);
-		`LWTRACE("GrazeChance = " $ GrazeChance, bLogHitChance);
+		`LWTrACE("PostCrit:", bLogHitChance);
+		`LWTrACE("CritChance  = " $ CritChance, bLogHitChance);
+		`LWTrACE("HitChance   = " $ HitChance, bLogHitChance);
+		`LWTrACE("GrazeChance = " $ GrazeChance, bLogHitChance);
 	}
 
 	//save off loss of crit due to conditional on to-hit
@@ -203,13 +203,13 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 
 		if(bLogHitChance)
 		{
-			`LWTRACE("DodgeDemoteChance_CritToHit   = " $ DodgeDemoteChance_CritToHit);
-			`LWTRACE("DodgeDemoteChance_HitToGraze  = " $ DodgeDemoteChance_HitToGraze);
-			`LWTRACE("DodgeDemoteChance_GrazeToMiss = " $DodgeDemoteChance_GrazeToMiss);
-			`LWTRACE("PostDodge:");
-			`LWTRACE("CritChance  = " $ CritChance);
-			`LWTRACE("HitChance   = " $ HitChance);
-			`LWTRACE("GrazeChance = " $ GrazeChance);
+			`LWTrACE("DodgeDemoteChance_CritToHit   = " $ DodgeDemoteChance_CritToHit);
+			`LWTrACE("DodgeDemoteChance_HitToGraze  = " $ DodgeDemoteChance_HitToGraze);
+			`LWTrACE("DodgeDemoteChance_GrazeToMiss = " $DodgeDemoteChance_GrazeToMiss);
+			`LWTrACE("PostDodge:");
+			`LWTrACE("CritChance  = " $ CritChance);
+			`LWTrACE("HitChance   = " $ HitChance);
+			`LWTrACE("GrazeChance = " $ GrazeChance);
 		}
 
 		//save off loss of crit due to dodge demotion

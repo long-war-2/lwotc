@@ -117,7 +117,7 @@ static function EventListenerReturn OnOverrideObjectiveSpawnCount(Object EventDa
 	// objectives.
 	if (MissionSite.GeneratedMission.Mission.sType == "Jailbreak_LW")
 	{
-		`LWTRACE("Jailbreak mission overriding NumObjectivesToSpawn = " $ MissionSite.Rewards.Length);
+		`LWTrACE("Jailbreak mission overriding NumObjectivesToSpawn = " $ MissionSite.Rewards.Length);
 		Tuple.Data[1].i = MissionSite.Rewards.Length;
 	}
 

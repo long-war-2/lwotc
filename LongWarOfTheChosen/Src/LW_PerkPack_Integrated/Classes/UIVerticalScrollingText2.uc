@@ -7,7 +7,7 @@
 
 class UIVerticalScrollingText2 extends UIPanel;
 
-`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 // UIText member variables
 var protectedwrite UIBGBox  	bg;

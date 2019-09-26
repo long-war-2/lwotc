@@ -81,7 +81,7 @@ function Init(AvailableAction InAction, int NewTargetIndex)
 //
 	//`RedScreen("UPDATE CALLED BOHO YOHO ");
 //
-	////`LWTRACE("Flamethrower TargetingMethod : DeltaTime = " $ DeltaTime);
+	////`LWTrACE("Flamethrower TargetingMethod : DeltaTime = " $ DeltaTime);
 	//CumulativeUpdateTime += DeltaTime;
 	//if (MaxFramesPerSecondUpdateRate > 0 && CumulativeUpdateTime < 1.0/MaxFramesPerSecondUpdateRate)
 	//{

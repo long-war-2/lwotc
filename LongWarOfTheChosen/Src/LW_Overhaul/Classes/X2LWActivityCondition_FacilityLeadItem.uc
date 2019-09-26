@@ -78,7 +78,7 @@ simulated function bool MeetsCondition(X2LWActivityCreation ActivityCreation, XC
 		FacilitiesAlreadyAccessible += 1;
 	}
 
-	`LWTRACE ("X2LWActivityCondition_FacilityLeadItem: Total Facilities" @ TotalFacilities @ "Facilities Already Accessible" @ FacilitiesAlreadyAccessible @ "Condition Pass:" @ FacilitiesAlreadyAccessible >= TotalFacilities);
+	`LWTrACE ("X2LWActivityCondition_FacilityLeadItem: Total Facilities" @ TotalFacilities @ "Facilities Already Accessible" @ FacilitiesAlreadyAccessible @ "Condition Pass:" @ FacilitiesAlreadyAccessible >= TotalFacilities);
 
 	if (FacilitiesAlreadyAccessible >= TotalFacilities)
 		return false;

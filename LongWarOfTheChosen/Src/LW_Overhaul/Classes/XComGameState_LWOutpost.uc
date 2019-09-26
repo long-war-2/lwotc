@@ -276,7 +276,7 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 		CharacterTemplateName = 'Rebel';
 	}
 
-	//`LWTRACE ("Faceless Chance:" @ string(Facelesschance) @ "Outcome:" @ CharacterTemplateName @ "ForceFaceless:" @ ForceFaceless);
+	//`LWTrACE ("Faceless Chance:" @ string(Facelesschance) @ "Outcome:" @ CharacterTemplateName @ "ForceFaceless:" @ ForceFaceless);
 
 	CharacterTemplate = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager().FindCharacterTemplate(CharacterTemplateName);
 	NewUnit = CharacterTemplate.CreateInstanceFromTemplate(NewGameState);
@@ -433,7 +433,7 @@ function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegi
 	}
 	SuppliesTaken = 0;
 	FacelessDays = 0;
-	`LWTRACE ("New campaign Supply Cap" @ WorldRegion.GetDisplayName() @ string (SupplyCap));
+	`LWTrACE ("New campaign Supply Cap" @ WorldRegion.GetDisplayName() @ string (SupplyCap));
 
 	NextUpdateTime = GetCurrentTime();
 	class'X2StrategyGameRulesetDataStructures'.static.AddDay(NextUpdateTime);
@@ -964,7 +964,7 @@ function float GetJobBucketForJob(Name JobName)
 	local int idx;
 
 	idx = JobBuckets.Find('Job', Jobname);
-	`LWTRACE ("GetJobBucketForJob: Testing" @ JobName @ idx);
+	`LWTrACE ("GetJobBucketForJob: Testing" @ JobName @ idx);
 	return JobBuckets[idx].Days;
 }
 
@@ -1041,14 +1041,14 @@ function ResetJobBucket(Name JobName)
 	idx = JobBuckets.Find('Job', Jobname);
 	if (idx != -1)
 	{
-		`LWTRACE ("GetJobBucketForJob: Clearing" @ JobName @ idx);
+		`LWTrACE ("GetJobBucketForJob: Clearing" @ JobName @ idx);
 		JobBuckets[idx].Days = 0;
 	}
 	else
 	{
 		JobDaysBucket.Job = JobName;
 		JobDaysBucket.Days = 0;
-		`LWTRACE ("Bad Clear / Adding" @ JobDaysBucket.Job);
+		`LWTrACE ("Bad Clear / Adding" @ JobDaysBucket.Job);
 		JobBuckets.AddItem(JobDaysBucket);
 	}
 }
@@ -1210,19 +1210,19 @@ function UpdateJobBuckets(XComGameState NewGameState)
 
 	RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(GetWorldRegionForOutpost(), NewGameState);
 
-	`LWTRACE("UpdateJobBuckets");
+	`LWTrACE("UpdateJobBuckets");
 
 	// updates campaigns to 1.3
 	if (JobBuckets.length == 0)
 	{
-		`LWTRACE ("Adding Missing Job Buckets");
+		`LWTrACE ("Adding Missing Job Buckets");
 
 		for (idx = 0; idx < Templates.Length; ++idx)
 		{
 			JobDaysBucket = EmptyJobDaysBucket;
 			JobDaysBucket.Job = Templates[idx].DataName;
 			JobDaysBucket.Days = 0;
-			`LWTRACE ("Adding" @ JobDaysBucket.Job);
+			`LWTrACE ("Adding" @ JobDaysBucket.Job);
 			JobBuckets.AddItem(JobDaysBucket);
 		}
 	}
@@ -1244,7 +1244,7 @@ function UpdateJobBuckets(XComGameState NewGameState)
 
 				if (`SYNC_RAND (100) < DetectionChance)
 				{
-					//`LWTRACE ("Rebel Activity Detected");
+					//`LWTrACE ("Rebel Activity Detected");
 					JobBuckets[idx].Days += 1;
 					TotalResistanceBucket += 1;
 				}
@@ -1723,7 +1723,7 @@ function bool AreMaxRebelsAssigned()
 		return true;
 	if (WorkingRebels > MaxRebels)
 	{
-		`LWTRACE ("Error: Too many rebels have a job in this outpost somehow.");
+		`LWTrACE ("Error: Too many rebels have a job in this outpost somehow.");
 		return true;
 	}
 	return false;

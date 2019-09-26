@@ -4535,7 +4535,7 @@ TacticalText="<Bullet/>靈能增幅器能讓靈能士兵的靈能之力增加20�
 DisplayName="無線電中繼站"
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="奪取變種人補給"
+DisplayName="打劫行動"
 Briefing="取得變種人補給"
 PostMissionType="打劫行動"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"

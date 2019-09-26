@@ -6,7 +6,7 @@
 
 class X2Effect_AdventGrenadeLauncher extends X2Effect;
 
-`include(LW_AlienPack_Integrated\LW_AlienPack.uci)
+//`include(LW_AlienPack_Integrated\LW_AlienPack.uci)
 
 simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {

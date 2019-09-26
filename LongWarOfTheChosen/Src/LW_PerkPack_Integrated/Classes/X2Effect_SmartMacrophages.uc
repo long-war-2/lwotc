@@ -7,7 +7,7 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_SmartMacrophages extends X2Effect_Persistent config(LW_SoldierSkills);
 
-`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 function UnitEndedTacticalPlay(XComGameState_Effect EffectState, XComGameState_Unit UnitState)
 {

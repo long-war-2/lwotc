@@ -15,7 +15,7 @@ simulated function int GetNumActivitiesToCreate(XComGameState NewGameState)
 	NumActivitiesToCreate = PrimaryRegions.length;
 	NumActivitiesToCreate = Min(NumActivitiesToCreate, 1);
 	
-	`LWTRACE ("Attempting to create ProtectResearch" @ NumActivitiesToCreate);
+	`LWTrACE ("Attempting to create ProtectResearch" @ NumActivitiesToCreate);
 
 	return NumActivitiesToCreate;
 }

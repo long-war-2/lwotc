@@ -18,7 +18,7 @@ event OnInit(UIScreen Screen)
 	local X2EventManager EventMgr;
 	local XComGameState_LWListenerManager ListenerMgr;
 
-	`LWTRACE("Starting TacticalHUD Listener OnInit");
+	`LWTrACE("Starting TacticalHUD Listener OnInit");
 
 	ThisObj = self;
 	EventMgr = `XEVENTMGR;

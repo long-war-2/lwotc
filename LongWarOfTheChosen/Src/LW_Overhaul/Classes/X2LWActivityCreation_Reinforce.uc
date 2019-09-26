@@ -153,7 +153,7 @@ function XComGameState_WorldRegion FindBestReinforceDestRegion(XComGameState New
 		
 		// This is is how far we are from that
 		CurrentDestDelta = DesiredAlertLevel - DestRegionalAI.LocalAlertLevel;
-		//`LWTRACE("Reinforce Region TESTING" @ DestRegionState.GetMyTemplate().DisplayName @ "Considering Reinforcements: Alert need is" @ string(CurrentDestDelta));
+		//`LWTrACE("Reinforce Region TESTING" @ DestRegionState.GetMyTemplate().DisplayName @ "Considering Reinforcements: Alert need is" @ string(CurrentDestDelta));
 
 		// If I need somebody
 		if(CurrentDestDelta > 0)
@@ -163,7 +163,7 @@ function XComGameState_WorldRegion FindBestReinforceDestRegion(XComGameState New
 			BestOrigRegionState = FindBestReinforceOrigRegion(DestRegionState, NewGameState, CurrentOrigDelta);
 			if(BestOrigRegionState != none)
 			{
-				//`LWTRACE("Reinforce Region: Best Origin:" @ BestOrigRegionState.GetMyTemplate().DisplayName);
+				//`LWTrACE("Reinforce Region: Best Origin:" @ BestOrigRegionState.GetMyTemplate().DisplayName);
 				CurrentDelta = CurrentOrigDelta + CurrentDestDelta;
 				if(CurrentDelta > BiggestDelta)
 				{
@@ -187,12 +187,12 @@ function XComGameState_WorldRegion FindBestReinforceOrigRegion(XComGameState_Wor
 	local float CurrentDelta;
 
 	History = `XCOMHISTORY;
-	`LWTRACE ("FindBestReinforceOrigRegion: Search for source started for reinforcing" @ DestRegionState.GetMyTemplate().DisplayName);
+	`LWTrACE ("FindBestReinforceOrigRegion: Search for source started for reinforcing" @ DestRegionState.GetMyTemplate().DisplayName);
 
 	foreach DestRegionState.LinkedRegions(OrigRegionRef)
 	{
 		OrigRegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(OrigRegionRef.ObjectID));
-		//`LWTRACE ("Reinforcements Origin Testing of" @ OrigRegionState.GetMyTemplate().DisplayName);
+		//`LWTrACE ("Reinforcements Origin Testing of" @ OrigRegionState.GetMyTemplate().DisplayName);
 
 		OrigRegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(OrigRegionState, NewGameState);
 		if (OrigRegionalAI == none)
@@ -246,7 +246,7 @@ function XComGameState_WorldRegion FindBestReinforceOrigRegion(XComGameState_Wor
 			}
 		}
 		
-		//`LWTRACE ("FindBestReinforceOrigRegion:" @ OrigRegionState.GetMyTemplate().DisplayName @ "Scores" @ string (Currentdelta) @ "wrt forces to spare");
+		//`LWTrACE ("FindBestReinforceOrigRegion:" @ OrigRegionState.GetMyTemplate().DisplayName @ "Scores" @ string (Currentdelta) @ "wrt forces to spare");
 		if(CurrentDelta > 0 && CurrentDelta > BiggestDelta)
 		{
 			BestOrigRegionState = OrigRegionState;
@@ -276,7 +276,7 @@ simulated function array<StateObjectReference> GetSecondaryRegions(XComGameState
 	{
 		`REDSCREEN("Reinforce Activity : GetSecondaryRegions called but no primary region found.");
 	}
-	//`LWTRACE("ReinforceRegion : Choosing Secondary Region " $ OrigRegionState.GetMyTemplate().DisplayName );
+	//`LWTrACE("ReinforceRegion : Choosing Secondary Region " $ OrigRegionState.GetMyTemplate().DisplayName );
 
 	return OrigRegionRefs;
 }

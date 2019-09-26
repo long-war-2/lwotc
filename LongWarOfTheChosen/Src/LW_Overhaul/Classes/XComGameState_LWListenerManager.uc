@@ -10,6 +10,8 @@ var config int DEFAULT_LISTENER_PRIORITY;
 var localized string ResistanceHQBodyText;
 
 
+var config bool TIERED_RESPEC_TIMES;
+
 var config array<int>INITIAL_PSI_TRAINING;
 
 static function XComGameState_LWListenerManager GetListenerManager(optional bool AllowNULL = false)
@@ -70,7 +72,10 @@ function InitListeners()
 	ThisObj = self;
 	EventMgr = `XEVENTMGR;
 	EventMgr.UnregisterFromAllEvents(ThisObj); // clear all old listeners to clear out old stuff before re-registering
-
+	
+	// WOTC TODO: Requires change to CHL XComGameState_Unit
+	// EventMgr.RegisterForEvent(ThisObj, 'ShouldShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate,,,true);
+	
 	// Mission summary civilian counts
 	// WOTC TODO: Requires change to CHL Helpers and UIMissionSummary
 	// EventMgr.RegisterForEvent(ThisObj, 'GetNumCiviliansKilled', OnNumCiviliansKilled, ELD_Immediate,,,true);
@@ -78,6 +83,9 @@ function InitListeners()
 	// WOTC TODO: Don't think this is needed as the game seems to work fine without it.
 	//Special First Mission Icon handling -- only for replacing the Resistance HQ icon functionality
 	// EventMgr.RegisterForEvent(ThisObj, 'OnInsertFirstMissionIcon', OnInsertFirstMissionIcon, ELD_Immediate,,,true);
+
+	// Recalculate respec time so it goes up with soldier rank
+	// EventMgr.RegisterForEvent(ThisObj, 'SoldierRespecced', OnSoldierRespecced,,,,true);
 
     // VIP Recovery screen
     // EventMgr.RegisterForEvent(ThisObj, 'GetRewardVIPStatus', OnGetRewardVIPStatus, ELD_Immediate,,, true);
@@ -97,6 +105,35 @@ function InitListeners()
 
 	// initial psi training time override (this DOES require a change to the highlander)
 	// EventMgr.RegisterForEvent(ThisObj, 'PsiTrainingBegun', OnOverrideInitialPsiTrainingTime, ELD_Immediate,,, true);
+}
+
+function EventListenerReturn OnCheckForPsiPromotion(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Unit UnitState;
+
+	Tuple = XComLWTuple(EventData);
+	if(Tuple == none)
+		return ELR_NoInterrupt;
+
+	UnitState = XComGameState_Unit(EventSource);
+	if(UnitState == none)
+	{
+		`REDSCREEN("OnCheckForPsiPromotion event triggered with invalid event source.");
+		return ELR_NoInterrupt;
+	}
+
+	if (Tuple.Data[0].kind != XComLWTVBool)
+		return ELR_NoInterrupt;
+
+	if (UnitState.IsPsiOperative())
+	{
+		if (class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(UnitState))
+		{
+			Tuple.Data[0].B = true;
+		}
+	}
+	return ELR_NoInterrupt;
 }
 
 function EventListenerReturn OnInsertFirstMissionIcon(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
@@ -260,6 +297,35 @@ function EventListenerReturn OnNumCiviliansKilled(Object EventData, Object Event
     Value.i = Total;
     Tuple.Data.AddItem(Value);
     return ELR_NoInterrupt;
+}
+
+function EventListenerReturn OnSoldierRespecced (Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple OverrideTuple;
+
+	//`LOG ("Firing OnSoldierRespecced");
+	OverrideTuple = XComLWTuple(EventData);
+	if(OverrideTuple == none)
+	{
+		`REDSCREEN("On Soldier Respecced event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+	//`LOG("OverrideTuple : Parsed XComLWTuple.");
+
+	if(OverrideTuple.Id != 'OverrideRespecTimes')
+		return ELR_NoInterrupt;
+
+	//`LOG ("Point 2");
+
+	if (default.TIERED_RESPEC_TIMES)
+	{
+		//Respec days = rank * difficulty setting
+		OverrideTuple.Data[1].i = OverrideTuple.Data[0].i * class'XComGameState_HeadquartersXCom'.default.XComHeadquarters_DefaultRespecSoldierDays[`STRATEGYDIFFICULTYSETTING] * 24;
+		//`LOG ("Point 3" @ OverrideTuple.Data[1].i @ OverrideTuple.Data[0].i);
+	}
+
+	return ELR_NoInterrupt;
+
 }
 
 function EventListenerReturn OnGetRewardVIPStatus(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)

@@ -20,7 +20,7 @@ simulated function bool MeetsConditionWithRegion(X2LWActivityCreation ActivityCr
 
 	WorkingRebels = OutPostState.Rebels.Length - OutPostState.GetNumRebelsOnJob(class'LWRebelJob_DefaultJobSet'.const.HIDING_JOB);
 
-	`LWTRACE("Trying to make" @ ActivityCreation.ActivityTemplate.ActivityName $ ". Attempting MinWorkingRebelsCheck" @ string (WorkingRebels) @ ">=" @ string(MinWorkingRebels));
+	`LWTrACE("Trying to make" @ ActivityCreation.ActivityTemplate.ActivityName $ ". Attempting MinWorkingRebelsCheck" @ string (WorkingRebels) @ ">=" @ string(MinWorkingRebels));
 
 	if (WorkingRebels >= MinWorkingRebels)
 		return true;

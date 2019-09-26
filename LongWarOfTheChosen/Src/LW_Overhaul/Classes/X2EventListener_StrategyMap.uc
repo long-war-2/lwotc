@@ -552,7 +552,7 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 		ResourceCost.ItemTemplateName = 'Supplies';
 		ResourceCost.Quantity = ItemState.GetMyTemplate().TradingPostValue * default.BLACK_MARKET_PROFIT_MARGIN[`STRATEGYDIFFICULTYSETTING];
 
-		`LWTRACE (ForSaleItem.Title @ ItemState.Quantity);
+		`LWTrACE (ForSaleItem.Title @ ItemState.Quantity);
 
 		if (ItemState.Quantity > 1)
 		{

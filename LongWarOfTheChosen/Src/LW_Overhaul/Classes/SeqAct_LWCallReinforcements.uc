@@ -20,8 +20,6 @@ struct AltReinforcementLocation
 var() int IdealSpawnTilesOffset;
 var() Name Schedule;
 var Vector Location;
-var bool ForceSpawnInLoS;
-var bool ForceSpawnOutOfLoS;
 
 var config const array<ReinforcementSchedule> ReinforcementList;
 
@@ -42,7 +40,8 @@ event Activated()
         return;
 
     NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Check for reinforcements");
-    Reinforcements = XComGameState_LWReinforcements(NewGameState.ModifyStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
+    Reinforcements = XComGameState_LWReinforcements(NewGameState.CreateStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
+    NewGameState.AddStateObject(Reinforcements);
 
 	// Look for a disable signal
 	if (InputLinks[2].bHasImpulse)
@@ -131,7 +130,7 @@ function SpawnReinforcements(int ReinforceIndex, XComGameState NewGameState)
 
 		// LWOTC: It appears that the second argument to InitiateReinforcements should
 		// be -1, not 0, in order to use the reinforcement countdown of the encounter.
-		class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, AlterSpawn, Location, IdealSpawnTilesOffset, NewGameState, true,, ForceSpawnOutOfLoS, ForceSpawnInLoS,,,, true);
+		class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, AlterSpawn, Location, IdealSpawnTilesOffset, NewGameState, true,,,,,,, true);
 	}
 	else
 	{
@@ -175,18 +174,18 @@ function SpawnReinforcements(int ReinforceIndex, XComGameState NewGameState)
 				// LWOTC: It appears that the second argument to InitiateReinforcements should
 				// be -1, not 0, in order to use the reinforcement countdown of the encounter.
   				IdealSpawnTilesOffset = `SYNC_RAND(default.REINF_SPAWN_DISTANCE_FROM_OBJECTIVE_WHEN_SQUAD_IS_CONCEALED);
-				class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, AlterSpawn, Location, IdealSpawnTilesOffset, NewGameState, true,, ForceSpawnOutOfLoS, ForceSpawnInLoS,,,, true);
+				class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, AlterSpawn, Location, IdealSpawnTilesOffset, NewGameState, true,,,,,,, true);
 			}
 			else
 			{
-				class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, false, Location, IdealSpawnTilesOffset, NewGameState, true,, ForceSpawnOutOfLoS, ForceSpawnInLoS,,,, true);
+				class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, false, Location, IdealSpawnTilesOffset, NewGameState, true,,,,,,, true);
 			}
 		}
 		else
 		{
 			// LWOTC: It appears that the second argument to InitiateReinforcements should
 			// be -1, not 0, in order to use the reinforcement countdown of the encounter.
-			class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, false, Location, IdealSpawnTilesOffset, NewGameState, true,, ForceSpawnOutOfLoS, ForceSpawnInLoS,,,, true);
+			class'XComGameState_AIReinforcementSpawner'.static.InitiateReinforcements(EncounterID, -1, false, Location, IdealSpawnTilesOffset, NewGameState, true,,,,,,, true);
 		}
 	}
 }
@@ -206,8 +205,5 @@ defaultproperties
 
     VariableLinks.Empty
     VariableLinks(0)=(ExpectedType=class'SeqVar_Vector',LinkDesc="Location",PropertyName=Location)
-    VariableLinks(1)=(ExpectedType=class'SeqVar_Int',LinkDesc="TileOffset",PropertyName=IdealSpawnTilesOffset)
-    VariableLinks(2)=(ExpectedType=class'SeqVar_Bool',LinkDesc="ForceSpawnInLoS",PropertyName=ForceSpawnInLoS)
-    VariableLinks(3)=(ExpectedType=class'SeqVar_Bool',LinkDesc="ForceSpawnOutOfLoS",PropertyName=ForceSpawnOutOfLoS)
 }
 

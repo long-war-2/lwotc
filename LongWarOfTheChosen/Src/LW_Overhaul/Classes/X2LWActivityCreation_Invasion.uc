@@ -15,12 +15,12 @@ simulated function StateObjectReference FindBestPrimaryRegion(XComGameState NewG
 	local XComGameState_WorldRegion		RegionState;
 
 	RegionState = FindInvasionTarget(NewGameState);
-	`LWTRACE ("Searching for Invasion Candidates");
+	`LWTrACE ("Searching for Invasion Candidates");
 	if(RegionState == none)
 		return NullRef;
 	else
 	{
-		`LWTRACE ("Invasion Target Candidate Found" @ RegionState.GetMyTemplate().DisplayName);
+		`LWTrACE ("Invasion Target Candidate Found" @ RegionState.GetMyTemplate().DisplayName);
 		return RegionState.GetReference();
 	}
 }
@@ -49,7 +49,7 @@ simulated function XComGameState_WorldRegion FindInvasionTarget(XComGameState Ne
 				continue;
 			}
 
-			//`LWTRACE ("Contacted Invader Region Alert:" @ NeighborRegionAI.LocalAlertLevel @ "must be higher than vigilance:" @ NeighborRegionAI.LocalVigilanceLevel);
+			//`LWTrACE ("Contacted Invader Region Alert:" @ NeighborRegionAI.LocalAlertLevel @ "must be higher than vigilance:" @ NeighborRegionAI.LocalVigilanceLevel);
 
 			// at least one region has an alert level higher than vigilance and sufficient alert to launch
 			if (!NeighborRegionAI.bLiberated && NeighborRegionAI.LocalAlertLevel >= default.INVASION_MIN_ALERT_TO_LAUNCH)
@@ -82,7 +82,7 @@ simulated function array<StateObjectReference> GetSecondaryRegions(XComGameState
 	}
 
 	OrigRegionState = FindInvasionOrig(DestRegionState, NewGameState);
-	`LWTRACE("InvasionRegion : Choosing Secondary Region " $ OrigRegionState.GetMyTemplate().DisplayName );
+	`LWTrACE("InvasionRegion : Choosing Secondary Region " $ OrigRegionState.GetMyTemplate().DisplayName );
 
 	OrigRegionRefs.AddItem(OrigRegionState.GetReference());
 	return OrigRegionRefs;
@@ -121,7 +121,7 @@ function XComGameState_WorldRegion FindInvasionOrig(XComGameState_WorldRegion De
 	}
 	else
 	{
-		`LWTRACE ("No Suitable Invasion Origin Found. HighestAlert is" @ HighestAlert);
+		`LWTrACE ("No Suitable Invasion Origin Found. HighestAlert is" @ HighestAlert);
 		return none;
 	}
 
