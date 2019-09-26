@@ -6,7 +6,7 @@
 
 class X2DownloadableContentInfo_LWAlienPack extends X2DownloadableContentInfo;	
 
-//`include(LW_AlienPack_Integrated\LW_AlienPack.uci)
+`include(LW_AlienPack_Integrated\LW_AlienPack.uci)
 
 /// <summary>
 /// This method is run if the player loads a saved game that was created prior to this DLC / Mod being installed, and allows the 

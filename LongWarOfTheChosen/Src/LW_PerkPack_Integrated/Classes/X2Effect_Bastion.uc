@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_Bastion extends X2Effect_Persistent config(LW_SoldierSkills);
 
-//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var config float BASTION_DISTANCE_SQ;
 

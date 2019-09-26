@@ -6,7 +6,7 @@
 
 class X2Effect_LoneWolf extends X2Effect_Persistent config (LW_SoldierSkills);
 
-//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var config int LONEWOLF_AIM_BONUS;
 var config int LONEWOLF_DEF_BONUS;

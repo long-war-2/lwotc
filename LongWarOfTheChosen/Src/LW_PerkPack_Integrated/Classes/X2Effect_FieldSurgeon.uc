@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_FieldSurgeon extends X2Effect_Persistent config(LW_SoldierSkills);
 
-//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var config array<int> FIELD_SURGEON_CHANCE_FOR_NUM_EFFECTS;
 var name FieldSurgeonAppliedUnitValue;

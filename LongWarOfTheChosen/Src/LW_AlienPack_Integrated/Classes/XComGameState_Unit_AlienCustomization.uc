@@ -6,7 +6,7 @@
 class XComGameState_Unit_AlienCustomization extends XComGameState_BaseObject 
 		dependson(XComGameState_AlienCustomizationManager) config(LW_AlienPack);
 
-//`include(LW_AlienPack_Integrated\LW_AlienPack.uci)
+`include(LW_AlienPack_Integrated\LW_AlienPack.uci)
 
 var bool bAutomatic;
 var float fScale;

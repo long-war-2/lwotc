@@ -5,7 +5,7 @@
 //--------------------------------------------------------------------------------------- 
 class X2Condition_RequiredToHitChance extends X2Condition config (LW_SoldierSkills);
 
-//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var int MinimumRequiredHitChance;
 var array<name> ExcludedAbilities; // if target has any of these abilities, then the minimum requirement is ignored

@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_AreaSuppression extends X2Effect_Suppression config(LW_SoldierSkills);
 
-////`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 // prevent doubling up if unit is both suppressed and area suppressed, since regular suppression doesn't stack with itself
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)

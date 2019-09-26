@@ -8,7 +8,7 @@
 
 class UIArmory_LWExpandedPromotionSummaryItem  extends UIPanel;
 
-//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var int BGPadding;
 var UIBGBox BGBox, BGBoxTest; 

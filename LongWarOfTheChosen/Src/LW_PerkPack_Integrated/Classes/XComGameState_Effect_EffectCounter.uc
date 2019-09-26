@@ -8,7 +8,7 @@
 
 class XComGameState_Effect_EffectCounter extends XComGameState_Effect;
 
-//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var int uses;
 

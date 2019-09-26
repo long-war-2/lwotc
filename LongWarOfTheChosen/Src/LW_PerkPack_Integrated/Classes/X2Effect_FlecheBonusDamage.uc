@@ -7,7 +7,7 @@
 
 class X2Effect_FlecheBonusDamage extends X2Effect_Persistent config(LW_SoldierSkills);
 
-//`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var config float BonusDmgPerTile;
 var array<name> AbilityNames;
