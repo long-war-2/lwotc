@@ -1076,6 +1076,12 @@
     <Content Include="Content\Missions\Obj_SecureUFO_LW.umap" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_LWStartReinforcements.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWResistanceOrdersModTemplate.uc" />
+    <Content Include="Content\CrossbowVektor.upk" />
+    <Content Include="Content\EW_MEC_Weapons.upk" />
+    <Content Include="Content\FX_MEC_WP_Chaingun.upk" />
+    <Content Include="Content\FX_MEC_WP_Particle_Beam.upk" />
+    <Content Include="Content\FX_MEC_WP_Railgun.upk" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_SparkWeapons.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

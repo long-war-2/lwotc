@@ -93,6 +93,61 @@ var config array<int> VEKTOR_BEAM_RANGE;
 var config array<int> SKIRMISHER_SMG_RANGE;
 var config array<int> TEMPLAR_PISTOL_RANGE;
 
+var config WeaponDamageValue BULLPUP_LASER_BASEDAMAGE;
+var config int BULLPUP_LASER_AIM;
+var config int BULLPUP_LASER_CRITCHANCE;
+var config int BULLPUP_LASER_ICLIPSIZE;
+var config int BULLPUP_LASER_ISOUNDRANGE;
+var config int BULLPUP_LASER_IENVIRONMENTDAMAGE;
+var config int BULLPUP_LASER_ISUPPLIES;
+var config int BULLPUP_LASER_TRADINGPOSTVALUE;
+var config int BULLPUP_LASER_IPOINTS;
+var config int BULLPUP_LASER_UPGRADESLOTS;
+var config string Bullpup_Laser_ImagePath;
+var config array<int> SKIRMISHER_LASER_RANGE;
+
+
+var config WeaponDamageValue BULLPUP_COIL_BASEDAMAGE;
+var config int BULLPUP_COIL_AIM;
+var config int BULLPUP_COIL_CRITCHANCE;
+var config int BULLPUP_COIL_ICLIPSIZE;
+var config int BULLPUP_COIL_ISOUNDRANGE;
+var config int BULLPUP_COIL_IENVIRONMENTDAMAGE;
+var config int BULLPUP_COIL_ISUPPLIES;
+var config int BULLPUP_COIL_TRADINGPOSTVALUE;
+var config int BULLPUP_COIL_IPOINTS;
+var config int BULLPUP_COIL_UPGRADESLOTS;
+var config array<int> SKIRMISHER_COIL_RANGE;
+var config string Bullpup_Coil_ImagePath;
+
+var config WeaponDamageValue VEKTOR_LASER_BASEDAMAGE;
+var config int VEKTOR_LASER_AIM;
+var config int VEKTOR_LASER_CRITCHANCE;
+var config int VEKTOR_LASER_ICLIPSIZE;
+var config int VEKTOR_LASER_ISOUNDRANGE;
+var config int VEKTOR_LASER_IENVIRONMENTDAMAGE;
+var config int VEKTOR_LASER_ISUPPLIES;
+var config int VEKTOR_LASER_TRADINGPOSTVALUE;
+var config int VEKTOR_LASER_IPOINTS;
+var config int VEKTOR_LASER_UPGRADESLOTS;
+var config string Vektor_Laser_ImagePath;
+var config array<int> VEKTOR_LASER_RANGE;
+
+
+var config WeaponDamageValue VEKTOR_COIL_BASEDAMAGE;
+var config int VEKTOR_COIL_AIM;
+var config int VEKTOR_COIL_CRITCHANCE;
+var config int VEKTOR_COIL_ICLIPSIZE;
+var config int VEKTOR_COIL_ISOUNDRANGE;
+var config int VEKTOR_COIL_IENVIRONMENTDAMAGE;
+var config int VEKTOR_COIL_ISUPPLIES;
+var config int VEKTOR_COIL_TRADINGPOSTVALUE;
+var config int VEKTOR_COIL_IPOINTS;
+var config int VEKTOR_COIL_UPGRADESLOTS;
+var config array<int> VEKTOR_COIL_RANGE;
+var config string Vektor_Coil_ImagePath;
+
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Weapons;
@@ -112,6 +167,12 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Weapons.AddItem(CreateTemplate_Sidearm_Magnetic());
 	Weapons.AddItem(CreateTemplate_Sidearm_Beam());
+	Weapons.AddItem(CreateTemplate_Bullpup_Laser());
+	Weapons.AddItem(CreateBullpup_Coil_Template());
+	Weapons.AddItem(CreateVektorCrossbow_Laser());
+	Weapons.AddItem(CreateVektorCrossbow_Coil());
+	Weapons.AddItem(CreateVektorCrossbow_CV());
+
 	return Weapons;
 }
 
@@ -918,6 +979,269 @@ static function X2DataTemplate CreateTemplate_Sidearm_Beam()
 	Template.DamageTypeTemplateName = 'Projectile_BeamXCom';
 
 	Template.bHideClipSizeStat = true;
+
+	return Template;
+}
+
+
+static function X2DataTemplate CreateTemplate_Bullpup_Laser()
+{
+	local X2WeaponTemplate Template;
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Bullpup_LS');
+
+	Template.WeaponCat = 'bullpup';
+	Template.WeaponTech = 'laser_lw'; 
+	Template.ItemCat = 'weapon';
+	Template.strImage = "img:///" $ default.Bullpup_Laser_ImagePath; 
+	Template.WeaponPanelImage = "_BeamRifle";                       // used by the UI. Probably determines iconview of the weapon.
+	Template.EquipSound = "Beam_Weapon_Equip";
+	Template.Tier = 3;
+
+
+
+	Template.RangeAccuracy = default.SKIRMISHER_LASER_RANGE;
+	Template.BaseDamage = default.BULLPUP_LASER_BASEDAMAGE;
+	Template.Aim = default.BULLPUP_LASER_AIM;
+	Template.CritChance = default.BULLPUP_LASER_CRITCHANCE;
+	Template.iClipSize = default.BULLPUP_LASER_ICLIPSIZE;
+	Template.iSoundRange = default.BULLPUP_LASER_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.BULLPUP_LASER_IENVIRONMENTDAMAGE;
+
+	Template.NumUpgradeSlots = default.BULLPUP_LASER_UPGRADESLOTS; 
+	
+	Template.InventorySlot = eInvSlot_PrimaryWeapon;
+	Template.Abilities.AddItem('StandardShot');
+	Template.Abilities.AddItem('Overwatch');
+	Template.Abilities.AddItem('OverwatchShot');
+	Template.Abilities.AddItem('Reload');
+	Template.Abilities.AddItem('HotLoadAmmo');
+	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
+	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
+
+	// This all the resources; sounds, animations, models, physics, the works.
+	Template.GameArchetype = "LWSMG_LS.Archetype.WP_SMG_LS";
+	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_AssaultRifle';
+	Template.AddDefaultAttachment('Mag', "LWAttachments_LS.Meshes.SK_Laser_Mag_A", , "img:///UILibrary_LW_LaserPack.LaserSMG_MagA");
+	Template.AddDefaultAttachment('Stock', "LWShotgun_LS.Meshes.SK_LaserShotgun_Stock_A", , "img:///UILibrary_LW_LaserPack.LaserSMG_StockA"); // switching to use the shotgun-style stock to differentiate better from rifle
+	Template.AddDefaultAttachment('Reargrip', "LWAttachments_LS.Meshes.SK_Laser_Trigger_A", , "img:///UILibrary_LW_LaserPack.LaserSMG_TriggerA");
+	Template.AddDefaultAttachment('Foregrip', "LWAttachments_LS.Meshes.SK_Laser_Foregrip_A", , "img:///UILibrary_LW_LaserPack.LaserSMG_ForegripA");
+	//Template.AddDefaultAttachment('Optic', "LWSMG_LS.Meshes.SK_LaserSMG_Optic_A", , "img:///UILibrary_LW_LaserPack.LaserSMG__OpticA");  // no default optic
+	Template.AddDefaultAttachment('Light', "LWAttachments_LS.Meshes.SK_Laser_Flashlight", , );
+
+
+	Template.CreatorTemplateName = 'Bullpup_LS_Schematic'; // The schematic which creates this item
+
+	Template.iPhysicsImpulse = 5;
+	Template.StartingItem = false;
+	Template.CanBeBuilt = true;
+	Template.bInfiniteItem = false;
+
+	Template.DamageTypeTemplateName = 'Projectile_BeamXCom';  
+
+	return Template;
+}
+
+
+
+static function X2DataTemplate CreateBullpup_Coil_Template()
+{
+	local X2WeaponTemplate Template;	
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Bullpup_CG');
+
+	Template.WeaponCat = 'bullpup';
+	Template.WeaponTech = 'coilgun_lw';
+	Template.ItemCat = 'weapon';
+	Template.strImage ="img:///" $ default.BullPup_Coil_ImagePath;
+	Template.WeaponPanelImage = "";
+	Template.EquipSound = "Magnetic_Weapon_Equip";
+	Template.Tier = 4;
+
+	Template.RangeAccuracy = default.SKIRMISHER_COIL_RANGE;
+	Template.BaseDamage = default.BULLPUP_COIL_BASEDAMAGE;
+	Template.Aim = default.BULLPUP_COIL_AIM;
+	Template.CritChance = default.BULLPUP_COIL_CRITCHANCE;
+	Template.iClipSize = default.BULLPUP_COIL_ICLIPSIZE;
+	Template.iSoundRange = default.BULLPUP_COIL_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.BULLPUP_COIL_IENVIRONMENTDAMAGE;
+
+	Template.NumUpgradeSlots = 3;
+
+	Template.GameArchetype = "LWSMG_CG.Archetypes.WP_SMG_CG";
+	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_AssaultRifle';
+	Template.AddDefaultAttachment('Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagA", , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_MagA");
+	Template.AddDefaultAttachment('Stock', "LWAccessories_CG.Meshes.LW_Coil_StockA", , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_StockA");
+	Template.AddDefaultAttachment('Reargrip', "LWAccessories_CG.Meshes.LW_Coil_ReargripA", , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_ReargripA");
+	Template.AddDefaultAttachment('Light', "BeamAttachments.Meshes.BeamFlashLight"); //, , "img:///UILibrary_Common.ConvAssaultRifle.ConvAssault_LightA");  // re-use common conventional flashlight
+
+
+	Template.CreatorTemplateName = 'Bullpup_CG_Schematic'; // The schematic which creates this item
+
+	Template.iPhysicsImpulse = 5;
+	Template.StartingItem = true;
+	Template.CanBeBuilt = false;
+	Template.bInfiniteItem = true;
+
+	Template.InventorySlot = eInvSlot_PrimaryWeapon;
+	Template.Abilities.AddItem('StandardShot');
+	Template.Abilities.AddItem('Overwatch');
+	Template.Abilities.AddItem('OverwatchShot');
+	Template.Abilities.AddItem('Reload');
+	Template.Abilities.AddItem('HotLoadAmmo');
+	Template.Requirements.RequiredTechs.AddItem('Coilguns');
+
+	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
+	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
+
+	Template.iPhysicsImpulse = 5;
+	Template.StartingItem = false;
+	Template.CanBeBuilt = true;
+	Template.bInfiniteItem = false;
+
+	Template.DamageTypeTemplateName = 'Projectile_MagXCom';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateVektorCrossbow_CV()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'CrossbowVektor_CV');
+	Template.WeaponPanelImage = "_ConventionalSniperRifle";
+
+	Template.ItemCat = 'weapon';
+	Template.WeaponCat = 'vektor_rifle';
+	Template.WeaponTech = 'conventional';
+	Template.strImage = "img:///CrossbowVektor.Inv_CrossbowVektor";
+	Template.EquipSound = "Conventional_Weapon_Equip";
+	Template.Tier = 0;
+
+	Template.RangeAccuracy = class'X2Item_XpackWeapons'.default.VEKTOR_CONVENTIONAL_RANGE;
+	Template.BaseDamage = class'X2Item_XpackWeapons'.default.VEKTORRIFLE_CONVENTIONAL_BASEDAMAGE;
+	Template.Aim = class'X2Item_XpackWeapons'.default.VEKTORRIFLE_CONVENTIONAL_AIM;
+	Template.CritChance = class'X2Item_XpackWeapons'.default.VEKTORRIFLE_CONVENTIONAL_CRITCHANCE;
+	Template.iClipSize = class'X2Item_XpackWeapons'.default.VEKTORRIFLE_CONVENTIONAL_ICLIPSIZE;
+	Template.iSoundRange = class'X2Item_XpackWeapons'.default.VEKTORRIFLE_CONVENTIONAL_ISOUNDRANGE;
+	Template.iEnvironmentDamage = class'X2Item_XpackWeapons'.default.VEKTORRIFLE_CONVENTIONAL_IENVIRONMENTDAMAGE;
+	Template.NumUpgradeSlots = 3;
+	Template.iTypicalActionCost = 2;
+		
+	Template.InventorySlot = eInvSlot_PrimaryWeapon;
+	Template.Abilities.AddItem('StandardShot');
+	Template.Abilities.AddItem('Overwatch');
+	Template.Abilities.AddItem('OverwatchShot');
+	Template.Abilities.AddItem('Reload');
+	Template.Abilities.AddItem('HotLoadAmmo');
+	
+	// This all the resources; sounds, animations, models, physics, the works.
+	Template.GameArchetype = "CrossbowVektor.WP_CrossbowVektor_CV";
+	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
+
+	Template.iPhysicsImpulse = 5;
+
+	Template.StartingItem = true;
+	Template.CanBeBuilt = false;
+	Template.bInfiniteItem = true;
+	
+	Template.fKnockbackDamageAmount = 5.0f;
+	Template.fKnockbackDamageRadius = 0.0f;
+
+	Template.DamageTypeTemplateName = 'Projectile_Conventional';
+	
+	return Template;
+}
+
+
+
+static function X2DataTemplate CreateVektorCrossbow_Laser()
+{
+	local X2WeaponTemplate Template;
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Vektor_LS');
+
+	Template.WeaponCat = 'vektor_rifle';
+	Template.WeaponTech = 'laser_lw'; 
+	Template.ItemCat = 'weapon';
+	Template.strImage = "img:///" $ default.Vektor_Laser_ImagePath; 
+	Template.WeaponPanelImage = "_BeamSniperRifle";                       // used by the UI. Probably determines iconview of the weapon.
+	Template.EquipSound = "Beam_Weapon_Equip";
+	Template.Tier = 3;
+
+	Template.RangeAccuracy = default.VEKTOR_LASER_RANGE;
+	Template.BaseDamage = default.VEKTOR_LASER_BASEDAMAGE;
+	Template.Aim = default.VEKTOR_LASER_AIM;
+	Template.CritChance = default.VEKTOR_LASER_CRITCHANCE;
+	Template.iClipSize = default.VEKTOR_LASER_ICLIPSIZE;
+	Template.iSoundRange = default.VEKTOR_LASER_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.VEKTOR_LASER_IENVIRONMENTDAMAGE;
+
+	Template.NumUpgradeSlots = default.VEKTOR_LASER_UPGRADESLOTS; 
+	
+	Template.InventorySlot = eInvSlot_PrimaryWeapon;
+	Template.Abilities.AddItem('StandardShot');
+	Template.Abilities.AddItem('Overwatch');
+	Template.Abilities.AddItem('OverwatchShot');
+	Template.Abilities.AddItem('Reload');
+	Template.Abilities.AddItem('HotLoadAmmo');
+	
+	// This all the resources; sounds, animations, models, physics, the works.
+	Template.GameArchetype = "CrossbowVektor.WP_CrossbowVektor_MG";
+
+	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
+	Template.CreatorTemplateName = 'VEKTOR_LS_Schematic'; // The schematic which creates this item
+
+	Template.iPhysicsImpulse = 5;
+	Template.StartingItem = false;
+	Template.CanBeBuilt = true;
+	Template.bInfiniteItem = false;
+
+	Template.DamageTypeTemplateName = 'Projectile_BeamXCom';  
+
+	return Template;
+}
+
+static function X2DataTemplate CreateVektorCrossbow_Coil()
+{
+	local X2WeaponTemplate Template;
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Vektor_CG');
+
+	Template.WeaponCat = 'vektor_rifle';
+	Template.WeaponTech = 'coilgun_lw';
+	Template.ItemCat = 'weapon';
+	Template.strImage ="img:///" $ default.Vektor_Coil_ImagePath;
+	Template.WeaponPanelImage = "_MagneticSniperRifle";
+	Template.EquipSound = "Magnetic_Weapon_Equip";
+	Template.Tier = 4;
+
+	Template.RangeAccuracy = default.VEKTOR_COIL_RANGE;
+	Template.BaseDamage = default.VEKTOR_COIL_BASEDAMAGE;
+	Template.Aim = default.VEKTOR_COIL_AIM;
+	Template.CritChance = default.VEKTOR_COIL_CRITCHANCE;
+	Template.iClipSize = default.VEKTOR_COIL_ICLIPSIZE;
+	Template.iSoundRange = default.VEKTOR_COIL_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.VEKTOR_COIL_IENVIRONMENTDAMAGE;
+
+	Template.NumUpgradeSlots = 3;
+
+	Template.GameArchetype = "CrossbowVektor.WP_CrossbowVektor_BM";
+	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
+
+	Template.CreatorTemplateName = 'VEKTOR_CG_Schematic'; // The schematic which creates this item
+
+
+
+	Template.InventorySlot = eInvSlot_PrimaryWeapon;
+	Template.Abilities.AddItem('StandardShot');
+	Template.Abilities.AddItem('Overwatch');
+	Template.Abilities.AddItem('OverwatchShot');
+	Template.Abilities.AddItem('Reload');
+	Template.Abilities.AddItem('HotLoadAmmo');
+	
+	Template.iPhysicsImpulse = 5;
+	Template.StartingItem = false;
+	Template.CanBeBuilt = true;
+	Template.bInfiniteItem = false;
+
+	Template.DamageTypeTemplateName = 'Projectile_MagXCom';
 
 	return Template;
 }
