@@ -1018,12 +1018,7 @@ static function X2DataTemplate CreateTemplate_Bullpup_Laser()
 	Template.Abilities.AddItem('HotLoadAmmo');
 	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
 	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
-	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
-	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
 
-	/*Template.Abilities.AddItem('Bullpup_CV_StatBonus');
-	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
-	*/
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "LWSMG_LS.Archetype.WP_SMG_LS";
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_AssaultRifle';
@@ -1036,19 +1031,6 @@ static function X2DataTemplate CreateTemplate_Bullpup_Laser()
 
 
 	Template.CreatorTemplateName = 'Bullpup_LS_Schematic'; // The schematic which creates this item
-
-	Resources.ItemTemplateName = 'Supplies';
-	Resources.Quantity = 20;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'AlienAlloy';
-	Resources.Quantity = 1;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'EleriumDust';
-	Resources.Quantity = 1;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-			Template.Requirements.RequiredTechs.AddItem('LaserWeapons');
 
 	Template.iPhysicsImpulse = 5;
 	Template.StartingItem = false;
@@ -1095,18 +1077,6 @@ static function X2DataTemplate CreateBullpup_Coil_Template()
 
 
 	Template.CreatorTemplateName = 'Bullpup_CG_Schematic'; // The schematic which creates this item
-
-	Resources.ItemTemplateName = 'Supplies';
-	Resources.Quantity = 60;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'AlienAlloy';
-	Resources.Quantity = 3;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'EleriumDust';
-	Resources.Quantity = 5;
-	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Template.iPhysicsImpulse = 5;
 	Template.StartingItem = true;
@@ -1174,7 +1144,6 @@ static function X2DataTemplate CreateVektor_CV()
 	Template.StartingItem = true;
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
-	Template.UpgradeItem = 'CrossbowVektor_MG';
 	
 	Template.fKnockbackDamageAmount = 5.0f;
 	Template.fKnockbackDamageRadius = 0.0f;
@@ -1223,23 +1192,10 @@ static function X2DataTemplate CreateVektor_Laser()
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
 	Template.CreatorTemplateName = 'VEKTOR_LS_Schematic'; // The schematic which creates this item
 
-	Resources.ItemTemplateName = 'Supplies';
-	Resources.Quantity = 25;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'AlienAlloy';
-	Resources.Quantity = 1;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'EleriumDust';
-	Resources.Quantity = 1;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
 	Template.iPhysicsImpulse = 5;
 	Template.StartingItem = false;
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
-	Template.Requirements.RequiredTechs.AddItem('AdvancedLasers');
 
 	Template.DamageTypeTemplateName = 'Projectile_BeamXCom';  
 
@@ -1275,17 +1231,7 @@ static function X2DataTemplate CreateVektor_Coil()
 
 	Template.CreatorTemplateName = 'VEKTOR_CG_Schematic'; // The schematic which creates this item
 
-	Resources.ItemTemplateName = 'Supplies';
-	Resources.Quantity = 60;
-	Template.Cost.ResourceCosts.AddItem(Resources);
 
-	Resources.ItemTemplateName = 'AlienAlloy';
-	Resources.Quantity = 3;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'EleriumDust';
-	Resources.Quantity = 5;
-	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Template.InventorySlot = eInvSlot_PrimaryWeapon;
 	Template.Abilities.AddItem('StandardShot');
@@ -1298,7 +1244,6 @@ static function X2DataTemplate CreateVektor_Coil()
 	Template.StartingItem = false;
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
-		Template.Requirements.RequiredTechs.AddItem('AdvancedCoilguns');
 
 	Template.DamageTypeTemplateName = 'Projectile_MagXCom';
 
