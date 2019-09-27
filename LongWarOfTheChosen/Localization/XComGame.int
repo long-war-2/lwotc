@@ -4768,9 +4768,11 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 
 [Battlemaster X2AbilityTemplate]
 LocFriendlyName="Battlemaster"
+; LWOTC Needs Translation
 LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim and defense from high ground, and have lower infiltration times."
 LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim and defense from high ground, and have lower infiltration times."
 LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/><Bullet/> Gain +10 aim and defense from high ground.<br/><Bullet/> This soldier has reduced infiltration times while on missions."
+; End Translation
 
 [LW2WotC_Reckoning X2AbilityTemplate]
 LocFriendlyName="Reckoning"
