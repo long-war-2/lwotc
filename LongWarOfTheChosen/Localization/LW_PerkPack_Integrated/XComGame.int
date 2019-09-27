@@ -692,7 +692,9 @@ LocFriendlyName="Body Shield"
 LocFlyOverText="Body Shield"
 LocLongDescription="A targeted enemy receives -20 aim and -50 critical chance against the soldier."
 LocHelpText="The targeted enemy receives -20 aim and -50 critical chance against the soldier."
-LocPromotionPopupText="<Bullet/> A targeted enemy receives -20 aim and -50 critical chance against the soldier.<br/><Bullet/> Not cost an action.<br/><Bullet/> Body Shield has a 2 turn cooldown."
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> A targeted enemy receives -20 aim and -50 critical chance against the soldier.<br/><Bullet/> This is a free action.<br/><Bullet/> Body Shield has a <Ability:SelfCooldown/> turn cooldown."
+; End Translation
 
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="Emergency Life Support"
