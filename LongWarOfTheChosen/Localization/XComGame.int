@@ -4774,9 +4774,6 @@ LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT. They h
 LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/><Bullet/> Gain +10 aim and defense from high ground.<br/><Bullet/> This soldier has reduced infiltration times while on missions."
 
 [SkirmisherGrapple X2AbilityTemplate]
-LocFriendlyName="Grapple"
-LocHelpText="Deploy a grappling hook to move quickly to an elevated position."
-LocLongDescription="Deploy a grappling hook to move quickly to an elevated position."
 LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into position without using an action.<br/><Bullet/> Grapple has a 2-turn cooldown (1 turn with Parkour)."
 ; End Translation
 
