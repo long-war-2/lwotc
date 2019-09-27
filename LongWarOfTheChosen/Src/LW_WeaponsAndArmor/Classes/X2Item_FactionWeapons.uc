@@ -169,9 +169,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Weapons.AddItem(CreateTemplate_Sidearm_Beam());
 	Weapons.AddItem(CreateTemplate_Bullpup_Laser());
 	Weapons.AddItem(CreateBullpup_Coil_Template());
-	Weapons.AddItem(CreateVektor_Laser());
-	Weapons.AddItem(CreateVektor_Coil());
-	Weapons.AddItem(CreateVektor_CV());
+	Weapons.AddItem(CreateVektorCrossbow_Laser());
+	Weapons.AddItem(CreateVektorCrossbow_Coil());
+	Weapons.AddItem(CreateVektorCrossbow_CV());
 
 	return Weapons;
 }
@@ -987,7 +987,6 @@ static function X2DataTemplate CreateTemplate_Sidearm_Beam()
 static function X2DataTemplate CreateTemplate_Bullpup_Laser()
 {
 	local X2WeaponTemplate Template;
-		local ArtifactCost Resources;
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Bullpup_LS');
 
 	Template.WeaponCat = 'bullpup';
@@ -1046,8 +1045,7 @@ static function X2DataTemplate CreateTemplate_Bullpup_Laser()
 
 static function X2DataTemplate CreateBullpup_Coil_Template()
 {
-	local X2WeaponTemplate Template;
-	local ArtifactCost Resources;
+	local X2WeaponTemplate Template;	
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Bullpup_CG');
 
 	Template.WeaponCat = 'bullpup';
@@ -1089,7 +1087,7 @@ static function X2DataTemplate CreateBullpup_Coil_Template()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-		Template.Requirements.RequiredTechs.AddItem('Coilguns');
+	Template.Requirements.RequiredTechs.AddItem('Coilguns');
 
 	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
 	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
@@ -1104,7 +1102,7 @@ static function X2DataTemplate CreateBullpup_Coil_Template()
 	return Template;
 }
 
-static function X2DataTemplate CreateVektor_CV()
+static function X2DataTemplate CreateVektorCrossbow_CV()
 {
 	local X2WeaponTemplate Template;
 
@@ -1155,10 +1153,9 @@ static function X2DataTemplate CreateVektor_CV()
 
 
 
-static function X2DataTemplate CreateVektor_Laser()
+static function X2DataTemplate CreateVektorCrossbow_Laser()
 {
 	local X2WeaponTemplate Template;
-		local ArtifactCost Resources;
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Vektor_LS');
 
 	Template.WeaponCat = 'vektor_rifle';
@@ -1202,10 +1199,9 @@ static function X2DataTemplate CreateVektor_Laser()
 	return Template;
 }
 
-static function X2DataTemplate CreateVektor_Coil()
+static function X2DataTemplate CreateVektorCrossbow_Coil()
 {
 	local X2WeaponTemplate Template;
-	local ArtifactCost Resources;
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Vektor_CG');
 
 	Template.WeaponCat = 'vektor_rifle';

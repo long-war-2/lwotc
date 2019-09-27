@@ -65,14 +65,14 @@ static function X2DataTemplate Create_SPARKChaingun()
 	Template.Abilities.AddItem('HotLoadAmmo');
 
 	
-		Template.RangeAccuracy = class'X2Item_DefaultWeapons'.default.MEDIUM_CONVENTIONAL_RANGE;
-		Template.BaseDamage = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_BASEDAMAGE;
-		Template.Aim = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_AIM;
-		Template.CritChance = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_CRITCHANCE;
-		Template.iClipSize = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_ICLIPSIZE;
-		Template.iSoundRange = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_ISOUNDRANGE;
-		Template.iEnvironmentDamage = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_IENVIRONMENTDAMAGE;
-		Template.NumUpgradeSlots = 3;
+	Template.RangeAccuracy = class'X2Item_DefaultWeapons'.default.MEDIUM_CONVENTIONAL_RANGE;
+	Template.BaseDamage = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_BASEDAMAGE;
+	Template.Aim = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_AIM;
+	Template.CritChance = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_CRITCHANCE;
+	Template.iClipSize = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_ICLIPSIZE;
+	Template.iSoundRange = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_ISOUNDRANGE;
+	Template.iEnvironmentDamage = class'X2Item_DLC_Day90Weapons'.default.SPARKRIFLE_CONVENTIONAL_IENVIRONMENTDAMAGE;
+	Template.NumUpgradeSlots = 3;
 	
 		
 	Template.GameArchetype = "EW_MEC_Weapons.Archetypes.WP_MEC_Chaingun";
@@ -116,14 +116,14 @@ static function X2DataTemplate Create_SparkRifle_Laser()
 	Template.Abilities.AddItem('HotLoadAmmo');
 
 
-		Template.BaseDamage = default.SPARKRIFLE_LASER_BASEDAMAGE;
-		Template.RangeAccuracy = default.SPARKRIFLE_LASER_RANGE;
-		Template.Aim = default.SPARKRIFLE_LASER_AIM;
-		Template.CritChance = default.SPARKRIFLE_LASER_CRITCHANCE;
-		Template.iClipSize = default.SPARKRIFLE_LASER_ICLIPSIZE;
-		Template.iSoundRange = default.SPARKRIFLE_LASER_ISOUNDRANGE;
-		Template.iEnvironmentDamage = default.SPARKRIFLE_LASER_IENVIRONMENTDAMAGE;
-		Template.NumUpgradeSlots = default.SPARKRIFLE_LASER_UPGRADESLOTS;
+	Template.BaseDamage = default.SPARKRIFLE_LASER_BASEDAMAGE;
+	Template.RangeAccuracy = default.SPARKRIFLE_LASER_RANGE;
+	Template.Aim = default.SPARKRIFLE_LASER_AIM;
+	Template.CritChance = default.SPARKRIFLE_LASER_CRITCHANCE;
+	Template.iClipSize = default.SPARKRIFLE_LASER_ICLIPSIZE;
+	Template.iSoundRange = default.SPARKRIFLE_LASER_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.SPARKRIFLE_LASER_IENVIRONMENTDAMAGE;
+	Template.NumUpgradeSlots = default.SPARKRIFLE_LASER_UPGRADESLOTS;
 	
 
 	Template.GameArchetype = "EW_MEC_Weapons.Archetypes.WP_MEC_Railgun";
@@ -179,14 +179,14 @@ static function X2DataTemplate Create_SparkRifle_Coil()
 	Template.Abilities.AddItem('HotLoadAmmo');
 
 
-		Template.BaseDamage = default.SPARKRIFLE_COIL_BASEDAMAGE;
-		Template.RangeAccuracy = default.SPARKRIFLE_COIL_RANGE;
-		Template.Aim = default.SPARKRIFLE_COIL_AIM;
-		Template.CritChance = default.SPARKRIFLE_COIL_CRITCHANCE;
-		Template.iClipSize = default.SPARKRIFLE_COIL_ICLIPSIZE;
-		Template.iSoundRange = default.SPARKRIFLE_COIL_ISOUNDRANGE;
-		Template.iEnvironmentDamage = default.SPARKRIFLE_COIL_IENVIRONMENTDAMAGE;
-		Template.NumUpgradeSlots = default.SPARKRIFLE_COIL_UPGRADESLOTS;
+	Template.BaseDamage = default.SPARKRIFLE_COIL_BASEDAMAGE;
+	Template.RangeAccuracy = default.SPARKRIFLE_COIL_RANGE;
+	Template.Aim = default.SPARKRIFLE_COIL_AIM;
+	Template.CritChance = default.SPARKRIFLE_COIL_CRITCHANCE;
+	Template.iClipSize = default.SPARKRIFLE_COIL_ICLIPSIZE;
+	Template.iSoundRange = default.SPARKRIFLE_COIL_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.SPARKRIFLE_COIL_IENVIRONMENTDAMAGE;
+	Template.NumUpgradeSlots = default.SPARKRIFLE_COIL_UPGRADESLOTS;
 	
 
 	Template.GameArchetype = "EW_MEC_Weapons.Archetypes.WP_MEC_PPC";

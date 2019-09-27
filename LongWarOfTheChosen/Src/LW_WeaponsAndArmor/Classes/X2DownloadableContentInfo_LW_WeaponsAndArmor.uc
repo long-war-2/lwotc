@@ -34,13 +34,13 @@ static event OnLoadedSavedGameToStrategy()
 }
 static event OnPostTemplatesCreated()
 {
-	UpdateWeaponAttachmentsForguns();
+	UpdateWeaponAttachmentsForGuns();
 }
 
 
 // ******** HANDLE UPDATING WEAPON ATTACHMENTS ************* //
 // This provides the artwork/assets for weapon attachments for SMGs
-static function UpdateWeaponAttachmentsForguns()
+static function UpdateWeaponAttachmentsForGuns()
 {
 	local X2ItemTemplateManager ItemTemplateManager;
 
@@ -95,7 +95,7 @@ static function AddCritUpgrade(X2ItemTemplateManager ItemTemplateManager, Name T
 	}
 	//SMG
 	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "LWSMG_LS.Meshes.SK_LaserSMG_Optic_C", "", 'Bullpup_LS', , "img:///UILibrary_LW_LaserPack.LaserSMG_OpticC", "img:///UILibrary_LW_LaserPack.Inv_Laser_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
-		Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticB", "", 'Bullpup_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_OpticB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticB", "", 'Bullpup_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_OpticB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 }
 
