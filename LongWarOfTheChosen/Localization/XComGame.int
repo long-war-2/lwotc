@@ -4767,11 +4767,17 @@ LocFlyOverText="Retribution"
 LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
 
 [Battlemaster X2AbilityTemplate]
-LocFriendlyName="Battlemaster"
 ; LWOTC Needs Translation
+LocFriendlyName="Battlemaster"
 LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim and defense from high ground, and have lower infiltration times."
 LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim and defense from high ground, and have lower infiltration times."
 LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/><Bullet/> Gain +10 aim and defense from high ground.<br/><Bullet/> This soldier has reduced infiltration times while on missions."
+
+[SkirmisherGrapple X2AbilityTemplate]
+LocFriendlyName="Grapple"
+LocHelpText="Deploy a grappling hook to move quickly to an elevated position."
+LocLongDescription="Deploy a grappling hook to move quickly to an elevated position."
+LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into position without using an action.<br/><Bullet/> Grapple has a 2 turn cooldown."
 ; End Translation
 
 [LW2WotC_Reckoning X2AbilityTemplate]
