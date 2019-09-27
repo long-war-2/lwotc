@@ -4766,29 +4766,11 @@ LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that ent
 LocFlyOverText="Retribution"
 LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
 
-[SkirmisherGrapple X2AbilityTemplate]
-LocFriendlyName="Grapple"
-LocHelpText="Deploy a grappling hook to move quickly to an elevated position."
-LocLongDescription="Deploy a grappling hook to move quickly to an elevated position."
-LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into position without using an action.<br/><Bullet/> Grapple has a 3 turn cooldown."
-
-[Justice X2AbilityTemplate]
-LocFriendlyName="Justice"
-LocLongDescription="Use the Grapple to pull a humanoid target to you and deliver a <Ability:SecondaryWeaponName/> strike."
-LocHelpText="Use the Grapple to pull a humanoid target to you and deliver a <Ability:SecondaryWeaponName/> strike."
-LocPromotionPopupText="<Bullet/> Justice is a great way to pull an enemy out of position.<br/><Bullet/> The <Ability:SecondaryWeaponName/> strike is guaranteed to hit if the pull is successful.<br/><Bullet/> An open space adjacent to the Skirmisher is needed to use Justice.<br/><Bullet/> Justice has a 4 turn cooldown.<br/><Bullet/> Cost one action point."
-
-[SkirmisherVengeance X2AbilityTemplate]
-LocFriendlyName="Wrath"
-LocLongDescription="Use the Grapple to pull yourself to an enemy and deliver a <Ability:SecondaryWeaponName/> strike."
-LocHelpText="Use the Grapple to pull yourself to an enemy and deliver a <Ability:SecondaryWeaponName/> strike."
-LocPromotionPopupText="<Bullet/> Wrath adds extra mobility for the Skirmisher, and can be used while the Grapple is on cooldown.<br/><Bullet/> The <Ability:SecondaryWeaponName/> strike is guaranteed to hit if the Grapple is successful.<br/><Bullet/> An open space adjacent to the enemy is needed to use Wrath.<br/><Bullet/> Wrath has a 4 turn cooldown.<br/><Bullet/> Cost one action point."
-
 [Battlemaster X2AbilityTemplate]
 LocFriendlyName="Battlemaster"
-LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim from high ground, and have lower infiltration times."
-LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim from high ground, and have lower infiltration times."
-LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/><Bullet/> Gain +10 aim from high ground.<br/><Bullet/> This soldier has reduced infiltration times while on missions."
+LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim and defense from high ground, and have lower infiltration times."
+LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim and defense from high ground, and have lower infiltration times."
+LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/><Bullet/> Gain +10 aim and defense from high ground.<br/><Bullet/> This soldier has reduced infiltration times while on missions."
 
 [LW2WotC_Reckoning X2AbilityTemplate]
 LocFriendlyName="Reckoning"
@@ -4809,7 +4791,6 @@ LocFlyOverText="Skirmisher Slash"
 LocLongDescription="Attack an adjacent target with your Ripjack does not cost an action.(Cooldown: 3)"
 LocHelpText="Attack an adjacent target with your Ripjack does not cost an action.(Cooldown: 3)"
 LocPromotionPopupText="<Bullet/> Attack an adjacent target with your Ripjack does not cost an action.<br/><Bullet/> Slash(Reckoning) can combo well with other Skirmisher abilities, as it does not prevent the use of other abilities in the same turn.<br/>"
-
 
 [SupremeFocus X2AbilityTemplate]
 LocFriendlyName="Supreme Focus"
@@ -4865,7 +4846,6 @@ LocHelpText="A powerful form of Overwatch, capable of being used without any act
 LocFlyOverText="Interrupt"
 LocPromotionPopupText="<Bullet/> While Interrupt can be used without any action points available, it still depletes all of the Skirmisher's remaining actions.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:INTERRUPT_COOLDOWN/> turn cooldown."
 
-
 [Solace X2AbilityTemplate]
 LocFriendlyName="Templar Aura"
 LocLongDescription="The Templar is surrounded by an aura that immediately extinguishes or blocks any mental impairments for themselves and any nearby squadmates."
@@ -4891,5 +4871,6 @@ LocPromotionPopupText="<Bullet/> Templar Aura has a 4 tile radius.<br/><Bullet/>
 LocFriendlyName="Pillar"
 LocLongDescription="Summon a pillar of Psionic energy to act as a high cover point. Costs 1 Focus."
 LocHelpText="Summon high cover at a target location. Costs 1 Focus."
-LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equal to the Templar's Focus level when summoned.<br/><Bullet/> Pillar does not end the Templar's turn.<br/><Bullet/> Can be used after Rend.<br/><Bullet/> Pillar has 1 turn cooldown.<br/><Bullet/> Free action."
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equal to the Templar's Focus level when summoned.<br/><Bullet/> Pillar does not end the Templar's turn.<br/><Bullet/> Can be used after Rend.<br/><Bullet/> Pillar has <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Free action."
 ; End Translation
