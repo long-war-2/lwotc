@@ -1091,8 +1091,8 @@ static function X2DataTemplate CreateBullpup_Coil_Template()
 	Template.Abilities.AddItem('HotLoadAmmo');
 		Template.Requirements.RequiredTechs.AddItem('Coilguns');
 
-		/*Template.Abilities.AddItem('Bullpup_CV_StatBonus');
-	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);*/
+	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
+	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
 
 	Template.iPhysicsImpulse = 5;
 	Template.StartingItem = false;
