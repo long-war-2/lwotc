@@ -32,7 +32,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
     {
         Template.AbilityToHitCalc.OverrideFinalHitChanceFns.AddItem(OverrideFinalHitChance);
     }
-	if(Template.DataName='BondmateTeamwork'||Template.DataName=='BondmateTeamwork_Improved')
+	if (Template.DataName == 'BondmateTeamwork'||Template.DataName == 'BondmateTeamwork_Improved')
 	UpdateTeamwork(Template);
 }
 
@@ -236,10 +236,10 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 	}
 }
 
-static funtion UpdateTeamwork(X2AbilityTemplate Template)
+static function UpdateTeamwork(X2AbilityTemplate Template)
 {
-Template.AbilityCosts[0].bConsumeAllPoints = true;
-Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+	Template.AbilityCosts[0].bConsumeAllPoints = true;
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 }
 
 
