@@ -3575,6 +3575,7 @@ static function X2AbilityTemplate AddSlash_LWAbility()
 	AdjacencyCondition = new class'X2Condition_UnitProperty';
 	AdjacencyCondition.RequireWithinRange = true;
 	AdjacencyCondition.WithinRange = 144; //1.5 tiles in Unreal units, allows attacks on the diag
+	AdjacencyCondition.TreatMindControlledSquadmateAsHostile = true;
 	Template.AbilityTargetConditions.AddItem(AdjacencyCondition);
 
 	// Shooter Conditions
