@@ -4951,3 +4951,15 @@ LocLongDescription="Strike an enemy with Psionic force strong enough to knock th
 LocHelpText="Knock an enemy back in the direction of the attack, stunning them. Costs 1 Focus."
 LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike does not end the Templar's turn, but has a <Ability:SelfCooldown/> turn cooldown.<br/>"
 ; End Translation
+
+; LWOTC Needs Translation
+[BondmateTeamwork X2AbilityTemplate]
+LocFriendlyName="Teamwork"
+LocHelpText="Grant an additional movement point to a bondmate. Has a single charge shared between bondmates."
+LocLongDescription="Grant an additional movement point to a bondmate. Has a single charge shared between bondmates."
+
+[BondmateTeamwork_Improved X2AbilityTemplate]
+LocFriendlyName="Advanced Teamwork"
+LocHelpText="Grant an additional action point to a bondmate. Has one or two charges per mission depending on bond level, shared between bondmates."
+LocLongDescription="Grant an additional action point to a bondmate. Has one or two charges per mission depending on bond level, shared between bondmates."
+; End Translation
