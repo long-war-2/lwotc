@@ -1966,6 +1966,12 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			break;
 	}
 
+	// Allow the Lost to climb walls
+	if (InStr(Template.DataName, "TheLost") == 0)
+	{
+		Template.bCanUse_eTraversal_WallClimb = true;
+	}
+
 	// Any soldier templates get the Interact_SmashNGrab ability
 	if (Template.bIsSoldier)
 	{

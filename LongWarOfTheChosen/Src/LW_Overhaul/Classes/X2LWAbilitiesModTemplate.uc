@@ -24,6 +24,9 @@ var localized string strCritReductionFromConditionalToHit;
 var config bool ALLOW_NEGATIVE_DODGE;
 var config bool DODGE_CONVERTS_GRAZE_TO_MISS;
 var config bool GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND;
+var config bool DISABLE_LOST_HEADSHOT;
+
+var config array<bool> HEADSHOT_ENABLED;
 
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
@@ -32,6 +35,15 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
     {
         Template.AbilityToHitCalc.OverrideFinalHitChanceFns.AddItem(OverrideFinalHitChance);
     }
+
+	switch (Template.DataName)
+	{
+		case 'LostHeadshotInit':
+			DisableLostHeadshot(Template);
+			break;
+		default:
+			break;
+	}
 }
 
 static function bool OverrideFinalHitChance(X2AbilityToHitCalc AbilityToHitCalc, out ShotBreakdown ShotBreakdown)
@@ -231,6 +243,33 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 	{
 		//This is an error so flag it
 		`REDSCREEN("OverrideToHit : Negative miss chance!");
+	}
+}
+
+static function DisableLostHeadshot(X2AbilityTemplate Template)
+{
+	local X2Effect_TheLostHeadshot				HeadshotEffect;
+	local X2Condition_HeadshotEnabled           HeadshotCondition;
+	local int									i;
+
+	if (!default.DISABLE_LOST_HEADSHOT)
+	{
+		return;
+	}
+
+	`LWTrace("Disabling Headshot mechanic");
+
+	for (i = Template.AbilityTargetEffects.Length-1; i >= 0; i--)
+	{
+		HeadshotEffect = X2Effect_TheLostHeadshot(Template.AbilityTargetEffects[i]);
+		if (HeadshotEffect != none)
+		{
+			HeadshotCondition = new class'X2Condition_HeadshotEnabled';
+			HeadshotCondition.EnabledForDifficulty = default.HEADSHOT_ENABLED;
+			HeadshotEffect.TargetConditions.AddItem(HeadshotCondition);
+			// Template.AbilityTargetEffects.remove(i, 1);
+			break;
+		}
 	}
 }
 

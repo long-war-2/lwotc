@@ -728,6 +728,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 
 	foreach PlotTypeDef.ForcedSitReps(SitRepName)
 	{
+		// Don't add TheLost SitRep if TheHorde is also active
 		if(MissionState.GeneratedMission.SitReps.Find(SitRepName) == INDEX_NONE && 
 			(SitRepName != 'TheLost' || MissionState.GeneratedMission.SitReps.Find('TheHorde') == INDEX_NONE))
 		{

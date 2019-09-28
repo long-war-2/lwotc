@@ -66,6 +66,10 @@ var bool bDebugPodJobs;
 // a Chosen to appear on a mission, excluding any modifying factors.
 var config int BaseChosenAppearanceChance;
 
+// Minimum force level that needs to be reached before The Lost
+// can start to appear.
+var config array<int> MIN_FL_FOR_LOST;
+
 // End data and data structures
 //-----------------------------
 
@@ -459,6 +463,22 @@ static event OnPostMission()
 
 	`LWSQUADMGR.UpdateSquadPostMission(, true); // completed mission
 	`LWOUTPOSTMGR.UpdateOutpostsPostMission();
+}
+
+// Disable the Lost if we don't meet certain conditions. This is also
+// called for the creation of Gatecrasher.
+static function PostSitRepCreation(out GeneratedMissionData GeneratedMission, optional XComGameState_BaseObject SourceObject)
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+
+	// Disable TheLost SitRep if we haven't reached the appropriate force level yet.
+	if (AlienHQ.ForceLevel < default.MIN_FL_FOR_LOST[`TACTICALDIFFICULTYSETTING])
+	{
+		GeneratedMission.SitReps.RemoveItem('TheLost');
+		GeneratedMission.SitReps.RemoveItem('TheHorde');
+	}
 }
 
 // Diversify pod makeup, especially with all-alien pods which typically consist
