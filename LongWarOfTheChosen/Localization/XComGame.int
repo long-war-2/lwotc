@@ -940,7 +940,7 @@ TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor
 AbilityDescName="sniper rifle"
 
 [Shotgun_CG X2WeaponTemplate]
-; LWOTC needs translation
+; LWOTC Needs Translation
 FriendlyName="Gauss Scattergun"
 FriendlyNamePlural="Gauss Scatterguns"
 BriefSummary="A close-quarters coil-tech weapon that fills the shotgun role."
