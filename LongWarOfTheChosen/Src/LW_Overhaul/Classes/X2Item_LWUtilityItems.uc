@@ -275,7 +275,7 @@ static function X2Effect_PersistentStatChange CreateHackDefenseChangeStatusEffec
 	HackDefenseChangeEffect.BuildPersistentEffect(1, true, false, true);
 	HackDefenseChangeEffect.AddPersistentStatChange(eStat_HackDefense, HackDefenseChangeAmount);
 	HackDefenseChangeEffect.SetDisplayInfo(BuffCat, FriendlyName, FriendlyDesc, "");
-	HackDefenseChangeEffect.DuplicateResponse = eDupe_Allow;
+	HackDefenseChangeEffect.DuplicateResponse = eDupe_Refresh;
 	HackDefenseChangeEffect.VisualizationFn = class'X2StatusEffects'.static.HackDefenseChangeVisualization;
 
 	if (Condition != none)
