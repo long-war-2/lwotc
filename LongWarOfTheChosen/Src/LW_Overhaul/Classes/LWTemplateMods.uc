@@ -1947,7 +1947,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			break;
 		case 'Sectopod'
 			Template.Abilities.AddItem('Resilience');
-
+			break;
 		// Should turn off tick damage every action
 		case 'ViperKing':
 		case 'BerserkerQueen':
