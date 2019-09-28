@@ -3,6 +3,9 @@
 //  AUTHOR:  Peter Ledbrook
 //	PURPOSE: Modifies existing covert actions templates, effectively disabling some
 //           of them and changing rewards of others, etc.
+//
+//           This also delays the contact of new factions by increasing the rank
+//           requirements for the corresponding covert actions.
 //---------------------------------------------------------------------------------------
 class X2LWCovertActionsModTemplate extends X2LWTemplateModTemplate;
 
@@ -28,6 +31,14 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_BreakthroughTech':
 			`LWTrace("X2LWCovertActionsModTemplate - disabling covert action " $ CATemplate.DataName);
 			CATemplate.RequiredFactionInfluence = EFactionInfluence(eFactionInfluence_MAX + 1);
+			break;
+		case 'CovertAction_FindFaction':
+			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
+			CATemplate.Slots[0].iMinRank = 4;  // Require a SGT
+			break;
+		case 'CovertAction_FindFarthestFaction':
+			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
+			CATemplate.Slots[0].iMinRank = 5;  // Require a SSGT
 			break;
 		default:
 			break;
