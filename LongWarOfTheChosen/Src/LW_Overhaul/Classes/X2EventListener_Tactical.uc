@@ -8,6 +8,8 @@ class X2EventListener_Tactical extends X2EventListener config(LW_Overhaul);
 
 var config int LISTENER_PRIORITY;
 var config array<float> SOUND_RANGE_DIFFICULTY_MODIFIER;
+var config int RED_ALERT_DETECTION_MODIFIER;
+var config int YELLOW_ALERT_DETECTION_MODIFIER;
 
 var localized string HIT_CHANCE_MSG;
 var localized string CRIT_CHANCE_MSG;
@@ -260,13 +262,7 @@ static function EventListenerReturn OnScamperBegin(
 
 	// Walk backwards through history for this unit until we find a state in which this unit wasn't in red
 	// alert to see if we entered from yellow or from green.
-	PreviousUnit = PodLeaderUnit;
-	while (PreviousUnit != none && PreviousUnit.GetCurrentStat(eStat_AlertLevel) > 1)
-	{
-		PreviousUnit = XComGameState_Unit(History.GetPreviousGameStateForObject(PreviousUnit));
-	}
-
-	IsYellow = PreviousUnit != none && PreviousUnit.GetCurrentStat(eStat_AlertLevel) == 1;
+	IsYellow = class'Utilities_LW'.static.GetPreviousAlertLevel(PodLeaderUnit) == `ALERT_LEVEL_YELLOW;
 	Chance = IsYellow ? class'Utilities_LW'.default.REFLEX_ACTION_CHANCE_YELLOW[`TACTICALDIFFICULTYSETTING]
 			 : class'Utilities_LW'.default.REFLEX_ACTION_CHANCE_GREEN[`TACTICALDIFFICULTYSETTING];
 
@@ -722,28 +718,63 @@ static function string GetHitChanceText(ShotBreakdown TargetBreakdown)
 }
 
 // Make sure reinforcements arrive in red alert if any aliens on the map are
-// already in red alert.
+// already in red alert. This also increases the detection radius for enemy
+// units when they enter yellow or red alert.
+//
+// Note that the implementation is based on the Compound Rescure mission's
+// security levels, but it could probably also be implemented by adding a
+// persistent stat change to the units.
 static function EventListenerReturn OnAbilityActivated(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
     local XComGameState_Ability ActivatedAbilityState;
 	local XComGameState_LWReinforcements Reinforcements;
 	local XComGameState NewGameState;
+	local XComGameState_Unit UnitState;
+	local float DetectionRadius;
+	local int Modifier;
 
 	//ActivatedAbilityStateContext = XComGameStateContext_Ability(GameState.GetContext());
 	ActivatedAbilityState = XComGameState_Ability(EventData);
+	UnitState = XComGameState_Unit(EventSource);
 	if (ActivatedAbilityState.GetMyTemplate().DataName == 'RedAlert')
 	{
+		`LWTrace("Max detection radius for " $ UnitState.GetMyTemplateName() $ " = " $UnitState.GetMaxStat(eStat_DetectionRadius));
+		`LWTrace("Current detection radius for " $ UnitState.GetMyTemplateName() $ " = " $UnitState.GetCurrentStat(eStat_DetectionRadius));
+		DetectionRadius = UnitState.GetBaseStat(eStat_DetectionRadius);
+
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("On Red Alert Activated");
+		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+
+		Modifier = default.RED_ALERT_DETECTION_MODIFIER;
+		if (class'Utilities_LW'.static.GetPreviousAlertLevel(UnitState) == `ALERT_LEVEL_YELLOW)
+		{
+			// If the unit was previously in yellow alert, then its detection radius
+			// already has that modifier applied, so don't apply it twice!
+			Modifier -= default.YELLOW_ALERT_DETECTION_MODIFIER;
+		}
+
+		`LWTrace("[Red Alert] Modifying detection radius for " $ UnitState.GetMyTemplateName() $ " by +" $UnitState.GetBaseStat(eStat_DetectionRadius));
+		UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + Modifier));
+
 		Reinforcements = XComGameState_LWReinforcements(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWReinforcements', true));
-		if (Reinforcements == none)
-			return ELR_NoInterrupt;
+		if (Reinforcements != none && !Reinforcements.RedAlertTriggered)
+		{
+			Reinforcements = XComGameState_LWReinforcements(NewGameState.ModifyStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
+			Reinforcements.RedAlertTriggered = true;
+		}
 
-		if (Reinforcements.RedAlertTriggered)
-			return ELR_NoInterrupt;
+		`TACTICALRULES.SubmitGameState(NewGameState);
+	}
+	else if (ActivatedAbilityState.GetMyTemplate().DataName == 'YellowAlert')
+	{
+		DetectionRadius = UnitState.GetBaseStat(eStat_DetectionRadius);
 
-		Reinforcements.RedAlertTriggered = true;
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("On Yellow Alert Activated");
+		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Check for reinforcements");
-		Reinforcements = XComGameState_LWReinforcements(NewGameState.ModifyStateObject(class'XComGameState_LWReinforcements', Reinforcements.ObjectID));
+		`LWTrace("[Yellow Alert] Modifying detection radius for " $ UnitState.GetMyTemplateName() $ " by +" $UnitState.GetBaseStat(eStat_DetectionRadius));
+		UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + default.YELLOW_ALERT_DETECTION_MODIFIER));
+
 		`TACTICALRULES.SubmitGameState(NewGameState);
 	}
 	return ELR_NoInterrupt;
