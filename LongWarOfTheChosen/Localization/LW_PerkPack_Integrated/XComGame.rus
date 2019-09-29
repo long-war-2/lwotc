@@ -123,9 +123,9 @@ LocPromotionPopupText="<Bullet/> Дает +10 к меткости и +10 к ша
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Стойкость"
 LocFlyOverText="Стойкость"
-LocLongDescription="Атакующие вас враги получают -50 к шансу критического попадания."
-LocHelpText="Атакующие вас враги получают -50 к шансу критического попадания."
-LocPromotionPopupText="<Bullet/> Атакующие вас враги получают -50 к шансу критического попадания.<br/>"
+LocLongDescription="Атакующие вас враги получают -<ABILITY:RESILIENCE_BONUS_LW/> к шансу критического попадания."
+LocHelpText="Атакующие вас враги получают -<ABILITY:RESILIENCE_BONUS_LW/> к шансу критического попадания."
+LocPromotionPopupText="<Bullet/> Атакующие вас враги получают -<ABILITY:RESILIENCE_BONUS_LW/> к шансу критического попадания.<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="Тактическое чутье"

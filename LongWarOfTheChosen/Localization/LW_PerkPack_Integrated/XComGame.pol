@@ -126,9 +126,9 @@ LocPromotionPopupText="<Bullet/> Daje +10 do celności i +10 do szansy trafienia
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Wytrzymałość"
 LocFlyOverText="Wytrzymałość"
-LocLongDescription="Ataki wroga, których jesteś celem, otrzymują karę -50 do szansy trafienia krytycznego."
-LocHelpText="Ataki wroga, których jesteś celem, otrzymują karę -50 do szansy trafienia krytycznego."
-LocPromotionPopupText="<Bullet/> Ataki wroga, których jesteś celem, otrzymują karę -50 do szansy trafienia krytycznego.<br/>"
+LocLongDescription="Ataki wroga, których jesteś celem, otrzymują karę -<ABILITY:RESILIENCE_BONUS_LW/> do szansy trafienia krytycznego."
+LocHelpText="Ataki wroga, których jesteś celem, otrzymują karę -<ABILITY:RESILIENCE_BONUS_LW/> do szansy trafienia krytycznego."
+LocPromotionPopupText="<Bullet/> Ataki wroga, których jesteś celem, otrzymują karę -<ABILITY:RESILIENCE_BONUS_LW/> do szansy trafienia krytycznego.<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="Zmysł taktyczny"

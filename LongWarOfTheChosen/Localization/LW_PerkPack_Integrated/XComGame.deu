@@ -123,9 +123,9 @@ LocPromotionPopupText="<Bullet/> Gewährt dir +10 Zielsicherheit und +10 kritisc
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Widerstandskraft"
 LocFlyOverText="Widerstandskraft"
-LocLongDescription="Feindliche Angriffe auf dich erhalten einen Abzug in Höhe von -50 auf die kritische Trefferchance."
-LocHelpText="Feindliche Angriffe auf dich erhalten einen Abzug in Höhe von -50 auf die kritische Trefferchance."
-LocPromotionPopupText="<Bullet/> Feindliche Angriffe auf dich erhalten einen Abzug in Höhe von -50 auf die kritische Trefferchance.<br/>"
+LocLongDescription="Feindliche Angriffe auf dich erhalten einen Abzug in Höhe von -<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/> auf die kritische Trefferchance."
+LocHelpText="Feindliche Angriffe auf dich erhalten einen Abzug in Höhe von -<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/> auf die kritische Trefferchance."
+LocPromotionPopupText="<Bullet/> Feindliche Angriffe auf dich erhalten einen Abzug in Höhe von -<ABILITY:NANOFIBER_CRITDEF_BONUS_LW/> auf die kritische Trefferchance.<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="Taktisches Gespür"

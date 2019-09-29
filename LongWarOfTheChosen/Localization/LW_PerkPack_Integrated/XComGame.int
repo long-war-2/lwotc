@@ -125,9 +125,9 @@ LocPromotionPopupText="<Bullet/> Confers +10 aim and +10 critical chance against
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Resilience"
 LocFlyOverText="Resilience"
-LocLongDescription="Enemy attacks against you suffer a -50 penalty to critical hit chances."
-LocHelpText="Enemy attacks against you suffer a -50 penalty to critical hit chances."
-LocPromotionPopupText="<Bullet/> Enemy attacks against you suffer a -50 penalty to critical hit chances.<br/>"
+LocLongDescription="Enemy attacks against you suffer a -<ABILITY:RESILIENCE_BONUS_LW/> penalty to critical hit chances."
+LocHelpText="Enemy attacks against you suffer a -<ABILITY:RESILIENCE_BONUS_LW/> penalty to critical hit chances."
+LocPromotionPopupText="<Bullet/> Enemy attacks against you suffer a -<ABILITY:RESILIENCE_BONUS_LW/> penalty to critical hit chances.<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="Tactical Sense"

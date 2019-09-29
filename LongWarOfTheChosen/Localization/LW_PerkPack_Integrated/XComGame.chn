@@ -123,9 +123,9 @@ LocPromotionPopupText="<Bullet/>攻击只有一半或更少生命值的目标时
 [Resilience X2AbilityTemplate]
 LocFriendlyName="适应力"
 LocFlyOverText="适应力"
-LocLongDescription="敌人对你的攻击受到-50暴击几率的减益。"
-LocHelpText="敌人对你的攻击受到-50暴击几率的减益。"
-LocPromotionPopupText="<Bullet/>敌人对你的攻击受到-50暴击几率的减益。<br/>"
+LocLongDescription="敌人对你的攻击受到-<ABILITY:RESILIENCE_BONUS_LW/>暴击几率的减益。"
+LocHelpText="敌人对你的攻击受到-<ABILITY:RESILIENCE_BONUS_LW/>暴击几率的减益。"
+LocPromotionPopupText="<Bullet/>敌人对你的攻击受到-<ABILITY:RESILIENCE_BONUS_LW/>暴击几率的减益。<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="战术意识"

@@ -126,9 +126,9 @@ LocPromotionPopupText="<Bullet/>HPが最大値の半分以下のターゲット�
 [Resilience X2AbilityTemplate]
 LocFriendlyName="逆境力"
 LocFlyOverText="逆境力"
-LocLongDescription="敵からの攻撃がクリティカルヒット率-50になる。"
-LocHelpText="敵からの攻撃がクリティカルヒット率-50になる。"
-LocPromotionPopupText="<Bullet/>敵からの攻撃がクリティカルヒット率-50になる。<br/>"
+LocLongDescription="敵からの攻撃がクリティカルヒット率-<ABILITY:RESILIENCE_BONUS_LW/>になる。"
+LocHelpText="敵からの攻撃がクリティカルヒット率-<ABILITY:RESILIENCE_BONUS_LW/>になる。"
+LocPromotionPopupText="<Bullet/>敵からの攻撃がクリティカルヒット率-<ABILITY:RESILIENCE_BONUS_LW/>になる。<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="戦術的センス"
