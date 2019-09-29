@@ -31,9 +31,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
     if (ClassIsChildOf(Template.AbilityToHitCalc.Class, class'X2AbilityToHitCalc_StandardAim'))
     {
         Template.AbilityToHitCalc.OverrideFinalHitChanceFns.AddItem(OverrideFinalHitChance);
-    }
-	if (Template.DataName == 'BondmateTeamwork'||Template.DataName == 'BondmateTeamwork_Improved')
-	UpdateTeamwork(Template);
+	}
+
+	if (Template.DataName == 'BondmateTeamwork' || Template.DataName == 'BondmateTeamwork_Improved')
+	{
+		UpdateTeamwork(Template);
+	}
 }
 
 static function bool OverrideFinalHitChance(X2AbilityToHitCalc AbilityToHitCalc, out ShotBreakdown ShotBreakdown)
@@ -238,11 +241,19 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 
 static function UpdateTeamwork(X2AbilityTemplate Template)
 {
-	Template.AbilityCosts[0].bConsumeAllPoints = true;
-	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+	local X2AbilityCost_ActionPoints AbilityCost;
+	local X2Condition_Visibility TargetVisibilityCondition;
+
+	// Make the ability turn ending
+	AbilityCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[0]);
+	AbilityCost.bConsumeAllPoints = true;
+
+	// Allow rupture to work from SS
+	TargetVisibilityCondition = new class'X2Condition_Visibility';
+	TargetVisibilityCondition.bRequireGameplayVisible = true;
+	TargetVisibilityCondition.bRequireBasicVisibility=true;
+	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
 }
-
-
 
 defaultproperties
 {
