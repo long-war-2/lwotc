@@ -15,48 +15,39 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 	local Object EffectObj;
 
 	EventMgr = `XEVENTMGR;
-
 	EffectObj = EffectGameState;
-
-	EventMgr.RegisterForEvent(EffectObj, 'AbilityActivated', class'XComGameState_Effect_LastShotDetails'.static.RecordShot, ELD_OnStateSubmitted,,,, EffectObj);
+	EventMgr.RegisterForEvent(EffectObj, 'AbilityActivated', EffectGameState.ZeroInListener, ELD_OnStateSubmitted, , `XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 }
 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
-    local XComGameState_Item						SourceWeapon;
-    local ShotModifierInfo							ShotInfo;
-	local XComGameState_Effect_LastShotDetails		LastShot;
+	local XComGameState_Item SourceWeapon;
+	local ShotModifierInfo ShotMod;
+	local UnitValue ShotsValue, TargetValue;
 
-	if (XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID)) == none)
-		return;
-	if (AbilityState == none)
-		return;
-	LastShot = XComGameState_Effect_LastShotDetails(EffectState);
-	if (!LastShot.b_AnyShotTaken)
-		return;
-    SourceWeapon = AbilityState.GetSourceWeapon();  
-	if (SourceWeapon == Attacker.GetItemInSlot(eInvSlot_PrimaryWeapon))
+	SourceWeapon = AbilityState.GetSourceWeapon();
+	if (SourceWeapon != none && SourceWeapon.InventorySlot == eInvSlot_PrimaryWeapon && !bIndirectFire)
 	{
-		if ((SourceWeapon != none) && (Target != none))
+		Attacker.GetUnitValue('ZeroInShots', ShotsValue);
+		Attacker.GetUnitValue('ZeroInTarget', TargetValue);
+		
+		if (ShotsValue.fValue > 0 && TargetValue.fValue == Target.ObjectID)
 		{
-			if (Target.ObjectID == LastShot.LSTObjID)
-			{
-				ShotInfo.ModType = eHit_Success;
-				ShotInfo.Reason = FriendlyName;
-				ShotInfo.Value = default.LOCKEDON_AIM_BONUS;
-				ShotModifiers.AddItem(ShotInfo);
-				ShotInfo.ModType = eHit_Crit;
-				ShotInfo.Reason = FriendlyName;
-				ShotInfo.Value = default.LOCKEDON_CRIT_BONUS;
-				ShotModifiers.AddItem(ShotInfo);
-			}
+			ShotMod.ModType = eHit_Success;
+			ShotMod.Reason = FriendlyName;
+			ShotMod.Value = default.LOCKEDON_AIM_BONUS;
+			ShotModifiers.AddItem(ShotMod);
+
+			ShotMod.ModType = eHit_Crit;
+			ShotMod.Reason = FriendlyName;
+			ShotMod.Value = default.LOCKEDON_CRIT_BONUS;
+			ShotModifiers.AddItem(ShotMod);
 		}
-    }    
+	}
 }
 
 defaultproperties
 {
-    DuplicateResponse=eDupe_Ignore
-    EffectName="LockedOn"
-	GameStateEffectClass=class'XComGameState_Effect_LastShotDetails';
+	DuplicateResponse=eDupe_Ignore
+	EffectName="LockedOn"
 }
