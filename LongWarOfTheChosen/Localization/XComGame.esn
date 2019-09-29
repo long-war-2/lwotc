@@ -4058,7 +4058,7 @@ FriendlyName="Evento oscuro: Mejora táctica (Instintos de cazador)"
 Description="Muchos enemigos ofidios obtienen la habilidad Instintos de cazador, que les proporciona una bonificación de daño contra enemigos flanqueados.,"
 
 ; LR
-[DarkEvent_LightningReflexes X2DarkEventTemplate]
+[DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
 DisplayName="Mejoras tácticas: Reflejos relámpago"
 SummaryText="Algunos lanceros aturdidores y otros enemigos obtienen la habilidad Reflejos relámpago, que proporciona bonificaciones para evitar los disparos de reacción."
 QuoteText="\"Los odio. Los odio a muerte.\""
@@ -4067,7 +4067,7 @@ PreMissionText="Concede la habilidad Reflejos relámpago a algunos lanceros atur
 PostMissionSuccessText="Evento oscuro contrarrestado: Mejoras tácticas (Reflejos relámpago)"
 PostMissionFailureText="Fracaso en contrarrestar evento oscuro: Mejoras tácticas (Reflejos relámpago)"
 
-[DarkEvent_LightningReflexes X2HackRewardTemplate]
+[DarkEvent_LightningReflexes_LW X2HackRewardTemplate]
 FriendlyName="Evento oscuro: Mejoras tácticas (Reflejos relámpago)"
 Description="Algunos lanceros aturdidores y otros enemigos obtienen la habilidad Reflejos relámpago, que proporciona bonificaciones para evitar los disparos de reacción."
 

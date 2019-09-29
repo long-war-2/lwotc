@@ -423,7 +423,7 @@ static function X2DataTemplate CreateTacticalUpgradesLightningReflexesTemplate()
 {
 	local X2DarkEventTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'X2DarkEventTemplate', Template, 'DarkEvent_LightningReflexes');
+	`CREATE_X2TEMPLATE(class'X2DarkEventTemplate', Template, 'DarkEvent_LightningReflexes_LW');
 	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.DarkEvent_ShowOfForce"; 
 	GenericSettings(Template);
 	Template.StartingWeight = 5;

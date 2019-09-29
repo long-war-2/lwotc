@@ -4054,7 +4054,7 @@ FriendlyName="비밀 이벤트: 전술 업그레이드(헌터의 본능)"
 Description="대다수의 뱀 형상 적들이 헌터의 본능 능력을 얻어, 측면에서 적을 공격할 때 보너스 피해를 부여받습니다."
 
 ; LR
-[DarkEvent_LightningReflexes X2DarkEventTemplate]
+[DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
 DisplayName="전술 업그레이드: 예리한 반사 신경"
 SummaryText="일부 스턴 랜서와 기타 적들이 예리한 반사 신경 능력을 얻어, 대응 사격에 대한 회피 보너스를 부여받습니다."
 QuoteText="\"저놈들 정말 싫어.\""
@@ -4063,7 +4063,7 @@ PreMissionText="일부 스턴 랜서와 기타 적들에게 예리한 반사 신
 PostMissionSuccessText="저지한 비밀 이벤트: 전술 업그레이드 (예리한 반사 신경)"
 PostMissionFailureText="저지 실패한 비밀 이벤트: 전술 업그레이드 (예리한 반사 신경)"
 
-[DarkEvent_LightningReflexes X2HackRewardTemplate]
+[DarkEvent_LightningReflexes_LW X2HackRewardTemplate]
 FriendlyName="비밀 이벤트: 전술 업그레이드(예리한 반사 신경)"
 Description="일부 스턴 랜서와 기타 적들이 예리한 반사 신경 능력을 얻어, 대응 사격에 대한 회피 보너스를 부여받습니다."
 

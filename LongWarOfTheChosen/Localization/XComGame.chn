@@ -4054,7 +4054,7 @@ FriendlyName="黑暗事件：战术升级（猎人本能）"
 Description="许多蛇类敌人获得了猎人本能能力，在夹击敌人时获得额外伤害。"
 
 ; LR
-[DarkEvent_LightningReflexes X2DarkEventTemplate]
+[DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
 DisplayName="战术升级：闪电反射"
 SummaryText="为一些强袭枪兵和其他敌人提供闪电反射能力，获得躲避反应射击的加成。"
 QuoteText="\"我真的、真的憎恨那些家伙。\""
@@ -4063,7 +4063,7 @@ PreMissionText="为一些强袭枪兵和其他敌人提供闪电反射能力。"
 PostMissionSuccessText="已阻止黑暗事件：战术升级（闪电反射）"
 PostMissionFailureText="反击黑暗事件失败：战术升级（闪电反射）"
 
-[DarkEvent_LightningReflexes X2HackRewardTemplate]
+[DarkEvent_LightningReflexes_LW X2HackRewardTemplate]
 FriendlyName="黑暗事件：战术升级（闪电反射）"
 Description="为一些强袭枪兵和其他敌人提供闪电反射能力，获得躲避反应射击的加成。"
 
