@@ -32,6 +32,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
     {
         Template.AbilityToHitCalc.OverrideFinalHitChanceFns.AddItem(OverrideFinalHitChance);
     }
+	if (Template.DataName == 'BondmateTeamwork'||Template.DataName == 'BondmateTeamwork_Improved')
+	UpdateTeamwork(Template);
 }
 
 static function bool OverrideFinalHitChance(X2AbilityToHitCalc AbilityToHitCalc, out ShotBreakdown ShotBreakdown)
@@ -233,6 +235,14 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 		`REDSCREEN("OverrideToHit : Negative miss chance!");
 	}
 }
+
+static function UpdateTeamwork(X2AbilityTemplate Template)
+{
+	Template.AbilityCosts[0].bConsumeAllPoints = true;
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+}
+
+
 
 defaultproperties
 {
