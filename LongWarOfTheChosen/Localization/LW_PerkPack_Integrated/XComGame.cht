@@ -126,9 +126,9 @@ LocPromotionPopupText="<Bullet/>面對只有一半或更少生命值的目標時
 [Resilience X2AbilityTemplate]
 LocFriendlyName="堅韌不拔"
 LocFlyOverText="堅韌不拔"
-LocLongDescription="敵人對你的攻擊受到-50暴擊機率的懲罰。"
-LocHelpText="敵人對你的攻擊受到-50暴擊機率的懲罰。"
-LocPromotionPopupText="<Bullet/>敵人對你的攻擊受到-50暴擊機率的懲罰。<br/>"
+LocLongDescription="敵人對你的攻擊受到-<ABILITY:RESILIENCE_BONUS_LW/>暴擊機率的懲罰。"
+LocHelpText="敵人對你的攻擊受到-<ABILITY:RESILIENCE_BONUS_LW/>暴擊機率的懲罰。"
+LocPromotionPopupText="<Bullet/>敵人對你的攻擊受到-<ABILITY:RESILIENCE_BONUS_LW/>暴擊機率的懲罰。<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="戰術意識"

@@ -123,9 +123,9 @@ LocPromotionPopupText="<Bullet/> Confère +10 en visée et +10 en chances de cou
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Résilience"
 LocFlyOverText="Résilience"
-LocLongDescription="Les attaques ennemies contre vous subissent une pénalité de -50 en chances de coup critique."
-LocHelpText="Les attaques ennemies contre vous subissent une pénalité de -50 en chances de coup critique."
-LocPromotionPopupText="<Bullet/> Les attaques ennemies contre vous subissent une pénalité de -50 en chances de coup critique.<br/>"
+LocLongDescription="Les attaques ennemies contre vous subissent une pénalité de -<ABILITY:RESILIENCE_BONUS_LW/> en chances de coup critique."
+LocHelpText="Les attaques ennemies contre vous subissent une pénalité de -<ABILITY:RESILIENCE_BONUS_LW/> en chances de coup critique."
+LocPromotionPopupText="<Bullet/> Les attaques ennemies contre vous subissent une pénalité de -<ABILITY:RESILIENCE_BONUS_LW/> en chances de coup critique.<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="Sens tactique"

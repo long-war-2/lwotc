@@ -126,9 +126,9 @@ LocPromotionPopupText="<Bullet/> Conferisce +10 alla Mira e +10 alla Probabilit�
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Resistenza"
 LocFlyOverText="Resistenza"
-LocLongDescription="Gli attacchi del nemico contro di te hanno una penalità di -50 alla Probabilità di critico."
-LocHelpText="Gli attacchi del nemico contro di te hanno una penalità di -50 alla Probabilità di critico."
-LocPromotionPopupText="<Bullet/> Gli attacchi del nemico contro di te hanno una penalità di -50 alla Probabilità di critico.<br/>"
+LocLongDescription="Gli attacchi del nemico contro di te hanno una penalità di -<ABILITY:RESILIENCE_BONUS_LW/> alla Probabilità di critico."
+LocHelpText="Gli attacchi del nemico contro di te hanno una penalità di -<ABILITY:RESILIENCE_BONUS_LW/> alla Probabilità di critico."
+LocPromotionPopupText="<Bullet/> Gli attacchi del nemico contro di te hanno una penalità di -<ABILITY:RESILIENCE_BONUS_LW/> alla Probabilità di critico.<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="Senso tattico"
