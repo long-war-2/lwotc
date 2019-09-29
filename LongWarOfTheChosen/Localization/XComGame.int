@@ -940,10 +940,14 @@ TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor
 AbilityDescName="sniper rifle"
 
 [Shotgun_CG X2WeaponTemplate]
-FriendlyName="Scattergun"
-FriendlyNamePlural="Scatterguns"
+; LWOTC Needs Translation
+FriendlyName="Gauss Scattergun"
+FriendlyNamePlural="Gauss Scatterguns"
+; End Translation
 BriefSummary="A close-quarters coil-tech weapon that fills the shotgun role."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Shotgun-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Scattergun's tactical effectiveness."
+; LWOTC Needs Translation
+TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Shotgun-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Gauss Scattergun's tactical effectiveness."
+; End Translation
 AbilityDescName="shotgun"
 
 [SMG_CG X2WeaponTemplate]
@@ -4342,7 +4346,9 @@ Description="Some ADVENT robots and some other units gain the Damage Control abi
 [DarkEvent_HardTarget X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Hard Target"
 SummaryText="Some alien units gain the Hard Target ability, granting bonus dodge."
-QuoteText="\".\""
+; LWOTC Needs Translation
+QuoteText="\"The aliens' reflexes are becoming adept in our environment. We should invest in our scopes and make sure no one leaves without one.\""
+; End Translation
 QuoteTextAuthor="- Chief Shen"
 PreMissionText="Grants some alien units the Hard Target ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Hard Target)"
