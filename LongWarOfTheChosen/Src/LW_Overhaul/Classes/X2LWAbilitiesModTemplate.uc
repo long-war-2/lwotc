@@ -24,6 +24,7 @@ var localized string strCritReductionFromConditionalToHit;
 var config bool ALLOW_NEGATIVE_DODGE;
 var config bool DODGE_CONVERTS_GRAZE_TO_MISS;
 var config bool GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND;
+var config int SILENT_KILLER_CRIT_MODIFIER;
 
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
@@ -33,9 +34,17 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
         Template.AbilityToHitCalc.OverrideFinalHitChanceFns.AddItem(OverrideFinalHitChance);
 	}
 
-	if (Template.DataName == 'BondmateTeamwork' || Template.DataName == 'BondmateTeamwork_Improved')
+	switch (Template.DataName)
 	{
-		UpdateTeamwork(Template);
+		case 'BondmateTeamwork':
+		case 'BondmateTeamwork_Improved':
+			UpdateTeamwork(Template);
+			break;
+		case 'SilentKiller':
+			UpdateSilentKiller(Template);
+			break;
+		default:
+			break;
 	}
 }
 
@@ -253,6 +262,29 @@ static function UpdateTeamwork(X2AbilityTemplate Template)
 	TargetVisibilityCondition.bRequireGameplayVisible = true;
 	TargetVisibilityCondition.bRequireBasicVisibility=true;
 	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+}
+
+// Make Silent Killer apply a debuff to crit chance when the Reaper is in
+// concealment.
+static function UpdateSilentKiller(X2AbilityTemplate Template)
+{
+	local X2Effect_ToHitModifier ToHitModifier;
+	local X2Condition_UnitProperty ConcealedCondition;
+	local X2Condition_Visibility VisCondition;
+
+	VisCondition = new class'X2Condition_Visibility';
+	VisCondition.bExcludeGameplayVisible = true;
+
+	ConcealedCondition = new class'X2Condition_UnitProperty';
+	ConcealedCondition.IsConcealed = true;
+
+	ToHitModifier = new class'X2Effect_ToHitModifier';
+	ToHitModifier.BuildPersistentEffect(1, true, false, false);
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.SILENT_KILLER_CRIT_MODIFIER, Template.LocFriendlyName,, false /* Melee */);
+	ToHitModifier.ToHitConditions.AddItem(VisCondition);
+	ToHitModifier.ToHitConditions.AddItem(ConcealedCondition);
+
+	Template.AddTargetEffect(ToHitModifier);
 }
 
 defaultproperties
