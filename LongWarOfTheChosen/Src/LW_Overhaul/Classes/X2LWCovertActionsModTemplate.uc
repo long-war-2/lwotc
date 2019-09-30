@@ -10,6 +10,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 {
 	local X2CovertActionTemplate CATemplate;
 	local CovertActionSlot CurrentSlot;
+	local int i;
 
 	CATemplate = X2CovertActionTemplate(Template);
 	if (CATemplate == none)
@@ -32,10 +33,13 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 	}
 
-	// Remove promotions as soldier slot rewards
-	foreach CATemplate.Slots(CurrentSlot)
+	// Remove promotions as soldier slot rewards. Note that we can't use
+	// `foreach` to iterate over the slots because they're structs, which
+	// means we'd just be modifying a copy of the slot, not the original
+	// one. Yay UnrealScript.
+	for (i = 0; i < CATemplate.Slots.Length; i++)
 	{
-		CurrentSlot.Rewards.RemoveItem('Reward_RankUp');
+		CATemplate.Slots[i].Rewards.RemoveItem('Reward_RankUp');
 	}
 }
 
