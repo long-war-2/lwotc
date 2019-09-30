@@ -597,11 +597,12 @@ function int GetAbilityPointCost(int Rank, int Branch)
 	//Default ability cost
 	AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.AbilityPointCosts[Rank];
 
+	// LWOTC: Disable this
 	//Powerfull ability override ( 25 AP )
-	if(bPowerfulAbility && Branch >= AbilityRanks)
-	{
-		AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
-	}
+	// if(bPowerfulAbility && Branch >= AbilityRanks)
+	// {
+	// 	AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
+	// }
 
 	//Custom Class Ability Cost Override
 	if( HasCustomAbilityCost(ClassName, AbilityTree[Branch].AbilityName) )
