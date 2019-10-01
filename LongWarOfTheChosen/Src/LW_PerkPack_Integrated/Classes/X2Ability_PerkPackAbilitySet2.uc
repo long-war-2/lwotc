@@ -689,8 +689,6 @@ static function X2AbilityTemplate AddSwordSlice_LWAbility()
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
 
-	Template.PostActivationEvents.AddItem('SwordSliceActivated');
-
 	// Target Conditions
 	//
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
