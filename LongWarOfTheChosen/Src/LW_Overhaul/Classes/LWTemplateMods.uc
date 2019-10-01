@@ -3382,6 +3382,7 @@ function ModifyDarkEvents (X2StrategyElementTemplate Template, int Difficulty)
 			case 'DarkEvent_SignalJamming':
 			case 'DarkEvent_GoneToGround':
 			case 'DarkEvent_LightningReflexes': // WOTC version replaced with LW2 one for the moment
+			case 'DarkEvent_Counterattack': // This conflicts with green and yellow alert reflex actions (and doesn't work as advertised)
 				// Remove these from play
 				DarkEventTemplate.StartingWeight = 0;
 				DarkEventTemplate.MinWeight = 0;
