@@ -1273,6 +1273,8 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 
 			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 
+			if (!CanOverrideChosenTacticalTags(MissionState, ChosenState)) continue;
+
 			// Remove the tag if it's already attached to this mission. This is the only
 			// place that should add Chosen tactical mission tags.
 			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTag);
@@ -1294,6 +1296,14 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 			ChosenState.PurgeMissionOfTags(MissionState);
 		}
 	}
+}
+
+// Determines whether the Chosen tactical tags should be cleared from the
+// given mission. Returns `false` if the given mission is either the final
+// one or one of the Chosen strongholds.
+static function bool CanOverrideChosenTacticalTags(XComGameState_MissionSite MissionState, XComGameState_AdventChosen ChosenState)
+{
+	return MissionState.Source != 'MissionSource_Final' && MissionState.Source != 'MissionSource_ChosenStronghold';
 }
 
 // Returns the chance that the given Chosen will appear on the given mission. The chance
