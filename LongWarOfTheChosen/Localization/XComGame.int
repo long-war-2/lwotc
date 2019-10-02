@@ -248,7 +248,7 @@ LocPromotionPopupText="<Bullet/> Attacks with your gauntlet, and fires set by ga
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
-LocLongDescription="Fire a special rocket that does limited damage but has a chance to stun or disorient organic enemies within its area of effect and leaves a cloud of smoke."
+LocLongDescription="Fire a special rocket that does limited damage but has a chance to or disorient organic enemies within its area of effect and leaves a cloud of smoke."
 LocHelpText="Rocket that stuns or disorients targets and leaves a smoke cloud. <Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun and disorientation chances based on target's will score.<br/><Bullet/> Requires one action and ends the soldier's turn."
 
@@ -4944,4 +4944,10 @@ LocLongDescription="Summon a pillar of Psionic energy to act as a high cover poi
 LocHelpText="Summon high cover at a target location. Costs 1 Focus."
 ; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equal to the Templar's Focus level when summoned.<br/><Bullet/> Pillar does not end the Templar's turn.<br/><Bullet/> Can be used after Rend.<br/><Bullet/> Pillar has <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Free action."
+
+[StunStrike X2AbilityTemplate]
+LocFriendlyName="Stun Strike"
+LocLongDescription="Strike an enemy with Psionic force strong enough to knock them back in the direction of the attack, stunning them. Costs 1 Focus."
+LocHelpText="Knock an enemy back in the direction of the attack, stunning them. Costs 1 Focus."
+LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike does not end the Templar's turn, but has a <Ability:SelfCooldown/> turn cooldown.<br/>"
 ; End Translation
