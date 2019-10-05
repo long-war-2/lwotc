@@ -321,7 +321,7 @@ static function X2AbilityTemplate AddTrojanVirus()
 	Template.AbilityTriggers.AddItem(UseTrigger);
 	
 	TrojanVirusEffect = new class 'X2Effect_TrojanVirus';
-	TrojanVirusEffect.BuildPersistentEffect (1, true, false /*Remove on Source Death*/,, eGameRule_PlayerTurnBegin);
+	TrojanVirusEffect.BuildPersistentEffect (1, true, false /*Remove on Source Death*/,, eGameRule_UnitGroupTurnBegin);
 	TrojanVirusEffect.bTickWhenApplied = false;
 	//TrojanVirusEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	TrojanVirusEffect.EffectRemovedVisualizationFn = TrojanVirusVisualizationRemoved;
