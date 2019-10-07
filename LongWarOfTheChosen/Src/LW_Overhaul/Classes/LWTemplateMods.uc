@@ -498,8 +498,7 @@ function UpdateStaffSlotTemplate(X2StrategyElementTemplate Template, int Difficu
 	StaffSlotTemplate = X2StaffSlotTemplate(Template);
 	if(StaffSlotTemplate == none)
 		return;
-	
-	/* WOTC TODO: Work out how to replace the AWC stuff
+
 	switch (StaffSlotTemplate.DataName)
 	{
 		case 'AWCScientistStaffSlot':
@@ -513,7 +512,6 @@ function UpdateStaffSlotTemplate(X2StrategyElementTemplate Template, int Difficu
 		default:
 			break;
 	}
-	*/
 }
 
 static function int GetAWCContribution_LW(XComGameState_Unit UnitState)
@@ -538,7 +536,7 @@ static function int GetAWCAvengerBonus_LW(XComGameState_Unit UnitState, optional
 	return Round(PercentIncrease);
 }
 
-static function FillAWCSciSlot_LW(XComGameState NewGameState, StateObjectReference SlotRef, StaffUnitInfo UnitInfo)
+static function FillAWCSciSlot_LW(XComGameState NewGameState, StateObjectReference SlotRef, StaffUnitInfo UnitInfo, optional bool bTemporary = false)
 {
 	local XComGameState_HeadquartersXCom NewXComHQ;
 	local XComGameState_Unit NewUnitState;
@@ -1945,7 +1943,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('CoupdeGrace2');
 			Template.Abilities.AddItem('Whirlwind2');
 			break;
-		case 'Sectopod'
+		case 'Sectopod':
 			Template.Abilities.AddItem('Resilience');
 			break;
 		// Should turn off tick damage every action
