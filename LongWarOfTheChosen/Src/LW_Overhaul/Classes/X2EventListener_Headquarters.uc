@@ -75,8 +75,10 @@ static function EventListenerReturn OverrideScienceScore(
 		{
 			Scientist = XComGameState_Unit(History.GetGameStateForObjectID(XComHQ.Crew[idx].ObjectID));
 
-			// Only worry about living scientists, and skip Tygan.
-			if (Scientist.IsScientist() && !Scientist.IsDead() && Scientist.GetMyTemplateName() != 'HeadScientist')
+			// Only worry about living scientists, and skip Tygan. LWOTC: Scientists on covert actions
+			// (which includes haven advisers) are handled by the base game, so ignore those too.
+			if (Scientist.IsScientist() && !Scientist.IsDead() && !Scientist.IsOnCovertAction() &&
+				Scientist.GetMyTemplateName() != 'HeadScientist')
 			{
 				// This scientist was counted by the base game. If they are in a staff slot that is not the lab,
 				// remove their score.
