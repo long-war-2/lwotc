@@ -4,7 +4,7 @@
 //  PURPOSE: This adds templates and updates OTS Facility Template 
 //				Adds officer staffslot and upgrade to OTS to allow officer training
 //---------------------------------------------------------------------------------------
-class X2StrategyElement_LW_OTS_OfficerStaffSlot extends X2StrategyElement config(LW_OfficerPack);
+class X2StrategyElement_LW_OTS_OfficerStaffSlot extends X2StrategyElement_DefaultStaffSlots config(LW_OfficerPack);
 
 var config int OTS_OFFICERTRAININGUPGRADE_UNLOCKRANK;
 var config int OTS_OFFICERTRAININGUPGRADESECONDSLOT_UNLOCKRANK;
@@ -30,7 +30,7 @@ static function X2DataTemplate CreateOfficerSlotTemplate()
 {
 	local X2StaffSlotTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'X2StaffSlotTemplate', Template, 'OTSOfficerSlot');
+	Template = CreateStaffSlotTemplate('OTSOfficerSlot');
 	Template.bSoldierSlot = true;
 	Template.bRequireConfirmToEmpty = true;
 	Template.FillFn = FillOTSOfficerSlot;
