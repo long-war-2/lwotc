@@ -271,7 +271,6 @@ simulated function Update()
 				{
 					GrimyGrazeChance = clamp(GrimyGrazeChance - (GrimyFullDamageHitChance - 100),0,100);
 				}
-				GrimyCritChance = clamp(GrimyCritChance,0,GrimyHitChance-GrimyGrazeChance);
 
 				// Generate a display for dodge chance
 				if ( default.SHOW_DODGE && GrimyGrazeChance > 0 )
