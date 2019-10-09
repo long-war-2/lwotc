@@ -12,7 +12,7 @@ var config int SPARKRIFLE_LASER_TRADINGPOSTVALUE;
 var config int SPARKRIFLE_LASER_IPOINTS;
 var config int SPARKRIFLE_LASER_UPGRADESLOTS;
 var config string SparkRifle_Laser_ImagePath;
-var config array<int> SPARKRIFLE_LASER_RANGE;
+var config array<int> MEDIUM_LASER_RANGE;
 
 
 var config WeaponDamageValue SPARKRIFLE_COIL_BASEDAMAGE;
@@ -26,7 +26,7 @@ var config int SPARKRIFLE_COIL_TRADINGPOSTVALUE;
 var config int SPARKRIFLE_COIL_IPOINTS;
 var config int SPARKRIFLE_COIL_UPGRADESLOTS;
 var config string SparkRifle_COIL_ImagePath;
-var config array<int> SPARKRIFLE_COIL_RANGE;
+var config array<int> MEDIUM_COIL_RANGE;
 
 
 static function array<X2DataTemplate> CreateTemplates()
@@ -117,7 +117,7 @@ static function X2DataTemplate Create_SparkRifle_Laser()
 
 
 	Template.BaseDamage = default.SPARKRIFLE_LASER_BASEDAMAGE;
-	Template.RangeAccuracy = default.SPARKRIFLE_LASER_RANGE;
+	Template.RangeAccuracy = default.MEDIUM_LASER_RANGE;
 	Template.Aim = default.SPARKRIFLE_LASER_AIM;
 	Template.CritChance = default.SPARKRIFLE_LASER_CRITCHANCE;
 	Template.iClipSize = default.SPARKRIFLE_LASER_ICLIPSIZE;
@@ -180,7 +180,7 @@ static function X2DataTemplate Create_SparkRifle_Coil()
 
 
 	Template.BaseDamage = default.SPARKRIFLE_COIL_BASEDAMAGE;
-	Template.RangeAccuracy = default.SPARKRIFLE_COIL_RANGE;
+	Template.RangeAccuracy = default.MEDIUM_COIL_RANGE;
 	Template.Aim = default.SPARKRIFLE_COIL_AIM;
 	Template.CritChance = default.SPARKRIFLE_COIL_CRITCHANCE;
 	Template.iClipSize = default.SPARKRIFLE_COIL_ICLIPSIZE;
