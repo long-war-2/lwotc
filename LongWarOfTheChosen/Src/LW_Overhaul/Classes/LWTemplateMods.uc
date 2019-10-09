@@ -3597,7 +3597,8 @@ static function X2LWTemplateModTemplate CreateReconfigFacilityUpgradesTemplate()
 // THIS DOES NOT MODIFY REQUIREMENTS (TECHS, SPECIAL ARTIFACTS, RANK ACHIEVED) WHICH ARE HARDCODED, CAN ADD SCI/ENG SCORE REQUIREMENT IF SET
 function ModifyFacilityUpgrades(X2StrategyElementTemplate Template, int Difficulty)
 {
-	local X2FacilityUpgradeTemplate FacilityUpgradeTemplate;
+	local X2FacilityUpgradeTemplate FacilityUpgradeTemplate, BaseResearchStationTemplate;
+	local X2StrategyElementTemplate StratTemplate;
 	local int k;
 	local ArtifactCost Resources;
 
@@ -3666,6 +3667,18 @@ function ModifyFacilityUpgrades(X2StrategyElementTemplate Template, int Difficul
 					FacilityUpgradeTemplate.Requirements.RequiredScienceScore = FacilityUpgradeTable[k].RequiredScienceScore;
 				}
 			}
+		}
+
+		// Ensure the Laboratory research station upgrades get the standard localization text
+		if (FacilityUpgradeTemplate.DataName == 'Laboratory_AdditionalResearchStation2' ||
+			FacilityUpgradeTemplate.DataName == 'Laboratory_AdditionalResearchStation3')
+		{
+			// Configure the additional research stations in the Laboratory
+			StratTemplate = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Laboratory_AdditionalResearchStation');
+			BaseResearchStationTemplate = X2FacilityUpgradeTemplate(StratTemplate);
+			FacilityUpgradeTemplate.DisplayName = BaseResearchStationTemplate.default.DisplayName;
+			FacilityUpgradeTemplate.FacilityName = BaseResearchStationTemplate.default.FacilityName;
+			FacilityUpgradeTemplate.Summary = BaseResearchStationTemplate.default.Summary;
 		}
 	}
 }
