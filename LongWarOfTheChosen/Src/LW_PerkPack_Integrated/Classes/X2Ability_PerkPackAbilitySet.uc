@@ -3955,7 +3955,7 @@ static function X2AbilityTemplate AddMindMergeAbility()
 	MindMergeEffect.AMpBMCritBonus= default.SOUL_MERGE_AMP_BM_CRIT_BONUS;
 
 	MindMergeEffect.bRemoveWhenTargetDies=true;
-	MindMergeEffect.BuildPersistentEffect (default.MIND_MERGE_DURATION, false, true, true, eGameRule_PlayerTurnBegin);
+	MindMergeEffect.BuildPersistentEffect (1, false, true, false, eGameRule_PlayerTurnBegin);
 	MindMergeEFfect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect (MindMergeEffect);
 
