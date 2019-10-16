@@ -1028,6 +1028,51 @@ static function PostReinforcementCreation(out name EncounterName, out PodSpawnIn
 {
 }
 
+// Use SLG hook to add infiltration modifiers to alien units
+static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out array<AbilitySetupData> SetupData, optional XComGameState StartState, optional XComGameState_Player PlayerState, optional bool bMultiplayerDisplay)
+{
+	local X2AbilityTemplate AbilityTemplate;
+	local X2AbilityTemplateManager AbilityTemplateMan;
+	local name AbilityName;
+	local AbilitySetupData Data, EmptyData;
+	local X2CharacterTemplate CharTemplate;
+
+	if (`XENGINE.IsMultiplayerGame()) { return; }
+
+	CharTemplate = UnitState.GetMyTemplate();
+	if (CharTemplate == none)
+		return;
+	if (ShouldApplyInfiltrationModifierToCharacter(CharTemplate))
+	{
+		AbilityName = 'InfiltrationTacticalModifier_LW';
+		if (SetupData.Find('TemplateName', AbilityName) == -1)
+		{
+			AbilityTemplateMan = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+			AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate(AbilityName);
+
+			if(AbilityTemplate != none)
+			{
+				Data = EmptyData;
+				Data.TemplateName = AbilityName;
+				Data.Template = AbilityTemplate;
+				SetupData.AddItem(Data);  // return array -- we don't have to worry about additional abilities for this simple ability
+			}
+		}
+	}
+}
+
+static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTemplate CharTemplate)
+{
+	// Specific character types should never have an infiltration modifier applied.
+	if (default.CharacterTypesExceptFromInfiltrationModifiers.Find(CharTemplate.DataName) >= 0)
+	{
+		return false;
+	}
+
+	// Otherwise anything that's alien or advent gets one
+	return CharTemplate.bIsAdvent || CharTemplate.bIsAlien;
+}
+
 static event OnExitPostMissionSequence()
 {
 	CleanupObsoleteTacticalGamestate();
