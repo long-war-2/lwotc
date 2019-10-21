@@ -115,7 +115,7 @@ static function float GetCommandRangeSq(XComGameState_Unit Unit)
 }
 
 
-//LT1: GetSome, use a action to give everybody in range a crit bonus
+//LT1: GetSome, use an action to give everybody in range a crit bonus
 //Needs Aura AOE
 static function X2AbilityTemplate AddGetSomeAbility()
 {
@@ -190,7 +190,7 @@ static function X2AbilityTemplate AddGetSomeAbility()
 	return Template;
 }
 
-//LT 2 Collector has an X% chance ot add y bonus intel for each kill
+//LT 2 Collector has an X% chance to add y bonus intel for each kill
 static function X2AbilityTemplate AddCollectorAbility()
 {
 	local X2AbilityTemplate                 Template;

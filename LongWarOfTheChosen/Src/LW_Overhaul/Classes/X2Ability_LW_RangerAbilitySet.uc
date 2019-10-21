@@ -116,6 +116,10 @@ static function X2AbilityTemplate AddPointBlank()
 	Template.AddTargetEffect(KnockbackEffect);
 
 	Template.bUseAmmoAsChargesForHUD = true;
+	
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	return Template;	
 }
@@ -204,6 +208,10 @@ static function X2AbilityTemplate AddBothBarrels()
 	Template.AddTargetEffect(KnockbackEffect);
 
 	Template.bUseAmmoAsChargesForHUD = true;
+	
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	return Template;	
 }
