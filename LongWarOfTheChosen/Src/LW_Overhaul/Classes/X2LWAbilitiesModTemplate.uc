@@ -25,7 +25,7 @@ var config bool ALLOW_NEGATIVE_DODGE;
 var config bool DODGE_CONVERTS_GRAZE_TO_MISS;
 var config bool GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND;
 var config bool DISABLE_LOST_HEADSHOT;
-var config int SILENT_KILLER_CRIT_MODIFIER;
+var config int SHADOW_CRIT_MODIFIER;
 
 var config array<bool> HEADSHOT_ENABLED;
 
@@ -50,8 +50,11 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'LostHeadshotInit':
 			DisableLostHeadshot(Template);
 			break;
-		case 'SilentKiller':
-			UpdateSilentKiller(Template);
+		case 'ShadowPassive':
+			// Disabling the reduced crit chance when in Shadow for now, but
+			// leaving the code in case we want to do something similar or
+			// reintroduce it.
+			// UpdateShadow(Template);
 			break;
 		default:
 			break;
@@ -359,9 +362,8 @@ static function UpdateTeamwork(X2AbilityTemplate Template)
 	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
 }
 
-// Make Silent Killer apply a debuff to crit chance when the Reaper is in
-// concealment.
-static function UpdateSilentKiller(X2AbilityTemplate Template)
+// Make Shadow apply a debuff to crit chance when the Reaper is in concealment.
+static function UpdateShadow(X2AbilityTemplate Template)
 {
 	local X2Effect_ToHitModifier ToHitModifier;
 	local X2Condition_UnitProperty ConcealedCondition;
@@ -375,7 +377,7 @@ static function UpdateSilentKiller(X2AbilityTemplate Template)
 
 	ToHitModifier = new class'X2Effect_ToHitModifier';
 	ToHitModifier.BuildPersistentEffect(1, true, false, false);
-	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.SILENT_KILLER_CRIT_MODIFIER, Template.LocFriendlyName,, false /* Melee */);
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.SHADOW_CRIT_MODIFIER, Template.LocFriendlyName,, false /* Melee */);
 	ToHitModifier.ToHitConditions.AddItem(VisCondition);
 	ToHitModifier.ToHitConditions.AddItem(ConcealedCondition);
 
