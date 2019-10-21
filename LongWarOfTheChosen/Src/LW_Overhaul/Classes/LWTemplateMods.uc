@@ -1753,7 +1753,8 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 			break;
 		}
 	}
-	if (ThrownDamageEffect != none || LaunchedDamageEffect != none)
+	if (ThrownDamageEffect != none || LaunchedDamageEffect != none &&
+		ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', ThrownDamageEffect.Class))
 	{
 		FalloffDamageEffect = new class'X2Effect_ApplyExplosiveFalloffWeaponDamage' (ThrownDamageEffect);
 
