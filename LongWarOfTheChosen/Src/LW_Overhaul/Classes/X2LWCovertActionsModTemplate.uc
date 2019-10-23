@@ -7,7 +7,10 @@
 //           This also delays the contact of new factions by increasing the rank
 //           requirements for the corresponding covert actions.
 //---------------------------------------------------------------------------------------
-class X2LWCovertActionsModTemplate extends X2LWTemplateModTemplate;
+class X2LWCovertActionsModTemplate extends X2LWTemplateModTemplate config(LW_Overhaul);
+
+var config int FIND_SECOND_FACTION_REQ_RANK;
+var config int FIND_THIRD_FACTION_REQ_RANK;
 
 static function UpdateCovertActions(X2StrategyElementTemplate Template, int Difficulty)
 {
@@ -34,11 +37,11 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 		case 'CovertAction_FindFaction':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
-			CATemplate.Slots[0].iMinRank = 4;  // Require a SGT
+			CATemplate.Slots[0].iMinRank = default.FIND_SECOND_FACTION_REQ_RANK;
 			break;
 		case 'CovertAction_FindFarthestFaction':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
-			CATemplate.Slots[0].iMinRank = 5;  // Require a SSGT
+			CATemplate.Slots[0].iMinRank = default.FIND_THIRD_FACTION_REQ_RANK;
 			break;
 		default:
 			break;

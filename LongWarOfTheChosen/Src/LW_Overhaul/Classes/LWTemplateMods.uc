@@ -474,9 +474,27 @@ function UpdateRewardTemplate(X2StrategyElementTemplate Template, int Difficulty
 		case 'Reward_Soldier':
 			RewardTemplate.GenerateRewardFn = GenerateRandomSoldierReward;
 			break;
+		case 'Reward_FindFaction':
+			UpdateFactionSoldierReward(RewardTemplate, class'X2LWCovertActionsModTemplate'.default.FIND_SECOND_FACTION_REQ_RANK - 1);
+			break;
+		case 'Reward_FindFarthestFaction':
+			UpdateFactionSoldierReward(RewardTemplate, class'X2LWCovertActionsModTemplate'.default.FIND_THIRD_FACTION_REQ_RANK - 1);
+			break;
 		default:
 			break;
 	}
+}
+
+static function UpdateFactionSoldierReward(X2RewardTemplate Template, int SoldierRank)
+{
+	local LWGiveSoldierRewardWrapper FnWrapper;
+
+	`LWTrace("Updating faction soldier reward function");
+
+	FnWrapper = new class'LWGiveSoldierRewardWrapper';
+	FnWrapper.SoldierRank = SoldierRank;
+	FnWrapper.OriginalDelegateFn = Template.GiveRewardFn;
+	Template.GiveRewardFn = FnWrapper.GiveFactionSoldierReward;
 }
 
 // Update StaffSlotTemplates as needed
