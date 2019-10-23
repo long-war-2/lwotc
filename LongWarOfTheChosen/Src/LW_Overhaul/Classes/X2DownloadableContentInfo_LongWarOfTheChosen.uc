@@ -146,6 +146,13 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState_LWOutpostManager OutpostManager;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_LWOutpost OutpostState;
+	local XComGameState_LWToolboxOptions ToolboxOptions;
+
+	// LWOTC beta 2: Remove the 'OnMonthlyReportAlert' listener as it's no
+	// longer needed (Not Created Equally is handled by the 'UnitRandomizedStats'
+	// event now).
+	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
+	`XEVENTMGR.UnRegisterFromEvent(ToolboxOptions, 'OnMonthlyReportAlert');
 
 	//this method can handle case where RegionalAI components already exist
 	class'XComGameState_WorldRegion_LWStrategyAI'.static.InitializeRegionalAIs();

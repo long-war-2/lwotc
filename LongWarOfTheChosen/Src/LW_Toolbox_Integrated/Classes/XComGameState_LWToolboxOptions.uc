@@ -1036,11 +1036,9 @@ function UpdatedRandomizedInitialStats(optional XComGameState NewGameState)
 	ThisObj = self;
 	if(bRandomizedInitialStatsEnabled)
 	{
-		EventManager.RegisterForEvent( ThisObj, 'OnMonthlyReportAlert', OnMonthEnd, ELD_OnStateSubmitted,,,true); //end of month handling of new recruits at Resistance HQ
-		EventManager.RegisterForEvent( ThisObj, 'SoldierCreatedEvent', OnSoldierCreatedEvent, ELD_OnStateSubmitted,,,true); //handles reward soldier creation, both for missions and purchase-able
+		EventManager.RegisterForEvent( ThisObj, 'UnitRandomizedStats', OnSoldierCreatedEvent, ELD_OnStateSubmitted,,,true); //handles reward soldier creation, both for missions and purchase-able
 	} else {
-		EventManager.UnRegisterFromEvent( ThisObj, 'OnMonthlyReportAlert');
-		EventManager.UnRegisterFromEvent( ThisObj, 'SoldierCreatedEvent');
+		EventManager.UnRegisterFromEvent( ThisObj, 'UnitRandomizedStats');
 	}
 
 }

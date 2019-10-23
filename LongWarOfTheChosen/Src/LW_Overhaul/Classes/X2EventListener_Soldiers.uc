@@ -37,6 +37,7 @@ static function CHEventListenerTemplate CreateEquipmentListeners()
 	Template.AddCHEvent('OverrideItemUnequipBehavior', OnOverrideItemUnequipBehavior, ELD_Immediate);
 	Template.AddCHEvent('OverrideItemMinEquipped', OnOverrideItemMinEquipped, ELD_Immediate);
 	Template.AddCHEvent('SoldierCreatedEvent', EquipNewSoldier, ELD_OnStateSubmitted);
+	Template.AddCHEvent('RewardUnitGenerated', EquipNewSoldier, ELD_OnStateSubmitted);
 	Template.AddCHEvent('OnGetPCSImage', GetPCSImage, ELD_Immediate);
 
 	Template.RegisterInStrategy = true;
