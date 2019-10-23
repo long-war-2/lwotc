@@ -11,6 +11,9 @@ class X2LWCovertActionsModTemplate extends X2LWTemplateModTemplate config(LW_Ove
 
 var config int FIND_SECOND_FACTION_REQ_RANK;
 var config int FIND_THIRD_FACTION_REQ_RANK;
+var config int FIRST_CHOSEN_CA_REQ_RANK;
+var config int SECOND_CHOSEN_CA_REQ_RANK;
+var config int THIRD_CHOSEN_CA_REQ_RANK;
 
 static function UpdateCovertActions(X2StrategyElementTemplate Template, int Difficulty)
 {
@@ -42,6 +45,18 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_FindFarthestFaction':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
 			CATemplate.Slots[0].iMinRank = default.FIND_THIRD_FACTION_REQ_RANK;
+			break;
+		case 'CovertAction_RevealChosenMovements':
+			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
+			CATemplate.Slots[0].iMinRank = default.FIRST_CHOSEN_CA_REQ_RANK;
+			break;
+		case 'CovertAction_RevealChosenStrengths':
+			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
+			CATemplate.Slots[0].iMinRank = default.SECOND_CHOSEN_CA_REQ_RANK;  // Require a TSGT
+			break;
+		case 'CovertAction_RevealChosenStronghold':
+			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
+			CATemplate.Slots[0].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require a MSGT
 			break;
 		default:
 			break;
