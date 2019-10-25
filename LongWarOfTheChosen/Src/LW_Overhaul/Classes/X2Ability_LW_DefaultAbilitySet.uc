@@ -14,6 +14,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateInteractSmashNGrabAbility());
 	//Templates.AddItem(CreateReflexShotAbility());
 	Templates.AddItem(CreateReflexShotModifier());
+	Templates.AddItem(CreateMindControlCleanse());
 
 	return Templates;
 }
@@ -145,4 +146,42 @@ static function X2AbilityTemplate CreateReflexShotModifier()
 	return Template;	
 }
 
+// Passive ability that cleanses units of various debilitating effects
+// when mind control wears off (just as happens when a unit is first
+// mind controlled). This is basically to fix various issues with the
+// interaction of the stunned effect with mind control.
+static function X2AbilityTemplate CreateMindControlCleanse()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener EventListener;
 
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MindControlCleanse');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_solace";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	// Trigger when mind control is lost
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'MindControlLost';
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	Template.AddTargetEffect(class'X2StatusEffects'.static.CreateMindControlRemoveEffects());
+	Template.AddTargetEffect(class'X2StatusEffects'.static.CreateStunRecoverEffect());
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	return Template;
+}
