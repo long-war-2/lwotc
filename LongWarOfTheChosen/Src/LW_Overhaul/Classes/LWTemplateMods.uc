@@ -1993,6 +1993,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	{
 		Template.Abilities.AddItem('Interact_SmashNGrab');
 	}
+
+	Template.Abilities.AddItem('MindControlCleanse');
 }
 
 static function X2LWTemplateModTemplate CreateReconfigGearTemplate()
