@@ -157,6 +157,7 @@ static function X2AbilityTemplate AddCombativesAttack()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = class'X2Ability_Muton'.static.CounterAttack_MergeVisualization;
 
 	Template.CinescriptCameraType = "Ranger_Reaper";
 
