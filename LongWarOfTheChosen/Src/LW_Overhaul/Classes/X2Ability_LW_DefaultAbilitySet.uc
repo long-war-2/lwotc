@@ -164,6 +164,7 @@ static function X2AbilityTemplate CreateMindControlCleanse()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.bShowActivation = false;
 	Template.bSkipFireAction = true;
+	Template.bDontDisplayInAbilitySummary = true;
 	Template.bDisplayInUITooltip = false;
 	Template.bDisplayInUITacticalText = false;
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
