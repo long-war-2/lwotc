@@ -574,55 +574,55 @@ LocLongDescription="在你的站立处为队友提供全身掩体。移动或攻
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="瞄准镜"
-LocLongDescription="在你使用主武器时，除反应射击外的射击拥有+5命中。"
+LocLongDescription="在你使用主武器时，除反应射击外的射击拥有+<Ability:SCOPE_BSC_AIM_BONUS/>命中。"
 LocHelpText="瞄准镜：增加非反应射击的命中"
 LocFlyOverText="瞄准镜"
 
 [Scope_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="高级瞄准镜"
-LocLongDescription="在你使用主武器时，除反应射击外的射击拥有+10命中。"
+LocLongDescription="在你使用主武器时，除反应射击外的射击拥有+<Ability:SCOPE_ADV_AIM_BONUS/>命中。"
 LocHelpText="瞄准镜：增加非反应射击的命中"
 LocFlyOverText="高级瞄准镜"
 
 [Scope_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="精英瞄准镜"
-LocLongDescription="在你使用主武器时，除反应射击外的射击拥有+15命中。"
+LocLongDescription="在你使用主武器时，除反应射击外的射击拥有+<Ability:SCOPE_SUP_AIM_BONUS/>命中。"
 LocHelpText="瞄准镜：增加非反应射击的命中"
 LocFlyOverText="精英瞄准镜"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="微力扳机"
-LocLongDescription="用你的主武器射击将会有+5的反应射击命中加成。"
+LocLongDescription="用你的主武器射击将会有+<Ability:TRIGGER_BSC_AIM_BONUS/>的反应射击命中加成。"
 LocHelpText="微力扳机：反应射击的命中加成"
 LocFlyOverText="微力扳机"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="高级微力扳机"
-LocLongDescription="用你的主武器射击将会有+10的反应射击命中加成。"
+LocLongDescription="用你的主武器射击将会有+<Ability:TRIGGER_ADV_AIM_BONUS/>的反应射击命中加成。"
 LocHelpText="微力扳机：反应射击的命中加成"
 LocFlyOverText="高级微力扳机"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="精英微力扳机"
-LocLongDescription="用你的主武器射击将会有+15的反应射击命中加成。"
+LocLongDescription="用你的主武器射击将会有+<Ability:TRIGGER_SUP_AIM_BONUS/>的反应射击命中加成。"
 LocHelpText="微力扳机：反应射击的命中加成"
 LocFlyOverText="精英微力扳机"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="稳定武器"
-LocLongDescription="使用稳定武器能力来使下一次射击获得+15命中和+15暴击。如果你使用行动点在非射击动作上或受伤就会失去此加成。"
+LocLongDescription="使用稳定武器能力来使下一次射击获得+<Ability:STOCK_BSC_SW_AIM_BONUS/>命中和+<Ability:STOCK_BSC_SW_AIM_BONUS/>暴击。如果你使用行动点在非射击动作上或受伤就会失去此加成。"
 LocHelpText="稳定武器：如果你没有受伤或进行其他行动，下次射击会获得命中加成。"
 LocFlyOverText="稳定武器"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="稳定武器"
-LocLongDescription="使用稳定武器能力来使下一次射击获得+20命中和+20暴击。如果你使用行动点在非射击动作上或受伤就会失去此加成。"
+LocLongDescription="使用稳定武器能力来使下一次射击获得+<Ability:STOCK_ADV_SW_AIM_BONUS/>命中和+<Ability:STOCK_ADV_SW_AIM_BONUS/>暴击。如果你使用行动点在非射击动作上或受伤就会失去此加成。"
 LocHelpText="稳定武器：如果你没有受伤或进行其他行动，下次射击会获得命中加成。"
 LocFlyOverText="稳定武器"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="稳定武器"
-LocLongDescription="使用稳定武器能力来使下一次射击获得+25命中和+25暴击。如果你使用行动点在非射击动作上或受伤就会失去此加成。"
+LocLongDescription="使用稳定武器能力来使下一次射击获得+<Ability:STOCK_SUP_SW_AIM_BONUS/>命中和+<Ability:STOCK_SUP_SW_AIM_BONUS/>暴击。如果你使用行动点在非射击动作上或受伤就会失去此加成。"
 LocHelpText="稳定武器：如果你没有受伤或进行其他行动，下次射击会获得命中加成。"
 LocFlyOverText="稳定武器"
 
@@ -993,63 +993,63 @@ m_strRemoveUpgrade="移除升级"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="微力扳机"
 FriendlyNamePlural="微力扳机"
-BriefSummary="士兵能在反应射击时获得5的命中加成。"
+BriefSummary="士兵能在反应射击时获得<Ability:TRIGGER_BSC_AIM_BONUS/>的命中加成。"
 TinySummary="反应射击命中加成"
 LootTooltip="安装了该武器升级后，会为反应射击增加命中加成。"
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="高级微力扳机"
 FriendlyNamePlural="高级微力扳机"
-BriefSummary="士兵能在反应射击时获得10的命中加成。"
+BriefSummary="士兵能在反应射击时获得<Ability:TRIGGER_ADV_AIM_BONUS/>的命中加成。"
 TinySummary="反应射击命中加成"
 LootTooltip="安装了该武器升级后，会为反应射击增加命中加成。"
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="精英微力扳机"
 FriendlyNamePlural="精英微力扳机"
-BriefSummary="士兵能在反应射击时获得15的命中加成。"
+BriefSummary="士兵能在反应射击时获得<Ability:TRIGGER_SUP_AIM_BONUS/>的命中加成。"
 TinySummary="反应射击命中加成"
 LootTooltip="安装了该武器升级后，会为反应射击增加命中加成。"
 
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="瞄准镜"
 FriendlyNamePlural="瞄准镜"
-BriefSummary="提升5的非反应射击命中。"
+BriefSummary="提升<Ability:SCOPE_BSC_AIM_BONUS/>的非反应射击命中。"
 TinySummary="非反应命中已提升"
 LootTooltip="这种武器强化部件可为武器的非反应射击增加额外的命中。"
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="高级瞄准镜"
 FriendlyNamePlural="高级瞄准镜"
-BriefSummary="提升10的非反应射击命中。"
+BriefSummary="提升<Ability:SCOPE_ADV_AIM_BONUS/>的非反应射击命中。"
 TinySummary="非反应命中已提升"
 LootTooltip="这种武器强化部件可为武器的非反应射击增加额外的命中。"
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="精英瞄准镜"
 FriendlyNamePlural="精英瞄准镜"
-BriefSummary="提升15的非反应射击命中。"
+BriefSummary="提升<Ability:SCOPE_SUP_AIM_BONUS/>的非反应射击命中。"
 TinySummary="非反应命中已提升"
 LootTooltip="这种武器强化部件可为武器的非反应射击增加额外的命中。"
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="枪托"
 FriendlyNamePlural="枪托"
-BriefSummary="提供稳定武器能力，为下一次射击提供+15命中和+15暴击几率。"
+BriefSummary="提供稳定武器能力，为下一次射击提供+<Ability:STOCK_BSC_SW_AIM_BONUS/>命中和+<Ability:STOCK_BSC_SW_AIM_BONUS/>暴击几率。"
 TinySummary="赋予稳定武器"
 LootTooltip="当装备了这个武器强化时，将获得技能：稳定武器。"
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="高级枪托"
 FriendlyNamePlural="高级枪托"
-BriefSummary="提供稳定武器能力，为下一次射击提供+20命中和+20暴击几率。"
+BriefSummary="提供稳定武器能力，为下一次射击提供+<Ability:STOCK_ADV_SW_AIM_BONUS/>命中和+<Ability:STOCK_ADV_SW_AIM_BONUS/>暴击几率。"
 TinySummary="赋予稳定武器"
 LootTooltip="当装备了这个武器强化时，将获得技能：稳定武器。"
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="精英枪托"
 FriendlyNamePlural="精英枪托"
-BriefSummary="提供稳定武器能力，为下一次射击提供+25命中和+25暴击几率。"
+BriefSummary="提供稳定武器能力，为下一次射击提供+<Ability:STOCK_SUP_SW_AIM_BONUS/>命中和+<Ability:STOCK_SUP_SW_AIM_BONUS/>暴击几率。"
 TinySummary="赋予稳定武器"
 LootTooltip="当装备了这个武器强化时，将获得技能：稳定武器。"
 

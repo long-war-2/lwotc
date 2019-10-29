@@ -574,55 +574,55 @@ LocLongDescription="Proporciona cobertura alta a los compañeros en el lugar don
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Mira telescópica"
-LocLongDescription="Tienes +5 a la probabilidad de impactar en disparos que no sean de reacción con tu arma principal."
+LocLongDescription="Tienes +<Ability:SCOPE_BSC_AIM_BONUS/> a la probabilidad de impactar en disparos que no sean de reacción con tu arma principal."
 LocHelpText="Mira: bonificación a impactar en disparos que no sean de reacción"
 LocFlyOverText="Mira telescópica"
 
 [Scope_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Mira telescópica avanzada"
-LocLongDescription="Tienes +10 a la probabilidad de impactar en disparos que no sean de reacción con tu arma principal."
+LocLongDescription="Tienes +<Ability:SCOPE_ADV_AIM_BONUS/> a la probabilidad de impactar en disparos que no sean de reacción con tu arma principal."
 LocHelpText="Mira: bonificación a impactar en disparos que no sean de reacción"
 LocFlyOverText="Mira telescópica avanzada"
 
 [Scope_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Mira telescópica de élite"
-LocLongDescription="Tienes +15 a la probabilidad de impactar en disparos que no sean de reacción con tu arma principal."
+LocLongDescription="Tienes +<Ability:SCOPE_SUP_AIM_BONUS/> a la probabilidad de impactar en disparos que no sean de reacción con tu arma principal."
 LocHelpText="Mira: bonificación a impactar en disparos que no sean de reacción"
 LocFlyOverText="Mira telescópica de élite"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Reacción inmediata"
-LocLongDescription="Tienes +5 a la probabilidad de impactar en disparos de reacción con tu arma principal."
+LocLongDescription="Tienes +<Ability:TRIGGER_BSC_AIM_BONUS/> a la probabilidad de impactar en disparos de reacción con tu arma principal."
 LocHelpText="Reacción inmediata: bonificación al impactar en disparos de reacción"
 LocFlyOverText="Reacción inmediata"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Reacción inmediata avanzada"
-LocLongDescription="Tienes +10 a la probabilidad de impactar en disparos de reacción con tu arma principal."
+LocLongDescription="Tienes +<Ability:TRIGGER_ADV_AIM_BONUS/> a la probabilidad de impactar en disparos de reacción con tu arma principal."
 LocHelpText="Reacción inmediata: bonificación al impactar en disparos de reacción"
 LocFlyOverText="Reacción inmediata avanzada"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Reacción inmediata de élite"
-LocLongDescription="Tienes +15 a la probabilidad de impactar en disparos de reacción con tu arma principal."
+LocLongDescription="Tienes +<Ability:TRIGGER_SUP_AIM_BONUS/> a la probabilidad de impactar en disparos de reacción con tu arma principal."
 LocHelpText="Reacción inmediata: bonificación al impactar en disparos de reacción"
 LocFlyOverText="Reacción inmediata de élite"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Arma estable"
-LocLongDescription="Activa la habilidad Arma estable para obtener +15 de puntería y +15 de probabilidad de crítico al siguiente disparo con el arma que lleves equipada. La bonificación se pierde si usas acciones que no sean disparar o te hieren."
+LocLongDescription="Activa la habilidad Arma estable para obtener +<Ability:STOCK_BSC_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_BSC_SW_AIM_BONUS/> de probabilidad de crítico al siguiente disparo con el arma que lleves equipada. La bonificación se pierde si usas acciones que no sean disparar o te hieren."
 LocHelpText="Arma estable: bonificación a impactar con el siguiente disparo si no estás herido ni realizas otra acción."
 LocFlyOverText="Arma estable"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Arma estable"
-LocLongDescription="Activa la habilidad Arma estable para obtener +20 de puntería y +20 de probabilidad de crítico al siguiente disparo con el arma que lleves equipada. La bonificación se pierde si usas acciones que no sean disparar o te hieren."
+LocLongDescription="Activa la habilidad Arma estable para obtener +<Ability:STOCK_ADV_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_ADV_SW_AIM_BONUS/> de probabilidad de crítico al siguiente disparo con el arma que lleves equipada. La bonificación se pierde si usas acciones que no sean disparar o te hieren."
 LocHelpText="Arma estable: bonificación a impactar con el siguiente disparo si no estás herido ni realizas otra acción."
 LocFlyOverText="Arma estable"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Arma estable"
-LocLongDescription="Activa la habilidad Arma estable para obtener +25 de puntería y +25 de probabilidad de crítico al siguiente disparo con el arma que lleves equipada. La bonificación se pierde si usas acciones que no sean disparar o te hieren."
+LocLongDescription="Activa la habilidad Arma estable para obtener +<Ability:STOCK_SUP_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_SUP_SW_AIM_BONUS/> de probabilidad de crítico al siguiente disparo con el arma que lleves equipada. La bonificación se pierde si usas acciones que no sean disparar o te hieren."
 LocHelpText="Arma estable: bonificación a impactar con el siguiente disparo si no estás herido ni realizas otra acción."
 LocFlyOverText="Arma estable"
 
@@ -993,63 +993,63 @@ m_strRemoveUpgrade="QUITAR MEJORA"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Reacción inmediata"
 FriendlyNamePlural="Reacciones inmediatas"
-BriefSummary="El soldado obtiene una bonificación de 5 de puntería en disparos de reacción."
+BriefSummary="El soldado obtiene una bonificación de <Ability:TRIGGER_BSC_AIM_BONUS/> de puntería en disparos de reacción."
 TinySummary="Bonificación para impactar de disparos de reacción"
 LootTooltip="Al instalar esta mejora de arma, se añade una bonificación de puntería a los disparos de reacción."
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Reacción inmediata avanzada"
 FriendlyNamePlural="Reacciones inmediatas avanzadas"
-BriefSummary="El soldado obtiene una bonificación de 10 de puntería en disparos de reacción."
+BriefSummary="El soldado obtiene una bonificación de <Ability:TRIGGER_ADV_AIM_BONUS/> de puntería en disparos de reacción."
 TinySummary="Bonificación para impactar de disparos de reacción"
 LootTooltip="Al instalar esta mejora de arma, se añade una bonificación de puntería a los disparos de reacción."
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Reacción inmediata de élite"
 FriendlyNamePlural="Reacciones inmediatas de élite"
-BriefSummary="El soldado obtiene una bonificación de 15 de puntería en disparos de reacción."
+BriefSummary="El soldado obtiene una bonificación de <Ability:TRIGGER_SUP_AIM_BONUS/> de puntería en disparos de reacción."
 TinySummary="Bonificación para impactar de disparos de reacción"
 LootTooltip="Al instalar esta mejora de arma, se añade una bonificación de puntería a los disparos de reacción."
 
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Mira telescópica"
 FriendlyNamePlural="Miras telescópicas"
-BriefSummary="Aumenta la puntería en 5 en disparos que no sean de reacción."
+BriefSummary="Aumenta la puntería en <Ability:SCOPE_BSC_AIM_BONUS/> en disparos que no sean de reacción."
 TinySummary="Mayor puntería en disparos que no sean de reacción"
 LootTooltip="Esta mejora de arma añade una bonificación de puntería al arma a la que se acople en los disparos que no sean de reacción."
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Mira telescópica avanzada"
 FriendlyNamePlural="Miras telescópicas avanzadas"
-BriefSummary="Aumenta la puntería en 10 en disparos que no sean de reacción."
+BriefSummary="Aumenta la puntería en <Ability:SCOPE_ADV_AIM_BONUS/> en disparos que no sean de reacción."
 TinySummary="Mayor puntería en disparos que no sean de reacción"
 LootTooltip="Esta mejora de arma añade una bonificación de puntería al arma a la que se acople en los disparos que no sean de reacción."
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Mira telescópica de élite"
 FriendlyNamePlural="Miras telescópicas de élite"
-BriefSummary="Aumenta la puntería en 15 en disparos que no sean de reacción."
+BriefSummary="Aumenta la puntería en <Ability:SCOPE_SUP_AIM_BONUS/> en disparos que no sean de reacción."
 TinySummary="Mayor puntería en disparos que no sean de reacción"
 LootTooltip="Esta mejora de arma añade una bonificación de puntería al arma a la que se acople en los disparos que no sean de reacción."
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Culata"
 FriendlyNamePlural="Culatas"
-BriefSummary="Concede la habilidad Arma estable, que confiere +15 de puntería y +15 de probabilidad de crítico en el siguiente disparo."
+BriefSummary="Concede la habilidad Arma estable, que confiere +<Ability:STOCK_BSC_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_BSC_SW_AIM_BONUS/> de probabilidad de crítico en el siguiente disparo."
 TinySummary="Concede Arma estable."
 LootTooltip="Al instalar esta mejora de arma, concede la habilidad Arma estable."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Culata avanzada"
 FriendlyNamePlural="Culatas avanzadas"
-BriefSummary="Concede la habilidad Arma estable, que confiere +20 de puntería y +20 de probabilidad de crítico en el siguiente disparo."
+BriefSummary="Concede la habilidad Arma estable, que confiere +<Ability:STOCK_ADV_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_ADV_SW_AIM_BONUS/> de probabilidad de crítico en el siguiente disparo."
 TinySummary="Concede Arma estable."
 LootTooltip="Al instalar esta mejora de arma, concede la habilidad Arma estable."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Culata de élite"
 FriendlyNamePlural="Culatas de élite"
-BriefSummary="Concede la habilidad Arma estable, que confiere +25 de puntería y +25 de probabilidad de crítico en el siguiente disparo."
+BriefSummary="Concede la habilidad Arma estable, que confiere +<Ability:STOCK_SUP_SW_AIM_BONUS/> de puntería y +<Ability:STOCK_SUP_SW_AIM_BONUS/> de probabilidad de crítico en el siguiente disparo."
 TinySummary="Concede Arma estable."
 LootTooltip="Al instalar esta mejora de arma, concede la habilidad Arma estable."
 

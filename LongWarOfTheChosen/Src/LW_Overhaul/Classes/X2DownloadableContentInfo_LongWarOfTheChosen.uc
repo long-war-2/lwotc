@@ -2301,6 +2301,36 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'SPRINTER_MOBILITY_LW':
 			Outstring = string(class'X2Ability_LW_RangerAbilitySet'.default.SPRINTER_MOBILITY);
 			return true;
+		case 'REDSCREEN_EFFECT_LW':
+			Outstring = string(-class'X2Item_LWUtilityItems'.default.REDSCREEN_HACK_DEFENSE_CHANGE);
+			return true;
+		case 'SCOPE_BSC_AIM_BONUS':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.SCOPE_BSC_AIM_BONUS);
+			return true;
+		case 'SCOPE_ADV_AIM_BONUS':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.SCOPE_ADV_AIM_BONUS);
+			return true;
+		case 'SCOPE_SUP_AIM_BONUS':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.SCOPE_SUP_AIM_BONUS);
+			return true;
+		case 'TRIGGER_BSC_AIM_BONUS':
+			Outstring = string(round(class'X2Ability_LW_GearAbilities'.default.TRIGGER_BSC_AIM_BONUS * (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
+			return true;
+		case 'TRIGGER_ADV_AIM_BONUS':
+			Outstring = string(round(class'X2Ability_LW_GearAbilities'.default.TRIGGER_ADV_AIM_BONUS * (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
+			return true;
+		case 'TRIGGER_SUP_AIM_BONUS':
+			Outstring = string(round(class'X2Ability_LW_GearAbilities'.default.TRIGGER_SUP_AIM_BONUS * (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
+			return true;
+		case 'STOCK_BSC_SW_AIM_BONUS':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_BSC_SW_AIM_BONUS);
+			return true;
+		case 'STOCK_ADV_SW_AIM_BONUS':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_ADV_SW_AIM_BONUS);
+			return true;
+		case 'STOCK_SUP_SW_AIM_BONUS':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SW_AIM_BONUS);
+			return true;
 		default:
 			return false;
 	}

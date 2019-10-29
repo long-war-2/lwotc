@@ -573,55 +573,55 @@ LocLongDescription="Fornisce un riparo alto ai compagni di squadra, ovunque tu s
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Mirino"
-LocLongDescription="Hai +5 al tiro sui colpi non di reazione con la tua arma primaria."
+LocLongDescription="Hai +<Ability:SCOPE_BSC_AIM_BONUS/> al tiro sui colpi non di reazione con la tua arma primaria."
 LocHelpText="Mirino: bonus al tiro sui colpi non di reazione"
 LocFlyOverText="Mirino"
 
 [Scope_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Mirino avanzato"
-LocLongDescription="Hai +10 al tiro sui colpi non di reazione con la tua arma primaria."
+LocLongDescription="Hai +<Ability:SCOPE_ADV_AIM_BONUS/> al tiro sui colpi non di reazione con la tua arma primaria."
 LocHelpText="Mirino: bonus al tiro sui colpi non di reazione"
 LocFlyOverText="Mirino avanzato"
 
 [Scope_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Mirino d'élite"
-LocLongDescription="Hai +15 al tiro sui colpi non di reazione con la tua arma primaria."
+LocLongDescription="Hai +<Ability:SCOPE_SUP_AIM_BONUS/> al tiro sui colpi non di reazione con la tua arma primaria."
 LocHelpText="Mirino: bonus al tiro sui colpi non di reazione"
 LocFlyOverText="Mirino d'élite"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Grilletto sensibile"
-LocLongDescription="Hai +5 al tiro sui colpi di reazione con la tua arma primaria."
+LocLongDescription="Hai +<Ability:TRIGGER_BSC_AIM_BONUS/> al tiro sui colpi di reazione con la tua arma primaria."
 LocHelpText="Grilletto sensibile: bonus al tiro sui colpi di reazione"
 LocFlyOverText="Grilletto sensibile"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Grilletto sensibile avanzato"
-LocLongDescription="Hai +10 al tiro sui colpi di reazione con la tua arma primaria."
+LocLongDescription="Hai +<Ability:TRIGGER_ADV_AIM_BONUS/> al tiro sui colpi di reazione con la tua arma primaria."
 LocHelpText="Grilletto sensibile: bonus al tiro sui colpi di reazione"
 LocFlyOverText="Grilletto sensibile avanzato"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Grilletto sensibile d'élite"
-LocLongDescription="Hai +15 al tiro sui colpi di reazione con la tua arma primaria."
+LocLongDescription="Hai +<Ability:TRIGGER_SUP_AIM_BONUS/> al tiro sui colpi di reazione con la tua arma primaria."
 LocHelpText="Grilletto sensibile: bonus al tiro sui colpi di reazione"
 LocFlyOverText="Grilletto sensibile d'élite"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Arma stabilizzata"
-LocLongDescription="Attiva l'abilità Arma stabilizzata per ottenere +15 alla Mira e +15 Probabilità di critico per il prossimo colpo con l'arma in uso. Il bonus si perde se usi azioni non di tiro o vieni ferito. Gli usi ripetuti accumulano il bonus."
+LocLongDescription="Attiva l'abilità Arma stabilizzata per ottenere +<Ability:STOCK_BSC_SW_AIM_BONUS/> alla Mira e +<Ability:STOCK_BSC_SW_AIM_BONUS/> Probabilità di critico per il prossimo colpo con l'arma in uso. Il bonus si perde se usi azioni non di tiro o vieni ferito. Gli usi ripetuti accumulano il bonus."
 LocHelpText="Arma stabilizzata: bonus al tiro per il prossimo colpo se non sei ferito e non hai eseguito altre azioni."
 LocFlyOverText="Arma stabilizzata"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Arma stabilizzata"
-LocLongDescription="Attiva l'abilità Arma stabilizzata per ottenere +20 alla Mira e +20 Probabilità di critico per il prossimo colpo con l'arma in uso. Il bonus si perde se usi azioni non di tiro o vieni ferito. Gli usi ripetuti accumulano il bonus."
+LocLongDescription="Attiva l'abilità Arma stabilizzata per ottenere +<Ability:STOCK_ADV_SW_AIM_BONUS/> alla Mira e +<Ability:STOCK_ADV_SW_AIM_BONUS/> Probabilità di critico per il prossimo colpo con l'arma in uso. Il bonus si perde se usi azioni non di tiro o vieni ferito. Gli usi ripetuti accumulano il bonus."
 LocHelpText="Arma stabilizzata: bonus al tiro per il prossimo colpo se non sei ferito e non hai eseguito altre azioni."
 LocFlyOverText="Arma stabilizzata"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Arma stabilizzata"
-LocLongDescription="Attiva l'abilità Arma stabilizzata per ottenere +25 alla Mira e +25 Probabilità di critico per il prossimo colpo con l'arma in uso. Il bonus si perde se usi azioni non di tiro o vieni ferito. Gli usi ripetuti accumulano il bonus."
+LocLongDescription="Attiva l'abilità Arma stabilizzata per ottenere +<Ability:STOCK_SUP_SW_AIM_BONUS/> alla Mira e +<Ability:STOCK_SUP_SW_AIM_BONUS/> Probabilità di critico per il prossimo colpo con l'arma in uso. Il bonus si perde se usi azioni non di tiro o vieni ferito. Gli usi ripetuti accumulano il bonus."
 LocHelpText="Arma stabilizzata: bonus al tiro per il prossimo colpo se non sei ferito e non hai eseguito altre azioni."
 LocFlyOverText="Arma stabilizzata"
 
@@ -992,63 +992,63 @@ m_strRemoveUpgrade="RIMUOVI POTENZIAMENTO"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Grilletto sensibile"
 FriendlyNamePlural="Grilletti sensibili"
-BriefSummary="Il soldato ottiene 5 di Mira bonus sui colpi di reazione."
+BriefSummary="Il soldato ottiene <Ability:TRIGGER_BSC_AIM_BONUS/> di Mira bonus sui colpi di reazione."
 TinySummary="Bonus ai colpi di reazione"
 LootTooltip="Questo potenziamento per l'arma, se installato, aggiunge Mira bonus ai colpi di reazione."
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Grilletto sensibile avanzato"
 FriendlyNamePlural="Grilletti sensibili avanzati"
-BriefSummary="Il soldato ottiene 10 di Mira bonus sui colpi di reazione."
+BriefSummary="Il soldato ottiene <Ability:TRIGGER_ADV_AIM_BONUS/> di Mira bonus sui colpi di reazione."
 TinySummary="Bonus ai colpi di reazione"
 LootTooltip="Questo potenziamento per l'arma, se installato, aggiunge Mira bonus ai colpi di reazione."
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Grilletto sensibile d'élite"
 FriendlyNamePlural="Grilletti sensibili d'élite"
-BriefSummary="Il soldato ottiene 15 di Mira bonus sui colpi di reazione."
+BriefSummary="Il soldato ottiene <Ability:TRIGGER_SUP_AIM_BONUS/> di Mira bonus sui colpi di reazione."
 TinySummary="Bonus ai colpi di reazione"
 LootTooltip="Questo potenziamento per l'arma, se installato, aggiunge Mira bonus ai colpi di reazione."
 
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Mirino"
 FriendlyNamePlural="Mirini"
-BriefSummary="Aumenta di 5 la Mira sui colpi non di reazione."
+BriefSummary="Aumenta di <Ability:SCOPE_BSC_AIM_BONUS/> la Mira sui colpi non di reazione."
 TinySummary="Mira aumentata (no reazione)"
 LootTooltip="Questo potenziamento conferisce un bonus alla Mira all'arma su cui è montato per i colpi non di reazione."
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Mirino avanzato"
 FriendlyNamePlural="Mirini avanzati"
-BriefSummary="Aumenta di 10 la Mira sui colpi non di reazione."
+BriefSummary="Aumenta di <Ability:SCOPE_ADV_AIM_BONUS/> la Mira sui colpi non di reazione."
 TinySummary="Mira aumentata (no reazione)"
 LootTooltip="Questo potenziamento conferisce un bonus alla Mira all'arma su cui è montato per i colpi non di reazione."
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Mirino d'élite"
 FriendlyNamePlural="Mirini d'élite"
-BriefSummary="Aumenta di 15 la Mira sui colpi non di reazione."
+BriefSummary="Aumenta di <Ability:SCOPE_SUP_AIM_BONUS/> la Mira sui colpi non di reazione."
 TinySummary="Mira aumentata (no reazione)"
 LootTooltip="Questo potenziamento conferisce un bonus alla Mira all'arma su cui è montato per i colpi non di reazione."
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Cassa"
 FriendlyNamePlural="Casse"
-BriefSummary="Conferisce l'abilità Arma stabilizzata, che dà +15 di Mira e +15 di Probabilità di critico al prossimo colpo."
+BriefSummary="Conferisce l'abilità Arma stabilizzata, che dà +<Ability:STOCK_BSC_SW_AIM_BONUS/> di Mira e +<Ability:STOCK_BSC_SW_AIM_BONUS/> di Probabilità di critico al prossimo colpo."
 TinySummary="Conferisce Arma stabilizzata"
 LootTooltip="Questo potenziamento per l'arma, se installato, conferisce l'abilità Arma stabilizzata."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Cassa avanzata"
 FriendlyNamePlural="Casse avanzate"
-BriefSummary="Conferisce l'abilità Arma stabilizzata, che dà +20 di Mira e +20 di Probabilità di critico al prossimo colpo."
+BriefSummary="Conferisce l'abilità Arma stabilizzata, che dà +<Ability:STOCK_ADV_SW_AIM_BONUS/> di Mira e +<Ability:STOCK_ADV_SW_AIM_BONUS/> di Probabilità di critico al prossimo colpo."
 TinySummary="Conferisce Arma stabilizzata"
 LootTooltip="Questo potenziamento per l'arma, se installato, conferisce l'abilità Arma stabilizzata."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Cassa d'élite"
 FriendlyNamePlural="Casse d'élite"
-BriefSummary="Conferisce l'abilità Arma stabilizzata, che dà +25 di Mira e +25 di Probabilità di critico al prossimo colpo."
+BriefSummary="Conferisce l'abilità Arma stabilizzata, che dà +<Ability:STOCK_SUP_SW_AIM_BONUS/> di Mira e +<Ability:STOCK_SUP_SW_AIM_BONUS/> di Probabilità di critico al prossimo colpo."
 TinySummary="Conferisce Arma stabilizzata"
 LootTooltip="Questo potenziamento per l'arma, se installato, conferisce l'abilità Arma stabilizzata."
 

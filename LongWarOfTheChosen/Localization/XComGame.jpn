@@ -574,55 +574,55 @@ LocLongDescription="自分がどこにいようと、味方を高遮へい物で
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="スコープ"
-LocLongDescription="メイン武器による射撃（反応射撃を除く）の命中率+5。"
+LocLongDescription="メイン武器による射撃（反応射撃を除く）の命中率+<Ability:SCOPE_BSC_AIM_BONUS/>。"
 LocHelpText="射撃（反応射撃を除く）の命中率を上昇させるスコープ"
 LocFlyOverText="スコープ"
 
 [Scope_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="改良型スコープ"
-LocLongDescription="メイン武器による射撃（反応射撃を除く）の命中率+10。"
+LocLongDescription="メイン武器による射撃（反応射撃を除く）の命中率+<Ability:SCOPE_ADV_AIM_BONUS/>。"
 LocHelpText="射撃（反応射撃を除く）の命中率を上昇させるスコープ"
 LocFlyOverText="改良型スコープ"
 
 [Scope_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="エリート・スコープ"
-LocLongDescription="メイン武器による射撃（反応射撃を除く）の命中率+15。"
+LocLongDescription="メイン武器による射撃（反応射撃を除く）の命中率+<Ability:SCOPE_SUP_AIM_BONUS/>。"
 LocHelpText="射撃（反応射撃を除く）の命中率を上昇させるスコープ"
 LocFlyOverText="エリート・スコープ"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="ヘアトリガー"
-LocLongDescription="メイン武器での反応射撃時に、命中率+5。"
+LocLongDescription="メイン武器での反応射撃時に、命中率+<Ability:TRIGGER_BSC_AIM_BONUS/>。"
 LocHelpText="ヘアトリガー：反応射撃時の命中率ボーナス"
 LocFlyOverText="ヘアトリガー"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="改良型ヘアトリガー"
-LocLongDescription="メイン武器での反応射撃時に、命中率+10。"
+LocLongDescription="メイン武器での反応射撃時に、命中率+<Ability:TRIGGER_ADV_AIM_BONUS/>。"
 LocHelpText="ヘアトリガー：反応射撃時の命中率ボーナス"
 LocFlyOverText="改良型ヘアトリガー"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="エリート・ヘアトリガー"
-LocLongDescription="メイン武器での反応射撃時に、命中率+15。"
+LocLongDescription="メイン武器での反応射撃時に、命中率+<Ability:TRIGGER_SUP_AIM_BONUS/>。"
 LocHelpText="ヘアトリガー：反応射撃時の命中率ボーナス"
 LocFlyOverText="エリート・ヘアトリガー"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="ステディウェポン"
-LocLongDescription="ステディウェポンのアビリティを発動させると、次の装備武器による射撃の命中率+15、クリティカル率+15。行動または負傷するとボーナスは消失する。"
+LocLongDescription="ステディウェポンのアビリティを発動させると、次の装備武器による射撃の命中率+<Ability:STOCK_BSC_SW_AIM_BONUS/>、クリティカル率+<Ability:STOCK_BSC_SW_AIM_BONUS/>。行動または負傷するとボーナスは消失する。"
 LocHelpText="ステディウェポン：負傷しておらず、他の行動も取っていない場合、次の射撃の命中率にボーナスが得られる。"
 LocFlyOverText="ステディウェポン"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="ステディウェポン"
-LocLongDescription="ステディウェポンのアビリティを発動させると、次の装備武器による射撃の命中率+20、クリティカル率+20。行動または負傷するとボーナスは消失する。"
+LocLongDescription="ステディウェポンのアビリティを発動させると、次の装備武器による射撃の命中率+<Ability:STOCK_ADV_SW_AIM_BONUS/>、クリティカル率+<Ability:STOCK_ADV_SW_AIM_BONUS/>。行動または負傷するとボーナスは消失する。"
 LocHelpText="ステディウェポン：負傷しておらず、他の行動も取っていない場合、次の射撃の命中率にボーナスが得られる。"
 LocFlyOverText="ステディウェポン"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="ステディウェポン"
-LocLongDescription="ステディウェポンのアビリティを発動させると、次の装備武器による射撃の命中率+25、クリティカル率+25。行動または負傷するとボーナスは消失する。"
+LocLongDescription="ステディウェポンのアビリティを発動させると、次の装備武器による射撃の命中率+<Ability:STOCK_SUP_SW_AIM_BONUS/>、クリティカル率+<Ability:STOCK_SUP_SW_AIM_BONUS/>。行動または負傷するとボーナスは消失する。"
 LocHelpText="ステディウェポン：負傷しておらず、他の行動も取っていない場合、次の射撃の命中率にボーナスが得られる。"
 LocFlyOverText="ステディウェポン"
 
@@ -993,63 +993,63 @@ m_strRemoveUpgrade="アップグレード解除"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="ヘアトリガー"
 FriendlyNamePlural="ヘアトリガー"
-BriefSummary="反応射撃時、兵士は命中率ボーナス+5を得る。"
+BriefSummary="反応射撃時、兵士は命中率ボーナス+<Ability:TRIGGER_BSC_AIM_BONUS/>を得る。"
 TinySummary="反応射撃の命中率上昇"
 LootTooltip="この武器アップグレードは装着時、反応射撃にボーナスが追加される。"
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="改良型ヘアトリガー"
 FriendlyNamePlural="改良型ヘアトリガー"
-BriefSummary="反応射撃時、兵士は命中率ボーナス+10を得る。"
+BriefSummary="反応射撃時、兵士は命中率ボーナス+<Ability:TRIGGER_ADV_AIM_BONUS/>を得る。"
 TinySummary="反応射撃の命中率上昇"
 LootTooltip="この武器アップグレードは装着時、反応射撃にボーナスが追加される。"
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="エリート・ヘアトリガー"
 FriendlyNamePlural="エリート・ヘアトリガー"
-BriefSummary="反応射撃時、兵士は命中率ボーナス+15を得る。"
+BriefSummary="反応射撃時、兵士は命中率ボーナス+<Ability:TRIGGER_SUP_AIM_BONUS/>を得る。"
 TinySummary="反応射撃の命中率上昇"
 LootTooltip="この武器アップグレードは装着時、反応射撃にボーナスが追加される。"
 
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="スコープ"
 FriendlyNamePlural="スコープ"
-BriefSummary="射撃（反応射撃を除く）の命中率が5上昇する。"
+BriefSummary="射撃（反応射撃を除く）の命中率が<Ability:SCOPE_BSC_AIM_BONUS/>上昇する。"
 TinySummary="射撃（反応射撃を除く）の命中率が上昇"
 LootTooltip="この武器アップグレードは、装着した武器の射撃（反応射撃を除く）に命中率ボーナスをもたらす。"
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="改良型スコープ"
 FriendlyNamePlural="改良型スコープ"
-BriefSummary="射撃（反応射撃を除く）の命中率が10上昇する。"
+BriefSummary="射撃（反応射撃を除く）の命中率が<Ability:SCOPE_ADV_AIM_BONUS/>上昇する。"
 TinySummary="射撃（反応射撃を除く）の命中率が上昇"
 LootTooltip="この武器アップグレードは、装着した武器の射撃（反応射撃を除く）に命中率ボーナスをもたらす。"
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="エリート・スコープ"
 FriendlyNamePlural="エリート・スコープ"
-BriefSummary="射撃（反応射撃を除く）の命中率が15上昇する。"
+BriefSummary="射撃（反応射撃を除く）の命中率が<Ability:SCOPE_SUP_AIM_BONUS/>上昇する。"
 TinySummary="射撃（反応射撃を除く）の命中率が上昇"
 LootTooltip="この武器アップグレードは、装着した武器の射撃（反応射撃を除く）に命中率ボーナスをもたらす。"
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="ストック"
 FriendlyNamePlural="ストック"
-BriefSummary="ステディウェポンのアビリティが与えられ、次の射撃の命中率+15、クリティカル率+15。"
+BriefSummary="ステディウェポンのアビリティが与えられ、次の射撃の命中率+<Ability:STOCK_BSC_SW_AIM_BONUS/>、クリティカル率+<Ability:STOCK_BSC_SW_AIM_BONUS/>。"
 TinySummary="ステディウェポンを獲得"
 LootTooltip="この武器アップグレードを装着すれば、ステディウェポンのアビリティが付与される。"
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="改良型ストック"
 FriendlyNamePlural="改良型ストック"
-BriefSummary="ステディウェポンのアビリティが与えられ、次の射撃の命中率+20、クリティカル率+20。"
+BriefSummary="ステディウェポンのアビリティが与えられ、次の射撃の命中率+<Ability:STOCK_ADV_SW_AIM_BONUS/>、クリティカル率+<Ability:STOCK_ADV_SW_AIM_BONUS/>。"
 TinySummary="ステディウェポンを獲得"
 LootTooltip="この武器アップグレードを装着すれば、ステディウェポンのアビリティが付与される。"
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="エリート・ストック"
 FriendlyNamePlural="エリート・ストック"
-BriefSummary="ステディウェポンのアビリティが与えられ、次の射撃の命中率+25、クリティカル率+25。"
+BriefSummary="ステディウェポンのアビリティが与えられ、次の射撃の命中率+<Ability:STOCK_SUP_SW_AIM_BONUS/>、クリティカル率+<Ability:STOCK_SUP_SW_AIM_BONUS/>。"
 TinySummary="ステディウェポンを獲得"
 LootTooltip="この武器アップグレードを装着すれば、ステディウェポンのアビリティが付与される。"
 

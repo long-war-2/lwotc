@@ -574,55 +574,55 @@ LocLongDescription="Daje towarzyszom w twoim pobliżu wysoką osłonę. Poruszen
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Luneta"
-LocLongDescription="Otrzymujesz premię +5 do szansy trafienia strzału niebędącego strzałem reakcji oddanego z broni głównej."
+LocLongDescription="Otrzymujesz premię +<Ability:SCOPE_BSC_AIM_BONUS/> do szansy trafienia strzału niebędącego strzałem reakcji oddanego z broni głównej."
 LocHelpText="Luneta: premia do szansy trafienia strzałów innych niż strzały reakcji"
 LocFlyOverText="Luneta"
 
 [Scope_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Zaawansowana luneta"
-LocLongDescription="Otrzymujesz premię +10 do szansy trafienia strzału niebędącego strzałem reakcji oddanego z głównej broni."
+LocLongDescription="Otrzymujesz premię +<Ability:SCOPE_ADV_AIM_BONUS/> do szansy trafienia strzału niebędącego strzałem reakcji oddanego z głównej broni."
 LocHelpText="Luneta: premia do szansy trafienia strzałów innych niż strzały reakcji"
 LocFlyOverText="Zaawansowana luneta"
 
 [Scope_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Elitarna luneta"
-LocLongDescription="Otrzymujesz premię +15 do szansy trafienia strzału niebędącego strzałem reakcji oddanego z broni głównej."
+LocLongDescription="Otrzymujesz premię +<Ability:SCOPE_SUP_AIM_BONUS/> do szansy trafienia strzału niebędącego strzałem reakcji oddanego z broni głównej."
 LocHelpText="Luneta: premia do szansy trafienia strzałów innych niż strzały reakcji"
 LocFlyOverText="Elitarna luneta"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Miękki spust"
-LocLongDescription="Otrzymujesz premię +5 do szansy trafienia strzału reakcji oddanego z broni głównej."
+LocLongDescription="Otrzymujesz premię +<Ability:TRIGGER_BSC_AIM_BONUS/> do szansy trafienia strzału reakcji oddanego z broni głównej."
 LocHelpText="Miękki spust: premia do szansy trafienia strzału reakcji"
 LocFlyOverText="Miękki spust"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Zaawansowany miękki spust"
-LocLongDescription="Otrzymujesz premię +10 do szansy trafienia strzału reakcji oddanego z broni głównej."
+LocLongDescription="Otrzymujesz premię +<Ability:TRIGGER_ADV_AIM_BONUS/> do szansy trafienia strzału reakcji oddanego z broni głównej."
 LocHelpText="Miękki spust: premia do szansy trafienia strzału reakcji"
 LocFlyOverText="Zaawansowany miękki spust"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Elitarny miękki spust"
-LocLongDescription="Otrzymujesz premię +15 do szansy trafienia strzału reakcji oddanego z głównej broni."
+LocLongDescription="Otrzymujesz premię +<Ability:TRIGGER_SUP_AIM_BONUS/> do szansy trafienia strzału reakcji oddanego z głównej broni."
 LocHelpText="Miękki spust: premia do szansy trafienia strzału reakcji"
 LocFlyOverText="Elitarny miękki spust"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Stabilizacja broni"
-LocLongDescription="Aktywuj zdolność \"stabilizacja broni\", aby uzyskać premię +15 do celności i +15 do szansy na trafienie krytyczne następnego strzału z aktualnie wybranej broni. Premia przepada jeśli następną akcją nie jest strzał lub objęty nią żołnierz zostanie ranny."
+LocLongDescription="Aktywuj zdolność \"stabilizacja broni\", aby uzyskać premię +<Ability:STOCK_BSC_SW_AIM_BONUS/> do celności i +<Ability:STOCK_BSC_SW_AIM_BONUS/> do szansy na trafienie krytyczne następnego strzału z aktualnie wybranej broni. Premia przepada jeśli następną akcją nie jest strzał lub objęty nią żołnierz zostanie ranny."
 LocHelpText="Stabilizacja broni: premia do szansy trafienia następnego strzału, jeśli żołnierz nie jest ranny, ani nie wykonał przed strzałem innej akcji"
 LocFlyOverText="Stabilizacja broni"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Stabilizacja broni"
-LocLongDescription="Aktywuj zdolność \"stabilizacja broni\", aby uzyskać premię +20 do celności i +20 do szansy na trafienie krytyczne następnego strzału z aktualnie wybranej broni. Premia przepada jeśli następną akcją nie jest strzał lub objęty nią żołnierz zostanie ranny."
+LocLongDescription="Aktywuj zdolność \"stabilizacja broni\", aby uzyskać premię +<Ability:STOCK_ADV_SW_AIM_BONUS/> do celności i +<Ability:STOCK_ADV_SW_AIM_BONUS/> do szansy na trafienie krytyczne następnego strzału z aktualnie wybranej broni. Premia przepada jeśli następną akcją nie jest strzał lub objęty nią żołnierz zostanie ranny."
 LocHelpText="Stabilizacja broni: premia do szansy trafienia następnego strzału, jeśli żołnierz nie jest ranny, ani nie wykonał przed strzałem innej akcji"
 LocFlyOverText="Stabilizacja broni"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Stabilizacja broni"
-LocLongDescription="Aktywuj zdolność \"stabilizacja broni\", aby uzyskać premię +25 do celności i +25 do szansy na trafienie krytyczne następnego strzału z aktualnie wybranej broni. Premia przepada jeśli następną akcją nie jest strzał lub objęty nią żołnierz zostanie ranny"
+LocLongDescription="Aktywuj zdolność \"stabilizacja broni\", aby uzyskać premię +<Ability:STOCK_SUP_SW_AIM_BONUS/> do celności i +<Ability:STOCK_SUP_SW_AIM_BONUS/> do szansy na trafienie krytyczne następnego strzału z aktualnie wybranej broni. Premia przepada jeśli następną akcją nie jest strzał lub objęty nią żołnierz zostanie ranny"
 LocHelpText="Stabilizacja broni: premia do szansy trafienia następnego strzału, jeśli żołnierz nie jest ranny, ani nie wykonał przed strzałem innej akcji"
 LocFlyOverText="Stabilizacja broni"
 
@@ -993,63 +993,63 @@ m_strRemoveUpgrade="USUŃ ULEPSZENIE"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Miękki spust"
 FriendlyNamePlural="Miękkie spusty"
-BriefSummary="Żołnierz otrzymuje premię +5 do celności strzałów reakcji."
+BriefSummary="Żołnierz otrzymuje premię +<Ability:TRIGGER_BSC_AIM_BONUS/> do celności strzałów reakcji."
 TinySummary="Premia do celności strzału reakcji"
 LootTooltip="Po zainstalowaniu to ulepszenie broni zapewnia premię do celności strzałów reakcji."
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Zaawansowany miękki spust"
 FriendlyNamePlural="Zaawansowane miękkie spusty"
-BriefSummary="Żołnierz otrzymuje premię +10 do celności strzałów reakcji."
+BriefSummary="Żołnierz otrzymuje premię +<Ability:TRIGGER_ADV_AIM_BONUS/> do celności strzałów reakcji."
 TinySummary="Premia do celności strzału reakcji"
 LootTooltip="Po zainstalowaniu to ulepszenie broni zapewnia premię do celności strzałów reakcji."
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elitarny miękki spust"
 FriendlyNamePlural="Elitarne miękkie spusty"
-BriefSummary="Żołnierz otrzymuje premię +15 do celności strzałów reakcji."
+BriefSummary="Żołnierz otrzymuje premię +<Ability:TRIGGER_ADV_AIM_BONUS/> do celności strzałów reakcji."
 TinySummary="Premia do celności strzału reakcji"
 LootTooltip="Po zainstalowaniu to ulepszenie broni zapewnia premię do celności strzałów reakcji."
 
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Luneta"
 FriendlyNamePlural="Lunety"
-BriefSummary="Zwiększa o 5 celność strzałów innych niż strzały reakcji."
+BriefSummary="Zwiększa o <Ability:SCOPE_BSC_AIM_BONUS/> celność strzałów innych niż strzały reakcji."
 TinySummary="Zwiększona celność strzałów innych niż strzały reakcji"
 LootTooltip="Po zainstalowaniu w broni to ulepszenie zapewnia premię do celności podczas oddawania strzałów innych niż strzały reakcji."
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Zaawansowana luneta"
 FriendlyNamePlural="Zaawansowane lunety"
-BriefSummary="Zwiększa o 10 celność strzałów innych niż strzały reakcji."
+BriefSummary="Zwiększa o <Ability:SCOPE_ADV_AIM_BONUS/> celność strzałów innych niż strzały reakcji."
 TinySummary="Zwiększona celność strzałów innych niż strzały reakcji"
 LootTooltip="Po zainstalowaniu w broni to ulepszenie zapewnia premię do celności podczas oddawania strzałów innych niż strzały reakcji."
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elitarna luneta"
 FriendlyNamePlural="Elitarne lunety"
-BriefSummary="Zwiększa o 15 celność strzałów innych niż strzały reakcji."
+BriefSummary="Zwiększa o <Ability:SCOPE_SUP_AIM_BONUS/> celność strzałów innych niż strzały reakcji."
 TinySummary="Zwiększona celność strzałów innych niż strzały reakcji"
 LootTooltip="Po zainstalowaniu w broni to ulepszenie zapewnia premię do celności podczas oddawania strzałów innych niż strzały reakcji."
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Kolba"
 FriendlyNamePlural="Kolby"
-BriefSummary="Zapewnia zdolność \"stabilizacja broni\", która daje +15 celności i +15 szansy trafienia krytycznego następnego strzału."
+BriefSummary="Zapewnia zdolność \"stabilizacja broni\", która daje +<Ability:STOCK_BSC_SW_AIM_BONUS/> celności i +<Ability:STOCK_BSC_SW_AIM_BONUS/> szansy trafienia krytycznego następnego strzału."
 TinySummary="Daje zdolność \"stabilizacja broni\""
 LootTooltip="Zainstalowanie tego ulepszenia broni daje zdolność \"stabilizacja broni\"."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Zaawansowana kolba"
 FriendlyNamePlural="Zaawansowane kolby"
-BriefSummary="Zapewnia zdolność \"stabilizacja broni\", która daje +20 celności i +20 szansy trafienia krytycznego następnego strzału."
+BriefSummary="Zapewnia zdolność \"stabilizacja broni\", która daje +<Ability:STOCK_ADV_SW_AIM_BONUS/> celności i +<Ability:STOCK_ADV_SW_AIM_BONUS/> szansy trafienia krytycznego następnego strzału."
 TinySummary="Daje zdolność \"stabilizacja broni\""
 LootTooltip="Zainstalowanie tego ulepszenia broni daje zdolność \"stabilizacja broni\"."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elitarna kolba"
 FriendlyNamePlural="Elitarne kolby"
-BriefSummary="Zapewnia zdolność \"stabilizacja broni\", która daje +25 celności i +25 szansy trafienia krytycznego następnego strzału."
+BriefSummary="Zapewnia zdolność \"stabilizacja broni\", która daje +<Ability:STOCK_SUP_SW_AIM_BONUS/> celności i +<Ability:STOCK_SUP_SW_AIM_BONUS/> szansy trafienia krytycznego następnego strzału."
 TinySummary="Daje zdolność \"stabilizacja broni\""
 LootTooltip="Zainstalowanie tego ulepszenia broni daje zdolność \"stabilizacja broni\"."
 
