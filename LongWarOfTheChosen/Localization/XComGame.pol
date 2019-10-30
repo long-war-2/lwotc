@@ -647,8 +647,8 @@ LocHelpText="Premia +2 do obrażeń przy trafieniu w nieopancerzony cel. +1 punk
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Pociski \"Czerwony Ekran\""
 LocFlyOverText="Pociski \"Czerwony Ekran\""
-LocLongDescription="Każde trafienie obniża obronę celu przed hakowaniem celu o 25 punktów."
-LocHelpText="Każde trafienie obniża obronę celu przed hakowaniem celu o 25 punktów."
+LocLongDescription="Każde trafienie obniża obronę celu przed hakowaniem celu o <Ability:REDSCREEN_EFFECT_LW/> punktów."
+LocHelpText="Każde trafienie obniża obronę celu przed hakowaniem celu o <Ability:REDSCREEN_EFFECT_LW/> punktów."
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Pociski \"Stiletto\""

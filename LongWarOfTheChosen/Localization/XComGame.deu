@@ -647,8 +647,8 @@ LocHelpText="Fügt nicht gepanzerten Zielen +2 Schaden zu. Um +1 erhöhter Schad
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Redscreen-Geschosse"
 LocFlyOverText="Redscreen-Geschosse"
-LocLongDescription="Verringert mit jedem Treffer die Hackverteidigung des Ziels um 25."
-LocHelpText="Verringert mit jedem Treffer die Hackverteidigung des Ziels um 25."
+LocLongDescription="Verringert mit jedem Treffer die Hackverteidigung des Ziels um <Ability:REDSCREEN_EFFECT_LW/>."
+LocHelpText="Verringert mit jedem Treffer die Hackverteidigung des Ziels um <Ability:REDSCREEN_EFFECT_LW/>."
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Stilettgeschosse"

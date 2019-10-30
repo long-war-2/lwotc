@@ -646,8 +646,8 @@ LocHelpText="Infligge +2 danni ai bersagli non corazzati. +1 danno aggiuntivo a 
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Proiettili Schermo rosso"
 LocFlyOverText="Proiettili Schermo rosso"
-LocLongDescription="Abbassa la difesa dalla violazione del bersaglio di 25 con ogni colpo."
-LocHelpText="Abbassa la difesa dalla violazione del bersaglio di 25 con ogni colpo."
+LocLongDescription="Abbassa la difesa dalla violazione del bersaglio di <Ability:REDSCREEN_EFFECT_LW/> con ogni colpo."
+LocHelpText="Abbassa la difesa dalla violazione del bersaglio di <Ability:REDSCREEN_EFFECT_LW/> con ogni colpo."
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Proiettili Stiletto"

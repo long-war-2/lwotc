@@ -647,8 +647,8 @@ LocHelpText="방어구를 입지 않은 목표물에게 피해 2를 입힙니다
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="레드스크린 탄환"
 LocFlyOverText="레드스크린 탄환"
-LocLongDescription="명중할 때마다 목표물의 해킹 방어력을 25 낮춥니다."
-LocHelpText="명중할 때마다 목표물의 해킹 방어력을 25 낮춥니다."
+LocLongDescription="명중할 때마다 목표물의 해킹 방어력을 <Ability:REDSCREEN_EFFECT_LW/> 낮춥니다."
+LocHelpText="명중할 때마다 목표물의 해킹 방어력을 <Ability:REDSCREEN_EFFECT_LW/> 낮춥니다."
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="스틸레토 탄환"

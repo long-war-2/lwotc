@@ -647,8 +647,8 @@ LocHelpText="Inflige +2 de daño a objetivos sin blindaje. +1 de daño contra to
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Balas Pantalla roja"
 LocFlyOverText="Balas Pantalla roja"
-LocLongDescription="Reduce en 25 la defensa al pirateo del objetivo con cada impacto."
-LocHelpText="Reduce en 25 la defensa al pirateo del objetivo con cada impacto."
+LocLongDescription="Reduce en <Ability:REDSCREEN_EFFECT_LW/> la defensa al pirateo del objetivo con cada impacto."
+LocHelpText="Reduce en <Ability:REDSCREEN_EFFECT_LW/> la defensa al pirateo del objetivo con cada impacto."
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Balas estilete"

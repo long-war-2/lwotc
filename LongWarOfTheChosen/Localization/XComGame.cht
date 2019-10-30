@@ -647,8 +647,8 @@ LocHelpText="對沒有護甲的目標造成+2傷害。對所有敵人+1傷害."
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="紅屏子彈"
 LocFlyOverText="紅屏子彈"
-LocLongDescription="每次命中可以降低目標25點駭客防禦。"
-LocHelpText="每次命中可以降低目標25點駭客防禦。"
+LocLongDescription="每次命中可以降低目標<Ability:REDSCREEN_EFFECT_LW/>點駭客防禦。"
+LocHelpText="每次命中可以降低目標<Ability:REDSCREEN_EFFECT_LW/>點駭客防禦。"
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="短劍子彈"

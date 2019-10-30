@@ -679,8 +679,10 @@ LocHelpText="Does +1 damage to all targets and +2 damage to unarmored targets."
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Redscreen Rounds"
 LocFlyOverText="Redscreen Rounds"
-LocLongDescription="Lowers target's hack defense by 25 with every hit."
-LocHelpText="Lowers target's hack defense by 25 with every hit."
+; LWOTC Needs Translation
+LocLongDescription="Lowers target's hack defense by <Ability:REDSCREEN_EFFECT_LW/>. Does not stack, but does refresh."
+LocHelpText="Lowers target's hack defense by <Ability:REDSCREEN_EFFECT_LW/>. Does not stack, but does refresh."
+; Ends Translation
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Stiletto Rounds"

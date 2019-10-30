@@ -647,8 +647,8 @@ LocHelpText="アーマーを装備していないターゲットに対してダ�
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="レッドスクリーン弾"
 LocFlyOverText="レッドスクリーン弾"
-LocLongDescription="攻撃が命中するたびに、目標のハッキング防御力を25低下させる。"
-LocHelpText="攻撃が命中するたびに、目標のハッキング防御力を25低下させる。"
+LocLongDescription="攻撃が命中するたびに、目標のハッキング防御力を<Ability:REDSCREEN_EFFECT_LW/>低下させる。"
+LocHelpText="攻撃が命中するたびに、目標のハッキング防御力を<Ability:REDSCREEN_EFFECT_LW/>低下させる。"
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="スティレット弾"

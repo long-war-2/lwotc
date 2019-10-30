@@ -650,8 +650,8 @@ LocHelpText="Infligent 2 points de dégât supplémentaires aux cibles sans arm
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Munitions Écran rouge"
 LocFlyOverText="Munitions Écran rouge"
-LocLongDescription="Chaque coup diminue de 25 la défense anti-piratage de la cible."
-LocHelpText="Chaque coup diminue de 25 la défense anti-piratage de la cible."
+LocLongDescription="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible."
+LocHelpText="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible."
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Munitions Poignard"
