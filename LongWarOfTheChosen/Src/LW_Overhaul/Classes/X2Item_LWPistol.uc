@@ -46,72 +46,16 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> Weapons;
 
 	`LWTrace("  >> X2Item_LWPistol.CreateTemplates()");
-	
-	Weapons.AddItem(CreateTemplate_LWPistol_Conventional());
+
 	Weapons.AddItem(CreateTemplate_LWPistol_Laser());
-	Weapons.AddItem(CreateTemplate_LWPistol_Magnetic());
 	Weapons.AddItem(CreateTemplate_LWPistol_Coil());
-	Weapons.AddItem(CreateTemplate_LWPistol_Beam());
 
 	return Weapons;
 }
 
 // **************************************************************************
-// ***                          LWPistol                                    ***
+// ***                          LWPistol                                  ***
 // **************************************************************************
-static function X2DataTemplate CreateTemplate_LWPistol_Conventional()
-{
-	local X2WeaponTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'LWPistol_CV');
-	Template.WeaponPanelImage = "_LWPistol";                       // used by the UI. Probably determines iconview of the weapon.
-
-	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'pistol';
-	Template.WeaponTech = 'conventional';
-	Template.strImage = "img:///UILibrary_Common.ConvSecondaryWeapons.ConvPistol";
-	Template.EquipSound = "Secondary_Weapon_Equip_Conventional";
-	Template.Tier = 0;
-
-	Template.RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_CONVENTIONAL_RANGE;
-	Template.BaseDamage = default.LWPistol_CONVENTIONAL_BASEDAMAGE;
-	Template.Aim = default.LWPistol_CONVENTIONAL_AIM;
-	Template.CritChance = default.LWPistol_CONVENTIONAL_CRITCHANCE;
-	Template.iClipSize = default.LWPistol_CONVENTIONAL_ICLIPSIZE;
-	Template.iSoundRange = default.LWPistol_CONVENTIONAL_ISOUNDRANGE;
-	Template.iEnvironmentDamage = default.LWPistol_CONVENTIONAL_IENVIRONMENTDAMAGE;
-
-	Template.NumUpgradeSlots = 1;
-
-	Template.InfiniteAmmo = true;
-	Template.OverwatchActionPoint = class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint;
-	
-	Template.InventorySlot = eInvSlot_Utility;
-	Template.StowedLocation = eSlot_RearBackPack;
-	Template.Abilities.AddItem('PistolStandardShot');
-	Template.Abilities.AddItem('PistolOverwatch');
-	Template.Abilities.AddItem('PistolOverwatchShot');
-	Template.Abilities.AddItem('PistolReturnFire');
-	Template.Abilities.AddItem('HotLoadAmmo');
-	Template.Abilities.AddItem('Reload');
-
-	Template.SetAnimationNameForAbility('FanFire', 'FF_FireMultiShotConvA');	
-	
-	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "WP_Pistol_CV.WP_Pistol_CV";
-
-	Template.iPhysicsImpulse = 5;
-	
-	Template.StartingItem = true;
-	Template.CanBeBuilt = false;
-
-	Template.DamageTypeTemplateName = 'Projectile_Conventional';
-
-	Template.bHideClipSizeStat = true;
-
-	return Template;
-}
-
 static function X2DataTemplate CreateTemplate_LWPistol_Laser()
 {
 	local X2WeaponTemplate Template;
@@ -139,9 +83,9 @@ static function X2DataTemplate CreateTemplate_LWPistol_Laser()
 	Template.OverwatchActionPoint = class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint;
 	Template.InfiniteAmmo = true;
 
-	Template.InventorySlot = eInvSlot_Utility;
+	Template.InventorySlot = eInvSlot_SecondaryWeapon;
 	Template.StowedLocation = eSlot_RearBackPack;
-	Template.Abilities.AddiTem('PistolStandardShot');
+	// PistolStandardShot is added by Pistol Slot mod
 	Template.Abilities.AddItem('PistolOverwatch');
 	Template.Abilities.AddItem('PistolOverwatchShot');
 	Template.Abilities.AddItem('PistolReturnFire');
@@ -162,62 +106,6 @@ static function X2DataTemplate CreateTemplate_LWPistol_Laser()
 	Template.bInfiniteItem = true;
 
 	Template.DamageTypeTemplateName = 'Projectile_BeamXCom';  
-
-	Template.bHideClipSizeStat = true;
-
-	return Template;
-}
-
-static function X2DataTemplate CreateTemplate_LWPistol_Magnetic()
-{
-	local X2WeaponTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'LWPistol_MG');
-	Template.WeaponPanelImage = "_Pistol";                       // used by the UI. Probably determines iconview of the weapon.
-
-	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'pistol';
-	Template.WeaponTech = 'magnetic';
-	Template.strImage = "img:///UILibrary_Common.MagSecondaryWeapons.MagPistol";
-	Template.EquipSound = "Secondary_Weapon_Equip_Magnetic";
-	Template.Tier = 3;
-
-	Template.RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_MAGNETIC_RANGE;
-	Template.BaseDamage = default.LWPistol_MAGNETIC_BASEDAMAGE;
-	Template.Aim = default.LWPistol_MAGNETIC_AIM;
-	Template.CritChance = default.LWPistol_MAGNETIC_CRITCHANCE;
-	Template.iClipSize = default.LWPistol_MAGNETIC_ICLIPSIZE;
-	Template.iSoundRange = default.LWPistol_MAGNETIC_ISOUNDRANGE;
-	Template.iEnvironmentDamage = default.LWPistol_MAGNETIC_IENVIRONMENTDAMAGE;
-
-	Template.NumUpgradeSlots = 2;
-
-	Template.OverwatchActionPoint = class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint;
-	Template.InfiniteAmmo = true;
-
-	Template.InventorySlot = eInvSlot_Utility;
-	Template.StowedLocation = eSlot_RearBackPack;
-	Template.Abilities.AddiTem('PistolStandardShot');
-	Template.Abilities.AddItem('PistolOverwatch');
-	Template.Abilities.AddItem('PistolOverwatchShot');
-	Template.Abilities.AddItem('PistolReturnFire');
-	Template.Abilities.AddItem('HotLoadAmmo');
-	Template.Abilities.AddItem('Reload');
-
-	Template.SetAnimationNameForAbility('FanFire', 'FF_FireMultiShotMagA');
-	
-	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "WP_Pistol_MG.WP_Pistol_MG";
-
-	Template.iPhysicsImpulse = 5;
-
-	Template.CreatorTemplateName = 'LWPistol_MG_Schematic'; // The schematic which creates this item
-	Template.BaseItem = 'LWPistol_CV'; // Which item this will be upgraded from
-
-	Template.CanBeBuilt = false;
-	Template.bInfiniteItem = true;
-
-	Template.DamageTypeTemplateName = 'Projectile_MagXCom';
 
 	Template.bHideClipSizeStat = true;
 
@@ -251,9 +139,9 @@ static function X2DataTemplate CreateTemplate_LWPistol_Coil()
 	Template.OverwatchActionPoint = class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint;
 	Template.InfiniteAmmo = true;
 
-	Template.InventorySlot = eInvSlot_Utility;
+	Template.InventorySlot = eInvSlot_SecondaryWeapon;
 	Template.StowedLocation = eSlot_RearBackPack;
-	Template.Abilities.AddiTem('PistolStandardShot');
+	// PistolStandardShot is added by Pistol Slot mod
 	Template.Abilities.AddItem('PistolOverwatch');
 	Template.Abilities.AddItem('PistolOverwatchShot');
 	Template.Abilities.AddItem('PistolReturnFire');
@@ -274,62 +162,6 @@ static function X2DataTemplate CreateTemplate_LWPistol_Coil()
 	Template.bInfiniteItem = true;
 
 	Template.DamageTypeTemplateName = 'Projectile_MagXCom';  
-
-	Template.bHideClipSizeStat = true;
-
-	return Template;
-}
-
-static function X2DataTemplate CreateTemplate_LWPistol_Beam()
-{
-	local X2WeaponTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'LWPistol_BM');
-	Template.WeaponPanelImage = "_Pistol";                       // used by the UI. Probably determines iconview of the weapon.
-
-	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'pistol';
-	Template.WeaponTech = 'beam';
-	Template.strImage = "img:///UILibrary_Common.BeamSecondaryWeapons.BeamPistol";
-	Template.EquipSound = "Secondary_Weapon_Equip_Beam";
-	Template.Tier = 5;
-
-	Template.RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_BEAM_RANGE;
-	Template.BaseDamage = default.LWPistol_BEAM_BASEDAMAGE;
-	Template.Aim = default.LWPistol_BEAM_AIM;
-	Template.CritChance = default.LWPistol_BEAM_CRITCHANCE;
-	Template.iClipSize = default.LWPistol_BEAM_ICLIPSIZE;
-	Template.iSoundRange = default.LWPistol_BEAM_ISOUNDRANGE;
-	Template.iEnvironmentDamage = default.LWPistol_BEAM_IENVIRONMENTDAMAGE;
-
-	Template.NumUpgradeSlots = 2;
-
-	Template.OverwatchActionPoint = class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint;
-	Template.InfiniteAmmo = true;
-	
-	Template.InventorySlot = eInvSlot_Utility;
-	Template.StowedLocation = eSlot_RearBackPack;
-	Template.Abilities.AddiTem('PistolStandardShot');
-	Template.Abilities.AddItem('PistolOverwatch');
-	Template.Abilities.AddItem('PistolOverwatchShot');
-	Template.Abilities.AddItem('PistolReturnFire');
-	Template.Abilities.AddItem('HotLoadAmmo');
-	Template.Abilities.AddItem('Reload');
-
-	Template.SetAnimationNameForAbility('FanFire', 'FF_FireMultiShotBeamA');
-	
-	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "WP_Pistol_BM.WP_Pistol_BM";
-
-	Template.iPhysicsImpulse = 5;
-
-	Template.CreatorTemplateName = 'LWPistol_BM_Schematic'; // The schematic which creates this item
-	Template.BaseItem = 'LWPistol_MG'; // Which item this will be upgraded from
-
-	Template.CanBeBuilt = false;
-	Template.bInfiniteItem = true;
-	
-	Template.DamageTypeTemplateName = 'Projectile_BeamXCom';
 
 	Template.bHideClipSizeStat = true;
 
