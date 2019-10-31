@@ -97,7 +97,6 @@ function Update(float DeltaTime)
 		if( !GoodView )
 		{
 			NewTargetLocation = World.GetPositionFromTileCoordinates(BlockedTile);
-			// Cursor.CursorSetLocation(NewTargetLocation); // Issue #150: This line of code is redundant, nothing in the targeting method relies on it!
 			//`SHAPEMGR.DrawSphere(LastTargetLocation, vect(25,25,25), MakeLinearColor(1,0,0,1), false);
 		}
 		else
@@ -115,11 +114,9 @@ function Update(float DeltaTime)
 		DrawAOETiles(Tiles);
 
 		//update expected scatter amount display
-		// Start Issue #150 : Make the "tooltip" not rely on the  existance of the mouse pointer
-		//vMouseCursorPos = class'UIUtilities_LW'.static.GetMouseCoords();
+		// Make the "tooltip" not rely on the  existance of the mouse pointer, use the target location instead.
 		vMouseCursorPos = LocalPlayer(`LOCALPLAYERCONTROLLER.Player).Project(NewTargetLocation);
 		ScatterAmountText.SetPosition((vMouseCursorPos.X+1)*960 + 2, (1-vMouseCursorPos.Y)*540 + 14); // this follows cursor
-		// End Issue #150
 		ExpectedScatter = class'X2Ability_LW_TechnicalAbilitySet'.static.GetExpectedScatter(UnitState, NewTargetLocation);
 		ScatterAmountText.SetHTMLText(class'UIUtilities_LW'.static.GetHTMLAverageScatterText(ExpectedScatter));
 	}
