@@ -39,6 +39,8 @@ static function CHEventListenerTemplate CreateEquipmentListeners()
 	Template.AddCHEvent('SoldierCreatedEvent', EquipNewSoldier, ELD_OnStateSubmitted);
 	Template.AddCHEvent('RewardUnitGenerated', EquipNewSoldier, ELD_OnStateSubmitted);
 	Template.AddCHEvent('OnGetPCSImage', GetPCSImage, ELD_Immediate);
+	Template.AddCHEvent('SoldierHasPistolSlot', OnSoldierHasPistolSlot, ELD_Immediate);
+	Template.AddCHEvent('IsItemValidForPistolSlot', CheckItemValidForPistolSlot, ELD_Immediate);
 
 	Template.RegisterInStrategy = true;
 
@@ -958,6 +960,64 @@ static function EventListenerReturn GetPCSImage(Object EventData, Object EventSo
 
 		default: break;
 	}
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OnSoldierHasPistolSlot(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple			OverrideTuple;
+	local XComGameState_Unit	UnitState;
+
+	OverrideTuple = XComLWTuple(EventData);
+	if (OverrideTuple == none)
+	{
+		`REDSCREEN("SoldierHasPistolSlot event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	UnitState = XComGameState_Unit(EventSource);
+	if (UnitState == none)
+	{
+		`REDSCREEN("SoldierHasPistolSlot event triggered with invalid source data.");
+		return ELR_NoInterrupt;
+	}
+
+	OverrideTuple.Data[0].b = !UnitState.IsResistanceHero();
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn CheckItemValidForPistolSlot(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple		OverrideTuple;
+	local X2WeaponTemplate	WeaponTemplate;
+
+	OverrideTuple = XComLWTuple(EventData);
+	if (OverrideTuple == none)
+	{
+		`REDSCREEN("IsItemValidForPistolSlot event triggered with invalid event data.");
+		return ELR_NoInterrupt;
+	}
+
+	WeaponTemplate = X2WeaponTemplate(EventSource);
+	if (WeaponTemplate == none)
+	{
+		`REDSCREEN("IsItemValidForPistolSlot event triggered with invalid source data.");
+		return ELR_NoInterrupt;
+	}
+
+	OverrideTuple.Data[0].b = WeaponTemplate.WeaponCat == 'pistol';
 
 	return ELR_NoInterrupt;
 }
