@@ -28,6 +28,8 @@ static event OnPostTemplatesCreated()
 	UpdateDeflect();
 	UpdateShadow();
 	UpdateRemoteStart();
+	//Allows the 2-2-2 faction soldier roster
+	EditReward();
 }
 
 static function IgnoreSuperConcealmentOnAllMissions()
@@ -346,6 +348,52 @@ static function EditParry(X2AbilityTemplate Template)
 	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, ParryTemplate.LocFriendlyName, ParryTemplate.GetMyHelpText(), ParryTemplate.IconImage, true, , ParryTemplate.AbilitySourceName);
 	ParryTemplate.AddTargetEffect(PersistentEffect);
 }
+//Copy pasted Realitymachina's code
+static function EditReward()
+{
+	local X2RewardTemplate RewardTemplate;
+	local X2StrategyElementTemplateManager StratMgr;
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+
+	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_ExtraFactionSoldier'));
+
+	if(RewardTemplate != none)
+		RewardTemplate.IsRewardAvailableFn = IsExtraSoldierAvailable;
+}
+
+static function bool IsExtraSoldierAvailable(optional XComGameState NewGameState, optional StateObjectReference AuxRef)
+{
+	local XComGameState_ResistanceFaction FactionState;
+	local int NumFactionSoldiers;
+	local XComGameState_CovertAction ActionState;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+
+
+
+	FactionState = class'X2StrategyElement_DefaultRewards'.static.GetFactionState(NewGameState, AuxRef);
+	if (FactionState != none)
+	{
+
+
+		NumFactionSoldiers = FactionState.GetNumFactionSoldiers(NewGameState);
+		foreach History.IterateByClassType(class'XComGameState_CovertAction', ActionState)
+		{
+			if(ActionState.GetMyTemplateName() == 'CovertAction_RecruitExtraFactionSoldier' && (ActionState.GetFaction().GetReference().ObjectID == FactionState.GetReference().ObjectID) && ActionState.bStarted && !ActionState.bCompleted) //this is dumb but we have to account for this
+				NumFactionSoldiers += 1;
+		}
+
+		// XCom is only allowed to gain more faction soldiers for the first Faction met,
+		// and only if they have less than the max amount and have actually met that Faction
+		return (FactionState.bMetXCom && (NumFactionSoldiers > 0) && (NumFactionSoldiers < FactionState.default.MaxHeroesPerFaction));
+	}
+
+	return false;
+}
+
+
 
 /// <summary>
 /// This method is run if the player loads a saved game that was created prior to this DLC / Mod being installed, and allows the 
