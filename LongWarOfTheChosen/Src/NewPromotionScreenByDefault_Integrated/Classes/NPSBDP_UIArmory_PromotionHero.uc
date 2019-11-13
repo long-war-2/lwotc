@@ -21,6 +21,8 @@ var config bool RevealAllAbilities;
 var config array<CustomClassAbilitiesPerRank> ClassAbilitiesPerRank;
 var config array<CustomClassAbilityCost> ClassCustomAbilityCost;
 
+var config float BaseAbilityCostModifier;
+
 // Position is the number by which we offset all ability indices.
 // 0 <= Position <= MaxPosition
 var int Position, MaxPosition;
@@ -566,8 +568,8 @@ function bool CanPurchaseAbility(int Rank, int Branch, name AbilityName)
 		return false;
 	}
 
-	// LWOTC: Don't allow purchase of other class abilities at same rank as an already picked one
-	if (!UnitState.IsResistanceHero() && UnitState.HasPurchasedPerkAtRank(Rank) && Branch < AbilityRanks)
+	// LWOTC: Don't allow purchase of other class abilities at same rank as an already picked one (unless second wave option enabled)
+	if (!UnitState.IsResistanceHero() && !`SecondWaveEnabled('AllowSameRankAbilities') && UnitState.HasPurchasedPerkAtRank(Rank) && Branch < AbilityRanks)
 	{
 		return false;
 	}
@@ -585,6 +587,7 @@ function int GetAbilityPointCost(int Rank, int Branch)
 	local int AbilityRanks; //Rank is 0 indexed but AbilityRanks is not. This means a >= comparison requies no further adjustments
 	local Name ClassName;
 	local int AbilityCost;
+	local UnitValue AbilityCostModifier;
 
 	UnitState = GetUnit();
 	AbilityTree = UnitState.GetRankAbilities(Rank);	
@@ -597,11 +600,12 @@ function int GetAbilityPointCost(int Rank, int Branch)
 	//Default ability cost
 	AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.AbilityPointCosts[Rank];
 
+	// LWOTC: Disable this
 	//Powerfull ability override ( 25 AP )
-	if(bPowerfulAbility && Branch >= AbilityRanks)
-	{
-		AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
-	}
+	// if(bPowerfulAbility && Branch >= AbilityRanks)
+	// {
+	// 	AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
+	// }
 
 	//Custom Class Ability Cost Override
 	if( HasCustomAbilityCost(ClassName, AbilityTree[Branch].AbilityName) )
@@ -632,9 +636,20 @@ function int GetAbilityPointCost(int Rank, int Branch)
 	}
 
 	// All Colonel level abilities for Faction Heroes and any powerful XCOM abilities have increased cost for Faction Heroes
-	if (UnitState.IsResistanceHero() && (bPowerfulAbility || (Rank >= 6 && Branch < 3)) && !HasBrigadierRank())
+	if (UnitState.IsResistanceHero() && (bPowerfulAbility || (Rank >= 6 && Branch < 3))) // LWOTC Removed this: && !HasBrigadierRank())
 	{
-		return class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
+		AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
+	}
+
+	if (UnitState.HasPurchasedPerkAtRank(Rank) && Branch < AbilityRanks)
+	{
+		// Increase cost of this perk by current ability cost modifier
+		UnitState.GetUnitValue('LWOTC_AbilityCostModifier', AbilityCostModifier);
+		if (AbilityCostModifier.fValue == 0)
+		{
+			AbilityCostModifier.fValue = 1.0 + BaseAbilityCostModifier;
+		}
+		AbilityCost *= AbilityCostModifier.fValue;
 	}
 	
 	return AbilityCost;
@@ -752,7 +767,7 @@ simulated function ConfirmAbilitySelection(int Rank, int Branch)
 	DialogData.strTitle = m_strConfirmAbilityTitle;
 	DialogData.strAccept = class'UIUtilities_Text'.default.m_strGenericYes;
 	DialogData.strCancel = class'UIUtilities_Text'.default.m_strGenericNO;
-	DialogData.fnCallback = ComfirmAbilityCallback;
+	DialogData.fnCallback = ConfirmAbilityCallbackWithTracking; // LWOTC change
 
 	AbilityTree = GetUnit().GetRankAbilities(Rank);
 	AbilityTemplateManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
@@ -778,6 +793,56 @@ simulated function ConfirmAbilitySelection(int Rank, int Branch)
 
 	DialogData.strText = ConfirmAbilityText;
 	Movie.Pres.UIRaiseDialog(DialogData);
+}
+
+// LWOTC Track how many "extra" abilities have been purchased at each rank.
+simulated function ConfirmAbilityCallbackWithTracking(Name Action)
+{
+	local XComGameStateHistory History;
+	local bool bSuccess;
+	local XComGameState UpdateState;
+	local XComGameState_Unit UpdatedUnit;
+	local XComGameStateContext_ChangeContainer ChangeContainer;
+	local UnitValue AbilityCostModifier;
+
+	if(Action == 'eUIAction_Accept')
+	{
+		History = `XCOMHISTORY;
+		ChangeContainer = class'XComGameStateContext_ChangeContainer'.static.CreateEmptyChangeContainer("Soldier Promotion");
+		UpdateState = History.CreateNewGameState(true, ChangeContainer);
+		UpdatedUnit = XComGameState_Unit(UpdateState.ModifyStateObject(class'XComGameState_Unit', GetUnit().ObjectID));
+
+		// LWOTC For every extra perk that's purchased at a rank that already
+		// has a perk purchased, increase its cost.
+		UpdatedUnit.GetUnitValue('LWOTC_AbilityCostModifier', AbilityCostModifier);
+		if (AbilityCostModifier.fValue == 0)
+		{
+			AbilityCostModifier.fValue = 1.0 + BaseAbilityCostModifier;
+		}
+
+		if (UpdatedUnit.HasPurchasedPerkAtRank(PendingRank) && PendingBranch < GetAbilitiesPerRank(UpdatedUnit))
+		{
+			UpdatedUnit.SetUnitFloatValue('LWOTC_AbilityCostModifier', AbilityCostModifier.fValue + BaseAbilityCostModifier);
+		}
+
+		bSuccess = UpdatedUnit.BuySoldierProgressionAbility(UpdateState, PendingRank, PendingBranch, GetAbilityPointCost(PendingRank, PendingBranch));
+
+		if(bSuccess)
+		{
+			`GAMERULES.SubmitGameState(UpdateState);
+
+			Header.PopulateData();
+			PopulateData();
+		}
+		else
+			History.CleanupPendingGameState(UpdateState);
+
+		Movie.Pres.PlayUISound(eSUISound_SoldierPromotion);
+	}
+	else 	// if we got here it means we were going to upgrade an ability, but then we decided to cancel
+	{
+		Movie.Pres.PlayUISound(eSUISound_MenuClickNegative);
+	}
 }
 
 //New functions

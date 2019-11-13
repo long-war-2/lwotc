@@ -134,6 +134,10 @@ static function X2AbilityTemplate AddSnapShot()
 	KnockbackEffect = new class'X2Effect_Knockback';
 	KnockbackEffect.KnockbackDistance = 2;
 	Template.AddTargetEffect(KnockbackEffect);
+	
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	//Template.OverrideAbilities.AddItem('SniperStandardFire');
 
@@ -321,7 +325,7 @@ static function X2AbilityTemplate AddTrojanVirus()
 	Template.AbilityTriggers.AddItem(UseTrigger);
 	
 	TrojanVirusEffect = new class 'X2Effect_TrojanVirus';
-	TrojanVirusEffect.BuildPersistentEffect (1, true, false /*Remove on Source Death*/,, eGameRule_PlayerTurnBegin);
+	TrojanVirusEffect.BuildPersistentEffect (1, true, false /*Remove on Source Death*/,, eGameRule_UnitGroupTurnBegin);
 	TrojanVirusEffect.bTickWhenApplied = false;
 	//TrojanVirusEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	TrojanVirusEffect.EffectRemovedVisualizationFn = TrojanVirusVisualizationRemoved;
@@ -651,6 +655,8 @@ static function X2AbilityTemplate AddAirdrop()
 	Template.CustomSelfFireAnim = 'NO_CombatProtocol';
 	Template.CinescriptCameraType = "Specialist_CombatProtocol";
 
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
+
 	return Template;
 }
 
@@ -713,6 +719,10 @@ static function X2AbilityTemplate AddSwordSlice_LWAbility()
 
 	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
 	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
 
 	Template.AdditionalAbilities.AddItem('Fleche');
 

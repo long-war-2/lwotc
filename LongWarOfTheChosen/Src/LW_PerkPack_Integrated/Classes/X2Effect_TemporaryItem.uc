@@ -322,19 +322,42 @@ function array<X2AbilityTemplate> AddAbilityToUnit(name AbilityName, XComGameSta
 	return ReturnAbilityTemplates;
 }
 
+simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
+{
+	local XComGameState_Effect_TemporaryItem EffectState;
+
+	EffectState = XComGameState_Effect_TemporaryItem(RemovedEffectState);
+	ClearTemporaryItems(EffectState, NewGameState);
+
+	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
+}
+
 static function EventListenerReturn OnTacticalGameEnd(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComGameStateHistory		History;
 	local XComGameState				NewGameState;
+	local XComGameState_Effect_TemporaryItem EffectState;
+	
+	EffectState = XComGameState_Effect_TemporaryItem(CallbackData);
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Temporary Item Cleanup");
+	ClearTemporaryItems(EffectState, NewGameState);
+
+	if( NewGameState.GetNumGameStateObjects() > 0 )
+		`GAMERULES.SubmitGameState(NewGameState);
+	else
+		`XCOMHISTORY.CleanupPendingGameState(NewGameState);
+
+	return ELR_NoInterrupt;
+}
+
+static function ClearTemporaryItems(XComGameState_Effect_TemporaryItem EffectState, XComGameState NewGameState)
+{
+	local XComGameStateHistory		History;
 	local StateObjectReference		ItemRef;
 	local XComGameState_Item		ItemState;
 	local XComGameState_Unit		UnitState;
-	local XComGameState_Effect_TemporaryItem EffectState;
-	
+
 	History = `XCOMHISTORY;
-	EffectState = XComGameState_Effect_TemporaryItem(CallbackData);
-	//XComHQ = `XCOMHQ;
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Temporary Item Cleanup");
+
 	foreach EffectState.TemporaryItems(ItemRef)
 	{
 		if (ItemRef.ObjectID > 0)
@@ -351,15 +374,9 @@ static function EventListenerReturn OnTacticalGameEnd(Object EventData, Object E
 			}
 		}
 	}
+
 	// Remove this gamestate object from history
 	NewGameState.RemoveStateObject(EffectState.ObjectID);
-
-	if( NewGameState.GetNumGameStateObjects() > 0 )
-		`GAMERULES.SubmitGameState(NewGameState);
-	else
-		History.CleanupPendingGameState(NewGameState);
-
-	return ELR_NoInterrupt;
 }
 
 defaultProperties

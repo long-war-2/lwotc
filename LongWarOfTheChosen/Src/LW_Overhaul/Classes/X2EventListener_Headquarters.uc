@@ -26,6 +26,7 @@ static function CHEventListenerTemplate CreateXComHQListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'XComHQListeners');
 	Template.AddCHEvent('OverrideScienceScore', OverrideScienceScore, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('CanTechBeInspired', CanTechBeInspired, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -75,8 +76,10 @@ static function EventListenerReturn OverrideScienceScore(
 		{
 			Scientist = XComGameState_Unit(History.GetGameStateForObjectID(XComHQ.Crew[idx].ObjectID));
 
-			// Only worry about living scientists, and skip Tygan.
-			if (Scientist.IsScientist() && !Scientist.IsDead() && Scientist.GetMyTemplateName() != 'HeadScientist')
+			// Only worry about living scientists, and skip Tygan. LWOTC: Scientists on covert actions
+			// (which includes haven advisers) are handled by the base game, so ignore those too.
+			if (Scientist.IsScientist() && !Scientist.IsDead() && !Scientist.IsOnCovertAction() &&
+				Scientist.GetMyTemplateName() != 'HeadScientist')
 			{
 				// This scientist was counted by the base game. If they are in a staff slot that is not the lab,
 				// remove their score.
@@ -90,5 +93,30 @@ static function EventListenerReturn OverrideScienceScore(
 	}
 
 	Tuple.Data[0].i = CurrScienceScore;
+	return ELR_NoInterrupt;
+}
+
+// Prevent repeatable research from being inspired.
+static function EventListenerReturn CanTechBeInspired(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Tech TechState;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+	{
+		`LWTrace("CanTechBeInspired event not fired with a Tuple as its data");
+		return ELR_NoInterrupt;
+	}
+
+	// Exclude repeatable research from inspiration
+	TechState = XComGameState_Tech(Tuple.Data[0].o);
+	Tuple.Data[1].b = !TechState.GetMyTemplate().bRepeatable;
+
 	return ELR_NoInterrupt;
 }

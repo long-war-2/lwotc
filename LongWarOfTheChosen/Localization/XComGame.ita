@@ -4057,7 +4057,7 @@ FriendlyName="Evento oscuro: Potenziamenti tattici (Istinti da cacciatore)"
 Description="Molti nemici rettiliani ottengono l'abilità Istinti da cacciatore, che conferisce danni bonus contro i nemici presi ai fianchi."
 
 ; LR
-[DarkEvent_LightningReflexes X2DarkEventTemplate]
+[DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
 DisplayName="Potenziamenti tattici: Riflessi fulminei"
 SummaryText="Alcuni lancieri e altri nemici ottengono l'abilità Riflessi fulminei, che conferisce dei bonus alla schivata del fuoco di reazione."
 QuoteText="\"Io li odio con tutto il cuore.\""
@@ -4066,7 +4066,7 @@ PreMissionText="Conferisce ad alcuni lancieri e ad altri nemici l'abilità Rifle
 PostMissionSuccessText="Evento oscuro sventato: Potenziamenti tattici (Riflessi fulminei)"
 PostMissionFailureText="Evento oscuro non sventato: Potenziamenti tattici (Riflessi fulminei)"
 
-[DarkEvent_LightningReflexes X2HackRewardTemplate]
+[DarkEvent_LightningReflexes_LW X2HackRewardTemplate]
 FriendlyName="Evento oscuro: Potenziamenti tattici (Riflessi fulminei)"
 Description="Alcuni lancieri e altri nemici ottengono l'abilità Riflessi fulminei, che conferisce dei bonus alla schivata del fuoco di reazione."
 

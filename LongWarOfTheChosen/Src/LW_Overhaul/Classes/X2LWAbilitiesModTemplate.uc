@@ -24,6 +24,14 @@ var localized string strCritReductionFromConditionalToHit;
 var config bool ALLOW_NEGATIVE_DODGE;
 var config bool DODGE_CONVERTS_GRAZE_TO_MISS;
 var config bool GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND;
+var config bool DISABLE_LOST_HEADSHOT;
+var config int SHADOW_CRIT_MODIFIER;
+
+var config array<bool> HEADSHOT_ENABLED;
+
+var config int TEAMWORK_LVL1_CHARGES;
+var config int TEAMWORK_LVL2_CHARGES;
+var config int TEAMWORK_LVL3_CHARGES;
 
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
@@ -32,6 +40,25 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
     {
         Template.AbilityToHitCalc.OverrideFinalHitChanceFns.AddItem(OverrideFinalHitChance);
     }
+
+	switch (Template.DataName)
+	{
+		case 'BondmateTeamwork':
+		case 'BondmateTeamwork_Improved':
+			UpdateTeamwork(Template);
+			break;
+		case 'LostHeadshotInit':
+			DisableLostHeadshot(Template);
+			break;
+		case 'ShadowPassive':
+			// Disabling the reduced crit chance when in Shadow for now, but
+			// leaving the code in case we want to do something similar or
+			// reintroduce it.
+			// UpdateShadow(Template);
+			break;
+		default:
+			break;
+	}
 }
 
 static function bool OverrideFinalHitChance(X2AbilityToHitCalc AbilityToHitCalc, out ShotBreakdown ShotBreakdown)
@@ -232,6 +259,129 @@ static function GetUpdatedHitChances(X2AbilityToHitCalc_StandardAim ToHitCalc, o
 		//This is an error so flag it
 		`REDSCREEN("OverrideToHit : Negative miss chance!");
 	}
+}
+
+static function DisableLostHeadshot(X2AbilityTemplate Template)
+{
+	local X2Effect_TheLostHeadshot				HeadshotEffect;
+	local X2Condition_HeadshotEnabled           HeadshotCondition;
+	local int									i;
+
+	if (!default.DISABLE_LOST_HEADSHOT)
+	{
+		return;
+	}
+
+	`LWTrace("Disabling Headshot mechanic");
+
+	for (i = Template.AbilityTargetEffects.Length-1; i >= 0; i--)
+	{
+		HeadshotEffect = X2Effect_TheLostHeadshot(Template.AbilityTargetEffects[i]);
+		if (HeadshotEffect != none)
+		{
+			HeadshotCondition = new class'X2Condition_HeadshotEnabled';
+			HeadshotCondition.EnabledForDifficulty = default.HEADSHOT_ENABLED;
+			HeadshotEffect.TargetConditions.AddItem(HeadshotCondition);
+			// Template.AbilityTargetEffects.remove(i, 1);
+			break;
+		}
+	}
+}
+
+static function UpdateTeamwork(X2AbilityTemplate Template)
+{
+	local X2Effect Effect;
+	local X2Condition Condition;
+	local X2Effect_GrantActionPoints ActionPointEffect;
+	local X2Condition_Bondmate BondmateCondition;
+	local X2Condition_Visibility TargetVisibilityCondition;
+	local X2AbilityCharges_Teamwork AbilityCharges;
+
+	// Change the charges for each level of Teamwork
+	AbilityCharges = new class'X2AbilityCharges_Teamwork';
+	AbilityCharges.Charges.AddItem(default.TEAMWORK_LVL1_CHARGES);
+	AbilityCharges.Charges.AddItem(default.TEAMWORK_LVL2_CHARGES);
+	AbilityCharges.Charges.AddItem(default.TEAMWORK_LVL3_CHARGES);
+
+	if (Template.DataName == 'BondmateTeamwork')
+	{
+		// Change the lvl 1 Teamwork to granting a move action rather than a standard one
+		foreach Template.AbilityTargetEffects(Effect)
+		{
+			ActionPointEffect = X2Effect_GrantActionPoints(Effect);
+			if (ActionPointEffect != none)
+			{
+				ActionPointEffect.PointType = class'X2CharacterTemplateManager'.default.MoveActionPoint;
+				break;
+			}
+		}
+
+		// Only apply lvl 1 Teamwork to lvl 1 bonds (not lvl 2)
+		foreach Template.AbilityShooterConditions(Condition)
+		{
+			BondmateCondition = X2Condition_Bondmate(Condition);
+			if (BondmateCondition != none)
+			{
+				BondmateCondition.MaxBondLevel = 1;
+				break;
+			}
+		}
+
+		Template.AbilityCharges = AbilityCharges;
+	}
+	else if (Template.DataName == 'BondmateTeamwork_Improved')
+	{
+		// Only apply lvl 1 Teamwork to lvl 1 bonds (not lvl 2)
+		foreach Template.AbilityShooterConditions(Condition)
+		{
+			BondmateCondition = X2Condition_Bondmate(Condition);
+			if (BondmateCondition != none)
+			{
+				BondmateCondition.MaxBondLevel = 1;
+			}
+		}
+
+		// Apply Advanced Teamwork to lvl 2 and 3 bonds
+		foreach Template.AbilityShooterConditions(Condition)
+		{
+			BondmateCondition = X2Condition_Bondmate(Condition);
+			if (BondmateCondition != none)
+			{
+				BondmateCondition.MinBondLevel = 2;
+				BondmateCondition.MaxBondLevel = 3;
+			}
+		}
+
+		Template.AbilityCharges = AbilityCharges;
+	}
+
+	// Limit Teamwork to line of sight
+	TargetVisibilityCondition = new class'X2Condition_Visibility';
+	TargetVisibilityCondition.bRequireGameplayVisible = true;
+	TargetVisibilityCondition.bRequireBasicVisibility=true;
+	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+}
+
+// Make Shadow apply a debuff to crit chance when the Reaper is in concealment.
+static function UpdateShadow(X2AbilityTemplate Template)
+{
+	local X2Effect_ToHitModifier ToHitModifier;
+	local X2Condition_UnitProperty ConcealedCondition;
+	local X2Condition_Visibility VisCondition;
+
+	VisCondition = new class'X2Condition_Visibility';
+	VisCondition.bExcludeGameplayVisible = true;
+
+	ConcealedCondition = new class'X2Condition_UnitProperty';
+	ConcealedCondition.IsConcealed = true;
+
+	ToHitModifier = new class'X2Effect_ToHitModifier';
+	ToHitModifier.BuildPersistentEffect(1, true, false, false);
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.SHADOW_CRIT_MODIFIER, Template.LocFriendlyName,, false /* Melee */);
+	ToHitModifier.ToHitConditions.AddItem(VisCondition);
+	ToHitModifier.ToHitConditions.AddItem(ConcealedCondition);
+
+	Template.AddTargetEffect(ToHitModifier);
 }
 
 defaultproperties

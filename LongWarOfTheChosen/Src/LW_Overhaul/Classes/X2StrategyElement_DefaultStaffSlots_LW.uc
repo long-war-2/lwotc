@@ -125,7 +125,6 @@ static function bool CanLiaisonBeMoved(StateObjectReference StaffRef)
 static function X2DataTemplate CreateLaboratory_AdditionalResearchStation2Template()
 {
     local X2FacilityUpgradeTemplate Template, DefaultTemplate;
-	local X2StrategyElementTemplate StratTemplate;
     local ArtifactCost Resources;
 
 	`CREATE_X2TEMPLATE(class'X2FacilityUpgradeTemplate', Template, 'Laboratory_AdditionalResearchStation2');
@@ -138,19 +137,12 @@ static function X2DataTemplate CreateLaboratory_AdditionalResearchStation2Templa
     Resources.ItemTemplateName = 'Supplies';
     Resources.Quantity = 125;
     Template.Cost.ResourceCosts.AddItem(Resources);
-	// WOTCO TODO: Move this out of CreateTemplates. Maybe into LWTemplateMods
-	// StratTemplate = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Laboratory_AdditionalResearchStation');
-	DefaultTemplate = X2FacilityUpgradeTemplate(StratTemplate);
-	Template.DisplayName = DefaultTemplate.default.DisplayName;
-	Template.FacilityName = DefaultTemplate.default.FacilityName;
-	Template.Summary = DefaultTemplate.default.Summary;
     return Template;
 }
 
 static function X2DataTemplate CreateLaboratory_AdditionalResearchStation3Template()
 {
     local X2FacilityUpgradeTemplate Template, DefaultTemplate;
-	local X2StrategyElementTemplate StratTemplate;
     local ArtifactCost Resources;
 
 	`CREATE_X2TEMPLATE(class'X2FacilityUpgradeTemplate', Template, 'Laboratory_AdditionalResearchStation3');
@@ -163,11 +155,5 @@ static function X2DataTemplate CreateLaboratory_AdditionalResearchStation3Templa
     Resources.ItemTemplateName = 'Supplies';
     Resources.Quantity = 125;
     Template.Cost.ResourceCosts.AddItem(Resources);
-	// WOTCO TODO: Move this out of CreateTemplates. Maybe into LWTemplateMods
-	// StratTemplate = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Laboratory_AdditionalResearchStation');
-	DefaultTemplate = X2FacilityUpgradeTemplate(StratTemplate);
-	Template.DisplayName = DefaultTemplate.default.DisplayName;
-	Template.FacilityName = DefaultTemplate.default.FacilityName;
-	Template.Summary = DefaultTemplate.default.Summary;
     return Template;
 }

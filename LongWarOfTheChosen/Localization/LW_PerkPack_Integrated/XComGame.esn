@@ -126,9 +126,9 @@ LocPromotionPopupText="<Bullet/> Confiere +10 de puntería y +10 de probabilidad
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Aguante"
 LocFlyOverText="Aguante"
-LocLongDescription="Los ataques enemigos contra ti reciben una penalización de -50 a la probabilidad de impacto crítico."
-LocHelpText="Los ataques enemigos contra ti reciben una penalización de -50 a la probabilidad de impacto crítico."
-LocPromotionPopupText="<Bullet/> Los ataques enemigos contra ti reciben una penalización de -50 a la probabilidad de impacto crítico.<br/>"
+LocLongDescription="Los ataques enemigos contra ti reciben una penalización de -<ABILITY:RESILIENCE_BONUS_LW/> a la probabilidad de impacto crítico."
+LocHelpText="Los ataques enemigos contra ti reciben una penalización de -<ABILITY:RESILIENCE_BONUS_LW/> a la probabilidad de impacto crítico."
+LocPromotionPopupText="<Bullet/> Los ataques enemigos contra ti reciben una penalización de -<ABILITY:RESILIENCE_BONUS_LW/> a la probabilidad de impacto crítico.<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="Sentido táctico"

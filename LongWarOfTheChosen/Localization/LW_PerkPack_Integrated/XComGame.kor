@@ -123,9 +123,9 @@ LocPromotionPopupText="<Bullet/> 기본 체력 포인트가 절반 이하로 떨
 [Resilience X2AbilityTemplate]
 LocFriendlyName="대응력"
 LocFlyOverText="대응력"
-LocLongDescription="이 병사를 향한 적의 공격은 -50의 치명타율 페널티를 받습니다."
-LocHelpText="이 병사를 향한 적의 공격은 -50의 치명타율 페널티를 받습니다."
-LocPromotionPopupText="<Bullet/> 이 병사를 향한 적의 공격은 -50의 치명타율 페널티를 받습니다.<br/>"
+LocLongDescription="이 병사를 향한 적의 공격은 -<ABILITY:RESILIENCE_BONUS_LW/>의 치명타율 페널티를 받습니다."
+LocHelpText="이 병사를 향한 적의 공격은 -<ABILITY:RESILIENCE_BONUS_LW/>의 치명타율 페널티를 받습니다."
+LocPromotionPopupText="<Bullet/> 이 병사를 향한 적의 공격은 -<ABILITY:RESILIENCE_BONUS_LW/>의 치명타율 페널티를 받습니다.<br/>"
 
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="전술 감각"

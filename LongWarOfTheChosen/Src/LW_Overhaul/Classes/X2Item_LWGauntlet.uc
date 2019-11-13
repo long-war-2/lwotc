@@ -6,17 +6,17 @@
 //---------------------------------------------------------------------------------------
 class X2Item_LWGauntlet extends X2Item config(GameData_WeaponData);
 
-// ***** UI Image definitions  *****
+// ***** UI Image definitions  *****
 var config string Gauntlet_CV_UIImage;
 var config string Gauntlet_MG_UIImage;
 var config string Gauntlet_CG_UIImage;
 var config string Gauntlet_BM_UIImage;
 
-// ***** Damage arrays for attack actions  *****
+// ***** Damage arrays for attack actions  *****
 var config WeaponDamageValue Gauntlet_Primary_CONVENTIONAL_BASEDAMAGE;  // Rocket
 var config WeaponDamageValue Gauntlet_Secondary_CONVENTIONAL_BASEDAMAGE;  // Flamethrower
 
-// ***** Core properties and variables for weapons *****
+// ***** Core properties and variables for weapons *****
 var config int Gauntlet_Primary_CONVENTIONAL_ICLIPSIZE;
 var config int Gauntlet_Primary_CONVENTIONAL_ISOUNDRANGE;
 var config int Gauntlet_Primary_CONVENTIONAL_IENVIRONMENTDAMAGE;
@@ -29,11 +29,11 @@ var config int Gauntlet_Secondary_CONVENTIONAL_RANGE;
 var config int Gauntlet_Secondary_CONVENTIONAL_RADIUS;
 var config int Gauntlet_Secondary_CONVENTIONAL_ISOUNDRANGE;
 
-// ***** Damage arrays for attack actions  *****
+// ***** Damage arrays for attack actions  *****
 var config WeaponDamageValue Gauntlet_Primary_MAG_BASEDAMAGE;  // Rocket
 var config WeaponDamageValue Gauntlet_Secondary_MAG_BASEDAMAGE;  // Flamethrower
 
-// ***** Core properties and variables for weapons *****
+// ***** Core properties and variables for weapons *****
 var config int Gauntlet_Primary_MAG_ICLIPSIZE;
 var config int Gauntlet_Primary_MAG_ISOUNDRANGE;
 var config int Gauntlet_Primary_MAG_IENVIRONMENTDAMAGE;
@@ -46,11 +46,11 @@ var config int Gauntlet_Secondary_MAG_RANGE;
 var config int Gauntlet_Secondary_MAG_RADIUS;
 var config int Gauntlet_Secondary_MAG_ISOUNDRANGE;
 
-// ***** Damage arrays for attack actions  *****
+// ***** Damage arrays for attack actions  *****
 var config WeaponDamageValue Gauntlet_Primary_COIL_BASEDAMAGE;  // Rocket
 var config WeaponDamageValue Gauntlet_Secondary_COIL_BASEDAMAGE;  // Flamethrower
 
-// ***** Core properties and variables for weapons *****
+// ***** Core properties and variables for weapons *****
 var config int Gauntlet_Primary_COIL_ICLIPSIZE;
 var config int Gauntlet_Primary_COIL_ISOUNDRANGE;
 var config int Gauntlet_Primary_COIL_IENVIRONMENTDAMAGE;
@@ -63,11 +63,11 @@ var config int Gauntlet_Secondary_COIL_RANGE;
 var config int Gauntlet_Secondary_COIL_RADIUS;
 var config int Gauntlet_Secondary_COIL_ISOUNDRANGE;
 
-// ***** Damage arrays for attack actions  *****
+// ***** Damage arrays for attack actions  *****
 var config WeaponDamageValue Gauntlet_Primary_BEAM_BASEDAMAGE;  // Rocket
 var config WeaponDamageValue Gauntlet_Secondary_BEAM_BASEDAMAGE;  // Flamethrower
 
-// ***** Core properties and variables for weapons *****
+// ***** Core properties and variables for weapons *****
 var config int Gauntlet_Primary_BEAM_ICLIPSIZE;
 var config int Gauntlet_Primary_BEAM_ISOUNDRANGE;
 var config int Gauntlet_Primary_BEAM_IENVIRONMENTDAMAGE;
@@ -122,7 +122,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Conventional()
 	Template.EquipSound = "Conventional_Weapon_Equip";
 
 	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'gauntlet';
+	Template.WeaponCat = 'lw_gauntlet';
 	Template.WeaponTech = 'conventional';
 	Template.strImage = default.Gauntlet_CV_UIImage; 
 	Template.EquipSound = "Secondary_Weapon_Equip_Conventional";
@@ -181,7 +181,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Mag()
 	Template.EquipSound = "MAG_Weapon_Equip";
 
 	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'gauntlet';
+	Template.WeaponCat = 'lw_gauntlet';
 	Template.WeaponTech = 'Magnetic';
 	Template.strImage = default.Gauntlet_MG_UIImage; 
 	Template.EquipSound = "Secondary_Weapon_Equip_Magnetic";
@@ -240,7 +240,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_COIL()
 	Template.EquipSound = "Magnetic_Weapon_Equip";
 
 	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'gauntlet';
+	Template.WeaponCat = 'lw_gauntlet';
 	Template.WeaponTech = 'Coil';
 	Template.strImage = default.Gauntlet_CG_UIImage; 
 	Template.EquipSound = "Secondary_Weapon_Equip_COIL";
@@ -299,7 +299,7 @@ static function X2DataTemplate CreateTemplate_Gauntlet_Beam()
 	Template.EquipSound = "Beam_Weapon_Equip";
 
 	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'gauntlet';
+	Template.WeaponCat = 'lw_gauntlet';
 	Template.WeaponTech = 'beam';
 	Template.strImage = default.Gauntlet_BM_UIImage; 
 	Template.EquipSound = "Secondary_Weapon_Equip_Beam";

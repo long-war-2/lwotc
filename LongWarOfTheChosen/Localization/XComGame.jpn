@@ -4054,7 +4054,7 @@ FriendlyName="陰謀：戦術アップグレード（狩人の本能）"
 Description="多くのヘビ型の敵が「狩人の本能」アビリティを獲得し、側面や背後から攻撃した場合のダメージにボーナスが付与される。"
 
 ; LR
-[DarkEvent_LightningReflexes X2DarkEventTemplate]
+[DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
 DisplayName="戦術アップグレード：ライトニングリフレックス"
 SummaryText="スタンランサーなど、敵の一部がライトニングリフレックスのアビリティを獲得し、反応射撃を回避できるようになる。"
 QuoteText="「本当に、本当に、やつらが憎い」"
@@ -4063,7 +4063,7 @@ PreMissionText="スタンランサーなど、敵の一部がライトニング�
 PostMissionSuccessText="陰謀の阻止に成功：戦術アップグレード（ライトニングリフレックス）"
 PostMissionFailureText="陰謀の阻止に失敗：戦術アップグレード（ライトニングリフレックス）"
 
-[DarkEvent_LightningReflexes X2HackRewardTemplate]
+[DarkEvent_LightningReflexes_LW X2HackRewardTemplate]
 FriendlyName="陰謀：戦術アップグレード（ライトニングリフレックス）"
 Description="スタンランサーなど、敵の一部がライトニングリフレックスのアビリティを獲得し、反応射撃を回避できるようになる。"
 

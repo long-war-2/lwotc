@@ -717,6 +717,30 @@ static function bool KillXpIsCapped()
 	return MissionKillXp >= MaxKillXp;
 }
 
+// Finds out what the alert level of a given unit was before the current one.
+// Mostly useful for finding out whether a unit entered red alert from green
+// or yellow.
+//
+// Returns -1 if there is no prior alert level that's different from the unit's
+// current one. Otherwise returns the previous alert level.
+static function int GetPreviousAlertLevel(XComGameState_Unit UnitState)
+{
+	local XComGameStateHistory History;
+	local float CurrentAlert;
+
+	History = `XCOMHISTORY;
+	CurrentAlert = UnitState.GetCurrentStat(eStat_AlertLevel);
+
+	// Walk backwards through history for this unit until we find a state in which this unit wasn't in
+	// its current alert to see what the previous alert level was.
+	while (UnitState != none && UnitState.GetCurrentStat(eStat_AlertLevel) == CurrentAlert)
+	{
+		UnitState = XComGameState_Unit(History.GetPreviousGameStateForObject(UnitState));
+	}
+
+	return UnitState != none ? int(UnitState.GetCurrentStat(eStat_AlertLevel)) : -1;
+}
+
 static function float GetUnitValue(XComGameState_Unit UnitState, Name ValueName)
 {
 	local UnitValue Value;

@@ -66,6 +66,10 @@ var bool bDebugPodJobs;
 // a Chosen to appear on a mission, excluding any modifying factors.
 var config int BaseChosenAppearanceChance;
 
+// Minimum force level that needs to be reached before The Lost
+// can start to appear.
+var config array<int> MIN_FL_FOR_LOST;
+
 // End data and data structures
 //-----------------------------
 
@@ -142,6 +146,13 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState_LWOutpostManager OutpostManager;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_LWOutpost OutpostState;
+	local XComGameState_LWToolboxOptions ToolboxOptions;
+
+	// LWOTC beta 2: Remove the 'OnMonthlyReportAlert' listener as it's no
+	// longer needed (Not Created Equally is handled by the 'UnitRandomizedStats'
+	// event now).
+	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
+	`XEVENTMGR.UnRegisterFromEvent(ToolboxOptions, 'OnMonthlyReportAlert');
 
 	//this method can handle case where RegionalAI components already exist
 	class'XComGameState_WorldRegion_LWStrategyAI'.static.InitializeRegionalAIs();
@@ -459,6 +470,22 @@ static event OnPostMission()
 
 	`LWSQUADMGR.UpdateSquadPostMission(, true); // completed mission
 	`LWOUTPOSTMGR.UpdateOutpostsPostMission();
+}
+
+// Disable the Lost if we don't meet certain conditions. This is also
+// called for the creation of Gatecrasher.
+static function PostSitRepCreation(out GeneratedMissionData GeneratedMission, optional XComGameState_BaseObject SourceObject)
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+
+	// Disable TheLost SitRep if we haven't reached the appropriate force level yet.
+	if (AlienHQ.ForceLevel < default.MIN_FL_FOR_LOST[`TACTICALDIFFICULTYSETTING])
+	{
+		GeneratedMission.SitReps.RemoveItem('TheLost');
+		GeneratedMission.SitReps.RemoveItem('TheHorde');
+	}
 }
 
 // Diversify pod makeup, especially with all-alien pods which typically consist
@@ -1028,6 +1055,51 @@ static function PostReinforcementCreation(out name EncounterName, out PodSpawnIn
 {
 }
 
+// Use SLG hook to add infiltration modifiers to alien units
+static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out array<AbilitySetupData> SetupData, optional XComGameState StartState, optional XComGameState_Player PlayerState, optional bool bMultiplayerDisplay)
+{
+	local X2AbilityTemplate AbilityTemplate;
+	local X2AbilityTemplateManager AbilityTemplateMan;
+	local name AbilityName;
+	local AbilitySetupData Data, EmptyData;
+	local X2CharacterTemplate CharTemplate;
+
+	if (`XENGINE.IsMultiplayerGame()) { return; }
+
+	CharTemplate = UnitState.GetMyTemplate();
+	if (CharTemplate == none)
+		return;
+	if (ShouldApplyInfiltrationModifierToCharacter(CharTemplate))
+	{
+		AbilityName = 'InfiltrationTacticalModifier_LW';
+		if (SetupData.Find('TemplateName', AbilityName) == -1)
+		{
+			AbilityTemplateMan = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+			AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate(AbilityName);
+
+			if(AbilityTemplate != none)
+			{
+				Data = EmptyData;
+				Data.TemplateName = AbilityName;
+				Data.Template = AbilityTemplate;
+				SetupData.AddItem(Data);  // return array -- we don't have to worry about additional abilities for this simple ability
+			}
+		}
+	}
+}
+
+static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTemplate CharTemplate)
+{
+	// Specific character types should never have an infiltration modifier applied.
+	if (default.CharacterTypesExceptFromInfiltrationModifiers.Find(CharTemplate.DataName) >= 0)
+	{
+		return false;
+	}
+
+	// Otherwise anything that's alien or advent gets one
+	return CharTemplate.bIsAdvent || CharTemplate.bIsAlien;
+}
+
 static event OnExitPostMissionSequence()
 {
 	CleanupObsoleteTacticalGamestate();
@@ -1273,6 +1345,8 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 
 			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 
+			if (!CanOverrideChosenTacticalTags(MissionState, ChosenState)) continue;
+
 			// Remove the tag if it's already attached to this mission. This is the only
 			// place that should add Chosen tactical mission tags.
 			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTag);
@@ -1294,6 +1368,14 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 			ChosenState.PurgeMissionOfTags(MissionState);
 		}
 	}
+}
+
+// Determines whether the Chosen tactical tags should be cleared from the
+// given mission. Returns `false` if the given mission is either the final
+// one or one of the Chosen strongholds.
+static function bool CanOverrideChosenTacticalTags(XComGameState_MissionSite MissionState, XComGameState_AdventChosen ChosenState)
+{
+	return MissionState.Source != 'MissionSource_Final' && MissionState.Source != 'MissionSource_ChosenStronghold';
 }
 
 // Returns the chance that the given Chosen will appear on the given mission. The chance
@@ -2165,6 +2247,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'NANOFIBER_CRITDEF_BONUS_LW':
 			Outstring = string(class'X2Ability_LW_GearAbilities'.default.NANOFIBER_CRITDEF_BONUS);
+			return true;
+		case 'RESILIENCE_BONUS_LW':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.RESILIENCE_CRITDEF_BONUS);
 			return true;
 		case 'ALPHA_MIKE_FOXTROT_DAMAGE_LW':
 			Outstring = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.ALPHAMIKEFOXTROT_DAMAGE);

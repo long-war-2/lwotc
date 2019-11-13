@@ -474,9 +474,27 @@ function UpdateRewardTemplate(X2StrategyElementTemplate Template, int Difficulty
 		case 'Reward_Soldier':
 			RewardTemplate.GenerateRewardFn = GenerateRandomSoldierReward;
 			break;
+		case 'Reward_FindFaction':
+			UpdateFactionSoldierReward(RewardTemplate, class'X2LWCovertActionsModTemplate'.default.FIND_SECOND_FACTION_REQ_RANK - 1);
+			break;
+		case 'Reward_FindFarthestFaction':
+			UpdateFactionSoldierReward(RewardTemplate, class'X2LWCovertActionsModTemplate'.default.FIND_THIRD_FACTION_REQ_RANK - 1);
+			break;
 		default:
 			break;
 	}
+}
+
+static function UpdateFactionSoldierReward(X2RewardTemplate Template, int SoldierRank)
+{
+	local LWGiveSoldierRewardWrapper FnWrapper;
+
+	`LWTrace("Updating faction soldier reward function");
+
+	FnWrapper = new class'LWGiveSoldierRewardWrapper';
+	FnWrapper.SoldierRank = SoldierRank;
+	FnWrapper.OriginalDelegateFn = Template.GiveRewardFn;
+	Template.GiveRewardFn = FnWrapper.GiveFactionSoldierReward;
 }
 
 // Update StaffSlotTemplates as needed
@@ -498,8 +516,7 @@ function UpdateStaffSlotTemplate(X2StrategyElementTemplate Template, int Difficu
 	StaffSlotTemplate = X2StaffSlotTemplate(Template);
 	if(StaffSlotTemplate == none)
 		return;
-	
-	/* WOTC TODO: Work out how to replace the AWC stuff
+
 	switch (StaffSlotTemplate.DataName)
 	{
 		case 'AWCScientistStaffSlot':
@@ -513,7 +530,6 @@ function UpdateStaffSlotTemplate(X2StrategyElementTemplate Template, int Difficu
 		default:
 			break;
 	}
-	*/
 }
 
 static function int GetAWCContribution_LW(XComGameState_Unit UnitState)
@@ -538,7 +554,7 @@ static function int GetAWCAvengerBonus_LW(XComGameState_Unit UnitState, optional
 	return Round(PercentIncrease);
 }
 
-static function FillAWCSciSlot_LW(XComGameState NewGameState, StateObjectReference SlotRef, StaffUnitInfo UnitInfo)
+static function FillAWCSciSlot_LW(XComGameState NewGameState, StateObjectReference SlotRef, StaffUnitInfo UnitInfo, optional bool bTemporary = false)
 {
 	local XComGameState_HeadquartersXCom NewXComHQ;
 	local XComGameState_Unit NewUnitState;
@@ -1753,7 +1769,8 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 			break;
 		}
 	}
-	if (ThrownDamageEffect != none || LaunchedDamageEffect != none)
+	if (ThrownDamageEffect != none || LaunchedDamageEffect != none &&
+		ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', ThrownDamageEffect.Class))
 	{
 		FalloffDamageEffect = new class'X2Effect_ApplyExplosiveFalloffWeaponDamage' (ThrownDamageEffect);
 
@@ -1945,7 +1962,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('CoupdeGrace2');
 			Template.Abilities.AddItem('Whirlwind2');
 			break;
-		case 'Sectopod'
+		case 'Sectopod':
 			Template.Abilities.AddItem('Resilience');
 			break;
 		// Should turn off tick damage every action
@@ -1963,6 +1980,12 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			break;
 		default:
 			break;
+	}
+
+	// Allow the Lost to climb walls
+	if (InStr(Template.DataName, "TheLost") == 0)
+	{
+		Template.bCanUse_eTraversal_WallClimb = true;
 	}
 
 	// Any soldier templates get the Interact_SmashNGrab ability
@@ -3381,6 +3404,8 @@ function ModifyDarkEvents (X2StrategyElementTemplate Template, int Difficulty)
 			case 'DarkEvent_StilettoRounds':
 			case 'DarkEvent_SignalJamming':
 			case 'DarkEvent_GoneToGround':
+			case 'DarkEvent_LightningReflexes': // WOTC version replaced with LW2 one for the moment
+			case 'DarkEvent_Counterattack': // This conflicts with green and yellow alert reflex actions (and doesn't work as advertised)
 				// Remove these from play
 				DarkEventTemplate.StartingWeight = 0;
 				DarkEventTemplate.MinWeight = 0;
@@ -3595,7 +3620,8 @@ static function X2LWTemplateModTemplate CreateReconfigFacilityUpgradesTemplate()
 // THIS DOES NOT MODIFY REQUIREMENTS (TECHS, SPECIAL ARTIFACTS, RANK ACHIEVED) WHICH ARE HARDCODED, CAN ADD SCI/ENG SCORE REQUIREMENT IF SET
 function ModifyFacilityUpgrades(X2StrategyElementTemplate Template, int Difficulty)
 {
-	local X2FacilityUpgradeTemplate FacilityUpgradeTemplate;
+	local X2FacilityUpgradeTemplate FacilityUpgradeTemplate, BaseResearchStationTemplate;
+	local X2StrategyElementTemplate StratTemplate;
 	local int k;
 	local ArtifactCost Resources;
 
@@ -3664,6 +3690,18 @@ function ModifyFacilityUpgrades(X2StrategyElementTemplate Template, int Difficul
 					FacilityUpgradeTemplate.Requirements.RequiredScienceScore = FacilityUpgradeTable[k].RequiredScienceScore;
 				}
 			}
+		}
+
+		// Ensure the Laboratory research station upgrades get the standard localization text
+		if (FacilityUpgradeTemplate.DataName == 'Laboratory_AdditionalResearchStation2' ||
+			FacilityUpgradeTemplate.DataName == 'Laboratory_AdditionalResearchStation3')
+		{
+			// Configure the additional research stations in the Laboratory
+			StratTemplate = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Laboratory_AdditionalResearchStation');
+			BaseResearchStationTemplate = X2FacilityUpgradeTemplate(StratTemplate);
+			FacilityUpgradeTemplate.DisplayName = BaseResearchStationTemplate.default.DisplayName;
+			FacilityUpgradeTemplate.FacilityName = BaseResearchStationTemplate.default.FacilityName;
+			FacilityUpgradeTemplate.Summary = BaseResearchStationTemplate.default.Summary;
 		}
 	}
 }

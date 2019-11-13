@@ -4054,7 +4054,7 @@ FriendlyName="黑暗事件：戰術升級（獵人本能）"
 Description="許多蛇類敵人獲得了獵人本能的能力，在側翼攻擊敵人時獲得額外傷害。"
 
 ; LR
-[DarkEvent_LightningReflexes X2DarkEventTemplate]
+[DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
 DisplayName="戰術升級：閃電反射"
 SummaryText="為一些強襲槍兵和其他敵人提供閃電反射能力，獲得躲避反應射擊的加成。"
 QuoteText="\"我真的、真的憎恨那些傢伙。\""
@@ -4063,7 +4063,7 @@ PreMissionText="為一些強襲槍兵和其他敵人提供閃電反射的能力�
 PostMissionSuccessText="成功阻止黑暗事件：戰術升級（閃電反射）"
 PostMissionFailureText="未能阻止黑暗事件：戰術升級（閃電反射）"
 
-[DarkEvent_LightningReflexes X2HackRewardTemplate]
+[DarkEvent_LightningReflexes_LW X2HackRewardTemplate]
 FriendlyName="黑暗事件：戰術升級（閃電反射）"
 Description="為一些強襲槍兵和其他敵人提供閃電反射能力，獲得躲避反應射擊的加成。"
 

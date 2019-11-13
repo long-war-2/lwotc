@@ -12,11 +12,16 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
 	local X2EventManager EventMgr;
 	local Object EffectObj;
+	local XComGameState_Unit UnitState;
 
 	EventMgr = `XEVENTMGR;
 
 	EffectObj = EffectGameState;
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 
+	// Use a low priority so that the listener triggers *after* the last shutdown tick. Otherwise,
+	// the check for IsStunned() happens while the target is still stunned, so the virus doesn't
+	// trigger, but then the stun is removed and the target has actions to do something horrible.
 	EventMgr.RegisterForEvent(EffectObj,  'UnitGroupTurnBegun', PostEffectTickCheck, ELD_OnStateSubmitted, 25,,, EffectObj);
 }
 
@@ -27,6 +32,7 @@ static function EventListenerReturn PostEffectTickCheck(Object EventData, Object
 	local XComGameStateHistory History;
 	local XComGameStateContext_TickEffect TickContext;
 	local XComGameState NewGameState;
+	local XComGameState_AIGroup GroupState;
 	local XComGameState_Unit OldTargetState, NewTargetState, SourceState;
 	local XComGameState_Effect EffectState;
 	local float AttackerHackStat, DefenderHackDefense, Damage;
@@ -34,8 +40,15 @@ static function EventListenerReturn PostEffectTickCheck(Object EventData, Object
 
 	History = `XCOMHISTORY;
 	EffectState = XComGameState_Effect(CallbackData);
+	GroupState = XComGameState_AIGroup(EventSource);
 	OldTargetState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	SourceState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+
+	// Ignore if the current group doesn't match the target's
+	if (OldTargetState.GetGroupMembership().ObjectID != GroupState.ObjectID)
+	{
+		return ELR_NoInterrupt;
+	}
 
 	// don't do anything if unit is still mind controlled or stunned
 	if(OldTargetState.IsMindControlled() || OldTargetState.IsStunned())
@@ -68,7 +81,7 @@ static function EventListenerReturn PostEffectTickCheck(Object EventData, Object
 
 	//check that it wasn't removed already because of the unit being killed from damage
 	if(!EffectState.bRemoved)
-	EffectState.RemoveEffect(NewGameState, NewGameState);
+		EffectState.RemoveEffect(NewGameState, NewGameState);
 	if( NewGameState.GetNumGameStateObjects() > 0 )
 		`TACTICALRULES.SubmitGameState(NewGameState);
 	else

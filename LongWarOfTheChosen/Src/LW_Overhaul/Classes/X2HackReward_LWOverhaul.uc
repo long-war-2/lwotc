@@ -110,7 +110,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Formidable', ApplyFormidable));
 	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Shredder', ApplyShredder));
 	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_HuntersInstinct', ApplyHuntersInstinct));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_LightningReflexes', ApplyLightningReflexes));
+	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_LightningReflexes_LW', ApplyLightningReflexes));
 	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_CloseCombatSpecialist', ApplyCloseCombatSpecialist));
 	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_GrazingFire', ApplyGrazingFire));
 	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Cutthorat', ApplyCutthroat));

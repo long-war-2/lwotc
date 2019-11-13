@@ -88,5 +88,7 @@ static function X2AbilityTemplate AddSolace_LWAbility()
     Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
     Template.CinescriptCameraType = "Psionic_FireAtUnit";
 
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
+
 	return Template;
 }

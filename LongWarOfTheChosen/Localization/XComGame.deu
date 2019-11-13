@@ -4055,7 +4055,7 @@ FriendlyName="Düsteres Ereignis: Taktikverbesserungen (Jagdinstinkt)"
 Description="Viele Schlangen-Feinde erhalten die Fähigkeit 'Jagdinstinkt', die ihnen einen Schadensbonus gegen flankierte Feinde gewährt."
 
 ; LR
-[DarkEvent_LightningReflexes X2DarkEventTemplate]
+[DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
 DisplayName="Taktikverbesserung: Blitzschnelle Reflexe"
 SummaryText="Einige Betäubungslanzenträger und andere Feinde erhalten die Fähigkeit 'Blitzschnelle Reflexe', die ihnen Ausweichboni gegen Reflexschüsse gewährt."
 QuoteText="\"Ich hasse diese Typen aus tiefster Seele.\""
@@ -4064,7 +4064,7 @@ PreMissionText="Gewährt einigen Betäubungslanzenträgern und anderen Feinden d
 PostMissionSuccessText="Düsteres Ereignis verhindert: Taktikverbesserung (Blitzschnelle Reflexe)"
 PostMissionFailureText="Düsteres Ereignis nicht verhindert: Taktikverbesserung (Blitzschnelle Reflexe)"
 
-[DarkEvent_LightningReflexes X2HackRewardTemplate]
+[DarkEvent_LightningReflexes_LW X2HackRewardTemplate]
 FriendlyName="Düsteres Ereignis: Taktikverbesserungen (Blitzschnelle Reflexe)"
 Description="Einige Betäubungslanzenträger und andere Feinde erhalten die Fähigkeit 'Blitzschnelle Reflexe', die ihnen Ausweichboni gegen Reflexschüsse gewährt."
 
