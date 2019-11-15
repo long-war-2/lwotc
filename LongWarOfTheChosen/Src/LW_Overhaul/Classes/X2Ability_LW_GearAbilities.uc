@@ -18,6 +18,10 @@ var config int STOCK_BSC_SW_AIM_BONUS;
 var config int STOCK_ADV_SW_AIM_BONUS;
 var config int STOCK_SUP_SW_AIM_BONUS;
 
+var config int STOCK_BSC_SUCCESS_CHANCE;
+var config int STOCK_ADV_SUCCESS_CHANCE;
+var config int STOCK_SUP_SUCCESS_CHANCE;
+
 var config int CERAMIC_PLATING_HP;
 var config int ALLOY_PLATING_HP;
 var config int CARAPACE_PLATING_HP;
@@ -44,6 +48,10 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateStockSteadyWeaponAbility('Stock_LW_Bsc_Ability', default.STOCK_BSC_SW_AIM_BONUS));
 	Templates.AddItem(CreateStockSteadyWeaponAbility('Stock_LW_Adv_Ability', default.STOCK_ADV_SW_AIM_BONUS));
 	Templates.AddItem(CreateStockSteadyWeaponAbility('Stock_LW_Sup_Ability', default.STOCK_SUP_SW_AIM_BONUS));
+
+	Templates.AddItem(CreateStockGrazingFireAbility('Stock_GF_Bsc_Ability', default.STOCK_BSC_SUCCESS_CHANCE));
+	Templates.AddItem(CreateStockGrazingFireAbility('Stock_GF_Adv_Ability', default.STOCK_ADV_SUCCESS_CHANCE));
+	Templates.AddItem(CreateStockGrazingFireAbility('Stock_GF_Sup_Ability', default.STOCK_SUP_SUCCESS_CHANCE));
 
 	Templates.AddItem(CreateAblativeHPAbility('Ceramic_Plating_Ability', default.CERAMIC_PLATING_HP));
 	Templates.AddItem(CreateAblativeHPAbility('Alloy_Plating_Ability', default.ALLOY_PLATING_HP));
@@ -180,7 +188,7 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	ToHitModifier.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ToHitModifier.DuplicateResponse=eDupe_Refresh;
 	ToHitModifier.Aim_Bonus=Bonus;
-	ToHitModifier.Crit_Bonus=Bonus;
+	ToHitModifier.Crit_Bonus=0;
 	Template.AddTargetEffect(ToHitModifier);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -188,6 +196,37 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 
 	return Template;
 }
+
+static function X2AbilityTemplate CreateStockGrazingFireAbility(name TemplateName, int Chance)
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_GrazingFire				GrazingEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, TemplateName);
+
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityGrazingFire";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	Template.bCrossClassEligible = true;
+	GrazingEffect = new class'X2Effect_GrazingFire';
+	GrazingEffect.SuccessChance = Chance;
+	GrazingEffect.BuildPersistentEffect (1, true, false);
+	GrazingEffect.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
+	Template.AddTargetEffect(GrazingEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	return Template;
+}
+
 
 static function X2AbilityTemplate CreateAblativeHPAbility(name TemplateName, int AblativeHPAmt)
 {

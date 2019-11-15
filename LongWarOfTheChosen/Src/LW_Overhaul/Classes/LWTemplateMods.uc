@@ -2049,6 +2049,23 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			WeaponTemplate.Abilities.AddItem('Squadsight');
 		}
+		switch(WeaponTemplate.DataName)
+		{
+		case 'SniperRifle_CV':
+		case 'SniperRifle_LS':
+		WeaponTemplate.Abilities.AddItem('Stock_LW_Bsc_Ability');
+		break;
+		case 'SniperRifle_MG':
+		case 'SniperRifle_CG': 
+		WeaponTemplate.Abilities.AddItem('Stock_LW_Adv_Ability');
+		break;
+		case 'SniperRifle_BM':
+		case 'ChosenSniperRifle_XCOM':
+		WeaponTemplate.Abilities.AddItem('Stock_LW_Sup_Ability');
+		break;
+		default:
+		break;
+		}
 
 		//if (WeaponTemplate.Abilities.Find('StandardShot') != -1)
 		//{
@@ -2589,21 +2606,21 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
-			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_LW_Bsc_Ability');
+			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_GF_Bsc_Ability');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Adv')
 		{
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
-			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_LW_Adv_Ability');
+			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_GF_Adv_Ability');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Sup')
 		{
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
-			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_LW_Sup_Ability');
+			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_GF_Sup_Ability');
 		}
 		
 		if (WeaponUpgradeTemplate.DataName == 'FreeKillUpgrade_Bsc' || WeaponUpgradeTemplate.DataName == 'FreeKillUpgrade_Adv' || WeaponUpgradeTemplate.DataName == 'FreeKillUpgrade_Sup')
@@ -2613,7 +2630,21 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			//Abilities are caught elsewhere
 		}
-
+		//make them mutually exclusive
+		if (WeaponUpgradeTemplate.DataName == 'ReloadUpgrade_Bsc' || WeaponUpgradeTemplate.DataName == 'ReloadUpgrade_Adv' || WeaponUpgradeTemplate.DataName == 'ReloadUpgrade_Sup')
+		{
+			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ClipSizeUpgrade');
+			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ClipSizeUpgrade_Bsc');
+			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ClipSizeUpgrade_Adv');
+			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ClipSizeUpgrade_Sup');
+		}
+		if (WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Bsc' || WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Adv' || WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Sup')
+		{
+			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ReloadUpgrade');
+			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ReloadUpgrade_Bsc');
+			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ReloadUpgrade_Adv');
+			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ReloadUpgrade_Sup');
+		}
 		//Config-able items array -- Weapon Upgrades
 		for (i=0; i < ItemTable.Length; ++i)
 		{           
