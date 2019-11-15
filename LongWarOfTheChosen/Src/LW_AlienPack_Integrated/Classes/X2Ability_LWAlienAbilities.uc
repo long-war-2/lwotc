@@ -16,7 +16,7 @@ var config int WARCRY_MUTON_MOBILITY_BONUS;
 var config int WARCRY_OTHER_OFFENSE_BONUS;
 var config int WARCRY_OTHER_WILL_BONUS;
 var config int WARCRY_OTHER_MOBILITY_BONUS;
-var config int BAYONETCHARGE_COOLDOWN;
+var config int BAYONET_COOLDOWN;
 var config int BAYONETCHARGE_PENALTY_DURATION;
 var config int BAYONETCHARGE_DEFENSE_PENALTY;
 var config array <string> WARCRY_MUTON_BONUS;
@@ -160,7 +160,7 @@ static function X2AbilityTemplate CreateMutonM2_LWAbility_BayonetCharge()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2AbilityToHitCalc_StandardMelee	StandardMelee;
 	local X2Effect_ApplyWeaponDamage		WeaponDamageEffect;
-	local X2AbilityCooldown					Cooldown;
+	
 	local X2Effect_ImmediateAbilityActivation ImpairingAbilityEffect;
 	local X2Effect_PersistentStatChange		StatEffect;
 	local XGParamTag						kTag;
@@ -180,9 +180,8 @@ static function X2AbilityTemplate CreateMutonM2_LWAbility_BayonetCharge()
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.BAYONETCHARGE_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
+	
+
 
 	StatEffect = new class'X2Effect_PersistentStatChange';
 

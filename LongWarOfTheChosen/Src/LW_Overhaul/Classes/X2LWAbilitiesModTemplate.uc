@@ -56,6 +56,13 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			// reintroduce it.
 			// UpdateShadow(Template);
 			break;
+		case 'Bayonet':
+		UpdateBayonet(Template);
+		break;
+		//I probably could just update it in the Alienpack, but it doesn't recognize the cooldown class there
+		case 'BayonetCharge':
+		UpdateBayonetCharge(Template);
+		break;
 		default:
 			break;
 	}
@@ -383,7 +390,26 @@ static function UpdateShadow(X2AbilityTemplate Template)
 
 	Template.AddTargetEffect(ToHitModifier);
 }
+static function UpdateBayonet(X2AbilityTemplate Template)
+{
+	local X2AbilityCooldown_Shared	Cooldown;
 
+    Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown.iNumTurns = class'X2Ability_LWAlienAbilities'.default.BAYONET_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('BayonetCharge'); //Now shares the cooldown with Bayonet charge
+	Template.AbilityCooldown = Cooldown;
+
+}
+
+static function UpdateBayonetCharge(X2AbilityTemplate Template)
+{
+	local X2AbilityCooldown_Shared	Cooldown;
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown.iNumTurns = class'X2Ability_LWAlienAbilities'.default.BAYONET_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('Bayonet'); //Now shares the cooldown with Bayonet
+	Template.AbilityCooldown = Cooldown;
+}
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
