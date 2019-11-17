@@ -1,4 +1,4 @@
-class X2AbilityCooldown_Shared extends X2AbilityCooldown;
+class X2AbilityCooldown_Shared extends X2AbilityCooldown; //Based on X2AbilityCooldown_AllInstances
 
 var() array<name> SharingCooldownsWith; //It might not be the most general or safest implementation, but I don't think we need anything more for now
 
@@ -35,7 +35,7 @@ simulated function ApplyCooldown(XComGameState_Ability kAbility, XComGameState_B
 				{
 					if (MultAbility != none && MultAbility.GetMyTemplateName() == SharingCooldownsWith[j])
 					{
-						MultAbility = XComGameState_Ability(NewGameState.CreateStateObject(class'XComGameState_Ability', MultAbility.ObjectID));
+						MultAbility = XComGameState_Ability(NewGameState.CreateNewStateObject(class'XComGameState_Ability', MultAbility.ObjectID));
 						NewGameState.AddStateObject(MultAbility);
 						MultAbility.iCooldown = GetNumTurns(kAbility, AffectState, AffectWeapon, NewGameState);
 					}
