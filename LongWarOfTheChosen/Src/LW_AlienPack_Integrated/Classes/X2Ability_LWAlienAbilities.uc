@@ -180,9 +180,6 @@ static function X2AbilityTemplate CreateMutonM2_LWAbility_BayonetCharge()
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	
-
-
 	StatEffect = new class'X2Effect_PersistentStatChange';
 
 	kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
