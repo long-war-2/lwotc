@@ -219,7 +219,7 @@ static function X2AbilityTemplate CreateStockGrazingFireAbility(name TemplateNam
 	GrazingEffect = new class'X2Effect_GrazingFire';
 	GrazingEffect.SuccessChance = Chance;
 	GrazingEffect.BuildPersistentEffect (1, true, false);
-	GrazingEffect.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
+	//GrazingEffect.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(GrazingEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
