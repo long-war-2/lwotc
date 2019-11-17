@@ -357,11 +357,12 @@ static funtion UpdateCICA()
 	SETMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 
 	SETMgr.FindDataTemplateAllDifficulties('CovertActionImproveComIntStaffSlot', Templates);
-	for (i = 0; i < Templates.Length; i++)
+	foreach Templates(Template)
 	{
-		X2StaffSlotTemplate(Templates[i]).IsUnitValidForSlotFn = Fixed_IsUnitValidForCovertActionImproveComIntSlot;
+		X2StaffSlotTemplate(Template).IsUnitValidForSlotFn = Fixed_IsUnitValidForCovertActionImproveComIntSlot;
 	}
 }
+
 static function bool Fixed_IsUnitValidForCovertActionImproveComIntSlot(XComGameState_StaffSlot SlotState, StaffUnitInfo UnitInfo)
 {
 	local XComGameState_Unit Unit;
