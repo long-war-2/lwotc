@@ -28,8 +28,7 @@ static event OnPostTemplatesCreated()
 	UpdateDeflect();
 	UpdateShadow();
 	UpdateRemoteStart();
-	//Allows the 2-2-2 faction soldier roster
-	EditReward();
+	AllowTwoSoldiersFromEachFaction();
 }
 
 static function IgnoreSuperConcealmentOnAllMissions()
@@ -349,7 +348,7 @@ static function EditParry(X2AbilityTemplate Template)
 	ParryTemplate.AddTargetEffect(PersistentEffect);
 }
 //Copy pasted Realitymachina's code
-static function EditReward()
+static function AllowTwoSoldiersFromEachFaction()
 {
 	local X2RewardTemplate RewardTemplate;
 	local X2StrategyElementTemplateManager StratMgr;
