@@ -195,7 +195,9 @@ static function X2Effect_PersistentStatChange CreateBluescreenBombsHackReduction
 	local X2Condition_AbilityProperty       BluescreenCondition;
 	local X2Condition_UnitProperty			UnitCondition;
 
-	HackDefenseChangeEffect = class'X2StatusEffects'.static.CreateHackDefenseChangeStatusEffect(default.BLUESCREENBOMB_HACK_DEFENSE_CHANGE);
+	HackDefenseChangeEffect = class'Helpers_LW'.static.CreateHackDefenseReductionStatusEffect(
+		'Bluescreen Bombs Hack Bonus',
+		default.BLUESCREENBOMB_HACK_DEFENSE_CHANGE);
 
 	UnitCondition = new class'X2Condition_UnitProperty';
 	UnitCondition.ExcludeOrganic = true;

@@ -577,55 +577,55 @@ LocLongDescription="Offre une couverture complète aux membres de l'escouade où
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Lunette"
-LocLongDescription="Vous bénéficiez de + 5 au toucher avec votre arme principale (sauf pour les tirs réflexes)."
+LocLongDescription="Vous bénéficiez de + <Ability:SCOPE_BSC_AIM_BONUS/> au toucher avec votre arme principale (sauf pour les tirs réflexes)."
 LocHelpText="Lunette : bonus au toucher (sauf pour tir de vigilance)"
 LocFlyOverText="Lunette"
 
 [Scope_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Lunette avancée"
-LocLongDescription="Vous bénéficiez de + 10 au toucher avec votre arme principale (sauf pour les tirs réflexes)."
+LocLongDescription="Vous bénéficiez de + <Ability:SCOPE_ADV_AIM_BONUS/> au toucher avec votre arme principale (sauf pour les tirs réflexes)."
 LocHelpText="Lunette : bonus au toucher (sauf pour tir de vigilance)"
 LocFlyOverText="Lunette avancée"
 
 [Scope_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Lunette d'élite"
-LocLongDescription="Vous bénéficiez de + 15 au toucher avec votre arme principale (sauf pour les tirs réflexes)."
+LocLongDescription="Vous bénéficiez de + <Ability:SCOPE_SUP_AIM_BONUS/> au toucher avec votre arme principale (sauf pour les tirs réflexes)."
 LocHelpText="Lunette : bonus au toucher (sauf pour tir de vigilance)"
 LocFlyOverText="Lunette d'élite"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Gâchette facile"
-LocLongDescription="Visée + 5 pour les tirs réflexes avec votre arme principale."
+LocLongDescription="Visée + <Ability:TRIGGER_BSC_AIM_BONUS/> pour les tirs réflexes avec votre arme principale."
 LocHelpText="Gâchette facile : bonus de visée pour les tirs réflexes"
 LocFlyOverText="Gâchette facile"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Gâchette facile avancée"
-LocLongDescription="Visée + 10 pour les tirs réflexes avec votre arme principale."
+LocLongDescription="Visée + <Ability:TRIGGER_ADV_AIM_BONUS/> pour les tirs réflexes avec votre arme principale."
 LocHelpText="Gâchette facile : bonus de visée pour les tirs réflexes"
 LocFlyOverText="Gâchette facile avancée"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Gâchette facile d'élite"
-LocLongDescription="Visée + 15 pour les tirs réflexes avec votre arme principale."
+LocLongDescription="Visée + <Ability:TRIGGER_SUP_AIM_BONUS/> pour les tirs réflexes avec votre arme principale."
 LocHelpText="Gâchette facile : bonus de visée pour les tirs réflexes"
 LocFlyOverText="Gâchette facile d'élite"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Arme stable"
-LocLongDescription="Activer la capacité Arme stable pour obtenir + 15 de visée et + 15 de chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé."
+LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_BSC_SW_AIM_BONUS/> de visée et + <Ability:STOCK_BSC_SW_AIM_BONUS/> de chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé."
 LocHelpText="Arme stable : bonus au toucher pour le prochain tir si vous n'êtes pas blessé et que vous n'effectuez pas d'autre action."
 LocFlyOverText="Arme stable"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Arme stable"
-LocLongDescription="Activer la capacité Arme stable pour obtenir + 20 de visée et + 20 de chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé."
+LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_ADV_SW_AIM_BONUS/> de visée et + <Ability:STOCK_ADV_SW_AIM_BONUS/> de chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé."
 LocHelpText="Arme stable : bonus au toucher pour le prochain tir si vous n'êtes pas blessé et que vous n'effectuez pas d'autre action."
 LocFlyOverText="Arme stable"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Arme stable"
-LocLongDescription="Activer la capacité Arme stable pour obtenir + 25 de visée et + 25 de chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé."
+LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_SUP_SW_AIM_BONUS/> de visée et + <Ability:STOCK_SUP_SW_AIM_BONUS/> de chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé."
 LocHelpText="Arme stable : bonus au toucher pour le prochain tir si vous n'êtes pas blessé et que vous n'effectuez pas d'autre action."
 LocFlyOverText="Arme stable"
 
@@ -650,8 +650,8 @@ LocHelpText="Infligent 2 points de dégât supplémentaires aux cibles sans arm
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Munitions Écran rouge"
 LocFlyOverText="Munitions Écran rouge"
-LocLongDescription="Chaque coup diminue de 25 la défense anti-piratage de la cible."
-LocHelpText="Chaque coup diminue de 25 la défense anti-piratage de la cible."
+LocLongDescription="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible."
+LocHelpText="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible."
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Munitions Poignard"
@@ -996,63 +996,63 @@ m_strRemoveUpgrade="SUPPRIMER AMÉLIORATION"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Gâchette facile"
 FriendlyNamePlural="Gâchettes faciles"
-BriefSummary="Le soldat gagne visée + 5 pour les tirs réflexes."
+BriefSummary="Le soldat gagne visée + <Ability:TRIGGER_BSC_AIM_BONUS/> pour les tirs réflexes."
 TinySummary="Bonus de visée pour les tirs réflexes"
 LootTooltip="Cette amélioration d'arme offre un bonus de visée pour les tirs réflexes."
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Gâchette facile avancée"
 FriendlyNamePlural="Gâchettes faciles avancées"
-BriefSummary="Le soldat gagne visée + 10 pour les tirs réflexes."
+BriefSummary="Le soldat gagne visée + <Ability:TRIGGER_ADV_AIM_BONUS/> pour les tirs réflexes."
 TinySummary="Bonus de visée pour les tirs réflexes"
 LootTooltip="Cette amélioration d'arme offre un bonus de visée pour les tirs réflexes."
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Gâchette facile d'élite"
 FriendlyNamePlural="Gâchettes faciles d'élite"
-BriefSummary="Le soldat gagne visée + 15 pour les tirs réflexes."
+BriefSummary="Le soldat gagne visée + <Ability:TRIGGER_SUP_AIM_BONUS/> pour les tirs réflexes."
 TinySummary="Bonus de visée pour les tirs réflexes"
 LootTooltip="Cette amélioration d'arme offre un bonus de visée pour les tirs réflexes."
 
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Lunette"
 FriendlyNamePlural="Lunettes"
-BriefSummary="Visée + 5, sauf pour les tirs réflexes."
+BriefSummary="Visée + <Ability:SCOPE_BSC_AIM_BONUS/>, sauf pour les tirs réflexes."
 TinySummary="Bonus de visée, sauf pour les tirs réflexes."
 LootTooltip="Cette amélioration ajoute un bonus de visée à n'importe quelle arme, sauf pour les tirs réflexes."
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Lunette avancée"
 FriendlyNamePlural="Lunettes avancées"
-BriefSummary="Visée + 10, sauf pour les tirs réflexes."
+BriefSummary="Visée + <Ability:SCOPE_ADV_AIM_BONUS/>, sauf pour les tirs réflexes."
 TinySummary="Bonus de visée, sauf pour les tirs réflexes."
 LootTooltip="Cette amélioration ajoute un bonus de visée à n'importe quelle arme, sauf pour les tirs réflexes."
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Lunette d'élite"
 FriendlyNamePlural="Lunettes d'élite"
-BriefSummary="Visée + 15, sauf pour les tirs réflexes."
+BriefSummary="Visée + <Ability:SCOPE_SUP_AIM_BONUS/>, sauf pour les tirs réflexes."
 TinySummary="Bonus de visée, sauf pour les tirs réflexes."
 LootTooltip="Cette amélioration ajoute un bonus de visée à n'importe quelle arme, sauf pour les tirs réflexes."
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Crosse"
 FriendlyNamePlural="Crosses"
-BriefSummary="Octroie la capacité Arme stable, qui donne + 15 de visée et + 15 de chances de coup critique pour le prochain tir."
+BriefSummary="Octroie la capacité Arme stable, qui donne + <Ability:STOCK_BSC_SW_AIM_BONUS/> de visée et + <Ability:STOCK_BSC_SW_AIM_BONUS/> de chances de coup critique pour le prochain tir."
 TinySummary="Confère Arme stable"
 LootTooltip="Une fois installée, cette amélioration d'arme confère la capacité Arme stable."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Crosse avancée"
 FriendlyNamePlural="Crosses avancées"
-BriefSummary="Octroie la capacité Arme stable, qui donne + 20 de visée et + 20 de chances de coup critique pour le prochain tir."
+BriefSummary="Octroie la capacité Arme stable, qui donne + <Ability:STOCK_ADV_SW_AIM_BONUS/> de visée et + <Ability:STOCK_ADV_SW_AIM_BONUS/> de chances de coup critique pour le prochain tir."
 TinySummary="Confère Arme stable"
 LootTooltip="Une fois installée, cette amélioration d'arme confère la capacité Arme stable."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Crosse d'élite"
 FriendlyNamePlural="Crosses d'élite"
-BriefSummary="Octroie la capacité Arme stable, qui donne + 25 de visée et + 25 de chances de coup critique pour le prochain tir."
+BriefSummary="Octroie la capacité Arme stable, qui donne + <Ability:STOCK_SUP_SW_AIM_BONUS/> de visée et + <Ability:STOCK_SUP_SW_AIM_BONUS/> de chances de coup critique pour le prochain tir."
 TinySummary="Confère Arme stable"
 LootTooltip="Une fois installée, cette amélioration d'arme confère la capacité Arme stable."
 

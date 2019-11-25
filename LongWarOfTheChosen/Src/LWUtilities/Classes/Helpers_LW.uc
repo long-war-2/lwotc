@@ -330,3 +330,24 @@ static function XComGameState_ResistanceFaction GetFactionFromRegion(StateObject
 
 	return FactionState;
 }
+
+// Creates a Hack Defense reduction effect with a unique name, so that they can
+// stack. Also adds an icon for the effect, because the base game version doesn't
+// have one.
+//
+// Note that the HackDefenseChangeAmount should be negative for an actual reduction
+// in hack defense.
+static function X2Effect_PersistentStatChange CreateHackDefenseReductionStatusEffect(
+	name EffectName,
+	int HackDefenseChangeAmount,
+	optional X2Condition Condition)
+{
+	local X2Effect_PersistentStatChange HackDefenseReductionEffect;
+
+	HackDefenseReductionEffect = class'X2StatusEffects'.static.CreateHackDefenseChangeStatusEffect(HackDefenseChangeAmount, Condition);
+	HackDefenseReductionEffect.EffectName = EffectName;
+	HackDefenseReductionEffect.DuplicateResponse = eDupe_Refresh;
+	HackDefenseReductionEffect.IconImage = "UILibrary_Common.TargetIcons.Hack_robot_icon";
+
+	return HackDefenseReductionEffect;
+}

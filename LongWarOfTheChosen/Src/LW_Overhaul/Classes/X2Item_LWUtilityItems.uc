@@ -253,44 +253,11 @@ static function X2AmmoTemplate CreateFlechetteRounds()
 	return Template;
 }
 
-
-static function X2Effect_PersistentStatChange CreateHackDefenseChangeStatusEffect2(int HackDefenseChangeAmount, X2Condition Condition=none)
-{
-	local X2Effect_PersistentStatChange HackDefenseChangeEffect;
-	local EPerkBuffCategory BuffCat;
-	local string FriendlyName, FriendlyDesc;
-
-	BuffCat = ePerkBuff_Penalty;
-	FriendlyName = class'X2StatusEffects'.default.HackDefenseDecreasedFriendlyName;
-	FriendlyDesc = class'X2StatusEffects'.default.HackDefenseDecreasedFriendlyDesc;
-
-	if (HackDefenseChangeAmount > 0)
-	{
-		BuffCat = ePerkBuff_Bonus;
-		FriendlyName = class'X2StatusEffects'.default.HackDefenseIncreasedFriendlyName;
-		FriendlyDesc = class'X2StatusEffects'.default.HackDefenseIncreasedFriendlyDesc;
-	}
-
-	HackDefenseChangeEffect = new class'X2Effect_PersistentStatChange';
-	HackDefenseChangeEffect.BuildPersistentEffect(1, true, false, true);
-	HackDefenseChangeEffect.AddPersistentStatChange(eStat_HackDefense, HackDefenseChangeAmount);
-	HackDefenseChangeEffect.SetDisplayInfo(BuffCat, FriendlyName, FriendlyDesc, "");
-	HackDefenseChangeEffect.DuplicateResponse = eDupe_Refresh;
-	HackDefenseChangeEffect.VisualizationFn = class'X2StatusEffects'.static.HackDefenseChangeVisualization;
-
-	if (Condition != none)
-	{
-		HackDefenseChangeEffect.TargetConditions.AddItem(Condition);
-	}
-
-	return HackDefenseChangeEffect;
-}
-
-
 static function X2AmmoTemplate CreateRedScreenRounds()
 {
 	local X2AmmoTemplate				Template;
 	local X2Condition_UnitProperty		Condition_UnitProperty;
+	local X2Effect_PersistentStatChange HackDefenseEffect;
 
 	`CREATE_X2TEMPLATE(class'X2AmmoTemplate', Template, 'RedscreenRounds');
 	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Redscreen_Rounds_512";
@@ -307,7 +274,11 @@ static function X2AmmoTemplate CreateRedScreenRounds()
     Condition_UnitProperty.IncludeWeakAgainstTechLikeRobot = true;
     Condition_UnitProperty.TreatMindControlledSquadmateAsHostile = true;
 
-	Template.TargetEffects.AddItem(CreateHackDefenseChangeStatusEffect2(default.REDSCREEN_HACK_DEFENSE_CHANGE, Condition_UnitProperty));
+	HackDefenseEffect = class'Helpers_LW'.static.CreateHackDefenseReductionStatusEffect(
+		'Redscreen Hack Bonus',
+		default.REDSCREEN_HACK_DEFENSE_CHANGE,
+		Condition_UnitProperty);
+	Template.TargetEffects.AddItem(HackDefenseEffect);
 
 	Template.Abilities.AddItem('Redscreen_Rounds_Ability');
 
