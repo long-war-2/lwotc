@@ -600,37 +600,43 @@ LocLongDescription="Provide high cover to squadmates wherever you stand. Moving 
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Scope"
-LocLongDescription="You have +5 to hit on non-reaction fire shots with your primary weapon."
+LocLongDescription="You have +<Ability:SCOPE_BSC_AIM_BONUS/> to hit on non-reaction fire shots with your primary weapon."
 LocHelpText="Scope: Bonus to hit on non-reaction fire"
 LocFlyOverText="Scope"
 
 [Scope_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Advanced Scope"
-LocLongDescription="You have +10 to hit on non-reaction fire shots with your primary weapon."
+LocLongDescription="You have +<Ability:SCOPE_ADV_AIM_BONUS/> to hit on non-reaction fire shots with your primary weapon."
 LocHelpText="Scope: Bonus to hit on non-reaction fire"
 LocFlyOverText="Advanced Scope"
 
 [Scope_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Elite Scope"
-LocLongDescription="You have +15 to hit on non-reaction fire shots with your primary weapon."
+LocLongDescription="You have +<Ability:SCOPE_SUP_AIM_BONUS/> to hit on non-reaction fire shots with your primary weapon."
 LocHelpText="Scope: Bonus to hit on non-reaction fire"
 LocFlyOverText="Elite Scope"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Hair Trigger"
-LocLongDescription="You have +5 to hit on reaction fire shots with your primary weapon."
+; LWOTC Needs Translation
+LocLongDescription="You have +<Ability:TRIGGER_BSC_AIM_BONUS/> (after reaction fire penalty) to hit on reaction fire shots with your primary weapon."
+; End Translation
 LocHelpText="Hair Trigger: Bonus to hit on reaction fire"
 LocFlyOverText="Hair Trigger"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Advanced Hair Trigger"
-LocLongDescription="You have +10 to hit on reaction fire shots with your primary weapon."
+; LWOTC Needs Translation
+LocLongDescription="You have +<Ability:TRIGGER_ADV_AIM_BONUS/> (after reaction fire penalty) to hit on reaction fire shots with your primary weapon."
+; End Translation
 LocHelpText="Hair Trigger: Bonus to hit on reaction fire"
 LocFlyOverText="Advanced Hair Trigger"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Elite Hair Trigger"
-LocLongDescription="You have +15 to hit on reaction fire shots with your primary weapon."
+; LWOTC Needs Translation
+LocLongDescription="You have +<Ability:TRIGGER_SUP_AIM_BONUS/> (after reaction fire penalty) to hit on reaction fire shots with your primary weapon."
+; End Translation
 LocHelpText="Hair Trigger: Bonus to hit on reaction fire"
 LocFlyOverText="Elite Hair Trigger"
 
@@ -638,19 +644,19 @@ LocFlyOverText="Elite Hair Trigger"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +15 aim on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
 LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +20 aim on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
 LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +25 aim on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
 LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
 LocFlyOverText="Steady Weapon"
 
@@ -677,8 +683,10 @@ LocHelpText="Does +1 damage to all targets and +2 damage to unarmored targets."
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Redscreen Rounds"
 LocFlyOverText="Redscreen Rounds"
-LocLongDescription="Lowers target's hack defense by 25 with every hit."
-LocHelpText="Lowers target's hack defense by 25 with every hit."
+; LWOTC Needs Translation
+LocLongDescription="Lowers target's hack defense by <Ability:REDSCREEN_EFFECT_LW/>. Does not stack, but does refresh."
+LocHelpText="Lowers target's hack defense by <Ability:REDSCREEN_EFFECT_LW/>. Does not stack, but does refresh."
+; Ends Translation
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Stiletto Rounds"
@@ -1094,42 +1102,48 @@ m_strRemoveUpgrade="REMOVE UPGRADE"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Hair Trigger"
 FriendlyNamePlural="Hair Triggers"
-BriefSummary="The soldier gains 5 bonus aim on reaction fire shots."
+; LWOTC Needs Translation
+BriefSummary="The soldier gains <Ability:TRIGGER_BSC_AIM_BONUS/> bonus aim on reaction fire shots (after reaction fire penalty)."
+; End Translation
 TinySummary="Bonus Reaction Fire To-Hit"
 LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fire shots."
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Hair Trigger"
 FriendlyNamePlural="Advanced Hair Triggers"
-BriefSummary="The soldier gains 10 bonus aim on reaction fire shots."
+; LWOTC Needs Translation
+BriefSummary="The soldier gains <Ability:TRIGGER_ADV_AIM_BONUS/> bonus aim on reaction fire shots (after reaction fire penalty)."
+; End Translation
 TinySummary="Bonus Reaction Fire To-Hit"
 LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fire shots."
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Hair Trigger"
 FriendlyNamePlural="Elite Hair Triggers"
-BriefSummary="The soldier gains 15 bonus aim on reaction fire shots."
+; LWOTC Needs Translation
+BriefSummary="The soldier gains <Ability:TRIGGER_SUP_AIM_BONUS/> bonus aim on reaction fire shots (after reaction fire penalty)."
+; End Translation
 TinySummary="Bonus Reaction Fire To-Hit"
 LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fire shots."
 
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Scope"
 FriendlyNamePlural="Scopes"
-BriefSummary="Increase aim by 5 on non-reaction fire shots."
+BriefSummary="Increase aim by <Ability:SCOPE_BSC_AIM_BONUS/> on non-reaction fire shots."
 TinySummary="Increased Non-reaction Aim"
 LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Scope"
 FriendlyNamePlural="Advanced Scopes"
-BriefSummary="Increase aim by 10 on non-reaction fire shots."
+BriefSummary="Increase aim by <Ability:SCOPE_ADV_AIM_BONUS/> on non-reaction fire shots."
 TinySummary="Increased Non-reaction Aim"
 LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Scope"
 FriendlyNamePlural="Elite Scopes"
-BriefSummary="Increase aim by 15 on non-reaction fire shots."
+BriefSummary="Increase aim by <Ability:SCOPE_SUP_AIM_BONUS/> on non-reaction fire shots."
 TinySummary="Increased Non-reaction Aim"
 LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
 

@@ -1993,6 +1993,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	{
 		Template.Abilities.AddItem('Interact_SmashNGrab');
 	}
+
+	Template.Abilities.AddItem('MindControlCleanse');
 }
 
 static function X2LWTemplateModTemplate CreateReconfigGearTemplate()
@@ -2423,14 +2425,20 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 
 		switch (EquipmentTemplate.DataName)
 		{
+			case 'Pistol_CV':
+			case 'Pistol_MG':
+			case 'Pistol_BM':
+			case 'TLE_Pistol_CV':
+			case 'TLE_Pistol_MG':
+			case 'TLE_Pistol_BM':
 			case 'ChosenSniperPistol_XCOM':
 			case 'AlienHunterPistol_CV':
 			case 'AlienHunterPistol_MG':
 			case 'AlienHunterPistol_BM':
-				EquipmentTemplate.InventorySlot = eInvSlot_Utility;
+				// EquipmentTemplate.InventorySlot = eInvSlot_Utility;
 				X2WeaponTemplate(EquipmentTemplate).RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_BEAM_RANGE;
 				X2WeaponTemplate(EquipmentTemplate).StowedLocation = eSlot_RearBackPack;
-				EquipmentTemplate.Abilities.AddItem('PistolStandardShot'); // in base-game, this ability is a class ability, so need it added for utility slot pistols
+				// EquipmentTemplate.Abilities.AddItem('PistolStandardShot'); // in base-game, this ability is a class ability, so need it added for utility slot pistols
 				break;
 			case 'Cannon_CV': // replace archetype with non-suppression shaking variant
 				EquipmentTemplate.GameArchetype = "Cannon_NoShake_LW.Archetypes.WP_Cannon_NoShake_CV";

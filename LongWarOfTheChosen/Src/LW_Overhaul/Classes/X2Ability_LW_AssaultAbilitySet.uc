@@ -375,15 +375,16 @@ static function X2AbilityTemplate AddEMPulser()
 
 static function X2Effect_PersistentStatChange EMPulserHackDefenseReductionEffect()
 {
-	local X2Effect_PersistentStatChange HackDefenseReductionEffect;
 	local X2Condition_UnitProperty Condition_UnitProperty;
 
 	Condition_UnitProperty = new class'X2Condition_UnitProperty';
 	Condition_UnitProperty.ExcludeOrganic = true;
 	Condition_UnitProperty.TreatMindControlledSquadmateAsHostile = true;
-	HackDefenseReductionEffect = class'X2StatusEffects'.static.CreateHackDefenseChangeStatusEffect(default.EMPULSER_HACK_DEFENSE_CHANGE, Condition_UnitProperty);
 
-	return HackDefenseReductionEffect;
+	return class'Helpers_LW'.static.CreateHackDefenseReductionStatusEffect(
+		'Arc Pulser Hack Bonus',
+		default.EMPULSER_HACK_DEFENSE_CHANGE,
+		Condition_UnitProperty);
 }
 
 static function X2Effect EMPulserWeaponDamageEffect()

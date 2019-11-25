@@ -574,55 +574,55 @@ LocLongDescription="어디에 있든지 관계없이 분대원들에게 완전 �
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="스코프"
-LocLongDescription="주요 무기로 비대응 사격 시 조준 보너스 5를 받습니다."
+LocLongDescription="주요 무기로 비대응 사격 시 조준 보너스 <Ability:SCOPE_BSC_AIM_BONUS/>를 받습니다."
 LocHelpText="스코프: 비대응 사격 시 조준 보너스 부여"
 LocFlyOverText="스코프"
 
 [Scope_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="고급 스코프"
-LocLongDescription="주요 무기로 비대응 사격 시 조준 보너스 10을 받습니다."
+LocLongDescription="주요 무기로 비대응 사격 시 조준 보너스 <Ability:SCOPE_ADV_AIM_BONUS/>을 받습니다."
 LocHelpText="스코프: 비대응 사격 시 조준 보너스 부여"
 LocFlyOverText="고급 스코프"
 
 [Scope_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="엘리트 스코프"
-LocLongDescription="주요 무기로 비대응 사격 시 조준 보너스 15를 받습니다."
+LocLongDescription="주요 무기로 비대응 사격 시 조준 보너스 <Ability:SCOPE_SUP_AIM_BONUS/>를 받습니다."
 LocHelpText="스코프: 비대응 사격 시 조준 보너스 부여"
 LocFlyOverText="엘리트 스코프"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="헤어 트리거"
-LocLongDescription="주요 무기로 대응 사격 시 조준 보너스 5를 받습니다."
+LocLongDescription="주요 무기로 대응 사격 시 조준 보너스 <Ability:TRIGGER_BSC_AIM_BONUS/>를 받습니다."
 LocHelpText="헤어 트리거: 대응 사격 시 조준 보너스 부여"
 LocFlyOverText="헤어 트리거"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="고급 헤어 트리거"
-LocLongDescription="주요 무기로 대응 사격 시 조준 보너스 10을 받습니다."
+LocLongDescription="주요 무기로 대응 사격 시 조준 보너스 <Ability:TRIGGER_ADV_AIM_BONUS/>을 받습니다."
 LocHelpText="헤어 트리거: 대응 사격 시 조준 보너스 부여"
 LocFlyOverText="고급 헤어 트리거"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="엘리트 헤어 트리거"
-LocLongDescription="주요 무기로 대응 사격 시 조준 보너스 15를 받습니다."
+LocLongDescription="주요 무기로 대응 사격 시 조준 보너스 <Ability:TRIGGER_SUP_AIM_BONUS/>를 받습니다."
 LocHelpText="헤어 트리거: 대응 사격 시 조준 보너스 부여"
 LocFlyOverText="엘리트 헤어 트리거"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="안정한 무기"
-LocLongDescription="무기 안정 능력을 활성화하면 장착한 무기로 다음 번에 사격할 때 조준 보너스 15와 치명타 15를 받습니다. 사격과 관련되지 않은 행동을 하거나 부상당하면 보너스가 사라집니다."
+LocLongDescription="무기 안정 능력을 활성화하면 장착한 무기로 다음 번에 사격할 때 조준 보너스 <Ability:STOCK_BSC_SW_AIM_BONUS/>와 치명타 <Ability:STOCK_BSC_SW_AIM_BONUS/>를 받습니다. 사격과 관련되지 않은 행동을 하거나 부상당하면 보너스가 사라집니다."
 LocHelpText="무기 안정: 부상당하지 않았거나 다른 행동을 취하지 않으면, 다음 사격 시 조준 보너스를 받습니다."
 LocFlyOverText="안정한 무기"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="안정한 무기"
-LocLongDescription="무기 안정 능력을 활성화하면 장착한 무기로 다음 번에 사격할 때 조준 보너스 20과 치명타 20을 받습니다. 사격과 관련되지 않은 행동을 하거나 부상당하면 보너스가 사라집니다."
+LocLongDescription="무기 안정 능력을 활성화하면 장착한 무기로 다음 번에 사격할 때 조준 보너스 <Ability:STOCK_ADV_SW_AIM_BONUS/>과 치명타 <Ability:STOCK_ADV_SW_AIM_BONUS/>을 받습니다. 사격과 관련되지 않은 행동을 하거나 부상당하면 보너스가 사라집니다."
 LocHelpText="무기 안정: 부상당하지 않았거나 다른 행동을 취하지 않으면, 다음 사격 시 조준 보너스를 받습니다."
 LocFlyOverText="안정한 무기"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="안정한 무기"
-LocLongDescription="무기 안정 능력을 활성화하면 장착한 무기로 다음 번에 사격할 때 조준 보너스 25와 치명타 25를 받습니다. 사격과 관련되지 않은 행동을 하거나 부상당하면 보너스가 사라집니다."
+LocLongDescription="무기 안정 능력을 활성화하면 장착한 무기로 다음 번에 사격할 때 조준 보너스 <Ability:STOCK_SUP_SW_AIM_BONUS/>와 치명타 <Ability:STOCK_SUP_SW_AIM_BONUS/>를 받습니다. 사격과 관련되지 않은 행동을 하거나 부상당하면 보너스가 사라집니다."
 LocHelpText="무기 안정: 부상당하지 않았거나 다른 행동을 취하지 않으면, 다음 사격 시 조준 보너스를 받습니다."
 LocFlyOverText="안정한 무기"
 
@@ -647,8 +647,8 @@ LocHelpText="방어구를 입지 않은 목표물에게 피해 2를 입힙니다
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="레드스크린 탄환"
 LocFlyOverText="레드스크린 탄환"
-LocLongDescription="명중할 때마다 목표물의 해킹 방어력을 25 낮춥니다."
-LocHelpText="명중할 때마다 목표물의 해킹 방어력을 25 낮춥니다."
+LocLongDescription="명중할 때마다 목표물의 해킹 방어력을 <Ability:REDSCREEN_EFFECT_LW/> 낮춥니다."
+LocHelpText="명중할 때마다 목표물의 해킹 방어력을 <Ability:REDSCREEN_EFFECT_LW/> 낮춥니다."
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="스틸레토 탄환"
@@ -993,63 +993,63 @@ m_strRemoveUpgrade="업그레이드 제거"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="헤어 트리거"
 FriendlyNamePlural="헤어 트리거"
-BriefSummary="병사가 대응 사격 시 조준 보너스 5를 얻습니다."
+BriefSummary="병사가 대응 사격 시 조준 보너스 <Ability:TRIGGER_BSC_AIM_BONUS/>를 얻습니다."
 TinySummary="보너스 대응 사격 명중"
 LootTooltip="이 무기 업그레이드를 설치하면 대응 사격에 조준 보너스가 추가됩니다."
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="고급 헤어 트리거"
 FriendlyNamePlural="고급 헤어 트리거"
-BriefSummary="병사가 대응 사격 시 조준 보너스 10을 얻습니다."
+BriefSummary="병사가 대응 사격 시 조준 보너스 <Ability:TRIGGER_ADV_AIM_BONUS/>을 얻습니다."
 TinySummary="보너스 대응 사격 명중"
 LootTooltip="이 무기 업그레이드를 설치하면 대응 사격에 조준 보너스가 추가됩니다."
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="엘리트 헤어 트리거"
 FriendlyNamePlural="엘리트 헤어 트리거"
-BriefSummary="병사가 대응 사격 시 조준 보너스 15를 얻습니다."
+BriefSummary="병사가 대응 사격 시 조준 보너스 <Ability:TRIGGER_SUP_AIM_BONUS/>를 얻습니다."
 TinySummary="보너스 대응 사격 명중"
 LootTooltip="이 무기 업그레이드를 설치하면 대응 사격에 조준 보너스가 추가됩니다."
 
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="스코프"
 FriendlyNamePlural="스코프"
-BriefSummary="비대응 사격 시 조준이 5 증가합니다."
+BriefSummary="비대응 사격 시 조준이 <Ability:SCOPE_BSC_AIM_BONUS/> 증가합니다."
 TinySummary="비대응 사격 조준 증가"
 LootTooltip="이 무기 업그레이드를 장착하면, 비대응 사격 시에도 조준 보너스를 받습니다."
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="고급 스코프"
 FriendlyNamePlural="고급 스코프"
-BriefSummary="비대응 사격 시 조준이 10 증가합니다."
+BriefSummary="비대응 사격 시 조준이 <Ability:SCOPE_ADV_AIM_BONUS/> 증가합니다."
 TinySummary="비대응 사격 조준 증가"
 LootTooltip="이 무기 업그레이드를 장착하면, 비대응 사격 시에도 조준 보너스를 받습니다."
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="엘리트 스코프"
 FriendlyNamePlural="엘리트 스코프"
-BriefSummary="비대응 사격 시 조준이 15 증가합니다."
+BriefSummary="비대응 사격 시 조준이 <Ability:SCOPE_SUP_AIM_BONUS/> 증가합니다."
 TinySummary="비대응 사격 조준 증가"
 LootTooltip="이 무기 업그레이드를 장착하면, 비대응 사격 시에도 조준 보너스를 받습니다."
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="개머리판"
 FriendlyNamePlural="개머리판"
-BriefSummary="무기 안정 능력을 부여해, 다음 사격 시 조준 보너스 15와 치명타율 15를 제공합니다."
+BriefSummary="무기 안정 능력을 부여해, 다음 사격 시 조준 보너스 <Ability:STOCK_BSC_SW_AIM_BONUS/>와 치명타율 <Ability:STOCK_BSC_SW_AIM_BONUS/>를 제공합니다."
 TinySummary="무기 안정 부여"
 LootTooltip="이 무기 업그레이드를 설치하면 무기 안정 능력이 부여됩니다."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="고급 개머리판"
 FriendlyNamePlural="고급 개머리판"
-BriefSummary="무기 안정 능력을 부여해, 다음 사격 시 조준 보너스 20과 치명타율 20을 제공합니다."
+BriefSummary="무기 안정 능력을 부여해, 다음 사격 시 조준 보너스 <Ability:STOCK_ADV_SW_AIM_BONUS/>과 치명타율 <Ability:STOCK_ADV_SW_AIM_BONUS/>을 제공합니다."
 TinySummary="무기 안정 부여"
 LootTooltip="이 무기 업그레이드를 설치하면 무기 안정 능력이 부여됩니다."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="엘리트 개머리판"
 FriendlyNamePlural="엘리트 개머리판"
-BriefSummary="무기 안정 능력을 부여해, 다음 사격 시 조준 보너스 25와 치명타율 25를 제공합니다."
+BriefSummary="무기 안정 능력을 부여해, 다음 사격 시 조준 보너스 <Ability:STOCK_SUP_SW_AIM_BONUS/>와 치명타율 <Ability:STOCK_SUP_SW_AIM_BONUS/>를 제공합니다."
 TinySummary="무기 안정 부여"
 LootTooltip="이 무기 업그레이드를 설치하면 무기 안정 능력이 부여됩니다."
 
