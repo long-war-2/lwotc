@@ -29,6 +29,7 @@ static event OnPostTemplatesCreated()
 	UpdateShadow();
 	UpdateRemoteStart();
 	AllowTwoSoldiersFromEachFaction();
+	UpdateCICA();
 }
 
 static function IgnoreSuperConcealmentOnAllMissions()
@@ -392,6 +393,34 @@ static function bool IsExtraSoldierAvailable(optional XComGameState NewGameState
 	return false;
 }
 
+//Slightly modified copy pasted Robojumper's code
+static funtion UpdateCICA()
+{
+	local X2StrategyElementTemplateManager SETMgr;
+	local array<X2DataTemplate> Templates;
+	local int i;
+	SETMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+	SETMgr.FindDataTemplateAllDifficulties('CovertActionImproveComIntStaffSlot', Templates);
+	foreach Templates(Template)
+	{
+		X2StaffSlotTemplate(Template).IsUnitValidForSlotFn = Fixed_IsUnitValidForCovertActionImproveComIntSlot;
+	}
+}
+
+static function bool Fixed_IsUnitValidForCovertActionImproveComIntSlot(XComGameState_StaffSlot SlotState, StaffUnitInfo UnitInfo)
+{
+	local XComGameState_Unit Unit;
+	
+	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
+	// Heroes don't have bAllowAWCAbilities set to to true
+	if (Unit.ComInt >= eComInt_Savant || !(Unit.GetSoldierClassTemplate().bAllowAWCAbilities || Unit.IsResistanceHero()))
+	{
+		// If this unit is already at the max Com Int level, they are not available
+		return false;
+	}
+	return class'X2StrategyElement_XpackStaffSlots'.static.IsUnitValidForCovertActionSoldierSlot(SlotState, UnitInfo);
+}
 
 
 /// <summary>

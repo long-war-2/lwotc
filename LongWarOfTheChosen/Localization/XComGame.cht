@@ -574,55 +574,55 @@ LocLongDescription="在你的站立處為隊友提供全身掩體。移動或攻
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="瞄準鏡"
-LocLongDescription="在你使用主武器時，除反應射擊外的射擊擁有+5命中。"
+LocLongDescription="在你使用主武器時，除反應射擊外的射擊擁有+<Ability:SCOPE_BSC_AIM_BONUS/>命中。"
 LocHelpText="瞄準鏡：增加非反應射擊的命中"
 LocFlyOverText="瞄準鏡"
 
 [Scope_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="高級瞄準鏡"
-LocLongDescription="在你使用主武器時，除反應射擊外的射擊擁有+10命中。"
+LocLongDescription="在你使用主武器時，除反應射擊外的射擊擁有+<Ability:SCOPE_ADV_AIM_BONUS/>命中。"
 LocHelpText="瞄準鏡：增加非反應射擊的命中"
 LocFlyOverText="高級瞄準鏡"
 
 [Scope_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="精英瞄準鏡"
-LocLongDescription="在你使用主武器時，除反應射擊外的射擊擁有+15命中。"
+LocLongDescription="在你使用主武器時，除反應射擊外的射擊擁有+<Ability:SCOPE_SUP_AIM_BONUS/>命中。"
 LocHelpText="瞄準鏡：增加非反應射擊的命中"
 LocFlyOverText="精英瞄準鏡"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="微力扳機"
-LocLongDescription="用你的主武器射擊將會有+5的反應射擊瞄準加成。"
+LocLongDescription="用你的主武器射擊將會有+<Ability:TRIGGER_BSC_AIM_BONUS/>的反應射擊瞄準加成。"
 LocHelpText="微力扳機：反應射擊的瞄準加成"
 LocFlyOverText="微力扳機"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="高級微力扳機"
-LocLongDescription="用你的主武器射擊將會有+10的反應射擊瞄準加成。"
+LocLongDescription="用你的主武器射擊將會有+<Ability:TRIGGER_ADV_AIM_BONUS/>的反應射擊瞄準加成。"
 LocHelpText="微力扳機：反應射擊的瞄準加成"
 LocFlyOverText="高級微力扳機"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="精英微力扳機"
-LocLongDescription="用你的主武器射擊將會有+15的反應射擊瞄準加成。"
+LocLongDescription="用你的主武器射擊將會有+<Ability:TRIGGER_SUP_AIM_BONUS/>的反應射擊瞄準加成。"
 LocHelpText="微力扳機：反應射擊的瞄準加成"
 LocFlyOverText="精英微力扳機"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="穩固武器"
-LocLongDescription="使用穩定武器能力來使下一次射擊獲得+15瞄準和+15暴擊。如果你使用在非射擊動作上或受到傷害就會失去此加成。"
+LocLongDescription="使用穩定武器能力來使下一次射擊獲得+<Ability:STOCK_BSC_SW_AIM_BONUS/>瞄準和+<Ability:STOCK_BSC_SW_AIM_BONUS/>暴擊。如果你使用在非射擊動作上或受到傷害就會失去此加成。"
 LocHelpText="穩定武器：如果你沒有受傷或進行其他行動，下次射擊會獲得命中加成。"
 LocFlyOverText="穩固武器"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="穩固武器"
-LocLongDescription="使用穩定武器能力來使下一次射擊獲得+20瞄準和+20暴擊。如果你使用在非射擊動作上或受到傷害就會失去此加成。"
+LocLongDescription="使用穩定武器能力來使下一次射擊獲得+<Ability:STOCK_ADV_SW_AIM_BONUS/>瞄準和+<Ability:STOCK_ADV_SW_AIM_BONUS/>暴擊。如果你使用在非射擊動作上或受到傷害就會失去此加成。"
 LocHelpText="穩定武器：如果你沒有受傷或進行其他行動，下次射擊會獲得命中加成。"
 LocFlyOverText="穩固武器"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="穩固武器"
-LocLongDescription="使用穩定武器能力來使下一次射擊獲得+25瞄準和+25暴擊。如果你使用在非射擊動作上或受到傷害就會失去此加成。"
+LocLongDescription="使用穩定武器能力來使下一次射擊獲得+<Ability:STOCK_SUP_SW_AIM_BONUS/>瞄準和+<Ability:STOCK_SUP_SW_AIM_BONUS/>暴擊。如果你使用在非射擊動作上或受到傷害就會失去此加成。"
 LocHelpText="穩定武器：如果你沒有受傷或進行其他行動，下次射擊會獲得命中加成。"
 LocFlyOverText="穩固武器"
 
@@ -647,8 +647,8 @@ LocHelpText="對沒有護甲的目標造成+2傷害。對所有敵人+1傷害."
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="紅屏子彈"
 LocFlyOverText="紅屏子彈"
-LocLongDescription="每次命中可以降低目標25點駭客防禦。"
-LocHelpText="每次命中可以降低目標25點駭客防禦。"
+LocLongDescription="每次命中可以降低目標<Ability:REDSCREEN_EFFECT_LW/>點駭客防禦。"
+LocHelpText="每次命中可以降低目標<Ability:REDSCREEN_EFFECT_LW/>點駭客防禦。"
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="短劍子彈"
@@ -993,63 +993,63 @@ m_strRemoveUpgrade="移除升級"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="微力扳機"
 FriendlyNamePlural="微力扳機"
-BriefSummary="士兵能在反應射擊時獲得5的瞄準加成。"
+BriefSummary="士兵能在反應射擊時獲得<Ability:TRIGGER_BSC_AIM_BONUS/>的瞄準加成。"
 TinySummary="反應射擊命中加成"
 LootTooltip="安裝了該武器升級後，會為反應射擊增加瞄準加成。"
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="高級微力扳機"
 FriendlyNamePlural="高級微力扳機"
-BriefSummary="士兵能在反應射擊時獲得10的瞄準加成。"
+BriefSummary="士兵能在反應射擊時獲得<Ability:TRIGGER_ADV_AIM_BONUS/>的瞄準加成。"
 TinySummary="反應射擊命中加成"
 LootTooltip="安裝了該武器升級後，會為反應射擊增加瞄準加成。"
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="精英微力扳機"
 FriendlyNamePlural="精英微力扳機"
-BriefSummary="士兵能在反應射擊時獲得15的瞄準加成。"
+BriefSummary="士兵能在反應射擊時獲得<Ability:TRIGGER_SUP_AIM_BONUS/>的瞄準加成。"
 TinySummary="反應射擊命中加成"
 LootTooltip="安裝了該武器升級後，會為反應射擊增加瞄準加成。"
 
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="瞄準鏡"
 FriendlyNamePlural="瞄準鏡"
-BriefSummary="增加5的非反應射擊瞄準加成。"
+BriefSummary="增加<Ability:SCOPE_BSC_AIM_BONUS/>的非反應射擊瞄準加成。"
 TinySummary="增加非反應射擊的瞄準值。"
 LootTooltip="這種武器強化部件可為武器的非反應射擊增加額外的命中。"
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="高級瞄準鏡"
 FriendlyNamePlural="高級瞄準鏡"
-BriefSummary="增加10的非反應射擊瞄準加成。"
+BriefSummary="增加<Ability:SCOPE_ADV_AIM_BONUS/>的非反應射擊瞄準加成。"
 TinySummary="增加非反應射擊的瞄準值。"
 LootTooltip="這種武器強化部件可為武器的非反應射擊增加額外的命中。"
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="精英瞄準鏡"
 FriendlyNamePlural="精英瞄準鏡"
-BriefSummary="增加15的非反應射擊瞄準加成。"
+BriefSummary="增加<Ability:SCOPE_SUP_AIM_BONUS/>的非反應射擊瞄準加成。"
 TinySummary="增加非反應射擊的瞄準值。"
 LootTooltip="這種武器強化部件可為武器的非反應射擊增加額外的命中。"
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="槍托"
 FriendlyNamePlural="槍托"
-BriefSummary="提供穩定武器能力，為下一次射擊提供+15瞄準和+15暴擊機率。"
+BriefSummary="提供穩定武器能力，為下一次射擊提供+<Ability:STOCK_BSC_SW_AIM_BONUS/>瞄準和+<Ability:STOCK_BSC_SW_AIM_BONUS/>暴擊機率。"
 TinySummary="賦予穩定武器"
 LootTooltip="當裝備了這個武器強化時，將獲得技能：穩定武器。"
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="高級槍托"
 FriendlyNamePlural="高級槍托"
-BriefSummary="提供穩定武器能力，為下一次射擊提供+20瞄準和+20暴擊機率。"
+BriefSummary="提供穩定武器能力，為下一次射擊提供+<Ability:STOCK_ADV_SW_AIM_BONUS/>瞄準和+<Ability:STOCK_ADV_SW_AIM_BONUS/>暴擊機率。"
 TinySummary="賦予穩定武器"
 LootTooltip="當裝備了這個武器強化時，將獲得技能：穩定武器。"
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="精英槍托"
 FriendlyNamePlural="精英槍托"
-BriefSummary="提供穩定武器能力，為下一次射擊提供+25瞄準和+25暴擊機率。"
+BriefSummary="提供穩定武器能力，為下一次射擊提供+<Ability:STOCK_SUP_SW_AIM_BONUS/>瞄準和+<Ability:STOCK_SUP_SW_AIM_BONUS/>暴擊機率。"
 TinySummary="賦予穩定武器"
 LootTooltip="當裝備了這個武器強化時，將獲得技能：穩定武器。"
 
