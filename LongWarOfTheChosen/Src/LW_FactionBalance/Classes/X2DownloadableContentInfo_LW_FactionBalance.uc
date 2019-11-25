@@ -364,33 +364,17 @@ static function AllowTwoSoldiersFromEachFaction()
 
 static function bool IsExtraSoldierAvailable(optional XComGameState NewGameState, optional StateObjectReference AuxRef)
 {
-	local XComGameState_ResistanceFaction FactionState;
 	local int NumFactionSoldiers;
-	local XComGameState_CovertAction ActionState;
-	local XComGameStateHistory History;
-
-	History = `XCOMHISTORY;
-
-
+	local XComGameState_ResistanceFaction FactionState;
 
 	FactionState = class'X2StrategyElement_DefaultRewards'.static.GetFactionState(NewGameState, AuxRef);
+
 	if (FactionState != none)
-	{
-
-
 		NumFactionSoldiers = FactionState.GetNumFactionSoldiers(NewGameState);
-		foreach History.IterateByClassType(class'XComGameState_CovertAction', ActionState)
-		{
-			if(ActionState.GetMyTemplateName() == 'CovertAction_RecruitExtraFactionSoldier' && (ActionState.GetFaction().GetReference().ObjectID == FactionState.GetReference().ObjectID) && ActionState.bStarted && !ActionState.bCompleted) //this is dumb but we have to account for this
-				NumFactionSoldiers += 1;
-		}
+	else
+		return false;
 
-		// XCom is only allowed to gain more faction soldiers for the first Faction met,
-		// and only if they have less than the max amount and have actually met that Faction
-		return (FactionState.bMetXCom && (NumFactionSoldiers > 0) && (NumFactionSoldiers < FactionState.default.MaxHeroesPerFaction));
-	}
-
-	return false;
+	return (FactionState.bMetXCom && NumFactionSoldiers > 0 && NumFactionSoldiers < FactionState.default.MaxHeroesPerFaction);
 }
 
 //Slightly modified copy pasted Robojumper's code
