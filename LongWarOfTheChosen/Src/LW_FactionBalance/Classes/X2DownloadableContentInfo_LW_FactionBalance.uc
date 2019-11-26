@@ -28,8 +28,9 @@ static event OnPostTemplatesCreated()
 	UpdateDeflect();
 	UpdateShadow();
 	UpdateRemoteStart();
-	AllowTwoSoldiersFromEachFaction();
+	//Combat Intelligenve Covert Action
 	UpdateCICA();
+  AllowTwoSoldiersFromEachFaction();
 }
 
 static function IgnoreSuperConcealmentOnAllMissions()
@@ -348,6 +349,7 @@ static function EditParry(X2AbilityTemplate Template)
 	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, ParryTemplate.LocFriendlyName, ParryTemplate.GetMyHelpText(), ParryTemplate.IconImage, true, , ParryTemplate.AbilitySourceName);
 	ParryTemplate.AddTargetEffect(PersistentEffect);
 }
+
 //Copy pasted Realitymachina's code
 static function AllowTwoSoldiersFromEachFaction()
 {
@@ -378,10 +380,11 @@ static function bool IsExtraSoldierAvailable(optional XComGameState NewGameState
 }
 
 //Slightly modified copy pasted Robojumper's code
-static funtion UpdateCICA()
+static function UpdateCICA()
 {
 	local X2StrategyElementTemplateManager SETMgr;
 	local array<X2DataTemplate> Templates;
+	local X2DataTemplate Template;
 	local int i;
 	SETMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 
@@ -406,7 +409,6 @@ static function bool Fixed_IsUnitValidForCovertActionImproveComIntSlot(XComGameS
 	return class'X2StrategyElement_XpackStaffSlots'.static.IsUnitValidForCovertActionSoldierSlot(SlotState, UnitInfo);
 }
 
-
 /// <summary>
 /// This method is run if the player loads a saved game that was created prior to this DLC / Mod being installed, and allows the 
 /// DLC / Mod to perform custom processing in response. This will only be called once the first time a player loads a save that was
@@ -420,3 +422,4 @@ static event OnLoadedSavedGame()
 /// </summary>
 static event InstallNewCampaign(XComGameState StartState)
 {}
+

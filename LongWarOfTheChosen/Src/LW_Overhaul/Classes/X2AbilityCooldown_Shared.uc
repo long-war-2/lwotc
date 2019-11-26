@@ -35,8 +35,7 @@ simulated function ApplyCooldown(XComGameState_Ability kAbility, XComGameState_B
 				{
 					if (MultAbility != none && MultAbility.GetMyTemplateName() == SharingCooldownsWith[j])
 					{
-						MultAbility = XComGameState_Ability(NewGameState.CreateNewStateObject(class'XComGameState_Ability', MultAbility.ObjectID));
-						NewGameState.AddStateObject(MultAbility);
+						MultAbility = XComGameState_Ability(NewGameState.ModifyStateObject(class'XComGameState_Ability', MultAbility.ObjectID));
 						MultAbility.iCooldown = GetNumTurns(kAbility, AffectState, AffectWeapon, NewGameState);
 					}
 				}

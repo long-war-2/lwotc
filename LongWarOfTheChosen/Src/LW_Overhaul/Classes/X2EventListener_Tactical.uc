@@ -38,6 +38,7 @@ static function CHEventListenerTemplate CreateYellowAlertListeners()
 	Template.AddCHEvent('ProcessReflexMove', OnScamperBegin, ELD_Immediate);
 	Template.AddCHEvent('UnitTakeEffectDamage', OnUnitTookDamage, ELD_OnStateSubmitted);
 	Template.AddCHEvent('OverrideAllowedAlertCause', OnOverrideAllowedAlertCause, ELD_Immediate);
+	Template.AddCHEvent('ShouldCivilianRun', ShouldCivilianRunFromOtherUnit, ELD_Immediate);
 
 	Template.RegisterInTactical = true;
 
@@ -54,6 +55,8 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('GetEvacPlacementDelay', OnPlacedDelayedEvacZone, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('KilledbyExplosion', OnKilledbyExplosion, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CleanupTacticalMission', OnCleanupTacticalMission, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideBodyRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
+	Template.AddCHEvent('OverrideLootRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
 	Template.AddCHEvent('AbilityActivated', OnAbilityActivated, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('UnitChangedTeam', ClearUnitStateValues, ELD_Immediate, GetListenerPriority());
 
@@ -371,6 +374,39 @@ static function EventListenerReturn OnOverrideAllowedAlertCause(
 	return ELR_NoInterrupt;
 }
 
+static function EventListenerReturn ShouldCivilianRunFromOtherUnit(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Unit CivilianState, OtherUnitState;
+	local bool DoesAIAttackCivilians;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	// Sanity check. This should not happen.
+	if (Tuple.Id != 'ShouldCivilianRun')
+	{
+		`REDSCREEN("Received unexpected event ID in ShouldCivilianRunFromOtherUnit() event handler");
+		return ELR_NoInterrupt;
+	}
+
+	CivilianState = XComGameState_Unit(EventSource);
+	OtherUnitState = XComGameState_Unit(Tuple.Data[0].o);
+	DoesAIAttackCivilians = Tuple.Data[1].b;
+
+	// Civilians shouldn't run from the aliens/ADVENT unless Team Alien
+	// is attacking neutrals.
+	Tuple.Data[2].b = !(!DoesAIAttackCivilians && OtherUnitState.GetTeam() == eTeam_Alien); 
+
+	return ELR_NoInterrupt;
+}
+
 // Returns a modifier that should be applied to the sound range for a weapon/ability combo
 //
 // Implementation copied from X2DLCInfo_LW_Overhaul in the original LW2.
@@ -565,6 +601,36 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
 
 	foreach History.IterateByClassType(class'XComGameState_Unit', Unit)
 	{
+		// LWOTC: Manual cleanup for haven advisers and any other soldiers that are
+		// "spawned from the Avenger". Bit of a hack to avoid further changes to the
+		// highlander. This just duplicates code that's in
+		// X2TacticalGameRuleSet.CleanupTacticalMission().
+		if (Unit.bSpawnedFromAvenger)
+		{
+			if (BattleData.AllTacticalObjectivesCompleted() || (HasAnyTriadObjective(BattleData) && BattleData.AllTriadObjectivesCompleted()))
+			{
+				Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
+				Unit.RemoveUnitFromPlay();
+				Unit.bBleedingOut = false;
+				Unit.bUnconscious = false;
+
+				if (Unit.IsDead())
+				{
+					Unit.bBodyRecovered = true;
+				}
+			}
+			else if (!BattleData.AllTacticalObjectivesCompleted() && !(HasAnyTriadObjective(BattleData) && BattleData.AllTriadObjectivesCompleted()))
+			{
+				// Missions that don't result in recovery of XCOM bodies should ensure that
+				// mind controlled soldiers are captured.
+				if (Unit.IsMindControlled())
+				{
+					Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
+					Unit.bCaptured = true;
+				}
+			}
+		}
+
 		if(Unit.IsAlive() && !Unit.bCaptured)
 		{
 			foreach Unit.AffectedByEffects(EffectRef)
@@ -593,6 +659,44 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
 	}
 
     return ELR_NoInterrupt;
+}
+
+// Mark a mission as having body and loot recovery if it has triad objectives
+// and all its triad objectives have been completed.
+static function EventListenerReturn OnOverrideBodyAndLootRecovery(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_BattleData BattleData;
+	
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	BattleData = XComGameState_BattleData(EventSource);
+	if (BattleData == none)
+	{
+		`REDSCREEN("BattleData not provided with 'OverrideBodyAndLootRecovery' event");
+		return ELR_NoInterrupt;
+	}
+
+	Tuple.Data[0].b = (HasAnyTriadObjective(BattleData) && BattleData.AllTriadObjectivesCompleted()) || Tuple.Data[0].b;
+
+	return ELR_NoInterrupt;
+}
+
+static function bool HasAnyTriadObjective(XComGameState_BattleData Battle)
+{
+	local int ObjectiveIndex;
+
+	for( ObjectiveIndex = 0; ObjectiveIndex < Battle.MapData.ActiveMission.MissionObjectives.Length; ++ObjectiveIndex )
+	{
+		if( Battle.MapData.ActiveMission.MissionObjectives[ObjectiveIndex].bIsTriadObjective )
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 // Make sure reinforcements arrive in red alert if any aliens on the map are
