@@ -640,23 +640,27 @@ LocLongDescription="You have +<Ability:TRIGGER_SUP_AIM_BONUS/> (after reaction f
 LocHelpText="Hair Trigger: Bonus to hit on reaction fire"
 LocFlyOverText="Elite Hair Trigger"
 
+;LWOTC needs translation
+
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and +<Ability:STOCK_BSC_SW_AIM_BONUS/> crit on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
 LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim and +<Ability:STOCK_ADV_SW_AIM_BONUS/> crit on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
 LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim and +<Ability:STOCK_SUP_SW_AIM_BONUS/> crit on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
 LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
 LocFlyOverText="Steady Weapon"
+
+;End Trasnlation
 
 [Needle_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Needle Rounds"
@@ -1143,26 +1147,30 @@ BriefSummary="Increase aim by <Ability:SCOPE_SUP_AIM_BONUS/> on non-reaction fir
 TinySummary="Increased Non-reaction Aim"
 LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
 
+;LWOTC needs translation
+
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Stock"
 FriendlyNamePlural="Stocks"
-BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and +<Ability:STOCK_BSC_SW_AIM_BONUS/> critical chance on the next shot."
-TinySummary="Grants Steady Weapon"
-LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
+BriefSummary="Missed shots with your primary weapon have a 20% chance to become a graze."
+TinySummary="Missed shots can graze."
+LootTooltip="This weapon upgrade, when installed, sometimes converts misses into grazes."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Stock"
 FriendlyNamePlural="Advanced Stocks"
-BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim and +<Ability:STOCK_ADV_SW_AIM_BONUS/> critical chance on the next shot."
-TinySummary="Grants Steady Weapon"
-LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
+BriefSummary="Missed shots with your primary weapon have a 25% chance to become a graze."
+TinySummary="Missed shots can graze."
+LootTooltip="This weapon upgrade, when installed, sometimes converts misses into grazes."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Stock"
 FriendlyNamePlural="Elite Stocks"
-BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim and +<Ability:STOCK_SUP_SW_AIM_BONUS/> critical chance on the next shot."
-TinySummary="Grants Steady Weapon"
-LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
+BriefSummary="Missed shots with your primary weapon have a 30% chance to become a graze."
+TinySummary="Missed shots can graze."
+LootTooltip="This weapon upgrade, when installed, sometimes converts misses into grazes."
+
+; End Translation
 
 [FreeKillUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Suppressor"
@@ -3364,17 +3372,21 @@ Summary="Allows Shen to produce high-quality Laser Sights, which improve critica
 DisplayName="Elite Laser Sights"
 Summary="Unlocks the ultimate in Laser Sight technology for Engineering to produce."
 
+;LWOTC needs Translation
+
 [BasicStockProject X2TechTemplate]
 DisplayName="Stocks"
-Summary="We can reverse engineer recovered Stocks and allow them to be mass produced. Any troop that equips a stock gains the Steady Weapon ability."
+Summary="We can reverse engineer recovered Stocks and allow them to be mass produced. Any troop that equips a stock gains a chance to convert misses to grazes."
 
 [AdvancedStockProject X2TechTemplate]
 DisplayName="Advanced Stocks"
-Summary="Allows mass production of Advanced Stocks, which grant an improved form of the Steady Weapon ability."
+Summary="Allows mass production of Advanced Stocks, which grant an improved chance to convert misses to grazes."
 
 [SuperiorStockProject X2TechTemplate]
 DisplayName="Elite Stocks"
-Summary="Allows mass production of Elite Stocks, which grant a powerful form of the Steady Weapon ability."
+Summary="Allows mass production of Elite Stocks, which grant a large chance to convert misses to grazes."
+
+;End Translation
 
 [BasicClipSizeProject X2TechTemplate]
 DisplayName="High Capacity Magazines"
