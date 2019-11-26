@@ -574,55 +574,55 @@ LocLongDescription="Biete Truppmitgliedern volle Deckung bei deiner Position. Be
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Zielfernrohr"
-LocLongDescription="Du erhältst +5 Zielsicherheit bei Nicht-Reflexschüssen mit deiner Primärwaffe."
+LocLongDescription="Du erhältst +<Ability:SCOPE_BSC_AIM_BONUS/> Zielsicherheit bei Nicht-Reflexschüssen mit deiner Primärwaffe."
 LocHelpText="Zielfernrohr: Zielsicherheitsbonus bei Nicht-Reflexschüssen."
 LocFlyOverText="Zielfernrohr"
 
 [Scope_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Fortschrittliches Zielfernrohr"
-LocLongDescription="Du erhältst +10 Zielsicherheit bei Nicht-Reflexschüssen mit deiner Primärwaffe."
+LocLongDescription="Du erhältst +<Ability:SCOPE_ADV_AIM_BONUS/> Zielsicherheit bei Nicht-Reflexschüssen mit deiner Primärwaffe."
 LocHelpText="Zielfernrohr: Zielsicherheitsbonus bei Nicht-Reflexschüssen."
 LocFlyOverText="Fortschrittliches Zielfernrohr"
 
 [Scope_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Elite-Zielfernrohr"
-LocLongDescription="Du erhältst +15 Zielsicherheit bei Nicht-Reflexschüssen mit deiner Primärwaffe."
+LocLongDescription="Du erhältst +<Ability:SCOPE_SUP_AIM_BONUS/> Zielsicherheit bei Nicht-Reflexschüssen mit deiner Primärwaffe."
 LocHelpText="Zielfernrohr: Zielsicherheitsbonus bei Nicht-Reflexschüssen."
 LocFlyOverText="Elite-Zielfernrohr"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Stecher"
-LocLongDescription="Du erhältst +5 Zielsicherheit bei Reflexschüssen mit deiner Primärwaffe."
+LocLongDescription="Du erhältst +<Ability:TRIGGER_BSC_AIM_BONUS/> Zielsicherheit bei Reflexschüssen mit deiner Primärwaffe."
 LocHelpText="Stecher: Zielsicherheitsbonus bei Reflexschüssen"
 LocFlyOverText="Stecher"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Fortschrittlicher Stecher"
-LocLongDescription="Du erhältst +10 Zielsicherheit bei Reflexschüssen mit deiner Primärwaffe."
+LocLongDescription="Du erhältst +<Ability:TRIGGER_ADV_AIM_BONUS/> Zielsicherheit bei Reflexschüssen mit deiner Primärwaffe."
 LocHelpText="Stecher: Zielsicherheitsbonus bei Reflexschüssen"
 LocFlyOverText="Fortschrittlicher Stecher"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Elite-Stecher"
-LocLongDescription="Du erhältst +15 Zielsicherheit bei Reflexschüssen mit deiner Primärwaffe."
+LocLongDescription="Du erhältst +<Ability:TRIGGER_SUP_AIM_BONUS/> Zielsicherheit bei Reflexschüssen mit deiner Primärwaffe."
 LocHelpText="Stecher: Zielsicherheitsbonus bei Reflexschüssen"
 LocFlyOverText="Elite-Stecher"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Waffe stabilisieren"
-LocLongDescription="Aktiviere die Fähigkeit 'Waffe stabilisieren', um bei deinem nächsten Schuss mit der ausgerüsteten Waffe einen Zielsicherheitsbonus in Höhe von +15 sowie einen Bonus von +15 auf deine kritische Trefferchance zu erhalten. Die Boni verfallen, wenn du eine andere Aktion ausführst oder verletzt wirst."
+LocLongDescription="Aktiviere die Fähigkeit 'Waffe stabilisieren', um bei deinem nächsten Schuss mit der ausgerüsteten Waffe einen Zielsicherheitsbonus in Höhe von +<Ability:STOCK_BSC_SW_AIM_BONUS/> sowie einen Bonus von +<Ability:STOCK_BSC_SW_AIM_BONUS/> auf deine kritische Trefferchance zu erhalten. Die Boni verfallen, wenn du eine andere Aktion ausführst oder verletzt wirst."
 LocHelpText="Waffe stabilisieren: Du erhältst einen Zielsicherheitsbonus für deinen nächsten Schuss, sofern du nicht verletzt wirst oder eine andere Aktion ausführst."
 LocFlyOverText="Waffe stabilisieren"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Waffe stabilisieren"
-LocLongDescription="Aktiviere die Fähigkeit 'Waffe stabilisieren', um bei deinem nächsten Schuss mit der ausgerüsteten Waffe einen Zielsicherheitsbonus in Höhe von +20 sowie einen Bonus von +20 auf deine kritische Trefferchance zu erhalten. Die Boni verfallen, wenn du eine andere Aktion ausführst oder verletzt wirst."
+LocLongDescription="Aktiviere die Fähigkeit 'Waffe stabilisieren', um bei deinem nächsten Schuss mit der ausgerüsteten Waffe einen Zielsicherheitsbonus in Höhe von +<Ability:STOCK_ADV_SW_AIM_BONUS/> sowie einen Bonus von +<Ability:STOCK_ADV_SW_AIM_BONUS/> auf deine kritische Trefferchance zu erhalten. Die Boni verfallen, wenn du eine andere Aktion ausführst oder verletzt wirst."
 LocHelpText="Waffe stabilisieren: Du erhältst einen Zielsicherheitsbonus für deinen nächsten Schuss, sofern du nicht verletzt wirst oder eine andere Aktion ausführst."
 LocFlyOverText="Waffe stabilisieren"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Waffe stabilisieren"
-LocLongDescription="Aktiviere die Fähigkeit 'Waffe stabilisieren', um bei deinem nächsten Schuss mit der ausgerüsteten Waffe einen Zielsicherheitsbonus in Höhe von +25 sowie einen Bonus von +25 auf deine kritische Trefferchance zu erhalten. Die Boni verfallen, wenn du eine andere Aktion ausführst oder verletzt wirst."
+LocLongDescription="Aktiviere die Fähigkeit 'Waffe stabilisieren', um bei deinem nächsten Schuss mit der ausgerüsteten Waffe einen Zielsicherheitsbonus in Höhe von +<Ability:STOCK_SUP_SW_AIM_BONUS/> sowie einen Bonus von +<Ability:STOCK_SUP_SW_AIM_BONUS/> auf deine kritische Trefferchance zu erhalten. Die Boni verfallen, wenn du eine andere Aktion ausführst oder verletzt wirst."
 LocHelpText="Waffe stabilisieren: Du erhältst einen Zielsicherheitsbonus für deinen nächsten Schuss, sofern du nicht verletzt wirst oder eine andere Aktion ausführst."
 LocFlyOverText="Waffe stabilisieren"
 
@@ -647,8 +647,8 @@ LocHelpText="Fügt nicht gepanzerten Zielen +2 Schaden zu. Um +1 erhöhter Schad
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Redscreen-Geschosse"
 LocFlyOverText="Redscreen-Geschosse"
-LocLongDescription="Verringert mit jedem Treffer die Hackverteidigung des Ziels um 25."
-LocHelpText="Verringert mit jedem Treffer die Hackverteidigung des Ziels um 25."
+LocLongDescription="Verringert mit jedem Treffer die Hackverteidigung des Ziels um <Ability:REDSCREEN_EFFECT_LW/>."
+LocHelpText="Verringert mit jedem Treffer die Hackverteidigung des Ziels um <Ability:REDSCREEN_EFFECT_LW/>."
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Stilettgeschosse"
@@ -993,63 +993,63 @@ m_strRemoveUpgrade="VERBESSERUNG ENTFERNEN"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Stecher"
 FriendlyNamePlural="Stecher"
-BriefSummary="Der Soldat erhält bei Reflexschüssen einen Bonus von +5 auf seine Zielsicherheit."
+BriefSummary="Der Soldat erhält bei Reflexschüssen einen Bonus von +<Ability:TRIGGER_BSC_AIM_BONUS/> auf seine Zielsicherheit."
 TinySummary="Zielsicherheitsbonus bei Reflexschüssen"
 LootTooltip="Diese Waffenverbesserung - wenn installiert - gewährt bei Reflexschüssen einen Zielsicherheitsbonus."
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Fortschrittlicher Stecher"
 FriendlyNamePlural="Fortschrittliche Stecher"
-BriefSummary="Der Soldat erhält bei Reflexschüssen einen Bonus von +10 auf seine Zielsicherheit."
+BriefSummary="Der Soldat erhält bei Reflexschüssen einen Bonus von +<Ability:TRIGGER_ADV_AIM_BONUS/> auf seine Zielsicherheit."
 TinySummary="Zielsicherheitsbonus bei Reflexschüssen"
 LootTooltip="Diese Waffenverbesserung - wenn installiert - gewährt bei Reflexschüssen einen Zielsicherheitsbonus."
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite-Stecher"
 FriendlyNamePlural="Elite-Stecher"
-BriefSummary="Der Soldat erhält bei Reflexschüssen einen Bonus von +15 auf seine Zielsicherheit."
+BriefSummary="Der Soldat erhält bei Reflexschüssen einen Bonus von +<Ability:TRIGGER_SUP_AIM_BONUS/> auf seine Zielsicherheit."
 TinySummary="Zielsicherheitsbonus bei Reflexschüssen"
 LootTooltip="Diese Waffenverbesserung - wenn installiert - gewährt bei Reflexschüssen einen Zielsicherheitsbonus."
 
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Zielfernrohr"
 FriendlyNamePlural="Zielfernrohre"
-BriefSummary="Erhöht die Zielsicherheit bei Nicht-Reflexschüssen um 5."
+BriefSummary="Erhöht die Zielsicherheit bei Nicht-Reflexschüssen um <Ability:SCOPE_BSC_AIM_BONUS/>."
 TinySummary="Verbesserte Nicht-Reflexschuss-Zielsicherheit"
 LootTooltip="Diese Waffenverbesserung gewährt jeder Waffe, an der sie montiert wird, einen Zielsicherheitsbonus auf alle Nicht-Reflexschüsse."
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Fortschrittliches Zielfernrohr"
 FriendlyNamePlural="Fortschrittliche Zielfernrohre"
-BriefSummary="Erhöht die Zielsicherheit bei Nicht-Reflexschüssen um 10."
+BriefSummary="Erhöht die Zielsicherheit bei Nicht-Reflexschüssen um <Ability:SCOPE_ADV_AIM_BONUS/>."
 TinySummary="Verbesserte Nicht-Reflexschuss-Zielsicherheit"
 LootTooltip="Diese Waffenverbesserung gewährt jeder Waffe, an der sie montiert wird, einen Zielsicherheitsbonus auf alle Nicht-Reflexschüsse."
 
 [AimUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite-Zielfernrohr"
 FriendlyNamePlural="Elite-Zielfernrohre"
-BriefSummary="Erhöht die Zielsicherheit bei Nicht-Reflexschüssen um 15."
+BriefSummary="Erhöht die Zielsicherheit bei Nicht-Reflexschüssen um <Ability:SCOPE_SUP_AIM_BONUS/>."
 TinySummary="Verbesserte Nicht-Reflexschuss-Zielsicherheit"
 LootTooltip="Diese Waffenverbesserung gewährt jeder Waffe, an der sie montiert wird, einen Zielsicherheitsbonus auf alle Nicht-Reflexschüsse."
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Schaft"
 FriendlyNamePlural="Schäfte"
-BriefSummary="Gewährt die Fähigkeit \"Waffe stabilisieren\", die beim nächsten Schuss +15 Zielsicherheit und +15 kritische Trefferchance gewährt."
+BriefSummary="Gewährt die Fähigkeit \"Waffe stabilisieren\", die beim nächsten Schuss +<Ability:STOCK_BSC_SW_AIM_BONUS/> Zielsicherheit und +<Ability:STOCK_BSC_SW_AIM_BONUS/> kritische Trefferchance gewährt."
 TinySummary="Gewährt \"Waffe stabilisieren\""
 LootTooltip="Diese Waffenverbesserung - wenn installiert - gewährt die Fähigkeit \"Waffe stabilisieren\"."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Fortschrittlicher Schaft"
 FriendlyNamePlural="Fortschrittliche Schäfte"
-BriefSummary="Gewährt die Fähigkeit \"Waffe stabilisieren\", die beim nächsten Schuss +20 Zielsicherheit und +20 kritische Trefferchance gewährt."
+BriefSummary="Gewährt die Fähigkeit \"Waffe stabilisieren\", die beim nächsten Schuss +<Ability:STOCK_ADV_SW_AIM_BONUS/> Zielsicherheit und +<Ability:STOCK_ADV_SW_AIM_BONUS/> kritische Trefferchance gewährt."
 TinySummary="Gewährt \"Waffe stabilisieren\""
 LootTooltip="Diese Waffenverbesserung - wenn installiert - gewährt die Fähigkeit \"Waffe stabilisieren\"."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Eliteschaft"
 FriendlyNamePlural="Eliteschäfte"
-BriefSummary="Gewährt die Fähigkeit \"Waffe stabilisieren\", die beim nächsten Schuss +25 Zielsicherheit und +25 kritische Trefferchance gewährt."
+BriefSummary="Gewährt die Fähigkeit \"Waffe stabilisieren\", die beim nächsten Schuss +<Ability:STOCK_SUP_SW_AIM_BONUS/> Zielsicherheit und +<Ability:STOCK_SUP_SW_AIM_BONUS/> kritische Trefferchance gewährt."
 TinySummary="Gewährt \"Waffe stabilisieren\""
 LootTooltip="Diese Waffenverbesserung - wenn installiert - gewährt die Fähigkeit \"Waffe stabilisieren\"."
 

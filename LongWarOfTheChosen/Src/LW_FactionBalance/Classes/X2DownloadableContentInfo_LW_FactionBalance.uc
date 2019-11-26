@@ -28,6 +28,8 @@ static event OnPostTemplatesCreated()
 	UpdateDeflect();
 	UpdateShadow();
 	UpdateRemoteStart();
+	//Combat Intelligenve Covert Action
+	UpdateCICA();
 }
 
 static function IgnoreSuperConcealmentOnAllMissions()
@@ -345,6 +347,35 @@ static function EditParry(X2AbilityTemplate Template)
 	PersistentEffect.BuildPersistentEffect(1, true, false);
 	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, ParryTemplate.LocFriendlyName, ParryTemplate.GetMyHelpText(), ParryTemplate.IconImage, true, , ParryTemplate.AbilitySourceName);
 	ParryTemplate.AddTargetEffect(PersistentEffect);
+}
+//Slightly modified copy pasted Robojumper's code
+static function UpdateCICA()
+{
+	local X2StrategyElementTemplateManager SETMgr;
+	local array<X2DataTemplate> Templates;
+	local X2DataTemplate Template;
+	local int i;
+	SETMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+	SETMgr.FindDataTemplateAllDifficulties('CovertActionImproveComIntStaffSlot', Templates);
+	foreach Templates(Template)
+	{
+		X2StaffSlotTemplate(Template).IsUnitValidForSlotFn = Fixed_IsUnitValidForCovertActionImproveComIntSlot;
+	}
+}
+
+static function bool Fixed_IsUnitValidForCovertActionImproveComIntSlot(XComGameState_StaffSlot SlotState, StaffUnitInfo UnitInfo)
+{
+	local XComGameState_Unit Unit;
+	
+	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
+	// Heroes don't have bAllowAWCAbilities set to to true
+	if (Unit.ComInt >= eComInt_Savant || !(Unit.GetSoldierClassTemplate().bAllowAWCAbilities || Unit.IsResistanceHero()))
+	{
+		// If this unit is already at the max Com Int level, they are not available
+		return false;
+	}
+	return class'X2StrategyElement_XpackStaffSlots'.static.IsUnitValidForCovertActionSoldierSlot(SlotState, UnitInfo);
 }
 
 /// <summary>

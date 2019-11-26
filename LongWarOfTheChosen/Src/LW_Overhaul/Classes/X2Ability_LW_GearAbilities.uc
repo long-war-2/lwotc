@@ -18,12 +18,18 @@ var config int STOCK_BSC_SW_AIM_BONUS;
 var config int STOCK_ADV_SW_AIM_BONUS;
 var config int STOCK_SUP_SW_AIM_BONUS;
 
+var config int STOCK_BSC_SUCCESS_CHANCE;
+var config int STOCK_ADV_SUCCESS_CHANCE;
+var config int STOCK_SUP_SUCCESS_CHANCE;
+
 var config int CERAMIC_PLATING_HP;
 var config int ALLOY_PLATING_HP;
 var config int CARAPACE_PLATING_HP;
 var config int CHITIN_PLATING_HP;
 
 var config int NANOFIBER_CRITDEF_BONUS;
+
+var config int BONUS_COILGUN_SHRED;
 
 var localized string strWeight;
 var localized string AblativeHPLabel;
@@ -44,6 +50,10 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateStockSteadyWeaponAbility('Stock_LW_Bsc_Ability', default.STOCK_BSC_SW_AIM_BONUS));
 	Templates.AddItem(CreateStockSteadyWeaponAbility('Stock_LW_Adv_Ability', default.STOCK_ADV_SW_AIM_BONUS));
 	Templates.AddItem(CreateStockSteadyWeaponAbility('Stock_LW_Sup_Ability', default.STOCK_SUP_SW_AIM_BONUS));
+
+	Templates.AddItem(CreateStockGrazingFireAbility('Stock_GF_Bsc_Ability', default.STOCK_BSC_SUCCESS_CHANCE));
+	Templates.AddItem(CreateStockGrazingFireAbility('Stock_GF_Adv_Ability', default.STOCK_ADV_SUCCESS_CHANCE));
+	Templates.AddItem(CreateStockGrazingFireAbility('Stock_GF_Sup_Ability', default.STOCK_SUP_SUCCESS_CHANCE));
 
 	Templates.AddItem(CreateAblativeHPAbility('Ceramic_Plating_Ability', default.CERAMIC_PLATING_HP));
 	Templates.AddItem(CreateAblativeHPAbility('Alloy_Plating_Ability', default.ALLOY_PLATING_HP));
@@ -76,6 +86,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(RemoveGrenadeWeightAbility()); // does not work
 
 	Templates.AddItem(CreateSedateAbility());
+	Templates.AddItem(CreateBonusShredAbility('CoilgunBonusShredAbility', default.BONUS_COILGUN_SHRED));
 
 	//Templates.AddItem(CreateConsumeWhenActivatedAbility ('ConsumeShapedCharge', 'ShapedChargeUsed'));
 
@@ -180,7 +191,7 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	ToHitModifier.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ToHitModifier.DuplicateResponse=eDupe_Refresh;
 	ToHitModifier.Aim_Bonus=Bonus;
-	ToHitModifier.Crit_Bonus=Bonus;
+	ToHitModifier.Crit_Bonus=0;
 	Template.AddTargetEffect(ToHitModifier);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -188,6 +199,37 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 
 	return Template;
 }
+
+static function X2AbilityTemplate CreateStockGrazingFireAbility(name TemplateName, int Chance)
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_GrazingFire				GrazingEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, TemplateName);
+
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityGrazingFire";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	Template.bCrossClassEligible = true;
+	GrazingEffect = new class'X2Effect_GrazingFire';
+	GrazingEffect.SuccessChance = Chance;
+	GrazingEffect.BuildPersistentEffect (1, true, false);
+	//GrazingEffect.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	Template.AddTargetEffect(GrazingEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	return Template;
+}
+
 
 static function X2AbilityTemplate CreateAblativeHPAbility(name TemplateName, int AblativeHPAmt)
 {
@@ -578,6 +620,41 @@ static function X2AbilityTemplate CreateConsumeWhenActivatedAbility(name Ability
 
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+// Passive ability that grants soldiers bonus shred based on the primary weapon
+// they're using.
+static function X2AbilityTemplate CreateBonusShredAbility(name AbilityName, int BonusShred)
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener EventListener;
+	local X2Effect_BonusShred BonusShredEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, AbilityName);
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_shredder";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	Template.bDontDisplayInAbilitySummary = true;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	BonusShredEffect = new class'X2Effect_BonusShred';
+	BonusShredEffect.BonusShredvalue = BonusShred;
+	Template.AddTargetEffect(BonusShredEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
 	return Template;
 }

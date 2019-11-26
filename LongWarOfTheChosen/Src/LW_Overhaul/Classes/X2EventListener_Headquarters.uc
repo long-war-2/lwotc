@@ -115,8 +115,8 @@ static function EventListenerReturn CanTechBeInspired(
 	}
 
 	// Exclude repeatable research from inspiration
-	TechState = XComGameState_Tech(Tuple.Data[0].o);
-	Tuple.Data[1].b = !TechState.GetMyTemplate().bRepeatable;
+	TechState = XComGameState_Tech(EventSource);
+	Tuple.Data[0].b = !TechState.GetMyTemplate().bRepeatable;
 
 	return ELR_NoInterrupt;
 }

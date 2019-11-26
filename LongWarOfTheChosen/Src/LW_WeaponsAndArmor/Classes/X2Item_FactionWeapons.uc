@@ -1008,7 +1008,7 @@ static function X2DataTemplate CreateTemplate_Bullpup_Laser()
 	Template.iEnvironmentDamage = default.BULLPUP_LASER_IENVIRONMENTDAMAGE;
 
 	Template.NumUpgradeSlots = default.BULLPUP_LASER_UPGRADESLOTS; 
-	
+
 	Template.InventorySlot = eInvSlot_PrimaryWeapon;
 	Template.Abilities.AddItem('StandardShot');
 	Template.Abilities.AddItem('Overwatch');
@@ -1087,6 +1087,7 @@ static function X2DataTemplate CreateBullpup_Coil_Template()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
+	Template.Abilities.AddItem('CoilgunBonusShredAbility');
 	Template.Requirements.RequiredTechs.AddItem('Coilguns');
 
 	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
@@ -1175,14 +1176,14 @@ static function X2DataTemplate CreateVektorCrossbow_Laser()
 	Template.iEnvironmentDamage = default.VEKTOR_LASER_IENVIRONMENTDAMAGE;
 
 	Template.NumUpgradeSlots = default.VEKTOR_LASER_UPGRADESLOTS; 
-	
+
 	Template.InventorySlot = eInvSlot_PrimaryWeapon;
 	Template.Abilities.AddItem('StandardShot');
 	Template.Abilities.AddItem('Overwatch');
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	
+
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "CrossbowVektor.WP_CrossbowVektor_MG";
 
@@ -1235,7 +1236,8 @@ static function X2DataTemplate CreateVektorCrossbow_Coil()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	
+	Template.Abilities.AddItem('CoilgunBonusShredAbility');
+
 	Template.iPhysicsImpulse = 5;
 	Template.StartingItem = false;
 	Template.CanBeBuilt = true;
