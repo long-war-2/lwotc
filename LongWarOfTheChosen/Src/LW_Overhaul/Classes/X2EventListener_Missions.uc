@@ -46,8 +46,6 @@ static function CHEventListenerTemplate CreateObjectivesListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionObjectivesListeners');
 	Template.AddCHEvent('OverrideObjectiveSpawnCount', OnOverrideObjectiveSpawnCount, ELD_Immediate);
 	Template.AddCHEvent('OverrideObjectiveSpawnCount', OverrideObjectiveDestructibleHealths, ELD_Immediate);
-	Template.AddCHEvent('OverrideBodyRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
-	Template.AddCHEvent('OverrideLootRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
 
 	Template.RegisterInTactical = true;
 
@@ -131,42 +129,6 @@ static function EventListenerReturn OverrideObjectiveDestructibleHealths(Object 
 {
 	class'X2DownloadableContentInfo_LongWarOfTheChosen'.static.OverrideDestructibleHealths(NewGameState);
 	return ELR_NoInterrupt;
-}
-
-static function EventListenerReturn OnOverrideBodyAndLootRecovery(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-	local XComLWTuple Tuple;
-	local XComGameState_BattleData BattleData;
-	
-	Tuple = XComLWTuple(EventData);
-	if (Tuple == none)
-		return ELR_NoInterrupt;
-
-	BattleData = XComGameState_BattleData(EventSource);
-	if (BattleData == none)
-	{
-		`REDSCREEN("BattleData not provided with 'OverrideBodyAndLootRecovery' event");
-		return ELR_NoInterrupt;
-	}
-
-	Tuple.Data[0].b = (HasAnyTriadObjective(BattleData) && BattleData.AllTriadObjectivesCompleted()) || Tuple.Data[0].b;
-
-	return ELR_NoInterrupt;
-}
-
-static function bool HasAnyTriadObjective(XComGameState_BattleData Battle)
-{
-	local int ObjectiveIndex;
-
-	for( ObjectiveIndex = 0; ObjectiveIndex < Battle.MapData.ActiveMission.MissionObjectives.Length; ++ObjectiveIndex )
-	{
-		if( Battle.MapData.ActiveMission.MissionObjectives[ObjectiveIndex].bIsTriadObjective )
-		{
-			return true;
-		}
-	}
-
-	return false;
 }
 
 // Disable autofilling of the mission squad in robojumper's Squad Select screen
