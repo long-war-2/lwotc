@@ -177,6 +177,7 @@ static function X2DataTemplate Create_SparkRifle_Coil()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
+	Template.Abilities.AddItem('CoilgunBonusShredAbility');
 
 
 	Template.BaseDamage = default.SPARKRIFLE_COIL_BASEDAMAGE;
