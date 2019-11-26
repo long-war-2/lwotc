@@ -38,6 +38,7 @@ static function CHEventListenerTemplate CreateYellowAlertListeners()
 	Template.AddCHEvent('ProcessReflexMove', OnScamperBegin, ELD_Immediate);
 	Template.AddCHEvent('UnitTakeEffectDamage', OnUnitTookDamage, ELD_OnStateSubmitted);
 	Template.AddCHEvent('OverrideAllowedAlertCause', OnOverrideAllowedAlertCause, ELD_Immediate);
+	Template.AddCHEvent('ShouldCivilianRun', ShouldCivilianRunFromOtherUnit, ELD_Immediate);
 
 	Template.RegisterInTactical = true;
 
@@ -369,6 +370,39 @@ static function EventListenerReturn OnOverrideAllowedAlertCause(
 				break;
 		}
 	}
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn ShouldCivilianRunFromOtherUnit(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Unit CivilianState, OtherUnitState;
+	local bool DoesAIAttackCivilians;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	// Sanity check. This should not happen.
+	if (Tuple.Id != 'ShouldCivilianRun')
+	{
+		`REDSCREEN("Received unexpected event ID in ShouldCivilianRunFromOtherUnit() event handler");
+		return ELR_NoInterrupt;
+	}
+
+	CivilianState = XComGameState_Unit(EventSource);
+	OtherUnitState = XComGameState_Unit(Tuple.Data[0].o);
+	DoesAIAttackCivilians = Tuple.Data[1].b;
+
+	// Civilians shouldn't run from the aliens/ADVENT unless Team Alien
+	// is attacking neutrals.
+	Tuple.Data[2].b = !(!DoesAIAttackCivilians && OtherUnitState.GetTeam() == eTeam_Alien); 
 
 	return ELR_NoInterrupt;
 }
