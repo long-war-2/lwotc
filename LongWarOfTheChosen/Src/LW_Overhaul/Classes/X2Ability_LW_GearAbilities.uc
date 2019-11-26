@@ -29,6 +29,8 @@ var config int CHITIN_PLATING_HP;
 
 var config int NANOFIBER_CRITDEF_BONUS;
 
+var config int BONUS_COILGUN_SHRED;
+
 var localized string strWeight;
 var localized string AblativeHPLabel;
 
@@ -84,6 +86,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(RemoveGrenadeWeightAbility()); // does not work
 
 	Templates.AddItem(CreateSedateAbility());
+	Templates.AddItem(CreateBonusShredAbility('CoilgunBonusShredAbility', default.BONUS_COILGUN_SHRED));
 
 	//Templates.AddItem(CreateConsumeWhenActivatedAbility ('ConsumeShapedCharge', 'ShapedChargeUsed'));
 
@@ -617,6 +620,41 @@ static function X2AbilityTemplate CreateConsumeWhenActivatedAbility(name Ability
 
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+// Passive ability that grants soldiers bonus shred based on the primary weapon
+// they're using.
+static function X2AbilityTemplate CreateBonusShredAbility(name AbilityName, int BonusShred)
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener EventListener;
+	local X2Effect_BonusShred BonusShredEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, AbilityName);
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_shredder";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	Template.bDontDisplayInAbilitySummary = true;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	BonusShredEffect = new class'X2Effect_BonusShred';
+	BonusShredEffect.BonusShredvalue = BonusShred;
+	Template.AddTargetEffect(BonusShredEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
 	return Template;
 }
