@@ -274,11 +274,6 @@ static function DisableLostHeadshot(X2AbilityTemplate Template)
 	local X2Condition_HeadshotEnabled           HeadshotCondition;
 	local int									i;
 
-	if (!default.DISABLE_LOST_HEADSHOT)
-	{
-		return;
-	}
-
 	`LWTrace("Disabling Headshot mechanic");
 
 	for (i = Template.AbilityTargetEffects.Length-1; i >= 0; i--)
@@ -289,7 +284,6 @@ static function DisableLostHeadshot(X2AbilityTemplate Template)
 			HeadshotCondition = new class'X2Condition_HeadshotEnabled';
 			HeadshotCondition.EnabledForDifficulty = default.HEADSHOT_ENABLED;
 			HeadshotEffect.TargetConditions.AddItem(HeadshotCondition);
-			// Template.AbilityTargetEffects.remove(i, 1);
 			break;
 		}
 	}
