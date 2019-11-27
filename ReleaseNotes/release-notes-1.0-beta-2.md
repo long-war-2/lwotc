@@ -17,8 +17,6 @@ More details on all the balance changes and bug fixes below.
 
 Read the [installation instructions](https://github.com/long-war-2/lwotc/wiki/Installing-Long-War-of-the-Chosen) for information on how to perform the upgrade.
 
-This is a significant release, with plenty of folks to thank. See Acknowledgements at the end to learn who's been contributing.
-
 Most balancing feedback comes from Legend players right now, so we would greatly appreciate feedback from Rookie, Veteran and Commander players. You can join us on our [Discord server](https://discord.gg/9fUCvcR), submit feedback via issues in GitHub, or start a thread on the [Pavonis Interactive forums](https://pavonisinteractive.com/phpBB3/viewforum.php?f=22).
 
 # Changelog
@@ -30,6 +28,7 @@ Here are the changes since beta 1:
 * Revival Protocol Fixes is now a required mod
 * Dedicated Pistol Slot is now a required mod
 * Reliable Smoke is recommended to get LW2-like behavior for smoke grenades
+* Show More Buff Details is recommended so you can see status durations, like how long a hack or mind control will last
 
 ## Class and ability changes
 
@@ -137,8 +136,12 @@ Here are the changes since beta 1:
 
 A big thanks to the following:
 
-* martox and jmartinez for their work on the faction rebalance
-* Favid for his coding contributions and, in particular, his fix for the LW2 flamethrower targeting and animations
-* All the folks that have been testing the alphas and development builds and providing feedback and issue reports
+* Grobobobo for his many contributions (and nerfs!)
+* Favid for his coding contributions (again)
+* Anthogator for doing the much needed but desperately boring job of removing bad Faceless civilian entries from the mission schedules
+* Veehementia for the Dedicated Pistol Slot mod and adding a hook to configure it for LWOTC
+* Hotchocletylez for use of [Vektor Crossbows](https://steamcommunity.com/sharedfiles/filedetails/?id=1773420239) (used for Reaper's laser and coilgun variants)
+* Iridar for use of [Enemy Within MEC Weapons](https://steamcommunity.com/sharedfiles/filedetails/?id=1626184587) (used for SPARK lasers and coilguns)
+* All the folks that have been testing beta 1 and development builds and providing feedback and issue reports
 
 We hope you enjoy the mod, and good luck commanders!
