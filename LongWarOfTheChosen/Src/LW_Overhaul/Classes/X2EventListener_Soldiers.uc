@@ -124,11 +124,11 @@ static protected function EventListenerReturn OnOverrideItemUnequipBehavior(Obje
 	if(OverrideTuple.Id != 'OverrideItemUnequipBehavior')
 		return ELR_NoInterrupt;
 
-	//check if item is a utility slot item
+	//check if item is a utility or pistol slot item
 	EquipmentTemplate = X2EquipmentTemplate(ItemState.GetMyTemplate());
 	if(EquipmentTemplate != none)
 	{
-		if(EquipmentTemplate.InventorySlot == eInvSlot_Utility)
+		if(EquipmentTemplate.InventorySlot == eInvSlot_Utility || ItemState.InventorySlot == eInvSlot_Pistol)
 		{
 			OverrideTuple.Data[0].i = eCHSUB_AllowEmpty;  // item can be unequipped
 		}
@@ -901,6 +901,7 @@ static function OnLoadoutLocked(UIButton kButton)
 	CannotEditSlots.AddItem(eInvSlot_SenaryWeapon);
 	CannotEditSlots.AddItem(eInvSlot_SeptenaryWeapon);
 	CannotEditSlots.AddItem(eInvSlot_AmmoPocket);
+	CannotEditSlots.AddItem(eInvSlot_Pistol);
 
 	MainMenu = UIArmory_MainMenu(GetScreenOrChild('UIArmory_MainMenu'));
 	if (MainMenu == none) { return; }
