@@ -148,11 +148,17 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState_LWOutpost OutpostState;
 	local XComGameState_LWToolboxOptions ToolboxOptions;
 
+	// TODO: Remove these post 1.0 - START
+
 	// LWOTC beta 2: Remove the 'OnMonthlyReportAlert' listener as it's no
 	// longer needed (Not Created Equally is handled by the 'UnitRandomizedStats'
 	// event now).
 	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
 	`XEVENTMGR.UnRegisterFromEvent(ToolboxOptions, 'OnMonthlyReportAlert');
+
+	// Make sure pistol abilities apply to the new pistol slot
+	LWMigratePistolAbilities();
+	// Remove these post 1.0 - END
 
 	//this method can handle case where RegionalAI components already exist
 	class'XComGameState_WorldRegion_LWStrategyAI'.static.InitializeRegionalAIs();
@@ -312,6 +318,76 @@ static function RemoveDarkEventObjectives()
 		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 	else
 		History.CleanupPendingGameState(NewGameState);
+}
+
+// TODO: This function is only needed for players that want to upgrade
+// from a version of LW prior to beta 2 and want access to the pistol
+// abilities.
+static function LWMigratePistolAbilities()
+{
+	local XComGameState NewGameState;
+	local XComGameStateHistory History;
+	local XComGameState_Unit UnitState;
+	local SoldierRankAbilities RankAbilities;
+	local int i, j;
+	local bool UnitHasPistolAbilities;
+
+	History = `XCOMHISTORY;
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update unit pistol abilities for pistol slot");
+
+	foreach History.IterateByClassType(class'XComGameState_Unit', UnitState)
+	{
+		if (!UnitState.IsSoldier() || UnitState.IsResistanceHero())
+		{
+			// Faction soldiers and non-soldiers don't have the Pistol ability row
+			continue;
+		}
+
+		// Iterate over the whole ability tree looking for pistol abilities. For
+		// those that are found, change the `ApplyToWeaponSlot` property to the
+		// new pistol slot.
+		UnitHasPistolAbilities = false;
+		for (i = 0; i < UnitState.AbilityTree.Length; i++)
+		{
+			for (j = 0; j < UnitState.AbilityTree[i].Abilities.Length; j++)
+			{
+				// If any of the abilities are already configured for the pistol slot, skip them
+				if (UnitState.AbilityTree[i].Abilities[j].ApplyToWeaponSlot == eInvSlot_Pistol)
+				{
+					break;
+				}
+
+				switch (UnitState.AbilityTree[i].Abilities[j].AbilityName)
+				{
+				case 'ReturnFire':
+				case 'Quickdraw':
+				case 'ClutchShot':
+				case 'Gunslinger':
+				case 'LightningHands':
+				case 'Faceoff':
+				case 'FanFire':
+					if (!UnitHasPistolAbilities)
+					{
+						UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+						UnitHasPistolAbilities = true;
+					}
+					UnitState.AbilityTree[i].Abilities[j].ApplyToWeaponSlot = eInvSlot_Pistol;
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+		
+	if (NewGameState.GetNumGameStateObjects() > 0)
+	{
+		History.AddGameStateToHistory(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
 }
 
 static function UpdateLockAndLoadBonus(optional XComGameState StartState)
