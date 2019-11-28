@@ -30,6 +30,7 @@ static event OnPostTemplatesCreated()
 	UpdateRemoteStart();
 	//Combat Intelligenve Covert Action
 	UpdateCICA();
+  AllowTwoSoldiersFromEachFaction();
 }
 
 static function IgnoreSuperConcealmentOnAllMissions()
@@ -348,6 +349,36 @@ static function EditParry(X2AbilityTemplate Template)
 	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, ParryTemplate.LocFriendlyName, ParryTemplate.GetMyHelpText(), ParryTemplate.IconImage, true, , ParryTemplate.AbilitySourceName);
 	ParryTemplate.AddTargetEffect(PersistentEffect);
 }
+
+//Copy pasted Realitymachina's code
+static function AllowTwoSoldiersFromEachFaction()
+{
+	local X2RewardTemplate RewardTemplate;
+	local X2StrategyElementTemplateManager StratMgr;
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+
+	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_ExtraFactionSoldier'));
+
+	if(RewardTemplate != none)
+		RewardTemplate.IsRewardAvailableFn = IsExtraSoldierAvailable;
+}
+
+static function bool IsExtraSoldierAvailable(optional XComGameState NewGameState, optional StateObjectReference AuxRef)
+{
+	local int NumFactionSoldiers;
+	local XComGameState_ResistanceFaction FactionState;
+
+	FactionState = class'X2StrategyElement_DefaultRewards'.static.GetFactionState(NewGameState, AuxRef);
+
+	if (FactionState != none)
+		NumFactionSoldiers = FactionState.GetNumFactionSoldiers(NewGameState);
+	else
+		return false;
+
+	return (FactionState.bMetXCom && NumFactionSoldiers > 0 && NumFactionSoldiers < FactionState.default.MaxHeroesPerFaction);
+}
+
 //Slightly modified copy pasted Robojumper's code
 static function UpdateCICA()
 {
@@ -391,3 +422,4 @@ static event OnLoadedSavedGame()
 /// </summary>
 static event InstallNewCampaign(XComGameState StartState)
 {}
+
