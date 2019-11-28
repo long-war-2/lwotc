@@ -65,8 +65,8 @@ static function X2DataTemplate CreateGenericMissionSourceTemplate()
 	Template.WasMissionSuccessfulFn = GenericWasMissionSuccessful;
 	
 	// WOTC TODO: Consider adding sitreps to missions at a later date.
-	Template.bBlockSitrepDisplay = true;
-	Template.GetSitRepsFn = none;
+	Template.bBlockSitrepDisplay = false;
+	Template.GetSitRepsFn = GetValidSitReps;
 	return Template;
 }
 
@@ -147,6 +147,11 @@ function int GenericGetMissionDifficulty(XComGameState_MissionSite MissionState)
 					   class'X2StrategyGameRulesetDataStructures'.default.MaxMissionDifficulty);
 
 	return Difficulty;
+}
+
+static function array<name> GetValidSitReps(XComGameState_MissionSite MissionState)
+{
+	return class'X2StrategyElement_DefaultMissionSources'.static.GetSitrepsGeneric(MissionState);
 }
 
 //**********************************************

@@ -13,6 +13,7 @@ var Delegate<AbilityTemplateMod> AbilityTemplateModFn;
 var Delegate<MissionNarrativeTemplateMod> MissionNarrativeTemplateModFn;
 var Delegate<SoldierClassTemplateMod> SoldierClassTemplateModFn;
 var Delegate<HackRewardTemplateMod> HackRewardTemplateModFn;
+var Delegate<SitRepTemplateMod> SitRepTemplateModFn;
 
 // Uncomment these when we need them.
 
@@ -32,3 +33,4 @@ delegate AbilityTemplateMod(X2AbilityTemplate Template, int Difficulty);
 delegate MissionNarrativeTemplateMod(X2MissionNarrativeTemplate Template);
 delegate SoldierClassTemplateMod(X2SoldierClassTemplate Template, int Difficulty);
 delegate HackRewardTemplateMod(X2HackRewardTemplate Template, int Difficulty);
+delegate SitRepTemplateMod(X2SitRepTemplate Template, int Difficulty);

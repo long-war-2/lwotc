@@ -318,6 +318,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateModifyRewardsTemplate());
 	Templates.AddItem(CreateModifyStrategyObjectivesTemplate());
 	Templates.AddItem(CreateModifyCovertActionsTemplate());
+	Templates.AddItem(CreateModifySitRepsTemplate());
 	Templates.AddItem(CreateModifyResistanceOrdersTemplate());
 	`Log("    Done");
 	return Templates;
@@ -341,12 +342,21 @@ static function X2LWTemplateModTemplate CreateModifyStrategyObjectivesTemplate()
 	return Template;
 }
 
-// Update existing strategic objective templates
+// Update existing covert action templates
 static function X2LWTemplateModTemplate CreateModifyCovertActionsTemplate()
 {
 	local X2LWTemplateModTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2LWCovertActionsModTemplate', Template, 'UpdateCovertActions');
+	return Template;
+}
+
+// Update existing sit rep templates
+static function X2LWTemplateModTemplate CreateModifySitRepsTemplate()
+{
+	local X2LWTemplateModTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2LWSitRepsModTemplate', Template, 'UpdateSitReps');
 	return Template;
 }
 
