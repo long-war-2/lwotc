@@ -106,6 +106,7 @@ var config int LWDRONE_DRONEREPAIRWEAPON_RANGE;
 var config int LWDRONE_IDEALRANGE;
 
 var config int ADVVANGUARD_IDEALRANGE;
+var config int VANGUARD_ASSAULTRIFLE_ICLIPSIZE;
 
 var config WeaponDamageValue AdvSergeantM1_WPN_BASEDAMAGE;
 var config WeaponDamageValue AdvSergeantM2_WPN_BASEDAMAGE;
@@ -1090,7 +1091,10 @@ static function X2DataTemplate CreateTemplate_AdvElite_WPN(name TemplateName)
 		case 'AdvSergeantM2_WPN': Template.BaseDamage = default.AdvSergeantM2_WPN_BASEDAMAGE;  break;
 		case 'AdvShockTroop_WPN': Template.BaseDamage = default.AdvShockTroop_WPN_BASEDAMAGE;  break;
 		case 'AdvCommando_WPN': Template.BaseDamage = default.AdvCommando_WPN_BASEDAMAGE; break;
-		case 'AdvVanguard_WPN': Template.BaseDamage = default.AdvVanguard_WPN_BASEDAMAGE; break;
+		case 'AdvVanguard_WPN': Template.BaseDamage = default.AdvVanguard_WPN_BASEDAMAGE; 
+		Template.Abilities.AddItem('CloseCombatSpecialist');
+		Template.iClipSize = default.VANGUARD_ASSAULTRIFLE_ICLIPSIZE;
+		break;
 		case 'AdvScout_WPN': Template.BaseDamage = default.AdvScout_WPN_BASEDAMAGE; break;
 		case 'AdvGeneralM1_WPN': Template.BaseDamage = default.AdvGeneralM1_WPN_BASEDAMAGE; break;
 		case 'AdvGeneralM2_WPN': Template.BaseDamage = default.AdvGeneralM2_WPN_BASEDAMAGE; break;

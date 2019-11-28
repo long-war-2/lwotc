@@ -177,7 +177,7 @@ function ApplyLightningReflexes(XComGameState_Unit Hacker, XComGameState_BaseObj
 
 function ApplyCloseCombatSpecialist(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
 {
-	ApplyNavigatorPerk (NewGameState, 'CloseCombatSpecialist', default.CloseCombatSpecialistApplicationChance, default.CloseCombatSpecialistApplicationRules, false, default.CloseCombatSpecialistApplicationTargetArray);
+	ApplyNavigatorPerk (NewGameState, 'CloseCombatSpecialist', default.CloseCombatSpecialistApplicationChance, default.CloseCombatSpecialistApplicationRules, true, default.CloseCombatSpecialistApplicationTargetArray);
 }
 
 function ApplyGrazingFire(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
@@ -257,7 +257,7 @@ function ApplyNavigatorPerk (XComGameState NewGameState, Name AbilityTemplateNam
 	local XComGameState_Ability AbilityState;
 	local Name AdditionalAbilityName;
 	local X2AbilityTemplate AdditionalAbilityTemplate;
-
+	local XComGameState_Item kWeapon;
 	History = `XCOMHISTORY;
 
 	AbilityTemplateManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
@@ -306,25 +306,55 @@ function ApplyNavigatorPerk (XComGameState NewGameState, Name AbilityTemplateNam
 			
 			if( `SYNC_RAND(100) < ApplicationChance )
 			{
-				NewUnitState = XComGameState_Unit(NewGameState.CreateStateObject(UnitState.Class, UnitState.ObjectID));
-				NewGameState.AddStateObject(NewUnitState);
-
-				AbilityRef = X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).InitAbilityForUnit(AbilityTemplate, NewUnitState, NewGameState);
-				if (AbilityRef.ObjectID == 0) continue;
-
-				AbilityState = XComGameState_Ability(NewGameState.CreateStateObject(class'XComGameState_Ability', AbilityRef.ObjectID));
-				NewGameState.AddStateObject(AbilityState);
-
-				// Also add any additional abilities attached to this ability.
-				foreach AbilityTemplate.AdditionalAbilities(AdditionalAbilityName)
+				
+				
+				if(ApplyToPrimaryWeapon)
 				{
-					AdditionalAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(AdditionalAbilityName);
-					if (AdditionalAbilityTemplate != none)
+					NewUnitState = XComGameState_Unit(NewGameState.CreateStateObject(UnitState.Class, UnitState.ObjectID));
+					kWeapon = NewUnitState.GetItemInSlot(eInvSlot_PrimaryWeapon);
+					NewGameState.AddStateObject(NewUnitState);
+
+					AbilityRef = X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).InitAbilityForUnit(AbilityTemplate, NewUnitState, NewGameState,kWeapon.GetReference());
+					if (AbilityRef.ObjectID == 0) continue;
+				
+					AbilityState = XComGameState_Ability(NewGameState.CreateStateObject(class'XComGameState_Ability', AbilityRef.ObjectID));
+					NewGameState.AddStateObject(AbilityState);
+
+					// Also add any additional abilities attached to this ability.
+					foreach AbilityTemplate.AdditionalAbilities(AdditionalAbilityName)
 					{
-						AbilityRef = X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).InitAbilityForUnit(AdditionalAbilityTemplate, NewUnitState, NewGameState);
-						if (AbilityRef.ObjectID == 0) continue;
-						AbilityState = XComGameState_Ability(NewGameState.CreateStateObject(class'XComGameState_Ability', AbilityRef.ObjectID));
-						NewGameState.AddStateObject(AbilityState);
+						AdditionalAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(AdditionalAbilityName);
+						if (AdditionalAbilityTemplate != none)
+						{
+							AbilityRef = X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).InitAbilityForUnit(AdditionalAbilityTemplate, NewUnitState, NewGameState,kWeapon.GetReference());
+							if (AbilityRef.ObjectID == 0) continue;
+							AbilityState = XComGameState_Ability(NewGameState.CreateStateObject(class'XComGameState_Ability', AbilityRef.ObjectID));
+							NewGameState.AddStateObject(AbilityState);
+						}
+					}
+				}
+				else
+				{
+					NewUnitState = XComGameState_Unit(NewGameState.CreateStateObject(UnitState.Class, UnitState.ObjectID));
+					NewGameState.AddStateObject(NewUnitState);
+
+					AbilityRef = X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).InitAbilityForUnit(AbilityTemplate, NewUnitState, NewGameState);
+					if (AbilityRef.ObjectID == 0) continue;
+				
+					AbilityState = XComGameState_Ability(NewGameState.CreateStateObject(class'XComGameState_Ability', AbilityRef.ObjectID));
+					NewGameState.AddStateObject(AbilityState);
+
+					// Also add any additional abilities attached to this ability.
+					foreach AbilityTemplate.AdditionalAbilities(AdditionalAbilityName)
+					{
+						AdditionalAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(AdditionalAbilityName);
+						if (AdditionalAbilityTemplate != none)
+						{
+							AbilityRef = X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).InitAbilityForUnit(AdditionalAbilityTemplate, NewUnitState, NewGameState);
+							if (AbilityRef.ObjectID == 0) continue;
+							AbilityState = XComGameState_Ability(NewGameState.CreateStateObject(class'XComGameState_Ability', AbilityRef.ObjectID));
+							NewGameState.AddStateObject(AbilityState);
+						}
 					}
 				}
 			}
