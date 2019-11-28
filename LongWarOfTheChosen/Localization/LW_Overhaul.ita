@@ -4,185 +4,185 @@ GrazeBandWidthMod="Zona graffio"
 GrazeBandWidthModTooltip="Determina quanto deve essere vicino un colpo al centro esatto per contare come graffio"
 GrazeBandValue="Valore: <XGParam:IntValue0>"
 PauseOnRecruitMod="Pausa al reclutamento"
-PauseOnRecruitModTooltip="Pausa sul planisfero quando un rifugio recluta un nuovo soldato o un ribelle"
+PauseOnRecruitModTooltip="Pausa sul planisfero quando un Rifugio recluta un nuovo soldato o un ribelle"
 
 [UIScreenListener_ShellDifficulty]
-strIncompatibleModsTitle="MOD DUPLICATI PRESENTI"
-strIncompatibleModsText="Rilevati mod duplicati:\n%modnames%\nQuesti mod sono stati integrati in questo mod e dovrebbero essere disabilitati dal launcher. Caricandolo potrebbero verificarsi effetti negativi, come scarse prestazioni o instabilità. Procedere a proprio rischio."
+strIncompatibleModsTitle="MOD DUPLICATE PRESENTI"
+strIncompatibleModsText="Rilevate mod duplicate:\n%modnames%\nQueste mod sono già state integrate in questa mod e dovrebbero essere disabilitate dal launcher. Caricandole potrebbero verificarsi effetti negativi, come scarse prestazioni o instabilità. Procedere a proprio rischio."
 
 [UIMission_LWCustomMission]
 m_strMissionDifficulty_start="ATTIVITÀ NEMICA BASE"
 
 [ProtectRegionEarly X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion1Activity"
-ActivityObjectives[0]="Trova un indizio"
+ActivityObjectives[0]="Inizia a liberare la regione"
 
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile Indizio su attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile Indizio su attività ADVENT. Dovremmo indagare.", MissionIndex=0)
 
 [ProtectRegionMid X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion2Activity"
 ActivityObjectives[0]="Liberazione: salva un disertore"
 
-+MissionDescriptions=(MissionFamily="Extract_LW", Description="Possiamo estrarre un disertore della ADVENT in possesso di informazioni vitali sui punti deboli degli alieni in questa regione.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Extract_LW", Description="Possiamo estrarre un disertore ADVENT in possesso di informazioni vitali sui punti deboli degli alieni in questa regione.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo trovato un simpatizzante della Resistenza in possesso di dettagli vitali sui punti deboli degli alieni in questa regione.", MissionIndex=0)
 
 [ProtectRegion X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion3Activity"
-ActivityObjectives[0]="Liberazione: ostacola le operazioni della ADVENT"
-ActivityObjectives[1]="Liberazione: distruggi la torre della rete"
-ActivityObjectives[2]="Liberazione: assalta la base della ADVENT"
+ActivityObjectives[0]="Liberazione: Ostacola operazioni ADVENT"
+ActivityObjectives[1]="Liberazione: Distruggi la Torre della Rete"
+ActivityObjectives[2]="Liberazione: Assalta il Quartier Generale ADVENT"
 
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Abbiamo scoperto un dispositivo ADVENT che interferisce con la rete di comunicazioni della Resistenza. Dobbiamo distruggerlo.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Neutralize_LW", Description="I nostri sforzi ci hanno portato a un ufficiale umano della ADVENT che sta guidando le operazioni nemiche in questa regione. Dobbiamo rimuovere questa persona.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Neutralize_LW", Description="I nostri sforzi ci hanno portato a un ufficiale ADVENT umano che sta guidando le operazioni nemiche in questa regione. Dobbiamo rimuovere questa persona.", MissionIndex=0)
 
 +MissionDescriptions=(MissionFamily="AssaultNetworkTower_LW", Description="Continuiamo a ottenere vittorie in questa regione. È il momento di distruggere il loro centro delle comunicazioni, nella capitale della regione.", MissionIndex=1)
 
-+MissionDescriptions=(MissionFamily="AssaultAlienBase_LW", Description="Ora che le operazioni della ADVENT in questa regione sono allo sbando, possiamo assaltare il loro quartier generale militare, liberando la regione dal controllo nemico.", MissionIndex=2)
++MissionDescriptions=(MissionFamily="AssaultAlienBase_LW", Description="Ora che le operazioni ADVENT in questa regione sono allo sbando, possiamo assaltare il loro quartier generale militare, liberando la regione dal controllo nemico.", MissionIndex=2)
 
 [Counterinsurgency X2LWAlienActivityTemplate]
 ActivityName="CounterinsurgencyActivity"
 ActivityObjectives[0]="Sventa una fuga di dati della Resistenza"
-ActivityObjectives[1]="Difendi un rifugio della Resistenza"
+ActivityObjectives[1]="Difendi un Rifugio della Resistenza"
 
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="La ADVENT sta indagando sulle nostre operazioni in questa regione. Il nostro rifugio potrebbe essere in pericolo.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Terror_LW", Description="Le forze nemiche si avvicinano al nostro rifugio. Dobbiamo affrettarci per difenderlo e proteggere i suoi abitanti.", MissionIndex=1)
-+MissionDescriptions=(MissionFamily="Defend_LW", Description="Le forze nemiche si avvicinano al nostro rifugio. Dobbiamo affrettarci per difenderlo e proteggere i suoi abitanti.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="ADVENT sta indagando le nostre operazioni in questa regione. Il nostro Rifugio potrebbe essere in pericolo.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Terror_LW", Description="Le forze nemiche si avvicinano al nostro Rifugio. Dobbiamo affrettarci a difenderlo e proteggere i suoi abitanti.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="Defend_LW", Description="Le forze nemiche si avvicinano al nostro Rifugio. Dobbiamo affrettarci a difenderlo e proteggere i suoi abitanti.", MissionIndex=1)
 
 [ReinforceActivity X2LWAlienActivityTemplate]
 ActivityName="ReinforceActivity"
-ActivityObjectives[0]="Intercetta i rinforzi della ADVENT"
-+MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="Abbiamo rilevato delle truppe ADVENT in movimento verso questa regione, in risposta alle nostre operazioni.", MissionIndex=0)
+ActivityObjectives[0]="Intercetta i rinforzi ADVENT"
++MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="Abbiamo rilevato ADVENT mobilitare truppe verso questa regione, in risposta alle nostre operazioni.", MissionIndex=0)
 
 [COINResearch X2LWAlienActivityTemplate]
 ActivityName="COINResearchActivity"
-ActivityObjectives[0]="Blocca un progetto di ricerca e sviluppo militare della ADVENT"
+ActivityObjectives[0]="Blocca un progetto di ricerca e sviluppo militare ADVENT"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un'occasione per impedire agli alieni di completare un progetto di ricerca militare.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un'occasione per impedire agli alieni di completare un progetto di ricerca militare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Abbiamo scoperto un'occasione per impedire agli alieni di completare un progetto di ricerca militare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Neutralize_LW", Description="Abbiamo scoperto un'occasione per eliminare un ufficiale umano della ADVENT in modo da impedire agli alieni di completare un progetto di ricerca militare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Abbiamo scoperto un'occasione per impedire agli alieni di completare un progetto di ricerca militare aliena.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Neutralize_LW", Description="Abbiamo scoperto un'occasione per eliminare un ufficiale ADVENT umano in modo da impedire agli alieni di completare un progetto di ricerca militare.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto un'occasione per salvare uno scienziato imprigionato, obbligato ad assistere un progetto di ricerca militare degli alieni.", MissionIndex=0)
 
 [COINOps X2LWAlienActivityTemplate]
 ActivityName="COINOpsActivity"
-ActivityObjectives[0]="Ferma l'operazione antiresistenza ADVENT"
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="La ADVENT si sta muovendo per ostacolare la Resistenza e il progetto XCOM. Abbiamo un'occasione per fermarla.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="La ADVENT si sta muovendo per ostacolare la Resistenza e il progetto XCOM. Abbiamo un'occasione per fermarla.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="La ADVENT si sta muovendo per ostacolare la Resistenza e il progetto XCOM. Abbiamo un'occasione per fermarla.", MissionIndex=0)
+ActivityObjectives[0]="Ferma l'Operazione Antiresistenza ADVENT"
++MissionDescriptions=(MissionFamily="Recover_LW", Description="ADVENT si sta muovendo per ostacolare la Resistenza e il progetto XCOM. Abbiamo un'occasione per fermarla.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="ADVENT si sta muovendo per ostacolare la Resistenza e il progetto XCOM. Abbiamo un'occasione per fermarla.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="ADVENT si sta muovendo per ostacolare la Resistenza e il progetto XCOM. Abbiamo un'occasione per fermarla.", MissionIndex=0)
 
 [BuildResearchFacility X2LWAlienActivityTemplate]
 ActivityName="BuildResearchFacilityActivity"
-ActivityObjectives[0]="Assalta un'unità di costruzione ADVENT"
-+MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="Abbiamo scoperto che gli alieni stanno cercando di costruire una nuova struttura di ricerca in questa regione. Possiamo assaltare un'unità di costruzione per impedirlo.", MissionIndex=0)
+ActivityObjectives[0]="Assalta un'Unità di Costruzione ADVENT"
++MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="Abbiamo scoperto che gli alieni stanno cercando di costruire una nuova struttura di ricerca in questa regione. Possiamo assaltare un'Unità di Costruzione per impedirlo.", MissionIndex=0)
 
 [RegionalAvatarResearch X2LWAlienActivityTemplate]
-ActivityObjectives[0]="Assalta un laboratorio di ricerca alieno"
+ActivityObjectives[0]="Assalta un Laboratorio di Ricerca alieno"
 +MissionDescriptions=(MissionFamily="Sabotage_LW", Description="Abbiamo scoperto un'importante struttura di ricerca aliena. Radiamola al suolo.", MissionIndex=0)
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Trova un indizio"
-ActivityObjectives[1]="Recupera gli artefatti degli UFO"
+ActivityObjectives[0]="Trova un Indizio"
+ActivityObjectives[1]="Recupera artefatti dagli UFO"
 
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="I nostri dati ci hanno condotto a un UFO vulnerabile atterrato.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="I nostri dati ci hanno condotto a un UFO atterrato vulnerabile.", MissionIndex=1)
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Trova un indizio"
+ActivityObjectives[0]="Trova un Indizio"
 ActivityObjectives[1]="Recupera gli artefatti degli UFO"
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="I nostri dati ci hanno condotto a un UFO vulnerabile atterrato.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="I nostri dati ci hanno condotto a un UFO atterrato vulnerabile.", MissionIndex=1)
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Trova un indizio"
-ActivityObjectives[1]="Recupera gli artefatti degli UFO"
+ActivityObjectives[0]="Trova un Indizio"
+ActivityObjectives[1]="Recupera artefatti dagli UFO"
 
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto un prigioniero della ADVENT che potrebbe darci indizi sulle attività nemiche.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="I nostri dati ci hanno condotto a un UFO vulnerabile atterrato.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto un prigioniero ADVENT che potrebbe darci informazioni sulle attività nemiche.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="I nostri dati ci hanno condotto a un UFO atterrato vulnerabile.", MissionIndex=1)
 
 [Invasion X2LWAlienActivityTemplate]
 ActivityName="InvasionActivity"
-ActivityObjectives[0]="Assalta l'avanguardia della ADVENT"
-ActivityObjectives[1]="Difendi il governo provvisorio"
+ActivityObjectives[0]="Assalta l'Avanguardia ADVENT"
+ActivityObjectives[1]="Difendi il Governo Provvisorio"
 
-+MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="Abbiamo rilevato delle truppe ADVENT in arrivo nella regione. È vitale fermare la loro avanzata.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Invasion_LW", Description="La ADVENT sta invadendo questa regione per attaccare il governo provvisorio. Difendi la popolazione o gli alieni riprenderanno il controllo della regione.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="Abbiamo rilevato truppe ADVENT in arrivo nella regione. È vitale fermare la loro avanzata.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Invasion_LW", Description="ADVENT sta invadendo questa regione per attaccare il Governo Provvisorio. Difendi la popolazione o gli alieni riprenderanno il controllo della regione.", MissionIndex=1)
 
 [Foothold X2LWAlienActivityTemplate]
 ActivityName="FootholdActivity"
 ActivityObjectives[0]="Attacca l'UFO d'assalto"
-ActivityObjectives[1]="Difendi il governo provvisorio"
+ActivityObjectives[1]="Difendi il Governo Provvisorio"
 
 +MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="Gli alieni stanno cercando di ristabilire una posizione sulla Terra. Possiamo fermarli attaccando una delle loro navi d'assalto appena atterra.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Invasion_LW", Description="Gli alieni stanno invadendo questa regione per attaccare il governo provvisorio. Difendi la popolazione altrimenti gli alieni riprenderanno il controllo della regione.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="Invasion_LW", Description="Gli alieni stanno invadendo questa regione per attaccare il Governo Provvisorio. Difendi la popolazione altrimenti gli alieni riprenderanno il controllo della regione.", MissionIndex=1)
 
 [Propaganda X2LWAlienActivityTemplate]
 ActivityName="PropagandaActivity"
 ActivityObjectives[0]="Attira l'attenzione della ADVENT"
-+MissionDescriptions=(MissionFamily="SabotageCC_LW", Description="Gli alieni hanno lasciato un centro urbano relativamente sguarnito. Possiamo lanciare un messaggio attaccando uno dei loro monumenti, ma la ADVENT interverrà di sicuro.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Neutralize_LW", Description="Abbiamo saputo che un alto ufficiale umano dell'amministrazione ADVENT sarà relativamente sguarnito per un breve periodo di tempo, in un futuro prossimo. Possiamo eliminarlo, ma la ADVENT se ne accorgerà di sicuro.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SabotageCC_LW", Description="Gli alieni hanno lasciato un centro urbano relativamente sguarnito. Possiamo lanciare un messaggio attaccando uno dei loro monumenti, ma ADVENT interverrà sicuramente.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Neutralize_LW", Description="Abbiamo saputo che un alto ufficiale umano dell'amministrazione ADVENT sarà relativamente sguarnito per un breve periodo di tempo, in un futuro prossimo. Possiamo eliminarlo, ma ADVENT se ne accorgerà di sicuro.", MissionIndex=0)
 
 [ProtectResearch X2LWAlienActivityTemplate]
 ActivityName="ProtectResearchActivity"
-ActivityObjectives[0]="Trova un indizio"
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
+ActivityObjectives[0]="Trova un Indizio"
++MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Abbiamo scoperto un dispositivo ADVENT che interferisce con le comunicazioni della Resistenza. Distruggendolo, possiamo trovare nuove fonti e dati.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto un prigioniero della ADVENT che potrebbe darci indizi sulle attività nemiche.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Extract_LW", Description="Qualcuno è riuscito a fuggire da una struttura ADVENT, potrebbe darci indizi sulle attività nemiche. Dobbiamo estrarlo.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto un prigioniero ADVENT che potrebbe darci indizi sulle attività nemiche.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Extract_LW", Description="Siamo a conoscenza di un fuggiasco proveniente da una struttura ADVENT che potrebbe darci indizi sulle attività nemiche. Necessita un'immediata estrazione.", MissionIndex=0)
 
 [ProtectData X2LWAlienActivityTemplate]
 ActivityName="ProtectDataActivity"
-ActivityObjectives[0]="Trova un indizio"
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
+ActivityObjectives[0]="Trova un Indizio"
++MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Abbiamo scoperto un dispositivo ADVENT che interferisce con le comunicazioni della Resistenza. Distruggendolo, possiamo trovare nuove fonti e dati.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto un prigioniero della ADVENT che potrebbe darci indizi sulle attività nemiche.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Extract_LW", Description="Qualcuno è riuscito a fuggire da una struttura ADVENT, potrebbe darci indizi sulle attività nemiche. Dobbiamo estrarlo.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto un prigioniero ADVENT che potrebbe darci indizi sulle attività nemiche.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Extract_LW", Description="Siamo a conoscenza di un fuggiasco proveniente da una struttura ADVENT che potrebbe darci indizi sulle attività nemiche. Necessita un'immediata estrazione.", MissionIndex=0)
 
 [TroopManeuvers X2LWAlienActivityTemplate]
 ActivityName="TroopManeuversActivity"
-ActivityObjectives[0]="Riduci la forza nemica"
-+MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="La ADVENT ha lasciato un'unità da combattimento vulnerabile a un raid delle nostre forze.")
+ActivityObjectives[0]="Riduci la Forza Nemica"
++MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="ADVENT ha lasciato un'Unità da Combattimento vulnerabile a un raid delle nostre forze.")
 
 [HighValuePrisoner X2LWAlienActivityTemplate]
 ActivityName="HighValuePrisonerActivity"
-ActivityObjectives[0]="Libera un prigioniero importante"
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto dove la ADVENT tiene un importante prigioniero. Abbiamo una fugace opportunità di liberarlo.", MissionIndex=0)
+ActivityObjectives[0]="Libera un Prigioniero Importante"
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto dove ADVENT tiene un Importante Prigioniero. Abbiamo una fugace opportunità di liberarlo.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Extract_LW", Description="Qualcuno è fuggito da una struttura ADVENT e potrebbe aiutare la Resistenza. Abbiamo una fugace opportunità di estrarre questa persona.", MissionIndex=0)
 
 [PoliticalPrisoners X2LWAlienActivityTemplate]
 ActivityName="PoliticalPrisonersActivity"
-ActivityObjectives[0]="Libera i ribelli catturati"
+ActivityObjectives[0]="Libera i Ribelli Catturati"
 +MissionDescriptions=(MissionFamily="Jailbreak_LW", Description="Un gruppo di membri della Resistenza è prigioniero in una struttura di sicurezza. Abbiamo una fugace occasione per salvarli.", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"
 ActivityObjectives[0]="Proteggi le risorse della Resistenza"
-+MissionDescriptions=(MissionFamily="IntelRaid_LW", Description="Una squadra di recupero della Resistenza è stata scoperta dalla ADVENT. Dobbiamo difendere i nostri uomini e le nostre attrezzature dalle squadre d'assalto della ADVENT.")
++MissionDescriptions=(MissionFamily="IntelRaid_LW", Description="Una squadra di recupero della Resistenza è stata scoperta da ADVENT. Dobbiamo difendere i nostri uomini e le nostre attrezzature dalle squadre d'assalto ADVENT.")
 
 [SupplyConvoy X2LWAlienActivityTemplate]
 ActivityName="SupplyConvoyActivity"
 ActivityObjectives[0]="Proteggi le risorse della Resistenza"
-+MissionDescriptions=(MissionFamily="SupplyConvoy_LW", Description="Le forze ADVENT stanno per attaccare un convoglio di rifornimento della Resistenza. Dobbiamo proteggere i nostri uomini e la nostra merce.")
++MissionDescriptions=(MissionFamily="SupplyConvoy_LW", Description="Le forze ADVENT stanno per attaccare un convoglio di rifornimento della Resistenza. Dobbiamo proteggere i nostri uomini e le nostre risorse.")
 
 [RecruitRaid X2LWAlienActivityTemplate]
 ActivityName="RecruitRaidActivity"
 ActivityObjectives[0]="Proteggi le risorse della Resistenza"
-+MissionDescriptions=(MissionFamily="RecruitRaid_LW", Description="Un'unità di reclutamento della Resistenza si è imbattuta in una pattuglia ADVENT. Dobbiamo subito far evacuare il nostro personale.")
++MissionDescriptions=(MissionFamily="RecruitRaid_LW", Description="Un'unità di reclutamento della Resistenza si è imbattuta in una pattuglia ADVENT. Dobbiamo evacuare immediatamente il nostro personale.")
 
 [Snare X2LWAlienActivityTemplate]
 ActivityName="SnareActivity"
-ActivityObjectives[0]="Trova un indizio"
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile indizio sulle attività della ADVENT. Dovremmo indagare.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto un prigioniero della ADVENT che potrebbe darci indizi sulle attività nemiche.", MissionIndex=0)
+ActivityObjectives[0]="Trova un Indizio"
++MissionDescriptions=(MissionFamily="Recover_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="Abbiamo scoperto un possibile Indizio riguardo le attività ADVENT. Dovremmo indagare.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="Abbiamo scoperto un prigioniero ADVENT che potrebbe darci indizi sulle attività nemiche.", MissionIndex=0)
 
 [DebugMission X2LWAlienActivityTemplate]
 ActivityObjectives[0]="DEBUG Mission"
@@ -190,9 +190,9 @@ ActivityObjectives[0]="DEBUG Mission"
 [Rendezvous X2LWAlienActivityTemplate]
 ActivityName="RendezvousActivity"
 ActivityObjectives[0]="Dummy mission"
-ActivityObjectives[1]="Assalta le forze della ADVENT"
+ActivityObjectives[1]="Assalta le forze ADVENT"
 +MissionDescriptions=(MissionFamily="Rendezvous_LW", Description="Dummy mission", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rendezvous_LW", Description="Dai la caccia alle spie Senza volto e ai loro contatti ADVENT vicini a questo rifugio.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="Rendezvous_LW", Description="Dai la caccia alle spie Senzavolto ed ai loro contatti ADVENT nelle vicinanze di questo rifugio.", MissionIndex=1)
 
 [X2Item_LWGauntlet]
 PrimaryRangeLabel="Gittata razzo"
@@ -203,41 +203,42 @@ SecondaryRadiusLabel="Portata lanciafiamme"
 [LWGauntlet_CV X2MultiWeaponTemplate]
 FriendlyName="Guanto"
 FriendlyNamePlural="Guanti"
-BriefSummary="Questa combinazione di lanciafiamme e mini lanciarazzi è stata progettata dai nostri tecnici per gestire un'ampia gamma di situazioni di combattimento."
-TacticalText="<Bullet/> Il guanto XCOM è un dispositivo avanzato con un mini lanciarazzi e un lanciafiamme.<br/><Bullet/> Il lanciarazzi parte con un razzo e ha un'area d'effetto con una portata di tre caselle.<br/><Bullet/> Può avere come bersaglio qualsiasi cosa entro la portata visiva.<br/><Bullet/> Il danno dei razzi diminuisce allontanandosi dal punto dell'impatto.<br/><Bullet/> Il lanciafiamme è un'arma a breve gittata che infligge danni a più bersagli in un'area d'effetto a cono.<br/><Bullet/> Il lanciafiamme ha due cariche e non danneggia le unità meccaniche, senza potenziamenti.<br/><Bullet/> Usare un'abilità del guanto richiede un'azione e conclude il turno.<br/><Bullet/> La precisione dei missili è influenzata dalla mira del soldato, distanza dal bersaglio, e se il soldato abbia già utilizzato una qualunque azione o meno in questo turno. Missili poco precisi avranno valori di deviazione più alti, il che vuol dire che avranno una probabilità maggiore di mancare la casella bersaglio di distanze maggiori. La deviazione massima del missile è indicata nel popup, mentre un valore che appare col cursore mostrerà la deviazione prevista (media) per un colpo su tale locazione."
+BriefSummary="Questa combinazione di lanciafiamme e mini-lanciarazzi è stata progettata per i nostri Tecnici in modo da gestire un'ampia gamma di situazioni di combattimento."
+TacticalText="<Bullet/> Il guanto XCOM è un dispositivo avanzato con un mini-lanciarazzi e un lanciafiamme.<br/><Bullet/> Il lanciarazzi è dotato inizialmente di un razzo e ha un'area d'effetto con una portata di tre caselle.<br/><Bullet/> Può avere come bersaglio qualsiasi cosa entro la portata visiva.<br/><Bullet/> Il danno dei razzi diminuisce con l'allontanarsi dal punto di impatto.<br/><Bullet/> Il lanciafiamme è un'arma a breve gittata che infligge danni a più bersagli in un'area d'effetto conica.<br/><Bullet/> Il lanciafiamme ha due cariche e non danneggia unità meccaniche, senza potenziamenti.<br/><Bullet/> Usare una qualsiasi abilità del guanto richiede un'azione e conclude il turno.<br/><Bullet/> La precisione dei missili è influenzata dalla mira del soldato, dalla distanza del bersaglio, e dal previo utilizzo di una qualunque azione in questo turno da parte del soldato. Missili poco precisi avranno valori di deviazione più alti, il che vuol dire che avranno una probabilità maggiore di mancare la casella bersaglio di distanze maggiori. La deviazione massima del missile è indicata nel popup, mentre il valore che appare col cursore mostrerà la deviazione prevista (media) per un colpo su tale locazione."
 AbilityDescName="guanto"
 
 [LWGauntlet_MG X2MultiWeaponTemplate]
 FriendlyName="Guanti Mark II"
 FriendlyNamePlural="Guanti Mark II"
 BriefSummary="Le armi del guanto Mark II infliggono più danni rispetto a quelle del Mark I."
-TacticalText="<Bullet/> Il guanto XCOM è un dispositivo avanzato con un mini lanciarazzi e un lanciafiamme.<br/><Bullet/> Il lanciarazzi parte con un razzo e ha un'area d'effetto con una portata di tre caselle.<br/><Bullet/> Può avere come bersaglio qualsiasi cosa entro la portata visiva.<br/><Bullet/> Il danno dei razzi diminuisce allontanandosi dal punto dell'impatto.<br/><Bullet/> Il lanciafiamme è un'arma a breve gittata che infligge danni a più bersagli in un'area d'effetto a cono.<br/><Bullet/> Il lanciafiamme ha due cariche e non danneggia le unità meccaniche, senza potenziamenti.<br/><Bullet/> Usare un'abilità del guanto richiede un'azione e conclude il turno.<br/><Bullet/> La precisione dei missili è influenzata dalla mira del soldato, distanza dal bersaglio, e se il soldato abbia già utilizzato una qualunque azione o meno in questo turno. Missili poco precisi avranno valori di deviazione più alti, il che vuol dire che avranno una probabilità maggiore di mancare la casella bersaglio di distanze maggiori. La deviazione massima del missile è indicata nel popup, mentre un valore che appare col cursore mostrerà la deviazione prevista (media) per un colpo su tale locazione."
+TacticalText="<Bullet/> Il guanto XCOM è un dispositivo avanzato con un mini-lanciarazzi e un lanciafiamme.<br/><Bullet/> Il lanciarazzi è dotato inizialmente di un razzo e ha un'area d'effetto con una portata di tre caselle.<br/><Bullet/> Può avere come bersaglio qualsiasi cosa entro la portata visiva.<br/><Bullet/> Il danno dei razzi diminuisce con l'allontanarsi dal punto di impatto.<br/><Bullet/> Il lanciafiamme è un'arma a breve gittata che infligge danni a più bersagli in un'area d'effetto conica.<br/><Bullet/> Il lanciafiamme ha due cariche e non danneggia unità meccaniche, senza potenziamenti.<br/><Bullet/> Usare una qualsiasi abilità del guanto richiede un'azione e conclude il turno.<br/><Bullet/> La precisione dei missili è influenzata dalla mira del soldato, dalla distanza del bersaglio, e dal previo utilizzo di una qualunque azione in questo turno da parte del soldato. Missili poco precisi avranno valori di deviazione più alti, il che vuol dire che avranno una probabilità maggiore di mancare la casella bersaglio di distanze maggiori. La deviazione massima del missile è indicata nel popup, mentre il valore che appare col cursore mostrerà la deviazione prevista (media) per un colpo su tale locazione."
 AbilityDescName="guanto"
 
 [LWGauntlet_CG X2MultiWeaponTemplate]
 FriendlyName="Guanto Mark III"
 FriendlyNamePlural="Guanti Mark III"
 BriefSummary="Il guanto Mark III infligge più danni del Mark I e del Mark II."
-TacticalText="<Bullet/> Il guanto XCOM è un dispositivo avanzato con un mini lanciarazzi e un lanciafiamme.<br/><Bullet/> Il lanciarazzi parte con un razzo e ha un'area d'effetto con una portata di tre caselle.<br/><Bullet/> Può avere come bersaglio qualsiasi cosa entro la portata visiva.<br/><Bullet/> Il danno dei razzi diminuisce allontanandosi dal punto dell'impatto.<br/><Bullet/> Il lanciafiamme è un'arma a breve gittata che infligge danni a più bersagli in un'area d'effetto a cono.<br/><Bullet/> Il lanciafiamme ha due cariche e non danneggia le unità meccaniche, senza potenziamenti.<br/><Bullet/> Usare un'abilità del guanto richiede un'azione e conclude il turno.<br/><Bullet/> La precisione dei missili è influenzata dalla mira del soldato, distanza dal bersaglio, e se il soldato abbia già utilizzato una qualunque azione o meno in questo turno. Missili poco precisi avranno valori di deviazione più alti, il che vuol dire che avranno una probabilità maggiore di mancare la casella bersaglio di distanze maggiori. La deviazione massima del missile è indicata nel popup, mentre un valore che appare col cursore mostrerà la deviazione prevista (media) per un colpo su tale locazione."
+TacticalText="<Bullet/> Il guanto XCOM è un dispositivo avanzato con un mini-lanciarazzi e un lanciafiamme.<br/><Bullet/> Il lanciarazzi è dotato inizialmente di un razzo e ha un'area d'effetto con una portata di tre caselle.<br/><Bullet/> Può avere come bersaglio qualsiasi cosa entro la portata visiva.<br/><Bullet/> Il danno dei razzi diminuisce con l'allontanarsi dal punto di impatto.<br/><Bullet/> Il lanciafiamme è un'arma a breve gittata che infligge danni a più bersagli in un'area d'effetto conica.<br/><Bullet/> Il lanciafiamme ha due cariche e non danneggia unità meccaniche, senza potenziamenti.<br/><Bullet/> Usare una qualsiasi abilità del guanto richiede un'azione e conclude il turno.<br/><Bullet/> La precisione dei missili è influenzata dalla mira del soldato, dalla distanza del bersaglio, e dal previo utilizzo di una qualunque azione in questo turno da parte del soldato. Missili poco precisi avranno valori di deviazione più alti, il che vuol dire che avranno una probabilità maggiore di mancare la casella bersaglio di distanze maggiori. La deviazione massima del missile è indicata nel popup, mentre il valore che appare col cursore mostrerà la deviazione prevista (media) per un colpo su tale locazione."
 AbilityDescName="guanto"
 
 [LWGauntlet_BM X2MultiWeaponTemplate]
-FriendlyName="Guanto blaster"
-FriendlyNamePlural="Guanti blaster"
-BriefSummary="Le armi del guanto avanzato infliggono danni ingenti e i minirazzi possono essere guidati verso il bersaglio."
-TacticalText="<Bullet/> Il componente cannone a ricerca del guanto avanzato è un lanciarazzi altamente tecnologico, i cui proiettili possono aggirare gli ostacoli.\n<Bullet/> Il lanciafiamme potenziato infligge danni ingenti in un piccolo cono, colpendo l'ambiente e i bersagli nemici.<br/><Bullet/> Il danno dei razzi diminuisce allontanandosi dal punto dell'impatto.<br/><Bullet/> Il lanciafiamme è un'arma a breve gittata che infligge danni a più bersagli in un'area d'effetto a cono.<br/><Bullet/> Il lanciafiamme ha due cariche e non danneggia le unità meccaniche senza potenziamenti.<br/><Bullet/> Usare un'abilità del guanto richiede un'azione e conclude il turno.<br/><Bullet/> La precisione dei missili è influenzata dalla mira del soldato, distanza dal bersaglio, e se il soldato abbia già utilizzato una qualunque azione o meno in questo turno. Missili poco precisi avranno valori di deviazione più alti, il che vuol dire che avranno una probabilità maggiore di mancare la casella bersaglio di distanze maggiori. La deviazione massima del missile è indicata nel popup, mentre un valore che appare col cursore mostrerà la deviazione prevista (media) per un colpo su tale locazione."
+FriendlyName="Guanto Blaster"
+FriendlyNamePlural="Guanti Blaster"
+BriefSummary="Le armi del Guanto Blaster infliggono danni ingenti e i minirazzi possono essere guidati verso il bersaglio."
+TacticalText="<Bullet/> Il componente lanciarazzi del Guanto Blaster è un lanciarazzi altamente tecnologico, i cui proiettili possono aggirare terreno ostacolante.\n<Bullet/> Il lanciafiamme potenziato infligge danni ingenti in un piccolo cono, danneggiando nemici e il terreno circostante.<br/><Bullet/> Il danno dei razzi diminuisce con l'allontanarsi dal punto di impatto.<br/><Bullet/> Il lanciafiamme è un'arma a breve gittata che infligge danni a più bersagli in un'area d'effetto conica.<br/><Bullet/> Il lanciafiamme ha due cariche e non danneggia unità meccaniche, senza potenziamenti.<br/><Bullet/> Usare una qualsiasi abilità del guanto richiede un'azione e conclude il turno.<br/><Bullet/> La precisione dei missili è influenzata dalla mira del soldato, dalla distanza del bersaglio, e e dal previo utilizzo di una qualunque azione in questo turno da parte del soldato. Missili poco precisi avranno valori di deviazione più alti, il che vuol dire che avranno una probabilità maggiore di mancare la casella bersaglio di distanze maggiori. La deviazione massima del missile è indicata nel popup, mentre il valore che appare col cursore mostrerà la deviazione prevista (media) per un colpo su tale locazione."
 AbilityDescName="guanto"
 
 [UISquadSelect_InfiltrationPanel]
 strInfiltrationTitle="TOTALE INFILTRAZIONE:"
-strBaseInfiltrationTitle="Infiltrazione base:"
-strSquadSizeTitle="Modificatore dimensioni squadra:"
-strCovertnessTitle="Modificatore abilità e attrezzatura:"
-strMissionTimeTitle="Scadenza missione:"
-strDaysAndHours="<XGParam:IntValue0> giorni, <XGParam:IntValue1> ore"
-strMinusDaysAndHours="- <XGParam:IntValue0> giorni, <XGParam:IntValue1> ore"
-strPlusDaysAndHours="+ <XGParam:IntValue0> giorni, <XGParam:IntValue1> ore"
-strMissionIndefinite="Durata indefinita"
+strBaseInfiltrationTitle="Infiltrazione Base:"
+strSquadSizeTitle="Modificatore Dimensione Squadra:"
+strCovertnessTitle="Modificatore Abilità e Attrezzatura:"
+strMissionTimeTitle="Scadenza Missione:"
+strDaysAndHours="<XGParam:IntValue0> Giorni, <XGParam:IntValue1> Ore"
+strMinusDaysAndHours="- <XGParam:IntValue0> Giorni, <XGParam:IntValue1> Ore"
+strPlusDaysAndHours="+ <XGParam:IntValue0> Giorni, <XGParam:IntValue1> Ore"
+strMissionIndefinite="Durata Indefinita"
+strLiberationTitle="Modificatore Progresso Liberazione:"
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="CONTATTO IMMINENTE"
