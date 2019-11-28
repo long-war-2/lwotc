@@ -815,8 +815,11 @@ static function string GetHitChanceText(ShotBreakdown TargetBreakdown)
 }
 
 // Make sure reinforcements arrive in red alert if any aliens on the map are
-// already in red alert. This also increases the detection radius for enemy
-// units when they enter yellow or red alert.
+// already in red alert.
+//
+// This listener also increases the detection radius for enemy units when they
+// enter yellow or red alert and clears the effect that restores their sight
+// radius (since that effect breaks the Low Visibility sit rep).
 //
 // Note that the implementation is based on the Compound Rescure mission's
 // security levels, but it could probably also be implemented by adding a
@@ -860,6 +863,11 @@ static function EventListenerReturn OnAbilityActivated(Object EventData, Object 
 			Reinforcements.RedAlertTriggered = true;
 		}
 
+		// Clear the stat restoration effect that gets applied when units enter
+		// red or yellow alert, since it overrides the sight radius changes applied
+		// by the Low Visibility sit rep.
+		RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
+
 		`TACTICALRULES.SubmitGameState(NewGameState);
 	}
 	else if (ActivatedAbilityState.GetMyTemplate().DataName == 'YellowAlert')
@@ -873,9 +881,34 @@ static function EventListenerReturn OnAbilityActivated(Object EventData, Object 
 			" to " $ int(DetectionRadius + default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]));
 		UnitState.SetBaseMaxStat(eStat_DetectionRadius, int(DetectionRadius + default.YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]));
 
+		// Clear the stat restoration effect that gets applied when units enter
+		// red or yellow alert, since it overrides the sight radius changes applied
+		// by the Low Visibility sit rep.
+		RemoveSightRadiusRestorationEffect(UnitState, NewGameState);
+
 		`TACTICALRULES.SubmitGameState(NewGameState);
 	}
 	return ELR_NoInterrupt;
+}
+
+private static function RemoveSightRadiusRestorationEffect(XComGameState_Unit UnitState, XComGameState NewGameState)
+{
+	local X2Effect_PersistentStatChangeRestoreDefault CurrentEffect;
+	local XComGameStateHistory History;
+	local XComGameState_Effect EffectState;
+	local StateObjectReference EffectRef;
+
+	History = `XCOMHISTORY;
+	foreach UnitState.AffectedByEffects(EffectRef)
+	{
+		EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+		CurrentEffect = X2Effect_PersistentStatChangeRestoreDefault(EffectState.GetX2Effect());
+		if (CurrentEffect != none && CurrentEffect.StatTypesToRestore.Find(eStat_SightRadius) != INDEX_NONE)
+		{
+			EffectState.RemoveEffect(NewGameState, NewGameState, true);
+			break;
+		}
+	}
 }
 
 // This listener clears the `eCleanup_BeginTurn` unit values on units that

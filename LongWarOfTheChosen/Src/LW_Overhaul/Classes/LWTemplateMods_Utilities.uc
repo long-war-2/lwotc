@@ -15,7 +15,8 @@ static function UpdateTemplates()
     local X2ItemTemplateManager					ItemTemplateMgr;
     local X2MissionNarrativeTemplateManager		NarrativeTemplateMgr;
 	local X2SoldierClassTemplateManager			SoldierClassTemplateMgr;
-    local X2HackRewardTemplateManager           HackRewardTemplateMgr;
+    local X2HackRewardTemplateManager			HackRewardTemplateMgr;
+    local X2SitRepTemplateManager				SitRepTemplateMgr;
 
     local array<X2StrategyElementTemplate>		TemplateMods;
     local X2LWTemplateModTemplate				ModTemplate;
@@ -31,6 +32,7 @@ static function UpdateTemplates()
 	NarrativeTemplateMgr	= class'X2MissionNarrativeTemplateManager'.static.GetMissionNarrativeTemplateManager();
 	SoldierClassTemplateMgr = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
     HackRewardTemplateMgr   = class'X2HackRewardTemplateManager'.static.GetHackRewardTemplateManager();
+    SitRepTemplateMgr		= class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
 
     TemplateMods = StrategyTemplateMgr.GetAllTemplatesOfClass(class'X2LWTemplateModTemplate');
     for (idx = 0; idx < TemplateMods.Length; ++idx)
@@ -54,7 +56,12 @@ static function UpdateTemplates()
 		if (ModTemplate.StrategyElementTemplateModFn != none)
 		{
 			`LWTrace("Template Mods: Updating Strategy Templates for " $ ModTemplate.DataName);
-			PerformStrategyElementTemplateMod(ModTEmplate, StrategyTemplateMgr);
+			PerformStrategyElementTemplateMod(ModTemplate, StrategyTemplateMgr);
+		}
+		if (ModTemplate.SitRepTemplateModFn != none)
+		{
+			`LWTrace("Template Mods: Updating SitRep Templates for " $ ModTemplate.DataName);
+			PerformSitRepTemplateMod(ModTemplate, SitRepTemplateMgr);
 		}
         if (ModTemplate.MissionNarrativeTemplateModFn != none)
         {
@@ -174,6 +181,32 @@ static function PerformStrategyElementTemplateMod(X2LWTemplateModTemplate Templa
 			{
 				Difficulty = GetDifficultyFromTemplateName(TemplateName);
 				Template.StrategyElementTemplateModFn(StrategyTemplate, Difficulty);
+			}
+		}
+	}
+}
+
+static function PerformSitRepTemplateMod(X2LWTemplateModTemplate Template, X2DataTemplateManager TemplateManager)
+{
+	local X2SitRepTemplate SitRepTemplate;
+	local array<Name> TemplateNames;
+	local Name TemplateName;
+	local array<X2DataTemplate> DataTemplates;
+	local X2DataTemplate DataTemplate;
+	local int Difficulty;
+
+	TemplateManager.GetTemplateNames(TemplateNames);
+
+	foreach TemplateNames(TemplateName)
+	{
+		TemplateManager.FindDataTemplateAllDifficulties(TemplateName, DataTemplates);
+		foreach DataTemplates(DataTemplate)
+		{
+			SitRepTemplate = X2SitRepTemplate(DataTemplate);
+			if (SitRepTemplate != none)
+			{
+				Difficulty = GetDifficultyFromTemplateName(TemplateName);
+				Template.SitRepTemplateModFn(SitRepTemplate, Difficulty);
 			}
 		}
 	}

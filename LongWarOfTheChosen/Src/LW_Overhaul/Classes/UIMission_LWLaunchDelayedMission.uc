@@ -503,8 +503,8 @@ simulated function ConfirmBoostInfiltrationCallback(Name Action)
 		else
 			History.CleanupPendingGameState(NewGameState);
 
-        // update the infiltration status, but don't pause the game. We're already in a popup and actually paused completely, and this
-        // update "pause" actually resets to 'slow time' and causes a hang.
+		// update the infiltration status, but don't pause the game. We're already in a popup and actually paused completely, and this
+		// update "pause" actually resets to 'slow time' and causes a hang.
 		UpdatedSquad.UpdateInfiltrationState(false);
 
 		`LWACTIVITYMGR.UpdateMissionData(GetMission()); // update units on the mission, since AlertLevel likely changed
@@ -512,6 +512,7 @@ simulated function ConfirmBoostInfiltrationCallback(Name Action)
 		// rebuild the panels to display the updated status
 		BuildMissionPanel();
 		BuildOptionsPanel();
+		UpdateSitreps();
 		class'UIUtilities_LW'.static.BuildMissionInfoPanel(self, MissionRef, true);
 
 		Movie.Pres.PlayUISound(eSUISound_SoldierPromotion);
