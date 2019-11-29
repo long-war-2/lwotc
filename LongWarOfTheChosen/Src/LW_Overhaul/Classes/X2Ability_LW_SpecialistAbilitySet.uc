@@ -11,7 +11,7 @@ var config int FAILSAFE_PCT_CHANCE;
 var config int RESCUE_CV_CHARGES;
 var config int RESCUE_MG_CHARGES;
 var config int RESCUE_BM_CHARGES;
-
+var config int FULL_OVERRIDE_COOLDOWN;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -19,11 +19,15 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddFullOverride());
 	Templates.AddItem(FinalizeFullOverride());
 	Templates.AddItem(CancelFullOverride());
-	Templates.AddItem(AddHackRewardControlRobot_Mission());
+	//Templates.AddItem(AddHackRewardControlRobot_Mission()); Replaced with Greater Shutdown, commented out but not removed in case of reversal
 	Templates.AddItem(AddHackRewardControlRobot_Permanent());
 	Templates.AddItem(AddFailsafe());
 	//Templates.AddItem(AddCorpsman());
 	Templates.AddItem(AddRescueProtocol());
+	Templates.AddItem(HackRewardGreaterShutdownRobot());
+	Templates.AddItem(HackRewardGreaterShutdownTurret());
+
+	
 	return Templates;
 }
 
@@ -57,6 +61,7 @@ static function X2AbilityTemplate AddFullOverride()
 	local X2AbilityCharges              Charges;
 	local X2AbilityCost_Charges         ChargeCost;
 	local X2Condition_UnitEffects		NotHaywiredCondition;
+	local X2AbilityCooldown             Cooldown;
 
 	Template = class'X2Ability_SpecialistAbilitySet'.static.ConstructIntrusionProtocol('FullOverride', , true);
 
@@ -72,6 +77,10 @@ static function X2AbilityTemplate AddFullOverride()
 	ChargeCost.NumCharges = 1;
 	ChargeCost.bOnlyOnHit = true;
 	Template.AbilityCosts.AddItem(ChargeCost);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.FULL_OVERRIDE_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
 
 	NotHaywiredCondition = new class 'X2Condition_UnitEffects';
 	NotHaywiredCondition.AddExcludeEffect ('Haywired', 'AA_NoTargets');
@@ -130,9 +139,24 @@ function XComGameState CancelFullOverride_BuildGameState(XComGameStateContext Co
 {
 	local XComGameStateContext_Ability AbilityContext;
 	local XComGameState NewGameState;
+	local XComGameState_Ability AbilityState;
+	local XComGameStateHistory History;
 
+	History = `XCOMHISTORY;
 	AbilityContext = XComGameStateContext_Ability(Context);
 	NewGameState = TypicalAbility_BuildGameState(Context);
+
+	foreach History.IterateByClassType(class'XComGameState_Ability', AbilityState)
+	{
+		if( AbilityState.OwnerStateObject.ObjectID == AbilityContext.InputContext.SourceObject.ObjectID &&
+		   AbilityState.GetMyTemplateName() == 'FullOverride' )
+		{
+			AbilityState = XComGameState_Ability(NewGameState.ModifyStateObject(class'XComGameState_Ability', AbilityState.ObjectID));
+			AbilityState.iCooldown = 0;
+			break;
+		}
+	}
+
 	RefundFullOverrideCharge(AbilityContext, NewGameState);
 	return NewGameState;
 }
@@ -218,7 +242,7 @@ static function X2AbilityTemplate FinalizeFullOverride()
 	Template.bSkipFireAction = true;
 	return Template;
 }
-
+ 
 static function X2AbilityTemplate AddHackRewardControlRobot_Mission()
 {
 	local X2AbilityTemplate                 Template;
@@ -263,6 +287,57 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Mission()
 
 	return Template;
 }
+
+static function X2AbilityTemplate HackRewardGreaterShutdownRobot()
+{
+	return HackRewardShutdownRobotOrTurret(false, 'HackRewardGreaterShutdownRobot');
+}
+
+static function X2AbilityTemplate HackRewardGreaterShutdownTurret()
+{
+	return HackRewardShutdownRobotOrTurret(true, 'HackRewardGreaterShutdownTurret');
+}
+
+static function X2AbilityTemplate HackRewardShutdownRobotOrTurret( bool bTurret, Name AbilityName )
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityTrigger_EventListener    Listener;
+	local X2Effect_Stunned                  StunEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, AbilityName);
+
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Listener = new class'X2AbilityTrigger_EventListener';
+	Listener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Listener.ListenerData.EventFn = class'XComGameState_Ability'.static.HackTriggerTargetListener;
+	Listener.ListenerData.EventID = class'X2HackRewardTemplateManager'.default.HackAbilityEventName;
+	Listener.ListenerData.Filter = eFilter_None;
+	Template.AbilityTriggers.AddItem(Listener);
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	StunEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(6, 100, false);
+	StunEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
+	if( bTurret )
+	{
+		StunEffect.CustomIdleOverrideAnim = ''; // Clearing this prevents the anim tree controller from being locked down.  
+	}											// Then the idle anim state machine can properly update the stunned anims.
+	Template.AddTargetEffect(StunEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.bSkipFireAction = true;
+	Template.bShowActivation = true;
+
+	return Template;
+}
+
+
+
 
 static function X2AbilityTemplate AddHackRewardControlRobot_Permanent()
 {

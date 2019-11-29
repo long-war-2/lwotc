@@ -303,8 +303,26 @@ Description="Take control of this unit for rest of the mission."
 FriendlyName="Master Enemy"
 Description="Take control of this unit for rest of the mission and gain stat bonuses. MEC units will be reprogrammed to serve the Resistance."
 
+;LWOTC needs translation
+
+[GreaterShutdownRobot X2HackRewardTemplate]
+FriendlyName="Greater Shutdown"
+Description="Disable (stun) the unit for 3 turns."
+
+[GreaterShutdownTurret X2HackRewardTemplate]
+FriendlyName="Greater Shutdown"
+Description="Disable (stun) the unit for 3 turns."
+
+[ControlSectopod_Permanent X2HackRewardTemplate]
+FriendlyName="Master Sectopod"
+Description="Are you brave enough?"
+
+;End translation
 [ScanningProtocol X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Scanning Protocol gains bonus charges with improved Gremlins.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/>"
+
+
+
 
 
 ;;;;;;;;;;;;;;;;;;;;  GRENADIER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;

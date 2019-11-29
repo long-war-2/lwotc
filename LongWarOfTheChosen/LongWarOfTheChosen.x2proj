@@ -37,12 +37,14 @@
     <Folder Include="Src\DetailedSoldierListWOTC_Integrated\Classes\" />
     <Folder Include="Src\LWUtilities\" />
     <Folder Include="Src\LW_AlienPack_Integrated\" />
+    <Folder Include="Src\LW_FactionBalance\Classes\" />
     <Folder Include="Src\LW_LaserPack_Integrated\" />
     <Folder Include="Src\LW_OfficerPack_Integrated\" />
     <Folder Include="Src\LW_Overhaul\" />
     <Folder Include="Src\LW_PerkPack_Integrated\" />
     <Folder Include="Src\LW_SMGPack_Integrated\" />
     <Folder Include="Src\LW_Toolbox_Integrated\" />
+    <Folder Include="Src\LW_Tuple\Classes\" />
     <Folder Include="Src\LW_WeaponsAndArmor\Classes\" />
     <Folder Include="Src\LW_XCGS_ModOptions\" />
     <Folder Include="Src\LW_XCGS_ToolboxOptions\" />
@@ -68,10 +70,13 @@
     <Folder Include="Localization\NewPromotionScreenByDefault_Integrated\" />
     <Folder Include="Src\NewPromotionScreenByDefault_Integrated\" />
     <Folder Include="Localization\PI_Integrated\" />
+    <Folder Include="Src\NewPromotionScreenByDefault_Integrated\Classes\" />
     <Folder Include="Src\PI_Integrated\" />
+    <Folder Include="Src\PI_Integrated\Classes\" />
     <Folder Include="Src\WallClimbOverride\" />
     <Folder Include="Src\LW_Tuple\" />
     <Folder Include="Src\LW_FactionBalance\" />
+    <Folder Include="Src\WallClimbOverride\Classes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
