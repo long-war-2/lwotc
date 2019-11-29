@@ -19,15 +19,14 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddFullOverride());
 	Templates.AddItem(FinalizeFullOverride());
 	Templates.AddItem(CancelFullOverride());
-	//Templates.AddItem(AddHackRewardControlRobot_Mission()); 
 	//Replaced with Greater Shutdown, commented out but not removed in case of reversal
+	//Templates.AddItem(AddHackRewardControlRobot_Mission());
 	Templates.AddItem(AddHackRewardControlRobot_Permanent());
 	Templates.AddItem(AddFailsafe());
 	//Templates.AddItem(AddCorpsman());
 	Templates.AddItem(AddRescueProtocol());
 	Templates.AddItem(AddHackRewardGreaterShutdownRobot());
 	Templates.AddItem(AddHackRewardGreaterShutdownTurret());
-
 	
 	return Templates;
 }
@@ -323,7 +322,7 @@ static function X2AbilityTemplate HackRewardShutdownRobotOrTurret( bool bTurret,
 
 	StunEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(6, 100, false);
 	StunEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
-	if( bTurret )
+	if (bTurret)
 	{
 		// Clearing this prevents the anim tree controller from being locked down.
 		// Then the idle anim state machine can properly update the stunned anims.
@@ -338,9 +337,6 @@ static function X2AbilityTemplate HackRewardShutdownRobotOrTurret( bool bTurret,
 
 	return Template;
 }
-
-
-
 
 static function X2AbilityTemplate AddHackRewardControlRobot_Permanent()
 {
