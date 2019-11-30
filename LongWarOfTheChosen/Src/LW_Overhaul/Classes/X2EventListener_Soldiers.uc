@@ -13,6 +13,8 @@ var config int PSI_SQUADDIE_BONUS_ABILITIES;
 var config int BLEEDOUT_CHANCE_BASE;
 var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE;
 
+var config array<name> EXCLUDE_FROM_PISTOL_SLOT_CLASSES;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -989,7 +991,7 @@ static function EventListenerReturn OnSoldierHasPistolSlot(
 		return ELR_NoInterrupt;
 	}
 
-	OverrideTuple.Data[0].b = !UnitState.IsResistanceHero();
+	OverrideTuple.Data[0].b = default.EXCLUDE_FROM_PISTOL_SLOT_CLASSES.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE;
 
 	return ELR_NoInterrupt;
 }
