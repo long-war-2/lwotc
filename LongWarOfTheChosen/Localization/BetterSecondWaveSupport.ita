@@ -1,0 +1,11 @@
+; LWOTC Translated
+[EnableChosen SecondWaveOptionObject]
+Tooltip="Abilita i Chosen, che si attiveranno una volta completata la prima missione Distruggi la Torre della Rete."
+Description="I Chosen: Abilita i Chosen."
+; End Translation
+
+; LWOTC Translated
+[AllowSameRankAbilities SecondWaveOptionObject]
+Tooltip="Permette ai Soldati XCOM di acquisire molteplici Abilità di Classe dello stesso grado, con Punti Abilità."
+Description="Abilità di Classe Multiple: Permette ai Soldati XCOM di acquisire molteplici Abilità di Classe dello stesso grado, con Punti Abilità, una volta costruito il Centro d'Addestramento."
+; End Translation
