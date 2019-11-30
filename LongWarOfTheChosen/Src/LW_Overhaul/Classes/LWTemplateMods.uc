@@ -2435,10 +2435,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'AlienHunterPistol_CV':
 			case 'AlienHunterPistol_MG':
 			case 'AlienHunterPistol_BM':
-				// EquipmentTemplate.InventorySlot = eInvSlot_Utility;
 				X2WeaponTemplate(EquipmentTemplate).RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_BEAM_RANGE;
-				X2WeaponTemplate(EquipmentTemplate).StowedLocation = eSlot_RearBackPack;
-				// EquipmentTemplate.Abilities.AddItem('PistolStandardShot'); // in base-game, this ability is a class ability, so need it added for utility slot pistols
 				break;
 			case 'Cannon_CV': // replace archetype with non-suppression shaking variant
 				EquipmentTemplate.GameArchetype = "Cannon_NoShake_LW.Archetypes.WP_Cannon_NoShake_CV";
