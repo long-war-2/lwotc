@@ -269,7 +269,6 @@ function string GetChance()
 	//local XCom_Perfect_Information_ChanceBreakDown_Unit unitBreakDown;
 	//local XCom_Perfect_Information_ChanceBreakDown breakdown;
 	local XComGameStateHistory History;
-	local XComGameState_Unit ShooterState;
 	local XComGameState_Ability AbilityState;
 	local AvailableTarget Target;
 	//local MyShotData shotdata;
@@ -277,7 +276,6 @@ function string GetChance()
 	local int critChance, dodgeChance;
 	local int  calcHitChance;
 	local ShotBreakdown TargetBreakdown;
-	local int OldHistoryIndex;
 
 	if (AbilityTemplate.AbilityToHitCalc == None)
 	{
@@ -285,7 +283,6 @@ function string GetChance()
 	}
 
 	History = `XCOMHISTORY;
-	ShooterState = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.SourceObject.ObjectID));
 	AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID));
 
 	Target.PrimaryTarget = AbilityContext.InputContext.PrimaryTarget;

@@ -29,7 +29,7 @@ function static bool IsContinentBonusActive (name TestContinentBonus)
 static function bool CanRankUpPsiSoldier(XComGameState_Unit Unit)
 {
 	local int NumKills;
-	local XComLWTuple Tuple, CustomPsiRankCond; // LWS  added
+	local XComLWTuple CustomPsiRankCond; // LWS  added
 
 	// inserted hook at LeaderEnemyBoss' request
 	CustomPsiRankCond = new class'XComLWTuple';

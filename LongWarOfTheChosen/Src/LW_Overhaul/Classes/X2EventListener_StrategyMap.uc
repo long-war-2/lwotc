@@ -243,7 +243,6 @@ static function EventListenerReturn CustomizeMissionSiteIcon(
 	Name InEventID,
 	Object CallbackData)
 {
-	local XComGameState_LWAlienActivity AlienActivity;
 	local UIStrategyMap_MissionIcon MissionIcon;
 	local XComGameState_LWPersistentSquad InfiltratingSquad;
 	local string Title, Body;
@@ -402,6 +401,8 @@ static function EventListenerReturn ShowBlackMarket(Object EventData, Object Eve
 			History.AddGameStateToHistory(NewGameState);
 		}
 	}
+
+	return ELR_NoInterrupt;
 }
 
 // Override the Black Market to make items purchasable with supplies and
@@ -414,7 +415,6 @@ static function EventListenerReturn OnBlackMarketGoodsReset(Object EventData, Ob
 	local int ResourceIdx, Idx, ItemIdx;
  	local bool bStartState;
 	local XComGameState_Item ItemState;
-	local XComPhotographer_Strategy Photo;
 	local X2StrategyElementTemplateManager StratMgr;
 	local X2RewardTemplate RewardTemplate;
 	local array<XComGameState_Tech> TechList;

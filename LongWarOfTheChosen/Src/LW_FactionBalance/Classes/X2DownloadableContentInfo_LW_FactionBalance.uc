@@ -354,7 +354,6 @@ static function UpdateCICA()
 	local X2StrategyElementTemplateManager SETMgr;
 	local array<X2DataTemplate> Templates;
 	local X2DataTemplate Template;
-	local int i;
 	SETMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 
 	SETMgr.FindDataTemplateAllDifficulties('CovertActionImproveComIntStaffSlot', Templates);

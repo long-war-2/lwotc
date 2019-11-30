@@ -12,7 +12,7 @@ class UIAdventOperations_LW extends UIAdventOperations;
 simulated function BuildScreen( optional bool bAnimateIn = false )
 {
 	local XComGameState_HeadquartersAlien AlienHQ;
-	local int idx, NumEvents;
+	local int NumEvents;
 
 	MC.FunctionVoid("HideAllCards");
 

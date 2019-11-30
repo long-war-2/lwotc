@@ -13,9 +13,6 @@ var bool bCapturedDefaultBaseDamage;
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
 {
-	local UIAfterAction AfterActionScreen;
-	local UIArmory_Promotion PromotionScreen;
-
 	if(UIShell(Screen) != none && !bCapturedDefaultBaseDamage)  // this captures UIShell and UIFinalShell
 	{
 		// capture default spread settings for all weapons

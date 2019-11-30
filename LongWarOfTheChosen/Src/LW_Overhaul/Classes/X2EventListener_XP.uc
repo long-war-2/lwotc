@@ -302,7 +302,7 @@ static function EventListenerReturn OnGetNumKillsForMissionEncounters(Object Eve
 	local XComGameState_Unit UnitState;
 	local UnitValue MissionExperienceValue, OfficerBonusKillsValue;
 	local float MissionExperienceWeighting;
-	local int WeightedBonusKills, idx, TrialByFireKills, XpKills;
+	local int WeightedBonusKills, idx, TrialByFireKills;
 
 	Tuple = XComLWTuple(EventData);
 	if(Tuple == none)

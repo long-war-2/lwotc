@@ -14,7 +14,6 @@ var config int SaviorBonusHealAmount;
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
 	local X2EventManager EventMgr;
-	local XComGameState_Unit UnitState;
 	local Object EffectObj;
 
 	EventMgr = `XEVENTMGR;

@@ -144,7 +144,6 @@ static protected function EventListenerReturn OnOverrideItemMinEquipped(Object E
 {
 	local XComLWTuple			OverrideTuple;
 	local XComGameState_Unit	UnitState;
-	local X2EquipmentTemplate	EquipmentTemplate;
 
 	OverrideTuple = XComLWTuple(EventData);
 	if (OverrideTuple == none)
@@ -288,7 +287,6 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 static private function int GetHoursLeftToInfiltrate(XComGameState_LWPersistentSquad Squad)
 {
 	local int TotalSecondsForInfiltration;
-	local bool bCanFullyInfiltrate;
 
 	TotalSecondsForInfiltration = Squad.GetSecondsRemainingToFullInfiltration();
 
@@ -450,7 +448,6 @@ static function EventListenerReturn OnPsiProjectCompleted(
 	Object CallbackData)
 {
 	local XComLWTuple Tuple;
-	local StateObjectReference ProjectFocus;
 	local XComGameState_Unit UnitState;
 	local X2SoldierClassTemplate SoldierClassTemplate;
 	local int BonusAbilityRank, BonusAbilityBranch, BonusAbilitiesGranted, Tries;
@@ -924,7 +921,6 @@ static function OnLoadoutLocked(UIButton kButton)
 static function EventListenerReturn GetPCSImage(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local XComLWTuple			OverridePCSImageTuple;
-	local string				ReturnImagePath;
 	local XComGameState_Item	ItemState;
 
 	OverridePCSImageTuple = XComLWTuple(EventData);

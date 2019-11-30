@@ -30,8 +30,6 @@ event OnInit(UIScreen Screen)
     local UIAlert Alert;
 	local TAlertHelpInfo Info;
 	local XComGameState_MissionSite MissionState;
-	local XComHQPresentationLayer HQPres;
-	local delegate<X2StrategyGameRulesetDataStructures.AlertCallback> testCallback1, testCallback2;
 
 
     Alert = UIAlert(Screen);
@@ -153,7 +151,6 @@ simulated function NewBlackMarketGoodsAvailableCB(Name eAction, out DynamicPrope
 
 simulated function UpdateNewStaffDialog(UIAlert Alert)
 {
-	local XComGameStateHistory History;
 	local XComGameState_Unit UnitState;
     local String StaffBonusStr;
     local String StaffAvailableTitle;
@@ -161,7 +158,6 @@ simulated function UpdateNewStaffDialog(UIAlert Alert)
     local String UnitTypeIcon;
     local XComGameState_WorldRegion Region;
 
-    History = `XCOMHISTORY;
 	UnitState = XComGameState_Unit(`DYNAMIC_ALERT_PROP(Alert, 'UnitRef'));
 
     if( Alert.LibraryPanel == none )
