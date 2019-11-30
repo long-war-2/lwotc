@@ -30,7 +30,7 @@ static event OnPostTemplatesCreated()
 	UpdateRemoteStart();
 	//Combat Intelligenve Covert Action
 	UpdateCICA();
-  AllowTwoSoldiersFromEachFaction();
+  	AllowTwoSoldiersFromEachFaction();
 }
 
 static function IgnoreSuperConcealmentOnAllMissions()
