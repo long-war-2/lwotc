@@ -1196,10 +1196,10 @@ LootTooltip="This weapon upgrade, when installed, will reduce the time the soldi
 ; LWOTC needs translation
 
 [CritUpgrade_Bsc X2WeaponUpgradeTemplate]
-BriefSummary="Increase critical hit chance by +<Ability:CRITINCREASE/>%".
+BriefSummary="Increase critical hit chance by +<Ability:CRITINCREASE/>%."
 
 [CritUpgrade_Adv X2WeaponUpgradeTemplate]
-BriefSummary="Increase critical hit chance by +<Ability:CRITINCREASE/>%".
+BriefSummary="Increase critical hit chance by +<Ability:CRITINCREASE/>%."
 
 ; End Translation
 
