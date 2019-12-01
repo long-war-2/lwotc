@@ -130,23 +130,15 @@ static event OnPostTemplatesCreated()
 /// </summary>
 static event OnLoadedSavedGameToStrategy()
 {
+	local XComGameState NewGameState;
 	local XComGameStateHistory History;
 	local XComGameState_Objective ObjectiveState;
-	local XComGameState NewGameState;
-	local XComGameState_Unit UnitState, UpdatedUnitState;
-	local XComGameState_MissionSite Mission, UpdatedMission;
-	local string TemplateString, NewTemplateString;
-	local name TemplateName;
-	local bool bAnyClassNameChanged;
-	local XComGameState_HeadquartersXCom XComHQ;
-	local XComGameState_HeadquartersResistance ResistanceHQ;
-	local XComGameState_HeadquartersAlien AlienHQ;
-	local X2StrategyElementTemplateManager	StratMgr;
-	local MissionDefinition MissionDef;
 	local XComGameState_LWOutpostManager OutpostManager;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_LWOutpost OutpostState;
 	local XComGameState_LWToolboxOptions ToolboxOptions;
+
+	History = `XCOMHISTORY;
 
 	// TODO: Remove these post 1.0 - START
 
@@ -158,19 +150,24 @@ static event OnLoadedSavedGameToStrategy()
 
 	// Make sure pistol abilities apply to the new pistol slot
 	LWMigratePistolAbilities();
+
+	// If there are rebels that have already ranked up, make sure they have some abilities
+	OutpostManager = `LWOUTPOSTMGR;
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Patching existing campaign data");
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		if (RegionState.HaveMadeContact())
+		{
+			OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
+			OutpostState.UpdateRebelAbilities(NewGameState);
+		}
+	}
 	// Remove these post 1.0 - END
 
-	//this method can handle case where RegionalAI components already exist
-	class'XComGameState_WorldRegion_LWStrategyAI'.static.InitializeRegionalAIs();
-	class'XComGameState_LWListenerManager'.static.RefreshListeners();
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
 
-	RemoveDarkEventObjectives();
-
 	//make sure that critical narrative moments are active
-	History = `XCOMHISTORY;
-
 	foreach History.IterateByClassType(class'XComGameState_Objective', ObjectiveState)
 	{
 		if(ObjectiveState.GetMyTemplateName() == 'N_GPCinematics')
@@ -178,94 +175,11 @@ static event OnLoadedSavedGameToStrategy()
 			if (ObjectiveState.ObjState != eObjectiveState_InProgress)
 			{
 				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Forcing N_GPCinematics active");
-				ObjectiveState = XComGameState_Objective(NewGameState.CreateStateObject(class'XComGameState_Objective', ObjectiveState.ObjectID));
-				NewGameState.AddStateObject(ObjectiveState);
+				ObjectiveState = XComGameState_Objective(NewGameState.ModifyStateObject(class'XComGameState_Objective', ObjectiveState.ObjectID));
 				ObjectiveState.StartObjective(NewGameState, true);
 				History.AddGameStateToHistory(NewGameState);
 			}
 			break;
-		}
-	}
-
-	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
-
-	//patch in new AlienAI actions if needed
-	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	if (AlienHQ != none && AlienHQ.Actions.Find('AlienAI_PlayerInstantLoss') == -1)
-	{
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Add new Alien AI Actions");
-		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.CreateStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
-		NewGameState.AddStateObject(AlienHQ);
-		AlienHQ.Actions.AddItem('AlienAI_PlayerInstantLoss');
-		History.AddGameStateToHistory(NewGameState);
-	}
-
-	//update for name changes
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update for name changes");
-
-	//patch for changing class template names
-	foreach History.IterateByClassType(class'XComGameState_Unit', UnitState)
-	{
-		TemplateString = string(UnitState.GetSoldierClassTemplateName());
-		if (UnitState.GetSoldierClassTemplate() == none && Left(TemplateString, 2) == "LW")
-		{
-			bAnyClassNameChanged = true;
-			UpdatedUnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitState.ObjectID));
-			NewGameState.AddStateObject(UpdatedUnitState);
-
-			NewTemplateString = "LWS_" $ GetRightMost(TemplateString);
-			UpdatedUnitState.SetSoldierClassTemplate(name(NewTemplateString));
-		}
-	}
-
-	foreach History.IterateByClassType(class'XComGameState_MissionSite', Mission)
-	{
-		TemplateName = Mission.Source;
-		TemplateString = string(TemplateName);
-		//patch for changing mission source template name
-		if (StratMgr.FindStrategyElementTemplate(TemplateName) == none && Right(TemplateString, 20) == "GenericMissionSource")
-		{
-			UpdatedMission = XComGameState_MissionSite(NewGameState.CreateStateObject(class'XComGameState_MissionSite', Mission.ObjectID));
-			NewGameState.AddStateObject(UpdatedMission);
-
-			NewTemplateString = "MissionSource_LWSGenericMissionSource";
-			UpdatedMission.Source = name(NewTemplateString);
-		}
-		//patch for mod adjustments made to final mission mid-campaign
-		if (TemplateString == "MissionSource_Final")
-		{
-			UpdatedMission = XComGameState_MissionSite(NewGameState.CreateStateObject(class'XComGameState_MissionSite', Mission.ObjectID));
-			NewGameState.AddStateObject(UpdatedMission);
-
-			// refresh to current MissionDef
-			`TACTICALMISSIONMGR.GetMissionDefinitionForType("GP_Fortress_LW", MissionDef);
-			Mission.GeneratedMission.Mission = MissionDef;
-		}
-	}
-
-	if (bAnyClassNameChanged)
-	{
-		XComHQ = XComGameState_HeadquartersXCom(NewGameState.CreateStateObject(class'XComGameState_HeadquartersXCom', `XCOMHQ.ObjectID));
-		NewGameState.AddStateObject(XComHQ);
-		XComHQ.SoldierClassDeck.Length = 0; // reset deck for selecting more soldiers
-		XComHQ.SoldierClassDistribution.Length = 0; // reset class distribution
-		XComHQ.BuildSoldierClassForcedDeck();
-
-		ResistanceHQ = class'UIUtilities_Strategy'.static.GetResistanceHQ();
-		ResistanceHQ = XComGameState_HeadquartersResistance(NewGameState.CreateStateObject(class'XComGameState_HeadquartersResistance', ResistanceHQ.ObjectID));
-		NewGameState.AddStateObject(ResistanceHQ);
-		ResistanceHQ.SoldierClassDeck.Length = 0; // reset class deck for selecting reward soldiers
-		ResistanceHQ.BuildSoldierClassDeck();
-	}
-	
-	// If there are rebels that have already ranked up, make sure they have some abilities
-	OutpostManager = `LWOUTPOSTMGR;
-	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
-	{
-		if (RegionState.HaveMadeContact())
-		{
-			OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
-			OutpostState.UpdateRebelAbilities(NewGameState);
 		}
 	}
 
@@ -287,37 +201,6 @@ static function SetStartingLocationToStartingRegion(XComGameState StartState)
 	}
 
 	XComHQ.CurrentLocation = XComHQ.StartingRegion;
-}
-
-static function RemoveDarkEventObjectives()
-{
-	local XComGameState NewGameState;
-	local XComGameStateHistory History;
-	local XComGameState_ObjectivesList ObjListState;
-	local int idx;
-
-	History = `XCOMHISTORY;
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating HQ Storage to add items");
-	foreach History.IterateByClassType(class'XComGameState_ObjectivesList', ObjListState)
-	{
-		break;
-	}
-
-	if (ObjListState != none)
-	{
-		ObjListState = XComGameState_ObjectivesList(NewGameState.CreateStateObject(ObjListState.class, ObjListState.ObjectID));
-		NewGameState.AddStateObject(ObjListState);
-		for (idx = ObjListState.ObjectiveDisplayInfos.Length - 1; idx >= 0; idx--)
-		{
-			if (ObjListState.ObjectiveDisplayInfos[idx].bIsDarkEvent)
-				ObjListState.ObjectiveDisplayInfos.Remove(idx, 1);
-		}
-	}
-
-	if (NewGameState.GetNumGameStateObjects() > 0)
-		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
-	else
-		History.CleanupPendingGameState(NewGameState);
 }
 
 // TODO: This function is only needed for players that want to upgrade
