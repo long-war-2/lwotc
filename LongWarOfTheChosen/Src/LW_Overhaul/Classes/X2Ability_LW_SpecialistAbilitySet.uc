@@ -377,7 +377,6 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Permanent()
 	Effect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), "img:///UILibrary_PerkIcons.UIPerk_hack_reward", true,,Template.AbilitySourceName);
 	Effect.bRemoveWhenTargetDies = true;
 	Effect.bUseSourcePlayerState = true;
-	Effect.bPersistThroughTacticalGameEnd=true;
 	Template.AddTargetEffect(Effect);
 
 	Buff = new class'X2Effect_PersistentStatChange';
