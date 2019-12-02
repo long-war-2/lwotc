@@ -2226,6 +2226,11 @@ ObjectiveTextPools[0]="Neutralize all enemy targets"
 ObjectiveTextPools[1]="Destroy the Relay before transmission completes"
 ObjectiveTextPools[2]="Extract all XCOM soldiers"
 
+[DefaultSabotageTransmitter_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Plant X4 charges on the Psionic Transmitter"
+ObjectiveTextPools[1]="Delay the transmission by disabling power relays"
+ObjectiveTextPools[2]="Extract all XCOM operatives"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Turns until Skyranger must retreat"
 ObjectiveTextPools[1]="Extract the VIP at designated location"
@@ -2525,6 +2530,17 @@ PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerr
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_03"
 PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_04"
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_05"
+
+[SabotageTransmitter_LW X2MissionTemplate]
+DisplayName="Sabotage Transmitter"
+Briefing="Sabotage Psionic Transmitter"
+PostMissionType="Sabotage Transmitter"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Plant X4 charges to destroy Psionic Network Transmitter"
+ObjectiveTextPools[1]="Prevent the transmitter from completing its transmission"
+PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_A"
+PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_B"
+PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_C"
 
 [ProtectDevice_LW X2MissionTemplate]
 DisplayName="Protect the Device"

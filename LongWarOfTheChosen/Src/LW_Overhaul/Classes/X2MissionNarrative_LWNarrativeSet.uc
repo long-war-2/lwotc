@@ -19,6 +19,7 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddDefaultRecover_VehicleMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultRecover_FlightDeviceMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultDestroyRelayMissionNarrativeTemplate_LW());
+    Templates.AddItem(AddDefaultSabotageTransmitterMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultExtractMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultRescue_AdventCellMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultRescue_VehicleMissionNarrativeTemplate_LW());
@@ -455,6 +456,33 @@ static function X2MissionNarrativeTemplate AddDefaultDestroyRelayMissionNarrativ
     Template.NarrativeMoments[17]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroTotalSuccess";
     Template.NarrativeMoments[18]="X2NarrativeMoments.TACTICAL.General.GenTactical_TacWinOnly";
     Template.NarrativeMoments[19]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
+
+    return Template;
+}
+
+static function X2MissionNarrativeTemplate AddDefaultSabotageTransmitterMissionNarrativeTemplate_LW()
+{
+    local X2MissionNarrativeTemplate Template;
+
+    `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultSabotageTransmitter_LW');
+
+	Template.MissionType = "SabotageTransmitter_LW";
+    Template.NarrativeMoments[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Transmitter_Not_Destroyed";
+    Template.NarrativeMoments[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Transmitter_Disconnected";
+    Template.NarrativeMoments[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Trans_Spotted";
+    Template.NarrativeMoments[3]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Squad_Wipe";
+    Template.NarrativeMoments[4]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Squad_Heavy_Losses";
+    Template.NarrativeMoments[5]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Mission_Intro";
+    Template.NarrativeMoments[6]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Mission_Accomplished";
+    Template.NarrativeMoments[7]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Mission_Aborted";
+    Template.NarrativeMoments[8]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Last_Relay_Destroyed";
+    Template.NarrativeMoments[9]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Last_Chance_Transmitter";
+    Template.NarrativeMoments[10]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Hostiles_Down_Plant_Charges";
+    Template.NarrativeMoments[11]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Eliminate_Enemies_Cutoff";
+    Template.NarrativeMoments[12]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Charges_Planted";
+    Template.NarrativeMoments[13]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Almost_DC";
+    Template.NarrativeMoments[14]="XPACK_NarrativeMoments.X2_XP_TYG_T_Sabotage_Trans_Relay_Spotted";
+    Template.NarrativeMoments[15]="XPACK_NarrativeMoments.X2_XP_TYG_T_Sabotage_Trans_Relay_Destroyed";
 
     return Template;
 }

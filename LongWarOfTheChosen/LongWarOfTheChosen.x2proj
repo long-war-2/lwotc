@@ -77,6 +77,7 @@
     <Folder Include="Src\LW_Tuple\" />
     <Folder Include="Src\LW_FactionBalance\" />
     <Folder Include="Src\WallClimbOverride\Classes\" />
+    <Folder Include="Content\BaseGameMissionAssets\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -1113,6 +1114,13 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_ChanceBasedTacticalDE.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_UnitPropsTacticalDE.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWSitRepsModTemplate.uc" />
+    <Content Include="Content\Missions\Obj_DestroyTransmitter_LW.umap" />
+    <Content Include="Content\BaseGameMissionAssets\MissionAssets_SupplyExtraction.upk" />
+    <Content Include="Content\BaseGameMissionAssets\DestroyTransmitter_TempAssets.upk" />
+    <Content Include="Content\BaseGameMissionAssets\MissionAssets_XPACK.upk" />
+    <Content Include="Content\BaseGameMissionAssets\PsiTransmitter.upk" />
+    <Content Include="Content\BaseGameMissionAssets\README.txt" />
+    <Content Include="Content\BaseGameMissionAssets\SupplyExtraction_TempAssets.upk" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

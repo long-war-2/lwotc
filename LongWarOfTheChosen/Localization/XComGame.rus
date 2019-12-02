@@ -2054,6 +2054,11 @@ ObjectiveTextPools[0]="Уничтожьте всех врагов"
 ObjectiveTextPools[1]="Уничтожьте ретранслятор, прежде чем передача будет завершена"
 ObjectiveTextPools[2]="Эвакуируйте всех солдат XCOM"
 
+[DefaultSabotageTransmitter_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Заложите заряды X4 у пси-передатчика"
+ObjectiveTextPools[1]="Задержите передачу, отключив подстанции"
+ObjectiveTextPools[2]="Эвакуируйте всех агентов XCOM"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Ходов до отлета \"Рейнджера\""
 ObjectiveTextPools[1]="Эвакуируйте ВИПа с указанной площадки"
@@ -2353,6 +2358,17 @@ PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerr
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_03"
 PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_04"
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_05"
+
+[SabotageTransmitter_LW X2MissionTemplate]
+DisplayName="Уничтожить передатчик"
+Briefing="Уничтожение пси-передатчика"
+PostMissionType="Уничтожить передатчик"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Заложите заряды X4 для уничтожения передатчика пси-сети"
+ObjectiveTextPools[1]="Не дайте передатчику завершить передачу"
+PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_A"
+PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_B"
+PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_C"
 
 [ProtectDevice_LW X2MissionTemplate]
 DisplayName="Защитите устройство"

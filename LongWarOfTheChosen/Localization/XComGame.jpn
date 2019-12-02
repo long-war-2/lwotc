@@ -2041,6 +2041,11 @@ ObjectiveTextPools[0]="すべての敵ターゲットを無力化する"
 ObjectiveTextPools[1]="通信が完了する前に無線中継器を破壊する"
 ObjectiveTextPools[2]="XCOM兵を全員撤収させる"
 
+[DefaultSabotageTransmitter_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="サイキック通信機にX4爆薬を設置する"
+ObjectiveTextPools[1]="パワーリレイを停止させて通信を遅らせる"
+ObjectiveTextPools[2]="XCOM兵士を全員撤収させる"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="スカイレンジャー撤収までのターン数"
 ObjectiveTextPools[1]="指定地点でVIPを脱出させる"
@@ -2340,6 +2345,17 @@ PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerr
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_03"
 PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_04"
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_05"
+
+[SabotageTransmitter_LW X2MissionTemplate]
+DisplayName="通信機を破壊する"
+Briefing="サイキック通信機を破壊する"
+PostMissionType="通信機を破壊する"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="X4爆薬を仕掛けてサイキック・ネットワーク通信機を破壊する"
+ObjectiveTextPools[1]="通信機による通信の完了を阻止する"
+PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_A"
+PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_B"
+PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_C"
 
 [ProtectDevice_LW X2MissionTemplate]
 DisplayName="装置を守る"
