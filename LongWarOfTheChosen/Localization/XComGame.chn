@@ -2041,6 +2041,11 @@ ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[1]="在传输完成前摧毁中继器"
 ObjectiveTextPools[2]="撤离所有的XCOM士兵"
 
+[DefaultSabotageTransmitter_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="在灵能信号发射器上安置X4炸药"
+ObjectiveTextPools[1]="摧毁电力中继器，延迟传输"
+ObjectiveTextPools[2]="撤出所有XCOM特工"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="坚守到天际游侠号撤离"
 ObjectiveTextPools[1]="将VIP撤离至指定地点"
@@ -2340,6 +2345,17 @@ PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerr
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_03"
 PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_04"
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_05"
+
+[SabotageTransmitter_LW X2MissionTemplate]
+DisplayName="破坏信号发射器"
+Briefing="破坏灵能信号发射器"
+PostMissionType="破坏信号发射器"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="安置X4炸药以摧毁灵能网络信号发射器"
+ObjectiveTextPools[1]="防止信号发射器完成传输过程"
+PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_A"
+PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_B"
+PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_C"
 
 [ProtectDevice_LW X2MissionTemplate]
 DisplayName="保护装置"

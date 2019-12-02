@@ -220,7 +220,9 @@ static function string GetTimerInfoString (XComGameState_MissionSite MissionStat
 {
 	local int Timer;
 
-	Timer = class'SeqAct_InitializeMissionTimer'.static.GetInitialTimer (MissionState.GeneratedMission.Mission.MissionFamily);
+	Timer = class'SeqAct_InitializeMissionTimer'.static.GetInitialTimer(
+		MissionState.GeneratedMission.Mission.sType,
+		MissionState.GeneratedMission.Mission.MissionFamily);
 	if (Timer > 0)
 	{
 		if (default.ObjectiveTimerMissions.Find (MissionState.GeneratedMission.Mission.MissionName) != -1)

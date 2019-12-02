@@ -2041,6 +2041,11 @@ ObjectiveTextPools[0]="Neutralisiere alle feindlichen Ziele"
 ObjectiveTextPools[1]="Zerstöre das Relais, bevor die Übertragung abgeschlossen ist"
 ObjectiveTextPools[2]="Evakuiere alle XCOM-Soldaten"
 
+[DefaultSabotageTransmitter_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Platziere X4-Ladungen am Psionik-Transmitter"
+ObjectiveTextPools[1]="Verzögere die Übertragung, indem du Energierelais deaktivierst"
+ObjectiveTextPools[2]="Evakuiere alle XCOM-Agenten"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Runden bis zum Rückzug des Skyrangers"
 ObjectiveTextPools[1]="Extrahiere die VIP an der vorgegebenen Position"
@@ -2340,6 +2345,17 @@ PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerr
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_03"
 PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_04"
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_05"
+
+[SabotageTransmitter_LW X2MissionTemplate]
+DisplayName="Transmitter-Sabotage"
+Briefing="Psi-Transmitter sabotieren"
+PostMissionType="Transmitter-Sabotage"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Platziere X4-Ladungen, um Psionik-Netzwerk-Transmitter zu zerstören"
+ObjectiveTextPools[1]="Verhindere, dass der Transmitter seine Übertragung beendet"
+PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_A"
+PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_B"
+PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_C"
 
 [ProtectDevice_LW X2MissionTemplate]
 DisplayName="Beschütze das Gerät"

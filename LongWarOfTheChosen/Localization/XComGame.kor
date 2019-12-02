@@ -2041,6 +2041,11 @@ ObjectiveTextPools[0]="모든 적 목표물 무력화하기"
 ObjectiveTextPools[1]="전송이 완료되기 전에 중계기 파괴하기"
 ObjectiveTextPools[2]="모든 XCOM 병사 탈출시키기"
 
+[DefaultSabotageTransmitter_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="사이오닉 송신기에 X4 폭탄 설치하기"
+ObjectiveTextPools[1]="전력 계전기를 무력화해 전송 지연시키기"
+ObjectiveTextPools[2]="모든 XCOM 요원 탈출시키기"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="스카이레인저가 퇴각할 때까지 턴 수"
 ObjectiveTextPools[1]="VIP를 목표 지점으로 탈출시키기"
@@ -2340,6 +2345,17 @@ PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerr
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_03"
 PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_04"
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_05"
+
+[SabotageTransmitter_LW X2MissionTemplate]
+DisplayName="전송기 파괴 공작"
+Briefing="사이오닉 전송기 파괴 공작"
+PostMissionType="전송기 파괴 공작"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="사이오닉 네트워크 전송기에 X4 폭탄 설치하기"
+ObjectiveTextPools[1]="전송기 송신 완료 막기"
+PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_A"
+PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_B"
+PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_C"
 
 [ProtectDevice_LW X2MissionTemplate]
 DisplayName="장치 보호"
