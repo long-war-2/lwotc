@@ -1209,8 +1209,14 @@ static function AddObjectivesToParcels()
 				`LWTrace("Adding 'MediumPlot' objective tag to " $ PlotDef.MapName);
 				ParcelMgr.arrPlots[i].ObjectiveTags.AddItem("MediumPlot");
 			}
+
+			// Exclude Sewer maps so that Tunnels don't dominate the map pool quite so hard.
+			if (PlotDef.strType == "Tunnels_Sewer")
+			{
+				ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+			}
 		}
-		
+
 		i = 0;
 	}
 }
