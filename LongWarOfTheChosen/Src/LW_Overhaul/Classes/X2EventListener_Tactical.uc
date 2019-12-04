@@ -201,7 +201,6 @@ static function EventListenerReturn OnScamperBegin(
 {
 	local array<int> AlivePodMembers;
 	local XComGameState_Unit PodLeaderUnit;
-	local XComGameState_Unit PreviousUnit;
 	local XComGameState_Unit PodMember;
 	local XComGameStateHistory History;
 	local XComGameState_AIGroup Group;
@@ -211,7 +210,7 @@ static function EventListenerReturn OnScamperBegin(
 	local XComGameState_MissionSite			MissionSite;
 	local XComGameState_LWPersistentSquad	SquadState;
 	local XComGameState_BattleData			BattleData;
-	local int i, NumSuccessfulReflexActions, UnitID;
+	local int i, NumSuccessfulReflexActions;
 
 	History = `XCOMHISTORY;
 	Group = XComGameState_AIGroup(EventSource);
@@ -338,7 +337,6 @@ static function EventListenerReturn OnOverrideAllowedAlertCause(
 {
 	local XComLWTuple Tuple;
 	local EAlertCause AlertCause;
-	local XComLWTValue Value;
 
 	Tuple = XComLWTuple(EventData);
 	if (Tuple == none)
@@ -382,7 +380,7 @@ static function EventListenerReturn ShouldCivilianRunFromOtherUnit(
 	Object CallbackData)
 {
 	local XComLWTuple Tuple;
-	local XComGameState_Unit CivilianState, OtherUnitState;
+	local XComGameState_Unit OtherUnitState;
 	local bool DoesAIAttackCivilians;
 
 	Tuple = XComLWTuple(EventData);
@@ -396,7 +394,6 @@ static function EventListenerReturn ShouldCivilianRunFromOtherUnit(
 		return ELR_NoInterrupt;
 	}
 
-	CivilianState = XComGameState_Unit(EventSource);
 	OtherUnitState = XComGameState_Unit(Tuple.Data[0].o);
 	DoesAIAttackCivilians = Tuple.Data[1].b;
 
@@ -703,7 +700,6 @@ static function bool HasAnyTriadObjective(XComGameState_BattleData Battle)
 // already in red alert.
 static function EventListenerReturn AddPerfectInfoFlyover(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
-	local UnitValue	LastShotBreakdownValue;
 	local XComGameState NewGameState;
 	local AvailableTarget Target;
 	local XComGameState_Unit UnitState;
@@ -765,17 +761,14 @@ static function PIFlyover_BuildVisualization(XComGameState VisualizeGameState)
 	local XComGameStateHistory				History;
 	local XComGameStateContext_Ability		Context;
 	local VisualizationActionMetadata		EmptyTrack, BuildTrack;
-	local XComGameState_Ability				AbilityState;
 	local XComGameState_Unit				UnitState, ShooterState;
 	local X2Action_PlaySoundAndFlyOver		MessageAction;
 	local ShotBreakdown						TargetBreakdown;
-	local AvailableTarget					Target;
 	local XComGameState_LastShotBreakdown	LastShotBreakdown;
 	local UnitValue							ShotBreakdownValue;
 
 	History = `XCOMHISTORY;
 	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID));
 
 	ShooterState = XComGameState_Unit(History.GetGameStateForObjectID(Context.InputContext.SourceObject.ObjectID));
 	if (!ShooterState.GetUnitValue('LW_LastShotBreakdownId', ShotBreakdownValue))

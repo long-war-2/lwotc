@@ -21,7 +21,6 @@ static function array<X2DataTemplate> CreateTemplates()
 static function X2DataTemplate CreatePlatedReaperArmor()
 {
 	local X2ArmorTemplate Template;
-	local ArtifactCost Artifacts;
 	local ArtifactCost Resources;
 
 	`CREATE_X2TEMPLATE(class'X2ArmorTemplate', Template, 'PlatedReaperArmor');
@@ -107,7 +106,6 @@ static function X2DataTemplate CreatePoweredReaperArmor()
 static function X2DataTemplate CreatePlatedSkirmisherArmor()
 {
 	local X2ArmorTemplate Template;
-	local ArtifactCost Artifacts;
 	local ArtifactCost Resources;
 
 	`CREATE_X2TEMPLATE(class'X2ArmorTemplate', Template, 'PlatedSkirmisherArmor');
@@ -193,7 +191,6 @@ static function X2DataTemplate CreatePoweredSkirmisherArmor()
 static function X2DataTemplate CreatePlatedTemplarArmor()
 {
 	local X2ArmorTemplate Template;
-	local ArtifactCost Artifacts;
 	local ArtifactCost Resources;
 
 	`CREATE_X2TEMPLATE(class'X2ArmorTemplate', Template, 'PlatedTemplarArmor');

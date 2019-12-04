@@ -50,7 +50,6 @@ var config string SniperRifle_Coil_ImagePath;
 static function array<X2DataTemplate> CreateTemplates()
 {
     local array<X2DataTemplate> Weapons;
-	local X2ItemTemplateManager ItemTemplateManager;
 
 	`LWTrace("  >> X2Item_Coilguns.CreateTemplates()");
 	

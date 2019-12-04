@@ -425,7 +425,7 @@ static function X2AbilityTemplate AddPassSidearm()
 	
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
 	TemporaryItemEffect.EffectName = 'TakeThisEffect';
-	TemporaryItemEffect.ItemName = 'LWPistol_CV';
+	TemporaryItemEffect.ItemName = 'Pistol_CV';
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
 	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;

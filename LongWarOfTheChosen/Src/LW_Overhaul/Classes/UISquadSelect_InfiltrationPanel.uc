@@ -198,8 +198,6 @@ simulated function Update(array<StateObjectReference> Soldiers)
 	local int SquadSizeHours, CovertnessHours, NumSoldiers, LiberationHours;
 	local string OverallTimeColor, BoostedTimeColor;
 	local StateObjectReference Soldier;
-	local int Difficulty, EnemyUnits;
-	local array<X2CharacterTemplate> Dummy;
 	
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionData.MissionID));
 

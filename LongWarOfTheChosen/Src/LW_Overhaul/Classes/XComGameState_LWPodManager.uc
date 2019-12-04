@@ -154,9 +154,7 @@ function ShuffleUnassignedPods(array<StateObjectReference> UnassignedPods)
 function TurnInit(XComGameState NewGameState)
 {
 	local XComGameState_AIPlayerData AIPlayerData;
-	local int i;
 	local array<StateObjectReference> UnassignedPods;
-	local XComGameState_LWPodJob ActiveJob;
 
 	AIPlayerData = GetAIPlayerData();
 
@@ -185,31 +183,31 @@ function TurnInit(XComGameState NewGameState)
 
 function UpdatePod(XComGameState NewGameState, XComGameState_AIGroup GroupState)
 {
-	local XComGameState_LWPodJob PodJob;
+	local XComGameState_LWPodJob ThePodJob;
 	local int i;
 
 	i = AssignedJobs.Find('GroupID', GroupState.ObjectID);
 	if (i != INDEX_NONE)
 	{
-		PodJob = InitializeJob(
+	ThePodJob = InitializeJob(
 			AssignedJobs[i].Job.Jobs[`SYNC_RAND(AssignedJobs[i].Job.Jobs.Length)],
 			AssignedJobs[i].Job.ID, GroupState, NewGameState);
 	}
 
 	// If no job was assigned this turn, see if the group has an existing job
-	if (PodJob == none)
+	if (ThePodJob == none)
 	{
-		PodJob = FindPodJobForPod(GroupState);
+		ThePodJob = FindPodJobForPod(GroupState);
 	}
 	
-	if (PodJob != none)
+	if (ThePodJob != none)
 	{
-		PodJob = XComGameState_LWPodJob(NewGameState.ModifyStateObject(class'XComGameState_LWPodJob', PodJob.ObjectID));
-		if (!PodJob.ProcessTurn(self, NewGameState))
+		ThePodJob = XComGameState_LWPodJob(NewGameState.ModifyStateObject(class'XComGameState_LWPodJob', ThePodJob.ObjectID));
+		if (!ThePodJob.ProcessTurn(self, NewGameState))
 		{
 			for (i = 0; i < ActiveJobs.Length; i++)
 			{
-				if (ActiveJobs[i] == PodJob.GetReference())
+				if (ActiveJobs[i] == ThePodJob.GetReference())
 				{
 					RemoveActiveJob(i);
 				}
@@ -661,7 +659,7 @@ function AssignPodJobs(XComGameState_AIPlayerData AIPlayerData, array<StateObjec
 	local XComGameStateHistory History;
 	local array<PodJob> JobList;
 	local XComGameState_AIGroup Group;
-	local JobAssignment JobAssignment;
+	local JobAssignment NewJobAssignment;
 	local int JobListIdx;
 	local PodJob Job;
 
@@ -698,9 +696,9 @@ function AssignPodJobs(XComGameState_AIPlayerData AIPlayerData, array<StateObjec
 				Job = JobList[JobListIdx];
 
 				// We have a valid job. Assign it
-				JobAssignment.GroupID = Group.ObjectID;
-				JobAssignment.Job = JobList[JobListIdx];
-				AssignedJobs.AddItem(JobAssignment);
+				NewJobAssignment.GroupID = Group.ObjectID;
+				NewJobAssignment.Job = JobList[JobListIdx];
+				AssignedJobs.AddItem(NewJobAssignment);
 				if (!Job.Unlimited)
 				{
 					JobList.Remove(JobListIdx, 1);

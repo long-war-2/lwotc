@@ -2,7 +2,7 @@ Welcome to a new version of Long War of the Chosen!
 
 Here are some of the headline changes you may be interested in:
 
-* Regular soldiers now have a pistol slot and the pistol abilities work
+* Regular soldiers now have a pistol slot and the pistol abilities work (conventional pistols won't be available in existing campaigns, only new ones, but you will be able to equip pistols that you build)
 * The old LW2 Smash and Grab mission is back, so you will now get a mix of that and the Supply Extraction mission
 * Headshot on The Lost is now disabled by default on Commander and Legend difficulties (configurable in INI)
 * You can enable a campaign Advanced Option so that you can purchase multiple class abilities at the same rank (this is blocked by default to prevent XCOM power creep)
@@ -25,10 +25,10 @@ Here are the changes since beta 1:
 
 ## Mods
 
-* Revival Protocol Fixes is now a required mod
-* Dedicated Pistol Slot is now a required mod
-* Reliable Smoke is recommended to get LW2-like behavior for smoke grenades
-* Show More Buff Details is recommended so you can see status durations, like how long a hack or mind control will last
+* [Revival Protocol Fixes](https://steamcommunity.com/sharedfiles/filedetails/?id=1123037187) is now a required mod
+* [Dedicated Pistol Slot](https://steamcommunity.com/sharedfiles/filedetails/?id=1705464884) is now a required mod
+* [Reliable Smoke](https://steamcommunity.com/sharedfiles/filedetails/?id=650751923) is recommended to get LW2-like behavior for smoke grenades
+* [Show More Buff Details](https://steamcommunity.com/sharedfiles/filedetails/?id=709499969) is recommended so you can see status durations, like how long a hack or mind control will last
 
 ## Class and ability changes
 
@@ -92,7 +92,7 @@ Here are the changes since beta 1:
 * Munitions Expert and Bomb Squad resistance orders have been disabled because they only apply to proving ground projects that don't exist in LWOTC
 * Suit Up resistance order has been disabled as it saves too much research time for WAR Suit, EXO Suit and the mobile armor techs (it was also disabled in LW2)
 * Machine Learning resistance order has been disabled because breakthroughs are currently disabled
-
+* The weapon attachment Proving Ground projects are now easier (require fewer attachments) and cheaper to build
 
 ## Bug fixes
 
@@ -139,9 +139,11 @@ A big thanks to the following:
 * Grobobobo for his many contributions (and nerfs!)
 * Favid for his coding contributions (again)
 * Anthogator for doing the much needed but desperately boring job of removing bad Faceless civilian entries from the mission schedules
-* Veehementia for the Dedicated Pistol Slot mod and adding a hook to configure it for LWOTC
+* Veehementia for the [Dedicated Pistol Slot](https://steamcommunity.com/sharedfiles/filedetails/?id=1705464884) mod and adding a hook to configure it for LWOTC
 * Hotchocletylez for use of [Vektor Crossbows](https://steamcommunity.com/sharedfiles/filedetails/?id=1773420239) (used for Reaper's laser and coilgun variants)
 * Iridar for use of [Enemy Within MEC Weapons](https://steamcommunity.com/sharedfiles/filedetails/?id=1626184587) (used for SPARK lasers and coilguns)
+* The team behind [Covert Infiltration](https://github.com/WOTCStrategyOverhaul/CovertInfiltration/wiki) for sharing solutions to some problems, like preventing Lost and Abandoned being selected
+* The folks on XCOM 2 Modders Discord, who have been incredibly helpful at all stages of this project
 * All the folks that have been testing beta 1 and development builds and providing feedback and issue reports
 
 We hope you enjoy the mod, and good luck commanders!

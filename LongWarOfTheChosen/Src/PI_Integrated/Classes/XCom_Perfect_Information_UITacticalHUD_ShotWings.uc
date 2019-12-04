@@ -217,7 +217,7 @@ static final function int GetNumber(string s)
 // Basicly same function as ModifiedHitChance from X2AbilityToHitCalc_StandardAim
 function int GetModifiedHitChance(XComGameState_Ability AbilityState, int BaseHitChance, optional out array<UISummary_ItemStat> Stats)
 {
-	local int CurrentLivingSoldiers, SoldiersLost, ModifiedHitChance, CurrentDifficulty, SingleModifiedHitChance;
+	local int CurrentLivingSoldiers, ModifiedHitChance, SingleModifiedHitChance;
 	local UISummary_ItemStat Item;
 
 	local XComGameStateHistory History;
@@ -227,7 +227,6 @@ function int GetModifiedHitChance(XComGameState_Ability AbilityState, int BaseHi
 	local X2AbilityToHitCalc_StandardAim StandardAim;
 
 	ModifiedHitChance = BaseHitChance;
-	CurrentDifficulty = `TACTICALDIFFICULTYSETTING;
 	History = `XCOMHISTORY;
 
 	Shooter = AbilityState.OwnerStateObject;
@@ -250,8 +249,6 @@ function int GetModifiedHitChance(XComGameState_Ability AbilityState, int BaseHi
 				++CurrentLivingSoldiers;
 			}
 		}
-		// Total soldiers lost.
-		SoldiersLost = Max(0, StandardAim.NormalSquadSize - CurrentLivingSoldiers);
 
 		//Difficulty multiplier
 		// ModifiedHitChance = BaseHitChance * StandardAim.AimAssistDifficulties[CurrentDifficulty].BaseXComHitChanceModifier; // 1.2
@@ -260,16 +257,16 @@ function int GetModifiedHitChance(XComGameState_Ability AbilityState, int BaseHi
 
 		// DifficultyBonus
 		// Fixing name issue later with localization
-		if (SingleModifiedHitChance > 0)
-		{
-			// Add to Stats (ProcessBreakDown)
-			if (SHOW_AIM_ASSIST_BREAKDOWN_HUD)
-			{
-				Item.Label = class'UIUtilities_Text'.static.GetColoredText(LOWER_DIFFICULTY_MSG, eUIState_Good );
-				Item.Value = class'UIUtilities_Text'.static.GetColoredText("+" $ SingleModifiedHitChance $ "%", eUIState_Good );
-				Stats.AddItem(Item);
-			}
-		}
+		// if (SingleModifiedHitChance > 0)
+		// {
+		// 	// Add to Stats (ProcessBreakDown)
+		// 	if (SHOW_AIM_ASSIST_BREAKDOWN_HUD)
+		// 	{
+		// 		Item.Label = class'UIUtilities_Text'.static.GetColoredText(LOWER_DIFFICULTY_MSG, eUIState_Good );
+		// 		Item.Value = class'UIUtilities_Text'.static.GetColoredText("+" $ SingleModifiedHitChance $ "%", eUIState_Good );
+		// 		Stats.AddItem(Item);
+		// 	}
+		// }
 
 
 		if(BaseHitChance >= StandardAim.ReasonableShotMinimumToEnableAimAssist) // 50

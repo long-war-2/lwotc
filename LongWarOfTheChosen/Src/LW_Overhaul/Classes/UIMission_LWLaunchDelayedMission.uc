@@ -525,14 +525,14 @@ simulated public function OnViewSquadClicked(UIButton button)
 {
 	local UIPersonnel_LEBVS kPersonnelList;
 	local UIMission_LWLaunchDelayedMission LWLaunchScreen;
-	local UIScreen Screen;
+	local UIScreen CurrScreen;
 
-	foreach `SCREENSTACK.Screens(Screen)
+	foreach `SCREENSTACK.Screens(CurrScreen)
 	{
-		if(UIMission_LWLaunchDelayedMission(Screen) != none ) break;
+		if(UIMission_LWLaunchDelayedMission(CurrScreen) != none ) break;
 	}
 
-	LWLaunchScreen = UIMission_LWLaunchDelayedMission(Screen);
+	LWLaunchScreen = UIMission_LWLaunchDelayedMission(CurrScreen);
 
 	if (`HQPRES.ScreenStack.IsNotInStack(class'UIPersonnel_LEBVS'))
 	{

@@ -1,0 +1,32 @@
+// For this to work, set user configs `xcom.highlander.sdkroot` and `xcom.highlander.gameroot` to their correct paths.
+// sdkroot should point at the SDK directory, i.e. the parent of the Development directory
+// gameroot must point to the XCom2-WaroftheChosen directory. Make sure there aren't any trailing backslashes, as they will escape our quotation marks
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build (final release)",
+            "type": "shell",
+            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\build.ps1' -mod \"LongWarOfTheChosen\" -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -final_release -forceFullBuild",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build (release)",
+            "type": "shell",
+            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\build.ps1' -mod \"LongWarOfTheChosen\" -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -forceFullBuild",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build (debug)",
+            "type": "shell",
+            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\build.ps1' -mod \"LongWarOfTheChosen\" -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -debug -forceFullBuild",
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

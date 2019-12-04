@@ -1001,7 +1001,7 @@ simulated function DoubleTap1_BuildVisualization(XComGameState VisualizeGameStat
 	local XComGameStateContext_Ability AbilityContext;
 	local XComGameStateContext Context;
 	local XComGameStateContext_Ability TestAbilityContext;
-	local int EventChainIndex, TrackIndex, ActionIndex;
+	local int EventChainIndex;
 	local XComGameStateHistory History;
 	local X2Action_EnterCover EnterCoverAction;
 	local X2Action_EndCinescriptCamera EndCinescriptCameraAction;
@@ -1051,9 +1051,7 @@ simulated function DoubleTap1_BuildVisualization(XComGameState VisualizeGameStat
 simulated function FastShot2_BuildVisualization(XComGameState VisualizeGameState)
 {
 	local XComGameStateVisualizationMgr VisMgr;
-	local XComGameStateContext Context;
 	local XComGameStateContext_Ability AbilityContext;
-	local int TrackIndex, ActionIndex;
 	local X2Action_ExitCover ExitCoverAction;
 	local X2Action_StartCinescriptCamera StartCinescriptCameraAction;
 
@@ -3247,7 +3245,6 @@ static function X2AbilityTemplate BroadcastCombatRush()
 
 function CombatRush_BuildVisualization(XComGameState VisualizeGameState)
 {
-	local XComGameStateVisualizationMgr		VisMgr;
 	local XComGameStateHistory				History;
     local XComGameStateContext_Ability		context;
     local StateObjectReference				InteractingUnitRef;
@@ -3257,8 +3254,7 @@ function CombatRush_BuildVisualization(XComGameState VisualizeGameState)
 	local XComGameState_Ability				Ability;
 	local XComGameState_Effect				EffectState;
 	local XComGameState_Unit				UnitState;
-	
-	VisMgr = `XCOMVISUALIZATIONMGR;
+
     History = `XCOMHISTORY;
     context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
 	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));

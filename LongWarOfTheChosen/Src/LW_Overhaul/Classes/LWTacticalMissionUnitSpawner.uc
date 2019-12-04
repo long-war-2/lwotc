@@ -309,7 +309,6 @@ static function LoadResistanceMECsFromOutpost(XComGameState_LWOutpost Outpost, b
 	local XComGameState_Unit Unit;
 	local XComGameState_Unit ProxyUnit;
 	local StateObjectReference ItemReference;
-	local XComGameState_Item ItemState;
 	local XComGameState_LWOutpost NewOutpost;
 	local XComGameState_BattleData BattleData;
 	local TTile UnitTile;
@@ -375,7 +374,7 @@ static function LoadResistanceMECsFromOutpost(XComGameState_LWOutpost Outpost, b
 			// add the items to the gamestate for ammo merging
 			foreach ProxyUnit.InventoryItems(ItemReference)
 			{
-				ItemState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', ItemReference.ObjectID));
+				NewGameState.ModifyStateObject(class'XComGameState_Item', ItemReference.ObjectID);
 			}
 
 			Rules.InitializeUnitAbilities(NewGameState, ProxyUnit);

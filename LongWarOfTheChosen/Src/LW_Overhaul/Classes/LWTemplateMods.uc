@@ -871,7 +871,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_Persistent               Effect, PersistentEffect, HaywiredEffect;
 	local X2Effect_VolatileMix              MixEffect;
 	local X2Effect_ModifyReactionFire       ReactionFire;
-	local X2Effect_DamageImmunity           DamageImmunity;
 	local X2Effect_HunkerDown_LW            HunkerDownEffect;
 	local X2Effect_CancelLongRangePenalty   DFAEffect;
 	local X2Condition_Visibility            VisibilityCondition, TargetVisibilityCondition;
@@ -2435,10 +2434,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'AlienHunterPistol_CV':
 			case 'AlienHunterPistol_MG':
 			case 'AlienHunterPistol_BM':
-				// EquipmentTemplate.InventorySlot = eInvSlot_Utility;
 				X2WeaponTemplate(EquipmentTemplate).RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_BEAM_RANGE;
-				X2WeaponTemplate(EquipmentTemplate).StowedLocation = eSlot_RearBackPack;
-				// EquipmentTemplate.Abilities.AddItem('PistolStandardShot'); // in base-game, this ability is a class ability, so need it added for utility slot pistols
 				break;
 			case 'Cannon_CV': // replace archetype with non-suppression shaking variant
 				EquipmentTemplate.GameArchetype = "Cannon_NoShake_LW.Archetypes.WP_Cannon_NoShake_CV";
@@ -3221,8 +3217,6 @@ static function bool IsUnitValidForPsiChamberSoldierSlot(XComGameState_StaffSlot
 {
 	local XComGameState_Unit Unit;
 	local X2SoldierClassTemplate SoldierClassTemplate;
-	local SCATProgression ProgressAbility;
-	local name AbilityName;
 	local array<SoldierClassAbilityType> AllPsiAbilities;
 	local SoldierClassAbilityType PsiAbility;
 
@@ -3505,12 +3499,8 @@ static function bool ChosenAliveCheck(XComGameState_DarkEvent DarkEventState)
 {
 	local XComGameStateHistory History;
 	local XComGameState_AdventChosen ChosenState;
-	local int NumActiveChosen;
-	local bool bSpecifiedChosenActive;
 
 	History = `XCOMHISTORY;
-	NumActiveChosen = 0;
-	bSpecifiedChosenActive = false;
 
 	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
 	{

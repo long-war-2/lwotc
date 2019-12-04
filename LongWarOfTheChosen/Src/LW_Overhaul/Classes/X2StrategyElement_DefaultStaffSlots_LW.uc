@@ -124,7 +124,7 @@ static function bool CanLiaisonBeMoved(StateObjectReference StaffRef)
 
 static function X2DataTemplate CreateLaboratory_AdditionalResearchStation2Template()
 {
-    local X2FacilityUpgradeTemplate Template, DefaultTemplate;
+    local X2FacilityUpgradeTemplate Template;
     local ArtifactCost Resources;
 
 	`CREATE_X2TEMPLATE(class'X2FacilityUpgradeTemplate', Template, 'Laboratory_AdditionalResearchStation2');
@@ -142,7 +142,7 @@ static function X2DataTemplate CreateLaboratory_AdditionalResearchStation2Templa
 
 static function X2DataTemplate CreateLaboratory_AdditionalResearchStation3Template()
 {
-    local X2FacilityUpgradeTemplate Template, DefaultTemplate;
+    local X2FacilityUpgradeTemplate Template;
     local ArtifactCost Resources;
 
 	`CREATE_X2TEMPLATE(class'X2FacilityUpgradeTemplate', Template, 'Laboratory_AdditionalResearchStation3');

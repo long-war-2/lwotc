@@ -626,7 +626,6 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	local string Biome;
 	// LWOTC vars
 	local XComHeadquartersCheatManager CheatManager;
-	local XComGameState_HeadquartersAlien AlienHQ;
 	local X2MissionSourceTemplate MissionSource;
 	local PlotDefinition SelectedPlotDef;
 	local PlotTypeDefinition PlotTypeDef;

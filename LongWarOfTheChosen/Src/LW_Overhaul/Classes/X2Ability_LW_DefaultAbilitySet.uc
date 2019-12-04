@@ -117,9 +117,8 @@ static function X2AbilityTemplate CreateReflexShotAbility()
 
 static function X2AbilityTemplate CreateReflexShotModifier()
 {
-	local X2AbilityTemplate					Template, AbilityTemplate;	
+	local X2AbilityTemplate					Template;
 	local X2Effect_ReflexShotModifier		ReflexEffect;
-	local X2AbilityTemplateManager			AbilityTemplateManager;
 	`Log("TRACE: Creating ReflexShot ability");
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ReflexShotModifier');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_standard";

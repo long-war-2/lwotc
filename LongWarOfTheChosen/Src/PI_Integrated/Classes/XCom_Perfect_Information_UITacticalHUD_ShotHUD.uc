@@ -38,19 +38,17 @@ simulated function Update()
 	local XComGameStateHistory History;
    
     // New from Grimy Shot Bar
-	local int MissChance, GrazeChance;
+	local int GrazeChance;
 	local int SomeDamageHitChance;
 
 	local int GrimyHitChance, GrimyCritChance, GrimyCritDmg;
-	local int GrimyMissChance, GrimyGrazeChance;
+	local int GrimyGrazeChance;
 	local int GrimyFullDamageHitChance;
 
-    local int GrimyHitWidth, GrimyCritWidth, GrimyGrazeWidth, GrimyMissWidth,GrimyFullDamageHitWidth;
+    local int GrimyHitWidth, GrimyCritWidth, GrimyGrazeWidth, GrimyMissWidth;
     local string FontString;
-	
-	local string HIT_TEXT; //VBN
 
-   
+    History = `XCOMHISTORY;
     TacticalHUD = UITacticalHUD(Screen);
  
     // Remove the shotbar box when you aren't looking at it
@@ -122,11 +120,9 @@ simulated function Update()
     SelectedUIAction = TacticalHUD.GetSelectedAction();
     if (SelectedUIAction.AbilityObjectRef.ObjectID > 0) //If we do not have a valid action selected, ignore this update request
     {
-		History = `XCOMHISTORY;
-
-        SelectedAbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(SelectedUIAction.AbilityObjectRef.ObjectID));
+        SelectedAbilityState = XComGameState_Ability(History.GetGameStateForObjectID(SelectedUIAction.AbilityObjectRef.ObjectID));
         SelectedAbilityTemplate = SelectedAbilityState.GetMyTemplate();
-        ActionUnit = XGUnit(`XCOMHISTORY.GetGameStateForObjectID(SelectedAbilityState.OwnerStateObject.ObjectID).GetVisualizer());
+        ActionUnit = XGUnit(History.GetGameStateForObjectID(SelectedAbilityState.OwnerStateObject.ObjectID).GetVisualizer());
         TargetingMethod = TacticalHUD.GetTargetingMethod();
         if( TargetingMethod != None )
         {
@@ -236,7 +232,6 @@ simulated function Update()
             SelectedAbilityState.LookupShotBreakdown(Shooter, Target, SelectedAbilityState.GetReference(), kBreakdown);
 
 			HitChance = kBreakdown.ResultTable[eHit_Success];
-			MissChance = kBreakdown.ResultTable[eHit_Miss]; 
 			CritChance = kBreakdown.ResultTable[eHit_Crit];
 			GrazeChance = kBreakdown.ResultTable[eHit_Graze];
 
@@ -246,7 +241,6 @@ simulated function Update()
 			//----------------------//
            
 		    GrimyHitChance = kBreakdown.ResultTable[eHit_Success];
-			GrimyMissChance = kBreakdown.ResultTable[eHit_Miss];
 			GrimyCritChance = kBreakdown.ResultTable[eHit_Crit];
             GrimyGrazeChance = kBreakdown.ResultTable[eHit_Graze];
 
@@ -321,7 +315,6 @@ simulated function Update()
 				}
 
 				GrimyHitWidth = default.BAR_WIDTH_MULT * ( clamp( GrimyHitChance, 0, 100 ) );
-				GrimyFullDamageHitWidth = default.BAR_WIDTH_MULT * ( clamp( GrimyFullDamageHitChance, 0, 100 ) );
 				GrimyCritWidth = default.BAR_WIDTH_MULT * GrimyCritChance;
 				GrimyGrazeWidth = default.BAR_WIDTH_MULT * GrimyGrazeChance;
 				GrimyMissWidth = default.BAR_WIDTH_MULT * ( 100 - GrimyFullDamageHitChance - GrimyGrazeChance);

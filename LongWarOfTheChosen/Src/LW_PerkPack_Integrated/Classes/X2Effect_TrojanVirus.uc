@@ -12,12 +12,10 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
 	local X2EventManager EventMgr;
 	local Object EffectObj;
-	local XComGameState_Unit UnitState;
 
 	EventMgr = `XEVENTMGR;
 
 	EffectObj = EffectGameState;
-	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 
 	// Use a low priority so that the listener triggers *after* the last shutdown tick. Otherwise,
 	// the check for IsStunned() happens while the target is still stunned, so the virus doesn't

@@ -44,7 +44,6 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	local X2EquipmentTemplate					EquipmentTemplate;
 	local X2WeaponTemplate						WeaponTemplate;
 	local XComGameState_Effect_TemporaryItem	EffectState;
-	local Object								ListenerObj;
 	local EInventorySlot						InventorySlot;
 
 	UnitState = XComGameState_Unit(kNewTargetState);
@@ -289,7 +288,6 @@ function array<X2AbilityTemplate> AddAbilityToUnit(name AbilityName, XComGameSta
 	local array<X2AbilityTemplate> AllAbilityTemplates, ReturnAbilityTemplates;
 	local X2AbilityTemplateManager AbilityManager;
 	local StateObjectReference AbilityRef;
-	local XComGameState_Ability AbilityState;
 	local Name AdditionalAbilityName;
 
 	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
@@ -317,7 +315,8 @@ function array<X2AbilityTemplate> AddAbilityToUnit(name AbilityName, XComGameSta
 			ReturnAbilityTemplates.AddItem(AbilityTemplate);
 		}
 
-		AbilityState = XComGameState_Ability(NewGameState.ModifyStateObject(class'XComGameState_Ability', AbilityRef.ObjectID));
+		// WOTC TODO: Don't know if this is doing anything useful.
+		NewGameState.ModifyStateObject(class'XComGameState_Ability', AbilityRef.ObjectID);
 	}
 	return ReturnAbilityTemplates;
 }

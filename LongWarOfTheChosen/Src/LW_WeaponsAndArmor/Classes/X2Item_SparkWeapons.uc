@@ -1,5 +1,5 @@
 // This is an Unreal Script
-class X2Item_SPARKWeapons extends X2Item config(GameData_WeaponData);
+class X2Item_SparkWeapons extends X2Item config(GameData_WeaponData);
 
 var config WeaponDamageValue SPARKRIFLE_LASER_BASEDAMAGE;
 var config int SPARKRIFLE_LASER_AIM;
@@ -25,7 +25,7 @@ var config int SPARKRIFLE_COIL_ISUPPLIES;
 var config int SPARKRIFLE_COIL_TRADINGPOSTVALUE;
 var config int SPARKRIFLE_COIL_IPOINTS;
 var config int SPARKRIFLE_COIL_UPGRADESLOTS;
-var config string SparkRifle_COIL_ImagePath;
+var config string SparkRifle_Coil_ImagePath;
 var config array<int> MEDIUM_COIL_RANGE;
 
 
