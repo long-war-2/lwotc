@@ -15,7 +15,7 @@ simulated function int GetHitChanceForObjectRef(StateObjectReference TargetRef)
 	local ShotBreakdown Breakdown;
 	local X2TargetingMethod TargetingMethod;
 	local XComGameState_Ability AbilityState;
-	local int AimBonus, HitChance, DodgeChance, CritChance;
+	local int AimBonus, HitChance;
 
 	//If a targeting action is active and we're hoving over the enemy that matches this action, then use action percentage for the hover  
 	TargetingMethod = XComPresentationLayer(screen.Owner).GetTacticalHUD().GetTargetingMethod();
@@ -44,9 +44,6 @@ simulated function int GetHitChanceForObjectRef(StateObjectReference TargetRef)
 			AimBonus = 0;
 			HitChance = Clamp(((Breakdown.bIsMultishot) ? Breakdown.MultiShotHitChance : Breakdown.ResultTable[eHit_Success] + Breakdown.ResultTable[eHit_Crit] + Breakdown.ResultTable[eHit_Graze]), 0, 100);
 
-			CritChance = Breakdown.ResultTable[eHit_Crit];
-			DodgeChance = Breakdown.ResultTable[eHit_Graze];
-
 			if (SHOW_AIM_ASSIST_OVER_ENEMY_ICON) {
 				AimBonus = XCom_Perfect_Information_UITacticalHUD_ShotWings(UITacticalHUD(Screen).m_kShotInfoWings).GetModifiedHitChance(AbilityState, HitChance);
 			}
@@ -72,7 +69,7 @@ simulated function UpdateVisibleEnemies(int HistoryIndex)
 	local XComGameStateHistory History;
 	local array<StateObjectReference> arrSSEnemies, arrCurrentlyAffectable;
 	local StateObjectReference ActiveUnitRef;
-	local int i, iNumVisibleEnemies, iPrevNumVisibleEnemies;
+	local int i, iVisibleEnemyCount, iPrevVisibleEnemyCount;
 	local XComGameState_Ability CurrentAbilityState;
 	local X2AbilityTemplate AbilityTemplate;
 
@@ -87,7 +84,7 @@ simulated function UpdateVisibleEnemies(int HistoryIndex)
 		CurrentAbilityState = XComPresentationLayer(Movie.Pres).GetTacticalHUD().m_kAbilityHUD.GetCurrentSelectedAbility();
 		AbilityTemplate = CurrentAbilityState != none ? CurrentAbilityState.GetMyTemplate() : none;
 
-		iPrevNumVisibleEnemies = m_arrTargets.Length;
+		iPrevVisibleEnemyCount = m_arrTargets.Length;
 		
 		if(AbilityTemplate != none && AbilityTemplate.AbilityTargetStyle.SuppressShotHudTargetIcons())
 		{
@@ -117,14 +114,14 @@ simulated function UpdateVisibleEnemies(int HistoryIndex)
 			}
 		}
 
-		iNumVisibleEnemies = m_arrTargets.Length;
+		iVisibleEnemyCount = m_arrTargets.Length;
 
 		m_arrTargets.Sort(SortEnemies);
 
 		// VISUALS: -----------------------------------------------------------
 		// Now that the array is tidy, we can set the visuals from it.
 
-		SetVisibleEnemies( iNumVisibleEnemies ); //Do this before setting data 
+		SetVisibleEnemies( iVisibleEnemyCount ); //Do this before setting data 
 
 		for(i = 0; i < m_arrTargets.Length; i++)
 		{
@@ -165,7 +162,7 @@ simulated function UpdateVisibleEnemies(int HistoryIndex)
 
 		RefreshShine();
 
-		if (iNumVisibleEnemies > iPrevNumVisibleEnemies)
+		if (iVisibleEnemyCount > iPrevVisibleEnemyCount)
 			PlaySound( SoundCue'SoundFX.AlienInRangeCue' ); 
 	}
 

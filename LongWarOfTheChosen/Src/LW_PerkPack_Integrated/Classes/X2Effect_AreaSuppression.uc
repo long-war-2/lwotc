@@ -121,26 +121,24 @@ simulated function AddX2ActionsForVisualization_RemovedSource(XComGameState Visu
 simulated function CleansedAreaSuppressionVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata BuildTrack, const name EffectApplyResult, XComGameState_Effect RemovedEffect)
 {
 	local XComGameStateHistory History;
-	local X2Action_EnterCover Action;
-	local XComGameState_Unit UnitState;
 
 	if(UpdateVisualizedSuppressionTarget(VisualizeGameState, RemovedEffect))
 		return;
 
 	History = `XCOMHISTORY;
 
-	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(RemovedEffect.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 	BuildTrack.VisualizeActor = History.GetVisualizer(RemovedEffect.ApplyEffectParameters.SourceStateObjectRef.ObjectID);
 	History.GetCurrentAndPreviousGameStatesForObjectID(RemovedEffect.ApplyEffectParameters.SourceStateObjectRef.ObjectID, BuildTrack.StateObject_OldState, BuildTrack.StateObject_NewState, eReturnType_Reference, VisualizeGameState.HistoryIndex);
 	if (BuildTrack.StateObject_NewState == none)
-		BuildTrack.StateObject_NewState = BuildTrack.StateObject_OldState;
-
+	BuildTrack.StateObject_NewState = BuildTrack.StateObject_OldState;
+	
 	class'X2Action_StopSuppression'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded);
-	Action = X2Action_EnterCover(class'X2Action_EnterCover'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded));
-
+	
 	// WOTC: I'm not sure this ever did anything. I can't see where m_SuppressionAbilityContext
 	// is set to anything other than None.
-	//Action.AbilityContext = UnitState.m_SuppressionAbilityContext;
+	// UnitState = XComGameState_Unit(History.GetGameStateForObjectID(RemovedEffect.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	// Action = X2Action_EnterCover(class'X2Action_EnterCover'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded));
+	// Action.AbilityContext = UnitState.m_SuppressionAbilityContext;
 }
 
 // this is only for removing from OTHER targets than the one being shot at

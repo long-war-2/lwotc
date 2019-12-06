@@ -559,15 +559,13 @@ static function X2AbilityTemplate AddRapidDeployment()
 // plays Rapid Deployment flyover and message when the ability is activated
 static function RapidDeployment_BuildVisualization(XComGameState VisualizeGameState)
 {
-	local XComGameStateVisualizationMgr VisMgr;
 	local XComGameStateHistory				History;
     local XComGameStateContext_Ability		context;
     local StateObjectReference				InteractingUnitRef;
     local VisualizationActionMetadata		EmptyTrack, BuildTrack; 
 	local X2Action_PlaySoundAndFlyOver		SoundAndFlyover; 
 	local XComGameState_Ability				Ability;
-	
-	VisMgr = `XCOMVISUALIZATIONMGR;
+
     History = `XCOMHISTORY;
     context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
 	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));

@@ -328,7 +328,6 @@ static function LWMigratePistolAbilities()
 	local XComGameState NewGameState;
 	local XComGameStateHistory History;
 	local XComGameState_Unit UnitState;
-	local SoldierRankAbilities RankAbilities;
 	local int i, j;
 	local bool UnitHasPistolAbilities;
 
@@ -580,8 +579,6 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local XComGameState_HeadquartersXCom XCOMHQ;
 	local array<SpawnDistributionListEntry>	LeaderSpawnList;
 	local array<SpawnDistributionListEntry>	FollowerSpawnList;
-	local name LeaderListID;
-	local name FollowerListID;
 
 	`LWTRACE("Parsing Encounter : " $ EncounterName);
 
@@ -856,17 +853,17 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	return;
 }
 
-static function name GetLeaderSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static function GetLeaderSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
 {
-	return GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, true);
+	GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, true);
 }
 
-static function name GetFollowerSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static function GetFollowerSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
 {
-	return GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, false);
+	GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, false);
 }
-	
-static function name GetSpawnDistributionList(
+
+static function GetSpawnDistributionList(
 	name EncounterName,
 	XComGameState_MissionSite MissionState,
 	int ForceLevel,
@@ -1003,7 +1000,7 @@ static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, 
 	local X2CharacterTemplateManager CharacterTemplateMgr;
 	local X2DataTemplate Template;
 	local X2CharacterTemplate CharacterTemplate;
-	local array<name> PossibleChars, RestrictedChars;
+	local array<name> PossibleChars;
 	local array<float> PossibleWeights;
 	local float TotalWeight, TestWeight, RandomWeight;
 	local int k;
@@ -1063,7 +1060,7 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 	local X2DataTemplate Template;
 	local X2CharacterTemplate CharacterTemplate;
 	local SpawnDistributionListEntry SpawnEntry;
-	local array<name> PossibleChars, RestrictedChars;
+	local array<name> PossibleChars;
 	local array<float> PossibleWeights;
 	local float TotalWeight, TestWeight, RandomWeight;
 	local int k;
@@ -1186,11 +1183,9 @@ static function CleanupObsoleteTacticalGamestate()
 	local XComGameStateHistory History;
 	local XComGameState NewGameState;
 	local XComGameState_Unit UnitState;
-	local XComGameState_BaseObject BaseObject;
 	local int idx, idx2;
 	local XComGameState ArchiveState;
 	local int LastArchiveStateIndex;
-	local XComGameInfo GameInfo;
 	local array<XComGameState_Item> InventoryItems;
 	local XComGameState_Item Item;
 
@@ -1200,7 +1195,6 @@ static function CleanupObsoleteTacticalGamestate()
 	// grab the archived strategy state from the history and the headquarters object
 	LastArchiveStateIndex = History.FindStartStateIndex() - 1;
 	ArchiveState = History.GetGameStateFromHistory(LastArchiveStateIndex, eReturnType_Copy, false);
-	GameInfo = `XCOMGAME;
 	idx = 0;
 
 	`LWTRACE("REMOVED " $ idx $ " tactical transient gamestates when loading into strategy");
@@ -1319,9 +1313,7 @@ static function AddObjectivesToParcels()
 
 static function InitializePodManager(XComGameState StartGameState)
 {
-	local XComGameState_LWPodManager PodManager;
-
-	PodManager = XComGameState_LWPodManager(StartGameState.CreateNewStateObject(class'XComGameState_LWPodManager'));
+	StartGameState.CreateNewStateObject(class'XComGameState_LWPodManager');
 	`LWTrace("Created pod manager");
 }
 
@@ -1391,8 +1383,6 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
-	local int AppearanceChance;
-	local float AppearChanceScalar;
 	local name ChosenSpawningTag;
 
 	History = `XCOMHISTORY;

@@ -397,6 +397,8 @@ static function EventListenerReturn DisableInterceptAIBehavior(Object EventData,
 	{
 		`TACTICALRULES.SubmitGameState(NewGameState);
 	}
+
+	return ELR_NoInterrupt;
 }
 
 // A BuildVisualization function that ensures that alien pack enemies have their

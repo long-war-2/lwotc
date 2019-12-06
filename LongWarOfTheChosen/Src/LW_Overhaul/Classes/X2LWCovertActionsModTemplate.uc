@@ -18,7 +18,6 @@ var config int THIRD_CHOSEN_CA_REQ_RANK;
 static function UpdateCovertActions(X2StrategyElementTemplate Template, int Difficulty)
 {
 	local X2CovertActionTemplate CATemplate;
-	local CovertActionSlot CurrentSlot;
 	local int i;
 
 	CATemplate = X2CovertActionTemplate(Template);

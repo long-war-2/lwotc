@@ -489,7 +489,6 @@
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ArmoryWeaponUpgrade_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Armory_MainMenu_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_AvengerHUD.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_CanAddInventoryOverride.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_DropShipBriefing_MissionStart.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_GetPCSImageOverride.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_LivingQuarters.uc" />
@@ -687,7 +686,6 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIArmory_MainMenu_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_Armory_PromotionPsi_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_TacticalHUD_LW.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\UIScreenListener_UIAlert.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UITacticalHUD_AbilityContainer_LWExtended.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIVerticalScrollingText.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIVerticalScrollingText2.uc" />

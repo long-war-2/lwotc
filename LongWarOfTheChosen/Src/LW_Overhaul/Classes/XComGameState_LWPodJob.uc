@@ -81,7 +81,6 @@ function static Vector AdjustLocation(Vector Loc, XComGameState_AIGroup Group)
 	local XComGameState_Unit LeaderState;
 	local XGUnit Visualizer;
 	local XComWorldData WorldData;
-	local array<TTile> Path;
 	local TTile TileDest;
 
 	WorldData = `XWORLD;

@@ -13,6 +13,8 @@ var config int PSI_SQUADDIE_BONUS_ABILITIES;
 var config int BLEEDOUT_CHANCE_BASE;
 var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE;
 
+var config array<name> EXCLUDE_FROM_PISTOL_SLOT_CLASSES;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -142,7 +144,6 @@ static protected function EventListenerReturn OnOverrideItemMinEquipped(Object E
 {
 	local XComLWTuple			OverrideTuple;
 	local XComGameState_Unit	UnitState;
-	local X2EquipmentTemplate	EquipmentTemplate;
 
 	OverrideTuple = XComLWTuple(EventData);
 	if (OverrideTuple == none)
@@ -286,7 +287,6 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 static private function int GetHoursLeftToInfiltrate(XComGameState_LWPersistentSquad Squad)
 {
 	local int TotalSecondsForInfiltration;
-	local bool bCanFullyInfiltrate;
 
 	TotalSecondsForInfiltration = Squad.GetSecondsRemainingToFullInfiltration();
 
@@ -448,7 +448,6 @@ static function EventListenerReturn OnPsiProjectCompleted(
 	Object CallbackData)
 {
 	local XComLWTuple Tuple;
-	local StateObjectReference ProjectFocus;
 	local XComGameState_Unit UnitState;
 	local X2SoldierClassTemplate SoldierClassTemplate;
 	local int BonusAbilityRank, BonusAbilityBranch, BonusAbilitiesGranted, Tries;
@@ -922,7 +921,6 @@ static function OnLoadoutLocked(UIButton kButton)
 static function EventListenerReturn GetPCSImage(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local XComLWTuple			OverridePCSImageTuple;
-	local string				ReturnImagePath;
 	local XComGameState_Item	ItemState;
 
 	OverridePCSImageTuple = XComLWTuple(EventData);
@@ -989,7 +987,7 @@ static function EventListenerReturn OnSoldierHasPistolSlot(
 		return ELR_NoInterrupt;
 	}
 
-	OverrideTuple.Data[0].b = !UnitState.IsResistanceHero();
+	OverrideTuple.Data[0].b = default.EXCLUDE_FROM_PISTOL_SLOT_CLASSES.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE;
 
 	return ELR_NoInterrupt;
 }
