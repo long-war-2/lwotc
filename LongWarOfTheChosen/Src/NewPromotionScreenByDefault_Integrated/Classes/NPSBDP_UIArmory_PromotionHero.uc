@@ -884,7 +884,6 @@ function int GetAbilitiesPerRank(XComGameState_Unit UnitState)
 {
 	local Name ClassName;
     local int AbilitiesPerRank, RankIndex;
-	local bool bAWC;
 	local X2SoldierClassTemplate ClassTemplate;
 
 	ClassName = UnitState.GetSoldierClassTemplateName();	
@@ -895,7 +894,6 @@ function int GetAbilitiesPerRank(XComGameState_Unit UnitState)
 	}
 
 	ClassTemplate = UnitState.GetSoldierClassTemplate();
-	bAWC = ClassTemplate.bAllowAWCAbilities;
 
 	for(RankIndex = 1; RankIndex < ClassTemplate.GetMaxConfiguredRank(); RankIndex++)
 	{

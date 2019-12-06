@@ -33,14 +33,17 @@ static function XComGameState_LWAlienActivityManager GetAlienActivityManager(opt
     return XComGameState_LWAlienActivityManager(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_LWAlienActivityManager', AllowNULL));
 }
 
-static function CreateAlienActivityManager(optional XComGameState StartState)
+static function XComGameState_LWAlienActivityManager CreateAlienActivityManager(optional XComGameState StartState)
 {
 	local XComGameState_LWAlienActivityManager ActivityMgr;
 	local XComGameState NewGameState;
 
 	//first check that there isn't already a singleton instance of this manager
-	if(GetAlienActivityManager(true) != none)
-		return;
+	ActivityMgr = GetAlienActivityManager(true);
+	if (ActivityMgr != none)
+	{
+		return ActivityMgr;
+	}
 
 	if(StartState != none)
 	{
@@ -51,6 +54,8 @@ static function CreateAlienActivityManager(optional XComGameState StartState)
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Creating LW Alien Activity Manager Quasi-singleton");
 		ActivityMgr = XComGameState_LWAlienActivityManager(NewGameState.CreateNewStateObject(class'XComGameState_LWAlienActivityManager'));
 	}
+
+	return ActivityMgr;
 }
 
 //#############################################################################################
@@ -64,7 +69,6 @@ function bool Update(XComGameState NewGameState)
 	local array<X2StrategyElementTemplate> ActivityTemplates;
 	local X2LWAlienActivityTemplate ActivityTemplate;
 	local int idx, NumActivities, ActivityIdx;
-	local XComGameState_LWAlienActivity NewActivityState;
 	local XComGameState_LWAlienActivityManager UpdatedActivityMgr;
 	local ActivityCooldownTimer Cooldown;
 	local array<ActivityCooldownTimer> CooldownsToRemove;
@@ -118,7 +122,7 @@ function bool Update(XComGameState NewGameState)
 					if(PrimaryRegionRef.ObjectID > 0)
 					{
 						bUpdated = true;
-						NewActivityState = ActivityTemplate.CreateInstanceFromTemplate(PrimaryRegionRef, NewGameState);
+						ActivityTemplate.CreateInstanceFromTemplate(PrimaryRegionRef, NewGameState);
 					}
 				}
 			}

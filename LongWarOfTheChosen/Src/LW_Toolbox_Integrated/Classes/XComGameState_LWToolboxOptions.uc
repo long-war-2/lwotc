@@ -1366,8 +1366,6 @@ function OnNewGameState_RankWatcher(XComGameState GameState)
 function GetRankChangedObjectList(XComGameState NewGameState, out array<XComGameState_Unit> OutRankChangedObjects)
 {
 	local XComGameStateHistory History;
-	local int StateObjectIndex;
-	local XComGameState_BaseObject StateObjectCurrent;
 	local XComGameState_BaseObject StateObjectPrevious;
 	local XComGameState_Unit UnitStateCurrent, UnitStatePrevious;
 
@@ -1375,7 +1373,7 @@ function GetRankChangedObjectList(XComGameState NewGameState, out array<XComGame
 	
 	foreach NewGameState.IterateByClassType(class'XComGameState_Unit', UnitStateCurrent)
 	{
-		StateObjectPrevious = History.GetGameStateForObjectID(StateObjectCurrent.ObjectID, , NewGameState.HistoryIndex - 1);
+		StateObjectPrevious = History.GetGameStateForObjectID(UnitStateCurrent.ObjectID, , NewGameState.HistoryIndex - 1);
 		UnitStatePrevious = XComGameState_Unit(StateObjectPrevious);
 
 		if(UnitStatePrevious != none && UnitStateCurrent.GetRank() != UnitStatePrevious.GetRank())
@@ -1738,7 +1736,6 @@ static function OnNewGameState_HealthWatcher(XComGameState GameState)
 static function GetHPChangedObjectList(XComGameState NewGameState, out array<XComGameState_Unit> OutHPChangedObjects)
 {
 	local XComGameStateHistory History;
-	local int StateObjectIndex;
 	local XComGameState_BaseObject StateObjectPrevious;
 	local XComGameState_Unit UnitStateCurrent, UnitStatePrevious;
 

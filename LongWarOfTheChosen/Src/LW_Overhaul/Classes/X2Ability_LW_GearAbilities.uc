@@ -629,7 +629,6 @@ static function X2AbilityTemplate CreateConsumeWhenActivatedAbility(name Ability
 static function X2AbilityTemplate CreateBonusShredAbility(name AbilityName, int BonusShred)
 {
 	local X2AbilityTemplate Template;
-	local X2AbilityTrigger_EventListener EventListener;
 	local X2Effect_BonusShred BonusShredEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, AbilityName);

@@ -1211,9 +1211,22 @@ BriefSummary="Massively reduces weapon noise and the soldier's impact on mission
 TinySummary="Reduces mission infiltration time"
 LootTooltip="This weapon upgrade, when installed, will reduce the time the soldier requires to infiltrate during a mission. It also reduces weapon noise during combat."
 
+; LWOTC needs translation
+
+[CritUpgrade_Bsc X2WeaponUpgradeTemplate]
+BriefSummary="Increase critical hit chance by +<Ability:CRITINCREASE/>%."
+
+[CritUpgrade_Adv X2WeaponUpgradeTemplate]
+BriefSummary="Increase critical hit chance by +<Ability:CRITINCREASE/>%."
+
+; End Translation
+
 [CritUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Laser Sight"
 FriendlyNamePlural="Elite Laser Sights"
+; LWOTC needs translation
+BriefSummary="Increase critical hit chance by +<Ability:CRITINCREASE/>%."
+; End translation
 
 [ClipSizeUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Expanded Magazine"

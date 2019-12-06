@@ -16,7 +16,6 @@ event OnInit(UIScreen Screen)
 {
 	local Object ThisObj;
 	local X2EventManager EventMgr;
-	local XComGameState_LWListenerManager ListenerMgr;
 
 	`LWTRACE("Starting TacticalHUD Listener OnInit");
 
@@ -70,7 +69,6 @@ function UpdateEvacTimer(bool DecrementCounter)
 	local XComGameState_LWEvacSpawner EvacState;
 	local XComGameStateHistory History;
 	local UISpecialMissionHUD SpecialMissionHUD;
-	local XComGameState NewGameState;
 
 	History = `XCOMHISTORY;
 	EvacState = XComGameState_LWEvacSpawner(History.GetSingleGameStateObjectForClass(class'XComGameState_LWEvacSpawner', true));
@@ -102,7 +100,6 @@ function EventListenerReturn OnTurnBegun(Object EventData, Object EventSource, X
 	local XComGameState_Player Player;
 	local XComGameState_LWEvacSpawner EvacState;
 	local XComGameStateHistory History;
-	local UISpecialMissionHUD SpecialMissionHUD;
 	local XComGameState NewGameState;
 	local bool NeedsUpdate;
 

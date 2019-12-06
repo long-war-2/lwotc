@@ -312,8 +312,8 @@ simulated function bool ShouldShowPsi(XComGameState_Unit Unit)
 simulated function UpdateData()
 {
 	local XComGameState_Unit Unit;
-	local string UnitLoc, status, statusTimeLabel, statusTimeValue, classIcon, rankIcon, flagIcon, mentalStatus;
-	local int iRank, iTimeNum;
+	local string UnitLoc, status, statusTimeLabel, statusTimeValue, classIcon, flagIcon, mentalStatus;
+	local int iTimeNum;
 	local X2SoldierClassTemplate SoldierClass;
 	local XComGameState_ResistanceFaction FactionState;
 	local SoldierBond BondData;
@@ -323,8 +323,6 @@ simulated function UpdateData()
 	local array<int> CohesionThresholds;
 	
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitRef.ObjectID));
-
-	iRank = Unit.GetRank();
 
 	SoldierClass = Unit.GetSoldierClassTemplate();
 	FactionState = Unit.GetResistanceFaction();
@@ -351,8 +349,6 @@ simulated function UpdateData()
 		statusTimeValue = "---";
 
 	flagIcon = Unit.GetCountryTemplate().FlagImage;
-	//rankIcon = class'UIUtilities_Image'.static.GetRankIcon(iRank, SoldierClass.DataName);
-	rankIcon = class'UIUtilities_Image'.static.GetRankIcon(iRank, SoldierClass.DataName);
 	classIcon = SoldierClass.IconImage;
 
 	// if personnel is not staffed, don't show location

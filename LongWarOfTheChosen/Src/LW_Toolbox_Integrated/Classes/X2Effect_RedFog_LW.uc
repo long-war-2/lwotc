@@ -109,7 +109,6 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 
 function bool IsEffectCurrentlyRelevant(XComGameState_Effect EffectState, XComGameState_Unit TargetUnit)
 {
-	local float RedFogActive;
 	local bool Relevant;
 
 	Relevant = (ComputePctHPLost(TargetUnit) > 0.0f) && IsRedFogActive(TargetUnit);

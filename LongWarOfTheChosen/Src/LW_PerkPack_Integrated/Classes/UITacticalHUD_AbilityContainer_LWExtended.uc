@@ -114,11 +114,6 @@ simulated function UpdateAbilitiesArray()
 	local GameRulesCache_Unit UnitInfoCache;
 	local array<AvailableAction> arrCommandAbilities;
 	local int bCommanderAbility;
-	// WOTC:
-	local XComGameStateHistory History;
-	local XComGameState_Ability AbilityState;
-	local XComGameState_Unit Unit;
-	// END WOTC
 
 	local AvailableAction AbilityAvailableInfo; //Represents an action that a unit can perform. Usually tied to an ability.
 

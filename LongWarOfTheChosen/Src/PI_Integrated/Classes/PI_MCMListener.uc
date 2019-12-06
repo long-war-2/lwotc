@@ -210,5 +210,5 @@ simulated function LoadInitialValues()
 
 defaultproperties
 {
-	ScreenClass = class'MCM_OptionsScreen'
+	// ScreenClass = class'MCM_OptionsScreen'
 }
