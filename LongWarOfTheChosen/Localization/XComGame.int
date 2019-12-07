@@ -315,7 +315,7 @@ Description="Disable (stun) the unit for 3 turns."
 
 [ControlSectopod_Permanent X2HackRewardTemplate]
 FriendlyName="Master Sectopod"
-Description="Are you brave enough?"
+Description="Take control of this unit for rest of the mission and gain stat bonuses. Are you brave enough?"
 
 ;End translation
 [ScanningProtocol X2AbilityTemplate]
