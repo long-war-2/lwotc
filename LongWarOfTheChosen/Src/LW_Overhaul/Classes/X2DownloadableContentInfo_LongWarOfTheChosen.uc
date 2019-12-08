@@ -12,7 +12,6 @@ class X2DownloadableContentInfo_LongWarOfTheChosen extends X2DownloadableContent
 
 //----------------------------------------------------------------
 // A random selection of data and data structures from LW Overhaul
-
 struct MinimumInfilForConcealEntry
 {
 	var string MissionType;
@@ -57,6 +56,15 @@ var config array<name> CharacterTypesExemptFromCleanup;
 var config array<name> CharacterTypesExceptFromInfiltrationModifiers;
 
 var config array<PlotObjectiveMod> PlotObjectiveMods;
+
+// Configurable list of abilities that should apply to the primary
+// weapon. This is necessary because character template abilities
+// can't be configured for a weapon slot, but some of those abilities
+// need to be tied to a weapon slot to work.
+//
+// This is used in FinalizeUnitAbilitiesForInit() to patch existing
+// abilities for non-XCOM units.
+var config array<name> PrimaryWeaponAbilities;
 
 // Configurable list of parcels to remove from the game.
 var config array<String> ParcelsToRemove;
@@ -1019,18 +1027,20 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 	local name AbilityName;
 	local AbilitySetupData Data, EmptyData;
 	local X2CharacterTemplate CharTemplate;
+	local int i;
 
 	if (`XENGINE.IsMultiplayerGame()) { return; }
 
 	CharTemplate = UnitState.GetMyTemplate();
 	if (CharTemplate == none)
 		return;
+
+	AbilityTemplateMan = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 	if (ShouldApplyInfiltrationModifierToCharacter(CharTemplate))
 	{
 		AbilityName = 'InfiltrationTacticalModifier_LW';
 		if (SetupData.Find('TemplateName', AbilityName) == -1)
 		{
-			AbilityTemplateMan = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 			AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate(AbilityName);
 
 			if(AbilityTemplate != none)
@@ -1040,6 +1050,17 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 				Data.Template = AbilityTemplate;
 				SetupData.AddItem(Data);  // return array -- we don't have to worry about additional abilities for this simple ability
 			}
+		}
+	}
+
+	// Fix enemy unit abilities that need to be tied to a weapon, since abilities
+	// attached to character templates can't be configured for a particular weapon slot.
+	for (i = 0; i < SetupData.Length; i++)
+	{
+		if (default.PrimaryWeaponAbilities.Find(SetupData[i].TemplateName) != INDEX_NONE && SetupData[i].SourceWeaponRef.ObjectID == 0)
+		{
+			`LWTrace(" >>> Binding ability '" $ SetupData[i].TemplateName $ "' to primary weapon for unit " $ UnitState.GetMyTemplateName());
+			SetupData[i].SourceWeaponRef = UnitState.GetPrimaryWeapon().GetReference();
 		}
 	}
 }
