@@ -1742,6 +1742,7 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 	local XComGameStateHistory History;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	
 
 	History = `XCOMHISTORY;
 
@@ -1753,6 +1754,8 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 			RegionalAI.LocalForceLevel += 1;
 			`LWTRACE("ScheduledOffworldReinforcements : Activity Complete, Alien Win, Increasing ForceLevel by 1 in " $ RegionState.GetMyTemplate().DisplayName );
 		}
+		//All region force level is the same, so i just need one instance of it
+		TryIncreasingChosenLevel(RegionalAI.LocalForceLevel);
 	}
 	else
 	{
@@ -1765,6 +1768,46 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 	}
 }
 
+static function TryIncreasingChosenLevel(int CurrentForceLevel)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_AdventChosen ChosenState;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local name OldTacticalTag, NewTacticalTag;
+	local XComGameStateContext_ChangeContainer ChangeContainer;
+	local XComGameState NewGameState;
+ switch(CurrentForceLevel)
+{	//All Forcelevel Threshholds for the Chosen, they increase the level accordingly
+	case 8:;case 13:;case 17:;
+
+	History = `XCOMHISTORY;
+
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen();
+
+	ChangeContainer = class'XComGameStateContext_ChangeContainer'.static.CreateEmptyChangeContainer("Creating Alien Customization Component");
+	NewGameState = History.CreateNewGameState(true, ChangeContainer);
+
+	foreach AllChosen(ChosenState)
+	{
+		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+		Chosenstate.Level++;
+		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+		if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+		{
+			ChosenState.bJustLeveledUp = true;
+		}
+		// Replace Old Tag with new Tag in missions
+		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+		`GAMERULES.SubmitGameState(NewGameState);
+	}
+
+	break;
+	default:;
+	break;
+}
+}
 static function name RescueReward(bool IncludeRebel, bool IncludePrisoner)
 {
 	local int iRoll, Rescue_Soldier_Modified_Weight, Rescue_Engineer_Modified_Weight, Rescue_Scientist_Modified_Weight, Rescue_Rebel_Modified_Weight;

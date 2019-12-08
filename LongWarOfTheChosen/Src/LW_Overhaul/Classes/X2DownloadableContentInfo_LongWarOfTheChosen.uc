@@ -131,6 +131,7 @@ static event OnPostTemplatesCreated()
 	UpdateWeaponAttachmentsForCoilgun();
 	UpdateFirstMissionTemplate();
 	AddObjectivesToParcels();
+	UpdateChosenActivities();
 }
 
 /// <summary>
@@ -2127,6 +2128,89 @@ static function UpdateTechs()
 		History.AddGameStateToHistory(NewGameState);
 	else
 		History.CleanupPendingGameState(NewGameState);
+}
+
+static function UpdateChosenActivities()
+{
+	UpdateTraining();
+}
+
+static function UpdateTraining()
+{
+	local X2ChosenActionTemplate Template;
+	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Training'));
+	Template.OnActivatedFn = ActivateTraining;
+	Template.CanBePlayedFn = TrainingCanBePlayed;
+}
+
+static function ActivateTraining(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
+{
+	local XComGameState_ChosenAction ActionState;
+	local XComGameState_AdventChosen ChosenState;
+	local name OldTacticalTag, NewTacticalTag;
+
+	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);
+	ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(ActionState.ChosenRef, NewGameState);
+
+
+	// Grab Old Tactical Tag
+	OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+	// Increase the Chosen's level
+	ChosenState.Level++;
+	NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+	// Only met, active chosen trigger the just leveled up popup
+	if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+	{
+		ChosenState.bJustLeveledUp = true;
+	}
+
+	// Replace Old Tag with new Tag in missions
+	ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+
+	// Gain New Traits
+	ChosenState.GainNewStrengths(NewGameState, class'XComGameState_AdventChosen'.default.NumStrengthsPerLevel);
+}
+
+//---------------------------------------------------------------------------------------
+static function bool TrainingCanBePlayed(StateObjectReference InRef, optional XComGameState NewGameState = none)
+{
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_ChosenAction ActionState;
+	local StateObjectReference ActionRef;
+	local bool bCantPlay;
+
+	ChosenState = XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(InRef.ObjectID));
+
+	if(ChosenState == none)
+	{
+		ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(InRef);
+	}
+
+	// Cannot be first action after meeting XCOM
+	if(ChosenState.bMetXCom)
+	{
+		bCantPlay = true;
+
+		foreach ChosenState.PreviousMonthActions(ActionRef)
+		{
+			ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(ActionRef);
+
+			if(ActionState.GetMyTemplateName() != 'ChosenAction_Training')
+			{
+				bCantPlay = false;
+				break;
+			}
+		}
+
+		if(bCantPlay)
+		{
+			return false;
+		}
+	}
+ 
+	return true;
 }
 
 //=========================================================================================
