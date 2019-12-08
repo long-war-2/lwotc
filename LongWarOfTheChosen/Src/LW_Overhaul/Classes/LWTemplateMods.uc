@@ -5,7 +5,7 @@
 //  PURPOSE: Mods to base XCOM2 templates
 //--------------------------------------------------------------------------------------- 
 
-class LWTemplateMods extends X2StrategyElement config(LW_Overhaul);
+class LWTemplateMods extends X2StrategyElement config(LW_Overhaul) dependson(X2Ability_DarkEvents_LW);
 
 struct ItemTableEntry
 {
@@ -1913,6 +1913,8 @@ static function X2LWTemplateModTemplate CreateGeneralCharacterModTemplate()
 function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 {
 	local LootReference Loot;
+	local DarkEventAbilityDefinition AbilityDefinition;
+	local bool bApplyToUnit;
 
 	if (class'X2Effect_TransferMecToOutpost'.default.VALID_FULLOVERRIDE_TYPES_TO_TRANSFER_TO_OUTPOST.Find(Template.DataName) >= 0)
 	{
@@ -1991,6 +1993,42 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	if (Template.bIsSoldier)
 	{
 		Template.Abilities.AddItem('Interact_SmashNGrab');
+	}
+	else if (Template.bIsAlien || Template.bIsAdvent)
+	{
+		// Add the dark event abilities to all alien/ADVENT units
+		foreach class'X2Ability_DarkEvents_LW'.default.DarkEventAbilityDefinitions(AbilityDefinition)
+		{
+			switch (AbilityDefinition.ApplicationRules)
+			{
+			case eAR_ADVENTClones:
+				bApplyToUnit = Template.bIsAdvent && !Template.bIsRobotic;
+				break;
+			case eAR_AllADVENT:
+				bApplyToUnit = Template.bIsAdvent;
+				break;
+			case eAR_Robots:
+				bApplyToUnit = Template.bIsAdvent && Template.bIsRobotic;
+				break;
+			case eAR_Aliens:
+				bApplyToUnit = Template.bIsAlien;
+				break;
+			case eAR_AllEnemies:
+				bApplyToUnit = Template.bIsAdvent || Template.bIsAlien;
+				break;
+			case eAR_CustomList:
+				bApplyToUnit = AbilityDefinition.ApplicationTargetArray.Find(Template.DataName) != INDEX_NONE;
+				break;
+			default:
+				bApplyToUnit = false;
+				break;
+			}
+
+			if (bApplyToUnit)
+			{
+				Template.Abilities.AddItem(AbilityDefinition.AbilityName);
+			}
+		}
 	}
 
 	Template.Abilities.AddItem('MindControlCleanse');

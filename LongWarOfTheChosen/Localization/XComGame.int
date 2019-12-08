@@ -4149,9 +4149,9 @@ PreMissionText="Grants some ADVENT units bonus defense."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Defense)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Defense)"
 
-[DarkEvent_TacticalUpgrades X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Defense)"
-Description="Some enemy units gain +5 defense."
+[DarkEventAbility_TacticalUpgrades X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Defense)"
+LocLongDescription="Some enemy units gain +5 defense."
 
 [TacticalUpgrades X2AbilityTemplate]
 LocFriendlyName="Tactical Upgrades: Defense"
@@ -4167,9 +4167,9 @@ PreMissionText="Grants some aliens the Will to Survive perk."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Will to Survive)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Will to Survive)"
 
-[DarkEvent_WilltoSurvive X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Will to Survive)"
-Description="Some enemy units gain the Will to Survive ability, which grants a point of armor when protected by cover."
+[DarkEventAbility_WilltoSurvive X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Will to Survive)"
+LocLongDescription="Some enemy units gain the Will to Survive ability, which grants a point of armor when protected by cover."
 
 ;; Center Mass
 [DarkEvent_CenterMass X2DarkEventTemplate]
@@ -4181,9 +4181,9 @@ PreMissionText="Grants some aliens the Center Mass perk."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Damage)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Damage)"
 
-[DarkEvent_CenterMass X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Center Mass)"
-Description="Some enemy units do additional damage with their primary weapon."
+[DarkEventAbility_CenterMass X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Center Mass)"
+LocLongDescription="Some enemy units do additional damage with their primary weapon."
 
 ;; Infighter
 [DarkEvent_Infighter X2DarkEventTemplate]
@@ -4195,9 +4195,9 @@ PreMissionText="Grants ADVENT Stun Lancers the Infighter ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Infighter)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Infighter)"
 
-[DarkEvent_Infighter X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Infighter)"
-Description="ADVENT Stun Lancers gain the Infighter ability, which grants bonus dodge against nearby enemies."
+[DarkEventAbility_Infighter X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Infighter)"
+LocLongDescription="ADVENT Stun Lancers gain the Infighter ability, which grants bonus dodge against nearby enemies."
 
 ;; Formidable
 [DarkEvent_Formidable X2DarkEventTemplate]
@@ -4209,9 +4209,9 @@ PreMissionText="Grants several enemies the Formidable ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Formidable)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Formidable)"
 
-[DarkEvent_Formidable X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Formidable)"
-Description="Some enemies gain the Formidable ability, giving them extra armor and resistance to explosives."
+[DarkEventAbility_Formidable X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Formidable)"
+LocLongDescription="Some enemies gain the Formidable ability, giving them extra armor and resistance to explosives."
 
 ;; Lethal
 [DarkEvent_Lethal X2DarkEventTemplate]
@@ -4223,9 +4223,9 @@ PreMissionText="Grants some enemies the Lethal ability, causing them to do +2 da
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Lethal)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Lethal)"
 
-[DarkEvent_Lethal X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Lethal)"
-Description="Grants some enemies the Lethal ability, causing them to do +2 damage with their primary weapon."
+[DarkEventAbility_Lethal X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Lethal)"
+LocLongDescription="Grants some enemies the Lethal ability, causing them to do +2 damage with their primary weapon."
 
 ; Shredder
 [DarkEvent_Shredder X2DarkEventTemplate]
@@ -4237,9 +4237,9 @@ PreMissionText="Grants several enemies the Shredder ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Shredder)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Shredder)"
 
-[DarkEvent_Shredder X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Shredder)"
-Description="Some enemies gain the Shredder ability, giving their weapons the ability to shred armor with each hit."
+[DarkEventAbility_Shredder X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Shredder)"
+LocLongDescription="Some enemies gain the Shredder ability, giving their weapons the ability to shred armor with each hit."
 
 ; HI
 [DarkEvent_HuntersInstinct X2DarkEventTemplate]
@@ -4251,9 +4251,9 @@ PreMissionText="Grants many ophidian enemies the Hunter's Instinct ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Hunter's Instincts)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Hunter's Instincts)"
 
-[DarkEvent_HuntersInstinct X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Hunter's Instincts)"
-Description="Many ophidian enemies gain the Hunter's Instinct ability, granting bonus damage against flanked enemies."
+[DarkEventAbility_HuntersInstinct X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Hunter's Instincts)"
+LocLongDescription="Many ophidian enemies gain the Hunter's Instinct ability, granting bonus damage against flanked enemies."
 
 ; LR
 [DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
@@ -4265,9 +4265,9 @@ PreMissionText="Grants some Stun Lancers and other enemies the Lightning Reflexe
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Lightning Reflexes)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Lightning Reflexes)"
 
-[DarkEvent_LightningReflexes_LW X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Lightning Reflexes)"
-Description="Some Stun Lancers and other enemies gain the Lightning Reflexes ability, allowing them bonuses to avoid reaction fire."
+[DarkEventAbility_LightningReflexes_LW X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Lightning Reflexes)"
+LocLongDescription="Some Stun Lancers and other enemies gain the Lightning Reflexes ability, allowing them bonuses to avoid reaction fire."
 
 ; CCS
 [DarkEvent_CloseCombatSpecialist X2DarkEventTemplate]
@@ -4279,9 +4279,9 @@ PreMissionText="Grants Archons the Close Combat Specialist ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Close Combat Specialist)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Close Combat Specialist)"
 
-[DarkEvent_CloseCombatSpecialist X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Close Combat Specialist)"
-Description="Archons gain the Close Combat Specialist ability, granting them reaction fire against any enemy who closes within four tiles."
+[DarkEventAbility_CloseCombatSpecialist X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Close Combat Specialist)"
+LocLongDescription="Archons gain the Close Combat Specialist ability, granting them reaction fire against any enemy who closes within four tiles."
 
 [DarkEvent_GrazingFire X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Grazing Fire"
@@ -4292,9 +4292,9 @@ PreMissionText="Grants several enemies the Grazing Fire ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Grazing Fire)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Grazing Fire)"
 
-[DarkEvent_GrazingFire X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Grazing Fire)"
-Description="Some enemies gain the Grazing Fire ability, providing an increased chance to turn misses into grazes."
+[DarkEventAbility_GrazingFire X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Grazing Fire)"
+LocLongDescription="Some enemies gain the Grazing Fire ability, providing an increased chance to turn misses into grazes."
 
 [DarkEvent_Cutthroat X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Cutthroat"
@@ -4305,9 +4305,9 @@ PreMissionText="Grants Stun Lancers and other enemies the Cutthroat ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Cutthroat)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Cutthroat)"
 
-[DarkEvent_Cutthroat X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Cutthroat)"
-Description="Stun Lancers and other enemies gain the Cutthroat ability, allowing melee attacks to ignore armor."
+[DarkEventAbility_Cutthroat X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Cutthroat)"
+LocLongDescription="Stun Lancers and other enemies gain the Cutthroat ability, allowing melee attacks to ignore armor."
 
 [DarkEvent_CombatAwareness X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Combat Awareness"
@@ -4318,9 +4318,9 @@ PreMissionText="Grants ADVENT Sentries the Combat Awareness ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Combat Awareness)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Combat Awareness)"
 
-[DarkEvent_CombatAwareness X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Combat Awareness)"
-Description="ADVENT Sentries gain the Combat Awareness ability, granting them bonus defense and armor when in overwatch."
+[DarkEventAbility_CombatAwareness X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Combat Awareness)"
+LocLongDescription="ADVENT Sentries gain the Combat Awareness ability, granting them bonus defense and armor when in overwatch."
 
 [DarkEvent_IronSkin X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Iron Skin"
@@ -4331,9 +4331,9 @@ PreMissionText="Grants ADVENT robotic units the Iron Skin ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Iron Skin)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Iron Skin)"
 
-[DarkEvent_IronSkin X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Iron Skin)"
-Description="ADVENT robotic units gain the Iron Skin ability, granting them damage reduction against melee attacks."
+[DarkEventAbility_IronSkin X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Iron Skin)"
+LocLongDescription="ADVENT robotic units gain the Iron Skin ability, granting them damage reduction against melee attacks."
 
 [DarkEvent_TacticalSense X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Tactical Sense"
@@ -4344,9 +4344,9 @@ PreMissionText="Grants some enemy units the Tactical Sense ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Tactical Sense)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Tactical Sense)"
 
-[DarkEvent_TacticalSense X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Tactical Sense)"
-Description="Some enemy units gain the Tactical Sense ability, granting them bonus defense."
+[DarkEventAbility_TacticalSense X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Tactical Sense)"
+LocLongDescription="Some enemy units gain the Tactical Sense ability, granting them bonus defense."
 
 [DarkEvent_Aggression X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Aggression"
@@ -4357,9 +4357,9 @@ PreMissionText="Grants some enemy units the Aggression ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Aggression)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Aggression)"
 
-[DarkEvent_Aggression X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Aggression)"
-Description="Some enemy units gain the Aggression ability, granting them bonus critical chances."
+[DarkEventAbility_Aggression X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Aggression)"
+LocLongDescription="Some enemy units gain the Aggression ability, granting them bonus critical chances."
 
 [DarkEvent_Resilience X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Resilience"
@@ -4370,9 +4370,9 @@ PreMissionText="Grants Codex units the Resilience ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Resilience)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Resilience)"
 
-[DarkEvent_Resilience X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Resilience)"
-Description="Grants Codex units the Resilience ability, reducing the chance of critical hits against them."
+[DarkEventAbility_Resilience X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Resilience)"
+LocLongDescription="Grants Codex units the Resilience ability, reducing the chance of critical hits against them."
 
 [DarkEvent_Shadowstep X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Shadowstep"
@@ -4383,9 +4383,9 @@ PreMissionText="Grants Codex units the Shadowstep ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Shadowstep)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Shadowstep)"
 
-[DarkEvent_Shadowstep X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Shadowstep)"
-Description="Codex units gain the Shadowstep ability and cannot be targeted by reaction fire."
+[DarkEventAbility_Shadowstep X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Shadowstep)"
+LocLongDescription="Codex units gain the Shadowstep ability and cannot be targeted by reaction fire."
 
 [DarkEvent_DamageControl X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Damage Control"
@@ -4396,9 +4396,9 @@ PreMissionText="Grants Codex units the Damage Control ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Damage Control)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Damage Control)"
 
-[DarkEvent_DamageControl X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Damage Control)"
-Description="Some ADVENT robots and some other units gain the Damage Control ability, granting bonus armor after they take damage."
+[DarkEventAbility_DamageControl X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Damage Control)"
+LocLongDescription="Some ADVENT robots and some other units gain the Damage Control ability, granting bonus armor after they take damage."
 
 [DarkEvent_HardTarget X2DarkEventTemplate]
 DisplayName="Tactical Upgrades: Hard Target"
@@ -4411,9 +4411,9 @@ PreMissionText="Grants some alien units the Hard Target ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Hard Target)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Hard Target)"
 
-[DarkEvent_HardTarget X2HackRewardTemplate]
-FriendlyName="Dark Event: Tactical Upgrades (Hard Target)"
-Description="Some alien units gain the Hard Target ability, granting bonus dodge."
+[DarkEventAbility_HardTarget X2AbilityTemplate]
+LocFriendlyName="Dark Event: Tactical Upgrades (Hard Target)"
+LocLongDescription="Some alien units gain the Hard Target ability, granting bonus dodge."
 
 [DarkEvent_GreaterFaceless X2DarkEventTemplate]
 DisplayName="Greater Faceless"
@@ -4424,9 +4424,9 @@ PreMissionText="The aliens deploy a stronger and deadlier Faceless unit."
 PostMissionSuccessText="Dark Event Countered: Greater Faceless"
 PostMissionFailureText="Failed to Counter Dark Event: Greater Faceless"
 
-[DarkEvent_GreaterFaceless X2HackRewardTemplate]
-FriendlyName="Dark Event: Greater Faceless"
-Description="The aliens deploy a stronger and deadlier Faceless unit."
+[DarkEventAbility_GreaterFaceless X2AbilityTemplate]
+LocFriendlyName="Dark Event: Greater Faceless"
+LocLongDescription="The aliens deploy a stronger and deadlier Faceless unit."
 
 [GreaterFacelessStatImprovements X2AbilityTemplate]
 LocFriendlyName="Greater Faceless"

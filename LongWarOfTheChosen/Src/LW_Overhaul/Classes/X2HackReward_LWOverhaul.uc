@@ -5,247 +5,18 @@
 //---------------------------------------------------------------------------------------
 class X2HackReward_LWOverhaul extends X2HackReward config(GameCore);
 
-enum ApplicationRulesType
-{
-	eAR_ADVENTClones,
-	eAR_AllADVENT,
-	eAR_Robots,
-	eAR_Aliens,
-	eAR_AllEnemies,
-	eAR_CustomList
-};
-
-
-var config int SapperApplicationChance;
-var config ApplicationRulesType SapperApplicationRules;
-var config array<name> SapperApplicationTargetArray;
-
-var config int WilltoSurviveApplicationChance;
-var config ApplicationRulesType WilltoSurviveApplicationRules;
-
-var config int CenterMassApplicationChance;
-var config ApplicationRulesType CenterMassApplicationRules;
-
-var config int InfighterApplicationChance;
-var config ApplicationRulesType InfighterApplicationRules;
-var config array<name> InfighterApplicationTargetArray;
-
-var config int LethalApplicationChance;
-var config ApplicationRulesType LethalApplicationRules;
-
-var config int FormidableApplicationChance;
-var config ApplicationRulesType FormidableApplicationRules;
-var config array<name> FormidableApplicationTargetArray;
-
-var config int ShredderApplicationChance;
-var config ApplicationRulesType ShredderApplicationRules;
-var config array<name> ShredderApplicationTargetArray;
-
-var config int HuntersInstinctApplicationChance;
-var config ApplicationRulesType HuntersInstinctApplicationRules;
-var config array<name> HuntersInstinctApplicationTargetArray;
-
-var config int LightningReflexesApplicationChance;
-var config ApplicationRulesType LightningReflexesApplicationRules;
-var config array<name> LightningReflexesApplicationTargetArray;
-
-var config int CloseCombatSpecialistApplicationChance;
-var config ApplicationRulesType CloseCombatSpecialistApplicationRules;
-var config array<name> CloseCombatSpecialistApplicationTargetArray;
-
-var config int GrazingFireApplicationChance;
-var config ApplicationRulesType GrazingFireApplicationRules;
-var config array<name> GrazingFireApplicationTargetArray;
-
-var config int CutthroatApplicationChance;
-var config ApplicationRulesType CutthroatApplicationRules;
-var config array<name> CutthroatApplicationTargetArray;
-
-var config int CombatAwarenessApplicationChance;
-var config ApplicationRulesType CombatAwarenessApplicationRules;
-var config array<name> CombatAwarenessApplicationTargetArray;
-
-var config int IronSkinApplicationChance;
-var config ApplicationRulesType IronSkinApplicationRules;
-
-var config int TacticalSenseApplicationChance;
-var config ApplicationRulesType TacticalSenseApplicationRules;
-var config array<name> TacticalSenseApplicationTargetArray;
-
-var config int AggressionApplicationChance;
-var config ApplicationRulesType AggressionApplicationRules;
-var config array<name> AggressionApplicationTargetArray;
-
-var config int ResilienceApplicationChance;
-var config ApplicationRulesType ResilienceApplicationRules;
-var config array<name> ResilienceApplicationTargetArray;
-
-var config int ShadowstepApplicationChance;
-var config ApplicationRulesType ShadowstepApplicationRules;
-var config array<name> ShadowstepApplicationTargetArray;
-
-var config int DamageControlApplicationChance;
-var config ApplicationRulesType DamageControlApplicationRules;
-var config array<name> DamageControlApplicationTargetArray;
-
-var config int HardTargetApplicationChance;
-var config ApplicationRulesType HardTargetApplicationRules;
-var config array<name> HardTargetApplicationTargetArray;
-
-var config int GreaterFacelessApplicationChance;
-var config ApplicationRulesType GreaterFacelessApplicationRules;
-var config array<name> GreaterFacelessApplicationTargetArray;
-
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 	
 	`LWTrace("  >> X2HackReward_LWOverhaul.CreateTemplates()");
-	
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_MutonEngineers', ApplySapper));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_WilltoSurvive', ApplyWilltoSurvive));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_CenterMass', ApplyCenterMass));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Lethal', ApplyLethal));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Infighter', ApplyInfighter));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Formidable', ApplyFormidable));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Shredder', ApplyShredder));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_HuntersInstinct', ApplyHuntersInstinct));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_LightningReflexes_LW', ApplyLightningReflexes));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_CloseCombatSpecialist', ApplyCloseCombatSpecialist));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_GrazingFire', ApplyGrazingFire));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Cutthorat', ApplyCutthroat));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_CombatAwareness', ApplyCombatAwareness));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_IronSkin', ApplyIronSkin));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_TacticalSense', ApplyTacticalSense));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Aggression', ApplyAggression));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Resilience', ApplyResilience));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_Shadowstep', ApplyShadowstep));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_DamageControl', ApplyDamageControl));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_HardTarget', ApplyHardTarget));
-	Templates.AddItem(CreateNavigatorPerkTemplate ('DarkEvent_GreaterFaceless', ApplyGreaterFaceless));
+
 	Templates.AddItem(CreateHackLootTableReward('LootPCS_T1_LW'));
 	Templates.AddItem(CreateHackLootTableReward('LootPCS_T2_LW'));
 	Templates.AddItem(CreateHackLootTableReward('LootPCS_T3_LW'));
 
 	return Templates;
 }
-
-function ApplySapper (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'Sapper', default.SapperApplicationChance, default.SapperApplicationRules, false);
-}
-
-function ApplyWillToSurvive(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'WilltoSurvive', default.WilltoSurviveApplicationChance, default.WilltoSurviveApplicationRules, false);
-}
-
-function ApplyCenterMass(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'CenterMass', default.CenterMassApplicationChance, default.CenterMassApplicationRules, true);
-}
-
-function ApplyLethal (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'Lethal', default.LethalApplicationChance, default.LethalApplicationRules, true);
-}
-
-function ApplyInfighter(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'Infighter', default.InfighterApplicationChance, default.InfighterApplicationRules, false, default.InfighterApplicationTargetArray);
-}
-
-function ApplyFormidable(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'Formidable', default.FormidableApplicationChance, default.FormidableApplicationRules, false, default.FormidableApplicationTargetArray);
-}
-
-function ApplyShredder(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'Shredder', default.ShredderApplicationChance, default.ShredderApplicationRules, false, default.ShredderApplicationTargetArray);
-}
-
-function ApplyHuntersInstinct(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'HuntersInstinct', default.HuntersInstinctApplicationChance, default.HuntersInstinctApplicationRules, false, default.HuntersInstinctApplicationTargetArray);
-}
-
-function ApplyLightningReflexes(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'LightningReflexes_LW', default.LightningReflexesApplicationChance, default.LightningReflexesApplicationRules, false, default.LightningReflexesApplicationTargetArray);
-}
-
-function ApplyCloseCombatSpecialist(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'CloseCombatSpecialist', default.CloseCombatSpecialistApplicationChance, default.CloseCombatSpecialistApplicationRules, false, default.CloseCombatSpecialistApplicationTargetArray);
-}
-
-function ApplyGrazingFire(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'GrazingFire', default.GrazingFireApplicationChance, default.GrazingFireApplicationRules, false, default.GrazingFireApplicationTargetArray);
-}
-
-function ApplyCutthroat(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'Cutthroat', default.CutthroatApplicationChance, default.CutthroatApplicationRules, false, default.CutthroatApplicationTargetArray);
-}
-
-function ApplyCombatAwareness(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'CombatAwareness', default.CombatAwarenessApplicationChance, default.CombatAwarenessApplicationRules, false, default.CombatAwarenessApplicationTargetArray);
-}
-
-function ApplyIronSkin(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'IronSkin', default.IronSkinApplicationChance, default.IronSkinApplicationRules, false);
-}
-
-function ApplyTacticalSense(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'TacticalSense', default.TacticalSenseApplicationChance, default.TacticalSenseApplicationRules, false, default.TacticalSenseApplicationTargetArray);
-}
-
-function ApplyAggression(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'Aggression', default.AggressionApplicationChance, default.AggressionApplicationRules, false, default.AggressionApplicationTargetArray);
-}
-
-function ApplyResilience(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'Resilience', default.ResilienceApplicationChance, default.ResilienceApplicationRules, false, default.ResilienceApplicationTargetArray);
-}
-
-function ApplyShadowstep(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'Shadowstep', default.ShadowstepApplicationChance, default.ShadowstepApplicationRules, false, default.ShadowstepApplicationTargetArray);
-}
-
-function ApplyDamageControl(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'DamageControl', default.DamageControlApplicationChance, default.DamageControlApplicationRules, false, default.DamageControlApplicationTargetArray);
-}
-
-function ApplyHardTarget(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'HardTarget', default.HardTargetApplicationChance, default.HardTargetApplicationRules, false, default.HardTargetApplicationTargetArray);
-}
-
-function ApplyGreaterFaceless(XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
-{
-	ApplyNavigatorPerk (NewGameState, 'GreaterFacelessStatImprovements', default.GreaterFacelessApplicationChance, default.GreaterFacelessApplicationRules, false, default.GreaterFacelessApplicationTargetArray);
-}
-
-static function X2HackRewardTemplate CreateNavigatorPerkTemplate (name TemplateName, delegate<X2HackRewardTemplate.ApplyHackReward> ApplyFn)
-{
-	local X2HackRewardTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'X2HackRewardTemplate', Template, TemplateName);
-	Template.AbilitySource=EHASS_Hacker;
-	Template.ApplyHackRewardFn = ApplyFn;
-
-	return Template;
-}
-
 
 function ApplyNavigatorPerk (XComGameState NewGameState, Name AbilityTemplateName, int ApplicationChance, ApplicationRulesType ApplicationRules, bool ApplyToPrimaryWeapon, optional array<name> ApplicationTargets)
 {
@@ -332,7 +103,7 @@ function ApplyNavigatorPerk (XComGameState NewGameState, Name AbilityTemplateNam
 	}
 }
 
-function ApplyResistanceBroadcast_LW_1 (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
+static function ApplyResistanceBroadcast_LW_1 (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
 {
     local StateObjectReference NewUnitRef;
     local XComGameState_WorldRegion RegionState;
@@ -354,7 +125,7 @@ function ApplyResistanceBroadcast_LW_1 (XComGameState_Unit Hacker, XComGameState
 
 }
 
-function ApplyResistanceBroadcast_LW_2 (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
+static function ApplyResistanceBroadcast_LW_2 (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
 {
     local StateObjectReference NewUnitRef;
     local XComGameState_WorldRegion RegionState;
@@ -393,7 +164,7 @@ static function X2HackRewardTemplate CreateHackLootTableReward (name TemplateNam
 	return Template;
 }
 
-function ApplyPCSDropsBasic (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
+static function ApplyPCSDropsBasic (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
 {
 	local array<name> Loots;
 	local X2LootTableManager LootTableManager;
@@ -417,7 +188,7 @@ function ApplyPCSDropsBasic (XComGameState_Unit Hacker, XComGameState_BaseObject
 	}
 }
 
-function ApplyPCSDropsRare (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
+static function ApplyPCSDropsRare (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
 {
 	local array<name> Loots;
 	local X2LootTableManager LootTableManager;
@@ -441,7 +212,7 @@ function ApplyPCSDropsRare (XComGameState_Unit Hacker, XComGameState_BaseObject 
 	}
 }
 
-function ApplyPCSDropsEpic (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
+static function ApplyPCSDropsEpic (XComGameState_Unit Hacker, XComGameState_BaseObject HackTarget, XComGameState NewGameState)
 {
 	local array<name> Loots;
 	local X2LootTableManager LootTableManager;
