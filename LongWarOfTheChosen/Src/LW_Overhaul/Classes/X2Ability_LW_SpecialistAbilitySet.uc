@@ -19,13 +19,14 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddFullOverride());
 	Templates.AddItem(FinalizeFullOverride());
 	Templates.AddItem(CancelFullOverride());
-	//Templates.AddItem(AddHackRewardControlRobot_Mission()); Replaced with Greater Shutdown, commented out but not removed in case of reversal
+	//Templates.AddItem(AddHackRewardControlRobot_Mission()); 
+	//Replaced with Greater Shutdown, commented out but not removed in case of reversal
 	Templates.AddItem(AddHackRewardControlRobot_Permanent());
 	Templates.AddItem(AddFailsafe());
 	//Templates.AddItem(AddCorpsman());
 	Templates.AddItem(AddRescueProtocol());
-	Templates.AddItem(HackRewardGreaterShutdownRobot());
-	Templates.AddItem(HackRewardGreaterShutdownTurret());
+	Templates.AddItem(AddHackRewardGreaterShutdownRobot());
+	Templates.AddItem(AddHackRewardGreaterShutdownTurret());
 
 	
 	return Templates;
@@ -279,21 +280,21 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Mission()
 	RemoveEffects.EffectNamesToRemove.AddItem('HackRewardBuffEnemy0');
 	RemoveEffects.EffectNamesToRemove.AddItem('HackRewardBuffEnemy1');
 	Template.AddTargetEffect(RemoveEffects);
-
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.bSkipFireAction = true;
 	Template.bShowActivation = true;
 
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	
 	return Template;
 }
 
-static function X2AbilityTemplate HackRewardGreaterShutdownRobot()
+static function X2AbilityTemplate AddHackRewardGreaterShutdownRobot()
 {
 	return HackRewardShutdownRobotOrTurret(false, 'HackRewardGreaterShutdownRobot');
 }
 
-static function X2AbilityTemplate HackRewardGreaterShutdownTurret()
+static function X2AbilityTemplate AddHackRewardGreaterShutdownTurret()
 {
 	return HackRewardShutdownRobotOrTurret(true, 'HackRewardGreaterShutdownTurret');
 }
@@ -324,8 +325,10 @@ static function X2AbilityTemplate HackRewardShutdownRobotOrTurret( bool bTurret,
 	StunEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.RoboticStunnedFriendlyName, class'X2StatusEffects'.default.RoboticStunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
 	if( bTurret )
 	{
-		StunEffect.CustomIdleOverrideAnim = ''; // Clearing this prevents the anim tree controller from being locked down.  
-	}											// Then the idle anim state machine can properly update the stunned anims.
+		// Clearing this prevents the anim tree controller from being locked down.
+		// Then the idle anim state machine can properly update the stunned anims.
+		StunEffect.CustomIdleOverrideAnim = '';   
+	}
 	Template.AddTargetEffect(StunEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -377,7 +380,6 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Permanent()
 	Effect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), "img:///UILibrary_PerkIcons.UIPerk_hack_reward", true,,Template.AbilitySourceName);
 	Effect.bRemoveWhenTargetDies = true;
 	Effect.bUseSourcePlayerState = true;
-	Effect.bPersistThroughTacticalGameEnd=true;
 	Template.AddTargetEffect(Effect);
 
 	Buff = new class'X2Effect_PersistentStatChange';
@@ -397,10 +399,12 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Permanent()
 	Template.AddTargetEffect(class'X2StatusEffects'.static.CreateMindControlRemoveEffects());
 	Template.AddTargetEffect(class'X2StatusEffects'.static.CreateStunRecoverEffect());
 
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.bSkipFireAction = true;
 	Template.bShowActivation = true;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
 
 	return Template;
 }
