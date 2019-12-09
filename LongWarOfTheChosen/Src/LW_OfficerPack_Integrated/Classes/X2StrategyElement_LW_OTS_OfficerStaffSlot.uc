@@ -108,7 +108,7 @@ static function X2DataTemplate CreateOTS_OfficerTrainingSecondSlotUpgradeTemplat
 
 static function OTS_LWOfficerTrainingUpgradeAdded(XComGameState NewGameState, XComGameState_FacilityUpgrade Upgrade, XComGameState_FacilityXCom Facility)
 {
-	Facility.PowerOutput += Upgrade.GetMyTemplate().iPower;
+	//Facility.PowerOutput += Upgrade.GetMyTemplate().iPower;
 	Facility.UpkeepCost += Upgrade.GetMyTemplate().UpkeepCost;
 	Facility.UnlockStaffSlot(NewGameState);
 }
