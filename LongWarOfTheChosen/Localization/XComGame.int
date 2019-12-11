@@ -4440,7 +4440,7 @@ PreMissionText="The aliens deploy a stronger and deadlier Faceless unit."
 PostMissionSuccessText="Dark Event Countered: Greater Faceless"
 PostMissionFailureText="Failed to Counter Dark Event: Greater Faceless"
 
-[DarkEventAbility_GreaterFaceless X2AbilityTemplate]
+[DarkEventAbility_GreaterFacelessStatImprovements X2AbilityTemplate]
 LocFriendlyName="Dark Event: Greater Faceless"
 LocLongDescription="The aliens deploy a stronger and deadlier Faceless unit."
 

@@ -47,7 +47,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	DarkEvents.AddItem(CreateTacticalUpgradesShadowstepTemplate());
 	DarkEvents.AddItem(CreateTacticalUpgradesDamageControlTemplate());
 	DarkEvents.AddItem(CreateTacticalUpgradesHardTargetTemplate());
-	DarkEvents.AddItem(CreateGreaterFacelessDarkEventTemplte());
+	DarkEvents.AddItem(CreateGreaterFacelessDarkEventTemplate());
 	
 	//DarkEvents.AddItem(CreateTacticalUpgradesMutonEngineersTemplate()); Disabled for now
 
@@ -590,7 +590,7 @@ static function X2DataTemplate CreateTacticalUpgradesHardTargetTemplate()
 	return Template;
 }
 
-static function X2DataTemplate CreateGreaterFacelessDarkEventTemplte()
+static function X2DataTemplate CreateGreaterFacelessDarkEventTemplate()
 {
 	local X2DarkEventTemplate Template;
 
