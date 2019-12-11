@@ -1,0 +1,5 @@
+[Distraction_LW X2AbilityTemplate]
+LocFriendlyName="Distraction"
+LocLongDescription="The Claymore disorients non-robotic enemies when it explodes."
+LocHelpText="The Claymore disorients non-robotic enemies when it explodes."
+LocPromotionPopupText="<Bullet/> Adds a disorient effect that applies to all organic units caught in the explosion.<br/>"
