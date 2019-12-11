@@ -13,6 +13,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'ThrowDistraction':
 		PatchClaymoreTargeting(Template);
 		break;
+	case 'HomingMineDetonation':
+		AddDistractionToHomingMine(Template);
+		break;
 	}
 }
 
@@ -35,6 +38,20 @@ static function PatchClaymoreTargeting(X2AbilityTemplate Template)
 		'Bombard_LW',
 		`TILESTOMETERS(class'X2Ability_LW_GrenadierAbilitySet'.default.BOMBARD_BONUS_RANGE_TILES));
 	Template.AbilityTargetStyle = NewClaymoreTarget;
+}
+
+// Allow Distraction to add the disorient effect to homing mines, not just
+// Claymores.
+static function AddDistractionToHomingMine(X2AbilityTemplate Template)
+{
+	local X2Effect_PersistentStatChange DisorientedEffect;
+	local X2Condition_AbilityProperty DistractionCondition;
+
+	DistractionCondition = new class'X2Condition_AbilityProperty';
+	DistractionCondition.OwnerHasSoldierAbilities.AddItem('Distraction_LW');
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
+	DisorientedEffect.TargetConditions.AddItem(DistractionCondition);
+	Template.AddMultiTargetEffect(DisorientedEffect);
 }
 
 defaultproperties
