@@ -3314,3 +3314,104 @@ exec function LWForceSquadPostMissionCleanup(string SquadName)
 		`LWSQUADMGR.RemoveSquadByRef(SquadState.GetReference());
 	}
 }
+
+// Rebuild ability tree and XCOM abilities for the soldier selected
+// in the armory.
+exec function RespecSelectedSoldier()
+{
+	local UIArmory							Armory;
+	local StateObjectReference				UnitRef;
+	local XComGameState_Unit				UnitState;
+	
+	Armory = UIArmory(`SCREENSTACK.GetFirstInstanceOf(class'UIArmory'));
+	if (Armory == none)
+	{
+		class'Helpers'.static.OutputMsg("No unit selected - cannot respec soldier");
+		return;
+	}
+
+	UnitRef = Armory.GetUnitRef();
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitRef.ObjectID));
+	if (UnitState == none)
+	{
+		class'Helpers'.static.OutputMsg("No unit selected - cannot respec soldier");
+		return;
+	}
+
+	RespecSoldier(UnitState);
+	Armory.PopulateData();
+}
+
+exec function RespecAllSoldiers()
+{
+	local XComGameState_HeadquartersXCom	XComHQ;
+	local XComGameState_Unit				UnitState;
+	local array<XComGameState_Unit>			Soldiers;
+
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	Soldiers = XComHQ.GetSoldiers();
+	foreach Soldiers(UnitState)
+	{
+		RespecSoldier(UnitState);
+	}
+}
+
+static function RespecSoldier(XComGameState_Unit UnitState)
+{
+	local XComGameStateHistory				History;
+	local XComGameState						NewGameState;
+	local XComGameState_HeadquartersXCom	XComHQ;
+	local name								ClassName;
+	local int								i, NumRanks, iXP;
+
+	History = `XCOMHISTORY;
+
+	ClassName = UnitState.GetSoldierClassTemplateName();
+	NumRanks = UnitState.GetRank();
+
+	iXP = UnitState.GetXPValue();
+	iXP -= class'X2ExperienceConfig'.static.GetRequiredXp(NumRanks);
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Respec Soldier");
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+	
+	if (ClassName == 'Random' || ClassName == 'Rookie')
+	{
+		ClassName = XComHQ.SelectNextSoldierClass();
+	}
+
+	UnitState.AbilityPoints = 0; // Reset Ability Points
+	UnitState.SpentAbilityPoints = 0; // And reset the spent AP tracker
+	UnitState.ResetSoldierRank(); // Clear their rank
+	UnitState.ResetSoldierAbilities(); // Clear their current abilities
+	for (i = 0; i < NumRanks; ++i) // Rank soldier back up to previous level
+	{
+		UnitState.RankUpSoldier(NewGameState, ClassName);
+	}
+	UnitState.ApplySquaddieLoadout(NewGameState, XComHQ);
+
+	// Reapply Stat Modifiers (Beta Strike HP, etc.)
+	UnitState.bEverAppliedFirstTimeStatModifiers = false;
+	if (UnitState.GetMyTemplate().OnStatAssignmentCompleteFn != none)
+	{
+		UnitState.GetMyTemplate().OnStatAssignmentCompleteFn(UnitState);
+	}
+	UnitState.ApplyFirstTimeStatModifiers();
+
+	// Restore any partial XP the soldier had
+	if (iXP > 0)
+	{
+		UnitState.AddXp(iXP);
+	}
+
+	if (NewGameState.GetNumGameStateObjects() > 0)
+	{
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
+}
