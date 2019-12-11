@@ -62,7 +62,8 @@ static function EventListenerReturn OnGetItemRange(
 		return ELR_NoInterrupt;
 
 	// make sure the weapon is either a grenade or a grenade launcher
-	if (X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none || WeaponTemplate.DataName == 'Battlescanner')
+	if (X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none ||
+		WeaponTemplate.DataName == 'Battlescanner')
 	{
 		OverrideTuple.Data[1].i = class'X2Ability_LW_GrenadierAbilitySet'.default.BOMBARD_BONUS_RANGE_TILES;
 	}

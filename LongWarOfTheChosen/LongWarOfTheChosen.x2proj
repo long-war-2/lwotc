@@ -1120,6 +1120,10 @@
     <Content Include="Content\BaseGameMissionAssets\SupplyExtraction_TempAssets.upk" />
     <Content Include="Src\LWUtilities\Classes\LWTemplateMods_Utilities.uc" />
     <Content Include="Src\LWUtilities\Classes\X2LWTemplateModTemplate.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2LWFactionTemplateMods.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2LWModTemplate_FactionAbilities.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2LWModTemplate_FactionItems.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2AbilityTarget_Cursor_LW.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
