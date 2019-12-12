@@ -351,3 +351,16 @@ static function X2Effect_PersistentStatChange CreateHackDefenseReductionStatusEf
 
 	return HackDefenseReductionEffect;
 }
+
+// Recursively prints all visualization actions in the tree that is rooted
+// at the given action. `iLayer` is the starting tree depth to start at.
+static function PrintActionRecursive(X2Action Action, int iLayer)
+{
+    local X2Action ChildAction;
+
+    `LOG("Action layer: " @ iLayer @ ": " @ Action.Class.Name,, 'LWOTC'); 
+    foreach Action.ChildActions(ChildAction)
+    {
+        PrintActionRecursive(ChildAction, iLayer + 1);
+    }
+}
