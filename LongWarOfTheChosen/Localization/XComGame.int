@@ -5057,3 +5057,28 @@ LocFriendlyName="Advanced Teamwork"
 LocHelpText="Grant an additional action point to a bondmate. Has one or two charges per mission depending on bond level, shared between bondmates."
 LocLongDescription="Grant an additional action point to a bondmate. Has one or two charges per mission depending on bond level, shared between bondmates."
 ; End Translation
+
+; LWOTC Needs Translation
+[BloodTrail X2AbilityTemplate]
+LocFriendlyName="Blood Trail"
+LocLongDescription="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage if the target has been wounded this turn. Also applies a non-stacking bleeding effect."
+LocHelpText="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage if the target has been wounded this turn. Also applies a non-stacking bleeding effect."
+LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> The bleeding effect does 1 point of damage for the next two turns.<br/><Bullet/> Subsequent shots just refresh the bleeding duration to 2 turns.<br/>"
+
+[RemoteStart X2AbilityTemplate]
+LocFriendlyName="Remote Start"
+LocLongDescription="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the Reaper."
+LocHelpText="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the Reaper."
+LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zone!<br/><Bullet/> Remote Start requires <Ability:SelfAmmoCost/> ammo point, and has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+
+[Hero_Tracking X2AbilityTemplate]
+LocFriendlyName="Tracking"
+LocLongDescription="You detect nearby units even without line of sight."
+LocHelpText="You detect nearby units even without line of sight."
+LocFlyOverText="Tracking"
+LocPromotionPopupText="<Bullet/> Tracking allows the unit to detect units that are behind walls and other line-of-sight blockers.<br/><Bullet/> Tracking detects enemies up to very slightly outside normal visual range.<br/><Bullet/> Detected units will appear as a visual outline.<br/><Bullet/> Units will remain detected until the end of the player's turn. If they are outside Tracking's range at that point, they will count as no longer detected.<br/>"
+
+[Hero_TrackingTrigger X2AbilityTemplate]
+LocFriendlyName="Tracking"
+LocFlyOverText="Tracking"
+; End Translation

@@ -1,9 +1,9 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    X2LWModTemplate_FactionAbilities.uc
+//  FILE:    X2LWModTemplate_ReaperAbilities.uc
 //  AUTHOR:  Peter Ledbrook
-//  PURPOSE: Modifies existing ability templates related to faction soldiers.
+//  PURPOSE: Modifies existing ability templates related to Reaper soldiers.
 //---------------------------------------------------------------------------------------
-class X2LWModTemplate_FactionAbilities extends X2LWTemplateModTemplate;
+class X2LWModTemplate_ReaperAbilities extends X2LWTemplateModTemplate config(LW_FactionBalance);
 
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
@@ -15,6 +15,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	case 'HomingMineDetonation':
 		AddDistractionToHomingMine(Template);
+		break;
+	case 'BloodTrail':
+		AddBleedingToBloodTrail(Template);
 		break;
 	}
 }
@@ -36,7 +39,7 @@ static function PatchClaymoreTargeting(X2AbilityTemplate Template)
 	// the Bombardier ability.
 	NewClaymoreTarget.AddAbilityRangeModifier(
 		'Bombard_LW',
-		`TILESTOMETERS(class'X2Ability_LW_GrenadierAbilitySet'.default.BOMBARD_BONUS_RANGE_TILES));
+		`TILESTOMETERS(class'X2Ability_PerkPackAbilitySet'.default.BOMBARD_BONUS_RANGE_TILES));
 	Template.AbilityTargetStyle = NewClaymoreTarget;
 }
 
@@ -52,6 +55,12 @@ static function AddDistractionToHomingMine(X2AbilityTemplate Template)
 	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
 	DisorientedEffect.TargetConditions.AddItem(DistractionCondition);
 	Template.AddMultiTargetEffect(DisorientedEffect);
+}
+
+static function AddBleedingToBloodTrail(X2AbilityTemplate Template)
+{
+	Template.AddTargetEffect(new class'X2Effect_BloodTrailBleeding');
+	Template.AdditionalAbilities.AddItem('ApplyBloodTrailBleeding');
 }
 
 defaultproperties

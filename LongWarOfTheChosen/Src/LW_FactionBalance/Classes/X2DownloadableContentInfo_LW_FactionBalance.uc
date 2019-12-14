@@ -250,30 +250,6 @@ static function UpdateSkirmisherVengeance()
 	}
 }
 
-static function bool AbilityTagExpandHandler(string InString, out string OutString)
-{
-	local name Type;
-
-	Type = name(InString);
-	switch(Type)
-	{
-		case 'FOCUS4MOBILITY':
-			OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS4MOBILITY);
-			return true;
-		case 'FOCUS4DODGE':
-			OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS4DODGE);
-			return true;
-		case 'FOCUS4RENDDAMAGE':
-			OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS4RENDDAMAGE);
-			return true;
-		case 'STUNSTRIKE_STUN_CHANCE':
-			OutString = string(default.STUNSTRIKE_STUN_CHANCE);
-			return true;
-	}
-	return false;
-}
-
-
 static function UpdatePillar()
 {
 	local X2AbilityTemplateManager		AbilityManager;
@@ -385,6 +361,7 @@ static function UpdateCICA()
 	local X2StrategyElementTemplateManager SETMgr;
 	local array<X2DataTemplate> Templates;
 	local X2DataTemplate Template;
+
 	SETMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 
 	SETMgr.FindDataTemplateAllDifficulties('CovertActionImproveComIntStaffSlot', Templates);
@@ -422,3 +399,32 @@ static event OnLoadedSavedGame()
 static event InstallNewCampaign(XComGameState StartState)
 {}
 
+static function bool AbilityTagExpandHandler(string InString, out string OutString)
+{
+	local name Type;
+
+	Type = name(InString);
+	switch(Type)
+	{
+	case 'FOCUS4MOBILITY':
+		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS4MOBILITY);
+		return true;
+	case 'FOCUS4DODGE':
+		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS4DODGE);
+		return true;
+	case 'FOCUS4RENDDAMAGE':
+		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS4RENDDAMAGE);
+		return true;
+	case 'STUNSTRIKE_STUN_CHANCE':
+		OutString = string(default.STUNSTRIKE_STUN_CHANCE);
+		return true;
+	case 'DisablingShotStunActions':
+		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.DisablingShotBaseStunActions);
+		return true;
+	case 'DisablingShotCritStunActions':
+		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.DisablingShotCritStunActions);
+		return true;
+	}
+
+	return false;
+}

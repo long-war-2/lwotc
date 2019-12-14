@@ -78,6 +78,8 @@
     <Folder Include="Src\LW_FactionBalance\" />
     <Folder Include="Src\WallClimbOverride\Classes\" />
     <Folder Include="Content\BaseGameMissionAssets\" />
+    <Folder Include="Src\XModBase_Core_2_0_1\" />
+    <Folder Include="Src\XModBase_Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -1065,7 +1067,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2LWCovertActionsModTemplate.uc" />
     <Content Include="Config\XComAcademyUnlocks.ini" />
     <Content Include="Config\XComLW_FactionBalance.ini" />
-    <Content Include="Content\UICollection_SupremeFocus.upk" />
     <Content Include="Src\LW_FactionBalance\Classes\X2AbilityCooldown_Grapple.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Ability_Parkour.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2DownloadableContentInfo_LW_FactionBalance.uc" />
@@ -1121,13 +1122,28 @@
     <Content Include="Content\BaseGameMissionAssets\SupplyExtraction_TempAssets.upk" />
     <Content Include="Src\LWUtilities\Classes\LWTemplateMods_Utilities.uc" />
     <Content Include="Src\LWUtilities\Classes\X2LWTemplateModTemplate.uc" />
+    <Content Include="Content\LW_FactionBalance\HeroClassesReb.upk" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Ability_ReaperAbilitySet_LW.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\XMBEffect_RevealUnit.uc" />
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityCost_ActionPoints.uc" />
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityMultiTarget_Radius.uc" />
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityTag.uc" />
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityToHitCalc_StandardAim.uc" />
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBConfig.uc" />
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBDownloadableContentInfo_XModBase.uc" />
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBTargetingMethod_Grenade.uc" />
+    <Content Include="Src\XModBase_Interfaces\Classes\XMBEffectInterface.uc" />
+    <Content Include="Src\XModBase_Interfaces\Classes\XMBOverrideInterface.uc" />
+    <Content Include="Content\LW_FactionBalance\UICollection_SupremeFocus.upk" />
     <Content Include="Src\LW_FactionBalance\Classes\X2LWFactionTemplateMods.uc" />
-    <Content Include="Src\LW_FactionBalance\Classes\X2LWModTemplate_FactionAbilities.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2LWModTemplate_FactionItems.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2AbilityTarget_Cursor_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ClaymoreDistraction.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XComGameState_Effect_AbilityTrigger.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_BloodTrailBleeding.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DisablingShotStunned.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_CritRemoval.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2LWModTemplate_ReaperAbilities.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
