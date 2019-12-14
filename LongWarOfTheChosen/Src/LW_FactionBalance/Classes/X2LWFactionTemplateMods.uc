@@ -11,16 +11,16 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
-	Templates.AddItem(CreateModifyAbilitiesTemplate());
+	Templates.AddItem(CreateModifyReaperAbilitiesTemplate());
 	Templates.AddItem(CreateModifyItemsTemplate());
 	return Templates;
 }
 
-static function X2LWTemplateModTemplate CreateModifyAbilitiesTemplate()
+static function X2LWTemplateModTemplate CreateModifyReaperAbilitiesTemplate()
 {
 	local X2LWTemplateModTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'X2LWModTemplate_FactionAbilities', Template, 'UpdateAbilities');
+	`CREATE_X2TEMPLATE(class'X2LWModTemplate_ReaperAbilities', Template, 'ReaperAbilities');
 	return Template;
 }
 

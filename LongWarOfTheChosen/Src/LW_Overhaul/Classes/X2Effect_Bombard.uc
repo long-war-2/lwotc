@@ -65,7 +65,7 @@ static function EventListenerReturn OnGetItemRange(
 	if (X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none ||
 		WeaponTemplate.DataName == 'Battlescanner')
 	{
-		OverrideTuple.Data[1].i = class'X2Ability_LW_GrenadierAbilitySet'.default.BOMBARD_BONUS_RANGE_TILES;
+		OverrideTuple.Data[1].i = class'X2Ability_PerkPackAbilitySet'.default.BOMBARD_BONUS_RANGE_TILES;
 	}
 
 	return ELR_NoInterrupt;

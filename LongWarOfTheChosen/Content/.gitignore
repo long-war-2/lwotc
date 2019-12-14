@@ -4,6 +4,7 @@
 *.webm
 *.bk2
 /*/*.txt
+!/LW_FactionBalance/*
 !/BaseGameMissionAssets/README.txt
 !/Missions/*
 !/Parcels/*
