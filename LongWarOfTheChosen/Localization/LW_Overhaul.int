@@ -578,7 +578,9 @@ m_strLiberatedCityPrefix="Free"
 [XComGameState_LWOutPost]
 m_strProhibitedJobAlert="Because of an ADVENT raid, Resistance members cannot be assigned to the <XGParam:StrValue0/> job for <XGParam:IntValue0/> days in <XGParam:StrValue1/>. All Resistance personnel on that job have gone into hiding."
 m_strProhibitedJobEnded="Resistance members in <XGParam:StrValue0/> assigned to the <XGParam:StrValue1/> job will now be productive again."
-
+;LWOTC needs translation
+m_strRetributionEnded="Resistance members in <XGParam:StrValue0/> have recovered from one of the Chosen's retributions"
+;End translation
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="Need at least <XGParam:IntValue0/> rebels in Haven to make contact with neighbors"
 

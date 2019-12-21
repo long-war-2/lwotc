@@ -2358,11 +2358,11 @@ ObjectiveTextPools[2]="Rescue as many rebel leaders as possible"
 
 [XComGame.UIMission_Retaliation]
 [UIMission_Retaliation]
-m_strRetaliationDesc=ADVENT is attacking one of the Resistance Havens in <XGParam:StrValue0/!WorldRegionName/>! We'll need to respond quickly to prevent Resistance casualties!
+m_strRetaliationDesc="ADVENT is attacking one of the Resistance Havens in <XGParam:StrValue0/!WorldRegionName/>! We'll need to respond quickly to prevent Resistance casualties!"
 
 [XComGame.UIMission_SupplyRaid]
 [UIMission_SupplyRaid]
-m_strRaidDesc=ADVENT is moving forces into <XGParam:StrValue0/!WorldRegionName/>. We can strike their supply lines and force them to retreat!
+m_strRaidDesc="ADVENT is moving forces into <XGParam:StrValue0/!WorldRegionName/>. We can strike their supply lines and force them to retreat!"
 
 [RecoverItem_LW X2MissionTemplate]
 DisplayName="Recover Item from ADVENT Vault"
@@ -4774,7 +4774,7 @@ LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field p
 
 [SoulSteal X2AbilityTemplate]
 LocLongDescription="Soulfire transfers half of the damage done back to the Psi Operative as health or grants an ablative HP if you are uninjured."
-LocHelpText="Soulfire heals a wounded operative or grants an ablative HP.
+LocHelpText="Soulfire heals a wounded operative or grants an ablative HP."
 LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 1 ablative hit point for a healthy one.<br/><Bullet/> An operative may increase to no more than 8 ablative HP when using Soul Steal."
 
 [CoveringFire X2AbilityTemplate]
@@ -4802,7 +4802,7 @@ LocFriendlyName="Solace"
 LocFlyOverText="Solace"
 LocLongDescription="The Psi Operative may immediately extinguish mental impairments for a squadmate."
 LocHelpText="The Psi Operative may immediately extinguish mental impairments for a squadmate."
-LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>
+LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>"
 
 [QuickStudy X2AbilityTemplate]
 LocFriendlyName="Quick Study"
@@ -4826,7 +4826,7 @@ LocFriendlyName="Rescue Protocol"
 LocFlyoverText="Rescue Protocol"
 LocLongDescription="Use your Gremlin to grant a movement action to an ally."
 LocHelpText="Grant a movement action to an ally."
-LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/>An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>
+LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/>An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
 
 [AssaultRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> The Plasma Rifle is a general purpose, supremely powerful primary infantry weapons system.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n<Bullet/> Use upgrades looted from enemies to improve the Plasma Rifle's tactical effectiveness.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
@@ -5019,4 +5019,45 @@ LocLongDescription="Grant an additional movement point to a bondmate. Has a sing
 LocFriendlyName="Advanced Teamwork"
 LocHelpText="Grant an additional action point to a bondmate. Has one or two charges per mission depending on bond level, shared between bondmates."
 LocLongDescription="Grant an additional action point to a bondmate. Has one or two charges per mission depending on bond level, shared between bondmates."
+
+
+[Yoink X2AbilityTemplate]
+LocFriendlyName="Yoink"
+LocLongDescription="Teleport next to the enemy."
+LocHelpText="Teleport next to the enemy."
+LocFlyOverText="Yoink"
+
+[AmmoDump X2AbilityTemplate]
+LocFriendlyName="Sabotage Weapon"
+LocHelpText="Disables a weapon, dumping the ammo."
+LocLongDescription="Disables a weapon, dumping the ammo."
+LocFlyOverText="Sabotage Weapon"
+
+[ShieldAlly X2AbilityTemplate]
+LocFriendlyName="The Warlocks Greatest Champion"
+LocHelpText="Adds Shield to an Ally."
+LocLongDescription="Adds Shield to an Ally."
+LocFlyOverText="The Warlocks Greatest Champion"
+
+[DetonateMindshield X2AbilityTemplate]
+LocFriendlyName="Overwhelm Mindshield"
+LocHelpText="Powers through a Mindshield."
+LocLongDescription="Powers through a Mindshield."
+LocFlyOverText="Overwhelm Mindshield"
+
+[ChosenImmuneMelee X2AbilityTemplate]
+LocFriendlyName="Meele Resistance"
+LocLongDescription="Takes 50% less damage from meele."
+LocHelpText="Takes 50% less damage from meele."
+
+[BlastShield X2AbilityTemplate]
+LocFriendlyName="Blast Shield"
+LocLongDescription="Takes 50% less damage from Explosions."
+LocHelpText="Takes 50% less damage from Explosions."
+
+[TraitResilience X2AbilityTemplate]
+LocFriendlyName="Balanced"
+LocHelpText="Near immune to critical Hits."
+LocLongDescription="This Chosen is near immune to critical Hits."
+
 ; End Translation

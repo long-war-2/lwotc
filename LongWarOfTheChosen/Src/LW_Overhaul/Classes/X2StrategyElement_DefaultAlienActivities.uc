@@ -1777,36 +1777,36 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 	local name OldTacticalTag, NewTacticalTag;
 	local XComGameStateContext_ChangeContainer ChangeContainer;
 	local XComGameState NewGameState;
- switch(CurrentForceLevel)
-{	//All Forcelevel Threshholds for the Chosen, they increase the level accordingly
-	case 8:;case 13:;case 17:;
+ 	switch(CurrentForceLevel)
+	{	//All Forcelevel Threshholds for the Chosen, they increase the level accordingly
+		case 8:;case 13:;case 17:;
 
-	History = `XCOMHISTORY;
+		History = `XCOMHISTORY;
 
-	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	AllChosen = AlienHQ.GetAllChosen();
+		AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+		AllChosen = AlienHQ.GetAllChosen();
 
-	ChangeContainer = class'XComGameStateContext_ChangeContainer'.static.CreateEmptyChangeContainer("Creating Alien Customization Component");
-	NewGameState = History.CreateNewGameState(true, ChangeContainer);
+		ChangeContainer = class'XComGameStateContext_ChangeContainer'.static.CreateEmptyChangeContainer("Creating Alien Customization Component");
+		NewGameState = History.CreateNewGameState(true, ChangeContainer);
 
-	foreach AllChosen(ChosenState)
-	{
-		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-		Chosenstate.Level++;
-		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-		if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+		foreach AllChosen(ChosenState)
 		{
-			ChosenState.bJustLeveledUp = true;
+			OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			Chosenstate.Level++;
+			NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+			{
+				ChosenState.bJustLeveledUp = true;
+			}
+			// Replace Old Tag with new Tag in missions
+			ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+			
 		}
-		// Replace Old Tag with new Tag in missions
-		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
 		`GAMERULES.SubmitGameState(NewGameState);
+		break;
+		default:;
+		break;
 	}
-
-	break;
-	default:;
-	break;
-}
 }
 static function name RescueReward(bool IncludeRebel, bool IncludePrisoner)
 {

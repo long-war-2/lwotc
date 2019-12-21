@@ -41,6 +41,7 @@ struct PlotObjectiveMod
 var config array<ArchetypeToHealth> DestructibleActorHealthOverride;
 var config array<bool> DISABLE_REINFORCEMENT_FLARES;
 var config array<float> SOUND_RANGE_DIFFICULTY_MODIFIER;
+var config int CHOSEN_RETRIBUTION_DURATION;
 
 struct SocketReplacementInfo
 {
@@ -123,6 +124,7 @@ static event OnPostTemplatesCreated()
 	UpdateWeaponAttachmentsForCoilgun();
 	UpdateFirstMissionTemplate();
 	AddObjectivesToParcels();
+	//Is this the right place to do it? I think so, for now
 	UpdateChosenActivities();
 }
 
@@ -139,6 +141,7 @@ static event OnLoadedSavedGameToStrategy()
 	local string TemplateString, NewTemplateString;
 	local name TemplateName;
 	local bool bAnyClassNameChanged;
+	local int Forcelevel,ChosenLevel;
 	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameState_HeadquartersResistance ResistanceHQ;
 	local XComGameState_HeadquartersAlien AlienHQ;
@@ -148,7 +151,10 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_LWOutpost OutpostState;
 	local XComGameState_LWToolboxOptions ToolboxOptions;
-
+	local array<XComGameState_AdventChosen> AllChosen;
+	local name OldTacticalTag, NewTacticalTag;
+	local XComGameState_AdventChosen ChosenState;
+	
 	// TODO: Remove these post 1.0 - START
 
 	// LWOTC beta 2: Remove the 'OnMonthlyReportAlert' listener as it's no
@@ -269,6 +275,33 @@ static event OnLoadedSavedGameToStrategy()
 			OutpostState.UpdateRebelAbilities(NewGameState);
 		}
 	}
+
+	//Make sure the chosen are of appropriate level
+	Forcelevel=AlienHQ.GetForceLevel();
+	AllChosen = AlienHQ.GetAllChosen();
+	ChosenLevel=0;
+	if(Forcelevel<8)
+	ChosenLevel=1;
+	else if(Forcelevel<13)
+	ChosenLevel=2;
+	else if(Forcelevel<17)
+	ChosenLevel=3;
+	else
+	ChosenLevel=4;
+
+	foreach AllChosen(ChosenState)
+		{
+			OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			Chosenstate.Level=ChosenLevel;
+			NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+			{
+				ChosenState.bJustLeveledUp = true;
+			}
+			// Replace Old Tag with new Tag in missions
+			ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+			
+		}
 
 	if (NewGameState.GetNumGameStateObjects() > 0)
 		History.AddGameStateToHistory(NewGameState);
@@ -3409,6 +3442,8 @@ exec function LWForceSquadPostMissionCleanup(string SquadName)
 static function UpdateChosenActivities()
 {
 	UpdateTraining();
+	UpdateRetribution();
+
 }
 static function UpdateTraining()
 {
@@ -3451,39 +3486,29 @@ static function ActivateTraining(XComGameState NewGameState, StateObjectReferenc
 //---------------------------------------------------------------------------------------
 static function bool TrainingCanBePlayed(StateObjectReference InRef, optional XComGameState NewGameState = none)
 {
-	local XComGameState_AdventChosen ChosenState;
-	local XComGameState_ChosenAction ActionState;
-	local StateObjectReference ActionRef;
-	local bool bCantPlay;
-
-	ChosenState = XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(InRef.ObjectID));
-
-	if(ChosenState == none)
-	{
-		ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(InRef);
-	}
-
-	// Cannot be first action after meeting XCOM
-	if(ChosenState.bMetXCom)
-	{
-		bCantPlay = true;
-
-		foreach ChosenState.PreviousMonthActions(ActionRef)
-		{
-			ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(ActionRef);
-
-			if(ActionState.GetMyTemplateName() != 'ChosenAction_Training')
-			{
-				bCantPlay = false;
-				break;
-			}
-		}
-
-		if(bCantPlay)
-		{
-			return false;
-		}
-	}
- 
 	return true;
+}
+
+	static function UpdateRetribution()
+{
+	local X2ChosenActionTemplate Template;
+	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Retribution'));
+	Template.OnActivatedFn = ActivateTraining;
+	Template.CanBePlayedFn = TrainingCanBePlayed;
+}
+
+static function ActivateRetribution(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
+{
+	local XComGameState_ChosenAction ActionState;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_LWOutpost	Outpost;
+
+	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);
+	RegionState = XComGameState_WorldRegion(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion', ActionState.StoredReference.ObjectID));
+	
+	Outpost = `LWOUTPOSTMGR.GetOutpostForRegion(RegionState);
+	Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', OutPost.ObjectID));
+	NewGameState.AddStateObject(Outpost);
+	OutPost.AddChosenRetribution(default.CHOSEN_RETRIBUTION_DURATION);
 }
