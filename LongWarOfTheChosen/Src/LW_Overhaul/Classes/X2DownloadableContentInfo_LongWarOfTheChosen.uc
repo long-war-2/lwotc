@@ -3501,7 +3501,6 @@ static function ActivateRetribution(XComGameState NewGameState, StateObjectRefer
 {
 	local XComGameState_ChosenAction ActionState;
 	local XComGameState_WorldRegion RegionState;
-	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameState_LWOutpost	Outpost;
 
 	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);

@@ -1992,6 +1992,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('Yoink');
 			Template.Abilities.AddItem('HunterReaction');
 			Template.Abilities.AddItem('ChosenCritImmune');
+			Template.ImmuneTypes.AddItem('Frost');
+
 			break;
 		case 'ChosenWarlock':
 		case 'ChosenWarlockM2':
@@ -2002,6 +2004,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('ShieldAlly_LW');
 			Template.Abilities.AddItem('AmmoDump_LW');
 			Template.Abilities.AddItem('ChosenCritImmune');
+			Template.ImmuneTypes.AddItem('Frost');
 			break;
 		case 'ChosenAssassin':
 		case 'ChosenAssassinM2':
@@ -2009,6 +2012,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'ChosenAssassinM4':
 			Template.Abilities.AddItem('AssassinReaction');
 			Template.Abilities.AddItem('ChosenCritImmune');
+			Template.ImmuneTypes.AddItem('Frost');
 			break;
 		default:
 			break;
@@ -2112,7 +2116,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenShotgun_MG':
 		case 'ChosenShotgun_BM':
 		case 'ChosenShotgun_T4':
-			WeaponTemplate.Abilities.AddItem('Primary_Daze');
+			WeaponTemplate.Abilities.AddItem('Primary_Daze_Passive');
 		break;
 		case 'ChosenSword_CV':
 		case 'ChosenSword_MG':
@@ -2122,7 +2126,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenSniperPistol_MG':
 		case 'ChosenSniperPistol_BM':
 		case 'ChosenSniperPistol_T4':
-			WeaponTemplate.Abilities.AddItem('Secondary_Daze');
+			WeaponTemplate.Abilities.AddItem('Secondary_Daze_Passive');
 		break;
 
 

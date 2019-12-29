@@ -5007,9 +5007,7 @@ LocFriendlyName="Stun Strike"
 LocLongDescription="Strike an enemy with Psionic force strong enough to knock them back in the direction of the attack, stunning them. Costs 1 Focus."
 LocHelpText="Knock an enemy back in the direction of the attack, stunning them. Costs 1 Focus."
 LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike does not end the Templar's turn, but has a <Ability:SelfCooldown/> turn cooldown.<br/>"
-; End Translation
 
-; LWOTC Needs Translation
 [BondmateTeamwork X2AbilityTemplate]
 LocFriendlyName="Teamwork"
 LocHelpText="Grant an additional movement point to a bondmate. Has a single charge shared between bondmates."
@@ -5055,9 +5053,26 @@ LocFriendlyName="Blast Shield"
 LocLongDescription="Takes 50% less damage from Explosions."
 LocHelpText="Takes 50% less damage from Explosions."
 
-[TraitResilience X2AbilityTemplate]
+[ChosenCritImmune X2AbilityTemplate]
 LocFriendlyName="Balanced"
 LocHelpText="Near immune to critical Hits."
 LocLongDescription="This Chosen is near immune to critical Hits."
+
+
+[Primary_Daze_Passive X2AbilityTemplate]
+LocFriendlyName="Primary Daze"
+LocHelpText="Your primary attacks daze."
+LocLongDescription="Your primary attacks daze."
+
+[Secondary_Daze_Passive X2AbilityTemplate]
+LocFriendlyName="Secondary Daze"
+LocHelpText="Your Secondary attacks Heavy daze."
+LocLongDescription="Your Secondary attacks Heavy daze."
+
+[HeavyRevive X2AbilityTemplate]
+LocFriendlyName="Heavy Revive"
+LocHelpText="Remove the Chosen's \"Heavy Dazed\" effect from this soldier. Soldiers may be disoriented when revived."
+LocLongDescription="Remove the Chosen's \"Heavy Dazed\" effect from this soldier. Soldiers may be disoriented when revived."
+LocFlyOverText="Revived!"
 
 ; End Translation

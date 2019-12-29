@@ -473,7 +473,6 @@ static function RemoveAbilityTargetEffect(X2AbilityTemplate Template, name Effec
 static function GiveCooldownToSummonAbility(X2AbilityTemplate Template)
 {
 	local X2AbilityCooldown					Cooldown;
-	local X2Effect TargetCondition;
 
 	//Screw it, I have no idea how to do it cleanly and no other mod touches it anyway
 	Template.AbilityShooterConditions.Remove(3,1);

@@ -12,7 +12,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 {
     local float ExtraDamage;
 
-	ExtraDamage = 0.0;
+	  ExtraDamage = 0.0;
     if(AbilityState.GetMyTemplateName() == 'IronCurtainShot')
     {
 		if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))

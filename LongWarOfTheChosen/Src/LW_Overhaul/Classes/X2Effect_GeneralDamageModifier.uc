@@ -6,8 +6,8 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 {
     local float ExtraDamage;
 
-	ExtraDamage = 0.0;
-    if(AbilityState.GetMyTemplateName() == AbilityTemplate||AbilityState.GetMyTemplateName() == 'AllAbilities')
+	  ExtraDamage = 0.0;
+    if(AbilityState.GetMyTemplateName() == AbilityTemplate || AbilityTemplate == 'AllAbilities')
     {
 		if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
 		{

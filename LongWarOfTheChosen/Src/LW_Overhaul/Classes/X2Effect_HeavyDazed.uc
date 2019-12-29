@@ -1,7 +1,7 @@
 class X2Effect_Heavydazed extends X2Effect_Stunned
 	config(GameData_SoldierSkills);
 
-var config array<name> DAZE_REMOVE_EFFECTS_TARGET;
+var config array<name> HEAVY_DAZE_REMOVE_EFFECTS_TARGET;
 
 static function X2Effect CreateDazedRemoveEffects()
 {
@@ -78,7 +78,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 	EventMan = `XEVENTMGR;
 
 	EffectObj = EffectGameState;
-	EventMan.RegisterForEvent(EffectObj, 'UnitDazed', class'XComGameState_Effect'.static.AffectedByDaze_Listener, ELD_OnStateSubmitted, , UnitState);
+	EventMan.RegisterForEvent(EffectObj, 'UnitDazed', class'X2Ability_LW_ChosenAbilities'.static.AffectedByHeavyDaze_Listener, ELD_OnStateSubmitted, , UnitState);
 }
 
 defaultproperties

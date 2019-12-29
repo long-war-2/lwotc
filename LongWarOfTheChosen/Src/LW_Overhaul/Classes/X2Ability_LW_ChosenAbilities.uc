@@ -21,19 +21,24 @@ var private name ExtractKnowledgeMarkSourceEffectName, ExtractKnowledgeMarkTarge
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
-	`Log("LW_ChosenAbilities.CreateTemplates --------------------------------");
+	`Log("LW_ChosenAbilities.CreateTemplates --------------------------------");	
 	Templates.AddItem(CreateWarlockReaction());
 	Templates.AddItem(CreateAssassinReaction());
 	Templates.AddItem(CreateHunterReaction());
 	Templates.AddItem(CreateAmmoDump());
 	Templates.AddItem(CreateShieldAlly());
+	Templates.AddItem(CreateTraitResilience());
 	Templates.AddItem(CreateDetonateMindshield());
 	Templates.AddItem(CreateYoinkTeleportAbility());
+	Templates.AddItem(CreateChosenExtractKnowledgeYoink());
 	//Primary weapons like shotgun and rifle daze, secondary like pistols and katana heavy daze while giving a big negative damage modifier
+	Templates.AddItem(CreatePrimaryDaze_Passive());
+	Templates.AddItem(CreateSecondaryDaze_Passive());
 	Templates.AddItem(CreatePrimaryDaze());
 	Templates.AddItem(CreateSecondaryDaze());
 	//Revive that corresponds the heavy daze, different ability to make it cost an action point
 	Templates.AddItem(CreateHeavyRevive());
+	
 	
 	return Templates;
 }
@@ -46,7 +51,7 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	local X2Effect_GrantActionPoints AddAPEffect;
 	local array<name> SkipExclusions;
 	local X2Condition_UnitProperty UnitPropertyCondition;
-
+	local X2Condition_NotitsOwnTurn TurnCondition;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'WarlockReaction');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -70,6 +75,9 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	Trigger.ListenerData.Filter = eFilter_Unit;
 	Template.AbilityTriggers.AddItem(Trigger);
 
+	TurnCondition =new class'X2Condition_NotitsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(TurnCondition);
+	
 	// The unit must be alive and not stunned
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeDead = true;
@@ -105,6 +113,7 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	local X2Effect_GrantActionPoints AddAPEffect;
 	local array<name> SkipExclusions;
 	local X2Condition_UnitProperty UnitPropertyCondition;
+	local X2Condition_NotitsOwnTurn TurnCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AssassinReaction');
 
@@ -116,6 +125,9 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	Template.AbilityTargetStyle = default.SelfTarget;
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	TurnCondition =new class'X2Condition_NotitsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(TurnCondition);
 
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
 	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
@@ -164,6 +176,7 @@ static function X2AbilityTemplate CreateHunterReaction()
 	local X2Effect_GrantActionPoints AddAPEffect;
 	local array<name> SkipExclusions;
 	local X2Condition_UnitProperty UnitPropertyCondition;
+	local X2Condition_NotitsOwnTurn TurnCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'HunterReaction');
 
@@ -173,6 +186,9 @@ static function X2AbilityTemplate CreateHunterReaction()
 
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
+
+	TurnCondition =new class'X2Condition_NotitsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(TurnCondition);
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 
@@ -215,7 +231,7 @@ static function X2AbilityTemplate CreateHunterReaction()
 	return Template;
 }
 
-	static function X2AbilityTemplate CreateAmmoDump()
+static function X2AbilityTemplate CreateAmmoDump()
 {
 	local X2AbilityTemplate Template;
 	local X2AbilityCost_ActionPoints ActionPointCost;
@@ -394,9 +410,10 @@ simulated function OnShieldRemoved_BuildVisualization(XComGameState VisualizeGam
 	Template.AbilityTargetConditions.AddItem(new class'X2Condition_DetonateMindshieldTarget');	
 	Template.AddShooterEffectExclusions();
 
-	DazedEffect = class'X2StatusEffects_LW'.static.CreateHeavyDazedStatusEffect(default.HEAVY_DAZE_TURNS, 100);
-	DazedEffect.MinStatContestResult = 1;
-	DazedEffect.MaxStatContestResult = 2;
+	DazedEffect = class'X2StatusEffects_LW'.static.CreateHeavyDazedStatusEffect(default.HEAVY_DAZE_TURNS, 500);
+	DazedEffect.bRemoveWhenSourceDies = true;
+
+	DazedEffect = class'X2StatusEffects_LW'.static.CreateHeavyDazedStatusEffect(default.HEAVY_DAZE_TURNS, 500);
 	DazedEffect.bRemoveWhenSourceDies = true;
 	Template.AddTargetEffect(DazedEffect);
 
@@ -422,76 +439,214 @@ simulated function OnShieldRemoved_BuildVisualization(XComGameState VisualizeGam
 	return Template;
 }
 
+static function X2AbilityTemplate CreatePrimaryDaze_Passive()
+{
+	local X2AbilityTemplate	Template;
+	local X2Effect_PrimaryDaze	Effect;
+	local X2Effect_GeneralDamageModifier        DamageEffect;
+
+	Template = PurePassive('Primary_Daze_Passive', "img:///UILibrary_LW_PerkPack.LW_AbilityCenterMass", false);
+
+	Effect = new class'X2Effect_PrimaryDaze';
+	Effect.BuildPersistentEffect(1, true);
+	Template.AddTargetEffect(Effect);
+
+	DamageEffect = new class'X2Effect_GeneralDamageModifier';
+	DamageEffect.DamageModifier = default.NONLETHAL_DMGMOD;
+	DamageEffect.BuildPersistentEffect(1, true, false, false);
+	Template.AddShooterEffect(DamageEffect);
+
+	Template.AdditionalAbilities.AddItem('Primary_Daze');
+
+	return Template;
+}
+
 static function X2DataTemplate CreatePrimaryDaze()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_GeneralDamageModifier        DamageEffect;
 	local X2Effect_Dazed DazedEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'Primary_Daze');
+
+
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityCenterMass";
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.bIsPassive = true;
-	DamageEffect = new class'X2Effect_GeneralDamageModifier';
-	DamageEffect.DamageModifier = default.NONLETHAL_DMGMOD;
-	DamageEffect.BuildPersistentEffect(1, true, false, false);
 
-	DazedEffect = class'X2StatusEffects_XPack'.static.CreateDazedStatusEffect(default.STANDARD_DAZE_TURNS, 100);
-	DazedEffect.MinStatContestResult = 1;
-	DazedEffect.MaxStatContestResult = 2;
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	//	Singe is triggered by an Event Listener registered in X2Effect_Singe
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_Placeholder');
+
+	DazedEffect = class'X2StatusEffects_XPack'.static.CreateDazedStatusEffect(default.STANDARD_DAZE_TURNS, 500);
+	DazedEffect.bRemoveWhenSourceDies = true;
+
+	DazedEffect = class'X2StatusEffects_XPack'.static.CreateDazedStatusEffect(default.STANDARD_DAZE_TURNS, 500);
 	DazedEffect.bRemoveWhenSourceDies = true;
 	Template.AddTargetEffect(DazedEffect);
 
-	//DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	//Might be useful to let player know when the chosen's in the NL mode later
-	Template.AddTargetEffect(DamageEffect);
-	Template.bCrossClassEligible = false;
+	Template.FrameAbilityCameraType = eCameraFraming_Never; 
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.bSkipFireAction = true;	//	this fire action will be merged by Merge Vis function
+	Template.bShowActivation = true;
+	Template.bUsesFiringCamera = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	//  No visualization
-	return Template;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = Daze_MergeVisualization;
+	Template.BuildInterruptGameStateFn = none;
 
+	return Template;
 }
 
-	static function X2DataTemplate CreateSecondaryDaze()
+static function X2AbilityTemplate CreateSecondaryDaze_Passive()
+{
+	local X2AbilityTemplate	Template;
+	local X2Effect_SecondaryDaze	Effect;
+	local X2Effect_GeneralDamageModifier        DamageEffect;
+
+	Template = PurePassive('Secondary_Daze_Passive', "img:///UILibrary_LW_PerkPack.LW_AbilityCenterMass", false);
+
+	Effect = new class'X2Effect_SecondaryDaze';
+	Effect.BuildPersistentEffect(1, true);
+	Template.AddTargetEffect(Effect);
+
+	DamageEffect = new class'X2Effect_GeneralDamageModifier';
+	DamageEffect.DamageModifier = default.NONLETHAL_DMGMOD;
+	DamageEffect.BuildPersistentEffect(1, true, false, false);
+	Template.AddShooterEffect(DamageEffect);
+
+	Template.AdditionalAbilities.AddItem('Secondary_Daze');
+
+	return Template;
+}
+
+
+static function X2DataTemplate CreateSecondaryDaze()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_GeneralDamageModifier        DamageEffect;
 	local X2Effect_HeavyDazed DazedEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'Secondary_Daze');
+
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityCenterMass";
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.bIsPassive = true;
-	DamageEffect = new class'X2Effect_GeneralDamageModifier';
-	DamageEffect.DamageModifier = default.NONLETHAL_DMGMOD;
-	DamageEffect.BuildPersistentEffect(1, true, false, false);
 
-	DazedEffect = class'X2StatusEffects_LW'.static.CreateHeavyDazedStatusEffect(default.HEAVY_DAZE_TURNS, 100);
-	DazedEffect.MinStatContestResult = 1;
-	DazedEffect.MaxStatContestResult = 2;
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	//	Singe is triggered by an Event Listener registered in X2Effect_Singe
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_Placeholder');
+
+	DazedEffect = class'X2StatusEffects_LW'.static.CreateHeavyDazedStatusEffect(default.STANDARD_DAZE_TURNS, 100);
+	DazedEffect.bRemoveWhenSourceDies = true;
+
+	DazedEffect = class'X2StatusEffects_LW'.static.CreateHeavyDazedStatusEffect(default.STANDARD_DAZE_TURNS, 100);
 	DazedEffect.bRemoveWhenSourceDies = true;
 	Template.AddTargetEffect(DazedEffect);
 
-	//DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	//Might be useful to let player know when the chosen's in the NL mode later
-	Template.AddTargetEffect(DamageEffect);
-	Template.bCrossClassEligible = false;
+	Template.FrameAbilityCameraType = eCameraFraming_Never; 
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.bSkipFireAction = true;	//	this fire action will be merged by Merge Vis function
+	Template.bShowActivation = true;
+	Template.bUsesFiringCamera = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	//  No visualization
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = Daze_MergeVisualization;
+	Template.BuildInterruptGameStateFn = none;
+
 	return Template;
 
 }
 
+//Taken from Iridar's Singe ability
+static function Daze_MergeVisualization(X2Action BuildTree, out X2Action VisualizationTree)
+{
+	local XComGameStateVisualizationMgr		VisMgr;
+	local array<X2Action>					arrActions;
+	local X2Action_MarkerTreeInsertBegin	MarkerStart;
+	local X2Action_MarkerTreeInsertEnd		MarkerEnd;
+	local X2Action							WaitAction;
+	local X2Action_MarkerNamed				MarkerAction;
+	local XComGameStateContext_Ability		AbilityContext;
+	local VisualizationActionMetadata		ActionMetadata;
+	local bool bFoundHistoryIndex;
+	local int i;
+
+	VisMgr = `XCOMVISUALIZATIONMGR;
+	
+	MarkerStart = X2Action_MarkerTreeInsertBegin(VisMgr.GetNodeOfType(BuildTree, class'X2Action_MarkerTreeInsertBegin'));
+	AbilityContext = XComGameStateContext_Ability(MarkerStart.StateChangeContext);
+
+	//	Find all Fire Actions in the Triggering Shot's Vis Tree
+	VisMgr.GetNodesOfType(VisualizationTree, class'X2Action_Fire', arrActions);
+
+	//	Cycle through all of them to find the Fire Action we need, which will have the same History Index as specified in Singe's Context, which gets set in the Event Listener
+	for (i = 0; i < arrActions.Length; i++)
+	{
+		if (arrActions[i].StateChangeContext.AssociatedState.HistoryIndex == AbilityContext.DesiredVisualizationBlockIndex)
+		{
+			bFoundHistoryIndex = true;
+			break;
+		}
+	}
+	//	If we didn't find the correct action, we call the failsafe Merge Vis Function, which will make both Singe's Target Effects apply seperately after the ability finishes.
+	//	Looks bad, but at least nothing is broken.
+	if (!bFoundHistoryIndex)
+	{
+		AbilityContext.SuperMergeIntoVisualizationTree(BuildTree, VisualizationTree);
+		return;
+	}
+
+	//	Add a Wait For Effect Action after the Triggering Shot's Fire Action. This will allow Singe's Effects to visualize the moment the Triggering Shot connects with the target.
+	AbilityContext = XComGameStateContext_Ability(arrActions[i].StateChangeContext);
+	ActionMetaData = arrActions[i].Metadata;
+	WaitAction = class'X2Action_WaitForAbilityEffect'.static.AddToVisualizationTree(ActionMetaData, AbilityContext,, arrActions[i]);
+
+	//	Insert the Singe's Vis Tree right after the Wait For Effect Action
+	VisMgr.ConnectAction(MarkerStart, VisualizationTree,, WaitAction);
+
+	//	Main part of Merge Vis is done, now we just tidy up the ending part. As I understood from MrNice, this is necessary to make sure Vis will look fine if Fire Action ends before Singe finishes visualizing
+	//	which tbh sounds like a super edge case, but okay
+	//	Find all marker actions in the Triggering Shot Vis Tree.
+	VisMgr.GetNodesOfType(VisualizationTree, class'X2Action_MarkerNamed', arrActions);
+
+	//	Cycle through them and find the 'Join' Marker that comes after the Triggering Shot's Fire Action.
+	for (i = 0; i < arrActions.Length; i++)
+	{
+		MarkerAction = X2Action_MarkerNamed(arrActions[i]);
+
+		if (MarkerAction.MarkerName == 'Join' && MarkerAction.StateChangeContext.AssociatedState.HistoryIndex == AbilityContext.DesiredVisualizationBlockIndex)
+		{
+			//	Grab the last Action in the Singe Vis Tree
+			MarkerEnd = X2Action_MarkerTreeInsertEnd(VisMgr.GetNodeOfType(BuildTree, class'X2Action_MarkerTreeInsertEnd'));
+
+			//	TBH can't imagine circumstances where MarkerEnd wouldn't exist, but okay
+			if (MarkerEnd != none)
+			{
+				//	"tie the shoelaces". Vis Tree won't move forward until both Singe Vis Tree and Triggering Shot's Fire action are not fully visualized.
+				VisMgr.ConnectAction(MarkerEnd, VisualizationTree,,, MarkerAction.ParentActions);
+				VisMgr.ConnectAction(MarkerAction, BuildTree,, MarkerEnd);
+			}
+			else
+			{
+				//	not sure what this does
+				VisMgr.GetAllLeafNodes(BuildTree, arrActions);
+				VisMgr.ConnectAction(MarkerAction, BuildTree,,, arrActions);
+			}
+
+			//VisMgr.ConnectAction(MarkerAction, VisualizationTree,, MarkerEnd);
+			break;
+		}
+	}
+}
 
 
 static function X2DataTemplate CreateYoinkTeleportAbility()
@@ -738,7 +893,7 @@ static function SetChosenKidnapExtractBaseConditions(out X2AbilityTemplate Templ
 	Template.AbilityTargetConditions.AddItem(NeedOneOfTheEffects);
 }
 
-	static function X2AbilityTemplate CreateTraitResilience()
+static function X2AbilityTemplate CreateTraitResilience()
 {
 	local X2AbilityTemplate					Template;
 	local X2Effect_Resilience				MyCritModifier;
@@ -755,13 +910,207 @@ static function SetChosenKidnapExtractBaseConditions(out X2AbilityTemplate Templ
 	MyCritModifier = new class 'X2Effect_Resilience';
 	MyCritModifier.CritDef_Bonus = 200;
 	MyCritModifier.BuildPersistentEffect (1, true, false, true);
-	//MyCritModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	MyCritModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect (MyCritModifier);
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 
 	return Template;		
+}
+
+//Taken from Iridar's Slag/Singe Ability
+static function EventListenerReturn AbilityTriggerEventListener_PrimaryDaze(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameStateContext_Ability	AbilityContext;
+	local XComGameState_Ability			AbilityState, SlagAbilityState;
+	local XComGameState_Unit			SourceUnit, TargetUnit;
+	local XComGameStateContext			FindContext;
+    local int							VisualizeIndex;
+	local XComGameStateHistory			History;
+	local X2AbilityTemplate				AbilityTemplate;
+	local X2Effect						Effect;
+	local X2AbilityMultiTarget_BurstFire	BurstFire;
+	local bool bDealsDamage;
+	local int NumShots;
+	local int i;
+
+	History = `XCOMHISTORY;
+
+	AbilityState = XComGameState_Ability(EventData);	// Ability State that triggered this Event Listener
+	SourceUnit = XComGameState_Unit(EventSource);
+	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+	TargetUnit = XComGameState_Unit(GameState.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+	AbilityTemplate = AbilityState.GetMyTemplate();
+
+	if (AbilityState != none && SourceUnit != none && TargetUnit != none && AbilityTemplate != none && AbilityContext.InputContext.ItemObject.ObjectID != 0)
+	{	
+		//	try to find Singe ability on the source weapon of the same ability
+		SlagAbilityState = XComGameState_Ability(History.GetGameStateForObjectID(SourceUnit.FindAbility('Primary_Daze', AbilityContext.InputContext.ItemObject).ObjectID));
+
+		//	if this is an offensive ability that actually hit the enemy, the same weapon has a Singe ability, and the enemy is still alive
+		if (SlagAbilityState != none && AbilityContext.IsResultContextHit() && AbilityState.GetMyTemplate().Hostility == eHostility_Offensive && TargetUnit.IsAlive())
+		{
+			//	check if the ability deals damage
+			foreach AbilityTemplate.AbilityTargetEffects(Effect)
+			{
+				if (X2Effect_ApplyWeaponDamage(Effect) != none)
+				{
+					bDealsDamage = true;
+					break;
+				}
+			}
+			if (bDealsDamage)
+			{
+				//	account for abilities like Fan Fire and Cyclic Fire that take multiple shots within one ability activation
+				NumShots = 1;
+				BurstFire = X2AbilityMultiTarget_BurstFire(AbilityTemplate.AbilityMultiTargetStyle);
+				if (BurstFire != none)
+				{
+					NumShots += BurstFire.NumExtraShots;
+				}
+				//	
+				for (i = 0; i < NumShots; i++)
+				{
+					//	pass the Visualize Index to the Context for later use by Merge Vis Fn
+					VisualizeIndex = GameState.HistoryIndex;
+					FindContext = AbilityContext;
+					while (FindContext.InterruptionHistoryIndex > -1)
+					{
+						FindContext = History.GetGameStateFromHistory(FindContext.InterruptionHistoryIndex).GetContext();
+						VisualizeIndex = FindContext.AssociatedState.HistoryIndex;
+					}
+					//`LOG("Singe activated by: " @ AbilityState.GetMyTemplateName() @ "from: " @ AbilityState.GetSourceWeapon().GetMyTemplateName() @ "Singe source weapon: " @ SlagAbilityState.GetSourceWeapon().GetMyTemplateName(),, 'IRISINGE');
+					SlagAbilityState.AbilityTriggerAgainstSingleTarget(AbilityContext.InputContext.PrimaryTarget, false, VisualizeIndex);
+				}
+			}
+		}
+	}
+	return ELR_NoInterrupt;
+}
+//I can't believe I have to do this twice, peter's gonna kill me
+static function EventListenerReturn AbilityTriggerEventListener_SecondaryDaze(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameStateContext_Ability	AbilityContext;
+	local XComGameState_Ability			AbilityState, SlagAbilityState;
+	local XComGameState_Unit			SourceUnit, TargetUnit;
+	local XComGameStateContext			FindContext;
+    local int							VisualizeIndex;
+	local XComGameStateHistory			History;
+	local X2AbilityTemplate				AbilityTemplate;
+	local X2Effect						Effect;
+	local X2AbilityMultiTarget_BurstFire	BurstFire;
+	local bool bDealsDamage;
+	local int NumShots;
+	local int i;
+
+	History = `XCOMHISTORY;
+
+	AbilityState = XComGameState_Ability(EventData);	// Ability State that triggered this Event Listener
+	SourceUnit = XComGameState_Unit(EventSource);
+	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+	TargetUnit = XComGameState_Unit(GameState.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+	AbilityTemplate = AbilityState.GetMyTemplate();
+
+	if (AbilityState != none && SourceUnit != none && TargetUnit != none && AbilityTemplate != none && AbilityContext.InputContext.ItemObject.ObjectID != 0)
+	{	
+		//	try to find Singe ability on the source weapon of the same ability
+		SlagAbilityState = XComGameState_Ability(History.GetGameStateForObjectID(SourceUnit.FindAbility('Secondary_Daze', AbilityContext.InputContext.ItemObject).ObjectID));
+
+		//	if this is an offensive ability that actually hit the enemy, the same weapon has a Singe ability, and the enemy is still alive
+		if (SlagAbilityState != none && AbilityContext.IsResultContextHit() && AbilityState.GetMyTemplate().Hostility == eHostility_Offensive && TargetUnit.IsAlive())
+		{
+			//	check if the ability deals damage
+			foreach AbilityTemplate.AbilityTargetEffects(Effect)
+			{
+				if (X2Effect_ApplyWeaponDamage(Effect) != none)
+				{
+					bDealsDamage = true;
+					break;
+				}
+			}
+			if (bDealsDamage)
+			{
+				//	account for abilities like Fan Fire and Cyclic Fire that take multiple shots within one ability activation
+				NumShots = 1;
+				BurstFire = X2AbilityMultiTarget_BurstFire(AbilityTemplate.AbilityMultiTargetStyle);
+				if (BurstFire != none)
+				{
+					NumShots += BurstFire.NumExtraShots;
+				}
+				//	
+				for (i = 0; i < NumShots; i++)
+				{
+					//	pass the Visualize Index to the Context for later use by Merge Vis Fn
+					VisualizeIndex = GameState.HistoryIndex;
+					FindContext = AbilityContext;
+					while (FindContext.InterruptionHistoryIndex > -1)
+					{
+						FindContext = History.GetGameStateFromHistory(FindContext.InterruptionHistoryIndex).GetContext();
+						VisualizeIndex = FindContext.AssociatedState.HistoryIndex;
+					}
+					//`LOG("Singe activated by: " @ AbilityState.GetMyTemplateName() @ "from: " @ AbilityState.GetSourceWeapon().GetMyTemplateName() @ "Singe source weapon: " @ SlagAbilityState.GetSourceWeapon().GetMyTemplateName(),, 'IRISINGE');
+					SlagAbilityState.AbilityTriggerAgainstSingleTarget(AbilityContext.InputContext.PrimaryTarget, false, VisualizeIndex);
+				}
+			}
+		}
+	}
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn AffectedByHeavyDaze_Listener(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
+{
+	local XComGameState_Unit UnitState;
+	local XComGameState NewGameState;
+	local XComGameStateContext_EffectRemoved EffectRemovedContext;
+	local XComGameState_Effect EffectState;
+	local XComGameStateHistory History;
+	local X2Effect_Persistent PersistentEffect;
+	local bool bRemove, bAtLeastOneRemoved;
+
+	UnitState = XComGameState_Unit(EventSource);
+	if( UnitState != none )
+	{
+		History = `XCOMHISTORY;
+
+		bAtLeastOneRemoved = false;
+		foreach History.IterateByClassType(class'XComGameState_Effect', EffectState)
+		{
+			PersistentEffect = EffectState.GetX2Effect();
+			bRemove = false;
+
+			if ( (EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID == UnitState.ObjectID) &&
+				 (class'X2Effect_HeavyDazed'.default.HEAVY_DAZE_REMOVE_EFFECTS_TARGET.Find(PersistentEffect.EffectName) != INDEX_NONE) )
+			{
+				// The Unit dazed is the target of this existing effect
+				bRemove = true;
+			}
+
+			if (bRemove)
+			{
+				// Dazed removes the existing effect
+				if (!bAtLeastOneRemoved)
+				{
+					EffectRemovedContext = class'XComGameStateContext_EffectRemoved'.static.CreateEffectRemovedContext(EffectState);
+					NewGameState = History.CreateNewGameState(true, EffectRemovedContext);
+					EffectRemovedContext.RemovedEffects.Length = 0;
+
+					bAtLeastOneRemoved = true;
+				}
+
+				EffectState.RemoveEffect(NewGameState, NewGameState, false);
+
+				EffectRemovedContext.RemovedEffects.AddItem(EffectState.GetReference());
+			}
+		}
+
+		if (bAtLeastOneRemoved)
+		{
+			`TACTICALRULES.SubmitGameState(NewGameState);
+		}
+	}
+
+	return ELR_NoInterrupt;
 }
 
 defaultproperties
