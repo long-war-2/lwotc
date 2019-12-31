@@ -1041,7 +1041,7 @@ AbilityDescName="Heavy Railgun"
 [SparkRifle_CG X2WeaponTemplate]
 FriendlyName="Particle Projection Cannon"
 FriendlyNamePlural="Particle Projection Cannons"
-BriefSummary="PPC uses several acceleration contours to create a focused beam of supercharged particles that remain effective at any range." 
+BriefSummary="PPC uses several acceleration contours to create a focused beam of supercharged particles that remain effective at any range."
 TacticalText="<Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
 AbilityDescName="Particle Projection Cannon"
 
@@ -1263,24 +1263,24 @@ TacticalText="<Bullet/> Increases soldier health by 3.\n<Bullet/> Provides immun
 FriendlyName="Hellweave Vest"
 FriendlyNamePlural="Hellweave Vest"
 BriefSummary="Hellweave not only grants a +6 bonus to soldier health, but will return damage to any enemy melee attackers, and grants a <Ability:HELLWEAVEPROCCHANCE/>% chance to set them afire."
-TacticalText="<Bullet/> In addition to causing direct damage on melee attackers, Hellweave has a chance to set them aflame with the attendant disabling effects.\n<Bullet/> Hellweave also grants 6 hit points. <Bullet/> Only one plating item and one vest can be equipped at a time." 
+TacticalText="<Bullet/> In addition to causing direct damage on melee attackers, Hellweave has a chance to set them aflame with the attendant disabling effects.\n<Bullet/> Hellweave also grants 6 hit points. <Bullet/> Only one plating item and one vest can be equipped at a time."
 
 ;;; New
 
 [FireControl25PCS X2EquipmentTemplate]
 FriendlyName="PCS: Fire Control (25)"
 FriendlyNamePlural="PCS: Fire Control (25)"
-BriefSummary="This implant helps the soldier determine when to fire when on overwatch. With it installed, the soldier will not take overwatch shots at less than the minimum of 25% to hit. NOTE: This type of PCS implant is one of the few that XCOM can manufacture on the Avenger. We need to have the Guerrilla Tactics School online before we can plug these into the troops." 
+BriefSummary="This implant helps the soldier determine when to fire when on overwatch. With it installed, the soldier will not take overwatch shots at less than the minimum of 25% to hit. NOTE: This type of PCS implant is one of the few that XCOM can manufacture on the Avenger. We need to have the Guerrilla Tactics School online before we can plug these into the troops."
 
 [FireControl50PCS X2EquipmentTemplate]
 FriendlyName="PCS: Fire Control (50)"
 FriendlyNamePlural="PCS: Fire Control (50)"
-BriefSummary="This implant helps the soldier determine when to fire when on overwatch. With it installed, the soldier will not take overwatch shots at less than the minimum of 50% to hit. NOTE: This type of PCS implant is one of the few that XCOM can manufacture on the Avenger. We need to have the Guerrilla Tactics School online before we can plug these into the troops." 
+BriefSummary="This implant helps the soldier determine when to fire when on overwatch. With it installed, the soldier will not take overwatch shots at less than the minimum of 50% to hit. NOTE: This type of PCS implant is one of the few that XCOM can manufacture on the Avenger. We need to have the Guerrilla Tactics School online before we can plug these into the troops."
 
 [FireControl75PCS X2EquipmentTemplate]
 FriendlyName="PCS: Fire Control (75)"
 FriendlyNamePlural="PCS: Fire Control (75)"
-BriefSummary="This implant helps the soldier determine when to fire when on overwatch. With it installed, the soldier will not take overwatch shots at less than the minimum of 75% to hit. NOTE: This type of PCS implant is one of the few that XCOM can manufacture on the Avenger. We need to have the Guerrilla Tactics School online before we can plug these into the troops." 
+BriefSummary="This implant helps the soldier determine when to fire when on overwatch. With it installed, the soldier will not take overwatch shots at less than the minimum of 75% to hit. NOTE: This type of PCS implant is one of the few that XCOM can manufacture on the Avenger. We need to have the Guerrilla Tactics School online before we can plug these into the troops."
 
 [CommonPCSHacking X2EquipmentTemplate]
 FriendlyName="PCS: Hacking"
@@ -1330,7 +1330,7 @@ BriefSummary="This implant gives the soldier a massive boost in psionic capabili
 [CommonPCSFocus X2EquipmentTemplate]
 FriendlyName="PCS: Focus"
 FriendlyNamePlural="PCS: Focus"
-BriefSummary="The basic Focus sim improves the odds that the affected soldier will resist panic and Psionic attacks. Note: This type of PCS implant is one of the few that XCOM can manufacture on the Avenger. We need to have the Guerrilla Tactics School online before we can plug these into the troops." 
+BriefSummary="The basic Focus sim improves the odds that the affected soldier will resist panic and Psionic attacks. Note: This type of PCS implant is one of the few that XCOM can manufacture on the Avenger. We need to have the Guerrilla Tactics School online before we can plug these into the troops."
 
 [RarePCSFocus X2EquipmentTemplate]
 FriendlyName="PCS: Advanced Focus"
@@ -3025,7 +3025,7 @@ UnlockedDescription="Prototype added to inventory"
 DisplayName="ADVENT Robotics"
 CodeName="Duster"
 Summary="ADVENT relies heavily on mechanized units for crowd control and warfare. While our specialists have a handle on infiltrating their programming, we have more work to do to fully understand the hardware they employ. We will start by dismantling the wreckage of ADVENT drones we have recovered in order to develop a general theory of ADVENT's construction and engineering processes."
-LongDescription="We have achieved a rudimentary understanding of ADVENT's robotic combat systems. They are surprisingly much like our own pre-invasion designs, simply much more efficient with their power systems, and much more miniaturized overall. We view this project as a gateway to understanding ADVENT's more complex designs. R. Tygan." 
+LongDescription="We have achieved a rudimentary understanding of ADVENT's robotic combat systems. They are surprisingly much like our own pre-invasion designs, simply much more efficient with their power systems, and much more miniaturized overall. We view this project as a gateway to understanding ADVENT's more complex designs. R. Tygan."
 
 [AutopsyMutonElite X2TechTemplate]
 DisplayName="Muton Elite Autopsy"
@@ -3038,7 +3038,7 @@ AlertString="Muton Elite"
 DisplayName="ADVENT Robotics"
 CodeName="Duster"
 Summary="ADVENT relies heavily on mechanized units for crowd control and warfare. While our specialists have a handle on infiltrating their programming, we have more work to do to fully understand the hardware they employ. We will start by dismantling the wreckage of ADVENT drones we have recovered in order to develop a general theory of ADVENT's construction and engineering processes."
-LongDescription="We have achieved a rudimentary understanding of ADVENT's robotic combat systems. They are surprisingly much like our own pre-invasion designs, simply much more efficient with their power systems, and much more miniaturized overall. We view this project as a gateway to understanding ADVENT's more complex designs. R. Tygan." 
+LongDescription="We have achieved a rudimentary understanding of ADVENT's robotic combat systems. They are surprisingly much like our own pre-invasion designs, simply much more efficient with their power systems, and much more miniaturized overall. We view this project as a gateway to understanding ADVENT's more complex designs. R. Tygan."
 AlertString="ADVENT Drone"
 
 [GaussWeapons X2TechTemplate]
@@ -3196,6 +3196,27 @@ CodeName="Fajita"
 LongDescription="The rendering of this Muton Elite was successful. R. Tygan."
 UnlockedDescription="Recovered from Muton Elite Corpse: <XGParam:StrValue0/!Quantity/> Alloys"
 
+[RenderPriestCorpse X2TechTemplate]
+DisplayName="Render ADVENT Priest Corpse"
+Summary="Given our preference for hit and run operations, ADVENT and alien remains are difficult to recover from many missions, but they are valuable assets for our research and construction efforts. However, we are also able to render them down for key materials with a wide variety of applications. From the ADVENT Priest we should be able to recover 3 Alloys."
+CodeName="Omelette"
+LongDescription="The rendering of this ADVENT Priest was successful. R. Tygan."
+UnlockedDescription="Recovered from ADVENT Priest Corpse: <XGParam:StrValue0/!Quantity/> Alloys"
+
+[RenderPurifierCorpse X2TechTemplate]
+DisplayName="Render ADVENT Purifier Corpse"
+Summary="Given our preference for hit and run operations, ADVENT and alien remains are difficult to recover from many missions, but they are valuable assets for our research and construction efforts. However, we are also able to render them down for key materials with a wide variety of applications. From the ADVENT Purifier we should be able to recover 3 Alloys."
+CodeName="Paneer"
+LongDescription="The rendering of this ADVENT Purifier was successful. R. Tygan."
+UnlockedDescription="Recovered from ADVENT Purifier Corpse: <XGParam:StrValue0/!Quantity/> Alloys"
+
+[RenderSpectreCorpse X2TechTemplate]
+DisplayName="Render Spectre Corpse"
+Summary="Given our preference for hit and run operations, ADVENT and alien remains are difficult to recover from many missions, but they are valuable assets for our research and construction efforts. However, we are also able to render them down for key materials with a wide variety of applications. From the Spectre we should be able to recover 4 elerium crystals."
+CodeName="Blueberry"
+LongDescription="The rendering of this Spectre was successful. R. Tygan."
+UnlockedDescription="Recovered from Spectre Corpse: <XGParam:StrValue0/!Quantity/> Elerium Crystals"
+
 [ResistanceRadio X2TechTemplate]
 DisplayName="Resistance Radio"
 Summary="By replicating the communications equipment we've developed on the Avenger, we should be able to establish ground-based relays to further spread our reach. With wider coverage, our Havens will be more efficient at their operations, and it will be easier for us to reach some of those outlying regions far off from HQ."
@@ -3219,7 +3240,7 @@ UnlockedDescription="Prototype added to inventory"
 
 [SpiderSuit X2TechTemplate]
 DisplayName="Mobile Armor"
-Summary="Spotty records from the ruined mainframe at XCOM HQ indicate an early prototype for a light armor suit coupled with a grappling hook never came to fruition. Our recent mastery of the aliens' materials may allow us to revive the concept." 
+Summary="Spotty records from the ruined mainframe at XCOM HQ indicate an early prototype for a light armor suit coupled with a grappling hook never came to fruition. Our recent mastery of the aliens' materials may allow us to revive the concept."
 CodeName="Fisher"
 LongDescription="With the variety of environments our forces are currently engaging the enemy in, we need to give them every opportunity to gain a tactical advantage in the field. With that in mind, our latest armor prototype incorporates a basic powered-ascent mechanism capable of propelling the wearer to heights of over 10m with high levels of stability. The suit utilizes a number of micro-servo motors operating in sequence to aid in distributing the load throughout the armor, with the added side-effect of enhanced reflexes provided to the wearer. Although Central has made vague references to the previous science officer serving XCOM, he doesn't seem interested in discussing her efforts with me directly. I'm guessing the grapple design was something she created in collaboration with dad before XCOM fell. L. Shen."
 UnlockedDescription="Prototype added to inventory"
@@ -3242,7 +3263,7 @@ UnlockedDescription="Prototype added to inventory"
 DisplayName="Battlesuits"
 Summary="By harnessing the power of Elerium, it may be possible to create a new powered-armor suit capable of generating a defensive force field not unlike those used on the alien craft."
 CodeName="Titan"
-LongDescription="With our supply of Elerium crystals limited by what our soldiers can recover in the field, I've been hesitant to recommend we commit them to any one project exclusively. However, in the wake of recent events, it seems like we need to work on developing an armor suit with significant durability and the ability to mount a heavy weapon. In order to do that, we've integrated an Elerium-based power cell into one our stronger frames. With the Elerium's incredible energy throughput, the suit can now support the use a self-contained force field. In the simplest of terms, we've mirrored the technologies most commonly used by the aliens in the defense of their UFOs, and fused them with a platform our troops can deploy in the field. I expect great things from this unit. L. Shen." 
+LongDescription="With our supply of Elerium crystals limited by what our soldiers can recover in the field, I've been hesitant to recommend we commit them to any one project exclusively. However, in the wake of recent events, it seems like we need to work on developing an armor suit with significant durability and the ability to mount a heavy weapon. In order to do that, we've integrated an Elerium-based power cell into one our stronger frames. With the Elerium's incredible energy throughput, the suit can now support the use a self-contained force field. In the simplest of terms, we've mirrored the technologies most commonly used by the aliens in the defense of their UFOs, and fused them with a platform our troops can deploy in the field. I expect great things from this unit. L. Shen."
 UnlockedDescription="Prototype added to inventory"
 
 ;;;;;;;;;;;;;;;;;;; PROVING GROUNDS TECHS ;;;;;;;;;;;;;
@@ -3422,7 +3443,7 @@ Summary="Allows mass production of Elite Stocks, which grant a large chance to c
 [BasicClipSizeProject X2TechTemplate]
 DisplayName="High Capacity Magazines"
 Summary="Allows mass production of larger magazines for our soldiers' primary weapons."
- 
+
 [AdvancedClipSizeProject X2TechTemplate]
 DisplayName="Advanced High Capacity Magazines"
 Summary="Allows Engineering to mass produce even larger magazines for our soldiers' primary weapons."
@@ -4595,7 +4616,7 @@ DescriptionEntry="Our assaults trace some ancestry to pre-war police Special Wea
 [Specialist_LWS X2EncyclopediaTemplate]
 ListTitle="Specialist Class"
 DescriptionTitle="Specialist Class"
-DescriptionEntry="Using salvaged alien technology, Shen has managed incredible advances in robotics, allowing XCOM's Specialists to field the highly advanced drones known affectionately as GREMLINs. Although they are capable of being outfitted for direct combat or medical support, the GREMLINs are only as strong as their handlers, making a skilled Specialist invaluable to XCOM." 
+DescriptionEntry="Using salvaged alien technology, Shen has managed incredible advances in robotics, allowing XCOM's Specialists to field the highly advanced drones known affectionately as GREMLINs. Although they are capable of being outfitted for direct combat or medical support, the GREMLINs are only as strong as their handlers, making a skilled Specialist invaluable to XCOM."
 
 [Grenadier_LWS X2EncyclopediaTemplate]
 ListTitle="Grenadier Class"
@@ -4624,7 +4645,7 @@ DescriptionEntry="With limited tactical resources, XCOM has to rely on stealth t
 [EVAC X2EncyclopediaTemplate]
 ListTitle="EVAC"
 DescriptionTitle="EVAC"
-DescriptionEntry="XCOM can request an emergency evacuation from the battlefield at the Commander's discretion. Once the Skyranger has been contacted, the soldier making the call will need to select a rendezvous point for the evacuation to occur. Doing so will reveal the squad if it is concealed. Once placed, the squad will need to move into the designated EVAC volume and request a rope out. Note that the Skyranger may take some time to arrive: if XCOM has many infiltrations active around the globe, has poorly infiltrated this particular mission, or has a large squad, expect to have to defend the evac zone until the Skyranger can arrive." 
+DescriptionEntry="XCOM can request an emergency evacuation from the battlefield at the Commander's discretion. Once the Skyranger has been contacted, the soldier making the call will need to select a rendezvous point for the evacuation to occur. Doing so will reveal the squad if it is concealed. Once placed, the squad will need to move into the designated EVAC volume and request a rope out. Note that the Skyranger may take some time to arrive: if XCOM has many infiltrations active around the globe, has poorly infiltrated this particular mission, or has a large squad, expect to have to defend the evac zone until the Skyranger can arrive."
 
 [AWC X2EncyclopediaTemplate]
 ListTitle="Advanced Warfare Center"
@@ -4634,7 +4655,7 @@ DescriptionEntry="The Advanced Warfare Center allows soldiers to gain abilities 
 [GTS X2EncyclopediaTemplate]
 ListTitle="Guerrilla Tactics School"
 DescriptionTitle="Guerrilla Tactics School"
-DescriptionEntry="Through the Guerrilla Tactics School additional combat tactics, unit abilities, and officer training programs are available for purchase. Rookie soldiers can also be trained into a specific class of your choosing here." 
+DescriptionEntry="Through the Guerrilla Tactics School additional combat tactics, unit abilities, and officer training programs are available for purchase. Rookie soldiers can also be trained into a specific class of your choosing here."
 
 [NetworkTower X2EncyclopediaTemplate]
 ListTitle="ADVENT Network Towers"
@@ -4863,7 +4884,7 @@ ShortNames[4]="Dsc."
 ShortNames[5]="Mys."
 ShortNames[6]="War."
 ShortNames[7]="Mag."
-ShortNames[8]="Mstr." 
+ShortNames[8]="Mstr."
 
 RankIcons[0]= "UILibrary_Common.rank_rookie"
 RankIcons[1]= "UILibrary_Common.psirank_initiate"

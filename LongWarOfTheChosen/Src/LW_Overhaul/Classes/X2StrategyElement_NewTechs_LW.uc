@@ -3,7 +3,7 @@ class X2StrategyElement_NewTechs_LW extends X2StrategyElement_DefaultTechs confi
 var config int RENDER_REWARD_ELERIUM_CORE;
 var config int RENDER_REWARD_SECTOID_CORPSE;
 var config int RENDER_REWARD_VIPER_CORPSE;
-var config int RENDER_REWARD_MUTON_CORPSE; 
+var config int RENDER_REWARD_MUTON_CORPSE;
 var config int RENDER_REWARD_BERSERKER_CORPSE;
 var config int RENDER_REWARD_ARCHON_CORPSE;
 var config int RENDER_REWARD_GATEKEEPER_CORPSE;
@@ -19,6 +19,9 @@ var config int RENDER_REWARD_SECTOPOD_WRECK;
 var config int RENDER_REWARD_ADVENTOFFICER_CORPSE;
 var config int RENDER_REWARD_DRONE_WRECK;
 var config int RENDER_REWARD_MUTONELITE_CORPSE;
+var config int RENDER_REWARD_PRIEST_CORPSE;
+var config int RENDER_REWARD_PURIFIER_CORPSE;
+var config int RENDER_REWARD_SPECTRE_CORPSE;
 
 var config int BASIC_RESEARCH_SCIENCE_BONUS;
 var config int BASIC_RESEARCH_ENGINEERING_BONUS;
@@ -30,7 +33,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> Techs;
 
 	`LWTrace("  >> X2StrategyElement_NewTechs_LW.CreateTemplates()");
-	
+
 	//New LW Overhaul techs
 	Techs.AddItem(CreateLaserWeaponsTemplate());
 	Techs.AddItem(CreateAdvancedLaserWeaponsTemplate());
@@ -51,7 +54,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Techs.AddItem(CreateRenderTech ('RenderGatekeeperCorpse', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyGatekeeper", 'CorpseGatekeeper', 1000, 'AlienBiotech', 'EleriumCore'));
 	Techs.AddItem(CreateRenderTech ('RenderAndromedonCorpse', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyAndromedon", 'CorpseAndromedon', 800, 'AlienBiotech', 'EleriumCore'));
 	Techs.AddItem(CreateRenderTech ('RenderFacelessCorpse', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyFaceless", 'CorpseFaceless', 600, 'AlienBiotech'));
-	Techs.AddItem(CreateRenderTech ('RenderChryssalidCorpse', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyCryssalid", 'CorpseChryssalid', 600, 'AlienBiotech')); 
+	Techs.AddItem(CreateRenderTech ('RenderChryssalidCorpse', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyCryssalid", 'CorpseChryssalid', 600, 'AlienBiotech'));
 	Techs.AddItem(CreateRenderTech ('RenderAdventTrooperCorpse', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyAdventTrooper", 'CorpseAdventTrooper', 500, 'AlienBiotech'));
 	Techs.AddItem(CreateRenderTech ('RenderAdventStunLancerCorpse', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyAdventStunLancer", 'CorpseAdventStunLancer', 500, 'AlienBiotech'));
 	Techs.AddItem(CreateRenderTech ('RenderAdventShieldbearerCorpse', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyAdventShieldbearer", 'CorpseAdventShieldbearer', 500, 'AlienBiotech'));
@@ -59,6 +62,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Techs.AddItem(CreateRenderTech ('RenderTurretWreck', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyAdventTurret", 'CorpseAdventTurret', 500, 'HybridMaterials'));
 	Techs.AddItem(CreateRenderTech ('RenderSectopodWreck', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsySextopod", 'CorpseSectopod', 1200, 'HybridMaterials', 'EleriumCore'));
 	Techs.AddItem(CreateRenderTech ('RenderAdventOfficerCorpse', "img:///UILibrary_StrategyImages.ResearchTech.GOLDTECH_Advent_Officer", 'CorpseAdventOfficer', 500, 'AlienBiotech'));
+	Techs.AddItem(CreateRenderTech ('RenderPriestCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Priest", 'CorpseAdventPriest', 600, 'AlienBiotech'));
+	Techs.AddItem(CreateRenderTech ('RenderPurifierCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Purifier", 'CorpseAdventPurifier', 600, 'AlienBiotech'));
+	Techs.AddItem(CreateRenderTech ('RenderSpectreCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Spectre", 'CorpseSpectre', 600, 'AlienBiotech'));
 
 	Techs.AddItem(CreateRenderTech ('RenderAdventDroneWreck', "img:///UILibrary_LW_Overhaul.LW_IC_AutopsyDrone", 'CorpseDrone', 300, 'HybridMaterials'));
 	Techs.AddItem(CreateRenderTech ('RenderBlutonCorpse', "img:///UILibrary_LW_Overhaul.IC_AutopsyBluton", 'CorpseMutonElite', 700, 'AlienBiotech'));
@@ -132,7 +138,7 @@ static function X2DataTemplate CreateLaserWeaponsTemplate()
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'LaserWeapons');
 	Template.PointsToComplete = 5000;
 	Template.SortingTier = 1;
-	Template.strImage = "img:///UILibrary_LW_LaserPack.TECH_LaserWeapons"; 
+	Template.strImage = "img:///UILibrary_LW_LaserPack.TECH_LaserWeapons";
 
 	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
@@ -153,7 +159,7 @@ static function X2DataTemplate CreateAdvancedLaserWeaponsTemplate()
 	Template.PointsToComplete = 5000;
 	Template.SortingTier = 1;
 	Template.Requirements.RequiredTechs.AddItem('LaserWeapons');
-	Template.strImage = "img:///UILibrary_LW_LaserPack.TECH_AdvancedLaserWeapons"; 
+	Template.strImage = "img:///UILibrary_LW_LaserPack.TECH_AdvancedLaserWeapons";
 
 	Resources.ItemTemplateName = 'EleriumDust';
 	Resources.Quantity = 10;
@@ -170,8 +176,8 @@ static function X2DataTemplate CreateCoilgunsTemplate()
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'Coilguns');
 	Template.PointsToComplete = 11000;
 	Template.SortingTier = 1;
-	Template.strImage = "img:///UILibrary_LW_Coilguns.TECH_CoilWeapons"; 
-	
+	Template.strImage = "img:///UILibrary_LW_Coilguns.TECH_CoilWeapons";
+
 	Template.Requirements.RequiredTechs.AddItem('GaussWeapons');
 	Template.Requirements.RequiredTechs.AddItem('Tech_Elerium');
 
@@ -194,7 +200,7 @@ static function X2DataTemplate CreateAdvancedCoilgunsTemplate()
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'AdvancedCoilguns');
 	Template.PointsToComplete = 11000;
 	Template.SortingTier = 1;
-	Template.strImage = "img:///UILibrary_LW_Coilguns.TECH_AdvancedCoilWeapons"; 
+	Template.strImage = "img:///UILibrary_LW_Coilguns.TECH_AdvancedCoilWeapons";
 
 	Template.Requirements.RequiredTechs.AddItem('Coilguns');
 
@@ -218,12 +224,12 @@ static function X2DataTemplate CreateAutopsyDroneTemplate()
 	Template.PointsToComplete = 3000;
 	Template.SortingTier = 2;
 
-	Template.strImage = "img:///UILibrary_LW_Overhaul.LW_IC_AutopsyDrone"; 
+	Template.strImage = "img:///UILibrary_LW_Overhaul.LW_IC_AutopsyDrone";
 	Template.Requirements.RequiredScienceScore = 10;
 	Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 
 	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventOfficer');
-	
+
 	// Instant Requirements. Will become the Cost if the tech is forced to Instant.
 	Artifacts.ItemTemplateName = 'CorpseDrone';
 	Artifacts.Quantity = 20;
@@ -249,12 +255,12 @@ static function X2DataTemplate CreateAutopsyBlutonTemplate()
 
 	Template.TechStartedNarrative = "LWNarrativeMoments_Bink.Strategy.Autopsy_MutonM3_LW";
 
-	Template.strImage = "img:///UILibrary_LW_Overhaul.IC_AutopsyBluton"; 
+	Template.strImage = "img:///UILibrary_LW_Overhaul.IC_AutopsyBluton";
 	Template.Requirements.RequiredScienceScore = 10;
 	Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 
 	Template.Requirements.RequiredTechs.AddItem('AutopsyMuton');
-	
+
 	// Instant Requirements. Will become the Cost if the tech is forced to Instant.
 	Artifacts.ItemTemplateName = 'CorpseMutonElite';
 	Artifacts.Quantity = 15;
@@ -349,6 +355,9 @@ function RenderTechCompleted(XComGameState NewGameState, XComGameState_Tech Tech
 		case "RenderAdventOfficerCorpse":		RewardType = 'AlienAlloy'; 	RewardAmount = default.RENDER_REWARD_ADVENTOFFICER_CORPSE; break;
 		case "RenderAdventDroneWreck":			RewardType = 'AlienAlloy'; 	RewardAmount = default.RENDER_REWARD_DRONE_WRECK; break;
 		case "RenderBlutonCorpse":				RewardType = 'AlienAlloy'; 	RewardAmount = default.RENDER_REWARD_MUTONELITE_CORPSE; break;
+		case "RenderPriestCorpse":				RewardType = 'AlienAlloy'; 	RewardAmount = default.RENDER_REWARD_PRIEST_CORPSE; break;
+		case "RenderPurifierCorpse":			RewardType = 'AlienAlloy'; 	RewardAmount = default.RENDER_REWARD_PURIFIER_CORPSE; break;
+		case "RenderSpectreCorpse":				RewardType = 'EleriumDust'; RewardAmount = default.RENDER_REWARD_SPECTRE_CORPSE; break;
 
 		default: break;
 	}
@@ -381,7 +390,7 @@ function RenderTechCompleted(XComGameState NewGameState, XComGameState_Tech Tech
 static function X2DataTemplate CreateBasicResearchTemplate()
 {
 	local X2TechTemplate Template;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BasicResearchProject');
 	Template.SortingTier = 4;
 
@@ -410,14 +419,14 @@ function BasicResearchCompleted(XComGameState NewGameState, XComGameState_Tech T
 		XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
 		XComHQ = XComGameState_HeadquartersXCom(NewGameState.CreateStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 		NewGameState.AddStateObject(XComHQ);
-	}	
+	}
 	XComHQ.BonusScienceScore += default.BASIC_RESEARCH_SCIENCE_BONUS;
 }
 
 static function X2DataTemplate CreateBasicEngineeringTemplate()
 {
 	local X2TechTemplate Template;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BasicEngineeringProject');
 	Template.SortingTier = 4;
 
@@ -446,7 +455,7 @@ function BasicEngineeringCompleted(XComGameState NewGameState, XComGameState_Tec
 		XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
 		XComHQ = XComGameState_HeadquartersXCom(NewGameState.CreateStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 		NewGameState.AddStateObject(XComHQ);
-	}	
+	}
 	XComHQ.BonusEngineeringScore += default.BASIC_RESEARCH_ENGINEERING_BONUS;
 }
 
@@ -468,7 +477,7 @@ static function X2DataTemplate CreateHazMatVestProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventTrooper');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseAdventTrooper');
 	Resources.ItemTemplateName='CorpseAdventTrooper';
 	Resources.Quantity = 5;
@@ -494,7 +503,7 @@ static function X2DataTemplate CreatePlatedVestProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyMuton');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseMuton');
 	Resources.ItemTemplateName='CorpseMuton';
 	Resources.Quantity = 5;
@@ -525,7 +534,7 @@ static function X2DataTemplate CreateStasisVestProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyGatekeeper');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseGatekeeper');
 	Resources.ItemTemplateName='CorpseGatekeeper';
 	Resources.Quantity = 3;
@@ -560,7 +569,7 @@ static function X2DataTemplate CreateHellweaveProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyBerserker');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseBerserker');
 	Resources.ItemTemplateName='CorpseBerserker';
 	Resources.Quantity = 3;
@@ -594,7 +603,7 @@ static function X2DataTemplate CreateAlloyPlatingProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventStunLancer');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseAdventStunLancer');
 	Resources.ItemTemplateName='CorpseAdventStunLancer';
 	Resources.Quantity = 3;
@@ -624,7 +633,7 @@ static function X2DataTemplate CreateChameleonSuitProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyFaceless');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseFaceless');
 	Resources.ItemTemplateName='CorpseFaceless';
 	Resources.Quantity = 5;
@@ -654,7 +663,7 @@ static function X2DataTemplate CreateCarapacePlatingProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventShieldbearer');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseAdventShieldBearer');
 	Resources.ItemTemplateName='CorpseAdventShieldBearer';
 	Resources.Quantity = 5;
@@ -684,7 +693,7 @@ static function X2DataTemplate CreateChitinPlatingProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyChryssalid');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseChryssalid');
 	Resources.ItemTemplateName='CorpseChryssalid';
 	Resources.Quantity = 5;
@@ -715,7 +724,7 @@ static function X2DataTemplate CreateAPRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyAndromedon');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseAndromedon');
 	Resources.ItemTemplateName='CorpseAndromedon';
 	Resources.Quantity = 5;
@@ -745,7 +754,7 @@ static function X2DataTemplate CreateStilettoRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyFaceless');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseFaceless');
 	Resources.ItemTemplateName='CorpseFaceless';
 	Resources.Quantity = 5;
@@ -775,7 +784,7 @@ static function X2DataTemplate CreateTalonRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventShieldbearer');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseAdventShieldbearer');
 	Resources.ItemTemplateName='CorpseAdventShieldbearer';
 	Resources.Quantity = 5;
@@ -804,7 +813,7 @@ static function X2DataTemplate CreateFlechetteRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventShieldbearer');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseAdventShieldbearer');
 	Resources.ItemTemplateName='CorpseAdventShieldbearer';
 	Resources.Quantity = 5;
@@ -834,7 +843,7 @@ static function X2DataTemplate CreateFalconRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyArchon');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseArchon');
 	Resources.ItemTemplateName='CorpseArchon';
 	Resources.Quantity = 5;
@@ -863,7 +872,7 @@ static function X2DataTemplate CreateTracerRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventTurret');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseAdventTurret');
 	Resources.ItemTemplateName='CorpseAdventTurret';
 	Resources.Quantity = 5;
@@ -892,7 +901,7 @@ static function X2DataTemplate CreateVenomRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyViper');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseViper');
 	Resources.ItemTemplateName='CorpseViper';
 	Resources.Quantity = 5;
@@ -921,7 +930,7 @@ static function X2DataTemplate CreateRedscreenRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyDrone');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseDrone');
 	Resources.ItemTemplateName='CorpseDrone';
 	Resources.Quantity = 5;
@@ -950,7 +959,7 @@ static function X2DataTemplate CreateNeedleRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventTrooper');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseAdventTrooper');
 	Resources.ItemTemplateName='CorpseAdventTrooper';
 	Resources.Quantity = 5;
@@ -979,7 +988,7 @@ static function X2DataTemplate CreateDragonRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyMuton');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseMuton');
 	Resources.ItemTemplateName='CorpseMuton';
 	Resources.Quantity = 5;
@@ -1012,7 +1021,7 @@ static function X2DataTemplate CreateBluescreenRoundsProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('Bluescreen');
-	
+
 	Template.Requirements.RequiredItems.AddItem('CorpseAdventMec');
 	Resources.ItemTemplateName='CorpseAdventMec';
 	Resources.Quantity = 5;
@@ -1045,7 +1054,7 @@ static function X2DataTemplate CreateBattleScannerProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyDrone');
-	
+
 	Resources.ItemTemplateName = 'EleriumCore';
 	Resources.Quantity = 1;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1073,7 +1082,7 @@ static function X2DataTemplate CreateIncendiaryGrenadeProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyArchon');
-	
+
 	Resources.ItemTemplateName = 'EleriumCore';
 	Resources.Quantity = 1;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1101,7 +1110,7 @@ static function X2DataTemplate CreateIncendiaryBombProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('AdvancedGrenades');
 	Template.Requirements.RequiredTechs.AddItem('IncendiaryGrenadeProject');
-	
+
 	Resources.ItemTemplateName = 'EleriumCore';
 	Resources.Quantity = 1;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1129,7 +1138,7 @@ static function X2DataTemplate CreateAcidGrenadeProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyAndromedon');
-	
+
 	Resources.ItemTemplateName = 'EleriumCore';
 	Resources.Quantity = 1;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1157,7 +1166,7 @@ static function X2DataTemplate CreateAcidBombProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('AdvancedGrenades');
 	Template.Requirements.RequiredTechs.AddItem('AcidGrenadeProject');
-	
+
 	Resources.ItemTemplateName = 'EleriumCore';
 	Resources.Quantity = 1;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1186,7 +1195,7 @@ static function X2DataTemplate CreateEMPGrenadeProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('Bluescreen');
-	
+
 	Resources.ItemTemplateName = 'EleriumCore';
 	Resources.Quantity = 1;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1214,7 +1223,7 @@ static function X2DataTemplate CreateEMPBombProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('AdvancedGrenades');
 	Template.Requirements.RequiredTechs.AddItem('EMPGrenadeProject');
-	
+
 	Resources.ItemTemplateName = 'EleriumCore';
 	Resources.Quantity = 1;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1242,7 +1251,7 @@ static function X2DataTemplate CreateGasGrenadeProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('HybridMaterials');
 	Template.Requirements.RequiredTechs.AddItem('AutopsyViper');
-	
+
 	Resources.ItemTemplateName = 'EleriumCore';
 	Resources.Quantity = 1;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1270,7 +1279,7 @@ static function X2DataTemplate CreateGasBombProjectTemplate()
 
 	Template.Requirements.RequiredTechs.AddItem('AdvancedGrenades');
 	Template.Requirements.RequiredTechs.AddItem('GasGrenadeProject');
-	
+
 	Resources.ItemTemplateName = 'EleriumCore';
 	Resources.Quantity = 1;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1297,7 +1306,7 @@ static function X2DataTemplate CreateSmokeBombProjectTemplate()
 	Template.PointsToComplete = StafferXDays(1, 15);
 
 	Template.Requirements.RequiredTechs.AddItem('AdvancedGrenades');
-	
+
 	Resources.ItemTemplateName = 'EleriumCore';
 	Resources.Quantity = 1;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1436,16 +1445,16 @@ static function X2DataTemplate CreateBasicScopeProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BasicScopeProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 15);	
-	
+	Template.PointsToComplete = StafferXDays(1, 15);
+
 	Template.Requirements.RequiredItems.AddItem('AimUpgrade_Bsc');
 	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
-	
+
 	Resources.ItemTemplateName = 'AimUpgrade_Bsc';
 	Resources.Quantity = 3;
 	Template.Cost.ArtifactCosts.AddItem(Resources);
@@ -1461,12 +1470,12 @@ static function X2DataTemplate CreateAdvancedScopeProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'AdvancedScopeProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 20);	
+	Template.PointsToComplete = StafferXDays(1, 20);
 
 	Template.Requirements.RequiredItems.AddItem('AimUpgrade_Adv');
 	Template.Requirements.RequiredTechs.AddItem('BasicScopeProject');
@@ -1486,12 +1495,12 @@ static function X2DataTemplate CreateSuperiorScopeProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'SuperiorScopeProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 25);	
+	Template.PointsToComplete = StafferXDays(1, 25);
 
 	Template.Requirements.RequiredItems.AddItem('AimUpgrade_Sup');
 	Template.Requirements.RequiredTechs.AddItem('AdvancedScopeProject');
@@ -1512,12 +1521,12 @@ static function X2DataTemplate CreateBasicLaserSightProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BasicLaserSightProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 15);	
+	Template.PointsToComplete = StafferXDays(1, 15);
 
 	Template.Requirements.RequiredItems.AddItem('CritUpgrade_Bsc');
 	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
@@ -1537,12 +1546,12 @@ static function X2DataTemplate CreateAdvancedLaserSightProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'AdvancedLaserSightProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 20);	
+	Template.PointsToComplete = StafferXDays(1, 20);
 
 	Template.Requirements.RequiredItems.AddItem('CritUpgrade_Adv');
 	Template.Requirements.RequiredTechs.AddItem('BasicLaserSightProject');
@@ -1562,12 +1571,12 @@ static function X2DataTemplate CreateSuperiorLaserSightProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'SuperiorLaserSightProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 25);	
+	Template.PointsToComplete = StafferXDays(1, 25);
 
 	Template.Requirements.RequiredItems.AddItem('CritUpgrade_Sup');
 	Template.Requirements.RequiredTechs.AddItem('AdvancedLaserSightProject');
@@ -1588,12 +1597,12 @@ static function X2DataTemplate CreateBasicStockProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BasicStockProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 15);	
+	Template.PointsToComplete = StafferXDays(1, 15);
 
 	Template.Requirements.RequiredItems.AddItem('MissDamageUpgrade_Bsc');
 	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
@@ -1613,12 +1622,12 @@ static function X2DataTemplate CreateAdvancedStockProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'AdvancedStockProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 20);	
+	Template.PointsToComplete = StafferXDays(1, 20);
 
 	Template.Requirements.RequiredItems.AddItem('MissDamageUpgrade_Adv');
 	Template.Requirements.RequiredTechs.AddItem('BasicStockProject');
@@ -1638,12 +1647,12 @@ static function X2DataTemplate CreateSuperiorStockProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'SuperiorStockProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 25);	
+	Template.PointsToComplete = StafferXDays(1, 25);
 
 	Template.Requirements.RequiredItems.AddItem('MissDamageUpgrade_Sup');
 	Template.Requirements.RequiredTechs.AddItem('AdvancedStockProject');
@@ -1664,12 +1673,12 @@ static function X2DataTemplate CreateBasicClipSizeProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BasicClipSizeProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 15);	
+	Template.PointsToComplete = StafferXDays(1, 15);
 
 	Template.Requirements.RequiredItems.AddItem('ClipSizeUpgrade_Bsc');
 	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
@@ -1689,12 +1698,12 @@ static function X2DataTemplate CreateAdvancedClipSizeProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'AdvancedClipSizeProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 20);	
+	Template.PointsToComplete = StafferXDays(1, 20);
 
 	Template.Requirements.RequiredItems.AddItem('ClipSizeUpgrade_Adv');
 	Template.Requirements.RequiredTechs.AddItem('BasicClipSizeProject');
@@ -1714,12 +1723,12 @@ static function X2DataTemplate CreateSuperiorClipSizeProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'SuperiorClipSizeProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 25);	
+	Template.PointsToComplete = StafferXDays(1, 25);
 
 	Template.Requirements.RequiredItems.AddItem('ClipSizeUpgrade_Sup');
 	Template.Requirements.RequiredTechs.AddItem('AdvancedClipSizeProject');
@@ -1740,12 +1749,12 @@ static function X2DataTemplate CreateBasicHairTriggerProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BasicHairTriggerProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 15);	
+	Template.PointsToComplete = StafferXDays(1, 15);
 
 	Template.Requirements.RequiredItems.AddItem('FreeFireUpgrade_Bsc');
 	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
@@ -1765,12 +1774,12 @@ static function X2DataTemplate CreateAdvancedHairTriggerProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'AdvancedHairTriggerProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 20);	
+	Template.PointsToComplete = StafferXDays(1, 20);
 
 	Template.Requirements.RequiredItems.AddItem('FreeFireUpgrade_Adv');
 	Template.Requirements.RequiredTechs.AddItem('BasicHairTriggerProject');
@@ -1790,12 +1799,12 @@ static function X2DataTemplate CreateSuperiorHairTriggerProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'SuperiorHairTriggerProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 25);	
+	Template.PointsToComplete = StafferXDays(1, 25);
 
 	Template.Requirements.RequiredItems.AddItem('FreeFireUpgrade_Sup');
 	Template.Requirements.RequiredTechs.AddItem('AdvancedHairTriggerProject');
@@ -1816,12 +1825,12 @@ static function X2DataTemplate CreateBasicAutoMagProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BasicAutoMagProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 15);	
+	Template.PointsToComplete = StafferXDays(1, 15);
 
 	Template.Requirements.RequiredItems.AddItem('ReloadUpgrade_Bsc');
 	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
@@ -1841,12 +1850,12 @@ static function X2DataTemplate CreateAdvancedAutoMagProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'AdvancedAutoMagProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 20);	
+	Template.PointsToComplete = StafferXDays(1, 20);
 
 	Template.Requirements.RequiredItems.AddItem('ReloadUpgrade_Adv');
 	Template.Requirements.RequiredTechs.AddItem('BasicAutoMagProject');
@@ -1866,12 +1875,12 @@ static function X2DataTemplate CreateSuperiorAutoMagProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'SuperiorAutoMagProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 25);	
+	Template.PointsToComplete = StafferXDays(1, 25);
 
 	Template.Requirements.RequiredItems.AddItem('ReloadUpgrade_Sup');
 	Template.Requirements.RequiredTechs.AddItem('AdvancedAutoMagProject');
@@ -1892,12 +1901,12 @@ static function X2DataTemplate CreateBasicSuppressorProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BasicSuppressorProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 15);	
+	Template.PointsToComplete = StafferXDays(1, 15);
 
 	Template.Requirements.RequiredItems.AddItem('FreeKillUpgrade_Bsc');
 	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
@@ -1917,12 +1926,12 @@ static function X2DataTemplate CreateAdvancedSuppressorProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'AdvancedSuppressorProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 20);	
+	Template.PointsToComplete = StafferXDays(1, 20);
 
 	Template.Requirements.RequiredTechs.AddItem('BasicSuppressorProject');
 	Template.Requirements.RequiredItems.AddItem('FreeKillUpgrade_Adv');
@@ -1942,12 +1951,12 @@ static function X2DataTemplate CreateSuperiorSuppressorProjectTemplate()
 {
 	local X2TechTemplate Template;
 	local ArtifactCost Resources;
-	
+
 	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'SuperiorSuppressorProject');
 	Template.SortingTier = 6;
 	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_Modular_Weapons";
 	Template.bProvingGround = true;
-	Template.PointsToComplete = StafferXDays(1, 25);	
+	Template.PointsToComplete = StafferXDays(1, 25);
 
 	Template.Requirements.RequiredTechs.AddItem('AdvancedSuppressorProject');
 	Template.Requirements.RequiredItems.AddItem('FreeKillUpgrade_Sup');
