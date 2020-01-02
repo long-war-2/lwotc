@@ -504,6 +504,6 @@ static function ReplaceWithDamageReductionMeele (X2AbilityTemplate Template)
 
 defaultproperties
 {
-	AbilityTemplateModFn=UpdateAbilities(X2AbilityTemplate Template, name name)
+	AbilityTemplateModFn=UpdateAbilities
 }
 

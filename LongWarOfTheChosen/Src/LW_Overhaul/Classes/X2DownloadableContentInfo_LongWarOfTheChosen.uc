@@ -3466,8 +3466,6 @@ static function ActivateTraining(XComGameState NewGameState, StateObjectReferenc
 	// Grab Old Tactical Tag
 	OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 
-	// Increase the Chosen's level
-	ChosenState.Level++;
 	NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 
 	// Only met, active chosen trigger the just leveled up popup
