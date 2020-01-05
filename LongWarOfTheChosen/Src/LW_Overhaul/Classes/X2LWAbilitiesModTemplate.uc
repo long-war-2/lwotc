@@ -85,8 +85,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'ChosenImmuneMelee':
 			ReplaceWithDamageReductionMeele(Template);
 			break;
-		case 'ChosenImmune':
-		ReplaceWithDamageReductionExplosive(Template);
+		case 'BlastShield':
+			ReplaceWithDamageReductionExplosive(Template);
 			break;
 		default:
 			break;

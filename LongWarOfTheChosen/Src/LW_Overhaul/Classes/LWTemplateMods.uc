@@ -1984,6 +1984,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'SkirmisherSoldier':
 		case 'TemplarSoldier':
 			Template.Abilities.AddItem('HeavyRevive');
+			Template.Abilities.AddItem('MC_Stock_Strike');
+			Template.Abilities.AddItem('GetUp');
 			break;
 		case 'ChosenSniper':
 		case 'ChosenSniperM2':

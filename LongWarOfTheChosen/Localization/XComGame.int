@@ -5075,4 +5075,17 @@ LocHelpText="Remove the Chosen's \"Heavy Dazed\" effect from this soldier. Soldi
 LocLongDescription="Remove the Chosen's \"Heavy Dazed\" effect from this soldier. Soldiers may be disoriented when revived."
 LocFlyOverText="Revived!"
 
+[MC_Stock_Strike X2AbilityTemplate]
+LocFriendlyName="Stock Strike"
+LocHelpText="Strike a Mind Controlled Soldier with a butt of your weapon, stunning the target for 1 turn."
+LocLongDescription="Strike a Mind Controlled Soldier with a butt of your weapon, stunning the target for 1 turn."
+LocFlyOverText="BONK"
+
+[GetUp X2AbilityTemplate]
+LocFriendlyName="Get up!"
+LocHelpText="Remove the unconcious effect from a soldier."
+LocLongDescription="Remove the unconcious effect from a soldier"
+LocFlyOverText="Get up!"
+
+
 ; End Translation

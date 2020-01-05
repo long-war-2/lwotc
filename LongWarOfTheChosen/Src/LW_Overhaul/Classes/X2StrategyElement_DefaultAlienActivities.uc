@@ -1755,7 +1755,10 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 			`LWTRACE("ScheduledOffworldReinforcements : Activity Complete, Alien Win, Increasing ForceLevel by 1 in " $ RegionState.GetMyTemplate().DisplayName );
 		}
 		//All region force level is the same, so i just need one instance of it
+		
 		TryIncreasingChosenLevel(RegionalAI.LocalForceLevel);
+		if(RegionalAI.LocalForceLevel==3)
+		ActivateChosenIfEnabled(NewGameState);
 	}
 	else
 	{
@@ -1808,6 +1811,18 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 		break;
 	}
 }
+
+static function ActivateChosenIfEnabled(XComGameState NewGameState)
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	if (`SecondWaveEnabled('EnableChosen'))
+	{
+		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+		AlienHQ.OnChosenActivation(NewGameState);
+	}
+}
+
 static function name RescueReward(bool IncludeRebel, bool IncludePrisoner)
 {
 	local int iRoll, Rescue_Soldier_Modified_Weight, Rescue_Engineer_Modified_Weight, Rescue_Scientist_Modified_Weight, Rescue_Rebel_Modified_Weight;

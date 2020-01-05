@@ -279,28 +279,22 @@ static event OnLoadedSavedGameToStrategy()
 	//Make sure the chosen are of appropriate level
 	Forcelevel=AlienHQ.GetForceLevel();
 	AllChosen = AlienHQ.GetAllChosen();
-	ChosenLevel=0;
-	if(Forcelevel<8)
-	ChosenLevel=1;
-	else if(Forcelevel<13)
-	ChosenLevel=2;
-	else if(Forcelevel<17)
+	
+	if(Forcelevel>16)
 	ChosenLevel=3;
+	else if(Forcelevel>12)
+	ChosenLevel=2;
+	else if(Forcelevel>7)
+	ChosenLevel=1;
 	else
-	ChosenLevel=4;
-
+	ChosenLevel=0;
 	foreach AllChosen(ChosenState)
 		{
 			OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 			Chosenstate.Level=ChosenLevel;
 			NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-			if(ChosenState.bMetXCom && !ChosenState.bDefeated)
-			{
-				ChosenState.bJustLeveledUp = true;
-			}
 			// Replace Old Tag with new Tag in missions
 			ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
-			
 		}
 
 	if (NewGameState.GetNumGameStateObjects() > 0)
@@ -3487,12 +3481,11 @@ static function bool TrainingCanBePlayed(StateObjectReference InRef, optional XC
 	return true;
 }
 
-	static function UpdateRetribution()
+static function UpdateRetribution()
 {
 	local X2ChosenActionTemplate Template;
 	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Retribution'));
-	Template.OnActivatedFn = ActivateTraining;
-	Template.CanBePlayedFn = TrainingCanBePlayed;
+	Template.OnActivatedFn = ActivateRetribution;
 }
 
 static function ActivateRetribution(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
