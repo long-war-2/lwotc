@@ -2043,6 +2043,11 @@ ObjectiveTextPools[0]="Neutralizza i bersagli nemici"
 ObjectiveTextPools[1]="Distruggi il dispositivo prima del completamento della trasmissione"
 ObjectiveTextPools[2]="Estrai tutti i soldati XCOM"
 
+[DefaultSabotageTransmitter_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Piazza le cariche di X4 sul trasmettitore psionico"
+ObjectiveTextPools[1]="Disattiva gli snodi energetici per ritardare la trasmissione"
+ObjectiveTextPools[2]="Estrai tutti gli operatori XCOM"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Turni prima della ritirata dello Skyranger"
 ObjectiveTextPools[1]="Estrai il VIP nel luogo designato"
@@ -2342,6 +2347,17 @@ PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerr
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_03"
 PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_04"
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_05"
+
+[SabotageTransmitter_LW X2MissionTemplate]
+DisplayName="Sabotaggio trasmettitore"
+Briefing="Sabotaggio trasmettitore psionico"
+PostMissionType="Sabotaggio trasmettitore"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Piazza le cariche di X4 per distruggere il trasmettitore della rete psionica"
+ObjectiveTextPools[1]="Impedisci che la trasmissione in corso venga completata"
+PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_A"
+PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_B"
+PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_C"
 
 [ProtectDevice_LW X2MissionTemplate]
 DisplayName="Proteggi il dispositivo"

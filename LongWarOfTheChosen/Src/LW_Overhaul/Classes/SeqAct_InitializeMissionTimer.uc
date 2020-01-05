@@ -18,8 +18,9 @@ class SeqAct_InitializeMissionTimer extends SequenceAction config(LW_Overhaul);
 
 struct TimerMap
 {
-    var String MissionFamily;
-    var int Turns;
+	var string MissionType;
+	var string MissionFamily;
+	var int Turns;
 };
 
 // The config mapping of mission families to initial turn counts
@@ -35,24 +36,30 @@ var private int BaseTurns;
 // The number of turns to return to Kismet (optional)
 var private int Turns;
 
-static function int GetInitialTimer(string MissionFamily)
+static function int GetInitialTimer(string MissionType, string MissionFamily)
 {
 	local int i, TurnValue;
 	local XComGameState_BattleData BattleData;
 	local string teststr;
 
-	i = default.InitialTurnCounts.Find('MissionFamily', MissionFamily);
+	i = default.InitialTurnCounts.Find('MissionType', MissionType);
+	if (i == INDEX_NONE)
+	{
+		i = default.InitialTurnCounts.Find('MissionFamily', MissionFamily);
+	}
+
 	if (i >= 0)
-    {
-        // Add 1 to the initial mission count in the INI because this is typically invoked from the mission start sequence, and
-        // the first thing the begin turn sequence does is decrement the mission count.
-        TurnValue = default.InitialTurnCounts[i].Turns + 1;
-    }
-    else
-    {
-        //`redscreen("Failed to locate an initial mission count value for " $ MissionFamily);
-        return -1;
-    }
+	{
+		// Add 1 to the initial mission count in the INI because this is typically invoked from the mission start sequence, and
+		// the first thing the begin turn sequence does is decrement the mission count.
+		TurnValue = default.InitialTurnCounts[i].Turns + 1;
+	}
+	else
+	{
+		//`redscreen("Failed to locate an initial mission count value for " $ MissionFamily);
+		return -1;
+	}
+
 	TurnValue += default.TimerDifficultyMod[`TACTICALDIFFICULTYSETTING];
 
     BattleData = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
@@ -84,11 +91,9 @@ event Activated()
     local XComGameState_BattleData BattleData;
     local XComGameState_UITimer UiTimer;
     local XComGameState NewGameState;
-    local String MissionFamily;
 
     BattleData = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-    MissionFamily = BattleData.MapData.ActiveMission.MissionFamily;  
-	Turns = GetInitialTimer(MissionFamily);
+	Turns = GetInitialTimer(BattleData.MapData.ActiveMission.sType, BattleData.MapData.ActiveMission.MissionFamily);
 
 	if (Turns == -1)
 	{

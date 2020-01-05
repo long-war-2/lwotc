@@ -2047,6 +2047,11 @@ ObjectiveTextPools[0]="Neutraliser toutes les cibles ennemies"
 ObjectiveTextPools[1]="Détruire le relais avant la fin de la transmission"
 ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
 
+[DefaultSabotageTransmitter_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Poser des charges de X4 sur l'émetteur psionique"
+ObjectiveTextPools[1]="Retarder la transmission en désactivant les relais de puissance"
+ObjectiveTextPools[2]="Évacuer tous les agents d'XCOM"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Nombre de tours avant le départ du Mercure"
 ObjectiveTextPools[1]="Extraire le VIP à l'endroit indiqué"
@@ -2346,6 +2351,17 @@ PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerr
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_03"
 PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_04"
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.DestroyObject.Central_Guerrilla_Ops_Destroy_Object_05"
+
+[SabotageTransmitter_LW X2MissionTemplate]
+DisplayName="Sabotage de l'émetteur"
+Briefing="Saboter l'émetteur psionique"
+PostMissionType="Sabotage de l'émetteur"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Poser des explosifs X4 pour détruire l'émetteur du réseau psionique"
+ObjectiveTextPools[1]="Empêcher l'émetteur de terminer sa transmission"
+PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_A"
+PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_B"
+PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_C"
 
 [ProtectDevice_LW X2MissionTemplate]
 DisplayName="Protéger l'appareil"
