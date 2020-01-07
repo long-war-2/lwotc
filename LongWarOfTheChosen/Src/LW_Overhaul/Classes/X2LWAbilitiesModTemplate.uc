@@ -74,6 +74,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'ChosenExtractKnowledge':
 			UpdateExtractKnowledgeConditions(Template);
 			break;
+		case 'Revive':
+			UpdateRevive(Template);
+			break;
 		//Remove some of the redundant daze/bleeding effects
 		case 'PartingSilk':
 			UpdatePartingSilk(Template);
@@ -500,6 +503,10 @@ static function ReplaceWithDamageReductionMeele (X2AbilityTemplate Template)
 	DamageMod=new class'X2Effect_DefendingMeeleDamageModifier';
 	DamageMod.DamageMod=default.MEELE_DAMAGE_REDUCTION;
 	Template.AddTargetEffect(DamageMod);
+}
+static function UpdateRevive(X2AbilityTemplate Template)
+{
+	Template.AbilityShooterConditions.Length=0;
 }
 
 defaultproperties

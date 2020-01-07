@@ -5060,7 +5060,7 @@ LocLongDescription="Powers through a Mindshield."
 LocFlyOverText="Overwhelm Mindshield"
 
 [ChosenImmuneMelee X2AbilityTemplate]
-LocFriendlyName="Meele Resistance"
+LocFriendlyName="Melee Resistance"
 LocLongDescription="Takes 50% less damage from meele."
 LocHelpText="Takes 50% less damage from meele."
 

@@ -18,7 +18,6 @@ static function X2AbilityTemplate CreateHeavyRevive()
 	local X2Condition_UnitEffects           EffectsCondition;
 	local X2Effect_RemoveEffects            RemoveEffects;
 	local X2Effect_Persistent               DisorientedEffect;
-	local array<name>                       SkipExclusions;
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'HeavyRevive');
@@ -35,17 +34,13 @@ static function X2AbilityTemplate CreateHeavyRevive()
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bConsumeAllPoints = false;
+	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
 	// Shooter Condition
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-
-	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
-	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
-	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	// Target Condition
 	Template.AbilityTargetConditions.AddItem(default.LivingTargetOnlyProperty);
@@ -157,7 +152,7 @@ static function X2AbilityTemplate CreateGetUp()
 {
 	local X2AbilityTemplate                 Template;
 	local X2Condition_UnitProperty			TargetCondition;
-	local X2Condition_UnitEffects           EffectsCondition, ExcludeEffects;
+	local X2Condition_UnitEffects           EffectsCondition;
 	local X2Effect_RemoveEffects            RemoveEffects;
 	local X2Effect_Persistent               DisorientedEffect;
 	local array<name>                       SkipExclusions;
@@ -194,18 +189,16 @@ static function X2AbilityTemplate CreateGetUp()
 	TargetCondition.ExcludeAlive = false;
 	TargetCondition.ExcludeHostileToSource = true;
 	TargetCondition.ExcludeFriendlyToSource = false;
+	TargetCondition.ExcludeCivilian=true;
 	TargetCondition.FailOnNonUnits = true;
 	TargetCondition.RequireWithinRange = true;
 	TargetCondition.WithinRange = class 'X2Ability_DefaultAbilitySet'.default.REVIVE_RANGE_UNITS;
 	Template.AbilityTargetConditions.AddItem(TargetCondition);
 
-	// Cannot target units being carried.
-	ExcludeEffects = new class'X2Condition_UnitEffects';
-	ExcludeEffects.AddExcludeEffect(class'X2Ability_CarryUnit'.default.CarryUnitEffectName, 'AA_UnitIsImmune');
-	Template.AbilityTargetConditions.AddItem(ExcludeEffects);
 
 	EffectsCondition = new class'X2Condition_UnitEffects';
 	EffectsCondition.AddRequireEffect(class'X2StatusEffects'.default.UnconsciousName, 'AA_MissingRequiredEffect');
+	EffectsCondition.AddExcludeEffect(class'X2AbilityTemplateManager'.default.BeingCarriedEffectName, 'AA_UnitIsImmune');
 	Template.AbilityTargetConditions.AddItem(EffectsCondition);
 
 	RemoveEffects = new class'X2Effect_RemoveEffects';

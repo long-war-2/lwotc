@@ -167,6 +167,8 @@ var config int RECRUIT_RAID_BUCKET;
 
 var config int ALIEN_BASE_DOOM_REMOVAL;
 
+var config int CHOSEN_ACTIVATE_AT_FL;
+
 var protected name RebelMissionsJob;
 
 var localized string m_strInsufficientRebels;
@@ -1757,7 +1759,7 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 		//All region force level is the same, so i just need one instance of it
 		
 		TryIncreasingChosenLevel(RegionalAI.LocalForceLevel);
-		if(RegionalAI.LocalForceLevel==3)
+		if(RegionalAI.LocalForceLevel==default.CHOSEN_ACTIVATE_AT_FL)
 		ActivateChosenIfEnabled(NewGameState);
 	}
 	else

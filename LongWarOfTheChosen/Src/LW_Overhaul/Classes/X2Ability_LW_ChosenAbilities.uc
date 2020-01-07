@@ -51,7 +51,7 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	local X2Effect_GrantActionPoints AddAPEffect;
 	local array<name> SkipExclusions;
 	local X2Condition_UnitProperty UnitPropertyCondition;
-	local X2Condition_NotitsOwnTurn TurnCondition;
+	local X2Condition_OnlyOnXCOMTurn TurnCondition;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'WarlockReaction');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -75,7 +75,7 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	Trigger.ListenerData.Filter = eFilter_Unit;
 	Template.AbilityTriggers.AddItem(Trigger);
 
-	TurnCondition =new class'X2Condition_NotitsOwnTurn';
+	TurnCondition =new class'X2Condition_OnlyOnXCOMTurn';
 	Template.AbilityShooterConditions.AddItem(TurnCondition);
 	
 	// The unit must be alive and not stunned
@@ -113,7 +113,7 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	local X2Effect_GrantActionPoints AddAPEffect;
 	local array<name> SkipExclusions;
 	local X2Condition_UnitProperty UnitPropertyCondition;
-	local X2Condition_NotitsOwnTurn TurnCondition;
+	local X2Condition_OnlyOnXCOMTurn TurnCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AssassinReaction');
 
@@ -126,7 +126,7 @@ static function X2AbilityTemplate CreateAssassinReaction()
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 
-	TurnCondition =new class'X2Condition_NotitsOwnTurn';
+	TurnCondition =new class'X2Condition_OnlyOnXCOMTurn';
 	Template.AbilityShooterConditions.AddItem(TurnCondition);
 
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
@@ -176,7 +176,7 @@ static function X2AbilityTemplate CreateHunterReaction()
 	local X2Effect_GrantActionPoints AddAPEffect;
 	local array<name> SkipExclusions;
 	local X2Condition_UnitProperty UnitPropertyCondition;
-	local X2Condition_NotitsOwnTurn TurnCondition;
+	local X2Condition_OnlyOnXCOMTurn TurnCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'HunterReaction');
 
@@ -187,7 +187,7 @@ static function X2AbilityTemplate CreateHunterReaction()
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 
-	TurnCondition =new class'X2Condition_NotitsOwnTurn';
+	TurnCondition =new class'X2Condition_OnlyOnXCOMTurn';
 	Template.AbilityShooterConditions.AddItem(TurnCondition);
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);

@@ -1,4 +1,4 @@
-class X2Condition_NotitsOwnTurn extends X2Condition;
+class X2Condition_OnlyOnXCOMTurn extends X2Condition;
 
 event name CallMeetsCondition(XComGameState_BaseObject kTarget) 
 {
@@ -8,7 +8,7 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
     
     if (UnitState != none)
     {
-        if (`TACTICALRULES.GetUnitActionTeam() != UnitState.GetTeam())
+        if (`TACTICALRULES.GetUnitActionTeam() == eTeam_XCom)
         {
             return 'AA_Success'; 
         }
