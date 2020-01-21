@@ -13,9 +13,6 @@ var config WeaponDamageValue BULLPUP_BEAM_BASEDAMAGE;
 var config WeaponDamageValue VEKTORRIFLE_MAGNETIC_BASEDAMAGE;
 var config WeaponDamageValue VEKTORRIFLE_BEAM_BASEDAMAGE;
 
-var config WeaponDamageValue WRISTBLADE_MAGNETIC_BASEDAMAGE;
-var config WeaponDamageValue WRISTBLADE_BEAM_BASEDAMAGE;
-
 var config WeaponDamageValue SHARDGAUNTLET_MAGNETIC_BASEDAMAGE;
 var config array<WeaponDamageValue> SHARDGAUNTLET_MAGNETIC_EXTRADAMAGE;
 var config WeaponDamageValue SHARDGAUNTLET_BEAM_BASEDAMAGE;
@@ -53,6 +50,11 @@ var config int VEKTORRIFLE_BEAM_CRITCHANCE;
 var config int VEKTORRIFLE_BEAM_ICLIPSIZE;
 var config int VEKTORRIFLE_BEAM_ISOUNDRANGE;
 var config int VEKTORRIFLE_BEAM_IENVIRONMENTDAMAGE;
+
+var config int WRISTBLADE_CONVENTIONAL_AIM;
+var config int WRISTBLADE_CONVENTIONAL_CRITCHANCE;
+var config int WRISTBLADE_CONVENTIONAL_ISOUNDRANGE;
+var config int WRISTBLADE_CONVENTIONAL_IENVIRONMENTDAMAGE;
 
 var config int WRISTBLADE_MAGNETIC_AIM;
 var config int WRISTBLADE_MAGNETIC_CRITCHANCE;
@@ -158,9 +160,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Weapons.AddItem(CreateTemplate_Bullpup_Conventional());
 	Weapons.AddItem(CreateTemplate_Bullpup_Magnetic());
 	Weapons.AddItem(CreateTemplate_Bullpup_Beam());
-
-	Weapons.AddItem(CreateTemplate_WristBlade_Magnetic());
-	Weapons.AddItem(CreateTemplate_WristBlade_Beam());
 
 	Weapons.AddItem(CreateTemplate_ShardGauntlet_Magnetic());
 	Weapons.AddItem(CreateTemplate_ShardGauntlet_Beam());	
@@ -534,174 +533,6 @@ static function X2DataTemplate CreateTemplate_VektorRifle_Beam()
 	return Template;
 }
 
-static function X2DataTemplate CreateTemplate_WristBlade_Magnetic()
-{
-	local X2PairedWeaponTemplate Template;
-	local WeaponAttachment Attach;
-	local ArtifactCost Resources;
-	local ArtifactCost Artifacts;
-
-	`CREATE_X2TEMPLATE(class'X2PairedWeaponTemplate', Template, 'WristBlade_MG');
-	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
-	Template.PairedSlot = eInvSlot_TertiaryWeapon;
-	Template.PairedTemplateName = 'WristBladeLeft_MG';
-
-	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'wristblade';
-	Template.WeaponTech = 'magnetic';
-	Template.strImage = "img:///UILibrary_XPACK_StrategyImages.Inv_MagSGauntlet";
-	Template.EquipSound = "Sword_Equip_Magnetic";
-	Template.InventorySlot = eInvSlot_SecondaryWeapon;
-	//Template.StowedLocation = eSlot_RightBack;
-	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "WP_SkirmisherGauntlet.WP_SkirmisherGauntlet_MG";
-	Template.AltGameArchetype = "WP_SkirmisherGauntlet.WP_SkirmisherGauntlet_F_MG";
-	Template.GenderForAltArchetype = eGender_Female;
-	Template.Tier = 3;
-	Template.bUseArmorAppearance = true;
-
-	Attach.AttachSocket = 'R_Claw';
-	Attach.AttachMeshName = "SkirmisherGauntlet.Meshes.SM_SkirmisherGauntletR_Claw_M_MG";
-	Attach.RequiredGender = eGender_Male;
-	Attach.AttachToPawn = true;
-	Template.DefaultAttachments.AddItem(Attach);
-
-	Attach.AttachSocket = 'R_Claw';
-	Attach.AttachMeshName = "SkirmisherGauntlet.Meshes.SM_SkirmisherGauntletR_Claw_F_MG";
-	Attach.RequiredGender = eGender_Female;
-	Attach.AttachToPawn = true;
-	Template.DefaultAttachments.AddItem(Attach);
-
-	Template.iRadius = 1;
-	Template.NumUpgradeSlots = 3;
-	Template.InfiniteAmmo = true;
-	Template.iPhysicsImpulse = 5;
-
-	Template.iRange = 0;
-	Template.BaseDamage = default.WRISTBLADE_MAGNETIC_BASEDAMAGE;
-	Template.Aim = default.WRISTBLADE_MAGNETIC_AIM;
-	Template.CritChance = default.WRISTBLADE_MAGNETIC_CRITCHANCE;
-	Template.iSoundRange = default.WRISTBLADE_MAGNETIC_ISOUNDRANGE;
-	Template.iEnvironmentDamage = default.WRISTBLADE_MAGNETIC_IENVIRONMENTDAMAGE;
-	Template.BaseDamage.DamageType = 'Melee';
-
-	Template.BonusWeaponEffects.AddItem(class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, default.WRISTBLADE_MAGNETIC_STUNCHANCE, false));
-
-	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventStunLancer');
-
-	Template.CanBeBuilt = true;
-	Template.bInfiniteItem = false;
-
-	// Cost
-	Resources.ItemTemplateName = 'Supplies';
-	Resources.Quantity = 30;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'AlienAlloy';
-	Resources.Quantity = 3;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'EleriumDust';
-	Resources.Quantity = 3;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Artifacts.ItemTemplateName = 'CorpseAdventStunLancer';
-	Artifacts.Quantity = 1;
-	Template.Cost.ArtifactCosts.AddItem(Artifacts);
-
-	Template.DamageTypeTemplateName = 'Melee';
-
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.StunChanceLabel, , default.WRISTBLADE_MAGNETIC_STUNCHANCE, , , "%");
-
-
-	return Template;
-}
-
-static function X2DataTemplate CreateTemplate_WristBlade_Beam()
-{
-	local X2PairedWeaponTemplate Template;
-	local WeaponAttachment Attach;
-	local ArtifactCost Resources;
-	local ArtifactCost Artifacts;
-
-	`CREATE_X2TEMPLATE(class'X2PairedWeaponTemplate', Template, 'WristBlade_BM');
-	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
-	Template.PairedSlot = eInvSlot_TertiaryWeapon;
-	Template.PairedTemplateName = 'WristBladeLeft_BM';
-
-	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'wristblade';
-	Template.WeaponTech = 'beam';
-	Template.strImage = "img:///UILibrary_XPACK_StrategyImages.Inv_BeamSGauntlet";
-	Template.EquipSound = "Sword_Equip_Beam";
-	Template.InventorySlot = eInvSlot_SecondaryWeapon;
-	//Template.StowedLocation = eSlot_RightBack;
-	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "WP_SkirmisherGauntlet.WP_SkirmisherGauntlet_BM";
-	Template.AltGameArchetype = "WP_SkirmisherGauntlet.WP_SkirmisherGauntlet_F_BM";
-	Template.GenderForAltArchetype = eGender_Female;
-	Template.Tier = 5;
-	Template.bUseArmorAppearance = true;
-
-	Attach.AttachSocket = 'R_Claw';
-	Attach.AttachMeshName = "SkirmisherGauntlet.Meshes.SM_SkirmisherGauntletR_Claw_M_BM";
-	Attach.RequiredGender = eGender_Male;
-	Attach.AttachToPawn = true;
-	Template.DefaultAttachments.AddItem(Attach);
-
-	Attach.AttachSocket = 'R_Claw';
-	Attach.AttachMeshName = "SkirmisherGauntlet.Meshes.SM_SkirmisherGauntletR_Claw_F_BM";
-	Attach.RequiredGender = eGender_Female;
-	Attach.AttachToPawn = true;
-	Template.DefaultAttachments.AddItem(Attach);
-	
-	Template.iRadius = 1;
-	Template.NumUpgradeSlots = 3;
-	Template.InfiniteAmmo = true;
-	Template.iPhysicsImpulse = 5;
-
-	Template.iRange = 0;
-	Template.BaseDamage = default.WRISTBLADE_BEAM_BASEDAMAGE;
-	Template.Aim = default.WRISTBLADE_BEAM_AIM;
-	Template.CritChance = default.WRISTBLADE_BEAM_CRITCHANCE;
-	Template.iSoundRange = default.WRISTBLADE_BEAM_ISOUNDRANGE;
-	Template.iEnvironmentDamage = default.WRISTBLADE_BEAM_IENVIRONMENTDAMAGE;
-	Template.BaseDamage.DamageType = 'Melee';
-	
-	Template.BonusWeaponEffects.AddItem(class'X2StatusEffects'.static.CreateBurningStatusEffect(2, 0));
-
-	Template.Requirements.RequiredTechs.AddItem('AutopsyArchon');
-
-	Template.CanBeBuilt = true;
-	Template.bInfiniteItem = false;
-
-	// Cost
-	Resources.ItemTemplateName = 'Supplies';
-	Resources.Quantity = 50;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'AlienAlloy';
-	Resources.Quantity = 4;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'EleriumDust';
-	Resources.Quantity = 4;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Artifacts.ItemTemplateName = 'CorpseArchon';
-	Artifacts.Quantity = 1;
-	Template.Cost.ArtifactCosts.AddItem(Artifacts);
-
-	Artifacts.ItemTemplateName = 'EleriumCore';
-	Artifacts.Quantity = 1;
-	Template.Cost.ArtifactCosts.AddItem(Artifacts);
-
-	Template.DamageTypeTemplateName = 'Melee';
-
-
-	return Template;
-}
-
 static function X2DataTemplate CreateTemplate_ShardGauntlet_Magnetic()
 {
 	local X2PairedWeaponTemplate Template;
@@ -1014,6 +845,7 @@ static function X2DataTemplate CreateTemplate_Bullpup_Laser()
 	Template.Abilities.AddItem('Overwatch');
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
+	Template.Abilities.AddItem('PistolReturnFire');
 	Template.Abilities.AddItem('HotLoadAmmo');
 	Template.Abilities.AddItem('Bullpup_CV_StatBonus');
 	Template.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
@@ -1087,6 +919,7 @@ static function X2DataTemplate CreateBullpup_Coil_Template()
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
+	Template.Abilities.AddItem('PistolReturnFire');
 	Template.Abilities.AddItem('CoilgunBonusShredAbility');
 	Template.Requirements.RequiredTechs.AddItem('Coilguns');
 
