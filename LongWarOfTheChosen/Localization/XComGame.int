@@ -4929,15 +4929,15 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 [Battlemaster X2AbilityTemplate]
 ; LWOTC Needs Translation
 LocFriendlyName="Battlemaster"
-LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim and defense from high ground, and have lower infiltration times."
-LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim and defense from high ground, and have lower infiltration times."
-LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/><Bullet/> Gain +10 aim and defense from high ground.<br/><Bullet/> This soldier has reduced infiltration times while on missions."
+LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT, granting them a grenade slot."
+LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT, granting them a grenade slot."
+LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/>"
 
 [SkirmisherGrapple X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into position without using an action.<br/><Bullet/> Grapple has a 2-turn cooldown (1 turn with Parkour)."
 ; End Translation
 
-[LW2WotC_Reckoning X2AbilityTemplate]
+[Reckoning_LW X2AbilityTemplate]
 LocFriendlyName="Reckoning"
 LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack."
 LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack."
@@ -4993,23 +4993,16 @@ Summary="The cooldown for the Skrimisher's grappling hook is reduced by one turn
 
 [Whiplash X2AbilityTemplate]
 LocFriendlyName="Whiplash"
-LocLongDescription="Attack an enemy with an electrical lash. This attack does not cost an action and has a 4 turn cooldown."
-LocHelpText="A free attack with an electrical lash. Double damage to robotic units. 4 turn cooldown."
-LocPromotionPopupText="<Bullet/> Whiplash does double damage to robotic enemies. 4 turn cooldown."
+LocLongDescription="Attack an enemy with an electrical lash. This attack has a <Ability:SelfCooldown/>-turn cooldown."
+LocHelpText="An attack with an electrical lash. Extra damage to robotic units. <Ability:SelfCooldown/>-turn cooldown."
+LocPromotionPopupText="<Bullet/> Whiplash does extra damage to robotic enemies. <Ability:SelfCooldown/>-turn cooldown."
 
 [SkirmisherInterrupt X2AbilityTemplate]
 LocFriendlyName="Interrupt"
 LocLongDescription="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
 LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
 LocFlyOverText="Interrupt"
-LocPromotionPopupText="<Bullet/> While Interrupt can be used without any action points available, it still depletes all of the Skirmisher's remaining actions.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:INTERRUPT_COOLDOWN/> turn cooldown."
-
-[SkirmisherInterruptInput X2AbilityTemplate]
-LocFriendlyName="Interrupt"
-LocLongDescription="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
-LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
-LocFlyOverText="Interrupt"
-LocPromotionPopupText="<Bullet/> While Interrupt can be used without any action points available, it still depletes all of the Skirmisher's remaining actions.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:INTERRUPT_COOLDOWN/> turn cooldown."
+LocPromotionPopupText="<Bullet/> While Interrupt can be used without any action points available, it still depletes all of the Skirmisher's remaining actions.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:SelfCooldown/> turn cooldown."
 
 [Solace X2AbilityTemplate]
 LocFriendlyName="Templar Aura"
@@ -5081,4 +5074,26 @@ LocPromotionPopupText="<Bullet/> Tracking allows the unit to detect units that a
 [Hero_TrackingTrigger X2AbilityTemplate]
 LocFriendlyName="Tracking"
 LocFlyOverText="Tracking"
+
+[SkirmisherReflex X2AbilityTemplate]
+LocLongDescription="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn."
+LocHelpText="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn."
+LocPromotionPopupText="<Bullet/> The Grapple makes the Skirmisher a great advance scout, and Reflex rewards their aggressive positioning.<br/><Bullet/> Reflex can only be triggered once per turn.<br/>"
+
+[FullThrottle X2AbilityTemplate]
+LocLongDescription="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
+LocHelpText="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
+
+[Judgment X2AbilityTemplate]
+LocFriendlyName="Judgement"
+LocLongDescription="Has a chance to panic any enemy that attacks this unit. The higher the will of this unit, the higher the panic chance."
+LocHelpText="Has a chance to panic any enemy that attacks this unit. The higher the will of this unit, the higher the panic chance."
+LocFlyOverText="Judgement"
+LocPromotionPopupText="<Bullet/> Judgement can be triggered by melee and area of effect attacks.<br/><Bullet/> Judgement will not trigger when targeted by Overwatch fire.<br/><Bullet/> The chance of panic depends on both the will of the attacking unit and the will of the unit with Judgement.<br/><Bullet/> Judgement works best on units with high will.<br/>"
+
+[ManualOverride_LW X2AbilityTemplate]
+LocFriendlyName="Manual Override"
+LocLongDescription="Resets all ability cooldowns on ally soldiers."
+LocHelpText="Resets all ability cooldowns on ally soldiers."
+LocPromotionPopupText="<Bullet/> Use the Skirmisher's abilities early and often to take full advantage of Manual Override.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>"
 ; End Translation

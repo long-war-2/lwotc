@@ -107,7 +107,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
     switch(Type)
     {
         case 'FLECHE_BONUS_DAMAGE_PER_TILES':
-			TempFloat = 1 / class'X2Effect_FlecheBonusDamage'.default.BonusDmgPerTile;
+			TempFloat = 1 / class'X2Ability_PerkPackAbilitySet2'.default.BONUS_SLICE_DAMAGE_PER_TILE;
 			TempFloat = Round(TempFloat * 10.0) / 10.0;
 			TempInt = int(TempFloat);
 			if ( float(TempInt) ~= TempFloat)

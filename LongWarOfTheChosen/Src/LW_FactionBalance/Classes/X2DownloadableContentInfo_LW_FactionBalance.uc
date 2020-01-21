@@ -1,12 +1,6 @@
 //credit to AngelRane, NotSoLoneWolf, Udaya, and Grobobobo
 class X2DownloadableContentInfo_LW_FactionBalance extends X2DownloadableContentInfo config (LW_FactionBalance);
 
-var config int SkirmisherVengeance_COOLDOWN;
-var config int Justice_COOLDOWN;
-var config int WHIPLASH_COOLDOWN;
-var config int INTERRUPT_COOLDOWN;
-var config int WHIPLASH_AP;
-
 var config int PILLAR_AP;
 var config int STUNSTRIKE_KNOCKBACK_DISTANCE;
 var config int STUNSTRIKE_STUN_DURATION;
@@ -17,13 +11,8 @@ var config float REAPER_DETECTION_RANGE_REDUCTION;
 static event OnPostTemplatesCreated()
 {
 	IgnoreSuperConcealmentOnAllMissions();
-	UpdateWhiplash();
-	UpdateInterrupt();
-	UpdateJustice();
-	UpdateSkirmisherVengeance();
 	UpdatePillar();
 	UpdateStunStrike();
-	UpdateGrapple();
 	UpdateParry();
 	UpdateDeflect();
 	UpdateShadow();
@@ -112,141 +101,6 @@ static function UpdateDeflect()
 	foreach TemplateAllDifficulties(Template)
 	{
 		EditDeflect(Template);
-	}
-}
-
-static function UpdateWhiplash()
-{
-	local X2AbilityTemplateManager			AbilityManager;
-	local array<X2AbilityTemplate>			TemplateAllDifficulties;
-	local X2AbilityTemplate					Template;
-
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2AbilityCooldown					Cooldown;
-
-	// Find the ability template called Whiplash
-	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
-	AbilityManager.FindAbilityTemplateAllDifficulties('Whiplash', TemplateAllDifficulties);
-	// Edit the template
-	foreach TemplateAllDifficulties(Template)
-	{
-		// Kill the charges and the charge cost
-		Template.AbilityCosts.Length = 0;
-		Template.AbilityCharges = none;
-
-		// Killing the above results in some collateral damage so we have to re-add the action point costs
-		ActionPointCost = new class'X2AbilityCost_ActionPoints';
-		ActionPointCost.iNumPoints = default.WHIPLASH_AP;
-		ActionPointCost.bFreeCost = true;
-		Template.AbilityCosts.AddItem(ActionPointCost);
-
-		// And finally we take the cooldowns from our config file and apply them here
-		Cooldown = new class'X2AbilityCooldown';
-		Cooldown.iNumTurns = default.WHIPLASH_COOLDOWN;
-		Template.AbilityCooldown = Cooldown;
-	}
-}
-
-static function UpdateInterrupt()
-{
-	local X2AbilityTemplateManager			AbilityManager;
-	local array<X2AbilityTemplate>			TemplateAllDifficulties;
-	local X2AbilityTemplate					Template;
-
-	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2AbilityCooldown					Cooldown;
-
-	// Find the ability template called InterruptInput
-	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
-	AbilityManager.FindAbilityTemplateAllDifficulties('SkirmisherInterruptInput', TemplateAllDifficulties);
-	// Edit the template
-	foreach TemplateAllDifficulties(Template)
-	{
-		// Kill the charges and the charge cost
-		Template.AbilityCosts.Length = 0;
-		Template.AbilityCharges = none;
-
-		// Killing the above results in some collateral damage so we have to re-add the action point costs
-		ActionPointCost = new class'X2AbilityCost_ActionPoints';
-		ActionPointCost.bConsumeAllPoints = true;
-		ActionPointCost.bFreeCost = true;
-		ActionPointCost.DoNotConsumeAllEffects.Length = 0;
-		ActionPointCost.DoNotConsumeAllSoldierAbilities.Length = 0;
-		ActionPointCost.AllowedTypes.RemoveItem(class'X2CharacterTemplateManager'.default.SkirmisherInterruptActionPoint);
-		Template.AbilityCosts.AddItem(ActionPointCost);
-
-		// And finally we take the cooldowns from our config file and apply them here
-		Cooldown = new class'X2AbilityCooldown';
-		Cooldown.iNumTurns = default.INTERRUPT_COOLDOWN;
-		Template.AbilityCooldown = Cooldown;
-	}
-}
-
-static function UpdateGrapple()
-{
-	local X2AbilityTemplateManager			AbilityManager;
-	local array<X2AbilityTemplate>			TemplateAllDifficulties;
-	local X2AbilityTemplate					Template;
-
-	local X2AbilityCooldown_Grapple			Cooldown;
-
-	// Find the ability called SkirmisherGrapple
-	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
-	AbilityManager.FindAbilityTemplateAllDifficulties('SkirmisherGrapple', TemplateAllDifficulties);
-
-	// Edit the template
-	foreach TemplateAllDifficulties(Template)
-	{
-		// Kill the default cooldown
-		Template.AbilityCooldown = none;
-
-		// Have the ability check our custom X2AbilityCooldown_Grapple file to get its cooldown time
-		Cooldown = new class'X2AbilityCooldown_Grapple';
-		Template.AbilityCooldown = Cooldown;
-	}
-}
-
-static function UpdateJustice()
-{
-	local X2AbilityTemplateManager			AbilityManager;
-	local array<X2AbilityTemplate>			TemplateAllDifficulties;
-	local X2AbilityTemplate					Template;
-
-	local X2AbilityCooldown					Cooldown;
-
-	// Find the ability template called Whiplash
-	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
-	AbilityManager.FindAbilityTemplateAllDifficulties('Justice', TemplateAllDifficulties);
-	// Edit the template
-	foreach TemplateAllDifficulties(Template)
-	{
-
-		// And finally we take the cooldowns from our config file and apply them here
-		Cooldown = new class'X2AbilityCooldown';
-		Cooldown.iNumTurns = default.Justice_COOLDOWN;
-		Template.AbilityCooldown = Cooldown;
-	}
-}
-
-static function UpdateSkirmisherVengeance()
-{
-	local X2AbilityTemplateManager			AbilityManager;
-	local array<X2AbilityTemplate>			TemplateAllDifficulties;
-	local X2AbilityTemplate					Template;
-
-	local X2AbilityCooldown					Cooldown;
-
-	// Find the ability template called Whiplash
-	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
-	AbilityManager.FindAbilityTemplateAllDifficulties('SkirmisherVengeance', TemplateAllDifficulties);
-	// Edit the template
-	foreach TemplateAllDifficulties(Template)
-	{
-
-		// And finally we take the cooldowns from our config file and apply them here
-		Cooldown = new class'X2AbilityCooldown';
-		Cooldown.iNumTurns = default.SkirmisherVengeance_COOLDOWN;
-		Template.AbilityCooldown = Cooldown;
 	}
 }
 
@@ -402,6 +256,8 @@ static event InstallNewCampaign(XComGameState StartState)
 static function bool AbilityTagExpandHandler(string InString, out string OutString)
 {
 	local name Type;
+	local float TempFloat;
+	local int TempInt;
 
 	Type = name(InString);
 	switch(Type)
@@ -423,6 +279,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		return true;
 	case 'DisablingShotCritStunActions':
 		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.DisablingShotCritStunActions);
+		return true;
+	case 'FULL_THROTTLE_DURATION':
+		OutString = string(class'X2LWModTemplate_SkirmisherAbilities'.default.FULL_THROTTLE_DURATION);
 		return true;
 	}
 
