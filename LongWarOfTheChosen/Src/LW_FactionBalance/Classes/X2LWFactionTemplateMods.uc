@@ -13,6 +13,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateModifyReaperAbilitiesTemplate());
 	Templates.AddItem(CreateModifySkirmisherAbilitiesTemplate());
+	Templates.AddItem(CreateModifyTemplarAbilitiesTemplate());
 	Templates.AddItem(CreateModifyItemsTemplate());
 	return Templates;
 }
@@ -30,6 +31,14 @@ static function X2LWTemplateModTemplate CreateModifySkirmisherAbilitiesTemplate(
 	local X2LWTemplateModTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2LWModTemplate_SkirmisherAbilities', Template, 'SkirmisherAbilities');
+	return Template;
+}
+
+static function X2LWTemplateModTemplate CreateModifyTemplarAbilitiesTemplate()
+{
+	local X2LWTemplateModTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2LWModTemplate_TemplarAbilities', Template, 'TemplarAbilities');
 	return Template;
 }
 

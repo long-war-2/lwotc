@@ -10,4 +10,22 @@ LocFriendlyName="Disabling Shot"
 LocLongDescription="Stun enemies with a precise shot, with a bonus stun duration if the shot crits. The shot can not do critical damage."
 LocHelpText="Stun enemies with a precise shot, with a bonus stun duration if the shot crits. The shot can not do critical damage."
 LocPromotionPopupText="<Bullet/> Stuns enemies for <Ability:DisablingShotStunActions/> actions if the shot hits (including if it grazes).<br/><Bullet/> Stuns for an extra <Ability:DisablingShotCritStunActions/> actions if the shot crits, but the shot won't inflict the critical damage.<br/><Bullet/> Disabling Shot requires <Ability:SelfAmmoCost/> ammo to use and has a <Ability:SelfCooldown/>-turn cooldown.<br/><Bullet/> Only Avatars and Psi Zombies can not be stunned."
+
+[Meditation X2AbilityTemplate]
+LocFriendlyName="Meditation"
+LocLongDescription="Adds up to <Ability:MeditationFocusRecovery/> focus to the Templar."
+LocHelpText="Adds up to <Ability:MeditationFocusRecovery/> focus to the Templar."
+LocPromotionPopupText="<Bullet/> Adds <Ability:MeditationFocusRecovery/> points of focus to the Templar.<br/><Bullet/> Ends the turn.<br/><Bullet/> Has a <Ability:SelfCooldown/>-turn cooldown."
+
+[Overcharge_LW X2AbilityTemplate]
+LocFriendlyName="Overcharge"
+LocLongDescription="Gain bonus aim and defense for each point of focus the Templar has."
+LocHelpText="Gain bonus aim and defense for each point of focus the Templar has."
+LocPromotionPopupText="<Bullet/> Each point of focus provides +<Ability:OverchargeAimBonus/> aim and +<Ability:OverchargeDefenseBonus/> defense.<br/><Bullet/> Based on the current focus, not max focus."
+
+[VoltDangerZone X2AbilityTemplate]
+LocFriendlyName="Danger Zone"
+LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Volt."
+LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Volt."
+LocPromotionPopupText="<Bullet/> Provides a <Ability:VoltDangerZoneBonus/>-tile bonus to the radius of Volt."
 ; End Translation
