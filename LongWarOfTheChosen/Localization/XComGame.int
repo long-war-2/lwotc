@@ -5068,4 +5068,46 @@ LocFriendlyName="Manual Override"
 LocLongDescription="Resets all ability cooldowns on ally soldiers."
 LocHelpText="Resets all ability cooldowns on ally soldiers."
 LocPromotionPopupText="<Bullet/> Use the Skirmisher's abilities early and often to take full advantage of Manual Override.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>"
+
+[TemplarGrazingFire X2AbilityTemplate]
+LocFriendlyName="Grazing Fire"
+LocFlyOverText="Grazing Fire"
+LocLongDescription="Missed shots with your autopistol have an additional roll to become a graze."
+LocHelpText="Misses may become grazes."
+LocPromotionPopupText="<Bullet/> Missed shots with the soldier's autopistol generally have a <Ability:GRAZING_FIRE_SUCCESS_CHANCE>% chance to become a graze.<br/><Bullet/> This effect occurs after normal hit-miss-graze processing.<br/><Bullet/> Targets with a dodge score subtract that score from the ability's success chance."
+
+[TemplarFleche X2AbilityTemplate]
+LocFriendlyName="Fleche"
+LocFlyOverText="Fleche"
+LocLongDescription="Attack any enemy within movement range with your sword. Deals +1 damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between your starting position and the target."
+LocHelpText="Attack any enemy within movement range with your sword. Deals bonus damage for attacks from a distance."
+LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/>  Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position.<br/>"
+
+[TemplarSolace X2AbilityTemplate]
+LocFriendlyName="Solace"
+LocFlyOverText="Solace"
+LocLongDescription="The Templar may immediately extinguish mental impairments for a squadmate."
+LocHelpText="The Templar may immediately extinguish mental impairments for a squadmate."
+LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>
+
+[CasterGauntlet_CV X2PairedWeaponTemplate]
+FriendlyName="Caster Gauntlets"
+FriendlyNamePlural="Caster Gauntlets"
+BriefSummary="The paired Templar gauntlets were designed to amplify the user's Psionic energy, but at their core, they are still gauntlets--stout, metallic gloves capable of withstanding extremes well beyond what flesh alone can take."
+TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+AbilityDescName="shard"
+
+[CasterGauntlet_MG X2PairedWeaponTemplate]
+FriendlyName="Mage Gauntlets"
+FriendlyNamePlural="Mage Gauntlets"
+BriefSummary="The paired Templar gauntlets were designed to amplify the user's Psionic energy, but at their core, they are still gauntlets--stout, metallic gloves capable of withstanding extremes well beyond what flesh alone can take. With magnetic plating layered over the existing structure, they now provide much more than the original enhancement they were created for."
+TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+AbilityDescName="shard"
+
+[CasterGauntlet_BM X2PairedWeaponTemplate]
+FriendlyName="Archmage Gauntlets"
+FriendlyNamePlural="Archmage Gauntlets"
+BriefSummary="A small Elerium power cell scavenged from an unknown piece of ADVENT technology has provided the Templars with a means of further amplifying the Psionic energy harnessed by these gauntlets. It is still unknown whether it is their mastery of this power, or the technology they have created that allows this blend of opposing forces."
+TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n"
+AbilityDescName="shard"
 ; End Translation

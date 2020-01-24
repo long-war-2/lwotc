@@ -13,11 +13,6 @@ var config WeaponDamageValue BULLPUP_BEAM_BASEDAMAGE;
 var config WeaponDamageValue VEKTORRIFLE_MAGNETIC_BASEDAMAGE;
 var config WeaponDamageValue VEKTORRIFLE_BEAM_BASEDAMAGE;
 
-var config WeaponDamageValue SHARDGAUNTLET_MAGNETIC_BASEDAMAGE;
-var config array<WeaponDamageValue> SHARDGAUNTLET_MAGNETIC_EXTRADAMAGE;
-var config WeaponDamageValue SHARDGAUNTLET_BEAM_BASEDAMAGE;
-var config array<WeaponDamageValue> SHARDGAUNTLET_BEAM_EXTRADAMAGE;
-
 var config WeaponDamageValue SIDEARM_MAGNETIC_BASEDAMAGE;
 var config WeaponDamageValue SIDEARM_BEAM_BASEDAMAGE;
 
@@ -66,16 +61,6 @@ var config int WRISTBLADE_BEAM_AIM;
 var config int WRISTBLADE_BEAM_CRITCHANCE;
 var config int WRISTBLADE_BEAM_ISOUNDRANGE;
 var config int WRISTBLADE_BEAM_IENVIRONMENTDAMAGE;
-
-var config int SHARDGAUNTLET_MAGNETIC_AIM;
-var config int SHARDGAUNTLET_MAGNETIC_CRITCHANCE;
-var config int SHARDGAUNTLET_MAGNETIC_ISOUNDRANGE;
-var config int SHARDGAUNTLET_MAGNETIC_IENVIRONMENTDAMAGE;
-
-var config int SHARDGAUNTLET_BEAM_AIM;
-var config int SHARDGAUNTLET_BEAM_CRITCHANCE;
-var config int SHARDGAUNTLET_BEAM_ISOUNDRANGE;
-var config int SHARDGAUNTLET_BEAM_IENVIRONMENTDAMAGE;
 
 var config int SIDEARM_MAGNETIC_AIM;
 var config int SIDEARM_MAGNETIC_CRITCHANCE;
@@ -149,6 +134,27 @@ var config int VEKTOR_COIL_UPGRADESLOTS;
 var config array<int> VEKTOR_COIL_RANGE;
 var config string Vektor_Coil_ImagePath;
 
+var config WeaponDamageValue CASTERGAUNTLET_CONVENTIONAL_BASEDAMAGE;
+var config array<WeaponDamageValue> CASTERGAUNTLET_CONVENTIONAL_EXTRADAMAGE;
+var config WeaponDamageValue CASTERGAUNTLET_MAGNETIC_BASEDAMAGE;
+var config array<WeaponDamageValue> CASTERGAUNTLET_MAGNETIC_EXTRADAMAGE;
+var config WeaponDamageValue CASTERGAUNTLET_BEAM_BASEDAMAGE;
+var config array<WeaponDamageValue> CASTERGAUNTLET_BEAM_EXTRADAMAGE;
+
+var config int CASTERGAUNTLET_CONVENTIONAL_AIM;
+var config int CASTERGAUNTLET_CONVENTIONAL_CRITCHANCE;
+var config int CASTERGAUNTLET_CONVENTIONAL_ISOUNDRANGE;
+var config int CASTERGAUNTLET_CONVENTIONAL_IENVIRONMENTDAMAGE;
+
+var config int CASTERGAUNTLET_MAGNETIC_AIM;
+var config int CASTERGAUNTLET_MAGNETIC_CRITCHANCE;
+var config int CASTERGAUNTLET_MAGNETIC_ISOUNDRANGE;
+var config int CASTERGAUNTLET_MAGNETIC_IENVIRONMENTDAMAGE;
+
+var config int CASTERGAUNTLET_BEAM_AIM;
+var config int CASTERGAUNTLET_BEAM_CRITCHANCE;
+var config int CASTERGAUNTLET_BEAM_ISOUNDRANGE;
+var config int CASTERGAUNTLET_BEAM_IENVIRONMENTDAMAGE;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -161,8 +167,12 @@ static function array<X2DataTemplate> CreateTemplates()
 	Weapons.AddItem(CreateTemplate_Bullpup_Magnetic());
 	Weapons.AddItem(CreateTemplate_Bullpup_Beam());
 
-	Weapons.AddItem(CreateTemplate_ShardGauntlet_Magnetic());
-	Weapons.AddItem(CreateTemplate_ShardGauntlet_Beam());	
+	Weapons.AddItem(CreateTemplate_CasterGauntlet_Conventional());
+	Weapons.AddItem(CreateTemplate_CasterGauntlet_Magnetic());
+	Weapons.AddItem(CreateTemplate_CasterGauntlet_Beam());	
+	Weapons.AddItem(CreateTemplate_CasterGauntletLeft_Conventional());
+	Weapons.AddItem(CreateTemplate_CasterGauntletLeft_Magnetic());
+	Weapons.AddItem(CreateTemplate_CasterGauntletLeft_Beam());
 
 	Weapons.AddItem(CreateTemplate_Sidearm_Magnetic());
 	Weapons.AddItem(CreateTemplate_Sidearm_Beam());
@@ -413,14 +423,14 @@ static function X2DataTemplate CreateTemplate_VektorRifle_Magnetic()
 	Template.iEnvironmentDamage = default.VEKTORRIFLE_MAGNETIC_IENVIRONMENTDAMAGE;
 
 	Template.NumUpgradeSlots = 3;
-	
+
 	Template.InventorySlot = eInvSlot_PrimaryWeapon;
 	Template.Abilities.AddItem('StandardShot');
 	Template.Abilities.AddItem('Overwatch');
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	
+
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "WP_ReaperRifle_MG.WP_ReaperRifle_MG";
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
@@ -430,7 +440,7 @@ static function X2DataTemplate CreateTemplate_VektorRifle_Magnetic()
 	Template.AddDefaultAttachment('Stock', "CnvReaperRifle.Meshes.SM_HOR_Cnv_ReaperRifle_StockA", , "img:///UILibrary_XPACK_Common.MagVektor_StockA");
 	Template.AddDefaultAttachment('Trigger', "CnvReaperRifle.Meshes.SM_HOR_Cnv_ReaperRifle_TriggerA", , "img:///UILibrary_XPACK_Common.MagVektor_TriggerA");
 	Template.AddDefaultAttachment('Light', "ConvAttachments.Meshes.SM_ConvFlashLight");
-	
+
 
 	Template.iPhysicsImpulse = 5;
 
@@ -482,14 +492,14 @@ static function X2DataTemplate CreateTemplate_VektorRifle_Beam()
 	Template.iEnvironmentDamage = default.VEKTORRIFLE_BEAM_IENVIRONMENTDAMAGE;
 
 	Template.NumUpgradeSlots = 3;
-	
+
 	Template.InventorySlot = eInvSlot_PrimaryWeapon;
 	Template.Abilities.AddItem('StandardShot');
 	Template.Abilities.AddItem('Overwatch');
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	
+
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "WP_ReaperRifle_BM.WP_ReaperRifle_BM";
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
@@ -529,142 +539,6 @@ static function X2DataTemplate CreateTemplate_VektorRifle_Beam()
 	Template.Cost.ArtifactCosts.AddItem(Artifacts);
 
 	Template.DamageTypeTemplateName = 'Projectile_BeamXCom';
-
-	return Template;
-}
-
-static function X2DataTemplate CreateTemplate_ShardGauntlet_Magnetic()
-{
-	local X2PairedWeaponTemplate Template;
-	local ArtifactCost Resources;
-	local ArtifactCost Artifacts;
-
-	`CREATE_X2TEMPLATE(class'X2PairedWeaponTemplate', Template, 'ShardGauntlet_MG');
-	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
-	Template.PairedSlot = eInvSlot_TertiaryWeapon;
-	Template.PairedTemplateName = 'ShardGauntletLeft_MG';
-
-	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'gauntlet';
-	Template.WeaponTech = 'magnetic';
-	Template.strImage = "img:///UILibrary_XPACK_StrategyImages.Inv_MagTGauntlet";
-	Template.EquipSound = "Sword_Equip_Magnetic";
-	Template.InventorySlot = eInvSlot_PrimaryWeapon;
-	//Template.StowedLocation = eSlot_RightBack;
-	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_MG";
-	Template.AltGameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_F_MG";
-	Template.GenderForAltArchetype = eGender_Female;
-	Template.Tier = 3;
-	Template.bUseArmorAppearance = true;
-
-	Template.iRadius = 1;
-	Template.NumUpgradeSlots = 0;
-	Template.InfiniteAmmo = true;
-	Template.iPhysicsImpulse = 5;
-
-	Template.iRange = 0;
-	Template.BaseDamage = default.SHARDGAUNTLET_MAGNETIC_BASEDAMAGE;
-	Template.ExtraDamage = default.SHARDGAUNTLET_MAGNETIC_EXTRADAMAGE;
-	Template.Aim = default.SHARDGAUNTLET_MAGNETIC_AIM;
-	Template.CritChance = default.SHARDGAUNTLET_MAGNETIC_CRITCHANCE;
-	Template.iSoundRange = default.SHARDGAUNTLET_MAGNETIC_ISOUNDRANGE;
-	Template.iEnvironmentDamage = default.SHARDGAUNTLET_MAGNETIC_IENVIRONMENTDAMAGE;
-	Template.BaseDamage.DamageType = 'Psi';
-
-	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventStunLancer');
-
-	Template.CanBeBuilt = true;
-	Template.bInfiniteItem = false;
-
-	// Cost
-	Resources.ItemTemplateName = 'Supplies';
-	Resources.Quantity = 35;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'AlienAlloy';
-	Resources.Quantity = 3;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'EleriumDust';
-	Resources.Quantity = 3;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Artifacts.ItemTemplateName = 'CorpseAdventStunLancer';
-	Artifacts.Quantity = 1;
-	Template.Cost.ArtifactCosts.AddItem(Artifacts);
-
-	Template.DamageTypeTemplateName = 'Psi';
-
-	return Template;
-}
-
-static function X2DataTemplate CreateTemplate_ShardGauntlet_Beam()
-{
-	local X2PairedWeaponTemplate Template;
-	local ArtifactCost Resources;
-	local ArtifactCost Artifacts;
-
-	`CREATE_X2TEMPLATE(class'X2PairedWeaponTemplate', Template, 'ShardGauntlet_BM');
-	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
-	Template.PairedSlot = eInvSlot_TertiaryWeapon;
-	Template.PairedTemplateName = 'ShardGauntletLeft_BM';
-
-	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'gauntlet';
-	Template.WeaponTech = 'beam';
-	Template.strImage = "img:///UILibrary_XPACK_StrategyImages.Inv_BeamTGauntlet";
-	Template.EquipSound = "Sword_Equip_Beam";
-	Template.InventorySlot = eInvSlot_PrimaryWeapon;
-	//Template.StowedLocation = eSlot_RightBack;
-	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_BM";
-	Template.AltGameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_F_BM";
-	Template.GenderForAltArchetype = eGender_Female;
-	Template.Tier = 5;
-	Template.bUseArmorAppearance = true;
-
-	Template.iRadius = 1;
-	Template.NumUpgradeSlots = 0;
-	Template.InfiniteAmmo = true;
-	Template.iPhysicsImpulse = 5;
-
-	Template.iRange = 0;
-	Template.BaseDamage = default.SHARDGAUNTLET_BEAM_BASEDAMAGE;
-	Template.ExtraDamage = default.SHARDGAUNTLET_BEAM_EXTRADAMAGE;
-	Template.Aim = default.SHARDGAUNTLET_BEAM_AIM;
-	Template.CritChance = default.SHARDGAUNTLET_BEAM_CRITCHANCE;
-	Template.iSoundRange = default.SHARDGAUNTLET_BEAM_ISOUNDRANGE;
-	Template.iEnvironmentDamage = default.SHARDGAUNTLET_BEAM_IENVIRONMENTDAMAGE;
-	Template.BaseDamage.DamageType = 'Psi';
-
-	Template.CanBeBuilt = true;
-	Template.bInfiniteItem = false;
-
-	Template.Requirements.RequiredTechs.AddItem('AutopsyArchon');
-
-	// Cost
-	Resources.ItemTemplateName = 'Supplies';
-	Resources.Quantity = 55;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'AlienAlloy';
-	Resources.Quantity = 4;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Resources.ItemTemplateName = 'EleriumDust';
-	Resources.Quantity = 4;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Artifacts.ItemTemplateName = 'CorpseArchon';
-	Artifacts.Quantity = 1;
-	Template.Cost.ArtifactCosts.AddItem(Artifacts);
-
-	Artifacts.ItemTemplateName = 'EleriumCore';
-	Artifacts.Quantity = 1;
-	Template.Cost.ArtifactCosts.AddItem(Artifacts);
-
-	Template.DamageTypeTemplateName = 'Psi';
 
 	return Template;
 }
@@ -959,14 +833,14 @@ static function X2DataTemplate CreateVektorCrossbow_CV()
 	Template.iEnvironmentDamage = class'X2Item_XpackWeapons'.default.VEKTORRIFLE_CONVENTIONAL_IENVIRONMENTDAMAGE;
 	Template.NumUpgradeSlots = 3;
 	Template.iTypicalActionCost = 2;
-		
+
 	Template.InventorySlot = eInvSlot_PrimaryWeapon;
 	Template.Abilities.AddItem('StandardShot');
 	Template.Abilities.AddItem('Overwatch');
 	Template.Abilities.AddItem('OverwatchShot');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
-	
+
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "CrossbowVektor.WP_CrossbowVektor_CV";
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
@@ -976,12 +850,12 @@ static function X2DataTemplate CreateVektorCrossbow_CV()
 	Template.StartingItem = true;
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
-	
+
 	Template.fKnockbackDamageAmount = 5.0f;
 	Template.fKnockbackDamageRadius = 0.0f;
 
 	Template.DamageTypeTemplateName = 'Projectile_Conventional';
-	
+
 	return Template;
 }
 
@@ -1077,6 +951,291 @@ static function X2DataTemplate CreateVektorCrossbow_Coil()
 	Template.bInfiniteItem = false;
 
 	Template.DamageTypeTemplateName = 'Projectile_MagXCom';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateTemplate_CasterGauntlet_Conventional()
+{
+	local X2PairedWeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2PairedWeaponTemplate', Template, 'CasterGauntlet_CV');
+	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
+	Template.PairedSlot = eInvSlot_TertiaryWeapon;
+	Template.PairedTemplateName = 'CasterGauntletLeft_CV';
+
+	Template.ItemCat = 'weapon';
+	Template.WeaponCat = 'gauntlet';
+	Template.WeaponTech = 'magnetic';
+	Template.strImage = "img:///UILibrary_XPACK_StrategyImages.Inv_ConvTGauntlet";
+	Template.EquipSound = "Sword_Equip_Magnetic";
+	Template.InventorySlot = eInvSlot_PrimaryWeapon;
+	//Template.StowedLocation = eSlot_RightBack;
+	// This all the resources; sounds, animations, models, physics, the works.
+	Template.GameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_CV";
+	Template.AltGameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_F_CV";
+	Template.GenderForAltArchetype = eGender_Female;
+	Template.Tier = 0;
+	Template.bUseArmorAppearance = true;
+
+	Template.iRadius = 1;
+	Template.NumUpgradeSlots = 0;
+	Template.InfiniteAmmo = true;
+	Template.iPhysicsImpulse = 5;
+
+	Template.Abilities.AddItem('MeditationPreparation');
+
+	Template.iRange = 0;
+	Template.BaseDamage = default.CASTERGAUNTLET_CONVENTIONAL_BASEDAMAGE;
+	Template.ExtraDamage = default.CASTERGAUNTLET_CONVENTIONAL_EXTRADAMAGE;
+	Template.Aim = default.CASTERGAUNTLET_CONVENTIONAL_AIM;
+	Template.CritChance = default.CASTERGAUNTLET_CONVENTIONAL_CRITCHANCE;
+	Template.iSoundRange = default.CASTERGAUNTLET_CONVENTIONAL_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.CASTERGAUNTLET_CONVENTIONAL_IENVIRONMENTDAMAGE;
+	Template.BaseDamage.DamageType = 'Psi';
+
+	Template.CanBeBuilt = false;
+	Template.bInfiniteItem = true;
+
+	Template.DamageTypeTemplateName = 'Psi';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateTemplate_CasterGauntlet_Magnetic()
+{
+	local X2PairedWeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2PairedWeaponTemplate', Template, 'CasterGauntlet_MG');
+	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
+	Template.PairedSlot = eInvSlot_TertiaryWeapon;
+	Template.PairedTemplateName = 'CasterGauntletLeft_MG';
+
+	Template.ItemCat = 'weapon';
+	Template.WeaponCat = 'gauntlet';
+	Template.WeaponTech = 'magnetic';
+	Template.strImage = "img:///UILibrary_XPACK_StrategyImages.Inv_MagTGauntlet";
+	Template.EquipSound = "Sword_Equip_Magnetic";
+	Template.InventorySlot = eInvSlot_PrimaryWeapon;
+	//Template.StowedLocation = eSlot_RightBack;
+	// This all the resources; sounds, animations, models, physics, the works.
+	Template.GameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_MG";
+	Template.AltGameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_F_MG";
+	Template.GenderForAltArchetype = eGender_Female;
+	Template.Tier = 3;
+	Template.bUseArmorAppearance = true;
+
+	Template.iRadius = 1;
+	Template.NumUpgradeSlots = 0;
+	Template.InfiniteAmmo = true;
+	Template.iPhysicsImpulse = 5;
+
+	Template.Abilities.AddItem('DeepFocus');
+	Template.Abilities.AddItem('MeditationPreparation');
+
+	Template.iRange = 0;
+	Template.BaseDamage = default.CASTERGAUNTLET_MAGNETIC_BASEDAMAGE;
+	Template.ExtraDamage = default.CASTERGAUNTLET_MAGNETIC_EXTRADAMAGE;
+	Template.Aim = default.CASTERGAUNTLET_MAGNETIC_AIM;
+	Template.CritChance = default.CASTERGAUNTLET_MAGNETIC_CRITCHANCE;
+	Template.iSoundRange = default.CASTERGAUNTLET_MAGNETIC_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.CASTERGAUNTLET_MAGNETIC_IENVIRONMENTDAMAGE;
+	Template.BaseDamage.DamageType = 'Psi';
+
+	//Template.CreatorTemplateName = 'CASTERGAUNTLET_MG_Schematic'; // The schematic which creates this item
+	//Template.BaseItem = 'CASTERGAUNTLET_CV'; // Which item this will be upgraded from
+
+	Template.CanBeBuilt = true;
+	Template.bInfiniteItem = false;
+
+	Template.DamageTypeTemplateName = 'Psi';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateTemplate_CasterGauntlet_Beam()
+{
+	local X2PairedWeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2PairedWeaponTemplate', Template, 'CasterGauntlet_BM');
+	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
+	Template.PairedSlot = eInvSlot_TertiaryWeapon;
+	Template.PairedTemplateName = 'CasterGauntletLeft_BM';
+
+	Template.ItemCat = 'weapon';
+	Template.WeaponCat = 'gauntlet';
+	Template.WeaponTech = 'beam';
+	Template.strImage = "img:///UILibrary_XPACK_StrategyImages.Inv_BeamTGauntlet";
+	Template.EquipSound = "Sword_Equip_Beam";
+	Template.InventorySlot = eInvSlot_PrimaryWeapon;
+	//Template.StowedLocation = eSlot_RightBack;
+	// This all the resources; sounds, animations, models, physics, the works.
+	Template.GameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_BM";
+	Template.AltGameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_F_BM";
+	Template.GenderForAltArchetype = eGender_Female;
+	Template.Tier = 5;
+	Template.bUseArmorAppearance = true;
+
+	Template.iRadius = 1;
+	Template.NumUpgradeSlots = 0;
+	Template.InfiniteAmmo = true;
+	Template.iPhysicsImpulse = 5;
+
+	Template.Abilities.AddItem('DeepFocus');
+	Template.Abilities.AddItem('SupremeFocus');
+	Template.Abilities.AddItem('MeditationPreparation');
+
+	Template.iRange = 0;
+	Template.BaseDamage = default.CASTERGAUNTLET_BEAM_BASEDAMAGE;
+	Template.ExtraDamage = default.CASTERGAUNTLET_BEAM_EXTRADAMAGE;
+	Template.Aim = default.CASTERGAUNTLET_BEAM_AIM;
+	Template.CritChance = default.CASTERGAUNTLET_BEAM_CRITCHANCE;
+	Template.iSoundRange = default.CASTERGAUNTLET_BEAM_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.CASTERGAUNTLET_BEAM_IENVIRONMENTDAMAGE;
+	Template.BaseDamage.DamageType = 'Psi';
+
+	//Template.CreatorTemplateName = 'CASTERGAUNTLET_BM_Schematic'; // The schematic which creates this item
+	//Template.BaseItem = 'CASTERGAUNTLET_MG'; // Which item this will be upgraded from
+
+	Template.CanBeBuilt = true;
+	Template.bInfiniteItem = false;
+
+	Template.DamageTypeTemplateName = 'Psi';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateTemplate_CasterGauntletLeft_Conventional()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'CasterGauntletLeft_CV');
+	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
+
+	Template.ItemCat = 'weapon';
+	Template.WeaponCat = 'gauntlet';
+	Template.WeaponTech = 'conventional';
+//BEGIN AUTOGENERATED CODE: Template Overrides 'ShardGauntletLeft_CV'
+	Template.strImage = "img:///UILibrary_Common.ConvSecondaryWeapons.Sword";
+//END AUTOGENERATED CODE: Template Overrides 'ShardGauntletLeft_CV'
+	Template.EquipSound = "Sword_Equip_Conventional";
+	Template.InventorySlot = eInvSlot_TertiaryWeapon;
+	//Template.StowedLocation = eSlot_RightBack;
+	// This all the resources; sounds, animations, models, physics, the works.
+	Template.GameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntletL";
+	Template.AltGameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntletL_F";
+	Template.GenderForAltArchetype = eGender_Female;
+	Template.Tier = 0;
+	Template.bUseArmorAppearance = true;
+
+	Template.iRadius = 1;
+	Template.NumUpgradeSlots = 0;
+	Template.InfiniteAmmo = true;
+	Template.iPhysicsImpulse = 5;
+
+	Template.iRange = 0;
+	Template.BaseDamage = default.CASTERGAUNTLET_CONVENTIONAL_BASEDAMAGE;
+	Template.ExtraDamage = default.CASTERGAUNTLET_CONVENTIONAL_EXTRADAMAGE;
+	Template.Aim = default.CASTERGAUNTLET_CONVENTIONAL_AIM;
+	Template.CritChance = default.CASTERGAUNTLET_CONVENTIONAL_CRITCHANCE;
+	Template.iSoundRange = default.CASTERGAUNTLET_CONVENTIONAL_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.CASTERGAUNTLET_CONVENTIONAL_IENVIRONMENTDAMAGE;
+	Template.BaseDamage.DamageType = 'Melee';
+
+	Template.CanBeBuilt = false;
+	Template.bInfiniteItem = true;
+
+	Template.DamageTypeTemplateName = 'Melee';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateTemplate_CasterGauntletLeft_Magnetic()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'CasterGauntletLeft_MG');
+	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
+
+	Template.ItemCat = 'weapon';
+	Template.WeaponCat = 'gauntlet';
+	Template.WeaponTech = 'magnetic';
+//BEGIN AUTOGENERATED CODE: Template Overrides 'ShardGauntletLeft_MG'
+	Template.strImage = "img:///UILibrary_Common.MagSecondaryWeapons.MagSword";
+//END AUTOGENERATED CODE: Template Overrides 'ShardGauntletLeft_MG'
+	Template.EquipSound = "Sword_Equip_Magnetic";
+	Template.InventorySlot = eInvSlot_TertiaryWeapon;
+	//Template.StowedLocation = eSlot_RightBack;
+	// This all the resources; sounds, animations, models, physics, the works.
+	Template.GameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntletL_MG";
+	Template.AltGameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntletL_F_MG";
+	Template.GenderForAltArchetype = eGender_Female;
+	Template.Tier = 3;
+	Template.bUseArmorAppearance = true;
+
+	Template.iRadius = 1;
+	Template.NumUpgradeSlots = 0;
+	Template.InfiniteAmmo = true;
+	Template.iPhysicsImpulse = 5;
+
+	Template.iRange = 0;
+	Template.BaseDamage = default.CASTERGAUNTLET_MAGNETIC_BASEDAMAGE;
+	Template.ExtraDamage = default.CASTERGAUNTLET_MAGNETIC_EXTRADAMAGE;
+	Template.Aim = default.CASTERGAUNTLET_MAGNETIC_AIM;
+	Template.CritChance = default.CASTERGAUNTLET_MAGNETIC_CRITCHANCE;
+	Template.iSoundRange = default.CASTERGAUNTLET_MAGNETIC_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.CASTERGAUNTLET_MAGNETIC_IENVIRONMENTDAMAGE;
+	Template.BaseDamage.DamageType = 'Melee';
+
+	Template.CanBeBuilt = false;
+	Template.bInfiniteItem = true;
+
+	Template.DamageTypeTemplateName = 'Melee';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateTemplate_CasterGauntletLeft_Beam()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'CasterGauntletLeft_BM');
+	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
+
+	Template.ItemCat = 'weapon';
+	Template.WeaponCat = 'gauntlet';
+	Template.WeaponTech = 'beam';
+//BEGIN AUTOGENERATED CODE: Template Overrides 'ShardGauntletLeft_BM'
+	Template.strImage = "img:///UILibrary_Common.BeamSecondaryWeapons.BeamSword";
+//END AUTOGENERATED CODE: Template Overrides 'ShardGauntletLeft_BM'
+	Template.EquipSound = "Sword_Equip_Beam";
+	Template.InventorySlot = eInvSlot_TertiaryWeapon;
+	//Template.StowedLocation = eSlot_RightBack;
+	// This all the resources; sounds, animations, models, physics, the works.
+	Template.GameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntletL_BM";
+	Template.AltGameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntletL_F_BM";
+	Template.GenderForAltArchetype = eGender_Female;
+	Template.Tier = 5;
+	Template.bUseArmorAppearance = true;
+
+	Template.iRadius = 1;
+	Template.NumUpgradeSlots = 0;
+	Template.InfiniteAmmo = true;
+	Template.iPhysicsImpulse = 5;
+
+	Template.iRange = 0;
+	Template.BaseDamage = default.CASTERGAUNTLET_BEAM_BASEDAMAGE;
+	Template.ExtraDamage = default.CASTERGAUNTLET_BEAM_EXTRADAMAGE;
+	Template.Aim = default.CASTERGAUNTLET_BEAM_AIM;
+	Template.CritChance = default.CASTERGAUNTLET_BEAM_CRITCHANCE;
+	Template.iSoundRange = default.CASTERGAUNTLET_BEAM_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.CASTERGAUNTLET_BEAM_IENVIRONMENTDAMAGE;
+	Template.BaseDamage.DamageType = 'Melee';
+
+	Template.CanBeBuilt = false;
+	Template.bInfiniteItem = true;
+
+	Template.DamageTypeTemplateName = 'Melee';
 
 	return Template;
 }

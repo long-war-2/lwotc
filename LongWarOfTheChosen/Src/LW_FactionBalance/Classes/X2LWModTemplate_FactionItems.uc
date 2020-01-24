@@ -27,6 +27,11 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 	case 'Reaper_Claymore':
 		WeaponTemplate.iRange = `METERSTOTILES(class'X2Ability_ReaperAbilitySet'.default.ClaymoreRange);
 		break;
+	case 'ShardGauntlet_CV':
+	case 'ShardGauntlet_MG':
+	case 'ShardGauntlet_BM':
+		WeaponTemplate.Abilities.AddItem('TemplarFleche');
+		break;
 	case 'Wristblade_CV':
 		WeaponTemplate.ExtraDamage = default.WHIPLASH_CONVENTIONAL_DAMAGE;
 		break;
