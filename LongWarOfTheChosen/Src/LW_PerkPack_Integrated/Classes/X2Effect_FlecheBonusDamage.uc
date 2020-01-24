@@ -5,11 +5,12 @@
 //			  the amount of bonus depends on distance from starting point to target point
 //---------------------------------------------------------------------------------------
 
-class X2Effect_FlecheBonusDamage extends X2Effect_Persistent config(LW_SoldierSkills);
+class X2Effect_FlecheBonusDamage extends X2Effect_Persistent;
 
 `include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
-var config float BonusDmgPerTile;
+var float BonusDmgPerTile;
+var int MaxBonusDamage;
 var array<name> AbilityNames;
 
 function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState) 
@@ -51,7 +52,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 			BonusDmg = BonusDmgPerTile * VSize(StartLoc - TargetLoc)/ WorldData.WORLD_StepSize;
 			`PPTRACE("Fleche: BonusDamage=" $ int(BonusDmg));
 			`PPTRACE("Fleche: Output Damage should be:" @ string (CurrentDamage+int(BonusDmg)));
-			return int(BonusDmg);
+			return Min(int(BonusDmg), MaxBonusDamage);
 		}
 	}
 	return 0; 

@@ -11,14 +11,14 @@ var localized string TrojanVirusTriggered;
 
 var config int NUM_AIRDROP_CHARGES;
 var config int REQUIRED_TO_HIT_FOR_OVERWATCH;
+var config float BONUS_SLICE_DAMAGE_PER_TILE;
+var config int MAX_SLICE_FLECHE_DAMAGE;
 var config array<name> REQUIRED_OVERWATCH_TO_HIT_EXCLUDED_ABILITIES;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
-	`LWTrace("  >> X2Ability_PerkPackAbilitySet2.CreateTemplates()");
-	
 	Templates.AddItem(AddSnapShot());
 	Templates.AddItem(SnapShotOverwatch());
 	Templates.AddItem(AddSnapShotAimModifierAbility());
@@ -745,6 +745,8 @@ static function X2AbilityTemplate AddFleche()
 	Template.bHideOnClassUnlock = true;
 	Template.bCrossClassEligible = false;
 	FlecheBonusDamageEffect = new class 'X2Effect_FlecheBonusDamage';
+	FlecheBonusDamageEffect.BonusDmgPerTile = default.BONUS_SLICE_DAMAGE_PER_TILE;
+	FlecheBonusDamageEffect.MaxBonusDamage = default.MAX_SLICE_FLECHE_DAMAGE;
 	FlecheBonusDamageEffect.AbilityNames.AddItem('SwordSlice');
 	FlecheBonusDamageEffect.AbilityNames.AddItem('SwordSlice_LW');
 	//FlecheBonusDamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
