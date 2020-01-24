@@ -209,7 +209,7 @@ static event OnLoadedSavedGameToStrategy()
 	ChosenLevel=3;
 	else if(Forcelevel>12)
 	ChosenLevel=2;
-	else if(Forcelevel>7)
+	else if(Forcelevel>8)
 	ChosenLevel=1;
 	else
 	ChosenLevel=0;

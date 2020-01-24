@@ -1784,7 +1784,8 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 	local XComGameState NewGameState;
  	switch(CurrentForceLevel)
 	{	//All Forcelevel Threshholds for the Chosen, they increase the level accordingly
-		case 8:;case 13:;case 17:;
+		//Also I'll make them configs, I promise
+		case 9:;case 13:;case 17:;
 
 		History = `XCOMHISTORY;
 
