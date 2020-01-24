@@ -9,50 +9,50 @@ class LWTemplateMods_Utilities extends Object;
 
 static function UpdateTemplates()
 {
-    local X2StrategyElementTemplateManager		StrategyTemplateMgr;
-    local X2AbilityTemplateManager				AbilityTemplateMgr;
-    local X2CharacterTemplateManager			CharacterTemplateMgr;
-    local X2ItemTemplateManager					ItemTemplateMgr;
-    local X2MissionNarrativeTemplateManager		NarrativeTemplateMgr;
+	local X2StrategyElementTemplateManager		StrategyTemplateMgr;
+	local X2AbilityTemplateManager				AbilityTemplateMgr;
+	local X2CharacterTemplateManager			CharacterTemplateMgr;
+	local X2ItemTemplateManager					ItemTemplateMgr;
+	local X2MissionNarrativeTemplateManager		NarrativeTemplateMgr;
 	local X2SoldierClassTemplateManager			SoldierClassTemplateMgr;
-    local X2HackRewardTemplateManager			HackRewardTemplateMgr;
-    local X2SitRepTemplateManager				SitRepTemplateMgr;
+	local X2HackRewardTemplateManager			HackRewardTemplateMgr;
+	local X2SitRepTemplateManager				SitRepTemplateMgr;
 
-    local array<X2StrategyElementTemplate>		TemplateMods;
-    local X2LWTemplateModTemplate				ModTemplate;
-    local int idx;
+	local array<X2StrategyElementTemplate>		TemplateMods;
+	local X2LWTemplateModTemplate				ModTemplate;
+	local int idx;
 
 	`LWTrace("Template Mods: Starting Template Modifications");
 
 	//retrieve all needed template managers
-    StrategyTemplateMgr		= class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
-    AbilityTemplateMgr		= class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
-    CharacterTemplateMgr	= class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
-    ItemTemplateMgr			= class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	StrategyTemplateMgr		= class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	AbilityTemplateMgr		= class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+	CharacterTemplateMgr	= class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+	ItemTemplateMgr			= class'X2ItemTemplateManager'.static.GetItemTemplateManager();
 	NarrativeTemplateMgr	= class'X2MissionNarrativeTemplateManager'.static.GetMissionNarrativeTemplateManager();
 	SoldierClassTemplateMgr = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
-    HackRewardTemplateMgr   = class'X2HackRewardTemplateManager'.static.GetHackRewardTemplateManager();
-    SitRepTemplateMgr		= class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
+	HackRewardTemplateMgr   = class'X2HackRewardTemplateManager'.static.GetHackRewardTemplateManager();
+	SitRepTemplateMgr		= class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
 
-    TemplateMods = StrategyTemplateMgr.GetAllTemplatesOfClass(class'X2LWTemplateModTemplate');
-    for (idx = 0; idx < TemplateMods.Length; ++idx)
-    {
-        ModTemplate = X2LWTemplateModTemplate(TemplateMods[idx]);
-        if (ModTemplate.AbilityTemplateModFn != none)
-        {
+	TemplateMods = StrategyTemplateMgr.GetAllTemplatesOfClass(class'X2LWTemplateModTemplate');
+	for (idx = 0; idx < TemplateMods.Length; ++idx)
+	{
+		ModTemplate = X2LWTemplateModTemplate(TemplateMods[idx]);
+		if (ModTemplate.AbilityTemplateModFn != none)
+		{
 			`LWTrace("Template Mods: Updating Ability Templates for " $ ModTemplate.DataName);
-            PerformAbilityTemplateMod(ModTemplate, AbilityTemplateMgr);
-        }
+			PerformAbilityTemplateMod(ModTemplate, AbilityTemplateMgr);
+		}
 		if (ModTemplate.CharacterTemplateModFn != none)
-        {
+		{
 			`LWTrace("Template Mods: Updating Character Templates for " $ ModTemplate.DataName);
-            PerformCharacterTemplateMod(ModTemplate, CharacterTemplateMgr);
-        }
-        if (ModTemplate.ItemTemplateModFn != none)
-        {
+			PerformCharacterTemplateMod(ModTemplate, CharacterTemplateMgr);
+		}
+		if (ModTemplate.ItemTemplateModFn != none)
+		{
 			`LWTrace("Template Mods: Updating Item Templates for " $ ModTemplate.DataName);
-            PerformItemTemplateMod(ModTemplate, ItemTemplateMgr);
-        }
+			PerformItemTemplateMod(ModTemplate, ItemTemplateMgr);
+		}
 		if (ModTemplate.StrategyElementTemplateModFn != none)
 		{
 			`LWTrace("Template Mods: Updating Strategy Templates for " $ ModTemplate.DataName);
@@ -63,38 +63,38 @@ static function UpdateTemplates()
 			`LWTrace("Template Mods: Updating SitRep Templates for " $ ModTemplate.DataName);
 			PerformSitRepTemplateMod(ModTemplate, SitRepTemplateMgr);
 		}
-        if (ModTemplate.MissionNarrativeTemplateModFn != none)
-        {
+		if (ModTemplate.MissionNarrativeTemplateModFn != none)
+		{
 			`LWTrace("Template Mods: Updating Narrative Templates for " $ ModTemplate.DataName);
-            PerformMissionNarrativeTemplateMod(ModTemplate, NarrativeTemplateMgr);
-        }
+			PerformMissionNarrativeTemplateMod(ModTemplate, NarrativeTemplateMgr);
+		}
 		if (ModTemplate.SoldierClassTemplateModFn != none)
 		{
 			`LWTrace("Template Mods: Updating SoldierClass Templates for " $ ModTemplate.DataName);
 			PerformSoldierClassTemplateMod(ModTemplate, SoldierClassTemplateMgr);
 		}
-        if (ModTemplate.HackRewardTemplateModFn != none)
-        {
-            `LWTrace("Template mods: Updating HackReward templates for " $ ModTemplate.DataName);
-            PerformHackRewardTemplateMod(ModTemplate, HackRewardTemplateMgr);
-        }
-    }
+		if (ModTemplate.HackRewardTemplateModFn != none)
+		{
+			`LWTrace("Template mods: Updating HackReward templates for " $ ModTemplate.DataName);
+			PerformHackRewardTemplateMod(ModTemplate, HackRewardTemplateMgr);
+		}
+	}
+
 	`LWTrace("Template Mods: Parsed " $ TemplateMods.Length $ " TemplateMods");
 }
 
 static function PerformAbilityTemplateMod(X2LWTemplateModTemplate Template, X2DataTemplateManager TemplateManager)
 {
-    local X2AbilityTemplate AbilityTemplate;
-    local array<Name> TemplateNames;
-    local Name TemplateName;
+	local X2AbilityTemplate AbilityTemplate;
+	local array<Name> TemplateNames;
+	local Name TemplateName;
 	local array<X2DataTemplate> DataTemplates;
 	local X2DataTemplate DataTemplate;
-    local int Difficulty;
+	local int Difficulty;
 
-    TemplateManager.GetTemplateNames(TemplateNames);
-
-    foreach TemplateNames(TemplateName)
-    {
+	TemplateManager.GetTemplateNames(TemplateNames);
+	foreach TemplateNames(TemplateName)
+	{
 		TemplateManager.FindDataTemplateAllDifficulties(TemplateName, DataTemplates);
 		foreach DataTemplates(DataTemplate)
 		{
@@ -105,22 +105,22 @@ static function PerformAbilityTemplateMod(X2LWTemplateModTemplate Template, X2Da
 				Template.AbilityTemplateModFn(AbilityTemplate, Difficulty);
 			}
 		}
-    }
+	}
 }
 
 static function PerformCharacterTemplateMod(X2LWTemplateModTemplate Template, X2DataTemplateManager TemplateManager)
 {
-    local X2CharacterTemplate CharacterTemplate;
-    local array<Name> TemplateNames;
-    local Name TemplateName;
+	local X2CharacterTemplate CharacterTemplate;
+	local array<Name> TemplateNames;
+	local Name TemplateName;
 	local array<X2DataTemplate> DataTemplates;
 	local X2DataTemplate DataTemplate;
-    local int Difficulty;
-    
-    TemplateManager.GetTemplateNames(TemplateNames);
+	local int Difficulty;
+	
+	TemplateManager.GetTemplateNames(TemplateNames);
 
-    foreach TemplateNames(TemplateName)
-    {
+	foreach TemplateNames(TemplateName)
+	{
 		TemplateManager.FindDataTemplateAllDifficulties(TemplateName, DataTemplates);
 		foreach DataTemplates(DataTemplate)
 		{
@@ -131,17 +131,17 @@ static function PerformCharacterTemplateMod(X2LWTemplateModTemplate Template, X2
 				Template.CharacterTemplateModFn(CharacterTemplate, Difficulty);
 			}
 		}
-    }
+	}
 }
 
 static function PerformItemTemplateMod(X2LWTemplateModTemplate Template, X2ItemTemplateManager TemplateManager)
 {
-    local X2ItemTemplate ItemTemplate;
-    local array<Name> TemplateNames;
-    local Name TemplateName;
+	local X2ItemTemplate ItemTemplate;
+	local array<Name> TemplateNames;
+	local Name TemplateName;
 	local array<X2DataTemplate> DataTemplates;
 	local X2DataTemplate DataTemplate;
-    local int Difficulty;
+	local int Difficulty;
 
 	TemplateManager.GetTemplateNames(TemplateNames);
 
@@ -167,9 +167,9 @@ static function PerformStrategyElementTemplateMod(X2LWTemplateModTemplate Templa
 	local Name TemplateName;
 	local array<X2DataTemplate> DataTemplates;
 	local X2DataTemplate DataTemplate;
-    local int Difficulty;
+	local int Difficulty;
 
-    TemplateManager.GetTemplateNames(TemplateNames);
+	TemplateManager.GetTemplateNames(TemplateNames);
 	
 	foreach TemplateNames(TemplateName)
 	{
@@ -214,14 +214,13 @@ static function PerformSitRepTemplateMod(X2LWTemplateModTemplate Template, X2Dat
 
 static function PerformMissionNarrativeTemplateMod(X2LWTemplateModTemplate Template, X2DataTemplateManager TemplateManager)
 {
-    local X2MissionNarrativeTemplate NarrativeTemplate;
+	local X2MissionNarrativeTemplate NarrativeTemplate;
 	local array<Name> TemplateNames;
 	local Name TemplateName;
 	local array<X2DataTemplate> DataTemplates;
 	local X2DataTemplate DataTemplate;
-    //local int Difficulty;
 
-    TemplateManager.GetTemplateNames(TemplateNames);
+	TemplateManager.GetTemplateNames(TemplateNames);
 
 	foreach TemplateNames(TemplateName)
 	{
@@ -231,7 +230,6 @@ static function PerformMissionNarrativeTemplateMod(X2LWTemplateModTemplate Templ
 			NarrativeTemplate = X2MissionNarrativeTemplate(DataTemplate);
 			if(NarrativeTemplate != none)
 			{
-				//Difficulty = GetDifficultyFromTemplateName(TemplateName);
 				Template.MissionNarrativeTemplateModFn(NarrativeTemplate);
 			}
 		}
@@ -240,28 +238,28 @@ static function PerformMissionNarrativeTemplateMod(X2LWTemplateModTemplate Templ
 
 static function PerformHackRewardTemplateMod(X2LWTemplateModTemplate Template, X2HackRewardTemplateManager TemplateManager)
 {
-    local X2HackRewardTemplate HackRewardTemplate;
-    local array<Name> TemplateNames;
-    local Name TemplateName;
-    local array<X2DataTemplate> DataTemplates;
-    local X2DataTemplate DataTemplate;
-    local int Difficulty;
+	local X2HackRewardTemplate HackRewardTemplate;
+	local array<Name> TemplateNames;
+	local Name TemplateName;
+	local array<X2DataTemplate> DataTemplates;
+	local X2DataTemplate DataTemplate;
+	local int Difficulty;
 
-    TemplateManager.GetTemplateNames(TemplateNames);
+	TemplateManager.GetTemplateNames(TemplateNames);
 
-    foreach TemplateNames(TemplateName)
-    {
-        TemplateManager.FindDataTemplateAllDifficulties(TemplateName, DataTemplates);
-        foreach DataTemplates(DataTemplate)
-        {
-            HackRewardTemplate = X2HackRewardTemplate(DataTemplate);
-            if (HackRewardTemplate != none)
-            {
-                Difficulty = GetDifficultyFromTemplateName(TemplateName);
-                Template.HackRewardTemplateModFn(HackRewardTemplate, Difficulty);
-            }
-        }
-    }
+	foreach TemplateNames(TemplateName)
+	{
+		TemplateManager.FindDataTemplateAllDifficulties(TemplateName, DataTemplates);
+		foreach DataTemplates(DataTemplate)
+		{
+			HackRewardTemplate = X2HackRewardTemplate(DataTemplate);
+			if (HackRewardTemplate != none)
+			{
+				Difficulty = GetDifficultyFromTemplateName(TemplateName);
+				Template.HackRewardTemplateModFn(HackRewardTemplate, Difficulty);
+			}
+		}
+	}
 }
 
 static function PerformSoldierClassTemplateMod(X2LWTemplateModTemplate Template, X2DataTemplateManager TemplateManager)
@@ -271,9 +269,9 @@ static function PerformSoldierClassTemplateMod(X2LWTemplateModTemplate Template,
 	local Name TemplateName;
 	local array<X2DataTemplate> DataTemplates;
 	local X2DataTemplate DataTemplate;
-    local int Difficulty;
+	local int Difficulty;
 
-    TemplateManager.GetTemplateNames(TemplateNames);
+	TemplateManager.GetTemplateNames(TemplateNames);
 	
 	foreach TemplateNames(TemplateName)
 	{
