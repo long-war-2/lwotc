@@ -455,7 +455,6 @@
     <Content Include="Src\LW_Overhaul\Classes\LWRebelJob_DefaultJobSet.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWTacticalMissionUnitSpawner.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWTemplateMods.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\LWTemplateMods_Utilities.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWVersion.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWVisualizedInterface.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWXComGameVersion.uc" />
@@ -650,7 +649,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityDetectionCalc_Terror.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityDetectionCalc_TroopManeuvers.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWAlienActivityTemplate.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2LWTemplateModTemplate.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2MissionNarrative_LWNarrativeSet.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2MissionSet_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2MultiWeaponTemplate.uc" />
@@ -1120,6 +1118,8 @@
     <Content Include="Content\BaseGameMissionAssets\PsiTransmitter.upk" />
     <Content Include="Content\BaseGameMissionAssets\README.txt" />
     <Content Include="Content\BaseGameMissionAssets\SupplyExtraction_TempAssets.upk" />
+    <Content Include="Src\LWUtilities\Classes\LWTemplateMods_Utilities.uc" />
+    <Content Include="Src\LWUtilities\Classes\X2LWTemplateModTemplate.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
