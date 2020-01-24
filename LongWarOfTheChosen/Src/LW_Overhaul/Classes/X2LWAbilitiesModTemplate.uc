@@ -502,6 +502,9 @@ static function ReplaceWithDamageReductionMeele (X2AbilityTemplate Template)
 	RemoveAbilityTargetEffect(Template,'X2Effect_DamageImmunity');
 	DamageMod=new class'X2Effect_DefendingMeeleDamageModifier';
 	DamageMod.DamageMod=default.MEELE_DAMAGE_REDUCTION;
+	DamageMod.BuildPersistentEffect(1, true, false, true);
+	DamageMod.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+
 	Template.AddTargetEffect(DamageMod);
 }
 static function UpdateRevive(X2AbilityTemplate Template)

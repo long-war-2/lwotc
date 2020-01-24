@@ -9,7 +9,9 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 										const out EffectAppliedData AppliedData, const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, optional XComGameState NewGameState)
 {
 	local bool bIsMeleeDamage;
-    local float CurrentDamageMod;
+	local int CurrentDamageMod;
+	local X2AbilityToHitCalc_StandardAim ToHitCalc;
+
 	// The damage effect's DamageTypes must be empty or have melee in order to adjust the damage
 	if (WeaponDamageEffect.EffectDamageValue.DamageType == MeleeDamageTypeName)
 		bIsMeleeDamage = true;
@@ -32,9 +34,22 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 	if (bIsMeleeDamage)
 	{
 		CurrentDamageMod = -int(float(CurrentDamage) * DamageMod);
+		ToHitCalc = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
+		if (ToHitCalc != none && ToHitCalc.bMeleeAttack)
+		{
+			// Don't let a damage reduction effect reduce damage to less than 1 (or worse, heal).
+			if (CurrentDamageMod < 0 && (CurrentDamage + CurrentDamageMod < 1))
+			{
+				if (CurrentDamage <= 1)
+					return 0;
+
+				return (CurrentDamageMod - 1) * -1;
+			}
+			return CurrentDamageMod;
+		}
+		
 	}
-	
-	return CurrentDamageMod;
+	return 0;
 }
 
 defaultproperties

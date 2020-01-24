@@ -2007,7 +2007,6 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('HunterReaction');
 			Template.Abilities.AddItem('ChosenCritImmune');
 			Template.ImmuneTypes.AddItem('Frost');
-
 			break;
 		case 'ChosenWarlock':
 		case 'ChosenWarlockM2':
