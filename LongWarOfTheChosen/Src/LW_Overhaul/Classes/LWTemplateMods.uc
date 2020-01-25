@@ -235,7 +235,7 @@ var config int AutopsyAdventPsiWitchIntelCost;
 var config int ALIEN_FACILITY_LEAD_RP_INCREMENT;
 var config int ALIEN_FACILITY_LEAD_INTEL;
 
-var config array<name> SchematicsToPreserve;
+var config array<name> SchematicsToDisable;
 
 var config array<name> UnlimitedItemsAdded;
 
@@ -2202,7 +2202,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	
 	// KILL SCHEMATICS
 	SchematicTemplate = X2SchematicTemplate(Template);
-	if (SchematicTemplate != none && default.SchematicsToPreserve.Find(SchematicTemplate.DataName) == -1)
+	if (SchematicTemplate != none && default.SchematicsToDisable.Find(SchematicTemplate.DataName) != -1)
 	{
 		SchematicTemplate.CanBeBuilt = false;
 		SchematicTemplate.PointsToComplete = 999999;
@@ -2497,7 +2497,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				break;
 		}
 		// KILL THE SCHEMATICS! (but only the schematics we want to kill)
-		if (EquipmentTemplate.CreatorTemplateName != '' && default.SchematicsToPreserve.Find(EquipmentTemplate.CreatorTemplateName) == -1)
+		if (EquipmentTemplate.CreatorTemplateName != '' && default.SchematicsToDisable.Find(EquipmentTemplate.CreatorTemplateName) != -1)
 		{
 			EquipmentTemplate.CreatorTemplateName = '';
 			EquipmentTemplate.BaseItem = '';
