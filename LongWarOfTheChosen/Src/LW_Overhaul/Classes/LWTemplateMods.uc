@@ -2501,7 +2501,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			EquipmentTemplate.CreatorTemplateName = '';
 			EquipmentTemplate.BaseItem = '';
-			EquipmentTemplate.UpgradeItem = '';
+
+			// LWOTC: At least one mod depends on this having a value, so don't
+			// clear it. It's a deprecated property anyway, so this shouldn't be
+			// a problem.
+			// EquipmentTemplate.UpgradeItem = '';
 		}
 		// Mod
 		for (i=0; i < ItemTable.Length; ++i)
