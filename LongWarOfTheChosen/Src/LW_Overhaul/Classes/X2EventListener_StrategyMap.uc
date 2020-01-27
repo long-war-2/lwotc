@@ -52,6 +52,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('OnGeoscapeEntry', StopFirstPOISpawn, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OnGeoscapeEntry', ShowBlackMarket, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OnGeoscapeEntry', FixBrokenObjectives, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OnGeoscapeEntry', ClearSitRepsFromCardManager, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('BlackMarketGoodsReset', OnBlackMarketGoodsReset, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('RegionBuiltOutpost', OnRegionBuiltOutpost, ELD_OnStateSubmitted, GetListenerPriority());
 
@@ -399,6 +400,33 @@ static function EventListenerReturn ShowBlackMarket(Object EventData, Object Eve
 		if (AddGameStateToHistory)
 		{
 			History.AddGameStateToHistory(NewGameState);
+		}
+	}
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn ClearSitRepsFromCardManager(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local X2CardManager CardMgr;
+	local array<string> SitRepCards;
+	local int i;
+
+	// The SitReps deck seems to be prepopulated with several sit reps
+	// that we may not want (like Surgical), so this hack clears the
+	// deck of unwanted sit reps before it's used.
+	CardMgr = class'X2CardManager'.static.GetCardManager();
+	CardMgr.GetAllCardsInDeck('SitReps', SitRepCards);
+	for (i = 0; i < SitRepCards.Length; i++)
+	{
+		if (class'X2LWSitRepsModTemplate'.default.VALID_SIT_REPS.Find(name(SitRepCards[i])) == INDEX_NONE)
+		{
+			CardMgr.RemoveCardFromDeck('SitReps', SitRepCards[i]);
 		}
 	}
 
