@@ -27,6 +27,11 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 	case 'Reaper_Claymore':
 		WeaponTemplate.iRange = `METERSTOTILES(class'X2Ability_ReaperAbilitySet'.default.ClaymoreRange);
 		break;
+	case 'VektorRifle_CV':
+		// WOTC sets this to 2 for some reason, which is inconsistent with the
+		// _MG and _BM variants.
+		WeaponTemplate.iTypicalActionCost = 1;
+		break;
 	case 'ShardGauntlet_CV':
 	case 'ShardGauntlet_MG':
 	case 'ShardGauntlet_BM':
