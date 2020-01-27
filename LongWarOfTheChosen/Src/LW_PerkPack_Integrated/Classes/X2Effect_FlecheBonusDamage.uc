@@ -52,7 +52,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 			BonusDmg = BonusDmgPerTile * VSize(StartLoc - TargetLoc)/ WorldData.WORLD_StepSize;
 			`PPTRACE("Fleche: BonusDamage=" $ int(BonusDmg));
 			`PPTRACE("Fleche: Output Damage should be:" @ string (CurrentDamage+int(BonusDmg)));
-			return Max(int(BonusDmg), MaxBonusDamage);
+			return Min(int(BonusDmg), MaxBonusDamage);
 		}
 	}
 	return 0; 
