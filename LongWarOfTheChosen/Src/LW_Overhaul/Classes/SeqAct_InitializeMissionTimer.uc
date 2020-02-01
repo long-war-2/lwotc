@@ -52,7 +52,10 @@ static function int GetInitialTimer(string MissionType, string MissionFamily)
 	{
 		// Add 1 to the initial mission count in the INI because this is typically invoked from the mission start sequence, and
 		// the first thing the begin turn sequence does is decrement the mission count.
-		TurnValue = default.InitialTurnCounts[i].Turns + 1;
+
+		// LWOTC: UMS_LWMissionTimer does not decrement the timer on turn one, so we shouldn't
+		// add a turn to the timer here (as was done in original LW2).
+		TurnValue = default.InitialTurnCounts[i].Turns;
 	}
 	else
 	{
