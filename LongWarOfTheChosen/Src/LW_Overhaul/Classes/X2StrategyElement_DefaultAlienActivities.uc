@@ -167,6 +167,8 @@ var config int RECRUIT_RAID_BUCKET;
 
 var config int ALIEN_BASE_DOOM_REMOVAL;
 
+var config int CHOSEN_ACTIVATE_AT_FL;
+
 var protected name RebelMissionsJob;
 
 var localized string m_strInsufficientRebels;
@@ -1742,6 +1744,7 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 	local XComGameStateHistory History;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	
 
 	History = `XCOMHISTORY;
 
@@ -1753,6 +1756,11 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 			RegionalAI.LocalForceLevel += 1;
 			`LWTRACE("ScheduledOffworldReinforcements : Activity Complete, Alien Win, Increasing ForceLevel by 1 in " $ RegionState.GetMyTemplate().DisplayName );
 		}
+		//All region force level is the same, so i just need one instance of it
+		
+		TryIncreasingChosenLevel(RegionalAI.LocalForceLevel);
+		if(RegionalAI.LocalForceLevel==default.CHOSEN_ACTIVATE_AT_FL)
+		ActivateChosenIfEnabled(NewGameState);
 	}
 	else
 	{
@@ -1762,6 +1770,59 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 			RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 		RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
 		RegionalAI.AddVigilance (NewGameState, 2);
+	}
+}
+
+static function TryIncreasingChosenLevel(int CurrentForceLevel)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_AdventChosen ChosenState;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local name OldTacticalTag, NewTacticalTag;
+	local XComGameStateContext_ChangeContainer ChangeContainer;
+	local XComGameState NewGameState;
+ 	switch(CurrentForceLevel)
+	{	//All Forcelevel Threshholds for the Chosen, they increase the level accordingly
+		//Also I'll make them configs, I promise
+		case 9:;case 13:;case 17:;
+
+		History = `XCOMHISTORY;
+
+		AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+		AllChosen = AlienHQ.GetAllChosen();
+
+		ChangeContainer = class'XComGameStateContext_ChangeContainer'.static.CreateEmptyChangeContainer("Creating Alien Customization Component");
+		NewGameState = History.CreateNewGameState(true, ChangeContainer);
+
+		foreach AllChosen(ChosenState)
+		{
+			OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			Chosenstate.Level++;
+			NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+			{
+				ChosenState.bJustLeveledUp = true;
+			}
+			// Replace Old Tag with new Tag in missions
+			ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+			
+		}
+		`GAMERULES.SubmitGameState(NewGameState);
+		break;
+		default:;
+		break;
+	}
+}
+
+static function ActivateChosenIfEnabled(XComGameState NewGameState)
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	if (`SecondWaveEnabled('EnableChosen'))
+	{
+		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+		AlienHQ.OnChosenActivation(NewGameState);
 	}
 }
 

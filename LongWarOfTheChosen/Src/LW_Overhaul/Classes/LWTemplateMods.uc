@@ -1989,6 +1989,44 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'SparkSoldier':
 			Template.bIgnoreEndTacticalHealthMod = false;       // This means Repair perk won't permanently fix Sparks
 			Template.OnEndTacticalPlayFn = none;
+ 			Template.ImmuneTypes.AddItem('HeavyMental'); //CHOSEN CHANGES
+			break;
+		//CHOSEN CHANGES
+		case 'Soldier': 
+		case 'ReaperSoldier':
+		case 'SkirmisherSoldier':
+		case 'TemplarSoldier':
+			Template.Abilities.AddItem('HeavyRevive');
+			Template.Abilities.AddItem('MC_Stock_Strike');
+			Template.Abilities.AddItem('GetUp');
+			break;
+		case 'ChosenSniper':
+		case 'ChosenSniperM2':
+		case 'ChosenSniperM3':
+		case 'ChosenSniperM4':
+			Template.Abilities.AddItem('Yoink');
+			Template.Abilities.AddItem('HunterReaction');
+			Template.Abilities.AddItem('ChosenCritImmune');
+			Template.ImmuneTypes.AddItem('Frost');
+			break;
+		case 'ChosenWarlock':
+		case 'ChosenWarlockM2':
+		case 'ChosenWarlockM3':
+		case 'ChosenWarlockM4':
+			Template.Abilities.AddItem('WarlockReaction');
+			Template.Abilities.AddItem('DetonateMindshield_LW');
+			Template.Abilities.AddItem('ShieldAlly_LW');
+			Template.Abilities.AddItem('AmmoDump_LW');
+			Template.Abilities.AddItem('ChosenCritImmune');
+			Template.ImmuneTypes.AddItem('Frost');
+			break;
+		case 'ChosenAssassin':
+		case 'ChosenAssassinM2':
+		case 'ChosenAssassinM3':
+		case 'ChosenAssassinM4':
+			Template.Abilities.AddItem('AssassinReaction');
+			Template.Abilities.AddItem('ChosenCritImmune');
+			Template.ImmuneTypes.AddItem('Frost');
 			break;
 		default:
 			break;
@@ -2103,16 +2141,46 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 		case 'SniperRifle_CV':
 		case 'SniperRifle_LS':
-		WeaponTemplate.Abilities.AddItem('Stock_LW_Bsc_Ability');
+			WeaponTemplate.Abilities.AddItem('Stock_LW_Bsc_Ability');
 		break;
+
 		case 'SniperRifle_MG':
 		case 'SniperRifle_CG': 
-		WeaponTemplate.Abilities.AddItem('Stock_LW_Adv_Ability');
+			WeaponTemplate.Abilities.AddItem('Stock_LW_Adv_Ability');
 		break;
+
 		case 'SniperRifle_BM':
 		case 'ChosenSniperRifle_XCOM':
-		WeaponTemplate.Abilities.AddItem('Stock_LW_Sup_Ability');
+			WeaponTemplate.Abilities.AddItem('Stock_LW_Sup_Ability');
 		break;
+
+		case 'ChosenSniperRifle_CV':
+		case 'ChosenSniperRifle_MG':
+		case 'ChosenSniperRifle_BM':
+		case 'ChosenSniperRifle_T4':
+		case 'ChosenRifle_CV':
+		case 'ChosenRifle_MG':
+		case 'ChosenRifle_BM':
+		case 'ChosenRifle_T4':
+		case 'ChosenShotgun_CV':
+		case 'ChosenShotgun_MG':
+		case 'ChosenShotgun_BM':
+		case 'ChosenShotgun_T4':
+			WeaponTemplate.Abilities.AddItem('Primary_Daze_Passive');
+		break;
+		case 'ChosenSword_CV':
+		case 'ChosenSword_MG':
+		case 'ChosenSword_BM':
+		case 'ChosenSword_T4':
+		case 'ChosenSniperPistol_CV':
+		case 'ChosenSniperPistol_MG':
+		case 'ChosenSniperPistol_BM':
+		case 'ChosenSniperPistol_T4':
+			WeaponTemplate.Abilities.AddItem('Secondary_Daze_Passive');
+		break;
+
+
+
 		default:
 		break;
 		}

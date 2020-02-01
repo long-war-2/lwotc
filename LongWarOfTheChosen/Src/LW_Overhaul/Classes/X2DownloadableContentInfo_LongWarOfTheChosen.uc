@@ -40,6 +40,7 @@ struct PlotObjectiveMod
 var config array<ArchetypeToHealth> DestructibleActorHealthOverride;
 var config array<bool> DISABLE_REINFORCEMENT_FLARES;
 var config array<float> SOUND_RANGE_DIFFICULTY_MODIFIER;
+var config int CHOSEN_RETRIBUTION_DURATION;
 
 struct SocketReplacementInfo
 {
@@ -131,6 +132,8 @@ static event OnPostTemplatesCreated()
 	UpdateWeaponAttachmentsForCoilgun();
 	UpdateFirstMissionTemplate();
 	AddObjectivesToParcels();
+	//Is this the right place to do it? I think so, for now
+	UpdateChosenActivities();
 }
 
 /// <summary>
@@ -141,10 +144,16 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState NewGameState;
 	local XComGameStateHistory History;
 	local XComGameState_Objective ObjectiveState;
+	local int Forcelevel,ChosenLevel;
+	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_LWOutpostManager OutpostManager;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_LWOutpost OutpostState;
 	local XComGameState_LWToolboxOptions ToolboxOptions;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local name OldTacticalTag, NewTacticalTag;
+	local XComGameState_AdventChosen ChosenState;
+	
 
 	History = `XCOMHISTORY;
 
@@ -190,6 +199,28 @@ static event OnLoadedSavedGameToStrategy()
 			break;
 		}
 	}
+
+	//Make sure the chosen are of appropriate level
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	Forcelevel=AlienHQ.GetForceLevel();
+	AllChosen = AlienHQ.GetAllChosen();
+	
+	if(Forcelevel>16)
+	ChosenLevel=3;
+	else if(Forcelevel>12)
+	ChosenLevel=2;
+	else if(Forcelevel>8)
+	ChosenLevel=1;
+	else
+	ChosenLevel=0;
+	foreach AllChosen(ChosenState)
+		{
+			OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			Chosenstate.Level=ChosenLevel;
+			NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			// Replace Old Tag with new Tag in missions
+			ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+		}
 
 	if (NewGameState.GetNumGameStateObjects() > 0)
 		History.AddGameStateToHistory(NewGameState);
@@ -2127,6 +2158,76 @@ static function UpdateTechs()
 		History.AddGameStateToHistory(NewGameState);
 	else
 		History.CleanupPendingGameState(NewGameState);
+}
+
+static function UpdateChosenActivities()
+{
+	UpdateTraining();
+	UpdateRetribution();
+
+}
+static function UpdateTraining()
+{
+	local X2ChosenActionTemplate Template;
+	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Training'));
+	Template.OnActivatedFn = ActivateTraining;
+	Template.CanBePlayedFn = TrainingCanBePlayed;
+}
+
+static function ActivateTraining(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
+{
+	local XComGameState_ChosenAction ActionState;
+	local XComGameState_AdventChosen ChosenState;
+	local name OldTacticalTag, NewTacticalTag;
+
+	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);
+	ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(ActionState.ChosenRef, NewGameState);
+
+
+	// Grab Old Tactical Tag
+	OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+	NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+	// Only met, active chosen trigger the just leveled up popup
+	if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+	{
+		ChosenState.bJustLeveledUp = true;
+	}
+
+	// Replace Old Tag with new Tag in missions
+	ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+
+	// Gain New Traits
+	ChosenState.GainNewStrengths(NewGameState, class'XComGameState_AdventChosen'.default.NumStrengthsPerLevel);
+}
+
+//---------------------------------------------------------------------------------------
+static function bool TrainingCanBePlayed(StateObjectReference InRef, optional XComGameState NewGameState = none)
+{
+	return true;
+}
+
+static function UpdateRetribution()
+{
+	local X2ChosenActionTemplate Template;
+	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Retribution'));
+	Template.OnActivatedFn = ActivateRetribution;
+}
+
+static function ActivateRetribution(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
+{
+	local XComGameState_ChosenAction ActionState;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWOutpost	Outpost;
+
+	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);
+	RegionState = XComGameState_WorldRegion(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion', ActionState.StoredReference.ObjectID));
+	
+	Outpost = `LWOUTPOSTMGR.GetOutpostForRegion(RegionState);
+	Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', OutPost.ObjectID));
+	NewGameState.AddStateObject(Outpost);
+	OutPost.AddChosenRetribution(default.CHOSEN_RETRIBUTION_DURATION);
 }
 
 //=========================================================================================

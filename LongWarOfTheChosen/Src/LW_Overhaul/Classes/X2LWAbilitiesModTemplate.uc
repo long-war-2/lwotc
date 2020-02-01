@@ -33,6 +33,11 @@ var config int TEAMWORK_LVL1_CHARGES;
 var config int TEAMWORK_LVL2_CHARGES;
 var config int TEAMWORK_LVL3_CHARGES;
 
+var config int SUMMON_COOLDOWN;
+
+var config float MEELE_DAMAGE_REDUCTION;
+var config float EXPLOSIVE_DAMAGE_REDUCTION;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
     // Override the FinalizeHitChance calculation for abilities that use standard aim
@@ -62,6 +67,29 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		//I probably could just update it in the Alienpack, but it doesn't recognize the cooldown class there
 		case 'BayonetCharge':
 			UpdateBayonetCharge(Template);
+			break;
+		case 'ChosenExtractKnowledgeMove':
+		case 'ChosenKidnapMove':
+		case 'ChosenKidnap':
+		case 'ChosenExtractKnowledge':
+			UpdateExtractKnowledgeConditions(Template);
+			break;
+		case 'Revive':
+			UpdateRevive(Template);
+			break;
+		//Remove some of the redundant daze/bleeding effects
+		case 'PartingSilk':
+			UpdatePartingSilk(Template);
+			break;
+			//A 4 turn cooldown instead of 1 time per encounter
+		case 'ChosenSummonFollowers': 
+			GiveCooldownToSummonAbility(Template);
+			break;
+		case 'ChosenImmuneMelee':
+			ReplaceWithDamageReductionMeele(Template);
+			break;
+		case 'BlastShield':
+			ReplaceWithDamageReductionExplosive(Template);
 			break;
 		default:
 			break;
@@ -406,7 +434,86 @@ static function UpdateBayonetCharge(X2AbilityTemplate Template)
 	Template.AbilityCooldown = Cooldown;
 }
 
+static function UpdateExtractKnowledgeConditions(X2AbilityTemplate Template)
+{
+	local X2Condition_UnitEffects ExcludeEffects;
+	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
+
+	ExcludeEffects = new class'X2Condition_UnitEffects';
+	ExcludeEffects.AddExcludeEffect(class'X2Ability_CarryUnit'.default.CarryUnitEffectName, 'AA_UnitIsImmune');
+	ExcludeEffects.AddExcludeEffect(class'X2AbilityTemplateManager'.default.BeingCarriedEffectName, 'AA_UnitIsImmune');
+	Template.AbilityTargetConditions[2]=ExcludeEffects;
+	NeedOneOfTheEffects=new class'X2Condition_TargetHasOneOfTheEffects';
+	NeedOneOfTheEffects.EffectNames.AddItem(class'X2AbilityTemplateManager'.default.DazedName);
+	NeedOneOfTheEffects.EffectNames.AddItem(class'X2StatusEffects_LW'.default.HeavyDazedName);
+	Template.AbilityTargetConditions.AddItem(NeedOneOfTheEffects);
+
+}
+
+
+static function UpdatePartingSilk(X2AbilityTemplate Template)
+{
+	local X2Effect_DodgeModifier Effect;
+	Effect= new class'X2Effect_DodgeModifier';
+	Effect.ANTIDODGE_BONUS=100;
+	RemoveAbilityTargetEffect(Template,'X2Effect_Dazed');
+	Template.AddTargetEffect(Effect);
+}
+
+
+
+static function RemoveAbilityTargetEffect(X2AbilityTemplate Template, name EffectName)
+{
+	local X2Effect TargetEffect;
+	foreach Template.AbilityTargetEffects(TargetEffect)
+	{
+		if (TargetEffect.IsA(EffectName))
+		{
+			Template.AbilityTargetEffects.RemoveItem(TargetEffect);
+		}
+	}
+}
+static function GiveCooldownToSummonAbility(X2AbilityTemplate Template)
+{
+	local X2AbilityCooldown					Cooldown;
+
+	//Screw it, I have no idea how to do it cleanly and no other mod touches it anyway
+	Template.AbilityShooterConditions.Remove(3,1);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.SUMMON_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+}
+
+static function ReplaceWithDamageReductionExplosive(X2AbilityTemplate Template)
+{
+	local X2Effect_Formidable	PaddingEffect;
+	RemoveAbilityTargetEffect(Template,'X2Effect_BlastShield');
+	PaddingEffect=new class'X2Effect_Formidable';
+	PaddingEffect.ExplosiveDamageReduction=default.EXPLOSIVE_DAMAGE_REDUCTION;
+	PaddingEffect.Armor_Mitigation = 0;
+	Template.AddTargetEffect(PaddingEffect);
+}
+
+static function ReplaceWithDamageReductionMeele (X2AbilityTemplate Template)
+{
+	local X2Effect_DefendingMeeleDamageModifier DamageMod;
+	RemoveAbilityTargetEffect(Template,'X2Effect_DamageImmunity');
+	DamageMod=new class'X2Effect_DefendingMeeleDamageModifier';
+	DamageMod.DamageMod=default.MEELE_DAMAGE_REDUCTION;
+	DamageMod.BuildPersistentEffect(1, true, false, true);
+	DamageMod.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+
+	Template.AddTargetEffect(DamageMod);
+}
+static function UpdateRevive(X2AbilityTemplate Template)
+{
+	Template.AbilityShooterConditions.Length=0;
+}
+
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
 }
+

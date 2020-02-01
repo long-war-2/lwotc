@@ -41,7 +41,7 @@ struct ProhibitedJobStruct
 {
 	var name Job;
 	var int DaysLeft;
-};
+};	
 
 struct RebelJobDays
 {
@@ -54,6 +54,12 @@ struct RebelAbilityConfig
 	var int Level;
 	var name AbilityName;
 	var EInventorySlot ApplyToWeaponSlot;
+};
+
+struct RetributionJobStruct
+{
+	var int DaysLeft;
+	//Technically does not need to be a struct, but i think it makes it more readable
 };
 
 // The maximum number of rebels supported by this outpost.
@@ -135,6 +141,9 @@ var int SupplyCap, SuppliesTaken;
 var array <ProhibitedJobStruct> ProhibitedJobs;
 var localized string m_strProhibitedJobAlert;
 var localized string m_strProhibitedJobEnded;
+//Current Retributions affecting that outpost
+var array <RetributionJobStruct> CurrentRetributions;
+var localized string m_strRetributionEnded;
 
 // DEBUG VARs
 
@@ -1309,6 +1318,26 @@ function bool Update(XComGameState NewGameState, optional out array<LWRebelJobTe
 					ProhibitedJobs.Remove(k,1);
 				}
 			}
+			
+			for (k = CurrentRetributions.Length-1; k >= 0; k--)
+			{
+				CurrentRetributions[k].DaysLeft -= 1;
+				if (CurrentRetributions[k].DaysLeft <= 0)
+				{
+					ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+					ParamTag.StrValue0 = WorldRegion.GetMyTemplate().DisplayName;
+					AlertString = `XEXPAND.ExpandString(class'XComGameState_LWOutPost'.default.m_strRetributionEnded);
+					`HQPRES.Notify (AlertString);
+					StrategyMap = `HQPRES.StrategyMap2D;
+					if (StrategyMap != none && StrategyMap.m_eUIState != eSMS_Flight)
+					{
+						Geoscape = `GAME.GetGeoscape();
+						Geoscape.Pause();
+						Geoscape.Resume();
+					}
+					CurrentRetributions.Remove(k,1);
+				}
+			}
 		}
 
 		FacelessDays += GetNumFaceless();
@@ -1812,4 +1841,11 @@ function UpdateRebelAbilities(XComGameState NewGameState)
 			}
 		}
 	}
+}
+
+function AddChosenRetribution(int DurationinDays)
+{
+	local RetributionJobStruct RetributionInstance;
+	RetributionInstance.DaysLeft = DurationinDays;
+	CurrentRetributions.AddItem(RetributionInstance);
 }

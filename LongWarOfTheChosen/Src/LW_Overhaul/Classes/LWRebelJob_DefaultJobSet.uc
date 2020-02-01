@@ -58,6 +58,7 @@ static function AddStandardModifiers(out LWRebelJobTemplate Template)
     Template.IncomeModifiers.AddItem(new class'LWRebelJobIncomeModifier_Radio');
     // Liberated regions get a bonus to all jobs
     Template.IncomeModifiers.AddItem(new class'LWRebelJobIncomeModifier_Liberated');
+    Template.IncomeModifiers.AddItem(new class'LWRebelJobIncomeModifier_Retribution');
 }
 
 // Resupply - gather supplies. Does not have a threshold or income function, it
