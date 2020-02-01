@@ -338,7 +338,7 @@ function StateObjectReference AddRebel(StateObjectReference RebelRef, XComGameSt
 
 function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegion)
 {
-	local int i, homeinitialfaceless;
+	local int i;
 	local int InitCount;
 	local StateObjectReference RebelReference;
 	local XComGameState_StaffSlot StaffSlotState;
@@ -351,7 +351,6 @@ function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegi
 	if (WorldRegion.IsStartingRegion())
 	{
 		InitCount = HOME_REBEL_COUNT;
-		HomeInitialFaceless = rand(InitCount);
 	}
 	else
 	{
@@ -365,15 +364,7 @@ function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegi
 	{
 		if (WorldRegion.IsStartingRegion())
 		{
-			if (i == HomeInitialFaceless)
-			{
-				// This forces exactly one faceless in the starting region
-				RebelReference = CreateRebel(NewState, WorldRegion, true, true);
-			}
-			else
-			{
-				RebelReference = CreateRebel(NewState, WorldRegion, false, false);
-			}
+			RebelReference = CreateRebel(NewState, WorldRegion, false, false);
 		}
 		else
 		{
@@ -385,39 +376,11 @@ function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegi
 		// Rebels are assigned to jobs roughly in thirds, with remainders going to "intel".
 		// On Rookie, Vet, push some more toward intel to help generate easier missions
 
-		if (WorldRegion.IsStartingRegion() && `STRATEGYDIFFICULTYSETTING <= 1)
-		{
-			if (i == 0)
-			{
-				Rebels[i].Job = class'LWRebelJob_DefaultJobSet'.const.SUPPLY_JOB;
-			}
-			else
-			{
-				if (i == 1)
-				{
-					Rebels[i].Job = class'LWRebelJob_DefaultJobSet'.const.RECRUIT_JOB;
-				}
-				else
-				{
-					if (i < MaxRebels)
-					{
-						Rebels[i].Job = class'LWRebelJob_DefaultJobSet'.const.INTEL_JOB;
-					}
-				}
-			}
-		}
+		if (i <= MaxRebels) 
+			Rebels[i].Job = class'LWRebelJob_DefaultJobSet'.const.INTEL_JOB;
 		else
-		{
-			if (i < (InitCount / 3)) {
-				Rebels[i].Job = class'LWRebelJob_DefaultJobSet'.const.SUPPLY_JOB;
-			} else if (i < (2 * InitCount / 3)) {
-				Rebels[i].Job = class'LWRebelJob_DefaultJobSet'.const.RECRUIT_JOB;
-			} else {
-				Rebels[i].Job = class'LWRebelJob_DefaultJobSet'.const.INTEL_JOB;
-			}
-		}
-		if (i >= MaxRebels) 
 			Rebels[i].Job = class'LWRebelJob_DefaultJobSet'.const.HIDING_JOB;
+
 	}
 
 	UpdateJobs(NewState);
