@@ -973,11 +973,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'InTheZone')
 	{
 		SerialCritReduction = new class 'X2Effect_SerialCritReduction';
-		SerialCritReduction.BuildPersistentEffect(1, false, true, false, 8);
+		SerialCritReduction.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
 		SerialCritReduction.CritReductionPerKill = default.SERIAL_CRIT_MALUS_PER_KILL;
 		SerialCritReduction.AimReductionPerKill = default.SERIAL_AIM_MALUS_PER_KILL;
 		SerialCritReduction.Damage_Falloff = default.SERIAL_DAMAGE_FALLOFF;
 		SerialCritReduction.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true,, Template.AbilitySourceName);
+		SerialCritReduction.EffectName = 'SerialCritReduction';
 		Template.AbilityTargetEffects.AddItem(SerialCritReduction);
 	}
 
