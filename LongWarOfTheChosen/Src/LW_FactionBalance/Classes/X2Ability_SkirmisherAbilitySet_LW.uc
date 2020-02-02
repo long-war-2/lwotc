@@ -1,67 +1,56 @@
-class X2Ability_SkirmisherAbilitySet_LW extends X2Ability config(LW_FactionBalance);
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Ability_SkirmisherAbilitySet_LW.uc
+//  AUTHOR:  martox
+//	PURPOSE: New Skirmisher abilities for LWOTC.
+//---------------------------------------------------------------------------------------
+class X2Ability_SkirmisherAbilitySet_LW extends X2Ability_SkirmisherAbilitySet config(LW_FactionBalance);
 
-var config int LW2WotC_RECKONING_COOLDOWN;
-var config int RECKONING_SLASH_COOLDOWN;
-var config int INTERRUPT_COOLDOWN;
+var config int RECKONING_LW_COOLDOWN;
+var config int RECKONING_LW_SLASH_COOLDOWN;
+var config int MANUAL_OVERRIDE_COOLDOWN;
+var config int REFLEX_COOLDOWN;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
-	local array<X2DataTemplate> Templates;
+	local array<X2DataTemplate> Templates; 
 
+	Templates.AddItem(AddBattlemaster());
 	//from Alterd-Rushnano
-	Templates.AddItem(Battlemaster());
-	Templates.AddItem(SkirmisherFleche());
-	Templates.AddItem(SkirmisherSlash());
-	Templates.AddItem(LW2WotC_Reckoning());
-
-	//from Udaya
-	Templates.AddItem(SkirmisherInterrupt());
+	Templates.AddItem(AddSkirmisherFleche());
+	Templates.AddItem(AddSkirmisherSlash());
+	Templates.AddItem(AddReckoning_LW());
+	Templates.AddItem(AddManualOverride_LW());
+	Templates.AddItem(AddReflexTrigger());
 
 	return Templates;
 }
 
-static function X2AbilityTemplate Battlemaster() 
+static function X2AbilityTemplate AddBattlemaster()
 {
-	local X2AbilityTemplate             	Template;
-	local X2Effect_DamnGoodGround			AimandDefModifiers;
+	local X2AbilityTemplate       Template;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'Battlemaster');
-	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_ManualOverride";
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.bIsPassive = true;
-	AimandDefModifiers = new class 'X2Effect_DamnGoodGround';
-	AimandDefModifiers.BuildPersistentEffect (1, true, true);
-	AimandDefModifiers.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	Template.AddTargetEffect (AimandDefModifiers);
-	Template.bCrossClassEligible = true;
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	
-	return Template;		
+	Template = PurePassive('Battlemaster', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_ManualOverride", false, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+	return Template;
 }
 
-
-static function X2AbilityTemplate LW2WotC_Reckoning()
+static function X2AbilityTemplate AddReckoning_LW()
 {
-	local X2AbilityTemplate						Template;
-	local X2AbilityCooldown				Cooldown;
+	local X2AbilityTemplate	Template;
+	local X2AbilityCooldown	Cooldown;
 
-	Template = PurePassive('LW2WotC_Reckoning', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Reckoning");
+	Template = PurePassive('Reckoning_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Reckoning");
 	Template.AdditionalAbilities.AddItem('SkirmisherFleche');
 	Template.AdditionalAbilities.AddItem('SkirmisherSlash');
 
 	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.LW2WotC_RECKONING_COOLDOWN;
+	Cooldown.iNumTurns = default.RECKONING_LW_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
 	return Template;
 }
 
-static function X2AbilityTemplate SkirmisherFleche()
+static function X2AbilityTemplate AddSkirmisherFleche()
 {
 	local X2AbilityTemplate				Template;
 	local X2AbilityCost_ActionPoints	ActionPointCost;
@@ -80,14 +69,14 @@ static function X2AbilityTemplate SkirmisherFleche()
 			ActionPointCost.bConsumeAllPoints = false;
 	}
 	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.LW2WotC_RECKONING_COOLDOWN;
+	Cooldown.iNumTurns = default.RECKONING_LW_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
 	return Template;
 }
 
 
-static function X2AbilityTemplate SkirmisherSlash()
+static function X2AbilityTemplate AddSkirmisherSlash()
 {
 	local X2AbilityTemplate                 Template;
 	local X2AbilityToHitCalc_StandardMelee  StandardMelee;
@@ -116,7 +105,7 @@ static function X2AbilityTemplate SkirmisherSlash()
 	Template.AbilityCosts.AddItem(default.FreeActionCost);
 
 	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.RECKONING_SLASH_COOLDOWN;
+	Cooldown.iNumTurns = default.RECKONING_LW_SLASH_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 	
 	// Targetted melee attack against a single target
@@ -162,77 +151,108 @@ static function X2AbilityTemplate SkirmisherSlash()
 	return Template;
 }
 
-static function X2AbilityTemplate SkirmisherInterrupt()
+static function X2AbilityTemplate AddManualOverride_LW()
 {
 	local X2AbilityTemplate					Template;
 	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2Effect_ReserveOverwatchPoints   ReserveActionPointsEffect;
-	local array<name>                       SkipExclusions;
-	local X2Condition_UnitProperty          ConcealedCondition;
-	local X2Effect_SetUnitValue             UnitValueEffect;
-	local X2Condition_UnitEffects           SuppressedCondition;
 	local X2AbilityCooldown					Cooldown;
+	local X2Condition_UnitProperty      	TargetCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'SkirmisherInterrupt');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ManualOverride_LW');
 
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.INTERRUPT_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_ManualOverride";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 0;
-	ActionPointCost.bFreeCost = true;
-	ActionPointCost.DoNotConsumeAllEffects.Length = 0;
-	ActionPointCost.DoNotConsumeAllSoldierAbilities.Length = 0;
-	ActionPointCost.AllowedTypes.RemoveItem(class'X2CharacterTemplateManager'.default.SkirmisherInterruptActionPoint);
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = false;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
 
-	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
-	Template.AddShooterEffectExclusions(SkipExclusions);
+	TargetCondition = new class'X2Condition_UnitProperty';
+	TargetCondition.ExcludeHostileToSource = true;
+	TargetCondition.ExcludeFriendlyToSource = false;
+	TargetCondition.RequireSquadmates = true;
+	TargetCondition.FailOnNonUnits = true;
+	TargetCondition.ExcludeDead = true;
+	TargetCondition.ExcludeRobotic = false;
+	TargetCondition.ExcludeUnableToAct = true;
+	Template.AbilityTargetConditions.AddItem(TargetCondition);
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+	
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.MANUAL_OVERRIDE_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+	
+	Template.AddTargetEffect(new class'X2Effect_ManualOverride_LW');
 
-	SuppressedCondition = new class'X2Condition_UnitEffects';
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_SkirmisherInterrupt'.default.EffectName, 'AA_AbilityUnavailable');
-	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+	Template.bSkipFireAction = true;
+	Template.bShowActivation = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+//BEGIN AUTOGENERATED CODE: Template Overrides 'ManualOverride'
+	Template.AbilityConfirmSound = "Manual_Override_Activate";
+	Template.ActivationSpeech = 'ManualOverride';
+//END AUTOGENERATED CODE: Template Overrides 'ManualOverride'
 
-	ReserveActionPointsEffect = new class'X2Effect_ReserveOverwatchPoints';
-	ReserveActionPointsEffect.UseAllPointsWithAbilities.Length = 0;
-	ReserveActionPointsEffect.ReserveType = 'ReserveInterrupt';
-	Template.AddTargetEffect(ReserveActionPointsEffect);
+	return Template;
+}
 
-	ConcealedCondition = new class'X2Condition_UnitProperty';
-	ConcealedCondition.ExcludeFriendlyToSource = false;
-	ConcealedCondition.IsConcealed = true;
-	UnitValueEffect = new class'X2Effect_SetUnitValue';
-	UnitValueEffect.UnitName = class'X2Ability_DefaultAbilitySet'.default.ConcealedOverwatchTurn;
-	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
-	UnitValueEffect.NewValueToSet = 1;
-	UnitValueEffect.TargetConditions.AddItem(ConcealedCondition);
-	Template.AddTargetEffect(UnitValueEffect);
+// Creates a new ability that triggers at the start of each turn, but
+// only if Reflex triggered in the previous enemy turn. If that happens,
+// the ability clears the unit value that Reflex uses to track how many
+// times it has activated during the mission. This ability then goes on
+// cooldown.
+static function X2AbilityTemplate AddReflexTrigger()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_ResetReflex				ResetEffect;
+	local X2Condition_UnitValue				ReflexTriggeredCondition;
+	local X2AbilityTrigger_EventListener	EventListener;
+	local X2AbilityCooldown					Cooldown;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SkirmisherReflexTrigger');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_standard";
 
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Interrupt";
-	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.OVERWATCH_PRIORITY;
-	Template.bDisplayInUITooltip = false;
-	Template.bDisplayInUITacticalText = false;
-	Template.AbilityConfirmSound = "Unreal2DSounds_OverWatch";
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.REFLEX_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventID = 'PlayerTurnBegun';
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.Filter = eFilter_Player;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	ReflexTriggeredCondition = new class'X2Condition_UnitValue';
+	ReflexTriggeredCondition.AddCheckValue(class'X2Effect_SkirmisherReflex'.default.TotalEarnedValue, 1.0);
+	Template.AbilityShooterConditions.AddItem(ReflexTriggeredCondition);
+
+	ResetEffect = new class'X2Effect_ResetReflex';
+	// ResetEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
+	// ResetEffect.DuplicateResponse = eDupe_Allow;
+	Template.AddTargetEffect(ResetEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.bSkipFireAction = true;
-	Template.bShowActivation = true;
-	Template.CinescriptCameraType = "Overwatch";
-
-	Template.Hostility = eHostility_Defensive;
-
-	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
 
 	return Template;
 }

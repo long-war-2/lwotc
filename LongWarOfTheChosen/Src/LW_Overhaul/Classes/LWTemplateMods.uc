@@ -235,7 +235,7 @@ var config int AutopsyAdventPsiWitchIntelCost;
 var config int ALIEN_FACILITY_LEAD_RP_INCREMENT;
 var config int ALIEN_FACILITY_LEAD_INTEL;
 
-var config array<name> SchematicsToPreserve;
+var config array<name> SchematicsToDisable;
 
 var config array<name> UnlimitedItemsAdded;
 
@@ -973,11 +973,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'InTheZone')
 	{
 		SerialCritReduction = new class 'X2Effect_SerialCritReduction';
-		SerialCritReduction.BuildPersistentEffect(1, false, true, false, 8);
+		SerialCritReduction.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
 		SerialCritReduction.CritReductionPerKill = default.SERIAL_CRIT_MALUS_PER_KILL;
 		SerialCritReduction.AimReductionPerKill = default.SERIAL_AIM_MALUS_PER_KILL;
 		SerialCritReduction.Damage_Falloff = default.SERIAL_DAMAGE_FALLOFF;
 		SerialCritReduction.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true,, Template.AbilitySourceName);
+		SerialCritReduction.EffectName = 'SerialCritReduction';
 		Template.AbilityTargetEffects.AddItem(SerialCritReduction);
 	}
 
@@ -2270,7 +2271,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	
 	// KILL SCHEMATICS
 	SchematicTemplate = X2SchematicTemplate(Template);
-	if (SchematicTemplate != none && default.SchematicsToPreserve.Find(SchematicTemplate.DataName) == -1)
+	if (SchematicTemplate != none && default.SchematicsToDisable.Find(SchematicTemplate.DataName) != -1)
 	{
 		SchematicTemplate.CanBeBuilt = false;
 		SchematicTemplate.PointsToComplete = 999999;
@@ -2565,11 +2566,15 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				break;
 		}
 		// KILL THE SCHEMATICS! (but only the schematics we want to kill)
-		if (EquipmentTemplate.CreatorTemplateName != '' && default.SchematicsToPreserve.Find(EquipmentTemplate.CreatorTemplateName) == -1)
+		if (EquipmentTemplate.CreatorTemplateName != '' && default.SchematicsToDisable.Find(EquipmentTemplate.CreatorTemplateName) != -1)
 		{
 			EquipmentTemplate.CreatorTemplateName = '';
 			EquipmentTemplate.BaseItem = '';
-			EquipmentTemplate.UpgradeItem = '';
+
+			// LWOTC: At least one mod depends on this having a value, so don't
+			// clear it. It's a deprecated property anyway, so this shouldn't be
+			// a problem.
+			// EquipmentTemplate.UpgradeItem = '';
 		}
 		// Mod
 		for (i=0; i < ItemTable.Length; ++i)

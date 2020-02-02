@@ -12,6 +12,7 @@ var TDateTime NextUpdateTime;
 var array<ActivityCooldownTimer> GlobalCooldowns;
 
 var config int AVATAR_DELAY_HOURS_PER_NET_GLOBAL_VIG;
+var config float INFILTRATION_TO_DISABLE_SIT_REPS;
 
 //#############################################################################################
 //----------------   INITIALIZATION   ---------------------------------------------------------
@@ -326,6 +327,7 @@ static function XComGameState_LWAlienActivity FindAlienActivityByMissionRef(Stat
 static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 {
 	local XComGameStateHistory History;
+	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local int ForceLevel, AlertLevel, i;
 	local XComGameState_LWPersistentSquad InfiltratingSquad;
@@ -333,6 +335,8 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	local XComGameState_LWAlienActivity ActivityState;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState;
+	local X2SitRepTemplateManager SitRepManager;
+	local X2SitRepTemplate SitRepTemplate;
 	local array<X2DownloadableContentInfo> DLCInfos;
 	local MissionDefinition MissionDef;
 	local name NewMissionFamily;
@@ -381,8 +385,17 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	}
 
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Update Mission Data");
-	MissionSite = XComGameState_MissionSite(NewGameState.CreateStateObject(class'XComGameState_MissionSite', MissionSite.ObjectID));
-	NewGameState.AddStateObject (MissionSite);
+	MissionSite = XComGameState_MissionSite(NewGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionSite.ObjectID));
+
+	// Clear the current mission data cached by XComHQ, since it may be out of date
+	// after this function has finished. This is pretty ugly.
+	XComHQ = `XCOMHQ;
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	i = XComHQ.arrGeneratedMissionData.Find('MissionID', MissionSite.ObjectID);
+	if (i != INDEX_NONE)
+	{
+		XComHQ.arrGeneratedMissionData.Remove(i, 1);
+	}
 
 	//update the mission encounters in case they were updated (e.g. mod update)
 	if (`TACTICALMISSIONMGR.GetMissionDefinitionForType(MissionSite.GeneratedMission.Mission.sType, MissionDef))
@@ -396,6 +409,20 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 		`REDSCREEN ("Mission type " $ MissionSite.GeneratedMission.Mission.sType $ " removed in update. Attempting to recover.");
 		NewMissionFamily = ActivityState.GetNextMissionFamily(none);
 		MissionSite.GeneratedMission.Mission = ActivityState.GetMissionDefinitionForFamily(NewMissionFamily);
+	}
+
+	// Deal with Sit Reps based on infiltration.
+	if (InfiltratingSquad.CurrentInfiltration >= default.INFILTRATION_TO_DISABLE_SIT_REPS)
+	{
+		SitRepManager = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
+		for (i = MissionSite.GeneratedMission.SitReps.Length - 1; i >=0; i--)
+		{
+			SitRepTemplate = SitRepManager.FindSitRepTemplate(MissionSite.GeneratedMission.SitReps[i]);
+			if (SitRepTemplate != none)
+			{
+				MissionSite.GeneratedMission.SitReps.Remove(i, 1);
+			}
+		}
 	}
 
 	//cache the difficulty

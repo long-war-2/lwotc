@@ -63,8 +63,7 @@ static function X2DataTemplate CreateGenericMissionSourceTemplate()
 	Template.MissionPopupFn = none; //popup drawn separately from activity
 	Template.GetOverworldMeshPathFn = GetGenericMissionSourceOverworldMeshPath;
 	Template.WasMissionSuccessfulFn = GenericWasMissionSuccessful;
-	
-	// WOTC TODO: Consider adding sitreps to missions at a later date.
+
 	Template.bBlockSitrepDisplay = false;
 	Template.GetSitRepsFn = GetValidSitReps;
 	return Template;

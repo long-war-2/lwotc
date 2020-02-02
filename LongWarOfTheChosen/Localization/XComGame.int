@@ -371,10 +371,12 @@ LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to 2 point
 
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
-LocLongDescription="You may throw or launch grenades two additional tiles."
-LocHelpText="You may throw or launch grenades two additional tiles."
+; LWOTC Needs Translation
+LocLongDescription="You may throw or launch grenades and Claymores two additional tiles."
+LocHelpText="You may throw or launch grenades and Claymores two additional tiles."
 LocFlyOverText="Bombardier"
-LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes either launched or thrown grenades.<br/>"
+LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades, as well as Reaper Claymores.<br/>"
+; End Translation
 
 [BluescreenBombs X2AbilityTemplate]
 LocFriendlyName="Bluescreen Bombs"
@@ -4440,7 +4442,7 @@ PreMissionText="The aliens deploy a stronger and deadlier Faceless unit."
 PostMissionSuccessText="Dark Event Countered: Greater Faceless"
 PostMissionFailureText="Failed to Counter Dark Event: Greater Faceless"
 
-[DarkEventAbility_GreaterFaceless X2AbilityTemplate]
+[DarkEventAbility_GreaterFacelessStatImprovements X2AbilityTemplate]
 LocFriendlyName="Dark Event: Greater Faceless"
 LocLongDescription="The aliens deploy a stronger and deadlier Faceless unit."
 
@@ -4908,15 +4910,15 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 [Battlemaster X2AbilityTemplate]
 ; LWOTC Needs Translation
 LocFriendlyName="Battlemaster"
-LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim and defense from high ground, and have lower infiltration times."
-LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT. They have a grenade slot, gain +10 aim and defense from high ground, and have lower infiltration times."
-LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/><Bullet/> Gain +10 aim and defense from high ground.<br/><Bullet/> This soldier has reduced infiltration times while on missions."
+LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT, granting them a grenade slot."
+LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT, granting them a grenade slot."
+LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/>"
 
 [SkirmisherGrapple X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into position without using an action.<br/><Bullet/> Grapple has a 2-turn cooldown (1 turn with Parkour)."
 ; End Translation
 
-[LW2WotC_Reckoning X2AbilityTemplate]
+[Reckoning_LW X2AbilityTemplate]
 LocFriendlyName="Reckoning"
 LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack."
 LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack."
@@ -4972,23 +4974,16 @@ Summary="The cooldown for the Skrimisher's grappling hook is reduced by one turn
 
 [Whiplash X2AbilityTemplate]
 LocFriendlyName="Whiplash"
-LocLongDescription="Attack an enemy with an electrical lash. This attack does not cost an action and has a 4 turn cooldown."
-LocHelpText="A free attack with an electrical lash. Double damage to robotic units. 4 turn cooldown."
-LocPromotionPopupText="<Bullet/> Whiplash does double damage to robotic enemies. 4 turn cooldown."
+LocLongDescription="Attack an enemy with an electrical lash. This attack has a <Ability:SelfCooldown/>-turn cooldown."
+LocHelpText="An attack with an electrical lash. Extra damage to robotic units. <Ability:SelfCooldown/>-turn cooldown."
+LocPromotionPopupText="<Bullet/> Whiplash does extra damage to robotic enemies. <Ability:SelfCooldown/>-turn cooldown."
 
 [SkirmisherInterrupt X2AbilityTemplate]
 LocFriendlyName="Interrupt"
 LocLongDescription="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
 LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
 LocFlyOverText="Interrupt"
-LocPromotionPopupText="<Bullet/> While Interrupt can be used without any action points available, it still depletes all of the Skirmisher's remaining actions.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:INTERRUPT_COOLDOWN/> turn cooldown."
-
-[SkirmisherInterruptInput X2AbilityTemplate]
-LocFriendlyName="Interrupt"
-LocLongDescription="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
-LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action."
-LocFlyOverText="Interrupt"
-LocPromotionPopupText="<Bullet/> While Interrupt can be used without any action points available, it still depletes all of the Skirmisher's remaining actions.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:INTERRUPT_COOLDOWN/> turn cooldown."
+LocPromotionPopupText="<Bullet/> While Interrupt can be used without any action points available, it still depletes all of the Skirmisher's remaining actions.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:SelfCooldown/> turn cooldown."
 
 [Solace X2AbilityTemplate]
 LocFriendlyName="Templar Aura"
@@ -5033,6 +5028,95 @@ LocLongDescription="Grant an additional movement point to a bondmate. Has a sing
 LocFriendlyName="Advanced Teamwork"
 LocHelpText="Grant an additional action point to a bondmate. Has one or two charges per mission depending on bond level, shared between bondmates."
 LocLongDescription="Grant an additional action point to a bondmate. Has one or two charges per mission depending on bond level, shared between bondmates."
+; End Translation
+
+; LWOTC Needs Translation
+[BloodTrail X2AbilityTemplate]
+LocFriendlyName="Blood Trail"
+LocLongDescription="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage if the target has been wounded this turn. Also applies a non-stacking bleeding effect."
+LocHelpText="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage if the target has been wounded this turn. Also applies a non-stacking bleeding effect."
+LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> The bleeding effect does 1 point of damage for the next two turns.<br/><Bullet/> Subsequent shots just refresh the bleeding duration to 2 turns.<br/>"
+
+[RemoteStart X2AbilityTemplate]
+LocFriendlyName="Remote Start"
+LocLongDescription="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the Reaper."
+LocHelpText="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the Reaper."
+LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zone!<br/><Bullet/> Remote Start requires <Ability:SelfAmmoCost/> ammo point, and has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+
+[Hero_Tracking X2AbilityTemplate]
+LocFriendlyName="Tracking"
+LocLongDescription="You detect nearby units even without line of sight."
+LocHelpText="You detect nearby units even without line of sight."
+LocFlyOverText="Tracking"
+LocPromotionPopupText="<Bullet/> Tracking allows the unit to detect units that are behind walls and other line-of-sight blockers.<br/><Bullet/> Tracking detects enemies up to very slightly outside normal visual range.<br/><Bullet/> Detected units will appear as a visual outline.<br/><Bullet/> Units will remain detected until the end of the player's turn. If they are outside Tracking's range at that point, they will count as no longer detected.<br/>"
+
+[Hero_TrackingTrigger X2AbilityTemplate]
+LocFriendlyName="Tracking"
+LocFlyOverText="Tracking"
+
+[SkirmisherReflex X2AbilityTemplate]
+LocLongDescription="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn."
+LocHelpText="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn."
+LocPromotionPopupText="<Bullet/> The Grapple makes the Skirmisher a great advance scout, and Reflex rewards their aggressive positioning.<br/><Bullet/> Reflex can only be triggered once per turn.<br/>"
+
+[FullThrottle X2AbilityTemplate]
+LocLongDescription="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
+LocHelpText="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
+
+[Judgment X2AbilityTemplate]
+LocFriendlyName="Judgement"
+LocLongDescription="Has a chance to panic any enemy that attacks this unit. The higher the will of this unit, the higher the panic chance."
+LocHelpText="Has a chance to panic any enemy that attacks this unit. The higher the will of this unit, the higher the panic chance."
+LocFlyOverText="Judgement"
+LocPromotionPopupText="<Bullet/> Judgement can be triggered by melee and area of effect attacks.<br/><Bullet/> Judgement will not trigger when targeted by Overwatch fire.<br/><Bullet/> The chance of panic depends on both the will of the attacking unit and the will of the unit with Judgement.<br/><Bullet/> Judgement works best on units with high will.<br/>"
+
+[ManualOverride_LW X2AbilityTemplate]
+LocFriendlyName="Manual Override"
+LocLongDescription="Resets all ability cooldowns on ally soldiers."
+LocHelpText="Resets all ability cooldowns on ally soldiers."
+LocPromotionPopupText="<Bullet/> Use the Skirmisher's abilities early and often to take full advantage of Manual Override.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>"
+
+[TemplarGrazingFire X2AbilityTemplate]
+LocFriendlyName="Grazing Fire"
+LocFlyOverText="Grazing Fire"
+LocLongDescription="Missed shots with your autopistol have an additional roll to become a graze."
+LocHelpText="Misses may become grazes."
+LocPromotionPopupText="<Bullet/> Missed shots with the soldier's autopistol generally have a <Ability:GRAZING_FIRE_SUCCESS_CHANCE>% chance to become a graze.<br/><Bullet/> This effect occurs after normal hit-miss-graze processing.<br/><Bullet/> Targets with a dodge score subtract that score from the ability's success chance."
+
+[TemplarFleche X2AbilityTemplate]
+LocFriendlyName="Fleche"
+LocFlyOverText="Fleche"
+LocLongDescription="Attack any enemy within movement range with your sword. Deals +1 damage for every <Ability:REND_FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between your starting position and the target."
+LocHelpText="Attack any enemy within movement range with your sword. Deals bonus damage for attacks from a distance."
+LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/>  Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position.<br/>"
+
+[TemplarSolace X2AbilityTemplate]
+LocFriendlyName="Solace"
+LocFlyOverText="Solace"
+LocLongDescription="The Templar may immediately extinguish mental impairments for a squadmate."
+LocHelpText="The Templar may immediately extinguish mental impairments for a squadmate."
+LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>
+
+[CasterGauntlet_CV X2PairedWeaponTemplate]
+FriendlyName="Caster Gauntlets"
+FriendlyNamePlural="Caster Gauntlets"
+BriefSummary="The paired Templar gauntlets were designed to amplify the user's Psionic energy, but at their core, they are still gauntlets--stout, metallic gloves capable of withstanding extremes well beyond what flesh alone can take."
+TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+AbilityDescName="shard"
+
+[CasterGauntlet_MG X2PairedWeaponTemplate]
+FriendlyName="Mage Gauntlets"
+FriendlyNamePlural="Mage Gauntlets"
+BriefSummary="The paired Templar gauntlets were designed to amplify the user's Psionic energy, but at their core, they are still gauntlets--stout, metallic gloves capable of withstanding extremes well beyond what flesh alone can take. With magnetic plating layered over the existing structure, they now provide much more than the original enhancement they were created for."
+TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+AbilityDescName="shard"
+
+[CasterGauntlet_BM X2PairedWeaponTemplate]
+FriendlyName="Archmage Gauntlets"
+FriendlyNamePlural="Archmage Gauntlets"
+BriefSummary="A small Elerium power cell scavenged from an unknown piece of ADVENT technology has provided the Templars with a means of further amplifying the Psionic energy harnessed by these gauntlets. It is still unknown whether it is their mastery of this power, or the technology they have created that allows this blend of opposing forces."
+TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n"
+AbilityDescName="shard"
 
 
 [Yoink X2AbilityTemplate]
@@ -5102,6 +5186,4 @@ LocFriendlyName="Get up!"
 LocHelpText="Remove the unconcious effect from a soldier."
 LocLongDescription="Remove the unconcious effect from a soldier"
 LocFlyOverText="Get up!"
-
-
 ; End Translation

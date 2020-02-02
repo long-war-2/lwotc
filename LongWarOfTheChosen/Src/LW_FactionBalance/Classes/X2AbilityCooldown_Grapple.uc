@@ -20,4 +20,3 @@ simulated function int GetNumTurns(XComGameState_Ability kAbility, XComGameState
 	// If no, set the ability's cooldown to three
 	return default.GRAPPLE_COOLDOWN;
 }
-

@@ -118,6 +118,7 @@ var localized string LocCoveringFire;
 var localized string LocCoveringFireMalus;
 var config bool NO_STANDARD_ATTACKS_WHEN_ON_FIRE;
 var config bool NO_MELEE_ATTACKS_WHEN_ON_FIRE;
+var config int BOMBARD_BONUS_RANGE_TILES;
 
 static function array<X2DataTemplate> CreateTemplates()
 {

@@ -95,7 +95,7 @@ static function X2AbilityTemplate DarkEventAbility_GrazingFire(name BaseAbilityN
 	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ BaseAbilityName));
 }
 
-static function X2AbilityTemplate DarkEventAbility_GreaterFaceless(name BaseAbilityName = 'GreaterFaceless')
+static function X2AbilityTemplate DarkEventAbility_GreaterFaceless(name BaseAbilityName = 'GreaterFacelessStatImprovements')
 {
 	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ BaseAbilityName));
 }
@@ -178,9 +178,15 @@ static protected function X2AbilityTemplate ConfigureDarkEventAbility(name Abili
 	Template.bDisplayInUITacticalText = false;
 	Template.AdditionalAbilities.AddItem(AbilityName);
 
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
 	GameplayCondition = new class'X2Condition_GameplayTag';
 	GameplayCondition.RequiredGameplayTag = TacticalTag;
 	Template.AbilityShooterConditions.AddItem(GameplayCondition);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	idx = default.DarkEventAbilityDefinitions.Find('AbilityName', Template.DataName);
 	if (idx == INDEX_NONE)

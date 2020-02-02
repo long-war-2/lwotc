@@ -2160,6 +2160,76 @@ static function UpdateTechs()
 		History.CleanupPendingGameState(NewGameState);
 }
 
+static function UpdateChosenActivities()
+{
+	UpdateTraining();
+	UpdateRetribution();
+
+}
+static function UpdateTraining()
+{
+	local X2ChosenActionTemplate Template;
+	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Training'));
+	Template.OnActivatedFn = ActivateTraining;
+	Template.CanBePlayedFn = TrainingCanBePlayed;
+}
+
+static function ActivateTraining(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
+{
+	local XComGameState_ChosenAction ActionState;
+	local XComGameState_AdventChosen ChosenState;
+	local name OldTacticalTag, NewTacticalTag;
+
+	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);
+	ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(ActionState.ChosenRef, NewGameState);
+
+
+	// Grab Old Tactical Tag
+	OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+	NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+	// Only met, active chosen trigger the just leveled up popup
+	if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+	{
+		ChosenState.bJustLeveledUp = true;
+	}
+
+	// Replace Old Tag with new Tag in missions
+	ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+
+	// Gain New Traits
+	ChosenState.GainNewStrengths(NewGameState, class'XComGameState_AdventChosen'.default.NumStrengthsPerLevel);
+}
+
+//---------------------------------------------------------------------------------------
+static function bool TrainingCanBePlayed(StateObjectReference InRef, optional XComGameState NewGameState = none)
+{
+	return true;
+}
+
+static function UpdateRetribution()
+{
+	local X2ChosenActionTemplate Template;
+	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Retribution'));
+	Template.OnActivatedFn = ActivateRetribution;
+}
+
+static function ActivateRetribution(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
+{
+	local XComGameState_ChosenAction ActionState;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWOutpost	Outpost;
+
+	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);
+	RegionState = XComGameState_WorldRegion(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion', ActionState.StoredReference.ObjectID));
+	
+	Outpost = `LWOUTPOSTMGR.GetOutpostForRegion(RegionState);
+	Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', OutPost.ObjectID));
+	NewGameState.AddStateObject(Outpost);
+	OutPost.AddChosenRetribution(default.CHOSEN_RETRIBUTION_DURATION);
+}
+
 //=========================================================================================
 //================= BEGIN LONG WAR ABILITY TAG HANDLER ====================================
 //=========================================================================================
@@ -3346,72 +3416,103 @@ exec function LWForceSquadPostMissionCleanup(string SquadName)
 	}
 }
 
-static function UpdateChosenActivities()
+// Rebuild ability tree and XCOM abilities for the soldier selected
+// in the armory.
+exec function RespecSelectedSoldier()
 {
-	UpdateTraining();
-	UpdateRetribution();
-
-}
-static function UpdateTraining()
-{
-	local X2ChosenActionTemplate Template;
-	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Training'));
-	Template.OnActivatedFn = ActivateTraining;
-	Template.CanBePlayedFn = TrainingCanBePlayed;
-}
-
-static function ActivateTraining(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
-{
-	local XComGameState_ChosenAction ActionState;
-	local XComGameState_AdventChosen ChosenState;
-	local name OldTacticalTag, NewTacticalTag;
-
-	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);
-	ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(ActionState.ChosenRef, NewGameState);
-
-
-	// Grab Old Tactical Tag
-	OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
-	NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
-	// Only met, active chosen trigger the just leveled up popup
-	if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+	local UIArmory							Armory;
+	local StateObjectReference				UnitRef;
+	local XComGameState_Unit				UnitState;
+	
+	Armory = UIArmory(`SCREENSTACK.GetFirstInstanceOf(class'UIArmory'));
+	if (Armory == none)
 	{
-		ChosenState.bJustLeveledUp = true;
+		class'Helpers'.static.OutputMsg("No unit selected - cannot respec soldier");
+		return;
 	}
 
-	// Replace Old Tag with new Tag in missions
-	ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+	UnitRef = Armory.GetUnitRef();
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitRef.ObjectID));
+	if (UnitState == none)
+	{
+		class'Helpers'.static.OutputMsg("No unit selected - cannot respec soldier");
+		return;
+	}
 
-	// Gain New Traits
-	ChosenState.GainNewStrengths(NewGameState, class'XComGameState_AdventChosen'.default.NumStrengthsPerLevel);
+	RespecSoldier(UnitState);
+	Armory.PopulateData();
 }
 
-//---------------------------------------------------------------------------------------
-static function bool TrainingCanBePlayed(StateObjectReference InRef, optional XComGameState NewGameState = none)
+exec function RespecAllSoldiers()
 {
-	return true;
+	local XComGameState_HeadquartersXCom	XComHQ;
+	local XComGameState_Unit				UnitState;
+	local array<XComGameState_Unit>			Soldiers;
+
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	Soldiers = XComHQ.GetSoldiers();
+	foreach Soldiers(UnitState)
+	{
+		RespecSoldier(UnitState);
+	}
 }
 
-static function UpdateRetribution()
+static function RespecSoldier(XComGameState_Unit UnitState)
 {
-	local X2ChosenActionTemplate Template;
-	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Retribution'));
-	Template.OnActivatedFn = ActivateRetribution;
-}
+	local XComGameStateHistory				History;
+	local XComGameState						NewGameState;
+	local XComGameState_HeadquartersXCom	XComHQ;
+	local name								ClassName;
+	local int								i, NumRanks, iXP;
 
-static function ActivateRetribution(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
-{
-	local XComGameState_ChosenAction ActionState;
-	local XComGameState_WorldRegion RegionState;
-	local XComGameState_LWOutpost	Outpost;
+	History = `XCOMHISTORY;
 
-	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);
-	RegionState = XComGameState_WorldRegion(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion', ActionState.StoredReference.ObjectID));
+	ClassName = UnitState.GetSoldierClassTemplateName();
+	NumRanks = UnitState.GetRank();
+
+	iXP = UnitState.GetXPValue();
+	iXP -= class'X2ExperienceConfig'.static.GetRequiredXp(NumRanks);
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Respec Soldier");
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 	
-	Outpost = `LWOUTPOSTMGR.GetOutpostForRegion(RegionState);
-	Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', OutPost.ObjectID));
-	NewGameState.AddStateObject(Outpost);
-	OutPost.AddChosenRetribution(default.CHOSEN_RETRIBUTION_DURATION);
+	if (ClassName == 'Random' || ClassName == 'Rookie')
+	{
+		ClassName = XComHQ.SelectNextSoldierClass();
+	}
+
+	UnitState.AbilityPoints = 0; // Reset Ability Points
+	UnitState.SpentAbilityPoints = 0; // And reset the spent AP tracker
+	UnitState.ResetSoldierRank(); // Clear their rank
+	UnitState.ResetSoldierAbilities(); // Clear their current abilities
+	for (i = 0; i < NumRanks; ++i) // Rank soldier back up to previous level
+	{
+		UnitState.RankUpSoldier(NewGameState, ClassName);
+	}
+	UnitState.ApplySquaddieLoadout(NewGameState, XComHQ);
+
+	// Reapply Stat Modifiers (Beta Strike HP, etc.)
+	UnitState.bEverAppliedFirstTimeStatModifiers = false;
+	if (UnitState.GetMyTemplate().OnStatAssignmentCompleteFn != none)
+	{
+		UnitState.GetMyTemplate().OnStatAssignmentCompleteFn(UnitState);
+	}
+	UnitState.ApplyFirstTimeStatModifiers();
+
+	// Restore any partial XP the soldier had
+	if (iXP > 0)
+	{
+		UnitState.AddXp(iXP);
+	}
+
+	if (NewGameState.GetNumGameStateObjects() > 0)
+	{
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
 }

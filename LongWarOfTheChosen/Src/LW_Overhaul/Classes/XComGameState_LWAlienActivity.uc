@@ -46,6 +46,9 @@ var MissionDefinition ForceMission;                         // A mission type to
 // LWOTC: Allow configuration of which mission types the Chosen should be excluded from
 var config array<string> ExcludeChosenFromMissionTypes;
 
+// LWOTC: Base chance for a mission to have a sit rep
+var config float SIT_REP_CHANCE;
+
 //#############################################################################################
 //----------------   REQUIRED FROM BASEOBJECT   -----------------------------------------------
 //#############################################################################################
@@ -688,7 +691,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		// No cheats, add SitReps from the Mission Source
 		MissionSource = MissionState.GetMissionSource();
 
-		if (MissionSource.GetSitrepsFn != none)
+		if (MissionSource.GetSitrepsFn != none && ShouldAddSitRepToMission(MissionState))
 		{
 			SourceSitReps = MissionSource.GetSitrepsFn(MissionState);
 
@@ -763,6 +766,12 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	}
 
 	MissionState.GenerateMissionFlavorText();
+}
+
+// LWOTC: Added to determine whether a mission should have a sit rep attached or not
+function bool ShouldAddSitRepToMission(XComGameState_MissionSite MissionState)
+{
+	return class'X2LWSitRepsModTemplate'.default.VALID_SIT_REPS.Length > 0 && `SYNC_FRAND() < default.SIT_REP_CHANCE;
 }
 
 function MissionDefinition GetMissionDefinitionForFamily(name MissionFamily)
