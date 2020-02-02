@@ -966,14 +966,14 @@ static function X2DataTemplate CreateTemplate_CasterGauntlet_Conventional()
 
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'gauntlet';
-	Template.WeaponTech = 'magnetic';
+	Template.WeaponTech = 'conventional';
 	Template.strImage = "img:///UILibrary_XPACK_StrategyImages.Inv_ConvTGauntlet";
-	Template.EquipSound = "Sword_Equip_Magnetic";
+	Template.EquipSound = "Sword_Equip_Conventional";
 	Template.InventorySlot = eInvSlot_PrimaryWeapon;
 	//Template.StowedLocation = eSlot_RightBack;
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_CV";
-	Template.AltGameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_F_CV";
+	Template.GameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet";
+	Template.AltGameArchetype = "WP_TemplarGauntlet.WP_TemplarGauntlet_F";
 	Template.GenderForAltArchetype = eGender_Female;
 	Template.Tier = 0;
 	Template.bUseArmorAppearance = true;
