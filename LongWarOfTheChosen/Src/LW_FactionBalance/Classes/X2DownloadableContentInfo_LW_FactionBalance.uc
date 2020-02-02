@@ -140,6 +140,8 @@ static event InstallNewCampaign(XComGameState StartState)
 static function bool AbilityTagExpandHandler(string InString, out string OutString)
 {
 	local name Type;
+	local float TempFloat;
+	local int TempInt;
 
 	Type = name(InString);
 	switch(Type)
@@ -173,6 +175,22 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		return true;
 	case 'VoltDangerZoneBonus':
 		OutString = string(class'X2LWModTemplate_TemplarAbilities'.default.VOLT_DANGER_ZONE_BONUS_RADIUS);
+		return true;
+	case 'REND_FLECHE_BONUS_DAMAGE_PER_TILES':
+		TempFloat = 1 / class'X2Ability_TemplarAbilitySet_LW'.default.BONUS_REND_DAMAGE_PER_TILE;
+		TempFloat = Round(TempFloat * 10.0) / 10.0;
+		TempInt = int(TempFloat);
+		if ( float(TempInt) ~= TempFloat)
+		{
+			OutString = string(TempInt);
+		}
+		else
+		{
+			OutString = Repl(string(TempFloat), "0", "");
+		}
+		return true;
+	case 'FULL_THROTTLE_DURATION':
+		OutString = string(class'X2LWModTemplate_SkirmisherAbilities'.default.FULL_THROTTLE_DURATION);
 		return true;
 	}
 

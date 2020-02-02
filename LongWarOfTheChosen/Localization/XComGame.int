@@ -5054,6 +5054,15 @@ LocPromotionPopupText="<Bullet/> Tracking allows the unit to detect units that a
 LocFriendlyName="Tracking"
 LocFlyOverText="Tracking"
 
+[SkirmisherReflex X2AbilityTemplate]
+LocLongDescription="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn."
+LocHelpText="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn."
+LocPromotionPopupText="<Bullet/> The Grapple makes the Skirmisher a great advance scout, and Reflex rewards their aggressive positioning.<br/><Bullet/> Reflex can only be triggered once per turn.<br/>"
+
+[FullThrottle X2AbilityTemplate]
+LocLongDescription="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
+LocHelpText="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
+
 [Judgment X2AbilityTemplate]
 LocFriendlyName="Judgement"
 LocLongDescription="Has a chance to panic any enemy that attacks this unit. The higher the will of this unit, the higher the panic chance."
@@ -5077,7 +5086,7 @@ LocPromotionPopupText="<Bullet/> Missed shots with the soldier's autopistol gene
 [TemplarFleche X2AbilityTemplate]
 LocFriendlyName="Fleche"
 LocFlyOverText="Fleche"
-LocLongDescription="Attack any enemy within movement range with your sword. Deals +1 damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between your starting position and the target."
+LocLongDescription="Attack any enemy within movement range with your sword. Deals +1 damage for every <Ability:REND_FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between your starting position and the target."
 LocHelpText="Attack any enemy within movement range with your sword. Deals bonus damage for attacks from a distance."
 LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/>  Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position.<br/>"
 
