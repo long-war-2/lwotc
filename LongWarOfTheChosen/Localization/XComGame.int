@@ -3999,7 +3999,9 @@ PostMissionSuccessText="Dark Event Countered: Air Patrols"
 PostMissionFailureText="Failed to Counter Dark Event: Air Patrols"
 
 [DarkEvent_MutonEngineers X2DarkEventTemplate]
-DisplayName="Demolitions Experts"
+; LWOTC Needs Translation
+DisplayName="Permanent: Demolitions Experts"
+; End Translation
 SummaryText="The aliens deploy units with enhanced cover destruction abilities."
 QuoteText="\"Fire in the Hole!\""
 QuoteTextAuthor="- Unidentified XCOM Corporal"
@@ -4035,7 +4037,9 @@ PostMissionSuccessText="Dark Event Countered: Rural Propaganda Blitz"
 PostMissionFailureText="Failed to Counter Dark Event: Rural Propaganda Blitz"
 
 [DarkEvent_ADVENTScopes X2DarkEventTemplate]
-DisplayName="ADVENT Scopes"
+; LWOTC Needs Translation
+DisplayName="Permanent: ADVENT Scopes"
+; End Translation
 SummaryText="ADVENT invests in improving their weaponry."
 QuoteText="\"ADVENT has an array of military technology at its disposal, but its forces are primarily geared toward control of the civilian population. This marks a move toward direct action against us and our allies.\""
 QuoteTextAuthor="- Dr. Tygan"
@@ -4058,7 +4062,9 @@ FriendlyName="Dark Event: ADVENT Laser Sights"
 Description="ADVENT soldiers gain +10 crit chance."
 
 [DarkEvent_ADVENTLaserSights X2DarkEventTemplate]
-DisplayName="ADVENT Laser Sights"
+; LWOTC Needs Translation
+DisplayName="Permanent: ADVENT Laser Sights"
+; End Translation
 SummaryText="ADVENT invests in improving their targeting systems, increasing their critical chance."
 QuoteText="\"ADVENT soldiers will present a greater threat to our troops if they successfully field these new weapon designs.\""
 QuoteTextAuthor="- Central Officer Bradford"
@@ -4077,7 +4083,9 @@ FriendlyName="Dark Event: ADVENT Firewalls"
 Description="Enemy robotic units gain 15 hack defense."
 
 [DarkEvent_Firewalls X2DarkEventTemplate]
-DisplayName="ADVENT Firewalls"
+; LWOTC Needs Translation
+DisplayName="Permanent: ADVENT Firewalls"
+; End Translation
 SummaryText="ADVENT incorporates defenses against our hacking attempts."
 QuoteText="\"ADVENT robotic units won't be easy pickings for our Specialists any more.\""
 QuoteTextAuthor="- Chief Shen"
@@ -4096,7 +4104,9 @@ FriendlyName="Dark Event: Alien Conditioning"
 Description="Some enemies gain 1 hit point."
 
 [DarkEvent_AlienConditioning1 X2DarkEventTemplate]
-DisplayName="Alien Conditioning"
+; LWOTC Needs Translation
+DisplayName="Permanent: Alien Conditioning"
+; End Translation
 SummaryText="Alien forces field tougher combat units with a bonus hit point."
 QuoteText="\"The aliens must have a new-and-improved formula for their cloning tanks.\""
 QuoteTextAuthor="- Chief Shen"
@@ -4113,7 +4123,9 @@ FriendlyName="Dark Event: Alien Adaptations"
 Description="Some enemies gain 1 hit point."
 
 [DarkEvent_AlienConditioning2 X2DarkEventTemplate]
-DisplayName="Alien Adaptations"
+; LWOTC Needs Translation
+DisplayName="Permanent: Alien Adaptations"
+; End Translation
 SummaryText="Alien forces field improved combat units with a bonus hit point."
 QuoteText="\"After two decades of study, the aliens may be fielding units better prepared to operate in Earth's environment.\""
 QuoteTextAuthor="- Dr. Tygan"
@@ -4130,7 +4142,9 @@ FriendlyName="Dark Event: Alien Survivability"
 Description="Some enemies gain 1 hit point."
 
 [DarkEvent_AlienConditioning3 X2DarkEventTemplate]
-DisplayName="Alien Survivability"
+; LWOTC Needs Translation
+DisplayName="Permanent: Alien Survivability"
+; End Translation
 SummaryText="Alien forces field stronger combat units with a bonus hit point."
 QuoteText="\"We're not the only side in this war getting better at fighting.\""
 QuoteTextAuthor="- Central Officer Bradford"
@@ -4145,7 +4159,9 @@ LocLongDescription="+1 Hit Point"
 ;;; VETERAN UNITS
 
 [DarkEvent_VeteranUnits X2DarkEventTemplate]
-DisplayName="Veteran Units"
+; LWOTC Needs Translation
+DisplayName="Permanent: Veteran Units"
+; End Translation
 SummaryText="The aliens deploy experienced combat units with bonus aim."
 QuoteText="\"ADVENT's command network shows limited capacity for learning, but some of their combat soldiers grow more skilled over time.\""
 QuoteTextAuthor="- Dr. Tygan"
@@ -4164,7 +4180,9 @@ LocLongDescription="+5 Aim"
 ;;; ADVANCED SERVOS
 
 [DarkEvent_AdvancedServos X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Advanced Servos"
+; LWOTC Needs Translation
+DisplayName="Permanent: Advanced Servos"
+; End Translation
 SummaryText="ADVENT deploys advanced exoskeletons."
 QuoteText="\"ADVENT is fielding prototypes aimed at improving the mobility of both its clone and robotic combat units.\""
 QuoteTextAuthor="- Chief Shen"
@@ -4183,7 +4201,9 @@ LocLongDescription="+1 Mobility"
 ;;; TACTICAL UPGRADES: Defense
 
 [DarkEvent_TacticalUpgrades X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Defense"
+; LWOTC Needs Translation
+DisplayName="Permanent: Defense"
+; End Translation
 SummaryText="The aliens field units that are tougher to hit in battle."
 QuoteText="\"You can't kill 'em if you don't hit 'em.\""
 QuoteTextAuthor="- Anonymous Squaddie"
@@ -4201,7 +4221,9 @@ LocLongDescription="+5 defense"
 
 ;; Will to Survive
 [DarkEvent_WilltoSurvive X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Will to Survive"
+; LWOTC Needs Translation
+DisplayName="Permanent: Will to Survive"
+; End Translation
 SummaryText="The aliens field units that gain bonus armor when in cover."
 QuoteText="\"Our arms race with ADVENT is getting tighter.\""
 QuoteTextAuthor="- Central Officer Bradford"
@@ -4215,7 +4237,9 @@ LocLongDescription="Some enemy units gain the Will to Survive ability, which gra
 
 ;; Center Mass
 [DarkEvent_CenterMass X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Center Mass"
+; LWOTC Needs Translation
+DisplayName="Permanent: Center Mass"
+; End Translation
 SummaryText="The enemy deploys units who can do extra damage with their primary weapon."
 QuoteText="\"Win some, lose some. Then a plasma bolt fries your intestines.\""
 QuoteTextAuthor="- Anonymous Squaddie"
@@ -4229,7 +4253,9 @@ LocLongDescription="Some enemy units do additional damage with their primary wea
 
 ;; Infighter
 [DarkEvent_Infighter X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Infighter"
+; LWOTC Needs Translation
+DisplayName="Permanent: Infighter"
+; End Translation
 SummaryText="ADVENT Stun Lancers gain the Infighter ability, which grants bonus dodge against nearby enemies."
 QuoteText="\"Keep those Stun Lancers somewhere beyond arm's length.\""
 QuoteTextAuthor="- Chief Shen"
@@ -4243,7 +4269,9 @@ LocLongDescription="ADVENT Stun Lancers gain the Infighter ability, which grants
 
 ;; Formidable
 [DarkEvent_Formidable X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Formidable"
+; LWOTC Needs Translation
+DisplayName="Permanent: Formidable"
+; End Translation
 SummaryText="Some enemies gain the Formidable ability, giving them extra armor and resistance to explosives."
 QuoteText="\"We're going to need bigger bombs.\""
 QuoteTextAuthor="- Anonymous Staff Sergeant"
@@ -4257,7 +4285,9 @@ LocLongDescription="Some enemies gain the Formidable ability, giving them extra 
 
 ;; Lethal
 [DarkEvent_Lethal X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Lethal"
+; LWOTC Needs Translation
+DisplayName="Permanent: Lethal"
+; End Translation
 SummaryText="Some enemies gain the Lethal ability, causing them to do +2 damage with their primary weapon."
 QuoteText="\"The aliens must love the salty taste of our tears.\""
 QuoteTextAuthor="- Cpl. John Teasdale"
@@ -4271,7 +4301,9 @@ LocLongDescription="Grants some enemies the Lethal ability, causing them to do +
 
 ; Shredder
 [DarkEvent_Shredder X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Shredder"
+; LWOTC Needs Translation
+DisplayName="Permanent: Shredder"
+; End Translation
 SummaryText="Some enemies gain the Shredder ability, giving their weapons the ability to shred armor with each hit."
 QuoteText="\"Why did you just call me Tactical Ablative Armor? What's that mean?\""
 QuoteTextAuthor="- Anonymous Rookie"
@@ -4285,7 +4317,9 @@ LocLongDescription="Some enemies gain the Shredder ability, giving their weapons
 
 ; HI
 [DarkEvent_HuntersInstinct X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Hunter's Instincts"
+; LWOTC Needs Translation
+DisplayName="Permanent: Hunter's Instincts"
+; End Translation
 SummaryText="Many Vipers and related species gain the Hunter's Instinct ability, granting bonus damage against flanked enemies."
 QuoteText="\"Massive gun-toting, poison-spitting intelligent snakes? This is what I signed up for?\""
 QuoteTextAuthor="- Anonymous Corporal"
@@ -4299,7 +4333,9 @@ LocLongDescription="Many ophidian enemies gain the Hunter's Instinct ability, gr
 
 ; LR
 [DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Lightning Reflexes"
+; LWOTC Needs Translation
+DisplayName="Permanent: Lightning Reflexes"
+; End Translation
 SummaryText="Some Stun Lancers and other enemies gain the Lightning Reflexes ability, allowing them bonuses to avoid reaction fire."
 QuoteText="\"I really, really hate those guys.\""
 QuoteTextAuthor="- Anonymous Gunnery Sergeant"
@@ -4313,7 +4349,9 @@ LocLongDescription="Some Stun Lancers and other enemies gain the Lightning Refle
 
 ; CCS
 [DarkEvent_CloseCombatSpecialist X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Close Combat Specialist"
+; LWOTC Needs Translation
+DisplayName="Permanent: Close Combat Specialist"
+; End Translation
 SummaryText="Archons gain the Close Combat Specialist ability, granting them reaction fire against any enemy who closes within four tiles."
 QuoteText="\"The troops don't call those things Angels of Death for nothing.\""
 QuoteTextAuthor="- Central Officer Bradford"
@@ -4326,7 +4364,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Close Combat Specialist)"
 LocLongDescription="Archons gain the Close Combat Specialist ability, granting them reaction fire against any enemy who closes within four tiles."
 
 [DarkEvent_GrazingFire X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Grazing Fire"
+; LWOTC Needs Translation
+DisplayName="Permanent: Grazing Fire"
+; End Translation
 SummaryText="Some enemies gain the Grazing Fire ability, providing an increased chance to turn misses into grazes."
 QuoteText="\"Best way to not get shot is to not get shot at in the first place.\""
 QuoteTextAuthor="- Anonymous Squaddie"
@@ -4339,7 +4379,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Grazing Fire)"
 LocLongDescription="Some enemies gain the Grazing Fire ability, providing an increased chance to turn misses into grazes."
 
 [DarkEvent_Cutthroat X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Cutthroat"
+; LWOTC Needs Translation
+DisplayName="Permanent: Cutthroat"
+; End Translation
 SummaryText="Stun Lancers and other enemies gain the Cutthroat ability, allowing melee attacks to ignore armor."
 QuoteText="\"They are learning our vulnerabilities even as we learn theirs.\""
 QuoteTextAuthor="- Dr. Tygan"
@@ -4352,7 +4394,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Cutthroat)"
 LocLongDescription="Stun Lancers and other enemies gain the Cutthroat ability, allowing melee attacks to ignore armor."
 
 [DarkEvent_CombatAwareness X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Combat Awareness"
+; LWOTC Needs Translation
+DisplayName="Permanent: Combat Awareness"
+; End Translation
 SummaryText="ADVENT Sentries gain the Combat Awareness ability, granting them bonus defense and armor when in overwatch."
 QuoteText="\"Seems like these ADVENT Sentries have eyes in the back of their heads. Maybe that's part of their genetic modifications.\""
 QuoteTextAuthor="- Chief Shen"
@@ -4365,7 +4409,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Combat Awareness)"
 LocLongDescription="ADVENT Sentries gain the Combat Awareness ability, granting them bonus defense and armor when in overwatch."
 
 [DarkEvent_IronSkin X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Iron Skin"
+; LWOTC Needs Translation
+DisplayName="Permanent: Iron Skin"
+; End Translation
 SummaryText="ADVENT robotic units gain the Iron Skin ability, granting them damage reduction against melee attacks."
 QuoteText="\"The idea that medieval weaponry could kill alien robotic invaders always seemed a bit daft anyway.\""
 QuoteTextAuthor="- Anonymous British Squaddie"
@@ -4378,7 +4424,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Iron Skin)"
 LocLongDescription="ADVENT robotic units gain the Iron Skin ability, granting them damage reduction against melee attacks."
 
 [DarkEvent_TacticalSense X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Tactical Sense"
+; LWOTC Needs Translation
+DisplayName="Permanent: Tactical Sense"
+; End Translation
 SummaryText="Some enemy units gain the Tactical Sense ability, granting them bonus defense."
 QuoteText="\"Resistance Intel suggests the aliens are creating a cadre specializing in counterinsurgency operations.\""
 QuoteTextAuthor="- Central Officer Bradford"
@@ -4391,7 +4439,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Tactical Sense)"
 LocLongDescription="Some enemy units gain the Tactical Sense ability, granting them bonus defense."
 
 [DarkEvent_Aggression X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Aggression"
+; LWOTC Needs Translation
+DisplayName="Permanent: Aggression"
+; End Translation
 SummaryText="Some enemy units gain the Aggression ability, granting them bonus critical chances."
 QuoteText="\"I think we've made them mad.\""
 QuoteTextAuthor="- Anonymous Lance"
@@ -4404,7 +4454,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Aggression)"
 LocLongDescription="Some enemy units gain the Aggression ability, granting them bonus critical chances."
 
 [DarkEvent_Resilience X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Resilience"
+; LWOTC Needs Translation
+DisplayName="Permanent: Resilience"
+; End Translation
 SummaryText="Codex units gain the Resilience ability, reducing the chance of critical hits against them."
 QuoteText="\"We're not even sure how these things exist in our universe, much less why our weaponry seems to damage them.\""
 QuoteTextAuthor="- Chief Shen"
@@ -4417,7 +4469,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Resilience)"
 LocLongDescription="Grants Codex units the Resilience ability, reducing the chance of critical hits against them."
 
 [DarkEvent_Shadowstep X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Shadowstep"
+; LWOTC Needs Translation
+DisplayName="Permanent: Shadowstep"
+; End Translation
 SummaryText="Codex units gain the Shadowstep ability and cannot be targeted by reaction fire."
 QuoteText="\"The aliens seem to be experimenting with using short-range teleporting with their Codex units.\""
 QuoteTextAuthor="- Dr. Tygan"
@@ -4430,7 +4484,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Shadowstep)"
 LocLongDescription="Codex units gain the Shadowstep ability and cannot be targeted by reaction fire."
 
 [DarkEvent_DamageControl X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Damage Control"
+; LWOTC Needs Translation
+DisplayName="Permanent: Damage Control"
+; End Translation
 SummaryText="Some ADVENT robots and some other units gain the Damage Control ability, granting bonus armor after they take damage."
 QuoteText="\"Someone get Shen to invent us some air support. We're gonna need it.\""
 QuoteTextAuthor="- Anonymous Sergeant"
@@ -4443,7 +4499,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Damage Control)"
 LocLongDescription="Some ADVENT robots and some other units gain the Damage Control ability, granting bonus armor after they take damage."
 
 [DarkEvent_HardTarget X2DarkEventTemplate]
-DisplayName="Tactical Upgrades: Hard Target"
+; LWOTC Needs Translation
+DisplayName="Permanent: Hard Target"
+; End Translation
 SummaryText="Some alien units gain the Hard Target ability, granting bonus dodge."
 ; LWOTC Needs Translation
 QuoteText="\"The aliens' reflexes are becoming adept in our environment. We should invest in our scopes and make sure no one leaves without one.\""
@@ -4458,7 +4516,9 @@ LocFriendlyName="Dark Event: Tactical Upgrades (Hard Target)"
 LocLongDescription="Some alien units gain the Hard Target ability, granting bonus dodge."
 
 [DarkEvent_GreaterFaceless X2DarkEventTemplate]
-DisplayName="Greater Faceless"
+; LWOTC Needs Translation
+DisplayName="Permanent: Greater Faceless"
+; End Translation
 SummaryText="The aliens deploy a stronger and deadlier Faceless unit."
 QuoteText="\"We don't know if these are alien reinforcements from offworld or new designs from their cloning tanks. Either way, they are more dangerous than before.\""
 QuoteTextAuthor="- Chief Shen"
@@ -5218,6 +5278,15 @@ LocFlyOverText="Summonnin' ayys"
 ; End Translation
 
 ; LWOTC Needs Translation
+[Lethargy X2AbilityTemplate]
+LocFriendlyName="Lethargic"
+LocHelpText="Unit suffers from reduced aim and mobility."
+LocLongDescription="Unit suffers from reduced aim and mobility."
+
+[ProjectMiranda X2SitRepTemplate]
+FriendlyName="Project Miranda"
+Description="ADVENT are testing pacification technology in the area, which is making all non-robotic units lethargic. They will have penalties to aim and mobility."
+
 ; Purifier autopsy no longer unlocks reinforced vest underlay
 [AutopsyAdventPurifier X2TechTemplate]
 UnlockedDescription=""
