@@ -5189,6 +5189,15 @@ LocFlyOverText="Get up!"
 ; End Translation
 
 ; LWOTC Needs Translation
+[Lethargy X2AbilityTemplate]
+LocFriendlyName="Lethargic"
+LocHelpText="Unit suffers from reduced aim and mobility."
+LocLongDescription="Unit suffers from reduced aim and mobility."
+
+[ProjectMiranda X2SitRepTemplate]
+FriendlyName="Project Miranda"
+Description="ADVENT are testing pacification technology in the area, which is making all non-robotic units lethargic. They will have penalties to aim and mobility."
+
 ; Purifier autopsy no longer unlocks reinforced vest underlay
 [AutopsyAdventPurifier X2TechTemplate]
 UnlockedDescription=""
