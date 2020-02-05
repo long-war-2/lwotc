@@ -2966,6 +2966,15 @@ function RewireTechTree(X2StrategyElementTemplate Template, int Difficulty)
 		if (TechTemplate.DataName == 'AdvancedHeavyWeapons')
 			TechTemplate.AlternateRequirements.Length = 0;
 
+		// Purifiers should no longer provide the +1 HP vest bonus, which is granted
+		// via a tech breakthrough.
+		if (TechTemplate.DataName == 'AutopsyAdventPurifier')
+		{
+			TechTemplate.RewardName = '';
+			TechTemplate.BreakthroughCondition = none;
+			TechTemplate.ResearchCompletedFn = none;
+		}
+
 		for (i=0; i < TechTable.Length; ++i)
 		{
 			if (TechTemplate.DataName == TechTable[i].TechTemplateName)

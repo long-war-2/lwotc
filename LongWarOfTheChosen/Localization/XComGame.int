@@ -5187,3 +5187,9 @@ LocHelpText="Remove the unconcious effect from a soldier."
 LocLongDescription="Remove the unconcious effect from a soldier"
 LocFlyOverText="Get up!"
 ; End Translation
+
+; LWOTC Needs Translation
+; Purifier autopsy no longer unlocks reinforced vest underlay
+[AutopsyAdventPurifier X2TechTemplate]
+UnlockedDescription=""
+; End Translation
