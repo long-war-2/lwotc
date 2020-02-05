@@ -5216,3 +5216,9 @@ LocLongDescription="Summon alliens."
 LocFlyOverText="Summonnin' ayys"
 
 ; End Translation
+
+; LWOTC Needs Translation
+; Purifier autopsy no longer unlocks reinforced vest underlay
+[AutopsyAdventPurifier X2TechTemplate]
+UnlockedDescription=""
+; End Translation
