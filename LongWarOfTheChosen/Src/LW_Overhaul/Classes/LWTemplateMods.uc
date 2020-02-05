@@ -1362,6 +1362,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		case 'ShredderGun':
 		case 'ShredstormCannon':
 		case 'BladestormAttack':
+		case 'TemplarBladestormAttack':
 		case 'Grapple':
 		case 'GrapplePowered':
 		case 'IntheZone':

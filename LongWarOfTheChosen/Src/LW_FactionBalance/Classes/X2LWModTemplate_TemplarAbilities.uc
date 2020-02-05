@@ -20,6 +20,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	{
 	case 'Rend':
 	case 'ArcWave':
+	case 'TemplarBladestormAttack':
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
 		break;

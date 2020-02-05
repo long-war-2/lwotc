@@ -59,7 +59,7 @@ static function EventListenerReturn SteadyWeaponActionListener(Object EventData,
 				CostlyAction = true;
 			if (AbilityState.GetMyTemplateName() == 'CloseCombatSpecialistAttack')
 				CostlyAction = true;
-			if (AbilityState.GetMyTemplateName() == 'BladestormAttack')
+			if (AbilityState.GetMyTemplateName() == 'BladestormAttack' || AbilityState.GetMyTemplateName() == 'TemplarBladestormAttack')
 				CostlyAction = true;
 			if (AbilityState.GetMyTemplateName() == 'LightningHands')
 				CostlyAction = true;
