@@ -3598,6 +3598,7 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	UnitState.AbilityPoints = 0; // Reset Ability Points
 	UnitState.SpentAbilityPoints = 0; // And reset the spent AP tracker
 	UnitState.ResetSoldierRank(); // Clear their rank
+	ApplyRandomizedInitialStats(UnitState, NewGameState);
 	UnitState.ResetSoldierAbilities(); // Clear their current abilities
 	for (i = 0; i < NumRanks; ++i) // Rank soldier back up to previous level
 	{
@@ -3627,4 +3628,12 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	{
 		History.CleanupPendingGameState(NewGameState);
 	}
+}
+
+static function ApplyRandomizedInitialStats(XComGameState_Unit UnitState, XComGameState NewGameState)
+{
+	local XComGameState_LWToolboxOptions ToolboxOptions;
+	
+	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
+	ToolboxOptions.UpdateOneSoldier_RandomizedInitialStats(UnitState, NewGameState, true);
 }

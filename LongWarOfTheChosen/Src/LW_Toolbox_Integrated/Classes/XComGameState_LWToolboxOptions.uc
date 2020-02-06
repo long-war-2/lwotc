@@ -1149,7 +1149,7 @@ function UpdateAllSoldiers_RandomizedInitialStats(XComGameState GameState)
 	}
 }
 
-function UpdateOneSoldier_RandomizedInitialStats(XComGameState_Unit Unit, XComGameState GameState)
+function UpdateOneSoldier_RandomizedInitialStats(XComGameState_Unit Unit, XComGameState GameState, optional bool ForceReapply = false)
 {
 	local XComGameState_Unit UpdatedUnit;
 	local XComGameState_Unit_LWRandomizedStats RandomizedStatsState, SearchRandomizedStats;
@@ -1195,6 +1195,10 @@ function UpdateOneSoldier_RandomizedInitialStats(XComGameState_Unit Unit, XComGa
 		GameState.AddStateObject(RandomizedStatsState);
 	}
 
+	if (ForceReapply)
+	{
+		RandomizedStatsState.bInitialStatsApplied = false;
+	}
 	RandomizedStatsState.ApplyRandomInitialStats(UpdatedUnit, bRandomizedInitialStatsEnabled);
 }
 
