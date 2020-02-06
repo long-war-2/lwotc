@@ -771,7 +771,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 // LWOTC: Added to determine whether a mission should have a sit rep attached or not
 function bool ShouldAddSitRepToMission(XComGameState_MissionSite MissionState)
 {
-	return class'X2LWSitRepsModTemplate'.default.VALID_SIT_REPS.Length > 0 && `SYNC_FRAND() < default.SIT_REP_CHANCE;
+	return `SYNC_FRAND() < default.SIT_REP_CHANCE;
 }
 
 function MissionDefinition GetMissionDefinitionForFamily(name MissionFamily)

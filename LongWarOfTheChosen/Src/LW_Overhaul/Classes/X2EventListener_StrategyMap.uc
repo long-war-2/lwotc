@@ -424,7 +424,7 @@ static function EventListenerReturn ClearSitRepsFromCardManager(
 	CardMgr.GetAllCardsInDeck('SitReps', SitRepCards);
 	for (i = 0; i < SitRepCards.Length; i++)
 	{
-		if (class'X2LWSitRepsModTemplate'.default.VALID_SIT_REPS.Find(name(SitRepCards[i])) == INDEX_NONE)
+		if (class'X2LWSitRepsModTemplate'.default.SIT_REP_EXCLUSIONS.Find(name(SitRepCards[i])) != INDEX_NONE)
 		{
 			CardMgr.RemoveCardFromDeck('SitReps', SitRepCards[i]);
 		}

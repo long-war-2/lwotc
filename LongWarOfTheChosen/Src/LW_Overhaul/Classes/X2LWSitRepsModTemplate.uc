@@ -6,13 +6,13 @@
 //---------------------------------------------------------------------------------------
 class X2LWSitRepsModTemplate extends X2LWTemplateModTemplate config(LW_Overhaul);
 
-var config array<name> VALID_SIT_REPS;
+var config array<name> SIT_REP_EXCLUSIONS;
 
 static function UpdateSitReps(X2SitRepTemplate SitRepTemplate, int Difficulty)
 {
-	// If this is *not* in the VALID_SIT_REPS array, exclude it from
+	// If this is in the SIT_REP_EXCLUSIONS array, exclude it from
 	// strategy, i.e. prevent it from being attached to campaign missions.
-	if (default.VALID_SIT_REPS.Find(SitRepTemplate.DataName) == INDEX_NONE)
+	if (default.SIT_REP_EXCLUSIONS.Find(SitRepTemplate.DataName) != INDEX_NONE)
 	{
 		SitRepTemplate.bExcludeFromStrategy = true;
 	}
