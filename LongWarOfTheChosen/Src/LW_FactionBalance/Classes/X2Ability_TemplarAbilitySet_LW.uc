@@ -9,7 +9,7 @@ var config int SOLACE_ACTION_POINTS;
 var config int SOLACE_COOLDOWN;
 var config int GRAZE_MIN_FOCUS, GRAZE_PER_FOCUS_CHANCE;
 var config int MEDITATION_FOCUS_RECOVERY;
-var config int MEDITATION_COOLDOWN;
+var config int MEDITATION_MAX_CHARGES;
 var config float BONUS_REND_DAMAGE_PER_TILE;
 var config int MAX_REND_FLECHE_DAMAGE;
 
@@ -32,6 +32,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddTemplarFleche());
 	Templates.AddItem(AddTemplarGrazingFireAbility());
 	Templates.AddItem(AddMeditation());
+	Templates.AddItem(AddMeditationKillTracker());
 	Templates.AddItem(AddOvercharge_LW());
 	Templates.AddItem(AddVoltDangerZoneAbility());
 
@@ -191,10 +192,11 @@ static function X2AbilityTemplate AddTemplarGrazingFireAbility()
 
 static function X2AbilityTemplate AddMeditation()
 {
-	local X2AbilityTemplate						Template;
-	local X2Effect_ModifyTemplarFocus			FocusEffect;
-	local X2AbilityCost_ActionPoints        	ActionPointCost;
-	local X2AbilityCooldown						Cooldown;
+	local X2AbilityTemplate				Template;
+	local X2Effect_ModifyTemplarFocus	FocusEffect;
+	local X2AbilityCost_ActionPoints    ActionPointCost;
+	local X2AbilityCharges 				Charges;
+	local X2AbilityCost_Charges 		ChargeCost;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Meditation');
 
@@ -209,15 +211,21 @@ static function X2AbilityTemplate AddMeditation()
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AdditionalAbilities.AddItem('MeditationKillTracker');
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.MEDITATION_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
+	// Start with 0 charges. You need to get kills in order to get
+	// charges and use Meditation.
+	Charges = new class 'X2AbilityCharges';
+	Charges.InitialCharges = 0;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
 
 	FocusEffect = new class'X2Effect_ModifyTemplarFocus';
 	FocusEffect.ModifyFocus = default.MEDITATION_FOCUS_RECOVERY;
@@ -314,5 +322,43 @@ static function X2AbilityTemplate AddVoltDangerZoneAbility()
 	Template = PurePassive('VoltDangerZone', "img:///UILibrary_LW_PerkPack.LW_AbilityDangerZone", false, 'eAbilitySource_Perk');
 	Template.bCrossClassEligible = false;
 	Template.PrerequisiteAbilities.AddItem('Volt');
+	return Template;
+}
+
+static function X2AbilityTemplate AddMeditationKillTracker()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityTrigger_EventListener	EventTrigger;
+	local XMBEffect_AddAbilityCharges		Effect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MeditationKillTracker');
+
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_templarFocus";
+	Template.AbilitySourceName = 'eAbilitySource_Psionic';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	
+	EventTrigger = new class'X2AbilityTrigger_EventListener';
+	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventTrigger.ListenerData.EventID = 'KillMail';
+	EventTrigger.ListenerData.Filter = eFilter_Unit;
+	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Template.AbilityTriggers.AddItem(EventTrigger);
+
+	Effect = new class'XMBEffect_AddAbilityCharges';
+	Effect.AbilityNames.AddItem('Meditation');
+	Effect.BonusCharges = 1;
+	Effect.MaxCharges = 1;
+	Template.AddTargetEffect(Effect);
+
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	// Template.MergeVisualizationFn = DesiredVisualizationBlock_MergeVisualization;
+
 	return Template;
 }
