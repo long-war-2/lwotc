@@ -5,7 +5,11 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_LWAlienActivity extends XComGameState_GeoscapeEntity config(LW_Overhaul);
 
-
+struct MissionTypeSitRepExclusions
+{
+	var string MissionType;
+	var array<string> SitRepNames;
+};
 
 var protected name							m_TemplateName;
 var protected X2LWAlienActivityTemplate		m_Template;
@@ -48,6 +52,10 @@ var config array<string> ExcludeChosenFromMissionTypes;
 
 // LWOTC: Base chance for a mission to have a sit rep
 var config float SIT_REP_CHANCE;
+
+// LWOTC: Prevent certain sit reps on various mission types. A sit rep of
+// '*' means "all sit reps".
+var config array<MissionTypeSitRepExclusions> MISSION_TYPE_SIT_REP_EXCLUSIONS;
 
 //#############################################################################################
 //----------------   REQUIRED FROM BASEOBJECT   -----------------------------------------------
@@ -772,6 +780,24 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 function bool ShouldAddSitRepToMission(XComGameState_MissionSite MissionState)
 {
 	return `SYNC_FRAND() < default.SIT_REP_CHANCE;
+}
+
+// LWOTC: Added to determine whether a given sit rep is allowed on a specific mission
+static function bool IsSitRepValidForMission(name SitRepName, XComGameState_MissionSite MissionState)
+{
+	local MissionTypeSitRepExclusions ExclusionDef;
+	local int idx;
+
+	idx = default.MISSION_TYPE_SIT_REP_EXCLUSIONS.Find('MissionType', MissionState.GeneratedMission.Mission.sType);
+	if (idx == INDEX_NONE)
+	{
+		return true;
+	}
+	else
+	{
+		ExclusionDef = default.MISSION_TYPE_SIT_REP_EXCLUSIONS[idx];
+		return ExclusionDef.SitRepNames.Find("*") == INDEX_NONE && ExclusionDef.SitRepNames.Find(string(SitRepName)) == INDEX_NONE;
+	}
 }
 
 function MissionDefinition GetMissionDefinitionForFamily(name MissionFamily)
