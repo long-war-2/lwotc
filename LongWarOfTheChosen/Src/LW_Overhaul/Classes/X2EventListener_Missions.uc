@@ -12,6 +12,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateObjectivesListeners());
 	Templates.AddItem(CreateSquadListeners());
+	Templates.AddItem(CreateMissionStateListeners());
 	Templates.AddItem(CreateMissionPrepListeners());
 	Templates.AddItem(CreateMiscellaneousListeners());
 
@@ -29,6 +30,18 @@ static function CHEventListenerTemplate CreateSquadListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionSquadListeners');
 	Template.AddCHEvent('rjSquadSelect_AllowAutoFilling', DisableSquadAutoFill, ELD_Immediate);
 	Template.AddCHEvent('UISquadSelect_NavHelpUpdate', OverrideSquadSelectButtons, ELD_Immediate);
+
+	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreateMissionStateListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionStateListeners');
+	Template.AddCHEvent('SitRepCheckAdditionalRequirements', IsSitRepValidForMission, ELD_Immediate);
 
 	Template.RegisterInStrategy = true;
 
@@ -251,6 +264,37 @@ static function UISquadSelect GetSquadSelect()
 		}
 	}
 	return none;
+}
+
+static protected function EventListenerReturn IsSitRepValidForMission(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local X2SitRepTemplate SitRepTemplate;
+	local XComGameState_MissionSite MissionState;
+	
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	SitRepTemplate = X2SitRepTemplate(EventSource);
+	if (SitRepTemplate == none)
+		return ELR_NoInterrupt;
+
+	MissionState = XComGameState_MissionSite(Tuple.Data[1].o);
+	if (MissionState == none)
+	{
+		`REDSCREEN("Invalid data sent as mission state in SitRepCheckAdditionalRequirements event");
+		return ELR_NoInterrupt;
+	}
+
+	Tuple.Data[0].b = class'XComGameState_LWAlienActivity'.static.IsSitRepValidForMission(SitRepTemplate.DataName, MissionState);
+
+	return ELR_NoInterrupt;
 }
 
 // Disable the vanilla behaviour of moving patrol zones to account for the
