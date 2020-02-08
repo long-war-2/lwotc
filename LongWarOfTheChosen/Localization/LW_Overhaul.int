@@ -283,6 +283,10 @@ m_strTooltipAutofillSquad="Autofill empty squad positions."
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0> Hours"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1>D, <XGParam:IntValue0>H"
+; LWOTC Needs Translation
+strDarkEventExpiredTitle="Dark Event Expired"
+strDarkEventExpiredText="has expired"
+; End Translation
 
 [X2EventListener_Soldiers]
 OnLiaisonDuty="Haven Adviser"

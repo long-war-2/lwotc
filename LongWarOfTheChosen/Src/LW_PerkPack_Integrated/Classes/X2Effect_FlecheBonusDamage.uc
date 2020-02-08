@@ -18,6 +18,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local XComWorldData WorldData;
 	local XComGameState_Unit TargetUnit;
 	local XComGameState_Destructible TargetObject;
+	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
 	local float BonusDmg;
 	local float Dist;
 	local vector StartLoc, TargetLoc;
@@ -32,7 +33,16 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	{
 		`PPTRACE("Fleche: Targeting destructible object");
 	}
-	`PPTRACE("Fleche: Activated Ability Name=" @ AbilityState.GetMyTemplate().DataName);;
+	`PPTRACE("Fleche: Activated Ability Name=" @ AbilityState.GetMyTemplate().DataName);
+
+	// Don't apply the bonus to extra damage that ignores the weapon's based damage,
+	// for example the burn on Fusion Blades or the Shredder effect.
+	WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
+	if (WeaponDamageEffect != none && WeaponDamageEffect.bIgnoreBaseDamage)
+	{
+		return 0;
+	}
+
 	if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
 	{
 		if ((TargetUnit != none || TargetObject != none) && AbilityNames.Find(AbilityState.GetMyTemplate().DataName) != -1)

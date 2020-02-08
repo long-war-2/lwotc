@@ -2,6 +2,8 @@ class X2EventListener_StrategyMap extends X2EventListener config(LW_Overhaul);
 
 var localized string strTimeRemainingHoursOnly;
 var localized string strTimeRemainingDaysAndHours;
+var localized string strDarkEventExpiredTitle;
+var localized string strDarkEventExpiredText;
 
 var config int LISTENER_PRIORITY;
 
@@ -55,6 +57,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('OnGeoscapeEntry', ClearSitRepsFromCardManager, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('BlackMarketGoodsReset', OnBlackMarketGoodsReset, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('RegionBuiltOutpost', OnRegionBuiltOutpost, ELD_OnStateSubmitted, GetListenerPriority());
+	Template.AddCHEvent('PreDarkEventDeactivated', ShowDarkEventDeactivatedNotification, ELD_OnStateSubmitted, GetListenerPriority());
 
 	//Added for fix to issue #100
 	Template.AddCHEvent('OverrideCurrentDoom', OverrideCurrentDoom, ELD_Immediate, GetListenerPriority());
@@ -424,7 +427,7 @@ static function EventListenerReturn ClearSitRepsFromCardManager(
 	CardMgr.GetAllCardsInDeck('SitReps', SitRepCards);
 	for (i = 0; i < SitRepCards.Length; i++)
 	{
-		if (class'X2LWSitRepsModTemplate'.default.VALID_SIT_REPS.Find(name(SitRepCards[i])) == INDEX_NONE)
+		if (class'X2LWSitRepsModTemplate'.default.SIT_REP_EXCLUSIONS.Find(name(SitRepCards[i])) != INDEX_NONE)
 		{
 			CardMgr.RemoveCardFromDeck('SitReps', SitRepCards[i]);
 		}
@@ -922,4 +925,27 @@ static function EventListenerReturn OnRegionBuiltOutpost(Object EventData, Objec
     }
 
     return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn ShowDarkEventDeactivatedNotification(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_DarkEvent DarkEventState;
+
+	DarkEventState = XComGameState_DarkEvent(EventSource);
+	if (DarkEventState == none)
+		return ELR_NoInterrupt;
+
+	`HQPRES.NotifyBanner(
+			default.strDarkEventExpiredTitle,
+			class'UIUtilities_Image'.const.EventQueue_Alien,
+			DarkEventState.GetMyTemplate().DisplayName,
+			default.strDarkEventExpiredText,
+			eUIState_Bad);
+
+	return ELR_NoInterrupt;
 }
