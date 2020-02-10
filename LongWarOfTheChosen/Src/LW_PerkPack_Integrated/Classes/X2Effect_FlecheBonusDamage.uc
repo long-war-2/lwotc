@@ -62,7 +62,15 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 			BonusDmg = BonusDmgPerTile * VSize(StartLoc - TargetLoc)/ WorldData.WORLD_StepSize;
 			`PPTRACE("Fleche: BonusDamage=" $ int(BonusDmg));
 			`PPTRACE("Fleche: Output Damage should be:" @ string (CurrentDamage+int(BonusDmg)));
-			return Min(int(BonusDmg), MaxBonusDamage);
+			BonusDmg = Min(BonusDmg, MaxBonusDamage);
+
+			// Reduce bonus damage if the hit is a graze.
+			if (AppliedData.AbilityResultContext.HitResult == eHit_Graze)
+			{
+				BonusDmg *= class'X2Effect_ApplyWeaponDamage'.default.GRAZE_DMG_MULT;
+			}
+
+			return int(BonusDmg);
 		}
 	}
 	return 0; 
