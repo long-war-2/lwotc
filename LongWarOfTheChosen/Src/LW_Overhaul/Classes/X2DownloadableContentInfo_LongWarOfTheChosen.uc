@@ -103,6 +103,9 @@ static event OnLoadedSavedGame()
 /// </summary>
 static event InstallNewCampaign(XComGameState StartState)
 {
+	local XComGameState_WorldRegion StartingRegionState;
+	local XComGameState_ResistanceFaction StartingFactionState;
+
 	// WOTC TODO: Note that this method is called twice if you start a new campaign.
 	// Make sure that's not causing issues.
 	`Log("LWOTC: Installing a new campaign");
@@ -115,11 +118,18 @@ static event InstallNewCampaign(XComGameState StartState)
 	class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWOverhaulOptions', StartState);
 
 
-	SetStartingLocationToStartingRegion(StartState);
+	StartingRegionState = SetStartingLocationToStartingRegion(StartState);
 	UpdateLockAndLoadBonus(StartState);  // update XComHQ and Continent states to remove LockAndLoad bonus if it was selected
 	LimitStartingSquadSize(StartState); // possibly limit the starting squad size to something smaller than the maximum
 	
 	class'XComGameState_LWSquadManager'.static.CreateFirstMissionSquad(StartState);
+
+	// Clear starting resistance modes because we don't actually start
+	// at the faction HQ, unlike vanilla WOTC.
+	StartingFactionState = StartingRegionState.GetResistanceFaction();
+	class'X2StrategyElement_DefaultResistanceModes'.static.OnXCOMLeavesIntelMode(StartState, StartingFactionState.GetReference());
+	class'X2StrategyElement_DefaultResistanceModes'.static.OnXCOMLeavesMedicalMode(StartState, StartingFactionState.GetReference());
+	class'X2StrategyElement_DefaultResistanceModes'.static.OnXCOMLeavesBuildMode(StartState, StartingFactionState.GetReference());
 }
 
 /// <summary>
@@ -230,7 +240,7 @@ static event OnLoadedSavedGameToStrategy()
 	CleanupObsoleteTacticalGamestate();
 }
 
-static function SetStartingLocationToStartingRegion(XComGameState StartState)
+static function XComGameState_WorldRegion SetStartingLocationToStartingRegion(XComGameState StartState)
 {
 	local XComGameState_HeadquartersXCom XComHQ;
 
@@ -240,6 +250,7 @@ static function SetStartingLocationToStartingRegion(XComGameState StartState)
 	}
 
 	XComHQ.CurrentLocation = XComHQ.StartingRegion;
+	return XComGameState_WorldRegion(StartState.GetGameStateForObjectID(XComHQ.StartingRegion.ObjectID));
 }
 
 // TODO: This function is only needed for players that want to upgrade
