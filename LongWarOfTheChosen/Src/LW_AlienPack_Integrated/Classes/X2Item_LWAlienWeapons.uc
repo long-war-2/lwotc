@@ -607,11 +607,11 @@ static function X2DataTemplate CreateTemplate_AdvSentry_WPN(name TemplateName)
 
     Template.iSoundRange = class'X2Item_DefaultWeapons'.default.ASSAULTRIFLE_MAGNETIC_ISOUNDRANGE;
 	if (TemplateName == 'AdvSentryM1_WPN')
-		Template.BaseDamage = class'X2Item_DefaultWeapons'.default.AdvCaptainM1_WPN_BASEDAMAGE;
+		Template.BaseDamage = default.AdvSentryM1_WPN_BASEDAMAGE;
 	if (TemplateName == 'AdvSentryM2_WPN')
-		Template.BaseDamage = class'X2Item_DefaultWeapons'.default.AdvCaptainM2_WPN_BASEDAMAGE;
+		Template.BaseDamage = default.AdvSentryM2_WPN_BASEDAMAGE;
 	if (TemplateName == 'AdvSentryM3_WPN')
-		Template.BaseDamage = class'X2Item_DefaultWeapons'.default.AdvCaptainM3_WPN_BASEDAMAGE;
+		Template.BaseDamage = default.AdvSentryM3_WPN_BASEDAMAGE;
 
     Template.iEnvironmentDamage = class'X2Item_DefaultWeapons'.default.ASSAULTRIFLE_MAGNETIC_IENVIRONMENTDAMAGE;
     Template.iIdealRange = default.ADVSENTRY_IDEALRANGE; //check this
