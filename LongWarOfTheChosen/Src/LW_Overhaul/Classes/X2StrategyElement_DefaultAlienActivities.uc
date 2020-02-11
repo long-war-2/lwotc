@@ -1012,6 +1012,7 @@ static function X2DataTemplate CreateCOINResearchTemplate()
 	RestrictedActivity = new class'X2LWActivityCondition_RestrictedActivity';
 	RestrictedActivity.ActivityNames.AddItem(default.BuildResearchFacilityName);
 	RestrictedActivity.ActivityNames.AddItem(default.COINOpsName);
+	RestrictedActivity.MaxRestricted = 1;
 	Template.ActivityCreation.Conditions.AddItem(RestrictedActivity);
 
 	//these define the requirements for discovering each activity, based on the RebelJob "Missions"
@@ -1263,6 +1264,7 @@ static function X2DataTemplate CreateCOINOpsTemplate()
 	RestrictedActivity = new class'X2LWActivityCondition_RestrictedActivity';
 	RestrictedActivity.ActivityNames.AddItem(default.BuildResearchFacilityName);
 	RestrictedActivity.ActivityNames.AddItem(default.COINResearchName);
+	RestrictedActivity.MaxRestricted = 1;
 	Template.ActivityCreation.Conditions.AddItem(RestrictedActivity);
 
 	MonthRestriction = new class'X2LWActivityCondition_Month';
@@ -1930,6 +1932,7 @@ static function X2DataTemplate CreateEmergencyOffworldReinforcementsTemplate()
 	local X2LWAlienActivityTemplate Template;
 	local X2LWActivityCooldown_UFO Cooldown;
 	local X2LWActivityCondition_Month MonthRestriction;
+	local X2LWActivityCondition_RestrictedActivity RestrictedActivity;
 
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.EmergencyOffworldReinforcementsName);
 	Template.iPriority = 50; // 50 is default, lower priority gets created earlier
@@ -1940,6 +1943,11 @@ static function X2DataTemplate CreateEmergencyOffworldReinforcementsTemplate()
 	Template.ActivityCreation = new class'X2LWActivityCreation_AlertUFOLandingRegion';
 	Template.ActivityCreation.Conditions.AddItem(default.AnyAlienRegion);
 	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInRegion);
+
+	RestrictedActivity = new class'X2LWActivityCondition_RestrictedActivity';
+	RestrictedActivity.ActivityNames.AddItem(default.SuperEmergencyOffworldReinforcementsName);
+	RestrictedActivity.MaxRestricted = 1;
+	Template.ActivityCreation.Conditions.AddItem(RestrictedActivity);
 
 	MonthRestriction = new class'X2LWActivityCondition_Month';
 	MonthRestriction.FirstMonthPossible = 1;
@@ -2041,6 +2049,7 @@ static function X2DataTemplate CreateSuperEmergencyOffworldReinforcementsTemplat
 
 	RestrictedActivity = new class'X2LWActivityCondition_RestrictedActivity';
 	RestrictedActivity.ActivityNames.AddItem(default.EmergencyOffworldReinforcementsName);
+	RestrictedActivity.MaxRestricted = 1;
 	Template.ActivityCreation.Conditions.AddItem(RestrictedActivity);
 
 	AlertVigilance = new class'X2LWActivityCondition_AlertVigilance';
