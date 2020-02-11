@@ -124,9 +124,10 @@ simulated function float GetUnitDamageRatio(float DistanceRatio)
 	{
 		//`LOG("Explosive Damage Falloff : Testing Step " $ idx $ ", DistanceRatio=" $ Step.DistanceRatio $ ", DamageRatio=" $ Step.DamageRatio);
 		// find the lowest damage which meets the required distance ratio
-		if(DistanceRatio >= Step.DistanceRatio) 
+		if (DistanceRatio < Step.DistanceRatio)
 		{
 			LowestDamage = FMin(LowestDamage, Step.DamageRatio);
+			break;
 			//`LOG("Explosive Damage Falloff : New LowestRatio=" $ LowestDamage);
 		}
 	}
