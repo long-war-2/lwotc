@@ -2480,13 +2480,30 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			{
 				GrenadeTemplate.HideIfResearched = '';
 			}
-			if (GrenadeTemplate.DataName == 'FireBomb' || GrenadeTemplate.DataName == 'FireBombMk2')
+			if (GrenadeTemplate.DataName == 'FireBomb')
 			{
 				for (k = 0; k < GrenadeTemplate.ThrownGrenadeEffects.length; k++)
 				{
 					if (GrenadeTemplate.ThrownGrenadeEffects[k].IsA ('X2Effect_Burning'))
 					{
 						GrenadeTemplate.ThrownGrenadeEffects[k].ApplyChance = default.FIREBOMB_FIRE_APPLY_CHANCE;
+					}
+				}
+				for (k = 0; k < GrenadeTemplate.LaunchedGrenadeEffects.length; k++)
+				{
+					if (GrenadeTemplate.LaunchedGrenadeEffects[k].IsA ('X2Effect_Burning'))
+					{
+						GrenadeTemplate.LaunchedGrenadeEffects[k].ApplyChance = default.FIREBOMB_FIRE_APPLY_CHANCE;
+					}
+				}
+			}
+			if (GrenadeTemplate.DataName == 'FireBombMk2')
+			{
+				for (k = 0; k < GrenadeTemplate.ThrownGrenadeEffects.length; k++)
+				{
+					if (GrenadeTemplate.ThrownGrenadeEffects[k].IsA ('X2Effect_Burning'))
+					{
+						GrenadeTemplate.ThrownGrenadeEffects[k].ApplyChance = default.FIREBOMB_2_FIRE_APPLY_CHANCE;
 					}
 				}
 				for (k = 0; k < GrenadeTemplate.LaunchedGrenadeEffects.length; k++)
