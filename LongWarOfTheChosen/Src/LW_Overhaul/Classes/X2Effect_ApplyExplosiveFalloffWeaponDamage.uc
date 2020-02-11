@@ -37,6 +37,17 @@ simulated function int CalculateDamageAmount(
 	local float AbilityRadius, Distance, MinDistance, DistanceRatio, MinDistanceRatio, DamageRatio;
 	local int idx;
 	local int WeaponDamage, NewWeaponDamage, MinDamage, DamageFalloff;
+	
+	// LWOTC: Vars for Faket's fix to Shredder/Shredstorm damage falloff.
+	local GameRulesCache_VisibilityInfo OutVisibilityInfo;
+	local vector SourceUnitPosition;
+	local XGUnit SourceUnit;
+	local int OutCoverIndex;
+	local UnitPeekSide OutPeekSide;
+	local int OutRequiresLean;
+	local int bOutCanSeeFromDefault;
+	local X2AbilityTemplate AbilityTemplate;
+	local X2AbilityMultiTargetStyle TargetStyle;
 
 	WeaponDamage = super.CalculateDamageAmount(
 			ApplyEffectParameters, ArmorMitigation, NewRupture,
@@ -53,6 +64,10 @@ simulated function int CalculateDamageAmount(
 
 	if((WeaponDamage > 1) && ShouldApplyUnitDamageFalloff(kSourceUnit))
 	{
+		SourceUnit = XGUnit(History.GetVisualizer(kSourceUnit.ObjectID));
+		SourceUnit.GetDirectionInfoForPosition(ApplyEffectParameters.AbilityInputContext.TargetLocations[0], OutVisibilityInfo, OutCoverIndex, OutPeekSide, bOutCanSeeFromDefault, OutRequiresLean);
+		SourceUnitPosition = SourceUnit.GetExitCoverPosition(OutCoverIndex, OutPeekSide);	
+		SourceUnitPosition.Z += 8.0f;
 
 		DamagedUnit = XComGameState_Unit(History.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 		if(DamagedUnit != none)
@@ -60,7 +75,13 @@ simulated function int CalculateDamageAmount(
 			TargetLocation = `XWORLD.GetPositionFromTileCoordinates(DamagedUnit.TileLocation);
 			if(kAbility != none)
 			{
+				AbilityTemplate = kAbility.GetMyTemplate();
+				if (AbilityTemplate != none)
+					TargetStyle = AbilityTemplate.AbilityMultiTargetStyle;
+
 				AbilityRadius = kAbility.GetAbilityRadius();
+				if (X2AbilityMultiTarget_Cone(TargetStyle) != none)
+					AbilityRadius = X2AbilityMultiTarget_Cone(TargetStyle).GetConeLength(kAbility);
 				HitLocations = ApplyEffectParameters.AbilityInputContext.TargetLocations;
 
 				MinDistanceRatio = 1.0;
@@ -68,6 +89,10 @@ simulated function int CalculateDamageAmount(
 				//if there are multiple hit locations, choose the nearest -- so the smallest distance ratio
 				foreach HitLocations(HitLocation, idx)
 				{
+					// LWOTC: Use the shooter's location if this is for a cone attack.
+					if (X2AbilityMultiTarget_Cone(TargetStyle) != none)
+						HitLocation = SourceUnitPosition;
+
 					Distance = FClamp(VSize(TargetLocation - HitLocation), 0.0, AbilityRadius);
 					MinDistance = FMin(MinDistance, Distance);
 					DistanceRatio = Distance / AbilityRadius;
@@ -325,6 +350,7 @@ simulated function ApplyEffectToWorld(const out EffectAppliedData ApplyEffectPar
 							DamageEvent.CosmeticConeLength = X2AbilityMultiTarget_Cone(TargetStyle).GetConeLength(AbilityStateObject);
 							DamageEvent.CosmeticConeLocation = SourceUnitPosition;
 							DamageEvent.CosmeticDamageShape = SHAPE_CONE;
+							DamageEvent.HitLocation = SourceUnitPosition;
 
 							if (AbilityTemplate.bCheckCollision)
 							{

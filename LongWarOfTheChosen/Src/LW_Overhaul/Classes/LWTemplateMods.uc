@@ -1833,7 +1833,7 @@ function SwapExplosiveFalloffAbility(X2AbilityTemplate Template, int Difficulty)
 		FalloffDamageEffect.UnitDamageSteps=default.UnitDamageSteps;
 		FalloffDamageEffect.EnvironmentDamageSteps=default.EnvironmentDamageSteps;
 
-		//`LOG("Swapping AbilityMultiTargetEffects DamageEffect for item " $ Template.DataName);
+		`LWTrace("Swapping AbilityMultiTargetEffects DamageEffect for item " $ Template.DataName);
 		Template.AbilityMultiTargetEffects.RemoveItem(DamageEffect);
 		Template.AbilityMultiTargetEffects.AddItem(FalloffDamageEffect);
 	}
@@ -1848,34 +1848,34 @@ function bool ValidExplosiveFalloffAbility(X2AbilityTemplate Template, X2Effect_
 	if (!ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', DamageEffect.Class))
 	{
 		// Make
-		`REDSCREEN("Can't apply explosive falloff to" @ DamageEffect.Class @ "as it's not a super class");
+		`REDSCREEN("Can't apply explosive falloff to" @ DamageEffect.Class @ "as it's not a super class of X2Effect_ApplyExplosiveFalloffWeaponDamage");
 		return false;
 	}
 
 	//check specific exclusions
 	if(default.ExplosiveFalloffAbility_Exclusions.Find(Template.DataName) != -1)
 	{
-		//`LOG("Ability " $ Template.DataName $ " : Explicitly Excluded");
+		`LWTrace("Ability " $ Template.DataName $ " : Explicitly Excluded");
 		return false;
 	}
 	//exclude any psionic ability
 	if(Template.AbilitySourceName == 'eAbilitySource_Psionic')
 	{
-		//`LOG("Ability " $ Template.DataName $ " : Excluded Because Psionic Source");
+		`LWTrace("Ability " $ Template.DataName $ " : Excluded Because Psionic Source");
 		return false;
 	}
 	//check for MultiTargetRadius
-	if(Template.AbilityMultiTargetStyle.Class == class'X2AbilityMultiTarget_Radius')
+	if(X2AbilityMultiTarget_Radius(Template.AbilityMultiTargetStyle) != none)
 	{
 		if(DamageEffect.bExplosiveDamage)
 			return true;
-		//else
-			//`LOG("Ability " $ Template.DataName $ " : Not bExplosiveDamage");
+		else
+			`LWTrace("Ability " $ Template.DataName $ " : Not bExplosiveDamage");
 
 		if(DamageEffect.EffectDamageValue.DamageType == 'Explosion')
 			return true;
-		//else
-			//`LOG("Ability " $ Template.DataName $ " : DamageType Not Explosion");
+		else
+			`LWTrace("Ability " $ Template.DataName $ " : DamageType Not Explosion");
 
 	}
 	//check for specific inclusions
@@ -1884,7 +1884,7 @@ function bool ValidExplosiveFalloffAbility(X2AbilityTemplate Template, X2Effect_
 		return true;
 	}
 
-	//`LOG("Ability " $ Template.DataName $ " : Excluded By Default");
+	`LWTrace("Ability " $ Template.DataName $ " : Excluded By Default");
 	return false;
 }
 
