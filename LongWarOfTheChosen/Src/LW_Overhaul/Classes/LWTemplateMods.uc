@@ -1189,7 +1189,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	// Bump up skulljack damage, the default 20 will fail to kill advanced units
 	// and glitches out the animations.
-	if (Template.DataName == 'FinalizeSKULLJACK')
+	if (Template.DataName == 'FinalizeSKULLJACK' || Template.DataName == 'FinalizeSKULLMINE')
 	{
 		for (k = 0; k < Template.AbilityTargetEffects.Length; ++k)
 		{
