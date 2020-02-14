@@ -1343,12 +1343,6 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 		break;
 	}
 
-	// LWOTC: If Chosen are disabled, don't add them at all
-	if (!`SecondWaveEnabled('EnableChosen'))
-	{
-		return;
-	}
-
 	if (AlienHQ.bChosenActive)
 	{
 		XComHQ = `XCOMHQ;
@@ -1368,6 +1362,14 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 			// Remove the tag if it's already attached to this mission. This is the only
 			// place that should add Chosen tactical mission tags.
 			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTag);
+
+			// LWOTC: If Chosen are disabled, skip adding the tag. We do this check here
+			// because we *do* still want to remove the Chosen tags that vanilla has a
+			// habit of adding.
+			if (!`SecondWaveEnabled('EnableChosen'))
+			{
+				continue;
+			}
 
 			// Roll for whether this Chosen will appear on this mission.
 			`LWTrace("Rolling for Chosen on mission " $ MissionState.GeneratedMission.Mission.MissionName);
