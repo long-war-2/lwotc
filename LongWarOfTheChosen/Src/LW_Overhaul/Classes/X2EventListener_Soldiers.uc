@@ -259,7 +259,7 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 		{
 			SetStatusTupleData(OverrideTuple, class'UIUtilities_Strategy'.default.m_strOnMissionStatus, "", "", 0, eUIState_Highlight, true);
 		}
-		else if (UnitState.GetRank() < class'XComGameState_LWOutpost'.default.REQUIRED_RANK_FOR_LIAISON_DUTY && GetScreenOrChild('UIPersonnel_Liaison') != none)
+		else if (UnitState.IsSoldier() && UnitState.GetRank() < class'XComGameState_LWOutpost'.default.REQUIRED_RANK_FOR_LIAISON_DUTY && GetScreenOrChild('UIPersonnel_Liaison') != none)
 		{
 			SetStatusTupleData(OverrideTuple, default.RankTooLow, "", "", 0, eUIState_Bad, true);
 		}
