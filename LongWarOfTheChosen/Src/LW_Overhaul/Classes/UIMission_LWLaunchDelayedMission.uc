@@ -5,11 +5,6 @@
 //---------------------------------------------------------------------------------------
 class UIMission_LWLaunchDelayedMission extends UIMission config(LW_InfiltrationSettings);
 
-//Issue #140
-//This needs to be here for the function BindLibraryItem() so that it can behave the same
-//as the BindLibraryItem() function in class UIMission_LWCustomMission().
-var EMissionUIType MissionUIType;
-
 var UITextContainer InfiltrationInfoText;
 var UITextContainer MissionInfoText;
 
@@ -55,24 +50,6 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 simulated function Name GetLibraryID()
 {
 	return 'Alert_GuerrillaOpsBlades';
-}
-
-/*********************************** Issue #140 ***********************************
-* This function needs to be here because this is the function that displays the
-* shadow chamber information on the top right of the mission information panel.
-* have to do the same thing that was done in class UIMission_LWCustomMission for
-* the BindLibraryItem() fucntion there.
-**********************************************************************************/
-simulated function BindLibraryItem()
-{
-	super.BindLibraryItem();
-	
-	if(MissionUIType != eMissionUI_GoldenPath)
-	{
-		//Issue #140 Hide the Shadow Chamber panel. Do not want to show for anything other than
-		//Golden Path missions.
-		ShadowChamber.Hide();
-	}
 }
 
 simulated function BuildScreen()
@@ -394,18 +371,7 @@ simulated function UpdateData()
 	BuildMissionPanel();
 	//RefreshNavigation();
 
-	/*********************************** Issue #140 ***********************************
-	* The below code is replacing the call to super.UpdateData(). The code from the parent
-	* class version of UpdateData() is pasted here except the call to UpdateMissionSchedules()
-	* was removed as it was doing something to the mission schedules where it would create
-	* a new schedule for the mission with alert level of 1 so all missions would have
-	* much lower alert levels than they should causing baseline enemy activity to be wrong.
-	**********************************************************************************/
-	UpdateMissionTacticalTags();
-	AddMissionTacticalTags();
-	UpdateShadowChamber();
-	UpdateSitreps();
-	UpdateChosen();
+	super.UpdateData();
 }
 
 simulated function XComGameState_LWPersistentSquad GetInfiltratingSquad()

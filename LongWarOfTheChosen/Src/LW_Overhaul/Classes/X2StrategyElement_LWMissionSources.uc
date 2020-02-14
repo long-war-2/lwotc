@@ -64,6 +64,9 @@ static function X2DataTemplate CreateGenericMissionSourceTemplate()
 	Template.GetOverworldMeshPathFn = GetGenericMissionSourceOverworldMeshPath;
 	Template.WasMissionSuccessfulFn = GenericWasMissionSuccessful;
 
+	// LWOTC: Critical for allowing large numbers of enemies on missions!
+	Template.bIgnoreDifficultyCap = true;
+
 	Template.bBlockSitrepDisplay = false;
 	Template.GetSitRepsFn = GetValidSitReps;
 	return Template;
@@ -138,14 +141,8 @@ static function GenericMissionSourceOnExpire(XComGameState NewGameState, XComGam
 
 function int GenericGetMissionDifficulty(XComGameState_MissionSite MissionState)
 {
-	local int Difficulty;
-
-	Difficulty = MissionState.GetMissionSource().DifficultyValue;
-
-	Difficulty = Clamp(Difficulty, class'X2StrategyGameRulesetDataStructures'.default.MinMissionDifficulty,
-					   class'X2StrategyGameRulesetDataStructures'.default.MaxMissionDifficulty);
-
-	return Difficulty;
+	return MissionState.SelectedMissionData.AlertLevel != 0 ? MissionState.SelectedMissionData.AlertLevel :
+			class'XComGameState_LWAlienActivityManager'.static.GetMissionAlertLevel(MissionState);
 }
 
 static function array<name> GetValidSitReps(XComGameState_MissionSite MissionState)

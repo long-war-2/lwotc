@@ -145,10 +145,6 @@ simulated function BindLibraryItem()
 			break;
 		default:
 			super.BindLibraryItem();
-
-			//Issue #140 Hide the Shadow Chamber panel. Do not want to show for anything other than
-			//Golden Path missions.
-			ShadowChamber.Hide();
 		    break;
 	}
 }
@@ -361,19 +357,8 @@ simulated function UpdateData()
 	{
 		UpdateTitle('Region', GetRegion().GetMyTemplate().DisplayName, GetLabelColor(), 50);
 	}
-	
-	/*********************************** Issue #140 ***********************************
-	* The below code is replacing the call to super.UpdateData(). The code from the parent
-	* class version of UpdateData() is pasted here except the call to UpdateMissionSchedules()
-	* was removed as it was doing something to the mission schedules where it would create
-	* a new schedule for the mission with alert level of 1 so all missions would have
-	* much lower alert levels than they should causing baseline enemy activity to be wrong.
-	**********************************************************************************/
-	UpdateMissionTacticalTags();
-	AddMissionTacticalTags();
-	UpdateShadowChamber();
-	UpdateSitreps();
-	UpdateChosen();
+
+	super.UpdateData();
 }
 
 simulated function bool CanBackOut()
