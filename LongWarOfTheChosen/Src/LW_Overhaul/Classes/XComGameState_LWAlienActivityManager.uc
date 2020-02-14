@@ -378,9 +378,9 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	DLCInfos = `ONLINEEVENTMGR.GetDLCInfos(false);
 	for(i = 0; i < DLCInfos.Length; ++i)
 	{
-		if (DLCInfos[i].UpdateShadowChamberMissionInfo(MissionSite.GetReference()))
+		if (DLCInfos[i].UpdateMissionSpawningInfo(MissionSite.GetReference()))
 		{
-			`LWTRACE("UpdateShadowChamberMissionInfo substituted in something -- probably an alien ruler");
+			`LWTRACE("UpdateMissionSpawningInfo substituted in something -- probably an alien ruler");
 		}
 	}
 
@@ -459,7 +459,8 @@ static function int GetMissionAlertLevel(XComGameState_MissionSite MissionSite)
 	}
 	else
 	{
-		AlertLevel = MissionSite.GetMissionDifficulty(); // this should basically never happen
+		`REDSCREEN("Mission alert level cannot be determined! Something has gone horribly wrong.");
+		AlertLevel = 1; // this should basically never happen
 	}
 	if(`XCOMHQ.TacticalGameplayTags.Find('DarkEvent_ShowOfForce') != INDEX_NONE)
 	{
