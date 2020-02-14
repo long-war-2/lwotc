@@ -58,6 +58,7 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
 	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
 	Template.AddCHEvent('OverrideShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate);
+	Template.AddCHEvent('OverridePromotionUIClass', OverridePromotionScreen, ELD_Immediate);
 
 	// Armory Main Menu - disable buttons for On-Mission soldiers
 	Template.AddCHEvent('OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate);
@@ -402,6 +403,37 @@ static function EventListenerReturn OnCheckForPsiPromotion(
 			Tuple.Data[0].B = true;
 		}
 	}
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OverridePromotionScreen(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Unit UnitState;
+
+	// If RPGO is installed, we'll leave it to that mod to override the
+	// promotion screen.
+	if (class'Helpers_LW'.static.IsModInstalled("XCOM2RPGOverhaul"))
+	{
+		// Don't use the LWOTC promotion screen if RPGO is running, since it
+		// has its own.
+		return ELR_NoInterrupt;
+	}
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	if (Tuple.Data[0].i == eCHLPST_Standard || Tuple.Data[0].i == eCHLPST_Hero)
+	{
+		Tuple.Data[1].o = class'NPSBDP_UIArmory_PromotionHero';
+	}
+
 	return ELR_NoInterrupt;
 }
 
