@@ -12,42 +12,54 @@ event OnInit(UIScreen Screen)
 	local UIAfterAction AfterActionUI;
 	local Name ClassName;
 
+	// local array<string> InstalledModNames;
+	// local string ModName;
+	// InstalledModNames = class'Helpers'.static.GetInstalledModNames();
+	// foreach InstalledModNames(ModName)
+	// {
+	// 	`LWTrace(" >>>>> Found installed mod: " $ ModName);
+	// }
+
+	// This listener is deprecated, replaced by the OverridePromotionScreen listener
+	// in X2EventListener_Soldiers.
+	return;
+
 	//Don't block the tutorial
-	if(!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('T0_M2_WelcomeToArmory') )
-	{		
-		return;
-	}
+	// if(!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('T0_M2_WelcomeToArmory') )
+	// {		
+	// 	return;
+	// }
 
-	if (UIArmory_Promotion(Screen) == none)
-	{
-		return;
-	}
+	// if (UIArmory_Promotion(Screen) == none)
+	// {
+	// 	return;
+	// }
 	
-	foreach IgnoreClassNames(ClassName) { // Specific classes to ignore here so that we can do UIArmory_Promotion without ORs later
-		if (Screen.IsA(ClassName))
-		    return;
-	}
+	// foreach IgnoreClassNames(ClassName) { // Specific classes to ignore here so that we can do UIArmory_Promotion without ORs later
+	// 	if (Screen.IsA(ClassName))
+	// 	    return;
+	// }
 	
-	//Remove original screen	
-	Screen.Movie.Stack.Pop(Screen);	
+	// //Remove original screen	
+	// Screen.Movie.Stack.Pop(Screen);	
 
-	//Convert Values
-	OriginalPromotionUI = UIArmory_Promotion(Screen);
-	UnitBeingPromoted = OriginalPromotionUI.UnitReference;
+	// //Convert Values
+	// OriginalPromotionUI = UIArmory_Promotion(Screen);
+	// UnitBeingPromoted = OriginalPromotionUI.UnitReference;
 
-	//Create new screen		
-	CustomHeroPromotionUI = Screen.Movie.Pres.Spawn(class'UIArmory_PromotionHero' );		
-	Screen.Movie.Stack.Push(CustomHeroPromotionUI, Screen.Movie.Pres.Get3DMovie());	
-	CustomHeroPromotionUI.InitPromotion(UnitBeingPromoted);
+	// //Create new screen		
+	// CustomHeroPromotionUI = Screen.Movie.Pres.Spawn(class'UIArmory_PromotionHero' );		
+	// Screen.Movie.Stack.Push(CustomHeroPromotionUI, Screen.Movie.Pres.Get3DMovie());	
+	// CustomHeroPromotionUI.InitPromotion(UnitBeingPromoted);
 
-	//Fix Post mission walkup 		
-	AfterActionUI = UIAfterAction(`SCREENSTACK.GetFirstInstanceOf(class'UIAfterAction'));
+	// //Fix Post mission walkup 		
+	// AfterActionUI = UIAfterAction(`SCREENSTACK.GetFirstInstanceOf(class'UIAfterAction'));
 	
-	if( AfterActionUI != none )
-	{
-		//AfterActionUI.MovePawns();
-		MovePawns(AfterActionUI, UnitBeingPromoted);
-	}
+	// if( AfterActionUI != none )
+	// {
+	// 	//AfterActionUI.MovePawns();
+	// 	MovePawns(AfterActionUI, UnitBeingPromoted);
+	// }
 }
 
 function MovePawns(UIAfterAction AfterActionUI,StateObjectReference UnitBeingPromoted)

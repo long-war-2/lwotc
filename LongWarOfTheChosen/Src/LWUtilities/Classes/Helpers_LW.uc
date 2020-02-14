@@ -143,6 +143,22 @@ var config bool EverVigilantExcludeBurning;
 // was not wounded, simply because the soldier HP was greater than the proxy.
 var config bool UseUnitHPForProxies;
 
+static function bool IsModInstalled(coerce string DLCIdentifer)
+{
+	local array<string> Mods;
+
+	Mods = class'Helpers'.static.GetInstalledModNames();
+	return Mods.Find(DLCIdentifer) != INDEX_NONE;
+}
+
+static function bool IsDLCInstalled(coerce string DLCIdentifer)
+{
+	local array<string> DLCs;
+
+	DLCs = class'Helpers'.static.GetInstalledDLCNames();
+	return DLCs.Find(DLCIdentifer) != INDEX_NONE;
+}
+
 simulated static function class<object> LWCheckForRecursiveOverride(class<object> ClassToCheck)
 {
 	local int idx;
