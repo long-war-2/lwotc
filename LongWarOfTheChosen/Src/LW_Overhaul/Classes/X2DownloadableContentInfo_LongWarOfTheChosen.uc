@@ -79,6 +79,9 @@ var config int BaseChosenAppearanceChance;
 // can start to appear.
 var config array<int> MIN_FL_FOR_LOST;
 
+// Thresholds for region strength translating to larger Alien Ruler pod size.
+var config array<int> RULER_POD_SIZE_ALERT_THRESHOLDS;
+
 // End data and data structures
 //-----------------------------
 
@@ -404,6 +407,133 @@ static function bool UseAlternateMissionIntroDefinition(MissionDefinition Active
 	return false;
 }
 
+/// <summary>
+/// Called when viewing mission blades, used primarily to modify tactical tags for spawning
+/// Returns true when the mission's spawning info needs to be updated
+/// </summary>
+static function bool UpdateMissionSpawningInfo(StateObjectReference MissionRef)
+{
+	// We need to clear up the mess that the Alien Rulers DLC leaves in its wake.
+	// In this case, it clears all the alien ruler gameplay tags from XComHQ, just
+	// before the schedules are picked (which rely on those tags). And of course it
+	// may apply the ruler tags itself when we don't want them. Bleh.
+	if (class'XComGameState_AlienRulerManager' != none)
+	{
+		return FixAlienRulerTags(MissionRef);
+	}
+
+	return false;
+}
+
+static function bool FixAlienRulerTags(StateObjectReference MissionRef)
+{
+	local XComGameState_AlienRulerManager RulerMgr;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_MissionSite MissionState;
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+	local name CurrentTag;
+	local bool bUpdated;
+
+	History = `XCOMHISTORY;
+	bUpdated = false;
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("LWOTC: Fix Alien Ruler gameplay tags");
+	RulerMgr = XComGameState_AlienRulerManager(History.GetSingleGameStateObjectForClass(class'XComGameState_AlienRulerManager'));
+	RulerMgr = XComGameState_AlienRulerManager(NewGameState.ModifyStateObject(class'XComGameState_AlienRulerManager', RulerMgr.ObjectID));
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(MissionRef.ObjectID));
+
+	// Check whether DLC has added active ruler tags to XComHQ. We don't want
+	// them if there are any.
+	if (class'LWDLCHelpers'.static.TagArrayHasActiveRulerTag(XComHQ.TacticalGameplayTags))
+	{
+		// Clear existing active tags out so we can replace them.
+		RulerMgr.ClearActiveRulerTags(XComHQ);
+		bUpdated = true;
+	}
+
+	// Add back any mission active ruler tags that DLC 2 will have kindly
+	// removed from XComHQ for us. This is important to ensure that the
+	// alien rulers are added to the mission schedule if it's possible.
+	if (class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
+	{
+		foreach MissionState.TacticalGameplayTags(CurrentTag)
+		{
+			if (class'LWDLCHelpers'.default.AlienRulerTags.Find(CurrentTag) != INDEX_NONE)
+			{
+				// Found an active Ruler tag, so add it to XComHQ.
+				XComHQ.TacticalGameplayTags.AddItem(CurrentTag);
+				AddRulerAdditionalTags(MissionState, XComHQ, CurrentTag);
+				bUpdated = true;
+			}
+		}
+	}
+
+	if (bUpdated)
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	else
+		History.CleanupPendingGameState(NewGameState);
+
+	return bUpdated;
+}
+
+static function AddRulerAdditionalTags(
+	XComGameState_MissionSite MissionState,
+	XComGameState_HeadquartersXCom XComHQ,
+	name RulerActiveTacticalTag)
+{
+	local int i, RulerIndex;
+
+	for (i = 0; i < class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates.Length; i++)
+	{
+		if (class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[i].ActiveTacticalTag == RulerActiveTacticalTag)
+		{
+			RulerIndex = i;
+			break;
+		}
+	}
+
+	// Check the mission alert level against the thresholds for Alien Ruler
+	// pod size. If the alert level is below the first threshold, then we
+	// don't add any additional tags. Otherwise we pull the required additional
+	// tag from the Alien Ruler template config.
+	for (i = 0; i < default.RULER_POD_SIZE_ALERT_THRESHOLDS.Length; i++)
+	{
+		if (MissionState.SelectedMissionData.AlertLevel < default.RULER_POD_SIZE_ALERT_THRESHOLDS[i])
+		{
+			if (i > 0)
+			{
+				XComHQ.TacticalGameplayTags.AddItem(
+						class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].AdditionalTags[i - 1].TacticalTag);
+			}
+			break;
+		}
+	}
+}
+
+private static function int SortNames(name NameA, name NameB)
+{
+	local string StringA, StringB;
+
+	StringA = string(NameA);
+	StringB = string(NameB);
+
+	if (StringA < StringB)
+	{
+		return 1;
+	}
+	else if (StringA > StringB)
+	{
+		return -1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 // *****************************************************
 // XCOM tactical mission adjustments
 //
@@ -421,6 +551,8 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	InitializePodManager(StartGameState);
 	OverrideConcealmentAtStart(MissionState);
 	OverrideDestructibleHealths(StartGameState);
+	if (class'XComGameState_AlienRulerManager' != none)
+		OverrideAlienRulerSpawning(StartGameState, MissionState);
 	MaybeAddChosenToMission(StartGameState, MissionState);
 
 	// Test Code to see if DLC POI replacement is working
@@ -1351,6 +1483,45 @@ static function OverrideDestructibleHealths(XComGameState StartGameState)
 	}
 }
 
+// The base Alien Rulers DLC will do its own thing with regard to spawning
+// Rulers on missions, so we potentially need to override the current Ruler
+// and mission state to fit with our use of sit reps for the Rulers.
+//
+// *WARNING* This function should not be called unless the Alien Rulers DLC
+// has first been confirmed to be installed.
+static function OverrideAlienRulerSpawning(XComGameState StartState, XComGameState_MissionSite MissionState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_AlienRulerManager RulerMgr;
+	local XComGameState_Unit RulerState;
+	local StateObjectReference EmptyRef;
+	local bool RulerOnMission;
+
+	History = `XCOMHISTORY;
+
+	RulerMgr = XComGameState_AlienRulerManager(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_AlienRulerManager'));
+	if (!RulerMgr.bContentActivated) return;
+
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	XComHQ = XComGameState_HeadquartersXCom(StartState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	RulerMgr = XComGameState_AlienRulerManager(StartState.ModifyStateObject(class'XComGameState_AlienRulerManager', RulerMgr.ObjectID));
+
+	// Check whether the DLC has placed a Ruler on this mission
+	RulerOnMission = RulerMgr.RulerOnCurrentMission.ObjectID != 0;
+	if (RulerOnMission)
+	{
+		RulerMgr.ClearActiveRulerTags(XComHQ);
+		RulerMgr.RulerOnCurrentMission = EmptyRef;
+	}
+
+	if (class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
+	{
+		RulerState = class'LWDLCHelpers'.static.GetAlienRulerForMission(MissionState);
+		class'LWDLCHelpers'.static.PutRulerOnCurrentMission(StartState, RulerState, XComHQ);
+	}
+}
+
 // (Copied from XCGS_HeadquartersAlien.AddChosenTacticalTagsToMission())
 //
 // Add the Chosen tactical tags to the mission if any of the following criteria
@@ -1372,6 +1543,12 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
 	local name ChosenSpawningTag;
+
+	// Don't allow Chosen on the mission if there is already a Ruler
+	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
+	{
+		return;
+	}
 
 	History = `XCOMHISTORY;
 	foreach History.IterateByClassType(class'XComGameState_HeadquartersAlien', AlienHQ)

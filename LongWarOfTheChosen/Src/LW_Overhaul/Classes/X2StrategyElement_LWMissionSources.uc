@@ -139,7 +139,7 @@ static function GenericMissionSourceOnExpire(XComGameState NewGameState, XComGam
 	}
 }
 
-function int GenericGetMissionDifficulty(XComGameState_MissionSite MissionState)
+static function int GenericGetMissionDifficulty(XComGameState_MissionSite MissionState)
 {
 	return MissionState.SelectedMissionData.AlertLevel != 0 ? MissionState.SelectedMissionData.AlertLevel :
 			class'XComGameState_LWAlienActivityManager'.static.GetMissionAlertLevel(MissionState);
