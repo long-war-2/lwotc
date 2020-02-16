@@ -428,11 +428,57 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	//cache the difficulty
 	MissionSite.CacheSelectedMissionData(ForceLevel, AlertLevel);
 
+	// LWOTC: The call above to CacheSelectedMissionData() means that the shadow
+	// chamber strings never get updated by the vanilla code. So we have to force
+	// an update here.
+	UpdateShadowChamberStrings(MissionSite);
+
 	if (NewGameState.GetNumGameStateObjects() > 0)
 		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 	else
 		History.CleanupPendingGameState(NewGameState);
 
+}
+
+// Copied from XCGS_MissionSite.UpdateShadowChamberStrings()
+static function UpdateShadowChamberStrings(XComGameState_MissionSite MissionState)
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	local array<X2CharacterTemplate> TemplatesToSpawn;
+	local X2CharacterTemplate TemplateToSpawn;
+	local int NumUnits;
+
+	XComHQ = class'UIUtilities_Strategy'.static.GetXComHQ();
+
+	// Don't update the strings if the Shadow Chamber hasn't actually been built yet
+	if (XComHQ.GetFacilityByName('ShadowChamber') == none) return;
+
+	MissionState.GetShadowChamberMissionInfo(NumUnits, TemplatesToSpawn);
+	MissionState.m_strShadowCount = String(NumUnits);
+	MissionState.m_strShadowCrew = "";
+
+	foreach TemplatesToSpawn(TemplateToSpawn)
+	{
+		if (TemplateToSpawn.bIsCivilian || TemplateToSpawn.bHideInShadowChamber)
+		{
+			continue;
+		}
+
+		if (MissionState.m_strShadowCrew != "")
+		{
+			MissionState.m_strShadowCrew = MissionState.m_strShadowCrew $ ", ";
+		}
+
+		if (XComHQ.HasSeenCharacterTemplate(TemplateToSpawn))
+		{
+			MissionState.m_strShadowCrew = MissionState.m_strShadowCrew $ TemplateToSpawn.strCharacterName;
+		}
+		else
+		{
+			MissionState.m_strShadowCrew = MissionState.m_strShadowCrew $ Class'UIUtilities_Text'.static.GetColoredText(MissionState.m_strEnemyUnknown, eUIState_Bad);
+		}
+	}
+	MissionState.m_strShadowCrew = class'UIUtilities_Text'.static.FormatCommaSeparatedNouns(MissionState.m_strShadowCrew);
 }
 
 static function int GetMissionAlertLevel(XComGameState_MissionSite MissionSite)
