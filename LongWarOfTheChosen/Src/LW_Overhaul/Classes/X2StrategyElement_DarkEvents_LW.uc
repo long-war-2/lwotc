@@ -36,7 +36,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	DarkEvents.AddItem(CreateTacticalUpgradesShredderTemplate());
 	DarkEvents.AddItem(CreateTacticalUpgradesHuntersInstinctTemplate());
 	DarkEvents.AddItem(CreateTacticalUpgradesLightningReflexesTemplate());
-	DarkEvents.AddItem(CreateTacticalUpgradesCloseCombatSpecialstTemplate());
+	DarkEvents.AddItem(CreateTacticalUpgradesCloseCombatSpecialistTemplate());
 	DarkEvents.AddItem(CreateTacticalUpgradesGrazingFireTemplate());
 	DarkEvents.AddItem(CreateTacticalUpgradesCutthroatTemplate());
 	DarkEvents.AddItem(CreateTacticalUpgradesCombatAwarenessTemplate());
@@ -434,7 +434,7 @@ static function X2DataTemplate CreateTacticalUpgradesLightningReflexesTemplate()
 	return Template;
 }
 
-static function X2DataTemplate CreateTacticalUpgradesCloseCombatSpecialstTemplate()
+static function X2DataTemplate CreateTacticalUpgradesCloseCombatSpecialistTemplate()
 {
 	local X2DarkEventTemplate Template;
 
