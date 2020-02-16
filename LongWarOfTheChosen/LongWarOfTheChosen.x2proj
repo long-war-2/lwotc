@@ -1026,7 +1026,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_XP.uc" />
     <Content Include="Config\XComPromotionUIMod.ini" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelSquadSelect.uc" />
-    <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NewPromotionScreenByDefault_PromotionScreenListener.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHero.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHeroColumn.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\X2DownloadableContentInfo_NewPromotionScreenbyDefault.uc" />

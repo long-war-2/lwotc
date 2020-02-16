@@ -414,7 +414,6 @@ static function EventListenerReturn OverridePromotionScreen(
 	Object CallbackData)
 {
 	local XComLWTuple Tuple;
-	local XComGameState_Unit UnitState;
 
 	// If RPGO is installed, we'll leave it to that mod to override the
 	// promotion screen.
