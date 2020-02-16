@@ -20,7 +20,9 @@ simulated function BuildScreen( optional bool bAnimateIn = false )
 
 	AlienHQ = class'UIUtilities_Strategy'.static.GetAlienHQ();
 	ActiveDarkEvents = AlienHQ.ActiveDarkEvents;
-    ChosenDarkEvents = AlienHQ.ChosenDarkEvents;
+	ChosenDarkEvents = AlienHQ.ChosenDarkEvents;
+	
+	ActiveDarkEvents.Sort(ActiveDarkEventSort);
     
 	if (!bShowActiveEvents)
 	{
@@ -64,7 +66,7 @@ simulated function int UpdateDarkEventList()
 
 	if (bShowActiveEvents)
 	{
-        arrDarkEvents = ActiveDarkEvents;
+		arrDarkEvents = ActiveDarkEvents;
 	}
 	else
 	{
@@ -101,6 +103,23 @@ simulated function int UpdateDarkEventList()
     }
         
     return ArrLength;
+}
+
+static function int ActiveDarkEventSort(StateObjectReference DERefA, StateObjectReference DERefB)
+{
+	local XComGameStateHistory History;
+	local XComGameState_DarkEvent DarkEventA, DarkEventB;
+	local string NameA, NameB;
+
+	History = `XCOMHISTORY;
+	DarkEventA = XComGameState_DarkEvent(History.GetGameStateForObjectID(DERefA.ObjectID));
+	DarkEventB = XComGameState_DarkEvent(History.GetGameStateForObjectID(DERefB.ObjectID));
+
+	// 1) Sort by permanent/not permanent
+	if (DarkEventA.GetMyTemplate().bInfiniteDuration && !DarkEventB.GetMyTemplate().bInfiniteDuration) { return 1; }
+	else if (!DarkEventA.GetMyTemplate().bInfiniteDuration && DarkEventB.GetMyTemplate().bInfiniteDuration) { return -1; }
+	// 2) Otherwise, leave the original order
+	else return 0;
 }
 
 simulated function UIList GetDarkEventListUI()
@@ -147,7 +166,7 @@ simulated function BuildDarkEventPanel(int Index, bool bActiveDarkEvent)
 
 	if(bActiveDarkEvent)
 	{
-		DarkEventState = XComGameState_DarkEvent(History.GetGameStateForObjectID(ALIENHQ().ActiveDarkEvents[Index].ObjectID));
+		DarkEventState = XComGameState_DarkEvent(History.GetGameStateForObjectID(ActiveDarkEvents[Index].ObjectID));
 		ActiveDarkEvents[Index] = DarkEventState.GetReference();
 	}
 	else
