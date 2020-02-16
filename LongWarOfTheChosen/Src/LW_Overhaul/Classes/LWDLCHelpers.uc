@@ -7,6 +7,8 @@
 
 class LWDLCHelpers extends object config(LW_Overhaul);
 
+var const array<name> AlienRulerTags;
+
 static function bool IsAlienHuntersNarrativeEnabled()
 {
     local XComGameStateHistory History;
@@ -177,6 +179,134 @@ static function bool IsAlienRuler(name CharacterTemplateName)
 	}
 }
 
+// Checks the given mission's tactical gameplay tags to see whether
+// they include one of the Alien Ruler "active" tags.
+static function bool IsAlienRulerOnMission(XComGameState_MissionSite MissionState)
+{
+	return TagArrayHasActiveRulerTag(MissionState.TacticalGameplayTags);
+}
+
+static function bool TagArrayHasActiveRulerTag(const out array<name> TacticalGameplayTags)
+{
+	local name GameplayTag;
+
+	foreach TacticalGameplayTags(GameplayTag)
+	{
+		if (default.AlienRulerTags.Find(GameplayTag) != INDEX_NONE)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+// Returns the unit state for whatever alien ruler is on the given
+// mission. If there is no alien ruler on the mission, then this
+// returns `none`.
+static function XComGameState_Unit GetAlienRulerForMission(XComGameState_MissionSite MissionState)
+{
+	local name GameplayTag, FoundRulerTag;
+
+	foreach MissionState.TacticalGameplayTags(GameplayTag)
+	{
+		if (default.AlienRulerTags.Find(GameplayTag) != INDEX_NONE)
+		{
+			FoundRulerTag = GameplayTag;
+		}
+	}
+
+	if (FoundRulerTag == '') return none;
+	else return GetAlienRulerForTacticalTag(FoundRulerTag);
+}
+
+static function XComGameState_Unit GetAlienRulerForTacticalTag(name RulerActiveTacticalTag)
+{
+	local XComGameState_AlienRulerManager RulerMgr;
+	local XComGameState_Unit RulerState;
+	local XComGameStateHistory History;
+	local StateObjectReference RulerRef;
+	local name RulerTemplateName;
+	local int i;
+
+	// *WARNING* Don't declare a variable of type AlienRulerData for this loop, because
+	// that will crash the game if Alien Rulers DLC is not installed.
+	for (i = 0; i < class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates.Length; i++)
+	{
+		if (class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[i].ActiveTacticalTag == RulerActiveTacticalTag)
+		{
+			RulerTemplateName = class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[i].AlienRulerTemplateName;
+			break;
+		}
+	}
+
+	History = `XCOMHISTORY;
+	RulerMgr = XComGameState_AlienRulerManager(History.GetSingleGameStateObjectForClass(class'XComGameState_AlienRulerManager'));
+	foreach RulerMgr.AllAlienRulers(RulerRef)
+	{
+		RulerState = XComGameState_Unit(History.GetGameStateForObjectID(RulerRef.ObjectID));
+		if (RulerState.GetMyTemplateName() == RulerTemplateName)
+			break;
+		else
+			RulerState = none;
+	}
+
+	return RulerState;
+}
+
+// Copy of the private function SetRulerOnCurrentMission() in XCGS_AlienRulerManager
+//
+// Note that XComHQ and RulerMgr must both be modifiable.
+//
+// *WARNING* Do not call this function unless you have verified that the Alien Ruler
+// DLC is installed.
+static function PutRulerOnCurrentMission(XComGameState NewGameState, XComGameState_Unit UnitState, XComGameState_HeadquartersXCom XComHQ)
+{
+	local XComGameState_AlienRulerManager RulerMgr;
+	local int RulerIndex, idx, NumAppearances, MaxNumAppearances, MaxAppearanceIndex;
+
+	RulerMgr = XComGameState_AlienRulerManager(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_AlienRulerManager'));
+	RulerMgr = XComGameState_AlienRulerManager(NewGameState.ModifyStateObject(class'XComGameState_Unit', RulerMgr.ObjectID));
+
+	RulerMgr.RulerOnCurrentMission = UnitState.GetReference();
+
+	RulerIndex = class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates.Find('AlienRulerTemplateName', UnitState.GetMyTemplateName());
+	XComHQ.TacticalGameplayTags.AddItem(class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].ActiveTacticalTag);
+
+	// *WARNING* Don't declare a variable of type AlienRulerData for this code, because
+	// that will crash the game if Alien Rulers DLC is not installed.
+	//
+	// Code below is slightly modified copy of XCGS_AlienRulerManager.AddRulerAdditionalTacticalTags()
+	if (class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].AdditionalTags.Length == 0)
+	{
+		return;
+	}
+
+	NumAppearances = class'X2Helpers_DLC_Day60'.static.GetRulerNumAppearances(UnitState) + 1;
+	MaxNumAppearances = 0;
+	MaxAppearanceIndex = 0;
+
+	for (idx = 0; idx < class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].AdditionalTags.Length; idx++)
+	{
+		if (NumAppearances == class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].AdditionalTags[idx].NumTimesAppeared)
+		{
+			XComHQ.TacticalGameplayTags.AddItem(class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].AdditionalTags[idx].TacticalTag);
+			return;
+		}
+
+		if (class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].AdditionalTags[idx].NumTimesAppeared > MaxNumAppearances)
+		{
+			MaxNumAppearances = class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].AdditionalTags[idx].NumTimesAppeared;
+			MaxAppearanceIndex = idx;
+		}
+	}
+
+	if (NumAppearances >= MaxNumAppearances)
+	{
+		XComHQ.TacticalGameplayTags.AddItem(class'XComGameState_AlienRulerManager'.default.AlienRulerTemplates[RulerIndex].AdditionalTags[MaxAppearanceIndex].TacticalTag);
+	}
+}
+
 //class'LWDLCHelpers'.static.IsUnitOnMission(UnitState)
 // helper for sparks to resolve if a wounded spark is on a mission, since that status can override the OnMission one
 static function bool IsUnitOnMission(XComGameState_Unit UnitState)
@@ -261,4 +391,11 @@ static function XComGameState_HeadquartersProjectHealSoldier GetHealSparkProject
         }
     }
     return none;
+}
+
+defaultproperties
+{
+	AlienRulerTags[0] = "Ruler_ViperKingActive";
+	AlienRulerTags[1] = "Ruler_BerserkerQueenActive";
+	AlienRulerTags[2] = "Ruler_ArchonKingActive";
 }

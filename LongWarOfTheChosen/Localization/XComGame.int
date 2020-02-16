@@ -5258,6 +5258,18 @@ LocLongDescription="Unit suffers from reduced aim and mobility."
 FriendlyName="Project Miranda"
 Description="ADVENT are testing pacification technology in the area, which is making all non-robotic units lethargic. They will have penalties to aim and mobility."
 
+[ViperKing X2SitRepTemplate]
+FriendlyName="Viper King"
+Description="The Viper King is expected on this mission. Be careful!"
+
+[BerserkerQueen X2SitRepTemplate]
+FriendlyName="Berserker Queen"
+Description="The Berserker Queen is expected on this mission. Be careful!"
+
+[ArchonKing X2SitRepTemplate]
+FriendlyName="Archon King"
+Description="The Archon King is expected on this mission. Be careful!"
+
 ; Purifier autopsy no longer unlocks reinforced vest underlay
 [AutopsyAdventPurifier X2TechTemplate]
 UnlockedDescription=""
