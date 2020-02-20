@@ -109,7 +109,6 @@ static function int ActiveDarkEventSort(StateObjectReference DERefA, StateObject
 {
 	local XComGameStateHistory History;
 	local XComGameState_DarkEvent DarkEventA, DarkEventB;
-	local string NameA, NameB;
 
 	History = `XCOMHISTORY;
 	DarkEventA = XComGameState_DarkEvent(History.GetGameStateForObjectID(DERefA.ObjectID));
