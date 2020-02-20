@@ -59,6 +59,7 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
 	Template.AddCHEvent('OverrideShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate);
 	Template.AddCHEvent('OverridePromotionUIClass', OverridePromotionScreen, ELD_Immediate);
+	Template.AddCHEvent('OverridePromotionBlueprintTagPrefix', OverridePromotionBlueprintTagPrefix, ELD_Immediate);
 
 	// Armory Main Menu - disable buttons for On-Mission soldiers
 	Template.AddCHEvent('OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate);
@@ -432,6 +433,43 @@ static function EventListenerReturn OverridePromotionScreen(
 	{
 		Tuple.Data[1].o = class'NPSBDP_UIArmory_PromotionHero';
 	}
+
+	return ELR_NoInterrupt;
+}
+
+// This function makes sure that the camera is placed in the right place
+// on the After Action screen when a unit is being promoted from there.
+// It basically sets the promotion blueprint tag to the hero one for all
+// soldiers, since we're using the hero promotion screen for all of them.
+static function EventListenerReturn OverridePromotionBlueprintTagPrefix(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_Unit UnitState;
+	local XComLWTuple Tuple;
+
+	// If RPGO is installed, we'll leave it to that mod to handle the
+	// After Action blueprint tags.
+	if (class'Helpers_LW'.static.IsModInstalled("XCOM2RPGOverhaul"))
+	{
+		// Don't use the LWOTC promotion screen if RPGO is running, since it
+		// has its own.
+		return ELR_NoInterrupt;
+	}
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	UnitState = XComGameState_Unit(Tuple.Data[0].o);
+	if (UnitState == none)
+		return ELR_NoInterrupt;
+
+	Tuple.Data[1].s = UnitState.IsGravelyInjured() ? class'UIAfterAction'.default.UIBlueprint_PrefixHero_Wounded :
+			class'UIAfterAction'.default.UIBlueprint_PrefixHero;
 
 	return ELR_NoInterrupt;
 }
