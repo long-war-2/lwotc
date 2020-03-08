@@ -436,13 +436,15 @@ static function UpdateBayonetCharge(X2AbilityTemplate Template)
 
 static function UpdateExtractKnowledgeConditions(X2AbilityTemplate Template)
 {
-	local X2Condition_UnitEffects ExcludeEffects;
 	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
+	local int i;
 
-	ExcludeEffects = new class'X2Condition_UnitEffects';
-	ExcludeEffects.AddExcludeEffect(class'X2Ability_CarryUnit'.default.CarryUnitEffectName, 'AA_UnitIsImmune');
-	ExcludeEffects.AddExcludeEffect(class'X2AbilityTemplateManager'.default.BeingCarriedEffectName, 'AA_UnitIsImmune');
-	Template.AbilityTargetConditions[2]=ExcludeEffects;
+	for(i=0;i<Template.AbilityTargetConditions.length;i++)
+	{
+		if(Template.AbilityTargetConditions[i].isA(class'X2Condition_UnitEffects'.name))
+			if(X2Condition_UnitEffects(Template.AbilityTargetConditions[i]).RequireEffects[0].EffectName==class'X2AbilityTemplateManager'.default.DazedName)
+			X2Condition_UnitEffects(Template.AbilityTargetConditions[i]).RemoveRequireEffect(class'X2AbilityTemplateManager'.default.DazedName);
+	}
 	NeedOneOfTheEffects=new class'X2Condition_TargetHasOneOfTheEffects';
 	NeedOneOfTheEffects.EffectNames.AddItem(class'X2AbilityTemplateManager'.default.DazedName);
 	NeedOneOfTheEffects.EffectNames.AddItem(class'X2StatusEffects_LW'.default.HeavyDazedName);

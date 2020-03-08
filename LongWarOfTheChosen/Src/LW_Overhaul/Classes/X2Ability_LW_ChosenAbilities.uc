@@ -896,9 +896,6 @@ simulated function FollowerDefeatedEscape_BuildVisualization(XComGameState Visua
 	local XComGameStateContext_Ability Context;
 	local VisualizationActionMetadata EmptyTrack;
 	local VisualizationActionMetadata ActionMetadata;
-	local XComGameState_Ability Ability;
-	local X2Action_PlayAnimation PlayAnimation;
-	local XGUnit Unit;
 	local XComUnitPawn UnitPawn;
 	local X2Action_PlayEffect EffectAction;
 	local X2Action_Delay DelayAction;
@@ -913,13 +910,14 @@ simulated function FollowerDefeatedEscape_BuildVisualization(XComGameState Visua
 	ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(Context.InputContext.SourceObject.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
 	ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(Context.InputContext.SourceObject.ObjectID);
 	ActionMetadata.VisualizeActor = History.GetVisualizer(Context.InputContext.SourceObject.ObjectID);
-
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID));
 	
-	EffectAction = X2Action_PlayEffect(class'X2Action_PlayEffect'.static.AddToVisualizationTree(ActionMetadata, Context, false, PlayAnimation));
+	EffectAction = X2Action_PlayEffect(class'X2Action_PlayEffect'.static.AddToVisualizationTree(ActionMetadata, Context, false));
 	EffectAction.EffectName = "FX_Chosen_Teleport.P_Chosen_Teleport_Out_w_Sound";
 	EffectAction.EffectLocation = ActionMetadata.VisualizeActor.Location;
 	EffectAction.bWaitForCompletion = false;
+
+	DelayAction = X2Action_Delay(class'X2Action_Delay'.static.AddToVisualizationTree(ActionMetadata, Context, false));
+	DelayAction.Duration = 0.25;
 
 	class'X2Action_RemoveUnit'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, DelayAction);
 	//****************************************************************************************
@@ -928,7 +926,6 @@ simulated function FollowerDefeatedEscape_BuildVisualization(XComGameState Visua
 static function X2AbilityTemplate CreateNoLootAndCorpseAbility()
 {
 	local X2AbilityTemplate Template;
-	local X2AbilityTrigger_EventListener EventTrigger;
 	local X2Effect_NoLootAndCorpse NoLootAndCorpseEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'NoLootAndCorpse');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
