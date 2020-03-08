@@ -83,7 +83,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 			//A 4 turn cooldown instead of 1 time per encounter
 		case 'ChosenSummonFollowers': 
-			GiveCooldownToSummonAbility(Template);
+			UpdateSummon(Template);
 			break;
 		case 'ChosenImmuneMelee':
 			ReplaceWithDamageReductionMeele(Template);
@@ -436,13 +436,15 @@ static function UpdateBayonetCharge(X2AbilityTemplate Template)
 
 static function UpdateExtractKnowledgeConditions(X2AbilityTemplate Template)
 {
-	local X2Condition_UnitEffects ExcludeEffects;
 	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
+	local int i;
 
-	ExcludeEffects = new class'X2Condition_UnitEffects';
-	ExcludeEffects.AddExcludeEffect(class'X2Ability_CarryUnit'.default.CarryUnitEffectName, 'AA_UnitIsImmune');
-	ExcludeEffects.AddExcludeEffect(class'X2AbilityTemplateManager'.default.BeingCarriedEffectName, 'AA_UnitIsImmune');
-	Template.AbilityTargetConditions[2]=ExcludeEffects;
+	for(i=0;i<Template.AbilityTargetConditions.length;i++)
+	{
+		if(Template.AbilityTargetConditions[i].isA(class'X2Condition_UnitEffects'.name))
+			if(X2Condition_UnitEffects(Template.AbilityTargetConditions[i]).RequireEffects[0].EffectName==class'X2AbilityTemplateManager'.default.DazedName)
+			X2Condition_UnitEffects(Template.AbilityTargetConditions[i]).RemoveRequireEffect(class'X2AbilityTemplateManager'.default.DazedName);
+	}
 	NeedOneOfTheEffects=new class'X2Condition_TargetHasOneOfTheEffects';
 	NeedOneOfTheEffects.EffectNames.AddItem(class'X2AbilityTemplateManager'.default.DazedName);
 	NeedOneOfTheEffects.EffectNames.AddItem(class'X2StatusEffects_LW'.default.HeavyDazedName);
@@ -473,17 +475,33 @@ static function RemoveAbilityTargetEffect(X2AbilityTemplate Template, name Effec
 		}
 	}
 }
-static function GiveCooldownToSummonAbility(X2AbilityTemplate Template)
+static function RemoveAbilityShooterEffect(X2AbilityTemplate Template, name EffectName)
+{
+	local X2Effect ShooterEffect;
+	foreach Template.AbilityShooterEffects(ShooterEffect)
+	{
+		if (ShooterEffect.IsA(EffectName))
+		{
+			Template.AbilityShooterEffects.RemoveItem(ShooterEffect);
+		}
+	}
+}
+static function UpdateSummon(X2AbilityTemplate Template)
 {
 	local X2AbilityCooldown					Cooldown;
 
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+
 	//Screw it, I have no idea how to do it cleanly and no other mod touches it anyway
-	Template.AbilityShooterConditions.Remove(3,1);
+	Template.AbilityShooterConditions.Remove(2,1);
+	RemoveAbilityShooterEffect(Template,'X2Effect_SetUnitValue');
 
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.SUMMON_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
+	Template.BuildNewGameStateFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildGameState;
+	Template.BuildVisualizationFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildVisualization;
 }
 
 static function ReplaceWithDamageReductionExplosive(X2AbilityTemplate Template)
@@ -496,7 +514,7 @@ static function ReplaceWithDamageReductionExplosive(X2AbilityTemplate Template)
 	Template.AddTargetEffect(PaddingEffect);
 }
 
-static function ReplaceWithDamageReductionMeele (X2AbilityTemplate Template)
+static function ReplaceWithDamageReductionMeele(X2AbilityTemplate Template)
 {
 	local X2Effect_DefendingMeeleDamageModifier DamageMod;
 	RemoveAbilityTargetEffect(Template,'X2Effect_DamageImmunity');
@@ -509,8 +527,18 @@ static function ReplaceWithDamageReductionMeele (X2AbilityTemplate Template)
 }
 static function UpdateRevive(X2AbilityTemplate Template)
 {
-	Template.AbilityShooterConditions.Length=0;
+	local X2Condition ShooterCondition;
+	foreach Template.AbilityShooterConditions(ShooterCondition)
+	{
+		if (ShooterCondition.IsA('X2Condition_UnitEffects'))
+		{	
+			X2Condition_UnitEffects(ShooterCondition).AddExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName, 'AA_UnitIsDisoriented');
+			X2Condition_UnitEffects(ShooterCondition).AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
+		}
+	}
 }
+
+
 
 defaultproperties
 {

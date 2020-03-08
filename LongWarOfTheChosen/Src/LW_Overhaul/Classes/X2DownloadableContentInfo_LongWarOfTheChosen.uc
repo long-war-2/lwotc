@@ -1237,6 +1237,40 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			SetupData[i].SourceWeaponRef = UnitState.GetPrimaryWeapon().GetReference();
 		}
 	}
+	//Give units summoned by the chosen the escape 
+	if(StartState.GetContext().IsA(class'XComGameStateContext_Ability'.Name))
+	{
+		if(XComGameStateContext_Ability(StartState.GetContext()).InputContext.AbilityTemplateName=='ChosenSummonFollowers')
+		{
+			AbilityName = 'FollowerDefeatedEscape';
+			if (SetupData.Find('TemplateName', AbilityName) == -1)
+			{
+				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate(AbilityName);
+
+				if(AbilityTemplate != none)
+				{
+					Data = EmptyData;
+					Data.TemplateName = AbilityName;
+					Data.Template = AbilityTemplate;
+					SetupData.AddItem(Data);  // return array -- we don't have to worry about additional abilities for this simple ability
+				}
+			}
+				
+			AbilityName = 'NoLootAndCorpse';
+			if (SetupData.Find('TemplateName', AbilityName) == -1)
+			{
+				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate(AbilityName);
+
+				if(AbilityTemplate != none)
+				{
+					Data = EmptyData;
+					Data.TemplateName = AbilityName;
+					Data.Template = AbilityTemplate;
+					SetupData.AddItem(Data);  // return array -- we don't have to worry about additional abilities for this simple ability
+				}
+			}
+		}
+	}
 }
 
 static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTemplate CharTemplate)
@@ -2403,6 +2437,7 @@ static function UpdateRetribution()
 	local X2ChosenActionTemplate Template;
 	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Retribution'));
 	Template.OnActivatedFn = ActivateRetribution;
+	Template.OnChooseActionFn=OnChooseRetribution;
 }
 
 static function ActivateRetribution(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
@@ -2420,6 +2455,40 @@ static function ActivateRetribution(XComGameState NewGameState, StateObjectRefer
 	OutPost.AddChosenRetribution(default.CHOSEN_RETRIBUTION_DURATION);
 }
 
+static function OnChooseRetribution(XComGameState NewGameState, XComGameState_ChosenAction ActionState)
+{
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_HeadquartersXCom XComHQ;
+
+	ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(ActionState.ChosenRef, NewGameState);
+	RegionState = ChooseRetributionRegion(ChosenState);
+	ActionState.StoredReference = RegionState.GetReference();
+	
+	XComHQ = `XCOMHQ;
+	XComHQ.NumChosenRetributions++;
+}
+
+static function XComGameState_WorldRegion ChooseRetributionRegion(XComGameState_AdventChosen ChosenState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState;
+	local StateObjectReference RegionRef;
+	local int i;
+	History = `XCOMHISTORY;
+	//For target deck, get chosen teritories and then remove the uncontacted ones. That way it will select a region that's both this chosen's region AND contacted
+	//There will always be at least one because you need to have at least one territory contacted to meet the chosen, and you can't lose contact to regions in LWOTC.
+	ChosenState.RegionAttackDeck = ChosenState.TerritoryRegions;
+	for(i=0;i<ChosenState.RegionAttackDeck.length; i++)
+	{
+		if(XComGameState_WorldRegion(History.GetGameStateForObjectID(ChosenState.RegionAttackDeck[i].ObjectID)).ResistanceLevel<eResLevel_Contact)
+		ChosenState.RegionAttackDeck.Remove(i,1);
+	}
+	RegionRef = ChosenState.RegionAttackDeck[`SYNC_RAND_STATIC(ChosenState.RegionAttackDeck.Length)];
+	RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionRef.ObjectID));
+
+	return RegionState;
+}
 //=========================================================================================
 //================= BEGIN LONG WAR ABILITY TAG HANDLER ====================================
 //=========================================================================================
@@ -2597,6 +2666,15 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'STOCK_SUP_SW_AIM_BONUS':
 			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SW_AIM_BONUS);
+			return true;
+		case 'STOCK_BSC_GF_CHANCE':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_BSC_SUCCESS_CHANCE);
+			return true;
+		case 'STOCK_ADV_GF_CHANCE':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_ADV_SUCCESS_CHANCE);
+			return true;
+		case 'STOCK_SUP_GF_CHANCE':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SUCCESS_CHANCE);
 			return true;
 		default:
 			return false;

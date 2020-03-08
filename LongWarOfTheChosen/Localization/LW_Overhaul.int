@@ -83,7 +83,7 @@ ActivityObjectives[0]="Assault an Alien Research Lab"
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Find a Lead"
+ActivityObjectives[0]="Find Enemy Flight Paths"
 ActivityObjectives[1]="Recover UFO artifacts"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
@@ -92,7 +92,7 @@ ActivityObjectives[1]="Recover UFO artifacts"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Find a Lead"
+ActivityObjectives[0]="Find Enemy Flight Paths"
 ActivityObjectives[1]="Recover UFO artifacts"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
@@ -100,7 +100,7 @@ ActivityObjectives[1]="Recover UFO artifacts"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Find a Lead"
+ActivityObjectives[0]="Find Enemy Flight Paths"
 ActivityObjectives[1]="Recover UFO artifacts"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
@@ -132,7 +132,7 @@ ActivityObjectives[0]="Get ADVENT's attention"
 
 [ProtectResearch X2LWAlienActivityTemplate]
 ActivityName="ProtectResearchActivity"
-ActivityObjectives[0]="Find a Lead"
+ActivityObjectives[0]="Find a Facility Lead"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="We have discovered an ADVENT device interfering with Resistance communications. If it is destroyed, we may develop new intelligence sources and data.", MissionIndex=0)

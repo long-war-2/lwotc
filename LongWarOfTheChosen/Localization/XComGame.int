@@ -37,7 +37,12 @@ m_strLowScientistsList[2]=A Scientist may be available in the Black Market, and 
 m_strLowEngineersList[0]=Visit the Black Market with the Avenger. This will show you any staff currently available for recruitment.
 m_strLowEngineersList[2]=An Engineer may be available in the Black Market, and can be recruited by paying supplies.
 
-
+m_strRetributionAlertTitle="CHOSEN RETRIBUTION"
+;LWOTC needs translation
+m_strRetributionAlertDescription="A Chosen has clamped down on Resistance activities in this region, reducing the area's activity efficiency." 
+m_strRetributionAlertIncomeDecreasedTitle="HAVEN SABOTAGED"
+m_strRetributionAlertIncomeDescription="Supply, Intel, and Recruit activity efficiency has been decreased by 20%"
+;LWOTC end translation
 [XComGame.UIAdventOperations]
 [UIAdventOperations]
 m_strTitleHelp="We have received intel regarding the Aliens' current activities. If the Resistance can detect the source of these operations, we can conduct operations to stop them."
@@ -1172,21 +1177,21 @@ LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attac
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Stock"
 FriendlyNamePlural="Stocks"
-BriefSummary="Missed shots with your primary weapon have a 20% chance to become a graze."
+BriefSummary="Missed shots with your primary weapon have a <Ability:STOCK_BSC_GF_CHANCE/> chance to become a graze."
 TinySummary="Missed shots can graze."
 LootTooltip="This weapon upgrade, when installed, sometimes converts misses into grazes."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Stock"
 FriendlyNamePlural="Advanced Stocks"
-BriefSummary="Missed shots with your primary weapon have a 25% chance to become a graze."
+BriefSummary="Missed shots with your primary weapon have a <Ability:STOCK_ADV_GF_CHANCE/> chance to become a graze."
 TinySummary="Missed shots can graze."
 LootTooltip="This weapon upgrade, when installed, sometimes converts misses into grazes."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Stock"
 FriendlyNamePlural="Elite Stocks"
-BriefSummary="Missed shots with your primary weapon have a 30% chance to become a graze."
+BriefSummary="Missed shots with your primary weapon have a <Ability:STOCK_SUP_GF_CHANCE/> chance to become a graze."
 TinySummary="Missed shots can graze."
 LootTooltip="This weapon upgrade, when installed, sometimes converts misses into grazes."
 
@@ -5246,6 +5251,13 @@ LocFriendlyName="Get up!"
 LocHelpText="Remove the unconcious effect from a soldier."
 LocLongDescription="Remove the unconcious effect from a soldier"
 LocFlyOverText="Get up!"
+
+[ChosenSummonFollowers X2AbilityTemplate]
+LocFriendlyName="Summon Followers"
+LocHelpText="Summon alliens."
+LocLongDescription="Summon alliens."
+LocFlyOverText="Summonnin' ayys"
+
 ; End Translation
 
 ; LWOTC Needs Translation
