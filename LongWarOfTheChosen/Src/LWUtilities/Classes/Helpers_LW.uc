@@ -380,3 +380,44 @@ static function PrintActionRecursive(X2Action Action, int iLayer)
         PrintActionRecursive(ChildAction, iLayer + 1);
     }
 }
+
+// Returns whether resistance orders are enabled in the campaign or not. This
+// not only checks for whether the second wave option is enabled, but it also
+// checks where there are any active resistance orders. If there are, then
+// they are automatically enabled.
+//
+// TODO: This check for active resistance orders is only needed for the transition
+// when introducing the second wave option on existing campaigns. We can't hide the
+// Resistance Orders UI while there are active cards.
+static function bool AreResistanceOrdersEnabled()
+{
+	local XComGameState_HeadquartersResistance ResistanceHQ;
+	local array<XComGameState_ResistanceFaction> AllFactions;
+	local XComGameState_ResistanceFaction FactionState;
+	local array<StateObjectReference> CardSlots;
+	local int i;
+
+	// First check the "wild card" slots
+	ResistanceHQ = XComGameState_HeadquartersResistance(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
+	CardSlots = ResistanceHQ.GetWildCardSlots();
+	for (i = 0; i < CardSlots.Length; i++)
+	{
+		if (CardSlots[i].ObjectID != 0)
+			return true;
+	}
+
+	// Next check whether there are any cards in faction slots
+	AllFactions = ResistanceHQ.GetAllFactions();
+	foreach AllFactions(FactionState)
+	{
+		CardSlots = FactionState.GetCardSlots();
+		for (i = 0; i < CardSlots.Length; i++)
+		{
+			if (CardSlots[i].ObjectID != 0)
+				return true;
+		}
+	}
+
+	// Finally, check the second wave option
+	return `SecondWaveEnabled('EnableResistanceOrders');
+}

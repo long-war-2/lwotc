@@ -2,6 +2,10 @@
 [EnableChosen SecondWaveOptionObject]
 Tooltip="Enables the Chosen, who will activate after you complete the first network tower mission."
 Description="The Chosen: Enables the Chosen."
+
+[EnableResistanceOrders SecondWaveOptionObject]
+Tooltip="Enables Resistance Orders."
+Description="Strategic Dominance: Enables Resistance Orders for XCOM."
 ; End Translation
 
 ; LWOTC Needs Translation

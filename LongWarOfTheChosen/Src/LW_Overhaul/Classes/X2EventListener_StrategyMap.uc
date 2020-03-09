@@ -58,6 +58,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('BlackMarketGoodsReset', OnBlackMarketGoodsReset, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('RegionBuiltOutpost', OnRegionBuiltOutpost, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('PreDarkEventDeactivated', ShowDarkEventDeactivatedNotification, ELD_OnStateSubmitted, GetListenerPriority());
+	Template.AddCHEvent('Geoscape_ResInfoButtonVisible', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
 
 	//Added for fix to issue #100
 	Template.AddCHEvent('OverrideCurrentDoom', OverrideCurrentDoom, ELD_Immediate, GetListenerPriority());
@@ -946,6 +947,24 @@ static function EventListenerReturn ShowDarkEventDeactivatedNotification(
 			DarkEventState.GetMyTemplate().DisplayName,
 			default.strDarkEventExpiredText,
 			eUIState_Bad);
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn ShowOrHideResistanceOrdersButton(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none) return ELR_NoInterrupt;
+
+	// The event expects `true` to show the button, or `false` to hide it
+	Tuple.Data[0].b = class'Helpers_LW'.static.AreResistanceOrdersEnabled();
 
 	return ELR_NoInterrupt;
 }
