@@ -34,6 +34,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 		case 'CovertAction_IncreaseIncome':
 		case 'CovertAction_BreakthroughTech':
+		case 'CovertAction_ResistanceCard':
 			`LWTrace("X2LWCovertActionsModTemplate - disabling covert action " $ CATemplate.DataName);
 			CATemplate.RequiredFactionInfluence = EFactionInfluence(eFactionInfluence_MAX + 1);
 			break;

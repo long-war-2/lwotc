@@ -12,8 +12,13 @@ class UIScreenListener_ChosenEvents extends UIScreenListener;
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
 {
-	
-	if (!`SecondWaveEnabled('EnableChosen'))
+	if (UIResistanceReport_ChosenEvents(Screen) != none && !`SecondWaveEnabled('EnableChosen'))
+	{
+		Screen.CloseScreen();
+	}
+
+	if (UIStrategyPolicy(Screen) != none && UIStrategyPolicy(Screen).bResistanceReport &&
+			!class'Helpers_LW'.static.AreResistanceOrdersEnabled())
 	{
 		Screen.CloseScreen();
 	}
@@ -22,5 +27,5 @@ event OnInit(UIScreen Screen)
 defaultproperties
 {
 	// Leave this none and filter in the handlers to handle class overrides
-	ScreenClass = UIResistanceReport_ChosenEvents;
+	ScreenClass = none;
 }

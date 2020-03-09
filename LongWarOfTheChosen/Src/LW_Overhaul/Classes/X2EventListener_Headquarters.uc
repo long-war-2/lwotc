@@ -27,6 +27,7 @@ static function CHEventListenerTemplate CreateXComHQListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'XComHQListeners');
 	Template.AddCHEvent('OverrideScienceScore', OverrideScienceScore, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CanTechBeInspired', CanTechBeInspired, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('UIAvengerShortcuts_ShowCQResistanceOrders', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -117,6 +118,25 @@ static function EventListenerReturn CanTechBeInspired(
 	// Exclude repeatable research from inspiration
 	TechState = XComGameState_Tech(EventSource);
 	Tuple.Data[0].b = !TechState.GetMyTemplate().bRepeatable;
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn ShowOrHideResistanceOrdersButton(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none) return ELR_NoInterrupt;
+
+	// The event expects `true` if the button should be shown, or
+	// `false` if it should be hidden.
+	Tuple.Data[0].b = class'Helpers_LW'.static.AreResistanceOrdersEnabled();
 
 	return ELR_NoInterrupt;
 }
