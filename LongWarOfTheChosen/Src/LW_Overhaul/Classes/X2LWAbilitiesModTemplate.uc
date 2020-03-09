@@ -63,7 +63,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'Bayonet':
 			UpdateBayonet(Template);
-		break;
+			break;
 		//I probably could just update it in the Alienpack, but it doesn't recognize the cooldown class there
 		case 'BayonetCharge':
 			UpdateBayonetCharge(Template);
@@ -527,15 +527,11 @@ static function ReplaceWithDamageReductionMeele(X2AbilityTemplate Template)
 }
 static function UpdateRevive(X2AbilityTemplate Template)
 {
-	local X2Condition ShooterCondition;
-	foreach Template.AbilityShooterConditions(ShooterCondition)
-	{
-		if (ShooterCondition.IsA('X2Condition_UnitEffects'))
-		{	
-			X2Condition_UnitEffects(ShooterCondition).AddExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName, 'AA_UnitIsDisoriented');
-			X2Condition_UnitEffects(ShooterCondition).AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
-		}
-	}
+	local X2Condition_UnitEffects ExcludeEffects;
+	ExcludeEffects = new class'X2Condition_UnitEffects';
+	ExcludeEffects.AddExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName, 'AA_UnitIsDisoriented');
+	ExcludeEffects.AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
+	Template.AbilityShooterConditions.AddItem(ExcludeEffects);
 }
 
 
