@@ -19,7 +19,8 @@ static function X2AbilityTemplate CreateHeavyRevive()
 	local X2Effect_RemoveEffects            RemoveEffects;
 	local X2Effect_Persistent               DisorientedEffect;
 	local X2AbilityCost_ActionPoints		ActionPointCost;
-
+	local X2Condition_UnitEffects ExcludeEffects;
+	
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'HeavyRevive');
 
 	Template.AbilitySourceName = 'eAbilitySource_Commander';
@@ -64,6 +65,11 @@ static function X2AbilityTemplate CreateHeavyRevive()
 	RemoveEffects = new class'X2Effect_RemoveEffects';
 	RemoveEffects.EffectNamesToRemove.AddItem(class'X2StatusEffects_LW'.default.HeavyDazedName);
 	Template.AddTargetEffect(RemoveEffects);
+
+	ExcludeEffects = new class'X2Condition_UnitEffects';
+	ExcludeEffects.AddExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName, 'AA_UnitIsDisoriented');
+	ExcludeEffects.AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
+	Template.AbilityShooterConditions.AddItem(ExcludeEffects);
 
 	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
 	DisorientedEffect.bRemoveWhenSourceDies = false;
