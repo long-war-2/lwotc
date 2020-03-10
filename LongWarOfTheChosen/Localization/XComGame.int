@@ -2070,8 +2070,14 @@ DisplayName="Intel Package"
 [Reward_Dummy_RegionalTower X2RewardTemplate]
 DisplayName="Location of ADVENT Regional HQ"
 
+; LWOTC Needs Translation
 [Reward_FactionInfluence_LW X2RewardTemplate]
 DisplayName="Increase Faction Influence"
+
+[Reward_EnemyCorpses X2RewardTemplate]
+DisplayName="Enemy Corpses"
+RewardDetails="You'll get a selection of random enemy corpses."
+; End Translation
 
 ; POI Templates
 [POI_Rebels X2PointOfInterestTemplate]
@@ -5282,7 +5288,36 @@ Description="The Berserker Queen is expected on this mission. Be careful!"
 FriendlyName="Archon King"
 Description="The Archon King is expected on this mission. Be careful!"
 
+[CovertActionRisk_Failure_Easy X2CovertActionRiskTemplate]
+RiskName="Failure"
+
+[CovertActionRisk_Failure_Moderate X2CovertActionRiskTemplate]
+RiskName="Failure"
+
+[CovertActionRisk_Failure_Hard X2CovertActionRiskTemplate]
+RiskName="Failure"
+
 ; Purifier autopsy no longer unlocks reinforced vest underlay
 [AutopsyAdventPurifier X2TechTemplate]
 UnlockedDescription=""
+; End Translation
+
+; LWOTC Needs Translation
+[CovertAction_EnemyCorpses X2CovertActionTemplate]
+ActionObjective="Steal Corpses"
+
+[CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Raid an Enemy Morgue"
+ActionPreNarrative="We've discovered where they've been dumping the corpses from all the fighting you've been doing. Could be an opportunity to accelerate your tech development."
+ActionPostNarrative="Your team managed to collect some valuable enemy corpses from the raid."
+
+[CovertActionNarrative_EnemyCorpses_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Raid an Enemy Morgue"
+ActionPreNarrative="We've discovered where they've been dumping the corpses from all the fighting you've been doing. Could be an opportunity to accelerate your tech development."
+ActionPostNarrative="Your team managed to collect some valuable enemy corpses from the raid."
+
+[CovertActionNarrative_EnemyCorpses_Templars X2CovertActionNarrativeTemplate]
+ActionName="Raid an Enemy Morgue"
+ActionPreNarrative="We've discovered where they've been dumping the corpses from all the fighting you've been doing. Could be an opportunity to accelerate your tech development."
+ActionPostNarrative="Your team managed to collect some valuable enemy corpses from the raid."
 ; End Translation
