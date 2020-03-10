@@ -40,6 +40,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 		case 'CovertAction_RecruitScientist':
 		case 'CovertAction_RecruitEngineer':
+		case 'CovertAction_EnemyCorpses':
 		case 'CovertAction_CancelChosenActivity':
 		case 'CovertAction_RecruitFactionSoldier':
 		case 'CovertAction_DelayChosen':

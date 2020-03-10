@@ -4,11 +4,12 @@
 //  PURPOSE: Swaps an approached civilian to the xcom team to be controllable for evac.
 //---------------------------------------------------------------------------------------
 
-class X2StrategyElement_DefaultRewards_LW extends X2StrategyElement config(GameData);
+class X2StrategyElement_DefaultRewards_LW extends X2StrategyElement_DefaultRewards config(GameData);
 
 const REBEL_REWARD_NAME='Reward_Rebel';
 const RESISTANCE_MEC_REWARD_NAME='Reward_ResistanceMEC';
 const NEW_RESOURCES_REWARD_NAME='Reward_NewResources';
+const CORPSE_REWARD_NAME='Reward_EnemyCorpses';
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -27,6 +28,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Rewards.AddItem(CreateDummyRegionalNetworkTowerRewardTemplate());
 	Rewards.AddItem(CreateRadioRelayRewardTemplate());
 	Rewards.AddItem(CreateFactionInfluenceRewardTemplate());
+	Rewards.AddItem(CreateEnemyCorpsesRewardTemplate());
 	return Rewards;
 }
 
@@ -373,4 +375,30 @@ static function string GetFactionInfluenceRewardImage(XComGameState_Reward Rewar
 static function string GetFactionInfluenceRewardString(XComGameState_Reward RewardState)
 {
 	return RewardState.GetMyTemplate().DisplayName;
+}
+
+static function X2DataTemplate CreateEnemyCorpsesRewardTemplate()
+{
+    local X2RewardTemplate Template;
+
+    `CREATE_X2Reward_TEMPLATE(Template, const.CORPSE_REWARD_NAME);
+    Template.rewardObjectTemplateName = 'EnemyCorpses';
+
+    // Corpses are never available or needed. This isn't checked by the activity manager system, only the black market and
+    // resistance HQ. This prevents corpses from appearing for purchase in these places.
+    Template.IsRewardAvailableFn = IsCorpseRewardAvailable;
+    Template.IsRewardNeededFn = AlwaysFalseNeeded;
+    Template.SetRewardByTemplateFn = SetLootTableReward;
+    Template.GiveRewardFn = GiveLootTableReward;
+    Template.GetRewardStringFn = GetLootTableRewardString;
+
+    return Template;
+}
+
+static function bool IsCorpseRewardAvailable(optional XComGameState NewGameState, optional StateObjectReference AuxRef)
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+    return AuxRef.ObjectID != 0 && AlienHQ.GetForceLevel() >= 5;
 }
