@@ -501,7 +501,7 @@ static function X2DataTemplate CreateTemplate_Sidewinder_WPN(name TemplateName)
 	}
 	if (TemplateName == 'SidewinderM2_WPN' || TemplateName == 'SidewinderM3_WPN')
 	{	
-		Template.Abilities.AddItem('HitandSlither');
+		//future use
 	}
 	if (TemplateName == 'SidewinderM3_WPN')
 	{
