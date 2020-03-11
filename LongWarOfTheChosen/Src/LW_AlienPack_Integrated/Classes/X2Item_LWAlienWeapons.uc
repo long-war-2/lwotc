@@ -472,7 +472,7 @@ static function X2DataTemplate CreateTemplate_Sidewinder_WPN(name TemplateName)
 	Template.strImage = "img:///LWSidewinderSMG.Textures.LWBeamSMG_Common"; 
 	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer); //invalidates multiplayer availability
 
-	Template.RangeAccuracy = class'X2Item_DefaultWeapons'.default.SHORT_CONVENTIONAL_RANGE;
+	Template.RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_CONVENTIONAL_RANGE;
 	
 	if (TemplateName == 'SidewinderM1_WPN')
 		Template.BaseDamage = default.SIDEWINDER_WPN_BASEDAMAGE;
