@@ -40,6 +40,7 @@ var config int MASS_REANIMATION_LW_RANGE_METERS;
 var config int DRONE_REPAIR_ACTION_COST;
 var config int DRONE_STUN_HIT_MODIFIER;
 var config int DRONE_STUN_ACTION_POINT_DAMAGE;
+var config int STUNNER_COOLDOWN;
 
 var config int CHRYSSALID_SOLDIER_SLASH_BONUS_DAMAGE;
 var config int HIVE_QUEEN_SLASH_BONUS_DAMAGE;
@@ -536,7 +537,7 @@ static function X2AbilityTemplate AddDroneMeleeStun()
 	//local X2Effect_ApplyWeaponDamage PhysicalDamageEffect;
 	local X2Effect_Stunned				    StunnedEffect;
 	local X2Condition_UnitProperty			AdjacencyCondition;
-
+	local X2AbilityCooldown Cooldown;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWDroneMeleeStun');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_stun";
 
@@ -551,6 +552,10 @@ static function X2AbilityTemplate AddDroneMeleeStun()
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.STUNNER_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
 
 	HitCalc = new class'X2AbilityToHitCalc_StandardAim';
 	HitCalc.BuiltInHitMod = default.DRONE_STUN_HIT_MODIFIER;
