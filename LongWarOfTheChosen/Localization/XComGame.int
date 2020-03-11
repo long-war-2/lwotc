@@ -822,7 +822,7 @@ FriendlyName="Laser Pistol"
 FriendlyNamePlural="Laser Pistols"
 UnknownUtilityCategory="Pistol"
 BriefSummary="Based on the advances in beam weapons tech we've achieved, this new pistol boasts a substantial improvement in power over our conventional pistol."
-TacticalText="<Bullet/> Laser pistols are substantially more effective and accurate than their conventional precursors.\n<Bullet/> Lasers receive bonus aim.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
+TacticalText="<Bullet/> Laser pistols are substantially more effective and accurate than their conventional precursors.\n<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
 
 [LWPistol_MG X2WeaponTemplate]
 FriendlyName="Mag Pistol"
@@ -993,21 +993,21 @@ AbilityDescName="SMG"
 FriendlyName="Kal-13 \"Bullpup\""
 FriendlyNamePlural="Kal-13 Bullpups"
 BriefSummary="We can manufacture a modified Laser SMG that can be used by Skirmishers. While Dr.Tygan has correctly stated that this is in fact not a bullpup, it's the tweaks we've made and its compact frame are enough for them to consider its use in battle."
-TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Bullpup-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
 [Bullpup_CG X2WeaponTemplate]
 FriendlyName="Kal-69 \"Bullpup\""
 FriendlyNamePlural="Kal-69 Bullpups"
 BriefSummary="As the bullpup frame the skirmishers employ for their weapons has proven too weak to be able control the recoil of a coil weapon and withstand potential damage, we've instead decided to adapt a model of our Subcoilers for field use by skirmishers, just like we did with their Laser \"Bullpup\""
-TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-69 Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Bullpup-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-69 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
 [CrossbowVektor_CV X2WeaponTemplate]
 FriendlyName="Ballistic Crossbow"
 FriendlyNamePlural="Ballistic Crossbows"
 BriefSummary="A silent compound crossbow many Reapers prefer to conventional firearms."
-TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Functionally the same as a vektor rifle."
+TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Functionally the same as a vektor rifle."
 AbilityDescName="crossbow"
 
 [Vektor_LS X2WeaponTemplate]
@@ -1018,10 +1018,10 @@ TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conven
 AbilityDescName="vektor rifle"
 
 [Vektor_CG X2WeaponTemplate]
-FriendlyName="Coil Crossbow"
-FriendlyNamePlural="Coil Crossbows"
+FriendlyName="\"Flatline\" Crossbow"
+FriendlyNamePlural="\"Flatline\" Crossbows"
 BriefSummary="Our final crossbow design, this is as far as we can push them to keep up with the alien tech. The bolts of this crossbow are incased in a microplasma field, greatly decreasing air resistance and letting them deal devious wounds and pierce armor with ease."
-TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Represents the coil tier version of vektor rifles."
+TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Represents the coil tier version of vektor rifles."
 AbilityDescName="crossbow"
 
 [SPARKChaingun X2WeaponTemplate]
@@ -1035,14 +1035,14 @@ AbilityDescName="Heavy Chaingun"
 FriendlyName="Heavy Railgun"
 FriendlyNamePlural="Heavy Railguns"
 BriefSummary="Heavy Railgun fires high-caliber projectiles at extreme velocities that deal massive damage."
-TacticalText="<Bullet/> Heavy Railgun is the laser equivalent of the Autocannon."
+TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Heavy Railgun is the laser equivalent of the Autocannon."
 AbilityDescName="Heavy Railgun"
 
 [SparkRifle_CG X2WeaponTemplate]
 FriendlyName="Particle Projection Cannon"
 FriendlyNamePlural="Particle Projection Cannons"
 BriefSummary="PPC uses several acceleration contours to create a focused beam of supercharged particles that remain effective at any range." 
-TacticalText="<Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
+TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
 AbilityDescName="Particle Projection Cannon"
 
 ; End Translation
