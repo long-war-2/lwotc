@@ -972,6 +972,7 @@ static function X2DataTemplate CreateTemplate_LWDrone_WPN(name TemplateName)
 	Template.iSoundRange = default.LWDRONE_DRONEWEAPON_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.LWDRONE_DRONEWEAPON_IENVIRONMENTDAMAGE;
 	Template.iIdealRange = default.LWDRONE_IDEALRANGE;
+	Template.RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_CONVENTIONAL_RANGE;
 
 	Template.iClipSize = 99;
 	Template.InfiniteAmmo = true;
