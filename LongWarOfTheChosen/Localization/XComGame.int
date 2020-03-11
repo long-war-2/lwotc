@@ -992,14 +992,14 @@ AbilityDescName="SMG"
 [Bullpup_LS X2WeaponTemplate]
 FriendlyName="Kal-13 \"Bullpup\""
 FriendlyNamePlural="Kal-13 Bullpups"
-BriefSummary="We can manufacture a modified Laser SMG That can be used by Skirmishers. While Dr.Tygan Has correctly stated that this is in fact not a bullpup, it's still a small, mobile gun that shoots lasers and that works for me."
-TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-15 Bullpup's tactical effectiveness."
+BriefSummary="We can manufacture a modified Laser SMG that can be used by Skirmishers. While Dr.Tygan has correctly stated that this is in fact not a bullpup, it's the tweaks we've made and its compact frame are enough for them to consider its use in battle."
+TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
 [Bullpup_CG X2WeaponTemplate]
 FriendlyName="Kal-69 \"Bullpup\""
 FriendlyNamePlural="Kal-69 Bullpups"
-BriefSummary="We can manufacture a modified Laser SMG That can be used by Skirmishers. While Dr.Tygan Has correctly stated that this is in fact not a bullpup, it's still a small, mobile gun that fires rounds sheathed in ablative plastic and that works for me."
+BriefSummary="As the bullpup frame the skirmishers employ for their weapons has proven too weak to be able control the recoil of a coil weapon and withstand potential damage, we've instead decided to adapt a model of our Subcoilers for field use by skirmishers, just like we did with their Laser \"Bullpup\""
 TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-69 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
@@ -1007,21 +1007,21 @@ AbilityDescName="bullpup"
 FriendlyName="Ballistic Crossbow"
 FriendlyNamePlural="Ballistic Crossbows"
 BriefSummary="A silent compound crossbow many Reapers prefer to conventional firearms."
-TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms."
+TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Functionally the same as a vektor rifle."
 AbilityDescName="crossbow"
 
 [Vektor_LS X2WeaponTemplate]
-FriendlyName="Laser Crossbow"
-FriendlyNamePlural="Laser Crossbows"
-BriefSummary="A silent compound crossbow many Reapers prefer to conventional firearms, bolts have been upgraded with a laser enhanced bolthead. Functionally identical to the vektor rifle."
-TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms, bolts have been upgraded with an arc enhanced bolthead."
+FriendlyName="\"Bullseye\" Crossbow"
+FriendlyNamePlural="\"Bullseye\" Crossbows"
+BriefSummary="An improved crossbow designed incorporating alien alloys, as well as a smart rangefinder that operates on the same principle as our pulse laser weapons. Any reaper that uses this beauty should find it much easier to land shots."
+TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Represents the laser tier version of vektor rifles."
 AbilityDescName="vektor rifle"
 
 [Vektor_CG X2WeaponTemplate]
 FriendlyName="Coil Crossbow"
 FriendlyNamePlural="Coil Crossbows"
-BriefSummary="A silent compound crossbow many Reapers prefer to conventional firearms, bolts have been upgraded with a coil enhanced bolthead. Functionally identical to the vektor rifle."
-TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms, bolts have been upgraded with an fusion enhanced bolthead."
+BriefSummary="Our final crossbow design, this is as far as we can push them to keep up with the alien tech. The bolts of this crossbow are incased in a microplasma field, greatly decreasing air resistance and letting them deal devious wounds and pierce armor with ease."
+TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Represents the coil tier version of vektor rifles."
 AbilityDescName="crossbow"
 
 [SPARKChaingun X2WeaponTemplate]
