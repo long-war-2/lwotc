@@ -1013,14 +1013,14 @@ AbilityDescName="crossbow"
 [Vektor_LS X2WeaponTemplate]
 FriendlyName="\"Bullseye\" Crossbow"
 FriendlyNamePlural="\"Bullseye\" Crossbows"
-BriefSummary="An improved crossbow designed incorporating alien alloys, as well as a smart rangefinder that operates on the same principle as our pulse laser weapons. Any reaper that uses this beauty should find it much easier to land shots."
+BriefSummary="An improved crossbow design incorporating alien alloys, as well as a smart rangefinder that operates on the same principle as our pulse laser weapons. Any reaper that uses this beauty should find it much easier to land shots."
 TacticalText="<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Represents the laser tier version of vektor rifles."
 AbilityDescName="vektor rifle"
 
 [Vektor_CG X2WeaponTemplate]
 FriendlyName="\"Flatline\" Crossbow"
 FriendlyNamePlural="\"Flatline\" Crossbows"
-BriefSummary="Our final crossbow design, this is as far as we can push them to keep up with the alien tech. The bolts of this crossbow are incased in a microplasma field, greatly decreasing air resistance and letting them deal devious wounds and pierce armor with ease."
+BriefSummary="Our final crossbow design, this is as far as we can push them to keep up with the alien tech. The bolts of this crossbow are encased in a microplasma field, greatly decreasing air resistance and letting them deal devious wounds and pierce armor with ease."
 TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Represents the coil tier version of vektor rifles."
 AbilityDescName="crossbow"
 
