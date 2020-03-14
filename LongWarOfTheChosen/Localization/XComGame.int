@@ -822,7 +822,7 @@ FriendlyName="Laser Pistol"
 FriendlyNamePlural="Laser Pistols"
 UnknownUtilityCategory="Pistol"
 BriefSummary="Based on the advances in beam weapons tech we've achieved, this new pistol boasts a substantial improvement in power over our conventional pistol."
-TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Laser pistols are substantially more effective and accurate than their conventional precursors.\n<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
+TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Laser pistols are substantially more effective and accurate than their conventional precursors.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
 
 [LWPistol_MG X2WeaponTemplate]
 FriendlyName="Mag Pistol"
@@ -990,12 +990,12 @@ AbilityDescName="SMG"
 ; LWOTC Needs Translation
 ; Bullpup changes and new templates
 [Bullpup_CV X2WeaponTemplate]
-TacticalText="<Bullet/> Bullpup-style are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Bullpup's tactical effectiveness."
 
 [Bullpup_LS X2WeaponTemplate]
 FriendlyName="Kal-13 \"Bullpup\""
-FriendlyNamePlural="Kal-13 Bullpups"
-BriefSummary="We can manufacture a modified Laser SMG that can be used by Skirmishers. While Dr.Tygan has correctly stated that this is in fact not a bullpup, its compact frame and the additional tweaks we've made are enough for them to seriously consider its use in battle."
+FriendlyNamePlural="Kal-13 \"Bullpups\""
+BriefSummary="We can manufacture a modified Laser SMG that can be used by Skirmishers. While Dr.Tygan has correctly stated that this is in fact not a Bullpup, its compact frame and the additional tweaks we've made are enough for them to seriously consider its use in battle."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
@@ -1004,8 +1004,8 @@ TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close r
 
 [Bullpup_CG X2WeaponTemplate]
 FriendlyName="Kal-69 \"Bullpup\""
-FriendlyNamePlural="Kal-69 Bullpups"
-BriefSummary="As the bullpup frame the skirmishers employ for their weapons has proven too weak to be able control the recoil of a coil weapon and withstand potential damage, we've instead decided to adapt a model of our Subcoilers for field use by skirmishers, just like we did with the Kal-13 \"Bullpup\"."
+FriendlyNamePlural="Kal-69 \"Bullpups\""
+BriefSummary="As the Bullpup frame the skirmishers employ for their weapons has proven too weak to be able control the recoil of a coil weapon and withstand potential damage, we've instead decided to adapt a model of our Subcoilers for field use by skirmishers, just like we did with the Kal-13 \"Bullpup\"."
 TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-69 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
@@ -1026,7 +1026,7 @@ AbilityDescName="crossbow"
 [Vektor_LS X2WeaponTemplate]
 FriendlyName="\"Bullseye\" Crossbow"
 FriendlyNamePlural="\"Bullseye\" Crossbows"
-BriefSummary="An improved crossbow design incorporating alien alloys, as well as a smart rangefinder that operates on the same principle as our pulse laser weapons. Any reaper that uses this beauty should find it much easier to land precise shots."
+BriefSummary="An improved crossbow design incorporating alien alloys, as well as a smart rangefinder that operates on the same principle as our pulse laser weapons. Any Reaper that uses this beauty should find it much easier to land precise shots."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Acts as the laser tier version of vektor rifles.\n<Bullet/> Use upgrades looted from enemies to improve the crossbow's tactical effectiveness."
 AbilityDescName="vektor rifle"
 
