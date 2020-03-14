@@ -2,33 +2,33 @@
 FriendlyName="Laser Rifle"
 FriendlyNamePlural="Laser Rifles"
 BriefSummary="The Laser Rifle emits a series of microsecond-duration blasts of light that destroy chemical bonds in targets."
-TacticalText="<Bullet/> Firing the primary weapon ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the laser rifles's tactical effectiveness.\n<Bullet/> The high-energy output of these laser weapons is derived from integrating alien technology into discovered pre-war laser weaponry.\n<Bullet/> Lasers receive bonus aim."
+TacticalText="<Bullet/> Firing the primary weapon ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the laser rifles's tactical effectiveness.\n<Bullet/> The high-energy output of these laser weapons is derived from integrating alien technology into discovered pre-war laser weaponry.\n<Bullet/> Laser weapons receive bonus aim."
 AbilityDescName="assault rifle"
 
 [SMG_LS X2WeaponTemplate]
 FriendlyName="Laser Stengun"
 FriendlyNamePlural="Laser Stenguns"
 BriefSummary="A lightweight version of the Laser Rifle, this fills a similar role to the SMG, trading power, ammo and accuracy at range for increased soldier mobility and concealment."
-TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the Stengun's tactical effectiveness. \n<Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage, have less ammo, and suffer accuracy penalties at long range.\n<Bullet/> Lasers receive bonus aim."
+TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the Stengun's tactical effectiveness. \n<Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage, have less ammo, and suffer accuracy penalties at long range.\n<Bullet/> Laser weapons receive bonus aim."
 AbilityDescName="SMG"
 
 [Cannon_LS X2WeaponTemplate]
 FriendlyName="Laser Cannon"
 FriendlyNamePlural="Laser Cannons"
 BriefSummary="Laser weapons tech combined with an improved cooling system will let us deploy a rapid-fire version of the cannon, able to lay down a much deadlier volume of fire."
-TacticalText="<Bullet/> The Laser Cannon is a much more powerful, yet equally deployable, version of the conventional Cannon.\n<Bullet/> Use upgrades looted from enemies to improve the Laser Cannon's tactical effectiveness.\n<Bullet/> Lasers receive bonus aim."
+TacticalText="<Bullet/> The Laser Cannon is a much more powerful, yet equally deployable, version of the conventional Cannon.\n<Bullet/> Use upgrades looted from enemies to improve the Laser Cannon's tactical effectiveness.\n<Bullet/> Laser weapons receive bonus aim."
 AbilityDescName="cannon"
 
 [Shotgun_LS X2WeaponTemplate]
 FriendlyName="Scatterray"
 FriendlyNamePlural="Scatterray"
 BriefSummary="The Scatterray is an application of laser technology to provide shotgun-like effects; it is most effective at close range due to beam diffusion."
-TacticalText="<Bullet/> Shotgun-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Scatterray's tactical effectiveness.\n<Bullet/> Lasers receive bonus aim."
+TacticalText="<Bullet/> Shotgun-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Scatterray's tactical effectiveness.\n<Bullet/> Laser weapons receive bonus aim."
 AbilityDescName="shotgun"
 
 [SniperRifle_LS X2WeaponTemplate]
 FriendlyName="Laser Lance"
 FriendlyNamePlural="Laser Lances"
 BriefSummary="A long rifle version of the Laser Rifle, the Laser Lance incorporates extremely high-energy flash capacitors, resulting in a high-precision long-range laser weapon."
-TacticalText="Sniper rifles always require both actions to fire.\n<Bullet/> They are less accurate at close range, but deadly at a distance.\n<Bullet/> Use upgrades looted from enemies to improve the Laser Lance's tactical effectiveness.\n<Bullet/> Lasers receive bonus aim."
+TacticalText="Sniper rifles always require both actions to fire.\n<Bullet/> They are less accurate at close range, but deadly at a distance.\n<Bullet/> Use upgrades looted from enemies to improve the Laser Lance's tactical effectiveness.\n<Bullet/> Laser weapons receive bonus aim."
 AbilityDescName="sniper rifle"
