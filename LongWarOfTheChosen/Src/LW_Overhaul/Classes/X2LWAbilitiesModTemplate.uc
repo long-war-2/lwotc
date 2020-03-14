@@ -541,7 +541,7 @@ static function UpdateRevive(X2AbilityTemplate Template)
 }
 static function AddImmuneConditionToPoisonSpit(X2AbilityTemplate Template)
 {
-	local X2Condition_UnitImmunities				UnitImmunityCondition;
+	local X2Condition_UnitImmunities UnitImmunityCondition;
 	
 	UnitImmunityCondition = new class'X2Condition_UnitImmunities';
 	UnitImmunityCondition.AddExcludeDamageType('Poison');
@@ -550,7 +550,7 @@ static function AddImmuneConditionToPoisonSpit(X2AbilityTemplate Template)
 
 static function AddImmuneConditionToFlamethrower(X2AbilityTemplate Template)
 {
-	local X2Condition_UnitImmunities				UnitImmunityCondition;
+	local X2Condition_UnitImmunities UnitImmunityCondition;
 	
 	UnitImmunityCondition = new class'X2Condition_UnitImmunities';
 	UnitImmunityCondition.AddExcludeDamageType('Fire');
