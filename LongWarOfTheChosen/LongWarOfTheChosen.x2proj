@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Guid>7a03fe19-6291-4b95-ba1c-3ec505fa8c0b</Guid>
@@ -1009,6 +1009,7 @@
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2DownloadableContentInfo_LW_WeaponsAndArmor.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionArmors.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionWeapons.uc" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_PurifierWeapons.uc" />
     <Content Include="Content\FX_Explosion_Rocket_Launcher.upk" />
     <Content Include="Content\FX_Heavy_Blaster_Launcher.upk" />
     <Content Include="Content\FX_Heavy_RocketLauncher.upk" />
