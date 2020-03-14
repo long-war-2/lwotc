@@ -91,6 +91,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'BlastShield':
 			ReplaceWithDamageReductionExplosive(Template);
 			break;
+		case 'PoisonSpit':
+			AddImmuneConditionToPoisonSpit(Template);
+			break;
+		case 'AdvPurifierFlamethrower':
+			AddImmuneConditionToFlamethrower(Template);
+			break;
 		default:
 			break;
 	}
@@ -533,6 +539,25 @@ static function UpdateRevive(X2AbilityTemplate Template)
 	ExcludeEffects.AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
 	Template.AbilityShooterConditions.AddItem(ExcludeEffects);
 }
+static function AddImmuneConditionToPoisonSpit(X2AbilityTemplate Template)
+{
+	local X2Condition_UnitImmunities				UnitImmunityCondition;
+	
+	UnitImmunityCondition = new class'X2Condition_UnitImmunities';
+	UnitImmunityCondition.AddExcludeDamageType('Poison');
+	Template.AbilityMultiTargetConditions.AddItem(UnitImmunityCondition);
+}
+
+static function AddImmuneConditionToFlamethrower(X2AbilityTemplate Template)
+{
+	local X2Condition_UnitImmunities				UnitImmunityCondition;
+	
+	UnitImmunityCondition = new class'X2Condition_UnitImmunities';
+	UnitImmunityCondition.AddExcludeDamageType('Fire');
+	Template.AbilityMultiTargetConditions.AddItem(UnitImmunityCondition);
+}
+
+	
 
 
 
