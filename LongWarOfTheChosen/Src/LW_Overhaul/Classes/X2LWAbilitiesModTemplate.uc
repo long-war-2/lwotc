@@ -95,7 +95,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			AddImmuneConditionToPoisonSpit(Template);
 			break;
 		case 'AdvPurifierFlamethrower':
-			AddImmuneConditionToFlamethrower(Template);
+			UpdatePurifierFlamethrower(Template);
 			break;
 		default:
 			break;
@@ -557,7 +557,48 @@ static function AddImmuneConditionToFlamethrower(X2AbilityTemplate Template)
 	Template.AbilityMultiTargetConditions.AddItem(UnitImmunityCondition);
 }
 
-	
+static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
+{
+	local X2AbilityTarget_Cursor					CursorTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower	ConeMultiTarget;
+	local X2Effect_ApplyFireToWorld_Limited			FireToWorldEffect;
+	local X2AbilityToHitCalc_StandardAim			StandardAim;
+	local array<name>                       		SkipExclusions;
+
+	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+	StandardAim.bAllowCrit = false;
+	StandardAim.bGuaranteedHit = true;
+	Template.AbilityToHitCalc = StandardAim;
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
+
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
+	ConeMultiTarget.bUseWeaponRadius = true;
+
+	ConeMultiTarget.ConeEndDiameter = class'X2Ability_AdvPurifier'.default.ADVPURIFIER_FLAMETHROWER_TILE_WIDTH * class'XComWorldData'.const.WORLD_StepSize;
+	ConeMultiTarget.ConeLength = class'X2Ability_AdvPurifier'.default.ADVPURIFIER_FLAMETHROWER_TILE_LENGTH * class'XComWorldData'.const.WORLD_StepSize;
+	ConeMultiTarget.AddConeSizeMultiplier('Incinerator', class'X2Ability_LW_TechnicalAbilitySet'.default.INCINERATOR_RANGE_MULTIPLIER, class'X2Ability_LW_TechnicalAbilitySet'.default.INCINERATOR_RADIUS_MULTIPLIER);
+	// Next line used for vanilla targeting
+	// ConeMultiTarget.AddConeSizeMultiplier('Incinerator', default.INCINERATOR_CONEEND_DIAMETER_MODIFIER, default.INCINERATOR_CONELENGTH_MODIFIER);
+	ConeMultiTarget.bIgnoreBlockingCover = true;
+	Template.AbilityMultiTargetStyle = ConeMultiTarget;
+
+	Template.bCheckCollision = true;
+	Template.bAffectNeighboringTiles = true;
+	Template.bFragileDamageOnly = true;
+
+	// For vanilla targeting
+	// Template.ActionFireClass = class'X2Action_Fire_Flamethrower';
+	Template.PostActivationEvents.AddItem('FlamethrowerActivated');
+	Template.ActionFireClass = class'X2Action_Fire_Flamethrower_LW';
+
+	Template.BuildVisualizationFn = class'X2Ability_LW_TechnicalAbilitySet'.static.LWFlamethrower_BuildVisualization;
+
+}
+
 
 
 
