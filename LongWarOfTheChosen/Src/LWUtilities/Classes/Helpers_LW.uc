@@ -421,3 +421,47 @@ static function bool AreResistanceOrdersEnabled()
 	// Finally, check the second wave option
 	return `SecondWaveEnabled('EnableResistanceOrders');
 }
+
+// Resumes or pauses any Will recovery projects for the given unit when
+// updating their status.
+static function UpdateUnitWillRecoveryProject(XComGameState_Unit UnitState)
+{
+	local XComGameState_HeadquartersProjectRecoverWill WillProject;
+	local ESoldierStatus UnitStatus;
+
+	// Pause or resume the unit's Will recovery project if there is one, based on
+	// the new status.
+	WillProject = GetWillRecoveryProject(UnitState.GetReference());
+	if (WillProject != none)
+	{
+		UnitStatus = UnitState.GetStatus();
+		if ((UnitStatus == eStatus_Active || UnitStatus == eStatus_Healing) && IsHQProjectPaused(WillProject))
+		{
+			WillProject.ResumeProject();
+		}
+		else if ((UnitStatus != eStatus_Active && UnitStatus != eStatus_Healing) && !IsHQProjectPaused(WillProject))
+		{
+			WillProject.PauseProject();
+		}
+	}
+}
+
+static function bool IsHQProjectPaused(XComGameState_HeadquartersProject ProjectState)
+{
+	return ProjectState.CompletionDateTime.m_iYear == 9999;
+}
+
+static function XComGameState_HeadquartersProjectRecoverWill GetWillRecoveryProject(StateObjectReference UnitRef)
+{
+	local XComGameState_HeadquartersProjectRecoverWill WillProject;
+
+	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_HeadquartersProjectRecoverWill', WillProject)
+	{
+		if (WillProject.ProjectFocus.ObjectID == UnitRef.ObjectID)
+		{
+			return WillProject;
+		}
+	}
+
+	return none;
+}

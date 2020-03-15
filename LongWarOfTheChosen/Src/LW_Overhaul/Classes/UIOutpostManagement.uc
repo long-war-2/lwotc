@@ -709,6 +709,7 @@ simulated function SaveLiaison()
         {
             Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', OldLiaison.ObjectID));
             Unit.SetStatus(eStatus_Active);
+            class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(Unit);
         }
         
         if (CachedLiaison.ObjectID != 0)
