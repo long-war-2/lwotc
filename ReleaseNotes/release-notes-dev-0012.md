@@ -1,6 +1,6 @@
 Welcome to **dev build 12** of Long War of the Chosen!
 
-This is an experimental build in which many changes are being tested out.
+This is an experimental build in which many changes are being tested out. It is a drop-in replacement for earlier dev builds and beta 2.
 
 **IMPORTANT** Unlike the previous dev builds, this one requires the [Detailed Soldier Lists mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1128263618), so you will have to subscribe to and enable it unless you are using RPG Overhaul (which comes with the mod integrated).
 
@@ -35,6 +35,8 @@ One of the main issues with covert actions was that you could throw any old sold
 
 We have tried to make them more interesting in this build by allowing them to fail. To compensate, you get more covert actions to choose from and many of the durations have been significantly reduced. This should make the Resistance Ring a more appealing first facility.
 
+If you're upgrading LWOTC in the middle of a campaign, consider using the `RefreshCovertActions` console command to refresh your covert actions and get access to the extra ones. Note that the permanent ones, like Hunt the Chosen or Find Faction, won't be updated.
+
 In summary:
 
 * Covert actions can now fail (chance to fail displayed as a percentage, as are all other risks)
@@ -54,11 +56,11 @@ In summary:
   * Priest's Stasis
   * Stun Lancer sword/baton attack
   * Officer's Mark
-* The Lost are now slightly less likely to target ADVENT/aliens
+* ADVENT/aliens are now slightly less likely to target The Lost overall
 * Drones will try to flank units before shooting (and the have the same range table as SMGs now)
 * Enemy units will now activate if they are shot at from squad sight, even if the shot misses
 * Enemy units will also advance via cover on snipers that target them (and there aren't other XCOM soldiers in vision)
-* Vipers should no longer target poison-immune targets with Poison Spit
+* Vipers should no longer target poison-immune targets with Poison Spit (includes units with medikits)
 * Purifiers should no longer target fire-immune targets
 
 ## Resistance Orders
