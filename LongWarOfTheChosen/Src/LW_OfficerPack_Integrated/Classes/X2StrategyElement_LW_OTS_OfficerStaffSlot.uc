@@ -257,6 +257,7 @@ static function bool IsUnitValidForOTSOfficerSlot(XComGameState_StaffSlot SlotSt
 		&& !Unit.IsTraining()
 		&& !Unit.IsPsiTraining()
 		&& !Unit.IsPsiAbilityTraining()
+		&& !Unit.BelowReadyWillState()  // LWOTC: Tired and Shaken soldiers can't train
 		&& !Unit.CanRankUpSoldier()
 		&& !AtMaxOfficerRank
 		&& HasEligibleRegularRank

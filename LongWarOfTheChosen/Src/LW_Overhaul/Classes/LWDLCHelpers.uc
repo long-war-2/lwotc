@@ -366,6 +366,7 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 			break;
 	}
 	UnitState.SetStatus(eStatus_CovertAction);
+	class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 }
 
 //helper to retrieve spark heal project -- note that we can't retrieve the proper project, since it is in the DLC3.u

@@ -15,6 +15,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateXComHQListeners());
 	Templates.AddItem(CreateCovertActionListeners());
+	Templates.AddItem(CreateWillProjectListeners());
 
 	return Templates;
 }
@@ -47,6 +48,18 @@ static function CHEventListenerTemplate CreateCovertActionListeners()
 	Template.AddCHEvent('CovertActionRisk_AlterChanceModifier', CAAdjustRiskChance, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertAction_OverrideRiskStrings', CAOverrideRiskStrings, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('StaffUpdated', CARecalculateRisksForUI, ELD_OnStateSubmitted, GetListenerPriority());
+
+	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreateWillProjectListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'WillRecoveryProjectListeners');
+	Template.AddCHEvent('StaffUpdated', UpdateWillProjectForStaff, ELD_Immediate, 99);
 
 	Template.RegisterInStrategy = true;
 
@@ -358,4 +371,68 @@ static function EventListenerReturn CAOverrideRiskStrings(
 		Tuple.Data[1].as[i] = Repl(Tuple.Data[1].as[i], RiskChanceString, NewChanceString);
 	}
 	return ELR_NoInterrupt;
+}
+
+// Called when a staff slot is updated, this function will update
+// any will project that currently exists for the given staff member
+// that has been removed from or added to a staff slot. Only applies
+// to soldiers.
+static function EventListenerReturn UpdateWillProjectForStaff(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComGameStateHistory History;
+	local XComGameState_StaffSlot StaffSlot;
+	local XComGameState_Unit UnitState;
+	local X2StaffSlotTemplate SlotTemplate;
+
+	StaffSlot = XComGameState_StaffSlot(EventSource);
+	if (StaffSlot == none)
+		return ELR_NoInterrupt;
+
+	// Get the staff slot state from the new game state for reliability and access
+	// to the absolutely latest state.
+	StaffSlot = XComGameState_StaffSlot(GameState.GetGameStateForObjectID(StaffSlot.ObjectID));
+
+	// Not a soldier, so no Will project.
+	SlotTemplate = StaffSlot.GetMyTemplate();
+	if (!SlotTemplate.bSoldierSlot)
+		return ELR_NoInterrupt;
+
+	// Get the previous game state if the slot is empty, because we're interested
+	// in which unit was removed from the slot.
+	History = `XCOMHISTORY;
+	if (!StaffSlot.IsSlotFilled())
+	{
+		StaffSlot = XComGameState_StaffSlot(History.GetPreviousGameStateForObject(StaffSlot));
+		if (StaffSlot == none || !StaffSlot.IsSlotFilled())
+		{
+			`REDSCREEN("Slot states are all messed up within StaffUpdated event!");
+			return ELR_NoInterrupt;
+		}
+	}
+
+	// Get the unit that was added to or removed from the slot.
+	UnitState = XComGameState_Unit(GameState.GetGameStateForObjectID(StaffSlot.GetAssignedStaffRef().ObjectID));
+	if (UnitState == none)
+	{
+		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(StaffSlot.GetAssignedStaffRef().ObjectID));
+	}
+
+	// SPARKs don't have Will recovery projects!
+	if (UnitState.GetMyTemplateName() == 'SparkSoldier')
+		return ELR_NoInterrupt;
+
+	// Only update Will projects for certain staff slots.
+	if (InStr(Caps(SlotTemplate.DataName), "COVERTACTION") == 0 ||
+			SlotTemplate.DataName == 'RecoveryCenterBondStaffSlot' ||
+			SlotTemplate.DataName == 'OTSOfficerSlot' ||
+			SlotTemplate.DataName == 'PsiChamberSoldierStaffSlot' ||
+			SlotTemplate.DataName == 'OTSStaffSlot')
+	{
+		class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
+	}
 }

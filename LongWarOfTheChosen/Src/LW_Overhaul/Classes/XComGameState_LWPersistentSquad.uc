@@ -645,6 +645,7 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 		if(class'LWDLCHelpers'.static.IsUnitOnMission(UnitState) && UnitState.GetStatus() != eStatus_Healing)
 		{
 			UnitState.SetStatus(eStatus_Active);
+			class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 		}
 	}
 }

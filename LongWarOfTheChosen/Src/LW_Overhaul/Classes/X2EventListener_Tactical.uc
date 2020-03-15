@@ -11,6 +11,9 @@ var config array<float> SOUND_RANGE_DIFFICULTY_MODIFIER;
 var config array<int> RED_ALERT_DETECTION_DIFFICULTY_MODIFIER;
 var config array<int> YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER;
 
+var config int NUM_TURNS_FOR_WILL_LOSS;
+var const config WillEventRollData PER_TURN_WILL_ROLL_DATA;
+
 var localized string HIT_CHANCE_MSG;
 var localized string CRIT_CHANCE_MSG;
 var localized string DODGE_CHANCE_MSG;
@@ -59,6 +62,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('OverrideLootRecovery', OnOverrideBodyAndLootRecovery, ELD_Immediate);
 	Template.AddCHEvent('AbilityActivated', OnAbilityActivated, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('UnitChangedTeam', ClearUnitStateValues, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('PlayerTurnEnded', RollForPerTurnWillLoss, ELD_OnStateSubmitted, GetListenerPriority());
 
 	// This seems to be causing stutter in the game, so commenting out for now.
 	// if (XCom_Perfect_Information_UIScreenListener.default.ENABLE_PERFECT_INFORMATION)
@@ -928,6 +932,44 @@ static protected function EventListenerReturn ClearUnitStateValues(
 
 	UnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(UnitState.ObjectID));
 	UnitState.CleanupUnitValues(eCleanup_BeginTurn);
+
+	return ELR_NoInterrupt;
+}
+
+static protected function EventListenerReturn RollForPerTurnWillLoss(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameStateHistory History;
+	local XComGameState_Player PlayerState;
+	local XComGameStateContext_WillRoll WillRollContext;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local StateObjectReference SquadRef;
+	local XComGameState_Unit SquadUnit;
+
+	History = `XCOMHISTORY;
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class' XComGameState_HeadquartersXCom'));
+	PlayerState = XComGameState_Player(EventData);
+
+	// We only want to lose Will every n turns, so skip other turns
+	if (PlayerState.GetTeam() != eTeam_XCom || PlayerState.PlayerTurnCount % default.NUM_TURNS_FOR_WILL_LOSS != 0)
+		return ELR_NoInterrupt;
+
+	// Remove Will from all squad members
+	foreach XComHQ.Squad(SquadRef)
+	{
+		SquadUnit = XComGameState_Unit(History.GetGameStateForObjectID(SquadRef.ObjectID));
+		if (class'XComGameStateContext_WillRoll'.static.ShouldPerformWillRoll(default.PER_TURN_WILL_ROLL_DATA, SquadUnit))
+		{
+			`LWTrace("Performing Will roll at end of turn");
+			WillRollContext = class'XComGameStateContext_WillRoll'.static.CreateWillRollContext(SquadUnit, 'PlayerTurnEnd',, false);
+			WillRollContext.DoWillRoll(default.PER_TURN_WILL_ROLL_DATA);
+			WillRollContext.Submit();
+		}
+	}
 
 	return ELR_NoInterrupt;
 }
