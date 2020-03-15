@@ -1,3 +1,11 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    LWGiveSoldierRewardWrapper.uc
+//  AUTHOR:  Peter Ledbrook
+//
+//  PURPOSE: Wraps a GiveReward function delegate so that we can rank up any
+//           faction soldier after they are given as a reward.
+//--------------------------------------------------------------------------------------- 
+
 class LWGiveSoldierRewardWrapper extends Object;
 
 var int SoldierRank;

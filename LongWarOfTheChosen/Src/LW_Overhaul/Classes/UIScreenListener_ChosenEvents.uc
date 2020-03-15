@@ -1,10 +1,10 @@
 
 //---------------------------------------------------------------------------------------
-//  FILE:    UIScreenListener_ResistanceReport.uc
-//  AUTHOR:  amineri / Pavonis Interactive
+//  FILE:    UIScreenListener_ChosenEvents.uc
+//  AUTHOR:  Peter Ledbrook
 //
-//  PURPOSE: Applies changes to UIResistanceReport
-//
+//  PURPOSE: Hides the Chosen and Resistance Order end-of-month screens if those
+//           features aren't enabled in the campaign.
 //--------------------------------------------------------------------------------------- 
 
 class UIScreenListener_ChosenEvents extends UIScreenListener;
