@@ -25,6 +25,8 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateYellowAlertListeners());
 	Templates.AddItem(CreateMiscellaneousListeners());
+	Templates.AddItem(CreateDifficultMissionAPListener());
+	Templates.AddItem(CreateVeryDifficultMissionAPListener());
 
 	return Templates;
 }
@@ -71,6 +73,26 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	// }
 
 	Template.RegisterInTactical = true;
+
+	return Template;
+}
+
+static function X2AbilityPointTemplate CreateDifficultMissionAPListener()
+{
+	local X2AbilityPointTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2AbilityPointTemplate', Template, 'DifficultMissionCompleted');
+	Template.AddEvent('EndBattle', CheckForDifficultMissionCompleted);
+
+	return Template;
+}
+
+static function X2AbilityPointTemplate CreateVeryDifficultMissionAPListener()
+{
+	local X2AbilityPointTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2AbilityPointTemplate', Template, 'VeryDifficultMissionCompleted');
+	Template.AddEvent('EndBattle', CheckForVeryDifficultMissionCompleted);
 
 	return Template;
 }
@@ -972,4 +994,76 @@ static protected function EventListenerReturn RollForPerTurnWillLoss(
 	}
 
 	return ELR_NoInterrupt;
+}
+
+static protected function EventListenerReturn CheckForDifficultMissionCompleted(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name Event,
+	Object CallbackData)
+{
+	return CheckForMissionCompleted('DifficultMissionCompleted', 5, 9, GameState);
+}
+
+static protected function EventListenerReturn CheckForVeryDifficultMissionCompleted(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name Event,
+	Object CallbackData)
+{
+	return CheckForMissionCompleted('VeryDifficultMissionCompleted', 10, 999, GameState);
+}
+
+static protected function EventListenerReturn CheckForMissionCompleted(
+	name APTemplateName,
+	int MinDifficulty,
+	int MaxDifficulty,
+	XComGameState GameState)
+{
+	local XComGameStateContext_AbilityPointEvent EventContext;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_BattleData BattleData;
+	local X2AbilityPointTemplate APTemplate;
+	local X2SitRepEffectTemplate SitRepEffectTemplate;
+	local int Difficulty, Roll;
+
+	BattleData = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	APTemplate = class'X2EventListener_AbilityPoints'.static.GetAbilityPointTemplate('DifficultMissionCompleted');
+
+	if (APTemplate == none || BattleData == none)
+		return ELR_NoInterrupt;
+
+	// Only trigger an AP award if the tactical game has ended with a player win
+	if (!`TACTICALRULES.HasTacticalGameEnded() && BattleData.bLocalPlayerWon && !BattleData.bMissionAborted)
+		return ELR_NoInterrupt;
+
+	// Is the mission difficulty right for this AP award?
+	Difficulty = 0;
+	foreach class'X2SitRepTemplateManager'.static.IterateEffects(class'X2SitRepEffectTemplate', SitRepEffectTemplate, BattleData.ActiveSitReps)
+	{
+		Difficulty += SitRepEffectTemplate.DifficultyModifier;
+	}
+
+	if (Difficulty < MinDifficulty || Difficulty > MaxDifficulty)
+		return ELR_NoInterrupt;
+
+	Roll = class'Engine'.static.GetEngine().SyncRand(100, "RollForAbilityPoint");
+	if (Roll < APTemplate.Chance)
+	{
+		XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+		EventContext = XComGameStateContext_AbilityPointEvent(class'XComGameStateContext_AbilityPointEvent'.static.CreateXComGameStateContext());
+		EventContext.AbilityPointTemplateName = APTemplate.DataName;
+
+		// The AP event system requires a unit, so just given it the first member
+		// of the squad. TODO: Could feasibly make this the officer or highest-ranked
+		// soldier to make it look a little less weird. Alternatively, could make
+		// a highlander change to eliminate this requirement.
+		EventContext.AssociatedUnitRef = XComHQ.Squad[0];
+		EventContext.TriggerHistoryIndex = GameState.GetContext().GetFirstStateInEventChain().HistoryIndex;
+
+		`TACTICALRULES.SubmitGameStateContext(EventContext);
+	}
 }
