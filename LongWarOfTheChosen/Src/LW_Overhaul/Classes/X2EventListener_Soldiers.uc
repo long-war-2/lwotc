@@ -9,7 +9,6 @@ var localized string CannotModifyOnMissionSoldierTooltip;
 
 var config bool TIERED_RESPEC_TIMES;
 var config int PSI_SQUADDIE_BONUS_ABILITIES;
-var config int NUM_HOURS_TO_DAYS;
 
 var config int BLEEDOUT_CHANCE_BASE;
 var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE;
@@ -329,7 +328,7 @@ static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventDa
 		return ELR_NoInterrupt;
 	}
 
-	if (Hours > default.NUM_HOURS_TO_DAYS)
+	if (Hours > class'UIPersonnel_SoldierListItemDetailed'.default.NUM_HOURS_TO_DAYS)
 	{
 		Days = FCeil(float(Hours) / 24.0f);
 		OverrideTuple.Data[1].s = class'UIUtilities_Text'.static.GetDaysString(Days);
