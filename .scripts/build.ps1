@@ -159,29 +159,35 @@ function Invoke-Make([string] $makeCmd, [string] $makeFlags, [string] $sdkPath, 
 
 # This function verifies that all project files in the mod subdirectories actually exist in the .x2proj file
 # AUTHOR: X2WOTCCommunityHighlander
-
-function ValidateProjectFile([string] $modProjectRoot, [string] $modName)
+function ValidateProjectFiles([string] $modProjectRoot, [string] $modName)
 {
-    # To simplify relative path building
-    $originalExecutionPath = Get-Location
-    Set-Location $modProjectRoot
-
-    Write-Host "Checking and cleaning .x2proj file..."
+    Write-Host "Checking for missing entries in .x2proj file..."
     $projFilepath = "$modProjectRoot\$modName.x2proj"
     if(Test-Path $projFilepath)
     {
-        CheckX2ProjIncludes $modProjectRoot $modName $projFilepath
-        CleanX2ProjIncludes $modProjectRoot $modName $projFilepath
+        $missingFiles = New-Object System.Collections.Generic.List[System.Object]
+        $projContent = Get-Content $projFilepath
+        # Loop through all files in subdirectories and fail the build if any filenames are missing inside the project file
+        Get-ChildItem $modProjectRoot -Directory | Get-ChildItem -File -Recurse |
+        ForEach-Object {
+            if (!($projContent | Select-String -Pattern $_.Name) -AND !($_.Name -like "*ModShaderCache*")) {
+                $missingFiles.Add($_.Name)
+            }
+        }
+
+        if ($missingFiles.Length -gt 0)
+        {
+            FailureMessage("Filenames missing in the .x2proj file: $missingFiles")
+        }
     }
     else
     {
-        FailureMessage("The project file '$projFilepath' doesn't exist!")
+        throw "The project file '$projFilepath' doesn't exist"
     }
-
-    # fuck go back
-    Set-Location $originalExecutionPath
 }
 
+# The following two functions are no longer used because they have a tendency to cause unnecessary
+# file changes -- as far as git is concerned -- when the mod is built on different platforms.
 function CheckX2ProjIncludes([string] $modProjectRoot, [string] $modName, [string] $projFilepath) {
     $missingEntries = New-Object System.Collections.Generic.List[System.Object]
     $patchedFiles = New-Object System.Collections.Generic.List[System.Object]
@@ -333,7 +339,7 @@ Write-Host $srcDirectory
 $modSrcRoot = "$srcDirectory/$modNameCanonical"
 
 # check that all files in the mod folder are present in the .x2proj file
-ValidateProjectFile $modSrcRoot $modNameCanonical
+ValidateProjectFiles $modSrcRoot $modNameCanonical
 
 # build the staging path
 $stagingPath = "{0}/XComGame/Mods/{1}/" -f $sdkPath, $modNameCanonical
