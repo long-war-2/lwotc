@@ -2,15 +2,12 @@ Welcome to **dev build 12** of Long War of the Chosen!
 
 This is an experimental build in which many changes are being tested out. It is a drop-in replacement for earlier dev builds and beta 2.
 
-**IMPORTANT** Unlike the previous dev builds, this one requires the [Detailed Soldier Lists mod](https://steamcommunity.com/sharedfiles/filedetails/?id=1128263618), so you will have to subscribe to and enable it unless you are using RPG Overhaul (which comes with the mod integrated).
-
 Here are some of the headline changes you may be interested in:
 
 * Will loss and recovery has been reworked significantly (see below)
 * Resistance Orders are disabled by default (can be enabled via a Second Wave Option)
 * Reworked Covert Actions so that they can now fail, but you have more to choose from
 * Improved various units' AI
-* Removed integrated Detailed Soldier Lists mod to fix lag issue with RPG Overhaul
 * Added an Easter egg
 
 **[Download the release from here](https://www.dropbox.com/s/bksudz5x6oh83o7/lwotc-dev-0012.zip?dl=0)**
