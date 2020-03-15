@@ -100,6 +100,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'PriestStasis':
 			MakePriestStasisNotEndTurn(Template);
 			break;
+		case 'HolyWarriorDeath':
+			RemoveTheDeathFromHolyWariorDeath(Template);
+			break;
 		default:
 			break;
 	}
@@ -614,6 +617,22 @@ static function MakePriestStasisNotEndTurn(X2AbilityTemplate Template)
 	ActionPointCost.bConsumeAllPoints = false;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 }
+
+static function RemoveTheDeathFromHolyWariorDeath(X2AbilityTemplate Template)
+{
+	local X2Effect Effect;
+	local int i;
+
+	foreach Template.AbilityMultiTargetEffects(Effect)
+	{
+		if(Effect.IsA(class'X2Effect_HolyWarriorDeath'.name))
+		{
+			Template.AbilityMultiTargetEffects.RemoveItem(Effect);
+		}
+	}
+}
+
+	
 
 defaultproperties
 {
