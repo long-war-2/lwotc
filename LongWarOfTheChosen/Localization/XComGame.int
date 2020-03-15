@@ -5303,6 +5303,12 @@ UnlockedDescription=""
 ; End Translation
 
 ; LWOTC Needs Translation
+[DifficultMissionCompleted X2AbilityPointTemplate]
+ActionFriendlyName="for a difficult mission"
+
+[VeryDifficultMissionCompleted X2AbilityPointTemplate]
+ActionFriendlyName="for a very difficult mission"
+
 [CovertAction_EnemyCorpses X2CovertActionTemplate]
 ActionObjective="Steal Corpses"
 

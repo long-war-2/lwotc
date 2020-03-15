@@ -49,7 +49,7 @@ static function X2SitRepEffectTemplate CreateLethargyEffectTemplate()
 	local X2SitRepEffect_GrantAbilities Template;
 
 	`CREATE_X2TEMPLATE(class'X2SitRepEffect_GrantAbilities', Template, 'LethargyEffect');
-
+	Template.DifficultyModifier = 10;
 	Template.AbilityTemplateNames.AddItem('Lethargy');
 
 	return Template;
