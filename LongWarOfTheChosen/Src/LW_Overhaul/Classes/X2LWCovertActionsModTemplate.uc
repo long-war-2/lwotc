@@ -154,8 +154,6 @@ static function ConfigureModerateCovertAction(X2CovertActionTemplate Template)
 // Adds a chance of failure to easy covert actions and resets the staff slots.
 static function ConfigureHardCovertAction(X2CovertActionTemplate Template)
 {
-	local ArtifactCost RiskRemovalCost;
-
 	// Make failure the first risk in the list.
 	Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Hard');
 
