@@ -3276,6 +3276,8 @@ function ModifyDarkEvents (X2StrategyElementTemplate Template, int Difficulty)
 			case 'DarkEvent_GoneToGround':
 			case 'DarkEvent_LightningReflexes': // WOTC version replaced with LW2 one for the moment
 			case 'DarkEvent_Counterattack': // This conflicts with green and yellow alert reflex actions (and doesn't work as advertised)
+			case 'DarkEvent_SpiderAndFly': // TODO: Consider restoring this once covert action Ambush missions are back
+			case 'DarkEvent_WildHunt': // We don't use the vanilla spawning logic for Chosen
 				// Remove these from play
 				DarkEventTemplate.StartingWeight = 0;
 				DarkEventTemplate.MinWeight = 0;
@@ -3322,7 +3324,6 @@ function ModifyDarkEvents (X2StrategyElementTemplate Template, int Difficulty)
 				break;
 			case 'DarkEvent_TheCollectors':
 			case 'DarkEvent_MadeWhole':
-			case 'DarkEvent_WildHunt':
 				// Remove these from play when the Chosen are all dead
 				DarkEventTemplate.CanActivateFn = ChosenAliveCheck;
 				break;
