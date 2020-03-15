@@ -97,6 +97,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'AdvPurifierFlamethrower':
 			UpdatePurifierFlamethrower(Template);
 			break;
+		case 'PriestStasis':
+			MakePriestStasisNotEndTurn(Template);
+			break;
 		default:
 			break;
 	}
@@ -602,8 +605,15 @@ static function	UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 
 }
 
-
-
+static function MakePriestStasisNotEndTurn(X2AbilityTemplate Template)
+{
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	Template.AbilityCosts.Length = 0;
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = false;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+}
 
 defaultproperties
 {
