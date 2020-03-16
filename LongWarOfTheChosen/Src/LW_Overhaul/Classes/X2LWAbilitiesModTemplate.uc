@@ -103,6 +103,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'HolyWarriorDeath':
 			RemoveTheDeathFromHolyWariorDeath(Template);
 			break;
+		case 'Sustain':
+			UpdateSustainEffect(Template);
+			break;
 		default:
 			break;
 	}
@@ -632,6 +635,18 @@ static function RemoveTheDeathFromHolyWariorDeath(X2AbilityTemplate Template)
 	}
 }
 
+static function UpdateSustainEffect(X2AbilityTemplate Template)
+{
+	local X2Effect_Sustain_LW SustainEffect;
+
+	RemoveAbilityTargetEffect(Template,'X2Effect_Sustain');
+
+	SustainEffect = new class'X2Effect_Sustain_LW';
+	SustainEffect.BuildPersistentEffect(1, true, true);
+	SustainEffect.EffectName='Sustain';
+	SustainEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+	Template.AddTargetEffect(SustainEffect);
+}
 	
 
 defaultproperties
