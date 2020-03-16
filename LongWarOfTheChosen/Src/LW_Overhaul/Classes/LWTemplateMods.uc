@@ -2188,6 +2188,9 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenSniperPistol_T4':
 			WeaponTemplate.Abilities.AddItem('Secondary_Daze_Passive');
 		break;
+		case 'AdvPriestM1_PsiAmp':
+			WeaponTemplate.Abilities.AddItem('PriestPsiMindControl');
+		break;
 		case 'AdvPriestM3_PsiAmp':
 			WeaponTemplate.Abilities.AddItem('Bastion');
 		case 'AdvPriestM2_PsiAmp':
