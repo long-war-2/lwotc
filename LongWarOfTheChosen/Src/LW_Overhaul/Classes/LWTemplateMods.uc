@@ -2022,6 +2022,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponTemplate.WeaponCat == 'cannon')
 		{
 			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LMG_ALL_RANGE;
+			WeaponTemplate.Abilities.AddItem('Stock_LW_Adv_Ability');
+		}
+		if (WeaponTemplate.WeaponCat == 'rifle' || WeaponTemplate.WeaponCat =='shotgun' || WeaponTemplate.WeaponCat =='sniper_rifle' || WeaponTemplate.WeaponCat =='sparkrifle')
+		{
+			WeaponTemplate.Abilities.AddItem('Stock_LW_Adv_Ability');
 		}
 		if (WeaponTemplate.DataName == 'Medikit')
 		{
@@ -2045,20 +2050,6 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		}
 		switch(WeaponTemplate.DataName)
 		{
-		case 'SniperRifle_CV':
-		case 'SniperRifle_LS':
-			WeaponTemplate.Abilities.AddItem('Stock_LW_Bsc_Ability');
-		break;
-
-		case 'SniperRifle_MG':
-		case 'SniperRifle_CG': 
-			WeaponTemplate.Abilities.AddItem('Stock_LW_Adv_Ability');
-		break;
-
-		case 'SniperRifle_BM':
-		case 'ChosenSniperRifle_XCOM':
-			WeaponTemplate.Abilities.AddItem('Stock_LW_Sup_Ability');
-		break;
 
 		case 'ChosenSniperRifle_CV':
 		case 'ChosenSniperRifle_MG':
