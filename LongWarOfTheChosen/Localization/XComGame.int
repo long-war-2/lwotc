@@ -669,7 +669,7 @@ LocFlyOverText="Elite Hair Trigger"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you are impaired."
 LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
 LocFlyOverText="Steady Weapon"
 
