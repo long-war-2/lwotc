@@ -2710,6 +2710,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'STOCK_SUP_GF_CHANCE':
 			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SUCCESS_CHANCE);
 			return true;
+		case 'STEADY_LOW_BONUS_MODIFIER':
+			Outstring = string(class'X2Effect_SteadyWeapon'.default.LOW_BONUS_MODIFIER);
+			return true;
+		case 'STEADY_HIGH_BONUS_MODIFIER':
+			Outstring = string(class'X2Effect_SteadyWeapon'.default.HIGH_BONUS_MODIFIER);
+			return true;
 		default:
 			return false;
 	}
