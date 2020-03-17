@@ -15,7 +15,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 
 	EventMgr.RegisterForEvent(EffectObj, 'AbilityActivated', SteadyWeaponActionListener, ELD_OnStateSubmitted, 50, UnitState,, EffectObj);
-	EventMgr.RegisterForEvent(EffectObj, 'UnitTakeEffectDamage', SteadyWeaponWoundListener, ELD_OnStateSubmitted, 51, UnitState,, EffectObj);
+	//EventMgr.RegisterForEvent(EffectObj, 'UnitTakeEffectDamage', SteadyWeaponWoundListener, ELD_OnStateSubmitted, 51, UnitState,, EffectObj);
 	EventMgr.RegisterForEvent(EffectObj, 'ImpairingEffect', SteadyWeaponWoundListener, ELD_OnStateSubmitted, 52, UnitState,, EffectObj);
 }
 
@@ -65,7 +65,7 @@ static function EventListenerReturn SteadyWeaponActionListener(Object EventData,
 				CostlyAction = true;
 			if(CostlyAction) 
 			{
-				if (AbilityState.GetMyTemplateName() == 'SteadyWeapon' || AbilityState.GetMyTemplateName() == 'Stock_LW_Bsc_Ability' ||  AbilityState.GetMyTemplateName() == 'Stock_LW_Adv_Ability' ||  AbilityState.GetMyTemplateName() == 'Stock_LW_Sup_Ability')
+				if (AbilityState.GetMyTemplateName() == 'SteadyWeapon' || AbilityState.GetMyTemplateName() == 'Stock_LW_Bsc_Ability' ||  AbilityState.GetMyTemplateName() == 'Stock_LW_Adv_Ability' ||  AbilityState.GetMyTemplateName() == 'Stock_LW_Sup_Ability' || AbilityState.GetMyTemplateName() == 'StandardMove')
 					return ELR_NoInterrupt;
 
 				if (!EffectState.bRemoved)

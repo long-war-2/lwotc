@@ -152,7 +152,7 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_SteadyWeapon				ToHitModifier;
 	local X2Condition_UnitEffects			SuppressedCondition;
-
+	local X2Condition_UnitProperty			ShooterCondition;
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilitySteadyWeapon";
 	Template.AbilitySourceName = 'eAbilitySource_Item';
@@ -185,13 +185,17 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
+	ShooterCondition=new class'X2Condition_UnitProperty';
+	ShooterCondition.ExcludeConcealed = true;
+	Template.AbilityShooterConditions.AddItem(ShooterCondition);
+
 	Template.CinescriptCameraType = "Overwatch";
 	ToHitModifier = new class'X2Effect_SteadyWeapon';
 	ToHitModifier.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
 	ToHitModifier.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ToHitModifier.DuplicateResponse=eDupe_Refresh;
 	ToHitModifier.Aim_Bonus=Bonus;
-	ToHitModifier.Crit_Bonus=0;
+	ToHitModifier.Crit_Bonus=Bonus;
 	Template.AddTargetEffect(ToHitModifier);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
