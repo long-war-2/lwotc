@@ -17,6 +17,7 @@ static function UpdateTemplates()
 	local X2SoldierClassTemplateManager			SoldierClassTemplateMgr;
 	local X2HackRewardTemplateManager			HackRewardTemplateMgr;
 	local X2SitRepTemplateManager				SitRepTemplateMgr;
+	local X2SitRepEffectTemplateManager			SitRepEffectTemplateMgr;
 
 	local array<X2StrategyElementTemplate>		TemplateMods;
 	local X2LWTemplateModTemplate				ModTemplate;
@@ -33,6 +34,7 @@ static function UpdateTemplates()
 	SoldierClassTemplateMgr = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
 	HackRewardTemplateMgr   = class'X2HackRewardTemplateManager'.static.GetHackRewardTemplateManager();
 	SitRepTemplateMgr		= class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
+	SitRepEffectTemplateMgr	= class'X2SitRepEffectTemplateManager'.static.GetSitRepEffectTemplateManager();
 
 	TemplateMods = StrategyTemplateMgr.GetAllTemplatesOfClass(class'X2LWTemplateModTemplate');
 	for (idx = 0; idx < TemplateMods.Length; ++idx)
@@ -60,8 +62,13 @@ static function UpdateTemplates()
 		}
 		if (ModTemplate.SitRepTemplateModFn != none)
 		{
-			`LWTrace("Template Mods: Updating SitRep Templates for " $ ModTemplate.DataName);
+			`LWTrace("Template Mods: Updating Sit Rep Templates for " $ ModTemplate.DataName);
 			PerformSitRepTemplateMod(ModTemplate, SitRepTemplateMgr);
+		}
+		if (ModTemplate.SitRepEffectTemplateModFn != none)
+		{
+			`LWTrace("Template Mods: Updating Sit Rep Effect Templates for " $ ModTemplate.DataName);
+			PerformSitRepEffectTemplateMod(ModTemplate, SitRepEffectTemplateMgr);
 		}
 		if (ModTemplate.MissionNarrativeTemplateModFn != none)
 		{
@@ -207,6 +214,32 @@ static function PerformSitRepTemplateMod(X2LWTemplateModTemplate Template, X2Dat
 			{
 				Difficulty = GetDifficultyFromTemplateName(TemplateName);
 				Template.SitRepTemplateModFn(SitRepTemplate, Difficulty);
+			}
+		}
+	}
+}
+
+static function PerformSitRepEffectTemplateMod(X2LWTemplateModTemplate Template, X2DataTemplateManager TemplateManager)
+{
+	local X2SitRepEffectTemplate EffectTemplate;
+	local array<Name> TemplateNames;
+	local Name TemplateName;
+	local array<X2DataTemplate> DataTemplates;
+	local X2DataTemplate DataTemplate;
+	local int Difficulty;
+
+	TemplateManager.GetTemplateNames(TemplateNames);
+
+	foreach TemplateNames(TemplateName)
+	{
+		TemplateManager.FindDataTemplateAllDifficulties(TemplateName, DataTemplates);
+		foreach DataTemplates(DataTemplate)
+		{
+			EffectTemplate = X2SitRepEffectTemplate(DataTemplate);
+			if (EffectTemplate != none)
+			{
+				Difficulty = GetDifficultyFromTemplateName(TemplateName);
+				Template.SitRepEffectTemplateModFn(EffectTemplate, Difficulty);
 			}
 		}
 	}

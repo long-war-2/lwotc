@@ -1130,6 +1130,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_ChanceBasedTacticalDE.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_UnitPropsTacticalDE.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWSitRepsModTemplate.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2LWSitRepEffectsModTemplate.uc" />
     <Content Include="Content\Missions\Obj_DestroyTransmitter_LW.umap" />
     <Content Include="Content\BaseGameMissionAssets\MissionAssets_SupplyExtraction.upk" />
     <Content Include="Content\BaseGameMissionAssets\DestroyTransmitter_TempAssets.upk" />
