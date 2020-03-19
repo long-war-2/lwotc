@@ -612,3 +612,6 @@ m_strNextHaven="NAST. KRYJÓWKA"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Przechwyć zapasy ADVENT-u"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Ruch Oporu zdobył wiedzę na temat umiejscowienia istotnych dla przeciwnika zasobów, które możemy przechwycić i wykorzystać do naszych potrzeb.", MissionIndex=0)
+
+[UICovertActionReport_LW]
+strCovertActionFailed="NIE WYKONANO"

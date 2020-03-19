@@ -5,7 +5,6 @@
 //
 class X2EventListener_Headquarters extends X2EventListener config(LW_Overhaul);
 
-var config string CA_FAILURE_RISK_MARKER;
 var config array<float> CA_RISK_REDUCTION_PER_RANK;
 var config int LISTENER_PRIORITY;
 
@@ -183,7 +182,6 @@ static function EventListenerReturn CAPreventRewardOnFailure(
 {
 	local XComGameState_CovertAction CAState;
 	local XComLWTuple Tuple;
-	local CovertActionRisk Risk;
 
 	Tuple = XComLWTuple(EventData);
 	if (Tuple == none) return ELR_NoInterrupt;
@@ -191,20 +189,8 @@ static function EventListenerReturn CAPreventRewardOnFailure(
 	CAState = XComGameState_CovertAction(EventSource);
 	if (CAState == none) return ELR_NoInterrupt;
 
-	// Find the failure risk and check whether it occurs.
-	foreach CAState.Risks(Risk)
-	{
-		if (InStr(Caps(Risk.RiskTemplateName), Caps(default.CA_FAILURE_RISK_MARKER)) == 0)
-		{
-			if (Risk.bOccurs)
-			{
-				// The failure risk has triggered, so prevent covert action
-				// completion code from giving the rewards.
-				Tuple.Data[0].b = true;
-				break;
-			}
-		}
-	}
+	// Prevent the reward if the covert action failed.
+	Tuple.Data[0].b = class'Helpers_LW'.static.DidCovertActionFail(CAState);
 
 	return ELR_NoInterrupt;
 }
@@ -219,7 +205,6 @@ static function EventListenerReturn CAPreventRecordingOnFailure(
 {
 	local XComGameState_CovertAction CAState;
 	local XComLWTuple Tuple;
-	local CovertActionRisk Risk;
 
 	Tuple = XComLWTuple(EventData);
 	if (Tuple == none) return ELR_NoInterrupt;
@@ -227,22 +212,12 @@ static function EventListenerReturn CAPreventRecordingOnFailure(
 	CAState = XComGameState_CovertAction(EventSource);
 	if (CAState == none) return ELR_NoInterrupt;
 
-	// Find the failure risk and check whether it occurs.
-	foreach CAState.Risks(Risk)
-	{
-		if (InStr(Caps(Risk.RiskTemplateName), Caps(default.CA_FAILURE_RISK_MARKER)) == 0)
-		{
-			if (Risk.bOccurs)
-			{
-				// The failure risk has triggered, so prevent covert action
-				// completion code from recording this resistance activity.
-				// Note that this is `false` because `true` means the listener
-				// is *allowing* the recording of this action.
-				Tuple.Data[0].b = false;
-				break;
-			}
-		}
-	}
+	// The failure risk has triggered, so prevent covert action
+	// completion code from recording this resistance activity.
+	// Note that failure should return `false` in the tuple because
+	// `true` means the listener is *allowing* the recording of this
+	// action.
+	Tuple.Data[0].b = !class'Helpers_LW'.static.DidCovertActionFail(CAState);
 
 	return ELR_NoInterrupt;
 }
@@ -272,7 +247,7 @@ static function EventListenerReturn CAAdjustRiskChance(
 
 	// We're only interested in altering the risk chance for the failure
 	// risk right now.
-	if (InStr(Caps(Tuple.Data[0].n), Caps(default.CA_FAILURE_RISK_MARKER)) == INDEX_NONE)
+	if (InStr(Caps(Tuple.Data[0].n), Caps(class'Helpers_LW'.default.CA_FAILURE_RISK_MARKER)) == INDEX_NONE)
 		return ELR_NoInterrupt;
 
 	// Go through all the soldier slots, building up the failure risk

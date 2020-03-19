@@ -612,3 +612,6 @@ m_strVIPCaptureReward="(bei Gefangennahme der VIP)"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Stiehl ADVENT Militärgut"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Der Widerstand hat den Aufbewahrungsort von wichtigem Feindmaterial herausgefunden, das wir für unsere eigenen Zwecke beschaffen können.", MissionIndex=0)
+
+[UICovertActionReport_LW]
+strCovertActionFailed="GESCHEITERT"
