@@ -46,6 +46,7 @@ static function CHEventListenerTemplate CreateCovertActionListeners()
 	Template.AddCHEvent('CovertAction_AllowResActivityRecord', CAPreventRecordingOnFailure, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertActionRisk_AlterChanceModifier', CAAdjustRiskChance, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertAction_OverrideRiskStrings', CAOverrideRiskStrings, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('CovertActionCompleted', CAUpdateUnitOnTraining, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('StaffUpdated', CARecalculateRisksForUI, ELD_OnStateSubmitted, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
@@ -345,6 +346,47 @@ static function EventListenerReturn CAOverrideRiskStrings(
 		// This is replacing the risk value with the percentage chance to occur.
 		Tuple.Data[1].as[i] = Repl(Tuple.Data[1].as[i], RiskChanceString, NewChanceString);
 	}
+	return ELR_NoInterrupt;
+}
+
+// We need to keep track of how many times units go on the Intense
+// Training covert action.
+static function EventListenerReturn CAUpdateUnitOnTraining(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComGameStateHistory History;
+	local XComGameState_CovertAction CAState;
+	local XComGameState_StaffSlot SlotState;
+	local XComGameState_Unit UnitState;
+	local CovertActionStaffSlot StaffSlot;
+	local XComLWTuple Tuple;
+	local UnitValue UnitValue;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none) return ELR_NoInterrupt;
+
+	CAState = XComGameState_CovertAction(EventSource);
+	if (CAState == none) return ELR_NoInterrupt;
+
+	if (CAState.GetMyTemplateName() != 'CovertAction_IntenseTraining')
+		return ELR_NoInterrupt;
+
+	History = `XCOMHISTORY;
+	foreach CAState.StaffSlots(StaffSlot)
+	{
+		SlotState = XComGameState_StaffSlot(History.GetGameStateForObjectID(StaffSlot.StaffSlotRef.ObjectID));
+		if (SlotState == none) continue;
+
+		UnitValue.fValue = 0.0;
+		UnitState = SlotState.GetAssignedStaff();
+		UnitState.GetUnitValue('CAIntenseTrainingCount', UnitValue);
+		UnitState.SetUnitFloatValue('CAIntenseTrainingCount', UnitValue.fValue + 1, eCleanup_Never);
+	}
+
 	return ELR_NoInterrupt;
 }
 

@@ -86,13 +86,19 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 	}
 
-	// Remove all soldier slot rewards. Note that we can't use
-	// `foreach` to iterate over the slots because they're structs, which
-	// means we'd just be modifying a copy of the slot, not the original
-	// one. Yay UnrealScript.
-	for (i = 0; i < CATemplate.Slots.Length; i++)
+	// Remove all soldier slot rewards except for the Intense Training
+	// covert action. That's the only one that should be allowed to boost
+	// soldiers' stats.
+	//
+	// Note that we can't use `foreach` to iterate over the slots because
+	// they're structs, which means we'd just be modifying a copy of the
+	// slot, not the original one. Yay UnrealScript.
+	if (CATemplate.DataName != 'CovertAction_IntenseTraining')
 	{
-		CATemplate.Slots[i].Rewards.Length = 0;
+		for (i = 0; i < CATemplate.Slots.Length; i++)
+		{
+			CATemplate.Slots[i].Rewards.Length = 0;
+		}
 	}
 
 	// Disable Ambush risk, since the Ambush mission is bad.

@@ -29,6 +29,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Rewards.AddItem(CreateRadioRelayRewardTemplate());
 	Rewards.AddItem(CreateFactionInfluenceRewardTemplate());
 	Rewards.AddItem(CreateEnemyCorpsesRewardTemplate());
+	Rewards.AddItem(CreateDummyStatBoostRewardTemplate());
 	return Rewards;
 }
 
@@ -401,4 +402,18 @@ static function bool IsCorpseRewardAvailable(optional XComGameState NewGameState
 
 	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
     return AuxRef.ObjectID != 0 && AlienHQ.GetForceLevel() >= 5;
+}
+
+static function X2DataTemplate CreateDummyStatBoostRewardTemplate()
+{
+    local X2RewardTemplate Template;
+
+    `CREATE_X2Reward_TEMPLATE(Template, 'Reward_Dummy_StatBoost');
+    Template.GenerateRewardFn = none;
+    Template.SetRewardFn = none;
+    Template.GiveRewardFn = none;
+    Template.GetRewardStringFn = none;
+    Template.GetRewardIconFn = class'X2StrategyElement_DefaultRewards'.static.GetGenericRewardIcon;
+
+    return Template;
 }

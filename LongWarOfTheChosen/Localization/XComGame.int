@@ -2077,6 +2077,9 @@ DisplayName="Increase Faction Influence"
 [Reward_EnemyCorpses X2RewardTemplate]
 DisplayName="Enemy Corpses"
 RewardDetails="You'll get a selection of random enemy corpses."
+
+[Reward_Dummy_StatBoost X2RewardTemplate]
+DisplayName="Stat Boosts"
 ; End Translation
 
 ; POI Templates
@@ -5312,6 +5315,9 @@ ActionFriendlyName="for a very difficult mission"
 [CovertAction_EnemyCorpses X2CovertActionTemplate]
 ActionObjective="Steal Corpses"
 
+[CovertAction_IntenseTraining X2CovertActionTemplate]
+ActionObjective="Intense Training"
+
 [CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
 ActionName="Raid an Enemy Morgue"
 ActionPreNarrative="We've discovered where they've been dumping the corpses from all the fighting you've been doing. Could be an opportunity to accelerate your tech development."
@@ -5326,4 +5332,19 @@ ActionPostNarrative="Your team managed to collect some valuable enemy corpses fr
 ActionName="Raid an Enemy Morgue"
 ActionPreNarrative="We've discovered where they've been dumping the corpses from all the fighting you've been doing. Could be an opportunity to accelerate your tech development."
 ActionPostNarrative="Your team managed to collect some valuable enemy corpses from the raid."
+
+[CovertActionNarrative_IntenseTraining_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Undertake Hard Training (Cost: 5 AP)"
+ActionPreNarrative="Time to put in some effort and improve yourself. Get training, soldier!"
+ActionPostNarrative="Your soldier is better now."
+
+[CovertActionNarrative_IntenseTraining_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Undertake Hard Training (Cost: 5 AP)"
+ActionPreNarrative="Time to put in some effort and improve yourself. Get training, soldier!"
+ActionPostNarrative="Your soldier is better now."
+
+[CovertActionNarrative_IntenseTraining_Templars X2CovertActionNarrativeTemplate]
+ActionName="Undertake Hard Training (Cost: 5 AP)"
+ActionPreNarrative="Time to put in some effort and improve yourself. Get training, soldier!"
+ActionPostNarrative="Your soldier is better now."
 ; End Translation
