@@ -627,11 +627,12 @@ m_strNextHaven="СЛЕД. УБЕЖИЩЕ"
 ActivityObjectives[0]="Захватить набор ресурсов \"Адвента\""
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Сопротивление обнаружило расположение ценных ресурсов противника которые мы можем заполучить для своих потребностей.", MissionIndex=0)
 
-
-
 ; LWOTC Translated
 [UIListener_CampaignStartMenu]
 strDisabledTutorialTooltip="Обучение отключено с модификацией Long War of The Chosen"
 strDisabledNarrativeContentTooltip="Покинутые и заблудшие отключены с модификацией Long War of The Chosen"
 strDisabledPrecisionExplosivesTooltip="Высокоточная взрывчатка отключена с модификацией Long War of the Chosen"
 ; End Translated
+
+[UICovertActionReport_LW]
+strCovertActionFailed="ПРОВАЛ"

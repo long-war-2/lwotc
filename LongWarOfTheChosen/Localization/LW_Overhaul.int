@@ -690,3 +690,6 @@ HeavyDazedPerActionFriendlyName="Heavy Dazed: <Ability:STUNNEDACTIONPOINTS>"
 HeavyDazedTitle="Dazed"
 HeavyDazedName="Heavy Dazed"
 ; End Translation
+
+[UICovertActionReport_LW]
+strCovertActionFailed="FAILED"

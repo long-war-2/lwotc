@@ -613,3 +613,6 @@ m_strNextHaven="RIFUGIO SUCCESSIVO"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Appropriati dei contenitori di risorse della ADVENT"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="La resistenza è venuta a conoscenza della posizione di alcune risorse essenziali per il nemico, che possiamo acquisire e utilizzare a nostro vantaggio.", MissionIndex=0)
+
+[UICovertActionReport_LW]
+strCovertActionFailed="FALLITA"

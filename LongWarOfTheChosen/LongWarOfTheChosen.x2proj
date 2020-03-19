@@ -481,6 +481,7 @@
     <Content Include="Src\LW_Overhaul\Classes\SeqEvent_UnitRemovedFromPlay.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIAvengerShortcuts_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIButtonIconPC.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UICovertActionReport_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIDarkEventListItem.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWCustomMission.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWLaunchDelayedMission.uc" />
