@@ -42,7 +42,6 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_RecruitEngineer':
 		case 'CovertAction_EnemyCorpses':
 		case 'CovertAction_CancelChosenActivity':
-		case 'CovertAction_RecruitFactionSoldier':
 		case 'CovertAction_DelayChosen':
 		case 'CovertAction_ResistanceContact':
 			ConfigureModerateCovertAction(CATemplate);
@@ -65,12 +64,10 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 		case 'CovertAction_FindFaction':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
-			ConfigureModerateCovertAction(CATemplate);
 			CATemplate.Slots[0].iMinRank = default.FIND_SECOND_FACTION_REQ_RANK;
 			break;
 		case 'CovertAction_FindFarthestFaction':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
-			ConfigureModerateCovertAction(CATemplate);
 			CATemplate.Slots[0].iMinRank = default.FIND_THIRD_FACTION_REQ_RANK;
 			break;
 		case 'CovertAction_RevealChosenMovements':
