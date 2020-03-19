@@ -242,10 +242,10 @@ static function X2AbilityTemplate AddMeditation()
 
 static function X2AbilityTemplate AddOvercharge_LW()
 {
-	local X2AbilityTemplate		Template;
-	local X2Effect_TemplarFocus	FocusEffect;
-	local array<StatChange>		StatChanges;
-	local StatChange			NewStatChange;
+	local X2AbilityTemplate					Template;
+	local X2Effect_TemplarFocusStatBonuses	FocusEffect;
+	local array<StatChange>					StatChanges;
+	local StatChange						NewStatChange;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Overcharge_LW');
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Overcharge";
@@ -259,8 +259,7 @@ static function X2AbilityTemplate AddOvercharge_LW()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
-	FocusEffect = new class'X2Effect_TemplarFocus';
-	FocusEffect.EffectName = 'Overcharge';
+	FocusEffect = new class'X2Effect_TemplarFocusStatBonuses';
 	FocusEffect.BuildPersistentEffect(1, true, false);
 	FocusEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false, , Template.AbilitySourceName);
 
