@@ -489,9 +489,7 @@ static function AddImmuneConditionToFlamethrower(X2AbilityTemplate Template)
 
 static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 {
-	local X2AbilityTarget_Cursor					CursorTarget;
 	local X2AbilityMultiTarget_Cone_LWFlamethrower	ConeMultiTarget;
-	local X2Effect_ApplyFireToWorld_Limited			FireToWorldEffect;
 	local X2AbilityToHitCalc_StandardAim			StandardAim;
 	local array<name>                       		SkipExclusions;
 
@@ -543,7 +541,6 @@ static function MakePriestStasisNotEndTurn(X2AbilityTemplate Template)
 static function RemoveTheDeathFromHolyWarriorDeath(X2AbilityTemplate Template)
 {
 	local X2Effect Effect;
-	local int i;
 
 	foreach Template.AbilityMultiTargetEffects(Effect)
 	{
