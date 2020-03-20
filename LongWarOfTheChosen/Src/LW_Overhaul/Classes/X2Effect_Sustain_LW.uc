@@ -1,3 +1,9 @@
+
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Effect_Sustain_LW.uc
+//  AUTHOR:  Grobobobo
+//  PURPOSE: Making sustain chance rely on overkill damage
+//---------------------------------------------------------------------------------------
 class X2Effect_Sustain_LW extends X2Effect_Sustain;
 
 function bool PreDeathCheck(XComGameState NewGameState, XComGameState_Unit UnitState, XComGameState_Effect EffectState)
