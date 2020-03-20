@@ -12,7 +12,7 @@ function bool PreDeathCheck(XComGameState NewGameState, XComGameState_Unit UnitS
 {
 	local UnitValue SustainValue;
 	local int Index, PercentChance, RandRoll;
-    local UnitValue OverKillDamage;
+	local UnitValue OverKillDamage;
 	if( !UnitState.IsAbleToAct(true) )
 	{
 		// Stunned units may not go into Sustain
@@ -23,7 +23,7 @@ function bool PreDeathCheck(XComGameState NewGameState, XComGameState_Unit UnitS
 	{
 		if (SustainValue.fValue > 0)
 			return false;
-    }
+	}
         
     UnitState.GetUnitValue('OverKillDamage', OverKillDamage);
 
