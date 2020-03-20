@@ -3793,3 +3793,50 @@ static function ApplyRandomizedInitialStats(XComGameState_Unit UnitState, XComGa
 	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
 	ToolboxOptions.UpdateOneSoldier_RandomizedInitialStats(UnitState, NewGameState, true);
 }
+
+exec function MeetFaction(string FactionName, optional bool bIgnoreRevealSequence)
+{
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+	local XComGameState_ResistanceFaction FactionState;
+	local X2StrategyElementTemplateManager StratMgr;
+	local XComGameState_Reward RewardState;
+	local X2RewardTemplate RewardTemplate;
+
+	History = `XCOMHISTORY;
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_FactionSoldier'));
+
+	if (InStr(FactionName, "Faction_") != 0)
+		FactionName = "Faction_" $ FactionName;
+
+	if (FactionName != "Faction_Skirmishers" && FactionName != "Faction_Reapers" && FactionName != "Faction_Templars")
+	{
+		`Log("No faction found for name '" $ FactionName $ "'");
+		return;
+	}
+
+	foreach History.IterateByClassType(class'XComGameState_ResistanceFaction', FactionState)
+	{
+		if (FactionState.GetMyTemplateName() == name(FactionName))
+			break;
+	}
+
+	if (!FactionState.bMetXCom)
+	{
+		// Generate a Faction Soldier reward and give it to the player
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("CHEAT: MeetFaction");
+
+		RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+		RewardState.GenerateReward(NewGameState, , FactionState.GetReference());
+		RewardState.GiveReward(NewGameState);
+
+		FactionState = XComGameState_ResistanceFaction(NewGameState.ModifyStateObject(class'XComGameState_ResistanceFaction', FactionState.ObjectID));
+		FactionState.MeetXCom(NewGameState);
+		FactionState.bSeenFactionHQReveal = bIgnoreRevealSequence;
+
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+
+	`HQPRES.DisplayNewStaffPopupIfNeeded();
+}
