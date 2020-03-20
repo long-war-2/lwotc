@@ -6,6 +6,10 @@
 class X2EventListener_Headquarters extends X2EventListener config(LW_Overhaul);
 
 var config array<float> CA_RISK_REDUCTION_PER_RANK;
+var config array<float> CA_RISK_INCREASE_PER_FL;
+var config array<float> CA_AP_REWARD_SCALAR;
+var config array<float> CA_STD_REWARD_SCALAR;
+
 var config int LISTENER_PRIORITY;
 
 static function array<X2DataTemplate> CreateTemplates()
@@ -46,6 +50,7 @@ static function CHEventListenerTemplate CreateCovertActionListeners()
 	Template.AddCHEvent('CovertAction_AllowResActivityRecord', CAPreventRecordingOnFailure, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertActionRisk_AlterChanceModifier', CAAdjustRiskChance, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertAction_OverrideRiskStrings', CAOverrideRiskStrings, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('CovertAction_OverrideRewardScalar', CAOverrideRewardScalar, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertActionCompleted', CAUpdateUnitOnTraining, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('StaffUpdated', CARecalculateRisksForUI, ELD_OnStateSubmitted, GetListenerPriority());
 
@@ -233,27 +238,28 @@ static function EventListenerReturn CAAdjustRiskChance(
 	Name EventID,
 	Object CallbackData)
 {
+	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_CovertAction CAState;
 	local XComGameState_StaffSlot SlotState;
 	local XComGameState_Unit UnitState;
 	local XComLWTuple Tuple;
 	local CovertActionRisk Risk;
-	local int i, RiskIndex, RiskReduction;
-
+	local int i, RiskIndex, RiskChanceAdjustment;
+	
 	Tuple = XComLWTuple(EventData);
 	if (Tuple == none) return ELR_NoInterrupt;
-
+	
 	CAState = XComGameState_CovertAction(EventSource);
 	if (CAState == none) return ELR_NoInterrupt;
-
+	
 	// We're only interested in altering the risk chance for the failure
 	// risk right now.
 	if (InStr(Caps(Tuple.Data[0].n), Caps(class'Helpers_LW'.default.CA_FAILURE_RISK_MARKER)) == INDEX_NONE)
-		return ELR_NoInterrupt;
-
+	return ELR_NoInterrupt;
+	
 	// Go through all the soldier slots, building up the failure risk
 	// reduction based on the soldiers' ranks.
-	RiskReduction = 0;
+	RiskChanceAdjustment = 0;
 	for (i = 0; i < CAState.StaffSlots.Length; i++)
 	{
 		SlotState = CAState.GetStaffSlot(i);
@@ -262,21 +268,25 @@ static function EventListenerReturn CAAdjustRiskChance(
 			UnitState = SlotState.GetAssignedStaff();
 			if (UnitState.IsSoldier())
 			{
-				RiskReduction += UnitState.GetRank() * `ScaleStrategyArrayFloat(default.CA_RISK_REDUCTION_PER_RANK);
+				RiskChanceAdjustment -= UnitState.GetRank() * `ScaleStrategyArrayFloat(default.CA_RISK_REDUCTION_PER_RANK);
 			}
 		}
 	}
 
 	// Adjust risk reduction by number of soldiers (we don't want risk reduction scaling
 	// by number of soldiers, just the relative ranks of those soldiers).
-	RiskReduction = Round(RiskReduction * 2 / CAState.StaffSlots.Length);
+	RiskChanceAdjustment = Round(RiskChanceAdjustment * 2 / CAState.StaffSlots.Length);
+
+	// Adjust the risk chance in the other direction based on force level.
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	RiskChanceAdjustment += AlienHQ.GetForceLevel() * `ScaleStrategyArrayFloat(default.CA_RISK_INCREASE_PER_FL);
 
 	// Make sure we don't go negative on the risk chance.
 	RiskIndex = CAState.Risks.Find('RiskTemplateName', Tuple.Data[0].n);
 	if (RiskIndex != INDEX_NONE)
 	{
 		Risk = CAState.Risks[RiskIndex];
-		RiskReduction = Min(RiskReduction, Risk.ChanceToOccur);
+		RiskChanceAdjustment = Max(RiskChanceAdjustment, -Risk.ChanceToOccur);
 	}
 	else
 	{
@@ -285,7 +295,7 @@ static function EventListenerReturn CAAdjustRiskChance(
 
 	// Modify the current risk chance modifier by the risk reduction
 	// we just calculated.
-	Tuple.Data[4].i -= RiskReduction;
+	Tuple.Data[4].i += RiskChanceAdjustment;
 
 	return ELR_NoInterrupt;
 }
@@ -346,6 +356,31 @@ static function EventListenerReturn CAOverrideRiskStrings(
 		// This is replacing the risk value with the percentage chance to occur.
 		Tuple.Data[1].as[i] = Repl(Tuple.Data[1].as[i], RiskChanceString, NewChanceString);
 	}
+	return ELR_NoInterrupt;
+}
+
+// Modify the reward scalar used for covert action rewards like supplies and intel
+static function EventListenerReturn CAOverrideRewardScalar(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Reward RewardState;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none) return ELR_NoInterrupt;
+
+	RewardState = XComGameState_Reward(Tuple.Data[0].o);
+	if (RewardState == none) return ELR_NoInterrupt;
+
+	// This is replacing the risk value with the percentage chance to occur.
+	Tuple.Data[1].f = RewardState.GetMyTemplateName() == 'Reward_AbilityPoints' ?
+			`ScaleStrategyArrayFloat(default.CA_AP_REWARD_SCALAR) :
+			`ScaleStrategyArrayFloat(default.CA_STD_REWARD_SCALAR);
+
 	return ELR_NoInterrupt;
 }
 
