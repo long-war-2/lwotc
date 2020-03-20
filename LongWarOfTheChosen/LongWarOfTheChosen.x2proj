@@ -609,6 +609,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Item_LWPistol.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_LWSawedOffShotgun.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_LWUtilityItems.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Item_PurifierWeapons.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_ResistanceMECWeapons.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition_AlertVigilance.uc" />
@@ -1123,6 +1124,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Item_HeavyDazedDamageType.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_PrimaryDaze.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_SecondaryDaze.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Sustain_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWHeavyDazedListener.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedTileComponent.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedMeshActor.uc" />
