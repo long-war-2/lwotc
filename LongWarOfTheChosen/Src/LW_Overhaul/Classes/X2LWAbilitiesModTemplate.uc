@@ -101,7 +101,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakePriestStasisNotEndTurn(Template);
 			break;
 		case 'HolyWarriorDeath':
-			RemoveTheDeathFromHolyWariorDeath(Template);
+			RemoveTheDeathFromHolyWarriorDeath(Template);
 			break;
 		case 'Sustain':
 			UpdateSustainEffect(Template);
@@ -621,7 +621,7 @@ static function MakePriestStasisNotEndTurn(X2AbilityTemplate Template)
 	Template.AbilityCosts.AddItem(ActionPointCost);
 }
 
-static function RemoveTheDeathFromHolyWariorDeath(X2AbilityTemplate Template)
+static function RemoveTheDeathFromHolyWarriorDeath(X2AbilityTemplate Template)
 {
 	local X2Effect Effect;
 	local int i;
