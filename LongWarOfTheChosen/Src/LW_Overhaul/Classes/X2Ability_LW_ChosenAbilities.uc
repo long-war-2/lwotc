@@ -896,7 +896,6 @@ simulated function FollowerDefeatedEscape_BuildVisualization(XComGameState Visua
 	local XComGameStateContext_Ability Context;
 	local VisualizationActionMetadata EmptyTrack;
 	local VisualizationActionMetadata ActionMetadata;
-	local XComUnitPawn UnitPawn;
 	local X2Action_PlayEffect EffectAction;
 	local X2Action_Delay DelayAction;
 	
