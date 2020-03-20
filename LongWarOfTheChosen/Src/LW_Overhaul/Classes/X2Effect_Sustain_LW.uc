@@ -8,7 +8,6 @@ class X2Effect_Sustain_LW extends X2Effect_Sustain;
 
 function bool PreDeathCheck(XComGameState NewGameState, XComGameState_Unit UnitState, XComGameState_Effect EffectState)
 {
-	local X2EventManager EventMan;
 	local UnitValue SustainValue;
 	local int Index, PercentChance, RandRoll;
     local UnitValue OverKillDamage;
@@ -43,8 +42,7 @@ function bool PreDeathCheck(XComGameState NewGameState, XComGameState_Unit UnitS
 
 	UnitState.SetUnitFloatValue(default.SustainUsed, 1, eCleanup_BeginTactical);
 	UnitState.SetCurrentStat(eStat_HP, 1);
-	EventMan = `XEVENTMGR;
-	EventMan.TriggerEvent(default.SustainEvent, UnitState, UnitState, NewGameState);
+	`XEVENTMGR.TriggerEvent(default.SustainEvent, UnitState, UnitState, NewGameState);
 	return true;
 }
 
