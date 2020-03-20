@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Item_PurifierWeapons.uc
+//  AUTHOR:  Grobobobo
+//  PURPOSE: Creating additional purifier weapon templates
+//---------------------------------------------------------------------------------------
 class X2Item_PurifierWeapons extends X2Item config(GameData_WeaponData);
 
 var config WeaponDamageValue ADV_PURIFIER_PISTOL_M1_WPN_BASEDAMAGE;
