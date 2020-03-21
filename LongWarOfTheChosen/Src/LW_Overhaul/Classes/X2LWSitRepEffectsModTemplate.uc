@@ -5,8 +5,6 @@
 //---------------------------------------------------------------------------------------
 class X2LWSitRepEffectsModTemplate extends X2LWTemplateModTemplate config(LW_Overhaul);
 
-var config array<name> SIT_REP_EXCLUSIONS;
-
 static function UpdateSitRepEffects(X2SitRepEffectTemplate EffectTemplate, int Difficulty)
 {
 	switch (EffectTemplate.DataName)
