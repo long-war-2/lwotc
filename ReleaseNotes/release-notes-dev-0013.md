@@ -1,4 +1,4 @@
-Welcome to **dev build 3** of Long War of the Chosen!
+Welcome to **dev build 13** of Long War of the Chosen!
 
 This is an experimental build in which many changes are being tested out. It is a drop-in replacement for earlier dev builds and beta 2.
 
@@ -7,7 +7,7 @@ This is an experimental build in which many changes are being tested out. It is 
 Here are some of the headline changes you may be interested in:
 
 * Find Faction/Farthest Faction covert actions can no longer fail (see below under *Covert actions*)
-* WOTC enemies have received the Long War treatment, so they're a bit tougher to deal with now
+* WOTC enemies have received the Long War treatment, so they're a bit tougher to deal with now (more details below)
 * Alien Rulers can no longer appear quite as early as before
 * Encounter-modifying sit reps like Savage and Psionic Storm have been enabled
 
@@ -30,6 +30,7 @@ This build includes some fixes to those problems, while also introducing some re
 * Durations have been reduced again
 * Resource rewards have been increased (except for ability points)
 * The per-rank failure chance reduction has been at least doubled, but now the base failure chance increases with force level (meaning Squaddies and LCPLs have a much bigger effect early game, but become less useful CA operatives later in the campaign)
+* The wound and capture risk chances are now significantly lower
 
 In addition, we have added a new covert action - Intense Training - that will boost a random stat on whichever soldier goes on the mission (you know in advance which stat and by how much). This covert action is guaranteed to succeed, but it costs 5 ability points to start it.
 
@@ -79,10 +80,15 @@ Anyway, this should hopefully help with 3rd-party mods that use the standard van
 
 ## Balance
 
+* The Drone's stunner now has a 2-turn cooldown, i.e. it can only be used once every three turns
 * Will recovery is a bit faster (from 8 days to recover from 67% Will to full, to 6 days)
+* Will loss from taking wounds is now capped at 20% of max Will
+* Panic rolls for Tired soldiers should fail less often, i.e. they will panic less
 * Viper King can start appearing from FL8 (up from 4), Berserker Queen from FL11 (up from 8) and the Archon King from FL15 (up from 12)
 * Damage falloff has (hopefully) been reverted to LW2 values for the moment because grenades could do 1 damage on the center tile
 * Throwing the evac flare now breaks the Reaper's Shadow concealment (if the Reaper throws it of course)
+* Evac flare has the same effect on Lost as activation as a standard shot
+* You should now encounter a maximum of 2 Sectopods in a pod, down from 3
 
 ## Bug fixes
 
