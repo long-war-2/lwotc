@@ -87,7 +87,7 @@ static function X2AbilityTemplate PlaceDelayedEvacZone()
 	// Spawns more lost and always breaks Shadow
 	Template.SuperConcealmentLoss = 100;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
-	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.GrenadeLostSpawnIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
     return Template;
 }
