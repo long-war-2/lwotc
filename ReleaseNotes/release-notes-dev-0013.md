@@ -11,7 +11,7 @@ Here are some of the headline changes you may be interested in:
 * Alien Rulers can no longer appear quite as early as before
 * Encounter-modifying sit reps like Savage and Psionic Storm have been enabled
 
-**[Download the release from here](https://www.dropbox.com/s/tw3o0ncooyay5ow/lwotc-dev-0013.zip?dl=0)**
+**[Download the release from here](https://www.dropbox.com/s/09l2fkw8o2y4h1b/lwotc-dev-0013a.zip?dl=0)**
 
 # Changelog
 
