@@ -5347,4 +5347,9 @@ ActionPostNarrative="Your soldier is better now."
 ActionName="Undertake Hard Training (Cost: 5 AP)"
 ActionPreNarrative="Time to put in some effort and improve yourself. Get training, soldier!"
 ActionPostNarrative="Your soldier is better now."
+
+[AbilityPoints X2ItemTemplate]
+FriendlyName="Ability Points"
+FriendlyNamePlural="Ability Points"
+BriefSummary="A pool of points that can be used to grant abilities and stats to your soldiers."
 ; End Translation

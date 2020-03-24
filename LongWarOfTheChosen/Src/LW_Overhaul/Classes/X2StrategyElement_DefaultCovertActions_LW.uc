@@ -57,7 +57,7 @@ static function X2DataTemplate CreateIntenseTrainingTemplate()
 
 	Template.Slots.AddItem(CreateDefaultSoldierSlot('CovertActionIntenseTrainingStaffSlot'));
 	
-	Resources.ItemTemplateName = 'AbilityPointCache';
+	Resources.ItemTemplateName = 'AbilityPoint';
 	Resources.Quantity = 5;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
