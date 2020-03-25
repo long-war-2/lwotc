@@ -47,6 +47,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			ConfigureModerateCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RecruitExtraFactionSoldier':
+			CATemplate.bDisplayIgnoresInfluence = false;  // Don't roll this CA if the player can't run it!
 			ConfigureHardCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RemoveDoom':
