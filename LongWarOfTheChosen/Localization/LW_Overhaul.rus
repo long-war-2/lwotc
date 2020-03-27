@@ -612,3 +612,26 @@ m_strNextHaven="СЛЕД. УБЕЖИЩЕ"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Захватить набор ресурсов \"Адвента\""
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Сопротивление обнаружило расположение ценных ресурсов противника которые мы можем заполучить для своих потребностей.", MissionIndex=0)
+
+; LWOTC Translated
+ActivityObjectives[0]="Начало освобождения региона"
+; End Translated
+
+; LWOTC Translated
+UpToText="До"
+ExpectedActivityTextStr="Ожидаемая активность"
+BoostedActivityText="Ожидаемая активность (с ускорением)"
+BoostTextPre="С"
+BoostTextPost="Ускорение"
+; End Translated
+
+; LWOTC Translated
+strAreaOfOperations="Местность операции:"
+; End Translated
+
+; LWOTC Translated
+strDisabledTutorialTooltip="Обучение выключено с модификацие Long War"
+strDisabledNarrativeContentTooltip="Потерянные и заброшенные отключены в течении игры Long War of The Chosen"
+strDisabledPrecisionExplosivesTooltip="Взрывоточность отключена в течении игры Long War of the Chosen"
+; End Translated
+
