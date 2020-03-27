@@ -312,6 +312,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateModifyRewardsTemplate());
 	Templates.AddItem(CreateModifyStrategyObjectivesTemplate());
 	Templates.AddItem(CreateModifyCovertActionsTemplate());
+	Templates.AddItem(CreateModifyDarkEventsTemplate());
 	Templates.AddItem(CreateModifySitRepsTemplate());
 	Templates.AddItem(CreateModifySitRepEffectsTemplate());
 	Templates.AddItem(CreateModifyResistanceOrdersTemplate());
@@ -343,6 +344,15 @@ static function X2LWTemplateModTemplate CreateModifyCovertActionsTemplate()
 	local X2LWTemplateModTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2LWCovertActionsModTemplate', Template, 'UpdateCovertActions');
+	return Template;
+}
+
+// Update existing dark event templates
+static function X2LWTemplateModTemplate CreateModifyDarkEventsTemplate()
+{
+	local X2LWTemplateModTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2LWDarkEventsModTemplate', Template, 'UpdateDarkEvents');
 	return Template;
 }
 
@@ -3268,134 +3278,6 @@ function RemovePPClasses(X2SoldierClassTemplate Template, int Difficulty)
 	}
 }
 
-static function X2LWTemplateModTemplate CreateModifyDarkEventsTemplate()
-{
-	local X2LWTemplateModTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'X2LWTemplateModTemplate', Template, 'ModifyDarkEvents');
-	Template.StrategyElementTemplateModFn = ModifyDarkEvents;
-	return Template;
-}
-
-function ModifyDarkEvents (X2StrategyElementTemplate Template, int Difficulty)
-{
-	local X2DarkEventTemplate DarkEventTemplate;
-	
-	DarkEventTemplate = X2DarkEventTemplate (Template);
-	if (DarkEventTemplate != none)
-	{
-		DarkEventTemplate.bNeverShowObjective = true; // this is added so no Dark Events show in the objective list, since it would get overwhelmed
-		switch (DarkEventTemplate.DataName)
-		{
-			case 'DarkEvent_NewConstruction':
-			case 'DarkEvent_RuralCheckpoints':
-			case 'DarkEvent_BendingReed':
-			case 'DarkEvent_CollateralDamage':
-			case 'DarkEvent_StilettoRounds':
-			case 'DarkEvent_SignalJamming':
-			case 'DarkEvent_GoneToGround':
-			case 'DarkEvent_LightningReflexes': // WOTC version replaced with LW2 one for the moment
-			case 'DarkEvent_Counterattack': // This conflicts with green and yellow alert reflex actions (and doesn't work as advertised)
-			case 'DarkEvent_SpiderAndFly': // TODO: Consider restoring this once covert action Ambush missions are back
-			case 'DarkEvent_WildHunt': // We don't use the vanilla spawning logic for Chosen
-				// Remove these from play
-				DarkEventTemplate.StartingWeight = 0;
-				DarkEventTemplate.MinWeight = 0;
-				DarkEventTemplate.MaxWeight = 0;
-				break;
-			case 'DarkEvent_AlloyPadding': DarkEventTemplate.bInfiniteDuration = true; DarkEventTemplate.bRepeatable = false; DarkEventTemplate.CanActivateFn = class 'X2StrategyElement_DarkEvents_LW'.static.CanActivateCodexUpgrade; break;
-			case 'DarkEvent_ViperRounds': DarkEventTemplate.bInfiniteDuration = true; DarkEventTemplate.bRepeatable = false; break;
-			case 'DarkEvent_AlienCypher': 
-				DarkEventTemplate.OnActivatedFn = class'X2StrategyElement_DarkEvents_LW'.static.ActivateAlienCypher_LW; 
-				DarkEventTemplate.OnDeactivatedFn = class'X2StrategyElement_DarkEvents_LW'.static.DeactivateAlienCypher_LW;
-				break;
-			case 'DarkEvent_ResistanceInformant':
-				DarkEventTemplate.MinDurationDays = 21;
-				DarkEventTemplate.MaxDurationDays = 28;
-				DarkEventTemplate.GetSummaryFn = GetResistanceInformantSummary;
-				break;
-			case 'DarkEvent_MinorBreakthrough':
-				DarkEventTemplate.MinActivationDays = 15;
-				DarkEventTemplate.MaxActivationDays = 20;
-				DarkEventTemplate.MutuallyExclusiveEvents.AddItem('DarkEvent_MinorBreakthrough2');
-				DarkEventTemplate.MutuallyExclusiveEvents.AddItem('DarkEvent_MajorBreakthrough2');
-				DarkEventTemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.CanActivateMinorBreakthroughAlt; // Will check for whether avatar project has been revealed
-				DarkEventTemplate.OnActivatedFn = class'X2StrategyElement_DarkEvents_LW'.static.ActivateMinorBreakthroughMod;
-				`LWTRACE("Redefined Minor Breakthrough Dark Event Template");
-				break;
-			case 'DarkEvent_MajorBreakthrough':
-				DarkEventTemplate.MutuallyExclusiveEvents.AddItem('DarkEvent_MinorBreakthrough2');
-				DarkEventTemplate.MutuallyExclusiveEvents.AddItem('DarkEvent_MajorBreakthrough2');
-				DarkEventTemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.CanActivateMajorBreakthroughAlt;
-				DarkEventTemplate.OnActivatedFn = class'X2StrategyElement_DarkEvents_LW'.static.ActivateMajorBreakthroughMod;
-				`LWTRACE("Redefined Major Breakthrough Dark Event Template");
-				break;
-			case 'DarkEvent_HunterClass':
-				DarkEventTemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.CanActivateHunterClass_LW;
-				break;
-			case 'DarkEvent_RapidResponse':
-				DarkEventTemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.CanActivateAdvCaptainM2Upgrade;
-				DarkEventTemplate.bRepeatable = true;
-				break;
-			case 'DarkEvent_HighAlert':
-			case 'DarkEvent_UndyingLoyalty':
-				DarkEventTemplate.MinDurationDays = 12;
-				DarkEventTemplate.MaxDurationDays = 18;
-				break;
-			case 'DarkEvent_TheCollectors':
-			case 'DarkEvent_MadeWhole':
-				// Remove these from play when the Chosen are all dead
-				DarkEventTemplate.CanActivateFn = ChosenAliveCheck;
-				break;
-			default: break;
-		}
-	}
-}
-
-//---------------------------------------------------------------------------------------
-static function bool ChosenAliveCheck(XComGameState_DarkEvent DarkEventState)
-{
-	local XComGameStateHistory History;
-	local XComGameState_AdventChosen ChosenState;
-
-	History = `XCOMHISTORY;
-
-	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
-	{
-		if (ChosenState.bMetXCom && !ChosenState.bDefeated)
-		{
-			// At least one Chosen is alive
-			return true;
-		}
-	}
-
-	return false;
-}
-
-//---------------------------------------------------------------------------------------
-function string GetResistanceInformantSummary(string strSummaryText)
-{
-	local XGParamTag ParamTag;
-	local float Divider, TempFloat;
-	local int TempInt;
-
-	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-
-	Divider = class'X2LWActivityDetectionCalc_Terror'.default.RESISTANCE_INFORMANT_DETECTION_DIVIDER[`STRATEGYDIFFICULTYSETTING];
-	Divider = 1.0f;
-	TempInt = Round(Divider);
-	if (float(TempInt) ~= Divider)
-	{
-		ParamTag.StrValue0 = string(TempInt);
-	}
-	else
-	{
-		TempFloat = Round(Divider * 10.0) / 10.0;
-		ParamTag.StrValue0 = Repl(string(TempFloat), "0", "");
-	}
-
-	return `XEXPAND.ExpandString(strSummaryText);
-}
 //---------------------------------------------------------------------------------------
 
 function bool DisablePOI(XComGameState_PointOfInterest POIState)

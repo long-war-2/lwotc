@@ -5296,6 +5296,46 @@ LocLongDescription="Unit suffers from reduced aim and mobility."
 FriendlyName="Project Miranda"
 Description="ADVENT are testing pacification technology in the area, which is making all non-robotic units lethargic. They will have penalties to aim and mobility."
 
+[DarkEventBarrierSitRep X2SitRepTemplate]
+FriendlyName="Barrier"
+Description="Enemy tech and Psionic defense are doubled. Specialists and Psi Ops are gonna cry."
+
+[DarkEventDarkTowerSitRep X2SitRepTemplate]
+FriendlyName="Dark Tower"
+Description="We don't know what's going on in this AO, but our soldiers will be taking a bigger Will hit than usual."
+
+[DarkEventHighAlertSitRep X2SitRepTemplate]
+FriendlyName="High Alert"
+Description="ADVENT are on high alert, so it's impossible to maintain concealment when the mission starts."
+
+[DarkEventInfiltratorSitRep X2SitRepTemplate]
+FriendlyName="Faceless Infiltrators"
+Description="ADVENT have been placing Faceless spies in places they expect to be attacked. You will probably encounter Faceless civilians on this mission."
+
+[DarkEventInfiltratorChryssalidSitRep X2SitRepTemplate]
+FriendlyName="Chryssalid Infiltrators"
+Description="ADVENT are getting pretty desperate! They have turned to deploying these nasty critters in inhabited areas. Watch out for burrowed Chryssalids on this mission!"
+
+[DarkEventRapidResponseSitRep X2SitRepTemplate]
+FriendlyName="Rapid Response"
+Description="ADVENT have stepped up their quick response training, so now reinforcements will arrive sooner than normal on the mission."
+
+[DarkEventReturnFireSitRep X2SitRepTemplate]
+FriendlyName="Return Fire"
+Description="Missed shots on ADVENT Officers and Priests will trigger return fire."
+
+[DarkEventSealedArmorSitRep X2SitRepTemplate]
+FriendlyName="Sealed Armor"
+Description="Our Technicals and Grenadiers are going to be pretty sad: ADVENT units are immune to environmental hazards like poison, fire and ice."
+
+[DarkEventUndyingLoyaltySitRep X2SitRepTemplate]
+FriendlyName="Undying Loyalty"
+Description="We don't know what kind of voodoo magic the enemy is playing with, but we've heard reports of their units coming back from the dead. When you take the enemy down, make sure they stay down!"
+
+[DarkEventVigilanceSitRep X2SitRepTemplate]
+FriendlyName="Vigilance"
+Description="The Aliens are on high alert, making it harder for XCOM to catch them unaware. Their detection radii are larger."
+
 [ViperKing X2SitRepTemplate]
 FriendlyName="Viper King"
 Description="The Viper King is expected on this mission. Be careful!"
