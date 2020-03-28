@@ -707,9 +707,12 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet2.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_CoverStatus.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_IsStunned_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_OverwatchLimit.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RequireConcealed.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RequiredToHitChance.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RevivalProtocol_LW.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RevivalProtocolRestoreActionPoints_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2DownloadableContentInfo_LWPerkPack.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_AbsorptionFields.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Aggression.uc" />
