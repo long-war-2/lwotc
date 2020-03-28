@@ -106,6 +106,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Sustain':
 			UpdateSustainEffect(Template);
 			break;
+		case 'RevivalProtocol':
+			AllowRevivalProtocolToRemoveStunned(Template);
+			break;
+		case 'RestorativeMist':
+			AllowRestorativeMistToRemoveStunned(Template);
+			break;
 		default:
 			break;
 	}
@@ -641,7 +647,95 @@ static function UpdateSustainEffect(X2AbilityTemplate Template)
 	SustainEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(SustainEffect);
 }
-	
+
+static function AllowRevivalProtocolToRemoveStunned(X2AbilityTemplate Template)
+{
+	local X2Effect_RestoreActionPoints RestoreAPEffect;
+	local X2Effect_RemoveEffects RemoveEffects;
+	local X2Effect_StunRecover StunRecoverEffect;
+	local int i;
+
+	// Replace the standard Revival Protocol targeting condition with one that also
+	// targets stunned units.
+	for (i = 0; i < Template.AbilityTargetConditions.Length; i++)
+	{
+		if (X2Condition_RevivalProtocol(Template.AbilityTargetConditions[i]) != none)
+		{
+			Template.AbilityTargetConditions[i] = new class'X2Condition_RevivalProtocol_LW';
+		}
+	}
+
+	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
+	{
+		// Make sure X2Effect_RestoreActionPoints only applies if the target unit is
+		// *not* stunned (since X2Effect_StunRecover also restores action points). It
+		// should also not apply if the unit is only disoriented.
+		RestoreAPEffect = X2Effect_RestoreActionPoints(Template.AbilityTargetEffects[i]);
+		if (RestoreAPEffect != none)
+		{
+			RestoreApEffect.TargetConditions.AddItem(new class'X2Condition_RevivalProtocolRestoreActionPoints_LW');
+		}
+
+		// Also make sure that the stunned effect is cleared.
+		RemoveEffects = X2Effect_RemoveEffects(Template.AbilityTargetEffects[i]);
+		if (RemoveEffects != none)
+		{
+			RemoveEffects.EffectNamesToRemove.AddItem(class'X2AbilityTemplateManager'.default.StunnedName);
+		}
+	}
+
+	// Add X2Effect_StunRecover so that units recover properly from stunned, but
+	// only apply this effect if the unit actually *is* stunned. This effect is
+	// mutually exclusive with X2Effect_RestoreActionPoints.
+	StunRecoverEffect = class'X2StatusEffects'.static.CreateStunRecoverEffect();
+	StunRecoverEffect.TargetConditions.AddItem(new class'X2Condition_IsStunned_LW');
+	Template.AddTargetEffect(StunRecoverEffect);
+}
+
+static function AllowRestorativeMistToRemoveStunned(X2AbilityTemplate Template)
+{
+	local X2Effect_RestoreActionPoints RestoreAPEffect;
+	local X2Effect_RemoveEffects RemoveEffects;
+	local X2Effect_StunRecover StunRecoverEffect;
+	local int i, j;
+
+	for (i = 0; i < Template.AbilityMultiTargetEffects.Length; i++)
+	{
+		// Make sure X2Effect_RestoreActionPoints doesn't apply if the unit is only disoriented.
+		RestoreAPEffect = X2Effect_RestoreActionPoints(Template.AbilityMultiTargetEffects[i]);
+		if (RestoreAPEffect != none)
+		{
+			for (j = 0; j < RestoreAPEffect.TargetConditions.Length; j++)
+			{
+				// Replace the RevivalProtocol condition, which returns true if the target
+				// is disoriented, with out custom condition that excludes disoriented units,
+				// since we don't want those to get action points back.
+				if (X2Condition_RevivalProtocol(RestoreAPEffect.TargetConditions[j]) != none)
+				{
+					RestoreAPEffect.TargetConditions[j] = new class'X2Condition_RevivalProtocolRestoreActionPoints_LW';
+				}
+			}
+		}
+
+		// Also make sure that the stunned effect is cleared.
+		RemoveEffects = X2Effect_RemoveEffects(Template.AbilityMultiTargetEffects[i]);
+		if (RemoveEffects != none)
+		{
+			RemoveEffects.EffectNamesToRemove.AddItem(class'X2AbilityTemplateManager'.default.StunnedName);
+		}
+	}
+
+	// Add X2Effect_StunRecover so that units recover properly from stunned, but
+	// only apply this effect if the unit actually *is* stunned. This effect is
+	// mutually exclusive with X2Effect_RestoreActionPoints.
+	//
+	// Note that we still need to include the standard Revival Protocol condition
+	// to handle units that can't be revived.
+	StunRecoverEffect = class'X2StatusEffects'.static.CreateStunRecoverEffect();
+	StunRecoverEffect.TargetConditions.AddItem(new class'X2Condition_RevivalProtocol_LW');
+	StunRecoverEffect.TargetConditions.AddItem(new class'X2Condition_IsStunned_LW');
+	Template.AddMultiTargetEffect(StunRecoverEffect);
+}
 
 defaultproperties
 {
