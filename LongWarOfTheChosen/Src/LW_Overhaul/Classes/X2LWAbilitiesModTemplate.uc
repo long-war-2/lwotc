@@ -504,6 +504,8 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 	StandardAim.bGuaranteedHit = true;
 	Template.AbilityToHitCalc = StandardAim;
 
+	Template.AbilityShooterConditions.Remove(1,1);
+
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
