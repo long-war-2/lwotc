@@ -577,16 +577,20 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 	local X2AbilityMultiTarget_Cone_LWFlamethrower	ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim			StandardAim;
 	local array<name>                       		SkipExclusions;
+	local X2Condition 								Condition;
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bAllowCrit = false;
 	StandardAim.bGuaranteedHit = true;
 	Template.AbilityToHitCalc = StandardAim;
 
-	Template.AbilityShooterConditions.Remove(1,1);
-
-	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
-	Template.AddShooterEffectExclusions(SkipExclusions);
+	foreach Template.AbilityShooterConditions(Condition)
+	{
+		if(Condition.isA(class'X2Condition_UnitEffects'.name))
+		{
+			X2Condition_UnitEffects(Condition).RemoveExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName);
+		}
+	}
 
 	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
