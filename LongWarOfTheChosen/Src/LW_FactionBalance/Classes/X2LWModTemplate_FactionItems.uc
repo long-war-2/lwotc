@@ -32,9 +32,10 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 		// _MG and _BM variants.
 		WeaponTemplate.iTypicalActionCost = 1;
 		break;
-	case 'ShardGauntlet_CV':
-	case 'ShardGauntlet_MG':
 	case 'ShardGauntlet_BM':
+		WeaponTemplate.Abilities.AddItem('DeepFocus');
+	case 'ShardGauntlet_MG':
+	case 'ShardGauntlet_CV':
 		WeaponTemplate.Abilities.AddItem('TemplarFleche');
 		break;
 	case 'Wristblade_CV':
