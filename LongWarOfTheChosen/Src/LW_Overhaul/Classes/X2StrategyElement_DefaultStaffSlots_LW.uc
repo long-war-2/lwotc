@@ -16,6 +16,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	
     StaffSlots.AddItem(CreateOutpostStaffSlot());
     //StaffSlots.AddItem(CreateOutpostScientistStaffSlot());
+    StaffSlots.AddItem(CreateCovertActionIntenseTrainingStaffSlotTemplate());
 
 	// This is bad organization; these are really facility upgrades but I didn't want to make a new class
 	StaffSlots.AddItem(CreateLaboratory_AdditionalResearchStation2Template());
@@ -120,6 +121,34 @@ static function bool CanLiaisonBeMoved(StateObjectReference StaffRef)
     WorldRegion = OutpostMgr.GetRegionForLiaison(LiaisonRef);
     Outpost = OutpostMgr.GetOutpostForRegion(WorldRegion);
     return Outpost.CanLiaisonBeMoved();
+}
+
+static function X2DataTemplate CreateCovertActionIntenseTrainingStaffSlotTemplate()
+{
+	local X2StaffSlotTemplate Template;
+
+	Template = class'X2StrategyElement_XpackStaffSlots'.static.CreateCovertActionSoldierStaffSlotTemplate('CovertActionIntenseTrainingStaffSlot');
+	Template.IsUnitValidForSlotFn = IsUnitValidForCovertActionIntenseTrainingSlot;
+
+	return Template;
+}
+
+static function bool IsUnitValidForCovertActionIntenseTrainingSlot(XComGameState_StaffSlot SlotState, StaffUnitInfo UnitInfo)
+{
+	local XComGameState_Unit Unit;
+	local UnitValue UnitValue;
+
+	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
+	Unit.GetUnitValue('CAIntenseTrainingCount', UnitValue);
+
+	if (UnitValue.fValue >= 2)
+	{
+		// Unit has already been on the maximum number of allowed Intense
+		// Training covert actions.
+		return false;
+	}
+
+	return class'X2StrategyElement_XpackStaffSlots'.static.IsUnitValidForCovertActionSoldierSlot(SlotState, UnitInfo);
 }
 
 static function X2DataTemplate CreateLaboratory_AdditionalResearchStation2Template()

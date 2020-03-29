@@ -612,3 +612,6 @@ m_strNextHaven="REFUGE SUIV."
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Capturer des caches de ressources ADVENT"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="La Résistance a découvert la localisation de ressources ennemies vitales que nous pourrions récupérer pour notre propre usage.", MissionIndex=0)
+
+[UICovertActionReport_LW]
+strCovertActionFailed="ÉCHEC"

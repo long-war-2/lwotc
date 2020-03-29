@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Guid>7a03fe19-6291-4b95-ba1c-3ec505fa8c0b</Guid>
@@ -481,6 +481,8 @@
     <Content Include="Src\LW_Overhaul\Classes\SeqEvent_UnitRemovedFromPlay.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIAvengerShortcuts_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIButtonIconPC.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UICovertActions_LW.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UICovertActionReport_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIDarkEventListItem.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWCustomMission.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWLaunchDelayedMission.uc" />
@@ -607,6 +609,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Item_LWPistol.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_LWSawedOffShotgun.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_LWUtilityItems.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Item_PurifierWeapons.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_ResistanceMECWeapons.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition_AlertVigilance.uc" />
@@ -1121,6 +1124,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Item_HeavyDazedDamageType.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_PrimaryDaze.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_SecondaryDaze.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_Sustain_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWHeavyDazedListener.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedTileComponent.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedMeshActor.uc" />
@@ -1130,6 +1134,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_ChanceBasedTacticalDE.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_UnitPropsTacticalDE.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWSitRepsModTemplate.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2LWSitRepEffectsModTemplate.uc" />
     <Content Include="Content\Missions\Obj_DestroyTransmitter_LW.umap" />
     <Content Include="Content\BaseGameMissionAssets\MissionAssets_SupplyExtraction.upk" />
     <Content Include="Content\BaseGameMissionAssets\DestroyTransmitter_TempAssets.upk" />
@@ -1164,6 +1169,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_CritRemoval.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2LWModTemplate_ReaperAbilities.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ResetReflex.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_TemplarFocusStatBonuses.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2LWModTemplate_SkirmisherAbilities.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2LWModTemplate_TemplarAbilities.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_Solace_LW.uc" />

@@ -42,12 +42,12 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_RecruitEngineer':
 		case 'CovertAction_EnemyCorpses':
 		case 'CovertAction_CancelChosenActivity':
-		case 'CovertAction_RecruitFactionSoldier':
 		case 'CovertAction_DelayChosen':
 		case 'CovertAction_ResistanceContact':
 			ConfigureModerateCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RecruitExtraFactionSoldier':
+			CATemplate.bDisplayIgnoresInfluence = false;  // Don't roll this CA if the player can't run it!
 			ConfigureHardCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RemoveDoom':
@@ -65,12 +65,10 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 		case 'CovertAction_FindFaction':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
-			ConfigureModerateCovertAction(CATemplate);
 			CATemplate.Slots[0].iMinRank = default.FIND_SECOND_FACTION_REQ_RANK;
 			break;
 		case 'CovertAction_FindFarthestFaction':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
-			ConfigureModerateCovertAction(CATemplate);
 			CATemplate.Slots[0].iMinRank = default.FIND_THIRD_FACTION_REQ_RANK;
 			break;
 		case 'CovertAction_RevealChosenMovements':
@@ -89,13 +87,19 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 	}
 
-	// Remove all soldier slot rewards. Note that we can't use
-	// `foreach` to iterate over the slots because they're structs, which
-	// means we'd just be modifying a copy of the slot, not the original
-	// one. Yay UnrealScript.
-	for (i = 0; i < CATemplate.Slots.Length; i++)
+	// Remove all soldier slot rewards except for the Intense Training
+	// covert action. That's the only one that should be allowed to boost
+	// soldiers' stats.
+	//
+	// Note that we can't use `foreach` to iterate over the slots because
+	// they're structs, which means we'd just be modifying a copy of the
+	// slot, not the original one. Yay UnrealScript.
+	if (CATemplate.DataName != 'CovertAction_IntenseTraining')
 	{
-		CATemplate.Slots[i].Rewards.Length = 0;
+		for (i = 0; i < CATemplate.Slots.Length; i++)
+		{
+			CATemplate.Slots[i].Rewards.Length = 0;
+		}
 	}
 
 	// Disable Ambush risk, since the Ambush mission is bad.

@@ -8,6 +8,8 @@
 
 class Helpers_LW extends Object config(GameCore) dependson(Engine);
 
+var const string CA_FAILURE_RISK_MARKER;
+
 struct ProjectileSoundMapping
 {
 	var string ProjectileName;
@@ -464,4 +466,28 @@ static function XComGameState_HeadquartersProjectRecoverWill GetWillRecoveryProj
 	}
 
 	return none;
+}
+
+static function bool DidCovertActionFail(XComGameState_CovertAction CAState)
+{
+	local CovertActionRisk Risk;
+
+	foreach CAState.Risks(Risk)
+	{
+		if (InStr(Caps(Risk.RiskTemplateName), Caps(default.CA_FAILURE_RISK_MARKER)) == 0)
+		{
+			if (Risk.bOccurs)
+			{
+				// The failure risk has triggered, so yes, the covert action failed.
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+defaultproperties
+{
+	CA_FAILURE_RISK_MARKER="CovertActionRisk_Failure"
 }

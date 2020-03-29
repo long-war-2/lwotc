@@ -313,6 +313,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateModifyStrategyObjectivesTemplate());
 	Templates.AddItem(CreateModifyCovertActionsTemplate());
 	Templates.AddItem(CreateModifySitRepsTemplate());
+	Templates.AddItem(CreateModifySitRepEffectsTemplate());
 	Templates.AddItem(CreateModifyResistanceOrdersTemplate());
 	`Log("    Done");
 	return Templates;
@@ -360,6 +361,15 @@ static function X2LWTemplateModTemplate CreateModifySitRepsTemplate()
 	local X2LWTemplateModTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2LWSitRepsModTemplate', Template, 'UpdateSitReps');
+	return Template;
+}
+
+// Update existing sit rep templates
+static function X2LWTemplateModTemplate CreateModifySitRepEffectsTemplate()
+{
+	local X2LWTemplateModTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2LWSitRepEffectsModTemplate', Template, 'UpdateSitRepEffects');
 	return Template;
 }
 
@@ -1883,6 +1893,15 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'Sectopod':
 			Template.Abilities.AddItem('Resilience');
 			break;
+		case 'AdvPurifierM3':
+			Template.Abilities.AddItem('Formidable');
+		case 'AdvPurifierM2':
+			Template.Abilities.AddItem('Burnout');
+			break;
+		case 'SpectreM2':
+			Template.Abilities.AddItem('LowProfile');
+			break;
+
 		// Should turn off tick damage every action
 		case 'ViperKing':
 		case 'BerserkerQueen':
@@ -2075,8 +2094,14 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenSniperPistol_T4':
 			WeaponTemplate.Abilities.AddItem('Secondary_Daze_Passive');
 		break;
-
-
+		case 'AdvPriestM1_PsiAmp':
+			WeaponTemplate.Abilities.AddItem('PriestPsiMindControl');
+		break;
+		case 'AdvPriestM3_PsiAmp':
+			WeaponTemplate.Abilities.AddItem('Bastion');
+		case 'AdvPriestM2_PsiAmp':
+			WeaponTemplate.Abilities.AddItem('Fortress');
+		break;
 
 		default:
 		break;
