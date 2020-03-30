@@ -630,13 +630,13 @@ function int GetAbilityPointCost(int Rank, int Branch)
 	}
 
 	// All Colonel level abilities for emulated Faction Heroes and any powerful XCOM abilities have increased cost for Faction Heroes
-	if (AbilityRanks == 0 && (bPowerfulAbility || (Rank >= 6 && Branch < 3)) && !HasBrigadierRank())
+	if (AbilityRanks == 0 && (Rank >= 6 && Branch < 3) && !HasBrigadierRank())
 	{
 		return class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
 	}
 
 	// All Colonel level abilities for Faction Heroes and any powerful XCOM abilities have increased cost for Faction Heroes
-	if (UnitState.IsResistanceHero() && (bPowerfulAbility || (Rank >= 6 && Branch < 3))) // LWOTC Removed this: && !HasBrigadierRank())
+	if (UnitState.IsResistanceHero() && (Rank >= 6 && Branch < 3)) // LWOTC Removed this: && !HasBrigadierRank())
 	{
 		AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
 	}
@@ -651,7 +651,7 @@ function int GetAbilityPointCost(int Rank, int Branch)
 		}
 		AbilityCost *= AbilityCostModifier.fValue;
 	}
-	
+
 	return AbilityCost;
 }
 
