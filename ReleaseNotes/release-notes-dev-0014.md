@@ -25,6 +25,6 @@ This is mostly a bug fix release, with the following changes:
 * Lone Wolf can no longer appear as an XCOM ability for Reapers
 * HEAT Warheads can no longer appear as a tier 2 XCOM ability for Skirmishers (it's only tier 1 now)
 
-**[Download the release from here](==============================================================)**
+**[Download the release from here](https://www.dropbox.com/s/nozzs8ulb950ep0/lwotc-dev-0014.zip?dl=0)**
 
 We hope you enjoy the mod, and good luck commanders!
