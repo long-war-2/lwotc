@@ -20,6 +20,7 @@ var config bool RevealAllAbilities;
 
 var config array<CustomClassAbilitiesPerRank> ClassAbilitiesPerRank;
 var config array<CustomClassAbilityCost> ClassCustomAbilityCost;
+var config array<int> FactionAbilityCosts;
 
 var config float BaseAbilityCostModifier;
 
@@ -598,6 +599,7 @@ function int GetAbilityPointCost(int Rank, int Branch)
 
 
 	//Default ability cost
+	// LWOTC: Used for XCOM-row abilities
 	AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.AbilityPointCosts[Rank];
 
 	// LWOTC: Disable this
@@ -608,25 +610,23 @@ function int GetAbilityPointCost(int Rank, int Branch)
 	// }
 
 	//Custom Class Ability Cost Override
-	if( HasCustomAbilityCost(ClassName, AbilityTree[Branch].AbilityName) )
+	if (HasCustomAbilityCost(ClassName, AbilityTree[Branch].AbilityName))
 	{
 		AbilityCost = GetCustomAbilityCost(ClassName, AbilityTree[Branch].AbilityName);
 	}
 
-	if (!UnitState.IsResistanceHero() && AbilityRanks != 0)
+	if (!UnitState.IsResistanceHero() && AbilityRanks != 0 && Branch < AbilityRanks)
 	{
-		if (!UnitState.HasPurchasedPerkAtRank(Rank) && Branch < AbilityRanks)
+		if (!UnitState.HasPurchasedPerkAtRank(Rank))
 		{
 			// If this is a base game soldier with a promotion available, ability costs nothing since it would be their
 			// free promotion ability if they "bought" it through the Armory
 			return 0;
 		}
-		/*else if (bPowerfulAbility && Branch >= AbilityRanks)
+		else
 		{
-			// All powerful shared AWC abilities for base game soldiers have an increased cost, 
-			// excluding any abilities they have in their normal progression tree
-			return class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
-		}*/
+			AbilityCost = FactionAbilityCosts[Rank];
+		}
 	}
 
 	// All Colonel level abilities for emulated Faction Heroes and any powerful XCOM abilities have increased cost for Faction Heroes
@@ -635,10 +635,10 @@ function int GetAbilityPointCost(int Rank, int Branch)
 		return class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
 	}
 
-	// All Colonel level abilities for Faction Heroes and any powerful XCOM abilities have increased cost for Faction Heroes
-	if (UnitState.IsResistanceHero() && (Rank >= 6 && Branch < 3)) // LWOTC Removed this: && !HasBrigadierRank())
+	// Set costs for faction soldier class abilities
+	if (UnitState.IsResistanceHero() && Branch < AbilityRanks)
 	{
-		AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
+		AbilityCost = FactionAbilityCosts[Rank];
 	}
 
 	if (UnitState.HasPurchasedPerkAtRank(Rank) && Branch < AbilityRanks)
