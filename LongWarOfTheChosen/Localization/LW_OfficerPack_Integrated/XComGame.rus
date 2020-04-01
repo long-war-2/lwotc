@@ -217,3 +217,41 @@ m_strTitle="Солдат для обучения на офицера"
 EmptyListMessage="НЕТ ПОДХОДЯЩЕГО СОЛДАТА"
 
 ;---- END OTS / STAFFSLOT
+
+; LWOTC Translated
+[CommandRange1 X2AbilityTemplate]
+LocFriendlyName="Дальность приказа 1"
+LocLongDescription="Увеличивает дальность приказа офицера на 1 клетку"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange2 X2AbilityTemplate]
+LocFriendlyName="Дальность приказа 2"
+LocLongDescription="Увеличивает дальность приказа офицера на 2 клетки"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange3 X2AbilityTemplate]
+LocFriendlyName="Дальность приказа 3"
+LocLongDescription="Увеличивает дальность приказа офицера на 3 клетки"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange4 X2AbilityTemplate]
+LocFriendlyName="Дальность приказа 4"
+LocLongDescription="Увеличивает дальность приказа офицера на 4 клетки"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange5 X2AbilityTemplate]
+LocFriendlyName="Дальность приказа 5"
+LocLongDescription="Увеличивает дальность приказа офицера на 5 клеток"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange6 X2AbilityTemplate]
+LocFriendlyName="Дальность приказа 6"
+LocLongDescription="Увеличивает дальность приказа офицера на 6 клеток"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+; End Translated

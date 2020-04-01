@@ -1,0 +1,11 @@
+; LWOTC Translated
+[EnableChosen SecondWaveOptionObject]
+Tooltip="Активирует Избранных после завершения первой миссии захвата сетевой вышки."
+Description="Избранные: Активирует Избранных."
+; End Translated
+
+; LWOTC Translated
+[AllowSameRankAbilities SecondWaveOptionObject]
+Tooltip="Позволяет оперативникам ХКОМ приобретать дополнительные классовые способности такого же ранга за счёт очков способностей."
+Description="Позволяет оперативникам ХКОМ приобретать дополнительные классовые способности такого же ранга за счёт очков способностей после постройки Центра Подготовки."
+; End Translated

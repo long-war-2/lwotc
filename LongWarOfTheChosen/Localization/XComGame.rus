@@ -4666,3 +4666,64 @@ TacticalText="<Bullet/> Плазмобластер выпускает разру
 
 [SparkRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Элериевая фазовая пушка, разработанная специально для \"Искры\", - вершина оружейных технологий.\n<Bullet/> Выстрел из основного оружия всегда завершает ход солдата при отсутствии особых способностей.<br/><Bullet/> Плазменное оружие наносит цели 1 дополнительного урона при каждом попадании."
+
+
+; LWOTC Translated
++AbilityTreeTitles[0]="Битва Будущего"
++AbilityTreeTitles[1]="Непробиваемость"
++AbilityTreeTitles[2]="Машина войны"
++AbilityTreeTitles[3]="XCOM"
+; End Translated
+
+; LWOTC Translated
+LocLongDescription="У вас есть+<Ability:TRIGGER_BSC_AIM_BONUS/> (after reaction fire penalty) попасть ответным выстрелом из основого оружия."
+; End Translated
+
+; LWOTC Translated
+LocLongDescription="У вас есть +<Ability:TRIGGER_ADV_AIM_BONUS/> (after reaction fire penalty) Попасть ответным выстрелом из основого оружия."
+; End Translated
+
+; LWOTC Translated
+LocLongDescription="У вас есть +<Ability:TRIGGER_SUP_AIM_BONUS/> (after reaction fire penalty) Попасть ответным выстрелом из основого оружия."
+; End Translated
+
+;LWOTC Translated
+
+[Stock_LW_Bsc_Ability X2AbilityTemplate]
+LocFriendlyName="Устойчивая позиция"
+LocLongDescription="Активация способности Устойчивая позиция дает +<Ability:STOCK_BSC_SW_AIM_BONUS/> точности к экпированному оружию. Бонус теряется если оперативник не стреляет или получает ранение."
+LocHelpText="Устойчивая позиция: Бонус попадания если не совершается иное действие или получение ранения"
+LocFlyOverText="Устойчивая позиция"
+
+[Stock_LW_Adv_Ability X2AbilityTemplate]
+LocFriendlyName="Устойчивая позиция"
+LocLongDescription="Активация способности Устойчивая позиция дает +<Ability:STOCK_ADV_SW_AIM_BONUS/> точности к экпированному оружию. Бонус теряется если оперативник не стреляет или получает ранение."
+LocHelpText="Устойчивая позиция: Бонус попадания если не совершается иное действие или получение ранения"
+LocFlyOverText="Устойчивая позиция"
+
+[Stock_LW_Sup_Ability X2AbilityTemplate]
+LocFriendlyName="Устойчивая позиция"
+LocLongDescription="Активация способности Устойчивая позиция дает +<Ability:STOCK_SUP_SW_AIM_BONUS/> точности к экпированному оружию. Бонус теряется если оперативник не стреляет или получает ранение."
+LocHelpText="Устойчивая позиция: Бонус попадания если не совершается иное действие или получение ранения"
+LocFlyOverText="Устойчивая позиция"
+
+;End Trasnlated
+
+; LWOTC Translated
+LocLongDescription="Понимажет защиту от взлома цели на <Ability:REDSCREEN_EFFECT_LW/>. Не суммируется, но можно обновить."
+LocHelpText="Понижает защиту от взлома цели <Ability:REDSCREEN_EFFECT_LW/>. Не суммируется, но можно обновить."
+; Ends Translated
+
+; LWOTC Translated
+FriendlyName="Дробовик Гаусса"
+FriendlyNamePlural="Дробовики Гаусса"
+; End Translated
+BriefSummary="Оружие ближнего боя на основе технологий Гаусса."
+
+; LWOTC Translated
+TacticalText="<Bullet/> Оружие гаусса автоматически проникает (игнорирует) 1 ед. армора.<br/><Bullet/> Оружия типа дробовик максимально эффективны вблизи, а на дальних дистанциях резко снижают точность.\n<Bullet/> Используйте найденные моды чтобы повысить тактическую эффективность Дробовика Гаусса."
+; End Translated
+
+
+
+
