@@ -5,12 +5,6 @@
 //---------------------------------------------------------------------------------------
 class XComGameState_LWAlienActivity extends XComGameState_GeoscapeEntity config(LW_Overhaul);
 
-struct MissionTypeSitRepExclusions
-{
-	var string MissionType;
-	var array<string> SitRepNames;
-};
-
 var protected name							m_TemplateName;
 var protected X2LWAlienActivityTemplate		m_Template;
 
@@ -50,14 +44,6 @@ var MissionDefinition ForceMission;                         // A mission type to
 // LWOTC: Allow configuration of which mission types the Chosen should be excluded from
 var config array<string> ExcludeChosenFromMissionTypes;
 
-var const array<name> AlienRulerSitRepNames;
-
-// LWOTC: Base chance for a mission to have a sit rep
-var config float SIT_REP_CHANCE;
-
-// LWOTC: Prevent certain sit reps on various mission types. A sit rep of
-// '*' means "all sit reps".
-var config array<MissionTypeSitRepExclusions> MISSION_TYPE_SIT_REP_EXCLUSIONS;
 var config array<string> NO_SIT_REP_MISSION_TYPES;
 
 //#############################################################################################
@@ -706,7 +692,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		// No cheats, add SitReps from the Mission Source
 		MissionSource = MissionState.GetMissionSource();
 
-		if (MissionSource.GetSitrepsFn != none && ShouldAddSitRepToMission(MissionState))
+		if (MissionSource.GetSitrepsFn != none)
 		{
 			SourceSitReps = MissionSource.GetSitrepsFn(MissionState);
 
@@ -781,88 +767,6 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	}
 
 	MissionState.GenerateMissionFlavorText();
-}
-
-// LWOTC: Added to determine whether a mission should have a sit rep attached or not
-function bool ShouldAddSitRepToMission(XComGameState_MissionSite MissionState)
-{
-	return `SYNC_FRAND() < default.SIT_REP_CHANCE;
-}
-
-// LWOTC: Added to determine whether a given sit rep is allowed on a specific mission
-static function bool IsSitRepValidForMission(name SitRepName, XComGameState_MissionSite MissionState)
-{
-	local MissionTypeSitRepExclusions ExclusionDef;
-	local int idx;
-
-	if (default.AlienRulerSitRepNames.Find(SitRepName) != INDEX_NONE)
-	{
-		return class'XComGameState_AlienRulerManager' != none ? IsAlienRulerSitRepValid(SitRepName, MissionState) : false;
-	}
-
-	idx = default.MISSION_TYPE_SIT_REP_EXCLUSIONS.Find('MissionType', MissionState.GeneratedMission.Mission.sType);
-	if (idx == INDEX_NONE)
-	{
-		return true;
-	}
-	else
-	{
-		ExclusionDef = default.MISSION_TYPE_SIT_REP_EXCLUSIONS[idx];
-		return ExclusionDef.SitRepNames.Find("*") == INDEX_NONE && ExclusionDef.SitRepNames.Find(string(SitRepName)) == INDEX_NONE;
-	}
-}
-
-static function bool IsAlienRulerSitRepValid(name SitRepName, XComGameState_MissionSite MissionState)
-{
-	local XComGameState_AlienRulerManager RulerMgr;
-	local XComGameState_MissionSite MissionStateIter;
-	local XComGameState_Unit RulerState;
-	local X2SitRepTemplateManager SitRepMgr;
-	local name RulerActiveTacticalTag;
-
-	// Lock Alien Rulers behind the Alien Nest if that mission is enabled
-	if (class'LWDLCHelpers'.static.IsAlienHuntersNarrativeEnabled() &&
-			!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('DLC_AlienNestMissionComplete'))
-	{
-		return false;
-	}
-
-	// Only allow this sit rep where we can actually get missions. Don't
-	// want the only one of this sit rep allowed at any one time to be
-	// in a region where you can't get missions.
-	if (!MissionState.GetWorldRegion().HaveMadeContact()) return false;
-
-	RulerMgr = XComGameState_AlienRulerManager(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_AlienRulerManager'));
-
-	// Grab the tactical gameplay tag for the ruler from the sit rep.
-	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
-	RulerActiveTacticalTag = SitRepMgr.FindSitRepTemplate(SitRepName).TacticalGameplayTags[0];
-
-	// Make sure this Ruler isn't already on another mission. Need to check
-	// in the current game state as well as the history because multiple
-	// missions can spawn in the current new game state.
-	foreach MissionState.GetParentGameState().IterateByClassType(class'XComGameState_MissionSite', MissionStateIter)
-	{
-		if (MissionStateIter.ObjectID != MissionState.ObjectID &&
-				MissionStateIter.GeneratedMission.SitReps.Find(SitRepName) != INDEX_NONE)
-		{
-			return false;
-		}
-	}
-
-	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_MissionSite', MissionStateIter)
-	{
-		if (MissionStateIter.ObjectID != MissionState.ObjectID &&
-				MissionStateIter.GeneratedMission.SitReps.Find(SitRepName) != INDEX_NONE)
-		{
-			return false;
-		}
-	}
-
-	// If we get here, the sit rep has already passed the force level check.
-	// So just need to check that the corresponding Ruler is still alive.
-	RulerState = class'LWDLCHelpers'.static.GetAlienRulerForTacticalTag(RulerActiveTacticalTag);
-	return RulerMgr.DefeatedAlienRulers.Find('ObjectID', RulerState.ObjectID) == INDEX_NONE;
 }
 
 function MissionDefinition GetMissionDefinitionForFamily(name MissionFamily)
@@ -1178,11 +1082,4 @@ function class<UIStrategyMapItem> GetUIClass()
 function bool ShouldBeVisible()
 {
     return false;
-}
-
-defaultproperties
-{
-	AlienRulerSitRepNames[0] = "ViperKing"
-	AlienRulerSitRepNames[1] = "BerserkerQueen"
-	AlienRulerSitRepNames[2] = "ArchonKing"
 }

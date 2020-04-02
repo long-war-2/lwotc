@@ -576,7 +576,6 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 {
 	local X2AbilityMultiTarget_Cone_LWFlamethrower	ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim			StandardAim;
-	local array<name>                       		SkipExclusions;
 	local X2Condition 								Condition;
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';

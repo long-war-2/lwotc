@@ -335,8 +335,9 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	local XComGameState_LWAlienActivity ActivityState;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState;
-	local X2SitRepTemplateManager SitRepManager;
-	local X2SitRepTemplate SitRepTemplate;
+	// Commented out in case we want to tie sit reps back to infiltration level
+	// local X2SitRepTemplateManager SitRepManager;
+	// local X2SitRepTemplate SitRepTemplate;
 	local array<X2DownloadableContentInfo> DLCInfos;
 	local MissionDefinition MissionDef;
 	local name NewMissionFamily;
@@ -412,6 +413,9 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	}
 
 	// Deal with Sit Reps based on infiltration.
+	/* Disabled for now. Keeping just in case we want to reintroduce the
+	   tie-in between sit reps and infiltration level.
+
 	if (InfiltratingSquad.CurrentInfiltration >= default.INFILTRATION_TO_DISABLE_SIT_REPS)
 	{
 		SitRepManager = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
@@ -424,6 +428,7 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 			}
 		}
 	}
+	*/
 
 	//cache the difficulty
 	MissionSite.CacheSelectedMissionData(ForceLevel, AlertLevel);
