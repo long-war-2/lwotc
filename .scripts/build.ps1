@@ -170,7 +170,7 @@ function ValidateProjectFiles([string] $modProjectRoot, [string] $modName)
         # Loop through all files in subdirectories and fail the build if any filenames are missing inside the project file
         Get-ChildItem $modProjectRoot -Directory | Get-ChildItem -File -Recurse |
         ForEach-Object {
-            if (!($projContent | Select-String -Pattern $_.Name) -AND !($_.Name -like "*ModShaderCache*")) {
+            if (!($projContent | Select-String -Pattern $_.Name) -AND !($_.Name -like "*.upk")) {
                 $missingFiles.Add($_.Name)
             }
         }
@@ -204,7 +204,7 @@ function CheckX2ProjIncludes([string] $modProjectRoot, [string] $modName, [strin
             $isDir = $true
         }
 
-        If (!($projContent | Select-String -Pattern $_.Name) -AND !($_.Name -like "*ModShaderCache*")) {
+        If (!($projContent | Select-String -Pattern $_.Name) -AND !($_.Name -like "*.upk")) {
             $missingEntries.Add($relative)
             if($isDir) {
                 $patchedFolders.Add($relative)
