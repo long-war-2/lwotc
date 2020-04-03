@@ -1,5 +1,5 @@
 [XComGameState_LWOverhaulOptions]
-LWOverhaulTabName="LONG WAR 2"
+LWOverhaulTabName="LONG WAR (LWOTC)"
 GrazeBandWidthMod="Диапазон \"царапины\""
 GrazeBandWidthModTooltip="Определяет, насколько близко выстрел должен быть к попаданию, чтобы считаться \"царапиной\""
 GrazeBandValue="Значение: <XGParam:IntValue0>"

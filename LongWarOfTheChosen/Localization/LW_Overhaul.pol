@@ -1,5 +1,5 @@
 [XComGameState_LWOverhaulOptions]
-LWOverhaulTabName="LONG WAR 2"
+LWOverhaulTabName="LONG WAR (LWOTC)"
 GrazeBandWidthMod="Margines draśnięcia"
 GrazeBandWidthModTooltip="Określa, jak blisko celu należy trafić, żeby strzał został zaliczony jako draśnięcie"
 GrazeBandValue="Wartość: <XGParam:IntValue0>"

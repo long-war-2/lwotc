@@ -1,5 +1,5 @@
 [XComGameState_LWOverhaulOptions]
-LWOverhaulTabName="LONG WAR 2"
+LWOverhaulTabName="LONG WAR (LWOTC)"
 GrazeBandWidthMod="Streifschuss-Bereich"
 GrazeBandWidthModTooltip="Dies bestimmt, wie nah ein Schuss am exakten Trefferbereich liegen muss, um als Streifschuss gewertet zu werden."
 GrazeBandValue="Wert: <XGParam:IntValue0>"

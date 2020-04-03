@@ -1,5 +1,5 @@
 [XComGameState_LWOverhaulOptions]
-LWOverhaulTabName="LONG WAR 2"
+LWOverhaulTabName="LONG WAR (LWOTC)"
 GrazeBandWidthMod="Amplitude écorchure"
 GrazeBandWidthModTooltip="Déterminer la distance nécessaire d'un tir, par rapport à un tir réussi classique, pour qu'il soit considéré comme une écorchure."
 GrazeBandValue="Valeur : <XGParam:IntValue0>"
