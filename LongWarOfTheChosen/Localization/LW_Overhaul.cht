@@ -1,5 +1,5 @@
 [XComGameState_LWOverhaulOptions]
-LWOverhaulTabName="LONG WAR 2"
+LWOverhaulTabName="LONG WAR (LWOTC)"
 GrazeBandWidthMod="擦傷帶"
 GrazeBandWidthModTooltip="這決定了一次射擊能夠判定為擦傷的最短距離。"
 GrazeBandValue="數值：<XGParam:IntValue0>"

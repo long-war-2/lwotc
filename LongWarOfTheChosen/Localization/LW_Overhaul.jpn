@@ -1,5 +1,5 @@
 [XComGameState_LWOverhaulOptions]
-LWOverhaulTabName="LONG WAR 2"
+LWOverhaulTabName="LONG WAR (LWOTC)"
 GrazeBandWidthMod="かすり幅"
 GrazeBandWidthModTooltip="かすり傷を与えるために、必要な距離を決定する"
 GrazeBandValue="値：<XGParam:IntValue0>"

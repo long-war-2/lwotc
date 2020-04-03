@@ -1,5 +1,5 @@
 [XComGameState_LWOverhaulOptions]
-LWOverhaulTabName="LONG WAR 2"
+LWOverhaulTabName="LONG WAR (LWOTC)"
 GrazeBandWidthMod="Franja de roce"
 GrazeBandWidthModTooltip="Esto determina lo cerca que un disparo tiene que estar de acertar para poder ser contado como roce."
 GrazeBandValue="Valor: <XGParam:IntValue0>"

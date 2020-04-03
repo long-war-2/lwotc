@@ -1,5 +1,5 @@
 [XComGameState_LWOverhaulOptions]
-LWOverhaulTabName="LONG WAR 2"
+LWOverhaulTabName="LONG WAR (LWOTC)"
 GrazeBandWidthMod="찰과상 대역"
 GrazeBandWidthModTooltip="찰과상으로 간주되려면 목표물에 얼마나 근접해서 명중시켜야 하는지 결정합니다."
 GrazeBandValue="값: <XGParam:IntValue0>"

@@ -1,5 +1,5 @@
 [XComGameState_LWOverhaulOptions]
-LWOverhaulTabName="LONG WAR 2"
+LWOverhaulTabName="LONG WAR (LWOTC)"
 GrazeBandWidthMod="Graze Band"
 GrazeBandWidthModTooltip="This determines how close a shot has to be to the exact to-hit in order to be counted as a graze"
 GrazeBandValue="Value: <XGParam:IntValue0>"
