@@ -119,6 +119,7 @@
     <Content Include="Config\XComNarrative.ini" />
     <Content Include="Config\XComParcels.ini" />
     <Content Include="Config\XComPCPs.ini" />
+    <Content Include="Config\XComrobojumperSquadSelect.ini" />
     <Content Include="Config\XComSchedules.ini" />
     <Content Include="Config\XComUI.ini" />
     <Content Include="Content\Missions\Obj_AssaultAlienBase_LW.umap" />
