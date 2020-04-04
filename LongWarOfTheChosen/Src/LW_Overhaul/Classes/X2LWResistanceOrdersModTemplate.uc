@@ -16,6 +16,14 @@ static function UpdateResistanceOrders(X2StrategyElementTemplate Template, int D
 	if (CardTemplate == none)
 		return;
 
+	switch (CardTemplate.DataName)
+	{
+		case 'ResCard_TacticalAnalysis':  // This shouldn't be a continent bonus -- too strong!
+			CardTemplate.bContinentBonus = false;
+			break;
+	}
+
+	// Make sure any disabled resistance orders cannot be continent bonuses either
 	if (CardTemplate.Strength == 99)
 	{
 		`LWTrace("Removing " $ CardTemplate.DataName $ " as a continent bonus as it's disabled");
