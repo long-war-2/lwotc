@@ -112,6 +112,7 @@
     <Content Include="Config\XComLW_PodManager.ini" />
     <Content Include="Config\XComLW_SoldierSkills.ini" />
     <Content Include="Config\XComLW_Toolbox.ini" />
+    <Content Include="Config\XComLW2SquadIcons.ini" />
     <Content Include="Config\XComMaps.ini" />
     <Content Include="Config\XComMissionDefs.ini" />
     <Content Include="Config\XComMissions.ini" />
@@ -438,6 +439,9 @@
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_HeadquartersProjectTrainLWOfficer.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Unit_LWOfficer.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComHQPresentationLayer_LWOfficerPack.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\LW2_UIImageSelector.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\LW2_UISquadIconSelectionScreen.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\LW2_UISquadImage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWDLCHelpers.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWHelpTemplate.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWHelp_Default.uc" />
