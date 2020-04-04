@@ -14,6 +14,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> Templates;
 	
 	Templates.AddItem(CreateLethargyTemplate());
+	Templates.AddItem(CreateCombatRushOnCritTemplate());
 
 	return Templates;
 }
@@ -56,5 +57,39 @@ static function X2AbilityTemplate CreateLethargyTemplate()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
+	return Template;
+}
+
+static function X2AbilityTemplate CreateCombatRushOnCritTemplate()
+{
+	local X2AbilityTemplate			Template;
+	local X2Effect_FireEventOnCrit	CombatRushEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'CombatRushOnCrit');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityAdrenalNeurosympathy";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bSkipFireAction = true;
+	Template.bShowActivation = false;
+	Template.bCrossClassEligible = false;
+
+	//Effect serves to fire a custom event and that's it
+	CombatRushEffect = new class'X2Effect_FireEventOnCrit';
+	CombatRushEffect.Eventid = 'CombatRush';
+	CombatRushEffect.bShowActivation = false;
+	CombatRushEffect.BuildPersistentEffect(1, true, false);
+	CombatRushEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	Template.AddTargetEffect(CombatRushEffect);
+
+	Template.AdditionalAbilities.AddItem('BroadcastCombatRush');
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;		
 	return Template;
 }

@@ -13,6 +13,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	// Ability Granting Effects
 	Templates.AddItem(CreateLethargyEffectTemplate());
 	Templates.AddItem(CreateTrackingEffectTemplate());
+	Templates.AddItem(CreateCombatRushOnCritEffectTemplate());
 
 	// Miscellaneous effects
 	Templates.AddItem(CreateTheLostEffectTemplate());
@@ -49,6 +50,19 @@ static function X2SitRepEffectTemplate CreateTrackingEffectTemplate()
 	Template.DifficultyModifier = -5;
 	Template.AbilityTemplateNames.AddItem('Hero_Tracking');
 	Template.GrantToSoldiers = true;
+
+	return Template;
+}
+
+static function X2SitRepEffectTemplate CreateCombatRushOnCritEffectTemplate()
+{
+	local X2SitRepEffect_GrantAbilities Template;
+
+	`CREATE_X2TEMPLATE(class'X2SitRepEffect_GrantAbilities', Template, 'CombatRushOnCritEffect');
+	Template.DifficultyModifier = 0;
+	Template.AbilityTemplateNames.AddItem('CombatRushOnCrit');
+	Template.Teams.AddItem(eTeam_Alien);
+	Template.Teams.AddItem(eTeam_XCom);
 
 	return Template;
 }
