@@ -5292,6 +5292,9 @@ LocFriendlyName="Lethargic"
 LocHelpText="Unit suffers from reduced aim and mobility."
 LocLongDescription="Unit suffers from reduced aim and mobility."
 
+[LocationScout X2SitRepTemplate]
+Description="The resistance have placed low-range motion detectors throughout the AO that hook into your squad's comms. Your soldiers will be able to detect enemy units that are out of line of sight."
+
 [ProjectMiranda X2SitRepTemplate]
 FriendlyName="Project Miranda"
 Description="ADVENT are testing pacification technology in the area, which is making all non-robotic units lethargic. They will have penalties to aim and mobility."
