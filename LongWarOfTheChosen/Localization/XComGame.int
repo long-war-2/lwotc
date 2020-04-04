@@ -5275,12 +5275,22 @@ LocFriendlyName="Lethargic"
 LocHelpText="Unit suffers from reduced aim and mobility."
 LocLongDescription="Unit suffers from reduced aim and mobility."
 
+[CombatRushOnCrit X2AbilityTemplate]
+LocFriendlyName="Combat Rush (on crit)"
+LocFlyOverText="Combat Rush (on crit)"
+LocHelpText="When you get a crit, nearby humanoid allies receive temporary bonuses to aim, crit chance and mobility."
+LocLongDescription="When you get a crit with any shot or ability, your human or humanoid squad mates temporarily receive bonuses to aim, critical chance and mobility."
+
 [LocationScout X2SitRepTemplate]
 Description="The resistance have placed low-range motion detectors throughout the AO that hook into your squad's comms. Your soldiers will be able to detect enemy units that are out of line of sight."
 
 [ProjectMiranda X2SitRepTemplate]
 FriendlyName="Project Miranda"
 Description="ADVENT are testing pacification technology in the area, which is making all non-robotic units lethargic. They will have penalties to aim and mobility."
+
+[SomethingInTheAir X2SitRepTemplate]
+FriendlyName="There's Something in the Air"
+Description="Maybe it's something in the air, but whatever it is, it's causing soldiers to trigger Combat Rush whenever they crit. Beware, this works for ADVENT too!"
 
 [DarkEventBarrierSitRep X2SitRepTemplate]
 FriendlyName="Barrier"

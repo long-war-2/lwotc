@@ -574,6 +574,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_DoubleDamage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_DoubleTap.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Failsafe.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_FireEventOnCrit.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Guardian_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_HairTrigger.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_HEATGrenades.uc" />
