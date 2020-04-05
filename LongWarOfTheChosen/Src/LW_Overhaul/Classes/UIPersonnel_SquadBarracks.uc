@@ -747,15 +747,15 @@ function OnEditOrSelectClicked(UIButton Button)
 // LWOTC: Integrated from robojumper's Better Squad Icon Selector mod
 simulated function OnSquadIconClicked(UIImage Image)
 {
-	local LW2_UISquadIconSelectionScreen TempScreen;
+	local UISquadIconSelectionScreen TempScreen;
 	local XComPresentationLayerBase Pres;
 	
 	// `PRES is tactical (strategy is `HQPRES, generic is `PRESBASE)
 	Pres = `HQPRES;
 
-	if (Pres != none && Pres.ScreenStack.IsNotInStack(class'LW2_UISquadIconSelectionScreen'))
+	if (Pres != none && Pres.ScreenStack.IsNotInStack(class'UISquadIconSelectionScreen'))
 	{
-		TempScreen = Pres.Spawn(class'LW2_UISquadIconSelectionScreen', Pres);
+		TempScreen = Pres.Spawn(class'UISquadIconSelectionScreen', Pres);
 		//TempScreen.InitSquadImageSelector(XComPlayerController(Pres.Owner), Pres.Get2DMovie(), '', UIPersonnel_SquadBarracks(Image.ParentPanel.Screen));
 		TempScreen.BelowScreen = UIPersonnel_SquadBarracks(Image.ParentPanel.Screen);
 		TempScreen.BelowScreen.bHideOnLoseFocus = false;

@@ -1,30 +1,36 @@
-class LW2_UISquadIconSelectionScreen extends UIScreen config(LW2SquadIcons);
+//---------------------------------------------------------------------------------------
+//  FILE:    UISquadIconSelectionScreen.uc
+//  AUTHOR:  robojumper
+//  PURPOSE: (Copied from Better Squad Icon Selector mod). This is the screen that
+//           allows players to pick a squad icon from a grid of available ones.
+//---------------------------------------------------------------------------------------
+
+class UISquadIconSelectionScreen extends UIScreen config(LW2SquadIcons);
 
 // reference to the screen that actually contains the squad (personnel)
-// neede for cbs
+// needed for cbs
 var UIPersonnel_SquadBarracks BelowScreen;
 
-var UIPanel m_kContainer;
 var UIX2PanelHeader m_kTitleHeader;
+var UIPanel m_kContainer;
 var UIBGBox m_kBG;
 
-var LW2_UIImageSelector ImageSelector;
+var UIImageSelector_LW ImageSelector;
 
 var config int iWidth, iHeight;
 
 simulated function InitScreen(XComPlayerController InitController, UIMovie InitMovie, optional name InitName)
 {
-
 	local float initX, initY;
 	local float initWidth, initHeight;
-	
+
 	super.InitScreen(InitController, InitMovie, InitName);
 
 	initX = (1920 - iWidth) / 2;
 	initY = (1080 - iHeight) / 2;
 	initWidth = iWidth;
 	initHeight = iHeight;
-	
+
 	m_kContainer = Spawn(class'UIPanel', self);
 	m_kContainer.InitPanel('');
 	m_kContainer.SetPosition(initX, initY);
@@ -40,17 +46,16 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	m_kTitleHeader.SetHeaderWidth(m_kContainer.width - 20);
 	m_kTitleHeader.SetPosition(10, 20);
 
-	ImageSelector = Spawn(class'LW2_UIImageSelector', m_kContainer);
+	ImageSelector = Spawn(class'UIImageSelector_LW', m_kContainer);
 	ImageSelector.InitImageSelector(, 0, 70, m_kContainer.Width - 10, m_kContainer.height - 80, BelowScreen.SquadImagePaths, , SetSquadImage, BelowScreen.SquadImagePaths.Find(BelowScreen.GetCurrentSquad().SquadImagePath));
 }
 
 function SetSquadImage(int iImageIndex)
 {
 	local XComGameState NewGameState;
-	local XComGameState_LWPersistentSquad Squad; 
+	local XComGameState_LWPersistentSquad Squad;
 
 	Squad = BelowScreen.GetCurrentSquad();
-
 
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Change Squad ImagePath");
 	Squad = XComGameState_LWPersistentSquad(NewGameState.CreateStateObject(class'XComGameState_LWPersistentSquad', Squad.ObjectID));
@@ -62,8 +67,7 @@ function SetSquadImage(int iImageIndex)
 	BelowScreen.UpdateSquadList();
 
 	OnCancel();
-} 
-
+}
 
 simulated function bool OnUnrealCommand(int cmd, int arg)
 {
@@ -71,11 +75,11 @@ simulated function bool OnUnrealCommand(int cmd, int arg)
 
 	// Only pay attention to presses or repeats; ignoring other input types
 	// NOTE: Ensure repeats only occur with arrow keys
-	if ( !CheckInputIsReleaseOrDirectionRepeat(cmd, arg) )
+	if (!CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
 		return false;
 
 	bHandled = true;
-	switch( cmd )
+	switch (cmd)
 	{
 		case class'UIUtilities_Input'.const.FXS_BUTTON_B:
 		case class'UIUtilities_Input'.const.FXS_KEY_ESCAPE:
@@ -95,7 +99,6 @@ simulated function OnCancel()
 	BelowScreen.bHideOnLoseFocus = true;
 	CloseScreen();
 }
-
 
 defaultproperties
 {

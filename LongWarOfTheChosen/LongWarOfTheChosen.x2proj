@@ -439,9 +439,9 @@
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_HeadquartersProjectTrainLWOfficer.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Unit_LWOfficer.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComHQPresentationLayer_LWOfficerPack.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\LW2_UIImageSelector.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\LW2_UISquadIconSelectionScreen.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\LW2_UISquadImage.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIImageSelector_LW.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UISquadIconSelectionScreen.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UISquadImage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWDLCHelpers.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWHelpTemplate.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWHelp_Default.uc" />
