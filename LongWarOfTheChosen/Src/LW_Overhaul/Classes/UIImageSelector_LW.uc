@@ -130,9 +130,9 @@ simulated function CreateImageChips(array<string> _Images)
 			RightNavTargetChip = ImageChips[iChip - iLastRowLength + 1];
 
 
-		if( LeftNavTargetChip == none )
+		if (LeftNavTargetChip == none)
 			LeftNavTargetChip = ImageChips[iChip - 1];
-		if( RightNavTargetChip  == none )
+		if (RightNavTargetChip  == none)
 			RightNavTargetChip = ImageChips[iChip + 1];
 
 		Chip.Navigator.AddNavTargetLeft(LeftNavTargetChip);
