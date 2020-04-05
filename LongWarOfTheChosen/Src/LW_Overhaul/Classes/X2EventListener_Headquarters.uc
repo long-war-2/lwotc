@@ -9,6 +9,7 @@ var config array<float> CA_RISK_REDUCTION_PER_RANK;
 var config array<float> CA_RISK_INCREASE_PER_FL;
 var config array<float> CA_AP_REWARD_SCALAR;
 var config array<float> CA_STD_REWARD_SCALAR;
+var config int CA_RISK_FL_CAP;
 
 var config int LISTENER_PRIORITY;
 
@@ -279,7 +280,7 @@ static function EventListenerReturn CAAdjustRiskChance(
 
 	// Adjust the risk chance in the other direction based on force level.
 	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	RiskChanceAdjustment += AlienHQ.GetForceLevel() * `ScaleStrategyArrayFloat(default.CA_RISK_INCREASE_PER_FL);
+	RiskChanceAdjustment += Min(AlienHQ.GetForceLevel(), default.CA_RISK_FL_CAP) * `ScaleStrategyArrayFloat(default.CA_RISK_INCREASE_PER_FL);
 
 	// Make sure we don't go negative on the risk chance.
 	RiskIndex = CAState.Risks.Find('RiskTemplateName', Tuple.Data[0].n);
