@@ -112,6 +112,7 @@
     <Content Include="Config\XComLW_PodManager.ini" />
     <Content Include="Config\XComLW_SoldierSkills.ini" />
     <Content Include="Config\XComLW_Toolbox.ini" />
+    <Content Include="Config\XComLW2SquadIcons.ini" />
     <Content Include="Config\XComMaps.ini" />
     <Content Include="Config\XComMissionDefs.ini" />
     <Content Include="Config\XComMissions.ini" />
@@ -485,6 +486,7 @@
     <Content Include="Src\LW_Overhaul\Classes\UICovertActions_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UICovertActionReport_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIDarkEventListItem.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIImageSelector_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWCustomMission.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWLaunchDelayedMission.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIOutpostManagement.uc" />
@@ -513,6 +515,8 @@
     <Content Include="Src\LW_Overhaul\Classes\UIScrollingTextField.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UISquadClassItem.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UISquadContainer.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UISquadIconSelectionScreen.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UISquadImage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UISquadListItem.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UISquadListItem_Small.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UISquadSelect_InfiltrationItem.uc" />

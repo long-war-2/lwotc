@@ -86,6 +86,9 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	UpperContainer = Spawn(class'UIPanel', self).InitPanel().SetPosition(492, 145).SetSize(994, 132);
 
 	SquadImage = UIImage(Spawn(class'UIImage', UpperContainer).InitImage().SetSize(100, 100).SetPosition(8, 2));
+	SquadImage.bProcessesMouseEvents = true;
+	SquadImage.MC.FunctionVoid("processMouseEvents");
+	SquadImage.OnClickedDelegate = OnSquadIconClicked;
 
 	SquadImageSelectLeftButton = Spawn(class'UIButton', UpperContainer);
 	SquadImageSelectLeftButton.LibID = 'X2DrawerButton';
@@ -738,6 +741,25 @@ function OnEditOrSelectClicked(UIButton Button)
 
 		//Invoke the UI
 		`HQPRES.UISquadSelect();
+	}
+}
+
+// LWOTC: Integrated from robojumper's Better Squad Icon Selector mod
+simulated function OnSquadIconClicked(UIImage Image)
+{
+	local UISquadIconSelectionScreen TempScreen;
+	local XComPresentationLayerBase Pres;
+	
+	// `PRES is tactical (strategy is `HQPRES, generic is `PRESBASE)
+	Pres = `HQPRES;
+
+	if (Pres != none && Pres.ScreenStack.IsNotInStack(class'UISquadIconSelectionScreen'))
+	{
+		TempScreen = Pres.Spawn(class'UISquadIconSelectionScreen', Pres);
+		//TempScreen.InitSquadImageSelector(XComPlayerController(Pres.Owner), Pres.Get2DMovie(), '', UIPersonnel_SquadBarracks(Image.ParentPanel.Screen));
+		TempScreen.BelowScreen = UIPersonnel_SquadBarracks(Image.ParentPanel.Screen);
+		TempScreen.BelowScreen.bHideOnLoseFocus = false;
+		Pres.ScreenStack.Push(TempScreen, Pres.Get2DMovie());
 	}
 }
 
