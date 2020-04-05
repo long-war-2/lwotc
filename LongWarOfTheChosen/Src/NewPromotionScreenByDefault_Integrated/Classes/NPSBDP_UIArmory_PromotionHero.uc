@@ -584,7 +584,6 @@ function int GetAbilityPointCost(int Rank, int Branch)
 {
 	local XComGameState_Unit UnitState;
 	local array<SoldierClassAbilityType> AbilityTree;
-	local bool bPowerfulAbility;
 	local int AbilityRanks; //Rank is 0 indexed but AbilityRanks is not. This means a >= comparison requies no further adjustments
 	local Name ClassName;
 	local int AbilityCost;
@@ -592,7 +591,6 @@ function int GetAbilityPointCost(int Rank, int Branch)
 
 	UnitState = GetUnit();
 	AbilityTree = UnitState.GetRankAbilities(Rank);	
-	bPowerfulAbility = (class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilities.Find(AbilityTree[Branch].AbilityName) != INDEX_NONE);
 	AbilityRanks = 2;
 	ClassName = UnitState.GetSoldierClassTemplateName();	
 	AbilityRanks = GetAbilitiesPerRank(UnitState);
@@ -601,13 +599,6 @@ function int GetAbilityPointCost(int Rank, int Branch)
 	//Default ability cost
 	// LWOTC: Used for XCOM-row abilities
 	AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.AbilityPointCosts[Rank];
-
-	// LWOTC: Disable this
-	//Powerfull ability override ( 25 AP )
-	// if(bPowerfulAbility && Branch >= AbilityRanks)
-	// {
-	// 	AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.PowerfulAbilityPointCost;
-	// }
 
 	//Custom Class Ability Cost Override
 	if (HasCustomAbilityCost(ClassName, AbilityTree[Branch].AbilityName))
