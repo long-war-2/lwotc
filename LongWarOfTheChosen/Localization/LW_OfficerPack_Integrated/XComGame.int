@@ -223,6 +223,12 @@ LocFriendlyName="Command Range 6"
 LocLongDescription="Extends the officer's command range radius by 6 tiles"
 LocHelpText=""
 LocPromotionPopupText="TBC............"
+
+[CommandRange7 X2AbilityTemplate]
+LocFriendlyName="Command Range 7"
+LocLongDescription="Extends the officer's command range radius by 7 tiles"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
 ; End Translation
 
 ;---- END ABILITIES
