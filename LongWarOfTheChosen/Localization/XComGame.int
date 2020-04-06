@@ -5361,6 +5361,14 @@ Description="The Berserker Queen is expected on this mission. Be careful!"
 FriendlyName="Archon King"
 Description="The Archon King is expected on this mission. Be careful!"
 
+[CombatRushOnCritEffect X2SitRepEffect_GrantAbilities]
+FriendlyName="Combat Rush On Crit"
+Description="Combat Rush triggered when a unit crits."
+
+[LethargyEffect X2SitRepEffect_GrantAbilities]
+FriendlyName="Lethargy"
+Description="Units have -20 Aim and -2 Mobility."
+
 [CovertActionRisk_Failure_Easy X2CovertActionRiskTemplate]
 RiskName="Failure"
 
