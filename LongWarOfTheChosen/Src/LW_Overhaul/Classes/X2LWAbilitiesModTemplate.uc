@@ -68,7 +68,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'BayonetCharge':
 			UpdateBayonetCharge(Template);
 			break;
-		case 'ChosenExtractKnowledgeMove':
+		
+		/*	case 'ChosenExtractKnowledgeMove':
 		case 'ChosenKidnapMove':
 		case 'ChosenKidnap':
 		case 'ChosenExtractKnowledge':
@@ -85,6 +86,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'ChosenSummonFollowers': 
 			UpdateSummon(Template);
 			break;
+			*/
 		case 'ChosenImmuneMelee':
 			ReplaceWithDamageReductionMeele(Template);
 			break;

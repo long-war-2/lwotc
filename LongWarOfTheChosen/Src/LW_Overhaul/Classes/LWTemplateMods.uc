@@ -1935,6 +1935,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('MC_Stock_Strike');
 			Template.Abilities.AddItem('GetUp');
 			break;
+		/*
 		case 'ChosenSniper':
 		case 'ChosenSniperM2':
 		case 'ChosenSniperM3':
@@ -1963,6 +1964,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('ChosenCritImmune');
 			Template.ImmuneTypes.AddItem('Frost');
 			break;
+		*/
 		default:
 			break;
 	}
@@ -2079,7 +2081,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		}
 		switch(WeaponTemplate.DataName)
 		{
-
+		/*
 		case 'ChosenSniperRifle_CV':
 		case 'ChosenSniperRifle_MG':
 		case 'ChosenSniperRifle_BM':
@@ -2104,6 +2106,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenSniperPistol_T4':
 			WeaponTemplate.Abilities.AddItem('Secondary_Daze_Passive');
 		break;
+		*/
 		case 'AdvPriestM1_PsiAmp':
 			WeaponTemplate.Abilities.AddItem('PriestPsiMindControl');
 		break;
