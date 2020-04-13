@@ -1417,8 +1417,10 @@ TacticalText="<Bullet/> Does +2 damage to unarmored targets.<br/><Bullet/> Only 
 [RedScreenRounds X2AmmoTemplate]
 FriendlyName="Redscreen Rounds"
 FriendlyNamePlural="Redscreen Rounds"
-BriefSummary="Lowers enemy hack defense by 25 with every hit."
-TacticalText="<Bullet/> Lowers enemy hack defense by 25 with every hit.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+; LWOTC Needs Translation
+BriefSummary="Lowers enemy hack defense by <Ability:REDSCREEN_EFFECT_LW/>. Does not stack with itself, but does refresh."
+TacticalText="<Bullet/> Lowers enemy hack defense by <Ability:REDSCREEN_EFFECT_LW/>.<br/><Bullet/> Stacks with other sources of hack defense reduction, like Bluescreen Bombs.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+; End Translation
 
 [NeedleRounds X2AmmoTemplate]
 FriendlyName="Needle Rounds"
