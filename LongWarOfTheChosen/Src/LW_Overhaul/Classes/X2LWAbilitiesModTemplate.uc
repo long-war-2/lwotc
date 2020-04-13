@@ -35,7 +35,7 @@ var config int TEAMWORK_LVL3_CHARGES;
 
 var config int SUMMON_COOLDOWN;
 
-var config float MEELE_DAMAGE_REDUCTION;
+var config float MELEE_DAMAGE_REDUCTION;
 var config float EXPLOSIVE_DAMAGE_REDUCTION;
 
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
@@ -69,7 +69,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			UpdateBayonetCharge(Template);
 			break;
 		case 'ChosenImmuneMelee':
-			ReplaceWithDamageReductionMeele(Template);
+			ReplaceWithDamageReductionMelee(Template);
 			break;
 		case 'BlastShield':
 			ReplaceWithDamageReductionExplosive(Template);
@@ -462,14 +462,14 @@ static function ReplaceWithDamageReductionExplosive(X2AbilityTemplate Template)
 	Template.AddTargetEffect(PaddingEffect);
 }
 
-static function ReplaceWithDamageReductionMeele(X2AbilityTemplate Template)
+static function ReplaceWithDamageReductionMelee(X2AbilityTemplate Template)
 {
-	local X2Effect_DefendingMeeleDamageModifier DamageMod;
+	local X2Effect_DefendingMeleeDamageModifier DamageMod;
 
 	RemoveAbilityTargetEffect(Template,'X2Effect_DamageImmunity');
 
-	DamageMod = new class'X2Effect_DefendingMeeleDamageModifier';
-	DamageMod.DamageMod = default.MEELE_DAMAGE_REDUCTION;
+	DamageMod = new class'X2Effect_DefendingMeleeDamageModifier';
+	DamageMod.DamageMod = default.MELEE_DAMAGE_REDUCTION;
 	DamageMod.BuildPersistentEffect(1, true, false, true);
 	DamageMod.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageMod);

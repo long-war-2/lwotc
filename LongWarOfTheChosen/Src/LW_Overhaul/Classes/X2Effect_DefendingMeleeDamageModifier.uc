@@ -1,4 +1,4 @@
-class X2Effect_DefendingMeeleDamageModifier extends X2Effect_Persistent;
+class X2Effect_DefendingMeleeDamageModifier extends X2Effect_Persistent;
 //Like iron skin but percentage based
 
 var float DamageMod;

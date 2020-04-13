@@ -1171,7 +1171,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_TeleportGetOverThere.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_TargetHasOneOfTheEffects.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_DetonateMindshield.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_DefendingMeeleDamageModifier.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_DefendingMeleeDamageModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_DodgeModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWRebelJobIncomeModifier_Retribution.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_HeavyDazedDamageType.uc" />

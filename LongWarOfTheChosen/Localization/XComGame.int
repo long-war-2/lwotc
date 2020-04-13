@@ -5237,8 +5237,8 @@ LocFlyOverText="Overwhelm Mindshield"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Melee Resistance"
-LocLongDescription="Takes 50% less damage from meele."
-LocHelpText="Takes 50% less damage from meele."
+LocLongDescription="Takes 50% less damage from melee."
+LocHelpText="Takes 50% less damage from melee."
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Blast Shield"
