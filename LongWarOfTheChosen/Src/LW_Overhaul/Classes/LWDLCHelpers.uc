@@ -266,7 +266,7 @@ static function PutRulerOnCurrentMission(XComGameState NewGameState, XComGameSta
 	local int RulerIndex, idx, NumAppearances, MaxNumAppearances, MaxAppearanceIndex;
 
 	RulerMgr = XComGameState_AlienRulerManager(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_AlienRulerManager'));
-	RulerMgr = XComGameState_AlienRulerManager(NewGameState.ModifyStateObject(class'XComGameState_Unit', RulerMgr.ObjectID));
+	RulerMgr = XComGameState_AlienRulerManager(NewGameState.ModifyStateObject(class'XComGameState_AlienRulerManager', RulerMgr.ObjectID));
 
 	RulerMgr.RulerOnCurrentMission = UnitState.GetReference();
 
