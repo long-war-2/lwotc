@@ -615,9 +615,6 @@ ActivityObjectives[0]="Захватить набор ресурсов \"Адве
 
 ; LWOTC Translated
 ActivityObjectives[0]="Начало освобождения региона"
-; End Translated
-
-; LWOTC Translated
 UpToText="До"
 ExpectedActivityTextStr="Ожидаемая активность"
 BoostedActivityText="Ожидаемая активность (с ускорением)"

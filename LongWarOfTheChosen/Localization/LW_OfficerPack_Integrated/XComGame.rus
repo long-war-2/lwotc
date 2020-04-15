@@ -254,4 +254,11 @@ LocFriendlyName="Дальность приказа 6"
 LocLongDescription="Увеличивает дальность приказа офицера на 6 клеток"
 LocHelpText=""
 LocPromotionPopupText="TBC............"
+
+[CommandRange7 X2AbilityTemplate]
+LocFriendlyName="Дальность приказа 7"
+LocLongDescription="Увеличивает дальность приказа офицера на 7 клеток"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
 ; End Translated
