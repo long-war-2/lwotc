@@ -229,6 +229,17 @@ TacticalText="<Bullet/> Бластерная установка, входяща�
 AbilityDescName="\"перчатка\""
 
 [UISquadSelect_InfiltrationPanel]
+
+;LWOTC Translated
+
+UpToText="До"
+ExpectedActivityTextStr="Ожидаемая активность"
+BoostedActivityText="Ожидаемая активность (с ускорением)"
+BoostTextPre="С"
+BoostTextPost="Ускорение"
+
+;End Translated
+
 strInfiltrationTitle="ИТОГОВОЕ ПРОНИКНОВЕНИЕ:"
 strBaseInfiltrationTitle="Базовое проникновение:"
 strSquadSizeTitle="Влияние размера отряда:"
@@ -387,6 +398,9 @@ sSquadAvailable="ДОСТУПЕН"
 sCovertness="Скрытность: <XGParam:IntValue0>"
 
 [UIScreenListener_SquadSelect_LW]
+; LWOTC Translated
+strAreaOfOperations="Местность операции:"
+; End Translated
 strSave="Сохранить"
 strSquad="Отряд"
 strStart="Начало"
@@ -613,22 +627,12 @@ m_strNextHaven="СЛЕД. УБЕЖИЩЕ"
 ActivityObjectives[0]="Захватить набор ресурсов \"Адвента\""
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Сопротивление обнаружило расположение ценных ресурсов противника которые мы можем заполучить для своих потребностей.", MissionIndex=0)
 
-; LWOTC Translated
-ActivityObjectives[0]="Начало освобождения региона"
-UpToText="До"
-ExpectedActivityTextStr="Ожидаемая активность"
-BoostedActivityText="Ожидаемая активность (с ускорением)"
-BoostTextPre="С"
-BoostTextPost="Ускорение"
-; End Translated
+
 
 ; LWOTC Translated
-strAreaOfOperations="Местность операции:"
-; End Translated
-
-; LWOTC Translated
+UIListener_CampaignStartMenu
 strDisabledTutorialTooltip="Обучение выключено с модификацие Long War"
-strDisabledNarrativeContentTooltip="Потерянные и заброшенные отключены в течении игры Long War of The Chosen"
+strDisabledNarrativeContentTooltip="Странники отключены в течении игры Long War of The Chosen"
 strDisabledPrecisionExplosivesTooltip="Взрывоточность отключена в течении игры Long War of the Chosen"
 ; End Translated
 
