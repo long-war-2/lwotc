@@ -630,7 +630,7 @@ ActivityObjectives[0]="Захватить набор ресурсов \"Адве
 
 
 ; LWOTC Translated
-UIListener_CampaignStartMenu
+[UIListener_CampaignStartMenu]
 strDisabledTutorialTooltip="Обучение выключено с модификацие Long War"
 strDisabledNarrativeContentTooltip="Странники отключены в течении игры Long War of The Chosen"
 strDisabledPrecisionExplosivesTooltip="Взрывоточность отключена в течении игры Long War of the Chosen"
