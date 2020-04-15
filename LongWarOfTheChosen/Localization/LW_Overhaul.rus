@@ -238,6 +238,9 @@ strDaysAndHours="<XGParam:IntValue0> дн., <XGParam:IntValue1> ч."
 strMinusDaysAndHours="- <XGParam:IntValue0> дн., <XGParam:IntValue1> ч."
 strPlusDaysAndHours="+ <XGParam:IntValue0> дн., <XGParam:IntValue1> ч."
 strMissionIndefinite="Неопределенный срок"
+; LWOTC Translated
+ActivityObjectives[0]="Начало освобождения региона"
+; End Translated
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="КОНТАКТ В БЛИЖАЙШЕЕ ВРЕМЯ"
@@ -613,9 +616,7 @@ m_strNextHaven="СЛЕД. УБЕЖИЩЕ"
 ActivityObjectives[0]="Захватить набор ресурсов \"Адвента\""
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Сопротивление обнаружило расположение ценных ресурсов противника которые мы можем заполучить для своих потребностей.", MissionIndex=0)
 
-; LWOTC Translated
-ActivityObjectives[0]="Начало освобождения региона"
-; End Translated
+
 
 ; LWOTC Translated
 UpToText="До"
