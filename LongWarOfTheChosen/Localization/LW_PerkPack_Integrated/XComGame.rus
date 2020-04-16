@@ -1484,5 +1484,4 @@ RandomNicknames_Female[4]="Воительница"
 RandomNickNames_Female[5]="Валькирия"
 ;ALPHABETICAL ORDER
 
-[X2Ability_PerkPackAbilitySet]
-LocCoveringFireMalus="По этому юниту был произведен выстрел из режима наблюдения со способностью \"Огневая поддержка\", дающий штраф -10 к меткости до конца хода."
+
