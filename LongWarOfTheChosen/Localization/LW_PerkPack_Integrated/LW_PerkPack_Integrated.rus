@@ -43,13 +43,10 @@ DenseSmokeGrenadeEffectDisplayDesc="Густой дым дополнительн
 
 [X2Ability_PerkPackAbilitySet]
 LocCoveringFire="Огневая поддержка"
+LocCoveringFireMalus="По этому юниту был произведен выстрел из режима наблюдения со способностью \"Огневая поддержка\", дающий штраф -10 к меткости до конца хода."
+
 
 ; LWOTC Translated
 [BodyShield X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Указанный враг получает -20 к точности и -50 и шансу крита к этому оперативнику.<br/><Bullet/> Свободное действие.<br/><Bullet/> Щит имеет <Ability:SelfCooldown/> ходов перезарядки."
 ; End Translated
-
-LocCoveringFireMalus="По этому юниту был произведен выстрел из режима наблюдения со способностью \"Огневая поддержка\", дающий штраф -10 к меткости до конца хода."
-
-
-
