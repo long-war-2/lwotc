@@ -1883,6 +1883,15 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'Sectopod':
 			Template.Abilities.AddItem('Resilience');
 			break;
+		case 'AdvPurifierM3':
+			Template.Abilities.AddItem('Formidable');
+		case 'AdvPurifierM2':
+			Template.Abilities.AddItem('Burnout');
+			break;
+		case 'SpectreM2':
+			Template.Abilities.AddItem('LowProfile');
+			break;
+
 		// Should turn off tick damage every action
 		case 'ViperKing':
 		case 'BerserkerQueen':
@@ -2049,6 +2058,18 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponTemplate.DataName == 'AdvTurretM3_WPN' && default.LATE_TURRET_SQUADSIGHT)
 		{
 			WeaponTemplate.Abilities.AddItem('Squadsight');
+		}
+
+		switch (WeaponTemplate.DataName)
+		{
+		case 'AdvPriestM3_PsiAmp':
+			WeaponTemplate.Abilities.AddItem('Bastion');
+		case 'AdvPriestM2_PsiAmp':
+			WeaponTemplate.Abilities.AddItem('Fortress');
+			break;
+
+		default:
+			break;
 		}
 
 		//if (WeaponTemplate.Abilities.Find('StandardShot') != -1)
