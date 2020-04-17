@@ -220,44 +220,44 @@ EmptyListMessage="НЕТ ПОДХОДЯЩЕГО СОЛДАТА"
 
 ; LWOTC Translated
 [CommandRange1 X2AbilityTemplate]
-LocFriendlyName="Дальность приказа 1"
-LocLongDescription="Увеличивает дальность приказа офицера на 1 клетку"
+LocFriendlyName="Радиус командования 1"
+LocLongDescription="Увеличивает радиус командования офицера на 1 клетку"
 LocHelpText=""
 LocPromotionPopupText="TBC............"
 
 [CommandRange2 X2AbilityTemplate]
 LocFriendlyName="Дальность приказа 2"
-LocLongDescription="Увеличивает дальность приказа офицера на 2 клетки"
+LocLongDescription="Увеличивает радиус командования офицера на 2 клетки"
 LocHelpText=""
 LocPromotionPopupText="TBC............"
 
 [CommandRange3 X2AbilityTemplate]
-LocFriendlyName="Дальность приказа 3"
-LocLongDescription="Увеличивает дальность приказа офицера на 3 клетки"
+LocFriendlyName="Радиус командования 3"
+LocLongDescription="Увеличивает радиус командования офицера на 3 клетки"
 LocHelpText=""
 LocPromotionPopupText="TBC............"
 
 [CommandRange4 X2AbilityTemplate]
-LocFriendlyName="Дальность приказа 4"
-LocLongDescription="Увеличивает дальность приказа офицера на 4 клетки"
+LocFriendlyName="Радиус командования 4"
+LocLongDescription="Увеличивает радиус командования офицера на 4 клетки"
 LocHelpText=""
 LocPromotionPopupText="TBC............"
 
 [CommandRange5 X2AbilityTemplate]
-LocFriendlyName="Дальность приказа 5"
-LocLongDescription="Увеличивает дальность приказа офицера на 5 клеток"
+LocFriendlyName="Радиус командования 5"
+LocLongDescription="Увеличивает радиус командования офицера на 5 клеток"
 LocHelpText=""
 LocPromotionPopupText="TBC............"
 
 [CommandRange6 X2AbilityTemplate]
-LocFriendlyName="Дальность приказа 6"
-LocLongDescription="Увеличивает дальность приказа офицера на 6 клеток"
+LocFriendlyName="Радиус командования 6"
+LocLongDescription="Увеличивает радиус командования офицера на 6 клеток"
 LocHelpText=""
 LocPromotionPopupText="TBC............"
 
 [CommandRange7 X2AbilityTemplate]
-LocFriendlyName="Дальность приказа 7"
-LocLongDescription="Увеличивает дальность приказа офицера на 7 клеток"
+LocFriendlyName="Радиус командования 7"
+LocLongDescription="Увеличивает радиус командования офицера на 7 клеток"
 LocHelpText=""
 LocPromotionPopupText="TBC............"
 
