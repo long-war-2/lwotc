@@ -2200,7 +2200,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			default:
 				break;
 		}
-		if (WeaponTemplate.DataName == 'Sword_BM')
+		if (WeaponTemplate.DataName == 'Sword_BM' || WeaponTemplate.DataName == 'WristBlade_BM' || WeaponTemplate.DataName =='WristBladeLeft_BM' )
 		{
 			for (k = 0; k < WeaponTemplate.BonusWeaponEffects.length; k++)
 			{
