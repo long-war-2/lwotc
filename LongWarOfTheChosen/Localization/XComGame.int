@@ -2389,11 +2389,11 @@ ObjectiveTextPools[2]="Rescue as many rebel leaders as possible"
 
 [XComGame.UIMission_Retaliation]
 [UIMission_Retaliation]
-m_strRetaliationDesc=ADVENT is attacking one of the Resistance Havens in <XGParam:StrValue0/!WorldRegionName/>! We'll need to respond quickly to prevent Resistance casualties!
+m_strRetaliationDesc="ADVENT is attacking one of the Resistance Havens in <XGParam:StrValue0/!WorldRegionName/>! We'll need to respond quickly to prevent Resistance casualties!"
 
 [XComGame.UIMission_SupplyRaid]
 [UIMission_SupplyRaid]
-m_strRaidDesc=ADVENT is moving forces into <XGParam:StrValue0/!WorldRegionName/>. We can strike their supply lines and force them to retreat!
+m_strRaidDesc="ADVENT is moving forces into <XGParam:StrValue0/!WorldRegionName/>. We can strike their supply lines and force them to retreat!"
 
 [RecoverItem_LW X2MissionTemplate]
 DisplayName="Recover Item from ADVENT Vault"
@@ -4816,7 +4816,7 @@ LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field p
 
 [SoulSteal X2AbilityTemplate]
 LocLongDescription="Soulfire transfers half of the damage done back to the Psi Operative as health or grants an ablative HP if you are uninjured."
-LocHelpText="Soulfire heals a wounded operative or grants an ablative HP.
+LocHelpText="Soulfire heals a wounded operative or grants an ablative HP."
 LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 1 ablative hit point for a healthy one.<br/><Bullet/> An operative may increase to no more than 8 ablative HP when using Soul Steal."
 
 [CoveringFire X2AbilityTemplate]
@@ -4844,7 +4844,7 @@ LocFriendlyName="Solace"
 LocFlyOverText="Solace"
 LocLongDescription="The Psi Operative may immediately extinguish mental impairments for a squadmate."
 LocHelpText="The Psi Operative may immediately extinguish mental impairments for a squadmate."
-LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>
+LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>"
 
 [QuickStudy X2AbilityTemplate]
 LocFriendlyName="Quick Study"
@@ -4868,7 +4868,7 @@ LocFriendlyName="Rescue Protocol"
 LocFlyoverText="Rescue Protocol"
 LocLongDescription="Use your Gremlin to grant a movement action to an ally."
 LocHelpText="Grant a movement action to an ally."
-LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/>An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>
+LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/>An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
 
 [AssaultRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> The Plasma Rifle is a general purpose, supremely powerful primary infantry weapons system.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n<Bullet/> Use upgrades looted from enemies to improve the Plasma Rifle's tactical effectiveness.<br/>"
@@ -5042,9 +5042,7 @@ LocFriendlyName="Stun Strike"
 LocLongDescription="Strike an enemy with Psionic force strong enough to knock them back in the direction of the attack, stunning them. Costs 1 Focus."
 LocHelpText="Knock an enemy back in the direction of the attack, stunning them. Costs 1 Focus."
 LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike does not end the Templar's turn, but has a <Ability:SelfCooldown/> turn cooldown.<br/>"
-; End Translation
 
-; LWOTC Needs Translation
 [BondmateTeamwork X2AbilityTemplate]
 LocFriendlyName="Teamwork"
 LocHelpText="Grant an additional movement point to a bondmate. Has a single charge shared between bondmates."
