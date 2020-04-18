@@ -1055,6 +1055,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2LWAbilitiesModTemplate.uc" />
     <Content Include="Src\WallClimbOverride\Classes\X2Action_MoveClimbWall_Override.uc" />
     <Content Include="Localization\BetterSecondWaveSupport.int" />
+    <Content Include="Localization\BetterSecondWaveSupport.rus" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_PodManagement.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Debug.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ChosenEvents.uc" />
