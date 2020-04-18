@@ -7,7 +7,7 @@ event PostBeginPlay()
 {
 	TileComp = new class'LWInstancedTileComponent';
 	TileComp.CustomInit();
-	TileComp.SetMesh(StaticMesh(DynamicLoadObject("UI3D_XPack.Tile.BuddyTile_Safe_Enter", class'StaticMesh')));
+	TileComp.SetMesh(StaticMesh(DynamicLoadObject("LW_Heavy_Dazed_Tile.Tile.BuddyTile_Safe_Enter_Daze", class'StaticMesh')));
 	`XCOMVISUALIZATIONMGR.RegisterObserver(self);
 }
 

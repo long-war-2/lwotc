@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------
-//  FILE:   XComDownloadableContentInfo_LongWarOfTheChosen.uc                                    
+//  FILE:   XComDownloadableContentInfo_LongWarOfTheChosen.uc
 //           
 //	Use the X2DownloadableContentInfo class to specify unique mod behavior when the 
 //  player creates a new campaign or loads a saved game.
@@ -40,6 +40,7 @@ struct PlotObjectiveMod
 var config array<ArchetypeToHealth> DestructibleActorHealthOverride;
 var config array<bool> DISABLE_REINFORCEMENT_FLARES;
 var config array<float> SOUND_RANGE_DIFFICULTY_MODIFIER;
+var config int CHOSEN_RETRIBUTION_DURATION;
 
 struct SocketReplacementInfo
 {
@@ -142,11 +143,17 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState NewGameState;
 	local XComGameStateHistory History;
 	local XComGameState_Objective ObjectiveState;
+	local int i, Forcelevel, ChosenLevel;
+	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_LWOutpostManager OutpostManager;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_LWOutpost OutpostState;
 	local XComGameState_LWToolboxOptions ToolboxOptions;
-
+	
+	local array<XComGameState_AdventChosen> AllChosen;
+	local name OldTacticalTag, NewTacticalTag;
+	local XComGameState_AdventChosen ChosenState;
+	
 	History = `XCOMHISTORY;
 
 	// TODO: Remove these post 1.0 - START
@@ -171,15 +178,44 @@ static event OnLoadedSavedGameToStrategy()
 			OutpostState.UpdateRebelAbilities(NewGameState);
 		}
 	}
+		
+	//Make sure the chosen are of appropriate level
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	Forcelevel = AlienHQ.GetForceLevel();
+	AllChosen = AlienHQ.GetAllChosen();
+
+	ChosenLevel = 3;
+	for (i = 0; i < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.Length; i++)
+	{
+		if (ForceLevel < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[i])
+		{
+			ChosenLevel = i;
+			break;
+		}
+	}
+
+	foreach AllChosen(ChosenState)
+	{
+		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+		Chosenstate.Level = ChosenLevel;
+		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+		// Replace Old Tag with new Tag in missions
+		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+	}
 	// Remove these post 1.0 - END
 
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
 
+	if (NewGameState.GetNumGameStateObjects() > 0)
+		History.AddGameStateToHistory(NewGameState);
+	else
+		History.CleanupPendingGameState(NewGameState);
+
 	//make sure that critical narrative moments are active
 	foreach History.IterateByClassType(class'XComGameState_Objective', ObjectiveState)
 	{
-		if(ObjectiveState.GetMyTemplateName() == 'N_GPCinematics')
+		if (ObjectiveState.GetMyTemplateName() == 'N_GPCinematics')
 		{
 			if (ObjectiveState.ObjState != eObjectiveState_InProgress)
 			{
@@ -191,11 +227,6 @@ static event OnLoadedSavedGameToStrategy()
 			break;
 		}
 	}
-
-	if (NewGameState.GetNumGameStateObjects() > 0)
-		History.AddGameStateToHistory(NewGameState);
-	else
-		History.CleanupPendingGameState(NewGameState);
 
 	CleanupObsoleteTacticalGamestate();
 }
@@ -1062,6 +1093,41 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 		{
 			`LWTrace(" >>> Binding ability '" $ SetupData[i].TemplateName $ "' to primary weapon for unit " $ UnitState.GetMyTemplateName());
 			SetupData[i].SourceWeaponRef = UnitState.GetPrimaryWeapon().GetReference();
+		}
+	}
+
+	// Prevent units summoned by the Chosen from dropping loot and corpses
+	if (StartState.GetContext().IsA(class'XComGameStateContext_Ability'.Name))
+	{
+		if (XComGameStateContext_Ability(StartState.GetContext()).InputContext.AbilityTemplateName == 'ChosenSummonFollowers')
+		{
+			AbilityName = 'FollowerDefeatedEscape';
+			if (SetupData.Find('TemplateName', AbilityName) == -1)
+			{
+				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate(AbilityName);
+
+				if (AbilityTemplate != none)
+				{
+					Data = EmptyData;
+					Data.TemplateName = AbilityName;
+					Data.Template = AbilityTemplate;
+					SetupData.AddItem(Data);  // return array -- we don't have to worry about additional abilities for this simple ability
+				}
+			}
+				
+			AbilityName = 'NoLootAndCorpse';
+			if (SetupData.Find('TemplateName', AbilityName) == -1)
+			{
+				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate(AbilityName);
+
+				if (AbilityTemplate != none)
+				{
+					Data = EmptyData;
+					Data.TemplateName = AbilityName;
+					Data.Template = AbilityTemplate;
+					SetupData.AddItem(Data);  // return array -- we don't have to worry about additional abilities for this simple ability
+				}
+			}
 		}
 	}
 }
@@ -2133,11 +2199,13 @@ static function UpdateTechs()
 static function UpdateChosenActivities()
 {
 	UpdateTraining();
+	UpdateRetribution();
 }
 
 static function UpdateTraining()
 {
 	local X2ChosenActionTemplate Template;
+
 	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Training'));
 	Template.OnActivatedFn = ActivateTraining;
 	Template.CanBePlayedFn = TrainingCanBePlayed;
@@ -2147,30 +2215,42 @@ static function ActivateTraining(XComGameState NewGameState, StateObjectReferenc
 {
 	local XComGameState_ChosenAction ActionState;
 	local XComGameState_AdventChosen ChosenState;
-	local name OldTacticalTag, NewTacticalTag;
 
 	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);
 	ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(ActionState.ChosenRef, NewGameState);
 
-
-	// Grab Old Tactical Tag
-	OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
-	// Increase the Chosen's level
-	ChosenState.Level++;
-	NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
 	// Only met, active chosen trigger the just leveled up popup
-	if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+	if (ChosenState.bMetXCom && !ChosenState.bDefeated)
 	{
 		ChosenState.bJustLeveledUp = true;
 	}
 
-	// Replace Old Tag with new Tag in missions
-	ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
-
 	// Gain New Traits
 	ChosenState.GainNewStrengths(NewGameState, class'XComGameState_AdventChosen'.default.NumStrengthsPerLevel);
+}
+
+static function UpdateRetribution()
+{
+	local X2ChosenActionTemplate Template;
+
+	Template = X2ChosenActionTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('ChosenAction_Retribution'));
+	Template.OnActivatedFn = ActivateRetribution;
+	Template.OnChooseActionFn = OnChooseRetribution;
+}
+
+static function ActivateRetribution(XComGameState NewGameState, StateObjectReference InRef, optional bool bReactivate = false)
+{
+	local XComGameState_ChosenAction ActionState;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWOutpost Outpost;
+
+	ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(InRef, NewGameState);
+	RegionState = XComGameState_WorldRegion(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion', ActionState.StoredReference.ObjectID));
+	
+	Outpost = `LWOUTPOSTMGR.GetOutpostForRegion(RegionState);
+	Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', OutPost.ObjectID));
+	NewGameState.AddStateObject(Outpost);
+	OutPost.AddChosenRetribution(default.CHOSEN_RETRIBUTION_DURATION);
 }
 
 //---------------------------------------------------------------------------------------
@@ -2183,13 +2263,13 @@ static function bool TrainingCanBePlayed(StateObjectReference InRef, optional XC
 
 	ChosenState = XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(InRef.ObjectID));
 
-	if(ChosenState == none)
+	if (ChosenState == none)
 	{
 		ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(InRef);
 	}
 
 	// Cannot be first action after meeting XCOM
-	if(ChosenState.bMetXCom)
+	if (ChosenState.bMetXCom)
 	{
 		bCantPlay = true;
 
@@ -2197,20 +2277,60 @@ static function bool TrainingCanBePlayed(StateObjectReference InRef, optional XC
 		{
 			ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(ActionRef);
 
-			if(ActionState.GetMyTemplateName() != 'ChosenAction_Training')
+			if (ActionState.GetMyTemplateName() != 'ChosenAction_Training')
 			{
 				bCantPlay = false;
 				break;
 			}
 		}
 
-		if(bCantPlay)
+		if (bCantPlay)
 		{
 			return false;
 		}
 	}
  
 	return true;
+}
+
+static function OnChooseRetribution(XComGameState NewGameState, XComGameState_ChosenAction ActionState)
+{
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_HeadquartersXCom XComHQ;
+
+	ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(ActionState.ChosenRef, NewGameState);
+	RegionState = ChooseRetributionRegion(ChosenState);
+	ActionState.StoredReference = RegionState.GetReference();
+	
+	XComHQ = `XCOMHQ;
+	XComHQ.NumChosenRetributions++;
+}
+
+static function XComGameState_WorldRegion ChooseRetributionRegion(XComGameState_AdventChosen ChosenState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState;
+	local StateObjectReference RegionRef;
+	local int i;
+
+	History = `XCOMHISTORY;
+
+	// For target deck, get Chosen territories and then remove the uncontacted ones.
+	// That way it will select a region that's both this Chosen's region AND contacted.
+	// There will always be at least one because you need to have at least one
+	// territory contacted to meet the chosen, and you can't lose contact to regions in
+	// LWOTC.
+	ChosenState.RegionAttackDeck = ChosenState.TerritoryRegions;
+	for (i = 0; i < ChosenState.RegionAttackDeck.length; i++)
+	{
+		if (XComGameState_WorldRegion(History.GetGameStateForObjectID(ChosenState.RegionAttackDeck[i].ObjectID)).ResistanceLevel < eResLevel_Contact)
+		ChosenState.RegionAttackDeck.Remove(i, 1);
+	}
+	RegionRef = ChosenState.RegionAttackDeck[`SYNC_RAND_STATIC(ChosenState.RegionAttackDeck.Length)];
+	RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionRef.ObjectID));
+
+	return RegionState;
 }
 
 //=========================================================================================

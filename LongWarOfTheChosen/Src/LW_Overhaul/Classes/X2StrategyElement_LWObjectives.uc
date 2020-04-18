@@ -142,8 +142,6 @@ static function X2DataTemplate CreateLW_T2_M0_S4_AssaultNetworkTowerTemplate()
 	Template.NextObjectives.AddItem('LW_T2_M1_N1_RevealBlacksiteObjective');
 	Template.CompletionEvent = 'NetworkTowerDefeated';  // Do Blacksite after Network Tower, and move Avatar Project to after AssaultAlienBase
 	Template.InProgressFn = AnyProtectRegion3ActivityVisible;
-	Template.CompleteObjectiveFn = ActivateChosenIfEnabled;
-
 	return Template;
 }
 

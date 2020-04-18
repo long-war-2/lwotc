@@ -33,6 +33,11 @@ var config int TEAMWORK_LVL1_CHARGES;
 var config int TEAMWORK_LVL2_CHARGES;
 var config int TEAMWORK_LVL3_CHARGES;
 
+var config int SUMMON_COOLDOWN;
+
+var config float MEELE_DAMAGE_REDUCTION;
+var config float EXPLOSIVE_DAMAGE_REDUCTION;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
     // Override the FinalizeHitChance calculation for abilities that use standard aim
@@ -58,10 +63,16 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'Bayonet':
 			UpdateBayonet(Template);
-		break;
+			break;
 		//I probably could just update it in the Alienpack, but it doesn't recognize the cooldown class there
 		case 'BayonetCharge':
 			UpdateBayonetCharge(Template);
+			break;
+		case 'ChosenImmuneMelee':
+			ReplaceWithDamageReductionMeele(Template);
+			break;
+		case 'BlastShield':
+			ReplaceWithDamageReductionExplosive(Template);
 			break;
 		default:
 			break;
@@ -406,7 +417,45 @@ static function UpdateBayonetCharge(X2AbilityTemplate Template)
 	Template.AbilityCooldown = Cooldown;
 }
 
+static function RemoveAbilityTargetEffect(X2AbilityTemplate Template, name EffectName)
+{
+	local X2Effect TargetEffect;
+	foreach Template.AbilityTargetEffects(TargetEffect)
+	{
+		if (TargetEffect.IsA(EffectName))
+		{
+			Template.AbilityTargetEffects.RemoveItem(TargetEffect);
+		}
+	}
+}
+
+static function ReplaceWithDamageReductionExplosive(X2AbilityTemplate Template)
+{
+	local X2Effect_Formidable	PaddingEffect;
+
+	RemoveAbilityTargetEffect(Template,'X2Effect_BlastShield');
+
+	PaddingEffect = new class'X2Effect_Formidable';
+	PaddingEffect.ExplosiveDamageReduction = default.EXPLOSIVE_DAMAGE_REDUCTION;
+	PaddingEffect.Armor_Mitigation = 0;
+	Template.AddTargetEffect(PaddingEffect);
+}
+
+static function ReplaceWithDamageReductionMeele(X2AbilityTemplate Template)
+{
+	local X2Effect_DefendingMeeleDamageModifier DamageMod;
+
+	RemoveAbilityTargetEffect(Template,'X2Effect_DamageImmunity');
+
+	DamageMod = new class'X2Effect_DefendingMeeleDamageModifier';
+	DamageMod.DamageMod = default.MEELE_DAMAGE_REDUCTION;
+	DamageMod.BuildPersistentEffect(1, true, false, true);
+	DamageMod.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	Template.AddTargetEffect(DamageMod);
+}
+
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
 }
+

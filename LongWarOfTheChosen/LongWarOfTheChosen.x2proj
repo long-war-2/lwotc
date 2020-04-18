@@ -1160,7 +1160,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_DefendingMeeleDamageModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_DodgeModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWRebelJobIncomeModifier_Retribution.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Condition_NotItsOwnTurn.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_HeavyDazedDamageType.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_GeneralDamageModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_HeavyDazed.uc" />
@@ -1169,6 +1168,10 @@
     <Content Include="Src\LW_Overhaul\Classes\LWHeavyDazedListener.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedTileComponent.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedMeshActor.uc" />
+    <Content Include="Content\LW_Heavy_Dazed_Tile.upk" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Ability_UniversalSoldierAbilities.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Condition_OnlyOnXCOMTurn.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_NoLootAndCorpse.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->

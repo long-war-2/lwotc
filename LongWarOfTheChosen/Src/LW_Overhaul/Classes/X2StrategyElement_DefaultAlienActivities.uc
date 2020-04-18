@@ -167,6 +167,9 @@ var config int RECRUIT_RAID_BUCKET;
 
 var config int ALIEN_BASE_DOOM_REMOVAL;
 
+var config int CHOSEN_ACTIVATE_AT_FL;
+var config array<int> CHOSEN_LEVEL_FL_THRESHOLDS;
+
 var protected name RebelMissionsJob;
 
 var localized string m_strInsufficientRebels;
@@ -1755,7 +1758,13 @@ static function OnScheduledOffworldReinforcementsComplete(bool bAlienSuccess, XC
 			`LWTRACE("ScheduledOffworldReinforcements : Activity Complete, Alien Win, Increasing ForceLevel by 1 in " $ RegionState.GetMyTemplate().DisplayName );
 		}
 		//All region force level is the same, so i just need one instance of it
+		
+		// Increase Chosen level inline with the current global force
+		// level. Also make sure the Chosen are activated when force
+		// level reaches the configured threshold.
 		TryIncreasingChosenLevel(RegionalAI.LocalForceLevel);
+		if (RegionalAI.LocalForceLevel == default.CHOSEN_ACTIVATE_AT_FL)
+			ActivateChosenIfEnabled(NewGameState);
 	}
 	else
 	{
@@ -1777,9 +1786,10 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 	local name OldTacticalTag, NewTacticalTag;
 	local XComGameStateContext_ChangeContainer ChangeContainer;
 	local XComGameState NewGameState;
- switch(CurrentForceLevel)
-{	//All Forcelevel Threshholds for the Chosen, they increase the level accordingly
-	case 8:;case 13:;case 17:;
+
+	// Ignore force levels that aren't Chosen level thresholds
+	if (default.CHOSEN_LEVEL_FL_THRESHOLDS.Find(CurrentForceLevel) == INDEX_NONE)
+		return;
 
 	History = `XCOMHISTORY;
 
@@ -1794,20 +1804,29 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 		Chosenstate.Level++;
 		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-		if(ChosenState.bMetXCom && !ChosenState.bDefeated)
+		if (ChosenState.bMetXCom && !ChosenState.bDefeated)
 		{
 			ChosenState.bJustLeveledUp = true;
 		}
 		// Replace Old Tag with new Tag in missions
 		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
-		`GAMERULES.SubmitGameState(NewGameState);
 	}
 
-	break;
-	default:;
-	break;
+	`GAMERULES.SubmitGameState(NewGameState);
 }
+
+static function ActivateChosenIfEnabled(XComGameState NewGameState)
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+
+	if (`SecondWaveEnabled('EnableChosen'))
+	{
+		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+		AlienHQ.OnChosenActivation(NewGameState);
+	}
 }
+
 static function name RescueReward(bool IncludeRebel, bool IncludePrisoner)
 {
 	local int iRoll, Rescue_Soldier_Modified_Weight, Rescue_Engineer_Modified_Weight, Rescue_Scientist_Modified_Weight, Rescue_Rebel_Modified_Weight;

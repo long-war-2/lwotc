@@ -37,7 +37,12 @@ m_strLowScientistsList[2]=A Scientist may be available in the Black Market, and 
 m_strLowEngineersList[0]=Visit the Black Market with the Avenger. This will show you any staff currently available for recruitment.
 m_strLowEngineersList[2]=An Engineer may be available in the Black Market, and can be recruited by paying supplies.
 
-
+m_strRetributionAlertTitle="CHOSEN RETRIBUTION"
+;LWOTC needs translation
+m_strRetributionAlertDescription="A Chosen has clamped down on Resistance activities in this region, reducing the area's activity efficiency." 
+m_strRetributionAlertIncomeDecreasedTitle="HAVEN SABOTAGED"
+m_strRetributionAlertIncomeDescription="Supply, Intel, and Recruit activity efficiency has been decreased by 20%"
+;LWOTC end translation
 [XComGame.UIAdventOperations]
 [UIAdventOperations]
 m_strTitleHelp="We have received intel regarding the Aliens' current activities. If the Resistance can detect the source of these operations, we can conduct operations to stop them."
@@ -5138,4 +5143,78 @@ FriendlyNamePlural="Archmage Gauntlets"
 BriefSummary="A small Elerium power cell scavenged from an unknown piece of ADVENT technology has provided the Templars with a means of further amplifying the Psionic energy harnessed by these gauntlets. It is still unknown whether it is their mastery of this power, or the technology they have created that allows this blend of opposing forces."
 TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n"
 AbilityDescName="shard"
+
+[Yoink X2AbilityTemplate]
+LocFriendlyName="Yoink"
+LocLongDescription="Teleport next to the enemy."
+LocHelpText="Teleport next to the enemy."
+LocFlyOverText="Yoink"
+
+[AmmoDump X2AbilityTemplate]
+LocFriendlyName="Sabotage Weapon"
+LocHelpText="Disables a weapon, dumping the ammo."
+LocLongDescription="Disables a weapon, dumping the ammo."
+LocFlyOverText="Sabotage Weapon"
+
+[ShieldAlly X2AbilityTemplate]
+LocFriendlyName="The Warlocks Greatest Champion"
+LocHelpText="Adds Shield to an Ally."
+LocLongDescription="Adds Shield to an Ally."
+LocFlyOverText="The Warlocks Greatest Champion"
+
+[DetonateMindshield X2AbilityTemplate]
+LocFriendlyName="Overwhelm Mindshield"
+LocHelpText="Powers through a Mindshield."
+LocLongDescription="Powers through a Mindshield."
+LocFlyOverText="Overwhelm Mindshield"
+
+[ChosenImmuneMelee X2AbilityTemplate]
+LocFriendlyName="Melee Resistance"
+LocLongDescription="Takes 50% less damage from meele."
+LocHelpText="Takes 50% less damage from meele."
+
+[BlastShield X2AbilityTemplate]
+LocFriendlyName="Blast Shield"
+LocLongDescription="Takes 50% less damage from Explosions."
+LocHelpText="Takes 50% less damage from Explosions."
+
+[ChosenCritImmune X2AbilityTemplate]
+LocFriendlyName="Balanced"
+LocHelpText="Near immune to critical Hits."
+LocLongDescription="This Chosen is near immune to critical Hits."
+
+[Primary_Daze_Passive X2AbilityTemplate]
+LocFriendlyName="Primary Daze"
+LocHelpText="Your primary attacks daze."
+LocLongDescription="Your primary attacks daze."
+
+[Secondary_Daze_Passive X2AbilityTemplate]
+LocFriendlyName="Secondary Daze"
+LocHelpText="Your Secondary attacks Heavy daze."
+LocLongDescription="Your Secondary attacks Heavy daze."
+
+[HeavyRevive X2AbilityTemplate]
+LocFriendlyName="Heavy Revive"
+LocHelpText="Remove the Chosen's \"Heavy Dazed\" effect from this soldier. Soldiers may be disoriented when revived."
+LocLongDescription="Remove the Chosen's \"Heavy Dazed\" effect from this soldier. Soldiers may be disoriented when revived."
+LocFlyOverText="Revived!"
+
+[MC_Stock_Strike X2AbilityTemplate]
+LocFriendlyName="Stock Strike"
+LocHelpText="Strike a Mind Controlled Soldier with a butt of your weapon, stunning the target for 1 turn."
+LocLongDescription="Strike a Mind Controlled Soldier with a butt of your weapon, stunning the target for 1 turn."
+LocFlyOverText="BONK"
+
+[GetUp X2AbilityTemplate]
+LocFriendlyName="Get up!"
+LocHelpText="Remove the unconcious effect from a soldier."
+LocLongDescription="Remove the unconcious effect from a soldier"
+LocFlyOverText="Get up!"
+
+[ChosenSummonFollowers X2AbilityTemplate]
+LocFriendlyName="Summon Followers"
+LocHelpText="Summon alliens."
+LocLongDescription="Summon alliens."
+LocFlyOverText="Summonnin' ayys"
+
 ; End Translation
