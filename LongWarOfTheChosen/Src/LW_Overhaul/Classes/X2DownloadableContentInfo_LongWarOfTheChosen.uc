@@ -2511,6 +2511,15 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'STOCK_SUP_SW_AIM_BONUS':
 			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SW_AIM_BONUS);
 			return true;
+		case 'STOCK_BSC_GF_CHANCE':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_BSC_SUCCESS_CHANCE);
+			return true;
+		case 'STOCK_ADV_GF_CHANCE':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_ADV_SUCCESS_CHANCE);
+			return true;
+		case 'STOCK_SUP_GF_CHANCE':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SUCCESS_CHANCE);
+			return true;
 		default:
 			return false;
 	}

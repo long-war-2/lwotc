@@ -2144,18 +2144,20 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 		case 'SniperRifle_CV':
 		case 'SniperRifle_LS':
-		WeaponTemplate.Abilities.AddItem('Stock_LW_Bsc_Ability');
-		break;
+			WeaponTemplate.Abilities.AddItem('Stock_LW_Bsc_Ability');
+			break;
+
 		case 'SniperRifle_MG':
 		case 'SniperRifle_CG': 
-		WeaponTemplate.Abilities.AddItem('Stock_LW_Adv_Ability');
-		break;
+			WeaponTemplate.Abilities.AddItem('Stock_LW_Adv_Ability');
+			break;
+
 		case 'SniperRifle_BM':
 		case 'ChosenSniperRifle_XCOM':
-		WeaponTemplate.Abilities.AddItem('Stock_LW_Sup_Ability');
-		break;
+			WeaponTemplate.Abilities.AddItem('Stock_LW_Sup_Ability');
+			break;
 		default:
-		break;
+			break;
 		}
 
 		//if (WeaponTemplate.Abilities.Find('StandardShot') != -1)
