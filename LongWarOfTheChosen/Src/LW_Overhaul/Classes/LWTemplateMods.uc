@@ -311,13 +311,13 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateRemovePPClassesTemplate());
 	Templates.AddItem(CreateUpdateQuestItemsTemplate());
 	TEmplates.AddItem(CreateGeneralCharacterModTemplate());
-	Templates.AddItem(CreateModifyDarkEventsTemplate());
 	Templates.AddItem(CreateModifyPOIsTemplate());
 	Templates.AddItem(CreateModifyHackRewardsTemplate());
 	Templates.AddItem(CreateReconfigFacilityUpgradesTemplate());
 	Templates.AddItem(CreateModifyStaffSlotsTemplate());
 	Templates.AddItem(CreateModifyRewardsTemplate());
 	Templates.AddItem(CreateModifyStrategyObjectivesTemplate());
+	Templates.AddItem(CreateModifyCharactersTemplate());
 	Templates.AddItem(CreateModifyCovertActionsTemplate());
 	Templates.AddItem(CreateModifyCovertActionRisksTemplate());
 	Templates.AddItem(CreateModifyDarkEventsTemplate());
@@ -344,6 +344,15 @@ static function X2LWTemplateModTemplate CreateModifyStrategyObjectivesTemplate()
 	local X2LWTemplateModTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2LWObjectivesModTemplate', Template, 'UpdateObjectives');
+	return Template;
+}
+
+// Update existing character templates
+static function X2LWTemplateModTemplate CreateModifyCharactersTemplate()
+{
+	local X2LWTemplateModTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2LWCharactersModTemplate', Template, 'UpdateCharacters');
 	return Template;
 }
 

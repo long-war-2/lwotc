@@ -1,0 +1,23 @@
+; LWOTC Needs Translation
+[LWTutorial]
+CampaignStartTitle="Welcome to Long War of the Chosen"
+CampaignStartBody="LWOTC is a complete overhaul to XCOM 2 WOTC that makes the campaign more challenging and feel like a guerrilla war.<br/><br/>You can disable this tutorial via Change Difficulty > Advanced Options in the game menu."
+
+[X2EventListener_Tutorial]
+DroneSightedTitle="New Enemy: Drone"
+DroneSightedBody="ADVENT Drones are robotic scouts with high detection range and crowd control weapons. They:<br/><br/><ul><li>have 10 innate Defense</li><li>can stun for 2 turns at melee range</li><li>can shoot a disorienting ray</li><br/>They are often found on rooftops, so beware!"
+EngineerSightedTitle="New Enemy: Engineer"
+EngineerSightedBody="Engineers are ADVENT's grenadier unit. Tier-1 versions can use flashbangs, tier 2 can use incendiary grenades, and tier 3 can use acid grenades.<br/><br/>Often part of \"rainbow\" pods, as they are colored red.
+SentrySightedTitle="New Enemy: Sentry"
+SentrySightedBody="Sentries are dangerous infantry units that can go on overwatch after shooting. They have good aim and do more damage than Troopers. They also have a higher detection radius than other ADVENT troops."
+GunnerSightedTitle="New Enemy: Gunner"
+GunnerSightedBody="Gunners carry heavy cannons that can do serious damage to XCOM units. You need to take them very seriously! They also have the ability to suppress both a single unit and units in a small area."
+RocketeerSightedTitle="New Enemy: Rocketeer"
+RocketeerSightedBody="Rocketeers are as scary as they sound. They can fire accurate rockets, destroying cover and doing significant damage to XCOM units. Fortunately, their area of effect is smaller than for our rockets."
+HavenHighlightTitle="Review your haven"
+HavenHighlightBody="Havens are essential to your campaign as they are used to find missions in the region. In addition, you can only contact regions that are connected to an existing haven.<br/><br/>Click on the button shown on the left to open the Haven management screen."
+
+[UIScreenListener_OutpostManagementTutorial]
+HavenManagementTitle="Haven Management"
+HavenManagementBody="Havens are home to a collection of rebels who can undertake several jobs:<br/><br/><ul><li>Intel - detects missions</li><li>Recruit - recruits rebels and rookies</li><li>Supply - generates supplies</li></ul>The more rebels that are on a job, the more effective they are."
+; End Translation

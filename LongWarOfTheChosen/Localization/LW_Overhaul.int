@@ -699,3 +699,4 @@ ScrollObjectiveDescriptionStr="SCROLL OBJECTIVE DESCRIPTION"
 
 [X2Effect_ChosenLoot]
 m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> Rewarded for Killing the Chosen."
+

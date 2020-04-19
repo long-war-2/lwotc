@@ -488,6 +488,7 @@
     <Content Include="Src\LW_Overhaul\Classes\LWRebelJob_DefaultJobSet.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWTacticalMissionUnitSpawner.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWTemplateMods.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\LWTutorial.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWVersion.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWVisualizedInterface.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWXComGameVersion.uc" />
@@ -506,6 +507,8 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_IRI_SoulStorm.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_NullWard.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_InitializeMissionTimer.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\SeqAct_IsStrategyObjectiveCompleted.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\SeqAct_IsSWOActive.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_LWCallReinforcements.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_RemoveItemFromInventory.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_ResetCivilians.uc" />
@@ -654,6 +657,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Soldiers.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_StrategyMap.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Tactical.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Tutorial.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_WorldRegion.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2HackReward_LWOverhaul.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_ArcthrowerWeapon.uc" />
@@ -1175,6 +1179,7 @@
     <Content Include="Src\PI_Integrated\Classes\XCom_Perfect_Information_X2Action_ApplyWeaponDamageToUnit.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LastShotBreakdown.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWAbilitiesModTemplate.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2LWCharactersModTemplate.uc" />
     <Content Include="Src\WallClimbOverride\Classes\X2Action_MoveClimbWall_Override.uc" />
     <Content Include="Localization\BetterSecondWaveSupport.fra" />
     <Content Include="Localization\BetterSecondWaveSupport.int" />
