@@ -47,6 +47,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'TemplarFocus':
 		SupportSupremeFocusInTemplarFocus(Template);
 		break;
+	case 'VoidConduit':
+		FixVoidConduit(Template);
+		break;
 	}
 }
 
@@ -216,6 +219,24 @@ static function SupportSupremeFocusInTemplarFocus(X2AbilityTemplate Template)
 	NewStatChange.StatAmount = default.FOCUS4DODGE;
 	StatChanges.AddItem(NewStatChange);
 	FocusEffect.AddNextFocusLevel(StatChanges, 0, default.FOCUS4RENDDAMAGE);
+}
+
+// Void Conduit is broken because it needs to tick at the beginning of the
+// AI player's turn to do the per-action damage, the heal and to calculate
+// the number of actions to remove from the target unit. But it *also* needs
+// to tick at the beginning of the unit group turn, because that's the only
+// time the effect can modify the target unit's starting number of actions.
+//
+// This fix adds another effect that does the work on unit group turn begin,
+// using the values calculated by the existing persistent Void Conduit effect.
+static function FixVoidConduit(X2AbilityTemplate Template)
+{
+	local X2Effect_VoidConduitPatch PatchEffect;
+
+	PatchEffect = new class'X2Effect_VoidConduitPatch';
+	PatchEffect.BuildPersistentEffect(1, true, true, false, eGameRule_UnitGroupTurnBegin);
+	PatchEffect.bRemoveWhenTargetDies = true;
+	Template.AddTargetEffect(PatchEffect);
 }
 
 defaultproperties
