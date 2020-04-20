@@ -29,3 +29,23 @@ LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Vo
 LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Volt."
 LocPromotionPopupText="<Bullet/> Provides a <Ability:VoltDangerZoneBonus/>-tile bonus to the radius of Volt."
 ; End Translation
+
+; LWOTC Needs Translation
+[TemplarVigilance X2AbilityTemplate]
+LocFriendlyName="Vigilance"
+LocLongDescription="Gain 1 focus whenever your squad activates an enemy pod."
+LocHelpText="Gain 1 focus whenever your squad activates an enemy pod."
+LocPromotionPopupText="<Bullet/> Adds 1 focus to the Templar when an enemy pod scampers.<br/><Bullet/> If you are already at max focus, the focus gain is wasted."
+
+[TemplarTerror X2AbilityTemplate]
+LocFriendlyName="Terrorize"
+LocLongDescription="Adds a chance to panic enemies hit by Volt."
+LocHelpText="Adds a chance to panic enemies hit by Volt."
+LocPromotionPopupText="<Bullet/> Volt can now panic the enemy.<br/><Bullet/> The chance to panic is based on the Templar's Psi Offense stat versus the target's Will."
+
+[Apotheosis X2AbilityTemplate]
+LocFriendlyName="Apotheosis"
+LocLongDescription="Become a god, massively increasing your dodge, Rend damage and mobility. Requires a minimum of 3 focus and consumes it all."
+LocHelpText="Become a god, massively increasing your dodge, Rend damage and mobility. Requires a minimum of 3 focus and consumes it all."
+LocPromotionPopupText="<Bullet/> A free action that makes the Templar substantially more powerful for one turn.<br/><Bullet/> Increases Rend damage by <Ability:ApotheosisDamageMultiplier/>% for each point of focus above 2.<br/><Bullet/> Increases Dodge by <Ability:ApotheosisDodgeBonus/>.<br/><Bullet/> Increases mobility by <Ability:ApotheosisMobilityBonus/> for each point of focus above 2.<br/><Bullet/> Requires a minimum of 3 focus.<br/><Bullet/> Consumes all focus."
+; End Translation

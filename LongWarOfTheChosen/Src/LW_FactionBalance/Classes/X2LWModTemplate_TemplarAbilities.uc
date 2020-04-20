@@ -26,6 +26,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	case 'Volt':
 		ModifyVoltTargeting(Template);
+		AddTerrorToVolt(Template);
 		break;
 	case 'Deflect':
 		ModifyDeflectEffect(Template);
@@ -38,6 +39,10 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	case 'Pillar':
 		AllowPillarOnMomentum(Template);
+		break;
+	case 'Exchange':
+		// Not yet working properly: unable to target enemy units
+		// MergeInvertWithExchange(Template);
 		break;
 	case 'TemplarFocus':
 		SupportSupremeFocusInTemplarFocus(Template);
@@ -73,6 +78,42 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
 }
 
+static function AddTerrorToVolt(X2AbilityTemplate Template)
+{
+	Template.AdditionalAbilities.AddItem(class'X2Ability_TemplarAbilitySet_LW'.default.PanicImpairingAbilityName);
+	Template.AddMultiTargetEffect(CreateTerrorPanicEffect());
+}
+
+static function X2Effect_ImmediateMultiTargetAbilityActivation CreateTerrorPanicEffect()
+{
+	local X2Effect_ImmediateMultiTargetAbilityActivation	PanicEffect;
+	local X2Condition_AbilityProperty						TerrorCondition;
+	local X2Condition_UnitProperty							UnitCondition;
+
+	PanicEffect = new class 'X2Effect_ImmediateMultiTargetAbilityActivation';
+
+	PanicEffect.BuildPersistentEffect(1, false, false, , eGameRule_PlayerTurnBegin);
+	PanicEffect.EffectName = 'ImmediateDisorientOrPanic';
+	PanicEffect.AbilityName = class'X2Ability_TemplarAbilitySet_LW'.default.PanicImpairingAbilityName;
+	PanicEffect.bRemoveWhenTargetDies = true;
+
+	UnitCondition = new class'X2Condition_UnitProperty';
+	UnitCondition.ExcludeOrganic = false;
+	UnitCondition.ExcludeRobotic = true;
+	UnitCondition.ExcludeAlive = false;
+	UnitCondition.ExcludeDead = true;
+	UnitCondition.FailOnNonUnits = true;
+	UnitCondition.ExcludeFriendlyToSource = true;
+
+	TerrorCondition = new class'X2Condition_AbilityProperty';
+	TerrorCondition.OwnerHasSoldierAbilities.AddItem('TemplarTerror');
+
+	PanicEffect.TargetConditions.AddItem(UnitCondition);
+	PanicEffect.TargetConditions.AddItem(TerrorCondition);
+
+	return PanicEffect;
+}
+
 // Allows Pillar to be used instead of the Momentum move
 static function AllowPillarOnMomentum(X2AbilityTemplate Template)
 {
@@ -87,6 +128,29 @@ static function AllowPillarOnMomentum(X2AbilityTemplate Template)
 			ActionPointCost.AllowedTypes.AddItem('Momentum');
 		}
 	}
+}
+
+// Change Exchange targeting so that it also works as Invert
+static function MergeInvertWithExchange(X2AbilityTemplate Template)
+{
+	local X2Condition_UnitProperty UnitCondition;
+	local int i;
+
+	Template.Hostility = eHostility_Offensive;
+	for (i = 0; i < Template.AbilityTargetConditions.Length; i++)
+	{
+		UnitCondition = X2Condition_UnitProperty(Template.AbilityTargetConditions[i]);
+		if (UnitCondition != none)
+		{
+			UnitCondition.ExcludeCivilian = true;
+			UnitCondition.ExcludeHostileToSource = false;
+			UnitCondition.ExcludeLargeUnits = true;
+			UnitCondition.ExcludeTurret = true;
+			UnitCondition.RequireSquadmates = false;
+		}
+	}
+
+	// Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 }
 
 // Changes StunStrike to stun target units rather than disorient them (the
