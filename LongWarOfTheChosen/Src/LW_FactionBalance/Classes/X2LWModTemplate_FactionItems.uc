@@ -33,8 +33,9 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 		WeaponTemplate.iTypicalActionCost = 1;
 		break;
 	case 'ShardGauntlet_BM':
-		WeaponTemplate.Abilities.AddItem('DeepFocus');
+		WeaponTemplate.Abilities.AddItem('SupremeFocus');
 	case 'ShardGauntlet_MG':
+		WeaponTemplate.Abilities.AddItem('DeepFocus');
 	case 'ShardGauntlet_CV':
 		WeaponTemplate.Abilities.AddItem('TemplarFleche');
 		break;

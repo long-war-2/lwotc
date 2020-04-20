@@ -584,7 +584,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_HEATGrenades.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_HunkerDown_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_HuntersInstinctDamage_LW.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ImmediateMultiTargetAbilityActivation.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_InfiltrationModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ItemWeight.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_JavelinRockets.uc" />
@@ -747,6 +746,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HardTarget.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HitandRun.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HyperReactivePupils.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ImmediateMultiTargetAbilityActivation.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Infighter.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Interference.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_IronCurtain.uc" />
@@ -1082,6 +1082,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2AbilityCooldown_Grapple.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Ability_Parkour.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2DownloadableContentInfo_LW_FactionBalance.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Apotheosis.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DeflectNew.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ParryNew.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2StrategyElement_AcademyUnlocks_GrappleParkour.uc" />
@@ -1155,6 +1156,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2AbilityTarget_Cursor_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ClaymoreDistraction.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XComGameState_Effect_AbilityTrigger.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\XComGameState_Effect_FocusLevel.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_BloodTrailBleeding.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DisablingShotStunned.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_CritRemoval.uc" />

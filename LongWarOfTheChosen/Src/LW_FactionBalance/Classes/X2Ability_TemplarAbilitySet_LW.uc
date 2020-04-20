@@ -12,6 +12,11 @@ var config int MEDITATION_FOCUS_RECOVERY;
 var config int MEDITATION_MAX_CHARGES;
 var config float BONUS_REND_DAMAGE_PER_TILE;
 var config int MAX_REND_FLECHE_DAMAGE;
+var config int TERROR_STAT_CHECK_BASE_VALUE;
+var config int APOTHEOSIS_COOLDOWN;
+var config int APOTHEOSIS_DODGE_BONUS;
+var config int APOTHEOSIS_MOBILITY_BONUS;
+var config float APOTHEOSIS_DAMAGE_MULTIPLIER;
 
 var config int FOCUS1AIM;
 var config int FOCUS1DEFENSE;
@@ -21,6 +26,8 @@ var config int FOCUS3AIM;
 var config int FOCUS3DEFENSE;
 var config int FOCUS4AIM;
 var config int FOCUS4DEFENSE;
+
+var name PanicImpairingAbilityName;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -35,6 +42,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddMeditationKillTracker());
 	Templates.AddItem(AddOvercharge_LW());
 	Templates.AddItem(AddVoltDangerZoneAbility());
+	Templates.AddItem(AddTemplarVigilance());
+	Templates.AddItem(AddTemplarVigilanceTrigger());
+	Templates.AddItem(AddTemplarTerror());
+	Templates.AddItem(AddTerrorPanicAbility());
+	Templates.AddItem(AddApotheosis());
 
 	return Templates;
 }
@@ -150,7 +162,7 @@ static function X2AbilityTemplate AddTemplarFleche()
 	FlecheBonusDamageEffect.MaxBonusDamage = default.MAX_REND_FLECHE_DAMAGE;
 	FlecheBonusDamageEffect.AbilityNames.AddItem('Rend');
 	FlecheBonusDamageEffect.AbilityNames.AddItem('ArcWave');
-	//FlecheBonusDamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	FlecheBonusDamageEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	FlecheBonusDamageEffect.BuildPersistentEffect (1, true, false);
 	Template.AddTargetEffect (FlecheBonusDamageEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -194,7 +206,7 @@ static function X2AbilityTemplate AddMeditation()
 {
 	local X2AbilityTemplate				Template;
 	local X2Effect_ModifyTemplarFocus	FocusEffect;
-	local X2AbilityCost_ActionPoints    ActionPointCost;
+	local X2AbilityCost_ActionPoints	ActionPointCost;
 	local X2AbilityCharges 				Charges;
 	local X2AbilityCost_Charges 		ChargeCost;
 
@@ -360,4 +372,186 @@ static function X2AbilityTemplate AddMeditationKillTracker()
 	// Template.MergeVisualizationFn = DesiredVisualizationBlock_MergeVisualization;
 
 	return Template;
+}
+
+static function X2AbilityTemplate AddTemplarVigilance()
+{
+	local X2AbilityTemplate Template;
+
+	Template = PurePassive('TemplarVigilance', "img:///UILibrary_PerkIcons.UIPerk_advent_commandaura", false, 'eAbilitySource_Psionic');
+	Template.bCrossClassEligible = false;
+	Template.AdditionalAbilities.AddItem('TemplarVigilanceTrigger');
+	return Template;
+}
+
+static function X2AbilityTemplate AddTemplarVigilanceTrigger()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityTrigger_EventListener	EventTrigger;
+	local X2Effect_ModifyTemplarFocus		FocusEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TemplarVigilanceTrigger');
+
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_templarFocus";
+	Template.AbilitySourceName = 'eAbilitySource_Psionic';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	EventTrigger = new class'X2AbilityTrigger_EventListener';
+	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventTrigger.ListenerData.EventID = 'ScamperEnd';
+	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Template.AbilityTriggers.AddItem(EventTrigger);
+
+	FocusEffect = new class'X2Effect_ModifyTemplarFocus';
+	Template.AddTargetEffect(FocusEffect);
+
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	// Template.MergeVisualizationFn = DesiredVisualizationBlock_MergeVisualization;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddTemplarTerror()
+{
+	local X2AbilityTemplate Template;
+
+	Template = PurePassive('TemplarTerror', "img:///UILibrary_LW_Overhaul.LW_AbilityNapalmX", false, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+	Template.PrerequisiteAbilities.AddItem('Volt');
+	return Template;
+}
+
+static function X2DataTemplate AddTerrorPanicAbility()
+{
+	local X2AbilityTemplate			Template;
+	local X2Condition_UnitProperty	UnitPropertyCondition;
+	local X2Effect_Panicked			PanicEffect;
+	local X2AbilityToHitCalc_StatCheck_UnitVsUnit StatCheck;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, default.PanicImpairingAbilityName);
+
+	Template.bDontDisplayInAbilitySummary = true;
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_Placeholder');      //  ability is activated by another ability that hits
+
+	// Target Conditions
+	//
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = true;
+	UnitPropertyCondition.ExcludeRobotic = true;
+	UnitPropertyCondition.FailOnNonUnits = true;
+	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+
+	// Shooter Conditions
+	//
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Template.AddShooterEffectExclusions();
+
+	StatCheck = new class'X2AbilityToHitCalc_StatCheck_UnitVsUnit';
+	StatCheck.BaseValue = default.TERROR_STAT_CHECK_BASE_VALUE;
+	Template.AbilityToHitCalc = StatCheck;
+
+	PanicEffect = class'X2StatusEffects'.static.CreatePanickedStatusEffect();
+	PanicEffect.MinStatContestResult = 1;
+	PanicEffect.MaxStatContestResult = 0;
+	PanicEffect.bRemoveWhenSourceDies = false;
+	Template.AddTargetEffect(PanicEffect);
+
+	Template.bSkipPerkActivationActions = true;
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddApotheosis()
+{
+	local X2AbilityTemplate				Template;
+	local X2AbilityCooldown				Cooldown;
+	local X2AbilityCost_ActionPoints    ActionPointCost;
+	local X2AbilityCost_Focus	 		FocusCost;
+	local X2Effect_Apotheosis			Effect;
+	local FocusLevelModifiers 			EmptyFocusLevelModifiers;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Apotheosis');
+
+	Template.AbilitySourceName = 'eAbilitySource_Psionic';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_andromedon_robotbattlesuit";
+
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 0;
+	ActionPointCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	FocusCost = new class'X2AbilityCost_Focus';
+	FocusCost.FocusAmount = 3;
+	FocusCost.ConsumeAllFocus = true;
+	Template.AbilityCosts.AddItem(FocusCost);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.APOTHEOSIS_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	Effect = new class'X2Effect_Apotheosis';
+	Effect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	Effect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	// Effect.AddPersistentStatChange(eStat_Dodge, float(default.APOTHEOSIS_DODGE_BONUS));
+	Effect.FocusDamageMultiplier = default.APOTHEOSIS_DAMAGE_MULTIPLIER;
+	Effect.arrFocusModifiers.AddItem(EmptyFocusLevelModifiers);
+	Effect.arrFocusModifiers.AddItem(EmptyFocusLevelModifiers);
+	Effect.arrFocusModifiers.AddItem(EmptyFocusLevelModifiers);
+	Effect.arrFocusModifiers.AddItem(CreateFocusLevelModifiers(default.APOTHEOSIS_DODGE_BONUS, default.APOTHEOSIS_MOBILITY_BONUS));
+	Effect.arrFocusModifiers.AddItem(CreateFocusLevelModifiers(default.APOTHEOSIS_DODGE_BONUS, 2 * default.APOTHEOSIS_MOBILITY_BONUS));
+	Template.AddTargetEffect(Effect);
+
+	Template.bSkipFireAction = false;
+	Template.CustomFireAnim = 'HL_IonicStorm';
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	// Template.AdditionalAbilities.AddItem('MeditationPreparationPassive');
+
+	return Template;
+}
+
+static function FocusLevelModifiers CreateFocusLevelModifiers(int DodgeBonus, int MobilityBonus)
+{
+	local FocusLevelModifiers FocusLevelModifiers;
+	local StatChange NewStatChange;
+
+	NewStatChange.StatType = eStat_Dodge;
+	NewStatChange.StatAmount = DodgeBonus;
+	FocusLevelModifiers.StatChanges.AddItem(NewStatChange);
+
+	NewStatChange.StatType = eStat_Mobility;
+	NewStatChange.StatAmount = MobilityBonus;
+	FocusLevelModifiers.StatChanges.AddItem(NewStatChange);
+
+	return FocusLevelModifiers;
+}
+
+defaultproperties
+{
+	PanicImpairingAbilityName = "TemplarTerrorPanic"
 }

@@ -984,6 +984,7 @@ static function X2DataTemplate CreateTemplate_CasterGauntlet_Conventional()
 	Template.iPhysicsImpulse = 5;
 
 	Template.Abilities.AddItem('MeditationPreparation');
+	Template.Abilities.AddItem('Channel');
 
 	Template.iRange = 0;
 	Template.BaseDamage = default.CASTERGAUNTLET_CONVENTIONAL_BASEDAMAGE;
@@ -1032,6 +1033,7 @@ static function X2DataTemplate CreateTemplate_CasterGauntlet_Magnetic()
 
 	Template.Abilities.AddItem('DeepFocus');
 	Template.Abilities.AddItem('MeditationPreparation');
+	Template.Abilities.AddItem('Channel');
 
 	Template.iRange = 0;
 	Template.BaseDamage = default.CASTERGAUNTLET_MAGNETIC_BASEDAMAGE;
@@ -1084,6 +1086,7 @@ static function X2DataTemplate CreateTemplate_CasterGauntlet_Beam()
 	Template.Abilities.AddItem('DeepFocus');
 	Template.Abilities.AddItem('SupremeFocus');
 	Template.Abilities.AddItem('MeditationPreparation');
+	Template.Abilities.AddItem('Channel');
 
 	Template.iRange = 0;
 	Template.BaseDamage = default.CASTERGAUNTLET_BEAM_BASEDAMAGE;

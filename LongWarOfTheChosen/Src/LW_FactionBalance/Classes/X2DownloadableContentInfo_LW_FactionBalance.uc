@@ -160,6 +160,15 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'VoltDangerZoneBonus':
 		OutString = string(class'X2LWModTemplate_TemplarAbilities'.default.VOLT_DANGER_ZONE_BONUS_RADIUS);
 		return true;
+	case 'ApotheosisMobilityBonus':
+		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.APOTHEOSIS_MOBILITY_BONUS);
+		return true;
+	case 'ApotheosisDodgeBonus':
+		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.APOTHEOSIS_DODGE_BONUS);
+		return true;
+	case 'ApotheosisDamageMultiplier':
+		OutString = string(int(class'X2Ability_TemplarAbilitySet_LW'.default.APOTHEOSIS_DAMAGE_MULTIPLIER * 100));
+		return true;
 	}
 
 	return false;
