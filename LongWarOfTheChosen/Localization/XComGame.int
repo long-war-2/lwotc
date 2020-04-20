@@ -37,12 +37,13 @@ m_strLowScientistsList[2]=A Scientist may be available in the Black Market, and 
 m_strLowEngineersList[0]=Visit the Black Market with the Avenger. This will show you any staff currently available for recruitment.
 m_strLowEngineersList[2]=An Engineer may be available in the Black Market, and can be recruited by paying supplies.
 
-m_strRetributionAlertTitle="CHOSEN RETRIBUTION"
 ;LWOTC needs translation
+m_strRetributionAlertTitle="CHOSEN RETRIBUTION"
 m_strRetributionAlertDescription="A Chosen has clamped down on Resistance activities in this region, reducing the area's activity efficiency." 
 m_strRetributionAlertIncomeDecreasedTitle="HAVEN SABOTAGED"
 m_strRetributionAlertIncomeDescription="Supply, Intel, and Recruit activity efficiency has been decreased by 20%"
 ;LWOTC end translation
+
 [XComGame.UIAdventOperations]
 [UIAdventOperations]
 m_strTitleHelp="We have received intel regarding the Aliens' current activities. If the Resistance can detect the source of these operations, we can conduct operations to stop them."
@@ -322,12 +323,10 @@ Description="Disable (stun) the unit for 3 turns."
 FriendlyName="Master Sectopod"
 Description="Take control of this unit for rest of the mission and gain stat bonuses. Are you brave enough?"
 
-;End translation
 [ScanningProtocol X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Scanning Protocol gains bonus charges with improved Gremlins.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/>"
 
-
-
+;End translation
 
 
 ;;;;;;;;;;;;;;;;;;;;  GRENADIER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -4017,8 +4016,10 @@ SummaryText="The aliens deploy units with enhanced cover destruction abilities."
 QuoteText="\"Fire in the Hole!\""
 QuoteTextAuthor="- Unidentified XCOM Corporal"
 PreMissionText="Grants some ADVENT soldiers and Mutons the Sapper ability."
-PostMissionSuccessText="Dark Event Countered: Muton Engineers"
-PostMissionFailureText="Failed to Counter Dark Event: Muton Engineers"
+; LWOTC Needs Translation
+PostMissionSuccessText="Dark Event Countered: Demolitions Experts"
+PostMissionFailureText="Failed to Counter Dark Event: Demolitions Experts"
+; End Translation
 
 [DarkEvent_RuralCheckpoints_LW X2DarkEventTemplate]
 DisplayName="ADVENT Rural Checkpoints"
@@ -4501,7 +4502,7 @@ DisplayName="Permanent: Damage Control"
 SummaryText="Some ADVENT robots and some other units gain the Damage Control ability, granting bonus armor after they take damage."
 QuoteText="\"Someone get Shen to invent us some air support. We're gonna need it.\""
 QuoteTextAuthor="- Anonymous Sergeant"
-PreMissionText="Grants Codex units the Damage Control ability."
+PreMissionText="Grants some robotic units, turrets, Codexes and Gatekeepers the Damage Control ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Damage Control)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Damage Control)"
 
