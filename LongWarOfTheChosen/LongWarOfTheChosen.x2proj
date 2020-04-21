@@ -27,6 +27,7 @@
     <Folder Include="Content\Sounds\INT\" />
     <Folder Include="Localization\" />
     <Folder Include="Localization\LW_AlienPack_Integrated\" />
+    <Folder Include="Localization\LW_FactionBalance\" />
     <Folder Include="Localization\LW_LaserPack_Integrated\" />
     <Folder Include="Localization\LW_OfficerPack_Integrated\" />
     <Folder Include="Localization\LW_PerkPack_Integrated\" />
@@ -221,6 +222,8 @@
     <Content Include="Localization\LW_AlienPack_Integrated\XComGame.kor" />
     <Content Include="Localization\LW_AlienPack_Integrated\XComGame.pol" />
     <Content Include="Localization\LW_AlienPack_Integrated\XComGame.rus" />
+    <Content Include="Localization\LW_FactionBalance\LW_FactionBalance.int" />
+    <Content Include="Localization\LW_FactionBalance\XComGame.int" />
     <Content Include="Localization\LW_LaserPack_Integrated\XComGame.chn" />
     <Content Include="Localization\LW_LaserPack_Integrated\XComGame.cht" />
     <Content Include="Localization\LW_LaserPack_Integrated\XComGame.deu" />

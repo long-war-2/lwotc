@@ -7,6 +7,8 @@
 
 class X2Effect_VoidConduitPatch extends X2Effect_Persistent;
 
+var localized string ActionsLeftFlyoverText;
+
 // This replicates the implementation in `X2Effect_PersistentVoidConduit`, but that
 // function never gets called because the effect is removed on player turn begun,
 // whereas `ModifyTurnStartActionPoints()` is called on *unit group turn begun*.
@@ -47,6 +49,25 @@ function bool TickVoidConduit(X2Effect_Persistent PersistentEffect, const out Ef
 
 	TargetUnit.GetUnitValue(class'X2Effect_PersistentVoidConduit'.default.VoidConduitActionsLeft, ConduitValue);
 	return ConduitValue.fValue <= 0;
+}
+
+simulated function AddX2ActionsForVisualization_Removed(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult, XComGameState_Effect RemovedEffect)
+{
+	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
+	local XComGameState_Unit UnitState;
+	local XGParamTag ParamTag;
+	local string FlyoverText;
+
+	super.AddX2ActionsForVisualization_Removed(VisualizeGameState, ActionMetadata, EffectApplyResult, RemovedEffect);
+
+	UnitState = XComGameState_Unit(ActionMetadata.StateObject_NewState);
+
+	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+	ParamTag.IntValue0 = UnitState.NumAllActionPoints();
+	FlyoverText = `XEXPAND.ExpandString(ActionsLeftFlyoverText);
+
+	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
+	SoundAndFlyOver.SetSoundAndFlyOverParameters(none, FlyoverText, '', eColor_Bad);
 }
 
 defaultProperties
