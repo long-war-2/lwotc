@@ -562,7 +562,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_Soldier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_UnitDoesNotHaveItem.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2DownloadableContentInfo_LongWarOfTheChosen.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_AbilityDamageMult.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_AddAmmo.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyAltWeaponDamage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyExplosiveFalloffWeaponDamage.uc" />
@@ -722,6 +721,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RevivalProtocol_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RevivalProtocolRestoreActionPoints_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2DownloadableContentInfo_LWPerkPack.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_AbilityDamageMult.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_AbsorptionFields.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Aggression.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ApplyDenseSmokeGrenadeToWorld.uc" />

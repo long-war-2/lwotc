@@ -16,6 +16,7 @@ var config int DisablingShotCooldown;
 var config int DisablingShotAmmoCost;
 var config int DisablingShotBaseStunActions;
 var config int DisablingShotCritStunActions;
+var config float DisablingShotDamagePenalty;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -464,6 +465,7 @@ static function X2AbilityTemplate AddDisablingShotCritRemoval()
 {
 	local X2AbilityTemplate Template;
 	local X2Effect_CritRemoval CritRemovalEffect;
+	local X2Effect_AbilityDamageMult DamageReductionEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'DisablingShotCritRemoval');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_standard";
@@ -483,6 +485,15 @@ static function X2AbilityTemplate AddDisablingShotCritRemoval()
 	CritRemovalEffect = new class'X2Effect_CritRemoval';
 	CritRemovalEffect.AbilityToActOn = 'DisablingShot';
 	Template.AddShooterEffect(CritRemovalEffect);
+
+	// Also add damage reduction, similar to Kubikiri on a non-crit, but
+	// applies to all damage types.
+	DamageReductionEffect = new class'X2Effect_AbilityDamageMult';
+	DamageReductionEffect.Mult = true;
+	DamageReductionEffect.Penalty = true;
+	DamageReductionEffect.DamageMod = default.DisablingShotDamagePenalty;
+	DamageReductionEffect.ActiveAbility = 'DisablingShot';
+	Template.AddShooterEffect(DamageReductionEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
