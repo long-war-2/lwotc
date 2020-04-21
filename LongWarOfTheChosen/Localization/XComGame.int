@@ -1034,7 +1034,7 @@ FriendlyName="\"Bullseye\" Crossbow"
 FriendlyNamePlural="\"Bullseye\" Crossbows"
 BriefSummary="An improved crossbow design incorporating alien alloys, as well as a smart rangefinder that operates on the same principle as our pulse laser weapons. Any Reaper that uses this beauty should find it much easier to land precise shots."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Acts as the laser tier version of vektor rifles.\n<Bullet/> Use upgrades looted from enemies to improve the crossbow's tactical effectiveness."
-AbilityDescName="vektor rifle"
+AbilityDescName="crossbow"
 
 [VektorRifle_MG X2WeaponTemplate]
 TacticalText="<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Temnotic Rifle's tactical effectiveness."
@@ -5002,6 +5002,7 @@ LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies t
 LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
 LocFlyOverText="Retribution"
 LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
+; End Translation
 
 ; LWOTC Needs Translation
 [Battlemaster X2AbilityTemplate]
