@@ -3796,6 +3796,7 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	UnitState.ResetSoldierRank(); // Clear their rank
 	ApplyRandomizedInitialStats(UnitState, NewGameState);
 	UnitState.ResetSoldierAbilities(); // Clear their current abilities
+	UnitState.ClearUnitValue('LWOTC_AbilityCostModifier'); // Reset the ability cost multiplier
 	for (i = 0; i < NumRanks; ++i) // Rank soldier back up to previous level
 	{
 		UnitState.RankUpSoldier(NewGameState, ClassName);
