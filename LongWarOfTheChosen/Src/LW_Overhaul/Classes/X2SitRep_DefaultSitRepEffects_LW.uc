@@ -123,7 +123,7 @@ static function X2SitRepEffectTemplate CreateReturnFireDEEffectTemplate()
 	local X2SitRepEffectTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2SitRepEffectTemplate', Template, 'DarkEventReturnFireEffect');
-	Template.DifficultyModifier = 5;
+	Template.DifficultyModifier = 2;
 
 	return Template;
 }

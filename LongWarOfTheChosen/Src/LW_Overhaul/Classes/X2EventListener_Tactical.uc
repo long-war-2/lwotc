@@ -12,7 +12,11 @@ var config array<int> RED_ALERT_DETECTION_DIFFICULTY_MODIFIER;
 var config array<int> YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER;
 
 var config int NUM_TURNS_FOR_WILL_LOSS;
-var const config WillEventRollData PER_TURN_WILL_ROLL_DATA;
+
+// Camel case for consistency with base game's will roll data config vars
+var const config WillEventRollData PerTurnWillRollData;
+
+var config array<int> MISSION_DIFFICULTY_THRESHOLDS;
 
 var localized string HIT_CHANCE_MSG;
 var localized string CRIT_CHANCE_MSG;
@@ -984,11 +988,11 @@ static protected function EventListenerReturn RollForPerTurnWillLoss(
 	foreach XComHQ.Squad(SquadRef)
 	{
 		SquadUnit = XComGameState_Unit(History.GetGameStateForObjectID(SquadRef.ObjectID));
-		if (class'XComGameStateContext_WillRoll'.static.ShouldPerformWillRoll(default.PER_TURN_WILL_ROLL_DATA, SquadUnit))
+		if (class'XComGameStateContext_WillRoll'.static.ShouldPerformWillRoll(default.PerTurnWillRollData, SquadUnit))
 		{
 			`LWTrace("Performing Will roll at end of turn");
 			WillRollContext = class'XComGameStateContext_WillRoll'.static.CreateWillRollContext(SquadUnit, 'PlayerTurnEnd',, false);
-			WillRollContext.DoWillRoll(default.PER_TURN_WILL_ROLL_DATA);
+			WillRollContext.DoWillRoll(default.PerTurnWillRollData);
 			WillRollContext.Submit();
 		}
 	}
@@ -1003,7 +1007,11 @@ static protected function EventListenerReturn CheckForDifficultMissionCompleted(
 	Name Event,
 	Object CallbackData)
 {
-	return CheckForMissionCompleted('DifficultMissionCompleted', 5, 9, GameState);
+	return CheckForMissionCompleted(
+		'DifficultMissionCompleted',
+		default.MISSION_DIFFICULTY_THRESHOLDS[0],
+		default.MISSION_DIFFICULTY_THRESHOLDS[1] - 1,
+		GameState);
 }
 
 static protected function EventListenerReturn CheckForVeryDifficultMissionCompleted(
@@ -1013,7 +1021,11 @@ static protected function EventListenerReturn CheckForVeryDifficultMissionComple
 	Name Event,
 	Object CallbackData)
 {
-	return CheckForMissionCompleted('VeryDifficultMissionCompleted', 10, 999, GameState);
+	return CheckForMissionCompleted(
+		'VeryDifficultMissionCompleted',
+		default.MISSION_DIFFICULTY_THRESHOLDS[1],
+		999,
+		GameState);
 }
 
 static protected function EventListenerReturn CheckForMissionCompleted(
@@ -1030,7 +1042,7 @@ static protected function EventListenerReturn CheckForMissionCompleted(
 	local int Difficulty, Roll;
 
 	BattleData = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-	APTemplate = class'X2EventListener_AbilityPoints'.static.GetAbilityPointTemplate('DifficultMissionCompleted');
+	APTemplate = class'X2EventListener_AbilityPoints'.static.GetAbilityPointTemplate(APTemplateName);
 
 	if (APTemplate == none || BattleData == none)
 		return ELR_NoInterrupt;

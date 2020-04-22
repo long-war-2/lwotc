@@ -266,6 +266,7 @@ static function bool ShouldAddSitRepToMission(XComGameState_MissionSite MissionS
 static function bool IsSitRepValidForMission(name SitRepName, XComGameState_MissionSite MissionState)
 {
 	local MissionTypeSitRepExclusions ExclusionDef;
+	local string MissionType;
 	local int idx;
 
 	// Handle Alien Ruler sit reps separately, particularly as we need to handle the situation
@@ -277,15 +278,21 @@ static function bool IsSitRepValidForMission(name SitRepName, XComGameState_Miss
 
 	// Check whether the mission type has any sit rep exclusions and if so, whether the
 	// given sit rep falls in those exclusions.
-	idx = default.MISSION_TYPE_SIT_REP_EXCLUSIONS.Find('MissionType', MissionState.GeneratedMission.Mission.sType);
+	MissionType = MissionState.GeneratedMission.Mission.sType;
+	idx = default.MISSION_TYPE_SIT_REP_EXCLUSIONS.Find('MissionType', MissionType);
 	if (idx == INDEX_NONE)
 	{
 		return true;
 	}
 	else
 	{
+		// Check whether the sit rep is excluded from this mission type. We also double
+		// check that the mission type is not configured to forbid sit reps. The alien
+		// activity normally performs this check, but we include it here for missions
+		// spawned from covert actions or other sources than alien activities.
 		ExclusionDef = default.MISSION_TYPE_SIT_REP_EXCLUSIONS[idx];
-		return ExclusionDef.SitRepNames.Find("*") == INDEX_NONE && ExclusionDef.SitRepNames.Find(string(SitRepName)) == INDEX_NONE;
+		return ExclusionDef.SitRepNames.Find(string(SitRepName)) == INDEX_NONE &&
+				class'XComGameState_LWAlienActivity'.default.NO_SIT_REP_MISSION_TYPES.Find(MissionType) == INDEX_NONE;
 	}
 }
 

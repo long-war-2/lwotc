@@ -32,6 +32,11 @@ static function UpdateDarkEvents(X2StrategyElementTemplate Template, int Difficu
 			DETemplate.OnActivatedFn = none;
 			DETemplate.OnDeactivatedFn = none;
 			DETemplate.ModifyTacticalStartStateFn = none;
+
+			// 50% longer duration as you won't get them on every mission now and
+			// some mission types won't even allow the corresponding sit rep.
+			DETemplate.MinDurationDays = 42;
+			DETemplate.MaxDurationDays = 42;
 			break;
 
 		case 'DarkEvent_NewConstruction':

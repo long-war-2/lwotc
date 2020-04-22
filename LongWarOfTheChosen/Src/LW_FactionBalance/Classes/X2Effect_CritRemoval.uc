@@ -1,8 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_CritRemoval
 //  AUTHOR:  Peter Ledbrook
-//  PURPOSE: Downgrades crits to normal hits when using a given ability. The
-//           crit
+//  PURPOSE: Downgrades crits to normal hits when using a given ability.
 //--------------------------------------------------------------------------------------- 
 
 class X2Effect_CritRemoval extends X2Effect_Persistent;
