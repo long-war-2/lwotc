@@ -1503,6 +1503,10 @@ static function OverrideAlienRulerSpawning(XComGameState StartState, XComGameSta
 	RulerMgr = XComGameState_AlienRulerManager(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_AlienRulerManager'));
 	if (!RulerMgr.bContentActivated) return;
 
+	// Leave the Alien Nest mission alone
+	if (MissionState.Source == 'MissionSource_AlienNest')
+		return;
+
 	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
 	XComHQ = XComGameState_HeadquartersXCom(StartState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 	RulerMgr = XComGameState_AlienRulerManager(StartState.ModifyStateObject(class'XComGameState_AlienRulerManager', RulerMgr.ObjectID));
