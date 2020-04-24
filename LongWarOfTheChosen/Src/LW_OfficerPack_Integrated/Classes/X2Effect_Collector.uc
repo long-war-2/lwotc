@@ -85,7 +85,7 @@ static function EventListenerReturn CollectionCheck(Object EventData, Object Eve
 		return ELR_NoInterrupt;
 	}
 	IntelGain = 0;
-	if (DeadUnit.IsEnemyUnit(SourceUnit) && SourceUnit.GetTeam() == eTeam_XCom &&
+	if (DeadUnit.IsEnemyUnit(SourceUnit) && DeadUnit.GetTeam() != eTeam_TheLost && SourceUnit.GetTeam() == eTeam_XCom &&
 		!DeadUnit.IsMindControlled() && DeadUnit.GetMyTemplateName() != 'PsiZombie' &&
 		DeadUnit.GetMyTemplateName() != 'PsiZombieHuman')
 	{
