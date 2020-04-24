@@ -3248,6 +3248,27 @@ CodeName="Fajita"
 LongDescription="The rendering of this Muton Elite was successful. R. Tygan."
 UnlockedDescription="Recovered from Muton Elite Corpse: <XGParam:StrValue0/!Quantity/> Alloys"
 
+[RenderAdventPriestCorpse X2TechTemplate]
+DisplayName="Render ADVENT Priest Corpse"
+Summary="Given our preference for hit and run operations, ADVENT and alien remains are difficult to recover from many missions, but they are valuable assets for our research and construction efforts. However, we are also able to render them down for key materials with a wide variety of applications. From the ADVENT Priest we should be able to recover 3 Alloys."
+CodeName="Omelette"
+LongDescription="The rendering of this ADVENT Priest was successful. R. Tygan."
+UnlockedDescription="Recovered from ADVENT Priest Corpse: <XGParam:StrValue0/!Quantity/> Alloys"
+
+[RenderAdventPurifierCorpse X2TechTemplate]
+DisplayName="Render ADVENT Purifier Corpse"
+Summary="Given our preference for hit and run operations, ADVENT and alien remains are difficult to recover from many missions, but they are valuable assets for our research and construction efforts. However, we are also able to render them down for key materials with a wide variety of applications. From the ADVENT Purifier we should be able to recover 3 Alloys."
+CodeName="Paneer"
+LongDescription="The rendering of this ADVENT Purifier was successful. R. Tygan."
+UnlockedDescription="Recovered from ADVENT Purifier Corpse: <XGParam:StrValue0/!Quantity/> Alloys"
+
+[RenderSpectreCorpse X2TechTemplate]
+DisplayName="Render Spectre Corpse"
+Summary="Given our preference for hit and run operations, ADVENT and alien remains are difficult to recover from many missions, but they are valuable assets for our research and construction efforts. However, we are also able to render them down for key materials with a wide variety of applications. From the Spectre we should be able to recover 4 elerium crystals."
+CodeName="Blueberry"
+LongDescription="The rendering of this Spectre was successful. R. Tygan."
+UnlockedDescription="Recovered from Spectre Corpse: <XGParam:StrValue0/!Quantity/> Elerium Crystals"
+
 [ResistanceRadio X2TechTemplate]
 DisplayName="Resistance Radio"
 Summary="By replicating the communications equipment we've developed on the Avenger, we should be able to establish ground-based relays to further spread our reach. With wider coverage, our Havens will be more efficient at their operations, and it will be easier for us to reach some of those outlying regions far off from HQ."

@@ -19,6 +19,9 @@ var config int RENDER_REWARD_SECTOPOD_WRECK;
 var config int RENDER_REWARD_ADVENTOFFICER_CORPSE;
 var config int RENDER_REWARD_DRONE_WRECK;
 var config int RENDER_REWARD_MUTONELITE_CORPSE;
+var config int RENDER_REWARD_ADVENTPRIEST_CORPSE;
+var config int RENDER_REWARD_ADVENTPURIFIER_CORPSE;
+var config int RENDER_REWARD_SPECTRE_CORPSE;
 
 var config int BASIC_RESEARCH_SCIENCE_BONUS;
 var config int BASIC_RESEARCH_ENGINEERING_BONUS;
@@ -59,6 +62,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Techs.AddItem(CreateRenderTech ('RenderTurretWreck', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyAdventTurret", 'CorpseAdventTurret', 500, 'HybridMaterials'));
 	Techs.AddItem(CreateRenderTech ('RenderSectopodWreck', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsySextopod", 'CorpseSectopod', 1200, 'HybridMaterials', 'EleriumCore'));
 	Techs.AddItem(CreateRenderTech ('RenderAdventOfficerCorpse', "img:///UILibrary_StrategyImages.ResearchTech.GOLDTECH_Advent_Officer", 'CorpseAdventOfficer', 500, 'AlienBiotech'));
+	Techs.AddItem(CreateRenderTech ('RenderAdventPriestCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Priest", 'CorpseAdventPriest', 600, 'AlienBiotech'));
+	Techs.AddItem(CreateRenderTech ('RenderAdventPurifierCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Purifier", 'CorpseAdventPurifier', 600, 'AlienBiotech'));
+	Techs.AddItem(CreateRenderTech ('RenderSpectreCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Spectre", 'CorpseSpectre', 600, 'AlienBiotech'));
 
 	Techs.AddItem(CreateRenderTech ('RenderAdventDroneWreck', "img:///UILibrary_LW_Overhaul.LW_IC_AutopsyDrone", 'CorpseDrone', 300, 'HybridMaterials'));
 	Techs.AddItem(CreateRenderTech ('RenderBlutonCorpse', "img:///UILibrary_LW_Overhaul.IC_AutopsyBluton", 'CorpseMutonElite', 700, 'AlienBiotech'));
@@ -349,6 +355,9 @@ function RenderTechCompleted(XComGameState NewGameState, XComGameState_Tech Tech
 		case "RenderAdventOfficerCorpse":		RewardType = 'AlienAlloy'; 	RewardAmount = default.RENDER_REWARD_ADVENTOFFICER_CORPSE; break;
 		case "RenderAdventDroneWreck":			RewardType = 'AlienAlloy'; 	RewardAmount = default.RENDER_REWARD_DRONE_WRECK; break;
 		case "RenderBlutonCorpse":				RewardType = 'AlienAlloy'; 	RewardAmount = default.RENDER_REWARD_MUTONELITE_CORPSE; break;
+		case "RenderAdventPriestCorpse":		RewardType = 'AlienAlloy'; 	RewardAmount = default.RENDER_REWARD_ADVENTPRIEST_CORPSE; break;
+		case "RenderAdventPurifierCorpse":		RewardType = 'AlienAlloy'; 	RewardAmount = default.RENDER_REWARD_ADVENTPURIFIER_CORPSE; break;
+		case "RenderSpectreCorpse":				RewardType = 'EleriumDust'; RewardAmount = default.RENDER_REWARD_SPECTRE_CORPSE; break;
 
 		default: break;
 	}
