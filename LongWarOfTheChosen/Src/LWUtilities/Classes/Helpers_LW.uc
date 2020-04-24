@@ -487,6 +487,16 @@ static function bool DidCovertActionFail(XComGameState_CovertAction CAState)
 	return false;
 }
 
+// Use this to determine whether a unit is interrupting another team's turn,
+// for example via Skirmisher's Battlelord or Skirmisher Interrupt.
+static function bool IsUnitInterruptingEnemyTurn(XComGameState_Unit UnitState)
+{
+	local XComGameState_BattleData BattleState;
+
+	BattleState = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	return BattleState.InterruptingGroupRef == UnitState.GetGroupMembership().GetReference();
+}
+
 defaultproperties
 {
 	CA_FAILURE_RISK_MARKER="CovertActionRisk_Failure"

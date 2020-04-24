@@ -38,6 +38,10 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	if (PreCostActionPoints.Find('RunAndGun') != -1)
 		return false;
 
+	// Don't proc on a Skirmisher interrupt turn (for example with Battle Lord)
+	if (class'Helpers_LW'.static.IsUnitInterruptingEnemyTurn(SourceUnit))
+		return false;
+	
 	if (kAbility == none)
 		return false;
 

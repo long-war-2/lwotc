@@ -17,6 +17,10 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
         return false;
     }
 
+	// Don't proc on a Skirmisher interrupt turn (for example with Battle Lord)
+	if (class'Helpers_LW'.static.IsUnitInterruptingEnemyTurn(SourceUnit))
+		return false;
+
 	// Block repeated uses of DFA by default.
 	// CREDIT TO: Favid ([WOTC] LW2 Classes and Perks)
 	SourceUnit.GetUnitValue('LW_DeathFromAboveUses', DFAUsesThisTurn);
