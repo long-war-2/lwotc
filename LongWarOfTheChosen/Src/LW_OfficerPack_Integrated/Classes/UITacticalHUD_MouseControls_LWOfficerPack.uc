@@ -16,69 +16,32 @@ var bool CRToggleOn;
 
 simulated function UpdateControls()
 {
-	local string key, label;
-	local PlayerInput kInput;
-	local XComKeybindingData kKeyData;
-	local int i;
-	local TacticalBindableCommands command;
-	local XComGameState_Ability AbilityState;
-	local XComGameStateHistory History;
-	local XComGameState_BattleData BattleData;
-	
-	History = `XCOMHISTORY;
-	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	local int ControlCount;
 
-	kInput = PC.PlayerInput;
-	kKeyData = Movie.Pres.m_kKeybindingData;
+	super.UpdateControls();
 
-	AS_SetHoverHelp("");
-
-	if(UITacticalHUD(screen).m_isMenuRaised)
+	if (UITacticalHUD(screen).m_isMenuRaised)
 	{
-		SetNumActiveControls(1);
-
-		key = kKeyData.GetPrimaryOrSecondaryKeyStringForAction(kInput, eGBC_Cancel, eKC_General);
-		SetButtonItem( m_optCancelShot,     m_strCancelShot,       key != "" ? key : m_strNoKeyBoundString,    ButtonItems[0].UIState );
-
 		if (OfficerIcon != none)
 			OfficerIcon.Hide();
 	}
 	else
 	{
-		SetNumActiveControls(5 + CommandAbilities.Length);  // add "phantom" control to leave space for Command Range icon
-
-		key = kKeyData.GetPrimaryOrSecondaryKeyStringForAction(kInput, eTBC_EndTurn);
-		SetButtonItem( m_optEndTurn,        m_strEndTurn,       key != "" ? key : m_strNoKeyBoundString,    ButtonItems[m_optEndTurn].UIState );
-
-		key = kKeyData.GetPrimaryOrSecondaryKeyStringForAction(kInput, eTBC_PrevUnit);
-		SetButtonItem( m_optPrevSoldier,    m_strPrevSoldier,   key != "" ? key : m_strNoKeyBoundString,    ButtonItems[m_optPrevSoldier].UIState );
-
-		key = kKeyData.GetPrimaryOrSecondaryKeyStringForAction(kInput, eTBC_NextUnit);
-		SetButtonItem( m_optNextSoldier,    m_strNextSoldier,   key != "" ? key : m_strNoKeyBoundString,    ButtonItems[m_optNextSoldier].UIState );
-
-		key = kKeyData.GetPrimaryOrSecondaryKeyStringForAction(kInput, eTBC_CamRotateLeft);
-		label = kKeyData.GetTacticalBindableActionLabel(eTBC_CamRotateLeft);
-		SetButtonItem( m_optRotateCameraLeft,    label,   key != "" ? key : m_strNoKeyBoundString,    ButtonItems[m_optRotateCameraLeft].UIState );
-
-		key = kKeyData.GetPrimaryOrSecondaryKeyStringForAction(kInput, eTBC_CamRotateRight);
-		label = kKeyData.GetTacticalBindableActionLabel(eTBC_CamRotateRight);
-		SetButtonItem( m_optRotateCameraRight,    label,   key != "" ? key : m_strNoKeyBoundString,    ButtonItems[m_optRotateCameraRight].UIState );
-
-		for(i = 0; i < CommandAbilities.Length; i++)
-		{
-			command = TacticalBindableCommands(eTBC_CommandAbility1 + i);
-			AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(CommandAbilities[i].AbilityObjectRef.ObjectID));
-			key = kKeyData.GetPrimaryOrSecondaryKeyStringForAction(kInput, command);
-			label = Caps(AbilityState.GetMyFriendlyName());
-			SetButtonItem( m_optCallSkyranger + i,    label,   key != "" ? key : m_strNoKeyBoundString,    ButtonItems[m_optCallSkyranger + i].UIState, BattleData.IsAbilityObjectiveHighlighted(AbilityState.GetMyTemplate()));
-		}
+		// Work out how many "command" controls there are. Base game has 5 + 1
+		// for the Chosen + 1 for any command abilities (presumably an unimplemented
+		// feature). We add an extra one for the Command Range button.
+		ControlCount = 5;
+		if (class'XComGameState_Unit'.static.GetActivatedChosen() != none)
+			ControlCount++;
+		ControlCount += CommandAbilities.Length;
+		SetNumActiveControls(ControlCount);
 
 		if (class'LWOfficerUtilities'.static.HasOfficerInSquad())
 		{
 			if (OfficerIcon != none)
 				OfficerIcon.Show();
 			else
-				AddCommandRangeIcon(-300, 4);
+				AddCommandRangeIcon((!`SecondWaveEnabled('EnableChosen')) ? -300 : -345, 4);
 				//AddCommandRangeIcon(-300, 200);  // For tooltip testing. Puts icon more in the middle of the screen.
 		}
 	}
