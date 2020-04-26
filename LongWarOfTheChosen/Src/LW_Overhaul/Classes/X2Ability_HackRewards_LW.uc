@@ -99,6 +99,8 @@ static function X2AbilityTemplate BuildNetworkTowerStunAbility(Name TemplateName
 	local X2AbilityTemplate                 Template;
 	local array<X2Effect>					SelectedEffects;
 	local X2Condition_Soldier				SoldierCondition;
+	local X2AbilityCharges					Charges;
+	local X2AbilityCost_Charges				ChargeCost;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 	SelectedEffects.AddItem(class'X2StatusEffects'.static.CreateStunnedStatusEffect(4, 100, false));
@@ -108,6 +110,17 @@ static function X2AbilityTemplate BuildNetworkTowerStunAbility(Name TemplateName
 	SoldierCondition = new class'X2Condition_Soldier';
 	SoldierCondition.Exclude = true;
 	Template.AbilityMultiTargetConditions.AddItem(SoldierCondition);
+
+	// This should only trigger once per mission, so give it a charge to
+	// ensure that happens. Otherwise any other hack on the mission will
+	// trigger it.
+	Charges = new class 'X2AbilityCharges';
+	Charges.InitialCharges = 1;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
 
 	Template.BuildVisualizationFn = NetworkTowerStunAbility_BuildVisualization;
 	return Template;
