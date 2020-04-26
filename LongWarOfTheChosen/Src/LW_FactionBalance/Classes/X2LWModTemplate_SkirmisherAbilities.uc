@@ -7,8 +7,9 @@ class X2LWModTemplate_SkirmisherAbilities extends X2LWTemplateModTemplate config
 
 var config int SKIRMISHER_INTERRUPT_COOLDOWN;
 var config int JUSTICE_COOLDOWN;
+var config int JUSTICE_IENVIRONMENT_DAMAGE;
 var config int WRATH_COOLDOWN;	
-var config int WHIPLASH_COOLDOWN; 
+var config int WHIPLASH_COOLDOWN;
 var config int WHIPLASH_ACTION_POINT_COST;
 var config int FULL_THROTTLE_DURATION;
 var config int BATTLELORD_ACTION_POINT_COST;
@@ -39,6 +40,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	// Justice and Wrath cooldowns are hard coded in vanilla.
 	case 'Justice':
 		Template.AbilityCooldown.iNumTurns = default.JUSTICE_COOLDOWN;
+		ReduceJusticeEnvironmentDamage(Template);
 		break;
 	case 'SkirmisherVengeance':
 		Template.AbilityCooldown.iNumTurns = default.WRATH_COOLDOWN;
@@ -163,7 +165,7 @@ static function ModifyWhiplash(X2AbilityTemplate Template)
 		{
 			Template.AbilityTargetEffects.Remove(i, 1);
 		}
-	} 
+	}
 
 	// Configure the damage for non-robotic targets.
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
@@ -185,7 +187,7 @@ static function ModifyWhiplash(X2AbilityTemplate Template)
 	UnitPropertyCondition.ExcludeRobotic = false;
 	UnitPropertyCondition.ExcludeOrganic = true;
 	WeaponDamageEffect.TargetConditions.AddItem(UnitPropertyCondition);
-	Template.AddTargetEffect(WeaponDamageEffect);  
+	Template.AddTargetEffect(WeaponDamageEffect);
 }
 
 static function AddCooldownToInterrupt(X2AbilityTemplate Template)
@@ -222,6 +224,25 @@ static function AddParkourSupportToGrapple(X2AbilityTemplate Template)
 	// Have the ability check our custom X2AbilityCooldown_Grapple file to get its cooldown time
 	Cooldown = new class'X2AbilityCooldown_Grapple';
 	Template.AbilityCooldown = Cooldown;
+}
+
+// Reduces Justice's environmental damage so that it doesn't destroy
+// quite so much enemy cover when it misses.
+static function ReduceJusticeEnvironmentDamage(X2AbilityTemplate Template)
+{
+	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
+	local int i;
+
+	// Update Justice's environment damage value on the Apply Weapon Damage effect
+	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
+	{
+		WeaponDamageEffect = X2Effect_ApplyWeaponDamage(Template.AbilityTargetEffects[i]);
+		if (WeaponDamageEffect != none)
+		{
+			WeaponDamageEffect.EnvironmentalDamageAmount = default.JUSTICE_IENVIRONMENT_DAMAGE;
+		}
+	}
+
 }
 
 // Removes Battlelord charges, replacing them with a cooldown.
