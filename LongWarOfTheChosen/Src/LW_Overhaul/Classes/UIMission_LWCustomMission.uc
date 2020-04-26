@@ -358,7 +358,18 @@ simulated function UpdateData()
 		UpdateTitle('Region', GetRegion().GetMyTemplate().DisplayName, GetLabelColor(), 50);
 	}
 
-	super.UpdateData();
+	/*********************************** Issue #140 ***********************************
+	* The below code is replacing the call to super.UpdateData(). The code from the parent
+	* class version of UpdateData() is pasted here except the call to UpdateMissionSchedules().
+	**********************************************************************************/
+	// WARNING! We cannot call UpdateMissionSchedules() under any circumstances as it
+	// will change the mission schedule using vanilla force and alert levels rather than
+	// the ones calculated by the alien activity manager!
+	UpdateMissionTacticalTags();
+	AddMissionTacticalTags();
+	UpdateShadowChamber();
+	UpdateSitreps();
+	UpdateChosen();
 }
 
 simulated function bool CanBackOut()
