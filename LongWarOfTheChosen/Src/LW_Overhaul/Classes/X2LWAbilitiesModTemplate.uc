@@ -95,6 +95,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'RestorativeMist':
 			AllowRestorativeMistToRemoveStunned(Template);
 			break;
+		case 'Implacable':
+			ReplaceImplacableEffect(Template);
+			break;
 		default:
 			break;
 	}
@@ -662,6 +665,24 @@ static function AllowRestorativeMistToRemoveStunned(X2AbilityTemplate Template)
 	StunRecoverEffect.TargetConditions.AddItem(new class'X2Condition_RevivalProtocol_LW');
 	StunRecoverEffect.TargetConditions.AddItem(new class'X2Condition_IsStunned_LW');
 	Template.AddMultiTargetEffect(StunRecoverEffect);
+}
+
+// Use an Implacable effect that can't proc during Battlelord turns
+static function ReplaceImplacableEffect(X2AbilityTemplate Template)
+{
+	local X2Effect_Implacable ImplacableEffect;
+	local int i;
+
+	// Change the lvl 1 Teamwork to granting a move action rather than a standard one
+	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
+	{
+		ImplacableEffect = X2Effect_Implacable(Template.AbilityTargetEffects[i]);
+		if (ImplacableEffect != none)
+		{
+			Template.AbilityTargetEffects[i] = new class'X2Effect_Implacable_LW'(ImplacableEffect);
+			break;
+		}
+	}
 }
 
 defaultproperties

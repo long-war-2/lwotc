@@ -750,6 +750,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HitandRun.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HyperReactivePupils.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ImmediateMultiTargetAbilityActivation.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Implacable_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Infighter.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Interference.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_IronCurtain.uc" />

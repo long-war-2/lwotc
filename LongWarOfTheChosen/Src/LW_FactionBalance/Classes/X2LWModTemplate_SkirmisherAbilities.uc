@@ -26,7 +26,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		ModifyJudgementPanicChanceFunction(Template);
 		break;
 	case 'FullThrottle':
-		ModifyFullThrottleDuration(Template);
+		ModifyFullThrottle(Template);
 		break;
 	case 'Whiplash':
 		ModifyWhiplash(Template);
@@ -106,11 +106,14 @@ static function name JudgementApplyChance(
 }
 
 // Allow Full Throttle bonus mobility to apply for longer than the
-// turn it activates.
-static function ModifyFullThrottleDuration(X2AbilityTemplate Template)
+// turn it activates. Also make sure it can't trigger during interrupt
+// turns, like with Battlelord.
+static function ModifyFullThrottle(X2AbilityTemplate Template)
 {
-	local X2Effect CurrentEffect;
+	local X2AbilityTrigger_EventListener FullThrottleListener;
 	local X2Effect_PersistentStatChange FullThrottleEffect;
+	local X2AbilityTrigger CurrentTrigger;
+	local X2Effect CurrentEffect;
 
 	foreach Template.AbilityTargetEffects(CurrentEffect)
 	{
@@ -120,6 +123,45 @@ static function ModifyFullThrottleDuration(X2AbilityTemplate Template)
 			FullThrottleEffect.iNumTurns = default.FULL_THROTTLE_DURATION;
 		}
 	}
+
+	foreach Template.AbilityTriggers(CurrentTrigger)
+	{
+		FullThrottleListener = X2AbilityTrigger_EventListener(CurrentTrigger);
+		if (FullThrottleListener != none && FullThrottleListener.ListenerData.EventID == 'UnitDied')
+		{
+			FullThrottleListener.ListenerData.EventFn = NoInterruptFullThrottleListener;
+			break;
+		}
+	}
+}
+
+// A replacement listener for Full Throttle that excludes interrupt
+// turns so Full Throttle can't proc on them. For normal turns, this
+// listener delegates to the standard `FullThrottleListener`.
+static function EventListenerReturn NoInterruptFullThrottleListener(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameState_Ability AbilityState;
+	local XComGameState_Unit SourceUnit;
+
+	AbilityState = XComGameState_Ability(CallbackData);
+	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+	if (AbilityState != none && AbilityContext != none)
+	{
+		// Was the killing blow dealt by a unit during an interrupt turn?
+		SourceUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.SourceObject.ObjectID));
+		if (!class'Helpers_LW'.static.IsUnitInterruptingEnemyTurn(SourceUnit))
+		{
+			return AbilityState.FullThrottleListener(EventData, EventSource, GameState, EventID, CallbackData);
+		}
+	}
+
+	return ELR_NoInterrupt;
 }
 
 // Makes Whiplash cost 1 action point and makes the damage scale

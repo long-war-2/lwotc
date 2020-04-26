@@ -5156,6 +5156,11 @@ LocLongDescription="Resets all ability cooldowns on ally soldiers."
 LocHelpText="Resets all ability cooldowns on ally soldiers."
 LocPromotionPopupText="<Bullet/> Use the Skirmisher's abilities early and often to take full advantage of Manual Override.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>"
 
+[Battlelord X2AbilityTemplate]
+LocLongDescription="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
+LocHelpText="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
+LocPromotionPopupText="<Bullet/> Battlelord can allow the Skirmisher to prevail in the most dire of circumstances.<br/><Bullet/> Battlelord has a <Ability:SelfCooldown/>-turn cooldown.<br/><Bullet/> Turns from the Lost and enemy pod reveals do not grant the immediate action.<br/><Bullet/> Abilities that refund action points, like Implacable and Hit and Run, will not work during Battlelord."
+
 [TemplarGrazingFire X2AbilityTemplate]
 LocFriendlyName="Grazing Fire"
 LocFlyOverText="Grazing Fire"

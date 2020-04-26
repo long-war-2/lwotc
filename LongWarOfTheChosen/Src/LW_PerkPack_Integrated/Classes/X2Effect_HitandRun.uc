@@ -38,12 +38,15 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	if (PreCostActionPoints.Find('RunAndGun') != -1)
 		return false;
 
+	// Don't proc on a Skirmisher interrupt turn (for example with Battle Lord)
+	if (class'Helpers_LW'.static.IsUnitInterruptingEnemyTurn(SourceUnit))
+		return false;
+
 	SourceUnit.GetUnitValue ('HitandRunUses', HnRUsesThisTurn);
 	iUsesThisTurn = int(HnRUsesThisTurn.fValue);
 
 	if (iUsesThisTurn >= default.HNR_USES_PER_TURN)
 		return false;
-
 
 	//  match the weapon associated with Hit and Run to the attacking weapon
 	if (kAbility.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
