@@ -32,6 +32,21 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 		// _MG and _BM variants.
 		WeaponTemplate.iTypicalActionCost = 1;
 		break;
+	case 'Bullpup_CV':
+		WeaponTemplate.Abilities.AddItem('Bullpup_CV_StatBonus');
+		WeaponTemplate.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
+		WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.SKIRMISHER_SMG_RANGE;
+		break;
+	case 'Bullpup_MG':
+		WeaponTemplate.Abilities.AddItem('Bullpup_MG_StatBonus');
+		WeaponTemplate.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_MAGNETIC_MOBILITY_BONUS);
+		WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.SKIRMISHER_SMG_RANGE;
+		break;
+	case 'Bullpup_BM':
+		WeaponTemplate.Abilities.AddItem('Bullpup_BM_StatBonus');
+		WeaponTemplate.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_BEAM_MOBILITY_BONUS);
+		WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.SKIRMISHER_SMG_RANGE;
+		break;
 	case 'ShardGauntlet_BM':
 		WeaponTemplate.Abilities.AddItem('SupremeFocus');
 	case 'ShardGauntlet_MG':
@@ -47,6 +62,13 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 		break;
 	case 'Wristblade_BM':
 		WeaponTemplate.ExtraDamage = default.WHIPLASH_BEAM_DAMAGE;
+		break;
+	case 'Sidearm_CV':
+	case 'Sidearm_MG':
+	case 'Sidearm_BM':
+		WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.TEMPLAR_PISTOL_RANGE;
+		break;
+	default:
 		break;
 	}
 }
