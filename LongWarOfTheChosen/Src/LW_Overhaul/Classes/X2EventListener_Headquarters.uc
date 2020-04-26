@@ -374,11 +374,11 @@ static function EventListenerReturn CAOverrideRewardScalar(
 	Tuple = XComLWTuple(EventData);
 	if (Tuple == none) return ELR_NoInterrupt;
 
-	RewardState = XComGameState_Reward(Tuple.Data[0].o);
+	RewardState = XComGameState_Reward(Tuple.Data[1].o);
 	if (RewardState == none) return ELR_NoInterrupt;
 
 	// This is replacing the risk value with the percentage chance to occur.
-	Tuple.Data[1].f = RewardState.GetMyTemplateName() == 'Reward_AbilityPoints' ?
+	Tuple.Data[0].f = RewardState.GetMyTemplateName() == 'Reward_AbilityPoints' ?
 			`ScaleStrategyArrayFloat(default.CA_AP_REWARD_SCALAR) :
 			`ScaleStrategyArrayFloat(default.CA_STD_REWARD_SCALAR);
 
