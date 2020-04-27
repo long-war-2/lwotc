@@ -4963,6 +4963,12 @@ LocLongDescription="Use your Gremlin to grant a movement action to an ally."
 LocHelpText="Grant a movement action to an ally."
 LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/>An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
 
+; LWOTC Needs Translation
+[Blademaster X2AbilityTemplate]
+LocLongDescription="All melee attacks deal +<Ability:BlademasterDmg/> extra damage and have +<Ability:BLADEMASTERAIM/> Aim."
+LocHelpText="Extra damage and aim on all melee attacks."
+; End Translation
+
 [AssaultRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> The Plasma Rifle is a general purpose, supremely powerful primary infantry weapons system.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n<Bullet/> Use upgrades looted from enemies to improve the Plasma Rifle's tactical effectiveness.<br/>"
 
