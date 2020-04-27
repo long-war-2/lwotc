@@ -506,6 +506,11 @@ m_strThreatVeryHigh="Severe"
 m_strLiberated="Liberated"
 m_strResistanceManagementLevels="<XGParam:IntValue0> (V:<XGParam:IntValue1>)"
 
+; KDM : Additional Variables Start
+m_strViewHaven="VIEW HAVEN"
+m_strFlyToHaven="FLY TO HAVEN"
+; KDM : Additional Variables End
+
 [UIOutpostManagement]
 m_strTitle="HAVEN MANAGEMENT"
 m_strLabel="Placeholder UI for Haven management..."
@@ -519,6 +524,12 @@ m_strResistanceMecs="Resistance MECs: <XGParam:IntValue0/>"
 m_strProhibited="Prohibited"
 m_strCannotChangeLiaisonTitle="Cannot Move Adviser"
 m_strCannotChangeLiaison="The adviser cannot be changed at this time due to active missions in the region"
+
+; KDM : Additional Variables Start
+m_strChangeJob="CHANGE JOB"
+m_strChangeAllJobs="CHANGE ALL JOBS"
+m_strPerks = "PERKS"
+; KDM : Additional Variables End
 
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="EVAC Requested"

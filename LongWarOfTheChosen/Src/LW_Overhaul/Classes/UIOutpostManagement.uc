@@ -6,7 +6,18 @@
 //--------------------------------------------------------------------------------------- 
 
 class UIOutpostManagement extends UIScreen
-    dependson(XComGameState_LWOutpost);
+    config(LW_UI) dependson(XComGameState_LWOutpost);
+
+// KDM : Additional Variables Start
+var config bool m_bUseFancyVersion;
+var config int m_AdviserFontSize, m_HeaderFontSize;
+
+var localized string m_strChangeJob, m_strChangeAllJobs, m_strHavenAdviser, m_strRadioRelay, m_strPerks;
+
+var int m_BorderPadding, m_ItemPadding;
+var float m_NameHeaderPct, m_JobHeaderPct, m_PerksHeaderPct;
+var UIButton PerksHeaderButton;
+// KDM : Additional Variables End
 
 var name DisplayTag;
 var name CameraTag;
@@ -83,176 +94,347 @@ function OnRadioTowerUpgradeClicked(UIButton Button)
 
 simulated function InitScreen(XComPlayerController InitController, UIMovie InitMovie, optional name InitName)
 {
-    local int NextY;
-    local XComGameState_WorldRegion Region;
-    local XComGameState_LWOutpost Outpost;
-    local XComGameStateHistory History;
-	local string strRegionalInfo;
-    local string strResistanceMecs;
-	local string strJobDetail;
-	local XGParamTag kTag;
-	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState;
 	local bool IntelProhibited, SupplyProhibited, RecruitProhibited;
-	local int k;
+	local int AvailableSpace, i, AdviserIconSize, AdviserBorderPadding, ScrollbarPadding;
 
- 	// Init UI
-	super.InitScreen(InitController, InitMovie, InitName);
+    local int NextX, NextY;
+	local XComGameState_LWOutpost Outpost;
+	local XComGameState_WorldRegion Region;
+    local XComGameStateHistory History;
 	
-    MainPanel = Spawn(class 'UIPanel', self);
-    MainPanel.InitPanel('ListContainer').SetPosition((Movie.UI_RES_X / 2) - (panelW / 2), panelY);
-    ListBG = Spawn(class'UIBGBox', MainPanel);
-	ListBG.LibID = class'UIUtilities_Controls'.const.MC_X2Background;
-	ListBG.InitBG('ListBG', 0, 0, panelW, panelH);
-    ListBG.bIsNavigable = false;
-
-    History = `XCOMHISTORY;
+	History = `XCOMHISTORY;
     Outpost = XComGameState_LWOutpost(History.GetGameStateForObjectID(OutpostRef.ObjectID));
     Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(Outpost.Region.ObjectID));
-    ListTitle = Spawn(class'UIX2PanelHeader', MainPanel).InitPanelHeader('TitleHeader', m_strTitle, Region.GetDisplayName());
-	ListTitle.SetHeaderWidth(ListBG.Width - 20);
-    ListTitle.SetPosition(ListBG.X + 10, ListBG.Y + 10);
+	
+	DisplayTag = 'UIDisplay_Council';
+	CameraTag = 'UIDisplayCam_ResistanceScreen';
 
-    NextY = ListTitle.Y + ListTitle.Height;
-
-    // Region Info
-	RegionalInfo = Spawn(class'UIScrollingText', MainPanel).InitScrollingText('Outpost_RegionalInfo_LW', "", 500, 453, ListBG.Y + 10 + 36.75);
-	kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region);
-	if (!RegionalAIState.bLiberated)
+	m_BorderPadding = 15;
+	m_ItemPadding = 10;
+	
+	// KDM : The normal UI has 2 columns : rebel name, and rebel job; the fancy UI has a rebel perks column in the middle.
+	if (m_bUseFancyVersion)
 	{
-		kTag.IntValue0 = RegionalAIState.LocalAlertLevel;
-		kTag.IntValue1 = RegionalAIState.LocalVigilanceLevel;
-		kTag.IntValue2 = RegionalAIState.LocalForceLevel;
-		strRegionalInfo = `XEXPAND.ExpandString(m_strRegionalInfo);
+		m_NameHeaderPct = 0.45f;
+		m_PerksHeaderPct = 0.25f;
+		m_JobHeaderPct = 0.3f;
 	}
 	else
 	{
-		strRegionalInfo = class'UIResistanceManagement_LW'.default.m_strLiberated;
+		m_NameHeaderPct = 0.7f;
+		m_JobHeaderPct = 0.3f;
 	}
-	RegionalInfo.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ strRegionalInfo $ "</font></p>");
+
+	NextX = 0;
+	NextY = 0;
+	AdviserIconSize = 64;
+	AdviserBorderPadding = 4;
+	ScrollbarPadding = 10;
+	
+	super.InitScreen(InitController, InitMovie, InitName);
+
+	// KDM : The Haven screen is centered horizontally and vertically when viewed via the strategy map.
+	// When viewed via the Avenger; however, its vertical position must be set manually in order to fit a fancy 3D background.
+	panelW = 1000;
+    panelH = 830;
+	if (class'Utilities_LW'.static.IsOnStrategyMap())
+	{
+		panelY = (Movie.UI_RES_Y / 2) - (panelH / 2);
+	}
+	else
+	{
+		panelY = 80;
+	}
+
+	// KDM : On the Avenger, both the Resistance overview screen and, this, Haven screen are placed within a 3D movie;
+	// consequently, a 3D camera needs to be specified.
+	if (!class'Utilities_LW'.static.IsOnStrategyMap())
+	{
+		class'UIUtilities'.static.DisplayUI3D(DisplayTag, CameraTag, 0, true);
+	}
+
+	// KDM : Container which will hold our UI components : it's invisible
+    MainPanel = Spawn(class 'UIPanel', self);
+	MainPanel.bAnimateOnInit = false;
+	MainPanel.bIsNavigable = false;
+    MainPanel.InitPanel('ListContainer');
+	MainPanel.SetPosition((Movie.UI_RES_X / 2) - (panelW / 2), panelY);
+    
+	// KDM : Background rectangle
+	ListBG = Spawn(class'UIBGBox', MainPanel);
+	ListBG.bAnimateOnInit = false;
+	ListBG.LibID = class'UIUtilities_Controls'.const.MC_X2Background;
+	ListBG.InitBG('ListBG', 0, 0, panelW, panelH);
+    
+	// KDM : Header (includes title, and region sub-title) 
+	ListTitle = Spawn(class'UIX2PanelHeader', MainPanel);
+	ListTitle.bAnimateOnInit = false;
+	ListTitle.bIsNavigable = false;
+	ListTitle.InitPanelHeader('TitleHeader', m_strTitle, Region.GetDisplayName());
+	ListTitle.SetPosition(m_BorderPadding, m_BorderPadding);
+	ListTitle.SetHeaderWidth(panelW - m_BorderPadding * 2);
+    
+    NextY = ListTitle.Y + ListTitle.Height;
+
+    // KDM : Advent strength in the region
+	RegionalInfo = Spawn(class'UIScrollingText', MainPanel);
+	RegionalInfo.bAnimateOnInit = false;
+	RegionalInfo.InitScrollingText('Outpost_RegionalInfo_LW', "", panelW - m_BorderPadding * 2, m_BorderPadding, ListBG.Y + 46.75 + 6);
+	RegionalInfo.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ GetAdventStrengthString(Region) $ "</font></p>");
 	RegionalInfo.SetAlpha(67.1875);
 
     // Resistance MECs
     if (Outpost.GetResistanceMecCount() > 0)
     {
-        ResistanceMecs = Spawn(class'UIScrollingText', MainPanel).InitScrollingText('Outpost_ResistanceMecs_LW', "", 500, 453, RegionalInfo.Y + RegionalInfo.Height + 6);
-        kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-        kTag.IntValue0 = Outpost.GetResistanceMecCount();
-        strResistanceMecs = `XEXPAND.ExpandString(m_strResistanceMecs);
-        ResistanceMecs.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ strResistanceMecs $ "</font></p>");
+		ResistanceMecs = Spawn(class'UIScrollingText', MainPanel);
+		ResistanceMecs.bAnimateOnInit = false;
+		ResistanceMecs.InitScrollingText('Outpost_ResistanceMecs_LW', "", panelW - m_BorderPadding * 2, m_BorderPadding, RegionalInfo.Y + RegionalInfo.Height);
+        ResistanceMecs.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ GetResistanceMecString(Outpost) $ "</font></p>");
         ResistanceMecs.SetAlpha(67.1875);
     }
 
-	for (k=0; k< Outpost.prohibitedjobs.length; k++)	
+	for (i=0; i < Outpost.prohibitedjobs.length; i++)	
 	{
-		if (OutPost.ProhibitedJobs[k].Job == 'Intel' && Outpost.ProhibitedJobs[k].DaysLeft > 0)
+		if (OutPost.ProhibitedJobs[i].Job == 'Intel' && Outpost.ProhibitedJobs[i].DaysLeft > 0)
+		{
 			IntelProhibited = true;
-		if (OutPost.ProhibitedJobs[k].Job == 'Resupply' && OutPost.ProhibitedJobs[k].DaysLeft > 0)
+		}
+		if (OutPost.ProhibitedJobs[i].Job == 'Resupply' && OutPost.ProhibitedJobs[i].DaysLeft > 0)
+		{
 			SupplyProhibited = true;
-		if (OutPost.ProhibitedJobs[k].Job == 'Recruit' && Outpost.ProhibitedJobs[k].DaysLeft > 0)
+		}
+		if (OutPost.ProhibitedJobs[i].Job == 'Recruit' && Outpost.ProhibitedJobs[i].DaysLeft > 0)
+		{
 			RecruitProhibited = true;
+		}
 	}
 
-	if (IntelProhibited)
-	{
-		strJobDetail @= OutPost.GetJobName('Intel') $ ":";
-		strJobDetail @= m_strProhibited;
-	}
-	if (SupplyProhibited)
-	{
-		strJobDetail @= OutPost.GetJobName('Resupply') $ ":";
-		strJobDetail @= m_strProhibited;
-	}
-	if (RecruitProhibited)
-	{
-		strJobDetail @= OutPost.GetJobName('Recruit') $ ":";
-		strJobDetail @= m_strProhibited;
-	}
-
+	// KDM : Job prohibitions for the region
 	if (IntelProhibited || SupplyProhibited || RecruitProhibited)
 	{
-	    JobDetail = Spawn(class'UIScrollingText', MainPanel).InitScrollingText('OutPost_JobDetail_LW', "", 500, 453, RegionalInfo.Y + RegionalInfo.Height + (OutPost.GetResistanceMecCount() > 0) ? (ResistanceMECs.Height + 12.0f) : 6.0f);
-	    JobDetail.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ strJobDetail $ "</font></p>");
+	    JobDetail = Spawn(class'UIScrollingText', MainPanel);
+		JobDetail.bAnimateOnInit = false;
+		JobDetail.InitScrollingText('OutPost_JobDetail_LW', "", panelW - m_BorderPadding * 2, m_BorderPadding, 
+			RegionalInfo.Y + RegionalInfo.Height + (OutPost.GetResistanceMecCount() > 0) ? ResistanceMECs.Height : 0.0f);
+	    JobDetail.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $ 
+			GetJobProhibitedString(Outpost, IntelProhibited, SupplyProhibited, RecruitProhibited) $ "</font></p>");
 		JobDetail.SetAlpha(67.1875);
 	}
 
+	// KDM : Haven adviser background
     LiaisonButton = Spawn(class'UIButton', MainPanel);
-    LiaisonButton.InitButton(, , OnLiaisonClicked);
-    LiaisonButton.SetSize(72, 72);
-    LiaisonButton.SetPosition(11, NextY);
-    LiaisonImage = Spawn(class'UIImage', LiaisonButton).InitImage();
-    LiaisonImage.SetPosition(4, 4);
-    LiaisonImage.SetSize(64, 64);
+	LiaisonButton.bAnimateOnInit = false;
+    LiaisonButton.bIsNavigable = false;
+	LiaisonButton.InitButton(, , OnLiaisonClicked);
+    LiaisonButton.SetPosition(m_BorderPadding, NextY);
+	LiaisonButton.SetSize(AdviserIconSize + AdviserBorderPadding * 2, AdviserIconSize + AdviserBorderPadding * 2);
 
+	// KDM : Haven adviser photo
+	LiaisonImage = Spawn(class'UIImage', LiaisonButton);
+	LiaisonImage.bAnimateOnInit = false;
+	LiaisonImage.InitImage();
+    LiaisonImage.SetPosition(AdviserBorderPadding, AdviserBorderPadding);
+    LiaisonImage.SetSize(AdviserIconSize, AdviserIconSize);
+
+	// KDM : Haven adviser label
     LiaisonTitle = Spawn(class'UIText', MainPanel);
+	LiaisonTitle.bAnimateOnInit = false;
     LiaisonTitle.InitText('', "");
-    LiaisonTitle.SetPosition(11 + LiaisonButton.Width + 3, NextY);
-    LiaisonTitle.SetSubTitle(m_strLiaisonTitle);
-
-    LiaisonName = Spawn(class'UIText', MainPanel);
+    LiaisonTitle.SetPosition(m_BorderPadding + LiaisonButton.Width + 5, NextY);
+	// KDM : IMPORTANT : Originally, SetSubTitle() was called; however ImportantDiscoveries.txt explains why SetHTMLText() is the better option.
+	LiaisonTitle.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(m_strLiaisonTitle, eUIState_Normal, m_AdviserFontSize));
+    
+	// KDM : Haven adviser name
+	LiaisonName = Spawn(class'UIText', MainPanel);
+	LiaisonName.bAnimateOnInit = false;
     LiaisonName.InitText('',"");
     LiaisonName.SetPosition(LiaisonTitle.X, NextY + LiaisonTitle.Height);
 
-    NextY += 75;
+    NextY += 81;
 
+	// KDM : Dividing line
     DividerLine = Spawn(class'UIPanel', MainPanel);
+	DividerLine.bAnimateOnInit = false;
 	DividerLine.bIsNavigable = false;
 	DividerLine.LibID = class'UIUtilities_Controls'.const.MC_GenericPixel;
-	DividerLine.InitPanel('DividerLine').SetPosition(15, NextY).SetWidth(ListBG.Width - 20);
+	DividerLine.InitPanel('DividerLine');
+	DividerLine.SetPosition(m_BorderPadding, NextY);
+	DividerLine.SetWidth(panelW - m_BorderPadding * 2);
     DividerLine.SetAlpha(20);
 
-    NextY += DividerLine.Height + 5;
+    NextY += DividerLine.Height + 8;
 
-    // Outpost Staff 
-    // Header buttons
-    HeaderPanel = Spawn(class'UIPanel', MainPanel);
-    HeaderPanel.InitPanel('Header').SetPosition(15, NextY).SetSize(ListBG.Width - 56, 32);
+	// KDM : Container for column headers : it's invisible
+	HeaderPanel = Spawn(class'UIPanel', MainPanel);
+	HeaderPanel.bAnimateOnInit = false;
+	HeaderPanel.bIsNavigable = false;
+    HeaderPanel.InitPanel('Header');
+	HeaderPanel.SetPosition(m_BorderPadding, NextY);
+	HeaderPanel.SetSize(panelW - m_BorderPadding * 2 - ScrollbarPadding, 32);
 
+	// KDM : Available space = total header width - 2 pixels between each column header.
+	// The normal UI has 2 column headers, while the fancy UI has 3 columns headers.
+	if (m_bUseFancyVersion)
+	{
+		AvailableSpace = HeaderPanel.Width - 2 * 2;
+	}
+	else
+	{
+		AvailableSpace = HeaderPanel.Width - 2;
+	}
+
+	// KDM : Rebel name column header
     NameHeaderButton = Spawn(class'UIButton', HeaderPanel);
-    NameHeaderButton.InitButton(, m_strName);
-    NameHeaderButton.SetResizeToText(false);
-    NameHeaderButton.SetWidth(HeaderPanel.Width * 0.7f);
-    NameHeaderButton.SetPosition(0, 0);
+	NameHeaderButton.bAnimateOnInit = false;
+	NameHeaderButton.bIsNavigable = false;
+	NameHeaderButton.ResizeToText = false;
+    NameHeaderButton.InitButton(, CAPS(m_strName));
+	NameHeaderButton.SetPosition(0, 0);
+    NameHeaderButton.SetSize(AvailableSpace * m_NameHeaderPct, 30);
+	NameHeaderButton.SetStyle(eUIButtonStyle_NONE, m_HeaderFontSize);
     NameHeaderButton.SetWarning(true);
+	// KDM : Since the name column header can't be clicked, remove its hit testing so mouse events don't change its colour
+	// and make users think the button is active. The same is done for the perks column header below.
+	NameHeaderButton.SetHitTestDisabled(true);
 
+	NextX = NameHeaderButton.X + NameHeaderButton.Width + 2;
+
+	// KDM : Rebel perks column header used in the fancy UI
+	if (m_bUseFancyVersion)
+	{
+		PerksHeaderButton = Spawn(class'UIButton', HeaderPanel);
+		PerksHeaderButton.bAnimateOnInit = false;
+		PerksHeaderButton.bIsNavigable = false;
+		PerksHeaderButton.bProcessesMouseEvents = false;
+		PerksHeaderButton.ResizeToText = false;
+		PerksHeaderButton.InitButton(, m_strPerks);
+		PerksHeaderButton.SetPosition(NextX, 0);
+		PerksHeaderButton.SetSize(AvailableSpace * m_PerksHeaderPct, 30);
+		PerksHeaderButton.SetStyle(eUIButtonStyle_NONE, m_HeaderFontSize);
+		PerksHeaderButton.SetWarning(true);
+		PerksHeaderButton.SetHitTestDisabled(true);
+	
+		NextX += PerksHeaderButton.Width + 2;	
+	}
+
+	// KDM : Rebel job column header
     JobHeaderButton = Spawn(class'UIButton', HeaderPanel);
-    JobHeaderButton.InitButton(, m_strMission, OnJobHeaderButtonClicked);
-    JobHeaderButton.SetResizeToText(false);
-    JobHeaderButton.SetWidth(HeaderPanel.Width * 0.3f);
-    JobHeaderButton.SetPosition(NameHeaderButton.X + NameHeaderButton.Width + 2, 0);
+	JobHeaderButton.bAnimateOnInit = false;
+	JobHeaderButton.bIsNavigable = false;
+	JobHeaderButton.ResizeToText = false;
+    JobHeaderButton.InitButton(, CAPS(m_strMission), OnJobHeaderButtonClicked);
+    JobHeaderButton.SetPosition(NextX, 0);
+	JobHeaderButton.SetSize(AvailableSpace * m_JobHeaderPct, 30);
+	JobHeaderButton.SetStyle(eUIButtonStyle_NONE, m_HeaderFontSize);
     JobHeaderButton.SetWarning(true);
+	JobHeaderButton.ProcessMouseEvents(OnJobHeaderMouseEvent);
 
     NextY += 32 + 5;
- 
-	List = Spawn(class'UIList', MainPanel);
-	List.bIsNavigable = true;
-	List.InitList(, 15, NextY, ListBG.Width - 50, panelH - NextY - 5);
-	List.bStickyHighlight = false; 
 
-	//check to see if we are in geoscape
-	if (`HQGAME == none || `HQPRES == none || `HQPRES.StrategyMap2D == none)
+	// KDM : List container which will hold rows of rebels
+	List = Spawn(class'UIList', MainPanel);
+	List.bAnimateOnInit = false;
+	List.bIsNavigable = true;
+	List.bStickyHighlight = false;
+	List.InitList(, m_BorderPadding, NextY, HeaderPanel.Width, panelH - NextY - m_BorderPadding);
+
+	// KDM : As per Long War 2, radio relays can only be built via the strategy map, not via the Avenger.
+	if (!class'Utilities_LW'.static.IsOnStrategyMap())
 	{
 	}
 	else
 	{
 		RadioTowerUpgradeButton = Spawn(class'UIButton', MainPanel);
+		RadioTowerUpgradeButton.bAnimateOnInit = false;
+		RadioTowerUpgradeButton.bIsNavigable = false;
 		RadioTowerUpgradeButton.InitButton(, m_strBuildRadioRelay, OnRadioTowerUpgradeClicked);
-		RadioTowerUpgradeButton.AnchorTopLeft();
-		RadioTowerUpgradeButton.OriginTopRight();
-		RadioTowerUpgradeButton.SetPosition(1430, 168);
-		//RadioTowerUpgradeButton.Hide();
+		// KDM : I did a lot of testing, and this button seems to anchor to the screen rather than MainPanel.
+		// Therefore, to make things easier, I chose manual positioning rather than positioning through the use of an anchor and origin.
+		RadioTowerUpgradeButton.SetPosition(811, 21);
+		RadioTowerUpgradeButton.SetHeight(30);
+		RadioTowerUpgradeButton.SetFontSize(m_HeaderFontSize);
 	}
-    // Redirect all mouse events for the background to the list. Ensures all mouse
-    // wheel events get processed by the list instead of consumed by the background
-    // when the cursor falls "between" list items.
-    ListBG.ProcessMouseEvents(List.OnChildMouseEvent);
+
+    // LWS : Redirect all background mouse events to the list so mouse wheel scrolling doesn't get lost when the mouse is positioned between list items.
+	ListBG.ProcessMouseEvents(List.OnChildMouseEvent);
 
     InitJobNameCache();
-
     RefreshNavHelp();
     GetData();
     RefreshData();
-    Show();
+   
+	// KDM : Automatically select the 1st rebel row when using a controller.
+	if (`ISCONTROLLERACTIVE)
+	{
+		List.SetSelectedIndex(0, true);
+	}
+}
+
+simulated function string GetResistanceMecString(XComGameState_LWOutpost Outpost)
+{
+	local XGParamTag kTag;
+
+	kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+	kTag.IntValue0 = Outpost.GetResistanceMecCount();
+	return `XEXPAND.ExpandString(m_strResistanceMecs);
+}
+
+simulated function string GetAdventStrengthString(XComGameState_WorldRegion Region)
+{
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState;
+	local XGParamTag kTag;
+	
+	kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region);
+	if (!RegionalAIState.bLiberated)
+	{
+		kTag.IntValue0 = RegionalAIState.LocalAlertLevel;
+		return `XEXPAND.ExpandString(m_strRegionalInfo);
+	}
+	else
+	{
+		return class'UIResistanceManagement_LW'.default.m_strLiberated;
+	}
+}
+
+simulated function string GetJobProhibitedString(XComGameState_LWOutpost Outpost, bool IntelProhibited, bool SupplyProhibited, bool RecruitProhibited)
+{
+	local string ProhibitedString;
+
+	ProhibitedString = "";
+
+	if (IntelProhibited)
+	{
+		ProhibitedString @= OutPost.GetJobName('Intel') $ ":";
+		ProhibitedString @= m_strProhibited;
+	}
+	if (SupplyProhibited)
+	{
+		ProhibitedString @= OutPost.GetJobName('Resupply') $ ":";
+		ProhibitedString @= m_strProhibited;
+	}
+	if (RecruitProhibited)
+	{
+		ProhibitedString @= OutPost.GetJobName('Recruit') $ ":";
+		ProhibitedString @= m_strProhibited;
+	}
+
+	return ProhibitedString;
+}
+
+simulated function bool ControllerCanBuildRelay()
+{
+	// KDM : A haven's radio relay can be built if : 
+	// [1] You are on the strategy map. [2] The region has been contacted. [3] There is no previously built radio relay.
+	if (class'Utilities_LW'.static.IsOnStrategyMap())
+	{
+		if (ShowRadioTowerUpgradeButton())
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 function OnJobHeaderButtonClicked(UIButton Button)
@@ -352,13 +534,13 @@ simulated function GetData()
 
 simulated function UpdateLiaison()
 {
-    local XComGameState_Unit Liaison;
+	local String Str;
     local Texture2D LiaisonPicture;
-    local String Str;
+	local XComGameState_Unit Liaison;
 
     if (CachedLiaison.ObjectID == 0)
     {
-        LiaisonName.SetText("");
+        LiaisonName.SetHtmlText("");
         LiaisonImage.Hide();
     }
     else
@@ -366,21 +548,27 @@ simulated function UpdateLiaison()
         Liaison = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CachedLiaison.ObjectID));
         if (Liaison.IsSoldier())
         {
-			Str = class'UIUtilities_Text'.static.InjectImage(Liaison.GetSoldierClassTemplate().IconImage, 40, 40, -20);
-            Str $= class'UIUtilities_Text'.static.InjectImage(class'UIUtilities_Image'.static.GetRankIcon(Liaison.GetRank(), Liaison.GetSoldierClassTemplateName()), 40, 40, -20);
+			Str = class'UIUtilities_Text'.static.InjectImage(Liaison.GetSoldierClassTemplate().IconImage, 40, 40, -18);
+            Str $= class'UIUtilities_Text'.static.InjectImage(class'UIUtilities_Image'.static.GetRankIcon(Liaison.GetRank(), Liaison.GetSoldierClassTemplateName()), 40, 40, -18);
             Str $= Liaison.GetName(eNameType_FullNick);
         }
         else
         {
             if (Liaison.IsEngineer())
-                Str = class'UIUtilities_Text'.static.InjectImage(class'UIUtilities_Image'.const.EventQueue_Engineer, 32, 32, -8);
-            else if (Liaison.IsScientist())
-                Str = class'UIUtilities_Text'.static.InjectImage(class'UIUtilities_Image'.const.EventQueue_Science, 32, 32, -8);
-            Str $= Liaison.GetFullName();
+			{
+                Str = class'UIUtilities_Text'.static.InjectImage(class'UIUtilities_Image'.const.EventQueue_Engineer, 32, 32, -6);
+            }
+			else if (Liaison.IsScientist())
+			{
+                Str = class'UIUtilities_Text'.static.InjectImage(class'UIUtilities_Image'.const.EventQueue_Science, 32, 32, -6);
+            }
+			Str $= Liaison.GetFullName();
         }
-        LiaisonName.SetText(Str);
-
-        LiaisonPicture = class'UIUtilities_LW'.static.TakeUnitPicture(CachedLiaison, OnPictureTaken);
+        
+		// KDM : IMPORTANT : Originally, SetText() was called; however ImportantDiscoveries.txt explains why SetHTMLText() is the better option.
+		LiaisonName.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Str, eUIState_Normal, m_AdviserFontSize));
+   
+		LiaisonPicture = class'UIUtilities_LW'.static.TakeUnitPicture(CachedLiaison, OnPictureTaken);
         if (LiaisonPicture != none)
         {
             LiaisonImage.LoadImage(PathName(LiaisonPicture));
@@ -391,32 +579,14 @@ simulated function UpdateLiaison()
 
 simulated function UpdateList()
 {
-    local UIOutpostManagement_ListItem ListItem;
-    local XComGameState_Unit Unit;
-    local XComGameStateHistory History;
-    local int i;
-
-    List.ClearItems();
-    History = `XCOMHISTORY;
-
-    for (i = 0; i < CachedRebels.Length; ++i)
+	local int i;
+	
+	List.ClearItems();
+	
+	for (i = 0; i < CachedRebels.Length; ++i)
     {
-        Unit = XComGameState_Unit(History.GetGameStateForObjectID(CachedRebels[i].Unit.ObjectID));
-        ListItem = UIOutpostManagement_ListItem(List.CreateItem(class'UIOutpostManagement_ListItem')).InitListItem();
-        ListItem.SetMugShot(Unit.GetReference());
-        if (ShowFaceless && CachedRebels[i].IsFaceless)
-        {
-            ListItem.SetRebelName("* " $ Unit.GetFullName());
-        }
-        else
-        {
-            ListItem.SetRebelName(Unit.GetFullName());
-        }
-        ListItem.SetLevel(CachedRebels[i].Level);
-        ListItem.SetJobName(class'XComGameState_LWOutpost'.static.GetJobName(CachedRebels[i].Job));
-
-        AddAbilities(Unit, ListItem);
-    }
+		UIOutpostManagement_ListItem(List.CreateItem(class'UIOutpostManagement_ListItem')).InitListItem();
+	}
 }
 
 simulated function AddAbilities(XComGameState_Unit Unit, UIOutpostManagement_ListItem ListItem)
@@ -441,9 +611,35 @@ simulated function AddAbilities(XComGameState_Unit Unit, UIOutpostManagement_Lis
 
 simulated function RefreshNavHelp()
 {
-	`HQPRES.m_kAvengerHUD.NavHelp.ClearButtonHelp();
-	`HQPRES.m_kAvengerHUD.NavHelp.AddBackButton(OnCancel);
-	class'LWHelpTemplate'.static.AddHelpButton_Nav('OutpostManagement_Help');
+	local UINavigationHelp NavHelp;
+	
+	NavHelp = `HQPRES.m_kAvengerHUD.NavHelp;
+	NavHelp.ClearButtonHelp();
+	NavHelp.bIsVerticalHelp = `ISCONTROLLERACTIVE;
+	NavHelp.AddBackButton(OnCancel);
+	
+	// KDM : Controller specific navigation help
+	if (`ISCONTROLLERACTIVE)
+	{
+		// KDM : D-Pad left/right changes the selected rebels job.
+		NavHelp.AddLeftHelp(m_strChangeJob, class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_DPAD_HORIZONTAL);
+		
+		// KDM : Bumper left/right changes all rebel jobs.
+		NavHelp.AddLeftHelp(m_strChangeAllJobs, class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_RB_R1);
+		
+		// KDM : Right stick click changes the haven's adviser.
+		NavHelp.AddLeftHelp(CAPS(m_strLiaisonTitle), class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_RSCLICK_R3);
+		
+		// KDM : Y button brings up the option to build a haven relay, if certain conditions are met.
+		if (ControllerCanBuildRelay())
+		{
+			NavHelp.AddLeftHelp(CAPS(m_strBuildRadioRelay), class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.Icon_Y_TRIANGLE);
+		}
+	}
+	else
+	{
+		class'LWHelpTemplate'.static.AddHelpButton_Nav('OutpostManagement_Help');
+	}
 }
 
 simulated function OnCancel()
@@ -468,16 +664,24 @@ simulated function OnReceiveFocus()
 {
     super.OnReceiveFocus();
 
-    JobHeaderButton.SetWidth(HeaderPanel.Width * 0.3f);
-    Show();
+	// KDM : Removed the following LWS code :
+	// [1] A call to JobHeaderButton.SetWidth() which was unnecessary.
+	// [2] A call to Show() since bHideOnLoseFocus causes the screen to automatically Show() upon receiving focus.
     RefreshNavHelp();
-    RefreshData();
+	RefreshData();
+
+	// KDM : Automatically select the 1st rebel row when using a controller.
+	if (`ISCONTROLLERACTIVE)
+	{
+		List.SetSelectedIndex(0, true);
+	}
 }
 
 simulated function OnLoseFocus()
 {
 	super.OnLoseFocus();
-    Hide();
+
+	// KDM : Removed a LWS call to Hide() since bHideOnLoseFocus is true by default.
 }
 
 simulated function SetDirty()
@@ -485,44 +689,106 @@ simulated function SetDirty()
     IsDirty = true;
 }
 
+simulated function OnJobHeaderMouseEvent(UIPanel Panel, int cmd)
+{
+	local UIButton JobHeader;
+	
+	JobHeader = UIButton(Panel);
+
+	// KDM : In Long War 2, mousing over a header button results in black text over a dull yellow background. What we really
+	// want, for readability and usability, is black text over a nice saturated yellow background.
+	// 
+	// HOW THIS WAS DONE :
+	// [1] Open up gfxComponents.upk with JPEXS
+	// [2] Open scripts --> _Packages --> XComButton (the LibID for UIButton within UnrealScript)
+	// [3] Figure out that the flash component we want to manipulate is buttonMC; this is the button's background movie clip.
+	// [4] Figure out that buttonMC changes colour via state changes, using a function like : gotoAndStop.
+	// [5] Figure out that gotoAndStop wants 1 parameter in the format : _STATEPHASE.
+	//	   Valid values for STATE are : Bad | SelectedBad | Warning | SelectedWarning | Good | SelectedGood
+	//	   Valid values for PHASE are : Up | UpToDown | Down | DownToUp | Over
+	// [6] Figure out that black text on a nice saturated yellow background results from : _WarningDown.
+	// [7] Look in UIMCController.uc to determine how we call Actionscript from UnrealScript.
+	//	   In this case we want : simulated function ChildFunctionString(string ChildPath, string Func, string Param)
+	//
+	// IMPORTANT NOTE : Figure out = look through the code with a lot of trial and error.
+
+	switch (cmd)
+	{
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_IN:
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_OVER:
+			JobHeader.MC.ChildFunctionString("buttonMC", "gotoAndStop", "_WarningDown");
+			break;
+	}
+}
+
 simulated function bool OnUnrealCommand(int cmd, int arg)
 {
 	local bool bHandled;
 
-	if( !CheckInputIsReleaseOrDirectionRepeat(cmd, arg) )
+	if (!CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
+	{
 		return false;
-
+	}
+	
 	bHandled = true;
 
-	switch( cmd )
+	switch (cmd)
 	{
-`if(`notdefined(FINAL_RELEASE))
-		case class'UIUtilities_Input'.const.FXS_KEY_TAB:
-`endif
 		case class'UIUtilities_Input'.const.FXS_BUTTON_A:
 		case class'UIUtilities_Input'.const.FXS_KEY_ENTER:
 		case class'UIUtilities_Input'.const.FXS_KEY_SPACEBAR:
 			OnAccept();
 			break;
+		
 		case class'UIUtilities_Input'.const.FXS_BUTTON_B:
 		case class'UIUtilities_Input'.const.FXS_KEY_ESCAPE:
 		case class'UIUtilities_Input'.const.FXS_R_MOUSE_DOWN:
 			OnCancel();
-			break; 
+			break;
+
+		// KDM : Right stick click either : 
+		// [1] Opens the haven adviser selection screen, if no haven adviser currently exists.
+		// [2] Removes the haven adviser, if one currently exists. 
+		case class'UIUtilities_Input'.const.FXS_BUTTON_R3:
+			OnLiaisonClicked(none);
+			break;
+
+		// KDM : Y button brings up the option to build a haven relay, if certain conditions are met.
+		case class'UIUtilities_Input'.const.FXS_BUTTON_Y:
+			if (ControllerCanBuildRelay())
+			{
+				OnRadioTowerUpgradeClicked(none);
+			}
+			break;
+
+		// KDM : Bumper left/right allows you to change all rebel's jobs at the same time.
+		// The algorithm works as follows : [1] Give all rebels the same job as the 1st rebel. [2] Give each rebel the next job.
+		// NOTE : Currently, both bumper buttons change rebel jobs in the same direction; this is not a big deal since only 4 jobs exist.
+		case class'UIUtilities_Input'.const.FXS_BUTTON_LBUMPER:
+		case class'UIUtilities_Input'.const.FXS_BUTTON_RBUMPER:
+			OnJobHeaderButtonClicked(none);
+			// KDM : Once all rebel jobs have been changed, select the 1st rebel for UI simplicity.
+			// NavigatorSelectionChanged() is called, instead of SetSelectedIndex(), because it :
+			// [1] Updates the scroll bar [2] Moves the list to the top if necessary.
+			List.NavigatorSelectionChanged(0);
+			break;
+
 		default:
 			bHandled = super.OnUnrealCommand(cmd, arg);
-			/*if (!bHandled)
+			// KDM : Handle D-Pad inputs via the list.
+			if (`ISCONTROLLERACTIVE && !bHandled)
 			{
 				bHandled = List.Navigator.OnUnrealCommand(cmd, arg);
-			}*/
-            // Keyboard nav between lists would go here
+			}
 
 			break;
 	}
+
 	if (bHandled)
 	{
 		return true;
 	}
+
 	return super.OnUnrealCommand(cmd, arg);
 }
 
@@ -747,5 +1013,8 @@ defaultproperties
     panelY = 150;
     panelW = 961;
     panelH = 724;
+
+	// KDM : See the comments in UIMouseGuard_Custom for more information.
+	MouseGuardClass = class'UIMouseGuard_LW';
 }
 

@@ -749,3 +749,16 @@ static function float GetUnitValue(XComGameState_Unit UnitState, Name ValueName)
 	UnitState.GetUnitValue(ValueName, Value);
 	return Value.fValue;
 }
+
+simulated static function bool IsOnStrategyMap()
+{
+	// KDM : If you are on the strategy map return true; if you are in the Avenger return false.
+	if (`HQGAME == none || `HQPRES == none || `HQPRES.StrategyMap2D == none)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
