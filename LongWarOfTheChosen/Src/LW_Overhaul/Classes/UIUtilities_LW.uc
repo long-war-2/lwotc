@@ -54,7 +54,7 @@ function static Texture2D TakeUnitPicture(
 
     // First check to see if we already have one
 	Pic = GetUnitPictureIfExists(UnitRef);
-	
+
     // Nope: queue one up
 	if (Pic == none)
 	{
