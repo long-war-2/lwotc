@@ -43,7 +43,7 @@ This is mostly a bug fix release - changes listed below.
 * Revival Protocol will no longer give extra actions to stunned and disoriented units that are revived
 * Templar's Solace is no longer a free action and has a 2-turn cooldown (a misconfiguration meant it was free
   and had no cooldown)
-* Purifiers *can** now use their flamethrower while disoriented (a bug was preventing this from happening)
+* Purifiers **can** now use their flamethrower while disoriented (a bug was preventing this from happening)
 * Some faction soldier XCOM abilities were costing 25 AP instead of 10, 20 or 40 depending on rank - this is now fixed
 * Lone Wolf was appearing as an XCOM ability for Reapers even though it's a class ability - this has been removed from
   the Reaper's XCOM ability pool
