@@ -459,7 +459,7 @@ In summary:
   Location Scout and Project Miranda.
 * The new sit reps have appropriate force level requirements so that you don't encounter
   them too early.
-* The sit reps only appear on missions that make sense for the, for example the Rapid
+* The sit reps only appear on missions that make sense for them, for example the Rapid
   Response sit rep will only appear on missions with normal reinforcements that don't
   appear every turn.
 
@@ -475,7 +475,7 @@ Other changes:
 * Will can no longer be recovered during infiltration, covert actions, haven
   duty or training.
 * Will takes 6 days to recover from 67% of max to 100%.
-* High will is beneficial because soldiers recover the Will lost on missions
+* High Will is beneficial because soldiers recover the Will lost on missions
   more quickly (Will loss is based on flat numbers, while recovery is based
   on percentage of max Will).
 
