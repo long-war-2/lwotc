@@ -244,7 +244,7 @@ strDaysAndHours="<XGParam:IntValue0> jours, <XGParam:IntValue1> heures"
 strMinusDaysAndHours="- <XGParam:IntValue0> jours, <XGParam:IntValue1> heures-"
 strPlusDaysAndHours="+ <XGParam:IntValue0> jours, <XGParam:IntValue1> heures"
 strMissionIndefinite="Durée indéfinie"
-strLiberationTitle="Liberation Progress Modifier:"
+strLiberationTitle="Modificateur de progression (libération) :"
 
 ; LWOTC translated
 UpToText="Jusqu'à"
