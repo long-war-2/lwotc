@@ -15,7 +15,9 @@ m_strMissionDifficulty_start="ACTIVITÉ ENNEMIE DE RÉFÉRENCE"
 
 [ProtectRegionEarly X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion1Activity"
-ActivityObjectives[0]="Trouver un indice"
+; LWOTC Translated
+ActivityObjectives[0]="Initier la libération de la région"
+; End Translated
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Nous avons découvert un indice potentiel sur les activités d'ADVENT. Nous devrions mener l'enquête.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Nous avons découvert un indice potentiel sur les activités d'ADVENT. Nous devrions mener l'enquête.", MissionIndex=0)
@@ -162,6 +164,10 @@ ActivityName="PoliticalPrisonersActivity"
 ActivityObjectives[0]="Libérer les rebelles captifs"
 +MissionDescriptions=(MissionFamily="Jailbreak_LW", Description="Des résistants sont retenus prisonniers dans un complexe bien défendu. Nous avons peu de temps pour les sauver.", MissionIndex=0)
 
+[Logistics X2LWAlienActivityTemplate]
+ActivityObjectives[0]="Capturer des caches de ressources ADVENT"
++MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="La Résistance a découvert la localisation de ressources ennemies vitales que nous pourrions récupérer pour notre propre usage.", MissionIndex=0)
+
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"
 ActivityObjectives[0]="Protéger le matériel de la résistance"
@@ -238,6 +244,15 @@ strDaysAndHours="<XGParam:IntValue0> jours, <XGParam:IntValue1> heures"
 strMinusDaysAndHours="- <XGParam:IntValue0> jours, <XGParam:IntValue1> heures-"
 strPlusDaysAndHours="+ <XGParam:IntValue0> jours, <XGParam:IntValue1> heures"
 strMissionIndefinite="Durée indéfinie"
+strLiberationTitle="Liberation Progress Modifier:"
+
+; LWOTC translated
+UpToText="Jusqu'à"
+ExpectedActivityTextStr="Activité attendue"
+BoostedActivityText="Activité attendue (soutien)"
+BoostTextPre="Avec"
+BoostTextPost="Soutien"
+; End translated
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="CONTACT IMMINENT"
@@ -268,6 +283,10 @@ m_strTooltipAutofillSquad="Remplissez automatiquement l'escouade à son maximum.
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0> Heures"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1>J, <XGParam:IntValue0>H"
+; LWOTC translated
+strDarkEventExpiredTitle="Opération ennemie expirée"
+strDarkEventExpiredText="a expiré"
+; End translated
 
 [X2EventListener_Soldiers]
 OnLiaisonDuty="Superviseur de refuge"
@@ -389,8 +408,12 @@ sCovertness="Furtivité : <XGParam:IntValue0>"
 [UIScreenListener_SquadSelect_LW]
 strSave="Sauvegarder"
 strSquad="Escouade"
-strStart="Start"
+strStart="Débuter"
 strInfiltration="Infiltration"
+
+; LWOTC translated
+strAreaOfOperations="Zone d'opérations :"
+; End translated
 
 [UIScreenListener_SkyrangerArrives_LW]
 strLaunchInfiltration="COMMENCER INFILTRATION"
@@ -560,6 +583,10 @@ m_strLiberatedCityPrefix="Libérée"
 m_strProhibitedJobAlert="À cause d'une attaque d'ADVENT, les résistants ne peuvent pas être affectés au travail de <XGParam:StrValue0/> pendant <XGParam:IntValue0/> jours dans la région <XGParam:StrValue1/>. Tout le personnel affecté à ce travail a dû se cacher."
 m_strProhibitedJobEnded="Les résistants de la région <XGParam:StrValue0/> affectés au travail de <XGParam:StrValue1/> vont reprendre les activités."
 
+;LWOTC translated
+m_strRetributionEnded="Les membres de la résistance présents dans la région <XGParam:StrValue0/> ont récupéré de la vengeance de l'Élu"
+;End translated
+
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="Au moins <XGParam:IntValue0/> rebelles nécessaires au refuge pour établir le contact avec les voisins."
 
@@ -571,14 +598,6 @@ m_strInvasionFlare="COMMUNICATION D'URGENCE"
 m_strInvasionConfirm="VOIR LE SITE D'INVASION"
 
 [UIUtilities_LW]
-m_strStripWeaponUpgrades=RETIRER LES AMELIORATIONS DE TOUTES LES ARMES
-m_strStripWeaponUpgradesLower=Retirer Les Ameliorations De Toutes Les Armes
-m_strStripWeaponUpgradesConfirm=CONFIRMER RETRAIT DES AMELIORATIONS DE TOUTES LES ARMES
-m_strStripWeaponUpgradesConfirmDesc=Confirmer le retrait de toutes les améliorations de toutes les armes principales non équipées par les soldats sélectionnés pour la mission en cours. Ces équipements seront immédiatement disponibles.
-m_strTooltipStripWeapons=Retirer toutes les améliorations d'armes de tous les soldats NON sélectionnés pour la mission en cours.
-
-m_strVIPCaptureReward="(Capture de VIP uniquement)"
-
 m_strInfiltrationMission="Mission d'Infiltration"
 m_strQuickResponseMission="Mission de Réaction Rapide"
 m_strFixedEvacLocation="Evac Fixe"
@@ -598,8 +617,14 @@ m_strTurnSingular="Tour"
 m_strTurnPlural="Tours"
 m_strMinimumInfiltration="Nécessite <XGParam:IntValue0>% Infiltration"
 m_strYellowAlert="Ennemis en Alerte"
-
 m_sAverageScatterText="± <XGParam:StrValue0/> Cases"
+m_strBullet="•"
+
+m_strStripWeaponUpgrades=RETIRER LES AMELIORATIONS DE TOUTES LES ARMES
+m_strStripWeaponUpgradesLower=Retirer Les Ameliorations De Toutes Les Armes
+m_strStripWeaponUpgradesConfirm=CONFIRMER RETRAIT DES AMELIORATIONS DE TOUTES LES ARMES
+m_strStripWeaponUpgradesConfirmDesc=Confirmer le retrait de toutes les améliorations de toutes les armes principales non équipées par les soldats sélectionnés pour la mission en cours. Ces équipements seront immédiatement disponibles.
+m_strTooltipStripWeapons=Retirer toutes les améliorations d'armes de tous les soldats NON sélectionnés pour la mission en cours.
 
 m_strAllHandsToHangar=RASSEMBLEMENT AU HANGAR
 m_strAllHandsToHangarConfirm=CONFIRMER RASSEMBLEMENT AU HANGAR
@@ -609,9 +634,25 @@ m_strTooltipAllHandsToHangar=Retirer tous les soldats à l'entraînement à l'In
 m_strPrevHaven="PREC. REFUGE"
 m_strNextHaven="REFUGE SUIV."
 
-[Logistics X2LWAlienActivityTemplate]
-ActivityObjectives[0]="Capturer des caches de ressources ADVENT"
-+MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="La Résistance a découvert la localisation de ressources ennemies vitales que nous pourrions récupérer pour notre propre usage.", MissionIndex=0)
+m_strVIPCaptureReward="(Capture de VIP uniquement)"
+
+; LWOTC translated
+[UIListener_CampaignStartMenu]
+
+strDisabledTutorialTooltip="Tutoriel désactivé lorsque Long War of the Chosen est activé"
+strDisabledNarrativeContentTooltip="Lost and Abandoned désactivé lorsque Long War of the Chosen est activé"
+strDisabledPrecisionExplosivesTooltip="Precision Explosives désactivé lorsque Long War of the Chosen est activé"
+
+[X2StatusEffects_LW]
+HeavyDazedFriendlyName="Hébété(e)"
+HeavyDazedFriendlyDesc="Similaire à Sonné, mais la réanimation coûte 1 action et ignore les immunités ennemies."
+HeavyDazedEffectAcquiredString="<XGParam:StrValue0/!UnitName/> est Hébété(e)."
+HeavyDazedEffectTickedString="<XGParam:StrValue0/!UnitName/> est toujours Hébété(e)."
+HeavyDazedEffectLostString="<XGParam:StrValue0/!UnitName/> n'est plus Hébété(e)."
+HeavyDazedPerActionFriendlyName="Hébété(e) : <Ability:STUNNEDACTIONPOINTS>"
+HeavyDazedTitle="Hébété(e)"
+HeavyDazedName="Hébété(e)"
+; End translated
 
 [UICovertActionReport_LW]
 strCovertActionFailed="ÉCHEC"
