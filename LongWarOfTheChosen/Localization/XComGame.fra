@@ -29,7 +29,17 @@ m_strHelpResHQGoodsDescription="Commandant, de nouveaux scientifiques, ingénieu
 m_strLowIntelList[1]="Lancez un scan avec le Talion depuis n'importe quel refuge, vous recevrez ainsi régulièrement des renseignements au fil du temps."
 
 m_strLowScientistsList[0]="Rendez-vous au marché noir avec le Talion pour voir le personnel disponible au recrutement."
+m_strLowScientistsList[2]="Un scientifique est parfois disponible au marché noir et peut être recruté contre des ressources."
+
 m_strLowEngineersList[0]="Rendez-vous au marché noir avec le Talion pour voir le personnel disponible au recrutement."
+m_strLowEngineersList[2]="Un ingénieur est parfois disponible au marché noir et peut être recruté contre des ressources."
+
+;LWOTC translated
+m_strRetributionAlertTitle="VENGEANCE DES ÉLUS"
+m_strRetributionAlertDescription="Un Élu limite les activités de la résistance dans cette région, ce qui réduit l'efficacité des actions entreprises dans ce secteur." 
+m_strRetributionAlertIncomeDecreasedTitle="REFUGE SABOTÉ"
+m_strRetributionAlertIncomeDescription="L'efficacité du refuge lors des missions de Ressources, Renseignements et Recruter est réduite de 20%."
+;LWOTC end translated
 
 [XComGame.UIAdventOperations]
 [UIAdventOperations]
@@ -84,6 +94,13 @@ PsiShortNames[8]="Mtre."
 [Spark X2SoldierClassTemplate]
 RankNames[8]="Templier"
 ShortNames[8]="Tpl."
+
+; LWOTC translated
++AbilityTreeTitles[0]="Combat du futur"
++AbilityTreeTitles[1]=""
++AbilityTreeTitles[2]="Machine de guerre"
++AbilityTreeTitles[3]="XCOM"
+; End translated
 
 RankIcons[0]="UILibrary_Common.rank_rookie"
 RankIcons[1]="UILibrary_Common.rank_squaddie"
@@ -246,6 +263,13 @@ LocLongDescription="Coup de grâce peut éliminer instantanément un ennemi dés
 LocHelpText="Peut éliminer instantanément un ennemi désorienté, étourdi ou inconscient."
 LocPromotionPopupText="<Bullet/> Coup de grâce n'est utilisable que sur les cibles non robotiques désorientées, étourdies ou inconscientes.<br/><Bullet/> 25 % de chances d'éliminer une cible désorientée, 50 % de chances d'éliminer une cible étourdie/inconsciente.<br/><Bullet/> La probabilité peut augmenter jusqu'à 75 % en fonction de la santé restante de la cible.<br/>"
 
+[CoupDeGrace2 X2AbilityTemplate]
+LocFriendlyName="Coup de grâce"
+LocFlyOverText="Coup de grâce"
+LocLongDescription="Augmente les chances de toucher, d'infliger un coup critique et les dégâts des attaques de mélée contre des ennemis désorientés, étourdis ou paniqués."
+LocHelpText="Augmente les chances de toucher, d'infliger un coup critique et les dégâts des attaques de mélée contre des ennemis désorientés, étourdis ou paniqués."
+LocPromotionPopupText="<Bullet/> Coup de Grâce confère un bonus de +50 en visée, +50 chance de coup critique et +2 dégâts contre des ennemis étourdis ou paniqués.<br/><Bullet/> Ces bonus sont réduits contre des ennemis désorientés."
+
 [Tradecraft X2AbilityTemplate]
 LocFriendlyName="Espion"
 LocFlyOverText="Espion"
@@ -280,6 +304,22 @@ Description="Prendre le contrôle de l'unité pour le reste de la mission."
 [ControlRobot_Permanent X2HackRewardTemplate]
 FriendlyName="Maîtriser l'ennemi"
 Description="Vous prenez le contrôle de l'unité pour le reste de la mission et obtenez des bonus. Les CEM seront reprogrammées pour servir la résistance."
+
+[GreaterShutdownRobot X2HackRewardTemplate]
+FriendlyName="Extinction prolongée"
+Description="Neutralise temporairement l'unité en l'étourdissant pour 3 tours."
+
+[GreaterShutdownTurret X2HackRewardTemplate]
+FriendlyName="Extinction prolongée"
+Description="Neutralise temporairement l'unité en l'étourdissant pour 3 tours."
+
+[ControlSectopod_Permanent X2HackRewardTemplate]
+FriendlyName="Maîtriser Sectopode"
+Description="Vous prenez le contrôle de l'unité pour le reste de la mission et obtenez des bonus. Serez-vous assez brave pour cela?"
+
+[ScanningProtocol X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Les modèles améliorés de GREMLIN procurent des charges additionnelles à la capacité Protocole de scan.<br/><Bullet/> Le Protocole de scan révèle les ennemis dissimulés ou camouflés, ainsi que ceux qui sont cachés par des murs ou des obstacles dans le champ de vision.<br/>"
+
 
 ;;;;;;;;;;;;;;;;;;;;  GRENADIER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -327,10 +367,12 @@ LocPromotionPopupText="<Bullet/> Vos grenades ignorent 2 points d'armures et in
 
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardement"
-LocLongDescription="Vous pouvez lancer ou tirer des grenades 2 cases plus loin."
-LocHelpText="Vous pouvez lancer ou tirer des grenades 2 cases plus loin."
+; LWOTC translated
+LocLongDescription="Vous pouvez lancer ou tirer des grenades et des Claymores 2 cases plus loin."
+LocHelpText="Vous pouvez lancer ou tirer des grenades et des Claymores 2 cases plus loin."
 LocFlyOverText="Bombardement"
-LocPromotionPopupText="<Bullet/> La portée d'explosion des grenades augmente de 2 cases.<br/><Bullet/> S'applique aux grenades à main et à celles du lance-grenades<br/>"
+LocPromotionPopupText="<Bullet/> La portée d'explosion des grenades augmente de 2 cases.<br/><Bullet/> S'applique aux grenades à main et à celles du lance-grenades, ainsi qu'aux Claymores des Faucheurs.<br/>"
+; End translated
 
 [BluescreenBombs X2AbilityTemplate]
 LocFriendlyName="Bombes Écran bleu"
@@ -595,21 +637,29 @@ LocFlyOverText="Lunette d'élite"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Gâchette facile"
-LocLongDescription="Visée + <Ability:TRIGGER_BSC_AIM_BONUS/> pour les tirs réflexes avec votre arme principale."
+; LWOTC translated
+LocLongDescription="Visée + <Ability:TRIGGER_BSC_AIM_BONUS/> (après l'application du malus lié aux tirs réflexes) pour les tirs réflexes avec votre arme principale."
+; End translated
 LocHelpText="Gâchette facile : bonus de visée pour les tirs réflexes"
 LocFlyOverText="Gâchette facile"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Gâchette facile avancée"
-LocLongDescription="Visée + <Ability:TRIGGER_ADV_AIM_BONUS/> pour les tirs réflexes avec votre arme principale."
+; LWOTC translated
+LocLongDescription="Visée + <Ability:TRIGGER_ADV_AIM_BONUS/> (après l'application du malus lié aux tirs réflexes) pour les tirs réflexes avec votre arme principale."
+; End translated
 LocHelpText="Gâchette facile : bonus de visée pour les tirs réflexes"
 LocFlyOverText="Gâchette facile avancée"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Gâchette facile d'élite"
-LocLongDescription="Visée + <Ability:TRIGGER_SUP_AIM_BONUS/> pour les tirs réflexes avec votre arme principale."
+; LWOTC translated
+LocLongDescription="Visée + <Ability:TRIGGER_SUP_AIM_BONUS/> (après l'application du malus lié aux tirs réflexes) pour les tirs réflexes avec votre arme principale."
+; End translated
 LocHelpText="Gâchette facile : bonus de visée pour les tirs réflexes"
 LocFlyOverText="Gâchette facile d'élite"
+
+;LWOTC translated
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Arme stable"
@@ -628,6 +678,8 @@ LocFriendlyName="Arme stable"
 LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_SUP_SW_AIM_BONUS/> de visée et + <Ability:STOCK_SUP_SW_AIM_BONUS/> de chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé."
 LocHelpText="Arme stable : bonus au toucher pour le prochain tir si vous n'êtes pas blessé et que vous n'effectuez pas d'autre action."
 LocFlyOverText="Arme stable"
+
+;End translated
 
 [Needle_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Balles aiguille"
@@ -650,8 +702,10 @@ LocHelpText="Infligent 2 points de dégât supplémentaires aux cibles sans arm
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Munitions Écran rouge"
 LocFlyOverText="Munitions Écran rouge"
-LocLongDescription="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible."
-LocHelpText="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible."
+; LWOTC translated
+LocLongDescription="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible. Ce malus n'est pas cumulatif, mais chaque tir renouvelle la durée de l'effet."
+LocHelpText="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible. Ce malus n'est pas cumulatif, mais chaque tir renouvelle la durée de l'effet."
+; Ends translated
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Munitions Poignard"
@@ -769,7 +823,7 @@ FriendlyName="Pistolet laser"
 FriendlyNamePlural="Pistolets laser"
 UnknownUtilityCategory="Pistolet"
 BriefSummary="Basé sur nos récentes avancées en matière d'armes à rayons, ce nouveau pistolet est bien plus puissant que notre pistolet classique."
-TacticalText="<Bullet/> Les pistolets laser sont bien plus efficaces et précis que leurs ancêtres conventionnels.\n<Bullet/> Les lasers ont un bonus de visée.\n<Bullet/> Tirer au pistolet ne consomme qu'une action.\n<Bullet/> Les soldats peuvent acquérir plusieurs capacités qui améliorent énormément l'utilisation des pistolets.\n<Bullet/> À longue portée, les pistolets perdent en précision."
+TacticalText="<Bullet/> Les pistolets laser sont bien plus efficaces et précis que leurs ancêtres conventionnels.\n<Bullet/> Les armes laser disposent d'un bonus de visée.\n<Bullet/> Tirer au pistolet ne consomme qu'une action.\n<Bullet/> Les soldats peuvent acquérir plusieurs capacités qui améliorent énormément l'utilisation des pistolets.\n<Bullet/> À longue portée, les pistolets perdent en précision."
 
 [LWPistol_MG X2WeaponTemplate]
 FriendlyName="Pistolet magnétique"
@@ -791,7 +845,7 @@ FriendlyName="Pistolet plasmique"
 FriendlyNamePlural="Pistolets plasmiques"
 UnknownUtilityCategory="Pistolet"
 BriefSummary="Arme de poing ultime, ce pistolet intègre la technologie plasma des extraterrestres pour plus de puissance."
-TacticalText="<Bullet/> Les pistolets à plasma sont les plus puissants de la planète.\n<Bullet/> Tirer au pistolet ne consomme qu'une action.\n<Bullet/> Les soldats peuvent développer plusieurs capacités afin d'apprendre à mieux utiliser leur pistolet.\n<Bullet/> À longue portée, les pistolets perdent en précision.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. "
+TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme.<br/> <Bullet/> Les pistolets à plasma sont les plus puissants de la planète.\n<Bullet/> Tirer au pistolet ne consomme qu'une action.\n<Bullet/> Les soldats peuvent développer plusieurs capacités afin d'apprendre à mieux utiliser leur pistolet.\n<Bullet/> À longue portée, les pistolets perdent en précision.<br/>"
 
 [AlienHunterPistol_CV X2WeaponTemplate]
 UnknownUtilityCategory="Pistolet"
@@ -871,6 +925,13 @@ BriefSummary="Arme de corps à corps redoutable, pour la défense personnelle à
 TacticalText="<Bullet/> Une attaque au couteau consomme 1 action et ne met pas fin à votre tour.<br/>"
 AbilityDescName="couteau de combat"
 
+[LWGauntlet_CV X2MultiWeaponTemplate]
+FriendlyName="Gantelet"
+FriendlyNamePlural="Gantelets"
+BriefSummary="Nous avons conçu cet équipement combinant lance-flammes et lance mini-roquettes pour que nos Artificiers puissent s'adapter à diverses situations de combat."
+TacticalText="<Bullet/> Le gantelet XCOM est un équipement avancé qui inclut un lance mini-roquettes et un lance-flammes.<br/><Bullet/> De base, le lance-roquettes ne contient qu'une roquette et son explosion s'étend sur 3 cases.<br/><Bullet/> Il peut atteindre tout ennemi dans le champ de vision.<br/><Bullet/> Les dégâts de la roquette sont plus élevés au point d'impact.<br/><Bullet/> Le lance-flammes est une arme de courte portée qui inflige des dégâts sur une zone en forme de cône.<br/><Bullet/> Le lance-flammes dispose de 2 charges. Sans les améliorations adéquates, il n'inflige pas de dégâts aux unités mécanisées.<br/><Bullet/> L'utilisation d'une compétence du gantelet consomme 1 action et met fin à votre tour.<br/><Bullet/> La précision d'une roquette dépend de la visée du soldat, de la distance à la cible, et du fait que le soldat ait déjà utilisé des actions ce tour. Une faible précision implique une plus forte dispersion, ce qui signifie que la case visée sera manquée d'une plus grande distance. La dispersion maximale possible est indiquée sur la description de la compétence, et une valeur près du curseur de visée indique la dispersion attendue (moyenne) d'un tir à cet endroit."
+AbilityDescName="gantelet"
+
 ; This should probably never really be seen as it's a "hidden" item like the XPad
 [EvacFlare X2WeaponTemplate]
 FriendlyName="Fusée éclairante"
@@ -922,6 +983,86 @@ FriendlyNamePlural="Sous-bobine"
 BriefSummary="Cette version légère du fusil à bobine tire des projectiles plus petits mais offre une meilleure mobilité à son utilisateur."
 TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 armure adverse.\n<Bullet/> Les armes semblables au pistolet-mitrailleur offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais elles ont moins de dégâts, de munitions et de précision à longue portée.<br/>"
 AbilityDescName="Pistolet-mitrailleur"
+
+; LWOTC translated
+; Bullpup changes and new templates
+
+[Bullpup_CV X2WeaponTemplate]
+TacticalText="<Bullet/> Les bullpups sont très efficaces à courte portée et ont été conçus pour le combat rapproché et les tactiques de guérilla.\n<Bullet/> Les bullpups offrent également une plus grande mobilité aux Escarmoucheurs, leur permettant ainsi de traverser plus facilement les lignes ennemies sans être repérés.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du bullpup."
+
+[Bullpup_LS X2WeaponTemplate]
+FriendlyName="Bullpup Kal-13"
+FriendlyNamePlural="Bullpups Kal-13"
+BriefSummary="Nous pouvons fabriquer une forme de pistolet-mitrailleur laser adaptée au style de combat de Escarmoucheurs. Même si le docteur Tygan souligne à raison qu'il ne s'agit pas à proprement parler d'un bullpup, cette arme n'en reste pas moins compacte et extrêmement efficace à courte portée."
+TacticalText="<Bullet/> Les armes laser disposent d'un bonus de visée.<br/><Bullet/> Les bullpups sont très efficaces à courte portée et ont été conçus pour le combat rapproché et les tactiques de guérilla.\n<Bullet/> Les bullpups offrent également une plus grande mobilité aux Escarmoucheurs, leur permettant ainsi de traverser plus facilement les lignes ennemies sans être repérés.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du bullpup."
+AbilityDescName="bullpup"
+
+[Bullpup_MG X2WeaponTemplate]
+TacticalText="<Bullet/> Les bullpups sont très efficaces à courte portée et ont été conçus pour le combat rapproché et les tactiques de guérilla.\n<Bullet/> Les bullpups offrent également une plus grande mobilité aux Escarmoucheurs, leur permettant ainsi de traverser plus facilement les lignes ennemies sans être repérés.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du bullpup."
+
+[Bullpup_CG X2WeaponTemplate]
+FriendlyName="Bullpup Kal-69"
+FriendlyNamePlural="Bullpups Kal-69"
+BriefSummary="Nous pouvons fabriquer une forme de sous-bobine adaptée au style de combat de Escarmoucheurs. Même si le docteur Tygan souligne à raison qu'il ne s'agit pas à proprement parler d'un bullpup, cette arme n'en reste pas moins compacte et extrêmement efficace à courte portée."
+TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 armure adverse.<br/><Bullet/> Les bullpups sont très efficaces à courte portée et ont été conçus pour le combat rapproché et les tactiques de guérilla.\n<Bullet/> Les bullpups offrent également une plus grande mobilité aux Escarmoucheurs, leur permettant ainsi de traverser plus facilement les lignes ennemies sans être repérés.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du bullpup."
+AbilityDescName="bullpup"
+
+[Bullpup_BM X2WeaponTemplate]
+TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Les bullpups sont très efficaces à courte portée et ont été conçus pour le combat rapproché et les tactiques de guérilla.\n<Bullet/> Les bullpups offrent également une plus grande mobilité aux Escarmoucheurs, leur permettant ainsi de traverser plus facilement les lignes ennemies sans être repérés.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du bullpup."
+
+; Vektor Rifle changes and new crossbows
+[VektorRifle_CV X2WeaponTemplate]
+TacticalText="<Bullet/> Le fusil Vektor est très efficace de près, et conserve une bonne précision de loin.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil Vektor."
+
+[CrossbowVektor_CV X2WeaponTemplate]
+FriendlyName="Arbalère tactique"
+FriendlyNamePlural="Arbalères tactiques"
+BriefSummary="Une arme silencieuse et discrète, que de nombreux Faucheurs préfèrent aux armes à feu conventionnelles."
+TacticalText="<Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.<br/><Bullet/> Fonctionnellement identique au fusil Vektor. Fonctionnellement identique au fusil Vektor."
+AbilityDescName="arbalère"
+
+[Vektor_LS X2WeaponTemplate]
+FriendlyName="Arbalète laser"
+FriendlyNamePlural="Arbalètes laser"
+BriefSummary="L'arbalète est une arme silencieuse et discrète, que de nombreux Faucheurs préfèrent aux armes à feu conventionnelles. Cette version s'appuie sur la technologie laser pour accroître la force de frappe des projectiles. Fonctionnellement identique au fusil Vektor."
+TacticalText="<Bullet/> Les armes laser disposent d'un bonus de visée.<br/><Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.<br/><Bullet/> Fonctionnellement identique au fusil Vektor."
+AbilityDescName="arbalète"
+
+[VektorRifle_MG X2WeaponTemplate]
+TacticalText="<Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil temnotique."
+
+[Vektor_CG X2WeaponTemplate]
+FriendlyName="Arbalète à bobine"
+FriendlyNamePlural="Arbalètes à bobine"
+BriefSummary="L'arbalète est une arme silencieuse et discrète, que de nombreux Faucheurs préfèrent aux armes à feu conventionnelles. Cette version s'appuie sur la technologie gauss pour accroître la force de frappe des projectiles. Fonctionnellement identique au fusil Vektor."
+TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 armure adverse.<br/><Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.<br/><Bullet/> Fonctionnellement identique au fusil Vektor."
+AbilityDescName="arbalète"
+
+[VektorRifle_BM X2WeaponTemplate]
+TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Cette version du fusil Vektor est la plus avancée de tout l'arsenal d'XCOM.\n<Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique de la lance obscure."
+
+[SPARKChaingun X2WeaponTemplate]
+FriendlyName="Minigun"
+FriendlyNamePlural="Miniguns"
+BriefSummary="Ue arme massive et imposante, dotée d'une puissance d'arrêt dévastatrice."
+TacticalText="<Bullet/> Cette arme est basée sur les schémas de R. Shen, datant de la première invasion.\n<Bullet/> Fonctionnellement identique au canon automatique lourd."
+AbilityDescName="minigun"
+
+[SparkRifle_LS X2WeaponTemplate]
+FriendlyName="Railgun"
+FriendlyNamePlural="Railguns"
+BriefSummary="Le railgun tire des projectiles à gros calibre qu'il propulse à une vitesse vertigineuse, afin d'infliger un maximum de dégâts lors de l'impact."
+TacticalText="<Bullet/> Les armes laser disposent d'un bonus de visée.<br/><Bullet/> Le railgun est l'équivalent du canon automatique lourd, adapté à la technologie des armes laser."
+AbilityDescName="railgun"
+
+[SparkRifle_CG X2WeaponTemplate]
+FriendlyName="Canon à particules"
+FriendlyNamePlural="Canons à particules"
+BriefSummary="Le canon à particules s'appuie sur des survolteurs auxiliaires pour produire un rayon cohérent de particules ionisées, efficaces à n'importe quelle distance." 
+TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 armure adverse.<br/><Bullet/> Le canon à particules est l'équivalent du canon automatique lourd, adapté à la technologie des armes à bobine."
+AbilityDescName="canon à particules"
+
+; End translated
 
 ;;;;;;;;;;;;;;;;;; GEAR LOC OVERRIDES ;;;;;;;;;;;;;;;;;;;;
 
@@ -1077,9 +1218,20 @@ BriefSummary="Réduit massivement le bruit produit par l'arme et l'impact de ce 
 TinySummary="Réduit la durée d'infiltration d'une mission"
 LootTooltip="Cette amélioration d'arme, une fois installée, réduira le temps nécessaire à infiltrer ce soldat en mission. Elle réduit également le bruit produit par l'arme durant les combats."
 
+[CritUpgrade_Bsc X2WeaponUpgradeTemplate]
+BriefSummary="Augmente les chances de coup critique de <Ability:CRITINCREASE/> %."
+
+[CritUpgrade_Adv X2WeaponUpgradeTemplate]
+BriefSummary="Augmente les chances de coup critique de <Ability:CRITINCREASE/> %."
+
+; End translated
+
 [CritUpgrade_Sup X2WeaponUpgradeTemplate]
-FriendlyName="Viseur laser d'élite"
-FriendlyNamePlural="Viseurs laser d'élite"
+FriendlyName="Viseur laser supérieur"
+FriendlyNamePlural="Viseurs laser supérieurs"
+; LWOTC translated
+BriefSummary="Augmente les chances de coup critique de <Ability:CRITINCREASE/> %."
+; End translated
 
 [ClipSizeUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Chargeur amélioré d'élite"
@@ -1244,8 +1396,10 @@ TacticalText="<Bullet/> Infligent 2 points de dégât supplémentaires aux cibl
 [RedScreenRounds X2AmmoTemplate]
 FriendlyName="Munitions Écran rouge"
 FriendlyNamePlural="Munitions Écran rouge"
-BriefSummary="Chaque coup diminue de 25 la défense anti-piratage de l'ennemi."
-TacticalText="<Bullet/> Chaque coup diminue de 25 la défense anti-piratage de l'ennemi.<br/><Bullet/> Vous ne pouvez équiper qu'une seule amélioration de munitions à la fois."
+; LWOTC Needs translated
+BriefSummary="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de l'ennemi. Cet effet n'est pas cumulatif."
+TacticalText="<Bullet/> Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de l'ennemi. Cet effet n'est pas cumulatif.<br/><Bullet/> Vous ne pouvez équiper qu'une seule amélioration de munitions à la fois."
+; End translated
 
 [NeedleRounds X2AmmoTemplate]
 FriendlyName="Balles aiguille"
@@ -1281,6 +1435,11 @@ BriefSummary="Octroie un bonus aux capacités psioniques au détriment de la vol
 TacticalText="<Bullet/> Confère 10 d'attaque psi en échange de 10 de volonté."
 UnknownUtilityCategory="Fouet nerveux"
 
+[SmashNGrabQuestItem X2EquipmentTemplate]
+FriendlyName="Cache de Ressources ADVENT"
+FriendlyNamePlural="Caches de Ressources ADVENT"
+BriefSummary="Un paquet contenant des ressources de valeur."
+
 ;;;;;;;;;;;;;;;;;;;;  CLASS TEMPLATES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [LWS_Technical X2SoldierClassTemplate]
@@ -1293,6 +1452,7 @@ RightAbilityTreeTitle="Sapeur"
 +AbilityTreeTitles[1]=""
 +AbilityTreeTitles[2]="Sapeur"
 +AbilityTreeTitles[3]="XCOM"
++AbilityTreeTitles[4]="Pistolets"
 
 ;ALPHABETICAL ORDER
 RandomNickNames[0]="Ange"
@@ -1375,6 +1535,7 @@ RightAbilityTreeTitle="Hacker"
 +AbilityTreeTitles[1]=""
 +AbilityTreeTitles[2]="Hacker"
 +AbilityTreeTitles[3]="XCOM"
++AbilityTreeTitles[4]="Pistolets"
 
 ;ALPHABETICAL ORDER
 RandomNickNames[0]="Ange"
@@ -1451,13 +1612,14 @@ RandomNickNames_Female[4]="Duchesse"
 [LWS_Grenadier X2SoldierClassTemplate]
 DisplayName="Grenadier"
 ClassSummary="Ce sont nos experts en démolition : les Grenadiers peuvent envoyer l'artillerie lourde n'importe où et n'importe quand. Ils peuvent aussi se spécialiser en grenades de soutien pour protéger nos troupes et gêner les ennemis."
-LeftAbilityTreeTitle="Baby-boom"
+LeftAbilityTreeTitle="Pyrotechnicien"
 RightAbilityTreeTitle="Soutien"
 
-+AbilityTreeTitles[0]="Baby-boom"
++AbilityTreeTitles[0]="Pyrotechnicien"
 +AbilityTreeTitles[1]=""
 +AbilityTreeTitles[2]="Soutien"
 +AbilityTreeTitles[3]="XCOM"
++AbilityTreeTitles[4]="Pistolets"
 
 ;ALPHABETICAL ORDER
 RandomNickNames[0]="24/7"
@@ -1553,6 +1715,7 @@ RightAbilityTreeTitle="Fusilier tirailleur"
 +AbilityTreeTitles[1]=""
 +AbilityTreeTitles[2]="Fusilier tirailleur"
 +AbilityTreeTitles[3]="XCOM"
++AbilityTreeTitles[4]="Pistolets"
 
 RandomNickNames[0]="Retour de flamme"
 RandomNickNames[1]="Baja"
@@ -1602,6 +1765,7 @@ RightAbilityTreeTitle="Défenseur"
 +AbilityTreeTitles[1]=""
 +AbilityTreeTitles[2]="Défenseur"
 +AbilityTreeTitles[3]="XCOM"
++AbilityTreeTitles[4]="Pistolets"
 
 RandomNickNames[0]="Cheval sauvage"
 RandomNickNames[1]="Chevreuil"
@@ -1652,6 +1816,7 @@ RightAbilityTreeTitle="Flingueur"
 +AbilityTreeTitles[1]=""
 +AbilityTreeTitles[2]="Flingueur"
 +AbilityTreeTitles[3]="XCOM"
++AbilityTreeTitles[4]="Pistolets"
 
 ;ALPHABETICAL ORDER
 RandomNickNames[0]="Apex"
@@ -1739,6 +1904,7 @@ RightAbilityTreeTitle="Baroudeur"
 +AbilityTreeTitles[1]=""
 +AbilityTreeTitles[2]="Baroudeur"
 +AbilityTreeTitles[3]="XCOM"
++AbilityTreeTitles[4]="Pistolets"
 
 ;ALPHABETICAL ORDER
 RandomNickNames[0]="Bandit"
@@ -1820,6 +1986,7 @@ RightAbilityTreeTitle="Kenshi"
 +AbilityTreeTitles[1]=""
 +AbilityTreeTitles[2]="Kenshi"
 +AbilityTreeTitles[3]="XCOM"
++AbilityTreeTitles[4]="Pistolets"
 
 ;ALPHABETICAL ORDER
 RandomNickNames[0]="Griffe"
@@ -1903,8 +2070,17 @@ DisplayName="Lot de renseignements"
 [Reward_Dummy_RegionalTower X2RewardTemplate]
 DisplayName="Emplacement du QG régional d'ADVENT"
 
+; LWOTC translated
 [Reward_FactionInfluence_LW X2RewardTemplate]
 DisplayName="Influence faction augmentée"
+
+[Reward_EnemyCorpses X2RewardTemplate]
+DisplayName="Cadavres ennemis"
+RewardDetails="Vous obtiendrez une sélection aléatoire de cadavres ennemis."
+
+[Reward_Dummy_StatBoost X2RewardTemplate]
+DisplayName="Bonus de caractéristique"
+; End translated
 
 ; POI Templates
 [POI_Rebels X2PointOfInterestTemplate]
@@ -2566,6 +2742,36 @@ ObjectiveTextPools[3]="Évacuer tous les soldats d'XCOM"
 ObjectiveTextPools[4]="Évasion"
 ObjectiveTextPools[5]="ADVENT a capturé des contacts de la résistance et les retient dans des cellules de détention. Des véhicules ennemis approchent pour transporter les rebelles vers une destination inconnue, nous avons donc peu de temps pour les libérer. Si nous pouvons les extraire, nul doute qu'ils apporteront leur contribution aux opérations de la résistance dans la région."
 
+[SupplyExtraction_LW X2MissionTemplate]
+DisplayName="Extraire du matériel d'ADVENT"
+Briefing="Voler du matériel à ADVENT"
+PostMissionType="Défoncer et Ramasser"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Sécuriser et extraire du matériel d'ADVENT"
+ObjectiveTextPools[1]="Évacuer tous les soldats d'XCOM"
+
+[SmashNGrab_LW X2MissionTemplate]
+DisplayName="Défoncer et Ramasser"
+Briefing="Piller un entrepôt ADVENT"
+PostMissionType="Défoncer et Ramasser"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Récupérer autant de ressources que possible"
+ObjectiveTextPools[1]="Évacuer tous les soldats XCOM"
+
+[SupplyExtraction_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Marquer et récupérer les caisses d'ADVENT"
+ObjectiveTextPools[1]="Neutraliser toutes les cibles ennemies"
+ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
+ObjectiveTextPools[3]="Éliminer toutes les cibles hostiles restantes"
+
+[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Obtenir des ressources ADVENT"
+ObjectiveTextPools[1]="Extraire les ressources ADVENT"
+ObjectiveTextPools[2]="Récupérer et extraire plus de ressources (Optionnel)"
+ObjectiveTextPools[3]="Évacuer tous les soldats XCOM"
+ObjectiveTextPools[4]="Défoncer et Ramasser"
+ObjectiveTextPools[5]="La Résistance a découvert un entrepôt ADVENT vulnérable rempli de provisions et ressources de valeur. Forcez l'entrée, ramassez ce que vous pouvez et quittez la région avant que les renforts ADVENT n'arrivent. Il y a aura plusieurs Caches de Ressources a récupérer au cours de cette mission mais chaque soldat ne pourra en porter qu'un."
+
 [TroopManeuvers_LW X2MissionTemplate]
 DisplayName="Tendre une embuscade à une colonne de soldats d'ADVENT"
 Briefing="Tendre une embuscade à une colonne de soldats d'ADVENT"
@@ -3021,6 +3227,27 @@ CodeName="En fajitas"
 LongDescription="Le recyclage de ce Goliath d'élite est réussi. - R. Tygan"
 UnlockedDescription="Récupérés sur le cadavre du Goliath d'élite : <XGParam:StrValue0/!Quantity/> alliages"
 
+[RenderAdventPriestCorpse X2TechTemplate]
+DisplayName="Recyclage de cadavre de Prêtre d'ADVENT"
+Summary="Puisque nous favorisons les opérations coup de poing, la récupération des restes extraterrestres et de ceux d'ADVENT est difficile. Ce sont pourtant des éléments précieux pour nos recherches et nos travaux de construction. Et parfois, nous préférons les recycler pour obtenir des matériaux utiles à un grand nombre d'applications. Ce Prêtre d'ADVENT devrait nous fournir 3 alliages."
+CodeName="En sorbet"
+LongDescription="Le recyclage de ce Prêtre d'ADVENT est réussi. - R. Tygan"
+UnlockedDescription="Récupérés sur le cadavre du Prêtre d'ADVENT : <XGParam:StrValue0/!Quantity/> alliages"
+
+[RenderAdventPurifierCorpse X2TechTemplate]
+DisplayName="Recyclage de cadavre de Purificateur d'ADVENT"
+Summary="Puisque nous favorisons les opérations coup de poing, la récupération des restes extraterrestres et de ceux d'ADVENT est difficile. Ce sont pourtant des éléments précieux pour nos recherches et nos travaux de construction. Et parfois, nous préférons les recycler pour obtenir des matériaux utiles à un grand nombre d'applications. Ce Purificateur d'ADVENT devrait nous fournir 3 alliages."
+CodeName="Doré au four"
+LongDescription="Le recyclage de ce Purificateur d'ADVENT est réussi. - R. Tygan"
+UnlockedDescription="Récupérés sur le cadavre du Purificateur d'ADVENT : <XGParam:StrValue0/!Quantity/> alliages"
+
+[RenderSpectreCorpse X2TechTemplate]
+DisplayName="Recyclage de cadavre de Spectre"
+Summary="Puisque nous favorisons les opérations coup de poing, la récupération des restes extraterrestres et de ceux d'ADVENT est difficile. Ce sont pourtant des éléments précieux pour nos recherches et nos travaux de construction. Et parfois, nous préférons les recycler pour obtenir des matériaux utiles à un grand nombre d'applications. Ce Spectre devrait nous fournir 4 cristaux d'élérium."
+CodeName="Battu en neige"
+LongDescription="Le recyclage de ce Spectre d'ADVENT est réussi. - R. Tygan"
+UnlockedDescription="Récupérés sur le cadavre du Spectre : <XGParam:StrValue0/!Quantity/> cristaux d'élérium"
+
 [ResistanceRadio X2TechTemplate]
 DisplayName="Radio de la résistance"
 Summary="En reproduisant les équipements de communication que nous avons développés sur le Talion, nous devrions pouvoir établir des relais terrestres afin d'étendre notre portée. Une couverture plus large améliorera l'efficacité de nos refuges et nous permettra de communiquer plus facilement avec les régions extérieures les plus éloignées du Q.G."
@@ -3228,17 +3455,21 @@ Summary="Permet à Shen de fabriquer des viseurs laser de qualité supérieure, 
 DisplayName="Viseurs laser d'élite"
 Summary="Rend possible la production de la technologie de viseur laser ultime par les ingénieurs."
 
+;LWOTC translated
+
 [BasicStockProject X2TechTemplate]
 DisplayName="Crosses"
-Summary="Nous pouvons travailler sur les crosses récupérées en mission pour les produire nous-mêmes. Tout soldat équipé d'une crosse gagne la capacité Arme stable."
+Summary="Nous pouvons travailler sur les crosses récupérées en mission pour les produire nous-mêmes. Un soldat équipé d'une crosse possède une chance supplémentaire d'infliger une écorchure en cas de tir manqué."
 
 [AdvancedStockProject X2TechTemplate]
 DisplayName="Crosses avancées"
-Summary="Lance la production de crosses avancées, qui confèrent une version améliorée de la capacité Arme stable."
+Summary="Lance la production de crosses avancées, qui confèrent une chance supplémentaire d'infliger une écorchure en cas de tir manqué."
 
 [SuperiorStockProject X2TechTemplate]
 DisplayName="Crosses d'élite"
-Summary="Permet de produire en masse des crosses d'élite, qui confèrent une forme plus puissante de la capacité Arme stable."
+Summary="Permet de produire en masse des crosses d'élite, qui confèrent une chance supplémentaire d'infliger une écorchure en cas de tir manqué."
+
+;End translated
 
 [BasicClipSizeProject X2TechTemplate]
 DisplayName="Chargeurs grande capacité"
@@ -3783,8 +4014,8 @@ SummaryText="Les extraterrestres déploient des unités avec des capacités de d
 QuoteText="\"Ça va exploser !\""
 QuoteTextAuthor="- Caporal XCOM non identifié"
 PreMissionText="Certains soldats d'ADVENT et Goliaths reçoivent la capacité Ravage."
-PostMissionSuccessText="Opération ennemie contrée : Goliaths ingénieurs"
-PostMissionFailureText="Opération ennemie non empêchée : Goliaths ingénieurs"
+PostMissionSuccessText="Opération ennemie contrée : Experts en démolition"
+PostMissionFailureText="Opération ennemie non empêchée : Experts en démolition"
 
 [DarkEvent_RuralCheckpoints_LW X2DarkEventTemplate]
 DisplayName="Points de contrôle ruraux d'ADVENT"
@@ -3814,7 +4045,9 @@ PostMissionSuccessText="Opération ennemie contrée : Propagande rurale acharn�
 PostMissionFailureText="Opération ennemie non empêchée : Propagande rurale acharnée"
 
 [DarkEvent_ADVENTScopes X2DarkEventTemplate]
-DisplayName="Lunettes d'ADVENT"
+; LWOTC translated
+DisplayName="Permanent : Lunettes d'ADVENT"
+; End translated
 SummaryText="ADVENT alloue des ressources à l'amélioration de son armement."
 QuoteText="\"ADVENT dispose de nombreuses technologies militaires, mais ses unités sont surtout équipées pour le contrôle des populations, ce qui souligne leur volonté d'agir directement contre nous et nos alliés.\""
 QuoteTextAuthor="- Dr Tygan"
@@ -3837,7 +4070,9 @@ FriendlyName="Opération ennemie : Viseurs laser d'ADVENT"
 Description="Les chances de coup critique des soldats d'ADVENT augmentent de 10."
 
 [DarkEvent_ADVENTLaserSights X2DarkEventTemplate]
-DisplayName="Viseurs laser d'ADVENT"
+; LWOTC translated
+DisplayName="Permanent : Viseurs laser d'ADVENT"
+; End translated
 SummaryText="ADVENT alloue des ressources à l'amélioration de ses systèmes de visée pour augmenter les chances de coup critique de ses soldats."
 QuoteText="\"Si ADVENT parvient à développer ces nouvelles armes, nos ennemis représenteront une menace encore plus grande.\""
 QuoteTextAuthor="- Officier Bradford"
@@ -3856,7 +4091,9 @@ FriendlyName="Opération ennemie : Pare-feu d'ADVENT"
 Description="La défense anti-piratage des unités robotiques ennemies augmente de 15."
 
 [DarkEvent_Firewalls X2DarkEventTemplate]
-DisplayName="Pare-feu d'ADVENT"
+; LWOTC translated
+DisplayName="Permanent : Pare-feu d'ADVENT"
+; End translated
 SummaryText="ADVENT ajoute des systèmes de défense pour contrer nos tentatives de piratage."
 QuoteText="\"Nos Spécialistes auront plus de mal à pirater les unités robotiques d'ADVENT.\""
 QuoteTextAuthor="- Dr Shen"
@@ -3875,7 +4112,9 @@ FriendlyName="Opération ennemie : Conditionnement extraterrestre"
 Description="Les PV de certains ennemis augmentent de 1."
 
 [DarkEvent_AlienConditioning1 X2DarkEventTemplate]
-DisplayName="Conditionnement extraterrestre"
+; LWOTC translated
+DisplayName="Permanent : Conditionnement extraterrestre"
+; End translated
 SummaryText="Les extraterrestres déploient des unités plus résistantes possédant 1 PV supplémentaire."
 QuoteText="\"On dirait que les extraterrestres ont amélioré leurs cuves de clonage.\""
 QuoteTextAuthor="- Dr Shen"
@@ -3892,7 +4131,9 @@ FriendlyName="Opération ennemie : Adaptation extraterrestre"
 Description="Les PV de certains ennemis augmentent de 1."
 
 [DarkEvent_AlienConditioning2 X2DarkEventTemplate]
-DisplayName="Adaptation extraterrestre"
+; LWOTC translated
+DisplayName="Permanent : Adaptation extraterrestre"
+; End translated
 SummaryText="Les extraterrestres déploient des unités plus résistantes possédant 1 PV supplémentaire."
 QuoteText="\"Après vingt ans d'analyses, les extraterrestres vont peut-être déployer des unités mieux adaptées à l'environnement terrestre.\""
 QuoteTextAuthor="- Dr Tygan"
@@ -3909,7 +4150,9 @@ FriendlyName="Opération ennemie : Taux de survie extraterrestre"
 Description="Les PV de certains ennemis augmentent de 1."
 
 [DarkEvent_AlienConditioning3 X2DarkEventTemplate]
-DisplayName="Taux de survie extraterrestre"
+; LWOTC translated
+DisplayName="Permanent : Taux de survie extraterrestre"
+; End translated
 SummaryText="Les extraterrestres déploient des unités plus résistantes possédant 1 PV supplémentaire."
 QuoteText="\"Nous ne sommes pas les seuls à devenir plus forts au fil des combats.\""
 QuoteTextAuthor="- Officier Bradford"
@@ -3924,7 +4167,9 @@ LocLongDescription="PV + 1"
 ;;; VETERAN UNITS
 
 [DarkEvent_VeteranUnits X2DarkEventTemplate]
-DisplayName="Vétérans"
+; LWOTC translated
+DisplayName="Permanent : Vétérans"
+; End translated
 SummaryText="Les extraterrestres déploient des unités de combat expérimentées avec un bonus de visée."
 QuoteText="\"La capacité d'apprentissage du réseau de commandement d'ADVENT est limitée, mais certains de leurs soldats gagnent nettement en efficacité au fil du temps.\""
 QuoteTextAuthor="- Dr Tygan"
@@ -3943,7 +4188,9 @@ LocLongDescription="Visée + 5"
 ;;; ADVANCED SERVOS
 
 [DarkEvent_AdvancedServos X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : servomoteurs avancés"
+; LWOTC translated
+DisplayName="Permanent : servomoteurs avancés"
+; End translated
 SummaryText="ADVENT déploie des exosquelettes avancés."
 QuoteText="\"ADVENT met au point des prototypes qui visent à améliorer la mobilité de ses clones et de ses robots de combat.\""
 QuoteTextAuthor="- Dr Shen"
@@ -3962,7 +4209,9 @@ LocLongDescription="Mobilité + 1"
 ;;; TACTICAL UPGRADES: Defense
 
 [DarkEvent_TacticalUpgrades X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Défense"
+; LWOTC translated
+DisplayName="Permanent : Défense"
+; End translated
 SummaryText="Les extraterrestres déploient des unités plus difficiles à abattre."
 QuoteText="\"J'peux pas les tuer si j'leur fais rien !\""
 QuoteTextAuthor="- Soldat anonyme"
@@ -3980,7 +4229,9 @@ LocLongDescription="+ 5 défense"
 
 ;; Will to Survive
 [DarkEvent_WilltoSurvive X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Volonté de survie"
+; LWOTC translated
+DisplayName="Permanent : Volonté de survie"
+; LWOTC translated
 SummaryText="Les extraterrestres déploient des unités avec un bonus de défense lorsqu'elles sont à couvert."
 QuoteText="\"La course à l'armement contre ADVENT est de plus en plus serrée.\""
 QuoteTextAuthor="- Officier Bradford"
@@ -3994,7 +4245,9 @@ Description="Certaines unités reçoivent la capacité Volonté de survie, qui o
 
 ;; Center Mass
 [DarkEvent_CenterMass X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Viser le cœur"
+; LWOTC translated
+DisplayName="Permanent : Viser le cœur"
+; End translated
 SummaryText="L'ennemi déploie des unités qui infligent des dégâts supplémentaires avec leur arme principale."
 QuoteText="\"Il arrive qu'on gagne, il arrive qu'on perde. Et un beau jour, tu te prends un tir de plasma dans le bide.\""
 QuoteTextAuthor="- Soldat anonyme"
@@ -4002,13 +4255,15 @@ PreMissionText="Certains extraterrestres reçoivent l'atout Viser le cœur."
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (dégâts)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (dégâts)"
 
-[DarkEvent_CenterMass X2HackRewardTemplate]
+[DarkEventAbility_CenterMass X2AbilityTemplate]
 FriendlyName="Opération ennemie : Améliorations tactiques (Viser le cœur)"
 Description="Certaines unités ennemies infligent des dégâts supplémentaires avec leur arme principale."
 
 ;; Infighter
 [DarkEvent_Infighter X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Corps à corps"
+; LWOTC translated
+DisplayName="Permanent : Corps à corps"
+; End translated
 SummaryText="Les Lanciers d'ADVENT reçoivent la capacité Corps à corps, qui leur octroie un bonus d'esquive contre les ennemis à proximité."
 QuoteText="\"Ne laissez pas ces Lanciers s'approcher de vous.\""
 QuoteTextAuthor="- Dr Shen"
@@ -4016,13 +4271,15 @@ PreMissionText="Certains Lanciers d'ADVENT reçoivent la capacité Corps à corp
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Corps à corps)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Corps à corps)"
 
-[DarkEvent_Infighter X2HackRewardTemplate]
+[DarkEventAbility_Infighter X2AbilityTemplate]
 FriendlyName="Opération ennemie : Améliorations tactiques (Corps à corps)"
 Description="Les Lanciers d'ADVENT reçoivent la capacité Corps à corps, qui leur octroie un bonus d'esquive contre les ennemis à proximité."
 
 ;; Formidable
 [DarkEvent_Formidable X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Formidable"
+; LWOTC translated
+DisplayName="Permanent : Formidable"
+; End translated
 SummaryText="Certains ennemis reçoivent la capacité Formidable, qui leur confère de l'armure supplémentaire et augmente leur résistance aux explosifs."
 QuoteText="\"On va avoir besoin d'explosifs encore plus puissants.\""
 QuoteTextAuthor="- Sergent anonyme"
@@ -4030,13 +4287,15 @@ PreMissionText="Plusieurs ennemis reçoivent la capacité Formidable."
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Formidable)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Formidable)"
 
-[DarkEvent_Formidable X2HackRewardTemplate]
+[DarkEventAbility_Formidable X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Formidable)"
 Description="Certains ennemis reçoivent la capacité Formidable, qui leur confère de l'armure supplémentaire et augmente leur résistance aux explosifs."
 
 ;; Lethal
 [DarkEvent_Lethal X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Létal"
+; LWOTC translated
+DisplayName="Permanent : Létal"
+; End translated
 SummaryText="Certains ennemis reçoivent la capacité Létal, qui augmente de 2 les dégâts infligés par leur arme principale."
 QuoteText="\"Les extraterrestres doivent se délecter de nos larmes.\""
 QuoteTextAuthor="- Caporal John Teasdale"
@@ -4044,13 +4303,15 @@ PreMissionText="Certains ennemis reçoivent la capacité Létal, qui augmente de
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Létal)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Létal)"
 
-[DarkEvent_Lethal X2HackRewardTemplate]
+[DarkEventAbility_Lethal X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Létal)"
 Description="Certains ennemis reçoivent la capacité Létal, qui augmente de 2 les dégâts infligés par leur arme principale."
 
 ; Shredder
 [DarkEvent_Shredder X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Perforateur"
+; LWOTC translated
+DisplayName="Permanent : Perforateur"
+; End translated
 SummaryText="Certains ennemis reçoivent la capacité Perforateur, qui permet de détruire les armures à chaque tir."
 QuoteText="\"Comment ça, on doit porter des armures blindées ? Qu'est-ce que ça veut dire ?\""
 QuoteTextAuthor="- Nouvelle recrue anonyme"
@@ -4058,13 +4319,15 @@ PreMissionText="Plusieurs ennemis reçoivent la capacité Perforateur."
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Perforateur)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Perforateur)"
 
-[DarkEvent_Shredder X2HackRewardTemplate]
+[DarkEventAbility_Shredder X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Perforateur)"
 Description="Certains ennemis reçoivent la capacité Perforateur, qui permet de détruire les armures à chaque tir."
 
 ; HI
 [DarkEvent_HuntersInstinct X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Instinct du chasseur"
+; LWOTC translated
+DisplayName="Permanent : Instinct du chasseur"
+; End translated
 SummaryText="De nombreuses Vipères et autres espèces de serpents reçoivent la capacité Instinct du chasseur, qui leur octroie un bonus de dégâts contre les ennemis contournés."
 QuoteText="\"Des serpents fourbes, équipés d'armes lourdes et qui crachent du venin ? C'était précisé dans le contrat ?\""
 QuoteTextAuthor="- Caporal anonyme"
@@ -4072,13 +4335,15 @@ PreMissionText="De nombreux ennemis ophidiens reçoivent la capacité Instinct d
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Instinct du chasseur)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Instinct du chasseur)"
 
-[DarkEvent_HuntersInstinct X2HackRewardTemplate]
+[DarkEventAbility_HuntersInstinct X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Instinct du chasseur)"
 Description="De nombreux ennemis ophidiens reçoivent la capacité Instinct du chasseur, qui leur octroie un bonus de dégâts contre les ennemis contournés."
 
 ; LR
 [DarkEvent_LightningReflexes_LW X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Réflexes éclair"
+; LWOTC translated
+DisplayName="Permanent : Réflexes éclair"
+; End translated
 SummaryText="Certains Lanciers et d'autres ennemis reçoivent la capacité Réflexes éclair, qui augmente leurs chances d'esquiver les tirs réflexes."
 QuoteText="\"Je déteste ces types. Non, vraiment.\""
 QuoteTextAuthor="- Sergent artilleur anonyme"
@@ -4086,13 +4351,15 @@ PreMissionText="Certains Lanciers et d'autres ennemis reçoivent la capacité R�
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Réflexes éclair)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Réflexes éclair)"
 
-[DarkEvent_LightningReflexes_LW X2HackRewardTemplate]
+[DarkEventAbility_LightningReflexes_LW X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Réflexes éclair)"
 Description="Certains Lanciers et d'autres ennemis reçoivent la capacité Réflexes éclair, qui augmente leurs chances d'esquiver les tirs réflexes."
 
 ; CCS
 [DarkEvent_CloseCombatSpecialist X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Spécialiste en combat rapproché"
+; LWOTC translated
+DisplayName="Permanent : Spécialiste en combat rapproché"
+; End translated
 SummaryText="Les Archons reçoivent la capacité Spécialiste en combat rapproché, qui leur offre un tir réflexe gratuit sur toute unité se déplaçant dans un rayon de quatre cases."
 QuoteText="\"Les soldats ne les appellent pas les anges de la mort pour rien.\""
 QuoteTextAuthor="- Officier Bradford"
@@ -4100,12 +4367,14 @@ PreMissionText="Les Archons reçoivent la capacité Spécialiste en combat rappr
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Spécialiste en combat rapproché)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Spécialiste en combat rapproché)"
 
-[DarkEvent_CloseCombatSpecialist X2HackRewardTemplate]
+[DarkEventAbility_CloseCombatSpecialist X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Spécialiste en combat rapproché)"
 Description="Les Archons reçoivent la capacité Spécialiste en combat rapproché, qui leur offre un tir réflexe gratuit sur toute unité se déplaçant dans un rayon de quatre cases."
 
 [DarkEvent_GrazingFire X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Égratignure"
+; LWOTC translated
+DisplayName="Permanent : Égratignure"
+; End translated
 SummaryText="Certains ennemis reçoivent la capacité Égratignure, qui augmente les chances que les tirs ratés soient des écorchures."
 QuoteText="\"Si tu ne veux pas te faire abattre, ne te fais pas tirer dessus.\""
 QuoteTextAuthor="- Soldat anonyme"
@@ -4113,12 +4382,14 @@ PreMissionText="Plusieurs ennemis reçoivent la capacité Égratignure."
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Égratignure)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Égratignure)"
 
-[DarkEvent_GrazingFire X2HackRewardTemplate]
+[DarkEventAbility_GrazingFire X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Égratignure)"
 Description="Certains ennemis reçoivent la capacité Égratignure, qui augmente les chances que les tirs ratés soient des écorchures."
 
 [DarkEvent_Cutthroat X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Coupe-gorge"
+; LWOTC translated
+DisplayName="Permanent : Coupe-gorge"
+; End translated
 SummaryText="Les Lanciers et d'autres ennemis reçoivent la capacité Coupe-gorge, qui fait que leurs attaques au corps à corps ignorent l'armure."
 QuoteText="\"À peine découvre-t-on leurs points faibles qu'ils découvrent les nôtres.\""
 QuoteTextAuthor="- Dr Tygan"
@@ -4126,12 +4397,14 @@ PreMissionText="Les Lanciers et d'autres ennemis reçoivent la capacité Coupe-g
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Coupe-gorge)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Coupe-gorge)"
 
-[DarkEvent_Cutthroat X2HackRewardTemplate]
+[DarkEventAbility_Cutthroat X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Coupe-gorge)"
 Description="Les Lanciers et d'autres ennemis reçoivent la capacité Coupe-gorge, qui fait que leurs attaques au corps à corps ignorent l'armure."
 
 [DarkEvent_CombatAwareness X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Attention accrue"
+; LWOTC translated
+DisplayName="Permanent : Attention accrue"
+; End translated
 SummaryText="Les factionnaires d'ADVENT reçoivent la capacité Attention accrue, qui leur octroie un bonus de défense et d'armure en mode Vigilance."
 QuoteText="\"C'est comme si ces factionnaires d'ADVENT avaient un œil derrière la tête. Remarque, c'est peut-être inclus dans leurs modifications génétiques.\""
 QuoteTextAuthor="- Dr Shen"
@@ -4139,12 +4412,14 @@ PreMissionText="Les factionnaires d'ADVENT reçoivent la capacité Attention acc
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Attention accrue)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Attention accrue)"
 
-[DarkEvent_CombatAwareness X2HackRewardTemplate]
+[DarkEventAbility_CombatAwareness X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Attention accrue)"
 Description="Les factionnaires d'ADVENT reçoivent la capacité Attention accrue, qui leur octroie un bonus de défense et d'armure en mode Vigilance."
 
 [DarkEvent_IronSkin X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Impénétrable"
+; LWOTC translated
+DisplayName="Permanent : Impénétrable"
+; End translated
 SummaryText="Les unités robotiques d'ADVENT reçoivent la capacité Impénétrable, qui augmente leur défense contre les attaques au corps à corps."
 QuoteText="\"De toute façon, c'était idiot de croire que des armes moyenâgeuses pouvaient terrasser des robots extraterrestres.\""
 QuoteTextAuthor="- Soldat britannique anonyme"
@@ -4152,12 +4427,14 @@ PreMissionText="Les unités robotiques d'ADVENT reçoivent la capacité Impéné
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Impénétrable)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Impénétrable)"
 
-[DarkEvent_IronSkin X2HackRewardTemplate]
+[DarkEventAbility_IronSkin X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Impénétrable)"
 Description="Les unités robotiques d'ADVENT reçoivent la capacité Impénétrable, qui augmente leur défense contre les attaques au corps à corps."
 
 [DarkEvent_TacticalSense X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Sens tactique"
+; LWOTC translated
+DisplayName="Permanent : Sens tactique"
+; End translated
 SummaryText="Certains ennemis reçoivent la capacité Sens tactique, qui leur confère un bonus de défense."
 QuoteText="\"Les services de renseignement de la résistance nous informent que les extraterrestres formeraient un détachement spécialisé dans les opérations de contre-insurrection.\""
 QuoteTextAuthor="- Officier Bradford"
@@ -4165,12 +4442,14 @@ PreMissionText="Certains ennemis reçoivent la capacité Sens tactique."
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Sens tactique)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Sens tactique)"
 
-[DarkEvent_TacticalSense X2HackRewardTemplate]
+[DarkEventAbility_TacticalSense X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Sens tactique)"
 Description="Certains ennemis reçoivent la capacité Sens tactique, qui leur confère un bonus de défense."
 
 [DarkEvent_Aggression X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Agressivité"
+; LWOTC translated
+DisplayName="Permanent : Agressivité"
+; End translated
 SummaryText="Certaines unités ennemies reçoivent la capacité Agressivité, qui augmente leurs chances de coup critique."
 QuoteText="\"Je crois qu'on les a mis en rogne.\""
 QuoteTextAuthor="- Lancier anonyme"
@@ -4178,12 +4457,14 @@ PreMissionText="Certaines unités reçoivent la capacité Agressivité."
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Agressivité)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Agressivité)"
 
-[DarkEvent_Aggression X2HackRewardTemplate]
+[DarkEventAbility_Aggression X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Agressivité)"
 Description="Certaines unités ennemies reçoivent la capacité Agressivité, qui augmente leurs chances de coup critique."
 
 [DarkEvent_Resilience X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Résilience"
+; LWOTC translated
+DisplayName="Permanent : Résilience"
+; End translated
 SummaryText="Les unités Codex reçoivent la capacité Résilience, qui réduit leurs chances de subir des coups critiques."
 QuoteText="\"On se demande comment ces choses peuvent exister, et encore plus comment nos armes parviennent à les toucher.\""
 QuoteTextAuthor="- Dr Shen"
@@ -4191,12 +4472,14 @@ PreMissionText="Les unités Codex reçoivent la capacité Résilience."
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Résilience)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Résilience)"
 
-[DarkEvent_Resilience X2HackRewardTemplate]
+[DarkEventAbility_Resilience X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Résilience)"
 Description="Les Codex reçoivent la capacité Résilience, qui réduit leurs chances de subir des coups critiques."
 
 [DarkEvent_Shadowstep X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Marche furtive"
+; LWOTC translated
+DisplayName="Permanent : Marche furtive"
+; End translated
 SummaryText="Les unités Codex reçoivent la capacité Marche furtive, qui les empêche d'être visés par les soldats en mode Vigilance."
 QuoteText="\"On dirait que les extraterrestres expérimentent la téléportation à courte portée avec ces unités Codex.\""
 QuoteTextAuthor="- Dr Tygan"
@@ -4204,25 +4487,29 @@ PreMissionText="Les unités Codex reçoivent la capacité Marche furtive."
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Marche furtive)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Marche furtive)"
 
-[DarkEvent_Shadowstep X2HackRewardTemplate]
+[DarkEventAbility_Shadowstep X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Marche furtive)"
 Description="Les unités Codex reçoivent la capacité Marche furtive, qui les empêche d'être visés par les soldats en mode Vigilance."
 
 [DarkEvent_DamageControl X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Contrôle des dégâts"
+; LWOTC translated
+DisplayName="Permanent : Contrôle des dégâts"
+; End translated
 SummaryText="Certains robots d'ADVENT et d'autres unités reçoivent la capacité Contrôle des dégâts, qui leur confère un bonus d'armure après avoir subi des dégâts."
 QuoteText="\"On va avoir besoin d'un appui aérien, que quelqu'un prévienne Shen !\""
 QuoteTextAuthor="- Sergent anonyme"
-PreMissionText="Les unités Codex reçoivent la capacité Contrôle des dégâts."
+PreMissionText="Certaines unités robotiques, Tourelles, Codex et Gardiens reçoivent la capacité Contrôle des dégâts."
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Contrôle des dégâts)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Contrôle des dégâts)"
 
-[DarkEvent_DamageControl X2HackRewardTemplate]
+[DarkEventAbility_DamageControl X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Contrôle des dégâts)"
 Description="Certains robots d'ADVENT et d'autres unités reçoivent la capacité Contrôle des dégâts, qui leur confère un bonus d'armure après avoir subi des dégâts."
 
 [DarkEvent_HardTarget X2DarkEventTemplate]
-DisplayName="Améliorations tactiques : Cible difficile"
+; LWOTC translated
+DisplayName="Permanent : Cible difficile"
+; LWOTC translated
 SummaryText="Certaines unités extraterrestres reçoivent la capacité Cible difficile, qui leur octroie un bonus d'esquive."
 QuoteText="\".\""
 QuoteTextAuthor="- Dr Shen"
@@ -4230,12 +4517,14 @@ PreMissionText="Certaines unités extraterrestres reçoivent la capacité Cible 
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Cible difficile)"
 PostMissionFailureText="Opération ennemie non empêchée : Améliorations tactiques (Cible difficile)"
 
-[DarkEvent_HardTarget X2HackRewardTemplate]
+[DarkEventAbility_HardTarget X2AbilityTemplate]
 FriendlyName="Opération ennemie : Amélioration tactique (Cible difficile)"
 Description="Certaines unités extraterrestres reçoivent la capacité Cible difficile, qui leur octroie un bonus d'esquive."
 
 [DarkEvent_GreaterFaceless X2DarkEventTemplate]
-DisplayName="Anonyme supérieur"
+; LWOTC translated
+DisplayName="Permanent : Anonyme supérieur"
+; End translated
 SummaryText="Les extraterrestres déploient une unité d'Anonyme encore plus forte et bien plus dangereuse."
 QuoteText="\"Que ces créatures viennent de l'espace ou de leurs cuves de clonage, nous sommes certains d'une chose : elles sont bien plus dangereuses qu'avant.\""
 QuoteTextAuthor="- Dr Shen"
@@ -4243,7 +4532,7 @@ PreMissionText="Les extraterrestres déploient une unité d'Anonyme encore plus 
 PostMissionSuccessText="Opération ennemie contrée : Anonyme supérieur"
 PostMissionFailureText="Opération ennemie non empêchée : Anonyme supérieur"
 
-[DarkEvent_GreaterFaceless X2HackRewardTemplate]
+[DarkEventAbility_GreaterFacelessStatImprovements X2AbilityTemplate]
 FriendlyName="Opération ennemie : Anonyme supérieur"
 Description="Les extraterrestres déploient une unité d'Anonyme encore plus forte et bien plus dangereuse."
 
@@ -4361,10 +4650,6 @@ ListTitle="Libérer des régions"
 DescriptionTitle="Libérer des régions"
 DescriptionEntry="Si elle est suffisamment soutenue par XCOM, la résistance peut libérer des régions entières du joug d'ADVENT. Pour ce faire, la résistance doit détecter et réussir des missions de difficulté croissante qui s'achèvent par des assauts sur les centres de commandement d'ADVENT dans la région. Dans une région libérée, les extraterrestres cessent toute activité ou presque, sauf s'ils cherchent à en reprendre le contrôle. La résistance génère des ressources, des recrues et des renseignements supplémentaires pour XCOM dans les régions libérées. Lorsqu'une région est libérée, les opérations d'infiltration en cours reçoivent un important bonus d'infiltration. Le commandant doit alors choisir entre lancer immédiatement la mission ou l'abandonner, avant que les troupes d'ADVENT ne se replient vers les régions voisines. La libération d'une région devrait donner à la Résistance un accès suffisant à l'infrastructure d'ADVENT pour que nous puissions découvrir leur véritable objectif sur Terre avant qu'il ne soit trop tard."
 
-[AlienTactics X2EncyclopediaTemplate]
-ListTitle="Tactiques Ennemies"
-DescriptionTitle="Tactiques Ennemies"
-DescriptionEntry="A moins d'être assignés à une attaque ou à la protection d'un objectif particulier, les troupes d'ADVENT et leurs alliés extraterrestres vont patrouiller dans la zone de combat. S'ils rencontrent XCOM durant leur tour, il y a des chances qu'ils bénéficient d'actions défensives après s'être dispersés. Durant leurs patrouilles, s'ils entendent des tirs ou des explosions, voient des cadavres, ou entendent hurler des civils, il vont augmenter leur niveau d'alerte. S'ils rencontrent XCOM durant leur tour une fois en alerte, ils sont susceptibles de prendre des actions offensives - y compris d'ouvrir le feu - après dispersion, tant qu'ils ne sont pas blessés. Notez que les armes lourdes et les explosifs peuvent alerter les ennemis à plus grande distance que les autres armes, tandis que les armes de mêlée ne sont audibles qu'à très courte portée."
 
 [AlienForces X2EncyclopediaTemplate]
 ListTitle="Extraterrestres et forces d'ADVENT"
@@ -4375,6 +4660,10 @@ DescriptionEntry="Aussi dangereux qu'ils puissent être, les extraterrestres ont
 ListTitle="Corps ennemis"
 DescriptionTitle="Corps ennemis"
 DescriptionEntry="Comme beaucoup de nos missions nécessitent une exfiltration rapide du site d'opération, nous n'avons pas toujours le temps de récupérer les corps de nos ennemis d'ADVENT et des extraterrestres, que nous devons étudier ou recycler pour produire des matériaux. Les missions offensives, qui offrent la possibilité de récupérer les corps ennemis, devraient être notre priorité."
+[AlienTactics X2EncyclopediaTemplate]
+ListTitle="Tactiques Ennemies"
+DescriptionTitle="Tactiques Ennemies"
+DescriptionEntry="A moins d'être assignés à une attaque ou à la protection d'un objectif particulier, les troupes d'ADVENT et leurs alliés extraterrestres vont patrouiller dans la zone de combat. S'ils rencontrent XCOM durant leur tour, il y a des chances qu'ils bénéficient d'actions défensives après s'être dispersés. Durant leurs patrouilles, s'ils entendent des tirs ou des explosions, voient des cadavres, ou entendent hurler des civils, il vont augmenter leur niveau d'alerte. S'ils rencontrent XCOM durant leur tour une fois en alerte, ils sont susceptibles de prendre des actions offensives - y compris d'ouvrir le feu - après dispersion, tant qu'ils ne sont pas blessés. Notez que les armes lourdes et les explosifs peuvent alerter les ennemis à plus grande distance que les autres armes, tandis que les armes de mêlée ne sont audibles qu'à très courte portée."
 
 [TrainingOfficers X2EncyclopediaTemplate]
 ListTitle="Formation d'officiers"
@@ -4526,6 +4815,10 @@ DisplayName="Attaques d'ADVENT repoussées :"
 [ResAct_RaidsLost X2ResistanceActivityTemplate]
 DisplayName="Attaques d'ADVENT réussies :"
 
+; just fix typo
+[Insanity X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> La capacité Aliénation se recharge en <Ability:SelfCooldown/> tours.<br/><Bullet/> La force psionique de l'agent psi est comparée à la volonté de la cible.<br/><Bullet/> Une Aliénation réussie peut entraîner une désorientation, un étourdissement ou le contrôle mental de la cible.<br/><Bullet/> Les ennemis mécaniques sont totalement insensibles à l'Aliénation.<br/>"
+
 [ShapedCharge X2GrenadeTemplate]
 FriendlyName="Charge Creuse"
 FriendlyNamePlural="Charges Creuses"
@@ -4540,6 +4833,12 @@ LaunchedAbilityHelpText="Détruit les objets de l'environnement."
 LocFriendlyName="Anesthésier"
 LocHelpText="Rend inconscient un allié étourdi, paniqué ou désorienté pour le reste de la mission."
 LocFlyOverText="Sous Tranquillisants"
+
+[Shredder X2AbilityTemplate]
+LocFriendlyName="Perforateur"
+LocLongDescription="Les attaques de votre arme principale détruisent les armures."
+LocHelpText="Les attaques de votre arme principale détruisent les armures."
+LocPromotionPopupText="<Bullet/> Un tir réussi avec votre arme principale conventionnelle enlève 1 point d'armure à la cible.<br/><Bullet/> Les armes plus perfectionnées de même type font plus de dégâts aux armures.<br/>"
 
 [Interact_SmashNGrab X2AbilityTemplate]
 LocFriendlyName="Ouvrir/fermer coffre"
@@ -4557,52 +4856,14 @@ TacticalText="<Bullet/> L'ampli psionique extraterrestre augmente la puissance p
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="Relais Radio"
 
-[SupplyExtraction_LW X2MissionTemplate]
-DisplayName="Extraire du matériel d'ADVENT"
-Briefing="Voler du matériel à ADVENT"
-PostMissionType="Défoncer et Ramasser"
-BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
-ObjectiveTextPools[0]="Sécuriser et extraire du matériel d'ADVENT"
-ObjectiveTextPools[1]="Évacuer tous les soldats d'XCOM"
+; New for 1.3
 
-[SmashNGrab_LW X2MissionTemplate]
-DisplayName="Défoncer et Ramasser"
-Briefing="Piller un entrepôt ADVENT"
-PostMissionType="Défoncer et Ramasser"
-BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
-ObjectiveTextPools[0]="Récupérer autant de ressources que possible"
-ObjectiveTextPools[1]="Évacuer tous les soldats XCOM"
+[MissionTimers]
+TimerSmashnGrabTitle="Renforts"
+TimerSmashNGrabSubTitle="Nombre de tours avant l'arrivée des renforts aliens"
 
-[SupplyExtraction_LW X2MissionNarrativeTemplate]
-ObjectiveTextPools[0]="Marquer et récupérer les caisses d'ADVENT"
-ObjectiveTextPools[1]="Neutraliser toutes les cibles ennemies"
-ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
-ObjectiveTextPools[3]="Éliminer toutes les cibles hostiles restantes"
-
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
-ObjectiveTextPools[0]="Obtenir des ressources ADVENT"
-ObjectiveTextPools[1]="Extraire les ressources ADVENT"
-ObjectiveTextPools[2]="Récupérer et extraire plus de ressources (Optionnel)"
-ObjectiveTextPools[3]="Évacuer tous les soldats XCOM"
-ObjectiveTextPools[4]="Défoncer et Ramasser"
-ObjectiveTextPools[5]="La Résistance a découvert un entrepôt ADVENT vulnérable rempli de provisions et ressources de valeur. Forcez l'entrée, ramassez ce que vous pouvez et quittez la région avant que les renforts ADVENT n'arrivent. Il y a aura plusieurs Caches de Ressources a récupérer au cours de cette mission mais chaque soldat ne pourra en porter qu'un."
-
-[SmashNGrabQuestItem X2EquipmentTemplate]
-FriendlyName="Cache de Ressources ADVENT"
-FriendlyNamePlural="Caches de Ressources ADVENT"
-BriefSummary="Un paquet contenant des ressources de valeur."
-
-[SoulSteal X2AbilityTemplate]
-LocLongDescription="Le feu spirituel rend à l'agent psi la moitié des dégâts qu'il inflige ou lui octroie un PV Bonus s'il n'était pas blessé."
-LocHelpText="Le feu spirituel soigne un agent psi blessé ou lui octroie un PV Bonus.
-LocPromotionPopupText="<Bullet/> La capacité Drain spirituel soigne les PV perdus ou octroie à l'agent psi un PV Bonus s'il n'était pas blessé.<br/><Bullet/> Un agent psi ne peut pas augmenter ses PV Bonus au-delà de 8 à l'aide de Drain spirituel."
-
-[Solace_LW X2AbilityTemplate]
-LocFriendlyName="Réconfort"
-LocFlyOverText="Réconfort"
-LocLongDescription="L'agent psi peut immédiatement annuler toutes les altérations mentales, pour un coéquipier."
-LocHelpText="L'agent psi peut immédiatement annuler toutes les altérations mentales, pour un coéquipier."
-LocPromotionPopupText="<Bullet/> Réconfort annule la désorientation, le contrôle mental, la panique et l'étourdissement.<br/>"
+[IntheZone X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> La capacité Assassin permet d'enchaîner les victimes ennemies en une seule action, chaque attaque étant gratuite.<br/><Bullet/> Toutefois, chaque ennemi tué réduit les chances de coup critique.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tours.<br/><Bullet/> Chaque fois que vous tuez un ennemi, les dégâts des prochaines attaques diminuent de 1.<br/>"
 
 [Fuse X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/>Mèche se recharge en <Ability:SelfCooldown/> tours.<br/>"
@@ -4611,16 +4872,26 @@ LocPromotionPopupText="<Bullet/>Mèche se recharge en <Ability:SelfCooldown/> to
 LocLongDescription="Un tir de rupture a de grandes chances d'infliger des dégâts critiques. Les attaques suivantes occasionnent +<Ability:RuptureAmount/> dégâts à la cible."
 LocHelpText="Un tir de rupture a de grandes chances d'infliger des dégâts critiques. Les attaques suivantes occasionnent plus de dégâts à la cible."
 
-[CoupDeGrace2 X2AbilityTemplate]
-LocFriendlyName="Coup de grâce"
-LocFlyOverText="Coup de grâce"
-LocLongDescription="Augmente les chances de toucher, d'infliger un coup critique et les dégâts des attaques de mélée contre des ennemis désorientés, étourdis ou paniqués."
-LocHelpText="Augmente les chances de toucher, d'infliger un coup critique et les dégâts des attaques de mélée contre des ennemis désorientés, étourdis ou paniqués."
-LocPromotionPopupText="<Bullet/> Coup de Grâce confère un bonus de +50 en visée, +50 chance de coup critique et +2 dégâts contre des ennemis étourdis ou paniqués.<br/><Bullet/> Ces bonus sont réduits contre des ennemis désorientés."
+[Faceoff X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> La capacité Confrontation est plus efficace dans une position agressive et a de fortes chances de toucher plusieurs cibles.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tours.<br/><Bullet/> Foudroiement est inutilisable en étant dissimulé."
+
+[SoulSteal X2AbilityTemplate]
+LocLongDescription="Le feu spirituel rend à l'agent psi la moitié des dégâts qu'il inflige ou lui octroie un PV Bonus s'il n'était pas blessé."
+LocHelpText="Le feu spirituel soigne un agent psi blessé ou lui octroie un PV Bonus.
+LocPromotionPopupText="<Bullet/> La capacité Drain spirituel soigne les PV perdus ou octroie à l'agent psi un PV Bonus s'il n'était pas blessé.<br/><Bullet/> Un agent psi ne peut pas augmenter ses PV Bonus au-delà de 8 à l'aide de Drain spirituel."
+
+[CoveringFire X2AbilityTemplate]
+LocLongDescription="Les tirs de Vigilance se déclenchent pour toutes les actions ennemies, pas seulement les mouvements."
+LocPromotionPopupText="<Bullet/> S'il est déclenché par une action ennemie, le tir de couverture se déclenche avant la fin de l'action ennemie.<br/><Bullet/> Un soldat possédant la capacité Tirs de couverture inflige un malus de visée temporaire à tout ennemi ciblé par un de ses tirs de vigilance, qu'il s'agisse d'un tir de couverture ou non.<br/>"
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="Notre lance-grenades avancé intègre une technologie magnétique permettant de lancer les grenades plus loin qu'un lanceur conventionnel."
 TacticalText="<Bullet/> Le lance-grenades avancé a une meilleure portée que le modèle standard.\n"
+
+[FlashbangGrenade X2GrenadeTemplate]
+TacticalText="<Bullet/> Les grenades flash ne font aucun dégât, mais désorientent et perturbent les ennemis dans un large rayon. <br><Bullet/> Les alliés de l'escouade ne seront pas affectés.<br/><Bullet/> Certains ennemis puissants peuvent résister à leurs effets."
+ThrownAbilityHelpText="Désoriente les cibles hostiles dans la zone affectée."
+LaunchedAbilityHelpText="Désoriente les cibles hostiles dans la zone affectée."
 
 [Whirlwind2 X2AbilityTemplate]
 LocFriendlyName="Tornade"
@@ -4629,34 +4900,18 @@ LocHelpText="Gagnez une action de mouvement après une attaque de mêlée réuss
 LocFlyOverText="Tornade"
 LocPromotionPopupText="<Bullet/> Un soldat peut seulement gagner une action de mêlée par tour à l'aide de cette capacité.<br/><Bullet/> Ne peut pas être employé si faucheur est actif.<br/>"
 
+[Solace_LW X2AbilityTemplate]
+LocFriendlyName="Réconfort"
+LocFlyOverText="Réconfort"
+LocLongDescription="L'agent psi peut immédiatement annuler toutes les altérations mentales, pour un coéquipier."
+LocHelpText="L'agent psi peut immédiatement annuler toutes les altérations mentales, pour un coéquipier."
+LocPromotionPopupText="<Bullet/> Réconfort annule la désorientation, le contrôle mental, la panique et l'étourdissement.<br/>"
+
 [QuickStudy X2AbilityTemplate]
 LocFriendlyName="Études rapides"
 LocLongDescription="Vous n'avez besoin que de la moitié du temps normal pour apprendre les capacités d'officier et du CCA."
 LocHelpText="Apprenez les capacités d'officier et du CCA en la moitié du temps normal."
 LocPromotionPopupText="<Bullet/> Apprenez les capacités d'officier et du CCA en la moitié du temps normal."
-
-[MissionTimers]
-TimerSmashnGrabTitle="Renforts"
-TimerSmashNGrabSubTitle="Nombre de tours avant l'arrivée des renforts aliens"
-
-[Faceoff X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> La capacité Confrontation est plus efficace dans une position agressive et a de fortes chances de toucher plusieurs cibles.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tours.<br/><Bullet/> Foudroiement est inutilisable en étant dissimulé."
-
-[CoveringFire X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> S'il est déclenché par une action ennemie, le tir de couverture se déclenche avant la fin de l'action ennemie.<br/><Bullet/> Un soldat possédant la capacité Tirs de couverture inflige un malus de visée temporaire à tout ennemi ciblé par un de ses tirs de vigilance, qu'il s'agisse d'un tir de couverture ou non.<br/>"
-
-[IntheZone X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> La capacité Assassin permet d'enchaîner les victimes ennemies en une seule action, chaque attaque étant gratuite.<br/><Bullet/> Toutefois, chaque ennemi tué réduit les chances de coup critique.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tours.<br/><Bullet/> Chaque fois que vous tuez un ennemi, les dégâts des prochaines attaques diminuent de 1.<br/>"
-
-[FlashbangGrenade X2GrenadeTemplate]
-TacticalText="<Bullet/> Les grenades flash ne font aucun dégât, mais désorientent et perturbent les ennemis dans un large rayon. <br><Bullet/> Les alliés de l'escouade ne seront pas affectés.<br/><Bullet/> Certains ennemis puissants peuvent résister à leurs effets."
-ThrownAbilityHelpText="Désoriente les cibles hostiles dans la zone affectée."
-LaunchedAbilityHelpText="Désoriente les cibles hostiles dans la zone affectée."
-
-[XComGame.ThreatAssessment X2AbilityTemplate]
-[ThreatAssessment X2AbilityTemplate]
-LocLongDescription="Le protocole de soutien fait gagner à la cible un tir de couverture en mode Vigilance."
-LocPromotionPopupText="<Bullet/> Le protocole de soutien fait gagner à la cible un tir de couverture en mode Vigilance."
 
 [DoubleTap2 X2AbilityTemplate]
 LocFriendlyName="Double tir"
@@ -4676,17 +4931,468 @@ LocLongDescription="Utilisez votre GREMLIN pour donner une action de mouvement �
 LocHelpText="Donnez une action de mouvement à un allié."
 LocPromotionPopupText="<Bullet/> Protocole de sauvetage ne peut être utilisé que sur des alliés sans aucune action restante.<br/><Bullet/> Ne peut pas être utilisé sur des unités camouflées, en vigilance ou utilisant Suppression.<br/><Bullet/> Un allié ne peut pas bénéficier de Commandement et Protocole de sauvetage durant le même tour.<br/><Bullet/> Utilise une action.<br/><Bullet/> Le nombre de charges augmente avec le niveau technologique du GREMLIN.<br/>
 
+; LWOTC translated
+[Blademaster X2AbilityTemplate]
+LocLongDescription="Toutes les attaques au corps à corps infligent +<Ability:BlademasterDmg/> points de dégâts et leur visée augmente de <Ability:BLADEMASTERAIM/>."
+LocHelpText="Dégâts et visée améliorés pour les attaques au corps à corps"
+; LWOTC translated
+
+; Not in the ".int" file
+[XComGame.ThreatAssessment X2AbilityTemplate]
+[ThreatAssessment X2AbilityTemplate]
+LocLongDescription="Le protocole de soutien fait gagner à la cible un tir de couverture en mode Vigilance."
+LocPromotionPopupText="<Bullet/> Le protocole de soutien fait gagner à la cible un tir de couverture en mode Vigilance."
+
 [AssaultRifle_BM X2WeaponTemplate]
-TacticalText="<Bullet/> Le fusil plasmique est une arme d'infanterie principale assez générique, mais terriblement destructrice. \n<Bullet/> Un tir avec son arme principale met toujours fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil plasmique.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. "
+TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Le fusil plasmique est une arme d'infanterie principale assez générique, mais terriblement destructrice. \n<Bullet/> Un tir avec son arme principale met toujours fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil plasmique.<br/>"
 
 [SniperRifle_BM X2WeaponTemplate]
-TacticalText="<Bullet/> Cette arme est le plus sophistiqué de tous les fusils de précision. \n<Bullet/> Tirer au fusil de précision consommera toujours vos deux actions. \n<Bullet/> Le fusil de précision est moins précis à courte portée, mais redoutable à distance. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique de la lance plasmique.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. "
+TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Cette arme est le plus sophistiqué de tous les fusils de précision. \n<Bullet/> Tirer au fusil de précision consommera toujours vos deux actions. \n<Bullet/> Le fusil de précision est moins précis à courte portée, mais redoutable à distance. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique de la lance plasmique.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. "
 
 [Shotgun_BM X2WeaponTemplate]
-TacticalText="<Bullet/> Cette version du fusil à pompe est la plus avancée de tout l'arsenal d'XCOM. \n<Bullet/> Les fusils à pompe sont très efficaces à courte portée, mais leur précision diminue considérablement avec l'éloignement. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil cyclone.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. "
+TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Cette version du fusil à pompe est la plus avancée de tout l'arsenal d'XCOM. \n<Bullet/> Les fusils à pompe sont très efficaces à courte portée, mais leur précision diminue considérablement avec l'éloignement. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil cyclone.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. "
 
 [PlasmaBlaster X2WeaponTemplate]
-TacticalText="<Bullet/> Le blaster plasmique lance un rayon rectiligne d'énergie dévastatrice capable d'endommager plusieurs cibles. \n<Bullet/> Ses munitions étant limitées, il doit être utilisé à bon escient.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. "
+TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Le blaster plasmique lance un rayon rectiligne d'énergie dévastatrice capable d'endommager plusieurs cibles. \n<Bullet/> Ses munitions étant limitées, il doit être utilisé à bon escient.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. "
 
 [SparkRifle_BM X2WeaponTemplate]
-TacticalText="<Bullet/> Conçu spécialement pour permettre au Spark d'infliger d'énormes dégâts, le canon phasique à l'élérium représente la quintessence de sa technologie.\n<Bullet/> Sans un entraînement spécifique, un tir avec l'arme principale met fin au tour d'un soldat.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme."
+TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Conçu spécialement pour permettre au Spark d'infliger d'énormes dégâts, le canon phasique à l'élérium représente la quintessence de sa technologie.\n<Bullet/> Sans un entraînement spécifique, un tir avec l'arme principale met fin au tour d'un soldat.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme."
+
+; LWOTC Translated
+[Templar X2SoldierClassTemplate]
+RankNames[0]="Apprenti"
+RankNames[1]="Initié"
+RankNames[2]="Acolyte"
+RankNames[3]="Adepte"
+RankNames[4]="Disciple"
+RankNames[5]="Mystique"
+RankNames[6]="Sorcier"
+RankNames[7]="Mage"
+RankNames[8]="Maître"
+
+ShortNames[0]="App."
+ShortNames[1]="Init."
+ShortNames[2]="Acl."
+ShortNames[3]="Adp."
+ShortNames[4]="Dsc."
+ShortNames[5]="Mys."
+ShortNames[6]="Sor."
+ShortNames[7]="Mag."
+ShortNames[8]="Mtr."
+
++AbilityTreeTitles[4]="Pistolets auto."
+
+[Retribution X2AbilityTemplate]
+LocFriendlyName="Représailles"
+LocLongDescription="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Voir la capacité Escrimeur."
+LocHelpText="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Voir la capacité Escrimeur."
+LocFlyOverText="Représailles"
+LocPromotionPopupText="<Bullet/> La capacité Représailles se déclenche si un ennemi commence son tour sur une case adjacente à l'Escarmoucheur et tente de l'attaquer. <br/><Bullet/> Si l'ennemi ne commence pas son tour sur une case adjacente, la capacité Représailles se déclenche quand il entre dans la zone de corps à corps.<br/>"
+
+[RetributionAttack X2AbilityTemplate]
+LocFriendlyName="Représailles"
+LocLongDescription="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Voir la capacité Escrimeur."
+LocHelpText="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Voir la capacité Escrimeur."
+LocFlyOverText="Représailles"
+LocPromotionPopupText="<Bullet/> La capacité Représailles se déclenche si un ennemi commence son tour sur une case adjacente à l'Escarmoucheur et tente de l'attaquer. <br/><Bullet/> Si l'ennemi ne commence pas son tour sur une case adjacente, la capacité Représailles se déclenche quand il entre dans la zone de corps à corps.<br/>"
+; End Translated
+
+; LWOTC Translated
+[Battlemaster X2AbilityTemplate]
+LocFriendlyName="Maître de bataille"
+LocLongDescription="L'ancienne appartenance des Escarmoucheurs à ADVENT ont fait d'eux des soldats d'élite, capables de transporter davantage de grenades que les autres soldats."
+LocHelpText="L'ancienne appartenance des Escarmoucheurs à ADVENT ont fait d'eux des soldats d'élite, capables de transporter davantage de grenades que les autres soldats."
+LocPromotionPopupText="<Bullet/> Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades.<br/>"
+
+[SkirmisherGrapple X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> La capacité Grappin permet à l'Escarmoucheur de se mettre en position sans consommer d'action. <br/><Bullet/> Temps de rechargement : 2 tours (1 tour avec Parkour).
+
+[Reckoning_LW X2AbilityTemplate]
+LocFriendlyName="Jugement"
+LocLongDescription="Débloque les attaques Lacération éclair et Charge de votre <Ability:SecondaryWeaponName/>."
+LocHelpText="Débloque les attaques Lacération éclair et Charge de votre <Ability:SecondaryWeaponName/>."
+LocFlyOverText="Jugement"
+LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Charge en plaçant le curseur sur un ennemi.<br/><Bullet/> Un Escarmoucheur peut \"sprinter\" en utilisant ses deux actions, puis quand même lancer une Charge sur un ennemi adjacent.<br/><Bullet/> La capacité Charge a un temps de rechargement de <Ability:SelfCooldown/> tour(s).<br/>"
+
+[SkirmisherFleche X2AbilityTemplate]
+LocFriendlyName="Charge (Escarmoucheur)"
+LocLongDescription="Attaquez un ennemi à portée de déplacement avec votre <Ability:SecondaryWeaponName/>."
+LocHelpText="Attaquez un ennemi à portée de déplacement avec votre <Ability:SecondaryWeaponName/>."
+LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Charge en plaçant le curseur sur un ennemi.<br/><Bullet/> Un Escarmoucheur peut \"sprinter\" en utilisant ses deux actions, puis quand même lancer une Charge sur un ennemi adjacent.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tour(s).<br/>"
+
+[SkirmisherSlash X2AbilityTemplate]
+LocFriendlyName="Lacération éclair"
+LocFlyOverText="Lacération éclair"
+LocLongDescription="Attaquez un ennemi adjacent avec votre <Ability:SecondaryWeaponName/>. Ne coûte aucun point d'action. Temps de rechargement : <Ability:SelfCooldown/> tour(s)."
+LocHelpText="Attaquez un ennemi adjacent avec votre <Ability:SecondaryWeaponName/>. Ne coûte aucun point d'action. Temps de rechargement : <Ability:SelfCooldown/> tour(s)."
+LocPromotionPopupText="<Bullet/> Ne coûte aucun point d'action.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tour(s).<br/>"
+
+[SupremeFocus X2AbilityTemplate]
+LocFriendlyName="Concentration suprême"
+LocLongDescription="Le niveau de concentration maximal est désormais de 4."
+LocHelpText="Le niveau de concentration maximal est désormais de 4."
+LocPromotionPopupText="<Bullet/> Concentration niveau 4 : dégâts de Taillade +<Ability:FOCUS4RENDDAMAGE/>, mobilité +<Ability:FOCUS4MOBILITY/>, esquive +<Ability:FOCUS4DODGE/><br/>"
+
+[UITacticalHUD_SoldierInfo]
+FocusLevelDescriptions[0]=""
+FocusLevelDescriptions[1]="Dégâts de Taillade +<Ability:FOCUS1RENDDAMAGE/> \nMobilité +<Ability:FOCUS1MOBILITY/> \nEsquive +<Ability:FOCUS1DODGE/>"
+FocusLevelDescriptions[2]="Dégâts de Taillade +<Ability:FOCUS2RENDDAMAGE/> \nMobilité +<Ability:FOCUS2MOBILITY/> \nEsquive +<Ability:FOCUS2DODGE/>"
+FocusLevelDescriptions[3]="Dégâts de Taillade +<Ability:FOCUS3RENDDAMAGE/> \nMobilité +<Ability:FOCUS3MOBILITY/> \nEsquive +<Ability:FOCUS3DODGE/>"
+FocusLevelDescriptions[4]="Dégâts de Taillade +<Ability:FOCUS4RENDDAMAGE/> \nMobilité +<Ability:FOCUS4MOBILITY/> \nEsquive +<Ability:FOCUS4DODGE/>"
+
+[TemplarFocus X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> En début de mission, les Templiers sont plus faibles que les autres soldats, mais plus leur niveau de concentration est élevé, plus ils deviennent puissants. Apprenez à gérer efficacement la concentration pour profiter au mieux des améliorations de statistiques et de chaque capacité. <br/><Bullet/> Vous gagnez de la concentration en tuant des ennemis avec Taillade. <br/><Bullet/> Niveau 1 : dégâts de Taillade +<Ability:FOCUS1RENDDAMAGE/>, mobilité +<Ability:FOCUS1MOBILITY/>, esquive +<Ability:FOCUS1DODGE/> <br/><Bullet/> Niveau 2 : dégâts de Taillade +<Ability:FOCUS2RENDDAMAGE/>, mobilité +<Ability:FOCUS2MOBILITY/>, esquive +<Ability:FOCUS2DODGE/> <br/><Bullet/> Niveau 3 : dégâts de Taillade +<Ability:FOCUS3RENDDAMAGE/>, mobilité +<Ability:FOCUS3MOBILITY/>, esquive +<Ability:FOCUS3DODGE/><br/> <Bullet/> Niveau 4 : dégâts de Taillade +<Ability:FOCUS4RENDDAMAGE/>, mobilité +<Ability:FOCUS4MOBILITY/>, esquive +<Ability:FOCUS4DODGE/> <br/> <Bullet/> Niveau 5 : dégâts de Taillade +<Ability:FOCUS5RENDDAMAGE/>, mobilité +<Ability:FOCUS5MOBILITY/>, esquive +<Ability:FOCUS5DODGE/> <br/> <Bullet/> Niveau 6 : dégâts de Taillade +<Ability:FOCUS6RENDDAMAGE/>, mobilité +<Ability:FOCUS6MOBILITY/>, esquive +<Ability:FOCUS6DODGE/> <br/> <Bullet/> Niveau 7 : dégâts de Taillade +<Ability:FOCUS7RENDDAMAGE/>, mobilité +<Ability:FOCUS7MOBILITY/>, esquive +<Ability:FOCUS7DODGE/> <br/> <Bullet/> Niveau 8 : dégâts de Taillade +<Ability:FOCUS8RENDDAMAGE/>, mobilité +<Ability:FOCUS8MOBILITY/>, esquive +<Ability:FOCUS8DODGE/> <br/> <Bullet/> Niveau 9 : dégâts de Taillade +<Ability:FOCUS9RENDDAMAGE/>, mobilité +<Ability:FOCUS9MOBILITY/>, esquive +<Ability:FOCUS9DODGE/> <br/> <Bullet/> Niveau 10 : dégâts de Taillade +<Ability:FOCUS10RENDDAMAGE/>, mobilité +<Ability:FOCUS10MOBILITY/>, esquive +<Ability:FOCUS10DODGE/> <br/>"
+
+[Parkour X2AbilityTemplate]
+LocLongDescription="Le temps de rechargement de la capacité Grappin de l'Escarmoucheur est réduit de 1 tour."
+LocHelpText="Le temps de rechargement de la capacité Grappin de l'Escarmoucheur est réduit de 1 tour."
+
+[ParkourPassive X2AbilityTemplate]
+LocFriendlyName="Parkour"
+LocLongDescription="Le temps de rechargement de la capacité Grappin de l'Escarmoucheur est réduit de 1 tour."
+LocHelpText="Le temps de rechargement de la capacité Grappin de l'Escarmoucheur est réduit de 1 tour."
+
+[ParkourUnlock X2SoldierAbilityUnlockTemplate]
+Summary="Le temps de rechargement de la capacité Grappin de l'Escarmoucheur est réduit de 1 tour."
+
+[Whiplash X2AbilityTemplate]
+LocLongDescription="Attaque un ennemi avec un fouet électrique, qui inflige des dégâts supplémentaires contre les unités mécaniques. Cette attaque a un temps de rechargement de <Ability:SelfCooldown/> tour(s)."
+LocHelpText="Attaque un ennemi avec un fouet électrique. Dégâts supplémentaires contre les unités mécaniques. Temps de rechargement : <Ability:SelfCooldown/> tour(s)."
+LocPromotionPopupText="<Bullet/> Attaque un ennemi avec un fouet électrique. Dégâts supplémentaires contre les unités mécaniques. Temps de rechargement : <Ability:SelfCooldown/> tour(s)."
+
+[SkirmisherInterrupt X2AbilityTemplate]
+LocLongDescription="Une forme puissante de Vigilance, pouvant être activée sans dépenser d'actions. Plutôt que de tirer automatiquement, effectue n'importe quelle action simple."
+LocHelpText="Une forme puissante de Vigilance, pouvant être activée sans dépenser de points d'action. Plutôt que de tirer automatiquement, effectue n'importe quelle action simple."
+LocPromotionPopupText="<Bullet/> Interruption est une action gratuite, mais elle met également fin au tour du soldat. <br/><Bullet/> Certaines actions, telles que Vigilance, ne sont pas disponibles lors d'une Interruption. <br/><Bullet/> Cette capacité a un temps de rechargement de <Ability:SelfCooldown/> tour(s)."
+
+[Pillar X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Le Pilier dure autant de tours que le niveau de concentration du Templier lors de son apparition. <br/><Bullet/> Pilier ne met pas fin au tour du Templier.<br/><Bullet/> Peut être utilisé après Taillade.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tour(s).<br/>"
+
+[StunStrike X2AbilityTemplate]
+LocLongDescription="Une vague d'énergie psionique frappe un ennemi et le repousse dans la direction de l'attaque. Cette attaque peut étourdir la cible. Coûte 1 point de concentration."
+LocHelpText="Repousse un ennemi dans la direction de l'attaque. Cette attaque peut étourdir la cible. Coûte 1 point de concentration."
+LocPromotionPopupText="<Bullet/> La Frappe paralysante a <Ability:STUNSTRIKEHITCHANCE/> % de chances d'atteindre sa cible, et <Ability:STUNSTRIKEFOCUSHITCHANCE/> % supplémentaire(s) pour chaque niveau de concentration. <br/><Bullet/> La Frappe paralysante a <Ability:STUNSTRIKE_STUN_CHANCE/> % de chances d'étourdir la cible en cas de succès.<br/><Bullet/> La Frappe paralysante ne met pas fin au tour du Templier, mais nécessite un temps de rechargement de <Ability:SelfCooldown/> tour(s).<br/>"
+
+[BondmateTeamwork X2AbilityTemplate]
+LocHelpText="Octroie un point de mobilité bonus à un frère d'armes. Une seule charge par mission, commune aux deux frères d'armes."
+LocLongDescription="Octroie un point de mobilité bonus à un frère d'armes. Une seule charge par mission, commune aux deux frères d'armes."
+
+[BondmateTeamwork_Improved X2AbilityTemplate]
+LocHelpText="Octroie un point d'action bonus à un frère d'armes. De une à deux charges par mission en fonction du niveau de lien. ces charges sont communes aux deux frères d'armes."
+LocLongDescription="Octroie un point d'action bonus à un frère d'armes. De une à deux charges par mission en fonction du niveau de lien. ces charges sont communes aux deux frères d'armes."
+; End Translated
+
+; LWOTC Translated
+[BloodTrail X2AbilityTemplate]
+LocFriendlyName="Piste sanglante"
+LocLongDescription="Les tirs infligent <Ability:BLOODTRAILDAMAGE/> point(s) de dégâts en plus si la cible a été blessée pendant le même tour. Applique également un effet de saignement non-cumulatif."
+LocHelpText="Les tirs infligent <Ability:BLOODTRAILDAMAGE/> point(s) de dégâts en plus si la cible a été blessée pendant le même tour. Applique également un effet de saignement non-cumulatif."
+LocPromotionPopupText="<Bullet/> S'applique uniquement au tour au cours duquel l'ennemi est blessé. <br/><Bullet/> Planifiez vos attaques avec vos équipiers pour tirer pleinement parti de Piste sanglante.<br/><Bullet/> L'effet de saignement inflige 1 point de dégât pour les deux prochains tours.<br/><Bullet/> Chaque tir cumulé renouvelle la durée du saignement pour 2 tours.<br/>"
+
+[RemoteStart X2AbilityTemplate]
+LocFriendlyName="Déclenchement à distance"
+LocLongDescription="Fait exploser un explosif environnemental qui inflige le double des dégâts habituels dans un rayon deux fois plus étendu. Le Faucheur n'est pas repéré."
+LocHelpText="Fait exploser un explosif environnemental qui inflige le double des dégâts habituels dans un rayon deux fois plus étendu. Le Faucheur n'est pas repéré."
+LocPromotionPopupText="<Bullet/> Assurez-vous que vos coéquipiers soient à l'abri de la zone d'explosion ! <br/><Bullet/> La capacité Déclenchement à distance nécessite <Ability:SelfAmmoCost/> point(s) de munitions et un temps de rechargement de <Ability:SelfCooldown/> tour(s).<br/>"
+
+[Hero_Tracking X2AbilityTemplate]
+LocFriendlyName="Traque"
+LocLongDescription="Vous détectez les unités alentour même si vous n'avez pas de ligne de vue dégagée vers elles."
+LocHelpText="Vous détectez les unités alentour même si vous n'avez pas de ligne de vue dégagée vers elles."
+LocFlyOverText="Traque"
+LocPromotionPopupText="<Bullet/> Traque permet à l'unité de détecter les autres unités situées derrière n'importe quel élément susceptible de bloquer la ligne de vue (mur, etc.).<br/><Bullet/> Traque permet de détecter les ennemis situés à une distance légèrement inférieure à la portée visuelle normale.<br/><Bullet/> Les unités détectées apparaîtront sous forme de silhouettes.<br/><Bullet/> Les unités resteront visibles jusqu'à la fin du tour du joueur. Si les unités détectées ce tour-ci se trouvent hors du champ d'action de la capacité Traque à la fin du tour du joueur, elles cessent immédiatement d'être détectées.<br/>"
+
+[Hero_TrackingTrigger X2AbilityTemplate]
+LocFriendlyName="Traque"
+LocFlyOverText="Traque"
+
+[SkirmisherReflex X2AbilityTemplate]
+LocLongDescription="L'unité gagne une action supplémentaire au tour suivant lorsqu'un ennemi lui tire dessus. Ne se déclenche qu'une seule fois par tour."
+LocHelpText="L'unité gagne une action supplémentaire au tour suivant lorsqu'un ennemi lui tire dessus. Ne se déclenche qu'une seule fois par tour."
+LocPromotionPopupText="<Bullet/> Le grappin fait de l'Escarmoucheur un excellent éclaireur, et la capacité Réflexe encourage une approche plus agressive. <br/><Bullet/> La capacité Réflexe ne peut être utilisée qu'une fois par tour.<br/>"
+
+[FullThrottle X2AbilityTemplate]
+LocLongDescription="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tours, tour en cours inclus."
+LocHelpText="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tours, tour en cours inclus."
+
+[Judgment X2AbilityTemplate]
+LocFriendlyName="Justice"
+LocLongDescription="Si l'unité est la cible d'une attaque, l'ennemi qui attaque a une chance d'être pris de panique. Plus la volonté de cette unité est élevée, et plus les chances de paniquer sont importantes."
+LocHelpText="Si l'unité est la cible d'une attaque, l'ennemi qui attaque a une chance d'être pris de panique. Plus la volonté de cette unité est élevée, et plus les chances de paniquer sont importantes."
+LocFlyOverText="Justice"
+LocPromotionPopupText="<Bullet/> La capacité Justice peut être déclenchée par les attaques au corps à corps et de zone. <br/><Bullet/> La capacité Justice ne se déclenchera pas avec un tir de vigilance.<br/><Bullet/> Les chances de panique dépendent à la fois de la volonté de l'attaquant et de celle de la cible de la capacité Justice.<br/><Bullet/> La capacité Justice est plus efficace avec des unités ayant une volonté élevée.<br/>"
+
+[ManualOverride_LW X2AbilityTemplate]
+LocFriendlyName="Contournement manuel"
+LocLongDescription="Réinitialise les temps de rechargement de toutes capacités des soldats alliés."
+LocHelpText="Réinitialise les temps de rechargement de toutes capacités des soldats alliés."
+LocPromotionPopupText="<Bullet/> Utilisez les capacités de l'Escarmoucheur tôt et souvent pour profiter pleinement du Contournement manuel.<br/><Bullet/> Coûte 1 action. Temps de rechargement : <Ability:SelfCooldown/> tour(s).<br/>"
+
+[Battlelord X2AbilityTemplate]
+LocLongDescription="Déclenche une action immédiate après le tour de chaque ennemi dans le champ de vision. Les capacités qui octroient des points d'action ne peuvent pas être activées durant l'action immédiate (comme la capacité Frappe et course par exemple)."
+LocHelpText="Déclenche une action immédiate après le tour de chaque ennemi dans le champ de vision. Les capacités qui octroient des points d'action ne peuvent pas être activées durant l'action immédiate (comme la capacité Frappe et course par exemple)."
+LocPromotionPopupText="<Bullet/> \"Seigneur de guerre\" peut permettre à l'Escarmoucheur de se sortir des situations délicates. <br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tour(s). <br/><Bullet/> Les capacités qui octroient des points d'action ne peuvent pas être activées durant l'action immédiate (comme avec les capacités Implacable ou Frappe et course par exemple). <br/><Bullet/> Les tours des Ombres et les modules ennemis révélés ne déclenchent pas d'action immédiate.<br/>"
+
+[TemplarGrazingFire X2AbilityTemplate]
+LocFriendlyName="Égratignure"
+LocFlyOverText="Égratignure"
+LocLongDescription="Les tirs manqués avec votre pistolet automatique possèdent une chance supplémentaire d'infliger une écorchure."
+LocHelpText="Les tirs manqués font des écorchures."
+LocPromotionPopupText="<Bullet/> Les tirs manqués avec le pistolet automatique du soldat ont généralement <Ability:GRAZING_FIRE_SUCCESS_CHANCE> % de chances d'infliger une écorchure.<br/><Bullet/> Cet effet se produit après le traitement classique des tirs réussis, manqués et des écorchures.<br/><Bullet/> Les cibles avec un score d'esquive soustraient ce score aux chances de succès de la capacité.<br/>"
+
+[TemplarFleche X2AbilityTemplate]
+LocFriendlyName="Flèche"
+LocFlyOverText="Flèche"
+LocLongDescription="Attaquez un ennemi à portée de déplacement avec votre sabre. Inflige un point de dégât supplémentaire toutes les <Ability:REND_FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre votre position de départ et la cible."
+LocHelpText="Attaquez un ennemi à portée de déplacement avec votre sabre. Inflige des dégâts supplémentaires selon votre distance."
+LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Flèche en plaçant le curseur sur un ennemi.<br/><Bullet/> Un soldat peut \"sprinter\" en utilisant ses deux actions tout en étant capable de lancer une attaque sur un ennemi adjacent.<br/><Bullet/> Inflige un point de dégâts supplémentaire toutes les <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre la position de l'unité au début de son tour et la position de la cible.<br/>"
+
+[TemplarSolace X2AbilityTemplate]
+LocFriendlyName="Réconfort"
+LocFlyOverText="Réconfort"
+LocLongDescription="Le Templier peut immédiatement annuler les effets psychiques négatifs qui affectent un allié."
+LocHelpText="Le Templier peut immédiatement annuler les effets psychiques négatifs qui affectent un allié."
+LocPromotionPopupText="<Bullet/> Réconfort annule la désorientation, le contrôle mental, la panique et l'étourdissement.<br/><Bullet/> Coûte 1 action. Temps de rechargement : <Ability:SelfCooldown/> tour(s).<br/>"
+
+[CasterGauntlet_CV X2PairedWeaponTemplate]
+FriendlyName="Gantelets de l'invocateur"
+FriendlyNamePlural="Gantelets de l'invocateur"
+BriefSummary="Les gantelets des Templiers ont été conçus pour amplifier l'énergie psionique de leur utilisateur, mais ils n'en restent pas moins des gantelets, c'est-à-dire des gants métalliques robustes capables d'encaisser les chocs les plus violents."
+TacticalText="<Bullet/> Les Templiers peuvent attaquer les ennemis adjacents avec leur fragment même après avoir utilisé leurs deux actions pour se déplacer ou sprinter, dans la limite de la portée de leur mouvement. \n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps ! \n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
+AbilityDescName="fragment"
+
+[CasterGauntlet_MG X2PairedWeaponTemplate]
+FriendlyName="Gantelets du mage"
+FriendlyNamePlural="Gantelets du mage"
+BriefSummary="Les gantelets des Templiers ont été conçus pour amplifier l'énergie psionique de leur utilisateur, mais ils n'en restent pas moins des gantelets, c'est-à-dire des gants métalliques robustes capables d'encaisser les chocs les plus violents. La plaque magnétique qui les recouvre améliore encore plus leur résistance initiale."
+TacticalText="<Bullet/> Les Templiers peuvent attaquer les ennemis adjacents avec leur fragment même après avoir utilisé leurs deux actions pour se déplacer ou sprinter, dans la limite de la portée de leur mouvement. \n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps ! \n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres.
+"AbilityDescName="fragment"
+
+[CasterGauntlet_BM X2PairedWeaponTemplate]
+FriendlyName="Gantelets de l'archimage"
+FriendlyNamePlural="Gantelets de l'archimage"
+BriefSummary="Une petite cellule d'énergie à l'élérium trouvée sur un appareil d'ADVENT inconnu a permis aux Templiers d'augmenter encore plus l'énergie psionique contenue dans ces gantelets. On ne sait toujours pas si c'est la maîtrise de cette énergie ou bien la technologie qu'ils ont créée qui a permis le mélange de ces forces opposées."
+TacticalText="<Bullet/> Les Templiers peuvent attaquer les ennemis adjacents avec leur fragment même après avoir utilisé leurs deux actions pour se déplacer ou sprinter, dans la limite de la portée de leur mouvement. \n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps ! \n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
+AbilityDescName="fragment"
+
+[Yoink X2AbilityTemplate]
+LocFriendlyName="Transposition"
+LocLongDescription="Téléportation près d'un ennemi."
+LocHelpText="Téléportation près d'un ennemi."
+LocFlyOverText="Transposition"
+
+[AmmoDump X2AbilityTemplate]
+LocFriendlyName="Sabotage d'arme"
+LocHelpText="Désactive une arme, en déchargeant ses munitions."
+LocLongDescription="Désactive une arme, en déchargeant ses munitions."
+LocFlyOverText="Sabotage d'arme"
+
+[ShieldAlly X2AbilityTemplate]
+LocFriendlyName="Le plus puissant des sorciers"
+LocHelpText="Octroie des points de bouclier à un allié"
+LocLongDescription="Octroie des points de bouclier à un allié"
+LocFlyOverText="Le plus puissant des sorciers"
+
+[DetonateMindshield X2AbilityTemplate]
+LocFriendlyName="Perce-esprit"
+LocHelpText="Vos pouvoirs psychiques ignorent les boucliers psychiques."
+LocLongDescription="Vos pouvoirs psychiques ignorent les boucliers psychiques."
+LocFlyOverText="Perce-esprit"
+
+[ChosenImmuneMelee X2AbilityTemplate]
+LocFriendlyName="Résistance au corps à corps"
+LocLongDescription="Les attaques au corps à corps infligent 50% de dégâts en moins."
+LocHelpText="Les attaques au corps à corps infligent 50% de dégâts en moins."
+
+[BlastShield X2AbilityTemplate]
+LocFriendlyName="Pare-explosion"
+LocLongDescription="Les explosions infligent 50% de dégâts en moins."
+LocHelpText="Les explosions infligent 50% de dégâts en moins."
+
+[ChosenCritImmune X2AbilityTemplate]
+LocFriendlyName="Equilibré"
+LocHelpText="Pratiquement insensible aux coups critiques."
+LocLongDescription="Cet Élu est pratiquement insensible aux coups critiques."
+
+[Primary_Daze_Passive X2AbilityTemplate]
+LocFriendlyName="Sonneur (arme principale)"
+LocHelpText="Vos attaques principales appliquent un effet Sonné à leurs cibles, en plus des dégâts habituels."
+LocLongDescription="Vos attaques principales appliquent un effet Sonné à leurs cibles, en plus des dégâts habituels."
+
+[Secondary_Daze_Passive X2AbilityTemplate]
+LocFriendlyName="Sonneur (arme secondaire)"
+LocHelpText="Vos attaques secondaires appliquent un effet Hébété à leurs cibles, en plus des dégâts habituels."
+LocLongDescription="Vos attaques secondaires appliquent un effet Hébété à leurs cibles, en plus des dégâts habituels."
+
+[HeavyRevive X2AbilityTemplate]
+LocFriendlyName="Réanimation de choc"
+LocHelpText="Guérit l'effet \"Hébété\" infligé par l'Élu à ce soldat. Un soldat réanimé peut être désorienté."
+LocLongDescription="Guérit l'effet \"Hébété\" infligé par l'Élu à ce soldat. Un soldat réanimé peut être désorienté."
+LocFlyOverText="Réanimé !"
+
+[MC_Stock_Strike X2AbilityTemplate]
+LocFriendlyName="Coup de crosse"
+LocHelpText="Frappez un soldat sous contrôle mental avec la crosse de votre arme, afin de l'étourdir pour 1 tour."
+LocLongDescription="Frappez un soldat sous contrôle mental avec la crosse de votre arme, afin de l'étourdir pour 1 tour."
+LocFlyOverText="BOINK"
+
+[GetUp X2AbilityTemplate]
+LocFriendlyName="Debout !"
+LocHelpText="Réanime un soldat inconscient."
+LocLongDescription="Réanime un soldat inconscient"
+LocFlyOverText="Debout !"
+
+[ChosenSummonFollowers X2AbilityTemplate]
+LocFriendlyName="Appel aux fidèles"
+LocHelpText="Peut appeler des extraterrestres."
+LocLongDescription="Peut appeler des extraterrestres."
+LocFlyOverText="Appel aux fidèles"
+
+; End Translated
+
+; LWOTC Translated
+[Lethargy X2AbilityTemplate]
+LocFriendlyName="Léthargie"
+LocHelpText="L'unité souffre d'une visée et d'une mobilité réduite."
+LocLongDescription="L'unité souffre d'une visée et d'une mobilité réduite."
+
+[CombatRushOnCrit X2AbilityTemplate]
+LocFriendlyName="Adrénaline (sur crit.)"
+LocFlyOverText="Adrénaline (sur crit.)"
+LocHelpText="Lorsque vous réalisez un coup critique, les alliés organiques proches reçoivent un bonus temporaire de visée, chances de coup critique et déplacement."
+LocLongDescription="Lorsque vous réalisez un coup critique avec un tir ou une capacité, vos alliés organiques proches reçoivent un bonus temporaire de visée, chances de coup critique et déplacement."
+
+[LocationScout X2SitRepTemplate]
+Description="La résistance a placé des détecteurs de mouvement à courte portée qui quadrillent toute la zone d'opération. Vos soldats seront capables de détecter les unités ennemies qui ne sont pas dans leur champ de vision."
+
+[ProjectMiranda X2SitRepTemplate]
+FriendlyName="Projet Miranda"
+Description="ADVENT teste de nouvelles technologies de pacification dans cette zone, et toutes les unités non mécaniques sont frappées de Léthargie. Elles subiront des pénalités de visée et de mobilité."
+
+[SomethingInTheAir X2SitRepTemplate]
+FriendlyName="Il y a quelque chose dans l'air..."
+Description="Il y a quelque chose dans l'air, et quoique ça puisse être, cela provoque une montée d'adrénaline (voir capacité Adrénaline) chez les soldats qui réalisent un coup critique. Soyez vigilant, ceci est également valable pour ADVENT !"
+
+[DarkEventBarrierSitRep X2SitRepTemplate]
+FriendlyName="Barrière"
+Description="Défenses techniques et psioniques de l'ennemi doublées."
+
+[DarkEventDarkTowerSitRep X2SitRepTemplate]
+FriendlyName="Tour sombre"
+Description="Les soldats d'XCOM subiront des pertes de volonté plus importantes qu'à l'accoutumée."
+
+[DarkEventHighAlertSitRep X2SitRepTemplate]
+FriendlyName="Alerte rouge"
+Description="ADVENT est en alerte rouge, et il est pratiquement impossible de passer inaperçu une fois la mission lancée."
+
+[DarkEventInfiltratorSitRep X2SitRepTemplate]
+FriendlyName="Anonymes infiltrés"
+Description="AVDENT a placé plusieurs espions Anonymes dans des endroits stratégiques, susceptibles d'être pris d'assaut par l'ennemi. Vous rencontrerez sans doute des anonymes métamorphosés en civils lors de cette mission."
+
+[DarkEventInfiltratorChryssalidSitRep X2SitRepTemplate]
+FriendlyName="Chrysalis infiltrées"
+Description="ADVENT n'hésite plus à déployer ces immondes créatures près des zone habitées. Prenez garde aux ennemis enfouis dans cette mission !"
+
+[DarkEventRapidResponseSitRep X2SitRepTemplate]
+FriendlyName="Réaction immédiate"
+Description="ADVENT a renforcé son protocole d'intervention d'urgence. Les renforts arriveront plus vite que d'habitude lors de cette mission."
+
+[DarkEventReturnFireSitRep X2SitRepTemplate]
+FriendlyName="Tir de riposte"
+Description="Les tirs manqués contre les officiers et les prêtres d'ADVENT déclenchent un Tir de riposte."
+
+[DarkEventSealedArmorSitRep X2SitRepTemplate]
+FriendlyName="Armure scellée"
+Description="Tous les soldats d'ADVENT sont totalement immunisés aux dangers environnementaux comme le poison, le feu et la glace."
+
+[DarkEventUndyingLoyaltySitRep X2SitRepTemplate]
+FriendlyName="Loyauté éternelle"
+Description="Nous ne savons pas à quelle sorte de magie noire notre ennemi a fait appel, mais les rumeurs parlent d'unités revenant d'entre les morts. Lorsque vous abattez un ennemi, assurez-vous qu'il reste à terre !"
+
+[DarkEventVigilanceSitRep X2SitRepTemplate]
+FriendlyName="Vigilance"
+Description="Les extraterrestres sont en alerte rouge, et il est plus difficile pour XCOM de les prendre au dépourvu. Le rayon de détection des ennemis est augmenté."
+
+[ViperKing X2SitRepTemplate]
+FriendlyName="Roi Vipère"
+Description="Le Roi Vipère est attendu lors de cette mission. Soyez prudents !"
+
+[BerserkerQueen X2SitRepTemplate]
+FriendlyName="Reine Berserker"
+Description="La Reine Berserker est attendue lors de cette mission. Soyez prudents !"
+
+[ArchonKing X2SitRepTemplate]
+FriendlyName="Roi Archon"
+Description="Le Roi Archon est attendu lors de cette mission. Soyez prudents !"
+
+[CombatRushOnCritEffect X2SitRepEffect_GrantAbilities]
+FriendlyName="Adrénaline (sur crit.)"
+Description="Adrénaline (sur crit.) se déclenche lorsqu'un soldat réalise un coup critique."
+
+[LethargyEffect X2SitRepEffect_GrantAbilities]
+FriendlyName="Léthargie"
+Description="Les unités subissent une pénalité de -2 en mobilité et de -20 en visée."
+
+[CovertActionRisk_Failure_Easy X2CovertActionRiskTemplate]
+RiskName="Échec"
+
+[CovertActionRisk_Failure_Moderate X2CovertActionRiskTemplate]
+RiskName="Échec"
+
+[CovertActionRisk_Failure_Hard X2CovertActionRiskTemplate]
+RiskName="Échec"
+
+; Purifier autopsy no longer unlocks reinforced vest underlay
+[AutopsyAdventPurifier X2TechTemplate]
+UnlockedDescription=""
+; End translated
+
+; LWOTC translated
+[DifficultMissionCompleted X2AbilityPointTemplate]
+ActionFriendlyName="pour une mission difficile"
+
+[VeryDifficultMissionCompleted X2AbilityPointTemplate]
+ActionFriendlyName="pour une mission très difficile"
+
+[CovertAction_EnemyCorpses X2CovertActionTemplate]
+ActionObjective="Vol de cadavres"
+
+[CovertAction_IntenseTraining X2CovertActionTemplate]
+ActionObjective="Entraînement intense"
+
+[CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Pillage d'une morgue ennemie"
+ActionPreNarrative="Nous avons découvert où ils entreposaient les cadavres issus des récents combats. Cela pourrait être l'occasion d'accélérer nos recherches."
+ActionPostNarrative="Grâce à ce raid, nous sommes parvenus à récupérer de précieux cadavres ennemis."
+
+[CovertActionNarrative_EnemyCorpses_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Pillage d'une morgue ennemie"
+ActionPreNarrative="Nous avons découvert où ils entreposaient les cadavres issus des récents combats. Cela pourrait être l'occasion d'accélérer nos recherches."
+ActionPostNarrative="Grâce à ce raid, nous sommes parvenus à récupérer de précieux cadavres ennemis."
+
+[CovertActionNarrative_EnemyCorpses_Templars X2CovertActionNarrativeTemplate]
+ActionName="Pillage d'une morgue ennemie"
+ActionPreNarrative="Nous avons découvert où ils entreposaient les cadavres issus des récents combats. Cela pourrait être l'occasion d'accélérer nos recherches."
+ActionPostNarrative="Grâce à ce raid, nous sommes parvenus à récupérer de précieux cadavres ennemis."
+
+[CovertActionNarrative_IntenseTraining_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Suivre Entraînement intense (Coût : 5 PC)"
+ActionPreNarrative="Il est temps de s'endurcir et de se perfectionner. Du nerf, soldat !"
+ActionPostNarrative="Votre soldat s'est aguerri."
+
+[CovertActionNarrative_IntenseTraining_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Suivre Entraînement intense (Coût : 5 PC)"
+ActionPreNarrative="Il est temps de s'endurcir et de se perfectionner. Du nerf, soldat !"
+ActionPostNarrative="Votre soldat s'est aguerri."
+
+[CovertActionNarrative_IntenseTraining_Templars X2CovertActionNarrativeTemplate]
+ActionName="Suivre Entraînement intense (Coût : 5 PC)"
+ActionPreNarrative="Il est temps de s'endurcir et de se perfectionner. Du nerf, soldat !"
+ActionPostNarrative="Votre soldat s'est aguerri."
+
+[AbilityPoints X2ItemTemplate]
+FriendlyName="Points de capacité"
+FriendlyNamePlural="Points de capacité"
+BriefSummary="Réserve de points de capacité, à dépenser pour débloquer des aptitudes supplémentaires."
+; End translated
+
