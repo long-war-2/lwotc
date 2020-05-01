@@ -4937,12 +4937,6 @@ LocLongDescription="Toutes les attaques au corps à corps infligent +<Ability:Bl
 LocHelpText="Dégâts et visée améliorés pour les attaques au corps à corps"
 ; LWOTC translated
 
-; Not in the ".int" file
-[XComGame.ThreatAssessment X2AbilityTemplate]
-[ThreatAssessment X2AbilityTemplate]
-LocLongDescription="Le protocole de soutien fait gagner à la cible un tir de couverture en mode Vigilance."
-LocPromotionPopupText="<Bullet/> Le protocole de soutien fait gagner à la cible un tir de couverture en mode Vigilance."
-
 [AssaultRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Le fusil plasmique est une arme d'infanterie principale assez générique, mais terriblement destructrice. \n<Bullet/> Un tir avec son arme principale met toujours fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil plasmique.<br/>"
 
