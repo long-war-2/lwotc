@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2StrategyElement_LWObjectives.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Defines new strategy-level objectives for LW Overhaul
+//  PURPOSE: Defines new strategy-level objectives for LW Overhaul
 //---------------------------------------------------------------------------------------
 class X2StrategyElement_LWObjectives extends X2StrategyElement_DefaultObjectives config(LW_Overhaul);
 

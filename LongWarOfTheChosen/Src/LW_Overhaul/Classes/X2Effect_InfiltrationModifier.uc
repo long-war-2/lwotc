@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_InfiltrationModifier.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Implements the infiltration modifier, which modifies enemy stats based on mission infiltration status 
+//  PURPOSE: Implements the infiltration modifier, which modifies enemy stats based on mission infiltration status 
 //---------------------------------------------------------------------------------------
 class X2Effect_InfiltrationModifier extends X2Effect_ModifyStats config (LW_InfiltrationSettings);
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_MinRebelsOnJob
 //  AUTHOR:  JohnnyLump / Pavonis Interactive
-//	PURPOSE: Conditionals on the number of rebels on a job in a region
+//  PURPOSE: Conditionals on the number of rebels on a job in a region
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_MinWorkingRebels extends X2LWActivityCondition;
 

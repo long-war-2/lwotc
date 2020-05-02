@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_POIAvailable.uc
 //  AUTHOR:  JL / Pavonis Interactive
-//	PURPOSE: Makes sure the POI Deck ain't empty
+//  PURPOSE: Makes sure the POI Deck ain't empty
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_POIAvailable extends X2LWActivityCondition;
 

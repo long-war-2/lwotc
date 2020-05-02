@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_ResearchFacility.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Conditionals on the alien research facilities
+//  PURPOSE: Conditionals on the alien research facilities
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_ResearchFacility extends X2LWActivityCondition config(LW_Activities);
 

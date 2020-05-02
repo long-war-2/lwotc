@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_MinLiberatedRegions
 //  AUTHOR:  JohnnyLump / Pavonis Interactive
-//	PURPOSE: Conditionals on the number of days a region has been liberated
+//  PURPOSE: Conditionals on the number of days a region has been liberated
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_LiberatedDays extends X2LWActivityCondition;
 

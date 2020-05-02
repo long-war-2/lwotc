@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2RebelJobIncomeModifier.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Base class for income modifiers.
+//  PURPOSE: Base class for income modifiers.
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobIncomeModifier extends Object abstract;

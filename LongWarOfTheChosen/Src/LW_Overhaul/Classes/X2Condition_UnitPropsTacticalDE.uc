@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Condition_UnitPropsTacticalDE.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Conditional on the target unit meeting certain rules, such as being an enemy
+//  PURPOSE: Conditional on the target unit meeting certain rules, such as being an enemy
 //           or being of a certain character type.
 //---------------------------------------------------------------------------------------
 

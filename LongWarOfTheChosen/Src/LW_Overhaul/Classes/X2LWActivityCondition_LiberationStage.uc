@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_LiberationStage.uc
 //  AUTHOR:  JL / Pavonis Interactive
-//	PURPOSE: Conditionals on the LiberationStage of the region
+//  PURPOSE: Conditionals on the LiberationStage of the region
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_LiberationStage extends X2LWActivityCondition;
 

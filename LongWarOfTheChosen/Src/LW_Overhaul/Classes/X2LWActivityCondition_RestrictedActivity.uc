@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_RestrictedActivity.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Conditionals on the which other activities can't exist
+//  PURPOSE: Conditionals on the which other activities can't exist
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_RestrictedActivity extends X2LWActivityCondition;
 

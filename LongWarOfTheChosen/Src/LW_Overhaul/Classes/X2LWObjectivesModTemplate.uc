@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWObjectivesModTemplate.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Modifies existing objective templates.
+//  PURPOSE: Modifies existing objective templates.
 //
 //           In particular, it removes the Proving Grounds objective and
 //           makes some changes to Broadcast the Truth.

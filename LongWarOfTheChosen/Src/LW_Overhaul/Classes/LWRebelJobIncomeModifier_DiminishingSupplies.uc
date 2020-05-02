@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2RebelJobIncomeModifier_DiminishingSupplies.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Income modifier for Liberated regions
+//  PURPOSE: Income modifier for Liberated regions
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobIncomeModifier_DiminishingSupplies extends LWRebelJobIncomeModifier;

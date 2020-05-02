@@ -2,7 +2,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2RebelJobIncomeModifier_Liberated.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Income modifier for liberated regions
+//  PURPOSE: Income modifier for liberated regions
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobIncomeModifier_Liberated extends LWRebelJobIncomeModifier

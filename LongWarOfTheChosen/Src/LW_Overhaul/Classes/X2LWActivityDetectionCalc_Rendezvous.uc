@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityDetectionCalc_Rendezvous.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Special detection logic for rendezvous missions
+//  PURPOSE: Special detection logic for rendezvous missions
 //---------------------------------------------------------------------------------------
 class X2LWActivityDetectionCalc_Rendezvous extends X2LWActivityDetectionCalc config(LW_Activities);
 

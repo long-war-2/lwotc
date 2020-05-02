@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_MinLiberatedRegions
 //  AUTHOR:  JohnnyLump / Pavonis Interactive
-//	PURPOSE: Conditionals on the number of liberated regions
+//  PURPOSE: Conditionals on the number of liberated regions
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_MinLiberatedRegions extends X2LWActivityCondition;
 

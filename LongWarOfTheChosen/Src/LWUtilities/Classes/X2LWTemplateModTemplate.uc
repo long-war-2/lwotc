@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWTemplateModTemplate.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: "Meta" templates to allow modification to existing templates on game launch.
+//  PURPOSE: "Meta" templates to allow modification to existing templates on game launch.
 //---------------------------------------------------------------------------------------
 
 class X2LWTemplateModTemplate extends X2StrategyElementTemplate;

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2RebelJobIncomeModifier_Prohibited.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Income modifier for Prohibited Jobs
+//  PURPOSE: Income modifier for Prohibited Jobs
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobIncomeModifier_Prohibited extends LWRebelJobIncomeModifier

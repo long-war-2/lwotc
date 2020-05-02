@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2AbilityTarget_Cursor_LW.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Abilities that are added to enemy units as dark events.
+//  PURPOSE: Abilities that are added to enemy units as dark events.
 //---------------------------------------------------------------------------------------
 
 class X2AbilityTarget_Cursor_LW extends X2AbilityTarget_Cursor;

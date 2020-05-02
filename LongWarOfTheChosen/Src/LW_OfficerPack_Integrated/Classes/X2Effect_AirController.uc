@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_AirController.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Registers listener for AirController
+//  PURPOSE: Registers listener for AirController
 //---------------------------------------------------------------------------------------
 class X2Effect_AirController extends X2Effect_Persistent;
 

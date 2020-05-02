@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCooldown_UFO.uc
 //  AUTHOR:  JohnnyLump / Pavonis Interactive
-//	PURPOSE: Cooldown mechanics for creation of UFO activities; primarily here so we can have difficulty-specific 
+//  PURPOSE: Cooldown mechanics for creation of UFO activities; primarily here so we can have difficulty-specific 
 //---------------------------------------------------------------------------------------
 class X2LWActivityCooldown_UFO extends X2LWActivityCooldown_Global config(LW_Activities);
 

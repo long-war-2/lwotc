@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2RebelJobIncomeModifier_Range.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Income modifier that modifies income by applying a configurable range.
+//  PURPOSE: Income modifier that modifies income by applying a configurable range.
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobIncomeModifier_Range extends LWRebelJobIncomeModifier;

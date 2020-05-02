@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCreation_MostDangerous.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Extended Creation class that optimizes to putting activity in the most dangerous region possible
+//  PURPOSE: Extended Creation class that optimizes to putting activity in the most dangerous region possible
 //---------------------------------------------------------------------------------------
 class X2LWActivityCreation_MostDangerous extends X2LWActivityCreation;
 

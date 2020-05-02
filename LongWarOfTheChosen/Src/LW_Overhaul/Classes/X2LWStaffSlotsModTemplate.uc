@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWStaffSlotsModTemplate.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Modifies existing staff slot templates.
+//  PURPOSE: Modifies existing staff slot templates.
 //---------------------------------------------------------------------------------------
 class X2LWStaffSlotsModTemplate extends X2LWTemplateModTemplate config(LW_Overhaul);
 

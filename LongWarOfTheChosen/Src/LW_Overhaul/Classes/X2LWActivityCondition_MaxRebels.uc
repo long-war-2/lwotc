@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_MaxRebels
 //  AUTHOR:  JohnnyLump / Pavonis Interactive
-//	PURPOSE: Conditionals on the number of rebels in a region
+//  PURPOSE: Conditionals on the number of rebels in a region
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_MaxRebels extends X2LWActivityCondition;
 
