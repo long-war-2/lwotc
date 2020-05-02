@@ -222,6 +222,7 @@
     <Content Include="Localization\LW_AlienPack_Integrated\XComGame.kor" />
     <Content Include="Localization\LW_AlienPack_Integrated\XComGame.pol" />
     <Content Include="Localization\LW_AlienPack_Integrated\XComGame.rus" />
+    <Content Include="Localization\LW_FactionBalance\LW_FactionBalance.fra" />
     <Content Include="Localization\LW_FactionBalance\LW_FactionBalance.int" />
     <Content Include="Localization\LW_FactionBalance\XComGame.int" />
     <Content Include="Localization\LW_LaserPack_Integrated\XComGame.chn" />
@@ -835,6 +836,7 @@
     <Content Include="Content\Missions\Obj_RecoverItem_LW.umap" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Reinforcements.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelLists.uc" />
+    <Content Include="Localization\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_Integrated.fra" />
     <Content Include="Localization\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_Integrated.INT" />
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\MoreDetailsManager.uc" />
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\MoreDetailsNavigatorWrapper.uc" />
