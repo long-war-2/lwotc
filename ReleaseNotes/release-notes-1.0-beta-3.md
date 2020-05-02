@@ -137,7 +137,7 @@ Here are the changes since beta 2:
 
 * Blademaster replaces Channel at CPL.
 
-* There is a new SGT Danger Zone ability that increases the radius of Volt
+* There is a new SGT High Voltage ability that increases the radius of Volt
   by 2 tiles.
 
 * Pillar can be used in place of a Momentum action. It can still be
@@ -570,7 +570,11 @@ Other changes:
 A big thanks to the following:
 
 * The Community Highlander team, as we rely heavily on its bug fixes and modding features
-* The various folks that have been submitting pull requests, for bug fixes and localisation
+* The various folks that have been submitting pull requests
+* The people that have provided translations for LWOTC:
+  - Italian: SilentSlave
+  - Russian: FlashVanMaster and Roman-Sch
+  - French: Savancosinus
 * The folks on XCOM 2 Modders Discord, who have been incredibly helpful at all stages of this project
 * All the folks that have been testing the development builds and providing feedback and issue reports
 
