@@ -24,7 +24,7 @@ LocHelpText="Gain bonus aim and defense for each point of focus the Templar has.
 LocPromotionPopupText="<Bullet/> Each point of focus provides +<Ability:OverchargeAimBonus/> aim and +<Ability:OverchargeDefenseBonus/> defense.<br/><Bullet/> Based on the current focus, not max focus."
 
 [VoltDangerZone X2AbilityTemplate]
-LocFriendlyName="Danger Zone"
+LocFriendlyName="High Voltage"
 LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Volt."
 LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Volt."
 LocPromotionPopupText="<Bullet/> Provides a <Ability:VoltDangerZoneBonus/>-tile bonus to the radius of Volt."

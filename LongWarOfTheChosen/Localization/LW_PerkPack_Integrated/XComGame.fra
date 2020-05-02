@@ -878,6 +878,10 @@ LocPromotionPopupText="<Bullet/> Vous pouvez vous dissimuler n'importe où, mais
 [RevivalProtocol X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Le Protocole de stimulus permet de réanimer les soldats inconscients, y compris ceux qui ont été stabilisés après de graves blessures.<br/><Bullet/> S'il est déclenché pendant votre première action, il ne mettra pas fin à votre tour.<br/><Bullet/> Un GREMLIN standard ne peut utiliser ce protocole qu'une seule fois, mais le modèle amélioré dispose de plus de charges.<br/>"
 
+[XComGame.ThreatAssessment X2AbilityTemplate]
+[ThreatAssessment X2AbilityTemplate]
+LocLongDescription="Le protocole de soutien fait gagner à la cible un tir de couverture en mode Vigilance."
+LocPromotionPopupText="<Bullet/> Le protocole de soutien fait gagner à la cible un tir de couverture en mode Vigilance."
 
 ; Gear loc updates for new classes
 
