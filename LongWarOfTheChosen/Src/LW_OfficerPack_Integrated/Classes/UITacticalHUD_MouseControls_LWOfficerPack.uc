@@ -33,7 +33,8 @@ simulated function UpdateControls()
 		ControlCount = 5;
 		if (class'XComGameState_Unit'.static.GetActivatedChosen() != none)
 			ControlCount++;
-		ControlCount += CommandAbilities.Length;
+		if (CommandAbilities.Length > 0)
+			ControlCount ++;
 		SetNumActiveControls(ControlCount);
 
 		if (class'LWOfficerUtilities'.static.HasOfficerInSquad())
