@@ -84,7 +84,7 @@ static function X2DataTemplate CreateTemplate_LWPistol_Laser()
 	Template.InfiniteAmmo = true;
 
 	Template.InventorySlot = eInvSlot_SecondaryWeapon;
-	// PistolStandardShot is added by Pistol Slot mod
+	// PistolStandardShot is added by LWTemplateMods
 	Template.Abilities.AddItem('PistolOverwatch');
 	Template.Abilities.AddItem('PistolOverwatchShot');
 	Template.Abilities.AddItem('PistolReturnFire');
@@ -139,7 +139,7 @@ static function X2DataTemplate CreateTemplate_LWPistol_Coil()
 	Template.InfiniteAmmo = true;
 
 	Template.InventorySlot = eInvSlot_SecondaryWeapon;
-	// PistolStandardShot is added by Pistol Slot mod
+	// PistolStandardShot is added by LWTemplateMods
 	Template.Abilities.AddItem('PistolOverwatch');
 	Template.Abilities.AddItem('PistolOverwatchShot');
 	Template.Abilities.AddItem('PistolReturnFire');

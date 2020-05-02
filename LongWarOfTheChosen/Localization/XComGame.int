@@ -5429,3 +5429,9 @@ FriendlyName="Ability Points"
 FriendlyNamePlural="Ability Points"
 BriefSummary="A pool of points that can be used to grant abilities and stats to your soldiers."
 ; End Translation
+
+; LWOTC Needs Translation
+[XComGame.UIArmory_Loadout]
+[UIArmory_Loadout]
+m_strInventoryLabels[eInvSlot_Pistol]="PISTOL"
+; End Translation

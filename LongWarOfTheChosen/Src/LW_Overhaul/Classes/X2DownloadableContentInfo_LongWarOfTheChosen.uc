@@ -1915,7 +1915,8 @@ static function FirstMissionComplete(XComGameState NewGameState, XComGameState_O
 
 // ******** HANDLE CUSTOM WEAPON RESTRICTIONS ******** //
 
-// Disable heavy weapons items based on soldier class
+// Disable heavy weapons items based on soldier class and also
+// control who can have pistols.
 static function bool CanAddItemToInventory_CH_Improved(
 	out int bCanAddItem,
 	const EInventorySlot Slot,
@@ -1932,6 +1933,28 @@ static function bool CanAddItemToInventory_CH_Improved(
 
 	SoldierClassTemplate = UnitState.GetSoldierClassTemplate();
 
+	// Handle the pistol slot first
+	WeaponTemplate = X2WeaponTemplate(ItemTemplate);
+	if (WeaponTemplate == none)
+	{
+		// We want this hook to be ignored from both the armory
+		// screen and the unit's CanAddItemToInventory() method,
+		// but they expect different return values to indicate
+		// that. CheckGameState is the only way to distinguish
+		// between them.
+		return CheckGameState == none;
+	}
+
+	if (Slot == eInvSlot_Pistol && WeaponTemplate.WeaponCat == 'pistol')
+	{
+		// Allow the weapon to be equipped.
+		DisabledReason = "";
+		bCanAddItem = 1;
+		
+		// Override normal behavior.
+		return CheckGameState != none;
+	}
+
 	// Ignore all slots other than HeavyWeapons and any units that don't have
 	// a soldier class template (like ADVENT Rocketeers!)
 	if (Slot != eInvSlot_HeavyWeapon || SoldierClassTemplate == none)
@@ -1944,8 +1967,6 @@ static function bool CanAddItemToInventory_CH_Improved(
 		return CheckGameState == none;
 	}
 
-	WeaponTemplate = X2WeaponTemplate(ItemTemplate);
-	
 	for (i = 0; i < SoldierClassTemplate.AllowedWeapons.Length; ++i)
 	{
 		if (WeaponTemplate.WeaponCat == SoldierClassTemplate.AllowedWeapons[i].WeaponType)
