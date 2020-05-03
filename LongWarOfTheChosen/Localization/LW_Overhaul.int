@@ -523,7 +523,7 @@ m_strCannotChangeLiaisonTitle="Cannot Move Adviser"
 m_strCannotChangeLiaison="The adviser cannot be changed at this time due to active missions in the region"
 ChangeJobStr="CHANGE JOB"
 ChangeAllJobsStr="CHANGE ALL JOBS"
-PerksStr="PERKS"
+PerksStr="PERKS" 
 
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="EVAC Requested"

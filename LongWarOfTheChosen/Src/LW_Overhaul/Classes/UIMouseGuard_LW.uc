@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //	FILE:		UIMouseGuard_LW.uc
 //	AUTHOR:		KDM
-//	PURPOSE:	Custom mouse guard used to reduce flicker on the strategy map for controller users
+//	PURPOSE:	Custom mouse guard used to reduce flicker on the strategy map for controller users 
 //
 //	IMPORTANT DISCOVERIES : When a UIScreen has bConsumeMouseEvents set to true, a mouse guard screen is automatically
 //	created and 'buddied' with it upon a screen stack push. This mouse guard screen is invisible when

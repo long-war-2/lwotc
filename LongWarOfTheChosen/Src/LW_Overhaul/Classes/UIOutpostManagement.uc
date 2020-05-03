@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------
-//	FILE:    UIOutpostManagement
+//	FILE:    UIOutpostManagement 
 //	AUTHOR:  tracktwo / Pavonis Interactive
 //	PURPOSE: UI for managing a single outpost
 //--------------------------------------------------------------------------------------- 

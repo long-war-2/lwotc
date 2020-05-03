@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------
-//	FILE:    UIResistanceManagement_ListItem
+//	FILE:    UIResistanceManagement_ListItem 
 //	AUTHOR:  tracktwo / Pavonis Interactive
 //	PURPOSE: List Item (one row) for UIResistanceManagement
 //---------------------------------------------------------------------------------------

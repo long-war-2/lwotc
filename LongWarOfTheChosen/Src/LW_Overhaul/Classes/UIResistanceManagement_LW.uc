@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    UIResistanceManagement_LW
+//  FILE:    UIResistanceManagement_LW 
 //  AUTHOR:  tracktwo / Pavonis Interactive
 //
 //  PURPOSE: UI for overall resistance managemenet

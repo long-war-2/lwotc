@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------------------
 //	FILE:		UIScreenListener_UIStrategyMap
-//	AUTHOR:		KDM
+//	AUTHOR:		KDM 
 //	PURPOSE:	Allow controller users to bring up the Resistance overview screen from the strategy map
 //--------------------------------------------------------------------------------------- 
 

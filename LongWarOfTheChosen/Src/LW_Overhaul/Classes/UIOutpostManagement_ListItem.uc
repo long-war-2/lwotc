@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------
-//	FILE:    UIOutpostManagement_ListItem
+//	FILE:    UIOutpostManagement_ListItem 
 //	AUTHOR:  tracktwo / Pavonis Interactive
 //	PURPOSE: List Item (one row) for UIOutpostManagement
 //--------------------------------------------------------------------------------------- 
