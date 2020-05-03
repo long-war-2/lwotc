@@ -1,6 +1,6 @@
 ; LWOTC Translated
 [EnableChosen SecondWaveOptionObject]
-Tooltip="Активирует Избранных, когда сила Адвента становится 5."
+Tooltip="Активирует Избранных, когда глобальная сила Адвента становится 5."
 Description="Избранные: Активирует Избранных."
 ; End Translated
 
