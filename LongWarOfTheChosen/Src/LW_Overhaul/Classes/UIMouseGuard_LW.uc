@@ -1,7 +1,14 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    UIMouseGuard_LW.uc
-//  AUTHOR:  KDM
-//  PURPOSE: Custom mouse guard used to reduce flicker on the strategy map for controller users
+//	FILE:		UIMouseGuard_LW.uc
+//	AUTHOR:		KDM
+//	PURPOSE:	Custom mouse guard used to reduce flicker on the strategy map for controller users
+//
+//	IMPORTANT DISCOVERIES : When a UIScreen has bConsumeMouseEvents set to true, a mouse guard screen is automatically
+//	created and 'buddied' with it upon a screen stack push. This mouse guard screen is invisible when
+//	'buddied' to a 3D screen; however, when 'buddied' to a 2D screen, it animates in as a faded black.
+//	It is important to note that bConsumeMouseEvents needs to be set right after spawning, as it is dealt
+//	with by the screen stack before the screen has InitScreen() called. If you set bConsumeMouseEvents
+//	during InitScreen() you can get freezing situations.
 //---------------------------------------------------------------------------------------
 
 class UIMouseGuard_LW extends UIMouseGuard;
@@ -26,10 +33,12 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 		// disabled. A simple solution, therefore, is to keep the mouse guard when a controller is active (to minimize 
 		// coding changes) but just remove its visibility.
 		//
-		// NOTE : For a bit more information see ImportantDiscoveries.txt
+		// NOTE : For a bit more information see IMPORTANT DISCOVERIES above.
+
 		if (`ISCONTROLLERACTIVE)
 		{
 			SetAlpha(0);
 		}
 	}
 }
+

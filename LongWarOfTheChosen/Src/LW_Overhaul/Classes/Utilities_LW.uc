@@ -762,3 +762,4 @@ simulated static function bool IsOnStrategyMap()
 		return true;
 	}
 }
+

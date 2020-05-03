@@ -14,33 +14,33 @@ enum EResistanceSortType
 	eResistanceSortType_RebelCount,
 };
 
-// KDM : Additional Variables Start
-var config int m_HeaderFontSize;
-var localized string m_strFlyToHaven, m_strViewHaven;
+var config bool USE_LARGE_VERSION;
+var config int HEADER_BUTTON_HEIGHT_MK, HEADER_FONT_SIZE_MK;
+var config int HEADER_BUTTON_HEIGHT_CTRL, HEADER_FONT_SIZE_CTRL;
 
 // KDM : Best to explain by way of an example :
 // Assume a controller user is on the Resistance overview screen and clicks on 'Western Canada'; this will bring up the 
 // Haven screen for 'Western Canada'. Now, when we are done dealing with the haven, and re-enter the Resistance overview screen,
 // we want to make sure 'Western Canada' is still selected for consistency. 
-var int m_SelectedIndexOnFocusLost;
+var int SelectedIndexOnFocusLost;
 
-var int m_BorderPadding, m_ItemPadding;
-var float m_RegionHeaderPct, m_RegionStatusPct, m_RebelCountPct, m_AdviserHeaderPct, m_IncomeHeaderPct; 
-// KDM : Additional Variables End
+// KDM : Determines how wide each of the columns will be.
+var float RegionHeaderPct, RegionStatusPct, RebelCountPct, AdviserHeaderPct, IncomeHeaderPct; 
 
 var bool FlipSort;
 var bool EnableCameraPan;
 var EResistanceSortType SortType;
 
-var UIPanel							    m_kAllContainer;
-var UIX2PanelHeader						m_MissionHeader;
-var UIBGBox                             m_MissionHeaderBox;
-var UIX2PanelHeader						m_ObjectiveHeader;
-var UIBGBox                             m_ObjectiveHeaderBox;
+var UIPanel m_kAllContainer;
+var UIX2PanelHeader m_MissionHeader;
+var UIBGBox m_MissionHeaderBox;
+var UIX2PanelHeader m_ObjectiveHeader;
+var UIBGBox m_ObjectiveHeaderBox;
 
 var name DisplayTag;
 var name CameraTag;
 
+var localized string FlyToHavenStr, ViewHavenStr;
 var localized string m_strTitle;
 var localized string m_strLabel;
 var localized string m_strRegionlabel;
@@ -70,19 +70,251 @@ var UIPanel MainPanel;
 var UIX2PanelHeader ListTitle;
 var UIPanel DividerLine;
 var UIPanel HeaderPanel;
-var UIButton RegionHeaderButton;
-var UIButton RegionStatusButton, IncomeHeaderButton, AdviserHeaderButton;
-var UIButton RebelCountHeaderButton;
+var UIButton RegionHeaderButton, RegionStatusButton, IncomeHeaderButton, AdviserHeaderButton, RebelCountHeaderButton;
 
 var int m_iMaskWidth;
 var int m_iMaskHeight;
 
-//var int panelX;
 var int panelY;
 var int panelH;
 var int panelW;
 
 var array<StateObjectReference> CachedOutposts;
+
+simulated function InitScreen(XComPlayerController InitController, UIMovie InitMovie, optional name InitName)
+{
+	local int BorderPadding, ItemPadding, NextY, ScrollbarPadding, TheHeaderButtonHeight, TheHeaderFontSize;
+	local float AvailableHeaderSpace;
+
+	SelectedIndexOnFocusLost = INDEX_NONE;
+
+	BorderPadding = 15;
+	ItemPadding = 10;
+	ScrollbarPadding = 10;
+
+	RegionHeaderPct = 0.25f;
+	RegionStatusPct = 0.17f;
+	RebelCountPct = 0.28f;
+	AdviserHeaderPct = 0.12f;
+	IncomeHeaderPct = 0.18f; 
+
+	NextY = 0;
+	
+	if (`ISCONTROLLERACTIVE)
+	{
+		TheHeaderButtonHeight = HEADER_BUTTON_HEIGHT_CTRL;
+		TheHeaderFontSize = HEADER_FONT_SIZE_CTRL;
+	}
+	else
+	{
+		TheHeaderButtonHeight = HEADER_BUTTON_HEIGHT_MK;
+		TheHeaderFontSize = HEADER_FONT_SIZE_MK;
+	}
+
+	super.InitScreen(InitController, InitMovie, InitName);
+
+	panelW = 1150;
+
+	// KDM : We need to make the Resistance management screen taller if it is to show all havens without scrollbars.
+	if (USE_LARGE_VERSION)
+	{
+		panelH = 1000;
+	}
+	else
+	{
+		panelH = 830;
+	}
+
+	// KDM : The Resistance overview screen is centered horizontally and vertically when viewed via the strategy map.
+	// Normally, when viewed via the Avenger, its vertical position is set manually in order to fit a fancy 3D background; however,
+	// if we are going to use the large version, we will center it vertically since it won't really fit the fancy 3D background anyways.
+	if (class'Utilities_LW'.static.IsOnStrategyMap() || USE_LARGE_VERSION)
+	{
+		panelY = (Movie.UI_RES_Y / 2) - (panelH / 2);
+	}
+	else
+	{
+		panelY = 80;
+	}
+
+	// KDM : On the Avenger, both the Haven screen and, this, Resistance overview screen are placed within a 3D movie;
+	// consequently, a 3D camera needs to be specified. Note that EnableCameraPan determines whether this screen will
+	// swoop in from the side of the screen or simply appear.
+	if (!class'Utilities_LW'.static.IsOnStrategyMap())
+	{
+		if (EnableCameraPan)
+		{
+			class'UIUtilities'.static.DisplayUI3D(DisplayTag, CameraTag, `HQINTERPTIME);
+		}
+		else
+		{
+			class'UIUtilities'.static.DisplayUI3D(DisplayTag, CameraTag, 0, true);
+		}
+	}
+
+	// KDM : Container which will hold our UI components : it's invisible
+	MainPanel = Spawn(class 'UIPanel', self);
+	MainPanel.bAnimateOnInit = false;
+	MainPanel.bIsNavigable = false;
+	MainPanel.InitPanel('ListContainer');
+	MainPanel.SetPosition((Movie.UI_RES_X / 2) - (panelW / 2), panelY);
+
+	// KDM : Background rectangle
+	ListBG = Spawn(class'UIBGBox', MainPanel);
+	ListBG.bAnimateOnInit = false;
+	ListBG.LibID = class'UIUtilities_Controls'.const.MC_X2Background;
+	ListBG.InitBG('ListBG', 0, 0, panelW, panelH);
+	
+	// KDM : Header (includes title, resistance summary sub-title, and background image) 
+	ListTitle = Spawn(class'UIX2PanelHeader', MainPanel);
+	ListTitle.bAnimateOnInit = false;
+	ListTitle.bIsNavigable = false;
+	ListTitle.InitPanelHeader('TitleHeader', m_strTitle, GetResistanceSummaryString());
+	ListTitle.SetPosition(BorderPadding, BorderPadding);
+	ListTitle.SetHeaderWidth(panelW - BorderPadding * 2);
+	
+	NextY = ListTitle.Y + ListTitle.Height;
+
+	// KDM : Thin dividing line
+	DividerLine = Spawn(class'UIPanel', MainPanel);
+	DividerLine.bAnimateOnInit = false;
+	DividerLine.bIsNavigable = false;
+	DividerLine.LibID = class'UIUtilities_Controls'.const.MC_GenericPixel;
+	DividerLine.InitPanel('DividerLine');
+	DividerLine.SetPosition(BorderPadding, NextY);
+	DividerLine.SetWidth(panelW - BorderPadding * 2);
+	DividerLine.SetAlpha(20);
+
+	NextY += ItemPadding;
+
+	// KDM : Container for column headers : it's invisible
+	HeaderPanel = Spawn(class'UIPanel', MainPanel);
+	HeaderPanel.bAnimateOnInit = false;
+	HeaderPanel.bIsNavigable = false;
+	HeaderPanel.InitPanel('Header');
+	HeaderPanel.SetPosition(BorderPadding, NextY);
+	HeaderPanel.SetSize(panelW - BorderPadding * 2 - ScrollbarPadding, 32);
+
+	// KDM : Available header space = total header width - 2 pixels between each of the 5 column headers. 
+	AvailableHeaderSpace = HeaderPanel.Width - 4 * 2;
+
+	// KDM : Region name header
+	RegionHeaderButton = Spawn(class'UIButton', HeaderPanel);
+	RegionHeaderButton.bAnimateOnInit = false;
+	RegionHeaderButton.bIsNavigable = false;
+	RegionHeaderButton.ResizeToText = false;
+	RegionHeaderButton.InitButton(, m_strRegionLabel);
+	RegionHeaderButton.SetPosition(0, 0);
+	RegionHeaderButton.SetSize(AvailableHeaderSpace * RegionHeaderPct, TheHeaderButtonHeight);
+	RegionHeaderButton.SetStyle(eUIButtonStyle_NONE, TheHeaderFontSize);
+	RegionHeaderButton.SetWarning(true);
+	// KDM : Since the region column header can't be clicked, remove its hit testing so mouse events don't change its colour
+	// and make users think the button is active. The same is done for all of the column headers below.
+	RegionHeaderButton.SetHitTestDisabled(true);
+
+	// KDM : Advent strength and vigilance header
+	RegionStatusButton = Spawn(Class'UIButton', HeaderPanel);
+	RegionStatusButton.bAnimateOnInit = false;
+	RegionStatusButton.bIsNavigable = false;
+	RegionStatusButton.ResizeToText = false;
+	RegionStatusButton.InitButton (, m_strSTrength);
+	RegionStatusButton.SetPosition(RegionHeaderButton.X + RegionHeaderButton.Width + 2, 0);
+	RegionStatusButton.SetSize(AvailableHeaderSpace * RegionStatusPct, TheHeaderButtonHeight);
+	RegionStatusButton.SetStyle(eUIButtonStyle_NONE, TheHeaderFontSize);
+	RegionStatusButton.SetWarning(true);
+	RegionStatusButton.SetHitTestDisabled(true);
+
+	// KDM : Rebel number and rebels per job header
+	RebelCountHeaderButton = Spawn(class'UIButton', HeaderPanel);
+	RebelCountHeaderButton.bAnimateOnInit = false;
+	RebelCountHeaderButton.bIsNavigable = false;
+	RebelCountHeaderButton.ResizeToText = false;
+	RebelCountHeaderButton.InitButton(, m_strRebelCountLabel);
+	RebelCountHeaderButton.SetPosition(RegionStatusButton.X + RegionStatusButton.Width + 2, 0);
+	RebelCountHeaderButton.SetSize(AvailableHeaderSpace * RebelCountPct, TheHeaderButtonHeight);
+	RebelCountHeaderButton.SetStyle(eUIButtonStyle_NONE, TheHeaderFontSize);
+	RebelCountHeaderButton.SetWarning(true);
+	RebelCountHeaderButton.SetHitTestDisabled(true);
+
+	// KDM : Haven adviser header
+	AdviserHeaderButton = Spawn(class'UIButton', HeaderPanel);
+	AdviserHeaderButton.bAnimateOnInit = false;
+	AdviserHeaderButton.bIsNavigable = false;
+	AdviserHeaderButton.ResizeToText = false;
+	AdviserHeaderButton.InitButton(, m_strAdviserLabel);
+	AdviserHeaderButton.SetPosition(RebelCountHeaderButton.X + RebelCountHeaderButton.Width + 2, 0);
+	AdviserHeaderButton.SetSize(AvailableHeaderSpace * AdviserHeaderPct, TheHeaderButtonHeight);
+	AdviserHeaderButton.SetStyle(eUIButtonStyle_NONE, TheHeaderFontSize);
+	AdviserHeaderButton.SetWarning(true);
+	AdviserHeaderButton.SetHitTestDisabled(true);
+
+	// KDM : Haven income header
+	IncomeHeaderButton = Spawn(class'UIButton', HeaderPanel);
+	IncomeHeaderButton.bAnimateOnInit = false;
+	IncomeHeaderButton.bIsNavigable = false;
+	IncomeHeaderButton.ResizeToText = false;
+	IncomeHeaderButton.InitButton(, m_strIncomeLabel);
+	IncomeHeaderButton.SetPosition(AdviserHeaderButton.X + AdviserHeaderButton.Width + 2, 0);
+	IncomeHeaderButton.SetSize(AvailableHeaderSpace * IncomeHeaderPct, TheHeaderButtonHeight);
+	IncomeHeaderButton.SetStyle(eUIButtonStyle_NONE, TheHeaderFontSize);
+	IncomeHeaderButton.SetWarning(true);
+	IncomeHeaderButton.SetHitTestDisabled(true);
+
+	NextY += 30 + ItemPadding;
+
+	// KDM : List container which will hold rows of haven information
+	List = Spawn(class'UIList', MainPanel);
+	List.bAnimateOnInit = false;
+	List.bIsNavigable = true;
+	List.bStickyHighlight = false;
+	List.InitList(, BorderPadding, NextY, HeaderPanel.Width, panelH - NextY - BorderPadding);
+	List.OnItemClicked = OnRegionSelectedCallback;
+
+	// LWS : Redirect all background mouse events to the list so mouse wheel scrolling doesn't get lost when the mouse is positioned between list items.
+	ListBG.ProcessMouseEvents(List.OnChildMouseEvent);
+
+	RefreshNavHelp();
+	RefreshData();
+
+	// KDM : Automatically select the 1st rebel row when using a controller.
+	if (`ISCONTROLLERACTIVE)
+	{
+		List.NavigatorSelectionChanged(0);
+	}
+}
+
+simulated function string GetResistanceSummaryString()
+{
+	local int MeanAvatarHours;
+	local string strAvatarPenalty;
+	local XGParamTag ParamTag;
+
+	// KDM : Global advent strength (number of legions)
+	m_strGlobalResistanceSummary = m_strGlobalAlert @ string(`LWACTIVITYMGR.GetGlobalAlert());
+	if (`LWACTIVITYMGR.GetGlobalAlert() == 1)
+	{
+		m_strGlobalResistanceSummary @= m_strADVENTUnitSingular;
+	}
+	else
+	{
+		m_strGlobalResistanceSummary @= m_strADVENTUnitPlural;
+	}
+
+	// KDM : Global resistance threat
+	m_strGlobalResistanceSummary @= m_strGlobalInsurgency @ GetThreatLevelStr(`LWACTIVITYMGR.GetNetVigilance());
+
+	// KDM : How much Avatar progress has been slowed by
+	if (class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('S0_RevealAvatarProject'))
+	{
+		MeanAvatarHours = (class'XComGameState_HeadquartersAlien'.default.MinFortressDoomInterval[`STRATEGYDIFFICULTYSETTING] + class'XComGameState_HeadquartersAlien'.default.MaxFortressDoomInterval[`STRATEGYDIFFICULTYSETTING]) / 2;
+		ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+		ParamTag.IntValue0 = Round(float(`LWACTIVITYMGR.GetDoomUpdateModifierHours() * 100) / float (MeanAvatarHours));
+		strAvatarPenalty = `XEXPAND.ExpandString(m_strAvatarPenalty);
+		m_strGlobalResistanceSummary @= strAvatarPenalty;
+	}
+
+	return m_strGlobalResistanceSummary;
+}
 
 static function string GetThreatLevelStr(int netvig)
 {
@@ -117,281 +349,66 @@ static function string GetThreatLevelStr(int netvig)
 	}
 }
 
-simulated function InitScreen(XComPlayerController InitController, UIMovie InitMovie, optional name InitName)
-{
-    local int NextY, ScrollbarPadding;
-	local float AvailableHeaderSpace;
-	
-	m_SelectedIndexOnFocusLost = INDEX_NONE;
-
-	m_BorderPadding = 15;
-	m_ItemPadding = 10;
-
-	m_RegionHeaderPct = 0.25f;
-	m_RegionStatusPct = 0.17f;
-	m_RebelCountPct = 0.28f;
-	m_AdviserHeaderPct = 0.12f;
-	m_IncomeHeaderPct = 0.18f; 
-
-	NextY = 0;
-	ScrollbarPadding = 10;
-
-	super.InitScreen(InitController, InitMovie, InitName);
-
-	// KDM : The Resistance overview screen is centered horizontally and vertically when viewed via the strategy map.
-	// When viewed via the Avenger; however, its vertical position must be set manually in order to fit a fancy 3D background.
-	panelW = 1150;
-    panelH = 830;
-	if (class'Utilities_LW'.static.IsOnStrategyMap())
-	{
-		panelY = (Movie.UI_RES_Y / 2) - (panelH / 2);
-	}
-	else
-	{
-		panelY = 80;
-	}
-
-	// KDM : On the Avenger, both the Haven screen and, this, Resistance overview screen are placed within a 3D movie;
-	// consequently, a 3D camera needs to be specified. Note that EnableCameraPan determines whether this screen will
-	// swoop in from the side of the screen or simply appear.
-	if (!class'Utilities_LW'.static.IsOnStrategyMap())
-	{
-		if (EnableCameraPan)
-		{
-			class'UIUtilities'.static.DisplayUI3D(DisplayTag, CameraTag, `HQINTERPTIME);
-		}
-		else
-		{
-			class'UIUtilities'.static.DisplayUI3D(DisplayTag, CameraTag, 0, true);
-		}
-	}
-
-	// KDM : Container which will hold our UI components : it's invisible
-    MainPanel = Spawn(class 'UIPanel', self);
-	MainPanel.bAnimateOnInit = false;
-	MainPanel.bIsNavigable = false;
-    MainPanel.InitPanel('ListContainer');
-	MainPanel.SetPosition((Movie.UI_RES_X / 2) - (panelW / 2), panelY);
-    
-	// KDM : Background rectangle
-	ListBG = Spawn(class'UIBGBox', MainPanel);
-	ListBG.bAnimateOnInit = false;
-	ListBG.LibID = class'UIUtilities_Controls'.const.MC_X2Background;
-	ListBG.InitBG('ListBG', 0, 0, panelW, panelH);
-    
-	// KDM : Header (includes title, resistance summary sub-title, and background image) 
-    ListTitle = Spawn(class'UIX2PanelHeader', MainPanel);
-	ListTitle.bAnimateOnInit = false;
-	ListTitle.bIsNavigable = false;
-	ListTitle.InitPanelHeader('TitleHeader', m_strTitle, GetResistanceSummaryString());
-	ListTitle.SetPosition(m_BorderPadding, m_BorderPadding);
-	ListTitle.SetHeaderWidth(panelW - m_BorderPadding * 2);
-    
-    NextY = ListTitle.Y + ListTitle.Height;
-
-	// KDM : Thin dividing line
-    DividerLine = Spawn(class'UIPanel', MainPanel);
-	DividerLine.bAnimateOnInit = false;
-	DividerLine.bIsNavigable = false;
-	DividerLine.LibID = class'UIUtilities_Controls'.const.MC_GenericPixel;
-	DividerLine.InitPanel('DividerLine');
-	DividerLine.SetPosition(m_BorderPadding, NextY);
-	DividerLine.SetWidth(panelW - m_BorderPadding * 2);
-    DividerLine.SetAlpha(20);
-
-    NextY += m_ItemPadding;
-
-    // KDM : Container for column headers : it's invisible
-    HeaderPanel = Spawn(class'UIPanel', MainPanel);
-	HeaderPanel.bAnimateOnInit = false;
-	HeaderPanel.bIsNavigable = false;
-    HeaderPanel.InitPanel('Header');
-	HeaderPanel.SetPosition(m_BorderPadding, NextY);
-	HeaderPanel.SetSize(panelW - m_BorderPadding * 2 - ScrollbarPadding, 32);
-
-	// KDM : Available header space = total header width - 2 pixels between each of the 5 column headers. 
-	AvailableHeaderSpace = HeaderPanel.Width - 4 * 2;
-
-	// KDM : Region name header
-    RegionHeaderButton = Spawn(class'UIButton', HeaderPanel);
-	RegionHeaderButton.bAnimateOnInit = false;
-	RegionHeaderButton.bIsNavigable = false;
-	RegionHeaderButton.ResizeToText = false;
-    RegionHeaderButton.InitButton(, m_strRegionLabel);
-	RegionHeaderButton.SetPosition(0, 0);
-	RegionHeaderButton.SetSize(AvailableHeaderSpace * m_RegionHeaderPct, 30);
-	RegionHeaderButton.SetStyle(eUIButtonStyle_NONE, m_HeaderFontSize);
-    RegionHeaderButton.SetWarning(true);
-    // KDM : Since the region column header can't be clicked, remove its hit testing so mouse events don't change its colour
-	// and make users think the button is active. The same is done for all of the column headers below.
-	RegionHeaderButton.SetHitTestDisabled(true);
-
-	// KDM : Advent strength and vigilance header
-	RegionStatusButton = Spawn(Class'UIButton', HeaderPanel);
-	RegionStatusButton.bAnimateOnInit = false;
-	RegionStatusButton.bIsNavigable = false;
-	RegionStatusButton.ResizeToText = false;
-	RegionStatusButton.InitButton (, m_strSTrength);
-	RegionStatusButton.SetPosition(RegionHeaderButton.X + RegionHeaderButton.Width + 2, 0);
-	RegionStatusButton.SetSize(AvailableHeaderSpace * m_RegionStatusPct, 30);
-	RegionStatusButton.SetStyle(eUIButtonStyle_NONE, m_HeaderFontSize);
-    RegionStatusButton.SetWarning(true);
-    RegionStatusButton.SetHitTestDisabled(true);
-
-	// KDM : Rebel number and rebels per job header
-    RebelCountHeaderButton = Spawn(class'UIButton', HeaderPanel);
-	RebelCountHeaderButton.bAnimateOnInit = false;
-	RebelCountHeaderButton.bIsNavigable = false;
-	RebelCountHeaderButton.ResizeToText = false;
-    RebelCountHeaderButton.InitButton(, m_strRebelCountLabel);
-    RebelCountHeaderButton.SetPosition(RegionStatusButton.X + RegionStatusButton.Width + 2, 0);
-    RebelCountHeaderButton.SetSize(AvailableHeaderSpace * m_RebelCountPct, 30);
-	RebelCountHeaderButton.SetStyle(eUIButtonStyle_NONE, m_HeaderFontSize);
-    RebelCountHeaderButton.SetWarning(true);
-    RebelCountHeaderButton.SetHitTestDisabled(true);
-
-	// KDM : Haven adviser header
-	AdviserHeaderButton = Spawn(class'UIButton', HeaderPanel);
-	AdviserHeaderButton.bAnimateOnInit = false;
-	AdviserHeaderButton.bIsNavigable = false;
-	AdviserHeaderButton.ResizeToText = false;
-    AdviserHeaderButton.InitButton(, m_strAdviserLabel);
-    AdviserHeaderButton.SetPosition(RebelCountHeaderButton.X + RebelCountHeaderButton.Width + 2, 0);
-    AdviserHeaderButton.SetSize(AvailableHeaderSpace * m_AdviserHeaderPct, 30);
-	AdviserHeaderButton.SetStyle(eUIButtonStyle_NONE, m_HeaderFontSize);
-    AdviserHeaderButton.SetWarning(true);
-	AdviserHeaderButton.SetHitTestDisabled(true);
-
-	// KDM : Haven income header
-    IncomeHeaderButton = Spawn(class'UIButton', HeaderPanel);
-	IncomeHeaderButton.bAnimateOnInit = false;
-	IncomeHeaderButton.bIsNavigable = false;
-	IncomeHeaderButton.ResizeToText = false;
-    IncomeHeaderButton.InitButton(, m_strIncomeLabel);
-    IncomeHeaderButton.SetPosition(AdviserHeaderButton.X + AdviserHeaderButton.Width + 2, 0);
-    IncomeHeaderButton.SetSize(AvailableHeaderSpace * m_IncomeHeaderPct, 30);
-	IncomeHeaderButton.SetStyle(eUIButtonStyle_NONE, m_HeaderFontSize);
-	IncomeHeaderButton.SetWarning(true);
-	IncomeHeaderButton.SetHitTestDisabled(true);
-
-    NextY += 30 + m_ItemPadding;
-
-	// KDM : List container which will hold rows of haven information
-	List = Spawn(class'UIList', MainPanel);
-	List.bAnimateOnInit = false;
-	List.bIsNavigable = true;
-	List.bStickyHighlight = false;
-	List.InitList(, m_BorderPadding, NextY, HeaderPanel.Width, panelH - NextY - m_BorderPadding);
-	List.OnItemClicked = OnRegionSelectedCallback;
-
-	// LWS : Redirect all background mouse events to the list so mouse wheel scrolling doesn't get lost when the mouse is positioned between list items.
-    ListBG.ProcessMouseEvents(List.OnChildMouseEvent);
-
-    RefreshNavHelp();
-    RefreshData();
-
-	// KDM : Automatically select the 1st rebel row when using a controller.
-	if (`ISCONTROLLERACTIVE)
-	{
-		List.SetSelectedIndex(0, true);
-	}
-}
-
-simulated function string GetResistanceSummaryString()
-{
-	local int MeanAvatarHours;
-	local string strAvatarPenalty;
-	local XGParamTag ParamTag;
-	
-	// KDM : Global advent strength (number of legions)
-	m_strGlobalResistanceSummary = m_strGlobalAlert @ string(`LWACTIVITYMGR.GetGlobalAlert());
-	if (`LWACTIVITYMGR.GetGlobalAlert() == 1)
-	{
-		m_strGlobalResistanceSummary @= m_strADVENTUnitSingular;
-	}
-	else
-	{
-		m_strGlobalResistanceSummary @= m_strADVENTUnitPlural;
-	}
-
-	// KDM : Global resistance threat
-	m_strGlobalResistanceSummary @= m_strGlobalInsurgency @ GetThreatLevelStr(`LWACTIVITYMGR.GetNetVigilance());
-
-	// KDM : How much Avatar progress has been slowed by
-	if (class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('S0_RevealAvatarProject'))
-	{
-		MeanAvatarHours = (class'XComGameState_HeadquartersAlien'.default.MinFortressDoomInterval[`STRATEGYDIFFICULTYSETTING] + class'XComGameState_HeadquartersAlien'.default.MaxFortressDoomInterval[`STRATEGYDIFFICULTYSETTING]) / 2;
-		ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
-		ParamTag.IntValue0 = Round(float(`LWACTIVITYMGR.GetDoomUpdateModifierHours() * 100) / float (MeanAvatarHours));
-		strAvatarPenalty = `XEXPAND.ExpandString(m_strAvatarPenalty);
-		m_strGlobalResistanceSummary @= strAvatarPenalty;
-	}
-
-	return m_strGlobalResistanceSummary;
-}
-
 // Handle mouse events on the header buttons
 simulated function HeaderMouseEvent(UIPanel Control, int cmd)
 {
-    switch(cmd)
-    {
-    // De-select the button if we leave or drag-leave the button.
-	case class'UIUtilities_Input'.const.FXS_L_MOUSE_OUT:
-    case class'UIUtilities_Input'.const.FXS_L_MOUSE_DRAG_OUT:
-    case class'UIUtilities_Input'.const.FXS_L_MOUSE_RELEASE_OUTSIDE:
-        Control.MC.FunctionVoid("mouseOut");
-        break;
-    }
+	switch (cmd)
+	{
+		// De-select the button if we leave or drag-leave the button.
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_OUT:
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_DRAG_OUT:
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_RELEASE_OUTSIDE:
+			Control.MC.FunctionVoid("mouseOut");
+			break;
+	}
 }
 
 simulated function RefreshData()
 {
-    GetData();
-    //SortData();
-    UpdateList();
+	GetData();
+	UpdateList();
 }
-
 
 simulated function GetData()
 {
-    local XComGameState_LWOutpost Outpost;
-    local XComGameState_WorldRegion Region;
-    local XComGameStateHistory History;
+	local XComGameState_LWOutpost Outpost;
+	local XComGameState_WorldRegion Region;
+	local XComGameStateHistory History;
 
-    History = `XCOMHISTORY;
-    CachedOutposts.Length = 0;
+	History = `XCOMHISTORY;
+	CachedOutposts.Length = 0;
 
-    foreach History.IterateByClassType(class'XComGameState_LWOutpost', Outpost)
-    {
-        Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(Outpost.Region.ObjectID));
-        if (Region.HaveMadeContact())
-            CachedOutposts.AddItem(Outpost.GetReference());
-    }
+	foreach History.IterateByClassType(class'XComGameState_LWOutpost', Outpost)
+	{
+		Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(Outpost.Region.ObjectID));
+		if (Region.HaveMadeContact())
+			CachedOutposts.AddItem(Outpost.GetReference());
+	}
 }
 
 simulated function UpdateList()
 {
-    local StateObjectReference Ref;
+	local StateObjectReference Ref;
 
-    List.ClearItems();
+	List.ClearItems();
 
 	foreach CachedOutposts(Ref)
-    {
-        UIResistanceManagement_ListItem(List.CreateItem(class'UIResistanceManagement_ListItem')).InitListItem(Ref);
-    }
+	{
+		UIResistanceManagement_ListItem(List.CreateItem(class'UIResistanceManagement_ListItem')).InitListItem(Ref);
+	}
 }
 
 simulated function OnRegionSelectedCallback(UIList listCtrl, int itemIndex)
 {
 	local StateObjectReference OutpostRef;
-    local UIOutpostManagement OutpostScreen;
-    local XComHQPresentationLayer HQPres;
+	local UIOutpostManagement OutpostScreen;
+	local XComHQPresentationLayer HQPres;
 
-    HQPres = `HQPRES;
-    OutpostRef = CachedOutposts[itemIndex];
+	HQPres = `HQPRES;
+	OutpostRef = CachedOutposts[itemIndex];
 
 	OutpostScreen = HQPres.Spawn(class'UIOutpostManagement', HQPres);
-    OutpostScreen.SetOutpost(OutpostRef);
+	OutpostScreen.SetOutpost(OutpostRef);
 
 	// KDM : On the Avenger, both the Haven screen and, this, Resistance overview screen are placed within a 3D movie
 	// so they can be put atop a fancy 3D background. This is unneccesary on the strategy map; therefore, in that case,
@@ -409,22 +426,22 @@ simulated function OnRegionSelectedCallback(UIList listCtrl, int itemIndex)
 simulated function RefreshNavHelp()
 {
 	local UINavigationHelp NavHelp;
-	
+
 	NavHelp = `HQPRES.m_kAvengerHUD.NavHelp;
 	NavHelp.ClearButtonHelp();
 	NavHelp.bIsVerticalHelp = `ISCONTROLLERACTIVE;
 	NavHelp.AddBackButton(OnCancel);
-	
+
 	// KDM : Controller specific navigation help
 	if (`ISCONTROLLERACTIVE)
 	{
 		// KDM : A button opens the Haven screen
-		NavHelp.AddLeftHelp(m_strViewHaven, class'UIUtilities_Input'.static.GetAdvanceButtonIcon());
+		NavHelp.AddLeftHelp(ViewHavenStr, class'UIUtilities_Input'.static.GetAdvanceButtonIcon());
 
 		// KDM : Right stick click sends the Avenger to the selected haven, if on the strategy map.
 		if (class'Utilities_LW'.static.IsOnStrategyMap())
 		{
-			NavHelp.AddLeftHelp(m_strFlyToHaven, class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_RSCLICK_R3);
+			NavHelp.AddLeftHelp(FlyToHavenStr, class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_RSCLICK_R3);
 		}
 	}
 	else
@@ -435,7 +452,7 @@ simulated function RefreshNavHelp()
 
 simulated function OnCancel()
 {
-    Movie.Stack.Pop(self);
+	Movie.Stack.Pop(self);
 }
 
 simulated function OnAccept()
@@ -445,7 +462,7 @@ simulated function OnAccept()
 simulated function OnReceiveFocus()
 {
 	super.OnReceiveFocus();
-	
+
 	RefreshNavHelp();
 
 	// KDM : The calls to DisplayUI3D() have been removed as they appear unnecessary.
@@ -454,15 +471,15 @@ simulated function OnReceiveFocus()
 
 	if (`ISCONTROLLERACTIVE)
 	{
-		if (m_SelectedIndexOnFocusLost == INDEX_NONE)
+		if (SelectedIndexOnFocusLost == INDEX_NONE)
 		{
 			// KDM : We don't know which list item was selected, so select the 1st one.
-			List.SetSelectedIndex(0, true);
+			List.NavigatorSelectionChanged(0);
 		}
 		else
 		{
 			// KDM : Re-select the list item which was selected when we lost focus.
-			List.SetSelectedIndex(m_SelectedIndexOnFocusLost, true);
+			List.NavigatorSelectionChanged(SelectedIndexOnFocusLost);
 		}
 	}
 }
@@ -473,7 +490,7 @@ simulated function OnLoseFocus()
 	// This is described in more detail at the top of the file.
 	if (`ISCONTROLLERACTIVE)
 	{
-		m_SelectedIndexOnFocusLost = List.SelectedIndex;
+		SelectedIndexOnFocusLost = List.SelectedIndex;
 	}
 
 	super.OnLoseFocus();
@@ -489,9 +506,9 @@ simulated function FlyToSelectedHaven()
 	local XComGameState_LWOutpost Outpost;
 	local XComGameState_WorldRegion Region;
 	local XComGameStateHistory History;
-	
+
 	History = `XCOMHISTORY;
-	
+
 	OutpostRef = CachedOutposts[List.GetItemIndex(List.GetSelectedItem())];
 	Outpost = XComGameState_LWOutpost(History.GetGameStateForObjectID(OutpostRef.ObjectID));
 	Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(Outpost.Region.ObjectID));
@@ -507,7 +524,6 @@ simulated function FlyToSelectedHaven()
 		// KDM : Close this Resistance overview screen.
 		OnCancel();
 	}
-	
 }
 
 simulated function bool OnUnrealCommand(int cmd, int arg)
@@ -518,7 +534,7 @@ simulated function bool OnUnrealCommand(int cmd, int arg)
 	{
 		return false;
 	}
-	
+
 	bHandled = true;
 
 	switch (cmd)
@@ -560,40 +576,41 @@ simulated function bool OnUnrealCommand(int cmd, int arg)
 
 function bool GetFlipSort()
 {
-    return FlipSort;
+	return FlipSort;
 }
 
 function int GetSortType()
 {
-    return SortType;
+	return SortType;
 }
 
 function SetFlipSort(bool bFlip)
 {
-    FlipSort = bFlip;
+	FlipSort = bFlip;
 }
 
 function SetSortType(int eSortType)
 {
-    SortType = EResistanceSortType(eSortType);
+	SortType = EResistanceSortType(eSortType);
 }
 
 defaultproperties
 {
 	bAnimateOnInit = false;
 	EnableCameraPan = true;
-    bConsumeMouseEvents = true;
-	InputState    = eInputState_Consume;
+	bConsumeMouseEvents = true;
+	InputState = eInputState_Consume;
 
-	DisplayTag      = "UIDisplay_Council";
-	CameraTag       = "UIDisplayCam_ResistanceScreen";
+	DisplayTag = "UIDisplay_Council";
+	CameraTag = "UIDisplayCam_ResistanceScreen";
 
-    // Main panel positioning. Note X is not defined, it's set to centered
-    // based on the movie width and panel width.
-    panelY = 80;
-    panelW = 961;
-    panelH = 781;
+	// Main panel positioning. Note X is not defined, it's set to centered
+	// based on the movie width and panel width.
+	panelY = 80;
+	panelW = 961;
+	panelH = 781;
 
-	// KDM : See the comments in UIMouseGuard_Custom for more information.
+	// KDM : See the comments in UIMouseGuard_LW for more information.
 	MouseGuardClass = class'UIMouseGuard_LW';
 }
+

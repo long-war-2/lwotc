@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    UIScreenListener_UIStrategyMap
-//  AUTHOR:  KDM
-//  PURPOSE: Allow controller users to bring up the Resistance overview screen from the strategy map
+//	FILE:		UIScreenListener_UIStrategyMap
+//	AUTHOR:		KDM
+//	PURPOSE:	Allow controller users to bring up the Resistance overview screen from the strategy map
 //--------------------------------------------------------------------------------------- 
 
 class UIScreenListener_UIStrategyMap extends UIScreenListener;
@@ -24,7 +24,7 @@ event OnRemoved(UIScreen Screen)
 	HQPres.ScreenStack.UnsubscribeFromOnInputForScreen(Screen, OnUIStrategyMapCommand);
 }
 
-simulated protected function bool OnUIStrategyMapCommand (UIScreen Screen, int cmd, int arg)
+simulated protected function bool OnUIStrategyMapCommand(UIScreen Screen, int cmd, int arg)
 {
 	local bool bHandled;
 	local UIResistanceManagement_LW ResistanceOverviewScreen;
@@ -42,7 +42,7 @@ simulated protected function bool OnUIStrategyMapCommand (UIScreen Screen, int c
 	{
 		// KDM : X button brings up the Resistance overview screen
 		case class'UIUtilities_Input'.const.FXS_BUTTON_X:
-			if(!HQPres.ScreenStack.HasInstanceOf(class'UIResistanceManagement_LW'))
+			if (!HQPres.ScreenStack.HasInstanceOf(class'UIResistanceManagement_LW'))
 			{
 				ResistanceOverviewScreen = HQPres.Spawn(class'UIResistanceManagement_LW', HQPres);
 				ResistanceOverviewScreen.EnableCameraPan = false;
@@ -62,3 +62,4 @@ defaultProperties
 {
 	ScreenClass = UIStrategyMap;
 }
+
