@@ -3991,9 +3991,15 @@ Description="An extensive cache of enemy intel."
 ; Dark Events
 
 [DarkEvent_AlloyPadding X2DarkEventTemplate]
+; LWOTC Needs Translation
+DisplayName="Permanent: ADVENT Alloy Padding"
+; End Translation
 SummaryText="ADVENT invests in improving their battle gear, adding armor to some of their soldiers in the field."
 
 [DarkEvent_ViperRounds X2DarkEventTemplate]
+; LWOTC Needs Translation
+DisplayName="Permanent: Viper Rounds"
+; End Translation
 SummaryText="ADVENT incorporates Viper poison into their weaponry, giving some ADVENT soldiers poisonous rounds."
 
 [DarkEvent_RapidResponse X2DarkEventTemplate]
