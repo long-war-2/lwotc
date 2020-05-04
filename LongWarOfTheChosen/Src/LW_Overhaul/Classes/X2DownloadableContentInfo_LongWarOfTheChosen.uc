@@ -10,6 +10,10 @@
 
 class X2DownloadableContentInfo_LongWarOfTheChosen extends X2DownloadableContentInfo config(LW_Overhaul);
 
+// Conditional MCOs depending on whether another mod has overridden
+// the base class or not.
+var config array<ModClassOverrideEntry> ModClassOverrides;
+
 //----------------------------------------------------------------
 // A random selection of data and data structures from LW Overhaul
 struct MinimumInfilForConcealEntry
@@ -135,6 +139,11 @@ static event InstallNewCampaign(XComGameState StartState)
 	class'X2StrategyElement_DefaultResistanceModes'.static.OnXCOMLeavesBuildMode(StartState, StartingFactionState.GetReference());
 }
 
+static function OnPreCreateTemplates()
+{
+	PatchModClassOverrides();
+}
+
 /// <summary>
 /// Called after the Templates have been created (but before they are validated) while this DLC / Mod is installed.
 /// </summary>
@@ -242,6 +251,27 @@ static event OnLoadedSavedGameToStrategy()
 	}
 
 	CleanupObsoleteTacticalGamestate();
+}
+
+// Make sure we're not overriding classes already overridden by another
+// mod, such as Detailed Soldier List. Thanks to Musashi for the basic
+// code (as used in RPGO).
+static function PatchModClassOverrides()
+{
+	local Engine LocalEngine;
+	local ModClassOverrideEntry MCO;
+
+	LocalEngine = class'Engine'.static.GetEngine();
+	foreach default.ModClassOverrides(MCO)
+	{
+		if (LocalEngine.ModClassOverrides.Find('BaseGameClass', MCO.BaseGameClass) != INDEX_NONE)
+		{
+			`LWTrace(GetFuncName() @ "Found existing MCO for base class" @ MCO.BaseGameClass @ " - SKIPPING");
+			continue;
+		}
+		LocalEngine.ModClassOverrides.AddItem(MCO);
+		`LWTrace(GetFuncName() @ "Adding Mod Class Override -" @ MCO.BaseGameClass @ MCO.ModClass);
+	}
 }
 
 static function XComGameState_WorldRegion SetStartingLocationToStartingRegion(XComGameState StartState)
