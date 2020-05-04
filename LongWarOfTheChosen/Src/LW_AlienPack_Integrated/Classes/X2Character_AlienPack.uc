@@ -137,6 +137,8 @@ static function X2CharacterTemplate CreateTemplate_MutonM2_LW()
 	CharTemplate.Abilities.AddItem('CounterattackDescription');
 	CharTemplate.Abilities.AddItem('WarCry');
 	CharTemplate.Abilities.AddItem('Beastmaster_LW');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	CharTemplate.AddTemplateAvailablility(CharTemplate.BITFIELD_GAMEAREA_Multiplayer); // Allow in MP!
 	CharTemplate.MPPointValue = CharTemplate.XpKillscore * 10;
@@ -210,6 +212,8 @@ static function X2CharacterTemplate CreateTemplate_MutonM2_Dummy()
 	CharTemplate.Abilities.AddItem('CounterattackDescription');
 	CharTemplate.Abilities.AddItem('WarCry');
 	CharTemplate.Abilities.AddItem('Beastmaster_LW');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	CharTemplate.AddTemplateAvailablility(CharTemplate.BITFIELD_GAMEAREA_Multiplayer); // Allow in MP!
 	CharTemplate.MPPointValue = CharTemplate.XpKillscore * 10;
@@ -285,6 +289,8 @@ static function X2CharacterTemplate CreateTemplate_MutonM3_LW()
 
 	CharTemplate.Abilities.AddItem('TacticalSense');
 	CharTemplate.Abilities.AddItem('PersonalShield');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 	// LightEmUp: Weapon Template
 
 	CharTemplate.AddTemplateAvailablility(CharTemplate.BITFIELD_GAMEAREA_Multiplayer); // Allow in MP!
@@ -384,6 +390,8 @@ static function X2CharacterTemplate CreateTemplate_Naja(name TemplateName)
 	CharTemplate.bAllowSpawnFromATT = false;
 
 	CharTemplate.Abilities.AddItem('FireControl25');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	CharTemplate.Abilities.AddItem('Squadsight'); //character perk
 	if (TemplateName == 'NajaM2' || TemplateName == 'NajaM3')
@@ -512,6 +520,8 @@ static function X2CharacterTemplate CreateTemplate_Sidewinder(name TemplateName)
 		default:
 		break;
 	}
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	CharTemplate.AddTemplateAvailablility(CharTemplate.BITFIELD_GAMEAREA_Multiplayer); // Allow in MP!
 	CharTemplate.MPPointValue = CharTemplate.XpKillscore * 10;
@@ -591,6 +601,8 @@ static function X2CharacterTemplate CreateTemplate_ArchonM2_LW()
 	CharTemplate.Abilities.AddItem('FrenzyDamageListener');
 	CharTemplate.Abilities.AddItem('BlazingPinionsStage1');
 	CharTemplate.Abilities.AddItem('LightningReflexes_LW');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.Enemy_Sighted_Archon');
 
@@ -657,6 +669,8 @@ static function X2CharacterTemplate CreateTemplate_SectoidM2_LW()  // I have big
 
 	CharTemplate.Abilities.AddItem('MassMindspin');
 	CharTemplate.Abilities.AddItem('MassReanimation_LW');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	// OTHERS?
 
@@ -746,6 +760,8 @@ static function X2CharacterTemplate CreateTemplate_Viper_LW(name TemplateName)
 	CharTemplate.bAllowSpawnFromATT = false;
 
 	CharTemplate.Abilities.AddItem('Bind');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 	if (TemplateName == 'ViperM3_LW')
 	{
 		CharTemplate.Abilities.AddItem('LightningReflexes_LW');
@@ -838,6 +854,11 @@ static function X2CharacterTemplate CreateTemplate_AdvGunner(name TemplateName)
 	CharTemplate.bIsSoldier = false;
 
 	CharTemplate.Abilities.AddItem('HunkerDown');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_SealedArmor');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_UndyingLoyalty');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Counterattack');
 
 	CharTemplate.bCanBeTerrorist = false;
 	CharTemplate.bCanBeCriticallyWounded = false;
@@ -943,6 +964,11 @@ static function X2CharacterTemplate CreateTemplate_AdvSentry(name TemplateName)
 
 	CharTemplate.Abilities.AddItem('ReadyForAnything');
 	CharTemplate.Abilities.AddItem('HunkerDown');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_SealedArmor');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_UndyingLoyalty');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Counterattack');
 
 	if (TemplateName == 'AdvSentryM3')
 		CharTemplate.Abilities.AddItem('TacticalSense');
@@ -1044,6 +1070,12 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 	CharTemplate.bAllowSpawnFromATT = true;
 
     CharTemplate.Abilities.AddItem('HunkerDown');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_SealedArmor');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_UndyingLoyalty');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Counterattack');
+
 	if (TemplateName == 'AdvGrenadierM3')
 	{
 		CharTemplate.Abilities.AddItem('Salvo');
@@ -1140,6 +1172,11 @@ static function X2CharacterTemplate CreateTemplate_AdvRocketeer(name TemplateNam
 	CharTemplate.bIsAfraidOfFire = true;
 
 	CharTemplate.Abilities.AddItem('HunkerDown');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_SealedArmor');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_UndyingLoyalty');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Counterattack');
 
 	if (TemplateName == 'AdvRocketeerM3')
 		CharTemplate.Abilities.AddItem('BiggestBooms');
@@ -1217,6 +1254,8 @@ static function X2CharacterTemplate CreateTemplate_AdvMec_M3()
 
 	CharTemplate.Abilities.AddItem('RobotImmunities');
 	CharTemplate.Abilities.AddItem('DamageControl');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	CharTemplate.strHackIconImage = "UILibrary_Common.TargetIcons.Hack_robot_icon";
 	CharTemplate.strTargetIconImage = class'UIUtilities_Image'.const.TargetIcon_Advent;
@@ -1283,6 +1322,8 @@ static function X2CharacterTemplate CreateTemplate_AdvMECArcher(name TemplateNam
 	CharTemplate.strScamperBT = "ScamperRoot_Overwatch";
 
 	CharTemplate.Abilities.AddItem('RobotImmunities');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	if (TemplateName == 'AdvMecArcherM2')
 		CharTemplate.Abilities.AddItem('BiggestBooms');
@@ -1382,6 +1423,8 @@ static function X2CharacterTemplate CreateTemplate_Drone(name TemplateName)
 
 	CharTemplate.Abilities.AddItem('LWDroneMeleeStun');
 	CharTemplate.Abilities.AddItem('RobotImmunities');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 	//CharTemplate.Abilities.AddItem('FireOnDeath');
 
 	CharTemplate.AddTemplateAvailablility(CharTemplate.BITFIELD_GAMEAREA_Multiplayer); // Allow in MP!
@@ -1462,6 +1505,8 @@ static function X2CharacterTemplate CreateTemplate_ChryssalidSoldier()
 	CharTemplate.Abilities.AddItem('ChryssalidImmunities');
 	CharTemplate.Abilities.AddItem('ChryssalidSoldierSlash');
 	CharTemplate.Abilities.AddItem('LightningReflexes_LW');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_Cryssalid');
 
@@ -1535,6 +1580,8 @@ static function X2CharacterTemplate CreateTemplate_HiveQueen()
 	CharTemplate.Abilities.AddItem('ChyssalidPoison');
 	CharTemplate.Abilities.AddItem('ChryssalidImmunities');
 	CharTemplate.Abilities.AddItem('HiveQueenSlash');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_Cryssalid');
 
@@ -1569,6 +1616,11 @@ static function X2CharacterTemplate CreateTemplate_AdvGeneric(name TemplateName)
 	//CharTemplate.strBehaviorTree = "LWAdventSentryRoot"; // new config behavior tree parsing means we could use the group instead
 
 	CharTemplate.Abilities.AddItem('HunkerDown');
+	// WOTC abilities
+	CharTemplate.Abilities.AddItem('DarkEventAbility_SealedArmor');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_UndyingLoyalty');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
+	CharTemplate.Abilities.AddItem('DarkEventAbility_Counterattack');
 
 	switch (TemplateName)
 	{
