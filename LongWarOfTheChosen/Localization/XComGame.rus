@@ -4845,3 +4845,180 @@ LocFriendlyName="Улучшенная командная работа"
 LocHelpText="Предоставляет дополнительное действие. Число зарядов может быть один или два, в зависимости от уровня связи напарников."
 LocLongDescription="Предоставляет дополнительное действие. Число зарядов может быть один или два, в зависимости от уровня связи напарников."
 ; End Translation
+
+; LWOTC Translated
+[Lethargy X2AbilityTemplate]
+LocFriendlyName="Летаргический"
+LocHelpText="У оперативника пониженная точность и мобильность."
+LocLongDescription="У оперативника пониженная точность и мобильность."
+
+[CombatRushOnCrit X2AbilityTemplate]
+LocFriendlyName="Боевой азарт (после крита)"
+LocFlyOverText="Боевой азарт (после крита)"
+LocHelpText="После критического попадания вами оперативники, которые находятся недалеко от вас, получают бонус к точности, шансу крита и мобильности."
+LocLongDescription="Когда вы наносите критический урон любым способом, человек или человекоподобный союзник временно получает бонус к меткости, шансу крата и мобильности."
+
+[LocationScout X2SitRepTemplate]
+Description="Сопротивление установило датчки движения в местности операции, которые передают ифнормацию вашим оперативникам. Позволяет обнаруживать врагов за пределами видимости."
+
+[ProjectMiranda X2SitRepTemplate]
+FriendlyName="Проэкт Миранда"
+Description="Адвент проводит испытания летаргического оружия в этом районе. Все немеханические солдаты теряют в точности и мобильности."
+
+[SomethingInTheAir X2SitRepTemplate]
+FriendlyName="Что-то странное с воздухом"
+Description="Что-то странное в воздухе, но что бы это ни было, оно актвирует боевой азарт посе критических ударов. Осторожно, это действует также на адвент!"
+
+[DarkEventBarrierSitRep X2SitRepTemplate]
+FriendlyName="Барьер"
+Description="Защита от взлома и пси-вмешательства удвоена. Спецы и психи тихонько грустят."
+
+[DarkEventDarkTowerSitRep X2SitRepTemplate]
+FriendlyName="Башня мрака"
+Description="Мы не знаем что происходит в этой местности, но здесь наши оперативники теряют волю быстрее."
+
+[DarkEventHighAlertSitRep X2SitRepTemplate]
+FriendlyName="Тревога"
+Description="У адвента тревога, задание начнётся без маскировки."
+
+[DarkEventInfiltratorSitRep X2SitRepTemplate]
+FriendlyName="Безликие"
+Description="Адвент расположил безликих в местах, в которых они ожидают нападения. Весьма вероятно вы встретите безликих среди мирного населения"
+
+[DarkEventInfiltratorChryssalidSitRep X2SitRepTemplate]
+FriendlyName="Криссалиды"
+Description="Адвент принимает отчаянные меры! Они привезли этих зверушек в жилые зоны. Опасайтесь закопанных криссалидов в этой миссии!"
+
+[DarkEventRapidResponseSitRep X2SitRepTemplate]
+FriendlyName="Быстрое реагирование"
+Description="Адвент улучшил системы реагирования, так что теперь подкрепление будет раньше чем обычно."
+
+[DarkEventReturnFireSitRep X2SitRepTemplate]
+FriendlyName="Ответный огонь"
+Description="Офицеры и жрецы адвента будут отвечать огнём, если вы промахнётесь по ним."
+
+[DarkEventSealedArmorSitRep X2SitRepTemplate]
+FriendlyName="Герметичная защита"
+Description="Адвент становится невосприимчив к окружающему воздействию яда, огня и льда."
+
+[DarkEventUndyingLoyaltySitRep X2SitRepTemplate]
+FriendlyName="Посмертная верность"
+Description="Враг играется с какой то непонятной вуду. Мы получаем отчёты о восстаниях солдат адвента после смерти"
+
+[DarkEventVigilanceSitRep X2SitRepTemplate]
+FriendlyName="Бдительность"
+Description="Адвент в боевой готовнсти, что делает тяжелее застать их врасплох. Повышен радиус обнаружения."
+
+[ViperKing X2SitRepTemplate]
+FriendlyName="Король вайперов "
+Description="Король вайперов ожидается на этой миссии, будьте осторожны!"
+
+[BerserkerQueen X2SitRepTemplate]
+FriendlyName="Королева берсеркеров"
+Description="Королева берсеркеров ожидается на этой миссии, будьте осторожны!"
+
+[ArchonKing X2SitRepTemplate]
+FriendlyName="Король архонтов"
+Description="Король архонтов был замечен в этой местности, будьте осторожны!"
+
+[CovertAction_IntenseTraining X2CovertActionTemplate]
+ActionObjective="Усиленные тренировки"
+
+[CovertActionRisk_Failure_Easy X2CovertActionRiskTemplate]
+RiskName="Провал"
+
+[CovertActionRisk_Failure_Moderate X2CovertActionRiskTemplate]
+RiskName="Провал"
+
+[CovertActionRisk_Failure_Hard X2CovertActionRiskTemplate]
+RiskName="Провал"
+
+
+[CombatRushOnCritEffect X2SitRepEffect_GrantAbilities]
+FriendlyName="Боевой азарт с критом"
+Description="Активирует боевой азарт после критических попаданий."
+
+[LethargyEffect X2SitRepEffect_GrantAbilities]
+FriendlyName="Летаргия"
+Description="Снижение точности на 20 и мобильности на 2 у солдат."
+
+
+; Вскрытие огнеметчиков адвента больше не открывает усиление подкладки брони
+[AutopsyAdventPurifier X2TechTemplate]
+UnlockedDescription=""
+; End Translated
+
+
+
+; LWOTC Translated
+[DifficultMissionCompleted X2AbilityPointTemplate]
+ActionFriendlyName="для сложной операции"
+
+[VeryDifficultMissionCompleted X2AbilityPointTemplate]
+ActionFriendlyName="для очень сложной операции"
+
+[CovertAction_EnemyCorpses X2CovertActionTemplate]
+ActionObjective="Унести трупы"
+
+[CovertAction_IntenseTraining X2CovertActionTemplate]
+ActionObjective="Усиленные тренировки"
+
+[CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Рейд на вражеский морг"
+ActionPreNarrative="Мы обнаружили где они хранят трупы тех, кто сражался с вами. Отличная возможность улучшить наши технологии."
+ActionPostNarrative="Команда попытается собрать стоящие образцы в рейде."
+
+[CovertActionNarrative_EnemyCorpses_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Рейд на вражеский морг"
+ActionPreNarrative="Мы обнаружили где они хранят трупы тех, кто сражался с вами. Отличная возможность улучшить наши технологии."
+ActionPostNarrative="Команда попытается собрать стоящие образцы в рейде."
+
+[CovertActionNarrative_EnemyCorpses_Templars X2CovertActionNarrativeTemplate]
+ActionName="Рейд на вражеский морг"
+ActionPreNarrative="Мы обнаружили где они хранят трупы тех, кто сражался с вами. Отличная возможность улучшить наши технологии."
+ActionPostNarrative="Команда попытается собрать стоящие образцы в рейде."
+
+[CovertActionNarrative_IntenseTraining_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Предпринять усиленные тренировки (Стоит: 5 очков способностей)"
+ActionPreNarrative="Время приложить усилия. К тренировке, солдат!"
+ActionPostNarrative="Ваш оперативник теперь лучше"
+
+[CovertActionNarrative_IntenseTraining_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Предпринять усиленные тренировки (Стоит: 5 очков способностей)"
+ActionPreNarrative="Время приложить усилия. К тренировке, солдат!"
+ActionPostNarrative="Ваш оперативник теперь лучше"
+
+[CovertActionNarrative_IntenseTraining_Templars X2CovertActionNarrativeTemplate]
+ActionName="Предпринять усиленные тренировки (Стоит: 5 очков способностей)"
+ActionPreNarrative="Время приложить усилия. К тренировке, солдат!"
+ActionPostNarrative="Ваш оперативник теперь лучше"
+
+
+[AbilityPoints X2ItemTemplate]
+FriendlyName="Очки способностей"
+FriendlyNamePlural="Очки способностей"
+BriefSummary="Резерв очков способностей, которые могут открыть новые способности или улучшить характеристики оперативников"
+; End Translated
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
