@@ -36,7 +36,10 @@ static function X2AbilityTemplate CreateInteractSmashNGrabAbility()
 	ItemCondition.ItemTemplateName='SmashNGrabQuestItem';
 	Template.AbilityShooterConditions.AddItem(ItemCondition);
 
-	
+	// Reaper should always lose Shadow when opening a Smash and Grab crate
+	// to avoid cheesing the mission, especially for XP.
+	Template.SuperConcealmentLoss = 100;
+
 	`Log("TRACE: All done!");
 	return Template;
 }
