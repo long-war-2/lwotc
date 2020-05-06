@@ -7,27 +7,6 @@
 
 class UIStrategyMapItem_Region_LW extends UIStrategyMapItem_Region;
 
-//var StaticMesh RegionMesh;
-//const NUM_TILES = 3;
-//var StaticMeshComponent RegionComponents[NUM_TILES];
-//
-//var public localized String m_strLockedTT;
-//var public localized String m_strUnlockedTT;
-//var public localized String m_strContactTT;
-//var public localized String m_strOutpostTT;
-//var public localized String m_strControlTT;
-//
-//var public localized String m_strScanForIntelLabel;
-//var public localized String m_strScanForOutpostLabel; 
-//var public localized String m_strButtonMakeContact;
-//
-//var UIButton ContactButton; 
-//var UIButton OutpostButton;
-//var UIPanel BGPanel;
-//var UIScanButton ScanButton;
-//
-//var array<float> CumulativeTriangleArea;
-
 var localized string m_strOutpostTitle;
 var localized string m_strAlertLevel;
 var localized string m_strLiberatedRegion;
@@ -52,14 +31,10 @@ simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntit
 	// Spawn the children BEFORE the super.Init because inside that super, it will trigger UpdateFlyoverText and other functions
 	// which may assume these children already exist. 
 
-	//BGPanel = Spawn(class'UIPanel', self);
 	ContactButton = Spawn(class'UILargeButton', self);
 	OutpostButton = Spawn(class'UIButton', self);
 
 	super(UIStrategyMapItem).InitMapItem(Entity);
-
-	//BGPanel.InitPanel('regionLabelBG'); // on stage
-	//BGPanel.ProcessMouseEvents(OnBGMouseEvent);
 
 	ContactButton.InitButton('contactButtonMC', m_strButtonMakeContact, OnContactClicked); // on stage
 	ContactButton.OnMouseEventDelegate = ContactButtonOnMouseEvent; 
@@ -79,7 +54,7 @@ simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntit
 
 	TextureObject = `CONTENT.RequestGameArchetype(RegionTemplate.RegionTexturePath);
 
-	if(TextureObject == none || !TextureObject.IsA('Texture2D'))
+	if (TextureObject == none || !TextureObject.IsA('Texture2D'))
 	{
 		`RedScreen("Could not load region texture" @ RegionTemplate.RegionTexturePath);
 		return self;
@@ -88,7 +63,7 @@ simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntit
 	RegionTexture = Texture2D(TextureObject);
 	RegionMesh = class'Helpers'.static.ConstructRegionActor(RegionTexture);
 
-	for( i = 0; i < NUM_TILES; ++i)
+	for (i = 0; i < NUM_TILES; ++i)
 	{
 		InitRegionComponent(i, RegionTemplate);
 	}
@@ -114,7 +89,7 @@ simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntit
 
 function bool ShouldDrawResInfo(XComGameState_WorldRegion RegionState)
 {
-	if( RegionState.bCanScanForContact || RegionState.HaveMadeContact() )
+	if (RegionState.bCanScanForContact || RegionState.HaveMadeContact())
 	{
 		return true;
 	}
@@ -135,7 +110,7 @@ function UpdateFlyoverText()
 	local String StateLabel;
 	local string HoverInfo;
 	local int iResLevel;
-    local XComGameState_LWOutpostManager OutpostManager;
+	local XComGameState_LWOutpostManager OutpostManager;
 	local XComGameState_LWOutpost	OutpostState;
 
 	History = `XCOMHISTORY;
@@ -144,15 +119,14 @@ function UpdateFlyoverText()
 	OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
 	OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
 
-    HavenLabel = GetHavenLabel(RegionState, OutpostState);
+	HavenLabel = GetHavenLabel(RegionState, OutpostState);
 	RegionLabel = GetRegionLabel(RegionState, OutpostState);
 	
 	HoverInfo = "";
-	if( ShowContactButton() )
+	if (ShowContactButton())
 	{
-		//HoverInfo = PotentialSuppliesWithContact();
 		ContactButton.Show();
-		if(ShouldDrawResInfo(RegionState))
+		if (ShouldDrawResInfo(RegionState))
 		{
 			HavenLabel = class'UIResistanceManagement_LW'.default.m_strRebelCountLabel $ ": " $ OutpostState.GetRebelCount();
 			HavenLabel = class'UIUtilities_Text'.static.GetColoredText(HavenLabel, GetIncomeColor(RegionState.ResistanceLevel));
@@ -163,23 +137,22 @@ function UpdateFlyoverText()
 		ContactButton.Hide();
 	}
 
-	if( RegionState.HaveMadeContact() )
+	if (RegionState.HaveMadeContact())
 		OutpostButton.Show();
 	else
 		OutpostButton.Hide();
 
 	StateLabel = ""; //Possibly unused. 
 
-	if( IsResHQRegion() )
+	if (IsResHQRegion())
 		iResLevel = eResLevel_Outpost + 1;
 	else
 		iResLevel = RegionState.ResistanceLevel;
 
 	CachedRegionLabel = RegionLabel;
-    CachedHavenLabel = HavenLabel;
+	CachedHavenLabel = HavenLabel;
 
 	SetRegionInfo(RegionLabel, HavenLabel, StateLabel, iResLevel, HoverInfo);
-
 }
 
 function string GetRegionLabel(XComGameState_WorldRegion RegionState, optional XComGameState_LWOutpost OutpostState)
@@ -189,7 +162,7 @@ function string GetRegionLabel(XComGameState_WorldRegion RegionState, optional X
 	local XComGameState_Unit Liaison;
 	local StateObjectReference LiaisonRef;
 
-	if( RegionState.HaveMadeContact() )
+	if (RegionState.HaveMadeContact())
 	{
 		ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
 		ParamTag.IntValue0 = OutpostState.GetNumRebelsOnJob('Resupply');
@@ -200,7 +173,7 @@ function string GetRegionLabel(XComGameState_WorldRegion RegionState, optional X
 		RegionLabel = RegionLabel @ `XEXPAND.ExpandString(m_strStaffingPinTextMore);
 
 		if (OutPostState.HasLiaisonOfKind ('Soldier'))
-	    {
+		{
 			LiaisonRef = OutPostState.GetLiaison();
 			Liaison = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(LiaisonRef.ObjectID));
 			strAdviser = class'UIUtilities_Text'.static.InjectImage(class'UIUtilities_Image'.static.GetRankIcon(Liaison.GetRank(), Liaison.GetSoldierClassTemplateName()), 16, 16, -2);
@@ -227,22 +200,22 @@ function string GetRegionLabel(XComGameState_WorldRegion RegionState, optional X
 
 function string GetHavenLabel(XComGameState_WorldRegion RegionState, optional XComGameState_LWOutpost OutpostState)
 {
-    local String HavenLabel;
-    local XGParamTag ParamTag;
+	local String HavenLabel;
+	local XGParamTag ParamTag;
 
 	HavenLabel = "";	// Blank string will tell the supply income and region state to hide
-	if( RegionState.HaveMadeContact() )
+	if (RegionState.HaveMadeContact())
 	{
 		ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
 
 		ParamTag.IntValue0 = int(OutpostState.GetIncomePoolForJob('Resupply'));
-        ParamTag.IntValue1 = int(OutpostState.GetProjectedMonthlyIncomeForJob('Resupply'));
+		ParamTag.IntValue1 = int(OutpostState.GetProjectedMonthlyIncomeForJob('Resupply'));
 		HavenLabel = `XEXPAND.ExpandString(m_strMonthlyRegionalIncome);
-		
+
 		HavenLabel = class'UIUtilities_Text'.static.GetColoredText(HavenLabel, GetIncomeColor(RegionState.ResistanceLevel));
 	}
 
-    return HavenLabel;
+	return HavenLabel;
 }
 
 function UpdateFromGeoscapeEntity(const out XComGameState_GeoscapeEntity GeoscapeEntity)
@@ -254,17 +227,16 @@ function UpdateFromGeoscapeEntity(const out XComGameState_GeoscapeEntity Geoscap
 	local string ScanInfo;
 	local int DaysRemaining;
 	local String RegionLabel;
-    local XComGameState_LWOutpostManager OutpostManager;
+	local XComGameState_LWOutpostManager OutpostManager;
 	local XComGameState_LWOutpost	OutpostState;
 	local XGParamTag ParamTag;
 
-	if( !bIsInited ) return; 
+	if (!bIsInited) return; 
 
 	super(UIStrategyMapItem).UpdateFromGeoscapeEntity(GeoscapeEntity);
 
 	RegionState = GetRegion();
-	//if(!RegionState.HaveMadeContact() && !ShouldDrawResInfo(RegionState))
-	if( !RegionState.HaveMadeContact() && !IsAvengerLandedHere() && !RegionState.bCanScanForContact)
+	if (!RegionState.HaveMadeContact() && !IsAvengerLandedHere() && !RegionState.bCanScanForContact)
 	{
 		ScanButton.Hide();
 	}
@@ -274,7 +246,7 @@ function UpdateFromGeoscapeEntity(const out XComGameState_GeoscapeEntity Geoscap
 		OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
 		OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
 
-		if(GetRegionLabel(RegionState, OutpostState) != CachedRegionLabel || GetHavenLabel(RegionState, OutpostState) != CachedHavenLabel)
+		if (GetRegionLabel(RegionState, OutpostState) != CachedRegionLabel || GetHavenLabel(RegionState, OutpostState) != CachedHavenLabel)
 			UpdateFlyoverText();
 
 		ScanButton.Show();
@@ -289,7 +261,7 @@ function UpdateFromGeoscapeEntity(const out XComGameState_GeoscapeEntity Geoscap
 			ScanButton.SetButtonType(eUIScanButtonType_Default);
 		}
 
-		if( RegionState.bCanScanForContact )
+		if (RegionState.bCanScanForContact)
 		{
 			ScanTitle = m_strScanForIntelLabel;
 			DaysRemaining = RegionState.GetNumScanDaysRemaining();
@@ -314,6 +286,7 @@ function UpdateFromGeoscapeEntity(const out XComGameState_GeoscapeEntity Geoscap
 			ScanTimeValue = "";
 			ScanTimeLabel = "";
 		}
+		
 		ScanButton.SetText(ScanTitle, ScanInfo, ScanTimeValue, ScanTimeLabel);
 		ScanButton.AnimateIcon(`GAME.GetGeoscape().IsScanning() && IsAvengerLandedHere());
 		ScanButton.SetScanMeter(RegionState.GetScanPercentComplete());
@@ -329,9 +302,9 @@ function string GetContactedRegionInfo(XComGameState_WorldRegion RegionState)
 
 	ScanInfo = "";
 	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
-	if(RegionalAIState != none)
+	if (RegionalAIState != none)
 	{
-		if(RegionalAIState.bLiberated)
+		if (RegionalAIState.bLiberated)
 		{
 			ScanInfo = m_strLiberatedRegion;
 		}
@@ -352,11 +325,11 @@ function string GetContactedRegionInfo(XComGameState_WorldRegion RegionState)
 function OnOutpostClicked(UIButton Button)
 {
 	local XComGameStateHistory History;
- 	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion RegionState;
 	local UIOutpostManagement OutpostScreen;
-    local StateObjectReference OutpostRef;
-    local XComHQPresentationLayer HQPres;
-    local XComGameState_LWOutpostManager OutpostManager;
+	local StateObjectReference OutpostRef;
+	local XComHQPresentationLayer HQPres;
+	local XComGameState_LWOutpostManager OutpostManager;
 	local XComGameState_LWOutpost	OutpostState;
 
 	History = `XCOMHISTORY;
@@ -365,20 +338,20 @@ function OnOutpostClicked(UIButton Button)
 	OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
 	OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
 
-    HQPres = `HQPRES;
-    OutpostRef = OutpostState.GetReference();
+	HQPres = `HQPRES;
+	OutpostRef = OutpostState.GetReference();
 	OutpostScreen = HQPres.Spawn(class'UIOutpostManagement', HQPres);
-    OutpostScreen.SetOutpost(OutpostRef);
+	OutpostScreen.SetOutpost(OutpostRef);
 	`SCREENSTACK.Push(OutpostScreen);
 }
 
 function OnDefaultClicked()
 {
-	if(GetRegion().ResistanceActive())
+	if (GetRegion().ResistanceActive())
 	{
-		if(!IsAvengerLandedHere())
+		if (!IsAvengerLandedHere())
 		{
-			if(!DisplayInterruptionPopup())
+			if (!DisplayInterruptionPopup())
 			{
 				GetRegion().ConfirmSelection();
 			}
@@ -397,13 +370,13 @@ function bool DisplayInterruptionPopup()
 	
 	EntityState = GetRegion().GetCurrentEntityInteraction();
 
-	if( EntityState != None && EntityState.ObjectID != GetRegion().ObjectID)
+	if (EntityState != None && EntityState.ObjectID != GetRegion().ObjectID)
 	{
 		// display the popup
 		GetRegion().BeginInteraction(); // pauses the Geoscape
 
 		//EntityState.OnInterruptionPopup(); -- can't access this, so directly call the TriggerEvent if appropriate
-		if(XComGameState_WorldRegion(EntityState) != none)
+		if (XComGameState_WorldRegion(EntityState) != none)
 		{
 			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Trigger Leaving Contact Site Without Scanning Event");
 			`XEVENTMGR.TriggerEvent('LeaveContactWithoutScan', , , NewGameState);
@@ -451,80 +424,3 @@ defaultproperties
 	bProcessesMouseEvents = false;
 }
 
-
-
-//simulated function InitRegionComponent(int idx, X2WorldRegionTemplate tmpl)
-//{
-	//local StaticMeshComponent curRegion;
-	//local MaterialInstanceConstant NewMaterial;
-//
-	//curRegion = new(self) class'StaticMeshComponent';
-	//curRegion.SetAbsolute(true, true, true);
-	//AttachComponent(curRegion);
-//
-	//RegionComponents[idx] = curRegion;
-//
-	//curRegion.SetStaticMesh(RegionMesh);
-	//curRegion.SetTranslation(`EARTH.ConvertEarthToWorldByTile(idx, vect2d(tmpl.RegionMeshLocation.X, tmpl.RegionMeshLocation.Y)));
-	//curRegion.SetScale(tmpl.RegionMeshScale);
-//
-	//NewMaterial = new(self) class'MaterialInstanceConstant';
-	//NewMaterial.SetParent(curRegion.GetMaterial(0));
-	//curRegion.SetMaterial(0, NewMaterial);
-//
-	//NewMaterial = new(self) class'MaterialInstanceConstant';
-	//NewMaterial.SetParent(curRegion.GetMaterial(1));
-	//curRegion.SetMaterial(1, NewMaterial);
-//
-	//ReattachComponent(curRegion);
-//}
-
-//simulated function UpdateRegion (float newX, float newY, float newScale)
-//{
-	//local int i;
-	//for( i = 0; i < NUM_TILES; ++i)
-	//{
-		//UpdateRegionTile(i, newX, newY, newScale);
-	//}
-//}
-
-//simulated function UpdateRegionTile (int idx, float newX, float newY, float newScale)
-//{
-	//RegionComponents[idx].SetTranslation(`EARTH.ConvertEarthToWorldByTile(idx, vect2d(newX, newY)));
-	//RegionComponents[idx].SetScale(newScale);
-	//ReattachComponent(RegionComponents[idx]);
-//}
-
-//simulated function bool IsResHQRegion()
-//{
-	//local XComGameState_HeadquartersXCom XComHQ;
-//
-	//XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
-//
-	//return XComHQ.StartingRegion == GeoscapeEntityRef;
-//}
-//
-//function bool ShouldDrawUI(out Vector2D screenPos)
-//{
-	//local XComGameStateHistory History;
-	//local XComGameState_WorldRegion RegionState;
-	//local UIResistance kResScreen;
-	//kResScreen = UIResistance(`SCREENSTACK.GetScreen(class'UIResistance'));
-//
-	//if( kResScreen != none && kResScreen.RegionRef == GeoscapeEntityRef )
-	//{
-		//return false;
-	//}
-	//else
-	//{
-		//if(super.ShouldDrawUI(screenPos))
-		//{
-			//History = `XCOMHISTORY;
-				//RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(GeoscapeEntityRef.ObjectID));
-//
-			//return RegionState.ResistanceLevel >= eResLevel_Unlocked;
-		//}
-//
-		//return false;
-	//}
-//}
