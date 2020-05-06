@@ -14,8 +14,60 @@ var localized string m_strStaffingPinText;
 var localized string m_strStaffingPinTextMore;
 var localized string m_strMonthlyRegionalIncome;
 
+var bool CanMakeContact, CanScanContact, CanMakeRadioRelay, CanScanRadioRelay, RadioRelayInstalled;
+
 var string CachedRegionLabel;
 var string CachedHavenLabel;
+
+// KDM : Helper function which fills in variables that relate to a regions contact/radio relay status.
+// This has been made a function as it will likely be used in several places in the near future.
+simulated function UpdateRegionStatusVariables()
+{
+	CanMakeContact = class'UIUtilities_Strategy'.static.GetXComHQ().IsContactResearched() && (GetRegion().ResistanceLevel == eResLevel_Unlocked);
+	CanScanContact = GetRegion().bCanScanForContact;
+	CanMakeRadioRelay = class'UIUtilities_Strategy'.static.GetXComHQ().IsOutpostResearched() && (GetRegion().ResistanceLevel == eResLevel_Contact);
+	CanScanRadioRelay = GetRegion().bCanScanForOutpost;
+	RadioRelayInstalled = (GetRegion().ResistanceLevel == eResLevel_Outpost);
+}
+
+/* Issue # 815 : KDM : When using a controller, UIStrategyMap continuously calls UpdateSelection() --> SelectMapItemNearestLocation().
+Now, within SelectMapItemNearestLocation() there is a loop which goes through each XComGameState_GeoscapeEntity and determines if its associated 
+strategy map UI item is potentially selectable. The function IsSelectable() within UIStrategyMapItem_Region is rather odd since :
+1.] It returns false if IsResHQRegion() is true; in other words, the HQ region isn't selectable.
+2.] It returns false if the scan button type isn't eUIScanButtonType_Default, eUIScanButtonType_Contact, or eUIScanButtonType_Tower. 
+	Yet, the default scan button type is EUIScanButtonType_MAX which isn't even part of the enumeration.
+3.] It doesn't appear to notice a region once it has a relay installed (eResLevel_Outpost).
+
+I have determined that :
+1.] Whether a region is the HQ or not should have no bearing on selectability so ignore it entirely.
+2.] The scan button type should have no bearing on selectability so ignore it entirely.*/
+simulated function bool IsSelectable()
+{
+	// KDM : Must be called at the start of the function since variables which it updates are used below.
+	UpdateRegionStatusVariables();
+
+	// KDM : If the region is contactable it is selectable, regardless of whether contacting has commenced.
+	if (CanMakeContact)
+	{
+		return true;
+	}
+
+	// KDM : If the region has been contacted, and a radio relay can be built, it is selectable, regardless of whether radio relay building has commenced.
+	if (CanMakeRadioRelay)
+	{
+		return true;
+	}
+
+	// KDM : If the region has a radio relay installed it is selectable.
+	if (RadioRelayInstalled)
+	{
+		return true;
+	}
+
+	// KDM : A region is not selectable if : 1] It can't be contacted due to insufficient research level. 2] It is too far away.
+	
+	return false;
+}
 
 simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntity Entity)
 {
