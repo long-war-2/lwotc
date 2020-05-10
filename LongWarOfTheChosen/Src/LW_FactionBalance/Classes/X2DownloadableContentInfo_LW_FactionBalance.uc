@@ -6,8 +6,6 @@ var config float REAPER_DETECTION_RANGE_REDUCTION;
 static event OnPostTemplatesCreated()
 {
 	IgnoreSuperConcealmentOnAllMissions();
-	UpdateShadow();
-	UpdateRemoteStart();
   	AllowTwoSoldiersFromEachFaction();
 }
 
@@ -18,48 +16,6 @@ static function IgnoreSuperConcealmentOnAllMissions()
 	for (i = 0; i < `TACTICALMISSIONMGR.arrMissions.length; i++)
 	{
 		`TACTICALMISSIONMGR.arrMissions[i].IgnoreSuperConcealmentDetection = true;
-	}
-}
-
-static function UpdateShadow()
-{
-	local X2AbilityTemplateManager			AbilityManager;
-	local array<X2AbilityTemplate>			TemplateAllDifficulties;
-	local X2AbilityTemplate					Template;
-
-	local X2Effect_PersistentStatChange Effect;
-
-	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
-	AbilityManager.FindAbilityTemplateAllDifficulties('ShadowPassive', TemplateAllDifficulties);
-
-	Effect = new class'X2Effect_PersistentStatChange';
-	Effect.AddPersistentStatChange(eStat_DetectionModifier, default.REAPER_DETECTION_RANGE_REDUCTION);
-	foreach TemplateAllDifficulties(Template)
-	{
-		Template.AddTargetEffect(Effect);
-	}
-}
-static function UpdateRemoteStart()
-{
-	local X2AbilityTemplateManager            AbilityManager;
-	local array<X2AbilityTemplate>            TemplateAllDifficulties;
-	local X2AbilityTemplate                    Template;
-	local X2AbilityCharges                      Charges;
-	local X2AbilityCost_Charges                 ChargeCost;
-
-	
-	AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
-	AbilityManager.FindAbilityTemplateAllDifficulties('RemoteStart', TemplateAllDifficulties);
-	
-	foreach TemplateAllDifficulties(Template)//
-	{
-		Charges = new class 'X2AbilityCharges';
-		Charges.InitialCharges = 1;
-		Template.AbilityCharges = Charges;
-
-		ChargeCost = new class'X2AbilityCost_Charges';
-		ChargeCost.NumCharges = 1;
-		Template.AbilityCosts.AddItem(ChargeCost);
 	}
 }
 
@@ -125,6 +81,15 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		return true;
 	case 'STUNSTRIKE_STUN_CHANCE':
 		OutString = string(class'X2LWModTemplate_TemplarAbilities'.default.STUNSTRIKE_STUN_CHANCE);
+		return true;
+	case 'LingeringShadowDefenseBonus':
+		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.LINGERING_DEFENSE);
+		return true;
+	case 'LingeringShadowDodgeBonus':
+		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.LINGERING_DODGE);
+		return true;
+	case 'DemolitionistExtraChargeCount':
+		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.REMOTE_START_DEMOLITIONIST_CHARGES);
 		return true;
 	case 'DisablingShotStunActions':
 		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.DisablingShotBaseStunActions);

@@ -6,6 +6,12 @@
 
 class X2Ability_ReaperAbilitySet_LW extends X2Ability config(LW_FactionBalance);
 
+var config int LINGERING_DURATION;
+var config int LINGERING_DEFENSE;
+var config int LINGERING_DODGE;
+
+var config int CRIPPLING_STRIKE_COOLDOWN;
+
 var config int TrackingRadius;
 
 var config int BloodTrailBleedingTurns;
@@ -22,6 +28,9 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
+	Templates.AddItem(AddLingeringShadow());
+	Templates.AddItem(AddLingeringShadowTrigger());
+	Templates.AddItem(AddRemoveShadowOnConcealmentLostTrigger());
 	Templates.AddItem(AddTracking());
 	Templates.AddItem(AddTrackingTrigger());
 	Templates.AddItem(AddTrackingSpawnTrigger());
@@ -30,8 +39,109 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddBloodTrailBleedingAbility());
 	Templates.AddItem(AddDisablingShot());
 	Templates.AddItem(AddDisablingShotCritRemoval());
+	Templates.AddItem(AddDemolitionist());
+	Templates.AddItem(AddSilentKillerCooldownReduction());
+	Templates.AddItem(AddCripplingStrike());
 
 	return Templates;
+}
+
+static function X2AbilityTemplate AddLingeringShadow()
+{
+	local X2AbilityTemplate Template;
+
+	Template = PurePassive('LingeringShadow', "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_LingeringShadow", false);
+	Template.AdditionalAbilities.AddItem('LingeringShadowTrigger');
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddLingeringShadowTrigger()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityTrigger_EventListener	EventListener;
+	local X2Effect_PersistentStatChange		DefensiveEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'LingeringShadowTrigger');
+
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_LingeringShadow";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	// Trigger on Shadow expiring (at the beginning of the turn)
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'ShadowExpired';
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	DefensiveEffect = new class'X2Effect_PersistentStatChange';
+	DefensiveEffect.EffectName = 'LingeringShadowDefense';
+	DefensiveEffect.BuildPersistentEffect(default.LINGERING_DURATION, false, true, false, eGameRule_PlayerTurnBegin);
+	DefensiveEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
+	DefensiveEffect.AddPersistentStatChange(eStat_Defense, default.LINGERING_DEFENSE);
+	DefensiveEffect.AddPersistentStatChange(eStat_Dodge, default.LINGERING_DODGE);
+	DefensiveEffect.bRemoveWhenTargetDies = true;
+	DefensiveEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(DefensiveEffect);
+
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddRemoveShadowOnConcealmentLostTrigger()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityTrigger_EventListener	EventListener;
+	local X2Effect_RemoveEffects			RemoveEffects;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RemoveShadowOnConcealmentLostTrigger');
+
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_LingeringShadow";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	// Trigger on losing concealment so that we can remove the temporary
+	// concealment effect.
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'UnitConcealmentBroken';
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	// Remove the temporary Shadow concealment effect if Shadow is lost from
+	// concealment being broken.
+	RemoveEffects = new class'X2Effect_RemoveEffects';
+	RemoveEffects.EffectNamesToRemove.AddItem('TemporaryShadowConcealment');
+	RemoveEffects.bApplyOnHit = true;
+	RemoveEffects.bApplyOnMiss = true;
+	Template.AddShooterEffect(RemoveEffects);
+
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	return Template;
 }
 
 static function X2AbilityTemplate AddTracking()
@@ -382,7 +492,7 @@ static function X2AbilityTemplate AddDisablingShot()
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	// Can't target dead; Can't target friendlies -- must be enemy organic
+	// Can't target dead; Can't target friendlies
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeRobotic = false;
 	UnitPropertyCondition.ExcludeOrganic = false;
@@ -496,6 +606,132 @@ static function X2AbilityTemplate AddDisablingShotCritRemoval()
 	Template.AddShooterEffect(DamageReductionEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddDemolitionist()
+{
+	local X2AbilityTemplate Template;
+
+	Template = PurePassive('Demolitionist', "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_Demolitionist", true);
+	Template.PrerequisiteAbilities.AddItem('RemoteStart');
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddSilentKillerCooldownReduction()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener EventListener;
+	local X2Effect_ReduceCooldowns ReduceCooldownsEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SilentKillerCooldownReduction');
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_silentkiller";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	// Trigger on Shadow expiring (at the beginning of the turn)
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'SilentKillerActivated';
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	ReduceCooldownsEffect = new class'X2Effect_ReduceCooldowns';
+	ReduceCooldownsEffect.AbilitiesToTick.AddItem('Shadow');
+	Template.AddTargetEffect(ReduceCooldownsEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// No visualization on purpose!
+
+	return Template;
+}
+
+static function X2DataTemplate AddCripplingStrike()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
+	local X2AbilityCooldown					Cooldown;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2Condition_Visibility			VisibilityCondition;
+	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_UnitProperty			UnitPropertyCondition;
+	local array<name>                       SkipExclusions;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'CripplingStrike');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.UIPerk_CripplingStrike";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.DisplayTargetHitChance = true;
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+	Template.CinescriptCameraType = "StandardGunFiring";
+	Template.TargetingMethod = class'X2TargetingMethod_OverTheShoulder';
+	Template.bCrossClassEligible = false;
+	Template.bUsesFiringCamera = true;
+	Template.bPreventsTargetTeleport = false;
+	Template.Hostility = eHostility_Offensive;
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bAllowSquadsight = true;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+
+	Template.AddTargetEffect(new class'X2Effect_ApplyWeaponDamage');
+	Template.AddTargetEffect(class'X2StatusEffects_LW'.static.CreateMaimedStatusEffect(, Template.AbilitySourceName));
+
+	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.CRIPPLING_STRIKE_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	// Ammo
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+	Template.bAllowBonusWeaponEffects = true;
+	Template.bUseAmmoAsChargesForHUD = true;
+
+	// Can't target dead; Can't target friendlies
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeRobotic = false;
+	UnitPropertyCondition.ExcludeOrganic = false;
+	UnitPropertyCondition.ExcludeDead = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = true;
+	UnitPropertyCondition.RequireWithinRange = true;
+	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
 }

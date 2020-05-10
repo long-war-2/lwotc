@@ -6,8 +6,6 @@
 
 class X2Effect_BloodTrailBleeding extends X2Effect_Persistent;
 
-// Registers a listener that is called when the Claymore is thrown, so that
-// we can then attach another listener for when the Claymore is destroyed.
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
 	local Object EffectObj;

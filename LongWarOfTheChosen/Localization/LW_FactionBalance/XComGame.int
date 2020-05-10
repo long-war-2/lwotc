@@ -1,4 +1,24 @@
 ; LWOTC Needs Translation
+[LingeringShadow X2AbilityTemplate]
+LocFriendlyName="Lingering Shadow"
+LocLongDescription="Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge for one turn when the Reaper loses Shadow."
+LocHelpText="Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge for one turn when the Reaper loses Shadow."
+LocPromotionPopupText="<Bullet/> Provides +<Ability:LingeringShadowDefenseBonus/> Defense and +<Ability:LingeringShadowDodgeBonus/> Dodge as soon as the Reaper loses Shadow, either because they break concealment or Shadow expires.<br/><Bullet/> Lasts until the start of XCOM's next turn."
+
+[Demolitionist X2AbilityTemplate]
+LocFriendlyName="Demolitionist"
+LocLongDescription="The Reaper gains +<Ability:DemolitionistExtraChargeCount/> charge for Remote Start and for Homing Mine."
+LocHelpText="The Reaper gains +<Ability:DemolitionistExtraChargeCount/> charge for Remote Start and for Homing Mine."
+LocPromotionPopupText="<Bullet/> Adds <Ability:DemolitionistExtraChargeCount/> extra charge to Remote Start and for Homing Mine.<br/>"
+
+[CripplingStrike X2AbilityTemplate]
+LocFriendlyName="Crippling Strike"
+LocLongDescription="Throw a knife that causes the target to be maimed for 1 turn (zero mobility)."
+LocHelpText="Throw a knife that causes the target to be maimed for 1 turn (zero mobility)."
+LocPromotionPopupText="<Bullet/> Throws a throwing knife, without breaking Shadow.<br/><Bullet/> The maimed status reduces the target's mobility to 0, making it immobile.<br>"
+; End Translation
+
+; LWOTC Needs Translation
 [Distraction_LW X2AbilityTemplate]
 LocFriendlyName="Distraction"
 LocLongDescription="The Claymore disorients non-robotic enemies when it explodes."

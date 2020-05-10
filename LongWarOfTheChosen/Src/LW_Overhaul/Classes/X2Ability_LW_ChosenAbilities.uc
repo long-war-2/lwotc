@@ -1043,61 +1043,6 @@ static function EventListenerReturn HandleDazeEventTrigger(
 	return ELR_NoInterrupt;
 }
 
-static function EventListenerReturn AffectedByHeavyDaze_Listener(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
-{
-	local XComGameState_Unit UnitState;
-	local XComGameState NewGameState;
-	local XComGameStateContext_EffectRemoved EffectRemovedContext;
-	local XComGameState_Effect EffectState;
-	local XComGameStateHistory History;
-	local X2Effect_Persistent PersistentEffect;
-	local bool bRemove, bAtLeastOneRemoved;
-
-	UnitState = XComGameState_Unit(EventSource);
-	if (UnitState != none)
-	{
-		History = `XCOMHISTORY;
-
-		bAtLeastOneRemoved = false;
-		foreach History.IterateByClassType(class'XComGameState_Effect', EffectState)
-		{
-			PersistentEffect = EffectState.GetX2Effect();
-			bRemove = false;
-
-			if ((EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID == UnitState.ObjectID) &&
-				(class'X2Effect_HeavyDazed'.default.HEAVY_DAZE_REMOVE_EFFECTS_TARGET.Find(PersistentEffect.EffectName) != INDEX_NONE))
-			{
-				// The Unit dazed is the target of this existing effect
-				bRemove = true;
-			}
-
-			if (bRemove)
-			{
-				// Dazed removes the existing effect
-				if (!bAtLeastOneRemoved)
-				{
-					EffectRemovedContext = class'XComGameStateContext_EffectRemoved'.static.CreateEffectRemovedContext(EffectState);
-					NewGameState = History.CreateNewGameState(true, EffectRemovedContext);
-					EffectRemovedContext.RemovedEffects.Length = 0;
-
-					bAtLeastOneRemoved = true;
-				}
-
-				EffectState.RemoveEffect(NewGameState, NewGameState, false);
-
-				EffectRemovedContext.RemovedEffects.AddItem(EffectState.GetReference());
-			}
-		}
-
-		if (bAtLeastOneRemoved)
-		{
-			`TACTICALRULES.SubmitGameState(NewGameState);
-		}
-	}
-
-	return ELR_NoInterrupt;
-}
-
 
 function XComGameState ChosenSummonFollowers_BuildGameState(XComGameStateContext Context)
 {

@@ -3,6 +3,7 @@
 class X2Item_DefaultWeaponMods_LW extends X2Item config (GameData_WeaponData);
 
 var config array<int> LMG_ALL_RANGE;
+var config array<int> MID_LONG_ALL_RANGE;
 
 var config int BASIC_SUPPRESSOR_SOUND_REDUCTION_METERS;
 var config int ADVANCED_SUPPRESSOR_SOUND_REDUCTION_METERS;

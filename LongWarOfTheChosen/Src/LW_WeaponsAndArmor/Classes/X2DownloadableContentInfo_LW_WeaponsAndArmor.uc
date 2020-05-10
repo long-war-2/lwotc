@@ -1,9 +1,9 @@
 //---------------------------------------------------------------------------------------
-//  FILE:   XComDownloadableContentInfo_WaroftheChosenRebalance.uc                                    
-//           
+//  FILE:   X2DownloadableContentInfo_LW_WeaponsAndArmor.uc                            
+//
 //	Use the X2DownloadableContentInfo class to specify unique mod behavior when the 
 //  player creates a new campaign or loads a saved game.
-//  
+//
 //---------------------------------------------------------------------------------------
 //  Copyright (c) 2016 Firaxis Games, Inc. All rights reserved.
 //---------------------------------------------------------------------------------------
@@ -228,3 +228,20 @@ static function AddFreeKillUpgrade(X2ItemTemplateManager ItemTemplateManager, Na
 
 } 
 
+static function bool AbilityTagExpandHandler(string InString, out string OutString)
+{
+	local name Type;
+
+	Type = name(InString);
+	switch (Type)
+	{
+	case 'KnifeJugglerBonusDamage':
+		OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.KNIFE_JUGGLER_BONUS_DAMAGE);
+		return true;
+	case 'KnifeJugglerExtraAmmo':
+		OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.KNIFE_JUGGLER_EXTRA_AMMO);
+		return true;
+	}
+
+	return false;
+}

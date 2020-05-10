@@ -1132,10 +1132,9 @@ static function X2AbilityTemplate LikeLightningRefund()
 }
 */
 
-	static function X2AbilityTemplate Maim()
+static function X2AbilityTemplate Maim()
 {
 	local X2AbilityTemplate Template;
-	local X2Effect_Immobilize Effect;
 	
 	// Create the template using a helper function
 	Template = Attack('Maim_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_blossom", false, none, class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY, eCost_WeaponConsumeAll, default.MAIM_AMMO_COST);
@@ -1144,14 +1143,7 @@ static function X2AbilityTemplate LikeLightningRefund()
 	AddCooldown(Template, default.MAIM_COOLDOWN);
 
 	// Effect
-	Effect = new class'X2Effect_Immobilize';
-	Effect.EffectName = 'Maim_Immobilize';
-	Effect.DuplicateResponse = eDupe_Refresh;
-	Effect.BuildPersistentEffect(default.MAIM_DURATION, false, true, , eGameRule_PlayerTurnEnd);
-	Effect.AddPersistentStatChange(eStat_Mobility, 0, MODOP_Multiplication);
-	Effect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true, , Template.AbilitySourceName);
-	Effect.VisualizationFn = EffectFlyOver_Visualization;
-	Template.AddTargetEffect(Effect);
+	Template.AddTargetEffect(class'X2StatusEffects_LW'.static.CreateMaimedStatusEffect(default.MAIM_DURATION, Template.AbilitySourceName));
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;

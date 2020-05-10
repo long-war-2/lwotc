@@ -2199,6 +2199,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LMG_ALL_RANGE;
 		}
+		if (WeaponTemplate.WeaponCat == 'vektor_rifle')
+		{
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.MID_LONG_ALL_RANGE;
+		}
 		if (WeaponTemplate.DataName == 'Medikit')
 		{
 			WeaponTemplate.HideIfResearched = '';
@@ -2290,11 +2294,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				{
 					if (Effect.EffectName == class'X2StatusEffects'.default.BurningName)
 					{
+						`LWTrace("!!!!! UPDATING FUSION SWORD CHANCE !!!!");
 						Effect.ApplyChance = default.FUSION_SWORD_FIRE_CHANCE;
 					}
 				}
 			}
-
 		}
 	}   
 
@@ -2722,9 +2726,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 						//`LOG ("Adding Weight to" @ EquipmentTemplate.DataName);
 					}
 				}
-				//special handling for SLG DLC items
+
 				switch (EquipmentTemplate.DataName)
 				{
+					//special handling for SLG DLC items
 					case 'SparkRifle_MG':
 					case 'SparkRifle_BM':
 					case 'PlatedSparkArmor':
@@ -2736,6 +2741,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 							AltReq.RequiredTechs.AddItem(ItemTable[i].RequiredTech1);
 						Template.AlternateRequirements.AddItem(AltReq);
 						break;
+
 					default:
 						break;
 				}

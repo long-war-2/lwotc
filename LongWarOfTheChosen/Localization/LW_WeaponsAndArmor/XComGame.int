@@ -1,0 +1,29 @@
+; LWOTC Needs Translation
+[MusashiThrowKnifeSecondary_LW X2AbilityTemplate]
+LocFriendlyName="Throw Knife"
+LocFlyOverText="Throw Knife"
+LocLongDescription="Throws a single throwing knife at the target. Guaranteed to remain in Shadow."
+LocHelpText="Throws a single throwing knife at the target. Guaranteed to remain in Shadow."
+LocPromotionPopupText="<Bullet/> Throwing a knife will not break Shadow or attract the Lost.<br/><Bullet/> This ability will break concealment."
+
+[KnifeJuggler_LW X2AbilityTemplate]
+LocFriendlyName="Knife Juggler"
+LocFlyOverText="Knife Juggler"
+LocLongDescription="Adds +<Ability:KnifeJugglerBonusDamage/> bonus damage to throwing knives and provides <Ability:KnifeJugglerExtraAmmo/> additional throwing knives."
+LocHelpText="Adds +<Ability:KnifeJugglerBonusDamage/> bonus damage to throwing knives and provides <Ability:KnifeJugglerExtraAmmo/> additional throwing knives."
+LocPromotionPopupText="<Bullet/> Adds +<Ability:KnifeJugglerBonusDamage/> bonus damage to throwing knives.<br/><Bullet/> Adds <Ability:KnifeJugglerExtraAmmo/> additional charges for throwing knives."
+
+[Hailstorm_LW X2AbilityTemplate]
+LocFriendlyName="Hailstorm"
+LocFlyOverText="Hailstorm"
+LocLongDescription="Throws three knives in quick succession at the target. Guaranteed to remain in Shadow."
+LocHelpText="Throws three knives in quick succession at the target. Guaranteed to remain in Shadow."
+LocPromotionPopupText="<Bullet/> Each knife retains any bonuses, such as damage and status effects, that a single knife throw has.<br/><Bullet/> The knives do not benefit from effects that rely on the target's HP unless the constraint is met before the first knife is thrown."
+
+[ThrowingKnifeFaceoff_LW X2AbilityTemplate]
+LocFriendlyName="Knife Faceoff"
+LocFlyOverText="Knife Faceoff"
+LocLongDescription="Throws a knife at every target in range. Guaranteed to remain in Shadow."
+LocHelpText="Throws a knife at every target in range. Guaranteed to remain in Shadow."
+LocPromotionPopupText="<Bullet/> TBD..."
+; End Translation
