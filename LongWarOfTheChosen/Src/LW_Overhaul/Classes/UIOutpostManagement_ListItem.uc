@@ -71,6 +71,8 @@ simulated function BuildItem()
 	}
 
 	Width = List.Width;
+	JobHeaderX = OutpostUI.JobHeaderButton.X;
+	JobHeaderWidth = OutpostUI.JobHeaderButton.Width;
 
 	ArrowSize = 24;
 	BorderPadding = 10;
@@ -84,8 +86,8 @@ simulated function BuildItem()
 		ButtonBG.bIsNavigable = false;
 		ButtonBG.InitButton(, , , eUIButtonStyle_NONE);
 		ButtonBG.SetResizeToText(false);
-		ButtonBG.SetPosition(OutpostUI.JobHeaderButton.X, 0);
-		ButtonBG.SetSize(OutpostUI.JobHeaderButton.Width, Height);
+		ButtonBG.SetPosition(JobHeaderX, 0);
+		ButtonBG.SetSize(JobHeaderWidth, Height);
 	}
 
 	// KDM : Rebel photo
@@ -146,13 +148,13 @@ simulated function BuildItem()
 		// KDM : Left arrow
 		LeftButton = Spawn(class'UIImage', self);
 		LeftButton.InitImage(,"img:///gfxComponents.PC_arrowLEFT", OnClick);
-		LeftButton.SetPosition(OutpostUI.JobHeaderButton.X + BorderPadding, ((Height - ArrowSize) / 2) - 1);
+		LeftButton.SetPosition(JobHeaderX + BorderPadding, ((Height - ArrowSize) / 2) - 1);
 		LeftButton.SetSize(ArrowSize, ArrowSize);
 
 		// KDM : Right arrow
 		RightButton = Spawn(class'UIImage', self);
 		RightButton.InitImage(,"img:///gfxComponents.PC_arrowRIGHT", OnClick);
-		RightButton.SetPosition(OutpostUI.JobHeaderButton.X + OutpostUI.JobHeaderButton.Width - ArrowSize - BorderPadding,
+		RightButton.SetPosition(JobHeaderX + JobHeaderWidth - ArrowSize - BorderPadding,
 			((Height - ArrowSize) / 2) - 1);
 		RightButton.SetSize(ArrowSize, ArrowSize);
 	}
@@ -162,13 +164,13 @@ simulated function BuildItem()
 	SpinnerLabel.InitText();
 	if (USE_FANCY_VERSION)
 	{
-		SpinnerLabel.SetPosition(OutpostUI.JobHeaderButton.X + BorderPadding, (Height / 2) - 18);
+		SpinnerLabel.SetPosition(JobHeaderX + BorderPadding, (Height / 2) - 18);
 	}
 	else
 	{
-		SpinnerLabel.SetPosition(OutpostUI.JobHeaderButton.X + BorderPadding, (Height / 2) - 16);
+		SpinnerLabel.SetPosition(JobHeaderX + BorderPadding, (Height / 2) - 16);
 	}
-	SpinnerLabel.SetWidth(OutpostUI.JobHeaderButton.Width - BorderPadding * 2);
+	SpinnerLabel.SetWidth(JobHeaderWidth - BorderPadding * 2);
 }
 
 simulated function UIOutpostManagement_ListItem InitListItem()
@@ -179,8 +181,12 @@ simulated function UIOutpostManagement_ListItem InitListItem()
 	// KDM : Static data only needs to be set once, when the list item is first created.
 	UpdateStaticData();
 	// KDM : Dynamic data needs to be updated when the list item : [1] is first created [2] receives focus [3] loses focus.
-	// For example, a rebel's job text is considered dynamic because it is blue when the rebel is unselected, and black when selected.
-	UpdateDynamicData(bIsFocused);
+	// For example, when using a controller, a rebel's job text is considered dynamic because it is blue when the rebel is unselected, 
+	// and black when selected.
+	if (`ISCONTROLLERACTIVE)
+	{
+		UpdateDynamicData();
+	}
 
 	return self;
 }
@@ -244,6 +250,14 @@ simulated function UpdateStaticData()
 			--RebelLevel;
 		}
 		LevelLabel.SetHtmlText(strRebelLevel);
+	}
+
+	// KDM : Rebel job 
+	// 1.] It is static for mouse & keyboard users since its text colour never changes due to background button selection.
+	// 2.] It is dynamic for controller users; consequently, it is dealt with in UpdateDynamicData().
+	if (!`ISCONTROLLERACTIVE)
+	{
+		SetJobName(GetRebelJob());
 	}
 
 	// KDM : Rebel abilities
@@ -314,30 +328,36 @@ simulated function AddAbilityIcons(XComGameState_Unit Unit, UIOutpostManagement_
 	}
 }
 
-simulated function UpdateDynamicData(bool Focused = false)
+simulated function UpdateDynamicData()
 {
-	local int ListItemIndex;
-	local string strRebelJob;
+	local bool Focused;
+	
+	// KDM : Determine whether this list item is currently selected or not.
+	Focused = bIsFocused;
 
-	ListItemIndex = List.GetItemIndex(self);
-
-	// KDM : Background button placed behind the rebel's job to show list item selection; this is only needed when using a controller.
-	if (`ISCONTROLLERACTIVE)
+	// KDM : If the list item is selected, show and highlight the background button behind the rebel's job.
+	// Although this is only needed for controller users, UpdateDynamicData() is only called when using a controller, so no check is needed.
+	if (Focused)
 	{
-		if (Focused)
-		{
-			ButtonBG.Show();
-			ButtonBG.MC.FunctionVoid("mouseIn");
-		}
-		else
-		{
-			ButtonBG.Hide();
-		}
+		ButtonBG.Show();
+		ButtonBG.MC.FunctionVoid("mouseIn");
+	}
+	else
+	{
+		ButtonBG.Hide();
 	}
 
 	// KDM : Rebel job
-	strRebelJob = class'XComGameState_LWOutpost'.static.GetJobName(OutpostUI.CachedRebels[ListItemIndex].Job);
-	SpinnerLabel.SetCenteredText(class'UIUtilities_Text'.static.GetColoredText(strRebelJob, Focused ? -1: eUIState_Normal, TheFontSize));
+	SetJobName(GetRebelJob());
+}
+
+simulated function string GetRebelJob()
+{
+	local int ListItemIndex;
+
+	ListItemIndex = List.GetItemIndex(self);
+
+	return class'XComGameState_LWOutpost'.static.GetJobName(OutpostUI.CachedRebels[ListItemIndex].Job);
 }
 
 simulated function SetMugShot(StateObjectReference InRebel)
@@ -372,13 +392,16 @@ simulated function UpdateMugShot(StateObjectReference UnitRef)
 
 simulated function SetJobName(String JobName)
 {
+	local bool Focused;
 	local string strRebelJob;
+
+	Focused = bIsFocused;
 
 	// KDM : If this rebel is selected, his/her background button will be highlighted, so make his/her job text black.
 	// If this rebel is not selected, no background button will be visible, so make his/her job text blue.
 	if (`ISCONTROLLERACTIVE)
 	{
-		strRebelJob = class'UIUtilities_Text'.static.GetColoredText(JobName, bIsFocused ? -1: eUIState_Normal, TheFontSize);
+		strRebelJob = class'UIUtilities_Text'.static.GetColoredText(JobName, Focused ? -1: eUIState_Normal, TheFontSize);
 	}
 	else
 	{
@@ -407,7 +430,7 @@ simulated function OnReceiveFocus()
 	// KDM : When a list item receives focus, we need to change its job colour so it doesn't clash with the background button.
 	if (`ISCONTROLLERACTIVE)
 	{
-		UpdateDynamicData(true);
+		UpdateDynamicData();
 	}
 }
 
@@ -418,7 +441,7 @@ simulated function OnLoseFocus()
 	// KDM : When a list item loses focus, we need to change its job colour so it doesn't clash with the black background.
 	if (`ISCONTROLLERACTIVE)
 	{
-		UpdateDynamicData(false);
+		UpdateDynamicData();
 	}
 }
 
