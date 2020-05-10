@@ -278,6 +278,7 @@ var config int SMALL_INTEL_CACHE_REWARD;
 var config int LARGE_INTEL_CACHE_REWARD;
 
 var config bool INSTANT_BUILD_TIMES;
+var config bool ENABLE_MUSASHI_KNIVES;
 
 var config array<Name> OffensiveReflexAbilities;
 var config array<Name> DefensiveReflexAbilities;
@@ -2199,6 +2200,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LMG_ALL_RANGE;
 		}
+		if (WeaponTemplate.WeaponCat == 'vektor_rifle')
+		{
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.MID_LONG_ALL_RANGE;
+		}
 		if (WeaponTemplate.DataName == 'Medikit')
 		{
 			WeaponTemplate.HideIfResearched = '';
@@ -2290,11 +2295,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				{
 					if (Effect.EffectName == class'X2StatusEffects'.default.BurningName)
 					{
+						`LWTrace("!!!!! UPDATING FUSION SWORD CHANCE !!!!");
 						Effect.ApplyChance = default.FUSION_SWORD_FIRE_CHANCE;
 					}
 				}
 			}
-
 		}
 	}   
 
@@ -2722,9 +2727,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 						//`LOG ("Adding Weight to" @ EquipmentTemplate.DataName);
 					}
 				}
-				//special handling for SLG DLC items
+
 				switch (EquipmentTemplate.DataName)
 				{
+					//special handling for SLG DLC items
 					case 'SparkRifle_MG':
 					case 'SparkRifle_BM':
 					case 'PlatedSparkArmor':
@@ -2736,6 +2742,23 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 							AltReq.RequiredTechs.AddItem(ItemTable[i].RequiredTech1);
 						Template.AlternateRequirements.AddItem(AltReq);
 						break;
+
+					// Override settings for Musashi's utility combat knives if they're
+					// not explicitly enabled.
+					case 'ThrowingKnife_CV':
+					case 'ThrowingKnife_MG':
+					case 'ThrowingKnife_BM':
+					case 'SpecOpsKnife_CV':
+					case 'SpecOpsKnife_MG':
+					case 'SpecOpsKnife_BM':
+						if (!default.ENABLE_MUSASHI_KNIVES)
+						{
+							EquipmentTemplate.StartingItem = false;
+							EquipmentTemplate.bInfiniteItem = false;
+							EquipmentTemplate.CanBeBuilt = false;
+						}
+						break;
+
 					default:
 						break;
 				}

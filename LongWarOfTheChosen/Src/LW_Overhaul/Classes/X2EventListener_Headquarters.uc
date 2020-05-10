@@ -256,7 +256,7 @@ static function EventListenerReturn CAAdjustRiskChance(
 	// We're only interested in altering the risk chance for the failure
 	// risk right now.
 	if (InStr(Caps(Tuple.Data[0].n), Caps(class'Helpers_LW'.default.CA_FAILURE_RISK_MARKER)) == INDEX_NONE)
-	return ELR_NoInterrupt;
+		return ELR_NoInterrupt;
 	
 	// Go through all the soldier slots, building up the failure risk
 	// reduction based on the soldiers' ranks.

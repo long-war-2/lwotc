@@ -550,7 +550,6 @@
     <Content Include="Src\LW_Overhaul\Classes\UIUtilities_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIUtilities_Text_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\Utilities_LW.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2AbilityCharges_BonusCharges.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2AbilityCharges_RescueProtocol.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2AbilityCharges_TakeThisCharge.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2AbilityCooldown_AllInstances.uc" />
@@ -727,6 +726,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIVerticalScrollingText.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\UIVerticalScrollingText2.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\Utilities_PP_LW.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityCharges_BonusCharges.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityCharges_Interference.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityCooldown_MindMerge.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityCooldown_RunAndGun_LW.uc" />
@@ -1100,6 +1100,7 @@
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionArmors.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionWeapons.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_PurifierWeapons.uc" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_SecondaryThrowingKnives.uc" />
     <Content Include="Content\FX_Explosion_Rocket_Launcher.upk" />
     <Content Include="Content\FX_Heavy_Blaster_Launcher.upk" />
     <Content Include="Content\FX_Heavy_RocketLauncher.upk" />
@@ -1167,6 +1168,8 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Apotheosis.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DeflectNew.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ParryNew.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ShadowRising_LW.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_SilentKiller_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2StrategyElement_AcademyUnlocks_GrappleParkour.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Ability_TemplarAbilitySet_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Ability_SkirmisherAbilitySet_LW.uc" />

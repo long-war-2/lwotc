@@ -1,9 +1,9 @@
 //---------------------------------------------------------------------------------------
-//  FILE:   XComDownloadableContentInfo_WaroftheChosenRebalance.uc                                    
-//           
+//  FILE:   X2DownloadableContentInfo_LW_WeaponsAndArmor.uc                            
+//
 //	Use the X2DownloadableContentInfo class to specify unique mod behavior when the 
 //  player creates a new campaign or loads a saved game.
-//  
+//
 //---------------------------------------------------------------------------------------
 //  Copyright (c) 2016 Firaxis Games, Inc. All rights reserved.
 //---------------------------------------------------------------------------------------
@@ -35,6 +35,7 @@ static event OnLoadedSavedGameToStrategy()
 static event OnPostTemplatesCreated()
 {
 	UpdateWeaponAttachmentsForGuns();
+	UpdateThrowingKnivesAbilities();
 }
 
 
@@ -228,3 +229,88 @@ static function AddFreeKillUpgrade(X2ItemTemplateManager ItemTemplateManager, Na
 
 } 
 
+// Updates the standard abilities for Musashi's throwing knives so that they
+// have the same effect on concealment, Lost and the Chosen as moving does. In
+// other words, they're silent.
+//
+// This also fixes the ammo cost of Hailstorm and makes the throwing knives use
+// ammo/charges (the secondary throwing knives have infinite ammo by default).
+//
+// Finally, it grants Knife Juggler more bonus ammo.
+static function UpdateThrowingKnivesAbilities()
+{
+	local X2AbilityTemplateManager AbilityTemplateManager;
+	local X2AbilityTemplate AbilityTemplate;
+
+	AbilityTemplateManager =  class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+	AbilityTemplate = AbilityTemplateManager.FindAbilityTemplate('MusashiThrowKnife');
+	if (AbilityTemplate == none)
+	{
+		UseMoveNoiseEffectForAbility(AbilityTemplate);
+	}
+
+	AbilityTemplate = AbilityTemplateManager.FindAbilityTemplate('MusashiThrowKnifeSecondary');
+	if (AbilityTemplate != none)
+	{
+		UseMoveNoiseEffectForAbility(AbilityTemplate);
+		UpdateThrowingKnivesBehavior(AbilityTemplate);
+	}
+
+	AbilityTemplate = AbilityTemplateManager.FindAbilityTemplate('Hailstorm');
+	if (AbilityTemplate != none)
+	{
+		FixHailstormAmmoUsage(AbilityTemplate);
+	}
+}
+
+static function UseMoveNoiseEffectForAbility(X2AbilityTemplate AbilityTemplate)
+{
+	// Treat throwing knives as if they're as noisy as moving
+	AbilityTemplate.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentMoveLoss;
+	AbilityTemplate.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.MoveChosenActivationIncreasePerUse;
+	AbilityTemplate.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MoveLostSpawnIncreasePerUse;
+}
+
+static function UpdateThrowingKnivesBehavior(X2AbilityTemplate AbilityTemplate)
+{
+	local array<name>					SkipExclusions;
+	local X2AbilityCost_Ammo			AmmoCost;
+	local X2AbilityCost_ActionPoints	ActionPointCost;
+
+	AbilityTemplate.AbilitySourceName = 'eAbilitySource_Perk';
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	AbilityTemplate.AbilityCosts.AddItem(AmmoCost);
+	AbilityTemplate.bUseAmmoAsChargesForHUD = true;
+
+	ActionPointCost = new class'X2AbilityCost_QuickdrawActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	AbilityTemplate.AbilityCosts.AddItem(ActionPointCost);
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	AbilityTemplate.AddShooterEffectExclusions(SkipExclusions);
+}
+
+// Makes Hailstorm use 3 ammo instead of 1, since it throws 3 knives. This
+// also disables ammo effects.
+static function FixHailstormAmmoUsage(X2AbilityTemplate AbilityTemplate)
+{
+	local X2AbilityCost_Ammo AmmoCost;
+	local int i;
+
+	// Ammo
+	for (i = 0; i < AbilityTemplate.AbilityCosts.Length; i++)
+	{
+		AmmoCost = X2AbilityCost_Ammo(AbilityTemplate.AbilityCosts[i]);
+		if (AmmoCost != none)
+		{
+			AmmoCost.iAmmo = 3;
+		}
+	}
+
+	AbilityTemplate.bAllowAmmoEffects = false;
+	AbilityTemplate.bAllowBonusWeaponEffects = true;
+	AbilityTemplate.bUseAmmoAsChargesForHUD = true;
+}

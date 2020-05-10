@@ -682,17 +682,7 @@ m_strVIPCaptureReward="(VIP Capture Only)"
 strDisabledTutorialTooltip="Tutorial is disabled while running Long War of the Chosen"
 strDisabledNarrativeContentTooltip="Lost and Abandoned is disabled while running Long War of the Chosen"
 strDisabledPrecisionExplosivesTooltip="Precision Explosives is disabled while running Long War of the Chosen"
-
-[X2StatusEffects_LW]
-HeavyDazedFriendlyName="Heavy Dazed"
-HeavyDazedFriendlyDesc="Like Dazed, but revive takes 1 action point and it pierces mental immunity."
-HeavyDazedEffectAcquiredString="<XGParam:StrValue0/!UnitName/> is heavy dazed."
-HeavyDazedEffectTickedString="<XGParam:StrValue0/!UnitName/> is still heavy dazed."
-HeavyDazedEffectLostString="<XGParam:StrValue0/!UnitName/> is no longer heavy dazed."
-HeavyDazedPerActionFriendlyName="Heavy Dazed: <Ability:STUNNEDACTIONPOINTS>"
-HeavyDazedTitle="Dazed"
-HeavyDazedName="Heavy Dazed"
-; End Translation
+; LWOTC Needs Translation
 
 [UICovertActionReport_LW]
 strCovertActionFailed="FAILED"

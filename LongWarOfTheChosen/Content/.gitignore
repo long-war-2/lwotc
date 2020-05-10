@@ -5,6 +5,7 @@
 *.bk2
 /*/*.txt
 !/LW_FactionBalance/*
+!/LW_PerkPack_Integrated/*
 !/BaseGameMissionAssets/README.txt
 !/Missions/*
 !/Parcels/*

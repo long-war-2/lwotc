@@ -5190,11 +5190,33 @@ LocLongDescription="Grant an additional action point to a bondmate. Has one or t
 ; End Translation
 
 ; LWOTC Needs Translation
+[Shadow X2AbilityTemplate]
+LocLongDescription="Grants the soldier Shadow, an advanced form of concealment that lasts for 1 turn."
+LocHelpText="Soldier enters Shadow, an advanced form of concealment, for 1 turn."
+LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges by 70%.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a 4-turn cooldown.<br/>"
+
+[Sting X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Sting allows for the Reaper to attack in situations where they absolutely do not want to be revealed.<br/><Bullet/> Sting can only be used once per turn while in Shadow and requires <Ability:SelfAmmoCost/> ammo points.<br/>"
+
+[SilentKiller X2AbilityTemplate]
+LocLongDescription="Guarantees that the Reaper stays in Shadow with killing shots."
+LocHelpText="Guarantees that the Reaper stays in Shadow with killing shots."
+LocPromotionPopupText="<Bullet/> Allows a Reaper to stay safely in Shadow during the enemy turn if they kill a unit with their primary weapon."
+
+[ShadowRising X2AbilityTemplate]
+LocLongDescription="Reduces Shadow's cooldown by 1 turn."
+LocHelpText="Reduces Shadow's cooldown by 1 turn."
+LocPromotionPopupText="<Bullet/> .<br/>"
+; End Translation
+
+; LWOTC Needs Translation
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="Blood Trail"
 LocLongDescription="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage if the target has been wounded this turn. Also applies a non-stacking bleeding effect."
 LocHelpText="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage if the target has been wounded this turn. Also applies a non-stacking bleeding effect."
-LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> The bleeding effect does 1 point of damage for the next two turns.<br/><Bullet/> Subsequent shots just refresh the bleeding duration to 2 turns.<br/>"
+; LWOTC Needs Translation 2
+LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> The bleeding effect does 1 point of damage for the next two turns.<br/><Bullet/> Subsequent shots just refresh the bleeding duration to 2 turns.<br/><Bullet/> Works on throwing knives as well as the primary weapon.<br/>"
+; End Translation 2
 
 [RemoteStart X2AbilityTemplate]
 LocFriendlyName="Remote Start"
