@@ -26,15 +26,16 @@ var transient float CachedScanButtonWidth;
 
 simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntity Entity)
 {
-	// override the super so we can always use MI_alienfacility to allow displaying of doom pips
-	//super.InitMapItem(Entity);
+	// Override the super so we can always use MI_alienfacility to allow displaying of doom pips
+	// super.InitMapItem(Entity);
 
 	local string PinImage;
+	
 	// Initialize static data
 	InitPanel(Name(Entity.GetUIWidgetName()), 'MI_alienFacility');
 
 	PinImage = Entity.GetUIPinImagePath();
-	if( PinImage != "" )
+	if (PinImage != "")
 	{
 		SetImage(PinImage);
 	}
@@ -59,12 +60,17 @@ simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntit
 	InfilLabel.SetPosition(154 - 5, 23);
 
 	ProgressBar = Spawn(class'UIProgressBar', self).InitProgressBar('MissionInfiltrationProgress', -32, 5, 64, 8, 0.5, eUIState_Normal);
-	//MissionSiteIcon = Spawn(class'UIStrategyMap_MissionIcon_LW', self);
-	//MissionSiteIcon.InitMissionIcon(-1);
-
+	
 	bScanButtonResized = false;
 
 	InstanceMapItem3DMaterial();
+
+	// KDM : The mission map item's help icon gets in the way of the infiltrating squad icon; the best way to deal with it is to null it.
+	// For more information on a similar topic please see the comments in UIStrategyMapItem_Region_LW --> InitMapItem().
+	if (`ISCONTROLLERACTIVE)
+	{
+		ScanButton.mc.SetNull("consoleHint");
+	}
 
 	return self;
 }
