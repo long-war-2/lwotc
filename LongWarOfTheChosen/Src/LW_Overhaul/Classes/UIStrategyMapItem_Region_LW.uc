@@ -457,6 +457,55 @@ simulated public function InterruptionPopupCallback(Name eAction)
 	}
 }
 
+simulated function bool OnUnrealCommand(int cmd, int arg)
+{
+	local bool bHandled;
+
+	if (!CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
+	{
+		return true;
+	}
+
+	bHandled = true;
+
+	switch(cmd)
+	{
+		case class'UIUtilities_Input'.const.FXS_BUTTON_A:
+			// KDM : A button opens up the "Make Contact" pop up screen if the contact button is visible.
+			// Long War 2 code within UpdateFlyoverText() determines if the contact button should be visible.
+			if (ContactButton.bIsVisible)
+			{
+				OnContactClicked(ContactButton);
+			}
+			// KDM : A button toggles scanning if the Avenger is currently at this region location.
+			else if (IsAvengerLandedHere())
+			{
+				ScanButton.ClickButtonScan();
+			}
+			// KDM : A button travels to this region location if possible.
+			else
+			{
+				OnDefaultClicked();
+			}
+			break;
+
+		case class'UIUtilities_Input'.const.FXS_BUTTON_X:
+			// KDM : X button opens up this haven's rebel screen if the outpost button is visible.
+			// Long War 2 code within UpdateFlyoverText() determines if the outpost button should be visible.
+			if (OutpostButton.bIsVisible)
+			{
+				OnOutpostClicked(OutpostButton);
+			}
+			break;
+			
+		default:
+			bHandled = false;
+			break;		
+	}
+
+	return bHandled || super(UIStrategyMapItem).OnUnrealCommand(cmd, arg);
+}
+
 defaultproperties
 {
 	bDisableHitTestWhenZoomedOut = false;
