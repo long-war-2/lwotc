@@ -5,7 +5,9 @@
 //			  This provides different iconography for missions that are being infiltrated vs not
 //--------------------------------------------------------------------------------------- 
 
-class UIStrategyMapItem_Mission_LW extends UIStrategyMapItem_Mission;
+class UIStrategyMapItem_Mission_LW extends UIStrategyMapItem_Mission dependsOn(X2EventListener_StrategyMap) config(LW_UI);
+
+var config bool SHOW_MISSION_TOOLTIPS_CTRL;
 
 var UIScanButton ScanButton;  // used for missions being infiltrated
 var UIText InfilPct;
@@ -20,6 +22,7 @@ var UIProgressBar ProgressBar; // used to show remaining time for missions not y
 var int InDepth; // tracks depth of mouse in and outs, since it's recording from two possibly overlapping elements (2D and 3D icons)
 
 var localized string strRecon;
+var localized string InfiltrationTooltipString;
 
 var transient bool bScanButtonResized;
 var transient float CachedScanButtonWidth;
@@ -104,28 +107,45 @@ function InstanceMapItem3DMaterial()
 
 function UpdateFromGeoscapeEntity(const out XComGameState_GeoscapeEntity GeoscapeEntity)
 {
-	local XComGameState_MissionSite MissionState;
-	local string MissionTitle;
-	local string InfiltrationPctValue;
-	local string MissionInfo;
-	local int InfiltrationPct;
-	local XComGameState_LWPersistentSquad InfiltratingSquad;
-	local X2MissionTemplate MissionTemplate;
+	local int InfiltrationPct, InfiltrationTextColour;
 	local float ScanWidth;
-
-	if( !bIsInited ) return; 
+	local string InfiltrationPctValue, MissionInfo, MissionTitle;
+	local X2MissionTemplate MissionTemplate;
+	local XComGameState_LWPersistentSquad InfiltratingSquad;
+	local XComGameState_MissionSite MissionState;
+	
+	if (!bIsInited)
+	{
+		return;
+	}
 
 	super(UIStrategyMapItem).UpdateFromGeoscapeEntity(GeoscapeEntity);
 
 	InfiltratingSquad = GetInfiltratingSquad();
 	 
 	MissionState = GetMission();
-	if(InfiltratingSquad != none)
+	if (InfiltratingSquad != none)
 	{
+		InfiltrationTextColour = (bIsFocused) ? -1 : eUIState_Normal;
+
 		InfiltrationPct = int(InfiltratingSquad.CurrentInfiltration * 100.0);
 		InfiltrationPctValue = string(InfiltrationPct) $ "%";
-		InfilPct.SetHTMLText(CenterText(class'UIUtilities_Text'.static.AddFontInfo(InfiltrationPctValue, false, true,, 20)));
-
+		
+		// KDM : When using a controller, there are 2 general colour states :
+		// 1.] This mission map item is selected, so its background is highlighted, and its text should be black.
+		// 2.] This mission map item is not selected, so its background is not highlighted, and its text should be normal blue.
+		if (`ISCONTROLLERACTIVE)
+		{
+			// KDM : When using a controller, the infiltration label needs to be continually refreshed according to the map item's selection status.
+			// When using a mouse & keyboard, the infiltration label doesn't need to change, so it can be called a single time down below.
+			InfilLabel.SetHTMLText(CenterText(class'UIUtilities_Text_LW'.static.AddFontInfoWithColor(strRecon, false, false, , 16, InfiltrationTextColour)));
+			InfilPct.SetHTMLText(CenterText(class'UIUtilities_Text_LW'.static.AddFontInfoWithColor(InfiltrationPctValue, false, true, , 20, InfiltrationTextColour)));
+		}
+		else
+		{
+			InfilPct.SetHTMLText(CenterText(class'UIUtilities_Text'.static.AddFontInfo(InfiltrationPctValue, false, true, , 20)));
+		}
+		
 		if (!bScanButtonResized)
 		{
 			MissionTitle = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(InfiltratingSquad.sSquadName);
@@ -135,7 +155,12 @@ function UpdateFromGeoscapeEntity(const out XComGameState_GeoscapeEntity Geoscap
 			ScanButton.SetText(MissionTitle, MissionInfo, " ", " "); // have to leave blank spaces so that Flash will size BG big enough 
 			SetLevel(0); // show 0 doom pips
 
-			InfilLabel.SetHTMLText(CenterText(class'UIUtilities_Text'.static.GetSizedText(strRecon, 16)));
+			// KDM : Infiltration label handling for controllers is dealt with up above.
+			if (!`ISCONTROLLERACTIVE)
+			{
+				InfilLabel.SetHTMLText(CenterText(class'UIUtilities_Text'.static.GetSizedText(strRecon, 16)));
+			}
+
 			bScanButtonResized = true;
 
 			CachedImageName = InfiltratingSquad.GetSquadImagePath();
@@ -182,6 +207,19 @@ function UpdateFromGeoscapeEntity(const out XComGameState_GeoscapeEntity Geoscap
 		ScanButton.Hide();
 		SquadImage.Hide();
 		bScanButtonResized = false;
+	}
+
+	// KDM : Our custom, mission map item, tooltip contains information, like mission expiration and infiltration percentage, which changes over 
+	// time; therefore, we need to continously update it. However, there are a few caveats :
+	//
+	// 1.] Tooltips are not created under normal circumstances for mission map items; therefore, we only need to worry about updating when
+	// a controller is being used, and SHOW_MISSION_TOOLTIPS_CTRL is true.
+	// 2.] UIStrategyMap stores a single active tooltip, ActiveTooltip, which it associates with the currently selected map item; unfortunately, 
+	// UpdateFromGeoscapeEntity() is called regardless of whether this map item is selected or not. Consequently, we don't want this mission
+	// map item polluting the tool tip when it is not selected.
+	if (GetStrategyMap().SelectedMapItem == self && `ISCONTROLLERACTIVE && SHOW_MISSION_TOOLTIPS_CTRL)
+	{
+		UpdateTooltip();
 	}
 }
 
@@ -335,6 +373,95 @@ simulated function Show()
 simulated function OnLoseFocus()
 {
 	super.OnLoseFocus();
+}
+
+function string GetToolTipText()
+{
+	local int InfiltrationPct;
+	local string BodyStr, TitleStr, InfiltrationPctStr, TooltipHTML;
+	local XComGameState_LWPersistentSquad InfiltratingSquad;
+	local XComGameState_MissionSite Mission;
+
+	InfiltratingSquad = GetInfiltratingSquad();
+	Mission = GetMission();
+
+	TooltipHTML = "";
+
+	if (Mission != none)
+	{	
+		class'X2EventListener_StrategyMap'.static.GetMissionSiteUIButtonToolTip(TitleStr, BodyStr, none, Mission);
+		TitleStr = class'UIUtilities_Text'.static.GetColoredText(TitleStr, eUIState_Header);
+			
+		// KDM : The title includes the amount of time left before the mission expires; this is very useful information. 
+		TooltipHTML $= TitleStr;
+		TooltipHTML $= "\n";
+		TooltipHTML $= "--------------------------------";
+		// KDM : If a squad is infiltrating, show the infiltration percentage.
+		if (InfiltratingSquad != none)
+		{
+			TooltipHTML $= "\n";
+			TooltipHTML $= InfiltrationTooltipString $ " : ";
+
+			InfiltrationPct = int(InfiltratingSquad.CurrentInfiltration * 100.0);
+			InfiltrationPctStr = class'UIUtilities_Text'.static.GetColoredText(string(InfiltrationPct), eUIState_Good);
+				
+			TooltipHTML $= InfiltrationPctStr @ "%";
+			TooltipHTML $= "\n";
+			TooltipHTML $= "--------------------------------";
+		}
+		TooltipHTML $= "\n";
+		TooltipHTML $= BodyStr;
+	}
+
+	return TooltipHTML;
+}
+
+function UpdateTooltip()
+{
+	local string TooltipHTML;
+	local UIStrategyMap StrategyMap;
+
+	StrategyMap = GetStrategyMap();
+
+	// KDM : If the strategy map has no active tooltip, then there is nothing to update.
+	if (StrategyMap.ActiveTooltip != none)
+	{
+		// KDM : Get the new tooltip text and update the active tooltip.
+		TooltipHTML = GetToolTipText();
+		StrategyMap.ActiveTooltip.SetText(TooltipHTML);
+		StrategyMap.ActiveTooltip.UpdateData();
+
+		// KDM : The tooltip data has been updated; however, this information is not pushed to the flash UI element, so we don't see
+		// any changes. There are 2 ways around this :
+		//
+		// 1.] The flash element, TooltipBox, has a function, Show(), which updates the tooltip's : Style, Text, Size, BG, and Location.
+		// Furthermore, it animates the tooltip in. This is a nice 'complete' method, but it involves us having to constantly hide and show the
+		// tooltip within UnrealScript. Additionally, it requires us to kill the tooltip's animation since we can't have it contantly fading in
+		// and fading out.
+		// 2.] Update the flash element's : Style, Text, Size, and BG, via Actionscript calls. This is a better solution because it updates
+		// the tooltip text and size, without having to resort to hiding and showing the tooltip; furthermore, it doesn't mess with any 
+		// tooltip animations.
+		StrategyMap.ActiveTooltip.MC.FunctionVoid("RealizeStyle");
+		StrategyMap.ActiveTooltip.MC.FunctionVoid("RealizeText");	
+		StrategyMap.ActiveTooltip.MC.FunctionVoid("RealizeSize");
+		StrategyMap.ActiveTooltip.MC.FunctionVoid("RealizeBG");
+	}
+}
+
+
+// KDM : Long War provides useful mission tooltips; however, they only appear over the mission icons on the bottom icon bar, and are only
+// accessible to mouse & keyboard users. Consequently, we want to give controller users the opportunity to display this information as a normal tooltip
+// next to the mission map item.
+function GenerateTooltip(string tooltipHTML)
+{	
+	// KDM : Normally, for mission map items, tooltipHTML will be an empty string; consequently, no tooltip will be created. 
+	// Only show mission tooltips if the controller is active, and SHOW_MISSION_TOOLTIPS_CTRL is true.
+	if (`ISCONTROLLERACTIVE && SHOW_MISSION_TOOLTIPS_CTRL)
+	{
+		tooltipHTML = GetToolTipText();
+	}
+	
+	super.GenerateTooltip(tooltipHTML);
 }
 
 DefaultProperties

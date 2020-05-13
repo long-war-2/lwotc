@@ -6,7 +6,84 @@
 
 class UIUtilities_Text_LW extends object;
 
+// KDM : I am keeping these constants in sync with values from UIUtilities_Text for consistancy.
+const BODY_FONT_SIZE_2D = 22;
+const TITLE_FONT_SIZE_2D = 32;
+const BODY_FONT_SIZE_3D = 26;
+const TITLE_FONT_SIZE_3D = 32;
+const BODY_FONT_TYPE = "$NormalFont";
+const TITLE_FONT_TYPE = "$TitleFont";
+
 var localized string m_strHelp;
+
+// KDM : This is equivalent to UIUtilities_Text --> AddFontInfo(); the only difference is that it allows you to modify the font's colour.
+static function string AddFontInfoWithColor(string txt, bool is3DScreen, optional bool isTitleFont, optional bool forceBodyFontSize, 
+	optional int specifyFontSize = 0, optional int ColorState = -1)
+{
+	local int fontSize, fontSize2D, fontSize3D;
+	local string fontColor, fontFace;
+	
+	if (txt == "")
+	{
+		return txt;
+	}
+
+	fontFace = isTitleFont ? TITLE_FONT_TYPE : BODY_FONT_TYPE;
+	
+	switch(ColorState)
+	{
+		case eUIState_Disabled:		
+			fontColor = class'UIUtilities_Colors'.const.DISABLED_HTML_COLOR;	
+			break;
+		case eUIState_Good:			
+			fontColor = class'UIUtilities_Colors'.const.GOOD_HTML_COLOR;		
+			break;
+		case eUIState_Bad:			
+			fontColor = class'UIUtilities_Colors'.const.BAD_HTML_COLOR;		
+			break;
+		case eUIState_Warning:		
+			fontColor = class'UIUtilities_Colors'.const.WARNING_HTML_COLOR;	
+			break;
+		case eUIState_Warning2:		
+			fontColor = class'UIUtilities_Colors'.const.WARNING2_HTML_COLOR;	
+			break;
+		case eUIState_Highlight:    
+			fontColor = class'UIUtilities_Colors'.const.HILITE_HTML_COLOR;		
+			break;
+		case eUIState_Cash:         
+			fontColor = class'UIUtilities_Colors'.const.CASH_HTML_COLOR;		
+			break;
+		case eUIState_Header:       
+			fontColor = class'UIUtilities_Colors'.const.HEADER_HTML_COLOR;     
+			break;
+		case eUIState_Psyonic:      
+			fontColor = class'UIUtilities_Colors'.const.PSIONIC_HTML_COLOR;    
+			break;
+		case eUIState_Normal:       
+			fontColor = class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR;     
+			break;
+		case eUIState_Faded:        
+			fontColor = class'UIUtilities_Colors'.const.FADED_HTML_COLOR;      
+			break;
+		default:                    
+			fontColor = class'UIUtilities_Colors'.const.BLACK_HTML_COLOR;      
+			break;
+	}
+
+	if (specifyFontSize == 0)
+	{
+		fontSize2D = isTitleFont ? (forceBodyFontSize ? BODY_FONT_SIZE_2D : TITLE_FONT_SIZE_2D) : BODY_FONT_SIZE_2D;
+		fontSize3D = isTitleFont ? (forceBodyFontSize ? BODY_FONT_SIZE_3D : TITLE_FONT_SIZE_3D) : BODY_FONT_SIZE_3D;
+
+		fontSize = is3DScreen ? fontSize3D : fontSize2D;
+	}
+	else 
+	{
+		fontSize = specifyFontSize;
+	}
+	
+	return "<font size='" $ fontSize $ "' face='" $ fontFace $ "' color='#" $ fontColor $ "'>" $ txt $ "</font>";
+}
 
 static function String GetDifficultyString(XComGameState_MissionSite MissionState, optional int AlertModifier = 0)
 {
