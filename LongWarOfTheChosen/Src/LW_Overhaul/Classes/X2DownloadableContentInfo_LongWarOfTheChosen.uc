@@ -3786,7 +3786,9 @@ exec function RespecAllSoldiers()
 	Soldiers = XComHQ.GetSoldiers();
 	foreach Soldiers(UnitState)
 	{
-		RespecSoldier(UnitState);
+		// Skip Psi Operatives as they're ranking up requires training
+		if (!UnitState.IsPsiOperative())
+			RespecSoldier(UnitState);
 	}
 }
 
@@ -3826,7 +3828,7 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	{
 		UnitState.RankUpSoldier(NewGameState, ClassName);
 	}
-	UnitState.ApplySquaddieLoadout(NewGameState, XComHQ);
+	// UnitState.ApplySquaddieLoadout(NewGameState, XComHQ);
 
 	// Reapply Stat Modifiers (Beta Strike HP, etc.)
 	UnitState.bEverAppliedFirstTimeStatModifiers = false;
