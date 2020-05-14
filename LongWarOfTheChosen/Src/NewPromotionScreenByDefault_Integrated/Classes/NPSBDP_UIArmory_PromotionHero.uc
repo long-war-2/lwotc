@@ -813,7 +813,7 @@ simulated function ConfirmAbilityCallbackWithTracking(Name Action)
 
 		if (UpdatedUnit.HasPurchasedPerkAtRank(PendingRank) && PendingBranch < GetAbilitiesPerRank(UpdatedUnit))
 		{
-			UpdatedUnit.SetUnitFloatValue('LWOTC_AbilityCostModifier', AbilityCostModifier.fValue + BaseAbilityCostModifier);
+			UpdatedUnit.SetUnitFloatValue('LWOTC_AbilityCostModifier', AbilityCostModifier.fValue + BaseAbilityCostModifier, eCleanup_Never);
 		}
 
 		bSuccess = UpdatedUnit.BuySoldierProgressionAbility(UpdateState, PendingRank, PendingBranch, GetAbilityPointCost(PendingRank, PendingBranch));
