@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2StrategyElement_DefaultAlienActivies.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Defines all Alien Activity templates
+//  PURPOSE: Defines all Alien Activity templates
 //---------------------------------------------------------------------------------------
 class X2StrategyElement_DefaultAlienActivities extends X2StrategyElement config(LW_Activities) dependson(UIMission_LWCustomMission, X2LWAlienActivityTemplate);
 

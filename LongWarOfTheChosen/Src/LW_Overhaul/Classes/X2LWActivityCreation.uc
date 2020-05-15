@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCreation.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Basic creation mechanics for alien activities
+//  PURPOSE: Basic creation mechanics for alien activities
 //---------------------------------------------------------------------------------------
 class X2LWActivityCreation extends Object;
 

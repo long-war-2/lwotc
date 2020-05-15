@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2RebelJobIncomeModifier_Liaison.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Income modifier for haven liaisons
+//  PURPOSE: Income modifier for haven liaisons
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobIncomeModifier_Liaison extends LWRebelJobIncomeModifier

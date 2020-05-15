@@ -2046,6 +2046,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	WeaponTemplate = X2WeaponTemplate(Template);
 	if (WeaponTemplate != none)
 	{
+		// Pistols don't have PistolStandardShot for some reason. Add it here.
+		if (WeaponTemplate.WeaponCat == 'pistol')
+			WeaponTemplate.Abilities.AddItem('PistolStandardShot');
+
 		// substitute cannon range table
 		if (WeaponTemplate.WeaponCat == 'cannon')
 		{

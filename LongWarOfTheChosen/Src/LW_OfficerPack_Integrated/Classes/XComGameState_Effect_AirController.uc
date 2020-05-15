@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    XComGameState_Effect_AirController.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Extended game state information for Air Controller ability
+//  PURPOSE: Extended game state information for Air Controller ability
 //---------------------------------------------------------------------------------------
 class XComGameState_Effect_AirController extends XComGameState_Effect;
 

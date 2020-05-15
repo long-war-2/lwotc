@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityDetectionCalc_ProtectResearch.uc
 //  AUTHOR:  JL / Pavonis Interactive
-//	PURPOSE: Adds additional detection chance if facility is in the region, even more if it's also liberated
+//  PURPOSE: Adds additional detection chance if facility is in the region, even more if it's also liberated
 //---------------------------------------------------------------------------------------
 class X2LWActivityDetectionCalc_ProtectResearch extends X2LWActivityDetectionCalc;
 

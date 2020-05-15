@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCreation_SafestRegion.uc
 //  AUTHOR:  JL / Pavonis Interactive
-//	PURPOSE: Extended Creation class that optimizes to putting activity in somewhat random yet strategically important location
+//  PURPOSE: Extended Creation class that optimizes to putting activity in somewhat random yet strategically important location
 //---------------------------------------------------------------------------------------
 class X2LWActivityCreation_AlertUFOLandingRegion extends X2LWActivityCreation;
 

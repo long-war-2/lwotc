@@ -13,9 +13,13 @@ Here are some of the headline changes you may be interested in:
 * Resistance orders are disabled by default, but can be enabled via a second wave option
 * Will loss and recovery has changed significantly, for example, Will no longer recovers during infiltration
 
-**[Download the release from here](https://www.dropbox.com/s/joysj8r5n6j8bnm/LongWarOfTheChosen-1.0-beta-3.zip?dl=0)**
+||  **[Download the release from here](https://www.dropbox.com/s/joysj8r5n6j8bnm/LongWarOfTheChosen-1.0-beta-3.zip?dl=0)** ||
 
 More details on all the balance changes and bug fixes below.
+
+**WARNING** If you choose not to upgrade to 1.0 beta 3 yet, be aware that a new version of Dedicated Pistol Slot mod will cause issues with pistol slots in existing campaigns. See [this Reddit post](https://www.reddit.com/r/LWotC/comments/gcmn9k/warning_prepare_for_changes_to_dedicated_pistol/) for details and a solution.
+
+**Mod dependency changes** Dedicated Pistol Slot and Revival Protocol Fixes are now integrated into LWOTC and incompatible with it. You will need to unsubcribe from them or disable them.
 
 **IMPORTANT** If you're upgrading from beta 2 or a development build and want to continue an existing campaign, make sure you load a strategy save after the upgrade, i.e. one that was created while you were on the Avenger. Also, use the new `RespecSelectedSoldier` console command on your faction soldiers to get the new ability trees.
 
@@ -29,6 +33,7 @@ Here are the changes since beta 2:
 
 ## Mods
 
+* Dedicated Pistol Slot is no longer required and must be disabled or removed
 * Revival Protocol Fixes is no longer required and must be disabled or removed
 * [LW2: Better Squad Icon Selector](https://steamcommunity.com/sharedfiles/filedetails/?id=848382778) has been integrated into LWOTC
 * Using LWOTC and RPGO together should no longer result in a massive drop in FPS
@@ -137,7 +142,7 @@ Here are the changes since beta 2:
 
 * Blademaster replaces Channel at CPL.
 
-* There is a new SGT Danger Zone ability that increases the radius of Volt
+* There is a new SGT High Voltage ability that increases the radius of Volt
   by 2 tiles.
 
 * Pillar can be used in place of a Momentum action. It can still be
@@ -570,7 +575,11 @@ Other changes:
 A big thanks to the following:
 
 * The Community Highlander team, as we rely heavily on its bug fixes and modding features
-* The various folks that have been submitting pull requests, for bug fixes and localisation
+* The various folks that have been submitting pull requests
+* The people that have provided translations for LWOTC:
+  - Italian: SilentSlave
+  - Russian: FlashVanMaster and Roman-Sch
+  - French: Savancosinus
 * The folks on XCOM 2 Modders Discord, who have been incredibly helpful at all stages of this project
 * All the folks that have been testing the development builds and providing feedback and issue reports
 

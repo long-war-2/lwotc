@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_ManualOverride_LW.uc
 //  AUTHOR:  martox
-//	PURPOSE: Modified version of the base WOTC effect for Skirmisher's Manual Override
+//  PURPOSE: Modified version of the base WOTC effect for Skirmisher's Manual Override
 //           ability. This reduces the cooldown of all abilities on the targeted unit
 //           by a configurable number of turns. If the reduction is greater than the
 //           remaining cooldown on an ability, then that ability immediately becomes

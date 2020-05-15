@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_FacilityLeadItem.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Conditionals on the having a facility lead item or the related research
+//  PURPOSE: Conditionals on the having a facility lead item or the related research
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_FacilityLeadItem extends X2LWActivityCondition;
 

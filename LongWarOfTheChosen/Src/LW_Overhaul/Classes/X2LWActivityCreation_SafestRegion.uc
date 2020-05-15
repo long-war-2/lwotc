@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCreation_SafestRegion.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Extended Creation class that optimizes to putting activity in the safest region possible
+//  PURPOSE: Extended Creation class that optimizes to putting activity in the safest region possible
 //---------------------------------------------------------------------------------------
 class X2LWActivityCreation_SafestRegion extends X2LWActivityCreation;
 

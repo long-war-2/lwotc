@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCreation_ProtectResearch.uc
 //  AUTHOR:  JL / Pavonis Interactive
-//	PURPOSE: This ensures conditions for creation, particularly how many PR activities 
+//  PURPOSE: This ensures conditions for creation, particularly how many PR activities 
 //  are already out there, are checked only once per tick, to avoid spamming this activity
 //---------------------------------------------------------------------------------------
 class X2LWActivityCreation_ProtectResearch extends X2LWActivityCreation;

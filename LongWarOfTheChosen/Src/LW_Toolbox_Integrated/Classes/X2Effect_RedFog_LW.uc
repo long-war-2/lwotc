@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_RedFog_LW.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Implements Red Fog, which decreases stats based on damage taken 
+//  PURPOSE: Implements Red Fog, which decreases stats based on damage taken 
 //---------------------------------------------------------------------------------------
 class X2Effect_RedFog_LW extends X2Effect_ModifyStats
 	config(LW_Toolbox);

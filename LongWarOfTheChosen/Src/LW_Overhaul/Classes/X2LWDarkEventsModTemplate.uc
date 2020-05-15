@@ -23,6 +23,7 @@ static function UpdateDarkEvents(X2StrategyElementTemplate Template, int Difficu
 		case 'DarkEvent_HighAlert':
 		case 'DarkEvent_Infiltrator':
 		case 'DarkEvent_InfiltratorChryssalid':
+		case 'DarkEvent_LostWorld':
 		case 'DarkEvent_ReturnFire':
 		case 'DarkEvent_SealedArmor':
 		case 'DarkEvent_UndyingLoyalty':

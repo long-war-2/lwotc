@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2MultiWeaponTemplate.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Template to allow defining alt versions of (limited) stats for joining two weapons together into a single pawn
+//  PURPOSE: Template to allow defining alt versions of (limited) stats for joining two weapons together into a single pawn
 //---------------------------------------------------------------------------------------
 class X2MultiWeaponTemplate extends X2WeaponTemplate config(LW_Overhaul);
 

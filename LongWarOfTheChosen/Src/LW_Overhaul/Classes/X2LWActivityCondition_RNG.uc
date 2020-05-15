@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_RNG.uc
 //  AUTHOR:  JohnnyLump / Pavonis Interactive
-//	PURPOSE: Conditional on a die rolled every activity check
+//  PURPOSE: Conditional on a die rolled every activity check
 //---------------------------------------------------------------------------------------
 
 class X2LWActivityCondition_RNG extends X2LWActivityCondition;

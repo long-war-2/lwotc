@@ -115,11 +115,28 @@ RankIcons[6]="UILibrary_Common.rank_colonel"
 RankIcons[7]="UILibrary_Common.rank_commander"
 RankIcons[8]="UILibrary_Common.rank_fieldmarshall"
 
+; LWOTC Needs Translation
+
 ; LWOTC: Hunker down doesn't remove burning in this mod
 [HunkerDown X2AbilityTemplate]
 LocFriendlyName="Hunker Down"
 LocHelpText="Increase Defense by <Ability:HUNKERDEFENSEBONUS/>, and Dodge by <Ability:HUNKERDODGEBONUS/>. Only works in cover."
 LocFlyOverText="Hunker Down"
+
+[ReturnFire X2AbilityTemplate]
+LocHelpText="When targeted by enemy fire, automatically fire back with your pistol once per turn."
+LocLongDescription="When targeted by enemy fire, automatically fire back with your pistol once per turn."
+
+[Quickdraw X2AbilityTemplate]
+LocLongDescription="Firing your pistol with your first action no longer ends your turn."
+LocHelpText="Firing your pistol with your first action no longer ends your turn."
+
+[LightningHands X2AbilityTemplate]
+LocLongDescription="Fire your pistol at a target. This attack does not cost an action."
+LocHelpText="Fire your pistol at a target. This attack does not cost an action."
+LocPromotionPopupText="<Bullet/> Lightning Hands can combo well with other <Ability:ClassName/> abilities, as it does not prevent the use of other abilities in the same turn.<br/><Bullet/> Lightning Hands has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+
+; End Translation
 
 
 ;;;;;;;;;;;;;;;;;;;;  TECHNICAL ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -3974,9 +3991,15 @@ Description="An extensive cache of enemy intel."
 ; Dark Events
 
 [DarkEvent_AlloyPadding X2DarkEventTemplate]
+; LWOTC Needs Translation
+DisplayName="Permanent: ADVENT Alloy Padding"
+; End Translation
 SummaryText="ADVENT invests in improving their battle gear, adding armor to some of their soldiers in the field."
 
 [DarkEvent_ViperRounds X2DarkEventTemplate]
+; LWOTC Needs Translation
+DisplayName="Permanent: Viper Rounds"
+; End Translation
 SummaryText="ADVENT incorporates Viper poison into their weaponry, giving some ADVENT soldiers poisonous rounds."
 
 [DarkEvent_RapidResponse X2DarkEventTemplate]
@@ -5428,4 +5451,10 @@ ActionPostNarrative="Your soldier is better now."
 FriendlyName="Ability Points"
 FriendlyNamePlural="Ability Points"
 BriefSummary="A pool of points that can be used to grant abilities and stats to your soldiers."
+; End Translation
+
+; LWOTC Needs Translation
+[XComGame.UIArmory_Loadout]
+[UIArmory_Loadout]
+m_strInventoryLabels[eInvSlot_Pistol]="PISTOL"
 ; End Translation

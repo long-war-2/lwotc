@@ -3,7 +3,7 @@
 //  AUTHOR:  tracktwo (Pavonis Interactive)
 //
 //  PURPOSE: Miscellaneous helper routines.
-//--------------------------------------------------------------------------------------- 
+//---------------------------------------------------------------------------------------
 
 class Utilities_LW extends Object dependson(X2StrategyElement_DefaultAlienActivities) config(LW_Overhaul);
 
@@ -205,7 +205,7 @@ static function int GetMaxSoldiersAllowedOnMission(optional XComGameState_Missio
 	{
 		Max = Min(8, Max);
 	}
-		
+
 	return Max;
 }
 
@@ -221,7 +221,7 @@ function static bool GetSpawnTileNearTile(out TTile Tile, int FirstRange, int Se
     WorldData.GetSpawnTilePossibilities(Tile, FirstRange, FirstRange, FirstRange, TilePossibilities);
     class'Utilities_LW'.static.RemoveInvalidTiles(TilePossibilities);
 
-    if (TilePossibilities.Length == 0) 
+    if (TilePossibilities.Length == 0)
     {
         // Try again, widening the search quite a bit
         WorldData.GetSpawnTilePossibilities(Tile, SecondRange, SecondRange, SecondRange, TilePossibilities);
@@ -430,7 +430,7 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 	local int LaserChance, MagChance, iRand;
 	local string LoadoutStr;
 
-   
+
     Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
     switch(Outpost.GetRebelLevel(RebelRef))
     {
@@ -453,7 +453,7 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 
 	LaserChance = 0;
 	MagChance = 0;
-	
+
     if (Loadout == '')
 	{
         LoadoutStr = "RebelSoldier";
@@ -518,9 +518,9 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 // civilian rebels in the required missions
 // (retaliations/invasions/jailbreaks/defends/recruitraids) without redscreens
 // regarding trying to add abilities without a primary weapon equipped.
-function static XComGameState_Unit CreateRebelProxy(StateObjectReference RebelRef, 
-                                                    StateObjectReference OutpostRef, 
-                                                    Name TemplateName, 
+function static XComGameState_Unit CreateRebelProxy(StateObjectReference RebelRef,
+                                                    StateObjectReference OutpostRef,
+                                                    Name TemplateName,
                                                     bool GiveAbilities,
                                                     XComGameState NewGameState)
 {
@@ -557,7 +557,7 @@ function static XComGameState_Unit AddRebelSoldierToMission(StateObjectReference
     local XComGameState_Player Player;
     local X2TacticalGameRuleset Rules;
     local XComGameStateHistory History;
-   
+
     Rules = `TACTICALRULES;
     History = `XCOMHISTORY;
     NewGameStateContext = class'XComGameStateContext_TacticalGameRule'.static.BuildContextFromGameRule(eGameRule_UnitAdded);
@@ -567,7 +567,7 @@ function static XComGameState_Unit AddRebelSoldierToMission(StateObjectReference
     Player = FindPlayer(eTeam_XCom);
     Proxy.SetControllingPlayer(Player.GetReference());
     AddUnitToXComGroup(NewGameState, Proxy, Player, History);
-	
+
     Rules.InitializeUnitAbilities(NewGameState, Proxy);
     class'XGUnit'.static.CreateVisualizer(NewGameState, Proxy, Player, none);
     XComGameStateContext_TacticalGameRule(NewGameState.GetContext()).UnitRef = Proxy.GetReference();
@@ -585,11 +585,11 @@ function static XComGameState_Unit AddRebelSoldierToMission(StateObjectReference
 //
 // May provide both a template to use for the proxy (generally 'Rebel' or
 // 'FacelessRebelProxy'), and optionally can provide a team to assign them to.
-function static XComGameState_Unit AddRebelToMission(StateObjectReference RebelRef, 
-                                                     StateObjectReference OutpostRef, 
-                                                     Name TemplateName, 
-                                                     out TTile Tile, 
-                                                     optional ETeam team = eTeam_XCom, 
+function static XComGameState_Unit AddRebelToMission(StateObjectReference RebelRef,
+                                                     StateObjectReference OutpostRef,
+                                                     Name TemplateName,
+                                                     out TTile Tile,
+                                                     optional ETeam team = eTeam_XCom,
                                                      optional XComGameState NewGameState)
 {
     local XComGameStateContext_TacticalGameRule NewGameStateContext;
@@ -615,7 +615,7 @@ function static XComGameState_Unit AddRebelToMission(StateObjectReference RebelR
     Player = FindPlayer(Team);
     Proxy.SetControllingPlayer(Player.GetReference());
     AddUnitToXComGroup(NewGameState, Proxy, Player, History);
-    
+
     if (Team == eTeam_Alien)
     {
         XGAIPlayer(XGBattle_SP(`BATTLE).GetAIPlayer()).AddNewSpawnAIData(NewGameState);
@@ -639,7 +639,7 @@ function static AddUnitToXComGroup(XComGameState NewGameState, XComGameState_Uni
 {
     local XComGameState_Unit CurrentUnit;
     local XComGameState_AIGroup Group;
-    
+
     if (History == None)
     {
         History = `XCOMHISTORY;
@@ -749,3 +749,17 @@ static function float GetUnitValue(XComGameState_Unit UnitState, Name ValueName)
 	UnitState.GetUnitValue(ValueName, Value);
 	return Value.fValue;
 }
+
+simulated static function bool IsOnStrategyMap()
+{
+	// KDM : If you are on the strategy map return true; if you are in the Avenger return false.
+	if (`HQGAME == none || `HQPRES == none || `HQPRES.StrategyMap2D == none)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2AbilityToHitCalc_StatCheck_LWFlamethrower.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Stat check (using tech level?) of flamethrower against target stat
+//  PURPOSE: Stat check (using tech level?) of flamethrower against target stat
 //---------------------------------------------------------------------------------------
 class X2AbilityToHitCalc_StatCheck_LWFlamethrower extends X2AbilityToHitCalc_StatCheck;
 

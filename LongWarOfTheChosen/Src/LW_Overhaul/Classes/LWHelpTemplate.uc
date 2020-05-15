@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    LWHelpTemplate.uc
 //  AUTHOR:  amineri / Pavonis Interactive
-//	PURPOSE: Generic Help Template for NavHelp Help Button data
+//  PURPOSE: Generic Help Template for NavHelp Help Button data
 //---------------------------------------------------------------------------------------
 
 class LWHelpTemplate extends X2StrategyElementTemplate;

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    SniperDefense_UIScreenListener.uc
 //  AUTHOR:  RedDobe
-//	PURPOSE: Makes Enemy pods activate on missed squadsight shots
+//  PURPOSE: Makes Enemy pods activate on missed squadsight shots
 //---------------------------------------------------------------------------------------
 class SniperDefense_UIScreenListener extends UIScreenListener Config(SniperDefense);
 

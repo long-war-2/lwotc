@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Ability_SkirmisherAbilitySet_LW.uc
 //  AUTHOR:  martox
-//	PURPOSE: New Skirmisher abilities for LWOTC.
+//  PURPOSE: New Skirmisher abilities for LWOTC.
 //---------------------------------------------------------------------------------------
 class X2Ability_SkirmisherAbilitySet_LW extends X2Ability_SkirmisherAbilitySet config(LW_FactionBalance);
 

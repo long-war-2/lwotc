@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_AlertVigilance.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Conditionals on the Alert and Vigilance levels of the region
+//  PURPOSE: Conditionals on the Alert and Vigilance levels of the region
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_AlertVigilance extends X2LWActivityCondition;
 

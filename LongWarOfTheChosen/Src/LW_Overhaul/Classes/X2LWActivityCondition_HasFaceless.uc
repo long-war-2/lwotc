@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_HasFaceless.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Allow activity creation only if the local outpost has faceless
+//  PURPOSE: Allow activity creation only if the local outpost has faceless
 //---------------------------------------------------------------------------------------
 
 

@@ -322,7 +322,6 @@ FriendlyName="Maîtriser l'ennemi"
 Description="Vous prenez le contrôle de l'unité pour le reste de la mission et obtenez des bonus. Les CEM seront reprogrammées pour servir la résistance."
 
 ;LWOTC translated
-
 [GreaterShutdownRobot X2HackRewardTemplate]
 FriendlyName="Extinction prolongée"
 Description="Neutralise temporairement l'unité en l'étourdissant pour 3 tours."
@@ -1252,7 +1251,6 @@ TinySummary="Réduit la durée d'infiltration d'une mission"
 LootTooltip="Cette amélioration d'arme, une fois installée, réduira le temps nécessaire à infiltrer ce soldat en mission. Elle réduit également le bruit produit par l'arme durant les combats."
 
 ; LWOTC translated
-
 [CritUpgrade_Bsc X2WeaponUpgradeTemplate]
 BriefSummary="Augmente les chances de coup critique de <Ability:CRITINCREASE/> %."
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Ability_DarkEvents_LW.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Abilities that are added to enemy units as dark events.
+//  PURPOSE: Abilities that are added to enemy units as dark events.
 //---------------------------------------------------------------------------------------
 
 class X2Ability_DarkEvents_LW extends X2Ability config(GameCore);

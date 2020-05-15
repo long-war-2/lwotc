@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2AbilityCooldown_LWFlamethrower.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Variable cooldown on flamethrower
+//  PURPOSE: Variable cooldown on flamethrower
 //---------------------------------------------------------------------------------------
 class X2AbilityCooldown_LWFlamethrower extends X2AbilityCooldown;
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCreation_Reinforce.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Extended Creation class that selects reinforcement region based on neighboring regions
+//  PURPOSE: Extended Creation class that selects reinforcement region based on neighboring regions
 //---------------------------------------------------------------------------------------
 class X2LWActivityCreation_Reinforce extends X2LWActivityCreation config(LW_Activities);
 

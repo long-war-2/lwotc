@@ -70,10 +70,10 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 	RadiusMultiTarget.bAllowDeadMultiTargetUnits = false;
 	RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
 	RadiusMultiTarget.bUseWeaponRadius = false;
-	RadiusMultiTarget.fTargetRadius = `TILESTOMETERS(default.VOLT_TILE_RADIUS);
+	RadiusMultiTarget.fTargetRadius = `TILESTOMETERS(default.VOLT_TILE_RADIUS) + 0.01;
 
 	DangerZoneBonus.RequiredAbility = 'VoltDangerZone';
-	DangerZoneBonus.fBonusRadius = default.VOLT_DANGER_ZONE_BONUS_RADIUS;
+	DangerZoneBonus.fBonusRadius = `TILESTOMETERS(default.VOLT_DANGER_ZONE_BONUS_RADIUS) + 0.01;
 	RadiusMultiTarget.AbilityBonusRadii.AddItem(DangerZoneBonus);
 
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2RebelJobIncomeModifier_LocalFaceless.uc
 //  AUTHOR:  amineri / Pavonis Interactive
-//	PURPOSE: Income modifier that depends on the number of faceless at the outpost
+//  PURPOSE: Income modifier that depends on the number of faceless at the outpost
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobIncomeModifier_LocalFaceless extends LWRebelJobIncomeModifier config(LW_Outposts);

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2RebelJobTemplate.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Rebel job definitions template for allowing extensible rebel behavior in outposts.
+//  PURPOSE: Rebel job definitions template for allowing extensible rebel behavior in outposts.
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobTemplate extends X2StrategyElementTemplate config(LW_Outposts);

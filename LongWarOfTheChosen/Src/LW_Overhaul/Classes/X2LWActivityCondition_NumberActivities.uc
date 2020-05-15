@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_NumberActivities.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Conditionals on the number of other activities currently active
+//  PURPOSE: Conditionals on the number of other activities currently active
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_NumberActivities extends X2LWActivityCondition;
 

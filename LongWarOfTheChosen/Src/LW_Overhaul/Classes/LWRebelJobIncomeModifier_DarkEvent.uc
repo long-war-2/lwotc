@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2RebelJobIncomeModifier.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Income modifier for active dark events.
+//  PURPOSE: Income modifier for active dark events.
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobIncomeModifier_DarkEvent extends LWRebelJobIncomeModifier;

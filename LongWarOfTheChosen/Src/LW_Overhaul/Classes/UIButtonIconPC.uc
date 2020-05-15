@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    UIButtonIconPC.uc
 //  AUTHOR:  amineri / Pavonis Interactive
-//	PURPOSE: Extension of regular button for use with FlashControl XComButtonIconPC
+//  PURPOSE: Extension of regular button for use with FlashControl XComButtonIconPC
 //			 Normally accessible only through NavHelp
 //---------------------------------------------------------------------------------------
 

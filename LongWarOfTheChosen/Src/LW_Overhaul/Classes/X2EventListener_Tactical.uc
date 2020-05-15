@@ -57,7 +57,7 @@ static function CHEventListenerTemplate CreateYellowAlertListeners()
 static function CHEventListenerTemplate CreateMiscellaneousListeners()
 {
 	local CHEventListenerTemplate Template;
-	
+
 	`LWTrace("Registering miscellaneous tactical event listeners");
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MiscellaneousTacticalListeners');
@@ -69,6 +69,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('AbilityActivated', OnAbilityActivated, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('UnitChangedTeam', ClearUnitStateValues, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('PlayerTurnEnded', RollForPerTurnWillLoss, ELD_OnStateSubmitted, GetListenerPriority());
+	Template.AddCHEvent('OverrideR3Button', BindR3ToPlaceDelayedEvacZone, ELD_Immediate, GetListenerPriority());
 
 	// This seems to be causing stutter in the game, so commenting out for now.
 	// if (XCom_Perfect_Information_UIScreenListener.default.ENABLE_PERFECT_INFORMATION)
@@ -1078,4 +1079,23 @@ static protected function EventListenerReturn CheckForMissionCompleted(
 
 		`TACTICALRULES.SubmitGameStateContext(EventContext);
 	}
+}
+
+static protected function EventListenerReturn BindR3ToPlaceDelayedEvacZone(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	// Bind R3 controller button to this LW2/LWOTC ability
+	Tuple.Data[1].n = 'PlaceDelayedEvacZone';
+
+	return ELR_NoInterrupt;
 }

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityDetectionCalc.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Basic detection mechanics for alien activities
+//  PURPOSE: Basic detection mechanics for alien activities
 //---------------------------------------------------------------------------------------
 class X2LWActivityDetectionCalc extends Object config(LW_Activities);
 

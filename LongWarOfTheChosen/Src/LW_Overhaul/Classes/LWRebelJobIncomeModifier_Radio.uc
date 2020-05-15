@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2RebelJobIncomeModifier_Radio.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Income modifier for regions with radio relays
+//  PURPOSE: Income modifier for regions with radio relays
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobIncomeModifier_Radio extends LWRebelJobIncomeModifier

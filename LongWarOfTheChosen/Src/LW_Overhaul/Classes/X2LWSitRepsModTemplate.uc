@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWCovertActionsModTemplate.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Modifies existing Sit Rep templates, disabling some of them so they.
+//  PURPOSE: Modifies existing Sit Rep templates, disabling some of them so they.
 //           won't be picked for missions.
 //---------------------------------------------------------------------------------------
 class X2LWSitRepsModTemplate extends X2LWTemplateModTemplate config(LW_Overhaul);

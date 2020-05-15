@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Condition_ChanceBasedTacticalDE.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Conditional on a die rolled at the start of tactical combat. Designed for
+//  PURPOSE: Conditional on a die rolled at the start of tactical combat. Designed for
 //           Tactical Dark Events that apply abilities to enemy unit based on chance.
 //---------------------------------------------------------------------------------------
 

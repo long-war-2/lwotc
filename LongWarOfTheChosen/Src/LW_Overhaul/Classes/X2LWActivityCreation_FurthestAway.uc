@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCreation_FurthestAway.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Extended Creation class that optimizes to putting activity in region furthest from a contacted region
+//  PURPOSE: Extended Creation class that optimizes to putting activity in region furthest from a contacted region
 //---------------------------------------------------------------------------------------
 class X2LWActivityCreation_FurthestAway extends X2LWActivityCreation;
 

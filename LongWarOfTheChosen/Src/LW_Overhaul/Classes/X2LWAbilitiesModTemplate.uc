@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWAbilitiesModTemplate.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Modifies existing ability templates.
+//  PURPOSE: Modifies existing ability templates.
 //
 //           In particular, it sets the final hit chance override delegate
 //           on X2AbilityToHitCalc_StandardAim instances.

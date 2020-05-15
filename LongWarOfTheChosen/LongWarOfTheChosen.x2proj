@@ -13,6 +13,7 @@
     <Folder Include="Config\" />
     <Folder Include="Content\" />
     <Folder Include="Content\LW_AlienPack_Integrated\" />
+    <Folder Include="Content\LW_FactionBalance\" />
     <Folder Include="Content\LW_LaserPack_Integrated\" />
     <Folder Include="Content\LW_OfficerPack_Integrated\" />
     <Folder Include="Content\LW_PerkPack_Integrated\" />
@@ -80,7 +81,9 @@
     <Folder Include="Src\WallClimbOverride\Classes\" />
     <Folder Include="Content\BaseGameMissionAssets\" />
     <Folder Include="Src\XModBase_Core_2_0_1\" />
+    <Folder Include="Src\XModBase_Core_2_0_1\Classes\" />
     <Folder Include="Src\XModBase_Interfaces\" />
+    <Folder Include="Src\XModBase_Interfaces\Classes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComAI.ini" />
@@ -114,6 +117,9 @@
     <Content Include="Config\XComLW_SoldierSkills.ini" />
     <Content Include="Config\XComLW_Toolbox.ini" />
     <Content Include="Config\XComLW2SquadIcons.ini" />
+    <Content Include="Config\XComLW_UI.ini">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Config\XComMaps.ini" />
     <Content Include="Config\XComMissionDefs.ini" />
     <Content Include="Config\XComMissions.ini" />
@@ -222,6 +228,7 @@
     <Content Include="Localization\LW_AlienPack_Integrated\XComGame.kor" />
     <Content Include="Localization\LW_AlienPack_Integrated\XComGame.pol" />
     <Content Include="Localization\LW_AlienPack_Integrated\XComGame.rus" />
+    <Content Include="Localization\LW_FactionBalance\LW_FactionBalance.fra" />
     <Content Include="Localization\LW_FactionBalance\LW_FactionBalance.int" />
     <Content Include="Localization\LW_FactionBalance\XComGame.int" />
     <Content Include="Localization\LW_LaserPack_Integrated\XComGame.chn" />
@@ -443,6 +450,7 @@
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_HeadquartersProjectTrainLWOfficer.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComGameState_Unit_LWOfficer.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\XComHQPresentationLayer_LWOfficerPack.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\CHItemSlot_PistolSlot_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWDLCHelpers.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWHelpTemplate.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWHelp_Default.uc" />
@@ -492,6 +500,9 @@
     <Content Include="Src\LW_Overhaul\Classes\UIImageSelector_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWCustomMission.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWLaunchDelayedMission.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIMouseGuard_LW.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LW_Overhaul\Classes\UIOutpostManagement.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIOutpostManagement_ListItem.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIPersonnel_LEBVS.uc" />
@@ -514,6 +525,9 @@
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_SkyrangerArrives_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_SquadSelect_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_TacticalHUD.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_UIStrategyMap.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ViewObjectives.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScrollingTextField.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UISquadClassItem.uc" />
@@ -835,6 +849,7 @@
     <Content Include="Content\Missions\Obj_RecoverItem_LW.umap" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Reinforcements.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelLists.uc" />
+    <Content Include="Localization\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_Integrated.fra" />
     <Content Include="Localization\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_Integrated.INT" />
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\MoreDetailsManager.uc" />
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\MoreDetailsNavigatorWrapper.uc" />

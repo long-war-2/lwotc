@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityDetectionCalc_Terror.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Adds additional detection chance for AlertLevel
+//  PURPOSE: Adds additional detection chance for AlertLevel
 //---------------------------------------------------------------------------------------
 class X2LWActivityDetectionCalc_Terror extends X2LWActivityDetectionCalc config(LW_Activities);
 

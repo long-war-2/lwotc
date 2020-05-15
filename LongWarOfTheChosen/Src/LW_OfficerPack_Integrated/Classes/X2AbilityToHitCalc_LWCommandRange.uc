@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2AbilityToHitCalc_LWCommandRange.uc
 //  AUTHOR:  Amineri (Pavonis Interactive)
-//	Purpose: Set range ring to limit when this ability triggers
+//  PURPOSE: Set range ring to limit when this ability triggers
 //---------------------------------------------------------------------------------------
 class X2AbilityToHitCalc_LWCommandRange extends X2AbilityToHitCalc config(LW_OfficerPack);
 

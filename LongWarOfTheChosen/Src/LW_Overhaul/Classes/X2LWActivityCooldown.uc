@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCooldown.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Cooldown mechanics for creation of alien activities
+//  PURPOSE: Cooldown mechanics for creation of alien activities
 //---------------------------------------------------------------------------------------
 class X2LWActivityCooldown extends Object;
 

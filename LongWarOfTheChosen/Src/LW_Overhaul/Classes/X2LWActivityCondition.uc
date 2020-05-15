@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Conditional emchanics for creation of alien activities
+//  PURPOSE: Conditional emchanics for creation of alien activities
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition extends Object abstract;
 

@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_HasFaceless.uc
 //  AUTHOR:  JL / Pavonis Interactive
-//	PURPOSE: Allow activity creation only if the local outpost has an adviser
+//  PURPOSE: Allow activity creation only if the local outpost has an adviser
 //---------------------------------------------------------------------------------------
 
 

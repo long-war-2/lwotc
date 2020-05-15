@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWCovertActionsModTemplate.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Modifies existing covert actions templates, effectively disabling some
+//  PURPOSE: Modifies existing covert actions templates, effectively disabling some
 //           of them and changing rewards of others, etc.
 //
 //           This also delays the contact of new factions by increasing the rank

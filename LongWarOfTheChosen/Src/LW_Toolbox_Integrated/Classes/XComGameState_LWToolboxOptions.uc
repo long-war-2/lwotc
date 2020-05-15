@@ -448,38 +448,16 @@ static function XComGameState_LWToolboxOptions GetToolboxOptions()
 // retrieves camera angle based on positive/negative and mask
 static function EventListenerReturn OnGetCameraRotationAngle(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComLWTuple			Tuple;
-	local int ActionMask;
-	local bool bPositive;
-	local float Angle;
+	local XComLWTuple Tuple;
 
 	Tuple = XComLWTuple(EventData);
-	if(Tuple == none)
+	if (Tuple == none)
 	{
-		`REDSCREEN("OnGetCameraRotationAngle event triggered with invalid event data.");
+		`REDSCREEN("OverrideCameraRotationAngle event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
 
-	if (Tuple.Data[2].Kind == XComLWTVBool)
-		bPositive = Tuple.Data[2].b;
-	else
-		return ELR_NoInterrupt;
-
-	if (Tuple.Data[3].Kind == XComLWTVInt)
-		ActionMask = Tuple.Data[3].i;
-	else
-		return ELR_NoInterrupt;
-		
-	if (( ActionMask & class'UIUtilities_Input'.const.FXS_ACTION_RELEASE) != 0)
-	{
-		Angle = GetRotationAngle();
-
-		if (!bPositive)
-			Angle = - Angle;
-
-		Tuple.Data[0].f = Angle;
-	}
-	Tuple.Data[1].b = true;
+	Tuple.Data[0].f = GetRotationAngle();
 
 	return ELR_NoInterrupt;
 }
@@ -542,7 +520,7 @@ simulated function RegisterListeners()
 
 	// Hooks added in overhaul mod into XComGame
 	// angle rotation
-	EventManager.RegisterForEvent(ThisObj, 'GetCameraRotationAngle', OnGetCameraRotationAngle, ELD_Immediate,,,true);
+	EventManager.RegisterForEvent(ThisObj, 'OverrideCameraRotationAngle', OnGetCameraRotationAngle, ELD_Immediate,,,true);
 
 	// recruit listitem modification
 	EventManager.RegisterForEvent(ThisObj, 'OnRecruitmentListItemInit', AddRecruitStats, ELD_Immediate,,,true);

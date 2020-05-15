@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWActivityCondition_RegionStatus.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//	PURPOSE: Conditionals on the status of the region
+//  PURPOSE: Conditionals on the status of the region
 //---------------------------------------------------------------------------------------
 class X2LWActivityCondition_RegionStatus extends X2LWActivityCondition;
 

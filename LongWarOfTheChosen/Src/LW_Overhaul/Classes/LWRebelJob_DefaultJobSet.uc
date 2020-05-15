@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    LWRebelJob_DefaultJobSet.uc
 //  AUTHOR:  tracktwo / Pavonis Interactive
-//	PURPOSE: Default rebel jobs.
+//  PURPOSE: Default rebel jobs.
 //---------------------------------------------------------------------------------------
 
 class LWRebelJob_DefaultJobSet extends X2StrategyElement config(LW_Outposts);

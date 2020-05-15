@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:   LWRebelJobIncomeModifier_Retribution.uc
 //  AUTHOR:  Grobobobo/Based on X2RebelJobIncomeModifier_Prohibited
-//	PURPOSE: Income modifier for Chosen Retribution activities
+//  PURPOSE: Income modifier for Chosen Retribution activities
 //---------------------------------------------------------------------------------------
 
 class LWRebelJobIncomeModifier_Retribution extends LWRebelJobIncomeModifier

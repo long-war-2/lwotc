@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWSitRepEffectsModTemplate.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Modifies existing Sit Rep Effect templates.
+//  PURPOSE: Modifies existing Sit Rep Effect templates.
 //---------------------------------------------------------------------------------------
 class X2LWSitRepEffectsModTemplate extends X2LWTemplateModTemplate config(LW_Overhaul);
 

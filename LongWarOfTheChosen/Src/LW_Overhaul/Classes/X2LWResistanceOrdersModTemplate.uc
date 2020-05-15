@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2LWResistanceOrdersModTemplate.uc
 //  AUTHOR:  Peter Ledbrook
-//	PURPOSE: Modifies existing Resistance Order templates.
+//  PURPOSE: Modifies existing Resistance Order templates.
 //
 //           In particular, it makes sure that disabled ROs (with strength 99)
 //           are removed as potential continent bonuses.
