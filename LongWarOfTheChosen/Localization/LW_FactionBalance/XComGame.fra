@@ -1,0 +1,51 @@
+; LWOTC translated
+[Distraction_LW X2AbilityTemplate]
+LocFriendlyName="Distraction"
+LocLongDescription="La Claymore désoriente les unités non robotiques lorsqu'elle explose."
+LocHelpText="La Claymore désoriente les unités non robotiques lorsqu'elle explose."
+LocPromotionPopupText="<Bullet/> Ajoute un effet de désorientation qui s'applique à toutes les unités organiques prises dans la zone d'effet.<br/>"
+
+[DisablingShot X2AbilityTemplate]
+LocFriendlyName="Tir neutralisant"
+LocLongDescription="Étourdit les ennemis à l'aide d'un tir précis. La durée de l'étourdissement augmente en cas de coup critique. Ce tir ne peut pas infliger de dégâts critiques."
+LocHelpText="Étourdit les ennemis à l'aide d'un tir précis. La durée de l'étourdissement augmente en cas de coup critique. Ce tir ne peut pas infliger de dégâts critiques."
+LocPromotionPopupText="<Bullet/> Étourdit les ennemis durant <Ability:DisablingShotStunActions/> action(s) si le tir touche (même s'il ne s'agit que d'une Égratignure).<br/><Bullet/> En cas de coup critique, la cible sera étourdie durant <Ability:DisablingShotCritStunActions/> action(s) de plus, mais le tir n'infligera pas de dégâts critiques.<br/><Bullet/> La capacité Tir neutralisant nécessite <Ability:SelfAmmoCost/> point(s) de munitions et un temps de rechargement de <Ability:SelfCooldown/> tour(s).<br/><Bullet/> Seuls les avatars et les zombies psi ne peuvent pas être étourdis."
+
+[Meditation X2AbilityTemplate]
+LocFriendlyName="Méditation"
+LocLongDescription="Augmente de <Ability:MeditationFocusRecovery/> point(s) le niveau de concentration du Templier."
+LocHelpText="Augmente de <Ability:MeditationFocusRecovery/> point(s) le niveau de concentration du Templier."
+LocPromotionPopupText="<Bullet/> Augmente de <Ability:MeditationFocusRecovery/> point(s) le niveau de concentration du Templier.<br/><Bullet/> Met fin au tour du Templier.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tour(s)."
+
+[Overcharge_LW X2AbilityTemplate]
+LocFriendlyName="Surcharge"
+LocLongDescription="Gagnez un bonus de visée et de défense pour chaque niveau de concentration du Templier."
+LocHelpText="Gagnez un bonus de visée et de défense pour chaque niveau de concentration du Templier."
+LocPromotionPopupText="<Bullet/> Visée +<Ability:OverchargeAimBonus/> et défense +<Ability:OverchargeDefenseBonus/> pour chaque niveau de concentration.<br/><Bullet/> Surcharge prend en compte le niveau de concentration actuel du Templier (et non son niveau maximum)."
+
+[VoltDangerZone X2AbilityTemplate]
+LocFriendlyName="Haute tension"
+LocLongDescription="Augmente de <Ability:VoltDangerZoneBonus/> case(s) la zone d'effet de Volt."
+LocHelpText="Augmente de <Ability:VoltDangerZoneBonus/> case(s) la zone d'effet de Volt."
+LocPromotionPopupText="<Bullet/> Procure un bonus de <Ability:VoltDangerZoneBonus/> case(s) à la zone d'effet de la capacité Volt."
+; End translated
+
+; LWOTC translated
+[TemplarVigilance X2AbilityTemplate]
+LocFriendlyName="Sixième sens"
+LocLongDescription="Gagnez 1 niveau de concentration chaque fois que votre escouade révèle un groupe d'ennemis."
+LocHelpText="Gagnez 1 niveau de concentration chaque fois que votre escouade révèle un groupe d'ennemis."
+LocPromotionPopupText="<Bullet/> Gagnez 1 niveau de concentration chaque fois que votre escouade révèle un groupe d'ennemis.<br/><Bullet/> Si vous avez déjà atteint votre niveau de concentration maximal, les points excédentaires sont perdus."
+
+[TemplarTerror X2AbilityTemplate]
+LocFriendlyName="Terreur"
+LocLongDescription="Les unités blessées par la capacité Volt ont une chance d'être pris de panique."
+LocHelpText="Les unités blessées par la capacité Volt ont une chance d'être pris de panique."
+LocPromotionPopupText="<Bullet/> Les unités blessées par la capacité Volt ont une chance d'être pris de panique.<br/><Bullet/> Les chances de panique dépendent à la fois de la force psionique du Templier et de la volonté de la cible."
+
+[Apotheosis X2AbilityTemplate]
+LocFriendlyName="Paroxysme"
+LocLongDescription="Augmente massivement votre mobilité, votre esquive et les dégâts infligés par la capacité Taillade. Nécessite d'avoir au moins 3 niveaux de concentration pour être activé. Consomme tous les points de concentration du Templier."
+LocHelpText="Augmente massivement votre mobilité, votre esquive et les dégâts infligés par la capacité Taillade. Nécessite d'avoir au moins 3 niveaux de concentration pour être activé. Consomme tous les points de concentration du Templier."
+LocPromotionPopupText="<Bullet/> Une action gratuite qui augmente significativement la puissance du Templier.<br/><Bullet/> Augmente les dégâts de Taillade de <Ability:ApotheosisDamageMultiplier/> % pour chaque point de concentration au-delà de 2.<br/><Bullet/> Augmente l'esquive de <Ability:ApotheosisDodgeBonus/>.<br/><Bullet/> Augmente la mobilité de <Ability:ApotheosisMobilityBonus/> pour chaque point de concentration au-delà de 2.<br/><Bullet/> Nécessite d'avoir au moins 3 niveaux de concentration pour être activé. Son activation consomme tous les points de concentration du Templier.<br/>"
+; End translated
