@@ -38,7 +38,7 @@ m_strLowEngineersList[2]="Un ingénieur est parfois disponible au marché noir e
 m_strRetributionAlertTitle="VENGEANCE DES ÉLUS"
 m_strRetributionAlertDescription="Un Élu limite les activités de la résistance dans cette région, ce qui réduit l'efficacité des actions entreprises dans ce secteur." 
 m_strRetributionAlertIncomeDecreasedTitle="REFUGE SABOTÉ"
-m_strRetributionAlertIncomeDescription="L'efficacité du refuge lors des missions de Ressources, Renseignements et Recruter est réduite de 20%."
+m_strRetributionAlertIncomeDescription="L'efficacité du refuge lors des missions de Ressources, Renseignements et Recruter est réduite de 20 %."
 ;LWOTC end translated
 
 [XComGame.UIAdventOperations]
@@ -117,6 +117,22 @@ RankIcons[8]="UILibrary_Common.rank_fieldmarshall"
 LocFriendlyName="Position défensive"
 LocHelpText="Augmente la défense de <Ability:HUNKERDEFENSEBONUS/> et l'esquive de <Ability:HUNKERDODGEBONUS/>. N'est possible qu'à couvert."
 LocFlyOverText="Position défensive"
+
+[ReturnFire X2AbilityTemplate]
+LocHelpText="Si vous êtes visé par un tir ennemi, vous ripostez automatiquement avec votre pistolet une fois par tour."
+LocLongDescription="Si vous êtes visé par un tir ennemi, vous ripostez automatiquement avec votre pistolet une fois par tour."
+
+[Quickdraw X2AbilityTemplate]
+LocLongDescription="Le tir avec votre pistolet comme première action ne met plus fin à votre tour de jeu."
+LocHelpText="Le tir avec votre pistolet comme première action ne met plus fin à votre tour de jeu."
+
+[LightningHands X2AbilityTemplate]
+LocLongDescription="Fire your pistol at a target. This attack does not cost an action."
+LocHelpText="Tir avec votre pistolet sur une cible. L'attaque ne coûte aucun point d'action."
+LocPromotionPopupText="<Bullet/> La capacité Mains fulgurantes fonctionne bien avec les capacités de la classe <Ability:ClassName/>, car elle n'empêche pas leur utilisation pendant le même tour.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tours.<br/>"
+
+; End translated
+
 
 ;;;;;;;;;;;;;;;;;;;;  TECHNICAL ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -305,6 +321,8 @@ Description="Prendre le contrôle de l'unité pour le reste de la mission."
 FriendlyName="Maîtriser l'ennemi"
 Description="Vous prenez le contrôle de l'unité pour le reste de la mission et obtenez des bonus. Les CEM seront reprogrammées pour servir la résistance."
 
+;LWOTC translated
+
 [GreaterShutdownRobot X2HackRewardTemplate]
 FriendlyName="Extinction prolongée"
 Description="Neutralise temporairement l'unité en l'étourdissant pour 3 tours."
@@ -315,11 +333,12 @@ Description="Neutralise temporairement l'unité en l'étourdissant pour 3 tours.
 
 [ControlSectopod_Permanent X2HackRewardTemplate]
 FriendlyName="Maîtriser Sectopode"
-Description="Vous prenez le contrôle de l'unité pour le reste de la mission et obtenez des bonus. Serez-vous assez brave pour cela?"
+Description="Vous prenez le contrôle de l'unité pour le reste de la mission et obtenez des bonus."
 
 [ScanningProtocol X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Les modèles améliorés de GREMLIN procurent des charges additionnelles à la capacité Protocole de scan.<br/><Bullet/> Le Protocole de scan révèle les ennemis dissimulés ou camouflés, ainsi que ceux qui sont cachés par des murs ou des obstacles dans le champ de vision.<br/>"
 
+;End translated
 
 ;;;;;;;;;;;;;;;;;;;;  GRENADIER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -663,19 +682,19 @@ LocFlyOverText="Gâchette facile d'élite"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Arme stable"
-LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_BSC_SW_AIM_BONUS/> de visée et + <Ability:STOCK_BSC_SW_AIM_BONUS/> de chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé."
+LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_BSC_SW_AIM_BONUS/> de visée et chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé. Ce bonus est multiplié par x<Ability:STEADY_HIGH_BONUS_MODIFIER/> pour les fusils à pompe et x<Ability:STEADY_LOW_BONUS_MODIFIER/> pour les fusils d'assaut, les canons et les armes du SPARK."
 LocHelpText="Arme stable : bonus au toucher pour le prochain tir si vous n'êtes pas blessé et que vous n'effectuez pas d'autre action."
 LocFlyOverText="Arme stable"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Arme stable"
-LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_ADV_SW_AIM_BONUS/> de visée et + <Ability:STOCK_ADV_SW_AIM_BONUS/> de chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé."
+LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_ADV_SW_AIM_BONUS/> de visée et chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé. Ce bonus est multiplié par x<Ability:STEADY_HIGH_BONUS_MODIFIER/> pour les fusils à pompe et x<Ability:STEADY_LOW_BONUS_MODIFIER/> pour les fusils d'assaut, les canons et les armes du SPARK."
 LocHelpText="Arme stable : bonus au toucher pour le prochain tir si vous n'êtes pas blessé et que vous n'effectuez pas d'autre action."
 LocFlyOverText="Arme stable"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Arme stable"
-LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_SUP_SW_AIM_BONUS/> de visée et + <Ability:STOCK_SUP_SW_AIM_BONUS/> de chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé."
+LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_SUP_SW_AIM_BONUS/> de visée et chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé. Ce bonus est multiplié par x<Ability:STEADY_HIGH_BONUS_MODIFIER/> pour les fusils à pompe et x<Ability:STEADY_LOW_BONUS_MODIFIER/> pour les fusils d'assaut, les canons et les armes du SPARK."
 LocHelpText="Arme stable : bonus au toucher pour le prochain tir si vous n'êtes pas blessé et que vous n'effectuez pas d'autre action."
 LocFlyOverText="Arme stable"
 
@@ -703,8 +722,8 @@ LocHelpText="Infligent 2 points de dégât supplémentaires aux cibles sans arm
 LocFriendlyName="Munitions Écran rouge"
 LocFlyOverText="Munitions Écran rouge"
 ; LWOTC translated
-LocLongDescription="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible. Ce malus n'est pas cumulatif, mais chaque tir renouvelle la durée de l'effet."
-LocHelpText="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible. Ce malus n'est pas cumulatif, mais chaque tir renouvelle la durée de l'effet."
+LocLongDescription="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible. Cet effet n'est pas cumulatif, mais chaque tir renouvelle la durée de l'effet."
+LocHelpText="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de la cible. Cet effet n'est pas cumulatif, mais chaque tir renouvelle la durée de l'effet."
 ; Ends translated
 
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
@@ -971,10 +990,14 @@ TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 armure a
 AbilityDescName="fusil de précision"
 
 [Shotgun_CG X2WeaponTemplate]
-FriendlyName="Fusil à dispersion"
-FriendlyNamePlural="Fusils à dispersion"
+; LWOTC translated
+FriendlyName="Fusil à dispersion gauss"
+FriendlyNamePlural="Fusils à dispersion gauss"
+; End translated
 BriefSummary="Une arme à bobine à courte portée qui fait office de fusil à pompe."
+; LWOTC translated
 TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 armure adverse.<br/><Bullet/> Les fusils à pompe sont très efficaces à courte portée, mais leur précision diminue considérablement avec l'éloignement.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité du fusil à dispersion."
+; End translated
 AbilityDescName="fusil à pompe"
 
 [SMG_CG X2WeaponTemplate]
@@ -1137,21 +1160,27 @@ m_strRemoveUpgrade="SUPPRIMER AMÉLIORATION"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Gâchette facile"
 FriendlyNamePlural="Gâchettes faciles"
-BriefSummary="Le soldat gagne visée + <Ability:TRIGGER_BSC_AIM_BONUS/> pour les tirs réflexes."
+; LWOTC translated
+BriefSummary="Visée + <Ability:TRIGGER_BSC_AIM_BONUS/> (après l'application du malus lié aux tirs réflexes) pour les tirs réflexes avec votre arme principale."
+; End translated
 TinySummary="Bonus de visée pour les tirs réflexes"
 LootTooltip="Cette amélioration d'arme offre un bonus de visée pour les tirs réflexes."
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Gâchette facile avancée"
 FriendlyNamePlural="Gâchettes faciles avancées"
-BriefSummary="Le soldat gagne visée + <Ability:TRIGGER_ADV_AIM_BONUS/> pour les tirs réflexes."
+; LWOTC translated
+BriefSummary="Visée + <Ability:TRIGGER_ADV_AIM_BONUS/> (après l'application du malus lié aux tirs réflexes) pour les tirs réflexes avec votre arme principale."
+; End translated
 TinySummary="Bonus de visée pour les tirs réflexes"
 LootTooltip="Cette amélioration d'arme offre un bonus de visée pour les tirs réflexes."
 
 [FreeFireUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Gâchette facile d'élite"
 FriendlyNamePlural="Gâchettes faciles d'élite"
-BriefSummary="Le soldat gagne visée + <Ability:TRIGGER_SUP_AIM_BONUS/> pour les tirs réflexes."
+; LWOTC translated
+BriefSummary="Visée + <Ability:TRIGGER_SUP_AIM_BONUS/> (après l'application du malus lié aux tirs réflexes) pour les tirs réflexes avec votre arme principale."
+; End translated
 TinySummary="Bonus de visée pour les tirs réflexes"
 LootTooltip="Cette amélioration d'arme offre un bonus de visée pour les tirs réflexes."
 
@@ -1176,26 +1205,30 @@ BriefSummary="Visée + <Ability:SCOPE_SUP_AIM_BONUS/>, sauf pour les tirs réf
 TinySummary="Bonus de visée, sauf pour les tirs réflexes."
 LootTooltip="Cette amélioration ajoute un bonus de visée à n'importe quelle arme, sauf pour les tirs réflexes."
 
+;LWOTC translated
+
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Crosse"
 FriendlyNamePlural="Crosses"
-BriefSummary="Octroie la capacité Arme stable, qui donne + <Ability:STOCK_BSC_SW_AIM_BONUS/> de visée et + <Ability:STOCK_BSC_SW_AIM_BONUS/> de chances de coup critique pour le prochain tir."
-TinySummary="Confère Arme stable"
-LootTooltip="Une fois installée, cette amélioration d'arme confère la capacité Arme stable."
+BriefSummary="Les tirs manqués avec votre arme principale possèdent <Ability:STOCK_BSC_GF_CHANCE/> % chances d'infliger une écorchure."
+TinySummary="Les tirs manqués peuvent faire des écorchures."
+LootTooltip="<Bullet/> Les tirs manqués avec l'arme principale du soldat ont <Ability:STOCK_BSC_GF_CHANCE> % chances d'infliger une écorchure."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Crosse avancée"
 FriendlyNamePlural="Crosses avancées"
-BriefSummary="Octroie la capacité Arme stable, qui donne + <Ability:STOCK_ADV_SW_AIM_BONUS/> de visée et + <Ability:STOCK_ADV_SW_AIM_BONUS/> de chances de coup critique pour le prochain tir."
-TinySummary="Confère Arme stable"
-LootTooltip="Une fois installée, cette amélioration d'arme confère la capacité Arme stable."
+BriefSummary="Les tirs manqués avec votre arme principale possèdent <Ability:STOCK_ADV_GF_CHANCE/> % chances d'infliger une écorchure."
+TinySummary="Les tirs manqués peuvent faire des écorchures."
+LootTooltip="<Bullet/> Les tirs manqués avec l'arme principale du soldat ont <Ability:STOCK_ADV_GF_CHANCE> % chances d'infliger une écorchure."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Crosse d'élite"
 FriendlyNamePlural="Crosses d'élite"
-BriefSummary="Octroie la capacité Arme stable, qui donne + <Ability:STOCK_SUP_SW_AIM_BONUS/> de visée et + <Ability:STOCK_SUP_SW_AIM_BONUS/> de chances de coup critique pour le prochain tir."
-TinySummary="Confère Arme stable"
-LootTooltip="Une fois installée, cette amélioration d'arme confère la capacité Arme stable."
+BriefSummary="Les tirs manqués avec votre arme principale possèdent <Ability:STOCK_SUP_GF_CHANCE/> % chances d'infliger une écorchure."
+TinySummary="Les tirs manqués peuvent faire des écorchures."
+LootTooltip="<Bullet/> Les tirs manqués avec l'arme principale du soldat ont <Ability:STOCK_SUP_GF_CHANCE> % chances d'infliger une écorchure."
+
+; End translated
 
 [FreeKillUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Silencieux"
@@ -1217,6 +1250,8 @@ FriendlyNamePlural="Silencieux d'élite"
 BriefSummary="Réduit massivement le bruit produit par l'arme et l'impact de ce soldat sur le temps d'infiltration."
 TinySummary="Réduit la durée d'infiltration d'une mission"
 LootTooltip="Cette amélioration d'arme, une fois installée, réduira le temps nécessaire à infiltrer ce soldat en mission. Elle réduit également le bruit produit par l'arme durant les combats."
+
+; LWOTC translated
 
 [CritUpgrade_Bsc X2WeaponUpgradeTemplate]
 BriefSummary="Augmente les chances de coup critique de <Ability:CRITINCREASE/> %."
@@ -1397,8 +1432,8 @@ TacticalText="<Bullet/> Infligent 2 points de dégât supplémentaires aux cibl
 FriendlyName="Munitions Écran rouge"
 FriendlyNamePlural="Munitions Écran rouge"
 ; LWOTC Needs translated
-BriefSummary="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de l'ennemi. Cet effet n'est pas cumulatif."
-TacticalText="<Bullet/> Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de l'ennemi. Cet effet n'est pas cumulatif.<br/><Bullet/> Vous ne pouvez équiper qu'une seule amélioration de munitions à la fois."
+BriefSummary="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de l'ennemi. Cet effet n'est pas cumulatif, mais chaque tir renouvelle la durée de l'effet."
+TacticalText="<Bullet/> Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense anti-piratage de l'ennemi. Cet effet n'est pas cumulatif, mais chaque tir renouvelle la durée de l'effet. Peut toutefois se cumuler avec d'autres réductions de défense anti-piratage (comme les bombes Ecran bleu par exemple).<br/><Bullet/> Vous ne pouvez équiper qu'une seule amélioration de munitions à la fois."
 ; End translated
 
 [NeedleRounds X2AmmoTemplate]
@@ -3455,7 +3490,7 @@ Summary="Permet à Shen de fabriquer des viseurs laser de qualité supérieure, 
 DisplayName="Viseurs laser d'élite"
 Summary="Rend possible la production de la technologie de viseur laser ultime par les ingénieurs."
 
-;LWOTC translated
+; LWOTC translated
 
 [BasicStockProject X2TechTemplate]
 DisplayName="Crosses"
@@ -3469,7 +3504,7 @@ Summary="Lance la production de crosses avancées, qui confèrent une chance sup
 DisplayName="Crosses d'élite"
 Summary="Permet de produire en masse des crosses d'élite, qui confèrent une chance supplémentaire d'infliger une écorchure en cas de tir manqué."
 
-;End translated
+; End translated
 
 [BasicClipSizeProject X2TechTemplate]
 DisplayName="Chargeurs grande capacité"
@@ -4009,13 +4044,17 @@ PostMissionSuccessText="Opération ennemie contrée : Patrouilles aériennes"
 PostMissionFailureText="Opération ennemie non empêchée : Patrouilles aériennes"
 
 [DarkEvent_MutonEngineers X2DarkEventTemplate]
+; LWOTC translated
 DisplayName="Experts en démolition"
+; End translated
 SummaryText="Les extraterrestres déploient des unités avec des capacités de destruction d'abri renforcées."
 QuoteText="\"Ça va exploser !\""
 QuoteTextAuthor="- Caporal XCOM non identifié"
 PreMissionText="Certains soldats d'ADVENT et Goliaths reçoivent la capacité Ravage."
+; LWOTC translated
 PostMissionSuccessText="Opération ennemie contrée : Experts en démolition"
 PostMissionFailureText="Opération ennemie non empêchée : Experts en démolition"
+; End translated
 
 [DarkEvent_RuralCheckpoints_LW X2DarkEventTemplate]
 DisplayName="Points de contrôle ruraux d'ADVENT"
@@ -4603,7 +4642,7 @@ DescriptionEntry="De nombreuses opérations offensives d'XCOM nécessitent d'inf
 [Infiltration_Help2 X2EncyclopediaTemplate]
 ListTitle="Missions d'infiltration"
 DescriptionTitle="Missions d'infiltration"
-DescriptionEntry="Ces missions comportent un bouton DÉBUT DE L'INFILTRATION, en haut de l'écran de sélection de l'escouade. Après avoir choisi votre escouade et commencé une infiltration, l'icône de mission sur le Geoscape affiche une valeur d'infiltration comprise entre 0 et 200%. Plus cette valeur est élevée, moins il y aura d'ennemis à affronter dans la mission correspondante. Tel est le rôle décisif que joue l'infiltration dans Long War 2."
+DescriptionEntry="Ces missions comportent un bouton DÉBUT DE L'INFILTRATION, en haut de l'écran de sélection de l'escouade. Après avoir choisi votre escouade et commencé une infiltration, l'icône de mission sur le Geoscape affiche une valeur d'infiltration comprise entre 0 et 200 %. Plus cette valeur est élevée, moins il y aura d'ennemis à affronter dans la mission correspondante. Tel est le rôle décisif que joue l'infiltration dans Long War 2."
 
 [Infiltration_Help3 X2EncyclopediaTemplate]
 ListTitle="Progression de l'infiltration"
@@ -4974,19 +5013,30 @@ ShortNames[6]="Sor."
 ShortNames[7]="Mag."
 ShortNames[8]="Mtr."
 
+RankIcons[0]= "UILibrary_Common.rank_rookie"
+RankIcons[1]= "UILibrary_Common.psirank_initiate"
+RankIcons[2]= "UILibrary_Common.psirank_acolyte"
+RankIcons[3]= "UILibrary_Common.psirank_adept"
+RankIcons[4]= "UILibrary_Common.psirank_disciple"
+RankIcons[5]= "UILibrary_Common.psirank_mystic"
+RankIcons[6]= "UILibrary_Common.psirank_warlock"
+RankIcons[7]= "UILibrary_Common.psirank_magus"
+RankIcons[8]= "UILibrary_LW_PerkPack.psirank_Master"
+
+; LWotC(FRA) - Add "autopistols"
 +AbilityTreeTitles[4]="Pistolets auto."
 
 [Retribution X2AbilityTemplate]
 LocFriendlyName="Représailles"
-LocLongDescription="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Voir la capacité Escrimeur."
-LocHelpText="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Voir la capacité Escrimeur."
+LocLongDescription="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Similaire à la capacité Escrimeur."
+LocHelpText="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Similaire à la capacité Escrimeur."
 LocFlyOverText="Représailles"
 LocPromotionPopupText="<Bullet/> La capacité Représailles se déclenche si un ennemi commence son tour sur une case adjacente à l'Escarmoucheur et tente de l'attaquer. <br/><Bullet/> Si l'ennemi ne commence pas son tour sur une case adjacente, la capacité Représailles se déclenche quand il entre dans la zone de corps à corps.<br/>"
 
 [RetributionAttack X2AbilityTemplate]
 LocFriendlyName="Représailles"
-LocLongDescription="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Voir la capacité Escrimeur."
-LocHelpText="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Voir la capacité Escrimeur."
+LocLongDescription="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Similaire à la capacité Escrimeur."
+LocHelpText="Obtenez des attaques avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui approchent ou attaquent au corps à corps. Similaire à la capacité Escrimeur."
 LocFlyOverText="Représailles"
 LocPromotionPopupText="<Bullet/> La capacité Représailles se déclenche si un ennemi commence son tour sur une case adjacente à l'Escarmoucheur et tente de l'attaquer. <br/><Bullet/> Si l'ennemi ne commence pas son tour sur une case adjacente, la capacité Représailles se déclenche quand il entre dans la zone de corps à corps.<br/>"
 ; End Translated
@@ -5035,7 +5085,7 @@ FocusLevelDescriptions[3]="Dégâts de Taillade +<Ability:FOCUS3RENDDAMAGE/> \nM
 FocusLevelDescriptions[4]="Dégâts de Taillade +<Ability:FOCUS4RENDDAMAGE/> \nMobilité +<Ability:FOCUS4MOBILITY/> \nEsquive +<Ability:FOCUS4DODGE/>"
 
 [TemplarFocus X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> En début de mission, les Templiers sont plus faibles que les autres soldats, mais plus leur niveau de concentration est élevé, plus ils deviennent puissants. Apprenez à gérer efficacement la concentration pour profiter au mieux des améliorations de statistiques et de chaque capacité. <br/><Bullet/> Vous gagnez de la concentration en tuant des ennemis avec Taillade. <br/><Bullet/> Niveau 1 : dégâts de Taillade +<Ability:FOCUS1RENDDAMAGE/>, mobilité +<Ability:FOCUS1MOBILITY/>, esquive +<Ability:FOCUS1DODGE/> <br/><Bullet/> Niveau 2 : dégâts de Taillade +<Ability:FOCUS2RENDDAMAGE/>, mobilité +<Ability:FOCUS2MOBILITY/>, esquive +<Ability:FOCUS2DODGE/> <br/><Bullet/> Niveau 3 : dégâts de Taillade +<Ability:FOCUS3RENDDAMAGE/>, mobilité +<Ability:FOCUS3MOBILITY/>, esquive +<Ability:FOCUS3DODGE/><br/> <Bullet/> Niveau 4 : dégâts de Taillade +<Ability:FOCUS4RENDDAMAGE/>, mobilité +<Ability:FOCUS4MOBILITY/>, esquive +<Ability:FOCUS4DODGE/> <br/> <Bullet/> Niveau 5 : dégâts de Taillade +<Ability:FOCUS5RENDDAMAGE/>, mobilité +<Ability:FOCUS5MOBILITY/>, esquive +<Ability:FOCUS5DODGE/> <br/> <Bullet/> Niveau 6 : dégâts de Taillade +<Ability:FOCUS6RENDDAMAGE/>, mobilité +<Ability:FOCUS6MOBILITY/>, esquive +<Ability:FOCUS6DODGE/> <br/> <Bullet/> Niveau 7 : dégâts de Taillade +<Ability:FOCUS7RENDDAMAGE/>, mobilité +<Ability:FOCUS7MOBILITY/>, esquive +<Ability:FOCUS7DODGE/> <br/> <Bullet/> Niveau 8 : dégâts de Taillade +<Ability:FOCUS8RENDDAMAGE/>, mobilité +<Ability:FOCUS8MOBILITY/>, esquive +<Ability:FOCUS8DODGE/> <br/> <Bullet/> Niveau 9 : dégâts de Taillade +<Ability:FOCUS9RENDDAMAGE/>, mobilité +<Ability:FOCUS9MOBILITY/>, esquive +<Ability:FOCUS9DODGE/> <br/> <Bullet/> Niveau 10 : dégâts de Taillade +<Ability:FOCUS10RENDDAMAGE/>, mobilité +<Ability:FOCUS10MOBILITY/>, esquive +<Ability:FOCUS10DODGE/> <br/>"
+LocPromotionPopupText="<Bullet/> En début de mission, les Templiers sont plus faibles que les autres soldats, mais plus leur niveau de concentration est élevé, plus ils deviennent puissants. Apprenez à gérer efficacement la concentration pour profiter au mieux des améliorations de statistiques et de chaque capacité. <br/><Bullet/> Vous gagnez de la concentration en tuant des ennemis avec Taillade. <br/><Bullet/> Niveau 1 : dégâts de Taillade +<Ability:FOCUS1RENDDAMAGE/>, mobilité +<Ability:FOCUS1MOBILITY/>, esquive +<Ability:FOCUS1DODGE/> <br/><Bullet/> Niveau 2 : dégâts de Taillade +<Ability:FOCUS2RENDDAMAGE/>, mobilité +<Ability:FOCUS2MOBILITY/>, esquive +<Ability:FOCUS2DODGE/> <br/><Bullet/> Niveau 3 : dégâts de Taillade +<Ability:FOCUS3RENDDAMAGE/>, mobilité +<Ability:FOCUS3MOBILITY/>, esquive +<Ability:FOCUS3DODGE/><br/> <Bullet/> Niveau 4 : dégâts de Taillade +<Ability:FOCUS4RENDDAMAGE/>, mobilité +<Ability:FOCUS4MOBILITY/>, esquive +<Ability:FOCUS4DODGE/> <br/> <Bullet/> Niveau 5 : dégâts de Taillade +<Ability:FOCUS5RENDDAMAGE/>, mobilité +<Ability:FOCUS5MOBILITY/>, esquive +<Ability:FOCUS5DODGE/> <br/> <Bullet/> Niveau 6 : dégâts de Taillade +<Ability:FOCUS6RENDDAMAGE/>, mobilité +<Ability:FOCUS6MOBILITY/>, esquive +<Ability:FOCUS6DODGE/> <br/> <Bullet/> Niveau 7 : dégâts de Taillade +<Ability:FOCUS7RENDDAMAGE/>, mobilité +<Ability:FOCUS7MOBILITY/>, esquive +<Ability:FOCUS7DODGE/> <br/> <Bullet/> Niveau 8 : dégâts de Taillade +<Ability:FOCUS8RENDDAMAGE/>, mobilité +<Ability:FOCUS8MOBILITY/>, esquive +<Ability:FOCUS8DODGE/> <br/> <Bullet/> Niveau 9 : dégâts de Taillade +<Ability:FOCUS9RENDDAMAGE/>, mobilité +<Ability:FOCUS9MOBILITY/>, esquive +<Ability:FOCUS9DODGE/> <br/> <Bullet/> Niveau 10 : dégâts de Taillade +<Ability:FOCUS10RENDDAMAGE/>, mobilité +<Ability:FOCUS10MOBILITY/>, esquive +<Ability:FOCUS10DODGE/>. <br/>"
 
 [Parkour X2AbilityTemplate]
 LocLongDescription="Le temps de rechargement de la capacité Grappin de l'Escarmoucheur est réduit de 1 tour."
@@ -5055,8 +5105,8 @@ LocHelpText="Attaque un ennemi avec un fouet électrique. Dégâts supplémentai
 LocPromotionPopupText="<Bullet/> Attaque un ennemi avec un fouet électrique. Dégâts supplémentaires contre les unités mécaniques. Temps de rechargement : <Ability:SelfCooldown/> tour(s)."
 
 [SkirmisherInterrupt X2AbilityTemplate]
-LocLongDescription="Une forme puissante de Vigilance, pouvant être activée sans dépenser d'actions. Plutôt que de tirer automatiquement, effectue n'importe quelle action simple."
-LocHelpText="Une forme puissante de Vigilance, pouvant être activée sans dépenser de points d'action. Plutôt que de tirer automatiquement, effectue n'importe quelle action simple."
+LocLongDescription="Une forme puissante de Vigilance, pouvant être activée sans dépenser d'actions. Plutôt que de tirer automatiquement, effectue n'importe quelle action simple. Interruption est une action gratuite, mais elle met également fin au tour du soldat."
+LocHelpText="Une forme puissante de Vigilance, pouvant être activée sans dépenser de points d'action. Plutôt que de tirer automatiquement, effectue n'importe quelle action simple. Interruption est une action gratuite, mais elle met également fin au tour du soldat."
 LocPromotionPopupText="<Bullet/> Interruption est une action gratuite, mais elle met également fin au tour du soldat. <br/><Bullet/> Certaines actions, telles que Vigilance, ne sont pas disponibles lors d'une Interruption. <br/><Bullet/> Cette capacité a un temps de rechargement de <Ability:SelfCooldown/> tour(s)."
 
 [Pillar X2AbilityTemplate]
@@ -5106,8 +5156,8 @@ LocHelpText="L'unité gagne une action supplémentaire au tour suivant lorsqu'un
 LocPromotionPopupText="<Bullet/> Le grappin fait de l'Escarmoucheur un excellent éclaireur, et la capacité Réflexe encourage une approche plus agressive. <br/><Bullet/> La capacité Réflexe ne peut être utilisée qu'une fois par tour.<br/>"
 
 [FullThrottle X2AbilityTemplate]
-LocLongDescription="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tours, tour en cours inclus."
-LocHelpText="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tours, tour en cours inclus."
+LocLongDescription="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tour(s), tour en cours inclus."
+LocHelpText="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tour(s), tour en cours inclus."
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="Justice"
@@ -5118,8 +5168,8 @@ LocPromotionPopupText="<Bullet/> La capacité Justice peut être déclenchée pa
 
 [ManualOverride_LW X2AbilityTemplate]
 LocFriendlyName="Contournement manuel"
-LocLongDescription="Réinitialise les temps de rechargement de toutes capacités des soldats alliés."
-LocHelpText="Réinitialise les temps de rechargement de toutes capacités des soldats alliés."
+LocLongDescription="Réinitialise les temps de rechargement de toutes les capacités des soldats alliés."
+LocHelpText="Réinitialise les temps de rechargement de toutes les capacités des soldats alliés."
 LocPromotionPopupText="<Bullet/> Utilisez les capacités de l'Escarmoucheur tôt et souvent pour profiter pleinement du Contournement manuel.<br/><Bullet/> Coûte 1 action. Temps de rechargement : <Ability:SelfCooldown/> tour(s).<br/>"
 
 [Battlelord X2AbilityTemplate]
