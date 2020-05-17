@@ -2498,11 +2498,13 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (EquipmentTemplate.CreatorTemplateName != '' && default.SchematicsToDisable.Find(EquipmentTemplate.CreatorTemplateName) != -1)
 		{
 			EquipmentTemplate.CreatorTemplateName = '';
-			EquipmentTemplate.BaseItem = '';
 
-			// LWOTC: At least one mod depends on this having a value, so don't
-			// clear it. It's a deprecated property anyway, so this shouldn't be
-			// a problem.
+			// LWOTC: At least one mod depends on `BaseItem` having a value, so don't
+			// clear it. And `UpgradeItem is a deprecated property. It should be safe
+			// to skip clearing them as the schematic-specific stuff is handled with
+			// checks on `CreatorTemplateName`. Keeping this here just in case any
+			// bugs crop up because we've commented out the lines below.
+			// EquipmentTemplate.BaseItem = '';
 			// EquipmentTemplate.UpgradeItem = '';
 		}
 		// Mod
