@@ -5209,28 +5209,40 @@ LocFriendlyName="Solace"
 LocFlyOverText="Solace"
 LocLongDescription="The Templar may immediately extinguish mental impairments for a squadmate."
 LocHelpText="The Templar may immediately extinguish mental impairments for a squadmate."
-LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>
+LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>"
+
+; LWOTC Needs Translation #2 - Shard and Caster gauntlet tactical text and the brief
+; summaries for the caster gauntlets have been updated.
+[ShardGauntlet_CV X2PairedWeaponTemplate]
+TacticalText="<Bullet/> Grants the Fleche ability for more melee damage the further the enemy is from the Templar<br/><Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+
+[ShardGauntlet_MG X2PairedWeaponTemplate]
+TacticalText="<Bullet/> Grants the Fleche ability for more melee damage the further the enemy is from the Templar<br/><Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+
+[ShardGauntlet_BM X2PairedWeaponTemplate]
+TacticalText="<Bullet/> Grants the Fleche ability for more melee damage the further the enemy is from the Templar<br/><Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n"
 
 [CasterGauntlet_CV X2PairedWeaponTemplate]
 FriendlyName="Caster Gauntlets"
 FriendlyNamePlural="Caster Gauntlets"
-BriefSummary="The paired Templar gauntlets were designed to amplify the user's Psionic energy, but at their core, they are still gauntlets--stout, metallic gloves capable of withstanding extremes well beyond what flesh alone can take."
-TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+BriefSummary="Specialist gauntlets that forgo the extra melee damage of shard gauntlets for focus generation via the Channel ability. The paired Templar gauntlets were designed to amplify the user's Psionic energy, but at their core, they are still gauntlets--stout, metallic gloves capable of withstanding extremes well beyond what flesh alone can take."
+TacticalText="<Bullet/> Grants 1 starting focus and the Channel ability, which gives enemies a chance to drop focus on death.<br/><Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
 AbilityDescName="shard"
 
 [CasterGauntlet_MG X2PairedWeaponTemplate]
 FriendlyName="Mage Gauntlets"
 FriendlyNamePlural="Mage Gauntlets"
-BriefSummary="The paired Templar gauntlets were designed to amplify the user's Psionic energy, but at their core, they are still gauntlets--stout, metallic gloves capable of withstanding extremes well beyond what flesh alone can take. With magnetic plating layered over the existing structure, they now provide much more than the original enhancement they were created for."
-TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+BriefSummary="Specialist gauntlets that forgo the extra melee damage of shard gauntlets for focus generation via the Channel ability. The paired Templar gauntlets were designed to amplify the user's Psionic energy, but at their core, they are still gauntlets--stout, metallic gloves capable of withstanding extremes well beyond what flesh alone can take. With magnetic plating layered over the existing structure, they now provide much more than the original enhancement they were created for."
+TacticalText="<Bullet/> Grants 1 starting focus and the Channel ability, which gives enemies a chance to drop focus on death.<br/><Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
 AbilityDescName="shard"
 
 [CasterGauntlet_BM X2PairedWeaponTemplate]
 FriendlyName="Archmage Gauntlets"
 FriendlyNamePlural="Archmage Gauntlets"
-BriefSummary="A small Elerium power cell scavenged from an unknown piece of ADVENT technology has provided the Templars with a means of further amplifying the Psionic energy harnessed by these gauntlets. It is still unknown whether it is their mastery of this power, or the technology they have created that allows this blend of opposing forces."
-TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n"
+BriefSummary="Specialist gauntlets that forgo the extra melee damage of shard gauntlets for focus generation via the Channel ability. A small Elerium power cell scavenged from an unknown piece of ADVENT technology has provided the Templars with a means of further amplifying the Psionic energy harnessed by these gauntlets. It is still unknown whether it is their mastery of this power, or the technology they have created that allows this blend of opposing forces."
+TacticalText="<Bullet/> Grants 1 starting focus and the Channel ability, which gives enemies a chance to drop focus on death.<br/><Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n"
 AbilityDescName="shard"
+; End Translation #2
 
 [Yoink X2AbilityTemplate]
 LocFriendlyName="Yoink"
