@@ -426,6 +426,7 @@ TooltipBarracks_SquadManagement="Manage Persistent Soldier Squads"
 
 [UIStrategyMapItem_Mission_LW]
 strRecon="Infil"
+InfiltrationTooltipString="INFILTRATION"
 
 [UIMission_LWLaunchDelayedMission]
 m_strMission="INFILTRATION"

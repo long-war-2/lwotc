@@ -5,7 +5,9 @@
 //			  This provides a scanning button for each outpost, as well as a button for accessing the new Outpost UI
 //--------------------------------------------------------------------------------------- 
 
-class UIStrategyMapItem_Region_LW extends UIStrategyMapItem_Region;
+class UIStrategyMapItem_Region_LW extends UIStrategyMapItem_Region config(LW_UI);
+
+var config bool SHOW_REGION_TOOLTIPS_CTRL;
 
 var localized string m_strOutpostTitle;
 var localized string m_strAlertLevel;
@@ -477,6 +479,17 @@ simulated public function InterruptionPopupCallback(Name eAction)
 	else if(eAction == 'eUIAction_Cancel')
 	{
 		GetRegion().InteractionComplete(false);
+	}
+}
+
+function GenerateTooltip(string tooltipHTML)
+{
+	// KDM : If a controller is being used, and SHOW_REGION_TOOLTIPS_CTRL is false, skip tooltip generation so no region tooltips show up.
+	// The problem with region tooltips is that they were never designed for Long War; some of them are quite long, and oftentimes, they provide
+	// information which is simply not relevant.
+	if ((!`ISCONTROLLERACTIVE) || SHOW_REGION_TOOLTIPS_CTRL)
+	{
+		super.GenerateTooltip(tooltipHTML);
 	}
 }
 

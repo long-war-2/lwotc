@@ -274,22 +274,41 @@ static function EventListenerReturn CustomizeMissionSiteIcon(
 	return ELR_NoInterrupt;
 }
 
-// Returns the time left before the mission for the given icon expires. Also sets the
-// body to the mission objective.
-protected static function GetMissionSiteUIButtonToolTip(out string Title, out string Body, UIStrategyMap_MissionIcon MissionIcon)
+// Returns 1.] The squad name or mission name, and time left before the mission expires in 'Title'. 2.] The mission objective in 'Body'.
+//
+// KDM : This function has been updated with a 4th optional parameter, TheMissionSite, of type XComGameState_MissionSite. 
+//
+// Normally, in Long War 2, this tooltip information is displayed when a mouse & keyboard user mouses over one of the mission icons on the 
+// bottom icon bar; these mission icons are of type UIStrategyMap_MissionIcon, so the selected UIStrategyMap_MissionIcon can easily be obtained
+// and sent in as a parameter. 
+//
+// Controller users are unable to mouse over the mission icons on the bottom icon bar; therefore, I want this information to appear as a tooltip next 
+// to the mission map item, which is of type UIStrategyMapItem_Mission_LW. Unfortunately, the mapping between mission map items and mission icons is not 
+// stored; consequently, I would have to iterate through UIStrategyMap's MissionItemUI each time the tooltip needs to be updated. A simpler way is to 
+// add an optional, easily accessible, XComGameState_MissionSite parameter; this paramter will be ignored in all normal Long War 2 situations, so it 
+// will not interfere with mouse & keyboard code.
+static function GetMissionSiteUIButtonToolTip(out string Title, out string Body, UIStrategyMap_MissionIcon MissionIcon, optional XComGameState_MissionSite TheMissionSite = none)
 {
-	local XComGameState_LWPersistentSquad InfiltratingSquad;
-	local X2MissionTemplate MissionTemplate;
-	local float RemainingSeconds;
 	local int Hours, Days;
+	local float RemainingSeconds;
+	local X2MissionTemplate MissionTemplate;
 	local XComGameState_LWAlienActivity AlienActivity;
-	local XGParamTag ParamTag;
+	local XComGameState_LWPersistentSquad InfiltratingSquad;
 	local XComGameState_MissionSite MissionSite;
-
-	MissionSite = MissionIcon.MissionSite;
-
+	local XGParamTag ParamTag;
+	
+	// KDM : TheMissionSite will always be none for normal Long War 2 code; it will only be used in my new custom controller code.
+	if (TheMissionSite != none)
+	{
+		MissionSite = TheMissionSite;
+	}
+	else
+	{
+		MissionSite = MissionIcon.MissionSite;
+	}
+	
 	InfiltratingSquad = `LWSQUADMGR.GetSquadOnMission(MissionSite.GetReference());
-	if(InfiltratingSquad != none)
+	if (InfiltratingSquad != none)
 	{
 		Title = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(InfiltratingSquad.sSquadName);
 	}
@@ -303,17 +322,25 @@ protected static function GetMissionSiteUIButtonToolTip(out string Title, out st
 	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
 
 	if(AlienActivity != none)
+	{
 		RemainingSeconds = AlienActivity.SecondsRemainingCurrentMission();
+	}
 	else
+	{
 		if (MissionSite.ExpirationDateTime.m_iYear >= 2050)
+		{
 			RemainingSeconds = 2147483640;
+		}
 		else
+		{
 			RemainingSeconds = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(MissionSite.ExpirationDateTime, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime());
+		}
+	}
 
 	Days = int(RemainingSeconds / 86400.0);
 	Hours = int(RemainingSeconds / 3600.0) % 24;
 
-	if(Days < 730)
+	if (Days < 730)
 	{
 		Title $= ": ";
 
@@ -321,9 +348,13 @@ protected static function GetMissionSiteUIButtonToolTip(out string Title, out st
 		ParamTag.IntValue1 = Days;
 
 		if(Days >= 1)
+		{
 			Title $= `XEXPAND.ExpandString(default.strTimeRemainingDaysAndHours);
+		}
 		else
+		{
 			Title $= `XEXPAND.ExpandString(default.strTimeRemainingHoursOnly);
+		}
 	}
 
 	Body = MissionSite.GetMissionObjectiveText();
