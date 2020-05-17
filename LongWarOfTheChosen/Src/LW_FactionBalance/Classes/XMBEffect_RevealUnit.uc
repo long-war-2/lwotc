@@ -90,7 +90,11 @@ simulated function AddX2ActionsForVisualization_Sync( XComGameState VisualizeGam
 {
 	local X2Action_TargetDefinition OutlineAction;
 
-	if (XComGameState_Unit(ActionMetadata.StateObject_NewState) != none)
+	// LWOTC: The check for a non-none game state context is a workaround for some
+	// tactical saves that crash the game because the context is none for some
+	// reason. The correct fix is undoubtedly to sort out the behaviour that leads
+	// to the context being none, but I don't know what's doing it yet.
+	if (XComGameState_Unit(ActionMetadata.StateObject_NewState) != none && VisualizeGameState.GetContext() != none)
 	{
 		OutlineAction = X2Action_TargetDefinition(class'X2Action_TargetDefinition'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
 		OutlineAction.bEnableOutline = true;
