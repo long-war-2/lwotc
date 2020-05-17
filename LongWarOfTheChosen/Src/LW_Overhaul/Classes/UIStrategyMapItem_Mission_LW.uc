@@ -214,36 +214,47 @@ function OpenInfiltrationMissionScreen()
 
 simulated function OnMouseEvent(int cmd, array<string> args)
 {
-	local XComGameStateHistory History;
-	local XComGameState_GeoscapeEntity GeoscapeEntity;
-	local XComGameState_LWPersistentSquad InfiltratingSquad;
-
-	if(GetStrategyMap().m_eUIState == eSMS_Flight)
+	if (GetStrategyMap().m_eUIState == eSMS_Flight)
 	{
 		return;
 	}
 
 	switch(cmd) 
 	{ 
-	case class'UIUtilities_Input'.const.FXS_L_MOUSE_IN:
-		OnMouseIn();
-		break;
-	case class'UIUtilities_Input'.const.FXS_L_MOUSE_OUT:
-		OnMouseOut();
-		break;
-	case class'UIUtilities_Input'.const.FXS_L_MOUSE_UP:
-		History = `XCOMHISTORY;
-		InfiltratingSquad = GetInfiltratingSquad();
-		if(InfiltratingSquad == none)
-		{
-			GeoscapeEntity = XComGameState_GeoscapeEntity(History.GetGameStateForObjectID(GeoscapeEntityRef.ObjectID));
-			GeoscapeEntity.AttemptSelectionCheckInterruption();
-		}
-		else
-		{
-			OpenInfiltrationMissionScreen();
-		}
-		break;
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_IN:
+			OnMouseIn();
+			break;
+
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_OUT:
+			OnMouseOut();
+			break;
+
+		// KDM : A mouse click opens a mission's infiltration screen if it is currently being infiltrated.
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_UP:
+			MapItemMissionClicked();
+			break;
+	}
+}
+
+// KDM : This code was stripped out of OnMouseEvent() --> FXS_L_MOUSE_UP and placed within a function so that it could be called from both
+// 1.] OnMouseEvent() for mouse & keyboard users 2.] OnUnrealCommand() for controller users.
+simulated function MapItemMissionClicked()
+{
+	local XComGameState_GeoscapeEntity GeoscapeEntity;
+	local XComGameState_LWPersistentSquad InfiltratingSquad;
+	local XComGameStateHistory History;
+	
+	History = `XCOMHISTORY;
+	InfiltratingSquad = GetInfiltratingSquad();
+	
+	if (InfiltratingSquad == none)
+	{
+		GeoscapeEntity = XComGameState_GeoscapeEntity(History.GetGameStateForObjectID(GeoscapeEntityRef.ObjectID));
+		GeoscapeEntity.AttemptSelectionCheckInterruption();
+	}
+	else
+	{
+		OpenInfiltrationMissionScreen();
 	}
 }
 
@@ -335,6 +346,36 @@ simulated function Show()
 simulated function OnLoseFocus()
 {
 	super.OnLoseFocus();
+}
+
+simulated function bool OnUnrealCommand(int cmd, int arg)
+{
+	local bool bHandled;
+
+	if (!CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
+	{
+		return true;
+	}
+
+	bHandled = true;
+
+	switch(cmd)
+	{
+		// KDM : The A button opens a mission's infiltration screen if it is currently being infiltrated.
+		// OnMouseEvent() checks if the Avenger is in flight before executing any of its code; consequently, the same is done here for consistency.
+		case class'UIUtilities_Input'.static.GetAdvanceButtonInputCode():
+			if (GetStrategyMap().m_eUIState != eSMS_Flight)
+			{
+				MapItemMissionClicked();
+			}
+			break;
+
+		default :
+			bHandled = false;
+			break;
+	}
+
+	return bHandled || super.OnUnrealCommand(cmd, arg);
 }
 
 DefaultProperties

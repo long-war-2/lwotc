@@ -47,6 +47,74 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	BuildScreen();
 }
 
+// Part of the fix for issue #961. This function makes sure that the "BOOST INFILTRATION", "VIEW SQUAD", "ABORT", "LAUNCH MISSION", and "WAIT"
+// buttons are set up properly for controller and keyboard support. The most important thing it does is make sure the buttons appear as normal
+// buttons rather than unselectable hotlinks when the controller is active. This way we can have a single column of buttons which can be selected
+// via the D-Pad or arrow keys and "clicked" with the A button or Enter/Spacebar keys.
+//
+// KDM : UIMission --> BindLibraryItem() code has been copied and the following modifications have been made :
+// 1.] All UIButtons have been given the style eUIButtonStyle_NONE so they appear as normal buttons when using a controller.
+// 2.] The delegate, OnSizeRealized, is no longer set for any of the UIButtons since it pointed to the empty function OnButtonSizeRealized().
+// 3.] Buttons are setup identically whether using a controller or mouse & keyboard; more specifically, positioning, width, and gamepad icons
+//		are no longer set when using a controller.
+// 4.] Any navigation setup has been removed since it should all be dealt with in RefreshNavigation().
+// 5.] The Ignore button is now created in this function along with all the other UIButtons. For more information please read the comments in BuildOptionsPanel(). 
+simulated function BindLibraryItem()
+{
+	local Name AlertLibID;
+	
+	AlertLibID = GetLibraryID();
+	
+	if (AlertLibID != '')
+	{
+		LibraryPanel = Spawn(class'UIPanel', self);
+		LibraryPanel.bAnimateOnInit = false;
+		LibraryPanel.InitPanel('LibraryPanel', AlertLibID);
+
+		ButtonGroup = Spawn(class'UIPanel', LibraryPanel);
+		ButtonGroup.InitPanel('ButtonGroup', '');
+
+		// KDM : Boost infiltration button
+		Button1 = Spawn(class'UIButton', ButtonGroup);
+		Button1.ResizeToText = false;
+		Button1.InitButton('Button0', "", , eUIButtonStyle_NONE);
+		
+		// KDM : View squad button
+		Button2 = Spawn(class'UIButton', ButtonGroup);
+		Button2.ResizeToText = false;
+		Button2.InitButton('Button1', "", , eUIButtonStyle_NONE);
+
+		// KDM : Abort button
+		Button3 = Spawn(class'UIButton', ButtonGroup);
+		Button3.ResizeToText = false;
+		Button3.InitButton('Button2', "", , eUIButtonStyle_NONE);
+		
+		// KDM : The Confirm button is now given the style eUIButtonStyle_NONE so that, when using a controller, it doesn't appear as a hotlink.
+		ConfirmButton = Spawn(class'UIButton', LibraryPanel);
+		ConfirmButton.ResizeToText = false;
+		ConfirmButton.InitButton('ConfirmButton', "", OnLaunchClicked, eUIButtonStyle_NONE);
+		
+		// KDM : Removed the call to ConfirmButton.DisableNavigation() since navigation is dealt with in RefreshNavigation().
+
+		ShadowChamber = Spawn(class'UIAlertShadowChamberPanel', LibraryPanel);
+		ShadowChamber.InitPanel('UIAlertShadowChamberPanel', 'Alert_ShadowChamber');
+
+		SitrepPanel = Spawn(class'UIAlertSitRepPanel', LibraryPanel);
+		SitrepPanel.InitPanel('SitRep', 'Alert_SitRep');
+		SitrepPanel.SetTitle(m_strSitrepTitle);
+
+		ChosenPanel = Spawn(class'UIPanel', LibraryPanel);
+		ChosenPanel.InitPanel(, 'Alert_ChosenRegionInfo');
+		
+		// KDM : Removed the call to ChosenPanel.DisableNavigation() since navigation is dealt with in RefreshNavigation().
+	}
+
+	// KDM : AddIgnoreButton() was moved here from BuildOptionsPanel(); please read the comments in BuildOptionsPanel() for the reasoning.
+	// Note that this function was added outside of the (AlertLibID != '') check since, in Long War 2's original code, its execution didn't
+	// rely upon such conditional statements; I don't believe this matters, but will leave it this way just in case.
+	AddIgnoreButton();
+}
+
 simulated function Name GetLibraryID()
 {
 	return 'Alert_GuerrillaOpsBlades';
@@ -202,11 +270,10 @@ simulated function BuildMissionPanel()
 simulated function BuildOptionsPanel()
 {
 	local string Reason;
-
+	
 	LibraryPanel.MC.BeginFunctionOp("UpdateGuerrillaOpsButtonBlade");
 	LibraryPanel.MC.QueueString(m_strOptions);
-	LibraryPanel.MC.QueueString(""); //// left blank in favor of a separately placed string, InfiltrationInfoText
-	//LibraryPanel.MC.QueueString(GetInfiltrationString());
+	LibraryPanel.MC.QueueString("");	// left blank in favor of a separately placed string, InfiltrationInfoText
 	LibraryPanel.MC.QueueString(m_strBoostInfiltration);
 	LibraryPanel.MC.QueueString(m_strViewSquad);
 	LibraryPanel.MC.QueueString(m_strAbort);
@@ -216,24 +283,44 @@ simulated function BuildOptionsPanel()
 
 	Button1.OnClickedDelegate = OnBoostInfiltrationClicked;
 	Button2.OnClickedDelegate = OnViewSquadClicked;
-	//If mission is expiring, can't Cancel/wait, so need to disable
+	// If mission is expiring, can't Cancel/wait, so need to disable
 	Button3.OnClickedDelegate = OnAbortClicked;
 
 	BuildConfirmPanel();
 
 	if (CanBoostInfiltration(Reason))
+	{
 		Button1.SetDisabled(false);
+	}
 	else
+	{
 		Button1.SetDisabled(true, Reason);
+	}
 
 	if (CanLaunchInfiltration(Reason))
+	{
 		ConfirmButton.SetDisabled(false);
+	}
 	else
+	{
 		ConfirmButton.SetDisabled(true, Reason);
+	}
 
-	// BuildConfirmPanel does nothing, but left in for comparison with UIMission_GOps.
-	// BuildConfirmPanel();
-	AddIgnoreButton();
+	// KDM : A call to AddIgnoreButton() has been removed and placed within BindLibraryItem(). Here is the reasoning :
+	// 1.] The function BindLibraryItem() is called in 1 possible place : 
+	//		InitScreen() --> BuildScreen() --> Super.BuildScreen() --> BindLibraryItem()
+	// 2.] This function, BuildOptionsPanel(), is called in 2 possible places : 
+	//		InitScreen() --> BuildScreen() --> Super.BuildScreen() --> BuildOptionsPanel()
+	//		ConfirmBoostInfiltrationCallback() --> BuildOptionsPanel()
+	//
+	// The problem is that AddIgnoreButton() creates a new button each time it is called; therefore, a scenario can occur in which 1 Ignore button
+	// is created when the screen is initialized, and 1 Ignore button is created, right on top of the 1st button, when "Boost Infiltration" is chosen
+	// and accepted. This became evident when using a controller, as right after choosing to "Boost Infiltration" the Ignore button appeared 
+	// unselectable even though log files rejected this notion. Turns out the bottom Ignore button was being selected.
+	//
+	// Now, one possible solution is to leave AddIgnoreButton() alone, but exit the function when (IgnoreButton != none); this in fact works !
+	// However, the Ignore button should really be created and dealt with when the rest of the screen's buttons are created and dealt with.
+	
 	RefreshNavigation();
 }
 
@@ -329,31 +416,22 @@ simulated function string GetMissionImage()
 
 simulated function AddIgnoreButton()
 {
-	//Button is controlled by flash and shows by default. Hide if need to.
-	//local UIButton IgnoreButton;
+	// Ignore button is controlled by flash and shows by default; therefore, hide it if necessary.
 
 	IgnoreButton = Spawn(class'UIButton', LibraryPanel);
-	if(CanBackOut())
-	{
-		if( `ISCONTROLLERACTIVE == false )
-		{
-			IgnoreButton.SetResizeToText(false);
-			IgnoreButton.InitButton('IgnoreButton', "", OnCancelClicked);
-		}
-		else
-		{
-			IgnoreButton.InitButton('IgnoreButton', "", OnCancelClicked, eUIButtonStyle_HOTLINK_WHEN_SANS_MOUSE);
-			IgnoreButton.SetGamepadIcon(class'UIUtilities_Input'.static.GetBackButtonIcon());
-			//IgnoreButton.OnSizeRealized = OnIgnoreButtonSizeRealized;
-			IgnoreButton.SetX(1450.0);
-			IgnoreButton.SetY(644.0);
-		}
 
-		IgnoreButton.DisableNavigation();
+	if (CanBackOut())
+	{
+		// KDM : The Ignore button is now given the style eUIButtonStyle_NONE so that, when using a controller, it doesn't appear as a hotlink.
+		IgnoreButton.ResizeToText = false;
+		IgnoreButton.InitButton('IgnoreButton', "", OnCancelClicked, eUIButtonStyle_NONE);
+
+		// KDM : Removed the call to IgnoreButton.DisableNavigation() since navigation is dealt with in RefreshNavigation().
 	}
 	else
 	{
-		IgnoreButton.InitButton('IgnoreButton').Hide();
+		IgnoreButton.InitButton('IgnoreButton');
+		IgnoreButton.Hide();
 	}
 }
 
@@ -619,6 +697,122 @@ simulated function CloseScreen()
 simulated function XComGameState_LWAlienActivity GetActivity()
 {
 	return `LWACTIVITYMGR.FindAlienActivityByMission(GetMission());
+}
+
+simulated function AddToNavigatorOrRemove(UIButton TheButton)
+{
+	if (TheButton.bIsVisible)
+	{
+		Navigator.AddControl(TheButton);
+	}
+	else
+	{
+		TheButton.Remove();
+	}
+}
+
+// Part of the fix for issue #961. This function makes sure that the "BOOST INFILTRATION", "VIEW SQUAD", "ABORT", "LAUNCH MISSION", and "WAIT"
+// buttons can all be navigated via the controller's D-Pad or the arrow keys.
+//
+// KDM : UIMission --> RefreshNavigation(), which this class used for controller and arrow navigation setup, is a bit of a mess. 
+// It enables and disables navigation for various components, then ultimately kills the screen's navigation system with Navigator.Clear()
+// before adding 3 buttons back into it. Furthermore, Long War 2 calls UIUtilities_LW --> BuildMissionInfoPanel() after this function,
+// and adds a problematic UIPanel, MissionExpiryPanel, to the navigation system. The goal is to clean everything up and make it controller compatible.
+//
+// Please note that :
+// 1.] UIMission --> RefreshNavigation() sometimes refers to LockedPanel; however, LockedPanel is never used in this class; therefore, code referring to it has been removed.
+// 2.] UIUtilities_LW --> BuildMissionInfoPanel() has been modified so that it no longer adds a problematic UIPanel to the navigation system.
+simulated function RefreshNavigation()
+{
+	// KDM : Start with an empty navigation system.
+	Navigator.Clear();
+	Navigator.LoopSelection = true;
+
+	// KDM : There are 5 potentially selectable buttons : Button1, Button2, Button3, ConfirmButton, and IgnoreButton.
+	// If a given button is visible then it will be used, as per a WOTC comment in UIMission --> BuildScreen(); therfore, add it to the navigation system.
+	// If a given button is not visible it won't be used so just remove it; I am uncertain why code within UIMission --> RefreshNavigation() hides
+	// the button before removing it, as this appears unnecessary.
+	AddToNavigatorOrRemove(Button1);
+	AddToNavigatorOrRemove(Button2);
+	AddToNavigatorOrRemove(Button3);
+	AddToNavigatorOrRemove(ConfirmButton);
+	AddToNavigatorOrRemove(IgnoreButton);
+
+	// KDM : At this point, our navigation system is set up. We now need to determine which button to select initially.
+	// A reasonable ordering, taking into account button visibility, is : ConfirmButton --> Button1 --> Button2 --> Button3 --> IgnoreButton 
+	if (ConfirmButton.bIsVisible)
+	{
+		Navigator.SetSelected(ConfirmButton);
+	}
+	else if (Button1.bIsVisible)
+	{
+		Navigator.SetSelected(Button1);
+	}
+	else if (Button2.bIsVisible)
+	{
+		Navigator.SetSelected(Button2);
+	}
+	else if (Button3.bIsVisible)
+	{
+		Navigator.SetSelected(Button3);
+	}
+	else if (IgnoreButton.bIsVisible)
+	{
+		Navigator.SetSelected(IgnoreButton);
+	}
+}
+
+// Part of the fix for issue #961. This function makes sure that the "BOOST INFILTRATION", "VIEW SQUAD", "ABORT", "LAUNCH MISSION", and "WAIT"
+// buttons can all be "clicked" via the controller's A button or the Enter/Spacebar keys.
+simulated function bool OnUnrealCommand(int cmd, int arg)
+{
+	local bool bHandled;
+	local UIButton SelectedButton;
+
+	if (!CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
+	{
+		return false;
+	}
+
+	bHandled = true;
+
+	switch(cmd)
+	{
+		// KDM : A button clicks on the selected button, if such a button exists.
+		// If no button was selected then fall down to the next case; this is to stay consistent with UIMission --> OnUnrealCommand().
+		case class'UIUtilities_Input'.const.FXS_BUTTON_A:
+		case class'UIUtilities_Input'.const.FXS_KEY_ENTER:
+		case class'UIUtilities_Input'.const.FXS_KEY_SPACEBAR:
+			SelectedButton = UIButton(Navigator.GetSelected());
+			if (SelectedButton != none)
+			{
+				SelectedButton.Click();
+				break;
+			}
+			
+		// KDM : B button backs out of the screen if allowed.
+		case class'UIUtilities_Input'.const.FXS_BUTTON_B:
+		case class'UIUtilities_Input'.const.FXS_KEY_ESCAPE:
+		case class'UIUtilities_Input'.const.FXS_R_MOUSE_DOWN:
+			if (CanBackOut())
+			{
+				CloseScreen();
+			}
+			break;
+
+		case class'UIUtilities_Input'.const.FXS_BUTTON_L3 :
+			if (`ISCONTROLLERACTIVE && SitrepPanel.bIsVisible)
+			{
+				SitrepPanel.OnInfoButtonMouseEvent(SitrepPanel.InfoButton);
+			}
+			break;
+		
+		default :
+			bHandled = false;
+			break;
+	}
+
+	return bHandled || super(UIX2SimpleScreen).OnUnrealCommand(cmd, arg);
 }
 
 defaultproperties

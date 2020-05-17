@@ -360,31 +360,31 @@ function static string GetInfiltrationString(XComGameState_MissionSite MissionSt
 
 function static BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReference MissionRef, bool IsInfiltrating)
 {
-	local XComGameState_LWSquadManager SquadMgr;
-	local XComGameState_MissionSite MissionState;
+	local int EvacFlareTimer;
+	local float TotalMissionHours;
+	local string HeaderStr, InfilInfo, MissionInfo1, MissionInfo2, MissionInfoTimer, MissionTime;
+	local UIBGBox MissionExpiryBG;
+	local UIPanel MissionExpiryPanel;
+	local UIX2PanelHeader MissionExpiryTitle;
+	local X2CharacterTemplate FacelessTemplate;
 	local XComGameState_LWAlienActivity ActivityState;
 	local XComGameState_LWPersistentSquad InfiltratingSquad;
-	local UIPanel MissionExpiryPanel;
-	local UIBGBox MissionExpiryBG;
-	local UIX2PanelHeader MissionExpiryTitle;
+	local XComGameState_LWSquadManager SquadMgr;
+	local XComGameState_MissionSite MissionState;
 	local XComGameState_MissionSiteRendezvous_LW RendezvousMissionState;
-	local X2CharacterTemplate FacelessTemplate;
-	local String MissionTime;
-	local float TotalMissionHours;
-	local string MissionInfoTimer, MissionInfo1, MissionInfo2, HeaderStr, InfilInfo;
-	local int EvacFlareTimer;
-
+	
 	SquadMgr = `LWSQUADMGR;
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
 
-	//if (SquadMgr.IsValidInfiltrationMission(MissionRef) &&
-			//MissionState.ExpirationDateTime.m_iYear < 2100)
-
 	ActivityState = class'XComGameState_LWAlienActivityManager'.static.FindAlienActivityByMission(MissionState);
-	if(ActivityState != none)
+	if (ActivityState != none)
+	{
 		TotalMissionHours = int(ActivityState.SecondsRemainingCurrentMission() / 3600.0);
+	}
 	else
+	{
 		TotalMissionHours = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(MissionState.ExpirationDateTime, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()) / 3600.0;
+	}
 	MissionInfoTimer = "";
 
 	InfiltratingSquad = SquadMgr.GetSquadOnMission(MissionRef);
@@ -403,7 +403,7 @@ function static BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReferenc
 	{
 		EvacFlareTimer = -1;
 	}
-	if (GetEvacTypeString (MissionState) != "")
+	if (GetEvacTypeString(MissionState) != "")
 	{
 		MissionInfo1 $= GetEvacTypeString (MissionState);
 		if (EvacFlareTimer >= 0 && (default.EvacFlareMissions.Find (MissionState.GeneratedMission.Mission.MissionName) != -1 || default.EvacFlareEscapeMissions.Find (MissionState.GeneratedMission.Mission.MissionName) != -1))
@@ -428,7 +428,7 @@ function static BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReferenc
 		MissionInfo2 $= default.m_strGetCorpses @ default.m_strBullet $ " ";
 	}
 
-    if (MissionState.GeneratedMission.Mission.sType == "Rendezvous_LW")
+	if (MissionState.GeneratedMission.Mission.sType == "Rendezvous_LW")
 	{
 		RendezvousMissionState = XComGameState_MissionSiteRendezvous_LW(MissionState);
 		FacelessTemplate = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager().FindCharacterTemplate('Faceless');
@@ -444,6 +444,10 @@ function static BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReferenc
 		MissionExpiryPanel.Remove();
 	}
 	MissionExpiryPanel = ParentScreen.Spawn(class'UIPanel', ParentScreen);
+	// KDM : Make sure MissionExpiryPanel isn't navigable because : 
+	// 1.] It shouldn't be navigable in the 1st place. 
+	// 2.] It messes up controller and arrow key navigation within the infiltration screen, UIMission_LWLaunchDelayedMission. 
+	MissionExpiryPanel.bIsNavigable = false;
 	MissionExpiryPanel.InitPanel('ExpiryPanel').SetPosition(725, 180);
 	MissionExpiryBG = ParentScreen.Spawn(class'UIBGBox', MissionExpiryPanel);
 	MissionExpiryBG.LibID = class'UIUtilities_Controls'.const.MC_X2Background;
@@ -452,6 +456,8 @@ function static BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReferenc
 	// status string needs some extra lines in a large-ish font.
 	MissionExpiryBG.InitBG('ExpiryBG', 0, 0, 470, IsInfiltrating ? 200 : 130);
 	MissionExpiryTitle = ParentScreen.Spawn(class'UIX2PanelHeader', MissionExpiryPanel);
+	// KDM : Make sure MissionExpiryTitle isn't navigable; the reasoning is the same as for MissionExpiryPanel above.
+	MissionExpiryTitle.bIsNavigable = false;
 
 	if (TotalMissionHours >= 0.0 && TotalMissionHours <= 10000.0 && MissionState.ExpirationDateTime.m_iYear < 2100)
 	{
