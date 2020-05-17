@@ -29,15 +29,16 @@ var transient float CachedScanButtonWidth;
 
 simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntity Entity)
 {
-	// override the super so we can always use MI_alienfacility to allow displaying of doom pips
-	//super.InitMapItem(Entity);
+	// Override the super so we can always use MI_alienfacility to allow displaying of doom pips
+	// super.InitMapItem(Entity);
 
 	local string PinImage;
+	
 	// Initialize static data
 	InitPanel(Name(Entity.GetUIWidgetName()), 'MI_alienFacility');
 
 	PinImage = Entity.GetUIPinImagePath();
-	if( PinImage != "" )
+	if (PinImage != "")
 	{
 		SetImage(PinImage);
 	}
@@ -62,12 +63,17 @@ simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntit
 	InfilLabel.SetPosition(154 - 5, 23);
 
 	ProgressBar = Spawn(class'UIProgressBar', self).InitProgressBar('MissionInfiltrationProgress', -32, 5, 64, 8, 0.5, eUIState_Normal);
-	//MissionSiteIcon = Spawn(class'UIStrategyMap_MissionIcon_LW', self);
-	//MissionSiteIcon.InitMissionIcon(-1);
-
+	
 	bScanButtonResized = false;
 
 	InstanceMapItem3DMaterial();
+
+	// KDM : The mission map item's help icon gets in the way of the infiltrating squad icon; the best way to deal with it is to null it.
+	// For more information on a similar topic please see the comments in UIStrategyMapItem_Region_LW --> InitMapItem().
+	if (`ISCONTROLLERACTIVE)
+	{
+		ScanButton.mc.SetNull("consoleHint");
+	}
 
 	return self;
 }
@@ -252,36 +258,47 @@ function OpenInfiltrationMissionScreen()
 
 simulated function OnMouseEvent(int cmd, array<string> args)
 {
-	local XComGameStateHistory History;
-	local XComGameState_GeoscapeEntity GeoscapeEntity;
-	local XComGameState_LWPersistentSquad InfiltratingSquad;
-
-	if(GetStrategyMap().m_eUIState == eSMS_Flight)
+	if (GetStrategyMap().m_eUIState == eSMS_Flight)
 	{
 		return;
 	}
 
 	switch(cmd) 
 	{ 
-	case class'UIUtilities_Input'.const.FXS_L_MOUSE_IN:
-		OnMouseIn();
-		break;
-	case class'UIUtilities_Input'.const.FXS_L_MOUSE_OUT:
-		OnMouseOut();
-		break;
-	case class'UIUtilities_Input'.const.FXS_L_MOUSE_UP:
-		History = `XCOMHISTORY;
-		InfiltratingSquad = GetInfiltratingSquad();
-		if(InfiltratingSquad == none)
-		{
-			GeoscapeEntity = XComGameState_GeoscapeEntity(History.GetGameStateForObjectID(GeoscapeEntityRef.ObjectID));
-			GeoscapeEntity.AttemptSelectionCheckInterruption();
-		}
-		else
-		{
-			OpenInfiltrationMissionScreen();
-		}
-		break;
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_IN:
+			OnMouseIn();
+			break;
+
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_OUT:
+			OnMouseOut();
+			break;
+
+		// KDM : A mouse click opens a mission's infiltration screen if it is currently being infiltrated.
+		case class'UIUtilities_Input'.const.FXS_L_MOUSE_UP:
+			MapItemMissionClicked();
+			break;
+	}
+}
+
+// KDM : This code was stripped out of OnMouseEvent() --> FXS_L_MOUSE_UP and placed within a function so that it could be called from both
+// 1.] OnMouseEvent() for mouse & keyboard users 2.] OnUnrealCommand() for controller users.
+simulated function MapItemMissionClicked()
+{
+	local XComGameState_GeoscapeEntity GeoscapeEntity;
+	local XComGameState_LWPersistentSquad InfiltratingSquad;
+	local XComGameStateHistory History;
+	
+	History = `XCOMHISTORY;
+	InfiltratingSquad = GetInfiltratingSquad();
+	
+	if (InfiltratingSquad == none)
+	{
+		GeoscapeEntity = XComGameState_GeoscapeEntity(History.GetGameStateForObjectID(GeoscapeEntityRef.ObjectID));
+		GeoscapeEntity.AttemptSelectionCheckInterruption();
+	}
+	else
+	{
+		OpenInfiltrationMissionScreen();
 	}
 }
 
@@ -462,6 +479,36 @@ function GenerateTooltip(string tooltipHTML)
 	}
 	
 	super.GenerateTooltip(tooltipHTML);
+}
+
+simulated function bool OnUnrealCommand(int cmd, int arg)
+{
+	local bool bHandled;
+
+	if (!CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
+	{
+		return true;
+	}
+
+	bHandled = true;
+
+	switch(cmd)
+	{
+		// KDM : The A button opens a mission's infiltration screen if it is currently being infiltrated.
+		// OnMouseEvent() checks if the Avenger is in flight before executing any of its code; consequently, the same is done here for consistency.
+		case class'UIUtilities_Input'.static.GetAdvanceButtonInputCode():
+			if (GetStrategyMap().m_eUIState != eSMS_Flight)
+			{
+				MapItemMissionClicked();
+			}
+			break;
+
+		default :
+			bHandled = false;
+			break;
+	}
+
+	return bHandled || super.OnUnrealCommand(cmd, arg);
 }
 
 DefaultProperties

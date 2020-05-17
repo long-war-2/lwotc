@@ -61,15 +61,15 @@ simulated function bool IsSelectable()
 
 simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntity Entity)
 {
-	local XComGameState NewGameState;
-	local XComGameStateHistory History;
-	local XComGameState_WorldRegion LandingSite;
-	local X2WorldRegionTemplate RegionTemplate;
-	local Texture2D RegionTexture;
-	local Object TextureObject;
-	local Vector2D CenterWorld;
 	local int i;
-
+	local Object TextureObject;
+	local Texture2D RegionTexture;
+	local Vector2D CenterWorld;
+	local X2WorldRegionTemplate RegionTemplate;
+	local XComGameState NewGameState;
+	local XComGameState_WorldRegion LandingSite;
+	local XComGameStateHistory History;
+	
 	// Spawn the children BEFORE the super.Init because inside that super, it will trigger UpdateFlyoverText and other functions
 	// which may assume these children already exist. 
 
@@ -124,6 +124,29 @@ simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntit
 		Entity.Location.Y = CenterWorld.Y;
 
 		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+
+	// KDM : A Long War 2 (contacted) region map item, generally speaking, has 3 buttons; we will say it has :
+	// 1.] A radio tower button, which opens up the corresponding haven rebel screen.
+	// 2.] A haven information button, which displays the haven region's name, advent strength, vigilance, and force.
+	// 3.] A scan button, which starts and stops scanning at the location.
+	//
+	// Unfortunately, many of these buttons have help icons attached to them within flash when a controller is used.
+	// The reason I say "unfortunately", is because they were never designed for Long War 2 usage; sometimes they will 
+	// display incorrect icons, while other times they will overlap UI elements they should not. The easiest way to deal 
+	// with them, normally, would be to set their visiblity to false, or their alpha to 0; however, they are tweened all
+	// over the place within the Actionscript code. The result is that nulling them is the only method which will get rid of them !
+	//	
+	// Within Actionscript there are 4 help icons :
+	// 1.] MapItem_Region --> consoleHint is the help icon which appears to the left of the radio tower button; it must be removed.
+	// 2.] StrategyScanButton --> scanHint is the help icon which appears to the right of the scan button, when visible; it must be removed.
+	// 3.] StrategyScanButton --> consoleHint appears to the left of the haven information button when no scan button is visible; it must be removed.
+	// 4.] StrategyScanButton --> buyHint appears not to be used in region map items so it is left alone.
+	if (`ISCONTROLLERACTIVE)
+	{
+		mc.SetNull("consoleHint");
+		ScanButton.mc.SetNull("consoleHint");
+		ScanButton.mc.SetNull("scanHint");
 	}
 	
 	return self;
@@ -468,6 +491,55 @@ function GenerateTooltip(string tooltipHTML)
 	{
 		super.GenerateTooltip(tooltipHTML);
 	}
+}
+
+simulated function bool OnUnrealCommand(int cmd, int arg)
+{
+	local bool bHandled;
+
+	if (!CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
+	{
+		return true;
+	}
+
+	bHandled = true;
+
+	switch(cmd)
+	{
+		case class'UIUtilities_Input'.const.FXS_BUTTON_A:
+			// KDM : A button opens up the "Make Contact" pop up screen if the contact button is visible.
+			// Long War 2 code within UpdateFlyoverText() determines if the contact button should be visible.
+			if (ContactButton.bIsVisible)
+			{
+				OnContactClicked(ContactButton);
+			}
+			// KDM : A button toggles scanning if the Avenger is currently at this region location.
+			else if (IsAvengerLandedHere())
+			{
+				ScanButton.ClickButtonScan();
+			}
+			// KDM : A button travels to this region location if possible.
+			else
+			{
+				OnDefaultClicked();
+			}
+			break;
+
+		case class'UIUtilities_Input'.const.FXS_BUTTON_X:
+			// KDM : X button opens up this haven's rebel screen if the outpost button is visible.
+			// Long War 2 code within UpdateFlyoverText() determines if the outpost button should be visible.
+			if (OutpostButton.bIsVisible)
+			{
+				OnOutpostClicked(OutpostButton);
+			}
+			break;
+			
+		default:
+			bHandled = false;
+			break;		
+	}
+
+	return bHandled || super(UIStrategyMapItem).OnUnrealCommand(cmd, arg);
 }
 
 defaultproperties
