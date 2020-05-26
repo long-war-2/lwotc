@@ -14,11 +14,11 @@ var config array<string> APColours;
 
 var UIProgressBar BondProgress;
 
-//icons to be shown in the class area
+// Icons to be shown in the class area
 var UIImage AimIcon, DefenseIcon;
 var UIText AimValue, DefenseValue;
 
-//icons to be shown in the name area
+// Icons to be shown in the name area
 var UIImage HealthIcon, MobilityIcon, WillIcon, HackIcon, DodgeIcon, PsiIcon; 
 var UIText HealthValue, MobilityValue, WillValue, HackValue, DodgeValue, PsiValue;
 
@@ -606,6 +606,8 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 			{
 				APIcon = Spawn(class'UIIcon', self);
 				APIcon.bAnimateOnInit = false;
+				// KDM : Icons shouldn't be navigable, else they mess with controller navigation.
+				APIcon.bIsNavigable = false;
 				APIcon.bDisableSelectionBrackets = true;
 				APIcon.InitIcon('APIcon_ListItem_LW', "gfxStrategyComponents.combatIntIcon", false, false);
 			}
@@ -653,6 +655,8 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 		{
 			BadTraitIcon.InsertItem(i, Spawn(class'UIIcon', BadTraitPanel));
 			BadTraitIcon[i].bAnimateOnInit = false;
+			// KDM : Icons shouldn't be navigable, else they mess with controller navigation.
+			BadTraitIcon[i].bIsNavigable = false;
 			BadTraitIcon[i].bDisableSelectionBrackets = true;
 			BadTraitIcon[i].InitIcon(name("TraitIcon_ListItem_LW_" $ i), TraitTemplate.IconImage, false, false).SetScale(IconScale).SetPosition(TraitIconX, 0);
 			BadTraitIcon[i].SetForegroundColor("9acbcb");
@@ -673,6 +677,8 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 				//`log("AWC Ability found:" @ Unit.AbilityTree[i].Abilities[AWCRank].AbilityName @ AbilityTemplate.IconImage,, 'MoreSoldierDetails');
 				BonusAbilityIcon.AddItem(Spawn(class'UIIcon', BonusAbilityPanel));
 				BonusAbilityIcon[BonusAbilityIcon.Length - 1].bAnimateOnInit = false;
+				// KDM : Icons shouldn't be navigable, else they mess with controller navigation.
+				BonusAbilityIcon[BonusAbilityIcon.Length - 1].bIsNavigable = false;
 				BonusAbilityIcon[BonusAbilityIcon.Length - 1].bDisableSelectionBrackets = true;
 				BonusAbilityIcon[BonusAbilityIcon.Length - 1].InitIcon(name("AbilityIcon_ListItem_LW_" $ i), AbilityTemplate.IconImage, false, false).SetScale(IconScale).SetPosition(AbiltiyIconX, 0);
 				BonusAbilityIcon[BonusAbilityIcon.Length - 1].SetForegroundColor("9acbcb");
