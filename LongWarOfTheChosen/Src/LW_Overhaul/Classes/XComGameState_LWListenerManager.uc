@@ -1,8 +1,14 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    XComGameState_LWListenerManager.uc
-//  AUTHOR:  Amineri / Pavonis Interactive
-//  PURPOSE: This singleton object manages general persistent listeners that should live for both strategy and tactical play
+//	FILE:    XComGameState_LWListenerManager.uc
+//	AUTHOR:  Amineri / Pavonis Interactive
+//	PURPOSE: This singleton object manages general persistent listeners that should live for both strategy and tactical play
+//
+//	KDM : The following functions have been removed because they were never called :
+//	1A.] AddArmoryStripWeaponsButton().
+//	1B.] OnStripWeaponClicked(), which was only called from AddArmoryStripWeaponsButton().
+//	1C.] ConfirmStripSingleWeaponUpgradesCallback(), which was called from OnStripWeaponClicked().
 //---------------------------------------------------------------------------------------
+
 class XComGameState_LWListenerManager extends XComGameState_BaseObject config(LW_Overhaul) dependson(XComGameState_LWPersistentSquad);
 
 var config int DEFAULT_LISTENER_PRIORITY;
@@ -399,66 +405,6 @@ function EventListenerReturn AddSquadSelectStripWeaponsButton (Object EventData,
 	NavHelp.AddCenterHelp(class'UIUtilities_LW'.default.m_strStripWeaponUpgrades, "", OnStripUpgrades, false, class'UIUtilities_LW'.default.m_strTooltipStripWeapons);
 	
 	return ELR_NoInterrupt;
-}
-
-function EventListenerReturn AddArmoryStripWeaponsButton (Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	local UINavigationHelp NavHelp;
-
-	NavHelp = `HQPRES.m_kAvengerHUD.NavHelp;
-
-	// Add a button to make upgrades available.
-	NavHelp.AddLeftHelp(class'UIUtilities_LW'.default.m_strStripWeaponUpgrades, "", OnStripUpgrades, false, class'UIUtilities_LW'.default.m_strTooltipStripWeapons);
-	// Add a button to strip just the upgrades from this weapon.
-	NavHelp.AddLeftHelp(Caps(class'UIScreenListener_ArmoryWeaponUpgrade_LW'.default.strStripWeaponUpgradesButton), "", OnStripWeaponClicked, false, class'UIScreenListener_ArmoryWeaponUpgrade_LW'.default.strStripWeaponUpgradesTooltip);
-	
-	return ELR_NoInterrupt;
-}
-
-simulated function OnStripWeaponClicked()
-{
-	local XComPresentationLayerBase Pres;
-	local TDialogueBoxData DialogData;
-
-	Pres = `PRESBASE;
-	Pres.PlayUISound(eSUISound_MenuSelect);
-
-	DialogData.eType = eDialog_Warning;
-	DialogData.strTitle = class'UIScreenListener_ArmoryWeaponUpgrade_LW'.default.strStripWeaponUpgradeDialogueTitle;
-	DialogData.strText = class'UIScreenListener_ArmoryWeaponUpgrade_LW'.default.strStripWeaponUpgradeDialogueText;
-	DialogData.strAccept = class'UIUtilities_Text'.default.m_strGenericYes;
-	DialogData.strCancel = class'UIUtilities_Text'.default.m_strGenericNO;
-	DialogData.fnCallback = ConfirmStripSingleWeaponUpgradesCallback;
-	Pres.UIRaiseDialog(DialogData);
-}
-
-simulated function ConfirmStripSingleWeaponUpgradesCallback(Name eAction)
-{
-	local XComGameState_Item ItemState;
-	local UIArmory_Loadout LoadoutScreen;
-	local XComGameState_HeadquartersXCom XComHQ;
-	local XComGameState_Unit Soldier;
-	local XComGameState UpdateState;
-
-	if (eAction == 'eUIAction_Accept')
-	{
-		LoadoutScreen = UIArmory_Loadout(`SCREENSTACK.GetFirstInstanceOf(class'UIArmory_Loadout'));
-		if (LoadoutScreen != none)
-		{
-			Soldier = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(LoadoutScreen.GetUnitRef().ObjectID));
-			ItemState = Soldier.GetItemInSlot(eInvSlot_PrimaryWeapon);
-			if (ItemState != none && ItemState.HasBeenModified())
-			{
-				UpdateState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Strip Weapon Upgrades");
-				XComHQ = `XCOMHQ;
-				XComHQ = XComGameState_HeadquartersXCom(UpdateState.CreateStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
-				UpdateState.AddStateObject(XComHQ);
-				StripWeaponUpgradesFromItem(ItemState, XComHQ, UpdateState);
-				`GAMERULES.SubmitGameState(UpdateState);
-				LoadoutScreen.UpdateData(true);
-			}
-		}
-	}
 }
 
 simulated function OnStripUpgrades()

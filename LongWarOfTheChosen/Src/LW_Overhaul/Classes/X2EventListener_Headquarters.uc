@@ -18,6 +18,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> Templates;
 
 	Templates.AddItem(CreateXComHQListeners());
+	Templates.AddItem(CreateXComArmoryListeners());
 	Templates.AddItem(CreateCovertActionListeners());
 	Templates.AddItem(CreateWillProjectListeners());
 
@@ -37,6 +38,19 @@ static function CHEventListenerTemplate CreateXComHQListeners()
 	Template.AddCHEvent('CanTechBeInspired', CanTechBeInspired, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UIAvengerShortcuts_ShowCQResistanceOrders', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
 
+	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+// KDM : Event listeners dealing with the Armory on the Avenger.
+static function CHEventListenerTemplate CreateXComArmoryListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'XComArmoryListeners');
+	Template.AddCHEvent('UIArmory_WeaponUpgrade_NavHelpUpdated', OnWeaponUpgradeNavHelpUpdated, ELD_Immediate, GetListenerPriority());
+	
 	Template.RegisterInStrategy = true;
 
 	return Template;
@@ -75,6 +89,64 @@ static function CHEventListenerTemplate CreateWillProjectListeners()
 static protected function int GetListenerPriority()
 {
 	return default.LISTENER_PRIORITY != -1 ? default.LISTENER_PRIORITY : class'XComGameState_LWListenerManager'.default.DEFAULT_LISTENER_PRIORITY;
+}
+
+// KDM : Listen for navigation help updates within UIArmory_WeaponUpgrade
+static function EventListenerReturn OnWeaponUpgradeNavHelpUpdated(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local bool AllowWeaponStripping, IsUpgradesListSelected;
+	local UIArmory_WeaponUpgrade WeaponUpgradeScreen;
+	local UIList UpgradesList;
+	local UINavigationHelp NavHelp;
+	local UIPanel UpgradesListContainer;
+	local XComGameState_LWListenerManager ListenerManager;
+	
+	WeaponUpgradeScreen = UIArmory_WeaponUpgrade(EventSource);
+	NavHelp = UINavigationHelp(EventData);
+
+	if (NavHelp == none)
+	{
+		`LWTrace("OnWeaponUpgradeNavHelpUpdated event did not have UINavigationHelp as its data");
+		return ELR_NoInterrupt;
+	}
+
+	if ((WeaponUpgradeScreen == none) || (UIArmory_WeaponTrait(WeaponUpgradeScreen) != none))
+	{
+		`LWTrace("OnWeaponUpgradeNavHelpUpdated event did not have UIArmory_WeaponUpgrade as its source");
+		return ELR_NoInterrupt;
+	}
+
+	ListenerManager = class'XComGameState_LWListenerManager'.static.GetListenerManager();
+	UpgradesListContainer = WeaponUpgradeScreen.UpgradesListContainer;
+	UpgradesList = WeaponUpgradeScreen.UpgradesList;
+
+	IsUpgradesListSelected = ((WeaponUpgradeScreen.Navigator.GetSelected() == UpgradesListContainer) && (UpgradesListContainer.Navigator.GetSelected() == UpgradesList));
+	// KDM : Don't allow weapon stripping if either the 1.] upgrade slot list is open 2.] colour selector is open.
+	AllowWeaponStripping = (!(IsUpgradesListSelected || (WeaponUpgradeScreen.ColorSelector != none)));
+	
+	if (AllowWeaponStripping)
+	{
+		// KDM : Left stick click corresponds to 'Strip All Weapon Upgrades'.
+		NavHelp.AddLeftHelp(class'UIUtilities_LW'.default.m_strStripWeaponUpgrades, class'UIUtilities_Input'.const.ICON_LSCLICK_L3,
+			ListenerManager.OnStripUpgrades, false, class'UIUtilities_LW'.default.m_strTooltipStripWeapons);
+	
+		// KDM : 'Strip Weapon Upgrades' is a CustomizeList list item for mouse & keyboard users, so it doesn't need to be added to the
+		// navigation help system.
+		if (`ISCONTROLLERACTIVE)
+		{
+			// KDM : Right stick click corresponds to 'Strip Weapon Upgrades'
+			NavHelp.AddLeftHelp(CAPS(class'UIScreenListener_ArmoryWeaponUpgrade_LW'.default.strStripWeaponUpgradesButton), 
+				class'UIUtilities_Input'.const.ICON_RSCLICK_R3, , false, 
+				class'UIScreenListener_ArmoryWeaponUpgrade_LW'.default.strStripWeaponUpgradesTooltip);
+		}
+	}
+
+	NavHelp.Show();
 }
 
 static function EventListenerReturn OverrideScienceScore(

@@ -1,13 +1,29 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    UIScreenListener_ArmoryWeaponUpgrade_LW.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
-//
 //  PURPOSE: Adds button to allow stripping a weapon of mods
+//
+//	KDM : CHANGES THAT HAVE BEEN MADE :
+//	1.] The UIButton, StripWeaponUpgradesButton, was removed as it was never used.
+//	2.] RegisterForEvents() has been removed because it registered for an event, WeaponUpgradeListChanged, which is never triggered.
+//		Additionally, its callback function, OnWeaponUpgradeListChanged(), was removed since it is never called.
+//	3.] UpdateNavHelp() and AddedNavHelp are no longer used to update the navigation UI; instead we listen for the event
+//		UIArmory_WeaponUpgrade_NavHelpUpdated within X2EventListener_Headquarters.
+//
+//	GENERAL UI STRUCTURE OF UIArmory_WeaponUpgrade :
+//	- SlotsListContainer contains SlotsList and CustomizeList.
+//		- SlotsList is the list of upgrades which are currently attached to this weapon.
+//		- CustomizeList, located below SlotsList, contains buttons which allow you to modify the weapon's name, colour, and pattern.
+//	- UpgradesListContainer contains UpgradesList.
+//		- UpgradesList is the list of 'potential' weapon upgrades you can choose from when you click on a weapon slot within SlotsList.
 //--------------------------------------------------------------------------------------- 
 
 class UIScreenListener_ArmoryWeaponUpgrade_LW extends UIScreenListener;
 
-var UIButton StripWeaponUpgradesButton;
+// KDM : When you click on a slot, in order to choose a weapon upgrade, save its selected index. This allows us to re-select this
+// 'clicked' slot once the weapon upgrade has been chosen; the default behaviour was to always select the 1st slot.
+var int SavedSlotsListIndex;
+
 var StateObjectReference WeaponRef;
 
 var localized string strStripWeaponUpgradesButton;
@@ -18,139 +34,232 @@ var localized string strStripWeaponUpgradeDialogueText;
 var int MenuHeight;
 var int SlotHeight;
 
-// Track whether or not we've added the strip button to the nav help.
-var bool AddedNavHelp;
-
-// Is this a screen we care about? We want to hook the UIArmory_WeaponUpgrade
-// screen, but not the UIArmory_WeaponTrait screen.
+// We want to deal with UIArmory_WeaponUpgrade, but not its subclass UIArmory_WeaponTrait.
 function UIArmory_WeaponUpgrade ValidateScreen(UIScreen Screen)
 {
-	local UIArmory_WeaponUpgrade UpgradeScreen;
+	local UIArmory_WeaponUpgrade WeaponUpgradeScreen;
 
-	UpgradeScreen = UIArmory_WeaponUpgrade(Screen);
-	if (UpgradeScreen != none && UIArmory_WeaponTrait(UpgradeScreen) == none)
+	WeaponUpgradeScreen = UIArmory_WeaponUpgrade(Screen);
+	
+	if (WeaponUpgradeScreen != none && UIArmory_WeaponTrait(WeaponUpgradeScreen) == none)
 	{
-		return UpgradeScreen;
+		return WeaponUpgradeScreen;
 	}
 
 	return none;
 }
 
-// This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
 {
-	local UIArmory_WeaponUpgrade UpgradeScreen;
-	UpgradeScreen = ValidateScreen(Screen);
-	if (UpgradeScreen != none)
+	local UIArmory_WeaponUpgrade WeaponUpgradeScreen;
+	local XComHQPresentationLayer HQPres;
+	
+	HQPres = `HQPRES;
+	WeaponUpgradeScreen = ValidateScreen(Screen);
+	
+	if (WeaponUpgradeScreen != none)
 	{
-		if(!UpgradeScreen.CustomizeList.bIsInited)
+		if (!WeaponUpgradeScreen.CustomizeList.bIsInited)
 		{
-			UpgradeScreen.CustomizeList.AddOnInitDelegate(UpdateCustomizationStripWeapon);
+			WeaponUpgradeScreen.CustomizeList.AddOnInitDelegate(UpdateCustomizationStripWeapon);
 		}
-		RefreshScreen(UpgradeScreen);
-		RegisterForEvents();
-		UpdateNavHelp(UpgradeScreen);
-	}
-}
-
-event OnRemoved(UIScreen Screen)
-{
-	local UIArmory_WeaponUpgrade UpgradeScreen;
-	local Object ThisObj;
-
-	ThisObj = self;
-	UpgradeScreen = ValidateScreen(Screen);
-	if (UpgradeScreen != none)
-	{
-		`XEVENTMGR.UnRegisterFromAllEvents(ThisObj);
-		AddedNavHelp = false;
-	}
-}
-
-function RegisterForEvents()
-{
-	local X2EventManager EventMgr;
-	local Object ThisObj; 
-
-	EventMgr = `XEVENTMGR;
-	ThisObj = self;
-
-	EventMgr.UnRegisterFromAllEvents(ThisObj);
-	EventMgr.RegisterForEvent(ThisObj, 'WeaponUpgradeListChanged', OnWeaponUpgradeListChanged);
-}
-
-function EventListenerReturn OnWeaponUpgradeListChanged(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	local UIArmory_WeaponUpgrade UpgradeScreen;
-	local UIList NewList;
-
-	// This event gets triggered by a refresh of the nav help in the screen, so our button has been removed.
-	AddedNavHelp = false;
-
-	UpgradeScreen = ValidateScreen(UIScreen(EventSource));
-	NewList = UIList(EventData);
-	if (UpgradeScreen != none && NewList == UpgradeScreen.SlotsList)
-	{
-		UpdateNavHelp(UpgradeScreen);
-	}
-
-	return ELR_NoInterrupt;
-}
-
-function UpdateNavHelp(UIArmory_WeaponUpgrade UpgradeScreen)
-{
-	local XComGameState_LWListenerManager ListenerManager;
-
-	if (!AddedNavHelp)
-	{
-		ListenerManager = class'XComGameState_LWListenerManager'.static.GetListenerManager();
-		UpgradeScreen.NavHelp.AddLeftHelp(class'UIUtilities_LW'.default.m_strStripWeaponUpgrades, "", ListenerManager.OnStripUpgrades, false, class'UIUtilities_LW'.default.m_strTooltipStripWeapons);
-		UpgradeScreen.NavHelp.Show();
-		AddedNavHelp = true;
-	}
-}
-
-event OnReceiveFocus(UIScreen Screen)
-{
-	local UIArmory_WeaponUpgrade UpgradeScreen;
-
-	UpgradeScreen = ValidateScreen(Screen);
-	if (UpgradeScreen != none)
-	{
-		AddedNavHelp = false;
-		RefreshScreen(UpgradeScreen);
-		UpdateNavHelp(UpgradeScreen);
+		RefreshScreen(WeaponUpgradeScreen);
+		
+		// KDM : Intercept UIArmory_WeaponUpgrade's OnUnrealCommand so we can add additional controller commands.
+		HQPres.ScreenStack.SubscribeToOnInputForScreen(WeaponUpgradeScreen, OnWeaponUpgradeCommand);
 	}
 }
 
 simulated function UpdateCustomizationStripWeapon(UIPanel Panel)
 {
-	local UIArmory_WeaponUpgrade UpgradeScreen;
+	local UIArmory_WeaponUpgrade WeaponUpgradeScreen;
 
-	UpgradeScreen = ValidateScreen(Panel.Screen);
-	if (UpgradeScreen != none)
-		RefreshScreen(UpgradeScreen);
+	WeaponUpgradeScreen = ValidateScreen(Panel.Screen);
+
+	if (WeaponUpgradeScreen != none)
+	{
+		RefreshScreen(WeaponUpgradeScreen);
+	}
 }
 
-simulated function RefreshScreen (UIArmory_WeaponUpgrade UpgradeScreen)
+simulated function bool IsSlotsListSelected(UIArmory_WeaponUpgrade WeaponUpgradeScreen)
+{
+	local UIList SlotsList;
+	local UIPanel SlotsListContainer;
+	
+	SlotsListContainer = WeaponUpgradeScreen.SlotsListContainer;
+	SlotsList = WeaponUpgradeScreen.SlotsList;
+	
+	return ((WeaponUpgradeScreen.Navigator.GetSelected() == SlotsListContainer) && (SlotsListContainer.Navigator.GetSelected() == SlotsList));
+}
+
+simulated function bool IsCustomizeListSelected(UIArmory_WeaponUpgrade WeaponUpgradeScreen)
+{
+	local UIList CustomizeList;
+	local UIPanel SlotsListContainer;
+	
+	SlotsListContainer = WeaponUpgradeScreen.SlotsListContainer;
+	CustomizeList = WeaponUpgradeScreen.CustomizeList;
+	
+	return ((WeaponUpgradeScreen.Navigator.GetSelected() == SlotsListContainer) && (SlotsListContainer.Navigator.GetSelected() == CustomizeList));
+}
+
+simulated function bool IsUpgradesListSelected(UIArmory_WeaponUpgrade WeaponUpgradeScreen)
+{
+	local UIList UpgradesList;
+	local UIPanel UpgradesListContainer;
+	
+	UpgradesListContainer = WeaponUpgradeScreen.UpgradesListContainer;
+	UpgradesList = WeaponUpgradeScreen.UpgradesList;
+	
+	return ((WeaponUpgradeScreen.Navigator.GetSelected() == UpgradesListContainer) && (UpgradesListContainer.Navigator.GetSelected() == UpgradesList));
+}
+
+simulated function bool AllowWeaponStripping(UIArmory_WeaponUpgrade WeaponUpgradeScreen)
+{
+	// KDM : Don't allow weapon stripping if either the 1.] upgrade slot list is open 2.] colour selector is open.
+	return (!(IsUpgradesListSelected(WeaponUpgradeScreen) || (WeaponUpgradeScreen.ColorSelector != none)));
+}
+
+simulated function bool OnWeaponUpgradeCommand(UIScreen Screen, int cmd, int arg)
+{
+	local bool A_Pressed, B_Pressed, LBumper_Pressed, RBumper_Pressed, bHandled;
+	local UIArmory_WeaponUpgrade WeaponUpgradeScreen;
+	local XComGameState_LWListenerManager ListenerManager;
+
+	if (!Screen.CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
+	{
+		return false;
+	}
+
+	WeaponUpgradeScreen = UIArmory_WeaponUpgrade(Screen);
+
+	ListenerManager = class'XComGameState_LWListenerManager'.static.GetListenerManager();
+
+	A_Pressed = (cmd == class'UIUtilities_Input'.static.GetAdvanceButtonInputCode()) ? true : false;
+	B_Pressed = (cmd == class'UIUtilities_Input'.static.GetBackButtonInputCode()) ? true : false;
+	LBumper_Pressed = (cmd == class'UIUtilities_Input'.const.FXS_BUTTON_LBUMPER) ? true : false;
+	RBumper_Pressed = (cmd == class'UIUtilities_Input'.const.FXS_BUTTON_RBUMPER) ? true : false;
+
+	if (A_Pressed && IsSlotsListSelected(WeaponUpgradeScreen))
+	{
+		// KDM : The A button was pressed while a weapon slot was selected; therefore, we want to save its index.
+		SavedSlotsListIndex = WeaponUpgradeScreen.SlotsList.SelectedIndex;
+	}
+	else if ((A_Pressed || B_Pressed) && IsUpgradesListSelected(WeaponUpgradeScreen))
+	{
+		// KDM : The A or B button was pressed while an upgrade slot was selected; therefore, the upgrade slot list will likely be hidden,
+		// and the weapon slot list will likely be shown. Get ready to re-select the previously 'clicked' weapon slot.
+		
+		// KDM : Allow normal code to flow via WeaponUpgradeScreen.OnUnrealCommand(); this will result in a call to OnAccept() or OnCancel().
+		WeaponUpgradeScreen.OnUnrealCommand(cmd, arg);
+		
+		// KDM : If the weapon slot list has, in fact, regained focus, re-select the previously 'clicked' weapon slot.
+		if (IsSlotsListSelected(WeaponUpgradeScreen))
+		{
+			WeaponUpgradeScreen.SlotsList.SetSelectedIndex(SavedSlotsListIndex);
+		}
+
+		// KDM : We have handled the input so just return true.
+		return true;
+	}
+	else if (LBumper_Pressed || RBumper_Pressed)
+	{
+		// KDM : Focus is lost when we cycle weapons; we are going to fix this after normal OnUnrealCommand() code has executed. 
+		WeaponUpgradeScreen.OnUnrealCommand(cmd, arg);
+
+		// KDM : If the customize list had focus before weapon cycling, it retains that focus after weapon cycling; we don't want this 
+		// to happen so remove its selection and, hence, focus.
+		WeaponUpgradeScreen.CustomizeList.SetSelectedIndex(-1);
+		
+		// KDM : Select the weapon slot list, then proceed to select its 1st list item.
+		WeaponUpgradeScreen.Navigator.SetSelected(WeaponUpgradeScreen.SlotsListContainer);
+		WeaponUpgradeScreen.SlotsListContainer.Navigator.SetSelected(WeaponUpgradeScreen.SlotsList);
+		WeaponUpgradeScreen.SlotsList.SetSelectedIndex(0);
+
+		// KDM : We have handled the input so just return true.
+		return true;
+	}
+
+	switch (cmd)
+	{
+		// KDM : Left stick click strips all weapon upgrades.
+		case class'UIUtilities_Input'.const.FXS_BUTTON_L3:
+			if (AllowWeaponStripping(WeaponUpgradeScreen))
+			{
+				ListenerManager.OnStripUpgrades();
+			}
+			break;
+
+		// KDM : Right stick click strips this weapon's upgrades.
+		case class'UIUtilities_Input'.const.FXS_BUTTON_R3:
+			if (AllowWeaponStripping(WeaponUpgradeScreen))
+			{
+				OnStripWeaponClicked();
+			}
+			break;
+
+		default:
+			bHandled = false;
+			break;
+	}
+
+	return bHandled;
+}
+
+event OnRemoved(UIScreen Screen)
+{
+	local UIArmory_WeaponUpgrade WeaponUpgradeScreen;
+	local XComHQPresentationLayer HQPres;
+
+	HQPres = `HQPRES;
+
+	WeaponUpgradeScreen = ValidateScreen(Screen);
+	
+	if (WeaponUpgradeScreen != none)
+	{
+		// KDM : Stop intercepting UIArmory_WeaponUpgrade's OnUnrealCommand.
+		HQPres.ScreenStack.UnsubscribeFromOnInputForScreen(WeaponUpgradeScreen, OnWeaponUpgradeCommand);
+	}
+}
+
+event OnReceiveFocus(UIScreen Screen)
+{
+	local UIArmory_WeaponUpgrade WeaponUpgradeScreen;
+
+	WeaponUpgradeScreen = ValidateScreen(Screen);
+	if (WeaponUpgradeScreen != none)
+	{
+		RefreshScreen(WeaponUpgradeScreen);
+	}
+}
+
+simulated function RefreshScreen(UIArmory_WeaponUpgrade WeaponUpgradeScreen)
 {
 	local UIMechaListItem StripMechaItem;
-
-	// save off references to the weapon, for later callbacks
-	WeaponRef = UpgradeScreen.WeaponRef;
-	StripMechaItem = UpgradeScreen.GetCustomizeItem(3);
-	StripMechaItem.UpdateDataDescription(class'UIUtilities_Text'.static.GetColoredText(strStripWeaponUpgradesButton, eUIState_Normal), OnStripWeaponClicked);
-	UpgradeScreen.CustomizeList.SetPosition(UpgradeScreen.CustomizationListX, UpgradeScreen.CustomizationListY - UpgradeScreen.CustomizeList.ShrinkToFit() - UpgradeScreen.CustomizationListYPadding);
-	UpgradeScreen.CustomizeList.SetHeight(MenuHeight);
-
-	UpgradeScreen.SlotsList.SetHeight(SlotHeight);
+	
+	// Save off references to the weapon, for later callbacks
+	WeaponRef = WeaponUpgradeScreen.WeaponRef;
+	
+	// KDM : Controller users don't need a button to strip a weapon's upgrades, since this has been integrated into OnUnrealCommand().
+	if (!`ISCONTROLLERACTIVE)
+	{
+		StripMechaItem = WeaponUpgradeScreen.GetCustomizeItem(3);
+		// KDM : Don't wrap UIMechaListItem descriptions in font tags else they won't change colour when item focus changes.
+		// This is all handled in ActionScript anyways.
+		StripMechaItem.UpdateDataDescription(strStripWeaponUpgradesButton, OnStripWeaponClicked);
+		WeaponUpgradeScreen.CustomizeList.SetPosition(WeaponUpgradeScreen.CustomizationListX, WeaponUpgradeScreen.CustomizationListY - 
+			WeaponUpgradeScreen.CustomizeList.ShrinkToFit() - WeaponUpgradeScreen.CustomizationListYPadding);
+		WeaponUpgradeScreen.CustomizeList.SetHeight(MenuHeight);
+		WeaponUpgradeScreen.SlotsList.SetHeight(SlotHeight);
+	}
 }
 
 simulated function OnStripWeaponClicked()
 {
-	local XComPresentationLayerBase Pres;
 	local TDialogueBoxData DialogData;
-
+	local XComPresentationLayerBase Pres;
+	
 	Pres = `PRESBASE;
 	Pres.PlayUISound(eSUISound_MenuSelect);
 
@@ -165,19 +274,19 @@ simulated function OnStripWeaponClicked()
 
 simulated function ConfirmStripWeaponUpgradesCallback(Name eAction)
 {
-	local XComGameState_Item ItemState, UpgradeItemState;
-	local UIScreenStack ScreenStack;
 	local int Index, k;
-	local UIArmory_WeaponUpgrade UpgradeScreen;
 	local array<X2WeaponUpgradeTemplate> UpgradeTemplates;
+	local UIArmory_WeaponUpgrade UpgradeScreen;
+	local UIScreenStack ScreenStack;
 	local XComGameState_HeadquartersXCom XComHQ;
-
+	local XComGameState_Item ItemState, UpgradeItemState;
+	
 	if (eAction == 'eUIAction_Accept')
 	{
 		ScreenStack = `SCREENSTACK;
-		for( Index = 0; Index < ScreenStack.Screens.Length;  ++Index)
+		for (Index = 0; Index < ScreenStack.Screens.Length; ++Index)
 		{
-			if(UIArmory_WeaponUpgrade(ScreenStack.Screens[Index]) != none )
+			if (UIArmory_WeaponUpgrade(ScreenStack.Screens[Index]) != none)
 			{
 				UpgradeScreen = UIArmory_WeaponUpgrade(ScreenStack.Screens[Index]);
 			}
@@ -194,7 +303,10 @@ simulated function ConfirmStripWeaponUpgradesCallback(Name eAction)
 			ItemState = UpgradeScreen.UpdatedWeapon;
 		}
 
-		if (!ItemState.HasBeenModified()) { return; }
+		if (!ItemState.HasBeenModified()) 
+		{
+			return;
+		}
 		
 		XComHQ = class'UIUtilities_Strategy'.static.GetXComHQ();
 		XComHQ = XComGameState_HeadquartersXCom(UpgradeScreen.CustomizationState.CreateStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
@@ -225,11 +337,11 @@ simulated function ConfirmStripWeaponUpgradesCallback(Name eAction)
 	}
 }
 
-
 defaultproperties
 {
-	// Leaving this assigned to none will cause every screen to trigger its signals on this class
 	ScreenClass = none;
-	MenuHeight = 180
-	SlotHeight = 600
+	MenuHeight = 180;
+	SlotHeight = 600;
+
+	SavedSlotsListIndex = -1;
 }
