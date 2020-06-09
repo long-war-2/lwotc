@@ -985,10 +985,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 
-	if (Template.DataName == 'Fuse')
-	{
-		Template.PrerequisiteAbilities.AddItem ('Fortress');
-	}
 		
 	if (Template.DataName == 'Stasis')
 	{
@@ -996,32 +992,30 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		UnitPropertyCondition.ExcludeLargeUnits=true;
 		Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 		Template.AdditionalAbilities.AddItem('StasisShield');
+		Template.PrerequisiteAbilities.AddItem ('Fuse');
 	}
 
 	if (Template.DataName == 'StasisShield')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Fortress');
 		Template.AbilityTargetEffects.Remove(0,1); //Remove the display dummy effect
 	}
 
 	if (Template.DataName == 'Domination')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Solace_LW');
-		Template.PrerequisiteAbilities.AddItem ('Stasis');
+		Template.PrerequisiteAbilities.AddItem ('Fuse');
 	}
 
 	if (Template.DataName == 'VoidRift')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Fortress');
-		Template.PrerequisiteAbilities.AddItem ('Solace_LW');
+		Template.PrerequisiteAbilities.AddItem ('SoulSteal');
 	}
 
 	if (Template.DataName == 'NullLance')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Stasis');
+		Template.PrerequisiteAbilities.AddItem ('Solace_LW');
 	}
 
-	if (Template.DataName == 'SoulSteal')
+	if (Template.DataName == 'Soulfire')
 	{
 		Cooldown = new class 'X2AbilityCooldown_Soulfire';
 		Template.AbilityCooldown = Cooldown;
