@@ -3908,3 +3908,52 @@ exec function MeetFaction(string FactionName, optional bool bIgnoreRevealSequenc
 
 	`HQPRES.DisplayNewStaffPopupIfNeeded();
 }
+
+// This is a DLCInfo hook added by the Community Highlander
+static function WeaponInitialized(XGWeapon WeaponArchetype, XComWeapon Weapon, optional XComGameState_Item ItemState = none)
+{
+	local X2WeaponTemplate		WeaponTemplate;
+	local XComGameState_Item	InternalWeaponState;
+	local X2UnifiedProjectile	Proj;
+
+	//`Log("IRIDAR Weapon Initialized triggered.", class'X2DownloadableContentInfo_WOTCUnderbarrelAttachments'.default.ENABLE_LOGGING, 'WOTCUnderbarrelAttachments');
+
+	InternalWeaponState = ItemState;
+	if (InternalWeaponState == none)
+	{
+		//`Log("IRIDAR InternalWeaponState is none.", class'X2DownloadableContentInfo_WOTCUnderbarrelAttachments'.default.ENABLE_LOGGING, 'WOTCUnderbarrelAttachments');
+		InternalWeaponState = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(WeaponArchetype.ObjectID));
+	}
+
+	WeaponTemplate = X2WeaponTemplate(InternalWeaponState.GetMyTemplate());
+
+	if (WeaponTemplate.WeaponCat == 'psiamp')
+	{
+		Proj = X2UnifiedProjectile(`CONTENT.RequestGameArchetype("IRI_PsiOverhaul.PJ_PsiPinion"));
+
+		if (!IsProjectileElementPresent(Weapon.DefaultProjectileTemplate.ProjectileElements, Proj.ProjectileElements[0]))
+		{
+			//`Log("IRIDAR Adding projectiles to: " @ WeaponTemplate.DataName, class'X2DownloadableContentInfo_WOTCUnderbarrelAttachments'.default.ENABLE_LOGGING, 'WOTCUnderbarrelAttachments');
+			Weapon.DefaultProjectileTemplate.ProjectileElements.AddItem(Proj.ProjectileElements[0]);
+		}
+		if (!IsProjectileElementPresent(Weapon.DefaultProjectileTemplate.ProjectileElements, Proj.ProjectileElements[1]))
+		{
+			//`Log("IRIDAR Adding projectiles to: " @ WeaponTemplate.DataName, class'X2DownloadableContentInfo_WOTCUnderbarrelAttachments'.default.ENABLE_LOGGING, 'WOTCUnderbarrelAttachments');
+			Weapon.DefaultProjectileTemplate.ProjectileElements.AddItem(Proj.ProjectileElements[1]);
+		}
+	}
+}
+		
+static function bool IsProjectileElementPresent(array<X2UnifiedProjectileElement> Haystack, X2UnifiedProjectileElement Needle)	// Thanks, Musashi-san!
+{
+    local X2UnifiedProjectileElement Element;
+    
+    foreach Haystack(Element)
+    {
+        if (Element.Comment == Needle.Comment)
+        {
+            return true;
+        }
+    }
+    return false;
+}

@@ -822,6 +822,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_DeathFromAbove_LW        DeathEffect;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 
+
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
 	{
@@ -947,13 +948,43 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	// 	}
 	// }
 
-	if (Template.DataName == 'Insanity')
+	if (Template.DataName == 'Insanity' || Template.DataName == 'VoidRiftInsanity')
 	{
-		for (k = 0; k < Template.AbilityTargetEffects.length; k++)
+		for (k = Template.AbilityTargetEffects.length - 1; k >= 0; k--)
 		{
+			// The following code reduces the chance for mind control from Insanity to around 7%
+			// from around 40%, for a late-game Psi Offense. The algorithm for stat contests is
+			// not the most intuitive, which is why it's not obvious what the following code does.
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_MindControl'))
 			{
 				X2Effect_MindControl(Template.AbilityTargetEffects[k]).iNumTurns = default.INSANITY_MIND_CONTROL_DURATION;
+				X2Effect_MindControl(Template.AbilityTargetEffects[k]).MinStatContestResult = 25;
+			}
+	
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_RemoveEffects'))
+			{
+				X2Effect_RemoveEffects(Template.AbilityTargetEffects[k]).MinStatContestResult = 25;
+			}
+	
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_Panicked'))
+			{
+				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MinStatContestResult = 4;
+				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MaxStatContestResult = 24;
+			}
+				//Remove the longer disorient effect,
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_PersistentStatChange') && Template.AbilityTargetEffects[k].MinStatContestResult == 2)
+			{
+				if (X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).EffectName == class'X2AbilityTemplateManager'.default.DisorientedName)
+					{
+						Template.AbilityTargetEffects.Remove(k, 1);
+					}
+			}
+
+			// Compensate for the stat contest dilution. It's still less than it used to be.
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_PersistentStatChange') && Template.AbilityTargetEffects[k].MinStatContestResult == 1)
+			{
+				X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).MinStatContestResult = 1;
+				X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).MaxStatContestResult = 3;
 			}
 		}
 		for (k = 0; k < Template.AbilityCosts.length; k++)
@@ -966,31 +997,40 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 
-	if (Template.DataName == 'Fuse')
+		
+	if (Template.DataName == 'Stasis')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Fortress');
+		UnitPropertyCondition = new class 'X2Condition_UnitProperty';
+		UnitPropertyCondition.ExcludeLargeUnits = true;
+		Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+		Template.AdditionalAbilities.AddItem('StasisShield');
+		Template.PrerequisiteAbilities.AddItem('Fuse');
 	}
 
 	if (Template.DataName == 'StasisShield')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Fortress');
+		Template.AbilityTargetEffects.Remove(0, 1); //Remove the display dummy effect
 	}
 
 	if (Template.DataName == 'Domination')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Solace_LW');
-		Template.PrerequisiteAbilities.AddItem ('Stasis');
+		Template.PrerequisiteAbilities.AddItem('Fuse');
 	}
 
 	if (Template.DataName == 'VoidRift')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Fortress');
-		Template.PrerequisiteAbilities.AddItem ('Solace_LW');
+		Template.PrerequisiteAbilities.AddItem('SoulSteal');
 	}
 
 	if (Template.DataName == 'NullLance')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Stasis');
+		Template.PrerequisiteAbilities.AddItem('Solace_LW');
+	}
+
+	if (Template.DataName == 'Soulfire')
+	{
+		Cooldown = new class 'X2AbilityCooldown_Soulfire';
+		Template.AbilityCooldown = Cooldown;
 	}
 	
 	if (Template.DataName == 'PoisonSpit' || Template.DataName == 'MicroMissiles')
