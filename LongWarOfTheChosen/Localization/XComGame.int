@@ -4921,7 +4921,7 @@ LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a singl
 
 
 [Fuse X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Fuse has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Fuse has no cooldown.<br/>"
 
 [BulletShred X2AbilityTemplate]
 LocLongDescription="A Rupture shot grants a large bonus to critical hit chances and ensures that the target takes an additional +<Ability:RuptureAmount/> damage from all attacks in the future."
@@ -4931,9 +4931,9 @@ LocHelpText="A Rupture shot grants a large bonus to critical hit chances and ens
 LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field position, granting a high chance to hit at multiple targets.<br/><Bullet/> Faceoff has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 
 [SoulSteal X2AbilityTemplate]
-LocLongDescription="Soulfire transfers half of the damage done back to the Psi Operative as health or grants an ablative HP if you are uninjured."
-LocHelpText="Soulfire heals a wounded operative or grants an ablative HP."
-LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 1 ablative hit point for a healthy one.<br/><Bullet/> An operative may increase to no more than 8 ablative HP when using Soul Steal."
+LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health or grants an ablative HP if you are uninjured, but increases the cooldown of soulfire by 1."
+LocHelpText="Soulfire heals a wounded operative or grants an ablative HP, but increases soulfire cooldown by 1"
+LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 2/3/4 ablative hit point for a healthy one.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
 
 [CoveringFire X2AbilityTemplate]
 LocLongDescription="Reaction shots confer an aim malus on enemies and can now be triggered by any enemy action, not just movement."
@@ -5457,4 +5457,25 @@ BriefSummary="A pool of points that can be used to grant abilities and stats to 
 [XComGame.UIArmory_Loadout]
 [UIArmory_Loadout]
 m_strInventoryLabels[eInvSlot_Pistol]="PISTOL"
+; End Translation
+
+; LWOTC Needs Translation
+[IRI_PhaseWalk X2AbilityTemplate]
+LocFriendlyName="Phase Walk"
+LocLongDescription="Temporarily phase out of existence to teleport to a nearby location."
+LocHelpText="Temporarily phase out of existence to teleport to a nearby location."
+LocFlyOverText="Phase Walk"
+
+[IRI_NullWard X2AbilityTemplate]
+LocFriendlyName="Null Ward"
+LocLongDescription="Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed."
+LocHelpText="Project psionic shields around nearby allies and yourself."
+LocFlyOverText="Null Ward"
+
+[IRI_SoulStorm X2AbilityTemplate]
+LocFriendlyName="Soul Storm"
+LocLongDescription="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
+LocHelpText="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
+LocFlyOverText="Soul Storm"
+LocPromotionPopupText="Cannot destroy floors or ceilings."
 ; End Translation
