@@ -988,10 +988,19 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		Template.PrerequisiteAbilities.AddItem ('Fortress');
 	}
+		
+	if (Template.DataName == 'Stasis')
+	{
+		UnitPropertyCondition= new class 'X2Condition_UnitProperty';
+		UnitPropertyCondition.ExcludeLargeUnits=true;
+		Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+		Template.AdditionalAbilities.AddItem('StasisShield');
+	}
 
 	if (Template.DataName == 'StasisShield')
 	{
 		Template.PrerequisiteAbilities.AddItem ('Fortress');
+		Template.AbilityTargetEffects.Remove(0,1); //Remove the display dummy effect
 	}
 
 	if (Template.DataName == 'Domination')
