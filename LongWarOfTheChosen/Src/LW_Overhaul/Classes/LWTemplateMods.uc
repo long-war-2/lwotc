@@ -822,6 +822,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_DeathFromAbove_LW        DeathEffect;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 
+
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
 	{
@@ -947,13 +948,30 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	// 	}
 	// }
 
-	if (Template.DataName == 'Insanity')
+	if (Template.DataName == 'Insanity' || Template.DataName == 'VoidRiftInsanity')
 	{
 		for (k = 0; k < Template.AbilityTargetEffects.length; k++)
 		{
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_MindControl'))
 			{
 				X2Effect_MindControl(Template.AbilityTargetEffects[k]).iNumTurns = default.INSANITY_MIND_CONTROL_DURATION;
+				X2Effect_MindControl(Template.AbilityTargetEffects[k]).MinStatContestResult = 6;
+			}
+	
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_RemoveEffects'))
+			{
+				X2Effect_RemoveEffects(Template.AbilityTargetEffects[k]).MinStatContestResult = 6;
+			}
+	
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_Panicked'))
+			{
+				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MinStatContestResult = 2
+				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MaxStatContestResult = 5;
+			}
+
+			if (Template.AbilityTargetEffects[k].EffectName == class'X2AbilityTemplateManager'.default.DisorientedName && Template.AbilityTargetEffects[k].MinStatContestResult==2)
+			{
+				Template.AbilityTargetEffects.Remove(k,1)
 			}
 		}
 		for (k = 0; k < Template.AbilityCosts.length; k++)
