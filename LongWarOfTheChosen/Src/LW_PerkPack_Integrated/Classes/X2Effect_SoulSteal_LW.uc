@@ -50,7 +50,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
 }
-
+/*
 simulated function AddX2ActionsForVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata BuildTrack, name EffectApplyResult)
 {
 	local XComGameState_Unit OldUnitState, NewUnitState;
@@ -70,3 +70,4 @@ simulated function AddX2ActionsForVisualization(XComGameState VisualizeGameState
 		}
 	}
 }
+	*/
