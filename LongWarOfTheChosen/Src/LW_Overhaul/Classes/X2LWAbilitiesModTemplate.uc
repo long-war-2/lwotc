@@ -81,7 +81,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			UpdatePurifierFlamethrower(Template);
 			break;
 		case 'PriestStasis':
-			MakePriestStasisNotEndTurn(Template);
+		case 'Fuse':
+			MakeAbilityNonTurnEnding(Template);
 			break;
 		case 'HolyWarriorDeath':
 			RemoveTheDeathFromHolyWarriorDeath(Template);
@@ -98,6 +99,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Implacable':
 			ReplaceImplacableEffect(Template);
 			break;
+		case 'MicroMissileFuse':
+		case 'GrenadeFuse':
+		case 'RocketFuse':
+			UpdateDetonationCost(Template);
+			break;
+
 		default:
 			break;
 	}
@@ -541,15 +548,17 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 
 }
 
-static function MakePriestStasisNotEndTurn(X2AbilityTemplate Template)
+static function MakeAbilityNonTurnEnding(X2AbilityTemplate Template)
 {
-	local X2AbilityCost_ActionPoints ActionPointCost;
+	local X2AbilityCost Cost;
 
-	Template.AbilityCosts.Length = 0;
-	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bConsumeAllPoints = false;
-	Template.AbilityCosts.AddItem(ActionPointCost);
+	foreach Template.AbilityCosts (Cost)
+	{
+		if(Cost.IsA(class'X2AbilityCost_ActionPoints'.name))
+		{
+			X2AbilityCost_ActionPoints(Cost).bConsumeAllPoints = false;
+		}
+	}
 }
 
 static function RemoveTheDeathFromHolyWarriorDeath(X2AbilityTemplate Template)
@@ -685,6 +694,18 @@ static function ReplaceImplacableEffect(X2AbilityTemplate Template)
 	}
 }
 
+static function UpdateDetonationCost(X2AbilityTemplate Template)
+{
+	local X2AbilityCost Cost;
+
+	foreach Template.AbilityCosts (Cost)
+	{
+		if(Cost.IsA(class'X2AbilityCost_Ammo'.name))
+		{
+			X2AbilityCost_Ammo(Cost).bConsumeAllAmmo=true;
+		}
+	}
+}
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
