@@ -480,6 +480,9 @@
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetInteractiveObjectHacked.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetMissionTimer.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetRegionInfo.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Action_IRI_PsiPinion.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_IRI_SoulStorm.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_NullWard.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_InitializeMissionTimer.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_LWCallReinforcements.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_RemoveItemFromInventory.uc" />
