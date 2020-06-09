@@ -965,13 +965,14 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_Panicked'))
 			{
-				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MinStatContestResult = 2
+				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MinStatContestResult = 2;
 				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MaxStatContestResult = 5;
 			}
-
-			if (Template.AbilityTargetEffects[k].EffectName == class'X2AbilityTemplateManager'.default.DisorientedName && Template.AbilityTargetEffects[k].MinStatContestResult==2)
+				//Remove the longer disorient effect,
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_PersistentStatChange') && Template.AbilityTargetEffects[k].MinStatContestResult==2)
 			{
-				Template.AbilityTargetEffects.Remove(k,1)
+				if (X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).EffectName == class'X2AbilityTemplateManager'.default.DisorientedName)
+					Template.AbilityTargetEffects.Remove(k,1);
 			}
 		}
 		for (k = 0; k < Template.AbilityCosts.length; k++)
@@ -1018,6 +1019,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'NullLance')
 	{
 		Template.PrerequisiteAbilities.AddItem ('Stasis');
+	}
+
+	if (Template.DataName == 'SoulSteal')
+	{
+		Cooldown = new class 'X2AbilityCooldown_Soulfire';
+		Template.AbilityCooldown = Cooldown;
 	}
 	
 	if (Template.DataName == 'PoisonSpit' || Template.DataName == 'MicroMissiles')
