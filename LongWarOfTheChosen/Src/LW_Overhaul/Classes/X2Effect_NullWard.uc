@@ -18,16 +18,16 @@ protected simulated function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	ShieldHPChange.StatType = eStat_ShieldHP;
 
 	Caster = XComGameState_Unit (NewGameState.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-	Target = XComGameState_unit (kNewTargetState);
-    if(Caster == none)
-    {
-        Caster = XComGameState_Unit(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-    }
+	Target = XComGameState_unit(kNewTargetState);
+	if (Caster == none)
+	{
+		Caster = XComGameState_Unit(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	}
 	SourceItem = XComGameState_Item(NewGameState.GetGameStateForObjectID(ApplyEffectParameters.ItemStateObjectRef.ObjectID));
-	if(SourceItem == none)
-    {
-        SourceItem = XComGameState_Item(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(ApplyEffectParameters.ItemStateObjectRef.ObjectID));
-    }
+	if (SourceItem == none)
+	{
+		SourceItem = XComGameState_Item(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(ApplyEffectParameters.ItemStateObjectRef.ObjectID));
+	}
 
 	ShieldHPChange.StatAmount = BaseShieldHPIncrease;
 
@@ -43,7 +43,7 @@ protected simulated function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	Target.SetUnitFloatValue('NullWardShieldHP', ShieldHPChange.StatAmount, eCleanup_BeginTactical);
 	Target.SetUnitFloatValue('PreNullWardShieldHP', Target.GetCurrentStat(eStat_ShieldHP), eCleanup_BeginTactical);
 
-    NewEffectState.StatChanges.AddItem(ShieldHPChange);
+	NewEffectState.StatChanges.AddItem(ShieldHPChange);
 
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
 }
@@ -57,7 +57,7 @@ simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParame
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	PreRemovalShieldHP = UnitState.GetCurrentStat(eStat_ShieldHP);
 
-    super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
+	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
 
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	UnitState.GetUnitValue('NullWardShieldHP', NullWardShieldHP);
@@ -70,7 +70,7 @@ simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParame
 	ShieldHPDamage = FullyShieldedHP - PreRemovalShieldHP;
 	if (ShieldHPDamage > 0 && PreNullWardShieldHP > 0 && ShieldHPDamage < FullyShieldedHP)
 	{
-		NewShieldHP = Clamp (PreNullWardShieldHP + NullWardGrantedShieldHP - ShieldHPDamage, 0, PreNullWardShieldHP);
+		NewShieldHP = Clamp(PreNullWardShieldHP + NullWardGrantedShieldHP - ShieldHPDamage, 0, PreNullWardShieldHP);
 		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(UnitState.Class, UnitState.ObjectID));
 		UnitState.SetCurrentStat(estat_ShieldHP, NewShieldHP);
 		NewGameState.AddStateObject(UnitState);

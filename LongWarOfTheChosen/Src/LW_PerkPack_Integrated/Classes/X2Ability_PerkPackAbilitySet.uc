@@ -4114,7 +4114,6 @@ static function X2AbilityTemplate AddSoulStealTriggered2()
 	StealEffect.soulsteal_m2_shield = default.SOULSTEAL_M2_SHIELD;
 	StealEffect.soulsteal_m3_shield = default.SOULSTEAL_M3_SHIELD;
 
-
 	Template.AddShooterEffect(StealEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

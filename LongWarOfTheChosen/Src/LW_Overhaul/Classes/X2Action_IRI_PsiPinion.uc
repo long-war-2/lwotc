@@ -101,7 +101,7 @@ Begin:
 
 	Unit.CurrentFireAction = self;
 
-	for( LW_TimeDelayIndex = 0; LW_TimeDelayIndex < AbilityContext.InputContext.MultiTargets.Length; ++LW_TimeDelayIndex )
+	for (LW_TimeDelayIndex = 0; LW_TimeDelayIndex < AbilityContext.InputContext.MultiTargets.Length; LW_TimeDelayIndex++)
 	{
 		Sleep(0.2f);
 		AddProjectiles(LW_TimeDelayIndex);

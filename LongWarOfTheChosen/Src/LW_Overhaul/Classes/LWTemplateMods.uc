@@ -950,8 +950,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'Insanity' || Template.DataName == 'VoidRiftInsanity')
 	{
-		for (k = Template.AbilityTargetEffects.length-1; k >= 0; k--)
-		{	//I know this looks ridiculous, but that's the main way to make mind control from insanity be around 7% instead of around 40%. Math for that isn't the most intuitive thing
+		for (k = Template.AbilityTargetEffects.length - 1; k >= 0; k--)
+		{
+			// The following code reduces the chance for mind control from Insanity to around 7%
+			// from around 40%, for a late-game Psi Offense. The algorithm for stat contests is
+			// not the most intuitive, which is why it's not obvious what the following code does.
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_MindControl'))
 			{
 				X2Effect_MindControl(Template.AbilityTargetEffects[k]).iNumTurns = default.INSANITY_MIND_CONTROL_DURATION;
@@ -969,18 +972,19 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MaxStatContestResult = 24;
 			}
 				//Remove the longer disorient effect,
-			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_PersistentStatChange') && Template.AbilityTargetEffects[k].MinStatContestResult==2)
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_PersistentStatChange') && Template.AbilityTargetEffects[k].MinStatContestResult == 2)
 			{
 				if (X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).EffectName == class'X2AbilityTemplateManager'.default.DisorientedName)
 					{
-						Template.AbilityTargetEffects.Remove(k,1);
+						Template.AbilityTargetEffects.Remove(k, 1);
 					}
 			}
-			//Compensate for the stat contest dilution, it's still less than it used to
-			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_PersistentStatChange') && Template.AbilityTargetEffects[k].MinStatContestResult==1)
+
+			// Compensate for the stat contest dilution. It's still less than it used to be.
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_PersistentStatChange') && Template.AbilityTargetEffects[k].MinStatContestResult == 1)
 			{
-				X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).MinStatContestResult=1;
-				X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).MaxStatContestResult=3;
+				X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).MinStatContestResult = 1;
+				X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).MaxStatContestResult = 3;
 			}
 		}
 		for (k = 0; k < Template.AbilityCosts.length; k++)
@@ -996,31 +1000,31 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		
 	if (Template.DataName == 'Stasis')
 	{
-		UnitPropertyCondition= new class 'X2Condition_UnitProperty';
-		UnitPropertyCondition.ExcludeLargeUnits=true;
+		UnitPropertyCondition = new class 'X2Condition_UnitProperty';
+		UnitPropertyCondition.ExcludeLargeUnits = true;
 		Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 		Template.AdditionalAbilities.AddItem('StasisShield');
-		Template.PrerequisiteAbilities.AddItem ('Fuse');
+		Template.PrerequisiteAbilities.AddItem('Fuse');
 	}
 
 	if (Template.DataName == 'StasisShield')
 	{
-		Template.AbilityTargetEffects.Remove(0,1); //Remove the display dummy effect
+		Template.AbilityTargetEffects.Remove(0, 1); //Remove the display dummy effect
 	}
 
 	if (Template.DataName == 'Domination')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Fuse');
+		Template.PrerequisiteAbilities.AddItem('Fuse');
 	}
 
 	if (Template.DataName == 'VoidRift')
 	{
-		Template.PrerequisiteAbilities.AddItem ('SoulSteal');
+		Template.PrerequisiteAbilities.AddItem('SoulSteal');
 	}
 
 	if (Template.DataName == 'NullLance')
 	{
-		Template.PrerequisiteAbilities.AddItem ('Solace_LW');
+		Template.PrerequisiteAbilities.AddItem('Solace_LW');
 	}
 
 	if (Template.DataName == 'Soulfire')

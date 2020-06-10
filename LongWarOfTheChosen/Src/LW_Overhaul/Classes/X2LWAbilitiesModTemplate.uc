@@ -552,9 +552,9 @@ static function MakeAbilityNonTurnEnding(X2AbilityTemplate Template)
 {
 	local X2AbilityCost Cost;
 
-	foreach Template.AbilityCosts (Cost)
+	foreach Template.AbilityCosts(Cost)
 	{
-		if(Cost.IsA(class'X2AbilityCost_ActionPoints'.name))
+		if (Cost.IsA('X2AbilityCost_ActionPoints'))
 		{
 			X2AbilityCost_ActionPoints(Cost).bConsumeAllPoints = false;
 		}
@@ -698,11 +698,11 @@ static function UpdateDetonationCost(X2AbilityTemplate Template)
 {
 	local X2AbilityCost Cost;
 
-	foreach Template.AbilityCosts (Cost)
+	foreach Template.AbilityCosts(Cost)
 	{
-		if(Cost.IsA(class'X2AbilityCost_Ammo'.name))
+		if (Cost.IsA('X2AbilityCost_Ammo'))
 		{
-			X2AbilityCost_Ammo(Cost).bConsumeAllAmmo=true;
+			X2AbilityCost_Ammo(Cost).bConsumeAllAmmo = true;
 		}
 	}
 }
@@ -710,4 +710,3 @@ defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
 }
-

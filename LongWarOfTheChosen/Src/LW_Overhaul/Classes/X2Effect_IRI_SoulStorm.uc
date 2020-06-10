@@ -33,7 +33,7 @@ simulated function ApplyDirectionalDamageToTarget(XComGameState_Unit SourceUnit,
 		return;
 
 	AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext());
-	if( AbilityContext != none )
+	if (AbilityContext != none)
 	{
 		WorldData = `XWORLD;
 
@@ -110,7 +110,7 @@ simulated function ApplyDirectionalDamageToTarget(XComGameState_Unit SourceUnit,
 		{
 			DamageEvent.DamageTiles.AddItem(SourceTile);
 
-			for( i = 0; i < PlusNumZTiles; ++i)
+			for (i = 0; i < PlusNumZTiles; ++i)
 			{
 				SourceTile.Z++;
 				DamageEvent.DamageTiles.AddItem(SourceTile);
