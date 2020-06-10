@@ -264,7 +264,8 @@ static function X2DataTemplate Create_NullWard()
 	Template.HideErrors.AddItem('AA_CannotAfford_Charges');
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.Hostility = eHostility_Defensive;
-
+	Template.ConcealmentRule = eConceal_Never;
+	
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = default.NULLWARD_ACTIONPOINTS;
 	ActionPointCost.bConsumeAllPoints = default.NULLWARD_ENDS_TURN;
