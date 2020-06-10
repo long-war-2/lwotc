@@ -950,29 +950,37 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'Insanity' || Template.DataName == 'VoidRiftInsanity')
 	{
-		for (k = 0; k < Template.AbilityTargetEffects.length; k++)
-		{
+		for (k = Template.AbilityTargetEffects.length-1; k >= 0; k--)
+		{	//I know this looks ridiculous, but that's the main way to make mind control from insanity be around 7% instead of around 40%. Math for that isn't the most intuitive thing
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_MindControl'))
 			{
 				X2Effect_MindControl(Template.AbilityTargetEffects[k]).iNumTurns = default.INSANITY_MIND_CONTROL_DURATION;
-				X2Effect_MindControl(Template.AbilityTargetEffects[k]).MinStatContestResult = 6;
+				X2Effect_MindControl(Template.AbilityTargetEffects[k]).MinStatContestResult = 25;
 			}
 	
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_RemoveEffects'))
 			{
-				X2Effect_RemoveEffects(Template.AbilityTargetEffects[k]).MinStatContestResult = 6;
+				X2Effect_RemoveEffects(Template.AbilityTargetEffects[k]).MinStatContestResult = 25;
 			}
 	
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_Panicked'))
 			{
-				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MinStatContestResult = 2;
-				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MaxStatContestResult = 5;
+				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MinStatContestResult = 4;
+				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MaxStatContestResult = 24;
 			}
 				//Remove the longer disorient effect,
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_PersistentStatChange') && Template.AbilityTargetEffects[k].MinStatContestResult==2)
 			{
 				if (X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).EffectName == class'X2AbilityTemplateManager'.default.DisorientedName)
-					Template.AbilityTargetEffects.Remove(k,1);
+					{
+						Template.AbilityTargetEffects.Remove(k,1);
+					}
+			}
+			//Compensate for the stat contest dilution, it's still less than it used to
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_PersistentStatChange') && Template.AbilityTargetEffects[k].MinStatContestResult==1)
+			{
+				X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).MinStatContestResult=1;
+				X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).MaxStatContestResult=3;
 			}
 		}
 		for (k = 0; k < Template.AbilityCosts.length; k++)
