@@ -4110,9 +4110,9 @@ static function X2AbilityTemplate AddSoulStealTriggered2()
 
 	StealEffect = new class'X2Effect_SoulSteal_LW';
 	StealEffect.BuildPersistentEffect (1, true, false);
-	StealEffect.soulsteal_m1_shield = default.SOULSTEAL_M1_SHIELD;
-	StealEffect.soulsteal_m2_shield = default.SOULSTEAL_M2_SHIELD;
-	StealEffect.soulsteal_m3_shield = default.SOULSTEAL_M3_SHIELD;
+	StealEffect.SoulStealM1Shield = default.SOULSTEAL_M1_SHIELD;
+	StealEffect.SoulStealM2Shield = default.SOULSTEAL_M2_SHIELD;
+	StealEffect.SoulStealM3Shield = default.SOULSTEAL_M3_SHIELD;
 
 	Template.AddShooterEffect(StealEffect);
 
