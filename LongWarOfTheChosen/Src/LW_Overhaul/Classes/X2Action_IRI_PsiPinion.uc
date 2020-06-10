@@ -1,6 +1,8 @@
-//-----------------------------------------------------------
-// Used by the visualizer system to control a Visualization Actor
-//-----------------------------------------------------------
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Action_IRI_PsiPinion.uc
+//  AUTHOR:  Iridar/Slightly modified by Grobobobo so it has less compiler warnings
+//  PURPOSE: Used by the visualizer system to control a Visualization Actor 
+//---------------------------------------------------------------------------------------
 class X2Action_IRI_PsiPinion extends X2Action_BlazingPinionsStage2 config(LW_SoldierSkills);
 
 var private int LW_TimeDelayIndex;
@@ -101,7 +103,7 @@ Begin:
 
 	for( LW_TimeDelayIndex = 0; LW_TimeDelayIndex < AbilityContext.InputContext.MultiTargets.Length; ++LW_TimeDelayIndex )
 	{
-		Sleep(`SYNC_FRAND() * 0.3f * GetDelayModifier());
+		Sleep(0.2f);
 		AddProjectiles(LW_TimeDelayIndex);
 	}
 

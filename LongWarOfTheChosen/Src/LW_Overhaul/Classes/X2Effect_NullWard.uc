@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Effect_NullWard.uc
+//  AUTHOR:  Grobobobo/Based on X2Effect_MindMerge
+//  PURPOSE: Replaces the effect from Iridar's Null Ward ability so the shield can scale with the soldier's psi amp 
+//---------------------------------------------------------------------------------------
 class X2Effect_NullWard extends X2Effect_ModifyStats;
 
 var int BaseShieldHPIncrease;

@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Action_IRI_PsiPinion.uc
+//  AUTHOR:  Iridar
+//  PURPOSE: Soul Storm's environmental damage effect
+//---------------------------------------------------------------------------------------
 class X2Effect_IRI_SoulStorm extends X2Effect_ApplyDirectionalWorldDamage;
 
 simulated function ApplyDirectionalDamageToTarget(XComGameState_Unit SourceUnit, XComGameState_Unit TargetUnit, XComGameState NewGameState)
