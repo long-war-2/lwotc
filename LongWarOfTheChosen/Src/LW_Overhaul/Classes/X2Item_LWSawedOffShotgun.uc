@@ -6,17 +6,17 @@
 //---------------------------------------------------------------------------------------
 class X2Item_LWSawedOffShotgun extends X2Item config(GameData_WeaponData);
 
-// ***** UI Image definitions  *****
+// ***** UI Image definitions  *****
 var config string SawedOffShotgun_CV_UIImage;
 var config string SawedOffShotgun_MG_UIImage;
 var config string SawedOffShotgun_BM_UIImage;
 
-// ***** Damage arrays for attack actions  *****
+// ***** Damage arrays for attack actions  *****
 var config WeaponDamageValue SawedOffShotgun_CONVENTIONAL_BASEDAMAGE;
 var config WeaponDamageValue SawedOffShotgun_MAGNETIC_BASEDAMAGE;
 var config WeaponDamageValue SawedOffShotgun_BEAM_BASEDAMAGE;
 
-// ***** Core properties and variables for weapons *****
+// ***** Core properties and variables for weapons *****
 var config int SawedOffShotgun_CONVENTIONAL_AIM;
 var config int SawedOffShotgun_CONVENTIONAL_CRITCHANCE;
 var config int SawedOffShotgun_CONVENTIONAL_ICLIPSIZE;
@@ -47,7 +47,7 @@ var config int SawedOffShotgun_BEAM_TRADINGPOSTVALUE;
 var config int SawedOffShotgun_BEAM_IPOINTS;
 var config int SawedOffShotgun_BEAM_RANGE;
 
-// ***** Schematic properties *****
+// ***** Schematic properties *****
 var config int SawedOffShotgun_MAGNETIC_SCHEMATIC_SUPPLYCOST;
 var config int SawedOffShotgun_BEAM_SCHEMATIC_SUPPLYCOST;
 
@@ -68,7 +68,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	//create all three tech tiers of weapons
 	Templates.AddItem(CreateTemplate_SawedOffShotgun_Conventional());
 	Templates.AddItem(CreateTemplate_SawedOffShotgun_Magnetic());
-	//Templates.AddItem(CreateTemplate_SawedOffShotgun_Beam()); Not used -- JL
+	Templates.AddItem(CreateTemplate_SawedOffShotgun_Beam()); 
 
 	//create two schematics used to upgrade weapons
 	//Templates.AddItem(CreateTemplate_SawedOffShotgun_Magnetic_Schematic());

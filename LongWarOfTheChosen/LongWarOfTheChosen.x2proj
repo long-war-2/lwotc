@@ -1100,6 +1100,8 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Action_Fire_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_Cone_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWCovertActionsModTemplate.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Item_BeamGrenadeLauncher.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_ConditionalBlasterLauncher.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWDarkEventsModTemplate.uc" />
     <Content Include="Config\XComAcademyUnlocks.ini" />
     <Content Include="Config\XComLW_FactionBalance.ini" />

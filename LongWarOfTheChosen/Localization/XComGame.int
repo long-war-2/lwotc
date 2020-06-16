@@ -891,6 +891,14 @@ FriendlyNamePlural="Mag Shorties"
 BriefSummary="An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage."
 TacticalText="<Bullet/> An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage.<br/><Bullet/> Two shots per mission without upgrades.<br/>"
 
+;LWOTC needs translation
+[SawedOffShotgun_BM X2WeaponTemplate]
+FriendlyName="Plasma Shorty"
+FriendlyNamePlural="Plasma Shorties"
+BriefSummary="An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage."
+TacticalText="<Bullet/> An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage.<br/><Bullet/> Two shots per mission without upgrades.<br/>"
+;end translation
+
 [ArcThrower_CV X2WeaponTemplate]
 FriendlyName="Arc Thrower"
 FriendlyNamePlural="Arc Throwers"
@@ -947,6 +955,15 @@ BriefSummary="Dangerous melee weapon for personal defense in close quarters."
 TacticalText="<Bullet/> A knife attack requires one action and does not end your turn.<br/>"
 AbilityDescName="combat knife"
 
+;LWOTC needs translation
+[CombatKnife_BM X2WeaponTemplate]
+FriendlyName="Advanced Vibroblade"
+FriendlyNamePlural="Advanced Vibroblades"
+BriefSummary="Dangerous melee weapon for personal defense in close quarters. The Advanced Vibroblade has been enhanced to be sharper, stronger, and more precise."
+TacticalText="<Bullet/> A knife attack requires one action and does not end your turn.<br/>"
+
+AbilityDescName="combat knife"
+;End translation
 [LWGauntlet_CV X2MultiWeaponTemplate]
 FriendlyName="Gauntlet"
 FriendlyNamePlural="Gauntlets"
@@ -4947,6 +4964,14 @@ LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher."
 TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher.\n."
+
+; LWOTC Needs Translation
+[GrenadeLauncher_BM X2GrenadeLauncherTemplate]
+FriendlyName="Beam Grenade Launcher"
+FriendlyNamePlural="Beam Grenade Launchers"
+BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision."
+TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease."
+; End Translation
 
 [FlashbangGrenade X2GrenadeTemplate]
 TacticalText="<Bullet/> Flashbang grenades don't do damage, but disorient and disrupt enemies in a large radius.<br><Bullet/> Friendly squad members will not be affected.<br/><Bullet/> Some powerful enemies may be able to resist their effects."
