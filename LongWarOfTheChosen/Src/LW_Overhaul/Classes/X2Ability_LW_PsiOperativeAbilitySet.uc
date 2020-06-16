@@ -361,12 +361,13 @@ static function X2DataTemplate Create_NullWard()
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
-	Template.TargetingMethod = class'X2TargetingMethod_VoidRift';
+	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
+	Template.bFriendlyFireWarning = false;
 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
 	CursorTarget.bRestrictToSquadsightRange = default.SOULSTORM_TARGET_TILE_MUST_BE_REVEALED;
 	CursorTarget.FixedAbilityRange = default.SOULSTORM_CAST_RANGE_TILES;
-	Template.AbilityTargetStyle = CursorTarget;
+	Template.AbilityTargetStyle = default.SelfTarget;
 
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.fTargetRadius = default.SOULSTORM_CAST_RADIUS_METERS;

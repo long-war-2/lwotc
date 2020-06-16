@@ -4919,10 +4919,12 @@ TimerSmashNGrabSubtitle="Turns until alien response"
 [InTheZone X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/><Bullet/> Every successful kill does result in a reduction to critical hit chance and damage, however.<br/><Bullet/> Serial has a <Ability:SelfCooldown/> turn cooldown.<br/>"
 
-; LWOTC Needs Translation
+;LWOTC needs translation
 [Fuse X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Fuse has no cooldown.<br/>"
-; End Translation
+LocLongDescription="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative. Free action."
+LocHelpText="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative. Free action."
+LocPromotionPopupText="<Bullet/> Fuse has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+;End translation
 
 [BulletShred X2AbilityTemplate]
 LocLongDescription="A Rupture shot grants a large bonus to critical hit chances and ensures that the target takes an additional +<Ability:RuptureAmount/> damage from all attacks in the future."
@@ -4935,7 +4937,7 @@ LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field p
 [SoulSteal X2AbilityTemplate]
 LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health or grants an ablative HP if you are uninjured, but increases the cooldown of soulfire by 1."
 LocHelpText="Soulfire heals a wounded operative or grants an ablative HP, but increases soulfire cooldown by 1"
-LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 2/3/4 ablative hit point for a healthy one.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
+LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 3/4/6 ablative hit point for a healthy one.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
@@ -5475,19 +5477,19 @@ m_strInventoryLabels[eInvSlot_Pistol]="PISTOL"
 ; End Translation
 
 ; LWOTC Needs Translation
-[IRI_PhaseWalk X2AbilityTemplate]
+[LW_PhaseWalk X2AbilityTemplate]
 LocFriendlyName="Phase Walk"
 LocLongDescription="Temporarily phase out of existence to teleport to a nearby location."
 LocHelpText="Temporarily phase out of existence to teleport to a nearby location."
 LocFlyOverText="Phase Walk"
 
-[IRI_NullWard X2AbilityTemplate]
+[LW_NullWard X2AbilityTemplate]
 LocFriendlyName="Null Ward"
 LocLongDescription="Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed."
 LocHelpText="Project psionic shields around nearby allies and yourself."
 LocFlyOverText="Null Ward"
 
-[IRI_SoulStorm X2AbilityTemplate]
+[LW_SoulStorm X2AbilityTemplate]
 LocFriendlyName="Soul Storm"
 LocLongDescription="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
 LocHelpText="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
