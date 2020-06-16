@@ -707,7 +707,6 @@ static function ReplaceImplacableEffect(X2AbilityTemplate Template)
 static function UpdateFuseDetonation(X2AbilityTemplate Template)
 {
 	local X2AbilityCost Cost;
-	local X2Effect Effect;
 
 	foreach Template.AbilityCosts(Cost)
 	{
