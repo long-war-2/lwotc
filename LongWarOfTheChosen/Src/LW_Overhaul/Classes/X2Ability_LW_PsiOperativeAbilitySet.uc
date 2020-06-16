@@ -49,11 +49,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(PurePassive('QuickStudy', "img:///UILibrary_PerkIcons.UIPerk_mentalstrength", true));
 	Templates.AddItem(AddSolace_LWAbility());
 	Templates.AddItem(Create_PhaseWalk());
-	Templates.AddItem(Create_AnimSet_Passive('IRI_PhaseWalk_Anim', "IRI_PsiOverhaul.Anims.AS_Teleport"));
+	Templates.AddItem(Create_AnimSet_Passive('LW_PhaseWalk_Anim', "LW_PsiOverhaul.Anims.AS_Teleport"));
 	Templates.AddItem(Create_NullWard());
-	Templates.AddItem(Create_AnimSet_Passive('IRI_NullWard_Anim', "IRI_PsiOverhaul.Anims.AS_NullWard"));
+	Templates.AddItem(Create_AnimSet_Passive('LW_NullWard_Anim', "LW_PsiOverhaul.Anims.AS_NullWard"));
 	Templates.AddItem(Create_SoulStorm());
-	Templates.AddItem(Create_AnimSet_Passive('IRI_SoulStorm_Anim', "IRI_PsiOverhaul.Anims.AS_SoulStorm"));
+	Templates.AddItem(Create_AnimSet_Passive('LW_SoulStorm_Anim', "LW_PsiOverhaul.Anims.AS_SoulStorm"));
 
 	return Templates;
 }
@@ -176,7 +176,7 @@ static function X2AbilityTemplate Create_AnimSet_Passive(name TemplateName, stri
 	local X2AbilityMultiTarget_Radius	RadiusMultiTarget;
 	local array<name>                   SkipExclusions;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_PhaseWalk');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_PhaseWalk');
 
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
@@ -238,7 +238,7 @@ static function X2AbilityTemplate Create_AnimSet_Passive(name TemplateName, stri
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
-	Template.AdditionalAbilities.AddItem('IRI_PhaseWalk_Anim');
+	Template.AdditionalAbilities.AddItem('LW_PhaseWalk_Anim');
 
 	return Template;
 }
@@ -255,7 +255,7 @@ static function X2DataTemplate Create_NullWard()
 	local X2AbilityMultiTarget_Radius		MultiTarget;
 	local array<name>						SkipExclusions;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_NullWard');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_NullWard');
 
 	//Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_adventshieldbearer_energyshield";
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_aethershift";
@@ -336,13 +336,13 @@ static function X2DataTemplate Create_NullWard()
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
-	Template.AdditionalAbilities.AddItem('IRI_NullWard_Anim');
+	Template.AdditionalAbilities.AddItem('LW_NullWard_Anim');
 	Template.PrerequisiteAbilities.AddItem('SoulSteal');
 	
 	return Template;
 }
 
-	static function X2AbilityTemplate Create_SoulStorm()
+static function X2AbilityTemplate Create_SoulStorm()
 {
 	local X2AbilityTemplate                 Template;	
 	local X2AbilityCost_ActionPoints		ActionPointCost;
@@ -355,7 +355,7 @@ static function X2DataTemplate Create_NullWard()
 	local X2AbilityMultiTarget_Radius       RadiusMultiTarget;
 	local X2Condition_UnitProperty          UnitPropertyCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_SoulStorm');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_SoulStorm');
 	
 	//	Targeting and Triggering
 	Template.AbilityToHitCalc = default.DeadEye;
@@ -440,9 +440,9 @@ static function X2DataTemplate Create_NullWard()
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.HeavyWeaponLostSpawnIncreasePerUse;
 
-	Template.AdditionalAbilities.AddItem('IRI_SoulStorm_Anim');
+	Template.AdditionalAbilities.AddItem('LW_SoulStorm_Anim');
 
-	Template.PrerequisiteAbilities.AddItem ('IRI_Phasewalk');
+	Template.PrerequisiteAbilities.AddItem ('LW_Phasewalk');
 
 	return Template;	
 }
