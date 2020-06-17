@@ -13,7 +13,7 @@ If you just want to install and play the mod, check out our [wiki page](https://
 
 Building and running this mod requires several steps:
 
- 1. The media assets (video, graphics and sound) are kept as a [zip on Dropbox](https://www.dropbox.com/s/5wtqt5xjg8mde02/lwotc-content.zip?dl=0).
+ 1. The media assets (video, graphics and sound) are kept as a [zip on Dropbox](https://www.dropbox.com/s/n2w2ocssvgjbboh/lwotc-content.zip?dl=0).
     Download that file and unpack it into this project's _LongWarOfTheChosen/Content_ directory.
 
  2. Either clone [my fork of the X2WOTCCommunityHighlander repository](https://github.com/pledbrook/X2WOTCCommunityHighlander)
