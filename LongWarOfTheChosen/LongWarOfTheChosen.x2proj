@@ -583,6 +583,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyAltWeaponDamage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyExplosiveFalloffWeaponDamage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyFireToWorld_Limited.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_StockStrikeDamage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Arcthrower.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ArcthrowerStunned.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_BiggestBooms_LW.uc" />

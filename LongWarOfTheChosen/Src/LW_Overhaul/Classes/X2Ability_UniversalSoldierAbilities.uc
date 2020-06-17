@@ -6,6 +6,9 @@
 
 class X2Ability_UniversalSoldierAbilities extends X2Ability config (LW_SoldierSkills);
 
+var config int GETUP_DISORIENT_CHANCE;
+var config float STOCKSTRIKE_MAXHPDAMAGE;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -104,6 +107,7 @@ static function X2AbilityTemplate CreateStockStrike()
 	local X2Condition_UnitProperty				AdjacencyCondition;	
 	local X2Condition_TargetHasOneOfTheEffects	NeedOneOfTheEffects;
 	local X2Effect_Stunned						StunnedEffect;
+	local X2Effect_StockStrikeDamage			DamageEffect;
 	local array<name> SkipExclusions;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MC_Stock_Strike');
@@ -136,7 +140,8 @@ static function X2AbilityTemplate CreateStockStrike()
 	AdjacencyCondition = new class'X2Condition_UnitProperty';
 	AdjacencyCondition.RequireWithinRange = true;
 	AdjacencyCondition.WithinRange = 144; //1.5 tiles in Unreal units, allows attacks on the diag
-	AdjacencyCondition.TreatMindControlledSquadmateAsHostile = true;
+	AdjacencyCondition.ExcludeCivilian=true;
+	AdjacencyCondition.ExcludeFriendlyToSource=true;
 	Template.AbilityTargetConditions.AddItem(AdjacencyCondition);
 
 	// Shooter Conditions
@@ -148,6 +153,10 @@ static function X2AbilityTemplate CreateStockStrike()
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 	Template.AddTargetEffect(StunnedEffect);
 	
+	DamageEffect = new class'X2Effect_StockStrikeDamage';
+	Damageeffect.Stockstrike_MaxHpDamage = default.STOCKSTRIKE_MAXHPDAMAGE;
+	Template.AddTargetEffect(DamageEffect);
+
 	Template.CustomFireAnim = 'FF_Melee';
 
 	Template.CinescriptCameraType = "Ranger_Reaper";
