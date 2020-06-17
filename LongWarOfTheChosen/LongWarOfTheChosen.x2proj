@@ -1212,6 +1212,8 @@
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedTileComponent.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedMeshActor.uc" />
     <Content Include="Content\LW_Heavy_Dazed_Tile.upk" />
+    <Content Include="Content\LW_PsiOverhaul.upk" />
+    <Content Include="Content\LW_PsiOverhaul_Perks.upk" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_UniversalSoldierAbilities.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_OnlyOnXCOMTurn.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_NoLootAndCorpse.uc" />
