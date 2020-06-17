@@ -229,7 +229,7 @@ static function X2AbilityTemplate CreateGetUp()
 
 	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
 	DisorientedEffect.bRemoveWhenSourceDies = false;
-	DisorientedEffect.ApplyChance = class'X2Ability_DefaultAbilitySet'.default.REVIVE_DISORIENT_PERCENT_CHANCE;
+	DisorientedEffect.ApplyChance = default.GETUP_DISORIENT_CHANCE;
 	Template.AddTargetEffect(DisorientedEffect);
 
 	Template.ActivationSpeech = 'HealingAlly';
