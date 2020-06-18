@@ -25,7 +25,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> ModWeapons;
 
 	ModWeapons.AddItem(CreateTemplate_BeamGrenadeLauncher());
-	ModWeapons.AddItem(CreateTemplate_BeamGrenadeLauncher_Schematic());
+	//ModWeapons.AddItem(CreateTemplate_BeamGrenadeLauncher_Schematic());
 
 	return ModWeapons;
 }

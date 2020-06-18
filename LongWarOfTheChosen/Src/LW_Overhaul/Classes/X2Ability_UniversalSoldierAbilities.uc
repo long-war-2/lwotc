@@ -140,8 +140,8 @@ static function X2AbilityTemplate CreateStockStrike()
 	AdjacencyCondition = new class'X2Condition_UnitProperty';
 	AdjacencyCondition.RequireWithinRange = true;
 	AdjacencyCondition.WithinRange = 144; //1.5 tiles in Unreal units, allows attacks on the diag
-	AdjacencyCondition.ExcludeCivilian=true;
-	AdjacencyCondition.ExcludeFriendlyToSource=true;
+	AdjacencyCondition.ExcludeCivilian = true;
+	AdjacencyCondition.ExcludeFriendlyToSource = true;
 	Template.AbilityTargetConditions.AddItem(AdjacencyCondition);
 
 	// Shooter Conditions
@@ -154,7 +154,7 @@ static function X2AbilityTemplate CreateStockStrike()
 	Template.AddTargetEffect(StunnedEffect);
 	
 	DamageEffect = new class'X2Effect_StockStrikeDamage';
-	Damageeffect.Stockstrike_MaxHpDamage = default.STOCKSTRIKE_MAXHPDAMAGE;
+	DamageEffect.Stockstrike_MaxHpDamage = default.STOCKSTRIKE_MAXHPDAMAGE;
 	Template.AddTargetEffect(DamageEffect);
 
 	Template.CustomFireAnim = 'FF_Melee';
