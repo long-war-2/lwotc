@@ -788,7 +788,6 @@ static function X2AbilityTemplate AddBastion()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	Template.PrerequisiteAbilities.AddItem('Fortress');
-	Template.PrerequisiteAbilities.AddItem('Solace_LW');
 
 	return Template;
 }

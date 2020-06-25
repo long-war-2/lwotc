@@ -3929,7 +3929,7 @@ static function WeaponInitialized(XGWeapon WeaponArchetype, XComWeapon Weapon, o
 
 	if (WeaponTemplate.WeaponCat == 'psiamp')
 	{
-		Proj = X2UnifiedProjectile(`CONTENT.RequestGameArchetype("IRI_PsiOverhaul.PJ_PsiPinion"));
+		Proj = X2UnifiedProjectile(`CONTENT.RequestGameArchetype("LW_PsiOverhaul.PJ_PsiPinion"));
 
 		if (!IsProjectileElementPresent(Weapon.DefaultProjectileTemplate.ProjectileElements, Proj.ProjectileElements[0]))
 		{

@@ -152,7 +152,7 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_SteadyWeapon				ToHitModifier;
 	local X2Condition_UnitEffects			SuppressedCondition;
-	local X2Condition_UnitProperty			ShooterCondition;
+	
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilitySteadyWeapon";
 	Template.AbilitySourceName = 'eAbilitySource_Item';
@@ -165,6 +165,7 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	Template.bShowActivation=true;
 	Template.AbilityConfirmSound = "Unreal2DSounds_OverWatch";
 	Template.bCrossClassEligible = false;
+	Template.ConcealmentRule = eConceal_Never;
 	//Template.DefaultKeyBinding = 539;
 	//Template.bNoConfirmationWithHotKey = true;
 	Template.AddShooterEffectExclusions();
@@ -184,10 +185,6 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
-
-	ShooterCondition = new class'X2Condition_UnitProperty';
-	ShooterCondition.ExcludeConcealed = true;
-	Template.AbilityShooterConditions.AddItem(ShooterCondition);
 
 	Template.CinescriptCameraType = "Overwatch";
 	ToHitModifier = new class'X2Effect_SteadyWeapon';

@@ -69,14 +69,14 @@ function AddProjectiles(int ProjectileIndex)
 function AddPsiPinionProjectile(vector SourceLocation, vector LW_TargetLocation, XComGameStateContext_Ability LW_AbilityContext, XGUnit XGUnitVar)
 {
 	local XComWeapon LW_WeaponEntity;
-	local XComUnitPawn UnitPawn;
+	local XComUnitPawn UnitPawn_LW;
 	local X2UnifiedProjectile LW_NewProjectile;
 	local AnimNotify_FireWeaponVolley FireVolleyNotify;
 	
-	UnitPawn = XGUnitVar.GetPawn();
+	UnitPawn_LW = XGUnitVar.GetPawn();
 
 	//The archetypes for the projectiles come from the weapon entity archetype
-	LW_WeaponEntity = XComWeapon(UnitPawn.Weapon);
+	LW_WeaponEntity = XComWeapon(UnitPawn_LW.Weapon);
 
 	if (LW_WeaponEntity != none)
 	{

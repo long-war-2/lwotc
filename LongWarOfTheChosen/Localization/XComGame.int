@@ -891,6 +891,14 @@ FriendlyNamePlural="Mag Shorties"
 BriefSummary="An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage."
 TacticalText="<Bullet/> An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage.<br/><Bullet/> Two shots per mission without upgrades.<br/>"
 
+;LWOTC needs translation
+[SawedOffShotgun_BM X2WeaponTemplate]
+FriendlyName="Plasma Shorty"
+FriendlyNamePlural="Plasma Shorties"
+BriefSummary="An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage."
+TacticalText="<Bullet/> An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage.<br/><Bullet/> Two shots per mission without upgrades.<br/>"
+;end translation
+
 [ArcThrower_CV X2WeaponTemplate]
 FriendlyName="Arc Thrower"
 FriendlyNamePlural="Arc Throwers"
@@ -947,6 +955,15 @@ BriefSummary="Dangerous melee weapon for personal defense in close quarters."
 TacticalText="<Bullet/> A knife attack requires one action and does not end your turn.<br/>"
 AbilityDescName="combat knife"
 
+;LWOTC needs translation
+[CombatKnife_BM X2WeaponTemplate]
+FriendlyName="Advanced Vibroblade"
+FriendlyNamePlural="Advanced Vibroblades"
+BriefSummary="Dangerous melee weapon for personal defense in close quarters. The Advanced Vibroblade has been enhanced to be sharper, stronger, and more precise."
+TacticalText="<Bullet/> A knife attack requires one action and does not end your turn.<br/>"
+
+AbilityDescName="combat knife"
+;End translation
 [LWGauntlet_CV X2MultiWeaponTemplate]
 FriendlyName="Gauntlet"
 FriendlyNamePlural="Gauntlets"
@@ -4919,10 +4936,12 @@ TimerSmashNGrabSubtitle="Turns until alien response"
 [InTheZone X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/><Bullet/> Every successful kill does result in a reduction to critical hit chance and damage, however.<br/><Bullet/> Serial has a <Ability:SelfCooldown/> turn cooldown.<br/>"
 
-; LWOTC Needs Translation
+;LWOTC needs translation
 [Fuse X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Fuse has no cooldown.<br/>"
-; End Translation
+LocLongDescription="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative. Free action."
+LocHelpText="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative. Free action."
+LocPromotionPopupText="<Bullet/> Fuse has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+;End translation
 
 [BulletShred X2AbilityTemplate]
 LocLongDescription="A Rupture shot grants a large bonus to critical hit chances and ensures that the target takes an additional +<Ability:RuptureAmount/> damage from all attacks in the future."
@@ -4935,7 +4954,7 @@ LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field p
 [SoulSteal X2AbilityTemplate]
 LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health or grants an ablative HP if you are uninjured, but increases the cooldown of soulfire by 1."
 LocHelpText="Soulfire heals a wounded operative or grants an ablative HP, but increases soulfire cooldown by 1"
-LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 2/3/4 ablative hit point for a healthy one.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
+LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 3/4/6 ablative hit point for a healthy one.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
@@ -4945,6 +4964,14 @@ LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher."
 TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher.\n."
+
+; LWOTC Needs Translation
+[GrenadeLauncher_BM X2GrenadeLauncherTemplate]
+FriendlyName="Beam Grenade Launcher"
+FriendlyNamePlural="Beam Grenade Launchers"
+BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision."
+TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease."
+; End Translation
 
 [FlashbangGrenade X2GrenadeTemplate]
 TacticalText="<Bullet/> Flashbang grenades don't do damage, but disorient and disrupt enemies in a large radius.<br><Bullet/> Friendly squad members will not be affected.<br/><Bullet/> Some powerful enemies may be able to resist their effects."
@@ -5475,19 +5502,19 @@ m_strInventoryLabels[eInvSlot_Pistol]="PISTOL"
 ; End Translation
 
 ; LWOTC Needs Translation
-[IRI_PhaseWalk X2AbilityTemplate]
+[LW_PhaseWalk X2AbilityTemplate]
 LocFriendlyName="Phase Walk"
 LocLongDescription="Temporarily phase out of existence to teleport to a nearby location."
 LocHelpText="Temporarily phase out of existence to teleport to a nearby location."
 LocFlyOverText="Phase Walk"
 
-[IRI_NullWard X2AbilityTemplate]
+[LW_NullWard X2AbilityTemplate]
 LocFriendlyName="Null Ward"
 LocLongDescription="Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed."
 LocHelpText="Project psionic shields around nearby allies and yourself."
 LocFlyOverText="Null Ward"
 
-[IRI_SoulStorm X2AbilityTemplate]
+[LW_SoulStorm X2AbilityTemplate]
 LocFriendlyName="Soul Storm"
 LocLongDescription="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
 LocHelpText="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."

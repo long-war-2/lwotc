@@ -583,6 +583,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyAltWeaponDamage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyExplosiveFalloffWeaponDamage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ApplyFireToWorld_Limited.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_StockStrikeDamage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Arcthrower.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ArcthrowerStunned.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_BiggestBooms_LW.uc" />
@@ -1100,6 +1101,8 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Action_Fire_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_Cone_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWCovertActionsModTemplate.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Item_BeamGrenadeLauncher.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_ConditionalBlasterLauncher.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWDarkEventsModTemplate.uc" />
     <Content Include="Config\XComAcademyUnlocks.ini" />
     <Content Include="Config\XComLW_FactionBalance.ini" />
@@ -1210,6 +1213,8 @@
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedTileComponent.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedMeshActor.uc" />
     <Content Include="Content\LW_Heavy_Dazed_Tile.upk" />
+    <Content Include="Content\LW_PsiOverhaul.upk" />
+    <Content Include="Content\LW_PsiOverhaul_Perks.upk" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_UniversalSoldierAbilities.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_OnlyOnXCOMTurn.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_NoLootAndCorpse.uc" />
