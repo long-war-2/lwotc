@@ -127,7 +127,7 @@ LocLongDescription="Le tir avec votre pistolet comme première action ne met plu
 LocHelpText="Le tir avec votre pistolet comme première action ne met plus fin à votre tour de jeu."
 
 [LightningHands X2AbilityTemplate]
-LocLongDescription="Fire your pistol at a target. This attack does not cost an action."
+LocLongDescription="Tir avec votre pistolet sur une cible. L'attaque ne coûte aucun point d'action."
 LocHelpText="Tir avec votre pistolet sur une cible. L'attaque ne coûte aucun point d'action."
 LocPromotionPopupText="<Bullet/> La capacité Mains fulgurantes fonctionne bien avec les capacités de la classe <Ability:ClassName/>, car elle n'empêche pas leur utilisation pendant le même tour.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tours.<br/>"
 
