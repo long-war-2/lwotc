@@ -570,7 +570,8 @@ static function UpdateFuse(X2AbilityTemplate Template)
 	{
 		if (Cost.IsA('X2AbilityCost_ActionPoints'))
 		{
-			X2AbilityCost_ActionPoints(Cost).iNumPoints = 0;
+			X2AbilityCost_ActionPoints(Cost).iNumPoints = 1;
+			X2AbilityCost_ActionPoints(Cost).bFreeCost = true;
 			X2AbilityCost_ActionPoints(Cost).bConsumeAllPoints = false;
 		}
 	}
