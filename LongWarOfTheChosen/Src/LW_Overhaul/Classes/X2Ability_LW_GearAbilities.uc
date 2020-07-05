@@ -31,6 +31,8 @@ var config int NANOFIBER_CRITDEF_BONUS;
 
 var config int BONUS_COILGUN_SHRED;
 
+var config int BLUESCREEN_DISORIENT_CHANCE;
+
 var localized string strWeight;
 var localized string AblativeHPLabel;
 
@@ -88,6 +90,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateSedateAbility());
 	Templates.AddItem(CreateBonusShredAbility('CoilgunBonusShredAbility', default.BONUS_COILGUN_SHRED));
 
+	Templates.AddItem(CreateBluescreenRoundsDisorient());
 	//Templates.AddItem(CreateConsumeWhenActivatedAbility ('ConsumeShapedCharge', 'ShapedChargeUsed'));
 
 	return Templates;
@@ -658,3 +661,42 @@ static function X2AbilityTemplate CreateBonusShredAbility(name AbilityName, int 
 
 	return Template;
 }
+
+static function X2AbilityTemplate CreateBluescreenRoundsDisorient()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_Persistent Effect;
+	local X2Condition_UnitProperty Condition_UnitProperty;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'BluescreenRoundsDisorient');
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	Template.bDontDisplayInAbilitySummary = true;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Effect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+	Effect.ApplyChance=default.BLUESCREEN_DISORIENT_CHANCE;
+	Template.AddTargetEffect(Effect);
+
+	Condition_UnitProperty = new class'X2Condition_UnitProperty';
+	Condition_UnitProperty.ExcludeOrganic = true;
+	Condition_UnitProperty.IncludeWeakAgainstTechLikeRobot = true;
+	Condition_UnitProperty.TreatMindControlledSquadmateAsHostile = true;
+	Condition_UnitProperty.FailOnNonUnits = true;
+	Template.AbilityTargetConditions.AddItem(Condition_UnitProperty);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	return Template;
+}
+	
