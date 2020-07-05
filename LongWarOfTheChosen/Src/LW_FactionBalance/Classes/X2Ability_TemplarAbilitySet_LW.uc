@@ -500,7 +500,7 @@ static function X2AbilityTemplate AddApotheosis()
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 0;
+	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bFreeCost = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
