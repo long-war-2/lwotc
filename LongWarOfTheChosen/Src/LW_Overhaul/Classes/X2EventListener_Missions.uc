@@ -6,6 +6,11 @@ var localized string m_strTooltipClearSquad;
 var localized string m_strAutofillSquad;
 var localized string m_strTooltipAutofillSquad;
 
+var config array<name> LostSwarmIDsDiff0;
+var config array<name> LostSwarmIDsDiff1;
+var config array<name> LostSwarmIDsDiff2;
+var config array<name> LostSwarmIDsDiff3;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -74,6 +79,7 @@ static function CHEventListenerTemplate CreateMissionPrepListeners()
 	Template.AddCHEvent('OverridePatrolBehavior', DisableDefaultPatrolBehavior, ELD_Immediate);
 	Template.AddCHEvent('SpawnReinforcementsComplete', OnSpawnReinforcementsComplete, ELD_OnStateSubmitted);
 	Template.AddCHEvent('OnTacticalBeginPlay', DisableInterceptAIBehavior, ELD_Immediate);
+	Template.AddCHEvent('OnTacticalBeginPlay', ChangeLostSpawningBehaviour, ELD_Immediate);
 
 	Template.RegisterInTactical = true;
 
@@ -498,4 +504,76 @@ static function EventListenerReturn LW2OnPlayerTurnBegun(Object EventData, Objec
 	}
 
 	return ELR_NoInterrupt;
+}
+//Changes the Battle data to include an updated way of choosing how to spawn lost. 
+//It basically uses the same method as DisableInterceptAIBehavior, so could be put there, but I decided to seperate it for code clarity
+static function EventListenerReturn ChangeLostSpawningBehaviour(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+{
+	local XComGameStateHistory History;
+	local XComGameState_BattleData BattleData;
+	local int AlertLevel;
+	local bool SubmitGameState;
+
+	SubmitGameState = false;
+	History = `XCOMHISTORY;
+
+	if (NewGameState == none)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Change Lost summoning");
+		SubmitGameState = true;
+	}
+
+	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	BattleData = XComGameState_BattleData(NewGameState.ModifyStateObject(class'XComGameState_BattleData', BattleData.ObjectID));
+	AlertLevel = BattleData.GetAlertLevel();
+
+
+	switch (`TacticalDifficultySetting)
+	{
+		case 0:
+			BattleData.LostGroupID = GetReinforcementGroupName(AlertLevel, default.LostSwarmIDsDiff0);
+			break;
+		case 1:
+			BattleData.LostGroupID = GetReinforcementGroupName(AlertLevel, default.LostSwarmIDsDiff1);
+			break;
+		case 2:
+			BattleData.LostGroupID = GetReinforcementGroupName(AlertLevel, default.LostSwarmIDsDiff2);
+			break;
+		default:
+			BattleData.LostGroupID = GetReinforcementGroupName(AlertLevel, default.LostSwarmIDsDiff3);
+			break;
+	}
+
+
+	if (SubmitGameState)
+	{
+		`TACTICALRULES.SubmitGameState(NewGameState);
+	}
+
+	return ELR_NoInterrupt;
+
+}
+
+static function name GetReinforcementGroupName(int AlertLevel, array<name> GroupArray)
+{
+	local name GroupName;
+	if (GroupArray.Length == 0)
+	{
+		return '';
+	}
+
+	if (AlertLevel < 0)
+	{
+		GroupName = GroupArray[0];
+	}
+	else if (AlertLevel >= GroupArray.Length)
+	{
+		GroupName = GroupArray[GroupArray.Length - 1];
+	}
+	else
+	{
+		GroupName = GroupArray[AlertLevel];
+	}
+
+	return GroupName;
 }
