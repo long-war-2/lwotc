@@ -1981,6 +1981,46 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('MC_Stock_Strike');
 			Template.Abilities.AddItem('GetUp');
 			break;
+		//Need to rescale the loadouts of these templates, and can't think of a better way since it needs to be by hp basis 
+		case 'TheLostHP2':
+		case 'TheLostHP3':
+			Template.DefaultLoadout='TheLostTier1_Loadout';
+			break;
+		case 'TheLostHP4':
+		case 'TheLostHP5':
+		case 'TheLostHP6':
+			Template.DefaultLoadout='TheLostTier2_Loadout';
+			break;
+		case 'TheLostHP7':
+		case 'TheLostHP8':
+		case 'TheLostHP9':
+			Template.DefaultLoadout='TheLostTier3_Loadout';
+			break;
+		case 'TheLostHP10':
+		case 'TheLostHP11':
+		case 'TheLostHP12':
+			Template.DefaultLoadout='TheLostTier4_Loadout';
+			break;
+
+		case 'TheLostDasherHP2':
+		case 'TheLostDasherHP3':
+			Template.DefaultLoadout='TheLostDasherTier1_Loadout';
+			break;
+		case 'TheLostDasherHP4':
+		case 'TheLostDasherHP5':
+		case 'TheLostDasherHP6':
+			Template.DefaultLoadout='TheLostDasherTier2_Loadout';
+			break;
+		case 'TheLostDasherHP7':
+		case 'TheLostDasherHP8':
+		case 'TheLostDasherHP9':
+			Template.DefaultLoadout='TheLostDasherTier3_Loadout';
+			break;
+		case 'TheLostDasherHP10':
+		case 'TheLostDasherHP11':
+		case 'TheLostDasherHP12':
+			Template.DefaultLoadout='TheLostDasherTier4_Loadout';
+			break;
 		/*
 		case 'ChosenSniper':
 		case 'ChosenSniperM2':
@@ -2016,9 +2056,10 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	}
 
 	// Allow the Lost to climb walls
-	if (InStr(Template.DataName, "TheLost") == 0)
+	if (InStr(Template.DataName, "TheLost") == 0 || InStr(Template.DataName, "LW_TheLost") == 0 )
 	{
 		Template.bCanUse_eTraversal_WallClimb = true;
+		Template.ImmuneTypes.AddItem('Acid');
 	}
 
 	// Any soldier templates get the Interact_SmashNGrab ability
