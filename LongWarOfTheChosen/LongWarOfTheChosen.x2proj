@@ -1218,6 +1218,7 @@
     <Content Include="Content\LW_PsiOverhaul_Perks.upk" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_UniversalSoldierAbilities.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_OnlyOnXCOMTurn.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Condition_NotItsOwnTurn.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_TheLost_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Character_TheLost_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_LostWeapons_LW.uc" />

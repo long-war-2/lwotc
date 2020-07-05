@@ -101,7 +101,11 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Implacable':
 			ReplaceImplacableEffect(Template);
 			break;
-
+		case 'BladestormAttack':
+		case 'RetributionAttack':
+		case 'TemplarBladestormAttack':
+			MakeBladestormNotTriggerOnItsTurn(Template);
+			break;
 		default:
 			break;
 	}
@@ -715,6 +719,14 @@ static function UpdateFuseDetonation(X2AbilityTemplate Template)
 			X2AbilityCost_Ammo(Cost).bConsumeAllAmmo = true;
 		}
 	}
+}
+
+static function MakeBladestormNotTriggerOnItsTurn(X2AbilityTemplate Template)
+{
+	local X2Condition_NotItsOwnTurn Condition;
+
+	Condition = new class'X2Condition_NotItsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(Condition);
 }
 defaultproperties
 {

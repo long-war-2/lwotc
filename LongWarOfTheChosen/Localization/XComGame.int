@@ -5069,12 +5069,15 @@ RankIcons[6]= "UILibrary_Common.psirank_warlock"
 RankIcons[7]= "UILibrary_Common.psirank_magus"
 RankIcons[8]= "UILibrary_LW_PerkPack.psirank_Master"
 
+; End Translation
+
+;LWOTC needs Translation(2)
 [Retribution X2AbilityTemplate]
 LocFriendlyName="Retribution"
-LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
-LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
+LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
+LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
 LocFlyOverText="Retribution"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/><Bullet/> Retribution does not trigger on your own turn.<br/>"
 
 [RetributionAttack X2AbilityTemplate]
 LocFriendlyName="Retribution"
@@ -5082,8 +5085,8 @@ LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies t
 LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
 LocFlyOverText="Retribution"
 LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
-; End Translation
 
+; End Translation (2)
 ; LWOTC Needs Translation
 [Battlemaster X2AbilityTemplate]
 LocFriendlyName="Battlemaster"
@@ -5586,9 +5589,23 @@ strCharacterName="Lost Brute"
 
 [LostBladestorm X2AbilityTemplate]
 LocFriendlyName="Grapple"
-LocLongDescription="Free melee attacks on any enemies that enter, exit or attack from melee range."
-LocHelpText="Free melee attacks on any enemies that enter, exit or attack from melee range."
+LocLongDescription="Free melee attacks on any enemies that enter, exit or attack from melee range on enemy turns."
+LocHelpText="Free melee attacks on any enemies that enter, exit or attack from melee range on enemy turns."
 LocFlyOverText="Grapple"
 LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
+
+[Bladestorm X2AbilityTemplate]
+LocFriendlyName="Bladestorm"
+LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
+LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
+LocFlyOverText="Bladestorm"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/><Bullet/> Bladestorm does not trigger on your own turn.<br/>"
+
+[TemplarBladestorm X2AbilityTemplate]
+LocFriendlyName="Bladestorm"
+LocLongDescription="Free <Ability:WeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
+LocHelpText="Free <Ability:WeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
+LocFlyOverText="Bladestorm"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/><Bullet/> Bladestorm does not trigger on your own turn.<br/>"
 
 ; End Translation
