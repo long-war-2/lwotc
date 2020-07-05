@@ -1224,30 +1224,30 @@ BriefSummary="Increase aim by <Ability:SCOPE_SUP_AIM_BONUS/> on non-reaction fir
 TinySummary="Increased Non-reaction Aim"
 LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
 
-;LWOTC needs translation
+;LWOTC needs translation (2)
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Stock"
 FriendlyNamePlural="Stocks"
-BriefSummary="Missed shots with your primary weapon have a <Ability:STOCK_BSC_GF_CHANCE/>% chance to become a graze."
-TinySummary="Missed shots can graze."
-LootTooltip="This weapon upgrade, when installed, sometimes converts misses into grazes."
+BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and +<Ability:STOCK_BSC_SW_AIM_BONUS/> critical chance on the next shot."
+TinySummary="Grants Steady Weapon"
+LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Stock"
 FriendlyNamePlural="Advanced Stocks"
-BriefSummary="Missed shots with your primary weapon have a <Ability:STOCK_ADV_GF_CHANCE/>% chance to become a graze."
-TinySummary="Missed shots can graze."
-LootTooltip="This weapon upgrade, when installed, sometimes converts misses into grazes."
+BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim and +<Ability:STOCK_ADV_SW_AIM_BONUS/> critical chance on the next shot."
+TinySummary="Grants Steady Weapon"
+LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
 
 [MissDamageUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Stock"
 FriendlyNamePlural="Elite Stocks"
-BriefSummary="Missed shots with your primary weapon have a <Ability:STOCK_SUP_GF_CHANCE/>% chance to become a graze."
-TinySummary="Missed shots can graze."
-LootTooltip="This weapon upgrade, when installed, sometimes converts misses into grazes."
+BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim and +<Ability:STOCK_SUP_SW_AIM_BONUS/> critical chance on the next shot."
+TinySummary="Grants Steady Weapon"
+LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
 
-; End Translation
+; End Translation (2)
 
 [FreeKillUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Suppressor"

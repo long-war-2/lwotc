@@ -168,7 +168,6 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	Template.bShowActivation=true;
 	Template.AbilityConfirmSound = "Unreal2DSounds_OverWatch";
 	Template.bCrossClassEligible = false;
-	Template.ConcealmentRule = eConceal_Never;
 	//Template.DefaultKeyBinding = 539;
 	//Template.bNoConfirmationWithHotKey = true;
 	Template.AddShooterEffectExclusions();
