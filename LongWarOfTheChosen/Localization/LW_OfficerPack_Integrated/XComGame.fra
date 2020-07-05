@@ -181,6 +181,50 @@ LocHelpText="Activez pour dépenser des renseignements et rajouter 2 tours au c
 LocFlyOverText="Intervention"
 LocPromotionPopUpText="<Bullet/> Activez pour dépenser 10 renseignements et rajouter 2 tours au chrono de la mission.<br/><Bullet/> Nécessite une action. <br/><Bullet/> Le nombre de charges dépend du grade de l'officier. <br/><Bullet/> Sans effet si la mission ne comporte pas de chrono. <br/><Bullet/> Les événements peuvent influencer le coup en renseignements. Ne s'active pas si XCOM possède moins de 10 renseignements.<br/>"
 
+; LWOTC translated
+[CommandRange1 X2AbilityTemplate]
+LocFriendlyName="Portée de commandement 1"
+LocLongDescription="Augmente la Portée de commandement de l'officier de 1 case"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange2 X2AbilityTemplate]
+LocFriendlyName="Portée de commandement 2"
+LocLongDescription="Augmente la Portée de commandement de l'officier de 2 cases"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange3 X2AbilityTemplate]
+LocFriendlyName="Portée de commandement 3"
+LocLongDescription="Augmente la Portée de commandement de l'officier de 3 cases"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange4 X2AbilityTemplate]
+LocFriendlyName="Portée de commandement 4"
+LocLongDescription="Augmente la Portée de commandement de l'officier de 4 cases"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange5 X2AbilityTemplate]
+LocFriendlyName="Portée de commandement 5"
+LocLongDescription="Augmente la Portée de commandement de l'officier de 5 cases"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange6 X2AbilityTemplate]
+LocFriendlyName="Portée de commandement 6"
+LocLongDescription="Augmente la Portée de commandement de l'officier de 6 cases"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange7 X2AbilityTemplate]
+LocFriendlyName="Portée de commandement 7"
+LocLongDescription="Augmente la Portée de commandement de l'officier de 7 cases"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+; End translated
+
 ;---- END ABILITIES
 
 ;---- BEGIN OTS / STAFFSLOT
