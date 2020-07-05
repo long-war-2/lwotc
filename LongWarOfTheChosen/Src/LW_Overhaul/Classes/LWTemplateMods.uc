@@ -216,7 +216,6 @@ var config int SERIAL_CRIT_MALUS_PER_KILL;
 var config int SERIAL_AIM_MALUS_PER_KILL;
 var config bool SERIAL_DAMAGE_FALLOFF;
 var config int FUSION_SWORD_FIRE_CHANCE;
-var config int BLUESCREEN_DISORIENT_CHANCE;
 
 var config array<ItemTableEntry> ItemTable;
 var config array<TechTableEntry> TechTable;
@@ -2405,11 +2404,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			if (EquipmentTemplate.Abilities.Find('Bluescreen_Rounds_Ability_PP') == -1)
 			{
-				Effect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
-				Effect.ApplyChance=default.BLUESCREEN_DISORIENT_CHANCE;
-				X2AmmoTemplate(EquipmentTemplate).TargetEffects.AddItem(Effect);
+				EquipmentTemplate.Abilities.AddItem('BluescreenRoundsDisorient');
 				EquipmentTemplate.Abilities.AddItem('Bluescreen_Rounds_Ability_PP');
-
 			}
 		}
 		if (EquipmentTemplate.DataName == 'TracerRounds')
