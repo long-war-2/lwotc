@@ -24,6 +24,9 @@ m_strBlackMarketBody="Le marché noir a été localisé avec succès, commandant
 
 m_strIntroToPsiLabBody="Toutes les recrues peuvent devenir de puissants agents psi si elles s'entraînent au psi-lab. Affectez-y un scientifique pour accélérer les projets d'entraînement du psi-lab."
 
+m_strContinueTraining="ALLER AU PSI LAB"
+m_strPsiTrainingCompleteHelp="Les agents psi peuvent s'entraîner pour obtenir des capacités additionnelles lorsqu'ils ont acquis suffisamment d'expérience sur le terrain."
+
 m_strHelpResHQGoodsDescription="Commandant, de nouveaux scientifiques, ingénieurs et soldats vétérans sont disponibles au recrutement sur le marché noir !"
 
 m_strLowIntelList[1]="Lancez un scan avec le Talion depuis n'importe quel refuge, vous recevrez ainsi régulièrement des renseignements au fil du temps."
@@ -127,7 +130,7 @@ LocLongDescription="Le tir avec votre pistolet comme première action ne met plu
 LocHelpText="Le tir avec votre pistolet comme première action ne met plus fin à votre tour de jeu."
 
 [LightningHands X2AbilityTemplate]
-LocLongDescription="Tir avec votre pistolet sur une cible. L'attaque ne coûte aucun point d'action."
+LocLongDescription="Fire your pistol at a target. This attack does not cost an action."
 LocHelpText="Tir avec votre pistolet sur une cible. L'attaque ne coûte aucun point d'action."
 LocPromotionPopupText="<Bullet/> La capacité Mains fulgurantes fonctionne bien avec les capacités de la classe <Ability:ClassName/>, car elle n'empêche pas leur utilisation pendant le même tour.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tours.<br/>"
 
@@ -322,6 +325,7 @@ FriendlyName="Maîtriser l'ennemi"
 Description="Vous prenez le contrôle de l'unité pour le reste de la mission et obtenez des bonus. Les CEM seront reprogrammées pour servir la résistance."
 
 ;LWOTC translated
+
 [GreaterShutdownRobot X2HackRewardTemplate]
 FriendlyName="Extinction prolongée"
 Description="Neutralise temporairement l'unité en l'étourdissant pour 3 tours."
@@ -681,19 +685,19 @@ LocFlyOverText="Gâchette facile d'élite"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Arme stable"
-LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_BSC_SW_AIM_BONUS/> de visée et chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé. Ce bonus est multiplié par x<Ability:STEADY_HIGH_BONUS_MODIFIER/> pour les fusils à pompe et x<Ability:STEADY_LOW_BONUS_MODIFIER/> pour les fusils d'assaut, les canons et les armes du SPARK."
+LocLongDescription="Activez la capacité Arme stable pour obtenir + <Ability:STOCK_BSC_SW_AIM_BONUS/> de visée et chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé. Ce bonus est multiplié par x<Ability:STEADY_HIGH_BONUS_MODIFIER/> pour les fusils à pompe et x<Ability:STEADY_LOW_BONUS_MODIFIER/> pour les fusils d'assaut, les canons et les armes du SPARK."
 LocHelpText="Arme stable : bonus au toucher pour le prochain tir si vous n'êtes pas blessé et que vous n'effectuez pas d'autre action."
 LocFlyOverText="Arme stable"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Arme stable"
-LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_ADV_SW_AIM_BONUS/> de visée et chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé. Ce bonus est multiplié par x<Ability:STEADY_HIGH_BONUS_MODIFIER/> pour les fusils à pompe et x<Ability:STEADY_LOW_BONUS_MODIFIER/> pour les fusils d'assaut, les canons et les armes du SPARK."
+LocLongDescription="Activez la capacité Arme stable pour obtenir + <Ability:STOCK_ADV_SW_AIM_BONUS/> de visée et chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé. Ce bonus est multiplié par x<Ability:STEADY_HIGH_BONUS_MODIFIER/> pour les fusils à pompe et x<Ability:STEADY_LOW_BONUS_MODIFIER/> pour les fusils d'assaut, les canons et les armes du SPARK."
 LocHelpText="Arme stable : bonus au toucher pour le prochain tir si vous n'êtes pas blessé et que vous n'effectuez pas d'autre action."
 LocFlyOverText="Arme stable"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Arme stable"
-LocLongDescription="Activer la capacité Arme stable pour obtenir + <Ability:STOCK_SUP_SW_AIM_BONUS/> de visée et chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé. Ce bonus est multiplié par x<Ability:STEADY_HIGH_BONUS_MODIFIER/> pour les fusils à pompe et x<Ability:STEADY_LOW_BONUS_MODIFIER/> pour les fusils d'assaut, les canons et les armes du SPARK."
+LocLongDescription="Activez la capacité Arme stable pour obtenir + <Ability:STOCK_SUP_SW_AIM_BONUS/> de visée et chances de coup critique lors de votre prochain tir avec l'arme équipée. Ce bonus est perdu si vous effectuez une action sans tir ou si vous êtes blessé. Ce bonus est multiplié par x<Ability:STEADY_HIGH_BONUS_MODIFIER/> pour les fusils à pompe et x<Ability:STEADY_LOW_BONUS_MODIFIER/> pour les fusils d'assaut, les canons et les armes du SPARK."
 LocHelpText="Arme stable : bonus au toucher pour le prochain tir si vous n'êtes pas blessé et que vous n'effectuez pas d'autre action."
 LocFlyOverText="Arme stable"
 
@@ -887,6 +891,14 @@ FriendlyNamePlural="Fusils sciés magnétiques"
 BriefSummary="Une version améliorée du fusil à canon scié, qui comporte des accélérateurs magnétiques augmentant ses dégâts."
 TacticalText="<Bullet/> Une version améliorée du fusil à canon scié, qui comporte des accélérateurs magnétiques augmentant ses dégâts.<br/><Bullet/> Deux tirs par mission, par défaut.<br/>"
 
+; LWOTC translated
+[SawedOffShotgun_BM X2WeaponTemplate]
+FriendlyName="Fusil scié plasmique"
+FriendlyNamePlural="Fusils sciés plasmiques"
+BriefSummary="Une version avancée du fusil à canon scié, qui comporte des catalyseurs plasmiques augmentant ses dégâts."
+TacticalText="<Bullet/> Une version avancée du fusil à canon scié, qui comporte des catalyseurs plasmiques augmentant ses dégâts.<br/><Bullet/> Deux tirs par mission, par défaut.<br/>"
+; End translated
+
 [ArcThrower_CV X2WeaponTemplate]
 FriendlyName="Électro Flux"
 FriendlyNamePlural="Électro Flux"
@@ -942,6 +954,15 @@ FriendlyNamePlural="Lames à vibrations"
 BriefSummary="Arme de corps à corps redoutable, pour la défense personnelle à courte portée."
 TacticalText="<Bullet/> Une attaque au couteau consomme 1 action et ne met pas fin à votre tour.<br/>"
 AbilityDescName="couteau de combat"
+
+;LWOTC translated
+[CombatKnife_BM X2WeaponTemplate]
+FriendlyName="Lame à vibrations avancée"
+FriendlyNamePlural="Lames à vibrations avancées"
+BriefSummary="Arme de corps à corps redoutable, pour la défense personnelle à courte portée. Cette version dispose d'un tranchant plus aguisé et d'une meilleure prise en main au niveau de la garde."
+TacticalText="<Bullet/> Une attaque au couteau consomme 1 action et ne met pas fin à votre tour.<br/>"
+AbilityDescName="couteau de combat"
+;End translated
 
 [LWGauntlet_CV X2MultiWeaponTemplate]
 FriendlyName="Gantelet"
@@ -1008,7 +1029,6 @@ AbilityDescName="Pistolet-mitrailleur"
 
 ; LWOTC translated
 ; Bullpup changes and new templates
-
 [Bullpup_CV X2WeaponTemplate]
 TacticalText="<Bullet/> Les bullpups sont très efficaces à courte portée et ont été conçus pour le combat rapproché et les tactiques de guérilla.\n<Bullet/> Les bullpups offrent également une plus grande mobilité aux Escarmoucheurs, leur permettant ainsi de traverser plus facilement les lignes ennemies sans être repérés.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du bullpup."
 
@@ -1251,6 +1271,7 @@ TinySummary="Réduit la durée d'infiltration d'une mission"
 LootTooltip="Cette amélioration d'arme, une fois installée, réduira le temps nécessaire à infiltrer ce soldat en mission. Elle réduit également le bruit produit par l'arme durant les combats."
 
 ; LWOTC translated
+
 [CritUpgrade_Bsc X2WeaponUpgradeTemplate]
 BriefSummary="Augmente les chances de coup critique de <Ability:CRITINCREASE/> %."
 
@@ -3022,6 +3043,7 @@ LocHelpText="Tir de pistolet qui dissimule le tireur s'il abat sa cible."
 LocLongDescription="Tir de pistolet qui dissimule le tireur s'il abat sa cible."
 LocFlyOverText="Tir de l'ombre"
 
+
 ;;;;;;;;;;;;;;;;;;;;; STAFF SLOTS ;;;;;;;;;;;;;;;;;;;;;;
 
 [PsiChamberScientistStaffSlot X2StaffSlotTemplate]
@@ -3986,9 +4008,15 @@ Description="Une grande cache de renseignements ennemis."
 ; Dark Events
 
 [DarkEvent_AlloyPadding X2DarkEventTemplate]
+; LWOTC translated
+DisplayName="Permanent: Renforcement en alliage d'ADVENT"
+; End translated
 SummaryText="ADVENT alloue des ressources à l'amélioration de ses équipements de combat, ce qui renforce l'armure de certains de ses soldats."
 
 [DarkEvent_ViperRounds X2DarkEventTemplate]
+; LWOTC translated
+DisplayName="Permanent: Munitions Vipère"
+; End translated
 SummaryText="ADVENT a intégré du venin de Vipère dans leurs armes. Certains soldats peuvent donc tirer des balles empoisonnées."
 
 [DarkEvent_RapidResponse X2DarkEventTemplate]
@@ -4546,9 +4574,11 @@ Description="Certains robots d'ADVENT et d'autres unités reçoivent la capacit�
 [DarkEvent_HardTarget X2DarkEventTemplate]
 ; LWOTC translated
 DisplayName="Permanent : Cible difficile"
-; LWOTC translated
+; End translated
 SummaryText="Certaines unités extraterrestres reçoivent la capacité Cible difficile, qui leur octroie un bonus d'esquive."
-QuoteText="\".\""
+; LWOTC translated
+QuoteText="\"Les réflexes des extraterrestres se sont adpatés à leur nouvel environnement. Assurez-vous que personne ne parte sans un viseur de bonne facture au combat.\""
+; End translated
 QuoteTextAuthor="- Dr Shen"
 PreMissionText="Certaines unités extraterrestres reçoivent la capacité Cible difficile."
 PostMissionSuccessText="Opération ennemie contrée : Améliorations tactiques (Cible difficile)"
@@ -4902,8 +4932,12 @@ TimerSmashNGrabSubTitle="Nombre de tours avant l'arrivée des renforts aliens"
 [IntheZone X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> La capacité Assassin permet d'enchaîner les victimes ennemies en une seule action, chaque attaque étant gratuite.<br/><Bullet/> Toutefois, chaque ennemi tué réduit les chances de coup critique.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tours.<br/><Bullet/> Chaque fois que vous tuez un ennemi, les dégâts des prochaines attaques diminuent de 1.<br/>"
 
+;LWOTC translated
 [Fuse X2AbilityTemplate]
+LocLongDescription="Si un ennemi transporte des explosifs, ils peuvent être déclenchés à distance par l'agent psi. Action gratuite."
+LocHelpText="Si un ennemi transporte des explosifs, ils peuvent être déclenchés à distance par l'agent psi. Action gratuite."
 LocPromotionPopupText="<Bullet/>Mèche se recharge en <Ability:SelfCooldown/> tours.<br/>"
+;End translated
 
 [BulletShred X2AbilityTemplate]
 LocLongDescription="Un tir de rupture a de grandes chances d'infliger des dégâts critiques. Les attaques suivantes occasionnent +<Ability:RuptureAmount/> dégâts à la cible."
@@ -4912,10 +4946,12 @@ LocHelpText="Un tir de rupture a de grandes chances d'infliger des dégâts crit
 [Faceoff X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> La capacité Confrontation est plus efficace dans une position agressive et a de fortes chances de toucher plusieurs cibles.<br/><Bullet/> Temps de rechargement : <Ability:SelfCooldown/> tours.<br/><Bullet/> Foudroiement est inutilisable en étant dissimulé."
 
+; LWOTC translated
 [SoulSteal X2AbilityTemplate]
-LocLongDescription="Le feu spirituel rend à l'agent psi la moitié des dégâts qu'il inflige ou lui octroie un PV Bonus s'il n'était pas blessé."
-LocHelpText="Le feu spirituel soigne un agent psi blessé ou lui octroie un PV Bonus.
-LocPromotionPopupText="<Bullet/> La capacité Drain spirituel soigne les PV perdus ou octroie à l'agent psi un PV Bonus s'il n'était pas blessé.<br/><Bullet/> Un agent psi ne peut pas augmenter ses PV Bonus au-delà de 8 à l'aide de Drain spirituel."
+LocLongDescription="Le Feu spirituel convertit les dégâts infligés en PV (si l'agent psi est blessé) ou en PV Bonus (si l'agent psi n'est pas blessé). Le temps de rechargement du feu sprituel augmente de 1 tour."
+LocHelpText="Le Feu spirituel convertit les dégâts infligés en PV (si l'agent psi est blessé) ou en PV Bonus (si l'agent psi n'est pas blessé). Le temps de rechargement du feu sprituel augmente de 1 tour."
+LocPromotionPopupText="<Bullet/> La capacité Drain spirituel soigne les PV perdus ou octroie à l'agent psi 3/4/6 PV Bonus s'il n'était pas blessé.<br/><Bullet/> Un agent psi ne peut pas augmenter ses PV Bonus au-delà de 12 à l'aide de Drain spirituel.<br/><Bullet/> Le temps de rechargement du Feu sprituel augmente de 1 tour."
+; End translated
 
 [CoveringFire X2AbilityTemplate]
 LocLongDescription="Les tirs de Vigilance se déclenchent pour toutes les actions ennemies, pas seulement les mouvements."
@@ -4924,6 +4960,14 @@ LocPromotionPopupText="<Bullet/> S'il est déclenché par une action ennemie, le
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="Notre lance-grenades avancé intègre une technologie magnétique permettant de lancer les grenades plus loin qu'un lanceur conventionnel."
 TacticalText="<Bullet/> Le lance-grenades avancé a une meilleure portée que le modèle standard.\n"
+
+; LWOTC translated
+[GrenadeLauncher_BM X2GrenadeLauncherTemplate]
+FriendlyName="Lance-grenades à rayons"
+FriendlyNamePlural="Lance-grenades à rayons"
+BriefSummary="Le lance-grenades à rayons combine nos dernières avancées en matière de technologie d'armes à rayons avec un système de guidage assisté par ordinateur, afin de propulser des explosifs avec une précision sans précédent."
+TacticalText="<Bullet/> Le lance-grenades à rayons transforme n'importe quelle grenade en un projectile autonome, capable de naviguer sans difficulté entre les obstacles."
+; End translated
 
 [FlashbangGrenade X2GrenadeTemplate]
 TacticalText="<Bullet/> Les grenades flash ne font aucun dégât, mais désorientent et perturbent les ennemis dans un large rayon. <br><Bullet/> Les alliés de l'escouade ne seront pas affectés.<br/><Bullet/> Certains ennemis puissants peuvent résister à leurs effets."
@@ -4971,7 +5015,7 @@ LocPromotionPopupText="<Bullet/> Protocole de sauvetage ne peut être utilisé q
 ; LWOTC translated
 [Blademaster X2AbilityTemplate]
 LocLongDescription="Toutes les attaques au corps à corps infligent +<Ability:BlademasterDmg/> points de dégâts et leur visée augmente de <Ability:BLADEMASTERAIM/>."
-LocHelpText="Dégâts et visée améliorés pour les attaques au corps à corps"
+LocHelpText="Dégâts et visée améliorés pour toutes les attaques au corps à corps."
 ; LWOTC translated
 
 [AssaultRifle_BM X2WeaponTemplate]
@@ -5196,26 +5240,38 @@ LocLongDescription="Le Templier peut immédiatement annuler les effets psychique
 LocHelpText="Le Templier peut immédiatement annuler les effets psychiques négatifs qui affectent un allié."
 LocPromotionPopupText="<Bullet/> Réconfort annule la désorientation, le contrôle mental, la panique et l'étourdissement.<br/><Bullet/> Coûte 1 action. Temps de rechargement : <Ability:SelfCooldown/> tour(s).<br/>"
 
+; LWOTC translated #2 - Shard and Caster gauntlet tactical text and the brief
+; summaries for the caster gauntlets have been updated.
+[ShardGauntlet_CV X2PairedWeaponTemplate]
+TacticalText="<Bullet/> Octroie la capacité Flèche, qui inflige des dégâts supplémentaires en fonction de la distance qui sépare le Templier de sa cible.<br/><Bullet/> Les Templiers peuvent \"sprinter\" en utilisant leurs deux actions tout en étant capables de lancer une attaque sur un ennemi adjacent.\n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps !\n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
+
+[ShardGauntlet_MG X2PairedWeaponTemplate]
+TacticalText="<Bullet/> Octroie la capacité Flèche, qui inflige des dégâts supplémentaires en fonction de la distance qui sépare le Templier de sa cible.<br/><Bullet/> Les Templiers peuvent \"sprinter\" en utilisant leurs deux actions tout en étant capables de lancer une attaque sur un ennemi adjacent.\n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps !\n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
+
+[ShardGauntlet_BM X2PairedWeaponTemplate]
+TacticalText="<Bullet/> Octroie la capacité Flèche, qui inflige des dégâts supplémentaires en fonction de la distance qui sépare le Templier de sa cible.<br/><Bullet/> Les Templiers peuvent \"sprinter\" en utilisant leurs deux actions tout en étant capables de lancer une attaque sur un ennemi adjacent.\n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps !\n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
+
 [CasterGauntlet_CV X2PairedWeaponTemplate]
 FriendlyName="Gantelets de l'invocateur"
 FriendlyNamePlural="Gantelets de l'invocateur"
-BriefSummary="Les gantelets des Templiers ont été conçus pour amplifier l'énergie psionique de leur utilisateur, mais ils n'en restent pas moins des gantelets, c'est-à-dire des gants métalliques robustes capables d'encaisser les chocs les plus violents."
-TacticalText="<Bullet/> Les Templiers peuvent attaquer les ennemis adjacents avec leur fragment même après avoir utilisé leurs deux actions pour se déplacer ou sprinter, dans la limite de la portée de leur mouvement. \n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps ! \n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
+BriefSummary="Ces gantelets spéciaux accroissent la puissance psionique de leur propriétaire et leur octroient la capacité Canalisation (plutôt que la capacité Flèche). Ces gantelets n'en restent pas moins des gants métalliques robustes capables d'encaisser les chocs les plus violents."
+TacticalText=<Bullet/> Octroie 1 point(s) de concentration au début de chaque mission, ainsi que la capacité Canalisation (les ennemies éliminés ont une chance d'abandonner de l'énergie psionique que le Templier peut récupérer pour augmenter son niveau de concentration).<br/><Bullet/> Les Templiers peuvent attaquer les ennemis adjacents avec leur fragment même après avoir utilisé leurs deux actions pour se déplacer ou sprinter, dans la limite de la portée de leur mouvement. \n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps ! \n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
 AbilityDescName="fragment"
 
 [CasterGauntlet_MG X2PairedWeaponTemplate]
 FriendlyName="Gantelets du mage"
 FriendlyNamePlural="Gantelets du mage"
-BriefSummary="Les gantelets des Templiers ont été conçus pour amplifier l'énergie psionique de leur utilisateur, mais ils n'en restent pas moins des gantelets, c'est-à-dire des gants métalliques robustes capables d'encaisser les chocs les plus violents. La plaque magnétique qui les recouvre améliore encore plus leur résistance initiale."
-TacticalText="<Bullet/> Les Templiers peuvent attaquer les ennemis adjacents avec leur fragment même après avoir utilisé leurs deux actions pour se déplacer ou sprinter, dans la limite de la portée de leur mouvement. \n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps ! \n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres.
-"AbilityDescName="fragment"
+BriefSummary="Ces gantelets spéciaux accroissent la puissance psionique de leur propriétaire et leur octroient la capacité Canalisation (plutôt que la capacité Flèche). Ces gantelets n'en restent pas moins des gants métalliques robustes capables d'encaisser les chocs les plus violents. La plaque magnétique qui les recouvre améliore encore plus leur résistance initiale."
+TacticalText=<Bullet/> Octroie 1 point(s) de concentration au début de chaque mission, ainsi que la capacité Canalisation (les ennemies éliminés ont une chance d'abandonner de l'énergie psionique que le Templier peut récupérer pour augmenter son niveau de concentration).<br/><Bullet/> Les Templiers peuvent attaquer les ennemis adjacents avec leur fragment même après avoir utilisé leurs deux actions pour se déplacer ou sprinter, dans la limite de la portée de leur mouvement. \n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps ! \n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
+AbilityDescName="fragment"
 
 [CasterGauntlet_BM X2PairedWeaponTemplate]
 FriendlyName="Gantelets de l'archimage"
 FriendlyNamePlural="Gantelets de l'archimage"
-BriefSummary="Une petite cellule d'énergie à l'élérium trouvée sur un appareil d'ADVENT inconnu a permis aux Templiers d'augmenter encore plus l'énergie psionique contenue dans ces gantelets. On ne sait toujours pas si c'est la maîtrise de cette énergie ou bien la technologie qu'ils ont créée qui a permis le mélange de ces forces opposées."
-TacticalText="<Bullet/> Les Templiers peuvent attaquer les ennemis adjacents avec leur fragment même après avoir utilisé leurs deux actions pour se déplacer ou sprinter, dans la limite de la portée de leur mouvement. \n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps ! \n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
+BriefSummary="Ces gantelets spéciaux accroissent la puissance psionique de leur propriétaire et leur octroient la capacité Canalisation (plutôt que la capacité Flèche). Ces gantelets n'en restent pas moins des gants métalliques robustes capables d'encaisser les chocs les plus violents. Une petite cellule d'énergie à l'élérium trouvée sur un appareil d'ADVENT inconnu a permis aux Templiers d'augmenter encore plus l'énergie psionique contenue dans ces gantelets. On ne sait toujours pas si c'est la maîtrise de cette énergie ou bien la technologie qu'ils ont créée qui a permis le mélange de ces forces opposées."
+TacticalText=<Bullet/> Octroie 1 point(s) de concentration au début de chaque mission, ainsi que la capacité Canalisation (les ennemies éliminés ont une chance d'abandonner de l'énergie psionique que le Templier peut récupérer pour augmenter son niveau de concentration).<br/><Bullet/> Les Templiers peuvent attaquer les ennemis adjacents avec leur fragment même après avoir utilisé leurs deux actions pour se déplacer ou sprinter, dans la limite de la portée de leur mouvement. \n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps ! \n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
 AbilityDescName="fragment"
+; End translated #2
 
 [Yoink X2AbilityTemplate]
 LocFriendlyName="Transposition"
@@ -5438,3 +5494,29 @@ FriendlyNamePlural="Points de capacité"
 BriefSummary="Réserve de points de capacité, à dépenser pour débloquer des aptitudes supplémentaires."
 ; End translated
 
+; LWOTC translated
+[XComGame.UIArmory_Loadout]
+[UIArmory_Loadout]
+m_strInventoryLabels[eInvSlot_Pistol]="PISTOLET"
+; End translated
+
+; LWOTC translated
+[LW_PhaseWalk X2AbilityTemplate]
+LocFriendlyName="Projection astrale"
+LocLongDescription="Permet de se téléporter dans une case située dans votre champ de vision."
+LocHelpText="Permet de se téléporter dans une case située dans votre champ de vision."
+LocFlyOverText="Projection astrale"
+
+[LW_NullWard X2AbilityTemplate]
+LocFriendlyName="Sanctuaire"
+LocLongDescription="Projette un bouclier psychique autour du soldat et de tous les alliés à proximité. Si le soldat est éliminé, le bouclier cesse immédiatement de faire effet."
+LocHelpText="Projette un bouclier psychique autour de vous et de tous vos alliés à proximité."
+LocFlyOverText="Sanctuaire"
+
+[LW_SoulStorm X2AbilityTemplate]
+LocFriendlyName="Tempête sprirituelle"
+LocLongDescription="Invoque un météore d'énergie psionique qui inflige à tous les ennemis situés dans la zone d'effet et détruit leur couverture (les planchers et les plafonds ne sont pas affectés)."
+LocHelpText="Invoque un météore d'énergie psionique qui inflige à tous les ennemis situés dans la zone d'effet et détruit leur couverture (les planchers et les plafonds ne sont pas affectés)."
+LocFlyOverText="Tempête sprirituelle"
+LocPromotionPopupText="Ne peut détruire les planchers et les plafonds"
+; End translated
