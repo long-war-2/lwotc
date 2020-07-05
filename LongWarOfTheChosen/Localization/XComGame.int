@@ -5520,4 +5520,75 @@ LocLongDescription="Summon meteors of psionic energy to deal damage to enemies i
 LocHelpText="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
 LocFlyOverText="Soul Storm"
 LocPromotionPopupText="Cannot destroy floors or ceilings."
+
+[TheLostGrapplerHP2_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostGrapplerHP3_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostGrapplerHP4_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostGrapplerHP5_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostGrapplerHP6_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostGrapplerHP7_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostGrapplerHP8_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostGrapplerHP9_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostGrapplerHP10_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostGrapplerHP11_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostGrapplerHP12_LW X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
+[TheLostBruteHP10_LW X2CharacterTemplate]
+strCharacterName="Lost Brute"
+
+[TheLostBruteHP11_LW X2CharacterTemplate]
+strCharacterName="Lost Brute"
+
+[TheLostBruteHP12_LW X2CharacterTemplate]
+strCharacterName="Lost Brute"
+
+[TheLostBruteHP14_LW X2CharacterTemplate]
+strCharacterName="Lost Brute"
+
+[TheLostBruteHP15_LW X2CharacterTemplate]
+strCharacterName="Lost Brute"
+
+[TheLostBruteHP16_LW X2CharacterTemplate]
+strCharacterName="Lost Brute"
+
+[LWTheLostBruteHP18 X2CharacterTemplate]
+strCharacterName="Lost Brute"
+
+[TheLostBruteHP21_LW X2CharacterTemplate]
+strCharacterName="Lost Brute"
+
+[TheLostBruteHP23_LW X2CharacterTemplate]
+strCharacterName="Lost Brute"
+
+[TheLostBruteHP25_LW X2CharacterTemplate]
+strCharacterName="Lost Brute"
+
+[LostBladestorm X2AbilityTemplate]
+LocFriendlyName="Grapple"
+LocLongDescription="Free melee attacks on any enemies that enter, exit or attack from melee range."
+LocHelpText="Free melee attacks on any enemies that enter, exit or attack from melee range."
+LocFlyOverText="Grapple"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
+
 ; End Translation

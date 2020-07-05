@@ -865,6 +865,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Tactical.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWObjectivesModTemplate.uc" />
     <Content Include="Content\Cannon_NoShake_LW.upk" />
+    <Content Include="Content\LW_Lost_Brute.upk" />
     <Content Include="Content\CIN_BasicColors.upk" />
     <Content Include="Content\EditorMeshes.upk" />
     <Content Include="Content\EngineMeshes.upk" />
@@ -1217,6 +1218,9 @@
     <Content Include="Content\LW_PsiOverhaul_Perks.upk" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_UniversalSoldierAbilities.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_OnlyOnXCOMTurn.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Ability_TheLost_LW.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Character_TheLost_LW.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Item_LostWeapons_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_NoLootAndCorpse.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_SitRepGrantedAbilitySet_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2SitRep_DefaultSitRepEffects_LW.uc" />
