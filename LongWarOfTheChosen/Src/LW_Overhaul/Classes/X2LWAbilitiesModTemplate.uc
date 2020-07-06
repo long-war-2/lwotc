@@ -106,8 +106,15 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'TemplarBladestormAttack':
 			MakeBladestormNotTriggerOnItsTurn(Template);
 			break;
+		//At this point trying to figure out why AI does not do the thing it's supposed to do takes way longer than just doing this
+		case 'GetOverHere':
+		case 'Bind':
+		case 'KingGetOverHere':
+			MakeAbilitiesUnusableOnLost(Template);
+			break;
 		default:
 			break;
+
 	}
 }
 
@@ -729,6 +736,16 @@ static function MakeBladestormNotTriggerOnItsTurn(X2AbilityTemplate Template)
 	Condition = new class'X2Condition_NotItsOwnTurn';
 	Template.AbilityShooterConditions.AddItem(Condition);
 }
+
+static function	MakeAbilitiesUnusableOnLost(X2AbilityTemplate Template)
+{
+	local X2Condition_NotLost Condition;
+
+	Condition = new class'X2Condition_NotLost';
+	Template.AbilityTargetConditions.AddItem(Condition);
+}
+
+	
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
