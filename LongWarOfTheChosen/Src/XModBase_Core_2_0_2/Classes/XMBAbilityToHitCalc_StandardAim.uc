@@ -168,15 +168,18 @@ function InternalRollForAbilityHit(XComGameState_Ability kAbility, AvailableTarg
 	`log("***HIT" @ Result, !bRolledResultIsAMiss, 'XCom_HitRolls');
 	`log("***MISS" @ Result, bRolledResultIsAMiss, 'XCom_HitRolls');
 
+	// Start Issue #426: Block moved from earlier. Only code change is for lightning reflexes,
+	// because bRolledResultIsAMiss was used for both aim assist and reflexes
 	if (TargetState != none)
 	{
 		//  Check for Lightning Reflexes
-		if (bReactionFire && TargetState.bLightningReflexes && !bRolledResultIsAMiss)
+		if (bReactionFire && TargetState.bLightningReflexes && !class'XComGameStateContext_Ability'.static.IsHitResultMiss(Result))
 		{
 			Result = eHit_LightningReflexes;
 			`log("Lightning Reflexes triggered! Shot will miss.", true, 'XCom_HitRolls');
 		}
 	}	
+	// End Issue #426
 
 	if (UnitState != none && TargetState != none)
 	{
@@ -291,8 +294,13 @@ protected function int GetHitChance(XComGameState_Ability kAbility, AvailableTar
 				}
 
 				//  Add basic offense and defense values
-				AddModifier(UnitState.GetBaseStat(eStat_Offense), class'XLocalizedData'.default.OffenseStat, m_ShotBreakdown, eHit_Success, bDebugLog);			
-				UnitState.GetStatModifiers(eStat_Offense, StatMods, StatModValues);
+				AddModifier(UnitState.GetBaseStat(eStat_Offense), class'XLocalizedData'.default.OffenseStat, m_ShotBreakdown, eHit_Success, bDebugLog);
+
+				if (Function'XComGame.XComGameState_Unit.GetStatModifiersFixed' != none)
+					UnitState.GetStatModifiersFixed(eStat_Offense, StatMods, StatModValues);
+				else
+					UnitState.GetStatModifiers(eStat_Offense, StatMods, StatModValues);
+	
 				for (i = 0; i < StatMods.Length; ++i)
 				{
 					AddModifier(int(StatModValues[i]), StatMods[i].GetX2Effect().FriendlyName, m_ShotBreakdown, eHit_Success, bDebugLog);
@@ -336,7 +344,12 @@ protected function int GetHitChance(XComGameState_Ability kAbility, AvailableTar
 				//  XModBase: Defensive modifiers are broken out separately in the shot breakdown.
 				//            Vanilla rolls them all into one "Defense" modifier.
 				AddModifier(-TargetState.GetBaseStat(eStat_Defense), class'XLocalizedData'.default.DefenseStat, m_ShotBreakdown, eHit_Success, bDebugLog);			
-				TargetState.GetStatModifiers(eStat_Defense, StatMods, StatModValues);
+	
+				if (Function'XComGame.XComGameState_Unit.GetStatModifiersFixed' != none)
+					TargetState.GetStatModifiersFixed(eStat_Defense, StatMods, StatModValues);
+				else
+					TargetState.GetStatModifiers(eStat_Defense, StatMods, StatModValues);
+	
 				for (i = 0; i < StatMods.Length; ++i)
 				{
 					AddModifier(-int(StatModValues[i]), StatMods[i].GetX2Effect().FriendlyName, m_ShotBreakdown, eHit_Success, bDebugLog);
@@ -458,7 +471,12 @@ protected function int GetHitChance(XComGameState_Ability kAbility, AvailableTar
 		if (bAllowCrit)
 		{
 			AddModifier(UnitState.GetBaseStat(eStat_CritChance), class'XLocalizedData'.default.CharCritChance, m_ShotBreakdown, eHit_Crit, bDebugLog);
-			UnitState.GetStatModifiers(eStat_CritChance, StatMods, StatModValues);
+	
+			if (Function'XComGame.XComGameState_Unit.GetStatModifiersFixed' != none)
+				UnitState.GetStatModifiersFixed(eStat_CritChance, StatMods, StatModValues);
+			else
+				UnitState.GetStatModifiers(eStat_CritChance, StatMods, StatModValues);
+
 			for (i = 0; i < StatMods.Length; ++i)
 			{
 				AddModifier(int(StatModValues[i]), StatMods[i].GetX2Effect().FriendlyName, m_ShotBreakdown, eHit_Crit, bDebugLog);
@@ -472,6 +490,7 @@ protected function int GetHitChance(XComGameState_Ability kAbility, AvailableTar
 			{
 				AddModifier(SourceWeapon.GetItemCritChance(), class'XLocalizedData'.default.WeaponCritBonus, m_ShotBreakdown, eHit_Crit, bDebugLog);
 			}
+
 			if (bFlanking && !bMeleeAttack)
 			{
 				if (`XENGINE.IsMultiplayerGame())
