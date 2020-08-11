@@ -1,12 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    XMBEffect_RevealUnit.uc
-//  AUTHOR:  xylthixlm (modified by Peter Ledbrook)
-//  PURPOSE: Displays units in visual range but out of line of sight as if they
-//           have Target Definition on them. The Target Definition outline
-//           disappears when the unit is in line of sight or the effect is
-//           removed from the unit.
+//  AUTHOR:  xylthixlm
 //
-// Original behavior:
 //  Causes a unit to be visible on the map, and plays a flyover over any revealed
 //  enemy units when applied. Does not grant squadsight targeting over the revealed
 //  units. Optionally this can also unmask hidden Faceless and Chryssalids. If a
@@ -64,40 +59,45 @@ function EffectAddedCallback(X2Effect_Persistent PersistentEffect, const out Eff
 
 simulated function AddX2ActionsForVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult)
 {
-	local X2Action_TargetDefinition OutlineAction;
+	local X2Action_ForceUnitVisiblity OutlineAction;
+	local X2Action_PlaySoundAndFlyOver FlyOver;
+	local X2AbilityTemplate AbilityTemplate;
 	local XComGameState_Unit UnitState;
 
 	UnitState = XComGameState_Unit(ActionMetadata.StateObject_NewState);
 	if (EffectApplyResult == 'AA_Success' && UnitState != none)
 	{
-		OutlineAction = X2Action_TargetDefinition(class'X2Action_TargetDefinition'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
-		OutlineAction.bEnableOutline = true;
+		OutlineAction = X2Action_ForceUnitVisiblity(class'X2Action_ForceUnitVisiblity'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
+		OutlineAction.ForcedVisible = eForceVisible;
+
+		if (UnitState.GetTeam() == eTeam_Alien && !class'X2TacticalVisibilityHelpers'.static.CanSquadSeeTarget(`TACTICALRULES.GetLocalClientPlayerObjectID(), UnitState.ObjectID))
+		{
+			AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate(XComGameStateContext_Ability(VisualizeGameState.GetContext()).InputContext.AbilityTemplateName);
+			FlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
+			FlyOver.SetSoundAndFlyOverParameters(none, AbilityTemplate.LocFlyOverText, '', eColor_Bad, AbilityTemplate.IconImage, default.LookAtDuration, true);
+		}
 	}
 }
 
 simulated function AddX2ActionsForVisualization_Removed(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult, XComGameState_Effect RemovedEffect)
 {
-	local X2Action_TargetDefinition OutlineAction;
+	local X2Action_ForceUnitVisiblity OutlineAction;
 
 	if (XComGameState_Unit(ActionMetadata.StateObject_NewState) != none)
 	{
-		OutlineAction = X2Action_TargetDefinition(class'X2Action_TargetDefinition'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
-		OutlineAction.bEnableOutline = false;
+		OutlineAction = X2Action_ForceUnitVisiblity(class'X2Action_ForceUnitVisiblity'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
+		OutlineAction.ForcedVisible = eForceNone;
 	}
 }
 
 simulated function AddX2ActionsForVisualization_Sync( XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata )
 {
-	local X2Action_TargetDefinition OutlineAction;
+	local X2Action_ForceUnitVisiblity OutlineAction;
 
-	// LWOTC: The check for a non-none game state context is a workaround for some
-	// tactical saves that crash the game because the context is none for some
-	// reason. The correct fix is undoubtedly to sort out the behaviour that leads
-	// to the context being none, but I don't know what's doing it yet.
-	if (XComGameState_Unit(ActionMetadata.StateObject_NewState) != none && VisualizeGameState.GetContext() != none)
+	if (XComGameState_Unit(ActionMetadata.StateObject_NewState) != none)
 	{
-		OutlineAction = X2Action_TargetDefinition(class'X2Action_TargetDefinition'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
-		OutlineAction.bEnableOutline = true;
+		OutlineAction = X2Action_ForceUnitVisiblity(class'X2Action_ForceUnitVisiblity'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
+		OutlineAction.ForcedVisible = eForceVisible;
 	}
 }
 
