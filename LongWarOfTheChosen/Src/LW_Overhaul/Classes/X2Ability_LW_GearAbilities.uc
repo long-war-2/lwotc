@@ -31,6 +31,8 @@ var config int NANOFIBER_CRITDEF_BONUS;
 
 var config int BONUS_COILGUN_SHRED;
 
+var config bool STEADY_WEAPON_BREAKS_CONCEALMENT;
+
 var localized string strWeight;
 var localized string AblativeHPLabel;
 
@@ -165,7 +167,14 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	Template.bShowActivation=true;
 	Template.AbilityConfirmSound = "Unreal2DSounds_OverWatch";
 	Template.bCrossClassEligible = false;
-	Template.ConcealmentRule = eConceal_Never;
+	if(!default.STEADY_WEAPON_BREAKS_CONCEALMENT)
+	{
+		Template.ConcealmentRule = eConceal_Always;
+	}
+	else
+	{
+		Template.ConcealmentRule = eConceal_Never;
+	}
 	//Template.DefaultKeyBinding = 539;
 	//Template.bNoConfirmationWithHotKey = true;
 	Template.AddShooterEffectExclusions();
