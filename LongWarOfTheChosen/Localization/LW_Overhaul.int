@@ -296,9 +296,6 @@ UnitInSquad="Unit In A Squad"
 RankTooLow="Rank Too Low"
 CannotModifyOnMissionSoldierTooltip="Cannot modify soldier currently on mission"
 
-[X2Effect_LWHolotarget]
-HoloTargetEffectName="Holotargeted"
-
 [XComGameState_LWPersistentSquad]
 +DefaultSquadNames="Menace"
 +DefaultSquadNames="Voodoo"
