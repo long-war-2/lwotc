@@ -829,8 +829,9 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_MaybeApplyDirectionalWorldDamage WorldDamage;
 	local X2Effect_DeathFromAbove_LW        DeathEffect;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
-
-
+	local X2Condition_AbilityProperty		AbilityCondition;
+	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
+	local name 								HealType;
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
 	{
@@ -1181,6 +1182,18 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Cooldown = new class'X2AbilityCooldown';
 		Cooldown.iNumTurns = default.AID_PROTOCOL_COOLDOWN;
 		Template.AbilityCooldown = Cooldown;
+
+		RemoveEffects = new class'X2Effect_RemoveEffectsByDamageType';
+		foreach class'X2Ability_XMBPerkAbilitySet'.default.AgentstHealEffectTypes(HealType)
+		{
+			RemoveEffects.DamageTypesToRemove.AddItem(HealType);
+		}
+		AbilityCondition = new class'X2Condition_AbilityProperty';
+		AbilityCondition.OwnerHasSoldierAbilities.AddItem('LW_NeutralizingAgents');
+		RemoveEffects.TargetConditions.AddItem(AbilityCondition);
+
+		Template.AddTargetEffect(RemoveEffects);
+	
 	}
 
 	if (Template.DataName == 'KillZone' || Template.DataName == 'Deadeye' || Template.DataName == 'BulletShred')
