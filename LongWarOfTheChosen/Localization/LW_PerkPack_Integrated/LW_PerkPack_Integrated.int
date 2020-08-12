@@ -37,6 +37,9 @@ TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> triggered Trojan Virus."
 [X2Effect_Savior]
 strSavior_WorldMessage="Savior: Healed extra <XGParam:IntValue0/> Health."
 
+[X2Effect_LWHolotarget]
+HoloTargetEffectName="Holotargeted"
+
 [X2Item_DenseSmokeGrenade]
 DenseSmokeGrenadeEffectDisplayName="Dense Smoke"
 DenseSmokeGrenadeEffectDisplayDesc="The dense smoke grants this unit a additional defensive bonus."
