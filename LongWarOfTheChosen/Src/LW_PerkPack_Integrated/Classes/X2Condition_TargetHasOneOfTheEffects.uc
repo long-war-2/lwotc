@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Condition_TargetHasOneOfTheEffects.uc
+//  AUTHOR:  Grobobobo
+//  PURPOSE: Condition that checks if the target has ONE of the required effects, basically being an OR
+//---------------------------------------------------------------------------------------
 class X2Condition_TargetHasOneOfTheEffects extends X2Condition;
 
 var array<name> EffectNames;
