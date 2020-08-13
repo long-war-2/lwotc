@@ -5003,7 +5003,9 @@ LocFriendlyName="Double Tap"
 LocFlyOverText="Double Tap"
 LocLongDescription="Activate to fire a standard shot and gain a second action restricted to an additional shot or overwatching."
 LocHelpText="Fire a standard shot and gain a bonus shot or overwatch action."
-LocPromotionPopupText="<Bullet/> Activate to fire a standard shot and gain a second action restricted to Standard Shot, Precision Shot, Kubikiri or Overwatch.<br/><Bullet/> <Ability:SelfCooldown/>-turn cooldown.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Activate to fire a standard shot and gain a second action restricted to several different shooting abilities or overwatch.<br/><Bullet/> <Ability:SelfCooldown/>-turn cooldown.<br/>"
+; End Translation
 
 [DoubleTap2Bonus X2AbilityTemplate]
 LocFriendlyName="Double Tap"

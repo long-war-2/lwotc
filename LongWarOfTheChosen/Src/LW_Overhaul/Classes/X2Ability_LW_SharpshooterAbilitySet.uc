@@ -327,7 +327,7 @@ static function X2AbilityTemplate AddDoubleTap2()
     Template.AbilityToHitOwnerOnMissCalc = default.SimpleStandardAim;
 
 	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 2;
+	ActionPointCost.bAddWeaponTypicalCost = true;
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
