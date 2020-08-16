@@ -2735,6 +2735,15 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'STOCK_SUP_GF_CHANCE':
 			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SUCCESS_CHANCE);
 			return true;
+		case 'FLUSH_DEFENSE_DEBUFF':
+			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.FLUSH_DEFENSE_REDUCTION);
+			return true;
+		case 'FLUSH_DODGE_DEBUFF':
+			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.FLUSH_DODGE_REDUCTION);
+			return true;
+		case 'FLUSH_DURATION':
+			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.FLUSH_STATEFFECT_DURATION);
+			return true;
 		default:
 			return false;
 	}

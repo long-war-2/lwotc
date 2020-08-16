@@ -341,6 +341,7 @@ FriendlyName="Master Sectopod"
 Description="Take control of this unit for rest of the mission and gain stat bonuses. Are you brave enough?"
 
 [ScanningProtocol X2AbilityTemplate]
+LocLongDescription="The GREMLIN can trigger an instant scan of the area, increasing the Specialist's sight radius substantially for one turn, and revealing any hidden or disguised enemies in view. Free Action."
 LocPromotionPopupText="<Bullet/> Scanning Protocol gains bonus charges with improved Gremlins.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/>"
 
 ;End translation
@@ -452,7 +453,9 @@ LocFriendlyName="Flush"
 LocLongDescription="Special shot with a bonus to hit that does little or no damage but confers defense and dodge penalties and forces target to change position if it hits."
 LocHelpText="Special shot that does little or no damage but confers defense and dodge penalties and forces target to change position."
 LocFlyOverText="Flush"
-LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Two-turn cooldown.<br/><Bullet/> +30 bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses 10 defense and 10 dodge until the start of XCOM's next turn."
+;LWOTC needs translation
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Two-turn cooldown.<br/><Bullet/> +30 bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DEFENSE_DEBUFF> defense and <Ability:FLUSH_DODGE_DEBUFF> dodge. The debuff lasts <Ability:FLUSH_DURATION> turns."
+;End Translation
 str_FlushEffect="Flushed"
 
 ;;;;;;;;;;;;;;;;;;;;  RANGER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -5877,5 +5880,20 @@ LocFlyOverText="Inspire Agility"
 LocLongDescription="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn."
 LocHelpText="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn."
 LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:+INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. <br/> <Bullet/> Starts with one charge <br/>"
+
+[DeadeyeSnapShot X2AbilityTemplate]
+LocFriendlyName="Deadeye (Snap Shot)"
+LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
+LocHelpText="Take a shot with a small aim penalty for a significant damage boost."
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+
+[DeadeyeDamage_SnapShot X2AbilityTemplate]
+LocFriendlyName="Deadeye (SnapShot)"
+LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
+LocHelpText="Take a shot with a small aim penalty for a significant damage boost."
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+
+[Deadeye X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Works With Snap Shot.<br/>"
 
 ; End Translation
