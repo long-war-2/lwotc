@@ -122,6 +122,7 @@ var localized string LocCoveringFireMalus;
 var config bool NO_STANDARD_ATTACKS_WHEN_ON_FIRE;
 var config bool NO_MELEE_ATTACKS_WHEN_ON_FIRE;
 var config int BOMBARD_BONUS_RANGE_TILES;
+var config int SHARPSHOOTERAIM_CRITBONUS;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -2772,6 +2773,7 @@ static function X2AbilityTemplate AddInterferenceAbility()
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = default.INTERFERENCE_ACTION_POINTS;
+	ActionPointCost.bFreeCost = true;
 	ActionPointCost.bConsumeAllPoints = false;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
