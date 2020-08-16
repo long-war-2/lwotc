@@ -44,7 +44,6 @@ static function X2CharacterTemplate CreateTemplate_TheLostGrappler(name LostName
 
 	CharTemplate = class'X2Character_DefaultCharacters'.static.CreateTemplate_TheLost(LostName, LoadoutName);
 	
-	CharTemplate.CharacterGroupName = 'TheLostGrappler';
 	CharTemplate.strPawnArchetypes.Length = 0;
 	CharTemplate.strPawnArchetypes.AddItem("GameUnit_TheLost.ARC_GameUnit_TheLost_Howler");
 	CharTemplate.AIOrderPriority = 100;
@@ -58,7 +57,6 @@ static function X2CharacterTemplate CreateTemplate_TheLostGrappler(name LostName
 
 	CharTemplate = class'X2Character_DefaultCharacters'.static.CreateTemplate_TheLost(LostName, LoadoutName);
 	CharTemplate.strPawnArchetypes.Length = 0;
-	CharTemplate.CharacterGroupName = 'TheLostBrute';
 	CharTemplate.strPawnArchetypes.AddItem("LW_Lost_Brute.Archetypes.ARC_GameUnit_TheLost_CXBrute"); //Brute Lost
 	CharTemplate.SightedNarrativeMoments.Length = 0;
 	CharTemplate.Abilities.AddItem('WallBreaking');
