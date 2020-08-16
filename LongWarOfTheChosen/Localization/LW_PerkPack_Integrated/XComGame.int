@@ -118,9 +118,11 @@ LocPromotionPopupText="<Bullet/> Confers +10 aim and +10 defense against targets
 [Executioner_LW X2AbilityTemplate]
 LocFriendlyName="Executioner"
 LocFlyOverText="Executioner"
-LocLongDescription="Confers +10 aim and +10 critical chance against targets at half or less of their original hit points."
-LocHelpText="Confers +10 aim and +10 critical chance against targets at half or less of their original hit points."
-LocPromotionPopupText="<Bullet/> Confers +10 aim and +10 critical chance against targets at half or less of their original hit points.<br/>"
+; LWOTC Needs Translation
+LocLongDescription="Confers +<Ability:EXECUTIONER_AIM_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points."
+LocHelpText="Confers +<Ability:EXECUTIONER_AIM_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points."
+LocPromotionPopupText="<Bullet/> Confers +<Ability:EXECUTIONER_CRIT_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points.<br/>"
+; End Translation
 
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Resilience"
@@ -220,12 +222,14 @@ LocLongDescription="After taking a standard shot with your primary weapon with y
 LocHelpText="After taking a standard shot with your primary weapon with your first action, you may take an additional non-movement action."
 LocPromotionPopupText="<Bullet/> After taking a standard shot with your primary weapon with your first action, you may take an additional non-movement action.<br/>"
 
+;LWOTC needs translation
 [WalkFire X2AbilityTemplate]
 LocFriendlyName="Walk Fire"
 LocFlyOverText="Walk Fire"
-LocLongDescription="Take a highly accurate shot with +30 bonus to hit but for half damage and -30 crit. Uses <Ability:SelfAmmoCost/> ammo."
-LocHelpText="Special shot: +30 aim, -30 crit, half damage, uses <Ability:SelfAmmoCost/> ammo."
-LocPromotionPopupText="<Bullet/> This is a special shot in which the soldier adjusts their aim in the middle of an automatic weapon burst, conferring +30 aim and -30 crit and doing half damage.<br/><Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Usable once per turn.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
+LocLongDescription="Take a highly accurate shot with +<Ability:WALK_FIRE_AIM_BONUS> bonus to hit <Ability:WALK_FIRE_DMG>% damage and -<Ability:WALK_FIRE_CRIT_MALUS> crit. Uses <Ability:SelfAmmoCost/> ammo."
+LocHelpText="Special shot: +<Ability:WALK_FIRE_AIM_BONUS> aim, -<Ability:WALK_FIRE_CRIT_MALUS> crit, <Ability:WALK_FIRE_DMG>% damage, uses <Ability:SelfAmmoCost/> ammo."
+LocPromotionPopupText="<Bullet/> This is a special shot in which the soldier adjusts their aim in the middle of an automatic weapon burst, conferring +<Ability:WALK_FIRE_AIM_BONUS> aim and -<Ability:WALK_FIRE_CRIT_MALUS> crit and doing <Ability:WALK_FIRE_DMG>% damage.<br/><Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
+;End translation
 
 [PrecisionShot X2AbilityTemplate]
 LocFriendlyName="Precision Shot"
@@ -237,9 +241,11 @@ LocPromotionPopupText="<Bullet/> Take a special shot with +30 bonus to critical 
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Cyclic Fire"
 LocFlyOverText="Cyclic Fire"
-LocLongDescription="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. Four-turn cooldown."
-LocHelpText="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. Four-turn cooldown."
-LocPromotionPopupText="<Bullet/> Special Shot: Fire three shots at a target in a single attack. Requires two actions and all shots have a -15 penalty to aim.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
+: LWOTC Needs Translation
+LocLongDescription="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. <Ability:CYCLIC_FIRE_COOLDOWN/>-turn cooldown."
+LocHelpText="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. <Ability:CYCLIC_FIRE_COOLDOWN/>-turn cooldown."
+LocPromotionPopupText="<Bullet/> Special Shot: Fire three shots at a target in a single attack. Requires two actions and all shots have a -<Ability:CYCLIC_FIRE_AIM_MALUS/> penalty to aim.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
+; End Translation
 
 [StreetSweeper X2AbilityTemplate]
 LocFriendlyName="Trench Gun"
@@ -248,19 +254,21 @@ LocLongDescription="Special shot for primary-weapon shotguns only: Fire a short-
 LocHelpText="Special shot for primary-weapon shotguns only: Fire a short-range cone-based attack at nearby targets. Three-turn cooldown."
 LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a short-range cone-based attack at nearby targets.<br/><Bullet/> Three-turn cooldown, uses <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Ability will not be available with other primary weapons.<br/><Bullet/> The shot will not penetrate heavy cover, so this ability is best used in flanking situations.<br/><Bullet/> Allies in the area of effect can take damage.<br/>
 
+; LWOTC Needs Translation
 [SlugShot X2AbilityTemplate]
 LocFriendlyName="Slug Shot"
 LocFlyOverText="Slug Shot"
-LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot that pierces two armor and has no range penalties. Uses <Ability:SelfAmmoCost/> ammo. Three-turn cooldown."
+LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot that pierces two armor and has no range penalties. Uses <Ability:SelfAmmoCost/> ammo. <Ability:SLUG_SHOT_COOLDOWN/>-turn cooldown."
 LocHelpText="Armor-piercing special shotgun shot with no range penalties."
-LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> The shot will pierce two armor points.<br/><Bullet/> Three-turn cooldown.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
+LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> The shot will pierce two armor points.<br/><Bullet/> <Ability:SLUG_SHOT_COOLDOWN/>-turn cooldown. <br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
 
 [SlugShotRangeEffect X2AbilityTemplate]
 LocFriendlyName="Slug Shot"
 LocFlyOverText="Slug Shot"
-LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot with no range penalties. Uses <Ability:SelfAmmoCost/> ammo. Five-turn cooldown."
-LocHelpText="Special shot for primary-weapon shotguns only: Fire a shot with no range penalties. Uses <Ability:SelfAmmoCost/> ammo. Five-turn cooldown."
-LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> Five-turn cooldown.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
+LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot with no range penalties. Uses <Ability:SelfAmmoCost/> ammo. <Ability:SLUG_SHOT_COOLDOWN/>-turn cooldown."
+LocHelpText="Special shot for primary-weapon shotguns only: Fire a shot with no range penalties. Uses <Ability:SelfAmmoCost/> ammo. <Ability:SLUG_SHOT_COOLDOWN/>-turn cooldown."
+LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> <Ability:SLUG_SHOT_COOLDOWN/>-turn cooldown.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
+; End Translation
 
 [Commissar X2AbilityTemplate]
 LocFriendlyName="Commissar"
@@ -276,12 +284,14 @@ LocLongDescription="Once per mission, fire a pistol shot that cannot miss."
 LocHelpText="Once per mission, fire a pistol shot that cannot miss."
 LocPromotionPopupText="<Bullet/> Once per mission, fire a pistol shot that cannot miss.<br/>"
 
+;LWOTC needs translation
 [Gunslinger X2AbilityTemplate]
 LocFriendlyName="Gunslinger"
 LocFlyOverText="Gunslinger"
-LocLongDescription="Take a reaction shot with your pistol against any enemy that moves or attacks within 12 tiles and a wide cone of fire."
-LocHelpText="Enhanced pistol overwatch in a cone of fire."
-LocPromotionPopupText="<Bullet/> Range is 12 tiles.<br/><Bullet/> Three-turn cooldown.<br/>"
+LocLongDescription="Take a reaction shot that can crit with your pistol against any enemy that moves or attacks within <Ability:GUNSLINGER_TILES_RANGE/> tiles."
+LocHelpText="Enhanced radial pistol overwatch."
+LocPromotionPopupText="<Bullet/> Range is <Ability:GUNSLINGER_TILES_RANGE/> tiles.<br/><Bullet/> <Ability:GUNSLINGER_COOLDOWN/>-turn cooldown.<br/>"
+;End translation
 
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="Hyper-Reactive Pupils"
@@ -300,9 +310,11 @@ LocPromotionPopupText="<Bullet/> Gain +20 aim on your next shot with your primar
 [LockedOn X2AbilityTemplate]
 LocFriendlyName="Locked On"
 LocFlyOverText="Locked On"
-LocLongDescription="Gain +10 aim and +10 crit for successive shots at the same enemy unit."
-LocHelpText="Gain +10 aim for successive shots at the same enemy unit."
-LocPromotionPopupText="<Bullet/> Gain +10 aim and +10 crit for repeated shots with your primary weapon at the same target. Not cumulative, and only applies to enemy units.<br/><Bullet/> Area-of-Effect-based shots do not grant the bonus."
+; LWOTC Needs Translation
+LocLongDescription="Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for successive shots at the same enemy unit."
+LocHelpText="Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for successive shots at the same enemy unit."
+LocPromotionPopupText="<Bullet/> Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for repeated shots at the same target. Not cumulative, and only applies to enemy units.<br/><Bullet/> Area-of-Effect-based shots do not grant the bonus."
+; End Translation
 
 [Sentinel_LW X2AbilityTemplate]
 LocFriendlyName="Sentinel"
@@ -411,7 +423,9 @@ LocFriendlyName="Interference"
 LocFlyOverText="Interference"
 LocLongDescription="GREMLIN cancels overwatch on targeted unit. Use three times per battle."
 LocHelpText="Cancels overwatch on targeted unit."
-LocPromotionPopupText="<Bullet/> Cancels overwatch on targeted unit.<br/><Bullet/> Uses one action.<br/><Bullet/> 3 charges per battle, improves with better Gremlin tech.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Cancels overwatch on targeted unit.<br/><Bullet/> Is a free action.<br/><Bullet/> 3 charges per battle, improves with better Gremlin tech.<br/>"
+; End Translation
 
 [DamageControl X2AbilityTemplate]
 LocFriendlyName="Damage Control"
@@ -595,12 +609,14 @@ LocFlyOverText="Combat Rush"
 LocLongDescription="Nearby ally grants you +10 aim, +10 critical chance and +1 mobility for two turns."
 LocHelpText="Nearby ally grants you +10 aim, +10 critical chance and +1 mobility for two turns."
 
+;LWOTC needs translation
 [GrazingFire X2AbilityTemplate]
-LocFriendlyName="Grazing Fire"
-LocFlyOverText="Grazing Fire"
-LocLongDescription="Missed shots with your primary weapon have an additional roll to become a graze."
+LocFriendlyName="Grazing Attacks"
+LocFlyOverText="Grazing Attacks"
+LocLongDescription="Your missed attacks have an additional roll to become a graze."
 LocHelpText="Misses may become grazes."
-LocPromotionPopupText="<Bullet/> Missed shots with the soldier's primary weapon generally have a <Ability:GRAZING_FIRE_SUCCESS_CHANCE>% chance to become a graze.<br/><Bullet/> This effect occurs after normal hit-miss-graze processing.<br/><Bullet/> Targets with a dodge score subtract that score from the ability's success chance."
+LocPromotionPopupText="<Bullet/> Soldier's missed attacks generally have a <Ability:GRAZING_FIRE_SUCCESS_CHANCE>% chance to become a graze.<br/><Bullet/> This effect occurs after normal hit-miss-graze processing.<br/><Bullet/> Targets with a dodge score subtract that score from the ability's success chance.<br/> <Bullet/> Works with all weapon attacks including knife attacks and sword slices. <br/>"
+;end translation
 
 [HeavyFrags X2AbilityTemplate]
 LocFriendlyName="Boosted Cores"
@@ -804,13 +820,15 @@ LocHelpText="Firing your pistol with your first action no longer ends your turn.
 LocFlyOverText="Quickdraw"
 LocPromotionPopupText="<Bullet/> Quickdraw allows the soldier to spread their fire around to different targets in the same turn.<br/>"
 
+; LWOTC Needs Translation
 [XComGame.SharpshooterAim X2AbilityTemplate]
 [SharpshooterAim X2AbilityTemplate]
 LocFriendlyName="Aim"
-LocLongDescription="Hunker Down now confers +<Ability:SHARPSHOOTERAIMBONUS/> Aim to the first shot on the following turn."
-LocHelpText="Hunker Down now confers +<Ability:SHARPSHOOTERAIMBONUS/> Aim to the first shot on the following turn."
+LocLongDescription="Hunker Down now confers +<Ability:SHARPSHOOTERAIMBONUS/> Aim and +<Ability:SHARPSHOOTERAIM_CRITBONUS/> Crit to the first shot on the following turn."
+LocHelpText="Hunker Down now confers +<Ability:SHARPSHOOTERAIMBONUS/> Aim and +<Ability:SHARPSHOOTERAIM_CRITBONUS/> Crit to the first shot on the following turn."
 LocFlyOverText="HunkerDown - Aim"
 LocPromotionPopupText="<Bullet/> The bonus granted by Aim can apply to either a pistol or primary weapon shot.<br/>"
+; End Translation
 
 [XComGame.LightningHands X2AbilityTemplate]
 [LightningHands X2AbilityTemplate]

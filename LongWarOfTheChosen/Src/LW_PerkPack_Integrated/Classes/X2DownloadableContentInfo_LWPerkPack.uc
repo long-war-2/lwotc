@@ -177,7 +177,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.NONE_SHALL_PASS_TILE_RANGE);	
 			return true;				
 		case 'BRUTALITY_TILE_RADIUS':
-			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.BRUTALITY_TILE_RADIUS);	
+			OutString = string(int(class'X2Ability_XMBPerkAbilitySet'.default.BRUTALITY_TILE_RADIUS));	
 			return true;					
 		case 'BRUTALITY_PANIC_CHANCE':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.BRUTALITY_PANIC_CHANCE);	
@@ -242,13 +242,10 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'ZONE_CONTROL_RADIUS':
 			OutString = string(int(class'X2Ability_XMBPerkAbilitySet'.default.ZONE_CONTROL_RADIUS));
 			return true;
-		case 'EXE_AIM_BONUS':
+		case 'EXECUTIONER_AIM_BONUS':
 			OutString = string(class'X2Effect_Executioner_LW'.default.EXECUTIONER_AIM_BONUS);
 			return true;
-		case 'EXE_CRIT_BONUS':
-			OutString = string(class'X2Effect_Executioner_LW'.default.EXECUTIONER_CRIT_BONUS);
-			return true;
-		case 'EXE_CRIT_BONUS':
+		case 'EXECUTIONER_CRIT_BONUS':
 			OutString = string(class'X2Effect_Executioner_LW'.default.EXECUTIONER_CRIT_BONUS);
 			return true;
 		case 'LOCKEDON_AIM_BONUS':
@@ -257,13 +254,13 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'LOCKEDON_CRIT_BONUS':
 			OutString = string(class'X2Effect_LockedOn'.default.LOCKEDON_CRIT_BONUS);
 			return true;
-		case 'CYCLIC_COOLDOWN':
+		case 'CYCLIC_FIRE_COOLDOWN':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.CYCLIC_FIRE_COOLDOWN);
 			return true;
-		case 'CYCLIC_MALUS':
+		case 'CYCLIC_FIRE_AIM_MALUS':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.CYCLIC_FIRE_AIM_MALUS);
 			return true;
-		case 'SLUGSHOT_COOLDOWN':
+		case 'SLUG_SHOT_COOLDOWN':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SLUG_SHOT_COOLDOWN);
 			return true;
 		case 'RAPID_STUN_COOLDOWN':
@@ -277,6 +274,21 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'DISORIENTED_AIM_ADJUST':
 			OutString = string (class 'X2StatusEffects'.default.DISORIENTED_AIM_ADJUST);
+			return true;
+		case 'WALK_FIRE_DMG':
+			OutString = string (int(class 'X2Effect_WalkFireDamage'.default.WALK_FIRE_DAMAGE_MODIFIER * -100));
+			return true;
+		case 'WALK_FIRE_AIM_BONUS':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.WALK_FIRE_AIM_BONUS);
+			return true;
+		case 'WALK_FIRE_CRIT_MALUS':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.WALK_FIRE_CRIT_MALUS);
+			return true;	
+		case 'GUNSLINGER_TILES_RANGE':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.GUNSLINGER_METERS_RANGE * 2 / 3);
+			return true;
+		case 'GUNSLINGER_COOLDOWN':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.GUNSLINGER_COOLDOWN);
 			return true;
         default:
             return false;

@@ -268,12 +268,14 @@ LocLongDescription="Attacks with your gauntlet, and fires set by gauntlet weapon
 LocHelpText="Attacks with your gauntlet, and fires set by gauntlet weapons, do +1 damage."
 LocPromotionPopupText="<Bullet/> Attacks with your gauntlet, and fires set by gauntlet weapons, do +1 damage.<br/><Bullet/> This applies to both rocket launcher and flamethrower weapons, and the fires they set.<br/>"
 
+; LWOTC Needs Translation
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
 LocLongDescription="Fire a special rocket that does limited damage but has a chance to stun or disorient organic enemies within its area of effect and leaves a cloud of smoke."
 LocHelpText="Rocket that stuns or disorients targets and leaves a smoke cloud. <Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun and disorientation chances based on target's will score.<br/><Bullet/> Requires one action and ends the soldier's turn."
+LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun and disorientation chances based on target's Will score and the soldier's gauntlet tier.<br/><Bullet/> Requires one action and ends the soldier's turn."
+; End Translation
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -284,12 +286,14 @@ LocLongDescription="Coup de Grâce can instantly kill a disoriented, stunned or 
 LocHelpText="Chance to instantly kill a disoriented, stunned or unconscious enemy."
 LocPromotionPopupText="<Bullet/> Coup de Grâce can only target non-robotic, disoriented, stunned or unconscious enemies.<br/><Bullet/> Coup de Grâce grants a base 25% chance to kill disoriented units and a base 50% chance to kill stunned/unconscious units.<br/><Bullet/> Coup de Grâce grants up to 75% additional chance to kill based on remaining target health.<br/>"
 
+; LWOTC Needs Translation
 [CoupDeGrace2 X2AbilityTemplate]
 LocFriendlyName="Coup de Grâce"
 LocFlyOverText="Coup de Grâce"
 LocLongDescription="Bonus to hit, damage, and critical chance with your <Ability:AssociatedWeapon/> against a disoriented, stunned or panicking enemy."
 LocHelpText="Bonus to hit, damage, and critical chance with your <Ability:AssociatedWeapon/> against a disoriented, stunned, or panicking  enemy."
 LocPromotionPopupText="<Bullet/> Coup de Grâce grants +50 aim, +50 critical chance and +2 damage against stunned and panicking enemies.<br/><Bullet/> The bonuses are reduced against disoriented enemies."
+; End Translation
 
 [Tradecraft X2AbilityTemplate]
 LocFriendlyName="Tradecraft"
@@ -340,8 +344,11 @@ Description="Disable (stun) the unit for 3 turns."
 FriendlyName="Master Sectopod"
 Description="Take control of this unit for rest of the mission and gain stat bonuses. Are you brave enough?"
 
+; LWOTC Needs Translation (2)
 [ScanningProtocol X2AbilityTemplate]
+LocLongDescription="The GREMLIN can trigger an instant scan of the area, increasing the Specialist's sight radius substantially for one turn, and revealing any hidden or disguised enemies in view. Free Action."
 LocPromotionPopupText="<Bullet/> Scanning Protocol gains bonus charges with improved Gremlins.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/>"
+; End Translation (2)
 
 ;End translation
 
@@ -376,12 +383,14 @@ LocHelpText="Your explosives do significantly greater damage to the environment.
 LocFlyOverText="Combat Engineer"
 LocPromotionPopupText="<Bullet/> More powerful than Sapper by itself, Combat Engineer stacks with Sapper to maximize environmental damage, although either perk alone will still destroy many cover objects.<br/><Bullet/> Combat Engineer also prevents environmental damage from falling off from the center of an explosion, meaning you will destroy objects in a larger area."
 
+; LWOTC Needs Translation
 [NeedleGrenades X2AbilityTemplate]
 LocFriendlyName="Needle Grenades"
-LocLongDescription="Your explosives do not destroy loot when they kill enemies."
-LocHelpText="Your explosives do not destroy loot when they kill enemies."
+LocLongDescription="Your explosives do not destroy loot when they kill enemies and deal 1 bonus damage to unarmored enemies"
+LocHelpText="Your explosives do not destroy loot when they kill enemies and deal 1 bonus damage to unarmored enemies."
 LocFlyOverText="Needle Grenades"
-LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot intact."
+LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot intact and tears through unreinforced material."
+; End Translation
 
 [HEATWarheads X2AbilityTemplate]
 LocFriendlyName="HEAT Warheads"
@@ -452,7 +461,9 @@ LocFriendlyName="Flush"
 LocLongDescription="Special shot with a bonus to hit that does little or no damage but confers defense and dodge penalties and forces target to change position if it hits."
 LocHelpText="Special shot that does little or no damage but confers defense and dodge penalties and forces target to change position."
 LocFlyOverText="Flush"
-LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Two-turn cooldown.<br/><Bullet/> +30 bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses 10 defense and 10 dodge until the start of XCOM's next turn."
+;LWOTC needs translation
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Two-turn cooldown.<br/><Bullet/> +30 bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DEFENSE_REDUCTION> defense and <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
+;End Translation
 str_FlushEffect="Flushed"
 
 ;;;;;;;;;;;;;;;;;;;;  RANGER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -681,7 +692,7 @@ LocLongDescription="You have +<Ability:TRIGGER_SUP_AIM_BONUS/> (after reaction f
 LocHelpText="Hair Trigger: Bonus to hit on reaction fire"
 LocFlyOverText="Elite Hair Trigger"
 
-;LWOTC needs translation
+;LWOTC needs translation (2)
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
@@ -701,7 +712,7 @@ LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_S
 LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not impaired nor take another action"
 LocFlyOverText="Steady Weapon"
 
-;End Trasnlation
+;End Translation (2)
 
 [Needle_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Needle Rounds"
@@ -4952,9 +4963,9 @@ LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field p
 
 ; LWOTC Needs Translation
 [SoulSteal X2AbilityTemplate]
-LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health or grants an ablative HP if you are uninjured, but increases the cooldown of soulfire by 1."
-LocHelpText="Soulfire heals a wounded operative or grants an ablative HP, but increases soulfire cooldown by 1"
-LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 3/4/6 ablative hit point for a healthy one.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
+LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns, but increases the cooldown of soulfire by 1."
+LocHelpText="Soulfire heals a wounded operative and grants ablative HP, but increases soulfire cooldown by 1"
+LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 3/4/6 ablative hit point for 3 turns.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
@@ -5011,18 +5022,18 @@ LocPromotionPopupText="<Bullet/> Activate to fire a standard shot and gain a sec
 LocFriendlyName="Double Tap"
 LocFlyOverText="Double Tap"
 
+; LWOTC Needs Translation
 [RescueProtocol X2AbilityTemplate]
 LocFriendlyName="Rescue Protocol"
 LocFlyoverText="Rescue Protocol"
-LocLongDescription="Use your Gremlin to grant a movement action to an ally."
-LocHelpText="Grant a movement action to an ally."
+LocLongDescription="Use your Gremlin to grant a movement action to an ally and grant them a small boost to dodge and mobility."
+LocHelpText="Grant a movement action to an ally and grant them a small boost to dodge and mobility."
 LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/>An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
+; End Translation
 
-; LWOTC Needs Translation
 [Blademaster X2AbilityTemplate]
 LocLongDescription="All melee attacks deal +<Ability:BlademasterDmg/> extra damage and have +<Ability:BLADEMASTERAIM/> Aim."
 LocHelpText="Extra damage and aim on all melee attacks."
-; End Translation
 
 [AssaultRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> The Plasma Rifle is a general purpose, supremely powerful primary infantry weapons system.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n<Bullet/> Use upgrades looted from enemies to improve the Plasma Rifle's tactical effectiveness.<br/>"
@@ -5894,5 +5905,20 @@ LocFriendlyName="Return Fire"
 LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
 LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
+
+[DeadeyeSnapShot X2AbilityTemplate]
+LocFriendlyName="Deadeye (Snap Shot)"
+LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
+LocHelpText="Take a shot with a small aim penalty for a significant damage boost."
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+
+[DeadeyeDamage_SnapShot X2AbilityTemplate]
+LocFriendlyName="Deadeye (SnapShot)"
+LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
+LocHelpText="Take a shot with a small aim penalty for a significant damage boost."
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+
+[Deadeye X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/><Bullet/> Works with Snap Shot.<br/>"
 
 ; End Translation

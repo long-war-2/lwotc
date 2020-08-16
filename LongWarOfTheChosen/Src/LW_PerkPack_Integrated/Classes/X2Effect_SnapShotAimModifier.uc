@@ -14,7 +14,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
     local XComGameState_Item SourceWeapon;
     local ShotModifierInfo ShotInfo;
 
-	if (AbilityState.GetMyTemplateName() == 'SnapShot' || AbilityState.GetMyTemplateName() == 'LongWatchShot')
+	if (AbilityState.GetMyTemplateName() == 'SnapShot' || AbilityState.GetMyTemplateName() == 'LongWatchShot' || AbilityState.GetMyTemplateName() == 'DeadeyeSnapShot')
 
     SourceWeapon = AbilityState.GetSourceWeapon();    
     if(SourceWeapon != none && SourceWeapon.ObjectID == EffectState.ApplyEffectParameters.ItemStateObjectRef.ObjectID)

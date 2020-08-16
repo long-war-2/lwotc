@@ -11,6 +11,8 @@ var config int FAILSAFE_PCT_CHANCE;
 var config int RESCUE_CV_CHARGES;
 var config int RESCUE_MG_CHARGES;
 var config int RESCUE_BM_CHARGES;
+var config int RESCUE_BONUS_DODGE;
+var config int RESCUE_BONUS_MOBILITY;
 var config int FULL_OVERRIDE_COOLDOWN;
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -452,6 +454,7 @@ static function X2AbilityTemplate AddRescueProtocol()
 	local X2Condition_UnitEffects			CommandRestriction;
 	local X2Effect_GrantActionPoints		ActionPointEffect;
 	local X2Effect_Persistent				ActionPointPersistEffect;
+	local X2Effect_PersistentStatChange		BonusEffect;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
 	local X2Condition_UnitActionPoints		ValidTargetCondition;
 
@@ -559,6 +562,13 @@ static function X2AbilityTemplate AddRescueProtocol()
     ActionPointPersistEffect.bRemoveWhenTargetDies = true;
     Template.AddTargetEffect(ActionPointPersistEffect);
 
+	BonusEffect = new class'X2Effect_PersistentStatChange';
+	BonusEffect.BuildPersistentEffect(1, false, true, , eGameRule_PlayerTurnBegin);
+	BonusEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	BonusEffect.AddPersistentStatChange(eStat_Dodge, default.RESCUE_BONUS_DODGE);
+	BonusEffect.AddPersistentStatChange(eStat_Mobility, default.RESCUE_BONUS_MOBILITY);
+
+	Template.AddTargetEffect(BonusEffect);
 	//Template.bSkipFireAction = true;
 
 	Template.bShowActivation = true;

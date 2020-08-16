@@ -15,7 +15,7 @@ var config int HEAT_WARHEADS_PIERCE;
 var config int HEAT_WARHEADS_SHRED;
 var config int BLUESCREENBOMB_HACK_DEFENSE_CHANGE;
 var config int VANISHINGACT_CHARGES;
-
+var config int NEEDLE_BONUS_UNARMORED_DMG;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -25,7 +25,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(PurePassive('Sapper', "img:///UILibrary_LW_Overhaul.LW_AbilitySapper", true));
 	Templates.AddItem(PurePassive('CombatEngineer', "img:///UILibrary_LW_Overhaul.LW_AbilityCombatEngineer", true));
 	Templates.AddItem(PurePassive('TandemWarheads', "img:///UILibrary_LW_Overhaul.LW_AbilityTandemWarheads", true));
-	Templates.AddItem(PurePassive('NeedleGrenades', "img:///UILibrary_LW_Overhaul.LW_AbilityNeedleGrenades", true));
+	//Templates.AddItem(PurePassive('NeedleGrenades', "img:///UILibrary_LW_Overhaul.LW_AbilityNeedleGrenades", true));
+	Templates.AddItem(NeedleGrenades());
 	Templates.AddItem(PurePassive('BluescreenBombs', "img:///UILibrary_LW_Overhaul.LW_AbilityBluescreenBombs", true));
 	
 	Templates.AddItem(AddHeavyOrdnance_LW());
@@ -405,6 +406,37 @@ static function X2AbilityTemplate AddVanishingActAbility()
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.GrenadeLostSpawnIncreasePerUse;
 
+	return Template;
+}
+
+
+static function X2AbilityTemplate NeedleGrenades()
+{
+	local X2AbilityTemplate				Template;
+	local X2Effect_NeedleGrenades		Bonus;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'NeedleGrenades');
+
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityNeedleGrenades";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bCrossClassEligible = true;
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+	Template.bShowActivation = false;
+
+	Bonus = new class'X2Effect_NeedleGrenades';
+	Bonus.BuildPersistentEffect(1, true, false, true);
+	Bonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
+	Bonus.BonusDamage = default.NEEDLE_BONUS_UNARMORED_DMG;
+
+	Template.AddTargetEffect(Bonus);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
 }
 

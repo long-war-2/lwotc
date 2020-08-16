@@ -612,7 +612,8 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 	local X2GrenadeTemplate                             GrenadeTemplate;
 	local int k;
 	local X2Effect_Persistent                           Effect;
-
+	local X2Condition_UnitProperty	UnitCondition;
+	local X2Effect_PersistentStatChange DisorientedEffect;
 	GrenadeTemplate = X2GrenadeTemplate(Template);
 	if(GrenadeTemplate == none)
 		return;
@@ -676,8 +677,16 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 			break;
 		case 'EMPGrenade':
 		case 'EMPGrenadeMk2':
-			GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2StatusEffects'.static.CreateDisorientedStatusEffect());
-			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2StatusEffects'.static.CreateDisorientedStatusEffect());
+
+			UnitCondition = new class'X2Condition_UnitProperty';
+			UnitCondition.ExcludeOrganic = true;
+			UnitCondition.IncludeWeakAgainstTechLikeRobot = true;
+			UnitCondition.ExcludeFriendlyToSource = false;
+	
+			DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+			DisorientedEffect.TargetConditions.AddItem(UnitCondition);
+			GrenadeTemplate.ThrownGrenadeEffects.AddItem(DisorientedEffect);
+			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(DisorientedEffect);
 			break;
 
 		default:
@@ -831,6 +840,10 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Condition_AbilityProperty		AbilityCondition;
 	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
 	local name 								HealType;
+	local X2Effect_SharpshooterAim_LW   	AimEffect;
+	local X2AbilityCooldown_Shared			CooldownShared;
+	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
 	{
@@ -1198,6 +1211,24 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'KillZone' || Template.DataName == 'Deadeye' || Template.DataName == 'BulletShred')
 	{
+		if (Template.DataName == 'KillZone')
+		{
+			ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+			ConeMultiTarget.bUseWeaponRadius = true;
+			ConeMultiTarget.ConeEndDiameter = 12 * class'XComWorldData'.const.WORLD_StepSize;
+			ConeMultiTarget.ConeLength = 18 * class'XComWorldData'.const.WORLD_StepSize;
+			Template.AbilityMultiTargetStyle = ConeMultiTarget;
+		}
+		if (Template.DataName == 'Deadeye')
+		{
+			Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+			CooldownShared = new class'X2AbilityCooldown_Shared';
+			CooldownShared.iNumTurns = class'X2Ability_SharpshooterAbilitySet'.default.DEADEYE_COOLDOWN;
+			CooldownShared.SharingCooldownsWith.AddItem('DeadeyeSnapShot');
+			Template.AbilityCooldown = CooldownShared;
+		
+			Template.AdditionalAbilities.AddItem('DeadeyeSnapShot');
+		}
 		for (k = 0; k < Template.AbilityCosts.length; k++)
 		{
 			ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[k]);
@@ -1463,7 +1494,17 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		HunkerDownEFfect.BuildPersistentEffect (1,,,, 7);
 		HunkerDownEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
 		Template.AddTargetEffect(HunkerDownEffect);
-		Template.AddTargetEffect(class'X2Ability_SharpshooterAbilitySet'.static.SharpshooterAimEffect());
+
+		//Replace the Aim effect with a LW one
+		AimEffect = new class'X2Effect_SharpshooterAim_LW';
+		AimEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnEnd);
+		AimEffect.SetDisplayInfo(ePerkBuff_Bonus, class'X2Ability_SharpshooterAbilitySet'.default.SharpshooterAimBonusName, class'X2Ability_SharpshooterAbilitySet'.default.SharpshooterAimBonusDesc, "img:///UILibrary_PerkIcons.UIPerk_aim");
+	
+		AbilityCondition = new class'X2Condition_AbilityProperty';
+		AbilityCondition.OwnerHasSoldierAbilities.AddItem('SharpshooterAim');
+		AimEffect.TargetConditions.AddItem(AbilityCondition);
+
+		Template.AddTargetEffect(AimEffect);
 	}
 
 	if (Template.DataName == 'Fuse' && default.FUSE_COOLDOWN > 0)
@@ -2189,6 +2230,9 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'AdvPriestM2_PsiAmp':
 			WeaponTemplate.Abilities.AddItem('Fortress');
 			break;
+		case 'AdvPurifierFlamethrower':
+			WeaponTemplate.iIdealRange = 7;
+			break;	
 
 		default:
 			break;

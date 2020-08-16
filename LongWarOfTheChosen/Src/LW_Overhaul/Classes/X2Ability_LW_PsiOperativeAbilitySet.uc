@@ -361,17 +361,19 @@ static function X2AbilityTemplate Create_SoulStorm()
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
-	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
-	Template.bFriendlyFireWarning = false;
+	//Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
+	Template.bFriendlyFireWarning = true;
+	Template.TargetingMethod = class'X2TargetingMethod_Grenade';
 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
 	CursorTarget.bRestrictToSquadsightRange = default.SOULSTORM_TARGET_TILE_MUST_BE_REVEALED;
 	CursorTarget.FixedAbilityRange = default.SOULSTORM_CAST_RANGE_TILES;
-	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTargetStyle = CursorTarget;
 
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.fTargetRadius = default.SOULSTORM_CAST_RADIUS_METERS;
 	RadiusMultiTarget.bIgnoreBlockingCover = true;
+	RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	//	Ability costs

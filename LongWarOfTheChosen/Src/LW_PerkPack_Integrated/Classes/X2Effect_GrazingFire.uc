@@ -13,22 +13,19 @@ function bool ChangeHitResultForAttacker(XComGameState_Unit Attacker, XComGameSt
 {
 	local int randroll, hitchance;
 
-	//`LOG ("Grazing Fire 1");
-	if (AbilityState.GetSourceWeapon() == Attacker.GetItemInSlot(eInvSlot_PrimaryWeapon))
+	//`LOG ("Grazing Fire 2");
+	if (class'XComGameStateContext_Ability'.static.IsHitResultMiss(CurrentResult))
 	{
-		//`LOG ("Grazing Fire 2");
-		if (class'XComGameStateContext_Ability'.static.IsHitResultMiss(CurrentResult))
+		//`LOG ("Grazing Fire 3");
+		RandRoll = `SYNC_RAND(100);
+		HitChance = SuccessChance - TargetUnit.GetCurrentStat(eStat_Dodge);
+		if (Randroll <= HitChance)
 		{
-			//`LOG ("Grazing Fire 3");
-			RandRoll = `SYNC_RAND(100);
-			HitChance = SuccessChance - TargetUnit.GetCurrentStat(eStat_Dodge);
-			if (Randroll <= HitChance)
-			{
-				//`LOG ("Grazing Fire 4");
-				NewHitResult = eHit_Graze;
-				return true;
-			}
+			//`LOG ("Grazing Fire 4");
+			NewHitResult = eHit_Graze;
+			return true;
 		}
 	}
+
 	return false;
 }
