@@ -38,6 +38,8 @@ var config int SUMMON_COOLDOWN;
 var config float MELEE_DAMAGE_REDUCTION;
 var config float EXPLOSIVE_DAMAGE_REDUCTION;
 
+var config int SCANNING_PROTOCOL_INITIAL_CHARGES;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
     // Override the FinalizeHitChance calculation for abilities that use standard aim
@@ -81,7 +83,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			UpdatePurifierFlamethrower(Template);
 			break;
 		case 'Fuse':
-			UpdateFuse(Template);
+			MakeFreeAction(Template);
 			break;
 		case 'PriestStasis':
 			MakeAbilityNonTurnEnding(Template);
@@ -101,7 +103,6 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Implacable':
 			ReplaceImplacableEffect(Template);
 			break;
-
 		default:
 			break;
 	}
@@ -558,7 +559,7 @@ static function MakeAbilityNonTurnEnding(X2AbilityTemplate Template)
 	}
 }
 
-static function UpdateFuse(X2AbilityTemplate Template)
+static function MakeFreeAction(X2AbilityTemplate Template)
 {
 	local X2AbilityCost Cost;
 
