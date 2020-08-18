@@ -105,6 +105,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'RetributionAttack':
 		case 'TemplarBladestormAttack':
 			MakeBladestormNotTriggerOnItsTurn(Template);
+			break;
 		//At this point trying to figure out why AI does not do the thing it's supposed to do takes way longer than just doing this
 		case 'GetOverHere':
 		case 'Bind':
