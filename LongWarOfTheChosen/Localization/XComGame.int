@@ -5921,4 +5921,12 @@ LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a sho
 [Deadeye X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/><Bullet/> Works with Snap Shot.<br/>"
 
+[XcomGame.X2StrategyGameRulesetDataStructures]
+[X2StrategyGameRulesetDataStructures]
+ComIntLabels[eComInt_Standard]="Very Low"
+ComIntLabels[eComInt_AboveAverage]="Low"
+ComIntLabels[eComInt_Gifted]="Average"
+ComIntLabels[eComInt_Genius]="High"
+ComIntLabels[eComInt_Savant]="Very High"
+
 ; End Translation

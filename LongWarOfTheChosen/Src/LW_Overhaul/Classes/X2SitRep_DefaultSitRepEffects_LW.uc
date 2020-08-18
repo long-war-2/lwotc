@@ -82,7 +82,7 @@ static function X2SitRepEffectTemplate CreateHighAlertDEEffectTemplate()
 	local X2SitRepEffect_ModifyTacticalStartState Template;
 
 	`CREATE_X2TEMPLATE(class'X2SitRepEffect_ModifyTacticalStartState', Template, 'DarkEventHighAlertEffect');
-	Template.DifficultyModifier = 5;
+	Template.DifficultyModifier = 2;
 	Template.ModifyTacticalStartStateFn = class'X2StrategyElement_XpackDarkEvents'.static.HighAlertTacticalStartModifier;
 
 	return Template;
@@ -93,7 +93,7 @@ static function X2SitRepEffectTemplate CreateInfiltratorDEEffectTemplate()
 	local X2SitRepEffectTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2SitRepEffectTemplate', Template, 'DarkEventInfiltratorEffect');
-	Template.DifficultyModifier = 5;
+	Template.DifficultyModifier = 7;
 
 	return Template;
 }
@@ -103,7 +103,7 @@ static function X2SitRepEffectTemplate CreateInfiltratorChryssalidDEEffectTempla
 	local X2SitRepEffectTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2SitRepEffectTemplate', Template, 'DarkEventInfiltratorChryssalidEffect');
-	Template.DifficultyModifier = 5;
+	Template.DifficultyModifier = 8;
 
 	return Template;
 }
@@ -113,7 +113,7 @@ static function X2SitRepEffectTemplate CreateRapidResponseDEEffectTemplate()
 	local X2SitRepEffectTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2SitRepEffectTemplate', Template, 'DarkEventRapidResponseEffect');
-	Template.DifficultyModifier = 5;
+	Template.DifficultyModifier = 10;
 
 	return Template;
 }
@@ -133,7 +133,7 @@ static function X2SitRepEffectTemplate CreateSealedArmorDEEffectTemplate()
 	local X2SitRepEffectTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2SitRepEffectTemplate', Template, 'DarkEventSealedArmorEffect');
-	Template.DifficultyModifier = 5;
+	Template.DifficultyModifier = 3;
 
 	return Template;
 }
@@ -143,7 +143,7 @@ static function X2SitRepEffectTemplate CreateUndyingLoyaltyDEEffectTemplate()
 	local X2SitRepEffectTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2SitRepEffectTemplate', Template, 'DarkEventUndyingLoyaltyEffect');
-	Template.DifficultyModifier = 5;
+	Template.DifficultyModifier = 8;
 
 	return Template;
 }
@@ -153,7 +153,7 @@ static function X2SitRepEffectTemplate CreateVigilanceDEEffectTemplate()
 	local X2SitRepEffectTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2SitRepEffectTemplate', Template, 'DarkEventVigilanceEffect');
-	Template.DifficultyModifier = 5;
+	Template.DifficultyModifier = 2;
 
 	return Template;
 }

@@ -35,7 +35,6 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_GatherIntel':
 		case 'CovertAction_ImproveComInt':
 		case 'CovertAction_FormSoldierBond':
-		case 'CovertAction_SharedAbilityPoints':
 		case 'CovertAction_AlienLoot':
 			ConfigureEasyCovertAction(CATemplate);
 			break;
@@ -46,6 +45,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_CancelChosenActivity':
 		case 'CovertAction_DelayChosen':
 		case 'CovertAction_ResistanceContact':
+		case 'CovertAction_SharedAbilityPoints':
 			ConfigureModerateCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RecruitExtraFactionSoldier':
