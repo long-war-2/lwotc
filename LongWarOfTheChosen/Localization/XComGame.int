@@ -696,20 +696,20 @@ LocFlyOverText="Elite Hair Trigger"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are impaired. Assault rifles, Cannons and Spark Rifles gain <Ability:STEADY_LOW_BONUS_MODIFIER/>x times the bonus and shotguns get <Ability:STEADY_HIGH_BONUS_MODIFIER/>x."
-LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not impaired nor take another action"
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
+LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are impaired. Assault rifles, Cannons and Spark Rifles gain <Ability:STEADY_LOW_BONUS_MODIFIER/>x times the bonus and shotguns get <Ability:STEADY_HIGH_BONUS_MODIFIER/>x."
-LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not impaired nor take another action"
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
+LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are impaired. Assault rifles, Cannons and Spark Rifles gain <Ability:STEADY_LOW_BONUS_MODIFIER/>x the bonus and shotguns get <Ability:STEADY_HIGH_BONUS_MODIFIER/>x."
-LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not impaired nor take another action"
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
+LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
 LocFlyOverText="Steady Weapon"
 
 ;End Translation (2)
