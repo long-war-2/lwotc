@@ -51,6 +51,7 @@ static function X2DataTemplate CreateIntenseTrainingTemplate()
 	Template.ChooseLocationFn = ChooseRandomRegion;
 	Template.OverworldMeshPath = "UI_3D.Overwold_Final.CovertAction";
 	Template.bMultiplesAllowed = true;
+	Template.RequiredFactionInfluence=eFactionInfluence_Respected;
 
 	Template.Narratives.AddItem('CovertActionNarrative_IntenseTraining_Skirmishers');
 	Template.Narratives.AddItem('CovertActionNarrative_IntenseTraining_Reapers');
