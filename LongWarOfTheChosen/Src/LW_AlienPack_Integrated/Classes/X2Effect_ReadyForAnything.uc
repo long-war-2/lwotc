@@ -1,4 +1,6 @@
-class X2Effect_ReadyForAnything extends X2Effect_Persistent;
+class X2Effect_ReadyForAnything extends X2Effect_Persistent config(LW_AlienPack);
+
+var config array <name> RFA_VALID_ABILITIES;
 
 function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStateContext_Ability AbilityContext, XComGameState_Ability kAbility, XComGameState_Unit SourceUnit, XComGameState_Item AffectWeapon, XComGameState NewGameState, const array<name> PreCostActionPoints, const array<name> PreCostReservePoints)
 {
@@ -32,7 +34,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
 	if (AbilityState != none)
 	{
-		if (kAbility.GetMyTemplateName() == 'StandardShot')
+		if (default.RFA_VALID_ABILITIES.Find(kAbility.GetMyTemplateName()) != INDEX_NONE)
 		{
 			if (SourceUnit.NumActionPoints() == 0)
 			{
