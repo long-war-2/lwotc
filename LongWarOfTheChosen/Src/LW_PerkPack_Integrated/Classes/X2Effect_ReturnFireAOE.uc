@@ -204,7 +204,7 @@ DefaultProperties
 {
 	EffectName = "ReturnFireAOE"
 	DuplicateResponse = eDupe_Ignore
-	AbilityToActivate = "PistolReturnFire"
+	AbilityToActivate = "PrimaryReturnFireShot"
 	GrantActionPoint = "returnfire"
 	MaxPointsPerTurn = 0
 	bPreEmptiveFire = false

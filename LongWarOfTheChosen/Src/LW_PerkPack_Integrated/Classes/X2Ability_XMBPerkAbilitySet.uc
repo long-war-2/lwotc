@@ -147,6 +147,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(InspireAgilityTrigger());
 	Templates.AddItem(DeadeyeSnapshotAbility());
 	Templates.AddItem(DeadeyeSnapShotDamage());
+	Templates.AddItem(PrimaryReturnFire());
+	Templates.AddItem(PrimaryReturnFireShot());
 	
 	return Templates;
 }
@@ -1483,8 +1485,7 @@ static function X2AbilityTemplate Avenger()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  NOTE: No visualization on purpose!
 	
-	// Although the ability name is PistolReturnFire, it will work with any gun
-	Template.AdditionalAbilities.AddItem('PistolReturnFire');
+	Template.AdditionalAbilities.AddItem('PrimaryReturnFireShot');
 
 	Template.bCrossClassEligible = false;
 
@@ -2061,6 +2062,148 @@ static function X2AbilityTemplate DeadeyeSnapShotDamage()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  NOTE: No visualization on purpose!
+
+	return Template;
+}
+
+static function X2AbilityTemplate PrimaryReturnFire()
+{
+	local X2AbilityTemplate						Template;
+	local X2AbilityTargetStyle                  TargetStyle;
+	local X2AbilityTrigger						Trigger;
+	local X2Effect_ReturnFire                   FireEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'PrimaryReturnFire');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_returnfire";
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	FireEffect = new class'X2Effect_ReturnFire';
+	FireEffect.BuildPersistentEffect(1, true, false, false, eGameRule_PlayerTurnBegin);
+	FireEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
+	FireEffect.EffectName = 'PrimaryReturnFireShot';
+	FireEffect.AbilityToActivate = 'PrimaryReturnFireShot';
+	FireEffect.bDirectAttackOnly = false;
+	FireEffect.bOnlyWhenAttackMisses = false;
+	Template.AddTargetEffect(FireEffect);
+
+	Template.AdditionalAbilities.AddItem('PrimaryReturnFireShot');
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  NOTE: No visualization on purpose!
+
+	Template.bCrossClassEligible = false;       //  this can only work with pistols, which only sharpshooters have
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate PrimaryReturnFireShot()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
+	local X2AbilityToHitCalc_StandardAim    StandardAim;
+	local X2Condition_UnitProperty          ShooterCondition;
+	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
+	local X2AbilityTarget_Single            SingleTarget;
+	local X2AbilityTrigger_EventListener	Trigger;
+	local X2Effect_Knockback				KnockbackEffect;
+	local array<name>                       SkipExclusions;
+	local X2Condition_Visibility            TargetVisibilityCondition;
+	local X2AbilityCost_Ammo				AmmoCost;
+
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'PrimaryReturnFireShot');
+
+	Template.bDontDisplayInAbilitySummary = true;
+	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
+	ReserveActionPointCost.iNumPoints = 1;
+	ReserveActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint);
+	ReserveActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.ReturnFireActionPoint);
+	Template.AbilityCosts.AddItem(ReserveActionPointCost);
+
+	//	pistols are typically infinite ammo weapons which will bypass the ammo cost automatically.
+	//  but if this ability is attached to a weapon that DOES use ammo, it should use it.
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+	
+	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+	StandardAim.bReactionFire = true;
+	Template.AbilityToHitCalc = StandardAim;
+	Template.AbilityToHitOwnerOnMissCalc = StandardAim;
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);	
+	TargetVisibilityCondition = new class'X2Condition_Visibility';
+	TargetVisibilityCondition.bRequireGameplayVisible = true;
+	TargetVisibilityCondition.bRequireBasicVisibility = true;
+	TargetVisibilityCondition.bDisablePeeksOnMovement = false; //Don't use peek tiles for over watch shots	
+	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+
+	Template.AbilityTargetConditions.AddItem(new class'X2Condition_EverVigilant');
+	Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);	
+	ShooterCondition = new class'X2Condition_UnitProperty';
+	ShooterCondition.ExcludeConcealed = true;
+	Template.AbilityShooterConditions.AddItem(ShooterCondition);
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+	
+	SingleTarget = new class'X2AbilityTarget_Single';
+	SingleTarget.OnlyIncludeTargetsInsideWeaponRange = true;
+	Template.AbilityTargetStyle = SingleTarget;
+
+	//Trigger on movement - interrupt the move
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.EventID = 'ObjectMoved';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.Filter = eFilter_None;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	Template.CinescriptCameraType = "StandardGunFiring";	
+	
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_overwatch";
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.PISTOL_OVERWATCH_PRIORITY;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.DisplayTargetHitChance = false;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.bAllowFreeFireWeaponUpgrade = false;	
+	Template.bAllowAmmoEffects = true;
+
+	// Damage Effect
+	//
+	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	Template.AddTargetEffect(WeaponDamageEffect);
+	Template.bAllowBonusWeaponEffects = true;
+	
+	KnockbackEffect = new class'X2Effect_Knockback';
+	KnockbackEffect.KnockbackDistance = 2;
+	Template.AddTargetEffect(KnockbackEffect);
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_returnfire";
+	Template.bShowPostActivation = true;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
 
 	return Template;
 }
