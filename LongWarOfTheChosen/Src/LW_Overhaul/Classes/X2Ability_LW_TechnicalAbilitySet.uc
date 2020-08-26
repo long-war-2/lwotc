@@ -1209,12 +1209,19 @@ static function name ApplyChance_Concussion_Stunned (const out EffectAppliedData
 {
 	local XComGameState_Unit UnitState;
 	local int RandRoll;
+	local XComGameState_Ability AbilityState;
+	local XComGameState_Item SourceItemState;
+	local X2MultiWeaponTemplate MultiWeaponTemplate;
+
+	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
+	SourceItemState = XComGameState_Item( `XCOMHISTORY.GetGameStateForObjectID( AbilityState.SourceWeapon.ObjectID ) );
+	MultiWeaponTemplate = X2MultiWeaponTemplate(SourceItemState.GetMyTemplate());
 
 	UnitState = XComGameState_Unit(kNewTargetState);
 	RandRoll = `SYNC_RAND_STATIC(100);
-	if (UnitState != none)
+	if (UnitState != none && MultiWeaponTemplate != none)
 	{
-		if (RandRoll >= UnitState.GetCurrentStat (eStat_Will) - default.CONCUSSION_ROCKET_TARGET_WILL_MALUS_STUN)
+		if (RandRoll >= UnitState.GetCurrentStat (eStat_Will) - default.CONCUSSION_ROCKET_TARGET_WILL_MALUS_STUN - MultiWeaponTemplate.iAltStatStrength + 50 )
 		{
 			return 'AA_Success';
 		}

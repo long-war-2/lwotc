@@ -281,9 +281,9 @@ LocPromotionPopupText="<Bullet/> Once per mission, fire a pistol shot that canno
 [Gunslinger X2AbilityTemplate]
 LocFriendlyName="Gunslinger"
 LocFlyOverText="Gunslinger"
-LocLongDescription="Take a reaction shot with your pistol against any enemy that moves or attacks within 12 tiles and a wide cone of fire."
-LocHelpText="Enhanced pistol overwatch in a cone of fire."
-LocPromotionPopupText="<Bullet/> Range is 12 tiles.<br/><Bullet/> Three-turn cooldown.<br/>"
+LocLongDescription="Take a reaction shot that can crit with your pistol against any enemy that moves or attacks within 8 tiles."
+LocHelpText="Enhanced radial pistol ovewatch."
+LocPromotionPopupText="<Bullet/> Range is 8 tiles.<br/><Bullet/> 3 turn cooldown.<br/>"
 
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="Hyper-Reactive Pupils"
@@ -304,7 +304,7 @@ LocFriendlyName="Locked On"
 LocFlyOverText="Locked On"
 LocLongDescription="Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for successive shots at the same enemy unit."
 LocHelpText="Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for successive shots at the same enemy unit."
-LocPromotionPopupText="<Bullet/> Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for repeated shots with your primary weapon at the same target. Not cumulative, and only applies to enemy units.<br/><Bullet/> Area-of-Effect-based shots do not grant the bonus."
+LocPromotionPopupText="<Bullet/> Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for repeated shots at the same target. Not cumulative, and only applies to enemy units.<br/><Bullet/> Area-of-Effect-based shots do not grant the bonus."
 
 [Sentinel_LW X2AbilityTemplate]
 LocFriendlyName="Sentinel"

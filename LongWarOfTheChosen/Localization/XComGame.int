@@ -273,7 +273,7 @@ LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
 LocLongDescription="Fire a special rocket that does limited damage but has a chance to stun or disorient organic enemies within its area of effect and leaves a cloud of smoke."
 LocHelpText="Rocket that stuns or disorients targets and leaves a smoke cloud. <Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun and disorientation chances based on target's will score.<br/><Bullet/> Requires one action and ends the soldier's turn."
+LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun and disorientation chances based on target's will score and Soldier's gauntlet Tier.<br/><Bullet/> Requires one action and ends the soldier's turn."
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -379,10 +379,10 @@ LocPromotionPopupText="<Bullet/> More powerful than Sapper by itself, Combat Eng
 
 [NeedleGrenades X2AbilityTemplate]
 LocFriendlyName="Needle Grenades"
-LocLongDescription="Your explosives do not destroy loot when they kill enemies."
-LocHelpText="Your explosives do not destroy loot when they kill enemies."
+LocLongDescription="Your explosives do not destroy loot when they kill enemies and deal 1 bonus damage to unarmored enemies"
+LocHelpText="Your explosives do not destroy loot when they kill enemies and deal 1 bonus damage to unarmored enemies."
 LocFlyOverText="Needle Grenades"
-LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot intact."
+LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot intact, and tears through not reinforced material."
 
 [HEATWarheads X2AbilityTemplate]
 LocFriendlyName="HEAT Warheads"
@@ -4955,9 +4955,9 @@ LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field p
 
 ; LWOTC Needs Translation
 [SoulSteal X2AbilityTemplate]
-LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health or grants an ablative HP if you are uninjured, but increases the cooldown of soulfire by 1."
-LocHelpText="Soulfire heals a wounded operative or grants an ablative HP, but increases soulfire cooldown by 1"
-LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 3/4/6 ablative hit point for a healthy one.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
+LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns, but increases the cooldown of soulfire by 1."
+LocHelpText="Soulfire heals a wounded operative and grants ablative HP, but increases soulfire cooldown by 1"
+LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 4/6/8 ablative hit point for 3 turns.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
@@ -5012,14 +5012,14 @@ LocPromotionPopupText="<Bullet/> Activate to fire a standard shot and gain a sec
 LocFriendlyName="Double Tap"
 LocFlyOverText="Double Tap"
 
+; LWOTC Needs Translation
 [RescueProtocol X2AbilityTemplate]
 LocFriendlyName="Rescue Protocol"
 LocFlyoverText="Rescue Protocol"
-LocLongDescription="Use your Gremlin to grant a movement action to an ally."
-LocHelpText="Grant a movement action to an ally."
+LocLongDescription="Use your Gremlin to grant a movement action to an ally and grant them a small boost to dodge and mobility."
+LocHelpText="Grant a movement action to an ally and grant them a small boost to dodge and mobility."
 LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/>An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
 
-; LWOTC Needs Translation
 [Blademaster X2AbilityTemplate]
 LocLongDescription="All melee attacks deal +<Ability:BlademasterDmg/> extra damage and have +<Ability:BLADEMASTERAIM/> Aim."
 LocHelpText="Extra damage and aim on all melee attacks."
@@ -5896,6 +5896,17 @@ LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a sho
 [Deadeye X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Works With Snap Shot.<br/>"
 
+[PrimaryReturnFire X2AbilityTemplate]
+LocFriendlyName="Return Fire"
+LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
+LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
+LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and Area of Effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by Overwatch fire.<br/>"
+
+[PrimaryReturnFireShot X2AbilityTemplate]
+LocFriendlyName="Return Fire"
+LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
+LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
+LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and Area of Effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by Overwatch fire.<br/>"
 
 [XcomGame.X2StrategyGameRulesetDataStructures]
 [X2StrategyGameRulesetDataStructures]
