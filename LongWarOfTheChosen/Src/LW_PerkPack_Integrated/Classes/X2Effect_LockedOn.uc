@@ -26,7 +26,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	local UnitValue ShotsValue, TargetValue;
 
 	SourceWeapon = AbilityState.GetSourceWeapon();
-	if (SourceWeapon != none && SourceWeapon.InventorySlot == eInvSlot_PrimaryWeapon && !bIndirectFire)
+	if (SourceWeapon != none && !bIndirectFire)
 	{
 		Attacker.GetUnitValue('ZeroInShots', ShotsValue);
 		Attacker.GetUnitValue('ZeroInTarget', TargetValue);

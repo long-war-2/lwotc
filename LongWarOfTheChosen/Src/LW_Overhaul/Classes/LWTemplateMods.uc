@@ -834,6 +834,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local name 								HealType;
 	local X2Effect_SharpshooterAim_LW   	AimEffect;
 	local X2AbilityCooldown_Shared			CooldownShared;
+	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
 	{
@@ -1202,6 +1204,14 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'KillZone' || Template.DataName == 'Deadeye' || Template.DataName == 'BulletShred')
 	{
+		if(Template.DataName == 'KillZone')
+		{
+			ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+			ConeMultiTarget.bUseWeaponRadius = true;
+			ConeMultiTarget.ConeEndDiameter = 12 * class'XComWorldData'.const.WORLD_StepSize;
+			ConeMultiTarget.ConeLength = 18 * class'XComWorldData'.const.WORLD_StepSize;
+			Template.AbilityMultiTargetStyle = ConeMultiTarget;
+		}
 		if(Template.DataName == 'Deadeye')
 		{
 			Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
