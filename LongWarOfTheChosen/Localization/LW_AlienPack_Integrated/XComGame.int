@@ -84,9 +84,9 @@ LocPromotionPopupText="<Bullet/> Reanimate all nearby dead organics, turning the
 [ReadyForAnything X2AbilityTemplate]
 LocFriendlyName="Ready For Anything"
 LocFlyOverText="Overwatch: Ready For Anything"
-LocHelpText="Enter overwatch after firing a standard shot with your primary weapon."
-LocLongDescription="Enter overwatch after firing a standard shot with your primary weapon."
-LocPromotionPopupText="<Bullet/> Enter overwatch after firing a standard shot with your primary weapon."
+LocHelpText="Enter overwatch after firing a turn ending standard shot with your primary weapon."
+LocLongDescription="Enter overwatch after firing a turn ending standard shot  with your primary weapon."
+LocPromotionPopupText="<Bullet/> Enter overwatch after firing a turn ending standard shot with your primary weapon."
 
 [ReadyForAnythingFlyover X2AbilityTemplate]
 LocFriendlyName="Ready For Anything"

@@ -40,7 +40,7 @@ var config int CLUTCH_SHOT_MIN_ACTION_REQ;
 var config int CLUTCH_SHOT_AMMO_COST;
 var config int CLUTCH_SHOT_CHARGES;
 var config int GUNSLINGER_COOLDOWN;
-var config int GUNSLINGER_TILES_RANGE;
+var config int GUNSLINGER_METERS_RANGE;
 var config int STEADY_WEAPON_AIM_BONUS;
 var config int AREA_SUPPRESSION_AMMO_COST;
 var config int AREA_SUPPRESSION_MAX_SHOTS;
@@ -1680,11 +1680,11 @@ static function X2AbilityTemplate AddGunslingerAbility()
 	local X2AbilityCooldown					Cooldown;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Radius		RadiusMultiTarget;
 	local X2Effect_ReserveActionPoints		ReservePointsEffect;
 	local X2Effect_MarkValidActivationTiles MarkTilesEffect;
 	local X2Condition_UnitEffects           SuppressedCondition;
+	local X2AbilityTarget_Cursor			CursorTarget;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'Gunslinger');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityGunslinger";
@@ -1726,15 +1726,17 @@ static function X2AbilityTemplate AddGunslingerAbility()
 	Template.AbilityCooldown = Cooldown;
 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
-	CursorTarget.bRestrictToWeaponRange = true;
+	CursorTarget.FixedAbilityRange = 1;
+	CursorTarget.bRestrictToSquadsightRange = true;
 	Template.AbilityTargetStyle = CursorTarget;
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
-	ConeMultiTarget.bUseWeaponRadius = true;
-	ConeMultiTarget.ConeEndDiameter = 48 * class'XComWorldData'.const.WORLD_StepSize;
-	ConeMultiTarget.ConeLength = default.GUNSLINGER_TILES_RANGE * class'XComWorldData'.const.WORLD_StepSize;
-	Template.AbilityMultiTargetStyle = ConeMultiTarget;
+
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.fTargetRadius = default.GUNSLINGER_METERS_RANGE;
+	//RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
+	RadiusMultiTarget.bUseWeaponRadius = true;
+	RadiusMultiTarget.bIgnoreBlockingCover = true;
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
 	ReservePointsEffect = new class'X2Effect_ReserveActionPoints';
 	ReservePointsEffect.ReserveType = class'X2Ability_SharpshooterAbilitySet'.default.KillZoneReserveType;
@@ -1744,6 +1746,7 @@ static function X2AbilityTemplate AddGunslingerAbility()
 	MarkTilesEffect.AbilityToMark = 'GunslingerShot';
 	Template.AddShooterEffect(MarkTilesEffect);
 
+	Template.TargetingMethod = class'X2TargetingMethod_Grenade';
 	Template.AdditionalAbilities.AddItem('GunslingerShot');
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
@@ -1786,6 +1789,7 @@ static function X2AbilityTemplate GunslingerShot()
 	Template.AbilityCosts.AddItem(ReserveActionPointCost);
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bReactionFire = true;
+	StandardAim.bAllowCrit = true;
 	Template.AbilityToHitCalc = StandardAim;
 	Template.AbilityToHitOwnerOnMissCalc = StandardAim;
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
@@ -4074,7 +4078,7 @@ static function X2AbilityTemplate AddSoulStealTriggered2()
 	local X2AbilityTemplate                 Template;
 	local X2AbilityTrigger_EventListener    EventListener;
 	local X2Condition_UnitProperty          ShooterProperty;
-	local X2Condition_UnitStatCheck			ShooterProperty2, ShooterProperty3;
+	local X2Condition_UnitStatCheck			ShooterProperty3;
 	local X2Effect_SoulSteal_LW             StealEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'SoulStealTriggered2');
@@ -4095,9 +4099,9 @@ static function X2AbilityTemplate AddSoulStealTriggered2()
 	ShooterProperty.ExcludeFullHealth = false;
 	Template.AbilityShooterConditions.AddItem(ShooterProperty);
 
-	ShooterProperty2 = new class'X2Condition_UnitStatCheck';
-	ShooterProperty2.AddCheckStat(eStat_HP, 100, eCheck_Exact,,, true);
-	Template.AbilityShooterConditions.AddItem(ShooterProperty2);
+	//ShooterProperty2 = new class'X2Condition_UnitStatCheck';
+	//ShooterProperty2.AddCheckStat(eStat_HP, 100, eCheck_Exact,,, true);
+	//Template.AbilityShooterConditions.AddItem(ShooterProperty2);
 
 	ShooterProperty3 = new class'X2Condition_UnitStatCheck';
 	ShooterProperty3.AddCheckStat(eStat_ShieldHP, default.MAX_ABLATIVE_FROM_SOULSTEAL, eCheck_LessThan);
@@ -4111,22 +4115,35 @@ static function X2AbilityTemplate AddSoulStealTriggered2()
 	Template.AbilityTriggers.AddItem(EventListener);
 
 	StealEffect = new class'X2Effect_SoulSteal_LW';
-	StealEffect.BuildPersistentEffect (1, true, false);
+	StealEffect.BuildPersistentEffect(3, false, true, false, eGameRule_PlayerTurnBegin);
+	StealEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	StealEffect.SoulStealM1Shield = default.SOULSTEAL_M1_SHIELD;
 	StealEffect.SoulStealM2Shield = default.SOULSTEAL_M2_SHIELD;
 	StealEffect.SoulStealM3Shield = default.SOULSTEAL_M3_SHIELD;
-
+	StealEffect.EffectRemovedVisualizationFn = OnShieldRemoved_BuildVisualization;
 	Template.AddShooterEffect(StealEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildVisualizationFn = none;
 	Template.FrameAbilityCameraType = eCameraFraming_Never;
-	Template.bShowActivation = true;
+	Template.bShowActivation = false;
 	Template.bSkipExitCoverWhenFiring = true;
-	Template.CustomFireAnim = 'ADD_NO_Psi_CastAdditive';
-	Template.ActionFireClass = class'X2Action_Fire_AdditiveAnim';
+	Template.CustomFireAnim = '';
+	//Template.ActionFireClass = class'X2Action_Fire_AdditiveAnim';
 
 	return Template;
+}
+
+
+simulated function OnShieldRemoved_BuildVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult)
+{
+	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
+
+	if (XGUnit(ActionMetadata.VisualizeActor).IsAlive())
+	{
+		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
+		SoundAndFlyOver.SetSoundAndFlyOverParameters(None, class'XLocalizedData'.default.ShieldRemovedMsg, '', eColor_Bad, , 0.75, true);
+	}
 }
 
 // WOTC: This stuff was in XComGameState_Ability under XComGame, but I don't see why it should
