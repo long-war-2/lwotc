@@ -14,7 +14,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStateContext_Ability AbilityContext, XComGameState_Ability kAbility, XComGameState_Unit SourceUnit, XComGameState_Item AffectWeapon, XComGameState NewGameState, const array<name> PreCostActionPoints, const array<name> PreCostReservePoints)
 {
 	local XComGameState_Ability					AbilityState;
-
+	local int i;
 	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
 	//`LOG ("DT1:" @ AbilityState.GetMyTemplateName());
 	if (AbilityState != none)
@@ -23,8 +23,10 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 		if (kAbility.GetMyTemplateName() == 'DoubleTap2')
 		{
 			//`LOG ("DT3");
-			SourceUnit.ActionPoints.AddItem(class'X2Ability_LW_SharpshooterAbilitySet'.default.DoubleTapActionPoint);
-			SourceUnit.ActionPoints.AddItem(class'X2Ability_LW_SharpshooterAbilitySet'.default.DoubleTapActionPoint);
+			for(i=0; i< PreCostActionPoints.Length; i++) 
+			{
+				SourceUnit.ActionPoints.AddItem(class'X2Ability_LW_SharpshooterAbilitySet'.default.DoubleTapActionPoint);
+			}
 			`XEVENTMGR.TriggerEvent('DoubleTap', AbilityState, SourceUnit, NewGameState);
 		}
 	}
