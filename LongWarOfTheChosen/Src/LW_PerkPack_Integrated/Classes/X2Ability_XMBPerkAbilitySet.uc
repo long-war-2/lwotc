@@ -427,7 +427,7 @@ static function X2AbilityTemplate LW_LeadTheTarget()
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.iNumPoints = 2;
 	ActionPointCost.bConsumeAllPoints = true;   //  this will guarantee the unit has at least 1 action point
 	ActionPointCost.bFreeCost = true;           //  ReserveActionPoints effect will take all action points away
 	ActionPointCost.DoNotConsumeAllEffects.Length = 0;
@@ -1641,6 +1641,7 @@ static function X2AbilityTemplate SuperCharge()
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('LW_UnlimitedPower');
 	ActionPointCost.bConsumeAllPoints = true;
 
 	Template.AbilityCosts.AddItem(ActionPointCost);

@@ -5632,7 +5632,7 @@ LocPromotionPopupText="<Bullet/> Shots fired with your <Ability:WeaponName/> pie
 [LW_Reposition X2AbilityTemplate]
 LocFriendlyName="Reposition"
 LocFlyOverText="Reposition"
-LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon. "
+LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon. Does not work with hit and run."
 LocHelpText="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon."
 LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon.<br/>
 
@@ -5748,9 +5748,9 @@ LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOC
 
 [LW_AimAssist X2AbilityTemplate]
 LocFriendlyName = "Aim Assist"
-LocHelpText = "Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> against holotargeted units."
-LocLongDescription = "Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> against holotargeted units."
-LocPromotionPopupText = "<Bullet/> Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> against holotargeted units. <br/>"
+LocHelpText = "Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> crit against holotargeted units."
+LocLongDescription = "Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> crit against holotargeted units."
+LocPromotionPopupText = "<Bullet/> Gain additional +<Ability:AIM_ASSIST_AIM_BONUS/> aim and +<Ability:AIM_ASSIST_CRIT_BONUS/> crit against holotargeted units. <br/>"
 
 [LW_SuperCharge X2AbilityTemplate]
 LocFriendlyName = "Arc Welder"
@@ -5768,7 +5768,7 @@ LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PEN/> pe
 LocFriendlyName = "Unlimited Power"
 LocHelpText = "Firing your arc thrower no longer ends your turn."
 LocLongDescription = "Firing your arc thrower no longer ends your turn."
-LocPromotionPopupText = "<Bullet/> Works only for the arc thrower stun ability. <br/>"
+LocPromotionPopupText = "<Bullet/> Works for all arc thrower abilities <br/>"
 
 [LW_Overkill X2AbilityTemplate]
 LocFriendlyName = "Overkill"
@@ -5791,9 +5791,9 @@ LocPromotionPopupText="<Bullet/>Attack any enemy within blue movement range with
 [LW_InspireAgility X2AbilityTemplate]
 LocFriendlyName="Inspire Agility"
 LocFlyOverText="Inspire Agility"
-LocLongDescription="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn."
+LocLongDescription="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. Starts with one charge, and is a free action"
 LocHelpText="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn."
-LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:+INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. <br/> <Bullet/> Starts with one charge <br/>"
+LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:+INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. <br/> <Bullet/> Starts with one charge, and is a free action. <br/>"
 
 [DeadeyeSnapShot X2AbilityTemplate]
 LocFriendlyName="Deadeye (Snap Shot)"

@@ -101,6 +101,7 @@ static function X2AbilityTemplate AddArcthrowerStun()
 	// Action Point
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('LW_UnlimitedPower');
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);	
 
@@ -328,6 +329,7 @@ static function X2AbilityTemplate AddEMPulser()
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = true;
+	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('LW_UnlimitedPower');
 	Template.AbilityCosts.AddItem(ActionPointCost);	
 
 	// Hit Calculation (Different weapons now have different calculations for range)
@@ -602,6 +604,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	// Action Point
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = default.CHAIN_LIGHTNING_MIN_ACTION_REQ;
+	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('LW_UnlimitedPower');
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);	
 
