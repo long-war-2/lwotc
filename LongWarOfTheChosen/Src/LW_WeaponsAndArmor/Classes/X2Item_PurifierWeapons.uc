@@ -51,6 +51,7 @@ static function X2DataTemplate CreateTemplate_AdvPurifierPistolM1_WPN()
 	Template.Abilities.AddItem('PistolOverwatchShot');
 	Template.Abilities.AddItem('HotLoadAmmo');
 	Template.Abilities.AddItem('Reload');
+	Template.Abilities.AddItem('PistolReturnFire');
 
 	Template.SetAnimationNameForAbility('FanFire', 'FF_FireMultiShotMagA');
 	
@@ -99,6 +100,7 @@ static function X2DataTemplate CreateTemplate_AdvPurifierPistolM2_WPN()
 	Template.Abilities.AddItem('PistolOverwatchShot');
 	Template.Abilities.AddItem('HotLoadAmmo');
 	Template.Abilities.AddItem('Reload');
+	Template.Abilities.AddItem('PistolReturnFire');
 
 	Template.SetAnimationNameForAbility('FanFire', 'FF_FireMultiShotMagA');
 	
@@ -147,6 +149,7 @@ static function X2DataTemplate CreateTemplate_AdvPurifierPistolM3_WPN()
 	Template.Abilities.AddItem('PistolOverwatchShot');
 	Template.Abilities.AddItem('HotLoadAmmo');
 	Template.Abilities.AddItem('Reload');
+	Template.Abilities.AddItem('PistolReturnFire');
 
 	Template.SetAnimationNameForAbility('FanFire', 'FF_FireMultiShotMagA');
 	
