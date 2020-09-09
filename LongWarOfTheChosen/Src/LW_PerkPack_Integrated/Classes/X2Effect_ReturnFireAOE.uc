@@ -52,7 +52,12 @@ static function EventListenerReturn ReturnFireAOECheck(Object EventData, Object 
 	    EffectState = XComGameState_Effect(CallbackData);
         CoveringUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 		AttackingUnit = class'X2TacticalGameRulesetDataStructures'.static.GetAttackingUnitState(GameState);
-        TargetUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+		TargetUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+		
+		if( TargetUnit == none)
+		{	
+		return ELR_NoInterrupt;
+		}
 		if (AttackingUnit != none && AttackingUnit.IsEnemyUnit(CoveringUnit))
 		{
 			//`LOG("=== ReturnFireAOECheck 2");
