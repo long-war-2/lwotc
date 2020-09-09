@@ -177,7 +177,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.NONE_SHALL_PASS_TILE_RANGE);	
 			return true;				
 		case 'BRUTALITY_TILE_RADIUS':
-			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.BRUTALITY_TILE_RADIUS);	
+			OutString = string(int(class'X2Ability_XMBPerkAbilitySet'.default.BRUTALITY_TILE_RADIUS));	
 			return true;					
 		case 'BRUTALITY_PANIC_CHANCE':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.BRUTALITY_PANIC_CHANCE);	
@@ -277,6 +277,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'DISORIENTED_AIM_ADJUST':
 			OutString = string (class 'X2StatusEffects'.default.DISORIENTED_AIM_ADJUST);
+			return true;
+		case 'WALK_FIRE_DMG':
+			OutString = string (int(class 'X2Effect_WalkFireDamage'.default.WALK_FIRE_DAMAGE_MODIFIER * -100));
 			return true;
         default:
             return false;
