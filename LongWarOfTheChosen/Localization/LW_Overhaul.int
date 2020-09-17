@@ -682,7 +682,7 @@ m_strVIPCaptureReward="(VIP Capture Only)"
 strDisabledTutorialTooltip="Tutorial is disabled while running Long War of the Chosen"
 strDisabledNarrativeContentTooltip="Lost and Abandoned is disabled while running Long War of the Chosen"
 strDisabledPrecisionExplosivesTooltip="Precision Explosives is disabled while running Long War of the Chosen"
-; LWOTC Needs Translation
+; End Translation
 
 [UICovertActionReport_LW]
 strCovertActionFailed="FAILED"
