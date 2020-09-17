@@ -2145,36 +2145,6 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'TheLostDasherHP12':
 			Template.DefaultLoadout='TheLostDasherTier4_Loadout';
 			break;
-		/*
-		case 'ChosenSniper':
-		case 'ChosenSniperM2':
-		case 'ChosenSniperM3':
-		case 'ChosenSniperM4':
-			Template.Abilities.AddItem('Yoink');
-			Template.Abilities.AddItem('HunterReaction');
-			Template.Abilities.AddItem('ChosenCritImmune');
-			Template.ImmuneTypes.AddItem('Frost');
-			break;
-		case 'ChosenWarlock':
-		case 'ChosenWarlockM2':
-		case 'ChosenWarlockM3':
-		case 'ChosenWarlockM4':
-			Template.Abilities.AddItem('WarlockReaction');
-			Template.Abilities.AddItem('DetonateMindshield_LW');
-			Template.Abilities.AddItem('ShieldAlly_LW');
-			Template.Abilities.AddItem('AmmoDump_LW');
-			Template.Abilities.AddItem('ChosenCritImmune');
-			Template.ImmuneTypes.AddItem('Frost');
-			break;
-		case 'ChosenAssassin':
-		case 'ChosenAssassinM2':
-		case 'ChosenAssassinM3':
-		case 'ChosenAssassinM4':
-			Template.Abilities.AddItem('AssassinReaction');
-			Template.Abilities.AddItem('ChosenCritImmune');
-			Template.ImmuneTypes.AddItem('Frost');
-			break;
-		*/
 		default:
 			break;
 	}
