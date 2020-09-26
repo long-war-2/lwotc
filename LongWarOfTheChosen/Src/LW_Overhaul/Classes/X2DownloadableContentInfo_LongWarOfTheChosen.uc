@@ -22,6 +22,26 @@ struct MinimumInfilForConcealEntry
 	var float MinInfiltration;
 };
 
+struct ChosenStrengthWeighted
+{
+	var name Strength;
+	var float Weight;
+};
+var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T1;
+var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T2;
+var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T3;
+var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T4;
+
+var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T1;
+var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T2;
+var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T3;
+var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T4;
+
+var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T1;
+var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T2;
+var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T3;
+var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T4;
+
 var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
 
 struct ArchetypeToHealth
@@ -70,6 +90,7 @@ var config array<PlotObjectiveMod> PlotObjectiveMods;
 // This is used in FinalizeUnitAbilitiesForInit() to patch existing
 // abilities for non-XCOM units.
 var config array<name> PrimaryWeaponAbilities;
+var config array<name> SecondaryWeaponWeaponAbilities;
 
 // Configurable list of parcels to remove from the game.
 var config array<String> ParcelsToRemove;
@@ -1267,6 +1288,12 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			`LWTrace(" >>> Binding ability '" $ SetupData[i].TemplateName $ "' to primary weapon for unit " $ UnitState.GetMyTemplateName());
 			SetupData[i].SourceWeaponRef = UnitState.GetPrimaryWeapon().GetReference();
 		}
+
+		if (default.SecondaryWeaponWeaponAbilities.Find(SetupData[i].TemplateName) != INDEX_NONE && SetupData[i].SourceWeaponRef.ObjectID == 0)
+		{
+			`LWTrace(" >>> Binding ability '" $ SetupData[i].TemplateName $ "' to Secondary weapon for unit " $ UnitState.GetMyTemplateName());
+			SetupData[i].SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();
+		}	
 	}
 
 	// Prevent units summoned by the Chosen from dropping loot and corpses
@@ -2471,8 +2498,147 @@ static function ActivateTraining(XComGameState NewGameState, StateObjectReferenc
 	}
 
 	// Gain New Traits
-	ChosenState.GainNewStrengths(NewGameState, class'XComGameState_AdventChosen'.default.NumStrengthsPerLevel);
+	GainNewStrengths(NewGameState, class'XComGameState_AdventChosen'.default.NumStrengthsPerLevel, ChosenState);
+
 }
+
+static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPerLevel, XComGameState_AdventChosen ChosenState)
+{
+	local X2CharacterTemplate ChosenTemplate;
+	local array<ChosenStrengthWeighted> ChosenStrengths , ValidChosenStrengths;	
+	local ChosenStrengthWeighted WStrength;
+	local X2AbilityTemplate TraitTemplate;
+	local X2AbilityTemplateManager AbilityMgr;
+	local float finder, selection, TotalWeight;
+	local name Traitname, ExcludeTraitName;
+	local int i;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+
+	AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+	ChosenTemplate = ChosenState.GetChosenTemplate();
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+
+	if(ChosenTemplate.CharacterGroupName == 'ChosenSniper')
+	{
+
+		if(AlienHQ.GetForceLevel() > 14)
+		{
+			ChosenStrengths = default.HUNTER_STRENGTHS_T3;
+		}
+		else if(AlienHQ.GetForceLevel() > 9)
+		{
+			ChosenStrengths = default.HUNTER_STRENGTHS_T2;
+		}
+		else 
+		{
+			ChosenStrengths = default.HUNTER_STRENGTHS_T1;
+		}
+	}
+	if(ChosenTemplate.CharacterGroupName == 'ChosenWarlock')
+	{
+		if(AlienHQ.GetForceLevel() > 14)
+		{
+			ChosenStrengths = default.WARLOCK_STRENGTHS_T3;
+		}
+		else if(AlienHQ.GetForceLevel() > 9)
+		{
+			ChosenStrengths = default.WARLOCK_STRENGTHS_T2;
+		}
+		else 
+		{
+			ChosenStrengths = default.WARLOCK_STRENGTHS_T1;
+		}	
+	}
+	if(ChosenTemplate.CharacterGroupName == 'ChosenAssassin')
+	{
+		if(AlienHQ.GetForceLevel() > 14)
+		{
+			ChosenStrengths = default.ASSASSIN_STRENGTHS_T3;
+		}
+		else if(AlienHQ.GetForceLevel() > 9)
+		{
+			ChosenStrengths = default.ASSASSIN_STRENGTHS_T2;
+		}
+		else 
+		{
+			ChosenStrengths = default.ASSASSIN_STRENGTHS_T1;
+		}		
+	}
+	ValidChosenStrengths = ChosenStrengths;
+
+	//Remove Strengths Are already added, and those that are excluded by already added strengths
+
+	foreach ChosenState.Strengths(Traitname)
+	{
+		TraitTemplate = AbilityMgr.FindAbilityTemplate(Traitname);
+
+		foreach ValidChosenStrengths(WStrength)
+		{
+			if(WStrength.Strength == Traitname)
+			{
+				ValidChosenStrengths.RemoveItem(WStrength);
+				break;
+			}
+
+		}
+		
+		foreach TraitTemplate.ChosenExcludeTraits(ExcludeTraitName)
+		{
+			foreach ValidChosenStrengths(WStrength)
+			{
+				if(WStrength.Strength == ExcludeTraitName)
+				{
+				ValidChosenStrengths.RemoveItem(WStrength);
+				break;
+				}
+
+			}
+		}
+	}
+	//Remove Strengths That are excluded by weaknesses
+	foreach ChosenState.Weaknesses(Traitname)
+	{
+		TraitTemplate = AbilityMgr.FindAbilityTemplate(Traitname);
+
+		foreach TraitTemplate.ChosenExcludeTraits(ExcludeTraitName)
+		{
+			foreach ValidChosenStrengths(WStrength)
+			{
+				if(WStrength.Strength == ExcludeTraitName)
+				{
+				ValidChosenStrengths.RemoveItem(WStrength);
+				break;
+				}
+
+			}
+		}
+	}
+		TotalWeight = 0.0f;
+		foreach ValidChosenStrengths(WStrength)
+		{
+			
+			TotalWeight+=WStrength.Weight;
+		}
+		for(i=0; i<NumStrengthsPerLevel; i++)
+		{
+			finder = 0.0f;
+			selection = `SYNC_FRAND_STATIC() * TotalWeight;
+			foreach ValidChosenStrengths(WStrength)
+			{
+				finder += WStrength.Weight;
+				if(finder > selection)
+				{
+					break;
+				}
+			}
+			ChosenState.Strengths.AddItem(WStrength.Strength);
+		}
+}
+
+
 
 static function UpdateRetribution()
 {
