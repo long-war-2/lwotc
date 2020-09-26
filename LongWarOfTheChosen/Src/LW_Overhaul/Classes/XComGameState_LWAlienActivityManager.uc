@@ -13,6 +13,7 @@ var array<ActivityCooldownTimer> GlobalCooldowns;
 
 var config int AVATAR_DELAY_HOURS_PER_NET_GLOBAL_VIG;
 var config float INFILTRATION_TO_DISABLE_SIT_REPS;
+var config int CHOSEN_APPEARANCE_ALERT_MOD;
 
 //#############################################################################################
 //----------------   INITIALIZATION   ---------------------------------------------------------
@@ -374,6 +375,9 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	//modifiers
 	if (InfiltratingSquad != none && !MissionSite.GetMissionSource().bGoldenPath)
 		AlertLevel += InfiltratingSquad.GetAlertnessModifierForCurrentInfiltration(); // this submits its own gamestate update
+
+	// Potentially add a Chosen to the mission, and if we do so, reduce the alert level
+	ModifyAlertForChosen(MissionSite, AlertLevel);
 	AlertLevel = Max(AlertLevel, 1); // clamp to be no less than 1
 
 	`LWTRACE("Updating Mission Difficulty: ForceLevel=" $ ForceLevel $ ", AlertLevel=" $ AlertLevel);
@@ -452,6 +456,33 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 
 }
 
+// Decides whether to add a Chosen to the given mission and if it does choose
+// to do so, it adds LWOTC-specific Chosen tactical tags to the mission state
+// and updates the given alert level.
+static function ModifyAlertForChosen(XComGameState_MissionSite MissionState, out int AlertLevel)
+{
+	local name ChosenSpawningTag;
+
+	// If Chosen are disabled, skip adding the tag.
+	if (!`SecondWaveEnabled('EnableChosen'))
+	{
+		return;
+	}
+
+	// Look through the mission tactical gameplay tags for any Chosen
+	// spawning ones. If we find one, adjust the alert level for the
+	// mission.
+	foreach MissionState.TacticalGameplayTags(ChosenSpawningTag)
+	{
+		if (InStr(ChosenSpawningTag, class'XComGameState_LWAlienActivity'.default.CHOSEN_SPAWN_TAG_SUFFIX) != INDEX_NONE)
+		{
+			// Found a Chosen spawning tag!
+			AlertLevel += default.CHOSEN_APPEARANCE_ALERT_MOD;
+			break;
+		}
+	}
+}
+
 // Copied from XCGS_MissionSite.UpdateShadowChamberStrings()
 static function UpdateShadowChamberStrings(XComGameState_MissionSite MissionState)
 {
@@ -524,6 +555,7 @@ static function int GetMissionAlertLevel(XComGameState_MissionSite MissionSite)
 	{
 		AlertLevel ++;
 	}
+
 	return AlertLevel;
 }
 
@@ -783,4 +815,3 @@ function bool ShouldBeVisible()
 {
     return false;
 }
-

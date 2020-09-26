@@ -285,6 +285,10 @@ var config array<Name> DoubleTapAbilities;
 
 var config array<FlashbangResistEntry> ENEMY_FLASHBANG_RESIST;
 
+var config WeaponDamageValue WARLOCKPSIM1_BASEDAMAGE;
+var config WeaponDamageValue WARLOCKPSIM2_BASEDAMAGE;
+var config WeaponDamageValue WARLOCKPSIM3_BASEDAMAGE;
+var config WeaponDamageValue WARLOCKPSIM4_BASEDAMAGE;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -2101,7 +2105,6 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'ReaperSoldier':
 		case 'SkirmisherSoldier':
 		case 'TemplarSoldier':
-			Template.Abilities.AddItem('HeavyRevive');
 			Template.Abilities.AddItem('MC_Stock_Strike');
 			Template.Abilities.AddItem('GetUp');
 			break;
@@ -2155,7 +2158,71 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.bCanUse_eTraversal_WallClimb = true;
 		Template.ImmuneTypes.AddItem('Acid');
 	}
+	if(Template.CharacterGroupName == 'ChosenWarlock')
+	{
+		Template.Abilities.RemoveItem('ChosenKidnapMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
+		Template.Abilities.RemoveItem('SpectralArmy');
 
+		Template.Abilities.AddItem('CombatReadiness');
+		Template.Abilities.AddItem('ChosenKidnap');
+		Template.Abilities.AddItem('CloseCombatSpecialist');
+		Template.Abilities.AddItem('GrazingFire');
+		Template.Abilities.AddItem('WarlockReaction');
+		Template.Abilities.AddItem('AmmoDump_LW');
+		Template.Abilities.AddItem('ChosenCritImmune');
+
+		Template.InitiativePriority = -100;
+
+		//Since they no longer have the ability by default
+		Template.Abilities.AddItem('ChosenSummonFollowers');
+
+		Template.ImmuneTypes.AddItem('Frost');
+
+
+	}
+	if(Template.CharacterGroupName == 'ChosenSniper')
+	{
+		Template.Abilities.RemoveItem('ChosenKidnapMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
+
+		Template.Abilities.AddItem('HunterReaction');
+		Template.Abilities.AddItem('CombatReadiness');
+		Template.Abilities.AddItem('LowProfile');
+		Template.Abilities.AddItem('ChosenKidnap');
+		Template.Abilities.AddItem('ChosenCritImmune');
+		Template.Abilities.AddItem('LongWatch');
+		Template.Abilities.AddItem('quickdraw');
+		Template.Abilities.AddItem('ChosenImmuneMelee');
+		Template.Abilities.AddItem('ReadyForAnything');
+
+		Template.ImmuneTypes.AddItem('Frost');
+		Template.InitiativePriority = -100;
+
+	}
+	if(Template.CharacterGroupName == 'ChosenAssassin')
+	{
+		Template.Abilities.RemoveItem('ChosenKidnapMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
+		Template.Abilities.RemoveItem('HarborWave');
+
+		Template.Abilities.AddItem('Bladestorm');
+		Template.Abilities.AddItem('ChosenCritImmune');
+		Template.Abilities.AddItem('CombatReadiness');
+		Template.Abilities.AddItem('ChosenKidnap');
+		Template.Abilities.AddItem('AssassinReaction');
+		Template.Abilities.AddItem('BloodThirst_LW');
+		Template.Abilities.AddItem('CoolUnderPressure');
+		Template.Abilities.AddItem('Hitandrun');
+
+		Template.ImmuneTypes.AddItem('Frost');
+		Template.InitiativePriority = -100;
+
+		//Template.strScamperBT = "GenericScamperRoot";
+	}
 	// Any soldier templates get the Interact_SmashNGrab ability
 	if (Template.bIsSoldier)
 	{
@@ -2278,6 +2345,90 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.iIdealRange = 7;
 			break;	
 
+		case 'ChosenShotgun_CV':
+		case 'ChosenShotgun_MG':
+		case 'ChosenShotgun_BM':
+		case 'ChosenShotgun_T4':
+		WeaponTemplate.Abilities.RemoveItem('RapidFire');
+
+		break;
+
+		case 'ChosenSniperPistol_CV':
+		case 'ChosenSniperPistol_MG':
+		case 'ChosenSniperPistol_BM':
+		case 'ChosenSniperPistol_T4':
+		WeaponTemplate.Abilities.RemoveItem('LethalDose');
+		break;
+
+		case 'Warlock_PsiWeapon':
+		WeaponTemplate.Abilities.AddItem('ShieldAllyM1');
+		WeaponTemplate.BaseDamage = default.WARLOCKPSIM1_BASEDAMAGE;
+		WeaponTemplate.Abilities.RemoveItem('SpectralArmy');
+		WeaponTemplate.Abilities.RemoveItem('Corress');
+		break;
+
+		case 'WarlockM2_PsiWeapon':
+		WeaponTemplate.Abilities.AddItem('ShieldAllyM2');
+		WeaponTemplate.BaseDamage = default.WARLOCKPSIM2_BASEDAMAGE;
+		WeaponTemplate.Abilities.RemoveItem('SpectralArmyM2');
+		WeaponTemplate.Abilities.RemoveItem('CorressM2');
+		break;
+
+		case 'WarlockM3_PsiWeapon':
+		WeaponTemplate.Abilities.AddItem('ShieldAllyM3');
+		WeaponTemplate.BaseDamage = default.WARLOCKPSIM3_BASEDAMAGE;
+		WeaponTemplate.Abilities.RemoveItem('SpectralArmyM3');
+		WeaponTemplate.Abilities.RemoveItem('CorressM3');
+		break;
+
+		case 'WarlockM4_PsiWeapon':
+		WeaponTemplate.Abilities.AddItem('ShieldAllyM4');
+		WeaponTemplate.BaseDamage = default.WARLOCKPSIM4_BASEDAMAGE;
+		WeaponTemplate.Abilities.RemoveItem('SpectralArmyM4');
+		WeaponTemplate.Abilities.RemoveItem('CorressM4');
+	
+		break;
+
+		case 'ChosenRifle_XCOM':
+			WeaponTemplate.Abilities.AddItem('OverbearingSuperiority_LW');
+			WeaponTemplate.OnAcquiredFn = none;
+			break;
+		case 'ChosenSniperRifle_XCOM':
+			WeaponTemplate.iTypicalActionCost = 2;
+			WeaponTemplate.Abilities.AddItem('XCOMHunterMark_LW');
+			WeaponTemplate.Abilities.RemoveItem('Reload');
+			WeaponTemplate.Abilities.AddItem('ComplexReload_LW'); 
+			WeaponTemplate.OnAcquiredFn = none;
+			break;
+		case 'ChosenSword_XCOM':
+			WeaponTemplate.Abilities.AddItem('XCOMBloodThirst_LW');
+			//Remove the armor piercing UI stat markup
+			foreach WeaponTemplate.UIStatMarkups(Markup)
+			{
+				if(Markup.StatLabel == class'XLocalizedData'.default.PierceLabel)
+				{
+					WeaponTemplate.UIStatMarkups.RemoveItem(Markup);
+				}
+			}
+			WeaponTemplate.OnAcquiredFn = none;
+			break;
+		case 'ChosenShotgun_XCOM':
+			WeaponTemplate.Abilities.AddItem('ChosenLowProfile');
+			WeaponTemplate.Abilities.AddItem('Vampirism_LW');
+
+			WeaponTemplate.OnAcquiredFn = none;
+			break;
+		case 'ChosenSniperPistol_XCOM':
+			WeaponTemplate.Abilities.AddItem('Fatality_LW');
+			//Remove the armor piercing UI stat markup
+			foreach WeaponTemplate.UIStatMarkups(Markup)
+			{
+				if(Markup.StatLabel == class'XLocalizedData'.default.PierceLabel)
+				{
+					WeaponTemplate.UIStatMarkups.RemoveItem(Markup);
+				}
+			}
+			break;
 		default:
 			break;
 		}
@@ -2321,6 +2472,12 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'Faceless_MeleeAoE':
 				WeaponTemplate.iEnvironmentDamage = 5;
 				break;
+			case 'ChosenSniperRifle_CV':
+			case 'ChosenSniperRifle_MG':
+			case 'ChosenSniperRifle_BM':
+			case 'ChosenSniperRifle_T4':
+			WeaponTemplate.iIdealRange =25;
+			break;
 			default:
 				break;
 		}

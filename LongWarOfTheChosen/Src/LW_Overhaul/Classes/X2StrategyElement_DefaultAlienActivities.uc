@@ -1820,12 +1820,22 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 static function ActivateChosenIfEnabled(XComGameState NewGameState)
 {
 	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_AdventChosen ChosenState;
+	local array<XComGameState_AdventChosen> AllChosen;
 
 	if (`SecondWaveEnabled('EnableChosen'))
 	{
 		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
 		AlienHQ.OnChosenActivation(NewGameState);
+
+		AllChosen = AlienHQ.GetAllChosen();
+
+		//MAKE ABSOLUTELY 100% FULL ON SURE THAT CHOSEN START WITH 0 STRENGTHS BECAUSE THE CONFIGS LIE
+		foreach AllChosen(ChosenState)
+		{
+			ChosenState.Strengths.length = 0;
+		}
 	}
 }
 

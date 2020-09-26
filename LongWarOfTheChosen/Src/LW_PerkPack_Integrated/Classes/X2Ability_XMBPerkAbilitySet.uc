@@ -154,6 +154,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(PrimaryReturnFireShot());
 	Templates.AddItem(DeadeyeSnapshotAbility());
 	Templates.AddItem(DeadeyeSnapShotDamage());
+
+	Templates.AddItem(PsychoticRage());
+	Templates.AddItem(PreciseStrike());
+	Templates.AddItem(YouCannotHide());
+
 	
 	return Templates;
 }
@@ -2206,6 +2211,64 @@ static function X2AbilityTemplate DeadeyeSnapShotDamage()
 
 	return Template;
 }
+
+
+static function X2AbilityTemplate PsychoticRage()
+{
+	local XMBEffect_ConditionalBonus Effect;
+	local X2Condition_UnitStatCheck Condition;
+
+	// Create a condition that checks that the unit is at less than 100% HP.
+	// X2Condition_UnitStatCheck can also check absolute values rather than percentages, by
+	// using "false" instead of "true" for the last argument.
+	Condition = new class'X2Condition_UnitStatCheck';
+	Condition.AddCheckStat(eStat_HP, 36, eCheck_LessThan,,, true);
+
+	// Create a conditional bonus effect
+	Effect = new class'XMBEffect_ConditionalBonus';
+
+	//Need to add for all of them because apparently if you crit you don't hit lol
+	Effect.AddPercentDamageModifier(50, eHit_Success);
+	Effect.AddPercentDamageModifier(50, eHit_Graze);
+	Effect.AddPercentDamageModifier(50, eHit_Crit);
+	Effect.EffectName = 'PsychoticRage_Bonus';
+
+	// The effect only applies while wounded
+	EFfect.AbilityShooterConditions.AddItem(Condition);
+	Effect.AbilityTargetConditionsAsTarget.AddItem(Condition);
+	
+	// Create the template using a helper function
+	return Passive('PsychoticRage_LW', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect);
+}
+
+static function X2AbilityTemplate PreciseStrike()
+{
+	local XMBEffect_ConditionalBonus ShootingEffect;
+	local X2AbilityTemplate Template;
+
+	// Create an armor piercing bonus
+	ShootingEffect = new class'XMBEffect_ConditionalBonus';
+	ShootingEffect.EffectName = 'PreciseStrike_Bonus';
+	ShootingEffect.AddArmorPiercingModifier(3);
+
+	// Only with the melee weapon
+	ShootingEffect.AbilityTargetConditions.AddItem(default.MeleeCondition);
+
+	// Prevent the effect from applying to a unit more than once
+	ShootingEffect.DuplicateResponse = eDupe_Refresh;
+
+	// The effect lasts forever
+	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
+	
+	// Activated ability that targets user
+	Template = Passive('PreciseStrike_LW', "img:///UILibrary_XPerkIconPack.UIPerk_knife_shot", true, ShootingEffect);
+
+	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
+	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
+
+	return Template;
+}
+
 
 defaultproperties
 {
