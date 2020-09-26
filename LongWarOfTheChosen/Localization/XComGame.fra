@@ -5208,22 +5208,6 @@ LocFriendlyName="Equilibré"
 LocHelpText="Pratiquement insensible aux coups critiques."
 LocLongDescription="Cet Élu est pratiquement insensible aux coups critiques."
 
-[Primary_Daze_Passive X2AbilityTemplate]
-LocFriendlyName="Sonneur (arme principale)"
-LocHelpText="Vos attaques principales appliquent un effet Sonné à leurs cibles, en plus des dégâts habituels."
-LocLongDescription="Vos attaques principales appliquent un effet Sonné à leurs cibles, en plus des dégâts habituels."
-
-[Secondary_Daze_Passive X2AbilityTemplate]
-LocFriendlyName="Sonneur (arme secondaire)"
-LocHelpText="Vos attaques secondaires appliquent un effet Hébété à leurs cibles, en plus des dégâts habituels."
-LocLongDescription="Vos attaques secondaires appliquent un effet Hébété à leurs cibles, en plus des dégâts habituels."
-
-[HeavyRevive X2AbilityTemplate]
-LocFriendlyName="Réanimation de choc"
-LocHelpText="Guérit l'effet \"Hébété\" infligé par l'Élu à ce soldat. Un soldat réanimé peut être désorienté."
-LocLongDescription="Guérit l'effet \"Hébété\" infligé par l'Élu à ce soldat. Un soldat réanimé peut être désorienté."
-LocFlyOverText="Réanimé !"
-
 [MC_Stock_Strike X2AbilityTemplate]
 LocFriendlyName="Coup de crosse"
 LocHelpText="Frappez un soldat sous contrôle mental avec la crosse de votre arme, afin de l'étourdir pour 1 tour."
