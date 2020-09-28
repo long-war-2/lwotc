@@ -569,7 +569,7 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	local XComGameState_MissionCalendar CalendarState;
 	local XComGameState_BattleData BattleData;
 
-
+	History = `XCOMHISTORY;
 	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
 
 	`LWACTIVITYMGR.UpdatePreMission (StartGameState, MissionState);
@@ -597,7 +597,6 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 		`LWTRACE("PreMission : MissionPOI name = " $ POIState.GetMyTemplateName());
 	}
 
-	History = `XCOMHISTORY;
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 	CalendarState = XComGameState_MissionCalendar(History.GetSingleGameStateObjectForClass(class'XComGameState_MissionCalendar'));
 	//log some info relating to the AH POI 2 replacement conditions to see what might be causing it to not spawn
