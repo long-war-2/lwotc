@@ -1693,7 +1693,7 @@ static function int GetChosenAppearanceChance(XComGameState_AdventChosen ChosenS
 		// END
 		return 0;
 	}
-	else if (ChosenState.NumEncounters == 0 || MissionState.GetMissionSource().bGoldenPath)
+	else if (MissionState.GetMissionSource().bGoldenPath || class'XComGameState_LWAlienActivity'.default.GuaranteeChosenInMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
 	{
 		// Guaranteed on this mission
 		return 100;
