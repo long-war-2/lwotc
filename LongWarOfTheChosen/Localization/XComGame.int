@@ -5632,9 +5632,9 @@ LocPromotionPopupText="<Bullet/> Shots fired with your <Ability:WeaponName/> pie
 [LW_Reposition X2AbilityTemplate]
 LocFriendlyName="Reposition"
 LocFlyOverText="Reposition"
-LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon. Does not work with hit and run."
+LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon."
 LocHelpText="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon."
-LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon.<br/>
+LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon. Works with hit and run.<br/>
 
 [LW_NeutralizingAgents X2AbilityTemplate]
 LocFriendlyName="Neutralizing Agents"
