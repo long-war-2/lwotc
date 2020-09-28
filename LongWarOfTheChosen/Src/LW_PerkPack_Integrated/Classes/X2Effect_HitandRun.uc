@@ -9,6 +9,7 @@ class X2Effect_HitandRun extends X2Effect_Persistent config (LW_SoldierSkills);
 var bool HITANDRUN_FULLACTION;
 var config array<name> HNR_ABILITYNAMES;
 var config int HNR_USES_PER_TURN;
+var name HNRUsesName; //Prevents multiple hit and run like abilities from having the same activation ID
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
@@ -42,7 +43,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	if (class'Helpers_LW'.static.IsUnitInterruptingEnemyTurn(SourceUnit))
 		return false;
 
-	SourceUnit.GetUnitValue ('HitandRunUses', HnRUsesThisTurn);
+	SourceUnit.GetUnitValue (HNRUsesName, HnRUsesThisTurn);
 	iUsesThisTurn = int(HnRUsesThisTurn.fValue);
 
 	if (iUsesThisTurn >= default.HNR_USES_PER_TURN)
@@ -66,7 +67,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 							AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
 							if (AbilityState != none)
 							{
-								SourceUnit.SetUnitFloatValue ('HitandRunUses', iUsesThisTurn + 1.0, eCleanup_BeginTurn);
+								SourceUnit.SetUnitFloatValue (HNRUsesName, iUsesThisTurn + 1.0, eCleanup_BeginTurn);
 								if (!HITANDRUN_FULLACTION)
 								{
 									SourceUnit.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.MoveActionPoint);
@@ -84,4 +85,9 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 		}
 	}
 	return false;
+}
+defaultproperties
+{
+
+HNRUsesName = 'HitandRunUses'
 }
