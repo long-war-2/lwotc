@@ -1236,7 +1236,6 @@ static function X2AbilityTemplate CreateBloodThirst()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_BloodThirst            		DamageEffect;
-	local X2Effect_ToHitModifier                HitModEffect;
 	local X2AbilityTrigger_EventListener		EventListener;	
 	// Icon Properties
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_BloodThirst');
