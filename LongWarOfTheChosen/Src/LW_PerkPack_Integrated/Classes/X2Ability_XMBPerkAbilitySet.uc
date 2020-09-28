@@ -2095,7 +2095,7 @@ static function X2AbilityTemplate PrimaryReturnFire()
 	FireEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
 	FireEffect.EffectName = 'PrimaryReturnFireShot';
 	FireEffect.AbilityToActivate = 'PrimaryReturnFireShot';
-	FireEffect.bDirectAttackOnly = false;
+	FireEffect.bDirectAttackOnly = true;
 	FireEffect.bOnlyWhenAttackMisses = false;
 	Template.AddTargetEffect(FireEffect);
 
@@ -2149,7 +2149,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	TargetVisibilityCondition = new class'X2Condition_Visibility';
 	TargetVisibilityCondition.bRequireGameplayVisible = true;
 	TargetVisibilityCondition.bRequireBasicVisibility = true;
-	TargetVisibilityCondition.bDisablePeeksOnMovement = true; //Don't use peek tiles for over watch shots	
+	TargetVisibilityCondition.bDisablePeeksOnMovement = false; //Don't use peek tiles for over watch shots	
 	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
 
 	Template.AbilityTargetConditions.AddItem(new class'X2Condition_EverVigilant');
