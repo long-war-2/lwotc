@@ -211,11 +211,11 @@ DefaultProperties
 	DuplicateResponse = eDupe_Ignore
 	AbilityToActivate = "PrimaryReturnFireShot"
 	GrantActionPoint = "returnfire"
-	MaxPointsPerTurn = 0
+	MaxPointsPerTurn = 1
 	bPreEmptiveFire = false
 	bOnlyDuringEnemyTurn = true
 	bOnlyWhenAttackMisses = false
 	bSelfTargeting = false
     RequiredAllyRange = 0
-    bAllowSelf = true
+    bAllowSelf = false
 }
