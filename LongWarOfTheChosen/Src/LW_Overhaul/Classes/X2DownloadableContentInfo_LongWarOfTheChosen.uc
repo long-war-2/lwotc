@@ -40,6 +40,8 @@ var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T4;
 
 var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
 
+var config int CHOSEN_APPEARANCE_ALERT_MOD;
+
 struct ArchetypeToHealth
 {
 	var string ArchetypeName;
@@ -565,6 +567,10 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	local XComGameState_PointOfInterest POIState;
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_MissionCalendar CalendarState;
+	local XComGameState_BattleData BattleData;
+
+
+	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
 
 	`LWACTIVITYMGR.UpdatePreMission (StartGameState, MissionState);
 	ResetDelayedEvac(StartGameState);
@@ -574,7 +580,7 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	OverrideDestructibleHealths(StartGameState);
 	if (class'XComGameState_AlienRulerManager' != none)
 		OverrideAlienRulerSpawning(StartGameState, MissionState);
-	MaybeAddChosenToMission(StartGameState, MissionState);
+	MaybeAddChosenToMission(StartGameState, MissionState, BattleData);
 
 	// Test Code to see if DLC POI replacement is working
 	if (MissionState.POIToSpawn.ObjectID > 0)
@@ -1566,7 +1572,7 @@ static function OverrideAlienRulerSpawning(XComGameState StartState, XComGameSta
 //
 // Note that if the mission type is configured to exclude Chosen, then of course
 // the tactical tags aren't added for the given mission.
-static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_MissionSite MissionState)
+static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_MissionSite MissionState, XComGameState_BattleData BattleData)
 {
 	local XComGameStateHistory History;
 	local XComGameState_HeadquartersXCom XComHQ;
@@ -1574,7 +1580,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
 	local name ChosenSpawningTag;
-
+	local int AlertLevel;
 	// Don't allow Chosen on the mission if there is already a Ruler
 	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
 	{
@@ -1621,6 +1627,14 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 			{
 				`LWTrace("    Chosen added!");
 				XComHQ.TacticalGameplayTags.AddItem(ChosenSpawningTag);
+
+				///Make Chosen Decrease the Alert level
+				AlertLevel = BattleData.GetAlertLevel();
+
+				AlertLevel += default.CHOSEN_APPEARANCE_ALERT_MOD;
+				AlertLevel = Clamp(AlertLevel, 1, 10000);
+			
+				BattleData.SetAlertLevel(AlertLevel);
 			}
 		}
 	}
