@@ -5908,6 +5908,25 @@ LocHelpText="When targeted by enemy fire, automatically fire back with your <Abi
 LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and Area of Effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by Overwatch fire.<br/>"
 
+; AdvPriest Abilities
+[HolyWarriorM1 X2AbilityTemplate]
+LocFriendlyName="Holy Warrior"
+LocHelpText="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocLongDescription="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocFlyOverText="Holy Warrior"
+
+[HolyWarriorM2 X2AbilityTemplate]
+LocFriendlyName="Holy Warrior"
+LocHelpText="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocLongDescription="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocFlyOverText="Holy Warrior"
+
+[HolyWarriorM3 X2AbilityTemplate]
+LocFriendlyName="Holy Warrior"
+LocHelpText="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocLongDescription="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocFlyOverText="Holy Warrior"
+
 [XcomGame.X2StrategyGameRulesetDataStructures]
 [X2StrategyGameRulesetDataStructures]
 ComIntLabels[eComInt_Standard]="Very Low"
