@@ -2222,6 +2222,9 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'AdvPriestM2_PsiAmp':
 			WeaponTemplate.Abilities.AddItem('Fortress');
 			break;
+		case 'AdvPurifierFlamethrower':
+			WeaponTemplate.iIdealRange = 7;
+			break;	
 
 		default:
 			break;
