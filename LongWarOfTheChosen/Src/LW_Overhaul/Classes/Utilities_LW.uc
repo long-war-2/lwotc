@@ -427,9 +427,10 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
     local XComGameState_LWOutpost Outpost;
     local XComGameState_Unit Proxy;
     local Name TemplateName;
-	local int LaserChance, MagChance, iRand;
+	local int LaserChance, MagChance, CoilChance, iRand;
 	local string LoadoutStr;
-
+	local X2AbilityTemplateManager AbilityTemplateMgr;
+	local X2AbilityTemplate AbilityTemplate;
 
     Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
     switch(Outpost.GetRebelLevel(RebelRef))
@@ -453,17 +454,18 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 
 	LaserChance = 0;
 	MagChance = 0;
+	CoilChance =0;
 
     if (Loadout == '')
 	{
         LoadoutStr = "RebelSoldier";
 		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('MagnetizedWeapons') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedLasers'))
 		{
-			LaserChance += (20 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 20/40/60
+			LaserChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 30/40/50
 		}
 		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedLasers'))
 		{
-			LaserChance += (20 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 40/80/100
+			LaserChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 60/80/100
 		}
 		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('Coilguns') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
 		{
@@ -471,17 +473,34 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 			{
 				LaserChance = 100;
 			}
-			MagChance += (20 * (Outpost.GetRebelLevel(RebelRef) + 1)); //20/40/60
+			MagChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //30/40/50
 		}
 		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedCoilguns') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
 		{
-			MagChance += (20 * (Outpost.GetRebelLevel(RebelRef) + 1)); //40/80/100
+			MagChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //60/80/100
 		}
-		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlasmaRifle') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
+		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlasmaRifle'))
 		{
-			MagChance += (20 * (Outpost.GetRebelLevel(RebelRef) + 1)); //60/100/100
+			if(class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
+			{	
+				MagChance = 100;
+			}
+			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //30/40/50
 		}
-		if (`SYNC_RAND_STATIC(100) < MagChance)
+			//All plasma weapon related research
+		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('HeavyPlasma') && 
+			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AlloyCannon') && 
+			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlasmaSniper') && 
+			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedCoilguns'))
+		{
+			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //60/80/100
+		}
+		
+		if (`SYNC_RAND_STATIC(100) < CoilChance)
+		{
+			LoadoutStr $= "4";
+		}
+		else if (`SYNC_RAND_STATIC(100) < MagChance)
 		{
 			LoadoutStr $= "3";
 		}
@@ -497,16 +516,38 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 		{
 			LoadoutStr $= "SMG";
 		}
-		else
+		else if (iRand < 40)
 		{
-			if (iRand < 40 && Outpost.GetRebelLevel(RebelRef) < 2)
-			{
-				LoadoutStr $= "Shotgun";
-			}
+			LoadoutStr $= "Shotgun";
 		}
+			
 		//`LWTRACE ("Rebel Loadout" @ LoadoutStr);
 		Loadout = name(LoadOutStr);
 	}
+		
+	AbilityTemplateMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+
+	//This is very likely to be a sin but YOLO
+	if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PoweredArmor'))
+	{
+		AbilityTemplate = AbilityTemplateMgr.FindAbilityTemplate('RebelHPUpgrade_T2');
+		`TACTICALRULES.InitAbilityForUnit(AbilityTemplate, Proxy, NewGameState);
+	}
+	else if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlatedArmor'))
+	{
+		AbilityTemplate = AbilityTemplateMgr.FindAbilityTemplate('RebelHPUpgrade_T1');
+		`TACTICALRULES.InitAbilityForUnit(AbilityTemplate, Proxy, NewGameState);
+	}
+
+	if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedGrenades'))
+	{
+		AbilityTemplate = AbilityTemplateMgr.FindAbilityTemplate('RebelGrenadeUpgrade');
+		`TACTICALRULES.InitAbilityForUnit(AbilityTemplate, Proxy, NewGameState);
+	}
+
+
+	
+
 
     ApplyLoadout(Proxy, Loadout, NewGameState);
 
