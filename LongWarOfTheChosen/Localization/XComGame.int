@@ -5921,6 +5921,25 @@ LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a sho
 [Deadeye X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/><Bullet/> Works with Snap Shot.<br/>"
 
+; AdvPriest Abilities
+[HolyWarriorM1 X2AbilityTemplate]
+LocFriendlyName="Holy Warrior"
+LocHelpText="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocLongDescription="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocFlyOverText="Holy Warrior"
+
+[HolyWarriorM2 X2AbilityTemplate]
+LocFriendlyName="Holy Warrior"
+LocHelpText="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocLongDescription="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocFlyOverText="Holy Warrior"
+
+[HolyWarriorM3 X2AbilityTemplate]
+LocFriendlyName="Holy Warrior"
+LocHelpText="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocLongDescription="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
+LocFlyOverText="Holy Warrior"
+
 [XcomGame.X2StrategyGameRulesetDataStructures]
 [X2StrategyGameRulesetDataStructures]
 ComIntLabels[eComInt_Standard]="Very Low"
