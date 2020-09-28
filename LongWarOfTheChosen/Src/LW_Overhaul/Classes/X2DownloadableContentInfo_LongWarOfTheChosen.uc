@@ -1278,6 +1278,45 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 		}
 	}
 
+	switch(CharTemplate.DataName)
+	{
+		case 'Rebel':
+		case 'RebelSoldierProxy':
+		case 'RebelSoldierProxyM2':
+		case 'RebelSoldierProxyM3':
+
+			if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PoweredArmor'))
+			{
+				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('RebelHPUpgrade_T2');
+
+				Data = EmptyData;
+				Data.TemplateName = 'RebelHPUpgrade_T2';
+				Data.Template = AbilityTemplate;
+				SetupData.AddItem(Data);
+			}
+			else if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlatedArmor'))
+			{
+				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('RebelHPUpgrade_T1');
+				Data = EmptyData;
+				Data.TemplateName = 'RebelHPUpgrade_T1';
+				Data.Template = AbilityTemplate;
+				SetupData.AddItem(Data);
+			}
+			
+			if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedGrenades'))
+			{
+				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('RebelGrenadeUpgrade');
+				Data = EmptyData;
+				Data.TemplateName = 'RebelGrenadeUpgrade';
+				Data.Template = AbilityTemplate;
+				SetupData.AddItem(Data);
+				}
+
+		break;
+		default:
+		break;
+	}
+
 	// Fix enemy unit abilities that need to be tied to a weapon, since abilities
 	// attached to character templates can't be configured for a particular weapon slot.
 	for (i = 0; i < SetupData.Length; i++)
