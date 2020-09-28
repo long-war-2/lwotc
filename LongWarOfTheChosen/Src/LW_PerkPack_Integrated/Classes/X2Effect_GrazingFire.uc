@@ -13,9 +13,6 @@ function bool ChangeHitResultForAttacker(XComGameState_Unit Attacker, XComGameSt
 {
 	local int randroll, hitchance;
 
-	//`LOG ("Grazing Fire 1");
-	if (AbilityState.GetSourceWeapon() == Attacker.GetItemInSlot(eInvSlot_PrimaryWeapon))
-	{
 		//`LOG ("Grazing Fire 2");
 		if (class'XComGameStateContext_Ability'.static.IsHitResultMiss(CurrentResult))
 		{
@@ -29,6 +26,5 @@ function bool ChangeHitResultForAttacker(XComGameState_Unit Attacker, XComGameSt
 				return true;
 			}
 		}
-	}
 	return false;
 }
