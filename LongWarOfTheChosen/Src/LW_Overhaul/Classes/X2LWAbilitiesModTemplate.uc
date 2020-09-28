@@ -87,6 +87,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'PriestStasis':
 			MakeAbilityNonTurnEnding(Template);
+			MakeAbilitiesUnusableOnLost(Template);
 			break;
 		case 'HolyWarriorDeath':
 			RemoveTheDeathFromHolyWarriorDeath(Template);
