@@ -2930,6 +2930,11 @@ ObjectiveTextPools[4]="Our focus on scavenging supplies in this region has gotte
 MissionPinLabel="LWS Overhaul Generic Mission"
 MissionExpiredText="This mission is no longer available."
 
+[DefaultChosenAvengerDefense X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Plant X4 on back of Turrets !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
+ObjectiveTextPools[1]="Plant Bomb to Destroy the Mobile Power Generator !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
+ObjectiveTextPools[2]="Eliminate all enemy forces"
+
 [XComGame.UIMission]
 [UIMission]
 m_strMissionDifficulty="CURRENT ENEMY ACTIVITY"
@@ -4949,6 +4954,8 @@ DisplayName="Radio Relay"
 [MissionTimers]
 TimerSmashNGrabTitle="Reinforcements"
 TimerSmashNGrabSubtitle="Turns until alien response"
+TimerDefendTitle="Reinforcements"
+TimerDefendSubtitle="Turns until Advent arrival"
 
 [InTheZone X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/><Bullet/> Every successful kill does result in a reduction to critical hit chance and damage, however.<br/><Bullet/> Serial has a <Ability:SelfCooldown/> turn cooldown.<br/>"
@@ -6116,6 +6123,17 @@ LocFriendlyName="You Cannot hide"
 LocHelpText="Gain 100 aim."
 LocLongDescription="Gain 100 aim."
 LocFlyOverText="Run."
+[RebelHPUpgrade_T1 X2AbilityTemplate]
+LocFriendlyName="Alloy Vest"
+LocLongDescription="Researching plated armor has given our resistance soldiers better protection."
+LocHelpText="Researching plated armor has given our resistance soldiers better protection."
+LocFlyOverText="Alloy Vest"
+
+[RebelHPUpgrade_T2 X2AbilityTemplate]
+LocFriendlyName="Advanced Alloy Vest"
+LocLongDescription="Researching powered armor has given our resistance soldiers even better protection."
+LocHelpText="Researching powered armor has given our resistance soldiers even better protection."
+LocFlyOverText="Advanced Alloy Vest"
 
 [XcomGame.X2StrategyGameRulesetDataStructures]
 [X2StrategyGameRulesetDataStructures]
