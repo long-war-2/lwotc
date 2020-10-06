@@ -4498,7 +4498,7 @@ static function XComGameState_MissionSite GetRebelRaidMissionSite(XComGameState_
     if (MissionFamily == 'RecruitRaid_LW')
     {
         RaidMission.SpawnType = eRebelRaid_SpawnWithSquad;
-        RaidMission.ArmRebels = false;
+        RaidMission.ArmRebels = true;
     }
 
     return RaidMission;
