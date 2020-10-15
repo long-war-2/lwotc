@@ -612,7 +612,8 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 	local X2GrenadeTemplate                             GrenadeTemplate;
 	local int k;
 	local X2Effect_Persistent                           Effect;
-
+	local X2Condition_UnitProperty	UnitCondition;
+	local X2Effect_PersistentStatChange DisorientedEffect;
 	GrenadeTemplate = X2GrenadeTemplate(Template);
 	if(GrenadeTemplate == none)
 		return;
@@ -676,8 +677,16 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 			break;
 		case 'EMPGrenade':
 		case 'EMPGrenadeMk2':
-			GrenadeTemplate.ThrownGrenadeEffects.AddItem(class'X2StatusEffects'.static.CreateDisorientedStatusEffect());
-			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(class'X2StatusEffects'.static.CreateDisorientedStatusEffect());
+
+			UnitCondition = new class'X2Condition_UnitProperty';
+			UnitCondition.ExcludeOrganic = true;
+			UnitCondition.IncludeWeakAgainstTechLikeRobot = true;
+			UnitCondition.ExcludeFriendlyToSource = false;
+	
+			DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+			DisorientedEffect.TargetConditions.AddItem(UnitCondition);
+			GrenadeTemplate.ThrownGrenadeEffects.AddItem(DisorientedEffect);
+			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(DisorientedEffect);
 			break;
 
 		default:
@@ -1197,6 +1206,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		AbilityCondition.OwnerHasSoldierAbilities.AddItem('LW_NeutralizingAgents');
 		RemoveEffects.TargetConditions.AddItem(AbilityCondition);
 
+		Template.AssociatedPassives.AddItem('LW_NeutralizingAgents');
 		Template.AddTargetEffect(RemoveEffects);
 	
 	}
