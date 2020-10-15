@@ -95,9 +95,8 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Weapons.AddItem(CreateTemplate_Bullpup_Laser());
 	Weapons.AddItem(CreateBullpup_Coil_Template());
-	Weapons.AddItem(CreateVektorCrossbow_Laser());
-	Weapons.AddItem(CreateVektorCrossbow_Coil());
-	Weapons.AddItem(CreateVektorCrossbow_CV());
+	Weapons.AddItem(CreateVektor_Laser());
+	Weapons.AddItem(CreateVektor_Coil());
 
 	return Weapons;
 }
@@ -268,7 +267,7 @@ static function X2DataTemplate CreateVektorCrossbow_CV()
 
 
 
-static function X2DataTemplate CreateVektorCrossbow_Laser()
+static function X2DataTemplate CreateVektor_Laser()
 {
 	local X2WeaponTemplate Template;
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Vektor_LS');
@@ -297,7 +296,12 @@ static function X2DataTemplate CreateVektorCrossbow_Laser()
 	Template.Abilities.AddItem('HotLoadAmmo');
 
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "CrossbowVektor.WP_CrossbowVektor_MG";
+	Template.GameArchetype = "LW_StrikeRifle.Archetypes.WP_DMR_LS";
+	Template.AddDefaultAttachment('Mag', "LWAttachments_LS.Meshes.SK_Laser_Mag_A");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_MagA");
+	Template.AddDefaultAttachment('Stock', "LWAttachments_LS.Meshes.SK_Laser_Stock_A");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_StockA");
+	Template.AddDefaultAttachment('Reargrip', "LWAttachments_LS.Meshes.SK_Laser_Trigger_A");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_TriggerA");
+	Template.AddDefaultAttachment('Foregrip', "LWAttachments_LS.Meshes.SK_Laser_Foregrip_A");//, , "img:///UILibrary_LW_LaserPack.LaserRifle_ForegripA");
+	Template.AddDefaultAttachment('Optic', "LWSniperRifle_LS.Meshes.SK_LaserSniper_Optic_A");//, , "img:///UILibrary_BRPack.Attach.BR_LS_OpticA");
 
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
 	Template.CreatorTemplateName = 'VEKTOR_LS_Schematic'; // The schematic which creates this item
@@ -312,7 +316,7 @@ static function X2DataTemplate CreateVektorCrossbow_Laser()
 	return Template;
 }
 
-static function X2DataTemplate CreateVektorCrossbow_Coil()
+static function X2DataTemplate CreateVektor_Coil()
 {
 	local X2WeaponTemplate Template;
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Vektor_CG');
@@ -335,7 +339,13 @@ static function X2DataTemplate CreateVektorCrossbow_Coil()
 
 	Template.NumUpgradeSlots = 3;
 
-	Template.GameArchetype = "CrossbowVektor.WP_CrossbowVektor_BM";
+	Template.GameArchetype = "LW_StrikeRifle.Archetypes.WP_DMR_CG";
+	Template.AddDefaultAttachment('Mag', "LWSniperRifle_CG.Meshes.LW_CoilSniper_MagA");//, , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_MagA");
+	Template.AddDefaultAttachment('Stock', "LWAccessories_CG.Meshes.LW_Coil_StockB");//, , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_StockA");
+	Template.AddDefaultAttachment('Reargrip', "LWAccessories_CG.Meshes.LW_Coil_ReargripA");//, , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_ReargripA");
+	Template.AddDefaultAttachment('Light', "BeamAttachments.Meshes.BeamFlashLight"); //);//, , "img:///UILibrary_Common.ConvAssaultRifle.ConvAssault_LightA");  // re-use common conventional flashlight
+	Template.AddDefaultAttachment('Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticC");//, , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSniperRifle_OpticA");
+
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
 
 	Template.CreatorTemplateName = 'VEKTOR_CG_Schematic'; // The schematic which creates this item
