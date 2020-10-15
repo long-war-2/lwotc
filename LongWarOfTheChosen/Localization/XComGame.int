@@ -1067,21 +1067,20 @@ TacticalText="<Bullet/> Reaper weapons are very accurate at close range, but als
 AbilityDescName="crossbow"
 
 [Vektor_LS X2WeaponTemplate]
-FriendlyName="\"Bullseye\" Crossbow"
-FriendlyNamePlural="\"Bullseye\" Crossbows"
-BriefSummary="An improved crossbow design incorporating alien alloys, as well as a smart rangefinder that operates on the same principle as our pulse laser weapons. Any Reaper that uses this beauty should find it much easier to land precise shots."
+FriendlyName="Laser Strike Lance"
+FriendlyNamePlural="Laser Strike Lance"
+BriefSummary="A smaller, more flexible version of the Laser Lance to make it more similiar to vektor rifles. Only Reapers can use it because they're special snowflakes."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Acts as the laser tier version of vektor rifles.\n<Bullet/> Use upgrades looted from enemies to improve the crossbow's tactical effectiveness."
-AbilityDescName="crossbow"
+AbilityDescName="Vektor"
 
 [VektorRifle_MG X2WeaponTemplate]
 TacticalText="<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Temnotic Rifle's tactical effectiveness."
 
 [Vektor_CG X2WeaponTemplate]
-FriendlyName="\"Flatline\" Crossbow"
-FriendlyNamePlural="\"Flatline\" Crossbows"
-BriefSummary="Our final crossbow design, this is as far as we can push them to keep up with the alien tech. The bolts of this crossbow are encased in a microplasma field, greatly decreasing air resistance and letting them pierce armor with ease."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Acts as the coil tier version of vektor rifles.\n<Bullet/> Use upgrades looted from enemies to improve the crossbow's tactical effectiveness."
-AbilityDescName="crossbow"
+FriendlyName="Coil Strike Rifle"
+FriendlyNamePlural="Coil Strike Rifle"
+BriefSummary="A smaller, more flexible version of the coil sniper rifle to make it more similiar to vektor rifles. Only Reapers can use it because they're special snowflakes."
+AbilityDescName="Vektor"
 
 [VektorRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> This is most advanced Vektor Rifle variant available in the XCOM arsenal.\n<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Shadow Lance's tactical effectiveness."
