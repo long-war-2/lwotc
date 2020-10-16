@@ -507,7 +507,7 @@ static function EventListenerReturn LW2OnPlayerTurnBegun(Object EventData, Objec
 }
 //Changes the Battle data to include an updated way of choosing how to spawn lost. 
 //It basically uses the same method as DisableInterceptAIBehavior, so could be put there, but I decided to seperate it for code clarity
-static function EventListenerReturn ChangeLostSpawningBehaviour(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+static function EventListenerReturn ChangeLostSpawningBehavior(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local XComGameStateHistory History;
 	local XComGameState_BattleData BattleData;

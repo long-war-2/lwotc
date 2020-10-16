@@ -26,19 +26,19 @@ static function array<X2DataTemplate> CreateTemplates()
 	Weapons.AddItem(CreateTemplate_TheLost_MeleeAttack('TheLostDasherTier1_MeleeAttack', default.THELOST_DASHER_TIER1_MELEEATTACK_BASEDAMAGE));
 	Weapons.AddItem(CreateTemplate_TheLost_MeleeAttack('TheLostDasherTier2_MeleeAttack', default.THELOST_DASHER_TIER2_MELEEATTACK_BASEDAMAGE));
 	Weapons.AddItem(CreateTemplate_TheLost_MeleeAttack('TheLostDasherTier3_MeleeAttack', default.THELOST_DASHER_TIER3_MELEEATTACK_BASEDAMAGE));
-    Weapons.AddItem(CreateTemplate_TheLost_MeleeAttack('TheLostDasherTier4_MeleeAttack', default.THELOST_DASHER_TIER4_MELEEATTACK_BASEDAMAGE));
+	Weapons.AddItem(CreateTemplate_TheLost_MeleeAttack('TheLostDasherTier4_MeleeAttack', default.THELOST_DASHER_TIER4_MELEEATTACK_BASEDAMAGE));
     
 	Weapons.AddItem(CreateTemplate_TheLostGrappler_MeleeAttack('TheLostGrapplerTier1_MeleeAttack', default.THELOST_GRAPPLER_TIER1_MELEEATTACK_BASEDAMAGE));
 	Weapons.AddItem(CreateTemplate_TheLostGrappler_MeleeAttack('TheLostGrapplerTier2_MeleeAttack', default.THELOST_GRAPPLER_TIER2_MELEEATTACK_BASEDAMAGE));
 	Weapons.AddItem(CreateTemplate_TheLostGrappler_MeleeAttack('TheLostGrapplerTier3_MeleeAttack', default.THELOST_GRAPPLER_TIER3_MELEEATTACK_BASEDAMAGE));
 	Weapons.AddItem(CreateTemplate_TheLostGrappler_MeleeAttack('TheLostGrapplerTier4_MeleeAttack', default.THELOST_GRAPPLER_TIER4_MELEEATTACK_BASEDAMAGE));
 
-    Weapons.AddItem(CreateTemplate_TheLost_MeleeAttack('TheLostBruteTier1_MeleeAttack', default.THELOST_BRUTE_TIER1_MELEEATTACK_BASEDAMAGE));
+	Weapons.AddItem(CreateTemplate_TheLost_MeleeAttack('TheLostBruteTier1_MeleeAttack', default.THELOST_BRUTE_TIER1_MELEEATTACK_BASEDAMAGE));
 	Weapons.AddItem(CreateTemplate_TheLost_MeleeAttack('TheLostBruteTier2_MeleeAttack', default.THELOST_BRUTE_TIER2_MELEEATTACK_BASEDAMAGE));
 	Weapons.AddItem(CreateTemplate_TheLost_MeleeAttack('TheLostBruteTier3_MeleeAttack', default.THELOST_BRUTE_TIER3_MELEEATTACK_BASEDAMAGE));
 	Weapons.AddItem(CreateTemplate_TheLost_MeleeAttack('TheLostBruteTier4_MeleeAttack', default.THELOST_BRUTE_TIER4_MELEEATTACK_BASEDAMAGE));
     
-    Weapons.AddItem(CreateBruteAcid_WPN());
+	Weapons.AddItem(CreateBruteAcid_WPN());
 
 	return Weapons;
 }

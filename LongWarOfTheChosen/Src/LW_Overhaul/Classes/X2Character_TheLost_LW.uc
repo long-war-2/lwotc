@@ -7,7 +7,7 @@ class X2Character_TheLost_LW extends X2Character;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
-    local array<X2DataTemplate> Templates;
+	local array<X2DataTemplate> Templates;
 
 	Templates.AddItem(CreateTemplate_TheLostBrute('LW_TheLostBruteHP10', 'TheLostBruteTier1_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostBrute('LW_TheLostBruteHP11', 'TheLostBruteTier1_Loadout'));
@@ -20,7 +20,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_TheLostBrute('LW_TheLostBruteHP21', 'TheLostBruteTier4_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostBrute('LW_TheLostBruteHP23', 'TheLostBruteTier4_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostBrute('LW_TheLostBruteHP25', 'TheLostBruteTier4_Loadout'));
-
 
 	Templates.AddItem(CreateTemplate_TheLostGrappler('LW_TheLostGrapplerHP2', 'TheLostGrapplerTier1_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostGrappler('LW_TheLostGrapplerHP3', 'TheLostGrapplerTier1_Loadout'));
@@ -37,7 +36,6 @@ static function array<X2DataTemplate> CreateTemplates()
     return Templates;
 }
 
-
 static function X2CharacterTemplate CreateTemplate_TheLostGrappler(name LostName, name LoadoutName)
 {
 	local X2CharacterTemplate CharTemplate;
@@ -51,7 +49,7 @@ static function X2CharacterTemplate CreateTemplate_TheLostGrappler(name LostName
 	return CharTemplate;
 }
 
-	static function X2CharacterTemplate CreateTemplate_TheLostBrute(name LostName, name LoadoutName)
+static function X2CharacterTemplate CreateTemplate_TheLostBrute(name LostName, name LoadoutName)
 {
 	local X2CharacterTemplate CharTemplate;
 

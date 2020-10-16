@@ -729,7 +729,7 @@ static function UpdateFuseDetonation(X2AbilityTemplate Template)
 	}
 }
 
-static function	MakeBladestormNotTriggerOnItsTurn(X2AbilityTemplate Template)
+static function MakeBladestormNotTriggerOnItsTurn(X2AbilityTemplate Template)
 {
 	local X2Condition_NotItsOwnTurn Condition;
 
@@ -737,7 +737,7 @@ static function	MakeBladestormNotTriggerOnItsTurn(X2AbilityTemplate Template)
 	Template.AbilityShooterConditions.AddItem(Condition);
 }
 
-static function	MakeAbilitiesUnusableOnLost(X2AbilityTemplate Template)
+static function MakeAbilitiesUnusableOnLost(X2AbilityTemplate Template)
 {
 	local X2Condition_NotLost Condition;
 

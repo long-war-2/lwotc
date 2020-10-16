@@ -11,7 +11,7 @@ static function array<X2DataTemplate> CreateTemplates()
     local array<X2DataTemplate> Templates;
     
 	Templates.AddItem(CreateLostBladestormAttack());
-    Templates.AddItem(CreateLostBladestorm());
+	Templates.AddItem(CreateLostBladestorm());
 	Templates.AddItem(CreateBruteAcid());
 	return Templates;
 }
