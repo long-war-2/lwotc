@@ -1067,20 +1067,21 @@ TacticalText="<Bullet/> Reaper weapons are very accurate at close range, but als
 AbilityDescName="crossbow"
 
 [Vektor_LS X2WeaponTemplate]
-FriendlyName="Laser Strike Lance"
-FriendlyNamePlural="Laser Strike Lance"
-BriefSummary="A smaller, more flexible version of the Laser Lance to make it more similiar to vektor rifles. Only Reapers can use it because they're special snowflakes."
-TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Acts as the laser tier version of vektor rifles.\n<Bullet/> Use upgrades looted from enemies to improve the crossbow's tactical effectiveness."
-AbilityDescName="Vektor"
+FriendlyName="Laser Vektor Rifle"
+FriendlyNamePlural="Laser Vektor Rifles"
+BriefSummary="An experimental laser weapon design originating all the way from old-world russia, the Laser Vektor Rifle is close in performance to the traditional marksman rifles used by the Reapers. Now updated with modern alloy shielding and a compact power source, it is quite a formidable weapon in the hands of a skilled sniper."
+TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Laser Vektor Rifle's tactical effectiveness."
+AbilityDescName="vektor rifle"
 
 [VektorRifle_MG X2WeaponTemplate]
 TacticalText="<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Temnotic Rifle's tactical effectiveness."
 
 [Vektor_CG X2WeaponTemplate]
-FriendlyName="Coil Strike Rifle"
-FriendlyNamePlural="Coil Strike Rifle"
-BriefSummary="A smaller, more flexible version of the coil sniper rifle to make it more similiar to vektor rifles. Only Reapers can use it because they're special snowflakes."
-AbilityDescName="Vektor"
+FriendlyName="Temnotic Lance"
+FriendlyNamePlural="Temnotic Lances"
+BriefSummary="Despite the evident firepower of our coilgun technology, a lack of reliability and costly maintenance have so far left the Reapers reluctant to adapt them over the old Temnotic Rifle. This new weapon is the result of a compromise where we did our best to minimize the amount of parts that could fail or break when out in the field."
+TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Temnotic Lance's tactical effectiveness."
+AbilityDescName="vektor rifle"
 
 [VektorRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> This is most advanced Vektor Rifle variant available in the XCOM arsenal.\n<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Shadow Lance's tactical effectiveness."
