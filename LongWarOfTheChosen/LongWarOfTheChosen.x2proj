@@ -1220,9 +1220,9 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_OnlyOnXCOMTurn.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_NotItsOwnTurn.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_NotLost.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Ability_TheLost_LW.uc.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Ability_TheLost_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Character_TheLost_LW.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Item_LostWeapons_LW.uc.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Item_LostWeapons_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_NoLootAndCorpse.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_SitRepGrantedAbilitySet_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2SitRep_DefaultSitRepEffects_LW.uc" />

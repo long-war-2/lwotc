@@ -1224,7 +1224,7 @@ BriefSummary="Increase aim by <Ability:SCOPE_SUP_AIM_BONUS/> on non-reaction fir
 TinySummary="Increased Non-reaction Aim"
 LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
 
-;LWOTC needs translation
+;LWOTC needs translation (2)
 
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Stock"
@@ -1247,7 +1247,7 @@ BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_SU
 TinySummary="Grants Steady Weapon"
 LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
 
-; End Translation
+; End Translation (2)
 
 [FreeKillUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Suppressor"
@@ -5069,6 +5069,9 @@ RankIcons[6]= "UILibrary_Common.psirank_warlock"
 RankIcons[7]= "UILibrary_Common.psirank_magus"
 RankIcons[8]= "UILibrary_LW_PerkPack.psirank_Master"
 
+; End Translation
+
+;LWOTC needs Translation(2)
 [Retribution X2AbilityTemplate]
 LocFriendlyName="Retribution"
 LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter, exit or attack from melee range on enemy turns."
@@ -5082,8 +5085,8 @@ LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies t
 LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range. aka Bladestorm."
 LocFlyOverText="Retribution"
 LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Retribution will trigger if that enemy tries to attack the Skirmisher.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Retribution will trigger when that enemy moves into melee range.<br/>"
-; End Translation
 
+; End Translation (2)
 ; LWOTC Needs Translation
 [Battlemaster X2AbilityTemplate]
 LocFriendlyName="Battlemaster"
