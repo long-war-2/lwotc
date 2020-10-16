@@ -1,0 +1,15 @@
+; LWOTC translated
+[EnableChosen SecondWaveOptionObject]
+Tooltip="Activation des Elus, qui entreront en action à partir d'une date inconnue."
+Description="Elus: Activation des Elus."
+
+[EnableResistanceOrders SecondWaveOptionObject]
+Tooltip="Activation des ordres de la résistance."
+Description="Domination stratégique: Activation des ordres de la résistance."
+; End translated
+
+; LWOTC translated
+[AllowSameRankAbilities SecondWaveOptionObject]
+Tooltip="Permet aux soldats d'XCOM d'acheter plusieurs capacités de classe du même rang avec des points de capacité."
+Description="Capacités multiples: Permet aux soldats d'XCOM d'acheter plusieurs capacités de classe du même rang avec des points de capacité, une fois que le centre d'entraînement a été construit."
+; End translated

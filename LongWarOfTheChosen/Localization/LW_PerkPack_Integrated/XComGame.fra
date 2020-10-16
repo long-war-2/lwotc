@@ -58,6 +58,8 @@ FriendlyNamePlural="SPC : Macrophages intelligentes"
 BriefSummary="Réduit le temps de récupération des blessures et confère une immunité au poison et à l'acide."
 
 [CenterMass X2AbilityTemplate]
+; A special 'е' character is used for the second 'e' to prevent the
+; perk name appearing centered. Thanks to bountygiver for the suggestion.
 LocFriendlyName="Viser le coeur"
 LocFlyOverText="Viser le coeur"
 LocLongDescription="Les dégâts de base infligés par vos armes à feu augmentent d'un point."
@@ -687,7 +689,9 @@ LocFriendlyName="Bouclier corporel"
 LocFlyOverText="Bouclier corporel"
 LocLongDescription="Un ennemi ciblé reçoit -20 en visée et -50 en chances de coup critique contre le soldat."
 LocHelpText="L'ennemi ciblé reçoit -20 en visée et -50 en chances de coup critique contre le soldat."
-LocPromotionPopupText="<Bullet/>Un ennemi ciblé reçoit -20 en visée et -50 en chances de coup critique contre le soldat.<br/>"
+; LWOTC translated
+LocPromotionPopupText="<Bullet/>Un ennemi ciblé reçoit -20 en visée et -50 en chances de coup critique contre le soldat.<br/><Bullet/>Activer cette capacité est une action gratuite.<br/><Bullet/>Temps de rechargement : <Ability:SelfCooldown/> tours.<br/>"
+; End translated
 
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="Premiers soins"
@@ -715,7 +719,10 @@ LocFriendlyName="Fusion de l'esprit"
 LocFlyOverText="Fusion de l'esprit"
 LocLongDescription="Octroie un bonus en volonté et en chance de coup critique ainsi que des points de vie bonus à un allié jusqu'au début du prochain tour du joueur."
 LocHelptext="Augmente temporaire la volonté, la chance de coup critique et les points de vie bonus d'un allié."
-LocPromotionPopupText="<Bullet/> Octroie à l'allié ciblé 1 point de vie bonus (bouclier), plus un autre toutes les 30 attaques psi faites par l'agent psi à l'aide de Fusion de l'esprit.<br/><Bullet/> Octroie à l'allié ciblé 1 volonté toutes les 10 attaques psi faites par l'agent psi.<br/><Bullet/> L'effet dure jusqu'au prochain tour de l'agent psi.<br/><Bullet/> Temps de rechargement : 3 tours.<br/><Bullet/> Seuls les alliés visibles peuvent être ciblés.<br/><Bullet/> Des amplis psioniques améliorés octroient plus de volonté et de points de vie bonus.<br/><Bullet/> Consomme 1 action.<br/><Bullet/> Octroie également un bonus de +1 en chance de coup critique par 10 points d'attaque psi de l'agent psi.<br/>"
+; LWOTC translated
+LocPromotionPopupText="<Bullet/> Octroie à l'allié ciblé 1 point de vie bonus (bouclier), plus un autre toutes les 20 attaques psi faites par l'agent psi à l'aide de Fusion de l'esprit.<br/><Bullet/> Octroie à l'allié ciblé 1 volonté toutes les 5 attaques psi faites par l'agent psi.<br/><Bullet/> Octroie également un bonus de +1 en chance de coup critique par 7 points d'attaque psi de l'agent psi.<br/><Bullet/> L'effet dure jusqu'au prochain tour de l'agent psi.<br/><Bullet/> Temps de rechargement : 3 tours.<br/><Bullet/> Seuls les alliés visibles peuvent être ciblés.<br/><Bullet/> Des amplis psioniques améliorés octroient plus de volonté et de points de vie bonus.<br/><Bullet/> Consomme 1 action.<br/>"
+;End translated
+
 
 [SoulMerge X2AbilityTemplate]
 LocFriendlyName="Fusion de l'âme"
