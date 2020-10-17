@@ -1091,6 +1091,7 @@
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LastShotBreakdown.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWAbilitiesModTemplate.uc" />
     <Content Include="Src\WallClimbOverride\Classes\X2Action_MoveClimbWall_Override.uc" />
+    <Content Include="Localization\BetterSecondWaveSupport.fra" />
     <Content Include="Localization\BetterSecondWaveSupport.int" />
     <Content Include="Localization\BetterSecondWaveSupport.ita" />
     <Content Include="Localization\BetterSecondWaveSupport.rus" />
