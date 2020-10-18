@@ -40,8 +40,6 @@ var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T4;
 
 var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
 
-var config int CHOSEN_APPEARANCE_ALERT_MOD;
-
 struct ArchetypeToHealth
 {
 	var string ArchetypeName;
@@ -93,10 +91,6 @@ var config array<name> SecondaryWeaponWeaponAbilities;
 // Configurable list of parcels to remove from the game.
 var config array<String> ParcelsToRemove;
 var bool bDebugPodJobs;
-
-// An integer from between 0 and 100 inclusive that represents the percentage chance for
-// a Chosen to appear on a mission, excluding any modifying factors.
-var config int BaseChosenAppearanceChance;
 
 // Minimum force level that needs to be reached before The Lost
 // can start to appear.
@@ -567,10 +561,8 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	local XComGameState_PointOfInterest POIState;
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_MissionCalendar CalendarState;
-	local XComGameState_BattleData BattleData;
 
 	History = `XCOMHISTORY;
-	BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
 
 	`LWACTIVITYMGR.UpdatePreMission (StartGameState, MissionState);
 	ResetDelayedEvac(StartGameState);
@@ -580,8 +572,6 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	OverrideDestructibleHealths(StartGameState);
 	if (class'XComGameState_AlienRulerManager' != none)
 		OverrideAlienRulerSpawning(StartGameState, MissionState);
-	MaybeAddChosenToMission(StartGameState, MissionState, BattleData);
-
 	// Test Code to see if DLC POI replacement is working
 	if (MissionState.POIToSpawn.ObjectID > 0)
 	{
@@ -1558,142 +1548,6 @@ static function OverrideAlienRulerSpawning(XComGameState StartState, XComGameSta
 	}
 }
 
-// (Copied from XCGS_HeadquartersAlien.AddChosenTacticalTagsToMission())
-//
-// Add the Chosen tactical tags to the mission if any of the following criteria
-// are met:
-//
-//  * It's the final mission (Golden Path fortress)
-//  * The Chosen has control of the region, is active, and:
-//    - hasn't been encountered yet
-//    - it's a Golden Path mission
-//    - 25% chance on all other missions
-//
-// Note that if the mission type is configured to exclude Chosen, then of course
-// the tactical tags aren't added for the given mission.
-static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_MissionSite MissionState, XComGameState_BattleData BattleData)
-{
-	local XComGameStateHistory History;
-	local XComGameState_HeadquartersXCom XComHQ;
-	local XComGameState_HeadquartersAlien AlienHQ;
-	local array<XComGameState_AdventChosen> AllChosen;
-	local XComGameState_AdventChosen ChosenState;
-	local name ChosenSpawningTag;
-	local int AlertLevel;
-	// Don't allow Chosen on the mission if there is already a Ruler
-	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
-	{
-		return;
-	}
-
-	History = `XCOMHISTORY;
-	foreach History.IterateByClassType(class'XComGameState_HeadquartersAlien', AlienHQ)
-	{
-		break;
-	}
-
-	if (AlienHQ.bChosenActive)
-	{
-		XComHQ = `XCOMHQ;
-		AllChosen = AlienHQ.GetAllChosen(, true);
-
-		foreach AllChosen(ChosenState)
-		{
-			if (ChosenState.bDefeated)
-			{
-				continue;
-			}
-
-			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
-			if (!CanOverrideChosenTacticalTags(MissionState, ChosenState)) continue;
-
-			// Remove the tag if it's already attached to this mission. This is the only
-			// place that should add Chosen tactical mission tags.
-			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTag);
-
-			// LWOTC: If Chosen are disabled, skip adding the tag. We do this check here
-			// because we *do* still want to remove the Chosen tags that vanilla has a
-			// habit of adding.
-			if (!`SecondWaveEnabled('EnableChosen'))
-			{
-				continue;
-			}
-
-			// Roll for whether this Chosen will appear on this mission.
-			`LWTrace("Rolling for Chosen on mission " $ MissionState.GeneratedMission.Mission.MissionName);
-			if (`SYNC_RAND_STATIC(100) < GetChosenAppearanceChance(ChosenState, MissionState))
-			{
-				`LWTrace("    Chosen added!");
-				XComHQ.TacticalGameplayTags.AddItem(ChosenSpawningTag);
-
-				///Make Chosen Decrease the Alert level
-				AlertLevel = BattleData.GetAlertLevel();
-
-				AlertLevel += default.CHOSEN_APPEARANCE_ALERT_MOD;
-				AlertLevel = Clamp(AlertLevel, 1, 10000);
-			
-				BattleData.SetAlertLevel(AlertLevel);
-			}
-		}
-	}
-
-	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
-	{
-		if (ChosenState.bDefeated)
-		{
-			ChosenState.PurgeMissionOfTags(MissionState);
-		}
-	}
-}
-
-// Determines whether the Chosen tactical tags should be cleared from the
-// given mission. Returns `false` if the given mission is either the final
-// one or one of the Chosen strongholds.
-static function bool CanOverrideChosenTacticalTags(XComGameState_MissionSite MissionState, XComGameState_AdventChosen ChosenState)
-{
-	return MissionState.Source != 'MissionSource_Final' && MissionState.Source != 'MissionSource_ChosenStronghold';
-}
-
-// Returns the chance that the given Chosen will appear on the given mission. The chance
-// is a percentage between 0 and 100 inclusive.
-static function int GetChosenAppearanceChance(XComGameState_AdventChosen ChosenState, XComGameState_MissionSite MissionState)
-{
-	local XComGameState_LWPersistentSquad Squad;
-	local int AppearanceChance;
-
-	// If the Chosen doesn't control the region, they won't appear on the mission
-	if (!ChosenState.ChosenControlsRegion(MissionState.Region))
-	{
-		return 0;
-	}
-
-	if (class'XComGameState_LWAlienActivity'.default.ExcludeChosenFromMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
-	{
-		// Can't be on this mission no matter what
-		// LWOTC DEBUGGING
-		`LWTrace("Chosen can't be added to missions of type" @ MissionState.GeneratedMission.Mission.sType);
-		// END
-		return 0;
-	}
-	else if (MissionState.GetMissionSource().bGoldenPath || class'XComGameState_LWAlienActivity'.default.GuaranteeChosenInMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
-	{
-		// Guaranteed on this mission
-		return 100;
-	}
-	else
-	{
-		AppearanceChance = default.BaseChosenAppearanceChance;
-
-		// Modify the base Chosen appearance chance by infiltration percentage
-		Squad = `LWSQUADMGR.GetSquadOnMission(MissionState.GetReference());
-		if (Squad != none)
-		{
-			AppearanceChance /= FMax(Squad.CurrentInfiltration, 0.1);
-		}
-		return Clamp(AppearanceChance, 0, 100);
-	}
-}
 
 // WOTC TODO: Perhaps this is supposed to honour the SpawnSizeOverride parameter somehow. Seems to work
 // though (a 10-man squad on first mission spawned OK)
