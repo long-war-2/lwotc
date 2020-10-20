@@ -27,34 +27,31 @@ simulated function BuildScreen( optional bool bAnimateIn = false )
 	if (!bShowActiveEvents)
 	{
 		NumEvents = UpdateDarkEventList();
-        BuildDarkEventPanel(0, false);
+		BuildDarkEventPanel(0, false);
 	}
 	else if (!bResistanceReport)
 	{
 		NumEvents = UpdateDarkEventList();      
-        BuildDarkEventPanel(0, true);
-    }
-    else
+		BuildDarkEventPanel(0, true);
+	}
+	else
 	{
-        // Close this screen if it's the resistance report and there are no
-        // pending dark events.
+		// Close this screen if it's the resistance report and there are no
+		// pending dark events.
 		NumEvents = ChosenDarkEvents.Length;
 		if (NumEvents == 0)
 		{
 			CloseScreen();
 		}
-    }
+	}
 
-    // This fixes the alignment of the displayed card and makes it independent of how
-    // many active or pending dark events there are.
+	// This fixes the alignment of the displayed card and makes it independent of how
+	// many active or pending dark events there are.
 	MC.FunctionNum("SetNumCards", 3);
 	RefreshNav();
-	// if(bAnimateIn) 
-		// MC.FunctionVoid("AnimateIn");
 }
 
-// Returns the number of events in the list (whether it's the active or
-// pending one)
+// Returns the number of events in the list (whether it's the active or pending one)
 simulated function int UpdateDarkEventList()
 {
 	local UIList kDarkEventList;
@@ -73,10 +70,10 @@ simulated function int UpdateDarkEventList()
 		arrDarkEvents = ChosenDarkEvents;
 	}
 	ArrLength = arrDarkEvents.Length;
-	for(idx = 0; idx < ArrLength; idx ++)
+	for (idx = 0; idx < ArrLength; idx ++)
 	{
 		ListItem = UIDarkEventListItem(kDarkEventList.GetItem(idx));
-		if(ListItem == none)
+		if (ListItem == none)
 		{
 			ListItem = UIDarkEventListItem(kDarkEventList.CreateItem(class'UIDarkEventListItem'));
 			ListItem.InitDarkEventListItem(arrDarkEvents[idx]);
@@ -85,11 +82,11 @@ simulated function int UpdateDarkEventList()
 		ListItem.Update();
 		ListItem.Show();
 	}
-	// remove any additional list items
+	// Remove any additional list items
 	ListLength = kDarkEventList.GetItemCount();
-	if(ListLength >= idx)
+	if (ListLength >= idx)
 	{
-		for(idx2 = idx; idx2 < ListLength; idx2++)
+		for (idx2 = idx; idx2 < ListLength; idx2++)
 		{
 			ListItem = UIDarkEventListItem(kDarkEventList.GetItem(idx));
 			ListItem.Remove();
@@ -100,9 +97,9 @@ simulated function int UpdateDarkEventList()
 		kDarkEventList.SetSelectedIndex(0);
 		UIDarkEventListItem(kDarkEventList.GetItem(0)).OnReceiveFocus();
 		UIDarkEventListItem(kDarkEventList.GetItem(0)).OnReceiveFocus();
-    }
+	}
         
-    return ArrLength;
+	return ArrLength;
 }
 
 static function int ActiveDarkEventSort(StateObjectReference DERefA, StateObjectReference DERefB)
@@ -115,8 +112,14 @@ static function int ActiveDarkEventSort(StateObjectReference DERefA, StateObject
 	DarkEventB = XComGameState_DarkEvent(History.GetGameStateForObjectID(DERefB.ObjectID));
 
 	// 1) Sort by permanent/not permanent
-	if (DarkEventA.GetMyTemplate().bInfiniteDuration && !DarkEventB.GetMyTemplate().bInfiniteDuration) { return 1; }
-	else if (!DarkEventA.GetMyTemplate().bInfiniteDuration && DarkEventB.GetMyTemplate().bInfiniteDuration) { return -1; }
+	if (DarkEventA.GetMyTemplate().bInfiniteDuration && !DarkEventB.GetMyTemplate().bInfiniteDuration)
+	{
+		return 1;
+	}
+	else if (!DarkEventA.GetMyTemplate().bInfiniteDuration && DarkEventB.GetMyTemplate().bInfiniteDuration)
+	{
+		return -1;
+	}
 	// 2) Otherwise, leave the original order
 	else return 0;
 }
@@ -126,13 +129,16 @@ simulated function UIList GetDarkEventListUI()
 	local UIList DarkEventList;
 
 	DarkEventList = UIList(GetChildByName('DarkEventScrollableList_LW', false));
-	if (DarkEventList != none) { return DarkEventList; }
+	if (DarkEventList != none)
+	{
+		return DarkEventList;
+	}
 
 	DarkEventList = Spawn(class'UIList', self);
 	DarkEventList.MCName = 'DarkEventScrollableList_LW';
-	DarkEventList.bIsNavigable = false;
 	DarkEventList.ItemPadding = 3;
-	DarkEventList.InitList(, 757, 409, 800, 528, false /*not horizontal*/); 
+	// KDM : Moved the list up, so it's in-line with the dark event card to its left.
+	DarkEventList.InitList(, 757, 95, 800, 528, false /*not horizontal*/); 
 	DarkEventList.bStickyHighlight = false;
 	DarkEventList.SetSelectedIndex(0);
 	DarkEventList.OnItemClicked = DarkEventListButtonCallback;
@@ -140,7 +146,7 @@ simulated function UIList GetDarkEventListUI()
 	return DarkEventList;
 }
 
-simulated function DarkEventListButtonCallback( UIList kList, int index )
+simulated function DarkEventListButtonCallback(UIList kList, int index)
 {
 	`LWTRACE("DarkEventListButtonCallback: index=" @ index);
 
@@ -163,7 +169,7 @@ simulated function BuildDarkEventPanel(int Index, bool bActiveDarkEvent)
 	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
 	CostScalars.Length = 0;
 
-	if(bActiveDarkEvent)
+	if (bActiveDarkEvent)
 	{
 		DarkEventState = XComGameState_DarkEvent(History.GetGameStateForObjectID(ActiveDarkEvents[Index].ObjectID));
 		ActiveDarkEvents[Index] = DarkEventState.GetReference();
@@ -174,7 +180,7 @@ simulated function BuildDarkEventPanel(int Index, bool bActiveDarkEvent)
 		ChosenDarkEvents[Index] = DarkEventState.GetReference();
 	}
 	
-	if(DarkEventState != none)
+	if (DarkEventState != none)
 	{
 		// Trigger Central VO narrative if this Dark Event was generated by a Favored Chosen
 		if (DarkEventState.bChosenActionEvent)
@@ -184,11 +190,10 @@ simulated function BuildDarkEventPanel(int Index, bool bActiveDarkEvent)
 			`GAMERULES.SubmitGameState(NewGameState);
 		}
 
-		if(DarkEventState.bSecretEvent) 
+		if (DarkEventState.bSecretEvent) 
 		{
-			if( `ISCONTROLLERACTIVE )
+			if (`ISCONTROLLERACTIVE)
 			{
-			
 				UnlockButtonLabel = class'UIUtilities_Text'.static.InjectImage(
 					class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_X_SQUARE, 20, 20, -10) @ m_strReveal;
 			}
@@ -199,8 +204,8 @@ simulated function BuildDarkEventPanel(int Index, bool bActiveDarkEvent)
 			}
 			bCanAfford = XComHQ.CanAffordAllStrategyCosts(DarkEventState.RevealCost, CostScalars);
 
-            MC.BeginFunctionOp("UpdateDarkEventCardLocked");
-            // LWOTC: Always update the left most card as that's the only one we're displaying.
+			MC.BeginFunctionOp("UpdateDarkEventCardLocked");
+			// LWOTC: Always update the left most card as that's the only one we're displaying.
 			MC.QueueNumber(0);
 			MC.QueueString(DarkEventState.GetDisplayName());
 			MC.QueueString(bCanAfford ? m_strUnlockButton : "");
@@ -210,23 +215,21 @@ simulated function BuildDarkEventPanel(int Index, bool bActiveDarkEvent)
 		}
 		else
 		{
-			if( bActiveDarkEvent )
+			if (bActiveDarkEvent)
+			{
 				StatusLabel = m_strActive;
+			}
 			else
+			{
 				StatusLabel = m_strPreparing;
+			}
 
 			Quote = DarkEventState.GetQuote();
 			QuoteAuthor = DarkEventState.GetQuoteAuthor();
 			bIsChosen = DarkEventState.ChosenRef != NoneRef;
 
-			//<workshop> MULTIPLE_SECRET_EVENT_REVEAL, BET, 2016-03-24
-			//This was wrong - a nonsecret chosen (non-active) dark event would be improperly cached
-			//DEL:
-			// ActiveDarkEvents[Index] = DarkEventState.GetReference();
-			//</workshop>
-
 			MC.BeginFunctionOp("UpdateDarkEventCard");
-            // LWOTC: Always update the left most card as that's the only one we're displaying.
+			// LWOTC: Always update the left most card as that's the only one we're displaying.
 			MC.QueueNumber(0);
 			MC.QueueString(DarkEventState.GetDisplayName());
 			MC.QueueString(m_strStatusLabel);
@@ -238,34 +241,32 @@ simulated function BuildDarkEventPanel(int Index, bool bActiveDarkEvent)
 			MC.QueueBoolean(bIsChosen);
 			MC.EndOp();
 		}
-    }
+	}
 
-    // This fixes the alignment of the displayed card and makes it independent of how
-    // many active or pending dark events there are.
+	// This fixes the alignment of the displayed card and makes it independent of how
+	// many active or pending dark events there are.
 	MC.FunctionNum("SetNumCards", 3);
 }
 
 simulated function OnRevealClicked(int idx)
 {
 	local UIList DarkEventList;
-    local UIDarkEventListItem ListItem;
+	local UIDarkEventListItem ListItem;
 
 	DarkEventList = UIList(GetChildByName('DarkEventScrollableList_LW', false));
-    if (DarkEventList == none) { return; }
+	if (DarkEventList == none)
+	{
+		return;
+	}
     
-    idx = DarkEventList.SelectedIndex;
-    super.OnRevealClicked(idx);
+	idx = DarkEventList.SelectedIndex;
+	super.OnRevealClicked(idx);
 
-    // Need this so that the corresponding list item updates as well.
-    // It would be nicer to update the list item directly, but not sure
-    // how to do that.
-    ListItem = UIDarkEventListItem(DarkEventList.GetItem(idx));
-    // if (ListItem == none)
-    // {
-    //     ListItem = UIDarkEventListItem(kDarkEventList.CreateItem(class'UIDarkEventListItem'));
-    //     ListItem.InitDarkEventListItem(arrDarkEvents[idx]);
-    // }
-    ListItem.DarkEventRef = ChosenDarkEvents[idx];
-    ListItem.Update();
-    ListItem.Show();
+	// Need this so that the corresponding list item updates as well.
+	// It would be nicer to update the list item directly, but not sure
+	// how to do that.
+	ListItem = UIDarkEventListItem(DarkEventList.GetItem(idx));
+	ListItem.DarkEventRef = ChosenDarkEvents[idx];
+	ListItem.Update();
+	ListItem.Show();
 }
