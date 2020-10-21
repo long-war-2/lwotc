@@ -24,6 +24,8 @@ var config array<int> FactionAbilityCosts;
 
 var config float BaseAbilityCostModifier;
 
+var config int ScrollbarPositionX;
+
 // Position is the number by which we offset all ability indices.
 // 0 <= Position <= MaxPosition
 var int Position, MaxPosition;
@@ -124,11 +126,15 @@ simulated function InitPromotion(StateObjectReference UnitRef, optional bool bIn
 	PopulateData();
 
 	// Only set position and animate in the scrollbar once after data population. Prevents scrollbar flicker on scrolling.
-	if (HasBrigadierRank())
+	if (default.ScrollbarPositionX > 0)
+	{
+		Scrollbar.SetPosition(default.ScrollbarPositionX, 310);
+	}
+	else if (HasBrigadierRank())
 	{
 		// KDM : The X position was originally set to -465; however, I am perplexed as to why, since the scrollbar was much too far to the right.
 		// In fact it was nearly always blocked by the soldier pawn.
-		Scrollbar.SetPosition(-543, 310);
+		Scrollbar.SetPosition(-475, 310);
 	}
 	else
 	{
