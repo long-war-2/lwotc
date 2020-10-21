@@ -27,7 +27,7 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 
 	TabList = Spawn(class'UIList', self);
 	TabList.InitList(, 93, 160, 185, 525, false, false);
-	TabList.bIsNavigable = false; // only allow keyboard/gamepad navigation on options, not on tabs
+	// TabList.bIsNavigable = false; // only allow keyboard/gamepad navigation on options, not on tabs
 	TabList.itemPadding = default.TabListPadding;
 
 	ButtonToModStateMapping.Length = 0;
@@ -183,7 +183,7 @@ simulated function string GetTabText(int Index)
 
 simulated function SetSelectedTab(int iSelect, bool bForce = false)
 {
-	local int PreviousTabValue;
+	local int i, PreviousTabValue;
 	PreviousTabValue = m_iCurrentTab;
 
 	// hack no graphics on PC
@@ -218,8 +218,13 @@ simulated function SetSelectedTab(int iSelect, bool bForce = false)
 
 	UpdateTabMechaItems();
 
-	if( !`ISCONTROLLERACTIVE )
-		List.Navigator.SetSelected(m_arrMechaItems[0]);
+	for(i = 0; i < List.ItemCount; ++i)
+		List.GetItem(i).OnLoseFocus();
+
+	MC.FunctionNum("SetSelectedTab", m_iCurrentTab);
+
+	// if( !`ISCONTROLLERACTIVE )
+	// 	List.Navigator.SetSelected(m_arrMechaItems[0]);
 
 	if( bInputReceived == true )
 	{
@@ -227,80 +232,6 @@ simulated function SetSelectedTab(int iSelect, bool bForce = false)
 	}
 	AttentionType = COAT_CATEGORIES;
 	AS_SetTitle(m_strTitle $ ":" @ GetTabText(m_iCurrentTab));	
-}
-
-//LWS Override to disable controller spinner
-function SetInterfaceTabSelected()
-{
-	local GFxObject InterfaceTabMC;
-	//	local int i;
-	local string strGameClassName;
-	local bool bInShell;
-
-	strGameClassName = String(WorldInfo.GRI.GameClass.name);
-	bInShell = (strGameClassName == "XComShell");
-
-	InterfaceTabMC = Movie.GetVariableObject(MCPath$".TabGroup.Tab4");
-	if(InterfaceTabMC != none)
-		InterfaceTabMC.ActionScriptVoid("select");
-		
-	ResetMechaListItems();
-
-	// Key Bindings screen
-	m_arrMechaItems[ePCTabInterface_KeyBindings].UpdateDataButton(m_strInterfaceLabel_KeyBindings, m_strInterfaceLabel_BindingsButton, OpenKeyBindingsScreen);
-	m_arrMechaItems[ePCTabInterface_KeyBindings].BG.SetTooltipText(m_strInterfaceLabel_KeyBindings_Desc, , , 10, , , , 0.0f);
-	m_arrMechaItems[ePCTabInterface_KeyBindings].SetDisabled(!m_kProfileSettings.Data.IsMouseActive());
-
-	// Subtitles: -------------------------------------------
-	m_arrMechaItems[ePCTabInterface_Subtitles].UpdateDataCheckbox(m_strInterfaceLabel_ShowSubtitles, "", m_kProfileSettings.Data.m_bSubtitles, UpdateSubtitles);
-	m_arrMechaItems[ePCTabInterface_Subtitles].BG.SetTooltipText(m_strInterfaceLabel_ShowSubtitles_Desc, , , 10, , , , 0.0f);
-
-	/* //TODO: enable these once integrated from controller. bsteiner 
-	m_arrMechaItems[ePCTabInterface_AbilityGrid].UpdateDataCheckbox(m_strInterfaceLabel_AbilityGrid, "", m_kProfileSettings.Data.m_bAbilityGrid, UpdateAbilityGrid);
-	m_arrMechaItems[ePCTabInterface_AbilityGrid].BG.SetTooltipText(m_strInterfaceLabel_AbilityGrid_Desc,,, 10,,,, 0.0f);
-	if (`PRES.m_eUIMode == eUIMode_Tactical)
-	{
-		m_arrMechaItems[ePCTabInterface_AbilityGrid].SetDisabled(true);
-		m_arrMechaItems[ePCTabInterface_AbilityGrid].BG.SetTooltipText(m_strInterfaceLabel_AbilityGridDisabled_Desc,,, 10,,,, 0.0f);
-	}
-*/
-	m_arrMechaItems[ePCTabInterface_GeoscapeSpeed].UpdateDataSlider(m_strInterfaceLabel_GeoscapeSpeed, "", m_kProfileSettings.Data.m_GeoscapeSpeed,, UpdateGeoscapeSpeed);
-	m_arrMechaItems[ePCTabInterface_GeoscapeSpeed].BG.SetTooltipText(m_strInterfaceLabel_GeoscapeSpeed_Desc,,, 10,,,, 0.0f);
-
-	
-	// Edge scrolling: -------------------------------------
-	m_arrMechaItems[ePCTabInterface_EdgeScroll].UpdateDataSlider(m_strInterfaceLabel_EdgescrollSpeed, "", m_kProfileSettings.Data.m_fScrollSpeed, , UpdateEdgeScroll);
-	m_arrMechaItems[ePCTabInterface_EdgeScroll].BG.SetTooltipText(m_strInterfaceLabel_EdgescrollSpeed_Desc, , , 10, , , , 0.0f);
-	m_arrMechaItems[ePCTabInterface_EdgeScroll].SetDisabled(WorldInfo.IsConsoleBuild());
-
-	// Input Device: --------------------------------------------
-	m_arrMechaItems[ePCTabInterface_InputDevice].UpdateDataSpinner(m_strInterfaceLabel_InputDevice, GetInputDeviceLabel(),  UpdateInputDevice_CycleSpinner);
-	m_arrMechaItems[ePCTabInterface_InputDevice].BG.SetTooltipText(m_strInterfaceLabel_InputDevice_Desc, , , 10, , , , 0.0f);
-
-	//-------------------------------------------------------
-
-/*	m_arrMechaItems[ePCTabInterface_KeyBindings].EnableNavigation();
-	m_arrMechaItems[ePCTabInterface_Subtitles].EnableNavigation();
-	m_arrMechaItems[ePCTabInterface_AbilityGrid].EnableNavigation();
-	m_arrMechaItems[ePCTabInterface_GeoscapeSpeed].EnableNavigation();
-	m_arrMechaItems[ePCTabInterface_EdgeScroll].EnableNavigation();
-	m_arrMechaItems[ePCTabInterface_InputDevice].EnableNavigation();
-
-
-	for( i = ePCTabInterface_Max; i < NUM_LISTITEMS; i++)
-	{
-		m_arrMechaItems[i].Hide();
-		m_arrMechaItems[i].DisableNavigation();
-	}*/
-
-	RenableMechaListItems(ePCTabInterface_Max);
-
-	m_arrMechaItems[ePCTabInterface_InputDevice].SetDisabled(true);
-
-	if( !bInShell  ) 
-	{
-	//	m_arrMechaItems[ePCTabInterface_InputDevice].SetDisabled(!bInShell, m_strInterfaceLabel_InputDevice_ChangeInShell);
-	}
 }
 
 simulated function UpdateTabMechaItems()
@@ -343,69 +274,6 @@ simulated function UpdateTabMechaItems()
 			ResetModOptionsButton.Show();
 	}
 }
-
-//simulated function bool OnUnrealCommand(int cmd, int ActionMask)
-//{
-	//if( !bIsInited || m_bSavingInProgress ) return true; 
-//
-	//bInputReceived = true;
-	//// Ignore releases, only pay attention to presses.
-	//if ( !CheckInputIsReleaseOrDirectionRepeat(cmd, ActionMask) )
-		//return true; // Consume All Input!
-//
-	//switch(cmd)
-	//{
-		//case class'UIUtilities_Input'.const.FXS_BUTTON_X:
-			//SaveAndExit(none);
-			//break;
-		//
-		//case class'UIUtilities_Input'.const.FXS_BUTTON_B:
-		//case class'UIUtilities_Input'.const.FXS_KEY_ESCAPE:
-		//case class'UIUtilities_Input'.const.FXS_R_MOUSE_DOWN:
-			//IgnoreChangesAndExit();
-			//break;
-//
-		//case class'UIUtilities_Input'.const.FXS_BUTTON_Y:
-			//ResetToDefaults();
-			//break; 		
-//
-		//case class'UIUtilities_Input'.const.FXS_BUTTON_RTRIGGER:	
-			//if( m_bAllowCredits )
-				//Movie.Pres.UICredits( false );
-			//break;
-//
-		//case class'UIUtilities_Input'.const.FXS_DPAD_UP:
-		//case class'UIUtilities_Input'.const.FXS_ARROW_UP:
-		//case class'UIUtilities_Input'.const.FXS_VIRTUAL_LSTICK_UP:
-			//OnUDPadUp();
-			//break;
-//
-		//case class'UIUtilities_Input'.const.FXS_DPAD_DOWN:
-		//case class'UIUtilities_Input'.const.FXS_ARROW_DOWN:
-		//case class'UIUtilities_Input'.const.FXS_VIRTUAL_LSTICK_DOWN:
-			//OnUDPadDown();
-			//break;
-//
-		//case class'UIUtilities_Input'.const.FXS_KEY_PAGEUP:
-		//case class'UIUtilities_Input'.const.FXS_BUTTON_LBUMPER:
-			//SetSelectedTab( m_iCurrentTab - 1);
-			//break;
-//
-		//case class'UIUtilities_Input'.const.FXS_KEY_PAGEDN:
-		//case class'UIUtilities_Input'.const.FXS_BUTTON_RBUMPER:
-			//SetSelectedTab( m_iCurrentTab + 1 ); 
-			//break;
-//
-		//default:
-			//// Do not reset handled, consume input since this
-			//// is the options menu which stops any other systems.
-			//break;			
-	//}
-//
-	//// Assume input is handled unless told otherwise (unlikely
-	//// because this is the options menu; it handles alllllllll.)
-	//return super(UIScreen).OnUnrealCommand(cmd, ActionMask);
-//}
 
 //helper function to see if any base-game OR mod options have been changed
 simulated function bool HasAnyValueChanged()
