@@ -762,9 +762,9 @@ function ShowDetailed(bool IsDetailed)
 	}
 }
 
-simulated function string GetStatBoostString(XComGameState_Item ImplantToAdd)
+simulated function string GetStatBoostString(XComGameState_Item ImplantToAdd, bool Focussed)
 {
-	local int Index, TotalBoost, BoostValue;
+	local int Index, TextState, TotalBoost, BoostValue;
 	local bool bHasStatBoostBonus;
 	local XComGameState_HeadquartersXCom XComHQ;
 
@@ -775,15 +775,19 @@ simulated function string GetStatBoostString(XComGameState_Item ImplantToAdd)
 		bHasStatBoostBonus = XComHQ.SoldierUnlockTemplates.Find('IntegratedWarfareUnlock') != INDEX_NONE;
 	}
 
-	if(ImplantToAdd != none)
+	if (ImplantToAdd != none)
 	{
 		BoostValue = ImplantToAdd.StatBoosts[0].Boost;
 		if (bHasStatBoostBonus)
 		{				
 			if (X2EquipmentTemplate(ImplantToAdd.GetMyTemplate()).bUseBoostIncrement)
+			{
 				BoostValue += class'X2SoldierIntegratedWarfareUnlockTemplate'.default.StatBoostIncrement;
+			}
 			else
+			{
 				BoostValue += Round(BoostValue * class'X2SoldierIntegratedWarfareUnlockTemplate'.default.StatBoostValue);
+			}
 		}
 			
 		Index = ImplantToAdd.StatBoosts.Find('StatType', eStat_HP);
@@ -793,16 +797,35 @@ simulated function string GetStatBoostString(XComGameState_Item ImplantToAdd)
 			{
 				BoostValue *= class'X2StrategyGameRulesetDataStructures'.default.SecondWaveBetaStrikeHealthMod;
 			}
-
 		}
-		TotalBoost += BoostValue;
-			
+		TotalBoost += BoostValue;	
 	}
 
-	if(TotalBoost != 0)
-		return class'UIUtilities_Text'.static.GetColoredText((TotalBoost > 0 ? "+" : "") $ string(TotalBoost), TotalBoost > 0 ? eUIState_Good : eUIState_Bad);
+	if (TotalBoost != 0)
+	{
+		// KDM : Colour the stat boost text according to these, ordered, rules :
+		// 1.] If the list item is disabled, use the disabled, greyish, text colour.
+		// 2.] If the list item is focused, use black.
+		// 3.] If the stat value is greater than 0, use green; if it is less than 0, use red.
+		if (IsDisabled)
+		{
+			TextState = eUIState_Disabled;
+		}
+		else if (Focussed)
+		{
+			TextState = -1;
+		}
+		else
+		{
+			TextState = (TotalBoost > 0) ? eUIState_Good : eUIState_Bad;
+		}
+		
+		return class'UIUtilities_Text'.static.GetColoredText((TotalBoost > 0 ? "+" : "") $ string(TotalBoost), TextState);
+	}
 	else
+	{
 		return "";
+	}
 }
 
 function AddClassColumnIcons(XComGameState_Unit Unit)
@@ -841,7 +864,10 @@ function AddClassColumnIcons(XComGameState_Unit Unit)
 	if (EquippedImplants.Length > 0)
 	{
 		PCSIcon.LoadImage(class'UIUtilities_Image'.static.GetPCSImage(EquippedImplants[0]));
-		PCSValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(GetStatBoostString(EquippedImplants[0]), eUIState_Normal));
+		// KDM : Don't wrap GetStatBoostString() in a call to class'UIUtilities_Text'.static.GetColoredText() since the former
+		// already places a font colour tag around the text. Double font colour tags resulted in a situation in which the PCS value
+		// text wouldn't change colour based upon list item focus.
+		PCSValue.SetHtmlText(GetStatBoostString(EquippedImplants[0], false));
 	}
 	PCSIcon.Hide();
 	PCSValue.Hide();
@@ -909,7 +935,8 @@ simulated function UpdateItemsForFocus(bool Focussed)
 	DefenseValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Defense, (bReverse ? -1 : iUIState)));
 	HealthValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Health, (bReverse ? -1 : iUIState)));
 	MobilityValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Mobility, (bReverse ? -1 : iUIState)));
-	WillValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Will, Unit.GetMentalStateUIState()));
+	// KDM : Will value is now black if the list item is focused; if this is not done, the text colour blends into the highlighted background colour.
+	WillValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Will, (bReverse ? -1 : int(Unit.GetMentalStateUIState()))));
 	HackValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Hack, (bReverse ? -1 : iUIState)));
 	DodgeValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Dodge, (bReverse ? -1 : iUIState)));
 	DetailedData.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(GetDetailedText(Unit), (bReverse ? -1 : iUIState)));
@@ -917,7 +944,9 @@ simulated function UpdateItemsForFocus(bool Focussed)
 	EquippedImplants = Unit.GetAllItemsInSlot(eInvSlot_CombatSim);
 	if (EquippedImplants.Length > 0)
 	{
-		PCSValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(GetStatBoostString(EquippedImplants[0]), (bReverse ? -1 : iUIState)));
+		// KDM : Don't wrap GetStatBoostString() in a call to class'UIUtilities_Text'.static.GetColoredText(). The reasoning is
+		// discussed above in AddClassColumnIcons().
+		PCSValue.SetHtmlText(GetStatBoostString(EquippedImplants[0], Focussed));
 	}
 
 	if (ShouldShowPsi(Unit))
