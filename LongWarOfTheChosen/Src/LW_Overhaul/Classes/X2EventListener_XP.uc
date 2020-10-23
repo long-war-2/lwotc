@@ -36,8 +36,7 @@ static function CHEventListenerTemplate CreateListeners()
 	//xp system modifications -- handles assigning of mission "encounters" as well as adding to effective kills based on the value
 	Template.AddCHEvent('OnDistributeTacticalGameEndXp', OnAddMissionEncountersToUnits, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('OverrideTotalNumKills', OnGetNumKillsForMissionEncounters, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('XpKillShot', OnRewardKillXp, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('CanAwardKillXp', CheckMissionXpCap, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideKillXp', OnRewardKillXp, ELD_Immediate, GetListenerPriority());
 	Template.RegisterInTactical = true;
 	Template.RegisterInStrategy = true;
 
@@ -305,11 +304,11 @@ static function EventListenerReturn OnGetNumKillsForMissionEncounters(Object Eve
 	local int WeightedBonusKills, idx, TrialByFireKills;
 
 	Tuple = XComLWTuple(EventData);
-	if(Tuple == none)
+	if (Tuple == none)
 		return ELR_NoInterrupt;
 
 	UnitState = XComGameState_Unit(EventSource);
-	if(UnitState == none)
+	if (UnitState == none)
 	{
 		`REDSCREEN("OnGetNumKillsForMissionEncounters event triggered with invalid event source.");
 		return ELR_NoInterrupt;
@@ -348,48 +347,39 @@ static function EventListenerReturn OnRewardKillXp(Object EventData, Object Even
 {
 	local XComGameState_Unit NewUnitStateKiller;
 	local XComGameState_Unit UnitKilled;
-	local XpEventData XpEvent;
+	local XComLWTuple Tuple;
+	local int KillerID;
 
-	XpEvent = XpEventData(EventData);
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
 
-	UnitKilled = XComGameState_Unit(NewGameState.GetGameStateForObjectID(XpEvent.EventTarget.ObjectID));
+	UnitKilled = XComGameState_Unit(EventSource);
 	if (UnitKilled == none)
-	{
-		`LWTrace("No unit killed to grant XP - ignoring this event");
-	}
+		return ELR_NoInterrupt;
 
-	// Create a new unit state if we need one.
-	NewUnitStateKiller = XComGameState_Unit(NewGameState.GetGameStateForObjectID(XpEvent.XpEarner.ObjectID));
-	if (NewUnitStateKiller == none)
-	{
-		NewUnitStateKiller = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', XpEvent.XpEarner.ObjectID));
-	}
+	// Grab the current unit state from NewGameState.
+	NewUnitStateKiller = XComGameState_Unit(Tuple.Data[4].o);
+	NewUnitStateKiller = XComGameState_Unit(NewGameState.GetGameStateForObjectID(NewUnitStateKiller.ObjectID));
 
 	// Ensure we don't award xp kills beyond what was originally on the mission
 	if (!class'Utilities_LW'.static.KillXpIsCapped())
 	{
+		// Accept the standard XP amounts and just track mission kill XP.
 		NewUnitStateKiller.SetUnitFloatValue(
 			'MissionKillXp',
 			class'Utilities_LW'.static.GetUnitValue(NewUnitStateKiller, 'MissionKillXp') + UnitKilled.GetMyTemplate().KillContribution,
 			eCleanup_BeginTactical);
 	}
-
-	return ELR_NoInterrupt;
-}
-
-static function EventListenerReturn CheckMissionXpCap(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-	local XComLWTuple Tuple;
-
-	Tuple = XComLWTuple(EventData);
-	if (Tuple == none)
+	else
 	{
-		`REDSCREEN("CheckMissionXpCap event triggered with invalid event data.");
-		return ELR_NoInterrupt;
+		// Clear all the XP values as we've hit the mission XP cap and can't
+		// award any more XP to XCOM.
+		Tuple.Data[0].f = 0.0;
+		Tuple.Data[1].f = 0.0;
+		Tuple.Data[2].f = 0.0;
+		Tuple.Data[3].i = 0;
 	}
-
-	// Allow the award of kill XP if we haven't hit the cap yet.
-	Tuple.Data[1].b = !class'Utilities_LW'.static.KillXpIsCapped();
 
 	return ELR_NoInterrupt;
 }
