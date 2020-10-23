@@ -415,6 +415,7 @@
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_Armory_PromotionPsiOp_LWOfficerPack.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_Armory_Promotion_LWOfficerPack.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_ChooseUpgrade_LWOfficerPack.uc" />
+    <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_Facility.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_FacilityUpgrade_LWOfficerPack.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_Facility_Academy_LWOfficerPack.uc" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\UIScreenListener_LWOfficerPack.uc" />
