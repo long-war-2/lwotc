@@ -1,29 +1,28 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    UIAlert_LWOfficerTrainingComplete.uc
+//  FILE:    UIAlert_LWOfficerTrainingComplete.uc 
 //  AUTHOR:  Amineri
 //  PURPOSE: Customized UI Alert for Officer training 
-//           
 //---------------------------------------------------------------------------------------
 class UIAlert_LWOfficerTrainingComplete extends UIAlert;
 
-//override for UIAlert child to trigger specific Alert built in this class
+// Override for UIAlert child to trigger specific Alert built in this class
 simulated function BuildAlert()
 {
 	BindLibraryItem();
 	BuildOfficerTrainingCompleteAlert();
 }
 
-//New Alert building function
+// New Alert building function
 simulated function BuildOfficerTrainingCompleteAlert()
 {
-	local XComGameState_Unit UnitState;
-	local XComGameState_Unit_LWOfficer OfficerState;
+	local string AbilityIcon, AbilityName, AbilityDescription, ClassIcon, ClassName, RankName;
 	local X2AbilityTemplate TrainedAbilityTemplate;
 	local X2AbilityTemplateManager AbilityTemplateManager;
 	local XComGameState_ResistanceFaction FactionState;
-	local string AbilityIcon, AbilityName, AbilityDescription, ClassIcon, ClassName, RankName;
+	local XComGameState_Unit UnitState;
+	local XComGameState_Unit_LWOfficer OfficerState;
 	
-	if( LibraryPanel == none )
+	if (LibraryPanel == none)
 	{
 		`RedScreen("UI Problem with the alerts! Couldn't find LibraryPanel for current eAlertType: " $ eAlertName);
 		return;
@@ -68,13 +67,18 @@ simulated function BuildOfficerTrainingCompleteAlert()
 	LibraryPanel.MC.EndOp();
 	GetOrStartWaitingForStaffImage();  // WOTC: Moved from 2nd QueueString to here for unknown reasons.
 	
-	//bsg-crobinson (5.17.17): Buttons need to be in a different area for this screen
-	Button1.OnSizeRealized = OnTrainingButtonRealized;
-	Button2.OnSizeRealized = OnTrainingButtonRealized;
-	//bsg-crobinson (5.17.17): end
+	// KDM : The call to OnTrainingButtonRealized() places the buttons on top of each other in terms of X.
+	// 1.] Controller code places the buttons above/below each other in terms of Y; therefore, this is ok.
+	// 2.] Mouse & keyboard code places the buttons at the same Y location; therefore, they will overlap one another.
+	// The solution for mouse & keyboard users is to simply ignore this code and let ActionScript place them correctly.
+	if (`ISCONTROLLERACTIVE)
+	{
+		Button1.OnSizeRealized = OnTrainingButtonRealized;
+		Button2.OnSizeRealized = OnTrainingButtonRealized;
+	}
 
 	// Hide "View Soldier" button if player is on top of avenger, prevents ui state stack issues
-	if(Movie.Pres.ScreenStack.IsInStack(class'UIArmory_LWOfficerPromotion'))
+	if (Movie.Pres.ScreenStack.IsInStack(class'UIArmory_LWOfficerPromotion'))
 	{
 		Button1.Hide();
 		Button1.DisableNavigation();
@@ -84,4 +88,29 @@ simulated function BuildOfficerTrainingCompleteAlert()
 	{
 		SetFactionIcon(FactionState.GetFactionIcon());
 	}
+}
+
+simulated function bool OnUnrealCommand(int cmd, int arg)
+{
+	if (!CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
+	{
+		return false;
+	}
+
+	// KDM : OnUnrealCommand() was not set up properly for this particular alert, which uses eAlertName == 'eAlert_TrainingComplete';
+	// previously, both the A button and the B button called OnCancelClicked().
+	if ((cmd == class'UIUtilities_Input'.const.FXS_BUTTON_A) && Button1.bIsVisible)
+	{
+		// KDM : Views the soldier via the officer promotion screen.
+		OnConfirmClicked(none);
+		return true;
+	}
+	else if ((cmd == class'UIUtilities_Input'.const.FXS_BUTTON_B) && Button2.bIsVisible)
+	{
+		// KDM : Closes the screen.
+		OnCancelClicked(none);
+		return true;
+	}
+
+	return super.OnUnrealCommand(cmd, arg);
 }

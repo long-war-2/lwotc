@@ -1,9 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    UIScreenListener_LWOfficerPack
 //  AUTHOR:  Amineri (Pavonis Interactive)
-//
 //  PURPOSE: Implements event listeners used to interface to other mods
-//
 //--------------------------------------------------------------------------------------- 
 
 class UIScreenListener_LWOfficerPack extends UIScreenListener;
@@ -305,6 +303,10 @@ simulated function OnOfficerButtonCallback(UIButton kButton)
 	HQPres = `HQPRES;
 	OfficerScreen = UIArmory_LWOfficerPromotion(HQPres.ScreenStack.Push(HQPres.Spawn(class'UIArmory_LWOfficerPromotion', HQPres), HQPres.Get3DMovie()));
 	OfficerScreen.InitPromotion(ArmoryMainMenu.GetUnitRef(), false);
+	// KDM : Previously, the officer pawn could be rotated when accessing the officer screen through the officer slot, but not when
+	// accessing it through the 'Officer Abilities' menu button. Turns out it was missing a call to CreateSoldierPawn(); this has
+	// been rectified below.
+	OfficerScreen.CreateSoldierPawn();
 }
 
 //callback handler for list button info at bottom of screen
