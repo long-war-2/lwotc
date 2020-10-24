@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Effect_Overkill.uc
+//  AUTHOR:  Grobobobo/Taken  from shadow ops
+//  PURPOSE: Bonus damage on 50% hp or less.
+//---------------------------------------------------------------------------------------
 class X2Effect_Overkill extends XMBEffect_Extended;
 
 var int BonusDamage;

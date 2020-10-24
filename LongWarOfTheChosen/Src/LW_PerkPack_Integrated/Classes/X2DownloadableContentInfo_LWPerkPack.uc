@@ -201,18 +201,18 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			Outstring = string(int(class'X2Ability_XMBPerkAbilitySet'.default.BLIND_PROTOCOL_RADIUS_T1_BASE + class'X2Ability_XMBPerkAbilitySet'.default.BLIND_PROTOCOL_RADIUS_T3_BONUS));
 			return true;
 		case 'TARGET_FOCUS_AIM_BONUS':
-			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.TARGETFOCUS_AIM_BONUS);
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.TARGET_FOCUS_AIM_BONUS);
 			return true;
 		case 'TARGET_FOCUS_PEN_BONUS':
-			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.TARGETFOCUS_PIERCE);
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.TARGET_FOCUS_PIERCE);
 			return true;
 		case 'AIM_ASSIST_AIM_BONUS':
-			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.AIMINGASSIST_AIM_BONUS);
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.AIM_ASSIST_AIM_BONUS);
 			return true;
 		case 'AIM_ASSIST_CRIT_BONUS':
-			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.AIMINGASSIST_CRIT_BONUS);
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.AIM_ASSIST_CRIT_BONUS);
 			return true;
-		case 'SS_PEN':
+		case 'SS_PIERCE':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.SS_PIERCE);
 			return true;
 		case 'SUPERCHARGE_CHARGES':
@@ -239,16 +239,13 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'LEAD_TARGET_COOLDOWN':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.LEAD_TARGET_COOLDOWN);
 			return true;
-		case 'CQB_DOMINANCE_RADIUS':
+		case 'ZONE_CONTROL_RADIUS':
 			OutString = string(int(class'X2Ability_XMBPerkAbilitySet'.default.ZONE_CONTROL_RADIUS));
 			return true;
-		case 'EXE_AIM_BONUS':
+		case 'EXECUTIONER_AIM_BONUS':
 			OutString = string(class'X2Effect_Executioner_LW'.default.EXECUTIONER_AIM_BONUS);
 			return true;
-		case 'EXE_CRIT_BONUS':
-			OutString = string(class'X2Effect_Executioner_LW'.default.EXECUTIONER_CRIT_BONUS);
-			return true;
-		case 'EXE_CRIT_BONUS':
+		case 'EXECUTIONER_CRIT_BONUS':
 			OutString = string(class'X2Effect_Executioner_LW'.default.EXECUTIONER_CRIT_BONUS);
 			return true;
 		case 'LOCKEDON_AIM_BONUS':
@@ -257,13 +254,13 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'LOCKEDON_CRIT_BONUS':
 			OutString = string(class'X2Effect_LockedOn'.default.LOCKEDON_CRIT_BONUS);
 			return true;
-		case 'CYCLIC_COOLDOWN':
+		case 'CYCLIC_FIRE_COOLDOWN':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.CYCLIC_FIRE_COOLDOWN);
 			return true;
-		case 'CYCLIC_MALUS':
+		case 'CYCLIC_FIRE_AIM_MALUS':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.CYCLIC_FIRE_AIM_MALUS);
 			return true;
-		case 'SLUGSHOT_COOLDOWN':
+		case 'SLUG_SHOT_COOLDOWN':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SLUG_SHOT_COOLDOWN);
 			return true;
 		case 'RAPID_STUN_COOLDOWN':

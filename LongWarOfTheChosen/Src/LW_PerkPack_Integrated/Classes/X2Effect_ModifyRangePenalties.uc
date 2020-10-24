@@ -1,4 +1,9 @@
-class X2Effect_PointBlank extends XMBEffect_ConditionalBonus;
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Effect_ModifyRangePenalties.uc
+//  AUTHOR:  Grobobobo/inspired by shadow ops
+//  PURPOSE: Modifies the weapon's range penalties.
+//---------------------------------------------------------------------------------------
+class X2Effect_ModifyRangePenalties extends XMBEffect_ConditionalBonus;
 
 var float RangePenaltyMultiplier;
 var bool bShowNamedModifier;

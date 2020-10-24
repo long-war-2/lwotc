@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Condition_PrimaryWeapon
+//  AUTHOR:  Favid
+//  PURPOSE: Condition that checks the unit's primary weapon.
+//--------------------------------------------------------------------------------------- 
 class X2Condition_PrimaryWeapon extends X2Condition;
 
 var() bool WantsReload;

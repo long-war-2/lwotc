@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Ability_XMBPerkAbilitySet
+//  AUTHOR:  Grobobobo
+//  PURPOSE: File that creates new ability templates which use XMB tools.
+//--------------------------------------------------------------------------------------- 
 class X2Ability_XMBPerkAbilitySet extends XMBAbility config(LW_SoldierSkills);
 
 var config int RAPID_STUN_COOLDOWN;
@@ -52,7 +57,7 @@ var config int DEDICATION_COOLDOWN;
 
 var config int LOCKNLOAD_AMMO_TO_RELOAD;
 
-var name CQB_DOMINANCE_RADIUS_NAME;
+var name ZONE_CONTROL_RADIUS_NAME;
 
 var config int LEAD_TARGET_AIM_BONUS;
 
@@ -65,11 +70,11 @@ var config int ZONE_CONTROL_MOBILITY_PENALTY;
 var config int ZONE_CONTROL_AIM_PENALTY;
 var config float ZONE_CONTROL_RADIUS;
 
-var config int AIMINGASSIST_AIM_BONUS;
-var config int AIMINGASSIST_CRIT_BONUS;
+var config int AIM_ASSIST_AIM_BONUS;
+var config int AIM_ASSIST_CRIT_BONUS;
 
-var config int TARGETFOCUS_PIERCE;
-var config int TARGETFOCUS_AIM_BONUS;
+var config int TARGET_FOCUS_PIERCE;
+var config int TARGET_FOCUS_AIM_BONUS;
 
 var config int SS_PIERCE;
 
@@ -87,7 +92,7 @@ var config int MAIM_AMMO_COST;
 var config int MAIM_COOLDOWN;
 var config int MAIM_DURATION;
 
-var config array<name> AgentstHealEffectTypes;    
+var config array<name> AgentsHealEffectTypes;    
 
 var string Dissassemblybonustext;
 var name LeadTheTargetReserveActionName;
@@ -105,13 +110,13 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.Additem(Brutality());
     Templates.Additem(Ruthless());
     
-	Templates.AddItem(LW_LeadTheTarget());
-	Templates.AddItem(LW_LeadTheTargetShot());
-	Templates.AddItem(LW_BlindingProtocol());
-	Templates.AddItem(LW_ApexPredator());
-	Templates.AddItem(LW_ApexPredatorPanic());
+	Templates.AddItem(LeadTheTarget_LW());
+	Templates.AddItem(LeadTheTargetShot_LW());
+	Templates.AddItem(BlindingProtocol_LW());
+	Templates.AddItem(ApexPredator_LW());
+	Templates.AddItem(ApexPredatorPanic_LW());
 	Templates.AddItem(NeutralizingAgents());
-	Templates.AddItem(LW_ZoneOfControl());
+	Templates.AddItem(ZoneOfControl_LW());
 	
 	
 	Templates.AddItem(Concentration());
@@ -162,9 +167,9 @@ static function X2AbilityTemplate RapidStun()
 
 	// Create effect that will refund actions points
 	Effect = new class'XMBEffect_AbilityCostRefund';
-	Effect.TriggeredEvent = 'LW_QuickZap';
+	Effect.TriggeredEvent = 'QuickZap_LW';
 	Effect.bShowFlyOver = true;
-	Effect.CountValueName = 'LW_QuickZap_Uses';
+	Effect.CountValueName = 'QuickZap_LW_Uses';
 	Effect.MaxRefundsPerTurn = 1;
 	Effect.bFreeCost = true;
 	Effect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
@@ -177,7 +182,7 @@ static function X2AbilityTemplate RapidStun()
 	Effect.VisualizationFn = EffectFlyOver_Visualization;
 
 	// Create activated ability that adds the refund effect
-	Template = SelfTargetActivated('LW_QuickZap', "img:///BstarsPerkPack_Icons.UIPerk_RapidStun", true, Effect,, eCost_Free);
+	Template = SelfTargetActivated('QuickZap_LW', "img:///BstarsPerkPack_Icons.UIPerk_RapidStun", true, Effect,, eCost_Free);
 	AddCooldown(Template, default.RAPID_STUN_COOLDOWN);
 
 	// Cannot be used while burning, etc.
@@ -195,7 +200,7 @@ static function X2AbilityTemplate ThatsCloseEnough()
 	// Create a stun effect that removes 2 actions and has a 100% chance of success if the attack hits.
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 
-	Template = Attack('LW_ThatsCloseEnough', "img:///Texture2D'BstarsPerkPack_Icons.UIPerk_ThatsCloseEnough'", false, StunnedEffect, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
+	Template = Attack('ThatsCloseEnough_LW', "img:///Texture2D'BstarsPerkPack_Icons.UIPerk_ThatsCloseEnough'", false, StunnedEffect, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
 	
 	HidePerkIcon(Template);
 	AddIconPassive(Template);
@@ -221,7 +226,7 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	local X2AbilityTemplate 				Template;
 	local X2AbilityToHitCalc_StandardAim 	ToHit;
 
-	Template = Attack('LW_NoneShallPass', "img:///'BstarsPerkPack_Icons.UIPerk_SawedOffOverwatch'", false, none, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
+	Template = Attack('NoneShallPass_LW', "img:///'BstarsPerkPack_Icons.UIPerk_SawedOffOverwatch'", false, none, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
 	
 	HidePerkIcon(Template);
 	AddIconPassive(Template);
@@ -243,7 +248,7 @@ static function X2AbilityTemplate Hipfire()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('LW_Hipfire', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_strike", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('Hipfire_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_strike", false, 'eAbilitySource_Perk', true);
 
 
 	return Template;
@@ -253,8 +258,8 @@ static function X2AbilityTemplate ScrapMetal()
 {
 	local X2AbilityTemplate 			Template;
 		
-	Template = PurePassive('LW_ScrapMetal', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, 'eAbilitySource_Perk', true);
-	Template.AdditionalAbilities.AddItem('LW_ScrapMetalTrigger');
+	Template = PurePassive('ScrapMetal_LW', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, 'eAbilitySource_Perk', true);
+	Template.AdditionalAbilities.AddItem('ScrapMetalTrigger_LW');
 	
 	return Template;
 }	
@@ -269,7 +274,7 @@ static function X2AbilityTemplate ScrapMetalTrigger()
 	ChargesEffect.AbilityNames.AddItem('LW_SawnOffReload');
 	ChargesEffect.BonusCharges = 1; // make configurable 
 	
-	Template = SelfTargetTrigger('LW_ScrapMetalTrigger', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, ChargesEffect, 'KillMail');
+	Template = SelfTargetTrigger('ScrapMetalTrigger_LW', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, ChargesEffect, 'KillMail');
 	    
 	AddTriggerTargetCondition(Template, default.MatchingWeaponCondition);
 
@@ -297,7 +302,7 @@ static function X2AbilityTemplate Brutality()
 	//local X2AbilityTarget_Single 			PrimaryTarget;
 	local X2Condition_UnitProperty 			TargetCondition, UnitPropertyCondition;
 
-	Template = TargetedDebuff('LW_Brutality', "img:///'BstarsPerkPack_Icons.UIPerk_Brutality'", false, none,, eCost_None);
+	Template = TargetedDebuff('Brutality_LW', "img:///'BstarsPerkPack_Icons.UIPerk_Brutality'", false, none,, eCost_None);
 	Template.bSkipFireAction = true;
 	Template.SourceMissSpeech = '';
 	Template.SourceHitSpeech = '';
@@ -367,7 +372,7 @@ static function X2AbilityTemplate Ruthless()
 	local X2AbilityTemplate						Template;
 	local X2Effect_Ruthless               		ActionPointEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_Ruthless');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Ruthless_LW');
 	Template.IconImage = "img:///'BstarsPerkPack_Icons.UIPerk_Ruthless'";
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -390,7 +395,7 @@ static function X2AbilityTemplate Ruthless()
 	return Template;
 }
 // Lead The Target - Active: Queue a shot on a target that will be taken on the enemy's turn with an increased chance to hit. Does not count as reaction fire.
-static function X2AbilityTemplate LW_LeadTheTarget()
+static function X2AbilityTemplate LeadTheTarget_LW()
 {
 
 	local X2AbilityTemplate										Template;
@@ -402,7 +407,7 @@ static function X2AbilityTemplate LW_LeadTheTarget()
 	local X2Effect_Persistent									MarkEffect;
 	
 
-	`CREATE_X2ABILITY_TEMPLATE (Template, 'LW_LeadTheTarget');
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'LeadTheTarget_LW');
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_LeadTheTarget";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -456,7 +461,7 @@ static function X2AbilityTemplate LW_LeadTheTarget()
 	MarkEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(MarkEffect);
 
-	Template.AdditionalAbilities.AddItem('LW_LeadTheTargetShot');
+	Template.AdditionalAbilities.AddItem('LeadTheTargetShot_LW');
 
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -465,7 +470,7 @@ static function X2AbilityTemplate LW_LeadTheTarget()
 }
 
 // Lead The Target Shot - Passive: Triggered Lead the Target shot fired at the enemy
-static function X2AbilityTemplate LW_LeadTheTargetShot()
+static function X2AbilityTemplate LeadTheTargetShot_LW()
 {
 	local X2AbilityTemplate										Template;
 	local X2AbilityCost_Ammo									AmmoCost;
@@ -476,7 +481,7 @@ static function X2AbilityTemplate LW_LeadTheTargetShot()
 	local X2Condition_Visibility								TargetVisibilityCondition;
 	local X2Condition_UnitEffectsWithAbilitySource				TargetEffectCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_LeadTheTargetShot');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'LeadTheTargetShot_LW');
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
 	AmmoCost.iAmmo = 1;
@@ -557,7 +562,7 @@ static function X2AbilityTemplate LW_LeadTheTargetShot()
 	return Template;
 }
 
-static function X2AbilityTemplate LW_BlindingProtocol()
+static function X2AbilityTemplate BlindingProtocol_LW()
 {
 	
 	local X2AbilityTemplate										Template;
@@ -568,7 +573,7 @@ static function X2AbilityTemplate LW_BlindingProtocol()
 	local X2AbilityTarget_Single								PrimaryTarget;
 	local X2AbilityMultiTarget_Radius							RadiusMultiTarget;
 	local X2Condition_UnitInventory								InventoryCondition;
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_BlindingProtocol');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'BlindingProtocol_LW');
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_BlindingProtocol"; 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY + 2;
@@ -861,13 +866,13 @@ static function X2AbilityTemplate NeutralizingAgents()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('LW_NeutralizingAgents', "img:///UILibrary_WOTC_APA_Class_Pack.perk_NeutralizingAgents", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('NeutralizingAgents_LW', "img:///UILibrary_WOTC_APA_Class_Pack.perk_NeutralizingAgents", false, 'eAbilitySource_Perk', true);
 
 	return Template;
 }
 
 
-static function X2AbilityTemplate LW_ZoneOfControl()
+static function X2AbilityTemplate ZoneOfControl_LW()
 {
 
 	local X2AbilityTemplate										Template;
@@ -877,7 +882,7 @@ static function X2AbilityTemplate LW_ZoneOfControl()
 	local X2Effect_Persistent									IconEffect;
 	local X2Effect_SetUnitValue									SetUnitValue;					
 	
-	`CREATE_X2ABILITY_TEMPLATE (Template, 'LW_ZoneOfControl');
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'ZoneOfControl_LW');
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -898,7 +903,7 @@ static function X2AbilityTemplate LW_ZoneOfControl()
 
 	// Set CQB Range according to rank conditions
 	SetUnitValue = new class'X2Effect_SetUnitValue';
-	SetUnitValue.UnitName = default.CQB_DOMINANCE_RADIUS_NAME;
+	SetUnitValue.UnitName = default.ZONE_CONTROL_RADIUS_NAME;
 	SetUnitValue.NewValueToSet = default.ZONE_CONTROL_RADIUS;
 	SetUnitValue.CleanupType = eCleanup_BeginTactical;
 	Template.AddTargetEffect(SetUnitValue);
@@ -918,7 +923,7 @@ static function X2AbilityTemplate LW_ZoneOfControl()
 
 	// Create the Zone of Control effect
 	ZOCEffect = new class'XMBEffect_ConditionalStatChange';
-	ZOCEffect.EffectName = 'LW_ZoneOfControlEffect';
+	ZOCEffect.EffectName = 'ZoneOfControl_LWEffect';
 	ZOCEffect.AddPersistentStatChange(eStat_Mobility, default.ZONE_CONTROL_MOBILITY_PENALTY);
 	ZOCEffect.AddPersistentStatChange(eStat_Offense, default.ZONE_CONTROL_AIM_PENALTY);
 	ZOCEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage, true,,Template.AbilitySourceName);
@@ -932,26 +937,26 @@ static function X2AbilityTemplate LW_ZoneOfControl()
 	return Template;
 }
 
-static function X2AbilityTemplate LW_ApexPredator()
+static function X2AbilityTemplate ApexPredator_LW()
 {
 
 	local X2AbilityTemplate										Template;
-	local X2Effect_LW_ApexPredator						PanicTrigger;
+	local X2Effect_ApexPredator_LW						PanicTrigger;
 
 
 	// Create a persistent effect that triggers status effects on Crit
-	PanicTrigger = new class'X2Effect_LW_ApexPredator';
+	PanicTrigger = new class'X2Effect_ApexPredator_LW';
 	PanicTrigger.BuildPersistentEffect(1, true, false, false);
 
-	Template = Passive('LW_ApexPredator', "img:///UILibrary_WOTC_APA_Class_Pack.perk_ApexPredator", true, PanicTrigger);
+	Template = Passive('ApexPredator_LW', "img:///UILibrary_WOTC_APA_Class_Pack.perk_ApexPredator", true, PanicTrigger);
 
-	Template.AdditionalAbilities.AddItem('LW_ApexPredatorPanic');
+	Template.AdditionalAbilities.AddItem('ApexPredatorPanic_LW');
 
 	return Template;
 }
 
 // Apex Predator Panic - Passive: Applies Panic to enemies on critical hits
-static function X2AbilityTemplate LW_ApexPredatorPanic()
+static function X2AbilityTemplate ApexPredatorPanic_LW()
 {
 
 	local X2AbilityTemplate										Template;	
@@ -961,7 +966,7 @@ static function X2AbilityTemplate LW_ApexPredatorPanic()
 	local X2Effect_Persistent									PanickedEffect;
 
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_ApexPredatorPanic');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ApexPredatorPanic_LW');
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ApexPredator";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -1059,7 +1064,7 @@ static function X2AbilityTemplate Concentration()
 	Effect.NewResult = eHit_Success;
 
 	// Create the template using a helper function
-	Template = Passive('LW_Concentration', "img:///UILibrary_FavidsPerkPack.UIPerk_Concentration", true, Effect);
+	Template = Passive('Concentration_LW', "img:///UILibrary_FavidsPerkPack.UIPerk_Concentration", true, Effect);
 
 	return Template;
 }
@@ -1077,7 +1082,7 @@ static function X2AbilityTemplate LikeLightning()
 	ReduceCooldownEffect.AbilitiesToTick.AddItem('EMPulser');
 
 	// Create a triggered ability that will activate whenever the unit uses an ability that meets the condition
-	Template = SelfTargetTrigger('LW_LikeLightning', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_chevron", false, ReduceCooldownEffect, 'AbilityActivated');
+	Template = SelfTargetTrigger('LikeLightning_LW', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_chevron", false, ReduceCooldownEffect, 'AbilityActivated');
 
 	// Only when Run and Gun abilities are used
 	NameCondition = new class'XMBCondition_AbilityName';
@@ -1106,9 +1111,9 @@ static function X2AbilityTemplate LikeLightningRefund()
 	
 	// Create an effect that will refund the cost of attacks
 	Effect = new class'XMBEffect_AbilityCostRefund';
-	Effect.EffectName = 'LW_LikeLightning_Refund';
-	Effect.TriggeredEvent = 'LW_LikeLightning_Refund';
-	Effect.CountValueName = 'LW_LikeLightning_RefundCounter';
+	Effect.EffectName = 'LikeLightning_LW_Refund';
+	Effect.TriggeredEvent = 'LikeLightning_LW_Refund';
+	Effect.CountValueName = 'LikeLightning_LW_RefundCounter';
 	Effect.MaxRefundsPerTurn = 1;
 
 	// The bonus only applies to arc thrower shots
@@ -1123,7 +1128,7 @@ static function X2AbilityTemplate LikeLightningRefund()
 	Effect.AbilityShooterConditions.AddItem(RunAndGunCondition);
 
 	// Create the template using a helper function
-	return Passive('LW_LikeLightning_Refund', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_chevron", false, Effect);
+	return Passive('LikeLightning_LW_Refund', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_chevron", false, Effect);
 }
 */
 
@@ -1133,14 +1138,14 @@ static function X2AbilityTemplate LikeLightningRefund()
 	local X2Effect_Immobilize Effect;
 	
 	// Create the template using a helper function
-	Template = Attack('LW_Maim', "img:///UILibrary_XPerkIconPack.UIPerk_shot_blossom", false, none, class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY, eCost_WeaponConsumeAll, default.MAIM_AMMO_COST);
+	Template = Attack('Maim_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_blossom", false, none, class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY, eCost_WeaponConsumeAll, default.MAIM_AMMO_COST);
 
 	// Cooldown
 	AddCooldown(Template, default.MAIM_COOLDOWN);
 
 	// Effect
 	Effect = new class'X2Effect_Immobilize';
-	Effect.EffectName = 'LW_Maim_Immobilize';
+	Effect.EffectName = 'Maim_Immobilize';
 	Effect.DuplicateResponse = eDupe_Refresh;
 	Effect.BuildPersistentEffect(default.MAIM_DURATION, false, true, , eGameRule_PlayerTurnEnd);
 	Effect.AddPersistentStatChange(eStat_Mobility, 0, MODOP_Multiplication);
@@ -1155,7 +1160,7 @@ static function X2AbilityTemplate LikeLightningRefund()
 }
 
 // Preservation
-// (AbilityName="LW_Preservation")
+// (AbilityName="Preservation_LW")
 // When your concealment is broken, gain a bonus to defense for a few turns. Passive.
 static function X2AbilityTemplate Preservation()
 {
@@ -1164,7 +1169,7 @@ static function X2AbilityTemplate Preservation()
 
 	// Create a persistent stat change effect that grants a defense bonus
 	DefenseEffect = new class'X2Effect_PersistentStatChange';
-	DefenseEffect.EffectName = 'LW_PreservationEffect';
+	DefenseEffect.EffectName = 'PreservationEffect';
 	DefenseEffect.AddPersistentStatChange(eStat_Defense, default.PRESERVATION_DEFENSE_BONUS);
 	
 	// Prevent the effect from applying to a unit more than once
@@ -1177,7 +1182,7 @@ static function X2AbilityTemplate Preservation()
 	DefenseEffect.VisualizationFn = EffectFlyOver_Visualization;
 
 	// Ability is triggered when concealment is broken
-	Template = SelfTargetTrigger('LW_Preservation', "img:///UILibrary_XPerkIconPack.UIPerk_stealth_defense2", true, DefenseEffect, 'UnitConcealmentBroken', eFilter_Unit);
+	Template = SelfTargetTrigger('Preservation_LW', "img:///UILibrary_XPerkIconPack.UIPerk_stealth_defense2", true, DefenseEffect, 'UnitConcealmentBroken', eFilter_Unit);
 	
 	// Trigger abilities don't appear as passives. Add a passive ability icon.
 	AddIconPassive(Template);
@@ -1192,7 +1197,7 @@ static function X2AbilityTemplate LickYourWounds()
 	local X2Effect_ApplyHeal HealEffect;
 	
 	// Create a triggered ability that will activate whenever the unit uses an ability that meets the condition
-	Template = SelfTargetTrigger('LW_LickYourWounds', "img:///UILibrary_FavidsPerkPack.UIPerk_LickYourWounds", true, none, 'AbilityActivated');
+	Template = SelfTargetTrigger('LickYourWounds_LW', "img:///UILibrary_FavidsPerkPack.UIPerk_LickYourWounds", true, none, 'AbilityActivated');
 
 	// Only trigger with Hunker Down
 	NameCondition = new class'XMBCondition_AbilityName';
@@ -1237,7 +1242,7 @@ static function X2AbilityTemplate Impulse()
 	OffenseEffect.AbilityTargetConditions.AddItem(default.RangedCondition);
 
 	// Create the template using a helper function
-	Template = Passive('LW_Impulse', "img:///UILibrary_XPerkIconPack.UIPerk_shot_move2", false, OffenseEffect);
+	Template = Passive('Impulse_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_move2", false, OffenseEffect);
 
 	return Template;
 }
@@ -1252,7 +1257,7 @@ static function X2AbilityTemplate LockNLoad()
 	Effect.AmmoToReload = default.LOCKNLOAD_AMMO_TO_RELOAD;
 	
 	// Create a triggered ability that activates whenever the unit gets a kill
-	Template = SelfTargetTrigger('LW_LockNLoad', "img:///UILibrary_XPerkIconPack.UIPerk_reload_shot", true, Effect, 'KillMail');
+	Template = SelfTargetTrigger('LockNLoad_LW', "img:///UILibrary_XPerkIconPack.UIPerk_reload_shot", true, Effect, 'KillMail');
     
 	// Effect only applies to matching weapon
 	AddTriggerTargetCondition(Template, default.MatchingWeaponCondition);
@@ -1276,12 +1281,12 @@ static function X2AbilityTemplate TrenchWarfare()
 	
 	// Increments counter by one at the start of each turn
 	ValueEffect = new class'X2Effect_IncrementUnitValue';
-	ValueEffect.UnitName = 'LW_TrenchWarfare_KillsThisTurn';
+	ValueEffect.UnitName = 'TrenchWarfare_LW_KillsThisTurn';
 	ValueEffect.NewValueToSet = 1;
 	ValueEffect.CleanupType = eCleanup_BeginTurn;
     
 	// Create a triggered ability that runs when the owner gets a kill
-	Template = SelfTargetTrigger('LW_TrenchWarfare', "img:///UILibrary_FavidsPerkPack.UIPerk_TrenchWarfare", true, ValueEffect, 'KillMail');
+	Template = SelfTargetTrigger('TrenchWarfare_LW', "img:///UILibrary_FavidsPerkPack.UIPerk_TrenchWarfare", true, ValueEffect, 'KillMail');
 
 	// Trigger abilities don't appear as passives. Add a passive ability icon.
 	AddIconPassive(Template);
@@ -1305,7 +1310,7 @@ static function X2AbilityTemplate TrenchWarfareActivator()
 	local X2Condition_UnitValue ValueCondition;
 
 	// Create a triggered ability that runs at the end of the player's turn
-	Template = SelfTargetTrigger('LW_TrenchWarfare_Activator', "img:///UILibrary_FavidsPerkPack.UIPerk_TrenchWarfare", false, none, 'PlayerTurnEnded', eFilter_Player);
+	Template = SelfTargetTrigger('TrenchWarfare_Activator_LW', "img:///UILibrary_FavidsPerkPack.UIPerk_TrenchWarfare", false, none, 'PlayerTurnEnded', eFilter_Player);
 
 	// Require not already hunkered down
 	EffectsCondition = new class'X2Condition_UnitEffects';
@@ -1314,7 +1319,7 @@ static function X2AbilityTemplate TrenchWarfareActivator()
 
 	// Require that a kill has been made
 	ValueCondition = new class'X2Condition_UnitValue';
-	ValueCondition.AddCheckValue('LW_TrenchWarfare_KillsThisTurn', 0, eCheck_GreaterThan);
+	ValueCondition.AddCheckValue('TrenchWarfare_LW_KillsThisTurn', 0, eCheck_GreaterThan);
 	Template.AbilityTargetConditions.AddItem(ValueCondition);
 
 	// Hunkering requires an action point, so grant one if the unit is out of action points
@@ -1347,7 +1352,7 @@ static function X2AbilityTemplate TrenchWarfareActivator()
 	local X2Effect_PersistentStatChange Effect;
 	
 	// Activated ability that targets user
-	Template = SelfTargetActivated('LW_Dedication', "img:///UILibrary_FavidsPerkPack.Perk_Ph_Dedication", true, none, class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY, eCost_Free);
+	Template = SelfTargetActivated('Dedication_LW', "img:///UILibrary_FavidsPerkPack.Perk_Ph_Dedication", true, none, class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY, eCost_Free);
 	Template.bShowActivation = true;
 
 	// Create a persistent stat change effect that grants a mobility bonus - naming the effect Shadowstep lets you ignore reaction fire
@@ -1374,11 +1379,11 @@ static function X2AbilityTemplate Corpsman()
 	
 	// Effect granting a free medkit
 	TemporaryItemEffect = new class'XMBEffect_AddUtilityItem';
-	TemporaryItemEffect.EffectName = 'LW_Corpsman';
+	TemporaryItemEffect.EffectName = 'Corpsman_LW';
 	TemporaryItemEffect.DataName = 'Medikit';
 
 	// Create the template using a helper function
-	Template = Passive('LW_Corpsman', "img:///UILibrary_XPerkIconPack.UIPerk_medkit_box", true, TemporaryItemEffect);
+	Template = Passive('Corpsman_LW', "img:///UILibrary_XPerkIconPack.UIPerk_medkit_box", true, TemporaryItemEffect);
 
 	return Template;
 }
@@ -1400,7 +1405,7 @@ static function X2AbilityTemplate Corpsman()
 	Effect.AbilityTargetConditions.AddItem(Condition);
 	Effect.AbilityTargetConditions.AddItem(default.RangedCondition);
 
-	Template = Passive('LW_OpenFire', "img:///UILibrary_XPerkIconPack.UIPerk_stabilize_shot_2", true, Effect);
+	Template = Passive('OpenFire_LW', "img:///UILibrary_XPerkIconPack.UIPerk_stabilize_shot_2", true, Effect);
 
     return Template;
 }
@@ -1417,7 +1422,7 @@ static function X2AbilityTemplate WatchThemRun()
     // Effect granting an overwatch shot
 	Effect = new class'X2Effect_AddOverwatchActionPoints';
     
-	Template = SelfTargetTrigger('LW_WatchThemRun', "img:///UILibrary_XPerkIconPack.UIPerk_overwatch_grenade", true, Effect, 'AbilityActivated');
+	Template = SelfTargetTrigger('WatchThemRun_LW', "img:///UILibrary_XPerkIconPack.UIPerk_overwatch_grenade", true, Effect, 'AbilityActivated');
     Template.bShowActivation = true;
 
 	// Only when Throw/Launch Grenade abilities are used
@@ -1433,12 +1438,12 @@ static function X2AbilityTemplate WatchThemRun()
     
 	// Limit activations
 	ValueCondition = new class'X2Condition_UnitValue';
-	ValueCondition.AddCheckValue('LW_WatchThemRun_Activations', default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN, eCheck_LessThan);
+	ValueCondition.AddCheckValue('WatchThemRun_LW_Activations', default.WATCHTHEMRUN_ACTIVATIONS_PER_TURN, eCheck_LessThan);
 	Template.AbilityTargetConditions.AddItem(ValueCondition);
 
     // Create an effect that will increment the unit value
 	IncrementEffect = new class'X2Effect_IncrementUnitValue';
-	IncrementEffect.UnitName = 'LW_WatchThemRun_Activations';
+	IncrementEffect.UnitName = 'WatchThemRun_LW_Activations';
 	IncrementEffect.NewValueToSet = 1; // This means increment by one -- stupid property name
 	IncrementEffect.CleanupType = eCleanup_BeginTurn;
     Template.AddTargetEffect(IncrementEffect);
@@ -1460,7 +1465,7 @@ static function X2AbilityTemplate Avenger()
 	local X2AbilityTrigger						Trigger;
 	local X2Effect_ReturnFireAOE                FireEffect;
 	
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_Avenger');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Avenger_LW');
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_pistol_circle";
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -1511,7 +1516,7 @@ static function X2AbilityTemplate Predator()
 	Effect.AbilityTargetConditions.AddItem(default.RangedCondition);
 
 	// Create the template using a helper function
-	return Passive('LW_Predator', "img:///UILibrary_FavidsPerkPack.Perk_Ph_Predator", true, Effect);
+	return Passive('Predator_LW', "img:///UILibrary_FavidsPerkPack.Perk_Ph_Predator", true, Effect);
 }
 
 static function X2AbilityTemplate Stiletto()
@@ -1521,7 +1526,7 @@ static function X2AbilityTemplate Stiletto()
 
 	// Create an armor piercing bonus
 	ShootingEffect = new class'XMBEffect_ConditionalBonus';
-	ShootingEffect.EffectName = 'LW_Stiletto_Bonuses';
+	ShootingEffect.EffectName = 'Stiletto_LW_Bonuses';
 	ShootingEffect.AddArmorPiercingModifier(default.STILETTO_ARMOR_PIERCING);
 
 	// Only with the associated weapon
@@ -1534,7 +1539,7 @@ static function X2AbilityTemplate Stiletto()
 	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
 	
 	// Activated ability that targets user
-	Template = Passive('LW_Stiletto', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Needle", true, ShootingEffect);
+	Template = Passive('Stiletto_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Needle", true, ShootingEffect);
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
@@ -1565,7 +1570,7 @@ static function X2AbilityTemplate SurvivalInstinct()
 	Effect.AbilityTargetConditionsAsTarget.AddItem(Condition);
 	
 	// Create the template using a helper function
-	return Passive('LW_SurvivalInstinct', "img:///UILibrary_SOHunter.UIPerk_survivalinstinct", true, Effect);
+	return Passive('SurvivalInstinct_LW', "img:///UILibrary_SOHunter.UIPerk_survivalinstinct", true, Effect);
 }
 
 
@@ -1575,7 +1580,7 @@ static function X2AbilityTemplate Reposition()
 	local X2AbilityTemplate					Template;
 	local X2Effect_HitandRun				HitandRunEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE (Template, 'LW_Reposition');
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'Reposition_LW');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -1603,14 +1608,14 @@ static function X2AbilityTemplate Overkill()
 	Effect = new class'X2Effect_Overkill';
 	Effect.BonusDamage = default.OverkillBonusDamage;
 
-	return Passive('LW_Overkill', "img:///UILibrary_SODragoon.UIPerk_overkill", true, Effect);
+	return Passive('Overkill_LW', "img:///UILibrary_SODragoon.UIPerk_overkill", true, Effect);
 }
 
 static function X2AbilityTemplate UnlimitedPower()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('LW_Unlimitedpower', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_pistol", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('Unlimitedpower_LW', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_pistol", false, 'eAbilitySource_Perk', true);
 
 	return Template;
 }
@@ -1624,7 +1629,7 @@ static function X2AbilityTemplate SuperCharge()
 	local X2Effect_ApplyMedikitHeal             HealEffect;
 	local X2Condition_UnitProperty              UnitCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_SuperCharge');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SuperCharge_LW');
 	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer);
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -1642,7 +1647,7 @@ static function X2AbilityTemplate SuperCharge()
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('LW_UnlimitedPower');
+	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
 	ActionPointCost.bConsumeAllPoints = true;
 
 	Template.AbilityCosts.AddItem(ActionPointCost);
@@ -1681,7 +1686,7 @@ static function X2AbilityTemplate Disassembly()
 	local X2Effect_PersistentStatChange			StatChangeEffect;
 	local X2AbilityTrigger_EventListener		EventListenerTrigger;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_Disassembly');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Disassembly_LW');
 //BEGIN AUTOGENERATED CODE: Template Overrides 'FullThrottle'
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_gremlin_crit2";
 	Template.ActivationSpeech = 'FullThrottle';
@@ -1713,7 +1718,7 @@ static function X2AbilityTemplate Disassembly()
 	Template.bShowActivation = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-	Template.AdditionalAbilities.AddItem('LW_DisassemblyPassive');
+	Template.AdditionalAbilities.AddItem('DisassemblyPassive_LW');
 
 	return Template;
 }
@@ -1722,22 +1727,22 @@ static function X2AbilityTemplate DisassemblyPassive()
 {
 	local X2AbilityTemplate		Template;
 
-	Template = PurePassive('LW_DisassemblyPassive', "img:///UILibrary_XPerkIconPack.UIPerk_gremlin_crit2", , 'eAbilitySource_Perk');
+	Template = PurePassive('DisassemblyPassive_LW', "img:///UILibrary_XPerkIconPack.UIPerk_gremlin_crit2", , 'eAbilitySource_Perk');
 
 	return Template;
 }
 
 static function X2AbilityTemplate WeaponHandling()
 {
-	local X2Effect_PointBlank Effect;
+	local X2Effect_ModifyRangePenalties Effect;
 
-	Effect = new class'X2Effect_PointBlank';
+	Effect = new class'X2Effect_ModifyRangePenalties';
 	Effect.RangePenaltyMultiplier = default.WEAPONHANDLING_MULTIPLIER;
 	Effect.BaseRange = 18;
 	Effect.bShortRange = true;
 	Effect.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
 
-	return Passive('LW_WeaponHandling', "img:///UILibrary_SOHunter.UIPerk_point_blank", false, Effect);
+	return Passive('WeaponHandling_LW', "img:///UILibrary_SOHunter.UIPerk_point_blank", false, Effect);
 }
 
 static function X2AbilityTemplate ShootingSharp()
@@ -1747,7 +1752,7 @@ static function X2AbilityTemplate ShootingSharp()
 
 	// Create an armor piercing bonus
 	ShootingEffect = new class'XMBEffect_ConditionalBonus';
-	ShootingEffect.EffectName = 'LW_ShootingSharp_Bonuses';
+	ShootingEffect.EffectName = 'ShootingSharp_LW_Bonuses';
 	ShootingEffect.AddArmorPiercingModifier(default.SS_PIERCE);
 	
 	// Only with the associated weapon
@@ -1764,7 +1769,7 @@ static function X2AbilityTemplate ShootingSharp()
 	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
 	
 	// Activated ability that targets user
-	Template = Passive('LW_ShootingSharp', "img:///UILibrary_XPerkIconPack.UIPerk_shot_box", true, ShootingEffect);
+	Template = Passive('ShootingSharp_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_box", true, ShootingEffect);
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
@@ -1779,10 +1784,10 @@ static function X2AbilityTemplate TargetFocus()
 
 	// Create an armor piercing bonus
 	ShootingEffect = new class'XMBEffect_ConditionalBonus';
-	ShootingEffect.EffectName = 'LW_TargetFocus_Bonuses';
-	ShootingEffect.AddArmorPiercingModifier(default.TARGETFOCUS_PIERCE);
+	ShootingEffect.EffectName = 'TargetFocus_LW_Bonuses';
+	ShootingEffect.AddArmorPiercingModifier(default.TARGET_FOCUS_PIERCE);
 
-	ShootingEffect.AddToHitModifier(default.TARGETFOCUS_AIM_BONUS, eHit_Success);
+	ShootingEffect.AddToHitModifier(default.TARGET_FOCUS_AIM_BONUS, eHit_Success);
 
 	// Only with the associated weapon
 	
@@ -1797,7 +1802,7 @@ static function X2AbilityTemplate TargetFocus()
 	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
 	
 	// Activated ability that targets user
-	Template = Passive('LW_TargetFocus', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_shot_overwatch", true, ShootingEffect);
+	Template = Passive('TargetFocus_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_shot_overwatch", true, ShootingEffect);
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
@@ -1813,8 +1818,8 @@ static function X2AbilityTemplate AimingAssist()
 	Effect = new class'XMBEffect_ConditionalBonus';
 
 	// The bonus adds the aim and crit chance
-	Effect.AddToHitModifier(default.AIMINGASSIST_AIM_BONUS, eHit_Success);
-	Effect.AddToHitModifier(default.AIMINGASSIST_CRIT_BONUS, eHit_Crit);
+	Effect.AddToHitModifier(default.AIM_ASSIST_AIM_BONUS, eHit_Success);
+	Effect.AddToHitModifier(default.AIM_ASSIST_CRIT_BONUS, eHit_Crit);
 
 	// The bonus only applies while flanking
 	NeedOneOfTheEffects=new class'X2Condition_TargetHasOneOfTheEffects';
@@ -1824,7 +1829,7 @@ static function X2AbilityTemplate AimingAssist()
 	Effect.AbilityTargetConditions.AddItem(NeedOneOfTheEffects);
 
 	// Create the template using a helper function
-	return Passive('LW_AimAssist', "img:///UILibrary_XPerkIconPack.UIPerk_shot_circle", true, Effect);
+	return Passive('AimAssist_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_circle", true, Effect);
 }
 
 static function X2AbilityTemplate LightningSlash()
@@ -1837,7 +1842,7 @@ static function X2AbilityTemplate LightningSlash()
 	local X2AbilityCooldown									Cooldown;
 	local X2AbilityCost_ActionPoints						ActionPointCost;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_LightningSlash');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'LightningSlash_LW');
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -1920,7 +1925,7 @@ static function X2AbilityTemplate InspireAgility()
 	Effect.VisualizationFn = EffectFlyOver_Visualization;
 
 	// Create a targeted buff that affects allies
-	Template = TargetedBuff('LW_InspireAgility', "img:///UILibrary_XPerkIconPack.UIPerk_move_command", true, Effect, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_Free);
+	Template = TargetedBuff('InspireAgility_LW', "img:///UILibrary_XPerkIconPack.UIPerk_move_command", true, Effect, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_Free);
 
 	// The ability starts out with a single charge
 	AddCharges(Template, 1);
@@ -1943,11 +1948,11 @@ static function X2AbilityTemplate InspireAgilityTrigger()
 
 	// Create an effect that will add a bonus charge to the Inspire Agility ability
 	Effect = new class'XMBEffect_AddAbilityCharges';
-	Effect.AbilityNames.AddItem('LW_InspireAgility');
+	Effect.AbilityNames.AddItem('InspireAgility_LW');
 	Effect.BonusCharges = 1;
 
 	// Create a triggered ability that activates when the unit gets a kill
-	return SelfTargetTrigger('LW_InspireAgilityTrigger', "img:///UILibrary_XPerkIconPack.UIPerk_move_command", false, Effect, 'KillMail');
+	return SelfTargetTrigger('InspireAgilityTrigger_LW', "img:///UILibrary_XPerkIconPack.UIPerk_move_command", false, Effect, 'KillMail');
 }
 
 static function X2AbilityTemplate DeadeyeSnapshotAbility()
@@ -2214,6 +2219,6 @@ defaultproperties
 {
 	LeadTheTargetReserveActionName = "leadthetarget"
 	LeadTheTargetMarkEffectName ="Leathetargetmark"
-	CQB_DOMINANCE_RADIUS_NAME = "LW_CQBDominanceRadius"
+	ZONE_CONTROL_RADIUS_NAME = "LW_CQBDominanceRadius"
 	Dissassemblybonustext = "Hack Bonus"
 }

@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Effect_ApplyHeal.uc
+//  AUTHOR:  Grobobobo/inspired by shadow ops
+//  PURPOSE: Effect that heals stuff per turn.
+//---------------------------------------------------------------------------------------
 class X2Effect_ApplyHeal extends X2Effect;
 
 var int HealAmount;
@@ -10,7 +15,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	local XComGameState_Unit OldTargetState, NewTargetState;
 	local UnitValue HealthRegenerated;
 	local int AmountToHeal, Healed, NewHealthRegenerated;
-
+	
     `LOG("X2Effect_ApplyHeal added");
 	
 	OldTargetState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));

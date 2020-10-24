@@ -29,7 +29,7 @@ event name CallMeetsConditionWithSource(XComGameState_BaseObject kTarget, XComGa
 
 
 	// TargetUnit must be withing CQB Dominance range of the SourceUnit
-	if (SourceUnit.GetUnitValue(class'X2Ability_XMBPerkAbilitySet'.default.CQB_DOMINANCE_RADIUS_NAME, UnitValue))	
+	if (SourceUnit.GetUnitValue(class'X2Ability_XMBPerkAbilitySet'.default.ZONE_CONTROL_RADIUS_NAME, UnitValue))	
 	{
 		if (SourceUnit.TileDistanceBetween(TargetUnit) <= UnitValue.fValue)
 		{

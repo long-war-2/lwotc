@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Effect_Immobilize.uc
+//  AUTHOR:  Grobobobo/Taken  from Favid
+//  PURPOSE: Effect that Immobilizes the target.
+//---------------------------------------------------------------------------------------
 class X2Effect_Immobilize extends X2Effect_PersistentStatChange;
 
 simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)

@@ -1,7 +1,11 @@
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Effect_ApexPredator_LW.uc
+//  AUTHOR:  Grobobobo/Taken  from shiremct
+//  PURPOSE: Effect that Panics the target on crit.
+//---------------------------------------------------------------------------------------
+class X2Effect_ApexPredator_LW extends X2Effect_Persistent;
 
-class X2Effect_LW_ApexPredator extends X2Effect_Persistent;
-
-var name LW_ApexPredator_TriggeredName;
+var name ApexPredator_LW_TriggeredName;
 
 
 function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState) 
@@ -25,7 +29,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		{
 			if (AppliedData.AbilityResultContext.HitResult == eHit_Crit)
 			{
-				`XEVENTMGR.TriggerEvent(default.LW_ApexPredator_TriggeredName, XComGameState_Unit(TargetDamageable), Attacker, NewGameState);
+				`XEVENTMGR.TriggerEvent(default.ApexPredator_LW_TriggeredName, XComGameState_Unit(TargetDamageable), Attacker, NewGameState);
 	}	}	}
 
 	return 0;
@@ -34,6 +38,6 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 DefaultProperties
 {
-	LW_ApexPredator_TriggeredName = "LW_ApexPredator_Triggered"
+	ApexPredator_LW_TriggeredName = "ApexPredator_LW_Triggered"
 	bDisplayInSpecialDamageMessageUI = false
 }

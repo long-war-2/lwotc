@@ -118,9 +118,9 @@ LocPromotionPopupText="<Bullet/> Confers +10 aim and +10 defense against targets
 [Executioner_LW X2AbilityTemplate]
 LocFriendlyName="Executioner"
 LocFlyOverText="Executioner"
-LocLongDescription="Confers +<Ability:EXE_AIM_BONUS/> aim and +<Ability:EXE_CRIT_BONUS/> critical chance against targets at half or less of their original hit points."
-LocHelpText="Confers +<Ability:EXE_AIM_BONUS/> aim and +<Ability:EXE_CRIT_BONUS/> critical chance against targets at half or less of their original hit points."
-LocPromotionPopupText="<Bullet/> Confers +<Ability:EXE_CRIT_BONUS/> aim and +<Ability:EXE_CRIT_BONUS/> critical chance against targets at half or less of their original hit points.<br/>"
+LocLongDescription="Confers +<Ability:EXECUTIONER_AIM_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points."
+LocHelpText="Confers +<Ability:EXECUTIONER_AIM_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points."
+LocPromotionPopupText="<Bullet/> Confers +<Ability:EXECUTIONER_CRIT_BONUS/> aim and +<Ability:EXECUTIONER_CRIT_BONUS/> critical chance against targets at half or less of their original hit points.<br/>"
 
 [Resilience X2AbilityTemplate]
 LocFriendlyName="Resilience"
@@ -239,9 +239,9 @@ LocPromotionPopupText="<Bullet/> Take a special shot with +30 bonus to critical 
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Cyclic Fire"
 LocFlyOverText="Cyclic Fire"
-LocLongDescription="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. <Ability:CYCLIC_COOLDOWN/> turn cooldown."
-LocHelpText="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. <Ability:CYCLIC_COOLDOWN/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Special Shot: Fire three shots at a target in a single attack. Requires two actions and all shots have a -<Ability:CYCLIC_MALUS/> penalty to aim.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
+LocLongDescription="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. <Ability:CYCLIC_FIRE_COOLDOWN/> turn cooldown."
+LocHelpText="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. <Ability:CYCLIC_FIRE_COOLDOWN/> turn cooldown."
+LocPromotionPopupText="<Bullet/> Special Shot: Fire three shots at a target in a single attack. Requires two actions and all shots have a -<Ability:CYCLIC_FIRE_AIM_MALUS/> penalty to aim.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
 
 [StreetSweeper X2AbilityTemplate]
 LocFriendlyName="Trench Gun"
@@ -253,16 +253,16 @@ LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: 
 [SlugShot X2AbilityTemplate]
 LocFriendlyName="Slug Shot"
 LocFlyOverText="Slug Shot"
-LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot that pierces two armor and has no range penalties. Uses <Ability:SelfAmmoCost/> ammo. <Ability:SLUGSHOT_COOLDOWN/> turn cooldown."
+LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot that pierces two armor and has no range penalties. Uses <Ability:SelfAmmoCost/> ammo. <Ability:SLUG_SHOT_COOLDOWN/> turn cooldown."
 LocHelpText="Armor-piercing special shotgun shot with no range penalties."
-LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> The shot will pierce two armor points.<br/><Bullet/> <Ability:SLUGSHOT_COOLDOWN/> turn cooldown. <br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
+LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> The shot will pierce two armor points.<br/><Bullet/> <Ability:SLUG_SHOT_COOLDOWN/> turn cooldown. <br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
 
 [SlugShotRangeEffect X2AbilityTemplate]
 LocFriendlyName="Slug Shot"
 LocFlyOverText="Slug Shot"
-LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot with no range penalties. Uses <Ability:SelfAmmoCost/> ammo. <Ability:SLUGSHOT_COOLDOWN/> turn cooldown."
-LocHelpText="Special shot for primary-weapon shotguns only: Fire a shot with no range penalties. Uses <Ability:SelfAmmoCost/> ammo. <Ability:SLUGSHOT_COOLDOWN/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> <Ability:SLUGSHOT_COOLDOWN/> turn cooldown.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
+LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot with no range penalties. Uses <Ability:SelfAmmoCost/> ammo. <Ability:SLUG_SHOT_COOLDOWN/> turn cooldown."
+LocHelpText="Special shot for primary-weapon shotguns only: Fire a shot with no range penalties. Uses <Ability:SelfAmmoCost/> ammo. <Ability:SLUG_SHOT_COOLDOWN/> turn cooldown."
+LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> <Ability:SLUG_SHOT_COOLDOWN/> turn cooldown.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
 
 [Commissar X2AbilityTemplate]
 LocFriendlyName="Commissar"

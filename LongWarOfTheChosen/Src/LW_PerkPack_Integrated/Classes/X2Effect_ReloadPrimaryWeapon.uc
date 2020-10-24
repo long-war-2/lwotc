@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Effect_ReloadPrimaryWeapon.uc
+//  AUTHOR:  Grobobobo/Taken  from Favid
+//  PURPOSE: Effect that reloads primary weapon.
+//---------------------------------------------------------------------------------------
 class X2Effect_ReloadPrimaryWeapon extends X2Effect;
 
 var int AmmoToReload;

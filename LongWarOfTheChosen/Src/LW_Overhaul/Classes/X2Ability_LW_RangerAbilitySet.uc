@@ -82,7 +82,7 @@ static function X2AbilityTemplate AddPointBlank()
 	ActionPointCost = new class'X2AbilityCost_QuickdrawActionPoints';
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = true;
-	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('LW_Hipfire');
+	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Hipfire_LW');
 	Template.AbilityCosts.AddItem(ActionPointCost);	
 
 	// Ammo
@@ -175,7 +175,7 @@ static function X2AbilityTemplate AddBothBarrels()
 	ActionPointCost = new class'X2AbilityCost_QuickdrawActionPoints';
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = true;
-	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('LW_Hipfire');
+	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Hipfire_LW');
 
 	Template.AbilityCosts.AddItem(ActionPointCost);	
 

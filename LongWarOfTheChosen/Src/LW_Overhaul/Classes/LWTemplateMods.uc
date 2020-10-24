@@ -1198,15 +1198,15 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.AbilityCooldown = Cooldown;
 
 		RemoveEffects = new class'X2Effect_RemoveEffectsByDamageType';
-		foreach class'X2Ability_XMBPerkAbilitySet'.default.AgentstHealEffectTypes(HealType)
+		foreach class'X2Ability_XMBPerkAbilitySet'.default.AgentsHealEffectTypes(HealType)
 		{
 			RemoveEffects.DamageTypesToRemove.AddItem(HealType);
 		}
 		AbilityCondition = new class'X2Condition_AbilityProperty';
-		AbilityCondition.OwnerHasSoldierAbilities.AddItem('LW_NeutralizingAgents');
+		AbilityCondition.OwnerHasSoldierAbilities.AddItem('NeutralizingAgents_LW');
 		RemoveEffects.TargetConditions.AddItem(AbilityCondition);
 
-		Template.AssociatedPassives.AddItem('LW_NeutralizingAgents');
+		Template.AssociatedPassives.AddItem('NeutralizingAgents_LW');
 		Template.AddTargetEffect(RemoveEffects);
 	
 	}
