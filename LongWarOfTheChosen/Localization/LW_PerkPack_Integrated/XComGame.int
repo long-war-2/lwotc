@@ -224,9 +224,9 @@ LocPromotionPopupText="<Bullet/> After taking a standard shot with your primary 
 [WalkFire X2AbilityTemplate]
 LocFriendlyName="Walk Fire"
 LocFlyOverText="Walk Fire"
-LocLongDescription="Take a highly accurate shot with +30 bonus to hit <Ability:WALK_FIRE_DMG>% damage and -30 crit. Uses <Ability:SelfAmmoCost/> ammo."
-LocHelpText="Special shot: +30 aim, -30 crit, <Ability:WALK_FIRE_DMG>% damage, uses <Ability:SelfAmmoCost/> ammo."
-LocPromotionPopupText="<Bullet/> This is a special shot in which the soldier adjusts their aim in the middle of an automatic weapon burst, conferring +30 aim and -30 crit and doing <Ability:WALK_FIRE_DMG>% damage.<br/><Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
+LocLongDescription="Take a highly accurate shot with +<Ability:WALK_FIRE_AIM_BONUS> bonus to hit <Ability:WALK_FIRE_DMG>% damage and -<Ability:WALK_FIRE_CRIT_MALUS> crit. Uses <Ability:SelfAmmoCost/> ammo."
+LocHelpText="Special shot: +<Ability:WALK_FIRE_AIM_BONUS> aim, -<Ability:WALK_FIRE_CRIT_MALUS> crit, <Ability:WALK_FIRE_DMG>% damage, uses <Ability:SelfAmmoCost/> ammo."
+LocPromotionPopupText="<Bullet/> This is a special shot in which the soldier adjusts their aim in the middle of an automatic weapon burst, conferring +<Ability:WALK_FIRE_AIM_BONUS> aim and -<Ability:WALK_FIRE_CRIT_MALUS> crit and doing <Ability:WALK_FIRE_DMG>% damage.<br/><Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
 ;End translation
 
 [PrecisionShot X2AbilityTemplate]
