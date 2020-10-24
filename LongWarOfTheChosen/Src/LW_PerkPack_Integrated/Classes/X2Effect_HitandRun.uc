@@ -89,5 +89,5 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 defaultproperties
 {
 
-HNRUsesName = 'HitandRunUses'
+	HNRUsesName = HitandRunUses
 }
