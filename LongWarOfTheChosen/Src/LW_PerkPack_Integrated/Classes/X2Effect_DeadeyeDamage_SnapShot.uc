@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Effect_DeadeyeDamage_SnapShot.uc
+//  AUTHOR:  Grobobobo
+//  PURPOSE: Effect that does the same think as deadeye, but for its snapshot variant.
+//---------------------------------------------------------------------------------------
 class X2Effect_DeadeyeDamage_SnapShot extends X2Effect_Persistent config(LW_SoldierSKills);
 
 var config float DamageMultiplier;

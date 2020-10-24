@@ -454,7 +454,7 @@ LocLongDescription="Special shot with a bonus to hit that does little or no dama
 LocHelpText="Special shot that does little or no damage but confers defense and dodge penalties and forces target to change position."
 LocFlyOverText="Flush"
 ;LWOTC needs translation
-LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Two-turn cooldown.<br/><Bullet/> +30 bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DEFENSE_DEBUFF> defense and <Ability:FLUSH_DODGE_DEBUFF> dodge. The debuff lasts <Ability:FLUSH_DURATION> turns."
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Two-turn cooldown.<br/><Bullet/> +30 bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DEFENSE_REDUCTION> defense and <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
 ;End Translation
 str_FlushEffect="Flushed"
 

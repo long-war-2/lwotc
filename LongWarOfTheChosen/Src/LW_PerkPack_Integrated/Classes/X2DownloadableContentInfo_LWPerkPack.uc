@@ -278,6 +278,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'WALK_FIRE_DMG':
 			OutString = string (int(class 'X2Effect_WalkFireDamage'.default.WALK_FIRE_DAMAGE_MODIFIER * -100));
 			return true;
+		case 'GUNSLINGER_TILES_RANGE'
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.GUNSLINGER_METERS_RANGE * 2 / 3);
+			return true;
+		case 'GUNSLINGER_COOLDOWN'
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.GUNSLINGER_COOLDOWN);
+			return true;
         default:
             return false;
     }

@@ -278,12 +278,14 @@ LocLongDescription="Once per mission, fire a pistol shot that cannot miss."
 LocHelpText="Once per mission, fire a pistol shot that cannot miss."
 LocPromotionPopupText="<Bullet/> Once per mission, fire a pistol shot that cannot miss.<br/>"
 
+;LWOTC needs translation
 [Gunslinger X2AbilityTemplate]
 LocFriendlyName="Gunslinger"
 LocFlyOverText="Gunslinger"
 LocLongDescription="Take a reaction shot that can crit with your pistol against any enemy that moves or attacks within 8 tiles."
 LocHelpText="Enhanced radial pistol ovewatch."
-LocPromotionPopupText="<Bullet/> Range is 8 tiles.<br/><Bullet/> 3 turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Range is <Ability:GUNSLINGER_TILES_RANGE/> tiles.<br/><Bullet/> <Ability:GUNSLINGER_COOLDOWN/> turn cooldown.<br/>"
+;End translation
 
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="Hyper-Reactive Pupils"

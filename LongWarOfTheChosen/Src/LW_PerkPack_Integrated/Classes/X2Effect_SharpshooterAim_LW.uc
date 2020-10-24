@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:   X2Effect_SharpshooterAim_LW.uc
+//  AUTHOR:  Grobobobo
+//  PURPOSE: Makes Aim Confer Bonus crit in addition to bonus aim.
+//---------------------------------------------------------------------------------------
 class X2Effect_SharpshooterAim_LW extends X2Effect_Persistent;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
