@@ -288,7 +288,7 @@ LocFriendlyName="Gunslinger"
 LocFlyOverText="Gunslinger"
 LocLongDescription="Take a reaction shot that can crit with your pistol against any enemy that moves or attacks within 8 tiles."
 LocHelpText="Enhanced radial pistol overwatch."
-LocPromotionPopupText="<Bullet/> Range is <Ability:GUNSLINGER_TILES_RANGE/> tiles.<br/><Bullet/> <Ability:GUNSLINGER_COOLDOWN/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Range is <Ability:GUNSLINGER_TILES_RANGE/> tiles.<br/><Bullet/> <Ability:GUNSLINGER_COOLDOWN/>-turn cooldown.<br/>"
 ;End translation
 
 [HyperReactivePupils X2AbilityTemplate]
