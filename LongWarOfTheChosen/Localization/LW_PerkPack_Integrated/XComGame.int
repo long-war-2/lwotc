@@ -419,7 +419,9 @@ LocFriendlyName="Interference"
 LocFlyOverText="Interference"
 LocLongDescription="GREMLIN cancels overwatch on targeted unit. Use three times per battle."
 LocHelpText="Cancels overwatch on targeted unit."
+; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> Cancels overwatch on targeted unit.<br/><Bullet/> Is a free action.<br/><Bullet/> 3 charges per battle, improves with better Gremlin tech.<br/>"
+; End Translation
 
 [DamageControl X2AbilityTemplate]
 LocFriendlyName="Damage Control"
