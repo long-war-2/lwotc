@@ -19,10 +19,10 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 		if (WeaponState != none)
 		{
 			NewWeaponState = XComGameState_Item(NewGameState.ModifyStateObject(WeaponState.Class, WeaponState.ObjectID));
-            if(NewWeaponState.Ammo < WeaponState.GetClipSize())
-            {
-                NewWeaponState.Ammo += Min(AmmoToReload, WeaponState.GetClipSize() - NewWeaponState.Ammo);
-            }
+			if (NewWeaponState.Ammo < WeaponState.GetClipSize())
+			{
+				NewWeaponState.Ammo += Min(AmmoToReload, WeaponState.GetClipSize() - NewWeaponState.Ammo);
+			}
 		}
 	}
 }

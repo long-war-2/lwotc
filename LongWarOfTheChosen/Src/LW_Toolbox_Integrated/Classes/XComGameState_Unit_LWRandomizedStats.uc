@@ -93,7 +93,7 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 		TotalWeight += Swap.Weight;
 	}
 
-	ComIntTotalWeight=0.0f;
+	ComIntTotalWeight = 0.0f;
 	foreach default.COMINT_STAT_SWAPS(ComIntSwap)
 	{
 		ComIntTotalWeight += ComIntSwap.Weight;
@@ -109,7 +109,7 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 		CharacterInitialStats_Deltas[Swap.StatUp] += Swap.StatUp_Amount;
 		CharacterInitialStats_Deltas[Swap.StatDown] -= Swap.StatDown_Amount;
 	}
-	if( `SYNC_RAND(100) < default.COMINT_BASE_SWAP_CHANCE )
+	if (`SYNC_RAND(100) < default.COMINT_BASE_SWAP_CHANCE)
 	{
 		do 
 		{
@@ -309,7 +309,7 @@ function ComIntStatSwap SelectComIntStatSwap(float TotalWeight)
 	local float finder, selection;
 	local ComIntStatSwap Swap, ReturnSwap;
 
-	if(default.COMINT_STAT_SWAPS.Length == 0)
+	if (default.COMINT_STAT_SWAPS.Length == 0)
 		return Swap;
 
 	finder = 0.0f;
@@ -317,13 +317,13 @@ function ComIntStatSwap SelectComIntStatSwap(float TotalWeight)
 	foreach default.COMINT_STAT_SWAPS(Swap)
 	{
 		finder += Swap.Weight;
-		if(finder > selection)
+		if (finder > selection)
 		{
 			break;
 		}
 	}
 	//Swap = default.STAT_SWAPS[default.STAT_SWAPS.Length-1];
-	if(`SYNC_RAND(2) == 1)
+	if (`SYNC_RAND(2) == 1)
 	{
 		ReturnSwap.ComIntStatchange = Swap.ComIntStatchange * -1.0f;
 		ReturnSwap.StatSwapped = Swap.StatSwapped;
@@ -340,7 +340,7 @@ function bool IsValidComIntSwap(ComIntStatSwap Swap, XComGameState_Unit Unit)
 {
 	local StatCaps Cap;
 
-	if(Swap.DoesNotApplyToFirstMissionSoldiers && bIsFirstMissionSoldier)
+	if (Swap.DoesNotApplyToFirstMissionSoldiers && bIsFirstMissionSoldier)
 		return false;
 
     // Make sure the swap wouldn't bring HP down to zero or lower
@@ -352,12 +352,12 @@ function bool IsValidComIntSwap(ComIntStatSwap Swap, XComGameState_Unit Unit)
 
 	foreach default.STAT_CAPS(Cap)
 	{
-		if( (Cap.Stat == Swap.StatSwapped)  && (CharacterInitialStats_Deltas[Swap.StatSwapped] + Swap.StatSwapped_Amount > Cap.Max)
+		if ((Cap.Stat == Swap.StatSwapped)  && (CharacterInitialStats_Deltas[Swap.StatSwapped] + Swap.StatSwapped_Amount > Cap.Max)
 		 || (Cap.Stat == Swap.StatSwapped)  && CharacterInitialStats_Deltas[Swap.StatSwapped] + Swap.StatSwapped_Amount < Cap.Min)
 			return false;
 	}
 
-	if( ECombatIntelligence(Unit.ComInt + Swap.ComIntStatchange) > eComInt_Savant || ECombatIntelligence(Unit.ComInt + Swap.ComIntStatchange) < eComInt_Standard)
+	if (ECombatIntelligence(Unit.ComInt + Swap.ComIntStatchange) > eComInt_Savant || ECombatIntelligence(Unit.ComInt + Swap.ComIntStatchange) < eComInt_Standard)
 	{
 		return false;
 	}
@@ -369,15 +369,15 @@ static function ChangeUnitsCombatIntelligence(XcomGameState_Unit Unit, int Amoun
 {
 	local int iRank, APChange;
 		
-	if( ECombatIntelligence(Unit.ComInt + Amount) <= eComInt_Savant && ECombatIntelligence(Unit.ComInt + Amount) >= eComInt_Standard)
+	if (ECombatIntelligence(Unit.ComInt + Amount) <= eComInt_Savant && ECombatIntelligence(Unit.ComInt + Amount) >= eComInt_Standard)
 	{
 		Unit.ComInt = ECombatIntelligence(Unit.ComInt + Amount);
 	}
-	// We should Provide additional AP as if the soldier had the higher ComInt the entire time just in case some 
-	// asshole would want to constantly turn NCE On and Off. Even then, it can't be 100% perfect because if you spend abilities with 
+	// We should Provide additional AP as if the soldier had the higher ComInt the entire time just in case someone 
+	// switches between NCE on and off. Even then, it can't be 100% perfect because if you spend abilities with 
 	// above average comint and turn NCE off afterwards Soldier AP would have to become negative, and That sounds like a really bad idea
 	//Currently the AP adjusts itself accordingly, but comint does not
-	APChange=0;
+	APChange = 0;
 	for (iRank = Unit.GetSoldierRank(); iRank >= 2; iRank--)
 	{
 		if (Unit.IsResistanceHero())
@@ -389,13 +389,13 @@ static function ChangeUnitsCombatIntelligence(XcomGameState_Unit Unit, int Amoun
 			APChange += (GetBaseSoldierAPAmount(Unit.ComInt, Unit) - GetBaseSoldierAPAmount(ECombatIntelligence(Unit.ComInt - Amount), Unit));
 		}
 	}
-	Unit.AbilityPoints = Max(0,Unit.AbilityPoints + Round(APChange));
+	Unit.AbilityPoints = Max(0, Unit.AbilityPoints + Round(APChange));
 	
 }
 
 // GetResistanceHeroAPAmount is an Unncescessarily private function in XComGameState_Unit, and I'm not waiting for highlander to fix that
 // so this is a bypass
-STATIC function int GetResistanceHeroAPAmount(int SoldierRank, ECombatIntelligence eComInt, XComGameState_Unit Unit)
+static function int GetResistanceHeroAPAmount(int SoldierRank, ECombatIntelligence eComInt, XComGameState_Unit Unit)
 {
 	local XComGameStateHistory History;
 	local XComGameState_HeadquartersResistance ResHQ;
@@ -423,7 +423,7 @@ STATIC function int GetResistanceHeroAPAmount(int SoldierRank, ECombatIntelligen
 	APReward *= class'X2StrategyGameRulesetDataStructures'.default.ResistanceHeroComIntModifiers[eComInt];
 
 	// AP amount could be modified by Resistance Orders
-	if(ResHQ.AbilityPointScalar > 0)
+	if (ResHQ.AbilityPointScalar > 0)
 	{
 		APReward = Round(float(APReward) * ResHQ.AbilityPointScalar);
 	}
@@ -448,7 +448,7 @@ static function int GetBaseSoldierAPAmount(ECombatIntelligence eComInt, XComGame
 		History = `XCOMHISTORY;
 		ResHQ = XComGameState_HeadquartersResistance(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
 
-		if(ResHQ.AbilityPointScalar > 0)
+		if (ResHQ.AbilityPointScalar > 0)
 		{
 			APReward = Round(float(APReward) * ResHQ.AbilityPointScalar);
 		}

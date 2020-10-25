@@ -7,10 +7,10 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local XComGameState_Item SourceWeapon;
 	local X2GrenadeTemplate GrenadeTemplate;
 	local X2Effect_ApplyWeaponDamage DamageEffect;
-    local XComGameState_Unit TargetUnit;
+	local XComGameState_Unit TargetUnit;
 	SourceWeapon = AbilityState.GetSourceWeapon();
 
-    TargetUnit = XComGameState_Unit(TargetDamageable);
+	TargetUnit = XComGameState_Unit(TargetDamageable);
 
 	if (SourceWeapon != none)
 	{
@@ -32,7 +32,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 			//	only add the bonus damage when the damage effect is applying the weapon's base damage
 			DamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
-			if(TargetUnit != none)
+			if (TargetUnit != none)
 			{
 
 				if (DamageEffect != none && !DamageEffect.bIgnoreBaseDamage && TargetUnit.GetCurrentStat(eStat_ArmorMitigation) == 0)

@@ -1214,7 +1214,7 @@ static function name ApplyChance_Concussion_Stunned (const out EffectAppliedData
 	local X2MultiWeaponTemplate MultiWeaponTemplate;
 
 	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
-	SourceItemState = XComGameState_Item( `XCOMHISTORY.GetGameStateForObjectID( AbilityState.SourceWeapon.ObjectID ) );
+	SourceItemState = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(AbilityState.SourceWeapon.ObjectID));
 	MultiWeaponTemplate = X2MultiWeaponTemplate(SourceItemState.GetMyTemplate());
 
 	UnitState = XComGameState_Unit(kNewTargetState);

@@ -273,7 +273,7 @@ LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
 LocLongDescription="Fire a special rocket that does limited damage but has a chance to stun or disorient organic enemies within its area of effect and leaves a cloud of smoke."
 LocHelpText="Rocket that stuns or disorients targets and leaves a smoke cloud. <Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun and disorientation chances based on target's will score and Soldier's gauntlet Tier.<br/><Bullet/> Requires one action and ends the soldier's turn."
+LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun and disorientation chances based on target's will score and Soldier's gauntlet tier.<br/><Bullet/> Requires one action and ends the soldier's turn."
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -382,7 +382,7 @@ LocFriendlyName="Needle Grenades"
 LocLongDescription="Your explosives do not destroy loot when they kill enemies and deal 1 bonus damage to unarmored enemies"
 LocHelpText="Your explosives do not destroy loot when they kill enemies and deal 1 bonus damage to unarmored enemies."
 LocFlyOverText="Needle Grenades"
-LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot intact, and tears through not reinforced material."
+LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot intact and tears through unreinforced material."
 
 [HEATWarheads X2AbilityTemplate]
 LocFriendlyName="HEAT Warheads"
@@ -4953,12 +4953,12 @@ LocHelpText="A Rupture shot grants a large bonus to critical hit chances and ens
 [Faceoff X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field position, granting a high chance to hit at multiple targets.<br/><Bullet/> Faceoff has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 
-; LWOTC Needs Translation
+; LWOTC Needs Translation (2)
 [SoulSteal X2AbilityTemplate]
 LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns, but increases the cooldown of soulfire by 1."
 LocHelpText="Soulfire heals a wounded operative and grants ablative HP, but increases soulfire cooldown by 1"
 LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 4/6/8 ablative hit point for 3 turns.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
-; End Translation
+; End Translation (2)
 
 [CoveringFire X2AbilityTemplate]
 LocLongDescription="Reaction shots confer an aim malus on enemies and can now be triggered by any enemy action, not just movement."
@@ -5620,16 +5620,16 @@ LocPromotionPopupText="<Bullet/> Attacks that would normally graze their target 
 [LikeLightning_LW X2AbilityTemplate]
 LocFriendlyName="Like Lightning"
 LocFlyOverText="Like Lightning"
-LocLongDescription="When Run and Gun is activated, your Arc Thrower cooldown is immediately removed. Passive."
+LocLongDescription="When Run and Gun is activated, your Arc Thrower cooldown is immediately reset to 0. Passive."
 LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immediately removed. Passive."
 LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/><Bullet/> Passive.<br/>"
 
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Maim"
 LocFlyOverText="Maim"
-LocLongDescription="Fire a shot with your primary weapon that immobilizes the target until the end of their next turn. Uses <Ability:MAIM_AMMO_COST/> ammo. <Ability:MAIM_COOLDOWN/> turn cooldown."
-LocHelpText="Fire a shot with your primary weapon that immobilizes the target until the end of their next turn. Uses <Ability:MAIM_AMMO_COST/> ammo. <Ability:MAIM_COOLDOWN/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Fire a shot with your primary weapon that immobilizes the target until the end of their next turn.<br/><Bullet/> Useful to isolate a high value target during an ambush.<br/><Bullet/> Uses <Ability:MAIM_AMMO_COST/> ammo.<br/><Bullet/> <Ability:MAIM_COOLDOWN/> turn cooldown.<br/>"
+LocLongDescription="Fire a shot with your primary weapon that immobilizes the target until the end of their next turn. Uses <Ability:MAIM_AMMO_COST/> ammo. <Ability:MAIM_COOLDOWN/>-turn cooldown."
+LocHelpText="Fire a shot with your primary weapon that immobilizes the target until the end of their next turn. Uses <Ability:MAIM_AMMO_COST/> ammo. <Ability:MAIM_COOLDOWN/>-turn cooldown."
+LocPromotionPopupText="<Bullet/> Fire a shot with your primary weapon that immobilizes the target until the end of their next turn.<br/><Bullet/> Useful to isolate a high-value target during an ambush.<br/><Bullet/> Uses <Ability:MAIM_AMMO_COST/> ammo.<br/><Bullet/> <Ability:MAIM_COOLDOWN/>-turn cooldown.<br/>"
 
 [Preservation_LW X2AbilityTemplate]
 LocFriendlyName="Preservation"
@@ -5669,16 +5669,16 @@ LocPromotionPopupText="<Bullet/> If you get at least one kill during your turn, 
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Dedication"
 LocFlyOverText="Dedication"
-LocLongDescription="Free action. Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. <Ability:DEDICATION_COOLDOWN/> turn cooldown."
-LocHelpText="Free action. Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. <Ability:DEDICATION_COOLDOWN/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn.<br/><Bullet/> Free action.<br/><Bullet/> <Ability:DEDICATION_COOLDOWN/> turn cooldown.<br/>"
+LocLongDescription="Free action. Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. <Ability:DEDICATION_COOLDOWN/>-turn cooldown."
+LocHelpText="Free action. Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. <Ability:DEDICATION_COOLDOWN/>-turn cooldown."
+LocPromotionPopupText="<Bullet/> Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn.<br/><Bullet/> Free action.<br/><Bullet/> <Ability:DEDICATION_COOLDOWN/>-turn cooldown.<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Corpsman"
 LocFlyOverText="Corpsman"
 LocLongDescription="Grants a free Medikit."
 LocHelpText="Grants a free Medikit."
-LocPromotionPopupText="<Bullet/> Grants a free medikit.<br/><Bullet/> A Nano-Medikit will be provided instead if the necessary Research has been completed.<br/>"
+LocPromotionPopupText="<Bullet/> Grants a free medikit.<br/><Bullet/> A Nanomedikit will be provided instead if the necessary research has been completed.<br/>"
 
 [OpenFire_LW X2AbilityTemplate]
 LocFriendlyName="Open Fire"
@@ -5720,14 +5720,14 @@ LocFriendlyName="Reposition"
 LocFlyOverText="Reposition"
 LocLongDescription="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon."
 LocHelpText="Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon."
-LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon. Works with hit and run.<br/>
+LocPromotionPopupText="<Bullet/> Once per turn, gain an additional move action after taking a standard shot at a flanked or exposed target with your primary weapon.<br/><Bullet/> Works with Hit and Run.<br/>
 
 [NeutralizingAgents_LW X2AbilityTemplate]
 LocFriendlyName="Neutralizing Agents"
 LocFlyOverText="Neutralizing Agents"
-LocLongDescription="Aid protocol now neutralizes fire, poison, acid and bleeding."
-LocHelpText="Aid protocol now neutralizes fire, poison, acid and bleeding"
-LocPromotionPopupText="<Bullet/> Aid protocol now neutralizes fire, poison, acid and bleeding."<br/>
+LocLongDescription="Aid Protocol now neutralizes fire, poison, acid and bleeding."
+LocHelpText="Aid Protocol now neutralizes fire, poison, acid and bleeding"
+LocPromotionPopupText="<Bullet/> Aid Protocol now neutralizes fire, poison, acid and bleeding.<br/>"
 
 [SurvivalInstinct_LW X2AbilityTemplate]
 LocFriendlyName="Survival Instinct"
@@ -5746,8 +5746,8 @@ LocPromotionPopupText="<Bullet/> Point Blank does not affect the aim penalty fro
 [ThatsCloseEnough_LW X2AbilityTemplate]
 LocFriendlyName="That's Close Enough"
 LocFlyOverText="That's Close Enough"
-LocLongDescription="During enemy turns, fire your arcthrower at any visible enemy within <Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/> tiles who moves or fires. Shares cooldown with arc thrower stun."
-LocHelpText="During enemy turns, fire your arcthrower at any visible enemy within four tiles who moves or fires."
+LocLongDescription="During enemy turns, fire your arc thrower at any visible enemy within <Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/> tiles who moves or fires. Shares cooldown with the arc thrower's Stun ability."
+LocHelpText="During enemy turns, fire your arc thrower at any visible enemy within four tiles who moves or fires."
 LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> This ability can trigger <Ability:THATS_CLOSE_ENOUGH_PER_TARGET_COOLDOWN/> time(s) per turn.<br/>"
 
 [QuickZap_LW X2AbilityTemplate]
@@ -5759,41 +5759,41 @@ LocPromotionPopupText="<Bullet/> Activate this ability to make your next arcthro
 
 [Hipfire_LW X2AbilityTemplate]
 LocFriendlyName="Hipfire"
-LocLongDescription="Firing the Sawed-Off Shotgun no longer ends the turn."
-LocHelpText="Firing the Sawed-Off Shotgun no longer ends the turn."
 LocFlyOverText="Hipfire"
-LocPromotionPopupText="<Bullet/> Point Blank only requires one action to fire so can be used twice, after moving or before moving.<br/><Bullet/>"
+LocLongDescription="Firing the sawed-off shotgun no longer ends the turn."
+LocHelpText="Firing the sawed-off shotgun no longer ends the turn."
+LocPromotionPopupText="<Bullet/> With this ability, Point Blank and Both Barrels do not end the turn, allowing the soldier to shoot or move afterwards.<br/><Bullet/>"
 
 [NoneShallPass_LW X2AbilityTemplate]
 LocFriendlyName="None Shall Pass"
 LocFlyOverText="None Shall Pass"
-LocLongDescription="During enemy turns, fire a free reaction shot that can critically hit with your Sawed-Off Shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires. Can only trigger once per turn."
-LocHelpText="During enemy turns, fire a free reaction shot that can critically hit with your Sawed-Off Shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires."
-LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> Only triggers once per turn.<br/><Bullet/> Uses 1 ammo and will only trigger if the Sawed-Off Shotgun is loaded.<br/><Bullet/> Can critically hit.<br/>"
+LocLongDescription="During enemy turns, fire a free reaction shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires. Can only trigger once per turn."
+LocHelpText="During enemy turns, fire a free reaction shot that can critically hit with your sawed-off shotgun at any visible enemy within <Ability:NONE_SHALL_PASS_TILE_RANGE/> tiles who moves or fires."
+LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> Only triggers once per turn.<br/><Bullet/> Uses 1 ammo and will only trigger if the sawed-off shotgun is loaded.<br/><Bullet/> Can critically hit.<br/><Bullet/> Works during any enemy turn: alien, Lost, Chosen and Ruler.<br/>"
 
 [ScrapMetal_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal"
 LocFlyOverText="Scrap Metal: Recovered ammo"
-LocLongDescription="Kills with your Primary restore one Sawed-Off Shotgun charge."
-LocHelpText="Kills with your Primary restore one Sawed-Off Shotgun charge."
-LocPromotionPopupText="<Bullet/> Kills with your Primary restore one Sawed-Off Shotgun charge."
+LocLongDescription="Kills with your primary weapon restore one sawed-off shotgun charge."
+LocHelpText="Kills with your primary weapon restore one sawed-off shotgun charge."
+LocPromotionPopupText="<Bullet/> Kills with your primary weapon restore one sawed-off shotgun charge.<br/><Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> This ability cannot grant ammo if the sawed-off shotgun charges are already at their starting value.<br/>"
 
 [ScrapMetalTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal: Recovered ammo"
 
 [Brutality_LW X2AbilityTemplate]
 LocFriendlyName="Brutality"
-LocLongDescription="Kills on organic enemies with your Sawed-Off Shotgun have a <Ability:BRUTALITY_PANIC_CHANCE/> chance to panic other organic enemies within <Ability:BRUTALITY_TILE_RADIUS/> tiles."
-LocHelpText="Kills on organic enemies with your Sawed-Off Shotgun have a <Ability:BRUTALITY_PANIC_CHANCE/> chance to panic other organic enemies within <Ability:BRUTALITY_TILE_RADIUS/> tiles."
 LocFlyOverText="Brutality"
-LocPromotionPopupText="<Bullet/> Use Brutality as a crowd control tool to allow the Marauder to move forward more aggressively and combine it with the Ruthless ability to increase your killing power.<br/>"
+LocLongDescription="Killing organic enemies with your sawed-off shotgun have a <Ability:BRUTALITY_PANIC_CHANCE/>% chance to panic other organic enemies within <Ability:BRUTALITY_TILE_RADIUS/> tiles of the target."
+LocHelpText="Killing organic enemies with your sawed-off shotgun have a <Ability:BRUTALITY_PANIC_CHANCE/>% chance to panic other organic enemies within <Ability:BRUTALITY_TILE_RADIUS/> tiles of the target."
+LocPromotionPopupText="<Bullet/> Use Brutality as a crowd-control tool to allow the soldier to move forward more aggressively and combine it with the Ruthless ability to increase your killing power.<br/>"
 
 [Ruthless_LW X2AbilityTemplate]
 LocFriendlyName="Ruthless"
-LocLongDescription="Killing a panicked or disoriented enemy with your Sawed-Off Shotgun refunds one action point."
-LocHelpText="Killing a panicked or disoriented enemy with your Sawed-Off Shotgun refunds one action point."
+LocLongDescription="Killing a panicked or disoriented enemy with your sawed-off shotgun refunds one action point."
+LocHelpText="Killing a panicked or disoriented enemy with your sawed-off shotgun refunds one action point."
 LocFlyOverText="Ruthless"
-LocPromotionPopupText="<Bullet/> By cleverly combining the effects of Brutality and Ruthless, you can kill multiple enemies per turn with your Sawed-Off Shotgun.<br/><Bullet/> There is no limit to the number of activations per turn.<br/>"
+LocPromotionPopupText="<Bullet/> By cleverly combining the effects of Brutality and Ruthless, you can kill multiple enemies per turn with your sawed-off shotgun.<br/><Bullet/> There is no limit to the number of Ruthless activations per turn.<br/>"
 
 [ZoneOfControl_LW X2AbilityTemplate]
 LocFriendlyName = "Zone of Control"
@@ -5804,16 +5804,16 @@ LocPromotionPopupText = "<Bullet/> All enemies within the <Ability:ClassName/>'s
 [ApexPredator_LW X2AbilityTemplate]
 LocFriendlyName = "Apex Predator"
 LocFlyOverText = "Apex Predator"
-LocHelpText = "Critical Hits have a chance to panic the target and nearby enemies."
-LocLongDescription = "Critical Hits have a chance to panic the target and nearby enemies."
-LocPromotionPopupText = "<Bullet/>"Critical Hits have a chance to panic the target and nearby enemies.<br/>"
+LocHelpText = "Critical hits have a chance to panic the target and nearby enemies."
+LocLongDescription = "Critical hits have a chance to panic the target and nearby enemies."
+LocPromotionPopupText = "<Bullet/> Critical hits have a chance to panic the target and nearby enemies.<br/>"
 
 [BlindingProtocol_LW X2AbilityTemplate]
 LocFriendlyName = "Blinding Protocol"
 LocFlyOverText = "Blinding Protocol"
 LocHelpText = "Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/>and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>"
 LocLongDescription = Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/> and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>
-LocPromotionPopupText = "<Bullet/> Works with squadsight. <br/> <Bullet/> <Ability:BLIND_PROTOCOL_COOLDOWN/> turn cooldown. <br/> "
+LocPromotionPopupText = "<Bullet/> Works with squadsight. <br/> <Bullet/> <Ability:BLIND_PROTOCOL_COOLDOWN/>-turn cooldown. <br/> "
 
 [LeadTheTarget_LW X2AbilityTemplate]
 LocFriendlyName = "Lead The Target"
@@ -5828,9 +5828,9 @@ LocFlyOverText = "Lead The Target"
 
 [TargetFocus_LW X2AbilityTemplate]
 LocFriendlyName = "Target Focus"
-LocHelpText = "GYour ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and +<Ability:TARGET_FOCUS_PEN_BONUS/> penetration against enemies that don't take cover."
-LocLongDescription = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and +<Ability:TARGET_FOCUS_PEN_BONUS/> penetration against enemies that don't take cover."
-LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and +<Ability:TARGET_FOCUS_PEN_BONUS/> penetration against enemies that don't take cover. <br/>"
+LocHelpText = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies."
+LocLongDescription = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies."
+LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies. <br/><Bullet/> Unflankable enemies are ones that can't take cover, such as Drones, MECs and Beserkers.<br/>"
 
 [AimAssist_LW X2AbilityTemplate]
 LocFriendlyName = "Aim Assist"
@@ -5842,7 +5842,7 @@ LocPromotionPopupText = "<Bullet/> Gain additional +<Ability:AIM_ASSIST_AIM_BONU
 LocFriendlyName = "Arc Welder"
 LocHelpText = "You can use your arc thrower to heal friendly mechanical units."
 LocLongDescription = "You can use your arc thrower to heal friendly mechanical units."
-LocPromotionPopupText = "<Bullet/> <Ability:SUPERCHARGE_CHARGES/> Charges that heal <Ability:SUPERCHARGE_HEAL/> <br/>"
+LocPromotionPopupText = "<Bullet/> Starts each battle with <Ability:SUPERCHARGE_CHARGES/> charges that heal <Ability:SUPERCHARGE_HEAL/> HP, <br/><Bullet/> Works for any friendly robotic unit, including SPARKs, resistance MECs and hacked ADVENT units.<br/>"
 
 [ShootingSharp_LW X2AbilityTemplate]
 LocFriendlyName = "Shooting Sharp"
@@ -5854,7 +5854,7 @@ LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/>
 LocFriendlyName = "Unlimited Power"
 LocHelpText = "Firing your arc thrower no longer ends your turn."
 LocLongDescription = "Firing your arc thrower no longer ends your turn."
-LocPromotionPopupText = "<Bullet/> Works for all arc thrower abilities <br/>"
+LocPromotionPopupText = "<Bullet/> Works for all arc thrower abilities, including Chain Lightning. <br/>"
 
 [Overkill_LW X2AbilityTemplate]
 LocFriendlyName = "Overkill"
@@ -5866,47 +5866,47 @@ LocPromotionPopupText = "<Bullet/> Your ranged attacks deal +<Ability:OVERKILL_D
 LocFriendlyName= "Disassembly"
 LocHelpText = "Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns."
 LocLongDescription = "Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns."
-LocPromotionPopupText = "<Bullet/>Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns.<br/>"
+LocPromotionPopupText = "<Bullet/> Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns.<br/>"
 
 [LightningSlash_LW X2AbilityTemplate]
 LocFriendlyName="Lightning Slash"
 LocLongDescription="Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>. This attack does not end the turn."
 LocHelpText="Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>. This attack does not end the turn."
-LocPromotionPopupText="<Bullet/>Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>. This attack does not end the turn.<br/> <Bullet/>+<Ability:LIGHTNINGSLASH_COOLDOWN/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/>Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>.<br/> This attack does not end the turn.<br/> <Bullet/> Has a <Ability:LIGHTNINGSLASH_COOLDOWN/>-turn cooldown.<br/>"
 
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Inspire Agility"
 LocFlyOverText="Inspire Agility"
 LocLongDescription="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. Starts with one charge, and is a free action"
 LocHelpText="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn."
-LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:+INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. <br/> <Bullet/> Starts with one charge, and is a free action. <br/>"
+LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn.<br/><Bullet/> Killing an enemy unit grants an extra charge if this unit has no charges.<br/><Bullet/> Usable once per turn. <br/> <Bullet/> Starts with one charge and is a free action.<br/>"
 
 [DeadeyeSnapShot X2AbilityTemplate]
 LocFriendlyName="Deadeye (Snap Shot)"
 LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
 LocHelpText="Take a shot with a small aim penalty for a significant damage boost."
-LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
 
 [DeadeyeDamage_SnapShot X2AbilityTemplate]
 LocFriendlyName="Deadeye (SnapShot)"
 LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
 LocHelpText="Take a shot with a small aim penalty for a significant damage boost."
-LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
 
 [Deadeye X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Works With Snap Shot.<br/>"
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/><Bullet/> Works with Snap Shot.<br/>"
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="Return Fire"
 LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
 LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
-LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and Area of Effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by Overwatch fire.<br/>"
+LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
 [PrimaryReturnFireShot X2AbilityTemplate]
 LocFriendlyName="Return Fire"
 LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
 LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
-LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and Area of Effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by Overwatch fire.<br/>"
+LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
 ; AdvPriest Abilities
 [HolyWarriorM1 X2AbilityTemplate]

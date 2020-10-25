@@ -191,7 +191,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'ZONE_CONTROL_MOBILITY_PENALTY':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.ZONE_CONTROL_MOBILITY_PENALTY);
 			return true;
-		case  'BLIND_PROTOCOL_RADIUS_CV':
+		case 'BLIND_PROTOCOL_RADIUS_CV':
 			Outstring = string(int(class'X2Ability_XMBPerkAbilitySet'.default.BLIND_PROTOCOL_RADIUS_T1_BASE));
 			return true;
 		case 'BLIND_PROTOCOL_RADIUS_MG':
@@ -333,4 +333,3 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	//Template.AddTargetEffect(CoveringFireEffect);
 //
 //}
-

@@ -16,7 +16,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	local UnitValue HealthRegenerated;
 	local int AmountToHeal, Healed, NewHealthRegenerated;
 	
-    `LOG("X2Effect_ApplyHeal added");
+	`LOG("X2Effect_ApplyHeal added");
 	
 	OldTargetState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 

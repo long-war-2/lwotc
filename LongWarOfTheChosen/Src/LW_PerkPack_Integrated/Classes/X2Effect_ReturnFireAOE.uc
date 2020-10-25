@@ -31,7 +31,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 
 static function EventListenerReturn ReturnFireAOECheck(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
 {
-    local XComGameState_Effect          EffectState;
+	local XComGameState_Effect          EffectState;
 	local XComGameState_Unit AttackingUnit, CoveringUnit, TargetUnit;
 	local XComGameStateHistory History;
 	local X2Effect_ReturnFireAOE CoveringFireEffect;
@@ -39,7 +39,7 @@ static function EventListenerReturn ReturnFireAOECheck(Object EventData, Object 
 	local XComGameState_Ability AbilityState;
 	local XComGameStateContext_Ability AbilityContext;
 	local XComGameState NewGameState;
-    local UnitValue                     ActivationCounterValue;
+	local UnitValue                     ActivationCounterValue;
 	local name ErrorCode;
 
 	//`LOG("=== ReturnFireAOECheck");
@@ -49,14 +49,14 @@ static function EventListenerReturn ReturnFireAOECheck(Object EventData, Object 
 	{
 		//`LOG("=== ReturnFireAOECheck 1");
 		History = `XCOMHISTORY;
-	    EffectState = XComGameState_Effect(CallbackData);
-        CoveringUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+		EffectState = XComGameState_Effect(CallbackData);
+		CoveringUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 		AttackingUnit = class'X2TacticalGameRulesetDataStructures'.static.GetAttackingUnitState(GameState);
 		TargetUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
 		
-		if( TargetUnit == none)
+		if (TargetUnit == none)
 		{	
-		return ELR_NoInterrupt;
+			return ELR_NoInterrupt;
 		}
 		if (AttackingUnit != none && AttackingUnit.IsEnemyUnit(CoveringUnit))
 		{
@@ -134,14 +134,14 @@ static function EventListenerReturn ReturnFireAOECheck(Object EventData, Object 
 			if (AbilityState != none)
 			{
 				//`LOG("=== ReturnFireAOECheck 15");
-                CoveringUnit.GetUnitValue('ReturnFireAOE_GrantsThisTurn', ActivationCounterValue);
+				CoveringUnit.GetUnitValue('ReturnFireAOE_GrantsThisTurn', ActivationCounterValue);
 
 				if (CoveringFireEffect.GrantActionPoint != '' && (CoveringFireEffect.MaxPointsPerTurn > ActivationCounterValue.fValue || CoveringFireEffect.MaxPointsPerTurn <= 0))
 				{
 					//`LOG("=== ReturnFireAOECheck 16");
 					NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
 
-			        CoveringUnit.SetUnitFloatValue ('ReturnFireAOE_GrantsThisTurn', ActivationCounterValue.fValue + 1, eCleanup_BeginTurn);
+					CoveringUnit.SetUnitFloatValue ('ReturnFireAOE_GrantsThisTurn', ActivationCounterValue.fValue + 1, eCleanup_BeginTurn);
 
 					CoveringUnit = XComGameState_Unit(NewGameState.ModifyStateObject(CoveringUnit.Class, CoveringUnit.ObjectID));
 					CoveringUnit.ReserveActionPoints.AddItem(CoveringFireEffect.GrantActionPoint);
@@ -166,7 +166,7 @@ static function EventListenerReturn ReturnFireAOECheck(Object EventData, Object 
 						{
 							//`LOG("=== ReturnFireAOECheck 20");
 							AbilityContext = class'XComGameStateContext_Ability'.static.BuildContextFromAbility(AbilityState, AttackingUnit.ObjectID);
-							if( AbilityContext.Validate() )
+							if (AbilityContext.Validate())
 							{
 								//`LOG("=== ReturnFireAOECheck 21");
 								`TACTICALRULES.SubmitGameStateContext(AbilityContext);
@@ -216,6 +216,6 @@ DefaultProperties
 	bOnlyDuringEnemyTurn = true
 	bOnlyWhenAttackMisses = false
 	bSelfTargeting = false
-    RequiredAllyRange = 0
-    bAllowSelf = false
+	RequiredAllyRange = 0
+	bAllowSelf = false
 }

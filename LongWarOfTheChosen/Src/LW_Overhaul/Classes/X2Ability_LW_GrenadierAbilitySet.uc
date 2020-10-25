@@ -422,13 +422,12 @@ static function X2AbilityTemplate NeedleGrenades()
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.AbilityToHitCalc = default.DeadEye;
-    Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bCrossClassEligible = true;
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 	Template.bShowActivation = false;
-
 
 	Bonus = new class'X2Effect_NeedleGrenades';
 	Bonus.BuildPersistentEffect(1, true, false, true);

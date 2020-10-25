@@ -21,7 +21,7 @@ simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParame
 	local XComGameState_Unit UnitState;
 
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
-	if(UnitState != none )
+	if (UnitState != none)
 	{
 		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
 		UnitState.SetUnitFloatValue(class'X2Ability_DefaultAbilitySet'.default.ImmobilizedValueName, 0);

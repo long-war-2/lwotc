@@ -23,7 +23,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 		if (kAbility.GetMyTemplateName() == 'DoubleTap2')
 		{
 			//`LOG ("DT3");
-			for(i=0; i< PreCostActionPoints.Length; i++) 
+			for (i = 0; i < PreCostActionPoints.Length; i++)
 			{
 				SourceUnit.ActionPoints.AddItem(class'X2Ability_LW_SharpshooterAbilitySet'.default.DoubleTapActionPoint);
 			}

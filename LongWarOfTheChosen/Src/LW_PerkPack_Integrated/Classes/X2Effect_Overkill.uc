@@ -13,7 +13,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
 	local XComGameState_Unit Target;
 
-    SourceWeapon = AbilityState.GetSourceWeapon();    
+	SourceWeapon = AbilityState.GetSourceWeapon();    
 	if (SourceWeapon == none)
 		return 0;
 

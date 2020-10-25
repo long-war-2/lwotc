@@ -1041,8 +1041,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'VoidRift')
 	{
 		Template.PrerequisiteAbilities.AddItem('SoulSteal');
-
-
 	}
 
 	if (Template.DataName == 'NullLance')
@@ -1213,7 +1211,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'KillZone' || Template.DataName == 'Deadeye' || Template.DataName == 'BulletShred')
 	{
-		if(Template.DataName == 'KillZone')
+		if (Template.DataName == 'KillZone')
 		{
 			ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
 			ConeMultiTarget.bUseWeaponRadius = true;
@@ -1221,7 +1219,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			ConeMultiTarget.ConeLength = 18 * class'XComWorldData'.const.WORLD_StepSize;
 			Template.AbilityMultiTargetStyle = ConeMultiTarget;
 		}
-		if(Template.DataName == 'Deadeye')
+		if (Template.DataName == 'Deadeye')
 		{
 			Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
 			CooldownShared = new class'X2AbilityCooldown_Shared';
