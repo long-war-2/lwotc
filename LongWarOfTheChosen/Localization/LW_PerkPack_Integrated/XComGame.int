@@ -241,9 +241,11 @@ LocPromotionPopupText="<Bullet/> Take a special shot with +30 bonus to critical 
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Cyclic Fire"
 LocFlyOverText="Cyclic Fire"
-LocLongDescription="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. <Ability:CYCLIC_FIRE_COOLDOWN/> turn cooldown."
-LocHelpText="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. <Ability:CYCLIC_FIRE_COOLDOWN/> turn cooldown."
+: LWOTC Needs Translation
+LocLongDescription="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. <Ability:CYCLIC_FIRE_COOLDOWN/>-turn cooldown."
+LocHelpText="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. <Ability:CYCLIC_FIRE_COOLDOWN/>-turn cooldown."
 LocPromotionPopupText="<Bullet/> Special Shot: Fire three shots at a target in a single attack. Requires two actions and all shots have a -<Ability:CYCLIC_FIRE_AIM_MALUS/> penalty to aim.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
+; End Translation
 
 [StreetSweeper X2AbilityTemplate]
 LocFriendlyName="Trench Gun"
