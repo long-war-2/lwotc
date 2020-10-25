@@ -5753,9 +5753,9 @@ LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><
 [QuickZap_LW X2AbilityTemplate]
 LocFriendlyName="Quick Zap"
 LocFlyOverText="Quick Zap"
-LocLongDescription="Activate this ability to make your next arcthrower shot a free action. <Ability:RAPID_STUN_COOLDOWN/> turn cooldown."
-LocHelpText="Activate this ability to make your next arcthrower shot a free action. <Ability:RAPID_STUN_COOLDOWN/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Activate this ability to make your next arcthrower shot a free action. <Ability:RAPID_STUN_COOLDOWN/> turn cooldown.<br/><Bullet/> Applies to the abilities Stun, Arc Pulser as well as Chain Lightning.<br/>"
+LocLongDescription="Activate this ability to make your next arc thrower shot a free action. <Ability:RAPID_STUN_COOLDOWN/>-turn cooldown."
+LocHelpText="Activate this ability to make your next arc thrower shot a free action. <Ability:RAPID_STUN_COOLDOWN/>-turn cooldown."
+LocPromotionPopupText="<Bullet/> Activate this ability to make your next arc thrower shot a free action.<Bullet/> Has a <Ability:RAPID_STUN_COOLDOWN/>-turn cooldown.<br/><Bullet/> Applies to the abilities Stun, Arc Pulser and Chain Lightning.<br/>"
 
 [Hipfire_LW X2AbilityTemplate]
 LocFriendlyName="Hipfire"
