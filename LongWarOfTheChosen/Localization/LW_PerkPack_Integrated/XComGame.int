@@ -308,9 +308,11 @@ LocPromotionPopupText="<Bullet/> Gain +20 aim on your next shot with your primar
 [LockedOn X2AbilityTemplate]
 LocFriendlyName="Locked On"
 LocFlyOverText="Locked On"
+; LWOTC Needs Translation
 LocLongDescription="Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for successive shots at the same enemy unit."
 LocHelpText="Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for successive shots at the same enemy unit."
 LocPromotionPopupText="<Bullet/> Gain +<Ability:LOCKEDON_AIM_BONUS/> aim and +<Ability:LOCKEDON_CRIT_BONUS/> crit for repeated shots at the same target. Not cumulative, and only applies to enemy units.<br/><Bullet/> Area-of-Effect-based shots do not grant the bonus."
+; End Translation
 
 [Sentinel_LW X2AbilityTemplate]
 LocFriendlyName="Sentinel"
