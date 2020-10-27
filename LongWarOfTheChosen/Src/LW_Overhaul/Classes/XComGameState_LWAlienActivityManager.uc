@@ -324,6 +324,9 @@ static function XComGameState_LWAlienActivity FindAlienActivityByMissionRef(Stat
 	return none;
 }
 
+// Be aware that this function copies the mission site tactical tags
+// to XCOM HQ, so if you're not calling this from a UIMission screen,
+// make sure you call `XComHQ.RemoveMissionTacticalTags()` afterwards.
 static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 {
 	local XComGameStateHistory History;
@@ -429,6 +432,10 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 		}
 	}
 	*/
+	// Sync the tactical tags between the mission and XCOM HQ, since the mission
+	// data may depend on what's in the HQ tactical tags (for example encounters
+	// that depend on the tactical tags).
+	XComHQ.AddMissionTacticalTags(MissionSite);
 
 	//cache the difficulty
 	MissionSite.CacheSelectedMissionData(ForceLevel, AlertLevel);
