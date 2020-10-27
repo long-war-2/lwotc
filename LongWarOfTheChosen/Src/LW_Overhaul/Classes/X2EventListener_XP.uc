@@ -348,7 +348,6 @@ static function EventListenerReturn OnRewardKillXp(Object EventData, Object Even
 	local XComGameState_Unit NewUnitStateKiller;
 	local XComGameState_Unit UnitKilled;
 	local XComLWTuple Tuple;
-	local int KillerID;
 
 	Tuple = XComLWTuple(EventData);
 	if (Tuple == none)
