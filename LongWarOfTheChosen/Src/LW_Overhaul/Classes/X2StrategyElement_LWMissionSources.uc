@@ -198,6 +198,7 @@ static function array<name> GetActiveSitRepDarkEvents(XComGameState_MissionSite 
 	local XComGameState_DarkEvent DarkEventState;
 	local XComGameStateHistory History;
 	local X2SitRepTemplateManager SitRepMgr;
+	local X2SitRepTemplate SitRep;
 	local array<name> ActiveSitRepDarkEvents, AllSitReps;
 	local name SitRepName;
 	local int i;
@@ -211,7 +212,8 @@ static function array<name> GetActiveSitRepDarkEvents(XComGameState_MissionSite 
 	{
 		DarkEventState = XComGameState_DarkEvent(History.GetGameStateForObjectID(AlienHQ.ActiveDarkEvents[i].ObjectID));
 		SitRepName = GetSitRepNameForDarkEvent(DarkEventState.GetMyTemplateName());
-		if (AllSitReps.Find(SitRepName) != INDEX_NONE && IsSitRepValidForMission(SitRepName, MissionState))
+		SitRep = SitRepMgr.FindSitRepTemplate(SitRepName);
+		if (AllSitReps.Find(SitRepName) != INDEX_NONE && SitRep.MeetsRequirements(MissionState))
 		{
 			ActiveSitRepDarkEvents.AddItem(DarkEventState.GetMyTemplateName());
 		}
@@ -265,15 +267,24 @@ static function bool ShouldAddSitRepToMission(XComGameState_MissionSite MissionS
 // mission.
 static function bool IsSitRepValidForMission(name SitRepName, XComGameState_MissionSite MissionState)
 {
+	return class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager().
+			FindSitRepTemplate(SitRepName).MeetsRequirements(MissionState);
+}
+
+// Checks whether the given sit rep can be applied to the given mission. Note that
+// code should use `X2SitRepTemplate.MeetsRequirements()` instead to perform a full
+// check of whether a sit rep meets all its requirements.
+static function bool SitRepMeetsAdditionalRequirements(X2SitRepTemplate SitRepTemplate, XComGameState_MissionSite MissionState)
+{
 	local MissionTypeSitRepExclusions ExclusionDef;
 	local string MissionType;
 	local int idx;
 
 	// Handle Alien Ruler sit reps separately, particularly as we need to handle the situation
 	// where the player may not have the DLC installed.
-	if (default.AlienRulerSitRepNames.Find(SitRepName) != INDEX_NONE)
+	if (default.AlienRulerSitRepNames.Find(SitRepTemplate.DataName) != INDEX_NONE)
 	{
-		return class'XComGameState_AlienRulerManager' != none ? IsAlienRulerSitRepValid(SitRepName, MissionState) : false;
+		return class'XComGameState_AlienRulerManager' != none ? IsAlienRulerSitRepValid(SitRepTemplate.DataName, MissionState) : false;
 	}
 
 	// Check whether the mission type has any sit rep exclusions and if so, whether the
@@ -291,7 +302,7 @@ static function bool IsSitRepValidForMission(name SitRepName, XComGameState_Miss
 		// activity normally performs this check, but we include it here for missions
 		// spawned from covert actions or other sources than alien activities.
 		ExclusionDef = default.MISSION_TYPE_SIT_REP_EXCLUSIONS[idx];
-		return ExclusionDef.SitRepNames.Find(string(SitRepName)) == INDEX_NONE &&
+		return ExclusionDef.SitRepNames.Find(string(SitRepTemplate.DataName)) == INDEX_NONE &&
 				class'XComGameState_LWAlienActivity'.default.NO_SIT_REP_MISSION_TYPES.Find(MissionType) == INDEX_NONE;
 	}
 }

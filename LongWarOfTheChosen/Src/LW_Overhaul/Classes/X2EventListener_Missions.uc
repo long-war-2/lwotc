@@ -298,7 +298,7 @@ static protected function EventListenerReturn IsSitRepValidForMission(
 		return ELR_NoInterrupt;
 	}
 
-	Tuple.Data[0].b = class'X2StrategyElement_LWMissionSources'.static.IsSitRepValidForMission(SitRepTemplate.DataName, MissionState);
+	Tuple.Data[0].b = class'X2StrategyElement_LWMissionSources'.static.SitRepMeetsAdditionalRequirements(SitRepTemplate, MissionState);
 
 	return ELR_NoInterrupt;
 }
