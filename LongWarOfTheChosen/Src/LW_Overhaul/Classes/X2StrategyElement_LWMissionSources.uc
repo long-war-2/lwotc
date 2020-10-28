@@ -11,9 +11,18 @@ struct MissionTypeSitRepExclusions
 	var array<string> SitRepNames;
 };
 
+struct SitRepWeight
+{
+	var name SitRepName;
+	var float Weight;
+};
+
 // LWOTC: Base chance for a mission to have a sit rep
 var config float SIT_REP_CHANCE;
 var config float DARK_EVENT_SIT_REP_CHANCE;
+
+// Custom weights for certain sit reps. Default weight is 1.0.
+var config array<SitRepWeight> SIT_REP_WEIGHTS;
 
 // LWOTC: Prevent certain sit reps on various mission types. A sit rep of
 // '*' means "all sit reps".
@@ -147,10 +156,11 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	local X2SitRepTemplateManager SitRepMgr;
 	local X2DataTemplate DataTemplate;
 	local X2SitRepTemplate SitRepTemplate;
-	local array<string> SitRepCards;
+	local XComLWTuple ValidationData;
 	local array<name> ActiveSitReps, ActiveSitRepDarkEvents;
 	local string SitRepLabel;
 	local name SitRepName;
+	local int SitRepIndex;
 
 	CardMgr = class'X2CardManager'.static.GetCardManager();
 	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
@@ -160,7 +170,11 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	foreach SitRepMgr.IterateTemplates(DataTemplate, class'X2StrategyElement_DefaultMissionSources'.static.StrategySitrepsFilter)
 	{
 		SitRepTemplate = X2SitRepTemplate(DataTemplate);
-		CardMgr.AddCardToDeck('SitReps', string(SitRepTemplate.DataName));
+		SitRepIndex = default.SIT_REP_WEIGHTS.Find('SitRepName', SitRepTemplate.DataName);
+		CardMgr.AddCardToDeck(
+			'SitReps',
+			string(SitRepTemplate.DataName),
+			SitRepIndex != INDEX_NONE ? default.SIT_REP_WEIGHTS[SitRepIndex].Weight : 1.0f);
 	}
 
 	// LWOTC: Find any active dark events that have associated sit reps and
@@ -174,20 +188,28 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 		return ActiveSitReps;
 
 	// Grab the next valid SitRep from the deck
-	CardMgr.GetAllCardsInDeck('SitReps', SitRepCards);
-	foreach SitRepCards(SitRepLabel)
+	ValidationData = new class'XComLWTuple';
+	ValidationData.Data[0].an = ActiveSitReps;
+	ValidationData.Data[1].o = MissionState;
+	CardMgr.SelectNextCardFromDeck('SitReps', SitRepLabel, ValidateSitRepForMission, ValidationData);
+
+	if (SitRepLabel != "")
 	{
-		SitRepTemplate = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager().FindSitRepTemplate(name(SitRepLabel));
-		if (SitRepTemplate != none && ActiveSitReps.Find(name(SitRepLabel)) == INDEX_NONE &&
-				SitRepTemplate.MeetsRequirements(MissionState))
-		{
-			ActiveSitReps.AddItem(name(SitRepLabel));
-			CardMgr.MarkCardUsed('SitReps', SitRepLabel);
-			break;
-		}
+		ActiveSitReps.AddItem(name(SitRepLabel));
 	}
 
 	return ActiveSitReps;
+}
+
+// Specific function to be used only as a validation function for
+// the card manager's `SelectNextCardFromDeck()` function.
+static function bool ValidateSitRepForMission(string SitRepName, Object ValidationData)
+{
+	local XComLWTuple Tuple;
+
+	Tuple = XComLWTuple(ValidationData);
+	return Tuple.Data[0].an.Find(name(SitRepName)) == INDEX_NONE &&
+			IsSitRepValidForMission(name(SitRepName), XComGameState_MissionSite(Tuple.Data[1].o));
 }
 
 // Returns an array of the names of all active dark events that have associated
