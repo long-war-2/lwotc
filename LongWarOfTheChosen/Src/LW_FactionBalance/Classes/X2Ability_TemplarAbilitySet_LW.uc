@@ -12,6 +12,7 @@ var config int MEDITATION_FOCUS_RECOVERY;
 var config int MEDITATION_MAX_CHARGES;
 var config float BONUS_REND_DAMAGE_PER_TILE;
 var config int MAX_REND_FLECHE_DAMAGE;
+var config int VIGILANCE_MIN_POD_SIZE;
 var config int TERROR_STAT_CHECK_BASE_VALUE;
 var config int APOTHEOSIS_COOLDOWN;
 var config int APOTHEOSIS_DODGE_BONUS;
@@ -404,7 +405,7 @@ static function X2AbilityTemplate AddTemplarVigilanceTrigger()
 	EventTrigger = new class'X2AbilityTrigger_EventListener';
 	EventTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventTrigger.ListenerData.EventID = 'ScamperEnd';
-	EventTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventTrigger.ListenerData.EventFn = TemplarVigilanceListener;
 	Template.AbilityTriggers.AddItem(EventTrigger);
 
 	FocusEffect = new class'X2Effect_ModifyTemplarFocus';
@@ -416,6 +417,33 @@ static function X2AbilityTemplate AddTemplarVigilanceTrigger()
 	// Template.MergeVisualizationFn = DesiredVisualizationBlock_MergeVisualization;
 
 	return Template;
+}
+
+// Listener for the ScamperEnd event that activates vigilance if, and
+// only if, the scampering pod has at least VIGILANCE_MIN_POD_SIZE
+// members.
+static function EventListenerReturn TemplarVigilanceListener(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComGameState_Ability AbilityState;
+	local XComGameState_AIGroup GroupState;
+
+	AbilityState = XComGameState_Ability(CallbackData);
+	GroupState = XComGameState_AIGroup(EventData);
+	if (AbilityState != none && GroupState != none)
+	{
+		// Was the killing blow dealt by a unit during an interrupt turn?
+		if (GroupState.m_arrMembers.Length >= default.VIGILANCE_MIN_POD_SIZE)
+		{
+			return AbilityState.AbilityTriggerEventListener_Self(EventData, EventSource, GameState, EventID, CallbackData);
+		}
+	}
+
+	return ELR_NoInterrupt;
 }
 
 static function X2AbilityTemplate AddTemplarTerror()
