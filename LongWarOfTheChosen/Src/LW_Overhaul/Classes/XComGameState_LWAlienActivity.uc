@@ -731,8 +731,14 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 
 	foreach PlotTypeDef.ForcedSitReps(SitRepName)
 	{
+		// Make sure the sit rep is actually valid for the mission!
+		if (!class'X2StrategyElement_LWMissionSources'.static.IsSitRepValidForMission(SitRepName, MissionState))
+		{
+			continue;
+		}
+
 		// Don't add TheLost SitRep if TheHorde is also active
-		if(MissionState.GeneratedMission.SitReps.Find(SitRepName) == INDEX_NONE && 
+		if (MissionState.GeneratedMission.SitReps.Find(SitRepName) == INDEX_NONE &&
 			(SitRepName != 'TheLost' || MissionState.GeneratedMission.SitReps.Find('TheHorde') == INDEX_NONE))
 		{
 			MissionState.GeneratedMission.SitReps.AddItem(SitRepName);
