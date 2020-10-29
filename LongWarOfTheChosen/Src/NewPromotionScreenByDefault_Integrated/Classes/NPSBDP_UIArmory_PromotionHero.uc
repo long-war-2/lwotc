@@ -736,19 +736,13 @@ function bool CanPurchaseAbility(int Rank, int Branch, name AbilityName)
 	AbilityRanks = GetAbilitiesPerRank(UnitState);
 
 	//Emulate Resistance Hero behaviour
-	if(AbilityRanks == 0)
+	if (AbilityRanks == 0)
 	{				
 		return (Rank < UnitState.GetRank() && CanAffordAbility(Rank, Branch) && UnitState.MeetsAbilityPrerequisites(AbilityName));
 	}
 
-	//Don't allow non hero units to purchase abilities with AP without a training center
-	if(UnitState.HasPurchasedPerkAtRank(Rank) && !UnitState.IsResistanceHero() && !CanSpendAP())
-	{
-		return false;
-	}
-		
-	//Don't allow non hero units to purchase abilities on the xcom perk row before getting a rankup perk
-	if(!UnitState.HasPurchasedPerkAtRank(Rank) && !UnitState.IsResistanceHero() && Branch >= AbilityRanks )
+	//Don't allow units to purchase non-class abilities with AP without a training center
+	if (Branch >= AbilityRanks && !CanSpendAP())
 	{
 		return false;
 	}
@@ -761,7 +755,8 @@ function bool CanPurchaseAbility(int Rank, int Branch, name AbilityName)
 	// End
 
 	//Normal behaviour
-	return (Rank < UnitState.GetRank() && CanAffordAbility(Rank, Branch) && UnitState.MeetsAbilityPrerequisites(AbilityName));
+	return ((Rank < UnitState.GetRank() || Branch >= AbilityRanks) &&
+			CanAffordAbility(Rank, Branch) && UnitState.MeetsAbilityPrerequisites(AbilityName));
 }
 
 function int GetAbilityPointCost(int Rank, int Branch)
