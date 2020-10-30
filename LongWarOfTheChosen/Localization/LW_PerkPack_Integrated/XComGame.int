@@ -90,16 +90,18 @@ LocPromotionPopupText="<Bullet/> Cannot be used on the same turn as Run and Gun.
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="Close Combat Specialist"
 LocFlyOverText="Close Combat Specialist"
-LocLongDescription="During enemy turns, fire a free reaction shot with your primary weapon at any visible enemy within four tiles who moves or fires."
+LocLongDescription="During enemy turns, fire a free reaction shot with your <Ability:WeaponName/> at any visible enemy within four tiles who moves or fires."
 LocHelpText="During enemy turns, Fire a free reaction shot at any visible enemy within four tiles who moves or fires."
 LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires 2 ammo.<br/>""
 
+;LWOTC needs translation
 [CloseCombatSpecialistAttack X2AbilityTemplate]
 LocFriendlyName="Close Combat Specialist"
 LocFlyOverText="Close Combat Specialist"
-LocLongDescription="During enemy turns, fire a free reaction shot with your primary weapon at any visible enemy within four tiles who moves or fires."
+LocLongDescription="During enemy turns, fire a free reaction shot with your <Ability:WeaponName/> at any visible enemy within four tiles who moves or fires."
 LocHelpText="During enemy turns, Fire a free reaction shot at any visible enemy within four tiles who moves or fires."
 LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires 2 ammo.<br/>""
+;LWOTC end translation
 
 [CloseandPersonal X2AbilityTemplate]
 LocFriendlyName="Close and Personal"
