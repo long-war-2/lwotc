@@ -6,15 +6,15 @@ A lot has changed since dev build 17, so it's probably worth starting a new camp
 
 To install dev build 20, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
 
-||  **[Download the release from here](https://www.dropbox.com/s/tn85pdc76ag69s9/lwotc-dev-0020.zip?dl=0)** ||
+||  **[Download the release from here](https://drive.google.com/file/d/1bhQ7ChsrOe_CGM0A5LBA2bzkq1f7qmke/view?usp=sharing)** ||
 
 There is also an untested, smaller, patch version available here that can be unpacked on top of an existing dev build 17 installation:
 
-||  **[Download dev build 17 to 20 patch from here](https://www.dropbox.com/s/osb4momhj28v7lb/lwotc-dev-0020-from-17-patch.zip?dl=0)** ||
+||  **[Download dev build 17 to 20 patch from here](https://docs.google.com/document/d/1CTOFQ3x6IHt3Lyi6r1se6jXKQaGx0Tv7dEDaeaEGvu0/edit?usp=sharing)** ||
 
 The big changes include:
 
- * A rework of the Lost that introduces Lost Grappler and Lost Brute, reduces the number of Lost that appear, and scales the Lost's stats as the campaign progresses
+ * A rework of the Lost that introduces Lost Grappler and Lost Brute, reduces the number of Lost that appear significantly, and scales the Lost's stats as the campaign progresses
  * A rework of the Reaper that does away with permanent stealth in favour of a stronger, 1-turn stealth ability
  * An overhaul of the XCOM row abilities for all soldier classes, with a lot of new abilities introduced
  * Integration of Combat Intelligence into Not Created Equal
@@ -63,11 +63,13 @@ More generally, the Lost now spawn much closer to XCOM than before and the size 
 
 Additionally:
 
+ * Fewer Lost appear in pods, up to a 50% reduction compared to before
+ * The number of Lost that appear scales with ADVENT strength in the region (internally, mission alert level)
  * Lost and Lost Dasher HP scales from 2 to 12 as the campaign progresses
  * Lost damage also scales with force level (roughly the date in the campaign)
  * Normal Lost units have had their mobility buffed from 8 to 14
  * Lost start appearing from force level 5, up from FL 3
- * Headshot is now also disabled on Veteran (it's still disabled on Rookie)
+ * Headshot is now also disabled on Veteran (it's still enabled on Rookie)
  * ADVENT/aliens should target the Lost a lot less now, making the Lost more of a threat to XCOM than a distraction for the enemy
 
 ### Detailed Soldier Lists
@@ -101,7 +103,7 @@ Contoller integration is steadily getting better, so there is less need for play
  * Skirmishers no longer have Justice at Squaddie (this should help tone down their incredible starting strength); it is now pickable at LCPL
  * Justice replaces Damn Good Ground, which has moved to CPL, replacing Tradecraft (which is now an XCOM-row ability)
  * Templar's Vigilance will now only trigger on revealing pods of 3 or more enemies
- * The Reaper ability's damage falloff now always applies before the Apotheosis bonus, so the Templar can no longer chain insane Reaper attacks together
+ * Templar's Reaper damage falloff now always applies before the Apotheosis bonus, so the Templar can no longer chain insane Reaper attacks together
  * Bladestorm can no longer trigger on the owning unit's turn
  * All XCOM row abilities have been shaken up, with new abilities being added:
    - There are now 4 tiers of XCOM-row (random) abilities
@@ -117,13 +119,43 @@ Contoller integration is steadily getting better, so there is less need for play
    - Ability Points covert action now rewards more at Rookie, very slightly more at Veteran, but rewards a little less on Legend compared to before
  * Intense Training rewards have been rebalanced to match their relative strength in Not Created Equal (except for Hack and Psi Offense)
  * The Improve Combat Intelligence covert action now takes longer to complete
- * SMGs now have +2 Mobility (down from +3), 3 ammo (up from 2), and have higher close-range Aim bonuses than before - the range change also applies to Bullpups and Autopistols
+ * Superior Weapon Upgrade and Superior PCS covert actions can now spawn at the starting influence level, down from Respected
+ * Recruit Scientist and Engineer covert actions now require Respected, up from the starting influence level
+ * Executioner and Locked On grant +20/+20 Aim/Crit, up from +10/+10
+ * Walk Fire ammo cost from 2 to 1, no longer has a cooldown, and does 34% reduced damage, down from 50%, i.e. it does *more* damage than before
+ * Interference is now a free action
+ * Tracking radius from 25 to 30
+ * Rupture now adds 4 rupture, up from 3
+ * Cyclic Fire malus to 10 from 15, ammo count to 3 from 5, cooldown to 2 from 5
+ * Shieldwall grants 5 armor from 3
+ * Aim ability grants +20 Crit Chance in addition to +20 Aim
+ * Flush's Dodge debuff increased to 30 from 10
+ * Hail of Bullets ammo cost down from 4 to 3
+ * Grazing Fire now works for all abilities/weapons that use standard aim, including those that use secondary or other non-primary weapons
+ * Scanning Protocol now has 3 charges, up from 1
+ * Needle Grenades now do +1 damage to unarmored targets
+ * Rescue Protocol has +1 charges at all Gremlin tiers and grants the target +15 Dodge and +5 Mobility
+ * Gunslinger's cooldown has been reduced from 4 to 3 and its range from 12 tiles to 8, but it now has 360 degree activation instead of a cone
+ * Soul Storm no longer ignores armor, radius decreased to 7 meters from 8, and it can now target allies
+ * Phase Walk has an 18-tile range, down from unrestricted
+ * Soul Steal now heals *and* grants ablative HP, with the ablative lasting 3 turns
+ * Horror no longer causes Will loss and will now panic the target instead of shattering it, but the chance to panic has been slightly increased
+ * Decreased Sectopod damage from 9-16 average (12.5) to 9-13 (average 11) and health decreased from 35/60/80/95 to 35/55/75/90
+ * Muton base damage decreased from 7 to 6 and no longer has 1 pierce that Centurions and Elites didn’t have
+ * Gatekeeper defense gain from closed state decreased from 25 to 20, and Gateway radius from 10.5 meters to 8, but they shouldn’t Gateway their allies anymore
+ * Decreased advent Vanguard aim by 5
+ * Decreased Spectre weapon damage from 5-8/6-10 (average 6.5 / 8) to 4-7/6-8 (average 5.5/7)
+ * Remodeled Priest AI to be less predictable, all Priests gain 10 Psi Offense, and Advanced and Elite Priests lose 10 innate Dodge; Priests will no longer stasis the Lost
+ * Purifiers lose their unused grenade, granting them +1 Mobility, and their pistol damage has been decreased from 1-3/3-5/5-7 to 1-3/2-5/4-6, although their pistols still have 2/3/4 crit damage; they also gain Return Fire for their pistols
+ * Beam Grenade launcher gains +2 range
+ * Higher-tier Technical gauntlets have a higher chance to stun enemies
+ * SMGs now have +2 Mobility (down from +3), 3 ammo (up from 2), and have higher close-range Aim bonuses than before * the range change also applies to Bullpups and Autopistols
  * The Stock has been reverted to providing Steady Weapon, as in LW2 - weapons no longer have this ability attached to them
  * Bluescreen rounds and EMP grenades no longer disorient non-robotic enemies
  * Spectres, Purifiers and Priests are a bit more common now, making it easier to acquire their corpses
  * Snakes of all types appear less often
  * Codexes appear more frequently in the end game
- * Some item corpse requirements have been changed:
+ * Some item corpse requirements (and the corresponding research projects) have been changed:
    - Battle Scanner requires a Trooper corpse rather than a Drone
    - Acid grenades require Spectre corpses instead of Archons
    - EMP grenades require Turret wrecks instead of Drones
