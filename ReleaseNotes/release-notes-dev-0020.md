@@ -10,7 +10,7 @@ To install dev build 20, just delete your existing LongWarOfTheChosen and X2WOTC
 
 There is also an untested, smaller, patch version available here that can be unpacked on top of an existing dev build 17 installation:
 
-||  **[Download dev build 17 to 20 patch from here](https://docs.google.com/document/d/1CTOFQ3x6IHt3Lyi6r1se6jXKQaGx0Tv7dEDaeaEGvu0/edit?usp=sharing)** ||
+||  **[Download dev build 17 to 20 patch from here](https://drive.google.com/file/d/1hsqjcATjAJfaj1zcQuenmkxJ9biES-00/view?usp=sharing)** ||
 
 The big changes include:
 
