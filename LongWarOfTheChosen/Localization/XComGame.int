@@ -5988,7 +5988,7 @@ LocPromotionPopupText="<Bullet/> Mind Scorch can now panic the enemy.<br/><Bulle
 
 [MindScorch X2AbilityTemplate]
 LocFriendlyName="Mind Scorch"
-LocHelpText="The Warlock opens their mind to the target, damaging and burning the target with their madness."
+LocHelpText="The Warlock opens their mind to the target, damaging and having a <Ability:MIND_SCORCH_BURN_CHANCE/> % chancec to burn the target with their madness."
 LocLongDescription="The Warlock opens their mind to the target, damaging and burning the target with their madness."
 
 [LW_ChosenKidnap X2AbilityTemplate]

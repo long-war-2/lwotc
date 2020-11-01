@@ -41,8 +41,9 @@ var config float EXPLOSIVE_DAMAGE_REDUCTION;
 var config int SCANNING_PROTOCOL_INITIAL_CHARGES;
 
 var config int MIND_SCORCH_RADIUS;
-var config int MINDSCORCH_BURNING_BASE_DAMAGE;
-var config int MINDSCORCH_BURNING_DAMAGE_SPREAD;
+var config int MIND_SCORCH_BURNING_BASE_DAMAGE;
+var config int MIND_SCORCH_BURNING_DAMAGE_SPREAD;
+var config int MIND_SCORCH_BURN_CHANCE;
 
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
@@ -832,7 +833,8 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 			Template.AbilityMultiTargetEffects.RemoveItem(Effect);
 		}
 	}
-	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.MINDSCORCH_BURNING_BASE_DAMAGE, default.MINDSCORCH_BURNING_DAMAGE_SPREAD);
+	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.MIND_SCORCH_BURNING_BASE_DAMAGE, default.MIND_SCORCH_BURNING_DAMAGE_SPREAD);
+	BurningEffect.ApplyChance = default.MIND_SCORCH_BURN_CHANCE;
 	Template.AddTargetEffect(BurningEffect);
 	Template.AddMultiTargetEffect(BurningEffect);
 
