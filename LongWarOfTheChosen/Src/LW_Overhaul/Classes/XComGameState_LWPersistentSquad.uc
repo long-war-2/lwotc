@@ -1255,12 +1255,12 @@ static function float GetSoldierCovertness(array<StateObjectReference> Soldiers,
 
 	foreach default.AbilityCovertness(AbilityCov)
 	{
-		if(UnitState.HasSoldierAbility(AbilityCov.AbilityName))
+		if (class'Helpers_LW'.static.HasSoldierAbility(UnitState, AbilityCov.AbilityName))
 		{
-			if(AbilityCov.IndividualMultiplier > 0.0)
+			if (AbilityCov.IndividualMultiplier > 0.0)
 				CumulativeUnitMultiplier *= AbilityCov.IndividualMultiplier;
 
-			if(AbilityCov.SquadMultiplier > 0.0)
+			if (AbilityCov.SquadMultiplier > 0.0)
 				SquadCovertnessMultiplierDelta *= AbilityCov.SquadMultiplier;
 		}
 	}

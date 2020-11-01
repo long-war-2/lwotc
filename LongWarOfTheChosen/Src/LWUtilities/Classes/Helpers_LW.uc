@@ -497,6 +497,34 @@ static function bool IsUnitInterruptingEnemyTurn(XComGameState_Unit UnitState)
 	return BattleState.InterruptingGroupRef == UnitState.GetGroupMembership().GetReference();
 }
 
+// Copied from LW2's highlander. Since `XComGameState_Unit.HasSoldierAbility()`
+// does not take into account any mod additions to `XCGS_Unit.GetEarnedSoldierAbilities()`,
+// we need this custom implementation to check for officer abilities.
+static function bool HasSoldierAbility(XComGameState_Unit Unit, name Ability, optional bool bSearchAllAbilities = true)
+{
+	local array<SoldierClassAbilityType> EarnedAbilities;
+	local SoldierClassAbilityType EarnedAbility;
+
+	EarnedAbilities = Unit.GetEarnedSoldierAbilities();
+	foreach EarnedAbilities(EarnedAbility)
+	{
+		if (EarnedAbility.AbilityName == Ability)
+		{
+			return true;
+		}
+	}
+
+	if (bSearchAllAbilities)
+	{
+		if (Unit.FindAbility(Ability).ObjectID != 0)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 defaultproperties
 {
 	CA_FAILURE_RISK_MARKER="CovertActionRisk_Failure"
