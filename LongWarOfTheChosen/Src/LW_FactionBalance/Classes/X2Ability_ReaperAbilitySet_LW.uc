@@ -159,7 +159,7 @@ static function X2AbilityTemplate AddTrackingTrigger()
 {
 	local X2AbilityTemplate					Template;
 	local X2AbilityMultiTarget_Radius		RadiusMultiTarget;
-	local XMBEffect_RevealUnit				TrackingEffect;
+	local XMBEffect_RevealUnit_LW			TrackingEffect;
 	local X2Condition_UnitProperty			TargetProperty;
 	local X2Condition_UnitEffects			EffectsCondition;
 	local X2AbilityTrigger_EventListener	EventListener;
@@ -197,7 +197,7 @@ static function X2AbilityTemplate AddTrackingTrigger()
 	EffectsCondition.AddExcludeEffect(class'X2Effect_Burrowed'.default.EffectName, 'AA_UnitIsBurrowed');
 	Template.AbilityMultiTargetConditions.AddItem(EffectsCondition);
 
-	TrackingEffect = new class'XMBEffect_RevealUnit';
+	TrackingEffect = new class'XMBEffect_RevealUnit_LW';
 	TrackingEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnEnd);
 	Template.AddMultiTargetEffect(TrackingEffect);
 
@@ -231,7 +231,7 @@ static function X2AbilityTemplate AddTrackingTrigger()
 static function X2AbilityTemplate AddTrackingSpawnTrigger()
 {
 	local X2AbilityTemplate					Template;
-	local XMBEffect_RevealUnit				TrackingEffect;
+	local XMBEffect_RevealUnit_LW			TrackingEffect;
 	local X2Condition_UnitProperty			TargetProperty;
 	local X2AbilityTrigger_EventListener	EventListener;
 
@@ -257,7 +257,7 @@ static function X2AbilityTemplate AddTrackingSpawnTrigger()
 	TargetProperty.WithinRange = default.TrackingRadius * class'XComWorldData'.const.WORLD_METERS_TO_UNITS_MULTIPLIER;
 	Template.AbilityTargetConditions.AddItem(TargetProperty);
 
-	TrackingEffect = new class'XMBEffect_RevealUnit';
+	TrackingEffect = new class'XMBEffect_RevealUnit_LW';
 	TrackingEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnEnd);
 	Template.AddTargetEffect(TrackingEffect);
 

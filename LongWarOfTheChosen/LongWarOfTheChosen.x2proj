@@ -878,6 +878,7 @@
     <Content Include="Src\LW_XModBase\Classes\XMBEffect_Extended.uc" />
     <Content Include="Src\LW_XModBase\Classes\XMBEffect_GrantReserveActionPoint.uc" />
     <Content Include="Src\LW_XModBase\Classes\XMBEffect_PermanentStatChange.uc" />
+    <Content Include="Src\LW_XModBase\Classes\XMBEffect_RevealUnit.uc" />
     <Content Include="Src\LW_XModBase\Classes\XMBEffect_ToHitModifierByRange.uc" />
     <Content Include="Src\LW_XModBase\Classes\XMBTemplateUtilities.uc" />
     <Content Include="Src\LW_XModBase\Classes\XMBValue.uc" />
@@ -1227,7 +1228,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2Ability_ReaperAbilitySet_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ManualOverride_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_TemplarGrazingFire.uc" />
-    <Content Include="Src\LW_FactionBalance\Classes\XMBEffect_RevealUnit.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\XMBEffect_RevealUnit_LW.uc" />
     <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityCost_ActionPoints.uc" />
     <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityMultiTarget_Radius.uc" />
     <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityTag.uc" />
