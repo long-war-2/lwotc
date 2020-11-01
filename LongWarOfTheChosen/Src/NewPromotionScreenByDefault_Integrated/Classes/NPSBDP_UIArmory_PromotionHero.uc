@@ -741,14 +741,15 @@ function bool CanPurchaseAbility(int Rank, int Branch, name AbilityName)
 		return (Rank < UnitState.GetRank() && CanAffordAbility(Rank, Branch) && UnitState.MeetsAbilityPrerequisites(AbilityName));
 	}
 
-	//Don't allow units to purchase non-class abilities with AP without a training center
-	if (Branch >= AbilityRanks && !CanSpendAP())
+	// Don't allow units to purchase non-class abilities or multiple class abilities at
+	// a give rank with AP without a training center
+	if ((Branch >= AbilityRanks || UnitState.HasPurchasedPerkAtRank(Rank, AbilityRanks)) && !CanSpendAP())
 	{
 		return false;
 	}
 
 	// LWOTC: Don't allow purchase of other class abilities at same rank as an already picked one (unless second wave option enabled)
-	if (!UnitState.IsResistanceHero() && !`SecondWaveEnabled('AllowSameRankAbilities') && UnitState.HasPurchasedPerkAtRank(Rank) && Branch < AbilityRanks)
+	if (!UnitState.IsResistanceHero() && !`SecondWaveEnabled('AllowSameRankAbilities') && UnitState.HasPurchasedPerkAtRank(Rank, AbilityRanks) && Branch < AbilityRanks)
 	{
 		return false;
 	}
@@ -787,7 +788,7 @@ function int GetAbilityPointCost(int Rank, int Branch)
 
 	if (!UnitState.IsResistanceHero() && AbilityRanks != 0 && Branch < AbilityRanks)
 	{
-		if (!UnitState.HasPurchasedPerkAtRank(Rank))
+		if (!UnitState.HasPurchasedPerkAtRank(Rank, AbilityRanks))
 		{
 			// If this is a base game soldier with a promotion available, ability costs nothing since it would be their
 			// free promotion ability if they "bought" it through the Armory
@@ -811,7 +812,7 @@ function int GetAbilityPointCost(int Rank, int Branch)
 		AbilityCost = FactionAbilityCosts[Rank];
 	}
 
-	if (UnitState.HasPurchasedPerkAtRank(Rank) && Branch < AbilityRanks)
+	if (UnitState.HasPurchasedPerkAtRank(Rank, AbilityRanks) && Branch < AbilityRanks)
 	{
 		// Increase cost of this perk by current ability cost modifier
 		UnitState.GetUnitValue('LWOTC_AbilityCostModifier', AbilityCostModifier);
@@ -990,7 +991,7 @@ simulated function ConfirmAbilityCallbackWithTracking(Name Action)
 			AbilityCostModifier.fValue = 1.0 + BaseAbilityCostModifier;
 		}
 
-		if (UpdatedUnit.HasPurchasedPerkAtRank(PendingRank) && PendingBranch < GetAbilitiesPerRank(UpdatedUnit))
+		if (UpdatedUnit.HasPurchasedPerkAtRank(PendingRank, GetAbilitiesPerRank(UpdatedUnit)) && PendingBranch < GetAbilitiesPerRank(UpdatedUnit))
 		{
 			UpdatedUnit.SetUnitFloatValue('LWOTC_AbilityCostModifier', AbilityCostModifier.fValue + BaseAbilityCostModifier, eCleanup_Never);
 		}
@@ -1373,7 +1374,6 @@ simulated function AddChildTweenBetween(string ChildPath, String Prop, float Sta
 
 	MC.EndOp();
 }
-
 
 //HL Helper methods to check installed Hl version and get class icon, name and rankicon through HL or do a fallback ot default if HL is not installed
 
