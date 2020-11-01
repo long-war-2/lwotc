@@ -129,7 +129,7 @@ static function X2WeaponTemplate InitializeThrowingKnifeTemplate(X2WeaponTemplat
 
 	Template.Abilities.AddItem('MusashiThrowKnifeSecondary_LW');
 
-	Template.SetAnimationNameForAbility('Hailstorm', 'FF_HailStormA');
+	Template.SetAnimationNameForAbility('Hailstorm_LW', 'FF_HailStormA');
 
 	return Template;
 }

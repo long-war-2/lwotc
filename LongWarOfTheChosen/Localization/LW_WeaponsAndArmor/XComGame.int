@@ -26,4 +26,26 @@ LocFlyOverText="Knife Faceoff"
 LocLongDescription="Throws a knife at every target in range. Guaranteed to remain in Shadow."
 LocHelpText="Throws a knife at every target in range. Guaranteed to remain in Shadow."
 LocPromotionPopupText="<Bullet/> TBD..."
+
+[ThrowingKnife_CV_Secondary X2WeaponTemplate]
+FriendlyName="Throwing Knife"
+FriendlyNamePlural="Throwing Knives"
+BriefSummary="A throwing knife made of our most advanced conventional steel alloys."
+TacticalText="<Bullet/> Throwing a knife will not break Shadow."
+AbilityDescName="throwing knife"
+
+[ThrowingKnife_MG_Secondary X2WeaponTemplate]
+FriendlyName="Alloy Throwing Knife"
+FriendlyNamePlural="Alloy Throwing Knives"
+BriefSummary="A throwing knife made of alien alloys."
+TacticalText="<Bullet/> Throwing a knife will not break Shadow."
+AbilityDescName="throwing knife"
+
+[ThrowingKnife_BM_Secondary X2WeaponTemplate]
+FriendlyName="Plasma Throwing Knife"
+FriendlyNamePlural="Plasma Throwing Knives"
+BriefSummary="A throwing knife with a plasma edge that cuts through armor like butter."
+TacticalText="<Bullet/> Throwing a knife will not break Shadow."
+AbilityDescName="throwing knife"
+
 ; End Translation
