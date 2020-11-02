@@ -1,16 +1,24 @@
-Welcome to **dev build 20** of Long War of the Chosen!
+Welcome to **dev build 20.1** of Long War of the Chosen!
 
 The obvious question is why dev build 20 when the last one was 17? That's because two other builds were released only via our Discord. If you have played with either 18 or 19, know that dev build 20 includes the changes from dev build 18 but not those from 19.
 
-A lot has changed since dev build 17, so it's probably worth starting a new campaign with dev build 20. You should be able to upgrade mid campaign, but you will need to respec all your soldiers to take advantage of the new XCOM row abilities and new Reaper.
+A lot has changed since dev build 17, so it's probably worth starting a new campaign with dev build 20.1. You should be able to upgrade mid campaign, but you will need to respec all your soldiers to take advantage of the new XCOM row abilities and new Reaper.
 
-To install dev build 20, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
+**Update** Dev build 20.1 is now available, which fixes various issues with dev build 20 (and fixes a long-standing bug with the officer Infiltrator ability). Both links below have been updated. You can apply the patch below to a dev build 20 installation to get the fixes.
+ * The officer Infiltrator ability now gives the bonus to mission infiltration time
+ * Throwing knife localisation text has been added
+ * Conventional throwing knives are now available in upgraded existing campaigns
+ * Hailstorm animation is now fixed to show multiple knives being thrown
+ * The Reaper's Tracking ability now works as before with the visual effect rather than a flyover
+**End update**
 
-||  **[Download the release from here](https://drive.google.com/file/d/1bhQ7ChsrOe_CGM0A5LBA2bzkq1f7qmke/view?usp=sharing)** ||
+To install dev build 20.1, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
 
-There is also an untested, smaller, patch version available here that can be unpacked on top of an existing dev build 17 installation:
+||  **[Download the release from here](https://drive.google.com/file/d/1BQCSA1_auP-_O8lHPZ-c-V5AeFIynWJ2/view?usp=sharing)** ||
 
-||  **[Download dev build 17 to 20 patch from here](https://drive.google.com/file/d/1hsqjcATjAJfaj1zcQuenmkxJ9biES-00/view?usp=sharing)** ||
+There is also an untested, smaller, patch version available here that can be unpacked on top of any existing dev build 17, 18 or 20 installation:
+
+||  **[Download dev build 17 to 20.1 patch from here](https://drive.google.com/file/d/1bxxa4hqzbQJySX7moARWPP2KPG16C7Fz/view?usp=sharing)** ||
 
 The big changes include:
 
@@ -122,7 +130,7 @@ Contoller integration is steadily getting better, so there is less need for play
  * Superior Weapon Upgrade and Superior PCS covert actions can now spawn at the starting influence level, down from Respected
  * Recruit Scientist and Engineer covert actions now require Respected, up from the starting influence level
  * Executioner and Locked On grant +20/+20 Aim/Crit, up from +10/+10
- * Walk Fire ammo cost from 2 to 1, no longer has a cooldown, and does 34% reduced damage, down from 50%, i.e. it does *more* damage than before
+ * Walk Fire no longer has a cooldown, and does 34% reduced damage, down from 50%, i.e. it does *more* damage than before
  * Interference is now a free action
  * Tracking radius from 25 to 30
  * Rupture now adds 4 rupture, up from 3
@@ -135,7 +143,7 @@ Contoller integration is steadily getting better, so there is less need for play
  * Scanning Protocol now has 3 charges, up from 1
  * Needle Grenades now do +1 damage to unarmored targets
  * Rescue Protocol has +1 charges at all Gremlin tiers and grants the target +15 Dodge and +5 Mobility
- * Gunslinger's cooldown has been reduced from 4 to 3 and its range from 12 tiles to 8, but it now has 360 degree activation instead of a cone
+ * Gunslinger's cooldown has been reduced from 4 to 3 and its range from 12 tiles to 8, but it now has 360 degree activation instead of a cone and the shots can crit even without Cool Under Pressure
  * Soul Storm no longer ignores armor, radius decreased to 7 meters from 8, and it can now target allies
  * Phase Walk has an 18-tile range, down from unrestricted
  * Soul Steal now heals *and* grants ablative HP, with the ablative lasting 3 turns
@@ -146,7 +154,7 @@ Contoller integration is steadily getting better, so there is less need for play
  * Decreased advent Vanguard aim by 5
  * Decreased Spectre weapon damage from 5-8/6-10 (average 6.5 / 8) to 4-7/6-8 (average 5.5/7)
  * Remodeled Priest AI to be less predictable, all Priests gain 10 Psi Offense, and Advanced and Elite Priests lose 10 innate Dodge; Priests will no longer stasis the Lost
- * Purifiers lose their unused grenade, granting them +1 Mobility, and their pistol damage has been decreased from 1-3/3-5/5-7 to 1-3/2-5/4-6, although their pistols still have 2/3/4 crit damage; they also gain Return Fire for their pistols
+ * Purifiers lose their unused grenade, granting them +1 Mobility, and their pistol damage has been decreased from 1-3/3-5/5-7 to 1-3/2-5/4-6, although their pistols still have 2/3/4 crit damage
  * Beam Grenade launcher gains +2 range
  * Higher-tier Technical gauntlets have a higher chance to stun enemies
  * SMGs now have +2 Mobility (down from +3), 3 ammo (up from 2), and have higher close-range Aim bonuses than before * the range change also applies to Bullpups and Autopistols
