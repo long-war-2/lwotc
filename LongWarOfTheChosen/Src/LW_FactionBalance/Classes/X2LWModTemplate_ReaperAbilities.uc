@@ -11,16 +11,12 @@ var config float SHADOW_DETECTION_RANGE_REDUCTION;
 var config int REMOTE_START_CHARGES;
 var config int REMOTE_START_DEMOLITIONIST_CHARGES;
 
+var config bool DISABLE_SHADOW_CHANGES;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
 	{
-	case 'ShadowPassive':
-		RemoveShadowStayConcealedEffect(Template);
-		break;
-	case 'Shadow':
-		MakeShadowTemporary(Template);
-		break;
 	case 'ThrowClaymore':
 	case 'ThrowDistraction':
 		PatchClaymoreTargeting(Template);
@@ -37,15 +33,28 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'HomingMine':
 		AddDemolitionistToHomingMine(Template);
 		break;
-	case 'Sting':
-		UpdateStingForNewShadow(Template);
-		break;
-	case 'SilentKiller':
-		UpdateSilentKillerForNewShadow(Template);
-		break;
-	case 'ShadowRising':
-		UpdateShadowRisingForNewShadow(Template);
-		break;
+	}
+
+	if (!default.DISABLE_SHADOW_CHANGES)
+	{
+		switch (Template.DataName)
+		{
+		case 'ShadowPassive':
+			RemoveShadowStayConcealedEffect(Template);
+			break;
+		case 'Shadow':
+			MakeShadowTemporary(Template);
+			break;
+		case 'Sting':
+			UpdateStingForNewShadow(Template);
+			break;
+		case 'SilentKiller':
+			UpdateSilentKillerForNewShadow(Template);
+			break;
+		case 'ShadowRising':
+			UpdateShadowRisingForNewShadow(Template);
+			break;
+		}
 	}
 }
 
