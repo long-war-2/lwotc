@@ -5736,9 +5736,9 @@ LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Avenger"
 LocFlyOverText="Avenger"
-LocLongDescription="When a visible ally is shot at, you will automatically take a <Ability:WeaponName/> shot back at the shooter."
-LocHelpText="When a visible ally is shot at, you will automatically take a <Ability:WeaponName/> shot back at the shooter."
-LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot at.<br/><Bullet/> Can only activate during the enemy's turn.<br/><Bullet/> Passive.<br/>"
+LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has fired upon a visible ally."
+LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has fired upon a visible ally."
+LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot at.<br/><Bullet/> Can only activate during the enemy's turn.<br/><Bullet/> Can only trigger once per turn.<br/>"
 
 [Predator_LW X2AbilityTemplate]
 LocFriendlyName="Predator"
