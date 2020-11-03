@@ -1604,7 +1604,7 @@ static function UpdateRewardSoldierTemplates()
 	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GeneratePersonnelReward;
 	TemplateMgr.AddStrategyElementTemplate(Template, true);
 
-	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_SoldierCouncil')); 
+	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_SoldierCaptured')); 
 	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GenerateCouncilSoldierReward;
 	TemplateMgr.AddStrategyElementTemplate(Template, true);
 }

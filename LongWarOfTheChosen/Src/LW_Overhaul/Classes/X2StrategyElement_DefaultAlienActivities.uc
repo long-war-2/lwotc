@@ -534,7 +534,7 @@ static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienAc
 			AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 			if (NumRebels > 0 && AlienHQ.CapturedSoldiers.Length > 0)
 			{
-				RewardArray.AddItem('Reward_SoldierCouncil');
+				RewardArray.AddItem('Reward_SoldierCaptured');
 				--NumRebels;
 			}
 			while (NumRebels > 0)
@@ -1890,7 +1890,7 @@ static function name RescueReward(bool IncludeRebel, bool IncludePrisoner)
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 	if (AlienHQ.CapturedSoldiers.Length > 0 && IncludePrisoner)
 	{
-		Reward = 'Reward_SoldierCouncil';
+		Reward = 'Reward_SoldierCaptured';
 	}
 	else
 	{
@@ -3165,7 +3165,7 @@ function array<Name> GetPoliticalPrisonersReward(XComGameState_LWAlienActivity A
 			AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 			if (NumRebels > 0 && AlienHQ.CapturedSoldiers.Length > 0)
 			{
-				Rewards.AddItem('Reward_SoldierCouncil');
+				Rewards.AddItem('Reward_SoldierCaptured');
 				--NumRebels;
 			}
 
