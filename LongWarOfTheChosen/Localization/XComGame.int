@@ -2960,10 +2960,12 @@ MissionDifficultyLabels[17]="Swarming+++++++"
 MissionDifficultyLabels[18]="Swarming++++++++"
 MissionDifficultyLabels[19]="Ludicrous"
 
-; [AdvancedWarfareCenter X2FacilityTemplate_Infirmary]
-; DisplayName="Advanced Warfare Center"
-; CompletedSummary="Soldiers of sufficient rank may now train bonus abilities outside their normal perk tree.\nNew Staff Slot Available - Increases Soldier Healing Rate\nNew Staff Slot Available - Retrains Soldier Abilities"
-; Summary="Once the AWC is built, soldiers may train bonus offensive, defensive and sidearm abilities outside of their current class tree. In addition, a scientist can be staffed in the AWC to decrease the time our soldiers need to recover from injuries."
+; LWOTC Needs Translation
+[AdvancedWarfareCenter X2FacilityTemplate_Infirmary]
+DisplayName="Infirmary"
+CompletedSummary="Soldiers now have a chance to recover from negative traits after completing multiple tactical missions while uninjured.\nNew Staff Slot Available - Increases Soldier Healing Rate\nNew Staff Slot Available - Remove All Negative Traits"
+Summary="A scientist can be staffed in the Infirmary to decrease the time our soldiers need to recover from injuries. Soldiers can be staffed here to remove negative traits acquired in combat. The Hypervital Module upgrade allows for the temporary suspension of a soldier's health for the duration of any single combat deployment."
+; LWOTC Needs Translation
 
 [OfficerTrainingSchool X2FacilityTemplate]
 DisplayName="Guerrilla Tactics School"
