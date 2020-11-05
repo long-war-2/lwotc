@@ -1266,12 +1266,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_DefendingMeleeDamageModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_DodgeModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWRebelJobIncomeModifier_Retribution.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Item_HeavyDazedDamageType.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_GeneralDamageModifier.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_HeavyDazed.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_PrimaryDaze.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2Effect_SecondaryDaze.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\LWHeavyDazedListener.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedTileComponent.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWInstancedMeshActor.uc" />
     <Content Include="Content\LW_Heavy_Dazed_Tile.upk" />
