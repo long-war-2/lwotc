@@ -2104,6 +2104,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('GrazingFire');
 		Template.Abilities.AddItem('WarlockReaction');
 		Template.Abilities.AddItem('AmmoDump_LW');
+		Template.Abilities.AddItem('ChosenCritImmune');
+		Template.ImmuneTypes.AddItem('Frost');
 
 
 	}
@@ -2116,7 +2118,6 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
 		Template.Abilities.RemoveItem('ChosenSummonFollowers');
 
-		
 		Template.Abilities.AddItem('HunterReaction');
 		Template.Abilities.AddItem('LW_ChosenKeen');
 		Template.Abilities.AddItem('CombatReadiness');
@@ -2125,6 +2126,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('ChosenCritImmune');
 		Template.Abilities.AddItem('LongWatch');
 		Template.Abilities.AddItem('quickdraw');
+		Template.Abilities.AddItem('ChosenImmuneMelee');
+		Template.ImmuneTypes.AddItem('Frost');
+		
 	}
 	if(Template.CharacterGroupName == 'ChosenAssassin')
 	{
@@ -2145,6 +2149,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('LW_BloodThirst');
 		Template.Abilities.AddItem('CoolUnderPressure');
 		Template.Abilities.AddItem('LW_Concentration');
+		Template.ImmuneTypes.AddItem('Frost');
 
 		Template.strScamperBT = "GenericScamperRoot";
 	}
