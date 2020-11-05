@@ -4954,6 +4954,8 @@ DisplayName="Radio Relay"
 [MissionTimers]
 TimerSmashNGrabTitle="Reinforcements"
 TimerSmashNGrabSubtitle="Turns until alien response"
+TimerDefendTitle="Reinforcements"
+TimerDefendSubtitle="Turns until Advent arrival"
 
 [InTheZone X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/><Bullet/> Every successful kill does result in a reduction to critical hit chance and damage, however.<br/><Bullet/> Serial has a <Ability:SelfCooldown/> turn cooldown.<br/>"

@@ -132,7 +132,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			ReworkPartingSilk(Template);
 			break;
 		case 'ChosenEngaged':
-			MakeChosenInstantlyEngaged(Template);
+			MakeChosenInstantlyEngagedAndRemoveTimerPause(Template);
 		case 'TeleportAlly':
 			BuffTeleportAlly(Template);
 			break;
@@ -885,12 +885,21 @@ static function X2Effect_ImmediateMultiTargetAbilityActivation CreateMindSchorch
 }
 
 	
-static function MakeChosenInstantlyEngaged(X2AbilityTemplate Template)
+static function MakeChosenInstantlyEngagedAndRemoveTimerPause(X2AbilityTemplate Template)
 {
 	local X2AbilityTrigger_UnitPostBeginPlay PostBeginPlayTrigger;
+	local X2Effect Effect;
 	PostBeginPlayTrigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
 	PostBeginPlayTrigger.Priority = 60;
 	Template.AbilityTriggers.AddItem(PostBeginPlayTrigger);
+
+	foreach Template.AbilityShooterEffects (Effect)
+	{
+		if(Effect.isA('X2Effect_SuspendMissionTimer'))
+		{
+			X2Effect_SuspendMissionTimer(Effect).bResumeMissionTimer = true;
+		}
+	}
 }
 
 static function ReworkPartingSilk(X2AbilityTemplate Template)
