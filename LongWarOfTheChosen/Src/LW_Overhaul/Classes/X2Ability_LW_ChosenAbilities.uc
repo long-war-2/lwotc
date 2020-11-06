@@ -1019,7 +1019,6 @@ static function X2DataTemplate CreateChosenKidnap()
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = false;
-	ActionPointCost.bfreeCost = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	Cooldown = new class'X2AbilityCooldown';
