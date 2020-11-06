@@ -429,8 +429,6 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
     local Name TemplateName;
 	local int LaserChance, MagChance, CoilChance, iRand;
 	local string LoadoutStr;
-	local X2AbilityTemplateManager AbilityTemplateMgr;
-	local X2AbilityTemplate AbilityTemplate;
 
     Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
     switch(Outpost.GetRebelLevel(RebelRef))
@@ -525,30 +523,6 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 		Loadout = name(LoadOutStr);
 	}
 		
-	AbilityTemplateMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
-/*
-	//This is very likely to be a sin but YOLO
-	if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PoweredArmor'))
-	{
-		AbilityTemplate = AbilityTemplateMgr.FindAbilityTemplate('RebelHPUpgrade_T2');
-		`TACTICALRULES.InitAbilityForUnit(AbilityTemplate, Proxy, NewGameState);
-	}
-	else if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlatedArmor'))
-	{
-		AbilityTemplate = AbilityTemplateMgr.FindAbilityTemplate('RebelHPUpgrade_T1');
-		`TACTICALRULES.InitAbilityForUnit(AbilityTemplate, Proxy, NewGameState);
-	}
-*/
-	if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedGrenades'))
-	{
-		AbilityTemplate = AbilityTemplateMgr.FindAbilityTemplate('RebelGrenadeUpgrade');
-		`TACTICALRULES.InitAbilityForUnit(AbilityTemplate, Proxy, NewGameState);
-	}
-
-
-	
-
-
     ApplyLoadout(Proxy, Loadout, NewGameState);
 
     return Proxy;
@@ -569,8 +543,6 @@ function static XComGameState_Unit CreateRebelProxy(StateObjectReference RebelRe
     local XComGameState_LWOutpost Outpost;
     local XComGameState_Unit Unit;
 	local XComGameState_Unit Proxy;
-	local X2AbilityTemplateManager AbilityTemplateMgr;
-	local X2AbilityTemplate AbilityTemplate;
 
     History = `XCOMHISTORY;
     Outpost = XComGameState_LWOutpost(NewGameState.GetGameStateForObjectID(OutpostRef.ObjectID));
@@ -585,21 +557,6 @@ function static XComGameState_Unit CreateRebelProxy(StateObjectReference RebelRe
 	
 	Proxy = CreateProxyUnit(Unit, TemplateName, GiveAbilities, NewGameState);
 	
-	AbilityTemplateMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
-
-	//This is very likely to be a sin but YOLO
-	//Moved to Apply to all rebels, not just soldiers
-	if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PoweredArmor'))
-	{
-		AbilityTemplate = AbilityTemplateMgr.FindAbilityTemplate('RebelHPUpgrade_T2');
-		`TACTICALRULES.InitAbilityForUnit(AbilityTemplate, Proxy, NewGameState);
-	}
-	else if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlatedArmor'))
-	{
-		AbilityTemplate = AbilityTemplateMgr.FindAbilityTemplate('RebelHPUpgrade_T1');
-		`TACTICALRULES.InitAbilityForUnit(AbilityTemplate, Proxy, NewGameState);
-	}
-
     NewGameState.AddStateObject(Proxy);
     Outpost.SetRebelProxy(Unit.GetReference(), Proxy.GetReference());
     Outpost.SetRebelOnMission(Unit.GetReference());
