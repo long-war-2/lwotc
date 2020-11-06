@@ -918,7 +918,8 @@ static function ReworkPartingSilk(X2AbilityTemplate Template)
 static function BuffTeleportAlly(X2AbilityTemplate Template)
 {
 	local X2Condition_UnitEffects ExcludeEffects;
-
+	local X2Effect_GrantActionPoints AddAPEffect;
+	local X2Effect_RunBehaviorTree ReactionEffect;
 
 	ExcludeEffects = new class'X2Condition_UnitEffects';
 
@@ -929,8 +930,14 @@ static function BuffTeleportAlly(X2AbilityTemplate Template)
 
 	Template.AbilityTargetConditions.AddItem(ExcludeEffects);
 
-	Template.AdditionalAbilities.Additem('TeleportAllyCommand');
-	Template.PostActivationEvents.Additem('TeleportAllyCommand');
+	AddAPEffect = new class'X2Effect_GrantActionPoints';
+	AddAPEffect.NumActionPoints = 1;
+	AddAPEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
+	Template.AddTargetEffect(AddAPEffect);
+
+	ReactionEffect = new class'X2Effect_RunBehaviorTree';
+	ReactionEffect.BehaviorTreeName = 'TeleportAllyShooterTree';
+	Template.AddTargetEffect(ReactionEffect);
 
 }
 

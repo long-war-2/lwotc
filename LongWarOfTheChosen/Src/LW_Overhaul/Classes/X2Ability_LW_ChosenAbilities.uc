@@ -46,7 +46,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddChosenBleedingRounds());
 	Templates.AddItem(AddMindScorchDangerZoneAbility());
 	Templates.AddItem(AddTerrorPanicAbility());
-	Templates.AddItem(CreateTeleportAllyCommand());
 	Templates.AddItem(CreateBloodThirst());
 	Templates.AddItem(BloodThirstPassive());
 	Templates.AddItem(AddMindScorchTerror());
@@ -1118,127 +1117,13 @@ simulated function ChosenKidnap_BuildVisualization(XComGameState VisualizeGameSt
 	//****************************************************************************************
 }
 
-static function X2AbilityTemplate CreateTeleportAllyCommand()
-{
-	local X2AbilityTemplate Template;
-	local X2AbilityTrigger_EventListener Trigger;
-	local X2Effect_RunBehaviorTree ReactionEffect;
-	local X2Effect_GrantActionPoints AddAPEffect;
-	local array<name> SkipExclusions;
-	local X2Condition_UnitProperty UnitPropertyCondition;
-
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'TeleportAllyCommand');
-
-	Template.AbilitySourceName = 'eAbilitySource_Standard';
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_combatstims";
-
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SimpleSingleTarget;
-
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-
-	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
-	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
-	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.ConfusedName);
-	Template.AddShooterEffectExclusions(SkipExclusions);
-
-	Trigger = new class'X2AbilityTrigger_EventListener';
-	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
-	Trigger.ListenerData.EventID = 'TeleportAllyCommand';
-	Trigger.ListenerData.EventFn = TeleportCommandListener;
-	Trigger.ListenerData.Filter = eFilter_Unit;
-	Template.AbilityTriggers.AddItem(Trigger);
-	
-	// The unit must be alive and not stunned
-	UnitPropertyCondition = new class'X2Condition_UnitProperty';
-	UnitPropertyCondition.ExcludeDead = true;
-	UnitPropertyCondition.ExcludeAlive = false;
-	UnitPropertyCondition.ExcludeStunned = true;
-	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
-
-	AddAPEffect = new class'X2Effect_GrantActionPoints';
-	AddAPEffect.NumActionPoints = 1;
-	AddAPEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
-	Template.AddTargetEffect(AddAPEffect);
-
-	ReactionEffect = new class'X2Effect_RunBehaviorTree';
-	ReactionEffect.BehaviorTreeName = 'TeleportAllyShooterTree';
-	Template.AddTargetEffect(ReactionEffect);
-
-	Template.bShowActivation = false;
-	Template.bSkipExitCoverWhenFiring = true;
-	Template.bSkipFireAction = true;
-
-	Template.FrameAbilityCameraType = eCameraFraming_Always;
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-
-	return Template;
-}
-
-
-static function EventListenerReturn TeleportCommandListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
-{
-	local XComGameState_Ability Ability;
-	local XComGameStateContext_Ability AbilityContext;
-
-	Ability = XComGameState_Ability(EventSource);
-	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
-	`Log("TeleportCommandListener: Trying to convert EventSource to Ability. Result = " $ Ability);
-	if (AbilityContext != none && Ability != none)
-	{
-		AbilityTriggerAgainstSingleTarget(Ability.ObjectID, Ability.OwnerStateObject, AbilityContext.InputContext.PrimaryTarget, false);
-	}
-	return ELR_NoInterrupt;
-}
-
-static function bool AbilityTriggerAgainstSingleTarget(int AbilityID, StateObjectReference SourceRef, StateObjectReference TargetRef, bool bMustHaveAdditionalTargets, optional int VisualizeIndex = -1, optional array<vector> TargetLocations)
-{
-	local GameRulesCache_Unit UnitCache;
-	local int i, j;
-	local X2TacticalGameRuleset TacticalRules;
-	local AvailableTarget AvailTarget;
-
-	TacticalRules = `TACTICALRULES;
-
-	if (TacticalRules.GetGameRulesCache_Unit(SourceRef, UnitCache))
-	{
-		for (i = 0; i < UnitCache.AvailableActions.Length; ++i)
-		{
-			if (UnitCache.AvailableActions[i].AbilityObjectRef.ObjectID == AbilityID)
-			{
-				for (j = 0; j < UnitCache.AvailableActions[i].AvailableTargets.Length; ++j)
-				{
-					AvailTarget = UnitCache.AvailableActions[i].AvailableTargets[j];
-					if (AvailTarget.PrimaryTarget.ObjectID == TargetRef.ObjectID)
-					{
-						if (UnitCache.AvailableActions[i].AvailableCode == 'AA_Success')
-						{
-							if (bMustHaveAdditionalTargets ? AvailTarget.AdditionalTargets.Length > 0 : true)
-							{
-								class'XComGameStateContext_Ability'.static.ActivateAbility(UnitCache.AvailableActions[i], j, TargetLocations,,,, VisualizeIndex);
-
-								return true;
-							}
-						}
-						break;
-					}
-				}
-				break;
-			}
-		}
-	}
-	return false;
-}
-
 static function X2AbilityTemplate CreateBloodThirst()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_BloodThirst            		DamageEffect;
 	local X2AbilityTrigger_EventListener		EventListener;	
 	// Icon Properties
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_BloodThirst');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'BloodThirst_LW');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_beserker_rage";
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -1273,7 +1158,7 @@ static function X2AbilityTemplate CreateBloodThirst()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  NOTE: No visualization on purpose!
-	Template.AdditionalAbilities.AddItem('LW_BloodThirstPassive');
+	Template.AdditionalAbilities.AddItem('BloodThirstPassive_LW');
 
 	return Template;
 }
@@ -1282,7 +1167,7 @@ static function X2AbilityTemplate BloodThirstPassive()
 {
 	local X2AbilityTemplate		Template;
 
-	Template = PurePassive('LW_BloodThirstPassive', "img:///UILibrary_PerkIcons.UIPerk_beserker_rage", , 'eAbilitySource_Perk');
+	Template = PurePassive('BloodThirstPassive_LW', "img:///UILibrary_PerkIcons.UIPerk_beserker_rage", , 'eAbilitySource_Perk');
 
 	return Template;
 }
