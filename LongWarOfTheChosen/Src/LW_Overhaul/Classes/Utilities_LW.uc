@@ -585,6 +585,8 @@ function static XComGameState_Unit CreateRebelProxy(StateObjectReference RebelRe
 	
 	Proxy = CreateProxyUnit(Unit, TemplateName, GiveAbilities, NewGameState);
 	
+	AbilityTemplateMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+
 	//This is very likely to be a sin but YOLO
 	//Moved to Apply to all rebels, not just soldiers
 	if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PoweredArmor'))
