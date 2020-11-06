@@ -954,15 +954,7 @@ static function UpdateSummon(X2AbilityTemplate Template)
 
 static function UpdateVanishingWind(X2AbilityTemplate Template)
 {
-	local X2AbilityTrigger AbilityTrigger;
 	local X2AbilityTrigger_EventListener EventListener;		
-	foreach Template.AbilityTriggers(AbilityTrigger)
-	{
-		if(AbilityTrigger.isA('X2AbilityTrigger_PlayerInput'))
-		{
-			Template.AbilityTriggers.RemoveItem(AbilityTrigger);
-		}
-	}
 	
 	EventListener = new class'X2AbilityTrigger_EventListener';
 	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;

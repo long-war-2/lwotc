@@ -2146,12 +2146,12 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('CombatReadiness');
 		Template.Abilities.AddItem('LW_ChosenKidnap');
 		Template.Abilities.AddItem('AssassinReaction');
-		Template.Abilities.AddItem('LW_BloodThirst');
+		Template.Abilities.AddItem('BloodThirst_LW');
 		Template.Abilities.AddItem('CoolUnderPressure');
 		Template.Abilities.AddItem('LW_Concentration');
 		Template.ImmuneTypes.AddItem('Frost');
 
-		Template.strScamperBT = "GenericScamperRoot";
+		//Template.strScamperBT = "GenericScamperRoot";
 	}
 	// Any soldier templates get the Interact_SmashNGrab ability
 	if (Template.bIsSoldier)

@@ -90,7 +90,7 @@ var config array<PlotObjectiveMod> PlotObjectiveMods;
 // This is used in FinalizeUnitAbilitiesForInit() to patch existing
 // abilities for non-XCOM units.
 var config array<name> PrimaryWeaponAbilities;
-var config array<name> SecondaryWeaponWeaponAbilities;
+var config array<name> SecondaryWeaponAbilities;
 
 // Configurable list of parcels to remove from the game.
 var config array<String> ParcelsToRemove;
@@ -1284,7 +1284,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			SetupData[i].SourceWeaponRef = UnitState.GetPrimaryWeapon().GetReference();
 		}
 
-		if (default.SecondaryWeaponWeaponAbilities.Find(SetupData[i].TemplateName) != INDEX_NONE && SetupData[i].SourceWeaponRef.ObjectID == 0)
+		if (default.SecondaryWeaponAbilities.Find(SetupData[i].TemplateName) != INDEX_NONE && SetupData[i].SourceWeaponRef.ObjectID == 0)
 		{
 			`LWTrace(" >>> Binding ability '" $ SetupData[i].TemplateName $ "' to Secondary weapon for unit " $ UnitState.GetMyTemplateName());
 			SetupData[i].SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();

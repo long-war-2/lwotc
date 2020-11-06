@@ -7,7 +7,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local XComGameState_Unit TargetUnit;
 	
 
-		if(AppliedData.AbilityResultContext.HitResult == eHit_Success)
+		if(AppliedData.AbilityResultContext.HitResult != eHit_Miss)
 		{
 			if( AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef )
 			{

@@ -6060,13 +6060,13 @@ strCharacterName="Hunter"
 strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
 
 
-[LW_BloodThirst X2AbilityTemplate]
+[BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
 LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
 LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
 LocFlyOverText="Blood Thirst"
 
-[LW_BloodThirstPassive X2AbilityTemplate]
+[BloodThirst_LWPassive X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
 LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
 LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
