@@ -11,23 +11,18 @@ var config int DGG_DEF_BONUS;
 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
-    local XComGameState_Item SourceWeapon;
     local ShotModifierInfo ShotInfo;
 
 	//if (Attacker.IsImpaired(false) || Attacker.IsBurning())
 //		return;
 
-    SourceWeapon = AbilityState.GetSourceWeapon();    
-    if(SourceWeapon != none)
-    {
-		if (Attacker.HasHeightAdvantageOver(Target, true))
-		{
-		    ShotInfo.ModType = eHit_Success;
-            ShotInfo.Reason = FriendlyName;
-			ShotInfo.Value = default.DGG_AIM_BONUS;
-            ShotModifiers.AddItem(ShotInfo);
-        }
-    }    
+	if (Attacker.HasHeightAdvantageOver(Target, true))
+	{
+		ShotInfo.ModType = eHit_Success;
+		ShotInfo.Reason = FriendlyName;
+		ShotInfo.Value = default.DGG_AIM_BONUS;
+		ShotModifiers.AddItem(ShotInfo);
+	}
 }
 
 function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
