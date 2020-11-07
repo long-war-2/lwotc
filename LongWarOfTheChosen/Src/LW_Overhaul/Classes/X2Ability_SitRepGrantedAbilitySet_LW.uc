@@ -9,6 +9,11 @@ class X2Ability_SitRepGrantedAbilitySet_LW extends X2Ability config(LW_Overhaul)
 var config int LETHARGY_AIM_PENALTY;
 var config int LETHARGY_MOBILITY_PENALTY;
 
+var config array<int> UNDERINFILTRATION_AIM_MODS;
+var config array<int> UNDERINFILTRATION_DEFENSE_MODS;
+var config array<int> UNDERINFILTRATION_DODGE_MODS;
+var config array<float> UNDERINFILTRATION_HP_MODS;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -100,108 +105,30 @@ static function X2AbilityTemplate CreateCombatRushOnCritTemplate()
 
 static function X2AbilityTemplate CreateToughTemplate()
 {
-	local X2AbilityTemplate             Template;
-	local X2Effect_PersistentStatChange PersistentStatChangeEffect;
-
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'ToughScaling');
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_advent_marktarget";
-
-	Template.AbilitySourceName = 'eAbilitySource_Standard';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-	Template.bDisplayInUITacticalText = false;
-	Template.bIsPassive = true;
-
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = new class'X2AbilityTarget_Self';
-	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_UnitPostBeginPlay');
-
-	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
-	PersistentStatChangeEffect.BuildPersistentEffect(1, true, true);
-	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, 5, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, 10, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, 1, MODOP_Addition);
-	PersistentStatChangeEffect.DuplicateResponse = eDupe_Ignore;
-	Template.AddTargetEffect(PersistentStatChangeEffect);
-
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-
-	return Template;
+	return CreateEnemyScalingTemplate('ToughScaling', 0);
 }
 
 static function X2AbilityTemplate CreateButchTemplate()
 {
-	local X2AbilityTemplate             Template;
-	local X2Effect_PersistentStatChange PersistentStatChangeEffect;
-
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'ButchScaling');
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_advent_marktarget";
-
-	Template.AbilitySourceName = 'eAbilitySource_Standard';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-	Template.bDisplayInUITacticalText = false;
-	Template.bIsPassive = true;
-
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = new class'X2AbilityTarget_Self';
-	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_UnitPostBeginPlay');
-
-	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
-	PersistentStatChangeEffect.BuildPersistentEffect(1, true, true);
-	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Offense, 10, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, 10, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, 20, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, 2, MODOP_Addition);
-	PersistentStatChangeEffect.DuplicateResponse = eDupe_Ignore;
-	Template.AddTargetEffect(PersistentStatChangeEffect);
-
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-
-	return Template;
+	return CreateEnemyScalingTemplate('ButchScaling', 1);
 }
 
 static function X2AbilityTemplate CreateRockHardTemplate()
 {
-	local X2AbilityTemplate             Template;
-	local X2Effect_PersistentStatChange PersistentStatChangeEffect;
-
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'RockHardScaling');
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_advent_marktarget";
-
-	Template.AbilitySourceName = 'eAbilitySource_Standard';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-	Template.bDisplayInUITacticalText = false;
-	Template.bIsPassive = true;
-
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = new class'X2AbilityTarget_Self';
-	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_UnitPostBeginPlay');
-
-	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
-	PersistentStatChangeEffect.BuildPersistentEffect(1, true, true);
-	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Offense, 20, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, 20, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, 30, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, 4, MODOP_Addition);
-	PersistentStatChangeEffect.DuplicateResponse = eDupe_Ignore;
-	Template.AddTargetEffect(PersistentStatChangeEffect);
-
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-
-	return Template;
+	return CreateEnemyScalingTemplate('RockHardScaling', 2);
 }
 
 static function X2AbilityTemplate CreateMonstrousTemplate()
 {
+	return CreateEnemyScalingTemplate('MonstrousScaling', 3);
+}
+
+static function X2AbilityTemplate CreateEnemyScalingTemplate(name TemplateName, int DifficultyIndex)
+{
 	local X2AbilityTemplate             Template;
 	local X2Effect_PersistentStatChange PersistentStatChangeEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'MonstrousScaling');
+	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_advent_marktarget";
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -217,10 +144,10 @@ static function X2AbilityTemplate CreateMonstrousTemplate()
 	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
 	PersistentStatChangeEffect.BuildPersistentEffect(1, true, true);
 	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Offense, 30, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, 30, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, 40, MODOP_Addition);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, 6, MODOP_Addition);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Offense, default.UNDERINFILTRATION_AIM_MODS[DifficultyIndex], MODOP_Addition);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, default.UNDERINFILTRATION_DEFENSE_MODS[DifficultyIndex], MODOP_Addition);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, default.UNDERINFILTRATION_DODGE_MODS[DifficultyIndex], MODOP_Addition);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_HP, default.UNDERINFILTRATION_HP_MODS[DifficultyIndex], MODOP_Multiplication);
 	PersistentStatChangeEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(PersistentStatChangeEffect);
 

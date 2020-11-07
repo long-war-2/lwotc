@@ -380,7 +380,7 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	{
 		InfiltrationAlertModifier = InfiltratingSquad.GetAlertnessModifierForCurrentInfiltration(); // this submits its own gamestate update
 		AlertLevel += InfiltrationAlertModifier;
-  }
+	}
 
 	// Potentially add a Chosen to the mission, and if we do so, reduce the alert level
 	ModifyAlertForChosen(MissionSite, AlertLevel);
