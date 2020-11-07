@@ -19,7 +19,7 @@ var config float TOP_RANK_XP_TRANSFER_FRACTION;
 
 var config int LISTENER_PRIORITY;
 
-var config array<string> INELIGIBLE_FOR_MISSION_EXP;
+var config array<name> INELIGIBLE_FOR_MISSION_EXP;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
