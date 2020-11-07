@@ -13,6 +13,8 @@ var array<ActivityCooldownTimer> GlobalCooldowns;
 
 var config int AVATAR_DELAY_HOURS_PER_NET_GLOBAL_VIG;
 var config float INFILTRATION_TO_DISABLE_SIT_REPS;
+var config array<name> INFILTRATION_SIT_REPS;
+var config array<string> INFILTRATION_SIT_REP_MISSION_FAMILIES;
 
 //#############################################################################################
 //----------------   INITIALIZATION   ---------------------------------------------------------
@@ -332,7 +334,7 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	local XComGameStateHistory History;
 	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameState_HeadquartersAlien AlienHQ;
-	local int ForceLevel, AlertLevel, i;
+	local int ForceLevel, AlertLevel, InfiltrationAlertModifier, i;
 	local XComGameState_LWPersistentSquad InfiltratingSquad;
 	local XComGameState_LWSquadManager SquadMgr;
 	local XComGameState_LWAlienActivity ActivityState;
@@ -373,7 +375,10 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 
 	//modifiers
 	if (InfiltratingSquad != none && !MissionSite.GetMissionSource().bGoldenPath)
-		AlertLevel += InfiltratingSquad.GetAlertnessModifierForCurrentInfiltration(); // this submits its own gamestate update
+	{
+		InfiltrationAlertModifier = InfiltratingSquad.GetAlertnessModifierForCurrentInfiltration(); // this submits its own gamestate update
+		AlertLevel += InfiltrationAlertModifier;
+	}
 	AlertLevel = Max(AlertLevel, 1); // clamp to be no less than 1
 
 	`LWTRACE("Updating Mission Difficulty: ForceLevel=" $ ForceLevel $ ", AlertLevel=" $ AlertLevel);
@@ -415,14 +420,35 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 		MissionSite.GeneratedMission.Mission = ActivityState.GetMissionDefinitionForFamily(NewMissionFamily);
 	}
 
-	// Deal with Sit Reps based on infiltration.
+	// Clear any existing infiltration-based sit reps since we're either re-adding
+	// it or infiltration has hit 100% and we don't want to add one.
+	for (i = MissionSite.GeneratedMission.SitReps.Length - 1; i >= 0; i--)
+	{
+		if (InStr(MissionSite.GeneratedMission.SitReps[i], "InfilSitRep_") == 0)
+		{
+			MissionSite.GeneratedMission.SitReps.Remove(i, 1);
+
+			// A mission can only have one infiltration sit rep, so we can
+			// break out of the loop to save some time.
+			break;
+		}
+	}
+
+	// Apply under-infiltration sit reps if applicable, i.e. infiltration hasn't
+	// reached 100% and the mission type supports this mechanic.
+	if (InfiltrationAlertModifier > 0 &&
+			default.INFILTRATION_SIT_REP_MISSION_FAMILIES.Find(MissionSite.GeneratedMission.Mission.MissionFamily) != INDEX_NONE)
+	{
+		ApplyInfiltrationSitReps(MissionSite, InfiltrationAlertModifier);
+	}
+
 	/* Disabled for now. Keeping just in case we want to reintroduce the
 	   tie-in between sit reps and infiltration level.
 
 	if (InfiltratingSquad.CurrentInfiltration >= default.INFILTRATION_TO_DISABLE_SIT_REPS)
 	{
 		SitRepManager = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
-		for (i = MissionSite.GeneratedMission.SitReps.Length - 1; i >=0; i--)
+		for (i = MissionSite.GeneratedMission.SitReps.Length - 1; i >= 0; i--)
 		{
 			SitRepTemplate = SitRepManager.FindSitRepTemplate(MissionSite.GeneratedMission.SitReps[i]);
 			if (SitRepTemplate != none)
@@ -450,6 +476,19 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	else
 		History.CleanupPendingGameState(NewGameState);
 
+}
+
+static function ApplyInfiltrationSitReps(XComGameState_MissionSite MissionState, int AlertModifier)
+{
+	local name SelectedSitRep;
+
+	// Pick a sit rep to apply based on the alert modifier. The alert modifier
+	// is a number from 1 to 12, so we want to split the 4 sit reps we have
+	// evenly over those alert modifiers.
+	SelectedSitRep = default.INFILTRATION_SIT_REPS[(AlertModifier - 1) / 3];
+
+	// Now add it to the mission
+	MissionState.GeneratedMission.SitReps.AddItem(SelectedSitRep);
 }
 
 // Copied from XCGS_MissionSite.UpdateShadowChamberStrings()
