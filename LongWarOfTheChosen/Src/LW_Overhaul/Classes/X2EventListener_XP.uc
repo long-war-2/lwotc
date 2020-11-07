@@ -107,7 +107,7 @@ static function EventListenerReturn OnAddMissionEncountersToUnits(Object EventDa
 			continue;
 
 		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitRef.ObjectID));
-		if (UnitState.IsSoldier() && IsEligibleForExp(UnitState.GetMyTemplateName()))
+		if (UnitState.IsSoldier() && default.INELIGIBLE_FOR_MISSION_EXP.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE )
 		{
 			NewGameState.AddStateObject(UnitState);
 			UnitStates.AddItem(UnitState);
@@ -384,14 +384,3 @@ static function EventListenerReturn OnRewardKillXp(Object EventData, Object Even
 
 	return ELR_NoInterrupt;
 }
-
-// Identifies character templates that don't take a share of mission exp
-static function bool IsEligibleForExp(name UnitName)
-{
-	if(UnitName != default.INELIGIBLE_FOR_MISSION_EXP){
-		return true;
-	}
-
-	return false;
-}
-
