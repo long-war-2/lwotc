@@ -19,6 +19,8 @@ var config float TOP_RANK_XP_TRANSFER_FRACTION;
 
 var config int LISTENER_PRIORITY;
 
+var config name INELIGIBLE_FOR_MISSION_EXP;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -105,7 +107,7 @@ static function EventListenerReturn OnAddMissionEncountersToUnits(Object EventDa
 			continue;
 
 		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitRef.ObjectID));
-		if (UnitState.IsSoldier())
+		if (UnitState.IsSoldier() && IsEligibleForExp(UnitState.GetMyTemplateName()))
 		{
 			NewGameState.AddStateObject(UnitState);
 			UnitStates.AddItem(UnitState);
@@ -382,3 +384,14 @@ static function EventListenerReturn OnRewardKillXp(Object EventData, Object Even
 
 	return ELR_NoInterrupt;
 }
+
+// Identifies character templates that don't take a share of mission exp
+static function bool IsEligibleForExp(name UnitName)
+{
+	if(UnitName != default.INELIGIBLE_FOR_MISSION_EXP){
+		return true;
+	}
+
+	return false;
+}
+
