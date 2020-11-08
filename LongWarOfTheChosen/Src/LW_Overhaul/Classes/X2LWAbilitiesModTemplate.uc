@@ -115,6 +115,10 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'KingGetOverHere':
 			MakeAbilitiesUnusableOnLost(Template);
 			break;
+		case 'ScanningProtocol':
+			MakeFreeAction(Template);
+			AddInitialScanningCharges(Template);
+			break;
 		default:
 			break;
 
@@ -748,6 +752,10 @@ static function MakeAbilitiesUnusableOnLost(X2AbilityTemplate Template)
 	Template.AbilityTargetConditions.AddItem(Condition);
 }
 
+static function AddInitialScanningCharges(X2AbilityTemplate Template)
+{
+	Template.AbilityCharges.InitialCharges = default.SCANNING_PROTOCOL_INITIAL_CHARGES;
+}
 	
 defaultproperties
 {
