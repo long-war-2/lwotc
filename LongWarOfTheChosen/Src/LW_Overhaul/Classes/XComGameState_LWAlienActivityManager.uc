@@ -15,6 +15,8 @@ var config int AVATAR_DELAY_HOURS_PER_NET_GLOBAL_VIG;
 var config float INFILTRATION_TO_DISABLE_SIT_REPS;
 var config int CHOSEN_APPEARANCE_ALERT_MOD;
 
+var const string CHOSEN_SPAWN_TAG_SUFFIX;
+
 //#############################################################################################
 //----------------   INITIALIZATION   ---------------------------------------------------------
 //#############################################################################################
@@ -375,6 +377,10 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	//modifiers
 	if (InfiltratingSquad != none && !MissionSite.GetMissionSource().bGoldenPath)
 		AlertLevel += InfiltratingSquad.GetAlertnessModifierForCurrentInfiltration(); // this submits its own gamestate update
+
+	// Potentially add a Chosen to the mission, and if we do so, reduce the alert level
+	ModifyAlertByMaybeAddingChosenToMission(MissionSite, AlertLevel);
+
 	AlertLevel = Max(AlertLevel, 1); // clamp to be no less than 1
 
 	`LWTRACE("Updating Mission Difficulty: ForceLevel=" $ ForceLevel $ ", AlertLevel=" $ AlertLevel);
@@ -453,7 +459,9 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 
 }
 
-
+// Decides whether to add a Chosen to the given mission and if it does choose
+// to do so, it adds LWOTC-specific Chosen tactical tags to the mission state
+// and updates the given alert level.
 static function ModifyAlertByMaybeAddingChosenToMission(XComGameState_MissionSite MissionState, out int AlertLevel)
 {
 	local XComGameStateHistory History;
@@ -462,6 +470,13 @@ static function ModifyAlertByMaybeAddingChosenToMission(XComGameState_MissionSit
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
 	local name ChosenSpawningTag;
+
+	// If Chosen are disabled, skip adding the tag.
+	if (!`SecondWaveEnabled('EnableChosen'))
+	{
+		return;
+	}
+
 	// Don't allow Chosen on the mission if there is already a Ruler
 	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
 	{
@@ -487,20 +502,9 @@ static function ModifyAlertByMaybeAddingChosenToMission(XComGameState_MissionSit
 			}
 
 			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			ChosenSpawningTag = name(ChosenSpawningTag $ default.CHOSEN_SPAWN_TAG_SUFFIX);
 
 			if (!CanOverrideChosenTacticalTags(MissionState, ChosenState)) continue;
-
-			// Remove the tag if it's already attached to this mission. This is the only
-			// place that should add Chosen tactical mission tags.
-			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTag);
-
-			// LWOTC: If Chosen are disabled, skip adding the tag. We do this check here
-			// because we *do* still want to remove the Chosen tags that vanilla has a
-			// habit of adding.
-			if (!`SecondWaveEnabled('EnableChosen'))
-			{
-				continue;
-			}
 
 			// Roll for whether this Chosen will appear on this mission.
 			`LWTrace("Rolling for Chosen on mission " $ MissionState.GeneratedMission.Mission.MissionName);
@@ -512,14 +516,6 @@ static function ModifyAlertByMaybeAddingChosenToMission(XComGameState_MissionSit
 				///Make Chosen Decrease the Alert level;
 				AlertLevel += default.CHOSEN_APPEARANCE_ALERT_MOD;
 			}
-		}
-	}
-
-	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
-	{
-		if (ChosenState.bDefeated)
-		{
-			ChosenState.PurgeMissionOfTags(MissionState);
 		}
 	}
 }
@@ -559,9 +555,7 @@ static function int GetChosenAppearanceChance(XComGameState_AdventChosen ChosenS
 	if (class'XComGameState_LWAlienActivity'.default.ExcludeChosenFromMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
 	{
 		// Can't be on this mission no matter what
-		// LWOTC DEBUGGING
 		`LWTrace("Chosen can't be added to missions of type" @ MissionState.GeneratedMission.Mission.sType);
-		// END
 		return 0;
 	}
 	else if (MissionState.GetMissionSource().bGoldenPath || class'XComGameState_LWAlienActivity'.default.GuaranteeChosenInMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
@@ -647,7 +641,7 @@ static function int GetMissionAlertLevel(XComGameState_MissionSite MissionSite)
 	{
 		AlertLevel ++;
 	}
-	ModifyAlertByMaybeAddingChosenToMission(MissionSite, AlertLevel);
+
 	return AlertLevel;
 }
 
@@ -908,3 +902,7 @@ function bool ShouldBeVisible()
     return false;
 }
 
+defaultproperties
+{
+	CHOSEN_SPAWN_TAG_SUFFIX="_LWOTC_ChosenTag"
+}

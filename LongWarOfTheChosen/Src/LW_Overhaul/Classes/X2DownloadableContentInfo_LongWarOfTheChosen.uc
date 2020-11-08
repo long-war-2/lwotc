@@ -600,8 +600,12 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	InitializePodManager(StartGameState);
 	OverrideConcealmentAtStart(MissionState);
 	OverrideDestructibleHealths(StartGameState);
+	MaybeAddChosenToMission(StartGameState, MissionState);
 	if (class'XComGameState_AlienRulerManager' != none)
+	{
 		OverrideAlienRulerSpawning(StartGameState, MissionState);
+	}
+
 	// Test Code to see if DLC POI replacement is working
 	if (MissionState.POIToSpawn.ObjectID > 0)
 	{
@@ -1614,6 +1618,70 @@ static function OverrideAlienRulerSpawning(XComGameState StartState, XComGameSta
 	{
 		RulerState = class'LWDLCHelpers'.static.GetAlienRulerForMission(MissionState);
 		class'LWDLCHelpers'.static.PutRulerOnCurrentMission(StartState, RulerState, XComHQ);
+	}
+}
+
+// (Based on code from XCGS_HeadquartersAlien.AddChosenTacticalTagsToMission())
+//
+// Add the Chosen tactical tags to the mission if the LWOTC versions of those
+// tags are in the mission's tactical tags. The actual decision about whether
+// to add a Chosen to the mission is made by XCGS_LWAlienActivityManager.
+// ModifyAlertByMaybeAddingChosenToMission().
+//
+// The main purpose of this function is to ensure that any attempts by vanilla
+// to add Chosen to the mission are blocked and Chosen are added to the HQ
+// tactical tags if the alien activity manager has set them up.
+static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_MissionSite MissionState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local name ChosenSpawningTag, ChosenSpawningTagLWOTC;
+
+	// Don't allow Chosen on the mission if there is already a Ruler
+	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
+	{
+		return;
+	}
+
+	History = `XCOMHISTORY;
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersAlien', AlienHQ)
+	{
+		break;
+	}
+
+	if (AlienHQ.bChosenActive)
+	{
+		XComHQ = `XCOMHQ;
+		AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			ChosenSpawningTagLWOTC = name(ChosenSpawningTag $ class'XComGameState_LWAlienActivityManager'.default.CHOSEN_SPAWN_TAG_SUFFIX);
+
+			// Remove the tag if it's already attached to this mission. This is the only
+			// place that should add Chosen tactical mission tags to the XCOM HQ. This
+			// basically prevents the base game from adding Chosen to missions.
+			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTag);
+
+			// Now add the appropriate tactical gameplay tag for this Chosen if the
+			// corresponding LWOTC-specific one is in the mission's tactical tags.
+			if (MissionState.TacticalGameplayTags.Find(ChosenSpawningTagLWOTC) != INDEX_NONE)
+			{
+				XComHQ.TacticalGameplayTags.AddItem(ChosenSpawningTag);
+			}
+		}
+	}
+
+	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
+	{
+		if (ChosenState.bDefeated)
+		{
+			ChosenState.PurgeMissionOfTags(MissionState);
+		}
 	}
 }
 
