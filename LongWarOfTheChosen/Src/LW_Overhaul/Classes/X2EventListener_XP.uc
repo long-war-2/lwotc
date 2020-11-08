@@ -19,7 +19,7 @@ var config float TOP_RANK_XP_TRANSFER_FRACTION;
 
 var config int LISTENER_PRIORITY;
 
-var config array<name> INELIGIBLE_FOR_MISSION_EXP;
+var config array<name> CLASSES_INELIGIBLE_FOR_MISSION_XP;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -107,7 +107,7 @@ static function EventListenerReturn OnAddMissionEncountersToUnits(Object EventDa
 			continue;
 
 		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', UnitRef.ObjectID));
-		if (UnitState.IsSoldier() && default.INELIGIBLE_FOR_MISSION_EXP.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE )
+		if (UnitState.IsSoldier() && default.CLASSES_INELIGIBLE_FOR_MISSION_XP.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE)
 		{
 			NewGameState.AddStateObject(UnitState);
 			UnitStates.AddItem(UnitState);
