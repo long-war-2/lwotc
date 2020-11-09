@@ -5418,7 +5418,9 @@ Description="Maybe it's something in the air, but whatever it is, it's causing s
 
 [DarkEventBarrierSitRep X2SitRepTemplate]
 FriendlyName="Barrier"
-Description="Enemy tech and Psionic defense are doubled. Specialists and Psi Ops are gonna cry."
+; LWOTC Needs Translation (2)
+Description="ADVENT are trialling some unique defensive systems in the field to counter XCOM's progress in psionics and hacking. Enemy tech and Psionic defense are doubled."
+; End Translation (2)
 
 [DarkEventDarkTowerSitRep X2SitRepTemplate]
 FriendlyName="Dark Tower"
@@ -5446,7 +5448,9 @@ Description="Missed shots on ADVENT Officers and Priests will trigger return fir
 
 [DarkEventSealedArmorSitRep X2SitRepTemplate]
 FriendlyName="Sealed Armor"
-Description="Our Technicals and Grenadiers are going to be pretty sad: ADVENT units are immune to environmental hazards like poison, fire and ice."
+; LWOTC Needs Translation (2)
+Description="ADVENT are deploying new armor based on materials that resist environmental effects. ADVENT units are immune to environmental hazards like poison, fire and ice."
+; End Translation (2)
 
 [DarkEventUndyingLoyaltySitRep X2SitRepTemplate]
 FriendlyName="Undying Loyalty"
@@ -5454,7 +5458,7 @@ Description="We don't know what kind of voodoo magic the enemy is playing with, 
 
 [DarkEventVigilanceSitRep X2SitRepTemplate]
 FriendlyName="Vigilance"
-Description="The Aliens are on high alert, making it harder for XCOM to catch them unaware. Their detection radii are larger."
+Description="The Aliens are on high alert, making it harder for XCOM to catch them unawares. Their detection radii are larger."
 
 [ViperKing X2SitRepTemplate]
 FriendlyName="Viper King"
@@ -5735,12 +5739,14 @@ LocLongDescription="After throwing or launching a grenade, you will automaticall
 LocHelpText="After throwing or launching a grenade, you will automatically enter overwatch. Passive."
 LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will automatically enter overwatch.<br/><Bullet/> Passive.<br/>"
 
+; LWOTC Needs Translation (2)
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Avenger"
 LocFlyOverText="Avenger"
 LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has fired upon a visible ally."
 LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has fired upon a visible ally."
 LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot at.<br/><Bullet/> Can only activate during the enemy's turn.<br/><Bullet/> Can only trigger once per turn.<br/>"
+; End Translation (2)
 
 [Predator_LW X2AbilityTemplate]
 LocFriendlyName="Predator"

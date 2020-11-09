@@ -53,9 +53,11 @@ LocPromotionPopupText="<Bullet/> Provides a <Ability:VoltDangerZoneBonus/>-tile 
 ; LWOTC Needs Translation
 [TemplarVigilance X2AbilityTemplate]
 LocFriendlyName="Vigilance"
-LocLongDescription="Gain 1 focus whenever your squad activates an enemy pod."
-LocHelpText="Gain 1 focus whenever your squad activates an enemy pod."
-LocPromotionPopupText="<Bullet/> Adds 1 focus to the Templar when an enemy pod scampers.<br/><Bullet/> If you are already at max focus, the focus gain is wasted."
+LocLongDescription="Gain 1 focus whenever your squad activates an enemy pod of size 3 or more."
+LocHelpText="Gain 1 focus whenever your squad activates an enemy pod of size 3 or more."
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Adds 1 focus to the Templar when an enemy pod scampers.<br/><Bullet/> Only triggers if the pod has at least 3 units in it.<br/><Bullet/> If you are already at max focus, the focus gain is wasted."
+; End Translation (2)
 
 [TemplarTerror X2AbilityTemplate]
 LocFriendlyName="Terrorize"

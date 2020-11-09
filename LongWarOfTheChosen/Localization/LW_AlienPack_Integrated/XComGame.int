@@ -123,6 +123,9 @@ strCharacterName="Muton Centurion"
 FriendlyName="Centurion Rifle"
 BriefSummary="XCOM has managed to salvage a variety of standard infantry small arms; this is the most common variety, similar to the rifle used twenty years before. While decidedly inferior to ADVENT magnetic technology, it can at least be upgraded using additional weapons salvage, once a standard technical approach is unked."
 TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn\n<Bullet/> If the soldier fires with both actions available, three shots will be taken at reduced accuracy, but overall increased efficiency\n<Bullet/> Use upgrades looted from enemies to improve assault rifle tactical effectiveness"
+; LWOTC Needs Translation
+AbilityDescName="plasma rifle"
+; End translation
 
 [MutonM2_LWGrenade X2GrenadeTemplate]
 FriendlyName="Alien Grenade"
@@ -144,6 +147,9 @@ strCharacterName="Muton Elite"
 
 [MutonM3_LW_Wpn X2WeaponTemplate]
 FriendlyName="Elite Plasma Cannon"
+; LWOTC Needs Translation
+AbilityDescName="plasma cannon"
+; End translation
 
 [MutonM3_LWGrenade X2GrenadeTemplate]
 FriendlyName="Alien Grenade"
@@ -168,12 +174,21 @@ strCharacterName="Naja Elite"
 
 [NajaM1_WPN X2WeaponTemplate]
 FriendlyName="Naja Sniper Rifle"
+; LWOTC Needs Translation
+AbilityDescName="sniper rifle"
+; End translation
 
 [NajaM2_WPN X2WeaponTemplate]
 FriendlyName="Naja Sniper Rifle"
+; LWOTC Needs Translation
+AbilityDescName="sniper rifle"
+; End translation
 
 [NajaM3_WPN X2WeaponTemplate]
 FriendlyName="Naja Sniper Rifle"
+; LWOTC Needs Translation
+AbilityDescName="sniper rifle"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Sidewinder ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -188,12 +203,21 @@ strCharacterName="Sidewinder Elite"
 
 [SidewinderM1_WPN X2WeaponTemplate]
 FriendlyName="Sidewinder Scramgun"
+; LWOTC Needs Translation
+AbilityDescName="scramgun"
+; End translation
 
 [SidewinderM2_WPN X2WeaponTemplate]
 FriendlyName="Sidewinder Scramgun"
+; LWOTC Needs Translation
+AbilityDescName="scramgun"
+; End translation
 
 [SidewinderM3_WPN X2WeaponTemplate]
 FriendlyName="Sidewinder Scramgun"
+; LWOTC Needs Translation
+AbilityDescName="scramgun"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Viper ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -205,9 +229,15 @@ strCharacterName="Viper Elite"
 
 [ViperM2_LW_WPN X2WeaponTemplate]
 FriendlyName="Beam Rifle"
+; LWOTC Needs Translation
+AbilityDescName="plasma rifle"
+; End translation
 
 [ViperM3_LW_WPN X2WeaponTemplate]
 FriendlyName="Beam Rifle"
+; LWOTC Needs Translation
+AbilityDescName="plasma rifle"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -226,18 +256,27 @@ strCharacterName="ADVENT Gunner"
 
 [AdvGunnerM1_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
+; LWOTC Needs Translation
+AbilityDescName="cannon"
+; End translation
 
 [AdvGunnerM2 X2CharacterTemplate]
 strCharacterName="ADVENT Heavy Gunner"
 
 [AdvGunnerM2_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
+; LWOTC Needs Translation
+AbilityDescName="cannon"
+; End translation
 
 [AdvGunnerM3 X2CharacterTemplate]
 strCharacterName="ADVENT Elite Gunner"
 
 [AdvGunnerM3_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
+; LWOTC Needs Translation
+AbilityDescName="cannon"
+; End translation
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvSentryM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -247,18 +286,27 @@ strCharacterName="ADVENT Sentry"
 
 [AdvSentryM1_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
 
 [AdvSentryM2 X2CharacterTemplate]
 strCharacterName="ADVENT Guardian"
 
 [AdvSentryM2_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
 
 [AdvSentryM3 X2CharacterTemplate]
 strCharacterName="ADVENT Sentinel"
 
 [AdvSentryM3_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvGrenadierM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -339,9 +387,15 @@ strCharacterName="ADVENT Hunter Drone"
 
 [LWDroneM1_WPN X2WeaponTemplate]
 FriendlyName="Drone Shock"
+; LWOTC Needs Translation
+AbilityDescName="shock weapon"
+; End translation
 
 [LWDroneM2_WPN X2WeaponTemplate]
 FriendlyName="Drone Electroshock"
+; LWOTC Needs Translation
+AbilityDescName="shock weapon"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM1 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -350,9 +404,15 @@ strCharacterName="MEC Archer"
 
 [AdvMECArcher_WPN X2WeaponTemplate]
 FriendlyName="MEC MiniMag"
+; LWOTC Needs Translation
+AbilityDescName="minigun"
+; End translation
 
 [AdvMECArcher_Shoulder_WPN X2WeaponTemplate]
 FriendlyName="Rocket Artillery"
+; LWOTC Needs Translation
+AbilityDescName="micromissiles"
+; End translation
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -386,45 +446,69 @@ strCharacterName="ADVENT Sergeant"
 
 [AdvSergeantM1_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
 
 [AdvSergeantM2 X2CharacterTemplate]
 strCharacterName="ADVENT First Sergeant"
 
 [AdvSergeantM2_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
 
 [AdvShockTroop X2CharacterTemplate]
 strCharacterName="ADVENT Shock Trooper"
 
 [AdvShockTroop_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
 
 [AdvCommando X2CharacterTemplate]
 strCharacterName="ADVENT Commando"
 
 [AdvCommando_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
 
 [AdvVanguard X2CharacterTemplate]
 strCharacterName="ADVENT Vanguard"
 
 [AdvVanguard_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
 
 [AdvScout X2CharacterTemplate]
 strCharacterName="ADVENT Scout"
 
 [AdvScout_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
 
 [AdvGeneralM1 X2CharacterTemplate]
 strCharacterName="ADVENT General"
 
 [AdvGeneralM1_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
 
 [AdvGeneralM2 X2CharacterTemplate]
 strCharacterName="ADVENT General"
 
 [AdvGeneralM2_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
