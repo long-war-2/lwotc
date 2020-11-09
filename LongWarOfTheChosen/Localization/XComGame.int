@@ -5793,8 +5793,10 @@ LocPromotionPopupText="<Bullet/> Point Blank does not affect the aim penalty fro
 [ThatsCloseEnough_LW X2AbilityTemplate]
 LocFriendlyName="That's Close Enough"
 LocFlyOverText="That's Close Enough"
-LocLongDescription="During enemy turns, fire your arc thrower at any visible enemy within <Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/> tiles who moves or fires. Shares cooldown with the arc thrower's Stun ability."
-LocHelpText="During enemy turns, fire your arc thrower at any visible enemy within four tiles who moves or fires."
+; LWOTC Needs Translation (2)
+LocLongDescription="During enemy turns, fire your arc thrower at any visible enemy within <Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/> tile(s) that moves or fires. Shares cooldown with the arc thrower's Stun ability."
+LocHelpText="During enemy turns, fire your arc thrower at any visible enemy within <Ability:THATS_CLOSE_ENOUGH_TILE_RANGE/> tile(s) that moves or fires. Shares cooldown with the arc thrower's Stun ability."
+; End Translation (2)
 LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> This ability can trigger <Ability:THATS_CLOSE_ENOUGH_PER_TARGET_COOLDOWN/> time(s) per turn.<br/>"
 
 [QuickZap_LW X2AbilityTemplate]
