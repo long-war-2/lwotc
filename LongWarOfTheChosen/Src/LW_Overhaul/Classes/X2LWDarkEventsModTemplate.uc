@@ -116,7 +116,7 @@ static function UpdateDarkEvents(X2StrategyElementTemplate Template, int Difficu
 		case 'DarkEvent_TheCollectors':
 		case 'DarkEvent_MadeWhole':
 			// Remove these from play when the Chosen are all dead
-			DETemplate.CanActivateFn = ChosenAliveCheck;
+			DETemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.AlwaysFalse;
 			break;
 
 		default:

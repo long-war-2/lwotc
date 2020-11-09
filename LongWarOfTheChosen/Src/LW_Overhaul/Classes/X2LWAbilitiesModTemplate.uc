@@ -40,6 +40,11 @@ var config float EXPLOSIVE_DAMAGE_REDUCTION;
 
 var config int SCANNING_PROTOCOL_INITIAL_CHARGES;
 
+var config int MIND_SCORCH_RADIUS;
+var config int MIND_SCORCH_BURNING_BASE_DAMAGE;
+var config int MIND_SCORCH_BURNING_DAMAGE_SPREAD;
+var config int MIND_SCORCH_BURN_CHANCE;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
     // Override the FinalizeHitChance calculation for abilities that use standard aim
@@ -108,6 +113,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'RetributionAttack':
 		case 'TemplarBladestormAttack':
 			MakeBladestormNotTriggerOnItsTurn(Template);
+			Template.PostActivationEvents.AddItem('BladestormActivated');
 			break;
 		//At this point trying to figure out why AI does not do the thing it's supposed to do takes way longer than just doing this
 		case 'GetOverHere':
@@ -119,6 +125,24 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakeFreeAction(Template);
 			AddInitialScanningCharges(Template);
 			break;
+		case 'MindScorch':
+			ReworkMindScorch(Template);
+			break;
+		case 'PartingSilk':
+			ReworkPartingSilk(Template);
+			break;
+		case 'ChosenEngaged':
+			MakeChosenInstantlyEngagedAndRemoveTimerPause(Template);
+		case 'TeleportAlly':
+			BuffTeleportAlly(Template);
+			break;
+		case 'ChosenSummonFollowers':
+			UpdateSummon(Template);
+			break;
+		case 'VanishingWind':
+			UpdateVanishingWind(Template);
+			break;
+
 		default:
 			break;
 
@@ -756,7 +780,197 @@ static function AddInitialScanningCharges(X2AbilityTemplate Template)
 {
 	Template.AbilityCharges.InitialCharges = default.SCANNING_PROTOCOL_INITIAL_CHARGES;
 }
+
+static function ReworkMindScorch(X2AbilityTemplate Template)
+{
+	local X2Condition_UnitProperty ShooterCondition, TargetCondition;
+	local X2AbilityMultiTarget_Radius RadiusMultiTarget;
+	local X2Effect Effect;
+	local AbilityGrantedBonusRadius DangerZoneBonus;
+	local X2Effect_Burning BurningEffect;
+	local X2Effect_ApplyWeaponDamage DamageEffect;
 	
+	ShooterCondition = new class'X2Condition_UnitProperty';
+	ShooterCondition.ExcludeConcealed = true;
+	Template.AbilityShooterConditions.AddItem(ShooterCondition);
+
+	TargetCondition = new class'X2Condition_UnitProperty';
+	TargetCondition.ExcludeAlive = false;
+	TargetCondition.ExcludeDead = true;
+	TargetCondition.ExcludeFriendlyToSource = true;
+	TargetCondition.ExcludeHostileToSource = false;
+	TargetCondition.TreatMindControlledSquadmateAsHostile = false;
+	TargetCondition.FailOnNonUnits = true;
+	TargetCondition.ExcludeCivilian = true;
+	TargetCondition.ExcludeCosmetic = true;
+	TargetCondition.ExcludeRobotic = true;
+
+
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.bIgnoreBlockingCover = true;
+	RadiusMultiTarget.bAllowDeadMultiTargetUnits = false;
+	RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
+	RadiusMultiTarget.bUseWeaponRadius = false;
+	RadiusMultiTarget.fTargetRadius = `TILESTOMETERS(default.MIND_SCORCH_RADIUS) + 0.01;
+
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
+	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
+
+	foreach Template.AbilityTargetEffects(Effect)
+	{
+		if(Effect.isA('X2Effect_Dazed'))
+		{
+			Template.AbilityTargetEffects.RemoveItem(Effect);
+		}
+	}
+	foreach Template.AbilityMultiTargetEffects(Effect)
+	{
+		if(Effect.isA('X2Effect_Dazed'))
+		{
+			Template.AbilityMultiTargetEffects.RemoveItem(Effect);
+		}
+	}
+	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.MIND_SCORCH_BURNING_BASE_DAMAGE, default.MIND_SCORCH_BURNING_DAMAGE_SPREAD);
+	BurningEffect.ApplyChance = default.MIND_SCORCH_BURN_CHANCE;
+	Template.AddTargetEffect(BurningEffect);
+	Template.AddMultiTargetEffect(BurningEffect);
+
+	Template.AddTargetEffect(CreateMindSchorchPanicEffect());
+	Template.AddMultiTargetEffect(CreateMindSchorchPanicEffect());
+
+	DamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	DamageEffect.bIgnoreArmor = true;
+	DamageEffect.TargetConditions.AddItem(TargetCondition);
+	Template.AddTargetEffect(DamageEffect);
+	Template.AddMultiTargetEffect(DamageEffect);
+
+	DangerZoneBonus.RequiredAbility = 'MindScorchDangerZone';
+	DangerZoneBonus.fBonusRadius = `TILESTOMETERS(class'X2LWModTemplate_TemplarAbilities'.default.VOLT_DANGER_ZONE_BONUS_RADIUS) + 0.01;
+	RadiusMultiTarget.AbilityBonusRadii.AddItem(DangerZoneBonus);
+
+
+}
+
+static function X2Effect_ImmediateMultiTargetAbilityActivation CreateMindSchorchPanicEffect()
+{
+	local X2Effect_ImmediateMultiTargetAbilityActivation	PanicEffect;
+	local X2Condition_AbilityProperty						TerrorCondition;
+	local X2Condition_UnitProperty							UnitCondition;
+
+	PanicEffect = new class 'X2Effect_ImmediateMultiTargetAbilityActivation';
+
+	PanicEffect.BuildPersistentEffect(1, false, false, , eGameRule_PlayerTurnBegin);
+	PanicEffect.EffectName = 'ImmediateDisorientOrPanic';
+	PanicEffect.AbilityName = class'X2Ability_TemplarAbilitySet_LW'.default.PanicImpairingAbilityName;
+	PanicEffect.bRemoveWhenTargetDies = true;
+
+	UnitCondition = new class'X2Condition_UnitProperty';
+	UnitCondition.ExcludeOrganic = false;
+	UnitCondition.ExcludeRobotic = true;
+	UnitCondition.ExcludeAlive = false;
+	UnitCondition.ExcludeDead = true;
+	UnitCondition.FailOnNonUnits = true;
+	UnitCondition.ExcludeFriendlyToSource = true;
+
+	TerrorCondition = new class'X2Condition_AbilityProperty';
+	TerrorCondition.OwnerHasSoldierAbilities.AddItem('MindScorchTerror');
+
+	PanicEffect.TargetConditions.AddItem(UnitCondition);
+	PanicEffect.TargetConditions.AddItem(TerrorCondition);
+
+	return PanicEffect;
+}
+
+	
+static function MakeChosenInstantlyEngagedAndRemoveTimerPause(X2AbilityTemplate Template)
+{
+	local X2AbilityTrigger_UnitPostBeginPlay PostBeginPlayTrigger;
+	local X2Effect Effect;
+	PostBeginPlayTrigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	PostBeginPlayTrigger.Priority = 60;
+	Template.AbilityTriggers.AddItem(PostBeginPlayTrigger);
+
+	foreach Template.AbilityShooterEffects (Effect)
+	{
+		if(Effect.isA('X2Effect_SuspendMissionTimer'))
+		{
+			X2Effect_SuspendMissionTimer(Effect).bResumeMissionTimer = true;
+		}
+	}
+}
+
+static function ReworkPartingSilk(X2AbilityTemplate Template)
+{
+	local X2Effect Effect;
+	foreach Template.AbilityTargetEffects(Effect)
+	{
+		if(Effect.isA('X2Effect_Dazed'))
+		{
+			Template.AbilityTargetEffects.RemoveItem(Effect);
+		}
+	}
+}
+
+
+static function BuffTeleportAlly(X2AbilityTemplate Template)
+{
+	local X2Condition_UnitEffects ExcludeEffects;
+	local X2Effect_GrantActionPoints AddAPEffect;
+	local X2Effect_RunBehaviorTree ReactionEffect;
+
+	ExcludeEffects = new class'X2Condition_UnitEffects';
+
+	ExcludeEffects.AddExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName, 'AA_UnitIsDisoriented');
+	ExcludeEffects.AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsDisoriented');
+	ExcludeEffects.AddExcludeEffect(class'X2AbilityTemplateManager'.default.StunnedName, 'AA_UnitIsDisoriented');
+	ExcludeEffects.AddExcludeEffect(class'X2AbilityTemplateManager'.default.PanickedName, 'AA_UnitIsDisoriented');
+
+	Template.AbilityTargetConditions.AddItem(ExcludeEffects);
+
+	AddAPEffect = new class'X2Effect_GrantActionPoints';
+	AddAPEffect.NumActionPoints = 1;
+	AddAPEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
+	Template.AddTargetEffect(AddAPEffect);
+
+	ReactionEffect = new class'X2Effect_RunBehaviorTree';
+	ReactionEffect.BehaviorTreeName = 'TeleportAllyShooterTree';
+	Template.AddTargetEffect(ReactionEffect);
+
+}
+
+static function UpdateSummon(X2AbilityTemplate Template)
+{
+	//local X2AbilityCooldown					Cooldown;
+
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+
+	//Screw it, I have no idea how to do it cleanly and no other mod touches it anyway
+	//Template.AbilityShooterConditions.Remove(2,1);
+	//RemoveAbilityShooterEffect(Template,'X2Effect_SetUnitValue');
+
+	//Cooldown = new class'X2AbilityCooldown';
+	//Cooldown.iNumTurns = default.SUMMON_COOLDOWN;
+	//Template.AbilityCooldown = Cooldown;
+
+	Template.BuildNewGameStateFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildGameState;
+	Template.BuildVisualizationFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildVisualization;
+}
+
+static function UpdateVanishingWind(X2AbilityTemplate Template)
+{
+	local X2AbilityTrigger_EventListener EventListener;		
+	
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.EventID = 'PartingSilkActivated';
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+}
+
+
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities

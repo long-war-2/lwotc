@@ -615,10 +615,10 @@ LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><B
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
-LocLongDescription="Fire your Arc Thrower at every visible enemy who is capable of being stunned."
-LocHelpText="Fire your Arc Thrower at every visible enemy who is capable of being stunned."
+LocLongDescription="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim"
+LocHelpText="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim"
 LocFlyOverText="Chain Lightning"
-LocPromotionPopupText="<Bullet/> Fire your Arc Thrower at every visible enemy who is capable of being stunned.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Five-turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Fire your Arc Thrower at every visible enemy who is capable of being stunned with a -50 penalty to aim<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Five-turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="Leadership"
@@ -2930,6 +2930,11 @@ ObjectiveTextPools[4]="Our focus on scavenging supplies in this region has gotte
 MissionPinLabel="LWS Overhaul Generic Mission"
 MissionExpiredText="This mission is no longer available."
 
+[DefaultChosenAvengerDefense X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Plant X4 on back of Turrets !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
+ObjectiveTextPools[1]="Plant Bomb to Destroy the Mobile Power Generator !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
+ObjectiveTextPools[2]="Eliminate all enemy forces"
+
 [XComGame.UIMission]
 [UIMission]
 m_strMissionDifficulty="CURRENT ENEMY ACTIVITY"
@@ -4949,6 +4954,8 @@ DisplayName="Radio Relay"
 [MissionTimers]
 TimerSmashNGrabTitle="Reinforcements"
 TimerSmashNGrabSubtitle="Turns until alien response"
+TimerDefendTitle="Reinforcements"
+TimerDefendSubtitle="Turns until Advent arrival"
 
 [InTheZone X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/><Bullet/> Every successful kill does result in a reduction to critical hit chance and damage, however.<br/><Bullet/> Serial has a <Ability:SelfCooldown/> turn cooldown.<br/>"
@@ -5318,29 +5325,35 @@ TacticalText="<Bullet/> Grants 1 starting focus and the Channel ability, which g
 AbilityDescName="shard"
 ; End Translation #2
 
-[Yoink X2AbilityTemplate]
-LocFriendlyName="Yoink"
-LocLongDescription="Teleport next to the enemy."
-LocHelpText="Teleport next to the enemy."
-LocFlyOverText="Yoink"
-
-[AmmoDump X2AbilityTemplate]
+[AmmoDump_LW X2AbilityTemplate]
 LocFriendlyName="Sabotage Weapon"
 LocHelpText="Disables a weapon, dumping the ammo."
 LocLongDescription="Disables a weapon, dumping the ammo."
 LocFlyOverText="Sabotage Weapon"
 
-[ShieldAlly X2AbilityTemplate]
+[ShieldAllyM1 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
 LocHelpText="Adds Shield to an Ally."
 LocLongDescription="Adds Shield to an Ally."
 LocFlyOverText="The Warlocks Greatest Champion"
 
-[DetonateMindshield X2AbilityTemplate]
-LocFriendlyName="Overwhelm Mindshield"
-LocHelpText="Powers through a Mindshield."
-LocLongDescription="Powers through a Mindshield."
-LocFlyOverText="Overwhelm Mindshield"
+[ShieldAllyM2 X2AbilityTemplate]
+LocFriendlyName="The Warlocks Greatest Champion"
+LocHelpText="Adds Shield to an Ally."
+LocLongDescription="Adds Shield to an Ally."
+LocFlyOverText="The Warlocks Greatest Champion"
+
+[ShieldAllyM3 X2AbilityTemplate]
+LocFriendlyName="The Warlocks Greatest Champion"
+LocHelpText="Adds Shield to an Ally."
+LocLongDescription="Adds Shield to an Ally."
+LocFlyOverText="The Warlocks Greatest Champion"
+
+[ShieldAllyM4 X2AbilityTemplate]
+LocFriendlyName="The Warlocks Greatest Champion"
+LocHelpText="Adds Shield to an Ally."
+LocLongDescription="Adds Shield to an Ally."
+LocFlyOverText="The Warlocks Greatest Champion"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Melee Resistance"
@@ -5356,22 +5369,6 @@ LocHelpText="Takes 50% less damage from Explosions."
 LocFriendlyName="Balanced"
 LocHelpText="Near immune to critical Hits."
 LocLongDescription="This Chosen is near immune to critical Hits."
-
-[Primary_Daze_Passive X2AbilityTemplate]
-LocFriendlyName="Primary Daze"
-LocHelpText="Your primary attacks daze."
-LocLongDescription="Your primary attacks daze."
-
-[Secondary_Daze_Passive X2AbilityTemplate]
-LocFriendlyName="Secondary Daze"
-LocHelpText="Your Secondary attacks Heavy daze."
-LocLongDescription="Your Secondary attacks Heavy daze."
-
-[HeavyRevive X2AbilityTemplate]
-LocFriendlyName="Heavy Revive"
-LocHelpText="Remove the Chosen's \"Heavy Dazed\" effect from this soldier. Soldiers may be disoriented when revived."
-LocLongDescription="Remove the Chosen's \"Heavy Dazed\" effect from this soldier. Soldiers may be disoriented when revived."
-LocFlyOverText="Revived!"
 
 [MC_Stock_Strike X2AbilityTemplate]
 LocFriendlyName="Stock Strike"
@@ -5975,6 +5972,125 @@ LocFriendlyName="Holy Warrior"
 LocHelpText="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
 LocLongDescription="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
 LocFlyOverText="Holy Warrior"
+[ChosenDragonRounds X2AbilityTemplate]
+LocFriendlyName="Dragon Rounds"
+LocFlyOverText="Dragon Rounds"
+LocLongDescription="Your weapons do +1 damage and can set enemies on fire."
+LocHelpText="Your weapons do +1 damage and can set enemies on fire."
+
+[ChosenVenomRounds X2AbilityTemplate]
+LocFriendlyName="Venom Rounds"
+LocFlyOverText="Venom Rounds"
+LocLongDescription="Your weapons do +1 damage and may poison enemies."
+LocHelpText="Your weapons do +1 damage and may poison enemies."
+
+[MindScorchDangerZone X2AbilityTemplate]
+LocFriendlyName="High Voltage"
+LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch."
+LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch."
+LocPromotionPopupText="<Bullet/> Provides a <Ability:VoltDangerZoneBonus/>-tile bonus to the radius of Mind Scorch."
+
+[MindScorchTerror X2AbilityTemplate]
+LocFriendlyName="Terrorize"
+LocLongDescription="Adds a chance to panic enemies hit by Mind Scorch."
+LocHelpText="Adds a chance to panic enemies hit by Mind Scorch."
+LocPromotionPopupText="<Bullet/> Mind Scorch can now panic the enemy.<br/><Bullet/> The chance to panic is based on the Warlock's Psi Offense stat versus the target's Will."
+
+[MindScorch X2AbilityTemplate]
+LocFriendlyName="Mind Scorch"
+LocHelpText="The Warlock opens their mind to the target, damaging and having a <Ability:MIND_SCORCH_BURN_CHANCE/> % chancec to burn the target with their madness."
+LocLongDescription="The Warlock opens their mind to the target, damaging and burning the target with their madness."
+
+[LW_ChosenKidnap X2AbilityTemplate]
+LocFriendlyName="Kidnap"
+LocLongDescription="Kidnap an unconcious or bleeding out unit. Costs 1 action, 1 turn cooldown."
+LocHelpText="Kidnap an unconcious or bleeding out unit. Costs 1 action, 1 turn cooldown."
+LocFlyOverText="Kidnap"
+
+[LW_ChosenKeen X2AbilityTemplate]
+LocFriendlyName="Keen"
+LocLongDescription="Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
+LocHelpText="Bleeding Out is a 100% chance when dealt a killing blow when chosen is present.."
+LocFlyOverText="Keen"
+
+[CombatReadiness X2AbilityTemplate]
+LocFriendlyName="Combat Readiness"
+LocLongDescription="Gain a stackable 10 aim and 5 defense bonus for 2 turns."
+LocHelpText="Gain a stackable 10 aim and 5 defense bonus for 2 turns."
+LocFlyOverText="Combat Readiness"
+
+[ChosenAssassin X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+
+[ChosenAssassinM2 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+
+[ChosenAssassinM3 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+
+[ChosenAssassinM4 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+
+[ChosenWarlock X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+
+[ChosenWarlockM2 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+
+[ChosenWarlockM3 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+
+[ChosenWarlockM4 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+
+[ChosenSniper X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
+
+[ChosenSniperM2 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
+
+[ChosenSniperM3 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
+
+[ChosenSniperM4 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
+
+
+[BloodThirst_LW X2AbilityTemplate]
+LocFriendlyName="Blood Thirst"
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocFlyOverText="Blood Thirst"
+
+[BloodThirst_LWPassive X2AbilityTemplate]
+LocFriendlyName="Blood Thirst"
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocFlyOverText="Blood Thirst"
+
+[RebelHPUpgrade_T1 X2AbilityTemplate]
+LocFriendlyName="Alloy Vest"
+LocLongDescription="Researching plated armor has given our resistance soldiers better protection."
+LocHelpText="Researching plated armor has given our resistance soldiers better protection."
+LocFlyOverText="Alloy Vest"
+
+[RebelHPUpgrade_T2 X2AbilityTemplate]
+LocFriendlyName="Advanced Alloy Vest"
+LocLongDescription="Researching powered armor has given our resistance soldiers even better protection."
+LocHelpText="Researching powered armor has given our resistance soldiers even better protection."
+LocFlyOverText="Advanced Alloy Vest"
 
 [XcomGame.X2StrategyGameRulesetDataStructures]
 [X2StrategyGameRulesetDataStructures]

@@ -38,9 +38,6 @@ event OnInit(UIScreen Screen)
 	// Used for when a campaign is loaded from a save in tactical.
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
-
-	// Spawn Heavy Dazed visualization
-	`XWORLDINFO.Spawn(class'LWHeavyDazedListener');
 }
 
 function EventListenerReturn OnTacticalBeginPlay(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)

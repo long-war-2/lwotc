@@ -285,6 +285,10 @@ var config array<Name> DoubleTapAbilities;
 
 var config array<FlashbangResistEntry> ENEMY_FLASHBANG_RESIST;
 
+var config WeaponDamageValue WARLOCKPSIM1_BASEDAMAGE;
+var config WeaponDamageValue WARLOCKPSIM2_BASEDAMAGE;
+var config WeaponDamageValue WARLOCKPSIM3_BASEDAMAGE;
+var config WeaponDamageValue WARLOCKPSIM4_BASEDAMAGE;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -2031,7 +2035,6 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'ReaperSoldier':
 		case 'SkirmisherSoldier':
 		case 'TemplarSoldier':
-			Template.Abilities.AddItem('HeavyRevive');
 			Template.Abilities.AddItem('MC_Stock_Strike');
 			Template.Abilities.AddItem('GetUp');
 			break;
@@ -2075,36 +2078,6 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'TheLostDasherHP12':
 			Template.DefaultLoadout='TheLostDasherTier4_Loadout';
 			break;
-		/*
-		case 'ChosenSniper':
-		case 'ChosenSniperM2':
-		case 'ChosenSniperM3':
-		case 'ChosenSniperM4':
-			Template.Abilities.AddItem('Yoink');
-			Template.Abilities.AddItem('HunterReaction');
-			Template.Abilities.AddItem('ChosenCritImmune');
-			Template.ImmuneTypes.AddItem('Frost');
-			break;
-		case 'ChosenWarlock':
-		case 'ChosenWarlockM2':
-		case 'ChosenWarlockM3':
-		case 'ChosenWarlockM4':
-			Template.Abilities.AddItem('WarlockReaction');
-			Template.Abilities.AddItem('DetonateMindshield_LW');
-			Template.Abilities.AddItem('ShieldAlly_LW');
-			Template.Abilities.AddItem('AmmoDump_LW');
-			Template.Abilities.AddItem('ChosenCritImmune');
-			Template.ImmuneTypes.AddItem('Frost');
-			break;
-		case 'ChosenAssassin':
-		case 'ChosenAssassinM2':
-		case 'ChosenAssassinM3':
-		case 'ChosenAssassinM4':
-			Template.Abilities.AddItem('AssassinReaction');
-			Template.Abilities.AddItem('ChosenCritImmune');
-			Template.ImmuneTypes.AddItem('Frost');
-			break;
-		*/
 		default:
 			break;
 	}
@@ -2115,7 +2088,71 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.bCanUse_eTraversal_WallClimb = true;
 		Template.ImmuneTypes.AddItem('Acid');
 	}
+	if(Template.CharacterGroupName == 'ChosenWarlock')
+	{
+		Template.Abilities.RemoveItem('ChosenKeen');
+		Template.Abilities.RemoveItem('ChosenKidnap');
+		Template.Abilities.RemoveItem('ChosenKidnapMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
+		Template.Abilities.RemoveItem('SpectralArmy');
 
+		Template.Abilities.AddItem('LW_ChosenKeen');
+		Template.Abilities.AddItem('CombatReadiness');
+		Template.Abilities.AddItem('LW_ChosenKidnap');
+		Template.Abilities.AddItem('CloseCombatSpecialist');
+		Template.Abilities.AddItem('GrazingFire');
+		Template.Abilities.AddItem('WarlockReaction');
+		Template.Abilities.AddItem('AmmoDump_LW');
+		Template.Abilities.AddItem('ChosenCritImmune');
+		Template.ImmuneTypes.AddItem('Frost');
+
+
+	}
+	if(Template.CharacterGroupName == 'ChosenSniper')
+	{
+		Template.Abilities.RemoveItem('ChosenKeen');
+		Template.Abilities.RemoveItem('ChosenKidnap');
+		Template.Abilities.RemoveItem('ChosenKidnapMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
+		Template.Abilities.RemoveItem('ChosenSummonFollowers');
+
+		Template.Abilities.AddItem('HunterReaction');
+		Template.Abilities.AddItem('LW_ChosenKeen');
+		Template.Abilities.AddItem('CombatReadiness');
+		Template.Abilities.AddItem('LW_ChosenKidnap');
+		Template.Abilities.AddItem('LowProfile');
+		Template.Abilities.AddItem('ChosenCritImmune');
+		Template.Abilities.AddItem('LongWatch');
+		Template.Abilities.AddItem('quickdraw');
+		Template.Abilities.AddItem('ChosenImmuneMelee');
+		Template.ImmuneTypes.AddItem('Frost');
+		
+	}
+	if(Template.CharacterGroupName == 'ChosenAssassin')
+	{
+		Template.Abilities.RemoveItem('ChosenKeen');
+		Template.Abilities.RemoveItem('ChosenKidnap');
+		Template.Abilities.RemoveItem('ChosenKidnapMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
+		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
+		Template.Abilities.RemoveItem('ChosenSummonFollowers');
+		Template.Abilities.RemoveItem('HarborWave');
+
+		Template.Abilities.AddItem('Bladestorm');
+		Template.Abilities.AddItem('ChosenCritImmune');
+		Template.Abilities.AddItem('LW_ChosenKeen');
+		Template.Abilities.AddItem('CombatReadiness');
+		Template.Abilities.AddItem('LW_ChosenKidnap');
+		Template.Abilities.AddItem('AssassinReaction');
+		Template.Abilities.AddItem('BloodThirst_LW');
+		Template.Abilities.AddItem('CoolUnderPressure');
+		Template.Abilities.AddItem('LW_Concentration');
+		Template.ImmuneTypes.AddItem('Frost');
+
+		//Template.strScamperBT = "GenericScamperRoot";
+	}
 	// Any soldier templates get the Interact_SmashNGrab ability
 	if (Template.bIsSoldier)
 	{
@@ -2238,6 +2275,28 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.iIdealRange = 7;
 			break;	
 
+		case 'ChosenSniperPistol_CV':
+		case 'ChosenSniperPistol_MG':
+		case 'ChosenSniperPistol_BM':
+		case 'ChosenSniperPistol_T4':
+		WeaponTemplate.Abilities.RemoveItem('LethalDose');
+		break;
+		case 'Warlock_PsiWeapon':
+		WeaponTemplate.Abilities.AddItem('ShieldAllyM1');
+		WeaponTemplate.BaseDamage = default.WARLOCKPSIM1_BASEDAMAGE;
+		break;
+		case 'WarlockM2_PsiWeapon':
+		WeaponTemplate.Abilities.AddItem('ShieldAllyM2');
+		WeaponTemplate.BaseDamage = default.WARLOCKPSIM2_BASEDAMAGE;
+		break;
+		case 'WarlockM3_PsiWeapon':
+		WeaponTemplate.Abilities.AddItem('ShieldAllyM3');
+		WeaponTemplate.BaseDamage = default.WARLOCKPSIM3_BASEDAMAGE;
+		break;
+		case 'WarlockM4_PsiWeapon':
+		WeaponTemplate.Abilities.AddItem('ShieldAllyM4');
+		WeaponTemplate.BaseDamage = default.WARLOCKPSIM4_BASEDAMAGE;
+		break;
 		default:
 			break;
 		}
@@ -2281,6 +2340,12 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'Faceless_MeleeAoE':
 				WeaponTemplate.iEnvironmentDamage = 5;
 				break;
+			case 'ChosenSniperRifle_CV':
+			case 'ChosenSniperRifle_MG':
+			case 'ChosenSniperRifle_BM':
+			case 'ChosenSniperRifle_T4':
+			WeaponTemplate.iIdealRange =25;
+			break;
 			default:
 				break;
 		}

@@ -44,6 +44,8 @@ var MissionDefinition ForceMission;                         // A mission type to
 // LWOTC: Allow configuration of which mission types the Chosen should be excluded from
 var config array<string> ExcludeChosenFromMissionTypes;
 
+var config array<string> GuaranteeChosenInMissionTypes;
+
 var config array<string> NO_SIT_REP_MISSION_TYPES;
 
 //#############################################################################################

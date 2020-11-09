@@ -13,6 +13,9 @@ var array<ActivityCooldownTimer> GlobalCooldowns;
 
 var config int AVATAR_DELAY_HOURS_PER_NET_GLOBAL_VIG;
 var config float INFILTRATION_TO_DISABLE_SIT_REPS;
+var config int CHOSEN_APPEARANCE_ALERT_MOD;
+
+var const string CHOSEN_SPAWN_TAG_SUFFIX;
 
 //#############################################################################################
 //----------------   INITIALIZATION   ---------------------------------------------------------
@@ -374,6 +377,10 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	//modifiers
 	if (InfiltratingSquad != none && !MissionSite.GetMissionSource().bGoldenPath)
 		AlertLevel += InfiltratingSquad.GetAlertnessModifierForCurrentInfiltration(); // this submits its own gamestate update
+
+	// Potentially add a Chosen to the mission, and if we do so, reduce the alert level
+	ModifyAlertByMaybeAddingChosenToMission(MissionSite, AlertLevel);
+
 	AlertLevel = Max(AlertLevel, 1); // clamp to be no less than 1
 
 	`LWTRACE("Updating Mission Difficulty: ForceLevel=" $ ForceLevel $ ", AlertLevel=" $ AlertLevel);
@@ -452,6 +459,115 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 
 }
 
+// Decides whether to add a Chosen to the given mission and if it does choose
+// to do so, it adds LWOTC-specific Chosen tactical tags to the mission state
+// and updates the given alert level.
+static function ModifyAlertByMaybeAddingChosenToMission(XComGameState_MissionSite MissionState, out int AlertLevel)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local name ChosenSpawningTag;
+
+	// If Chosen are disabled, skip adding the tag.
+	if (!`SecondWaveEnabled('EnableChosen'))
+	{
+		return;
+	}
+
+	// Don't allow Chosen on the mission if there is already a Ruler
+	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
+	{
+		return;
+	}
+
+	History = `XCOMHISTORY;
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersAlien', AlienHQ)
+	{
+		break;
+	}
+
+	if (AlienHQ.bChosenActive)
+	{
+		AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			if (ChosenState.bDefeated)
+			{
+				continue;
+			}
+
+			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			ChosenSpawningTag = name(ChosenSpawningTag $ default.CHOSEN_SPAWN_TAG_SUFFIX);
+
+			if (!CanOverrideChosenTacticalTags(MissionState, ChosenState)) continue;
+
+			// Roll for whether this Chosen will appear on this mission.
+			`LWTrace("Rolling for Chosen on mission " $ MissionState.GeneratedMission.Mission.MissionName);
+			if (`SYNC_RAND_STATIC(100) < GetChosenAppearanceChance(ChosenState, MissionState) &&
+					MissionState.TacticalGameplayTags.Find(ChosenSpawningTag) == INDEX_NONE)
+			{
+				`LWTrace("    Chosen added!");
+				MissionState.TacticalGameplayTags.AddItem(ChosenSpawningTag);
+
+				///Make Chosen Decrease the Alert level;
+				AlertLevel += default.CHOSEN_APPEARANCE_ALERT_MOD;
+			}
+		}
+	}
+}
+
+// (Copied from XCGS_HeadquartersAlien.AddChosenTacticalTagsToMission())
+//
+// Add the Chosen tactical tags to the mission if any of the following criteria
+// are met:
+//
+//  * It's the final mission (Golden Path fortress)
+//  * The Chosen has control of the region, is active, and:
+//    - hasn't been encountered yet
+//    - it's a Golden Path mission
+//    - 25% chance on all other missions
+//
+// Note that if the mission type is configured to exclude Chosen, then of course
+// the tactical tags aren't added for the given mission.
+
+// Determines whether the Chosen tactical tags should be cleared from the
+// given mission. Returns `false` if the given mission is either the final
+// one or one of the Chosen strongholds.
+static function bool CanOverrideChosenTacticalTags(XComGameState_MissionSite MissionState, XComGameState_AdventChosen ChosenState)
+{
+	return MissionState.Source != 'MissionSource_Final' && MissionState.Source != 'MissionSource_ChosenStronghold';
+}
+
+// Returns the chance that the given Chosen will appear on the given mission. The chance
+// is a percentage between 0 and 100 inclusive.
+static function int GetChosenAppearanceChance(XComGameState_AdventChosen ChosenState, XComGameState_MissionSite MissionState)
+{
+	// If the Chosen doesn't control the region, they won't appear on the mission
+	if (!ChosenState.ChosenControlsRegion(MissionState.Region))
+	{
+		return 0;
+	}
+
+	if (class'XComGameState_LWAlienActivity'.default.ExcludeChosenFromMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
+	{
+		// Can't be on this mission no matter what
+		`LWTrace("Chosen can't be added to missions of type" @ MissionState.GeneratedMission.Mission.sType);
+		return 0;
+	}
+	else if (MissionState.GetMissionSource().bGoldenPath || class'XComGameState_LWAlienActivity'.default.GuaranteeChosenInMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
+	{
+		// Guaranteed on this mission
+		return 100;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
 // Copied from XCGS_MissionSite.UpdateShadowChamberStrings()
 static function UpdateShadowChamberStrings(XComGameState_MissionSite MissionState)
 {
@@ -524,6 +640,7 @@ static function int GetMissionAlertLevel(XComGameState_MissionSite MissionSite)
 	{
 		AlertLevel ++;
 	}
+
 	return AlertLevel;
 }
 
@@ -784,3 +901,7 @@ function bool ShouldBeVisible()
     return false;
 }
 
+defaultproperties
+{
+	CHOSEN_SPAWN_TAG_SUFFIX="_LWOTC_ChosenTag"
+}
