@@ -465,7 +465,6 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 static function ModifyAlertByMaybeAddingChosenToMission(XComGameState_MissionSite MissionState, out int AlertLevel)
 {
 	local XComGameStateHistory History;
-	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
@@ -491,7 +490,6 @@ static function ModifyAlertByMaybeAddingChosenToMission(XComGameState_MissionSit
 
 	if (AlienHQ.bChosenActive)
 	{
-		XComHQ = `XCOMHQ;
 		AllChosen = AlienHQ.GetAllChosen(, true);
 
 		foreach AllChosen(ChosenState)
@@ -508,10 +506,11 @@ static function ModifyAlertByMaybeAddingChosenToMission(XComGameState_MissionSit
 
 			// Roll for whether this Chosen will appear on this mission.
 			`LWTrace("Rolling for Chosen on mission " $ MissionState.GeneratedMission.Mission.MissionName);
-			if (`SYNC_RAND_STATIC(100) < GetChosenAppearanceChance(ChosenState, MissionState))
+			if (`SYNC_RAND_STATIC(100) < GetChosenAppearanceChance(ChosenState, MissionState) &&
+					MissionState.TacticalGameplayTags.Find(ChosenSpawningTag) == INDEX_NONE)
 			{
 				`LWTrace("    Chosen added!");
-				XComHQ.TacticalGameplayTags.AddItem(ChosenSpawningTag);
+				MissionState.TacticalGameplayTags.AddItem(ChosenSpawningTag);
 
 				///Make Chosen Decrease the Alert level;
 				AlertLevel += default.CHOSEN_APPEARANCE_ALERT_MOD;
