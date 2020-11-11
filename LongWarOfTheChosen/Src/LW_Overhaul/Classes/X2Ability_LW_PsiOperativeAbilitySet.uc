@@ -68,7 +68,8 @@ static function X2AbilityTemplate AddSolace_LWAbility()
 	local X2Condition_UnitProperty              EnemyCondition;
 	local X2Condition_UnitProperty              FriendCondition;
 	local X2Condition_Solace_LW					SolaceCondition;
-    local X2Effect_StunRecover StunRecoverEffect;
+	local X2Effect_RestoreActionPoints			RestoreApEffect;
+	local X2Effect_StunRecover					StunRecoverEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Solace_LW');
 
@@ -124,7 +125,9 @@ static function X2AbilityTemplate AddSolace_LWAbility()
 	Template.AddTargetEffect(MindControlRemovalEffect);
 
 	// Solace recovers action points like Revival Protocol
-	Template.AddTargetEffect(new class'X2Effect_RestoreActionPoints');
+	RestoreApEffect = new class'X2Effect_RestoreActionPoints';
+	RestoreApEffect.TargetConditions.AddItem(new class'X2Condition_RevivalProtocolRestoreActionPoints_LW');
+	Template.AddTargetEffect(RestoreApEffect);
 
     Template.ActivationSpeech = 'Inspire';
     Template.bShowActivation = true;

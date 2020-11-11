@@ -14,7 +14,7 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
     TargetUnit = XComGameState_Unit(kTarget);
     if (TargetUnit == none) return 'AA_NotAUnit';
 
-    if (TargetUnit.IsStunned() || TargetUnit.StunnedActionPoints > 0)
+    if (TargetUnit.IsStunned() || TargetUnit.StunnedActionPoints > 0 || TargetUnit.StunnedThisTurn > 0)
     {
         return 'AA_Success';
     }
