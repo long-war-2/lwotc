@@ -1023,6 +1023,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		UnitPropertyCondition = new class 'X2Condition_UnitProperty';
 		UnitPropertyCondition.ExcludeLargeUnits = true;
+		UnitPropertyCondition.ExcludeFriendlyToSource = false;
 		Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 		Template.AdditionalAbilities.AddItem('StasisShield');
 		Template.PrerequisiteAbilities.AddItem('Fuse');
