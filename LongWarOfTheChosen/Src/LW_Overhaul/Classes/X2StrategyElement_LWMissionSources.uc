@@ -11,18 +11,20 @@ struct MissionTypeSitRepExclusions
 	var array<string> SitRepNames;
 };
 
-struct SitRepWeight
+struct SitRepChance
 {
 	var name SitRepName;
-	var float Weight;
+	var float Chance;    // 0.0 - 1.0 (percentage chance)
+	var int Priority;       // Used for sorting, lower number == earlier in the array
 };
 
 // LWOTC: Base chance for a mission to have a sit rep
 var config float SIT_REP_CHANCE;
 var config float DARK_EVENT_SIT_REP_CHANCE;
 
-// Custom weights for certain sit reps. Default weight is 1.0.
-var config array<SitRepWeight> SIT_REP_WEIGHTS;
+// Special sit reps that are rolled separately from the standard mechanism
+// to ensure that they occur more frequently than they would otherwise do.
+var config array<SitRepChance> SPECIAL_SIT_REPS;
 
 // LWOTC: Prevent certain sit reps on various mission types. A sit rep of
 // '*' means "all sit reps".
@@ -148,8 +150,14 @@ static function int GenericGetMissionDifficulty(XComGameState_MissionSite Missio
 //
 // Gets a list of sit reps that can be applied to the given mission. It checks for
 // any dark events that are active that might add a sit rep and if there are, rolls
-// for one of those (so you might get 0 or 1 dark event sit reps). The function then
-// does a standard roll for any other sit rep that's available.
+// for one of those (so you might get 0 or 1 dark event sit reps).
+//
+// Next, it checks a list of special, limited sit reps such as Alien-Ruler ones. This
+// is used to typically handle sit reps with restrictions that mean the card manager
+// approach rarely picks them.
+//
+// Finally, if no special sit rep has been selected, the function then does a standard
+// roll for any other sit rep that's available using the standard card manager approach.
 static function array<name> GetValidSitReps(XComGameState_MissionSite MissionState)
 {
 	local X2CardManager CardMgr;
@@ -160,21 +168,18 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	local array<name> ActiveSitReps, ActiveSitRepDarkEvents;
 	local string SitRepLabel;
 	local name SitRepName;
-	local int SitRepIndex;
+	local bool AddMoreSitReps;
 
 	CardMgr = class'X2CardManager'.static.GetCardManager();
 	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
 	ActiveSitReps.Length = 0;
+	AddMoreSitReps = true;
 
 	// Create SitRep Deck, have to do each time in case more were added
 	foreach SitRepMgr.IterateTemplates(DataTemplate, class'X2StrategyElement_DefaultMissionSources'.static.StrategySitrepsFilter)
 	{
 		SitRepTemplate = X2SitRepTemplate(DataTemplate);
-		SitRepIndex = default.SIT_REP_WEIGHTS.Find('SitRepName', SitRepTemplate.DataName);
-		CardMgr.AddCardToDeck(
-			'SitReps',
-			string(SitRepTemplate.DataName),
-			SitRepIndex != INDEX_NONE ? default.SIT_REP_WEIGHTS[SitRepIndex].Weight : 1.0f);
+		CardMgr.AddCardToDeck('SitReps', string(SitRepTemplate.DataName));
 	}
 
 	// LWOTC: Find any active dark events that have associated sit reps and
@@ -184,19 +189,33 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	if (SitRepName != '')
 		ActiveSitReps.AddItem(SitRepName);
 
-	if (!ShouldAddSitRepToMission(MissionState))
-		return ActiveSitReps;
-
-	// Grab the next valid SitRep from the deck
-	ValidationData = new class'XComLWTuple';
-	ValidationData.Data[0].an = ActiveSitReps;
-	ValidationData.Data[1].o = MissionState;
-	CardMgr.SelectNextCardFromDeck('SitReps', SitRepLabel, ValidateSitRepForMission, ValidationData);
-
-	if (SitRepLabel != "")
+	SitRepName = PickSpecialSitRep(MissionState);
+	if (SitRepName != '' && AddMoreSitReps)
 	{
-		ActiveSitReps.AddItem(name(SitRepLabel));
+		// A special sit rep has been selected, so add it to the list of active
+		// sit reps and return so we don't add a normal sit rep on top.
+		ActiveSitReps.AddItem(SitRepName);
+		AddMoreSitReps = false;
 	}
+
+	AddMoreSitReps = AddMoreSitReps && ShouldAddRandomSitRepToMission(MissionState);
+
+	if (AddMoreSitReps)
+	{
+		// Grab the next valid SitRep from the deck
+		ValidationData = new class'XComLWTuple';
+		ValidationData.Data[0].an = ActiveSitReps;
+		ValidationData.Data[1].o = MissionState;
+		CardMgr.SelectNextCardFromDeck('SitReps', SitRepLabel, ValidateSitRepForMission, ValidationData);
+
+		if (SitRepLabel != "")
+		{
+			ActiveSitReps.AddItem(name(SitRepLabel));
+		}
+	}
+
+	// Allow mods to modify the active sit rep list
+	TriggerOverrideMissionSitReps(MissionState, ActiveSitReps);
 
 	return ActiveSitReps;
 }
@@ -280,9 +299,88 @@ static function name GetSitRepNameForDarkEvent(name DarkEventName)
 	return DarkEventName == 'DarkEvent_LostWorld' ? 'TheLost' : name(Repl(DarkEventName, "_", "") $ "SitRep");
 }
 
-static function bool ShouldAddSitRepToMission(XComGameState_MissionSite MissionState)
+// Iterates through the list of special sit reps, checking each one for
+// whether it can be applied to the given mission and if so, rolling for
+// it. As soon as a sit rep is successfully rolled, this function returns
+// its name, skipping any remaining special sit reps.
+//
+// Returns an empty name if no successful roll was made.
+static function name PickSpecialSitRep(XComGameState_MissionSite MissionState)
 {
-	return `SYNC_FRAND_STATIC() < default.SIT_REP_CHANCE;
+	local SitRepChance SitRepWithChance;
+
+	// Make sure the special sit reps are ordered first. This allows mods to influence
+	// the priority of their own special sit reps without having to mess around with
+	// the array.
+	default.SPECIAL_SIT_REPS.Sort(CompareByPriority);
+
+	foreach default.SPECIAL_SIT_REPS(SitRepWithChance)
+	{
+		if (IsSitRepValidForMission(SitRepWithChance.SitRepName, MissionState) &&
+				`SYNC_FRAND_STATIC() < SitRepWithChance.Chance)
+		{
+			return SitRepWithChance.SitRepName;
+		}
+	}
+
+	// No special sit rep rolled
+	return '';
+}
+
+static function int CompareByPriority(SitRepChance SitRepWithChanceA, SitRepChance SitRepWithChanceB)
+{
+	return SitRepWithChanceB.Priority - SitRepWithChanceA.Priority;
+}
+
+// Determines whether a random sit rep should be added to the given mission.
+// Mods can override the default behaviour of a simple random chance using
+// the following event:
+/// ```event
+/// EventID: OverrideRandomSitRepChance_LW,
+/// EventData: [ inout bool DoAddSitRep ],
+/// EventSource: XComGameState_MissionSite,
+/// NewGameState: no
+/// ```
+/// You should use ELD_Immediate for your listeners for this event.
+static function bool ShouldAddRandomSitRepToMission(XComGameState_MissionSite MissionState)
+{
+	local XComLWTuple Tuple;
+
+	Tuple = new class'XComLWTuple';
+	Tuple.Id = 'OverrideRandomSitRepChance_LW';
+	Tuple.Data.Add(1);
+	Tuple.Data[0].Kind = XComLWTVBool;
+
+	// Default to a simple random chance
+	Tuple.Data[0].b = `SYNC_FRAND_STATIC() < default.SIT_REP_CHANCE;
+
+	`XEVENTMGR.TriggerEvent(Tuple.Id, Tuple, MissionState);
+
+	return Tuple.Data[0].b;
+}
+
+// Fires an event that allows mods to modify the active list of sit reps
+// chosen for the given mission using the following event:
+/// ```event
+/// EventID: OverrideMissionSitReps_LW,
+/// EventData: [ inout array<name> ActiveSitReps ],
+/// EventSource: XComGameState_MissionSite,
+/// NewGameState: no
+/// ```
+/// You should use ELD_Immediate for your listeners for this event.
+static function TriggerOverrideMissionSitReps(XComGameState_MissionSite MissionState, out array<name> ActiveSitReps)
+{
+	local XComLWTuple Tuple;
+
+	Tuple = new class'XComLWTuple';
+	Tuple.Id = 'OverrideMissionSitReps_LW';
+	Tuple.Data.Add(1);
+	Tuple.Data[0].Kind = XComLWTVArrayNames;
+	Tuple.Data[0].an = ActiveSitReps;
+
+	`XEVENTMGR.TriggerEvent(Tuple.Id, Tuple, MissionState);
+
+	ActiveSitReps = Tuple.Data[0].an;
 }
 
 // Checks whether the sit rep with the given name can be applied to the given
