@@ -5216,9 +5216,9 @@ LocPromotionPopupText="<Bullet/> .<br/>"
 LocFriendlyName="Blood Trail"
 LocLongDescription="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage if the target has been wounded this turn. Also applies a non-stacking bleeding effect."
 LocHelpText="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage if the target has been wounded this turn. Also applies a non-stacking bleeding effect."
-; LWOTC Needs Translation 2
-LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> The bleeding effect does 1 point of damage for the next two turns.<br/><Bullet/> Subsequent shots just refresh the bleeding duration to 2 turns.<br/><Bullet/> Works on throwing knives as well as the primary weapon.<br/>"
-; End Translation 2
+; LWOTC Needs Translation 3
+LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> The bleeding effect does 1 point of damage for each of the next two turns.<br/><Bullet/> Subsequent shots just refresh the bleeding duration to 2 turns.<br/><Bullet/> The bleed effect, but not the bonus damage, works on throwing knives as well as the primary weapon.<br/>"
+; End Translation 3
 
 [RemoteStart X2AbilityTemplate]
 LocFriendlyName="Remote Start"
