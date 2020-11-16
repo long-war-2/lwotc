@@ -54,14 +54,11 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'BondmateTeamwork_Improved':
 			UpdateTeamwork(Template);
 			break;
+		case 'BondmateSolaceCleanse':
+			FixBondmateCleanse(Template);
+			break;
 		case 'LostHeadshotInit':
 			DisableLostHeadshot(Template);
-			break;
-		case 'ShadowPassive':
-			// Disabling the reduced crit chance when in Shadow for now, but
-			// leaving the code in case we want to do something similar or
-			// reintroduce it.
-			// UpdateShadow(Template);
 			break;
 		case 'Bayonet':
 			UpdateBayonet(Template);
@@ -420,26 +417,16 @@ static function UpdateTeamwork(X2AbilityTemplate Template)
 	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
 }
 
-// Make Shadow apply a debuff to crit chance when the Reaper is in concealment.
-static function UpdateShadow(X2AbilityTemplate Template)
+// Make sure that the bondmate "Solace" effect clears the stunned
+// status properly, as the vanilla ability does not.
+static function  FixBondmateCleanse(X2AbilityTemplate Template)
 {
-	local X2Effect_ToHitModifier ToHitModifier;
-	local X2Condition_UnitProperty ConcealedCondition;
-	local X2Condition_Visibility VisCondition;
+	local X2Effect_StunRecover StunRecoverEffect;
 
-	VisCondition = new class'X2Condition_Visibility';
-	VisCondition.bExcludeGameplayVisible = true;
-
-	ConcealedCondition = new class'X2Condition_UnitProperty';
-	ConcealedCondition.IsConcealed = true;
-
-	ToHitModifier = new class'X2Effect_ToHitModifier';
-	ToHitModifier.BuildPersistentEffect(1, true, false, false);
-	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.SHADOW_CRIT_MODIFIER, Template.LocFriendlyName,, false /* Melee */);
-	ToHitModifier.ToHitConditions.AddItem(VisCondition);
-	ToHitModifier.ToHitConditions.AddItem(ConcealedCondition);
-
-	Template.AddTargetEffect(ToHitModifier);
+	// Note that this effect restores action points to the stunned unit
+	StunRecoverEffect = class'X2StatusEffects'.static.CreateStunRecoverEffect();
+	StunRecoverEffect.TargetConditions.AddItem(new class'X2Condition_IsStunned_LW');
+	Template.AddTargetEffect(StunRecoverEffect);
 }
 
 static function UpdateBayonet(X2AbilityTemplate Template)
