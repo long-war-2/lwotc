@@ -24,14 +24,9 @@ simulated function bool CanMakeContact()
 	return (class'UIUtilities_Strategy'.static.GetXComHQ().IsContactResearched() && (GetRegion().ResistanceLevel == eResLevel_Unlocked));
 }
 
-simulated function bool CanMakeRadioRelay()
+simulated function bool IsContacted()
 {
-	return (class'UIUtilities_Strategy'.static.GetXComHQ().IsOutpostResearched() && (GetRegion().ResistanceLevel == eResLevel_Contact));
-}
-
-simulated function bool IsRadioRelayInstalled()
-{
-	return (GetRegion().ResistanceLevel == eResLevel_Outpost);
+	return ((GetRegion().ResistanceLevel == eResLevel_Contact) || (GetRegion().ResistanceLevel == eResLevel_Outpost));
 }
 
 /* Issue # 815 : KDM : When using a controller, UIStrategyMap continuously calls UpdateSelection() --> SelectMapItemNearestLocation().
@@ -49,14 +44,13 @@ simulated function bool IsSelectable()
 {
 	// KDM : The region is selectable if any of these conditions are true :
 	// 1.] It is contactable, regardless of whether contacting has commenced.
-	// 2.] It has been contacted, and a radio relay can be built, regardless of whether this building process has actually commenced.
-	// 3.] It has a radio relay installed.
+	// 2.] It has been contacted, regardless of its radio relay status.
 	//
 	// The region is not selectable if any of these conditions are true : 
 	// 1.] It can't be contacted due to insufficient research level. 
 	// 2.] It is too far away.
 	
-	return (CanMakeContact() || CanMakeRadioRelay() || IsRadioRelayInstalled());
+	return (CanMakeContact() || IsContacted());
 }
 
 simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntity Entity)
