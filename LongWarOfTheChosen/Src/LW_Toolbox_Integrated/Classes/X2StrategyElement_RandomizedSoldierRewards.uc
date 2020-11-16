@@ -13,27 +13,23 @@ static function GenerateCouncilSoldierReward(XComGameState_Reward RewardState, X
 	local XComGameStateHistory History;
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_Unit NewUnitState;
-	local int CapturedSoldierIndex;
+	local StateObjectReference CapturedSoldierRef;
 
 	History = `XCOMHISTORY;
 
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 
 	// first check if the aliens have captured one of our soldiers. If so, then they get to be the reward
-	if(AlienHQ.CapturedSoldiers.Length > 0)
+	CapturedSoldierRef = FindAvailableCapturedSoldier(AlienHQ.CapturedSoldiers);
+	if (CapturedSoldierRef.ObjectID != 0)
 	{
-		// pick a soldier to rescue
-		CapturedSoldierIndex = class'Engine'.static.GetEngine().SyncRand(AlienHQ.CapturedSoldiers.Length, "GenerateSoldierReward");
-
 		// mark the soldier is uncaptured
-		NewUnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', AlienHQ.CapturedSoldiers[CapturedSoldierIndex].ObjectID));
+		NewUnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', CapturedSoldierRef.ObjectID));
 		NewUnitState.bCaptured = false;
-		NewGameState.AddStateObject(NewUnitState);
 
 		// remove the soldier from the captured unit list
-		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.CreateStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
-		AlienHQ.CapturedSoldiers.Remove(CapturedSoldierIndex, 1);
-		NewGameState.AddStateObject(AlienHQ);
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+		AlienHQ.CapturedSoldiers.RemoveItem(CapturedSoldierRef);
 
 		RewardState.RewardObjectReference = NewUnitState.GetReference();
 	}
@@ -42,6 +38,38 @@ static function GenerateCouncilSoldierReward(XComGameState_Reward RewardState, X
 		// somehow the soldier to be rescued has been pulled out from under us! Generate one as a fallback.
 		GeneratePersonnelReward(RewardState, NewGameState, RewardScalar, RegionRef);
 	}
+}
+
+// Attempts to pick a soldier at random from the given array. If the first attempt
+// produces a soldier that can already be rescued from an existing mission or covert
+// action, then this iterates through all the soldiers and tries each one.
+//
+// If no such soldier can be found, this returns an empty reference, i.e. the `ObjectID`
+// is zero. This is also the result if the given array is empty.
+static function StateObjectReference FindAvailableCapturedSoldier(array<StateObjectReference> CapturedSoldiers)
+{
+	local StateObjectReference EmptyStateRef;
+	local int CapturedSoldierIndex;
+
+	if (CapturedSoldiers.Length == 0) return EmptyStateRef;
+
+	// Pick a soldier to rescue
+	CapturedSoldierIndex = class'Engine'.static.GetEngine().SyncRand(CapturedSoldiers.Length, "GenerateSoldierReward");
+
+	// Check whether the soldier is already attached as a mission or covert action reward
+	if (!class'Helpers_LW'.static.IsRescueMissionAvailableForSoldier(CapturedSoldiers[CapturedSoldierIndex]))
+	{
+		return CapturedSoldiers[CapturedSoldierIndex];
+	}
+
+	// This soldier is already linked to a rescue mission/CA, so try the others
+	for (CapturedSoldierIndex = 0; CapturedSoldierIndex < CapturedSoldiers.Length; CapturedSoldierIndex++)
+	{
+		if (!class'Helpers_LW'.static.IsRescueMissionAvailableForSoldier(CapturedSoldiers[CapturedSoldierIndex]))
+			return CapturedSoldiers[CapturedSoldierIndex];
+	}
+
+	return EmptyStateRef;
 }
 
 static function GeneratePersonnelReward(XComGameState_Reward RewardState, XComGameState NewGameState, optional float RewardScalar = 1.0, optional StateObjectReference RegionRef)

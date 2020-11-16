@@ -513,6 +513,10 @@ function UpdateRewardTemplate(X2StrategyElementTemplate Template, int Difficulty
 		case 'Reward_FindFarthestFaction':
 			UpdateFactionSoldierReward(RewardTemplate, class'X2LWCovertActionsModTemplate'.default.FIND_THIRD_FACTION_REQ_RANK - 1);
 			break;
+		case 'Reward_RescueSoldier':
+			RewardTemplate.IsRewardAvailableFn = IsRescueSoldierRewardAvailableFixed;
+			RewardTemplate.GenerateRewardFn = GenerateRescueSoldierRewardFixed;
+			break;
 		default:
 			break;
 	}
@@ -528,6 +532,71 @@ static function UpdateFactionSoldierReward(X2RewardTemplate Template, int Soldie
 	FnWrapper.SoldierRank = SoldierRank;
 	FnWrapper.OriginalDelegateFn = Template.GiveRewardFn;
 	Template.GiveRewardFn = FnWrapper.GiveFactionSoldierReward;
+}
+
+// This is a modified version of `X2StrategyElement_XpackRewards.IsRescueSoldierRewardAvailable()`
+// that adds a check for whether captured solders are already rewards on
+// existing missions or covert actions.
+static function bool IsRescueSoldierRewardAvailableFixed(
+	optional XComGameState NewGameState,
+	optional StateObjectReference AuxRef)
+{
+	local XComGameStateHistory History;
+	local XComGameState_CampaignSettings CampaignSettings;
+	local XComGameState_ResistanceFaction FactionState;
+	local XComGameState_AdventChosen ChosenState;
+	local StateObjectReference CapturedSoldierRef;
+	
+	History = `XCOMHISTORY;
+
+	// If the XPack narrative is turned on, only allow a normal Rescue Soldier once Mox has been rescued
+	CampaignSettings = XComGameState_CampaignSettings(History.GetSingleGameStateObjectForClass(class'XComGameState_CampaignSettings'));
+	if (!CampaignSettings.bXPackNarrativeEnabled || class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('XP0_M4_RescueMoxComplete'))
+	{
+		FactionState = class'X2StrategyElement_DefaultRewards'.static.GetFactionState(NewGameState, AuxRef);
+		if (FactionState != none)
+		{
+			ChosenState = FactionState.GetRivalChosen();
+			if (ChosenState.bMetXCom)
+			{
+				// Check whether any of the captured soldiers is *not* a reward
+				// for an existing mission or covert action
+				foreach ChosenState.CapturedSoldiers(CapturedSoldierRef)
+				{
+					if (!class'Helpers_LW'.static.IsRescueMissionAvailableForSoldier(CapturedSoldierRef))
+						return true;
+				}
+			}
+		}
+		else
+		{
+			`Redscreen("@jweinhoffer RescueSoldierReward not available because FactionState was not found");
+		}
+	}
+
+	return false;
+}
+
+// This is a modified version of `X2StrategyElement_XpackRewards.GenerateRescueSoldierReward()`
+// that adds a check for whether captured solders are already rewards on
+// existing missions or covert actions.
+static function GenerateRescueSoldierRewardFixed(XComGameState_Reward RewardState, XComGameState NewGameState, optional float RewardScalar = 1.0, optional StateObjectReference ActionRef)
+{
+	local XComGameState_CovertAction ActionState;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_Unit UnitState;
+	local StateObjectReference CapturedSoldierRef;
+
+	ActionState = XComGameState_CovertAction(NewGameState.GetGameStateForObjectID(ActionRef.ObjectID));
+	ChosenState = ActionState.GetFaction().GetRivalChosen();
+	
+	// pick a soldier to rescue and save as the Reward - we're relying on
+	// FindAvailableCapturedSoldier() actually returning reward reference
+	// on the basis that `IsRewardAvailableFn` returned true.
+	CapturedSoldierRef = class'X2StrategyElement_RandomizedSoldierRewards'.static.FindAvailableCapturedSoldier(ChosenState.CapturedSoldiers);
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CapturedSoldierRef.ObjectID));
+	RewardState.RewardObjectReference = UnitState.GetReference();
+	RewardState.RewardString = UnitState.GetName(eNameType_RankFull);
 }
 
 // Update QuestItemTemplates to include the new _LW MissionTypes

@@ -525,6 +525,72 @@ static function bool HasSoldierAbility(XComGameState_Unit Unit, name Ability, op
 	return false;
 }
 
+// Determines whether a mission or covert action has spawned that has the
+// given (captured) soldier as a reward. If there is such a mission or covert
+// action, even one that is in progress, this returns `true`.
+static function bool IsRescueMissionAvailableForSoldier(StateObjectReference CapturedSoldierRef)
+{
+	local XComGameStateHistory History;
+	local XComGameState_ResistanceFaction FactionState;
+	local XComGameState_MissionSite MissionState;
+	local XComGameState_CovertAction ActionState;
+	local XComGameState_Reward RewardState;
+	local StateObjectReference StateRef;
+
+	// First check normal LWOTC missions to see whether any has the captured soldier
+	// as a reward
+	History = `XCOMHISTORY;
+	foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+	{
+		foreach MissionState.Rewards(StateRef)
+		{
+			RewardState = XComGameState_Reward(History.GetGameStateForObjectID(StateRef.ObjectID));
+			if (RewardState.RewardObjectReference.ObjectID == CapturedSoldierRef.ObjectID)
+				return true;
+		}
+	}
+
+	// No normal missions were found, so check the covert action that's currently running,
+	// if there is one
+	ActionState = class'XComGameState_HeadquartersResistance'.static.GetCurrentCovertAction();
+	if (ActionState != none && CovertActionHasReward(ActionState, CapturedSoldierRef))
+	{
+		return true;
+	}
+
+	// Finally check all available covert actions	
+	foreach History.IterateByClassType(class'XComGameState_ResistanceFaction', FactionState)
+	{
+		foreach FactionState.CovertActions(StateRef)
+		{
+			ActionState = XComGameState_CovertAction(History.GetGameStateForObjectID(StateRef.ObjectID));
+			if (ActionState != none && CovertActionHasReward(ActionState, CapturedSoldierRef))
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+// Determines whether the given covert action has the given reward
+// attached. Returns true if the covert action does have that reward.
+static function bool CovertActionHasReward(XComGameState_CovertAction ActionState, StateObjectReference RewardRef)
+{
+	local XComGameStateHistory History;
+	local XComGameState_Reward RewardState;
+	local int i;
+
+	History = `XCOMHISTORY;
+	for (i = 0; i < ActionState.RewardRefs.Length; ++i)
+	{
+		RewardState = XComGameState_Reward(History.GetGameStateForObjectID(ActionState.RewardRefs[i].ObjectID));
+		if (RewardState.RewardObjectReference.ObjectID == RewardRef.ObjectID)
+			return true;
+	}
+}
+
 defaultproperties
 {
 	CA_FAILURE_RISK_MARKER="CovertActionRisk_Failure"
