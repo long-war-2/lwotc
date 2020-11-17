@@ -2292,7 +2292,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	local X2GremlinTemplate GremlinTemplate;
 	local delegate<X2StrategyGameRulesetDataStructures.SpecialRequirementsDelegate> SpecialRequirement;
 	local X2Effect_Persistent Effect;
-
+	local UIStatMarkup Markup;
 	// Reconfig Weapons and Weapon Schematics
 	WeaponTemplate = X2WeaponTemplate(Template);
 	if (WeaponTemplate != none)
@@ -2386,7 +2386,6 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		WeaponTemplate.BaseDamage = default.WARLOCKPSIM4_BASEDAMAGE;
 		WeaponTemplate.Abilities.RemoveItem('SpectralArmyM4');
 		WeaponTemplate.Abilities.RemoveItem('CorressM4');
-	
 		break;
 
 		case 'ChosenRifle_XCOM':
@@ -2415,7 +2414,6 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenShotgun_XCOM':
 			WeaponTemplate.Abilities.AddItem('ChosenLowProfile');
 			WeaponTemplate.Abilities.AddItem('Vampirism_LW');
-
 			WeaponTemplate.OnAcquiredFn = none;
 			break;
 		case 'ChosenSniperPistol_XCOM':

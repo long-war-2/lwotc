@@ -130,6 +130,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'ChosenEngaged':
 			MakeChosenInstantlyEngagedAndRemoveTimerPause(Template);
+			break;
 		case 'TeleportAlly':
 			BuffTeleportAlly(Template);
 			break;
@@ -153,6 +154,14 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'LightningReflexes_LW':
 			Template.ChosenExcludeTraits.AddItem('ShadowStep');
+			break;
+		case 'Slash_LW':
+		case 'SwordSlice_LW':
+			Template.PostActivationEvents.AddItem('SlashActivated');
+			break;
+		case 'DisruptorRifleCrit':
+			Template.bDisplayInUITooltip = true;
+			Template.bDisplayInUITacticalText = true;
 			break;
 		default:
 			break;

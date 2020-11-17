@@ -6135,6 +6135,104 @@ LocLongDescription="Researching powered armor has given our resistance soldiers 
 LocHelpText="Researching powered armor has given our resistance soldiers even better protection."
 LocFlyOverText="Advanced Alloy Vest"
 
+[ChosenRifle_XCOM X2WeaponTemplate]
+FriendlyName="Disruptor Rifle"
+FriendlyNamePlural="Disruptor Rifles"
+BriefSummary="Despite his fixation on Psionic power, even the Chosen Warlock carried a more traditional weapon in times of need."
+TacticalText="<Bullet/> The Disruptor rifle shots are free as long as the shot is a crit.\n<Bullet/> <Bullet/> The Disruptor rifle has higher critical chance against other psionic units.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n"
+AbilityDescName="assault rifle"
+
+[ChosenShotgun_XCOM X2WeaponTemplate]
+FriendlyName="Arashi"
+FriendlyNamePlural="Arashis"
+BriefSummary="The Chosen Assassin's failsafe weapon, in close quarters it is no less dangerous than her sword."
+TacticalText="<Bullet/> The Arashi Allows the wearer to heal injuries by dealing damage, and is more accurate than most shotguns at longer ranges.\n<Bullet/> Shotgun-style weapons are very effective at close range, but their accuracy drops off quickly at longer range.\n"
+AbilityDescName="shotgun"
+
+[ChosenSword_XCOM X2WeaponTemplate]
+FriendlyName="Katana"
+FriendlyNamePlural="Katanas"
+BriefSummary="The prized weapon of the Chosen Assassin, forged by hands not of this Earth. It is said to grow stronger when consuming the blood of its enemies."
+TacticalText="<Bullet/> The Katana starts at low damage, gets a temporary damage bonus each time it hits."
+AbilityDescName="sword"
+
+[ChosenSniperRifle_XCOM X2WeaponTemplate]
+FriendlyName="Darklance"
+FriendlyNamePlural="Darklances"
+BriefSummary="This rifle belonging to the Chosen Hunter has probably seen more death than we can possibly imagine."
+TacticalText="<Bullet/>This rifle is capable of insane burst damage against units that have been marked for death.<br/> <Bullet/>However because of its size it has proven to be difficult to reload for our operatives.<br/>"
+AbilityDescName="sniper rifle"
+
+[ChosenSniperPistol_XCOM X2WeaponTemplate]
+FriendlyName="Darkclaw"
+FriendlyNamePlural="Darkclaws"
+BriefSummary="Although it would almost appear to mimic the design of traditional revolvers found on Earth, the technology involved here is anything but conventional."
+TacticalText="<Bullet/> The Darkclaw is an extremely powerful pistol against wounded enemies."
+AbilityDescName="pistol"
+
+[XCOMBloodThirst_LW X2AbilityTemplate]
+LocFriendlyName="Blood Thirst"
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocFlyOverText="Blood Thirst"
+
+[XCOMBloodThirstPassive_LW X2AbilityTemplate]
+LocFriendlyName="Blood Thirst"
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
+LocFlyOverText="Blood Thirst"
+
+[OverbearingSuperiority_LW X2AbilityTemplate]
+LocFriendlyName="Overbearing Superiority"
+LocLongDescription="Whenever you get a critical hit with your primary weapon, your actions are refunded."
+LocHelpText="whenever you get a critical hit with your primary weapon, your actions are refunded."
+LocFlyOverText="Overbearing Superiority"
+
+[DisruptorRifleCrit X2AbilityTemplate]
+LocFriendlyName="Wrath Against Unworthy"
+LocLongDescription="Gain +20 crit against psionic units."
+LocHelpText="Gain +20 crit against psionic units."
+LocFlyOverText="Wrath Against Unworthy"
+
+[XCOMHunterMark_LW X2AbilityTemplate]
+LocFriendlyName="Mark For Death"
+LocLongDescription="Mark a target for death, granting your shots against that unit to be refunded. Effect Lasts till XCOM's next turn."
+LocHelpText="Mark a target for death, granting your shots against that unit to be refunded."
+LocFlyOverText="Mark For Death"
+
+[Fatality_LW X2AbilityTemplate]
+LocFriendlyName="Fatality"
+LocLongDescription="Gain +100 aim and crit against units at 35%hp or lower with your <Ability:WeaponName/>"
+LocHelpText="Gain +100 aim and crit against units at 35%hp or lower with your <Ability:WeaponName/>"
+LocFlyOverText="Fatality"
+
+[Vampirism_LW X2AbilityTemplate]
+LocFriendlyName="Vampirism"
+LocLongDescription="Dealing damage with this weapon heals you for the same amount."
+LocHelpText="Dealing damage with this weapon heals you for the same amount."
+LocFlyOverText="Vampirism"
+
+[VampirismPassive_LW X2AbilityTemplate]
+LocFriendlyName="Vampirism"
+LocLongDescription="Dealing damage with this weapon heals you for the same amount."
+LocHelpText="Dealing damage with this weapon heals you for the same amount."
+LocFlyOverText="Vampirism"
+
+[ChosenLowProfile X2AbilityTemplate]
+LocFriendlyName="Agile"
+LocLongDescription="Gain a stackable defence bonus after taking damage for this turn."
+LocHelpText="Gain a stackable defence bonus after taking damage for this turn."
+
+[ChosenLowProfileTrigger X2AbilityTemplate]
+LocFriendlyName="Agile"
+LocLongDescription="Gain a stackable defence bonus after taking damage for this turn."
+LocHelpText="Gain a stackable defence bonus after taking damage for this turn."
+
+[ComplexReload_LW X2AbilityTemplate]
+LocFriendlyName="Complex Reload"
+LocHelpText="Reload your primary weapon. Ends turn."
+LocFlyOverText="Reloading"
+
 [XcomGame.X2StrategyGameRulesetDataStructures]
 [X2StrategyGameRulesetDataStructures]
 ComIntLabels[eComInt_Standard]="Very Low"
