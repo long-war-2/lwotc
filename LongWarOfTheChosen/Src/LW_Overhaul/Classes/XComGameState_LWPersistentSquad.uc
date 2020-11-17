@@ -609,7 +609,7 @@ function PostMissionRevertSoldierStatus(XComGameState NewGameState, XComGameStat
 					XComHQ.Projects.RemoveItem(PsiProjectState.GetReference());
 					NewGameState.RemoveStateObject(PsiProjectState.ObjectID);
 				}
-				else if (!UnitState.IsInjured()) // If the unit is uninjured, restart the training project automatically
+				else if (!UnitState.IsInjured() && UnitState.GetMentalState() == eMentalState_Ready) // If the unit is uninjured, restart the training project automatically
 				{
 					// Get the Psi Chamber facility and staff the unit in it if there is an open slot
 					FacilityState = XComHQ.GetFacilityByName('PsiChamber'); // Only one Psi Chamber allowed, so safe to do this
