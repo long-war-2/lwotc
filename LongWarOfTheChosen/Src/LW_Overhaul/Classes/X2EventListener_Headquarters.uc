@@ -10,6 +10,7 @@ var config array<float> CA_RISK_INCREASE_PER_FL;
 var config array<float> CA_AP_REWARD_SCALAR;
 var config array<float> CA_STD_REWARD_SCALAR;
 var config int CA_RISK_FL_CAP;
+var config int AMBUSH_RISK_PER_DIFFICULTY;
 
 var config int LISTENER_PRIORITY;
 
@@ -232,6 +233,9 @@ static function EventListenerReturn CAPreventRecordingOnFailure(
 // The chance of a covert action failure is adjusted by the ranks of the
 // soldiers on the covert action. The higher the rank, the lower the chance
 // of failure.
+//
+// The chance of ambush scales with the difficulty rating/level of the
+// covert action.
 static function EventListenerReturn CAAdjustRiskChance(
 	Object EventData,
 	Object EventSource,
@@ -252,6 +256,13 @@ static function EventListenerReturn CAAdjustRiskChance(
 	
 	CAState = XComGameState_CovertAction(EventSource);
 	if (CAState == none) return ELR_NoInterrupt;
+
+	// Modify the Ambush risk based on covert action difficulty
+	if (Tuple.Data[0].n == 'CovertActionRisk_Ambush')
+	{
+		Tuple.Data[4].i += (class'Helpers_LW'.static.GetCovertActionDifficulty(CAState) - 1) * default.AMBUSH_RISK_PER_DIFFICULTY;
+		return ELR_NoInterrupt;
+	}
 	
 	// We're only interested in altering the risk chance for the failure
 	// risk right now.

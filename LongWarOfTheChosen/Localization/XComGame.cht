@@ -2046,6 +2046,11 @@ ObjectiveTextPools[0]="在靈能訊號發射器上安置X4炸藥"
 ObjectiveTextPools[1]="摧毀動力繼電器，延遲傳輸"
 ObjectiveTextPools[2]="撤出所有XCOM特工"
 
+[DefaultCovertEscape_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="到達會合點"
+ObjectiveTextPools[1]="Extract at least one covert operative"
+ObjectiveTextPools[2]="撤離所有XCOM士兵"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="堅守到天際遊俠號撤離"
 ObjectiveTextPools[1]="將VIP撤離至指定地點"

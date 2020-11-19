@@ -2046,6 +2046,11 @@ ObjectiveTextPools[0]="사이오닉 송신기에 X4 폭탄 설치하기"
 ObjectiveTextPools[1]="전력 계전기를 무력화해 전송 지연시키기"
 ObjectiveTextPools[2]="모든 XCOM 요원 탈출시키기"
 
+[DefaultCovertEscape_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="접선 지점까지 도달하기"
+ObjectiveTextPools[1]="Extract at least one covert operative"
+ObjectiveTextPools[2]="모든 XCOM 병사 탈출시키기"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="스카이레인저가 퇴각할 때까지 턴 수"
 ObjectiveTextPools[1]="VIP를 목표 지점으로 탈출시키기"

@@ -583,7 +583,7 @@ function static XComGameState_Unit AddRebelSoldierToMission(StateObjectReference
     Proxy.SetVisibilityLocation(Tile);
     Player = FindPlayer(eTeam_XCom);
     Proxy.SetControllingPlayer(Player.GetReference());
-    AddUnitToXComGroup(NewGameState, Proxy, Player, History);
+    class'Helpers_LW'.static.AddUnitToXComGroup(NewGameState, Proxy, Player, History);
 
     Rules.InitializeUnitAbilities(NewGameState, Proxy);
     class'XGUnit'.static.CreateVisualizer(NewGameState, Proxy, Player, none);
@@ -631,7 +631,7 @@ function static XComGameState_Unit AddRebelToMission(StateObjectReference RebelR
     Proxy.SetVisibilityLocation(Tile);
     Player = FindPlayer(Team);
     Proxy.SetControllingPlayer(Player.GetReference());
-    AddUnitToXComGroup(NewGameState, Proxy, Player, History);
+    class'Helpers_LW'.static.AddUnitToXComGroup(NewGameState, Proxy, Player, History);
 
     if (Team == eTeam_Alien)
     {
@@ -648,32 +648,6 @@ function static XComGameState_Unit AddRebelToMission(StateObjectReference RebelR
     }
     Proxy.OnBeginTacticalPlay(NewGameState);
     return Proxy;
-}
-
-// Adds the given unit to the XCom (primary) initiative group, ensuring that the unit
-// is controllable by the player.
-function static AddUnitToXComGroup(XComGameState NewGameState, XComGameState_Unit Unit, XComGameState_Player Player, optional XComGameStateHistory History = None)
-{
-    local XComGameState_Unit CurrentUnit;
-    local XComGameState_AIGroup Group;
-
-    if (History == None)
-    {
-        History = `XCOMHISTORY;
-    }
-
-    // Need to search through all current units to find a squad member
-    // whose initiative group we can grab.
-    foreach History.IterateByClassType(class'XComGameState_Unit', CurrentUnit)
-    {
-        if (CurrentUnit.ControllingPlayer.ObjectID == Player.ObjectID)
-        {
-            // Found a squad member. Grab that unit's initiative group and add the
-            // liaison to it.
-            Group = CurrentUnit.GetGroupMembership();
-            Group.AddUnitToGroup(Unit.ObjectID, NewGameState);
-        }
-    }
 }
 
 /* Find the number of enemies that were on the original mission schedule.

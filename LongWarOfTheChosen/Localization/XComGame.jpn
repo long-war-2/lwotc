@@ -2046,6 +2046,11 @@ ObjectiveTextPools[0]="サイキック通信機にX4爆薬を設置する"
 ObjectiveTextPools[1]="パワーリレイを停止させて通信を遅らせる"
 ObjectiveTextPools[2]="XCOM兵士を全員撤収させる"
 
+[DefaultCovertEscape_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="合流地点に移動する"
+ObjectiveTextPools[1]="Extract at least one covert operative"
+ObjectiveTextPools[2]="XCOM兵を全員撤収させる"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="スカイレンジャー撤収までのターン数"
 ObjectiveTextPools[1]="指定地点でVIPを脱出させる"

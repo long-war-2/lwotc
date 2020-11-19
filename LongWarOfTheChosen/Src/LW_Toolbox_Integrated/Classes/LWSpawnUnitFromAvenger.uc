@@ -31,12 +31,24 @@ static function XComGameState_Unit SpawnUnitFromAvenger(StateObjectReference Uni
 	}
 }
 
+// Places the given strategy unit on the game board near the spawn zone
+static function XComGameState_Unit AddStrategyUnitToBoard(XComGameState_Unit Unit, XComGameStateHistory History, optional TTile SpawnTile)
+{
+	local Vector SpawnLocation;
+	
+	// pick a floor point at random to spawn the unit at
+	if (!ChooseSpawnLocation(SpawnLocation))
+	{
+		return none;
+	}
 
-// Places the given strategy unit on the game board
-static function XComGameState_Unit AddStrategyUnitToBoard(XComGameState_Unit Unit, XComGameStateHistory History)
+	return AddStrategyUnitToBoardAtLocation(Unit, History, SpawnLocation);
+}
+
+// Places the given strategy unit on the game board at a given location
+static function XComGameState_Unit AddStrategyUnitToBoardAtLocation(XComGameState_Unit Unit, XComGameStateHistory History, Vector SpawnLocation)
 {
 	local X2TacticalGameRuleset Rules;
-	local Vector SpawnLocation;
 	local XComGameStateContext_TacticalGameRule NewGameStateContext;
 	local XComGameState NewGameState;
 	local XComGameState_Player PlayerState;
@@ -47,12 +59,6 @@ static function XComGameState_Unit AddStrategyUnitToBoard(XComGameState_Unit Uni
 	local XComGameState_Unit UpdatedUnit;
 
 	if(Unit == none)
-	{
-		return none;
-	}
-
-	// pick a floor point at random to spawn the unit at
-	if(!ChooseSpawnLocation(SpawnLocation))
 	{
 		return none;
 	}
@@ -74,6 +80,10 @@ static function XComGameState_Unit AddStrategyUnitToBoard(XComGameState_Unit Uni
 			break;
 		}
 	}
+
+	// Make sure the unit is added to XCOM's initiative group, otherwise the
+	// player won't be able to control them.
+	class'Helpers_LW'.static.AddUnitToXComGroup(NewGameState, Unit, PlayerState, History);
 
 	// add item states. This needs to be done so that the visualizer sync picks up the IDs and
 	// creates their visualizers

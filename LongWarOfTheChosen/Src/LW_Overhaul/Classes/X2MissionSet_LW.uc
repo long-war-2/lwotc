@@ -20,6 +20,7 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddMissionTemplate('SupplyLineRaidConvoy_LW'));
     Templates.AddItem(AddMissionTemplate('DestroyRelay_LW'));
     Templates.AddItem(AddMissionTemplate('SabotageTransmitter_LW'));
+    Templates.AddItem(AddMissionTemplate('CovertEscape_LW'));
     Templates.AddItem(AddMissionTemplate('ProtectDevice_LW'));
     Templates.AddItem(AddMissionTemplate('ExtractVIP_LW'));
     Templates.AddItem(AddMissionTemplate('RescueVIP_LW'));

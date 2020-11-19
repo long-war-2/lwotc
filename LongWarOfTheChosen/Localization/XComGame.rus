@@ -2059,6 +2059,11 @@ ObjectiveTextPools[0]="Заложите заряды X4 у пси-передат
 ObjectiveTextPools[1]="Задержите передачу, отключив подстанции"
 ObjectiveTextPools[2]="Эвакуируйте всех агентов XCOM"
 
+[DefaultCovertEscape_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Доберитесь до места встречи"
+ObjectiveTextPools[1]="Extract at least one covert operative"
+ObjectiveTextPools[2]="Эвакуируйте всех солдат XCOM"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Ходов до отлета \"Рейнджера\""
 ObjectiveTextPools[1]="Эвакуируйте ВИПа с указанной площадки"

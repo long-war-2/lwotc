@@ -76,14 +76,17 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_RevealChosenMovements':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
 			CATemplate.Slots[0].iMinRank = default.FIRST_CHOSEN_CA_REQ_RANK;
+			ConfigureEasyCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RevealChosenStrengths':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
 			CATemplate.Slots[0].iMinRank = default.SECOND_CHOSEN_CA_REQ_RANK;  // Require a TSGT
+			ConfigureModerateCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RevealChosenStronghold':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
 			CATemplate.Slots[0].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require a MSGT
+			ConfigureHardCovertAction(CATemplate);
 			break;
 		default:
 			break;
@@ -104,25 +107,68 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		}
 	}
 
-	// Disable Ambush risk, since the Ambush mission is bad.
-	// TODO: Remove this code if and when the Ambush mission is updated to
-	// be more interesting/challenging.
-	CATemplate.Risks.RemoveItem('CovertActionRisk_Ambush');
+	// Disable Wounded risk, since the Ambush mission is more interesting
+	// and less frustrating to the player than a random wound.
+	CATemplate.Risks.RemoveItem('CovertActionRisk_SoldierWounded');
 }
 
 // Adds a chance of failure to easy covert actions and resets the staff slots.
 static function ConfigureEasyCovertAction(X2CovertActionTemplate Template)
 {
-	local ArtifactCost RiskRemovalCost;
-
 	// Make failure the first risk in the list.
 	Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Easy');
+	AddStaffSlots(Template, 2);
+	AddAmbushRisk(Template);
+
+	// Add an optional cost slot to counter capture if it's a risk.
+	AddCaptureMitigationSlot(Template);
+}
+
+// Adds a chance of failure to easy covert actions and resets the staff slots.
+static function ConfigureModerateCovertAction(X2CovertActionTemplate Template)
+{
+
+	// Make failure the first risk in the list.
+	Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Moderate');
+	AddStaffSlots(Template, 3);
+	AddAmbushRisk(Template);
+
+	// Add an optional cost slot to counter capture if it's a risk.
+	AddCaptureMitigationSlot(Template);
+}
+
+// Adds a chance of failure to easy covert actions and resets the staff slots.
+static function ConfigureHardCovertAction(X2CovertActionTemplate Template)
+{
+	// Make failure the first risk in the list.
+	Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Hard');
+	AddStaffSlots(Template, 3);
+	AddAmbushRisk(Template);
+
+	// Add an optional cost slot to counter capture if it's a risk.
+	AddCaptureMitigationSlot(Template);
+}
+
+static function AddStaffSlots(X2CovertActionTemplate Template, int SlotCount)
+{
+	local int i;
 
 	// Reset the slots so there are just two standard soldier slots, with no costs.
 	Template.Slots.Length = 0;
 	Template.OptionalCosts.Length = 0;
-	Template.Slots.AddItem(CreateDefaultStaffSlot());
-	Template.Slots.AddItem(CreateDefaultStaffSlot());
+
+	for (i = 0; i < SlotCount; i++)
+	{
+		Template.Slots.AddItem(CreateDefaultStaffSlot());
+	}
+}
+
+static function AddCaptureMitigationSlot(X2CovertActionTemplate Template)
+{
+	local ArtifactCost RiskRemovalCost;
+
+	// Clear any existing optional costs.
+	Template.OptionalCosts.Length = 0;
 
 	// Add an optional cost slot to counter capture if it's a risk.
 	if (Template.Risks.Find('CovertActionRisk_SoldierCaptured') != INDEX_NONE)
@@ -133,47 +179,14 @@ static function ConfigureEasyCovertAction(X2CovertActionTemplate Template)
 	}
 }
 
-// Adds a chance of failure to easy covert actions and resets the staff slots.
-static function ConfigureModerateCovertAction(X2CovertActionTemplate Template)
+// Adds an ambush risk to the given covert action if it doesn't already
+// have one.
+static function AddAmbushRisk(X2CovertActionTemplate Template)
 {
-	local ArtifactCost RiskRemovalCost;
-
-	// Make failure the first risk in the list.
-	Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Moderate');
-
-	// Reset the slots so there are just two standard soldier slots, with no costs.
-	Template.Slots.Length = 0;
-	Template.OptionalCosts.Length = 0;
-	Template.Slots.AddItem(CreateDefaultStaffSlot());
-	Template.Slots.AddItem(CreateDefaultStaffSlot());
-	Template.Slots.AddItem(CreateDefaultStaffSlot());
-
-	// Add an optional cost slot to counter capture if it's a risk.
-	if (Template.Risks.Find('CovertActionRisk_SoldierCaptured') != INDEX_NONE)
+	if (Template.Risks.Find('CovertActionRisk_Ambush') == INDEX_NONE)
 	{
-		`LWTrace("Adding optional cost to mitigate soldier capture for covert action " $ Template.DataName);
-		RiskRemovalCost = default.RISK_CAPTURE_MITIGATION_COSTS[1];
-		Template.OptionalCosts.AddItem(CreateOptionalCostSlot(RiskRemovalCost.ItemTemplateName, RiskRemovalCost.Quantity));
+		Template.Risks.AddItem('CovertActionRisk_Ambush');
 	}
-}
-
-// Adds a chance of failure to easy covert actions and resets the staff slots.
-static function ConfigureHardCovertAction(X2CovertActionTemplate Template)
-{
-	// Make failure the first risk in the list.
-	Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Hard');
-
-	// Reset the slots so there are just two standard soldier slots, with no costs.
-	Template.Slots.Length = 0;
-	Template.OptionalCosts.Length = 0;
-	Template.Slots.AddItem(CreateDefaultStaffSlot());
-	Template.Slots.AddItem(CreateDefaultStaffSlot());
-	Template.Slots.AddItem(CreateDefaultStaffSlot());
-	Template.Slots.AddItem(CreateDefaultStaffSlot());
-
-	// TODO: Can't currently add an optional cost slot as all 4 slots are
-	// reserved for soldiers. If the covert actions UI is modified to support
-	// more than 4 slots, we can add optional cost slots.
 }
 
 // LWOTC: The follow slot-creation functions were copied from X2StrategyElement_DefaultCovertActions

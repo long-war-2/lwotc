@@ -2046,6 +2046,11 @@ ObjectiveTextPools[0]="Platziere X4-Ladungen am Psionik-Transmitter"
 ObjectiveTextPools[1]="Verzögere die Übertragung, indem du Energierelais deaktivierst"
 ObjectiveTextPools[2]="Evakuiere alle XCOM-Agenten"
 
+[DefaultCovertEscape_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Erreiche den Treffpunkt"
+ObjectiveTextPools[1]="Extract at least one covert operative"
+ObjectiveTextPools[2]="Evakuiere alle XCOM-Soldaten"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Runden bis zum Rückzug des Skyrangers"
 ObjectiveTextPools[1]="Extrahiere die VIP an der vorgegebenen Position"

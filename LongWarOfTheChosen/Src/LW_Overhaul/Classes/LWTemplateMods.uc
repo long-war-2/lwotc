@@ -317,7 +317,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateModifyRewardsTemplate());
 	Templates.AddItem(CreateModifyStrategyObjectivesTemplate());
 	Templates.AddItem(CreateModifyCovertActionsTemplate());
+	Templates.AddItem(CreateModifyCovertActionRisksTemplate());
 	Templates.AddItem(CreateModifyDarkEventsTemplate());
+	Templates.AddItem(CreateModifyMissionSourcesTemplate());
 	Templates.AddItem(CreateModifySitRepsTemplate());
 	Templates.AddItem(CreateModifySitRepEffectsTemplate());
 	Templates.AddItem(CreateModifyResistanceOrdersTemplate());
@@ -352,12 +354,30 @@ static function X2LWTemplateModTemplate CreateModifyCovertActionsTemplate()
 	return Template;
 }
 
+// Update existing covert action templates
+static function X2LWTemplateModTemplate CreateModifyCovertActionRisksTemplate()
+{
+	local X2LWTemplateModTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2LWCovertActionRisksModTemplate', Template, 'UpdateCovertActionRisks');
+	return Template;
+}
+
 // Update existing dark event templates
 static function X2LWTemplateModTemplate CreateModifyDarkEventsTemplate()
 {
 	local X2LWTemplateModTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2LWDarkEventsModTemplate', Template, 'UpdateDarkEvents');
+	return Template;
+}
+
+// Update existing dark event templates
+static function X2LWTemplateModTemplate CreateModifyMissionSourcesTemplate()
+{
+	local X2LWTemplateModTemplate Template;
+	
+	`CREATE_X2TEMPLATE(class'X2LWMissionSourcesModTemplate', Template, 'UpdateMissionSources');
 	return Template;
 }
 

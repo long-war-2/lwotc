@@ -2046,6 +2046,11 @@ ObjectiveTextPools[0]="Podłóż ładunki X4 pod nadajnik psioniczny."
 ObjectiveTextPools[1]="Opóźnij transmisję, niszcząc przekaźniki mocy."
 ObjectiveTextPools[2]="Ewakuuj wszystkich operatorów XCOM."
 
+[DefaultCovertEscape_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Dotrzyj na miejsce spotkania"
+ObjectiveTextPools[1]="Extract at least one covert operative"
+ObjectiveTextPools[2]="Ewakuuj wszystkich żołnierzy XCOM"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Tury na odwrót Skyrangera"
 ObjectiveTextPools[1]="Ewakuuj VIP-a na wskazanej pozycji"

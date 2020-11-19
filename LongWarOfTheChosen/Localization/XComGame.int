@@ -2297,6 +2297,13 @@ ObjectiveTextPools[0]="Plant X4 charges on the Psionic Transmitter"
 ObjectiveTextPools[1]="Delay the transmission by disabling power relays"
 ObjectiveTextPools[2]="Extract all XCOM operatives"
 
+; LWOTC Needs Translation
+[DefaultCovertEscape_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Reach the rendezvous"
+ObjectiveTextPools[1]="Extract at least one covert operative"
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+; End Translation
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Turns until Skyranger must retreat"
 ObjectiveTextPools[1]="Extract the VIP at designated location"
@@ -2607,6 +2614,13 @@ ObjectiveTextPools[1]="Prevent the transmitter from completing its transmission"
 PreMissionNarratives[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_A"
 PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_B"
 PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_C"
+
+[CovertEscape_LW X2MissionTemplate]
+DisplayName="Escape Covert Action"
+Briefing="Covert Action - Escape ADVENT Counterops Team"
+PostMissionType="Escape Covert Action"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Escape the combat zone"
 
 [ProtectDevice_LW X2MissionTemplate]
 DisplayName="Protect the Device"

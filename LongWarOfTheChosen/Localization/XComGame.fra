@@ -2282,6 +2282,11 @@ ObjectiveTextPools[0]="Poser des charges de X4 sur l'émetteur psionique"
 ObjectiveTextPools[1]="Retarder la transmission en désactivant les relais de puissance"
 ObjectiveTextPools[2]="Évacuer tous les agents d'XCOM"
 
+[DefaultCovertEscape_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Atteindre le point de rendez-vous"
+ObjectiveTextPools[1]="Extract at least one covert operative"
+ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Nombre de tours avant le départ du Mercure"
 ObjectiveTextPools[1]="Extraire le VIP à l'endroit indiqué"

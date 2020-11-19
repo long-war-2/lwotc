@@ -160,6 +160,8 @@ static function EventListenerReturn OnMissionSiteSelected(Object EventData, Obje
 {
 	local XComGameState_MissionSite		MissionSite;
 	local XComGameState_LWAlienActivity ActivityState;
+	local XComHQPresentationLayer       HQPres;
+	local UIMission_ChosenAmbush_LW     Screen;
 
 	MissionSite = XComGameState_MissionSite(EventData);
 	if(MissionSite == none)
@@ -167,9 +169,16 @@ static function EventListenerReturn OnMissionSiteSelected(Object EventData, Obje
 
 	ActivityState = `LWACTIVITYMGR.FindAlienActivityByMission(MissionSite);
 
-	if(ActivityState != none)
+	if (ActivityState != none)
 	{
 		ActivityState.TriggerMissionUI(MissionSite);
+	}
+	else if (MissionSite.IsA('XComGameState_MissionSiteChosenAmbush_LW'))
+	{
+		HQPres = `HQPRES;
+		Screen = HQPres.Spawn(class'UIMission_ChosenAmbush_LW', HQPres);
+		Screen.MissionRef.ObjectID = MissionSite.ObjectID;
+		`SCREENSTACK.Push(Screen);
 	}
 
 	return ELR_NoInterrupt;

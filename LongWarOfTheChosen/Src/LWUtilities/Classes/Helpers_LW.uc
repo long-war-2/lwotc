@@ -495,7 +495,34 @@ static function bool DidCovertActionFail(XComGameState_CovertAction CAState)
 		}
 	}
 
-	return false;
+	return CAState.RewardsNotGivenOnCompletion;
+}
+
+// Returns:
+//  1 - Easy
+//  2 - Moderate
+//  3 - Hard
+static function int GetCovertActionDifficulty(XComGameState_CovertAction ActionState)
+{
+	local CovertActionRisk Risk;
+
+	foreach ActionState.Risks(Risk)
+	{
+		switch (Risk.RiskTemplateName)
+		{
+		case 'CovertActionRisk_Failure_Easy':
+			return 1;
+		case 'CovertActionRisk_Failure_Moderate':
+			return 2;
+		case 'CovertActionRisk_Failure_Hard':
+			return 3;
+		default:
+			break;
+		}
+	}
+
+	// Default to Moderate
+	return 2;
 }
 
 // Use this to determine whether a unit is interrupting another team's turn,
@@ -506,6 +533,32 @@ static function bool IsUnitInterruptingEnemyTurn(XComGameState_Unit UnitState)
 
 	BattleState = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
 	return BattleState.InterruptingGroupRef == UnitState.GetGroupMembership().GetReference();
+}
+
+// Adds the given unit to the XCom (primary) initiative group, ensuring that the unit
+// is controllable by the player.
+function static AddUnitToXComGroup(XComGameState NewGameState, XComGameState_Unit Unit, XComGameState_Player Player, optional XComGameStateHistory History = None)
+{
+    local XComGameState_Unit CurrentUnit;
+    local XComGameState_AIGroup Group;
+
+    if (History == None)
+    {
+        History = `XCOMHISTORY;
+    }
+
+    // Need to search through all current units to find a squad member
+    // whose initiative group we can grab.
+    foreach History.IterateByClassType(class'XComGameState_Unit', CurrentUnit)
+    {
+        if (CurrentUnit.ControllingPlayer.ObjectID == Player.ObjectID)
+        {
+            // Found a squad member. Grab that unit's initiative group and add the
+            // liaison to it.
+            Group = CurrentUnit.GetGroupMembership();
+            Group.AddUnitToGroup(Unit.ObjectID, NewGameState);
+        }
+    }
 }
 
 // Copied from LW2's highlander. Since `XComGameState_Unit.HasSoldierAbility()`

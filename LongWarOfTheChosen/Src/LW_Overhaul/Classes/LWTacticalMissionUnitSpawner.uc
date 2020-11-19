@@ -79,6 +79,9 @@ static function SpawnUnitsForMission(XComGameState_MissionSite Mission)
 			}
 			GiveEvacAbilityToRebels();
 			break;
+		case "CovertEscape_LW":
+			LoadCovertOperatives(Mission);
+			break;
 		}
 	}
 }
@@ -352,7 +355,7 @@ static function LoadResistanceMECsFromOutpost(XComGameState_LWOutpost Outpost, b
 
 			// Make sure the unit is added to XCOM's initiative group so that it's
 			// controllable by the player
-			class'Utilities_LW'.static.AddUnitToXComGroup(NewGameState, ProxyUnit, PlayerState, History);
+			class'Helpers_LW'.static.AddUnitToXComGroup(NewGameState, ProxyUnit, PlayerState, History);
 			
 			ProxyUnit.SetVisibilityLocation(UnitTile);
 			ProxyUnit.SetControllingPlayer(PlayerState.GetReference());
@@ -393,6 +396,53 @@ static function LoadRebelsForRebelRaid(XComGameState_MissionSite Mission)
 	{
 		RebelRaidMission = XComGameState_MissionSiteRebelRaid_LW(Mission);
 		RebelRaidMission.LoadRebels();
+	}
+}
+
+// Loads any covert action operatives into the given Ambush mission.
+// Mostly based on `XCGS_MissionSiteChosenAmbush.SelectSquad()`.
+static function LoadCovertOperatives(XComGameState_MissionSite MissionState)
+{
+	local XComGameStateHistory                     History;
+	local XComWorldData                            WorldData;
+	local XComGameState_BattleData                 BattleDataState;
+	local XComGameState_CovertAction               ActionState;
+	local XComGameState_MissionSiteChosenAmbush_LW AmbushMissionState;
+	local XComGameState_StaffSlot                  SlotState;
+	local array<StateObjectReference>              MissionSoldiers;
+	local StateObjectReference                     SoldierRef;
+	local TTile                                    RootTile, Tile;
+	local int                                      idx;
+	
+	History = `XCOMHISTORY;
+	WorldData = `XWORLD;
+	BattleDataState = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
+	AmbushMissionState = XComGameState_MissionSiteChosenAmbush_LW(MissionState);
+	ActionState = XComGameState_CovertAction(History.GetGameStateForObjectID(AmbushMissionState.CovertActionRef.ObjectID));
+
+	// We want to spawn the covert operatives near the objective.
+	WorldData.GetFloorTileForPosition(BattleDataState.MapData.ObjectiveLocation, RootTile);
+
+	for (idx = 0; idx < ActionState.StaffSlots.Length; idx++)
+	{
+		// If the Covert Action has a soldier in one of its staff slots, add them to the Ambush soldier list
+		SlotState = ActionState.GetStaffSlot(idx);
+		if (SlotState != none && SlotState.IsSoldierSlot() && SlotState.IsSlotFilled())
+		{
+			MissionSoldiers.AddItem(SlotState.GetAssignedStaffRef());
+		}
+	}
+
+	foreach MissionSoldiers(SoldierRef)
+	{
+		Tile = RootTile;
+		if (class'Utilities_LW'.static.GetSpawnTileNearTile(Tile, 3, 8))
+		{
+			class'LWSpawnUnitFromAvenger'.static.AddStrategyUnitToBoardAtLocation(
+				XComGameState_Unit(History.GetGameStateForObjectID(SoldierRef.ObjectID)),
+				History,
+				WorldData.GetPositionFromTileCoordinates(Tile));
+		}
 	}
 }
 
@@ -450,7 +500,7 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		Unit.BeginTacticalPlay(NewGameState);
 
 		PlayerState = class'Utilities_LW'.static.FindPlayer(Team);
-		class'Utilities_LW'.static.AddUnitToXComGroup(NewGameState, Unit, PlayerState, History);
+		class'Helpers_LW'.static.AddUnitToXComGroup(NewGameState, Unit, PlayerState, History);
 		
 		// If the adviser is not a soldier, we want it to start on the neutral team.
 		if (!Unit.IsSoldier())

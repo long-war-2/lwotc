@@ -33,7 +33,7 @@ static function X2DataTemplate CreateEnemyCorpsesTemplate()
     // because some Firaxis developer keeps making functions private..... The template mod
     // also adds the Failure risk.
 
-	Template.Risks.AddItem('CovertActionRisk_SoldierWounded');
+	Template.Risks.AddItem('CovertActionRisk_Ambush');
 	Template.Risks.AddItem('CovertActionRisk_SoldierCaptured');
 
 	Template.Rewards.AddItem(class'X2StrategyElement_DefaultRewards_LW'.const.CORPSE_REWARD_NAME);

@@ -20,6 +20,7 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddDefaultRecover_FlightDeviceMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultDestroyRelayMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultSabotageTransmitterMissionNarrativeTemplate_LW());
+    Templates.AddItem(AddDefaultCovertEscapeMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultExtractMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultRescue_AdventCellMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultRescue_VehicleMissionNarrativeTemplate_LW());
@@ -483,6 +484,28 @@ static function X2MissionNarrativeTemplate AddDefaultSabotageTransmitterMissionN
     Template.NarrativeMoments[13]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Trans_Almost_DC";
     Template.NarrativeMoments[14]="XPACK_NarrativeMoments.X2_XP_TYG_T_Sabotage_Trans_Relay_Spotted";
     Template.NarrativeMoments[15]="XPACK_NarrativeMoments.X2_XP_TYG_T_Sabotage_Trans_Relay_Destroyed";
+
+    return Template;
+}
+
+static function X2MissionNarrativeTemplate AddDefaultCovertEscapeMissionNarrativeTemplate_LW()
+{
+    local X2MissionNarrativeTemplate Template;
+
+    `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultCovertEscape_LW');
+
+    Template.MissionType = "CovertEscape_LW";
+    Template.NarrativeMoments[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Squad Wipe";
+    Template.NarrativeMoments[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Squad Extracted";
+    Template.NarrativeMoments[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Partial Squad Recovery";
+    Template.NarrativeMoments[3]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Operative Down";
+    Template.NarrativeMoments[4]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Operative Dead";
+    Template.NarrativeMoments[5]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Objective Indicated";
+    Template.NarrativeMoments[6]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Mission Intro";
+    Template.NarrativeMoments[7]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Many Enemies Reminder";
+    Template.NarrativeMoments[8]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Last Operative";
+    Template.NarrativeMoments[9]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Kill Captain";
+    Template.NarrativeMoments[10]="XPACK_NarrativeMoments.X2_XP_CEN_T_Covert_Escape_Captain Dead";
 
     return Template;
 }

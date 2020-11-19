@@ -2048,6 +2048,11 @@ ObjectiveTextPools[0]="Piazza le cariche di X4 sul trasmettitore psionico"
 ObjectiveTextPools[1]="Disattiva gli snodi energetici per ritardare la trasmissione"
 ObjectiveTextPools[2]="Estrai tutti gli operatori XCOM"
 
+[DefaultCovertEscape_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Raggiungi il punto d'incontro"
+ObjectiveTextPools[1]="Extract at least one covert operative"
+ObjectiveTextPools[2]="Estrai tutti i soldati XCOM"
+
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Turni prima della ritirata dello Skyranger"
 ObjectiveTextPools[1]="Estrai il VIP nel luogo designato"

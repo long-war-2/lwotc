@@ -136,6 +136,7 @@
     <Content Include="Content\Missions\Obj_AssaultAlienBase_LW.umap" />
     <Content Include="Content\Missions\Obj_AssaultNetworkTower_LW.umap" />
     <Content Include="Content\Missions\Obj_Blacksite_LW.umap" />
+    <Content Include="Content\Missions\Obj_CovertEscape_Evac_LW.umap" />
     <Content Include="Content\Missions\Obj_ChosenAvengerDefense_LW.umap" />
     <Content Include="Content\Missions\Obj_Defend_LW.umap" />
     <Content Include="Content\Missions\Obj_DestroyObject_LW.umap" />
@@ -495,6 +496,7 @@
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetMissionInfo.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetMissionTimer.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetRegionInfo.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetXComUnits.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Action_IRI_PsiPinion.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_IRI_SoulStorm.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_NullWard.uc" />
@@ -516,6 +518,7 @@
     <Content Include="Src\LW_Overhaul\Classes\UICovertActionReport_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIDarkEventListItem.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIImageSelector_LW.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIMission_ChosenAmbush_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWCustomMission.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMission_LWLaunchDelayedMission.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIMouseGuard_LW.uc">
@@ -729,6 +732,7 @@
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LWPodManager.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LWReinforcements.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LWSquadManager.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\XComGameState_MissionSiteChosenAmbush_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_MissionSiteRebelRaid_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_MissionSiteRendezvous_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_WorldRegion_LWStrategyAI.uc" />
@@ -1171,6 +1175,8 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Action_Fire_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_Cone_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWCovertActionsModTemplate.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2LWCovertActionRisksModTemplate.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2LWMissionSourcesModTemplate.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_BeamGrenadeLauncher.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_ConditionalBlasterLauncher.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWDarkEventsModTemplate.uc" />
