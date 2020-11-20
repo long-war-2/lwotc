@@ -2227,6 +2227,18 @@ static function X2AbilityTemplate DeadeyeSnapShotDamage()
 	return Template;
 }
 
+static function X2AbilityTemplate YouCannotHide()
+{
+	local X2Effect_PersistentStatChange StatEffect;
+	// Create a conditional bonus
+
+	StatEffect = new class'X2Effect_PersistentStatChange';
+	StatEffect.AddPersistentStatChange(eStat_Offense, float(100));
+
+	// Create the template using a helper function
+	return Passive('YouCannotHide_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_overwatch_shot", true, StatEffect);
+}
+
 
 static function X2AbilityTemplate PsychoticRage()
 {
