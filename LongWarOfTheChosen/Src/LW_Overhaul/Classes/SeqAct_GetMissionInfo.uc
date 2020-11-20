@@ -32,5 +32,5 @@ defaultproperties
 	bCanBeUsedForGameplaySequence=true
 
 	VariableLinks.Empty
-    VariableLinks(0)=(ExpectedType=class'SeqVar_Int',LinkDesc="Alert Level",PropertyName=MissionAlertLevel,bWriteable=true)
+	VariableLinks(0)=(ExpectedType=class'SeqVar_Int', LinkDesc="Alert Level", PropertyName=MissionAlertLevel, bWriteable=true)
 }

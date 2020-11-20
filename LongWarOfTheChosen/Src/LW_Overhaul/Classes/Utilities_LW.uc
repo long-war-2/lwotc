@@ -452,7 +452,7 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 
 	LaserChance = 0;
 	MagChance = 0;
-	CoilChance =0;
+	CoilChance = 0;
 
     if (Loadout == '')
 	{
@@ -479,13 +479,13 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 		}
 		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlasmaRifle'))
 		{
-			if(class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
+			if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
 			{	
 				MagChance = 100;
 			}
 			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //30/40/50
 		}
-			//All plasma weapon related research
+		// All plasma weapon related research
 		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('HeavyPlasma') && 
 			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AlloyCannon') && 
 			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlasmaSniper') && 
@@ -779,4 +779,3 @@ simulated static function bool IsOnStrategyMap()
 		return true;
 	}
 }
-

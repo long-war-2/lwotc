@@ -289,6 +289,7 @@ var config WeaponDamageValue WARLOCKPSIM1_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM2_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM3_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM4_BASEDAMAGE;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -2158,7 +2159,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.bCanUse_eTraversal_WallClimb = true;
 		Template.ImmuneTypes.AddItem('Acid');
 	}
-	if(Template.CharacterGroupName == 'ChosenWarlock')
+	if (Template.CharacterGroupName == 'ChosenWarlock')
 	{
 		Template.Abilities.RemoveItem('ChosenKidnapMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
@@ -2182,7 +2183,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 
 
 	}
-	if(Template.CharacterGroupName == 'ChosenSniper')
+	if (Template.CharacterGroupName == 'ChosenSniper')
 	{
 		Template.Abilities.RemoveItem('ChosenKidnapMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
@@ -2202,7 +2203,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.InitiativePriority = -100;
 
 	}
-	if(Template.CharacterGroupName == 'ChosenAssassin')
+	if (Template.CharacterGroupName == 'ChosenAssassin')
 	{
 		Template.Abilities.RemoveItem('ChosenKidnapMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
@@ -2349,44 +2350,43 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenShotgun_MG':
 		case 'ChosenShotgun_BM':
 		case 'ChosenShotgun_T4':
-		WeaponTemplate.Abilities.RemoveItem('RapidFire');
-
-		break;
+			WeaponTemplate.Abilities.RemoveItem('RapidFire');
+			break;
 
 		case 'ChosenSniperPistol_CV':
 		case 'ChosenSniperPistol_MG':
 		case 'ChosenSniperPistol_BM':
 		case 'ChosenSniperPistol_T4':
-		WeaponTemplate.Abilities.RemoveItem('LethalDose');
-		break;
+			WeaponTemplate.Abilities.RemoveItem('LethalDose');
+			break;
 
 		case 'Warlock_PsiWeapon':
-		WeaponTemplate.Abilities.AddItem('ShieldAllyM1');
-		WeaponTemplate.BaseDamage = default.WARLOCKPSIM1_BASEDAMAGE;
-		WeaponTemplate.Abilities.RemoveItem('SpectralArmy');
-		WeaponTemplate.Abilities.RemoveItem('Corress');
-		break;
+			WeaponTemplate.Abilities.AddItem('ShieldAllyM1');
+			WeaponTemplate.BaseDamage = default.WARLOCKPSIM1_BASEDAMAGE;
+			WeaponTemplate.Abilities.RemoveItem('SpectralArmy');
+			WeaponTemplate.Abilities.RemoveItem('Corress');
+			break;
 
 		case 'WarlockM2_PsiWeapon':
-		WeaponTemplate.Abilities.AddItem('ShieldAllyM2');
-		WeaponTemplate.BaseDamage = default.WARLOCKPSIM2_BASEDAMAGE;
-		WeaponTemplate.Abilities.RemoveItem('SpectralArmyM2');
-		WeaponTemplate.Abilities.RemoveItem('CorressM2');
-		break;
+			WeaponTemplate.Abilities.AddItem('ShieldAllyM2');
+			WeaponTemplate.BaseDamage = default.WARLOCKPSIM2_BASEDAMAGE;
+			WeaponTemplate.Abilities.RemoveItem('SpectralArmyM2');
+			WeaponTemplate.Abilities.RemoveItem('CorressM2');
+			break;
 
 		case 'WarlockM3_PsiWeapon':
-		WeaponTemplate.Abilities.AddItem('ShieldAllyM3');
-		WeaponTemplate.BaseDamage = default.WARLOCKPSIM3_BASEDAMAGE;
-		WeaponTemplate.Abilities.RemoveItem('SpectralArmyM3');
-		WeaponTemplate.Abilities.RemoveItem('CorressM3');
-		break;
+			WeaponTemplate.Abilities.AddItem('ShieldAllyM3');
+			WeaponTemplate.BaseDamage** = default.WARLOCKPSIM3_BASEDAMAGE;
+			WeaponTemplate.Abilities.RemoveItem('SpectralArmyM3');
+			WeaponTemplate.Abilities.RemoveItem('CorressM3');
+			break;
 
 		case 'WarlockM4_PsiWeapon':
-		WeaponTemplate.Abilities.AddItem('ShieldAllyM4');
-		WeaponTemplate.BaseDamage = default.WARLOCKPSIM4_BASEDAMAGE;
-		WeaponTemplate.Abilities.RemoveItem('SpectralArmyM4');
-		WeaponTemplate.Abilities.RemoveItem('CorressM4');
-		break;
+			WeaponTemplate.Abilities.AddItem('ShieldAllyM4');
+			WeaponTemplate.BaseDamage = default.WARLOCKPSIM4_BASEDAMAGE;
+			WeaponTemplate.Abilities.RemoveItem('SpectralArmyM4');
+			WeaponTemplate.Abilities.RemoveItem('CorressM4');
+			break;
 
 		case 'ChosenRifle_XCOM':
 			WeaponTemplate.Abilities.AddItem('OverbearingSuperiority_LW');
@@ -2404,7 +2404,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			//Remove the armor piercing UI stat markup
 			foreach WeaponTemplate.UIStatMarkups(Markup)
 			{
-				if(Markup.StatLabel == class'XLocalizedData'.default.PierceLabel)
+				if (Markup.StatLabel == class'XLocalizedData'.default.PierceLabel)
 				{
 					WeaponTemplate.UIStatMarkups.RemoveItem(Markup);
 				}
@@ -2421,7 +2421,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			//Remove the armor piercing UI stat markup
 			foreach WeaponTemplate.UIStatMarkups(Markup)
 			{
-				if(Markup.StatLabel == class'XLocalizedData'.default.PierceLabel)
+				if (Markup.StatLabel == class'XLocalizedData'.default.PierceLabel)
 				{
 					WeaponTemplate.UIStatMarkups.RemoveItem(Markup);
 				}
@@ -2474,8 +2474,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'ChosenSniperRifle_MG':
 			case 'ChosenSniperRifle_BM':
 			case 'ChosenSniperRifle_T4':
-			WeaponTemplate.iIdealRange =25;
-			break;
+				WeaponTemplate.iIdealRange =25;
+				break;
 			default:
 				break;
 		}

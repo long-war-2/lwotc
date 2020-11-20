@@ -173,12 +173,12 @@ static function X2AbilityTemplate CreateGetUp()
 }
 
 
-static function X2AbilityTemplate AddRebelHPUpgrade(name Templatename, int HPamount)
+static function X2AbilityTemplate AddRebelHPUpgrade(name TemplateName, int HPamount)
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_PersistentStatChange			StatEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, Templatename);
+	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_item_nanofibervest";
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -249,8 +249,6 @@ static function X2AbilityTemplate AddRebelGrenadeUpgrade()
 	Template.AddTargetEffect(TemporaryItemEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-
-	return Template;
 
 	return Template;
 }

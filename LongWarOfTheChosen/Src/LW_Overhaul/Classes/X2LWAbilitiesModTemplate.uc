@@ -902,6 +902,7 @@ static function MakeChosenInstantlyEngagedAndRemoveTimerPause(X2AbilityTemplate 
 {
 	local X2AbilityTrigger_UnitPostBeginPlay PostBeginPlayTrigger;
 	local X2Effect Effect;
+
 	PostBeginPlayTrigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
 	PostBeginPlayTrigger.Priority = 60;
 	Template.AbilityTriggers.AddItem(PostBeginPlayTrigger);
@@ -926,8 +927,8 @@ static function ReworkPartingSilk(X2AbilityTemplate Template)
 			Template.AbilityTargetEffects.RemoveItem(Effect);
 		}
 	}
-	if(Template.AbilityToHitCalc.IsA('X2AbilityToHitCalc_StandardMelee'))
-	X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bHitsAreCrits=true;
+	if (Template.AbilityToHitCalc.IsA('X2AbilityToHitCalc_StandardMelee'))
+		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bHitsAreCrits = true;
 
 
 	ToHitModifier = new class'X2Effect_ToHitModifier';

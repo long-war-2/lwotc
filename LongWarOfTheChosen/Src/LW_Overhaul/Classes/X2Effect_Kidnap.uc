@@ -37,17 +37,17 @@ static function EventListenerReturn OnUnitBleedingOut(Object EventData, Object E
 	if (UnitState.ObjectID != EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID && UnitState.ObjectID != EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID)
 		return ELR_NoInterrupt;
 
-	if(UnitState != none && (UnitState.IsBleedingOut()) && !Effectstate.bRemoved)
+	if (UnitState != none && (UnitState.IsBleedingOut()) && !Effectstate.bRemoved)
 	{
 		TargetTemplate = UnitState.GetMyTemplateName();
 		//must be a human soldier
-		if(TargetTemplate != 'Soldier' && 
+		if (TargetTemplate != 'Soldier' && 
 			TargetTemplate != 'SkirmisherSoldier' &&
 			TargetTemplate != 'TemplarSoldier' && 
 			TargetTemplate != 'ReaperSoldier' )
-			{
-				return ELR_NoInterrupt;
-			}
+		{
+			return ELR_NoInterrupt;
+		}
 
 		ChosenUnitState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 		ChosenState = AlienHQ.GetChosenOfTemplate(ChosenUnitState.GetMyTemplateGroupName());
@@ -129,4 +129,3 @@ function ChosenKidnapVisualizationFn(XComGameState VisualizeGameState)
 		break;
 	}
 }
-
