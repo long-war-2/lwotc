@@ -1826,7 +1826,6 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 	if (`SecondWaveEnabled('EnableChosen'))
 	{
 		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
 		AlienHQ.OnChosenActivation(NewGameState);
 
 		AllChosen = AlienHQ.GetAllChosen();
