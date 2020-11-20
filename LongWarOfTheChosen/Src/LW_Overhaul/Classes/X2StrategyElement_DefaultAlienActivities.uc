@@ -1834,6 +1834,7 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 		//MAKE ABSOLUTELY 100% FULL ON SURE THAT CHOSEN START WITH 0 STRENGTHS BECAUSE THE CONFIGS LIE
 		foreach AllChosen(ChosenState)
 		{
+			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
 			ChosenState.Strengths.length = 0;
 		}
 	}
