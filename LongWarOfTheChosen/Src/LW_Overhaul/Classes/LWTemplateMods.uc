@@ -2376,7 +2376,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 
 		case 'WarlockM3_PsiWeapon':
 			WeaponTemplate.Abilities.AddItem('ShieldAllyM3');
-			WeaponTemplate.BaseDamage** = default.WARLOCKPSIM3_BASEDAMAGE;
+			WeaponTemplate.BaseDamage = default.WARLOCKPSIM3_BASEDAMAGE;
 			WeaponTemplate.Abilities.RemoveItem('SpectralArmyM3');
 			WeaponTemplate.Abilities.RemoveItem('CorressM3');
 			break;

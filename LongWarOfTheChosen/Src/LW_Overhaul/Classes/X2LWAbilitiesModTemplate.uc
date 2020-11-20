@@ -497,14 +497,26 @@ static function UpdateBayonetCharge(X2AbilityTemplate Template)
 	Template.AbilityCooldown = Cooldown;
 }
 
-static function RemoveAbilityTargetEffect(X2AbilityTemplate Template, name EffectName)
+static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name EffectName)
 {
-	local X2Effect TargetEffect;
-	foreach Template.AbilityTargetEffects(TargetEffect)
+	local int i;
+	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
 	{
-		if (TargetEffect.IsA(EffectName))
+		if (Template.AbilityTargetEffects[i].isA(EffectName))
 		{
-			Template.AbilityTargetEffects.RemoveItem(TargetEffect);
+			Template.AbilityTargetEffects.Remove(i, 1);
+		}
+	}
+}
+
+static function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name EffectName)
+{
+	local int i;
+	for (i = Template.AbilityMultiTargetEffects.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityMultiTargetEffects[i].isA(EffectName))
+		{
+			Template.AbilityMultiTargetEffects.Remove(i, 1);
 		}
 	}
 }
@@ -513,7 +525,7 @@ static function ReplaceWithDamageReductionExplosive(X2AbilityTemplate Template)
 {
 	local X2Effect_Formidable	PaddingEffect;
 
-	RemoveAbilityTargetEffect(Template,'X2Effect_BlastShield');
+	RemoveAbilityTargetEffects(Template,'X2Effect_BlastShield');
 
 	PaddingEffect = new class'X2Effect_Formidable';
 	PaddingEffect.ExplosiveDamageReduction = default.EXPLOSIVE_DAMAGE_REDUCTION;
@@ -525,7 +537,7 @@ static function ReplaceWithDamageReductionMelee(X2AbilityTemplate Template)
 {
 	local X2Effect_DefendingMeleeDamageModifier DamageMod;
 
-	RemoveAbilityTargetEffect(Template,'X2Effect_DamageImmunity');
+	RemoveAbilityTargetEffects(Template,'X2Effect_DamageImmunity');
 
 	DamageMod = new class'X2Effect_DefendingMeleeDamageModifier';
 	DamageMod.DamageMod = default.MELEE_DAMAGE_REDUCTION;
@@ -628,20 +640,14 @@ static function RemoveTheDeathFromHolyWarriorDeath(X2AbilityTemplate Template)
 {
 	local X2Effect Effect;
 
-	foreach Template.AbilityMultiTargetEffects(Effect)
-	{
-		if(Effect.IsA(class'X2Effect_HolyWarriorDeath'.name))
-		{
-			Template.AbilityMultiTargetEffects.RemoveItem(Effect);
-		}
-	}
+	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_HolyWarriorDeath');
 }
 
 static function UpdateSustainEffect(X2AbilityTemplate Template)
 {
 	local X2Effect_Sustain_LW SustainEffect;
 
-	RemoveAbilityTargetEffect(Template,'X2Effect_Sustain');
+	RemoveAbilityTargetEffects(Template,'X2Effect_Sustain');
 
 	SustainEffect = new class'X2Effect_Sustain_LW';
 	SustainEffect.BuildPersistentEffect(1, true, true);
@@ -795,7 +801,6 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 {
 	local X2Condition_UnitProperty ShooterCondition, TargetCondition;
 	local X2AbilityMultiTarget_Radius RadiusMultiTarget;
-	local X2Effect Effect;
 	local AbilityGrantedBonusRadius DangerZoneBonus;
 	local X2Effect_Burning BurningEffect;
 	local X2Effect_ApplyWeaponDamage DamageEffect;
@@ -832,20 +837,9 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
 
-	foreach Template.AbilityTargetEffects(Effect)
-	{
-		if(Effect.isA('X2Effect_Dazed'))
-		{
-			Template.AbilityTargetEffects.RemoveItem(Effect);
-		}
-	}
-	foreach Template.AbilityMultiTargetEffects(Effect)
-	{
-		if(Effect.isA('X2Effect_Dazed'))
-		{
-			Template.AbilityMultiTargetEffects.RemoveItem(Effect);
-		}
-	}
+	RemoveAbilityTargetEffects(Template, 'X2Effect_Dazed');
+	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Dazed');
+
 	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.MIND_SCORCH_BURNING_BASE_DAMAGE, default.MIND_SCORCH_BURNING_DAMAGE_SPREAD);
 	BurningEffect.ApplyChance = default.MIND_SCORCH_BURN_CHANCE;
 	Template.AddTargetEffect(BurningEffect);
@@ -918,15 +912,10 @@ static function MakeChosenInstantlyEngagedAndRemoveTimerPause(X2AbilityTemplate 
 
 static function ReworkPartingSilk(X2AbilityTemplate Template)
 {
-	local X2Effect Effect;
 	local X2Effect_ToHitModifier ToHitModifier;
-	foreach Template.AbilityTargetEffects(Effect)
-	{
-		if(Effect.isA('X2Effect_Dazed'))
-		{
-			Template.AbilityTargetEffects.RemoveItem(Effect);
-		}
-	}
+
+	RemoveAbilityTargetEffects(Template, 'X2Effect_Dazed');
+
 	if (Template.AbilityToHitCalc.IsA('X2AbilityToHitCalc_StandardMelee'))
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bHitsAreCrits = true;
 
