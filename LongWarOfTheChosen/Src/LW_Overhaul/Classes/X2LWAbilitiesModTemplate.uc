@@ -638,8 +638,6 @@ static function MakeFreeAction(X2AbilityTemplate Template)
 }
 static function RemoveTheDeathFromHolyWarriorDeath(X2AbilityTemplate Template)
 {
-	local X2Effect Effect;
-
 	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_HolyWarriorDeath');
 }
 
