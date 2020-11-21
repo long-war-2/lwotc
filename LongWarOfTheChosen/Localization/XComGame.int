@@ -5492,6 +5492,24 @@ UnlockedDescription=""
 ; End Translation
 
 ; LWOTC Needs Translation
+[InfilSitRep_Easy X2SitRepTemplate]
+FriendlyName="Under infiltration (easy)"
+Description="Enemies units are going to be a bit tougher to take down because you're underinfiltrating."
+
+[InfilSitRep_Moderate X2SitRepTemplate]
+FriendlyName="Under infiltration (moderate)"
+Description="Enemies units are going to be noticeably tougher to take down because you're underinfiltrating."
+
+[InfilSitRep_Hard X2SitRepTemplate]
+FriendlyName="Under infiltration (hard)"
+Description="Enemies units are going to be significantly tougher to take down because you're underinfiltrating."
+
+[InfilSitRep_UltraHard X2SitRepTemplate]
+FriendlyName="Under infiltration (ultra hard)"
+Description="Enemies units are going to be so tough, the fight will be virtually impossible to win because you're underinfiltrating."
+; End Translation
+
+; LWOTC Needs Translation
 [DifficultMissionCompleted X2AbilityPointTemplate]
 ActionFriendlyName="for a difficult mission"
 

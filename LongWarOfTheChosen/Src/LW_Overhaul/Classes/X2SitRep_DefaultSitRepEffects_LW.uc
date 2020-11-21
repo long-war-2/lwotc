@@ -18,6 +18,12 @@ static function array<X2DataTemplate> CreateTemplates()
 	// Miscellaneous effects
 	Templates.AddItem(CreateTheLostEffectTemplate());
 
+	// Sit rep effects for different levels of underinfiltration
+	Templates.AddItem(CreateInfiltrationEasyEffectTemplate());
+	Templates.AddItem(CreateInfiltrationModerateEffectTemplate());
+	Templates.AddItem(CreateInfiltrationHardEffectTemplate());
+	Templates.AddItem(CreateInfiltrationUltraHardEffectTemplate());
+
 	// Dark Events support
 	Templates.AddItem(CreateHighAlertDEEffectTemplate());
 	Templates.AddItem(CreateInfiltratorDEEffectTemplate());
@@ -73,6 +79,54 @@ static function X2SitRepEffectTemplate CreateTheLostEffectTemplate()
 
 	`CREATE_X2TEMPLATE(class'X2SitRepEffectTemplate', Template, 'TheLostSitRepEffect');
 	Template.DifficultyModifier = 3;
+
+	return Template;
+}
+
+static function X2SitRepEffectTemplate CreateInfiltrationEasyEffectTemplate()
+{
+	local X2SitRepEffect_GrantAbilities Template;
+
+	`CREATE_X2TEMPLATE(class'X2SitRepEffect_GrantAbilities', Template, 'UnderInfiltrationScalingEasyEffect');
+	Template.DifficultyModifier = 2;
+	Template.Teams.AddItem(eTeam_Alien);
+	Template.AbilityTemplateNames.AddItem('ToughScaling');
+
+	return Template;
+}
+
+static function X2SitRepEffectTemplate CreateInfiltrationModerateEffectTemplate()
+{
+	local X2SitRepEffect_GrantAbilities Template;
+
+	`CREATE_X2TEMPLATE(class'X2SitRepEffect_GrantAbilities', Template, 'UnderInfiltrationScalingModerateEffect');
+	Template.DifficultyModifier = 4;
+	Template.Teams.AddItem(eTeam_Alien);
+	Template.AbilityTemplateNames.AddItem('ButchScaling');
+
+	return Template;
+}
+
+static function X2SitRepEffectTemplate CreateInfiltrationHardEffectTemplate()
+{
+	local X2SitRepEffect_GrantAbilities Template;
+
+	`CREATE_X2TEMPLATE(class'X2SitRepEffect_GrantAbilities', Template, 'UnderInfiltrationScalingHardEffect');
+	Template.DifficultyModifier = 8;
+	Template.Teams.AddItem(eTeam_Alien);
+	Template.AbilityTemplateNames.AddItem('RockHardScaling');
+
+	return Template;
+}
+
+static function X2SitRepEffectTemplate CreateInfiltrationUltraHardEffectTemplate()
+{
+	local X2SitRepEffect_GrantAbilities Template;
+
+	`CREATE_X2TEMPLATE(class'X2SitRepEffect_GrantAbilities', Template, 'UnderInfiltrationScalingUltraHardEffect');
+	Template.DifficultyModifier = 10;
+	Template.Teams.AddItem(eTeam_Alien);
+	Template.AbilityTemplateNames.AddItem('MonstrousScaling');
 
 	return Template;
 }
