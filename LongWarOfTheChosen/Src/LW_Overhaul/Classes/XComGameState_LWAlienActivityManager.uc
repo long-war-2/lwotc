@@ -501,7 +501,7 @@ static function ModifyAlertForChosen(XComGameState_MissionSite MissionState, out
 	// mission.
 	foreach MissionState.TacticalGameplayTags(ChosenSpawningTag)
 	{
-		if (InStr(ChosenSpawningTag, class'XComGameState_LWAlienActivity'.default.CHOSEN_SPAWN_TAG_SUFFIX) != INDEX_NONE)
+		if (InStr(ChosenSpawningTag, class'Helpers_LW'.default.CHOSEN_SPAWN_TAG_SUFFIX) != INDEX_NONE)
 		{
 			// Found a Chosen spawning tag!
 			AlertLevel += default.CHOSEN_APPEARANCE_ALERT_MOD;

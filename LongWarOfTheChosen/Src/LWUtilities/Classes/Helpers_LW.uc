@@ -9,6 +9,7 @@
 class Helpers_LW extends Object config(GameCore) dependson(Engine);
 
 var const string CA_FAILURE_RISK_MARKER;
+var const string CHOSEN_SPAWN_TAG_SUFFIX;
 
 struct ProjectileSoundMapping
 {
@@ -349,6 +350,16 @@ static function XComGameState_ResistanceFaction GetFactionFromRegion(StateObject
 	return FactionState;
 }
 
+static function name GetChosenActiveMissionTag(XComGameState_AdventChosen ChosenState)
+{
+	local name ChosenSpawningTag;
+
+	ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(0);
+	ChosenSpawningTag = name(ChosenSpawningTag $ default.CHOSEN_SPAWN_TAG_SUFFIX);
+
+	return ChosenSpawningTag;
+}
+
 // Creates a Hack Defense reduction effect with a unique name, so that they can
 // stack. Also adds an icon for the effect, because the base game version doesn't
 // have one.
@@ -594,4 +605,5 @@ static function bool CovertActionHasReward(XComGameState_CovertAction ActionStat
 defaultproperties
 {
 	CA_FAILURE_RISK_MARKER="CovertActionRisk_Failure"
+	CHOSEN_SPAWN_TAG_SUFFIX="_LWOTC_ChosenTag"
 }

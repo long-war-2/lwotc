@@ -48,8 +48,6 @@ var config array<string> GuaranteeChosenInMissionTypes;
 
 var config array<string> NO_SIT_REP_MISSION_TYPES;
 
-var const string CHOSEN_SPAWN_TAG_SUFFIX;
-
 //#############################################################################################
 //----------------   REQUIRED FROM BASEOBJECT   -----------------------------------------------
 //#############################################################################################
@@ -826,7 +824,6 @@ static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
-	local name ChosenSpawningTag;
 
 	// If Chosen are disabled, skip adding the tag.
 	if (!`SecondWaveEnabled('EnableChosen'))
@@ -857,14 +854,11 @@ static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
 				continue;
 			}
 
-			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-			ChosenSpawningTag = name(ChosenSpawningTag $ default.CHOSEN_SPAWN_TAG_SUFFIX);
-
 			// Decide whether this Chosen will appear on this mission.
 			if (WillChosenAppearOnMission(ChosenState, MissionState))
 			{
 				`LWTrace("    Chosen added!");
-				MissionState.TacticalGameplayTags.AddItem(ChosenSpawningTag);
+				MissionState.TacticalGameplayTags.AddItem(class'Helpers_LW'.static.GetChosenActiveMissionTag(ChosenState));
 
 				// Only one Chosen on the mission!
 				break;
@@ -886,9 +880,9 @@ static function bool WillChosenAppearOnMission(XComGameState_AdventChosen Chosen
 	
 	//Check if the mission is chosen avenger defense, if yes than add that
 	ChosenAssaultMission = XComGameState_MissionSiteChosenAssault(MissionState);
-	if(ChosenAssaultMission != none)
+	if (ChosenAssaultMission != none)
 	{
-		if(ChosenState.GetReference() == ChosenAssaultMission.AttackingChosen)
+		if (ChosenState.GetReference() == ChosenAssaultMission.AttackingChosen)
 		{
 			return true;
 		}
@@ -1190,9 +1184,4 @@ function class<UIStrategyMapItem> GetUIClass()
 function bool ShouldBeVisible()
 {
     return false;
-}
-
-defaultproperties
-{
-	CHOSEN_SPAWN_TAG_SUFFIX="_LWOTC_ChosenTag"
 }

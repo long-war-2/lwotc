@@ -1660,7 +1660,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 		foreach AllChosen(ChosenState)
 		{
 			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-			ChosenSpawningTagLWOTC = name(ChosenSpawningTag $ class'XComGameState_LWAlienActivity'.default.CHOSEN_SPAWN_TAG_SUFFIX);
+			ChosenSpawningTagLWOTC = class'Helpers_LW'.static.GetChosenActiveMissionTag(ChosenState);
 
 			// Remove the tag if it's already attached to this mission. This is the only
 			// place that should add Chosen tactical mission tags to the XCOM HQ. This
