@@ -22,6 +22,26 @@ struct MinimumInfilForConcealEntry
 	var float MinInfiltration;
 };
 
+struct ChosenStrengthWeighted
+{
+	var name Strength;
+	var float Weight;
+};
+var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T1;
+var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T2;
+var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T3;
+var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T4;
+
+var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T1;
+var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T2;
+var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T3;
+var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T4;
+
+var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T1;
+var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T2;
+var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T3;
+var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T4;
+
 var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
 
 struct ArchetypeToHealth
@@ -70,14 +90,11 @@ var config array<PlotObjectiveMod> PlotObjectiveMods;
 // This is used in FinalizeUnitAbilitiesForInit() to patch existing
 // abilities for non-XCOM units.
 var config array<name> PrimaryWeaponAbilities;
+var config array<name> SecondaryWeaponAbilities;
 
 // Configurable list of parcels to remove from the game.
 var config array<String> ParcelsToRemove;
 var bool bDebugPodJobs;
-
-// An integer from between 0 and 100 inclusive that represents the percentage chance for
-// a Chosen to appear on a mission, excluding any modifying factors.
-var config int BaseChosenAppearanceChance;
 
 // Minimum force level that needs to be reached before The Lost
 // can start to appear.
@@ -575,15 +592,19 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_MissionCalendar CalendarState;
 
+	History = `XCOMHISTORY;
+
 	`LWACTIVITYMGR.UpdatePreMission (StartGameState, MissionState);
 	ResetDelayedEvac(StartGameState);
 	ResetReinforcements(StartGameState);
 	InitializePodManager(StartGameState);
 	OverrideConcealmentAtStart(MissionState);
 	OverrideDestructibleHealths(StartGameState);
-	if (class'XComGameState_AlienRulerManager' != none)
-		OverrideAlienRulerSpawning(StartGameState, MissionState);
 	MaybeAddChosenToMission(StartGameState, MissionState);
+	if (class'XComGameState_AlienRulerManager' != none)
+	{
+		OverrideAlienRulerSpawning(StartGameState, MissionState);
+	}
 
 	// Test Code to see if DLC POI replacement is working
 	if (MissionState.POIToSpawn.ObjectID > 0)
@@ -600,7 +621,6 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 		`LWTRACE("PreMission : MissionPOI name = " $ POIState.GetMyTemplateName());
 	}
 
-	History = `XCOMHISTORY;
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 	CalendarState = XComGameState_MissionCalendar(History.GetSingleGameStateObjectForClass(class'XComGameState_MissionCalendar'));
 	//log some info relating to the AH POI 2 replacement conditions to see what might be causing it to not spawn
@@ -1258,6 +1278,45 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 		}
 	}
 
+	switch(CharTemplate.DataName)
+	{
+		case 'Rebel':
+		case 'RebelSoldierProxy':
+		case 'RebelSoldierProxyM2':
+		case 'RebelSoldierProxyM3':
+
+			if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PoweredArmor'))
+			{
+				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('RebelHPUpgrade_T2');
+
+				Data = EmptyData;
+				Data.TemplateName = 'RebelHPUpgrade_T2';
+				Data.Template = AbilityTemplate;
+				SetupData.AddItem(Data);
+			}
+			else if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlatedArmor'))
+			{
+				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('RebelHPUpgrade_T1');
+				Data = EmptyData;
+				Data.TemplateName = 'RebelHPUpgrade_T1';
+				Data.Template = AbilityTemplate;
+				SetupData.AddItem(Data);
+			}
+			
+			if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedGrenades'))
+			{
+				AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('RebelGrenadeUpgrade');
+				Data = EmptyData;
+				Data.TemplateName = 'RebelGrenadeUpgrade';
+				Data.Template = AbilityTemplate;
+				SetupData.AddItem(Data);
+				}
+
+		break;
+		default:
+		break;
+	}
+
 	// Fix enemy unit abilities that need to be tied to a weapon, since abilities
 	// attached to character templates can't be configured for a particular weapon slot.
 	for (i = 0; i < SetupData.Length; i++)
@@ -1267,6 +1326,12 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			`LWTrace(" >>> Binding ability '" $ SetupData[i].TemplateName $ "' to primary weapon for unit " $ UnitState.GetMyTemplateName());
 			SetupData[i].SourceWeaponRef = UnitState.GetPrimaryWeapon().GetReference();
 		}
+
+		if (default.SecondaryWeaponAbilities.Find(SetupData[i].TemplateName) != INDEX_NONE && SetupData[i].SourceWeaponRef.ObjectID == 0)
+		{
+			`LWTrace(" >>> Binding ability '" $ SetupData[i].TemplateName $ "' to Secondary weapon for unit " $ UnitState.GetMyTemplateName());
+			SetupData[i].SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();
+		}	
 	}
 
 	// Prevent units summoned by the Chosen from dropping loot and corpses
@@ -1556,19 +1621,16 @@ static function OverrideAlienRulerSpawning(XComGameState StartState, XComGameSta
 	}
 }
 
-// (Copied from XCGS_HeadquartersAlien.AddChosenTacticalTagsToMission())
+// (Based on code from XCGS_HeadquartersAlien.AddChosenTacticalTagsToMission())
 //
-// Add the Chosen tactical tags to the mission if any of the following criteria
-// are met:
+// Add the Chosen tactical tags to the mission if the LWOTC versions of those
+// tags are in the mission's tactical tags. The actual decision about whether
+// to add a Chosen to the mission is made by XCGS_LWAlienActivityManager.
+// ModifyAlertByMaybeAddingChosenToMission().
 //
-//  * It's the final mission (Golden Path fortress)
-//  * The Chosen has control of the region, is active, and:
-//    - hasn't been encountered yet
-//    - it's a Golden Path mission
-//    - 25% chance on all other missions
-//
-// Note that if the mission type is configured to exclude Chosen, then of course
-// the tactical tags aren't added for the given mission.
+// The main purpose of this function is to ensure that any attempts by vanilla
+// to add Chosen to the mission are blocked and Chosen are added to the HQ
+// tactical tags if the alien activity manager has set them up.
 static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_MissionSite MissionState)
 {
 	local XComGameStateHistory History;
@@ -1576,7 +1638,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
-	local name ChosenSpawningTag;
+	local name ChosenSpawningTag, ChosenSpawningTagLWOTC;
 
 	// Don't allow Chosen on the mission if there is already a Ruler
 	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
@@ -1597,32 +1659,18 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 
 		foreach AllChosen(ChosenState)
 		{
-			if (ChosenState.bDefeated)
-			{
-				continue;
-			}
-
 			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
-			if (!CanOverrideChosenTacticalTags(MissionState, ChosenState)) continue;
+			ChosenSpawningTagLWOTC = class'Helpers_LW'.static.GetChosenActiveMissionTag(ChosenState);
 
 			// Remove the tag if it's already attached to this mission. This is the only
-			// place that should add Chosen tactical mission tags.
+			// place that should add Chosen tactical mission tags to the XCOM HQ. This
+			// basically prevents the base game from adding Chosen to missions.
 			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTag);
 
-			// LWOTC: If Chosen are disabled, skip adding the tag. We do this check here
-			// because we *do* still want to remove the Chosen tags that vanilla has a
-			// habit of adding.
-			if (!`SecondWaveEnabled('EnableChosen'))
+			// Now add the appropriate tactical gameplay tag for this Chosen if the
+			// corresponding LWOTC-specific one is in the mission's tactical tags.
+			if (MissionState.TacticalGameplayTags.Find(ChosenSpawningTagLWOTC) != INDEX_NONE)
 			{
-				continue;
-			}
-
-			// Roll for whether this Chosen will appear on this mission.
-			`LWTrace("Rolling for Chosen on mission " $ MissionState.GeneratedMission.Mission.MissionName);
-			if (`SYNC_RAND_STATIC(100) < GetChosenAppearanceChance(ChosenState, MissionState))
-			{
-				`LWTrace("    Chosen added!");
 				XComHQ.TacticalGameplayTags.AddItem(ChosenSpawningTag);
 			}
 		}
@@ -1637,53 +1685,6 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	}
 }
 
-// Determines whether the Chosen tactical tags should be cleared from the
-// given mission. Returns `false` if the given mission is either the final
-// one or one of the Chosen strongholds.
-static function bool CanOverrideChosenTacticalTags(XComGameState_MissionSite MissionState, XComGameState_AdventChosen ChosenState)
-{
-	return MissionState.Source != 'MissionSource_Final' && MissionState.Source != 'MissionSource_ChosenStronghold';
-}
-
-// Returns the chance that the given Chosen will appear on the given mission. The chance
-// is a percentage between 0 and 100 inclusive.
-static function int GetChosenAppearanceChance(XComGameState_AdventChosen ChosenState, XComGameState_MissionSite MissionState)
-{
-	local XComGameState_LWPersistentSquad Squad;
-	local int AppearanceChance;
-
-	// If the Chosen doesn't control the region, they won't appear on the mission
-	if (!ChosenState.ChosenControlsRegion(MissionState.Region))
-	{
-		return 0;
-	}
-
-	if (class'XComGameState_LWAlienActivity'.default.ExcludeChosenFromMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
-	{
-		// Can't be on this mission no matter what
-		// LWOTC DEBUGGING
-		`LWTrace("Chosen can't be added to missions of type" @ MissionState.GeneratedMission.Mission.sType);
-		// END
-		return 0;
-	}
-	else if (ChosenState.NumEncounters == 0 || MissionState.GetMissionSource().bGoldenPath)
-	{
-		// Guaranteed on this mission
-		return 100;
-	}
-	else
-	{
-		AppearanceChance = default.BaseChosenAppearanceChance;
-
-		// Modify the base Chosen appearance chance by infiltration percentage
-		Squad = `LWSQUADMGR.GetSquadOnMission(MissionState.GetReference());
-		if (Squad != none)
-		{
-			AppearanceChance /= FMax(Squad.CurrentInfiltration, 0.1);
-		}
-		return Clamp(AppearanceChance, 0, 100);
-	}
-}
 
 // WOTC TODO: Perhaps this is supposed to honour the SpawnSizeOverride parameter somehow. Seems to work
 // though (a 10-man squad on first mission spawned OK)
@@ -2471,8 +2472,147 @@ static function ActivateTraining(XComGameState NewGameState, StateObjectReferenc
 	}
 
 	// Gain New Traits
-	ChosenState.GainNewStrengths(NewGameState, class'XComGameState_AdventChosen'.default.NumStrengthsPerLevel);
+	GainNewStrengths(NewGameState, class'XComGameState_AdventChosen'.default.NumStrengthsPerLevel, ChosenState);
+
 }
+
+static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPerLevel, XComGameState_AdventChosen ChosenState)
+{
+	local X2CharacterTemplate ChosenTemplate;
+	local array<ChosenStrengthWeighted> ChosenStrengths , ValidChosenStrengths;	
+	local ChosenStrengthWeighted WStrength;
+	local X2AbilityTemplate TraitTemplate;
+	local X2AbilityTemplateManager AbilityMgr;
+	local float finder, selection, TotalWeight;
+	local name Traitname, ExcludeTraitName;
+	local int i;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+
+	AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+	ChosenTemplate = ChosenState.GetChosenTemplate();
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+
+	if(ChosenTemplate.CharacterGroupName == 'ChosenSniper')
+	{
+
+		if(AlienHQ.GetForceLevel() > 14)
+		{
+			ChosenStrengths = default.HUNTER_STRENGTHS_T3;
+		}
+		else if(AlienHQ.GetForceLevel() > 9)
+		{
+			ChosenStrengths = default.HUNTER_STRENGTHS_T2;
+		}
+		else 
+		{
+			ChosenStrengths = default.HUNTER_STRENGTHS_T1;
+		}
+	}
+	if(ChosenTemplate.CharacterGroupName == 'ChosenWarlock')
+	{
+		if(AlienHQ.GetForceLevel() > 14)
+		{
+			ChosenStrengths = default.WARLOCK_STRENGTHS_T3;
+		}
+		else if(AlienHQ.GetForceLevel() > 9)
+		{
+			ChosenStrengths = default.WARLOCK_STRENGTHS_T2;
+		}
+		else 
+		{
+			ChosenStrengths = default.WARLOCK_STRENGTHS_T1;
+		}	
+	}
+	if(ChosenTemplate.CharacterGroupName == 'ChosenAssassin')
+	{
+		if(AlienHQ.GetForceLevel() > 14)
+		{
+			ChosenStrengths = default.ASSASSIN_STRENGTHS_T3;
+		}
+		else if(AlienHQ.GetForceLevel() > 9)
+		{
+			ChosenStrengths = default.ASSASSIN_STRENGTHS_T2;
+		}
+		else 
+		{
+			ChosenStrengths = default.ASSASSIN_STRENGTHS_T1;
+		}		
+	}
+	ValidChosenStrengths = ChosenStrengths;
+
+	//Remove Strengths Are already added, and those that are excluded by already added strengths
+
+	foreach ChosenState.Strengths(Traitname)
+	{
+		TraitTemplate = AbilityMgr.FindAbilityTemplate(Traitname);
+
+		foreach ValidChosenStrengths(WStrength)
+		{
+			if(WStrength.Strength == Traitname)
+			{
+				ValidChosenStrengths.RemoveItem(WStrength);
+				break;
+			}
+
+		}
+		
+		foreach TraitTemplate.ChosenExcludeTraits(ExcludeTraitName)
+		{
+			foreach ValidChosenStrengths(WStrength)
+			{
+				if(WStrength.Strength == ExcludeTraitName)
+				{
+				ValidChosenStrengths.RemoveItem(WStrength);
+				break;
+				}
+
+			}
+		}
+	}
+	//Remove Strengths That are excluded by weaknesses
+	foreach ChosenState.Weaknesses(Traitname)
+	{
+		TraitTemplate = AbilityMgr.FindAbilityTemplate(Traitname);
+
+		foreach TraitTemplate.ChosenExcludeTraits(ExcludeTraitName)
+		{
+			foreach ValidChosenStrengths(WStrength)
+			{
+				if(WStrength.Strength == ExcludeTraitName)
+				{
+				ValidChosenStrengths.RemoveItem(WStrength);
+				break;
+				}
+
+			}
+		}
+	}
+		TotalWeight = 0.0f;
+		foreach ValidChosenStrengths(WStrength)
+		{
+			
+			TotalWeight+=WStrength.Weight;
+		}
+		for(i=0; i<NumStrengthsPerLevel; i++)
+		{
+			finder = 0.0f;
+			selection = `SYNC_FRAND_STATIC() * TotalWeight;
+			foreach ValidChosenStrengths(WStrength)
+			{
+				finder += WStrength.Weight;
+				if(finder > selection)
+				{
+					break;
+				}
+			}
+			ChosenState.Strengths.AddItem(WStrength.Strength);
+		}
+}
+
+
 
 static function UpdateRetribution()
 {
@@ -2773,6 +2913,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'FLUSH_STATEFFECT_DURATION':
 			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.FLUSH_STATEFFECT_DURATION);
+			return true;
+		case 'MIND_SCORCH_BURN_CHANCE':
+			Outstring = string(class'X2LWAbilitiesModTemplate'.default.MIND_SCORCH_BURN_CHANCE);
 			return true;
 		default:
 			return false;

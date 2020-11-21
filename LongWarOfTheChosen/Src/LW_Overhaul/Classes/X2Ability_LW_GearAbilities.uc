@@ -268,7 +268,7 @@ static function X2AbilityTemplate CreateHazmatVestBonusAbility_LW()
 	local X2Effect_DamageImmunity           DamageImmunity;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'HazmatVestBonus_LW');
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_item_nanofibervest";
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_item_flamesealant";
 
 	Template.AbilitySourceName = 'eAbilitySource_Item';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;

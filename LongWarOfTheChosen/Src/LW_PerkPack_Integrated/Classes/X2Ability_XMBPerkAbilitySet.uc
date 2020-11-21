@@ -98,6 +98,11 @@ var string Dissassemblybonustext;
 var name LeadTheTargetReserveActionName;
 var name LeadTheTargetMarkEffectName;
 
+var config int FATALITY_AIM;
+var config int FATALITY_CRIT;
+var config float FATALITY_THRESHOLD;
+
+var name VampUnitValue;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -154,7 +159,22 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(PrimaryReturnFireShot());
 	Templates.AddItem(DeadeyeSnapshotAbility());
 	Templates.AddItem(DeadeyeSnapShotDamage());
+
+	Templates.AddItem(PsychoticRage());
+	Templates.AddItem(PreciseStrike());
+	Templates.AddItem(YouCannotHide());
+
+	Templates.AddItem(HunterMark());
+	Templates.AddItem(HunterMarkHit());
+	Templates.AddItem(OverbearingSuperiority());
+	Templates.AddItem(CreateXCOMBloodThirst());
+	Templates.AddItem(XCOMBloodThirstPassive());
+	Templates.AddItem(Fatality());
+	Templates.AddItem(Vampirism());
+	Templates.AddItem(VampirismPassive());
 	
+	Templates.AddItem(ComplexReload());
+
 	return Templates;
 }
 
@@ -2207,10 +2227,452 @@ static function X2AbilityTemplate DeadeyeSnapShotDamage()
 	return Template;
 }
 
+static function X2AbilityTemplate YouCannotHide()
+{
+	local X2Effect_PersistentStatChange StatEffect;
+	// Create a conditional bonus
+
+	StatEffect = new class'X2Effect_PersistentStatChange';
+	StatEffect.AddPersistentStatChange(eStat_Offense, float(100));
+
+	// Create the template using a helper function
+	return Passive('YouCannotHide_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_overwatch_shot", true, StatEffect);
+}
+
+
+static function X2AbilityTemplate PsychoticRage()
+{
+	local XMBEffect_ConditionalBonus Effect;
+	local X2Condition_UnitStatCheck Condition;
+
+	// Create a condition that checks that the unit is at less than 100% HP.
+	// X2Condition_UnitStatCheck can also check absolute values rather than percentages, by
+	// using "false" instead of "true" for the last argument.
+	Condition = new class'X2Condition_UnitStatCheck';
+	Condition.AddCheckStat(eStat_HP, 36, eCheck_LessThan,,, true);
+
+	// Create a conditional bonus effect
+	Effect = new class'XMBEffect_ConditionalBonus';
+
+	//Need to add for all of them because apparently if you crit you don't hit lol
+	Effect.AddPercentDamageModifier(50, eHit_Success);
+	Effect.AddPercentDamageModifier(50, eHit_Graze);
+	Effect.AddPercentDamageModifier(50, eHit_Crit);
+	Effect.EffectName = 'PsychoticRage_Bonus';
+
+	// The effect only applies while wounded
+	EFfect.AbilityShooterConditions.AddItem(Condition);
+	Effect.AbilityTargetConditionsAsTarget.AddItem(Condition);
+	
+	// Create the template using a helper function
+	return Passive('PsychoticRage_LW', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect);
+}
+
+static function X2AbilityTemplate PreciseStrike()
+{
+	local XMBEffect_ConditionalBonus ShootingEffect;
+	local X2AbilityTemplate Template;
+
+	// Create an armor piercing bonus
+	ShootingEffect = new class'XMBEffect_ConditionalBonus';
+	ShootingEffect.EffectName = 'PreciseStrike_Bonus';
+	ShootingEffect.AddArmorPiercingModifier(3);
+
+	// Only with the melee weapon
+	ShootingEffect.AbilityTargetConditions.AddItem(default.MeleeCondition);
+
+	// Prevent the effect from applying to a unit more than once
+	ShootingEffect.DuplicateResponse = eDupe_Refresh;
+
+	// The effect lasts forever
+	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
+	
+	// Activated ability that targets user
+	Template = Passive('PreciseStrike_LW', "img:///UILibrary_XPerkIconPack.UIPerk_knife_shot", true, ShootingEffect);
+
+	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
+	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
+	return Template;
+}
+
+static function X2AbilityTemplate HunterMark()
+{
+	local X2AbilityTemplate				Template;
+	local X2AbilityCost_ActionPoints	ActionPointCost;
+	local X2Condition_Visibility		TargetVisibilityCondition;
+	local X2Condition_UnitEffects		UnitEffectsCondition;
+	local X2Effect_Persistent			TrackingShotMarkSource;
+	local X2Effect_TrackingShotMarkTarget TrackingShotMarkTarget;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'XCOMHunterMark_LW');
+
+	Template.bShowActivation = true;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_trackingshot";
+
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	//Shooter Conditions
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	// Source cannot already be targeting
+	UnitEffectsCondition = new class'X2Condition_UnitEffects';
+	//UnitEffectsCondition.AddExcludeEffect(class'X2Ability_ChosenSniper'.default.TrackingShotMarkSourceEffectName, 'AA_DuplicateEffectIgnored');
+	Template.AbilityShooterConditions.AddItem(UnitEffectsCondition);
+
+	// Source Effect
+	TrackingShotMarkSource = new class 'X2Effect_Persistent';
+	TrackingShotMarkSource.EffectName = class'X2Ability_ChosenSniper'.default.TrackingShotMarkSourceEffectName;
+	TrackingShotMarkSource.DuplicateResponse = eDupe_Refresh;
+	TrackingShotMarkSource.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnEnd);
+	TrackingShotMarkSource.bRemoveWhenTargetDies = true;
+	Template.AddShooterEffect(TrackingShotMarkSource);
+
+	// Target Conditions
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
+
+	// Target cannot already be targeted
+	UnitEffectsCondition = new class'X2Condition_UnitEffects';
+	UnitEffectsCondition.AddExcludeEffect(class'X2Ability_ChosenSniper'.default.TrackingShotMarkTargetEffectName, 'AA_DuplicateEffectIgnored');
+	Template.AbilityTargetConditions.AddItem(UnitEffectsCondition);
+
+	// Target must be visible
+	TargetVisibilityCondition = new class'X2Condition_Visibility';
+	TargetVisibilityCondition.bRequireGameplayVisible = true;
+	TargetVisibilityCondition.bAllowSquadsight = true;
+	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+
+	// Target Effect
+	TrackingShotMarkTarget = new class 'X2Effect_TrackingShotMarkTarget';
+	TrackingShotMarkTarget.EffectName = class'X2Ability_ChosenSniper'.default.TrackingShotMarkTargetEffectName;
+	TrackingShotMarkTarget.DuplicateResponse = eDupe_Refresh;
+	TrackingShotMarkTarget.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnEnd);
+	TrackingShotMarkTarget.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, , , Template.AbilitySourceName);
+	TrackingShotMarkTarget.bRemoveWhenTargetDies = true;
+	TrackingShotMarkTarget.VisualizationFn = class'X2Ability_ChosenSniper'.static.TrackingShotMarkTarget_VisualizationFn;
+	TrackingShotMarkTarget.EffectRemovedVisualizationFn = class'X2Ability_ChosenSniper'.static.TrackingShotMarkTarget_RemovedVisualizationFn;
+	Template.AddTargetEffect(TrackingShotMarkTarget);
+
+	Template.ActivationSpeech = 'TargetDefinition';
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = class'X2Ability_ChosenSniper'.static.TrackingShotMark_BuildVisualization;
+	Template.CinescriptCameraType = "ChosenSniper_TrackingShotMark";
+
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+	Template.ConcealmentRule = eConceal_Never;
+	Template.SuperConcealmentLoss = 0;
+	Template.AdditionalAbilities.AddItem('MarkedForDeath');
+	return Template;
+}
+
+static function X2AbilityTemplate HunterMarkHit()
+{
+	local X2AbilityTemplate                 Template;
+	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
+	local XMBEffect_AbilityCostRefund	RefundEffect;
+	local XMBCondition_AbilityName	NameCondition;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MarkedForDeath');
+
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.bDontDisplayInAbilitySummary = true;
+	Template.bHideOnClassUnlock = true;
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_trackingshot";
+
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	
+	RefundEffect = new class'XMBEffect_AbilityCostRefund';
+	RefundEffect.EffectName = 'MarkedForDeath';
+	RefundEffect.TriggeredEvent = 'MarkedForDeath';
+	RefundEffect.bShowFlyOver=true;
+	NeedOneOfTheEffects=new class'X2Condition_TargetHasOneOfTheEffects';
+	NeedOneOfTheEffects.EffectNames.AddItem(class'X2Ability_ChosenSniper'.default.TrackingShotMarkTargetEffectName);
+
+	NameCondition = new class'XMBCondition_AbilityName';
+	NameCondition.IncludeAbilityNames.AddItem('SniperStandardFire');
+
+
+	RefundEffect.AbilityTargetConditions.AddItem(NeedOneOfTheEffects);
+	RefundEffect.AbilityTargetConditions.AddItem(NameCondition);
+
+	Template.AddTargetEffect(RefundEffect);
+	
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate OverbearingSuperiority()
+{
+	local X2AbilityTemplate Template;
+	local XMBEffect_AbilityCostRefund SuperiorityEffect;
+
+	// Create an effect that refunds the action point cost of abilities
+	SuperiorityEffect = new class'XMBEffect_AbilityCostRefund';
+	SuperiorityEffect.EffectName = 'OverbearingSuperiority';
+	SuperiorityEffect.TriggeredEvent = 'OverbearingSuperiority';
+
+	// Require that the activated ability use the weapon associated with this ability
+	SuperiorityEffect.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
+
+	// Require that the activated ability get a critical hit
+	SuperiorityEffect.AbilityTargetConditions.AddItem(default.CritCondition);
+
+	// The effect lasts until the end of the turn
+	SuperiorityEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
+
+	// Create the template for an activated ability using a helper function.
+	Template = Passive('OverbearingSuperiority_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_crit_chevron_x3", true, SuperiorityEffect);
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+	// Don't allow multiple ability-refunding abilities to be used in the same turn (e.g. Slam Fire and Serial)
+	class'X2Ability_RangerAbilitySet'.static.SuperKillRestrictions(Template, 'Serial_SuperKillCheck');
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateXCOMBloodThirst()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_BloodThirst            		DamageEffect;
+	local X2AbilityTrigger_EventListener		EventListener;	
+	// Icon Properties
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'XCOMBloodThirst_LW');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_beserker_rage";
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.EventID = 'SlashActivated';
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.EventID = 'BladestormActivated';
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	DamageEffect = new class'X2Effect_BloodThirst';
+	DamageEffect.BuildPersistentEffect(3, false, true, false, eGameRule_PlayerTurnBegin);
+	DamageEffect.bflatdamage = true;
+	DamageEffect.BloodThirstFlatDMG = 2;
+	DamageEffect.DuplicateResponse = eDupe_Allow;
+	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect(DamageEffect);
+
+	Template.bShowActivation=true;
+	Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  NOTE: No visualization on purpose!
+	Template.AdditionalAbilities.AddItem('XCOMBloodThirstPassive_LW');
+
+	return Template;
+}
+
+static function X2AbilityTemplate XCOMBloodThirstPassive()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('XCOMBloodThirstPassive_LW', "img:///UILibrary_PerkIcons.UIPerk_beserker_rage", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate Fatality()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_Fatality_LW			AimandCritModifiers;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Fatality_LW');
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_panic_crit";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	AimandCritModifiers = new class 'X2Effect_Fatality_LW';
+	AimandCritModifiers.FatalityAimBonus=default.FATALITY_AIM;
+	AimandCritModifiers.FatalityCritBonus=default.FATALITY_CRIT;
+	AimandCritModifiers.FatalityThreshold=default.FATALITY_THRESHOLD;
+
+	AimandCritModifiers.BuildPersistentEffect (1, true, false);
+	AimandCritModifiers.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (AimandCritModifiers);
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;		
+}
+
+static function X2AbilityTemplate Vampirism()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityTrigger_EventListener    EventListener;
+	local X2Condition_UnitProperty          ShooterProperty;
+	local X2Effect_SoulSteal                StealEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Vampirism_LW');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.str_soulstealer";
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilitySourceName = 'eAbilitySource_Psionic';
+
+	ShooterProperty = new class'X2Condition_UnitProperty';
+	ShooterProperty.ExcludeAlive = false;
+	ShooterProperty.ExcludeDead = true;
+	ShooterProperty.ExcludeFriendlyToSource = false;
+	ShooterProperty.ExcludeHostileToSource = true;
+	ShooterProperty.ExcludeFullHealth = true;
+	Template.AbilityShooterConditions.AddItem(ShooterProperty);
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventFn = VampirismListener;
+	EventListener.ListenerData.EventID = 'UnitTakeEffectDamage';
+	EventListener.ListenerData.Filter = eFilter_None;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	StealEffect = new class'X2Effect_SoulSteal';
+	StealEffect.UnitValueToRead = default.VampUnitValue;
+	Template.AddShooterEffect(StealEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.bShowActivation = true;
+	Template.bSkipFireAction = true;
+
+	Template.AdditionalAbilities.AddItem('VampirismPassive_LW');
+
+	return Template;
+}
+
+static function EventListenerReturn VampirismListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameState NewGameState;
+	local XComGameState_Unit AbilityOwnerUnit, TargetUnit, SourceUnit;
+	local int DamageDealt, DmgIdx;
+	local float StolenHP;
+	local XComGameState_Ability AbilityState, InputAbilityState;
+	local X2TacticalGameRuleset Ruleset;
+
+	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+
+	AbilityState = XComGameState_Ability(CallbackData);
+	InputAbilityState = XComGameState_Ability(GameState.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID));
+	if (AbilityContext != none && AbilityContext.InterruptionStatus != eInterruptionStatus_Interrupt)
+	{
+		Ruleset = `TACTICALRULES;
+		TargetUnit = XComGameState_Unit(GameState.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+		SourceUnit = XComGameState_Unit(GameState.GetGameStateForObjectID(AbilityContext.InputContext.SourceObject.ObjectID));
+
+		if (TargetUnit != none)
+		{
+			if(SourceUnit.ObjectID == AbilityState.OwnerStateObject.ObjectID)
+			{
+				if(InputAbilityState.SourceWeapon.ObjectID == AbilityState.SourceWeapon.ObjectID)
+				{
+					for (DmgIdx = 0; DmgIdx < TargetUnit.DamageResults.Length; ++DmgIdx)
+					{
+						if (TargetUnit.DamageResults[DmgIdx].Context == AbilityContext)
+						{
+							DamageDealt += TargetUnit.DamageResults[DmgIdx].DamageAmount;
+						}
+					}
+					if (DamageDealt > 0)
+					{
+						StolenHP = DamageDealt;
+						if (StolenHP > 0)
+						{
+							NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Chosen Soul Steal Amount");
+							AbilityOwnerUnit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', AbilityState.OwnerStateObject.ObjectID));
+							AbilityOwnerUnit.SetUnitFloatValue(default.VampUnitValue, StolenHP);
+							Ruleset.SubmitGameState(NewGameState);
+
+							AbilityState.AbilityTriggerAgainstSingleTarget(AbilityState.OwnerStateObject, false);
+
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return ELR_NoInterrupt;
+}
+
+static function X2AbilityTemplate VampirismPassive()
+{
+	local X2AbilityTemplate         Template;
+
+	Template = PurePassive('VampirismPassive_LW', "img:///UILibrary_PerkIcons.UIPerk_soulsteal", false, 'eAbilitySource_Perk');
+
+	return Template;
+}
+static function X2AbilityTemplate ComplexReload()
+{
+	local X2AbilityTemplate Template;
+	Template = class'X2Ability_DefaultAbilitySet'.static.AddReloadAbility('ComplexReload_LW');
+	X2AbilityCost_ActionPoints(Template.AbilityCosts[0]).bConsumeAllPoints = true;
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+	return Template;
+}
+
 defaultproperties
 {
 	LeadTheTargetReserveActionName = "leadthetarget"
 	LeadTheTargetMarkEffectName ="Leathetargetmark"
 	ZONE_CONTROL_RADIUS_NAME = "LW_CQBDominanceRadius"
 	Dissassemblybonustext = "Hack Bonus"
+	VampUnitValue="VampAmount"
 }

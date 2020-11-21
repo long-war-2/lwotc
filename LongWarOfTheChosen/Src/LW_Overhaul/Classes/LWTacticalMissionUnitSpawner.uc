@@ -557,7 +557,7 @@ static function GiveEvacAbilityToRebels()
 
 	foreach History.IterateByClassType(class'XComGameState_Unit', Unit)
 	{
-		if (Unit.GetMyTemplateName() == 'Rebel')
+		if (Unit.GetMyTemplateName() == 'RebelSoldierProxy' || Unit.GetMyTemplateName() == 'RebelSoldierProxyM2' || Unit.GetMyTemplateName() == 'RebelSoldierProxyM3')
 		{
 			NewUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
 			NewUnit.EnableGlobalAbilityForUnit('Evac');

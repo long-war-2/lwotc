@@ -615,10 +615,10 @@ LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><B
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
-LocLongDescription="Fire your Arc Thrower at every visible enemy who is capable of being stunned."
-LocHelpText="Fire your Arc Thrower at every visible enemy who is capable of being stunned."
+LocLongDescription="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim"
+LocHelpText="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim"
 LocFlyOverText="Chain Lightning"
-LocPromotionPopupText="<Bullet/> Fire your Arc Thrower at every visible enemy who is capable of being stunned.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Five-turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Fire your Arc Thrower at every visible enemy who is capable of being stunned with a -50 penalty to aim<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Five-turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="Leadership"
@@ -2930,6 +2930,11 @@ ObjectiveTextPools[4]="Our focus on scavenging supplies in this region has gotte
 MissionPinLabel="LWS Overhaul Generic Mission"
 MissionExpiredText="This mission is no longer available."
 
+[DefaultChosenAvengerDefense X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Plant X4 on back of Turrets !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
+ObjectiveTextPools[1]="Plant Bomb to Destroy the Mobile Power Generator !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
+ObjectiveTextPools[2]="Eliminate all enemy forces"
+
 [XComGame.UIMission]
 [UIMission]
 m_strMissionDifficulty="CURRENT ENEMY ACTIVITY"
@@ -4949,6 +4954,8 @@ DisplayName="Radio Relay"
 [MissionTimers]
 TimerSmashNGrabTitle="Reinforcements"
 TimerSmashNGrabSubtitle="Turns until alien response"
+TimerDefendTitle="Reinforcements"
+TimerDefendSubtitle="Turns until Advent arrival"
 
 [InTheZone X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/><Bullet/> Every successful kill does result in a reduction to critical hit chance and damage, however.<br/><Bullet/> Serial has a <Ability:SelfCooldown/> turn cooldown.<br/>"
@@ -5318,29 +5325,35 @@ TacticalText="<Bullet/> Grants 1 starting focus and the Channel ability, which g
 AbilityDescName="shard"
 ; End Translation #2
 
-[Yoink X2AbilityTemplate]
-LocFriendlyName="Yoink"
-LocLongDescription="Teleport next to the enemy."
-LocHelpText="Teleport next to the enemy."
-LocFlyOverText="Yoink"
-
-[AmmoDump X2AbilityTemplate]
+[AmmoDump_LW X2AbilityTemplate]
 LocFriendlyName="Sabotage Weapon"
 LocHelpText="Disables a weapon, dumping the ammo."
 LocLongDescription="Disables a weapon, dumping the ammo."
 LocFlyOverText="Sabotage Weapon"
 
-[ShieldAlly X2AbilityTemplate]
+[ShieldAllyM1 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
 LocHelpText="Adds Shield to an Ally."
 LocLongDescription="Adds Shield to an Ally."
 LocFlyOverText="The Warlocks Greatest Champion"
 
-[DetonateMindshield X2AbilityTemplate]
-LocFriendlyName="Overwhelm Mindshield"
-LocHelpText="Powers through a Mindshield."
-LocLongDescription="Powers through a Mindshield."
-LocFlyOverText="Overwhelm Mindshield"
+[ShieldAllyM2 X2AbilityTemplate]
+LocFriendlyName="The Warlocks Greatest Champion"
+LocHelpText="Adds Shield to an Ally."
+LocLongDescription="Adds Shield to an Ally."
+LocFlyOverText="The Warlocks Greatest Champion"
+
+[ShieldAllyM3 X2AbilityTemplate]
+LocFriendlyName="The Warlocks Greatest Champion"
+LocHelpText="Adds Shield to an Ally."
+LocLongDescription="Adds Shield to an Ally."
+LocFlyOverText="The Warlocks Greatest Champion"
+
+[ShieldAllyM4 X2AbilityTemplate]
+LocFriendlyName="The Warlocks Greatest Champion"
+LocHelpText="Adds Shield to an Ally."
+LocLongDescription="Adds Shield to an Ally."
+LocFlyOverText="The Warlocks Greatest Champion"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Melee Resistance"
@@ -5356,22 +5369,6 @@ LocHelpText="Takes 50% less damage from Explosions."
 LocFriendlyName="Balanced"
 LocHelpText="Near immune to critical Hits."
 LocLongDescription="This Chosen is near immune to critical Hits."
-
-[Primary_Daze_Passive X2AbilityTemplate]
-LocFriendlyName="Primary Daze"
-LocHelpText="Your primary attacks daze."
-LocLongDescription="Your primary attacks daze."
-
-[Secondary_Daze_Passive X2AbilityTemplate]
-LocFriendlyName="Secondary Daze"
-LocHelpText="Your Secondary attacks Heavy daze."
-LocLongDescription="Your Secondary attacks Heavy daze."
-
-[HeavyRevive X2AbilityTemplate]
-LocFriendlyName="Heavy Revive"
-LocHelpText="Remove the Chosen's \"Heavy Dazed\" effect from this soldier. Soldiers may be disoriented when revived."
-LocLongDescription="Remove the Chosen's \"Heavy Dazed\" effect from this soldier. Soldiers may be disoriented when revived."
-LocFlyOverText="Revived!"
 
 [MC_Stock_Strike X2AbilityTemplate]
 LocFriendlyName="Stock Strike"
@@ -5993,6 +5990,266 @@ LocFriendlyName="Holy Warrior"
 LocHelpText="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
 LocLongDescription="The Priest performs a mind merge with another unit. That unit gains stat boosts while the merge exists."
 LocFlyOverText="Holy Warrior"
+
+[ChosenDragonRounds X2AbilityTemplate]
+LocFriendlyName="Infernal Fury"
+LocFlyOverText="Infernal Fury"
+LocLongDescription="Your primary weapon will set your enemies on fire."
+LocHelpText="Your primary weapon will set your enemies on fire."
+
+[ChosenDragonRoundsPassive X2AbilityTemplate]
+LocFriendlyName="Infernal Fury"
+LocFlyOverText="Infernal Fury"
+LocLongDescription="Your primary weapon will set your enemies on fire."
+LocHelpText="Your primary weapon will set your enemies on fire."
+
+[ChosenVenomRounds X2AbilityTemplate]
+LocFriendlyName="Toxic Nightmare"
+LocFlyOverText="Toxic Nightmare"
+LocLongDescription="Your Primary weapon attacks will poison enemies."
+LocHelpText="Your Primary weapon attacks will poison enemies."
+
+[ChosenVenomRoundsPassive X2AbilityTemplate]
+LocFriendlyName="Toxic Nightmare"
+LocFlyOverText="Toxic Nightmare"
+LocLongDescription="Your Primary weapon attacks will poison enemies."
+LocHelpText="Your Primary weapon attacks will poison enemies."
+
+[ChosenBleedingRounds X2AbilityTemplate]
+LocFriendlyName="Hit it where it hurts"
+LocFlyOverText="Hit it where it hurts"
+LocLongDescription="Your Primary weapon attacks will bleed enemies."
+LocHelpText="Your Primary weapon attacks will bleed enemies."
+
+[ChosenBleedingRoundsPassive X2AbilityTemplate]
+LocFriendlyName="Hit it where it hurts"
+LocFlyOverText="Hit it where it hurts"
+LocLongDescription="Your Primary weapon attacks will bleed enemies."
+LocHelpText="Your Primary weapon attacks will bleed enemies."
+
+[MindScorchDangerZone X2AbilityTemplate]
+LocFriendlyName="High Voltage"
+LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch."
+LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch."
+LocPromotionPopupText="<Bullet/> Provides a <Ability:VoltDangerZoneBonus/>-tile bonus to the radius of Mind Scorch."
+
+[MindScorchTerror X2AbilityTemplate]
+LocFriendlyName="Terrorize"
+LocLongDescription="Adds a chance to panic enemies hit by Mind Scorch."
+LocHelpText="Adds a chance to panic enemies hit by Mind Scorch."
+LocPromotionPopupText="<Bullet/> Mind Scorch can now panic the enemy.<br/><Bullet/> The chance to panic is based on the Warlock's Psi Offense stat versus the target's Will."
+
+[MindScorch X2AbilityTemplate]
+LocFriendlyName="Mind Scorch"
+LocHelpText="The Warlock opens their mind to the target, damaging and having a <Ability:MIND_SCORCH_BURN_CHANCE/> % chancec to burn the target with their madness."
+LocLongDescription="The Warlock opens their mind to the target, damaging and burning the target with their madness."
+
+[ChosenKidnap X2AbilityTemplate]
+LocFriendlyName="Kidnap"
+LocLongDescription="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 1 turn cooldown."
+LocHelpText="Kidnap an unconcious or bleeding out unit. Costs 2 actions, 1 turn cooldown."
+LocFlyOverText="Kidnap"
+
+[ChosenKeen X2AbilityTemplate]
+LocFriendlyName="Keen"
+LocLongDescription="Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
+LocHelpText="Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
+LocFlyOverText="Keen"
+
+[CombatReadiness X2AbilityTemplate]
+LocFriendlyName="Combat Readiness"
+LocLongDescription="Gain a stackable 10 aim and 5 defense bonus for 2 turns."
+LocHelpText="Gain a stackable 10 aim and 5 defense bonus for 2 turns."
+LocFlyOverText="Combat Readiness"
+
+[ChosenAssassin X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+
+[ChosenAssassinM2 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+
+[ChosenAssassinM3 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+
+[ChosenAssassinM4 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+
+[ChosenWarlock X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+
+[ChosenWarlockM2 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+
+[ChosenWarlockM3 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+
+[ChosenWarlockM4 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+
+[ChosenSniper X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
+
+[ChosenSniperM2 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
+
+[ChosenSniperM3 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
+
+[ChosenSniperM4 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
+
+
+[BloodThirst_LW X2AbilityTemplate]
+LocFriendlyName="Blood Thirst"
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocFlyOverText="Blood Thirst"
+
+[BloodThirst_LWPassive X2AbilityTemplate]
+LocFriendlyName="Blood Thirst"
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocFlyOverText="Blood Thirst"
+
+
+[PreciseStrike_LW X2AbilityTemplate]
+LocFriendlyName="Precise strike"
+LocLongDescription="Your melee attacks pierce 3 armor."
+LocHelpText="Your melee attacks pierce 3 armor."
+LocFlyOverText="Precise strike"
+
+[PsychoticRage_LW X2AbilityTemplate]
+LocFriendlyName="Psychotic Rage"
+LocHelpText="Gain a 50% damage boost when at 35% hp or less"
+LocLongDescription="Gain a 50% damage boost when at 35% hp or less."
+LocFlyOverText="Psychotic Rage"
+
+[YouCannotHide_LW X2AbilityTemplate]
+LocFriendlyName="You Cannot hide"
+LocHelpText="Gain 100 aim."
+LocLongDescription="Gain 100 aim."
+LocFlyOverText="Run."
+[RebelHPUpgrade_T1 X2AbilityTemplate]
+LocFriendlyName="Alloy Vest"
+LocLongDescription="Researching plated armor has given our resistance soldiers better protection."
+LocHelpText="Researching plated armor has given our resistance soldiers better protection."
+LocFlyOverText="Alloy Vest"
+
+[RebelHPUpgrade_T2 X2AbilityTemplate]
+LocFriendlyName="Advanced Alloy Vest"
+LocLongDescription="Researching powered armor has given our resistance soldiers even better protection."
+LocHelpText="Researching powered armor has given our resistance soldiers even better protection."
+LocFlyOverText="Advanced Alloy Vest"
+
+[ChosenRifle_XCOM X2WeaponTemplate]
+FriendlyName="Disruptor Rifle"
+FriendlyNamePlural="Disruptor Rifles"
+BriefSummary="Despite his fixation on Psionic power, even the Chosen Warlock carried a more traditional weapon in times of need."
+TacticalText="<Bullet/> The Disruptor rifle shots are free as long as the shot is a crit.\n<Bullet/> <Bullet/> The Disruptor rifle has higher critical chance against other psionic units.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n"
+AbilityDescName="assault rifle"
+
+[ChosenShotgun_XCOM X2WeaponTemplate]
+FriendlyName="Arashi"
+FriendlyNamePlural="Arashis"
+BriefSummary="The Chosen Assassin's failsafe weapon, in close quarters it is no less dangerous than her sword."
+TacticalText="<Bullet/> The Arashi Allows the wearer to heal injuries by dealing damage, and is more accurate than most shotguns at longer ranges.\n<Bullet/> Shotgun-style weapons are very effective at close range, but their accuracy drops off quickly at longer range.\n"
+AbilityDescName="shotgun"
+
+[ChosenSword_XCOM X2WeaponTemplate]
+FriendlyName="Katana"
+FriendlyNamePlural="Katanas"
+BriefSummary="The prized weapon of the Chosen Assassin, forged by hands not of this Earth. It is said to grow stronger when consuming the blood of its enemies."
+TacticalText="<Bullet/> The Katana starts at low damage, gets a temporary damage bonus each time it hits."
+AbilityDescName="sword"
+
+[ChosenSniperRifle_XCOM X2WeaponTemplate]
+FriendlyName="Darklance"
+FriendlyNamePlural="Darklances"
+BriefSummary="This rifle belonging to the Chosen Hunter has probably seen more death than we can possibly imagine."
+TacticalText="<Bullet/>This rifle is capable of insane burst damage against units that have been marked for death.<br/> <Bullet/>However because of its size it has proven to be difficult to reload for our operatives.<br/>"
+AbilityDescName="sniper rifle"
+
+[ChosenSniperPistol_XCOM X2WeaponTemplate]
+FriendlyName="Darkclaw"
+FriendlyNamePlural="Darkclaws"
+BriefSummary="Although it would almost appear to mimic the design of traditional revolvers found on Earth, the technology involved here is anything but conventional."
+TacticalText="<Bullet/> The Darkclaw is an extremely powerful pistol against wounded enemies."
+AbilityDescName="pistol"
+
+[XCOMBloodThirst_LW X2AbilityTemplate]
+LocFriendlyName="Blood Thirst"
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocFlyOverText="Blood Thirst"
+
+[XCOMBloodThirstPassive_LW X2AbilityTemplate]
+LocFriendlyName="Blood Thirst"
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
+LocFlyOverText="Blood Thirst"
+
+[OverbearingSuperiority_LW X2AbilityTemplate]
+LocFriendlyName="Overbearing Superiority"
+LocLongDescription="Whenever you get a critical hit with your primary weapon, your actions are refunded."
+LocHelpText="whenever you get a critical hit with your primary weapon, your actions are refunded."
+LocFlyOverText="Overbearing Superiority"
+
+[DisruptorRifleCrit X2AbilityTemplate]
+LocFriendlyName="Wrath Against Unworthy"
+LocLongDescription="Gain +20 crit against psionic units."
+LocHelpText="Gain +20 crit against psionic units."
+LocFlyOverText="Wrath Against Unworthy"
+
+[XCOMHunterMark_LW X2AbilityTemplate]
+LocFriendlyName="Mark For Death"
+LocLongDescription="Mark a target for death, granting your shots against that unit to be refunded. Effect Lasts till XCOM's next turn."
+LocHelpText="Mark a target for death, granting your shots against that unit to be refunded."
+LocFlyOverText="Mark For Death"
+
+[Fatality_LW X2AbilityTemplate]
+LocFriendlyName="Fatality"
+LocLongDescription="Gain +100 aim and crit against units at 35%hp or lower with your <Ability:WeaponName/>"
+LocHelpText="Gain +100 aim and crit against units at 35%hp or lower with your <Ability:WeaponName/>"
+LocFlyOverText="Fatality"
+
+[Vampirism_LW X2AbilityTemplate]
+LocFriendlyName="Vampirism"
+LocLongDescription="Dealing damage with this weapon heals you for the same amount."
+LocHelpText="Dealing damage with this weapon heals you for the same amount."
+LocFlyOverText="Vampirism"
+
+[VampirismPassive_LW X2AbilityTemplate]
+LocFriendlyName="Vampirism"
+LocLongDescription="Dealing damage with this weapon heals you for the same amount."
+LocHelpText="Dealing damage with this weapon heals you for the same amount."
+LocFlyOverText="Vampirism"
+
+[ChosenLowProfile X2AbilityTemplate]
+LocFriendlyName="Agile"
+LocLongDescription="Gain a stackable defence bonus after taking damage for this turn."
+LocHelpText="Gain a stackable defence bonus after taking damage for this turn."
+
+[ChosenLowProfileTrigger X2AbilityTemplate]
+LocFriendlyName="Agile"
+LocLongDescription="Gain a stackable defence bonus after taking damage for this turn."
+LocHelpText="Gain a stackable defence bonus after taking damage for this turn."
+
+[ComplexReload_LW X2AbilityTemplate]
+LocFriendlyName="Complex Reload"
+LocHelpText="Reload your primary weapon. Ends turn."
+LocFlyOverText="Reloading"
 
 [XcomGame.X2StrategyGameRulesetDataStructures]
 [X2StrategyGameRulesetDataStructures]

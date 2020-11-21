@@ -32,7 +32,9 @@ var config int RECRUIT_SCIENTIST_BAR;
 var config int RECRUIT_REBEL_SOLDIER_BIAS;
 var config int RECRUIT_SOLDIER_BIAS_IF_FULL;
 
-var config int SOLDIER_LIAISON_FLAT_BONUS;
+var config int LOW_REBELS_THRESHOLD;
+var config int RECRUIT_REBEL_REBEL_BIAS;
+var config array<int> SOLDIER_LIAISON_FLAT_BONUS;
 var config float SOLDIER_LIAISON_MULTIPLIER;
 
 var config float ENGINEER_LIAISON_BONUS;
@@ -149,7 +151,30 @@ function float GetDailyIncome_Recruit(XComGameState_LWOutpost Outpost, float Reb
 
     if (Outpost.HasLiaisonOfKind('Soldier'))
     {
-        income += default.SOLDIER_LIAISON_FLAT_BONUS;
+        switch (Outpost.GetRebelCount())
+        {
+            case 0:
+                income += default.SOLDIER_LIAISON_FLAT_BONUS[0];
+                break;
+            case 1:
+                income += default.SOLDIER_LIAISON_FLAT_BONUS[1];
+                break;
+            case 2:
+                income += default.SOLDIER_LIAISON_FLAT_BONUS[2];
+                break;
+            case 3:
+                income += default.SOLDIER_LIAISON_FLAT_BONUS[3];
+                break;
+            case 4:
+                income += default.SOLDIER_LIAISON_FLAT_BONUS[4];
+                break;
+            case 5:
+                income += default.SOLDIER_LIAISON_FLAT_BONUS[5];
+                break;
+            default:
+                income += default.SOLDIER_LIAISON_FLAT_BONUS[6];
+                break;
+        }
     }
     return income;
 }
@@ -218,6 +243,13 @@ function IncomeEvent_Recruit(XComGameState_LWOutpost Outpost, XComGameState NewG
     {
         RebelChance -= RECRUIT_REBEL_SOLDIER_BIAS;
         SoldierChance += RECRUIT_REBEL_SOLDIER_BIAS;
+    }
+
+    //If you have low amount of rebels in your haven, prioritize getting rebels
+    if (Outpost.GetRebelCount() < default.LOW_REBELS_THRESHOLD)
+    {
+        RebelChance += default.RECRUIT_REBEL_REBEL_BIAS;
+        SoldierChance -= default.RECRUIT_REBEL_REBEL_BIAS;
     }
    
    // bias roll toward soldiers if haven is full

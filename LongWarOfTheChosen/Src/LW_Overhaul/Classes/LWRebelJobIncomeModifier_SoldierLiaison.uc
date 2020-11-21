@@ -23,7 +23,7 @@ simulated function float GetModifier(XComGameState_LWOutpost OutpostState)
     LiaisonRef = OutpostState.GetLiaison();
     Liaison = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(LiaisonRef.ObjectID));
 
-    return 1.0f + SOLDIER_LIAISON_RANK_MULTIPLIER * Liaison.GetRank();
+    return 1.0f + SOLDIER_LIAISON_RANK_MULTIPLIER * (Liaison.GetRank() - 1);
 }
 
 simulated function String GetDebugName()

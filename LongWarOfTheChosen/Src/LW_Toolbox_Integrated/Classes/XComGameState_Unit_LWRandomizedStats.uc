@@ -109,7 +109,8 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 		CharacterInitialStats_Deltas[Swap.StatUp] += Swap.StatUp_Amount;
 		CharacterInitialStats_Deltas[Swap.StatDown] -= Swap.StatDown_Amount;
 	}
-	if (`SYNC_RAND(100) < default.COMINT_BASE_SWAP_CHANCE)
+	//Roll a chance for a stat swap and don't roll combat intelligence for rebels
+	if (`SYNC_RAND(100) < default.COMINT_BASE_SWAP_CHANCE && InStr(Unit.GetMyTemplateName(), "Rebel") != 0 )
 	{
 		do 
 		{

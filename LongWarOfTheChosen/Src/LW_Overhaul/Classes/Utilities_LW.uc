@@ -427,9 +427,8 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
     local XComGameState_LWOutpost Outpost;
     local XComGameState_Unit Proxy;
     local Name TemplateName;
-	local int LaserChance, MagChance, iRand;
+	local int LaserChance, MagChance, CoilChance, iRand;
 	local string LoadoutStr;
-
 
     Outpost = XComGameState_LWOutpost(`XCOMHISTORY.GetGameStateForObjectID(OutpostRef.ObjectID));
     switch(Outpost.GetRebelLevel(RebelRef))
@@ -453,17 +452,18 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 
 	LaserChance = 0;
 	MagChance = 0;
+	CoilChance = 0;
 
     if (Loadout == '')
 	{
         LoadoutStr = "RebelSoldier";
 		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('MagnetizedWeapons') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedLasers'))
 		{
-			LaserChance += (20 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 20/40/60
+			LaserChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 30/40/50
 		}
 		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedLasers'))
 		{
-			LaserChance += (20 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 40/80/100
+			LaserChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); // 60/80/100
 		}
 		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('Coilguns') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
 		{
@@ -471,17 +471,34 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 			{
 				LaserChance = 100;
 			}
-			MagChance += (20 * (Outpost.GetRebelLevel(RebelRef) + 1)); //20/40/60
+			MagChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //30/40/50
 		}
 		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedCoilguns') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
 		{
-			MagChance += (20 * (Outpost.GetRebelLevel(RebelRef) + 1)); //40/80/100
+			MagChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //60/80/100
 		}
-		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlasmaRifle') && class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
+		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlasmaRifle'))
 		{
-			MagChance += (20 * (Outpost.GetRebelLevel(RebelRef) + 1)); //60/100/100
+			if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('GaussWeapons'))
+			{	
+				MagChance = 100;
+			}
+			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //30/40/50
 		}
-		if (`SYNC_RAND_STATIC(100) < MagChance)
+		// All plasma weapon related research
+		if (class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('HeavyPlasma') && 
+			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AlloyCannon') && 
+			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('PlasmaSniper') && 
+			class'UIUtilities_Strategy'.static.GetXComHQ().IsTechResearched('AdvancedCoilguns'))
+		{
+			CoilChance += (20 + 10 * (Outpost.GetRebelLevel(RebelRef) + 1)); //60/80/100
+		}
+		
+		if (`SYNC_RAND_STATIC(100) < CoilChance)
+		{
+			LoadoutStr $= "4";
+		}
+		else if (`SYNC_RAND_STATIC(100) < MagChance)
 		{
 			LoadoutStr $= "3";
 		}
@@ -497,17 +514,15 @@ function static XComGameState_Unit CreateRebelSoldier(StateObjectReference Rebel
 		{
 			LoadoutStr $= "SMG";
 		}
-		else
+		else if (iRand < 40)
 		{
-			if (iRand < 40 && Outpost.GetRebelLevel(RebelRef) < 2)
-			{
-				LoadoutStr $= "Shotgun";
-			}
+			LoadoutStr $= "Shotgun";
 		}
+			
 		//`LWTRACE ("Rebel Loadout" @ LoadoutStr);
 		Loadout = name(LoadOutStr);
 	}
-
+		
     ApplyLoadout(Proxy, Loadout, NewGameState);
 
     return Proxy;
@@ -527,7 +542,7 @@ function static XComGameState_Unit CreateRebelProxy(StateObjectReference RebelRe
     local XComGameStateHistory History;
     local XComGameState_LWOutpost Outpost;
     local XComGameState_Unit Unit;
-    local XComGameState_Unit Proxy;
+	local XComGameState_Unit Proxy;
 
     History = `XCOMHISTORY;
     Outpost = XComGameState_LWOutpost(NewGameState.GetGameStateForObjectID(OutpostRef.ObjectID));
@@ -538,8 +553,10 @@ function static XComGameState_Unit CreateRebelProxy(StateObjectReference RebelRe
     }
 
     Unit = XComGameState_Unit(History.GetGameStateForObjectID(RebelRef.ObjectID));
-    `LWTrace("Creating proxy for " $ Unit.GetFullName() $ " with template " $ TemplateName);
-    Proxy = CreateProxyUnit(Unit, TemplateName, GiveAbilities, NewGameState);
+	`LWTrace("Creating proxy for " $ Unit.GetFullName() $ " with template " $ TemplateName);
+	
+	Proxy = CreateProxyUnit(Unit, TemplateName, GiveAbilities, NewGameState);
+	
     NewGameState.AddStateObject(Proxy);
     Outpost.SetRebelProxy(Unit.GetReference(), Proxy.GetReference());
     Outpost.SetRebelOnMission(Unit.GetReference());
@@ -762,4 +779,3 @@ simulated static function bool IsOnStrategyMap()
 		return true;
 	}
 }
-

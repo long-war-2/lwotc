@@ -44,6 +44,8 @@ var MissionDefinition ForceMission;                         // A mission type to
 // LWOTC: Allow configuration of which mission types the Chosen should be excluded from
 var config array<string> ExcludeChosenFromMissionTypes;
 
+var config array<string> GuaranteeChosenInMissionTypes;
+
 var config array<string> NO_SIT_REP_MISSION_TYPES;
 
 //#############################################################################################
@@ -756,6 +758,10 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	// Now that all sitreps have been chosen, add any sitrep tactical tags to the mission list
 	MissionState.UpdateSitrepTags();
 
+	// Add the Chosen to the mission if required. We do this after the sit
+	// reps are set up to ensure we don't get Chosen and Rulers together.
+	MaybeAddChosenToMission(MissionState);
+
 	// the plot we find should either have no defined biomes, or the requested biome type
 	//`assert( (GeneratedMission.Plot.ValidBiomes.Length == 0) || (GeneratedMission.Plot.ValidBiomes.Find( Biome ) != -1) );
 	if (MissionState.GeneratedMission.Plot.ValidBiomes.Length > 0)
@@ -807,6 +813,96 @@ function MissionDefinition GetMissionDefinitionForFamily(name MissionFamily)
 
 	`Redscreen("AlienActivity: Could not find a mission type for MissionFamily: " $ MissionFamily);
 	return MissionMgr.arrMissions[0];
+}
+
+// Decides whether to add a Chosen to the given mission and if it does choose
+// to do so, it adds LWOTC-specific Chosen tactical tags to the mission state
+// and updates the given alert level.
+static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+
+	// If Chosen are disabled, skip adding the tag.
+	if (!`SecondWaveEnabled('EnableChosen'))
+	{
+		return;
+	}
+
+	// Don't allow Chosen on the mission if there is already a Ruler
+	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
+	{
+		return;
+	}
+
+	History = `XCOMHISTORY;
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersAlien', AlienHQ)
+	{
+		break;
+	}
+
+	if (AlienHQ.bChosenActive)
+	{
+		AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			if (ChosenState.bDefeated)
+			{
+				continue;
+			}
+
+			// Decide whether this Chosen will appear on this mission.
+			if (WillChosenAppearOnMission(ChosenState, MissionState))
+			{
+				`LWTrace("    Chosen added!");
+				MissionState.TacticalGameplayTags.AddItem(class'Helpers_LW'.static.GetChosenActiveMissionTag(ChosenState));
+
+				// Only one Chosen on the mission!
+				break;
+			}
+		}
+	}
+}
+
+// Returns whether the given Chosen will appear on the given mission.
+static function bool WillChosenAppearOnMission(XComGameState_AdventChosen ChosenState, XComGameState_MissionSite MissionState)
+{
+	local XComGameState_MissionSiteChosenAssault ChosenAssaultMission;
+
+	// If the Chosen doesn't control the region, they won't appear on the mission
+	if (!ChosenState.ChosenControlsRegion(MissionState.Region))
+	{
+		return false;
+	}
+	
+	//Check if the mission is chosen avenger defense, if yes than add that
+	ChosenAssaultMission = XComGameState_MissionSiteChosenAssault(MissionState);
+	if (ChosenAssaultMission != none)
+	{
+		if (ChosenState.GetReference() == ChosenAssaultMission.AttackingChosen)
+		{
+			return true;
+		}
+	}
+
+	if (class'XComGameState_LWAlienActivity'.default.ExcludeChosenFromMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
+	{
+		// Can't be on this mission no matter what
+		`LWTrace("Chosen can't be added to missions of type" @ MissionState.GeneratedMission.Mission.sType);
+		return false;
+	}
+	else if (MissionState.GetMissionSource().bGoldenPath || class'XComGameState_LWAlienActivity'.default.GuaranteeChosenInMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
+	{
+		// Guaranteed on this mission
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 //---------------------------------------------------------------------------------------
