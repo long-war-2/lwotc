@@ -27,6 +27,7 @@ struct ChosenStrengthWeighted
 	var name Strength;
 	var float Weight;
 };
+
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T1;
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T2;
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T3;
@@ -41,6 +42,11 @@ var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T1;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T2;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T3;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T4;
+
+// An array of mission types where we should just let vanilla do its
+// thing with regard to the Chosen rather than try to override its
+// behaviour.
+var config array<string> SKIP_CHOSEN_OVERRIDE_MISSION_TYPES;
 
 var config array<MinimumInfilForConcealEntry> MINIMUM_INFIL_FOR_CONCEAL;
 
@@ -1639,6 +1645,13 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
 	local name ChosenSpawningTag, ChosenSpawningTagLWOTC;
+
+	// Certain missions should just use vanilla Chosen behaviour, like the Chosen
+	// Avenger Defense
+	if (default.SKIP_CHOSEN_OVERRIDE_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
+	{
+		return;
+	}
 
 	// Don't allow Chosen on the mission if there is already a Ruler
 	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
