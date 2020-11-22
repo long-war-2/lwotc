@@ -31,17 +31,14 @@ struct ChosenStrengthWeighted
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T1;
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T2;
 var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T3;
-var config array<ChosenStrengthWeighted> ASSASSIN_STRENGTHS_T4;
 
 var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T1;
 var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T2;
 var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T3;
-var config array<ChosenStrengthWeighted> WARLOCK_STRENGTHS_T4;
 
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T1;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T2;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T3;
-var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T4;
 
 // An array of mission types where we should just let vanilla do its
 // thing with regard to the Chosen rather than try to override its
