@@ -372,7 +372,10 @@ m_strInvasionConfirm=VIEW INVASION SITE
 m_strRepeatResearch="REPEAT RESEARCH"
 
 [UIScreenListener_ArmoryWeaponUpgrade_LW]
-strStripWeaponUpgradesButton=Strip Weapon Upgrades
+; LWOTC Needs Translation
+strStripWeaponUpgradesButton=Strip Upgrades
+StripAllWeaponUpgradesStr=Strip Upgrades From Inactive Soldiers
+; End Translation
 strStripWeaponUpgradesTooltip="Strip all upgrades and customization and return weapon to the general inventory"
 strStripWeaponUpgradeDialogueTitle="CONFIRM STRIP UPGRADES"
 strStripWeaponUpgradeDialogueText="Are you sure you want to strip all upgrades from this weapon and return it to the common pool?"
@@ -663,9 +666,11 @@ m_strBullet="•"
 
 m_strStripWeaponUpgrades=STRIP ALL WEAPON UPGRADES
 m_strStripWeaponUpgradesLower=Strip All Weapon Upgrades
-m_strStripWeaponUpgradesConfirm=CONFIRM STRIP ALL WEAPON UPGRADES
-m_strStripWeaponUpgradesConfirmDesc=Confirm removal of weapon upgrades from all primary weapons not equipped by soldiers selected for current mission duty. This gear will become available for any soldier to equip immediately.
-m_strTooltipStripWeapons=Remove all weapon upgrades from all soldiers NOT selected for current mission duty.
+; LWOTC Needs Translation
+m_strStripWeaponUpgradesConfirm=CONFIRM STRIP UPGRADES FROM INACTIVE SOLDIERS
+m_strStripWeaponUpgradesConfirmDesc=Confirm removal of weapon upgrades from all unequipped primary weapons as well as all primary weapons held by inactive soldiers. Primary weapons held by covert action soldiers, as well as soldiers selected for current mission duty, will not be affected. Note that this removal is permanent; the next time a 'stripped' primary weapon is equipped, weapon upgrades will need to be added back onto it.
+m_strTooltipStripWeapons=Remove all weapon upgrades from unequipped primary weapons as well as primary weapons held by inactive soldiers.
+; End Translation
 
 m_strAllHandsToHangar=ALL HANDS TO HANGAR
 m_strAllHandsToHangarConfirm=CONFIRM ALL HANDS TO HANGAR
