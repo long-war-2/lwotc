@@ -2821,8 +2821,8 @@ LocFlyOverText="Шаг в тень"
 ; LWOTC Translated
 [LW_PhaseWalk X2AbilityTemplate]
 LocFriendlyName="Фазовый сдвиг"
-LocLongDescription="Телепортируется на рядом на местности."
-LocHelpText="Телепортируется на рядом на местности."
+LocLongDescription="Телепортируется на выбранную местность рядом."
+LocHelpText="Телепортируется на выбранную местность рядом."
 LocFlyOverText="Фазовый сдвиг"
 
 [LW_NullWard X2AbilityTemplate]
