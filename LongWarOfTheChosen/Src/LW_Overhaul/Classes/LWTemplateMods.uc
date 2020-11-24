@@ -2228,7 +2228,6 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('ChosenKidnapMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
-		Template.Abilities.RemoveItem('HarborWave');
 
 		Template.Abilities.AddItem('Bladestorm');
 		Template.Abilities.AddItem('ChosenCritImmune');
@@ -2238,6 +2237,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('BloodThirst_LW');
 		Template.Abilities.AddItem('CoolUnderPressure');
 		Template.Abilities.AddItem('Hitandrun');
+		Template.Abilities.AddItem('Infighter');
+		Template.Abilities.AddItem('FreeGrenades');
+
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;

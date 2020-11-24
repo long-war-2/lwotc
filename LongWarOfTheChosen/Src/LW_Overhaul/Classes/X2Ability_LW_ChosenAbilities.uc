@@ -58,6 +58,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(BloodThirstPassive());
 	Templates.AddItem(AddMindScorchTerror());
 	
+	Templates.AddItem(FreeGrenades());
+	Templates.AddItem(ChosenPrimeReactionPassive());
+
 	return Templates;
 }
 
@@ -120,6 +123,8 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	Template.FrameAbilityCameraType = eCameraFraming_Always;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	Template.AdditionalAbilities.AddItem('ChosenPrimeReactionPassive');
 
 	return Template;
 }
@@ -184,6 +189,8 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
+	Template.AdditionalAbilities.AddItem('ChosenPrimeReactionPassive');
+
 	return Template;
 }
 
@@ -246,6 +253,20 @@ static function X2AbilityTemplate CreateHunterReaction()
 	Template.FrameAbilityCameraType = eCameraFraming_Always;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	Template.AdditionalAbilities.AddItem('ChosenPrimeReactionPassive');
+
+	return Template;
+}
+
+static function X2AbilityTemplate ChosenPrimeReactionPassive()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('ChosenPrimeReactionPassive', "img:///UILibrary_PerkIcons.UIPerk_combatstims", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
 
 	return Template;
 }
@@ -1436,6 +1457,14 @@ static function X2AbilityTemplate CreateBloodThirst()
 	EventListener.ListenerData.Filter = eFilter_Unit;
 	Template.AbilityTriggers.AddItem(EventListener);
 
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.EventID = 'HarborWaveDealtDamage';
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	
 	DamageEffect = new class'X2Effect_BloodThirst';
 	DamageEffect.BuildPersistentEffect(1, true, false, false);
 	DamageEffect.DuplicateResponse = eDupe_Allow;
@@ -1460,6 +1489,32 @@ static function X2AbilityTemplate BloodThirstPassive()
 
 	return Template;
 }
+
+static function X2DataTemplate FreeGrenades()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_FreeGrenades GrenadeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'FreeGrenades');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_adrenaline_defense";
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	GrenadeEffect = new class'X2Effect_FreeGrenades';
+	GrenadeEffect.BuildPersistentEffect(1, true, true);
+
+	Template.AddTargetEffect(GrenadeEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
 
 defaultproperties
 {

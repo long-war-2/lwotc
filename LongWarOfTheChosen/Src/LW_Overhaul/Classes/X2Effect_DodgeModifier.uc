@@ -11,7 +11,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	SourceWeapon = AbilityState.GetSourceWeapon();
 	if(SourceWeapon != none)
 	{
-			DodgeReduction = Min (default.ANTIDODGE_BONUS, Target.GetCurrentStat(eStat_Dodge));
+			DodgeReduction = default.ANTIDODGE_BONUS;
 			ShotInfo.ModType = eHit_Graze;
 			ShotInfo.Reason = FriendlyName;
 			ShotInfo.Value = -1 * DodgeReduction;

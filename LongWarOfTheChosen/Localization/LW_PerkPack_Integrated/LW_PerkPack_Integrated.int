@@ -49,15 +49,8 @@ LocCoveringFire="Covering Fire"
 LocCoveringFireMalus="This unit has been targeted by an overwatching unit with the Covering Fire ability, conferring -10 to aim for the rest of the turn."
 
 ; LWOTC Needs Translation
-[X2StatusEffects_LW]
-HeavyDazedFriendlyName="Heavy Dazed"
-HeavyDazedFriendlyDesc="Like Dazed, but revive takes 1 action point and it pierces mental immunity."
-HeavyDazedEffectAcquiredString="<XGParam:StrValue0/!UnitName/> is heavy dazed."
-HeavyDazedEffectTickedString="<XGParam:StrValue0/!UnitName/> is still heavy dazed."
-HeavyDazedEffectLostString="<XGParam:StrValue0/!UnitName/> is no longer heavy dazed."
-HeavyDazedPerActionFriendlyName="Heavy Dazed: <Ability:STUNNEDACTIONPOINTS>"
-HeavyDazedTitle="Dazed"
-HeavyDazedName="Heavy Dazed"
+[X2Effect_RegenerationPCT]
+HealedMessage="+<Heal/> HP Regenerated"
 
 MaimedFriendlyName="Maimed"
 MaimedFriendlyDesc="Unit's mobility is reduced to zero and so they cannot move. They can still shoot and perform other non-movement abilities."

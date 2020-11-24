@@ -166,9 +166,9 @@ LocPromotionPopupText="<Bullet/> Gain 5 dodge per enemy you can see, up to a max
 [Infighter X2AbilityTemplate]
 LocFriendlyName="Infighter"
 LocFlyOverText="Infighter"
-LocLongDescription="Gain 25 dodge against attacks within four tiles."
-LocHelpText="Gain 25 dodge against attacks within four tiles."
-LocPromotionPopupText="<Bullet/> Gain 25 dodge against attacks within four tiles.<br/><Bullet/> Dodge bonus also applies to melee attacks.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
+LocLongDescription="Gain 40 dodge against attacks within four tiles."
+LocHelpText="Gain 40 dodge against attacks within four tiles."
+LocPromotionPopupText="<Bullet/> Gain 40 dodge against attacks within four tiles.<br/><Bullet/> Dodge bonus also applies to melee attacks.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Depth Perception"
