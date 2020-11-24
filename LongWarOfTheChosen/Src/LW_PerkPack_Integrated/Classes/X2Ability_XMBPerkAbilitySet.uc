@@ -92,6 +92,8 @@ var config int MAIM_AMMO_COST;
 var config int MAIM_COOLDOWN;
 var config int MAIM_DURATION;
 
+var config int SCRAP_METAL_AMMO_AMOUNT;
+
 var config array<name> AgentsHealEffectTypes;    
 
 var string Dissassemblybonustext;
@@ -287,19 +289,17 @@ static function X2AbilityTemplate ScrapMetal()
 static function X2AbilityTemplate ScrapMetalTrigger()
 {
 	local X2AbilityTemplate 			Template;
-	local XMBEffect_AddAbilityCharges 	ChargesEffect;
+	local X2Effect_AddAmmo 				AmmoEffect;
 	local X2Condition_UnitProperty		UnitPropertyCondition;
 	
-	ChargesEffect = new class'XMBEffect_AddAbilityCharges';
-	ChargesEffect.AbilityNames.AddItem('LW_SawnOffReload');
-	ChargesEffect.BonusCharges = 1; // make configurable 
+	AmmoEffect = new class'X2Effect_AddAmmo';
+	AmmoEffect.ExtraAmmoAmount = default.SCRAP_METAL_AMMO_AMOUNT;
 	
-	Template = SelfTargetTrigger('ScrapMetalTrigger_LW', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, ChargesEffect, 'KillMail');
+	Template = SelfTargetTrigger('ScrapMetalTrigger_LW', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, AmmoEffect, 'KillMail');
 	    
 	AddTriggerTargetCondition(Template, default.MatchingWeaponCondition);
 
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
-	UnitPropertyCondition.ExcludeOrganic = true;
 	UnitPropertyCondition.ExcludeDead = false;
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
 	UnitPropertyCondition.ExcludeHostileToSource = false;
