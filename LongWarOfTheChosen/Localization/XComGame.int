@@ -402,10 +402,10 @@ LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to 2 point
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
 ; LWOTC Needs Translation
-LocLongDescription="You may throw or launch grenades and Claymores two additional tiles."
+LocLongDescription="You may throw or launch grenades two additional tiles."
 LocHelpText="You may throw or launch grenades and Claymores two additional tiles."
 LocFlyOverText="Bombardier"
-LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades, as well as Reaper Claymores.<br/>"
+LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades.<br/>"
 ; End Translation
 
 [BluescreenBombs X2AbilityTemplate]
