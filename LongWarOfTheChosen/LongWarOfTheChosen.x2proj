@@ -642,8 +642,12 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_StunGunner.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Sustain_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_TransferMecToOutpost.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Missions.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Reinforcements.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Soldiers.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_StrategyMap.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Tactical.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_WorldRegion.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2HackReward_LWOverhaul.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_ArcthrowerWeapon.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_Coilguns.uc" />
@@ -919,7 +923,6 @@
     <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Spinner.uc" />
     <Content Include="Content\.gitignore" />
     <Content Include="Content\README.md" />
-    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Reinforcements.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelLists.uc" />
     <Content Include="Localization\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_Integrated.fra" />
     <Content Include="Localization\DetailedSoldierListWOTC_Integrated\DetailedSoldierListWOTC_Integrated.INT" />
@@ -927,9 +930,7 @@
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\MoreDetailsNavigatorWrapper.uc" />
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\UIPersonnel_SoldierListItemDetailed.uc" />
     <Content Include="Src\DetailedSoldierListWOTC_Integrated\Classes\X2DownloadableContentInfo_DetailedSoldierListWOTC.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Missions.uc" />
     <Content Include="Config\XComEncounterLists.ini" />
-    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Tactical.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWObjectivesModTemplate.uc" />
     <Content Include="Content\Cannon_NoShake_LW.upk" />
     <Content Include="Content\LW_Lost_Brute.upk" />
