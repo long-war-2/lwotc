@@ -262,6 +262,11 @@ LocLongDescription="Этот солдат значительно снижает 
 LocHelpText="Этот солдат значительно снижает время проникновения на задания."
 LocPromotionPopupText="<Bullet/> Этот солдат значительно снижает время проникновения на задания.<br/>"
 
+[Whiplash X2AbilityTemplate]
+LocLongDescription="Удар электрическим хлыстом. Перезарядка <Ability:SelfCooldown/>-ходов. Требует 1 действие, не заканчивает ход."
+LocHelpText="Удар электрическим хлыстом. Перезарядка <Ability:SelfCooldown/>-ходов. Требует 1 действие, не заканчивает ход"
+LocPromotionPopupText="<Bullet/> Наносит дополнительный урон роботизированным целям. Перезарядка <Ability:SelfCooldown/>-ходов."
+
 ;;;;;;;;;;;;;;;;;;;;  SPECIALIST ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [Failsafe X2AbilityTemplate]
