@@ -280,6 +280,11 @@ m_strTooltipAutofillSquad="Автоматически заполнить сво�
 strTimeRemainingHoursOnly="<XGParam:IntValue0> ч."
 strTimeRemainingDaysAndHours="<XGParam:IntValue1> дн., <XGParam:IntValue0> ч."
 
+; LWOTC Translated
+strDarkEventExpiredTitle="Событие прошло"
+strDarkEventExpiredText="прошло"
+; End Translated
+
 [X2EventListener_Soldiers]
 OnLiaisonDuty="Сов. убежища"
 OnInfiltrationMission="Проникновение..."
@@ -573,6 +578,9 @@ m_strLiberatedCityPrefix="Свободный город"
 [XComGameState_LWOutPost]
 m_strProhibitedJobAlert="Из-за рейда \"Адвента\" в регионе <XGParam:StrValue1/> члены Сопротивления не могут быть назначены на работу \"<XGParam:StrValue0/>\" в ближайшие <XGParam:IntValue0/> дн. Все повстанцы, выполнявшие эту работу, вынуждены перейти в режим конспирации."
 m_strProhibitedJobEnded="Члены Сопротивления в регионе <XGParam:StrValue0/>, занятые работой \"<XGParam:StrValue1/>\", снова продуктивно трудятся."
+;LWOTC needs translated
+m_strRetributionEnded="Члены сопротивления в регионе <XGParam:StrValue0/> поправились от возмездия Избранного"
+;End translated
 
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="Требуется как минимум <XGParam:IntValue0/> повстанцев в убежище, чтобы установить контакт с соседями"
