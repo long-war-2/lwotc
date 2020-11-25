@@ -1,0 +1,63 @@
+; LWOTC Translated
+[LingeringShadow X2AbilityTemplate]
+LocFriendlyName="Теневой шаг"
+LocLongDescription="Бонус +<Ability:LingeringShadowDefenseBonus/> защиты и +<Ability:LingeringShadowDodgeBonus/> уклонения на один ход после потери маскировки Тень."
+LocHelpText="Бонус +<Ability:LingeringShadowDefenseBonus/> защиты и +<Ability:LingeringShadowDodgeBonus/> уклонения на один ход после потери маскировки Тень."
+LocPromotionPopupText="<Bullet/> Бонус +<Ability:LingeringShadowDefenseBonus/> защиты и +<Ability:LingeringShadowDodgeBonus/> уклонения на один ход после потери маскировки Тень.<br/><Bullet/> Действует до начала следующего хода."
+
+[Demolitionist X2AbilityTemplate]
+LocFriendlyName="Взрыватель"
+LocLongDescription="Жнец получает +<Ability:DemolitionistExtraChargeCount/> зарядов к удалённому взрыву и самонаводящейся мине."
+LocHelpText="Жнец получает +<Ability:DemolitionistExtraChargeCount/> зарядов к удалённому взрыву и самонаводящейся мине."
+LocPromotionPopupText="<Bullet/>Жнец получает +<Ability:DemolitionistExtraChargeCount/> зарядов к удалённому взрыву и самонаводящейся мине.<br/>"
+
+[CripplingStrike X2AbilityTemplate]
+LocFriendlyName="Калечащий удар"
+LocLongDescription="Бросок ножа калечит цель на один ход (нулевая мобильность)."
+LocHelpText="Бросок ножа калечит цель на один ход (нулевая мобильность)."
+LocPromotionPopupText="<Bullet/> Бросок ножа не сбрасывает Тень.<br/><Bullet/> Покалеченные враги имеют 0 мобильности и не могут двигаться.<br>"
+; End Translated
+
+; LWOTC Translated
+
+[DisablingShot X2AbilityTemplate]
+LocFriendlyName="Оглушающий выстрел"
+LocLongDescription="Выстрел, оглушающий врагов. Крит добавляет время оглушения. Не наносит критический урон."
+LocHelpText="Выстрел, оглушающий врагов. Крит добавляет время оглушения. Не наносит критический урон."
+LocPromotionPopupText="<Bullet/> Оглушает врагов на <Ability:DisablingShotStunActions/> действий при попадании (включая царапины).<br/><Bullet/> Оглушает допольнительно на  <Ability:DisablingShotCritStunActions/> действий при крите, не наносит критический урон.<br/><Bullet/> Оглушающий выстрел требует <Ability:SelfAmmoCost/> боезапаса и перезарядка <Ability:SelfCooldown/>-ходов.<br/><Bullet/> Только аватар и пси зомби не могут быть оглушены."
+
+
+[Overcharge_LW X2AbilityTemplate]
+LocFriendlyName="Заряженность"
+LocLongDescription="Прибавляет бонус к точности и защите за каждую единицу концентрации Храмовника."
+LocHelpText="Прибавляет бонус к точности и защите за каждую единицу концентрации Храмовника."
+LocPromotionPopupText="<Bullet/> Каждая единица дает бонус к +<Ability:OverchargeAimBonus/> точности и +<Ability:OverchargeDefenseBonus/> защите."
+
+[VoltDangerZone X2AbilityTemplate]
+LocFriendlyName="Высокое напряжение"
+LocLongDescription="Прибавляет <Ability:VoltDangerZoneBonus/>-клеток радиуса для способности Вольт."
+LocHelpText="Прибавляет <Ability:VoltDangerZoneBonus/>-клеток радиуса для способности Вольт."
+LocPromotionPopupText="<Bullet/> "Прибавляет <Ability:VoltDangerZoneBonus/>-клеток радиуса для способности Вольт."
+; End Translated
+
+; LWOTC Translated
+[TemplarVigilance X2AbilityTemplate]
+LocFriendlyName="Бдительность"
+LocLongDescription="Получает 1 концентрацию при обнаружении активной группы противника от 3ех и больше."
+LocHelpText="Получает 1 концентрацию при обнаружении активной группы противника от 3ех и больше."
+; LWOTC Translated (2)
+LocPromotionPopupText="<Bullet/> Получает 1 концентрацию при обнаружении активной группы противника.<br/><Bullet/> От 3ех врагов.<br/><Bullet/> Бонус теряется, если уже была достигнута максимальная концентрация."
+; End Translated (2)
+
+[TemplarTerror X2AbilityTemplate]
+LocFriendlyName="Устрашение"
+LocLongDescription="Противники могут запаниковать после атаки Вольтом."
+LocHelpText="Противники могут запаниковать после атаки Вольтом."
+LocPromotionPopupText="<Bullet/> Противники могут запаниковать после атаки Вольтом.<br/><Bullet/> Шанс паники зависит от Пси атаки храмовника и Воли противника"
+
+[Apotheosis X2AbilityTemplate]
+LocFriendlyName="Апофеоз"
+LocLongDescription="Обожествление, значительно увеливающее уклонение, силу атаки перчаток и мобильность. Расходует минимум 3 ед. концентрации."
+LocHelpText="Обожествление, значительно увеливающее уклонение, силу атаки перчаток и мобильность. Расходует минимум 3 ед. концентрации."
+LocPromotionPopupText="<Bullet/>Обожествление, делающее Храмовника невероятно сильным на один ход.<br/><Bullet/> Увеличивает силу атаки перчаток на <Ability:ApotheosisDamageMultiplier/>% за каждую концентрацию выше 2.<br/><Bullet/> Увеличивает уклонение на <Ability:ApotheosisDodgeBonus/>.<br/><Bullet/> Увеличивает мобильность на <Ability:ApotheosisMobilityBonus/> за каждую концентрацию выше 2.<br/><Bullet/> Расходует минимум 3 концентрации.<br/><Bullet/> Расходует всю концентрацию."
+; End Translated
