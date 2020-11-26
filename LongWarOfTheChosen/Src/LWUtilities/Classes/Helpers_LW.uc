@@ -192,6 +192,23 @@ simulated static function class<object> LWCheckForRecursiveOverride(class<object
 	return CurrentBestClass;
 }
 
+static function XComGameState_BaseObject GetGameStateForObjectIDFromPendingOrHistory(int ObjectID, optional XComGameState NewGameState = none)
+{
+	local XComGameState_BaseObject GameStateObject;
+
+	if (NewGameState != none)
+	{
+		GameStateObject = NewGameState.GetGameStateForObjectID(ObjectID);
+	}
+
+	if (GameStateObject == none)
+	{
+		GameStateObject = `XCOMHISTORY.GetGameStateForObjectID(ObjectID);
+	}
+
+	return GameStateObject;
+}
+
 static function bool ShouldUseRadiusManagerForMission(String MissionType)
 {
 	local XComGameStateHistory History;
@@ -589,10 +606,49 @@ static function bool HasSoldierAbility(XComGameState_Unit Unit, name Ability, op
 	return false;
 }
 
+// Attempts to find a captured soldier that can be used as a mission reward. This
+// checks for normal as well as Chosen captures and also checks that there isn't
+// already a rescue mission for that soldier.
+//
+// If no such soldier can be found, this returns an empty reference, i.e. the `ObjectID`
+// is zero.
+static function array<StateObjectReference> FindAvailableCapturedSoldiers(optional XComGameState NewGameState = none)
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_AdventChosen ChosenState;
+	local StateObjectReference CapturedSoldierRef;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local array<StateObjectReference> CapturedSoldiers;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen();
+
+	// First collect any soldiers captured "normally", i.e. not by the Chosen
+	foreach AlienHQ.CapturedSoldiers(CapturedSoldierRef)
+	{
+		// Check whether the soldier is already attached as a mission or covert action reward
+		if (!IsRescueMissionAvailableForSoldier(CapturedSoldierRef, NewGameState))
+			CapturedSoldiers.AddItem(CapturedSoldierRef);
+	}
+
+	// Now collect any soldiers captured by the Chosen
+	foreach AllChosen(ChosenState)
+	{
+		foreach ChosenState.CapturedSoldiers(CapturedSoldierRef)
+		{
+			// Check whether the soldier is already attached as a mission or covert action reward
+			if (!IsRescueMissionAvailableForSoldier(CapturedSoldierRef, NewGameState))
+				CapturedSoldiers.AddItem(CapturedSoldierRef);
+		}
+	}
+
+	return CapturedSoldiers;
+}
+
 // Determines whether a mission or covert action has spawned that has the
 // given (captured) soldier as a reward. If there is such a mission or covert
 // action, even one that is in progress, this returns `true`.
-static function bool IsRescueMissionAvailableForSoldier(StateObjectReference CapturedSoldierRef)
+static function bool IsRescueMissionAvailableForSoldier(StateObjectReference CapturedSoldierRef, optional XComGameState NewGameState = none)
 {
 	local XComGameStateHistory History;
 	local XComGameState_ResistanceFaction FactionState;
@@ -601,8 +657,22 @@ static function bool IsRescueMissionAvailableForSoldier(StateObjectReference Cap
 	local XComGameState_Reward RewardState;
 	local StateObjectReference StateRef;
 
-	// First check normal LWOTC missions to see whether any has the captured soldier
-	// as a reward
+	// Check whether there are any captured soldier rewards in the given
+	// game state. This is needed for anything that can have multiple
+	// captured soldiers as rewards because those rewards are generated
+	// independently of one another and we want to make sure we don't
+	// duplicate any of them.
+	if (NewGameState != none)
+	{
+		foreach NewGameState.IterateByClassType(class'XComGameState_Reward', RewardState)
+		{
+			if (RewardState.RewardObjectReference.ObjectID == CapturedSoldierRef.ObjectID)
+				return true;
+		}
+	}
+
+	// Next check normal LWOTC missions to see whether any has the captured soldier
+	// as a reward.
 	History = `XCOMHISTORY;
 	foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
 	{
