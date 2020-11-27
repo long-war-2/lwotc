@@ -1645,7 +1645,8 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 
 	// Certain missions should just use vanilla Chosen behaviour, like the Chosen
 	// Avenger Defense
-	if (default.SKIP_CHOSEN_OVERRIDE_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
+	if (default.SKIP_CHOSEN_OVERRIDE_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE ||
+			MissionState.GetMissionSource().bGoldenPath)
 	{
 		return;
 	}
