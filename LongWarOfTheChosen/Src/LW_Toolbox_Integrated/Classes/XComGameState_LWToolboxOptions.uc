@@ -1606,7 +1606,43 @@ static function UpdateRewardSoldierTemplates()
 
 	Template = X2RewardTemplate(TemplateMgr.FindStrategyElementTemplate('Reward_SoldierCaptured')); 
 	Template.GenerateRewardFn = class'X2StrategyElement_RandomizedSoldierRewards'.static.GenerateCouncilSoldierReward;
+	Template.GiveRewardFn = GiveCouncilSoldierReward;
 	TemplateMgr.AddStrategyElementTemplate(Template, true);
+}
+
+// Updated version of the vanilla function that ensures that the soldier
+// is removed from the Chosens' captured soldier lists if the soldier was
+// captured by one of them.
+static function GiveCouncilSoldierReward(XComGameState NewGameState, XComGameState_Reward RewardState, optional StateObjectReference AuxRef, optional bool bOrder = false, optional int OrderHours = -1)
+{
+	local XComGameState_Unit UnitState;
+	local XComGameState_AdventChosen ChosenState;
+	local StateObjectReference EmptyRef;
+
+	// Use vanilla behaviour first to actually add the soldier back into the
+	// Avenger crew and remove the bCaptured flag.
+	class'X2StrategyElement_DefaultRewards'.static.GiveCapturedSoldierReward(NewGameState, RewardState, AuxRef, bOrder, OrderHours);
+
+	// The unit should always be in the NewGameState from calling GiveCapturedSoldierReward().
+	UnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(RewardState.RewardObjectReference.ObjectID));	
+
+	// Don't bother having the Chosen release this soldier if the unit wasn't
+	// captured by a Chosen.
+	if (UnitState.ChosenCaptorRef.ObjectID == 0)
+		return;
+
+	ChosenState = XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(UnitState.ChosenCaptorRef.ObjectID));
+	if (ChosenState == none)
+	{
+		ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', UnitState.ChosenCaptorRef.ObjectID));
+	}
+
+	// Release the soldier from the Chosen's captured unit list
+	// Also updates the Chosen's Hunt XCOM score, so should only be called when the reward is actually given (ie: mission completed)
+	ChosenState.ReleaseSoldier(NewGameState, UnitState.GetReference());
+
+	// Clear their Captor reference
+	UnitState.ChosenCaptorRef = EmptyRef;
 }
 
 // ======= RED FOG ======= // 

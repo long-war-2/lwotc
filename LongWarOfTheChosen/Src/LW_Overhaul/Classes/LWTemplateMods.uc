@@ -588,7 +588,7 @@ static function bool IsRescueSoldierRewardAvailableFixed(
 				// for an existing mission or covert action
 				foreach ChosenState.CapturedSoldiers(CapturedSoldierRef)
 				{
-					if (!class'Helpers_LW'.static.IsRescueMissionAvailableForSoldier(CapturedSoldierRef))
+					if (!class'Helpers_LW'.static.IsRescueMissionAvailableForSoldier(CapturedSoldierRef, NewGameState))
 						return true;
 				}
 			}
@@ -610,6 +610,7 @@ static function GenerateRescueSoldierRewardFixed(XComGameState_Reward RewardStat
 	local XComGameState_CovertAction ActionState;
 	local XComGameState_AdventChosen ChosenState;
 	local XComGameState_Unit UnitState;
+	local array<StateObjectReference> CapturedSoldiers, ChosenCapturedSoldiers;
 	local StateObjectReference CapturedSoldierRef;
 
 	ActionState = XComGameState_CovertAction(NewGameState.GetGameStateForObjectID(ActionRef.ObjectID));
@@ -618,7 +619,15 @@ static function GenerateRescueSoldierRewardFixed(XComGameState_Reward RewardStat
 	// pick a soldier to rescue and save as the Reward - we're relying on
 	// FindAvailableCapturedSoldier() actually returning reward reference
 	// on the basis that `IsRewardAvailableFn` returned true.
-	CapturedSoldierRef = class'X2StrategyElement_RandomizedSoldierRewards'.static.FindAvailableCapturedSoldier(ChosenState.CapturedSoldiers);
+	CapturedSoldiers = class'Helpers_LW'.static.FindAvailableCapturedSoldiers(NewGameState);
+	foreach CapturedSoldiers(CapturedSoldierRef)
+	{
+		// Check whether this soldier was captured by the required Chosen
+		if (ChosenState.CapturedSoldiers.Find('ObjectID', CapturedSoldierRef.ObjectID) != INDEX_NONE)
+			ChosenCapturedSoldiers.AddItem(CapturedSoldierRef);
+	}
+	CapturedSoldierRef = class'X2StrategyElement_RandomizedSoldierRewards'.static.PickCapturedSoldier(ChosenCapturedSoldiers);
+
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CapturedSoldierRef.ObjectID));
 	RewardState.RewardObjectReference = UnitState.GetReference();
 	RewardState.RewardString = UnitState.GetName(eNameType_RankFull);

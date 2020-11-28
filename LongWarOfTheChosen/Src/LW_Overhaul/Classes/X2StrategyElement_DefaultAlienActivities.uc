@@ -107,6 +107,7 @@ var config int POLITICAL_PRISONERS_REGIONAL_COOLDOWN_HOURS_MIN;
 var config int POLITICAL_PRISONERS_REGIONAL_COOLDOWN_HOURS_MAX;
 var config int POLITICAL_PRISONERS_REBEL_REWARD_MIN;
 var config int POLITICAL_PRISONERS_REBEL_REWARD_MAX;
+var config int MAX_CAPTURED_SOLDIER_REWARDS;
 
 var config int INTEL_RAID_REGIONAL_COOLDOWN_HOURS_MIN;
 var config int INTEL_RAID_REGIONAL_COOLDOWN_HOURS_MAX;
@@ -477,10 +478,8 @@ static function ProtectRegionMissionFailure(XComGameState_LWAlienActivity Activi
 static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienActivity ActivityState, name MissionFamily, XComGameState NewGameState)
 {
 	local array<name> RewardArray;
-	local int NumRebels;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
 	local XComGameState_WorldRegion PrimaryRegionState;
-	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_ResistanceFaction FactionState;
 	local int k;
 
@@ -527,20 +526,6 @@ static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienAc
 					RewardArray.AddItem('Reward_POI_LW');
 					RewardArray.AddItem('Reward_Dummy_POI'); // The first POI rewarded on any mission doesn't display in rewards, so this corrects for that
 				}
-			}
-			break;
-		case 'Jailbreak_LW':
-			NumRebels = `SYNC_RAND_STATIC(default.POLITICAL_PRISONERS_REBEL_REWARD_MAX - default.POLITICAL_PRISONERS_REBEL_REWARD_MIN + 1) + default.POLITICAL_PRISONERS_REBEL_REWARD_MIN;
-			AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-			if (NumRebels > 0 && AlienHQ.CapturedSoldiers.Length > 0)
-			{
-				RewardArray.AddItem('Reward_SoldierCaptured');
-				--NumRebels;
-			}
-			while (NumRebels > 0)
-			{
-				RewardArray.AddItem(class'X2StrategyElement_DefaultRewards_LW'.const.REBEL_REWARD_NAME);
-				--NumRebels;
 			}
 			break;
 		default: break;
@@ -1843,8 +1828,8 @@ static function name RescueReward(bool IncludeRebel, bool IncludePrisoner)
 {
 	local int iRoll, Rescue_Soldier_Modified_Weight, Rescue_Engineer_Modified_Weight, Rescue_Scientist_Modified_Weight, Rescue_Rebel_Modified_Weight;
 	local XComGameStateHistory History;
-    local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_HeadquartersXCom XCOMHQ;
+	local array<StateObjectReference> CapturedSoldiers;
 	local name Reward;
 
 	History = class'XComGameStateHistory'.static.GetGameStateHistory();
@@ -1897,8 +1882,9 @@ static function name RescueReward(bool IncludeRebel, bool IncludePrisoner)
 		Reward='Reward_Rebel';
 		return Reward;
 	}
-	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	if (AlienHQ.CapturedSoldiers.Length > 0 && IncludePrisoner)
+
+	CapturedSoldiers = class'Helpers_LW'.static.FindAvailableCapturedSoldiers();
+	if (IncludePrisoner && CapturedSoldiers.Length > 0)
 	{
 		Reward = 'Reward_SoldierCaptured';
 	}
@@ -3158,12 +3144,12 @@ static function X2DataTemplate CreatePoliticalPrisonersTemplate()
 
 function array<Name> GetPoliticalPrisonersReward(XComGameState_LWAlienActivity ActivityState, name MissionFamily, XComGameState NewGameState)
 {
-    local array<Name> Rewards;
-    local int NumRebels, Roll, RebelChance, MaxRebels;
-	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<Name> Rewards;
+	local int NumRebels, Roll, RebelChance, MaxRebels, NumCapturedSoldiers;
 	local XComGameState_WorldRegion							Region;
 	local XComGameState_LWOutpost							Outpost;
 	local XComGameState_HeadquartersResistance ResistanceHQ;
+	local array<StateObjectReference>          CapturedSoldiers;
 
     switch(MissionFamily)
     {
@@ -3172,11 +3158,17 @@ function array<Name> GetPoliticalPrisonersReward(XComGameState_LWAlienActivity A
 			// This limits the number of rescues early to smooth out starts
 			MaxRebels = Min (default.POLITICAL_PRISONERS_REBEL_REWARD_MAX, default.POLITICAL_PRISONERS_REBEL_REWARD_MAX - (3 - ResistanceHQ.NumMonths));
 			NumRebels = `SYNC_RAND(MaxRebels - default.POLITICAL_PRISONERS_REBEL_REWARD_MIN + 1) + default.POLITICAL_PRISONERS_REBEL_REWARD_MIN;
-			AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-			if (NumRebels > 0 && AlienHQ.CapturedSoldiers.Length > 0)
+
+			// Prioritise rescuing captured soldiers. Note that we can't do
+			// FindAvailableCapturedSoldiers().Length because it doesn't work
+			// in UnrealScript, hence the intermediate `CapturedSoldiers` variable.
+			CapturedSoldiers = class'Helpers_LW'.static.FindAvailableCapturedSoldiers(NewGameState);
+			NumCapturedSoldiers = CapturedSoldiers.Length;
+			while (NumRebels > 0 && NumCapturedSoldiers > 0 && Rewards.Length < default.MAX_CAPTURED_SOLDIER_REWARDS)
 			{
 				Rewards.AddItem('Reward_SoldierCaptured');
 				--NumRebels;
+				--NumCapturedSoldiers;
 			}
 
 			Region = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
