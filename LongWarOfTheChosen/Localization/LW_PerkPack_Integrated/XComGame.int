@@ -198,12 +198,14 @@ LocLongDescription="Once per turn, gain a bonus action after taking a standard s
 LocHelpText="Once per turn, gain a bonus action after taking a standard shot with your primary weapon at an enemy within four tiles."
 LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after taking a standard shot with your primary weapon at an enemy within four tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Close Encounters cannot be used on the same turn as Run and Gun.<br/>"
 
+; LWOTC Needs Translation
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="Lone Wolf"
 LocFlyOverText="Lone Wolf"
-LocLongDescription="Gain +10 aim and +10 defense when 7 or more tiles distant from any ally."
-LocHelpText="Gain +10 aim and +10 defense when 7 or more tiles distant from any ally."
-LocPromotionPopupText="<Bullet/> Gain +10 aim and +10 defense when 7 or more tiles distant from any ally.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
+LocLongDescription="Gain bonus Aim and Defense when at least <Ability:LONEWOLF_MIN_BONUS_TILES/> tiles distant from any ally, with a maximum of +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> at <Ability:LONEWOLF_MIN_DIST_TILES/>+ tiles."
+LocHelpText="Gain bonus Aim and Defense when at least <Ability:LONEWOLF_MIN_BONUS_TILES/> tiles distant from any ally, with a maximum of +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> at <Ability:LONEWOLF_MIN_DIST_TILES/>+ tiles."
+LocPromotionPopupText="<Bullet/> Gain +<Ability:LONEWOLF_AIM_PER_TILE/> Aim and +<Ability:LONEWOLF_DEF_PER_TILE/> Defense for each tile of distance between this soldier and the nearest ally, starting at <Ability:LONEWOLF_MIN_BONUS_TILES/> tiles distant.<br/><Bullet/> Bonuses cap at +<Ability:LONEWOLF_AIM_BONUS/> Aim, +<Ability:LONEWOLF_DEF_BONUS/> Defense when <Ability:LONEWOLF_MIN_DIST_TILES/> or more tiles from the nearest ally.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
+; End Translation
 
 [LowProfile X2AbilityTemplate]
 LocFriendlyName="Low Profile"

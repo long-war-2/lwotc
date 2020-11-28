@@ -25,7 +25,9 @@ LocFriendlyName="Knife Faceoff"
 LocFlyOverText="Knife Faceoff"
 LocLongDescription="Throws a knife at every target in range. Guaranteed to remain in Shadow."
 LocHelpText="Throws a knife at every target in range. Guaranteed to remain in Shadow."
-LocPromotionPopupText="<Bullet/> TBD..."
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Has just one charge and does not consume any standard throwing knife charges.<br/><Bullet/> Ideal when flanking multiple enemies.<br/>"
+; End Translation (2)
 
 [ThrowingKnife_CV_Secondary X2WeaponTemplate]
 FriendlyName="Throwing Knife"
