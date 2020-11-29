@@ -82,8 +82,8 @@
     <Folder Include="Content\BaseGameMissionAssets\" />
     <Folder Include="Src\LW_XModBase\" />
     <Folder Include="Src\LW_XModBase\Classes\" />
-    <Folder Include="Src\XModBase_Core_2_0_1\" />
-    <Folder Include="Src\XModBase_Core_2_0_1\Classes\" />
+    <Folder Include="Src\XModBase_Core_2_0_2\" />
+    <Folder Include="Src\XModBase_Core_2_0_2\Classes\" />
     <Folder Include="Src\XModBase_Interfaces\" />
     <Folder Include="Src\XModBase_Interfaces\Classes\" />
   </ItemGroup>
@@ -1244,13 +1244,13 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ManualOverride_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_TemplarGrazingFire.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XMBEffect_RevealUnit_LW.uc" />
-    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityCost_ActionPoints.uc" />
-    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityMultiTarget_Radius.uc" />
-    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityTag.uc" />
-    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityToHitCalc_StandardAim.uc" />
-    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBConfig.uc" />
-    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBDownloadableContentInfo_XModBase.uc" />
-    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBTargetingMethod_Grenade.uc" />
+    <Content Include="Src\XModBase_Core_2_0_2\Classes\XMBAbilityCost_ActionPoints.uc" />
+    <Content Include="Src\XModBase_Core_2_0_2\Classes\XMBAbilityMultiTarget_Radius.uc" />
+    <Content Include="Src\XModBase_Core_2_0_2\Classes\XMBAbilityTag.uc" />
+    <Content Include="Src\XModBase_Core_2_0_2\Classes\XMBAbilityToHitCalc_StandardAim.uc" />
+    <Content Include="Src\XModBase_Core_2_0_2\Classes\XMBConfig.uc" />
+    <Content Include="Src\XModBase_Core_2_0_2\Classes\XMBDownloadableContentInfo_XModBase.uc" />
+    <Content Include="Src\XModBase_Core_2_0_2\Classes\XMBTargetingMethod_Grenade.uc" />
     <Content Include="Src\XModBase_Interfaces\Classes\XMBEffectInterface.uc" />
     <Content Include="Src\XModBase_Interfaces\Classes\XMBOverrideInterface.uc" />
     <Content Include="Content\LW_FactionBalance\UICollection_SupremeFocus.upk" />
