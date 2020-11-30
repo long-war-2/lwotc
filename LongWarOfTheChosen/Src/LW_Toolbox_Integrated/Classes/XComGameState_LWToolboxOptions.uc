@@ -522,11 +522,13 @@ simulated function RegisterListeners()
 	// angle rotation
 	EventManager.RegisterForEvent(ThisObj, 'OverrideCameraRotationAngle', OnGetCameraRotationAngle, ELD_Immediate,,,true);
 
-	// recruit listitem modification
-	EventManager.RegisterForEvent(ThisObj, 'OnRecruitmentListItemInit', AddRecruitStats, ELD_Immediate,,,true);
-	EventManager.RegisterForEvent(ThisObj, 'OnRecruitmentListItemUpdateFocus', UpdateRecruitFocus, ELD_Immediate,,,true);
+	// Recruit list item modification
+	// KDM : These events are no longer needed with our Long War of the Chosen compatible recruit screen, UIRecruitSoldiers_LWOTC.
+	// EventManager.RegisterForEvent(ThisObj, 'OnRecruitmentListItemInit', AddRecruitStats, ELD_Immediate,,,true);
+	// EventManager.RegisterForEvent(ThisObj, 'OnRecruitmentListItemUpdateFocus', UpdateRecruitFocus, ELD_Immediate,,,true);
 }
 
+/* 
 // adds elements to Recruit list items
 static function EventListenerReturn AddRecruitStats(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
@@ -549,7 +551,9 @@ static function EventListenerReturn AddRecruitStats(Object EventData, Object Eve
 
 	return ELR_NoInterrupt;
 }
+*/
 
+/*
 // updates recruit list item for focus changes
 static function EventListenerReturn UpdateRecruitFocus(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
@@ -565,6 +569,7 @@ static function EventListenerReturn UpdateRecruitFocus(Object EventData, Object 
 
 	return ELR_NoInterrupt;
 }
+*/
 
 //API access for other mods to directly change max squad size
 static function SetMaxSquadSize(int NewSize)

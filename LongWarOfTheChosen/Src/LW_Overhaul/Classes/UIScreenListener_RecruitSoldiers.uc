@@ -1,67 +1,26 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    UIScreenListener_RecruitSoldiers
-//  AUTHOR:  Peter Ledbrook
-//
-//  PURPOSE: A big ball of event listeners we need to set up for tactical games.
+//  FILE:	 UIScreenListener_RecruitSoldiers.uc
+//  AUTHOR:	 KDM
+//  PURPOSE: Pushes a Long War of the Chosen compatible recruit screen onto the screen stack
+//	in place of the base recruit screen.
 //--------------------------------------------------------------------------------------- 
 
-class UIScreenListener_RecruitSoldiers extends UIScreenListener config(LW_Overhaul);
+class UIScreenListener_RecruitSoldiers extends UIScreenListener;
 
 event OnInit(UIScreen Screen)
 {
-    local UIRecruitSoldiers RecruitScreen;
-    local int i;
+	local UIRecruitSoldiers_LWOTC RecruitScreen;
+	local XComHQPresentationLayer HQPres;
+	
+	HQPres = `HQPRES;
 
-    RecruitScreen = UIRecruitSoldiers(Screen);
-    if (RecruitScreen == none)
-    {
-        return;
-    }
-
-    for (i = 0; i < RecruitScreen.List.ItemContainer.ChildPanels.Length; i++)
-    {
-        class'UIRecruitmentListItem_LW'.static.AddRecruitStats(
-                RecruitScreen.m_arrRecruits[i],
-                UIRecruitmentListItem(RecruitScreen.List.ItemContainer.ChildPanels[i]));
-    }
+	HQPres.ScreenStack.Pop(Screen);
+	RecruitScreen = HQPres.Spawn(class'UIRecruitSoldiers_LWOTC', HQPres);
+	HQPres.ScreenStack.Push(RecruitScreen);
 }
 
-event OnReceiveFocus(UIScreen Screen)
-{
-    local UIRecruitSoldiers RecruitScreen;
-    local int i;
-
-    RecruitScreen = UIRecruitSoldiers(Screen);
-    if (RecruitScreen == none)
-    {
-        return;
-    }
-
-    for (i = 0; i < RecruitScreen.List.ItemContainer.ChildPanels.Length; i++)
-    {
-        class'UIRecruitmentListItem_LW'.static.UpdateItemsForFocus(UIRecruitmentListItem(RecruitScreen.List.ItemContainer.ChildPanels[i]));
-    }
-}
-
-event OnLoseFocus(UIScreen Screen)
-{
-    local UIRecruitSoldiers RecruitScreen;
-    local int i;
-
-    RecruitScreen = UIRecruitSoldiers(Screen);
-    if (RecruitScreen == none)
-    {
-        return;
-    }
-
-    for (i = 0; i < RecruitScreen.List.ItemContainer.ChildPanels.Length; i++)
-    {
-        class'UIRecruitmentListItem_LW'.static.UpdateItemsForFocus(UIRecruitmentListItem(RecruitScreen.List.ItemContainer.ChildPanels[i]));
-    }
-}
-
-defaultProperties
-{
-	// Leaving this assigned to none will cause every screen to trigger its signals on this class
-	ScreenClass = none
+defaultproperties
+{ 
+	// KDM : Only listen for the UIRecruitSoldiers screen.
+	ScreenClass = class'UIRecruitSoldiers';
 }

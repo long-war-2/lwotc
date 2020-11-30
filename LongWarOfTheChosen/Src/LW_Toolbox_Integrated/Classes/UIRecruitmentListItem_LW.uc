@@ -2,9 +2,13 @@
 //  FILE:    UIRecruitmentListItem_LW.uc
 //  AUTHOR:  Amineri / Pavonis Interactive
 //  PURPOSE: This is an extension for RecruitmentListItem that allows displays stats, called via registered events
+//
+//	KDM :	 UIRecruitmentListItem_LWOTC is now used in place of UIRecruitmentListItem_LW.
 //---------------------------------------------------------------------------------------
+
 class UIRecruitmentListItem_LW extends Object;
 
+/*
 static function AddRecruitStats(XComGameState_Unit Recruit, UIRecruitmentListItem ListItem)
 {
 	local UIPanel kLine;
@@ -133,3 +137,4 @@ static function UpdateText(UIRecruitmentListItem ListItem, string MCRoot, bool b
 		Value.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(OldText, (bReverse ? -1 : eUIState_Normal)));
 	}
 }
+*/
