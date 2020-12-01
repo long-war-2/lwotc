@@ -405,6 +405,7 @@ static function X2CharacterTemplate CreateTemplate_Naja(name TemplateName)
 
 	CharTemplate.AddTemplateAvailablility(CharTemplate.BITFIELD_GAMEAREA_Multiplayer); // Allow in MP!
 	CharTemplate.MPPointValue = CharTemplate.XpKillscore * 10;
+	CharTemplate.strScamperBT = "ScamperRoot_Naja";
 
 	CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Tygan_AlienSightings_Viper');
 	CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_Viper');
