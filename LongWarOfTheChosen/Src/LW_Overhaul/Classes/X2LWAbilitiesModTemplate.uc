@@ -45,6 +45,8 @@ var config int MIND_SCORCH_BURNING_BASE_DAMAGE;
 var config int MIND_SCORCH_BURNING_DAMAGE_SPREAD;
 var config int MIND_SCORCH_BURN_CHANCE;
 
+var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
     // Override the FinalizeHitChance calculation for abilities that use standard aim
@@ -162,6 +164,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'DisruptorRifleCrit':
 			Template.bDisplayInUITooltip = true;
 			Template.bDisplayInUITacticalText = true;
+			break;
+		case 'ChosenRegenerate':
+			UpdateChosenRegenerate(Template);
+			break;
+		case 'HarborWave':
+			ReworkHarborWave(Template);
 			break;
 		default:
 			break;
@@ -910,19 +918,16 @@ static function MakeChosenInstantlyEngagedAndRemoveTimerPause(X2AbilityTemplate 
 
 static function ReworkPartingSilk(X2AbilityTemplate Template)
 {
-	local X2Effect_ToHitModifier ToHitModifier;
+	local X2Effect_DodgeModifier AntiDodgeEffect;
 
 	RemoveAbilityTargetEffects(Template, 'X2Effect_Dazed');
 
 	if (Template.AbilityToHitCalc.IsA('X2AbilityToHitCalc_StandardMelee'))
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bHitsAreCrits = true;
 
-
-	ToHitModifier = new class'X2Effect_ToHitModifier';
-	ToHitModifier.BuildPersistentEffect(1, true, false, true);
-	ToHitModifier.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
-	ToHitModifier.AddEffectHitModifier(eHit_Graze, -150, Template.LocFriendlyName,, false, true, true, true);
-	Template.AddTargetEffect(ToHitModifier);
+	AntiDodgeEffect = new class'X2Effect_DodgeModifier';
+	AntiDodgeEffect.BuildPersistentEffect(1, true, false);
+	Template.AddTargetEffect(AntiDodgeEffect);
 
 }
 
@@ -996,6 +1001,38 @@ static function MakeAbilityVisible(X2AbilityTemplate Template)
 	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(PersistentEffect);
 }
+
+static function UpdateChosenRegenerate(X2AbilityTemplate Template)
+{
+	local X2Effect_RegenerationPCT RegenerationEffect;
+
+	RemoveAbilityTargetEffects(Template, 'X2Effect_Regeneration');
+
+	RegenerationEffect = new class'X2Effect_RegenerationPCT';
+	RegenerationEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
+	RegenerationEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
+	RegenerationEffect.HealAmountPCT = default.CHOSEN_REGENERATION_HEAL_VALUE_PCT;
+	Template.AddTargetEffect(RegenerationEffect);
+}
+
+static function ReworkHarborWave(X2AbilityTemplate Template)
+{
+	local X2Effect_ApplyHarborWaveDamage DamageEffect;
+
+
+	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
+
+	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Dazed');
+	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_ApplyWeaponDamage');
+	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Knockback');
+
+	DamageEffect = new class'X2Effect_ApplyHarborWaveDamage';
+	DamageEffect.bIgnoreArmor = true;
+	Template.AddMultiTargetEffect(DamageEffect);
+
+	Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
+}
+
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities

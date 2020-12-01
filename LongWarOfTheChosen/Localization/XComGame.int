@@ -5882,9 +5882,11 @@ LocPromotionPopupText = "<Bullet/> All enemies within the <Ability:ClassName/>'s
 [ApexPredator_LW X2AbilityTemplate]
 LocFriendlyName = "Apex Predator"
 LocFlyOverText = "Apex Predator"
-LocHelpText = "Critical hits have a chance to panic the target and nearby enemies."
-LocLongDescription = "Critical hits have a chance to panic the target and nearby enemies."
-LocPromotionPopupText = "<Bullet/> Critical hits have a chance to panic the target and nearby enemies.<br/>"
+; LWOTC Needs Translation (2)
+LocHelpText = "Critical hits with your primary weapon have a chance to panic the target and nearby enemies."
+LocLongDescription = "Critical hits with your primary weapon have a chance to panic the target and nearby enemies."
+LocPromotionPopupText = "<Bullet/> Critical hits with your primary weapon have a chance to panic the target and nearby enemies.<br/>"
+; End Translation (2)
 
 [BlindingProtocol_LW X2AbilityTemplate]
 LocFriendlyName = "Blinding Protocol"
@@ -6131,7 +6133,7 @@ LocLongDescription="Every time you attack with your melee weapon, get a stackabl
 LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
 LocFlyOverText="Blood Thirst"
 
-[BloodThirst_LWPassive X2AbilityTemplate]
+[BloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
 LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
 LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
@@ -6272,5 +6274,18 @@ ComIntLabels[eComInt_AboveAverage]="Low"
 ComIntLabels[eComInt_Gifted]="Average"
 ComIntLabels[eComInt_Genius]="High"
 ComIntLabels[eComInt_Savant]="Very High"
+; End Translation
 
+; LWOTC Needs Translation
+[ChosenPrimeReactionPassive X2AbilityTemplate]
+LocFriendlyName="Chosen Prime Reaction"
+LocLongDescription="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
+LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
+LocFlyOverText="Chosen Prime Reaction"
+
+[HarborWave X2AbilityTemplate]
+LocFriendlyName="Harbor Wave"
+LocLongDescription="Send a psionic wave that deals damage and triggers blood thirst for every unit hit."
+LocHelpText="Send a psionic wave that deals damage and triggers blood thirst for every unit hit."
+LocFlyOverText="Harbor Wave"
 ; End Translation

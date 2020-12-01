@@ -18,7 +18,7 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
 		return;
 
 	Tiles = Attacker.TileDistanceBetween(Target);       
-	if (Tiles <= default.INFIGHTER_MAX_TILES + 1)
+	if (Tiles <= default.INFIGHTER_MAX_TILES - 1)
 	{
 		ShotInfo.ModType = eHit_Graze;
 		ShotInfo.Reason = FriendlyName;

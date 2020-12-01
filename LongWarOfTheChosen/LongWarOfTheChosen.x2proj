@@ -776,6 +776,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Aggression.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ApexPredator_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ApplyDenseSmokeGrenadeToWorld.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ApplyHarborWaveDamage.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ApplyHeal.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_AreaSuppression.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Bastion.uc" />
@@ -796,6 +797,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FieldSurgeon.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FlecheBonusDamage.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Formidable.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FreeGrenades.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FullKit.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FullOrdnance.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_GrazingFire.uc" />
@@ -827,6 +829,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_PrimaryHitBonusDamage.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_RapidDeployment.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_RapidReaction.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_RegenerationPCT.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ReloadPrimaryWeapon.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_RemoveAreaSuppressionEffect.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Resilience.uc" />
