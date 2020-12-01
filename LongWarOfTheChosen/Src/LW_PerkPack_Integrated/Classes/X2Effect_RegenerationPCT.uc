@@ -17,11 +17,11 @@ function bool RegenerationTicked(X2Effect_Persistent PersistentEffect, const out
 	local XComGameState_Unit OldTargetState, NewTargetState;
 	local UnitValue HealthRegenerated;
 	local int AmountToHeal, Healed;
-    local int HealAmount;
+	local int HealAmount;
     
-    OldTargetState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	OldTargetState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
     
-    HealAmount = OldTargetState.GetMaxStat(eStat_HP) * HealAmountPCT;
+	HealAmount = OldTargetState.GetMaxStat(eStat_HP) * HealAmountPCT;
     
 	if (HealthRegeneratedName != '' && MaxHealAmount > 0)
 	{
@@ -40,8 +40,6 @@ function bool RegenerationTicked(X2Effect_Persistent PersistentEffect, const out
 	}
 	else
 	{
-        
-
 		// If no value tracking for health regenerated is set, heal for the default amount
 		AmountToHeal = HealAmount;
 	}	
@@ -80,7 +78,7 @@ simulated function AddX2ActionsForVisualization_Tick(XComGameState VisualizeGame
 
 	Healed = NewUnit.GetCurrentStat(eStat_HP) - OldUnit.GetCurrentStat(eStat_HP);
 	
-	if( Healed > 0 )
+	if (Healed > 0)
 	{
 		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
 		Msg = Repl(default.HealedMessage, "<Heal/>", Healed);

@@ -17,16 +17,16 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	local XComGameState_Ability		AbilityState;
 	local bool						bFreeActivation;
 
-	if(kAbility == none)
+	if (kAbility == none)
 		return false;
 
 	AbilityName = kAbility.GetMyTemplateName();
 
-	if(default.VALID_GRENADE_ABILITIES.Find(AbilityName) != -1)
+	if (default.VALID_GRENADE_ABILITIES.Find(AbilityName) != -1)
 	{
 		bFreeActivation = true;
 	}
-	if(bFreeActivation)
+	if (bFreeActivation)
 	{
 		if (SourceUnit.ActionPoints.Length != PreCostActionPoints.Length)
 		{

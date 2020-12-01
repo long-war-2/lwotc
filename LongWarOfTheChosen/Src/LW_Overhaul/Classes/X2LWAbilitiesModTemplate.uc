@@ -46,6 +46,7 @@ var config int MIND_SCORCH_BURNING_DAMAGE_SPREAD;
 var config int MIND_SCORCH_BURN_CHANCE;
 
 var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
     // Override the FinalizeHitChance calculation for abilities that use standard aim
