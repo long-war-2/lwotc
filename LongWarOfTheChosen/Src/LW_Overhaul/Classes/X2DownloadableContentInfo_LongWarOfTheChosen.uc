@@ -1642,6 +1642,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
 	local name ChosenSpawningTag, ChosenSpawningTagLWOTC;
+	local bool HasRulerOnMission;
 
 	// Certain missions should just use vanilla Chosen behaviour, like the Chosen
 	// Avenger Defense
@@ -1654,7 +1655,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	// Don't allow Chosen on the mission if there is already a Ruler
 	if (class'XComGameState_AlienRulerManager' != none && class'LWDLCHelpers'.static.IsAlienRulerOnMission(MissionState))
 	{
-		return;
+		HasRulerOnMission = true;
 	}
 
 	History = `XCOMHISTORY;
@@ -1680,7 +1681,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 
 			// Now add the appropriate tactical gameplay tag for this Chosen if the
 			// corresponding LWOTC-specific one is in the mission's tactical tags.
-			if (MissionState.TacticalGameplayTags.Find(ChosenSpawningTagLWOTC) != INDEX_NONE)
+			if (!HasRulerOnMission && MissionState.TacticalGameplayTags.Find(ChosenSpawningTagLWOTC) != INDEX_NONE)
 			{
 				XComHQ.TacticalGameplayTags.AddItem(ChosenSpawningTag);
 			}
