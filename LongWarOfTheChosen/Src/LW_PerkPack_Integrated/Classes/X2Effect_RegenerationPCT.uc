@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    RegenerationPCT.uc
+//  FILE:    X2Effect_RegenerationPCT.uc
 //  AUTHOR:  Grobobobo
 //  PURPOSE: Regeneration, but considers % of hp instead of flat value
 //--------------------------------------------------------------------------------------- 
