@@ -52,6 +52,7 @@ LocCoveringFireMalus="This unit has been targeted by an overwatching unit with t
 [X2Effect_RegenerationPCT]
 HealedMessage="+<Heal/> HP Regenerated"
 
+[X2StatusEffects_LW]
 MaimedFriendlyName="Maimed"
 MaimedFriendlyDesc="Unit's mobility is reduced to zero and so they cannot move. They can still shoot and perform other non-movement abilities."
 ; End Translation

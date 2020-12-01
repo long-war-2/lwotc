@@ -5882,9 +5882,11 @@ LocPromotionPopupText = "<Bullet/> All enemies within the <Ability:ClassName/>'s
 [ApexPredator_LW X2AbilityTemplate]
 LocFriendlyName = "Apex Predator"
 LocFlyOverText = "Apex Predator"
+; LWOTC Needs Translation (2)
 LocHelpText = "Critical hits with your primary weapon have a chance to panic the target and nearby enemies."
 LocLongDescription = "Critical hits with your primary weapon have a chance to panic the target and nearby enemies."
 LocPromotionPopupText = "<Bullet/> Critical hits with your primary weapon have a chance to panic the target and nearby enemies.<br/>"
+; End Translation (2)
 
 [BlindingProtocol_LW X2AbilityTemplate]
 LocFriendlyName = "Blinding Protocol"
@@ -6272,7 +6274,9 @@ ComIntLabels[eComInt_AboveAverage]="Low"
 ComIntLabels[eComInt_Gifted]="Average"
 ComIntLabels[eComInt_Genius]="High"
 ComIntLabels[eComInt_Savant]="Very High"
+; End Translation
 
+; LWOTC Needs Translation
 [ChosenPrimeReactionPassive X2AbilityTemplate]
 LocFriendlyName="Chosen Prime Reaction"
 LocLongDescription="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
