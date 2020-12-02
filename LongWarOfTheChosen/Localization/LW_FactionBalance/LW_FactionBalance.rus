@@ -1,4 +1,4 @@
-; LWOTC Needs Translation
+; LWOTC Translated
 [X2Effect_VoidConduitPatch]
 ActionsLeftFlyoverText="Осталось действий: <XGParam:IntValue0/>"
 ; End Translation
