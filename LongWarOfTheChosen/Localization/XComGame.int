@@ -401,7 +401,7 @@ LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to 2 point
 
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
-; LWOTC Needs Translation
+; LWOTC Translated
 LocLongDescription="You may throw or launch grenades two additional tiles."
 LocHelpText="You may throw or launch grenades two additional tiles."
 LocFlyOverText="Bombardier"
