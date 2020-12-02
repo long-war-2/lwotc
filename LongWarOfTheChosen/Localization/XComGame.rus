@@ -1081,7 +1081,7 @@ BriefSummary="Добавляет способность устойчивая п�
 TinySummary="Дает способность "устойчивая позиция""
 LootTooltip="Эта оружейная модификация после установки добавляет способность устойчивая позиция."
 
-;End Trasnlated_2
+;End Translated
 
 [FreeKillUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Глушитель"
@@ -5597,7 +5597,6 @@ m_strRetributionAlertDescription="Избранный препятствует д
 m_strRetributionAlertIncomeDecreasedTitle="ДИВЕРСИЯ УБЕЖИЩА"
 m_strRetributionAlertIncomeDescription="Материалы, разведданные и прием новых рекрутов замедлены на 20%"
 ;LWOTC end translated
-
 
 
 
