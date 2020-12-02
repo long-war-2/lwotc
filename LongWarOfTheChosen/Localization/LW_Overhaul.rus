@@ -578,7 +578,7 @@ m_strLiberatedCityPrefix="Свободный город"
 [XComGameState_LWOutPost]
 m_strProhibitedJobAlert="Из-за рейда \"Адвента\" в регионе <XGParam:StrValue1/> члены Сопротивления не могут быть назначены на работу \"<XGParam:StrValue0/>\" в ближайшие <XGParam:IntValue0/> дн. Все повстанцы, выполнявшие эту работу, вынуждены перейти в режим конспирации."
 m_strProhibitedJobEnded="Члены Сопротивления в регионе <XGParam:StrValue0/>, занятые работой \"<XGParam:StrValue1/>\", снова продуктивно трудятся."
-;LWOTC needs translated
+;LWOTC translated
 m_strRetributionEnded="Члены сопротивления в регионе <XGParam:StrValue0/> поправились от возмездия Избранного"
 ;End translated
 
