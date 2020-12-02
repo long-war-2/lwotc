@@ -406,7 +406,7 @@ LocLongDescription="You may throw or launch grenades two additional tiles."
 LocHelpText="You may throw or launch grenades two additional tiles."
 LocFlyOverText="Bombardier"
 LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades.<br/>"
-; End Translation
+; End Translated
 
 [BluescreenBombs X2AbilityTemplate]
 LocFriendlyName="Bluescreen Bombs"
