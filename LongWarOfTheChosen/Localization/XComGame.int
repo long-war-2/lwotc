@@ -6078,21 +6078,23 @@ LocLongDescription="Gain a stackable 10 aim and 5 defense bonus for 2 turns."
 LocHelpText="Gain a stackable 10 aim and 5 defense bonus for 2 turns."
 LocFlyOverText="Combat Readiness"
 
+;LWOTC needs translation (2)
 [ChosenAssassin X2CharacterTemplate]
 strCharacterName="Assassin"
-strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+strAcquiredText="Now a Close Combat menace, The Assassin is a juggernaut that will run towards you and slash you whenever possible. her initially low but ever increasing damage cannot be underestimated."
 
 [ChosenAssassinM2 X2CharacterTemplate]
 strCharacterName="Assassin"
-strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+strAcquiredText="Now a Close Combat menace, The Assassin is a juggernaut that will run towards you and slash you whenever possible. her initially low but ever increasing damage cannot be underestimated."
 
 [ChosenAssassinM3 X2CharacterTemplate]
 strCharacterName="Assassin"
-strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+strAcquiredText="Now a Close Combat menace, The Assassin is a juggernaut that will run towards you and slash you whenever possible. her initially low but ever increasing damage cannot be underestimated."
 
 [ChosenAssassinM4 X2CharacterTemplate]
 strCharacterName="Assassin"
-strAcquiredText="Now a Close Combat menace, The Assassin will utilize stealth and her low but ever increasing damage to whittle down your soldiers."
+strAcquiredText="Now a Close Combat menace, The Assassin is a juggernaut that will run towards you and slash you whenever possible. her initially low but ever increasing damage cannot be underestimated."
+;LWOTC end translation
 
 [ChosenWarlock X2CharacterTemplate]
 strCharacterName="Warlock"
@@ -6277,15 +6279,57 @@ ComIntLabels[eComInt_Savant]="Very High"
 ; End Translation
 
 ; LWOTC Needs Translation
-[ChosenPrimeReactionPassive X2AbilityTemplate]
+
+[AssassinPrimeReactionPassive X2AbilityTemplate]
+LocFriendlyName="Chosen Prime Reaction"
+LocLongDescription="Gain a slash, movement action or Combat Readiness after taking damage on XCOM's turn"
+LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
+LocFlyOverText="Chosen Prime Reaction"
+
+[HunterPrimeReactionPassive X2AbilityTemplate]
 LocFriendlyName="Chosen Prime Reaction"
 LocLongDescription="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocFlyOverText="Chosen Prime Reaction"
+
+[HunterPrimeReactionPassive X2AbilityTemplate]
+LocFriendlyName="Chosen Prime Reaction"
+LocLongDescription="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
+LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
+LocFlyOverText="Chosen Prime Reaction"
+
+[ChosenImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Chosen Immunities"
+LocLongDescription="Chosen are immune to stun, disorient, frost and suffer -50% mobility from maim instead of being immobilized."
+LocHelpText="Chosen are immune to stun, disorient, frost and suffer -50% mobility from maim instead of being immobilized."
+LocFlyOverText="Chosen Immunities"
+
 
 [HarborWave X2AbilityTemplate]
 LocFriendlyName="Harbor Wave"
 LocLongDescription="Send a psionic wave that deals damage and triggers blood thirst for every unit hit."
 LocHelpText="Send a psionic wave that deals damage and triggers blood thirst for every unit hit."
 LocFlyOverText="Harbor Wave"
+
+[Brawler X2AbilityTemplate]
+LocFriendlyName="Brawler"
+LocFlyOverText="Brawler"
+LocLongDescription="Take <Ability:BRAWLER_DR_PCT>% less damage against attacks within four tiles."
+LocHelpText="Take <Ability:BRAWLER_DR_PCT>% less damage against attacks within four tiles."
+LocPromotionPopupText="<Bullet/> Take <Ability:BRAWLER_DR_PCT>% less damage against attacks within four tiles.<br/>"
+
+[InstantReactionTime X2AbilityTemplate]
+LocFriendlyName="Instant Reaction Time"
+LocFlyOverText="Instant Reaction Time"
+LocLongDescription="Gain <Ability:IRT_DODGE_PER_TILE> dodge against each attack for every tile away from an attacker."
+LocHelpText="Gain <Ability:IRT_DODGE_PER_TILE> dodge against each attack for every tile away from an attacker."
+LocPromotionPopupText="Gain <Ability:IRT_DODGE_PER_TILE> dodge against each attack for every tile away from an attacker."
+
+[AssassinSlash_LW X2AbilityTemplate]
+LocFriendlyName="Slash"
+LocFlyOverText="Slash"
+LocLongDescription="Attack an adjacent target with your sword. Uses one action."
+LocHelpText="Attack an adjacent target with your sword. Uses one action."
+LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/><Bullet/> Uses one action and doesn't automatically end your turn, so two attacks a turn are possible."
+
 ; End Translation

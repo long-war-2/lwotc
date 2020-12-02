@@ -16,6 +16,7 @@ var config int SHIELDALLYM1_SHIELD;
 var config int SHIELDALLYM2_SHIELD;
 var config int SHIELDALLYM3_SHIELD;
 var config int SHIELDALLYM4_SHIELD;
+var config array<name> KIDNAP_ELIGIBLE_SOLDIERS;
 
 var private name ExtractKnowledgeMarkSourceEffectName, ExtractKnowledgeMarkTargetEffectName;
 
@@ -59,7 +60,12 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddMindScorchTerror());
 	
 	Templates.AddItem(FreeGrenades());
-	Templates.AddItem(ChosenPrimeReactionPassive());
+	Templates.AddItem(AssassinPrimeReactionPassive());
+	Templates.AddItem(WarlockPrimeReactionPassive());
+	Templates.AddItem(HunterPrimeReactionPassive());
+
+	Templates.AddItem(ChosenImmunitiesPassive());
+	Templates.AddItem(AssassinSlash_LW());
 
 	return Templates;
 }
@@ -124,7 +130,7 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
-	Template.AdditionalAbilities.AddItem('ChosenPrimeReactionPassive');
+	Template.AdditionalAbilities.AddItem('WarlockPrimeReactionPassive');
 
 	return Template;
 }
@@ -189,7 +195,7 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
-	Template.AdditionalAbilities.AddItem('ChosenPrimeReactionPassive');
+	Template.AdditionalAbilities.AddItem('AssassinPrimeReactionPassive');
 
 	return Template;
 }
@@ -254,16 +260,52 @@ static function X2AbilityTemplate CreateHunterReaction()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
-	Template.AdditionalAbilities.AddItem('ChosenPrimeReactionPassive');
+	Template.AdditionalAbilities.AddItem('HunterPrimeReactionPassive');
 
 	return Template;
 }
 
-static function X2AbilityTemplate ChosenPrimeReactionPassive()
+static function X2AbilityTemplate WarlockPrimeReactionPassive()
 {
 	local X2AbilityTemplate		Template;
 
-	Template = PurePassive('ChosenPrimeReactionPassive', "img:///UILibrary_PerkIcons.UIPerk_combatstims", , 'eAbilitySource_Perk');
+	Template = PurePassive('WarlockPrimeReactionPassive', "img:///UILibrary_PerkIcons.UIPerk_combatstims", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate HunterPrimeReactionPassive()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('HunterPrimeReactionPassive', "img:///UILibrary_PerkIcons.UIPerk_combatstims", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AssassinPrimeReactionPassive()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('AssassinPrimeReactionPassive', "img:///UILibrary_PerkIcons.UIPerk_combatstims", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate ChosenImmunitiesPassive()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('ChosenImmunitiesPassive', "img:///UILibrary_XPACK_Common.PerkIcons.str_taxing", , 'eAbilitySource_Perk');
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
@@ -1296,7 +1338,7 @@ static function X2DataTemplate CreateChosenKidnap()
 	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
 	local X2Condition_UnitEffects ExcludeEffects;
 	local X2Condition_UnitType	ImmuneUnitCondition;
-
+	local name SoldierTemplateName;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenKidnap'); //intentionally same template so kismet can disable it on special missions without changes to it
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_kidnap";
 	Template.Hostility = eHostility_Offensive;
@@ -1355,9 +1397,12 @@ static function X2DataTemplate CreateChosenKidnap()
 	Template.bShowActivation = true;
 
 	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('RebelSoldierProxy');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('RebelSoldierProxyM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('RebelSoldierProxyM3');
+	
+	foreach default.KIDNAP_ELIGIBLE_SOLDIERS(SoldierTemplateName)
+	{
+		ImmuneUnitCondition.IncludeTypes.AddItem(SoldierTemplateName);
+	}
+
 	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
 	
 	Template.PostActivationEvents.AddItem('ChosenKidnap');
@@ -1365,7 +1410,7 @@ static function X2DataTemplate CreateChosenKidnap()
 	return Template;
 }
 
-	static function ChosenKidnap_AddedFn(X2Effect_Persistent PersistentEffect, const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState)
+static function ChosenKidnap_AddedFn(X2Effect_Persistent PersistentEffect, const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState)
 {
 	local XComGameState_Unit ChosenUnitState;
 	local XComGameState_AdventChosen ChosenState;
@@ -1400,31 +1445,70 @@ simulated function ChosenKidnap_BuildVisualization(XComGameState VisualizeGameSt
 	local XComGameStateHistory History;
 	local XComGameStateContext_Ability Context;
 	local VisualizationActionMetadata EmptyTrack;
-	local VisualizationActionMetadata ActionMetadata;
+	local VisualizationActionMetadata SourceActionMetadata, TargetActionMetadata;
 	local X2Action_PlayEffect EffectAction;
 	local X2Action_Delay DelayAction;
-	
+	local X2Action_PlayAnimation PlayAnimAction;
+	local StateObjectReference InteractingUnitRef;
+	local X2Action_MarkerNamed SyncAction;
+	local X2Action_PlayMessageBanner MessageAction;
+	local X2Action_ExitCover ExitCoverAction;
+	local X2Action_RemoveUnit RemoveUnitAction;
+	local XGParamTag kTag;
+
 	History = `XCOMHISTORY;
 
 	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+	InteractingUnitRef = Context.InputContext.SourceObject;
+
 
 	//Configure the visualization track for the shooter
 	//****************************************************************************************
-	ActionMetadata = EmptyTrack;
-	ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(Context.InputContext.PrimaryTarget.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-	ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(Context.InputContext.PrimaryTarget.ObjectID);
-	ActionMetadata.VisualizeActor = History.GetVisualizer(Context.InputContext.PrimaryTarget.ObjectID);
-	
-	EffectAction = X2Action_PlayEffect(class'X2Action_PlayEffect'.static.AddToVisualizationTree(ActionMetadata, Context, false));
+	SourceActionMetadata = EmptyTrack;
+	SourceActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	SourceActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+	SourceActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+
+	TargetActionMetadata = EmptyTrack;
+	TargetActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(Context.InputContext.PrimaryTarget.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	TargetActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(Context.InputContext.PrimaryTarget.ObjectID);
+	TargetActionMetadata.VisualizeActor = History.GetVisualizer(Context.InputContext.PrimaryTarget.ObjectID);
+
+	ExitCoverAction = X2Action_ExitCover(class'X2Action_ExitCover'.static.AddToVisualizationTree(SourceActionMetadata, Context));
+
+	// Trigger the Chosen's narrative line before they start the capture
+	class'XComGameState_NarrativeManager'.static.BuildVisualizationForDynamicNarrative(VisualizeGameState, false, 'ChosenTacticalEscape', ExitCoverAction);
+
+	PlayAnimAction = X2Action_PlayAnimation(class'X2Action_PlayAnimation'.static.AddToVisualizationTree(SourceActionMetadata, Context, , SourceActionMetadata.LastActionAdded));
+	PlayAnimAction.bFinishAnimationWait = true;
+	PlayAnimAction.Params.AnimName = 'HL_Summon';
+
+	SyncAction = X2Action_MarkerNamed(class'X2Action_MarkerNamed'.static.AddToVisualizationTree(SourceActionMetadata, Context, false, SourceActionMetadata.LastActionAdded));
+	SyncAction.SetName("SpawningStart");
+	SyncAction.AddInputEvent('Visualizer_AbilityHit');
+
+
+	EffectAction = X2Action_PlayEffect(class'X2Action_PlayEffect'.static.AddToVisualizationTree(TargetActionMetadata, Context, false, SyncAction));
 	EffectAction.EffectName = "FX_Chosen_Teleport.P_Chosen_Teleport_Out_w_Sound";
-	EffectAction.EffectLocation = ActionMetadata.VisualizeActor.Location;
+	EffectAction.EffectLocation = TargetActionMetadata.VisualizeActor.Location;
 	EffectAction.bWaitForCompletion = false;
 
-	DelayAction = X2Action_Delay(class'X2Action_Delay'.static.AddToVisualizationTree(ActionMetadata, Context, false));
+	DelayAction = X2Action_Delay(class'X2Action_Delay'.static.AddToVisualizationTree(TargetActionMetadata, Context, false));
 	DelayAction.Duration = 0.25;
 
-	class'X2Action_RemoveUnit'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, DelayAction);
+	RemoveUnitAction = X2Action_RemoveUnit(class'X2Action_RemoveUnit'.static.AddToVisualizationTree(TargetActionMetadata, VisualizeGameState.GetContext(), false, DelayAction));
 	//****************************************************************************************
+
+	class'X2Action_EnterCover'.static.AddToVisualizationTree(SourceActionMetadata, Context, false, RemoveUnitAction);
+
+	kTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
+	kTag.StrValue0 = XComGameState_Unit(SourceActionMetadata.StateObject_NewState).GetFullName(); // chosen name
+	kTag.StrValue1 = XComGameState_Unit(TargetActionMetadata.StateObject_NewState).GetFullName(); // chosen target
+
+	MessageAction = X2Action_PlayMessageBanner(class'X2Action_PlayMessageBanner'.static.AddToVisualizationTree(SourceActionMetadata, Context, false, TargetActionMetadata.LastActionAdded));
+	MessageAction.AddMessageBanner(`XEXPAND.ExpandString(class'X2Ability_Chosen'.default.KidnapHeader), , `XEXPAND.ExpandString(class'X2Ability_Chosen'.default.KidnapTargetHeader), `XEXPAND.ExpandString(class'X2Ability_Chosen'.default.KidnapMessageBody), eUIState_Bad);
+
 }
 
 static function X2AbilityTemplate CreateBloodThirst()
@@ -1461,6 +1545,13 @@ static function X2AbilityTemplate CreateBloodThirst()
 	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	EventListener.ListenerData.EventID = 'HarborWaveDealtDamage';
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.EventID = 'SlashActivated';
 	EventListener.ListenerData.Filter = eFilter_Unit;
 	Template.AbilityTriggers.AddItem(EventListener);
 
@@ -1515,7 +1606,83 @@ static function X2DataTemplate FreeGrenades()
 	return Template;
 }
 
+//like slash but guaranteed to hit
+static function X2DataTemplate AssassinSlash_LW()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2AbilityToHitCalc_StandardMelee  StandardMelee;
+	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
+	local array<name>                       SkipExclusions;
+	local X2Condition_UnitProperty			AdjacencyCondition;	
 
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'AssassinSlash_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_swordSlash";
+	Template.bHideOnClassUnlock = false;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
+	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
+	Template.bCrossClassEligible = false;
+	Template.bDisplayInUITooltip = true;
+    Template.bDisplayInUITacticalText = true;
+    Template.DisplayTargetHitChance = true;
+	Template.bShowActivation = true;
+	Template.bSkipFireAction = false;
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = false;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+	
+
+	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_Deadeye';
+
+    Template.AbilityTargetStyle = default.SimpleSingleMeleeTarget;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	// Target Conditions
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
+	AdjacencyCondition = new class'X2Condition_UnitProperty';
+	AdjacencyCondition.RequireWithinRange = true;
+	AdjacencyCondition.WithinRange = 144; //1.5 tiles in Unreal units, allows attacks on the diag
+	AdjacencyCondition.TreatMindControlledSquadmateAsHostile = true;
+	Template.AbilityTargetConditions.AddItem(AdjacencyCondition);
+
+	// Shooter Conditions
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	
+
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName); //okay when disoriented
+	Template.AddShooterEffectExclusions(SkipExclusions);
+	
+	// Damage Effect
+	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	Template.AddTargetEffect(WeaponDamageEffect);
+	Template.bAllowBonusWeaponEffects = true;
+	
+	// VGamepliz matters
+	Template.SourceMissSpeech = 'SwordMiss';
+	Template.bSkipMoveStop = true;
+
+	Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
+	Template.CinescriptCameraType = "Ranger_Reaper";
+    Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
+	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
+}
+
+	
+	
 defaultproperties
 {
 	ExtractKnowledgeMarkSourceEffectName="ExtractKnowledgeMarkSourceEffect"

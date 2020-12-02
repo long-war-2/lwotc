@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:   X2Effect_Immobilize.uc
 //  AUTHOR:  Grobobobo/Taken  from Favid
-//  PURPOSE: Effect that Immobilizes the target.
+//  PURPOSE: Effect that Immobilizes the target, and reduces their mobility instead if the target is chosen
 //---------------------------------------------------------------------------------------
 class X2Effect_Immobilize extends X2Effect_PersistentStatChange;
 
@@ -10,7 +10,16 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	local XComGameState_Unit UnitState;
 
 	UnitState = XComGameState_Unit(kNewTargetState);
-	UnitState.SetUnitFloatValue(class'X2Ability_DefaultAbilitySet'.default.ImmobilizedValueName, 1);
+
+	if(UnitState.IsChosen())
+	{
+		AddPersistentStatChange(eStat_Mobility, 0.5f, MODOP_Multiplication);
+	}
+	else
+	{
+		AddPersistentStatChange(eStat_Mobility, 0, MODOP_Multiplication);
+		UnitState.SetUnitFloatValue(class'X2Ability_DefaultAbilitySet'.default.ImmobilizedValueName, 1);
+	}
 	NewGameState.AddStateObject(UnitState);
 
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
