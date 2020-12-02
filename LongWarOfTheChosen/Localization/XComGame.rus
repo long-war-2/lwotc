@@ -101,9 +101,6 @@ RankIcons[6]="UILibrary_Common.rank_colonel"
 RankIcons[7]="UILibrary_Common.rank_commander"
 RankIcons[8]="UILibrary_Common.rank_fieldmarshall"
 
-
-
-
 ; LWOTC: Hunker down doesn't remove burning in this mod
 [HunkerDown X2AbilityTemplate]
 LocFriendlyName="Глухая оборона"
@@ -5597,7 +5594,6 @@ m_strRetributionAlertDescription="Избранный препятствует д
 m_strRetributionAlertIncomeDecreasedTitle="ДИВЕРСИЯ УБЕЖИЩА"
 m_strRetributionAlertIncomeDescription="Материалы, разведданные и прием новых рекрутов замедлены на 20%"
 ;LWOTC end translated
-
 
 
 
