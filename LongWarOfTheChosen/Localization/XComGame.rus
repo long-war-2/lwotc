@@ -5362,10 +5362,24 @@ LocPromotionPopupText="<Bullet/> .<br/>"
 ; LWOTC Translated
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="Кровавый след"
-LocLongDescription="Выстрел делает +<Ability:BLOODTRAILDAMAGE/> урона если цель была уже ранена на этом ходу. Добавляет кровотечение, не суммируется."
-LocHelpText=="Выстрел делает +<Ability:BLOODTRAILDAMAGE/> урона если цель была уже ранена на этом ходу. Добавляет кровотечение, не суммируется."
+LocLongDescription="Выстрел делает +<Ability:BLOODTRAILDAMAGE/> урона и уменьшает уклоненение на -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>, если цель уже была ранена на этом ходу. Добавляет кровотечение, не суммируется."
+LocHelpText=="Выстрел делает +<Ability:BLOODTRAILDAMAGE/> урона, если цель была уже ранена на этом ходу. Добавляет кровотечение, не суммируется."
 
-LocPromotionPopupText="<Bullet/> Действует только на тот ход, когда был ранен противник.<br/><Bullet/> Планируйте наперед, чтобы использовать преимущество кровавого следа.<br/><Bullet/> Кровотечение наносит 1 урон в течении 2 ходов.<br/><Bullet/> Последующие выстрелы лишь обновляют время действия кровотечения до 2 ходов.<br/><Bullet/> Кровотечение так же работает и при броске ножей.<br/>"
+LocPromotionPopupText="<Bullet/> Действует только на тот ход, когда был ранен противник.<br/><Bullet/> Планируйте наперед, чтобы использовать преимущество кровавого следа.<br/><Bullet/> Кровотечение наносит 1 урон в течении 2 ходов.<br/><Bullet/> Последующие выстрелы лишь обновляют время действия кровотечения до 2 ходов.<br/><Bullet/> Кровотечение работает только из основного оружия.<br/>"
+
+[PaleHorse X2AbilityTemplate]
+LocFriendlyName=":Жатва душ"
+LocLongDescription="Бонус +<Ability:PALE_HORSE_BASE_CRIT/>% крит.шанса. каждое убийство добавляет +<Ability:PALE_HORSE_PER_KILL_CRIT/>% крит.шанса, вплоть до +<Ability:PALE_HORSE_MAX_CRIT/>%."
+LocHelpText="Бонус +<Ability:PALE_HORSE_BASE_CRIT/>% крит.шанса. каждое убийство добавляет +<Ability:PALE_HORSE_PER_KILL_CRIT/>% крит.шанса, вплоть до +<Ability:PALE_HORSE_MAX_CRIT/>%."
+LocFlyoverText="Жатва душ"
+LocPromotionPopupText="<Bullet/> Бонус крита работает на основное и второстепенное оружие.<br/><Bullet/> +<Ability:PALE_HORSE_MAX_CRIT/>% максимальный бонус крита добавляется к основному шанса крита за каждое убийство +<Ability:PALE_HORSE_BASE_CRIT/>% ."
+
+[Sting X2AbilityTemplate]
+LocFriendlyName="Жало"
+LocLongDescription="Выстрел из тени с голографической меткой +<Ability:HOLOTARGETAIMBONUS/> точности и разрывом <Ability:STING_RUPTURE/>. Не демаскирует Тень."
+LocHelpText="Стреляет из Тени. Выстрел не демаскирует Тень."
+LocPromotionPopupText="<Bullet/> Жало позволяет жнецам атаковать в случаях, когда надо оставаться в Тени.<br/><Bullet/> У жала <Ability:StingCharges/> зарядов на миссию, расходует <Ability:SelfAmmoCost/> боезапаса, и перезаряжается <Ability:SelfCooldown/>-ходов.<br/>"
+;
 ; End Translated
 
 ; LWOTC Translated

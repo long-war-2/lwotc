@@ -25,7 +25,10 @@ LocFriendlyName="Поножовщина"
 LocFlyOverText="Поножовщина"
 LocLongDescription="Кидает нож в каждую цель в радиусе. Остается в тени"
 LocHelpText="Кидает нож в каждую цель в радиусе. Остается в тени"
-LocPromotionPopupText="<Bullet/> TBD..."
+
+; LWOTC Translated (2)
+LocPromotionPopupText="<Bullet/> Уникальный заряд. Не расходует обычные ножи.<br/><Bullet/> Рекомендуется использовать против множества врагов без укрытия.<br/>"
+; End Translated (2)
 
 [ThrowingKnife_CV_Secondary X2WeaponTemplate]
 FriendlyName="Нож"
