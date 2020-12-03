@@ -4,22 +4,25 @@
 //  PURPOSE: This is a replacement for SoldierListItem that allows displays stats,
 //           and provides hooks for tweaking things per mod.
 //---------------------------------------------------------------------------------------
-class UIPersonnel_SoldierListItem_LW extends UIPersonnel_SoldierListItem;
+class UIPersonnel_SoldierListItem_LW extends UIPersonnel_SoldierListItem config(LW_UI);
 
 var float IconXPos, IconYPos, IconXDelta, IconScale, IconToValueOffsetX, IconToValueOffsetY, IconXDeltaSmallValue;
 var float DisabledAlpha;
 
 var bool bIsFocussed;
 
-//icons to be shown in the class area
+// Icons to be shown in the class area
 var UIImage AimIcon, WillIcon;
 var UIText AimValue, WillValue;
 
-//icons to be shown in the name area
+// Icons to be shown in the name area
 var UIImage HealthIcon, MobilityIcon, DefenseIcon, HackIcon, DodgeIcon, PsiIcon, ComIntIcon; 
 var UIText HealthValue, MobilityValue, DefenseValue, HackValue, DodgeValue, PsiValue, ComIntValue;
 
 var string strUnitName, strClassName;
+
+// KDM : Combat intelligence text colours.
+var config string COM_INT_STANDARD_COLOR, COM_INT_ABOVEAVERAGE_COLOR, COM_INT_GIFTED_COLOR, COM_INT_GENIUS_COLOR, COM_INT_SAVANT_COLOR;
 
 simulated function UIButton SetDisabled(bool disabled, optional string TooltipText)
 {
@@ -31,15 +34,13 @@ simulated function UIButton SetDisabled(bool disabled, optional string TooltipTe
 
 simulated function UpdateData()
 {
-	local XComGameState_Unit Unit;
+	local int BondLevel, iTimeNum; 
 	local string UnitLoc, status, statusTimeLabel, statusTimeValue, mentalStatus, flagIcon;	
-	local int iTimeNum;
+	local StateObjectReference BondmateRef;
+	local SoldierBond BondData;
 	local X2SoldierClassTemplate SoldierClass;
 	local XComGameState_ResistanceFaction FactionState;
-	local SoldierBond BondData;
-	local StateObjectReference BondmateRef;
-	local XComGameState_Unit Bondmate;
-	local int BondLevel; 
+	local XComGameState_Unit Bondmate, Unit;
 	
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitRef.ObjectID));
 
@@ -65,21 +66,29 @@ simulated function UpdateData()
 	}
 
 	if (statusTimeValue == "")
+	{
 		statusTimeValue = "---";
+	}
 
 	flagIcon = Unit.GetCountryTemplate().FlagImage;
 
-	// if personnel is not staffed, don't show location
+	// If personnel is not staffed, don't show location
 	if (class'UIUtilities_Strategy'.static.DisplayLocation(Unit))
+	{
 		UnitLoc = class'UIUtilities_Strategy'.static.GetPersonnelLocation(Unit);
+	}
 	else
+	{
 		UnitLoc = "";
+	}
 
 	if (BondIcon == none)
 	{
 		BondIcon = Spawn(class'UIBondIcon', self);
 		if (`ISCONTROLLERACTIVE)
-			BondIcon.bIsNavigable = false; 
+		{
+			BondIcon.bIsNavigable = false;
+		}
 	}
 
 	if (Unit.HasSoldierBond(BondmateRef, BondData))
@@ -117,20 +126,20 @@ simulated function UpdateData()
 	}
 
 	AS_UpdateDataSoldier(Caps(Unit.GetName(eNameType_Full)),
-					Caps(Unit.GetName(eNameType_Nick)),
-					Caps(Unit.GetSoldierShortRankName()),
-					Unit.GetSoldierRankIcon(),
-					Caps(SoldierClass != None ? SoldierClass.DisplayName : ""),
-					Unit.GetSoldierClassIcon(),
-					status,
-					statusTimeValue $"\n" $ Class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(Class'UIUtilities_Text'.static.GetSizedText( statusTimeLabel, 12)),
-					UnitLoc,
-					flagIcon,
-					false, //todo: is disabled 
-					Unit.ShowPromoteIcon(),
-					Unit.IsPsiOperative() && class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(Unit) && !Unit.IsPsiTraining() && !Unit.IsPsiAbilityTraining(),
-					mentalStatus,
-					BondLevel); // changed from vanilla
+		Caps(Unit.GetName(eNameType_Nick)),
+		Caps(Unit.GetSoldierShortRankName()),
+		Unit.GetSoldierRankIcon(),
+		Caps(SoldierClass != None ? SoldierClass.DisplayName : ""),
+		Unit.GetSoldierClassIcon(),
+		status,
+		statusTimeValue $"\n" $ Class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(Class'UIUtilities_Text'.static.GetSizedText( statusTimeLabel, 12)),
+		UnitLoc,
+		flagIcon,
+		false,
+		Unit.ShowPromoteIcon(),
+		Unit.IsPsiOperative() && class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(Unit) && !Unit.IsPsiTraining() && !Unit.IsPsiAbilityTraining(),
+		mentalStatus,
+		BondLevel); // Changed from vanilla
 
 	AddAdditionalItems(self);
 
@@ -152,9 +161,13 @@ function AddAdditionalItems(UIPersonnel_SoldierListItem ListItem)
 	AddNameColumnIcons(Unit);
 
 	if (Unit.GetName(eNameType_Nick) == " ")
+	{
 		strUnitName = CAPS(Unit.GetName(eNameType_First) @ Unit.GetName(eNameType_Last));
+	}
 	else
+	{
 		strUnitName = CAPS(Unit.GetName(eNameType_First) @ Unit.GetName(eNameType_Nick) @ Unit.GetName(eNameType_Last));
+	}
 
 	ListItem.MC.ChildSetString("NameFieldContainer.NameField", "htmlText", class'UIUtilities_Text'.static.GetColoredText(strUnitName, eUIState_Normal));
 	ListItem.MC.ChildSetNum("NameFieldContainer.NameField", "_y", (GetLanguage() == "JPN" ? -25 :-22));
@@ -166,7 +179,7 @@ function AddAdditionalItems(UIPersonnel_SoldierListItem ListItem)
 
 	UpdateDisabled();
 
-	// trigger now to allow overlaying icons/text/etc on top of other stuff
+	// Trigger now to allow overlaying icons/text/etc on top of other stuff
 	`XEVENTMGR.TriggerEvent('OnSoldierListItemUpdate_End', ListItem, ListItem);
 }
 
@@ -187,7 +200,6 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 		HealthValue = Spawn(class'UIText', self);
 		HealthValue.bAnimateOnInit = false;
 		HealthValue.InitText('HealthValue_ListItem_LW').SetPosition(IconXPos + IconToValueOffsetX, IconYPos + IconToValueOffsetY);
-	
 	}
 	HealthValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(string(int(Unit.GetCurrentStat(eStat_HP))), eUIState_Normal));
 
@@ -215,7 +227,6 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 		DefenseIcon.bAnimateOnInit = false;
 		DefenseIcon.InitImage(, "UILibrary_LWToolbox.StatIcons.Image_Defense").SetScale(IconScale).SetPosition(IconXPos, IconYPos);
 	}
-
 	if (DefenseValue == none)
 	{
 		DefenseValue = Spawn(class'UIText', self);
@@ -250,7 +261,6 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 			HackIcon.bAnimateOnInit = false;
 			HackIcon.InitImage('HackIcon_ListItem_LW', "UILibrary_LWToolbox.StatIcons.Image_Hacking").SetScale(IconScale).SetPosition(IconXPos, IconYPos);
 		}
-
 		if (HackValue == none)
 		{
 			HackValue = Spawn(class'UIText', self);
@@ -262,7 +272,6 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 		IconXPos += IconXDelta;
 	}
 
-	//!class'Utilities_PP_LW'.static.CanRankUpPsiSoldier(Unit)
 	if (ShouldShowPsi(Unit))
 	{
 		if (PsiIcon == none)
@@ -271,7 +280,6 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 			PsiIcon.bAnimateOnInit = false;
 			PsiIcon.InitImage('PsiIcon_ListItem_LW', "gfxXComIcons.promote_psi").SetScale(IconScale).SetPosition(IconXPos, IconYPos+1);
 		}
-
 		if (PsiValue == none)
 		{
 			PsiValue = Spawn(class'UIText', self);
@@ -290,9 +298,13 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 	else
 	{
 		if (PsiIcon != none)
+		{
 			PsiIcon.Hide();
+		}
 		if (PsiValue != none)
+		{
 			PsiValue.Hide();
+		}
 	}
 
 	// Add AP for non rookies
@@ -304,30 +316,30 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 			{
 			case eComInt_Standard:
 				comIntIconPath = "Standard";
-				ComIntColor = "0xbf1e2e";
+				ComIntColor = COM_INT_STANDARD_COLOR;
 				break;
 			case eComInt_AboveAverage:
 				comIntIconPath = "AboveAverage";
-				ComIntColor = "0xe69831";
+				ComIntColor = COM_INT_ABOVEAVERAGE_COLOR;
 				break;
 			case eComInt_Gifted:
 				comIntIconPath = "Gifted";
-				ComIntColor = "0xfdce2b";
+				ComIntColor = COM_INT_GIFTED_COLOR;
 				break;
 			case eComInt_Genius:
 				comIntIconPath = "Genius";
-				ComIntColor = "0x53b45e";
+				ComIntColor = COM_INT_GENIUS_COLOR;
 				break;
 			case eComInt_Savant:
 				comIntIconPath = "Savant";
-				ComIntColor = "0x27aae1";
+				ComIntColor = COM_INT_SAVANT_COLOR;
 				break;
 			}
 
 			ComIntIcon = Spawn(class'UIImage', self);
 			ComIntIcon.bAnimateOnInit = false;
 			ComIntIcon.InitImage('ComIntIcon_ListItem_LW', "UILibrary_LWToolbox.StatIcons.AP_" $ comIntIconPath).
-					SetScale(IconScale).SetPosition(IconXPos, IconYPos).SetColor(ComIntColor);
+				SetScale(IconScale).SetPosition(IconXPos, IconYPos).SetColor(ComIntColor);
 		}
 
 		if (ComIntValue == none)
@@ -341,17 +353,18 @@ function AddNameColumnIcons(XComGameState_Unit Unit)
 	else
 	{
 		if (ComIntIcon != none)
+		{
 			ComIntIcon.Hide();
+		}
 		if (ComIntValue != none)
+		{
 			ComIntValue.Hide();
+		}
 	}
 }
 
 function AddClassColumnIcons(XComGameState_Unit Unit)
 {
-	//Texture2D'UILibrary_LWToolbox.StatIcons.Image_Aim'
-	//Texture2D'UILibrary_LWToolbox.StatIcons.Image_Defense'
-
 	IconXPos = 600;
 
 	if (AimIcon == none)
@@ -376,7 +389,6 @@ function AddClassColumnIcons(XComGameState_Unit Unit)
 		WillIcon.bAnimateOnInit = false;
 		WillIcon.InitImage('WillIcon_ListItem_LW', "UILibrary_LWToolbox.StatIcons.Image_Will").SetScale(IconScale).SetPosition(IconXPos, IconYPos);
 	}
-
 	if (WillValue == none)
 	{
 		WillValue = Spawn(class'UIText', self);
@@ -386,13 +398,67 @@ function AddClassColumnIcons(XComGameState_Unit Unit)
 	WillValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(GetWillString(Unit), Unit.GetMentalStateUIState()));
 }
 
+simulated function int GetWillValueColor(XComGameState_Unit Soldier, bool Disabled, bool Focused)
+{
+	// KDM : Colour the will value text according to these, ordered, rules :
+	// 1.] If the soldier row is disabled, use the disabled, greyish, text colour.
+	// 2.] If the soldier row is focused, use black.
+	// 3.] Use green/yellow/red depending upon the mental status of the soldier associated with this row.
+	if (Disabled)
+	{
+		return eUIState_Disabled;
+	}
+	else if (Focused)
+	{
+		return -1;
+	}
+	else
+	{
+		return int(Soldier.GetMentalStateUIState());
+	}
+}
+
+simulated function string GetCombatIntelligenceColor(XComGameState_Unit Soldier, bool Disabled, bool Focused)
+{
+	// KDM : Colour the combat intelligence image according to these, ordered, rules :
+	// 1.] If the soldier row is disabled, use the disabled, greyish, text colour : 0x828282.
+	// 2.] If the soldier row is focused, use black : 0x000000.
+	// 3.] Use red/orange/yellow/green blue depending upon the soldier's combat intelligence level.
+	if (Disabled)
+	{
+		return class'UIUtilities_Colors'.const.DISABLED_HTML_COLOR;
+	}
+	else if (Focused)
+	{
+		return class'UIUtilities_Colors'.const.BLACK_HTML_COLOR;
+	}
+	else
+	{
+		switch (Soldier.ComInt)
+		{
+		case eComInt_Standard:
+			return COM_INT_STANDARD_COLOR;
+		case eComInt_AboveAverage:
+			return COM_INT_ABOVEAVERAGE_COLOR;
+		case eComInt_Gifted:
+			return COM_INT_GIFTED_COLOR;
+		case eComInt_Genius:
+			return COM_INT_GENIUS_COLOR;
+		case eComInt_Savant:
+			return COM_INT_SAVANT_COLOR;
+		default:
+			return class'UIUtilities_Colors'.const.BLACK_HTML_COLOR;
+		}
+	}
+}
+
 simulated function UpdateItemsForFocus(bool Focussed)
 {
-	local int iUIState;
-	local XComGameState_Unit Unit;
 	local bool bReverse;
-	local string Aim, Defense, Health, Mobility, Will, Hack, Dodge, Psi, ComIntColor;
-
+	local int iUIState;
+	local string Aim, Defense, Health, Mobility, Will, Hack, Dodge, Psi;
+	local XComGameState_Unit Unit;
+	
 	iUIState = (IsDisabled ? eUIState_Disabled : eUIState_Normal);
 
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitRef.ObjectID));
@@ -413,41 +479,35 @@ simulated function UpdateItemsForFocus(bool Focussed)
 	DefenseValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Defense, (bReverse ? -1 : iUIState)));
 	HealthValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Health, (bReverse ? -1 : iUIState)));
 	MobilityValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Mobility, (bReverse ? -1 : iUIState)));
-	WillValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Will, (bReverse ? -1 : int(Unit.GetMentalStateUIState()))));
+	// KDM : We want the will value of a disabled row to be grey, just like any other value; formerly, it was coloured.
+	WillValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Will, GetWillValueColor(Unit, IsDisabled, bIsFocussed)));
 	HackValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Hack, (bReverse ? -1 : iUIState)));
 	DodgeValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Dodge, (bReverse ? -1 : iUIState)));
 	ComIntValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(string(Unit.AbilityPoints), (bReverse ? -1 : iUIState)));
 	if (PsiValue != none)
+	{
 		PsiValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Psi, (bReverse ? -1 : iUIState)));
+	}
 
 	// Update the color of the AP icon when highlighted.
 	if (ComIntIcon != none)
 	{
-		switch (Unit.ComInt)
-		{
-		case eComInt_Standard:
-			ComIntColor = "0xbf1e2e";
-			break;
-		case eComInt_AboveAverage:
-			ComIntColor = "0xe69831";
-			break;
-		case eComInt_Gifted:
-			ComIntColor = "0xfdce2b";
-			break;
-		case eComInt_Genius:
-			ComIntColor = "0x53b45e";
-			break;
-		case eComInt_Savant:
-			ComIntColor = "0x27aae1";
-			break;
-		}
+		// KDM : We want the combat intelligence image of a disabled row to be grey; formerly, it was coloured.
+		ComIntIcon.SetColor(GetCombatIntelligenceColor(Unit, IsDisabled, bIsFocussed));
 
-		ComIntIcon.SetColor(bReverse ? "0x0" : ComIntColor);
+		// KDM : For consistancy, modify the combat intelligence image's alpha value based upon the row's disabled status.
+		//
+		// This is called here, rather than within UpdateDisabled, for several reasons :
+		// 1.] The function SetDisabled, calls UpdateDisabled then UpdateItemsForFocus; unfortunately, SetAlpha needs to be 
+		// called 'after' SetColor since, within Flash, SetColor reverts a UIPanel's alpha to 1.
+		// 2.] OnRecieveFocus and OnLoseFocus call UpdateItemsForFocus, but not UpdateDisabled; therefore, when a row
+		// receives or loses focus, its combat intelligence image's colour is refreshed, but its alpha is not.
+		// Consequently, as mentioned above, its alpha will always revert to 1.
+		ComIntIcon.SetAlpha(IsDisabled ? DisabledAlpha : 1.0f);
 	}
 
-	// trigger now to allow updating on when item is focussed (e.g. changing text color)
+	// Trigger now to allow updating on when item is focussed (e.g. changing text color)
 	`XEVENTMGR.TriggerEvent('OnSoldierListItemUpdate_Focussed', self, self);
-
 }
 
 simulated function UpdateDisabled()
@@ -457,7 +517,9 @@ simulated function UpdateDisabled()
 	UpdateAlpha = (IsDisabled ? DisabledAlpha : 1.0f);
 
 	if (AimIcon == none)
+	{
 		return;
+	}
 
 	AimIcon.SetAlpha(UpdateAlpha);
 	DefenseIcon.SetAlpha(UpdateAlpha);
@@ -466,9 +528,11 @@ simulated function UpdateDisabled()
 	WillIcon.SetAlpha(UpdateAlpha);
 	HackIcon.SetAlpha(UpdateAlpha);
 	DodgeIcon.SetAlpha(UpdateAlpha);
+	
 	if (PsiIcon != none)
+	{
 		PsiIcon.SetAlpha(UpdateAlpha);
-
+	}
 }
 
 simulated function OnReceiveFocus()
@@ -487,17 +551,17 @@ simulated function OnLoseFocus()
 static function string GetWillString(XComGameState_Unit Unit)
 {
 	return string(int(Unit.GetCurrentStat(eStat_Will)) + Unit.GetUIStatFromAbilities(eStat_Will)) $
-			"/" $ string(int(Unit.GetMaxStat(eStat_Will)) + Unit.GetUIStatFromAbilities(eStat_Will));
+		"/" $ string(int(Unit.GetMaxStat(eStat_Will)) + Unit.GetUIStatFromAbilities(eStat_Will));
 }
 
 static function bool ShouldShowPsi(XComGameState_Unit Unit)
 {
-	return IsPsiUnit(Unit) || (Unit.GetRank() == 0 && !Unit.CanRankUpSoldier() && `XCOMHQ.IsTechResearched('AutopsySectoid'));
+	return (IsPsiUnit(Unit) || ((Unit.GetRank() == 0) && (!Unit.CanRankUpSoldier()) && `XCOMHQ.IsTechResearched('AutopsySectoid')));
 }
 
 static function bool IsPsiUnit(XComGameState_Unit Unit)
 {
-	return Unit.IsPsiOperative() || Unit.GetSoldierClassTemplateName() == 'Templar';
+	return (Unit.IsPsiOperative() || (Unit.GetSoldierClassTemplateName() == 'Templar'));
 }
 
 defaultproperties
