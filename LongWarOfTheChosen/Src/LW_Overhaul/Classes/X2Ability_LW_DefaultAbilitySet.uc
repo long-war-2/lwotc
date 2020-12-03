@@ -4,7 +4,9 @@
 //  PURPOSE: General new abilities for LW2
 //---------------------------------------------------------------------------------------
 
-class X2Ability_LW_DefaultAbilitySet extends X2Ability config(LW_SoldierSkills);
+class X2Ability_LW_DefaultAbilitySet extends X2Ability config(LW_Overhaul);
+
+var config int REACTION_FIRE_ANTI_COVER_BONUS;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -15,6 +17,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	//Templates.AddItem(CreateReflexShotAbility());
 	Templates.AddItem(CreateReflexShotModifier());
 	Templates.AddItem(CreateMindControlCleanse());
+	Templates.AddItem(CreateReactionFireAgainstCoverBonus());
 
 	return Templates;
 }
@@ -185,6 +188,33 @@ static function X2AbilityTemplate CreateMindControlCleanse()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateReactionFireAgainstCoverBonus()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_ReactionFireAntiCover	AntiCoverEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ReactionFireAgainstCoverBonus');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_standard";
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+	Template.bDontDisplayInAbilitySummary = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	AntiCoverEffect = new class'X2Effect_ReactionFireAntiCover';
+	AntiCoverEffect.BuildPersistentEffect(1, true);
+	AntiCoverEffect.AimBonus = default.REACTION_FIRE_ANTI_COVER_BONUS;
+	Template.AddTargetEffect(AntiCoverEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
 }

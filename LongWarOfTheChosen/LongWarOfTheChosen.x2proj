@@ -635,6 +635,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ModifyNonReactionFire.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Phosphorus.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Quickburn.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_ReactionFireAntiCover.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_ReflexShotModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_RemoveItemWeight.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_RoustDamage.uc" />
