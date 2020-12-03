@@ -1,7 +1,11 @@
 ; LWOTC Translated
 [EnableChosen SecondWaveOptionObject]
-Tooltip="Активирует Избранных, когда сила Адвента становится 5."
-Description="Избранные: Активирует Избранных."
+Tooltip="Активирует избранных."
+Description="Избранные: активирует Избранных. Они появятся по мере прохождения игры. Удачи."
+
+[EnableResistanceOrders SecondWaveOptionObject]
+Tooltip="Активирует Приказы Сопротивления."
+Description="Стратегическое приемущество: активирует Приказы Сопротивления."
 ; End Translated
 
 ; LWOTC Translated

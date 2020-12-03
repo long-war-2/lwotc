@@ -1,0 +1,54 @@
+; LWOTC Translated
+[MusashiThrowKnifeSecondary_LW X2AbilityTemplate]
+LocFriendlyName="Бросить нож"
+LocFlyOverText="Бросить нож"
+LocLongDescription="Бросить нож в цель. Остается в Тени."
+LocHelpText="Бросить нож в цель. Остается в Тени."
+LocPromotionPopupText="<Bullet/> Бросок ножа не снимает Тень и не привлекает Странников.<br/><Bullet/> Обычная маскировка теряется."
+
+[KnifeJuggler_LW X2AbilityTemplate]
+LocFriendlyName="Мастер ножей"
+LocFlyOverText="Мастер ножей"
+LocLongDescription="Добавляет +<Ability:KnifeJugglerBonusDamage/> урона к броскам ножей и добавляет <Ability:KnifeJugglerExtraAmmo/> дополнительных."
+LocHelpText="Добавляет +<Ability:KnifeJugglerBonusDamage/> урона к броскам ножей и добавляет <Ability:KnifeJugglerExtraAmmo/> дополнительных."
+LocPromotionPopupText="<Bullet/> Добавляет +<Ability:KnifeJugglerBonusDamage/> урона к броскам ножей.<br/><Bullet/> И добавляет <Ability:KnifeJugglerExtraAmmo/> дополнительных."
+
+[Hailstorm_LW X2AbilityTemplate]
+LocFriendlyName="Железный ливень"
+LocFlyOverText="Железный ливень"
+LocLongDescription="Три быстрых броска в цель. Остается в Тени."
+LocHelpText="Три быстрых броска в цель. Остается в Тени."
+LocPromotionPopupText="<Bullet/> На каждый нож идёт отдельный бонус, к примеру от урона.<br/><Bullet/> Ножи не получают преимущества от изменяемого здоровья цели после 1ого или 2ого броска."
+
+[ThrowingKnifeFaceoff_LW X2AbilityTemplate]
+LocFriendlyName="Поножовщина"
+LocFlyOverText="Поножовщина"
+LocLongDescription="Кидает нож в каждую цель в радиусе. Остается в тени"
+LocHelpText="Кидает нож в каждую цель в радиусе. Остается в тени"
+
+; LWOTC Translated (2)
+LocPromotionPopupText="<Bullet/> Уникальный заряд. Не расходует обычные ножи.<br/><Bullet/> Рекомендуется использовать против множества врагов без укрытия.<br/>"
+; End Translated (2)
+
+[ThrowingKnife_CV_Secondary X2WeaponTemplate]
+FriendlyName="Нож"
+FriendlyNamePlural="Нож"
+BriefSummary="Метательные ножи сделаны из отличных сплавов."
+TacticalText="<Bullet/> Бросок ножа не снимает Тень."
+AbilityDescName="метательный нож"
+
+[ThrowingKnife_MG_Secondary X2WeaponTemplate]
+FriendlyName="Нож из сплавов"
+FriendlyNamePlural="Ножи из сплавов"
+BriefSummary="Метательные ножи, сделанные из инопланетных сплавов."
+TacticalText="<Bullet/> Бросок ножа не снимает Тень."
+AbilityDescName="метательный нож"
+
+[ThrowingKnife_BM_Secondary X2WeaponTemplate]
+FriendlyName="Теневой нож"
+FriendlyNamePlural="Теневые ножи"
+BriefSummary="Ножи с плазменным лезвием рассекают броню словно масло."
+TacticalText="<Bullet/> Бросок ножа не снимает Тень."
+AbilityDescName="метательный нож"
+
+; End Translated

@@ -401,12 +401,12 @@ LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to 2 point
 
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
-; LWOTC Needs Translation
-LocLongDescription="You may throw or launch grenades and Claymores two additional tiles."
-LocHelpText="You may throw or launch grenades and Claymores two additional tiles."
+; LWOTC Translated
+LocLongDescription="You may throw or launch grenades two additional tiles."
+LocHelpText="You may throw or launch grenades two additional tiles."
 LocFlyOverText="Bombardier"
-LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades, as well as Reaper Claymores.<br/>"
-; End Translation
+LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades.<br/>"
+; End Translated
 
 [BluescreenBombs X2AbilityTemplate]
 LocFriendlyName="Bluescreen Bombs"
@@ -5768,7 +5768,7 @@ LocPromotionPopupText="<Bullet/> Grants a free medikit.<br/><Bullet/> A Nanomedi
 
 [OpenFire_LW X2AbilityTemplate]
 LocFriendlyName="Open Fire"
-LocFlyOverText="Open Fire
+LocFlyOverText="Open Fire"
 LocLongDescription="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 LocHelpText="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/> <Bullet/> Passive.<br/>"
