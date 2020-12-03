@@ -38,6 +38,7 @@ static function CHEventListenerTemplate CreateXComHQListeners()
 	Template.AddCHEvent('OverrideScienceScore', OverrideScienceScore, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CanTechBeInspired', CanTechBeInspired, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UIAvengerShortcuts_ShowCQResistanceOrders', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('UIPersonnel_OnSortFinished', OnUIPersonnelDataRefreshed, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -250,6 +251,61 @@ static function EventListenerReturn ShowOrHideResistanceOrdersButton(
 
 	return ELR_NoInterrupt;
 }
+
+static function EventListenerReturn OnUIPersonnelDataRefreshed(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local UIList PersonnelList;
+	local UIPersonnel PersonnelScreen;
+	local UIScrollbar Scrollbar;
+	
+	PersonnelScreen = UIPersonnel(EventSource);
+
+	if (PersonnelScreen != none)
+	{
+		PersonnelList = PersonnelScreen.m_kList;
+		if (PersonnelList != none && PersonnelList.GetItemCount() > 1)
+		{
+			Scrollbar = PersonnelList.Scrollbar;
+			if (Scrollbar != none)
+			{
+				// KDM : If the personnel list needs a scrollbar, we know that the total height of the personnel rows
+				// exceeds the height of the personnel list. In this case, we want to make sure that the personnel
+				// list is scrolled to the appropriate location, so we see the selected personnel row.
+				//
+				// Now, when the personnel screen, UIPersonnel, receives focus, its list can potentially re-select a previously
+				// selected personnel row via RefreshData() --> UpdateList(). This behaviour is desirable, as you may have 
+				// chosen to view a particular soldier from the soldier list then cancelled back to the soldier list after 
+				// finishing whatever it was you were doing.
+				
+				// Unfortunately : 
+				// 1.] UIPersonnel's UpdateList() clears the list via ClearItems() which removes, and thus resets, the scrollbar.
+				// BUT
+				// 2.] UIPersonnel's UpdateList() calls SetSelectedIndex() on the list, and SetSelected() on the 
+				// list's navigator; however, neither function modifies the list's scroll position via Scrollbar.SetThumbAtPercent(). 
+				// This is because the only place the scrollbar is manipulated is within UIList's NavigatorSelectionChanged, which 
+				// is called via Navigator.OnSelectedIndexChanged. Navigator.OnSelectedIndexChanged is called in functions like 
+				// Prev(), Next(), SelectFirstAvailable(), and SelectFirstAvailableIfNoCurrentSelection(); however, it is not 
+				// called within SetSelected().
+				//
+				// The end result is that we can have a list item selected, but not be able to see it due to an inappropriate
+				// scrollbar value. Generally speaking, the scrollbar will be scrolled to the top, after being reset, while 
+				// the selected list item will be down below. Consequently, we set the scrollbar value here to make sure we 'see' 
+				// the currently selected list item.
+			 
+				Scrollbar.SetThumbAtPercent(float(PersonnelList.SelectedIndex) 
+					/ float(PersonnelList.GetItemCount() - 1));
+			}
+		}
+	}
+
+	return ELR_NoInterrupt;
+}
+
 
 // Don't give the rewards if the covert action failed.
 static function EventListenerReturn CAPreventRewardOnFailure(
