@@ -96,6 +96,9 @@ static function X2AbilityTemplate AddHailstorm()
 	BurstFireMultiTarget.NumExtraShots = 2;
 	Template.AbilityMultiTargetStyle = BurstFireMultiTarget;
 
+	// Poison effect if soldier has Poisoned Blades
+	AddPoisonedBladesEffect(Template);
+
 	// Targeting Method
 	Template.bUsesFiringCamera = true;
 	Template.bHideWeaponDuringFire = true;
@@ -121,7 +124,8 @@ static function X2AbilityTemplate AddHailstorm()
 static function X2AbilityTemplate AddThrowingKnifeFaceoff()
 {
 	local X2AbilityTemplate                 Template;
-	local X2AbilityCooldown                 Cooldown;
+	local X2AbilityCharges                  Charges;
+	local X2AbilityCost_Charges             ChargeCost;
 	local X2AbilityCost_ActionPoints        ActionPointCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 
@@ -134,9 +138,13 @@ static function X2AbilityTemplate AddThrowingKnifeFaceoff()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
 	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
 
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.THOUSAND_DAGGERS_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
+	Charges = new class 'X2AbilityCharges';
+	Charges.InitialCharges = 1;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
 
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
 	ToHitCalc.bOnlyMultiHitWithSuccess = false;
@@ -159,6 +167,9 @@ static function X2AbilityTemplate AddThrowingKnifeFaceoff()
 
 	Template.AddTargetEffect(new class'X2Effect_ApplyWeaponDamage');
 	Template.AddMultiTargetEffect(new class'X2Effect_ApplyWeaponDamage');
+
+	// Poison effect if soldier has Poisoned Blades
+	AddPoisonedBladesEffect(Template);
 
 	Template.bAllowAmmoEffects = false;
 	Template.bAllowBonusWeaponEffects = true;
@@ -474,7 +485,10 @@ static function X2AbilityTemplate AddThrowKnife(name AbilityName)
 	Template.SkipRenderOfTargetingTemplate = true;
 	Template.TargetingMethod = class'X2TargetingMethod_ThrowingKnife';
 	Template.CinescriptCameraType = "Huntman_ThrowAxe";
-	
+
+	// Poison effect if soldier has Poisoned Blades
+	AddPoisonedBladesEffect(Template);
+
 	// Disabling standard VO for now, until we get axe specific stuff
 	Template.TargetKilledByAlienSpeech='';
 	Template.TargetKilledByXComSpeech='';
@@ -493,4 +507,19 @@ static function X2AbilityTemplate AddThrowKnife(name AbilityName)
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
+}
+
+static function AddPoisonedBladesEffect(X2AbilityTemplate Template)
+{
+	local X2Condition_AbilityProperty AbilityCondition;
+	local X2Effect                    PoisonEffect;
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('PoisonedBlades');
+
+	PoisonEffect = class'X2StatusEffects'.static.CreatePoisonedStatusEffect();
+	PoisonEffect.TargetConditions.AddItem(AbilityCondition);
+
+	Template.AddTargetEffect(PoisonEffect);
+	Template.AddMultiTargetEffect(PoisonEffect);
 }

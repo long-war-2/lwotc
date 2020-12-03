@@ -290,6 +290,25 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'GUNSLINGER_COOLDOWN':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.GUNSLINGER_COOLDOWN);
 			return true;
+		case 'LONEWOLF_AIM_PER_TILE':
+			OutString = string(class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_PER_TILE);
+			return true;
+		case 'LONEWOLF_DEF_PER_TILE':
+			OutString = string(class'X2Effect_LoneWolf'.default.LONEWOLF_DEF_PER_TILE);
+			return true;
+		case 'LONEWOLF_AIM_BONUS':
+			OutString = string(class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_BONUS);
+			return true;
+		case 'LONEWOLF_DEF_BONUS':
+			OutString = string(class'X2Effect_LoneWolf'.default.LONEWOLF_DEF_BONUS);
+			return true;
+		case 'LONEWOLF_MIN_DIST_TILES':
+			OutString = string(class'X2Effect_LoneWolf'.default.LONEWOLF_MIN_DIST_TILES);
+			return true;
+		case 'LONEWOLF_MIN_BONUS_TILES':
+			OutString = string(class'X2Effect_LoneWolf'.default.LONEWOLF_MIN_DIST_TILES - 
+					(class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_BONUS / class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_PER_TILE) + 1);
+			return true;
         default:
             return false;
     }

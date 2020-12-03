@@ -5232,14 +5232,26 @@ LocHelpText="Reduces Shadow's cooldown by 1 turn."
 LocPromotionPopupText="<Bullet/> .<br/>"
 ; End Translation
 
-; LWOTC Needs Translation
+; LWOTC Needs Translation (3)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="Blood Trail"
-LocLongDescription="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage if the target has been wounded this turn. Also applies a non-stacking bleeding effect."
-LocHelpText="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage if the target has been wounded this turn. Also applies a non-stacking bleeding effect."
-; LWOTC Needs Translation 3
-LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> The bleeding effect does 1 point of damage for each of the next two turns.<br/><Bullet/> Subsequent shots just refresh the bleeding duration to 2 turns.<br/><Bullet/> The bleed effect, but not the bonus damage, works on throwing knives as well as the primary weapon.<br/>"
-; End Translation 3
+LocLongDescription="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage and reduce target's Dodge by -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> if the target has been wounded this turn."
+LocHelpText="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage and reduce target's Dodge by -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> if the target has been wounded this turn."
+LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> Only works with the primary weapon.<br/>"
+
+[PaleHorse X2AbilityTemplate]
+LocFriendlyName="Soul Harvest"
+LocLongDescription="Provides +<Ability:PALE_HORSE_BASE_CRIT/>% crit chance. Each kill by this soldier adds +<Ability:PALE_HORSE_PER_KILL_CRIT/>% crit chance, to a maximum of +<Ability:PALE_HORSE_MAX_CRIT/>%."
+LocHelpText="Provides +<Ability:PALE_HORSE_BASE_CRIT/>% crit chance. Each kill by this soldier adds +<Ability:PALE_HORSE_PER_KILL_CRIT/>% crit chance, to a maximum of +<Ability:PALE_HORSE_MAX_CRIT/>%."
+LocFlyoverText="Soul Harvest"
+LocPromotionPopupText="<Bullet/> Bonus crit chance applies to both primary and secondary weapons.<br/><Bullet/> The +<Ability:PALE_HORSE_MAX_CRIT/>% max crit chance bonus applies only to the per-kill component, i.e. it's in addition to the base +<Ability:PALE_HORSE_BASE_CRIT/>% bonus."
+
+[Sting X2AbilityTemplate]
+LocFriendlyName="Sting"
+LocLongDescription="Fire a shot while in Shadow that holotargets for +<Ability:HOLOTARGETAIMBONUS/> Aim and ruptures for <Ability:STING_RUPTURE/>. Guaranteed to remain in Shadow."
+LocHelpText="Fire a shot while in Shadow. Guaranteed to remain in Shadow."
+LocPromotionPopupText="<Bullet/> Sting allows for the Reaper to attack in situations where they absolutely do not want to be revealed.<br/><Bullet/> Sting has <Ability:StingCharges/> charge(s) per mission, requires <Ability:SelfAmmoCost/> ammo points, and has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+; End Translation (3)
 
 [RemoteStart X2AbilityTemplate]
 LocFriendlyName="Remote Start"

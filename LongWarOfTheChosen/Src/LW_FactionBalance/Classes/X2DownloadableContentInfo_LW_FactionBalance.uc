@@ -88,6 +88,24 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'LingeringShadowDodgeBonus':
 		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.LINGERING_DODGE);
 		return true;
+	case 'BLOOD_TRAIL_ANTIDODGE_BONUS':
+		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.BLOOD_TRAIL_ANTIDODGE_BONUS);
+		return true;
+	case 'PALE_HORSE_BASE_CRIT':
+		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.PALE_HORSE_BASE_CRIT);
+		return true;
+	case 'PALE_HORSE_PER_KILL_CRIT':
+		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.PALE_HORSE_PER_KILL_CRIT);
+		return true;
+	case 'PALE_HORSE_MAX_CRIT':
+		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.PALE_HORSE_MAX_CRIT);
+		return true;
+	case 'STING_RUPTURE':
+		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.STING_RUPTURE);
+		return true;
+	case 'StingCharges':
+		OutString = string(class'X2Ability_ReaperAbilitySet'.default.StingCharges);
+		return true;
 	case 'DemolitionistExtraChargeCount':
 		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.REMOTE_START_DEMOLITIONIST_CHARGES);
 		return true;

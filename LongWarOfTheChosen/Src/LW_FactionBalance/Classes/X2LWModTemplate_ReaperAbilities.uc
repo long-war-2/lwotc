@@ -13,6 +13,14 @@ var config int REMOTE_START_DEMOLITIONIST_CHARGES;
 
 var config bool DISABLE_SHADOW_CHANGES;
 
+var config int BLOOD_TRAIL_ANTIDODGE_BONUS;
+
+var config int PALE_HORSE_BASE_CRIT;
+var config int PALE_HORSE_PER_KILL_CRIT;
+var config int PALE_HORSE_MAX_CRIT;
+
+var config int STING_RUPTURE;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
@@ -25,13 +33,16 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		AddDistractionToHomingMine(Template);
 		break;
 	case 'BloodTrail':
-		AddBleedingToBloodTrail(Template);
+		ReplaceBloodTrailEffect(Template);
 		break;
 	case 'RemoteStart':
 		ConvertRemoteStartToCharges(Template);
 		break;
 	case 'HomingMine':
 		AddDemolitionistToHomingMine(Template);
+		break;
+	case 'PaleHorse':
+		UpdateEffectForPaleHorse(Template);
 		break;
 	}
 
@@ -84,7 +95,6 @@ static function RemoveShadowStayConcealedEffect(X2AbilityTemplate Template)
 
 static function MakeShadowTemporary(X2AbilityTemplate Template)
 {
-	local X2Effect_PersistentStatChange StealthyEffect;
 	local X2Effect_Shadow ShadowEffect;
 	local X2AbilityCost_ActionPoints ActionPointCost;
 	local X2AbilityCooldown Cooldown;
@@ -118,17 +128,25 @@ static function MakeShadowTemporary(X2AbilityTemplate Template)
 		}
 	}
 
+	Template.AddTargetEffect(CreateTemporaryShadowEffect());
+	Template.AdditionalAbilities.AddItem('RemoveShadowOnConcealmentLostTrigger');
+}
+
+static function X2Effect_PersistentStatChange CreateTemporaryShadowEffect()
+{
+	local X2Effect_PersistentStatChange StealthyEffect;
+
 	StealthyEffect = new class'X2Effect_PersistentStatChange';
 	StealthyEffect.EffectName = 'TemporaryShadowConcealment';
 	StealthyEffect.BuildPersistentEffect(default.SHADOW_DURATION, false, true, false, eGameRule_PlayerTurnBegin);
 	// StealthyEffect.SetDisplayInfo (ePerkBuff_Bonus,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
 	StealthyEffect.AddPersistentStatChange(eStat_DetectionModifier, default.SHADOW_DETECTION_RANGE_REDUCTION);
 	StealthyEffect.bRemoveWhenTargetDies = true;
+	StealthyEffect.DuplicateResponse = eDupe_Refresh;
 	StealthyEffect.EffectAddedFn = EnterSuperConcealment;
 	StealthyEffect.EffectRemovedFn = ShadowExpired;
-	Template.AddTargetEffect(StealthyEffect);
 
-	Template.AdditionalAbilities.AddItem('RemoveShadowOnConcealmentLostTrigger');
+	return StealthyEffect;
 }
 
 static function EnterSuperConcealment(X2Effect_Persistent PersistentEffect, const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState)
@@ -213,10 +231,29 @@ static function AddDistractionToHomingMine(X2AbilityTemplate Template)
 	Template.AddMultiTargetEffect(DisorientedEffect);
 }
 
-static function AddBleedingToBloodTrail(X2AbilityTemplate Template)
+// Replaces the old Blood Trail effect with a new one that includes
+// an anti-dodge bonus.
+static function ReplaceBloodTrailEffect(X2AbilityTemplate Template)
 {
-	Template.AddTargetEffect(new class'X2Effect_BloodTrailBleeding');
-	Template.AdditionalAbilities.AddItem('ApplyBloodTrailBleeding');
+	local X2Effect_BloodTrail_LW Effect;
+	local int i;
+
+	// Remove the previous Blood Trail effect
+	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0 ; i--)
+	{
+		if (Template.AbilityTargetEffects[i].IsA('X2Effect_BloodTrail'))
+		{
+			Template.AbilityTargetEffects.Remove(i, 1);
+			break;
+		}
+	}
+
+	Effect = new class'X2Effect_BloodTrail_LW';
+	Effect.BonusDamage = class'X2Ability_ReaperAbilitySet'.default.BloodTrailDamage;
+	Effect.DodgeReductionBonus = default.BLOOD_TRAIL_ANTIDODGE_BONUS;
+	Effect.BuildPersistentEffect(1, true, false, false);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(Effect);
 }
 
 static function ConvertRemoteStartToCharges(X2AbilityTemplate Template)
@@ -240,22 +277,40 @@ static function AddDemolitionistToHomingMine(X2AbilityTemplate Template)
 	Template.AbilityCharges.AddBonusCharge('Demolitionist', default.REMOTE_START_DEMOLITIONIST_CHARGES);
 }
 
+// Add holo + rupture to Sting
 static function UpdateStingForNewShadow(X2AbilityTemplate Template)
 {
-	local X2AbilityCost_ActionPoints ActionPointCost;
+	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
+	local X2Effect_HoloTarget HoloEffect;
+	local X2AbilityTag AbilityTag;
+	local int i;
 
-	// Kill the charges and the charge cost
-	Template.AbilityCosts.Length = 0;
-	Template.AbilityCharges = none;
+	HoloEffect = new class'X2Effect_HoloTarget';
+	HoloEffect.HitMod = class'X2Ability_GrenadierAbilitySet'.default.HOLOTARGET_BONUS;
+	HoloEffect.BuildPersistentEffect(1, false, false, false, eGameRule_PlayerTurnBegin);
+	HoloEffect.bRemoveWhenTargetDies = true;
+	HoloEffect.bUseSourcePlayerState = true;
+	HoloEffect.bApplyOnHit = true;
+	HoloEffect.bApplyOnMiss = true;
 
-	// Killing the above results in some collateral damage so we have to re-add the action point costs
-	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bConsumeAllPoints = true;
-	Template.AbilityCosts.AddItem(ActionPointCost);
+	AbilityTag = X2AbilityTag(`XEXPANDCONTEXT.FindTag("Ability"));
+	AbilityTag.ParseObj = HoloEffect;
 
-	// Can be used a maximum once per turn
-	Template.AbilityCooldown.iNumTurns = 1;
+	HoloEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2Ability_GrenadierAbilitySet'.default.HoloTargetEffectName,
+			`XEXPAND.ExpandString(class'X2Ability_GrenadierAbilitySet'.default.HoloTargetEffectDesc),
+			"img:///UILibrary_PerkIcons.UIPerk_holotargeting", true);
+
+	Template.AddTargetEffect(HoloEffect);
+
+	// Add rupture to the apply weapon damage effect
+	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
+	{
+		WeaponDamageEffect = X2Effect_ApplyWeaponDamage(Template.AbilityTargetEffects[i]);
+		if (WeaponDamageEffect != none)
+		{
+			WeaponDamageEffect.EffectDamageValue.Rupture = default.STING_RUPTURE;
+		}
+	}
 }
 
 static function UpdateSilentKillerForNewShadow(X2AbilityTemplate Template)
@@ -283,6 +338,31 @@ static function UpdateSilentKillerForNewShadow(X2AbilityTemplate Template)
 static function UpdateShadowRisingForNewShadow(X2AbilityTemplate Template)
 {
 	Template.AddTargetEffect(new class'X2Effect_ShadowRising_LW');
+}
+
+static function UpdateEffectForPaleHorse(X2AbilityTemplate Template)
+{
+	local X2Effect_PaleHorse_LW NewPaleHorseEffect;
+	local int i;
+
+	// Remove the previous Pale Horse effect
+	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0 ; i--)
+	{
+		if (X2Effect_PaleHorse(Template.AbilityTargetEffects[i]) != none)
+		{
+			Template.AbilityTargetEffects.Remove(i, 1);
+			break;
+		}
+	}
+
+	// Now add the new one
+	NewPaleHorseEffect = new class'X2Effect_PaleHorse_LW';
+	NewPaleHorseEffect.BuildPersistentEffect(1, true, false, false);
+	NewPaleHorseEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true, , Template.AbilitySourceName);
+	NewPaleHorseEffect.BaseCritBonus = default.PALE_HORSE_BASE_CRIT;
+	NewPaleHorseEffect.CritBoostPerKill = default.PALE_HORSE_PER_KILL_CRIT;
+	NewPaleHorseEffect.MaxCritBoost = default.PALE_HORSE_MAX_CRIT;
+	Template.AddTargetEffect(NewPaleHorseEffect);
 }
 
 defaultproperties
