@@ -47,6 +47,10 @@ DenseSmokeGrenadeEffectDisplayDesc="The dense smoke grants this unit a additiona
 [X2Ability_PerkPackAbilitySet]
 LocCoveringFire="Covering Fire"
 LocCoveringFireMalus="This unit has been targeted by an overwatching unit with the Covering Fire ability, conferring -10 to aim for the rest of the turn."
+; LWOTC Needs Translation
+LocSoulStealBuff="Soul Steal Ablative"
+LocSoulStealBuffHelpText="Soul Steal grants ablative hit points when it over heals"
+; End Translation
 
 ; LWOTC Needs Translation
 [X2Effect_RegenerationPCT]

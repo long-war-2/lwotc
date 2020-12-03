@@ -117,12 +117,15 @@ var config int SOULSTEAL_M2_SHIELD;
 var config int SOULSTEAL_M3_SHIELD;
 var config int CCS_AMMO_PER_SHOT;
 var config int COVERING_FIRE_OFFENSE_MALUS;
-var localized string LocCoveringFire;
-var localized string LocCoveringFireMalus;
 var config bool NO_STANDARD_ATTACKS_WHEN_ON_FIRE;
 var config bool NO_MELEE_ATTACKS_WHEN_ON_FIRE;
 var config int BOMBARD_BONUS_RANGE_TILES;
 var config int SHARPSHOOTERAIM_CRITBONUS;
+
+var localized string LocCoveringFire;
+var localized string LocCoveringFireMalus;
+var localized string LocSoulStealBuff;
+var localized string LocSoulStealBuffHelpText;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -4116,7 +4119,7 @@ static function X2AbilityTemplate AddSoulStealTriggered2()
 
 	StealEffect = new class'X2Effect_SoulSteal_LW';
 	StealEffect.BuildPersistentEffect(3, false, true, false, eGameRule_PlayerTurnBegin);
-	StealEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	StealEffect.SetDisplayInfo (ePerkBuff_Bonus, default.LocSoulStealBuff, default.LocSoulStealBuffHelpText, Template.IconImage,,, Template.AbilitySourceName);
 	StealEffect.SoulStealM1Shield = default.SOULSTEAL_M1_SHIELD;
 	StealEffect.SoulStealM2Shield = default.SOULSTEAL_M2_SHIELD;
 	StealEffect.SoulStealM3Shield = default.SOULSTEAL_M3_SHIELD;
