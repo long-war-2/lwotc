@@ -39,6 +39,7 @@ static function CHEventListenerTemplate CreateXComHQListeners()
 	Template.AddCHEvent('CanTechBeInspired', CanTechBeInspired, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UIAvengerShortcuts_ShowCQResistanceOrders', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UIPersonnel_OnSortFinished', OnUIPersonnelDataRefreshed, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('UpdateResources', OnUpdateResources_LW, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -301,6 +302,26 @@ static function EventListenerReturn OnUIPersonnelDataRefreshed(
 					/ float(PersonnelList.GetItemCount() - 1));
 			}
 		}
+	}
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OnUpdateResources_LW(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
+{
+	local XComHQPresentationLayer HQPres;
+
+	HQPres = `HQPRES;
+
+	// KDM : If we are viewing the 'fixed' recruit screen, UIRecruitSoldiers_LW, or any other subclass of UIRecruitSoldiers,
+	// the resource display will not work as UIAvengerHUD only looks for the base screen, UIRecruitSoldiers. Therefore, 
+	// we need to set up the resource display ourself.
+	if (HQPres.ScreenStack.IsCurrentClass(class'UIRecruitSoldiers'))
+	{
+		// KDM : Display the same information a normal Recruit Screen would show.
+		HQPres.m_kAvengerHUD.UpdateMonthlySupplies();
+		HQPres.m_kAvengerHUD.UpdateSupplies();
+		HQPres.m_kAvengerHUD.ShowResources();
 	}
 
 	return ELR_NoInterrupt;

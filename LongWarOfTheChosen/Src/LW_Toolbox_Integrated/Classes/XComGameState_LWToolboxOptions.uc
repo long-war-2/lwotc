@@ -521,49 +521,6 @@ simulated function RegisterListeners()
 	// Hooks added in overhaul mod into XComGame
 	// angle rotation
 	EventManager.RegisterForEvent(ThisObj, 'OverrideCameraRotationAngle', OnGetCameraRotationAngle, ELD_Immediate,,,true);
-
-	// recruit listitem modification
-	EventManager.RegisterForEvent(ThisObj, 'OnRecruitmentListItemInit', AddRecruitStats, ELD_Immediate,,,true);
-	EventManager.RegisterForEvent(ThisObj, 'OnRecruitmentListItemUpdateFocus', UpdateRecruitFocus, ELD_Immediate,,,true);
-}
-
-// adds elements to Recruit list items
-static function EventListenerReturn AddRecruitStats(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
-{
-	local XComGameState_Unit Recruit;
-	local UIRecruitmentListItem ListItem;
-
-	Recruit = XComGameState_Unit(EventData);
-	if(Recruit == none)
-	{
-		`REDSCREEN("AddRecruitStats event triggered with invalid event data.");
-		return ELR_NoInterrupt;
-	}
-	ListItem = UIRecruitmentListItem(EventSource);
-	if(ListItem == none)
-	{
-		`REDSCREEN("AddRecruitStats event triggered with invalid event source.");
-		return ELR_NoInterrupt;
-	}
-	class'UIRecruitmentListItem_LW'.static.AddRecruitStats(Recruit, ListItem);
-
-	return ELR_NoInterrupt;
-}
-
-// updates recruit list item for focus changes
-static function EventListenerReturn UpdateRecruitFocus(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
-{
-	local UIRecruitmentListItem ListItem;
-
-	ListItem = UIRecruitmentListItem(EventSource);
-	if(ListItem == none)
-	{
-		`REDSCREEN("AddRecruitStats event triggered with invalid event source.");
-		return ELR_NoInterrupt;
-	}
-	class'UIRecruitmentListItem_LW'.static.UpdateItemsForFocus(ListItem);
-
-	return ELR_NoInterrupt;
 }
 
 //API access for other mods to directly change max squad size
