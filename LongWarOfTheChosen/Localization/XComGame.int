@@ -5078,6 +5078,14 @@ TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage
 TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Designed specifically for SPARKs to deal maximum damage, the Elerium Phase-Cannon is the epitome of powered rifle technology.\n<Bullet/> Firing the primary weapon ends the soldier's turn, in the absence of special training.<br/>"
 
 ; LWOTC Needs Translation
+[Skirmisher X2SoldierClassTemplate]
+AbilityTreeTitles[4]="Pistols"
+
+[Reaper X2SoldierClassTemplate]
+AbilityTreeTitles[4]="Pistols"
+; End Translation
+
+; LWOTC Needs Translation
 [Templar X2SoldierClassTemplate]
 RankNames[0]="Rookie"
 RankNames[1]="Initiate"
