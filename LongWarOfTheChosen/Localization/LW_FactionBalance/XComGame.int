@@ -67,6 +67,9 @@ LocPromotionPopupText="<Bullet/> Volt can now panic the enemy.<br/><Bullet/> The
 
 [Apotheosis X2AbilityTemplate]
 LocFriendlyName="Apotheosis"
+; LWOTC Needs Translation (2)
+LocFlyoverText="Apotheosis!"
+; End Translation (2)
 LocLongDescription="Become a god, massively increasing your dodge, Rend damage and mobility. Requires a minimum of 3 focus and consumes it all."
 LocHelpText="Become a god, massively increasing your dodge, Rend damage and mobility. Requires a minimum of 3 focus and consumes it all."
 LocPromotionPopupText="<Bullet/> A free action that makes the Templar substantially more powerful for one turn.<br/><Bullet/> Increases Rend damage by <Ability:ApotheosisDamageMultiplier/>% for each point of focus above 2.<br/><Bullet/> Increases Dodge by <Ability:ApotheosisDodgeBonus/>.<br/><Bullet/> Increases mobility by <Ability:ApotheosisMobilityBonus/> for each point of focus above 2.<br/><Bullet/> Requires a minimum of 3 focus.<br/><Bullet/> Consumes all focus."

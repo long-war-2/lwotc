@@ -556,11 +556,35 @@ static function X2AbilityTemplate AddApotheosis()
 	Template.bSkipFireAction = false;
 	Template.CustomFireAnim = 'HL_IonicStorm';
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildVisualizationFn = Apotheosis_BuildVisualization;
 
 	// Template.AdditionalAbilities.AddItem('MeditationPreparationPassive');
 
 	return Template;
+}
+
+static function Apotheosis_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameStateHistory				History;
+	local XComGameStateContext_Ability		Context;
+	local StateObjectReference				InteractingUnitRef;
+	local VisualizationActionMetadata		EmptyTrack, BuildTrack;
+	local X2Action_PlaySoundAndFlyOver		SoundAndFlyover;
+	local XComGameState_Ability				Ability;
+
+	class'X2Ability'.static.TypicalAbility_BuildVisualization(VisualizeGameState);
+
+	History = `XCOMHISTORY;
+	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	InteractingUnitRef = Context.InputContext.SourceObject;
+	BuildTrack = EmptyTrack;
+	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+	SoundAndFlyover = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+	SoundAndFlyover.SetSoundAndFlyOverParameters(none, Ability.GetMyTemplate().LocFlyOverText, 'None', eColor_Good);
 }
 
 static function FocusLevelModifiers CreateFocusLevelModifiers(int DodgeBonus, int MobilityBonus)
