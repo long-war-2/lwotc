@@ -498,6 +498,8 @@
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetMissionTimer.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetRegionInfo.uc" />
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetXComUnits.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIRecruitmentListItem_LW.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIRecruitSoldiers_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Action_IRI_PsiPinion.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_IRI_SoulStorm.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_NullWard.uc" />
@@ -865,7 +867,6 @@
     <Content Include="Src\LW_Toolbox_Integrated\Classes\LWSpawnUnitFromAvenger.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\UIAfterAction_LW.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\UIOptionsPCScreen_LW.uc" />
-    <Content Include="Src\LW_Toolbox_Integrated\Classes\UIRecruitmentListItem_LW.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\UIScreenListener_Armory_MainMenu.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\UIScreenListener_GameLoad.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\UIScreenListener_ScreenUpdates.uc" />
@@ -1307,7 +1308,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2SitRep_DefaultSitRepEffects_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XMBEffect_AddAbilityCharges.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XMBEffectUtilities.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_RecruitSoldiers.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_DefaultCovertActionRisks_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_DefaultCovertActions_LW.uc" />
     <Content Include="Config\XComSniperDefense.ini" />
