@@ -24,7 +24,7 @@ LocPromotionPopupText="<Bullet/> Бросок ножа не сбрасывает
 LocFriendlyName="Оглушающий выстрел"
 LocLongDescription="Выстрел, оглушающий врагов. Крит добавляет время оглушения. Не наносит критический урон."
 LocHelpText="Выстрел, оглушающий врагов. Крит добавляет время оглушения. Не наносит критический урон."
-LocPromotionPopupText="<Bullet/> Оглушает врагов на <Ability:DisablingShotStunActions/> действий при попадании (включая царапины).<br/><Bullet/> Оглушает допольнительно на  <Ability:DisablingShotCritStunActions/> действий при крите, не наносит критический урон.<br/><Bullet/> Оглушающий выстрел требует <Ability:SelfAmmoCost/> боезапаса и перезарядка <Ability:SelfCooldown/>-ходов.<br/><Bullet/> Только аватар и пси зомби не могут быть оглушены."
+LocPromotionPopupText="<Bullet/> Оглушает врагов на <Ability:DisablingShotStunActions/> действий при попадании (включая царапины).<br/><Bullet/> Оглушает допольнительно на  <Ability:DisablingShotCritStunActions/> действий при крите, не наносит критический урон.<br/><Bullet/> Оглушающий выстрел требует <Ability:SelfAmmoCost/> боекомплекта и перезарядка <Ability:SelfCooldown/>-ходов.<br/><Bullet/> Только аватар и пси зомби не могут быть оглушены."
 
 
 [Overcharge_LW X2AbilityTemplate]
