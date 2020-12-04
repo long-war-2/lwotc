@@ -244,6 +244,7 @@
     <Content Include="Localization\LW_AlienPack_Integrated\XComGame.rus" />
     <Content Include="Localization\LW_FactionBalance\LW_FactionBalance.fra" />
     <Content Include="Localization\LW_FactionBalance\LW_FactionBalance.int" />
+    <Content Include="Localization\LW_FactionBalance\LW_FactionBalance.rus" />
     <Content Include="Localization\LW_FactionBalance\XComGame.int" />
     <Content Include="Localization\LW_LaserPack_Integrated\XComGame.chn" />
     <Content Include="Localization\LW_LaserPack_Integrated\XComGame.cht" />
