@@ -280,7 +280,7 @@ static function AddDemolitionistToHomingMine(X2AbilityTemplate Template)
 // Add holo + rupture to Sting
 static function UpdateStingForNewShadow(X2AbilityTemplate Template)
 {
-	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
+	local X2Effect_Shredder WeaponDamageEffect;
 	local X2Effect_HoloTarget HoloEffect;
 	local X2AbilityTag AbilityTag;
 	local int i;
@@ -302,10 +302,12 @@ static function UpdateStingForNewShadow(X2AbilityTemplate Template)
 
 	Template.AddTargetEffect(HoloEffect);
 
-	// Add rupture to the apply weapon damage effect
+	// Add rupture to the apply weapon damage effect. Be careful! This
+	// also has the weapon miss damage effect, which is of type
+	// X2Effect_ApplyWeaponDamage, hence we check for the shredder effect.
 	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
 	{
-		WeaponDamageEffect = X2Effect_ApplyWeaponDamage(Template.AbilityTargetEffects[i]);
+		WeaponDamageEffect = X2Effect_Shredder(Template.AbilityTargetEffects[i]);
 		if (WeaponDamageEffect != none)
 		{
 			WeaponDamageEffect.EffectDamageValue.Rupture = default.STING_RUPTURE;
