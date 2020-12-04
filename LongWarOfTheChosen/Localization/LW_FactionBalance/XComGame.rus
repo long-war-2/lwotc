@@ -1,9 +1,9 @@
 ; LWOTC Translated
 [LingeringShadow X2AbilityTemplate]
 LocFriendlyName="Теневой шаг"
-LocLongDescription="Бонус +<Ability:LingeringShadowDefenseBonus/> защиты и +<Ability:LingeringShadowDodgeBonus/> уклонения на один ход после потери маскировки Тень."
-LocHelpText="Бонус +<Ability:LingeringShadowDefenseBonus/> защиты и +<Ability:LingeringShadowDodgeBonus/> уклонения на один ход после потери маскировки Тень."
-LocPromotionPopupText="<Bullet/> Бонус +<Ability:LingeringShadowDefenseBonus/> защиты и +<Ability:LingeringShadowDodgeBonus/> уклонения на один ход после потери маскировки Тень.<br/><Bullet/> Действует до начала следующего хода."
+LocLongDescription="Бонус +<Ability:LingeringShadowDefenseBonus/> Защиты и +<Ability:LingeringShadowDodgeBonus/> Уклонения на один ход после потери маскировки Тень."
+LocHelpText="Бонус +<Ability:LingeringShadowDefenseBonus/> Защиты и +<Ability:LingeringShadowDodgeBonus/> Уклонения на один ход после потери маскировки Тень."
+LocPromotionPopupText="<Bullet/> Бонус +<Ability:LingeringShadowDefenseBonus/> Защиты и +<Ability:LingeringShadowDodgeBonus/> Уклонения на один ход после потери маскировки Тень.<br/><Bullet/> Действует до начала следующего хода."
 
 [Demolitionist X2AbilityTemplate]
 LocFriendlyName="Взрыватель"
@@ -29,9 +29,9 @@ LocPromotionPopupText="<Bullet/> Оглушает врагов на <Ability:Dis
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="Заряженность"
-LocLongDescription="Прибавляет бонус к точности и защите за каждую единицу концентрации Храмовника."
-LocHelpText="Прибавляет бонус к точности и защите за каждую единицу концентрации Храмовника."
-LocPromotionPopupText="<Bullet/> Каждая единица дает бонус к +<Ability:OverchargeAimBonus/> точности и +<Ability:OverchargeDefenseBonus/> защите."
+LocLongDescription="Прибавляет бонус к Меткости и Защите за каждую единицу концентрации Храмовника."
+LocHelpText="Прибавляет бонус к Меткости и Защите за каждую единицу концентрации Храмовника."
+LocPromotionPopupText="<Bullet/> Каждая единица дает бонус к +<Ability:OverchargeAimBonus/> Меткости и +<Ability:OverchargeDefenseBonus/> Защите."
 
 [VoltDangerZone X2AbilityTemplate]
 LocFriendlyName="Высокое напряжение"
