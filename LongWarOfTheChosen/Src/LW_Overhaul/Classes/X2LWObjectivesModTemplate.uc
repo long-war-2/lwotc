@@ -29,6 +29,10 @@ static function UpdateObjectives(X2StrategyElementTemplate Template, int Difficu
 		case 'XP3_M0_NonLostAndAbandoned':
 			`LWTrace("X2LWObjectivesModTemplate - removing the SpawnFirstPOI objective");
 			ObjectiveTemplate.NextObjectives.RemoveItem('XP3_M2_SpawnFirstPOI');
+			break;
+		case 'CEN_ToDoWarnings':
+			ShutBradfordUp(ObjectiveTemplate);
+			break;
 		default:
 			break;
 	}	
@@ -57,6 +61,21 @@ static function CreateBroadcastTheTruthMission_LW(XComGameState NewGameState, XC
 	}
 
 	CalendarState.SwitchToEndGameMissions(NewGameState);
+}
+
+// Removes some narrative nagging by Bradford, for example about building
+// the ring, since there's rarely a rush to build it in LWOTC.
+static function ShutBradfordUp(X2ObjectiveTemplate Template)
+{
+	local int i;
+
+	for (i = Template.NarrativeTriggers.Length - 1; i >= 0; i--)
+	{
+		if (Template.NarrativeTriggers[i].TriggeringEvent == 'WarningNoRing')
+		{
+			Template.NarrativeTriggers.Remove(i, 1);
+		}
+	}
 }
 
 defaultproperties
