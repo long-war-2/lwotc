@@ -28,7 +28,10 @@ simulated function UIButton SetDisabled(bool disabled, optional string TooltipTe
 {
 	super.SetDisabled(disabled, TooltipText);
 	UpdateDisabled();
-	UpdateItemsForFocus(false);
+	// KDM : Originally, UpdateItemsForFocus was called with the parameter 'false'; however, this was problematic
+	// since ability text colour would no longer depend upon the list item's focus state; it would always 'assume'
+	// it was unfocused. In order to take the list item's focus into account, we need to send in bIsFocused.
+	UpdateItemsForFocus(bIsFocused);
 	return self;
 }
 
