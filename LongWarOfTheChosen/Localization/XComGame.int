@@ -5544,6 +5544,11 @@ Description="Enemies units are going to be so tough, the fight will be virtually
 ; End Translation
 
 ; LWOTC Needs Translation
+[ResistanceRing_UpgradeI X2FacilityUpgradeTemplate]
+Summary="Unlock an additional staff slot to reduce covert action durations further."
+; End Translation
+
+; LWOTC Needs Translation
 [DifficultMissionCompleted X2AbilityPointTemplate]
 ActionFriendlyName="for a difficult mission"
 

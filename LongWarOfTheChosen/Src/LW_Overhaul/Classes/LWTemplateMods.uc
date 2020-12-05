@@ -3494,6 +3494,16 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			StaffSlotDef.bStartsLocked = false;
 			FacilityTemplate.StaffSlotDefs.InsertItem(1, StaffSlotDef);
 		}
+		if (FacilityTemplate.DataName == 'ResistanceRing')
+		{
+			// Add an extra engineer staff slot to reduce covert action duration
+			StaffSlotDef.StaffSlotTemplateName = 'ResistanceRingStaffSlot';
+			StaffSlotDef.bStartsLocked = true;
+			FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
+
+			// Remove the second upgrade, since there's only the one staff slot to unlock
+			FacilityTemplate.Upgrades.RemoveItem('ResistanceRing_UpgradeII');
+		}
 		//if (FacilityTemplate.DataName == 'Storage') Didn't work
 		//{
 			//FacilityTemplate.StaffSlots.AddItem('SparkStaffSlot');
@@ -3855,6 +3865,12 @@ function ModifyFacilityUpgrades(X2StrategyElementTemplate Template, int Difficul
 			FacilityUpgradeTemplate.DisplayName = BaseResearchStationTemplate.default.DisplayName;
 			FacilityUpgradeTemplate.FacilityName = BaseResearchStationTemplate.default.FacilityName;
 			FacilityUpgradeTemplate.Summary = BaseResearchStationTemplate.default.Summary;
+		}
+
+		if (FacilityUpgradeTemplate.DataName == 'ResistanceRing_UpgradeI')
+		{
+			// Modify the upgrade to simply unlock the extra engineer staff slot
+			FacilityUpgradeTemplate.OnUpgradeAddedFn = class'X2StrategyElement_DefaultFacilityUpgrades'.static.OnUpgradeAdded_UnlockStaffSlot;
 		}
 	}
 }
