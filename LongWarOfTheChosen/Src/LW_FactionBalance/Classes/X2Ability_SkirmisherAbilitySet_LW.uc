@@ -21,6 +21,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddReckoning_LW());
 	Templates.AddItem(AddManualOverride_LW());
 	Templates.AddItem(AddReflexTrigger());
+	Templates.AddItem(AddParkour());
 
 	return Templates;
 }
@@ -254,5 +255,16 @@ static function X2AbilityTemplate AddReflexTrigger()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.bSkipFireAction = true;
 
+	return Template;
+}
+
+// X2AbilityCooldown_Grapple checks for this ability
+// Borrowed from NotSoLoneWolf
+static function X2AbilityTemplate AddParkour()
+{
+	local X2AbilityTemplate Template;
+
+	Template = PurePassive('Parkour_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_parkour", false, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
 	return Template;
 }

@@ -1248,7 +1248,6 @@
     <Content Include="Src\XModBase_Interfaces\Classes\XMBEffectInterface.uc" />
     <Content Include="Src\XModBase_Interfaces\Classes\XMBOverrideInterface.uc" />
     <Content Include="Content\LW_FactionBalance\UICollection_SupremeFocus.upk" />
-    <Content Include="Src\LW_FactionBalance\Classes\X2Ability_Parkour.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Ability_ReaperAbilitySet_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2AbilityCooldown_Grapple.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2AbilityTarget_Cursor_LW.uc" />

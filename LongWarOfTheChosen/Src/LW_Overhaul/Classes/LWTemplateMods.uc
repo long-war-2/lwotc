@@ -3464,6 +3464,9 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('BiggestBoomsUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('SquadSizeIUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('SquadSizeIIUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('MeditationPreparationUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('ParkourUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('InfiltrationUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');

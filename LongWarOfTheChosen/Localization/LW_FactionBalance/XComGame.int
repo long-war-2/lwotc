@@ -95,3 +95,11 @@ LocHelpText="Consumes a charge to extend Shadow's duration by 1 turn."
 LocLongDescription="Consumes a charge to extend Shadow's duration by 1 turn."
 LocPromotionPopupText="<Bullet/> Allows the player to extend Shadow by 1 turn.<br/><Bullet/> Can only be used while in Shadow.<br/>"
 ; End Translation
+
+; LWOTC Needs Translation
+[Parkour_LW X2AbilityTemplate]
+LocFriendlyName="Parkour"
+LocHelpText="The cooldown for the Skrimisher's Grapple is reduced by one turn."
+LocLongDescription="The cooldown for the Skrimisher's Grapple is reduced by one turn."
+LocPromotionPopupText="<Bullet/> Improves the Skirmisher's mobility around the map.<br/>"
+; End Translation

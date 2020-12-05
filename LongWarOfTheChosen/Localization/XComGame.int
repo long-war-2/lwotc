@@ -5181,18 +5181,6 @@ FocusLevelDescriptions[4]="Rend Damage +<Ability:FOCUS4RENDDAMAGE/>\nMobility +<
 [TemplarFocus X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels. Effectively managing Focus to get the most out of the stat boosts and each ability is critical to using a Templar.<br/><Bullet/> Focus is gained by killing enemies with Rend.<br/><Bullet/> Focus Level 1: Rend Damage +<Ability:FOCUS1RENDDAMAGE/>, Mobility +<Ability:FOCUS1MOBILITY/>, Dodge +<Ability:FOCUS1DODGE/><br/><Bullet/> Focus Level 2: Rend Damage +<Ability:FOCUS2RENDDAMAGE/>, Mobility +<Ability:FOCUS2MOBILITY/>, Dodge +<Ability:FOCUS2DODGE/><br/><Bullet/> Focus Level 3: Rend Damage +<Ability:FOCUS3RENDDAMAGE/>, Mobility +<Ability:FOCUS3MOBILITY/>, Dodge +<Ability:FOCUS3DODGE/><br/><Bullet/> Focus Level 4: Rend Damage +<Ability:FOCUS4RENDDAMAGE/>, Mobility +<Ability:FOCUS4MOBILITY/>, Dodge +<Ability:FOCUS4DODGE/>.<br/><Bullet/> Focus Level 5: Rend Damage +<Ability:FOCUS5RENDDAMAGE/>, Mobility +<Ability:FOCUS5MOBILITY/>, Dodge +<Ability:FOCUS5DODGE/>.<br/><Bullet/> Focus Level 6: Rend Damage +<Ability:FOCUS6RENDDAMAGE/>, Mobility +<Ability:FOCUS6MOBILITY/>, Dodge +<Ability:FOCUS6DODGE/>.<br/><Bullet/> Focus Level 7: Rend Damage +<Ability:FOCUS7RENDDAMAGE/>, Mobility +<Ability:FOCUS7MOBILITY/>, Dodge +<Ability:FOCUS7DODGE/>.<br/><Bullet/> Focus Level 8: Rend Damage +<Ability:FOCUS8RENDDAMAGE/>, Mobility +<Ability:FOCUS8MOBILITY/>, Dodge +<Ability:FOCUS8DODGE/>.<br/><Bullet/> Focus Level 9: Rend Damage +<Ability:FOCUS9RENDDAMAGE/>, Mobility +<Ability:FOCUS9MOBILITY/>, Dodge +<Ability:FOCUS9DODGE/>.<br/><Bullet/> Focus Level 10: Rend Damage +<Ability:FOCUS10RENDDAMAGE/>, Mobility +<Ability:FOCUS10MOBILITY/>, Dodge +<Ability:FOCUS10DODGE/>.<br/>"
 
-[Parkour X2AbilityTemplate]
-LocLongDescription="The cooldown for the Skrimisher's Grapple is reduced by one turn."
-LocHelpText="The cooldown for the Skrimisher's Grapple is reduced by one turn."
-
-[ParkourPassive X2AbilityTemplate]
-LocFriendlyName="Parkour"
-LocLongDescription="The Skirmisher's Grapple ability has it's cooldown reduced by one turn."
-LocHelpText="The Skirmisher's Grapple ability has it's cooldown reduced by one turn."
-
-[ParkourUnlock X2SoldierAbilityUnlockTemplate]
-Summary="The cooldown for the Skrimisher's grappling hook is reduced by one turn."
-
 [Whiplash X2AbilityTemplate]
 LocLongDescription="Attack an enemy with an electrical lash. This attack has a <Ability:SelfCooldown/>-turn cooldown."
 LocHelpText="An attack with an electrical lash. Extra damage to robotic units. <Ability:SelfCooldown/>-turn cooldown."
