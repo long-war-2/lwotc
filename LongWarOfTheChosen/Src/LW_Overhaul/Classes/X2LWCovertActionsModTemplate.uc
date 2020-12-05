@@ -33,7 +33,6 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			CaTemplate.RequiredFactionInfluence = eFactionInfluence_Minimal;
 		case 'CovertAction_GatherSupplies':
 		case 'CovertAction_GatherIntel':
-		case 'CovertAction_ImproveComInt':
 		case 'CovertAction_FormSoldierBond':
 		case 'CovertAction_AlienLoot':
 			ConfigureEasyCovertAction(CATemplate);
@@ -47,6 +46,9 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_ResistanceContact':
 		case 'CovertAction_SharedAbilityPoints':
 			ConfigureModerateCovertAction(CATemplate);
+			break;
+		case 'CovertAction_ImproveComInt':
+			RemoveStaffSlots(CATemplate, 'CovertActionScientistStaffSlot');
 			break;
 		case 'CovertAction_RecruitExtraFactionSoldier':
 			CATemplate.bDisplayIgnoresInfluence = false;  // Don't roll this CA if the player can't run it!
@@ -160,6 +162,19 @@ static function AddStaffSlots(X2CovertActionTemplate Template, int SlotCount)
 	for (i = 0; i < SlotCount; i++)
 	{
 		Template.Slots.AddItem(CreateDefaultStaffSlot());
+	}
+}
+
+static function RemoveStaffSlots(X2CovertActionTemplate Template, name SlotName)
+{
+	local int i;
+
+	for (i = Template.Slots.Length - 1; i >= 0; i--)
+	{
+		if (Template.Slots[i].StaffSlot == SlotName)
+		{
+			Template.Slots.Remove(i, 1);
+		}
 	}
 }
 
