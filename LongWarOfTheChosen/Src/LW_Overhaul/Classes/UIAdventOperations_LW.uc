@@ -49,6 +49,14 @@ simulated function BuildScreen( optional bool bAnimateIn = false )
 	// many active or pending dark events there are.
 	MC.FunctionNum("SetNumCards", 3);
 	RefreshNav();
+
+	// KDM : Previously, the flash call to AnimateIn had been commented out by Long War; however,
+	// this created a situation in which 2 flash elements, bottomShadow and hexBackground, were never
+	// made visible on the Dark Events screen.
+	if (bAnimateIn)
+	{ 
+		MC.FunctionVoid("AnimateIn");
+	}
 }
 
 // Returns the number of events in the list (whether it's the active or pending one)
@@ -250,8 +258,11 @@ simulated function BuildDarkEventPanel(int Index, bool bActiveDarkEvent)
 
 simulated function OnRevealClicked(int idx)
 {
-	local UIList DarkEventList;
 	local UIDarkEventListItem ListItem;
+	local UIList DarkEventList;
+	local XComHQPresentationLayer HQPres;
+
+	HQPres = `HQPRES;
 
 	DarkEventList = UIList(GetChildByName('DarkEventScrollableList_LW', false));
 	if (DarkEventList == none)
@@ -269,4 +280,8 @@ simulated function OnRevealClicked(int idx)
 	ListItem.DarkEventRef = ChosenDarkEvents[idx];
 	ListItem.Update();
 	ListItem.Show();
+
+	// KDM : If a dark event has been revealed, intel has been used; therefore, update
+	// the resource bar.
+	HQPres.m_kAvengerHUD.UpdateResources();
 }

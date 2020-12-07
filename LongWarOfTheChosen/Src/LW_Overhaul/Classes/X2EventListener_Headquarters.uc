@@ -313,14 +313,29 @@ static function EventListenerReturn OnUpdateResources_LW(Object EventData, Objec
 
 	HQPres = `HQPRES;
 
-	// KDM : If we are viewing the 'fixed' recruit screen, UIRecruitSoldiers_LW, or any other subclass of UIRecruitSoldiers,
-	// the resource display will not work as UIAvengerHUD only looks for the base screen, UIRecruitSoldiers. Therefore, 
-	// we need to set up the resource display ourself.
-	if (HQPres.ScreenStack.IsCurrentClass(class'UIRecruitSoldiers'))
+	// KDM : If we are viewing the 'fixed' recruit screen, UIRecruitSoldiers_LW, or any subclass of 
+	// UIRecruitSoldiers, the resource display will not work as UIAvengerHUD only looks for the base screen, 
+	// UIRecruitSoldiers. Therefore, we need to set up the resource display ourself.
+	//
+	// Note : We do not want to run this code if the screen we are looking at is of type UIRecruitSoldiers
+	// since it has already been dealt with in UIAvengerHUD, and this would display double.
+	if (HQPres.ScreenStack.IsCurrentClass(class'UIRecruitSoldiers') && 
+		!(HQPres.ScreenStack.GetCurrentClass() == class'UIRecruitSoldiers'))
 	{
 		// KDM : Display the same information a normal Recruit Screen would show.
 		HQPres.m_kAvengerHUD.UpdateMonthlySupplies();
 		HQPres.m_kAvengerHUD.UpdateSupplies();
+		HQPres.m_kAvengerHUD.ShowResources();
+	}
+	// KDM : If we are viewing the Long War Dark Event screen, UIAdventOperations_LW, or any subclass
+	// of UIAdventOperations, make sure the resource bar displays properly.
+	else if (HQPres.ScreenStack.IsCurrentClass(class'UIAdventOperations') && 
+		!(HQPres.ScreenStack.GetCurrentClass() == class'UIAdventOperations'))
+	{
+		// KDM : Display the same information a normal Dark Event Screen would show.
+		HQPres.m_kAvengerHUD.UpdateMonthlySupplies();
+		HQPres.m_kAvengerHUD.UpdateSupplies();
+		HQPres.m_kAvengerHUD.UpdateIntel();
 		HQPres.m_kAvengerHUD.ShowResources();
 	}
 
