@@ -725,6 +725,34 @@ static function bool CovertActionHasReward(XComGameState_CovertAction ActionStat
 	}
 }
 
+// KDM : Determines if a screen of type UIPersonnel_SquadBarracks_ForControllers is on the screen stack.
+// The screen is checked by name so that my controller-capable Squad Management system, whose chief class 
+// derives from UIPersonnel rather than UIPersonnel_SquadBarracks, can exist as a separate mod.
+static function bool ControllerCapableSquadBarracksIsOnStack()
+{
+	return (`ISCONTROLLERACTIVE && (GetFirstScreenByName('UIPersonnel_SquadBarracks_ForControllers') != none));
+}
+
+// KDM : Returns the first screen, on the screen stack, with a class name of ScreenType.
+// If no such screen exists, returns none.
+static function UIScreen GetFirstScreenByName(name ScreenType)
+{
+	local int i;
+	local UIScreenStack ScreenStack;
+	
+	ScreenStack = `SCREENSTACK;
+	
+	for (i = 0; i < ScreenStack.Screens.Length; i++)
+	{
+		if (ScreenStack.Screens[i].IsA(ScreenType))
+		{
+			return ScreenStack.Screens[i];
+		}
+	}
+	
+	return none; 
+}
+
 defaultproperties
 {
 	CA_FAILURE_RISK_MARKER="CovertActionRisk_Failure"

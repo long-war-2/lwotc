@@ -44,7 +44,11 @@ event OnInit(UIScreen Screen)
 	SquadSelect = UISquadSelect(Screen);
 	if(SquadSelect == none) return;
 
-	class'LWHelpTemplate'.static.AddHelpButton_Std('SquadSelect_Help', SquadSelect, 1057, 12);
+	// KDM : Remove the 'Infiltration Help' button if the controller is active since it can't be clicked.
+	if (!`ISCONTROLLERACTIVE)
+	{
+		class'LWHelpTemplate'.static.AddHelpButton_Std('SquadSelect_Help', SquadSelect, 1057, 12);
+	}
 
 	XComHQ = `XCOMHQ;
 	SquadMgr = `LWSQUADMGR;
@@ -61,13 +65,24 @@ event OnInit(UIScreen Screen)
 
 	UpdateMissionDifficulty(SquadSelect);
 
-	//check if we got here from the SquadBarracks
-	bInSquadEdit = `SCREENSTACK.IsInStack(class'UIPersonnel_SquadBarracks');
+	// KDM + LW : Determines if we got to the Squad Select screen via either the Squad Management screen
+	// or the controller-capable Squad Management screen.
+	bInSquadEdit = (`SCREENSTACK.IsInStack(class'UIPersonnel_SquadBarracks') ||
+		class'Helpers_LW'.static.ControllerCapableSquadBarracksIsOnStack());
+
 	if(bInSquadEdit)
 	{
-		SquadSelect.LaunchButton.OnClickedDelegate = OnSaveSquad;
-		SquadSelect.LaunchButton.SetText(strSquad);
-		SquadSelect.LaunchButton.SetTitle(strSave);
+		if (!`ISCONTROLLERACTIVE)
+		{
+			SquadSelect.LaunchButton.OnClickedDelegate = OnSaveSquad;
+			SquadSelect.LaunchButton.SetText(strSquad);
+			SquadSelect.LaunchButton.SetTitle(strSave);
+		}
+		else
+		{
+			// KDM : Hide the 'Save Squad' button if a controller is active; I don't believe it actually works anyways.
+			SquadSelect.LaunchButton.Hide();
+		}
 
 		SquadSelect.m_kMissionInfo.Remove();
 	} 
@@ -100,12 +115,16 @@ event OnInit(UIScreen Screen)
 				InfilRequirementText.SetAlpha(66);
 			}
 		}
-		// create the SquadContainer on a timer, to avoid creation issues that can arise when creating it immediately, when no pawn loading is present
-		SquadContainer = SquadSelect.Spawn(class'UISquadContainer', SquadSelect);
-		SquadContainer.CurrentSquadRef = SquadMgr.LaunchingMissionSquad;
-		SquadContainer.DelayedInit(default.SquadInfo_DelayedInit);
 
-		// 
+		// KDM : The controller-capable Squad Management screen creates its own container, so don't create one here.
+		if (!`ISCONTROLLERACTIVE)
+		{
+			// LW : Create the SquadContainer on a timer, to avoid creation issues that can arise when creating it 
+			// immediately, when no pawn loading is present
+			SquadContainer = SquadSelect.Spawn(class'UISquadContainer', SquadSelect);
+			SquadContainer.CurrentSquadRef = SquadMgr.LaunchingMissionSquad;
+			SquadContainer.DelayedInit(default.SquadInfo_DelayedInit);
+		}
 
 		MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(XComHQ.MissionRef.ObjectID));
 

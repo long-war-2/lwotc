@@ -145,7 +145,11 @@ simulated function GoToSquadManagement(optional StateObjectReference Facility)
     SubMenu.Message.Label = LabelBarracks_SquadManagement;
     Shortcuts.UpdateSubMenu(eUIAvengerShortcutCat_Barracks, SubMenu);
 
-	if (HQPres.ScreenStack.IsNotInStack(class'UIPersonnel_SquadBarracks'))
+	// KDM : If the 'Squad Management' Avenger button is clicked and neither the Squad Management screen,
+	// nor the controller-capable Squad Management screen is on the screen stack, then push the Squad
+	// Management screen onto the stack.
+	if (HQPres.ScreenStack.IsNotInStack(class'UIPersonnel_SquadBarracks') &&
+		!class'Helpers_LW'.static.ControllerCapableSquadBarracksIsOnStack())
 	{
 		kPersonnelList = HQPres.Spawn(class'UIPersonnel_SquadBarracks', HQPres);
 		kPersonnelList.onSelectedDelegate = OnPersonnelSelected;

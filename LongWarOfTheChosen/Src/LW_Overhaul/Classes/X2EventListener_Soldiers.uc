@@ -250,7 +250,10 @@ static protected function EventListenerReturn OnOverridePersonnelStatus(Object E
 			}
 		}
 	}
-	else if (GetScreenOrChild('UIPersonnel_SquadBarracks') == none)
+	// KDM : Only override the personnel status string if we are dealing with neither the
+	// Squad Management screen, nor the controller-capable Squad Management screen.
+	else if (GetScreenOrChild('UIPersonnel_SquadBarracks') == none &&
+		!class'Helpers_LW'.static.ControllerCapableSquadBarracksIsOnStack())
 	{
 		if (`XCOMHQ.IsUnitInSquad(UnitState.GetReference()) && GetScreenOrChild('UISquadSelect') != none)
 		{
