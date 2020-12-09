@@ -177,6 +177,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(ComplexReload());
 
+	Templates.AddItem(AddBrawler());
+	Templates.AddItem(AddInstantReactionTime());
+
 	return Templates;
 }
 
@@ -2668,6 +2671,57 @@ static function X2AbilityTemplate ComplexReload()
 	return Template;
 }
 
+static function X2AbilityTemplate AddBrawler()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_Brawler					DamageReduction;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'Brawler');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_enemy_defense_chevron";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+
+	DamageReduction = new class 'X2Effect_Brawler';
+	DamageReduction.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	DamageReduction.BuildPersistentEffect(1, true, false);
+	Template.AddTargetEffect(DamageReduction);
+
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  No visualization
+	return Template;
+}
+
+static function X2AbilityTemplate AddInstantReactionTime()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_InstantReactionTime			DodgeBonus;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'InstantReactionTime');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_blossom";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+
+	DodgeBonus = new class 'X2Effect_InstantReactionTime';
+	DodgeBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	DodgeBonus.BuildPersistentEffect(1, true, false);
+	Template.AddTargetEffect(DodgeBonus);
+
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  No visualization
+	return Template;
+}
 defaultproperties
 {
 	LeadTheTargetReserveActionName = "leadthetarget"

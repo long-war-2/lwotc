@@ -2202,6 +2202,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('WarlockReaction');
 		Template.Abilities.AddItem('AmmoDump_LW');
 		Template.Abilities.AddItem('ChosenCritImmune');
+		Template.Abilities.AddItem('ChosenImmunitiesPassive');
 
 		Template.InitiativePriority = -100;
 
@@ -2227,6 +2228,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('quickdraw');
 		Template.Abilities.AddItem('ChosenImmuneMelee');
 		Template.Abilities.AddItem('ReadyForAnything');
+		Template.Abilities.AddItem('ChosenImmunitiesPassive');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
@@ -2237,18 +2239,19 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('ChosenKidnapMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledgeMove');
 		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
+		Template.Abilities.RemoveItem('BendingReed');
 
-		Template.Abilities.AddItem('Bladestorm');
 		Template.Abilities.AddItem('ChosenCritImmune');
 		Template.Abilities.AddItem('CombatReadiness');
 		Template.Abilities.AddItem('ChosenKidnap');
 		Template.Abilities.AddItem('AssassinReaction');
 		Template.Abilities.AddItem('BloodThirst_LW');
-		Template.Abilities.AddItem('CoolUnderPressure');
 		Template.Abilities.AddItem('Hitandrun');
-		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('FreeGrenades');
-
+		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		Template.Abilities.AddItem('AssassinSlash_LW');
+		Template.Abilities.AddItem('InstantReactionTime');
+		Template.Abilities.AddItem('Brawler');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;

@@ -24,8 +24,7 @@ static function X2Effect_Persistent CreateMaimedStatusEffect(optional int NumTur
 	Effect = new class'X2Effect_Immobilize';
 	Effect.EffectName = 'Maim_Immobilize';
 	Effect.DuplicateResponse = eDupe_Refresh;
-	Effect.BuildPersistentEffect(NumTurns, false, true, , eGameRule_PlayerTurnEnd);
-	Effect.AddPersistentStatChange(eStat_Mobility, 0, MODOP_Multiplication);
+	Effect.BuildPersistentEffect(NumTurns, false, true, , eGameRule_PlayerTurnBegin);
 	Effect.SetDisplayInfo(ePerkBuff_Penalty, default.MaimedFriendlyName, default.MaimedFriendlyDesc,
 			"img:///UILibrary_XPerkIconPack.UIPerk_move_blossom", true, , AbilitySourceName);
 	Effect.VisualizationFn = class'XMBAbility'.static.EffectFlyOver_Visualization;

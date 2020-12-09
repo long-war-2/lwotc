@@ -139,7 +139,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'ChosenSummonFollowers':
 			UpdateSummon(Template);
 			break;
-		case 'VanishingWind':
+		case 'VanishingWind_Scamper':
 			UpdateVanishingWind(Template);
 			break;
 		case 'ChosenActivation':
@@ -918,16 +918,9 @@ static function MakeChosenInstantlyEngagedAndRemoveTimerPause(X2AbilityTemplate 
 
 static function ReworkPartingSilk(X2AbilityTemplate Template)
 {
-	local X2Effect_DodgeModifier AntiDodgeEffect;
-
 	RemoveAbilityTargetEffects(Template, 'X2Effect_Dazed');
 
-	if (Template.AbilityToHitCalc.IsA('X2AbilityToHitCalc_StandardMelee'))
-		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bHitsAreCrits = true;
-
-	AntiDodgeEffect = new class'X2Effect_DodgeModifier';
-	AntiDodgeEffect.BuildPersistentEffect(1, true, false);
-	Template.AddTargetEffect(AntiDodgeEffect);
+	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
 
 }
 
@@ -979,17 +972,21 @@ static function UpdateSummon(X2AbilityTemplate Template)
 	Template.BuildNewGameStateFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildGameState;
 	Template.BuildVisualizationFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildVisualization;
 }
-
+//make assassin run to cover when she conceals herself
 static function UpdateVanishingWind(X2AbilityTemplate Template)
 {
-	local X2AbilityTrigger_EventListener EventListener;		
-	
-	EventListener = new class'X2AbilityTrigger_EventListener';
-	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
-	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
-	EventListener.ListenerData.EventID = 'PartingSilkActivated';
-	EventListener.ListenerData.Filter = eFilter_Unit;
-	Template.AbilityTriggers.AddItem(EventListener);
+	local X2Effect_GrantActionPoints AddAPEffect;
+	local X2Effect_RunBehaviorTree ReactionEffect;
+
+	AddAPEffect = new class'X2Effect_GrantActionPoints';
+	AddAPEffect.NumActionPoints = 1;
+	AddAPEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
+	Template.AddTargetEffect(AddAPEffect);
+
+	ReactionEffect = new class'X2Effect_RunBehaviorTree';
+	ReactionEffect.BehaviorTreeName = 'GenericScamperRoot';
+	Template.AddTargetEffect(ReactionEffect);
+
 }
 
 static function MakeAbilityVisible(X2AbilityTemplate Template)
