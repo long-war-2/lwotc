@@ -45,5 +45,11 @@ DenseSmokeGrenadeEffectDisplayDesc="Густой дым дополнительн
 LocCoveringFire="Огневая поддержка"
 LocCoveringFireMalus="По этому юниту был произведен выстрел из режима наблюдения со способностью \"Огневая поддержка\", дающий штраф -10 к меткости до конца хода."
 
-
-
+; LWOTC Translated
+[LoneWolf X2AbilityTemplate]
+LocFriendlyName="Одинокий волк"
+LocFlyOverText="Одинокий волк"
+LocLongDescription="Получает дополнительную точносить и защиту когда минимум <Ability:LONEWOLF_MIN_BONUS_TILES/> клеток до ближайшего союзника. Максимум бонуса +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> на расстоянии <Ability:LONEWOLF_MIN_DIST_TILES/>+ клеток."
+LocHelpText="Получает дополнительную точносить и защиту когда минимум <Ability:LONEWOLF_MIN_BONUS_TILES/> клеток до ближайшего союзника. Максимум бонуса +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> на расстоянии <Ability:LONEWOLF_MIN_DIST_TILES/>+ клеток."
+LocPromotionPopupText="<Bullet/> Получает +<Ability:LONEWOLF_AIM_PER_TILE/> Меткости и +<Ability:LONEWOLF_DEF_PER_TILE/> Защиты за каждую клетку между вами и ближайшим союзником, начиная с дистанции <Ability:LONEWOLF_MIN_BONUS_TILES/> клеток.<br/><Bullet/> Максимальный бонус +<Ability:LONEWOLF_AIM_BONUS/> Меткости, +<Ability:LONEWOLF_DEF_BONUS/> Защиты когда расстояние между вами и союзником как минимум <Ability:LONEWOLF_MIN_DIST_TILES/> клеток или больше.<br/><Bullet/> Бонус Защиты не работает, если солдат паникует, оглушён, дизориентирован, горит или ослаблен."
+; End Translated

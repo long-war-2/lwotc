@@ -12,6 +12,9 @@ var config int LINGERING_DODGE;
 
 var config int CRIPPLING_STRIKE_COOLDOWN;
 
+var config int CHARGE_BATTERY_COOLDOWN;
+var config int CHARGE_BATTERY_CHARGES;
+
 var config int TrackingRadius;
 
 var config int BloodTrailBleedingTurns;
@@ -42,6 +45,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddDemolitionist());
 	Templates.AddItem(AddSilentKillerCooldownReduction());
 	Templates.AddItem(AddCripplingStrike());
+	Templates.AddItem(AddShadowGrenadier());
+	Templates.AddItem(AddPoisonedBlades());
+	Templates.AddItem(AddChargeBattery());
 
 	return Templates;
 }
@@ -730,8 +736,124 @@ static function X2DataTemplate AddCripplingStrike()
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
+	Template.SuperConcealmentLoss = 0;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
+
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
+}
+
+static function X2DataTemplate AddShadowGrenadier()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_ShadowGrenadier			Effect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ShadowGrenadier');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_stealth_grenade";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Effect = new class'X2Effect_ShadowGrenadier';
+	Effect.BuildPersistentEffect(1, true, false, false);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(Effect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2DataTemplate AddPoisonedBlades()
+{
+	local X2AbilityTemplate Template;
+
+	Template = PurePassive('PoisonedBlades', "img:///UILibrary_XPerkIconPack.UIPerk_knife_adrenaline", false, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+
+	return Template;
+}
+
+static function X2DataTemplate AddChargeBattery()
+{
+	local X2AbilityTemplate				Template;
+	local X2AbilityCharges				Charges;
+	local X2AbilityCooldown				Cooldown;
+	local X2AbilityCost_ActionPoints	ActionPointCost;
+	local X2AbilityCost_Charges			ChargeCost;
+	local X2Condition_UnitProperty		ConcealedCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChargeBattery');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_lightning_stealth";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.ConcealmentRule = eConceal_Always;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	ConcealedCondition = new class'X2Condition_UnitProperty';
+	ConcealedCondition.ExcludeFriendlyToSource = false;
+	ConcealedCondition.IsSuperConcealed = true;
+	Template.AbilityShooterConditions.AddItem(ConcealedCondition);
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bfreeCost = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Charges = new class 'X2AbilityCharges';
+	Charges.InitialCharges = default.CHARGE_BATTERY_CHARGES;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.CHARGE_BATTERY_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	Template.AddTargetEffect(new class'X2Effect_ChargeBattery');
+
+	Template.SuperConcealmentLoss = 0;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MoveLostSpawnIncreasePerUse;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = ChargeBattery_BuildVisualization;
+
+	return Template;
+}
+
+// Copied from Rapid Deployment. Just plays a flyover to indicate that charge
+// batter has been activated.
+static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameStateHistory				History;
+	local XComGameStateContext_Ability		Context;
+	local StateObjectReference				InteractingUnitRef;
+	local VisualizationActionMetadata		EmptyTrack, BuildTrack;
+	local X2Action_PlaySoundAndFlyOver		SoundAndFlyover;
+	local XComGameState_Ability				Ability;
+
+	History = `XCOMHISTORY;
+	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	InteractingUnitRef = Context.InputContext.SourceObject;
+	BuildTrack = EmptyTrack;
+	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+	SoundAndFlyover = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+	SoundAndFlyover.SetSoundAndFlyOverParameters(none, Ability.GetMyTemplate().LocFlyOverText, 'None', eColor_Good);
 }

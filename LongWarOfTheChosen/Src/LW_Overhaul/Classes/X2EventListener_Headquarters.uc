@@ -19,6 +19,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> Templates;
 
 	Templates.AddItem(CreateXComHQListeners());
+	Templates.AddItem(CreateXComArmoryListeners());
 	Templates.AddItem(CreateCovertActionListeners());
 	Templates.AddItem(CreateWillProjectListeners());
 
@@ -37,6 +38,21 @@ static function CHEventListenerTemplate CreateXComHQListeners()
 	Template.AddCHEvent('OverrideScienceScore', OverrideScienceScore, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CanTechBeInspired', CanTechBeInspired, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UIAvengerShortcuts_ShowCQResistanceOrders', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('UIPersonnel_OnSortFinished', OnUIPersonnelDataRefreshed, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('UpdateResources', OnUpdateResources_LW, ELD_Immediate, GetListenerPriority());
+
+	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+// KDM : Event listeners dealing with the Armory on the Avenger.
+static function CHEventListenerTemplate CreateXComArmoryListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'XComArmoryListeners');
+	Template.AddCHEvent('UIArmory_WeaponUpgrade_NavHelpUpdated', OnWeaponUpgradeNavHelpUpdated, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -76,6 +92,63 @@ static function CHEventListenerTemplate CreateWillProjectListeners()
 static protected function int GetListenerPriority()
 {
 	return default.LISTENER_PRIORITY != -1 ? default.LISTENER_PRIORITY : class'XComGameState_LWListenerManager'.default.DEFAULT_LISTENER_PRIORITY;
+}
+
+// KDM : Listen for navigation help updates within UIArmory_WeaponUpgrade
+static function EventListenerReturn OnWeaponUpgradeNavHelpUpdated(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local bool AllowWeaponStripping, IsUpgradesListSelected;
+	local UIArmory_WeaponUpgrade WeaponUpgradeScreen;
+	local UIList UpgradesList;
+	local UINavigationHelp NavHelp;
+	local UIPanel UpgradesListContainer;
+	
+	WeaponUpgradeScreen = UIArmory_WeaponUpgrade(EventSource);
+	NavHelp = UINavigationHelp(EventData);
+
+	if (NavHelp == none)
+	{
+		`LWTrace("OnWeaponUpgradeNavHelpUpdated event did not have UINavigationHelp as its data");
+		return ELR_NoInterrupt;
+	}
+
+	if ((WeaponUpgradeScreen == none) || (UIArmory_WeaponTrait(WeaponUpgradeScreen) != none))
+	{
+		`LWTrace("OnWeaponUpgradeNavHelpUpdated event did not have UIArmory_WeaponUpgrade as its source");
+		return ELR_NoInterrupt;
+	}
+
+	UpgradesListContainer = WeaponUpgradeScreen.UpgradesListContainer;
+	UpgradesList = WeaponUpgradeScreen.UpgradesList;
+
+	IsUpgradesListSelected = ((WeaponUpgradeScreen.Navigator.GetSelected() == UpgradesListContainer) && (UpgradesListContainer.Navigator.GetSelected() == UpgradesList));
+	// KDM : Don't allow weapon stripping if either the 1.] upgrade slot list is open 2.] colour selector is open.
+	AllowWeaponStripping = (!(IsUpgradesListSelected || (WeaponUpgradeScreen.ColorSelector != none)));
+	
+	if (AllowWeaponStripping)
+	{
+		// KDM : 'Strip Weapon Upgrades' is a CustomizeList list item for mouse & keyboard users, so it doesn't need to be added to the
+		// navigation help system.
+		if (`ISCONTROLLERACTIVE)
+		{
+			// KDM : Right stick click corresponds to 'Strip [this weapon's] Upgrades'
+			NavHelp.AddRightHelp(CAPS(class'UIScreenListener_ArmoryWeaponUpgrade_LW'.default.strStripWeaponUpgradesButton), 
+				class'UIUtilities_Input'.const.ICON_RSCLICK_R3, , false, 
+				class'UIScreenListener_ArmoryWeaponUpgrade_LW'.default.strStripWeaponUpgradesTooltip);
+		}
+
+		// KDM : Left stick click corresponds to 'Strip Upgrades From Inactive Soldiers'.
+		NavHelp.AddRightHelp(CAPS(class'UIScreenListener_ArmoryWeaponUpgrade_LW'.default.StripAllWeaponUpgradesStr), 
+			class'UIUtilities_Input'.const.ICON_LSCLICK_L3, class'UIScreenListener_ArmoryWeaponUpgrade_LW'.static.OnStripUpgrades, 
+			false, class'UIUtilities_LW'.default.m_strTooltipStripWeapons);
+	}
+
+	NavHelp.Show();
 }
 
 static function EventListenerReturn OverrideScienceScore(
@@ -179,6 +252,96 @@ static function EventListenerReturn ShowOrHideResistanceOrdersButton(
 
 	return ELR_NoInterrupt;
 }
+
+static function EventListenerReturn OnUIPersonnelDataRefreshed(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local UIList PersonnelList;
+	local UIPersonnel PersonnelScreen;
+	local UIScrollbar Scrollbar;
+	
+	PersonnelScreen = UIPersonnel(EventSource);
+
+	if (PersonnelScreen != none)
+	{
+		PersonnelList = PersonnelScreen.m_kList;
+		if (PersonnelList != none && PersonnelList.GetItemCount() > 1)
+		{
+			Scrollbar = PersonnelList.Scrollbar;
+			if (Scrollbar != none)
+			{
+				// KDM : If the personnel list needs a scrollbar, we know that the total height of the personnel rows
+				// exceeds the height of the personnel list. In this case, we want to make sure that the personnel
+				// list is scrolled to the appropriate location, so we see the selected personnel row.
+				//
+				// Now, when the personnel screen, UIPersonnel, receives focus, its list can potentially re-select a previously
+				// selected personnel row via RefreshData() --> UpdateList(). This behaviour is desirable, as you may have 
+				// chosen to view a particular soldier from the soldier list then cancelled back to the soldier list after 
+				// finishing whatever it was you were doing.
+				
+				// Unfortunately : 
+				// 1.] UIPersonnel's UpdateList() clears the list via ClearItems() which removes, and thus resets, the scrollbar.
+				// BUT
+				// 2.] UIPersonnel's UpdateList() calls SetSelectedIndex() on the list, and SetSelected() on the 
+				// list's navigator; however, neither function modifies the list's scroll position via Scrollbar.SetThumbAtPercent(). 
+				// This is because the only place the scrollbar is manipulated is within UIList's NavigatorSelectionChanged, which 
+				// is called via Navigator.OnSelectedIndexChanged. Navigator.OnSelectedIndexChanged is called in functions like 
+				// Prev(), Next(), SelectFirstAvailable(), and SelectFirstAvailableIfNoCurrentSelection(); however, it is not 
+				// called within SetSelected().
+				//
+				// The end result is that we can have a list item selected, but not be able to see it due to an inappropriate
+				// scrollbar value. Generally speaking, the scrollbar will be scrolled to the top, after being reset, while 
+				// the selected list item will be down below. Consequently, we set the scrollbar value here to make sure we 'see' 
+				// the currently selected list item.
+			 
+				Scrollbar.SetThumbAtPercent(float(PersonnelList.SelectedIndex) 
+					/ float(PersonnelList.GetItemCount() - 1));
+			}
+		}
+	}
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OnUpdateResources_LW(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
+{
+	local XComHQPresentationLayer HQPres;
+
+	HQPres = `HQPRES;
+
+	// KDM : If we are viewing the 'fixed' recruit screen, UIRecruitSoldiers_LW, or any subclass of 
+	// UIRecruitSoldiers, the resource display will not work as UIAvengerHUD only looks for the base screen, 
+	// UIRecruitSoldiers. Therefore, we need to set up the resource display ourself.
+	//
+	// Note : We do not want to run this code if the screen we are looking at is of type UIRecruitSoldiers
+	// since it has already been dealt with in UIAvengerHUD, and this would display double.
+	if (HQPres.ScreenStack.IsCurrentClass(class'UIRecruitSoldiers') && 
+		!(HQPres.ScreenStack.GetCurrentClass() == class'UIRecruitSoldiers'))
+	{
+		// KDM : Display the same information a normal Recruit Screen would show.
+		HQPres.m_kAvengerHUD.UpdateMonthlySupplies();
+		HQPres.m_kAvengerHUD.UpdateSupplies();
+		HQPres.m_kAvengerHUD.ShowResources();
+	}
+	// KDM : If we are viewing the Long War Dark Event screen, UIAdventOperations_LW, or any subclass
+	// of UIAdventOperations, make sure the resource bar displays properly.
+	else if (HQPres.ScreenStack.IsCurrentClass(class'UIAdventOperations') && 
+		!(HQPres.ScreenStack.GetCurrentClass() == class'UIAdventOperations'))
+	{
+		// KDM : Display the same information a normal Dark Event Screen would show.
+		HQPres.m_kAvengerHUD.UpdateMonthlySupplies();
+		HQPres.m_kAvengerHUD.UpdateSupplies();
+		HQPres.m_kAvengerHUD.UpdateIntel();
+		HQPres.m_kAvengerHUD.ShowResources();
+	}
+
+	return ELR_NoInterrupt;
+}
+
 
 // Don't give the rewards if the covert action failed.
 static function EventListenerReturn CAPreventRewardOnFailure(

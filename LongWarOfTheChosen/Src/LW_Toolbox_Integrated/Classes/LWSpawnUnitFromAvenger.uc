@@ -66,10 +66,10 @@ static function XComGameState_Unit AddStrategyUnitToBoardAtLocation(XComGameStat
 	// create the history frame with the new tactical unit state
 	NewGameStateContext = class'XComGameStateContext_TacticalGameRule'.static.BuildContextFromGameRule(eGameRule_UnitAdded);
 	NewGameState = History.CreateNewGameState(true, NewGameStateContext);
-	Unit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
+	Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
 	Unit.SetVisibilityLocationFromVector(SpawnLocation);
+	Unit.BeginTacticalPlay(NewGameState);
 	//Unit.bSpawnedFromAvenger = true; // removed to fix TTP 225 (Missions counting twice) -- shouldn't be needed here, since these soldiers are in the Crew
-	NewGameState.AddStateObject(Unit);
 
 	// assign the new unit to the human team
 	foreach History.IterateByClassType(class'XComGameState_Player', PlayerState)
@@ -89,8 +89,9 @@ static function XComGameState_Unit AddStrategyUnitToBoardAtLocation(XComGameStat
 	// creates their visualizers
 	foreach Unit.InventoryItems(ItemReference)
 	{
-		ItemState = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', ItemReference.ObjectID));
-		NewGameState.AddStateObject(ItemState);
+		ItemState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', ItemReference.ObjectID));
+		//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
+		ItemState.BeginTacticalPlay(NewGameState);
 
 		// add any cosmetic items that might exists
 		ItemState.CreateCosmeticItemUnit(NewGameState);
@@ -126,8 +127,9 @@ static function XComGameState_Unit AddStrategyUnitToBoardAtLocation(XComGameStat
 	Items = UpdatedUnit.GetAllInventoryItems(NewGameState);
 	foreach Items(Item)
 	{
-		UpdatedItem = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', Item.ObjectID));
-		NewGameState.AddStateObject(UpdatedItem);
+		UpdatedItem = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', Item.ObjectID));
+		//Issue #159, this is needed now for loading units from avenger to properly update gamestate.
+		ItemState.BeginTacticalPlay(NewGameState);
 	}
 
 	Rules.InitializeUnitAbilities(NewGameState, UpdatedUnit);

@@ -2301,6 +2301,12 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	}
 
 	Template.Abilities.AddItem('MindControlCleanse');
+
+	// LWOTC Grant reaction fire a bonus against units in cover (the
+	// effect applies to the *target* of such shots) unless Revert
+	// Overwatch Rules mod is being used.
+	if (class'X2DownloadableContentInfo_WOTCRevertOverwatchRules' == none && Template.bCanTakeCover)
+		Template.Abilities.AddItem('ReactionFireAgainstCoverBonus');
 }
 
 static function X2LWTemplateModTemplate CreateReconfigGearTemplate()
@@ -3461,6 +3467,9 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('BiggestBoomsUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('SquadSizeIUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('SquadSizeIIUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('MeditationPreparationUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('ParkourUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('InfiltrationUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
@@ -3490,6 +3499,16 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			StaffSlotDef.StaffSlotTemplateName = 'PsiChamberScientistStaffSlot';
 			StaffSlotDef.bStartsLocked = false;
 			FacilityTemplate.StaffSlotDefs.InsertItem(1, StaffSlotDef);
+		}
+		if (FacilityTemplate.DataName == 'ResistanceRing')
+		{
+			// Add an extra engineer staff slot to reduce covert action duration
+			StaffSlotDef.StaffSlotTemplateName = 'ResistanceRingStaffSlot';
+			StaffSlotDef.bStartsLocked = true;
+			FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
+
+			// Remove the second upgrade, since there's only the one staff slot to unlock
+			FacilityTemplate.Upgrades.RemoveItem('ResistanceRing_UpgradeII');
 		}
 		//if (FacilityTemplate.DataName == 'Storage') Didn't work
 		//{
@@ -3852,6 +3871,12 @@ function ModifyFacilityUpgrades(X2StrategyElementTemplate Template, int Difficul
 			FacilityUpgradeTemplate.DisplayName = BaseResearchStationTemplate.default.DisplayName;
 			FacilityUpgradeTemplate.FacilityName = BaseResearchStationTemplate.default.FacilityName;
 			FacilityUpgradeTemplate.Summary = BaseResearchStationTemplate.default.Summary;
+		}
+
+		if (FacilityUpgradeTemplate.DataName == 'ResistanceRing_UpgradeI')
+		{
+			// Modify the upgrade to simply unlock the extra engineer staff slot
+			FacilityUpgradeTemplate.OnUpgradeAddedFn = class'X2StrategyElement_DefaultFacilityUpgrades'.static.OnUpgradeAdded_UnlockStaffSlot;
 		}
 	}
 }
