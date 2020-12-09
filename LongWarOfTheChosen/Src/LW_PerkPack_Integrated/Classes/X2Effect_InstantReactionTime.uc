@@ -9,7 +9,7 @@ var config int IRT_DODGE_PER_TILE;
 
 function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
-    local ShotModifierInfo				ShotInfo;
+	local ShotModifierInfo				ShotInfo;
 	local int							Tiles;
 
 	Tiles = Attacker.TileDistanceBetween(Target);       

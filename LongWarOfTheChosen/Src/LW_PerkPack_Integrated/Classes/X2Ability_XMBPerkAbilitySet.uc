@@ -2685,10 +2685,12 @@ static function X2AbilityTemplate AddBrawler()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
+
 	DamageReduction = new class 'X2Effect_Brawler';
 	DamageReduction.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	DamageReduction.BuildPersistentEffect(1, true, false);
 	Template.AddTargetEffect(DamageReduction);
+
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  No visualization
@@ -2709,10 +2711,12 @@ static function X2AbilityTemplate AddInstantReactionTime()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
+
 	DodgeBonus = new class 'X2Effect_InstantReactionTime';
 	DodgeBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	DodgeBonus.BuildPersistentEffect(1, true, false);
 	Template.AddTargetEffect(DodgeBonus);
+
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  No visualization

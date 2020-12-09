@@ -1339,6 +1339,7 @@ static function X2DataTemplate CreateChosenKidnap()
 	local X2Condition_UnitEffects ExcludeEffects;
 	local X2Condition_UnitType	ImmuneUnitCondition;
 	local name SoldierTemplateName;
+
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenKidnap'); //intentionally same template so kismet can disable it on special missions without changes to it
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_kidnap";
 	Template.Hostility = eHostility_Offensive;
@@ -1626,8 +1627,8 @@ static function X2DataTemplate AssassinSlash_LW()
 	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
 	Template.bCrossClassEligible = false;
 	Template.bDisplayInUITooltip = true;
-    Template.bDisplayInUITacticalText = true;
-    Template.DisplayTargetHitChance = true;
+	Template.bDisplayInUITacticalText = true;
+	Template.DisplayTargetHitChance = true;
 	Template.bShowActivation = true;
 	Template.bSkipFireAction = false;
 
@@ -1639,7 +1640,7 @@ static function X2DataTemplate AssassinSlash_LW()
 
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_Deadeye';
 
-    Template.AbilityTargetStyle = default.SimpleSingleMeleeTarget;
+	Template.AbilityTargetStyle = default.SimpleSingleMeleeTarget;
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
 	// Target Conditions
@@ -1672,7 +1673,7 @@ static function X2DataTemplate AssassinSlash_LW()
 
 	Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
 	Template.CinescriptCameraType = "Ranger_Reaper";
-    Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
+	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
 	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 

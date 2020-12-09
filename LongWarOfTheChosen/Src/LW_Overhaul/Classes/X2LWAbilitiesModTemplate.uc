@@ -920,7 +920,6 @@ static function ReworkPartingSilk(X2AbilityTemplate Template)
 {
 	RemoveAbilityTargetEffects(Template, 'X2Effect_Dazed');
 
-	//Fuck combatives calculations chance, seriously
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
 
 }
@@ -978,6 +977,7 @@ static function UpdateVanishingWind(X2AbilityTemplate Template)
 {
 	local X2Effect_GrantActionPoints AddAPEffect;
 	local X2Effect_RunBehaviorTree ReactionEffect;
+
 	AddAPEffect = new class'X2Effect_GrantActionPoints';
 	AddAPEffect.NumActionPoints = 1;
 	AddAPEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;

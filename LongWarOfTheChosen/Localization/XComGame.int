@@ -6081,20 +6081,20 @@ LocFlyOverText="Combat Readiness"
 ;LWOTC needs translation (2)
 [ChosenAssassin X2CharacterTemplate]
 strCharacterName="Assassin"
-strAcquiredText="Now a Close Combat menace, The Assassin is a juggernaut that will run towards you and slash you whenever possible. her initially low but ever increasing damage cannot be underestimated."
+strAcquiredText="Now a close-combat menace, the Assassin is a juggernaut that will run towards you and slash you whenever possible. Her initially-low, but ever-increasing damage cannot be underestimated."
 
 [ChosenAssassinM2 X2CharacterTemplate]
 strCharacterName="Assassin"
-strAcquiredText="Now a Close Combat menace, The Assassin is a juggernaut that will run towards you and slash you whenever possible. her initially low but ever increasing damage cannot be underestimated."
+strAcquiredText="Now a close-combat menace, the Assassin is a juggernaut that will run towards you and slash you whenever possible. Her initially-low, but ever-increasing damage cannot be underestimated."
 
 [ChosenAssassinM3 X2CharacterTemplate]
 strCharacterName="Assassin"
-strAcquiredText="Now a Close Combat menace, The Assassin is a juggernaut that will run towards you and slash you whenever possible. her initially low but ever increasing damage cannot be underestimated."
+strAcquiredText="Now a close-combat menace, the Assassin is a juggernaut that will run towards you and slash you whenever possible. Her initially-low, but ever-increasing damage cannot be underestimated."
 
 [ChosenAssassinM4 X2CharacterTemplate]
 strCharacterName="Assassin"
-strAcquiredText="Now a Close Combat menace, The Assassin is a juggernaut that will run towards you and slash you whenever possible. her initially low but ever increasing damage cannot be underestimated."
-;LWOTC end translation
+strAcquiredText="Now a close-combat menace, the Assassin is a juggernaut that will run towards you and slash you whenever possible. Her initially-low, but ever-increasing damage cannot be underestimated."
+;end translation (2)
 
 [ChosenWarlock X2CharacterTemplate]
 strCharacterName="Warlock"
@@ -6292,17 +6292,19 @@ LocLongDescription="Gain a movement action or Combat Readiness after taking dama
 LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocFlyOverText="Chosen Prime Reaction"
 
-[HunterPrimeReactionPassive X2AbilityTemplate]
+[WarlockPrimeReactionPassive X2AbilityTemplate]
 LocFriendlyName="Chosen Prime Reaction"
 LocLongDescription="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocFlyOverText="Chosen Prime Reaction"
 
+; LWOTC Needs Translation (2)
 [ChosenImmunitiesPassive X2AbilityTemplate]
 LocFriendlyName="Chosen Immunities"
-LocLongDescription="Chosen are immune to stun, disorient, frost and suffer -50% mobility from maim instead of being immobilized."
-LocHelpText="Chosen are immune to stun, disorient, frost and suffer -50% mobility from maim instead of being immobilized."
+LocLongDescription="Chosen are immune to stun, disorient, and frost and suffer -50% mobility from maim instead of being immobilized."
+LocHelpText="Chosen are immune to stun, disorient, and frost and suffer -50% mobility from maim instead of being immobilized."
 LocFlyOverText="Chosen Immunities"
+; End Translation (2)
 
 
 [HarborWave X2AbilityTemplate]
@@ -6311,6 +6313,7 @@ LocLongDescription="Send a psionic wave that deals damage and triggers blood thi
 LocHelpText="Send a psionic wave that deals damage and triggers blood thirst for every unit hit."
 LocFlyOverText="Harbor Wave"
 
+; LWOTC Needs Translation (2)
 [Brawler X2AbilityTemplate]
 LocFriendlyName="Brawler"
 LocFlyOverText="Brawler"
@@ -6331,5 +6334,6 @@ LocFlyOverText="Slash"
 LocLongDescription="Attack an adjacent target with your sword. Uses one action."
 LocHelpText="Attack an adjacent target with your sword. Uses one action."
 LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/><Bullet/> Uses one action and doesn't automatically end your turn, so two attacks a turn are possible."
+; End Translation (2)
 
 ; End Translation

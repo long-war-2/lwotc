@@ -14,9 +14,9 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local int   Tiles;
 
 	Tiles = Attacker.TileDistanceBetween(XComGameState_Unit(TargetDamageable));       
-	if (Tiles <= default.BRAWLER_MAX_TILES - 1)
+	if (Tiles < default.BRAWLER_MAX_TILES)
 	{
-        return -currentdamage * default.BRAWLER_DR_PCT / 100;
+        return -CurrentDamage * default.BRAWLER_DR_PCT / 100;
     }
 	
 	return 0;
@@ -24,7 +24,7 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 defaultproperties
 {
-    DuplicateResponse=eDupe_Ignore
-    EffectName="Brawler"
+	DuplicateResponse=eDupe_Ignore
+	EffectName="Brawler"
 	bDisplayInSpecialDamageMessageUI=true
 }
