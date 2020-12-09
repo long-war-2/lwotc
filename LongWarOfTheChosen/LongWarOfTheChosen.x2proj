@@ -781,6 +781,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_AreaSuppression.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Bastion.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_BodyShield.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Brawler.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_BringEmOn.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_CloseandPersonal.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_CloseEncounters.uc" />
@@ -808,6 +809,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Immobilize.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Implacable_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Infighter.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_InstantReactionTime.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Interference.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_IronCurtain.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_IronCurtainStatDamage.uc" />

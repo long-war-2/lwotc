@@ -1612,7 +1612,6 @@ static function X2DataTemplate AssassinSlash_LW()
 {
 	local X2AbilityTemplate                 Template;
 	local X2AbilityCost_ActionPoints        ActionPointCost;
-	local X2AbilityToHitCalc_StandardMelee  StandardMelee;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 	local array<name>                       SkipExclusions;
 	local X2Condition_UnitProperty			AdjacencyCondition;	
@@ -1680,6 +1679,8 @@ static function X2DataTemplate AssassinSlash_LW()
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
+
+	return Template;
 }
 
 	
