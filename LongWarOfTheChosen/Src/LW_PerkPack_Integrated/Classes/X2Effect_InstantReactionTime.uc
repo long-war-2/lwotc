@@ -23,5 +23,5 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
 defaultproperties
 {
     DuplicateResponse=eDupe_Ignore
-    EffectName="Infighter"
+    EffectName="InstantReactionTime"
 }

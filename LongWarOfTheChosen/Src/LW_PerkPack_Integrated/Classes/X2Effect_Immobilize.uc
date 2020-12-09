@@ -14,11 +14,11 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 
 	if (UnitState.IsChosen())
 	{
-		AddPersistentStatChange(eStat_Mobility, 0.5f, MODOP_Multiplication);
+		AddPersistentStatChange(eStat_Mobility, 0.5f, MODOP_PostMultiplication);
 	}
 	else
 	{
-		AddPersistentStatChange(eStat_Mobility, 0, MODOP_Multiplication);
+		AddPersistentStatChange(eStat_Mobility, 0, MODOP_PostMultiplication);
 		UnitState.SetUnitFloatValue(class'X2Ability_DefaultAbilitySet'.default.ImmobilizedValueName, 1);
 	}
 	NewGameState.AddStateObject(UnitState);
