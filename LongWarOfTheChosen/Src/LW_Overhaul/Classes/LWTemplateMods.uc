@@ -2241,7 +2241,6 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('ChosenExtractKnowledge');
 		Template.Abilities.RemoveItem('BendingReed');
 
-		Template.Abilities.AddItem('Bladestorm');
 		Template.Abilities.AddItem('ChosenCritImmune');
 		Template.Abilities.AddItem('CombatReadiness');
 		Template.Abilities.AddItem('ChosenKidnap');
