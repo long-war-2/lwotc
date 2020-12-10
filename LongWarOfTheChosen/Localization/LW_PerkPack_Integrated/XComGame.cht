@@ -161,9 +161,9 @@ LocPromotionPopupText="<Bullet/>你視野內的每個敵人使你獲得5點閃�
 [Infighter X2AbilityTemplate]
 LocFriendlyName="近戰鬥士"
 LocFlyOverText="近戰鬥士"
-LocLongDescription="對4格以內的攻擊獲得25點的閃避。"
-LocHelpText="對4格以內的攻擊獲得25點的閃避。"
-LocPromotionPopupText="<Bullet/>對4格以內的攻擊獲得25點的閃避。<br/><Bullet/>閃避加成也適用於近戰攻擊。<br/><Bullet/> 在單位混亂、暈眩、恐慌、燃燒或其他負面狀態的狀況下，這個技能不會提供防禦加乘。"
+LocLongDescription="對4格以內的攻擊獲得<Ability:INFIGHTER_DODGE_BONUS/>點的閃避。"
+LocHelpText="對4格以內的攻擊獲得<Ability:INFIGHTER_DODGE_BONUS/>點的閃避。"
+LocPromotionPopupText="<Bullet/>對4格以內的攻擊獲得<Ability:INFIGHTER_DODGE_BONUS/>點的閃避。<br/><Bullet/>閃避加成也適用於近戰攻擊。<br/><Bullet/> 在單位混亂、暈眩、恐慌、燃燒或其他負面狀態的狀況下，這個技能不會提供防禦加乘。"
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="深度感知"

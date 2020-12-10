@@ -161,9 +161,9 @@ LocPromotionPopupText="<Bullet/> Otrzymasz +5 do uniku za każdego widocznego wr
 [Infighter X2AbilityTemplate]
 LocFriendlyName="Z bliska"
 LocFlyOverText="Z bliska"
-LocLongDescription="Otrzymujesz +25 do unikania ataków z odległości do 4 pól."
-LocHelpText="Otrzymujesz +25 do unikania ataków z odległości do 4 pól."
-LocPromotionPopupText="<Bullet/> Otrzymujesz +25 do unikania ataków z odległości do 4 pól.<br/><Bullet/> Premia do uników liczy się także w przypadku ataków wręcz.<br/><Bullet/> Ta zdolność nie zapewnia bonusów do obrony jednostkom zdezorientowanym, ogłuszonym, panikującym, podpalonym lub osłabionym w inny sposób."
+LocLongDescription="Otrzymujesz +<Ability:INFIGHTER_DODGE_BONUS/> do unikania ataków z odległości do 4 pól."
+LocHelpText="Otrzymujesz +<Ability:INFIGHTER_DODGE_BONUS/> do unikania ataków z odległości do 4 pól."
+LocPromotionPopupText="<Bullet/> Otrzymujesz +<Ability:INFIGHTER_DODGE_BONUS/> do unikania ataków z odległości do 4 pól.<br/><Bullet/> Premia do uników liczy się także w przypadku ataków wręcz.<br/><Bullet/> Ta zdolność nie zapewnia bonusów do obrony jednostkom zdezorientowanym, ogłuszonym, panikującym, podpalonym lub osłabionym w inny sposób."
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Postrzeganie głębi"

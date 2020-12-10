@@ -290,6 +290,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'GUNSLINGER_COOLDOWN':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.GUNSLINGER_COOLDOWN);
 			return true;
+		case 'INFIGHTER_DODGE_BONUS':
+			OutString = string(class'X2Effect_Infighter'.default.INFIGHTER_DODGE_BONUS);
+			return true;
 		case 'IRT_DODGE_PER_TILE':
 			OutString = string(class'X2Effect_InstantReactionTime'.default.IRT_DODGE_PER_TILE);
 			return true;

@@ -158,9 +158,9 @@ LocPromotionPopupText="<Bullet/>你视野内的每个敌人使你获得5点闪�
 [Infighter X2AbilityTemplate]
 LocFriendlyName="近身斗士"
 LocFlyOverText="近身斗士"
-LocLongDescription="对4格以内的攻击获得25闪避。"
-LocHelpText="对4格以内的攻击获得25闪避。"
-LocPromotionPopupText="<Bullet/>对4格以内的攻击获得25闪避。<br/><Bullet/>闪避加成也适用于近战攻击。<br/><Bullet/>此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
+LocLongDescription="对4格以内的攻击获得<Ability:INFIGHTER_DODGE_BONUS/>闪避。"
+LocHelpText="对4格以内的攻击获得<Ability:INFIGHTER_DODGE_BONUS/>闪避。"
+LocPromotionPopupText="<Bullet/>对4格以内的攻击获得<Ability:INFIGHTER_DODGE_BONUS/>闪避。<br/><Bullet/>闪避加成也适用于近战攻击。<br/><Bullet/>此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="深度感知"

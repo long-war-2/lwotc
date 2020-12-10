@@ -160,9 +160,9 @@ LocPromotionPopupText="<Bullet/> Gagnez +5 en esquive par ennemi que vous voyez,
 [Infighter X2AbilityTemplate]
 LocFriendlyName="Corps à corps"
 LocFlyOverText="Corps à corps"
-LocLongDescription="Esquive +25 contre les attaques dans un rayon de quatre cases."
-LocHelpText="Esquive +25 contre les attaques dans un rayon de quatre cases."
-LocPromotionPopupText="<Bullet/> Esquive +25 contre les attaques dans un rayon de quatre cases. <br/><Bullet/> Le bonus s'applique également aux attaques au corps à corps. <br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
+LocLongDescription="Esquive +<Ability:INFIGHTER_DODGE_BONUS/> contre les attaques dans un rayon de quatre cases."
+LocHelpText="Esquive +<Ability:INFIGHTER_DODGE_BONUS/> contre les attaques dans un rayon de quatre cases."
+LocPromotionPopupText="<Bullet/> Esquive +<Ability:INFIGHTER_DODGE_BONUS/> contre les attaques dans un rayon de quatre cases. <br/><Bullet/> Le bonus s'applique également aux attaques au corps à corps. <br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Perception de profondeur"

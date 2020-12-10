@@ -161,9 +161,9 @@ LocPromotionPopupText="<Bullet/>視界内の敵1体につき回避+5（最大+30
 [Infighter X2AbilityTemplate]
 LocFriendlyName="インファイター"
 LocFlyOverText="インファイター"
-LocLongDescription="4タイル以内からの攻撃に対して回避+25。"
-LocHelpText="4タイル以内からの攻撃に対して回避+25。"
-LocPromotionPopupText="<Bullet/>4タイル以内からの攻撃に対する回避+25。<br/><Bullet/>この回避ボーナスは近接攻撃にも適用される。<br/><Bullet/> このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
+LocLongDescription="4タイル以内からの攻撃に対して回避+<Ability:INFIGHTER_DODGE_BONUS/>。"
+LocHelpText="4タイル以内からの攻撃に対して回避+<Ability:INFIGHTER_DODGE_BONUS/>。"
+LocPromotionPopupText="<Bullet/>4タイル以内からの攻撃に対する回避+<Ability:INFIGHTER_DODGE_BONUS/>。<br/><Bullet/>この回避ボーナスは近接攻撃にも適用される。<br/><Bullet/> このアビリティによる防御ボーナスは、混乱状態、スタン状態、パニック状態、発火等の影響下あるユニットには適応されない。"
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="深度知覚力"

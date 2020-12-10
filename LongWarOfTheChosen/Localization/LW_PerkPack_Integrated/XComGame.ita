@@ -161,9 +161,9 @@ LocPromotionPopupText="<Bullet/> Ottieni +5 di Schivata per ogni nemico che vedi
 [Infighter X2AbilityTemplate]
 LocFriendlyName="Riflessi ravvicinati"
 LocFlyOverText="Riflessi ravvicinati"
-LocLongDescription="Ottieni 25 di Schivata contro gli attacchi entro quattro caselle."
-LocHelpText="Ottieni 25 di Schivata contro gli attacchi entro quattro caselle."
-LocPromotionPopupText="<Bullet/> Ottieni 25 di Schivata contro gli attacchi entro quattro caselle.<br/><Bullet/> Il bonus alla Schivata si applica anche agli attacchi in mischia.<br/><Bullet/> Questa abilità non fornisce bonus difensivi se l'unità è disorientata, stordita, nel panico, a fuoco o impedita in altro modo."
+LocLongDescription="Ottieni <Ability:INFIGHTER_DODGE_BONUS/> di Schivata contro gli attacchi entro quattro caselle."
+LocHelpText="Ottieni <Ability:INFIGHTER_DODGE_BONUS/> di Schivata contro gli attacchi entro quattro caselle."
+LocPromotionPopupText="<Bullet/> Ottieni <Ability:INFIGHTER_DODGE_BONUS/> di Schivata contro gli attacchi entro quattro caselle.<br/><Bullet/> Il bonus alla Schivata si applica anche agli attacchi in mischia.<br/><Bullet/> Questa abilità non fornisce bonus difensivi se l'unità è disorientata, stordita, nel panico, a fuoco o impedita in altro modo."
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Percezione della profondità"

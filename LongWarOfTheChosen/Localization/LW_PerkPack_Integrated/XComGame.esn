@@ -161,9 +161,9 @@ LocPromotionPopupText="<Bullet/> Obtienes 5 de capacidad de esquivar por cada en
 [Infighter X2AbilityTemplate]
 LocFriendlyName="Luchador cercano"
 LocFlyOverText="Luchador cercano"
-LocLongDescription="Obtienes 25 de capacidad de esquivar contra ataques a 4 casillas o menos."
-LocHelpText="Obtienes 25 de capacidad de esquivar contra ataques a 4 casillas o menos."
-LocPromotionPopupText="<Bullet/> Obtienes 25 de capacidad de esquivar contra ataques a 4 casillas o menos.<br/><Bullet/> La bonificación de esquivar también se aplica a los ataques cuerpo a cuerpo.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
+LocLongDescription="Obtienes <Ability:INFIGHTER_DODGE_BONUS/> de capacidad de esquivar contra ataques a 4 casillas o menos."
+LocHelpText="Obtienes <Ability:INFIGHTER_DODGE_BONUS/> de capacidad de esquivar contra ataques a 4 casillas o menos."
+LocPromotionPopupText="<Bullet/> Obtienes <Ability:INFIGHTER_DODGE_BONUS/> de capacidad de esquivar contra ataques a 4 casillas o menos.<br/><Bullet/> La bonificación de esquivar también se aplica a los ataques cuerpo a cuerpo.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Percepción de la profundidad"

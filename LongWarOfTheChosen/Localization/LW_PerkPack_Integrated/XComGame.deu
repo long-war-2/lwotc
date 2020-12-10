@@ -158,9 +158,9 @@ LocPromotionPopupText="<Bullet/> Du erhältst für jeden sichtbaren Feind +5 Aus
 [Infighter X2AbilityTemplate]
 LocFriendlyName="Nahkämpfer"
 LocFlyOverText="Nahkämpfer"
-LocLongDescription="Du erhältst +25 Ausweichen gegen Ziele innerhalb von 4 Geländefeldern."
-LocHelpText="Du erhältst +25 Ausweichen gegen Ziele innerhalb von 4 Geländefeldern."
-LocPromotionPopupText="<Bullet/> Du erhältst +25 Ausweichen gegen Ziele innerhalb von 4 Geländefeldern.<br/><Bullet/> Der Ausweichbonus zählt auch gegen Nahkampfangriffe.<br/><Bullet/> Diese Fähigkeit bietet keinen Verteidigungsbonus, wenn die Einheit brennt, desorientiert, betäubt, in Panik verfallen oder anders beeinträchtigt ist."
+LocLongDescription="Du erhältst +<Ability:INFIGHTER_DODGE_BONUS/> Ausweichen gegen Ziele innerhalb von 4 Geländefeldern."
+LocHelpText="Du erhältst +<Ability:INFIGHTER_DODGE_BONUS/> Ausweichen gegen Ziele innerhalb von 4 Geländefeldern."
+LocPromotionPopupText="<Bullet/> Du erhältst +<Ability:INFIGHTER_DODGE_BONUS/> Ausweichen gegen Ziele innerhalb von 4 Geländefeldern.<br/><Bullet/> Der Ausweichbonus zählt auch gegen Nahkampfangriffe.<br/><Bullet/> Diese Fähigkeit bietet keinen Verteidigungsbonus, wenn die Einheit brennt, desorientiert, betäubt, in Panik verfallen oder anders beeinträchtigt ist."
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Tiefenwahrnehmung"

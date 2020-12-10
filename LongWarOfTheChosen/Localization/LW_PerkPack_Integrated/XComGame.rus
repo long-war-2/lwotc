@@ -158,9 +158,9 @@ LocPromotionPopupText="<Bullet/> Дает +5 к уклонению за кажд
 [Infighter X2AbilityTemplate]
 LocFriendlyName="Звезда ринга"
 LocFlyOverText="Звезда ринга"
-LocLongDescription="Дает +25 к уклонению против атак в пределах 4 клеток."
-LocHelpText="Дает +25 к уклонению против атак в пределах 4 клеток."
-LocPromotionPopupText="<Bullet/> Дает +25 к уклонению против атак в пределах 4 клеток.<br/><Bullet/> Распространяется на атаки в рукопашной.<br/><Bullet/> Способность не добавляет защитных бонусов если юнит дезориентирован, оглушен, паникует, охвачен огнём или ослаблен."
+LocLongDescription="Дает +<Ability:INFIGHTER_DODGE_BONUS/> к уклонению против атак в пределах 4 клеток."
+LocHelpText="Дает +<Ability:INFIGHTER_DODGE_BONUS/> к уклонению против атак в пределах 4 клеток."
+LocPromotionPopupText="<Bullet/> Дает +<Ability:INFIGHTER_DODGE_BONUS/> к уклонению против атак в пределах 4 клеток.<br/><Bullet/> Распространяется на атаки в рукопашной.<br/><Bullet/> Способность не добавляет защитных бонусов если юнит дезориентирован, оглушен, паникует, охвачен огнём или ослаблен."
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Резкость зрения"
