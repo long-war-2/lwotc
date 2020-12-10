@@ -1152,6 +1152,14 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.PrerequisiteAbilities.AddItem('Solace_LW');
 	}
 
+	if (Template.DataName == 'SoulSteal')
+	{
+		// This is an ugly fix for a bug in vanilla that results in Soul Steal
+		// occasionally appearing twice in the "choose psi ability to train"
+		// screen. This hack is OK because all psi operatives have Soulfire.
+		Template.PrerequisiteAbilities.RemoveItem('Soulfire');
+	}
+
 	if (Template.DataName == 'Soulfire')
 	{
 		Cooldown = new class 'X2AbilityCooldown_Soulfire';

@@ -147,6 +147,7 @@ If you'd like to try out the new overwatch behaviour, simply disable the Revert 
  * Acid Grenades Proving Ground project now correctly requires a Spectre corpse
  * The Recruit screen now has all the recruits in a scrollable pane, so you'll be able to see all of them when you have more than can fit in one screen
  * The Recruit screen will also no longer have the stats disappear when you recruit a soldier
+ * Psi operatives should no longer get Soul Steal twice as a training option (works around a bug in vanilla game)
 
 Lastly, a big thank you to FlashVanMaster for contributing a significant chunk of Russian translations.
 
