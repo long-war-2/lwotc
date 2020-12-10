@@ -3,6 +3,7 @@ Welcome to **dev build 22** of Long War of the Chosen!
 This is intended to be the precursor build to beta 4, with some notable balance changes that need testing. The big changes include:
 
  * A slightly reworked Reaper tree to make it more suitable for the new Shadow and to generally buff the unit
+ * The Assassin is now more dangerous and acts more like a juggernaut (she won't often run away)
  * More common Alien Ruler encounters (a *lot* more common)
  * Underinfiltrated supply raids and troop columns now buff the enemies on the map rather than having a very difficult command pod (actually added in 21.3 but not explained well)
  * Covert action ambushes are back and the "wounded" risk has gone
@@ -15,11 +16,9 @@ This is intended to be the precursor build to beta 4, with some notable balance 
 
 To install dev build 22, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
 
-||  **[Download the full release from Nexus Mods]()** ||
+||  **[Download the full release from Nexus Mods](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
 
-There is also a smaller, patch version available here that can be unpacked on top of any existing dev build 21 installation:
-
-||  **[Download dev build 21 to 22 patch from Nexus Mods]()** ||
+There is also a smaller, patch version available at that link that can be unpacked on top of any existing dev build 21 installation.
 
 ## Changelog
 
