@@ -52,10 +52,13 @@ static function UpdateDarkEvents(X2StrategyElementTemplate Template, int Difficu
 		case 'DarkEvent_SpiderAndFly': // TODO: Consider restoring this once covert action Ambush missions are back
 		case 'DarkEvent_WildHunt': // We don't use the vanilla spawning logic for Chosen
 		case 'DarkEvent_DarkTower': // Doesn't work for our Will loss mechanic yet. TODO: maybe change that
+		case 'DarkEvent_TheCollectors': // Chosen always try to capture
+		case 'DarkEvent_MadeWhole':  // Chosen are strong enough without losing their weaknesses too!
 			// Remove these from play
 			DETemplate.StartingWeight = 0;
 			DETemplate.MinWeight = 0;
 			DETemplate.MaxWeight = 0;
+			DETemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.AlwaysFalse;
 			break;
 
 		case 'DarkEvent_AlloyPadding':
@@ -111,12 +114,6 @@ static function UpdateDarkEvents(X2StrategyElementTemplate Template, int Difficu
 			DETemplate.OnActivatedFn = none;
 			DETemplate.OnDeactivatedFn = none;
 			DETemplate.ModifyTacticalStartStateFn = none;
-			break;
-
-		case 'DarkEvent_TheCollectors':
-		case 'DarkEvent_MadeWhole':
-			// Remove these from play when the Chosen are all dead
-			DETemplate.CanActivateFn = class'X2StrategyElement_DarkEvents_LW'.static.AlwaysFalse;
 			break;
 
 		default:
