@@ -9,7 +9,7 @@ This is intended to be the precursor build to beta 4, with some notable balance 
  * Poison now lasts a fixed 2 turns, rather than potentially disappearing almost as soon as it's applied
  * Chosen correctly appear on the missions they're supposed to (and don't appear on ones they shouldn't)
  * Jailbreaks can have multiple captured XCOM soldiers (up to 3) as rewards
- * Chosen gain knowledge a lot more slowly than before from Retribution, but faster from captures
+ * Chosen gain knowledge a lot more slowly than before from Retribution, and a little more slowly from captures
 
 **Important** If you want to upgrade mid campaign and want to test the Reaper tree changes, be sure to use the `RespecSelectedSoldier` console command, although be aware that this will change the XCOM-row abilities too.
 
@@ -65,7 +65,7 @@ In addition, there are more general changes to the Chosen, some of which are ver
  * Lowered Retribution knowledge gain from 15 to 5
  * Chosen kidnap knowledge gain to 15 from 20
  * Retribution now requires level 1 knowledge, which means that a Chosen that has 0-25 knowledge will always train; the less a Chosen kidnaps, the more terrifying it is
- * Chosen Sabotage cooldown to 3 from 1 but the effects are a lot stronger, for example a 75% drain on supplies)
+ * Chosen Sabotage cooldown to 3 from 1 but the effects are a lot stronger, for example a 75% drain on supplies
  * Chosen Avenger Defence has several changes:
    - It now has way more powerful enemies
    - The Avenger health has been increased to 550
@@ -77,7 +77,7 @@ In addition, there are more general changes to the Chosen, some of which are ver
  * Increased T4 Chosen HP on all difficulties
  * Chosen are now resistant to immobilize, getting a -50% penalty to mobility instead of not being able to move at all
  * Chosen kidnap now has an animation and can only target XCOM soldiers
- * Timer on Defend_LW retaliations is now 2 turns less but RNFs start significantly weaker, although they ramp up faster than before
+ * Timer on Defend_LW retaliations is now 2 turns less but RNFs start significantly weaker; reinforcements do ramp up a bit faster than in dev build 21 and notably faster than in Long War 2
  * Increased Hunter's grapple cooldown by 1
  * Chosen prime reactions should now properly display in their F1
  * Tweaked the strength table, chosen will now get their defensive perks earlier
@@ -131,6 +131,7 @@ If you'd like to try out the new overwatch behaviour, simply disable the Revert 
  * Poison always lasts for two turns now
    - Poison had the chance to disappear almost immediately, making Venom Rounds and Gas Grenades particularly weak
    - Soldiers will now be able to move out of poison clouds without poisoning themselves again, since they will still be poisoned for the turn following the poison being applied
+ * Reaper HQ intel gain increased slightly, from 0-4 every 2 days to 2-4 on Commander and Legend difficulties, from 2-6 to 4-6 on Rookie and from 1-6 to 3-6 on Veteran
  * Mechanized Warfare no longer has the MEC wreck requirement, since many players were struggling to get one in a reasonable time frame
 
 ### Bug fixes
@@ -145,6 +146,7 @@ If you'd like to try out the new overwatch behaviour, simply disable the Revert 
  * Infighter no longer procs at 2 tiles higher range than intended
  * All havens should now be selectable via a controller
  * Acid Grenades Proving Ground project now correctly requires a Spectre corpse
+ * Talon Rounds Proving Ground project now correctly requires an Officer corpse
  * The Recruit screen now has all the recruits in a scrollable pane, so you'll be able to see all of them when you have more than can fit in one screen
  * The Recruit screen will also no longer have the stats disappear when you recruit a soldier
  * Psi operatives should no longer get Soul Steal twice as a training option (works around a bug in vanilla game)
