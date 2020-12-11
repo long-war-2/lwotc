@@ -90,7 +90,6 @@ var config int SUPERCHARGE_HEAL;
 
 var config int MAIM_AMMO_COST;
 var config int MAIM_COOLDOWN;
-var config int MAIM_DURATION;
 
 var config int SCRAP_METAL_AMMO_AMOUNT;
 
@@ -1166,7 +1165,7 @@ static function X2AbilityTemplate Maim()
 	AddCooldown(Template, default.MAIM_COOLDOWN);
 
 	// Effect
-	Template.AddTargetEffect(class'X2StatusEffects_LW'.static.CreateMaimedStatusEffect(default.MAIM_DURATION, Template.AbilitySourceName));
+	Template.AddTargetEffect(class'X2StatusEffects_LW'.static.CreateMaimedStatusEffect(, Template.AbilitySourceName));
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
