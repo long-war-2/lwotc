@@ -1680,6 +1680,9 @@ static function X2DataTemplate AssassinSlash_LW()
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
 
+	//Event that activates blood thirst
+	Template.PostActivationEvents.AddItem('SlashActivated');
+
 	return Template;
 }
 
