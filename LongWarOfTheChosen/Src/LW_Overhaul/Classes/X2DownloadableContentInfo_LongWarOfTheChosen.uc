@@ -2653,40 +2653,6 @@ static function ActivateRetribution(XComGameState NewGameState, StateObjectRefer
 //---------------------------------------------------------------------------------------
 static function bool TrainingCanBePlayed(StateObjectReference InRef, optional XComGameState NewGameState = none)
 {
-	local XComGameState_AdventChosen ChosenState;
-	local XComGameState_ChosenAction ActionState;
-	local StateObjectReference ActionRef;
-	local bool bCantPlay;
-
-	ChosenState = XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(InRef.ObjectID));
-
-	if (ChosenState == none)
-	{
-		ChosenState = class'X2StrategyElement_XpackChosenActions'.static.GetChosen(InRef);
-	}
-
-	// Cannot be first action after meeting XCOM
-	if (ChosenState.bMetXCom)
-	{
-		bCantPlay = true;
-
-		foreach ChosenState.PreviousMonthActions(ActionRef)
-		{
-			ActionState = class'X2StrategyElement_XpackChosenActions'.static.GetAction(ActionRef);
-
-			if (ActionState.GetMyTemplateName() != 'ChosenAction_Training')
-			{
-				bCantPlay = false;
-				break;
-			}
-		}
-
-		if (bCantPlay)
-		{
-			return false;
-		}
-	}
- 
 	return true;
 }
 
