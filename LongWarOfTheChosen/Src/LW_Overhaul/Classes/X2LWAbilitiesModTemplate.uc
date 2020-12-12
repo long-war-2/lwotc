@@ -918,9 +918,27 @@ static function MakeChosenInstantlyEngagedAndRemoveTimerPause(X2AbilityTemplate 
 
 static function ReworkPartingSilk(X2AbilityTemplate Template)
 {
+	local X2AbilityCost Cost;
+	local X2Condition Condition;
 	RemoveAbilityTargetEffects(Template, 'X2Effect_Dazed');
 
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
+
+	foreach Template.AbilityCosts(Cost)
+	{
+		if (Cost.IsA('X2AbilityCost_ActionPoints'))
+		{
+			X2AbilityCost_ActionPoints(Cost).bConsumeAllPoints = true;
+		}
+	}
+	
+	foreach Template.AbilityTargetConditions(Condition)
+	{
+		if (Condition.IsA('X2Condition_UnitProperty'))
+		{
+			X2Condition_UnitProperty(Condition).RequireUnitSelectedFromHQ = false;
+		}
+	}
 
 }
 

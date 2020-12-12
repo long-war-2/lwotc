@@ -16,7 +16,7 @@ var config int SHIELDALLYM1_SHIELD;
 var config int SHIELDALLYM2_SHIELD;
 var config int SHIELDALLYM3_SHIELD;
 var config int SHIELDALLYM4_SHIELD;
-var config array<name> KIDNAP_ELIGIBLE_SOLDIERS;
+var config array<name> KIDNAP_ELIGIBLE_CHARTYPES;
 
 var private name ExtractKnowledgeMarkSourceEffectName, ExtractKnowledgeMarkTargetEffectName;
 
@@ -1338,7 +1338,7 @@ static function X2DataTemplate CreateChosenKidnap()
 	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
 	local X2Condition_UnitEffects ExcludeEffects;
 	local X2Condition_UnitType	AllowedUnitCondition;
-	local name SoldierTemplateName;
+	local name SoldierGroupName;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenKidnap'); //intentionally same template so kismet can disable it on special missions without changes to it
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_kidnap";
@@ -1399,9 +1399,9 @@ static function X2DataTemplate CreateChosenKidnap()
 
 	AllowedUnitCondition = new class'X2Condition_UnitType';
 	
-	foreach default.KIDNAP_ELIGIBLE_SOLDIERS(SoldierTemplateName)
+	foreach default.KIDNAP_ELIGIBLE_CHARTYPES(SoldierGroupName)
 	{
-		AllowedUnitCondition.IncludeTypes.AddItem(SoldierTemplateName);
+		AllowedUnitCondition.IncludeTypes.AddItem(SoldierGroupName);
 	}
 
 	Template.AbilityTargetConditions.AddItem(AllowedUnitCondition);
