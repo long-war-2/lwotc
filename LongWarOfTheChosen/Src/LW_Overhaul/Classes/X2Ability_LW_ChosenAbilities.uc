@@ -1337,8 +1337,7 @@ static function X2DataTemplate CreateChosenKidnap()
 	local X2AbilityCooldown					Cooldown;
 	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
 	local X2Condition_UnitEffects ExcludeEffects;
-	local X2Condition_UnitType	AllowedUnitCondition;
-	local name SoldierGroupName;
+	local X2Condition_Character	AllowedUnitCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenKidnap'); //intentionally same template so kismet can disable it on special missions without changes to it
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_kidnap";
@@ -1397,13 +1396,8 @@ static function X2DataTemplate CreateChosenKidnap()
 	Template.bSkipFireAction = true;
 	Template.bShowActivation = true;
 
-	AllowedUnitCondition = new class'X2Condition_UnitType';
-	
-	foreach default.KIDNAP_ELIGIBLE_CHARTYPES(SoldierGroupName)
-	{
-		AllowedUnitCondition.IncludeTypes.AddItem(SoldierGroupName);
-	}
-
+	AllowedUnitCondition = new class'X2Condition_Character';
+	AllowedUnitCondition.IncludeCharacterTemplates = default.KIDNAP_ELIGIBLE_CHARTYPES;
 	Template.AbilityTargetConditions.AddItem(AllowedUnitCondition);
 	
 	Template.PostActivationEvents.AddItem('ChosenKidnap');
