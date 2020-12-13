@@ -38,7 +38,6 @@ static function X2AbilityTemplate AddBattlemaster()
 static function X2AbilityTemplate AddReckoning_LW()
 {
 	local X2AbilityTemplate	Template;
-	local X2AbilityCooldown	Cooldown;
 
 	Template = PurePassive('Reckoning_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Reckoning");
 	Template.AdditionalAbilities.AddItem('SkirmisherFleche');
