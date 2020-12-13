@@ -6348,8 +6348,8 @@ LocPromotionPopupText="Gain <Ability:IRT_DODGE_PER_TILE> dodge against each atta
 [AssassinSlash_LW X2AbilityTemplate]
 LocFriendlyName="Assassin Slash"
 LocFlyOverText="Assassin Slash"
-LocLongDescription="Attack an adjacent target with your sword. Uses one action, Guaranteed to hit."
-LocHelpText="Attack an adjacent target with your sword. Uses one action, Guaranteed to hit."
+LocLongDescription="Attack an adjacent target with your sword. Uses one action and is guaranteed to hit."
+LocHelpText="Attack an adjacent target with your sword. Uses one action and is guaranteed to hit."
 LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/><Bullet/> Uses one action and doesn't automatically end your turn, so two attacks a turn are possible."
 ; End Translation (2)
 
