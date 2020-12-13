@@ -5147,23 +5147,25 @@ LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into posit
 
 [Reckoning_LW X2AbilityTemplate]
 LocFriendlyName="Reckoning"
-LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack."
-LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge and Slash attack."
+LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge and Quick Slash attacks."
+LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge and Quick Slash attacks."
 LocFlyOverText="Reckoning"
-LocPromotionPopupText="<Bullet/> You can trigger the Slash ability by placing the movement cursor over an enemy.<br/><Bullet/> A Skirmisher can perform a \"Dash\" move, using both actions to move, and still trigger a Charge against an adjacent enemy.<br/><Bullet/> Charge has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point, is not turn ending, and has a <Ability:RECKONING_LW_COOLDOWN/>-turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/><Bullet/> Quick Slash can only be used against adjacent targets.<br/><Bullet/> Quick Slash has a <Ability:RECKONING_LW_SLASH_COOLDOWN/>-turn cooldown.<br/>"
 
+; LWOTC Needs Translation (2)
 [SkirmisherFleche X2AbilityTemplate]
-LocFriendlyName="Skirmisher Fleche"
+LocFriendlyName="Charge"
 LocLongDescription="Attack any enemy within movement range with your <Ability:SecondaryWeaponName/>."
 LocHelpText="Attack an enemy within movement range with your <Ability:SecondaryWeaponName/>."
-LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy.<br/><Bullet/> A Skirmisher can perform a \"Dash\" move, using both actions to move, and still trigger a Charge against an adjacent enemy.<br/><Bullet/> Charge has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point, is not turn ending, and has a <Ability:RECKONING_LW_COOLDOWN/>-turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
 
 [SkirmisherSlash X2AbilityTemplate]
-LocFriendlyName="Skirmisher Slash"
-LocFlyOverText="Skirmisher Slash"
-LocLongDescription="Attack an adjacent target with your Ripjack does not cost an action.(Cooldown: 3)"
-LocHelpText="Attack an adjacent target with your Ripjack does not cost an action.(Cooldown: 3)"
-LocPromotionPopupText="<Bullet/> Attack an adjacent target with your Ripjack does not cost an action.<br/><Bullet/> Slash(Reckoning) can combo well with other Skirmisher abilities, as it does not prevent the use of other abilities in the same turn.<br/>"
+LocFriendlyName="Quick Slash"
+LocFlyOverText="Quick Slash"
+LocLongDescription="Attack an adjacent target with your Ripjack as a free action."
+LocHelpText="Attack an adjacent target with your Ripjack as a free action."
+LocPromotionPopupText="<Bullet/> Quick Slash can only be used against adjacent targets.<br/><Bullet/> Quick Slash has a <Ability:RECKONING_LW_SLASH_COOLDOWN/>-turn cooldown.<br/>"
+; End Translation (2)
 
 [SupremeFocus X2AbilityTemplate]
 LocFriendlyName="Supreme Focus"

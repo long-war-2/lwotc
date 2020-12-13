@@ -44,10 +44,6 @@ static function X2AbilityTemplate AddReckoning_LW()
 	Template.AdditionalAbilities.AddItem('SkirmisherFleche');
 	Template.AdditionalAbilities.AddItem('SkirmisherSlash');
 
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.RECKONING_LW_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
-
 	return Template;
 }
 
