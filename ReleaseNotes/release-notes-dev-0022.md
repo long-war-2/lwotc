@@ -1,4 +1,4 @@
-Welcome to **dev build 22** of Long War of the Chosen!
+Welcome to **dev build 22.1** of Long War of the Chosen!
 
 This is intended to be the precursor build to beta 4, with some notable balance changes that need testing. The big changes include:
 
@@ -12,6 +12,8 @@ This is intended to be the precursor build to beta 4, with some notable balance 
  * Jailbreaks can have multiple captured XCOM soldiers (up to 3) as rewards
  * Chosen gain knowledge a lot more slowly than before from Retribution, and a little more slowly from captures
 
+**UPDATE** Dev build 22.1 is now available! The patch notes for this version can be found just below.
+
 **Important** If you want to upgrade mid campaign and want to test the Reaper tree changes, be sure to use the `RespecSelectedSoldier` console command, although be aware that this will change the XCOM-row abilities too.
 
 To install dev build 22, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
@@ -20,7 +22,23 @@ To install dev build 22, just delete your existing LongWarOfTheChosen and X2WOTC
 
 There is also a smaller, patch version available at that link that can be unpacked on top of any existing dev build 21 installation.
 
-## Changelog
+## Changelog 22.1
+
+ * The correct reinforcement timer value is now used for Haven Defend mission
+ * The LWOTC version of the Chosen Avenger Assault is now correctly used in place of the vanilla one
+ * Chosen can always undertake Training activity, including at 0-25 knowledge level
+ * The Chosen can kidnap soldiers once again
+ * Assassin's Parting Silk (Fleche-like melee attack) now ends turn
+ * Assassin will no longer spam Vanishing Wind
+ * Assassin can once again target rebels
+ * Fixed Assassin's Slash so that it triggers Blood Thirst
+ * Clarified that Assassin's Slash is a guaranteed hit in ability description
+ * Fixed Knife Juggler so that it grants +1 damage
+ * Fixed duration of Maimed status effect so it lasts through the enemy turn
+ * Fixed displayed Dodge value for Infighter
+ * Fixed displayed damage reduction value for Brawler
+
+## Changelog 22
 
 ### The Reaper
 
