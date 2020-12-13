@@ -3139,7 +3139,7 @@ LocFriendlyName = "Протокол вспышка"
 LocFlyOverText = "Протокол вспышка"
 LocHelpText = "Гремлин ослепляет в небольшом радиусе цели (уменьшает Меткость на <Ability:DISORIENTED_AIM_ADJUST/> и мобильность на <Ability:DISORIENTED_MOBILITY_ADJUST/>)"
 LocLongDescription = "Гремлин ослепляет в небольшом радиусе цели (уменьшает Меткость на <Ability:DISORIENTED_AIM_ADJUST/> и мобильность на <Ability:DISORIENTED_MOBILITY_ADJUST/>)"
-LocPromotionPopupText = "<Bullet/> Работает с общим видом. <br/> <Bullet/> <Ability:BLIND_PROTOCOL_COOLDOWN/>-ходов перезарядки. <br/> "
+LocPromotionPopupText = "<Bullet/> Работает с общим видом. <br/> <Bullet/> <Ability:SelfCooldown/>-ходов перезарядки. <br/> "
 
 [LeadTheTarget_LW X2AbilityTemplate]
 LocFriendlyName = "Вести цель"
