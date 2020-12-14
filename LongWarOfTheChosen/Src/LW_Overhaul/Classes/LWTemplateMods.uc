@@ -3472,7 +3472,7 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 	{
 		if (FacilityTemplate.DataName == 'OfficerTrainingSchool')
 		{
-			for (i = 0 ; i < default.GTSUnlocksToRemove.length ; i++)
+			for (i = 0 ; i < default.GTSUnlocksToRemove.Length ; i++)
 			{
     			FacilityTemplate.SoldierUnlockTemplates.RemoveItem(default.GTSUnlocksToRemove[i]);
 			}
