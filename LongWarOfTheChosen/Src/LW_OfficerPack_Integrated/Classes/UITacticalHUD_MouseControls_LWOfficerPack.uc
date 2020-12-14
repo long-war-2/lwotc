@@ -1,9 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    UITacticalHUD_MouseControls_LWOfficerPack.uc
 //  AUTHOR:  Amineri (Pavonis Interactive)
-//
 //  PURPOSE: Overrides mouse controls in order to add button to toggle officer command range preview
-//
 //--------------------------------------------------------------------------------------- 
 
 class UITacticalHUD_MouseControls_LWOfficerPack extends UITacticalHUD_MouseControls;
@@ -17,33 +15,65 @@ var bool CRToggleOn;
 simulated function UpdateControls()
 {
 	local int ControlCount;
+	
+	// KDM : If a controller is active, hide all of the mouse controls since they overlap
+	// the 'Call Skyranger' navigation help in the top right corner of the screen.
+	if (`ISCONTROLLERACTIVE)
+	{
+		AS_SetHoverHelp("");
+		SetNumActiveControls(0);
+	}
+	else 
+	{
+		super.UpdateControls();
+	}
 
-	super.UpdateControls();
-
+	// KDM : If the ability menu is raised, hide the 'officer range' icon.
 	if (UITacticalHUD(screen).m_isMenuRaised)
 	{
 		if (OfficerIcon != none)
+		{
 			OfficerIcon.Hide();
+		}
 	}
 	else
 	{
-		// Work out how many "command" controls there are. Base game has 5 + 1
-		// for the Chosen + 1 for any command abilities (presumably an unimplemented
-		// feature). We add an extra one for the Command Range button.
-		ControlCount = 5;
-		if (class'XComGameState_Unit'.static.GetActivatedChosen() != none)
-			ControlCount++;
-		if (CommandAbilities.Length > 0)
-			ControlCount ++;
-		SetNumActiveControls(ControlCount);
+		if (!`ISCONTROLLERACTIVE)
+		{
+			// LW : Work out how many "command" controls there are. Base game has 5 + 1
+			// for the Chosen + 1 for any command abilities (presumably an unimplemented
+			// feature). We add an extra one for the Command Range button.
+			ControlCount = 5;
+			if (class'XComGameState_Unit'.static.GetActivatedChosen() != none)
+				ControlCount++;
+			if (CommandAbilities.Length > 0)
+				ControlCount ++;
+			SetNumActiveControls(ControlCount);
+		}
 
+		// KDM : If the ability menu is lowered, and an officer is in the squad, show the 'officer range' icon.
 		if (class'LWOfficerUtilities'.static.HasOfficerInSquad())
 		{
 			if (OfficerIcon != none)
+			{
 				OfficerIcon.Show();
+			}
 			else
-				AddCommandRangeIcon((!`SecondWaveEnabled('EnableChosen')) ? -300 : -345, 4);
-				//AddCommandRangeIcon(-300, 200);  // For tooltip testing. Puts icon more in the middle of the screen.
+			{
+				// KDM : When using a controller, we want to position the 'officer range' icon a little differently
+				// than when using a mouse and keyboard.
+				if (`ISCONTROLLERACTIVE)
+				{
+					AddCommandRangeIcon(-250, 12);
+				}
+				else
+				{
+					AddCommandRangeIcon((!`SecondWaveEnabled('EnableChosen')) ? -300 : -345, 4);
+					
+					// For tooltip testing. Puts icon more in the middle of the screen.
+					// AddCommandRangeIcon(-300, 200);
+				}
+			}
 		}
 	}
 }
