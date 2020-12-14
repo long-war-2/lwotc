@@ -3472,15 +3472,6 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 	{
 		if (FacilityTemplate.DataName == 'OfficerTrainingSchool')
 		{
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('HuntersInstinctUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('HitWhereItHurtsUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('CoolUnderPressureUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('BiggestBoomsUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('SquadSizeIUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('SquadSizeIIUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('MeditationPreparationUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('ParkourUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('InfiltrationUnlock');
 			for (i = 0 ; i < default.GTSUnlocksToRemove.length ; i++)
 			{
     			FacilityTemplate.SoldierUnlockTemplates.RemoveItem(default.GTSUnlocksToRemove[i]);
