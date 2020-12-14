@@ -223,6 +223,8 @@ var config array<GTSTableEntry> GTSTable;
 var config array<FacilityTableEntry> FacilityTable;
 var config array<FacilityUpgradeTableEntry> FacilityUpgradeTable;
 
+var config array<name> GTSUnlocksToRemove;
+
 var config int ResistanceCommunicationsIntelCost;
 var config int ResistanceRadioIntelCost;
 var config int AlienEncryptionIntelCost;
@@ -3479,6 +3481,7 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('MeditationPreparationUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('ParkourUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('InfiltrationUnlock');
+			FacilityTemplate.SoldierUnlockTemplates.RemoveItem(default.GTSUnlocksToRemove);
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
