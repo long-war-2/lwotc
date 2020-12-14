@@ -3481,7 +3481,10 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('MeditationPreparationUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('ParkourUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('InfiltrationUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem(default.GTSUnlocksToRemove);
+			for (i = 0 ; i < default.GTSUnlocksToRemove.length ; i++)
+			{
+    			FacilityTemplate.SoldierUnlockTemplates.RemoveItem(default.GTSUnlocksToRemove[i]);
+			}
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
