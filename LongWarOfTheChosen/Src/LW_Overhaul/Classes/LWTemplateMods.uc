@@ -223,6 +223,8 @@ var config array<GTSTableEntry> GTSTable;
 var config array<FacilityTableEntry> FacilityTable;
 var config array<FacilityUpgradeTableEntry> FacilityUpgradeTable;
 
+var config array<name> GTSUnlocksToRemove;
+
 var config int ResistanceCommunicationsIntelCost;
 var config int ResistanceRadioIntelCost;
 var config int AlienEncryptionIntelCost;
@@ -3470,15 +3472,10 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 	{
 		if (FacilityTemplate.DataName == 'OfficerTrainingSchool')
 		{
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('HuntersInstinctUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('HitWhereItHurtsUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('CoolUnderPressureUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('BiggestBoomsUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('SquadSizeIUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('SquadSizeIIUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('MeditationPreparationUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('ParkourUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.RemoveItem('InfiltrationUnlock');
+			for (i = 0 ; i < default.GTSUnlocksToRemove.Length ; i++)
+			{
+    			FacilityTemplate.SoldierUnlockTemplates.RemoveItem(default.GTSUnlocksToRemove[i]);
+			}
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
