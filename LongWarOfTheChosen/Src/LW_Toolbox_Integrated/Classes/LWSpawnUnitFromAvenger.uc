@@ -69,7 +69,11 @@ static function XComGameState_Unit AddStrategyUnitToBoardAtLocation(XComGameStat
 	Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
 	Unit.SetVisibilityLocationFromVector(SpawnLocation);
 	Unit.BeginTacticalPlay(NewGameState);
-	//Unit.bSpawnedFromAvenger = true; // removed to fix TTP 225 (Missions counting twice) -- shouldn't be needed here, since these soldiers are in the Crew
+
+	// LW2 had this commented out, but without it, the post-mission tactical
+	// to strategy cleanup (including things like clearing the RemovedFromPlay
+	// flag and starting healing projects) won't apply to this unit.
+	Unit.bSpawnedFromAvenger = true;
 
 	// assign the new unit to the human team
 	foreach History.IterateByClassType(class'XComGameState_Player', PlayerState)
