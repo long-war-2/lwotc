@@ -77,18 +77,18 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 		case 'CovertAction_RevealChosenMovements':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
+			ConfigureEasyCovertAction(CATemplate, false);
 			CATemplate.Slots[0].iMinRank = default.FIRST_CHOSEN_CA_REQ_RANK;
-			ConfigureEasyCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RevealChosenStrengths':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
+			ConfigureModerateCovertAction(CATemplate, false);
 			CATemplate.Slots[0].iMinRank = default.SECOND_CHOSEN_CA_REQ_RANK;  // Require a TSGT
-			ConfigureModerateCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RevealChosenStronghold':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
+			ConfigureHardCovertAction(CATemplate, false);
 			CATemplate.Slots[0].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require a MSGT
-			ConfigureHardCovertAction(CATemplate);
 			break;
 		default:
 			break;
@@ -115,10 +115,13 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 }
 
 // Adds a chance of failure to easy covert actions and resets the staff slots.
-static function ConfigureEasyCovertAction(X2CovertActionTemplate Template)
+static function ConfigureEasyCovertAction(X2CovertActionTemplate Template, optional bool ApplyFailureRisk = true)
 {
 	// Make failure the first risk in the list.
-	Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Easy');
+	if (ApplyFailureRisk)
+	{
+		Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Easy');
+	}
 	AddStaffSlots(Template, 2);
 	AddAmbushRisk(Template);
 
@@ -127,11 +130,14 @@ static function ConfigureEasyCovertAction(X2CovertActionTemplate Template)
 }
 
 // Adds a chance of failure to easy covert actions and resets the staff slots.
-static function ConfigureModerateCovertAction(X2CovertActionTemplate Template)
+static function ConfigureModerateCovertAction(X2CovertActionTemplate Template, optional bool ApplyFailureRisk = true)
 {
 
 	// Make failure the first risk in the list.
-	Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Moderate');
+	if (ApplyFailureRisk)
+	{
+		Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Moderate');
+	}
 	AddStaffSlots(Template, 3);
 	AddAmbushRisk(Template);
 
@@ -140,10 +146,11 @@ static function ConfigureModerateCovertAction(X2CovertActionTemplate Template)
 }
 
 // Adds a chance of failure to easy covert actions and resets the staff slots.
-static function ConfigureHardCovertAction(X2CovertActionTemplate Template)
+static function ConfigureHardCovertAction(X2CovertActionTemplate Template, optional bool ApplyFailureRisk = true)
 {
 	// Make failure the first risk in the list.
-	Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Hard');
+	if (ApplyFailureRisk)
+		Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Hard');
 	AddStaffSlots(Template, 3);
 	AddAmbushRisk(Template);
 
