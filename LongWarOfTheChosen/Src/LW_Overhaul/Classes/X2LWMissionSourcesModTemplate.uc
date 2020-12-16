@@ -16,6 +16,9 @@ static function UpdateMissionSources(X2StrategyElementTemplate Template, int Dif
 	switch (SourceTemplate.DataName)
 	{
 		case 'MissionSource_ChosenAmbush':
+			 // Make sure players can back out of the squad select screen
+			SourceTemplate.bCannotBackOutSquadSelect = false;
+			SourceTemplate.bRequiresSkyrangerTravel = true;
 			SourceTemplate.OnFailureFn = ChosenAmbushOnFailure;
 			SourceTemplate.OnExpireFn = ChosenAmbushOnExpire;
 			break;
