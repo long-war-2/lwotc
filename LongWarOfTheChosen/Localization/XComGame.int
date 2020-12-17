@@ -5214,10 +5214,9 @@ LocLongDescription="Grant an additional action point to a bondmate. Has one or t
 [Shadow X2AbilityTemplate]
 LocLongDescription="Grants the soldier Shadow, an advanced form of concealment that lasts for 1 turn."
 LocHelpText="Soldier enters Shadow, an advanced form of concealment, for 1 turn."
-LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges by 70%.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a 4-turn cooldown.<br/>"
-
-[Sting X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Sting allows for the Reaper to attack in situations where they absolutely do not want to be revealed.<br/><Bullet/> Sting can only be used once per turn while in Shadow and requires <Ability:SelfAmmoCost/> ammo points.<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges by 100%, effectively rendering the unit invisible.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+; End Translation (2)
 
 [SilentKiller X2AbilityTemplate]
 LocLongDescription="Guarantees that the Reaper stays in Shadow with killing shots."
