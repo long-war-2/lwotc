@@ -1157,6 +1157,8 @@ static function X2AbilityTemplate LikeLightningRefund()
 static function X2AbilityTemplate Maim()
 {
 	local X2AbilityTemplate Template;
+	local X2Effect_Persistent Effect;
+	local array<X2Effect_Persistent> MaimedEffects;
 	
 	// Create the template using a helper function
 	Template = Attack('Maim_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_blossom", false, none, class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY, eCost_WeaponConsumeAll, default.MAIM_AMMO_COST);
@@ -1164,8 +1166,12 @@ static function X2AbilityTemplate Maim()
 	// Cooldown
 	AddCooldown(Template, default.MAIM_COOLDOWN);
 
-	// Effect
-	Template.AddTargetEffect(class'X2StatusEffects_LW'.static.CreateMaimedStatusEffect(, Template.AbilitySourceName));
+	// Maimed consists of two effects, one for Chosen and one for everyone else
+	MaimedEffects = class'X2StatusEffects_LW'.static.CreateMaimedStatusEffects(, Template.AbilitySourceName);
+	foreach MaimedEffects(Effect)
+	{
+		Template.AddTargetEffect(Effect);
+	}
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;

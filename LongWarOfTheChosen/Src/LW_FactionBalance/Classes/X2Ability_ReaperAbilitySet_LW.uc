@@ -671,6 +671,8 @@ static function X2DataTemplate AddCripplingStrike()
 	local X2Condition_Visibility			VisibilityCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
+	local X2Effect_Persistent				Effect;
+	local array<X2Effect_Persistent>		MaimedEffects;
 	local array<name>                       SkipExclusions;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CripplingStrike');
@@ -704,7 +706,13 @@ static function X2DataTemplate AddCripplingStrike()
 	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
 
 	Template.AddTargetEffect(new class'X2Effect_ApplyWeaponDamage');
-	Template.AddTargetEffect(class'X2StatusEffects_LW'.static.CreateMaimedStatusEffect(, Template.AbilitySourceName));
+
+	// Maimed consists of two effects, one for Chosen and one for everyone else
+	MaimedEffects = class'X2StatusEffects_LW'.static.CreateMaimedStatusEffects(, Template.AbilitySourceName);
+	foreach MaimedEffects(Effect)
+	{
+		Template.AddTargetEffect(Effect);
+	}
 
 	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
