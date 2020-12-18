@@ -1,4 +1,4 @@
-Welcome to **dev build 22.1** of Long War of the Chosen!
+Welcome to **dev build 22.2** of Long War of the Chosen!
 
 This is intended to be the precursor build to beta 4, with some notable balance changes that need testing. The big changes include:
 
@@ -12,7 +12,7 @@ This is intended to be the precursor build to beta 4, with some notable balance 
  * Jailbreaks can have multiple captured XCOM soldiers (up to 3) as rewards
  * Chosen gain knowledge a lot more slowly than before from Retribution, and a little more slowly from captures
 
-**UPDATE** Dev build 22.1 is now available! The patch notes for this version can be found just below.
+**UPDATE** Dev build 22.2 is now available! The patch notes for this version can be found just below.
 
 **Important** If you want to upgrade mid campaign and want to test the Reaper tree changes, be sure to use the `RespecSelectedSoldier` console command, although be aware that this will change the XCOM-row abilities too.
 
@@ -21,6 +21,19 @@ To install dev build 22, just delete your existing LongWarOfTheChosen and X2WOTC
 ||  **[Download the full release from Nexus Mods](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
 
 There is also a smaller, patch version available at that link that can be unpacked on top of any existing dev build 21 installation.
+
+## Changelog 22.2
+
+ * Hunt the Chosen covert actions have their rank requirements again
+ * Covert operatives wounded on Ambush missions will now heal correctly
+ * Players can now back out of the squad select screen for Ambush missions
+ * Assassin changes:
+   - Blood Thirst damage multiplier is now 25%, down from 34%
+   - Sword's base damage is slightly higher
+   - Mobility is now 12, up from 10
+   - Parting Silk will now be used even if there are overwatches in range
+   - She should no longer slash the relay on intel raid missions
+ * The Mobility penalty of Maimed no longer stacks with itself
 
 ## Changelog 22.1
 
