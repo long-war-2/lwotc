@@ -35,7 +35,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 defaultproperties
 {
-	BloodThirstDMGPCT=34
+	BloodThirstDMGPCT=25
 	bflatdamage=false
 	BloodThirstFlatDMG=0
 }

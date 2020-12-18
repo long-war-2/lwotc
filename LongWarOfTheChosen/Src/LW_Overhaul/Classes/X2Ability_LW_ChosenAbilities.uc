@@ -1643,6 +1643,7 @@ static function X2DataTemplate AssassinSlash_LW()
 	AdjacencyCondition.RequireWithinRange = true;
 	AdjacencyCondition.WithinRange = 144; //1.5 tiles in Unreal units, allows attacks on the diag
 	AdjacencyCondition.TreatMindControlledSquadmateAsHostile = true;
+	AdjacencyCondition.FailOnNonUnits = true;
 	Template.AbilityTargetConditions.AddItem(AdjacencyCondition);
 
 	// Shooter Conditions
