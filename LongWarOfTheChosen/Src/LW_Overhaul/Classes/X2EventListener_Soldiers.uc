@@ -955,7 +955,6 @@ static function OnLoadoutLocked(UIButton kButton)
 	CannotEditSlots.AddItem(eInvSlot_Utility);
 	CannotEditSlots.AddItem(eInvSlot_Armor);
 	CannotEditSlots.AddItem(eInvSlot_GrenadePocket);
-	CannotEditSlots.AddItem(eInvSlot_GrenadePocket);
 	CannotEditSlots.AddItem(eInvSlot_PrimaryWeapon);
 	CannotEditSlots.AddItem(eInvSlot_SecondaryWeapon);
 	CannotEditSlots.AddItem(eInvSlot_HeavyWeapon);
@@ -966,6 +965,10 @@ static function OnLoadoutLocked(UIButton kButton)
 	CannotEditSlots.AddItem(eInvSlot_SeptenaryWeapon);
 	CannotEditSlots.AddItem(eInvSlot_AmmoPocket);
 	CannotEditSlots.AddItem(eInvSlot_Pistol);
+	CannotEditSlots.AddItem(eInvSlot_AuxiliaryWeapon);
+	CannotEditSlots.AddItem(eInvSlot_SparkGrenadePocket);
+	CannotEditSlots.AddItem(eInvSlot_ExtraBackpack);
+	CannotEditSlots.AddItem(eInvSlot_PsiAmp);
 
 	MainMenu = UIArmory_MainMenu(GetScreenOrChild('UIArmory_MainMenu'));
 	if (MainMenu == none) { return; }
