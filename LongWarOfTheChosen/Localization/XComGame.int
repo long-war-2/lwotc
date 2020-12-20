@@ -6147,14 +6147,14 @@ strAcquiredText="The Hunter is the master of long range combat, constantly kitin
 
 [BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
 LocFlyOverText="Blood Thirst"
 
 [BloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
 LocFlyOverText="Blood Thirst"
 
 

@@ -38,4 +38,5 @@ defaultproperties
 	BloodThirstDMGPCT=25
 	bflatdamage=false
 	BloodThirstFlatDMG=0
+	EffectName=BloodThirst
 }

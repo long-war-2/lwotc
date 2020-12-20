@@ -1338,7 +1338,7 @@ static function X2DataTemplate CreateChosenKidnap()
 	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
 	local X2Condition_UnitEffects ExcludeEffects;
 	local X2Condition_Character	AllowedUnitCondition;
-
+	local X2Effect_RemoveEffects RemoveEffects;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenKidnap'); //intentionally same template so kismet can disable it on special missions without changes to it
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_kidnap";
 	Template.Hostility = eHostility_Offensive;
@@ -1384,6 +1384,9 @@ static function X2DataTemplate CreateChosenKidnap()
 	KidnapEffect.EffectAddedFn = ChosenKidnapTarget_AddedFn;
 	Template.AddTargetEffect(KidnapEffect);
 
+	RemoveEffects = new class'X2Effect_RemoveEffects';
+	RemoveEffects.EffectNamesToRemove.AddItem('BloodThirst');
+	Template.AddShooterEffect(RemoveEffects);
 
 	// Cannot target units being carried.
 	ExcludeEffects = new class'X2Condition_UnitEffects';
