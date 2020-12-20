@@ -39,7 +39,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	{
 		if (`TACTICALRULES.VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, TargetUnit.ObjectID, VisInfo))
 		{
-			if (Attacker.CanFlank() && TargetUnit.GetMyTemplate().bCanTakeCover && (VisInfo.TargetCover == CT_None || TargetUnit.GetCurrentStat(eStat_AlertLevel) == 0) && DamagingAttack)
+			if (Attacker.CanFlank() && TargetUnit.GetMyTemplate().bCanTakeCover && (VisInfo.TargetCover == CT_None || TargetUnit.GetCurrentStat(eStat_AlertLevel) == 0 && TargetUnit.GetTeam() != eTeam_XCom) && DamagingAttack)
 			{
 				return BonusDamage;
 			}
