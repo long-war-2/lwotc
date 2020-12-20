@@ -2696,6 +2696,9 @@ static function X2AbilityTemplate AddBrawler()
 	DamageReduction.BuildPersistentEffect(1, true, false);
 	Template.AddTargetEffect(DamageReduction);
 
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  No visualization
