@@ -155,6 +155,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'DEDICATION_COOLDOWN':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.DEDICATION_COOLDOWN);
 			return true;
+		case 'APEX_PREDATOR_PANIC_RADIUS':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.APEX_PREDATOR_PANIC_RADIUS);
+			return true;
 		case 'PREDATOR_AIM_BONUS':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.PREDATOR_AIM_BONUS);
 			return true;

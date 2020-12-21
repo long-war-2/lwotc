@@ -5899,7 +5899,7 @@ LocFlyOverText = "Apex Predator"
 ; LWOTC Needs Translation (2)
 LocHelpText = "Critical hits with your primary weapon have a chance to panic the target and nearby enemies."
 LocLongDescription = "Critical hits with your primary weapon have a chance to panic the target and nearby enemies."
-LocPromotionPopupText = "<Bullet/> Critical hits with your primary weapon have a chance to panic the target and nearby enemies.<br/>"
+LocPromotionPopupText = "<Bullet/> Critical hits with your primary weapon have a chance to panic the target and nearby (within <Ability:APEX_PREDATOR_PANIC_RADIUS/> tiles) enemies.<br/>"
 ; End Translation (2)
 
 [BlindingProtocol_LW X2AbilityTemplate]

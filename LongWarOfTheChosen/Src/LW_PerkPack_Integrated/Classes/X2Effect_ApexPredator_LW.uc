@@ -19,18 +19,19 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		if (DamageEffect == none || DamageEffect.bIgnoreBaseDamage)
 		{
 			return 0;
-	}	}
+		}
+	}
 
 	// Only trigger on the actual shot
 	if (NewGameState != none)
 	{
 		// Must be attack with Primary Weapon
-		if (AbilityState.SourceWeapon == Attacker.GetItemInSlot(eInvSlot_PrimaryWeapon).GetReference())
+		if (AbilityState.SourceWeapon == Attacker.GetItemInSlot(eInvSlot_PrimaryWeapon).GetReference() &&
+				AppliedData.AbilityResultContext.HitResult == eHit_Crit)
 		{
-			if (AppliedData.AbilityResultContext.HitResult == eHit_Crit)
-			{
-				`XEVENTMGR.TriggerEvent(default.ApexPredator_LW_TriggeredName, XComGameState_Unit(TargetDamageable), Attacker, NewGameState);
-	}	}	}
+			`XEVENTMGR.TriggerEvent(default.ApexPredator_LW_TriggeredName, XComGameState_Unit(TargetDamageable), Attacker, NewGameState);
+		}
+	}
 
 	return 0;
 }

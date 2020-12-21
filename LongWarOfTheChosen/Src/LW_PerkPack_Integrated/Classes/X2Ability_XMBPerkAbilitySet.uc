@@ -1004,7 +1004,7 @@ static function X2AbilityTemplate ApexPredatorPanic_LW()
 	// This ability triggers after a Critical Hit
 	EventListener = new class'X2AbilityTrigger_EventListener';
 	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
-	EventListener.ListenerData.EventID = 'ApexPredator';
+	EventListener.ListenerData.EventID = class'X2Effect_ApexPredator_LW'.default.ApexPredator_LW_TriggeredName;
 	EventListener.ListenerData.Filter = eFilter_Unit;
 	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.VoidRiftInsanityListener;
 	Template.AbilityTriggers.AddItem(EventListener);
