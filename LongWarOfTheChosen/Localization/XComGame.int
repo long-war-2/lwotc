@@ -5905,8 +5905,8 @@ LocPromotionPopupText = "<Bullet/> Critical hits with your primary weapon have a
 [BlindingProtocol_LW X2AbilityTemplate]
 LocFriendlyName = "Blinding Protocol"
 LocFlyOverText = "Blinding Protocol"
-LocHelpText = "Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/>and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>"
-LocLongDescription = Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/> and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>
+LocHelpText = "Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/>and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>)."
+LocLongDescription = Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/> and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>).
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Has a <Ability:SelfCooldown/>-turn cooldown and ends the turn.<br/>"
 ; End translation (2)
