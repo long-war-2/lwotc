@@ -5891,7 +5891,7 @@ LocPromotionPopupText="<Bullet/> By cleverly combining the effects of Brutality 
 LocFriendlyName = "Zone of Control"
 LocHelpText = "All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties of <Ability:ZONE_CONTROL_AIM_PENALTY/> Aim and <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobility."
 LocLongDescription = "All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties to Aim and Mobility."
-LocPromotionPopupText = "<Bullet/> All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties of <Ability:ZONE_CONTROL_AIM_PENALTY/> Aim and <Ability:ZONE_CONTROL_MOBILITY_PENALTY/ Mobility.<br/>"
+LocPromotionPopupText = "<Bullet/> All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties of <Ability:ZONE_CONTROL_AIM_PENALTY/> Aim and <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobility.<br/>"
 
 [ApexPredator_LW X2AbilityTemplate]
 LocFriendlyName = "Apex Predator"
