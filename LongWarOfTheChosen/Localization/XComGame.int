@@ -5701,8 +5701,8 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 [Concentration_LW X2AbilityTemplate]
 LocFriendlyName="Concentration"
 LocFlyOverText="Concentration"
-LocLongDescription="Your grazing shots are automatically upgraded to normal hits."
-LocHelpText="Your grazing shots are automatically upgraded to normal hits."
+LocLongDescription="Your grazing attacks are automatically upgraded to normal hits."
+LocHelpText="Your grazing attacks are automatically upgraded to normal hits."
 LocPromotionPopupText="<Bullet/> Attacks that would normally graze their target are automatically upgraded to normal hits.<br/><Bullet/> Applies to primary weapons, secondary weapons, and pistols.<br/>"
 
 [LikeLightning_LW X2AbilityTemplate]
