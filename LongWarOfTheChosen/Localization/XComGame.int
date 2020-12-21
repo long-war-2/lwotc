@@ -4181,7 +4181,7 @@ PreMissionText="Grants ADVENT units bonus chance to critically hit our soldiers.
 PostMissionSuccessText="Dark Event Countered: ADVENT Laser Sights"
 PostMissionFailureText="Failed to Counter Dark Event: ADVENT Laser Sights"
 
-[ADVENTLaserSight X2AbilityTemplate]
+[ADVENTLaserSights X2AbilityTemplate]
 LocFriendlyName="ADVENT Laser Sight"
 LocLongDescription="+10 Critical Chance"
 
