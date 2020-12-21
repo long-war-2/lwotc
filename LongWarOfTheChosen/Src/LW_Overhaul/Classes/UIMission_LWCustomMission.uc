@@ -367,7 +367,12 @@ simulated function UpdateData()
 	// the ones calculated by the alien activity manager!
 	UpdateMissionTacticalTags();
 	AddMissionTacticalTags();
-	UpdateShadowChamber();
+
+	// This is an infiltration mission, so don't display the Shadow Chamber info as
+	// it won't necessarily be representative of what's on the map when the mission
+	// is actually launched.
+	// UpdateShadowChamber();
+	ShadowChamber.Hide();
 	UpdateSitreps();
 	UpdateChosen();
 }
