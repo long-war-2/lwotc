@@ -509,6 +509,8 @@ static function EventListenerReturn CAOverrideRiskStrings(
 	Name EventID,
 	Object CallbackData)
 {
+	local X2StrategyElementTemplateManager TemplateManager;
+	local X2CovertActionRiskTemplate CARiskTemplate;
 	local XComGameState_CovertAction CAState;
 	local CovertActionRisk Risk;
 	local XComLWTuple Tuple;
@@ -521,15 +523,22 @@ static function EventListenerReturn CAOverrideRiskStrings(
 	CAState = XComGameState_CovertAction(EventSource);
 	if (CAState == none) return ELR_NoInterrupt;
 
-	for (i = 0; i < Tuple.Data[0].as.Length; i++)
+	TemplateManager = CAState.GetMyTemplateManager();
+
+	foreach CAState.Risks(Risk)
 	{
-		Risk = CAState.Risks[i];
+		CARiskTemplate = X2CovertActionRiskTemplate(TemplateManager.FindStrategyElementTemplate(Risk.RiskTemplateName));
 
-		RiskChanceString = class'X2StrategyGameRulesetDataStructures'.default.CovertActionRiskLabels[Risk.Level];
-		NewChanceString = string(Risk.ChanceToOccur + Risk.ChanceToOccurModifier) $ "%";
+		// Find the index of the label that matches this risk's localized name
+		i = Tuple.Data[0].as.Find(CARiskTemplate.RiskName);
+		if (i != INDEX_NONE)
+		{
+			RiskChanceString = class'X2StrategyGameRulesetDataStructures'.default.CovertActionRiskLabels[Risk.Level];
+			NewChanceString = string(Risk.ChanceToOccur + Risk.ChanceToOccurModifier) $ "%";
 
-		// This is replacing the risk value with the percentage chance to occur.
-		Tuple.Data[1].as[i] = Repl(Tuple.Data[1].as[i], RiskChanceString, NewChanceString);
+			// This is replacing the risk value with the percentage chance to occur.
+			Tuple.Data[1].as[i] = Repl(Tuple.Data[1].as[i], RiskChanceString, NewChanceString);
+		}
 	}
 	return ELR_NoInterrupt;
 }
