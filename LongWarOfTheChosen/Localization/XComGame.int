@@ -576,7 +576,7 @@ LocFriendlyName="Stun"
 LocLongDescription="Fire your Arc Thrower to incapacitate a target."
 LocHelpText="Fire your Arc Thrower."
 LocFlyOverText="Stun"
-LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range, doing no damage but stunning targets for their next turn if it hits.<br/><Bullet/> Improved versions can extend the duration of the stun effect.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can Use every other turn.<br/><Bullet/> Ineffective against mechanized units without additional soldier training."
+LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range, doing no damage but stunning targets for their next turn if it hits.<br/><Bullet/> Improved versions can extend the duration of the stun effect.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Ineffective against mechanized units without additional soldier training."
 
 [EMPulser X2AbilityTemplate]
 LocFriendlyName="Arc Pulser"
@@ -615,10 +615,10 @@ LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><B
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
-LocLongDescription="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim"
-LocHelpText="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim"
+LocLongDescription="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim."
+LocHelpText="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim."
 LocFlyOverText="Chain Lightning"
-LocPromotionPopupText="<Bullet/> Fire your Arc Thrower at every visible enemy who is capable of being stunned with a -50 penalty to aim<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Five-turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Fire your Arc Thrower at every visible enemy who is capable of being stunned with a -50 penalty to aim.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Five-turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="Leadership"
@@ -5055,7 +5055,7 @@ LocFriendlyName="Rescue Protocol"
 LocFlyoverText="Rescue Protocol"
 LocLongDescription="Use your Gremlin to grant a movement action to an ally and grant them a small boost to dodge and mobility."
 LocHelpText="Grant a movement action to an ally and grant them a small boost to dodge and mobility."
-LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/>An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
+LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/> An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
 ; End Translation
 
 [Blademaster X2AbilityTemplate]
@@ -5745,7 +5745,7 @@ LocFriendlyName="Lock 'N Load"
 LocFlyOverText="Lock 'N Load"
 LocLongDescription="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo. Passive."
 LocHelpText="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo. Passive."
-LocPromotionPopupText="<Bullet/> Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo. <Bullet/> Passive.<br/>"
+LocPromotionPopupText="<Bullet/> Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo.<br/><Bullet/> Passive.<br/>"
 
 [TrenchWarfare_LW X2AbilityTemplate]
 LocFriendlyName="Trench Warfare"
@@ -5773,7 +5773,7 @@ LocFriendlyName="Open Fire"
 LocFlyOverText="Open Fire"
 LocLongDescription="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 LocHelpText="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/> <Bullet/> Passive.<br/>"
+LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/><Bullet/> Passive.<br/>"
 
 [WatchThemRun_LW X2AbilityTemplate]
 LocFriendlyName="Watch Them Run"
@@ -5847,7 +5847,7 @@ LocFriendlyName="Quick Zap"
 LocFlyOverText="Quick Zap"
 LocLongDescription="Activate this ability to make your next arc thrower shot a free action. <Ability:RAPID_STUN_COOLDOWN/>-turn cooldown."
 LocHelpText="Activate this ability to make your next arc thrower shot a free action. <Ability:RAPID_STUN_COOLDOWN/>-turn cooldown."
-LocPromotionPopupText="<Bullet/> Activate this ability to make your next arc thrower shot a free action.<Bullet/> Has a <Ability:RAPID_STUN_COOLDOWN/>-turn cooldown.<br/><Bullet/> Applies to the abilities Stun, Arc Pulser and Chain Lightning.<br/>"
+LocPromotionPopupText="<Bullet/> Activate this ability to make your next arc thrower shot a free action.<br/><Bullet/> Has a <Ability:RAPID_STUN_COOLDOWN/>-turn cooldown.<br/><Bullet/> Applies to the abilities Stun, Arc Pulser and Chain Lightning.<br/>"
 
 [Hipfire_LW X2AbilityTemplate]
 LocFriendlyName="Hipfire"
@@ -5926,7 +5926,7 @@ LocFlyOverText = "Lead The Target"
 LocFriendlyName = "Target Focus"
 LocHelpText = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies."
 LocLongDescription = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies."
-LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies. <br/><Bullet/> Unflankable enemies are ones that can't take cover, such as Drones, MECs and Beserkers.<br/>"
+LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies. <br/><Bullet/> Unflankable enemies are ones that can't take cover, such as Drones, MECs and Berserkers.<br/>"
 
 [AimAssist_LW X2AbilityTemplate]
 LocFriendlyName = "Aim Assist"
@@ -5954,9 +5954,9 @@ LocPromotionPopupText = "<Bullet/> Works for all arc thrower abilities, includin
 
 [Overkill_LW X2AbilityTemplate]
 LocFriendlyName = "Overkill"
-LocHelpText = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP"
-LocLongDescription = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP"
-LocPromotionPopupText = "<Bullet/> Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP <br/>"
+LocHelpText = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP."
+LocLongDescription = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP."
+LocPromotionPopupText = "<Bullet/> Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP.<br/>"
 
 [Disassembly_LW X2AbilityTemplate]
 LocFriendlyName= "Disassembly"
@@ -5968,14 +5968,14 @@ LocPromotionPopupText = "<Bullet/> Killing an enemy grants a stackable +<Ability
 LocFriendlyName="Lightning Slash"
 LocLongDescription="Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>. This attack does not end the turn."
 LocHelpText="Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>. This attack does not end the turn."
-LocPromotionPopupText="<Bullet/>Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>.<br/> This attack does not end the turn.<br/> <Bullet/> Has a <Ability:LIGHTNINGSLASH_COOLDOWN/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>.<br/><Bullet/> This attack does not end the turn.<br/><Bullet/> Has a <Ability:LIGHTNINGSLASH_COOLDOWN/>-turn cooldown.<br/>"
 
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Inspire Agility"
 LocFlyOverText="Inspire Agility"
-LocLongDescription="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. Starts with one charge, and is a free action"
+LocLongDescription="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. Starts with one charge, and is a free action."
 LocHelpText="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn."
-LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn.<br/><Bullet/> Killing an enemy unit grants an extra charge if this unit has no charges.<br/><Bullet/> Usable once per turn. <br/> <Bullet/> Starts with one charge and is a free action.<br/>"
+LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn.<br/><Bullet/> Killing an enemy unit grants an extra charge if this unit has no charges.<br/><Bullet/> Usable once per turn. <br/><Bullet/> Starts with one charge and is a free action.<br/>"
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="Return Fire"
@@ -6212,7 +6212,7 @@ AbilityDescName="sword"
 FriendlyName="Darklance"
 FriendlyNamePlural="Darklances"
 BriefSummary="This rifle belonging to the Chosen Hunter has probably seen more death than we can possibly imagine."
-TacticalText="<Bullet/>This rifle is capable of insane burst damage against units that have been marked for death.<br/> <Bullet/>However because of its size it has proven to be difficult to reload for our operatives.<br/>"
+TacticalText="<Bullet/> This rifle is capable of insane burst damage against units that have been marked for death.<br/><Bullet/> However because of its size it has proven to be difficult to reload for our operatives.<br/>"
 AbilityDescName="sniper rifle"
 
 [ChosenSniperPistol_XCOM X2WeaponTemplate]

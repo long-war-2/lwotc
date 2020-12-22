@@ -355,9 +355,9 @@ LocPromotionPopupText="<Bullet/> Your melee attacks against biological enemies i
 [KillerInstinct X2AbilityTemplate]
 LocFriendlyName="Killer Instinct"
 LocFlyOverText="Killer Instinct"
-LocLongDescription="Activating Run & Gun grants +50% critical damage for the rest of the turn."
-LocHelpText="Activating Run & Gun grants +50% critical damage for the rest of the turn."
-LocPromotionPopupText="<Bullet/> Activating Run & Gun grants +50% critical damage for the rest of the turn.<br/>"
+LocLongDescription="Activating Run and Gun grants +50% critical damage for the rest of the turn."
+LocHelpText="Activating Run and Gun grants +50% critical damage for the rest of the turn."
+LocPromotionPopupText="<Bullet/> Activating Run and Gun grants +50% critical damage for the rest of the turn.<br/>"
 
 [ExtraConditioning X2AbilityTemplate]
 LocFriendlyName="Extra Conditioning"
@@ -625,7 +625,7 @@ LocFriendlyName="Grazing Attacks"
 LocFlyOverText="Grazing Attacks"
 LocLongDescription="Your missed attacks have an additional roll to become a graze."
 LocHelpText="Misses may become grazes."
-LocPromotionPopupText="<Bullet/> Soldier's missed attacks generally have a <Ability:GRAZING_FIRE_SUCCESS_CHANCE>% chance to become a graze.<br/><Bullet/> This effect occurs after normal hit-miss-graze processing.<br/><Bullet/> Targets with a dodge score subtract that score from the ability's success chance.<br/> <Bullet/> Works with all weapon attacks including knife attacks and sword slices. <br/>"
+LocPromotionPopupText="<Bullet/> Soldier's missed attacks generally have a <Ability:GRAZING_FIRE_SUCCESS_CHANCE>% chance to become a graze.<br/><Bullet/> This effect occurs after normal hit-miss-graze processing.<br/><Bullet/> Targets with a dodge score subtract that score from the ability's success chance.<br/><Bullet/> Works with all weapon attacks including knife attacks and sword slices. <br/>"
 ;end translation
 
 [HeavyFrags X2AbilityTemplate]
