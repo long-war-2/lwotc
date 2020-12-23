@@ -2895,6 +2895,25 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'MIND_SCORCH_BURN_CHANCE':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.MIND_SCORCH_BURN_CHANCE);
 			return true;
+		case 'SELFCOOLDOWN_LW':
+			OutString = "0";
+			AbilityTemplate = X2AbilityTemplate(ParseObj);
+			if (AbilityTemplate == none)
+			{
+				AbilityState = XComGameState_Ability(ParseObj);
+				if (AbilityState != none)
+					AbilityTemplate = AbilityState.GetMyTemplate();
+			}
+			if (AbilityTemplate != none)
+			{
+				if (AbilityTemplate.AbilityCooldown != none)
+				{
+					// LW2 doesn't subtract 1 from cooldowns as a general rule, so to keep it consistent
+					// there is substitute tag					
+					OutString = string(AbilityTemplate.AbilityCooldown.iNumTurns);
+				}
+			}
+			return true;
 		default:
 			return false;
 	}
