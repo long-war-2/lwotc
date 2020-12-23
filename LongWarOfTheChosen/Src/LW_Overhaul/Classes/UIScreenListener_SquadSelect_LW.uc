@@ -24,6 +24,8 @@ var GeneratedMissionData MissionData;
 var config float SquadInfo_DelayedInit;
 var const array<string> PlotTypes;
 
+var config(LW_UI) bool HIDE_SAVESQUAD_BTN_WITH_CONTROLLER, HIDE_SQUADCONTAINER_WITH_CONTROLLER;
+
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
 {
@@ -65,9 +67,18 @@ event OnInit(UIScreen Screen)
 	bInSquadEdit = `SCREENSTACK.IsInStack(class'UIPersonnel_SquadBarracks');
 	if(bInSquadEdit)
 	{
-		SquadSelect.LaunchButton.OnClickedDelegate = OnSaveSquad;
-		SquadSelect.LaunchButton.SetText(strSquad);
-		SquadSelect.LaunchButton.SetTitle(strSave);
+		if(`ISCONTROLLERACTIVE && HIDE_SAVESQUAD_BTN_WITH_CONTROLLER)
+		{
+			// KDM : Hide the 'Save Squad' button which appears while viewing a Long War squad's soldiers.
+			// As an aside, I don't believe this functionality actually works.
+			SquadSelect.LaunchButton.Hide();
+		}
+		else
+		{
+			SquadSelect.LaunchButton.OnClickedDelegate = OnSaveSquad;
+			SquadSelect.LaunchButton.SetText(strSquad);
+			SquadSelect.LaunchButton.SetTitle(strSave);
+		}
 
 		SquadSelect.m_kMissionInfo.Remove();
 	} 
@@ -100,10 +111,17 @@ event OnInit(UIScreen Screen)
 				InfilRequirementText.SetAlpha(66);
 			}
 		}
-		// create the SquadContainer on a timer, to avoid creation issues that can arise when creating it immediately, when no pawn loading is present
-		SquadContainer = SquadSelect.Spawn(class'UISquadContainer', SquadSelect);
-		SquadContainer.CurrentSquadRef = SquadMgr.LaunchingMissionSquad;
-		SquadContainer.DelayedInit(default.SquadInfo_DelayedInit);
+
+		// KDM : Allow the 'Squad Container', which deals with squad selection on the Squad Select screen,
+		// to be hidden through non-creation. My controller-capable Squad Management mod has its own squad 
+		// selection and display UI which overlaps with LW2's UI.
+		if(!(`ISCONTROLLERACTIVE && HIDE_SQUADCONTAINER_WITH_CONTROLLER))
+		{
+			// LW : Create the SquadContainer on a timer, to avoid creation issues that can arise when creating it immediately, when no pawn loading is present
+			SquadContainer = SquadSelect.Spawn(class'UISquadContainer', SquadSelect);
+			SquadContainer.CurrentSquadRef = SquadMgr.LaunchingMissionSquad;
+			SquadContainer.DelayedInit(default.SquadInfo_DelayedInit);
+		}
 
 		// 
 
