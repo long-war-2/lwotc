@@ -5730,9 +5730,9 @@ LocPromotionPopupText="<Bullet/> Attacks that would normally graze their target 
 [LikeLightning_LW X2AbilityTemplate]
 LocFriendlyName="Like Lightning"
 LocFlyOverText="Like Lightning"
-LocLongDescription="When Run and Gun is activated, your Arc Thrower cooldown is immediately reset to 0. Passive."
-LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immediately removed. Passive."
-LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/><Bullet/> Passive.<br/>"
+LocLongDescription="When Run and Gun is activated, your Arc Thrower cooldown is immediately reset to 0."
+LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immediately removed."
+LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/>"
 
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Maim"
@@ -5744,37 +5744,37 @@ LocPromotionPopupText="<Bullet/> Fire a shot with your primary weapon that immob
 [Preservation_LW X2AbilityTemplate]
 LocFriendlyName="Preservation"
 LocFlyOverText="Preservation"
-LocLongDescription="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns. Passive."
-LocHelpText="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns. Passive."
-LocPromotionPopupText="<Bullet/> When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns.<br/><Bullet/> Passive.<br/>"
+LocLongDescription="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns."
+LocHelpText="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns."
+LocPromotionPopupText="<Bullet/> When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns.<br/>"
 
 [LickYourWounds_LW X2AbilityTemplate]
 LocFriendlyName="Lick Your Wounds"
 LocFlyOverText="Lick Your Wounds"
-LocLongDescription="Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission, and removes poison, burning, and acid burning. Passive."
-LocHelpText="Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission, and removes poison, burning, and acid burning. Passive."
-LocPromotionPopupText="<Bullet/> Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission.<br/><Bullet/> Removes poison, burning, and acid burning.<br/><Bullet/> If equipped with a Ballistic Shield, then the health recovery will activate when Shield Wall is used.<br/><Bullet/> Passive.<br/>"
+LocLongDescription="Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission, and removes poison, burning, and acid burning."
+LocHelpText="Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission, and removes poison, burning, and acid burning."
+LocPromotionPopupText="<Bullet/> Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission.<br/><Bullet/> Removes poison, burning, and acid burning.<br/><Bullet/> If equipped with a Ballistic Shield, then the health recovery will activate when Shield Wall is used.<br/>"
 
 [Impulse_LW X2AbilityTemplate]
 LocFriendlyName="Impulse"
 LocFlyOverText="Impulse"
 LocLongDescription="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
 LocHelpText="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn.<br/><Bullet/> Passive.<br/>"
+LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn.<br/>"
 
 [LockNLoad_LW X2AbilityTemplate]
 LocFriendlyName="Lock 'N Load"
 LocFlyOverText="Lock 'N Load"
-LocLongDescription="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo. Passive."
-LocHelpText="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo. Passive."
-LocPromotionPopupText="<Bullet/> Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo.<br/><Bullet/> Passive.<br/>"
+LocLongDescription="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
+LocHelpText="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
+LocPromotionPopupText="<Bullet/> Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo.<br/>"
 
 [TrenchWarfare_LW X2AbilityTemplate]
 LocFriendlyName="Trench Warfare"
 LocFlyOverText="Trench Warfare"
 LocLongDescription="If you get at least one kill during your turn, automatically Hunker Down at the end of it."
 LocHelpText="If you get at least one kill during your turn, automatically Hunker Down at the end of it."
-LocPromotionPopupText="<Bullet/> If you get at least one kill during your turn, automatically Hunker Down at the end of it.<br/><Bullet/> You will only Hunker Down if you would normally be able to.<br/><Bullet/> If a Ballistic Shield is equipped, then you will use Shield Wall instead.<br/><Bullet/> Passive.<br/>"
+LocPromotionPopupText="<Bullet/> If you get at least one kill during your turn, automatically Hunker Down at the end of it.<br/><Bullet/> You will only Hunker Down if you would normally be able to.<br/><Bullet/> If a Ballistic Shield is equipped, then you will use Shield Wall instead.<br/>"
 
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Dedication"
@@ -5795,14 +5795,14 @@ LocFriendlyName="Open Fire"
 LocFlyOverText="Open Fire"
 LocLongDescription="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 LocHelpText="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/><Bullet/> Passive.<br/>"
+LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/>"
 
 [WatchThemRun_LW X2AbilityTemplate]
 LocFriendlyName="Watch Them Run"
 LocFlyOverText="Watch Them Run"
-LocLongDescription="After throwing or launching a grenade, you will automatically enter overwatch. Passive."
-LocHelpText="After throwing or launching a grenade, you will automatically enter overwatch. Passive."
-LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will automatically enter overwatch.<br/><Bullet/> Passive.<br/>"
+LocLongDescription="After throwing or launching a grenade, you will automatically enter overwatch."
+LocHelpText="After throwing or launching a grenade, you will automatically enter overwatch."
+LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will automatically enter overwatch.<br/>"
 
 ; LWOTC Needs Translation (2)
 [Avenger_LW X2AbilityTemplate]
@@ -5816,16 +5816,16 @@ LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot 
 [Predator_LW X2AbilityTemplate]
 LocFriendlyName="Predator"
 LocFlyOverText="Predator"
-LocLongDescription="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover. Passive."
-LocHelpText="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover. Passive."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover.<br/><Bullet/> Passive.<br/>"
+LocLongDescription="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover."
+LocHelpText="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover."
+LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover.<br/>"
 
 [Stiletto_LW X2AbilityTemplate]
 LocFriendlyName="Stiletto"
 LocFlyOverText="Stiletto"
 LocLongDescription= "Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor."
 LocHelpText="Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor."
-LocPromotionPopupText="<Bullet/> Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor.<br/><Bullet/> Passive.<br/>"
+LocPromotionPopupText="<Bullet/> Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor.<br/>"
 
 [Reposition_LW X2AbilityTemplate]
 LocFriendlyName="Reposition"
