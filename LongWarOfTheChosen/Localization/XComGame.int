@@ -5005,7 +5005,7 @@ LocPromotionPopupText="<Bullet/> Each shot in Fan Fire rolls a separate chance t
 [SoulSteal X2AbilityTemplate]
 LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns, but increases the cooldown of soulfire by 1."
 LocHelpText="Soulfire heals a wounded operative and grants ablative HP, but increases soulfire cooldown by 1"
-LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 3/4/6 ablative hit point for 3 turns.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
+LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative and provide 3/4/6 ablative hit point for 3 turns.<br/><Bullet/> An operative may increase to no more than 15 ablative HP when using Soul Steal."
 ; End Translation
 
 [Domination X2AbilityTemplate]
@@ -5051,9 +5051,9 @@ LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, p
 
 [QuickStudy X2AbilityTemplate]
 LocFriendlyName="Quick Study"
-LocLongDescription="Learn officer and AWC bonus abilities in half the time."
-LocHelpText="Learn officer and AWC bonus abilities in half the time."
-LocPromotionPopupText="<Bullet/> Learn officer and AWC bonus abilities in half the time."
+LocLongDescription="Learn officer abilities in half the time."
+LocHelpText="Learn officer abilities in half the time."
+LocPromotionPopupText="<Bullet/> Learn officer abilities in half the time."
 
 [DoubleTap2 X2AbilityTemplate]
 LocFriendlyName="Double Tap"
@@ -5976,9 +5976,9 @@ LocPromotionPopupText = "<Bullet/> Works for all arc thrower abilities, includin
 
 [Overkill_LW X2AbilityTemplate]
 LocFriendlyName = "Overkill"
-LocHelpText = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP."
-LocLongDescription = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP."
-LocPromotionPopupText = "<Bullet/> Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP.<br/>"
+LocHelpText = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units at 50% HP or less."
+LocLongDescription = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units at 50% HP or less."
+LocPromotionPopupText = "<Bullet/> Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units at 50% HP or less.<br/>"
 
 [Disassembly_LW X2AbilityTemplate]
 LocFriendlyName= "Disassembly"
@@ -5997,7 +5997,7 @@ LocFriendlyName="Inspire Agility"
 LocFlyOverText="Inspire Agility"
 LocLongDescription="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. Starts with one charge, and is a free action."
 LocHelpText="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn."
-LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn.<br/><Bullet/> Killing an enemy unit grants an extra charge if this unit has no charges.<br/><Bullet/> Usable once per turn. <br/><Bullet/> Starts with one charge and is a free action.<br/>"
+LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn.<br/><Bullet/> Killing an enemy unit grants an extra charge.<br/><Bullet/> Usable once per turn. <br/><Bullet/> Starts with one charge and is a free action.<br/>"
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="Return Fire"
