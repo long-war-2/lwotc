@@ -482,14 +482,14 @@ LocFriendlyName="Point Blank"
 LocLongDescription="Fire your sawed-off shotgun at a nearby enemy."
 LocHelpText="Fire your sawed-off shotgun."
 LocFlyOverText="Point Blank"
-LocPromotionPopupText="<Bullet/> Rapidly loses accuracy beyond four tiles range.<br/><Bullet/> Uses one action, does not end turn.<br/><Bullet/> Shotgun has two ammo.<br/>"
+LocPromotionPopupText="<Bullet/> Rapidly loses accuracy beyond four tiles range.<br/><Bullet/> Uses one action.<br/><Bullet/> Shotgun has two ammo.<br/>"
 
 [BothBarrels X2AbilityTemplate]
 LocFriendlyName="Both Barrels"
 LocLongDescription="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."
 LocHelpText="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."
 LocFlyOverText="Both Barrels"
-LocPromotionPopupText="<Bullet/> Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage.<br/><Bullet/> Uses <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action, does not end turn.<br/>"
+LocPromotionPopupText="<Bullet/> Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage.<br/><Bullet/> Uses <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action.<br/>"
 
 [PumpAction X2AbilityTemplate]
 LocFriendlyName="Pump Action"
@@ -530,7 +530,7 @@ LocFriendlyName="Holotarget"
 LocLongDescription="Holotarget your enemy to grant an aim bonus to all attacks on this target by you and your allies for the remainder of the turn."
 LocHelpText="Holotarget an enemy to grant a bonus to attacks against this target."
 LocFlyOverText="Holotarget"
-LocPromotionPopupText="<Bullet/> Holotargeting takes a single action and does not automatically end your turn.<br/><Bullet/> The Holotargeting effect lasts for a single turn.<br/><Bullet/> Multiple holotarget effects do not stack with each other.<br/><Bullet/> The aim bonus is +<Ability:HOLO_CV_AIM_BONUS_LW/> for the basic Holotargeter, and improves to +<Ability:HOLO_MG_AIM_BONUS_LW/> and +<Ability:HOLO_BM_AIM_BONUS_LW/> with better technology.<br/><Bullet/> Holotargeting does not break concealment for you or your squad."
+LocPromotionPopupText="<Bullet/> Holotargeting takes a single action.<br/><Bullet/> The Holotargeting effect lasts until the start of your next turn.<br/><Bullet/> Multiple holotarget effects do not stack with each other.<br/><Bullet/> The aim bonus is +<Ability:HOLO_CV_AIM_BONUS_LW/> for the basic Holotargeter, and improves to +<Ability:HOLO_MG_AIM_BONUS_LW/> and +<Ability:HOLO_BM_AIM_BONUS_LW/> with better technology.<br/><Bullet/> Holotargeting does not break concealment for you or your squad."
 
 [RapidTargeting X2AbilityTemplate]
 LocFriendlyName="Rapid Targeting"
@@ -5040,7 +5040,7 @@ LocFriendlyName="Whirlwind"
 LocLongDescription="If you hit with a melee attack during your turn, gain a bonus move."
 LocHelpText="Gain one bonus move action after a successful melee attack."
 LocFlyOverText="Whirlwind"
-LocPromotionPopupText="<Bullet/> A soldier can only gain one move per turn with this ability.<br/><Bullet/> Cannot be employed if Reaper is active.<br/>"
+LocPromotionPopupText="<Bullet/> A soldier can only gain one move per turn with this ability.<br/>"
 
 [Solace_LW X2AbilityTemplate]
 LocFriendlyName="Solace"
@@ -5200,7 +5200,10 @@ FocusLevelDescriptions[3]="Rend Damage +<Ability:FOCUS3RENDDAMAGE/>\nMobility +<
 FocusLevelDescriptions[4]="Rend Damage +<Ability:FOCUS4RENDDAMAGE/>\nMobility +<Ability:FOCUS4MOBILITY/>\nDodge +<Ability:FOCUS4DODGE/>"
 
 [TemplarFocus X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels. Effectively managing Focus to get the most out of the stat boosts and each ability is critical to using a Templar.<br/><Bullet/> Focus is gained by killing enemies with Rend.<br/><Bullet/> Focus Level 1: Rend Damage +<Ability:FOCUS1RENDDAMAGE/>, Mobility +<Ability:FOCUS1MOBILITY/>, Dodge +<Ability:FOCUS1DODGE/><br/><Bullet/> Focus Level 2: Rend Damage +<Ability:FOCUS2RENDDAMAGE/>, Mobility +<Ability:FOCUS2MOBILITY/>, Dodge +<Ability:FOCUS2DODGE/><br/><Bullet/> Focus Level 3: Rend Damage +<Ability:FOCUS3RENDDAMAGE/>, Mobility +<Ability:FOCUS3MOBILITY/>, Dodge +<Ability:FOCUS3DODGE/><br/><Bullet/> Focus Level 4: Rend Damage +<Ability:FOCUS4RENDDAMAGE/>, Mobility +<Ability:FOCUS4MOBILITY/>, Dodge +<Ability:FOCUS4DODGE/>.<br/><Bullet/> Focus Level 5: Rend Damage +<Ability:FOCUS5RENDDAMAGE/>, Mobility +<Ability:FOCUS5MOBILITY/>, Dodge +<Ability:FOCUS5DODGE/>.<br/><Bullet/> Focus Level 6: Rend Damage +<Ability:FOCUS6RENDDAMAGE/>, Mobility +<Ability:FOCUS6MOBILITY/>, Dodge +<Ability:FOCUS6DODGE/>.<br/><Bullet/> Focus Level 7: Rend Damage +<Ability:FOCUS7RENDDAMAGE/>, Mobility +<Ability:FOCUS7MOBILITY/>, Dodge +<Ability:FOCUS7DODGE/>.<br/><Bullet/> Focus Level 8: Rend Damage +<Ability:FOCUS8RENDDAMAGE/>, Mobility +<Ability:FOCUS8MOBILITY/>, Dodge +<Ability:FOCUS8DODGE/>.<br/><Bullet/> Focus Level 9: Rend Damage +<Ability:FOCUS9RENDDAMAGE/>, Mobility +<Ability:FOCUS9MOBILITY/>, Dodge +<Ability:FOCUS9DODGE/>.<br/><Bullet/> Focus Level 10: Rend Damage +<Ability:FOCUS10RENDDAMAGE/>, Mobility +<Ability:FOCUS10MOBILITY/>, Dodge +<Ability:FOCUS10DODGE/>.<br/>"
+LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels. Effectively managing Focus to get the most out of the stat boosts and each ability is critical to using a Templar.<br/><Bullet/> Focus is gained by killing enemies with Rend.<br/><Bullet/> Focus Level 1: Rend Damage +<Ability:FOCUS1RENDDAMAGE/>, Mobility +<Ability:FOCUS1MOBILITY/>, Dodge +<Ability:FOCUS1DODGE/>.<br/><Bullet/> Focus Level 2: Rend Damage +<Ability:FOCUS2RENDDAMAGE/>, Mobility +<Ability:FOCUS2MOBILITY/>, Dodge +<Ability:FOCUS2DODGE/>.<br/><Bullet/> Focus Level 3: Rend Damage +<Ability:FOCUS3RENDDAMAGE/>, Mobility +<Ability:FOCUS3MOBILITY/>, Dodge +<Ability:FOCUS3DODGE/>.<br/><Bullet/> Focus Level 4: Rend Damage +<Ability:FOCUS4RENDDAMAGE/>, Mobility +<Ability:FOCUS4MOBILITY/>, Dodge +<Ability:FOCUS4DODGE/>."
+
+[Rend X2AbilityTemplate]
+LocLongDescription="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on kills."
 
 [Whiplash X2AbilityTemplate]
 LocLongDescription="Attack an enemy with an electrical lash. This attack has a <Ability:SelfCooldown_LW/> turn cooldown."
@@ -5306,7 +5309,7 @@ LocPromotionPopupText="<Bullet/> Judgement can be triggered by melee and area of
 LocFriendlyName="Manual Override"
 LocLongDescription="Resets all ability cooldowns on ally soldiers."
 LocHelpText="Resets all ability cooldowns on ally soldiers."
-LocPromotionPopupText="<Bullet/> Use the Skirmisher's abilities early and often to take full advantage of Manual Override.<br/><Bullet/> Costs 1 action.<br/><Bullet/> Manual Override has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Use the allies' abilities early and often to take full advantage of Manual Override.<br/><Bullet/> Costs 1 action.<br/><Bullet/> Manual Override has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [Battlelord X2AbilityTemplate]
 LocLongDescription="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."

@@ -91,9 +91,9 @@ LocPromotionPopupText="<Bullet/> Cannot be used on the same turn as Run and Gun.
 LocFriendlyName="Close Combat Specialist"
 LocFlyOverText="Close Combat Specialist"
 ; LWOTC Needs Translation
-LocLongDescription="During enemy turns, fire a free reaction shot with your <Ability:WeaponName/> at any visible enemy within four tiles who moves or fires."
+LocLongDescription="Fire a free reaction shot with your <Ability:WeaponName/> at any visible enemy within four tiles who moves or fires."
 ; End Translation
-LocHelpText="During enemy turns, Fire a free reaction shot at any visible enemy within four tiles who moves or fires."
+LocHelpText="Fire a free reaction shot at any visible enemy within four tiles who moves or fires."
 LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><Bullet/> You may shoot at each enemy with this ability once per turn.<br/><Bullet/> Each shot requires 2 ammo.<br/>""
 
 [CloseCombatSpecialistAttack X2AbilityTemplate]
@@ -189,9 +189,9 @@ LocPromotionPopupText="<Bullet/> Enemy damage is reduced by 1 when in cover and 
 [LightEmUp X2AbilityTemplate]
 LocFriendlyName="Light 'Em Up"
 LocFlyOverText="Light 'Em Up"
-LocLongDescription="Taking a standard shot with your primary weapon as your first action no longer ends your turn."
-LocHelpText="Taking a standard shot with your primary weapon as your first action no longer ends your turn."
-LocPromotionPopupText="<Bullet/> Taking a standard shot with your primary weapon as your first action no longer ends your turn.<br/>"
+LocLongDescription="Standard shots with your primary weapon are not turn-ending."
+LocHelpText="Standard shots with your primary weapon are not turn-ending."
+LocPromotionPopupText="<Bullet/> Standard shots with your primary weapon are not turn-ending.<br/>"
 
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="Close Encounters"
@@ -378,14 +378,14 @@ LocFriendlyName="Suppression"
 LocFlyOverText="Suppression"
 LocLongDescription="Fire a barrage that pins down a target, grants reaction fire against it if it moves, restricts the use of many abilities, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to the target's aim."
 LocHelpText="Penalize target's aim and shoot them if they move."
-LocPromotionPopupText="<Bullet/> Suppression costs <Ability:SelfAmmoCost/> ammo points to use, but has no cooldown.<br/><Bullet/> Suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will stack.<br/><Bullet/> May not be used if sniper rifle or shotgun-class weapons are equipped.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades."
+LocPromotionPopupText="<Bullet/> Suppression costs <Ability:SelfAmmoCost/> ammo points to use, but has no cooldown.<br/><Bullet/> Suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> May not be used if sniper rifle or shotgun-class weapons are equipped.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades."
 
 [AreaSuppression X2AbilityTemplate]
 LocFriendlyName="Area Suppression"
 LocFlyOverText="Area Suppression"
 LocLongDescription="Fire a barrage that pins down multiple targets within a 4-tile radius, granting reaction fire against anyone that moves, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to all targets' aim until suppression is removed. Cannot be used when concealed."
 LocHelpText="Suppress multiple targets within an area of effect."
-LocPromotionPopupText="<Bullet/> Area Suppression cannot be used when the soldier is concealed.<br/><Bullet/> Any unit that attempts to move will face reaction fire as long as the suppressing unit has ammo remaining.<br/><Bullet/> Does not work with shotguns or sniper rifles.<br/><Bullet/> Area Suppression costs <Ability:SelfAmmoCost/> ammo points to use, plus one additional ammo for each reaction shot. It has no cooldown.<br/><Bullet/> Area suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will stack.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades.""
+LocPromotionPopupText="<Bullet/> Area Suppression cannot be used when the soldier is concealed.<br/><Bullet/> Any unit that attempts to move will face reaction fire as long as the suppressing unit has ammo remaining.<br/><Bullet/> Does not work with shotguns or sniper rifles.<br/><Bullet/> Area Suppression costs <Ability:SelfAmmoCost/> ammo points to use, plus one additional ammo for each reaction shot. It has no cooldown.<br/><Bullet/> Area suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades.""
 
 [SuppressionShot_LW X2AbilityTemplate]
 LocFriendlyName="Suppression"
@@ -633,7 +633,7 @@ LocFriendlyName="Boosted Cores"
 LocFlyOverText="Boosted Cores"
 LocLongDescription="Explosive grenades do one additional damage."
 LocHelpText="Explosive grenades do one additional damage."
-LocPromotionPopupText="<Bullet/> Your grenades have extra explosives and do one additional damage but require special training to handle.<br/><Bullet/> This also applies to grenade effects, like fire from incendiary weapons.<br/>"
+LocPromotionPopupText="<Bullet/> Your grenades have extra explosives and do one additional damage but require special training to handle.<br/>"
 
 [Airdrop X2AbilityTemplate]
 LocFriendlyName="Airdrop"
@@ -909,7 +909,7 @@ LocFriendlyName="Conceal"
 LocLongDescription="Immediately enter concealment once per mission."
 LocHelpText="Immediately enter concealment once per mission."
 LocFlyOverText="Conceal"
-LocPromotionPopupText="<Bullet/> Concealment can be entered at any location, but when done inside the detection radii of nearby enemies the soldier will be revealed when flanked.<br/><Bullet/> Requires one action and ends the soldier's turn."
+LocPromotionPopupText="<Bullet/> Concealment cannot be used when flanked by nearby enemies.<br/><Bullet/> Requires one action and ends the soldier's turn."
 
 [XComGame.RevivalProtocol X2AbilityTemplate]
 [RevivalProtocol X2AbilityTemplate]
