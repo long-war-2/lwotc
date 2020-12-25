@@ -2895,6 +2895,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'MIND_SCORCH_BURN_CHANCE':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.MIND_SCORCH_BURN_CHANCE);
 			return true;
+		case 'NULL_WARD_BASE_SHIELD':
+			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.NULL_WARD_BASE_SHIELD);
+			return true;
+		case 'PHASEWALK_CAST_RANGE_TILES':
+			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.PHASEWALK_CAST_RANGE_TILES);
+			return true;
 		default:
 			return false;
 	}

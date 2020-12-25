@@ -4929,7 +4929,7 @@ DisplayName="Successful ADVENT Raids:"
 
 ; just fix typo
 [Insanity X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Insanity has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Insanity requires a contest between the Psi Operative's Psi Strength stat, and the target's will.<br/><Bullet/> Insanity can disorient, stun, or mind control the target if it succeeds.<br/><Bullet/> Mechanical enemies are completely immune to Insanity.<br/>"
+LocPromotionPopupText="<Bullet/> Insanity has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Insanity requires a contest between the Psi Operative's Psi Strength stat, and the target's will.<br/><Bullet/> Insanity can disorient, stun, or mind control the target if it succeeds.<br/><Bullet/> Mechanical enemies are completely immune to Insanity.<br/><Bullet/> Insanity requires one action and does not end your turn.<br/>"
 
 [XComGame.UIEndGameStats]
 Victory=LONG WAR VICTORY
@@ -5012,7 +5012,7 @@ LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wou
 LocPromotionPopupText="<Bullet/> Domination requires a contest of the Psi Operative's Psi Strength stat versus the Will of the target.<br/><Bullet/> If an attempted Domination fails, there is a 4 turn cooldown before another Domination can be attempted.<br/><Bullet/> If the Psi Operative dies or leaves the battlefield, the Domination is broken.<br/>"
 
 [VoidRift X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Void Rift has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Generate an explosive field of Psionic energy that immediately damages everything within. Organic enemies have a chance to suffer Insanity.<br/><Bullet/> VoidRift ruptures targets for 1. Rupture amount increases with better Psi Amp technology. <br/><Bullet/> Void Rift has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [CoveringFire X2AbilityTemplate]
 LocLongDescription="Reaction shots confer an aim malus on enemies and can now be triggered by any enemy action, not just movement."
@@ -5047,7 +5047,7 @@ LocFriendlyName="Solace"
 LocFlyOverText="Solace"
 LocLongDescription="The Psi Operative may immediately extinguish mental impairments for a squadmate."
 LocHelpText="The Psi Operative may immediately extinguish mental impairments for a squadmate."
-LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action.<br/><Bullet/> Solace has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Solace requires one action and does not end your turn.<br/><Bullet/> Solace has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [QuickStudy X2AbilityTemplate]
 LocFriendlyName="Quick Study"
@@ -5208,7 +5208,7 @@ LocLongDescription="Melee attack with a chance to stun or disorient the target. 
 [Whiplash X2AbilityTemplate]
 LocLongDescription="Attack an enemy with an electrical lash. This attack has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="An attack with an electrical lash. Extra damage to robotic units. <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Whiplash does extra damage to robotic enemies. Whiplash has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> Whiplash does extra damage to robotic enemies.<br/><Bullet/> Whiplash requires one action and does not end your turn.<Bullet/><br/>Whiplash has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [SkirmisherInterrupt X2AbilityTemplate]
 LocLongDescription="A powerful form of Overwatch. Instead of firing automatically, perform any single action. Free action, ends the turn."
@@ -5248,7 +5248,7 @@ LocPromotionPopupText="<Bullet/> Allows a Reaper to stay safely in Shadow during
 [ShadowRising X2AbilityTemplate]
 LocLongDescription="Reduces Shadow's cooldown by 1 turn."
 LocHelpText="Reduces Shadow's cooldown by 1 turn."
-LocPromotionPopupText="<Bullet/> .<br/>"
+LocPromotionPopupText="<Bullet/> Reduces Shadow's cooldown by 1 turn.<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation (3)
@@ -5335,7 +5335,7 @@ LocFriendlyName="Solace"
 LocFlyOverText="Solace"
 LocLongDescription="The Templar may immediately extinguish mental impairments for a squadmate."
 LocHelpText="The Templar may immediately extinguish mental impairments for a squadmate."
-LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action.<br/><Bullet/> Solace has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Solace requires one action and does not end your turn.<br/><Bullet/> Solace has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 ; LWOTC Needs Translation #2 - Shard and Caster gauntlet tactical text and the brief
 ; summaries for the caster gauntlets have been updated.
@@ -5620,19 +5620,21 @@ LocFriendlyName="Phase Walk"
 LocLongDescription="Temporarily phase out of existence to teleport to a nearby location."
 LocHelpText="Temporarily phase out of existence to teleport to a nearby location."
 LocFlyOverText="Phase Walk"
+LocPromotionPopupText="<Bullet> Temporarily phase out of existence to teleport to a nearby location.<br/><Bullet/> The targeted tile must be visible (works with squadsight).<br/><Bullet/> Phase Walk requires one action and does not end your turn.<br/><Bullet/> Phase Walk has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Phase Walk has a radius of <Ability:PHASEWALK_CAST_RANGE_TILES> tiles.<br/><Bullet/> Moving with Phase Walk can trigger certain reaction fire abilities.<br>"
 
 [LW_NullWard X2AbilityTemplate]
 LocFriendlyName="Null Ward"
 LocLongDescription="Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed."
 LocHelpText="Project psionic shields around nearby allies and yourself."
 LocFlyOverText="Null Ward"
+LocPromotionPopupText="<Bullet> Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed.<br/><Bullet/> Null Ward grants <Ability:NULL_WARD_BASE_SHIELD> ablative hit points.<br/><Bullet/> Improved Psi Amps grant additional bonuses to ablative hit points.<br/><Bullet/> Null Ward requires one action and does not end your turn.<br/><Bullet/> Null Ward has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Ward has a radius of 8 tiles.<br/>"
 
 [LW_SoulStorm X2AbilityTemplate]
 LocFriendlyName="Soul Storm"
 LocLongDescription="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
 LocHelpText="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
 LocFlyOverText="Soul Storm"
-LocPromotionPopupText="Cannot destroy floors or ceilings."
+LocPromotionPopupText="<Bullet>Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover.<br/><Bullet> Soul Storm area of effect is centered on the user.<br/><Bullet> Cannot destroy floors or ceilings.<br/><Bullet/> Soul Storm requires one action and end your turn.<br/><Bullet/> Soul Storm has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Soul Storm has a radius of 4 tiles.<br/>"
 
 [TheLostGrapplerHP2_LW X2CharacterTemplate]
 strCharacterName="Lost Grappler"
@@ -5702,7 +5704,7 @@ LocFriendlyName="Grapple"
 LocLongDescription="Free melee attacks on any enemies that enter, exit or attack from melee range on enemy turns."
 LocHelpText="Free melee attacks on any enemies that enter, exit or attack from melee range on enemy turns."
 LocFlyOverText="Grapple"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Grapple will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Grapple will trigger when that enemy moves into melee range.<br/>"
 
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="Bladestorm"
@@ -5853,7 +5855,7 @@ LocFriendlyName="Weapon Handling"
 LocLongDescription="Reduces the Aim penalty for short-range <Ability:WeaponName/> shots by <Ability:WPN_HANDLING_MODIFIER/>%."
 LocHelpText="Reduces the Aim penalty for short-range <Ability:WeaponName/> shots by <Ability:WPN_HANDLING_MODIFIER/>%."
 LocFlyOverText="Weapon Handling"
-LocPromotionPopupText="<Bullet/> Point Blank does not affect the aim penalty from Snap Shot.<br/>"
+LocPromotionPopupText="<Bullet/> Weapon Handling does not affect the aim penalty from Snap Shot.<br/>"
 
 [ThatsCloseEnough_LW X2AbilityTemplate]
 LocFriendlyName="That's Close Enough"

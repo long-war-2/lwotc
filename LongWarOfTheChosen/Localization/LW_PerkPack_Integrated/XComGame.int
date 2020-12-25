@@ -749,7 +749,7 @@ LocFlyOverText="Mind Merge"
 LocLongDescription="Grants bonus will, critical chance and ablative hit points to an ally until the beginning of the player's next turn."
 LocHelptext="Temporarily grants bonus will, critical chance and ablative hit points to an ally."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Grants the targeted ally 1 ablative (shield) hit point, plus another one per 20 psi offense score of the Psi Operative using Mind Merge.<br/><Bullet/> Grants the targeted ally 1 will per 5 psi offense score of the Psi Operative.<br/><Bullet/> Also grants the ally +1 critical chance per 7 psi offense score of the Psi Operative.<br/><Bullet/> Effect lasts until the Psi Operative's next turn.<br/><Bullet/> Mind merge has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Only visible allies may be targeted.<br/><Bullet/> Improved Psi Amps grant additional bonuses to these effects.<br/><Bullet/> Requires one action."
+LocPromotionPopupText="<Bullet/> Grants the targeted ally 1 ablative (shield) hit point, plus another one per 20 psi offense score of the Psi Operative using Mind Merge.<br/><Bullet/> Grants the targeted ally 1 will per 5 psi offense score of the Psi Operative.<br/><Bullet/> Also grants the ally +1 critical chance per 7 psi offense score of the Psi Operative.<br/><Bullet/> Effect lasts until the Psi Operative's next turn.<br/><Bullet/> Mind merge has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Mind Merge requires one action and does not end your turn.<br/><Bullet/> Only visible allies may be targeted.<br/><Bullet/> Improved Psi Amps grant additional bonuses to these effects.<br/>"
 ;End Translation
 
 [SoulMerge X2AbilityTemplate]
@@ -793,8 +793,8 @@ LocFriendlyNameWhenConcealed="Kill Zone (Concealed)"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Death From Above"
-LocLongDescription="Killing an enemy at a lower elevation with your <Ability:WeaponName/> costs only a single action, and does not end your turn. Also grants a long-range accuracy bonus for sniper rifles."
-LocHelpText="Killing an enemy at a lower elevation with your <Ability:WeaponName/> costs only a single action, and does not end your turn."
+LocLongDescription="Killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn. Also grants a long-range accuracy bonus for sniper rifles."
+LocHelpText="Killing an enemy at a lower elevation with your <Ability:WeaponName/> refunds a single action, and does not end your turn."
 LocFlyOverText="Death From Above"
 LocPromotionPopupText="<Bullet/> Death From Above can combo well with pistol abilities or can simply make a soldier more mobile.<br/><Bullet/> Also grants a long-range accuracy bonus for sniper rifles at any elevation."
 
