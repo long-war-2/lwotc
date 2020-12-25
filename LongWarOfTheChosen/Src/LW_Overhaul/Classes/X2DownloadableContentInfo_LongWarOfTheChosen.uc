@@ -2895,8 +2895,47 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'MIND_SCORCH_BURN_CHANCE':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.MIND_SCORCH_BURN_CHANCE);
 			return true;
+		case 'NULL_WARD_BASE_SHIELD':
+			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.NULL_WARD_BASE_SHIELD);
+			return true;
+		case 'PHASEWALK_CAST_RANGE_TILES':
+			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.PHASEWALK_CAST_RANGE_TILES);
+			return true;
 		default:
 			return false;
+	}
+}
+
+static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseOb, XComGameState GameState)
+{
+	local name Type;
+	local XComGameState_Ability AbilityState;
+	local X2AbilityTemplate AbilityTemplate;
+
+	Type = name(InString);
+	switch(Type)
+	{
+	case 'SELFCOOLDOWN_LW':
+		OutString = "0";
+		AbilityTemplate = X2AbilityTemplate(ParseObj);
+		if (AbilityTemplate == none)
+		{
+			AbilityState = XComGameState_Ability(ParseObj);
+			if (AbilityState != none)
+				AbilityTemplate = AbilityState.GetMyTemplate();
+		}
+		if (AbilityTemplate != none)
+		{
+			if (AbilityTemplate.AbilityCooldown != none)
+			{
+				// LW2 doesn't subtract 1 from cooldowns as a general rule, so to keep it consistent
+				// there is substitute tag
+				OutString = string(AbilityTemplate.AbilityCooldown.iNumTurns);
+			}
+		}
+		return true;
+	default:
+		return false;
 	}
 }
 

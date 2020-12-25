@@ -15,4 +15,8 @@ simulated function int GetNumTurns(XComGameState_Ability kAbility, XComGameState
 	return MIND_MERGE_COOLDOWN;
 }
 
+DefaultProperties
+{
+	iNumTurns = 4;
+}
 	//if (XComGameState_Unit(AffectState).HasSoldierAbility('SoulMerge'))
