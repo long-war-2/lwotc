@@ -6090,9 +6090,17 @@ LocFlyOverText="Keen"
 
 [CombatReadiness X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable 10 aim and 5 defense bonus for 2 turns."
-LocHelpText="Gain a stackable 10 aim and 5 defense bonus for 2 turns."
+LocLongDescription="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
+LocHelpText="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
 LocFlyOverText="Combat Readiness"
+
+;LWOTC needs translation
+[CombatReadinessPassive X2AbilityTemplate]
+LocFriendlyName="Combat Readiness"
+LocLongDescription="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
+LocHelpText="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
+LocFlyOverText="Combat Readiness"
+; End translation
 
 ;LWOTC needs translation (2)
 [ChosenAssassin X2CharacterTemplate]
