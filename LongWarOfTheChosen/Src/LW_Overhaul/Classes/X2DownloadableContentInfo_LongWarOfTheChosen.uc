@@ -2561,26 +2561,22 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 	{
 		TraitTemplate = AbilityMgr.FindAbilityTemplate(Traitname);
 
-		foreach ValidChosenStrengths(WStrength)
+		for(i = ValidChosenStrengths.length -1; i>= 0; i--)
 		{
-			if(WStrength.Strength == Traitname)
+			if(ValidChosenStrengths[i].Strength == Traitname)
 			{
-				ValidChosenStrengths.RemoveItem(WStrength);
-				break;
+				ValidChosenStrengths.Remove(i, 1);
 			}
-
 		}
 		
 		foreach TraitTemplate.ChosenExcludeTraits(ExcludeTraitName)
 		{
-			foreach ValidChosenStrengths(WStrength)
+			for(i = ValidChosenStrengths.length -1; i>= 0; i--)
 			{
-				if(WStrength.Strength == ExcludeTraitName)
+				if(ValidChosenStrengths[i].Strength == ExcludeTraitName)
 				{
-				ValidChosenStrengths.RemoveItem(WStrength);
-				break;
+					ValidChosenStrengths.Remove(i, 1);
 				}
-
 			}
 		}
 	}
@@ -2591,12 +2587,11 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 
 		foreach TraitTemplate.ChosenExcludeTraits(ExcludeTraitName)
 		{
-			foreach ValidChosenStrengths(WStrength)
+			for(i = ValidChosenStrengths.length -1; i>= 0; i--)
 			{
-				if(WStrength.Strength == ExcludeTraitName)
+				if(ValidChosenStrengths[i].Strength == ExcludeTraitName)
 				{
-				ValidChosenStrengths.RemoveItem(WStrength);
-				break;
+					ValidChosenStrengths.Remove(i, 1);
 				}
 
 			}
@@ -2605,7 +2600,6 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 		TotalWeight = 0.0f;
 		foreach ValidChosenStrengths(WStrength)
 		{
-			
 			TotalWeight+=WStrength.Weight;
 		}
 		for(i=0; i<NumStrengthsPerLevel; i++)
