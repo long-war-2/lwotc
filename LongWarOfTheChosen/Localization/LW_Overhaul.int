@@ -691,3 +691,8 @@ strDisabledPrecisionExplosivesTooltip="Precision Explosives is disabled while ru
 
 [UICovertActionReport_LW]
 strCovertActionFailed="FAILED"
+
+[UIScreenListener_ViewObjectives]
+; LWOTC Needs Translation
+ScrollObjectiveDescriptionStr="SCROLL OBJECTIVE DESCRIPTION"
+; End Translation
