@@ -1,4 +1,4 @@
-Welcome to **dev build 22.2** of Long War of the Chosen!
+Welcome to **dev build 22.3** of Long War of the Chosen!
 
 This is intended to be the precursor build to beta 4, with some notable balance changes that need testing. The big changes include:
 
@@ -12,7 +12,7 @@ This is intended to be the precursor build to beta 4, with some notable balance 
  * Jailbreaks can have multiple captured XCOM soldiers (up to 3) as rewards
  * Chosen gain knowledge a lot more slowly than before from Retribution, and a little more slowly from captures
 
-**UPDATE** Dev build 22.2 is now available! The patch notes for this version can be found just below.
+**UPDATE** Dev build 22.3 is now available! The patch notes for this version can be found just below.
 
 **Important** If you want to upgrade mid campaign and want to test the Reaper tree changes, be sure to use the `RespecSelectedSoldier` console command, although be aware that this will change the XCOM-row abilities too.
 
@@ -21,6 +21,28 @@ To install dev build 22, just delete your existing LongWarOfTheChosen and X2WOTC
 ||  **[Download the full release from Nexus Mods](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
 
 There is also a smaller, patch version available at that link that can be unpacked on top of any existing dev build 21 installation.
+
+## Changelog 22.3
+
+ * Chosen weapons:
+   - Darklance gets +1 magazine size
+   - Disruptor Rifle's psi crit bonus now 100, up from 20
+   - Arashi grants Brawler (30% damage reduction if attacker is within 4 tiles)
+ * Chosen:
+   - Warlock will no longer teleport Chryssalid cocoons
+   - Warlock will attempt to teleport allies before he summons minions
+   - Assassin will now lose all Blood Thirst stacks when she kidnaps a soldier
+   - Assassin will now activate Combat Readiness as a prime reaction if she is affected by any debuffs on her mobility
+   - Assassin's Mobility reduced to 9, from 12
+   - Maimed now immobilizes Chosen, just like with normal enemies (but Combat Readiness will cleanse the debuff)
+   - Bonus damage from Brittle now 20%, up from 15%
+   - Chosen will no longer get duplicate strengths
+   - Combat Readiness now clears most debuffs, including Burning, Poisoned, Maimed and Holotargeted
+ * Aliens with Hit and Run/Slither and Hunter's Instinct no longer get the bonuses when targets are in cover
+ * Apex Predator now works
+ * Negating covert action risks now correctly updates the chances for the remaining risks
+ * Reaper and Skirmisher pistol ability costs are now the same as for other soldier classes
+ * The Shadow Chamber information panel for missions is no longer displayed for infiltration missions that you haven't started infiltrating yet, as the enemy unit breakdown at that point does not necessarily match what you will face when you launch; the panel is still displayed once infiltration has started, since that is relatively accurate
 
 ## Changelog 22.2
 
