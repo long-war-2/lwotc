@@ -304,7 +304,6 @@ static function X2AbilityTemplate AddVanishingActAbility()
 	local X2AbilityCost_ActionPoints	ActionPointCost;
 	local X2Condition_UnitProperty		TargetProperty, ShooterProperty;
 	local X2Effect_ApplySmokeGrenadeToWorld WeaponEffect;
-	local X2Effect_SmokeGrenade				SmokeEffect;	
 	local X2Effect_RangerStealth		StealthEffect;
 	local X2AbilityMultiTarget_Radius		RadiusMultiTarget;
 	local X2AbilityCharges					Charges;
@@ -378,14 +377,8 @@ static function X2AbilityTemplate AddVanishingActAbility()
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 	
 	WeaponEffect = new class'X2Effect_ApplySmokeGrenadeToWorld';
-	Template.AddTargetEffect (WeaponEffect);
-
-	SmokeEffect = new class'X2Effect_SmokeGrenade';
-	SmokeEffect.BuildPersistentEffect(class'X2Effect_ApplySmokeGrenadeToWorld'.default.Duration + 1, false, false, false, eGameRule_PlayerTurnBegin);
-    SmokeEffect.SetDisplayInfo(1, class'X2Item_DefaultGrenades'.default.SmokeGrenadeEffectDisplayName, class'X2Item_DefaultGrenades'.default.SmokeGrenadeEffectDisplayDesc, "img:///UILibrary_PerkIcons.UIPerk_grenade_smoke");
-    SmokeEffect.HitMod = class'X2Item_DefaultGrenades'.default.SMOKEGRENADE_HITMOD;
-    SmokeEffect.DuplicateResponse = eDupe_Refresh;
-	Template.AddTargetEffect (SmokeEffect);
+	Template.AddTargetEffect(WeaponEffect);
+	Template.AddTargetEffect(class'X2Item_DefaultGrenades'.static.SmokeGrenadeEffect());
 
 	StealthEffect = new class'X2Effect_RangerStealth';
     StealthEffect.BuildPersistentEffect(1, true, false, false, 8);
