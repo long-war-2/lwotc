@@ -609,8 +609,8 @@ simulated function RefreshNavHelp()
 		// KDM : Bumper left/right changes all rebel jobs.
 		NavHelp.AddLeftHelp(ChangeAllJobsStr, class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_RB_R1);
 
-		// KDM : Right stick click changes the haven's adviser.
-		NavHelp.AddLeftHelp(CAPS(m_strLiaisonTitle), class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_RSCLICK_R3);
+		// KDM : X button changes the haven's adviser.
+		NavHelp.AddLeftHelp(CAPS(m_strLiaisonTitle), class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_X_SQUARE);
 
 		// KDM : Y button brings up the option to build a haven relay, if certain conditions are met.
 		if (ControllerCanBuildRelay())
@@ -716,22 +716,22 @@ simulated function bool OnUnrealCommand(int cmd, int arg)
 
 	switch (cmd)
 	{
-		case class'UIUtilities_Input'.const.FXS_BUTTON_A:
+		case class'UIUtilities_Input'.static.GetAdvanceButtonInputCode():
 		case class'UIUtilities_Input'.const.FXS_KEY_ENTER:
 		case class'UIUtilities_Input'.const.FXS_KEY_SPACEBAR:
 			OnAccept();
 			break;
 
-		case class'UIUtilities_Input'.const.FXS_BUTTON_B:
+		case class'UIUtilities_Input'.static.GetBackButtonInputCode():
 		case class'UIUtilities_Input'.const.FXS_KEY_ESCAPE:
 		case class'UIUtilities_Input'.const.FXS_R_MOUSE_DOWN:
 			OnCancel();
 			break;
 
-		// KDM : Right stick click either :
+		// KDM : X button either :
 		// [1] Opens the haven adviser selection screen, if no haven adviser currently exists.
 		// [2] Removes the haven adviser, if one currently exists.
-		case class'UIUtilities_Input'.const.FXS_BUTTON_R3:
+		case class'UIUtilities_Input'.const.FXS_BUTTON_X:
 			OnLiaisonClicked(none);
 			break;
 
