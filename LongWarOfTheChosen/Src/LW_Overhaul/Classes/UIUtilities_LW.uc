@@ -14,6 +14,8 @@ var config array<name> DelayedEvacMissions;
 var config array<name> NoEvacMissions;
 var config array<name> ObjectiveTimerMissions;
 var config array<name> EvacTimerMissions;
+var config(LW_UI) bool USE_LARGE_INFO_PANEL;
+var config(LW_UI) bool CENTER_TEXT_IN_LIP;
 
 var const array<string> PlotTypes;
 
@@ -360,126 +362,256 @@ function static string GetInfiltrationString(XComGameState_MissionSite MissionSt
 	return InfiltrationString;
 }
 
-function static BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReference MissionRef, bool IsInfiltrating)
+static function GetMissionInfoPanelText(StateObjectReference MissionRef, bool IsInfiltrating,
+	out string TitleString, out string InfiltrationString, out string ExpirationString, out string MissionInfo1String,
+	out string MissionInfo2String)
 {
 	local int EvacFlareTimer;
-	local float TotalMissionHours;
-	local string HeaderStr, InfilInfo, MissionInfo1, MissionInfo2, MissionInfoTimer, MissionTime;
-	local UIBGBox MissionExpiryBG;
-	local UIPanel MissionExpiryPanel;
-	local UIX2PanelHeader MissionExpiryTitle;
+	local float HoursRemaining;
+	local string Header, TimeRemaining, ExpirationTime, MissionType, EvacTurns, SquadSize, MissionTurns, SweepInfo,
+		FullSalvageInfo, RendezvousInfo, ConcealmentInfo, InfiltrationInfo, MissionInfo1, MissionInfo2;
 	local X2CharacterTemplate FacelessTemplate;
 	local XComGameState_LWAlienActivity ActivityState;
 	local XComGameState_LWPersistentSquad InfiltratingSquad;
 	local XComGameState_LWSquadManager SquadMgr;
 	local XComGameState_MissionSite MissionState;
 	local XComGameState_MissionSiteRendezvous_LW RendezvousMissionState;
-	
+
 	SquadMgr = `LWSQUADMGR;
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
-
+	InfiltratingSquad = SquadMgr.GetSquadOnMission(MissionRef);
 	ActivityState = class'XComGameState_LWAlienActivityManager'.static.FindAlienActivityByMission(MissionState);
+
+	// ------------- Get header -------------------------------
+	Header = class'UIMissionIntro'.default.m_strMissionTitle;
+	Header -= ":";
+
+	// ------------- Get infiltration info --------------------
+	InfiltrationInfo = IsInfiltrating ? GetInfiltrationString(MissionState, ActivityState, InfiltratingSquad) : "";
+
+	// ------------- Get mission expiration time --------------
 	if (ActivityState != none)
 	{
-		TotalMissionHours = int(ActivityState.SecondsRemainingCurrentMission() / 3600.0);
+		HoursRemaining = int(ActivityState.SecondsRemainingCurrentMission() / 3600.0);
 	}
 	else
 	{
-		TotalMissionHours = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(MissionState.ExpirationDateTime, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()) / 3600.0;
+		HoursRemaining = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(
+			MissionState.ExpirationDateTime, class'XComGameState_GeoscapeEntity'.static.GetCurrentTime()) / 3600.0;
 	}
-	MissionInfoTimer = "";
+	TimeRemaining = class'UISquadSelect_InfiltrationPanel'.static.GetDaysAndHoursString(HoursRemaining);
 
-	InfiltratingSquad = SquadMgr.GetSquadOnMission(MissionRef);
-	if (IsInfiltrating)
+	ExpirationTime = "";
+	if (HoursRemaining >= 0.0 &&
+		HoursRemaining <= 10000.0 &&
+		MissionState.ExpirationDateTime.m_iYear < 2100)
 	{
-		InfilInfo = GetInfiltrationString(MissionState, ActivityState, InfiltratingSquad) $ "\n";
+		if (ActivityState != none && ActivityState.bMustLaunch)
+		{
+			ExpirationTime = class'UIMission_LWLaunchDelayedMission'.default.m_strMustLaunchMission;
+		}
+		else
+		{
+			ExpirationTime = class'UISquadSelect_InfiltrationPanel'.default.strMissionTimeTitle @ TimeRemaining;
+		}
 	}
-	MissionInfo1 = "<font size=\"16\">";
-	MissionInfo1 $= GetMissionTypeString (MissionRef) @ default.m_strBullet $ " ";
 
+	// ------------- Get mission type -------------------------
+	MissionType = GetMissionTypeString(MissionRef);
+
+	// ------------- Get mission evacuation time --------------
 	if (InfiltratingSquad != none)
 	{
-		EvacFlareTimer = GetCurrentEvacDelay(SquadMgr.GetSquadOnMission(MissionRef),ActivityState);
+		EvacFlareTimer = GetCurrentEvacDelay(InfiltratingSquad, ActivityState);
 	}
 	else
 	{
 		EvacFlareTimer = -1;
 	}
+
+	EvacTurns = "";
 	if (GetEvacTypeString(MissionState) != "")
 	{
-		MissionInfo1 $= GetEvacTypeString (MissionState);
-		if (EvacFlareTimer >= 0 && (default.EvacFlareMissions.Find (MissionState.GeneratedMission.Mission.MissionName) != -1 || default.EvacFlareEscapeMissions.Find (MissionState.GeneratedMission.Mission.MissionName) != -1))
+		EvacTurns = GetEvacTypeString(MissionState);
+		if (EvacFlareTimer >= 0 &&
+			(default.EvacFlareMissions.Find(MissionState.GeneratedMission.Mission.MissionName) != -1 ||
+			default.EvacFlareEscapeMissions.Find(MissionState.GeneratedMission.Mission.MissionName) != -1))
 		{
-			MissionInfo1 @= "(" $ string (EvacFlareTimer) @ GetTurnsLabel(EvacFlareTimer) $ ")";
+			EvacTurns @= "(" $ string(EvacFlareTimer) @ GetTurnsLabel(EvacFlareTimer) $ ")";
 		}
-		MissionInfo1 @= default.m_strBullet $ " ";
-	}
-	MissionInfo1 $= default.m_strMaxSquadSize @ string(MissionState.GeneratedMission.Mission.MaxSoldiers);
-	MissionInfo2 = "";
-	MissionInfo2 $= GetTimerInfoString (MissionState);
-	if (GetTimerInfoString (MissionState) != "")
-	{
-		MissionInfo2 @= default.m_strBullet $ " ";
-	}
-	if (HasSweepObjective(MissionState))
-	{
-		MissionInfo2 $= default.m_strSweepObjective @ default.m_strBullet $ " ";
-	}
-	if (FullSalvage(MissionState))
-	{
-		MissionInfo2 $= default.m_strGetCorpses @ default.m_strBullet $ " ";
 	}
 
+	// ------------- Get mission squad size -------------------
+	SquadSize = default.m_strMaxSquadSize @ string(MissionState.GeneratedMission.Mission.MaxSoldiers);
+
+	// ------------- Get mission time limit -------------------
+	MissionTurns = GetTimerInfoString(MissionState);
+
+	// ------------- Get mission 'sweep' status ---------------
+	SweepInfo = HasSweepObjective(MissionState) ? default.m_strSweepObjective : "";
+
+	// ------------- Get mission 'salvage' status -------------
+	FullSalvageInfo = FullSalvage(MissionState) ? default.m_strGetCorpses : "";
+
+	// ------------- Get rendezvous info ----------------------
+	RendezvousInfo = "";
 	if (MissionState.GeneratedMission.Mission.sType == "Rendezvous_LW")
 	{
 		RendezvousMissionState = XComGameState_MissionSiteRendezvous_LW(MissionState);
 		FacelessTemplate = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager().FindCharacterTemplate('Faceless');
-		MissionInfo2 $= FacelessTemplate.strCharacterName $ ":" @ RendezvousMissionState.FacelessSpies.Length @ default.m_strBullet $ " ";
+		RendezvousInfo = FacelessTemplate.strCharacterName $ ":" @ RendezvousMissionState.FacelessSpies.Length;
 	}
-	MissionInfo2 $= GetMissionConcealStatusString (MissionRef);
-	MissionTime = class'UISquadSelect_InfiltrationPanel'.static.GetDaysAndHoursString(TotalMissionHours);
 
-	// Try to find an existing panel first. If we have one, remove it - we need to refresh.
+	// ------------- Get mission concealment status -----------
+	ConcealmentInfo = GetMissionConcealStatusString(MissionRef);
+
+	// ------------- Set up strings similar to LW2 ------------
+	InfiltrationInfo $= (InfiltrationInfo != "") ? "\n" : "";
+
+	ExpirationTime $= (ExpirationTime != "") ? "\n" : "";
+
+	MissionInfo1 = MissionType @ default.m_strBullet $ " ";
+	MissionInfo1 $= (EvacTurns != "") ? EvacTurns @ default.m_strBullet $ " " : "";
+	MissionInfo1 $= SquadSize;
+
+	MissionInfo2 = MissionTurns;
+	MissionInfo2 $= (MissionTurns != "") ? " " $ default.m_strBullet $ " " : "";
+	MissionInfo2 $= (SweepInfo != "") ? SweepInfo @ default.m_strBullet $ " " : "";
+	MissionInfo2 $= (FullSalvageInfo != "") ? FullSalvageInfo @ default.m_strBullet $ " " : "";
+	MissionInfo2 $= (RendezvousInfo != "") ? RendezvousInfo @ default.m_strBullet $ " " : "";
+	MissionInfo2 $= ConcealmentInfo;
+
+	TitleString = Header;
+	InfiltrationString = InfiltrationInfo;
+	ExpirationString = ExpirationTime;
+	MissionInfo1String = MissionInfo1;
+	MissionInfo2String = MissionInfo2;
+}
+
+static function BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReference MissionRef, bool IsInfiltrating)
+{
+	local int LinesOfText, TextContainerY, TextContainerHeight;
+	local string TitleString, BodyString, InfiltrationString, ExpirationString, MissionInfo1String, MissionInfo2String;
+	local array<string> StringArray;
+	local UIBGBox MissionExpiryBG;
+	local UIPanel DividerLine, MissionExpiryPanel;
+	// KDM : LW's UIVerticalScrollingText2 is being used instead of the base game's UITextContainer because
+	// they fixed a bug whereby text, starting outside of the text container's visible area, would remain invisible
+	// even when scrolling into view.
+	local UIVerticalScrollingText2 MissionExpiryText;
+	local UIX2PanelHeader MissionExpiryTitle;
+
+	// LW : If the 'Mission Expiry' panel already exists then remove it; it needs to be refreshed.
 	MissionExpiryPanel = ParentScreen.GetChildByName('ExpiryPanel', false);
 	if (MissionExpiryPanel != none)
 	{
 		MissionExpiryPanel.Remove();
 	}
+
+	// ---------------- Create container panel ----------------
 	MissionExpiryPanel = ParentScreen.Spawn(class'UIPanel', ParentScreen);
-	// KDM : Make sure MissionExpiryPanel isn't navigable because : 
-	// 1.] It shouldn't be navigable in the 1st place. 
-	// 2.] It messes up controller and arrow key navigation within the infiltration screen, UIMission_LWLaunchDelayedMission. 
+	// KDM : Make sure MissionExpiryPanel isn't navigable because :
+	// 1.] It shouldn't be navigable in the first place.
+	// 2.] It messes up controller and arrow key navigation within the infiltration screen, UIMission_LWLaunchDelayedMission.
 	MissionExpiryPanel.bIsNavigable = false;
-	MissionExpiryPanel.InitPanel('ExpiryPanel').SetPosition(725, 180);
+	MissionExpiryPanel.InitPanel('ExpiryPanel');
+	if (default.USE_LARGE_INFO_PANEL)
+	{
+		MissionExpiryPanel.SetPosition(700, 150);
+	}
+	else
+	{
+		MissionExpiryPanel.SetPosition(725, 180);
+	}
+
+	// ---------------- Create background ---------------------
 	MissionExpiryBG = ParentScreen.Spawn(class'UIBGBox', MissionExpiryPanel);
 	MissionExpiryBG.LibID = class'UIUtilities_Controls'.const.MC_X2Background;
+	// LW : Adjust the background size depending on whether or not we are infiltrating; the infiltation
+	// status string needs extra lines in a large-ish font.
+	if (default.USE_LARGE_INFO_PANEL)
+	{
+		MissionExpiryBG.InitBG('ExpiryBG', 0, 0, 520, IsInfiltrating ? 270 : 200);
+	}
+	else
+	{
+		MissionExpiryBG.InitBG('ExpiryBG', 0, 0, 470, IsInfiltrating ? 200 : 130);
+	}
 
-	// Adjust the panel size depending on whether or not we are infiltrating - the infiltation
-	// status string needs some extra lines in a large-ish font.
-	MissionExpiryBG.InitBG('ExpiryBG', 0, 0, 470, IsInfiltrating ? 200 : 130);
+	// ---------------- Create text container -----------------
+	GetMissionInfoPanelText(MissionRef, IsInfiltrating, TitleString, InfiltrationString,
+		ExpirationString, MissionInfo1String, MissionInfo2String);
+	if (default.USE_LARGE_INFO_PANEL)
+	{
+		BodyString = class'UIUtilities_Text'.static.GetSizedText(InfiltrationString $ ExpirationString, 26);
+		if (default.CENTER_TEXT_IN_LIP)
+		{
+			BodyString = class'UIUtilities_Text'.static.AlignCenter(BodyString);
+		}
+	}
+	else
+	{
+		BodyString = InfiltrationString $ ExpirationString $
+			class'UIUtilities_Text'.static.GetSizedText(MissionInfo1String $ "\n" $ MissionInfo2String, 16);
+	}
 	MissionExpiryTitle = ParentScreen.Spawn(class'UIX2PanelHeader', MissionExpiryPanel);
 	// KDM : Make sure MissionExpiryTitle isn't navigable; the reasoning is the same as for MissionExpiryPanel above.
 	MissionExpiryTitle.bIsNavigable = false;
+	// KDM : DO NOT use SetText on a UIX2PanelHeader since it doesn't work; the only way I have ever been
+	// able to get UIX2PanelHeader's to work is by initializing them, via InitPanelHeader, with the strings
+	// you want them to show. I think something must be messed up in the Flash back-end.
+	MissionExpiryTitle.InitPanelHeader('MissionExpiryTitle', TitleString, BodyString);
+	MissionExpiryTitle.SetHeaderWidth(MissionExpiryBG.Width - 20);
+	MissionExpiryTitle.SetPosition(MissionExpiryBG.X + 10, MissionExpiryBG.Y + 10);
 
-	if (TotalMissionHours >= 0.0 && TotalMissionHours <= 10000.0 && MissionState.ExpirationDateTime.m_iYear < 2100)
+	// --------- Create second text container if --------------
+	// --------- using the large information panel ------------
+	if (default.USE_LARGE_INFO_PANEL)
 	{
-		if (ActivityState != none && ActivityState.bMustLaunch)
+		if (InfiltrationString == "" && ExpirationString == "")
 		{
-			MissionInfoTimer = class'UIMission_LWLaunchDelayedMission'.default.m_strMustLaunchMission $ "\n";
+			LinesOfText = 0;
 		}
 		else
 		{
-			MissionInfoTimer = class'UISquadSelect_InfiltrationPanel'.default.strMissionTimeTitle @ MissionTime $ "\n";
+			StringArray = SplitString(BodyString, "\n", true);
+			LinesOfText = StringArray.Length - 1;
 		}
+
+		// KDM : If infiltration information and/or expiration information exists then place a dividing line
+		// below them; this will help separate 'main' information from 'other' information.
+		if (LinesOfText > 0)
+		{
+			// ---------------- Create divider line -------------------
+			DividerLine = ParentScreen.Spawn(class'UIPanel', MissionExpiryPanel);
+			DividerLine.bAnimateOnInit = false;
+			DividerLine.bIsNavigable = false;
+			DividerLine.InitPanel('DividerLine', class'UIUtilities_Controls'.const.MC_GenericPixel);
+			DividerLine.SetColor(class'UIUtilities_Colors'.const.WHITE_HTML_COLOR);
+			DividerLine.SetSize(MissionExpiryBG.Width - 20, 2);
+			DividerLine.SetPosition(MissionExpiryBG.X + 10, MissionExpiryBG.Y + 50 + LinesOfText * 33);
+			DividerLine.SetAlpha(30);
+		}
+
+		TextContainerY = LinesOfText > 0 ? DividerLine.Y + 10 : MissionExpiryBG.Y + 50;
+		TextContainerHeight = MissionExpiryBG.Height - TextContainerY - 10;
+
+		// -------------- Create second text container ------------
+		MissionExpiryText = ParentScreen.Spawn(class'UIVerticalScrollingText2', MissionExpiryPanel);
+		MissionExpiryText.bAnimateOnInit = false;
+		MissionExpiryText.InitVerticalScrollingText('MissionExpiryText', "Expiry Text", MissionExpiryBG.X + 10,
+			TextContainerY, MissionExpiryBG.Width - 20, TextContainerHeight);
+		BodyString = (MissionInfo1String == "" || MissionInfo2String == "") ?
+			MissionInfo1String $ MissionInfo2String :
+			MissionInfo1String $ " " $ default.m_strBullet $ " " $ MissionInfo2String;
+		BodyString = class'UIUtilities_Text'.static.GetSizedText(BodyString, 23);
+		if (default.CENTER_TEXT_IN_LIP)
+		{
+			BodyString = class'UIUtilities_Text'.static.AlignCenter(BodyString);
+		}
+		MissionExpiryText.SetHTMLText(BodyString);
 	}
 
-	HeaderStr = class'UIMissionIntro'.default.m_strMissionTitle;
-	HeaderStr -= ":";
-	MissionExpiryTitle.InitPanelHeader('MissionExpiryTitle',
-										HeaderStr,
-										InfilInfo $ MissionInfoTimer $ MissionInfo1 $ "\n" $ MissionInfo2 $ "</font>");
-	MissionExpiryTitle.SetHeaderWidth(MissionExpiryBG.Width - 20);
-	MissionExpiryTitle.SetPosition(MissionExpiryBG.X + 10, MissionExpiryBG.Y + 10);
 	MissionExpiryPanel.Show();
 }
 

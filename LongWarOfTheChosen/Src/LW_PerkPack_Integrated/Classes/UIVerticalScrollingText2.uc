@@ -58,7 +58,19 @@ simulated function UIVerticalScrollingText2 SetText(string txt)
 	local int textPosOffset;
 
 	text.ClearScroll();
-	textPosOffset = bgPadding * 0.5;
+	// KDM : If there is no background then there should be no text offset; this is exactly
+	// what is done within RealizeTextSize.
+	// Within Flash, once scrolling completes, the Y value of the UIText is reverted
+	// to the value it was at, when AnimateScroll was called on it. In practical terms,
+	// the text would appear lower than it should when a new 'scroll cycle' started.
+	if (bg != none)
+	{
+		textPosOffset = bgPadding * 0.5;
+	}
+	else
+	{
+		textPosOffset = 0;
+	}
 	text.SetPosition(textPosOffset , textPosOffset );
 	text.SetText(txt);
 	`PPTRACE("Scrolling Text (SetText): Y = " $ text.y);
@@ -70,7 +82,16 @@ simulated function UIVerticalScrollingText2 SetHTMLText(string txt)
 	local int textPosOffset;
 
 	text.ClearScroll();
-	textPosOffset = bgPadding * 0.5;
+	// KDM : If there is no background then there should be no text offset !
+	// The reasoning is described within SetText.
+	if (bg != none)
+	{
+		textPosOffset = bgPadding * 0.5;
+	}
+	else
+	{
+		textPosOffset = 0;
+	}
 	text.SetPosition(textPosOffset, textPosOffset);
 	text.SetHTMLText(txt);
 	`PPTRACE("Scrolling Text (SetHtmlText): Y = " $ text.y);
@@ -120,10 +141,15 @@ simulated private function RealizeTextSize()
 {
 	local int textPosOffset, textSizeOffset;
 
-	if(bg != none)
+	if (bg != none)
 	{
 		textPosOffset = bgPadding * 0.5;
 		textSizeOffset = bgPadding;
+	}
+	else
+	{
+		textPosOffset = 0;
+		textSizeOffset = 0;
 	}
 	`PPTRACE("Scrolling Text (RealizeTextSize - Start): Y = " $ text.y);
 
