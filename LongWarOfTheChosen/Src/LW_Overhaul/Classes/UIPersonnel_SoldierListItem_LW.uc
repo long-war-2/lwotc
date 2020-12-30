@@ -9,8 +9,6 @@ class UIPersonnel_SoldierListItem_LW extends UIPersonnel_SoldierListItem config(
 var float IconXPos, IconYPos, IconXDelta, IconScale, IconToValueOffsetX, IconToValueOffsetY, IconXDeltaSmallValue;
 var float DisabledAlpha;
 
-var bool bIsFocussed;
-
 // Icons to be shown in the class area
 var UIImage AimIcon, WillIcon;
 var UIText AimValue, WillValue;
@@ -28,10 +26,7 @@ simulated function UIButton SetDisabled(bool disabled, optional string TooltipTe
 {
 	super.SetDisabled(disabled, TooltipText);
 	UpdateDisabled();
-	// KDM : Originally, UpdateItemsForFocus was called with the parameter 'false'; however, this was problematic
-	// since ability text colour would no longer depend upon the list item's focus state; it would always 'assume'
-	// it was unfocused. In order to take the list item's focus into account, we need to send in bIsFocused.
-	UpdateItemsForFocus(bIsFocused);
+	UpdateItemsForFocus();
 	return self;
 }
 
@@ -401,17 +396,17 @@ function AddClassColumnIcons(XComGameState_Unit Unit)
 	WillValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(GetWillString(Unit), Unit.GetMentalStateUIState()));
 }
 
-simulated function int GetWillValueColor(XComGameState_Unit Soldier, bool Disabled, bool Focused)
+simulated function int GetWillValueColor(XComGameState_Unit Soldier)
 {
 	// KDM : Colour the will value text according to these, ordered, rules :
 	// 1.] If the soldier row is disabled, use the disabled, greyish, text colour.
 	// 2.] If the soldier row is focused, use black.
 	// 3.] Use green/yellow/red depending upon the mental status of the soldier associated with this row.
-	if (Disabled)
+	if (IsDisabled)
 	{
 		return eUIState_Disabled;
 	}
-	else if (Focused)
+	else if (bIsFocused)
 	{
 		return -1;
 	}
@@ -421,17 +416,17 @@ simulated function int GetWillValueColor(XComGameState_Unit Soldier, bool Disabl
 	}
 }
 
-simulated function string GetCombatIntelligenceColor(XComGameState_Unit Soldier, bool Disabled, bool Focused)
+simulated function string GetCombatIntelligenceColor(XComGameState_Unit Soldier)
 {
 	// KDM : Colour the combat intelligence image according to these, ordered, rules :
 	// 1.] If the soldier row is disabled, use the disabled, greyish, text colour : 0x828282.
 	// 2.] If the soldier row is focused, use black : 0x000000.
 	// 3.] Use red/orange/yellow/green blue depending upon the soldier's combat intelligence level.
-	if (Disabled)
+	if (IsDisabled)
 	{
 		return class'UIUtilities_Colors'.const.DISABLED_HTML_COLOR;
 	}
-	else if (Focused)
+	else if (bIsFocused)
 	{
 		return class'UIUtilities_Colors'.const.BLACK_HTML_COLOR;
 	}
@@ -455,7 +450,7 @@ simulated function string GetCombatIntelligenceColor(XComGameState_Unit Soldier,
 	}
 }
 
-simulated function UpdateItemsForFocus(bool Focussed)
+simulated function UpdateItemsForFocus()
 {
 	local bool bReverse;
 	local int iUIState;
@@ -465,8 +460,7 @@ simulated function UpdateItemsForFocus(bool Focussed)
 	iUIState = (IsDisabled ? eUIState_Disabled : eUIState_Normal);
 
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitRef.ObjectID));
-	bIsFocussed = Focussed;
-	bReverse = bIsFocussed && !IsDisabled;
+	bReverse = bIsFocused && !IsDisabled;
 
 	// Get Unit base stats and any stat modifications from abilities
 	Will = GetWillString(Unit);
@@ -482,8 +476,7 @@ simulated function UpdateItemsForFocus(bool Focussed)
 	DefenseValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Defense, (bReverse ? -1 : iUIState)));
 	HealthValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Health, (bReverse ? -1 : iUIState)));
 	MobilityValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Mobility, (bReverse ? -1 : iUIState)));
-	// KDM : We want the will value of a disabled row to be grey, just like any other value; formerly, it was coloured.
-	WillValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Will, GetWillValueColor(Unit, IsDisabled, bIsFocussed)));
+	WillValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Will, GetWillValueColor(Unit)));
 	HackValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Hack, (bReverse ? -1 : iUIState)));
 	DodgeValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(Dodge, (bReverse ? -1 : iUIState)));
 	ComIntValue.SetHtmlText(class'UIUtilities_Text'.static.GetColoredText(string(Unit.AbilityPoints), (bReverse ? -1 : iUIState)));
@@ -495,8 +488,7 @@ simulated function UpdateItemsForFocus(bool Focussed)
 	// Update the color of the AP icon when highlighted.
 	if (ComIntIcon != none)
 	{
-		// KDM : We want the combat intelligence image of a disabled row to be grey; formerly, it was coloured.
-		ComIntIcon.SetColor(GetCombatIntelligenceColor(Unit, IsDisabled, bIsFocussed));
+		ComIntIcon.SetColor(GetCombatIntelligenceColor(Unit));
 
 		// KDM : For consistancy, modify the combat intelligence image's alpha value based upon the row's disabled status.
 		//
@@ -541,13 +533,13 @@ simulated function UpdateDisabled()
 simulated function OnReceiveFocus()
 {
 	super.OnReceiveFocus();
-	UpdateItemsForFocus(true);
+	UpdateItemsForFocus();
 }
 
 simulated function OnLoseFocus()
 {
 	super.OnLoseFocus();
-	UpdateItemsForFocus(false);
+	UpdateItemsForFocus();
 }
 
 // Returns the string "<Will>/<Max Will>"
