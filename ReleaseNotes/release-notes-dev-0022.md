@@ -24,6 +24,10 @@ There is also a smaller, patch version available at that link that can be unpack
 
 ## Changelog 22.3
 
+ * Ambush mission:
+   - Pod closest to covert operatives is now a bit easier for easy and difficult (but not moderate) covert actions
+   - Reinforcements take a turn extra to arrive but ramp up a bit faster
+   - The two pods closest to evac zone should now be a little closer to it (and hence further away from the cover operatives)
  * Chosen weapons:
    - Darklance gets +1 magazine size
    - Disruptor Rifle's psi crit bonus now 100, up from 20
