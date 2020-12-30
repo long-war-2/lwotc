@@ -66,7 +66,6 @@ static function X2DataTemplate CreateLW_T2_M0_S1_ReviewOutpostTemplate()
 
 	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_T2_M0_S1_ReviewOutpost');
 	Template.bMainObjective = false;
-	Template.NextObjectives.AddItem('LW_T2_M0_S2_FindLiberation1Activity');
 	Template.CompletionEvent = 'OnLeaveOutpost';
 
 	return Template;

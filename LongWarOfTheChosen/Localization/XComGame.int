@@ -2193,6 +2193,12 @@ POIImages[2]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_Abandoned"
 
 ;;;;;;;;;;;;;;;;;;;;;; STRATEGIC LOC ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; New Strategy-level Objectives
+; LWOTC Needs Translation
+[LW_T2_M0_Outpost X2ObjectiveTemplate]
+Title="Manage Your Havens"
+LocLongDescription="Assign rebels to jobs based on what you want them to do ('intel' for detecting missions, 'supply' for generating supplies, and 'recruit' for recruiting new rebels to the haven and rookies). You can also a haven adviser to help with the various activities and (if the adviser is a soldier) help detect Faceless among the rebels.
+; End Translation
+
 [LW_T2_M0_Liberate_Region X2ObjectiveTemplate]
 Title="Liberate Region from ADVENT Control"
 LocLongDescription="Drive the ADVENT from the region, making it safe for the Resistance and humanity. Liberating a region should give the Resistance sufficient access to ADVENT infrastructure that we may begin to discover the aliens' true purpose on Earth before it is too late."
