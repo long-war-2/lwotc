@@ -7,6 +7,8 @@ var localized string UnitInSquad;
 var localized string RankTooLow;
 var localized string CannotModifyOnMissionSoldierTooltip;
 
+var config array<EInventorySlot> UNMODIFIABLE_SLOTS_WHILE_ON_MISSION;
+
 var config bool TIERED_RESPEC_TIMES;
 var config int PSI_SQUADDIE_BONUS_ABILITIES;
 var config int NUM_HOURS_TO_DAYS;
@@ -949,28 +951,12 @@ static function UIListItemString FindButton(int DefaultIdx, name ButtonName, UIA
 static function OnLoadoutLocked(UIButton kButton)
 {
 	local XComHQPresentationLayer HQPres;
-	local array<EInventorySlot> CannotEditSlots;
 	local UIArmory_MainMenu MainMenu;
-
-	CannotEditSlots.AddItem(eInvSlot_Utility);
-	CannotEditSlots.AddItem(eInvSlot_Armor);
-	CannotEditSlots.AddItem(eInvSlot_GrenadePocket);
-	CannotEditSlots.AddItem(eInvSlot_GrenadePocket);
-	CannotEditSlots.AddItem(eInvSlot_PrimaryWeapon);
-	CannotEditSlots.AddItem(eInvSlot_SecondaryWeapon);
-	CannotEditSlots.AddItem(eInvSlot_HeavyWeapon);
-	CannotEditSlots.AddItem(eInvSlot_TertiaryWeapon);
-	CannotEditSlots.AddItem(eInvSlot_QuaternaryWeapon);
-	CannotEditSlots.AddItem(eInvSlot_QuinaryWeapon);
-	CannotEditSlots.AddItem(eInvSlot_SenaryWeapon);
-	CannotEditSlots.AddItem(eInvSlot_SeptenaryWeapon);
-	CannotEditSlots.AddItem(eInvSlot_AmmoPocket);
-	CannotEditSlots.AddItem(eInvSlot_Pistol);
 
 	MainMenu = UIArmory_MainMenu(GetScreenOrChild('UIArmory_MainMenu'));
 	if (MainMenu == none) { return; }
 
-	if( UIListItemString(kButton.ParentPanel) != none && UIListItemString(kButton.ParentPanel).bDisabled )
+	if (UIListItemString(kButton.ParentPanel) != none && UIListItemString(kButton.ParentPanel).bDisabled)
 	{
 		`XSTRATEGYSOUNDMGR.PlaySoundEvent("Play_MenuClickNegative");
 		return;
@@ -978,7 +964,7 @@ static function OnLoadoutLocked(UIButton kButton)
 
 	HQPres = `HQPRES;
 	if( HQPres != none )
-		HQPres.UIArmory_Loadout(MainMenu.UnitReference, CannotEditSlots);
+		HQPres.UIArmory_Loadout(MainMenu.UnitReference, default.UNMODIFIABLE_SLOTS_WHILE_ON_MISSION);
 	`XSTRATEGYSOUNDMGR.PlaySoundEvent("Play_MenuSelect");
 }
 
