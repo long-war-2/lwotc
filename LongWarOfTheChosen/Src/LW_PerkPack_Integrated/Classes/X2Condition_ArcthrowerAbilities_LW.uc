@@ -1,9 +1,9 @@
 //---------------------------------------------------------------------------------------
-//  FILE:   X2Condition_ArcthrowerAbilities.uc
-//  AUTHOR:  BStar
+//  FILE:   X2Condition_ArcthrowerAbilities_LW.uc
+//  AUTHOR:  BStar (modified slightly by Peter Ledbrook)
 //  PURPOSE: Condition that allows modifying arc thrower abilities only
 //---------------------------------------------------------------------------------------
-class X2Condition_ArcthrowerAbilities extends X2Condition config (BstarsPerkPack);
+class X2Condition_ArcthrowerAbilities_LW extends X2Condition config(LW_SoldierSkills);
 
 var config array<name> ARCTHROWER_ABILITIES;
 
@@ -13,7 +13,7 @@ event name CallAbilityMeetsCondition(XComGameState_Ability kAbility, XComGameSta
 	local XComGameState_Item		SourceWeapon;
 	local array<name>				ValidArcthrowerAbilities;
 
-	if(kAbility == none)
+	if (kAbility == none)
 		return 'AA_InvalidAbilityName';
 
 	ValidArcthrowerAbilities = default.ARCTHROWER_ABILITIES;

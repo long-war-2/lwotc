@@ -1739,6 +1739,9 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			case 'Flush':                       // Varies by weapon type
 			case 'PrecisionShot':               // Varies by weapon type
 			case 'BulletShred':                 // varies by weapon type
+			case 'ArcthrowerStun':              // Quick Zap
+			case 'EMPulser':              // Quick Zap
+			case 'ChainLightning':              // Quick Zap
 				Template.AbilityIconColor = "Variable"; break; // This calls a function that changes the color on the fly
 			case 'EVAC': 
 				Template.AbilityIconColor = default.ICON_COLOR_FREE; break;

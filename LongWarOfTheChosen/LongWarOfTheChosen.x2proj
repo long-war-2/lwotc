@@ -763,7 +763,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Ability_PerkPackAbilitySet2.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Ability_XMBPerkAbilitySet.uc" />
-    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_ArcthrowerAbilities.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_ArcthrowerAbilities_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_CoverStatus.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_IsStunned_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_LW_WithinCQBRange.uc" />

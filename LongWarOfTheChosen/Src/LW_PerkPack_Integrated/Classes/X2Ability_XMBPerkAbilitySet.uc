@@ -103,7 +103,9 @@ var config int FATALITY_AIM;
 var config int FATALITY_CRIT;
 var config float FATALITY_THRESHOLD;
 
-var name VampUnitValue;
+var const name QuickZapEffectName;
+var const name VampUnitValue;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -187,10 +189,11 @@ static function X2AbilityTemplate RapidStun()
 {
 	local X2AbilityTemplate Template;
 	local XMBEffect_AbilityCostRefund Effect;
-	local X2Condition_ArcthrowerAbilities Condition;
+	local X2Condition_ArcthrowerAbilities_LW Condition;
 
 	// Create effect that will refund actions points
 	Effect = new class'XMBEffect_AbilityCostRefund';
+	Effect.EffectName = default.QuickZapEffectName;
 	Effect.TriggeredEvent = 'QuickZap_LW';
 	Effect.bShowFlyOver = true;
 	Effect.CountValueName = 'QuickZap_LW_Uses';
@@ -199,7 +202,7 @@ static function X2AbilityTemplate RapidStun()
 	Effect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
 
 	// Action points are only refunded if using a support grenade (or battlescanner)
-	Condition = new class'X2Condition_ArcthrowerAbilities';
+	Condition = new class'X2Condition_ArcthrowerAbilities_LW';
 	Effect.AbilityTargetConditions.AddItem(Condition);
 
 	// Show a flyover over the target unit when the effect is added
@@ -2732,5 +2735,6 @@ defaultproperties
 	LeadTheTargetMarkEffectName ="Leathetargetmark"
 	ZONE_CONTROL_RADIUS_NAME = "LW_CQBDominanceRadius"
 	Dissassemblybonustext = "Hack Bonus"
+	QuickZapEffectName="QuickZapCostRefund"
 	VampUnitValue="VampAmount"
 }

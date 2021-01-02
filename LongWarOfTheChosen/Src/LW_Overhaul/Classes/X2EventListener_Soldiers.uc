@@ -624,7 +624,7 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 	local array<X2WeaponUpgradeTemplate> WeaponUpgrades;
 	local int k, k2;
 	local bool Changed;
-	local UnitValue FreeReloadValue;
+	local UnitValue FreeReloadValue, CountUnitValue;
 	local X2AbilityCost_ActionPoints		ActionPoints;
 
 	OverrideTuple = XComLWTuple(EventData);
@@ -728,6 +728,19 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 			if (UnitState.AffectedByEffectNames.Find('RapidDeploymentEffect') != -1)
 			{
 				if (class'X2Effect_RapidDeployment'.default.VALID_GRENADE_TYPES.Find(WeaponState.GetLoadedAmmoTemplate(AbilityState).DataName) != -1)
+				{
+					IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
+					Changed = true;
+				}
+			}
+			break;
+		case 'ArcThrowerStun':
+		case 'EMPulser':
+		case 'ChainLightning':
+			if (UnitState.AffectedByEffectNames.Find(class'X2Ability_XMBPerkAbilitySet'.default.QuickZapEffectName) != -1)
+			{
+				UnitState.GetUnitValue('QuickZap_LW_Uses', CountUnitValue);
+				if (CountUnitValue.fValue == 0)
 				{
 					IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
 					Changed = true;
