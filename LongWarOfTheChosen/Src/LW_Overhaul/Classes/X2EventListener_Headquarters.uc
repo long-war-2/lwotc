@@ -11,7 +11,6 @@ var config array<float> CA_AP_REWARD_SCALAR;
 var config array<float> CA_STD_REWARD_SCALAR;
 var config int CA_RISK_FL_CAP;
 var config int AMBUSH_RISK_PER_DIFFICULTY;
-var config int BUILD_RES_RING_REMINDER_MONTH;
 
 var config int LISTENER_PRIORITY;
 
@@ -72,7 +71,6 @@ static function CHEventListenerTemplate CreateCovertActionListeners()
 	Template.AddCHEvent('CovertAction_OverrideRewardScalar', CAOverrideRewardScalar, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertActionCompleted', CAUpdateUnitOnTraining, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('StaffUpdated', CARecalculateRisksForUI, ELD_OnStateSubmitted, GetListenerPriority());
-	Template.AddCHEvent('OverrideNoCaEventMinMonths', CABlockBuildRingReminder, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -607,27 +605,6 @@ static function EventListenerReturn CAUpdateUnitOnTraining(
 		UnitState.GetUnitValue('CAIntenseTrainingCount', UnitValue);
 		UnitState.SetUnitFloatValue('CAIntenseTrainingCount', UnitValue.fValue + 1, eCleanup_Never);
 	}
-
-	return ELR_NoInterrupt;
-}
-
-// Block the Geoscape from displaying the "Build the resistance ring
-// to go on covert actions" reminder.
-static function EventListenerReturn CABlockBuildRingReminder(
-	Object EventData,
-	Object EventSource,
-	XComGameState GameState,
-	Name EventID,
-	Object CallbackData)
-{
-	local XComLWTuple Tuple;
-
-	Tuple = XComLWTuple(EventData);
-	if (Tuple == none) return ELR_NoInterrupt;
-
-	// This is the number of months that have to pass before the covert
-	// action reminder to build the resistance ring is displayed.
-	Tuple.Data[0].i = default.BUILD_RES_RING_REMINDER_MONTH;
 
 	return ELR_NoInterrupt;
 }
