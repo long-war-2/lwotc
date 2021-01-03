@@ -21,6 +21,7 @@
     <Folder Include="Content\LW_Toolbox_Integrated\" />
     <Folder Include="Content\Maps\" />
     <Folder Include="Content\Missions\" />
+    <Folder Include="Content\NPSBD_Integrated" />
     <Folder Include="Content\Parcels\" />
     <Folder Include="Content\PCPs\" />
     <Folder Include="Content\Plots\" />
@@ -162,6 +163,12 @@
     <Content Include="Content\Missions\UMS_LWCommon.umap" />
     <Content Include="Content\Missions\UMS_LWContinuousReinforcements.umap" />
     <Content Include="Content\Missions\UMS_LWMissionTimer.umap" />
+    <Content Include="Content\NPSBD_Integrated\3DUIBP_Armory_Promotion_Hero.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\NPSBD_Integrated\Readme.txt">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Content\Plots\Plot_ALB_AlienBase_01_LW.umap" />
     <Content Include="Content\Plots\Plot_ALB_AlienBase_02_LW.umap" />
     <Content Include="Content\Plots\Plot_ALB_AlienBase_03_LW.umap" />

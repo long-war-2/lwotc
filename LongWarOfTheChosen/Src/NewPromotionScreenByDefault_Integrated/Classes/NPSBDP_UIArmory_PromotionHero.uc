@@ -25,12 +25,11 @@ var config array<int> FactionAbilityCosts;
 var config float BaseAbilityCostModifier;
 
 var config int ScrollbarPositionX;
+var config(LW_UI) bool USE_SHORTER_PROMOTION_SCREEN;
 
 // Position is the number by which we offset all ability indices.
 // 0 <= Position <= MaxPosition
 var int Position, MaxPosition;
-
-var int AdjustXOffset;
 
 simulated function ChangeSelectedColumn(int oldIndex, int newIndex)
 {
@@ -125,20 +124,30 @@ simulated function InitPromotion(StateObjectReference UnitRef, optional bool bIn
 
 	PopulateData();
 
-	// Only set position and animate in the scrollbar once after data population. Prevents scrollbar flicker on scrolling.
+	// NPSBD : Set the scrollbar's position, and animate it in, after data population. This prevents scrollbar 
+	// flicker on scrolling.
+	//
+	// KDM : When the scrollbar was anchored, it would move around when switching from 'fullscreen' mode
+	// to 'windowed' mode. Consequently, anchoring has been removed, and its X location has been updated
+	// so that it remains on the right side of the promotion screen.
 	if (default.ScrollbarPositionX > 0)
 	{
 		Scrollbar.SetPosition(default.ScrollbarPositionX, 310);
 	}
 	else if (HasBrigadierRank())
 	{
-		// KDM : The X position was originally set to -465; however, I am perplexed as to why, since the scrollbar was much too far to the right.
-		// In fact it was nearly always blocked by the soldier pawn.
-		Scrollbar.SetPosition(-475, 310);
+		if (!USE_SHORTER_PROMOTION_SCREEN)
+		{
+			Scrollbar.SetPosition(1350, 310);
+		}
+		else
+		{
+			Scrollbar.SetPosition(1505, 310);
+		}
 	}
 	else
 	{
-		Scrollbar.SetPosition(-550, 310);
+		Scrollbar.SetPosition(1275, 310);
 	}
 		
 	Scrollbar.MC.SetNum("_alpha", 0);
@@ -453,7 +462,6 @@ simulated function RealizeScrollbar()
 		if(Scrollbar == none)
 		{			
 			Scrollbar = Spawn(class'UIScrollbar', self).InitScrollbar();
-			Scrollbar.SetAnchor(class'UIUtilities'.const.ANCHOR_TOP_RIGHT);
 			Scrollbar.SetHeight(450);						
 		}
 		Scrollbar.NotifyValueChange(OnScrollBarChange, 0.0, MaxPosition);
@@ -1148,60 +1156,101 @@ function int GetCustomAbilityCost(name ClassName, name AbilityName)
 
 function ResizeScreenForBrigadierRank()
 {
+	local int ScreenX, ScreenXOffset, ScreenWidth, RankColumnWidth;
 	
-	// Fix width and position of elements to make space for the 8th column
-	//
-	Width = int(MC.GetNum("_width"));
-	AdjustXOffset = MC.GetNum("rankColumn6._x") - MC.GetNum("rankColumn5._x");
-	SetWidth(Width + AdjustXOffset);
+	// KDM : Get the screen's location and width via Flash since they aren't updated in UnrealScript yet.
+	ScreenX = MC.GetNum("_x");
+	ScreenXOffset = (!USE_SHORTER_PROMOTION_SCREEN) ? 50 : -10;
+	ScreenWidth = MC.GetNum("_width");
 
-	// Widths
-	MC.ChildSetNum("bg",				"_width", MC.GetNum("bg._width") + AdjustXOffset);
-	MC.ChildSetNum("topDivider",		"_width", MC.GetNum("topDivider._width") + AdjustXOffset);
-	MC.ChildSetNum("bottomDivider",		"_width", MC.GetNum("bottomDivider._width") + AdjustXOffset);
-	MC.ChildSetNum("headerLines",		"_width", MC.GetNum("headerLines._width") + AdjustXOffset);
-	MC.ChildSetNum("columnGradients",	"_width", MC.GetNum("columnGradients._width") + AdjustXOffset);
-
-	// X Positions
-	MC.SetNum("_x", MC.GetNum("_x") + 50);
-	MC.ChildSetNum("topDivider",		"_x", MC.GetNum("topDivider._x") - AdjustXOffset);
-	MC.ChildSetNum("bottomDivider",		"_x", MC.GetNum("bottomDivider._x") - AdjustXOffset);
-	MC.ChildSetNum("headerLines",		"_x", MC.GetNum("headerLines._x") - AdjustXOffset);
-	MC.ChildSetNum("columnGradients",	"_x", MC.GetNum("columnGradients._x") - AdjustXOffset);
-	MC.ChildSetNum("factionLogoLarge",	"_x", MC.GetNum("factionLogoLarge._x") - AdjustXOffset);
-	MC.ChildSetNum("factionLogo",		"_x", MC.GetNum("factionLogo._x") - AdjustXOffset);
-	MC.ChildSetNum("classIcon",			"_x", MC.GetNum("classIcon._x") - AdjustXOffset);
-	MC.ChildSetNum("rankIcon",			"_x", MC.GetNum("rankIcon._x") - AdjustXOffset);
-	MC.ChildSetNum("factionName",		"_x", MC.GetNum("factionName._x") - AdjustXOffset);
-	MC.ChildSetNum("abilityLabel",		"_x", MC.GetNum("abilityLabel._x") - AdjustXOffset);
-	//MC.ChildSetNum("soldierAPLabel",	"_x", MC.GetNum("soldierAPLabel._x") - AdjustXOffset);
-	//MC.ChildSetNum("soldierAPValue",	"_x", MC.GetNum("soldierAPValue._x") - AdjustXOffset);
-	//MC.ChildSetNum("teamAPLabel",		"_x", MC.GetNum("teamAPLabel._x") - AdjustXOffset);
-	//MC.ChildSetNum("teamAPValue",		"_x", MC.GetNum("teamAPValue._x") - AdjustXOffset);
-	//MC.ChildSetNum("combatIntelLabel",	"_x", MC.GetNum("combatIntelLabel._x") - AdjustXOffset);
-	//MC.ChildSetNum("combatIntelValue",	"_x", MC.GetNum("combatIntelValue._x") - AdjustXOffset);
-	MC.ChildSetNum("unitName",			"_x", MC.GetNum("unitName._x") - AdjustXOffset);
-	MC.ChildSetNum("descriptionTitle",	"_x", MC.GetNum("descriptionTitle._x") - AdjustXOffset);
-	MC.ChildSetNum("descriptionBody",	"_x", MC.GetNum("descriptionBody._x") - AdjustXOffset);
-	MC.ChildSetNum("descriptionDetail",	"_x", MC.GetNum("descriptionDetail._x") - AdjustXOffset);
-	MC.ChildSetNum("descriptionIcon",	"_x", MC.GetNum("descriptionIcon._x") - AdjustXOffset);
-	MC.ChildSetNum("costLabel",			"_x", MC.GetNum("costLabel._x") - AdjustXOffset);
-	MC.ChildSetNum("costValue",			"_x", MC.GetNum("costValue._x") - AdjustXOffset);
-	MC.ChildSetNum("apLabel",			"_x", MC.GetNum("apLabel._x") - AdjustXOffset);
-	MC.ChildSetNum("abilityPathHeader",	"_x", MC.GetNum("abilityPathHeader._x") - AdjustXOffset);
-	MC.ChildSetNum("pathLabel0",		"_x", MC.GetNum("pathLabel0._x") - AdjustXOffset);
-	MC.ChildSetNum("pathLabel1",		"_x", MC.GetNum("pathLabel1._x") - AdjustXOffset);
-	MC.ChildSetNum("pathLabel2",		"_x", MC.GetNum("pathLabel2._x") - AdjustXOffset);
-	MC.ChildSetNum("pathLabel3",		"_x", MC.GetNum("pathLabel3._x") - AdjustXOffset);
-	MC.ChildSetNum("rankColumn0",		"_x", MC.GetNum("rankColumn0._x") - AdjustXOffset);
-	MC.ChildSetNum("rankColumn1",		"_x", MC.GetNum("rankColumn1._x") - AdjustXOffset);
-	MC.ChildSetNum("rankColumn2",		"_x", MC.GetNum("rankColumn2._x") - AdjustXOffset);
-	MC.ChildSetNum("rankColumn3",		"_x", MC.GetNum("rankColumn3._x") - AdjustXOffset);
-	MC.ChildSetNum("rankColumn4",		"_x", MC.GetNum("rankColumn4._x") - AdjustXOffset);
-	MC.ChildSetNum("rankColumn5",		"_x", MC.GetNum("rankColumn5._x") - AdjustXOffset);
-	MC.ChildSetNum("rankColumn6",		"_x", MC.GetNum("rankColumn6._x") - AdjustXOffset);
-	MC.ChildSetNum("rankColumn7",		"_x", MC.GetNum("rankColumn6._x"));
-	MC.ChildSetNum("rankColumn7",		"_y", MC.GetNum("rankColumn6._y"));	
+	// KDM : Determine the width of our 8th rank column based on the distance between 2 rank columns
+	// which already exist.
+	RankColumnWidth = MC.GetNum("rankColumn6._x") - MC.GetNum("rankColumn5._x");
+	
+	if (!USE_SHORTER_PROMOTION_SCREEN)
+	{
+		// KDM : NPSBD increases the width of the promotion screen; however, I don't think this is the 'normal'
+		// way to do things since :
+		// 1.] The screen, located within the Flash movie, is already over 1700 pixels and need not be wider.
+		// 2.] Widening a UIScreen seems to stretch the panels placed upon it.
+		// I remove this width change for my 'shorter' promotion screen, but will leave it in for the
+		// 'normal' promotion screen so its size and UI placement remain intact.
+		SetWidth(ScreenWidth + RankColumnWidth);
+	}
+	SetX(ScreenX + ScreenXOffset);
+	
+	// KDM : Increase the width of a number of background UI elements since we are adding an extra rank column.
+	MC.ChildSetNum("bg", "_width", MC.GetNum("bg._width") + RankColumnWidth);
+	MC.ChildSetNum("topDivider", "_width", MC.GetNum("topDivider._width") + RankColumnWidth);
+	MC.ChildSetNum("bottomDivider", "_width", MC.GetNum("bottomDivider._width") + RankColumnWidth);
+	MC.ChildSetNum("headerLines", "_width", MC.GetNum("headerLines._width") + RankColumnWidth);
+	MC.ChildSetNum("columnGradients", "_width", MC.GetNum("columnGradients._width") + RankColumnWidth);
+	
+	if (!USE_SHORTER_PROMOTION_SCREEN)
+	{
+		// KDM : The promotion screen, as a whole, is shifted to the right; therefore, a variety of panels
+		// are shifted left, back into place.
+		MC.ChildSetNum("topDivider", "_x", MC.GetNum("topDivider._x") - RankColumnWidth);
+		MC.ChildSetNum("bottomDivider", "_x", MC.GetNum("bottomDivider._x") - RankColumnWidth);
+		MC.ChildSetNum("headerLines", "_x", MC.GetNum("headerLines._x") - RankColumnWidth);
+		MC.ChildSetNum("columnGradients", "_x", MC.GetNum("columnGradients._x") - RankColumnWidth);
+		MC.ChildSetNum("factionLogoLarge", "_x", MC.GetNum("factionLogoLarge._x") - RankColumnWidth);
+		MC.ChildSetNum("factionLogo", "_x", MC.GetNum("factionLogo._x") - RankColumnWidth);
+		MC.ChildSetNum("classIcon", "_x", MC.GetNum("classIcon._x") - RankColumnWidth);
+		MC.ChildSetNum("rankIcon", "_x", MC.GetNum("rankIcon._x") - RankColumnWidth);
+		MC.ChildSetNum("factionName", "_x", MC.GetNum("factionName._x") - RankColumnWidth);
+		MC.ChildSetNum("abilityLabel", "_x", MC.GetNum("abilityLabel._x") - RankColumnWidth);
+		MC.ChildSetNum("unitName", "_x", MC.GetNum("unitName._x") - RankColumnWidth);
+		MC.ChildSetNum("descriptionTitle", "_x", MC.GetNum("descriptionTitle._x") - RankColumnWidth);
+		MC.ChildSetNum("descriptionBody", "_x", MC.GetNum("descriptionBody._x") - RankColumnWidth);
+		MC.ChildSetNum("descriptionDetail", "_x", MC.GetNum("descriptionDetail._x") - RankColumnWidth);
+		MC.ChildSetNum("descriptionIcon", "_x", MC.GetNum("descriptionIcon._x") - RankColumnWidth);
+		MC.ChildSetNum("costLabel", "_x", MC.GetNum("costLabel._x") - RankColumnWidth);
+		MC.ChildSetNum("costValue", "_x", MC.GetNum("costValue._x") - RankColumnWidth);
+		MC.ChildSetNum("apLabel", "_x", MC.GetNum("apLabel._x") - RankColumnWidth);
+		MC.ChildSetNum("abilityPathHeader", "_x", MC.GetNum("abilityPathHeader._x") - RankColumnWidth);
+		MC.ChildSetNum("pathLabel0", "_x", MC.GetNum("pathLabel0._x") - RankColumnWidth);
+		MC.ChildSetNum("pathLabel1", "_x", MC.GetNum("pathLabel1._x") - RankColumnWidth);
+		MC.ChildSetNum("pathLabel2", "_x", MC.GetNum("pathLabel2._x") - RankColumnWidth);
+		MC.ChildSetNum("pathLabel3", "_x", MC.GetNum("pathLabel3._x") - RankColumnWidth);
+		MC.ChildSetNum("rankColumn0", "_x", MC.GetNum("rankColumn0._x") - RankColumnWidth);
+		MC.ChildSetNum("rankColumn1", "_x", MC.GetNum("rankColumn1._x") - RankColumnWidth);
+		MC.ChildSetNum("rankColumn2", "_x", MC.GetNum("rankColumn2._x") - RankColumnWidth);
+		MC.ChildSetNum("rankColumn3", "_x", MC.GetNum("rankColumn3._x") - RankColumnWidth);
+		MC.ChildSetNum("rankColumn4", "_x", MC.GetNum("rankColumn4._x") - RankColumnWidth);
+		MC.ChildSetNum("rankColumn5", "_x", MC.GetNum("rankColumn5._x") - RankColumnWidth);
+		MC.ChildSetNum("rankColumn6", "_x", MC.GetNum("rankColumn6._x") - RankColumnWidth);
+		MC.ChildSetNum("rankColumn7", "_x", MC.GetNum("rankColumn6._x"));
+	}
+	else
+	{
+		// KDM : The background, 'bg', is a bit of an odd-ball since it doesn't seem to move with the rest of the
+		// panels when the screen X value is changed. Therefore, shift it over a bit so it fits nicely behind all of the
+		// other panels. 
+		MC.ChildSetNum("bg", "_x", MC.GetNum("bg._x") + RankColumnWidth);
+		// KDM : Shift the soldier AP label and value to the top right corner of the background panel.
+		MC.ChildSetNum("soldierAPLabel", "_x", MC.GetNum("soldierAPLabel._x") + RankColumnWidth);
+		MC.ChildSetNum("soldierAPValue", "_x", MC.GetNum("soldierAPValue._x") + RankColumnWidth);
+		// KDM : Shift the XCom AP label and value so they are next to the soldier AP label and value.
+		MC.ChildSetNum("teamAPLabel", "_x", MC.GetNum("teamAPLabel._x") + RankColumnWidth);
+		MC.ChildSetNum("teamAPValue", "_x", MC.GetNum("teamAPValue._x") + RankColumnWidth);
+		// KDM : Shift the Combat Intelligence label and value so they are next to the XCom AP label and value.
+		MC.ChildSetNum("combatIntelLabel", "_x", MC.GetNum("combatIntelLabel._x") + RankColumnWidth);
+		MC.ChildSetNum("combatIntelValue", "_x", MC.GetNum("combatIntelValue._x") + RankColumnWidth);
+		// KDM : Shift the ability point label, cost label, and cost value to the bottom right corner of the background panel.
+		MC.ChildSetNum("apLabel", "_x", MC.GetNum("apLabel._x") + RankColumnWidth);
+		MC.ChildSetNum("costLabel", "_x", MC.GetNum("costLabel._x") + RankColumnWidth);
+		MC.ChildSetNum("costValue", "_x", MC.GetNum("costValue._x") + RankColumnWidth);
+		// KDM : Place the 8th rank column to the right of the 7th rank column.
+		MC.ChildSetNum("rankColumn7", "_x", MC.GetNum("rankColumn6._x") + RankColumnWidth);
+		// KDM : Increase the width of the soldier's name container; unitName is an XComScrollingTextField,
+		// within Flash, so get and set its width appropriately.
+		MC.ChildFunctionNum("unitName", "setWidth", MC.GetNum("unitName.maskWidth") + RankColumnWidth);
+		// KDM : Increase the width of the ability description container; descriptionBody is a textField,
+		// within Flash, so set its width appropriately.
+		MC.ChildSetNum("descriptionBody", "_width", MC.GetNum("descriptionBody._width") + RankColumnWidth);
+	}
+	MC.ChildSetNum("rankColumn7", "_y", MC.GetNum("rankColumn6._y"));
 }
 
 
