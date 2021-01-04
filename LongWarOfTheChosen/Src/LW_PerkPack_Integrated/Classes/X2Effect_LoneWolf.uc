@@ -86,7 +86,7 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
 	if (Target.IsImpaired(false) || Target.IsBurning() || Target.isPanicked())
 		return;
 
-	NearestAllyTiles = NearestAllyBeyondRange(Attacker);
+	NearestAllyTiles = NearestAllyBeyondRange(Target);
 	DefenseBonus = Max(default.LONEWOLF_DEF_BONUS - (default.LONEWOLF_MIN_DIST_TILES + 1 - NearestAllyTiles) * default.LONEWOLF_DEF_PER_TILE, 0);
 	if (DefenseBonus > 0)
 	{
