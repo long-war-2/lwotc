@@ -309,127 +309,157 @@ function bool HasBrigadierRank()
 
 function bool UpdateAbilityIcons_Override(out NPSBDP_UIArmory_PromotionHeroColumn Column)
 {
-	local X2AbilityTemplateManager AbilityTemplateManager;
-	local X2AbilityTemplate AbilityTemplate, NextAbilityTemplate;
-	local array<SoldierClassAbilityType> AbilityTree, NextRankTree;
-	local XComGameState_Unit Unit;
-	local UIPromotionButtonState ButtonState;
-	local int iAbility;
-	local bool bHasColumnAbility, bConnectToNextAbility;
+	local bool HasColumnAbility, ConnectToNextAbility, ColumnAboveUnitRank;
+	local int AbilityIndex, i, NumberOfSoldierAbilities;
 	local string AbilityName, AbilityIcon, BGColor, FGColor;
-//	local int NewMaxPosition;
-
+	local array<SoldierClassAbilityType> AbilityTree, NextRankTree;
+	local UIPromotionButtonState ButtonState;
+	local X2AbilityTemplate AbilityTemplate, NextAbilityTemplate;
+	local XComGameState_Unit Unit;
+	local X2AbilityTemplateManager AbilityTemplateManager;
+	
 	AbilityTemplateManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 	Unit = GetUnit();
 	AbilityTree = Unit.GetRankAbilities(Column.Rank);
+	ColumnAboveUnitRank = (!RevealAllAbilities && Column.Rank >= Unit.GetRank());
 
-//	NewMaxPosition = Max(AbilityTree.Length - NUM_ABILITIES_PER_COLUMN, NUM_ABILITIES_PER_COLUMN);
-//	if (NewMaxPosition > MaxPosition)
-//		MaxPosition = NewMaxPosition;
-
-	// MaxPosition is the maximum value for Position
+	// MaxPosition is the maximum value for Position.
 	MaxPosition = Max(AbilityTree.Length - NUM_ABILITIES_PER_COLUMN, MaxPosition);
 
-	//`LOG("MaxPosition" @ MaxPosition,, 'PromotionScreen');
 	Column.AbilityNames.Length = 0;
 	
-	//for (iAbility = 0; iAbility < AbilityTree.Length; iAbility++)
-	//{
-	//	`LOG("Create Column" @ Column.Rank @ AbilityTree[iAbility].AbilityName,, 'PromotionScreen');
-	//}
-
-
-	for (iAbility = Position; iAbility < Position + NUM_ABILITIES_PER_COLUMN; iAbility++)
+	for (AbilityIndex = Position; AbilityIndex < Position + NUM_ABILITIES_PER_COLUMN; AbilityIndex++)
 	{
-		AbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(AbilityTree[iAbility].AbilityName);
+		AbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(AbilityTree[AbilityIndex].AbilityName);
 		
 		if (AbilityTemplate != none)
 		{
 			if (Column.AbilityNames.Find(AbilityTemplate.DataName) == INDEX_NONE)
 			{
 				Column.AbilityNames.AddItem(AbilityTemplate.DataName);
-				//`LOG(iAbility @ "Column.AbilityNames Add" @ AbilityTemplate.DataName @ Column.AbilityNames.Length,, 'PromotionScreen');
 			}
 
-			// The unit is not yet at the rank needed for this column
-			if (!RevealAllAbilities && Column.Rank >= Unit.GetRank())
+			// The unit is not yet at the rank needed for this column.
+			if (ColumnAboveUnitRank)
 			{
 				AbilityName = class'UIUtilities_Text'.static.GetColoredText(m_strAbilityLockedTitle, eUIState_Disabled);
 				AbilityIcon = class'UIUtilities_Image'.const.UnknownAbilityIcon;
 				ButtonState = eUIPromotionState_Locked;
 				FGColor = class'UIUtilities_Colors'.const.BLACK_HTML_COLOR;
 				BGColor = class'UIUtilities_Colors'.const.DISABLED_HTML_COLOR;
-				bConnectToNextAbility = false; // Do not display prereqs for abilities which aren't available yet
+				// Do not display prerequisites for abilities which aren't available yet.
+				ConnectToNextAbility = false;
 			}
-			else // The ability could be purchased
+			// The ability can, potentially, be purchased.
+			else
 			{
 				AbilityName = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(AbilityTemplate.LocFriendlyName);
 				AbilityIcon = AbilityTemplate.IconImage;
 
+				// The ability has already been purchased.
 				if (Unit.HasSoldierAbility(AbilityTemplate.DataName))
 				{
-					// The ability has been purchased
 					ButtonState = eUIPromotionState_Equipped;
 					FGColor = class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR;
 					BGColor = class'UIUtilities_Colors'.const.BLACK_HTML_COLOR;
-					bHasColumnAbility = true;
 				}
-				else if(CanPurchaseAbility(Column.Rank, iAbility, AbilityTemplate.DataName))
+				// The ability is unlocked, unpurchased, and can be afforded.
+				else if (CanPurchaseAbility(Column.Rank, AbilityIndex, AbilityTemplate.DataName))
 				{
-					// The ability is unlocked and unpurchased, and can be afforded
 					ButtonState = eUIPromotionState_Normal;
 					FGColor = class'UIUtilities_Colors'.const.PERK_HTML_COLOR;
 					BGColor = class'UIUtilities_Colors'.const.BLACK_HTML_COLOR;
 				}
+				// The ability is unlocked, unpurchased, but cannot be afforded.
 				else
 				{
-					// The ability is unlocked and unpurchased, but cannot be afforded
 					ButtonState = eUIPromotionState_Normal;
 					FGColor = class'UIUtilities_Colors'.const.BLACK_HTML_COLOR;
 					BGColor = class'UIUtilities_Colors'.const.DISABLED_HTML_COLOR;
 				}
 				
-				// Look ahead to the next rank and check to see if the current ability is a prereq for the next one
-				// If so, turn on the connection arrow between them
+				// Look ahead to the next rank and check to see if the current ability is a prerequisite for the next one.
+				// If so, turn on the connection arrow between them.
 				if (Column.Rank < (class'X2ExperienceConfig'.static.GetMaxRank() - 2) && Unit.GetRank() > (Column.Rank + 1))
 				{
-					bConnectToNextAbility = false;
+					ConnectToNextAbility = false;
 					NextRankTree = Unit.GetRankAbilities(Column.Rank + 1);
-					NextAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(NextRankTree[iAbility].AbilityName);
-					if (NextAbilityTemplate.PrerequisiteAbilities.Length > 0 && NextAbilityTemplate.PrerequisiteAbilities.Find(AbilityTemplate.DataName) != INDEX_NONE)
+					NextAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(NextRankTree[AbilityIndex].AbilityName);
+					if (NextAbilityTemplate.PrerequisiteAbilities.Length > 0 && 
+						NextAbilityTemplate.PrerequisiteAbilities.Find(AbilityTemplate.DataName) != INDEX_NONE)
 					{
-						bConnectToNextAbility = true;
+						ConnectToNextAbility = true;
 					}
 				}
 
 				Column.SetAvailable(true);
 			}
 
-			Column.AS_SetIconState(iAbility - Position, false, AbilityIcon, AbilityName, ButtonState, FGColor, BGColor, bConnectToNextAbility);
+			Column.AS_SetIconState(AbilityIndex - Position, false, AbilityIcon, AbilityName, ButtonState, FGColor, BGColor, ConnectToNextAbility);
 		}
 		else
 		{
-			Column.AbilityNames.AddItem(''); // Make sure we add empty spots to the name array for getting ability info
-			Column.AbilityIcons[iAbility - Position].Hide();
-			Column.InfoButtons[iAbility - Position].Hide();
-			Column.MC.ChildSetBool("EquippedAbility" $ (iAbility - Position), "_visible", false);
+			// Make sure we add empty spots to the name array for getting ability info.
+			Column.AbilityNames.AddItem('');
+			Column.AbilityIcons[AbilityIndex - Position].Hide();
+			Column.InfoButtons[AbilityIndex - Position].Hide();
+			Column.MC.ChildSetBool("EquippedAbility" $ (AbilityIndex - Position), "_visible", false);
 		}
 	}
 
-	// bsg-nlong (1.25.17): Select the first available/visible ability in the column
-	// NPSBDP: It is possible for ranks to have no abilities if we offset them in a way that hides all ability icons
-	// So only do this if we have visible ability icons
-	while(`ISCONTROLLERACTIVE && !AllAbilityIconsHidden(Column) && !Column.AbilityIcons[Column.m_iPanelIndex].bIsVisible)
+	// XCom : If using a controller, select the first available/visible ability in the column.
+	// NPSBDP : It is possible for ranks to have no abilities if we offset them in a way that hides all ability icons;
+	// therefore, only do this if we have visible ability icons.
+	while (`ISCONTROLLERACTIVE && !AllAbilityIconsHidden(Column) && !Column.AbilityIcons[Column.m_iPanelIndex].bIsVisible)
 	{
 		Column.m_iPanelIndex +=1;
-		if( Column.m_iPanelIndex >= Column.AbilityIcons.Length )
+		if (Column.m_iPanelIndex >= Column.AbilityIcons.Length)
 		{
 			Column.m_iPanelIndex = 0;
 		}
 	}
-	// bsg-nlong (1.25.17): end
 
-	return bHasColumnAbility;
+	// KDM : The return value, HasColumnAbility, helps determine whether this column should have the 
+	// 'New Rank' graphic shown over top of its rank name and symbol. Unfortunately, the code above only
+	// checks whether a 'visible' ability has been chosen in this given column; it ignores abilities
+	// which are invisible due to scrolling. 
+	//
+	// Here is a simple example. Let's say we scroll down and are currently viewing the bottom 2 soldier
+	// ability rows, the XCom ability row, and the pistol ability row. Furthermore, let's assume that we 
+	// have already purchased the ability, within this column, located in the top soldier ability row. 
+	// Although HasColumnAbility should be true, due to having an ability in this column, it will, in fact, 
+	// be false since the invisible ability row is never checked.
+	//
+	// What we really want to do is, for this particular column, determine if one of its 'soldier abilities' 
+	// have been chosen/bought while, at the same time, ignoring 'XCom abilities' and 'pistol abilities'.
+	HasColumnAbility = false;
+	if (!ColumnAboveUnitRank)
+	{
+		// KDM : GetAbilitiesPerRank's return value is based upon the following criteria :
+		// 1.] If ClassAbilitiesPerRank has been defined for the unit's class, within XComPromotionUIMod.ini, then the
+		// associated AbilitiesPerRank value is returned. AbilitiesPerRank represents the number of 'soldier abilities'
+		// per rank for a particular soldier class.
+		// 2.] If ClassAbilitiesPerRank has NOT been defined for the unit's class then the function determines
+		// the number of abilities for each rank with respect to that class. The largest 'abilities for a given
+		// rank' value is then returned.
+		NumberOfSoldierAbilities = GetAbilitiesPerRank(Unit);
+		if (NumberOfSoldierAbilities > AbilityTree.Length)
+		{
+			NumberOfSoldierAbilities = AbilityTree.Length;
+		}
+
+		for (i = 0; i < NumberOfSoldierAbilities; i++)
+		{
+			AbilityTemplate = AbilityTemplateManager.FindAbilityTemplate(AbilityTree[i].AbilityName);
+			if (AbilityTemplate != none && Unit.HasSoldierAbility(AbilityTemplate.DataName))
+			{
+				HasColumnAbility = true;
+				break;
+			}
+		}
+	}
+	
+	return HasColumnAbility;
 }
 
 simulated function bool AllAbilityIconsHidden(UIArmory_PromotionHeroColumn Column)
