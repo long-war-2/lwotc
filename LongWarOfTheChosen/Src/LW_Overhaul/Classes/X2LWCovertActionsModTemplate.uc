@@ -121,9 +121,12 @@ static function ConfigureEasyCovertAction(X2CovertActionTemplate Template, optio
 	if (ApplyFailureRisk)
 	{
 		Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Easy');
+
+		// If a covert action can't fail, then it shouldn't be possible
+		// to ambush it, because ambush also provides a chance to fail
+		AddAmbushRisk(Template);
 	}
 	AddStaffSlots(Template, 2);
-	AddAmbushRisk(Template);
 
 	// Add an optional cost slot to counter capture if it's a risk.
 	AddCaptureMitigationSlot(Template);
@@ -137,9 +140,12 @@ static function ConfigureModerateCovertAction(X2CovertActionTemplate Template, o
 	if (ApplyFailureRisk)
 	{
 		Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Moderate');
+
+		// If a covert action can't fail, then it shouldn't be possible
+		// to ambush it, because ambush also provides a chance to fail
+		AddAmbushRisk(Template);
 	}
 	AddStaffSlots(Template, 3);
-	AddAmbushRisk(Template);
 
 	// Add an optional cost slot to counter capture if it's a risk.
 	AddCaptureMitigationSlot(Template);
@@ -150,9 +156,14 @@ static function ConfigureHardCovertAction(X2CovertActionTemplate Template, optio
 {
 	// Make failure the first risk in the list.
 	if (ApplyFailureRisk)
+	{
 		Template.Risks.InsertItem(0, 'CovertActionRisk_Failure_Hard');
+
+		// If a covert action can't fail, then it shouldn't be possible
+		// to ambush it, because ambush also provides a chance to fail
+		AddAmbushRisk(Template);
+	}
 	AddStaffSlots(Template, 3);
-	AddAmbushRisk(Template);
 
 	// Add an optional cost slot to counter capture if it's a risk.
 	AddCaptureMitigationSlot(Template);
