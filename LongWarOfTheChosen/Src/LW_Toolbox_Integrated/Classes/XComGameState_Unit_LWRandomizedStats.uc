@@ -99,20 +99,6 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 		ComIntTotalWeight += ComIntSwap.Weight;
 	}
 
-	//randomly apply a bunch of stat swaps to get starting stat offset
-	for(idx = 0; idx < NumSwaps; idx++)
-	{
-		do {
-			Swap = SelectRandomStatSwap(TotalWeight);
-		} until (IsValidSwap(Swap, Unit) || (++iterations > 1000));
-
-		if (iterations > 1000)
-		{
-			break;
-		}
-		CharacterInitialStats_Deltas[Swap.StatUp] += Swap.StatUp_Amount;
-		CharacterInitialStats_Deltas[Swap.StatDown] -= Swap.StatDown_Amount;
-	}
 	//Roll a chance for a stat swap and don't roll combat intelligence for rebels
 	if (`SYNC_RAND(100) < default.COMINT_BASE_SWAP_CHANCE && InStr(Unit.GetMyTemplateName(), "Rebel") != 0 )
 	{
@@ -120,8 +106,24 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 		{
 			ComIntSwap = SelectComIntStatSwap(ComIntTotalWeight);
 		} until (IsValidComIntSwap(ComIntSwap, Unit) || (++iterations > 1000));
-		CharacterInitialStats_Deltas[ComIntSwap.StatSwapped] += ComIntSwap.StatSwapped_Amount;
-		CharacterComIntDelta = ComIntSwap.ComIntStatchange;	
+		if (iterations <= 1000)
+		{
+			CharacterInitialStats_Deltas[ComIntSwap.StatSwapped] += ComIntSwap.StatSwapped_Amount;
+			CharacterComIntDelta = ComIntSwap.ComIntStatchange;	
+		}
+	}
+	//randomly apply a bunch of stat swaps to get starting stat offset
+	for(idx = 0; idx < NumSwaps; idx++)
+	{
+		do {
+			Swap = SelectRandomStatSwap(TotalWeight);
+		} until (IsValidSwap(Swap, Unit) || (++iterations > 1000));
+		if (iterations > 1000)
+		{
+			break;
+		}
+		CharacterInitialStats_Deltas[Swap.StatUp] += Swap.StatUp_Amount;
+		CharacterInitialStats_Deltas[Swap.StatDown] -= Swap.StatDown_Amount;
 	}
 
 	bInitialStatsRolled = true;
