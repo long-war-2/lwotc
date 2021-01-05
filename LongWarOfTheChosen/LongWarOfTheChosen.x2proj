@@ -500,6 +500,21 @@
     <Content Include="Src\LW_Overhaul\Classes\SeqAct_GetXComUnits.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIRecruitmentListItem_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIRecruitSoldiers_LW.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Mission_ChosenAvengerAssault.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Mission_ChosenStronghold.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Mission_GoldenPath.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Mission_GPIntelOptions.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_UFOAttack.uc">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="Src\LW_Overhaul\Classes\X2Action_IRI_PsiPinion.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_IRI_SoulStorm.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_NullWard.uc" />
