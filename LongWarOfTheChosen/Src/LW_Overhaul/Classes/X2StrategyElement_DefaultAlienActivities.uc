@@ -491,7 +491,7 @@ static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienAc
 		case 'Recover_LW':
 		case 'Hack_LW': RewardArray[0] = 'Reward_Intel'; break;
 		case 'Extract_LW':
-		case 'Rescue_LW': RewardArray[0] = RescueReward(false, false); break;
+		case 'Rescue_LW': RewardArray[0] = RescueReward(false, false, NewGameState); break;
 		case 'DestroyObject_LW':
 			RewardArray[0] = 'Reward_Intel';
 			break;
@@ -1203,7 +1203,7 @@ static function array<name> COINResearchRewards(XComGameState_LWAlienActivity Ac
 	Rewards[0] = 'Reward_Intel'; // for Neutralize, this will be granted only if captured
 	if (MissionFamily == 'Rescue_LW')
 	{
-		Rewards[1] = RescueReward(false, false);
+		Rewards[1] = RescueReward(false, false, NewGameState);
 	}
 	else
 	{
@@ -1824,7 +1824,7 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 	}
 }
 
-static function name RescueReward(bool IncludeRebel, bool IncludePrisoner)
+static function name RescueReward(bool IncludeRebel, bool IncludePrisoner, XComGameState NewGameState)
 {
 	local int iRoll, Rescue_Soldier_Modified_Weight, Rescue_Engineer_Modified_Weight, Rescue_Scientist_Modified_Weight, Rescue_Rebel_Modified_Weight;
 	local XComGameStateHistory History;
@@ -1883,7 +1883,7 @@ static function name RescueReward(bool IncludeRebel, bool IncludePrisoner)
 		return Reward;
 	}
 
-	CapturedSoldiers = class'Helpers_LW'.static.FindAvailableCapturedSoldiers();
+	CapturedSoldiers = class'Helpers_LW'.static.FindAvailableCapturedSoldiers(NewGameState);
 	if (IncludePrisoner && CapturedSoldiers.Length > 0)
 	{
 		Reward = 'Reward_SoldierCaptured';
@@ -1907,7 +1907,7 @@ static function array<name> GetUFOMissionRewards(XComGameState_LWAlienActivity A
 	}
 	if (MissionFamily == 'Rescue_LW')
 	{
-		RewardArray[0] = RescueReward(true, true);
+		RewardArray[0] = RescueReward(true, true, NewGameState);
 		if (instr(RewardArray[0], "Soldier") != -1 && CanAddPOI())
 		{
 			RewardArray[1] = 'Reward_POI_LW';
@@ -2919,8 +2919,8 @@ static function array<name> GetProtectDataRewards (XComGameState_LWAlienActivity
 		case 'DestroyObject_LW':
 		case 'Hack_LW':
 		case 'Recover_LW': RewardArray[0] = 'Reward_Intel'; break;
-		case 'Rescue_LW': RewardArray[0] = RescueReward (true, true); break;
-		case 'Extract_LW': RewardArray[0] = RescueReward (true, true); break;
+		case 'Rescue_LW': RewardArray[0] = RescueReward (true, true, NewGameState); break;
+		case 'Extract_LW': RewardArray[0] = RescueReward (true, true, NewGameState); break;
 		default: break;
 	}
 	if (CanAddPOI())
@@ -3085,7 +3085,7 @@ static function array<name> GetHVPRewards(XComGameState_LWAlienActivity Activity
 {
 	local array<name> RewardArray;
 
-	RewardArray[0] = RescueReward(false, true);
+	RewardArray[0] = RescueReward(false, true, NewGameState);
 	if (instr(RewardArray[0], "Soldier") != -1 && CanAddPOI())
 	{
 		RewardArray[1] = 'Reward_POI_LW';

@@ -1586,7 +1586,10 @@ static function GiveCouncilSoldierReward(XComGameState NewGameState, XComGameSta
 	// Don't bother having the Chosen release this soldier if the unit wasn't
 	// captured by a Chosen.
 	if (UnitState.ChosenCaptorRef.ObjectID == 0)
+	{
+		ReleaseSoldierFromAlienHQ(NewGameState, UnitState.GetReference());
 		return;
+	}
 
 	ChosenState = XComGameState_AdventChosen(NewGameState.GetGameStateForObjectID(UnitState.ChosenCaptorRef.ObjectID));
 	if (ChosenState == none)
@@ -1600,6 +1603,15 @@ static function GiveCouncilSoldierReward(XComGameState NewGameState, XComGameSta
 
 	// Clear their Captor reference
 	UnitState.ChosenCaptorRef = EmptyRef;
+}
+
+static function ReleaseSoldierFromAlienHQ(XComGameState NewGameState, StateObjectReference UnitRef)
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+
+	// remove the soldier from the captured unit list so they don't show up again later in the playthrough
+	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+	AlienHQ.CapturedSoldiers.RemoveItem(UnitRef);
 }
 
 // ======= RED FOG ======= // 
