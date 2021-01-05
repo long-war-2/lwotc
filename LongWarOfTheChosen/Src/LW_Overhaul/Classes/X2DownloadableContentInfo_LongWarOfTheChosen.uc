@@ -148,7 +148,8 @@ static event InstallNewCampaign(XComGameState StartState)
 	StartingRegionState = SetStartingLocationToStartingRegion(StartState);
 	UpdateLockAndLoadBonus(StartState);  // update XComHQ and Continent states to remove LockAndLoad bonus if it was selected
 	LimitStartingSquadSize(StartState); // possibly limit the starting squad size to something smaller than the maximum
-	
+	DisableUnwantedObjectives(StartState);
+
 	class'XComGameState_LWSquadManager'.static.CreateFirstMissionSquad(StartState);
 
 	// Clear starting resistance modes because we don't actually start
@@ -1954,6 +1955,24 @@ static function FirstMissionComplete(XComGameState NewGameState, XComGameState_O
 		}
 	}
 	`HQPRES.m_kFacilityGrid.UpdateData();
+}
+
+static function DisableUnwantedObjectives(XComGameState StartState)
+{
+	local XComGameState_Objective ObjectiveState;
+
+	foreach StartState.IterateByClassType(class'XComGameState_Objective', ObjectiveState)
+	{
+		switch (ObjectiveState.GetMyTemplateName())
+		{
+		case 'XP2_M0_FirstCovertActionTutorial':
+		case 'XP2_M1_SecondCovertActionTutorial':
+			ObjectiveState.CompleteObjective(StartState);
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 // ******** HANDLE CUSTOM WEAPON RESTRICTIONS ******** //
