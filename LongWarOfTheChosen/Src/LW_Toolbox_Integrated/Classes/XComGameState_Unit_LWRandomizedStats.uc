@@ -106,6 +106,10 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 			Swap = SelectRandomStatSwap(TotalWeight);
 		} until (IsValidSwap(Swap, Unit) || (++iterations > 1000));
 
+		if (iterations > 1000)
+		{
+			break;
+		}
 		CharacterInitialStats_Deltas[Swap.StatUp] += Swap.StatUp_Amount;
 		CharacterInitialStats_Deltas[Swap.StatDown] -= Swap.StatDown_Amount;
 	}
