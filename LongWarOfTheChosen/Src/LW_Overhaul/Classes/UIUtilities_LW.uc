@@ -702,6 +702,23 @@ static function bool ShouldShowPsiOffense(XComGameState_Unit UnitState)
 		(UnitState.GetRank() == 0 && !UnitState.CanRankUpSoldier() && `XCOMHQ.IsTechResearched('AutopsySectoid'));
 }
 
+// KDM : Adds a UIButton, if it exists and is visible, to a UIScreen's Navigator; furthermore, it selects this button
+// if SelectionSet was false.
+simulated static function bool AddBtnToNavigatorAndSelect(UIScreen TheScreen, UIButton TheButton, bool SelectionSet)
+{
+	if (TheButton != none && TheButton.bIsVisible)
+	{
+		TheScreen.Navigator.AddControl(TheButton);
+		if (!SelectionSet)
+		{
+			TheScreen.Navigator.SetSelected(TheButton);
+			return true;
+		}
+	}
+
+	return SelectionSet;
+}
+
 defaultproperties
 {
 	PlotTypes[0]="Duel"
