@@ -63,7 +63,7 @@ static function XComGameState_Unit_AlienCustomization CreateCustomizationCompone
 {
 	local XComGameState_Unit_AlienCustomization AlienCustomization;
 
-	AlienCustomization = XComGameState_Unit_AlienCustomization(NewGameState.CreateStateObject(class'XComGameState_Unit_AlienCustomization'));
+	AlienCustomization = XComGameState_Unit_AlienCustomization(NewGameState.CreateNewStateObject(class'XComGameState_Unit_AlienCustomization'));
 	Unit.AddComponentObject(AlienCustomization);
 	AlienCustomization.InitComponent();
 	return AlienCustomization;

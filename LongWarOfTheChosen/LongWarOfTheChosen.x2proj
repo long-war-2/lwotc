@@ -394,9 +394,7 @@
     <Content Include="Src\LWUtilities\Classes\X2DownloadableContentInfo_LWUtilities.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\LW_AlienPack.uci" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\LWAlienPack_Utilities.uc" />
-    <Content Include="Src\LW_AlienPack_Integrated\Classes\LWUpdateAlienCustomizationAction.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\UIScreenListener_Shell_LWAlienPack.uc" />
-    <Content Include="Src\LW_AlienPack_Integrated\Classes\UIScreenListener_TacticalHUD_LWAlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Ability_LWAlienAbilities.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Character_AlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2DownloadableContentInfo_LWAlienPack.uc" />
@@ -407,6 +405,7 @@
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_RepairServos.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_SimpleHeal.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_WarCry.uc" />
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2EventListener_AlienCustomization.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Item_LWAlienWeapons.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Item_Resources_AlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2TargetingMethod_MassMindspin.uc" />

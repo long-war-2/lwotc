@@ -663,7 +663,7 @@ function XComGameState ChosenSummonFollowers_BuildGameState(XComGameStateContext
 	return NewGameState;
 }
 
-simulated function ChosenSummonFollowers_BuildVisualization(XComGameState VisualizeGameState)
+static function ChosenSummonFollowers_BuildVisualization(XComGameState VisualizeGameState)
 {
 	local XComGameStateHistory History;
 	local VisualizationActionMetadata EmptyTrack, ActionMetadata, NewUnitActionMetadata;
@@ -757,10 +757,10 @@ simulated function ChosenSummonFollowers_BuildVisualization(XComGameState Visual
 			if (UnitState != FreshlySpawnedUnitStates[0])
 			{
 				RandomDelay = X2Action_Delay(class'X2Action_Delay'.static.AddToVisualizationTree(NewUnitActionMetadata, AbilityContext, false, SyncAction));
-				OffsetVisDuration += 0.5f + `SYNC_FRAND() * 0.5f;
+				OffsetVisDuration += 0.5f + `SYNC_FRAND_STATIC() * 0.5f;
 				RandomDelay.Duration = OffsetVisDuration;
 			}
-			
+
 			X2Action_ShowSpawnedUnit(class'X2Action_ShowSpawnedUnit'.static.AddToVisualizationTree(NewUnitActionMetadata, AbilityContext, false, ActionMetadata.LastActionAdded));
 
 			UnitState.GetKeystoneVisibilityLocation(SpawnedUnitTile);
