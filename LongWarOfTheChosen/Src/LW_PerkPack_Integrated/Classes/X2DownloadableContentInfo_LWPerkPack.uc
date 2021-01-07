@@ -97,15 +97,45 @@ static function UpdateBaseGameOverwatchShot()
 	OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(OWLimitCondition);
 }
 
-static function bool AbilityTagExpandHandler(string InString, out string OutString)
+static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseObj, XComGameState GameState)
 {
-    local name Type;
+	local XComGameState_Ability AbilityState;
+	local XComGameState_Effect EffectState;
+	local X2AbilityTemplate AbilityTemplate;
+	local X2ItemTemplate ItemTemplate;
+	local name Type;
 	local float TempFloat;
 	local int TempInt;
 
     Type = name(InString);
     switch(Type)
     {
+		case 'BOUND_WEAPON_NAME':
+			AbilityTemplate = X2AbilityTemplate(ParseObj);
+			if (StrategyParseObj != none && AbilityTemplate != none)
+			{
+				ItemTemplate = GetItemBoundToAbilityFromUnit(XComGameState_Unit(StrategyParseObj), AbilityTemplate.DataName, GameState);
+			}
+			else
+			{
+				AbilityState = XComGameState_Ability(ParseObj);
+				EffectState = XComGameState_Effect(ParseObj);
+				if (EffectState != none)
+				{
+					AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(
+							EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
+				}
+
+				if (AbilityState != none)
+					ItemTemplate = AbilityState.GetSourceWeapon().GetMyTemplate();
+			}
+
+			if (ItemTemplate != none)
+			{
+				OutString = ItemTemplate.GetItemAbilityDescName();
+				return true;
+			}
+			return false;
         case 'FLECHE_BONUS_DAMAGE_PER_TILES':
 			TempFloat = 1 / class'X2Ability_PerkPackAbilitySet2'.default.BONUS_SLICE_DAMAGE_PER_TILE;
 			TempFloat = Round(TempFloat * 10.0) / 10.0;
@@ -325,6 +355,19 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
             return false;
     }
     return ReturnValue;    
+}
+
+static function X2ItemTemplate GetItemBoundToAbilityFromUnit(XComGameState_Unit UnitState, name AbilityName, XComGameState GameState)
+{
+	local SCATProgression Progression;
+
+	Progression = UnitState.GetSCATProgressionForAbility(AbilityName);
+	if (Progression.iRank == INDEX_NONE || Progression.iBranch == INDEX_NONE)
+		return none;
+
+	return UnitState.GetItemInSlot(
+		UnitState.AbilityTree[Progression.iRank].Abilities[Progression.iBranch].ApplyToWeaponSlot,
+		GameState).GetMyTemplate();
 }
 
 //unused for now, but keeping since we may want to update threat assessment later

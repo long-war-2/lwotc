@@ -12,38 +12,53 @@ var config bool APPLIES_TO_EXPLOSIVES;
 
 function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
 {
-    local XComGameState_Item SourceWeapon;
-    local XComGameState_Unit TargetUnit;
+	local XComGameState_Item SourceWeapon;
+	local XComGameState_Unit TargetUnit;
 	local array<StateObjectReference> arrSSEnemies;
 	local int BadGuys;
 	local X2AbilityToHitCalc_StandardAim StandardHit;
 	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
+	local bool bShouldApply;
 
-    if(AppliedData.AbilityResultContext.HitResult == eHit_Crit)
+    if (AppliedData.AbilityResultContext.HitResult == eHit_Crit)
     {
         SourceWeapon = AbilityState.GetSourceWeapon();
-        if(SourceWeapon != none) 
+        if (SourceWeapon != none)
         {
-			if(	AbilityState.SourceWeapon != EffectState.ApplyEffectParameters.ItemStateObjectRef)
+			if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
 			{
-				return 0;
+				// If the source weapon matches the weapon slot bound to the ability,
+				// then the crit bonus should apply
+				bShouldApply = true;
 			}
-			if (!APPLIES_TO_EXPLOSIVES)
+
+			if (default.APPLIES_TO_EXPLOSIVES)
 			{
 				if (X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).WeaponCat == 'grenade')
 				{
-					return 0;
+					// This should apply to any grenades that can crit
+					bShouldApply = true;
 				}
+
 				if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
 				{
-					return 0;
+					bShouldApply = true;
 				}
+
 				StandardHit = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
-				if(StandardHit != none && StandardHit.bIndirectFire) 
+				if (StandardHit != none && StandardHit.bIndirectFire)
 				{
-					return 0;
+					// Grenade launchers can get the bonus crit damage too (as well as any
+					// other ability/weapon that uses StandardAim with indirect fire)
+					bShouldApply = true;
 				}
 			}
+
+			if (!bShouldApply)
+			{
+				return 0;
+			}
+
 			WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
 			if (WeaponDamageEffect != none)
 			{
@@ -53,7 +68,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 				}
 			}
 			TargetUnit = XComGameState_Unit(TargetDamageable);
-            if(TargetUnit != none)
+            if (TargetUnit != none)
             {
                 BadGuys = Attacker.GetNumVisibleEnemyUnits (true, false, false, -1, false, false);
 				if (Attacker.HasSquadsight() && default.BEO_SQUADSIGHT_ENEMIES_APPLY)
