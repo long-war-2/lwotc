@@ -29,7 +29,7 @@ LocPromotionPopupText="<Bullet/> Adds a disorient effect that applies to all org
 LocFriendlyName="Disabling Shot"
 LocLongDescription="Stun enemies with a precise shot, with a bonus stun duration if the shot crits. The shot can not do critical damage."
 LocHelpText="Stun enemies with a precise shot, with a bonus stun duration if the shot crits. The shot can not do critical damage."
-LocPromotionPopupText="<Bullet/> Stuns enemies for <Ability:DisablingShotStunActions/> actions if the shot hits (including if it grazes).<br/><Bullet/> Stuns for an extra <Ability:DisablingShotCritStunActions/> actions if the shot crits, but the shot won't inflict the critical damage.<br/><Bullet/> Disabling Shot requires <Ability:SelfAmmoCost/> ammo to use.<br/><Bullet/> Disabling Shot has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Only Avatars and Psi Zombies can not be stunned."
+LocPromotionPopupText="<Bullet/> Stuns enemies for <Ability:DisablingShotStunActions/> actions if the shot hits (including if it grazes).<br/><Bullet/> Stuns for an extra <Ability:DisablingShotCritStunActions/> actions if the shot crits, but the shot won't inflict the critical damage.<br/><Bullet/> Disabling Shot requires <Ability:SelfAmmoCost/> ammo to use.<br/><Bullet/> Disabling Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Only Avatars and Psi Zombies can not be stunned."
 
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Meditation"
@@ -93,7 +93,9 @@ LocFriendlyName="Charge Battery"
 LocFlyoverText="Shadow: +1 Turn"
 LocHelpText="Consumes a charge to extend Shadow's duration by 1 turn."
 LocLongDescription="Consumes a charge to extend Shadow's duration by 1 turn."
+; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Allows the player to extend Shadow by 1 turn.<br/><Bullet/> Can only be used while in Shadow.<br/><Bullet/> Charge Battery is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Charge Battery has <Ability:CHARGE_BATTERY_CHARGES/> charge(s).<br/>"
+; End Translation (2)
 ; End Translation
 
 ; LWOTC Needs Translation
