@@ -22,6 +22,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateMissionSiteListeners());
 	Templates.AddItem(CreateMiscellaneousListeners());
 	Templates.AddItem(CreateEndOfMonthListeners());
+	Templates.AddItem(CreateCampaignStartListeners());
 
 	return Templates;
 }
@@ -64,6 +65,17 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('OverrideCurrentDoom', OverrideCurrentDoom, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreateCampaignStartListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'CampaignStartListeners');
+	Template.AddCHEvent('OverrideAllowStartingRegionLink', AllowOutOfContinentStartingRegionLinks, ELD_Immediate, GetListenerPriority());
+	Template.RegisterInCampaignStart = true;
 
 	return Template;
 }
@@ -1005,6 +1017,25 @@ static function EventListenerReturn ShowOrHideResistanceOrdersButton(
 
 	// The event expects `true` to show the button, or `false` to hide it
 	Tuple.Data[0].b = class'Helpers_LW'.static.AreResistanceOrdersEnabled();
+
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn AllowOutOfContinentStartingRegionLinks(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none) return ELR_NoInterrupt;
+
+	// A starting region can be linked to any other neighbouring region.
+	// No restrictions.
+	Tuple.Data[1].b = true;
 
 	return ELR_NoInterrupt;
 }
