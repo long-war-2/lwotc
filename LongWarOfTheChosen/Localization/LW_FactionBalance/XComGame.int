@@ -93,7 +93,9 @@ LocFriendlyName="Charge Battery"
 LocFlyoverText="Shadow: +1 Turn"
 LocHelpText="Consumes a charge to extend Shadow's duration by 1 turn."
 LocLongDescription="Consumes a charge to extend Shadow's duration by 1 turn."
+; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Allows the player to extend Shadow by 1 turn.<br/><Bullet/> Can only be used while in Shadow.<br/><Bullet/> Charge Battery is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Charge Battery has <Ability:CHARGE_BATTERY_CHARGES/> charge(s).<br/>"
+; End Translation (2)
 ; End Translation
 
 ; LWOTC Needs Translation
