@@ -749,7 +749,7 @@ LocFlyOverText="Mind Merge"
 LocLongDescription="Grants bonus will, critical chance and ablative hit points to an ally until the beginning of the player's next turn."
 LocHelptext="Temporarily grants bonus will, critical chance and ablative hit points to an ally."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Grants the targeted ally 1 ablative (shield) hit point, plus another one per 20 psi offense score of the Psi Operative using Mind Merge.<br/><Bullet/> Grants the targeted ally 1 will per 5 psi offense score of the Psi Operative.<br/><Bullet/> Also grants the ally +1 critical chance per 7 psi offense score of the Psi Operative.<br/><Bullet/> Effect lasts until the Psi Operative's next turn.<br/><Bullet/> Mind merge has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Mind Merge requires one action and does not end your turn.<br/><Bullet/> Only visible allies may be targeted.<br/><Bullet/> Improved Psi Amps grant additional bonuses to these effects.<br/>"
+LocPromotionPopupText="<Bullet/> Grants the targeted ally 1 ablative (shield) hit point, plus another one per 20 psi offense score of the Psi Operative using Mind Merge.<br/><Bullet/> Grants the targeted ally 1 will per 5 psi offense score of the Psi Operative.<br/><Bullet/> Also grants the ally +1 critical chance per 7 psi offense score of the Psi Operative.<br/><Bullet/> Effect lasts until the Psi Operative's next turn.<br/><Bullet/> Mind Merge has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Mind Merge requires one action and does not end your turn.<br/><Bullet/> Only visible allies may be targeted.<br/><Bullet/> Improved Psi Amps grant additional bonuses to these effects.<br/>"
 ;End Translation
 
 [SoulMerge X2AbilityTemplate]
