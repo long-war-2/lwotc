@@ -22,7 +22,6 @@ var bool bInSquadEdit;
 var GeneratedMissionData MissionData;
 
 var config float SquadInfo_DelayedInit;
-var const array<string> PlotTypes;
 
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
@@ -149,28 +148,10 @@ event OnInit(UIScreen Screen)
 		BriefingString $= "\n";
 		BriefingString $= "<font face='$TitleFont' size='22' color='#a7a085'>" $ CAPS(strAreaOfOperations) $ "</font>\n";
 		BriefingString $= "<font face='$NormalFont' size='22' color='#" $ class'UIUtilities_Colors'.const.NORMAL_HTML_COLOR $ "'>";
-		BriefingString $= GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType);
+		BriefingString $= class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType);
 		BriefingString $= "\n";
 		BriefingString $= "</font>";
 		MissionBriefText.SetHTMLText (BriefingString);
-	}
-}
-
-static function string GetPlotTypeFriendlyName(string PlotType)
-{
-	local int i;
-
-	// Use the multiplayer localisation to get the friendly name for a given plot type
-	i = default.PlotTypes.Find(PlotType);
-
-	if (i == INDEX_NONE)
-	{
-		`REDSCREEN("Unknown plot type '" $ PlotType $ "' encountered in GetPlotTypeFriendlyName()");
-		return "???";
-	}
-	else
-	{
-		return class'X2MPData_Shell'.default.arrMPMapFriendlyNames[i];
 	}
 }
 
@@ -323,17 +304,4 @@ defaultproperties
 {
 	// Leaving this assigned to none will cause every screen to trigger its signals on this class
 	ScreenClass = none;
-
-	PlotTypes[0]="Duel"
-	PlotTypes[1]="Facility"
-	PlotTypes[2]="SmallTown"
-	PlotTypes[3]="Shanty"
-	PlotTypes[4]="Slums"
-	PlotTypes[5]="Wilderness"
-	PlotTypes[6]="CityCenter"
-	PlotTypes[7]="Rooftops"
-	PlotTypes[8]="Abandoned"
-	PlotTypes[9]="Tunnels_Sewer"
-	PlotTypes[10]="Tunnels_Subway"
-	PlotTypes[11]="Stronghold"
 }

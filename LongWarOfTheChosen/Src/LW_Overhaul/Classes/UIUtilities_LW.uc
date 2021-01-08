@@ -15,6 +15,8 @@ var config array<name> NoEvacMissions;
 var config array<name> ObjectiveTimerMissions;
 var config array<name> EvacTimerMissions;
 
+var const array<string> PlotTypes;
+
 var localized string m_strInfiltrationMission;
 var localized string m_strQuickResponseMission;
 var localized string m_strFixedEvacLocation;
@@ -481,6 +483,26 @@ function static BuildMissionInfoPanel(UIScreen ParentScreen, StateObjectReferenc
 	MissionExpiryPanel.Show();
 }
 
+// Returns a player-friendly name for the given plot type, so they
+// know what map type they'll be playing on
+static function string GetPlotTypeFriendlyName(string PlotType)
+{
+	local int i;
+
+	// Use the multiplayer localisation to get the friendly name for a given plot type
+	i = default.PlotTypes.Find(PlotType);
+
+	if (i == INDEX_NONE)
+	{
+		`REDSCREEN("Unknown plot type '" $ PlotType $ "' encountered in GetPlotTypeFriendlyName()");
+		return "???";
+	}
+	else
+	{
+		return class'X2MPData_Shell'.default.arrMPMapFriendlyNames[i];
+	}
+}
+
 static function vector2d GetMouseCoords()
 {
 	local PlayerController PC;
@@ -545,4 +567,20 @@ static function bool ShouldShowPsiOffense(XComGameState_Unit UnitState)
 {
 	return UnitState.IsPsiOperative() ||
 		(UnitState.GetRank() == 0 && !UnitState.CanRankUpSoldier() && `XCOMHQ.IsTechResearched('AutopsySectoid'));
+}
+
+defaultproperties
+{
+	PlotTypes[0]="Duel"
+	PlotTypes[1]="Facility"
+	PlotTypes[2]="SmallTown"
+	PlotTypes[3]="Shanty"
+	PlotTypes[4]="Slums"
+	PlotTypes[5]="Wilderness"
+	PlotTypes[6]="CityCenter"
+	PlotTypes[7]="Rooftops"
+	PlotTypes[8]="Abandoned"
+	PlotTypes[9]="Tunnels_Sewer"
+	PlotTypes[10]="Tunnels_Subway"
+	PlotTypes[11]="Stronghold"
 }
