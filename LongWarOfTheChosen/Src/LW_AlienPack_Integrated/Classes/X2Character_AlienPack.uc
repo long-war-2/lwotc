@@ -68,8 +68,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(CreateTemplate_AdvGeneric('AdvSergeantM1'));
 	Templates.AddItem(CreateTemplate_AdvGeneric('AdvSergeantM2'));
-	Templates.AddItem(CreateTemplate_AdvGeneric('AdvGeneralM1'));
-	Templates.AddItem(CreateTemplate_AdvGeneric('AdvGeneralM2'));
+	Templates.AddItem(CreateTemplate_AdvGeneric('AdvGeneralM1_LW'));
+	Templates.AddItem(CreateTemplate_AdvGeneric('AdvGeneralM2_LW'));
 	Templates.AddItem(CreateTemplate_AdvGeneric('AdvCommando'));
 	Templates.AddItem(CreateTemplate_AdvGeneric('AdvShockTroop'));
 	Templates.AddItem(CreateTemplate_AdvGeneric('AdvScout'));
@@ -1642,9 +1642,9 @@ static function X2CharacterTemplate CreateTemplate_AdvGeneric(name TemplateName)
 			CharTemplate.Abilities.AddItem('LockedOn');				// Weapon?
 			break;
 
-		case 'AdvGeneralM1':
+		case 'AdvGeneralM1_LW':
 			CharTemplate.CharacterGroupName = 'AdventCaptain';
-			CharTemplate.DefaultLoadout='AdvGeneralM1_Loadout';
+			CharTemplate.DefaultLoadout='AdvGeneralM1_LW_Loadout';
 			LootBase.LootTableName='AdvCaptainM3_BaseLoot';
 			LootTimed.LootTableName='AdvCaptainM3_TimedLoot';
 			LootVulture.LootTableName='AdvCaptainM3_VultureLoot';
@@ -1658,9 +1658,9 @@ static function X2CharacterTemplate CreateTemplate_AdvGeneric(name TemplateName)
 			CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_AdvCaptainM1');
 			break;
 		
-		case 'AdvGeneralM2':
+		case 'AdvGeneralM2_LW':
 			CharTemplate.CharacterGroupName='AdventCaptain';
-			CharTemplate.DefaultLoadout='AdvGeneralM2_Loadout';
+			CharTemplate.DefaultLoadout='AdvGeneralM2_LW_Loadout';
 			LootBase.LootTableName='AdvCaptainM3_BaseLoot';
 			LootTimed.LootTableName='AdvCaptainM3_TimedLoot';
 			LootVulture.LootTableName='AdvCaptainM3_VultureLoot';

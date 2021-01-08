@@ -113,8 +113,8 @@ var config WeaponDamageValue AdvShockTroop_WPN_BASEDAMAGE;
 var config WeaponDamageValue AdvCommando_WPN_BASEDAMAGE;
 var config WeaponDamageValue AdvVanguard_WPN_BASEDAMAGE;
 var config WeaponDamageValue AdvScout_WPN_BASEDAMAGE;
-var config WeaponDamageValue AdvGeneralM1_WPN_BASEDAMAGE;
-var config WeaponDamageValue AdvGeneralM2_WPN_BASEDAMAGE;
+var config WeaponDamageValue AdvGeneralM1_LW_WPN_BASEDAMAGE;
+var config WeaponDamageValue AdvGeneralM2_LW_WPN_BASEDAMAGE;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -174,8 +174,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvSergeantM2_WPN'));
 	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvScout_WPN'));
 	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvCommando_WPN'));
-	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM1_WPN'));
-	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM2_WPN'));
+	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM1_LW_WPN'));
+	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM2_LW_WPN'));
 
 	return Templates;
 }
@@ -1093,8 +1093,8 @@ static function X2DataTemplate CreateTemplate_AdvElite_WPN(name TemplateName)
 		case 'AdvCommando_WPN': Template.BaseDamage = default.AdvCommando_WPN_BASEDAMAGE; break;
 		case 'AdvVanguard_WPN': Template.BaseDamage = default.AdvVanguard_WPN_BASEDAMAGE; break;
 		case 'AdvScout_WPN': Template.BaseDamage = default.AdvScout_WPN_BASEDAMAGE; break;
-		case 'AdvGeneralM1_WPN': Template.BaseDamage = default.AdvGeneralM1_WPN_BASEDAMAGE; break;
-		case 'AdvGeneralM2_WPN': Template.BaseDamage = default.AdvGeneralM2_WPN_BASEDAMAGE; break;
+		case 'AdvGeneralM1_LW_WPN': Template.BaseDamage = default.AdvGeneralM1_LW_WPN_BASEDAMAGE; break;
+		case 'AdvGeneralM2_LW_WPN': Template.BaseDamage = default.AdvGeneralM2_LW_WPN_BASEDAMAGE; break;
 		default: break;
 	}
 

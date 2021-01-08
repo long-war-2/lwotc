@@ -415,14 +415,14 @@ strCharacterName="アドヴェント・スカウト"
 [AdvScout_WPN X2WeaponTemplate]
 FriendlyName="アドヴェント磁力ライフル"
 
-[AdvGeneralM1 X2CharacterTemplate]
+[AdvGeneralM1_LW X2CharacterTemplate]
 strCharacterName="アドヴェント・ジェネラル"
 
-[AdvGeneralM1_WPN X2WeaponTemplate]
+[AdvGeneralM1_LW_WPN X2WeaponTemplate]
 FriendlyName="アドヴェント磁力ライフル"
 
-[AdvGeneralM2 X2CharacterTemplate]
+[AdvGeneralM2_LW X2CharacterTemplate]
 strCharacterName="アドヴェント・ジェネラル"
 
-[AdvGeneralM2_WPN X2WeaponTemplate]
+[AdvGeneralM2_LW_WPN X2WeaponTemplate]
 FriendlyName="アドヴェント磁力ライフル"
