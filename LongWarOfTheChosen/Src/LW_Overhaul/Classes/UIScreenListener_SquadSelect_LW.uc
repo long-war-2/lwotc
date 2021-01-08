@@ -24,8 +24,6 @@ var GeneratedMissionData MissionData;
 var config float SquadInfo_DelayedInit;
 var const array<string> PlotTypes;
 
-var config(LW_UI) bool HIDE_SAVESQUAD_BTN_WITH_CONTROLLER, HIDE_SQUADCONTAINER_WITH_CONTROLLER;
-
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
 {
@@ -67,7 +65,7 @@ event OnInit(UIScreen Screen)
 	bInSquadEdit = `SCREENSTACK.IsInStack(class'UIPersonnel_SquadBarracks');
 	if(bInSquadEdit)
 	{
-		if(`ISCONTROLLERACTIVE && HIDE_SAVESQUAD_BTN_WITH_CONTROLLER)
+		if (`ISCONTROLLERACTIVE)
 		{
 			// KDM : Hide the 'Save Squad' button which appears while viewing a Long War squad's soldiers.
 			// As an aside, I don't believe this functionality actually works.
@@ -115,7 +113,7 @@ event OnInit(UIScreen Screen)
 		// KDM : Allow the 'Squad Container', which deals with squad selection on the Squad Select screen,
 		// to be hidden through non-creation. My controller-capable Squad Management mod has its own squad 
 		// selection and display UI which overlaps with LW2's UI.
-		if(!(`ISCONTROLLERACTIVE && HIDE_SQUADCONTAINER_WITH_CONTROLLER))
+		if (!`ISCONTROLLERACTIVE)
 		{
 			// LW : Create the SquadContainer on a timer, to avoid creation issues that can arise when creating it immediately, when no pawn loading is present
 			SquadContainer = SquadSelect.Spawn(class'UISquadContainer', SquadSelect);
