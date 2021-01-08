@@ -134,7 +134,7 @@ LocHelpText="Firing your pistol with your first action no longer ends your turn.
 [LightningHands X2AbilityTemplate]
 LocLongDescription="Fire your pistol at a target. This attack does not cost an action."
 LocHelpText="Fire your pistol at a target. This attack does not cost an action."
-LocPromotionPopupText="<Bullet/> Lightning Hands can combo well with other <Ability:ClassName/> abilities, as it does not prevent the use of other abilities in the same turn.<br/><Bullet/> Lightning Hands has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Lightning Hands can combo well with other <Ability:ClassName/> abilities, as it does not prevent the use of other abilities in the same turn.<br/><Bullet/> Lightning Hands has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 ; End Translation
 
@@ -217,7 +217,7 @@ LocFriendlyName="Quickburn"
 LocFlyOverText="Quickburn"
 LocLongDescription="Activate so your next use of the flamethrower will not cost an action."
 LocHelpText="Activate so your next use of the flamethrower will not cost an action."
-LocPromotionPopupText="<Bullet/> Activate so your next use of the flamethrower will not cost an action.<br/><Bullet/> 5-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Activate so your next use of the flamethrower will not cost an action.<br/><Bullet/> Quickburn has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [Firestorm X2AbilityTemplate]
 LocFriendlyName="Firestorm"
@@ -291,7 +291,7 @@ LocPromotionPopupText="<Bullet/> Coup de Grâce can only target non-robotic, dis
 LocFriendlyName="Coup de Grâce"
 LocFlyOverText="Coup de Grâce"
 LocLongDescription="Bonus to hit, damage, and critical chance with your <Ability:AssociatedWeapon/> against a disoriented, stunned or panicking enemy."
-LocHelpText="Bonus to hit, damage, and critical chance with your <Ability:AssociatedWeapon/> against a disoriented, stunned, or panicking  enemy."
+LocHelpText="Bonus to hit, damage, and critical chance with your <Ability:AssociatedWeapon/> against a disoriented, stunned, or panicking enemy."
 LocPromotionPopupText="<Bullet/> Coup de Grâce grants +50 aim, +50 critical chance and +2 damage against stunned and panicking enemies.<br/><Bullet/> The bonuses are reduced against disoriented enemies."
 ; End Translation
 
@@ -462,9 +462,20 @@ LocLongDescription="Special shot with a bonus to hit that does little or no dama
 LocHelpText="Special shot that does little or no damage but confers defense and dodge penalties and forces target to change position."
 LocFlyOverText="Flush"
 ;LWOTC needs translation
-LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Two-turn cooldown.<br/><Bullet/> +30 bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DEFENSE_REDUCTION> defense and <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> +30 bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DEFENSE_REDUCTION> defense and <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
 ;End Translation
 str_FlushEffect="Flushed"
+
+;LWOTC needs translation
+[HailofBullets X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Hail of Bullets requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Hail of Bullets has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+
+[ChainShot X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Chain Shot requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Chain Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Chain Shot can be devastating against non-cover enemies, or when augmented with aim bonuses.<br/>"
+
+[SaturationFire X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Saturation Fire requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Saturation Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Saturation Fire will take a standard shot at every enemy in the cone, and will damage or destroy random cover elements in the cone.<br/>"
+;End Translation
 
 ;;;;;;;;;;;;;;;;;;;;  RANGER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -473,14 +484,18 @@ LocFriendlyName="Point Blank"
 LocLongDescription="Fire your sawed-off shotgun at a nearby enemy."
 LocHelpText="Fire your sawed-off shotgun."
 LocFlyOverText="Point Blank"
-LocPromotionPopupText="<Bullet/> Rapidly loses accuracy beyond four tiles range.<br/><Bullet/> Uses one action, does not end turn.<br/><Bullet/> Shotgun has two ammo.<br/>"
+;LWOTC needs translation
+LocPromotionPopupText="<Bullet/> Rapidly loses accuracy beyond four tiles range.<br/><Bullet/> Uses one action.<br/><Bullet/> Shotgun has two ammo.<br/>"
+; End Translation
 
 [BothBarrels X2AbilityTemplate]
 LocFriendlyName="Both Barrels"
 LocLongDescription="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."
 LocHelpText="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."
 LocFlyOverText="Both Barrels"
-LocPromotionPopupText="<Bullet/> Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage.<br/><Bullet/> Uses <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action, does not end turn.<br/>"
+;LWOTC needs translation
+LocPromotionPopupText="<Bullet/> Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage.<br/><Bullet/> Uses <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action.<br/>"
+; End Translation
 
 [PumpAction X2AbilityTemplate]
 LocFriendlyName="Pump Action"
@@ -491,10 +506,10 @@ LocPromotionPopupText="<Bullet/> Gain two extra ammo in your sawed-off shotgun.<
 
 [Fortify X2AbilityTemplate]
 LocFriendlyName="Fortify"
-LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn. Does not cost an action. Has a <ABILITY:FORTIFY_COOLDOWN_LW/>-turn cooldown."
-LocHelpText="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense. Free action. <ABILITY:FORTIFY_COOLDOWN_LW/>-turn cooldown."
+LocLongDescription="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the next turn. Does not cost an action. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Activate to grant +<ABILITY:FORTIFY_DEFENSE_LW/> defense. Free action. <Ability:SelfCooldown_LW/> turn cooldown."
 LocFlyOverText="Fortified"
-LocPromotionPopUpText="<Bullet/> Activate to grant the soldier +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the soldier's next turn.<br/><Bullet/> Does not cost an action. Has a <ABILITY:FORTIFY_COOLDOWN_LW/>-turn cooldown."
+LocPromotionPopUpText="<Bullet/> Activate to grant the soldier +<ABILITY:FORTIFY_DEFENSE_LW/> defense until the beginning of the soldier's next turn.<br/><Bullet/> Does not cost an action.<br/><Bullet/> Fortify has a <Ability:SelfCooldown_LW> turn cooldown."
 
 [CombatFitness X2AbilityTemplate]
 LocFriendlyName="Combat Fitness"
@@ -521,14 +536,16 @@ LocFriendlyName="Holotarget"
 LocLongDescription="Holotarget your enemy to grant an aim bonus to all attacks on this target by you and your allies for the remainder of the turn."
 LocHelpText="Holotarget an enemy to grant a bonus to attacks against this target."
 LocFlyOverText="Holotarget"
-LocPromotionPopupText="<Bullet/> Holotargeting takes a single action and does not automatically end your turn.<br/><Bullet/> The Holotargeting effect lasts for a single turn.<br/><Bullet/> Multiple holotarget effects do not stack with each other.<br/><Bullet/> The aim bonus is +<Ability:HOLO_CV_AIM_BONUS_LW/> for the basic Holotargeter, and improves to +<Ability:HOLO_MG_AIM_BONUS_LW/> and +<Ability:HOLO_BM_AIM_BONUS_LW/> with better technology.<br/><Bullet/> Holotargeting does not break concealment for you or your squad."
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Holotargeting takes a single action.<br/><Bullet/> The Holotargeting effect lasts until the start of your next turn.<br/><Bullet/> Multiple holotarget effects do not stack with each other.<br/><Bullet/> The aim bonus is +<Ability:HOLO_CV_AIM_BONUS_LW/> for the basic Holotargeter, and improves to +<Ability:HOLO_MG_AIM_BONUS_LW/> and +<Ability:HOLO_BM_AIM_BONUS_LW/> with better technology.<br/><Bullet/> Holotargeting does not break concealment for you or your squad."
+; End Translation 
 
 [RapidTargeting X2AbilityTemplate]
 LocFriendlyName="Rapid Targeting"
-LocLongDescription="You may Holotarget an enemy as a free action with a <Ability:RAPID_TARGETING_COOLDOWN_LW/>-turn cooldown. In addition, Holotargeting no longer ends your turn."
+LocLongDescription="You may Holotarget an enemy as a free action with a <Ability:SelfCooldown_LW/> turn cooldown. In addition, Holotargeting no longer ends your turn."
 LocHelpText="Activate to Holotarget an enemy as a free action."
 LocFlyOverText="Holotarget"
-LocPromotionPopupText="<Bullet/> Using your Holotargeter no longer ends your turn.<br/><Bullet/> In addition, Rapid Targeting lets you periodically use Holotargeting against a single enemy as a free action.<br/><Bullet/> This works with HiDef Holo, Independent Tracking, and Vital Point Targeting.<br/><Bullet/> This does not stack with Multitargeting.<br/><Bullet/> This ability has a <Ability:RAPID_TARGETING_COOLDOWN_LW/> turn cooldown.<br/><Bullet/> Holotargeting does not break concealment for your squad."
+LocPromotionPopupText="<Bullet/> Using your Holotargeter no longer ends your turn.<br/><Bullet/> In addition, Rapid Targeting lets you periodically use Holotargeting against a single enemy as a free action.<br/><Bullet/> This works with HiDef Holo, Independent Tracking, and Vital Point Targeting.<br/><Bullet/> This does not stack with Multitargeting.<br/><Bullet/> Rapid Targeting has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Holotargeting does not break concealment for your squad."
 
 [RapidTargeting_Passive X2AbilityTemplate]
 LocFriendlyName="Rapid Targeting"
@@ -557,10 +574,10 @@ LocPromotionPopupText="<Bullet/> The Vital Point Targeting damage bonus is +<Abi
 
 [Multitargeting X2AbilityTemplate]
 LocFriendlyName="Multitargeting"
-LocLongDescription="You may Holotarget multiple enemies with a <Ability:MULTI_TARGETING_COOLDOWN_LW/>-turn cooldown."
+LocLongDescription="You may Holotarget multiple enemies with a <Ability:MULTI_TARGETING_COOLDOWN_LW/> turn cooldown."
 LocHelpText="Holotarget multiple enemies in an area of effect."
 LocFlyOverText="Multitargeting"
-LocPromotionPopupText="<Bullet/> HiDef Holo, Independent Tracking, and Vital Point Targeting apply to all targets.<br/><Bullet/> Area of effect radius is <Ability:MULTI_HOLO_CV_RADIUS_LW/> tiles for the basic Holotargeter and improves to <Ability:MULTI_HOLO_MG_RADIUS_LW/> and <Ability:MULTI_HOLO_BM_RADIUS_LW/> tiles with better technology.<br/><Bullet/> This ability has a <Ability:MULTI_TARGETING_COOLDOWN_LW/> turn cooldown.<br/><Bullet/> Holotargeting does not break concealment for your squad."
+LocPromotionPopupText="<Bullet/> HiDef Holo, Independent Tracking, and Vital Point Targeting apply to all targets.<br/><Bullet/> Area of effect radius is <Ability:MULTI_HOLO_CV_RADIUS_LW/> tiles for the basic Holotargeter and improves to <Ability:MULTI_HOLO_MG_RADIUS_LW/> and <Ability:MULTI_HOLO_BM_RADIUS_LW/> tiles with better technology.<br/><Bullet/> Multitargeting has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Holotargeting does not break concealment for your squad."
 
 [AlphaMikeFoxtrot X2AbilityTemplate]
 LocFriendlyName="Alpha Mike Foxtrot"
@@ -576,7 +593,9 @@ LocFriendlyName="Stun"
 LocLongDescription="Fire your Arc Thrower to incapacitate a target."
 LocHelpText="Fire your Arc Thrower."
 LocFlyOverText="Stun"
-LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range, doing no damage but stunning targets for their next turn if it hits.<br/><Bullet/> Improved versions can extend the duration of the stun effect.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can Use every other turn.<br/><Bullet/> Ineffective against mechanized units without additional soldier training."
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range, doing no damage but stunning targets for their next turn if it hits.<br/><Bullet/> Improved versions can extend the duration of the stun effect.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Ineffective against mechanized units without additional soldier training."
+; End Translation
 
 [EMPulser X2AbilityTemplate]
 LocFriendlyName="Arc Pulser"
@@ -611,14 +630,18 @@ LocFriendlyName="Street Sweeper"
 LocFlyOverText="Street Sweeper"
 LocLongDescription="Cone-based shotgun attack that does bonus damage to unarmored targets. Blocked by heavy cover."
 LocHelpText="Cone-based shotgun attack that does bonus damage to unarmored targets. Blocked by heavy cover."
-LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><Bullet/> The spread pattern is blocked by heavy cover.<br/><Bullet/> Uses one action and <Ability:SelfAmmoCost/> ammo, and has four-turn cooldown.<br/><Bullet/> Does 3 bonus damage against unarmored targets within the spread pattern.<br/><Bullet/> Cannot be used with non-shotgun weapons.<br/><Bullet/> Allies can be injured by this attack.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><Bullet/> The spread pattern is blocked by heavy cover.<br/><Bullet/> Uses one action and <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Street Sweeper has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Does 3 bonus damage against unarmored targets within the spread pattern.<br/><Bullet/> Cannot be used with non-shotgun weapons.<br/><Bullet/> Allies can be injured by this attack.<br/>"
+; End Translation
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
-LocLongDescription="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim"
-LocHelpText="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim"
+; LWOTC Needs Translation
+LocLongDescription="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim."
+LocHelpText="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim."
 LocFlyOverText="Chain Lightning"
-LocPromotionPopupText="<Bullet/> Fire your Arc Thrower at every visible enemy who is capable of being stunned with a -50 penalty to aim<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Five-turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Fire your Arc Thrower at every visible enemy who is capable of being stunned with a -50 penalty to aim.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+; End Translation
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="Leadership"
@@ -4187,7 +4210,7 @@ PreMissionText="Grants ADVENT units bonus chance to critically hit our soldiers.
 PostMissionSuccessText="Dark Event Countered: ADVENT Laser Sights"
 PostMissionFailureText="Failed to Counter Dark Event: ADVENT Laser Sights"
 
-[ADVENTLaserSight X2AbilityTemplate]
+[ADVENTLaserSights X2AbilityTemplate]
 LocFriendlyName="ADVENT Laser Sight"
 LocLongDescription="+10 Critical Chance"
 
@@ -4926,7 +4949,9 @@ DisplayName="Successful ADVENT Raids:"
 
 ; just fix typo
 [Insanity X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Insanity has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Insanity requires a contest between the Psi Operative's Psi Strength stat, and the target's will.<br/><Bullet/> Insanity can disorient, stun, or mind control the target if it succeeds.<br/><Bullet/> Mechanical enemies are completely immune to Insanity.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Insanity has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Insanity requires a contest between the Psi Operative's Psi Strength stat, and the target's will.<br/><Bullet/> Insanity can disorient, stun, or mind control the target if it succeeds.<br/><Bullet/> Mechanical enemies are completely immune to Insanity.<br/><Bullet/> Insanity requires one action and does not end your turn.<br/>"
+; End Translation
 
 [XComGame.UIEndGameStats]
 Victory=LONG WAR VICTORY
@@ -4978,27 +5003,45 @@ TimerDefendTitle="Reinforcements"
 TimerDefendSubtitle="Turns until Advent arrival"
 
 [InTheZone X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/><Bullet/> Every successful kill does result in a reduction to critical hit chance and damage, however.<br/><Bullet/> Serial has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/><Bullet/> Every successful kill does result in a reduction to critical hit chance and damage, however.<br/><Bullet/> Serial has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 ;LWOTC needs translation
 [Fuse X2AbilityTemplate]
 LocLongDescription="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative. Free action."
 LocHelpText="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative. Free action."
-LocPromotionPopupText="<Bullet/> Fuse has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Fuse has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ;End translation
 
 [BulletShred X2AbilityTemplate]
 LocLongDescription="A Rupture shot grants a large bonus to critical hit chances and ensures that the target takes an additional +<Ability:RuptureAmount/> damage from all attacks in the future."
 LocHelpText="A Rupture shot grants a large bonus to critical hit chances and ensures that the target takes increased damage from all attacks in the future."
+; LWOTC needs translation
+LocPromotionPopupText="<Bullet/> Rupture requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Rupture has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ruptured targets take <Ability:RuptureAmount/> additional damage from every attack.<br/>"
+; End translation
 
 [Faceoff X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field position, granting a high chance to hit at multiple targets.<br/><Bullet/> Faceoff has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field position, granting a high chance to hit at multiple targets.<br/><Bullet/> Faceoff has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 
-; LWOTC Needs Translation
+; LWOTC needs translation
+[FanFire X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Each shot in Fan Fire rolls a separate chance to hit.<br/><Bullet/> Fan Fire can deal a devastating amount of damage if every shot hits.<br/><Bullet/> Fan Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End translation
+
+; LWOTC Needs Translation (2)
 [SoulSteal X2AbilityTemplate]
 LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns, but increases the cooldown of soulfire by 1."
 LocHelpText="Soulfire heals a wounded operative and grants ablative HP, but increases soulfire cooldown by 1"
-LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative, or provide 3/4/6 ablative hit point for 3 turns.<br/><Bullet/> An operative may increase to no more than 12 ablative HP when using Soul Steal."
+LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative and provide 3/4/6 ablative hit point for 3 turns.<br/><Bullet/> An operative may increase to no more than 15 ablative HP when using Soul Steal."
+; End Translation (2)
+
+; LWOTC Needs Translation
+[Domination X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Domination requires a contest of the Psi Operative's Psi Strength stat versus the Will of the target.<br/><Bullet/> If an attempted Domination fails, there is a 4 turn cooldown before another Domination can be attempted.<br/><Bullet/> If the Psi Operative dies or leaves the battlefield, the Domination is broken.<br/>"
+; End Translation
+
+; LWOTC Needs Translation
+[VoidRift X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Generate an explosive field of Psionic energy that immediately damages everything within. Organic enemies have a chance to suffer Insanity.<br/><Bullet/> VoidRift ruptures targets for 1. Rupture amount increases with better Psi Amp technology. <br/><Bullet/> Void Rift has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
@@ -5027,20 +5070,26 @@ LocFriendlyName="Whirlwind"
 LocLongDescription="If you hit with a melee attack during your turn, gain a bonus move."
 LocHelpText="Gain one bonus move action after a successful melee attack."
 LocFlyOverText="Whirlwind"
-LocPromotionPopupText="<Bullet/> A soldier can only gain one move per turn with this ability.<br/><Bullet/> Cannot be employed if Reaper is active.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> A soldier can only gain one move per turn with this ability.<br/>"
+; End Translation
 
 [Solace_LW X2AbilityTemplate]
 LocFriendlyName="Solace"
 LocFlyOverText="Solace"
 LocLongDescription="The Psi Operative may immediately extinguish mental impairments for a squadmate."
 LocHelpText="The Psi Operative may immediately extinguish mental impairments for a squadmate."
-LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Solace requires one action and does not end your turn.<br/><Bullet/> Solace has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation
 
 [QuickStudy X2AbilityTemplate]
 LocFriendlyName="Quick Study"
-LocLongDescription="Learn officer and AWC bonus abilities in half the time."
-LocHelpText="Learn officer and AWC bonus abilities in half the time."
-LocPromotionPopupText="<Bullet/> Learn officer and AWC bonus abilities in half the time."
+; LWOTC Needs Translation
+LocLongDescription="Learn officer abilities in half the time."
+LocHelpText="Learn officer abilities in half the time."
+LocPromotionPopupText="<Bullet/> Learn officer abilities in half the time."
+; End Translation
 
 [DoubleTap2 X2AbilityTemplate]
 LocFriendlyName="Double Tap"
@@ -5048,21 +5097,21 @@ LocFlyOverText="Double Tap"
 LocLongDescription="Activate to fire a standard shot and gain a second action restricted to an additional shot or overwatching."
 LocHelpText="Fire a standard shot and gain a bonus shot or overwatch action."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Activate to fire a standard shot and gain a second action restricted to several different shooting abilities or overwatch.<br/><Bullet/> <Ability:SelfCooldown/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Activate to fire a standard shot and gain a second action restricted to several different shooting abilities or overwatch.<br/><Bullet/> Double Tap has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation
 
 [DoubleTap2Bonus X2AbilityTemplate]
 LocFriendlyName="Double Tap"
 LocFlyOverText="Double Tap"
 
-; LWOTC Needs Translation
+; LWOTC Needs Translation (2)
 [RescueProtocol X2AbilityTemplate]
 LocFriendlyName="Rescue Protocol"
 LocFlyoverText="Rescue Protocol"
 LocLongDescription="Use your Gremlin to grant a movement action to an ally and grant them a small boost to dodge and mobility."
 LocHelpText="Grant a movement action to an ally and grant them a small boost to dodge and mobility."
-LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/>An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
-; End Translation
+LocPromotionPopupText="<Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/> An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
+; End Translation (2)
 
 [Blademaster X2AbilityTemplate]
 LocLongDescription="All melee attacks deal +<Ability:BlademasterDmg/> extra damage and have +<Ability:BLADEMASTERAIM/> Aim."
@@ -5149,28 +5198,28 @@ LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT, granti
 LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/>"
 
 [SkirmisherGrapple X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into position without using an action.<br/><Bullet/> Grapple has a 2-turn cooldown (1 turn with Parkour)."
+LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into position without using an action.<br/><Bullet/> Grapple has a <Ability:SelfCooldown_LW/> turn cooldown."
 
 [Reckoning_LW X2AbilityTemplate]
 LocFriendlyName="Reckoning"
 LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge and Quick Slash attacks."
 LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge and Quick Slash attacks."
 LocFlyOverText="Reckoning"
-LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point, is not turn ending, and has a <Ability:RECKONING_LW_COOLDOWN/>-turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/><Bullet/> Quick Slash can only be used against adjacent targets.<br/><Bullet/> Quick Slash has a <Ability:RECKONING_LW_SLASH_COOLDOWN/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point, is not turn ending, and has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/><Bullet/> Quick Slash can only be used against adjacent targets.<br/><Bullet/> Quick Slash is a free action and has a <Ability:RECKONING_LW_SLASH_COOLDOWN/> turn cooldown.<br/>"
 
 ; LWOTC Needs Translation (2)
 [SkirmisherFleche X2AbilityTemplate]
 LocFriendlyName="Charge"
 LocLongDescription="Attack any enemy within movement range with your <Ability:SecondaryWeaponName/>."
 LocHelpText="Attack an enemy within movement range with your <Ability:SecondaryWeaponName/>."
-LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point, is not turn ending, and has a <Ability:RECKONING_LW_COOLDOWN/>-turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point and is not turn ending. <br/><Bullet/> Charge has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
 
 [SkirmisherSlash X2AbilityTemplate]
 LocFriendlyName="Quick Slash"
 LocFlyOverText="Quick Slash"
 LocLongDescription="Attack an adjacent target with your Ripjack as a free action."
 LocHelpText="Attack an adjacent target with your Ripjack as a free action."
-LocPromotionPopupText="<Bullet/> Quick Slash can only be used against adjacent targets.<br/><Bullet/> Quick Slash has a <Ability:RECKONING_LW_SLASH_COOLDOWN/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Quick Slash can only be used against adjacent targets.<br/><Bullet/> Quick Slash has a <Ability:RECKONING_LW_SLASH_COOLDOWN/> turn cooldown.<br/>"
 ; End Translation (2)
 
 [SupremeFocus X2AbilityTemplate]
@@ -5186,26 +5235,33 @@ FocusLevelDescriptions[2]="Rend Damage +<Ability:FOCUS2RENDDAMAGE/>\nMobility +<
 FocusLevelDescriptions[3]="Rend Damage +<Ability:FOCUS3RENDDAMAGE/>\nMobility +<Ability:FOCUS3MOBILITY/>\nDodge +<Ability:FOCUS3DODGE/>"
 FocusLevelDescriptions[4]="Rend Damage +<Ability:FOCUS4RENDDAMAGE/>\nMobility +<Ability:FOCUS4MOBILITY/>\nDodge +<Ability:FOCUS4DODGE/>"
 
+; LWOTC Needs Translation (2)
 [TemplarFocus X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels. Effectively managing Focus to get the most out of the stat boosts and each ability is critical to using a Templar.<br/><Bullet/> Focus is gained by killing enemies with Rend.<br/><Bullet/> Focus Level 1: Rend Damage +<Ability:FOCUS1RENDDAMAGE/>, Mobility +<Ability:FOCUS1MOBILITY/>, Dodge +<Ability:FOCUS1DODGE/><br/><Bullet/> Focus Level 2: Rend Damage +<Ability:FOCUS2RENDDAMAGE/>, Mobility +<Ability:FOCUS2MOBILITY/>, Dodge +<Ability:FOCUS2DODGE/><br/><Bullet/> Focus Level 3: Rend Damage +<Ability:FOCUS3RENDDAMAGE/>, Mobility +<Ability:FOCUS3MOBILITY/>, Dodge +<Ability:FOCUS3DODGE/><br/><Bullet/> Focus Level 4: Rend Damage +<Ability:FOCUS4RENDDAMAGE/>, Mobility +<Ability:FOCUS4MOBILITY/>, Dodge +<Ability:FOCUS4DODGE/>.<br/><Bullet/> Focus Level 5: Rend Damage +<Ability:FOCUS5RENDDAMAGE/>, Mobility +<Ability:FOCUS5MOBILITY/>, Dodge +<Ability:FOCUS5DODGE/>.<br/><Bullet/> Focus Level 6: Rend Damage +<Ability:FOCUS6RENDDAMAGE/>, Mobility +<Ability:FOCUS6MOBILITY/>, Dodge +<Ability:FOCUS6DODGE/>.<br/><Bullet/> Focus Level 7: Rend Damage +<Ability:FOCUS7RENDDAMAGE/>, Mobility +<Ability:FOCUS7MOBILITY/>, Dodge +<Ability:FOCUS7DODGE/>.<br/><Bullet/> Focus Level 8: Rend Damage +<Ability:FOCUS8RENDDAMAGE/>, Mobility +<Ability:FOCUS8MOBILITY/>, Dodge +<Ability:FOCUS8DODGE/>.<br/><Bullet/> Focus Level 9: Rend Damage +<Ability:FOCUS9RENDDAMAGE/>, Mobility +<Ability:FOCUS9MOBILITY/>, Dodge +<Ability:FOCUS9DODGE/>.<br/><Bullet/> Focus Level 10: Rend Damage +<Ability:FOCUS10RENDDAMAGE/>, Mobility +<Ability:FOCUS10MOBILITY/>, Dodge +<Ability:FOCUS10DODGE/>.<br/>"
+LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels. Effectively managing Focus to get the most out of the stat boosts and each ability is critical to using a Templar.<br/><Bullet/> Focus is gained by killing enemies with Rend.<br/><Bullet/> Focus Level 1: Rend Damage +<Ability:FOCUS1RENDDAMAGE/>, Mobility +<Ability:FOCUS1MOBILITY/>, Dodge +<Ability:FOCUS1DODGE/>.<br/><Bullet/> Focus Level 2: Rend Damage +<Ability:FOCUS2RENDDAMAGE/>, Mobility +<Ability:FOCUS2MOBILITY/>, Dodge +<Ability:FOCUS2DODGE/>.<br/><Bullet/> Focus Level 3: Rend Damage +<Ability:FOCUS3RENDDAMAGE/>, Mobility +<Ability:FOCUS3MOBILITY/>, Dodge +<Ability:FOCUS3DODGE/>.<br/><Bullet/> Focus Level 4: Rend Damage +<Ability:FOCUS4RENDDAMAGE/>, Mobility +<Ability:FOCUS4MOBILITY/>, Dodge +<Ability:FOCUS4DODGE/>."
+
+[Rend X2AbilityTemplate]
+LocLongDescription="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on kills."
 
 [Whiplash X2AbilityTemplate]
-LocLongDescription="Attack an enemy with an electrical lash. This attack has a <Ability:SelfCooldown/>-turn cooldown."
-LocHelpText="An attack with an electrical lash. Extra damage to robotic units. <Ability:SelfCooldown/>-turn cooldown."
-LocPromotionPopupText="<Bullet/> Whiplash does extra damage to robotic enemies. <Ability:SelfCooldown/>-turn cooldown."
+LocLongDescription="Attack an enemy with an electrical lash. This attack has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="An attack with an electrical lash. Extra damage to robotic units. <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> Whiplash does extra damage to robotic enemies.<br/><Bullet/> Whiplash requires one action and does not end your turn.<Bullet/><br/>Whiplash has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation (2)
 
 [SkirmisherInterrupt X2AbilityTemplate]
 LocLongDescription="A powerful form of Overwatch. Instead of firing automatically, perform any single action. Free action, ends the turn."
 LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action. Free action, ends the turn."
-LocPromotionPopupText="<Bullet/> This is a free action, but it also ends the turn.<br/><Bullet/> You can interrupt as many times as the number of actions you had when entering Interrupt Overwatch.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:SelfCooldown/> turn cooldown."
+LocPromotionPopupText="<Bullet/> This is a free action, but it also ends the turn.<br/><Bullet/> You can interrupt as many times as the number of actions you had when entering Interrupt Overwatch.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:SelfCooldown_LW/> turn cooldown."
 
 [Pillar X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equal to the Templar's Focus level when summoned.<br/><Bullet/> Pillar does not end the Templar's turn.<br/><Bullet/> Can be used after Rend.<br/><Bullet/> Pillar has <Ability:SelfCooldown/>-turn cooldown.<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equal to the Templar's Focus level when summoned.<br/><Bullet/> Pillar does not end the Templar's turn.<br/><Bullet/> Can be used after Rend.<br/><Bullet/> Pillar has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation (2)
 
 [StunStrike X2AbilityTemplate]
 LocLongDescription="Strike an enemy with Psionic force strong enough to knock them back in the direction of the attack, stunning them. Costs 1 Focus."
 LocHelpText="Knock an enemy back in the direction of the attack, stunning them. Costs 1 Focus."
-LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike does not end the Templar's turn, but has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike does not end the Templar's turn.<br/><Bullet/> Stun Strike has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [BondmateTeamwork X2AbilityTemplate]
 LocHelpText="Grant an additional movement point to a bondmate. Has a single charge shared between bondmates."
@@ -5221,7 +5277,7 @@ LocLongDescription="Grant an additional action point to a bondmate. Has one or t
 LocLongDescription="Grants the soldier Shadow, an advanced form of concealment that lasts for 1 turn."
 LocHelpText="Soldier enters Shadow, an advanced form of concealment, for 1 turn."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges by 100%, effectively rendering the unit invisible.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges by 100%, effectively rendering the unit invisible.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (2)
 
 [SilentKiller X2AbilityTemplate]
@@ -5232,7 +5288,9 @@ LocPromotionPopupText="<Bullet/> Allows a Reaper to stay safely in Shadow during
 [ShadowRising X2AbilityTemplate]
 LocLongDescription="Reduces Shadow's cooldown by 1 turn."
 LocHelpText="Reduces Shadow's cooldown by 1 turn."
-LocPromotionPopupText="<Bullet/> .<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Reduces Shadow's cooldown by 1 turn.<br/>"
+; End Translation (2)
 ; End Translation
 
 ; LWOTC Needs Translation (3)
@@ -5253,14 +5311,14 @@ LocPromotionPopupText="<Bullet/> Bonus crit chance applies to both primary and s
 LocFriendlyName="Sting"
 LocLongDescription="Fire a shot while in Shadow that holotargets for +<Ability:HOLOTARGETAIMBONUS/> Aim and ruptures for <Ability:STING_RUPTURE/>. Guaranteed to remain in Shadow."
 LocHelpText="Fire a shot while in Shadow. Guaranteed to remain in Shadow."
-LocPromotionPopupText="<Bullet/> Sting allows for the Reaper to attack in situations where they absolutely do not want to be revealed.<br/><Bullet/> Sting has <Ability:StingCharges/> charge(s) per mission, requires <Ability:SelfAmmoCost/> ammo points, and has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Sting allows for the Reaper to attack in situations where they absolutely do not want to be revealed.<br/><Bullet/> Sting has <Ability:StingCharges/> charge(s) per mission, requires <Ability:SelfAmmoCost/> ammo points, and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (3)
 
 [RemoteStart X2AbilityTemplate]
 LocFriendlyName="Remote Start"
 LocLongDescription="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the Reaper."
 LocHelpText="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the Reaper."
-LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zone!<br/><Bullet/> Remote Start requires <Ability:SelfAmmoCost/> ammo point, and has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zone!<br/><Bullet/> Remote Start requires <Ability:SelfAmmoCost/> ammo point, and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [Hero_Tracking X2AbilityTemplate]
 LocFriendlyName="Tracking"
@@ -5293,12 +5351,12 @@ LocPromotionPopupText="<Bullet/> Judgement can be triggered by melee and area of
 LocFriendlyName="Manual Override"
 LocLongDescription="Resets all ability cooldowns on ally soldiers."
 LocHelpText="Resets all ability cooldowns on ally soldiers."
-LocPromotionPopupText="<Bullet/> Use the Skirmisher's abilities early and often to take full advantage of Manual Override.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Use the allies' abilities early and often to take full advantage of Manual Override.<br/><Bullet/> Costs 1 action.<br/><Bullet/> Manual Override has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [Battlelord X2AbilityTemplate]
 LocLongDescription="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
 LocHelpText="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
-LocPromotionPopupText="<Bullet/> Battlelord can allow the Skirmisher to prevail in the most dire of circumstances.<br/><Bullet/> Battlelord has a <Ability:SelfCooldown/>-turn cooldown.<br/><Bullet/> Turns from the Lost and enemy pod reveals do not grant the immediate action.<br/><Bullet/> Abilities that refund action points, like Implacable and Hit and Run, will not work during Battlelord."
+LocPromotionPopupText="<Bullet/> Battlelord can allow the Skirmisher to prevail in the most dire of circumstances.<br/><Bullet/> Battlelord has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Turns from the Lost and enemy pod reveals do not grant the immediate action.<br/><Bullet/> Abilities that refund action points, like Implacable and Hit and Run, will not work during Battlelord."
 
 [TemplarGrazingFire X2AbilityTemplate]
 LocFriendlyName="Grazing Fire"
@@ -5312,14 +5370,16 @@ LocFriendlyName="Fleche"
 LocFlyOverText="Fleche"
 LocLongDescription="Attack any enemy within movement range with your sword. Deals +1 damage for every <Ability:REND_FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between your starting position and the target."
 LocHelpText="Attack any enemy within movement range with your sword. Deals bonus damage for attacks from a distance."
-LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/>  Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/> Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position.<br/>"
 
 [TemplarSolace X2AbilityTemplate]
 LocFriendlyName="Solace"
 LocFlyOverText="Solace"
 LocLongDescription="The Templar may immediately extinguish mental impairments for a squadmate."
 LocHelpText="The Templar may immediately extinguish mental impairments for a squadmate."
-LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Costs 1 action, <Ability:SelfCooldown/>-turn cooldown.<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Solace requires one action and does not end your turn.<br/><Bullet/> Solace has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation (2)
 
 ; LWOTC Needs Translation #2 - Shard and Caster gauntlet tactical text and the brief
 ; summaries for the caster gauntlets have been updated.
@@ -5604,19 +5664,27 @@ LocFriendlyName="Phase Walk"
 LocLongDescription="Temporarily phase out of existence to teleport to a nearby location."
 LocHelpText="Temporarily phase out of existence to teleport to a nearby location."
 LocFlyOverText="Phase Walk"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet> Temporarily phase out of existence to teleport to a nearby location.<br/><Bullet/> The targeted tile must be visible (works with squadsight).<br/><Bullet/> Phase Walk requires one action and does not end your turn.<br/><Bullet/> Phase Walk has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Phase Walk has a radius of <Ability:PHASEWALK_CAST_RANGE_TILES> tiles.<br/><Bullet/> Moving with Phase Walk can trigger certain reaction fire abilities.<br>"
+; End Translation (2)
 
 [LW_NullWard X2AbilityTemplate]
 LocFriendlyName="Null Ward"
 LocLongDescription="Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed."
 LocHelpText="Project psionic shields around nearby allies and yourself."
 LocFlyOverText="Null Ward"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet> Project psionic shields around the soldier and nearby allies. The shields will collapse if this soldier is killed.<br/><Bullet/> Null Ward grants <Ability:NULL_WARD_BASE_SHIELD> ablative hit points.<br/><Bullet/> Improved Psi Amps grant additional bonuses to ablative hit points.<br/><Bullet/> Null Ward requires one action and does not end your turn.<br/><Bullet/> Null Ward has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Null Ward has a radius of 8 tiles.<br/>"
+; End Translation (2)
 
 [LW_SoulStorm X2AbilityTemplate]
 LocFriendlyName="Soul Storm"
 LocLongDescription="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
 LocHelpText="Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover."
 LocFlyOverText="Soul Storm"
-LocPromotionPopupText="Cannot destroy floors or ceilings."
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet>Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover.<br/><Bullet> Soul Storm area of effect is centered on the user.<br/><Bullet> Cannot destroy floors or ceilings.<br/><Bullet/> Soul Storm requires one action and end your turn.<br/><Bullet/> Soul Storm has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Soul Storm has a radius of 4 tiles.<br/>"
+; End Translation (2)
 
 [TheLostGrapplerHP2_LW X2CharacterTemplate]
 strCharacterName="Lost Grappler"
@@ -5686,7 +5754,9 @@ LocFriendlyName="Grapple"
 LocLongDescription="Free melee attacks on any enemies that enter, exit or attack from melee range on enemy turns."
 LocHelpText="Free melee attacks on any enemies that enter, exit or attack from melee range on enemy turns."
 LocFlyOverText="Grapple"
-LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Grapple will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Grapple will trigger when that enemy moves into melee range.<br/>"
+; End Translation (2)
 
 [Bladestorm X2AbilityTemplate]
 LocFriendlyName="Bladestorm"
@@ -5707,65 +5777,79 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 [Concentration_LW X2AbilityTemplate]
 LocFriendlyName="Concentration"
 LocFlyOverText="Concentration"
-LocLongDescription="Your grazing shots are automatically upgraded to normal hits."
-LocHelpText="Your grazing shots are automatically upgraded to normal hits."
+; LWOTC Needs Translation (2)
+LocLongDescription="Your grazing attacks are automatically upgraded to normal hits."
+LocHelpText="Your grazing attacks are automatically upgraded to normal hits."
+; End Translation (2)
 LocPromotionPopupText="<Bullet/> Attacks that would normally graze their target are automatically upgraded to normal hits.<br/><Bullet/> Applies to primary weapons, secondary weapons, and pistols.<br/>"
 
 [LikeLightning_LW X2AbilityTemplate]
 LocFriendlyName="Like Lightning"
 LocFlyOverText="Like Lightning"
-LocLongDescription="When Run and Gun is activated, your Arc Thrower cooldown is immediately reset to 0. Passive."
-LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immediately removed. Passive."
-LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/><Bullet/> Passive.<br/>"
+; LWOTC Needs Translation (2)
+LocLongDescription="When Run and Gun is activated, your Arc Thrower cooldown is immediately reset to 0."
+LocHelpText="When Run and Gun is activated, your Arc Thrower cooldown is immediately removed."
+LocPromotionPopupText="<Bullet/> When Run and Gun is activated, your Arc Thrower cooldown is immediately removed.<br/><Bullet/> Does not apply to Chain Lightning.<br/>"
+; End Translation (2)
 
 [Maim_LW X2AbilityTemplate]
 LocFriendlyName="Maim"
 LocFlyOverText="Maim"
-LocLongDescription="Fire a shot with your primary weapon that immobilizes the target until the end of their next turn. Uses <Ability:MAIM_AMMO_COST/> ammo. <Ability:MAIM_COOLDOWN/>-turn cooldown."
-LocHelpText="Fire a shot with your primary weapon that immobilizes the target until the end of their next turn. Uses <Ability:MAIM_AMMO_COST/> ammo. <Ability:MAIM_COOLDOWN/>-turn cooldown."
-LocPromotionPopupText="<Bullet/> Fire a shot with your primary weapon that immobilizes the target until the end of their next turn.<br/><Bullet/> Useful to isolate a high-value target during an ambush.<br/><Bullet/> Uses <Ability:MAIM_AMMO_COST/> ammo.<br/><Bullet/> <Ability:MAIM_COOLDOWN/>-turn cooldown.<br/>"
+LocLongDescription="Fire a shot with your primary weapon that immobilizes the target until the end of their next turn. Uses <Ability:MAIM_AMMO_COST/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Fire a shot with your primary weapon that immobilizes the target until the end of their next turn. Uses <Ability:MAIM_AMMO_COST/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> Fire a shot with your primary weapon that immobilizes the target until the end of their next turn.<br/><Bullet/> Useful to isolate a high-value target during an ambush.<br/><Bullet/> Uses <Ability:MAIM_AMMO_COST/> ammo.<br/><Bullet/> Maim has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [Preservation_LW X2AbilityTemplate]
 LocFriendlyName="Preservation"
 LocFlyOverText="Preservation"
-LocLongDescription="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns. Passive."
-LocHelpText="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns. Passive."
-LocPromotionPopupText="<Bullet/> When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns.<br/><Bullet/> Passive.<br/>"
+; LWOTC Needs Translation (2)
+LocLongDescription="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns."
+LocHelpText="When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns."
+LocPromotionPopupText="<Bullet/> When your concealment is broken, gain +<Ability:PRESERVATION_DEFENSE_BONUS> defense for <Ability:PRESERVATION_DURATION> turns.<br/>"
+; End Translation (2)
 
 [LickYourWounds_LW X2AbilityTemplate]
 LocFriendlyName="Lick Your Wounds"
 LocFlyOverText="Lick Your Wounds"
-LocLongDescription="Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission, and removes poison, burning, and acid burning. Passive."
-LocHelpText="Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission, and removes poison, burning, and acid burning. Passive."
-LocPromotionPopupText="<Bullet/> Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission.<br/><Bullet/> Removes poison, burning, and acid burning.<br/><Bullet/> If equipped with a Ballistic Shield, then the health recovery will activate when Shield Wall is used.<br/><Bullet/> Passive.<br/>"
+; LWOTC Needs Translation (2)
+LocLongDescription="Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission, and removes poison, burning, and acid burning."
+LocHelpText="Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission, and removes poison, burning, and acid burning."
+LocPromotionPopupText="<Bullet/> Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission.<br/><Bullet/> Removes poison, burning, and acid burning.<br/><Bullet/> If equipped with a Ballistic Shield, then the health recovery will activate when Shield Wall is used.<br/>"
+; End Translation (2)
 
 [Impulse_LW X2AbilityTemplate]
 LocFriendlyName="Impulse"
 LocFlyOverText="Impulse"
+; LWOTC Needs Translation (2)
 LocLongDescription="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
 LocHelpText="Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn.<br/><Bullet/> Passive.<br/>"
+LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:IMPULSE_AIM_BONUS/> aim and <Ability:IMPULSE_CRIT_BONUS/> critical chance if you have moved this turn.<br/>"
+; End Translation (2)
 
 [LockNLoad_LW X2AbilityTemplate]
 LocFriendlyName="Lock 'N Load"
 LocFlyOverText="Lock 'N Load"
-LocLongDescription="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo. Passive."
-LocHelpText="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo. Passive."
-LocPromotionPopupText="<Bullet/> Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo. <Bullet/> Passive.<br/>"
+; LWOTC Needs Translation (2)
+LocLongDescription="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
+LocHelpText="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
+LocPromotionPopupText="<Bullet/> Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo.<br/>"
+; End Translation (2)
 
 [TrenchWarfare_LW X2AbilityTemplate]
 LocFriendlyName="Trench Warfare"
 LocFlyOverText="Trench Warfare"
+; LWOTC Needs Translation (2)
 LocLongDescription="If you get at least one kill during your turn, automatically Hunker Down at the end of it."
 LocHelpText="If you get at least one kill during your turn, automatically Hunker Down at the end of it."
-LocPromotionPopupText="<Bullet/> If you get at least one kill during your turn, automatically Hunker Down at the end of it.<br/><Bullet/> You will only Hunker Down if you would normally be able to.<br/><Bullet/> If a Ballistic Shield is equipped, then you will use Shield Wall instead.<br/><Bullet/> Passive.<br/>"
+LocPromotionPopupText="<Bullet/> If you get at least one kill during your turn, automatically Hunker Down at the end of it.<br/><Bullet/> You will only Hunker Down if you would normally be able to.<br/><Bullet/> If a Ballistic Shield is equipped, then you will use Shield Wall instead.<br/>"
+; End Translation (2)
 
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Dedication"
 LocFlyOverText="Dedication"
-LocLongDescription="Free action. Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. <Ability:DEDICATION_COOLDOWN/>-turn cooldown."
-LocHelpText="Free action. Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. <Ability:DEDICATION_COOLDOWN/>-turn cooldown."
-LocPromotionPopupText="<Bullet/> Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn.<br/><Bullet/> Free action.<br/><Bullet/> <Ability:DEDICATION_COOLDOWN/>-turn cooldown.<br/>"
+LocLongDescription="Free action. Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Free action. Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> Gain <Ability:DEDICATION_MOBILITY/> mobility and ignore reaction fire for the rest of the turn.<br/><Bullet/> Free action.<br/><Bullet/> Dedication has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [Corpsman_LW X2AbilityTemplate]
 LocFriendlyName="Corpsman"
@@ -5779,14 +5863,18 @@ LocFriendlyName="Open Fire"
 LocFlyOverText="Open Fire"
 LocLongDescription="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
 LocHelpText="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/> <Bullet/> Passive.<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/>"
+; End Translation (2)
 
 [WatchThemRun_LW X2AbilityTemplate]
 LocFriendlyName="Watch Them Run"
 LocFlyOverText="Watch Them Run"
-LocLongDescription="After throwing or launching a grenade, you will automatically enter overwatch. Passive."
-LocHelpText="After throwing or launching a grenade, you will automatically enter overwatch. Passive."
-LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will automatically enter overwatch.<br/><Bullet/> Passive.<br/>"
+; LWOTC Needs Translation (2)
+LocLongDescription="After throwing or launching a grenade, you will automatically enter overwatch."
+LocHelpText="After throwing or launching a grenade, you will automatically enter overwatch."
+LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will automatically enter overwatch.<br/>"
+; End Translation (2)
 
 ; LWOTC Needs Translation (2)
 [Avenger_LW X2AbilityTemplate]
@@ -5800,16 +5888,20 @@ LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot 
 [Predator_LW X2AbilityTemplate]
 LocFriendlyName="Predator"
 LocFlyOverText="Predator"
-LocLongDescription="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover. Passive."
-LocHelpText="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover. Passive."
-LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover.<br/><Bullet/> Passive.<br/>"
+; LWOTC Needs Translation (2)
+LocLongDescription="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover."
+LocHelpText="Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover."
+LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:PREDATOR_AIM_BONUS/> bonus aim and <Ability:PREDATOR_CRIT_BONUS/> bonus critical chance against enemies that are flanked or out of cover.<br/>"
+; End Translation (2)
 
 [Stiletto_LW X2AbilityTemplate]
 LocFriendlyName="Stiletto"
 LocFlyOverText="Stiletto"
+; LWOTC Needs Translation (2)
 LocLongDescription= "Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor."
 LocHelpText="Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor."
-LocPromotionPopupText="<Bullet/> Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor.<br/><Bullet/> Passive.<br/>"
+LocPromotionPopupText="<Bullet/> Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor.<br/>"
+; End Translation (2)
 
 [Reposition_LW X2AbilityTemplate]
 LocFriendlyName="Reposition"
@@ -5837,7 +5929,9 @@ LocFriendlyName="Weapon Handling"
 LocLongDescription="Reduces the Aim penalty for short-range <Ability:WeaponName/> shots by <Ability:WPN_HANDLING_MODIFIER/>%."
 LocHelpText="Reduces the Aim penalty for short-range <Ability:WeaponName/> shots by <Ability:WPN_HANDLING_MODIFIER/>%."
 LocFlyOverText="Weapon Handling"
-LocPromotionPopupText="<Bullet/> Point Blank does not affect the aim penalty from Snap Shot.<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Weapon Handling does not affect the aim penalty from Snap Shot.<br/>"
+; End Translation (2)
 
 [ThatsCloseEnough_LW X2AbilityTemplate]
 LocFriendlyName="That's Close Enough"
@@ -5851,9 +5945,11 @@ LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><
 [QuickZap_LW X2AbilityTemplate]
 LocFriendlyName="Quick Zap"
 LocFlyOverText="Quick Zap"
-LocLongDescription="Activate this ability to make your next arc thrower shot a free action. <Ability:RAPID_STUN_COOLDOWN/>-turn cooldown."
-LocHelpText="Activate this ability to make your next arc thrower shot a free action. <Ability:RAPID_STUN_COOLDOWN/>-turn cooldown."
-LocPromotionPopupText="<Bullet/> Activate this ability to make your next arc thrower shot a free action.<Bullet/> Has a <Ability:RAPID_STUN_COOLDOWN/>-turn cooldown.<br/><Bullet/> Applies to the abilities Stun, Arc Pulser and Chain Lightning.<br/>"
+; LWOTC Needs Translation (2)
+LocLongDescription="Activate this ability to make your next arc thrower shot a free action. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Activate this ability to make your next arc thrower shot a free action. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> Activate this ability to make your next arc thrower shot a free action.<br/><Bullet/> Quick Zap has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Applies to the abilities Stun, Arc Pulser and Chain Lightning.<br/>"
+; End Translation (2)
 
 [Hipfire_LW X2AbilityTemplate]
 LocFriendlyName="Hipfire"
@@ -5897,7 +5993,9 @@ LocPromotionPopupText="<Bullet/> By cleverly combining the effects of Brutality 
 LocFriendlyName = "Zone of Control"
 LocHelpText = "All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties of <Ability:ZONE_CONTROL_AIM_PENALTY/> Aim and <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobility."
 LocLongDescription = "All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties to Aim and Mobility."
-LocPromotionPopupText = "<Bullet/> All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties of <Ability:ZONE_CONTROL_AIM_PENALTY/> Aim and <Ability:ZONE_CONTROL_MOBILITY_PENALTY/ Mobility.<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText = "<Bullet/> All enemies within the <Ability:ClassName/>'s <Ability:ZONE_CONTROL_RADIUS/> tile radius suffer penalties of <Ability:ZONE_CONTROL_AIM_PENALTY/> Aim and <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> Mobility.<br/>"
+; End Translation (2)
 
 [ApexPredator_LW X2AbilityTemplate]
 LocFriendlyName = "Apex Predator"
@@ -5911,18 +6009,20 @@ LocPromotionPopupText = "<Bullet/> Critical hits with your primary weapon have a
 [BlindingProtocol_LW X2AbilityTemplate]
 LocFriendlyName = "Blinding Protocol"
 LocFlyOverText = "Blinding Protocol"
-LocHelpText = "Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/>and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>"
-LocLongDescription = Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/> and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Has a <Ability:SelfCooldown/>-turn cooldown and ends the turn.<br/>"
+LocHelpText = "Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/>and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>)."
+LocLongDescription = Send the Gremlin to deploy a small flashbang on an enemy target, disorienting all enemy units within a small radius (reducing their Aim by <Ability:DISORIENTED_AIM_ADJUST/> and Mobility by <Ability:DISORIENTED_MOBILITY_ADJUST/>).
+; End translation (2)
+; LWOTC Needs Translation (2)
+LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Blinding Protocol has a <Ability:SelfCooldown_LW/> turn cooldown and ends the turn.<br/>"
 ; End translation (2)
 
 [LeadTheTarget_LW X2AbilityTemplate]
 LocFriendlyName = "Lead The Target"
 LocFlyOverText = "Lead The Target"
-LocHelpText = "Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions. <Ability:LEAD_TARGET_COOLDOWN/> turn cooldown."
-LocLongDescription = "Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions. <Ability:LEAD_TARGET_COOLDOWN/> turn cooldown."
-LocPromotionPopupText = "<Bullet/> Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions. <Ability:LEAD_TARGET_COOLDOWN/> turn cooldown <br/>"
+LocHelpText = "Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription = "Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText = "<Bullet/> Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions.<br/><Bullet/>Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [LeadTheTargetShot_LW X2AbilityTemplate]
 LocFriendlyName = "Lead The Target"
@@ -5932,7 +6032,9 @@ LocFlyOverText = "Lead The Target"
 LocFriendlyName = "Target Focus"
 LocHelpText = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies."
 LocLongDescription = "Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies."
-LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies. <br/><Bullet/> Unflankable enemies are ones that can't take cover, such as Drones, MECs and Beserkers.<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText = "<Bullet/> Your ranged attacks gain +<Ability:TARGET_FOCUS_AIM_BONUS/> aim and pierce <Ability:TARGET_FOCUS_PEN_BONUS/> armor against unflankable enemies. <br/><Bullet/> Unflankable enemies are ones that can't take cover, such as Drones, MECs and Berserkers.<br/>"
+; End Translation (2)
 
 [AimAssist_LW X2AbilityTemplate]
 LocFriendlyName = "Aim Assist"
@@ -5960,9 +6062,11 @@ LocPromotionPopupText = "<Bullet/> Works for all arc thrower abilities, includin
 
 [Overkill_LW X2AbilityTemplate]
 LocFriendlyName = "Overkill"
-LocHelpText = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP"
-LocLongDescription = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP"
-LocPromotionPopupText = "<Bullet/> Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units below 50% HP <br/>"
+; LWOTC Needs Translation (2)
+LocHelpText = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units at 50% HP or less."
+LocLongDescription = "Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units at 50% HP or less."
+LocPromotionPopupText = "<Bullet/> Your ranged attacks deal +<Ability:OVERKILL_DAMAGE/> more damage to units at 50% HP or less.<br/>"
+; End Translation (2)
 
 [Disassembly_LW X2AbilityTemplate]
 LocFriendlyName= "Disassembly"
@@ -5974,14 +6078,18 @@ LocPromotionPopupText = "<Bullet/> Killing an enemy grants a stackable +<Ability
 LocFriendlyName="Lightning Slash"
 LocLongDescription="Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>. This attack does not end the turn."
 LocHelpText="Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>. This attack does not end the turn."
-LocPromotionPopupText="<Bullet/>Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>.<br/> This attack does not end the turn.<br/> <Bullet/> Has a <Ability:LIGHTNINGSLASH_COOLDOWN/>-turn cooldown.<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>.<br/><Bullet/> This attack does not end the turn.<br/><Bullet/> Lightning Slash has a <Ability:LIGHTNINGSLASH_COOLDOWN/> turn cooldown.<br/>"
+; End Translation (2)
 
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Inspire Agility"
 LocFlyOverText="Inspire Agility"
-LocLongDescription="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. Starts with one charge, and is a free action"
+; LWOTC Needs Translation (2)
+LocLongDescription="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn. Starts with one charge, and is a free action."
 LocHelpText="Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn. Whenever you kill an enemy, you gain an extra charge. Usable once per turn."
-LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn.<br/><Bullet/> Killing an enemy unit grants an extra charge if this unit has no charges.<br/><Bullet/> Usable once per turn. <br/> <Bullet/> Starts with one charge and is a free action.<br/>"
+LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> Dodge until the start of your next turn.<br/><Bullet/> Killing an enemy unit grants an extra charge.<br/><Bullet/> Usable once per turn. <br/><Bullet/> Starts with one charge and is a free action.<br/>"
+; End Translation (2)
 
 [PrimaryReturnFire X2AbilityTemplate]
 LocFriendlyName="Return Fire"
@@ -5999,16 +6107,16 @@ LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br
 LocFriendlyName="Deadeye (Snap Shot)"
 LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
 LocHelpText="Take a shot with a small aim penalty for a significant damage boost."
-LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [DeadeyeDamage_SnapShot X2AbilityTemplate]
 LocFriendlyName="Deadeye (SnapShot)"
 LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
 LocHelpText="Take a shot with a small aim penalty for a significant damage boost."
-LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [Deadeye X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown/>-turn cooldown.<br/><Bullet/> Works with Snap Shot.<br/>"
+LocPromotionPopupText="<Bullet/> Deadeye reduces the overall hit chance of a shot by <Ability:DeadEyeAim/>%, but increases the base damage of the shot by <Ability:DeadEyeDmg/>%.<br/><Bullet/> Deadeye has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Works with Snap Shot.<br/>"
 
 ; AdvPriest Abilities
 [HolyWarriorM1 X2AbilityTemplate]
@@ -6226,7 +6334,9 @@ AbilityDescName="sword"
 FriendlyName="Darklance"
 FriendlyNamePlural="Darklances"
 BriefSummary="This rifle belonging to the Chosen Hunter has probably seen more death than we can possibly imagine."
-TacticalText="<Bullet/>This rifle is capable of insane burst damage against units that have been marked for death.<br/> <Bullet/>However because of its size it has proven to be difficult to reload for our operatives.<br/>"
+; LWOTC Needs Translation (2)
+TacticalText="<Bullet/> This rifle is capable of insane burst damage against units that have been marked for death.<br/><Bullet/> However because of its size it has proven to be difficult to reload for our operatives.<br/>"
+; End Translation (2)
 AbilityDescName="sniper rifle"
 
 [ChosenSniperPistol_XCOM X2WeaponTemplate]
