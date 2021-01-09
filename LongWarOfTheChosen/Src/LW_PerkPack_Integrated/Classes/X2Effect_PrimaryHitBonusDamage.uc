@@ -30,11 +30,11 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 			return 0;
 		}
 		StandardHit = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
-		if(StandardHit != none && StandardHit.bIndirectFire) 
+		if (StandardHit != none && StandardHit.bIndirectFire)
 		{
 			return 0;
 		}		
-		if(AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
+		if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
 		{
 			if (AppliedData.AbilityResultContext.HitResult == eHit_Crit && BonusDmg > 1)
 			{
@@ -48,11 +48,11 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		WeaponTemplate = X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate());
 		if (WeaponTemplate != none)
 		{
-			if(WeaponTemplate.weaponcat == 'pistol' && includepistols)
+			if ((WeaponTemplate.weaponcat == 'pistol' || WeaponTemplate.weaponcat == 'sidearm') && includepistols)
 			{
 				return BonusDmg;
 			}
-			if(WeaponTemplate.weaponcat == 'sawedoffshotgun' && includesos)
+			if (WeaponTemplate.weaponcat == 'sawedoffshotgun' && includesos)
 			{
 				return BonusDmg;
 			}
