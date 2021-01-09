@@ -8,6 +8,7 @@ class X2StrategyElement_LW_OTS_OfficerStaffSlot extends X2StrategyElement_Defaul
 
 var config int OTS_OFFICERTRAININGUPGRADE_UNLOCKRANK;
 var config int OTS_OFFICERTRAININGUPGRADESECONDSLOT_UNLOCKRANK;
+var config array<name> CLASSES_INELIGIBLE_FOR_OFFICER_TRAINING;
 
 //var localized string strOTSLocationDisplayString;
 
@@ -252,7 +253,7 @@ static function bool IsUnitValidForOTSOfficerSlot(XComGameState_StaffSlot SlotSt
 	
 	`log("LW Officer Pack, SlotTesting: IsPsiTraining=" $ string(Unit.IsPsiTraining()));
 
-	if (Unit.IsSoldier()
+	if (Unit.IsSoldier() && default.CLASSES_INELIGIBLE_FOR_OFFICER_TRAINING.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE)
 		&& !Unit.IsInjured()
 		&& !Unit.IsTraining()
 		&& !Unit.IsPsiTraining()
@@ -262,7 +263,6 @@ static function bool IsUnitValidForOTSOfficerSlot(XComGameState_StaffSlot SlotSt
 		&& !AtMaxOfficerRank
 		&& HasEligibleRegularRank
 		&& Unit.GetStatus() != eStatus_CovertAction // don't use DLC helpers here since sparks can't train as officers
-		&& Unit.GetSoldierClassTemplate() != none && Unit.GetSoldierClassTemplate().DataName != 'Spark')
 	{
 		return true;
 	}
