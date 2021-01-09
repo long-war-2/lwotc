@@ -12,6 +12,7 @@ var config array<int> RED_ALERT_DETECTION_DIFFICULTY_MODIFIER;
 var config array<int> YELLOW_ALERT_DETECTION_DIFFICULTY_MODIFIER;
 
 var config int NUM_TURNS_FOR_WILL_LOSS;
+var config int NUM_TURNS_FOR_TIRED_WILL_LOSS;
 
 // Camel case for consistency with base game's will roll data config vars
 var const config WillEventRollData PerTurnWillRollData;
@@ -982,13 +983,23 @@ static protected function EventListenerReturn RollForPerTurnWillLoss(
 	PlayerState = XComGameState_Player(EventData);
 
 	// We only want to lose Will every n turns, so skip other turns
-	if (PlayerState.GetTeam() != eTeam_XCom || PlayerState.PlayerTurnCount % default.NUM_TURNS_FOR_WILL_LOSS != 0)
+	if (PlayerState.GetTeam() != eTeam_XCom)
 		return ELR_NoInterrupt;
 
 	// Remove Will from all squad members
 	foreach XComHQ.Squad(SquadRef)
 	{
 		SquadUnit = XComGameState_Unit(History.GetGameStateForObjectID(SquadRef.ObjectID));
+
+		// Check whether this unit should lose Will this turn (depends on whether
+		// they are Tired or not)
+		if ((SquadUnit.GetMentalState() != eMentalState_Tired && PlayerState.PlayerTurnCount % default.NUM_TURNS_FOR_WILL_LOSS != 0) ||
+			(SquadUnit.GetMentalState() == eMentalState_Tired && PlayerState.PlayerTurnCount % default.NUM_TURNS_FOR_TIRED_WILL_LOSS != 0))
+		{
+			continue;
+		}
+
+		// Unit should lose Will this turn, so do it
 		if (class'XComGameStateContext_WillRoll'.static.ShouldPerformWillRoll(default.PerTurnWillRollData, SquadUnit))
 		{
 			`LWTrace("Performing Will roll at end of turn");
