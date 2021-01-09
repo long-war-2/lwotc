@@ -253,7 +253,8 @@ static function bool IsUnitValidForOTSOfficerSlot(XComGameState_StaffSlot SlotSt
 	
 	`log("LW Officer Pack, SlotTesting: IsPsiTraining=" $ string(Unit.IsPsiTraining()));
 
-	if (Unit.IsSoldier() && default.CLASSES_INELIGIBLE_FOR_OFFICER_TRAINING.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE)
+	if (Unit.IsSoldier()
+		&& default.CLASSES_INELIGIBLE_FOR_OFFICER_TRAINING.Find(Unit.GetSoldierClassTemplateName()) == INDEX_NONE
 		&& !Unit.IsInjured()
 		&& !Unit.IsTraining()
 		&& !Unit.IsPsiTraining()
@@ -262,7 +263,7 @@ static function bool IsUnitValidForOTSOfficerSlot(XComGameState_StaffSlot SlotSt
 		&& !Unit.CanRankUpSoldier()
 		&& !AtMaxOfficerRank
 		&& HasEligibleRegularRank
-		&& Unit.GetStatus() != eStatus_CovertAction // don't use DLC helpers here since sparks can't train as officers
+		&& Unit.GetStatus() != eStatus_CovertAction) // don't use DLC helpers here since sparks can't train as officers
 	{
 		return true;
 	}
