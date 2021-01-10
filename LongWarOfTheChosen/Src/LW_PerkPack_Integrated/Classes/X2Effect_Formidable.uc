@@ -14,32 +14,29 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local X2WeaponTemplate WeaponTemplate;
 
 	DamageMod = 0;
-	if (EffectState.ApplyEffectParameters.EffectRef.SourceTemplateName == 'Formidable')
+	SourceWeapon = AbilityState.GetSourceWeapon();
+	if (SourceWeapon != none)
+		WeaponTemplate = X2WeaponTemplate(SourceWeapon.GetMyTemplate());
+
+	Explosives = false;
+	if (WeaponDamageEffect.bExplosiveDamage)
+		Explosives = true;
+	if (WeaponDamageEffect.EffectDamageValue.DamageType == 'Explosion')
+		Explosives = true;
+	if (WeaponDamageEffect.DamageTypes.Find('Explosion') != -1)
+		Explosives = true;
+	if (WeaponDamageEffect.EffectDamageValue.DamageType == 'BlazingPinions')
+		Explosives = true;
+	if (WeaponDamageEffect.DamageTypes.Find('BlazingPinions') != -1)
+		Explosives = true;
+	if (WeaponTemplate != none && WeaponTemplate.DamageTypeTemplateName == 'Explosion')
+		Explosives = true;
+	if (WeaponTemplate != none && WeaponTemplate.DamageTypeTemplateName == 'BlazingPinions')
+		Explosives = true;
+
+	if(Explosives)
 	{
-		SourceWeapon = AbilityState.GetSourceWeapon();
-		if (SourceWeapon != none)
-			WeaponTemplate = X2WeaponTemplate(SourceWeapon.GetMyTemplate());
-
-		Explosives = false;
-		if (WeaponDamageEffect.bExplosiveDamage)
-			Explosives = true;
-		if (WeaponDamageEffect.EffectDamageValue.DamageType == 'Explosion')
-			Explosives = true;
-		if (WeaponDamageEffect.DamageTypes.Find('Explosion') != -1)
-			Explosives = true;
-		if (WeaponDamageEffect.EffectDamageValue.DamageType == 'BlazingPinions')
-			Explosives = true;
-		if (WeaponDamageEffect.DamageTypes.Find('BlazingPinions') != -1)
-			Explosives = true;
-		if (WeaponTemplate != none && WeaponTemplate.DamageTypeTemplateName == 'Explosion')
-			Explosives = true;
-		if (WeaponTemplate != none && WeaponTemplate.DamageTypeTemplateName == 'BlazingPinions')
-			Explosives = true;
-
-		if(Explosives)
-		{
-			DamageMod = -int(float(CurrentDamage) * ExplosiveDamageReduction);
-		}
+		DamageMod = -int(float(CurrentDamage) * ExplosiveDamageReduction);
 	}
 
 	return DamageMod;
