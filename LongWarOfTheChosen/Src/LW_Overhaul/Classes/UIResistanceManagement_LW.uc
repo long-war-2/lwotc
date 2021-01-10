@@ -435,13 +435,13 @@ simulated function RefreshNavHelp()
 	// KDM : Controller specific navigation help
 	if (`ISCONTROLLERACTIVE)
 	{
-		// KDM : A button opens the Haven screen
-		NavHelp.AddLeftHelp(ViewHavenStr, class'UIUtilities_Input'.static.GetAdvanceButtonIcon());
+		// KDM : X button opens the Haven screen
+		NavHelp.AddLeftHelp(ViewHavenStr, class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_X_SQUARE);
 
-		// KDM : Right stick click sends the Avenger to the selected haven, if on the strategy map.
+		// KDM : A button sends the Avenger to the selected haven, if on the strategy map.
 		if (class'Utilities_LW'.static.IsOnStrategyMap())
 		{
-			NavHelp.AddLeftHelp(FlyToHavenStr, class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_RSCLICK_R3);
+			NavHelp.AddLeftHelp(FlyToHavenStr, class'UIUtilities_Input'.static.GetAdvanceButtonIcon());
 		}
 	}
 	else
@@ -539,14 +539,14 @@ simulated function bool OnUnrealCommand(int cmd, int arg)
 
 	switch (cmd)
 	{
-		case class'UIUtilities_Input'.const.FXS_BUTTON_B:
+		case class'UIUtilities_Input'.static.GetBackButtonInputCode():
 		case class'UIUtilities_Input'.const.FXS_KEY_ESCAPE:
 		case class'UIUtilities_Input'.const.FXS_R_MOUSE_DOWN:
 			OnCancel();
 			break;
 
-		// KDM : Right stick click sends the Avenger to the selected haven, if on the strategy map.
-		case class'UIUtilities_Input'.const.FXS_BUTTON_R3:
+		// KDM : A button sends the Avenger to the selected haven, if on the strategy map.
+		case class'UIUtilities_Input'.static.GetAdvanceButtonInputCode():
 			if (class'Utilities_LW'.static.IsOnStrategyMap())
 			{
 				FlyToSelectedHaven();
@@ -554,7 +554,7 @@ simulated function bool OnUnrealCommand(int cmd, int arg)
 			break;
 
 		default:
-			// KDM : Formerly, the A button, Enter key, and Spacebar called OnAccept() which did nothing; they will now
+			// KDM : Formerly, the Enter key and Spacebar called OnAccept() which did nothing; they will now
 			// trickle down to the selected list item's OnUnrealCommand() and simulate a click.
 			bHandled = super.OnUnrealCommand(cmd, arg);
 			if (!bHandled)
