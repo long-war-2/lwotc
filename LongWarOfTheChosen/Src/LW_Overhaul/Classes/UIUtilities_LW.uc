@@ -479,7 +479,8 @@ static function GetMissionInfoPanelText(StateObjectReference MissionRef, bool Is
 	MissionInfo2 $= (SweepInfo != "") ? SweepInfo @ default.m_strBullet $ " " : "";
 	MissionInfo2 $= (FullSalvageInfo != "") ? FullSalvageInfo @ default.m_strBullet $ " " : "";
 	MissionInfo2 $= (RendezvousInfo != "") ? RendezvousInfo @ default.m_strBullet $ " " : "";
-	MissionInfo2 $= ConcealmentInfo;
+	MissionInfo2 $= ConcealmentInfo @ default.m_strBullet $ " ";
+	MissionInfo2 $= class'UIUtilities_LW'.static.GetPlotTypeFriendlyName(MissionState.GeneratedMission.Plot.strType);
 
 	TitleString = Header;
 	InfiltrationString = InfiltrationInfo;
