@@ -2598,7 +2598,7 @@ static function X2AbilityTemplate AreaSuppressionShot_LW()
 	local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2Condition_Visibility            TargetVisibilityCondition;
-	local X2AbilityTrigger_Event	        Trigger;
+	local X2AbilityTrigger_EventListener    Trigger;
 	local X2Condition_UnitEffectsWithAbilitySource TargetEffectCondition;
 	local X2Effect_RemoveAreaSuppressionEffect	RemoveAreaSuppression;
 	local X2Effect                          ShotEffect;
@@ -2646,11 +2646,13 @@ static function X2AbilityTemplate AreaSuppressionShot_LW()
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 
 	//Trigger on movement - interrupt the move
-	Trigger = new class'X2AbilityTrigger_Event';
-	Trigger.EventObserverClass = class'X2TacticalGameRuleset_MovementObserver';
-	Trigger.MethodName = 'InterruptGameState';
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.EventID = 'ObjectMoved';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.Filter = eFilter_None;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
 	Template.AbilityTriggers.AddItem(Trigger);
-	
+
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_supression";
@@ -2715,6 +2717,7 @@ static function X2AbilityTemplate LockdownBonuses()
 	//  Effect code checks whether unit has Lockdown before providing aim and damage bonuses
 	DamageEffect = new class'X2Effect_LockdownDamage';
 	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
+	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
 	Template.AddTargetEffect(DamageEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
@@ -2736,6 +2739,7 @@ static function X2AbilityTemplate MayhemBonuses()
 	//  Effect code checks whether unit has Mayhem before providing aim and damage bonuses
 	DamageEffect = new class'X2Effect_Mayhem';
 	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
+	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
 	Template.AddTargetEffect(DamageEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;

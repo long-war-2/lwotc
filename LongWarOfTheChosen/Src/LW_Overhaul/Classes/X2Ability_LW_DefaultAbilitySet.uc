@@ -211,6 +211,7 @@ static function X2AbilityTemplate CreateReactionFireAgainstCoverBonus()
 
 	AntiCoverEffect = new class'X2Effect_ReactionFireAntiCover';
 	AntiCoverEffect.BuildPersistentEffect(1, true);
+	AntiCoverEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
 	AntiCoverEffect.AimBonus = default.REACTION_FIRE_ANTI_COVER_BONUS;
 	Template.AddTargetEffect(AntiCoverEffect);
 

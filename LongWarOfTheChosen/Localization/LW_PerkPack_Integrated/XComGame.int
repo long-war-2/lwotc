@@ -1092,6 +1092,18 @@ LocHelpText="Fire twice in a row at an enemy. Each shot suffers an Aim penalty o
 LocFlyOverText="Rapid Fire"
 LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
+; LWOTC Needs Translation
+; The following two shouldn't be visible to end users, but they are useful
+; for debugging
+[LockdownBonuses X2AbilityTemplate]
+LocFriendlyName="Lockdown"
+LocHelpText="Grants bonus Aim on suppression reaction fire shots"
+
+[MayhemBonuses X2AbilityTemplate]
+LocFriendlyName="Mayhem"
+LocHelpText="Grants bonus damage on suppression reaction fire shots"
+; End Translation
+
 ; New Class loc
 
 [PsiOperative X2SoldierClassTemplate]

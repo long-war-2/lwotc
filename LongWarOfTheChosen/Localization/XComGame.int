@@ -6479,6 +6479,12 @@ LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/>
 ; End Translation
 
 ; LWOTC Needs Translation
+[ReactionFireAgainstCoverBonus X2AbilityTemplate]
+LocFriendlyName="Reaction Fire Anti Cover"
+LocHelpText="Reduces the Defense bonus provided by cover on overwatch shots"
+; End Translation
+
+; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
 KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="Chosen can hinder rebel activities!"

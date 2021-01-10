@@ -2319,8 +2319,10 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	// LWOTC Grant reaction fire a bonus against units in cover (the
 	// effect applies to the *target* of such shots) unless Revert
 	// Overwatch Rules mod is being used.
-	if (class'X2DownloadableContentInfo_WOTCRevertOverwatchRules' == none && Template.bCanTakeCover)
+	if (!class'Helpers_LW'.static.IsModInstalled("WOTCRevertOverwatchRules") && Template.bCanTakeCover)
+	{
 		Template.Abilities.AddItem('ReactionFireAgainstCoverBonus');
+	}
 }
 
 static function X2LWTemplateModTemplate CreateReconfigGearTemplate()
