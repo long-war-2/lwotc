@@ -44,6 +44,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'PaleHorse':
 		UpdateEffectForPaleHorse(Template);
 		break;
+	case 'Executioner':
+		ReplaceDeathDealerEffect(Template);
+		break;
 	}
 
 	if (!default.DISABLE_SHADOW_CHANGES)
@@ -365,6 +368,23 @@ static function UpdateEffectForPaleHorse(X2AbilityTemplate Template)
 	NewPaleHorseEffect.CritBoostPerKill = default.PALE_HORSE_PER_KILL_CRIT;
 	NewPaleHorseEffect.MaxCritBoost = default.PALE_HORSE_MAX_CRIT;
 	Template.AddTargetEffect(NewPaleHorseEffect);
+}
+
+static function ReplaceDeathDealerEffect(X2AbilityTemplate Template)
+{
+	local X2Effect_Executioner ExecutionerEffect;
+	local int i;
+
+	// Remove the previous Pale Horse effect
+	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0 ; i--)
+	{
+		ExecutionerEffect = X2Effect_Executioner(Template.AbilityTargetEffects[i]);
+		if (ExecutionerEffect != none)
+		{
+			Template.AbilityTargetEffects[i] = new class'X2Effect_DeathDealer_LW'(ExecutionerEffect);
+			break;
+		}
+	}
 }
 
 defaultproperties

@@ -1259,6 +1259,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ChargeBattery.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ClaymoreDistraction.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_CritRemoval.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DeathDealer_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DeflectNew.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DisablingShotStunned.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ManualOverride_LW.uc" />
