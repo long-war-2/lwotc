@@ -323,9 +323,8 @@ static function UpdateSilentKillerForNewShadow(X2AbilityTemplate Template)
 	local X2Effect_SilentKiller SilentKillerEffect;
 	local int i;
 
-	// Silent Killer won't reduce Shadow's cooldown for now. May revisit this
-	// at a later date.
-	// Template.AdditionalAbilities.AddItem('SilentKillerCooldownReduction');
+	// Silent Killer has a chance to increase the duration of Shadow by one turn
+	Template.AdditionalAbilities.AddItem('SilentKillerDurationExtension');
 
 	// Disable the EffectRemoved function that resets Shadow's cooldown when
 	// concealment is lost.

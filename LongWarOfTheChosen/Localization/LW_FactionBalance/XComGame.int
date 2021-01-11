@@ -101,6 +101,12 @@ LocPromotionPopupText="<Bullet/> Allows the player to extend Shadow by 1 turn.<b
 ; End Translation
 
 ; LWOTC Needs Translation
+[SilentKillerDurationExtension X2AbilityTemplate]
+LocFriendlyName="Silent Killer Refresh Shadow"
+LocFlyoverText="Shadow: +1 Turn"
+; End Translation
+
+; LWOTC Needs Translation
 [Parkour_LW X2AbilityTemplate]
 LocFriendlyName="Parkour"
 LocHelpText="The cooldown for the Skrimisher's Grapple is reduced by one turn."
