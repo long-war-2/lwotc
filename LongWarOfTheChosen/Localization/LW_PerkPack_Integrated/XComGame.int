@@ -438,7 +438,7 @@ LocPromotionPopupText="<Bullet/> Gain 25% bonus damage against enemies who attem
 [MayhemBonuses X2AbilityTemplate]
 LocFriendlyName="Mayhem"
 LocFlyOverText="Mayhem"
-LocLongDescription="Gain 20% bonus damage against enemies who attempt to move when suppressed."
+LocLongDescription="Gain 25% bonus damage against enemies who attempt to move when suppressed."
 LocHelpText="Bonus damage to enemies who attempt to move when suppressed."
 LocPromotionPopupText="<Bullet/> Gain 20% bonus damage against enemies who attempt to move when suppressed.<br/>"
 
@@ -1098,10 +1098,6 @@ LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> tur
 [LockdownBonuses X2AbilityTemplate]
 LocFriendlyName="Lockdown"
 LocHelpText="Grants bonus Aim on suppression reaction fire shots"
-
-[MayhemBonuses X2AbilityTemplate]
-LocFriendlyName="Mayhem"
-LocHelpText="Grants bonus damage on suppression reaction fire shots"
 ; End Translation
 
 ; New Class loc
