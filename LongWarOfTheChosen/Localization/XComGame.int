@@ -6020,9 +6020,11 @@ LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Blinding
 [LeadTheTarget_LW X2AbilityTemplate]
 LocFriendlyName = "Lead The Target"
 LocFlyOverText = "Lead The Target"
-LocHelpText = "Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocLongDescription = "Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+; LWOTC Needs Translation (2)
+LocHelpText = "Grants a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delays the shot until the target takes an action on their turn. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription = "Grants a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delays the shot until the target takes an action on their turn. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocPromotionPopupText = "<Bullet/> Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions.<br/><Bullet/>Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation (2)
 
 [LeadTheTargetShot_LW X2AbilityTemplate]
 LocFriendlyName = "Lead The Target"
