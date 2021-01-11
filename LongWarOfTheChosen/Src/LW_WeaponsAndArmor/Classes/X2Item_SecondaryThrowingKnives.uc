@@ -20,6 +20,18 @@ var config WeaponDamageValue THROWING_KNIFE_CV_BASEDAMAGE;
 var config WeaponDamageValue THROWING_KNIFE_MG_BASEDAMAGE;
 var config WeaponDamageValue THROWING_KNIFE_BM_BASEDAMAGE;
 
+var config int THROWING_KNIFE_CV_BLEED_CHANCE;
+var config int THROWING_KNIFE_CV_BLEED_DURATION;
+var config int THROWING_KNIFE_CV_BLEED_DAMAGE;
+
+var config int THROWING_KNIFE_MG_BLEED_CHANCE;
+var config int THROWING_KNIFE_MG_BLEED_DURATION;
+var config int THROWING_KNIFE_MG_BLEED_DAMAGE;
+
+var config int THROWING_KNIFE_BM_BLEED_CHANCE;
+var config int THROWING_KNIFE_BM_BLEED_DURATION;
+var config int THROWING_KNIFE_BM_BLEED_DAMAGE;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> ModWeapons;
@@ -32,6 +44,7 @@ static function array<X2DataTemplate> CreateTemplates()
 static function X2DataTemplate CreateTemplate_ThrowingKnife_CV_Secondary()
 {
 	local X2WeaponTemplate Template;
+	local X2Effect_Persistent BleedingEffect;
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'ThrowingKnife_CV_Secondary');
 
@@ -48,12 +61,20 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_CV_Secondary()
 
 	Template.BaseDamage = default.THROWING_KNIFE_CV_BASEDAMAGE;
 
+	// Add chance to inflict bleeding
+	BleedingEffect = class'X2StatusEffects'.static.CreateBleedingStatusEffect(
+		default.THROWING_KNIFE_CV_BLEED_DURATION,
+		default.THROWING_KNIFE_CV_BLEED_DAMAGE);
+	BleedingEffect.ApplyChance = default.THROWING_KNIFE_CV_BLEED_CHANCE;
+	Template.BonusWeaponEffects.AddItem(BleedingEffect);
+
 	return Template;
 }
 
 static function X2DataTemplate CreateTemplate_ThrowingKnife_MG_Secondary()
 {
 	local X2WeaponTemplate Template;
+	local X2Effect_Persistent BleedingEffect;
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'ThrowingKnife_MG_Secondary');
 
@@ -71,12 +92,20 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_MG_Secondary()
 
 	Template.BaseDamage = default.THROWING_KNIFE_MG_BASEDAMAGE;
 
+	// Add chance to inflict bleeding
+	BleedingEffect = class'X2StatusEffects'.static.CreateBleedingStatusEffect(
+		default.THROWING_KNIFE_MG_BLEED_DURATION,
+		default.THROWING_KNIFE_MG_BLEED_DAMAGE);
+	BleedingEffect.ApplyChance = default.THROWING_KNIFE_MG_BLEED_CHANCE;
+	Template.BonusWeaponEffects.AddItem(BleedingEffect);
+
 	return Template;
 }
 
 static function X2DataTemplate CreateTemplate_ThrowingKnife_BM_Secondary()
 {
 	local X2WeaponTemplate Template;
+	local X2Effect_Persistent BleedingEffect;
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'ThrowingKnife_BM_Secondary');
 
@@ -93,6 +122,13 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_BM_Secondary()
 	Template.BaseItem = 'ThrowingKnife_MG_Secondary'; // Which item this will be upgraded from
 
 	Template.BaseDamage = default.THROWING_KNIFE_BM_BASEDAMAGE;
+
+	// Add chance to inflict bleeding
+	BleedingEffect = class'X2StatusEffects'.static.CreateBleedingStatusEffect(
+		default.THROWING_KNIFE_BM_BLEED_DURATION,
+		default.THROWING_KNIFE_BM_BLEED_DAMAGE);
+	BleedingEffect.ApplyChance = default.THROWING_KNIFE_BM_BLEED_CHANCE;
+	Template.BonusWeaponEffects.AddItem(BleedingEffect);
 
 	return Template;
 }
