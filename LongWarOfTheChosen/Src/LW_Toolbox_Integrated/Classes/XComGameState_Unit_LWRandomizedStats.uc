@@ -68,6 +68,8 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 	local ComIntStatSwap ComIntSwap;
 	local XComGameState_BattleData BattleData;
 	local bool bIsFirstMission;
+	
+	const MAX_SWAP_ATTEMPTS=1000;
 
 	BattleData = XComGameState_BattleData( `XCOMHISTORY.GetSingleGameStateObjectForClass( class'XComGameState_BattleData', true ));
 	if(BattleData != none)
@@ -105,20 +107,23 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 		do 
 		{
 			ComIntSwap = SelectComIntStatSwap(ComIntTotalWeight);
-		} until (IsValidComIntSwap(ComIntSwap, Unit) || (++iterations > 1000));
-		if (iterations <= 1000)
+		} until (IsValidComIntSwap(ComIntSwap, Unit) || (++iterations > MAX_SWAP_ATTEMPTS));
+		if (iterations <= MAX_SWAP_ATTEMPTS)
 		{
 			CharacterInitialStats_Deltas[ComIntSwap.StatSwapped] += ComIntSwap.StatSwapped_Amount;
 			CharacterComIntDelta = ComIntSwap.ComIntStatchange;	
 		}
 	}
+	
+	iterations = 0;
+	
 	//randomly apply a bunch of stat swaps to get starting stat offset
 	for(idx = 0; idx < NumSwaps; idx++)
 	{
 		do {
 			Swap = SelectRandomStatSwap(TotalWeight);
-		} until (IsValidSwap(Swap, Unit) || (++iterations > 1000));
-		if (iterations > 1000)
+		} until (IsValidSwap(Swap, Unit) || (++iterations > MAX_SWAP_ATTEMPTS));
+		if (iterations > MAX_SWAP_ATTEMPTS)
 		{
 			break;
 		}
