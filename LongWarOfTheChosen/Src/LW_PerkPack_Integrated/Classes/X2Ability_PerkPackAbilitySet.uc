@@ -3338,7 +3338,7 @@ static function X2AbilityTemplate AddGrazingFireAbility()
 static function X2AbilityTemplate AddHeavyFragsAbility()
 {
 	local X2AbilityTemplate					Template;
-	local X2Effect_VolatileMix				DamageEffect;
+	local X2Effect_GrenadeDamage			DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'HeavyFrags');
 
@@ -3354,10 +3354,11 @@ static function X2AbilityTemplate AddHeavyFragsAbility()
 	Template.bDisplayInUITacticalText = true;
 	Template.bShowActivation = false;
 
-	DamageEffect = new class'X2Effect_VolatileMix';
+	DamageEffect = new class'X2Effect_GrenadeDamage';
 	DamageEffect.BuildPersistentEffect(1, true, false);
 	DamageEffect.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
 	DamageEffect.BonusDamage = default.HEAVY_FRAGS_DAMAGE;
+	DamageEffect.ApplyToNonBaseDamage = true;   // Apply to tick effects like poison and burning a la LW2
 	Template.AddTargetEFfect(DamageEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

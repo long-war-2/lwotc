@@ -805,6 +805,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FullKit.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FullOrdnance.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_GrazingFire.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_GrenadeDamage.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HardTarget.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HitandRun.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HyperReactivePupils.uc" />
