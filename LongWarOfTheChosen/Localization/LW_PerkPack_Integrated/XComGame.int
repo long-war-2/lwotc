@@ -501,8 +501,8 @@ LocFriendlyNameWhenConcealed="Overwatch (Concealed)"
 [SnapShotAimModifier X2AbilityTemplate]
 LocFriendlyName="Snap Shot"
 LocFlyOverText="Snap Shot"
-LocLongDescription="You may take standard shots and enter standard overwatch with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range on all shots."
-LocHelpText="Allows standard shots and overwatch with sniper rifles after moving."
+LocLongDescription="You may take standard shots with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range on all shots."
+LocHelpText="Allows standard shots with sniper rifles after moving."
 
 [Trojan X2AbilityTemplate]
 LocFriendlyName="Trojan"
