@@ -401,12 +401,12 @@ LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to 2 point
 
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
-; LWOTC Translated
+; LWOTC Needs Translation (2)
 LocLongDescription="You may throw or launch grenades two additional tiles."
 LocHelpText="You may throw or launch grenades two additional tiles."
 LocFlyOverText="Bombardier"
 LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades.<br/>"
-; End Translated
+; End Translation (2)
 
 [BluescreenBombs X2AbilityTemplate]
 LocFriendlyName="Bluescreen Bombs"
@@ -995,9 +995,9 @@ FriendlyName="Advanced Vibroblade"
 FriendlyNamePlural="Advanced Vibroblades"
 BriefSummary="Dangerous melee weapon for personal defense in close quarters. The Advanced Vibroblade has been enhanced to be sharper, stronger, and more precise."
 TacticalText="<Bullet/> A knife attack requires one action and does not end your turn.<br/>"
-
 AbilityDescName="combat knife"
 ;End translation
+
 [LWGauntlet_CV X2MultiWeaponTemplate]
 FriendlyName="Gauntlet"
 FriendlyNamePlural="Gauntlets"
@@ -2219,7 +2219,7 @@ POIImages[2]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_Abandoned"
 ; LWOTC Needs Translation
 [LW_T2_M0_Outpost X2ObjectiveTemplate]
 Title="Manage Your Havens"
-LocLongDescription="Assign rebels to jobs based on what you want them to do ('intel' for detecting missions, 'supply' for generating supplies, and 'recruit' for recruiting new rebels to the haven and rookies). You can also a haven adviser to help with the various activities and (if the adviser is a soldier) help detect Faceless among the rebels.
+LocLongDescription="Assign rebels to jobs based on what you want them to do ('intel' for detecting missions, 'supply' for generating supplies, and 'recruit' for recruiting new rebels to the haven and rookies). You can also a haven adviser to help with the various activities and (if the adviser is a soldier) help detect Faceless among the rebels."
 ; End Translation
 
 [LW_T2_M0_Liberate_Region X2ObjectiveTemplate]
@@ -3579,15 +3579,15 @@ Summary="Unlocks the ultimate in Laser Sight technology for Engineering to produ
 
 [BasicStockProject X2TechTemplate]
 DisplayName="Stocks"
-Summary="We can reverse engineer recovered Stocks and allow them to be mass produced. Any troop that equips a stock gains a chance to convert misses to grazes."
+Summary="We can reverse engineer recovered Stocks and allow them to be mass produced."
 
 [AdvancedStockProject X2TechTemplate]
 DisplayName="Advanced Stocks"
-Summary="Allows mass production of Advanced Stocks, which grant an improved chance to convert misses to grazes."
+Summary="Allows mass production of Advanced Stocks."
 
 [SuperiorStockProject X2TechTemplate]
 DisplayName="Elite Stocks"
-Summary="Allows mass production of Elite Stocks, which grant a large chance to convert misses to grazes."
+Summary="Allows mass production of Elite Stocks."
 
 ;End Translation
 
