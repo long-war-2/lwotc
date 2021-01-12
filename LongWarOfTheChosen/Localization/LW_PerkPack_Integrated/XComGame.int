@@ -277,7 +277,7 @@ LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: 
 LocFriendlyName="Slug Shot"
 LocFlyOverText="Slug Shot"
 LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot that pierces two armor and has no range penalties. Uses <Ability:SelfAmmoCost/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocHelpText="Armor-piercing special shotgun shot with no range penalties."
+LocHelpText="Armor-piercing special shotgun shot with no range penalties. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> The shot will pierce two armor points.<br/><Bullet/> Slug shot has a <Ability:SelfCooldown_LW/> turn cooldown. <br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
 
 [SlugShotRangeEffect X2AbilityTemplate]
