@@ -5494,6 +5494,16 @@ LocLongDescription="When you get a crit with any shot or ability, your human or 
 [LocationScout X2SitRepTemplate]
 Description="The resistance have placed low-range motion detectors throughout the AO that hook into your squad's comms. Your soldiers will be able to detect enemy units that are out of line of sight."
 
+; LWOTC Needs Translation (2)
+[LargeMap X2SitRepTemplate]
+FriendlyName="Large Map"
+Description="The area of operations is larger than normal, so it will probably take you longer to get to the objective than usual."
+
+[VeryLargeMap X2SitRepTemplate]
+FriendlyName="Very Large Map"
+Description="The area of operations is much larger than normal, so it will probably take you longer to get to the objective than usual."
+; End Translation (2)
+
 [ProjectMiranda X2SitRepTemplate]
 FriendlyName="Project Miranda"
 Description="ADVENT are testing pacification technology in the area, which is making all non-robotic units lethargic. They will have penalties to aim and mobility."
@@ -5565,6 +5575,20 @@ Description="Combat Rush triggered when a unit crits."
 [LethargyEffect X2SitRepEffect_GrantAbilities]
 FriendlyName="Lethargy"
 Description="Units have -20 Aim and -2 Mobility."
+
+; LWOTC Needs Translation (2)
+[IncreaseTimer1Effect X2SitRepEffect_ModifyKismetVariable]
+FriendlyName="Extended Timer"
+Description="If this mission has a timer, it is increased by 1 turn."
+
+[IncreaseTimer2Effect_LW X2SitRepEffect_ModifyKismetVariable]
+FriendlyName="Extended Timer"
+Description="If this mission has a timer, it is increased by 2 turns."
+
+[IncreaseTimer4Effect X2SitRepEffect_ModifyKismetVariable]
+FriendlyName="Extended Timer"
+Description="If this mission has a timer, it is increased by 4 turns."
+; End Translation (2)
 
 [CovertActionRisk_Failure_Easy X2CovertActionRiskTemplate]
 RiskName="Failure"

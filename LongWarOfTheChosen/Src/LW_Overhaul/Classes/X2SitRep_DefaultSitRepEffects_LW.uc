@@ -6,6 +6,8 @@
 
 class X2SitRep_DefaultSitRepEffects_LW extends X2SitRepEffect;
 
+var const name MissionTimerModifierVarName;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -16,6 +18,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateCombatRushOnCritEffectTemplate());
 
 	// Miscellaneous effects
+	Templates.AddItem(CreateIncreaseTimer1EffectTemplate());
+	Templates.AddItem(CreateIncreaseTimer2EffectTemplate());
+	Templates.AddItem(CreateIncreaseTimer4EffectTemplate());
 	Templates.AddItem(CreateTheLostEffectTemplate());
 
 	// Sit rep effects for different levels of underinfiltration
@@ -36,6 +41,86 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	return Templates;
 }
+
+// ----------------------------------------------------------------------------------------------------------
+// Timer Related Effects
+// ----------------------------------------------------------------------------------------------------------
+
+static function X2SitRepEffectTemplate CreateIncreaseTimer1EffectTemplate()
+{
+	local X2SitRepEffect_ModifyTacticalStartState Template;
+
+	`CREATE_X2TEMPLATE(class'X2SitRepEffect_ModifyTacticalStartState', Template, 'IncreaseTimer1Effect_LW');
+	Template.ModifyTacticalStartStateFn = IncreaseMissionTimerByOneTurn;
+	Template.DifficultyModifier = 0;
+
+	return Template;
+}
+
+static function X2SitRepEffectTemplate CreateIncreaseTimer2EffectTemplate()
+{
+	local X2SitRepEffect_ModifyTacticalStartState Template;
+
+	`CREATE_X2TEMPLATE(class'X2SitRepEffect_ModifyTacticalStartState', Template, 'IncreaseTimer2Effect_LW');
+	Template.ModifyTacticalStartStateFn = IncreaseMissionTimerByTwoTurns;
+	Template.DifficultyModifier = 0;
+
+	return Template;
+}
+
+static function X2SitRepEffectTemplate CreateIncreaseTimer4EffectTemplate()
+{
+	local X2SitRepEffect_ModifyTacticalStartState Template;
+
+	`CREATE_X2TEMPLATE(class'X2SitRepEffect_ModifyTacticalStartState', Template, 'IncreaseTimer4Effect_LW');
+	Template.ModifyTacticalStartStateFn = IncreaseMissionTimerByFourTurns;
+	Template.DifficultyModifier = 0;
+
+	return Template;
+}
+
+private static function IncreaseMissionTimerByOneTurn(XComGameState StartState)
+{
+	ModifyMissionTimerBy(StartState, 1);
+}
+
+private static function IncreaseMissionTimerByTwoTurns(XComGameState StartState)
+{
+	ModifyMissionTimerBy(StartState, 2);
+}
+
+private static function IncreaseMissionTimerByFourTurns(XComGameState StartState)
+{
+	ModifyMissionTimerBy(StartState, 4);
+}
+
+private static function ModifyMissionTimerBy(XComGameState StartState, int NumTurns)
+{
+	local XComGameState_KismetVariableModifier ModifierState;
+
+	// Find any existing modifier for the Timer.LengthDelta variable first
+	foreach StartState.IterateByClassType(class'XComGameState_KismetVariableModifier', ModifierState)
+	{
+		if (ModifierState.VarName == default.MissionTimerModifierVarName)
+			break;
+		else
+			ModifierState = none;
+	}
+
+	// Create a new modifier state if there isn't an existing one
+	if (ModifierState == none)
+	{
+		ModifierState = XComGameState_KismetVariableModifier(StartState.CreateNewStateObject(class'XComGameState_KismetVariableModifier'));
+		ModifierState.VarName = default.MissionTimerModifierVarName;
+	}
+
+	// Modify the state object's delta to apply this timer modifier.
+	// Note that we don't have to use `ModifyStateObject()` because
+	// this is the start state and we can just change things as we like.
+	ModifierState.Delta += NumTurns;
+}
+
+// ----------------------------------------------------------------------------------------------------------
 
 static function X2SitRepEffectTemplate CreateLethargyEffectTemplate()
 {
@@ -210,4 +295,9 @@ static function X2SitRepEffectTemplate CreateVigilanceDEEffectTemplate()
 	Template.DifficultyModifier = 2;
 
 	return Template;
+}
+
+defaultproperties
+{
+	MissionTimerModifierVarName = "Timer_LengthDelta"
 }

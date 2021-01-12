@@ -625,7 +625,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	local GeneratedMissionData EmptyData;
 	local XComTacticalMissionManager MissionMgr;
 	local XComParcelManager ParcelMgr;
-	local string Biome;
+	local string Biome, MapName;
 	// LWOTC vars
 	local XComHeadquartersCheatManager CheatManager;
 	local X2MissionSourceTemplate MissionSource;
@@ -744,6 +744,24 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 			(SitRepName != 'TheLost' || MissionState.GeneratedMission.SitReps.Find('TheHorde') == INDEX_NONE))
 		{
 			MissionState.GeneratedMission.SitReps.AddItem(SitRepName);
+		}
+	}
+
+	// Add sit reps for large and very large maps for fixed evac missions that
+	// have an evac timer rather than an objective timer.
+	if (class'UIUtilities_LW'.default.FixedExitMissions.Find(MissionState.GeneratedMission.Mission.MissionName) != INDEX_NONE &&
+		class'UIUtilities_LW'.default.EvacTimerMissions.Find(MissionState.GeneratedMission.Mission.MissionName) != INDEX_NONE)
+	{
+		MapName = MissionState.GeneratedMission.Plot.MapName;
+		if (instr(MapName, "vlgObj") != INDEX_NONE)
+		{
+			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
+			MissionState.GeneratedMission.SitReps.AddItem('VeryLargeMap');
+		}
+		else if (instr(MapName, "LgObj") != INDEX_NONE)
+		{
+			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
+			MissionState.GeneratedMission.SitReps.AddItem('VeryLargeMap');
 		}
 	}
 

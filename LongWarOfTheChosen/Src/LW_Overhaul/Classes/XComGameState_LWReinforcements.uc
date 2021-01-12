@@ -97,6 +97,7 @@ var int TurnsSinceTriggered;
 var int TurnsSinceWin;
 var int CavalryTurn;
 var int CavalryOnWinTurn;
+var float TimerBucketModifier;
 var bool RedAlertTriggered;
 var bool ExternallyTriggered;
 var bool Disabled;
@@ -124,6 +125,7 @@ function Initialize()
 	local XComGameState_LWAlienActivity CurrentActivity;
 	local int k;
 	local Mission_Reinforcements_Modifiers_Struct_LW EmptyReinfRules;
+	local float BaseTimerLength, CurrentTimerLength;
 
     `LWTrace("LWRNF: Initializing RNF state");
 
@@ -157,7 +159,34 @@ function Initialize()
 		}
 	}
 	Count = Max (ReinfRules.QueueOffset + GetQueueOffSetModifier(), 0);
+
+	// Work out how many more or fewer turns there are compared to the default
+	// and use this to initialise the timer-based bucket modifier
+	TimerBucketModifier = 1.0;
+	CurrentTimerLength = GetCurrentTimer();
+	if (CurrentTimerLength > 0)
+	{
+		// We have a timer, so we can calculate a bucket modifier for it
+		BaseTimerLength = class'SeqAct_InitializeMissionTimer'.static.GetBaseTimer(
+			MissionState.GeneratedMission.Mission.sType,
+			MissionState.GeneratedMission.Mission.MissionFamily);
+		TimerBucketModifier = BaseTimerLength / CurrentTimerLength;
+	}
+
     IsInitialized = true;
+}
+
+function int GetCurrentTimer()
+{
+    local XComGameState_UITimer Timer;
+
+    Timer = XComGameState_UITimer(`XCOMHISTORY.GetSingleGameStateObjectForClass(class 'XComGameState_UITimer', true));
+    if (Timer == none)
+    {
+        return -1;
+    }
+
+    return Timer.TimerValue;
 }
 
 function int GetQueueOffsetModifier()
@@ -400,6 +429,10 @@ function int CheckForReinforcements()
 
 		TmpValue = ReinfRules.BucketMultiplier;
 		`LWTrace("LWRNF: Applying multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value from mission/activity");
+		BucketFiller *= TmpValue;
+
+		TmpValue = TimerBucketModifier;
+		`LWTrace("LWRNF: Applying timer-based multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value");
 		BucketFiller *= TmpValue;
 
 		Bucket += BucketFiller;
