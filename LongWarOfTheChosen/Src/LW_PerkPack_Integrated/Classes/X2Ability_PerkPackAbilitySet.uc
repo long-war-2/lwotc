@@ -2717,7 +2717,7 @@ static function X2AbilityTemplate LockdownBonuses()
 	//  Effect code checks whether unit has Lockdown before providing aim and damage bonuses
 	DamageEffect = new class'X2Effect_LockdownDamage';
 	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
-	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
+	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
 	Template.AddTargetEffect(DamageEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
@@ -2739,7 +2739,7 @@ static function X2AbilityTemplate MayhemBonuses()
 	//  Effect code checks whether unit has Mayhem before providing aim and damage bonuses
 	DamageEffect = new class'X2Effect_Mayhem';
 	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
-	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
+	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
 	Template.AddTargetEffect(DamageEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
