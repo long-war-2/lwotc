@@ -10,7 +10,7 @@ The last dev build was supposed to be the basis for beta 4, but one of the recen
 
 To install dev build 23, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
 
-||  **[Download the full release and/or the patch from Nexus Mods]()** ||
+||  **[Download the full release and/or the patch from Nexus Mods](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
 
 The patch version can be unpacked on top of any existing dev build 21 or more recent installation.
 
@@ -38,7 +38,7 @@ The patch version can be unpacked on top of any existing dev build 21 or more re
 *Tactical*:
 
  * Soldiers now lose 1 point of Will every 3 turns instead of 4, but they will no longer lose Will for taking damage; Tired soldiers will lose Will every 2 turns
- * Tired soldiers should no longer panic from units taking damage, being mind controller, dying, etc.
+ * Tired soldiers should no longer panic from units taking damage, being mind controlled, dying, etc.
  * Anything that extends the mission timer (sit reps, map size) will now result in the reinforcements arriving more slowly, with bigger extensions resulting in a greater slowing of RNFs (this should help with large-map Jailbreaks and some Project Miranda missions)
  * Silent Killer now has a 25% chance to extend the duration of Shadow when it procs
  * Throwing Knives' base damage is now 4-6 at tier 2 (from 3-5) and 6-9 at tier 3 (from 5-8)
