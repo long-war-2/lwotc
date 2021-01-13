@@ -66,6 +66,11 @@ var config array<InfiltrationQueueModifierStruct>QUEUE_MODIFIER;
 // by difficulty setting.
 var config const array<float> RAPID_RESPONSE_MODIFIER;
 
+// The effective region alert level to use for ambush missions since it's
+// unreasonable to use the actual region strength, which could be incredibly
+// high - for example if it's in an uncontacted Black Site region.
+var config int AMBUSH_MISSION_REGION_ALERT_LEVEL;
+
 // Amount to add to the level per-turn due to alert level
 var config const array<float> ALERT_MODIFIER;
 
@@ -317,7 +322,8 @@ function bool CanAddToBucket()
 	{
 		if (class'Utilities_LW'.static.CurrentMissionType() != "Defend_LW" &&
 		    class'Utilities_LW'.static.CurrentMissionType() != "SupplyConvoy_LW" &&
-		    class'Utilities_LW'.static.CurrentMissionType() != "Invasion_LW")
+		    class'Utilities_LW'.static.CurrentMissionType() != "Invasion_LW" &&
+		    class'Utilities_LW'.static.CurrentMissionType() != "CovertEscape_LW")
 		return false;
 	}
 
@@ -582,7 +588,15 @@ function float GetIncreaseFromRegion()
 	Region = MissionState.GetWorldRegion();
 	RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region);
 
-    AlertLevel = Min(RegionalAI.LocalAlertLevel, ALERT_MODIFIER.Length);
+	AlertLevel = Min(RegionalAI.LocalAlertLevel, ALERT_MODIFIER.Length);	
+	// TODO: This is a super hack to ensure that ambush missions don't have varying
+	// difficulties of reinforcements based on where they run, because the player
+	// has no knowledge of where the covert action will run.
+	if (MissionState.GeneratedMission.Mission.sType == "CovertEscape_LW")
+	{
+		AlertLevel = AMBUSH_MISSION_REGION_ALERT_LEVEL;
+	}
+
     AlertMod = ALERT_MODIFIER[AlertLevel];
 
     // Randomize the alert-based level.
