@@ -313,10 +313,12 @@ LocPromotionPopupText="<Bullet/> If you fail a hack, you prevent any negative ef
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="Full Override"
+; LWOTC needs translation
 LocLongDescription="Take permanent control of a robotic unit and potentially acquire ADVENT MECs for the Resistance."
 LocHelpText="Take permanent control of a robotic unit and potentially acquire ADVENT MECs for the Resistance."
 LocFlyOverText="Full Override"
-LocPromotionPopupText="<Bullet/> Full Override is a special hack action usable against enemy robotic units.<br/><Bullet/> It has one charge that is only expended if a successful override occurs.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> The first hack option, Command Enemy, will grant control of the robotic unit for the duration of the mission.<br/><Bullet/> The second hack option, Master Enemy, also grants a stat bonus for the rest of the mission for all robots, and will permanently transfer any MEC units to the Resistance.<br/><Bullet/> If the Master Enemy hack succeeds, and the MEC and the specialist both survive the mission, the MEC will follow new programming and make its way to a Resistance base, where it will serve the Resistance. It does not need to be evacuated when the mission ends."
+LocPromotionPopupText="<Bullet/> Full Override is a special hack action usable against enemy robotic units.<br/><Bullet/> It has one charge that is only expended if a successful override occurs.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> The first hack option, Greater Shutdown, will disable (stun) the unit for 3 turns.<br/><Bullet/> The second hack option, Master Enemy, will grant control of the unit for rest of the mission with a stat bonus for all robots, and will permanently transfer any MEC units to the Resistance.<br/><Bullet/> If the Master Enemy hack succeeds, and the MEC and the specialist both survive the mission, the MEC will follow new programming and make its way to a Resistance base, where it will serve the Resistance. It does not need to be evacuated when the mission ends."
+; End translation
 
 [BuffEnemy_FullOverride X2HackRewardTemplate]
 FriendlyName="Overdrive"
@@ -350,7 +352,7 @@ LocLongDescription="The GREMLIN can trigger an instant scan of the area, increas
 LocPromotionPopupText="<Bullet/> Scanning Protocol gains bonus charges with improved Gremlins.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/>"
 ; End Translation (2)
 
-;End translation
+; End translation
 
 
 ;;;;;;;;;;;;;;;;;;;;  GRENADIER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
