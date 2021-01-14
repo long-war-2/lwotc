@@ -286,14 +286,14 @@ LocLongDescription="Coup de Grâce can instantly kill a disoriented, stunned or 
 LocHelpText="Chance to instantly kill a disoriented, stunned or unconscious enemy."
 LocPromotionPopupText="<Bullet/> Coup de Grâce can only target non-robotic, disoriented, stunned or unconscious enemies.<br/><Bullet/> Coup de Grâce grants a base 25% chance to kill disoriented units and a base 50% chance to kill stunned/unconscious units.<br/><Bullet/> Coup de Grâce grants up to 75% additional chance to kill based on remaining target health.<br/>"
 
-; LWOTC Needs Translation
+; LWOTC Needs Translation (2)
 [CoupDeGrace2 X2AbilityTemplate]
 LocFriendlyName="Coup de Grâce"
 LocFlyOverText="Coup de Grâce"
-LocLongDescription="Bonus to hit, damage, and critical chance with your <Ability:AssociatedWeapon/> against a disoriented, stunned or panicking enemy."
-LocHelpText="Bonus to hit, damage, and critical chance with your <Ability:AssociatedWeapon/> against a disoriented, stunned, or panicking enemy."
+LocLongDescription="Bonus to hit, damage, and critical chance with your <Ability:BOUND_WEAPON_NAME/> against a disoriented, stunned or panicking enemy."
+LocHelpText="Bonus to hit, damage, and critical chance with your <Ability:BOUND_WEAPON_NAME/> against a disoriented, stunned, or panicking enemy."
 LocPromotionPopupText="<Bullet/> Coup de Grâce grants +50 aim, +50 critical chance and +2 damage against stunned and panicking enemies.<br/><Bullet/> The bonuses are reduced against disoriented enemies."
-; End Translation
+; End Translation (2)
 
 [Tradecraft X2AbilityTemplate]
 LocFriendlyName="Tradecraft"
@@ -5930,11 +5930,11 @@ LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:PREDATOR_AIM_
 [Stiletto_LW X2AbilityTemplate]
 LocFriendlyName="Stiletto"
 LocFlyOverText="Stiletto"
-; LWOTC Needs Translation (2)
-LocLongDescription= "Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor."
-LocHelpText="Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor."
-LocPromotionPopupText="<Bullet/> Shots fired with your <Ability:WeaponName/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor.<br/>"
-; End Translation (2)
+; LWOTC Needs Translation (3)
+LocLongDescription= "Shots fired with your <Ability:BOUND_WEAPON_NAME/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor."
+LocHelpText="Shots fired with your <Ability:BOUND_WEAPON_NAME/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor."
+LocPromotionPopupText="<Bullet/> Shots fired with your <Ability:BOUND_WEAPON_NAME/> pierce <Ability:STILETTO_ARMOR_PIERCING/> armor.<br/>"
+; End Translation (3)
 
 [Reposition_LW X2AbilityTemplate]
 LocFriendlyName="Reposition"
@@ -6111,11 +6111,11 @@ LocPromotionPopupText = "<Bullet/> Killing an enemy grants a stackable +<Ability
 
 [LightningSlash_LW X2AbilityTemplate]
 LocFriendlyName="Lightning Slash"
-LocLongDescription="Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>. This attack does not end the turn."
-LocHelpText="Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>. This attack does not end the turn."
-; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Attack any enemy within blue movement range with your <Ability:SecondaryWeaponName/>.<br/><Bullet/> This attack does not end the turn.<br/><Bullet/> Lightning Slash has a <Ability:LIGHTNINGSLASH_COOLDOWN/> turn cooldown.<br/>"
-; End Translation (2)
+; LWOTC Needs Translation (3)
+LocLongDescription="Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>. This attack does not end the turn."
+LocHelpText="Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>. This attack does not end the turn."
+LocPromotionPopupText="<Bullet/> Attack any enemy within blue movement range with your <Ability:BOUND_WEAPON_NAME/>.<br/><Bullet/> This attack does not end the turn.<br/><Bullet/> Lightning Slash has a <Ability:LIGHTNINGSLASH_COOLDOWN/> turn cooldown.<br/>"
+; End Translation (3)
 
 [InspireAgility_LW X2AbilityTemplate]
 LocFriendlyName="Inspire Agility"
