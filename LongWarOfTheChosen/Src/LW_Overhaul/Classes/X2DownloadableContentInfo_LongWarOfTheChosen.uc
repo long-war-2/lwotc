@@ -2796,7 +2796,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.FLAMETHROWER_CHARGES);
 			return true;
 		case 'FIRESTORM_DAMAGE_BONUS_LW':
-			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.FIRESTORM_DAMAGE_BONUS);
+			Outstring = string(int(class'X2Ability_LW_TechnicalAbilitySet'.default.FIRESTORM_DAMAGE_BONUS));
 			return true;
 		case 'NANOFIBER_HEALTH_BONUS_LW':
 			Outstring = string(class'X2Ability_ItemGrantedAbilitySet'.default.NANOFIBER_VEST_HP_BONUS);
