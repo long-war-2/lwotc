@@ -856,15 +856,15 @@ LocHelpText="Firing your pistol with your first action no longer ends your turn.
 LocFlyOverText="Quickdraw"
 LocPromotionPopupText="<Bullet/> Quickdraw allows the soldier to spread their fire around to different targets in the same turn.<br/>"
 
-; LWOTC Needs Translation
+; LWOTC Needs Translation (2)
 [XComGame.SharpshooterAim X2AbilityTemplate]
 [SharpshooterAim X2AbilityTemplate]
 LocFriendlyName="Aim"
 LocLongDescription="Hunker Down now confers +<Ability:SHARPSHOOTERAIMBONUS/> Aim and +<Ability:SHARPSHOOTERAIM_CRITBONUS/> Crit to the first shot on the following turn."
 LocHelpText="Hunker Down now confers +<Ability:SHARPSHOOTERAIMBONUS/> Aim and +<Ability:SHARPSHOOTERAIM_CRITBONUS/> Crit to the first shot on the following turn."
 LocFlyOverText="HunkerDown - Aim"
-LocPromotionPopupText="<Bullet/> The bonus granted by Aim can apply to either a pistol or primary weapon shot.<br/>"
-; End Translation
+LocPromotionPopupText="<Bullet/> The bonus granted by Aim can apply to any weapon shot.<br/>"
+; End Translation (2)
 
 [XComGame.LightningHands X2AbilityTemplate]
 [LightningHands X2AbilityTemplate]
