@@ -5844,11 +5844,11 @@ LocPromotionPopupText="<Bullet/> When your concealment is broken, gain +<Ability
 [LickYourWounds_LW X2AbilityTemplate]
 LocFriendlyName="Lick Your Wounds"
 LocFlyOverText="Lick Your Wounds"
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 LocLongDescription="Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission, and removes poison, burning, and acid burning."
 LocHelpText="Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission, and removes poison, burning, and acid burning."
-LocPromotionPopupText="<Bullet/> Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission.<br/><Bullet/> Removes poison, burning, and acid burning.<br/><Bullet/> If equipped with a Ballistic Shield, then the health recovery will activate when Shield Wall is used.<br/>"
-; End Translation (2)
+LocPromotionPopupText="<Bullet/> Hunker Down restores <Ability:LICKYOURWOUNDS_HEALAMOUNT/> health when used, up to a maximum of <Ability:LICKYOURWOUNDS_MAXHEALAMOUNT/> per mission.<br/><Bullet/> Removes poison, burning, and acid burning.<br/>"
+; End Translation (3)
 
 [Impulse_LW X2AbilityTemplate]
 LocFriendlyName="Impulse"
@@ -5871,11 +5871,11 @@ LocPromotionPopupText="<Bullet/> Kills with your primary weapon restore <Ability
 [TrenchWarfare_LW X2AbilityTemplate]
 LocFriendlyName="Trench Warfare"
 LocFlyOverText="Trench Warfare"
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 LocLongDescription="If you get at least one kill during your turn, automatically Hunker Down at the end of it."
 LocHelpText="If you get at least one kill during your turn, automatically Hunker Down at the end of it."
-LocPromotionPopupText="<Bullet/> If you get at least one kill during your turn, automatically Hunker Down at the end of it.<br/><Bullet/> You will only Hunker Down if you would normally be able to.<br/><Bullet/> If a Ballistic Shield is equipped, then you will use Shield Wall instead.<br/>"
-; End Translation (2)
+LocPromotionPopupText="<Bullet/> If you get at least one kill during your turn, automatically Hunker Down at the end of it.<br/><Bullet/> You will only Hunker Down if you would normally be able to.<br/>"
+; End Translation (3)
 
 [Dedication_LW X2AbilityTemplate]
 LocFriendlyName="Dedication"
