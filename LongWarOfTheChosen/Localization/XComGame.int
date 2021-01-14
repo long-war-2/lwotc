@@ -6301,19 +6301,19 @@ strAcquiredText="The Hunter is the master of long range combat, constantly kitin
 strCharacterName="Hunter"
 strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
 
-
+; LWOTC Needs Translation (2)
 [BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed on a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed on a successful kidnap."
 LocFlyOverText="Blood Thirst"
 
 [BloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed on a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed on a successful kidnap."
 LocFlyOverText="Blood Thirst"
-
+; LWOTC Needs Translation (2)
 
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="Precise strike"
@@ -6328,10 +6328,13 @@ LocLongDescription="Gain a 50% damage boost when at 35% hp or less."
 LocFlyOverText="Psychotic Rage"
 
 [YouCannotHide_LW X2AbilityTemplate]
-LocFriendlyName="You Cannot hide"
+; LWOTC Needs Translation (2)
+LocFriendlyName="You Cannot Hide"
+; End Translation (2)
 LocHelpText="Gain 100 aim."
 LocLongDescription="Gain 100 aim."
 LocFlyOverText="Run."
+
 [RebelHPUpgrade_T1 X2AbilityTemplate]
 LocFriendlyName="Alloy Vest"
 LocLongDescription="Researching plated armor has given our resistance soldiers better protection."
