@@ -109,6 +109,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'CHARGE_BATTERY_CHARGES':
 		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.CHARGE_BATTERY_CHARGES);
 		return true;
+	case 'RemoteStartCharges':
+		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.REMOTE_START_CHARGES);
+		return true;
 	case 'DemolitionistExtraChargeCount':
 		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.REMOTE_START_DEMOLITIONIST_CHARGES);
 		return true;

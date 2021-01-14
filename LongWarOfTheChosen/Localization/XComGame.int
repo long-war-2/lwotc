@@ -5318,7 +5318,14 @@ LocPromotionPopupText="<Bullet/> Sting allows for the Reaper to attack in situat
 LocFriendlyName="Remote Start"
 LocLongDescription="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the Reaper."
 LocHelpText="Detonate an environmental explosive, causing it to deal double damage within twice its normal radius. Does not reveal the Reaper."
-LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zone!<br/><Bullet/> Remote Start requires <Ability:SelfAmmoCost/> ammo point, and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zone!<br/><Bullet/> Remote Start requires <Ability:SelfAmmoCost/> ammo point, and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Remote Start has <Ability:RemoteStartCharges/> charge(s) per mission.<br/>"
+; End Translation
+
+; LWOTC Needs Translation
+[HomingMine X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 1 charge per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
+; End Translation
 
 [Hero_Tracking X2AbilityTemplate]
 LocFriendlyName="Tracking"
