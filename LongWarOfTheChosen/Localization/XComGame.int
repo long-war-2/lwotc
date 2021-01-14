@@ -166,9 +166,11 @@ LocHelpText="Fire a guided Blaster Bomb at a target area. <Ability:ROCKETSCATTER
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
 LocFlyOverText="Napalm-X"
-LocLongDescription="Your Flamethrower can now disorient or panic enemies."
-LocHelpText="Napalm-X"
-LocPromotionPopupText="<Bullet/> Your Flamethrower can now disorient or panic enemies. Enemy units must pass a will check to avoid negative effects.<br/>"
+; LWOTC Needs Translation (2)
+LocLongDescription="Your Flamethrower can now panic enemies."
+LocHelpText="Your Flamethrower can now panic enemies."
+LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/>"
+; End Translation
 
 [PhosphorusPassive X2AbilityTemplate]
 LocFriendlyName="Phosphorus"
