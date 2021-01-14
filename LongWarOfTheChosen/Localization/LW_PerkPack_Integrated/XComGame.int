@@ -69,9 +69,11 @@ LocPromotionPopupText="<Bullet/> You do one additional point of base damage with
 [Lethal X2AbilityTemplate]
 LocFriendlyName="Lethal"
 LocFlyOverText="Lethal"
-LocLongDescription="You do two additional points of base damage with your primary weapon."
-LocHelpText="You do two additional points of base damage with your primary weapon."
-LocPromotionPopupText="<Bullet/> You do two additional points of base damage with your primary weapon."
+; LWOTC Needs Translation
+LocLongDescription="You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
+LocHelpText="You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
+LocPromotionPopupText="<Bullet/> You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
+; End Translation
 
 [HitandSlither X2AbilityTemplate]
 LocFriendlyName="Hit and Slither"

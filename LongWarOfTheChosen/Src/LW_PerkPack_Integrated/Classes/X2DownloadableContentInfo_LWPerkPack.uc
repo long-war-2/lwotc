@@ -351,6 +351,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			OutString = string(class'X2Effect_LoneWolf'.default.LONEWOLF_MIN_DIST_TILES - 
 					(class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_BONUS / class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_PER_TILE) + 1);
 			return true;
+		case 'LETHAL_DAMAGE_LW':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.LETHAL_DAMAGE);
+			return true;
+		case 'LETHAL_CRIT_DAMAGE_LW':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.LETHAL_DAMAGE / 2);
+			return true;
         default:
             return false;
     }

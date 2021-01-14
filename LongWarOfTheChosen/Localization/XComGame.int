@@ -582,9 +582,11 @@ LocPromotionPopupText="<Bullet/> HiDef Holo, Independent Tracking, and Vital Poi
 [AlphaMikeFoxtrot X2AbilityTemplate]
 LocFriendlyName="Alpha Mike Foxtrot"
 LocFlyOverText="Alpha Mike Foxtrot"
-LocLongDescription="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage with your primary weapon."
-LocHelpText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage with your primary weapon."
-LocPromotionPopupText="<Bullet/> You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage with your primary weapon."
+; LWOTC Needs Translation
+LocLongDescription="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage and <Ability:ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
+LocHelpText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage and <Ability:ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
+LocPromotionPopupText="<Bullet/> You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage and <Ability:ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
+; End Translation
 
 ;;;;;;;;;;;;;;;;;;;;  ASSAULT ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
