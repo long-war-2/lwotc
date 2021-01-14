@@ -755,13 +755,11 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		MapName = MissionState.GeneratedMission.Plot.MapName;
 		if (instr(MapName, "vlgObj") != INDEX_NONE)
 		{
-			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
 			MissionState.GeneratedMission.SitReps.AddItem('VeryLargeMap');
 		}
 		else if (instr(MapName, "LgObj") != INDEX_NONE)
 		{
 			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
-			MissionState.GeneratedMission.SitReps.AddItem('VeryLargeMap');
 		}
 	}
 
