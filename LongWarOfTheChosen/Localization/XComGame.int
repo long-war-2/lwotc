@@ -5834,7 +5834,9 @@ LocFriendlyName="Maim"
 LocFlyOverText="Maim"
 LocLongDescription="Fire a shot with your primary weapon that immobilizes the target until the end of their next turn. Uses <Ability:MAIM_AMMO_COST/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Fire a shot with your primary weapon that immobilizes the target until the end of their next turn. Uses <Ability:MAIM_AMMO_COST/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Fire a shot with your primary weapon that immobilizes the target until the end of their next turn.<br/><Bullet/> Useful to isolate a high-value target during an ambush.<br/><Bullet/> Uses <Ability:MAIM_AMMO_COST/> ammo.<br/><Bullet/> Maim has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Fire a shot with your primary weapon that does normal damage and immobilizes the target until the end of their next turn.<br/><Bullet/> Useful to isolate a high-value target during an ambush.<br/><Bullet/> Uses <Ability:MAIM_AMMO_COST/> ammo.<br/><Bullet/> Maim has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation (2)
 
 [Preservation_LW X2AbilityTemplate]
 LocFriendlyName="Preservation"
