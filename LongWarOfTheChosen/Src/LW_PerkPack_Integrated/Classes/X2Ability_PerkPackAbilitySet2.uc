@@ -367,8 +367,9 @@ static function TrojanVirusVisualizationRemoved(XComGameState VisualizeGameState
 //this ability grants a free equip of a flashbang grenade
 static function X2AbilityTemplate AddFlashbanger()
 {
-	local X2AbilityTemplate			Template;
-	local X2Effect_TemporaryItem	TemporaryItemEffect;
+	local X2AbilityTemplate						Template;
+	local X2Effect_TemporaryItem				TemporaryItemEffect;
+	local X2AbilityTrigger_UnitPostBeginPlay	Trigger;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Flashbanger');
 
@@ -378,7 +379,11 @@ static function X2AbilityTemplate AddFlashbanger()
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Trigger.Priority -= 20; // delayed so that Full Kit happen first
+	Template.AbilityTriggers.AddItem(Trigger);
+	
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = true;
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
@@ -400,9 +405,10 @@ static function X2AbilityTemplate AddFlashbanger()
 //this ability grants a free equip of a smoke grenade, dense smoke grenade, smoke bomb, or dense smoke bomb
 static function X2AbilityTemplate AddSmokeGrenade()
 {
-	local X2AbilityTemplate			Template;
-	local X2Effect_TemporaryItem	TemporaryItemEffect;
-	local ResearchConditional		Conditional;
+	local X2AbilityTemplate						Template;
+	local X2Effect_TemporaryItem				TemporaryItemEffect;
+	local ResearchConditional					Conditional;
+	local X2AbilityTrigger_UnitPostBeginPlay	Trigger;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'SmokeGrenade');
 
@@ -412,7 +418,11 @@ static function X2AbilityTemplate AddSmokeGrenade()
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Trigger.Priority -= 20; // delayed so that Full Kit happen first
+	Template.AbilityTriggers.AddItem(Trigger);
+
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = true;
 
