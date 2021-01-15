@@ -2860,6 +2860,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'COMBATIVES_DODGE_LW':
 			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.COMBATIVES_DODGE);
 			return true;
+		case 'COUNTERATTACK_DODGE_AMOUNT_LW':
+			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.COUNTERATTACK_DODGE_AMOUNT);
+			return true;
 		case 'SPRINTER_MOBILITY_LW':
 			Outstring = string(class'X2Ability_LW_RangerAbilitySet'.default.SPRINTER_MOBILITY);
 			return true;

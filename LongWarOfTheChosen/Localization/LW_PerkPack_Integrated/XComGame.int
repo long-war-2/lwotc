@@ -360,9 +360,11 @@ LocPromotionPopupText="<Bullet/> Reaction fire shots against you have a signific
 [Cutthroat X2AbilityTemplate]
 LocFriendlyName="Cutthroat"
 LocFlyOverText="Cutthroat"
-LocLongDescription="Your melee attacks against biological enemies ignore their armor, have a +15 critical chance, and do +2 critical damage."
-LocHelpText="Your melee attacks against biological enemies ignore their armor, have a +15 critical chance, and do +2 critical damage."
-LocPromotionPopupText="<Bullet/> Your melee attacks against biological enemies ignore their armor, have a +15 critical chance, and do +2 critical damage."
+; LWOTC Needs Translation
+LocLongDescription="Your melee attacks against biological enemies ignore their armor, have a +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> critical chance, and do +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> critical damage."
+LocHelpText="Your melee attacks against biological enemies ignore their armor, have a +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> critical chance, and do +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> critical damage."
+LocPromotionPopupText="<Bullet/> Your melee attacks against biological enemies ignore their armor, have a +<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> critical chance, and do +<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/> critical damage."
+; End translation
 
 [KillerInstinct X2AbilityTemplate]
 LocFriendlyName="Killer Instinct"
@@ -516,18 +518,20 @@ LocPromotionPopupText="<Bullet/> Enemy units hacked by Haywire Protocol take 0 t
 [Covert X2AbilityTemplate]
 LocFriendlyName="Covert"
 LocFlyOverText="Covert"
-LocLongDescription="Enemies have 25% smaller detection range against you."
+; LWOTC Needs Translation
+LocLongDescription="Enemies have <Ability:COVERT_DETECTION_RANGE_REDUCTION/>% smaller detection range against you."
 LocHelpText="Enemies have reduced detection range against you."
-LocPromotionPopupText="<Bullet/> Enemies have 25% smaller detection range against you, as denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
+LocPromotionPopupText="<Bullet/> Enemies have <Ability:COVERT_DETECTION_RANGE_REDUCTION/>% smaller detection range against you, as denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
+; End Translation
 
 [Ghostwalker X2AbilityTemplate]
 LocFriendlyName="Ghostwalker"
 LocFlyOverText="Ghostwalker"
-LocLongDescription="Activate this ability to reduce enemy detection range against you by almost 25% for the rest of your turn as well as the following turn."
-LocHelpText="Reduce enemy detection range by 25% for two turns."
-; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Activate this ability to reduce enemy detection range against you by almost 25% for two turns (including the current turn), as denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> Ghostwalker has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires no actions to activate.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
-; End Translation 
+; LWOTC Needs Translation (2)
+LocLongDescription="Activate this ability to reduce enemy detection range against you by almost <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s)."
+LocHelpText="Reduce enemy detection range by <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s)."
+LocPromotionPopupText="<Bullet/> Activate this ability to reduce enemy detection range against you by almost <Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>% for <Ability:GHOSTWALKER_DURATION/> turn(s) (including the current turn), as denoted by red tiles surrounding enemies who are not alerted to your presence.<br/><Bullet/> Ghostwalker has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires no actions to activate.<br/><Bullet/> This ability also grants a small reduction in this soldier's impact on infiltration times.<br/><Bullet/> Does not apply to ADVENT security towers."
+; End Translation (2)
 
 [Kubikuri X2AbilityTemplate]
 LocFriendlyName="Kubikiri"
@@ -673,14 +677,18 @@ LocFriendlyName="Fleche"
 LocFlyOverText="Fleche"
 LocLongDescription="Attack any enemy within movement range with your sword. Deals +1 damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between your starting position and the target."
 LocHelpText="Attack any enemy within movement range with your sword. Deals bonus damage for attacks from a distance."
-LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/> Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/> Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position up to <Ability:MAX_SLICE_FLECHE_DAMAGE/> maximum bonus damage..<br/>"
+; End Translation
 
 [Fleche X2AbilityTemplate]
 LocFriendlyName="Fleche"
 LocFlyOverText="Fleche"
 LocLongDescription="Attack any enemy within movement range with your sword. Deals +1 damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between your starting position and the target."
 LocHelpText="Attack any enemy within movement range with your sword. Deals bonus damage for attacks from a distance."
-LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/>  Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/> Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position up to <Ability:MAX_SLICE_FLECHE_DAMAGE/> maximum bonus damage.<br/>"
+; End Translation
 
 [FullKit X2AbilityTemplate]
 LocFriendlyName="Full Kit"

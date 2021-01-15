@@ -468,7 +468,9 @@ LocFriendlyName="Combatives"
 LocLongDescription="You may parry melee attacks and counterattack with your melee weapon. Also gain +<ABILITY:COMBATIVES_DODGE_LW/> dodge."
 LocHelpText="You may parry melee attacks and counterattack with your melee weapon."
 LocFlyOverText="Combatives"
-LocPromotionPopupText="<Bullet/> You are very likely to parry the first melee attack against you in a turn and counterattack with your melee weapon.<br/><Bullet/> Soldier also gains <ABILITY:COMBATIVES_DODGE_LW/> dodge."
+; LWOTC needs translation
+LocPromotionPopupText="<Bullet/> You will parry any grazed melee attack against you and counterattack with your melee weapon.<br/><Bullet/> Combatives grant +<Ability:COUNTERATTACK_DODGE_AMOUNT_LW/> dodge against first melee attack against you in a turn.<br/><Bullet/> Soldier also gains <ABILITY:COMBATIVES_DODGE_LW/> dodge."
+; End Translation
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="Flush"

@@ -149,6 +149,24 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 				OutString = Repl(string(TempFloat), "0", "");
 			}
             return true;
+		case 'MAX_SLICE_FLECHE_DAMAGE':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.MAX_SLICE_FLECHE_DAMAGE);
+			return true;
+		case 'CUTTHROAT_BONUS_CRIT_CHANCE':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.CUTTHROAT_BONUS_CRIT_CHANCE);
+			return true;
+		case 'CUTTHROAT_BONUS_CRIT_DAMAGE':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.CUTTHROAT_BONUS_CRIT_DAMAGE);
+			return true;
+		case 'GHOSTWALKER_DETECTION_RANGE_REDUCTION':
+			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.GHOSTWALKER_DETECTION_RANGE_REDUCTION * 100));
+			return true;
+		case 'GHOSTWALKER_DURATION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.GHOSTWALKER_DURATION);
+			return true;
+		case 'COVERT_DETECTION_RANGE_REDUCTION':
+			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.COVERT_DETECTION_RANGE_REDUCTION * 100));
+			return true;
 		case 'GRAZING_FIRE_SUCCESS_CHANCE':
 			Outstring = string (class 'X2Ability_PerkPackAbilitySet'.default.GRAZING_FIRE_SUCCESS_CHANCE);
 			return true;
