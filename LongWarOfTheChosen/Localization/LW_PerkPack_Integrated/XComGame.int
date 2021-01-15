@@ -278,9 +278,11 @@ LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: 
 [SlugShot X2AbilityTemplate]
 LocFriendlyName="Slug Shot"
 LocFlyOverText="Slug Shot"
-LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot that pierces two armor and has no range penalties. Uses <Ability:SelfAmmoCost/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+; LWOTC Needs Translation (3)
+LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot that pierces <Ability:SLUG_SHOT_PIERCE/> armor and has no range penalties. Uses <Ability:SelfAmmoCost/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Armor-piercing special shotgun shot with no range penalties."
-LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> The shot will pierce two armor points.<br/><Bullet/> Slug shot has a <Ability:SelfCooldown_LW/> turn cooldown. <br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
+LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> The shot will pierce <Ability:SLUG_SHOT_PIERCE/> armor point(s).<br/><Bullet/> Slug shot has a <Ability:SelfCooldown_LW/> turn cooldown. <br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
+; End Translation (3)
 
 [SlugShotRangeEffect X2AbilityTemplate]
 LocFriendlyName="Slug Shot"
@@ -369,11 +371,11 @@ LocPromotionPopupText="<Bullet/> Your melee attacks against biological enemies i
 [KillerInstinct X2AbilityTemplate]
 LocFriendlyName="Killer Instinct"
 LocFlyOverText="Killer Instinct"
-; LWOTC Needs Translation
-LocLongDescription="Activating Run and Gun grants +50% critical damage for the rest of the turn."
-LocHelpText="Activating Run and Gun grants +50% critical damage for the rest of the turn."
-LocPromotionPopupText="<Bullet/> Activating Run and Gun grants +50% critical damage for the rest of the turn.<br/>"
-; End translation
+; LWOTC Needs Translation (2)
+LocLongDescription="Activating Run and Gun grants +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% critical damage for the rest of the turn."
+LocHelpText="Activating Run and Gun grants +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% critical damage for the rest of the turn."
+LocPromotionPopupText="<Bullet/> Activating Run and Gun grants +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% critical damage for the rest of the turn.<br/>"
+; End translation (2)
 
 [ExtraConditioning X2AbilityTemplate]
 LocFriendlyName="Extra Conditioning"
@@ -387,7 +389,9 @@ LocFriendlyName="Run And Gun"
 LocFlyOverText="Run And Gun"
 LocLongDescription="Take an action after dashing."
 LocHelpText="Take an action after dashing."
-LocPromotionPopupText="<Bullet/> Run and Gun allows soldiers to close the distance to their targets rapidly, or to easily take a flanking position.<br/><Bullet/> Run and Gun has a 3 turn cooldown.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Run and Gun allows soldiers to close the distance to their targets rapidly, or to easily take a flanking position.<br/><Bullet/> Run and Gun has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End translation
 
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="Suppression"

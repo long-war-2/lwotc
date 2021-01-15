@@ -2947,6 +2947,21 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'SMOKEGRENADE_HITMOD_LW':
 			Outstring = string(-int(class'X2Item_DefaultGrenades'.default.SMOKEGRENADE_HITMOD));
 			return true;
+		case 'STREET_SWEEPER2_UNARMORED_DAMAGE_BONUS_LW':
+			Outstring = string(class'X2Ability_LW_AssaultAbilitySet'.default.STREET_SWEEPER2_UNARMORED_DAMAGE_BONUS);
+			return true;
+		case 'CHAIN_LIGHTNING_AIM_MOD_LW':
+			Outstring = string(class'X2Ability_LW_AssaultAbilitySet'.default.CHAIN_LIGHTNING_AIM_MOD);
+			return true;
+		case 'STUNGUNNER_BONUS_CV_LW':
+			Outstring = string(class'X2Ability_LW_AssaultAbilitySet'.default.STUNGUNNER_BONUS_CV);
+			return true;
+		case 'STUNGUNNER_BONUS_BM_LW':
+			Outstring = string(class'X2Ability_LW_AssaultAbilitySet'.default.STUNGUNNER_BONUS_BM);
+			return true;
+		case 'EMPULSER_HACK_DEFENSE_CHANGE_LW':
+			Outstring = string(-int(class'X2Ability_LW_AssaultAbilitySet'.default.EMPULSER_HACK_DEFENSE_CHANGE));
+			return true;
 		default:
 			return false;
 	}

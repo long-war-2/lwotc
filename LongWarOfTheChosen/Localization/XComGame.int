@@ -617,19 +617,21 @@ LocFlyOverText="Stun"
 LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range, doing no damage but stunning targets for their next turn if it hits.<br/><Bullet/> Improved versions can extend the duration of the stun effect.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Ineffective against mechanized units without additional soldier training."
 ; End Translation
 
+; LWOTC Needs Translation
 [EMPulser X2AbilityTemplate]
 LocFriendlyName="Arc Pulser"
 LocLongDescription="Fire your Arc Thrower to incapacitate a target and damage mechanical enemies."
 LocHelpText="Fire your Arc Pulser."
 LocFlyOverText="Arc Pulser"
-LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range, doing no damage but stunning targets for their next turn if it hits.<br/><Bullet/> Improved versions can extend the duration of the stun effect.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Damage to mechanical units starts at 3 and increases as arc thrower technology improves.<br/><Bullet/> Reduces enemy hack defense by 20.<br/>"
+LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Damage to mechanical units  increases as arc thrower technology improves.<br/><Bullet/> Reduces enemy hack defense by <Ability:EMPULSER_HACK_DEFENSE_CHANGE_LW/>.<br/>"
 
 [EMPulserPassive X2AbilityTemplate]
 LocFriendlyName="Arc Pulser"
 LocLongDescription="Your Arc Thrower now damages mechanical enemies and reduces their defense against hacking attempts."
 LocHelpText="Fire your Arc Pulser."
 LocFlyOverText="Arc Pulser"
-LocPromotionPopupText="<Bullet/> The Arc Pulser is effective anywhere in the soldier's sight range, doing no damage but stunning targets for their next turn if it hits.<br/><Bullet/> Improved versions can extend the duration of the stun effect.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Damage to mechanical units starts at 3 and increases as arc thrower technology improves.<br/><Bullet/> Reduces enemy hack defense by 20.<br/>"
+LocPromotionPopupText="<Bullet/> The Arc Pulser is effective anywhere in the soldier's sight range.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Damage to mechanical units increases as arc thrower technology improves.<br/><Bullet/> Reduces enemy hack defense by <Ability:EMPULSER_HACK_DEFENSE_CHANGE_LW/>.<br/>"
+; End Translation
 
 [Electroshock X2AbilityTemplate]
 LocFriendlyName="Electroshock"
@@ -643,25 +645,27 @@ LocFriendlyName="Stun Gunner"
 LocLongDescription="Your Arc Thrower now has a bonus to hit."
 LocHelpText="Your Arc Thrower has a bonus to hit."
 LocFlyOverText="Stun Gunner"
-LocPromotionPopupText="<Bullet/> The bonus starts at +20 and increases with better Arc Thrower technology, to a maximum of +30."
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> The bonus starts at +<Ability:STUNGUNNER_BONUS_CV_LW/> and increases with better Arc Thrower technology, to a maximum of +<Ability:STUNGUNNER_BONUS_BM_LW/>."
+; End Translation
 
 [StreetSweeper2 X2AbilityTemplate]
 LocFriendlyName="Street Sweeper"
 LocFlyOverText="Street Sweeper"
 LocLongDescription="Cone-based shotgun attack that does bonus damage to unarmored targets. Blocked by heavy cover."
 LocHelpText="Cone-based shotgun attack that does bonus damage to unarmored targets. Blocked by heavy cover."
-; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><Bullet/> The spread pattern is blocked by heavy cover.<br/><Bullet/> Uses one action and <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Street Sweeper has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Does 3 bonus damage against unarmored targets within the spread pattern.<br/><Bullet/> Cannot be used with non-shotgun weapons.<br/><Bullet/> Allies can be injured by this attack.<br/>"
-; End Translation
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><Bullet/> The spread pattern is blocked by heavy cover.<br/><Bullet/> Uses one action and <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Street Sweeper has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Does <Ability:STREET_SWEEPER2_UNARMORED_DAMAGE_BONUS_LW/> bonus damage against unarmored targets within the spread pattern.<br/><Bullet/> Cannot be used with non-shotgun weapons.<br/><Bullet/> Allies can be injured by this attack.<br/>"
+; End Translation (2)
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
-; LWOTC Needs Translation
-LocLongDescription="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim."
-LocHelpText="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a -50 penalty to aim."
+; LWOTC Needs Translation (2)
+LocLongDescription="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a <Ability:CHAIN_LIGHTNING_AIM_MOD/> penalty to aim."
+LocHelpText="Fire your Arc Thrower at every visible enemy who is capable of being stunned, with a <Ability:CHAIN_LIGHTNING_AIM_MOD/> penalty to aim."
 LocFlyOverText="Chain Lightning"
-LocPromotionPopupText="<Bullet/> Fire your Arc Thrower at every visible enemy who is capable of being stunned with a -50 penalty to aim.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
-; End Translation
+LocPromotionPopupText="<Bullet/> Fire your Arc Thrower at every visible enemy who is capable of being stunned with a <Ability:CHAIN_LIGHTNING_AIM_MOD/> penalty to aim.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+; End Translation (2)
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="Leadership"
