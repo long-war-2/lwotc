@@ -2976,7 +2976,7 @@ ObjectiveTextPools[0]="Escort Resistance personnel to evac point"
 ObjectiveTextPools[1]="Extract all remaining Resistance personnel"
 ObjectiveTextPools[2]="Extract all XCOM soldiers"
 ObjectiveTextPools[3]="Emergency evac"
-ObjectiveTextPools[4]="The Resistance's emphasis on recruiting in this region has led to an ADVENT reprisal operation. An unarmed Resistance team on a recruiting mission has been discovered by an ADVENT patrol. We must escort them to an evac point and escape. Firebrand is flying fast and low with limited fuel, so will extract the rebels first. She will return to pick up our troops after making an extraction. Failure to rescue at least one Resistance member will prevent us from conducting recruiting in this region for some time."
+ObjectiveTextPools[4]="The Resistance's emphasis on recruiting in this region has led to an ADVENT reprisal operation. A Resistance team on a recruiting mission has been discovered by an ADVENT patrol. We must escort them to an evac point and escape. Firebrand is flying fast and low with limited fuel, so will extract the rebels first. She will return to pick up our troops after making an extraction. Failure to rescue at least one Resistance member will prevent us from conducting recruiting in this region for some time."
 
 [SupplyConvoy_LW X2MissionTemplate]
 DisplayName="Defend Resistance Supply Convoy"
