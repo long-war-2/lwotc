@@ -2857,6 +2857,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'COMBAT_FITNESS_DEFENSE_LW':
 			Outstring = string(class'X2Ability_LW_RangerAbilitySet'.default.COMBAT_FITNESS_DEFENSE);
 			return true;
+		case 'RUPTURE_CRIT_BONUS_LW':
+			Outstring = string(class'LWTemplateMods'.default.RUPTURE_CRIT_BONUS);
+			return true;			
 		case 'COMBATIVES_DODGE_LW':
 			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.COMBATIVES_DODGE);
 			return true;

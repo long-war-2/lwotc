@@ -5033,11 +5033,11 @@ LocPromotionPopupText="<Bullet/> Fuse has a <Ability:SelfCooldown_LW/> turn cool
 ;End translation
 
 [BulletShred X2AbilityTemplate]
-LocLongDescription="A Rupture shot grants a large bonus to critical hit chances and ensures that the target takes an additional +<Ability:RuptureAmount/> damage from all attacks in the future."
-LocHelpText="A Rupture shot grants a large bonus to critical hit chances and ensures that the target takes increased damage from all attacks in the future."
-; LWOTC needs translation
+; LWOTC needs translation (2)
+LocLongDescription="A Rupture shot grants a <Ability:RUPTURE_CRIT_BONUS_LW/>% bonus to critical hit chances and ensures that the target takes an additional +<Ability:RuptureAmount/> damage from all attacks in the future."
+LocHelpText="A Rupture shot grants a <Ability:RUPTURE_CRIT_BONUS_LW/>% bonus to critical hit chances and ensures that the target takes increased damage from all attacks in the future."
 LocPromotionPopupText="<Bullet/> Rupture requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Rupture has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ruptured targets take <Ability:RuptureAmount/> additional damage from every attack.<br/>"
-; End translation
+; End translation (2)
 
 [Faceoff X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Faceoff is best augmented by aggressive field position, granting a high chance to hit at multiple targets.<br/><Bullet/> Faceoff has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
