@@ -250,11 +250,11 @@ LocPromotionPopupText="<Bullet/> This is a special shot in which the soldier adj
 [PrecisionShot X2AbilityTemplate]
 LocFriendlyName="Precision Shot"
 LocFlyOverText="Precision Shot"
-;LWOTC needs translation
-LocLongDescription="Take a special shot with +30 bonus to critical chance and 33% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocHelpText="Take a special shot with +30 bonus to critical chance and 33% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Take a special shot with +30 bonus to critical chance and 33% bonus critical damage.<br/><Bullet/> Precision Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
-;End translation
+; LWOTC needs translation (2)
+LocLongDescription="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage.<br/><Bullet/> Precision Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End translation (2)
 
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Cyclic Fire"

@@ -314,6 +314,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'SHARPSHOOTERAIM_CRITBONUS':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SHARPSHOOTERAIM_CRITBONUS);
 			return true;
+		case 'PRECISION_SHOT_CRIT_BONUS':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.PRECISION_SHOT_CRIT_BONUS);
+			return true;
+		case 'PRECISION_SHOT_CRIT_DAMAGE_MODIFIER':
+			OutString = string(int(class'X2Effect_PrecisionShotCritDamage'.default.PRECISION_SHOT_CRIT_DAMAGE_MODIFIER * 100));
+			return true;
 		case 'DISORIENTED_MOBILITY_ADJUST':
 			OutString = string (class 'X2StatusEffects'.default.DISORIENTED_MOBILITY_ADJUST);
 			return true;
