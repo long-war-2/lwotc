@@ -603,7 +603,9 @@ LocFriendlyName="Sting Grenades"
 LocFlyOverText="Sting Grenades"
 LocLongDescription="Your flashbang grenades have a 50% chance to stun enemies for one turn in the flashbang's Area of Effect."
 LocHelpText="Your flashbang grenades have a 50% chance to stun enemies."
-LocPromotionPopupText="<Bullet/> Your flashbang grenades have a 50% chance to stun enemies.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Your flashbang grenades have a 50% chance to stun enemies.<br/><Bullet/> Enemies' innate flashbang resistance does not affect stun chance.<br/>"
+; End Translation
 
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="Sting Grenade"
@@ -624,9 +626,9 @@ LocFriendlyName="Rapid Deployment"
 LocFlyOverText="Rapid Deployment"
 LocLongDescription="Activate this ability before throwing or launching a support grenade, and the throw will not cost an action."
 LocHelpText="Activate this ability before throwing or launching a support grenade, and the throw will not cost an action."
-; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Activate this ability before throwing or launching a support grenade, and the throw will not cost an action.<br/><Bullet/> Applies to Smoke Grenades, Flashbangs and Battle Scanners.<br/><Bullet/> Rapid Deployment has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
-; End Translation
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Activate this ability before throwing or launching a support grenade, and the throw will not cost an action.<br/><Bullet/> Applies to Smoke Grenades, Flashbangs, Shaped Charges and Battle Scanners.<br/><Bullet/> Rapid Deployment has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation (2)
 
 [CombatRush X2AbilityTemplate]
 LocFriendlyName="Combat Rush"
@@ -685,7 +687,9 @@ LocFriendlyName="Full Kit"
 LocFlyOverText="Full Kit"
 LocLongDescription="Grants +1 charge per grenade item in a utility slot."
 LocHelpText="Grants +1 charge per grenade item in a utility slot."
-LocPromotionPopupText="<Bullet/> Grants +1 charge per grenade item in a utility slot.<br/><Bullet/> Applies to explosive and support grenades as well as Battle Scanners.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Grants +1 charge per grenade item in a utility slot.<br/><Bullet/> Applies to explosive and support grenades as well as Battle Scanners.<br/><Bullet/> Extra grenades provided by Smoker and Flashbanger abilities do not get extra charges.<br/>"
+; End Translation
 
 [Bastion X2AbilityTemplate]
 LocFriendlyName="Bastion"

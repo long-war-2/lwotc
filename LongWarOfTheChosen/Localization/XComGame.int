@@ -387,21 +387,23 @@ LocHelpText="Your explosives do significantly greater damage to the environment.
 LocFlyOverText="Combat Engineer"
 LocPromotionPopupText="<Bullet/> More powerful than Sapper by itself, Combat Engineer stacks with Sapper to maximize environmental damage, although either perk alone will still destroy many cover objects.<br/><Bullet/> Combat Engineer also prevents environmental damage from falling off from the center of an explosion, meaning you will destroy objects in a larger area."
 
-; LWOTC Needs Translation
+; LWOTC Needs Translation (2)
 [NeedleGrenades X2AbilityTemplate]
 LocFriendlyName="Needle Grenades"
-LocLongDescription="Your explosives do not destroy loot when they kill enemies and deal 1 bonus damage to unarmored enemies"
-LocHelpText="Your explosives do not destroy loot when they kill enemies and deal 1 bonus damage to unarmored enemies."
+LocLongDescription="Your explosives do not destroy loot when they kill enemies and deal <ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/> bonus damage to unarmored enemies."
+LocHelpText="Your explosives do not destroy loot when they kill enemies and deal <ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/> bonus damage to unarmored enemies."
 LocFlyOverText="Needle Grenades"
-LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot intact and tears through unreinforced material."
-; End Translation
+LocPromotionPopupText="<Bullet/> You have received extra training that enables you to employ explosive grenades that deploy specialized slivers that leave enemy loot and corpse intact and tears through unreinforced material.<br/><Bullet/> Loot and corpses of enemies killed by any other explosives of this soldier, such as heavy weapons, are also preserved."
+; End Translation (2)
 
 [HEATWarheads X2AbilityTemplate]
 LocFriendlyName="HEAT Warheads"
-LocLongDescription="Your grenades now pierce up to 2 points of armor and shred one additional point of armor."
-LocHelpText="Your grenades now pierce up to 2 points of armor and shred one additional point of armor."
+; LWOTC Needs Translation
+LocLongDescription="Your grenades now pierce up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor and shred <ABILITY:HEAT_WARHEADS_SHRED/> additional point(s) of armor."
+LocHelpText="Your grenades now pierce up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor and shred <ABILITY:HEAT_WARHEADS_SHRED/> additional point(s) of armor."
 LocFlyOverText="HEAT Warheads"
-LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to 2 points of armor and shred one additional point of armor.<br/>"
+LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor and shred <ABILITY:HEAT_WARHEADS_SHRED/> additional point(s) of armor.<br/>"
+; End Translation
 
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
@@ -417,14 +419,18 @@ LocFriendlyName="Bluescreen Bombs"
 LocLongDescription="Your flashbang grenades now disorient robotic units and reduce their resistance to hacking."
 LocHelpText="Your flashbang grenades now disorient robotic units and reduce their resistance to hacking."
 LocFlyOverText="Bluescreen Bombs"
-LocPromotionPopupText="<Bullet/> Your flashbang grenades now disorient robotic units.<br/><Bullet/> Your flashbang grenades also reduce robotic hack defense.<br/>"
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Your flashbang grenades now disorient robotic units.<br/><Bullet/> Your flashbang grenades also reduce robotic hack defense by <Ability:BLUESCREENBOMB_HACK_DEFENSE_CHANGE_LW/>.<br/>"
+; End Translation
 
 [TandemWarheads X2AbilityTemplate]
 LocFriendlyName="Tandem Warheads"
-LocLongDescription="Your grenades and rockets do full damage to units to the maximum extent of their area of effect."
-LocHelpText="Your grenades and rockets do full damage to the maximum extent of their area of effect."
+; LWOTC Needs Translation
+LocLongDescription="Your grenades, rockets and heavy weapons do full damage to units to the maximum extent of their area of effect."
+LocHelpText="Your grenades, rockets and heavy weapons do full damage to the maximum extent of their area of effect."
 LocFlyOverText="Tandem Warheads"
-LocPromotionPopupText="<Bullet/> Your grenades and rockets do full damage to units to the maximum extent of their area of effect.<br/><Bullet/> This doesn't apply to environmental damage."
+LocPromotionPopupText="<Bullet/> Your grenades, rockets and heavy weapons do full damage to units to the maximum extent of their area of effect.<br/><Bullet/> This doesn't apply to environmental damage."
+; End Translation
 
 [GhostGrenade X2AbilityTemplate]
 LocFriendlyName="Ghost Grenade"
@@ -442,7 +448,9 @@ LocFriendlyName="Biggest Booms"
 LocLongDescription="Your grenades and standard rockets can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage)."
 LocHelpText="Your grenades, standard rockets and micromissiles can inflict critical damage."
 LocFlyOverText="Biggest Booms"
-LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissiles can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage).<br/><Bullet/> Does not apply to non-damaging grenades or the concussion rocket or Bunker Buster abilities.<br/><Bullet/> Grenade crits will grant +1 damage to ongoing damaging effects such as fire."
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissiles can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage).<br/><Bullet/><Ability:BIGGESTBOOMSCHANCE/>% chance for critical damage is not affected by other critical chance modifiers.<br/><Bullet/> Does not apply to non-damaging grenades or the concussion rocket or Bunker Buster abilities.<br/><Bullet/> Grenade crits will grant +1 damage to ongoing damaging effects such as fire."
+; End Translation
 
 ;;;;;;;;;;;;;;;;;;;;  GUNNER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 

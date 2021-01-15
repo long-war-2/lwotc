@@ -2860,6 +2860,18 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'SPRINTER_MOBILITY_LW':
 			Outstring = string(class'X2Ability_LW_RangerAbilitySet'.default.SPRINTER_MOBILITY);
 			return true;
+		case 'HEAT_WARHEADS_PIERCE_LW':
+			Outstring = string(class'X2Ability_LW_GrenadierAbilitySet'.default.HEAT_WARHEADS_PIERCE);
+			return true;
+		case 'HEAT_WARHEADS_SHRED_LW':
+			Outstring = string(class'X2Ability_LW_GrenadierAbilitySet'.default.HEAT_WARHEADS_SHRED);
+			return true;
+		case 'NEEDLE_BONUS_UNARMORED_DMG_LW':
+			Outstring = string(class'X2Ability_LW_GrenadierAbilitySet'.default.NEEDLE_BONUS_UNARMORED_DMG);
+			return true;
+		case 'BLUESCREENBOMB_HACK_DEFENSE_CHANGE_LW':
+			Outstring = string(-class'X2Ability_LW_GrenadierAbilitySet'.default.BLUESCREENBOMB_HACK_DEFENSE_CHANGE);
+			return true;
 		case 'REDSCREEN_EFFECT_LW':
 			Outstring = string(-class'X2Item_LWUtilityItems'.default.REDSCREEN_HACK_DEFENSE_CHANGE);
 			return true;
