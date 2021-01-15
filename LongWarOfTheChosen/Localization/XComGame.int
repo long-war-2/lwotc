@@ -170,7 +170,7 @@ LocFlyOverText="Napalm-X"
 LocLongDescription="Your Flamethrower can now panic enemies."
 LocHelpText="Your Flamethrower can now panic enemies."
 LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/>"
-; End Translation
+; End Translation (2)
 
 [PhosphorusPassive X2AbilityTemplate]
 LocFriendlyName="Phosphorus"
@@ -193,19 +193,21 @@ LocLongDescription="Special Flamethrower shot that does limited damage but force
 LocHelpText="Special flamethrower shot that forces enemies to change their location."
 LocPromotionPopupText="<Bullet/> Has a 20% chance to set enemies in the area of effect on fire and does limited damage.<br/><Bullet/> The narrow jet of flame has less impact on the environment.<br/><Bullet/> Units hit by the shot will be forced to move, often triggering overwatch fire.<br/><Bullet/> One use per mission, but can gain an additional use with additional gear.<br/><Bullet/> Cannot be used from concealment."
 
+; LWOTC Needs Translation (2)
 [Burnout X2AbilityTemplate]
 LocFriendlyName="Burnout"
 LocFlyOverText="Burnout"
 LocLongDescription="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus."
 LocHelpText="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus."
-LocPromotionPopupText="<Bullet/> When fired, your Flamethrower leaves a small smoke cloud around your position, providing a +20 defensive bonus to anyone within.<br/>"
+LocPromotionPopupText="<Bullet/> When fired, your Flamethrower leaves a small smoke cloud around your position, providing a +<Ability:SMOKEGRENADE_HITMOD_LW> defensive bonus to anyone within.<br/><Bullet/> Area of effect radius of smoke cloud is <Ability:BURNOUT_RADIUS_LW> tiles.<br/>"
 
 [BurnoutPassive X2AbilityTemplate]
 LocFriendlyName="Burnout"
 LocFlyOverText="Burnout"
 LocLongDescription="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus."
 LocHelpText="Activating your Flamethrower leaves a small smoke cloud around your position, providing a defensive bonus."
-LocPromotionPopupText="<Bullet/> When fired, your Flamethrower leaves a small smoke cloud around your position, providing a +20 defensive bonus to anyone within.<br/>"
+LocPromotionPopupText="<Bullet/> When fired, your Flamethrower leaves a small smoke cloud around your position, providing a +<Ability:SMOKEGRENADE_HITMOD_LW> defensive bonus to anyone within.<br/>"
+; End Translation (2)
 
 [HighPressure X2AbilityTemplate]
 LocFriendlyName="High Pressure"
@@ -270,14 +272,14 @@ LocLongDescription="Attacks with your gauntlet, and fires set by gauntlet weapon
 LocHelpText="Attacks with your gauntlet, and fires set by gauntlet weapons, do +1 damage."
 LocPromotionPopupText="<Bullet/> Attacks with your gauntlet, and fires set by gauntlet weapons, do +1 damage.<br/><Bullet/> This applies to both rocket launcher and flamethrower weapons, and the fires they set.<br/>"
 
-; LWOTC Needs Translation
+; LWOTC Needs Translation (2)
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
 LocLongDescription="Fire a special rocket that does limited damage but has a chance to stun or disorient organic enemies within its area of effect and leaves a cloud of smoke."
 LocHelpText="Rocket that stuns or disorients targets and leaves a smoke cloud. <Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun and disorientation chances based on target's Will score and the soldier's gauntlet tier.<br/><Bullet/> Requires one action and ends the soldier's turn."
-; End Translation
+LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun chances based on target's Will score and the soldier's gauntlet tier.<br/><Bullet/> Disorientation chances based on target's Will score only.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> Elite Codexes and Psi Zombies are immune to all effects including damage.<br/><Bullet/> Allies cannot be injured by this attack.<br/>"
+; End Translation (2)
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -2789,6 +2789,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'MULTI_TARGETING_COOLDOWN_LW':
 			OutString = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.MULTI_TARGETING_COOLDOWN);
 			return true;
+		case 'BURNOUT_RADIUS_LW':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.BURNOUT_RADIUS);
+			return true;
 		case 'HIGH_PRESSURE_CHARGES_LW':
 			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.FLAMETHROWER_HIGH_PRESSURE_CHARGES);
 			return true;
@@ -2931,6 +2934,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'PHASEWALK_CAST_RANGE_TILES':
 			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.PHASEWALK_CAST_RANGE_TILES);
+			return true;
+		case 'SMOKEGRENADE_HITMOD_LW':
+			Outstring = string(-int(class'X2Item_DefaultGrenades'.default.SMOKEGRENADE_HITMOD));
 			return true;
 		default:
 			return false;

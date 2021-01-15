@@ -375,6 +375,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'LETHAL_CRIT_DAMAGE_LW':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.LETHAL_DAMAGE / 2);
 			return true;
+		case 'FORMIDABLE_EXPLOSIVES_DR':
+			OutString = string(int(class'X2Ability_PerkPackAbilitySet'.default.FORMIDABLE_EXPLOSIVES_DR * 100));
+			return true;
+		case 'FORMIDABLE_ABLATIVE_HP':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.FORMIDABLE_ABLATIVE_HP);
+			return true;
         default:
             return false;
     }

@@ -798,9 +798,11 @@ LocPromotionPopupText="<Bullet/> Shadowstrike bonuses will apply if the soldier 
 [Formidable X2AbilityTemplate]
 LocFriendlyName="Formidable"
 LocFlyOverText="Formidable"
-LocLongDescription="Your gear includes an extra layer of protection, granting 2 bonus ablative hit points and <Ability:BlastPadding/>% less damage from explosive attacks."
+; LWOTC Needs Translation
+LocLongDescription="Your gear includes an extra layer of protection, granting <Ability:FORMIDABLE_ABLATIVE_HP/> bonus ablative hit points and <Ability:FORMIDABLE_EXPLOSIVES_DR/>% less damage from explosive attacks."
 LocHelpText="Gain bonus hit points and reduce explosive damage taken."
-LocPromotionPopupText="<Bullet/> Formidable reduces explosive damage taken by <Ability:BlastPadding/>%.
+LocPromotionPopupText="<Bullet/> Formidable reduces explosive damage taken by <Ability:FORMIDABLE_EXPLOSIVES_DR/>%.
+; End Translation
 
 ; Updated perk loc
 
