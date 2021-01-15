@@ -170,15 +170,6 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'NUM_AIRDROP_CHARGES':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.NUM_AIRDROP_CHARGES);
 			return true;
-		case 'RESCUE_BONUS_DODGE':
-			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_BONUS_DODGE);
-			return true;
-		case 'RESCUE_BONUS_MOBILITY':
-			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_BONUS_MOBILITY);
-			return true;
-		case 'RESCUE_CV_CHARGES':
-			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_CV_CHARGES);
-			return true;
 		case 'GRAZING_FIRE_SUCCESS_CHANCE':
 			Outstring = string (class 'X2Ability_PerkPackAbilitySet'.default.GRAZING_FIRE_SUCCESS_CHANCE);
 			return true;
@@ -415,7 +406,10 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SLUG_SHOT_PIERCE);
 			return true;
 		case 'KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT':
-			OutString = string(class'X2Effect_KillerInstinct'.default.KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT);
+			OutString = string(int(class'X2Effect_KillerInstinct'.default.KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT));
+			return true;
+		case 'RUN_AND_GUN_COOLDOWN':
+			OutString = string(class'X2AbilityCooldown_RunAndGun_LW'.default.RUN_AND_GUN_COOLDOWN);
 			return true;
         default:
             return false;

@@ -390,7 +390,7 @@ LocFlyOverText="Run And Gun"
 LocLongDescription="Take an action after dashing."
 LocHelpText="Take an action after dashing."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> Run and Gun allows soldiers to close the distance to their targets rapidly, or to easily take a flanking position.<br/><Bullet/> Run and Gun has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Run and Gun allows soldiers to close the distance to their targets rapidly, or to easily take a flanking position.<br/><Bullet/> Run and Gun has a <Ability:RUN_AND_GUN_COOLDOWN/> turn cooldown.<br/>"
 ; End translation
 
 [Suppression_LW X2AbilityTemplate]

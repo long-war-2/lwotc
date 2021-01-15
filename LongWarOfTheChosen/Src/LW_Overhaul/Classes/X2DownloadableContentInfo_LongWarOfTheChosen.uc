@@ -2790,7 +2790,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			OutString = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.MULTI_TARGETING_COOLDOWN);
 			return true;
 		case 'BURNOUT_RADIUS_LW':
-			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.BURNOUT_RADIUS);
+			OutString = Repl(string(class'X2Ability_LW_TechnicalAbilitySet'.default.BURNOUT_RADIUS), "0", "");
 			return true;
 		case 'HIGH_PRESSURE_CHARGES_LW':
 			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.FLAMETHROWER_HIGH_PRESSURE_CHARGES);
@@ -2861,7 +2861,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			Outstring = string(class'LWTemplateMods'.default.RUPTURE_CRIT_BONUS);
 			return true;
 		case 'SCANNING_PROTOCOL_INITIAL_CHARGES_LW':
-			Outstring = string(class'LWTemplateMods'.default.SCANNING_PROTOCOL_INITIAL_CHARGES);
+			Outstring = string(class'X2LWAbilitiesModTemplate'.default.SCANNING_PROTOCOL_INITIAL_CHARGES);
 			return true;
 		case 'COMBATIVES_DODGE_LW':
 			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.COMBATIVES_DODGE);
@@ -2945,7 +2945,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.PHASEWALK_CAST_RANGE_TILES);
 			return true;
 		case 'SMOKEGRENADE_HITMOD_LW':
-			Outstring = string(-int(class'X2Item_DefaultGrenades'.default.SMOKEGRENADE_HITMOD));
+			Outstring = string(-class'X2Item_DefaultGrenades'.default.SMOKEGRENADE_HITMOD);
 			return true;
 		case 'STREET_SWEEPER2_UNARMORED_DAMAGE_BONUS_LW':
 			Outstring = string(class'X2Ability_LW_AssaultAbilitySet'.default.STREET_SWEEPER2_UNARMORED_DAMAGE_BONUS);
@@ -2954,14 +2954,23 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			Outstring = string(class'X2Ability_LW_AssaultAbilitySet'.default.CHAIN_LIGHTNING_AIM_MOD);
 			return true;
 		case 'STUNGUNNER_BONUS_CV_LW':
-			Outstring = string(class'X2Ability_LW_AssaultAbilitySet'.default.STUNGUNNER_BONUS_CV);
+			Outstring = string(class'X2Effect_StunGunner'.default.STUNGUNNER_BONUS_CV);
 			return true;
 		case 'STUNGUNNER_BONUS_BM_LW':
-			Outstring = string(class'X2Ability_LW_AssaultAbilitySet'.default.STUNGUNNER_BONUS_BM);
+			Outstring = string(class'X2Effect_StunGunner'.default.STUNGUNNER_BONUS_BM);
 			return true;
 		case 'EMPULSER_HACK_DEFENSE_CHANGE_LW':
-			Outstring = string(-int(class'X2Ability_LW_AssaultAbilitySet'.default.EMPULSER_HACK_DEFENSE_CHANGE));
+			Outstring = string(-class'X2Ability_LW_AssaultAbilitySet'.default.EMPULSER_HACK_DEFENSE_CHANGE);
 			return true;
+		case 'RESCUE_BONUS_DODGE':
+			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_BONUS_DODGE);
+			return true;
+		case 'RESCUE_BONUS_MOBILITY':
+			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_BONUS_MOBILITY);
+			return true;
+		case 'RESCUE_CV_CHARGES':
+			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_CV_CHARGES);
+			return true;			
 		default:
 			return false;
 	}
