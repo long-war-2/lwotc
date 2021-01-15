@@ -2859,7 +2859,10 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'RUPTURE_CRIT_BONUS_LW':
 			Outstring = string(class'LWTemplateMods'.default.RUPTURE_CRIT_BONUS);
-			return true;			
+			return true;
+		case 'SCANNING_PROTOCOL_INITIAL_CHARGES_LW':
+			Outstring = string(class'LWTemplateMods'.default.SCANNING_PROTOCOL_INITIAL_CHARGES);
+			return true;
 		case 'COMBATIVES_DODGE_LW':
 			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.COMBATIVES_DODGE);
 			return true;

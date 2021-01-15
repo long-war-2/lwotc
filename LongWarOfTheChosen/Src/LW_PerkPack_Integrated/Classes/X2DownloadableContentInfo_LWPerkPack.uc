@@ -167,6 +167,18 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'COVERT_DETECTION_RANGE_REDUCTION':
 			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.COVERT_DETECTION_RANGE_REDUCTION * 100));
 			return true;
+		case 'NUM_AIRDROP_CHARGES':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.NUM_AIRDROP_CHARGES);
+			return true;
+		case 'RESCUE_BONUS_DODGE':
+			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_BONUS_DODGE);
+			return true;
+		case 'RESCUE_BONUS_MOBILITY':
+			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_BONUS_MOBILITY);
+			return true;
+		case 'RESCUE_CV_CHARGES':
+			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_CV_CHARGES);
+			return true;
 		case 'GRAZING_FIRE_SUCCESS_CHANCE':
 			Outstring = string (class 'X2Ability_PerkPackAbilitySet'.default.GRAZING_FIRE_SUCCESS_CHANCE);
 			return true;

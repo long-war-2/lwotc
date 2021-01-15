@@ -668,9 +668,11 @@ LocPromotionPopupText="<Bullet/> Your grenades have extra explosives and do one 
 [Airdrop X2AbilityTemplate]
 LocFriendlyName="Airdrop"
 LocFlyOverText="Airdrop"
-LocLongDescription="The Gremlin grants an explosive grenade to the targeted ally. Use twice per mission."
+; LWOTC Needs Translation
+LocLongDescription="The Gremlin grants an explosive grenade to the targeted ally. Usable <Ability:NUM_AIRDROP_CHARGES/> time(s) per mission."
 LocHelpText="Grants an explosive grenade to the targeted ally."
-LocPromotionPopupText="<Bullet/> Grants an explosive grenade to the targeted ally.<br/><Bullet/> Airdrop initially confers a frag grenade, but as XCOM's technology improves it will instead provide a more advanced device.<br/><Bullet/> Activating Airdrop uses one action and does not end the soldier's turn.<br/><Bullet/> Use twice per mission."
+LocPromotionPopupText="<Bullet/> Grants an explosive grenade to the targeted ally.<br/><Bullet/> Airdrop initially confers a frag grenade, but as XCOM's technology improves it will instead provide a more advanced device.<br/><Bullet/> Activating Airdrop uses one action and does not end the soldier's turn.<br/><Bullet/> Activating Airdrop does not break concealment.<br/><Bullet/> Usable <Ability:NUM_AIRDROP_CHARGES/> time(s) per mission."
+; End Translation
 
 [SwordSlice_LW X2AbilityTemplate]
 LocFriendlyName="Fleche"
