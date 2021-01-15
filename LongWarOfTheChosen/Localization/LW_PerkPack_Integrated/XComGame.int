@@ -715,9 +715,11 @@ LocPromotionPopupText="<Bullet/> Bastion has a 4 tile radius.<br/><Bullet/> Movi
 [IronCurtain X2AbilityTemplate]
 LocFriendlyName="Iron Curtain"
 LocFlyOverText="Iron Curtain"
-LocLongDescription="Special shot that does half damage but reduces target mobility for the following two turns. Cone-based attack with primary weapon."
+; LWOTC Needs Translation
+LocLongDescription="Special shot that does <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% of normal damage but reduces target mobility for the following <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> turn(s). Cone-based attack with primary weapon."
 LocHelpText="Special shot that does low damage but reduces enemy mobility for the following two turns."
-LocPromotionPopupText="<Bullet/> If this cone-based attack hits, Iron Curtain does half normal damage and imposes -5 mobility to the enemy for two turns.<br/><Bullet/> Iron Curtain has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Uses three ammo.<br/><Bullet/> Can be used after moving.<br/><Bullet/> Iron Curtain does not work with shotguns or sniper rifles.<br/><Bullet/> Allies in the cone can be hit by this ability.<br/>"
+LocPromotionPopupText="<Bullet/> If this cone-based attack hits, Iron Curtain does <Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>% of normal damage and imposes -<Ability:IRON_CURTAIN_MOBILITY_DAMAGE> mobility to the enemy for <Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/> turn(s).<br/><Bullet/> Iron Curtain has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Uses <Ability:IRON_CURTAIN_AMMO_COST> ammo.<br/><Bullet/> Can be used after moving.<br/><Bullet/> Iron Curtain does not work with shotguns or sniper rifles.<br/><Bullet/> Allies in the cone can be hit by this ability.<br/>"
+; End Translation
 
 [IronCurtainShot X2AbilityTemplate]
 LocFriendlyName="Iron Curtain"

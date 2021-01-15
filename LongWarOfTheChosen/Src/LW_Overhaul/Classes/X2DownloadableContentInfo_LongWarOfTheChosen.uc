@@ -2920,6 +2920,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FLUSH_STATEFFECT_DURATION':
 			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.FLUSH_STATEFFECT_DURATION);
 			return true;
+		case 'FLUSH_AIM_BONUS':
+			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.FLUSH_AIM_BONUS);
+			return true;
 		case 'MIND_SCORCH_BURN_CHANCE':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.MIND_SCORCH_BURN_CHANCE);
 			return true;

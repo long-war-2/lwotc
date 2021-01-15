@@ -293,6 +293,18 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'CYCLIC_FIRE_AIM_MALUS':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.CYCLIC_FIRE_AIM_MALUS);
 			return true;
+		case 'IRON_CURTAIN_DAMAGE_MODIFIER':
+			OutString = string(int(class'X2Effect_IronCurtain'.default.IRON_CURTAIN_DAMAGE_MODIFIER * 100));
+			return true;
+		case 'IRON_CURTAIN_MOBILITY_DAMAGE':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.IRON_CURTAIN_MOBILITY_DAMAGE);
+			return true;
+		case 'IRON_CURTAIN_MOB_DAMAGE_DURATION':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.IRON_CURTAIN_MOB_DAMAGE_DURATION);
+			return true;
+		case 'IRON_CURTAIN_AMMO_COST':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.IRON_CURTAIN_AMMO_COST);
+			return true;
 		case 'SLUG_SHOT_COOLDOWN':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SLUG_SHOT_COOLDOWN);
 			return true;
