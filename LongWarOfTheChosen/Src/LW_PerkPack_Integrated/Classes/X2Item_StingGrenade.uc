@@ -42,7 +42,7 @@ static function X2DataTemplate CreateStingGrenade()
 	Template.bFriendlyFireWarning = false;
 	Template.Abilities.AddItem('ThrowGrenade');
 
-	Template.ThrownGrenadeEffects.AddItem(class'X2StatusEffects'.static.CreateDisorientedStatusEffect());
+	Template.ThrownGrenadeEffects.AddItem(class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false));
 
 	//We need to have an ApplyWeaponDamage for visualization, even if the grenade does 0 damage (makes the unit flinch, shows overwatch removal)
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
@@ -54,7 +54,7 @@ static function X2DataTemplate CreateStingGrenade()
 	UnitCondition.IncludeWeakAgainstTechLikeRobot = false;
 	UnitCondition.ExcludeFriendlyToSource = false;
 
-	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(default.STING_GRENADE_STUN_LEVEL, default.STING_GRENADE_STUN_CHANCE);
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(default.STING_GRENADE_STUN_LEVEL, default.STING_GRENADE_STUN_CHANCE, false);
 	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.StunnedFriendlyName, class'X2StatusEffects'.default.StunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
 	StunnedEffect.TargetConditions.AddItem(UnitCondition);
 	Template.ThrownGrenadeEffects.AddItem(StunnedEffect);
