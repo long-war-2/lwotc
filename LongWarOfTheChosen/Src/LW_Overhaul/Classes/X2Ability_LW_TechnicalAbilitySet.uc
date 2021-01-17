@@ -58,8 +58,10 @@ var config int NUM_AIM_SCATTER_ROLLS;
 var config array<name> SCATTER_REDUCTION_ABILITIES;
 var config array<int> SCATTER_REDUCTION_MODIFIERS;
 var config array<int> ROCKET_RANGE_PROFILE;
-var config int QUICKBURN_COOLDOWN;
 var config int PHOSPHORUS_BONUS_SHRED;
+
+var config int QUICKBURN_COOLDOWN;
+var config array<name> QUICKBURN_ABILITIES;
 
 var name PanicImpairingAbilityName;
 
@@ -1361,6 +1363,7 @@ static function X2AbilityTemplate AddQuickburn()
 	QuickburnEffect.BuildPersistentEffect (1, false, false, true, eGameRule_PlayerTurnEnd);
 	QuickburnEFfect.EffectName = 'QuickburnEffect';
 	QuickburnEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	QuickburnEffect.AffectedAbilities = default.QUICKBURN_ABILITIES;
 	Template.AddTargetEffect (QuickburnEffect);
 
 	Template.bCrossClassEligible = true;

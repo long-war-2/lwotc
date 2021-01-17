@@ -38,9 +38,27 @@ var private int Turns;
 
 static function int GetInitialTimer(string MissionType, string MissionFamily)
 {
+	local XComGameState_KismetVariableModifier ModifierState;
+	local int TurnValue;
+
+	TurnValue = GetBaseTimer(MissionType, MissionFamily);
+
+	// Apply any sit rep timer-modifier effects
+	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_KismetVariableModifier', ModifierState)
+	{
+		if (ModifierState.VarName == class'X2SitRep_DefaultSitRepEffects_LW'.default.MissionTimerModifierVarName)
+		{
+			TurnValue += ModifierState.Delta;
+			break;
+		}
+	}
+
+	return TurnValue;
+}
+
+static function int GetBaseTimer(string MissionType, string MissionFamily)
+{
 	local int i, TurnValue;
-	local XComGameState_BattleData BattleData;
-	local string teststr;
 
 	i = default.InitialTurnCounts.Find('MissionType', MissionType);
 	if (i == INDEX_NONE)
@@ -59,33 +77,11 @@ static function int GetInitialTimer(string MissionType, string MissionFamily)
 	}
 	else
 	{
-		//`redscreen("Failed to locate an initial mission count value for " $ MissionFamily);
 		return -1;
 	}
 
 	TurnValue += default.TimerDifficultyMod[`TACTICALDIFFICULTYSETTING];
 
-    BattleData = XComGameState_BattleData(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_BattleData'));
-	
-	if (BattleData != none)
-	{
-		TestStr = BattleData.MapData.PlotMapName;
-		//`LOG ("Map For Timer:" @ TestStr);
-		if (class'UIUtilities_LW'.default.FixedExitMissions.Find (BattleData.MapData.ActiveMission.MissionName) != -1 && class'UIUtilities_LW'.default.EvacTimerMissions.Find (BattleData.MapData.ActiveMission.MissionName) != -1)
-		{
-			if (instr(TestStr, "vlgObj") != -1) 
-			{	
-				TurnValue += default.VERY_LARGE_MAP_BONUS;
-			}
-			else
-			{
-				if (instr(TestStr, "LgObj") != -1) 
-				{
-					TurnValue += default.LARGE_MAP_BONUS;
-				}
-			}
-		}
-	}	
 	return TurnValue;
 }
 

@@ -2717,7 +2717,7 @@ static function X2AbilityTemplate LockdownBonuses()
 	//  Effect code checks whether unit has Lockdown before providing aim and damage bonuses
 	DamageEffect = new class'X2Effect_LockdownDamage';
 	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
-	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
+	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
 	Template.AddTargetEffect(DamageEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
@@ -2739,7 +2739,7 @@ static function X2AbilityTemplate MayhemBonuses()
 	//  Effect code checks whether unit has Mayhem before providing aim and damage bonuses
 	DamageEffect = new class'X2Effect_Mayhem';
 	DamageEffect.BuildPersistentEffect(1,true,false,false,eGameRule_PlayerTurnBegin);
-	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
+	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
 	Template.AddTargetEffect(DamageEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
@@ -3338,7 +3338,7 @@ static function X2AbilityTemplate AddGrazingFireAbility()
 static function X2AbilityTemplate AddHeavyFragsAbility()
 {
 	local X2AbilityTemplate					Template;
-	local X2Effect_VolatileMix				DamageEffect;
+	local X2Effect_GrenadeDamage			DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'HeavyFrags');
 
@@ -3354,10 +3354,11 @@ static function X2AbilityTemplate AddHeavyFragsAbility()
 	Template.bDisplayInUITacticalText = true;
 	Template.bShowActivation = false;
 
-	DamageEffect = new class'X2Effect_VolatileMix';
+	DamageEffect = new class'X2Effect_GrenadeDamage';
 	DamageEffect.BuildPersistentEffect(1, true, false);
 	DamageEffect.SetDisplayInfo (ePerkBuff_Passive,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
 	DamageEffect.BonusDamage = default.HEAVY_FRAGS_DAMAGE;
+	DamageEffect.ApplyToNonBaseDamage = true;   // Apply to tick effects like poison and burning a la LW2
 	Template.AddTargetEFfect(DamageEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

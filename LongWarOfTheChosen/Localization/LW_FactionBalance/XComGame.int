@@ -74,7 +74,9 @@ LocFlyoverText="Apotheosis!"
 ; End Translation (2)
 LocLongDescription="Become a god, massively increasing your dodge, Rend damage and mobility. Requires a minimum of 3 focus and consumes it all."
 LocHelpText="Become a god, massively increasing your dodge, Rend damage and mobility. Requires a minimum of 3 focus and consumes it all."
-LocPromotionPopupText="<Bullet/> A free action that makes the Templar substantially more powerful for one turn.<br/><Bullet/> Increases Rend damage by <Ability:ApotheosisDamageMultiplier/>% for each point of focus above 2.<br/><Bullet/> Increases Dodge by <Ability:ApotheosisDodgeBonus/>.<br/><Bullet/> Increases mobility by <Ability:ApotheosisMobilityBonus/> for each point of focus above 2.<br/><Bullet/> Requires a minimum of 3 focus.<br/><Bullet/> Consumes all focus."
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> A free action that makes the Templar substantially more powerful for one turn.<br/><Bullet/> Increases Rend damage by <Ability:ApotheosisDamageMultiplier/>% for each point of focus above 2.<br/><Bullet/> Increases Dodge by <Ability:ApotheosisDodgeBonus/>.<br/><Bullet/> Increases mobility by <Ability:ApotheosisMobilityBonus/> for each point of focus above 2.<br/><Bullet/> Requires a minimum of 3 focus.<br/><Bullet/> Consumes all focus.<br/><Bullet/> The Templar cannot gain focus from Rend kills while under the effect of Apotheosis."
+; End Translation (2)
 ; End Translation
 
 ; Needs Translation
@@ -98,6 +100,12 @@ LocLongDescription="Consumes a charge to extend Shadow's duration by 1 turn."
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Allows the player to extend Shadow by 1 turn.<br/><Bullet/> Can only be used while in Shadow.<br/><Bullet/> Charge Battery is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Charge Battery has <Ability:CHARGE_BATTERY_CHARGES/> charge(s).<br/>"
 ; End Translation (2)
+; End Translation
+
+; LWOTC Needs Translation
+[SilentKillerDurationExtension X2AbilityTemplate]
+LocFriendlyName="Silent Killer Refresh Shadow"
+LocFlyoverText="Shadow: +1 Turn"
 ; End Translation
 
 ; LWOTC Needs Translation

@@ -66,6 +66,11 @@ var config array<InfiltrationQueueModifierStruct>QUEUE_MODIFIER;
 // by difficulty setting.
 var config const array<float> RAPID_RESPONSE_MODIFIER;
 
+// The effective region alert level to use for ambush missions since it's
+// unreasonable to use the actual region strength, which could be incredibly
+// high - for example if it's in an uncontacted Black Site region.
+var config int AMBUSH_MISSION_REGION_ALERT_LEVEL;
+
 // Amount to add to the level per-turn due to alert level
 var config const array<float> ALERT_MODIFIER;
 
@@ -97,6 +102,7 @@ var int TurnsSinceTriggered;
 var int TurnsSinceWin;
 var int CavalryTurn;
 var int CavalryOnWinTurn;
+var float TimerBucketModifier;
 var bool RedAlertTriggered;
 var bool ExternallyTriggered;
 var bool Disabled;
@@ -124,6 +130,7 @@ function Initialize()
 	local XComGameState_LWAlienActivity CurrentActivity;
 	local int k;
 	local Mission_Reinforcements_Modifiers_Struct_LW EmptyReinfRules;
+	local float BaseTimerLength, CurrentTimerLength;
 
     `LWTrace("LWRNF: Initializing RNF state");
 
@@ -157,7 +164,34 @@ function Initialize()
 		}
 	}
 	Count = Max (ReinfRules.QueueOffset + GetQueueOffSetModifier(), 0);
+
+	// Work out how many more or fewer turns there are compared to the default
+	// and use this to initialise the timer-based bucket modifier
+	TimerBucketModifier = 1.0;
+	CurrentTimerLength = GetCurrentTimer();
+	if (CurrentTimerLength > 0)
+	{
+		// We have a timer, so we can calculate a bucket modifier for it
+		BaseTimerLength = class'SeqAct_InitializeMissionTimer'.static.GetBaseTimer(
+			MissionState.GeneratedMission.Mission.sType,
+			MissionState.GeneratedMission.Mission.MissionFamily);
+		TimerBucketModifier = BaseTimerLength / CurrentTimerLength;
+	}
+
     IsInitialized = true;
+}
+
+function int GetCurrentTimer()
+{
+    local XComGameState_UITimer Timer;
+
+    Timer = XComGameState_UITimer(`XCOMHISTORY.GetSingleGameStateObjectForClass(class 'XComGameState_UITimer', true));
+    if (Timer == none)
+    {
+        return -1;
+    }
+
+    return Timer.TimerValue;
 }
 
 function int GetQueueOffsetModifier()
@@ -288,7 +322,8 @@ function bool CanAddToBucket()
 	{
 		if (class'Utilities_LW'.static.CurrentMissionType() != "Defend_LW" &&
 		    class'Utilities_LW'.static.CurrentMissionType() != "SupplyConvoy_LW" &&
-		    class'Utilities_LW'.static.CurrentMissionType() != "Invasion_LW")
+		    class'Utilities_LW'.static.CurrentMissionType() != "Invasion_LW" &&
+		    class'Utilities_LW'.static.CurrentMissionType() != "CovertEscape_LW")
 		return false;
 	}
 
@@ -400,6 +435,10 @@ function int CheckForReinforcements()
 
 		TmpValue = ReinfRules.BucketMultiplier;
 		`LWTrace("LWRNF: Applying multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value from mission/activity");
+		BucketFiller *= TmpValue;
+
+		TmpValue = TimerBucketModifier;
+		`LWTrace("LWRNF: Applying timer-based multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value");
 		BucketFiller *= TmpValue;
 
 		Bucket += BucketFiller;
@@ -549,7 +588,15 @@ function float GetIncreaseFromRegion()
 	Region = MissionState.GetWorldRegion();
 	RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(Region);
 
-    AlertLevel = Min(RegionalAI.LocalAlertLevel, ALERT_MODIFIER.Length);
+	AlertLevel = Min(RegionalAI.LocalAlertLevel, ALERT_MODIFIER.Length);	
+	// TODO: This is a super hack to ensure that ambush missions don't have varying
+	// difficulties of reinforcements based on where they run, because the player
+	// has no knowledge of where the covert action will run.
+	if (MissionState.GeneratedMission.Mission.sType == "CovertEscape_LW")
+	{
+		AlertLevel = AMBUSH_MISSION_REGION_ALERT_LEVEL;
+	}
+
     AlertMod = ALERT_MODIFIER[AlertLevel];
 
     // Randomize the alert-based level.

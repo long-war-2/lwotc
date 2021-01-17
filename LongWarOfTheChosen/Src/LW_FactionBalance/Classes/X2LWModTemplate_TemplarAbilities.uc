@@ -50,6 +50,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'VoidConduit':
 		FixVoidConduit(Template);
 		break;
+	case 'FocusKillTracker':
+		DisableFocusGainDuringApotheosis(Template);
+		break;
 	}
 }
 
@@ -237,6 +240,28 @@ static function FixVoidConduit(X2AbilityTemplate Template)
 	PatchEffect.BuildPersistentEffect(1, true, true, false, eGameRule_UnitGroupTurnBegin);
 	PatchEffect.bRemoveWhenTargetDies = true;
 	Template.AddTargetEffect(PatchEffect);
+}
+
+// Apotheosis should disable focus gain so that Reaper chains
+// don't keep gaining damage at the same time as losing it.
+// This is also a downside that would make it easier to balance.
+static function DisableFocusGainDuringApotheosis(X2AbilityTemplate Template)
+{
+	local X2Effect_ModifyTemplarFocus FocusEffect;
+	local X2Condition_UnitEffects ForbidApotheosisCondition;
+	local int i;
+
+	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
+	{
+		FocusEffect = X2Effect_ModifyTemplarFocus(Template.AbilityTargetEffects[i]);
+		if (FocusEffect != none)
+		{
+			ForbidApotheosisCondition = new class'X2Condition_UnitEffects';
+			ForbidApotheosisCondition.AddExcludeEffect('Apotheosis', 'AA_AbilityUnavailable');
+			Template.AbilityTargetEffects[i].TargetConditions.AddItem(ForbidApotheosisCondition);
+			break;
+		}
+	}
 }
 
 defaultproperties

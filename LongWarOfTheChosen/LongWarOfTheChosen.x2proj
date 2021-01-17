@@ -394,8 +394,11 @@
     <Content Include="Src\LWUtilities\Classes\X2DownloadableContentInfo_LWUtilities.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\LW_AlienPack.uci" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\LWAlienPack_Utilities.uc" />
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\LWUpdateAlienCustomizationAction.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\UIScreenListener_Shell_LWAlienPack.uc" />
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\UIScreenListener_TacticalHUD_LWAlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Ability_LWAlienAbilities.uc" />
+    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Action_CustomizeAlienPackRNFs.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Character_AlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2DownloadableContentInfo_LWAlienPack.uc" />
     <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Effect_AdventGrenadeLauncher.uc" />
@@ -725,6 +728,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWEvacZone.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWRocketLauncher.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_TransferMecToOutpost.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\XComGameState_KismetVariableModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LWAlienActivity.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LWAlienActivityManager.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LWEvacSpawner.uc" />
@@ -805,6 +809,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FullKit.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_FullOrdnance.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_GrazingFire.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_GrenadeDamage.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HardTarget.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HitandRun.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_HyperReactivePupils.uc" />
@@ -1137,7 +1142,6 @@
     <Content Include="Content\LWZ_PerkContent_ConcussionRocket.upk" />
     <Content Include="Content\LWZ_PerkContent_RocketProjectile.upk" />
     <Content Include="Src\LW_Overhaul\Classes\UIStrategyMapItem_AlienNetworkComponent_LW.uc" />
-    <Content Include="Src\LW_AlienPack_Integrated\Classes\X2Action_CustomizeAlienPackRNFs.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIAdventOperations_LW.uc" />
     <Content Include="Content\CIN_TroopTransport.upk" />
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2TargetingMethod_CommandRange.uc" />
@@ -1259,6 +1263,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ChargeBattery.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ClaymoreDistraction.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_CritRemoval.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DeathDealer_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DeflectNew.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DisablingShotStunned.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ManualOverride_LW.uc" />

@@ -15,6 +15,8 @@ var config int CRIPPLING_STRIKE_COOLDOWN;
 var config int CHARGE_BATTERY_COOLDOWN;
 var config int CHARGE_BATTERY_CHARGES;
 
+var config int SILENT_KILLER_EXTEND_SHADOW_CHANCE;
+
 var config int TrackingRadius;
 
 var config int BloodTrailBleedingTurns;
@@ -44,6 +46,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddDisablingShotCritRemoval());
 	Templates.AddItem(AddDemolitionist());
 	Templates.AddItem(AddSilentKillerCooldownReduction());
+	Templates.AddItem(AddSilentKillerDurationExtension());
 	Templates.AddItem(AddCripplingStrike());
 	Templates.AddItem(AddShadowGrenadier());
 	Templates.AddItem(AddPoisonedBlades());
@@ -661,6 +664,40 @@ static function X2AbilityTemplate AddSilentKillerCooldownReduction()
 	return Template;
 }
 
+static function X2AbilityTemplate AddSilentKillerDurationExtension()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener EventListener;
+	local X2Effect_ChargeBattery ExtendDurationEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SilentKillerDurationExtension');
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_silentkiller";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'SilentKillerActivated';
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	ExtendDurationEffect = new class'X2Effect_ChargeBattery';
+	ExtendDurationEffect.ApplyChance = default.SILENT_KILLER_EXTEND_SHADOW_CHANCE;
+	Template.AddTargetEffect(ExtendDurationEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = ChargeBattery_BuildVisualization;
+
+	return Template;
+}
+
 static function X2DataTemplate AddCripplingStrike()
 {
 	local X2AbilityTemplate					Template;
@@ -839,7 +876,7 @@ static function X2DataTemplate AddChargeBattery()
 }
 
 // Copied from Rapid Deployment. Just plays a flyover to indicate that charge
-// batter has been activated.
+// battery has been activated.
 static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameState)
 {
 	local XComGameStateHistory				History;
