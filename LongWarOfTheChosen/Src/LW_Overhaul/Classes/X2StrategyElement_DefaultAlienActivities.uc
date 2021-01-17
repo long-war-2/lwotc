@@ -1983,8 +1983,9 @@ static function OnEmergencyOffworldReinforcementsComplete(bool bAlienSuccess, XC
 	local XComGameState_WorldRegion RegionState, AdjacentRegion;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
 	local XComGameState_WorldRegion_LWStrategyAI AdjacentRegionalAI;
+	local StateObjectReference                   LinkedRegionRef;
 	local int k, RandIndex;
-	local array<StateObjectReference> RegionLinks;
+	local array<XComGameState_WorldRegion> RegionLinks;
 
 	History = `XCOMHISTORY;
 
@@ -1997,17 +1998,25 @@ static function OnEmergencyOffworldReinforcementsComplete(bool bAlienSuccess, XC
 		`LWTRACE("EmergencyOffworldReinforcementsComplete : Alien Success, adding AlertLevel to primary and some surrounding regions");
 		// reinforcements have arrived
 		RegionalAI.LocalAlertLevel += default.EMERGENCY_REINFORCEMENT_PRIMARY_REGION_ALERT_BONUS;
-		RegionLinks = RegionState.LinkedRegions;
 
-		for (k=0; k < default.ADJACENT_REGIONS_REINFORCED_BY_REGULAR_ALERT_UFO; k++)
+		foreach RegionState.LinkedRegions(LinkedRegionRef)
 		{
-			RandIndex = `SYNC_RAND_STATIC(RegionState.LinkedRegions.Length);
-			AdjacentRegion = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(RegionLinks[RandIndex].ObjectID));
-			if (AdjacentRegion==none)
-				AdjacentRegion = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionLinks[RandIndex].ObjectID));
-			RegionLinks.Remove(RandIndex, 1);
+			AdjacentRegion = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(LinkedRegionRef.ObjectID));
+			if (AdjacentRegion == none)
+				AdjacentRegion = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(LinkedRegionRef.ObjectID));
+			if (AdjacentRegion != none && !RegionIsLiberated(AdjacentRegion, NewGameState))
+			{
+				RegionLinks.AddItem(AdjacentRegion);
+			}
+		}
+
+		for (k = 0; k < default.ADJACENT_REGIONS_REINFORCED_BY_REGULAR_ALERT_UFO; k++)
+		{
+			RandIndex = `SYNC_RAND_STATIC(RegionLinks.Length);
+			AdjacentRegion = RegionLinks[RandIndex];
 			if (AdjacentRegion != none)
 			{
+				RegionLinks.Remove(RandIndex, 1);
 				AdjacentRegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(AdjacentRegion, NewGameState, true);
 				AdjacentRegionalAI.LocalAlertLevel += default.EMERGENCY_REINFORCEMENT_ADJACENT_REGION_ALERT_BONUS;
 			}
@@ -2088,8 +2097,9 @@ static function OnSuperEmergencyOffworldReinforcementsComplete(bool bAlienSucces
 	local XComGameState_WorldRegion						RegionState, AdjacentRegion;
 	local XComGameState_WorldRegion_LWStrategyAI		RegionalAI;
 	local XComGameState_WorldRegion_LWStrategyAI		AdjacentRegionalAI;
+	local StateObjectReference                          LinkedRegionRef;
 	local int k, RandIndex;
-	local array<StateObjectReference> RegionLinks;
+	local array<XComGameState_WorldRegion> RegionLinks;
 
 	History = `XCOMHISTORY;
 	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
@@ -2102,16 +2112,25 @@ static function OnSuperEmergencyOffworldReinforcementsComplete(bool bAlienSucces
 	{
 		`LWTRACE("SuperEmergencyOffworldReinforcementsComplete : Alien Success, adding AlertLevel to primary and some surrounding regions");
 		RegionalAI.LocalAlertLevel += default.SUPEREMERGENCY_REINFORCEMENT_PRIMARY_REGION_ALERT_BONUS;
-		RegionLinks = RegionState.LinkedRegions;
-		for (k=0; k < default.ADJACENT_REGIONS_REINFORCED_BY_SUPEREMERGENCY_ALERT_UFO; k++)
+
+		foreach RegionState.LinkedRegions(LinkedRegionRef)
 		{
-			RandIndex = `SYNC_RAND_STATIC(RegionState.LinkedRegions.Length);
-			AdjacentRegion = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(RegionLinks[RandIndex].ObjectID));
-			if (AdjacentRegion==none)
-				AdjacentRegion = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionLinks[RandIndex].ObjectID));
-			RegionLinks.Remove(RandIndex, 1);
+			AdjacentRegion = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(LinkedRegionRef.ObjectID));
+			if (AdjacentRegion == none)
+				AdjacentRegion = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(LinkedRegionRef.ObjectID));
+			if (AdjacentRegion != none && !RegionIsLiberated(AdjacentRegion, NewGameState))
+			{
+				RegionLinks.AddItem(AdjacentRegion);
+			}
+		}
+
+		for (k = 0; k < default.ADJACENT_REGIONS_REINFORCED_BY_SUPEREMERGENCY_ALERT_UFO; k++)
+		{
+			RandIndex = `SYNC_RAND_STATIC(RegionLinks.Length);
+			AdjacentRegion = RegionLinks[RandIndex];
 			if (AdjacentRegion != none)
 			{
+				RegionLinks.Remove(RandIndex, 1);
 				AdjacentRegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(AdjacentRegion, NewGameState, true);
 				AdjacentRegionalAI.LocalAlertLevel += default.SUPEREMERGENCY_REINFORCEMENT_ADJACENT_REGION_ALERT_BONUS;
 			}
