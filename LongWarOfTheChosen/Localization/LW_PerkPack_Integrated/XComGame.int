@@ -417,30 +417,30 @@ LocPromotionPopupText="<Bullet/> Area Suppression suppresses enemies in a 5-tile
 [Lockdown X2AbilityTemplate]
 LocFriendlyName="Lockdown"
 LocFlyOverText="Lockdown"
-LocLongDescription="Gain +15 to hit against enemies who attempt to move when suppressed."
+LocLongDescription="Gain +<Ability:LOCKDOWN_TOHIT_BONUS/> to hit against enemies who attempt to move when suppressed."
 LocHelpText="Bonus hit chance and damage to enemies who attempt to move when suppressed."
-LocPromotionPopupText="<Bullet/> Gain +15 to hit against enemies who attempt to move when suppressed.<br/><Bullet/> This stacks with other reaction fire bonuses."
+LocPromotionPopupText="<Bullet/> Gain +<Ability:LOCKDOWN_TOHIT_BONUS/> to hit against enemies who attempt to move when suppressed.<br/><Bullet/> This stacks with other reaction fire bonuses."
 
-[Lockdown X2AbilityTemplate]
+[LockdownBonuses X2AbilityTemplate]
 LocFriendlyName="Lockdown"
 LocFlyOverText="Lockdown"
-LocLongDescription="Gain +15 to hit against enemies who attempt to move when suppressed."
+LocLongDescription="Gain +<Ability:LOCKDOWN_TOHIT_BONUS/> to hit against enemies who attempt to move when suppressed."
 LocHelpText="Bonus hit chance and damage to enemies who attempt to move when suppressed."
-LocPromotionPopupText="<Bullet/> Gain +15 to hit against enemies who attempt to move when suppressed.<br/><Bullet/> This stacks with other reaction fire bonuses."
+LocPromotionPopupText="<Bullet/> Gain +<Ability:LOCKDOWN_TOHIT_BONUS/> to hit against enemies who attempt to move when suppressed.<br/><Bullet/> This stacks with other reaction fire bonuses."
 
 [Mayhem X2AbilityTemplate]
 LocFriendlyName="Mayhem"
 LocFlyOverText="Mayhem"
-LocLongDescription="Gain 25% bonus damage against enemies who attempt to move when suppressed."
+LocLongDescription="Gain <Ability:MAYHEM_DAMAGE_BONUS_PCT/>% bonus damage against enemies who attempt to move when suppressed."
 LocHelpText="Bonus damage to enemies who attempt to move when suppressed."
-LocPromotionPopupText="<Bullet/> Gain 25% bonus damage against enemies who attempt to move when suppressed.<br/>"
+LocPromotionPopupText="<Bullet/> Gain <Ability:MAYHEM_DAMAGE_BONUS_PCT/>% bonus damage against enemies who attempt to move when suppressed.<br/>"
 
 [MayhemBonuses X2AbilityTemplate]
 LocFriendlyName="Mayhem"
 LocFlyOverText="Mayhem"
-LocLongDescription="Gain 25% bonus damage against enemies who attempt to move when suppressed."
+LocLongDescription="Gain <Ability:MAYHEM_DAMAGE_BONUS_PCT/>% bonus damage against enemies who attempt to move when suppressed."
 LocHelpText="Bonus damage to enemies who attempt to move when suppressed."
-LocPromotionPopupText="<Bullet/> Gain 20% bonus damage against enemies who attempt to move when suppressed.<br/>"
+LocPromotionPopupText="<Bullet/> Gain <Ability:MAYHEM_DAMAGE_BONUS_PCT/>% bonus damage against enemies who attempt to move when suppressed.<br/>"
 
 [Interference X2AbilityTemplate]
 LocFriendlyName="Interference"
@@ -1091,14 +1091,6 @@ LocLongDescription="Fire twice in a row at an enemy. Each shot suffers an Aim pe
 LocHelpText="Fire twice in a row at an enemy. Each shot suffers an Aim penalty of <Ability:RAPIDFIREPENALTY/>."
 LocFlyOverText="Rapid Fire"
 LocPromotionPopupText="<Bullet/> Rapid Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
-
-; LWOTC Needs Translation
-; The following two shouldn't be visible to end users, but they are useful
-; for debugging
-[LockdownBonuses X2AbilityTemplate]
-LocFriendlyName="Lockdown"
-LocHelpText="Grants bonus Aim on suppression reaction fire shots"
-; End Translation
 
 ; New Class loc
 

@@ -351,6 +351,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			OutString = string(class'X2Effect_LoneWolf'.default.LONEWOLF_MIN_DIST_TILES - 
 					(class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_BONUS / class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_PER_TILE) + 1);
 			return true;
+		case 'LOCKDOWN_TOHIT_BONUS':
+			OutString = string(Round(class'X2Effect_LockdownDamage'.default.LOCKDOWN_TOHIT_BONUS * (1.0 - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
+			return true;
+		case 'MAYHEM_DAMAGE_BONUS_PCT':
+			OutString = string(int(class'X2Effect_Mayhem'.default.MAYHEM_DAMAGE_BONUS_PCT));
+			return true;
         default:
             return false;
     }
