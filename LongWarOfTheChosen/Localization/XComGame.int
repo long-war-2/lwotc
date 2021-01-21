@@ -6380,7 +6380,9 @@ LocFlyOverText="Advanced Alloy Vest"
 FriendlyName="Disruptor Rifle"
 FriendlyNamePlural="Disruptor Rifles"
 BriefSummary="Despite his fixation on Psionic power, even the Chosen Warlock carried a more traditional weapon in times of need."
-TacticalText="<Bullet/> The Disruptor rifle shots are free as long as the shot is a crit.\n<Bullet/> <Bullet/> The Disruptor rifle has higher critical chance against other psionic units.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n"
+; LWOTC Needs Translation (2)
+TacticalText="<Bullet/> The Disruptor rifle shots are free as long as the shot is a crit.\n<Bullet/> The Disruptor rifle has higher critical chance against other psionic units.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n"
+; End Translation (2)
 AbilityDescName="assault rifle"
 
 [ChosenShotgun_XCOM X2WeaponTemplate]
