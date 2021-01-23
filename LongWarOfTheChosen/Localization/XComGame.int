@@ -5656,6 +5656,24 @@ Description="Enemies units are going to be significantly tougher to take down be
 [InfilSitRep_UltraHard X2SitRepTemplate]
 FriendlyName="Under infiltration (impossible?)"
 Description="Enemies units are going to be so tough, the fight will be virtually impossible to win because you're underinfiltrating."
+
+; LWOTC Needs Translation (2)
+[ToughScaling X2AbilityTemplate]
+LocFriendlyName="Under infiltration (minor)"
+LocLongDescription="Enemy units are a bit tougher to take down because you're underinfiltrating."
+
+[ButchScaling X2AbilityTemplate]
+LocFriendlyName="Under infiltration (moderate)"
+LocLongDescription="Enemy units are noticeably tougher to take down because you're underinfiltrating."
+
+[RockHardScaling X2AbilityTemplate]
+LocFriendlyName="Under infiltration (major)"
+LocLongDescription="Enemy units are significantly tougher to take down because you're underinfiltrating."
+
+[MonstrousScaling X2AbilityTemplate]
+LocFriendlyName="Under infiltration (impossible?)"
+LocLongDescription="Enemy units are so tough, the fight will be virtually impossible to win because you're underinfiltrating."
+; End Translation (2)
 ; End Translation
 
 ; LWOTC Needs Translation
