@@ -6228,19 +6228,33 @@ LocLongDescription="Bleeding Out is a 100% chance when dealt a killing blow when
 LocHelpText="Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
 LocFlyOverText="Keen"
 
+;LWOTC needs translation (2)
 [CombatReadiness X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
-LocHelpText="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
+LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
+LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn."
 LocFlyOverText="Combat Readiness"
+; End translation (2)
 
 ;LWOTC needs translation
 [CombatReadinessPassive X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
-LocHelpText="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
+LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
+LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn."
 LocFlyOverText="Combat Readiness"
 ; End translation
+
+[Banzai_LW X2AbilityTemplate]
+LocFriendlyName="BANZAI"
+LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocFlyOverText="BANZAI"
+
+[BanzaiPassive_LW X2AbilityTemplate]
+LocFriendlyName="BANZAI"
+LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocFlyOverText="BANZAI"
 
 ;LWOTC needs translation (2)
 [ChosenAssassin X2CharacterTemplate]
@@ -6374,14 +6388,14 @@ AbilityDescName="pistol"
 
 [XCOMBloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Lasts 2 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks."
 LocFlyOverText="Blood Thirst"
 
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Lasts 2 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Lasts 2 turns."
 LocFlyOverText="Blood Thirst"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
@@ -6508,7 +6522,30 @@ LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/>
 [ReactionFireAgainstCoverBonus X2AbilityTemplate]
 LocFriendlyName="Reaction Fire Anti Cover"
 LocHelpText="Reduces the Defense bonus provided by cover on overwatch shots"
+
+[ImpactCompensation_LW X2AbilityTemplate]
+LocFriendlyName="Impact Compensation"
+LocFlyOverText="Impact Compensation"
+LocLongDescription="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+LocHelpText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+LocPromotionPopupText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+
+[ImpactCompensationPassive_LW X2AbilityTemplate]
+LocFriendlyName="Impact Compensation"
+LocFlyOverText="Impact Compensation"
+LocLongDescription="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+LocHelpText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+LocPromotionPopupText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+
+[MovingTarget_LW X2AbilityTemplate]
+LocFriendlyName="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+LocFlyOverText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+LocLongDescription="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+LocHelpText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+LocPromotionPopupText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+
 ; End Translation
+
 
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]

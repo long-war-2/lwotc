@@ -2256,7 +2256,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('BendingReed');
 
 		Template.Abilities.AddItem('ChosenCritImmune');
-		Template.Abilities.AddItem('CombatReadiness');
+		Template.Abilities.AddItem('Banzai_LW');
 		Template.Abilities.AddItem('ChosenKidnap');
 		Template.Abilities.AddItem('AssassinReaction');
 		Template.Abilities.AddItem('BloodThirst_LW');
@@ -2264,7 +2264,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('FreeGrenades');
 		Template.Abilities.AddItem('ChosenImmunitiesPassive');
 		Template.Abilities.AddItem('AssassinSlash_LW');
-		Template.Abilities.AddItem('InstantReactionTime');
+		Template.Abilities.AddItem('ImpactCompensation_LW');
 		Template.Abilities.AddItem('Brawler');
 
 		Template.ImmuneTypes.AddItem('Frost');
@@ -2470,6 +2470,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenShotgun_XCOM':
 			WeaponTemplate.Abilities.AddItem('Brawler');
 			WeaponTemplate.Abilities.AddItem('Vampirism_LW');
+			WeaponTemplate.Abilities.AddItem('ImpactCompensation_LW');
 			WeaponTemplate.OnAcquiredFn = none;
 			break;
 		case 'ChosenSniperPistol_XCOM':

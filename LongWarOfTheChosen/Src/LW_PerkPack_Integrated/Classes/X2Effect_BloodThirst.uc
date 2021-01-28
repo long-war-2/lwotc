@@ -9,20 +9,25 @@ var float BloodThirstDMGPCT;
 var bool bflatdamage;
 var float BloodThirstFlatDMG;
 
-function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+function float GetPostDefaultAttackingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit SourceUnit,
+	Damageable Target,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData ApplyEffectParameters,
+	float WeaponDamage, XComGameState NewGameState)
 {
 	local XComGameState_Unit TargetUnit;
-	
-
-	if (AppliedData.AbilityResultContext.HitResult != eHit_Miss &&
+		
+	if (ApplyEffectParameters.AbilityResultContext.HitResult != eHit_Miss &&
 		AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
 	{
-		TargetUnit = XComGameState_Unit(TargetDamageable);
+		TargetUnit = XComGameState_Unit(Target);
 		if (TargetUnit != none)
 		{
 			if (!bflatdamage)
 			{
-				return int (CurrentDamage * (BloodThirstDMGPCT / 100));
+				return WeaponDamage * (BloodThirstDMGPCT / 100);
 			}
 			else
 			{
