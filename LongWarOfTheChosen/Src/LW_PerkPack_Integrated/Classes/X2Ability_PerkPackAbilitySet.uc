@@ -162,6 +162,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddPrecisionShotAbility());
 	Templates.AddItem(PrecisionShotCritDamage()); //Additional Ability
 	Templates.AddItem(AddCyclicFireAbility());
+	Templates.AddItem(CyclicFire2()); //Additional Ability
+	Templates.AddItem(CyclicFire3()); //Additional Ability
 	Templates.AddItem(AddStreetSweeperAbility());
 	Templates.AddItem(AddSlugShotAbility());
 	Templates.AddItem(SlugShotRangeEffect()); //Additional Ability
@@ -1170,7 +1172,7 @@ static function X2AbilityTemplate AddWalkFireAbility()
 	local X2AbilityCooldown					Cooldown;	
 	local X2Effect_Knockback				KnockbackEffect;
 	local X2Condition_Visibility            VisibilityCondition;
-	local X2Condition_UnitInventory			InventoryCondition, InventoryCondition2;
+	local X2Condition_UnitInventory			InventoryCondition2;
 	local X2Condition_UnitEffects			SuppressedCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'WalkFire');
@@ -1188,11 +1190,12 @@ static function X2AbilityTemplate AddWalkFireAbility()
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 
+	/*
 	InventoryCondition = new class'X2Condition_UnitInventory';
 	InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
 	InventoryCondition.ExcludeWeaponCategory = 'shotgun';
 	Template.AbilityShooterConditions.AddItem(InventoryCondition);
-
+	*/
 	InventoryCondition2 = new class'X2Condition_UnitInventory';
 	InventoryCondition2.RelevantSlot=eInvSlot_PrimaryWeapon;
 	InventoryCondition2.ExcludeWeaponCategory = 'sniper_rifle';
@@ -1385,13 +1388,12 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 {	
 	local X2AbilityTemplate					Template;
 	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2AbilityCost_Ammo				AmmoCostActual;
+	local X2AbilityCost_Ammo				AmmoCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityCooldown					Cooldown;	
 	local X2Effect_Knockback				KnockbackEffect;
 	local array<name>                       SkipExclusions;
-	local X2Condition_UnitInventory			InventoryCondition, InventoryCondition2;
-	local X2AbilityMultiTarget_BurstFire	BurstFireMultiTarget;
+	local X2Condition_UnitInventory			InventoryCondition2;
 	local X2Effect_Shredder					WeaponDamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CyclicFire');
@@ -1406,12 +1408,13 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 	Template.bAllowAmmoEffects = true;
 	Template.bAllowBonusWeaponEffects = true;
-
+/*
 	InventoryCondition = new class'X2Condition_UnitInventory';
 	InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
 	InventoryCondition.ExcludeWeaponCategory = 'shotgun';
 	Template.AbilityShooterConditions.AddItem(InventoryCondition);
 
+	*/
 	InventoryCondition2 = new class'X2Condition_UnitInventory';
 	InventoryCondition2.RelevantSlot=eInvSlot_PrimaryWeapon;
 	InventoryCondition2.ExcludeWeaponCategory = 'sniper_rifle';
@@ -1426,9 +1429,15 @@ static function X2AbilityTemplate AddCyclicFireAbility()
     Cooldown.iNumTurns = default.CYCLIC_FIRE_COOLDOWN;
     Template.AbilityCooldown = Cooldown;
 
-	AmmoCostActual = new class'X2AbilityCost_Ammo';
-	AmmoCostActual.iAmmo = default.CYCLIC_FIRE_AMMO; 
-	Template.AbilityCosts.AddItem(AmmoCostActual);
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 3;
+	AmmoCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	//  actually charge 1 ammo for this shot. the 2nd and 3rd shot will charge the extra ammo.
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
  
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
 	ToHitCalc.BuiltInHitMod = -default.CYCLIC_FIRE_AIM_MALUS;
@@ -1437,7 +1446,6 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 
 	WeaponDamageEffect = new class'X2Effect_Shredder';
 	Template.AddTargetEffect(WeaponDamageEffect);
-	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
@@ -1456,9 +1464,10 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 	KnockbackEffect.KnockbackDistance = 2;
 	Template.AddTargetEffect(KnockbackEffect);
 
-	BurstFireMultiTarget = new class'X2AbilityMultiTarget_BurstFire';
-    BurstFireMultiTarget.NumExtraShots = default.CYCLIC_FIRE_SHOTS-1;
-    Template.AbilityMultiTargetStyle = BurstFireMultiTarget;
+	Template.AdditionalAbilities.AddItem('CyclicFire2');
+	Template.AdditionalAbilities.AddItem('CyclicFire3');
+
+	Template.PostActivationEvents.AddItem('CyclicFire2');
 
 	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
 	Template.TargetingMethod = class'X2TargetingMethod_OverTheShoulder';
@@ -1474,6 +1483,126 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	return Template;	
+}
+
+static function X2AbilityTemplate CyclicFire2()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityTrigger_EventListener    Trigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'CyclicFire2');
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = -default.CYCLIC_FIRE_AIM_MALUS;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'CyclicFire2';
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_OriginalTarget;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_rapidfire";
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = SequentialShot_MergeVisualization;
+	
+	Template.bShowActivation = true;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+//BEGIN AUTOGENERATED CODE: Template Overrides 'CyclicFire2'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'CyclicFire2'
+
+	Template.PostActivationEvents.AddItem('CyclicFire3');
+
+	return Template;
+}
+
+static function X2AbilityTemplate CyclicFire3()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityTrigger_EventListener    Trigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'CyclicFire3');
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = -default.CYCLIC_FIRE_AIM_MALUS;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'CyclicFire3';
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_OriginalTarget;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_rapidfire";
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = SequentialShot_MergeVisualization;
+	
+	Template.bShowActivation = true;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+//BEGIN AUTOGENERATED CODE: Template Overrides 'RapidFire2'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'RapidFire2'
+
+	return Template;
 }
 
 static function X2AbilityTemplate AddSlugShotAbility()
