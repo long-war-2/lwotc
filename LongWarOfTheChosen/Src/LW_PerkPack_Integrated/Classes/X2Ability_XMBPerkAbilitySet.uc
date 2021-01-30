@@ -1784,6 +1784,7 @@ static function X2AbilityTemplate ShootingSharp()
 {
 	local XMBEffect_ConditionalBonus ShootingEffect;
 	local X2AbilityTemplate Template;
+	local XMBCondition_CoverType CoverCondition;
 
 	// Create an armor piercing bonus
 	ShootingEffect = new class'XMBEffect_ConditionalBonus';
@@ -1792,8 +1793,10 @@ static function X2AbilityTemplate ShootingSharp()
 	
 	// Only with the associated weapon
 	
-	ShootingEffect.AbilityTargetConditions.AddItem(default.FullCoverCondition);
-	ShootingEffect.AbilityTargetConditions.AddItem(default.HalfCoverCondition);
+	CoverCondition = new class'XMBCondition_CoverType';
+	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
+
+	ShootingEffect.AbilityTargetConditions.AddItem(CoverCondition);
 
 	ShootingEffect.AbilityTargetConditions.AddItem(default.RangedCondition);
 
@@ -2810,6 +2813,7 @@ static function X2AbilityTemplate AddBanzai()
 	local XMBEffect_ConditionalBonus			DefenseBonus;
 	local X2Effect_PersistentStatChange			AimBonus;
 	local X2Effect_RemoveEffects				RemoveEffects;
+	local XMBCondition_CoverType				CoverCondition;
 	local name EffectName;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Banzai_LW');
@@ -2827,12 +2831,14 @@ static function X2AbilityTemplate AddBanzai()
 	
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
+	CoverCondition = new class'XMBCondition_CoverType';
+	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
+
 	// Add Defense in cover
 	DefenseBonus = new class'XMBEffect_ConditionalBonus';
 
 	DefenseBonus.AddToHitAsTargetModifier(-default.COMBATREADINESS_DEF, eHit_Success);
-	DefenseBonus.AbilityTargetConditions.AddItem(default.FullCoverCondition);
-	DefenseBonus.AbilityTargetConditions.AddItem(default.HalfCoverCondition);
+	DefenseBonus.AbilityTargetConditions.AddItem(CoverCondition);
 	DefenseBonus.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
 	DefenseBonus.DuplicateResponse = eDupe_Allow;
 	DefenseBonus.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, default.CombatReadinessBonusText, Template.IconImage, true, , Template.AbilitySourceName);
