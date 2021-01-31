@@ -346,6 +346,7 @@ static function X2AbilityTemplate CreateAmmoDump()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	TargetCondition = new class'X2Condition_UnitProperty';
@@ -409,6 +410,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	TargetCondition = new class'X2Condition_UnitProperty';

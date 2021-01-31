@@ -135,6 +135,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'TeleportAlly':
 			BuffTeleportAlly(Template);
+			MakeAbilityWorkWhenBurning(Template);
 			break;
 		case 'ChosenSummonFollowers':
 			UpdateSummon(Template);
@@ -170,6 +171,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'HarborWave':
 			ReworkHarborWave(Template);
+			break;
+		case 'HunterRifleShot':
+			MakeAbilityWorkWhenBurning(Template);
 			break;
 		default:
 			break;
@@ -1046,6 +1050,14 @@ static function ReworkHarborWave(X2AbilityTemplate Template)
 	Template.AddMultiTargetEffect(DamageEffect);
 
 	Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
+}
+
+static function	MakeAbilityWorkWhenBurning(X2AbilityTemplate Template)
+{
+	local array<name>                       SkipExclusions;
+
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
 }
 
 defaultproperties
