@@ -49,6 +49,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 		case 'CovertAction_ImproveComInt':
 			RemoveStaffSlots(CATemplate, 'CovertActionScientistStaffSlot');
+			CATemplate.RequiredFactionInfluence = EFactionInfluence(eFactionInfluence_MAX + 1);
 			break;
 		case 'CovertAction_RecruitExtraFactionSoldier':
 			CATemplate.bDisplayIgnoresInfluence = false;  // Don't roll this CA if the player can't run it!

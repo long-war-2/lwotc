@@ -27,14 +27,6 @@ struct StatCaps
 	var float Max;
 };
 
-struct ComIntStatSwap
-{
-	var int ComIntStatchange;
-	var ECharStatType StatSwapped;
-	var float StatSwapped_Amount;
-	var float Weight;
-	var bool DoesNotApplyToFirstMissionSoldiers;
-};
 var bool bIsFirstMissionSoldier;
 
 //initial randomized stats
@@ -42,13 +34,10 @@ var bool bInitialStatsRolled;
 var bool bInitialStatsAppliedHasBeenSet; // compatibility bool to avoid breaking savegames
 var bool bInitialStatsApplied;
 var float CharacterInitialStats_Deltas[ECharStatType.EnumCount];
-var float CharacterComIntDelta;
 var config array<int> NUM_STAT_SWAPS;  // defines dice that are rolled to determine number of stat swaps applied
 var config array<StatSwap> STAT_SWAPS;
 var config array<Statcaps> STAT_CAPS;
-var config array<ComIntStatSwap> COMINT_STAT_SWAPS;
 
-var config int COMINT_BASE_SWAP_CHANCE;
 //level-up randomized stats
 var bool bRandomLevelUpActive;
 var float CharacterStats_LastLevel[ECharStatType.EnumCount]; // DEPRECATED -- kept for backwards savegame compatibility
@@ -63,9 +52,8 @@ var XComGameState_Unit CachedUnit;
 function RandomizeInitialStats(XComGameState_Unit Unit)
 {
 	local int idx, NumSwaps, iterations;
-	local float TotalWeight, ComIntTotalWeight;
+	local float TotalWeight;
 	local StatSwap Swap;
-	local ComIntStatSwap ComIntSwap;
 	local XComGameState_BattleData BattleData;
 	local bool bIsFirstMission;
 
@@ -81,7 +69,6 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 	{
 		CharacterInitialStats_Deltas[idx] = 0;
 	}
-	CharacterComIntDelta = 0;
 
 
 	//set up
@@ -91,12 +78,6 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 	foreach default.STAT_SWAPS(Swap)
 	{
 		TotalWeight += Swap.Weight;
-	}
-
-	ComIntTotalWeight = 0.0f;
-	foreach default.COMINT_STAT_SWAPS(ComIntSwap)
-	{
-		ComIntTotalWeight += ComIntSwap.Weight;
 	}
 
 	//randomly apply a bunch of stat swaps to get starting stat offset
@@ -109,17 +90,6 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 		CharacterInitialStats_Deltas[Swap.StatUp] += Swap.StatUp_Amount;
 		CharacterInitialStats_Deltas[Swap.StatDown] -= Swap.StatDown_Amount;
 	}
-	//Roll a chance for a stat swap and don't roll combat intelligence for rebels
-	if (`SYNC_RAND(100) < default.COMINT_BASE_SWAP_CHANCE && InStr(Unit.GetMyTemplateName(), "Rebel") != 0 )
-	{
-		do 
-		{
-			ComIntSwap = SelectComIntStatSwap(ComIntTotalWeight);
-		} until (IsValidComIntSwap(ComIntSwap, Unit) || (++iterations > 1000));
-		CharacterInitialStats_Deltas[ComIntSwap.StatSwapped] += ComIntSwap.StatSwapped_Amount;
-		CharacterComIntDelta = ComIntSwap.ComIntStatchange;	
-	}
-
 	bInitialStatsRolled = true;
 }
 
@@ -183,7 +153,7 @@ function ApplyDeltas(XComGameState_Unit Unit, bool Apply)
     local int idx;
 	local float OldValue, OldCurrentValue, NewValue;
 	local UnitValue HPValue;
-
+	local int Modifier;
 	`LOG("Applying Random Stats to Unit " $ Unit.GetFullName());
 	for(idx=0; idx < ArrayCount(CharacterInitialStats_Deltas) ; idx++)
 	{
@@ -248,13 +218,23 @@ function ApplyDeltas(XComGameState_Unit Unit, bool Apply)
 		}
 		//`LOG("RandomStats (" $ string(ECharStatType(idx)) $ ") : Old=" $ OldValue $ ", New=" $ NewValue,, 'LW_Toolbox');
 	}
-	if (Apply)
+	//Change Comint depending on psi offense delta
+	Modifier =  Apply?1:-1;
+	if(CharacterInitialStats_Deltas[eStat_PsiOffense] <= -12)
 	{
-		ChangeUnitsCombatIntelligence(Unit, CharacterComIntDelta);
+		ChangeUnitsCombatIntelligence(Unit,-2 * Modifier);
 	}
-	else
+	else if(CharacterInitialStats_Deltas[eStat_PsiOffense] <= -6)
 	{
-		ChangeUnitsCombatIntelligence(Unit, -CharacterComIntDelta);
+		ChangeUnitsCombatIntelligence(Unit,-1 * Modifier);
+	}
+	else if(CharacterInitialStats_Deltas[eStat_PsiOffense] >= 6)
+	{
+		ChangeUnitsCombatIntelligence(Unit,1 * Modifier);
+	}
+	else if(CharacterInitialStats_Deltas[eStat_PsiOffense] >= 12)
+	{
+		ChangeUnitsCombatIntelligence(Unit,2 * Modifier);
 	}
 }
 
@@ -305,66 +285,6 @@ function StatSwap SelectRandomStatSwap(float TotalWeight)
 How this should work: Since ComInt Is not an ENUM stat, It can't be properly part of the NCE stat swap table, but since it's just one stat, 
 Just putting 0-1 comint swaps on top of existing ones should be enough to properly diversify it.
 */
-function ComIntStatSwap SelectComIntStatSwap(float TotalWeight)
-{
-	local float finder, selection;
-	local ComIntStatSwap Swap, ReturnSwap;
-
-	if (default.COMINT_STAT_SWAPS.Length == 0)
-		return Swap;
-
-	finder = 0.0f;
-	selection = `SYNC_FRAND * TotalWeight;
-	foreach default.COMINT_STAT_SWAPS(Swap)
-	{
-		finder += Swap.Weight;
-		if (finder > selection)
-		{
-			break;
-		}
-	}
-	//Swap = default.STAT_SWAPS[default.STAT_SWAPS.Length-1];
-	if (`SYNC_RAND(2) == 1)
-	{
-		ReturnSwap.ComIntStatchange = Swap.ComIntStatchange * -1.0f;
-		ReturnSwap.StatSwapped = Swap.StatSwapped;
-		ReturnSwap.StatSwapped_Amount = Swap.StatSwapped_Amount * -1.0f;
-		ReturnSwap.Weight = Swap.Weight;
-
-		return ReturnSwap;
-	}
-	return Swap;
-}
-
-
-function bool IsValidComIntSwap(ComIntStatSwap Swap, XComGameState_Unit Unit)
-{
-	local StatCaps Cap;
-
-	if (Swap.DoesNotApplyToFirstMissionSoldiers && bIsFirstMissionSoldier)
-		return false;
-
-    // Make sure the swap wouldn't bring HP down to zero or lower
-    if (Swap.StatSwapped == eStat_HP &&
-        (Unit.GetBaseStat(eStat_HP) + Swap.StatSwapped_Amount - CharacterInitialStats_Deltas[eStat_HP]) <= 0)
-    {
-        return false;
-    }
-
-	foreach default.STAT_CAPS(Cap)
-	{
-		if ((Cap.Stat == Swap.StatSwapped)  && (CharacterInitialStats_Deltas[Swap.StatSwapped] + Swap.StatSwapped_Amount > Cap.Max)
-		 || (Cap.Stat == Swap.StatSwapped)  && CharacterInitialStats_Deltas[Swap.StatSwapped] + Swap.StatSwapped_Amount < Cap.Min)
-			return false;
-	}
-
-	if (ECombatIntelligence(Unit.ComInt + Swap.ComIntStatchange) > eComInt_Savant || ECombatIntelligence(Unit.ComInt + Swap.ComIntStatchange) < eComInt_Standard)
-	{
-		return false;
-	}
-	return true;
-}
-
 
 static function ChangeUnitsCombatIntelligence(XcomGameState_Unit Unit, int Amount)
 {
