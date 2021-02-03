@@ -31,6 +31,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_SuperiorWeaponUpgrade':
 		case 'CovertAction_SuperiorPCS':
 			CaTemplate.RequiredFactionInfluence = eFactionInfluence_Minimal;
+			CaTemplate.bUnique = false;
 		case 'CovertAction_GatherSupplies':
 		case 'CovertAction_GatherIntel':
 		case 'CovertAction_FormSoldierBond':
