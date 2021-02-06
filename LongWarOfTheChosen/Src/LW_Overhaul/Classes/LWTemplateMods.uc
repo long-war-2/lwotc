@@ -2113,11 +2113,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			break;
 		case 'AdvStunLancerM2':
 			Template.Abilities.AddItem('HunkerDown');
-			Template.Abilities.AddItem('CoupdeGrace2');
 			break;
 		case 'AdvStunLancerM3':
 			Template.Abilities.AddItem('HunkerDown');
-			Template.Abilities.AddItem('CoupdeGrace2');
 			Template.Abilities.AddItem('Whirlwind2');
 			break;
 		case 'AdvPurifierM3':
@@ -2482,6 +2480,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 					WeaponTemplate.UIStatMarkups.RemoveItem(Markup);
 				}
 			}
+			break;
+		case 'AdvStunLancerM2_StunLance':
+		case 'AdvStunLancerM3_StunLance':
+			WeaponTemplate.Abilities.AddItem('CoupdeGrace2');
 			break;
 		default:
 			break;

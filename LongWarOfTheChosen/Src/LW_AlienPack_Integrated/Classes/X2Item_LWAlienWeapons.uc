@@ -1108,6 +1108,23 @@ static function X2DataTemplate CreateTemplate_AdvElite_WPN(name TemplateName)
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
 
+	if (TemplateName == 'AdvSergeantM2_WPN')
+	{
+		Template.Abilities.AddItem('LockedOn');		//Weapon perk
+	}
+
+	if (TemplateName == 'AdvVanguard_WPN')
+	{
+		Template.Abilities.AddItem('CloseCombatSpecialist');	//Weapon perk
+		Template.Abilities.AddItem('CloseAndPersonal');			//Weapon perk
+	}
+
+	if (TemplateName == 'AdvShockTroop_WPN')
+	{
+		Template.Abilities.AddItem('BringEmOn');		//Weapon perk
+		Template.Abilities.AddItem('Executioner_LW');	//Weapon perk
+	}
+
 	Template.GameArchetype = "WP_AssaultRifle_MG.WP_AssaultRifle_MG_Advent";
 	Template.iPhysicsImpulse = 5;
 	Template.CanBeBuilt = false;
