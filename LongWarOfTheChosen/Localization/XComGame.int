@@ -5417,6 +5417,11 @@ LocHelpText="The Templar may immediately extinguish mental impairments for a squ
 LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, panic and stun effects.<br/><Bullet/> Solace requires one action and does not end your turn.<br/><Bullet/> Solace has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (2)
 
+; LWOTC Needs Translation (2)
+[Ghost X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Overcharge, Vigilance, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Ionic Storm, Fortress and Sustain. <br/>"
+; End Translation (2)
+
 ; LWOTC Needs Translation #2 - Shard and Caster gauntlet tactical text and the brief
 ; summaries for the caster gauntlets have been updated.
 [ShardGauntlet_CV X2PairedWeaponTemplate]
