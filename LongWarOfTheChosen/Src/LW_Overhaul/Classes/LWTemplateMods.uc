@@ -2648,6 +2648,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'CorpseAdventShieldbearer':
 			case 'CorpseDrone':
 			case 'CorpseMutonElite':
+			case 'CorpseSpectre':
+			case 'CorpseAdventPurifier':
+			case 'CorpseAdventPriest':
+			case 'CorpseTheLost':
 				Template.LeavesExplosiveRemains = false;
 				break;
 			default:
