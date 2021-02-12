@@ -2236,14 +2236,18 @@ static function X2AbilityTemplate DeadeyeSnapShotDamage()
 
 static function X2AbilityTemplate YouCannotHide()
 {
-	local X2Effect_PersistentStatChange StatEffect;
+	local XMBEffect_ConditionalBonus Effect;
 	// Create a conditional bonus
 
-	StatEffect = new class'X2Effect_PersistentStatChange';
-	StatEffect.AddPersistentStatChange(eStat_Offense, float(100));
+	Effect = new class'XMBEffect_ConditionalBonus';
+
+	// The bonus adds the aim and crit chance
+	Effect.AddToHitModifier(100, eHit_Success);
+
+	Effect.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
 
 	// Create the template using a helper function
-	return Passive('YouCannotHide_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_overwatch_shot", true, StatEffect);
+	return Passive('YouCannotHide_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_overwatch_shot", true, Effect);
 }
 
 

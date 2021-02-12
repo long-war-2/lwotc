@@ -6319,9 +6319,9 @@ LocLongDescription="Gain a 50% damage boost when at 35% hp or less."
 LocFlyOverText="Psychotic Rage"
 
 [YouCannotHide_LW X2AbilityTemplate]
-LocFriendlyName="You Cannot hide"
-LocHelpText="Gain 100 aim."
-LocLongDescription="Gain 100 aim."
+LocFriendlyName="You Cannot Hide"
+LocHelpText="Gain 100 aim with your pimary weapon."
+LocLongDescription="Gain 100 aim with your pimary weapon."
 LocFlyOverText="Run."
 [RebelHPUpgrade_T1 X2AbilityTemplate]
 LocFriendlyName="Alloy Vest"
