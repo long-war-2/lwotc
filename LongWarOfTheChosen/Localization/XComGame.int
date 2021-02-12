@@ -6320,8 +6320,8 @@ LocFlyOverText="Psychotic Rage"
 
 [YouCannotHide_LW X2AbilityTemplate]
 LocFriendlyName="You Cannot Hide"
-LocHelpText="Gain 100 aim with your pimary weapon."
-LocLongDescription="Gain 100 aim with your pimary weapon."
+LocHelpText="Gain 100 aim with your primary weapon."
+LocLongDescription="Gain 100 aim with your primary weapon."
 LocFlyOverText="Run."
 [RebelHPUpgrade_T1 X2AbilityTemplate]
 LocFriendlyName="Alloy Vest"
