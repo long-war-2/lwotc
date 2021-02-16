@@ -228,14 +228,15 @@ function ApplyDeltas(XComGameState_Unit Unit, bool Apply)
 	{
 		ChangeUnitsCombatIntelligence(Unit,-1 * Modifier);
 	}
-	else if(CharacterInitialStats_Deltas[eStat_PsiOffense] >= 6)
-	{
-		ChangeUnitsCombatIntelligence(Unit,1 * Modifier);
-	}
 	else if(CharacterInitialStats_Deltas[eStat_PsiOffense] >= 12)
 	{
 		ChangeUnitsCombatIntelligence(Unit,2 * Modifier);
 	}
+	else if(CharacterInitialStats_Deltas[eStat_PsiOffense] >= 6)
+	{
+		ChangeUnitsCombatIntelligence(Unit,1 * Modifier);
+	}
+
 }
 
 function int RollNumStatSwaps()
