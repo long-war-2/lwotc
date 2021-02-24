@@ -59,10 +59,12 @@ static function InitializeRegionalAIs(optional XComGameState StartState)
 	local XComGameState_WorldRegion RegionState, UpdatedRegionState;
 	local array<XComGameState_WorldRegion_LWStrategyAI> NewRegionalAIs;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState;
-	local int TotalRegions, TotalNewRegions, RegionCount, RemainingRegions;
+	local int TotalRegions, TotalNewRegions, RegionCount;
 	local int TotalForceLevelToAdd, TotalAlertLevelToAdd, NumVigilanceToDeviate;
 	local int ForceLevelToAdd, AlertLevelToAdd;
 	local int MinVigilanceToDeviate, MaxVigilanceToDeviate, VigilanceLevelToAdd, NumVigilanceUp, NumVigilanceDown;
+	local int idx, idx2, iterations;
+	local bool bFoundAppropriateRegion;
 
 	History = `XCOMHISTORY;
 	bNeedsGameState = StartState == none;
@@ -142,6 +144,7 @@ static function InitializeRegionalAIs(optional XComGameState StartState)
 		XComHQ = `XCOMHQ;
 	}
 
+	//Starting region is treated separately to remove randomness from it.
 	foreach NewRegionalAIs(RegionalAIState, RegionCount)
 	{
 		if(RegionalAIState.OwningObjectId == XComHQ.StartingRegion.ObjectID)
@@ -149,38 +152,110 @@ static function InitializeRegionalAIs(optional XComGameState StartState)
 			ForceLevelToAdd = default.START_REGION_FORCE_LEVEL[`STRATEGYDIFFICULTYSETTING];
 			AlertLevelToAdd = default.START_REGION_ALERT_LEVEL[`STRATEGYDIFFICULTYSETTING];
 			VigilanceLevelToAdd = Clamp (AlertLevelToAdd, 1, default.STARTING_LOCAL_MAX_VIGILANCE_LEVEL);
-		}
-		else
-		{
-			RemainingRegions = TotalNewRegions - RegionCount;
 
-			ForceLevelToAdd = TotalForceLevelToAdd / RemainingRegions;
-			if(RemainingRegions > 1)
-			{
-				ForceLevelToAdd += `SYNC_RAND_STATIC(3) - 1;
-			}
-			ForceLevelToAdd = Clamp(ForceLevelToAdd, default.STARTING_LOCAL_MIN_FORCE_LEVEL, default.STARTING_LOCAL_MAX_FORCE_LEVEL);
 			TotalForceLevelToAdd -= ForceLevelToAdd;
-
-			AlertLevelToAdd = TotalAlertLevelToAdd / RemainingRegions;
-			if(RemainingRegions > 1)
-			{
-				AlertLevelToAdd += `SYNC_RAND_STATIC(3) - 1;
-			}
-			AlertLevelToAdd = Clamp(AlertLevelToAdd, default.STARTING_LOCAL_MIN_ALERT_LEVEL, default.STARTING_LOCAL_MAX_ALERT_LEVEL);
 			TotalAlertLevelToAdd -= AlertLevelToAdd;
 
-			VigilanceLevelToAdd = AlertLevelToAdd;
-			if(NumVigilanceUp++ < NumVigilanceToDeviate)
-				VigilanceLevelToAdd += 1;
-			else if(NumVigilanceDown++ < NumVigilanceToDeviate)
-				VigilanceLevelToAdd -= 1;
+			RegionalAIState.LocalForceLevel = ForceLevelToAdd;
+			RegionalAIState.LocalAlertLevel = AlertLevelToAdd;
+			RegionalAIState.LocalVigilanceLevel = VigilanceLevelToAdd;
+			RegionalAIState.LastVigilanceUpdateTime = class'XComGameState_GeoscapeEntity'.static.GetCurrentTime();			
 
-			VigilanceLevelToAdd = Clamp (VigilanceLevelToAdd, 1, default.STARTING_LOCAL_MAX_VIGILANCE_LEVEL);
-
+			NewRegionalAIs.Remove(RegionCount, 1);
+			break;
 		}
-		RegionalAIState.LocalForceLevel = ForceLevelToAdd;
+	}
+
+	//Start with assigning the minimum to each region
+	foreach NewRegionalAIs(RegionalAIState, RegionCount)
+	{
+		AlertLevelToAdd = Clamp(1, default.STARTING_LOCAL_MIN_ALERT_LEVEL, default.STARTING_LOCAL_MAX_ALERT_LEVEL);
+		TotalAlertLevelToAdd -= AlertLevelToAdd;
 		RegionalAIState.LocalAlertLevel = AlertLevelToAdd;
+
+		ForceLevelToAdd = Clamp(1, default.STARTING_LOCAL_MIN_FORCE_LEVEL, default.STARTING_LOCAL_MAX_FORCE_LEVEL);
+		TotalForceLevelToAdd -= ForceLevelToAdd;
+		RegionalAIState.LocalForceLevel = ForceLevelToAdd;
+	}
+
+	//Remaining alert points are to be distributed randomly
+	for(idx = 0; idx < TotalAlertLevelToAdd; idx++)
+	{
+		bFoundAppropriateRegion = false;
+		iterations = 0;
+		do 
+		{			
+			RegionalAIState = NewRegionalAIs[`SYNC_RAND_STATIC(NewRegionalAIs.Length)];
+			if (RegionalAIState.LocalAlertLevel < default.STARTING_LOCAL_MAX_ALERT_LEVEL)
+				bFoundAppropriateRegion = true;
+		} until (bFoundAppropriateRegion || (++iterations > 1000));
+
+		if (!bFoundAppropriateRegion)
+		{
+			//If by this point no region to add another alert point was found,
+			//then it is likely that there are no available regions left at all.
+			//At this point we can either respect STARTING_LOCAL_MAX_ALERT_LEVEL 
+			//or TOTAL_STARTING_ALERT_LEVEL but seemingly not both.
+
+			//Let's respect TOTAL_STARTING_ALERT_LEVEL and dump remaining points
+			//into random regions.
+			for(idx2 = idx; idx2 < TotalAlertLevelToAdd; idx2++)
+			{
+				RegionalAIState = NewRegionalAIs[`SYNC_RAND_STATIC(NewRegionalAIs.Length)];
+				RegionalAIState.LocalAlertLevel += 1;
+			}
+			break;
+		}
+
+		RegionalAIState.LocalAlertLevel += 1;
+	}
+
+	//Remaining force points are to be distributed randomly
+	for(idx = 0; idx < TotalForceLevelToAdd; idx++)
+	{
+		bFoundAppropriateRegion = false;
+		iterations = 0;
+		do
+		{
+			RegionalAIState = NewRegionalAIs[`SYNC_RAND_STATIC(NewRegionalAIs.Length)];
+			if (RegionalAIState.LocalForceLevel < default.STARTING_LOCAL_MAX_FORCE_LEVEL)
+				bFoundAppropriateRegion = true;
+		} until (bFoundAppropriateRegion || (++iterations > 1000));
+
+		if (!bFoundAppropriateRegion)
+		{
+			//If by this point no region to add another force point was found,
+			//then it is likely that there are no available regions left at all.
+			//At this point we can either respect STARTING_LOCAL_MAX_FORCE_LEVEL 
+			//or TOTAL_STARTING_FORCE_LEVEL but seemingly not both.
+
+			//Let's respect STARTING_LOCAL_MAX_FORCE_LEVEL and dump remaining points
+			//into random regions.
+			for(idx2 = idx; idx2 < TotalForceLevelToAdd; idx2++)
+			{
+				RegionalAIState = NewRegionalAIs[`SYNC_RAND_STATIC(NewRegionalAIs.Length)];
+				RegionalAIState.LocalForceLevel += 1;
+			}
+			break;
+		}
+
+		RegionalAIState.LocalForceLevel += 1;
+	}
+
+	//Setting regions vigilance the same way as before.
+	//Given current settings, vigilance will be increased by 1 NumVigilanceToDeviate times,
+	//but decreased only up to NumVigilanceToDeviate times, sometimes less, since some regions 
+	//may have starting alert level of 1. Therefore, starting global vigilance may change slightly,
+	//but overall shouldn't matter much.
+	foreach NewRegionalAIs(RegionalAIState, RegionCount)
+	{
+		VigilanceLevelToAdd = RegionalAIState.LocalAlertLevel;
+		if(NumVigilanceUp++ < NumVigilanceToDeviate)
+			VigilanceLevelToAdd += 1;
+		else if(NumVigilanceDown++ < NumVigilanceToDeviate)
+			VigilanceLevelToAdd -= 1;
+
+		VigilanceLevelToAdd = Clamp (VigilanceLevelToAdd, 1, default.STARTING_LOCAL_MAX_VIGILANCE_LEVEL);
 		RegionalAIState.LocalVigilanceLevel = VigilanceLevelToAdd;
 		RegionalAIState.LastVigilanceUpdateTime = class'XComGameState_GeoscapeEntity'.static.GetCurrentTime();
 	}

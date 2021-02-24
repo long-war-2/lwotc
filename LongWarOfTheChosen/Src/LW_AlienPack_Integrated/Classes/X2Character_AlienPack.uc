@@ -664,9 +664,13 @@ static function X2CharacterTemplate CreateTemplate_SectoidM2_LW()  // I have big
 	CharTemplate.bAllowSpawnFromATT = false;
 
 	CharTemplate.Abilities.AddItem('VulnerabilityMelee');
-	CharTemplate.Abilities.AddItem('DelayedPsiExplosion');
+	//DelayedPsiExplosion does nothing, except moving camera to pointlessly show 
+	//the corpse of Sectoid Commander one turn after his death.
+	//SectoidDeathOverride is apparently to be used if DelayedPsiExplosion were to work.
+	
+	//CharTemplate.Abilities.AddItem('DelayedPsiExplosion');
 	CharTemplate.Abilities.AddItem('KillSiredZombies');
-	CharTemplate.Abilities.AddItem('SectoidDeathOverride');  // A: Not sure what this does, but it sounds cool
+	//CharTemplate.Abilities.AddItem('SectoidDeathOverride');  // A: Not sure what this does, but it sounds cool
 
 	CharTemplate.Abilities.AddItem('MassMindspin');
 	CharTemplate.Abilities.AddItem('MassReanimation_LW');
@@ -1080,7 +1084,7 @@ static function X2CharacterTemplate CreateTemplate_AdvGrenadier(name TemplateNam
 	if (TemplateName == 'AdvGrenadierM3')
 	{
 		CharTemplate.Abilities.AddItem('Salvo');
-		CharTemplate.Abilities.AddItem('BiggestBooms');
+		CharTemplate.Abilities.AddItem('BiggestBooms_LW');
 	}
 
 	CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_AdvTrooperM1');
@@ -1180,7 +1184,7 @@ static function X2CharacterTemplate CreateTemplate_AdvRocketeer(name TemplateNam
 	CharTemplate.Abilities.AddItem('DarkEventAbility_Counterattack');
 
 	if (TemplateName == 'AdvRocketeerM3')
-		CharTemplate.Abilities.AddItem('BiggestBooms');
+		CharTemplate.Abilities.AddItem('BiggestBooms_LW');
 
 	CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_AdvTrooperM1');
 
@@ -1327,7 +1331,7 @@ static function X2CharacterTemplate CreateTemplate_AdvMECArcher(name TemplateNam
 	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 
 	if (TemplateName == 'AdvMecArcherM2')
-		CharTemplate.Abilities.AddItem('BiggestBooms');
+		CharTemplate.Abilities.AddItem('BiggestBooms_LW');
 
 	CharTemplate.strBehaviorTree = "LWAdventMECArcherRoot"; // new config behavior tree parsing means we could use the group instead
 
