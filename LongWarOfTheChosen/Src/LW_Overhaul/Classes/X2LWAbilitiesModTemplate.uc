@@ -160,6 +160,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'Slash_LW':
 		case 'SwordSlice_LW':
+		case 'CombativesCounterattack':
 			Template.PostActivationEvents.AddItem('SlashActivated');
 			break;
 		case 'DisruptorRifleCrit':
