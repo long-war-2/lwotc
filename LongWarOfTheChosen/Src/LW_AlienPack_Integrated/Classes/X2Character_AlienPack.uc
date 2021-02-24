@@ -664,9 +664,13 @@ static function X2CharacterTemplate CreateTemplate_SectoidM2_LW()  // I have big
 	CharTemplate.bAllowSpawnFromATT = false;
 
 	CharTemplate.Abilities.AddItem('VulnerabilityMelee');
-	CharTemplate.Abilities.AddItem('DelayedPsiExplosion');
+	//DelayedPsiExplosion does nothing, except moving camera to pointlessly show 
+	//the corpse of Sectoid Commander one turn after his death.
+	//SectoidDeathOverride is apparently to be used if DelayedPsiExplosion were to work.
+	
+	//CharTemplate.Abilities.AddItem('DelayedPsiExplosion');
 	CharTemplate.Abilities.AddItem('KillSiredZombies');
-	CharTemplate.Abilities.AddItem('SectoidDeathOverride');  // A: Not sure what this does, but it sounds cool
+	//CharTemplate.Abilities.AddItem('SectoidDeathOverride');  // A: Not sure what this does, but it sounds cool
 
 	CharTemplate.Abilities.AddItem('MassMindspin');
 	CharTemplate.Abilities.AddItem('MassReanimation_LW');
