@@ -363,10 +363,6 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'MOVING_TARGET_DODGE':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.MOVING_TARGET_DODGE);
 			return true;
-		case 'IMPACT_COMPENSATION_PCT_DR':
-			Outstring = string(int(class'X2Effect_ImpactCompensation'.default.IMPACT_COMPENSATION_PCT_DR * 100));
-			return true;
-
         default:
             return false;
     }

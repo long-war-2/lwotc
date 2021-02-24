@@ -5422,26 +5422,26 @@ LocFlyOverText="Sabotage Weapon"
 
 [ShieldAllyM1 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Adds Shield to an Ally."
-LocLongDescription="Adds Shield to an Ally."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM2 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Adds Shield to an Ally."
-LocLongDescription="Adds Shield to an Ally."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM3 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Adds Shield to an Ally."
-LocLongDescription="Adds Shield to an Ally."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM4 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Adds Shield to an Ally."
-LocLongDescription="Adds Shield to an Ally."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ChosenImmuneMelee X2AbilityTemplate]
@@ -6555,4 +6555,26 @@ KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Chosen increases risks on C
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Chosen can sabotage the Avenger!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Chosen can launch an assault on the Avenger!"
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an additional dark event!"
+
+
+[X2Ability_LW_ChosenAbilities]
+ShieldedStatBuffsLocDescription="Bonus Aim, Critical hit Chance, Will and Psi Offense."
+
+
+[HunterFlashbang X2GrenadeTemplate]
+FriendlyName="Flashbang Grenade"
+FriendlyNamePlural="Flashbang Grenades"
+BriefSummary="The Flashbang Grenade disrupts and disorients enemies in a very large radius, inflicting significant offensive penalties."
+TacticalText="<Bullet/> Flashbang grenades don't do damage, but disorient and disrupt enemies in a large radius.<br><Bullet/> Friendly squad members will not be affected.<br/><Bullet/> Some powerful enemies may be able to resist their effects."
+ThrownAbilityName="Throw Hunter Flashbang Grenade"
+ThrownAbilityHelpText="Disorient hostile targets in the affected area. Free Action."
+LaunchedAbilityname="Launch Flashbang Grenade"
+LaunchedAbilityHelpText="Disorient hostile targets in the affected area."
+
+[Disabler X2AbilityTemplate]
+LocFriendlyName="Disabler"
+LocFlyOverText="Disabler"
+LocLongDescription="Your Pistol Attacks Disable your target's weapons."
+LocHelpText="Your Pistol Attacks Disable your target's weapons."
+
 ; End Translation

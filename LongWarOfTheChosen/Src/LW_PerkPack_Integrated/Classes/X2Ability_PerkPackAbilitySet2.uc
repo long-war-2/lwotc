@@ -909,6 +909,32 @@ static function X2AbilityTemplate AddStingGrenades()
 	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(TemporaryItemEffect);
 
+	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
+	TemporaryItemEffect.EffectName = 'StingGrenadeEffect2';
+	TemporaryItemEffect.ItemName = 'StingGrenade';
+	TemporaryItemEffect.bReplaceExistingItemOnly = true;
+	TemporaryItemEffect.ExistingItemName = 'HunterFlashbang';
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
+	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
+	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
+	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(TemporaryItemEffect);
+
+	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
+	TemporaryItemEffect.EffectName = 'StingGrenadeEffect3';
+	TemporaryItemEffect.ItemName = 'StingGrenade';
+	TemporaryItemEffect.bReplaceExistingItemOnly = true;
+	TemporaryItemEffect.ExistingItemName = 'AdvGrenadierFlashbangGrenade';
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
+	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
+	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
+	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(TemporaryItemEffect);
+
+
+	
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;

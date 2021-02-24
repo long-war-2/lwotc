@@ -2215,7 +2215,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('CloseCombatSpecialist');
 		Template.Abilities.AddItem('GrazingFire');
 		Template.Abilities.AddItem('WarlockReaction');
-		Template.Abilities.AddItem('AmmoDump_LW');
+		//Template.Abilities.AddItem('AmmoDump_LW');
 		Template.Abilities.AddItem('ChosenCritImmune');
 		Template.Abilities.AddItem('ChosenImmunitiesPassive');
 
@@ -2244,6 +2244,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('ChosenImmuneMelee');
 		Template.Abilities.AddItem('ReadyForAnything');
 		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		Template.Abilities.AddItem('FreeGrenades');
+		Template.Abilities.AddItem('Infighter');
+		Template.Abilities.AddItem('Disabler');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
