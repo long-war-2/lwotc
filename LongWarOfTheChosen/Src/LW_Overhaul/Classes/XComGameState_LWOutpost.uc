@@ -265,7 +265,7 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 			{
 				FacelessChance *= 0.6;
 			}
-			if (Unit.HasSoldierAbility('MindMerge'))
+			if (Unit.HasSoldierAbility('MindMerge') || Unit.HasSoldierAbility('Soulfire') || Unit.HasSoldierAbility('Insanity'))
 			{
 				FacelessChance *= 0.6;
 			}
