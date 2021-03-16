@@ -613,6 +613,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Bombard.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_BonusGrenadeSlotUse.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_BonusRocketCharges.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_BonusWeaponDOT.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_CancelLongRangePenalty.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_CoupDeGrace.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_CoupDeGrace2.uc" />
