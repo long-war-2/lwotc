@@ -10,6 +10,7 @@ class X2Effect_FieldSurgeon extends X2Effect_Persistent config(LW_SoldierSkills)
 
 var config array<int> FIELD_SURGEON_CHANCE_FOR_NUM_EFFECTS;
 var name FieldSurgeonAppliedUnitValue;
+var name FieldSurgeonUnitWasBleedingOut;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
@@ -22,6 +23,10 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 	// at that time because we could evac a wounded unit and then have the surgeon get killed on a later turn. We
 	// need to wait until the mission ends and then process FS.
 	`XEVENTMGR.UnRegisterFromEvent(EffectObj, 'UnitRemovedFromPlay');
+
+	// Because bleeding out status will be cleared at the CleanupTacticalMission point we have to record
+	// that unit was bleeding out at some point during the mission.
+	`XEVENTMGR.RegisterForEvent(EffectObj, 'UnitBleedingOut', OnUnitBleedingOut, ELD_OnStateSubmitted, ,,, EffectObj);
 }
 
 function ApplyFieldSurgeon(XComGameState_Effect EffectState, XComGameState_Unit OrigUnitState, XComGameState NewGameState)
@@ -30,6 +35,8 @@ function ApplyFieldSurgeon(XComGameState_Effect EffectState, XComGameState_Unit 
 	local int						NumEffects;
 	local UnitValue					AppliedFSValue;
 	local bool						bApplyFieldSurgeon;
+	local UnitValue					StatusValue;
+	local int						StatusIntValue;
 
 	UnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(OrigUnitState.ObjectID));
 	if (UnitState == none)
@@ -47,7 +54,16 @@ function ApplyFieldSurgeon(XComGameState_Effect EffectState, XComGameState_Unit 
 
 	if(UnitState == none) { return; }
 	if(UnitState.IsDead()) { return; }
+	// This check does nothing, as it is seemingly always false at this point. 
+	// Leaving it here just in case.
 	if(UnitState.IsBleedingOut()) { return; }
+
+	if(UnitState.GetUnitValue(default.FieldSurgeonUnitWasBleedingOut, StatusValue))
+	{		
+		StatusIntValue = int(StatusValue.fValue);
+		if(StatusIntValue > 0) { return; }
+	}
+
 	if(!CanBeHealed(UnitState)) { return; }
 
 	`PPTRACE("Field Surgeon: Target Unit Can Be Healed.");
@@ -94,11 +110,40 @@ function bool FieldSurgeonEffectIsValidForSource(XComGameState_Unit SourceUnit)
 {
 	if(SourceUnit == none) { return false; }
 	if(SourceUnit.IsDead()) { return false; }
-	if(SourceUnit.IsBleedingOut()) { return false; }
 	if(SourceUnit.bCaptured) { return false; }
 	if(SourceUnit.LowestHP == 0) { return false; }
+	// These two checks do nothing, as these effects are cleared at this point. However, as perk description
+	// does not describe this requirement in the first place fixing these checks might nt be necessary.
+	if(SourceUnit.IsBleedingOut()) { return false; }
 	if(SourceUnit.IsUnconscious()) { return false; }
 	return true;
+}
+
+static function EventListenerReturn OnUnitBleedingOut(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Effect EffectState;
+	local XComGameState_Unit UnitState;
+
+	EffectState = XComGameState_Effect(CallbackData);
+	if (EffectState == None) {
+		return ELR_NoInterrupt;
+	}
+
+	UnitState = XComGameState_Unit(EventData);
+	if (UnitState == None) {
+		return ELR_NoInterrupt;
+	}
+
+	if (UnitState.ObjectID != EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID)
+	{
+		return ELR_NoInterrupt;
+	}
+
+	if(EventID == 'UnitBleedingOut' && UnitState.IsBleedingOut() && UnitState.GetBleedingOutTurnsRemaining() > 0)
+	{
+		UnitState.SetUnitFloatValue(default.FieldSurgeonUnitWasBleedingOut, 1, eCleanup_BeginTactical);
+	}
+	return ELR_NoInterrupt;
 }
 
 DefaultProperties
@@ -106,4 +151,5 @@ DefaultProperties
 	EffectName="FieldSurgeon"
 	DuplicateResponse=eDupe_Allow
 	FieldSurgeonAppliedUnitValue="FieldSurgeonHealed"
+	FieldSurgeonUnitWasBleedingOut="FieldSurgeonUnitWasBleedingOut"
 }
