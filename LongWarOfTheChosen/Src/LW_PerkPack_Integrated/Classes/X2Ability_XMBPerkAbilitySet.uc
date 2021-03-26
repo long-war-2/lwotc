@@ -2893,17 +2893,10 @@ static function X2AbilityTemplate CombatReadinessPassive()
 
 static function X2AbilityTemplate MovingTarget()
 {
-	local XMBEffect_ConditionalBonus Effect;
+	local X2Effect_MovingTarget_LW Effect;
 
 	// Create a conditional bonus
-	Effect = new class'XMBEffect_ConditionalBonus';
-
-	// The bonus adds +30 Defense and +50 Dodge
-	Effect.AddToHitAsTargetModifier(-1 * default.MOVING_TARGET_DEFENSE);
-	Effect.AddToHitAsTargetModifier(default.MOVING_TARGET_DODGE, eHit_Graze);
-
-	// Require that the incoming attack is reaction fire
-	Effect.AbilityTargetConditions.AddItem(default.ReactionFireCondition);
+	Effect = new class'X2Effect_MovingTarget_LW';
 
 	// Create the template using a helper function
 	return Passive('MovingTarget_LW', "img:///UILibrary_PerkIcons.UIPerk_lightningreflexes", false, Effect);

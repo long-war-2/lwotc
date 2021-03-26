@@ -5,43 +5,49 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_BloodThirst extends X2Effect_Persistent config(LW_SoldierSkills);
 
-var float BloodThirstDMGPCT;
-var bool bflatdamage;
-var float BloodThirstFlatDMG;
+var config int BLOODTHIRST_T1_DMG;
+var config int BLOODTHIRST_T2_DMG;
+var config int BLOODTHIRST_T3_DMG;
+var config int BLOODTHIRST_T4_DMG;
 
-function float GetPostDefaultAttackingDamageModifier_CH(
-	XComGameState_Effect EffectState,
-	XComGameState_Unit SourceUnit,
-	Damageable Target,
-	XComGameState_Ability AbilityState,
-	const out EffectAppliedData ApplyEffectParameters,
-	float WeaponDamage, XComGameState NewGameState)
+function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
 {
 	local XComGameState_Unit TargetUnit;
-		
-	if (ApplyEffectParameters.AbilityResultContext.HitResult != eHit_Miss &&
-		AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
+	local XComGameState_Item SourceWeapon;
+	local XComGameStateHistory History;
+ 
+	History = `XCOMHISTORY;
+
+	if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
 	{
-		TargetUnit = XComGameState_Unit(Target);
-		if (TargetUnit != none)
+		
+	TargetUnit = XComGameState_Unit(TargetDamageable);
+	if (TargetUnit != none)
+	{
+		SourceWeapon = XComGameState_Item(History.GetGameStateForObjectID(AppliedData.ItemStateObjectRef.ObjectID));
+
+		switch(SourceWeapon.GetMyTemplateName())
 		{
-			if (!bflatdamage)
-			{
-				return WeaponDamage * (BloodThirstDMGPCT / 100);
-			}
-			else
-			{
-				return BloodThirstFlatDMG;
-			}
+			case 'ChosenSword_CV':
+				return default.BLOODTHIRST_T1_DMG;
+			case 'ChosenSword_MG':
+				return default.BLOODTHIRST_T2_DMG;
+			case 'ChosenSword_BM':
+				return default.BLOODTHIRST_T3_DMG;
+			case 'ChosenSword_T4':
+			case 'ChosenSword_XCOM':
+				return default.BLOODTHIRST_T4_DMG;
+			default:
+				return 0;
 		}
+	}
+
+
 	}
 	return 0;
 }
 
 defaultproperties
 {
-	BloodThirstDMGPCT=25
-	bflatdamage=false
-	BloodThirstFlatDMG=0
 	EffectName=BloodThirst
 }

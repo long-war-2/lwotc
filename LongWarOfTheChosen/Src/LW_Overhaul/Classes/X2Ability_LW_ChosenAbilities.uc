@@ -407,8 +407,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	local X2Effect_PersistentStatChange ShieldedEffect;
 	local X2Effect_GreatestChampion StatBuffsEffect;
 	local X2Effect_PCTDamageReduction ImpactEffect;
-	local X2Effect_RegenerationPCT	RegenerationEffect;
-	
+	local X2Condition_Visibility	VisibilityCondition;
 	`CREATE_X2ABILITY_TEMPLATE(Template, Templatename);
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_mindscorch";
 	Template.Hostility = eHostility_Neutral;
@@ -432,6 +431,11 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bAllowSquadsight = false;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
 	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
@@ -450,9 +454,9 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	Template.AddTargetEffect(ShieldedEffect);
 
 	StatBuffsEffect = new class'X2Effect_GreatestChampion';
-	StatBuffsEffect.BuildPersistentEffect(1, true, true, , eGameRule_PlayerTurnEnd);
+	StatBuffsEffect.BuildPersistentEffect(1, true, true);
 	StatBuffsEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, default.ShieldedStatBuffsLocDescription, "img:///UILibrary_PerkIcons.UIPerk_adventshieldbearer_energyshield", true);
-	//StatBuffsEffect.bRemoveWhenTargetDies = true;
+	StatBuffsEffect.bRemoveWhenTargetDies = true;
 	//StatBuffsEffect.bRemoveWhenTargetUnconscious = true;
 	StatBuffsEffect.AddPersistentStatChange(eStat_Offense, default.GREATEST_CHAMPION_AIM);
 	StatBuffsEffect.AddPersistentStatChange(eStat_CritChance, default.GREATEST_CHAMPION_CRIT);
@@ -460,13 +464,6 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	StatBuffsEffect.AddPersistentStatChange(eStat_PsiOffense, default.GREATEST_CHAMPION_PSIOFFENSE);
 	Template.AddTargetEffect(StatBuffsEffect);
 
-	RegenerationEffect = new class'X2Effect_RegenerationPCT';
-	RegenerationEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
-	RegenerationEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,false,,Template.AbilitySourceName);
-	RegenerationEffect.HealAmountPCT = class'X2LWAbilitiesModTemplate'.default.CHOSEN_REGENERATION_HEAL_VALUE_PCT;
-	RegenerationEffect.DuplicateResponse = eDupe_Allow;
-	RegenerationEffect.EffectName = 'WarlockRegeneration';
-	Template.AddShooterEffect(RegenerationEffect);
 
 	ImpactEffect = new class'X2Effect_PCTDamageReduction';
 	ImpactEffect.PCTDamage_Reduction = default.SHIELD_ALLY_PCT_DR;

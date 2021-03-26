@@ -5422,32 +5422,32 @@ LocFlyOverText="Sabotage Weapon"
 
 [ShieldAllyM1 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM2 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction.."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM3 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM4 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock regenerates hp and gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ChosenImmuneMelee X2AbilityTemplate]
-LocFriendlyName="Melee Resistance"
-LocLongDescription="Takes 50% less damage from melee."
-LocHelpText="Takes 50% less damage from melee."
+LocFriendlyName="Anticipation"
+LocLongDescription="Takes 50% less damage from dashing melee attacks."
+LocHelpText="Takes 50% less damage from from dashing melee attacks."
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Blast Shield"
@@ -6224,8 +6224,8 @@ LocFlyOverText="Kidnap"
 
 [ChosenKeen X2AbilityTemplate]
 LocFriendlyName="Keen"
-LocLongDescription="Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
-LocHelpText="Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
+LocLongDescription="For Soldiers only (Not rebels) Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
+LocHelpText="For Soldiers only (Not rebels) Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
 LocFlyOverText="Keen"
 
 ;LWOTC needs translation (2)
@@ -6309,14 +6309,14 @@ strAcquiredText="The Hunter is the master of long range combat, constantly kitin
 
 [BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
 LocFlyOverText="Blood Thirst"
 
 [BloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed On a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
 LocFlyOverText="Blood Thirst"
 
 
@@ -6388,14 +6388,14 @@ AbilityDescName="pistol"
 
 [XCOMBloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Lasts 2 turns."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks. Lasts 2 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks."
 LocFlyOverText="Blood Thirst"
 
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Lasts 2 turns."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Lasts 2 turns."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks. Lasts 2 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks. Lasts 2 turns."
 LocFlyOverText="Blood Thirst"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
@@ -6489,8 +6489,8 @@ LocFlyOverText="Chosen Immunities"
 
 [HarborWave X2AbilityTemplate]
 LocFriendlyName="Harbor Wave"
-LocLongDescription="Send a psionic wave that deals damage and triggers blood thirst for every unit hit."
-LocHelpText="Send a psionic wave that deals damage and triggers blood thirst for every unit hit."
+LocLongDescription="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst."
+LocHelpText="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst."
 LocFlyOverText="Harbor Wave"
 
 ; LWOTC Needs Translation (2)
@@ -6538,7 +6538,7 @@ LocHelpText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Dam
 LocPromotionPopupText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
 
 [MovingTarget_LW X2AbilityTemplate]
-LocFriendlyName="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+LocFriendlyName="Moving Target"
 LocFlyOverText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
 LocLongDescription="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
 LocHelpText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
