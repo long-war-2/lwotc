@@ -13,7 +13,6 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local bool bIsMeleeDamage;
 	local int CurrentDamageMod;
 	local X2AbilityToHitCalc_StandardAim ToHitCalc;
-	local X2AbilityTemplate Template;
 	// The damage effect's DamageTypes must be empty or have melee in order to adjust the damage
 	if (WeaponDamageEffect.EffectDamageValue.DamageType == MeleeDamageTypeName)
 		bIsMeleeDamage = true;
