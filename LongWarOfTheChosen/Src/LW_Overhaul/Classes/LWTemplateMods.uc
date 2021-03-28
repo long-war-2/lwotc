@@ -2218,6 +2218,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		//Template.Abilities.AddItem('AmmoDump_LW');
 		Template.Abilities.AddItem('ChosenCritImmune');
 		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		Template.Abilities.AddItem('ChosenLootAbility');
 
 		Template.InitiativePriority = -100;
 
@@ -2247,6 +2248,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('FreeGrenades');
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('Disabler');
+		Template.Abilities.AddItem('ChosenLootAbility');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
@@ -2270,6 +2272,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('AssassinSlash_LW');
 		Template.Abilities.AddItem('ImpactCompensation_LW');
 		Template.Abilities.AddItem('Brawler');
+		Template.Abilities.AddItem('ChosenLootAbility');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;

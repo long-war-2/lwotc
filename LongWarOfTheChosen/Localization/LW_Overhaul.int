@@ -696,3 +696,6 @@ strCovertActionFailed="FAILED"
 ; LWOTC Needs Translation
 ScrollObjectiveDescriptionStr="SCROLL OBJECTIVE DESCRIPTION"
 ; End Translation
+
+[X2Effect_ChosenLoot]
+m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> Rewarded for Killing the Chosen."

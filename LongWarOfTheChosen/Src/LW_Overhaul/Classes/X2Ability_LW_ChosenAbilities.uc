@@ -73,6 +73,9 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateDisabler());
 
+	Templates.AddItem(CreateChosenLootAbility());
+	
+
 	return Templates;
 }
 
@@ -1756,6 +1759,32 @@ static function X2AbilityTemplate CreateDisabler()
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+	static function X2AbilityTemplate CreateChosenLootAbility()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_ChosenLoot ChosenLootEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenLootAbility');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	ChosenLootEffect = new class'X2Effect_ChosenLoot';
+	ChosenLootEffect.BuildPersistentEffect(1, true, true, true);
+	Template.AddShooterEffect(ChosenLootEffect);
+
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
 }
