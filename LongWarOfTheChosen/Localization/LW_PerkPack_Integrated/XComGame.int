@@ -236,28 +236,28 @@ LocLongDescription="After taking a standard shot with your primary weapon with y
 LocHelpText="After taking a standard shot with your primary weapon with your first action, you may take an additional non-movement action."
 LocPromotionPopupText="<Bullet/> After taking a standard shot with your primary weapon with your first action, you may take an additional non-movement action.<br/>"
 
-;LWOTC needs translation
+; LWOTC needs translation
 [WalkFire X2AbilityTemplate]
 LocFriendlyName="Walk Fire"
 LocFlyOverText="Walk Fire"
 LocLongDescription="Take a highly accurate shot with +<Ability:WALK_FIRE_AIM_BONUS> bonus to hit <Ability:WALK_FIRE_DMG>% damage and -<Ability:WALK_FIRE_CRIT_MALUS> crit. Uses <Ability:SelfAmmoCost/> ammo."
 LocHelpText="Special shot: +<Ability:WALK_FIRE_AIM_BONUS> aim, -<Ability:WALK_FIRE_CRIT_MALUS> crit, <Ability:WALK_FIRE_DMG>% damage, uses <Ability:SelfAmmoCost/> ammo."
 LocPromotionPopupText="<Bullet/> This is a special shot in which the soldier adjusts their aim in the middle of an automatic weapon burst, conferring +<Ability:WALK_FIRE_AIM_BONUS> aim and -<Ability:WALK_FIRE_CRIT_MALUS> crit and doing <Ability:WALK_FIRE_DMG>% damage.<br/><Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
-;End translation
+; End translation
 
 [PrecisionShot X2AbilityTemplate]
 LocFriendlyName="Precision Shot"
 LocFlyOverText="Precision Shot"
-;LWOTC needs translation
+; LWOTC needs translation
 LocLongDescription="Take a special shot with +30 bonus to critical chance and 33% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Take a special shot with +30 bonus to critical chance and 33% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocPromotionPopupText="<Bullet/> Take a special shot with +30 bonus to critical chance and 33% bonus critical damage.<br/><Bullet/> Precision Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
-;End translation
+; End translation
 
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Cyclic Fire"
 LocFlyOverText="Cyclic Fire"
-: LWOTC Needs Translation (2)
+; LWOTC Needs Translation (2)
 LocLongDescription="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Special Shot: Fire three shots at a target in a single attack. Requires both actions and all shots have aim penalties. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocPromotionPopupText="<Bullet/> Special Shot: Fire three shots at a target in a single attack. Requires two actions and all shots have a -<Ability:CYCLIC_FIRE_AIM_MALUS/> penalty to aim.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Cyclic Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires a burst-fire weapon; ability will not be available when a shotgun or sniper rifle is equipped as a primary weapon."
@@ -266,7 +266,7 @@ LocPromotionPopupText="<Bullet/> Special Shot: Fire three shots at a target in a
 [StreetSweeper X2AbilityTemplate]
 LocFriendlyName="Trench Gun"
 LocFlyOverText="Trench Gun"
-: LWOTC Needs Translation
+; LWOTC Needs Translation
 LocLongDescription="Special shot for primary-weapon shotguns only: Fire a short-range cone-based attack at nearby targets. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Special shot for primary-weapon shotguns only: Fire a short-range cone-based attack at nearby targets. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a short-range cone-based attack at nearby targets.<br/><Bullet/> Trench Gun has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Ability will not be available with other primary weapons.<br/><Bullet/> The shot will not penetrate heavy cover, so this ability is best used in flanking situations.<br/><Bullet/> Allies in the area of effect can take damage.<br/>
@@ -277,7 +277,7 @@ LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: 
 LocFriendlyName="Slug Shot"
 LocFlyOverText="Slug Shot"
 LocLongDescription="Special shot for primary-weapon shotguns only: Fire a shot that pierces two armor and has no range penalties. Uses <Ability:SelfAmmoCost/> ammo. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocHelpText="Armor-piercing special shotgun shot with no range penalties."
+LocHelpText="Armor-piercing special shotgun shot with no range penalties. Has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocPromotionPopupText="<Bullet/> Special shot for primary-weapon shotguns only: Fire a shot with no range penalties.<br/><Bullet/> The shot will pierce two armor points.<br/><Bullet/> Slug shot has a <Ability:SelfCooldown_LW/> turn cooldown. <br/><Bullet/> Requires <Ability:SelfAmmoCost/> ammo.<br/>"
 
 [SlugShotRangeEffect X2AbilityTemplate]
@@ -501,8 +501,8 @@ LocFriendlyNameWhenConcealed="Overwatch (Concealed)"
 [SnapShotAimModifier X2AbilityTemplate]
 LocFriendlyName="Snap Shot"
 LocFlyOverText="Snap Shot"
-LocLongDescription="You may take standard shots and enter standard overwatch with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range on all shots."
-LocHelpText="Allows standard shots and overwatch with sniper rifles after moving."
+LocLongDescription="You may take standard shots with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range on all shots."
+LocHelpText="Allows standard shots with sniper rifles after moving."
 
 [Trojan X2AbilityTemplate]
 LocFriendlyName="Trojan"
