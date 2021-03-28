@@ -8,6 +8,7 @@
 class CHItemSlot_PistolSlot_LW extends CHItemSlotSet config(LW_Overhaul);
 
 var config array<name> EXCLUDE_FROM_PISTOL_SLOT_CLASSES;
+var config array<name> PISTOL_SLOT_WEAPON_CLASSES;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -59,9 +60,9 @@ static function bool CanAddItemToPistolSlot(
     WeaponTemplate = X2WeaponTemplate(Template);
     if (WeaponTemplate != none)
     {
-        return WeaponTemplate.WeaponCat == 'pistol';
+        return default.PISTOL_SLOT_WEAPON_CLASSES.Find(WeaponTemplate.WeaponCat()) == INDEX_NONE;
     }
-    return false;
+    return true;
 }
 
 static function bool HasPistolSlot(
