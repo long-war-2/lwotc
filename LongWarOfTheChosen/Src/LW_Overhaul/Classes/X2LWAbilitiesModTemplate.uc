@@ -618,7 +618,8 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 	local X2AbilityMultiTarget_Cone_LWFlamethrower	ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim			StandardAim;
 	local X2Condition 								Condition;
-
+	local X2Condition_Phosphorus PhosphorusCondition;
+	local X2Effect Effect;
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bAllowCrit = false;
 	StandardAim.bGuaranteedHit = true;
@@ -631,6 +632,15 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 			X2Condition_UnitEffects(Condition).RemoveExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName);
 		}
 	}
+		PhosphorusCondition = new class'X2Condition_Phosphorus';
+
+	foreach Template.AbilityMultiTargetEffects(Effect)
+	{
+		if(Effect.isA('X2Effect_ApplyWeaponDamage'))
+		{
+			X2Effect_ApplyWeaponDamage(Effect).TargetConditions.AddItem(PhosphorusCondition);
+		}
+	}	
 
 	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
@@ -645,16 +655,17 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	Template.AbilityMultiTargetStyle = ConeMultiTarget;
 
+	Template.AdditionalAbilities.AddItem('Phosphorus');
+
 	Template.bCheckCollision = true;
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = true;
 
 	// For vanilla targeting
-	// Template.ActionFireClass = class'X2Action_Fire_Flamethrower';
 	Template.PostActivationEvents.AddItem('FlamethrowerActivated');
 	Template.ActionFireClass = class'X2Action_Fire_Flamethrower_LW';
 
-	Template.BuildVisualizationFn = class'X2Ability_LW_TechnicalAbilitySet'.static.LWFlamethrower_BuildVisualization;
+	//Template.BuildVisualizationFn = class'X2Ability_LW_TechnicalAbilitySet'.static.LWFlamethrower_BuildVisualization;
 
 }
 

@@ -24,9 +24,6 @@ static function EventListenerReturn ScavengerAutoLoot(Object EventData, Object E
 	local XComGameState NewGameState;
 	local XComGameState_Effect_EffectCounter EffectState;
 	local XComGameState_Unit DeadUnit;
-	local XComGameStateHistory History;
-
-	History = `XCOMHISTORY;
 
 	DeadUnit = XComGameState_Unit (EventData);
 	if (DeadUnit == none)

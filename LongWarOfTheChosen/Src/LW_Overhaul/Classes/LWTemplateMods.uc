@@ -2125,6 +2125,16 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('Formidable');
 		case 'AdvPurifierM2':
 			Template.Abilities.AddItem('Burnout');
+			Template.Abilities.AddItem('PhosphorusPassive');
+
+			Template.strPawnArchetypes.RemoveItem("GameUnit_AdvPurifier.ARC_GameUnit_AdvPurifierM2_M");
+			Template.strPawnArchetypes.RemoveItem("GameUnit_AdvPurifier.ARC_GameUnit_AdvPurifierM2_F");
+			Template.strPawnArchetypes.RemoveItem("GameUnit_AdvPurifier.ARC_GameUnit_AdvPurifierM3_M");
+			Template.strPawnArchetypes.RemoveItem("GameUnit_AdvPurifier.ARC_GameUnit_AdvPurifierM3_F");
+			Template.strPawnArchetypes.AddItem("GameUnit_AdvPurifier_Rusty.Archetypes.ARC_GameUnit_AdvPurifierRusty_F");
+			Template.strPawnArchetypes.AddItem("GameUnit_AdvPurifier_Rusty.Archetypes.ARC_GameUnit_AdvPurifierRusty_M");
+		case 'AdvPurifierM1':
+			Template.strScamperBT = "ScamperRoot_Purifier";
 			break;
 		case 'SpectreM2':
 			Template.Abilities.AddItem('LowProfile');

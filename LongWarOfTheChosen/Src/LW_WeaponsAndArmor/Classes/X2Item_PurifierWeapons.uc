@@ -9,6 +9,10 @@ var config WeaponDamageValue ADV_PURIFIER_PISTOL_M1_WPN_BASEDAMAGE;
 var config WeaponDamageValue ADV_PURIFIER_PISTOL_M2_WPN_BASEDAMAGE;
 var config WeaponDamageValue ADV_PURIFIER_PISTOL_M3_WPN_BASEDAMAGE;
 
+var config WeaponDamageValue ADVPURIFIERM2_FLAMETHROWER_BASEDAMAGE;
+var config WeaponDamageValue ADVPURIFIERM3_FLAMETHROWER_BASEDAMAGE;
+
+
 static function array<X2DataTemplate> CreateTemplates()
 {
     local array<X2DataTemplate> Weapons;
@@ -16,6 +20,9 @@ static function array<X2DataTemplate> CreateTemplates()
     Weapons.AddItem(CreateTemplate_AdvPurifierPistolM1_WPN());
     Weapons.AddItem(CreateTemplate_AdvPurifierPistolM2_WPN());
     Weapons.AddItem(CreateTemplate_AdvPurifierPistolM3_WPN());
+    Weapons.AddItem(CreateTemplate_AdvPurifierM2Flamethrower());
+    Weapons.AddItem(CreateTemplate_AdvPurifierM3Flamethrower());
+
     return Weapons;
 }
 
@@ -163,6 +170,90 @@ static function X2DataTemplate CreateTemplate_AdvPurifierPistolM3_WPN()
 	Template.DamageTypeTemplateName = 'Projectile_MagAdvent';
 
 	Template.bHideClipSizeStat = true;
+
+	return Template;
+}
+
+
+static function X2WeaponTemplate CreateTemplate_AdvPurifierM2Flamethrower()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'AdvPurifierM2Flamethrower');
+	
+	Template.ItemCat = 'weapon';
+	Template.WeaponCat = 'shotgun';
+	Template.WeaponTech = 'magnetic';
+	Template.strImage = "img:///UILibrary_XPACK_StrategyImages.Inv_Advent_Flamethrower";
+	Template.EquipSound = "Conventional_Weapon_Equip";
+
+	Template.BaseDamage = default.ADVPURIFIERM2_FLAMETHROWER_BASEDAMAGE;
+	Template.iSoundRange = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_ISOUNDRANGE;
+	Template.iEnvironmentDamage = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_IENVIRONMENTDAMAGE;
+	Template.iClipSize = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_ICLIPSIZE;
+	Template.iRange = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_RANGE;
+	Template.iRadius = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_RADIUS;
+	Template.fCoverage = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_TILE_COVERAGE_PERCENT;
+	Template.iIdealRange = 7;
+	Template.InfiniteAmmo = true;
+	Template.PointsToComplete = 0;
+	Template.DamageTypeTemplateName = 'Fire';
+	
+
+	Template.InventorySlot = eInvSlot_PrimaryWeapon;
+	
+	Template.GameArchetype = "WP_AdventFlamethrower_Rusty.Archetypes.WP_AdvFlamethrower_Rusty";
+	Template.bMergeAmmo = true;
+	Template.bCanBeDodged = false;
+
+	Template.Abilities.AddItem('AdvPurifierFlamethrower');
+
+	Template.CanBeBuilt = false;
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RangeLabel, , class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_RANGE);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RadiusLabel, , class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_RADIUS);
+
+	return Template;
+}
+
+	static function X2WeaponTemplate CreateTemplate_AdvPurifierM3Flamethrower()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'AdvPurifierM3Flamethrower');
+	
+	Template.ItemCat = 'weapon';
+	Template.WeaponCat = 'shotgun';
+	Template.WeaponTech = 'beam';
+	Template.strImage = "img:///UILibrary_XPACK_StrategyImages.Inv_Advent_Flamethrower";
+	Template.EquipSound = "Conventional_Weapon_Equip";
+
+	Template.BaseDamage = default.ADVPURIFIERM3_FLAMETHROWER_BASEDAMAGE;
+	Template.iSoundRange = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_ISOUNDRANGE;
+	Template.iEnvironmentDamage = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_IENVIRONMENTDAMAGE;
+	Template.iClipSize = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_ICLIPSIZE;
+	Template.iRange = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_RANGE;
+	Template.iRadius = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_RADIUS;
+	Template.fCoverage = class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_TILE_COVERAGE_PERCENT;
+	Template.iIdealRange = 7;
+
+	Template.InfiniteAmmo = true;
+	Template.PointsToComplete = 0;
+	Template.DamageTypeTemplateName = 'Fire';
+	
+
+	Template.InventorySlot = eInvSlot_PrimaryWeapon;
+	
+	Template.GameArchetype = "WP_AdventFlamethrower_Rusty.Archetypes.WP_AdvFlamethrower_Rusty";
+	Template.bMergeAmmo = true;
+	Template.bCanBeDodged = false;
+
+	Template.Abilities.AddItem('AdvPurifierFlamethrower');
+
+	Template.CanBeBuilt = false;
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RangeLabel, , class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_RANGE);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.RadiusLabel, , class'X2Item_XpackWeapons'.default.ADVPURIFIER_FLAMETHROWER_RADIUS);
 
 	return Template;
 }

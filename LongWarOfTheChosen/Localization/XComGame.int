@@ -173,9 +173,9 @@ LocPromotionPopupText="<Bullet/> Your Flamethrower can now disorient or panic en
 [PhosphorusPassive X2AbilityTemplate]
 LocFriendlyName="Phosphorus"
 LocFlyOverText="Phosphorus"
-LocLongDescription="Your flamethrower can now damage mechanical units and shred armor."
-LocHelpText="Your flamethrower can now damage mechanical units and shred armor."
-LocPromotionPopupText="<Bullet/> Your flamethrower can now damage mechanical units.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
+LocLongDescription="Your flamethrower's base damage can now ignore fire immunities, and shred armor.""
+LocHelpText="Your flamethrower's base damage can now ignore fire immunities, and shred armor."
+LocPromotionPopupText="<Bullet/> Your flamethrower can now ignore fire immunities.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
 
 [Incinerator X2AbilityTemplate]
 LocFriendlyName="Incinerator"
