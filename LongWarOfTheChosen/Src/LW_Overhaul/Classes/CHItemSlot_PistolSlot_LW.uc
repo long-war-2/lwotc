@@ -8,7 +8,6 @@
 class CHItemSlot_PistolSlot_LW extends CHItemSlotSet config(LW_Overhaul);
 
 var config array<name> EXCLUDE_FROM_PISTOL_SLOT_CLASSES;
-var config array<name> PISTOL_SLOT_WEAPON_CLASSES;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
