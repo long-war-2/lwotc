@@ -448,6 +448,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	TargetCondition.ExcludeCivilian = true;
 	TargetCondition.ExcludeCosmetic = true;
 	TargetCondition.ExcludeRobotic = true;
+	TargetCondition.FailOnNonUnits = true;
 	Template.AbilityTargetConditions.AddItem(TargetCondition);
 
 	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), ShieldAmount);
