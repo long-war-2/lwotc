@@ -357,6 +357,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'MAYHEM_DAMAGE_BONUS_PCT':
 			OutString = string(int(class'X2Effect_Mayhem'.default.MAYHEM_DAMAGE_BONUS_PCT));
 			return true;
+		case 'MOVING_TARGET_DEFENSE':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.MOVING_TARGET_DEFENSE);
+			return true;
+		case 'MOVING_TARGET_DODGE':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.MOVING_TARGET_DODGE);
+			return true;
         default:
             return false;
     }

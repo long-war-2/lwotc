@@ -309,7 +309,7 @@ static function X2AbilityTemplate CreatePhosphorusBonusAbility()
 	PhosphorusEffect = new class'X2Effect_Phosphorus';
 	PhosphorusEffect.BuildPersistentEffect (1, true, false);
 	PhosphorusEffect.bDisplayInUI = false;
-	PhosphorusEffect.BonusShred = default.PHOSPHORUS_BONUS_SHRED;
+	//PhosphorusEffect.BonusShred = default.PHOSPHORUS_BONUS_SHRED;
 	Template.AddTargetEffect(PhosphorusEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

@@ -28,7 +28,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 				{			
 					if (WeaponDamageEffect.bIgnoreBaseDamage)
 					{	
-						return 1;
+						return 0;
 					}
 				}
 				return default.CRIT_DAMAGE_BONUS;

@@ -567,6 +567,7 @@ simulated function ConfirmBoostInfiltrationCallback(Name Action)
 		// rebuild the panels to display the updated status
 		BuildMissionPanel();
 		BuildOptionsPanel();
+		UpdateShadowChamber();
 		UpdateSitreps();
 		class'UIUtilities_LW'.static.BuildMissionInfoPanel(self, MissionRef, true);
 

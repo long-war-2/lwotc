@@ -914,7 +914,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Condition_UnitEffects           UnitEffects;
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2AbilityCharges_RevivalProtocol  RPCharges;
-	local X2Condition_UnitInventory         InventoryCondition, InventoryCondition2;
+	local X2Condition_UnitInventory         InventoryCondition2;
 	local X2Condition_UnitEffects           SuppressedCondition, UnitEffectsCondition, NotHaywiredCondition;
 	local int                               k;
 	local X2AbilityCost_Ammo                AmmoCost;
@@ -990,11 +990,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'HailofBullets')
 	{
+		/*
 		InventoryCondition = new class'X2Condition_UnitInventory';
 		InventoryCondition.RelevantSlot=eInvSlot_PrimaryWeapon;
 		InventoryCondition.ExcludeWeaponCategory = 'shotgun';
 		Template.AbilityShooterConditions.AddItem(InventoryCondition);
-	
+		*/
 		InventoryCondition2 = new class'X2Condition_UnitInventory';
 		InventoryCondition2.RelevantSlot=eInvSlot_PrimaryWeapon;
 		InventoryCondition2.ExcludeWeaponCategory = 'sniper_rifle';
@@ -2124,6 +2125,16 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Abilities.AddItem('Formidable');
 		case 'AdvPurifierM2':
 			Template.Abilities.AddItem('Burnout');
+			Template.Abilities.AddItem('PhosphorusPassive');
+
+			Template.strPawnArchetypes.RemoveItem("GameUnit_AdvPurifier.ARC_GameUnit_AdvPurifierM2_M");
+			Template.strPawnArchetypes.RemoveItem("GameUnit_AdvPurifier.ARC_GameUnit_AdvPurifierM2_F");
+			Template.strPawnArchetypes.RemoveItem("GameUnit_AdvPurifier.ARC_GameUnit_AdvPurifierM3_M");
+			Template.strPawnArchetypes.RemoveItem("GameUnit_AdvPurifier.ARC_GameUnit_AdvPurifierM3_F");
+			Template.strPawnArchetypes.AddItem("GameUnit_AdvPurifier_Rusty.Archetypes.ARC_GameUnit_AdvPurifierRusty_F");
+			Template.strPawnArchetypes.AddItem("GameUnit_AdvPurifier_Rusty.Archetypes.ARC_GameUnit_AdvPurifierRusty_M");
+		case 'AdvPurifierM1':
+			Template.strScamperBT = "ScamperRoot_Purifier";
 			break;
 		case 'SpectreM2':
 			Template.Abilities.AddItem('LowProfile');
@@ -2214,9 +2225,10 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('CloseCombatSpecialist');
 		Template.Abilities.AddItem('GrazingFire');
 		Template.Abilities.AddItem('WarlockReaction');
-		Template.Abilities.AddItem('AmmoDump_LW');
+		//Template.Abilities.AddItem('AmmoDump_LW');
 		Template.Abilities.AddItem('ChosenCritImmune');
 		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		Template.Abilities.AddItem('ChosenLootAbility');
 
 		Template.InitiativePriority = -100;
 
@@ -2243,6 +2255,10 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('ChosenImmuneMelee');
 		Template.Abilities.AddItem('ReadyForAnything');
 		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		Template.Abilities.AddItem('FreeGrenades');
+		Template.Abilities.AddItem('Infighter');
+		Template.Abilities.AddItem('Disabler');
+		Template.Abilities.AddItem('ChosenLootAbility');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
@@ -2256,7 +2272,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('BendingReed');
 
 		Template.Abilities.AddItem('ChosenCritImmune');
-		Template.Abilities.AddItem('CombatReadiness');
+		Template.Abilities.AddItem('Banzai_LW');
 		Template.Abilities.AddItem('ChosenKidnap');
 		Template.Abilities.AddItem('AssassinReaction');
 		Template.Abilities.AddItem('BloodThirst_LW');
@@ -2264,8 +2280,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('FreeGrenades');
 		Template.Abilities.AddItem('ChosenImmunitiesPassive');
 		Template.Abilities.AddItem('AssassinSlash_LW');
-		Template.Abilities.AddItem('InstantReactionTime');
+		Template.Abilities.AddItem('ImpactCompensation_LW');
 		Template.Abilities.AddItem('Brawler');
+		Template.Abilities.AddItem('ChosenLootAbility');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
@@ -2447,6 +2464,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenRifle_XCOM':
 			WeaponTemplate.Abilities.AddItem('OverbearingSuperiority_LW');
 			WeaponTemplate.OnAcquiredFn = none;
+			WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, class'X2Item_XpackWeapons'.default.CHOSENRIFLE_XCOM_AIM);
 			break;
 		case 'ChosenSniperRifle_XCOM':
 			WeaponTemplate.iTypicalActionCost = 2;
@@ -2454,6 +2472,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.Abilities.RemoveItem('Reload');
 			WeaponTemplate.Abilities.AddItem('ComplexReload_LW'); 
 			WeaponTemplate.OnAcquiredFn = none;
+			WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, class'X2Item_XpackWeapons'.default.CHOSENSNIPERRIFLE_XCOM_AIM);
+			WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.CritLabel, eStat_CritChance, class'X2Item_XpackWeapons'.default.CHOSENSNIPERRIFLE_XCOM_CRITCHANCE);
 			break;
 		case 'ChosenSword_XCOM':
 			WeaponTemplate.Abilities.AddItem('XCOMBloodThirst_LW');
@@ -2470,6 +2490,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenShotgun_XCOM':
 			WeaponTemplate.Abilities.AddItem('Brawler');
 			WeaponTemplate.Abilities.AddItem('Vampirism_LW');
+			WeaponTemplate.Abilities.AddItem('ImpactCompensation_LW');
 			WeaponTemplate.OnAcquiredFn = none;
 			break;
 		case 'ChosenSniperPistol_XCOM':
@@ -2648,6 +2669,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'CorpseAdventShieldbearer':
 			case 'CorpseDrone':
 			case 'CorpseMutonElite':
+			case 'CorpseSpectre':
+			case 'CorpseAdventPurifier':
+			case 'CorpseAdventPriest':
+			case 'CorpseTheLost':
 				Template.LeavesExplosiveRemains = false;
 				break;
 			default:

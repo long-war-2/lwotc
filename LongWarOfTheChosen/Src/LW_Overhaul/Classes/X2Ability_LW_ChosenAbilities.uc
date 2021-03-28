@@ -9,8 +9,6 @@ class X2Ability_LW_ChosenAbilities extends X2Ability config(LW_SoldierSkills);
 var config int COOLDOWN_AMMO_DUMP;
 var config int COOLDOWN_SHIELD_ALLY;
 var config int MSTERROR_STAT_CHECK_BASE_VALUE;
-var config int COMBATREADINESS_DEF;
-var config int COMBATREADINESS_AIM;
 var config int KIDNAP_COOLDOWN;
 var config int SHIELDALLYM1_SHIELD;
 var config int SHIELDALLYM2_SHIELD;
@@ -20,11 +18,16 @@ var config array<name> KIDNAP_ELIGIBLE_CHARTYPES;
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
 
 var private name ExtractKnowledgeMarkSourceEffectName, ExtractKnowledgeMarkTargetEffectName;
-
+var localized string ShieldedStatBuffsLocDescription;
 var config array<name> CHOSEN_SUMMON_RNF_DATA;
 
+var config int GREATEST_CHAMPION_AIM;
+var config int GREATEST_CHAMPION_CRIT;
+var config int GREATEST_CHAMPION_WILL;
+var config int GREATEST_CHAMPION_PSIOFFENSE;
+var config float SHIELD_ALLY_PCT_DR;
+var config float IMPACT_COMPENSATION_PCT_DR;
 var const string ChosenSummonContextDesc;
-var const string CombatReadinessBonusText;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -39,8 +42,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateShieldAlly('ShieldAllyM4',default.SHIELDALLYM4_SHIELD));
 	Templates.AddItem(CreateTraitResilience());
 	Templates.AddItem(CreateChosenKidnap());
-	Templates.AddItem(AddCombatReadiness());
-	Templates.AddItem(CombatReadinessPassive());
 	Templates.AddItem(CreateKeen());
 	Templates.AddItem(CreateFollowerDefeatedEscape());
 
@@ -67,6 +68,13 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(ChosenImmunitiesPassive());
 	Templates.AddItem(AssassinSlash_LW());
+	Templates.AddItem(ImpactCompensation());
+	Templates.AddItem(ImpactCompensationPassive());
+
+	Templates.AddItem(CreateDisabler());
+
+	Templates.AddItem(CreateChosenLootAbility());
+	
 
 	return Templates;
 }
@@ -80,6 +88,7 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	local array<name> SkipExclusions;
 	local X2Condition_UnitProperty UnitPropertyCondition;
 	local X2Condition_OnlyOnXCOMTurn TurnCondition;
+	local X2Condition_SecondWave SecondWaveCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'WarlockReaction');
 
@@ -91,6 +100,10 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	Template.AbilityTargetStyle = default.SelfTarget;
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	SecondWaveCondition = new class'X2Condition_SecondWave';
+	SecondWaveCondition.RequireSecondWavesDisabled.AddItem('BabyChosen');
+	Template.AbilityShooterConditions.AddItem(SecondWaveCondition);
 
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
 	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
@@ -145,6 +158,7 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	local array<name> SkipExclusions;
 	local X2Condition_UnitProperty UnitPropertyCondition;
 	local X2Condition_OnlyOnXCOMTurn TurnCondition;
+	local X2Condition_SecondWave SecondWaveCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AssassinReaction');
 
@@ -156,6 +170,10 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	Template.AbilityTargetStyle = default.SelfTarget;
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	SecondWaveCondition = new class'X2Condition_SecondWave';
+	SecondWaveCondition.RequireSecondWavesDisabled.AddItem('BabyChosen');
+	Template.AbilityShooterConditions.AddItem(SecondWaveCondition);
 
 	TurnCondition =new class'X2Condition_OnlyOnXCOMTurn';
 	Template.AbilityShooterConditions.AddItem(TurnCondition);
@@ -210,7 +228,7 @@ static function X2AbilityTemplate CreateHunterReaction()
 	local array<name> SkipExclusions;
 	local X2Condition_UnitProperty UnitPropertyCondition;
 	local X2Condition_OnlyOnXCOMTurn TurnCondition;
-
+	local X2Condition_SecondWave SecondWaveCondition;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'HunterReaction');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -224,6 +242,10 @@ static function X2AbilityTemplate CreateHunterReaction()
 	Template.AbilityShooterConditions.AddItem(TurnCondition);
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	SecondWaveCondition = new class'X2Condition_SecondWave';
+	SecondWaveCondition.RequireSecondWavesDisabled.AddItem('BabyChosen');
+	Template.AbilityShooterConditions.AddItem(SecondWaveCondition);
 
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
 	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
@@ -347,6 +369,7 @@ static function X2AbilityTemplate CreateAmmoDump()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	TargetCondition = new class'X2Condition_UnitProperty';
@@ -385,7 +408,9 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	local X2Condition_UnitProperty TargetCondition;
 	local array<name> SkipExclusions;
 	local X2Effect_PersistentStatChange ShieldedEffect;
-
+	local X2Effect_GreatestChampion StatBuffsEffect;
+	local X2Effect_PCTDamageReduction ImpactEffect;
+	local X2Condition_Visibility	VisibilityCondition;
 	`CREATE_X2ABILITY_TEMPLATE(Template, Templatename);
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_mindscorch";
 	Template.Hostility = eHostility_Neutral;
@@ -409,7 +434,13 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bAllowSquadsight = false;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	TargetCondition = new class'X2Condition_UnitProperty';
@@ -420,10 +451,33 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	TargetCondition.ExcludeCivilian = true;
 	TargetCondition.ExcludeCosmetic = true;
 	TargetCondition.ExcludeRobotic = true;
+	TargetCondition.FailOnNonUnits = true;
 	Template.AbilityTargetConditions.AddItem(TargetCondition);
 
 	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), ShieldAmount);
 	Template.AddTargetEffect(ShieldedEffect);
+
+	StatBuffsEffect = new class'X2Effect_GreatestChampion';
+	StatBuffsEffect.BuildPersistentEffect(1, true, true);
+	StatBuffsEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, default.ShieldedStatBuffsLocDescription, "img:///UILibrary_PerkIcons.UIPerk_adventshieldbearer_energyshield", true);
+	StatBuffsEffect.bRemoveWhenTargetDies = true;
+	//StatBuffsEffect.bRemoveWhenTargetUnconscious = true;
+	StatBuffsEffect.AddPersistentStatChange(eStat_Offense, default.GREATEST_CHAMPION_AIM);
+	StatBuffsEffect.AddPersistentStatChange(eStat_CritChance, default.GREATEST_CHAMPION_CRIT);
+	StatBuffsEffect.AddPersistentStatChange(eStat_Will, default.GREATEST_CHAMPION_WILL);
+	StatBuffsEffect.AddPersistentStatChange(eStat_PsiOffense, default.GREATEST_CHAMPION_PSIOFFENSE);
+	Template.AddTargetEffect(StatBuffsEffect);
+
+
+	ImpactEffect = new class'X2Effect_PCTDamageReduction';
+	ImpactEffect.PCTDamage_Reduction = default.SHIELD_ALLY_PCT_DR;
+	ImpactEffect.bDisplayInSpecialDamageMessageUI = true;
+	ImpactEffect.BuildPersistentEffect(1,true,true,,eGameRule_PlayerTurnEnd);
+	ImpactEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	ImpactEffect.DuplicateResponse = eDupe_Allow;
+	ImpactEffect.EffectName = 'WarlockDamageReduction';
+	Template.AddShooterEffect(ImpactEffect);
+
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
@@ -443,9 +497,10 @@ static function X2Effect_PersistentStatChange CreateShieldedEffect(string Friend
 	local X2Effect_EnergyShield ShieldedEffect;
 
 	ShieldedEffect = new class'X2Effect_EnergyShield';
-	ShieldedEffect.BuildPersistentEffect(10, false, true, , eGameRule_PlayerTurnEnd);
+	ShieldedEffect.BuildPersistentEffect(1, true, true, , eGameRule_PlayerTurnEnd);
 	ShieldedEffect.SetDisplayInfo(ePerkBuff_Bonus, FriendlyName, LongDescription, "img:///UILibrary_PerkIcons.UIPerk_adventshieldbearer_energyshield", true);
 	ShieldedEffect.AddPersistentStatChange(eStat_ShieldHP, ShieldHPAmount);
+	//ShieldedEffect.bRemoveWhenTargetUnconscious = true;
 	ShieldedEffect.EffectRemovedVisualizationFn = OnShieldRemoved_BuildVisualization;
 
 	return ShieldedEffect;
@@ -835,61 +890,7 @@ static function X2DataTemplate CreatePassiveChosenKidnap()
 	return Template;
 }
 */
-static function X2AbilityTemplate AddCombatReadiness()
-{
-	local X2AbilityTemplate						Template;
-	local X2Effect_PersistentStatChange			StatChangeEffect;
-	local X2Effect_RemoveEffects				RemoveEffects;
-	local name EffectName;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'CombatReadiness');
-//BEGIN AUTOGENERATED CODE: Template Overrides 'FullThrottle'
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_command_defense";
-	Template.ActivationSpeech = 'FullThrottle';
-//END AUTOGENERATED CODE: Template Overrides 'FullThrottle'
-
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	
-	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-
-	StatChangeEffect = new class'X2Effect_PersistentStatChange';
-	StatChangeEffect.AddPersistentStatChange(eStat_Defense, default.COMBATREADINESS_DEF);
-	StatChangeEffect.AddPersistentStatChange(eStat_Offense, default.COMBATREADINESS_AIM);	
-	StatChangeEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnEnd);
-	StatChangeEffect.DuplicateResponse = eDupe_Allow;
-	StatChangeEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, default.CombatReadinessBonusText, Template.IconImage, true, , Template.AbilitySourceName);
-	StatChangeEffect.EffectName = 'CombatReadiness';
-	Template.AddTargetEffect(StatChangeEffect);
-
-	Template.bSkipFireAction = true;
-	Template.bShowActivation = true;
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-
-	RemoveEffects = new class'X2Effect_RemoveEffects';
-	foreach default.COMBAT_READINESS_EFFECTS_TO_REMOVE(EffectName)
-	{
-		RemoveEffects.EffectNamesToRemove.AddItem(EffectName);
-	}
-	Template.AddTargetEffect(RemoveEffects);
-
-	Template.AdditionalAbilities.AddItem('CombatReadinessPassive');
-
-	return Template;
-}
-static function X2AbilityTemplate CombatReadinessPassive()
-{
-	local X2AbilityTemplate		Template;
-
-	Template = PurePassive('CombatReadinessPassive', "img:///UILibrary_XPerkIconPack.UIPerk_command_defense", , 'eAbilitySource_Perk');
-
-	return Template;
-}
 static function X2DataTemplate CreateKeen()
 {
 	local X2AbilityTemplate Template;
@@ -1695,13 +1696,103 @@ static function X2DataTemplate AssassinSlash_LW()
 	return Template;
 }
 
-	
-	
+static function X2AbilityTemplate ImpactCompensationPassive()
+{
+	local X2AbilityTemplate                 Template;	
+
+	Template = PurePassive('ImpactCompensationPassive_LW', "img:///UILibrary_LW_PerkPack.LW_AbilityDamageControl", true, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+	//Template.AdditionalAbilities.AddItem('DamageControlAbilityActivated');
+	return Template;
+}
+
+static function X2AbilityTemplate ImpactCompensation()
+{
+	local X2AbilityTemplate						Template;	
+	local X2AbilityTrigger_EventListener		EventListener;
+	local X2Effect_PCTDamageReduction 				ImpactEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImpactCompensation_LW');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityDamageControl";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	//Template.bIsPassive = true;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	// Trigger on Damage
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'UnitTakeEffectDamage';
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	ImpactEffect = new class'X2Effect_PCTDamageReduction';
+	ImpactEffect.PCTDamage_Reduction = default.IMPACT_COMPENSATION_PCT_DR;
+	ImpactEffect.BuildPersistentEffect(1,false,true,,eGameRule_PlayerTurnEnd);
+	ImpactEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	ImpactEffect.DuplicateResponse = eDupe_Allow;
+	Template.AddTargetEffect(ImpactEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	Template.AdditionalAbilities.AddItem('ImpactCompensationPassive_LW');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateDisabler()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('Disabler', "img:///UILibrary_XPerkIconPack.UIPerk_reload_shot", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+	static function X2AbilityTemplate CreateChosenLootAbility()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_ChosenLoot ChosenLootEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenLootAbility');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	ChosenLootEffect = new class'X2Effect_ChosenLoot';
+	ChosenLootEffect.BuildPersistentEffect(1, true, true, true);
+	Template.AddShooterEffect(ChosenLootEffect);
+
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}
+
 defaultproperties
 {
 	ExtractKnowledgeMarkSourceEffectName="ExtractKnowledgeMarkSourceEffect"
 	ExtractKnowledgeMarkTargetEffectName="ExtractKnowledgeMarkTargetEffect"
 
 	ChosenSummonContextDesc="ChosenSummonContext"
-	CombatReadinessBonusText="Aim and defense bonus"
 }
