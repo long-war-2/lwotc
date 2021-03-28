@@ -60,9 +60,9 @@ static function bool CanAddItemToPistolSlot(
     WeaponTemplate = X2WeaponTemplate(Template);
     if (WeaponTemplate != none)
     {
-        return default.PISTOL_SLOT_WEAPON_CLASSES.Find(WeaponTemplate.WeaponCat()) == INDEX_NONE;
+        return WeaponTemplate.WeaponCat == 'pistol';
     }
-    return true;
+    return false;
 }
 
 static function bool HasPistolSlot(
