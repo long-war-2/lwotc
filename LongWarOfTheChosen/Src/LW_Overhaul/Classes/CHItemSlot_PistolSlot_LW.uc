@@ -60,7 +60,7 @@ static function bool CanAddItemToPistolSlot(
     WeaponTemplate = X2WeaponTemplate(Template);
     if (WeaponTemplate != none)
     {
-         return default.LWOTC_PISTOL_SLOT_WEAPON_CAT.Find(WeaponTemplate.WeaponCat()) != INDEX_NONE;
+         return default.LWOTC_PISTOL_SLOT_WEAPON_CAT.Find(WeaponTemplate.WeaponCat) != INDEX_NONE;
     }
     return false;
 }
