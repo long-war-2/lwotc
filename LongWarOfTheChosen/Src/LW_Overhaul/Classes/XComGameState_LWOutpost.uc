@@ -75,7 +75,10 @@ var const config int DEFAULT_OUTPOST_MAX_SIZE;
 var const config float DEFAULT_FACELESS_CHANCE;
 
 // Faceless won't generate if they will take the proportion in the Haven past this value
-var config float MAX_FACELESS_PROPORTION;		
+var config float MAX_FACELESS_PROPORTION;
+
+// Psi abilities which reduce the chance of recruiting Faceless if the liason has at least one of them (they don't stack)
+var config array<name> FacelessReductionPsiAbilities;
 
 // Outpost will begin with INITIAL_REBEL_COUNT + Rand(0, RANDOM_REBEL_COUNT)
 // rebels.
@@ -245,6 +248,7 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 	local array<X2StrategyElementTemplate> PersonalityTemplates;
 	local StateObjectReference NewUnitRef;
 	local float FacelessChance;
+	local name PsionAbilityName;
 
 	CharacterGenerator = `XCOMGRI.Spawn(class'XGCharacterGenerator');
 	nmCountry = RegionState.GetMyTemplate().GetRandomCountryInRegion();
@@ -265,9 +269,12 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 			{
 				FacelessChance *= 0.6;
 			}
-			if (Unit.HasSoldierAbility('MindMerge') || Unit.HasSoldierAbility('Soulfire') || Unit.HasSoldierAbility('Insanity'))
+			foreach default.FacelessReductionPsiAbilities(PsionAbilityName)
 			{
-				FacelessChance *= 0.6;
+				if (Unit.HasAbilityFromAnySource(PsionAbilityName))
+				{
+					FacelessChance *= 0.6;
+				}
 			}
 			if (Unit.HasItemOfTemplateType('Battlescanner'))
 			{
