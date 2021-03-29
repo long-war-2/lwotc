@@ -269,12 +269,9 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 			{
 				FacelessChance *= 0.6;
 			}
-			foreach default.FacelessReductionPsiAbilities(PsionAbilityName)
+			if (Unit.HasAbilityFromAnySource.Find(PsionAbilityName))
 			{
-				if (Unit.HasAbilityFromAnySource(PsionAbilityName))
-				{
-					FacelessChance *= 0.6;
-				}
+				FacelessChance *= 0.6;
 			}
 			if (Unit.HasItemOfTemplateType('Battlescanner'))
 			{
