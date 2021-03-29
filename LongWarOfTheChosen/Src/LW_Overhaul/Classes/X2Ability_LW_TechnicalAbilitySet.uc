@@ -1184,7 +1184,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	//Template.AddTargetEffect(StunnedEffect);
 	Template.AddMultiTargetEffect(StunnedEffect);
 
-	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
 	DisorientedEffect.ApplyChanceFn = ApplyChance_Concussion_Disoriented;
 	//Template.AddTargetEffect(DisorientedEffect);
 	Template.AddMultiTargetEffect(DisorientedEffect);
