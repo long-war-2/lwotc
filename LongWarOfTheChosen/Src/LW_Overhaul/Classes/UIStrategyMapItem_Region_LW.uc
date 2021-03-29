@@ -164,6 +164,7 @@ function UpdateFlyoverText()
 {
 	local XComGameStateHistory History;
 	local XComGameState_WorldRegion RegionState;
+	local XComGameState_AdventChosen ControllingChosen;
 	local String RegionLabel;
 	local String HavenLabel;
 	local String StateLabel;
@@ -180,6 +181,12 @@ function UpdateFlyoverText()
 
 	HavenLabel = GetHavenLabel(RegionState, OutpostState);
 	RegionLabel = GetRegionLabel(RegionState, OutpostState);
+
+	ControllingChosen = RegionState.GetControllingChosen();
+	if( ControllingChosen != none && ControllingChosen.bMetXCom && !ControllingChosen.bDefeated && RegionState.HaveMadeContact() )
+	{
+		AS_SetChosenIcon(ControllingChosen.GetChosenIcon());
+	}
 	
 	HoverInfo = "";
 	if (ShowContactButton())

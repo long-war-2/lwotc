@@ -175,10 +175,6 @@ function ValidateProjectFiles([string] $modProjectRoot, [string] $modName)
             }
         }
 
-        if ($missingFiles.Length -gt 0)
-        {
-            FailureMessage("Filenames missing in the .x2proj file: $missingFiles")
-        }
     }
     else
     {

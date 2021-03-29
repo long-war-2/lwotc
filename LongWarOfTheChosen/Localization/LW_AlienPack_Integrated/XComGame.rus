@@ -381,48 +381,64 @@ LocHelpText="Атаки в ближнем бою наносят огромный
 
 [AdvSergeantM1 X2CharacterTemplate]
 strCharacterName="Сержант \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvSergeantM1_WPN X2WeaponTemplate]
 FriendlyName="Магнитная винтовка \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvSergeantM2 X2CharacterTemplate]
 strCharacterName="Ст. сержант \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvSergeantM2_WPN X2WeaponTemplate]
 FriendlyName="Магнитная винтовка \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvShockTroop X2CharacterTemplate]
 strCharacterName="Штурмовик \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvShockTroop_WPN X2WeaponTemplate]
 FriendlyName="Магнитная винтовка \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvCommando X2CharacterTemplate]
 strCharacterName="Коммандо \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvCommando_WPN X2WeaponTemplate]
 FriendlyName="Магнитная винтовка \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvVanguard X2CharacterTemplate]
 strCharacterName="Передовой боец \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvVanguard_WPN X2WeaponTemplate]
 FriendlyName="Магнитная винтовка \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvScout X2CharacterTemplate]
 strCharacterName="Разведчик \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvScout_WPN X2WeaponTemplate]
 FriendlyName="Магнитная винтовка \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvGeneralM1_LW X2CharacterTemplate]
 strCharacterName="Генерал \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvGeneralM1_LW_WPN X2WeaponTemplate]
 FriendlyName="Магнитная винтовка \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvGeneralM2_LW X2CharacterTemplate]
 strCharacterName="Генерал \"Адвента\""
+AbilityDescName="Магнитная винтовка"
 
 [AdvGeneralM2_LW_WPN X2WeaponTemplate]
 FriendlyName="Магнитная винтовка \"Адвента\""
+AbilityDescName="Магнитная винтовка"

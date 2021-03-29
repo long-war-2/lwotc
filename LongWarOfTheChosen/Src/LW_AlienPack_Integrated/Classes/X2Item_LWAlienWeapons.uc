@@ -177,6 +177,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM1_LW_WPN'));
 	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM2_LW_WPN'));
 
+	Templates.AddItem(CreateTemplate_Hunter_Flashbang());	
 	return Templates;
 }
 
@@ -1113,6 +1114,41 @@ static function X2DataTemplate CreateTemplate_AdvElite_WPN(name TemplateName)
 	Template.CanBeBuilt = false;
 	Template.TradingPostValue = 30;
 	Template.DamageTypeTemplateName = 'Projectile_MagAdvent';
+
+	return Template;
+}
+
+
+	static function X2DataTemplate CreateTemplate_Hunter_Flashbang()
+{
+	local X2GrenadeTemplate Template;
+	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
+
+	`CREATE_X2TEMPLATE(class'X2GrenadeTemplate', Template, 'HunterFlashbang');
+
+	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons..Inv_Flashbang_Grenade";
+	Template.AddAbilityIconOverride('ThrowGrenade', "img:///UILibrary_PerkIcons.UIPerk_grenade_flash");
+	Template.AddAbilityIconOverride('LaunchGrenade', "img:///UILibrary_PerkIcons.UIPerk_grenade_flash");
+	Template.iRange = default.ADVGRENADIER_FLASHBANGGRENADE_RANGE;
+	Template.iRadius = default.ADVGRENADIER_FLASHBANGGRENADE_RADIUS;
+	
+	Template.bFriendlyFire = false;
+	Template.bFriendlyFireWarning = false;
+	Template.Abilities.AddItem('ThrowGrenade');
+
+	Template.ThrownGrenadeEffects.AddItem(class'X2StatusEffects'.static.CreateDisorientedStatusEffect());
+
+	//We need to have an ApplyWeaponDamage for visualization, even if the grenade does 0 damage (makes the unit flinch, shows overwatch removal)
+	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	WeaponDamageEffect.bExplosiveDamage = true;
+	Template.ThrownGrenadeEffects.AddItem(WeaponDamageEffect);
+
+	Template.LaunchedGrenadeEffects = Template.ThrownGrenadeEffects;
+	
+	Template.GameArchetype = "WP_Grenade_Flashbang.WP_Grenade_Flashbang";
+
+	Template.iEnvironmentDamage = default.ADVGRENADIER_FLASHBANGGRENADE_IENVIRONMENTDAMAGE;
+	Template.iClipSize = 50;
 
 	return Template;
 }

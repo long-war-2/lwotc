@@ -83,3 +83,18 @@ LocHelpText="Расходует заряд, чтобы увеличить вре
 LocLongDescription="Расходует заряд, чтобы увеличить время в Тени на 1 ход.."
 LocPromotionPopupText="<Bullet/>Позволяет находится в Тени на 1 ход больше.<br/><Bullet/> Может быть использовано только из Тени.<br/>"
 ; End Translated
+
+
+; LWOTC Translated
+[SilentKillerDurationExtension X2AbilityTemplate]
+LocFriendlyName="Бесшумынй убийца обновляет Тень"
+LocFlyoverText="Тень: +1 ход"
+; End Translated
+
+; LWOTC Needs Translation
+[Parkour_LW X2AbilityTemplate]
+LocFriendlyName="Паркур"
+LocHelpText="Перезарядка способности Крюк у Застпника уменьшена на 1 ход."
+LocLongDescription="Перезарядка способности Крюк у Застпника уменьшена на 1 ход."
+LocPromotionPopupText="<Bullet/> Повышает тактическую маневренность Заступика.<br/>"
+; End Translated

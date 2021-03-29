@@ -1,12 +1,18 @@
-class X2Effect_Phosphorus extends X2Effect_Persistent;
+class X2Effect_Phosphorus extends X2Effect_Persistent config(LW_SoldierSkills);
 
-var int BonusShred;
+var config int BONUS_CV_SHRED;
+var config int BONUS_MG_SHRED;
+var config int BONUS_BM_SHRED;
 
 function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData)
 {
 	local Name AbilityName;
-
+	local XComGameState_Item SourceWeapon;
+	local XComGameStateHistory History;
 	`LOG ("TEsting New Phos Effect 1");
+	History = `XCOMHISTORY;
+
+	SourceWeapon = XComGameState_Item(History.GetGameStateForObjectID(AppliedData.ItemStateObjectRef.ObjectID));
 
 	if(AbilityState == none)
 		return 0;
@@ -22,8 +28,21 @@ function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_
 			case 'LWFlamethrower':
 			case 'Roust':
 			case 'Firestorm':
-				`LOG ("Testing New Phos Effect 4" @ BonusShred);
-				return BonusShred;
+			case 'AdvPurifierFlamethrower':
+			switch(X2WeaponTemplate(SourceWeapon.GetMyTemplate()).WeaponTech)
+				{
+					case 'conventional':
+					return default.BONUS_CV_SHRED;
+
+					case 'magnetic':
+					return default.BONUS_MG_SHRED;
+
+					case 'beam':
+					return default.BONUS_BM_SHRED;
+
+					default:
+					break;
+				}
 			default:
 				return 0;
 		}

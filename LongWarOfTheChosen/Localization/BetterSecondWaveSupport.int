@@ -13,3 +13,9 @@ Description="Strategic Dominance: Enables Resistance Orders for XCOM."
 Tooltip="Allows XCOM soldiers to purchase multiple class abilities of the same rank with AP."
 Description="Allow Same Rank Abilities: Allows XCOM soldiers to purchase multiple class abilities of the same rank with AP once the Training Center has been built."
 ; End Translation
+
+; LWOTC Needs Translation
+[BabyChosen SecondWaveOptionObject]
+Tooltip="Disable the Prime reactions on the Chosen, making them significantly easier to fight."
+Description="Baby Chosen: Chosen have their Prime Reactions disabled."
+; End Translation

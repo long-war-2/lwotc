@@ -31,6 +31,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_SuperiorWeaponUpgrade':
 		case 'CovertAction_SuperiorPCS':
 			CaTemplate.RequiredFactionInfluence = eFactionInfluence_Minimal;
+			CaTemplate.bUnique = false;
 		case 'CovertAction_GatherSupplies':
 		case 'CovertAction_GatherIntel':
 		case 'CovertAction_FormSoldierBond':
@@ -49,6 +50,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			break;
 		case 'CovertAction_ImproveComInt':
 			RemoveStaffSlots(CATemplate, 'CovertActionScientistStaffSlot');
+			CATemplate.RequiredFactionInfluence = EFactionInfluence(eFactionInfluence_MAX + 1);
 			break;
 		case 'CovertAction_RecruitExtraFactionSoldier':
 			CATemplate.bDisplayIgnoresInfluence = false;  // Don't roll this CA if the player can't run it!

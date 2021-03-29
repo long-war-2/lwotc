@@ -135,6 +135,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'TeleportAlly':
 			BuffTeleportAlly(Template);
+			MakeAbilityWorkWhenBurning(Template);
 			break;
 		case 'ChosenSummonFollowers':
 			UpdateSummon(Template);
@@ -159,6 +160,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'Slash_LW':
 		case 'SwordSlice_LW':
+		case 'CombativesCounterattack':
 			Template.PostActivationEvents.AddItem('SlashActivated');
 			break;
 		case 'DisruptorRifleCrit':
@@ -171,6 +173,20 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'HarborWave':
 			ReworkHarborWave(Template);
 			break;
+		case 'HunterRifleShot':
+			MakeAbilityWorkWhenBurning(Template);
+			break;
+
+		case 'PistolStandardShot':
+		case 'PistolOverwatchShot':
+		case 'FanFire':
+		case 'LightningHands':
+		case 'FaceOff':
+			AddDisablingShotEffect(Template);
+			Template.AddTargetEffect(class'X2Ability_Chosen'.static.HoloTargetEffect());
+			Template.AssociatedPassives.AddItem('Disabler');
+			break;
+		break;
 		default:
 			break;
 
@@ -517,6 +533,30 @@ static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name Effe
 	}
 }
 
+static function RemoveAbilityShooterEffects(X2AbilityTemplate Template, name EffectName)
+{
+	local int i;
+	for (i = Template.AbilityShooterEffects.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityShooterEffects[i].isA(EffectName))
+		{
+			Template.AbilityShooterEffects.Remove(i, 1);
+		}
+	}
+}
+
+static function RemoveAbilityShooterConditions(X2AbilityTemplate Template, name EffectName)
+{
+	local int i;
+	for (i = Template.AbilityShooterConditions.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityShooterConditions[i].isA(EffectName))
+		{
+			Template.AbilityShooterConditions.Remove(i, 1);
+		}
+	}
+}
+
 static function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name EffectName)
 {
 	local int i;
@@ -549,6 +589,7 @@ static function ReplaceWithDamageReductionMelee(X2AbilityTemplate Template)
 
 	DamageMod = new class'X2Effect_DefendingMeleeDamageModifier';
 	DamageMod.DamageMod = default.MELEE_DAMAGE_REDUCTION;
+	DamageMod.OnlyForDashingAttacks = true;
 	DamageMod.BuildPersistentEffect(1, true, false, true);
 	DamageMod.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageMod);
@@ -577,7 +618,8 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 	local X2AbilityMultiTarget_Cone_LWFlamethrower	ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim			StandardAim;
 	local X2Condition 								Condition;
-
+	local X2Condition_Phosphorus PhosphorusCondition;
+	local X2Effect Effect;
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bAllowCrit = false;
 	StandardAim.bGuaranteedHit = true;
@@ -590,6 +632,15 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 			X2Condition_UnitEffects(Condition).RemoveExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName);
 		}
 	}
+		PhosphorusCondition = new class'X2Condition_Phosphorus';
+
+	foreach Template.AbilityMultiTargetEffects(Effect)
+	{
+		if(Effect.isA('X2Effect_ApplyWeaponDamage'))
+		{
+			X2Effect_ApplyWeaponDamage(Effect).TargetConditions.AddItem(PhosphorusCondition);
+		}
+	}	
 
 	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
@@ -604,16 +655,17 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	Template.AbilityMultiTargetStyle = ConeMultiTarget;
 
+	Template.AdditionalAbilities.AddItem('Phosphorus');
+
 	Template.bCheckCollision = true;
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = true;
 
 	// For vanilla targeting
-	// Template.ActionFireClass = class'X2Action_Fire_Flamethrower';
 	Template.PostActivationEvents.AddItem('FlamethrowerActivated');
 	Template.ActionFireClass = class'X2Action_Fire_Flamethrower_LW';
 
-	Template.BuildVisualizationFn = class'X2Ability_LW_TechnicalAbilitySet'.static.LWFlamethrower_BuildVisualization;
+	//Template.BuildVisualizationFn = class'X2Ability_LW_TechnicalAbilitySet'.static.LWFlamethrower_BuildVisualization;
 
 }
 
@@ -811,6 +863,7 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	local X2Effect_Burning BurningEffect;
 	local X2Effect_ApplyWeaponDamage DamageEffect;
 	local array<name> SkipExclusions;
+	local X2Condition_UnitImmunities UnitImmunityCondition;
 
 	ShooterCondition = new class'X2Condition_UnitProperty';
 	ShooterCondition.ExcludeConcealed = true;
@@ -859,6 +912,10 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	DamageEffect.TargetConditions.AddItem(TargetCondition);
 	Template.AddTargetEffect(DamageEffect);
 	Template.AddMultiTargetEffect(DamageEffect);
+
+	UnitImmunityCondition = new class'X2Condition_UnitImmunities';
+	UnitImmunityCondition.AddExcludeDamageType('Fire');
+	Template.AbilityTargetConditions.AddItem(UnitImmunityCondition);
 
 	DangerZoneBonus.RequiredAbility = 'MindScorchDangerZone';
 	DangerZoneBonus.fBonusRadius = `TILESTOMETERS(class'X2LWModTemplate_TemplarAbilities'.default.VOLT_DANGER_ZONE_BONUS_RADIUS) + 0.01;
@@ -975,17 +1032,16 @@ static function BuffTeleportAlly(X2AbilityTemplate Template)
 
 static function UpdateSummon(X2AbilityTemplate Template)
 {
-	//local X2AbilityCooldown					Cooldown;
-
+	local X2AbilityCooldown					Cooldown;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 
-	//Screw it, I have no idea how to do it cleanly and no other mod touches it anyway
-	//Template.AbilityShooterConditions.Remove(2,1);
-	//RemoveAbilityShooterEffect(Template,'X2Effect_SetUnitValue');
+	RemoveAbilityShooterEffects(Template,'X2Effect_SetUnitValue');
+	RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
 
-	//Cooldown = new class'X2AbilityCooldown';
-	//Cooldown.iNumTurns = default.SUMMON_COOLDOWN;
-	//Template.AbilityCooldown = Cooldown;
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.SUMMON_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
 
 	Template.BuildNewGameStateFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildGameState;
 	Template.BuildVisualizationFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildVisualization;
@@ -1047,6 +1103,30 @@ static function ReworkHarborWave(X2AbilityTemplate Template)
 
 	Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
 }
+
+static function	MakeAbilityWorkWhenBurning(X2AbilityTemplate Template)
+{
+	local array<name>                       SkipExclusions;
+
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+}
+
+
+static function AddDisablingShotEffect(X2AbilityTemplate Template)
+{
+	local X2Effect_DisableWeapon	DisableWeaponEffect;
+	local X2Condition_AbilityProperty AbilityCondition;
+
+	DisableWeaponEffect = new class'X2Effect_DisableWeapon';
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('Disabler');
+	DisableWeaponEffect.TargetConditions.AddItem(AbilityCondition);
+
+	Template.AddTargetEffect(DisableWeaponEffect);
+}
+
 
 defaultproperties
 {

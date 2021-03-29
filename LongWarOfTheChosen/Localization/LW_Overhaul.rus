@@ -644,3 +644,8 @@ strDisabledPrecisionExplosivesTooltip="Высокоточная взрывчат
 
 [UICovertActionReport_LW]
 strCovertActionFailed="ПРОВАЛ"
+
+[UIScreenListener_ViewObjectives]
+; LWOTC Translated
+ScrollObjectiveDescriptionStr="Развернуть описание задания"
+; End Translated

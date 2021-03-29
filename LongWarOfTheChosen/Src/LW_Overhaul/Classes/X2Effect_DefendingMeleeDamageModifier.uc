@@ -5,13 +5,14 @@ var float DamageMod;
 
 var name MeleeDamageTypeName;
 
+var bool OnlyForDashingAttacks;
+
 function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, 
 										const out EffectAppliedData AppliedData, const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, optional XComGameState NewGameState)
 {
 	local bool bIsMeleeDamage;
 	local int CurrentDamageMod;
 	local X2AbilityToHitCalc_StandardAim ToHitCalc;
-
 	// The damage effect's DamageTypes must be empty or have melee in order to adjust the damage
 	if (WeaponDamageEffect.EffectDamageValue.DamageType == MeleeDamageTypeName)
 		bIsMeleeDamage = true;
@@ -37,6 +38,15 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 		ToHitCalc = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
 		if (ToHitCalc != none && ToHitCalc.bMeleeAttack)
 		{
+			if(OnlyForDashingAttacks)
+			{
+				if(!AbilityState.GetMyTemplate().AbilityTargetStyle.isA('X2AbilityTarget_MovingMelee'))
+				{
+					return 0;
+				}
+			}
+
+
 			// Don't let a damage reduction effect reduce damage to less than 1 (or worse, heal).
 			if (CurrentDamageMod < 0 && (CurrentDamage + CurrentDamageMod < 1))
 			{

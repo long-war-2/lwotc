@@ -2971,6 +2971,13 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'RESCUE_CV_CHARGES':
 			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_CV_CHARGES);
 			return true;			
+		case 'IMPACT_COMPENSATION_PCT_DR':
+			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_COMPENSATION_PCT_DR * 100));
+			return true;
+		case 'SHIELD_ALLY_PCT_DR':
+			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.SHIELD_ALLY_PCT_DR * 100));
+			return true;
+
 		default:
 			return false;
 	}

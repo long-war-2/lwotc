@@ -1609,6 +1609,7 @@ static function ReleaseSoldierFromAlienHQ(XComGameState NewGameState, StateObjec
 {
 	local XComGameState_HeadquartersAlien AlienHQ;
 
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 	// remove the soldier from the captured unit list so they don't show up again later in the playthrough
 	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
 	AlienHQ.CapturedSoldiers.RemoveItem(UnitRef);

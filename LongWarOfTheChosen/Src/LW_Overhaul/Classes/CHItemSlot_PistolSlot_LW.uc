@@ -8,6 +8,7 @@
 class CHItemSlot_PistolSlot_LW extends CHItemSlotSet config(LW_Overhaul);
 
 var config array<name> EXCLUDE_FROM_PISTOL_SLOT_CLASSES;
+var config array<name> LWOTC_PISTOL_SLOT_WEAPON_CAT;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -55,11 +56,11 @@ static function bool CanAddItemToPistolSlot(
     optional XComGameState_Item ItemState)
 {    
     local X2WeaponTemplate WeaponTemplate;
-
+//in theory: if not found in the LWOTC_PISTOL_SLOT_WEAPON_CAT, it´s not added to the slot. Not sure if I put this correctly.
     WeaponTemplate = X2WeaponTemplate(Template);
     if (WeaponTemplate != none)
     {
-        return WeaponTemplate.WeaponCat == 'pistol';
+         return default.LWOTC_PISTOL_SLOT_WEAPON_CAT.Find(WeaponTemplate.WeaponCat()) != INDEX_NONE;
     }
     return false;
 }

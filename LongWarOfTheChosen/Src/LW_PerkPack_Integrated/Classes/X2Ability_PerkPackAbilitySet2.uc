@@ -367,8 +367,9 @@ static function TrojanVirusVisualizationRemoved(XComGameState VisualizeGameState
 //this ability grants a free equip of a flashbang grenade
 static function X2AbilityTemplate AddFlashbanger()
 {
-	local X2AbilityTemplate			Template;
-	local X2Effect_TemporaryItem	TemporaryItemEffect;
+	local X2AbilityTemplate						Template;
+	local X2Effect_TemporaryItem				TemporaryItemEffect;
+	local X2AbilityTrigger_UnitPostBeginPlay	Trigger;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Flashbanger');
 
@@ -378,7 +379,11 @@ static function X2AbilityTemplate AddFlashbanger()
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Trigger.Priority -= 20; // delayed so that Full Kit happen first
+	Template.AbilityTriggers.AddItem(Trigger);
+	
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = true;
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
@@ -400,9 +405,10 @@ static function X2AbilityTemplate AddFlashbanger()
 //this ability grants a free equip of a smoke grenade, dense smoke grenade, smoke bomb, or dense smoke bomb
 static function X2AbilityTemplate AddSmokeGrenade()
 {
-	local X2AbilityTemplate			Template;
-	local X2Effect_TemporaryItem	TemporaryItemEffect;
-	local ResearchConditional		Conditional;
+	local X2AbilityTemplate						Template;
+	local X2Effect_TemporaryItem				TemporaryItemEffect;
+	local ResearchConditional					Conditional;
+	local X2AbilityTrigger_UnitPostBeginPlay	Trigger;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'SmokeGrenade');
 
@@ -412,7 +418,11 @@ static function X2AbilityTemplate AddSmokeGrenade()
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Trigger.Priority -= 20; // delayed so that Full Kit happen first
+	Template.AbilityTriggers.AddItem(Trigger);
+
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = true;
 
@@ -909,6 +919,32 @@ static function X2AbilityTemplate AddStingGrenades()
 	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(TemporaryItemEffect);
 
+	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
+	TemporaryItemEffect.EffectName = 'StingGrenadeEffect2';
+	TemporaryItemEffect.ItemName = 'StingGrenade';
+	TemporaryItemEffect.bReplaceExistingItemOnly = true;
+	TemporaryItemEffect.ExistingItemName = 'HunterFlashbang';
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
+	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
+	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
+	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(TemporaryItemEffect);
+
+	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
+	TemporaryItemEffect.EffectName = 'StingGrenadeEffect3';
+	TemporaryItemEffect.ItemName = 'StingGrenade';
+	TemporaryItemEffect.bReplaceExistingItemOnly = true;
+	TemporaryItemEffect.ExistingItemName = 'AdvGrenadierFlashbangGrenade';
+	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
+	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
+	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
+	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(TemporaryItemEffect);
+
+
+	
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
@@ -919,6 +955,8 @@ static function X2AbilityTemplate AddFieldSurgeon()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_FieldSurgeon					FieldSurgeonEffect;
+	local X2AbilityTrigger_EventListener 		EventListener;	
+	local X2Condition_UnitProperty              TargetProperty;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'FieldSurgeon');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityFieldSurgeon";
@@ -926,18 +964,44 @@ static function X2AbilityTemplate AddFieldSurgeon()
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_AllAllies';
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.bIsPassive = true;
+	Template.AbilityTargetStyle = default.SingleTargetWithSelf;
+
+	TargetProperty = new class'X2Condition_UnitProperty';
+	TargetProperty.ExcludeDead = true;
+	TargetProperty.ExcludeHostileToSource = true;
+	TargetProperty.ExcludeFriendlyToSource = false;
+	TargetProperty.RequireSquadmates = true;
+	Template.AbilityTargetConditions.AddItem(TargetProperty);	
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'OnUnitBeginPlay';	
+	EventListener.ListenerData.EventFn = FieldSurgeonOnUnitBeginPlay;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_None;	
+	Template.AbilityTriggers.AddItem(EventListener);
+	
 	FieldSurgeonEffect = new class 'X2Effect_FieldSurgeon';
 	FieldSurgeonEffect.BuildPersistentEffect (1, true, false);
-	FieldSurgeonEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	//Template.AddTargetEffect (FieldSurgeonEffect);
-	Template.AddMultiTargetEffect(FieldSurgeonEffect);
+	FieldSurgeonEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);	
+	Template.AddTargetEffect(FieldSurgeonEffect);
+
 	Template.bCrossClassEligible = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
 }
 
+static function EventListenerReturn FieldSurgeonOnUnitBeginPlay(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Unit UnitState;
+	local XComGameState_Ability SourceAbilityState;
+
+	SourceAbilityState = XComGameState_Ability(CallbackData);	
+	UnitState = XComGameState_Unit(EventData);
+
+	if (SourceAbilityState != None  && UnitState != none) {	
+		SourceAbilityState.AbilityTriggerAgainstSingleTarget(UnitState.GetReference(), false);
+	}
+
+	return ELR_NoInterrupt;
+}

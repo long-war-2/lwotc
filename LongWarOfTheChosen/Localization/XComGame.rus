@@ -5401,6 +5401,7 @@ LocLongDescription="Когда вы наносите критический ур
 
 
 
+
 ; LWOTC Translated #2 - Shard and Caster gauntlet tactical text and the brief
 ; summaries for the caster gauntlets have been updated.
 [ShardGauntlet_CV X2PairedWeaponTemplate]
@@ -5435,9 +5436,79 @@ AbilityDescName="осколок"
 ; End Translated #2
 
 
+; LWOTC Translated 
+[ChosenDragonRounds X2AbilityTemplate]
+LocFriendlyName="Ярость инефрно"
+LocFlyOverText="Ярость инферно"
+LocLongDescription="Основное оружие поджигает противников."
+LocHelpText="Основное оружие поджигает противников."
 
+[ChosenDragonRoundsPassive X2AbilityTemplate]
+LocFriendlyName="Ярость инефрно"
+LocFlyOverText="Ярость инферно"
+LocLongDescription="Основное оружие поджигает противников."
+LocHelpText="Основное оружие поджигает противников."
 
+[ChosenVenomRounds X2AbilityTemplate]
+LocFriendlyName="Ядовитые сгустки"
+LocFlyOverText="Ядовитые сгустки"
+LocLongDescription="Основное оружие отравляет врагов."
+LocHelpText="Основное оружие отравляет врагов."
 
+[ChosenVenomRoundsPassive X2AbilityTemplate]
+LocFriendlyName="Ядовитые сгустки"
+LocFlyOverText="Ядовитые сгустки"
+LocLongDescription="Основное оружие отравляет врагов."
+LocHelpText="Основное оружие отравляет врагов."
+
+[ChosenBleedingRounds X2AbilityTemplate]
+LocFriendlyName="Больно же"
+LocFlyOverText="Больно же"
+LocLongDescription="Основное оружие оставляет кровотечение."
+LocHelpText="Основное оружие оставляет кровотечение."
+
+[ChosenBleedingRoundsPassive X2AbilityTemplate]
+LocFriendlyName="Больно же"
+LocFlyOverText="Больно же"
+LocLongDescription="Основное оружие оставляет кровотечение."
+LocHelpText="Основное оружие оставляет кровотечение."
+
+[MindScorchDangerZone X2AbilityTemplate]
+LocFriendlyName="Высокое напряжение"
+LocLongDescription="Бонус<Ability:VoltDangerZoneBonus/>-клеток к радиусу способоности Горение разума"
+LocHelpText="Бонус <Ability:VoltDangerZoneBonus/>-клеток к радиусу способоности Горение разума"
+LocPromotionPopupText="<Bullet/> Бонус <Ability:VoltDangerZoneBonus/>-клеток к радиусу способоности Горение разума."
+
+[MindScorchTerror X2AbilityTemplate]
+LocFriendlyName="Кошмары"
+LocLongDescription="Враги могут запаниковать посли использования на них Горения разума."
+LocHelpText="Враги могут запаниковать посли использования на них Горения разума."
+LocPromotionPopupText="<Bullet/>Горение разума может вызвать панику.<br/><Bullet/> Шанс паники зависит от пси способностей Чародея и воли цели."
+
+[MindScorch X2AbilityTemplate]
+LocFriendlyName="Горение разума"
+LocHelpText="Чародей врывается в мысли к жертвам и с <Ability:MIND_SCORCH_BURN_CHANCE/> % шансом вызывает безумие, сжигая разум."
+LocLongDescription="Чародей врывается в мысли к жертвам и вызывает безумие, сжигая разум."
+
+[ChosenПохищение X2AbilityTemplate]
+LocFriendlyName="Похищение"
+LocLongDescription="Похищение похищение противника без сознания, в том числе истекающего кровью. Стоит 2 действия, перезарядка 1 ход."
+LocHelpText="Похищение похищение противника без сознания, в том числе истекающего кровью. Стоит 2 действия, перезарядка 1 ход."
+LocFlyOverText="Похищение"
+
+[ChosenKeen X2AbilityTemplate]
+LocFriendlyName="Жажда пленников"
+LocLongDescription="Смертельные попадания оставляют оперативников в кровотечении."
+LocHelpText="Смертельные попадания оставляют оперативников в кровотечении."
+LocFlyOverText="Жажда пленников"
+
+[CombatReadiness X2AbilityTemplate]
+LocFriendlyName="Тактический анализ"
+LocLongDescription="Дает суммируемый бонус к 10 точности и 5 защиты на 2 хода. Убирает дебаффы."
+LocHelpText="Дает суммируемый бонус к 10 точности и 5 защиты на 2 хода. Убирает дебаффы."
+LocFlyOverText="Combat Readiness"
+
+; LWOTC end translated
 
 
 
@@ -5616,8 +5687,277 @@ m_strRetributionAlertIncomeDescription="Материалы, разведданн
 
 
 
+;LWOTC Translated (2)
+[ChosenAssassin X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Убийца непревзойденный мастер ближнего боя. Пойдет на вас и будет резать, если это возможно. Может нанести колоссальный урон."
+
+[ChosenAssassinM2 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Убийца непревзойденный мастер ближнего боя. Пойдет на вас и будет резать, если это возможно. Может нанести колоссальный урон."
+
+[ChosenAssassinM3 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Убийца непревзойденный мастер ближнего боя. Пойдет на вас и будет резать, если это возможно. Может нанести колоссальный урон."
+
+[ChosenAssassinM4 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Убийца непревзойденный мастер ближнего боя. Пойдет на вас и будет резать, если это возможно. Может нанести колоссальный урон."
+;end translation (2)
+
+[ChosenWarlock X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="Великий чемпион Старейшин не оставит шанса вашим мозгам противостоять его воле. Так же призывает войска и накладывает сильнейшие баффы."
+
+[ChosenWarlockM2 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="Великий чемпион Старейшин не оставит шанса вашим мозгам противостоять его воле. Так же призывает войска и накладывает сильнейшие баффы."
+
+[ChosenWarlockM3 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="Великий чемпион Старейшин не оставит шанса вашим мозгам противостоять его воле. Так же призывает войска и накладывает сильнейшие баффы."
+
+[ChosenWarlockM4 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="Великий чемпион Старейшин не оставит шанса вашим мозгам противостоять его воле. Так же призывает войска и накладывает сильнейшие баффы."
+
+[ChosenSniper X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="Как правило, Охотник убьет вас издалека и скорее всего с фланга, не дав вам подойти к нему близко. Да и вблизи у него есть сюрпризы."
+
+[ChosenSniperM2 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="Как правило, Охотник убьет вас издалека и скорее всего с фланга, не дав вам подойти к нему близко. Да и вблизи у него есть сюрпризы."
+
+[ChosenSniperM3 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="Как правило, Охотник убьет вас издалека и скорее всего с фланга, не дав вам подойти к нему близко. Да и вблизи у него есть сюрпризы."
+
+[ChosenSniperM4 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="Как правило, Охотник убьет вас издалека и скорее всего с фланга, не дав вам подойти к нему близко. Да и вблизи у него есть сюрпризы."
 
 
+[BloodThirst_LW X2AbilityTemplate]
+LocFriendlyName="Жажда крови"
+LocLongDescription="Каждая атака вблизи увеличивает урон на 25%. Суммируется. После похищения врага, Жажда крови сбрасывается"
+LocHelpText="Каждая атака вблизи увеличивает урон на 25%. Суммируется. После похищения врага, Жажда крови сбрасывается"
+LocFlyOverText="Жажда крови"
+
+[BloodThirstPassive_LW X2AbilityTemplate]
+LocFriendlyName="Жажда крови"
+LocLongDescription="Каждая атака вблизи увеличивает урон на 25%. Суммируется. После похищения врага, Жажда крови сбрасывается"
+LocHelpText="Каждая атака вблизи увеличивает урон на 25%. Суммируется. После похищения врага, Жажда крови сбрасывается"
+LocFlyOverText="Жажда крови"
+
+
+[PreciseStrike_LW X2AbilityTemplate]
+LocFriendlyName="Аккуратный надрез"
+LocLongDescription="Атаки оржием ближнего боя игнорирует 3 брони."
+LocHelpText="Атаки оржием ближнего боя игнорирует 3 брони."
+LocFlyOverText="Аккуратный надрез"
+
+[PsychoticRage_LW X2AbilityTemplate]
+LocFriendlyName="Ярость крови"
+LocHelpText="Бонус к 50% урона при здоровье ниже 35%"
+LocLongDescription="Бонус к 50% урона при здоровье ниже 35%."
+LocFlyOverText="Ярость крови"
+
+[YouCannotHide_LW X2AbilityTemplate]
+LocFriendlyName="Тебе не скрыться"
+LocHelpText="Бонус 100 точности."
+LocLongDescription="Бонус 100 точности."
+LocFlyOverText="Run."
+
+[RebelHPUpgrade_T1 X2AbilityTemplate]
+LocFriendlyName="Жилеты из сплавов"
+LocLongDescription="Исследование боевой брони позволило нашим членам сопротивления приобрести лучшую защиту"
+LocHelpText="Исследование боевой брони позволило нашим членам сопротивления приобрести лучшую защиту"
+LocFlyOverText="Жилеты из сплавов"
+
+[RebelHPUpgrade_T2 X2AbilityTemplate]
+LocFriendlyName="Улучшенные жилеты из сплавов"
+LocLongDescription="Исследовния силовой брони продвинуло уровень защиты нашего сопротивления на новый уровень"
+LocHelpText="Исследовния силовой брони продвинуло уровень защиты нашего сопротивления на новый уровень"
+LocFlyOverText="Улучшенные жилеты из сплавов"
+
+[ChosenRifle_XCOM X2WeaponTemplate]
+FriendlyName="Дезинтегратор"
+FriendlyNamePlural="Дезинтегратор"
+BriefSummary="Не смотря на очевидную одержимость пси энергией, Избранный Чародей не гнушается использовать и более традиционное оружие"
+TacticalText="<Bullet/> Свободный выстрел при критическом попадании \n<Bullet/> <Bullet/> Дезинтегратор имеет бонус к криту против врагов с пси-способностями.\n<Bullet/> Заканчивает ход \n"
+AbilityDescName="Винтовка"
+
+[ChosenShotgun_XCOM X2WeaponTemplate]
+FriendlyName="Араси
+FriendlyNamePlural="Араси"
+BriefSummary="Переделанное оружие Убийцы. И не менее опасное чем меч."
+TacticalText="<Bullet/> Араси дает возможность лечения, нанося урон врагам. А так же имеет меньший штраф к дальности, чем обычные дробовоики.\n<Bullet/> Дробовики очень опасны вблизи, но их точность сильно падает с расстоянием.\n"
+AbilityDescName="Дробовик"
+
+[ChosenSword_XCOM X2WeaponTemplate]
+FriendlyName="Катана"
+FriendlyNamePlural="Катана"
+BriefSummary="Оружие Убийцы для ближнего боя. Выкованное не на этой планете. Усиляется кровью своих жертв"
+TacticalText="<Bullet/> Катана вначале наносит не так много урона, но может получить временные усиления."
+AbilityDescName="Меч"
+
+[ChosenSniperRifle_XCOM X2WeaponTemplate]
+FriendlyName="Темное копьё"
+FriendlyNamePlural="Темное копьё"
+BriefSummary="Это оружие Охотника видело намного больше смертей, чем мы можем себе представить."
+
+TacticalText="<Bullet/> Эта винотовка может нанести колоссальный урон по помеченным смертью.<br/><Bullet/> Однако размеры этой винтовки вызывают трудности с перезарядкой для наших оперативников.<br/>"
+
+AbilityDescName="Снайперская винтовка"
+
+[ChosenSniperPistol_XCOM X2WeaponTemplate]
+FriendlyName="Темный клык"
+FriendlyNamePlural="Темный клык"
+BriefSummary="Несмотря на то что он похож на обычный револьвер, мы не можем себе представить технологии для создания этого оружия."
+TacticalText="<Bullet/> Темный клык это мощное оружие для добивания раненых целей."
+AbilityDescName="пистолет"
+
+[XCOMBloodThirst_LW X2AbilityTemplate]
+LocFriendlyName="Жажда крови"
+LocLongDescription="Каждая атака мечом прибавляет 34% бонуса к урону. Суммируется. Действует 3 хода."
+LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocFlyOverText="Жажда крови"
+
+[XCOMBloodThirstPassive_LW X2AbilityTemplate]
+LocFriendlyName="Жажда крови"
+LocLongDescription="Каждая атака мечом прибавляет 34% бонуса к урону. Суммируется. Действует 3 хода."
+LocHelpText="Каждая атака мечом прибавляет 34% бонуса к урону. Суммируется. Действует 3 хода."
+LocFlyOverText="Жажда крови"
+
+[OverbearingSuperiority_LW X2AbilityTemplate]
+LocFriendlyName="Чистое превосходство"
+LocLongDescription="Критические удары из основного оружия восполняют ход."
+LocHelpText="Критические удары из основного оружия восполняют ход."
+LocFlyOverText="Чистое превосходство"
+
+[DisruptorRifleCrit X2AbilityTemplate]
+LocFriendlyName="Кара неверных"
+LocLongDescription="Бонус 20 крита против врагов с пси-способностями"
+LocHelpText="Бонус 20 крита против врагов с пси-способностями"
+LocFlyOverText="Кара неверных"
+
+[XCOMHunterMark_LW X2AbilityTemplate]
+LocFriendlyName="Метка смерти"
+LocLongDescription="Помечает цель так, что выстрелы по ней восполняют затраченное действие.Длится до следующего хода Хком."
+LocHelpText="Помечает цель так, что выстрелы по ней восполняют затраченное действие."
+LocFlyOverText="Метка смерти"
+
+[Fatality_LW X2AbilityTemplate]
+LocFriendlyName="Фаталити"
+LocLongDescription="Бонус 100 точности и крита против целей со здоровьем меньше 35% с <Ability:WeaponName/>"
+LocHelpText="Бонус 100 точности и крита против целей со здоровьем меньше 35% с <Ability:WeaponName/>"
+LocFlyOverText="Фаталити"
+
+[Vampirism_LW X2AbilityTemplate]
+LocFriendlyName="Вампиризм"
+LocLongDescription="Нанося урон вы восполняете здоровье"
+LocHelpText="Нанося урон вы восполняете здоровье"
+LocFlyOverText="Вампиризм"
+
+[VampirismPassive_LW X2AbilityTemplate]
+LocFriendlyName="Вампиризм"
+LocLongDescription="Нанося урон вы восполняете здоровье"
+LocHelpText="Нанося урон вы восполняете здоровье"
+LocFlyOverText="Вампиризм"
+
+[ChosenLowProfile X2AbilityTemplate]
+LocFriendlyName="Разминка"
+LocLongDescription="Получает суммируемый бонус к защите после каждого попадания до конца этого хода."
+LocHelpText="Получает суммируемый бонус к защите после каждого попадания до конца этого хода."
+
+[ChosenLowProfileTrigger X2AbilityTemplate]
+LocFriendlyName="Разминка"
+LocLongDescription="Получает суммируемый бонус к защите после каждого попадания до конца этого хода."
+LocHelpText="Получает суммируемый бонус к защите после каждого попадания до конца этого хода."
+
+[ComplexReload_LW X2AbilityTemplate]
+LocFriendlyName="Комплексная перезарядка"
+LocHelpText="Перезарядка основного оружия. Заканчивает ход"
+LocFlyOverText="Перезарядка"
+
+; End Translated (2)
+
+; LWOTC Need Translated
+
+[AssassinPrimeReactionPassive X2AbilityTemplate]
+LocFriendlyName="Реацкия Избранного"
+LocLongDescription="Получает действие на выпад, движение тактический анализ после получения урона на ходу Хком"
+LocHelpText="Получает действие на выпад, движение тактический анализ после получения урона на ходу Хком"
+LocFlyOverText="Реацкия Избранного"
+
+[HunterPrimeReactionPassive X2AbilityTemplate]
+LocFriendlyName="Реакция избранного"
+LocLongDescription="Получает действие на движение или тактический анализ после получения урона на ходу Хком"
+LocHelpText="Получает действие на движение или тактический анализ после получения урона на ходу Хком"
+LocFlyOverText="Реакция избранного"
+
+[WarlockPrimeReactionPassive X2AbilityTemplate]
+LocFriendlyName="Реакция избранного"
+LocLongDescription="Получает действие на движение или тактический анализ после получения урона на ходу Хком"
+LocHelpText="Получает действие на движение или тактический анализ после получения урона на ходу Хком"
+LocFlyOverText="Реакция избранного"
+; End Translated
+
+; LWOTC Translated (2)
+[ChosenImmunitiesPassive X2AbilityTemplate]
+LocFriendlyName="Сила избранного"
+LocLongDescription="Избранный неуязвим к оглушению, дизориентации, заморозке и имеет 50% штраф от увечья вместо 100%."
+LocHelpText="Избранный неуязвим к оглушению, дизориентации, заморозке и имеет 50% штраф от увечья вместо 100%."
+LocFlyOverText="Сила избранного"
+; End Translated (2)
+
+
+[HarborWave X2AbilityTemplate]
+LocFriendlyName="Штормовая волна"
+LocLongDescription="Пси волна наносит урон и подпитывает Жажду крови с каждой жертвой."
+LocHelpText="Пси волна наносит урон и подпитывает Жажду крови с каждой жертвой."
+LocFlyOverText="Штормовая волна"
+
+; LWOTC Translated (2)
+[Brawler X2AbilityTemplate]
+LocFriendlyName="Чутьё"
+LocFlyOverText="Чутьё"
+LocLongDescription="Получает <Ability:BRAWLER_DR_PCT>% меньше урона с расстояния менее 4 клеток."
+LocHelpText="Получает <Ability:BRAWLER_DR_PCT>% меньше урона с расстояния менее 4 клеток."
+LocPromotionPopupText="<Bullet/>Получает <Ability:BRAWLER_DR_PCT>% меньше урона с расстояния менее 4 клеток.<br/>"
+
+[InstantReactionTime X2AbilityTemplate]
+LocFriendlyName="Мгновеннеая реакция
+LocFlyOverText="Мгновеннеая реакция
+LocLongDescription="Получает <Ability:IRT_DODGE_PER_TILE> бонус уклонения за каждую клетку от атакующего до Избранного"
+LocHelpText="Получает <Ability:IRT_DODGE_PER_TILE> бонус уклонения за каждую клетку от атакующего до Избранного"
+LocPromotionPopupText="Получает <Ability:IRT_DODGE_PER_TILE> бонус уклонения за каждую клетку от атакующего до Избранного"
+
+[AssassinSlash_LW X2AbilityTemplate]
+LocFriendlyName="Выпад убийцы"
+LocFlyOverText="Выпад убийцы"
+LocLongDescription="Атака ближайшей цели. Одно действие. Гарантированное попадание."
+LocHelpText="Атака ближайшей цели. Одно действие. Гарантированное попадание."
+LocPromotionPopupText="<Bullet/> Атакует ближайшую цель мечом.<br/><Bullet/> Использует только одно действие, так возможно два удара за один ход."
+; End Translated (2)
+
+
+; LWOTC Translated
+[ReactionFireAgainstCoverBonus X2AbilityTemplate]
+LocFriendlyName="Ответный выстрел против укрытий"
+LocHelpText="Уменьшает бонус укрытий против ответных выстрелов"
+; End Translated
+
+; LWOTC Translated
+[XComGameState_AdventChosen]
+KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="Избранный обнаруживает деятельность сопротивления!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Избранный усложняет секретные задания!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Избранный может устроить диверсию!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Избранный может начать штурмовать Мститель!"
+KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Избранный может инициировать Событие!"
+; End Translated
 
 
 

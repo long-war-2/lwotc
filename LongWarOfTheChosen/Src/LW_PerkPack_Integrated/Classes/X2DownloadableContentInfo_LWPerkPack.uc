@@ -410,6 +410,18 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'RUN_AND_GUN_COOLDOWN':
 			OutString = string(class'X2AbilityCooldown_RunAndGun_LW'.default.RUN_AND_GUN_COOLDOWN);
+
+		case 'LOCKDOWN_TOHIT_BONUS':
+			OutString = string(Round(class'X2Effect_LockdownDamage'.default.LOCKDOWN_TOHIT_BONUS * (1.0 - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
+			return true;
+		case 'MAYHEM_DAMAGE_BONUS_PCT':
+			OutString = string(int(class'X2Effect_Mayhem'.default.MAYHEM_DAMAGE_BONUS_PCT));
+			return true;
+		case 'MOVING_TARGET_DEFENSE':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.MOVING_TARGET_DEFENSE);
+			return true;
+		case 'MOVING_TARGET_DODGE':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.MOVING_TARGET_DODGE);
 			return true;
         default:
             return false;

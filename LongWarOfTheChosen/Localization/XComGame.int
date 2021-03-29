@@ -175,9 +175,9 @@ LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy 
 [PhosphorusPassive X2AbilityTemplate]
 LocFriendlyName="Phosphorus"
 LocFlyOverText="Phosphorus"
-LocLongDescription="Your flamethrower can now damage mechanical units and shred armor."
-LocHelpText="Your flamethrower can now damage mechanical units and shred armor."
-LocPromotionPopupText="<Bullet/> Your flamethrower can now damage mechanical units.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
+LocLongDescription="Your flamethrower's base damage can now ignore fire immunities, and shred armor.""
+LocHelpText="Your flamethrower's base damage can now ignore fire immunities, and shred armor."
+LocPromotionPopupText="<Bullet/> Your flamethrower can now ignore fire immunities.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
 
 [Incinerator X2AbilityTemplate]
 LocFriendlyName="Incinerator"
@@ -409,12 +409,12 @@ LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to <ABILIT
 
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
-; LWOTC Translated
+; LWOTC Needs Translation (2)
 LocLongDescription="You may throw or launch grenades two additional tiles."
 LocHelpText="You may throw or launch grenades two additional tiles."
 LocFlyOverText="Bombardier"
 LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades.<br/>"
-; End Translated
+; End Translation (2)
 
 [BluescreenBombs X2AbilityTemplate]
 LocFriendlyName="Bluescreen Bombs"
@@ -592,7 +592,7 @@ LocPromotionPopupText="<Bullet/> The Vital Point Targeting damage bonus is +<Abi
 
 [Multitargeting X2AbilityTemplate]
 LocFriendlyName="Multitargeting"
-LocLongDescription="You may Holotarget multiple enemies with a <Ability:MULTI_TARGETING_COOLDOWN_LW/> turn cooldown."
+LocLongDescription="You may Holotarget multiple enemies with a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Holotarget multiple enemies in an area of effect."
 LocFlyOverText="Multitargeting"
 LocPromotionPopupText="<Bullet/> HiDef Holo, Independent Tracking, and Vital Point Targeting apply to all targets.<br/><Bullet/> Area of effect radius is <Ability:MULTI_HOLO_CV_RADIUS_LW/> tiles for the basic Holotargeter and improves to <Ability:MULTI_HOLO_MG_RADIUS_LW/> and <Ability:MULTI_HOLO_BM_RADIUS_LW/> tiles with better technology.<br/><Bullet/> Multitargeting has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Holotargeting does not break concealment for your squad."
@@ -1019,9 +1019,9 @@ FriendlyName="Advanced Vibroblade"
 FriendlyNamePlural="Advanced Vibroblades"
 BriefSummary="Dangerous melee weapon for personal defense in close quarters. The Advanced Vibroblade has been enhanced to be sharper, stronger, and more precise."
 TacticalText="<Bullet/> A knife attack requires one action and does not end your turn.<br/>"
-
 AbilityDescName="combat knife"
 ;End translation
+
 [LWGauntlet_CV X2MultiWeaponTemplate]
 FriendlyName="Gauntlet"
 FriendlyNamePlural="Gauntlets"
@@ -2248,7 +2248,7 @@ POIImages[2]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_Abandoned"
 ; LWOTC Needs Translation
 [LW_T2_M0_Outpost X2ObjectiveTemplate]
 Title="Manage Your Havens"
-LocLongDescription="Assign rebels to jobs based on what you want them to do ('intel' for detecting missions, 'supply' for generating supplies, and 'recruit' for recruiting new rebels to the haven and rookies). You can also a haven adviser to help with the various activities and (if the adviser is a soldier) help detect Faceless among the rebels.
+LocLongDescription="Assign rebels to jobs based on what you want them to do ('intel' for detecting missions, 'supply' for generating supplies, and 'recruit' for recruiting new rebels to the haven and rookies). You can also a haven adviser to help with the various activities and (if the adviser is a soldier) help detect Faceless among the rebels."
 ; End Translation
 
 [LW_T2_M0_Liberate_Region X2ObjectiveTemplate]
@@ -3608,15 +3608,15 @@ Summary="Unlocks the ultimate in Laser Sight technology for Engineering to produ
 
 [BasicStockProject X2TechTemplate]
 DisplayName="Stocks"
-Summary="We can reverse engineer recovered Stocks and allow them to be mass produced. Any troop that equips a stock gains a chance to convert misses to grazes."
+Summary="We can reverse engineer recovered Stocks and allow them to be mass produced."
 
 [AdvancedStockProject X2TechTemplate]
 DisplayName="Advanced Stocks"
-Summary="Allows mass production of Advanced Stocks, which grant an improved chance to convert misses to grazes."
+Summary="Allows mass production of Advanced Stocks."
 
 [SuperiorStockProject X2TechTemplate]
 DisplayName="Elite Stocks"
-Summary="Allows mass production of Elite Stocks, which grant a large chance to convert misses to grazes."
+Summary="Allows mass production of Elite Stocks."
 
 ;End Translation
 
@@ -5463,32 +5463,32 @@ LocFlyOverText="Sabotage Weapon"
 
 [ShieldAllyM1 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Adds Shield to an Ally."
-LocLongDescription="Adds Shield to an Ally."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM2 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Adds Shield to an Ally."
-LocLongDescription="Adds Shield to an Ally."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction.."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM3 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Adds Shield to an Ally."
-LocLongDescription="Adds Shield to an Ally."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM4 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Adds Shield to an Ally."
-LocLongDescription="Adds Shield to an Ally."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ChosenImmuneMelee X2AbilityTemplate]
-LocFriendlyName="Melee Resistance"
-LocLongDescription="Takes 50% less damage from melee."
-LocHelpText="Takes 50% less damage from melee."
+LocFriendlyName="Anticipation"
+LocLongDescription="Takes 50% less damage from dashing melee attacks."
+LocHelpText="Takes 50% less damage from from dashing melee attacks."
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Blast Shield"
@@ -6285,23 +6285,37 @@ LocFlyOverText="Kidnap"
 
 [ChosenKeen X2AbilityTemplate]
 LocFriendlyName="Keen"
-LocLongDescription="Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
-LocHelpText="Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
+LocLongDescription="For Soldiers only (Not rebels) Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
+LocHelpText="For Soldiers only (Not rebels) Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
 LocFlyOverText="Keen"
 
+;LWOTC needs translation (2)
 [CombatReadiness X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
-LocHelpText="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
+LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
+LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn."
 LocFlyOverText="Combat Readiness"
+; End translation (2)
 
 ;LWOTC needs translation
 [CombatReadinessPassive X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
-LocHelpText="Gain a stackable 10 aim and 5 defense bonus for 2 turns and remove most debuffs."
+LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
+LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn."
 LocFlyOverText="Combat Readiness"
 ; End translation
+
+[Banzai_LW X2AbilityTemplate]
+LocFriendlyName="BANZAI"
+LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocFlyOverText="BANZAI"
+
+[BanzaiPassive_LW X2AbilityTemplate]
+LocFriendlyName="BANZAI"
+LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocFlyOverText="BANZAI"
 
 ;LWOTC needs translation (2)
 [ChosenAssassin X2CharacterTemplate]
@@ -6356,14 +6370,14 @@ strAcquiredText="The Hunter is the master of long range combat, constantly kitin
 ; LWOTC Needs Translation (2)
 [BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed on a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed on a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
 LocFlyOverText="Blood Thirst"
 
 [BloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed on a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 25% damage boost to your melee attacks. Removed on a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
 LocFlyOverText="Blood Thirst"
 ; LWOTC Needs Translation (2)
 
@@ -6382,9 +6396,9 @@ LocFlyOverText="Psychotic Rage"
 [YouCannotHide_LW X2AbilityTemplate]
 ; LWOTC Needs Translation (2)
 LocFriendlyName="You Cannot Hide"
+LocHelpText="Gain 100 aim with your primary weapon."
+LocLongDescription="Gain 100 aim with your primary weapon."
 ; End Translation (2)
-LocHelpText="Gain 100 aim."
-LocLongDescription="Gain 100 aim."
 LocFlyOverText="Run."
 
 [RebelHPUpgrade_T1 X2AbilityTemplate]
@@ -6440,14 +6454,14 @@ AbilityDescName="pistol"
 
 [XCOMBloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks. Lasts 2 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks."
 LocFlyOverText="Blood Thirst"
 
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
-LocHelpText="Every time you attack with your melee weapon, get a stackable 34% damage boost to your melee attacks. Lasts 3 turns."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks. Lasts 2 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks. Lasts 2 turns."
 LocFlyOverText="Blood Thirst"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
@@ -6541,8 +6555,8 @@ LocFlyOverText="Chosen Immunities"
 
 [HarborWave X2AbilityTemplate]
 LocFriendlyName="Harbor Wave"
-LocLongDescription="Send a psionic wave that deals damage and triggers blood thirst for every unit hit."
-LocHelpText="Send a psionic wave that deals damage and triggers blood thirst for every unit hit."
+LocLongDescription="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst."
+LocHelpText="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst."
 LocFlyOverText="Harbor Wave"
 
 ; LWOTC Needs Translation (2)
@@ -6574,7 +6588,30 @@ LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/>
 [ReactionFireAgainstCoverBonus X2AbilityTemplate]
 LocFriendlyName="Reaction Fire Anti Cover"
 LocHelpText="Reduces the Defense bonus provided by cover on overwatch shots"
+
+[ImpactCompensation_LW X2AbilityTemplate]
+LocFriendlyName="Impact Compensation"
+LocFlyOverText="Impact Compensation"
+LocLongDescription="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+LocHelpText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+LocPromotionPopupText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+
+[ImpactCompensationPassive_LW X2AbilityTemplate]
+LocFriendlyName="Impact Compensation"
+LocFlyOverText="Impact Compensation"
+LocLongDescription="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+LocHelpText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+LocPromotionPopupText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+
+[MovingTarget_LW X2AbilityTemplate]
+LocFriendlyName="Moving Target"
+LocFlyOverText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+LocLongDescription="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+LocHelpText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+LocPromotionPopupText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> Defense and +<Ability:MOVING_TARGET_DODGE> Dodge against reaction fire."
+
 ; End Translation
+
 
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
@@ -6584,4 +6621,26 @@ KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Chosen increases risks on C
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Chosen can sabotage the Avenger!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Chosen can launch an assault on the Avenger!"
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an additional dark event!"
+
+
+[X2Ability_LW_ChosenAbilities]
+ShieldedStatBuffsLocDescription="Bonus Aim, Critical hit Chance, Will and Psi Offense."
+
+
+[HunterFlashbang X2GrenadeTemplate]
+FriendlyName="Flashbang Grenade"
+FriendlyNamePlural="Flashbang Grenades"
+BriefSummary="The Flashbang Grenade disrupts and disorients enemies in a very large radius, inflicting significant offensive penalties."
+TacticalText="<Bullet/> Flashbang grenades don't do damage, but disorient and disrupt enemies in a large radius.<br><Bullet/> Friendly squad members will not be affected.<br/><Bullet/> Some powerful enemies may be able to resist their effects."
+ThrownAbilityName="Throw Hunter Flashbang Grenade"
+ThrownAbilityHelpText="Disorient hostile targets in the affected area. Free Action."
+LaunchedAbilityname="Launch Flashbang Grenade"
+LaunchedAbilityHelpText="Disorient hostile targets in the affected area."
+
+[Disabler X2AbilityTemplate]
+LocFriendlyName="Disabler"
+LocFlyOverText="Disabler"
+LocLongDescription="Your Pistol Attacks Disable your target's weapons."
+LocHelpText="Your Pistol Attacks Disable your target's weapons."
+
 ; End Translation
