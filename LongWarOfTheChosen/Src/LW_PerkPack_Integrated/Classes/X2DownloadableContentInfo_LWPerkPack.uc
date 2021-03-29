@@ -149,6 +149,27 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 				OutString = Repl(string(TempFloat), "0", "");
 			}
             return true;
+		case 'MAX_SLICE_FLECHE_DAMAGE':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.MAX_SLICE_FLECHE_DAMAGE);
+			return true;
+		case 'CUTTHROAT_BONUS_CRIT_CHANCE':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.CUTTHROAT_BONUS_CRIT_CHANCE);
+			return true;
+		case 'CUTTHROAT_BONUS_CRIT_DAMAGE':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.CUTTHROAT_BONUS_CRIT_DAMAGE);
+			return true;
+		case 'GHOSTWALKER_DETECTION_RANGE_REDUCTION':
+			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.GHOSTWALKER_DETECTION_RANGE_REDUCTION * 100));
+			return true;
+		case 'GHOSTWALKER_DURATION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.GHOSTWALKER_DURATION);
+			return true;
+		case 'COVERT_DETECTION_RANGE_REDUCTION':
+			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.COVERT_DETECTION_RANGE_REDUCTION * 100));
+			return true;
+		case 'NUM_AIRDROP_CHARGES':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet2'.default.NUM_AIRDROP_CHARGES);
+			return true;
 		case 'GRAZING_FIRE_SUCCESS_CHANCE':
 			Outstring = string (class 'X2Ability_PerkPackAbilitySet'.default.GRAZING_FIRE_SUCCESS_CHANCE);
 			return true;
@@ -186,7 +207,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.DEDICATION_COOLDOWN);
 			return true;
 		case 'APEX_PREDATOR_PANIC_RADIUS':
-			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.APEX_PREDATOR_PANIC_RADIUS);
+			OutString = string(int(class'X2Ability_XMBPerkAbilitySet'.default.APEX_PREDATOR_PANIC_RADIUS));
 			return true;
 		case 'PREDATOR_AIM_BONUS':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.PREDATOR_AIM_BONUS);
@@ -293,6 +314,18 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'CYCLIC_FIRE_AIM_MALUS':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.CYCLIC_FIRE_AIM_MALUS);
 			return true;
+		case 'IRON_CURTAIN_DAMAGE_MODIFIER':
+			OutString = string(int(class'X2Effect_IronCurtain'.default.IRON_CURTAIN_DAMAGE_MODIFIER * 100));
+			return true;
+		case 'IRON_CURTAIN_MOBILITY_DAMAGE':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.IRON_CURTAIN_MOBILITY_DAMAGE);
+			return true;
+		case 'IRON_CURTAIN_MOB_DAMAGE_DURATION':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.IRON_CURTAIN_MOB_DAMAGE_DURATION);
+			return true;
+		case 'IRON_CURTAIN_AMMO_COST':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.IRON_CURTAIN_AMMO_COST);
+			return true;
 		case 'SLUG_SHOT_COOLDOWN':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SLUG_SHOT_COOLDOWN);
 			return true;
@@ -301,6 +334,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'SHARPSHOOTERAIM_CRITBONUS':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SHARPSHOOTERAIM_CRITBONUS);
+			return true;
+		case 'PRECISION_SHOT_CRIT_BONUS':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.PRECISION_SHOT_CRIT_BONUS);
+			return true;
+		case 'PRECISION_SHOT_CRIT_DAMAGE_MODIFIER':
+			OutString = string(int(class'X2Effect_PrecisionShotCritDamage'.default.PRECISION_SHOT_CRIT_DAMAGE_MODIFIER * 100));
 			return true;
 		case 'DISORIENTED_MOBILITY_ADJUST':
 			OutString = string (class 'X2StatusEffects'.default.DISORIENTED_MOBILITY_ADJUST);
@@ -351,6 +390,27 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			OutString = string(class'X2Effect_LoneWolf'.default.LONEWOLF_MIN_DIST_TILES - 
 					(class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_BONUS / class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_PER_TILE) + 1);
 			return true;
+		case 'LETHAL_DAMAGE_LW':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.LETHAL_DAMAGE);
+			return true;
+		case 'LETHAL_CRIT_DAMAGE_LW':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.LETHAL_DAMAGE / 2);
+			return true;
+		case 'FORMIDABLE_EXPLOSIVES_DR':
+			OutString = string(int(class'X2Ability_PerkPackAbilitySet'.default.FORMIDABLE_EXPLOSIVES_DR * 100));
+			return true;
+		case 'FORMIDABLE_ABLATIVE_HP':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.FORMIDABLE_ABLATIVE_HP);
+			return true;
+		case 'SLUG_SHOT_PIERCE':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SLUG_SHOT_PIERCE);
+			return true;
+		case 'KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT':
+			OutString = string(int(class'X2Effect_KillerInstinct'.default.KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT));
+			return true;
+		case 'RUN_AND_GUN_COOLDOWN':
+			OutString = string(class'X2AbilityCooldown_RunAndGun_LW'.default.RUN_AND_GUN_COOLDOWN);
+
 		case 'LOCKDOWN_TOHIT_BONUS':
 			OutString = string(Round(class'X2Effect_LockdownDamage'.default.LOCKDOWN_TOHIT_BONUS * (1.0 - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
 			return true;

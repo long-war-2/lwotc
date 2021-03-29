@@ -143,7 +143,7 @@ static function X2AbilityTemplate CreateEnemyScalingTemplate(name TemplateName, 
 
 	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
 	PersistentStatChangeEffect.BuildPersistentEffect(1, true, true);
-	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Offense, default.UNDERINFILTRATION_AIM_MODS[DifficultyIndex], MODOP_Addition);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Defense, default.UNDERINFILTRATION_DEFENSE_MODS[DifficultyIndex], MODOP_Addition);
 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Dodge, default.UNDERINFILTRATION_DODGE_MODS[DifficultyIndex], MODOP_Addition);
