@@ -77,8 +77,11 @@ var const config float DEFAULT_FACELESS_CHANCE;
 // Faceless won't generate if they will take the proportion in the Haven past this value
 var config float MAX_FACELESS_PROPORTION;
 
-// Psi abilities which reduce the chance of recruiting Faceless if the liason has at least one of them (they don't stack)
-var config array<name> FacelessReductionPsiAbilities;
+// Abilities which reduce the chance of recruiting Faceless
+var config array<name> FacelessReductionAbilityName;
+
+// How many of the FacelessReductionAbilityName abilities can stack their benefits on one liason
+var config int MaxFacelessReductions;
 
 // Outpost will begin with INITIAL_REBEL_COUNT + Rand(0, RANDOM_REBEL_COUNT)
 // rebels.
@@ -248,7 +251,8 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 	local array<X2StrategyElementTemplate> PersonalityTemplates;
 	local StateObjectReference NewUnitRef;
 	local float FacelessChance;
-	local name PsionAbilityName;
+	local name FacelessReductionAbilityName;
+	local int CurrentFacelessReductions;
 
 	CharacterGenerator = `XCOMGRI.Spawn(class'XGCharacterGenerator');
 	nmCountry = RegionState.GetMyTemplate().GetRandomCountryInRegion();
@@ -259,30 +263,23 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 	{
 		FacelessChance *= 2;
 	}
+    if (HasLiaison())
+    {
+        Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(GetLiaison().ObjectID));
+        if (Unit.IsSoldier())
+        {
+            CurrentFacelessReductions = 0;
 
-	if (HasLiaison())
-	{
-		Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(GetLiaison().ObjectID));
-		if (Unit.IsSoldier())
-		{
-			If (Unit.HasSoldierAbility('ScanningProtocol'))
-			{
-				FacelessChance *= 0.6;
-			}
-       			foreach default.FacelessReductionPsiAbilities(PsionAbilityName)
-            		{
-                		if (Unit.HasAbilityFromAnySource(PsionAbilityName))
-                		{
-                    			FacelessChance *= 0.6;
-					break;
-                		}
-            		}
-			if (Unit.HasItemOfTemplateType('Battlescanner'))
-			{
-				FacelessChance *= 0.6;
-			}
-		}
-	}
+            foreach default.FacelessReductionAbilities(FacelessReductionAbilityName)
+            {
+                if (Unit.HasAbilityFromAnySource(FacelessReductionAbilityName) && CurrentFacelessReductions < default.MaxFacelessReductions)
+                {
+                    CurrentFacelessReductions++;
+                    FacelessChance *= 0.6;
+                }
+            }
+        }
+    }
 
 	if (forceFaceless || (allowFaceless && `SYNC_FRAND() < FacelessChance && GetNumFaceless() / GetRebelCount() < default.MAX_FACELESS_PROPORTION))
 	{
