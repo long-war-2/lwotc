@@ -2007,7 +2007,8 @@ static function bool CanAddItemToInventory_CH_Improved(
 		return CheckGameState == none;
 	}
 
-	if (Slot == eInvSlot_Pistol && WeaponTemplate.WeaponCat == 'pistol')
+	if (Slot == eInvSlot_Pistol && !class'CHItemSlot_PistolSlot_LW'.default.DISABLE_LW_PISTOL_SLOT &&
+			class'CHItemSlot_PistolSlot_LW'.static.IsWeaponAllowedInPistolSlot(WeaponTemplate))
 	{
 		// Allow the weapon to be equipped.
 		DisabledReason = "";

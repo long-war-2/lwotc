@@ -7,14 +7,21 @@
 
 class CHItemSlot_PistolSlot_LW extends CHItemSlotSet config(LW_Overhaul);
 
+var config bool DISABLE_LW_PISTOL_SLOT;
 var config array<name> EXCLUDE_FROM_PISTOL_SLOT_CLASSES;
-var config array<name> LWOTC_PISTOL_SLOT_WEAPON_CAT;
+var config array<name> PISTOL_SLOT_WEAPON_CATS;
+
+var const array<name> DEFAULT_ALLOWED_WEAPON_CATS;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
-    local array<X2DataTemplate> Templates;
+	local array<X2DataTemplate> Templates;
 
-    Templates.AddItem(CreatePistolSlotTemplate());
+	if (!default.DISABLE_LW_PISTOL_SLOT)
+	{
+		`LWTrace("Configuring LWOTC pistol slot");
+		Templates.AddItem(CreatePistolSlotTemplate());
+	}
 
 	return Templates;
 }
@@ -48,30 +55,30 @@ static function X2DataTemplate CreatePistolSlotTemplate()
 }
 
 static function bool CanAddItemToPistolSlot(
-    CHItemSlot Slot,
-    XComGameState_Unit UnitState,
-    X2ItemTemplate Template,
-    optional XComGameState CheckGameState,
-    optional int Quantity = 1,
-    optional XComGameState_Item ItemState)
-{    
-    local X2WeaponTemplate WeaponTemplate;
-//in theory: if not found in the LWOTC_PISTOL_SLOT_WEAPON_CAT, it´s not added to the slot. Not sure if I put this correctly.
-    WeaponTemplate = X2WeaponTemplate(Template);
-    if (WeaponTemplate != none)
-    {
-         return default.LWOTC_PISTOL_SLOT_WEAPON_CAT.Find(WeaponTemplate.WeaponCat) != INDEX_NONE;
-    }
-    return false;
+	CHItemSlot Slot,
+	XComGameState_Unit UnitState,
+	X2ItemTemplate Template,
+	optional XComGameState CheckGameState,
+	optional int Quantity = 1,
+	optional XComGameState_Item ItemState)
+{
+	local X2WeaponTemplate WeaponTemplate;
+
+	WeaponTemplate = X2WeaponTemplate(Template);
+	if (WeaponTemplate != none && UnitState.GetItemInSlot(Slot.InvSlot, CheckGameState) == none)
+	{
+		return IsWeaponAllowedInPistolSlot(WeaponTemplate);
+	}
+	return false;
 }
 
 static function bool HasPistolSlot(
-    CHItemSlot Slot,
-    XComGameState_Unit UnitState,
-    out string LockedReason,
-    optional XComGameState CheckGameState)
+	CHItemSlot Slot,
+	XComGameState_Unit UnitState,
+	out string LockedReason,
+	optional XComGameState CheckGameState)
 {
-    return default.EXCLUDE_FROM_PISTOL_SLOT_CLASSES.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE;
+	return default.EXCLUDE_FROM_PISTOL_SLOT_CLASSES.Find(UnitState.GetSoldierClassTemplateName()) == INDEX_NONE;
 }
 
 static function int PistolGetPriority(CHItemSlot Slot, XComGameState_Unit UnitState, optional XComGameState CheckGameState)
@@ -80,23 +87,43 @@ static function int PistolGetPriority(CHItemSlot Slot, XComGameState_Unit UnitSt
 }
 
 static function bool ShowPistolItemInLockerList(
-    CHItemSlot Slot,
-    XComGameState_Unit Unit,
-    XComGameState_Item ItemState,
-    X2ItemTemplate ItemTemplate,
-    XComGameState CheckGameState)
+	CHItemSlot Slot,
+	XComGameState_Unit Unit,
+	XComGameState_Item ItemState,
+	X2ItemTemplate ItemTemplate,
+	XComGameState CheckGameState)
 {
-    local X2WeaponTemplate WeaponTemplate;
+	local X2WeaponTemplate WeaponTemplate;
 
-    WeaponTemplate = X2WeaponTemplate(ItemTemplate);
-    if (WeaponTemplate != none)
-    {
-        return WeaponTemplate.WeaponCat == 'pistol';
-    }
-    return false;
+	WeaponTemplate = X2WeaponTemplate(ItemTemplate);
+	if (WeaponTemplate != none)
+	{
+		return IsWeaponAllowedInPistolSlot(WeaponTemplate);
+	}
+	return false;
 }
 
-function ECHSlotUnequipBehavior PistolGetUnequipBehavior(CHItemSlot Slot, ECHSlotUnequipBehavior DefaultBehavior, XComGameState_Unit Unit, XComGameState_Item ItemState, optional XComGameState CheckGameState)
+static function ECHSlotUnequipBehavior PistolGetUnequipBehavior(
+	CHItemSlot Slot,
+	ECHSlotUnequipBehavior DefaultBehavior,
+	XComGameState_Unit Unit,
+	XComGameState_Item ItemState,
+	optional XComGameState CheckGameState)
 {
 	return eCHSUB_AllowEmpty;
+}
+
+// Determines whether the given weapon type is allowed in the pistol slot
+static function bool IsWeaponAllowedInPistolSlot(X2WeaponTemplate WeaponTemplate)
+{
+	// Check the config var for allowed weapon categories, but if that's empty,
+	// fall back to the default list.
+	return default.PISTOL_SLOT_WEAPON_CATS.Length > 0 ?
+		default.PISTOL_SLOT_WEAPON_CATS.Find(WeaponTemplate.WeaponCat) != INDEX_NONE :
+		default.DEFAULT_ALLOWED_WEAPON_CATS.Find(WeaponTemplate.WeaponCat) != INDEX_NONE;
+}
+
+defaultproperties
+{
+	DEFAULT_ALLOWED_WEAPON_CATS[0] = "pistol";
 }
