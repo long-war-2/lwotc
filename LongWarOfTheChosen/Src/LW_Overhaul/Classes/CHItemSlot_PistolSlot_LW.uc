@@ -87,11 +87,11 @@ static function bool ShowPistolItemInLockerList(
     XComGameState CheckGameState)
 {
     local X2WeaponTemplate WeaponTemplate;
-
+//UI check to show in armory. 
     WeaponTemplate = X2WeaponTemplate(ItemTemplate);
     if (WeaponTemplate != none)
     {
-        return WeaponTemplate.WeaponCat == 'pistol';
+         return default.LWOTC_PISTOL_SLOT_WEAPON_CAT.Find(WeaponTemplate.WeaponCat) != INDEX_NONE;
     }
     return false;
 }
