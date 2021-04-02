@@ -2007,7 +2007,7 @@ static function bool CanAddItemToInventory_CH_Improved(
 		return CheckGameState == none;
 	}
 
-	if (Slot == eInvSlot_Pistol && WeaponTemplate.WeaponCat == 'pistol')
+	if (Slot == eInvSlot_Pistol && default.LWOTC_PISTOL_SLOT_WEAPON_CAT.Find(WeaponTemplate.WeaponCat) != INDEX_NONE)
 	{
 		// Allow the weapon to be equipped.
 		DisabledReason = "";
