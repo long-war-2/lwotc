@@ -56,9 +56,10 @@ static function bool CanAddItemToPistolSlot(
     optional XComGameState_Item ItemState)
 {    
     local X2WeaponTemplate WeaponTemplate;
-//in theory: if not found in the LWOTC_PISTOL_SLOT_WEAPON_CAT, it´s not added to the slot. Not sure if I put this correctly.
+//in theory: if not found in the LWOTC_PISTOL_SLOT_WEAPON_CAT, it´s not added to the slot.
+//Not sure if I put this correctly. Also added small failsafe to prevent multiple pistols equipped as per issue 1006 (again, I have no idea)
     WeaponTemplate = X2WeaponTemplate(Template);
-    if (WeaponTemplate != none)
+       if (WeaponTemplate != none && UnitState.GetItemInSlot(Slot.InvSlot, CheckGameState) == none)
     {
          return default.LWOTC_PISTOL_SLOT_WEAPON_CAT.Find(WeaponTemplate.WeaponCat) != INDEX_NONE;
     }
