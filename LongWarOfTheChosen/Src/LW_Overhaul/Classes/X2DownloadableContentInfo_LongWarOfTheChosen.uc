@@ -4235,19 +4235,16 @@ static function PatchDuplicatePistolShots()
     local X2WeaponTemplate            Template;
     local array<X2WeaponTemplate>     Templates; 
 	local X2AbilityTemplateManager    AbilityTemplateManager;
-	local X2AbilityTemplate			  Ability;
+	local X2AbilityTemplate			  Ability, AbilityOW;
+
 
 
 	AbilityTemplateManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 	//Unique Pistol Standard Shot
 	Ability = AbilityTemplateManager.FindAbilityTemplate('PistolStandardShot');
 	Ability.bUniqueSource = true;
-	if(default.MULTIPLE_OVERWATCH_FIX == true)
-	{
-		Ability = AbilityTemplateManager.FindAbilityTemplate('PistolOverwatch');
-		Ability.bUniqueSource = true;
-	}
-
+	AbilityOW = AbilityTemplateManager.FindAbilityTemplate('PistolOverwatch');
+	AbilityOW.bUniqueSource = true;
     ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
         
     Templates = ItemMgr.GetAllWeaponTemplates();
