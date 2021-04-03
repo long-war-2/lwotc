@@ -176,6 +176,7 @@ static event OnPostTemplatesCreated()
 	UpdateFirstMissionTemplate();
 	AddObjectivesToParcels();
 	UpdateChosenActivities();
+	PatchDuplicatePistolShots();
 }
 
 /// <summary>
@@ -4226,4 +4227,41 @@ static function bool IsProjectileElementPresent(array<X2UnifiedProjectileElement
         }
     }
     return false;
+}
+//Possible fix for multiple abilities. Copied from Iridar´s Dedicated Pistol Slot 2.0. 
+static function PatchDuplicatePistolShots()
+	{
+    local X2ItemTemplateManager       ItemMgr;
+    local X2WeaponTemplate            Template;
+    local array<X2WeaponTemplate>     Templates; 
+	local X2AbilityTemplateManager    AbilityTemplateManager;
+	local X2AbilityTemplate			  Ability;
+
+
+	AbilityTemplateManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+	//Unique Pistol Standard Shot
+	Ability = AbilityTemplateManager.FindAbilityTemplate('PistolStandardShot');
+	Ability.bUniqueSource = true;
+	if(default.MULTIPLE_OVERWATCH_FIX == true)
+	{
+		Ability = AbilityTemplateManager.FindAbilityTemplate('PistolOverwatch');
+		Ability.bUniqueSource = true;
+	}
+
+    ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+        
+    Templates = ItemMgr.GetAllWeaponTemplates();
+    
+    foreach Templates(Template)
+    {        
+        if (Template.WeaponCat == 'pistol')
+        {
+            Template.Abilities.AddItem('PistolStandardShot');
+        }
+		if (Template.WeaponCat == 'sidearm')
+        {
+            Template.Abilities.AddItem('PistolStandardShot');
+        }
+    }
+	X2AbilityCost_QuickdrawActionPoints(class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('PistolStandardShot').AbilityCosts[0]).DoNotConsumeAllSoldierAbilities.AddItem('Quickdraw');
 }
