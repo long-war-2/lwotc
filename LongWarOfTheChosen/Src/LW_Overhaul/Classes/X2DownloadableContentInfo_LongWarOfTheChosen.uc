@@ -4228,7 +4228,7 @@ static function bool IsProjectileElementPresent(array<X2UnifiedProjectileElement
     }
     return false;
 }
-//Possible fix for multiple abilities. Copied from Iridar´s Dedicated Pistol Slot 2.0. 
+//Possible fix for multiple abilities. Copied from Veehementia's Dedicated Pistol Slot 2.0. 
 static function PatchDuplicatePistolShots()
 	{
     local X2ItemTemplateManager       ItemMgr;
