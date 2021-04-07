@@ -1,4 +1,4 @@
-Welcome to **dev build 23** of Long War of the Chosen!
+Welcome to **dev build 23.1** of Long War of the Chosen!
 
 The last dev build was supposed to be the basis for beta 4, but one of the recent bug fixes was far reaching enough that it really needed testing in another dev build. So here we are! And plenty of changes have been made since dev build 22.3, among them:
 
@@ -8,11 +8,20 @@ The last dev build was supposed to be the basis for beta 4, but one of the recen
  * Anything that extends the mission timer (sit reps, map size) will now result in the reinforcements arriving more slowly, with bigger extensions resulting in a greater slowing of RNFs
  * Chosen will no longer appear on HQ Assaults
 
+**UPDATE** Dev build 23.1 is now available! The patch notes for this version can be found just below.
+
 To install dev build 23, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
 
 ||  **[Download the full release and/or the patch from Nexus Mods](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
 
 The patch version can be unpacked on top of any existing dev build 21 or more recent installation.
+
+## Changelog 23.1
+
+ * Enemies no longer appear as floating heads and weapons (with their bodies missing) when loading tactical saves
+ * Lockdown and Mayhem will no longer appear as abilities in Yet Another F1 for ADVENT Gunners and other units with Suppression (note that these units did *not* have Lockdown and Mayhem - it was just a visual bug)
+ * Missions will no longer have both the Large Map and Very large Map sit reps together
+ * You can now configure the abilities that are affected by Quickburn via the `QUICKBURN_ABILITIES` config in *XComLW_SoldiersSkills.ini*
 
 ## Changelog 23
 
