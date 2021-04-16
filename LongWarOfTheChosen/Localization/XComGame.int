@@ -6643,4 +6643,18 @@ LocFlyOverText="Disabler"
 LocLongDescription="Your Pistol Attacks Disable your target's weapons."
 LocHelpText="Your Pistol Attacks Disable your target's weapons."
 
+
+[AdvPurifierm2Flamethrower X2WeaponTemplate]
+FriendlyName="Purifier Flamethrower"
+FriendlyNamePlural="Purifier Flamethrowers"
+BriefSummary="Purifier Flamethrower"
+TacticalText="Purifier Flamethrower"
+AbilityDescName="Purifier Flamethrower"
+
+[AdvPurifierm3Flamethrower X2WeaponTemplate]
+FriendlyName="Purifier Flamethrower"
+FriendlyNamePlural="Purifier Flamethrowers"
+BriefSummary="Purifier Flamethrower"
+TacticalText="Purifier Flamethrower"
+AbilityDescName="Purifier Flamethrower"
 ; End Translation
