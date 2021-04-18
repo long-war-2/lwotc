@@ -17,6 +17,17 @@ RocketeerSightedBody="Rocketeers are as scary as they sound. They can fire accur
 HavenHighlightTitle="Review your haven"
 HavenHighlightBody="Havens are essential to your campaign as they are used to find missions in the region. In addition, you can only contact regions that are connected to an existing haven.<br/><br/>Click on the button shown on the left to open the Haven management screen."
 
+TrooperSightedTitle="New Enemy: Advent Troopers"
+TrooperSightedBody="ADVENT infantry is color-coded by battlefield role. <br/><ul><li>Black-clad Troopers are generic cannon fodder.</li><br/><li> Sentries (blue) provide heavy Overwatch cover, are better shots, and sport better sight range. </li><br/><li> Engineers (red) bombard soldiers from afar with flashbangs, and later, fire or acid munitions. </li><br/><li> Gunners (green) deal heavy damage, and can suppress XCOM troops, but are weak up close.</li>"
+
+AssaultTrooperSightedTitle="New Enemy: Advent Assault Units"
+AssaultTrooperSightedBody="Specialized units to breach defensive formations. <br/><ul><li>The orange Rocketeer can launch accurate rockets which will punish troops huddling in cover.</li><br/><li> ADVENT Vanguards  also dress in Cheeto, but can repel troops coming close with Close Combat Specialist. </li><br/><li> Sergeants are grizzled ADVENT troopers, more difficult to hit, and better armored.</li>"
+
+OperatorTrooperSightedTitle="New Enemy: Advent Special Operators"
+OperatorTrooperSightedBody="Elite operators, typically hard to hit and used to operating alone. <br/><ul><li>Scouts (grey) can bait Overwatch fire with Lightning Reflexes</li><br/><li> Commandos are elusive foes that operate alone: hard to hit, and can dodge incoming fire. </li><br/><li> Advent Shocktroops are hardy frontliners and can inflict devastating critical hits.</li>"
+
+
+
 [UIScreenListener_OutpostManagementTutorial]
 HavenManagementTitle="Haven Management"
 HavenManagementBody="Havens are home to a collection of rebels who can undertake several jobs:<br/><br/><ul><li>Intel - detects missions</li><li>Recruit - recruits rebels and rookies</li><li>Supply - generates supplies</li></ul>The more rebels that are on a job, the more effective they are."
