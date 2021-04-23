@@ -1134,7 +1134,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	}
 
 		
-	if (Template.DataName == 'Stasis')
+	if (Template.DataName == 'Stasis' || Template.DataName == 'PriestStasis')
 	{
 		UnitPropertyCondition = new class 'X2Condition_UnitProperty';
 		UnitPropertyCondition.ExcludeLargeUnits = true;
