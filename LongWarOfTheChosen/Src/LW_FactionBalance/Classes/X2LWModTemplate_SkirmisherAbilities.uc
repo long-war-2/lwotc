@@ -32,7 +32,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		ModifyWhiplash(Template);
 		break;
 	case 'SkirmisherInterruptInput':
-		AddCooldownToInterrupt(Template);
+		UpdateInterrupt(Template);
 		break;
 	case 'SkirmisherGrapple':
 		AddParkourSupportToGrapple(Template);
@@ -47,6 +47,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	case 'Battlelord':
 		AddCooldownToBattlelord(Template);
+		break;
+	case 'TotalCombat':
+		UpdateTotalCombat(Template);
 		break;
 	}
 }
@@ -232,21 +235,28 @@ static function ModifyWhiplash(X2AbilityTemplate Template)
 	Template.AddTargetEffect(WeaponDamageEffect);
 }
 
-static function AddCooldownToInterrupt(X2AbilityTemplate Template)
+static function UpdateInterrupt(X2AbilityTemplate Template)
 {
 	local X2AbilityCost_ActionPoints	ActionPointCost;
 	local X2AbilityCooldown				Cooldown;
+	local X2Effect_AddOverwatchActionPoints Effect;
 
 	// Kill the charges and the charge cost
 	Template.AbilityCosts.Length = 0;
 	Template.AbilityCharges = none;
 
+
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_ReserveOverwatchPoints');
+
+	Effect = new class'X2Effect_AddOverwatchActionPoints';
+	Effect.UseAllPointsWithAbilities.Length = 0;
+	Effect.ReserveType = 'ReserveInterrupt';
+	Template.AddTargetEffect(Effect);
+
 	// Killing the above results in some collateral damage so we have to re-add the action point costs
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 0;
+	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bFreeCost = true;
-	ActionPointCost.DoNotConsumeAllEffects.Length = 0;
-	ActionPointCost.DoNotConsumeAllSoldierAbilities.Length = 0;
 	ActionPointCost.AllowedTypes.RemoveItem(class'X2CharacterTemplateManager'.default.SkirmisherInterruptActionPoint);
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
@@ -309,6 +319,15 @@ static function AddCooldownToBattlelord(X2AbilityTemplate Template)
 	Cooldown.iNumTurns = default.BATTLELORD_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 }
+
+static function UpdateTotalCombat(X2AbilityTemplate Template)
+{
+	Template.AdditionalAbilities.AddItem('Bombard_LW');
+	Template.AdditionalAbilities.AddItem('VolatileMix');
+}
+
+
+
 
 defaultproperties
 {

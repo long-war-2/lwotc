@@ -2178,10 +2178,11 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
  			Template.ImmuneTypes.AddItem('HeavyMental'); //CHOSEN CHANGES
 			break;
 		//CHOSEN CHANGES
+		case 'TemplarSoldier':
+			Template.bCanTakeCover = false;
 		case 'Soldier': 
 		case 'ReaperSoldier':
 		case 'SkirmisherSoldier':
-		case 'TemplarSoldier':
 			Template.Abilities.AddItem('MC_Stock_Strike');
 			Template.Abilities.AddItem('GetUp');
 			Template.CharacterGroupName = 'XCOMSoldier';

@@ -14,12 +14,17 @@ var config int STUNSTRIKE_STUN_CHANCE;
 var config int VOLT_TILE_RADIUS;
 var config int VOLT_DANGER_ZONE_BONUS_RADIUS;
 
+var config int ARCWAVE_T1_DAMAGE;
+var config int ARCWAVE_T2_DAMAGE;
+var config int ARCWAVE_T3_DAMAGE;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
 	{
 	case 'Rend':
 	case 'ArcWave':
+		Template.AdditionalAbilities.AddItem('OverCharge');
 	case 'TemplarBladestormAttack':
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
@@ -27,6 +32,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'Volt':
 		ModifyVoltTargeting(Template);
 		AddTerrorToVolt(Template);
+		MakeAbilityNonTurnEnding(Template);
 		break;
 	case 'Deflect':
 		ModifyDeflectEffect(Template);
@@ -40,9 +46,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'Pillar':
 		AllowPillarOnMomentum(Template);
 		break;
-	case 'Exchange':
-		// Not yet working properly: unable to target enemy units
-		// MergeInvertWithExchange(Template);
+	case 'TemplarInvert':
+		MergeInvertWithExchange(Template);
 		break;
 	case 'TemplarFocus':
 		SupportSupremeFocusInTemplarFocus(Template);
@@ -53,6 +58,16 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'FocusKillTracker':
 		DisableFocusGainDuringApotheosis(Template);
 		break;
+	case 'OverCharge':
+		Template.AdditionalAbilities.RemoveItem('OverchargePassive');
+		break;
+	case 'Amplify':
+		ModifyAmplifyEffect(Template);
+		class'Helpers_LW'.static.MakeFreeAction(Template);
+	case 'Reverberation':
+		HideTheEffects(Template);
+	case 'ArcWave':
+		UpdateArcWave(Template);
 	}
 }
 
@@ -80,6 +95,8 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 	RadiusMultiTarget.AbilityBonusRadii.AddItem(DangerZoneBonus);
 
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+	Template.AdditionalAbilities.AddItem('Reverberation');
 
 	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
 }
@@ -126,13 +143,20 @@ static function AllowPillarOnMomentum(X2AbilityTemplate Template)
 	local X2AbilityCost_ActionPoints ActionPointCost;
 	local int i;
 
-	for (i = 0; i < Template.AbilityCosts.Length; i++)
+	for (i = Template.AbilityCosts.Length - 1; i >= 0; i--)
 	{
 		ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[i]);
 		if (ActionPointCost != none)
 		{
+			ActionPointCost.bFreeCost = true;
 			ActionPointCost.AllowedTypes.AddItem('Momentum');
 		}
+
+		if (Template.AbilityCosts[i].IsA('X2AbilityCost_Focus'))
+		{
+			Template.AbilityCosts.Remove(i, 1);
+		}
+
 	}
 }
 
@@ -141,6 +165,7 @@ static function MergeInvertWithExchange(X2AbilityTemplate Template)
 {
 	local X2Condition_UnitProperty UnitCondition;
 	local int i;
+	local X2Condition_Visibility VisibilityCondition;
 
 	Template.Hostility = eHostility_Offensive;
 	for (i = 0; i < Template.AbilityTargetConditions.Length; i++)
@@ -148,15 +173,14 @@ static function MergeInvertWithExchange(X2AbilityTemplate Template)
 		UnitCondition = X2Condition_UnitProperty(Template.AbilityTargetConditions[i]);
 		if (UnitCondition != none)
 		{
-			UnitCondition.ExcludeCivilian = true;
-			UnitCondition.ExcludeHostileToSource = false;
-			UnitCondition.ExcludeLargeUnits = true;
-			UnitCondition.ExcludeTurret = true;
-			UnitCondition.RequireSquadmates = false;
+			UnitCondition.ExcludeFriendlyToSource = false;
 		}
 	}
 
-	// Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bRequireBasicVisibility = true;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
 }
 
 // Changes StunStrike to stun target units rather than disorient them (the
@@ -164,6 +188,8 @@ static function MergeInvertWithExchange(X2AbilityTemplate Template)
 static function ModifyStunStrikeToStun(X2AbilityTemplate Template)
 {
 	local X2Effect_Stunned				StunnedEffect;
+	
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_KnockBack');
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(default.STUNSTRIKE_STUN_DURATION, default.STUNSTRIKE_STUN_CHANCE, false);
 	Template.AddTargetEffect(StunnedEffect);
@@ -235,6 +261,23 @@ static function SupportSupremeFocusInTemplarFocus(X2AbilityTemplate Template)
 static function FixVoidConduit(X2AbilityTemplate Template)
 {
 	local X2Effect_VoidConduitPatch PatchEffect;
+	local X2Effect_PersistentVoidConduit_LW PersistentEffect;
+	local X2Effect_VoidConduit TickEffect;
+
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template, 'X2Effect_PersistentVoidConduit');
+
+	PersistentEffect = new class'X2Effect_PersistentVoidConduit_LW';
+	PersistentEffect.NumTicks = 2;
+	PersistentEffect.InitialDamage = class'X2Ability_TemplarAbilitySet'.default.VoidConduitInitialDamage;
+	PersistentEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
+	PersistentEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false, , Template.AbilitySourceName);
+	PersistentEffect.bRemoveWhenTargetDies = true;
+	//	build the per tick damage effect
+	TickEffect = new class'X2Effect_VoidConduit';
+	TickEffect.DamagePerAction = class'X2Ability_TemplarAbilitySet'.default.VoidConduitPerActionDamage;
+	TickEffect.HealthReturnMod = class'X2Ability_TemplarAbilitySet'.default.VoidConduitHPMod;
+	PersistentEffect.ApplyOnTick.AddItem(TickEffect);
+	Template.AddTargetEffect(PersistentEffect);
 
 	PatchEffect = new class'X2Effect_VoidConduitPatch';
 	PatchEffect.BuildPersistentEffect(1, true, true, false, eGameRule_UnitGroupTurnBegin);
@@ -260,6 +303,67 @@ static function DisableFocusGainDuringApotheosis(X2AbilityTemplate Template)
 			ForbidApotheosisCondition.AddExcludeEffect('Apotheosis', 'AA_AbilityUnavailable');
 			Template.AbilityTargetEffects[i].TargetConditions.AddItem(ForbidApotheosisCondition);
 			break;
+		}
+	}
+}
+
+static function ModifyAmplifyEffect(X2AbilityTemplate Template)
+{
+	local X2Effect_Amplify_LW AmplifyEffect;
+
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Amplify');
+
+	AmplifyEffect = new class'X2Effect_Amplify_LW';
+	AmplifyEffect.BuildPersistentEffect(1, true, true);
+	AmplifyEffect.bRemoveWhenTargetDies = true;
+	AmplifyEffect.BonusDamageMult = class'X2Ability_TemplarAbilitySet'.default.AmplifyBonusDamageMult;
+	AmplifyEffect.MinBonusDamage = class'X2Ability_TemplarAbilitySet'.default.AmplifyMinBonusDamage;
+	Template.AddTargetEffect(AmplifyEffect);
+
+}
+
+static function UpdateArcWave(X2AbilityTemplate Template)
+{
+	local X2Effect_ArcWaveMultiDamage_LW Effect;
+
+	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
+
+	class'Helpers_LW'.static.RemoveAbilityMultiTargetEffects(Template,'X2Effect_ArcWaveMultiDamage');
+
+	Effect = new class'X2Effect_ArcWaveMultiDamage_LW';
+
+	Effect.T1Damage = default.ARCWAVE_T1_DAMAGE;
+	Effect.T2Damage = default.ARCWAVE_T2_DAMAGE;
+	Effect.T3Damage = default.ARCWAVE_T3_DAMAGE;
+
+	Template.AddMultiTargetEffect(Effect);
+
+}
+
+static function MakeAbilityNonTurnEnding(X2AbilityTemplate Template)
+{
+	local X2AbilityCost Cost;
+
+	foreach Template.AbilityCosts(Cost)
+	{
+		if (Cost.IsA('X2AbilityCost_ActionPoints'))
+		{
+			X2AbilityCost_ActionPoints(Cost).bConsumeAllPoints = false;
+		}
+	}
+}
+
+static function HideTheEffects(X2AbilityTemplate Template)
+{
+	local int i;
+
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityTargetEffects[i].isA('X2Effect_Persistent'))
+		{
+			X2Effect_Persistent(Template.AbilityTargetEffects[i]).SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 		}
 	}
 }

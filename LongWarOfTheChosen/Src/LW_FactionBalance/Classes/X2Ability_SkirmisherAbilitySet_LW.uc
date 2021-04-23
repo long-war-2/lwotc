@@ -22,6 +22,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddManualOverride_LW());
 	Templates.AddItem(AddReflexTrigger());
 	Templates.AddItem(AddParkour());
+	Templates.AddItem(AddPackMaster());
 
 	return Templates;
 }
@@ -41,7 +42,7 @@ static function X2AbilityTemplate AddReckoning_LW()
 
 	Template = PurePassive('Reckoning_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Reckoning");
 	Template.AdditionalAbilities.AddItem('SkirmisherFleche');
-	Template.AdditionalAbilities.AddItem('SkirmisherSlash');
+	//Template.AdditionalAbilities.AddItem('SkirmisherSlash');
 
 	return Template;
 }
@@ -261,5 +262,32 @@ static function X2AbilityTemplate AddParkour()
 
 	Template = PurePassive('Parkour_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_parkour", false, 'eAbilitySource_Perk');
 	Template.bCrossClassEligible = false;
+	return Template;
+}
+
+
+
+//this ability grants the unit +1 charge for each Item in a utility slot AND the grenade slot
+static function X2AbilityTemplate AddPackMaster()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_PackMaster_LW				FullKitEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'PackMaster_LW');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityFullKit";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	FullKitEffect = new class 'X2Effect_PackMaster_LW';
+	FullKitEffect.BuildPersistentEffect (1, true, false);
+	FullKitEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect(FullKitEffect);
+	Template.bCrossClassEligible = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
 	return Template;
 }

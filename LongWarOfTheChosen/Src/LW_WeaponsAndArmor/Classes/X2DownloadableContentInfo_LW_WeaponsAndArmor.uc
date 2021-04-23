@@ -8,7 +8,10 @@
 //  Copyright (c) 2016 Firaxis Games, Inc. All rights reserved.
 //---------------------------------------------------------------------------------------
 
-class X2DownloadableContentInfo_LW_WeaponsAndArmor extends X2DownloadableContentInfo;
+class X2DownloadableContentInfo_LW_WeaponsAndArmor extends X2DownloadableContentInfo config(GameData);
+
+var config array<name> TEMPLAR_GAUNTLETS_FOR_ONE_HANDED_USE;
+var config array<name> TEMPLAR_SHIELDS;
 
 
 /// <summary>
@@ -244,4 +247,38 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	}
 
 	return false;
+}
+
+
+static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameState_Unit UnitState, XComUnitPawn Pawn)
+{
+	local name Item;
+
+	if (!UnitState.IsSoldier()) return;
+
+	foreach default.TEMPLAR_GAUNTLETS_FOR_ONE_HANDED_USE(Item)
+	{
+		if (UnitState.HasItemOfTemplateType(Item))
+		{
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("OneHandedGauntlet_LW.Anims.AS_RightHandedTemplar")));
+			if (UnitState.kAppearance.iGender == eGender_Female)
+			{
+				CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("OneHandedGauntlet_LW.Anims.AS_RightHandedTemplar_F")));
+			}
+
+			break;
+		}
+	}
+
+	foreach default.TEMPLAR_SHIELDS(Item)
+	{
+		if (UnitState.HasItemOfTemplateType(Item))
+		{
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Medkit")));
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Grenade")));
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Melee")));
+		}
+		break;
+	}
+
 }

@@ -149,8 +149,8 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'OverchargeAimBonus':
 		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS1AIM);
 		return true;
-	case 'OverchargeDefenseBonus':
-		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS1DEFENSE);
+	case 'OverchargeCritBonus':
+		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS1CRIT);
 		return true;
 	case 'VoltDangerZoneBonus':
 		OutString = string(class'X2LWModTemplate_TemplarAbilities'.default.VOLT_DANGER_ZONE_BONUS_RADIUS);
@@ -163,6 +163,21 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		return true;
 	case 'ApotheosisDamageMultiplier':
 		OutString = string(int(class'X2Ability_TemplarAbilitySet_LW'.default.APOTHEOSIS_DAMAGE_MULTIPLIER * 100));
+		return true;
+	case 'DEATH_DEALER_CRIT':
+		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.DEATH_DEALER_CRIT);
+		return true;
+	case 'BANISH_HIT_MOD':
+		OutString = string(class'X2Effect_BanishHitMod'.default.BANISH_HIT_MOD * -1);
+		return true;
+	case 'GREATER_PADDING_CV':
+		OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_CV);
+		return true;
+	case 'GREATER_PADDING_MG':
+		OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_MG);
+		return true;
+	case 'GREATER_PADDING_BM':
+		OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_BM);
 		return true;
 	}
 
