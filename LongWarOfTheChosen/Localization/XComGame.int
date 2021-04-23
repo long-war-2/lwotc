@@ -6630,6 +6630,13 @@ KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an ad
 [X2Ability_LW_ChosenAbilities]
 ShieldedStatBuffsLocDescription="Bonus Aim, Critical hit Chance, Will and Psi Offense."
 
+[Magnum_LW X2AbilityTemplate]
+LocFriendlyName="Magnum"
+LocLongDescription="Standard pistol shots have no long range penalty."
+LocHelpText="Standard pistol shots have no long range penalty."
+LocFlyOverText="Magnum"
+LocPromotionPopupText="<Bullet/>Only applies to standard pistol shot, and pistol overwatch.<br/> <Bullet/>Does not apply to special abilities like Lightning hands, Gunslinger or Faceoff.<br/>"
+
 
 [HunterFlashbang X2GrenadeTemplate]
 FriendlyName="Flashbang Grenade"

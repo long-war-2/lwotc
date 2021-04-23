@@ -197,6 +197,8 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(AddBanzai());
 	Templates.AddItem(BanzaiPassive());
+	Templates.AddItem(Magnum());
+
 	return Templates;
 }
 
@@ -2900,6 +2902,27 @@ static function X2AbilityTemplate MovingTarget()
 
 	// Create the template using a helper function
 	return Passive('MovingTarget_LW', "img:///UILibrary_PerkIcons.UIPerk_lightningreflexes", false, Effect);
+}
+
+
+static function X2AbilityTemplate Magnum()
+{
+	local X2Effect_ModifyRangePenalties Effect;
+	local XMBCondition_AbilityName	NameCondition;
+	// Remove Long range penalties from pistols
+	Effect = new class'X2Effect_ModifyRangePenalties';
+	Effect.RangePenaltyMultiplier = -1;
+	Effect.BaseRange = 11;
+	Effect.bLongRange = true;
+	Effect.EffectName = 'Magnum';
+
+	NameCondition = new class'XMBCondition_AbilityName';
+	NameCondition.IncludeAbilityNames.AddItem('PistolStandardShot');
+	NameCondition.IncludeAbilityNames.AddItem('PistolOverwatchShot');
+
+	Effect.AbilityTargetConditions.AddItem(NameCondition);
+
+	return Passive('Magnum_LW', "img:///UILibrary_XPerkIconPack.UIPerk_pistol_sniper", false, Effect);
 }
 
 defaultproperties

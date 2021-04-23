@@ -1908,21 +1908,26 @@ static function X2AbilityTemplate GunslingerShot()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_MAJOR_PRIORITY;
 	Template.bDisplayInUITooltip = false;
 	Template.bDisplayInUITacticalText = false;
+
 	AmmoCost = new class'X2AbilityCost_Ammo';
 	AmmoCost.iAmmo = 1;
 	Template.AbilityCosts.AddItem(AmmoCost);
 	RequiredHitChanceCondition = new class'X2Condition_RequiredToHitChance';
 	RequiredHitChanceCondition.MinimumRequiredHitChance = class'X2Ability_PerkPackAbilitySet2'.default.REQUIRED_TO_HIT_FOR_OVERWATCH;  
 	Template.AbilityTargetConditions.AddItem(RequiredHitChanceCondition);
+
 	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
 	ReserveActionPointCost.iNumPoints = 1;
 	ReserveActionPointCost.bFreeCost = true;
 	ReserveActionPointCost.AllowedTypes.AddItem('KillZone');
 	Template.AbilityCosts.AddItem(ReserveActionPointCost);
+
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bReactionFire = true;
-	StandardAim.bAllowCrit = true;
+	StandardAim.bGuaranteedHit = true;
+	StandardAim.bHitsAreCrits = true;
 	Template.AbilityToHitCalc = StandardAim;
+
 	Template.AbilityToHitOwnerOnMissCalc = StandardAim;
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
 	TargetVisibilityCondition = new class'X2Condition_Visibility';
