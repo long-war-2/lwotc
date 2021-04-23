@@ -113,6 +113,10 @@ var const name QuickZapEffectName;
 var const name VampUnitValue;
 var const string CombatReadinessBonusText;
 
+var config int CRUSADER_WOUND_HP_REDUCTTION;
+
+
+
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
 var config array<name> BANZAI_EFFECTS_TO_REMOVE;
 
@@ -198,7 +202,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddBanzai());
 	Templates.AddItem(BanzaiPassive());
 	Templates.AddItem(Magnum());
-
+	Templates.AddItem(CrusaderRage());
+	
 	return Templates;
 }
 
@@ -2923,6 +2928,42 @@ static function X2AbilityTemplate Magnum()
 	Effect.AbilityTargetConditions.AddItem(NameCondition);
 
 	return Passive('Magnum_LW', "img:///UILibrary_XPerkIconPack.UIPerk_pistol_sniper", false, Effect);
+}
+
+
+static function X2AbilityTemplate CrusaderRage()
+{
+	local XMBEffect_ConditionalBonus Effect;
+	local X2Condition_UnitStatCheck Condition;
+	local X2Effect_GreaterPadding GreaterPaddingEffect;
+	local X2AbilityTemplate Template;
+	// Create a condition that checks that the unit is at less than 100% HP.
+	// X2Condition_UnitStatCheck can also check absolute values rather than percentages, by
+	// using "false" instead of "true" for the last argument.
+	Condition = new class'X2Condition_UnitStatCheck';
+	Condition.AddCheckStat(eStat_HP, 51, eCheck_LessThan,,, true);
+
+	// Create a conditional bonus effect
+	Effect = new class'XMBEffect_ConditionalBonus';
+
+	//Need to add for all of them because apparently if you crit you don't hit lol
+	Effect.AddPercentDamageModifier(50, eHit_Success);
+	Effect.AddPercentDamageModifier(50, eHit_Graze);
+	Effect.AddPercentDamageModifier(50, eHit_Crit);
+	Effect.EffectName = 'CrusaderRage_Bonus';
+
+	// The effect only applies while wounded
+	EFfect.AbilityShooterConditions.AddItem(Condition);
+	Effect.AbilityTargetConditionsAsTarget.AddItem(Condition);
+
+	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
+	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
+	GreaterPaddingEffect.Padding_HealHP = default.CRUSADER_WOUND_HP_REDUCTTION;	
+	
+	// Create the template using a helper function
+	Template = Passive('CrusaderRage_LW', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect);
+	Template.AddTargetEffect(GreaterPaddingEffect);
+	return Template;
 }
 
 defaultproperties

@@ -52,7 +52,6 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 	case 'ShardGauntlet_MG':
 		WeaponTemplate.Abilities.AddItem('DeepFocus');
 	case 'ShardGauntlet_CV':
-		WeaponTemplate.Abilities.AddItem('TemplarFleche');
 		break;
 	case 'Wristblade_CV':
 		WeaponTemplate.ExtraDamage = default.WHIPLASH_CONVENTIONAL_DAMAGE;

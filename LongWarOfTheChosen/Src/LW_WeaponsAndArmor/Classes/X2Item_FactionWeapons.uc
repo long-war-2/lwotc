@@ -86,13 +86,14 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Weapons;
 
+	/*
 	Weapons.AddItem(CreateTemplate_CasterGauntlet_Conventional());
 	Weapons.AddItem(CreateTemplate_CasterGauntlet_Magnetic());
 	Weapons.AddItem(CreateTemplate_CasterGauntlet_Beam());	
 	Weapons.AddItem(CreateTemplate_CasterGauntletLeft_Conventional());
 	Weapons.AddItem(CreateTemplate_CasterGauntletLeft_Magnetic());
 	Weapons.AddItem(CreateTemplate_CasterGauntletLeft_Beam());
-
+*/
 	Weapons.AddItem(CreateTemplate_Bullpup_Laser());
 	Weapons.AddItem(CreateBullpup_Coil_Template());
 	Weapons.AddItem(CreateVektor_Laser());

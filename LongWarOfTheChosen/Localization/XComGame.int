@@ -5288,7 +5288,9 @@ LocPromotionPopupText="<Bullet/> This is a free action, but it also ends the tur
 
 [Pillar X2AbilityTemplate]
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equal to the Templar's Focus level when summoned.<br/><Bullet/> Pillar does not end the Templar's turn.<br/><Bullet/> Can be used after Rend.<br/><Bullet/> Pillar has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocLongDescription="Summon a pillar of Psionic energy to act as a high cover point. Free action, does not cost focus."
+LocHelpText="Summon high cover at a target location. Free action, does not cost focus."
+LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equal to the Templar's Focus level when summoned.<br/><Bullet/> Pillar is a free action.<br/><Bullet/> Can be used after Rend.<br/><Bullet/> Pillar has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (2)
 
 [StunStrike X2AbilityTemplate]
@@ -6671,3 +6673,131 @@ BriefSummary="Purifier Flamethrower"
 TacticalText="Purifier Flamethrower"
 AbilityDescName="Purifier Flamethrower"
 ; End Translation
+
+
+[TemplarBallisticShield_CV X2WeaponTemplate]
+FriendlyName="Ballistic Shield MK1"
+FriendlyNamePlural="Ballistic Shields MK1"
+BriefSummary="One of the oldest forms of additional protection known to mankind, humans have been using some form of shield since the very earliest days of tool use. This one is a standard anti-ballistic model with metallic or ceramic plates designed to stop penetration from high caliber weaponry."
+TacticalText="<Bullet/>One of the oldest forms of additional protection known to mankind, humans have been using some form of shield since the very earliest days of tool use. This one is a standard anti-ballistic model with metallic or ceramic plates designed to stop penetration from high caliber weaponry."
+
+[TemplarBallisticShield_MG X2WeaponTemplate]
+FriendlyName="Ballistic Shield MK2"
+FriendlyNamePlural="Ballistic Shields MK2"
+BriefSummary="The use of alien alloys has not only made the Ballistic Shield light, but stronger as well. Complex polymers and ceramics also allow for better heat distribution, as such users are less likely to be injured by shrapnel and molten material from their own protective measures. An optional LED tablet can be installed to aid in tactical planning."
+TacticalText="<Bullet/>The use of alien alloys has not only made the Ballistic Shield light, but stronger as well. Complex polymers and ceramics also allow for better heat distribution, as such users are less likely to be injured by shrapnel and molten material from their own protective measures. An optional LED tablet can be installed to aid in tactical planning."
+
+[TemplarBallisticShield_BM X2WeaponTemplate]
+FriendlyName="Ballistic Shield MK3"
+FriendlyNamePlural="Ballistic Shields MK3"
+BriefSummary="Advances in miniaturization allow this shield to pack not only conventional material defences but more esoteric means like energy shields as well. Nanomaterials allow for it to self repair in the field and it can even serve as a charging port during emergencies. An integrated holographic system allows for greater situational awareness."
+TacticalText="<Bullet/>Advances in miniaturization allow this shield to pack not only conventional material defences but more esoteric means like energy shields as well. Nanomaterials allow for it to self repair in the field and it can even serve as a charging port during emergencies. An integrated holographic system allows for greater situational awareness."
+
+[TemplarBallisticShield_GenerateCover X2AbilityTemplate]
+LocFriendlyName="Ballistic Shield"
+LocHelpText="Grants half cover to alllies."
+LocLongDescription="Grants half cover to alllies."
+LocFlyOverText="Ballistic Shield"
+
+[TemplarBallisticShield_CV X2AbilityTemplate]
+LocFriendlyName="Ballistic Shield"
+LocHelpText="Grants 2 shield points and half cover to alllies."
+LocLongDescription="Grants 2 shield points and half cover to alllies."
+LocFlyOverText="Ballistic Shield"
+
+[TemplarBallisticShield_MG X2AbilityTemplate]
+LocFriendlyName="Ballistic Shield"
+LocHelpText="Grants 5 shield points and half cover to alllies."
+LocLongDescription="Grants 5 shield points and half cover to alllies."
+LocFlyOverText="Ballistic Shield"
+
+[TemplarBallisticShield_BM X2AbilityTemplate]
+LocFriendlyName="Ballistic Shield"
+LocHelpText="Grants 9 shield points and half cover to alllies."
+LocLongDescription="Grants 9 shield points and half cover to alllies."
+LocFlyOverText="Ballistic Shield"
+
+[ShieldBash_LW X2AbilityTemplate]
+LocFriendlyName="Shield Bash"
+LocHelpText="Bash an adjacent enemy with your shield. Knocks back the target 2 tiles, and is a free action."
+LocLongDescription="Bash an adjacent enemy with your shield. Knocks back the target 2 tiles, and is a free action."
+LocFlyOverText="Shield Bash"
+
+[TemplarInvert X2AbilityTemplate]
+LocFriendlyName="Invert"
+LocLongDescription="Switch locations with a unit. Costs 1 Focus."
+LocHelpText="Switch locations with a unit. Costs 1 Focus."
+LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the Templar's turn.<br/>"
+
+[OneForAll X2AbilityTemplate]
+LocFriendlyName="One For All"
+LocHelpText="Provide high cover to squadmates wherever you stand, and gain -30 defense. Moving or attacking will cancel the effect. Ablative depending on the shield tier for the duration of the effect."
+LocLongDescription="Provide high cover to squadmates wherever you stand, and gain -30 defense. Moving or attacking will cancel the effect. Ablative depending on the shield tier for the duration of the effect."
+LocFlyOverText="One For All"
+
+
+[GreaterPadding_CV X2AbilityTemplate]
+LocFriendlyName="Greater Padding"
+LocFlyOverText="Greater Padding"
+LocLongDescription="Reduce wound recovery times for this soldier by 2 HP. Doesn't work if the soldier bleeds out."
+LocHelpText="Reduce wound recovery times for most soldiers."
+LocPromotionPopupText="<Bullet/> Field Surgeon reduces the number of hit points a soldier must heal after being wounded in battle by 1.<br/><Bullet/> Multiple Field Surgeons on a mission have a chance to reduce wound recovery time further.<br/><Bullet/> The effect includes the soldier with the ability.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
+
+[GreaterPadding_MG X2AbilityTemplate]
+LocFriendlyName="Field Surgeon"
+LocFlyOverText="Field Surgeon"
+LocLongDescription="Reduce wound recovery times for this soldier by 4 HP. Doesn't work if the soldier bleeds out."
+LocHelpText="Reduce wound recovery times for most soldiers."
+LocPromotionPopupText="<Bullet/> Field Surgeon reduces the number of hit points a soldier must heal after being wounded in battle by 1.<br/><Bullet/> Multiple Field Surgeons on a mission have a chance to reduce wound recovery time further.<br/><Bullet/> The effect includes the soldier with the ability.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
+
+[GreaterPadding_BM X2AbilityTemplate]
+LocFriendlyName="Field Surgeon"
+LocFlyOverText="Field Surgeon"
+LocLongDescription="Reduce wound recovery times for this soldier by 6 HP. Doesn't work if the soldier bleeds out."
+LocHelpText="Reduce wound recovery times for most soldiers."
+LocPromotionPopupText="<Bullet/> Field Surgeon reduces the number of hit points a soldier must heal after being wounded in battle by 1.<br/><Bullet/> Multiple Field Surgeons on a mission have a chance to reduce wound recovery time further.<br/><Bullet/> The effect includes the soldier with the ability.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
+
+[Indomitable X2AbilityTemplate]
+LocFriendlyName="Indomitable"
+LocHelpText="Once per turn, gain 1 focus when you're attacked."
+LocLongDescription="Once per turn, gain 1 focus when you're attacked."
+LocFlyOverText="Indomitable"
+
+[VoltFocusOnKills X2AbilityTemplate]
+LocFriendlyName="AfterShock"
+LocHelpText="Kills with volt grant focus."
+LocLongDescription="Kills with volt grant focus."
+LocFlyOverText="AfterShock"
+
+[DoubleRendFocus X2AbilityTemplate]
+LocFriendlyName="Superior Aptitude"
+LocHelpText="Rend grants an additional focus point."
+LocLongDescription="Rend grants an additional focus point."
+LocFlyOverText="Superior Aptitude"
+
+[DoubleRendFocusPassive X2AbilityTemplate]
+LocFriendlyName="Superior Aptitude"
+LocHelpText="Rend grants an additional focus point."
+LocLongDescription="Rend grants an additional focus point."
+LocFlyOverText="Superior Aptitude"
+
+[Volt X2AbilityTemplate]
+LocFriendlyName="Volt"
+LocLongDescription="A non-turn ending AOE attack that makes its targets easier to hit. Costs 1 Focus."
+LocHelpText="A non-turn ending AOE attack that makes its targets easier to hit. Costs 1 Focus."
+LocPromotionPopupText="<Bullet/> Volt has no cooldown, but costs 1 Focus.<br/><Bullet/> Volt increases your squad's aim by +<Ability:RECOILAIMBONUS/> against the targets.<br/>"
+
+[Amplify X2AbilityTemplate]
+LocFriendlyName="Amplify"
+LocLongDescription="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next attack. Costs 1 Focus, free action."
+LocHelpText="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next attack. Costs 1 Focus, free action."
+LocHitMessage="Amplified"
+LocPromotionPopupText="<Bullet/> Amplify will last for a single damage instance.<br/><Bullet/> Amplify is a free action.<br/>"
+
+
+[CrusaderRage_LW X2AbilityTemplate]
+LocFriendlyName="Crusader's Rage"
+LocHelpText="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 4 HP"
+LocLongDescription="Gain a 50% damage boost when at 50% hp or less." Reduce wound recovery times for this soldier by 4 HP."
+LocPromotionPopupText="<Bullet/> Wound reduction does not work if the soldier entered a bleeding out state during the mission.<br/>"
+LocFlyOverText="Psychotic Rage"
