@@ -6456,17 +6456,19 @@ BriefSummary="Although it would almost appear to mimic the design of traditional
 TacticalText="<Bullet/> The Darkclaw is an extremely powerful pistol against wounded enemies."
 AbilityDescName="pistol"
 
+;LWOTC Needs translation(2)
 [XCOMBloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks. Lasts 2 turns."
-LocHelpText="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks. Lasts 4 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks."
 LocFlyOverText="Blood Thirst"
 
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks. Lasts 2 turns."
-LocHelpText="Every time you attack with your melee weapon, get a stackable +3 damage boost to your melee attacks. Lasts 2 turns."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks. Lasts 4 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks."
 LocFlyOverText="Blood Thirst"
+;End Translation(2)
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
 LocFriendlyName="Overbearing Superiority"

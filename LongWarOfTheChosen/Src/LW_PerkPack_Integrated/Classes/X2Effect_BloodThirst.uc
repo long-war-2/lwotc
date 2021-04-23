@@ -29,13 +29,13 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		switch(SourceWeapon.GetMyTemplateName())
 		{
 			case 'ChosenSword_CV':
+			case 'ChosenSword_XCOM':
 				return default.BLOODTHIRST_T1_DMG;
 			case 'ChosenSword_MG':
 				return default.BLOODTHIRST_T2_DMG;
 			case 'ChosenSword_BM':
 				return default.BLOODTHIRST_T3_DMG;
 			case 'ChosenSword_T4':
-			case 'ChosenSword_XCOM':
 				return default.BLOODTHIRST_T4_DMG;
 			default:
 				return 0;

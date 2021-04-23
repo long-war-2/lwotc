@@ -2517,7 +2517,7 @@ static function X2AbilityTemplate CreateXCOMBloodThirst()
 	Template.AbilityTriggers.AddItem(EventListener);
 
 	DamageEffect = new class'X2Effect_BloodThirst';
-	DamageEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
+	DamageEffect.BuildPersistentEffect(4, false, true, false, eGameRule_PlayerTurnBegin);
 	DamageEffect.DuplicateResponse = eDupe_Allow;
 	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageEffect);
