@@ -1088,7 +1088,7 @@ static function UpdateChosenRegenerate(X2AbilityTemplate Template)
 
 static function ReworkHarborWave(X2AbilityTemplate Template)
 {
-	local X2Effect_ApplyHarborWaveDamage DamageEffect;
+	local X2Effect_ApplyWeaponDamage DamageEffect;
 
 
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
@@ -1097,7 +1097,7 @@ static function ReworkHarborWave(X2AbilityTemplate Template)
 	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_ApplyWeaponDamage');
 	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Knockback');
 
-	DamageEffect = new class'X2Effect_ApplyHarborWaveDamage';
+	DamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	DamageEffect.bIgnoreArmor = true;
 	Template.AddMultiTargetEffect(DamageEffect);
 
