@@ -29,3 +29,8 @@ simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParame
 
 	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
 }
+
+defaultproperties
+{
+	bCanTickEveryAction = true
+}
