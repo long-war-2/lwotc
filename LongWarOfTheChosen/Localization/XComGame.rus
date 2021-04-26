@@ -3035,9 +3035,9 @@ LocPromotionPopupText="<Bullet/> "Дистанционные атаки полу
 [Stiletto_LW X2AbilityTemplate]
 LocFriendlyName="Стилет"
 LocFlyOverText="Стилет"
-LocLongDescription= "Выстрелы <Ability:WeaponName/> проникают <Ability:STILETTO_ARMOR_PIERCING/> броню. Пассивно."
-LocHelpText="Выстрелы <Ability:WeaponName/> проникают <Ability:STILETTO_ARMOR_PIERCING/> броню. Пассивно."
-LocPromotionPopupText="<Bullet/> Выстрелы <Ability:WeaponName/> проникают <Ability:STILETTO_ARMOR_PIERCING/> броню..<br/><Bullet/> Пассивно.<br/>"
+LocLongDescription= "Выстрелы <Ability:WeaponName/> пробивают <Ability:STILETTO_ARMOR_PIERCING/> брони. Пассивно."
+LocHelpText="Выстрелы <Ability:WeaponName/> пробивают <Ability:STILETTO_ARMOR_PIERCING/> брони. Пассивно."
+LocPromotionPopupText="<Bullet/> Выстрелы <Ability:WeaponName/> пробивают <Ability:STILETTO_ARMOR_PIERCING/> брони..<br/><Bullet/> Пассивно.<br/>"
 
 [Reposition_LW X2AbilityTemplate]
 LocFriendlyName="Перебежка"
@@ -5323,7 +5323,7 @@ LocPromotionPopupText="<Bullet/> Улучшенные версии гремли�
 
 
 [Pillar X2AbilityTemplate]
-LocFriendlyName="Pillar"
+LocFriendlyName="Столб"
 LocPromotionPopupText="<Bullet/> Столб будет длиться столько ходов, сколько было концентрации у Храмовника.<br/><Bullet/> Столб не завершает ход Храмовника.<br/><Bullet/> Может быть использован после разрыва.<br/><Bullet/> Столб имеет <Ability:SelfCooldown/> ходов перезарядки.<br/><Bullet/> Свободное действие."
 
 ;End translated
@@ -5594,8 +5594,29 @@ FriendlyName="Без подготовки (сверхтяжело)"
 Description="Противник будет неимоверно сильнее, потому что вы забыли про подготовку."
 ; End Translated
 
+; LWOTC Translated
+[IncreaseTimer1Effect X2SitRepEffect_ModifyKismetVariable]
+FriendlyName="Запас времени"
+Description="Увеличивает время задания на 1 ход."
 
+[IncreaseTimer2Effect_LW X2SitRepEffect_ModifyKismetVariable]
+FriendlyName="Запас времени"
+Description="Увеличивает время задания на 2 хода."
 
+[IncreaseTimer4Effect X2SitRepEffect_ModifyKismetVariable]
+FriendlyName="Запас времени"
+Description="Увеличивает время задания на 4 хода."
+; End Translated
+
+; LWOTC Translated
+[LargeMap X2SitRepTemplate]
+FriendlyName="Марш-бросок"
+Description="Местность операции больше чем обычно, может протребоваться больше времени на выполнение задания."
+
+[VeryLargeMap X2SitRepTemplate]
+FriendlyName="Марш-бросок 2"
+Description="Местность операции ещё больше чем обычно, может протребоваться больше времени на выполнение задания."
+; End Translated
 
 
 [CovertAction_IntenseTraining X2CovertActionTemplate]
@@ -5959,15 +5980,35 @@ KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Избранный может
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Избранный может инициировать Событие!"
 ; End Translated
 
+; LWOTC Translated
+[HunterFlashbang X2GrenadeTemplate]
+FriendlyName="Светошум"
+FriendlyNamePlural="Светошум"
+BriefSummary="Светошумовая бомба прерывает некоторые действия и дезориентирует врагов в большом радиусе, а так же накладывает штрафы."
+TacticalText="<Bullet/>Светошумовая граната не наносит урона, но дезориентирует врагов.<br><Bullet/> Не действует на союзников.<br/><Bullet/> Особо опасные существа могут могут противостоять светошуму."
+ThrownAbilityName="Бросок светошума"
+ThrownAbilityHelpText="Дезориентирует врагов в большой области. Свободное действие"
+LaunchedAbilityname="Бросок светошума"
+LaunchedAbilityHelpText="Дезориентирует врагов в большой области."
+
+[Disabler X2AbilityTemplate]
+LocFriendlyName="Вредитель"
+LocFlyOverText="Вредитель"
+LocLongDescription="Атаки пистолетом выводят из строя оружие цели."
+LocHelpText="Атаки пистолетом выводят из строя оружие цели.."
 
 
+[AdvPurifierm2Flamethrower X2WeaponTemplate]
+FriendlyName="Огнеметчик"
+FriendlyNamePlural="Огнеметчики"
+BriefSummary="Огнеметчик"
+TacticalText="Огнеметчик"
+AbilityDescName="Огнеметчик"
 
-
-
-
-
-
-
-
-
-
+[AdvPurifierm3Flamethrower X2WeaponTemplate]
+FriendlyName="Огнеметчик"
+FriendlyNamePlural="Огнеметчики"
+BriefSummary="Огнеметчик"
+TacticalText="Огнеметчик"
+AbilityDescName="Огнеметчик"
+; End Translated

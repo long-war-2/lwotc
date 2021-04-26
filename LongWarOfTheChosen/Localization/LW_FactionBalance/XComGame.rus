@@ -87,7 +87,7 @@ LocPromotionPopupText="<Bullet/>Позволяет находится в Тен�
 
 ; LWOTC Translated
 [SilentKillerDurationExtension X2AbilityTemplate]
-LocFriendlyName="Бесшумынй убийца обновляет Тень"
+LocFriendlyName="Бесшумынй убийца сохраняет Тень при убийстве, есть 25% шанс добавить тени +1 ход"
 LocFlyoverText="Тень: +1 ход"
 ; End Translated
 
