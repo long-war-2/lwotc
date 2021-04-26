@@ -263,23 +263,24 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 	{
 		FacelessChance *= 2;
 	}
-    if (HasLiaison())
-    {
-        Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(GetLiaison().ObjectID));
-        if (Unit.IsSoldier())
-        {
-            CurrentFacelessReductions = 0;
+	
+	if (HasLiaison())
+	{
+		Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(GetLiaison().ObjectID));
+		if (Unit.IsSoldier())
+		{
+			CurrentFacelessReductions = 0;
 
-            foreach default.FacelessReductionAbilities(FacelessReductionAbilityName)
-            {
-                if (Unit.HasAbilityFromAnySource(FacelessReductionAbilityName) && CurrentFacelessReductions < default.MaxFacelessReductions)
-                {
-                    CurrentFacelessReductions++;
-                    FacelessChance *= 0.6;
-                }
-            }
-        }
-    }
+			foreach default.FacelessReductionAbilities(FacelessReductionAbilityName)
+			{
+				if (Unit.HasAbilityFromAnySource(FacelessReductionAbilityName) && CurrentFacelessReductions < default.MaxFacelessReductions)
+				{
+					CurrentFacelessReductions++;
+					FacelessChance *= 0.6;
+				}
+			}
+		}
+	}
 
 	if (forceFaceless || (allowFaceless && `SYNC_FRAND() < FacelessChance && GetNumFaceless() / GetRebelCount() < default.MAX_FACELESS_PROPORTION))
 	{
