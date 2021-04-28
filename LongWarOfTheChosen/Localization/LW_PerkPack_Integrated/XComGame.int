@@ -256,7 +256,6 @@ LocHelpText="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonu
 LocPromotionPopupText="<Bullet/> Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage.<br/><Bullet/> Precision Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End translation (2)
 
-
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Cyclic Fire"
 LocFlyOverText="Cyclic Fire"
@@ -686,7 +685,7 @@ LocFlyOverText="Fleche"
 LocLongDescription="Attack any enemy within movement range with your sword. Deals +1 damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between your starting position and the target."
 LocHelpText="Attack any enemy within movement range with your sword. Deals bonus damage for attacks from a distance."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/> Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position up to <Ability:MAX_SLICE_FLECHE_DAMAGE/> maximum bonus damage..<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Fleche ability by placing the movement cursor over an enemy.<br/><Bullet/> A soldier can perform a \"Dash\" move, using both actions to move, and still trigger an attack against an adjacent enemy.<br/><Bullet/> Fleche deals 1 bonus damage for every <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> tiles between unit's position at the start of its turn and the target's position up to <Ability:MAX_SLICE_FLECHE_DAMAGE/> maximum bonus damage.<br/>"
 ; End Translation
 
 [Fleche X2AbilityTemplate]
