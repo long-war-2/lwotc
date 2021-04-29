@@ -449,6 +449,7 @@ static function int ModifySoundRange(XComGameState_Item Weapon, XComGameState_Ab
 	local X2AbilityTemplate AbilityTemplate;
 	local X2Effect AbilityEffect;
 	local bool UseAltWeaponSoundRange;
+	local XComGameState_HeadquartersXCom 	XComHQ;
 
 	SoundRangeModifier = 0.0;
 	WeaponTemplate = X2WeaponTemplate(Weapon.GetMyTemplate());
@@ -485,6 +486,7 @@ static function int ModifySoundRange(XComGameState_Item Weapon, XComGameState_Ab
 		}
 	}
 
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
 	if (WeaponTemplate != none)
 	{
 		WeaponUpgrades = Weapon.GetMyWeaponUpgradeTemplates();
@@ -493,13 +495,16 @@ static function int ModifySoundRange(XComGameState_Item Weapon, XComGameState_Ab
 			switch (WeaponUpgrades[k].DataName)
 			{
 				case 'FreeKillUpgrade_Bsc':
-					SoundRangeModifier = -class'X2Item_DefaultWeaponMods_LW'.default.BASIC_SUPPRESSOR_SOUND_REDUCTION_METERS;
+					SoundRangeModifier = -(class'X2Item_DefaultWeaponMods_LW'.default.BASIC_SUPPRESSOR_SOUND_REDUCTION_METERS 
+						+ (XComHQ.bEmpoweredUpgrades ? class'X2Item_DefaultWeaponMods_LW'.default.SUPPRESSOR_SOUND_REDUCTION_EMPOWER_BONUS : 0));
 					break;
 				case 'FreeKillUpgrade_Adv':
-					SoundRangeModifier = -class'X2Item_DefaultWeaponMods_LW'.default.ADVANCED_SUPPRESSOR_SOUND_REDUCTION_METERS;
+					SoundRangeModifier = -(class'X2Item_DefaultWeaponMods_LW'.default.ADVANCED_SUPPRESSOR_SOUND_REDUCTION_METERS
+						+ (XComHQ.bEmpoweredUpgrades ? class'X2Item_DefaultWeaponMods_LW'.default.SUPPRESSOR_SOUND_REDUCTION_EMPOWER_BONUS : 0));
 					break;
 				case 'FreeKillUpgrade_Sup':
-					SoundRangeModifier = -class'X2Item_DefaultWeaponMods_LW'.default.ELITE_SUPPRESSOR_SOUND_REDUCTION_METERS;
+					SoundRangeModifier = -(class'X2Item_DefaultWeaponMods_LW'.default.ELITE_SUPPRESSOR_SOUND_REDUCTION_METERS
+						+ (XComHQ.bEmpoweredUpgrades ? class'X2Item_DefaultWeaponMods_LW'.default.SUPPRESSOR_SOUND_REDUCTION_EMPOWER_BONUS : 0));
 					break;
 				default: break;
 			}
