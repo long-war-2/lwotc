@@ -6836,3 +6836,16 @@ LocLongDescription="Fire at a target until you run out of ammo or it dies. Each 
 LocHelpText="Fire at a target until you run out of ammo or it dies. Each Shot has -15 aim than the last. Reveals the reaper."
 LocFlyoverText="Banish"
 LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/>"
+
+[TotalCombat X2AbilityTemplate]
+LocFriendlyName="Total Combat"
+LocLongDescription="Throwing a grenade or using an item no longer ends the turn, you can throw them 2 tiles further, and their radius is increased by 1."
+LocHelpText="Throwing a grenade or using an item no longer ends the turn, and you can throw them 2 tiles further. and their radius is increased by 1."
+LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the Skirmisher's turns, allowing actions to be taken exactly when needed.<br/> <Bullet/> Grants Bombard and Volatile mix, so does not stack with them."
+
+[PackMaster_LW X2AbilityTemplate]
+LocFriendlyName="Pack Master"
+LocFlyOverText="Pack Master"
+LocLongDescription="Grants +1 charge to every utility item equipped."
+LocHelpText="Grants +1 charge to every utility item equipped."
+LocPromotionPopupText="<Bullet/> Grants +1 charge to every utility item equipped.<br/> <Bullet/> Works with the grenade slot.<br/> Extra grenades provided by Smoker and Flashbanger abilities do not get extra charges.<br/>"

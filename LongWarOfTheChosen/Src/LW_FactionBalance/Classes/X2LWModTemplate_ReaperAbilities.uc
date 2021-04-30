@@ -398,8 +398,6 @@ static function ReplaceDeathDealerEffect(X2AbilityTemplate Template)
 
 static function UpdateBanish(X2AbilityTemplate Template)
 {
-	local X2Effect_Executioner ExecutionerEffect;
-	local int i;
 	local X2Effect_SetUnitValue BanishCount;
 	local X2AbilityCost Cost;
 	local X2AbilityCooldown Cooldown;
@@ -436,8 +434,6 @@ static function UpdateBanish(X2AbilityTemplate Template)
 
 static function UpdateBanish2(X2AbilityTemplate Template)
 {
-	local X2Effect_Executioner ExecutionerEffect;
-	local int i;
 	local X2Effect_SetUnitValue BanishCount;
 	local X2Effect_BanishHitMod HitMod;
 
