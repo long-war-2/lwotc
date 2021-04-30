@@ -78,6 +78,8 @@ var config int TARGET_FOCUS_AIM_BONUS;
 
 var config int SS_PIERCE;
 
+var config int SS_AIM_BONUS;
+
 var config float WEAPONHANDLING_MULTIPLIER;
 
 var config float APEX_PREDATOR_PANIC_RADIUS;
@@ -203,6 +205,10 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(BanzaiPassive());
 	Templates.AddItem(Magnum());
 	Templates.AddItem(CrusaderRage());
+	Templates.AddItem(KnifeJugglerTrigger());
+
+
+	
 	
 	return Templates;
 }
@@ -1797,6 +1803,9 @@ static function X2AbilityTemplate ShootingSharp()
 	ShootingEffect = new class'XMBEffect_ConditionalBonus';
 	ShootingEffect.EffectName = 'ShootingSharp_LW_Bonuses';
 	ShootingEffect.AddArmorPiercingModifier(default.SS_PIERCE);
+
+	ShootingEffect.AddToHitModifier(default.SS_AIM_BONUS, eHit_Success);
+
 	
 	// Only with the associated weapon
 	
@@ -2965,6 +2974,36 @@ static function X2AbilityTemplate CrusaderRage()
 	Template.AddTargetEffect(GreaterPaddingEffect);
 	return Template;
 }
+
+static function X2AbilityTemplate KnifeJugglerTrigger()
+{
+	local X2AbilityTemplate 			Template;
+	local X2Effect_AddAmmo 				AmmoEffect;
+	local X2Condition_UnitProperty		UnitPropertyCondition;
+	local X2Condition_PrimaryWeapon PrimaryWeaponCondition;
+
+	AmmoEffect = new class'X2Effect_AddAmmo';
+	AmmoEffect.ExtraAmmoAmount = 1;
+
+	
+	Template = SelfTargetTrigger('KnifeJugglerTrigger_LW', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, AmmoEffect, 'KillMail');
+	    
+
+	PrimaryWeaponCondition = new class'X2Condition_PrimaryWeapon';
+	PrimaryWeaponCondition.RequirePrimary = true;
+	//AddTriggerTargetCondition(Template, default.MatchingWeaponCondition);
+
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = false;
+	UnitPropertyCondition.ExcludeFriendlyToSource = true;
+	UnitPropertyCondition.ExcludeHostileToSource = false;
+	AddTriggerTargetCondition(Template, UnitPropertyCondition);
+
+	Template.bShowActivation = true;
+	
+	return Template;
+}
+
 
 defaultproperties
 {

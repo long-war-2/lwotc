@@ -21,7 +21,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(AddHailstorm());
 	Templates.AddItem(AddThrowingKnifeFaceoff());
-
+	
 	return Templates;
 }
 
@@ -422,10 +422,13 @@ static function X2AbilityTemplate AddKnifeJuggler()
 	DamageEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(DamageEffect);
 
+	Template.AdditionalAbilities.AddItem('KnifeJugglerTrigger_LW');
+
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
 }
+
 
 static function X2AbilityTemplate AddThrowKnife(name AbilityName)
 {

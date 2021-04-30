@@ -21,6 +21,9 @@ var config int PALE_HORSE_MAX_CRIT;
 
 var config int STING_RUPTURE;
 
+var config int BANISH_COOLDOWN;
+var name BanishFiredTimes;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
@@ -67,6 +70,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'ShadowRising':
 			UpdateShadowRisingForNewShadow(Template);
+			break;
+		case 'SoulReaper':
+			UpdateBanish(Template);
+			break;
+		case 'SoulReaperContinue':
+			UpdateBanish2(Template);
 			break;
 		}
 	}
@@ -277,7 +286,8 @@ static function ConvertRemoteStartToCharges(X2AbilityTemplate Template)
 
 static function AddDemolitionistToHomingMine(X2AbilityTemplate Template)
 {
-	Template.AbilityCharges.AddBonusCharge('Demolitionist', default.REMOTE_START_DEMOLITIONIST_CHARGES);
+	Template.AdditionalAbilities.AddItem('Shrapnel');
+	//Template.AbilityCharges.AddBonusCharge('Demolitionist', default.REMOTE_START_DEMOLITIONIST_CHARGES);
 }
 
 // Add holo + rupture to Sting
@@ -324,7 +334,7 @@ static function UpdateSilentKillerForNewShadow(X2AbilityTemplate Template)
 	local int i;
 
 	// Silent Killer has a chance to increase the duration of Shadow by one turn
-	Template.AdditionalAbilities.AddItem('SilentKillerDurationExtension');
+	//Template.AdditionalAbilities.AddItem('SilentKillerDurationExtension');
 
 	// Disable the EffectRemoved function that resets Shadow's cooldown when
 	// concealment is lost.
@@ -386,7 +396,71 @@ static function ReplaceDeathDealerEffect(X2AbilityTemplate Template)
 	}
 }
 
+static function UpdateBanish(X2AbilityTemplate Template)
+{
+	local X2Effect_Executioner ExecutionerEffect;
+	local int i;
+	local X2Effect_SetUnitValue BanishCount;
+	local X2AbilityCost Cost;
+	local X2AbilityCooldown Cooldown;
+
+
+	X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bAllowCrit = true;
+
+	BanishCount = new class'X2Effect_IncrementUnitValue';
+	BanishCount.UnitName = default.BanishFiredTimes;
+	BanishCount.NewValueToSet = 1;
+	BanishCount.CleanupType = eCleanup_BeginTurn;
+	BanishCount.bApplyOnHit = true;
+	BanishCount.bApplyOnMiss = true;
+
+	Template.AddShooterEffect(BanishCount);
+
+	foreach Template.AbilityCosts(Cost)
+	{
+		If(Cost.isA('X2AbilityCost_Charges'))
+		{
+			Template.AbilityCosts.RemoveItem(Cost);
+			break;
+		}
+	}
+
+	Template.AbilityCharges = none;
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.BANISH_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+
+}
+
+static function UpdateBanish2(X2AbilityTemplate Template)
+{
+	local X2Effect_Executioner ExecutionerEffect;
+	local int i;
+	local X2Effect_SetUnitValue BanishCount;
+	local X2Effect_BanishHitMod HitMod;
+
+	X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bAllowCrit = true;
+
+	BanishCount = new class'X2Effect_IncrementUnitValue';
+	BanishCount.UnitName = default.BanishFiredTimes;
+	BanishCount.NewValueToSet = 1;
+	BanishCount.CleanupType = eCleanup_BeginTurn;
+	BanishCount.bApplyOnHit = true;
+	BanishCount.bApplyOnMiss = true;
+	Template.AddShooterEffect(BanishCount);
+
+
+	HitMod = new class'X2Effect_BanishHitMod';
+	HitMod.BuildPersistentEffect (1, true, true);
+	Template.AddShooterEffect(HitMod);
+
+
+}
+	
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
+	BanishFiredTimes = "BanishFiredTimes"
 }

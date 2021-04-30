@@ -269,6 +269,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'SS_PIERCE':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.SS_PIERCE);
 			return true;
+		case 'SS_AIM_BONUS':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.SS_AIM_BONUS);
+			return true;
 		case 'SUPERCHARGE_CHARGES':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.SUPERCHARGE_CHARGES);
 			return true;

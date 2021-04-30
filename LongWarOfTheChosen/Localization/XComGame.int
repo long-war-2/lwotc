@@ -5359,7 +5359,7 @@ LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zon
 
 ; LWOTC Needs Translation
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 1 charge per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
+LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 3 charges per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
 ; End Translation
 
 [Hero_Tracking X2AbilityTemplate]
@@ -6141,11 +6141,13 @@ LocHelpText = "You can use your arc thrower to heal friendly mechanical units."
 LocLongDescription = "You can use your arc thrower to heal friendly mechanical units."
 LocPromotionPopupText = "<Bullet/> Starts each battle with <Ability:SUPERCHARGE_CHARGES/> charges that heal <Ability:SUPERCHARGE_HEAL/> HP, <br/><Bullet/> Works for any friendly robotic unit, including SPARKs, resistance MECs and hacked ADVENT units.<br/>"
 
+; LWOTC Needs Translation (2)
 [ShootingSharp_LW X2AbilityTemplate]
 LocFriendlyName = "Shooting Sharp"
-LocHelpText = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing against units in cover."
-LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing against units in cover."
-LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing against units in cover. <br/>"
+LocHelpText = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and  +<Ability:SS_AIM_BONUS/> aim against units in cover."
+LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and  +<Ability:SS_AIM_BONUS/> armor piercing against units in cover."
+LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and  +<Ability:SS_AIM_BONUS/> armor piercing against units in cover. <br/>"
+; End Translation (2)
 
 [Unlimitedpower_LW X2AbilityTemplate]
 LocFriendlyName = "Unlimited Power"
@@ -6822,3 +6824,15 @@ FriendlyNamePlural="Beam Autopistols"
 BriefSummary="This variant of the  autopistol is one of the more impressive feats in our joint effort to reduce the size of portable Elerium cells. Now fully-powered, the weapon delivers focused pulses of energy capable of inflicting severe damage to all but the most heavily armored targets."
 TacticalText="<Bullet/> The Beam Autopistol is the most powerful handgun available to our Soldiers.\n<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
 AbilityDescName="autopistol"
+
+[Paramedic_LW X2AbilityTemplate]
+LocFriendlyName="Paramedic"
+LocLongDescription="Gain a free medikit. Equipped medikits have 2 extra charges. The first medikit use each turn does not const an action"
+LocHelpText="Gain a free medikit. Equipped medikits have 2 extra charges. The first medikit use each turn does not const an action."
+
+[SoulReaper X2AbilityTemplate]
+LocFriendlyName="Banish"
+LocLongDescription="Fire at a target until you run out of ammo or it dies. Each Shot has -15 aim than the last. Reveals the reaper. "
+LocHelpText="Fire at a target until you run out of ammo or it dies. Each Shot has -15 aim than the last. Reveals the reaper."
+LocFlyoverText="Banish"
+LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/>"
