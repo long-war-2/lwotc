@@ -58,14 +58,14 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 	local bool bIsFirstMission;
 
 	BattleData = XComGameState_BattleData( `XCOMHISTORY.GetSingleGameStateObjectForClass( class'XComGameState_BattleData', true ));
-	if(BattleData != none)
+	if (BattleData != none)
 		bIsFirstMission = BattleData.m_bIsFirstMission;
 
-	if(bIsFirstMission)
+	if (bIsFirstMission)
 		bIsFirstMissionSoldier = Unit.IsInPlay();
 
 	//clear the existing array
-	for(idx=0; idx < ArrayCount(CharacterInitialStats_Deltas) ; idx++)
+	for (idx = 0; idx < ArrayCount(CharacterInitialStats_Deltas); idx++)
 	{
 		CharacterInitialStats_Deltas[idx] = 0;
 	}
@@ -81,11 +81,16 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 	}
 
 	//randomly apply a bunch of stat swaps to get starting stat offset
-	for(idx = 0; idx < NumSwaps; idx++)
+	for (idx = 0; idx < NumSwaps; idx++)
 	{
 		do {
 			Swap = SelectRandomStatSwap(TotalWeight);
 		} until (IsValidSwap(Swap, Unit) || (++iterations > 1000));
+
+		// Break out of the loop if we've already hit the maximum number of
+		// swap attempts. This ensures we don't apply an invalid swap.
+		if (iterations > 1000)
+			break;
 
 		CharacterInitialStats_Deltas[Swap.StatUp] += Swap.StatUp_Amount;
 		CharacterInitialStats_Deltas[Swap.StatDown] -= Swap.StatDown_Amount;
