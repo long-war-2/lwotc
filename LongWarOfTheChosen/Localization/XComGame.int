@@ -6801,3 +6801,24 @@ LocHelpText="Gain a 50% damage boost when at 50% hp or less. Reduce wound recove
 LocLongDescription="Gain a 50% damage boost when at 50% hp or less." Reduce wound recovery times for this soldier by 4 HP."
 LocPromotionPopupText="<Bullet/> Wound reduction does not work if the soldier entered a bleeding out state during the mission.<br/>"
 LocFlyOverText="Psychotic Rage"
+
+[Sidearm_CV X2WeaponTemplate]
+FriendlyName="Autopistol"
+FriendlyNamePlural="Autopistol"
+BriefSummary="Should their power fail them for some reason, our Soldiers can rely on a relatively conventional pistol arrangement that has been modified to specifically enhance its rate of fire and overall handling. This straightforward design contributes to the weapon's reliability in spite of the inconsistent material quality found in its construction."
+TacticalText="<Bullet/> The Autopistol gives the Templar the flexibility to combat the enemy in a conventional manner when not using their Psionic abilities.\n<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
+AbilityDescName="autopistol"
+
+[Sidearm_MG X2WeaponTemplate]
+FriendlyName="Mag Autopistol"
+FriendlyNamePlural="Mag Autopistols"
+BriefSummary="The introduction of a magnetic projectile accelerator into the automatic pistol wielded by our Soldiers would seem to be at odds with the weapon's original design. Still, we have made it work somehow. Indoor trials of this weapon are currently prohibited."
+TacticalText="<Bullet/> Magnetic autopistols are substantially more effective than their conventional precursors.\n<<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
+AbilityDescName="autopistol"
+
+[Sidearm_BM X2WeaponTemplate]
+FriendlyName="Beam Autopistol"
+FriendlyNamePlural="Beam Autopistols"
+BriefSummary="This variant of the  autopistol is one of the more impressive feats in our joint effort to reduce the size of portable Elerium cells. Now fully-powered, the weapon delivers focused pulses of energy capable of inflicting severe damage to all but the most heavily armored targets."
+TacticalText="<Bullet/> The Beam Autopistol is the most powerful handgun available to our Soldiers.\n<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
+AbilityDescName="autopistol"

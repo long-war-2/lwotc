@@ -65,7 +65,7 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 	case 'Sidearm_CV':
 	case 'Sidearm_MG':
 	case 'Sidearm_BM':
-		WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.TEMPLAR_PISTOL_RANGE;
+		WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeapons'.default.SHORT_CONVENTIONAL_RANGE;
 		break;
 	default:
 		break;
