@@ -230,13 +230,18 @@ static function name ValidateWeapon(ExtShotModifierInfo ExtModInfo, XComGameStat
 	return 'AA_Success';
 }
 
-// From X2Effect_Persistent. Returns a damage modifier for an attack by the unit with the effect.
-function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+function float GetPostDefaultAttackingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit SourceUnit,
+	Damageable Target,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData ApplyEffectParameters,
+	float WeaponDamage, XComGameState NewGameState)
 {
 	local ExtShotModifierInfo ExtModInfo;
 	local int BonusDamage;
 
-	if (ValidateAttack(EffectState, Attacker, XComGameState_Unit(TargetDamageable), AbilityState) != 'AA_Success')
+	if (ValidateAttack(EffectState, SourceUnit, XComGameState_Unit(Target), AbilityState) != 'AA_Success')
 		return 0;
 
 	foreach Modifiers(ExtModInfo)
@@ -247,18 +252,20 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		if (ValidateWeapon(ExtModInfo, AbilityState.GetSourceWeapon()) != 'AA_Success')
 			continue;
 
-		if ((ExtModInfo.ModInfo.ModType == eHit_Success && class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult)) ||
-			ExtModInfo.ModInfo.ModType == AppliedData.AbilityResultContext.HitResult)
+		if ((ExtModInfo.ModInfo.ModType == eHit_Success && class'XComGameStateContext_Ability'.static.IsHitResultHit(ApplyEffectParameters.AbilityResultContext.HitResult)) ||
+			ExtModInfo.ModInfo.ModType == ApplyEffectParameters.AbilityResultContext.HitResult)
 		{
 			if (ExtModInfo.bPercent)
-				BonusDamage += ExtModInfo.ModInfo.Value * CurrentDamage / 100;
+				BonusDamage += ExtModInfo.ModInfo.Value * WeaponDamage / 100;
 			else
 				BonusDamage += ExtModInfo.ModInfo.Value;
 		}
 	}
 
-	return int(BonusDamage * GetScaleByValue(EffectState, Attacker, XComGameState_Unit(TargetDamageable), AbilityState));
+	return BonusDamage * GetScaleByValue(EffectState, SourceUnit, XComGameState_Unit(Target), AbilityState);
+
 }
+
 
 // From X2Effect_Persistent. Returns an armor shred modifier for an attack by the unit with the effect.
 function int GetExtraShredValue(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData)

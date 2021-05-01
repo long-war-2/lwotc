@@ -5,14 +5,20 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_Amplify_LW extends X2Effect_Amplify;
 
-function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, optional XComGameState NewGameState)
+function float GetPostDefaultDefendingDamageModifier_CH
+(XComGameState_Effect EffectState,
+ XComGameState_Unit SourceUnit,
+  XComGameState_Unit TargetUnit,
+   XComGameState_Ability AbilityState,
+    const out EffectAppliedData ApplyEffectParameters,
+	 float WeaponDamage, XComGameState NewGameState)
 {
 	local XComGameState_Effect_Amplify AmplifyState;
-	local int DamageMod;
+	local float DamageMod;
 
-	if (AppliedData.AbilityInputContext.PrimaryTarget.ObjectID > 0 && class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) && CurrentDamage != 0)
+	if (ApplyEffectParameters.AbilityInputContext.PrimaryTarget.ObjectID > 0 && class'XComGameStateContext_Ability'.static.IsHitResultHit(ApplyEffectParameters.AbilityResultContext.HitResult) && WeaponDamage != 0)
 	{
-		DamageMod = BonusDamageMult * CurrentDamage;
+		DamageMod = BonusDamageMult * WeaponDamage;
 		if (DamageMod < MinBonusDamage)
 			DamageMod = MinBonusDamage;
 
@@ -28,6 +34,9 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 	}
 	return DamageMod;
 }
+
+
+
 
 static function AmplifyDecrement_PostBuildVisualization(XComGameState VisualizeGameState)
 {
