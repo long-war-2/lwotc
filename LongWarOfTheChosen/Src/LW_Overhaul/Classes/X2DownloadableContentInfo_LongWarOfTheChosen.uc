@@ -1642,9 +1642,10 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
-	local name ChosenSpawningTag, ChosenSpawningTagLWOTC;
+	local name ChosenSpawningTag, ChosenSpawningTagLWOTC, ChosenSpawningTagRemove;
 	local bool HasRulerOnMission;
-
+	local array <name> SpawningTags;
+	local int i;
 	// Certain missions should just use vanilla Chosen behaviour, like the Chosen
 	// Avenger Defense
 	if (default.SKIP_CHOSEN_OVERRIDE_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE ||
@@ -1675,10 +1676,14 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 			ChosenSpawningTagLWOTC = class'Helpers_LW'.static.GetChosenActiveMissionTag(ChosenState);
 
-			// Remove the tag if it's already attached to this mission. This is the only
+			// Remove All vanilla chosen tags if they are attached to this mission. This is the only
 			// place that should add Chosen tactical mission tags to the XCOM HQ. This
-			// basically prevents the base game from adding Chosen to missions.
-			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTag);
+			// basically prevents the base game and other mods from adding Chosen to missions.
+			SpawningTags = ChosenState.GetMyTemplate().ChosenProgressionData.SpawningTags;
+			foreach SpawningTags(ChosenSpawningTagRemove)
+			{
+				XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTagRemove);
+			}
 
 			// Now add the appropriate tactical gameplay tag for this Chosen if the
 			// corresponding LWOTC-specific one is in the mission's tactical tags.
