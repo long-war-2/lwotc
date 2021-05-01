@@ -2926,8 +2926,8 @@ ObjectiveTextPools[1]="Extract all XCOM soldiers"
 ObjectiveTextPools[2]="Ambush enemy troops"
 ObjectiveTextPools[3]="ADVENT typically moves its forces in large groups, but we have located a smaller unit on its own that is vulnerable. A well-timed assault will damage ADVENT's interests in this region and afford us a rare opportunity to bring home enemy corpses for research."
 ; LWOTC Needs Translation
-ObjectiveTextPools[2]="LWOTC Gatecrasher"
-ObjectiveTextPools[3]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies. But try not to kill these units with explosives as their corpses are valuable:<ul><li>ADVENT Officer</li><li>ADVENT Drone</li><li>Sectoid</li></ul>"
+ObjectiveTextPools[4]="LWOTC Gatecrasher"
+ObjectiveTextPools[5]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies. But try not to kill these units with explosives as their corpses are valuable:<ul><li>ADVENT Officer</li><li>ADVENT Drone</li><li>Sectoid</li></ul>"
 ; End Translation
 
 [Rendezvous_LW X2MissionTemplate]

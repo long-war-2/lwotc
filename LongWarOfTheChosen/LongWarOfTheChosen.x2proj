@@ -59,6 +59,7 @@
     <Folder Include="Src\LW_PerkPack_Integrated\Classes\" />
     <Folder Include="Src\LW_SMGPack_Integrated\Classes\" />
     <Folder Include="Src\LW_Toolbox_Integrated\Classes\" />
+    <Folder Include="Src\LW_Tutorial\Classes\" />
     <Folder Include="Src\LW_XCGS_ModOptions\Classes\" />
     <Folder Include="Src\LW_XCGS_ToolboxOptions\Classes\" />
     <Folder Include="Src\ModConfigMenuAPI\Classes\" />
@@ -488,7 +489,6 @@
     <Content Include="Src\LW_Overhaul\Classes\LWRebelJob_DefaultJobSet.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWTacticalMissionUnitSpawner.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWTemplateMods.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\LWTutorial.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWVersion.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWVisualizedInterface.uc" />
     <Content Include="Src\LW_Overhaul\Classes\LWXComGameVersion.uc" />
@@ -657,7 +657,6 @@
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Soldiers.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_StrategyMap.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Tactical.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Tutorial.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_WorldRegion.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2HackReward_LWOverhaul.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Item_ArcthrowerWeapon.uc" />
@@ -1326,6 +1325,13 @@
     <Content Include="Config\XComSniperDefense.ini" />
     <Content Include="Src\LW_Overhaul\Classes\SniperDefense_UIScreenListener.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWStaffSlotsModTemplate.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\LWTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\SeqAct_HandleGatecrasherTutorialText.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\SeqAct_LWTutorialIsActive.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_OutpostManagementTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\X2DownloadableContentInfo_LW_Tutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\X2EventListener_Tutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\X2StrategyElement_LWTutorialObjectives.uc" />
   </ItemGroup>
   <!-- Everything below is borrowed from the https://github.com/WOTCStrategyOverhaul/CovertInfiltration project -->
   <!-- The weird stuff below (until Target) is required or otherwise ModBuddy project breaks ¯\_(ツ)_/¯ P.S. Also don't try to make it more sane -->
