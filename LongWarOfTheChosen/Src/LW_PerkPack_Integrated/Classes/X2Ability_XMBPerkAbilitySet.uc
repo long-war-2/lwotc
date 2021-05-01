@@ -2844,8 +2844,8 @@ static function X2AbilityTemplate AddBanzai()
 	DefenseBonus = new class'XMBEffect_ConditionalBonus';
 
 	DefenseBonus.AddToHitAsTargetModifier(-default.COMBATREADINESS_DEF, eHit_Success);
-	DefenseBonus.AbilityTargetConditions.AddItem(CoverCondition);
 	DefenseBonus.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
+	DefenseBonus.AbilityTargetConditionsAsTarget.AddItem(CoverCondition);
 	DefenseBonus.DuplicateResponse = eDupe_Allow;
 	DefenseBonus.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, default.CombatReadinessBonusText, Template.IconImage, true, , Template.AbilitySourceName);
 	DefenseBonus.EffectName = 'BanzaiDef';
