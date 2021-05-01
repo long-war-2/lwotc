@@ -5235,10 +5235,10 @@ LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into posit
 
 [Reckoning_LW X2AbilityTemplate]
 LocFriendlyName="Reckoning"
-LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge and Quick Slash attacks."
-LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge and Quick Slash attacks."
+LocLongDescription="Unlocks the <Ability:SecondaryWeaponName/> Charge."
+LocHelpText="Unlocks the <Ability:SecondaryWeaponName/> Charge."
 LocFlyOverText="Reckoning"
-LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point, is not turn ending, and has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/><Bullet/> Quick Slash can only be used against adjacent targets.<br/><Bullet/> Quick Slash is a free action and has a <Ability:RECKONING_LW_SLASH_COOLDOWN/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point, is not turn ending, and has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
 
 ; LWOTC Needs Translation (2)
 [SkirmisherFleche X2AbilityTemplate]
