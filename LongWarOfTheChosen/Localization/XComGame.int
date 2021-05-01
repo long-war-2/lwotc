@@ -6587,10 +6587,11 @@ LocLongDescription="Attack an adjacent target with your sword. Uses one action a
 LocHelpText="Attack an adjacent target with your sword. Uses one action and is guaranteed to hit."
 LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/><Bullet/> Uses one action and doesn't automatically end your turn, so two attacks a turn are possible."
 ; End Translation (2)
-
 ; End Translation
 
 ; LWOTC Needs Translation
+
+
 [ReactionFireAgainstCoverBonus X2AbilityTemplate]
 LocFriendlyName="Reaction Fire Anti Cover"
 LocHelpText="Reduces the Defense bonus provided by cover on overwatch shots"
@@ -6679,3 +6680,19 @@ LocFlyOverText="Solace"
 LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Moving next to afflicted allies will immediately cleanse their mental impairments.<br/>"
 
 ; End Translation
+
+;LWOTC needs translation
+[AssassinBladestorm X2AbilityTemplate]
+LocFriendlyName="Bladestorm"
+LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
+LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
+LocFlyOverText="Bladestorm"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
+
+[AssassinBladestormAttack X2AbilityTemplate]
+LocFriendlyName="Bladestorm"
+LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
+LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
+LocFlyOverText="Bladestorm"
+LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
+;End Translation

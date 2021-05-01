@@ -75,7 +75,9 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateChosenLootAbility());
 	
-
+	Templates.AddItem(AssassinBladestorm());
+	Templates.AddItem(AssassinBladestormAttack());
+	
 	return Templates;
 }
 
@@ -1785,6 +1787,28 @@ static function X2AbilityTemplate CreateDisabler()
 	Template.bSkipFireAction = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AssassinBladestorm()
+{
+	local X2AbilityTemplate                 Template;
+
+	Template = PurePassive('AssassinBladestorm', "img:///UILibrary_PerkIcons.UIPerk_bladestorm", false, 'eAbilitySource_Perk');
+	Template.AdditionalAbilities.AddItem('AssassinBladestormAttack');
+
+	return Template;
+}
+
+static function X2AbilityTemplate AssassinBladestormAttack()
+{
+	local X2AbilityTemplate                 Template;
+	local array<name> SkipExclusions;
+	Template = class'X2Ability_RangerAbilitySet'.static.BladestormAttack('AssassinBladestormAttack');
+
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	return Template;
 }
