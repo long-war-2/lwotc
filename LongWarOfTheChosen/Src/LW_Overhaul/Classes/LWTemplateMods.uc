@@ -930,7 +930,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2AbilityCost_ActionPoints        ActionPointCost;
 	local X2EFfect_HuntersInstinctDamage_LW DamageModifier;
 	local X2AbilityCooldown                 Cooldown;
-	local X2AbilityCost_QuickdrawActionPoints_LW    QuickdrawActionPointCost;
+	local X2AbilityCost_QuickdrawActionPoints	QuickdrawActionPointCost;
 	local X2Effect_Squadsight               Squadsight;
 	local X2Effect_ToHitModifier            ToHitModifier;
 	local X2Effect_Persistent               Effect, PersistentEffect, HaywiredEffect;
@@ -1580,16 +1580,30 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.TargetingMethod = class'X2TargetingMethod_ConditionalBlasterLauncher';
 	}
 
-	if (Template.DataName == 'PistolStandardShot')
+	switch (Template.DataName)
 	{
-		Template.AbilityCosts.length = 0;
-		QuickdrawActionPointCost = new class'X2AbilityCost_QuickdrawActionPoints_LW';
-		QuickdrawActionPointCost.iNumPoints = 1;
-		QuickdrawActionPointCost.bConsumeAllPoints = true;
-		Template.AbilityCosts.AddItem(QuickdrawActionPointCost);
+	case 'PistolStandardShot':
+		// Update pistol shot so that Quickdraw makes it non turn ending. This is
+		// required because the default quickdraw action point cost implementation
+		// checks whether the source weapon is in the secondary weapon slot.
+		for (k = 0; k < Template.AbilityCosts.Length; k++)
+		{
+			QuickdrawActionPointCost = X2AbilityCost_QuickdrawActionPoints(Template.AbilityCosts[k]);
+			if (QuickdrawActionPointCost != none)
+			{
+				QuickdrawActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Quickdraw');
+			}
+		}
+
 		AmmoCost = new class'X2AbilityCost_Ammo';
 		AmmoCost.iAmmo = 1;
 		Template.AbilityCosts.AddItem(AmmoCost);
+		// Deliberate fall through
+
+	case 'PistolOverwatch':
+		// Make sure the pistol abilities can't have duplicate sources
+		Template.bUniqueSource = true;
+		break;
 	}
 
 	if (Template.DataName == 'Faceoff')
@@ -2380,8 +2394,9 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	WeaponTemplate = X2WeaponTemplate(Template);
 	if (WeaponTemplate != none)
 	{
-		// Pistols don't have PistolStandardShot for some reason. Add it here.
-		if (WeaponTemplate.WeaponCat == 'pistol')
+		// Pistols don't have PistolStandardShot because it was originally just an
+		// ability for Sharpshooters. Add it here if the LWOTC pistol slot is enabled.
+		if (WeaponTemplate.WeaponCat == 'pistol' && !class'CHItemSlot_PistolSlot_LW'.default.DISABLE_LW_PISTOL_SLOT)
 			WeaponTemplate.Abilities.AddItem('PistolStandardShot');
 
 		// substitute cannon range table
@@ -2420,9 +2435,9 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.Abilities.AddItem('PriestPsiMindControl');
 			break;
 		case 'AdvPriestM3_PsiAmp':
-			WeaponTemplate.Abilities.AddItem('Bastion');
+			WeaponTemplate.Abilities.AddItem('Solace');
 		case 'AdvPriestM2_PsiAmp':
-			WeaponTemplate.Abilities.AddItem('Fortress');
+			WeaponTemplate.Abilities.AddItem('MindShield');
 			break;
 		case 'AdvPurifierFlamethrower':
 			WeaponTemplate.iIdealRange = 7;

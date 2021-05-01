@@ -126,7 +126,6 @@ static function EventListenerReturn OnUnitBeginPlay(
     Name EventID,
     Object CallbackData)
 {
-	local XComGameStateHistory History;
 	local XComGameState NewGameState;
 	local XComGameState_Unit_AlienCustomization AlienCustomization;
 	local LWUnitVariation UnitVariation;
@@ -135,7 +134,6 @@ static function EventListenerReturn OnUnitBeginPlay(
 	local X2EventManager EventManager;
 	local Object CustomizationObject;
 
-	History = `XCOMHISTORY;
 	EventManager = `XEVENTMGR;
 
 	`APTRACE("Alien Pack Customization Manager : OnUnitBeginPlay triggered.");

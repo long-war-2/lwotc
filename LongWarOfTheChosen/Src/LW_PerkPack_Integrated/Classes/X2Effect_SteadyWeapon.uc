@@ -2,6 +2,7 @@ class X2Effect_SteadyWeapon extends X2Effect_Persistent;
 
 var int Aim_Bonus;
 var int Crit_Bonus;
+var int Upgrade_Empower_Bonus;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
@@ -105,17 +106,21 @@ static function EventListenerReturn SteadyWeaponWoundListener(Object EventData, 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
 	local ShotModifierInfo ShotInfo;
+	local XComGameState_HeadquartersXCom XComHQ;
 
 	if (!bMelee && AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
 	{
 		ShotInfo.ModType = eHit_Success;
 		ShotInfo.Reason = FriendlyName;
 		ShotInfo.Value = Aim_Bonus;
+		XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+		ShotInfo.Value += (XComHQ.bEmpoweredUpgrades ? Upgrade_Empower_Bonus : 0);
 		ShotModifiers.AddItem(ShotInfo);
 
 		ShotInfo.ModType = eHit_Crit;
 		ShotInfo.Reason = FriendlyName;
 		ShotInfo.Value = Crit_Bonus;
+		ShotInfo.Value += (XComHQ.bEmpoweredUpgrades ? Upgrade_Empower_Bonus : 0);
 		ShotModifiers.AddItem(ShotInfo);
 	}
 

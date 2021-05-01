@@ -63,8 +63,10 @@ static function CHEventListenerTemplate CreateStrategyListeners()
 // Pop up a tutorial box when a drone is sighted for the first time
 static function EventListenerReturn OnDroneSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
-	if (!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('LW_TUT_DroneSighted'))
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_DroneSighted'))
 	{
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_DroneSighted');
+
 		// Show the tutorial box for drones
 		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
 				default.DroneSightedTitle,
@@ -76,8 +78,10 @@ static function EventListenerReturn OnDroneSighted(Object EventData, Object Even
 
 static function EventListenerReturn OnEngineerSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
-	if (!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('LW_TUT_EngineerSighted'))
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_EngineerSighted'))
 	{
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_EngineerSighted');
+
 		// Show the tutorial box for Engineers
 		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
 				default.EngineerSightedTitle,
@@ -89,8 +93,10 @@ static function EventListenerReturn OnEngineerSighted(Object EventData, Object E
 
 static function EventListenerReturn OnSentrySighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
-	if (!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('LW_TUT_SentrySighted'))
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_SentrySighted'))
 	{
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_SentrySighted');
+
 		// Show the tutorial box for Sentries
 		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
 				default.SentrySightedTitle,
@@ -102,8 +108,10 @@ static function EventListenerReturn OnSentrySighted(Object EventData, Object Eve
 
 static function EventListenerReturn OnGunnerSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
-	if (!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('LW_TUT_GunnerSighted'))
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_GunnerSighted'))
 	{
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_GunnerSighted');
+
 		// Show the tutorial box for Gunners
 		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
 				default.GunnerSightedTitle,
@@ -115,8 +123,9 @@ static function EventListenerReturn OnGunnerSighted(Object EventData, Object Eve
 
 static function EventListenerReturn OnRocketeerSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
-	if (!`SecondWaveEnabled('DisableTutorial') && !class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('LW_TUT_RocketeerSighted'))
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_RocketeerSighted'))
 	{
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_RocketeerSighted');
 		// Show the tutorial box for rocketeers
 		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
 				default.RocketeerSightedTitle,
@@ -130,7 +139,7 @@ static function EventListenerReturn OnRocketeerSighted(Object EventData, Object 
 // player to their starting haven/outpost.
 static function EventListenerReturn OnGeoscapeEntered(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
-	if (class'XComGameState_HeadquartersXCom'.static.GetObjectiveStatus('LW_TUT_HavenOnGeoscape') == eObjectiveState_InProgress)
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_HavenOnGeoscape'))
 	{
 		class'LWTutorial'.static.CompleteObjective('LW_TUT_HavenOnGeoscape');
 		`PRESBASE.UITutorialBox(

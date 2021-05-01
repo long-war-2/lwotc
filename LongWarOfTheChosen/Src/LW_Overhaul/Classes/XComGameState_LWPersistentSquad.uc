@@ -106,6 +106,7 @@ var config float EMPTY_UTILITY_SLOT_WEIGHT;
 var config float LEADERSHIP_COVERTNESS_PER_MISSION;
 var config float LEADERSHIP_COVERTNESS_CAP;
 
+var config float SUPPRESSOR_INFILTRATION_EMPOWER_BONUS;
 //---------------------------
 // INIT ---------------------
 //---------------------------
@@ -1314,6 +1315,7 @@ static function UpdateCovertnessForItem(X2ItemTemplate ItemTemplate, out float C
 	local X2WeaponTemplate WeaponTemplate;
 	local name WeaponCategory;
 	local float Weight;
+	local XComGameState_HeadquartersXCom XComHQ;
 
 	//look for a specific equipment configuration
 	ListIdx = default.EquipmentCovertness.Find('ItemName', ItemTemplate.DataName);
@@ -1324,6 +1326,18 @@ static function UpdateCovertnessForItem(X2ItemTemplate ItemTemplate, out float C
 		CumulativeWeight += Weight;
 		if(default.EquipmentCovertness[ListIdx].IndividualMultiplier > 0.0)
 			CumulativeUnitMultiplier *= default.EquipmentCovertness[ListIdx].IndividualMultiplier;
+
+		//Add possible Insider Knowledge bonus for suppressors
+		switch (ItemTemplate.DataName)
+		{
+			case 'FreeKillUpgrade_Bsc':
+			case 'FreeKillUpgrade_Adv':
+			case 'FreeKillUpgrade_Sup':
+				XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+				CumulativeWeight += XComHQ.bEmpoweredUpgrades ? default.SUPPRESSOR_INFILTRATION_EMPOWER_BONUS : 0.0;
+				break;
+			default: break;
+		}
 	}
 	else
 	{

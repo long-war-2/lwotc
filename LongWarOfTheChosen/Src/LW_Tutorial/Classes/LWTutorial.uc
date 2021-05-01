@@ -12,7 +12,7 @@ var localized string CampaignStartBody;
 
 static function DoCampaignStart()
 {
-	if (!class'XComGameState_HeadquartersXCom'.static.IsObjectiveCompleted('LW_TUT_CampaignStart'))
+	if (IsObjectiveInProgress('LW_TUT_CampaignStart'))
     {
 		class'LWTutorial'.static.CompleteObjective('LW_TUT_CampaignStart');
         `PRESBASE.UITutorialBox(
@@ -40,4 +40,13 @@ static function CompleteObjective(name TutorialObjectiveName, optional XComGameS
     {
 	    `XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
     }
+}
+
+// Checks whether a tutorial objective is currently in progress. Note that
+// if the tutorial is disabled, this returns `false`. Otherwise, it only
+// returns `true` if the objective status is InProgress.
+static function bool IsObjectiveInProgress(name TutorialObjectiveName)
+{
+    return !`SecondWaveEnabled('DisableTutorial') &&
+        class'XComGameState_HeadquartersXCom'.static.GetObjectiveStatus(TutorialObjectiveName) == eObjectiveState_InProgress;
 }

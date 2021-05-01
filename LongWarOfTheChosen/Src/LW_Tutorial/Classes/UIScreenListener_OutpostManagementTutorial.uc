@@ -14,7 +14,7 @@ event OnInit(UIScreen Screen)
 	if (UIOutpostManagement(Screen) == none)
 		return;
 
-	if (class'XComGameState_HeadquartersXCom'.static.GetObjectiveStatus('LW_TUT_HavenManagement') == eObjectiveState_InProgress)
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_HavenManagement'))
 	{
 		class'LWTutorial'.static.CompleteObjective('LW_TUT_HavenManagement');
 		`PRESBASE.UITutorialBox(
@@ -30,10 +30,6 @@ event OnInit(UIScreen Screen)
 			Screen.Show();
 		}
 	}
-}
-
-event OnLoseFocus(UIScreen Screen)
-{
 }
 
 defaultproperties

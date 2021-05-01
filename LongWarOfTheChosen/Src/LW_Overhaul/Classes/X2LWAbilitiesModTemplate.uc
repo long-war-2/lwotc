@@ -186,6 +186,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			Template.AddTargetEffect(class'X2Ability_Chosen'.static.HoloTargetEffect());
 			Template.AssociatedPassives.AddItem('Disabler');
 			break;
+		case 'MindShield':
+			DisplayMindShieldPassive(Template);
+			break;
 		break;
 		default:
 			break;
@@ -1127,6 +1130,21 @@ static function AddDisablingShotEffect(X2AbilityTemplate Template)
 	Template.AddTargetEffect(DisableWeaponEffect);
 }
 
+static function DisplayMindShieldPassive(X2AbilityTemplate Template)
+{
+	local X2Effect_DamageImmunity  DamageImmunity;
+	local X2Effect TempEffect;
+
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_mindshield";
+	foreach Template.AbilityTargetEffects( TempEffect )
+	{
+		if ( X2Effect_DamageImmunity(TempEffect) != none )
+		{
+			DamageImmunity = X2Effect_DamageImmunity(TempEffect);
+			DamageImmunity.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
+		}
+	}
+}
 
 defaultproperties
 {

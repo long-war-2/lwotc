@@ -1642,9 +1642,10 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local array<XComGameState_AdventChosen> AllChosen;
 	local XComGameState_AdventChosen ChosenState;
-	local name ChosenSpawningTag, ChosenSpawningTagLWOTC;
+	local name ChosenSpawningTag, ChosenSpawningTagLWOTC, ChosenSpawningTagRemove;
 	local bool HasRulerOnMission;
-
+	local array <name> SpawningTags;
+	local int i;
 	// Certain missions should just use vanilla Chosen behaviour, like the Chosen
 	// Avenger Defense
 	if (default.SKIP_CHOSEN_OVERRIDE_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE ||
@@ -1675,10 +1676,14 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 			ChosenSpawningTagLWOTC = class'Helpers_LW'.static.GetChosenActiveMissionTag(ChosenState);
 
-			// Remove the tag if it's already attached to this mission. This is the only
+			// Remove All vanilla chosen tags if they are attached to this mission. This is the only
 			// place that should add Chosen tactical mission tags to the XCOM HQ. This
-			// basically prevents the base game from adding Chosen to missions.
-			XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTag);
+			// basically prevents the base game and other mods from adding Chosen to missions.
+			SpawningTags = ChosenState.GetMyTemplate().ChosenProgressionData.SpawningTags;
+			foreach SpawningTags(ChosenSpawningTagRemove)
+			{
+				XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTagRemove);
+			}
 
 			// Now add the appropriate tactical gameplay tag for this Chosen if the
 			// corresponding LWOTC-specific one is in the mission's tactical tags.
@@ -2007,7 +2012,8 @@ static function bool CanAddItemToInventory_CH_Improved(
 		return CheckGameState == none;
 	}
 
-	if (Slot == eInvSlot_Pistol && WeaponTemplate.WeaponCat == 'pistol')
+	if (Slot == eInvSlot_Pistol && !class'CHItemSlot_PistolSlot_LW'.default.DISABLE_LW_PISTOL_SLOT &&
+			class'CHItemSlot_PistolSlot_LW'.static.IsWeaponAllowedInPistolSlot(WeaponTemplate))
 	{
 		// Allow the weapon to be equipped.
 		DisabledReason = "";
@@ -2722,6 +2728,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	local StateObjectReference UnitRef;
 	local XComGameState_Unit UnitState;
 	local int NumTiles;
+	local XComGameState_HeadquartersXCom XComHQ;
 
 	Type = name(InString);
 	switch(Type)
@@ -2888,31 +2895,43 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			Outstring = string(-class'X2Item_LWUtilityItems'.default.REDSCREEN_HACK_DEFENSE_CHANGE);
 			return true;
 		case 'SCOPE_BSC_AIM_BONUS':
-			Outstring = string(class'X2Ability_LW_GearAbilities'.default.SCOPE_BSC_AIM_BONUS);
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.SCOPE_BSC_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.SCOPE_EMPOWER_BONUS : 0));
 			return true;
 		case 'SCOPE_ADV_AIM_BONUS':
-			Outstring = string(class'X2Ability_LW_GearAbilities'.default.SCOPE_ADV_AIM_BONUS);
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.SCOPE_ADV_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.SCOPE_EMPOWER_BONUS : 0));
 			return true;
 		case 'SCOPE_SUP_AIM_BONUS':
-			Outstring = string(class'X2Ability_LW_GearAbilities'.default.SCOPE_SUP_AIM_BONUS);
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.SCOPE_SUP_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.SCOPE_EMPOWER_BONUS : 0));
 			return true;
 		case 'TRIGGER_BSC_AIM_BONUS':
-			Outstring = string(round(class'X2Ability_LW_GearAbilities'.default.TRIGGER_BSC_AIM_BONUS * (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+			Outstring = string(round((class'X2Ability_LW_GearAbilities'.default.TRIGGER_BSC_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.TRIGGER_EMPOWER_BONUS : 0)) 
+				* (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
 			return true;
 		case 'TRIGGER_ADV_AIM_BONUS':
-			Outstring = string(round(class'X2Ability_LW_GearAbilities'.default.TRIGGER_ADV_AIM_BONUS * (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+			Outstring = string(round((class'X2Ability_LW_GearAbilities'.default.TRIGGER_ADV_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.TRIGGER_EMPOWER_BONUS : 0)) 
+				* (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
 			return true;
 		case 'TRIGGER_SUP_AIM_BONUS':
-			Outstring = string(round(class'X2Ability_LW_GearAbilities'.default.TRIGGER_SUP_AIM_BONUS * (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+			Outstring = string(round((class'X2Ability_LW_GearAbilities'.default.TRIGGER_SUP_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.TRIGGER_EMPOWER_BONUS : 0)) 
+				* (1.0f - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
 			return true;
 		case 'STOCK_BSC_SW_AIM_BONUS':
-			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_BSC_SW_AIM_BONUS);
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_BSC_SW_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.STOCK_EMPOWER_BONUS : 0));
 			return true;
 		case 'STOCK_ADV_SW_AIM_BONUS':
-			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_ADV_SW_AIM_BONUS);
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_ADV_SW_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.STOCK_EMPOWER_BONUS : 0));
 			return true;
 		case 'STOCK_SUP_SW_AIM_BONUS':
-			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SW_AIM_BONUS);
+			XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_SUP_SW_AIM_BONUS + (XComHQ.bEmpoweredUpgrades ? class'X2Ability_LW_GearAbilities'.default.STOCK_EMPOWER_BONUS : 0));
 			return true;
 		case 'STOCK_BSC_GF_CHANCE':
 			Outstring = string(class'X2Ability_LW_GearAbilities'.default.STOCK_BSC_SUCCESS_CHANCE);

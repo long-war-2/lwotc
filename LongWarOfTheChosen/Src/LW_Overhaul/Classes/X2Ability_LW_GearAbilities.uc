@@ -9,14 +9,17 @@ class X2Ability_LW_GearAbilities extends X2Ability config(LW_Overhaul);
 var config int SCOPE_BSC_AIM_BONUS;
 var config int SCOPE_ADV_AIM_BONUS;
 var config int SCOPE_SUP_AIM_BONUS;
+var config int SCOPE_EMPOWER_BONUS;
 
 var config int TRIGGER_BSC_AIM_BONUS;
 var config int TRIGGER_ADV_AIM_BONUS;
 var config int TRIGGER_SUP_AIM_BONUS;
+var config int TRIGGER_EMPOWER_BONUS;
 
 var config int STOCK_BSC_SW_AIM_BONUS;
 var config int STOCK_ADV_SW_AIM_BONUS;
 var config int STOCK_SUP_SW_AIM_BONUS;
+var config int STOCK_EMPOWER_BONUS;
 
 var config int STOCK_BSC_SUCCESS_CHANCE;
 var config int STOCK_ADV_SUCCESS_CHANCE;
@@ -116,6 +119,7 @@ static function X2AbilityTemplate CreateScopeBonus(name TemplateName, int Bonus)
 	ScopeEffect.BuildPersistentEffect(1,true,false,false);
 	//ScopeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ScopeEffect.To_Hit_Modifier = Bonus;
+	ScopeEffect.Upgrade_Empower_Bonus = default.SCOPE_EMPOWER_BONUS;
 	ScopeEffect.FriendlyName = Template.LocFriendlyName;
 	Template.AddTargetEffect(ScopeEffect);
 
@@ -142,6 +146,7 @@ static function X2AbilityTemplate CreateHairTriggerBonus(name TemplateName, int 
 	TriggerEffect.BuildPersistentEffect(1,true,false,false);
 	//TriggerEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	TriggerEffect.To_Hit_Modifier = Bonus;
+	TriggerEffect.Upgrade_Empower_Bonus = default.TRIGGER_EMPOWER_BONUS;
 	TriggerEffect.FriendlyName = Template.LocFriendlyName;
 	Template.AddTargetEffect(TriggerEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -195,6 +200,7 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	ToHitModifier.DuplicateResponse = eDupe_Refresh;
 	ToHitModifier.Aim_Bonus = Bonus;
 	ToHitModifier.Crit_Bonus = Bonus;
+	ToHitModifier.Upgrade_Empower_Bonus = default.STOCK_EMPOWER_BONUS;
 	Template.AddTargetEffect(ToHitModifier);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

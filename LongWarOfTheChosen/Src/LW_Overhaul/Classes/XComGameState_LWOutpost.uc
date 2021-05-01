@@ -74,8 +74,19 @@ var const config int DEFAULT_OUTPOST_MAX_SIZE;
 // The default chance (0.0 = never 1.0 = always) that a new rebel will be a faceless.
 var const config float DEFAULT_FACELESS_CHANCE;
 
+// Base multiplier that abilities reduce faceless recruitment chance by (1.0 = no
+// reduction, 0.0 = no chance to recruit faceless)
+var config float FACELESS_CHANCE_MULTIPLIER;
+
+// Lower limit of the faceless chance multiplier
+var config float FACELESS_CHANCE_MULTIPLIER_LIMIT;
+
 // Faceless won't generate if they will take the proportion in the Haven past this value
-var config float MAX_FACELESS_PROPORTION;		
+var config float MAX_FACELESS_PROPORTION;
+
+// Abilities which reduce the chance of recruiting Faceless
+var config array<name> FACELESS_CHANCE_REDUCTION_ABILITIES;
+var const array<name> DEFAULT_FACELESS_REDUCTION_CHANCE_ABILITIES;
 
 // Outpost will begin with INITIAL_REBEL_COUNT + Rand(0, RANDOM_REBEL_COUNT)
 // rebels.
@@ -245,6 +256,9 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 	local array<X2StrategyElementTemplate> PersonalityTemplates;
 	local StateObjectReference NewUnitRef;
 	local float FacelessChance;
+	local float FacelessChanceModifier;
+	local array<name> FacelessChanceReductionAbilities;
+	local name FacelessReductionAbilityName;
 
 	CharacterGenerator = `XCOMGRI.Spawn(class'XGCharacterGenerator');
 	nmCountry = RegionState.GetMyTemplate().GetRandomCountryInRegion();
@@ -255,24 +269,35 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 	{
 		FacelessChance *= 2;
 	}
-
+	
 	if (HasLiaison())
 	{
 		Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(GetLiaison().ObjectID));
 		if (Unit.IsSoldier())
 		{
-			If (Unit.HasSoldierAbility('ScanningProtocol'))
+			// Apply reductions to faceless recruitment chance based on the abilities
+			// of the soldier liaison, with rapidly diminishing returns for each ability
+			// beyond the first.
+			//
+			// Algorithm: total reduction = lowest possible multiplier + (base multiplier - lowest)^n
+			//
+			// If n (number of abilities) = 1, reduction = base multiplier
+			// If n = infinity, reduction = lowest possible multiplier
+			//
+			if (default.FACELESS_CHANCE_REDUCTION_ABILITIES.Length > 0)
+				FacelessChanceReductionAbilities = default.FACELESS_CHANCE_REDUCTION_ABILITIES;
+			else
+				FacelessChanceReductionAbilities = default.DEFAULT_FACELESS_REDUCTION_CHANCE_ABILITIES;
+
+			FacelessChanceModifier = 1.0;
+			foreach FacelessChanceReductionAbilities(FacelessReductionAbilityName)
 			{
-				FacelessChance *= 0.6;
+				if (Unit.HasAbilityFromAnySource(FacelessReductionAbilityName))
+				{
+					FacelessChanceModifier *= (default.FACELESS_CHANCE_MULTIPLIER - default.FACELESS_CHANCE_MULTIPLIER_LIMIT);
+				}
 			}
-			if (Unit.HasSoldierAbility('MindMerge'))
-			{
-				FacelessChance *= 0.6;
-			}
-			if (Unit.HasItemOfTemplateType('Battlescanner'))
-			{
-				FacelessChance *= 0.6;
-			}
+			FacelessChance *= (default.FACELESS_CHANCE_MULTIPLIER_LIMIT + FacelessChanceModifier);
 		}
 	}
 
@@ -1811,4 +1836,11 @@ function AddChosenRetribution(int DurationinDays)
 	local RetributionJobStruct RetributionInstance;
 	RetributionInstance.DaysLeft = DurationinDays;
 	CurrentRetributions.AddItem(RetributionInstance);
+}
+
+defaultproperties
+{
+	DEFAULT_FACELESS_REDUCTION_CHANCE_ABILITIES[0] = "ScanningProtocol"
+	DEFAULT_FACELESS_REDUCTION_CHANCE_ABILITIES[1] = "Battlescanner"
+	DEFAULT_FACELESS_REDUCTION_CHANCE_ABILITIES[2] = "MindMerge"
 }
