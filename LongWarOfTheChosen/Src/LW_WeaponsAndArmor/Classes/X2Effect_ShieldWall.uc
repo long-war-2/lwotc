@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Effect_ShieldWall.uc
+//  AUTHOR:  Grobobobo
+//  PURPOSE: unlike the X2Effect_GenerateCover, it does not purge unit's generate cover status
+//---------------------------------------------------------------------------------------
 class X2Effect_ShieldWall extends X2Effect_GenerateCover;
 
 simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)

@@ -1,3 +1,9 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Effect_ShieldWall.uc
+//  AUTHOR:  Grobobobo
+//	CREDITS: Musashi
+//  PURPOSE: an Item set for the ballistic shields.
+//---------------------------------------------------------------------------------------
 class X2Item_Shields_LW extends X2Item config(GameData_WeaponData);
 
 var config WeaponDamageValue SHIELD_CV_BASEDAMAGE;

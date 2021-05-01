@@ -1,3 +1,10 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Ability_ShieldAbilitySet.uc
+//  AUTHOR:  Grobobobo
+//  CREDIT TO: Musashi
+//  PURPOSE: An ability set for ballistic shields
+//---------------------------------------------------------------------------------------
+
 class X2Ability_ShieldAbilitySet extends X2Ability config(LW_SoldierSkills);
 
 var config int SHIELD_WALL_DODGE;

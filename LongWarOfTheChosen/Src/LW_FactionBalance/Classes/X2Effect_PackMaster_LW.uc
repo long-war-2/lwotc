@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_PackMaster_LW
-//  AUTHOR:  Amineri (Pavonis Interactive)
-//  PURPOSE: Effect for additional charge from utility slot item, if it is a grenade
+//  AUTHOR:  Grobobobo
+//  PURPOSE: Effect for additional charge from utility slot item,
 //--------------------------------------------------------------------------------------- 
 
 class X2Effect_PackMaster_LW extends X2Effect_Persistent config(LW_SoldierSkills);

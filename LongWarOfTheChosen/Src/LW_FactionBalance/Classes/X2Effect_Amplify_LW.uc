@@ -1,3 +1,8 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Effect_Apotheosis
+//  AUTHOR:  Grobobobo
+//  PURPOSE: Updates the effect to be removed immidiately.
+//---------------------------------------------------------------------------------------
 class X2Effect_Amplify_LW extends X2Effect_Amplify;
 
 function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, optional XComGameState NewGameState)

@@ -1,10 +1,9 @@
 //---------------------------------------------------------------------------------------
 //  *********   FIRAXIS SOURCE CODE   ******************
-//  FILE:    X2Effect_PersistentVoidConduit.uc    
-//  AUTHOR:  Joshua Bouscher
+//  FILE:    X2Effect_PersistentVoidConduit_LW.uc    
+//  AUTHOR:  Grobobobo
 //	DATE:    2/1/2017
-//  PURPOSE: Persistent effect for the target of Void Conduit,
-//			 keeps the unit impaired, restricts action points, etc.
+//  PURPOSE: Makes void conduit last a flat amount of time
 //---------------------------------------------------------------------------------------
 //  Copyright (c) 2017 Firaxis Games, Inc. All rights reserved.
 //---------------------------------------------------------------------------------------

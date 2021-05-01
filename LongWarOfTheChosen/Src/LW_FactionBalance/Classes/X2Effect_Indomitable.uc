@@ -1,3 +1,7 @@
+//  FILE:    X2Effect_Indomitable
+//  AUTHOR:  Grobobobo
+//  PURPOSE: Grants focus when shot.
+//---------------------------------------------------------------------------------------
 class X2Effect_Indomitable extends X2Effect_Persistent;
 
 var name IndomitableValue;

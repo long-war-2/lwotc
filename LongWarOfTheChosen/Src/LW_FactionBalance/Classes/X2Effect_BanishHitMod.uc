@@ -1,3 +1,9 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Effect_BanishHitMod
+//  AUTHOR:  Grobobobo
+//  PURPOSE: Gives a stacking -15 aim debuff to banish for each shot taken
+//---------------------------------------------------------------------------------------
+
 class X2Effect_BanishHitMod extends X2Effect_Persistent config (LW_FactionBalance);
 
 var config int BANISH_HIT_MOD;
