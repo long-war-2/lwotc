@@ -143,18 +143,18 @@ static function AllowPillarOnMomentum(X2AbilityTemplate Template)
 	local X2AbilityCost_ActionPoints ActionPointCost;
 	local int i;
 
-	for (i = Template.AbilityCosts.Length-1; i >= 0; i--)
+	for (i = Template.AbilityCosts.Length - 1; i >= 0; i--)
 	{
 		ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[i]);
 		if (ActionPointCost != none)
 		{
-			ActionPointCost.bFreeCost=true;
+			ActionPointCost.bFreeCost = true;
 			ActionPointCost.AllowedTypes.AddItem('Momentum');
 		}
 
-		if(Template.AbilityCosts[i].IsA('X2AbilityCost_Focus'))
+		if (Template.AbilityCosts[i].IsA('X2AbilityCost_Focus'))
 		{
-			Template.AbilityCosts.Remove(i,1);
+			Template.AbilityCosts.Remove(i, 1);
 		}
 
 	}
@@ -177,10 +177,10 @@ static function MergeInvertWithExchange(X2AbilityTemplate Template)
 		}
 	}
 
-		VisibilityCondition = new class'X2Condition_Visibility';
-		VisibilityCondition.bRequireGameplayVisible=true;
-		VisibilityCondition.bRequireBasicVisibility=true;
-		Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bRequireBasicVisibility = true;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
 }
 
 // Changes StunStrike to stun target units rather than disorient them (the
@@ -263,6 +263,7 @@ static function FixVoidConduit(X2AbilityTemplate Template)
 	local X2Effect_VoidConduitPatch PatchEffect;
 	local X2Effect_PersistentVoidConduit_LW PersistentEffect;
 	local X2Effect_VoidConduit TickEffect;
+
 	RemoveAbilityTargetEffects(Template, 'X2Effect_PersistentVoidConduit');
 
 	PersistentEffect = new class'X2Effect_PersistentVoidConduit_LW';
@@ -338,8 +339,6 @@ static function UpdateArcWave(X2AbilityTemplate Template)
 	Template.AddMultiTargetEffect(Effect);
 
 }
-
-	
 
 static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name EffectName)
 {

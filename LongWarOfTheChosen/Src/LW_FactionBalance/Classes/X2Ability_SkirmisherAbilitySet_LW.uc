@@ -24,9 +24,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddParkour());
 	Templates.AddItem(AddPackMaster());
 
-
-	
-
 	return Templates;
 }
 
@@ -288,7 +285,7 @@ static function X2AbilityTemplate AddPackMaster()
 	FullKitEffect = new class 'X2Effect_PackMaster_LW';
 	FullKitEffect.BuildPersistentEffect (1, true, false);
 	FullKitEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	Template.AddTargetEffect (FullKitEffect);
+	Template.AddTargetEffect(FullKitEffect);
 	Template.bCrossClassEligible = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 

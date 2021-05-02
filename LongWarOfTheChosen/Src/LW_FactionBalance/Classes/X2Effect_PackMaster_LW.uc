@@ -29,7 +29,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 		if (ItemState != none && !ItemState.bMergedOut)
 		{
 			WeaponTemplate = X2WeaponTemplate(ItemState.GetMyTemplate());
-			if(WeaponTemplate != none && EXCLUDED_GRENADE_TYPES.Find(WeaponTemplate.DataName) == -1 )
+			if (WeaponTemplate != none && EXCLUDED_GRENADE_TYPES.Find(WeaponTemplate.DataName) == INDEX_NONE)
 			{
 				BonusAmmo = 0;
 				if (WeaponTemplate != none && WeaponTemplate.bMergeAmmo)
@@ -47,11 +47,10 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 						}
 					}
 				}
-				if(BonusAmmo > 0)
+				if (BonusAmmo > 0)
 				{
-					UpdatedItemState = XComGameState_Item(NewGameState.CreateStateObject(class'XComGameState_Item', ItemState.ObjectID));
+					UpdatedItemState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', ItemState.ObjectID));
 					UpdatedItemState.Ammo += BonusAmmo;
-					NewGameState.AddStateObject(UpdatedItemState);
 				}
 			}
 		}
@@ -63,6 +62,6 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 
 defaultProperties
 {
-    EffectName="PackMaster_LW"
+	EffectName="PackMaster_LW"
 	bInfiniteDuration = true;
 }

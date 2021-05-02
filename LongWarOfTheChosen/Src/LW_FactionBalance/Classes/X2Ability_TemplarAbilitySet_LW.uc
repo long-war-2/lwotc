@@ -54,8 +54,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(DoubleRendFocus());
 	Templates.AddItem(DoubleRendFocusPassive());
 
-	
-
 	return Templates;
 }
 
@@ -716,7 +714,7 @@ static function EventListenerReturn VoltFocusKillTracker_Listener(Object EventDa
 		if (AbilityContext.InputContext.AbilityTemplateName == 'Volt')
 		{
 			VisualizeIndex = GameState.HistoryIndex;
-			while( FindContext.InterruptionHistoryIndex > -1 )
+			while (FindContext.InterruptionHistoryIndex > -1)
 			{
 				FindContext = History.GetGameStateFromHistory(FindContext.InterruptionHistoryIndex).GetContext();
 				VisualizeIndex = FindContext.AssociatedState.HistoryIndex;

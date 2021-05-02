@@ -192,8 +192,8 @@ static function X2AbilityTemplate ShieldBash()
 	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
 	Template.bCrossClassEligible = false;
 	Template.bDisplayInUITooltip = true;
-    Template.bDisplayInUITacticalText = true;
-    Template.DisplayTargetHitChance = true;
+	Template.bDisplayInUITacticalText = true;
+	Template.DisplayTargetHitChance = true;
 	Template.bShowActivation = true;
 	Template.bSkipFireAction = false;
 
@@ -211,7 +211,7 @@ static function X2AbilityTemplate ShieldBash()
 	StandardMelee = new class'X2AbilityToHitCalc_StandardMelee';
 	Template.AbilityToHitCalc = StandardMelee;
 
-    Template.AbilityTargetStyle = default.SimpleSingleMeleeTarget;
+	Template.AbilityTargetStyle = default.SimpleSingleMeleeTarget;
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
 	// Target Conditions
@@ -244,7 +244,7 @@ static function X2AbilityTemplate ShieldBash()
 	Template.bSkipMoveStop = true;
 
 	Template.CinescriptCameraType = "Ranger_Reaper";
-    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
@@ -270,42 +270,40 @@ static function X2AbilityTemplate ShieldBash()
 	Template.CustomMovingTurnRightFireAnim = 'FF_MeleeShieldBash';
 	Template.CustomMovingTurnRightFireKillAnim = 'FF_MeleeShieldBash';
 
-
-
 	return Template;
 }
 
 static function X2AbilityTemplate ShieldAnimSet()
 {
-    local X2AbilityTemplate						Template;
-    local X2Effect_AdditionalAnimSets			AnimSets;
+	local X2AbilityTemplate						Template;
+	local X2Effect_AdditionalAnimSets			AnimSets;
 	//local X2Effect_ShieldAim					ShieldAim;
 	//local X2Condition_ExcludeCharacterTemplates	Condition;
 
-    `CREATE_X2ABILITY_TEMPLATE(Template, 'ShieldAnimSet');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ShieldAnimSet');
 
-    Template.AbilitySourceName = 'eAbilitySource_Item';
-    Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-    Template.Hostility = eHostility_Neutral;
-    Template.bDisplayInUITacticalText = false;
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
     
-    Template.AbilityToHitCalc = default.DeadEye;
-    Template.AbilityTargetStyle = default.SelfTarget;
-    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	
-    AnimSets = new class'X2Effect_AdditionalAnimSets';
-    AnimSets.EffectName = 'ShieldAnimSet';
-    //AnimSets.AddAnimSetWithPath("AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_Melee'");
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	AnimSets = new class'X2Effect_AdditionalAnimSets';
+	AnimSets.EffectName = 'ShieldAnimSet';
+	//AnimSets.AddAnimSetWithPath("AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_Melee'");
 	AnimSets.AddAnimSetWithPath("AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_Grenade'");
 	AnimSets.AddAnimSetWithPath("AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_Medkit'");
-    AnimSets.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
-    AnimSets.DuplicateResponse = eDupe_Ignore;
+	AnimSets.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
+	AnimSets.DuplicateResponse = eDupe_Ignore;
 
 	//	This effect will apply only to units whose character template name is not in the exclusion list.
 	//Condition = new class'X2Condition_ExcludeCharacterTemplates';
 	//AnimSets.TargetConditions.AddItem(Condition);
 
-    Template.AddTargetEffect(AnimSets);
+	Template.AddTargetEffect(AnimSets);
 
 	//	Gives the token +20 Aim to abilities attached to the shield (the Shield Bash).
 	//	Doing it this way instead of giving Aim directly to the weapon template out of concern for the UI Sat Markup.
@@ -313,15 +311,15 @@ static function X2AbilityTemplate ShieldAnimSet()
 	//ShieldAim.BuildPersistentEffect(1, true);
 	//Template.AddTargetEffect(ShieldAim);
     
-    Template.bSkipFireAction = true;
-    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
-    return Template;
+	return Template;
 }
 
 
-static function	X2AbilityTemplate GreaterPadding(name AbilityName, int Amount)
+static function X2AbilityTemplate GreaterPadding(name AbilityName, int Amount)
 {
 
 	local X2AbilityTemplate						Template;

@@ -254,14 +254,14 @@ static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameStat
 {
 	local name Item;
 
-    if(!UnitState.IsSoldier()) return;
+	if (!UnitState.IsSoldier()) return;
 
 	foreach default.TEMPLAR_GAUNTLETS_FOR_ONE_HANDED_USE(Item)
 	{
 		if (UnitState.HasItemOfTemplateType(Item))
 		{
 			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("OneHandedGauntlet_LW.Anims.AS_RightHandedTemplar")));
-			if(UnitState.kAppearance.iGender == eGender_Female)
+			if (UnitState.kAppearance.iGender == eGender_Female)
 			{
 				CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("OneHandedGauntlet_LW.Anims.AS_RightHandedTemplar_F")));
 			}

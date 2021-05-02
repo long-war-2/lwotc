@@ -323,12 +323,8 @@ static function AddCooldownToBattlelord(X2AbilityTemplate Template)
 static function UpdateTotalCombat(X2AbilityTemplate Template)
 {
 	Template.AdditionalAbilities.AddItem('Bombard_LW');
-
 	Template.AdditionalAbilities.AddItem('VolatileMix');
 }
-
-
-
 
 static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name EffectName)
 {
@@ -341,6 +337,7 @@ static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name Effe
 		}
 	}
 }
+
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities

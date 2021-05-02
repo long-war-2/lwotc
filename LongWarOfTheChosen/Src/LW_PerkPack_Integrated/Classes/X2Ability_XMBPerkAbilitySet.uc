@@ -117,8 +117,6 @@ var const string CombatReadinessBonusText;
 
 var config int CRUSADER_WOUND_HP_REDUCTTION;
 
-
-
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
 var config array<name> BANZAI_EFFECTS_TO_REMOVE;
 
@@ -2946,6 +2944,7 @@ static function X2AbilityTemplate CrusaderRage()
 	local X2Condition_UnitStatCheck Condition;
 	local X2Effect_GreaterPadding GreaterPaddingEffect;
 	local X2AbilityTemplate Template;
+
 	// Create a condition that checks that the unit is at less than 100% HP.
 	// X2Condition_UnitStatCheck can also check absolute values rather than percentages, by
 	// using "false" instead of "true" for the last argument.

@@ -18,11 +18,11 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	if (AbilityState.GetMyTemplateName() == 'SoulReaperContinue')
 	{
 
-        Attacker.GetUnitValue(class'X2LWModTemplate_ReaperAbilities'.default.BanishFiredTimes,UnitValue);
+		Attacker.GetUnitValue(class'X2LWModTemplate_ReaperAbilities'.default.BanishFiredTimes, UnitValue);
 
 		ShotInfo.ModType = eHit_Success;
 		ShotInfo.Reason = FriendlyName;
-        ShotInfo.Value = default.BANISH_HIT_MOD * UnitValue.fValue;
+		ShotInfo.Value = default.BANISH_HIT_MOD * UnitValue.fValue;
 		ShotModifiers.AddItem(ShotInfo);
 	}
 }

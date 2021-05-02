@@ -10,6 +10,7 @@ var() bool CheckAmmo;
 var() CheckConfig CheckAmmoData;
 var() name MatchWeaponTemplate;              //  requires exact match to weapon's template's DataName
 var() bool RequirePrimary; // Condition that checks if the ability is using the primary weapon
+
 function AddAmmoCheck(int Value, optional EValueCheck CheckType=eCheck_Exact, optional int ValueMax=0, optional int ValueMin=0)
 {
 	CheckAmmo = true;
@@ -24,8 +25,6 @@ event name CallAbilityMeetsCondition(XComGameState_Ability kAbility, XComGameSta
 	local XComGameState_Unit UnitState;
 	local XComGameState_Item PrimaryWeapon;
 	local name AmmoResult;
-
-
 
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(kAbility.OwnerStateObject.ObjectID));
 	PrimaryWeapon = UnitState.GetItemInSlot(eInvSlot_PrimaryWeapon);
@@ -51,8 +50,9 @@ event name CallAbilityMeetsCondition(XComGameState_Ability kAbility, XComGameSta
 				return 'AA_WeaponIncompatible';
 		}
 
-		if(RequirePrimary)
-		{	if(kAbility.SourceWeapon.ObjectID != PrimaryWeapon.ObjectID)
+		if (RequirePrimary)
+		{
+			if (kAbility.SourceWeapon.ObjectID != PrimaryWeapon.ObjectID)
 			{
 				return 'AA_WeaponIncompatible';
 			}

@@ -22,7 +22,7 @@ var config int PALE_HORSE_MAX_CRIT;
 var config int STING_RUPTURE;
 
 var config int BANISH_COOLDOWN;
-var name BanishFiredTimes;
+var const name BanishFiredTimes;
 
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
@@ -416,7 +416,7 @@ static function UpdateBanish(X2AbilityTemplate Template)
 
 	foreach Template.AbilityCosts(Cost)
 	{
-		If(Cost.isA('X2AbilityCost_Charges'))
+		if (Cost.isA('X2AbilityCost_Charges'))
 		{
 			Template.AbilityCosts.RemoveItem(Cost);
 			break;
@@ -428,8 +428,6 @@ static function UpdateBanish(X2AbilityTemplate Template)
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.BANISH_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
-
-
 }
 
 static function UpdateBanish2(X2AbilityTemplate Template)
@@ -451,8 +449,6 @@ static function UpdateBanish2(X2AbilityTemplate Template)
 	HitMod = new class'X2Effect_BanishHitMod';
 	HitMod.BuildPersistentEffect (1, true, true);
 	Template.AddShooterEffect(HitMod);
-
-
 }
 	
 defaultproperties

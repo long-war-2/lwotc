@@ -48,9 +48,9 @@ LocPromotionPopupText="<Bullet/> Adds <Ability:MeditationFocusRecovery/> points 
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="Overcharge"
-LocLongDescription="Gain bonus aim and Crit for each point of focus the Templar has."
-LocHelpText="Gain bonus aim and Crit for each point of focus the Templar has."
-LocPromotionPopupText="<Bullet/> Each point of focus provides +<Ability:OverchargeAimBonus/> aim and +<Ability:OverchargecritBonus/> crit.<br/><Bullet/> Based on the current focus, not max focus."
+LocLongDescription="Gain bonus aim and crit chance for each point of focus the Templar has."
+LocHelpText="Gain bonus aim and crit chance for each point of focus the Templar has."
+LocPromotionPopupText="<Bullet/> Each point of focus provides +<Ability:OverchargeAimBonus/> aim and +<Ability:OverchargeCritBonus/> crit chance.<br/><Bullet/> Based on the current focus, not max focus."
 
 [VoltDangerZone X2AbilityTemplate]
 LocFriendlyName="High Voltage"

@@ -4,9 +4,9 @@
 //  PURPOSE: Implements effect for FieldSurgeon ability -- this allows healing of lowest hp at end of mission
 //--------------------------------------------------------------------------------------- 
 //---------------------------------------------------------------------------------------
-class X2Effect_GreaterPadding extends X2Effect_Persistent config(LW_SoldierSkills);
+class X2Effect_GreaterPadding extends X2Effect_Persistent;
 
-var name GreaterPaddingUnitWasBleedingOut;
+var const name GreaterPaddingUnitWasBleedingOut;
 var int Padding_HealHP;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
@@ -35,37 +35,35 @@ function ApplyGreaterPadding(XComGameState_Effect EffectState, XComGameState_Uni
 	UnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(OrigUnitState.ObjectID));
 	if (UnitState == none)
 	{
-		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', OrigUnitState.ObjectID));
-		NewGameState.AddStateObject(UnitState);
+		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', OrigUnitState.ObjectID));
 	}
 
 	SourceUnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 
-	if(!GreaterPaddingEffectIsValidForSource(SourceUnitState)) { return; }
+	if (!GreaterPaddingEffectIsValidForSource(SourceUnitState)) { return; }
 
-	if(UnitState == none) { return; }
-	if(UnitState.IsDead()) { return; }
+	if (UnitState == none) { return; }
+	if (UnitState.IsDead()) { return; }
 	// This check does nothing, as it is seemingly always false at this point. 
 	// Leaving it here just in case.
-	if(UnitState.IsBleedingOut()) { return; }
+	if (UnitState.IsBleedingOut()) { return; }
 
-	if(UnitState.GetUnitValue(default.GreaterPaddingUnitWasBleedingOut, StatusValue))
+	if (UnitState.GetUnitValue(default.GreaterPaddingUnitWasBleedingOut, StatusValue))
 	{		
 		StatusIntValue = int(StatusValue.fValue);
 		if(StatusIntValue > 0) { return; }
 	}
 
+	if (!CanBeHealed(UnitState)) { return; }
 
-	if(!CanBeHealed(UnitState)) { return; }
-
-    UnitState.LowestHP += Min(UnitState.HighestHP-UnitState.LowestHP,Padding_HealHP);
+	UnitState.LowestHP += Min(UnitState.HighestHP-UnitState.LowestHP, Padding_HealHP);
 
 	// Armor HP may have already been removed, apparently healing the unit since we have not yet
 	// executed EndTacticalHealthMod. We may only appear injured here for large injuries (or little
 	// armor HP). Current HP is used in the EndTacticalHealthMod adjustment, so we should increase it
 	// if it's less than the max, but don't exceed the max HP.
 	if (UnitState.GetCurrentStat(eStat_HP) < UnitState.GetMaxStat(eStat_HP))
-		UnitState.ModifyCurrentStat(eStat_HP, Min(UnitState.GetMaxStat(eStat_HP) - UnitState.GetCurrentStat(eStat_HP),Padding_HealHP));
+		UnitState.ModifyCurrentStat(eStat_HP, Min(UnitState.GetMaxStat(eStat_HP) - UnitState.GetCurrentStat(eStat_HP), Padding_HealHP));
 	
 }
 
@@ -78,13 +76,13 @@ function bool CanBeHealed(XComGameState_Unit UnitState)
 
 function bool GreaterPaddingEffectIsValidForSource(XComGameState_Unit SourceUnit)
 {
-	if(SourceUnit == none) { return false; }
-	if(SourceUnit.IsDead()) { return false; }
-	if(SourceUnit.bCaptured) { return false; }
-	if(SourceUnit.LowestHP == 0) { return false; }
+	if (SourceUnit == none) { return false; }
+	if (SourceUnit.IsDead()) { return false; }
+	if (SourceUnit.bCaptured) { return false; }
+	if (SourceUnit.LowestHP == 0) { return false; }
 	// These two checks do nothing, as these effects are cleared at this point. However, as perk description
 	// does not describe this requirement in the first place fixing these checks might nt be necessary.
-	if(SourceUnit.IsBleedingOut()) { return false; }
+	if (SourceUnit.IsBleedingOut()) { return false; }
 	if(SourceUnit.IsUnconscious()) { return false; }
 	return true;
 }
@@ -109,7 +107,7 @@ static function EventListenerReturn OnUnitBleedingOut(Object EventData, Object E
 		return ELR_NoInterrupt;
 	}
 
-	if(EventID == 'UnitBleedingOut' && UnitState.IsBleedingOut() && UnitState.GetBleedingOutTurnsRemaining() > 0)
+	if (EventID == 'UnitBleedingOut' && UnitState.IsBleedingOut() && UnitState.GetBleedingOutTurnsRemaining() > 0)
 	{
 		UnitState.SetUnitFloatValue(default.GreaterPaddingUnitWasBleedingOut, 1, eCleanup_BeginTactical);
 	}

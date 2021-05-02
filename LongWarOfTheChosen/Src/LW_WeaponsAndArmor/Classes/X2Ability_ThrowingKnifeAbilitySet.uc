@@ -21,7 +21,6 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(AddHailstorm());
 	Templates.AddItem(AddThrowingKnifeFaceoff());
-	
 	return Templates;
 }
 

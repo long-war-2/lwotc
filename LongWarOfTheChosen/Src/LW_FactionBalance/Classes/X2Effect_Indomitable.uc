@@ -24,11 +24,11 @@ static function EventListenerReturn IndomitableListener(Object EventData, Object
 	local UnitValue TotalValue;
 	local XComGameState_Unit TargetUnit, SourceUnit;
 	local XComGameState_Ability AbilityState;
-    local XComGameState_Effect_TemplarFocus FocusState;
-    local XComGameState_Effect EffectGameState;
+   	local XComGameState_Effect_TemplarFocus FocusState;
+	local XComGameState_Effect EffectGameState;
 
 	AbilityState = XComGameState_Ability(EventData);
-    EffectGameState = XComGameState_Effect(CallbackData);
+	EffectGameState = XComGameState_Effect(CallbackData);
 	// Set to only Offensive abilities to prevent Reflex from being kicked off on Chosen Tracking Shot Marker.
 	if (AbilityState.IsAbilityInputTriggered() && AbilityState.GetMyTemplate().Hostility == eHostility_Offensive)
 	{
@@ -58,12 +58,12 @@ static function EventListenerReturn IndomitableListener(Object EventData, Object
 				TargetUnit = XComGameState_Unit(NewGameState.ModifyStateObject(TargetUnit.Class, TargetUnit.ObjectID));
 				TargetUnit.SetUnitFloatValue(default.IndomitableValue, TotalValue.fValue + 1, eCleanup_BeginTurn);
 
-                FocusState = TargetUnit.GetTemplarFocusEffectState();
-                if (FocusState != none)
-                {
-                    FocusState = XComGameState_Effect_TemplarFocus(NewGameState.ModifyStateObject(FocusState.Class, FocusState.ObjectID));
-                    FocusState.SetFocusLevel(FocusState.FocusLevel + 1, TargetUnit, NewGameState);		
-                }
+				FocusState = TargetUnit.GetTemplarFocusEffectState();
+				if (FocusState != none)
+				{
+					FocusState = XComGameState_Effect_TemplarFocus(NewGameState.ModifyStateObject(FocusState.Class, FocusState.ObjectID));
+					FocusState.SetFocusLevel(FocusState.FocusLevel + 1, TargetUnit, NewGameState);		
+				}
                 
 
 				if (NewGameState != none)

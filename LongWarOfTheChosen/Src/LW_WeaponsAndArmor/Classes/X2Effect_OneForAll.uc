@@ -22,12 +22,12 @@ protected simulated function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	Target = XComGameState_unit(kNewTargetState);
 	if (Caster == none)
 	{
-		Caster = XComGameState_Unit(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+		Caster = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 	}
 	SourceItem = XComGameState_Item(NewGameState.GetGameStateForObjectID(ApplyEffectParameters.ItemStateObjectRef.ObjectID));
 	if (SourceItem == none)
 	{
-		SourceItem = XComGameState_Item(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(ApplyEffectParameters.ItemStateObjectRef.ObjectID));
+		SourceItem = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.ItemStateObjectRef.ObjectID));
 	}
 
 	ShieldHPChange.StatAmount = BaseShieldHPIncrease;

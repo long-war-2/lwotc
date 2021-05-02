@@ -25,8 +25,6 @@ var config int BloodTrailBleedingChance;
 
 var config int PARAMEDIC_BONUS_CHARGES;
 
-
-
 var config int DisablingShotCooldown;
 var config int DisablingShotAmmoCost;
 var config int DisablingShotBaseStunActions;
@@ -55,7 +53,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddShadowGrenadier());
 	Templates.AddItem(AddPoisonedBlades());
 	Templates.AddItem(AddChargeBattery());
-	Templates.AddItem(AddParaMedic());
+	Templates.AddItem(AddParamedic());
 
 	return Templates;
 }
@@ -441,7 +439,6 @@ static function X2DataTemplate AddBloodTrailBleedingAbility()
 	BleedingEffect = class'X2StatusEffects'.static.CreateBleedingStatusEffect(default.BloodTrailBleedingTurns, default.BloodTrailBleedingDamage);
 	BleedingEffect.ApplyChance = default.BloodTrailBleedingChance;
 	Template.AddTargetEffect(BleedingEffect);
-	
 	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_Placeholder');
 
 	Template.bSkipFireAction = true;
@@ -882,7 +879,7 @@ static function X2DataTemplate AddChargeBattery()
 
 
 
-static function X2DataTemplate AddParaMedic()
+static function X2DataTemplate AddParamedic()
 {
 	local X2AbilityTemplate				Template;
 	local X2Effect_TemporaryItem		TemporaryItemEffect;
@@ -919,7 +916,7 @@ static function X2DataTemplate AddParaMedic()
 	Template.AddTargetEffect(ParamedicEffect);
 
 
-	Template.GetBonusWeaponAmmoFn = ParaMedic_BonusCharges;
+	Template.GetBonusWeaponAmmoFn = Paramedic_BonusCharges;
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
@@ -927,7 +924,7 @@ static function X2DataTemplate AddParaMedic()
 	return Template;
 }
 
-function int ParaMedic_BonusCharges(XComGameState_Unit UnitState, XComGameState_Item ItemState)
+static function int Paramedic_BonusCharges(XComGameState_Unit UnitState, XComGameState_Item ItemState)
 {
 	if (ItemState.GetWeaponCategory() == class'X2Item_DefaultUtilityItems'.default.MedikitCat)
 		return default.PARAMEDIC_BONUS_CHARGES;
