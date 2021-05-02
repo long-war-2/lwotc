@@ -54,7 +54,7 @@ static function EventListenerReturn IndomitableListener(Object EventData, Object
 					return ELR_NoInterrupt;
 
 
-				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Skirmisher Reflex Immediate Action");
+				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Indomitable Focus Gain");
 				TargetUnit = XComGameState_Unit(NewGameState.ModifyStateObject(TargetUnit.Class, TargetUnit.ObjectID));
 				TargetUnit.SetUnitFloatValue(default.IndomitableValue, TotalValue.fValue + 1, eCleanup_BeginTurn);
 

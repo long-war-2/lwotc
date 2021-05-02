@@ -246,7 +246,7 @@ static function UpdateInterrupt(X2AbilityTemplate Template)
 	Template.AbilityCharges = none;
 
 
-	RemoveAbilityTargetEffects(Template,'X2Effect_ReserveOverwatchPoints');
+	class'Helpets_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_ReserveOverwatchPoints');
 
 	Effect = new class'X2Effect_AddOverwatchActionPoints';
 	Effect.UseAllPointsWithAbilities.Length = 0;
@@ -326,17 +326,8 @@ static function UpdateTotalCombat(X2AbilityTemplate Template)
 	Template.AdditionalAbilities.AddItem('VolatileMix');
 }
 
-static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name EffectName)
-{
-	local int i;
-	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
-	{
-		if (Template.AbilityTargetEffects[i].isA(EffectName))
-		{
-			Template.AbilityTargetEffects.Remove(i, 1);
-		}
-	}
-}
+
+
 
 defaultproperties
 {

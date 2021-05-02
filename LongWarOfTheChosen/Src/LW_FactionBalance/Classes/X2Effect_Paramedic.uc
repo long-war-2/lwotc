@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_Paramedic.uc
 //  AUTHOR:  Grobobobo
-//  PURPOSE: Makes each medikit use free this turn
+//  PURPOSE: Makes each medikit use free each turn
 //--------------------------------------------------------------------------------------- 
 
 class X2Effect_Paramedic extends X2Effect_Persistent config (LW_SoldierSkills);

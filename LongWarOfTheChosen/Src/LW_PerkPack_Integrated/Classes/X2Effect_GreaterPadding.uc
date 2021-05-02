@@ -1,7 +1,7 @@
 ///---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_GreaterPadding
 //  AUTHOR:  Grobobobo (taken from field surgeon)
-//  PURPOSE: Implements effect for FieldSurgeon ability -- this allows healing of lowest hp at end of mission
+//  PURPOSE: Allows the unit that has the ability to reduce its injury times -- unlike FS it can heal for more than 1 hp per effect apply, and fully stacks with itself.
 //--------------------------------------------------------------------------------------- 
 //---------------------------------------------------------------------------------------
 class X2Effect_GreaterPadding extends X2Effect_Persistent;

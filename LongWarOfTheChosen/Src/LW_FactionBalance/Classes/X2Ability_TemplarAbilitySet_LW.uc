@@ -752,10 +752,9 @@ static function X2AbilityTemplate DoubleRendFocus()
 	EventListener.ListenerData.Filter = eFilter_Unit;
 	Template.AbilityTriggers.AddItem(EventListener);
 
-	//	Chance to grant focus when activating Rend if the Templar has Overcharge
+	//	Grants Focus on Rend hit
 	FocusEffect = new class'X2Effect_ModifyTemplarFocus';
 	FocusEffect.TargetConditions.AddItem(new class'X2Condition_GhostShooter');
-	FocusEffect.ApplyChance = default.OVERCHARGE_FOCUS_CHANCE;
 	Template.AddShooterEffect(FocusEffect);
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);

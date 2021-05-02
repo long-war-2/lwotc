@@ -725,6 +725,54 @@ static function bool CovertActionHasReward(XComGameState_CovertAction ActionStat
 	}
 }
 
+	static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name EffectClass)
+{
+	local int i;
+	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityTargetEffects[i].isA(EffectClass))
+		{
+			Template.AbilityTargetEffects.Remove(i, 1);
+		}
+	}
+}
+
+static function RemoveAbilityShooterEffects(X2AbilityTemplate Template, name EffectClass)
+{
+	local int i;
+	for (i = Template.AbilityShooterEffects.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityShooterEffects[i].isA(EffectClass))
+		{
+			Template.AbilityShooterEffects.Remove(i, 1);
+		}
+	}
+}
+
+static function RemoveAbilityShooterConditions(X2AbilityTemplate Template, name EffectClass)
+{
+	local int i;
+	for (i = Template.AbilityShooterConditions.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityShooterConditions[i].isA(EffectClass))
+		{
+			Template.AbilityShooterConditions.Remove(i, 1);
+		}
+	}
+}
+
+static function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name EffectClass)
+{
+	local int i;
+	for (i = Template.AbilityMultiTargetEffects.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityMultiTargetEffects[i].isA(EffectClass))
+		{
+			Template.AbilityMultiTargetEffects.Remove(i, 1);
+		}
+	}
+}
+
 defaultproperties
 {
 	CA_FAILURE_RISK_MARKER="CovertActionRisk_Failure"

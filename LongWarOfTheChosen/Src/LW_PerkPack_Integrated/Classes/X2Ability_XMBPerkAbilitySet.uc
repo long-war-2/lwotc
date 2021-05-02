@@ -2990,7 +2990,7 @@ static function X2AbilityTemplate KnifeJugglerTrigger()
 
 	PrimaryWeaponCondition = new class'X2Condition_PrimaryWeapon';
 	PrimaryWeaponCondition.RequirePrimary = true;
-	//AddTriggerTargetCondition(Template, default.MatchingWeaponCondition);
+	AddTriggerTargetCondition(Template, PrimaryWeaponCondition);
 
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeDead = false;

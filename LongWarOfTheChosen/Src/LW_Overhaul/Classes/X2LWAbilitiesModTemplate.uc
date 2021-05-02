@@ -521,59 +521,11 @@ static function UpdateBayonetCharge(X2AbilityTemplate Template)
 	Template.AbilityCooldown = Cooldown;
 }
 
-static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name EffectName)
-{
-	local int i;
-	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
-	{
-		if (Template.AbilityTargetEffects[i].isA(EffectName))
-		{
-			Template.AbilityTargetEffects.Remove(i, 1);
-		}
-	}
-}
-
-static function RemoveAbilityShooterEffects(X2AbilityTemplate Template, name EffectName)
-{
-	local int i;
-	for (i = Template.AbilityShooterEffects.Length - 1; i >= 0; i--)
-	{
-		if (Template.AbilityShooterEffects[i].isA(EffectName))
-		{
-			Template.AbilityShooterEffects.Remove(i, 1);
-		}
-	}
-}
-
-static function RemoveAbilityShooterConditions(X2AbilityTemplate Template, name EffectName)
-{
-	local int i;
-	for (i = Template.AbilityShooterConditions.Length - 1; i >= 0; i--)
-	{
-		if (Template.AbilityShooterConditions[i].isA(EffectName))
-		{
-			Template.AbilityShooterConditions.Remove(i, 1);
-		}
-	}
-}
-
-static function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name EffectName)
-{
-	local int i;
-	for (i = Template.AbilityMultiTargetEffects.Length - 1; i >= 0; i--)
-	{
-		if (Template.AbilityMultiTargetEffects[i].isA(EffectName))
-		{
-			Template.AbilityMultiTargetEffects.Remove(i, 1);
-		}
-	}
-}
-
 static function ReplaceWithDamageReductionExplosive(X2AbilityTemplate Template)
 {
 	local X2Effect_Formidable	PaddingEffect;
 
-	RemoveAbilityTargetEffects(Template,'X2Effect_BlastShield');
+	class'Helpets_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_BlastShield');
 
 	PaddingEffect = new class'X2Effect_Formidable';
 	PaddingEffect.ExplosiveDamageReduction = default.EXPLOSIVE_DAMAGE_REDUCTION;
@@ -585,7 +537,7 @@ static function ReplaceWithDamageReductionMelee(X2AbilityTemplate Template)
 {
 	local X2Effect_DefendingMeleeDamageModifier DamageMod;
 
-	RemoveAbilityTargetEffects(Template,'X2Effect_DamageImmunity');
+	class'Helpets_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_DamageImmunity');
 
 	DamageMod = new class'X2Effect_DefendingMeleeDamageModifier';
 	DamageMod.DamageMod = default.MELEE_DAMAGE_REDUCTION;
@@ -698,14 +650,14 @@ static function MakeFreeAction(X2AbilityTemplate Template)
 }
 static function RemoveTheDeathFromHolyWarriorDeath(X2AbilityTemplate Template)
 {
-	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_HolyWarriorDeath');
+	class'Helpets_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_HolyWarriorDeath');
 }
 
 static function UpdateSustainEffect(X2AbilityTemplate Template)
 {
 	local X2Effect_Sustain_LW SustainEffect;
 
-	RemoveAbilityTargetEffects(Template,'X2Effect_Sustain');
+	class'Helpets_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Sustain');
 
 	SustainEffect = new class'X2Effect_Sustain_LW';
 	SustainEffect.BuildPersistentEffect(1, true, true);
@@ -896,8 +848,8 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
 
-	RemoveAbilityTargetEffects(Template, 'X2Effect_Dazed');
-	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Dazed');
+	class'Helpets_LW'.static.RemoveAbilityTargetEffects(Template, 'X2Effect_Dazed');
+	class'Helpets_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Dazed');
 
 	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.MIND_SCORCH_BURNING_BASE_DAMAGE, default.MIND_SCORCH_BURNING_DAMAGE_SPREAD);
 	BurningEffect.ApplyChance = default.MIND_SCORCH_BURN_CHANCE;
@@ -977,7 +929,7 @@ static function ReworkPartingSilk(X2AbilityTemplate Template)
 {
 	local X2AbilityCost Cost;
 	local X2Condition Condition;
-	RemoveAbilityTargetEffects(Template, 'X2Effect_Dazed');
+	class'Helpets_LW'.static.RemoveAbilityTargetEffects(Template, 'X2Effect_Dazed');
 
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
 
@@ -1035,8 +987,8 @@ static function UpdateSummon(X2AbilityTemplate Template)
 	local X2AbilityCooldown					Cooldown;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 
-	RemoveAbilityShooterEffects(Template,'X2Effect_SetUnitValue');
-	RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
+	class'Helpets_LW'.static.RemoveAbilityShooterEffects(Template,'X2Effect_SetUnitValue');
+	class'Helpets_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
 
 
 	Cooldown = new class'X2AbilityCooldown';
@@ -1077,7 +1029,7 @@ static function UpdateChosenRegenerate(X2AbilityTemplate Template)
 {
 	local X2Effect_RegenerationPCT RegenerationEffect;
 
-	RemoveAbilityTargetEffects(Template, 'X2Effect_Regeneration');
+	class'Helpets_LW'.static.RemoveAbilityTargetEffects(Template, 'X2Effect_Regeneration');
 
 	RegenerationEffect = new class'X2Effect_RegenerationPCT';
 	RegenerationEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
@@ -1093,9 +1045,9 @@ static function ReworkHarborWave(X2AbilityTemplate Template)
 
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
 
-	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Dazed');
-	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_ApplyWeaponDamage');
-	RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Knockback');
+	class'Helpets_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Dazed');
+	class'Helpets_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_ApplyWeaponDamage');
+	class'Helpets_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Knockback');
 
 	DamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	DamageEffect.bIgnoreArmor = true;

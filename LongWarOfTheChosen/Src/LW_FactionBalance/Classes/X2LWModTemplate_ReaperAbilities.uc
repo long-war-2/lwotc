@@ -398,21 +398,12 @@ static function ReplaceDeathDealerEffect(X2AbilityTemplate Template)
 
 static function UpdateBanish(X2AbilityTemplate Template)
 {
-	local X2Effect_SetUnitValue BanishCount;
 	local X2AbilityCost Cost;
 	local X2AbilityCooldown Cooldown;
 
 
-	X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bAllowCrit = true;
+	ChangeBanishHitCalc(Template);
 
-	BanishCount = new class'X2Effect_IncrementUnitValue';
-	BanishCount.UnitName = default.BanishFiredTimes;
-	BanishCount.NewValueToSet = 1;
-	BanishCount.CleanupType = eCleanup_BeginTurn;
-	BanishCount.bApplyOnHit = true;
-	BanishCount.bApplyOnMiss = true;
-
-	Template.AddShooterEffect(BanishCount);
 
 	foreach Template.AbilityCosts(Cost)
 	{
@@ -432,8 +423,19 @@ static function UpdateBanish(X2AbilityTemplate Template)
 
 static function UpdateBanish2(X2AbilityTemplate Template)
 {
-	local X2Effect_SetUnitValue BanishCount;
 	local X2Effect_BanishHitMod HitMod;
+
+	ChangeBanishHitCalc(Template);
+
+	HitMod = new class'X2Effect_BanishHitMod';
+	HitMod.BuildPersistentEffect (1, true, true);
+	Template.AddShooterEffect(HitMod);
+}
+
+
+static function ChangeBanishHitCalc(X2AbilityTemplate Template)
+{
+	local X2Effect_SetUnitValue BanishCount;
 
 	X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bAllowCrit = true;
 
@@ -444,11 +446,6 @@ static function UpdateBanish2(X2AbilityTemplate Template)
 	BanishCount.bApplyOnHit = true;
 	BanishCount.bApplyOnMiss = true;
 	Template.AddShooterEffect(BanishCount);
-
-
-	HitMod = new class'X2Effect_BanishHitMod';
-	HitMod.BuildPersistentEffect (1, true, true);
-	Template.AddShooterEffect(HitMod);
 }
 	
 defaultproperties

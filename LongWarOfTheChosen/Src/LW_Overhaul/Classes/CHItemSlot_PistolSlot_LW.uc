@@ -126,4 +126,5 @@ static function bool IsWeaponAllowedInPistolSlot(X2WeaponTemplate WeaponTemplate
 defaultproperties
 {
 	DEFAULT_ALLOWED_WEAPON_CATS[0] = "pistol";
+	DEFAULT_ALLOWED_WEAPON_CATS[0] = "sidearm";
 }

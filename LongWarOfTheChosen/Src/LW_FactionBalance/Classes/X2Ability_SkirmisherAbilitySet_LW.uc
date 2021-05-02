@@ -267,7 +267,7 @@ static function X2AbilityTemplate AddParkour()
 
 
 
-//this ability grants the unit +1 charge for each grenade in a utility slot AND the grenade slot
+//this ability grants the unit +1 charge for each Item in a utility slot AND the grenade slot
 static function X2AbilityTemplate AddPackMaster()
 {
 	local X2AbilityTemplate						Template;
