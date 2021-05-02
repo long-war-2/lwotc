@@ -5282,9 +5282,9 @@ LocPromotionPopupText="<Bullet/> Whiplash does extra damage to robotic enemies.<
 ; End Translation (2)
 
 [SkirmisherInterrupt X2AbilityTemplate]
-LocLongDescription="A powerful form of Overwatch. Instead of firing automatically, perform any single action. Free action, ends the turn."
-LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action. Free action, ends the turn."
-LocPromotionPopupText="<Bullet/> This is a free action, but it also ends the turn.<br/><Bullet/> You can interrupt as many times as the number of actions you had when entering Interrupt Overwatch.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="A powerful form of Overwatch. Instead of firing automatically, perform any single action. Free action."
+LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action. Free action."
+LocPromotionPopupText="<Bullet/> This is a free action.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:SelfCooldown_LW/> turn cooldown."
 
 [Pillar X2AbilityTemplate]
 ; LWOTC Needs Translation (2)
