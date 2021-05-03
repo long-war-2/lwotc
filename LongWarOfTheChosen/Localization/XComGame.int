@@ -5272,8 +5272,12 @@ FocusLevelDescriptions[4]="Rend Damage +<Ability:FOCUS4RENDDAMAGE/>\nMobility +<
 [TemplarFocus X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels. Effectively managing Focus to get the most out of the stat boosts and each ability is critical to using a Templar.<br/><Bullet/> Focus is gained by killing enemies with Rend.<br/><Bullet/> Focus Level 1: Rend Damage +<Ability:FOCUS1RENDDAMAGE/>, Mobility +<Ability:FOCUS1MOBILITY/>, Dodge +<Ability:FOCUS1DODGE/>.<br/><Bullet/> Focus Level 2: Rend Damage +<Ability:FOCUS2RENDDAMAGE/>, Mobility +<Ability:FOCUS2MOBILITY/>, Dodge +<Ability:FOCUS2DODGE/>.<br/><Bullet/> Focus Level 3: Rend Damage +<Ability:FOCUS3RENDDAMAGE/>, Mobility +<Ability:FOCUS3MOBILITY/>, Dodge +<Ability:FOCUS3DODGE/>.<br/><Bullet/> Focus Level 4: Rend Damage +<Ability:FOCUS4RENDDAMAGE/>, Mobility +<Ability:FOCUS4MOBILITY/>, Dodge +<Ability:FOCUS4DODGE/>."
 
+; LWOTC Needs Translation (3)
 [Rend X2AbilityTemplate]
-LocLongDescription="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on kills."
+LocLongDescription="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on attacks."
+LocHelpText="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on attacks."
+LocPromotionPopupText="<Bullet/> Using Rend is the Templar's primary method for generating Focus.<br/><Bullet/> After casting Rend, the Templar will gain Momentum, allowing them one movement action. Use this to return to cover after attacking.<br/><Bullet/> Rend has a <Ability:RENDSTUNCHANCE/>% chance to Stun per Focus. Stunned targets will also be knocked back.<br/><Bullet/> Rend has a <Ability:RENDDISORIENTCHANCE/>% chance to Disorient per Focus.<br/>"
+; End Translation (3)
 
 [Whiplash X2AbilityTemplate]
 LocLongDescription="Attack an enemy with an electrical lash. This attack has a <Ability:SelfCooldown_LW/> turn cooldown."
@@ -6741,23 +6745,23 @@ LocFlyOverText="One For All"
 [GreaterPadding_CV X2AbilityTemplate]
 LocFriendlyName="Greater Padding"
 LocFlyOverText="Greater Padding"
-LocLongDescription="Reduce wound recovery times for this soldier by 2 HP. Doesn't work if the soldier bleeds out."
-LocHelpText="Reduce wound recovery times for most soldiers."
-LocPromotionPopupText="<Bullet/> Field Surgeon reduces the number of hit points a soldier must heal after being wounded in battle by 1.<br/><Bullet/> Multiple Field Surgeons on a mission have a chance to reduce wound recovery time further.<br/><Bullet/> The effect includes the soldier with the ability.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
+LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GREATER_PADDING_CV/> HP. Doesn't work if the soldier bleeds out."
+LocHelpText="Reduce wound recovery times for your soldier."
+LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_CV/>.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
 
 [GreaterPadding_MG X2AbilityTemplate]
-LocFriendlyName="Field Surgeon"
-LocFlyOverText="Field Surgeon"
-LocLongDescription="Reduce wound recovery times for this soldier by 4 HP. Doesn't work if the soldier bleeds out."
+LocFriendlyName="Greater Padding"
+LocFlyOverText="Greater Padding"
+LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GREATER_PADDING_MG/> HP. Doesn't work if the soldier bleeds out."
 LocHelpText="Reduce wound recovery times for most soldiers."
-LocPromotionPopupText="<Bullet/> Field Surgeon reduces the number of hit points a soldier must heal after being wounded in battle by 1.<br/><Bullet/> Multiple Field Surgeons on a mission have a chance to reduce wound recovery time further.<br/><Bullet/> The effect includes the soldier with the ability.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
+LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_MG/>.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
 
 [GreaterPadding_BM X2AbilityTemplate]
-LocFriendlyName="Field Surgeon"
-LocFlyOverText="Field Surgeon"
-LocLongDescription="Reduce wound recovery times for this soldier by 6 HP. Doesn't work if the soldier bleeds out."
+LocFriendlyName="Greater Padding"
+LocFlyOverText="Greater Padding"
+LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GREATER_PADDING_BM/> HP. Doesn't work if the soldier bleeds out."
 LocHelpText="Reduce wound recovery times for most soldiers."
-LocPromotionPopupText="<Bullet/> Field Surgeon reduces the number of hit points a soldier must heal after being wounded in battle by 1.<br/><Bullet/> Multiple Field Surgeons on a mission have a chance to reduce wound recovery time further.<br/><Bullet/> The effect includes the soldier with the ability.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
+LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_BM/>.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
 
 [Indomitable X2AbilityTemplate]
 LocFriendlyName="Indomitable"
@@ -6832,8 +6836,8 @@ LocHelpText="Gain a free medikit. Equipped medikits have 2 extra charges. Using 
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"
-LocLongDescription="Fire at a target until you run out of ammo or it dies. Each shot has 15 aim less than the previous one. Reveals the Reaper. "
-LocHelpText="Fire at a target until you run out of ammo or it dies. Each shot has 15 aim less than the previous one. Reveals the Reaper."
+LocLongDescription="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less than the previous one. Reveals the Reaper. "
+LocHelpText="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less than the previous one. Reveals the Reaper."
 LocFlyoverText="Banish"
 LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/><Bullet/> Banish shots can crit.<br/>"
 
