@@ -164,6 +164,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'ApotheosisDamageMultiplier':
 		OutString = string(int(class'X2Ability_TemplarAbilitySet_LW'.default.APOTHEOSIS_DAMAGE_MULTIPLIER * 100));
 		return true;
+	case 'DEATH_DEALER_CRIT':
+		OutString = string(class'X2LWModTemplate_ReaperAbilities'.default.DEATH_DEALER_CRIT);
+		return true;
 	}
 
 	return false;

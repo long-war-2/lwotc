@@ -24,6 +24,8 @@ var config int STING_RUPTURE;
 var config int BANISH_COOLDOWN;
 var const name BanishFiredTimes;
 
+var config int DEATH_DEALER_CRIT;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
@@ -383,6 +385,13 @@ static function ReplaceDeathDealerEffect(X2AbilityTemplate Template)
 {
 	local X2Effect_Executioner ExecutionerEffect;
 	local int i;
+	local X2Effect_ToHitModifier ToHitModifier;
+
+	ToHitModifier = new class'X2Effect_ToHitModifier';
+	ToHitModifier.BuildPersistentEffect(1, true, true, true);
+	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.DEATH_DEALER_CRIT, Template.LocFriendlyName);
+	Template.AddTargetEffect(ToHitModifier);
 
 	// Remove the previous Pale Horse effect
 	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0 ; i--)
