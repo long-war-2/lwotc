@@ -16,11 +16,13 @@ static function GenerateCouncilSoldierReward(XComGameState_Reward RewardState, X
 	CapturedSoldierRef = PickCapturedSoldier(class'Helpers_LW'.static.FindAvailableCapturedSoldiers(NewGameState));
 	if (CapturedSoldierRef.ObjectID != 0)
 	{
+		`LWTrace("[RescueSoldier] Rescue reward for captured soldier with ID " $ CapturedSoldierRef.ObjectID);
 		RewardState.RewardObjectReference = CapturedSoldierRef;
 	}
 	else
 	{
 		// somehow the soldier to be rescued has been pulled out from under us! Generate one as a fallback.
+		`LWTrace("[RescueSoldier] Failed to find a captured soldier to rescue!");
 		GeneratePersonnelReward(RewardState, NewGameState, RewardScalar, RegionRef);
 	}
 }
@@ -32,7 +34,11 @@ static function StateObjectReference PickCapturedSoldier(array<StateObjectRefere
 	local StateObjectReference EmptyStateRef;
 	local int CapturedSoldierIndex;
 
-	if (CapturedSoldiers.Length == 0) return EmptyStateRef;
+	if (CapturedSoldiers.Length == 0)
+	{
+		`LWTrace("[RescueSoldier] Trying to pick a soldier from an empty array");
+		return EmptyStateRef;
+	 }
 
 	// Pick a soldier to rescue
 	CapturedSoldierIndex = class'Engine'.static.GetEngine().SyncRand(CapturedSoldiers.Length, "GenerateSoldierReward");
