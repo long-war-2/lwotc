@@ -4,6 +4,7 @@ Param(
     [string]$sdkPath, # the path to your SDK installation ending in "XCOM 2 War of the Chosen SDK"
     [string]$gamePath, # the path to your XCOM 2 installation ending in "XCOM 2"
     [switch]$forceFullBuild, # force the script to rebuild the base game's scripts, even if they're already built
+    [switch]$verifyProj, # enables a verification of the x2proj file, failing the build if any files are missing from it
     [switch]$debug,
     [switch]$final_release
 )
@@ -175,6 +176,10 @@ function ValidateProjectFiles([string] $modProjectRoot, [string] $modName)
             }
         }
 
+        if ($missingFiles.Length -gt 0 -AND $verifyProj)
+        {
+            FailureMessage("Filenames missing in the .x2proj file: $missingFiles")
+        }
     }
     else
     {
