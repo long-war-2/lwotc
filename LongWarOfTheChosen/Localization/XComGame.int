@@ -6149,7 +6149,7 @@ LocPromotionPopupText = "<Bullet/> Starts each battle with <Ability:SUPERCHARGE_
 [ShootingSharp_LW X2AbilityTemplate]
 LocFriendlyName = "Shooting Sharp"
 LocHelpText = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and  +<Ability:SS_AIM_BONUS/> aim against units in cover."
-LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> armor piercing against units in cover."
+LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
 LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover. <br/>"
 ; End Translation (2)
 
@@ -6858,7 +6858,7 @@ AbilityDescName="autopistol"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramedic"
-LocLongDescription="Gain a free medikit. Equipped medikits have 2 extra charges. The first medikit use each turn does not const an action"
+LocLongDescription="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action"
 LocHelpText="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action."
 
 [SoulReaper X2AbilityTemplate]
