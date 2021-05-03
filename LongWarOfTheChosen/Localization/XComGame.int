@@ -6767,6 +6767,7 @@ LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit point
 LocFriendlyName="Indomitable"
 LocHelpText="Once per turn, gain 1 focus when you're attacked."
 LocLongDescription="Once per turn, gain 1 focus when you're attacked."
+LocPromotionPopupText"<Bullet/>Once per turn, gain 1 focus when you're attacked.<br/><Bullet/>Applies to both melee and ranged attacks.<br/>"
 LocFlyOverText="Indomitable"
 
 [VoltFocusOnKills X2AbilityTemplate]
