@@ -1645,7 +1645,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	local name ChosenSpawningTag, ChosenSpawningTagLWOTC, ChosenSpawningTagRemove;
 	local bool HasRulerOnMission;
 	local array <name> SpawningTags;
-	local int i;
+
 	// Certain missions should just use vanilla Chosen behaviour, like the Chosen
 	// Avenger Defense
 	if (default.SKIP_CHOSEN_OVERRIDE_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE ||
@@ -1687,7 +1687,8 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 
 			// Now add the appropriate tactical gameplay tag for this Chosen if the
 			// corresponding LWOTC-specific one is in the mission's tactical tags.
-			if (!HasRulerOnMission && MissionState.TacticalGameplayTags.Find(ChosenSpawningTagLWOTC) != INDEX_NONE)
+			if (!HasRulerOnMission && !ChosenState.bDefeated &&
+				MissionState.TacticalGameplayTags.Find(ChosenSpawningTagLWOTC) != INDEX_NONE)
 			{
 				XComHQ.TacticalGameplayTags.AddItem(ChosenSpawningTag);
 			}
