@@ -246,7 +246,7 @@ static function UpdateInterrupt(X2AbilityTemplate Template)
 	Template.AbilityCharges = none;
 
 
-	class'Helpets_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_ReserveOverwatchPoints');
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_ReserveOverwatchPoints');
 
 	Effect = new class'X2Effect_AddOverwatchActionPoints';
 	Effect.UseAllPointsWithAbilities.Length = 0;
