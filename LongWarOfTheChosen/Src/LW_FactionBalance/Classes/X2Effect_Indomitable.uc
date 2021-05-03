@@ -1,6 +1,6 @@
 //  FILE:    X2Effect_Indomitable
 //  AUTHOR:  Grobobobo
-//  PURPOSE: Grants focus when shot.
+//  PURPOSE: Grants focus when the owner is the primary target of an attack.
 //---------------------------------------------------------------------------------------
 class X2Effect_Indomitable extends X2Effect_Persistent;
 
