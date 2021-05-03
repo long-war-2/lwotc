@@ -6832,8 +6832,8 @@ LocHelpText="Gain a free medikit. Equipped medikits have 2 extra charges. Using 
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"
-LocLongDescription="Fire at a target until you run out of ammo or it dies. Each Shot has -15 aim than the last. Reveals the reaper. "
-LocHelpText="Fire at a target until you run out of ammo or it dies. Each Shot has -15 aim than the last. Reveals the reaper."
+LocLongDescription="Fire at a target until you run out of ammo or it dies. Each shot has 15 aim less than the previous one. Reveals the Reaper. "
+LocHelpText="Fire at a target until you run out of ammo or it dies. Each shot has 15 aim less than the previous one. Reveals the Reaper."
 LocFlyoverText="Banish"
 LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/><Bullet/> Banish shots can crit.<br/>"
 
