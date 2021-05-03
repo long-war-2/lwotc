@@ -786,7 +786,7 @@ function int GetAbilityPointCost(int Rank, int Branch)
 		AbilityCost = GetCustomAbilityCost(ClassName, AbilityTree[Branch].AbilityName);
 	}
 
-	if (AbilityRanks != 0 && Branch < AbilityRanks)
+	if (!UnitState.IsResistanceHero() && AbilityRanks != 0 && Branch < AbilityRanks)
 	{
 		if (!UnitState.HasPurchasedPerkAtRank(Rank, AbilityRanks))
 		{
