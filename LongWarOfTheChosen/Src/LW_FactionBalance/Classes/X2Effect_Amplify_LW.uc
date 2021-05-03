@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    X2Effect_Apotheosis
+//  FILE:    X2Effect_Amplify_LW.uc
 //  AUTHOR:  Grobobobo
-//  PURPOSE: Updates the effect to be removed immidiately.
+//  PURPOSE: Updates the Amplify effect so that it's removed immediately after a single attack.
 //---------------------------------------------------------------------------------------
 class X2Effect_Amplify_LW extends X2Effect_Amplify;
 

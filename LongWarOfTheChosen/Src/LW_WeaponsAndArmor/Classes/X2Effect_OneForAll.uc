@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_OneForAll.uc
 //  AUTHOR:  Grobobobo
-//  PURPOSE: Grants ablative on use, scalses with shield
+//  PURPOSE: Grants ablative on use, scales with shield tier
 //---------------------------------------------------------------------------------------
 
 class X2Effect_OneForAll extends X2Effect_ModifyStats;

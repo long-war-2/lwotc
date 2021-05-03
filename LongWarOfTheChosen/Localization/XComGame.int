@@ -6145,8 +6145,8 @@ LocPromotionPopupText = "<Bullet/> Starts each battle with <Ability:SUPERCHARGE_
 [ShootingSharp_LW X2AbilityTemplate]
 LocFriendlyName = "Shooting Sharp"
 LocHelpText = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and  +<Ability:SS_AIM_BONUS/> aim against units in cover."
-LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and  +<Ability:SS_AIM_BONUS/> armor piercing against units in cover."
-LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and  +<Ability:SS_AIM_BONUS/> armor piercing against units in cover. <br/>"
+LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> armor piercing against units in cover."
+LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> armor piercing against units in cover. <br/>"
 ; End Translation (2)
 
 [Unlimitedpower_LW X2AbilityTemplate]
@@ -6676,7 +6676,7 @@ TacticalText="Purifier Flamethrower"
 AbilityDescName="Purifier Flamethrower"
 ; End Translation
 
-
+; LWOTC Needs Translation
 [TemplarBallisticShield_CV X2WeaponTemplate]
 FriendlyName="Ballistic Shield MK1"
 FriendlyNamePlural="Ballistic Shields MK1"
@@ -6697,44 +6697,44 @@ TacticalText="<Bullet/>Advances in miniaturization allow this shield to pack not
 
 [TemplarBallisticShield_GenerateCover X2AbilityTemplate]
 LocFriendlyName="Ballistic Shield"
-LocHelpText="Grants half cover to alllies."
-LocLongDescription="Grants half cover to alllies."
+LocHelpText="Grants half cover to allies."
+LocLongDescription="Grants half cover to allies."
 LocFlyOverText="Ballistic Shield"
 
 [TemplarBallisticShield_CV X2AbilityTemplate]
 LocFriendlyName="Ballistic Shield"
-LocHelpText="Grants 2 shield points and half cover to alllies."
-LocLongDescription="Grants 2 shield points and half cover to alllies."
+LocHelpText="Grants 2 shield points and half cover to allies."
+LocLongDescription="Grants 2 shield points and half cover to allies."
 LocFlyOverText="Ballistic Shield"
 
 [TemplarBallisticShield_MG X2AbilityTemplate]
 LocFriendlyName="Ballistic Shield"
-LocHelpText="Grants 5 shield points and half cover to alllies."
-LocLongDescription="Grants 5 shield points and half cover to alllies."
+LocHelpText="Grants 5 shield points and half cover to allies."
+LocLongDescription="Grants 5 shield points and half cover to allies."
 LocFlyOverText="Ballistic Shield"
 
 [TemplarBallisticShield_BM X2AbilityTemplate]
 LocFriendlyName="Ballistic Shield"
-LocHelpText="Grants 9 shield points and half cover to alllies."
-LocLongDescription="Grants 9 shield points and half cover to alllies."
+LocHelpText="Grants 9 shield points and half cover to lllies."
+LocLongDescription="Grants 9 shield points and half cover to allies."
 LocFlyOverText="Ballistic Shield"
 
 [ShieldBash_LW X2AbilityTemplate]
 LocFriendlyName="Shield Bash"
-LocHelpText="Bash an adjacent enemy with your shield. Knocks back the target 2 tiles, and is a free action."
-LocLongDescription="Bash an adjacent enemy with your shield. Knocks back the target 2 tiles, and is a free action."
+LocHelpText="Bash an adjacent enemy with your shield, doing some damage and knocking back the target 2 tiles. Free action."
+LocLongDescription="Bash an adjacent enemy with your shield, doing some damage and knocking back the target 2 tiles. Free action."
 LocFlyOverText="Shield Bash"
 
 [TemplarInvert X2AbilityTemplate]
 LocFriendlyName="Invert"
 LocLongDescription="Switch locations with a unit. Costs 1 Focus."
 LocHelpText="Switch locations with a unit. Costs 1 Focus."
-LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the Templar's turn.<br/>"
+LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the Templar's turn.<br/><Bullet/> Can target both ally and enemy units.<br/>"
 
 [OneForAll X2AbilityTemplate]
 LocFriendlyName="One For All"
-LocHelpText="Provide high cover to squadmates wherever you stand, and gain -30 defense. Moving or attacking will cancel the effect. Ablative depending on the shield tier for the duration of the effect."
-LocLongDescription="Provide high cover to squadmates wherever you stand, and gain -30 defense. Moving or attacking will cancel the effect. Ablative depending on the shield tier for the duration of the effect."
+LocHelpText="Provide high cover to squadmates wherever you stand, and gain -30 defense. Moving or attacking will cancel the effect. Grants bonus ablative HP based on the shield tier for the duration of the effect."
+LocLongDescription="Provide high cover to squadmates wherever you stand, and gain -30 defense. Moving or attacking will cancel the effect. Grants bonus ablative HP based on the shield tier for the duration of the effect."
 LocFlyOverText="One For All"
 
 
@@ -6767,8 +6767,8 @@ LocFlyOverText="Indomitable"
 
 [VoltFocusOnKills X2AbilityTemplate]
 LocFriendlyName="AfterShock"
-LocHelpText="Kills with volt grant focus."
-LocLongDescription="Kills with volt grant focus."
+LocHelpText="Kills with Volt grant 1 focus."
+LocLongDescription="Kills with Volt grant 1 focus."
 LocFlyOverText="AfterShock"
 
 [DoubleRendFocus X2AbilityTemplate]
@@ -6808,7 +6808,7 @@ LocFlyOverText="Psychotic Rage"
 FriendlyName="Autopistol"
 FriendlyNamePlural="Autopistol"
 BriefSummary="Should their power fail them for some reason, our Soldiers can rely on a relatively conventional pistol arrangement that has been modified to specifically enhance its rate of fire and overall handling. This straightforward design contributes to the weapon's reliability in spite of the inconsistent material quality found in its construction."
-TacticalText="<Bullet/> The Autopistol gives the Templar the flexibility to combat the enemy in a conventional manner when not using their Psionic abilities.\n<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
+TacticalText="<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
 AbilityDescName="autopistol"
 
 [Sidearm_MG X2WeaponTemplate]
@@ -6822,30 +6822,30 @@ AbilityDescName="autopistol"
 FriendlyName="Beam Autopistol"
 FriendlyNamePlural="Beam Autopistols"
 BriefSummary="This variant of the  autopistol is one of the more impressive feats in our joint effort to reduce the size of portable Elerium cells. Now fully-powered, the weapon delivers focused pulses of energy capable of inflicting severe damage to all but the most heavily armored targets."
-TacticalText="<Bullet/> The Beam Autopistol is the most powerful handgun available to our Soldiers.\n<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
+TacticalText="<Bullet/> The Beam Autopistol is the most powerful handgun available to our soldiers.\n<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
 AbilityDescName="autopistol"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramedic"
 LocLongDescription="Gain a free medikit. Equipped medikits have 2 extra charges. The first medikit use each turn does not const an action"
-LocHelpText="Gain a free medikit. Equipped medikits have 2 extra charges. The first medikit use each turn does not const an action."
+LocHelpText="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"
 LocLongDescription="Fire at a target until you run out of ammo or it dies. Each Shot has -15 aim than the last. Reveals the reaper. "
 LocHelpText="Fire at a target until you run out of ammo or it dies. Each Shot has -15 aim than the last. Reveals the reaper."
 LocFlyoverText="Banish"
-LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/>"
+LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/><Bullet/> Banish shots can crit.<br/>"
 
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Total Combat"
-LocLongDescription="Throwing a grenade or using an item no longer ends the turn, you can throw them 2 tiles further, and their radius is increased by 1."
-LocHelpText="Throwing a grenade or using an item no longer ends the turn, and you can throw them 2 tiles further. and their radius is increased by 1."
-LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the Skirmisher's turns, allowing actions to be taken exactly when needed.<br/> <Bullet/> Grants Bombard and Volatile mix, so does not stack with them."
+LocLongDescription="Throwing a grenade or using an item no longer ends the turn. In addition, you can throw grenades 2 tiles further and their radius is increased by 1."
+LocHelpText="Throwing a grenade or using an item no longer ends the turn. In addition, you can throw grenades 2 tiles further and their radius is increased by 1."
+LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the Skirmisher's turns, allowing actions to be taken exactly when needed.<br/> <Bullet/> Grants both Bombard and Volatile Mix, hence it does not stack with either of them."
 
 [PackMaster_LW X2AbilityTemplate]
 LocFriendlyName="Pack Master"
 LocFlyOverText="Pack Master"
-LocLongDescription="Grants +1 charge to every utility item equipped."
-LocHelpText="Grants +1 charge to every utility item equipped."
-LocPromotionPopupText="<Bullet/> Grants +1 charge to every utility item equipped.<br/> <Bullet/> Works with the grenade slot.<br/> Extra grenades provided by Smoker and Flashbanger abilities do not get extra charges.<br/>"
+LocLongDescription="Grants +1 charge to every utility item and grenade equipped."
+LocHelpText="Grants +1 charge to every utility item and grenade equipped."
+LocPromotionPopupText="<Bullet/> Grants +1 charge to every utility item equipped.<br/> <Bullet/> Applies to the grenade slot as well as the standard utility slots, but not other slots.<br/> Extra grenades provided by Smoker and Flashbanger abilities do not get extra charges.<br/>"

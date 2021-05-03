@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_ArcWaveMultiDamage_LW
 //  AUTHOR:  Grobobobo
-//  PURPOSE: Updates the effect to be dependent on weapon gear instead of focus
+//  PURPOSE: Updates the Arcwave effect so that its damage is dependent on weapon tier instead of focus
 //---------------------------------------------------------------------------------------
 class X2Effect_ArcWaveMultiDamage_LW extends X2Effect_ArcWaveMultiDamage;
 

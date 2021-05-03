@@ -1,5 +1,5 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    X2Effect_ShieldWall.uc
+//  FILE:    X2Item_Shields_LW.uc
 //  AUTHOR:  Grobobobo
 //	CREDITS: Musashi
 //  PURPOSE: an Item set for the ballistic shields.
