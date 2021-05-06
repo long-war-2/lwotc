@@ -678,6 +678,11 @@ static function EventListenerReturn OnCleanupTacticalMission(Object EventData, O
 				{
 					X2Effect_FieldSurgeon(EffectState.GetX2Effect()).ApplyFieldSurgeon(EffectState, Unit, NewGameState);
 				}
+				else if (EffectState.GetX2Effect().EffectName == class'X2Effect_GreaterPadding'.default.EffectName)
+				{
+					X2Effect_GreaterPadding(EffectState.GetX2Effect()).ApplyGreaterPadding(EffectState, Unit, NewGameState);
+				}
+					
 				else if (EffectState.GetX2Effect().EffectName == class'X2Effect_MindControl'.default.EffectName && AwardWrecks)
 				{
 					Unit.RollForAutoLoot(NewGameState);

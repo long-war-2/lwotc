@@ -1886,6 +1886,7 @@ static function name RescueReward(bool IncludeRebel, bool IncludePrisoner, XComG
 	CapturedSoldiers = class'Helpers_LW'.static.FindAvailableCapturedSoldiers(NewGameState);
 	if (IncludePrisoner && CapturedSoldiers.Length > 0)
 	{
+		`LWTrace("[RescueSoldier] Adding a rescue captured soldier reward (RescueReward)");
 		Reward = 'Reward_SoldierCaptured';
 	}
 	else
@@ -3185,6 +3186,7 @@ function array<Name> GetPoliticalPrisonersReward(XComGameState_LWAlienActivity A
 			NumCapturedSoldiers = CapturedSoldiers.Length;
 			while (NumRebels > 0 && NumCapturedSoldiers > 0 && Rewards.Length < default.MAX_CAPTURED_SOLDIER_REWARDS)
 			{
+				`LWTrace("[RescueSoldier] Adding a rescue captured soldier reward to Jailbreak");
 				Rewards.AddItem('Reward_SoldierCaptured');
 				--NumRebels;
 				--NumCapturedSoldiers;

@@ -725,6 +725,73 @@ static function bool CovertActionHasReward(XComGameState_CovertAction ActionStat
 	}
 }
 
+// Modifies an ability to be a free action. This is not idempotent, so
+// be careful calling it on an ability that is already a free action,
+// since the behaviour may subtly change. For example if the original
+// ability point cost is zero and free, that will change to 1 and free.
+static function MakeFreeAction(X2AbilityTemplate Template)
+{
+	local X2AbilityCost Cost;
+
+	foreach Template.AbilityCosts(Cost)
+	{
+		if (Cost.IsA('X2AbilityCost_ActionPoints'))
+		{
+			X2AbilityCost_ActionPoints(Cost).iNumPoints = 1;
+			X2AbilityCost_ActionPoints(Cost).bFreeCost = true;
+			X2AbilityCost_ActionPoints(Cost).bConsumeAllPoints = false;
+		}
+	}
+}
+
+static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name EffectClass)
+{
+	local int i;
+	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityTargetEffects[i].isA(EffectClass))
+		{
+			Template.AbilityTargetEffects.Remove(i, 1);
+		}
+	}
+}
+
+static function RemoveAbilityShooterEffects(X2AbilityTemplate Template, name EffectClass)
+{
+	local int i;
+	for (i = Template.AbilityShooterEffects.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityShooterEffects[i].isA(EffectClass))
+		{
+			Template.AbilityShooterEffects.Remove(i, 1);
+		}
+	}
+}
+
+static function RemoveAbilityShooterConditions(X2AbilityTemplate Template, name EffectClass)
+{
+	local int i;
+	for (i = Template.AbilityShooterConditions.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityShooterConditions[i].isA(EffectClass))
+		{
+			Template.AbilityShooterConditions.Remove(i, 1);
+		}
+	}
+}
+
+static function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name EffectClass)
+{
+	local int i;
+	for (i = Template.AbilityMultiTargetEffects.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityMultiTargetEffects[i].isA(EffectClass))
+		{
+			Template.AbilityMultiTargetEffects.Remove(i, 1);
+		}
+	}
+}
+
 defaultproperties
 {
 	CA_FAILURE_RISK_MARKER="CovertActionRisk_Failure"

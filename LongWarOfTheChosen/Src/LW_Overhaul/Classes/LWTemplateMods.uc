@@ -639,9 +639,16 @@ static function GenerateRescueSoldierRewardFixed(XComGameState_Reward RewardStat
 	}
 	CapturedSoldierRef = class'X2StrategyElement_RandomizedSoldierRewards'.static.PickCapturedSoldier(ChosenCapturedSoldiers);
 
+	// This is for debugging
+	if (CapturedSoldiers.Length == 0)
+	{
+		`LWTrace("[RescueSoldier] BUG!! No captured soldiers available to be rescued (GenerateRescueSoldierRewardFixed)");
+	}
+
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CapturedSoldierRef.ObjectID));
 	RewardState.RewardObjectReference = UnitState.GetReference();
 	RewardState.RewardString = UnitState.GetName(eNameType_RankFull);
+	`LWTrace("[RescueSoldier] Adding " $ RewardState.RewardString $ " as a rescue reward (GenerateRescueSoldierRewardFixed)");
 }
 
 // Update QuestItemTemplates to include the new _LW MissionTypes
@@ -2178,10 +2185,11 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
  			Template.ImmuneTypes.AddItem('HeavyMental'); //CHOSEN CHANGES
 			break;
 		//CHOSEN CHANGES
+		case 'TemplarSoldier':
+			Template.bCanTakeCover = false;
 		case 'Soldier': 
 		case 'ReaperSoldier':
 		case 'SkirmisherSoldier':
-		case 'TemplarSoldier':
 			Template.Abilities.AddItem('MC_Stock_Strike');
 			Template.Abilities.AddItem('GetUp');
 			Template.CharacterGroupName = 'XCOMSoldier';

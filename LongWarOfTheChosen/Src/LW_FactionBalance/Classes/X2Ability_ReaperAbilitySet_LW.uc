@@ -23,6 +23,8 @@ var config int BloodTrailBleedingTurns;
 var config int BloodTrailBleedingDamage;
 var config int BloodTrailBleedingChance;
 
+var config int PARAMEDIC_BONUS_CHARGES;
+
 var config int DisablingShotCooldown;
 var config int DisablingShotAmmoCost;
 var config int DisablingShotBaseStunActions;
@@ -51,6 +53,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddShadowGrenadier());
 	Templates.AddItem(AddPoisonedBlades());
 	Templates.AddItem(AddChargeBattery());
+	Templates.AddItem(AddParamedic());
 
 	return Templates;
 }
@@ -436,7 +439,6 @@ static function X2DataTemplate AddBloodTrailBleedingAbility()
 	BleedingEffect = class'X2StatusEffects'.static.CreateBleedingStatusEffect(default.BloodTrailBleedingTurns, default.BloodTrailBleedingDamage);
 	BleedingEffect.ApplyChance = default.BloodTrailBleedingChance;
 	Template.AddTargetEffect(BleedingEffect);
-
 	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_Placeholder');
 
 	Template.bSkipFireAction = true;
@@ -874,6 +876,62 @@ static function X2DataTemplate AddChargeBattery()
 
 	return Template;
 }
+
+
+
+static function X2DataTemplate AddParamedic()
+{
+	local X2AbilityTemplate				Template;
+	local X2Effect_TemporaryItem		TemporaryItemEffect;
+	local X2Effect_Paramedic ParamedicEffect;
+	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Paramedic_LW');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_fieldmedic";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Trigger.Priority -= 20; // delayed so that Full Kit happen first
+	Template.AbilityTriggers.AddItem(Trigger);
+	Template.bIsPassive = true;
+	Template.bCrossClassEligible = true;
+
+	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
+	TemporaryItemEffect.EffectName = 'ParamedicMedikits';
+	TemporaryItemEffect.ItemName = 'Medikit';
+	TemporaryItemEffect.AlternativeItemNames.AddItem('NanoMedikit');
+	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
+	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
+	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(TemporaryItemEffect);
+
+
+	ParamedicEffect = new class'X2Effect_Paramedic';
+	ParamedicEffect.BuildPersistentEffect(1, true, true);
+
+	Template.AddTargetEffect(ParamedicEffect);
+
+
+	Template.GetBonusWeaponAmmoFn = Paramedic_BonusCharges;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}
+
+static function int Paramedic_BonusCharges(XComGameState_Unit UnitState, XComGameState_Item ItemState)
+{
+	if (ItemState.GetWeaponCategory() == class'X2Item_DefaultUtilityItems'.default.MedikitCat)
+		return default.PARAMEDIC_BONUS_CHARGES;
+
+	return 0;
+}
+
 
 // Copied from Rapid Deployment. Just plays a flyover to indicate that charge
 // battery has been activated.

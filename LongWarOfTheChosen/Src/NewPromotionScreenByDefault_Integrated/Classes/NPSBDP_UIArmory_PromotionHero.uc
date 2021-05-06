@@ -749,7 +749,7 @@ function bool CanPurchaseAbility(int Rank, int Branch, name AbilityName)
 	}
 
 	// LWOTC: Don't allow purchase of other class abilities at same rank as an already picked one (unless second wave option enabled)
-	if (!UnitState.IsResistanceHero() && !`SecondWaveEnabled('AllowSameRankAbilities') && UnitState.HasPurchasedPerkAtRank(Rank, AbilityRanks) && Branch < AbilityRanks)
+	if (!`SecondWaveEnabled('AllowSameRankAbilities') && UnitState.HasPurchasedPerkAtRank(Rank, AbilityRanks) && Branch < AbilityRanks)
 	{
 		return false;
 	}

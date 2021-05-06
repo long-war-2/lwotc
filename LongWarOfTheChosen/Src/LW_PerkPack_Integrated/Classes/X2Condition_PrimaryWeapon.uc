@@ -8,7 +8,8 @@ class X2Condition_PrimaryWeapon extends X2Condition;
 var() bool WantsReload;
 var() bool CheckAmmo;
 var() CheckConfig CheckAmmoData;
-var() name MatchWeaponTemplate;               //  requires exact match to weapon's template's DataName
+var() name MatchWeaponTemplate;              //  requires exact match to weapon's template's DataName
+var() bool RequirePrimary; // Condition that checks if the ability is using the primary weapon
 
 function AddAmmoCheck(int Value, optional EValueCheck CheckType=eCheck_Exact, optional int ValueMax=0, optional int ValueMin=0)
 {
@@ -47,6 +48,14 @@ event name CallAbilityMeetsCondition(XComGameState_Ability kAbility, XComGameSta
 		{
 			if (PrimaryWeapon.GetMyTemplateName() != MatchWeaponTemplate)
 				return 'AA_WeaponIncompatible';
+		}
+
+		if (RequirePrimary)
+		{
+			if (kAbility.SourceWeapon.ObjectID != PrimaryWeapon.ObjectID)
+			{
+				return 'AA_WeaponIncompatible';
+			}
 		}
 	}
 
