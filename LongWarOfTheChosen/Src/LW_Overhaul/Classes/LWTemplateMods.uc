@@ -1984,7 +1984,7 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 	}
 }
 
-function bool ValidExplosiveFalloffItem(X2AbilityTemplate Template, X2Effect_ApplyWeaponDamage DamageEffect)
+function bool ValidExplosiveFalloffItem(X2ItemTemplate Template, X2Effect_ApplyWeaponDamage ThrownDamageEffect, LaunchedDamageEffect)
 {
 
 	//check specific exclusions
