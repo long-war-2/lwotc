@@ -260,6 +260,7 @@ var config array<DamageStep> EnvironmentDamageSteps;
 
 var config array<name> ExplosiveFalloffAbility_Exclusions;
 var config array<name> ExplosiveFalloffAbility_Inclusions;
+var config array<name> ExplosiveFalloffItem_Exclusions;
 
 var config int ALIEN_RULER_ACTION_BONUS_APPLY_CHANCE;
 
@@ -1957,15 +1958,16 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 		}
 	}
 	if (ThrownDamageEffect != none || LaunchedDamageEffect != none &&
-		ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', ThrownDamageEffect.Class))
+		ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', ThrownDamageEffect.Class) &&
+		IsValidExplosiveFalloffItem(Template))
 	{
 		FalloffDamageEffect = new class'X2Effect_ApplyExplosiveFalloffWeaponDamage' (ThrownDamageEffect);
 
 		//Falloff-specific settings
 		FalloffDamageEffect.UnitDamageAbilityExclusions.AddItem('TandemWarheads'); // if has any of these abilities, skip any falloff
 		FalloffDamageEffect.EnvironmentDamageAbilityExclusions.AddItem('CombatEngineer'); // if has any of these abilities, skip any falloff
-		FalloffDamageEffect.UnitDamageSteps=default.UnitDamageSteps;
-		FalloffDamageEffect.EnvironmentDamageSteps=default.EnvironmentDamageSteps;
+		FalloffDamageEffect.UnitDamageSteps = default.UnitDamageSteps;
+		FalloffDamageEffect.EnvironmentDamageSteps = default.EnvironmentDamageSteps;
 
 		if (ThrownDamageEffect != none)
 		{
@@ -1982,6 +1984,16 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 	}
 }
 
+function bool IsValidExplosiveFalloffItem(X2ItemTemplate Template)
+{
+	if (default.ExplosiveFalloffItem_Exclusions.Find(Template.DataName) != INDEX_NONE)
+	{
+		`LWTrace("Item " $ Template.DataName $ " excluded from fall-off damage modification");
+		return false;
+	}
+
+	return true;
+}
 
 function SwapExplosiveFalloffAbility(X2AbilityTemplate Template, int Difficulty)
 {
