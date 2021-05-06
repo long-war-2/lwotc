@@ -261,6 +261,8 @@ var config array<DamageStep> EnvironmentDamageSteps;
 var config array<name> ExplosiveFalloffAbility_Exclusions;
 var config array<name> ExplosiveFalloffAbility_Inclusions;
 
+var config array<name> ExplosiveFalloffItem_Exclusions;
+
 var config int ALIEN_RULER_ACTION_BONUS_APPLY_CHANCE;
 
 var config bool USE_ACTION_ICON_COLORS;
@@ -1957,7 +1959,7 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 		}
 	}
 	if (ThrownDamageEffect != none || LaunchedDamageEffect != none &&
-		ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', ThrownDamageEffect.Class))
+		ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', ThrownDamageEffect.Class) && ValidExplosiveFalloffItem(Template, ThrownDamageEffect, LaunchedDamageEffect))
 	{
 		FalloffDamageEffect = new class'X2Effect_ApplyExplosiveFalloffWeaponDamage' (ThrownDamageEffect);
 
@@ -1967,19 +1969,33 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 		FalloffDamageEffect.UnitDamageSteps=default.UnitDamageSteps;
 		FalloffDamageEffect.EnvironmentDamageSteps=default.EnvironmentDamageSteps;
 
-		if (ThrownDamageEffect != none)
+		if (ThrownDamageEffect != none && ValidExplosiveFalloffItem(Template, ThrownDamageEffect, LaunchedDamageEffect))
 		{
 			//`LOG("Swapping ThrownGrenade DamageEffect for item " $ Template.DataName $ ", Difficulty=" $ Difficulty);
 			GrenadeTemplate.ThrownGrenadeEffects.RemoveItem(ThrownDamageEffect);
 			GrenadeTemplate.ThrownGrenadeEffects.AddItem(FalloffDamageEffect);
 		}
-		if (LaunchedDamageEffect != none)
+		if (LaunchedDamageEffect != none && ValidExplosiveFalloffItem(Template, ThrownDamageEffect, LaunchedDamageEffect))
 		{
 			//`LOG("Swapping LaunchedGrenade DamageEffect for item " $ Template.DataName $ ", Difficulty=" $ Difficulty);
 			GrenadeTemplate.LaunchedGrenadeEffects.RemoveItem(ThrownDamageEffect);
 			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(FalloffDamageEffect);
 		}
 	}
+}
+
+function bool ValidExplosiveFalloffItem(X2AbilityTemplate Template, X2Effect_ApplyWeaponDamage DamageEffect)
+{
+
+	//check specific exclusions
+	if(default.ExplosiveFalloffItem_Exclusions.Find(Template.DataName) != -1)
+	{
+		`LWTrace("Item " $ Template.DataName $ " : Explicitly Excluded");
+		return false;
+	}
+	
+	return false;
+	
 }
 
 
