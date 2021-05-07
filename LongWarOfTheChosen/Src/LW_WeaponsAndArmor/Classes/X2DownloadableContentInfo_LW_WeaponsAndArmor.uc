@@ -12,6 +12,7 @@ class X2DownloadableContentInfo_LW_WeaponsAndArmor extends X2DownloadableContent
 
 var config array<name> TEMPLAR_GAUNTLETS_FOR_ONE_HANDED_USE;
 var config array<name> TEMPLAR_SHIELDS;
+var config array<name> AUTOPISTOL_ANIMS_WEAPONCATS_EXCLUDED;
 
 
 /// <summary>
@@ -280,5 +281,62 @@ static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameStat
 		}
 		break;
 	}
+	if(UnitState.GetMyTemplateName() == 'TemplarSoldier')
+	{
+		if(UnitState.GetItemInSlot(eInvSlot_Pistol) != none)
+		{
+			if(UnitState.GetItemInSlot(eInvSlot_Pistol).GetWeaponCategory() == 'sidearm')
+			{
+				CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("Templar_ANIM.AS_TemplarAutoPistol")));
+			}
+			else if(UnitState.GetItemInSlot(eInvSlot_Pistol).GetWeaponCategory() == 'pistol')
+			{
+				CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("Soldier_ANIM.AS_Pistol")));
+			}
+		}
+	}
 
+}
+
+
+static function WeaponInitialized(XGWeapon WeaponArchetype, XComWeapon Weapon, optional XComGameState_Item ItemState=none)
+{
+    local X2WeaponTemplate WeaponTemplate;
+    local XComGameState_Unit UnitState;
+    local XComGameState_Item InternalWeaponState;
+
+		InternalWeaponState = ItemState;
+		if (InternalWeaponState == none)
+		{
+			InternalWeaponState = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(WeaponArchetype.ObjectID));
+		}
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(InternalWeaponState.OwnerStateObject.ObjectID));
+		WeaponTemplate = X2WeaponTemplate(InternalWeaponState.GetMyTemplate());
+
+		//Weapon.CustomUnitPawnAnimsets.Length = 0;
+		//Weapon.CustomUnitPawnAnimsets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_AutoPistol")));
+
+		
+		if(WeaponTemplate.WeaponCat == 'Sidearm')
+		{
+			if(!PrimaryWeaponExcluded(UnitState))
+			{
+				Weapon.CustomUnitPawnAnimsets.Length = 0;
+				Weapon.CustomUnitPawnAnimsets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("AutopistolRebalance_LW.Anims.AS_Autopistol")));
+			}
+
+			Weapon.CustomUnitPawnAnimsets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("AutopistolRebalance_LW.Anims.AS_Autopistol_FanFire")));
+		}
+			
+}
+
+//For LWOTC I could just make this not work on templars but let's not potentially screw up any more RPGO compatibility
+static function bool PrimaryWeaponExcluded(XComGameState_Unit UnitState)
+{
+	//	this convoluted function takes a UnitState, then fetches the Weapon Template for whatever the soldier has equipped in their primary weapon slot.
+	//	it takes the weapon category of that weapon template, and looks for it in the configuration array
+	//	it returns true if it finds it, or false if it doesn't
+	//	I could declare a bunch of local values to store intermediate steps but meh
+	//	blame Musashi for this kind of style =\
+	return (default.AUTOPISTOL_ANIMS_WEAPONCATS_EXCLUDED.Find(X2WeaponTemplate(UnitState.GetItemInSlot(eInvSlot_PrimaryWeapon).GetMyTemplate()).WeaponCat) != INDEX_NONE);
 }
