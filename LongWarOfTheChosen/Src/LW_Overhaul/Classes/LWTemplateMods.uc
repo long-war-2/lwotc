@@ -1994,7 +1994,7 @@ function bool ValidExplosiveFalloffItem(X2ItemTemplate Template, X2Effect_ApplyW
 		return false;
 	}
 	
-	return false;
+	return true;
 	
 }
 
