@@ -6880,4 +6880,12 @@ LocFlyOverText="Pack Master"
 LocLongDescription="Grants +1 charge to every utility item and grenade equipped."
 LocHelpText="Grants +1 charge to every utility item and grenade equipped."
 LocPromotionPopupText="<Bullet/> Grants +1 charge to every utility item equipped.<br/> <Bullet/> Applies to the grenade slot as well as the standard utility slots, but not other slots.<br/> Extra grenades provided by Smoker and Flashbanger abilities do not get extra charges.<br/>"
+
+[SkirmisherInterrupt_LW X2AbilityTemplate]
+LocFriendlyName="Interrupt"
+LocLongDescription="A powerful form of Overwatch. Instead of firing automatically, perform any single action. Free action."
+LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action. Free action."
+LocPromotionPopupText="<Bullet/> This is a free action.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:SelfCooldown_LW/> turn cooldown."
+
+
 ; End Translation
