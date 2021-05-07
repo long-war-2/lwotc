@@ -6875,8 +6875,8 @@ LocHelpText="Throwing a grenade or using an item no longer ends the turn. In add
 LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the Skirmisher's turns, allowing actions to be taken exactly when needed.<br/> <Bullet/> Grants both Bombard and Volatile Mix, hence it does not stack with either of them."
 
 [PackMaster_LW X2AbilityTemplate]
-LocFriendlyName="Pack Master"
-LocFlyOverText="Pack Master"
+LocFriendlyName="PackMaster"
+LocFlyOverText="PackMaster"
 LocLongDescription="Grants +1 charge to every utility item and grenade equipped."
 LocHelpText="Grants +1 charge to every utility item and grenade equipped."
 LocPromotionPopupText="<Bullet/> Grants +1 charge to every utility item equipped.<br/> <Bullet/> Applies to the grenade slot as well as the standard utility slots, but not other slots.<br/> Extra grenades provided by Smoker and Flashbanger abilities do not get extra charges.<br/>"

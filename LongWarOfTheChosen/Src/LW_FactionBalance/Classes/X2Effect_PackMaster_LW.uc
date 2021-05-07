@@ -5,7 +5,7 @@
 //           slots.
 //--------------------------------------------------------------------------------------- 
 
-class X2Effect_PackMaster_LW extends X2Effect_Persistent config(LW_SoldierSkills);
+class X2Effect_PackMaster_LW extends X2Effect_Persistent config(LW_FactionBalance);
 
 var config int PACKMASTER_KIT_BONUS;
 var config array<name> EXCLUDED_GRENADE_TYPES;
