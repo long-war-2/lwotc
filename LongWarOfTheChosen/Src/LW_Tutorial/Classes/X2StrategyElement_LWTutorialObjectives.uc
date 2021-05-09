@@ -11,10 +11,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Objectives.AddItem(CreateLW_TUT_GatecrasherStartTemplate());
 	Objectives.AddItem(CreateLW_TUT_DroneSightedTemplate());
-	Objectives.AddItem(CreateLW_TUT_EngineerSightedTemplate());
-	Objectives.AddItem(CreateLW_TUT_SentrySightedTemplate());
-	Objectives.AddItem(CreateLW_TUT_GunnerSightedTemplate());
-	Objectives.AddItem(CreateLW_TUT_RocketeerSightedTemplate());
+	Objectives.AddItem(CreateLW_TUT_RainbowTrooperSightedTemplate());
 	Objectives.AddItem(CreateLW_TUT_CampaignStartTemplate());
 	Objectives.AddItem(CreateLW_TUT_HavenOnGeoscape());
 	Objectives.AddItem(CreateLW_TUT_HavenManagement());
@@ -33,12 +30,13 @@ static function X2DataTemplate CreateLW_TUT_GatecrasherStartTemplate()
 	Template.bNeverShowObjective = true;
 	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
 
-	Template.Steps.AddItem('LW_TUT_DroneSighted');
-	Template.Steps.AddItem('LW_TUT_EngineerSighted');
-	Template.Steps.AddItem('LW_TUT_SentrySighted');
-	Template.Steps.AddItem('LW_TUT_GunnerSighted');
+	Template.NextObjectives.AddItem('LW_TUT_DroneSighted');
+	Template.NextObjectives.AddItem('LW_TUT_RainbowTrooperSighted');
+	// Template.Steps.AddItem('LW_TUT_EngineerSighted');
+	// Template.Steps.AddItem('LW_TUT_SentrySighted');
+	// Template.Steps.AddItem('LW_TUT_GunnerSighted');
 
-	Template.CompletionEvent = '';
+	Template.CompletionEvent = 'OnTacticalBeginPlay';
 
 	return Template;
 }
@@ -48,7 +46,7 @@ static function X2DataTemplate CreateLW_TUT_DroneSightedTemplate()
 	local X2ObjectiveTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_DroneSighted');
-	Template.bMainObjective = false;
+	Template.bMainObjective = true;
 	Template.bNeverShowObjective = true;
 	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
 
@@ -57,58 +55,16 @@ static function X2DataTemplate CreateLW_TUT_DroneSightedTemplate()
 	return Template;
 }
 
-static function X2DataTemplate CreateLW_TUT_EngineerSightedTemplate()
+static function X2DataTemplate CreateLW_TUT_RainbowTrooperSightedTemplate()
 {
 	local X2ObjectiveTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_EngineerSighted');
-	Template.bMainObjective = false;
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_RainbowTrooperSighted');
+	Template.bMainObjective = true;
 	Template.bNeverShowObjective = true;
 	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
 
-	Template.CompletionEvent = 'EngineerSighted';
-
-	return Template;
-}
-
-static function X2DataTemplate CreateLW_TUT_SentrySightedTemplate()
-{
-	local X2ObjectiveTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_SentrySighted');
-	Template.bMainObjective = false;
-	Template.bNeverShowObjective = true;
-	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
-
-	Template.CompletionEvent = 'SentrySighted';
-
-	return Template;
-}
-
-static function X2DataTemplate CreateLW_TUT_GunnerSightedTemplate()
-{
-	local X2ObjectiveTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_GunnerSighted');
-	Template.bMainObjective = false;
-	Template.bNeverShowObjective = true;
-	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
-
-	Template.CompletionEvent = 'GunnerSighted';
-
-	return Template;
-}
-
-static function X2DataTemplate CreateLW_TUT_RocketeerSightedTemplate()
-{
-	local X2ObjectiveTemplate Template;
-
-	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_RocketeerSighted');
-	Template.bMainObjective = false;
-	Template.bNeverShowObjective = true;
-	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
-
-	Template.CompletionEvent = 'RocketeerSighted';
+	Template.CompletionEvent = 'BlehBleh';
 
 	return Template;
 }

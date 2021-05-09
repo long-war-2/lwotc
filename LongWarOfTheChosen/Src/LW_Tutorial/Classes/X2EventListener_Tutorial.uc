@@ -8,14 +8,8 @@ class X2EventListener_Tutorial extends X2EventListener config(LW_Tutorial);
 
 var localized string DroneSightedTitle;
 var localized string DroneSightedBody;
-var localized string EngineerSightedTitle;
-var localized string EngineerSightedBody;
-var localized string SentrySightedTitle;
-var localized string SentrySightedBody;
-var localized string GunnerSightedTitle;
-var localized string GunnerSightedBody;
-var localized string RocketeerSightedTitle;
-var localized string RocketeerSightedBody;
+var localized string RainbowTrooperSightedTitle;
+var localized string RainbowTrooperSightedBody;
 
 var localized string HavenHighlightTitle;
 var localized string HavenHighlightBody;
@@ -38,10 +32,10 @@ static function CHEventListenerTemplate CreateTacticalListeners()
 	// before the strategy objective is completed from the same event.
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'TacticalTutorialListeners');
 	Template.AddCHEvent('DroneSighted', OnDroneSighted, ELD_OnStateSubmitted, 90);
-	Template.AddCHEvent('EngineerSighted', OnEngineerSighted, ELD_OnStateSubmitted, 90);
-	Template.AddCHEvent('SentrySighted', OnSentrySighted, ELD_OnStateSubmitted, 90);
-	Template.AddCHEvent('GunnerSighted', OnGunnerSighted, ELD_OnStateSubmitted, 90);
-	Template.AddCHEvent('RocketeerSighted', OnRocketeerSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('EngineerSighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('SentrySighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('GunnerSighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('RocketeerSighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
 	Template.RegisterInTactical = true;
 
 	return Template;
@@ -76,61 +70,17 @@ static function EventListenerReturn OnDroneSighted(Object EventData, Object Even
 	return ELR_NoInterrupt;
 }
 
-static function EventListenerReturn OnEngineerSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+static function EventListenerReturn OnRainbowTrooperSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
-	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_EngineerSighted'))
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_RainbowTrooperSighted'))
 	{
-		class'LWTutorial'.static.CompleteObjective('LW_TUT_EngineerSighted');
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_RainbowTrooperSighted');
 
-		// Show the tutorial box for Engineers
+		// Show the tutorial box for rainbow troopers
 		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
-				default.EngineerSightedTitle,
-				default.EngineerSightedBody,
-				"img:///UILibrary_LW_Overhaul.TutorialImages.LWEngineer");
-	}
-	return ELR_NoInterrupt;
-}
-
-static function EventListenerReturn OnSentrySighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_SentrySighted'))
-	{
-		class'LWTutorial'.static.CompleteObjective('LW_TUT_SentrySighted');
-
-		// Show the tutorial box for Sentries
-		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
-				default.SentrySightedTitle,
-				default.SentrySightedBody,
-				"img:///UILibrary_LW_Overhaul.TutorialImages.LWSentry");
-	}
-	return ELR_NoInterrupt;
-}
-
-static function EventListenerReturn OnGunnerSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_GunnerSighted'))
-	{
-		class'LWTutorial'.static.CompleteObjective('LW_TUT_GunnerSighted');
-
-		// Show the tutorial box for Gunners
-		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
-				default.GunnerSightedTitle,
-				default.GunnerSightedBody,
-				"img:///UILibrary_LW_Overhaul.TutorialImages.LWGunner");
-	}
-	return ELR_NoInterrupt;
-}
-
-static function EventListenerReturn OnRocketeerSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_RocketeerSighted'))
-	{
-		class'LWTutorial'.static.CompleteObjective('LW_TUT_RocketeerSighted');
-		// Show the tutorial box for rocketeers
-		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
-				default.RocketeerSightedTitle,
-				default.RocketeerSightedBody,
-				"img:///UILibrary_LW_Overhaul.TutorialImages.LWRocketeer");
+				default.RainbowTrooperSightedTitle,
+				default.RainbowTrooperSightedBody,
+				"img:///UILibrary_LW_Overhaul.TutorialImages.LWRainbow");
 	}
 	return ELR_NoInterrupt;
 }
