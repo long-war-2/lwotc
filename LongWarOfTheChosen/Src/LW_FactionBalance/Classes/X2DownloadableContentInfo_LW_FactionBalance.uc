@@ -124,8 +124,8 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'IMPERSONAL_EDGE_AIM':
 		OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.IMPERSONAL_EDGE_AIM);
 		return true;
-	case 'BLUESCREEN_KNIFES_PIERCE':
-		OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.BLUESCREEN_KNIFES_PIERCE);
+	case 'BLUESCREEN_KNIVES_PIERCE':
+		OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.BLUESCREEN_KNIVES_PIERCE);
 		return true;
 	case 'DisablingShotCritStunActions':
 		OutString = string(class'X2Ability_ReaperAbilitySet_LW'.default.DisablingShotCritStunActions);

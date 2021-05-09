@@ -13,7 +13,10 @@ var config int HAILSTORM_COOLDOWN;
 var config int THOUSAND_DAGGERS_COOLDOWN;
 var config int REND_THE_MARKED_CRIT;
 var config int IMPERSONAL_EDGE_AIM;
-var config int BLUESCREEN_KNIFES_PIERCE;
+var config int BLUESCREEN_KNIVES_PIERCE;
+
+var localized string RendTheMarkedEffectName;
+var localized string RendTheMarkedEffectDesc;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -28,7 +31,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(ImpersonalEdgePassive());
 	Templates.AddItem(ImpersonalEdge());
 	Templates.AddItem(RendTheMarked());
-	Templates.AddItem(BlueScreenKnifes());
+	Templates.AddItem(BlueScreenKnives());
 
 	return Templates;
 }
@@ -500,7 +503,7 @@ static function X2AbilityTemplate AddThrowKnife(name AbilityName)
 	// Poison effect if soldier has Poisoned Blades
 	AddPoisonedBladesEffect(Template);
 	AddRendTheMarkedEffect(Template);
-	AddBlueScreenKnifesEffect(Template);
+	AddBlueScreenKnivesEffect(Template);
 	// Disabling standard VO for now, until we get axe specific stuff
 	Template.TargetKilledByAlienSpeech='';
 	Template.TargetKilledByXComSpeech='';
@@ -548,8 +551,8 @@ static function AddRendTheMarkedEffect(X2AbilityTemplate Template)
 	ToHitModifier.BuildPersistentEffect(1, false, true, true);
 	ToHitModifier.DuplicateResponse = eDupe_Allow;
 	ToHitModifier.bApplyAsTarget = true;
-	ToHitModifier.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
-	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.REND_THE_MARKED_CRIT, Template.LocFriendlyName);
+	ToHitModifier.SetDisplayInfo(ePerkBuff_Penalty, default.RendTheMarkedEffectName, `XEXPAND.ExpandString(default.RendTheMarkedEffectDesc), "img:///UILibrary_XPerkIconPack.UIPerk_knife_crit");
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.REND_THE_MARKED_CRIT, default.RendTheMarkedEffectName);
 	ToHitModifier.TargetConditions.AddItem(AbilityCondition);
 
 	Template.AddTargetEffect(ToHitModifier);
@@ -658,7 +661,7 @@ static function X2AbilityTemplate ImpersonalEdge()
 }
 
 
-static function X2AbilityTemplate BlueScreenKnifes()
+static function X2AbilityTemplate BlueScreenKnives()
 {
 	local XMBEffect_ConditionalBonus ShootingEffect;
 	local X2AbilityTemplate Template;
@@ -666,7 +669,7 @@ static function X2AbilityTemplate BlueScreenKnifes()
 	// Create an armor piercing bonus
 	ShootingEffect = new class'XMBEffect_ConditionalBonus';
 	ShootingEffect.EffectName = 'Bluescreenknifepierce';
-	ShootingEffect.AddArmorPiercingModifier(default.BLUESCREEN_KNIFES_PIERCE);
+	ShootingEffect.AddArmorPiercingModifier(default.BLUESCREEN_KNIVES_PIERCE);
 
 	// Only with the associated weapon
 	ShootingEffect.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
@@ -678,28 +681,30 @@ static function X2AbilityTemplate BlueScreenKnifes()
 	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
 	
 	// Activated ability that targets user
-	Template = Passive('BlueScreenKnifes', "img:///UILibrary_XPerkIconPack.PerkIcons.UIPerk_gremlin_knife", true, ShootingEffect);
+	Template = Passive('BlueScreenKnives', "img:///UILibrary_XPerkIconPack.UIPerk_gremlin_knife", true, ShootingEffect);
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
-	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
+	Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
 
 	return Template;
 }
 
-static function AddBlueScreenKnifesEffect(X2AbilityTemplate Template)
+static function AddBlueScreenKnivesEffect(X2AbilityTemplate Template)
 {
 	local X2Condition_AbilityProperty AbilityCondition;
 	local X2Condition_UnitProperty UnitCondition;
-	local X2Effect_Persistent DisorientedEffect;
+	local X2Effect_PersistentStatChange DisorientedEffect;
+
 	AbilityCondition = new class'X2Condition_AbilityProperty';
-	AbilityCondition.OwnerHasSoldierAbilities.AddItem('BlueScreenKnifes');
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('BlueScreenKnives');
 
 	UnitCondition = new class'X2Condition_UnitProperty';
 	UnitCondition.ExcludeOrganic = true;
 	UnitCondition.IncludeWeakAgainstTechLikeRobot = true;
 	UnitCondition.ExcludeFriendlyToSource = false;
+	UnitCondition.FailOnNonUnits = true;
 
-	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+	DisorientedEffect = CreateRoboticDisorientedStatusEffect();
 	DisorientedEffect.TargetConditions.AddItem(UnitCondition);
 	DisorientedEffect.TargetConditions.AddItem(AbilityCondition);
 
@@ -749,4 +754,34 @@ static function EventListenerReturn ImpersonalEdgeListener(Object EventData, Obj
 	}
 
 	return ELR_NoInterrupt;
+}
+
+static function X2Effect_PersistentStatChange CreateRoboticDisorientedStatusEffect(float DelayVisualizationSec=0.0f)
+{
+	local X2Effect_PersistentStatChange     PersistentStatChangeEffect;
+
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.EffectName = class'X2AbilityTemplateManager'.default.DisorientedName;
+	PersistentStatChangeEffect.DuplicateResponse = eDupe_Refresh;
+	PersistentStatChangeEffect.BuildPersistentEffect(class'X2StatusEffects'.default.DISORIENTED_TURNS,, false,,eGameRule_PlayerTurnBegin);
+	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.DisorientedFriendlyName, class'X2StatusEffects'.default.DisorientedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_disoriented");
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, class'X2StatusEffects'.default.DISORIENTED_MOBILITY_ADJUST);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Offense, class'X2StatusEffects'.default.DISORIENTED_AIM_ADJUST);
+	PersistentStatChangeEffect.VisualizationFn = class'X2StatusEffects'.static.DisorientedVisualization;
+	PersistentStatChangeEffect.EffectTickedVisualizationFn = class'X2StatusEffects'.static.DisorientedVisualizationTicked;
+	PersistentStatChangeEffect.EffectRemovedVisualizationFn = class'X2StatusEffects'.static. DisorientedVisualizationRemoved;
+	PersistentStatChangeEffect.EffectHierarchyValue = class'X2StatusEffects'.default.DISORIENTED_HIERARCHY_VALUE;
+	PersistentStatChangeEffect.bRemoveWhenTargetDies = true;
+	PersistentStatChangeEffect.bIsImpairingMomentarily = true;
+	PersistentStatChangeEffect.EffectAddedFn = class'X2StatusEffects'.static.DisorientedAdded;
+	PersistentStatChangeEffect.DelayVisualizationSec = DelayVisualizationSec;
+
+	if (class'X2StatusEffects'.default.DisorientedParticle_Name != "")
+	{
+		PersistentStatChangeEffect.VFXTemplateName = class'X2StatusEffects'.default.DisorientedParticle_Name;
+		PersistentStatChangeEffect.VFXSocket = class'X2StatusEffects'.default.DisorientedSocket_Name;
+		PersistentStatChangeEffect.VFXSocketsArrayName = class'X2StatusEffects'.default.DisorientedSocketsArray_Name;
+	}
+
+	return PersistentStatChangeEffect;
 }

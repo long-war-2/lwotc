@@ -153,12 +153,14 @@ LocLongDescription="Reduce shadow cooldown by 1 and gain a stackable +<Ability:I
 LocHelpText="Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
 LocPromotionPopupText="<Bullet/> "Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
 
-[BlueScreenKnifes X2AbilityTemplate]
-LocFriendlyName="Bluescreen knifes"
-LocHelpText="Throwing knives gain +<Ability:BLUESCREEN_KNIFES_PIERCE/> pierce and will disorient robotic units."
-LocLongDescription="Throwing knives gain +<Ability:BLUESCREEN_KNIFES_PIERCE/> pierce and will disorient robotic units."
-LocPromotionPopupText="Throwing knives gain +<Ability:BLUESCREEN_KNIFES_PIERCE/> pierce and will disorient robotic units."
+[BlueScreenKnives X2AbilityTemplate]
+LocFriendlyName="Bluescreen knives"
+LocHelpText="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
+LocLongDescription="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
+LocPromotionPopupText="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
 
-
+[LW_FactionBalance.X2Ability_ThrowingKnifeAbilitySet]
+RendTheMarkedEffectName="Rend The Marked"
+RendTheMarkedEffectDesc="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
 ; End Translation
 

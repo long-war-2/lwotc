@@ -759,7 +759,7 @@ static function X2DataTemplate AddCripplingStrike()
 	Template.AbilityCooldown = Cooldown;
 
 	class'X2Ability_ThrowingKnifeAbilitySet'.static.AddRendTheMarkedEffect(Template);
-	class'X2Ability_ThrowingKnifeAbilitySet'.static.AddBlueScreenKnifesEffect(Template);
+	class'X2Ability_ThrowingKnifeAbilitySet'.static.AddBlueScreenKnivesEffect(Template);
 	
 	// Ammo
 	AmmoCost = new class'X2AbilityCost_Ammo';
