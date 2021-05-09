@@ -135,9 +135,9 @@ LocPromotionPopupText="<Bullet/> Use Shadow's increased mobility and smaller ene
 ; LWOTC Needs Translation
 [RendTheMarked X2AbilityTemplate]
 LocFriendlyName="Rend The Marked"
-LocHelpText="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target for the remainder of the turn."
-LocLongDescription="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target for the remainder of the turn."
-LocPromotionPopupText="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target for the remainder of the turn."
+LocHelpText="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
+LocLongDescription="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
+LocPromotionPopupText="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
 
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="Knife Encounters"
