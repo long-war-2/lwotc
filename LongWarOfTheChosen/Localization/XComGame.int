@@ -5313,8 +5313,8 @@ LocLongDescription="Grant an additional action point to a bondmate. Has one or t
 
 ; LWOTC Needs Translation
 [Shadow X2AbilityTemplate]
-LocLongDescription="Grants the soldier Shadow, an advanced form of concealment that lasts for 1 turn."
-LocHelpText="Soldier enters Shadow, an advanced form of concealment, for 1 turn."
+LocLongDescription="Grants the soldier Shadow, an advanced form of concealment that lasts for 2 turns."
+LocHelpText="Soldier enters Shadow, an advanced form of concealment, for 2 turns."
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges by 100%, effectively rendering the unit invisible.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (2)
@@ -5363,7 +5363,7 @@ LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zon
 
 ; LWOTC Needs Translation
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 3 charges per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
+LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 4 charges per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
 ; End Translation
 
 [Hero_Tracking X2AbilityTemplate]
