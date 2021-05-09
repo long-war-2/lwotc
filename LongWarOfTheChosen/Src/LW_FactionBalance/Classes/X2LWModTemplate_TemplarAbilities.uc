@@ -18,13 +18,14 @@ var config int ARCWAVE_T1_DAMAGE;
 var config int ARCWAVE_T2_DAMAGE;
 var config int ARCWAVE_T3_DAMAGE;
 
+var config int GHOST_COOLDOWN;
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
 	{
-	case 'Rend':
 	case 'ArcWave':
-		Template.AdditionalAbilities.AddItem('OverCharge');
+		UpdateArcWave(Template);
+	case 'Rend':
 	case 'TemplarBladestormAttack':
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
@@ -33,6 +34,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		ModifyVoltTargeting(Template);
 		AddTerrorToVolt(Template);
 		MakeAbilityNonTurnEnding(Template);
+		Template.AdditionalAbilities.AddItem('OverCharge');
 		break;
 	case 'Deflect':
 		ModifyDeflectEffect(Template);
@@ -56,7 +58,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		FixVoidConduit(Template);
 		break;
 	case 'FocusKillTracker':
-		DisableFocusGainDuringApotheosis(Template);
+		//DisableFocusGainDuringApotheosis(Template);
 		break;
 	case 'OverCharge':
 		Template.AdditionalAbilities.RemoveItem('OverchargePassive');
@@ -64,10 +66,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'Amplify':
 		ModifyAmplifyEffect(Template);
 		class'Helpers_LW'.static.MakeFreeAction(Template);
+		break;
 	case 'Reverberation':
 		HideTheEffects(Template);
-	case 'ArcWave':
-		UpdateArcWave(Template);
+	case 'Ghost':
+		MakeGhostCooldownInsteadOfCharges(Template);
+		break;
 	}
 }
 
@@ -366,6 +370,26 @@ static function HideTheEffects(X2AbilityTemplate Template)
 			X2Effect_Persistent(Template.AbilityTargetEffects[i]).SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 		}
 	}
+}
+
+static function MakeGhostCooldownInsteadOfCharges(X2AbilityTemplate Template)
+{
+	local int i;
+	local X2AbilityCooldown	Cooldown;
+
+	for (i = Template.AbilityCosts.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityCosts[i].isA('X2AbilityCost_Charges'))
+		{
+			Template.AbilityCosts.Remove(i, 1);
+		}
+	}
+	Template.AbilityCharges = none;
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.GHOST_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
 }
 
 defaultproperties

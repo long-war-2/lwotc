@@ -5298,8 +5298,8 @@ LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equa
 ; End Translation (2)
 
 [StunStrike X2AbilityTemplate]
-LocLongDescription="Strike an enemy with Psionic force strong enough to knock them back in the direction of the attack, stunning them. Costs 1 Focus."
-LocHelpText="Knock an enemy back in the direction of the attack, stunning them. Costs 1 Focus."
+LocLongDescription="Strike an enemy with Psionic force, stunning them. Costs 1 Focus."
+LocHelpText="Strike an enemy with Psionic force, stunning them. Costs 1 Focus."
 LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike does not end the Templar's turn.<br/><Bullet/> Stun Strike has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [BondmateTeamwork X2AbilityTemplate]
@@ -5429,7 +5429,7 @@ LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, p
 
 ; LWOTC Needs Translation (2)
 [Ghost X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Overcharge, Vigilance, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Ionic Storm, Fortress and Sustain. <br/>"
+LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghost has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Shield bash, Shield abilities, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Superior Aptitude, Ionic Storm abd Sustain. <br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation #2 - Shard and Caster gauntlet tactical text and the brief
@@ -6733,20 +6733,20 @@ LocFlyOverText="Ballistic Shield"
 
 [TemplarBallisticShield_CV X2AbilityTemplate]
 LocFriendlyName="Ballistic Shield"
-LocHelpText="Grants 2 shield points and half cover to allies."
-LocLongDescription="Grants 2 shield points and half cover to allies."
+LocHelpText="Grants 0 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocLongDescription="Grants 0 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Ballistic Shield"
 
 [TemplarBallisticShield_MG X2AbilityTemplate]
 LocFriendlyName="Ballistic Shield"
-LocHelpText="Grants 5 shield points and half cover to allies."
-LocLongDescription="Grants 5 shield points and half cover to allies."
+LocHelpText="Grants 3 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocLongDescription="Grants 3 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Ballistic Shield"
 
 [TemplarBallisticShield_BM X2AbilityTemplate]
 LocFriendlyName="Ballistic Shield"
-LocHelpText="Grants 9 shield points and half cover to lllies."
-LocLongDescription="Grants 9 shield points and half cover to allies."
+LocHelpText="Grants 6 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocLongDescription="Grants 6 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Ballistic Shield"
 
 [ShieldBash_LW X2AbilityTemplate]
@@ -6830,8 +6830,8 @@ LocPromotionPopupText="<Bullet/> Amplify will last for a single damage instance.
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Crusader's Rage"
-LocHelpText="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 4 HP"
-LocLongDescription="Gain a 50% damage boost when at 50% hp or less." Reduce wound recovery times for this soldier by 4 HP."
+LocHelpText="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 6 HP"
+LocLongDescription="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 6 HP."
 LocPromotionPopupText="<Bullet/> Wound reduction does not work if the soldier entered a bleeding out state during the mission.<br/>"
 LocFlyOverText="Psychotic Rage"
 
@@ -6887,5 +6887,16 @@ LocLongDescription="A powerful form of Overwatch. Instead of firing automaticall
 LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action. Free action."
 LocPromotionPopupText="<Bullet/> This is a free action.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:SelfCooldown_LW/> turn cooldown."
 
+[ArcWavePassive X2AbilityTemplate]
+LocFriendlyName="Arc Wave"
+LocLongDescription="Rend generates a wave of Psionic energy in the direction of the attack. Damage increases with Gauntlet tier."
+LocHelpText="Rend generates a wave of Psionic energy in the direction of the attack."
+LocPromotionPopupText="<Bullet/> Arc Wave does not affect the target of the original Rend attack.<br/><Bullet/> Arc Wave deals 4/7/10 damage depanding on weapon tier.<br/><Bullet/> Arc Wave travels through environmental objects.<br/>"
+
+[IonicStorm X2AbilityTemplate]
+LocFriendlyName="Ionic Storm"
+LocLongDescription="Summon lightning to strike all nearby enemies. Damage increases with Focus level. Costs all Focus."
+LocHelpText="Summon lightning to strike all nearby enemies. Costs all Focus."
+LocPromotionPopupText="<Bullet/> Ionic Storm's radius increases at higher Focus levels.<br/><Bullet/> Ionic Storm deals double damage to Psionic units.<br/><Bullet/> Ionic Storm has a <Ability:SelfCooldown/> turn cooldown.<br/>"
 
 ; End Translation

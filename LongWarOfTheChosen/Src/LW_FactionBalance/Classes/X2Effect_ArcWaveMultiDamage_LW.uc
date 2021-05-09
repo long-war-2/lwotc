@@ -25,8 +25,8 @@ function WeaponDamageValue GetBonusEffectDamageValue(XComGameState_Ability Abili
 				Damage.Damage = T2Damage;
 				break;
 			case 'ShardGauntlet_BM':
-				break;
 				Damage.Damage = T3Damage;
+				break;
 			default:
 				Damage.Damage = T1Damage;
 		}

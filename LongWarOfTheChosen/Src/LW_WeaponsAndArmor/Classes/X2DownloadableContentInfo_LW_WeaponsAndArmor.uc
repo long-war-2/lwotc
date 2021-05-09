@@ -254,6 +254,11 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameState_Unit UnitState, XComUnitPawn Pawn)
 {
 	local name Item;
+	local X2WeaponTemplate PrimaryWeaponTemplate, SecondaryWeaponTemplate;
+	local string AnimSetToLoad;
+
+	PrimaryWeaponTemplate = X2WeaponTemplate(UnitState.GetPrimaryWeapon().GetMyTemplate());
+	SecondaryWeaponTemplate = X2WeaponTemplate( UnitState.GetSecondaryWeapon().GetMyTemplate());
 
 	if (!UnitState.IsSoldier()) return;
 
@@ -270,17 +275,54 @@ static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameStat
 			break;
 		}
 	}
-
-	foreach default.TEMPLAR_SHIELDS(Item)
+	if (SecondaryWeaponTemplate.WeaponCat == 'shield')
 	{
-		if (UnitState.HasItemOfTemplateType(Item))
+		CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Medkit")));
+		CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Grenade")));
+
+		switch (PrimaryWeaponTemplate.WeaponCat)
 		{
-			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Medkit")));
-			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Grenade")));
-			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Melee")));
+			case 'rifle':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_AssaultRifle'";
+				break;
+			case 'sidearm':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_AutoPistol'";
+				break;
+			case 'pistol': 
+			case 'sawedoff':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_Pistol'";
+				break;
+			case 'shotgun':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_Shotgun'";
+				break;
+			case 'bullpup':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_SMG'";
+				break;
+			case 'sword':
+			case 'combatknife':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_Sword'";
+				break;
 		}
-		break;
+		
+		if (AnimSetToLoad != "")
+		{
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype(AnimSetToLoad)));
+		}
+		if (PrimaryWeaponTemplate.WeaponCat == 'sword' || PrimaryWeaponTemplate.WeaponCat == 'gauntlet')
+		{
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations.Anims.AS_Shield_Melee")));
+		}
+		else
+		{
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations.Anims.AS_Shield")));
+		}
+
+		if (PrimaryWeaponTemplate.WeaponCat != 'gauntlet')
+		{
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations.Anims.AS_Shield_Armory")));
+		}
 	}
+
 	if(UnitState.GetMyTemplateName() == 'TemplarSoldier')
 	{
 		if(UnitState.GetItemInSlot(eInvSlot_Pistol) != none)

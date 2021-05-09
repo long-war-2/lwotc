@@ -2198,7 +2198,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			break;
 		//CHOSEN CHANGES
 		case 'TemplarSoldier':
-			Template.bCanTakeCover = false;
+		//	Template.bCanTakeCover = false;
 		case 'Soldier': 
 		case 'ReaperSoldier':
 		case 'SkirmisherSoldier':
