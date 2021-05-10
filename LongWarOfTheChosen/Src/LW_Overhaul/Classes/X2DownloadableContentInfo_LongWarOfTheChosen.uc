@@ -4089,6 +4089,7 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	local XComGameState_HeadquartersXCom	XComHQ;
 	local name								ClassName;
 	local int								i, NumRanks, iXP;
+	local array<XComGameState_Item>			EquippedImplants;
 
 	History = `XCOMHISTORY;
 
@@ -4106,6 +4107,13 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	if (ClassName == 'Random' || ClassName == 'Rookie')
 	{
 		ClassName = XComHQ.SelectNextSoldierClass();
+	}
+
+	// Remove PCSes because they mess up the base stats after the reset.
+	EquippedImplants = UnitState.GetAllItemsInSlot(eInvSlot_CombatSim);
+	for (i = 0; i < EquippedImplants.Length; i++)
+	{
+		UnitState.RemoveItemFromInventory(EquippedImplants[i], NewGameState);
 	}
 
 	UnitState.AbilityPoints = 0; // Reset Ability Points
@@ -4132,6 +4140,12 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	if (iXP > 0)
 	{
 		UnitState.AddXp(iXP);
+	}
+
+	// Restore the PCSes.
+	for (i = 0; i < EquippedImplants.Length; i++)
+	{
+		UnitState.AddItemToInventory(EquippedImplants[i], eInvSlot_CombatSim, NewGameState);
 	}
 
 	if (NewGameState.GetNumGameStateObjects() > 0)
