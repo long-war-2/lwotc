@@ -35,7 +35,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 				BonusAmmo = 0;
 				if (WeaponTemplate != none && WeaponTemplate.bMergeAmmo)
 				{
-					if (ItemState.InventorySlot == eInvSlot_Utility || ItemInnerIter.InventorySlot == eInvSlot_GrenadePocket)
+					if (ItemState.InventorySlot == eInvSlot_Utility || ItemState.InventorySlot == eInvSlot_GrenadePocket)
 						BonusAmmo += default.PACKMASTER_KIT_BONUS;
 
 					for (InnerIdx = Idx + 1; InnerIdx < UnitState.InventoryItems.Length; ++InnerIdx)
