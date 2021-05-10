@@ -1519,11 +1519,16 @@ static function AddObjectivesToParcels()
 				ParcelMgr.arrPlots[i].ObjectiveTags.AddItem("MediumPlot");
 			}
 
-			// Exclude Sewer maps so that Tunnels don't dominate the map pool quite so hard.
-			if (PlotDef.strType == "Tunnels_Sewer")
+			// Quick hack to enable Rendezvous maps for Ambush mission
+			if (ParcelMgr.arrPlots[i].ObjectiveTags.Length > 0 && ParcelMgr.arrPlots[i].ObjectiveTags[0] == "AvengerDefense")
 			{
-				ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+				ParcelMgr.arrPlots[i].ObjectiveTags.AddItem("CovertEscape");
 			}
+			// Exclude Sewer maps so that Tunnels don't dominate the map pool quite so hard.
+			// if (PlotDef.strType == "Tunnels_Sewer")
+			// {
+			// 	ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+			// }
 		}
 
 		i = 0;
