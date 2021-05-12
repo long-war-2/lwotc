@@ -1,7 +1,7 @@
 ; LWOTC Translated
-[EnableChosen SecondWaveOptionObject]
-Tooltip="Активирует избранных."
-Description="Избранные: активирует Избранных. Они появятся по мере прохождения игры. Удачи."
+[DisableChosen SecondWaveOptionObject]
+Tooltip="Выключает избранных."
+Description="Избранные: деактивирует Избранных. Они не появятся."
 
 [EnableResistanceOrders SecondWaveOptionObject]
 Tooltip="Активирует Приказы Сопротивления."
@@ -17,4 +17,9 @@ Description="Позволяет оперативникам ХКОМ приобр
 [BabyChosen SecondWaveOptionObject]
 Tooltip="Отключает способность Избранных реагировать на атаки, облегчает игру против Избранных."
 Description="Простые Избранные: у избранных отключена ответная реакция."
+; End Translated
+; LWOTC Translated
+[DisableTutorial SecondWaveOptionObject]
+Tooltip="Отключает подсказки LWOTC."
+Description="Отключает подсказки LWOTC."
 ; End Translated
