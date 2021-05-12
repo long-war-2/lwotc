@@ -842,7 +842,7 @@ static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
 	local XComGameState_AdventChosen ChosenState;
 
 	// If Chosen are disabled, skip adding the tag.
-	if (!`SecondWaveEnabled('EnableChosen'))
+	if (`SecondWaveEnabled('DisableChosen'))
 	{
 		return;
 	}

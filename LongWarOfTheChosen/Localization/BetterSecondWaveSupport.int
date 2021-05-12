@@ -5,9 +5,9 @@ Description="No Hand Holding: Disable the LWOTC tutorial."
 ; End Translation
 
 ; LWOTC Needs Translation
-[EnableChosen SecondWaveOptionObject]
-Tooltip="Enables the Chosen, who will activate automatically when you reach a particular date."
-Description="The Chosen: Enables the Chosen."
+[DisableChosen SecondWaveOptionObject]
+Tooltip="Disables the Chosen so you don't have to play with them."
+Description="The Chosen On Holiday: Disables the Chosen."
 
 [EnableResistanceOrders SecondWaveOptionObject]
 Tooltip="Enables Resistance Orders."

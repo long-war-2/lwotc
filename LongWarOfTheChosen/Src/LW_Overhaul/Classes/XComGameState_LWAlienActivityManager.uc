@@ -491,7 +491,7 @@ static function ModifyAlertForChosen(XComGameState_MissionSite MissionState, out
 	local name ChosenSpawningTag;
 
 	// If Chosen are disabled, skip adding the tag.
-	if (!`SecondWaveEnabled('EnableChosen'))
+	if (`SecondWaveEnabled('DisableChosen'))
 	{
 		return;
 	}

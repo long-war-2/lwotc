@@ -146,7 +146,7 @@ static function X2DataTemplate CreateLW_T2_M0_S4_AssaultNetworkTowerTemplate()
 
 static function ActivateChosenIfEnabled(XComGameState NewGameState, XComGameState_Objective ObjectiveState)
 {
-	if (`SecondWaveEnabled('EnableChosen'))
+	if (!`SecondWaveEnabled('DisableChosen'))
 	{
 		class'X2StrategyElement_XpackObjectives'.static.ActivateChosen(NewGameState, ObjectiveState);
 	}
