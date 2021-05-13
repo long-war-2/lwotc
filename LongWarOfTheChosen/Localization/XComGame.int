@@ -6690,7 +6690,6 @@ LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Movin
 ; End Translation
 
 ; LWOTC Needs Translation
-<<<<<<< HEAD
 [AssassinBladestorm X2AbilityTemplate]
 LocFriendlyName="Bladestorm"
 LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
@@ -6705,8 +6704,6 @@ LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that ent
 LocFlyOverText="Bladestorm"
 LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
 
-=======
->>>>>>> 998d3d12... Apply suggestions from code review
 [TemplarBallisticShield_CV X2WeaponTemplate]
 FriendlyName="Ballistic Shield MK1"
 FriendlyNamePlural="Ballistic Shields MK1"
