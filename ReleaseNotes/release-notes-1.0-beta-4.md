@@ -10,6 +10,7 @@ Here are some of the headline changes you may be interested in:
 * Templars and Reapers have been changed significantly in terms of both abilities and equipment, and how they function/play
 * The Lost now appear in smaller numbers on average, but that scales with alert level
 * The XCOM row perks have been refreshed so soldiers are more likely to get appropriate/useful abilities for their class
+* There is now a tutorial, which can be disabled via a second wave option
 * Much improved controller support (thanks to kdm2k6)
 
 ||  **[Download the release from here]()** ||
@@ -36,7 +37,7 @@ They are now enabled by default.
  * Kidnap is now a 2-action-point ability that remotely kidnaps a bleeding out or unconscious soldier, and it no longer makes the Chosen leave the battlefield
  * Start with no strengths, but they get them regularly via the Training activity
  * Strengths are tiered, 1-4, with their power scaling with tier - tier 4 strengths make the Chosen very tough to deal with!
- * Activate at force level (FL) 5
+ * Activate at force level (FL) 3
  * Automatically upgrade to the next tier at force levels 9, 14 and 20
  * Take their turn before ADVENT/aliens
  * Cause ALL alien units to bleed units out instead of kill them (from only chosen having that passive)
@@ -63,6 +64,8 @@ They are now enabled by default.
 
 Stays around 25-30 tiles away, high mobility, tries to pick off your soldiers while slowly retreating, if possible will try to flank from squadsight
 
+* Throws flashbang grenades for free with a 1-turn cooldown
+
 Hunter has a new set of starting abilities:
 
  * Combat Readiness
@@ -76,9 +79,9 @@ Hunter has a new set of starting abilities:
 
 ### Chosen Assassin
 
-Assassin – Close quarter menace, each bending reed move is now a lot shorter but it conceals. Low initial sword damage and crit damage, but almost always crits and damage gets boosted with each use.
+Assassin – Close quarter menace who likes to run at your soldiers and use her sword and shotgun. The sword has low initial base and crit damage, but almost always crits and the damage gets boosted with each use via Blood Thirst.
 
- * She can enter concealment when she doesn't have the range to attack (?)
+ * She only uses Vanishing Wind (going into concealment) in the rare situation where she can not use Parting Silk
  * No longer has Bending Reed
  * No longer conceals after Parting Silk
  * Parting Silk can target civilians
@@ -91,7 +94,7 @@ Assassin – Close quarter menace, each bending reed move is now a lot shorter b
 Assassin has a new set of starting abilities:
 
  * Blood Thirst (attacks grant a stackable flat damage boost that is cleared when the Chosen captures a unit)
- * Brawler (30% damage reduction within 4 tiles)
+ * Brawler (35% damage reduction within 4 tiles)
  * Impact Compensation (stackable 25% damage reduction after taking damage that lasts to the end of the Assassin's turn)
  * Banzai (same as Combat Readiness, but it additionally removes most debuffs, not just Immobilized)
  * Hit and Run
@@ -104,14 +107,13 @@ Now is the support unit master and mid-range king. No longer gets neutered by mi
 mind scorch uses area suppression targeting, now has a 70% chance to set the target on fire instead of dazing, and deals low amount of damage
 
  * Mind control cooldown increased by 1
- * Teleport ally now grants the ally unit an action
 
 Warlock has a new set of starting abilities:
 
  * Combat Readiness
  * Close Combat Specialist
  * Grazing Fire
- * The Warlock's Greatest Champion (grants energy shield to ally plus 67% damage reduction and bonuses to Aim, crit chance, Will and Psi Offense)
+ * The Warlock's Greatest Champion (grants energy shield to ally plus bonuses to Aim, crit chance, Will and Psi Offense, while giving the Warlock 67% damage reduction)
  * Chosen Summon
 
 ### Chosen Weapons (the rewards for XCOM)
@@ -120,10 +122,10 @@ Warlock has a new set of starting abilities:
  * Weapon damage has been standardized to coil tier, except for the katana which is mag tier and has only +10% bonus accuracy
  * Arashi gains:
    - Vampirism - dealing damage with this weapon restores the same amount of health
-   - Brawler - 30% damage reduction if attacker is within 4 tiles
+   - Brawler - 35% damage reduction if attacker is within 4 tiles
    - Impact Compensation - after taking damage, grants 25% damage reduction for the rest of the turn
  * Katana:
-   - gains Blood Thirst - after attacking with this weapon, gain a stackable +3 damage buff that lasts for 3 turns
+   - gains Blood Thirst - after attacking with this weapon, gain a stackable +1 damage buff that lasts for 3 turns
    - -10 to Aim
  * Darklance gains:
    - Mark for Death - mark a target for 1 action point that lasts till end of XCOM's next turn, which refunds the action point cost of standard (not Snap Shot) shots against that target
@@ -226,7 +228,7 @@ New and reworked abilities:
  * Total Combat now grants Bombardier and Volatile Mix on top of the existing behavior
  * Packmaster grants +1 charge to every utility item equipped, including any grenades in the grenade pocket
  * Damn Good Ground now works on Justice and Wrath
- * Interrupt is a free action on a 3-turn cooldown that places the Skirmisher into a Battlelord-like overwatch, with the number of actions during the enemy turn limited to however many action points the Skirmisher had when activating Interrupt
+ * Interrupt is a free action on a 3-turn cooldown that grants the Skirmisher a single Battlelord-like action during the enemy's turn
  * Judgement has a +20% chance to proc
  * Only one of Close Encounters or Hit and Run can proc on a single turn
  * Reckoning no longer grants the free slash
@@ -240,6 +242,7 @@ The shield grants the following:
  * 0/3/6 passive ablative HP based on the shield's tier
  * Makes the Templar ignore 2/4/6 HP in wound calculations
  * +30 Defense against flanking shots or if the Templar is not in cover
+ * +20 Aim on attacks with the shield (e.g. Shield Bash)
 
 In addition, the Templar:
 
@@ -262,7 +265,7 @@ New and reworked abilities:
  * Amplify is now a free action, but the bonus damage is 25% (down from 33%) and it only lasts for a single attack
  * Indomitable grants the Templar 1 focus when attacked for the first time each turn
  * Stun Strike has 85% to-hit chance, but no longer knocks targets back
- * Shield Bash is a new ability that bashes an enemy in melee range, knocking them back 2 tiles and doing 2-4/4-7/7-10 damage based on shield tier
+ * Shield Bash is a new ability that bashes an enemy in melee range, knocking them back 2 tiles and doing 2-4/4-7/7-10 damage based on shield tier; it's a free action
  * Brawler grants 35% damage reduction against attacks from within 4 tiles
  * Pillar is now a free action and doesn't cost focus, but it has a 4-turn cooldown
  * Overcharge now grants +10% crit chance per point of focus instead of +5 Defense
@@ -270,10 +273,10 @@ New and reworked abilities:
  * Concentration upgrades grazes to normal hits
  * Superior Aptitude makes Rend grant an additional +1 focus on attacks
  * Arc Wave's splash damage is no longer based on focus but gauntlet tier: 4/7/10
- * Crusader's Rage grants 50% increased damage when the Templar has 50% HP or less, and reduces max damage taken for wound recovery calculations by 4 HP (i.e. the Templar has shorter wound recovery times in general)
+ * Crusader's Rage grants 50% increased damage when the Templar has 50% HP or less, and reduces max damage taken for wound recovery calculations by 6 HP (i.e. the Templar has shorter wound recovery times in general)
  * Impact Compensation grants a stacking 25% damage reduction after each attack against the Templar, lasting until the end of turn; all stacks and other sources combine multiplicatively rather than additively
  * Ionic Storm no longer grants focus on kills
- * Apotheosis now lasts for 2 turns and grants +20 Dodge for each point of focus above 2 consumed when activating the ability (so 3 focus consumed -> +20 Dodge, 4 focus consumed -> +40 Dodge)
+ * Apotheosis now lasts for 2 turns and grants +20 Dodge for each point of focus above 2 that's consumed when activating the ability (so 3 focus consumed -> +20 Dodge, 4 focus consumed -> +40 Dodge)
  * Ghost now has a 5-turn cooldown instead of charges and works with Brawler, Impact Compensation, Concentration, Overcharge and Fortress
 
 ### Psi Operatives
@@ -287,7 +290,7 @@ Many thanks to Iridar for permission to use the three new abilities below which 
  * Stasis can no longer target large units, i.e. ones that occupy more than one square (Sectopods and Gatekeepers)
  * Mind Merge now grants more ablative, crit chance and Will as you can no longer get Soul Merge
  * Soul Steal heals for more HP and grants ablative HP that lasts 3 turns
- * Fuse is now a free action and removes all charges of the explosive from the target so they can't use the ability at all
+ * Fuse is now a free action
  * Void Rift now applies rupture to all targeted enemies and the Insanity chance is higher
  * Dependencies between psi abilities have been reworked:
 
@@ -337,7 +340,17 @@ Many thanks to Iridar for permission to use the three new abilities below which 
  * Scanning Protocol now has 3 charges, up from 1
  * Needle Grenades now do +1 damage to unarmored targets
  * Rescue Protocol has +1 charges at all Gremlin tiers and grants the target +15 Dodge and +5 Mobility
- * Gunslinger's cooldown has been reduced from 4 to 3 and its range from 12 tiles to 8, but it now has 360 degree activation instead of a cone and the shots can crit even without Cool Under Pressure
+ * Replaced Return Fire pistol ability with Magnum
+ * Magnum is a new ability that removes the long-range penalty for pistols' Standard Shot (so doesn't work for Lightning Hands, Face Off, etc.)
+ * Gunslinger's cooldown has been reduced from 4 to 3 and its range from 12 tiles to 7, but it now has 360 degree activation instead of a cone and the shots are guaranteed to both hit *and* crit
+ * Pistol ability costs have been updated:
+   - Magnum = 5
+   - Quick Draw = 10
+   - Clutch Shot = 10
+   - Lightning Hands = 15
+   - Gunslinger = 15
+   - Face Off = 20
+   - Fan Fire = 20
  * Center Mass now works with sidearms - a different weapon category from "pistols" that the autopistol falls under
  * Death Dealer no longer applies to tick damage like bleeding and poison
  * Field Surgeon no longer applies to bleeding out units, but does now apply to haven advisers
@@ -347,6 +360,9 @@ Many thanks to Iridar for permission to use the three new abilities below which 
 
 Thanks to Iridar for permission to use his sawed-off shotgun model and to InternetExploder for their grenade launcher model!
 
+ * Autopistols can now be used by any soldier class in the pistol slot
+   - Cheaper than before
+   - Shorter range and lower base damage than the pistol, but higher crit damage and 40% base crit chance
  * Added tier 3 Combat Knife (Advanced Vibroblade) - requires Andromedon autopsy to unlock it
  * Combat knives now have +35 Aim (from +20) and the stats have been rescaled to account for the extra tier:
    - Combat Knife: 2-4 damage (3 average), 3 crit damage, +35 aim, +20 crit chance
@@ -359,10 +375,9 @@ Thanks to Iridar for permission to use his sawed-off shotgun model and to Intern
    - Mag Shorty: 7-13 damage (10 average), 5 crit damage, +15 crit chance
    - Beam Shorty: 10-18 damage (14 average), 7 crit damage, +15 crit chance
  * Added tier 3 Grenade Launcher (Beam Grenade Launcher) - requires both Plasma Rifle and WAR Suit research to unlock it
- * Beam Grenade Launcher has 2 less range than the Advanced, but uses Blaster Launcher targeting
+ * Beam Grenade Launcher has the same range as the Advanced, but uses Blaster Launcher targeting
  * EMP grenades and bombs are now guaranteed to disorient mechanical units
  * Bluescreen rounds now have a 50% chance to disorient mechanical units
- * Beam Grenade launcher gains +2 range
  * Higher-tier Technical gauntlets have a higher chance to stun enemies
  * SMGs now have +2 Mobility (down from +3), 3 ammo (up from 2), and have higher close-range Aim bonuses than before
  * The range change for SMGs also applies to Bullpups and Autopistols
@@ -410,6 +425,9 @@ If you'd like to try out the new overwatch behaviour, simply disable the Revert 
  * The ADVENT General's damage has gone from 3-5 to 5-8 with +2 crit damage; M2's damage has gone up to 6-10 with +4 crit (we were inadvertently using vanilla Field Commander values, but the new ones are still a bit lower than in Long War 2)
  * Decreased advent Vanguard aim by 5
  * Decreased Spectre weapon damage from 5-8/6-10 (average 6.5 / 8) to 4-7/6-8 (average 5.5/7)
+ * Priests' Will is higher at all tiers
+ * M2 Priests have mind shields instead of Fortress
+ * M3 Priests have Solace (the vanilla game's aura ability) instead of Bastion
  * Remodeled Priest AI to be less predictable, all Priests gain 10 Psi Offense, and Advanced and Elite Priests lose 10 innate Dodge; Priests will no longer stasis the Lost
  * Purifiers lose their unused grenade, granting them +1 Mobility, and their pistol damage has been decreased from 1-3/3-5/5-7 to 1-3/2-5/4-6, although their pistols still have 2/3/4 crit damage
  * M2 Purifiers gain Phosphorus
@@ -421,7 +439,6 @@ If you'd like to try out the new overwatch behaviour, simply disable the Revert 
 
  * Poison always lasts for two turns now
    - Poison had the chance to disappear almost immediately, making Venom Rounds and Gas Grenades particularly weak
-   - Soldiers will now be able to move out of poison clouds without poisoning themselves again, since they will still be poisoned for the turn following the poison being applied
  * Bladestorm can no longer trigger on the owning unit's turn
  * Anything that extends the mission timer (sit reps, map size) will now result in the reinforcements arriving more slowly, with bigger extensions resulting in a greater slowing of RNFs (this should help with large-map Jailbreaks and some Project Miranda missions)
  * The bonus detection radius granted to units on red alert on Legend difficulty is now the same as for Veteran and Commander
@@ -496,7 +513,7 @@ Other changes include:
  * Starting regions will now have 3-4 links with other regions and you will be much less likely to start in the same small selection of regions each campaign - this makes the start of the campaign noticeably less punishing
  * Shaken now takes 20-24 days to recover from
  * Reaper HQ intel gain increased slightly, from 0-4 every 2 days to 2-4 on Commander and Legend difficulties, from 2-6 to 4-6 on Rookie and from 1-6 to 3-6 on Veteran
- * Soldier haven advisor now gets a big boost to recruiting efficiency when there are fewer than 6 rebels
+ * Soldier haven advisor now gets a significant boost to recruiting efficiency when there are fewer than 6 rebels in the haven
  * Uncontacted regions now have a slightly higher chance to recruit rebels and a lower chance to gain vigilance
  * When a haven has 6 rebels or fewer, the recruit job has a 100% chance to recruit rebels instead of the normal 67% for rebels and 33% for rookies
  * Missions that will be on large or very large maps will now have a corresponding Large Map or Very Large Map sit rep attached to them
@@ -520,7 +537,7 @@ Contoller integration is steadily getting better, so there is less need for play
 ### Strategy
 
  * Starting global ADVENT strength no longer varies between campaigns
- * Chosen icons are displayed for each
+ * The appropriate Chosen icon is now displayed in each contacted region once you have encountered them, i.e. the Geoscape will display which Chosen you will encounter on missions in that region
  * Alien Rulers will now appear noticeably more frequently on relevant missions (UFOs, troop columns, HQ assaults, facilities)
  * Infiltrator (officer ability) now correctly applies its bonus to mission infiltration time
  * Researching any basic level grenade Proving Ground project after Advanced Explosives no longer gives you the advanced version of that grenade (for example, you could previously research Advanced Explosives, then the EMP grenades project, which would grant you an EMP *Bomb*)
@@ -536,6 +553,7 @@ Contoller integration is steadily getting better, so there is less need for play
  * Dark event sit reps like Rapid Response should no longer appear on missions that they don't work on (for example, Rapid Response on untimed missions with no reinforcements)
  * Lost should no longer appear on Abandoned City missions that don't support The Lost sit rep (such as troop columns)
  * M3 Gunners can now make use of their Traverse Fire ability
+ * Priests' Stasis no longer works on large units
  * Najas will now favour moving as far away as possible from XCOM to the edge of vision
  * Infighter no longer procs at 2 tiles higher range than intended
  * Psi operatives should no longer get Soul Steal twice as a training option (works around a bug in vanilla game)
