@@ -106,6 +106,9 @@ var config array<int> MIN_FL_FOR_LOST;
 // Thresholds for region strength translating to larger Alien Ruler pod size.
 var config array<int> RULER_POD_SIZE_ALERT_THRESHOLDS;
 
+// Scaling multiplier for the Brute's pawn
+var config float BRUTE_SIZE_MULTIPLIER;
+
 // End data and data structures
 //-----------------------------
 
@@ -1246,6 +1249,20 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 
 static function PostReinforcementCreation(out name EncounterName, out PodSpawnInfo Encounter, int ForceLevel, int AlertLevel, optional XComGameState_BaseObject SourceObject, optional XComGameState_BaseObject ReinforcementState)
 {
+}
+
+// Increase the size of Lost Brutes (unless WWL is installed)
+static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameState_Unit UnitState, XComUnitPawn Pawn)
+{
+	if (Left(UnitState.GetMyTemplateName(), Len("TheLostBrute")) != "TheLostBrute")
+		return;
+
+	// No need to scale the Brute's pawn size if World War Lost is installed
+	// because we'll be using its dedicated Brute model.
+	if (class'Helpers_LW'.static.IsModInstalled("WorldWarLost"))
+		return;
+
+	Pawn.Mesh.SetScale(default.BRUTE_SIZE_MULTIPLIER);
 }
 
 // Use SLG hook to add infiltration modifiers to alien units
