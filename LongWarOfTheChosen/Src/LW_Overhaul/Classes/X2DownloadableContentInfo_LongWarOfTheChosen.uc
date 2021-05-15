@@ -1524,11 +1524,12 @@ static function AddObjectivesToParcels()
 			{
 				ParcelMgr.arrPlots[i].ObjectiveTags.AddItem("CovertEscape");
 			}
+
 			// Exclude Sewer maps so that Tunnels don't dominate the map pool quite so hard.
-			// if (PlotDef.strType == "Tunnels_Sewer")
-			// {
-			// 	ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
-			// }
+			if (PlotDef.strType == "Tunnels_Sewer")
+			{
+				ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+			}
 		}
 
 		i = 0;
