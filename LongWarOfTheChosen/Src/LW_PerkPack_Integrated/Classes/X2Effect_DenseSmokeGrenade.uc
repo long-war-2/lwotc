@@ -18,17 +18,6 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
 		ShotMod.Value = HitMod;
 		ShotMod.Reason = FriendlyName;
 		ShotModifiers.AddItem(ShotMod);
-
-		/* WOTC TODO: Requires a change to XComGame/X2Effect_SmokeGrenade
-		if (class'X2Effect_SmokeGrenade'.default.bSmokeCancelsFlankCritBonus && bFlanking)
-		{
-			ShotMod.ModType = eHit_Crit;
-			ShotMod.Reason = FriendlyName;
-			ShotMod.Value = -Attacker.GetCurrentStat(eStat_FlankingCritChance);
-
-			ShotModifiers.AddItem(ShotMod);
-		}
-		*/
 	}
 }
 

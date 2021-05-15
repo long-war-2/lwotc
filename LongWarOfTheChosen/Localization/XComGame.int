@@ -6598,11 +6598,16 @@ LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/>
 ; End Translation
 
 ; LWOTC Needs Translation
-
-
 [ReactionFireAgainstCoverBonus X2AbilityTemplate]
 LocFriendlyName="Reaction Fire Anti Cover"
 LocHelpText="Reduces the Defense bonus provided by cover on overwatch shots"
+
+; LWOTC Needs Translation (2)
+[SmokeFlankingCritProtection X2AbilityTemplate]
+LocFriendlyName="Smoke Anti Crit"
+LocHelpText="Negates the crit bonus from flanking"
+; End Translation (2)
+
 
 [ImpactCompensation_LW X2AbilityTemplate]
 LocFriendlyName="Impact Compensation"
