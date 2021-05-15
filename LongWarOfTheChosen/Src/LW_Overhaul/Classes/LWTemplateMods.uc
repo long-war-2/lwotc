@@ -3337,6 +3337,11 @@ function RewireTechTree(X2StrategyElementTemplate Template, int Difficulty)
 			TechTemplate.Cost.ResourceCosts.AddItem(Resources);
 		}
 
+		if (TechTemplate.DataName == 'ResistanceRadio')
+		{
+			TechTemplate.ResearchCompletedFn = ActivateContinentBonuses;
+		}
+
 		if (TechTemplate.DataName == 'SpiderSuit')
 			TechTemplate.bRepeatable = false;
 		if (TechTemplate.DataName == 'ExoSuit')
@@ -3474,6 +3479,29 @@ function RewireTechTree(X2StrategyElementTemplate Template, int Difficulty)
 				}
 			}
 		}
+	}
+}
+
+// Activates all eligible continent bonuses that aren't already
+// active. Activation of a bonus normally happens when a region is
+// contacted and there are sufficient radio relays on the continent,
+//  but we prevent this from happening
+// (see X2EventListener_StrategyMap.HandleContinentBonusActivation())
+// if Resistance Radio hasn't first been researched. This is a follow
+// up for those regions affected by blocked bonus activation.
+static function ActivateContinentBonuses(XComGameState NewGameState, XComGameState_Tech TechState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_Continent ContinentState;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_Continent', ContinentState)
+	{
+		// This will activate or deactivate the continent bonus
+		// depending on whether all the requirements have been met
+		// or not.
+		ContinentState.HandleRegionResistanceLevelChange(NewGameState);
 	}
 }
 

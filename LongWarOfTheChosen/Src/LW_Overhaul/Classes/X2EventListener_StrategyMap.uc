@@ -60,6 +60,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('RegionBuiltOutpost', OnRegionBuiltOutpost, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('PreDarkEventDeactivated', ShowDarkEventDeactivatedNotification, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('Geoscape_ResInfoButtonVisible', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('ContinentBonusActivated', HandleContinentBonusActivation, ELD_OnStateSubmitted, GetListenerPriority());
 
 	//Added for fix to issue #100
 	Template.AddCHEvent('OverrideCurrentDoom', OverrideCurrentDoom, ELD_Immediate, GetListenerPriority());
@@ -1019,6 +1020,49 @@ static function EventListenerReturn ShowOrHideResistanceOrdersButton(
 	Tuple.Data[0].b = class'Helpers_LW'.static.AreResistanceOrdersEnabled();
 
 	return ELR_NoInterrupt;
+}
+
+// Checks whether Resistance Radio has been researched and, if not, deactivates
+// the continent bonus again. It will get activated again once the player has
+// researched Resistance Radio via an ResearchCompletedFn.
+static function EventListenerReturn HandleContinentBonusActivation(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComGameState NewGameState;
+	local XComGameState_Continent ContinentState;
+
+	ContinentState = XComGameState_Continent(EventData);
+	if (ContinentState == none)
+	{
+		`REDSCREEN("Continent bonus activated but no associated continent found");
+		return ELR_NoInterrupt;
+	}
+
+	// If Resistance Radio has been researched, we don't need to do anything
+	// since that's LWOTC's new condition for allowing the activation of
+	// continent bonuses.
+	if (`XCOMHQ.IsTechResearched('ResistanceRadio')) return ELR_NoInterrupt;
+
+	// Deactivate the continent bonus because it shouldn't be active yet
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Deactivate continent bonus");
+	ContinentState = XComGameState_Continent(
+		NewGameState.ModifyStateObject(class'XComGameState_Continent', ContinentState.ObjectID));
+	ContinentState.DeactivateContinentBonus(NewGameState);
+	ContinentState.bHasHadContinentBonus = false;
+
+	if (NewGameState.GetNumGameStateObjects() > 0)
+		`GAMERULES.SubmitGameState(NewGameState);
+	else
+		`XCOMHISTORY.CleanupPendingGameState(NewGameState);
+
+	// Don't propagate the event as we have effectively rolled back the change
+	// that triggered it. This does require other listeners to come after us
+	// otherwise they'll think the continent bonus is active.
+	return ELR_InterruptListeners;
 }
 
 static function EventListenerReturn AllowOutOfContinentStartingRegionLinks(

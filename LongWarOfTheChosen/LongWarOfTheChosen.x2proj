@@ -543,19 +543,19 @@
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ArmoryWeaponUpgrade_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Armory_MainMenu_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_AvengerHUD.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ContinentBonus.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_DropShipBriefing_MissionStart.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_GetPCSImageOverride.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_LivingQuarters.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_OverrideItemRange.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelSquadSelect.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ResistanceReport.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Shell.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ShellDifficulty.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_SkyrangerArrives_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_SquadSelect_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_TacticalHUD.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_UIStrategyMap.uc">
-      <SubType>Content</SubType>
-    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_UIStrategyMap.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ViewObjectives.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScrollingTextField.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UISquadClassItem.uc" />
@@ -1176,7 +1176,6 @@
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2TargetingMethod_CommandRange.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_XP.uc" />
     <Content Include="Config\XComPromotionUIMod.ini" />
-    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelSquadSelect.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHero.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHeroColumn.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\X2DownloadableContentInfo_NewPromotionScreenbyDefault.uc" />
