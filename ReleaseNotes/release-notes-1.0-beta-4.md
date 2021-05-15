@@ -29,7 +29,7 @@ Here are the changes since beta 3.1:
 
 The Chosen have been significantly reworked to be more challenging in tactical battles and have a greater impact on the strategy game. Specifically, they are stronger than they were, but they only appear on retaliations and story missions where you generally have a large squad. To compensate for their increased difficulty, there are fewer enemies on the map when a Chosen is present and rebels have been buffed (see tactical changes).
 
-They are now enabled by default.
+**They are now enabled by default.**
 
 ### All Chosen
 
@@ -40,7 +40,7 @@ They are now enabled by default.
  * Activate at force level (FL) 3
  * Automatically upgrade to the next tier at force levels 9, 14 and 20
  * Take their turn before ADVENT/aliens
- * Cause ALL alien units to bleed units out instead of kill them (from only chosen having that passive)
+ * Cause XCOM to bleed out from killing blows from *all* enemy units when the Chosen are present, not just from the Chosen themselves (except for Chryssalids, who'll just kill your soldiers straight up - those pesky critters)
  * Spawn much closer to XCOM and are instantly engaged
  * Immune to frost
  * No longer daze
@@ -125,7 +125,7 @@ Warlock has a new set of starting abilities:
    - Brawler - 35% damage reduction if attacker is within 4 tiles
    - Impact Compensation - after taking damage, grants 25% damage reduction for the rest of the turn
  * Katana:
-   - gains Blood Thirst - after attacking with this weapon, gain a stackable +1 damage buff that lasts for 3 turns
+   - gains Blood Thirst - after attacking with this weapon, gain a stackable +1 damage buff that lasts for 4 turns
    - -10 to Aim
  * Darklance gains:
    - Mark for Death - mark a target for 1 action point that lasts till end of XCOM's next turn, which refunds the action point cost of standard (not Snap Shot) shots against that target
@@ -159,6 +159,7 @@ Additionally:
 
 ## Mods
 
+ * You no longer need the Reliable Smoke mod to fix smoke targeting and provide the flanking crit protection as both are now built into LWOTC
  * If you're using LeaderEnemyBoss's No Drop Down List mod (highly recommended!) then switch to the [controller-compatible WOTC version](https://steamcommunity.com/sharedfiles/filedetails/?id=2098062078)
  * Kiruka has done a fantastic job of balancing and bridging various mods to LWOTC via [Mod Jam](https://steamcommunity.com/sharedfiles/filedetails/?id=2299170518), such as Rocket Launchers 2.0, Gene Mods, and Dual Wield Pistols 2.0 among many others
 
@@ -378,7 +379,7 @@ Thanks to Iridar for permission to use his sawed-off shotgun model and to Intern
  * Beam Grenade Launcher has the same range as the Advanced, but uses Blaster Launcher targeting
  * EMP grenades and bombs are now guaranteed to disorient mechanical units
  * Bluescreen rounds now have a 50% chance to disorient mechanical units
- * Higher-tier Technical gauntlets have a higher chance to stun enemies
+ * Higher-tier Technical gauntlets have a higher chance to stun enemies with the Concussion Rocket
  * SMGs now have +2 Mobility (down from +3), 3 ammo (up from 2), and have higher close-range Aim bonuses than before
  * The range change for SMGs also applies to Bullpups and Autopistols
 
@@ -437,6 +438,7 @@ If you'd like to try out the new overwatch behaviour, simply disable the Revert 
 
 ### Miscellaneous
 
+ * Smoke targeting is now fixed without the need for a separate mod and smoke also negates the crit bonus for flanking attacks
  * Poison always lasts for two turns now
    - Poison had the chance to disappear almost immediately, making Venom Rounds and Gas Grenades particularly weak
  * Bladestorm can no longer trigger on the owning unit's turn
@@ -454,6 +456,7 @@ If you'd like to try out the new overwatch behaviour, simply disable the Revert 
    - 0%-24% infiltration is Under infiltration (impossible)
    - The buffs apply flat bonuses to Aim and Defense, and a percentage increase to HP, with the values of the buffs increasing with decreasing infiltration
  * Command pods on troop columns and supply raids only ever have 5 units in them (they could have 8 before), and the pods are slightly weaker (this ensures that 100%-infiltrated missions are more appropriate for the alert level)
+ * Troop columns can no longer spawn on Subway maps (they were too cramped, particularly for missions with heavier numbers of enemies)
  * All retaliation missions except intel raid gain +2 alert level; intel raid gains +3
  * Intel Raid objective now has more HP across the board, especially late game
  * Recruit Raid rebels are now armed, and the mission reinforcements are slower
@@ -462,7 +465,7 @@ If you'd like to try out the new overwatch behaviour, simply disable the Revert 
  * Redesigned Chosen Avenger Defense with a lot more strong enemies, and blowing destroying gun placements requires setting up X4-like charges rather than shooting them (thanks to RedDobe for the implementation)
  * Rendezvous missions are more difficult, as the effective force level is only 33% less than the global one (down from 50% less) with a -1 adjustment (down from -2)
  * Rendezvous have more varied enemies now, so you can meet aliens on them (Sectoids, Mutons, etc.)
- * Sabotage Transmitter now starts with a 4-turn timer, down from 3
+ * Sabotage Transmitter now starts with a 4-turn timer, up from 3
 
 ## Campaign/Geoscape Changes
 
@@ -475,6 +478,7 @@ To begin with, the ambush mission is different from before: you now have 12 hour
 Other changes include:
 
  * The first covert action will now have risks enabled on it
+ * Successfully completing covert actions now grants 3-4 XP to the soldiers on them, up from 1-2
  * "Hunt the Chosen" durations have been reduced substantially
  * Failure chances have been reduced a bit across the board
  * You can upgrade the Resistance Ring once to add an engineer slot for a further reduction in covert action durations (if staffed)
@@ -511,6 +515,7 @@ Other changes include:
 ### Miscellaneous
 
  * Starting regions will now have 3-4 links with other regions and you will be much less likely to start in the same small selection of regions each campaign - this makes the start of the campaign noticeably less punishing
+ * Continent bonuses will no longer be granted before Resistance Radio has been researched (only really applies to 2-region continents, which you can now start on)
  * Shaken now takes 20-24 days to recover from
  * Reaper HQ intel gain increased slightly, from 0-4 every 2 days to 2-4 on Commander and Legend difficulties, from 2-6 to 4-6 on Rookie and from 1-6 to 3-6 on Veteran
  * Soldier haven advisor now gets a significant boost to recruiting efficiency when there are fewer than 6 rebels in the haven
@@ -518,6 +523,7 @@ Other changes include:
  * When a haven has 6 rebels or fewer, the recruit job has a 100% chance to recruit rebels instead of the normal 67% for rebels and 33% for rookies
  * Missions that will be on large or very large maps will now have a corresponding Large Map or Very Large Map sit rep attached to them
  * Alien rulers will appear significantly more often than before
+ * `RespecSelectedSoldier` will now properly handle PCSes (before, it was permanently reducing the base stat of the soldier that the PCS was buffing)
 
 ## Controllers
 
