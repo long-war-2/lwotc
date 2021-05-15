@@ -1151,7 +1151,9 @@
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Ability_ShieldAbilitySet.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Ability_ThrowingKnifeAbilitySet.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2DownloadableContentInfo_LW_WeaponsAndArmor.uc" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Effect_ImpersonalEdge.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Effect_OneForAll.uc" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Effect_ShieldGuard.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Effect_ShieldWall.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionArmors.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionWeapons.uc" />
@@ -1302,6 +1304,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ShadowGrenadier.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ShadowRising_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_SilentKiller_LW.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_SkirmisherInterrupt_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_TemplarFocusStatBonuses.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_TemplarGrazingFire.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_VoidConduitPatch.uc" />
