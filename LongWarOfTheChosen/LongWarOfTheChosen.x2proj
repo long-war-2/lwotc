@@ -1282,6 +1282,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2AbilityTarget_Cursor_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2DownloadableContentInfo_LW_FactionBalance.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Amplify_LW.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\XComGameState_Effect_Amplify_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Apotheosis.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ArcWaveMultiDamage_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_BanishHitMod.uc" />

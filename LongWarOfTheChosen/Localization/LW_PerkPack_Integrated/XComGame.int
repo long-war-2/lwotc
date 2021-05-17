@@ -315,7 +315,7 @@ LocFriendlyName="Gunslinger"
 LocFlyOverText="Gunslinger"
 LocLongDescription="Take a reaction shot that that's guaranteed to hit and crit with your pistol against any enemy that moves or attacks within <Ability:GUNSLINGER_TILES_RANGE/> tiles."
 LocHelpText="Enhanced radial pistol overwatch."
-LocPromotionPopupText="<Bullet/> Range is <Ability:GUNSLINGER_TILES_RANGE/> tiles.<br/><Bullet/> Gunslinger has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Range is <Ability:GUNSLINGER_TILES_RANGE/> tiles.<br/><Bullet/> Gunslinger has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 LocFriendlyNameWhenConcealed="Overwatch (Concealed)"
 ; End Translation (3)
 

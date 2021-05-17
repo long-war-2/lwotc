@@ -6824,10 +6824,10 @@ LocPromotionPopupText="<Bullet/> Volt has no cooldown, but costs 1 Focus.<br/><B
 
 [Amplify X2AbilityTemplate]
 LocFriendlyName="Amplify"
-LocLongDescription="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next attack. Costs 1 Focus, free action."
-LocHelpText="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next attack. Costs 1 Focus, free action."
+LocLongDescription="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 2 attacks. Costs 1 Focus, free action."
+LocHelpText="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 2 attacks. Costs 1 Focus, free action."
 LocHitMessage="Amplified"
-LocPromotionPopupText="<Bullet/> Amplify will last for a single damage instance.<br/><Bullet/> Amplify is a free action.<br/>"
+LocPromotionPopupText="<Bullet/> Amplify will last for a two damage instances.<br/><Bullet/> Amplify is a free action.<br/>"
 
 
 [CrusaderRage_LW X2AbilityTemplate]
@@ -6872,8 +6872,8 @@ LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to 
 
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Total Combat"
-LocLongDescription="Throwing a grenade or using an item no longer ends the turn. In addition, you can throw grenades 2 tiles further and their radius is increased by 1."
-LocHelpText="Throwing a grenade or using an item no longer ends the turn. In addition, you can throw grenades 2 tiles further and their radius is increased by 1."
+LocLongDescription="Throwing a grenade or using an item no longer ends the turn and no longer has a cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1."
+LocHelpText="Throwing a grenade or using an item no longer ends the turn and no longer has a cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1."
 LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the Skirmisher's turns, allowing actions to be taken exactly when needed.<br/> <Bullet/> Grants both Bombard and Volatile Mix, hence it does not stack with either of them."
 
 [PackMaster_LW X2AbilityTemplate]

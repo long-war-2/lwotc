@@ -28,6 +28,8 @@ var config int FOCUS3CRIT;
 var config int FOCUS4AIM;
 var config int FOCUS4CRIT;
 
+var config int AMPLIFY_SHOTS;
+
 var name PanicImpairingAbilityName;
 
 static function array<X2DataTemplate> CreateTemplates()

@@ -1817,6 +1817,7 @@ static function X2AbilityTemplate AddGunslingerAbility()
 	local X2Effect_MarkValidActivationTiles MarkTilesEffect;
 	local X2Condition_UnitEffects           SuppressedCondition;
 	local X2AbilityTarget_Cursor			CursorTarget;
+	local X2Condition_UnitProperty 			UnitPropertyCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'Gunslinger');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityGunslinger";
@@ -1856,6 +1857,10 @@ static function X2AbilityTemplate AddGunslingerAbility()
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.GUNSLINGER_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
+
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeConcealed = true;
+	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
 	CursorTarget.FixedAbilityRange = 1;

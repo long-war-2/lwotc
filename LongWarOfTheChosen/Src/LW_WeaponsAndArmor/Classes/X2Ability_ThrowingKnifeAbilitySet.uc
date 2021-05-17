@@ -636,7 +636,7 @@ static function X2AbilityTemplate ImpersonalEdge()
 	EventListenerTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventListenerTrigger.ListenerData.EventID = 'UnitDied';
 	EventListenerTrigger.ListenerData.Filter = eFilter_None;
-	EventListenerTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.FullThrottleListener;
+	EventListenerTrigger.ListenerData.EventFn = ImpersonalEdgeListener;
 	Template.AbilityTriggers.AddItem(EventListenerTrigger);
 
 	StatChangeEffect = new class'X2Effect_PersistentStatChange';
@@ -733,11 +733,13 @@ static function EventListenerReturn ImpersonalEdgeListener(Object EventData, Obj
 {
 	local XComGameStateContext_Ability AbilityContext;
 	local XComGameState_Item ItemState;
-	local XComGameState_Ability AbilityState;
+	local XComGameState_Ability AbilityState, TriggerAbilityState;
 
 
 	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
 	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID));
+
+	TriggerAbilityState = XComGameState_Ability(CallbackData);
 
 	ItemState = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.ItemObject.ObjectID));
 
@@ -748,7 +750,7 @@ static function EventListenerReturn ImpersonalEdgeListener(Object EventData, Obj
 		{
 			if(X2WeaponTemplate(ItemState.GetMyTemplate()) != none && X2WeaponTemplate(ItemState.GetMyTemplate()).WeaponCat == 'throwingknife')
 			{
-				return AbilityState.AbilityTriggerEventListener_Self(EventData, EventSource, GameState, EventID, CallbackData);
+				return TriggerAbilityState.AbilityTriggerEventListener_Self(EventData, EventSource, GameState, EventID, CallbackData);
 			}
 		}
 	}

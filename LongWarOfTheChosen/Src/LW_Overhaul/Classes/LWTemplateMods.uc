@@ -965,7 +965,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_SharpshooterAim_LW   	AimEffect;
 	local X2AbilityCooldown_Shared			CooldownShared;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
-
+	local X2AbilityCooldown_AllInstances 	AllInstancesCooldown;
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
 	{
@@ -1576,9 +1576,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'ThrowGrenade')
 	{
-		Cooldown = new class'X2AbilityCooldown_AllInstances';
-		Cooldown.iNumTurns = default.THROW_GRENADE_COOLDOWN;
-		Template.AbilityCooldown = Cooldown;
+		AllInstancesCooldown = new class'X2AbilityCooldown_AllInstances';
+		AllInstancesCooldown.ExcludeIfTheSoldierHasAbility.AddItem('TotalCombat');
+		AllInstancesCooldown.ExcludeIfTheSoldierHasAbility.AddItem('ShadowGrenadier');
+		AllInstancesCooldown.iNumTurns = default.THROW_GRENADE_COOLDOWN;
+		Template.AbilityCooldown = AllInstancesCooldown;
 		X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bGuaranteedHit = true;
 	}
 

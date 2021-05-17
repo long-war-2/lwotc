@@ -319,6 +319,7 @@ static function ModifyAmplifyEffect(X2AbilityTemplate Template)
 
 	AmplifyEffect = new class'X2Effect_Amplify_LW';
 	AmplifyEffect.BuildPersistentEffect(1, true, true);
+	AmplifyEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
 	AmplifyEffect.bRemoveWhenTargetDies = true;
 	AmplifyEffect.BonusDamageMult = class'X2Ability_TemplarAbilitySet'.default.AmplifyBonusDamageMult;
 	AmplifyEffect.MinBonusDamage = class'X2Ability_TemplarAbilitySet'.default.AmplifyMinBonusDamage;
