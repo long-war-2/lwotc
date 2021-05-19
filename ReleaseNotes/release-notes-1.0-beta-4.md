@@ -203,7 +203,7 @@ New and reworked abilities:
 
  * Shadow lasts for 2 turns, has a 2-turn cooldown and reduces detection radius by 100%
  * Knife Juggler adds +1 throwing knife, +1 damage to throwing knives, and makes it so that kills with the primary weapon grant an extra knife
- * Shadow Grenadier allows the Reaper to throw grenades without breaking Shadow and also adds a grenade pocket to the class
+ * Shadow Grenadier allows the Reaper to throw grenades without breaking Shadow, adds a grenade pocket to the class, and removes the cooldown on throwing grenades
  * Shooting Sharp grants ranged attacks +2 armor piercing and  +10 aim against units in cover
  * Crippling Strike is an active ability that throws a knife (consumes a knife charge) resulting in the target being Maimed if hit (they have 0 Mobility but can perform other actions)
  * Paramedic grants a free medikit charge, adds +2 charges to any equipped medikits, and makes the first use of a medikit each turn a free action
@@ -211,7 +211,7 @@ New and reworked abilities:
  * Banish shots can now crit, but each subsequent shot has -15 Aim compared to the previous one (so the 4th shot will have a -45 Aim penalty); the ability now has a 4-turn cooldown instead of a single charge
  * Knife Encounters grants a bonus action after a knife is thrown at an enemy within 4 tiles; procs no more than once per turn (like Close Encounters)
  * Death Dealer works for both the primary and secondary weapons
- * Impersonal Edge reduces Shadow cooldown by 1 turn and grants a stackable +20 Aim for 3 turns when the Reaper kills a unit with a knife
+ * Impersonal Edge reduces Shadow cooldown by 1 turn and grants a stackable +20 Aim for 3 turns when the Reaper kills a unit with a throwing knife
  * Packmaster grants +1 charge to every utility item equipped, including any grenades in the grenade pocket
  * Rend the Mark grants throwing knives a stackable effect when they hit an enemy that applies +50% crit chance against the target from all sources for the remainder of the turn; each Rend the Mark stack does not affect the knife throw that applied it
  * Homing Mine has 4 charges
@@ -263,7 +263,7 @@ New and reworked abilities:
  * Rend no longer has bonus damage from either focus or Fleche, but its base damage is now 4-6/6-9/9-12 based on gauntlet tier and it grants 1 focus on attack (hit or miss) rather than on kill
  * One for All provides high cover to adjacent allies and grants +4/7/10 ablative to the Templar based on shield tier, but applies a -30 Defense penalty to the Templar (stacks with the Defense provide by cover or the shield)
  * Invert now has Exchange incorporated into it, requires line of sight, requires the target to be within normal weapon/visual range, and has a 2-turn cooldown
- * Amplify is now a free action, but the bonus damage is 25% (down from 33%) and it only lasts for a single attack
+ * Amplify is now a free action, the bonus damage is 35% (up from 33%) and it lasts for just two attacks
  * Indomitable grants the Templar 1 focus when attacked for the first time each turn
  * Stun Strike has 85% to-hit chance, but no longer knocks targets back
  * Shield Bash is a new ability that bashes an enemy in melee range, knocking them back 2 tiles and doing 2-4/4-7/7-10 damage based on shield tier; it's a free action
@@ -343,7 +343,7 @@ Many thanks to Iridar for permission to use the three new abilities below which 
  * Rescue Protocol has +1 charges at all Gremlin tiers and grants the target +15 Dodge and +5 Mobility
  * Replaced Return Fire pistol ability with Magnum
  * Magnum is a new ability that removes the long-range penalty for pistols' Standard Shot (so doesn't work for Lightning Hands, Face Off, etc.)
- * Gunslinger's cooldown has been reduced from 4 to 3 and its range from 12 tiles to 7, but it now has 360 degree activation instead of a cone and the shots are guaranteed to both hit *and* crit
+ * Gunslinger's cooldown has been reduced from 4 to 3 and its range from 12 tiles to 9, but it now has 360 degree activation instead of a cone and the shots are guaranteed to both hit *and* crit; cannot be used from concealment
  * Pistol ability costs have been updated:
    - Magnum = 5
    - Quick Draw = 10
@@ -566,6 +566,7 @@ Contoller integration is steadily getting better, so there is less need for play
  * Fixed the camera focusing on Sectoid Commanders 3 turns after their death
  * WOTC enemies now properly get War Cry bonuses and their corpses are now correctly destroyed when the unit is killed by explosives
  * Biggest Booms no longer bypasses Fortress/Bastion
+ * (Since dev build 20) The Lost should no longer crash the game when they appear
 
 ## Modding
 
