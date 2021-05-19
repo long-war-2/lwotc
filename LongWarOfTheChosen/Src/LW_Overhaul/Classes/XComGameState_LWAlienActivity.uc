@@ -317,7 +317,7 @@ function UpdateGameBoard()
 			NewGameState.AddStateObject(ActivityState);
 			ActivityState.bNeedsAppearedPopup = false;
 			ActivityState.bMustLaunch = false;
-			`XEVENTMGR.TriggerEvent('NewMissionAppeared', , , NewGameState);
+			`XEVENTMGR.TriggerEvent('NewMissionAppeared', , ActivityState, NewGameState);
 			`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 		}
 		if (ShouldPause)

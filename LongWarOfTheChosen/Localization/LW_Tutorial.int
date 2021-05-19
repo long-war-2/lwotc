@@ -10,8 +10,44 @@ RainbowTrooperSightedTitle="New Enemies: ADVENT Infantry"
 RainbowTrooperSightedBody="ADVENT now fields a variety of infantry units in addition to the basic trooper:<ul><li>Sentries (blue) specialize in overwatch</li><li>Gunners (green) sport a high-damage cannon with suppression capabilities</li><li>Grenadiers (red) use a grenade launcher for crowd control and damage</li><li>Rocketeers (orange) fire high-accuracy rockets</li></ul>"
 HavenHighlightTitle="Review your haven"
 HavenHighlightBody="Havens are essential to your campaign as they are used to find missions in the region. In addition, you can only contact regions that are connected to an existing haven.<br/><br/>Click on the button shown on the left to open the Haven management screen."
+; LWOTC Needs Translation (2)
+FirstMissionDiscoveredTitle="First Mission Discovered"
+FirstMissionDiscoveredBody="You have detected your first mission! Your next step is to assign a squad to infiltrate it.<br/><br/>Most missions have an expiry date and infiltration takes time. Improve your odds for reaching 100% infiltration by putting more rebels on the intel job. Scanning at a haven with the Avenger will contribute 4 rebels-worth of intel."
+FirstRetaliationTitle="ADVENT Retaliations"
+FirstRetaliationBody="ADVENT are retaliating! These are quick-response missions that you should not ignore.<br/><br/>There is a full retaliation, which if ignored or lost destroys the haven, and job-specific retaliations that will kill the rebels on that job if ignored. Your haven adviser will be available on the mission along with some rebels."
+CommandersQuartersEnteredTitle="LWOTC Help"
+CommandersQuartersEnteredBody="LWOTC adds several entries to the XCOM Archives that explain some of its core concepts in more detail, like infiltration and haven management.<br/><br/>You can also review all your havens from one screen via the Resistance Management menu."
+; End Translation (2)
 
-[UIScreenListener_OutpostManagementTutorial]
+[UIScreenListener_HavenManagementTutorial]
 HavenManagementTitle="Haven Management"
-HavenManagementBody="Havens are home to a collection of rebels who can undertake several jobs:<br/><br/><ul><li>Intel - detects missions</li><li>Recruit - recruits rebels and rookies</li><li>Supply - generates supplies</li></ul>The more rebels that are on a job, the more effective they are."
+HavenManagementBody="Havens are home to a collection of rebels who can undertake several jobs:<br/><ul><li>Intel - detects missions</li><li>Recruit - recruits rebels and rookies</li><li>Supply - generates supplies</li></ul><br/>The more rebels that are on a job, the more you get from it. Keep your rebels on Intel for now."
+; LWOTC Needs Translation (2)
+HavenAdvisersTitle="Haven Advisers"
+HavenAdvisersBody="Click on the box labeled (1) on the left to assign an adviser to the haven. You can assign one of:<br/><ul><li>Soldier - detects Faceless and helps recruit</li><li>Scientist - improves Intel job output, but no longer contributes to research</li><li>Engineer - improves Supply job output</li></ul><br/>Detecting Faceless allows you to evict them."
+; End Translation (2)
+; End Translation
+
+; LWOTC Needs Translation
+[UIScreenListener_CovertActionsTutorial]
+CovertActionsTutorialTitle="Covert Actions"
+CovertActionsTutorialBody="Unlike vanilla WOTC, your operatives can fail covert actions. The risk of failure is reduced based on the ranks of the soldiers on the operation. The higher the ranks, the lower the risk of failure."
+
+[UIScreenListener_InitialHavenTutorial]
+HavenHighlightTitle="Review Your Haven"
+HavenHighlightBody="Havens are essential to your campaign as they are used to find missions in the region. In addition, you can only contact regions that are connected to an existing haven.<br/><br/>Click on the button shown on the left to open the Haven management screen."
+
+[UIScreenListener_MissionBriefTutorial]
+MissionBriefTutorialTitle="Mission Briefings"
+MissionBriefTutorialBody="Mission expiration determines how long you have to infiltrate the mission. The more mission intel you generate from the rebel Intel job, the earlier you detect missions and the longer you have to infiltrate.<br/><br/>You don't have to do every mission, but you should do as many as you can. If you don't have a squad or don't have enough time, then don't be afraid to skip a mission."
+MissionEnemyCountTitle="Enemy numbers"
+MissionEnemyCountBody="The enemy count shown on the left is an approximation of how many enemies will be on the mission if you reach 100% infiltration.<br/><br/>Underinfiltrating (not reaching 100%) results in more enemies on the mission. Overinfiltrating has a chance to reduce the enemy numbers."
+
+[UIScreenListener_SquadSelectTutorial]
+SquadSelectInfiltrationTitle="Choosing Squads"
+SquadSelectInfiltrationBody="In addition to choosing squad members that are strong enough for the mission, you also need to take into account infiltration time in LWOTC.<br/><br/>Each extra squad member increases infiltration time exponentially beyond the fourth one. Abilities like Tradecraft and items like Suppressors can reduce infiltration time a little."
+
+[UIScreenListener_InfiltratingMissionTutorial]
+InfiltratingMissionTitle="Infiltrating Missions"
+InfiltratingMissionBody="You can launch an infiltration mission at any time, but underinfiltrating makes missions harder. You can spend Intel to boost the infiltration so it completes faster.<br/><br/>You can abort the infiltration at any time and restart it later if the mission hasn't expired yet. Restarting sets infiltration back to 0%."
 ; End Translation

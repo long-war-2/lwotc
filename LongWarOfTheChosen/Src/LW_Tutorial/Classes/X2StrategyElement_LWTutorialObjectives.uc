@@ -13,8 +13,15 @@ static function array<X2DataTemplate> CreateTemplates()
 	Objectives.AddItem(CreateLW_TUT_DroneSightedTemplate());
 	Objectives.AddItem(CreateLW_TUT_RainbowTrooperSightedTemplate());
 	Objectives.AddItem(CreateLW_TUT_CampaignStartTemplate());
+	Objectives.AddItem(CreateLW_TUT_CommandersQuarters());
 	Objectives.AddItem(CreateLW_TUT_HavenOnGeoscape());
 	Objectives.AddItem(CreateLW_TUT_HavenManagement());
+	Objectives.AddItem(CreateLW_TUT_FirstMissionDiscovered());
+	Objectives.AddItem(CreateLW_TUT_FirstMissionBrief());
+	Objectives.AddItem(CreateLW_TUT_SquadSelect());
+	Objectives.AddItem(CreateLW_TUT_InfiltratingMission());
+	Objectives.AddItem(CreateLW_TUT_FirstRetaliation());
+	Objectives.AddItem(CreateLW_TUT_CovertActions());
 
 	return Objectives;
 }
@@ -80,9 +87,26 @@ static function X2DataTemplate CreateLW_TUT_CampaignStartTemplate()
 	Template.bNeverShowObjective = true;
 	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
 
+	Template.NextObjectives.AddItem('LW_TUT_CommandersQuarters');
 	Template.NextObjectives.AddItem('LW_TUT_HavenOnGeoscape');
+	Template.NextObjectives.AddItem('LW_TUT_FirstMissionDiscovered');
+	Template.NextObjectives.AddItem('LW_TUT_FirstMissionBrief');
+	Template.NextObjectives.AddItem('LW_TUT_SquadSelect');
+	Template.NextObjectives.AddItem('LW_TUT_InfiltratingMission');
+	Template.NextObjectives.AddItem('LW_TUT_FirstRetaliation');
+	Template.NextObjectives.AddItem('LW_TUT_CovertActions');
 
-	Template.CompletionEvent = '';
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_CommandersQuarters()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_CommandersQuarters');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
 
 	return Template;
 }
@@ -98,8 +122,6 @@ static function X2DataTemplate CreateLW_TUT_HavenOnGeoscape()
 
 	Template.NextObjectives.AddItem('LW_TUT_HavenManagement');
 
-	Template.CompletionEvent = '';
-
 	return Template;
 }
 
@@ -112,7 +134,77 @@ static function X2DataTemplate CreateLW_TUT_HavenManagement()
 	Template.bNeverShowObjective = true;
 	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
 
-	Template.CompletionEvent = '';
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_FirstMissionDiscovered()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_FirstMissionDiscovered');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_FirstMissionBrief()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_FirstMissionBrief');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_SquadSelect()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_SquadSelect');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_InfiltratingMission()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_InfiltratingMission');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	return Template;
+}
+	
+static function X2DataTemplate CreateLW_TUT_FirstRetaliation()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_FirstRetaliation');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_CovertActions()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_CovertActions');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
 
 	return Template;
 }

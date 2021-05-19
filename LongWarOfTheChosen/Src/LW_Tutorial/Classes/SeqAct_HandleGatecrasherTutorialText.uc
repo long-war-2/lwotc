@@ -25,11 +25,11 @@ defaultproperties
 {
 	ObjCategory="LWTutorial"
 	ObjName="Update Gatecrasher Text"
-    bConvertedForReplaySystem=true
-    bAutoActivateOutputLinks=true
+	bConvertedForReplaySystem=true
+	bAutoActivateOutputLinks=true
 
 	TitleIndex=2
 	BodyIndex=3
-    VariableLinks(0)=(ExpectedType=class'SeqVar_Int',LinkDesc="Title Index",PropertyName=TitleIndex, bWriteable=true)
-    VariableLinks(1)=(ExpectedType=class'SeqVar_Int',LinkDesc="Body Index",PropertyName=BodyIndex, bWriteable=true)
+	VariableLinks(0)=(ExpectedType=class'SeqVar_Int',LinkDesc="Title Index",PropertyName=TitleIndex, bWriteable=true)
+	VariableLinks(1)=(ExpectedType=class'SeqVar_Int',LinkDesc="Body Index",PropertyName=BodyIndex, bWriteable=true)
 }

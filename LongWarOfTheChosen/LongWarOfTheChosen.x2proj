@@ -1351,7 +1351,12 @@
     <Content Include="Src\LW_Tutorial\Classes\LWTutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\SeqAct_HandleGatecrasherTutorialText.uc" />
     <Content Include="Src\LW_Tutorial\Classes\SeqAct_LWTutorialIsActive.uc" />
-    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_OutpostManagementTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_CovertActionsTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_HavenManagementTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_InfiltratingMissionTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_InitialHavenTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_MissionBriefTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_SquadSelectTutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\X2DownloadableContentInfo_LW_Tutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\X2EventListener_Tutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\X2StrategyElement_LWTutorialObjectives.uc" />

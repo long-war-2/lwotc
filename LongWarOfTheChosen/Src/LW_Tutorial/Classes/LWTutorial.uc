@@ -13,33 +13,33 @@ var localized string CampaignStartBody;
 static function DoCampaignStart()
 {
 	if (IsObjectiveInProgress('LW_TUT_CampaignStart'))
-    {
+	{
 		class'LWTutorial'.static.CompleteObjective('LW_TUT_CampaignStart');
-        `PRESBASE.UITutorialBox(
-            default.CampaignStartTitle,
-            default.CampaignStartBody,
-            "img:///UILibrary_LW_Overhaul.TutorialImages.LWOTC_Logo");
-    }
+		`PRESBASE.UITutorialBox(
+			default.CampaignStartTitle,
+			default.CampaignStartBody,
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWOTC_Logo");
+	}
 }
 
 // Completes an objective, creating a new game state for the change if no game
 // state is provided.
 static function CompleteObjective(name TutorialObjectiveName, optional XComGameState NewGameState)
 {
-    local bool DoGameStateSubmit;
+	local bool DoGameStateSubmit;
 
-    if (NewGameState == none)
-    {
-        NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Complete Objective: " $ TutorialObjectiveName);
-        DoGameStateSubmit = true;
-    }
+	if (NewGameState == none)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Complete Objective: " $ TutorialObjectiveName);
+		DoGameStateSubmit = true;
+	}
 
-    class'XComGameState_Objective'.static.CompleteObjectiveByName(NewGameState, TutorialObjectiveName);
+	class'XComGameState_Objective'.static.CompleteObjectiveByName(NewGameState, TutorialObjectiveName);
 
-    if (DoGameStateSubmit)
-    {
-	    `XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
-    }
+	if (DoGameStateSubmit)
+	{
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
 }
 
 // Checks whether a tutorial objective is currently in progress. Note that
@@ -47,6 +47,6 @@ static function CompleteObjective(name TutorialObjectiveName, optional XComGameS
 // returns `true` if the objective status is InProgress.
 static function bool IsObjectiveInProgress(name TutorialObjectiveName)
 {
-    return !`SecondWaveEnabled('DisableTutorial') &&
-        class'XComGameState_HeadquartersXCom'.static.GetObjectiveStatus(TutorialObjectiveName) == eObjectiveState_InProgress;
+	return !`SecondWaveEnabled('DisableTutorial') &&
+		class'XComGameState_HeadquartersXCom'.static.GetObjectiveStatus(TutorialObjectiveName) == eObjectiveState_InProgress;
 }
