@@ -1959,10 +1959,11 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 			break;
 		}
 	}
-	if (ThrownDamageEffect != none || LaunchedDamageEffect != none &&
-		ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', ThrownDamageEffect.Class) &&
-		IsValidExplosiveFalloffItem(Template))
+	if ((ThrownDamageEffect != none || LaunchedDamageEffect != none) &&
+		ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', ThrownDamageEffect.Class))
 	{
+		`LWTrace("Applying explosive falloff to item " $ Template.DataName);
+
 		FalloffDamageEffect = new class'X2Effect_ApplyExplosiveFalloffWeaponDamage' (ThrownDamageEffect);
 
 		//Falloff-specific settings
@@ -1984,17 +1985,6 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(FalloffDamageEffect);
 		}
 	}
-}
-
-function bool IsValidExplosiveFalloffItem(X2ItemTemplate Template)
-{
-	if (default.ExplosiveFalloffItem_Exclusions.Find(Template.DataName) != INDEX_NONE)
-	{
-		`LWTrace("Item " $ Template.DataName $ " excluded from fall-off damage modification");
-		return false;
-	}
-
-	return true;
 }
 
 function SwapExplosiveFalloffAbility(X2AbilityTemplate Template, int Difficulty)
