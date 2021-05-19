@@ -6,22 +6,24 @@
 //           defined in XComGameState_LWListenerManager.
 //--------------------------------------------------------------------------------------- 
 
-class LWVersion extends Object config(LW_Overhaul);
+class LWVersion extends Object;
 
 // Configurable Major/Minor versions. Set in LW_Overhaul.ini
-var config int MajorVersion;
-var config int MinorVersion;
+var int MajorVersion;
+var int MinorVersion;
+var int PatchVersion;
+var string Classifier;
 
-// "Short" version number (minus the build)
+// "Short" version number (minus the classifier)
 function static String GetShortVersionString()
 {
-    return default.MajorVersion $ "." $ default.MinorVersion;
+    return default.MajorVersion $ "." $ default.MinorVersion $ "." $ default.PatchVersion;
 }
 
 // Version number in string format.
 function static String GetVersionString()
 {
-    return default.MajorVersion $ "." $ default.MinorVersion $ "." $ "0"; // class'LWBuildNumber'.const.BuildNumber;
+    return default.MajorVersion $ "." $ default.MinorVersion $ "." $ default.PatchVersion $ (default.Classifier != "" ? (" " $ default.Classifier) : "");
 }
 
 // Version number in comparable numeric format. Number in decimal is MMmmBBBBBB where:
@@ -40,4 +42,12 @@ function static int GetVersionNumber(optional out int Major, optional out int Mi
     Minor = default.MinorVersion;
     Build = 0; //class'LWBuildNumber'.const.BuildNumber;
     return (default.MajorVersion * 100000000) + (default.MinorVersion * 1000000) + 0; //class'LWBuildNumber'.const.BuildNumber;
+}
+
+defaultproperties
+{
+    MajorVersion = 1;
+    MinorVersion = 0;
+    PatchVersion = 0;
+    Classifier = "beta 4"
 }

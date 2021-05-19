@@ -165,6 +165,7 @@ static event InstallNewCampaign(XComGameState StartState)
 
 static function OnPreCreateTemplates()
 {
+	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString());
 	PatchModClassOverrides();
 }
 
