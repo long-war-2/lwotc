@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
-//  FILE:    XComGameState_Effect_Amplify.uc
+//  FILE:    XComGameState_Effect_Amplify_LW.uc
 //  AUTHOR:  Grobobobo
-//  PURPOSE: Makes the amplify effect have a flat amount of ticks
+//  PURPOSE: Makes the Amplify effect work for a flat number of attacks
 //---------------------------------------------------------------------------------------
 class XComGameState_Effect_Amplify_LW extends XComGameState_Effect;
 

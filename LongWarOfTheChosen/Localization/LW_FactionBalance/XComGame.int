@@ -89,9 +89,9 @@ LocPromotionPopupText="<Bullet/> A free action that makes the Templar substantia
 ; Needs Translation
 [ShadowGrenadier X2AbilityTemplate]
 LocFriendlyName="Shadow Grenadier"
-LocHelpText="Throwing or launching grenades no longer breaks Shadow nor has it any cooldown."
-LocLongDescription="Throwing or launching grenades no longer breaks Shadowand nor has it any cooldown."
-LocPromotionPopupText="<Bullet/> Allows the soldier to throw or launch grenades without breaking Shadow.<br/><Bullet/> Adds a grenade pocket.<br/>"
+LocHelpText="Throwing or launching grenades no longer breaks Shadow and grenades have cooldown."
+LocLongDescription="Throwing or launching grenades no longer breaks Shadow and grenades have no cooldown."
+LocPromotionPopupText="<Bullet/> Allows the soldier to throw or launch grenades without breaking Shadow.<br/><Bullet/> Adds a grenade pocket.<br/><Bullet/> Removes the cooldown for grenades.<br/>"
 
 [PoisonedBlades X2AbilityTemplate]
 LocFriendlyName="Poisoned Blades"
@@ -149,9 +149,9 @@ LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwi
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
 LocFlyOverText="Impersonal Edge"
-LocLongDescription="Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocHelpText="Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocPromotionPopupText="<Bullet/> "Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
+LocLongDescription="Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
+LocHelpText="Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
+LocPromotionPopupText="<Bullet/> "Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
 
 [ImpersonalEdgePassive X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
