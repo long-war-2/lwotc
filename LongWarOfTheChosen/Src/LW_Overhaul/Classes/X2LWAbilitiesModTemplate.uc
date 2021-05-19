@@ -93,6 +93,10 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakeAbilityNonTurnEnding(Template);
 			MakeAbilitiesUnusableOnLost(Template);
 			break;
+		case 'Solace':
+		case 'SolaceCleanse':
+			RemoveRoboticsAsValidTargetsOfSolace(Template);
+			break;
 		case 'HolyWarriorDeath':
 			RemoveTheDeathFromHolyWarriorDeath(Template);
 			break;
@@ -633,6 +637,40 @@ static function MakeAbilityNonTurnEnding(X2AbilityTemplate Template)
 		if (Cost.IsA('X2AbilityCost_ActionPoints'))
 		{
 			X2AbilityCost_ActionPoints(Cost).bConsumeAllPoints = false;
+		}
+	}
+}
+
+// Adds an extra unit condition to both Solace and Solace Cleanse that
+// prevents them from affecting robotic units. This also removes Holy
+// Warrior from the list of effects that Solace Cleanse removes.
+static function RemoveRoboticsAsValidTargetsOfSolace(X2AbilityTemplate Template)
+{
+	local X2Effect TargetEffect;
+	local X2Condition_UnitProperty UnitCondition;
+	local int i, j;
+
+	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
+	{
+		TargetEffect = Template.AbilityTargetEffects[i];
+		if (TargetEffect.IsA('X2Effect_RemoveEffects') || TargetEffect.IsA('X2Effect_Solace'))
+		{
+			// Make sure the various Solace effects ignore robotic units.
+			for (j = 0; j < TargetEffect.TargetConditions.Length; j++)
+			{
+				UnitCondition = X2Condition_UnitProperty(TargetEffect.TargetConditions[j]);
+				if (UnitCondition != none)
+					UnitCondition.ExcludeRobotic = true;
+			}
+
+			// Solace Cleanse should not clear Holy Warrior. If it's clearing the mind
+			// control from a unit that has Holy Warrior, then MindControlCleanse will
+			// ensure Holy Warrior is correctly removed.
+			if (TargetEffect.IsA('X2Effect_RemoveEffects'))
+			{
+				X2Effect_RemoveEffects(TargetEffect).EffectNamesToRemove.RemoveItem(
+					class'X2Ability_AdvPriest'.default.HolyWarriorEffectName);
+			}
 		}
 	}
 }
