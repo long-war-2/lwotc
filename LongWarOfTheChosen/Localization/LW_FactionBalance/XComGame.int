@@ -89,7 +89,7 @@ LocPromotionPopupText="<Bullet/> A free action that makes the Templar substantia
 ; Needs Translation
 [ShadowGrenadier X2AbilityTemplate]
 LocFriendlyName="Shadow Grenadier"
-LocHelpText="Throwing or launching grenades no longer breaks Shadow and grenades have cooldown."
+LocHelpText="Throwing or launching grenades no longer breaks Shadow and grenades have no cooldown."
 LocLongDescription="Throwing or launching grenades no longer breaks Shadow and grenades have no cooldown."
 LocPromotionPopupText="<Bullet/> Allows the soldier to throw or launch grenades without breaking Shadow.<br/><Bullet/> Adds a grenade pocket.<br/><Bullet/> Removes the cooldown for grenades.<br/>"
 
