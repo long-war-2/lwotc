@@ -94,8 +94,10 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakeAbilitiesUnusableOnLost(Template);
 			break;
 		case 'Solace':
-		case 'SolaceCleanse':
 			RemoveRoboticsAsValidTargetsOfSolace(Template);
+			break;
+		case 'SolaceCleanse':
+			RemoveRoboticsAsValidTargetsOfSolaceCleanse(Template);
 			break;
 		case 'HolyWarriorDeath':
 			RemoveTheDeathFromHolyWarriorDeath(Template);
@@ -646,19 +648,49 @@ static function MakeAbilityNonTurnEnding(X2AbilityTemplate Template)
 // Warrior from the list of effects that Solace Cleanse removes.
 static function RemoveRoboticsAsValidTargetsOfSolace(X2AbilityTemplate Template)
 {
-	local X2Effect TargetEffect;
+	local X2Effect_Solace ExistingEffect;
+	local X2Condition_UnitProperty UnitCondition;
+	local int i;
+
+	// Replace the existing Solace effect with our own
+	for (i = 0; i < Template.AbilityMultiTargetEffects.Length; i++)
+	{
+		// Sanity check to make sure that another mod hasn't modified
+		// the effect itself.
+		ExistingEffect = X2Effect_Solace(Template.AbilityMultiTargetEffects[i]);
+		if (ExistingEffect != none && ClassIsChildOf(class'X2Effect_SolaceAura_LW', ExistingEffect.Class))
+		{
+			Template.AbilityMultiTargetEffects[i] = new class'X2Effect_SolaceAura_LW'(ExistingEffect);
+		}
+	}
+
+	// Add a target condition that excludes robotic units
+	UnitCondition = new class'X2Condition_UnitProperty';
+	UnitCondition.ExcludeHostileToSource = true;
+	UnitCondition.ExcludeFriendlyToSource = false;
+	UnitCondition.ExcludeRobotic = true;
+
+	Template.AbilityMultiTargetConditions.AddItem(UnitCondition);
+}
+
+// Adds an extra unit condition to both Solace and Solace Cleanse that
+// prevents them from affecting robotic units. This also removes Holy
+// Warrior from the list of effects that Solace Cleanse removes.
+static function RemoveRoboticsAsValidTargetsOfSolaceCleanse(X2AbilityTemplate Template)
+{
+	local X2Effect_RemoveEffects RemoveEffects;
 	local X2Condition_UnitProperty UnitCondition;
 	local int i, j;
 
-	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
+	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
 	{
-		TargetEffect = Template.AbilityTargetEffects[i];
-		if (TargetEffect.IsA('X2Effect_RemoveEffects') || TargetEffect.IsA('X2Effect_Solace'))
+		RemoveEffects = X2Effect_RemoveEffects(Template.AbilityTargetEffects[i]);
+		if (RemoveEffects != none)
 		{
 			// Make sure the various Solace effects ignore robotic units.
-			for (j = 0; j < TargetEffect.TargetConditions.Length; j++)
+			for (j = 0; j < RemoveEffects.TargetConditions.Length; j++)
 			{
-				UnitCondition = X2Condition_UnitProperty(TargetEffect.TargetConditions[j]);
+				UnitCondition = X2Condition_UnitProperty(RemoveEffects.TargetConditions[j]);
 				if (UnitCondition != none)
 					UnitCondition.ExcludeRobotic = true;
 			}
@@ -666,11 +698,7 @@ static function RemoveRoboticsAsValidTargetsOfSolace(X2AbilityTemplate Template)
 			// Solace Cleanse should not clear Holy Warrior. If it's clearing the mind
 			// control from a unit that has Holy Warrior, then MindControlCleanse will
 			// ensure Holy Warrior is correctly removed.
-			if (TargetEffect.IsA('X2Effect_RemoveEffects'))
-			{
-				X2Effect_RemoveEffects(TargetEffect).EffectNamesToRemove.RemoveItem(
-					class'X2Ability_AdvPriest'.default.HolyWarriorEffectName);
-			}
+			RemoveEffects.EffectNamesToRemove.RemoveItem(class'X2Ability_AdvPriest'.default.HolyWarriorEffectName);
 		}
 	}
 }

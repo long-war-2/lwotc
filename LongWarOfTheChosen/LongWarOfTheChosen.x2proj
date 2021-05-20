@@ -656,6 +656,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_RoustDamage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_SerialCritReduction.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_SmokeFlankingCritProtection.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_SolaceAura_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_StilettoRounds.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_StreetSweeper.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_StunGunner.uc" />
