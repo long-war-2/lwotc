@@ -106,6 +106,9 @@ var config array<int> MIN_FL_FOR_LOST;
 // Thresholds for region strength translating to larger Alien Ruler pod size.
 var config array<int> RULER_POD_SIZE_ALERT_THRESHOLDS;
 
+// Scaling multiplier for the Brute's pawn
+var config float BRUTE_SIZE_MULTIPLIER;
+
 // End data and data structures
 //-----------------------------
 
@@ -162,6 +165,7 @@ static event InstallNewCampaign(XComGameState StartState)
 
 static function OnPreCreateTemplates()
 {
+	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString());
 	PatchModClassOverrides();
 }
 
@@ -1248,6 +1252,20 @@ static function PostReinforcementCreation(out name EncounterName, out PodSpawnIn
 {
 }
 
+// Increase the size of Lost Brutes (unless WWL is installed)
+static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameState_Unit UnitState, XComUnitPawn Pawn)
+{
+	if (Left(UnitState.GetMyTemplateName(), Len("TheLostBrute")) != "TheLostBrute")
+		return;
+
+	// No need to scale the Brute's pawn size if World War Lost is installed
+	// because we'll be using its dedicated Brute model.
+	if (class'Helpers_LW'.static.IsModInstalled("WorldWarLost"))
+		return;
+
+	Pawn.Mesh.SetScale(default.BRUTE_SIZE_MULTIPLIER);
+}
+
 // Use SLG hook to add infiltration modifiers to alien units
 static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out array<AbilitySetupData> SetupData, optional XComGameState StartState, optional XComGameState_Player PlayerState, optional bool bMultiplayerDisplay)
 {
@@ -1517,6 +1535,12 @@ static function AddObjectivesToParcels()
 			{
 				`LWTrace("Adding 'MediumPlot' objective tag to " $ PlotDef.MapName);
 				ParcelMgr.arrPlots[i].ObjectiveTags.AddItem("MediumPlot");
+			}
+
+			// Quick hack to enable Rendezvous maps for Ambush mission
+			if (ParcelMgr.arrPlots[i].ObjectiveTags.Length > 0 && ParcelMgr.arrPlots[i].ObjectiveTags[0] == "AvengerDefense")
+			{
+				ParcelMgr.arrPlots[i].ObjectiveTags.AddItem("CovertEscape");
 			}
 
 			// Exclude Sewer maps so that Tunnels don't dominate the map pool quite so hard.
@@ -4089,6 +4113,7 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	local XComGameState_HeadquartersXCom	XComHQ;
 	local name								ClassName;
 	local int								i, NumRanks, iXP;
+	local array<XComGameState_Item>			EquippedImplants;
 
 	History = `XCOMHISTORY;
 
@@ -4106,6 +4131,13 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	if (ClassName == 'Random' || ClassName == 'Rookie')
 	{
 		ClassName = XComHQ.SelectNextSoldierClass();
+	}
+
+	// Remove PCSes because they mess up the base stats after the reset.
+	EquippedImplants = UnitState.GetAllItemsInSlot(eInvSlot_CombatSim);
+	for (i = 0; i < EquippedImplants.Length; i++)
+	{
+		UnitState.RemoveItemFromInventory(EquippedImplants[i], NewGameState);
 	}
 
 	UnitState.AbilityPoints = 0; // Reset Ability Points
@@ -4132,6 +4164,12 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	if (iXP > 0)
 	{
 		UnitState.AddXp(iXP);
+	}
+
+	// Restore the PCSes.
+	for (i = 0; i < EquippedImplants.Length; i++)
+	{
+		UnitState.AddItemToInventory(EquippedImplants[i], eInvSlot_CombatSim, NewGameState);
 	}
 
 	if (NewGameState.GetNumGameStateObjects() > 0)

@@ -5,7 +5,6 @@
 //---------------------------------------------------------------------------------------
 class X2LWModTemplate_SkirmisherAbilities extends X2LWTemplateModTemplate config(LW_FactionBalance);
 
-var config int SKIRMISHER_INTERRUPT_COOLDOWN;
 var config int JUSTICE_COOLDOWN;
 var config int JUSTICE_IENVIRONMENT_DAMAGE;
 var config int WRATH_COOLDOWN;	
@@ -30,9 +29,6 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	case 'Whiplash':
 		ModifyWhiplash(Template);
-		break;
-	case 'SkirmisherInterruptInput':
-		UpdateInterrupt(Template);
 		break;
 	case 'SkirmisherGrapple':
 		AddParkourSupportToGrapple(Template);
@@ -233,37 +229,6 @@ static function ModifyWhiplash(X2AbilityTemplate Template)
 	UnitPropertyCondition.ExcludeOrganic = true;
 	WeaponDamageEffect.TargetConditions.AddItem(UnitPropertyCondition);
 	Template.AddTargetEffect(WeaponDamageEffect);
-}
-
-static function UpdateInterrupt(X2AbilityTemplate Template)
-{
-	local X2AbilityCost_ActionPoints	ActionPointCost;
-	local X2AbilityCooldown				Cooldown;
-	local X2Effect_AddOverwatchActionPoints Effect;
-
-	// Kill the charges and the charge cost
-	Template.AbilityCosts.Length = 0;
-	Template.AbilityCharges = none;
-
-
-	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_ReserveOverwatchPoints');
-
-	Effect = new class'X2Effect_AddOverwatchActionPoints';
-	Effect.UseAllPointsWithAbilities.Length = 0;
-	Effect.ReserveType = 'ReserveInterrupt';
-	Template.AddTargetEffect(Effect);
-
-	// Killing the above results in some collateral damage so we have to re-add the action point costs
-	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bFreeCost = true;
-	ActionPointCost.AllowedTypes.RemoveItem(class'X2CharacterTemplateManager'.default.SkirmisherInterruptActionPoint);
-	Template.AbilityCosts.AddItem(ActionPointCost);
-
-	// And finally we take the cooldowns from our config file and apply them here
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.SKIRMISHER_INTERRUPT_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
 }
 
 static function AddParkourSupportToGrapple(X2AbilityTemplate Template)

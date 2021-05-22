@@ -758,6 +758,9 @@ static function X2DataTemplate AddCripplingStrike()
 	Cooldown.iNumTurns = default.CRIPPLING_STRIKE_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
+	class'X2Ability_ThrowingKnifeAbilitySet'.static.AddRendTheMarkedEffect(Template);
+	class'X2Ability_ThrowingKnifeAbilitySet'.static.AddBlueScreenKnivesEffect(Template);
+	
 	// Ammo
 	AmmoCost = new class'X2AbilityCost_Ammo';
 	AmmoCost.iAmmo = 1;
@@ -890,6 +893,7 @@ static function X2DataTemplate AddParamedic()
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_fieldmedic";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;

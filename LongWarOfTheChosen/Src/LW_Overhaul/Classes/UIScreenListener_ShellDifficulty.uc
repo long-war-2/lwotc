@@ -18,9 +18,6 @@ event OnInit(UIScreen Screen)
 	if (UIShellDifficulty(Screen) == none && UILoadGame(Screen) == none)
 		return;
 
-	// Check that the XComGame replacement is installed
-	CheckForXComGameReplacement();
-
 	// check for any duplicates of standalone mods that have been integrated into overhaul mod
 	CheckForDuplicateLWSMods(Screen);
 
@@ -75,27 +72,6 @@ function AddLogoAndCredits(UIScreen Screen)
 	//CreditsText2.SetHTMLText(class'UIUtilities_Text'.static.GetColoredText(CreditsString, eUIState_Normal,,"CENTER"));
 	//CreditsText2.bg.SetAlpha(75);
 
-}
-
-function CheckForXComGameReplacement()
-{
-    local X2StrategyElementTemplate StrategyTemplate;
-    local LWXComGameVersionTemplate LWVersionTemplate;
-    local X2StrategyElementTemplateManager StrategyTemplateMgr;
-
-    StrategyTemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
-    StrategyTemplate = StrategyTemplateMgr.FindStrategyElementTemplate('LWXComGameVersion');
-
-	// TODO: Pop up a dialog similar to the duplicate mod check below once we can add new loc strings.
-    if (StrategyTemplate == none)
-    {
-        `Redscreen("Failed to locate XComGame Replacement!");
-    }
-    else
-    {
-        LWVersionTemplate = LWXComGameVersionTemplate(StrategyTemplate);
-        `Log("XComGame replacement version found: " $ LWVersionTemplate.GetVersionString());
-    }
 }
 
 function CheckForDuplicateLWSMods(UIScreen Screen)

@@ -13,7 +13,7 @@ function float GetPostDefaultDefendingDamageModifier_CH
     const out EffectAppliedData ApplyEffectParameters,
 	 float WeaponDamage, XComGameState NewGameState)
 {
-	local XComGameState_Effect_Amplify AmplifyState;
+	local XComGameState_Effect_Amplify_LW AmplifyState;
 	local float DamageMod;
 
 	if (ApplyEffectParameters.AbilityInputContext.PrimaryTarget.ObjectID > 0 && class'XComGameStateContext_Ability'.static.IsHitResultHit(ApplyEffectParameters.AbilityResultContext.HitResult) && WeaponDamage != 0)
@@ -25,29 +25,38 @@ function float GetPostDefaultDefendingDamageModifier_CH
 		//	if NewGameState was passed in, we are really applying damage, so update our counter or remove the effect if it's worn off
 		if (NewGameState != none)
 		{
-			AmplifyState = XComGameState_Effect_Amplify(EffectState);
+			AmplifyState = XComGameState_Effect_Amplify_LW(EffectState);
 			`assert(AmplifyState != none);
-			AmplifyState.RemoveEffect(NewGameState, NewGameState);
-			
+			if (AmplifyState.ShotsRemaining == 1)
+			{
+				AmplifyState.RemoveEffect(NewGameState, NewGameState);
+			}
+			else
+			{
+				AmplifyState = XComGameState_Effect_Amplify_LW(NewGameState.ModifyStateObject(AmplifyState.Class, AmplifyState.ObjectID));
+				AmplifyState.ShotsRemaining -= 1;
+			}
 			NewGameState.GetContext().PostBuildVisualizationFn.AddItem(AmplifyDecrement_PostBuildVisualization);
 		}
 	}
 	return DamageMod;
 }
 
-
-
+function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, optional XComGameState NewGameState)
+{
+	return 0;
+}
 
 static function AmplifyDecrement_PostBuildVisualization(XComGameState VisualizeGameState)
 {
-	local XComGameState_Effect_Amplify AmplifyState;
+	local XComGameState_Effect_Amplify_LW AmplifyState;
 	local string FlyoverString;
 	local VisualizationActionMetadata BuildTrack;
 	local XComGameStateHistory History;
 	local X2Action_PlaySoundAndFlyOver FlyOverAction;
 
 	History = `XCOMHISTORY;
-	foreach VisualizeGameState.IterateByClassType(class'XComGameState_Effect_Amplify', AmplifyState)
+	foreach VisualizeGameState.IterateByClassType(class'XComGameState_Effect_Amplify_LW', AmplifyState)
 	{
 		if (AmplifyState.bRemoved)
 		{
@@ -73,4 +82,10 @@ static function AmplifyDecrement_PostBuildVisualization(XComGameState VisualizeG
 
 		break;
 	}
+}
+
+DefaultProperties
+{
+	GameStateEffectClass = class'XComGameState_Effect_Amplify_LW'
+
 }

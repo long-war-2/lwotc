@@ -543,19 +543,19 @@
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ArmoryWeaponUpgrade_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Armory_MainMenu_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_AvengerHUD.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ContinentBonus.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_DropShipBriefing_MissionStart.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_GetPCSImageOverride.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_LivingQuarters.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_OverrideItemRange.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelSquadSelect.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ResistanceReport.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_Shell.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ShellDifficulty.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_SkyrangerArrives_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_SquadSelect_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_TacticalHUD.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_UIStrategyMap.uc">
-      <SubType>Content</SubType>
-    </Content>
+    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_UIStrategyMap.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ViewObjectives.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScrollingTextField.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UISquadClassItem.uc" />
@@ -655,6 +655,8 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_RemoveItemWeight.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_RoustDamage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_SerialCritReduction.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_SmokeFlankingCritProtection.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_SolaceAura_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_StilettoRounds.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_StreetSweeper.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_StunGunner.uc" />
@@ -1151,7 +1153,9 @@
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Ability_ShieldAbilitySet.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Ability_ThrowingKnifeAbilitySet.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2DownloadableContentInfo_LW_WeaponsAndArmor.uc" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Effect_ImpersonalEdge.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Effect_OneForAll.uc" />
+    <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Effect_ShieldGuard.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Effect_ShieldWall.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionArmors.uc" />
     <Content Include="Src\LW_WeaponsAndArmor\Classes\X2Item_FactionWeapons.uc" />
@@ -1173,7 +1177,6 @@
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2TargetingMethod_CommandRange.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_XP.uc" />
     <Content Include="Config\XComPromotionUIMod.ini" />
-    <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_PersonnelSquadSelect.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHero.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHeroColumn.uc" />
     <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\X2DownloadableContentInfo_NewPromotionScreenbyDefault.uc" />
@@ -1280,6 +1283,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2AbilityTarget_Cursor_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2DownloadableContentInfo_LW_FactionBalance.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Amplify_LW.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\XComGameState_Effect_Amplify_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Apotheosis.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ArcWaveMultiDamage_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_BanishHitMod.uc" />
@@ -1302,6 +1306,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ShadowGrenadier.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ShadowRising_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_SilentKiller_LW.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_SkirmisherInterrupt_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_TemplarFocusStatBonuses.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_TemplarGrazingFire.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_VoidConduitPatch.uc" />
@@ -1346,7 +1351,12 @@
     <Content Include="Src\LW_Tutorial\Classes\LWTutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\SeqAct_HandleGatecrasherTutorialText.uc" />
     <Content Include="Src\LW_Tutorial\Classes\SeqAct_LWTutorialIsActive.uc" />
-    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_OutpostManagementTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_CovertActionsTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_HavenManagementTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_InfiltratingMissionTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_InitialHavenTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_MissionBriefTutorial.uc" />
+    <Content Include="Src\LW_Tutorial\Classes\UIScreenListener_SquadSelectTutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\X2DownloadableContentInfo_LW_Tutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\X2EventListener_Tutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\X2StrategyElement_LWTutorialObjectives.uc" />

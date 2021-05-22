@@ -1,5 +1,12 @@
 class X2EventListener_Missions extends X2EventListener config(LW_Overhaul);
 
+struct MissionTypePlotTypeOverride
+{
+	var string MissionType;
+	var string PlotType;
+	var bool IsAllowed;
+};
+
 var localized string m_strClearSquad;
 var localized string m_strTooltipClearSquad;
 
@@ -10,6 +17,8 @@ var config array<name> LostSwarmIDsDiff0;
 var config array<name> LostSwarmIDsDiff1;
 var config array<name> LostSwarmIDsDiff2;
 var config array<name> LostSwarmIDsDiff3;
+
+var config array<MissionTypePlotTypeOverride> MISSION_PLOT_OVERRIDES;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -47,6 +56,7 @@ static function CHEventListenerTemplate CreateMissionStateListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'MissionStateListeners');
 	Template.AddCHEvent('SitRepCheckAdditionalRequirements', IsSitRepValidForMission, ELD_Immediate);
+	Template.AddCHEvent('OverridePlotValidForMission', IsPlotValidForMission, ELD_Immediate);
 
 	Template.RegisterInStrategy = true;
 
@@ -300,6 +310,38 @@ static protected function EventListenerReturn IsSitRepValidForMission(
 	}
 
 	Tuple.Data[0].b = class'X2StrategyElement_LWMissionSources'.static.SitRepMeetsAdditionalRequirements(SitRepTemplate, MissionState);
+
+	return ELR_NoInterrupt;
+}
+
+// Overrides plot selection for troop columns so tunnels can't be picked
+static protected function EventListenerReturn IsPlotValidForMission(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local MissionTypePlotTypeOverride OverrideDef;
+	local int i;
+	
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	for (i = 0; i < default.MISSION_PLOT_OVERRIDES.Length; i++)
+	{
+		OverrideDef = default.MISSION_PLOT_OVERRIDES[i];
+		if (Tuple.Data[0].s == OverrideDef.MissionType && Tuple.Data[2].s == OverrideDef.PlotType)
+		{
+			`LWTrace("Overriding '" $ OverrideDef.PlotType $ "' plot type for mission type '" $
+					 OverrideDef.MissionType $ "'. Plot allowed? " $ (OverrideDef.IsAllowed ? "Yes" : "No"));
+			Tuple.Data[5].b = OverrideDef.IsAllowed;
+			Tuple.Data[6].b = true;   // Override the default behavior
+			return ELR_NoInterrupt;
+		}
+	}
 
 	return ELR_NoInterrupt;
 }

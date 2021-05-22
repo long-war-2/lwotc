@@ -18,6 +18,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateReflexShotModifier());
 	Templates.AddItem(CreateMindControlCleanse());
 	Templates.AddItem(CreateReactionFireAgainstCoverBonus());
+	Templates.AddItem(CreateSmokeFlankingCritProtection());
 
 	return Templates;
 }
@@ -214,6 +215,33 @@ static function X2AbilityTemplate CreateReactionFireAgainstCoverBonus()
 	AntiCoverEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
 	AntiCoverEffect.AimBonus = default.REACTION_FIRE_ANTI_COVER_BONUS;
 	Template.AddTargetEffect(AntiCoverEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateSmokeFlankingCritProtection()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_SmokeFlankingCritProtection SmokeAntiCritEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SmokeFlankingCritProtection');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_standard";
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+	Template.bDontDisplayInAbilitySummary = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	SmokeAntiCritEffect = new class'X2Effect_SmokeFlankingCritProtection';
+	SmokeAntiCritEffect.BuildPersistentEffect(1, true);
+	SmokeAntiCritEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
+	Template.AddTargetEffect(SmokeAntiCritEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 

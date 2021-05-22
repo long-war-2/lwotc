@@ -59,7 +59,7 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 
 defaultproperties
 {
-	DuplicateResponse = eDupe_Ignore
+	DuplicateResponse = eDupe_Allow
 	EffectName = "Apotheosis"
 	GameStateEffectClass=class'XComGameState_Effect_FocusLevel';
 }

@@ -32,6 +32,8 @@ var config int SHIELD_BM_ISOUNDRANGE;
 var config int SHIELD_BM_IENVIRONMENTDAMAGE;
 var config int SHIELD_BM_NUM_UPGRADE_SLOTS;
 
+
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Weapons;
@@ -55,7 +57,7 @@ static function X2WeaponTemplate BallisticShield_CV()
 	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
 
 	Template.BaseDamage = default.SHIELD_CV_BASEDAMAGE;
-	Template.Aim = 0;
+	Template.Aim = default.SHIELD_CV_AIM;
 	Template.CritChance = default.SHIELD_CV_CRITCHANCE;
 	Template.iSoundRange = default.SHIELD_CV_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.SHIELD_CV_IENVIRONMENTDAMAGE;
@@ -114,7 +116,7 @@ static function X2DataTemplate BallisticShield_MG()
 
 	Template.iRange = 0;
 	Template.BaseDamage = default.SHIELD_MG_BASEDAMAGE;
-	Template.Aim = 0;
+	Template.Aim = default.SHIELD_MG_AIM;
 	Template.CritChance = default.SHIELD_MG_CRITCHANCE;
 	Template.iSoundRange = default.SHIELD_MG_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.SHIELD_MG_IENVIRONMENTDAMAGE;
@@ -163,7 +165,7 @@ static function X2DataTemplate BallisticShield_BM()
 
 	Template.iRange = 0;
 	Template.BaseDamage = default.SHIELD_BM_BASEDAMAGE;
-	Template.Aim = 0;
+	Template.Aim = default.SHIELD_BM_AIM;
 	Template.CritChance = default.SHIELD_BM_CRITCHANCE;
 	Template.iSoundRange = default.SHIELD_BM_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.SHIELD_BM_IENVIRONMENTDAMAGE;

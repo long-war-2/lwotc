@@ -28,6 +28,8 @@ var config int FOCUS3CRIT;
 var config int FOCUS4AIM;
 var config int FOCUS4CRIT;
 
+var config int AMPLIFY_SHOTS;
+
 var name PanicImpairingAbilityName;
 
 static function array<X2DataTemplate> CreateTemplates()
@@ -526,7 +528,7 @@ static function X2AbilityTemplate AddApotheosis()
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_andromedon_robotbattlesuit";
-
+	Template.ActivationSpeech = 'IonicStorm';
 	Template.Hostility = eHostility_Neutral;
 
 	Template.AbilityToHitCalc = default.DeadEye;
@@ -549,14 +551,14 @@ static function X2AbilityTemplate AddApotheosis()
 
 	Effect = new class'X2Effect_Apotheosis';
 	Effect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
-	Effect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	Effect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	// Effect.AddPersistentStatChange(eStat_Dodge, float(default.APOTHEOSIS_DODGE_BONUS));
 	Effect.FocusDamageMultiplier = default.APOTHEOSIS_DAMAGE_MULTIPLIER;
 	Effect.arrFocusModifiers.AddItem(EmptyFocusLevelModifiers);
 	Effect.arrFocusModifiers.AddItem(EmptyFocusLevelModifiers);
 	Effect.arrFocusModifiers.AddItem(EmptyFocusLevelModifiers);
 	Effect.arrFocusModifiers.AddItem(CreateFocusLevelModifiers(default.APOTHEOSIS_DODGE_BONUS, default.APOTHEOSIS_MOBILITY_BONUS));
-	Effect.arrFocusModifiers.AddItem(CreateFocusLevelModifiers(default.APOTHEOSIS_DODGE_BONUS, 2 * default.APOTHEOSIS_MOBILITY_BONUS));
+	Effect.arrFocusModifiers.AddItem(CreateFocusLevelModifiers(2 * default.APOTHEOSIS_DODGE_BONUS, 2 * default.APOTHEOSIS_MOBILITY_BONUS));
 	Template.AddTargetEffect(Effect);
 
 	Template.bSkipFireAction = false;

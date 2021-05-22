@@ -515,7 +515,7 @@ static function array<name> ProtectRegionMissionRewards (XComGameState_LWAlienAc
 			if (RegionalAI.NumTimesLiberated == 0)
 			{
 				FactionState = class'Helpers_LW'.static.GetFactionFromRegion(PrimaryRegionState.GetReference());
-				if (!`SecondWaveEnabled('EnableChosen') &&
+				if (`SecondWaveEnabled('DisableChosen') &&
 					FactionState.bMetXCom && FactionState.GetInfluence() < eFactionInfluence_MAX)
 				{
 					RewardArray.AddItem('Reward_FactionInfluence_LW');
@@ -1808,7 +1808,7 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 	local XComGameState_AdventChosen ChosenState;
 	local array<XComGameState_AdventChosen> AllChosen;
 
-	if (`SecondWaveEnabled('EnableChosen'))
+	if (!`SecondWaveEnabled('DisableChosen'))
 	{
 		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 		AlienHQ.OnChosenActivation(NewGameState);

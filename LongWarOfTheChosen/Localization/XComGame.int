@@ -2927,7 +2927,7 @@ ObjectiveTextPools[2]="Ambush enemy troops"
 ObjectiveTextPools[3]="ADVENT typically moves its forces in large groups, but we have located a smaller unit on its own that is vulnerable. A well-timed assault will damage ADVENT's interests in this region and afford us a rare opportunity to bring home enemy corpses for research."
 ; LWOTC Needs Translation
 ObjectiveTextPools[4]="LWOTC Gatecrasher"
-ObjectiveTextPools[5]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies. But try not to kill these units with explosives as their corpses are valuable:<ul><li>ADVENT Officer</li><li>ADVENT Drone</li><li>Sectoid</li></ul>"
+ObjectiveTextPools[5]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies.<br/><br/>Note that this is one of the few missions that allows for retrieval of enemy corpses, which are needed for research and building many items. Kills with explosives destroy corpses in LWOTC!"
 ; End Translation
 
 [Rendezvous_LW X2MissionTemplate]
@@ -5298,8 +5298,8 @@ LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equa
 ; End Translation (2)
 
 [StunStrike X2AbilityTemplate]
-LocLongDescription="Strike an enemy with Psionic force strong enough to knock them back in the direction of the attack, stunning them. Costs 1 Focus."
-LocHelpText="Knock an enemy back in the direction of the attack, stunning them. Costs 1 Focus."
+LocLongDescription="Strike an enemy with Psionic force, stunning them. Costs 1 Focus."
+LocHelpText="Strike an enemy with Psionic force, stunning them. Costs 1 Focus."
 LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike does not end the Templar's turn.<br/><Bullet/> Stun Strike has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [BondmateTeamwork X2AbilityTemplate]
@@ -5313,8 +5313,8 @@ LocLongDescription="Grant an additional action point to a bondmate. Has one or t
 
 ; LWOTC Needs Translation
 [Shadow X2AbilityTemplate]
-LocLongDescription="Grants the soldier Shadow, an advanced form of concealment that lasts for 1 turn."
-LocHelpText="Soldier enters Shadow, an advanced form of concealment, for 1 turn."
+LocLongDescription="Grants the soldier Shadow, an advanced form of concealment that lasts for 2 turns."
+LocHelpText="Soldier enters Shadow, an advanced form of concealment, for 2 turns."
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges by 100%, effectively rendering the unit invisible.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (2)
@@ -5363,7 +5363,7 @@ LocPromotionPopupText="<Bullet/> Make sure squadmates are clear of the blast zon
 
 ; LWOTC Needs Translation
 [HomingMine X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 3 charges per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
+LocPromotionPopupText="<Bullet/> Shots against the mined target are guaranteed to hit.<br/><Bullet/> Homing Mine has 4 charges per mission.<br/><Bullet/> Homing Mine requires one action and does not end your turn.<br/>"
 ; End Translation
 
 [Hero_Tracking X2AbilityTemplate]
@@ -5429,7 +5429,7 @@ LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, p
 
 ; LWOTC Needs Translation (2)
 [Ghost X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Overcharge, Vigilance, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Ionic Storm, Fortress and Sustain. <br/>"
+LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghost has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Shield bash, Shield abilities, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Superior Aptitude, Ionic Storm abd Sustain. <br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation #2 - Shard and Caster gauntlet tactical text and the brief
@@ -6598,11 +6598,16 @@ LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/>
 ; End Translation
 
 ; LWOTC Needs Translation
-
-
 [ReactionFireAgainstCoverBonus X2AbilityTemplate]
 LocFriendlyName="Reaction Fire Anti Cover"
 LocHelpText="Reduces the Defense bonus provided by cover on overwatch shots"
+
+; LWOTC Needs Translation (2)
+[SmokeFlankingCritProtection X2AbilityTemplate]
+LocFriendlyName="Smoke Anti Crit"
+LocHelpText="Negates the crit bonus from flanking"
+; End Translation (2)
+
 
 [ImpactCompensation_LW X2AbilityTemplate]
 LocFriendlyName="Impact Compensation"
@@ -6690,7 +6695,6 @@ LocPromotionPopupText="<Bullet/> Solace has a 4 tile radius.<br/><Bullet/> Movin
 ; End Translation
 
 ; LWOTC Needs Translation
-<<<<<<< HEAD
 [AssassinBladestorm X2AbilityTemplate]
 LocFriendlyName="Bladestorm"
 LocLongDescription="Free <Ability:SecondaryWeaponName/> attacks on any enemies that enter or attack from melee range."
@@ -6705,8 +6709,6 @@ LocHelpText="Free <Ability:SecondaryWeaponName/> attacks on any enemies that ent
 LocFlyOverText="Bladestorm"
 LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
 
-=======
->>>>>>> 998d3d12... Apply suggestions from code review
 [TemplarBallisticShield_CV X2WeaponTemplate]
 FriendlyName="Ballistic Shield MK1"
 FriendlyNamePlural="Ballistic Shields MK1"
@@ -6733,20 +6735,20 @@ LocFlyOverText="Ballistic Shield"
 
 [TemplarBallisticShield_CV X2AbilityTemplate]
 LocFriendlyName="Ballistic Shield"
-LocHelpText="Grants 2 shield points and half cover to allies."
-LocLongDescription="Grants 2 shield points and half cover to allies."
+LocHelpText="Grants 0 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocLongDescription="Grants 0 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Ballistic Shield"
 
 [TemplarBallisticShield_MG X2AbilityTemplate]
 LocFriendlyName="Ballistic Shield"
-LocHelpText="Grants 5 shield points and half cover to allies."
-LocLongDescription="Grants 5 shield points and half cover to allies."
+LocHelpText="Grants 3 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocLongDescription="Grants 3 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Ballistic Shield"
 
 [TemplarBallisticShield_BM X2AbilityTemplate]
 LocFriendlyName="Ballistic Shield"
-LocHelpText="Grants 9 shield points and half cover to lllies."
-LocLongDescription="Grants 9 shield points and half cover to allies."
+LocHelpText="Grants 6 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocLongDescription="Grants 6 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Ballistic Shield"
 
 [ShieldBash_LW X2AbilityTemplate]
@@ -6822,16 +6824,16 @@ LocPromotionPopupText="<Bullet/> Volt has no cooldown, but costs 1 Focus.<br/><B
 
 [Amplify X2AbilityTemplate]
 LocFriendlyName="Amplify"
-LocLongDescription="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next attack. Costs 1 Focus, free action."
-LocHelpText="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next attack. Costs 1 Focus, free action."
+LocLongDescription="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 2 attacks. Costs 1 Focus, free action."
+LocHelpText="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 2 attacks. Costs 1 Focus, free action."
 LocHitMessage="Amplified"
-LocPromotionPopupText="<Bullet/> Amplify will last for a single damage instance.<br/><Bullet/> Amplify is a free action.<br/>"
+LocPromotionPopupText="<Bullet/> Amplify will last for a two damage instances.<br/><Bullet/> Amplify is a free action.<br/>"
 
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Crusader's Rage"
-LocHelpText="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 4 HP"
-LocLongDescription="Gain a 50% damage boost when at 50% hp or less." Reduce wound recovery times for this soldier by 4 HP."
+LocHelpText="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 6 HP"
+LocLongDescription="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 6 HP."
 LocPromotionPopupText="<Bullet/> Wound reduction does not work if the soldier entered a bleeding out state during the mission.<br/>"
 LocFlyOverText="Psychotic Rage"
 
@@ -6870,14 +6872,33 @@ LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to 
 
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Total Combat"
-LocLongDescription="Throwing a grenade or using an item no longer ends the turn. In addition, you can throw grenades 2 tiles further and their radius is increased by 1."
-LocHelpText="Throwing a grenade or using an item no longer ends the turn. In addition, you can throw grenades 2 tiles further and their radius is increased by 1."
-LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the Skirmisher's turns, allowing actions to be taken exactly when needed.<br/> <Bullet/> Grants both Bombard and Volatile Mix, hence it does not stack with either of them."
+LocLongDescription="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1."
+LocHelpText="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1."
+LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the Skirmisher's turns, allowing actions to be taken exactly when needed.<br/><Bullet/> Removes the cooldown for grenades.<br/><Bullet/> Grants both Bombard and Volatile Mix, hence it does not stack with either of them."
 
 [PackMaster_LW X2AbilityTemplate]
-LocFriendlyName="Pack Master"
-LocFlyOverText="Pack Master"
+LocFriendlyName="PackMaster"
+LocFlyOverText="PackMaster"
 LocLongDescription="Grants +1 charge to every utility item and grenade equipped."
 LocHelpText="Grants +1 charge to every utility item and grenade equipped."
 LocPromotionPopupText="<Bullet/> Grants +1 charge to every utility item equipped.<br/> <Bullet/> Applies to the grenade slot as well as the standard utility slots, but not other slots.<br/> Extra grenades provided by Smoker and Flashbanger abilities do not get extra charges.<br/>"
+
+[SkirmisherInterrupt_LW X2AbilityTemplate]
+LocFriendlyName="Interrupt"
+LocLongDescription="A powerful form of Overwatch. Instead of firing automatically, perform any single action. Free action."
+LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action. Free action."
+LocPromotionPopupText="<Bullet/> This is a free action.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:SelfCooldown_LW/> turn cooldown."
+
+[ArcWavePassive X2AbilityTemplate]
+LocFriendlyName="Arc Wave"
+LocLongDescription="Rend generates a wave of Psionic energy in the direction of the attack. Damage increases with Gauntlet tier."
+LocHelpText="Rend generates a wave of Psionic energy in the direction of the attack."
+LocPromotionPopupText="<Bullet/> Arc Wave does not affect the target of the original Rend attack.<br/><Bullet/> Arc Wave deals 4/7/10 damage depanding on weapon tier.<br/><Bullet/> Arc Wave travels through environmental objects.<br/>"
+
+[IonicStorm X2AbilityTemplate]
+LocFriendlyName="Ionic Storm"
+LocLongDescription="Summon lightning to strike all nearby enemies. Damage increases with Focus level. Costs all Focus."
+LocHelpText="Summon lightning to strike all nearby enemies. Costs all Focus."
+LocPromotionPopupText="<Bullet/> Ionic Storm's radius increases at higher Focus levels.<br/><Bullet/> Ionic Storm deals double damage to Psionic units.<br/><Bullet/> Ionic Storm has a <Ability:SelfCooldown/> turn cooldown.<br/>"
+
 ; End Translation

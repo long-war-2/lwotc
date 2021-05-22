@@ -68,7 +68,7 @@ simulated function UpdateControls()
 				}
 				else
 				{
-					AddCommandRangeIcon((!`SecondWaveEnabled('EnableChosen')) ? -300 : -345, 4);
+					AddCommandRangeIcon((`SecondWaveEnabled('DisableChosen')) ? -300 : -345, 4);
 					
 					// For tooltip testing. Puts icon more in the middle of the screen.
 					// AddCommandRangeIcon(-300, 200);

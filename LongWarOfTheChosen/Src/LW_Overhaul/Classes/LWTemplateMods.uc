@@ -260,6 +260,7 @@ var config array<DamageStep> EnvironmentDamageSteps;
 
 var config array<name> ExplosiveFalloffAbility_Exclusions;
 var config array<name> ExplosiveFalloffAbility_Inclusions;
+var config array<name> ExplosiveFalloffItem_Exclusions;
 
 var config int ALIEN_RULER_ACTION_BONUS_APPLY_CHANCE;
 
@@ -964,7 +965,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_SharpshooterAim_LW   	AimEffect;
 	local X2AbilityCooldown_Shared			CooldownShared;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
-
+	local X2AbilityCooldown_AllInstances 	AllInstancesCooldown;
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
 	{
@@ -1575,9 +1576,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 	if (Template.DataName == 'ThrowGrenade')
 	{
-		Cooldown = new class'X2AbilityCooldown_AllInstances';
-		Cooldown.iNumTurns = default.THROW_GRENADE_COOLDOWN;
-		Template.AbilityCooldown = Cooldown;
+		AllInstancesCooldown = new class'X2AbilityCooldown_AllInstances';
+		AllInstancesCooldown.ExcludeIfTheSoldierHasAbility.AddItem('TotalCombat');
+		AllInstancesCooldown.ExcludeIfTheSoldierHasAbility.AddItem('ShadowGrenadier');
+		AllInstancesCooldown.iNumTurns = default.THROW_GRENADE_COOLDOWN;
+		Template.AbilityCooldown = AllInstancesCooldown;
 		X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bGuaranteedHit = true;
 	}
 
@@ -1956,16 +1959,18 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 			break;
 		}
 	}
-	if (ThrownDamageEffect != none || LaunchedDamageEffect != none &&
+	if ((ThrownDamageEffect != none || LaunchedDamageEffect != none) &&
 		ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', ThrownDamageEffect.Class))
 	{
+		`LWTrace("Applying explosive falloff to item " $ Template.DataName);
+
 		FalloffDamageEffect = new class'X2Effect_ApplyExplosiveFalloffWeaponDamage' (ThrownDamageEffect);
 
 		//Falloff-specific settings
 		FalloffDamageEffect.UnitDamageAbilityExclusions.AddItem('TandemWarheads'); // if has any of these abilities, skip any falloff
 		FalloffDamageEffect.EnvironmentDamageAbilityExclusions.AddItem('CombatEngineer'); // if has any of these abilities, skip any falloff
-		FalloffDamageEffect.UnitDamageSteps=default.UnitDamageSteps;
-		FalloffDamageEffect.EnvironmentDamageSteps=default.EnvironmentDamageSteps;
+		FalloffDamageEffect.UnitDamageSteps = default.UnitDamageSteps;
+		FalloffDamageEffect.EnvironmentDamageSteps = default.EnvironmentDamageSteps;
 
 		if (ThrownDamageEffect != none)
 		{
@@ -1981,7 +1986,6 @@ function SwapExplosiveFalloffItem(X2ItemTemplate Template, int Difficulty)
 		}
 	}
 }
-
 
 function SwapExplosiveFalloffAbility(X2AbilityTemplate Template, int Difficulty)
 {
@@ -2186,7 +2190,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			break;
 		//CHOSEN CHANGES
 		case 'TemplarSoldier':
-			Template.bCanTakeCover = false;
+		//	Template.bCanTakeCover = false;
 		case 'Soldier': 
 		case 'ReaperSoldier':
 		case 'SkirmisherSoldier':
@@ -2363,6 +2367,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	}
 
 	Template.Abilities.AddItem('MindControlCleanse');
+	Template.Abilities.AddItem('SmokeFlankingCritProtection');
 
 	// LWOTC Grant reaction fire a bonus against units in cover (the
 	// effect applies to the *target* of such shots) unless Revert
@@ -3324,6 +3329,11 @@ function RewireTechTree(X2StrategyElementTemplate Template, int Difficulty)
 			TechTemplate.Cost.ResourceCosts.AddItem(Resources);
 		}
 
+		if (TechTemplate.DataName == 'ResistanceRadio')
+		{
+			TechTemplate.ResearchCompletedFn = ActivateContinentBonuses;
+		}
+
 		if (TechTemplate.DataName == 'SpiderSuit')
 			TechTemplate.bRepeatable = false;
 		if (TechTemplate.DataName == 'ExoSuit')
@@ -3461,6 +3471,29 @@ function RewireTechTree(X2StrategyElementTemplate Template, int Difficulty)
 				}
 			}
 		}
+	}
+}
+
+// Activates all eligible continent bonuses that aren't already
+// active. Activation of a bonus normally happens when a region is
+// contacted and there are sufficient radio relays on the continent,
+//  but we prevent this from happening
+// (see X2EventListener_StrategyMap.HandleContinentBonusActivation())
+// if Resistance Radio hasn't first been researched. This is a follow
+// up for those regions affected by blocked bonus activation.
+static function ActivateContinentBonuses(XComGameState NewGameState, XComGameState_Tech TechState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_Continent ContinentState;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_Continent', ContinentState)
+	{
+		// This will activate or deactivate the continent bonus
+		// depending on whether all the requirements have been met
+		// or not.
+		ContinentState.HandleRegionResistanceLevelChange(NewGameState);
 	}
 }
 

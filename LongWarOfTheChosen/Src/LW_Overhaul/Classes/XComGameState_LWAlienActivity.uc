@@ -317,7 +317,7 @@ function UpdateGameBoard()
 			NewGameState.AddStateObject(ActivityState);
 			ActivityState.bNeedsAppearedPopup = false;
 			ActivityState.bMustLaunch = false;
-			`XEVENTMGR.TriggerEvent('NewMissionAppeared', , , NewGameState);
+			`XEVENTMGR.TriggerEvent('NewMissionAppeared', , ActivityState, NewGameState);
 			`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 		}
 		if (ShouldPause)
@@ -842,7 +842,7 @@ static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
 	local XComGameState_AdventChosen ChosenState;
 
 	// If Chosen are disabled, skip adding the tag.
-	if (!`SecondWaveEnabled('EnableChosen'))
+	if (`SecondWaveEnabled('DisableChosen'))
 	{
 		return;
 	}
@@ -1030,6 +1030,7 @@ function bool SelectPlotDefinition(MissionDefinition MissionDef, string Biome, o
 	local X2SitRepTemplateManager SitRepMgr;
 	local name SitRepName;
 	local X2SitRepTemplate SitRep;
+	local int AllowPlot;  // int so it can be used as an `out` parameter
 
 	ParcelMgr = `PARCELMGR;
 	ParcelMgr.GetValidPlotsForMission(ValidPlots, MissionDef, Biome);
@@ -1038,17 +1039,22 @@ function bool SelectPlotDefinition(MissionDefinition MissionDef, string Biome, o
 	// pull the first one that isn't excluded from strategy, they are already in order by weight
 	foreach ValidPlots(SelectedDef)
 	{
+		AllowPlot = 1;
 		foreach SitRepNames(SitRepName)
 		{
 			SitRep = SitRepMgr.FindSitRepTemplate(SitRepName);
 
-			if(SitRep != none && SitRep.ExcludePlotTypes.Find(SelectedDef.strType) != INDEX_NONE)
+			if (SitRep != none && SitRep.ExcludePlotTypes.Find(SelectedDef.strType) != INDEX_NONE)
 			{
-				continue;
+				AllowPlot = 0;
 			}
 		}
 
-		if(!SelectedDef.ExcludeFromStrategy)
+		if (TriggerOverridePlotValidForMission(MissionDef, SelectedDef, AllowPlot))
+		{
+			if (AllowPlot == 1) return true;
+		}
+		else if (AllowPlot == 1 && !SelectedDef.ExcludeFromStrategy)
 		{
 			return true;
 		}
@@ -1058,6 +1064,48 @@ function bool SelectPlotDefinition(MissionDefinition MissionDef, string Biome, o
 	return false;
 }
 // End copied code
+
+// Triggers an event that allows mods to override whether a plot is valid
+// for a given mission type or not.
+//
+/// ```event
+/// EventID: OverridePlotValidForMission,
+/// EventData: [in string MissionType, in string MissionFamily, in string PlotType,
+///             in string PlotName, in bool PlotExcludedFromStrategy,
+///             inout bool IsPlotAllowed, out bool OverrideDefaultBehavior],
+/// EventSource: XComGameState_LWAlienActivity (ActivityState),
+/// NewGameState: no
+/// ```
+function bool TriggerOverridePlotValidForMission(
+	MissionDefinition MissionDef,
+	PlotDefinition PlotDef,
+	out int IsAllowed)
+{
+	local XComLWTuple Tuple;
+
+	Tuple = new class'XComLWTuple';
+	Tuple.Id = 'OverridePlotValidForMission';
+	Tuple.Data.Add(7);
+	Tuple.Data[0].kind = XComLWTVString;
+	Tuple.Data[0].s = MissionDef.sType;
+	Tuple.Data[1].kind = XComLWTVString;
+	Tuple.Data[1].s = MissionDef.MissionFamily;
+	Tuple.Data[2].kind = XComLWTVString;
+	Tuple.Data[2].s = PlotDef.strType;
+	Tuple.Data[3].kind = XComLWTVString;
+	Tuple.Data[3].s = PlotDef.MapName;
+	Tuple.Data[4].kind = XComLWTVBool;
+	Tuple.Data[4].b = PlotDef.ExcludeFromStrategy;
+	Tuple.Data[5].kind = XComLWTVBool;
+	Tuple.Data[5].b = IsAllowed == 1;    // Allow the plot or not?
+	Tuple.Data[6].kind = XComLWTVBool;
+	Tuple.Data[6].b = false;   // Override the default behaviour?
+
+	`XEVENTMGR.TriggerEvent(Tuple.Id, Tuple, self);
+
+	IsAllowed = Tuple.Data[5].b ? 1 : 0;  // Convert back to int for the out parameter
+	return Tuple.Data[6].b;
+}
 
 function string GetMissionDescriptionForActivity()
 {

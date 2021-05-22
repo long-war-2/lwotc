@@ -144,7 +144,7 @@ static function X2AbilityTemplate BallisticShield_GenerateCover()
 {
 	local X2AbilityTemplate Template;
 	local X2Effect_GenerateCover CoverEffect;
-
+	local X2Effect_ShieldGuard AntiFlankEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'TemplarBallisticShield_GenerateCover');
 
 	Template.IconImage = "img:///WoTC_Shield_UI_LW.BallisticShield_Icon";
@@ -165,6 +165,11 @@ static function X2AbilityTemplate BallisticShield_GenerateCover()
 	CoverEffect.CoverType = CoverForce_Low;
 	CoverEffect.DuplicateResponse = eDupe_Allow;
 	Template.AddTargetEffect(CoverEffect);
+
+
+	AntiFlankEffect = new class'X2Effect_ShieldGuard';
+	AntiFlankEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
+	Template.AddShooterEffect(AntiFlankEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 

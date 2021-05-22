@@ -1,5 +1,22 @@
 class X2AbilityCooldown_AllInstances extends X2AbilityCooldown;
 
+var array<name> ExcludeIfTheSoldierHasAbility;
+
+simulated function int GetNumTurns(XComGameState_Ability kAbility, XComGameState_BaseObject AffectState, XComGameState_Item AffectWeapon, XComGameState NewGameState)
+{
+	local int i;
+
+	for(i = 0; i < ExcludeIfTheSoldierHasAbility.length; i++)
+	{
+		if (XComGameState_Unit(AffectState).HasSoldierAbility(ExcludeIfTheSoldierHasAbility[i]))
+		{
+			return 0;
+		}
+	}
+
+	return iNumTurns;
+}
+
 simulated function ApplyCooldown(XComGameState_Ability kAbility, XComGameState_BaseObject AffectState, XComGameState_Item AffectWeapon, XComGameState NewGameState)
 {
 	local XComGameStateContext_Ability AbilityContext;

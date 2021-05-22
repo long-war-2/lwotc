@@ -25,7 +25,7 @@ defaultproperties
 {
 	ObjCategory="LWTutorial"
 	ObjName="Is Tutorial Active"
-    bConvertedForReplaySystem=true
+	bConvertedForReplaySystem=true
 
 	VariableLinks.Empty
 	InputLinks(0)=(LinkDesc="In")

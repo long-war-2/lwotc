@@ -41,7 +41,7 @@ static function X2CharacterTemplate CreateTemplate_TheLostGrappler(name LostName
 	local X2CharacterTemplate CharTemplate;
 
 	CharTemplate = class'X2Character_DefaultCharacters'.static.CreateTemplate_TheLost(LostName, LoadoutName);
-	
+	CharTemplate.CharacterGroupName = 'TheLost';
 	CharTemplate.strPawnArchetypes.Length = 0;
 	CharTemplate.strPawnArchetypes.AddItem("GameUnit_TheLost.ARC_GameUnit_TheLost_Howler");
 	CharTemplate.AIOrderPriority = 100;
@@ -54,10 +54,18 @@ static function X2CharacterTemplate CreateTemplate_TheLostBrute(name LostName, n
 	local X2CharacterTemplate CharTemplate;
 
 	CharTemplate = class'X2Character_DefaultCharacters'.static.CreateTemplate_TheLost(LostName, LoadoutName);
-	CharTemplate.strPawnArchetypes.Length = 0;
-	CharTemplate.strPawnArchetypes.AddItem("LW_Lost_Brute.Archetypes.ARC_GameUnit_TheLost_CXBrute"); //Brute Lost
+	CharTemplate.CharacterGroupName = 'TheLost';
 	CharTemplate.SightedNarrativeMoments.Length = 0;
 	CharTemplate.Abilities.AddItem('WallBreaking');
+	CharTemplate.strPawnArchetypes.Length = 0;
+	if (class'Helpers_LW'.static.IsModInstalled("WorldWarLost"))
+	{
+		CharTemplate.strPawnArchetypes.AddItem("CX_Extra_Lost_Brute.Archetypes.ARC_GameUnit_TheLost_CXBrute"); //Brute Lost
+	}
+	else
+	{
+		CharTemplate.strPawnArchetypes.AddItem("GameUnit_TheLost.ARC_GameUnit_TheLost_Howler");
+	}
 
 	return CharTemplate;
 }

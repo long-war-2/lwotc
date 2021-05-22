@@ -8,17 +8,20 @@ class X2EventListener_Tutorial extends X2EventListener config(LW_Tutorial);
 
 var localized string DroneSightedTitle;
 var localized string DroneSightedBody;
-var localized string EngineerSightedTitle;
-var localized string EngineerSightedBody;
-var localized string SentrySightedTitle;
-var localized string SentrySightedBody;
-var localized string GunnerSightedTitle;
-var localized string GunnerSightedBody;
-var localized string RocketeerSightedTitle;
-var localized string RocketeerSightedBody;
+var localized string RainbowTrooperSightedTitle;
+var localized string RainbowTrooperSightedBody;
 
 var localized string HavenHighlightTitle;
 var localized string HavenHighlightBody;
+
+var localized string FirstMissionDiscoveredTitle;
+var localized string FirstMissionDiscoveredBody;
+
+var localized string FirstRetaliationTitle;
+var localized string FirstRetaliationBody;
+
+var localized string CommandersQuartersEnteredTitle;
+var localized string CommandersQuartersEnteredBody;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -38,10 +41,10 @@ static function CHEventListenerTemplate CreateTacticalListeners()
 	// before the strategy objective is completed from the same event.
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'TacticalTutorialListeners');
 	Template.AddCHEvent('DroneSighted', OnDroneSighted, ELD_OnStateSubmitted, 90);
-	Template.AddCHEvent('EngineerSighted', OnEngineerSighted, ELD_OnStateSubmitted, 90);
-	Template.AddCHEvent('SentrySighted', OnSentrySighted, ELD_OnStateSubmitted, 90);
-	Template.AddCHEvent('GunnerSighted', OnGunnerSighted, ELD_OnStateSubmitted, 90);
-	Template.AddCHEvent('RocketeerSighted', OnRocketeerSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('EngineerSighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('SentrySighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('GunnerSighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('RocketeerSighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
 	Template.RegisterInTactical = true;
 
 	return Template;
@@ -54,7 +57,9 @@ static function CHEventListenerTemplate CreateStrategyListeners()
 	// Use a high priority for these listeners because we want them triggering
 	// before the strategy objective is completed from the same event.
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'StrategyTutorialListeners');
-	Template.AddCHEvent('OnGeoscapeEntry', OnGeoscapeEntered, ELD_Immediate);
+	Template.AddCHEvent('NewMissionAppeared', OnMissionDiscovered, ELD_OnStateSubmitted);
+	Template.AddCHEvent('NewMissionAppeared', HandleFirstRetaliation, ELD_OnStateSubmitted);
+	Template.AddCHEvent('OnEnteredFacility_CommandersQuarters', ShowArchivesTutorial, ELD_OnStateSubmitted, 10);
 	Template.RegisterInStrategy = true;
 
 	return Template;
@@ -76,76 +81,96 @@ static function EventListenerReturn OnDroneSighted(Object EventData, Object Even
 	return ELR_NoInterrupt;
 }
 
-static function EventListenerReturn OnEngineerSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+static function EventListenerReturn OnRainbowTrooperSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
 {
-	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_EngineerSighted'))
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_RainbowTrooperSighted'))
 	{
-		class'LWTutorial'.static.CompleteObjective('LW_TUT_EngineerSighted');
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_RainbowTrooperSighted');
 
-		// Show the tutorial box for Engineers
+		// Show the tutorial box for rainbow troopers
 		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
-				default.EngineerSightedTitle,
-				default.EngineerSightedBody,
-				"img:///UILibrary_LW_Overhaul.TutorialImages.LWEngineer");
-	}
-	return ELR_NoInterrupt;
-}
-
-static function EventListenerReturn OnSentrySighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_SentrySighted'))
-	{
-		class'LWTutorial'.static.CompleteObjective('LW_TUT_SentrySighted');
-
-		// Show the tutorial box for Sentries
-		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
-				default.SentrySightedTitle,
-				default.SentrySightedBody,
-				"img:///UILibrary_LW_Overhaul.TutorialImages.LWSentry");
-	}
-	return ELR_NoInterrupt;
-}
-
-static function EventListenerReturn OnGunnerSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_GunnerSighted'))
-	{
-		class'LWTutorial'.static.CompleteObjective('LW_TUT_GunnerSighted');
-
-		// Show the tutorial box for Gunners
-		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
-				default.GunnerSightedTitle,
-				default.GunnerSightedBody,
-				"img:///UILibrary_LW_Overhaul.TutorialImages.LWGunner");
-	}
-	return ELR_NoInterrupt;
-}
-
-static function EventListenerReturn OnRocketeerSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
-{
-	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_RocketeerSighted'))
-	{
-		class'LWTutorial'.static.CompleteObjective('LW_TUT_RocketeerSighted');
-		// Show the tutorial box for rocketeers
-		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
-				default.RocketeerSightedTitle,
-				default.RocketeerSightedBody,
-				"img:///UILibrary_LW_Overhaul.TutorialImages.LWRocketeer");
+				default.RainbowTrooperSightedTitle,
+				default.RainbowTrooperSightedBody,
+				"img:///UILibrary_LW_Overhaul.TutorialImages.LWRainbow");
 	}
 	return ELR_NoInterrupt;
 }
 
 // Pop up a tutorial box when the Geoscape is first entered that directs the
 // player to their starting haven/outpost.
-static function EventListenerReturn OnGeoscapeEntered(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+static function EventListenerReturn OnMissionDiscovered(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
 {
-	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_HavenOnGeoscape'))
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_FirstMissionDiscovered'))
 	{
-		class'LWTutorial'.static.CompleteObjective('LW_TUT_HavenOnGeoscape');
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_FirstMissionDiscovered');
 		`PRESBASE.UITutorialBox(
-			default.HavenHighlightTitle,
-			default.HavenHighlightBody,
-			"img:///UILibrary_LW_Overhaul.TutorialImages.LWHaven_Map_Icon");
+			default.FirstMissionDiscoveredTitle,
+			default.FirstMissionDiscoveredBody,
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWMission_Map_Icon");
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// Pop up a tutorial box when the Geoscape is first entered that directs the
+// player to their starting haven/outpost.
+static function EventListenerReturn HandleFirstRetaliation(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_LWAlienActivity ActivityState;
+	local name ActivityName;
+
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_FirstRetaliation'))
+	{
+		ActivityState = XComGameState_LWAlienActivity(EventSource);
+		if (ActivityState == none ) return ELR_NoInterrupt;
+
+		// Check whether this is a retaliation mission.
+		ActivityName = ActivityState.GetMyTemplateName();
+		if (ActivityName != class'X2StrategyElement_DefaultAlienActivities'.default.CounterinsurgencyName &&
+			ActivityName != class'X2StrategyElement_DefaultAlienActivities'.default.IntelRaidName &&
+			ActivityName != class'X2StrategyElement_DefaultAlienActivities'.default.SupplyConvoyName &&
+			ActivityName != class'X2StrategyElement_DefaultAlienActivities'.default.RecruitRaidName)
+		{
+			// Not a retal
+			return ELR_NoInterrupt;
+		}
+
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_FirstRetaliation');
+		`PRESBASE.UITutorialBox(
+			default.FirstRetaliationTitle,
+			default.FirstRetaliationBody,
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWOTC_Logo");
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// Pop up a tutorial box when the Geoscape is first entered that directs the
+// player to their starting haven/outpost.
+static function EventListenerReturn ShowArchivesTutorial(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_CommandersQuarters'))
+	{
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_CommandersQuarters');
+		`PRESBASE.UITutorialBox(
+			default.CommandersQuartersEnteredTitle,
+			default.CommandersQuartersEnteredBody,
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWOTC_Logo");
 	}
 
 	return ELR_NoInterrupt;
