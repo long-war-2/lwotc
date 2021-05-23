@@ -1,21 +1,23 @@
 Welcome to a new version of Long War of the Chosen!
 
-Beta 4 sees a lot of changes to LWOTC in several key areas: Chosen, Lost, hero/faction soldiers, psi operatives and more. This is intended to be the last beta before we hit version 1.0.
+Beta 4 sees a lot of changes to LWOTC in several key areas: Chosen, Lost, hero/faction soldiers, psi operatives and more. This is intended to be the last beta before we hit version 1.0 proper.
 
-**IMPORTANT** You should start a new campaign if upgrading from beta 3.1 or earlier!
+**IMPORTANT** You should start a new campaign if upgrading from any version prior to dev build 26!
 
 Here are some of the headline changes you may be interested in:
 
 * Chosen have been completely reworked and now play very differently
 * Templars and Reapers have been changed significantly in terms of both abilities and equipment, and how they function/play
-* The Lost now appear in smaller numbers on average, but that scales with alert level
+* The Lost now appear in smaller numbers on average, but their numbers scale with alert level
 * The XCOM row perks have been refreshed so soldiers are more likely to get appropriate/useful abilities for their class
 * There is now a tutorial, which can be disabled via a second wave option
 * Much improved controller support (thanks to kdm2k6)
 
-||  **[Download the release from here]()** ||
+||  **[Download the full 1.0 beta 4 release from here](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
 
-More details on all the balance changes and bug fixes below.
+That Nexus page also has a patch zip file that you can use to upgrade an existing LWOTC installation if it's version dev 23 or newer. The upgrade zip file should be unpacked into the *XCom2-WarOfTheChosen/XComGame/Mods* directory, overwriting the existing LWOTC and Community Highlander files.
+
+More details on all the balance changes and bug fixes can be found below.
 
 Read the [installation instructions](https://github.com/long-war-2/lwotc/wiki/Installing-Long-War-of-the-Chosen) for information on how to perform the upgrade.
 
@@ -191,7 +193,7 @@ Reapers no longer have permanent stealth. Instead, Shadow is a cooldown-based ab
 
 In addition to the Shadow changes, we've removed the Claymore in favour of throwing knives - thanks to Musashi for letting us use these. This was partly because the Claymore was hard to mod, but also because it was a bit of a one-trick pony. Reapers still keep Homing Mine and have Remote Start in their XCOM pool of random abilities. We also added Shadow Grenadier that allows Reapers to use any type of grenade without breaking Shadow.
 
-Throwing knives are low-damage, short-range weapons that can be used without losing Shadow (the Vektor still breaks Shadow by default). These knives have a nice bonus to crit chance, so they can do a fair bit of damage from flanking attacks.
+Throwing knives are low-damage, short-range weapons that can be used without losing Shadow (the Vektor still breaks Shadow by default). These knives have a nice bonus to crit chance, so they can do a fair bit of damage from flanking attacks. Thanks to Musashi for letting us borrow them from his Combat Knives mod!
 
 Lastly, the Vektor Rifle now behaves more like a strike rifle from LW1, with a slight penalty to Aim at close range, but it can be used from Squadsight - up to a point - without penalty. However, as with the Sharpshooter Snap Shot ability, the aim penalty for range starts applying about 5 tiles from outside normal weapon range and increases more agressively than for Snap Shot.
 
@@ -201,7 +203,7 @@ To fit with that theme, we're now using NotSoLoneWolf's laser and coilgun strike
 
 New and reworked abilities:
 
- * Shadow lasts for 2 turns, has a 2-turn cooldown and reduces detection radius by 100%
+ * Shadow lasts for 2 turns, has a 4-turn cooldown (that starts as soon as it's activated) and reduces detection radius by 100%
  * Knife Juggler adds +1 throwing knife, +1 damage to throwing knives, and makes it so that kills with the primary weapon grant an extra knife
  * Shadow Grenadier allows the Reaper to throw grenades without breaking Shadow, adds a grenade pocket to the class, and removes the cooldown on throwing grenades
  * Shooting Sharp grants ranged attacks +2 armor piercing and  +10 aim against units in cover
@@ -226,7 +228,7 @@ Here's the current ability tree:
 
 New and reworked abilities:
 
- * Total Combat now grants Bombardier and Volatile Mix on top of the existing behavior
+ * Total Combat now grants Bombardier and Volatile Mix on top of the existing behavior, and removes the cooldown on throwing grenades
  * Packmaster grants +1 charge to every utility item equipped, including any grenades in the grenade pocket
  * Damn Good Ground now works on Justice and Wrath
  * Interrupt is a free action on a 3-turn cooldown that grants the Skirmisher a single Battlelord-like action during the enemy's turn
@@ -237,6 +239,8 @@ New and reworked abilities:
 ### Templars
 
 The Templar has been reworked substantially to differentiate it from the Shinobi. The class now carries a shield instead of the autopistol that provides interesting defensive abilities. Note that the Templar now has a pistol slot so can still equip an autopistol at the cost of 1 Mobility.
+
+Thanks to Iridar for permission to use the one-armed Templar model and Musashi for the ballistic shield.
 
 The shield grants the following:
 
@@ -578,17 +582,23 @@ Contoller integration is steadily getting better, so there is less need for play
 
 # Credits and Acknowledgements
 
-[TBD]
-
 A big thanks to the following:
 
-* The Community Highlander team, as we rely heavily on its bug fixes and modding features
-* The various folks that have been submitting pull requests
-* The people that have provided translations for LWOTC:
-  - Italian: SilentSlave
-  - Russian: FlashVanMaster and Roman-Sch
-  - French: Savancosinus
-* The folks on XCOM 2 Modders Discord, who have been incredibly helpful at all stages of this project
-* All the folks that have been testing the development builds and providing feedback and issue reports
+ * Grobobobo for the huge effort put into the Chosen, the faction soldier reworks, and the XCOM ability row changes
+ * Iridar for permission to use his [More Psi Abilities](https://steamcommunity.com/sharedfiles/filedetails/?id=2245270253), [One Handed Templar](https://steamcommunity.com/sharedfiles/filedetails/?id=1593890402), and sawn-off shotgun (from [LW2 Secondary Weapons](https://steamcommunity.com/workshop/filedetails/?id=1140434643))
+ * Musashi for permission to use his [Ballistic Shields](https://steamcommunity.com/sharedfiles/filedetails/?id=1416242202) and throwing knives (from [WotC Combat Knives](https://steamcommunity.com/sharedfiles/filedetails/?id=1135248412)).
+ * NotSoLoneWolf for permission to use his laser and coil strike rifles from [Wolf's Asset Pack](https://steamcommunity.com/sharedfiles/filedetails/?id=2245270253)
+ * InternetExploder for permission to use their [Beam Grenade Launcher](https://steamcommunity.com/sharedfiles/filedetails/?id=1181681128)
+ * Favid for permission to use abilities from the [[WOTC] Shadow Ops Perk Pack](https://steamcommunity.com/sharedfiles/filedetails/?id=1519841231) and their [[WOTC] Extended Perk Pack](https://steamcommunity.com/sharedfiles/filedetails/?id=1546482849)
+ * Shiremct for permission to use abilities from [[WOTC] Proficiency Class Pack](https://steamcommunity.com/sharedfiles/filedetails/?id=1265143828)
+ * bstar for permission to use abilities from [their perk pack](https://steamcommunity.com/sharedfiles/filedetails/?id=2115077818)
+ * The Community Highlander team, as we rely heavily on its bug fixes and modding features
+ * The various folks that have been submitting pull requests
+ * The people that have provided translations for LWOTC:
+   - Italian: SilentSlave
+   - Russian: FlashVanMaster
+   - French: Savancosinus
+ * The folks on XCOM 2 Modders Discord, who have been incredibly helpful at all stages of this project
+ * All the folks that have been testing the development builds and providing feedback and issue reports
 
 We hope you enjoy the mod, and good luck commanders!
