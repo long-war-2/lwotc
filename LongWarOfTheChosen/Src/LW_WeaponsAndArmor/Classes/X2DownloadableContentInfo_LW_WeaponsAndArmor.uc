@@ -310,16 +310,16 @@ static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameStat
 		}
 		if (PrimaryWeaponTemplate.WeaponCat == 'sword' || PrimaryWeaponTemplate.WeaponCat == 'gauntlet')
 		{
-			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations.Anims.AS_Shield_Melee")));
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Melee")));
 		}
 		else
 		{
-			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations.Anims.AS_Shield")));
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield")));
 		}
 
 		if (PrimaryWeaponTemplate.WeaponCat != 'gauntlet')
 		{
-			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations.Anims.AS_Shield_Armory")));
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Armory")));
 		}
 	}
 
