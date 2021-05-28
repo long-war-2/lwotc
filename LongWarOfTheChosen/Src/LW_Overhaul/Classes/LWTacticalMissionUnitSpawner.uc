@@ -80,6 +80,7 @@ static function SpawnUnitsForMission(XComGameState_MissionSite Mission)
 			GiveEvacAbilityToRebels();
 			break;
 		case "CovertEscape_LW":
+		case "CovertEscape_NonPCP_LW":
 			LoadCovertOperatives(Mission);
 			break;
 		}
