@@ -792,6 +792,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RequiredToHitChance.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RevivalProtocol_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_RevivalProtocolRestoreActionPoints_LW.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_WeaponCategory.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2DownloadableContentInfo_LWPerkPack.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_AbilityDamageMult.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_AbsorptionFields.uc" />

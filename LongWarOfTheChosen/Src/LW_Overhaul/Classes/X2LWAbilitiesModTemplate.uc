@@ -47,6 +47,8 @@ var config int MIND_SCORCH_BURN_CHANCE;
 
 var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
 
+var config array<name> PISTOL_ABILITY_WEAPON_CATS;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
     // Override the FinalizeHitChance calculation for abilities that use standard aim
@@ -199,6 +201,19 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		default:
 			break;
 
+	}
+
+	// Update pistol abilities so that they don't appear unless a pistol
+	// or other suitable weapon is equipped.
+	switch (Template.DataName)
+	{
+		case 'ClutchShot':
+		case 'FanFire':
+		case 'FaceOff':
+		case 'Gunslinger':
+		case 'LightningHands':
+			Template.AbilityShooterConditions.AddItem(CreatePistolWeaponCatCondition());
+			break;
 	}
 }
 
@@ -1148,6 +1163,16 @@ static function DisplayMindShieldPassive(X2AbilityTemplate Template)
 			DamageImmunity.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 		}
 	}
+}
+
+static function X2Condition_WeaponCategory CreatePistolWeaponCatCondition()
+{
+	local X2Condition_WeaponCategory WeaponCatCondition;
+
+	WeaponCatCondition = new class'X2Condition_WeaponCategory';
+	WeaponCatCondition.WeaponCats = default.PISTOL_ABILITY_WEAPON_CATS;
+
+	return WeaponCatCondition;
 }
 
 defaultproperties
