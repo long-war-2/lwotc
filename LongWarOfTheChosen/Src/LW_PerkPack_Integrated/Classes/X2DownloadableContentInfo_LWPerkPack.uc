@@ -413,7 +413,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'RUN_AND_GUN_COOLDOWN':
 			OutString = string(class'X2AbilityCooldown_RunAndGun_LW'.default.RUN_AND_GUN_COOLDOWN);
-
+			return true;
 		case 'LOCKDOWN_TOHIT_BONUS':
 			OutString = string(Round(class'X2Effect_LockdownDamage'.default.LOCKDOWN_TOHIT_BONUS * (1.0 - class'X2AbilityToHitCalc_StandardAim'.default.REACTION_FINALMOD)));
 			return true;

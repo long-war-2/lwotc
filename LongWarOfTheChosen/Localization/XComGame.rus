@@ -5595,15 +5595,15 @@ Description="Противник будет неимоверно сильнее, 
 ; End Translated
 
 ; LWOTC Translated
-[IncreaseTimer1Effect X2SitRepEffect_ModifyKismetVariable]
+[IncreaseTimer1Effect_LW X2SitRepEffect_ModifyTacticalStartState]
 FriendlyName="Запас времени"
 Description="Увеличивает время задания на 1 ход."
 
-[IncreaseTimer2Effect_LW X2SitRepEffect_ModifyKismetVariable]
+[IncreaseTimer2Effect_LW X2SitRepEffect_ModifyTacticalStartState]
 FriendlyName="Запас времени"
 Description="Увеличивает время задания на 2 хода."
 
-[IncreaseTimer4Effect X2SitRepEffect_ModifyKismetVariable]
+[IncreaseTimer4Effect_LW X2SitRepEffect_ModifyTacticalStartState]
 FriendlyName="Запас времени"
 Description="Увеличивает время задания на 4 хода."
 ; End Translated

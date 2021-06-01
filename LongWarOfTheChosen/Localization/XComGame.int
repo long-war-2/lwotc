@@ -968,7 +968,7 @@ AbilityDescName="arcthrower"
 FriendlyName="Advanced Arc Thrower"
 FriendlyNamePlural="Advanced Arc Throwers"
 BriefSummary="Allows stunning enemies at a distance."
-TacticalText="<Bullet/> Does no damage but stuns targets for an one turn and part of a second if it hits.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> One-turn cooldown.<br/><Bullet/> Ineffective against mechanized units without additional training."
+TacticalText="<Bullet/> Does no damage but stuns targets for one turn and part of a second if it hits.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> One-turn cooldown.<br/><Bullet/> Ineffective against mechanized units without additional training."
 AbilityDescName="arcthrower"
 
 [ArcThrower_BM X2WeaponTemplate]
@@ -5316,7 +5316,7 @@ LocLongDescription="Grant an additional action point to a bondmate. Has one or t
 LocLongDescription="Grants the soldier Shadow, an advanced form of concealment that lasts for 2 turns."
 LocHelpText="Soldier enters Shadow, an advanced form of concealment, for 2 turns."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges by 100%, effectively rendering the unit invisible.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges to just a few tiles at most.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (2)
 
 [SilentKiller X2AbilityTemplate]
@@ -5628,15 +5628,15 @@ FriendlyName="Lethargy"
 Description="Units have -20 Aim and -2 Mobility."
 
 ; LWOTC Needs Translation (2)
-[IncreaseTimer1Effect X2SitRepEffect_ModifyKismetVariable]
+[IncreaseTimer1Effect_LW X2SitRepEffect_ModifyTacticalStartState]
 FriendlyName="Extended Timer"
 Description="If this mission has a timer, it is increased by 1 turn."
 
-[IncreaseTimer2Effect_LW X2SitRepEffect_ModifyKismetVariable]
+[IncreaseTimer2Effect_LW X2SitRepEffect_ModifyTacticalStartState]
 FriendlyName="Extended Timer"
 Description="If this mission has a timer, it is increased by 2 turns."
 
-[IncreaseTimer4Effect X2SitRepEffect_ModifyKismetVariable]
+[IncreaseTimer4Effect_LW X2SitRepEffect_ModifyTacticalStartState]
 FriendlyName="Extended Timer"
 Description="If this mission has a timer, it is increased by 4 turns."
 ; End Translation (2)
@@ -6286,7 +6286,7 @@ LocPromotionPopupText="<Bullet/> Mind Scorch can now panic the enemy.<br/><Bulle
 
 [MindScorch X2AbilityTemplate]
 LocFriendlyName="Mind Scorch"
-LocHelpText="The Warlock opens their mind to the target, damaging and having a <Ability:MIND_SCORCH_BURN_CHANCE/> % chancec to burn the target with their madness."
+LocHelpText="The Warlock opens their mind to the target, damaging and having a <Ability:MIND_SCORCH_BURN_CHANCE/> % chance to burn the target with their madness."
 LocLongDescription="The Warlock opens their mind to the target, damaging and burning the target with their madness."
 
 [ChosenKidnap X2AbilityTemplate]
@@ -6827,7 +6827,7 @@ LocFriendlyName="Amplify"
 LocLongDescription="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 2 attacks. Costs 1 Focus, free action."
 LocHelpText="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 2 attacks. Costs 1 Focus, free action."
 LocHitMessage="Amplified"
-LocPromotionPopupText="<Bullet/> Amplify will last for a two damage instances.<br/><Bullet/> Amplify is a free action.<br/>"
+LocPromotionPopupText="<Bullet/> Amplify will last for two damage instances.<br/><Bullet/> Amplify is a free action.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 
 [CrusaderRage_LW X2AbilityTemplate]
