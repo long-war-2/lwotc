@@ -277,7 +277,7 @@ static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameStat
 			break;
 		}
 	}
-	if (SecondaryWeaponTemplate.WeaponCat == 'shield')
+	if (SecondaryWeaponTemplate.WeaponCat == 'templarshield')
 	{
 		CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Medkit")));
 		CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Grenade")));
@@ -329,16 +329,16 @@ static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameStat
 		}
 	}
 
-	if(UnitState.GetMyTemplateName() == 'TemplarSoldier')
+	if (UnitState.GetMyTemplateName() == 'TemplarSoldier')
 	{
-		if(UnitState.GetItemInSlot(eInvSlot_Pistol) != none)
+		if (UnitState.GetItemInSlot(eInvSlot_Pistol) != none)
 		{
-			if(UnitState.GetItemInSlot(eInvSlot_Pistol).GetWeaponCategory() == 'sidearm')
+			if (UnitState.GetItemInSlot(eInvSlot_Pistol).GetWeaponCategory() == 'sidearm')
 			{
 				`LWTrace("[LW_WeaponsAndArmor] Adding animset 'AS_TemplarAutoPistol'");
 				CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("Templar_ANIM.AS_TemplarAutoPistol")));
 			}
-			else if(UnitState.GetItemInSlot(eInvSlot_Pistol).GetWeaponCategory() == 'pistol')
+			else if (UnitState.GetItemInSlot(eInvSlot_Pistol).GetWeaponCategory() == 'pistol')
 			{
 				`LWTrace("[LW_WeaponsAndArmor] Adding animset 'AS_Pistol'");
 				CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("Soldier_ANIM.AS_Pistol")));

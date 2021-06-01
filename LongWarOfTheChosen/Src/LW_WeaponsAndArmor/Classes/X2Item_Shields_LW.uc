@@ -51,7 +51,7 @@ static function X2WeaponTemplate BallisticShield_CV()
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'TemplarBallisticShield_CV');
 	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'shield';
+	Template.WeaponCat = 'templarshield';
 	Template.WeaponTech = 'conventional';
 	Template.strImage = "img:///WoTC_Shield_UI_LW.Inv_Ballistic_Shield";
 	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
@@ -99,7 +99,7 @@ static function X2DataTemplate BallisticShield_MG()
 	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
 
 	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'shield';
+	Template.WeaponCat = 'templarshield';
 	Template.WeaponTech = 'magnetic';
 	Template.strImage = "img:///WoTC_Shield_UI_LW.Inv_Plated_Shield";
 	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
@@ -148,7 +148,7 @@ static function X2DataTemplate BallisticShield_BM()
 	Template.WeaponPanelImage = "_Sword";                       // used by the UI. Probably determines iconview of the weapon.
 
 	Template.ItemCat = 'weapon';
-	Template.WeaponCat = 'shield';
+	Template.WeaponCat = 'templarshield';
 	Template.WeaponTech = 'beam';
 	Template.strImage = "img:///WoTC_Shield_UI_LW.Inv_Powered_Shield";
 	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
