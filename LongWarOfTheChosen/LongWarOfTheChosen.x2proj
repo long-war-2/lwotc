@@ -1298,6 +1298,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_DisablingShotStunned.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Indomitable.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ManualOverride_LW.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Overcharge_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_PackMaster_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_PaleHorse_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Paramedic.uc" />
@@ -1308,7 +1309,6 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ShadowRising_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_SilentKiller_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_SkirmisherInterrupt_LW.uc" />
-    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_TemplarFocusStatBonuses.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_TemplarGrazingFire.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_VoidConduitPatch.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2LWFactionTemplateMods.uc" />

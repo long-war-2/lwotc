@@ -14,6 +14,8 @@ var config float BONUS_REND_DAMAGE_PER_TILE;
 var config int MAX_REND_FLECHE_DAMAGE;
 var config int VIGILANCE_MIN_POD_SIZE;
 var config int TERROR_STAT_CHECK_BASE_VALUE;
+var config int OVERCHARGE_AIM_BONUS;
+var config int OVERCHARGE_CRIT_BONUS;
 var config int APOTHEOSIS_COOLDOWN;
 var config int APOTHEOSIS_DODGE_BONUS;
 var config int APOTHEOSIS_MOBILITY_BONUS;
@@ -263,9 +265,7 @@ static function X2AbilityTemplate AddMeditation()
 static function X2AbilityTemplate AddOvercharge_LW()
 {
 	local X2AbilityTemplate					Template;
-	local X2Effect_TemplarFocusStatBonuses	FocusEffect;
-	local array<StatChange>					StatChanges;
-	local StatChange						NewStatChange;
+	local X2Effect_Overcharge_LW			OverchargeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Overcharge_LW');
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Overcharge";
@@ -279,51 +279,12 @@ static function X2AbilityTemplate AddOvercharge_LW()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
-	FocusEffect = new class'X2Effect_TemplarFocusStatBonuses';
-	FocusEffect.BuildPersistentEffect(1, true, false);
-	FocusEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false, , Template.AbilitySourceName);
-
-	//	focus 0
-	StatChanges.Length = 0;
-	FocusEffect.AddNextFocusLevel(StatChanges, 0, 0);
-	//	focus 1
-	StatChanges.Length = 0;
-	NewStatChange.StatType = eStat_Offense;
-	NewStatChange.StatAmount = default.FOCUS1AIM;
-	StatChanges.AddItem(NewStatChange);
-	NewStatChange.StatType = eStat_CritChance;
-	NewStatChange.StatAmount = default.FOCUS1CRIT;
-	StatChanges.AddItem(NewStatChange);
-	FocusEffect.AddNextFocusLevel(StatChanges, 0, 0);
-	//	focus 2
-	StatChanges.Length = 0;
-	NewStatChange.StatType = eStat_Offense;
-	NewStatChange.StatAmount = default.FOCUS2AIM;
-	StatChanges.AddItem(NewStatChange);
-	NewStatChange.StatType = eStat_CritChance;
-	NewStatChange.StatAmount = default.FOCUS2CRIT;
-	StatChanges.AddItem(NewStatChange);
-	FocusEffect.AddNextFocusLevel(StatChanges, 0, 0);
-	//	focus 3
-	StatChanges.Length = 0;
-	NewStatChange.StatType = eStat_Offense;
-	NewStatChange.StatAmount = default.FOCUS3AIM;
-	StatChanges.AddItem(NewStatChange);
-	NewStatChange.StatType = eStat_CritChance;
-	NewStatChange.StatAmount = default.FOCUS3CRIT;
-	StatChanges.AddItem(NewStatChange);
-	FocusEffect.AddNextFocusLevel(StatChanges, 0, 0);
-	//	focus 3
-	StatChanges.Length = 0;
-	NewStatChange.StatType = eStat_Offense;
-	NewStatChange.StatAmount = default.FOCUS4AIM;
-	StatChanges.AddItem(NewStatChange);
-	NewStatChange.StatType = eStat_CritChance;
-	NewStatChange.StatAmount = default.FOCUS4Crit;
-	StatChanges.AddItem(NewStatChange);
-	FocusEffect.AddNextFocusLevel(StatChanges, 0, 0);
-
-	Template.AddTargetEffect(FocusEffect);
+	OverchargeEffect = new class'X2Effect_Overcharge_LW';
+	OverchargeEffect.BuildPersistentEffect(1, true, false);
+	OverchargeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false, , Template.AbilitySourceName);
+	OverchargeEffect.AimBonusPerFocus = default.OVERCHARGE_AIM_BONUS;
+	OverchargeEffect.CritBonusPerFocus = default.OVERCHARGE_CRIT_BONUS;
+	Template.AddTargetEffect(OverchargeEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  NOTE: No visualization on purpose!
