@@ -87,7 +87,7 @@ static function X2AbilityTemplate OneForAll()
 	ShieldedEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,false,, Template.AbilitySourceName);
 	Template.AddTargetEffect(ShieldedEffect);
 
-
+	Template.bOverrideWeapon = true;
 	Template.OverrideAbilities.AddItem('HunkerDown');
 
 	//	WAR Suit's "Shieldwall" ability. Redundant with *this* Shield Wall.
