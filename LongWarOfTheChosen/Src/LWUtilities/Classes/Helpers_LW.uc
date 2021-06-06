@@ -628,7 +628,10 @@ static function array<StateObjectReference> FindAvailableCapturedSoldiers(option
 	{
 		// Check whether the soldier is already attached as a mission or covert action reward
 		if (!IsRescueMissionAvailableForSoldier(CapturedSoldierRef, NewGameState))
+		{
+			`LWTrace("[RescueSoldier] Captured soldier (normal) available for rescue " $ CapturedSoldierRef.ObjectID);
 			CapturedSoldiers.AddItem(CapturedSoldierRef);
+		}
 	}
 
 	// Now collect any soldiers captured by the Chosen
@@ -638,7 +641,10 @@ static function array<StateObjectReference> FindAvailableCapturedSoldiers(option
 		{
 			// Check whether the soldier is already attached as a mission or covert action reward
 			if (!IsRescueMissionAvailableForSoldier(CapturedSoldierRef, NewGameState))
+			{
+				`LWTrace("[RescueSoldier] Captured soldier (Chosen - " $ ChosenState.GetMyTemplateName() $ ") available for rescue " $ CapturedSoldierRef.ObjectID);
 				CapturedSoldiers.AddItem(CapturedSoldierRef);
+			}
 		}
 	}
 
@@ -667,7 +673,10 @@ static function bool IsRescueMissionAvailableForSoldier(StateObjectReference Cap
 		foreach NewGameState.IterateByClassType(class'XComGameState_Reward', RewardState)
 		{
 			if (RewardState.RewardObjectReference.ObjectID == CapturedSoldierRef.ObjectID)
+			{
+				`LWTrace("[RescueSoldier] Found existing reward in new game state for captured soldier " $ CapturedSoldierRef.ObjectID);
 				return true;
+			}
 		}
 	}
 
@@ -680,7 +689,10 @@ static function bool IsRescueMissionAvailableForSoldier(StateObjectReference Cap
 		{
 			RewardState = XComGameState_Reward(History.GetGameStateForObjectID(StateRef.ObjectID));
 			if (RewardState.RewardObjectReference.ObjectID == CapturedSoldierRef.ObjectID)
+			{
+				`LWTrace("[RescueSoldier] Found existing mission for captured soldier " $ CapturedSoldierRef.ObjectID);
 				return true;
+			}
 		}
 	}
 
@@ -689,6 +701,7 @@ static function bool IsRescueMissionAvailableForSoldier(StateObjectReference Cap
 	ActionState = class'XComGameState_HeadquartersResistance'.static.GetCurrentCovertAction();
 	if (ActionState != none && CovertActionHasReward(ActionState, CapturedSoldierRef))
 	{
+		`LWTrace("[RescueSoldier] Currently active covert action is to rescue captured soldier " $ CapturedSoldierRef.ObjectID);
 		return true;
 	}
 
@@ -700,11 +713,13 @@ static function bool IsRescueMissionAvailableForSoldier(StateObjectReference Cap
 			ActionState = XComGameState_CovertAction(History.GetGameStateForObjectID(StateRef.ObjectID));
 			if (ActionState != none && CovertActionHasReward(ActionState, CapturedSoldierRef))
 			{
+				`LWTrace("[RescueSoldier] Found existing covert action for rescuing captured soldier " $ CapturedSoldierRef.ObjectID);
 				return true;
 			}
 		}
 	}
 
+	`LWTrace("[RescueSoldier] No existing rescue mission/covert action found for soldier " $ CapturedSoldierRef.ObjectID);
 	return false;
 }
 
