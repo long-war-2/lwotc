@@ -61,7 +61,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Techs.AddItem(CreateRenderTech ('RenderMECWreck', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyMEC", 'CorpseAdventMEC', 600, 'HybridMaterials'));
 	Techs.AddItem(CreateRenderTech ('RenderTurretWreck', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsyAdventTurret", 'CorpseAdventTurret', 500, 'HybridMaterials'));
 	Techs.AddItem(CreateRenderTech ('RenderSectopodWreck', "img:///UILibrary_StrategyImages.ScienceIcons.IC_AutopsySextopod", 'CorpseSectopod', 1200, 'HybridMaterials', 'EleriumCore'));
-	Techs.AddItem(CreateRenderTech ('RenderAdventOfficerCorpse', "img:///UILibrary_StrategyImages.ResearchTech.GOLDTECH_Advent_Officer", 'CorpseAdventOfficer', 500, 'AlienBiotech'));
+	Techs.AddItem(CreateRenderTech ('RenderAdventOfficerCorpse', "img:///UILibrary_StrategyImages.ResearchTech.GOLDTECH_Advent_Officer", 'CorpseAdventOfficer', 500, 'AutopsyAdventOfficer'));
 	Techs.AddItem(CreateRenderTech ('RenderAdventPriestCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Priest", 'CorpseAdventPriest', 600, 'AlienBiotech'));
 	Techs.AddItem(CreateRenderTech ('RenderAdventPurifierCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Purifier", 'CorpseAdventPurifier', 600, 'AlienBiotech'));
 	Techs.AddItem(CreateRenderTech ('RenderSpectreCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Spectre", 'CorpseSpectre', 600, 'AlienBiotech'));
