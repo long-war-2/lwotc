@@ -30,6 +30,52 @@ function OnAbilityInfoClicked(UIButton Button)
 		InfoButton.Hide();
 }
 
+function OnAbilityIconMouseEvent(UIPanel Panel, int Cmd)
+{
+	local UIIcon AbilityIcon;
+	local bool bHandled;
+	local int idx;
+
+	foreach AbilityIcons(AbilityIcon, idx)
+	{
+		if (Panel == AbilityIcon)
+		{
+			if (cmd == class'UIUtilities_Input'.const.FXS_L_MOUSE_UP)
+			{
+				SelectAbility(idx);
+			}
+			else if (cmd == class'UIUtilities_Input'.const.FXS_L_MOUSE_IN)
+			{
+				OnReceiveFocus();
+				AbilityIcon.OnReceiveFocus();
+				RealizeAvailableState(idx);
+
+				PreviewAbility(idx);
+
+				if (!UIArmory_PromotionHero(Screen).IsAbilityLocked(Rank) || UIArmory_PromotionHero(Screen).RevealAllAbilities)
+				{
+					InfoButtons[idx].Show();
+				}
+				ClearTimer('Hide', InfoButtons[idx]);
+			}
+			else if (cmd == class'UIUtilities_Input'.const.FXS_L_MOUSE_OUT || cmd == class'UIUtilities_Input'.const.FXS_L_MOUSE_DRAG_OUT)
+			{
+				AbilityIcon.OnLoseFocus();
+				RealizeAvailableState(idx);
+
+				HideAbilityPreview();
+				SetTimer(0.01, false, 'Hide', InfoButtons[idx]);
+			}
+
+			bHandled = true;
+			break;
+		}
+	}
+
+	if (bHandled)
+		RealizeVisuals();
+}
+
 function SelectAbility(int idx)
 {
 	local UIArmory_PromotionHero PromotionScreen;
