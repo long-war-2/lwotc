@@ -2577,6 +2577,10 @@ ObjectiveTextPools[0]="모든 적 목표물 무력화하기"
 ObjectiveTextPools[1]="모든 XCOM 병사 탈출시키기"
 ObjectiveTextPools[2]="적 부대 기습하기"
 ObjectiveTextPools[3]="어드밴트는 대개 대규모 단위로 부대를 움직입니다. 하지만 방어가 취약한 소형 어드밴트 부대를 발견했습니다 적절한 시기에 공격하면 이 지역에 대한 어드밴트 영향력을 약화시킬 수 있으며 연구 목적을 위한 적 시체를 조달할 수 있는 소중한 기회를 얻을 수 있게 됩니다."
+; LWOTC Needs Translation
+ObjectiveTextPools[4]="LWOTC Gatecrasher"
+ObjectiveTextPools[5]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies.<br/><br/>Note that this is one of the few missions that allows for retrieval of enemy corpses, which are needed for research and building many items. Kills with explosives destroy corpses in LWOTC!"
+; End Translation
 
 [Rendezvous_LW X2MissionTemplate]
 DisplayName="접선"

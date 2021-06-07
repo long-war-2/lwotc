@@ -2579,6 +2579,10 @@ ObjectiveTextPools[0]="Neutralizza i bersagli nemici"
 ObjectiveTextPools[1]="Estrai tutti i soldati XCOM"
 ObjectiveTextPools[2]="Assalta le truppe nemiche"
 ObjectiveTextPools[3]="La ADVENT solitamente muove le sue forze in grandi gruppi, ma abbiamo trovato un'unità più piccola e vulnerabile. Un assalto con il giusto tempismo ostacolerebbe gli interessi della ADVENT nella regione e ci darebbe una rara opportunità di recuperare i cadaveri dei nemici per fini di ricerca."
+; LWOTC Needs Translation
+ObjectiveTextPools[4]="LWOTC Gatecrasher"
+ObjectiveTextPools[5]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies.<br/><br/>Note that this is one of the few missions that allows for retrieval of enemy corpses, which are needed for research and building many items. Kills with explosives destroy corpses in LWOTC!"
+; End Translation
 
 [Rendezvous_LW X2MissionTemplate]
 DisplayName="Incontro"

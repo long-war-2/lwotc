@@ -2577,6 +2577,11 @@ ObjectiveTextPools[0]="消灭所有目标敌人"
 ObjectiveTextPools[1]="撤离所有的XCOM士兵"
 ObjectiveTextPools[2]="伏击敌方军队"
 ObjectiveTextPools[3]="变种人通常以大群体的形式转移他们的军队，但是我们还是找到了较小的容易攻击的单位。一次时机恰当的突袭将会挫败变种人在这片地区的势力，并为我们提供将敌人尸体带回研究的宝贵机会。"
+; LWOTC Needs Translation
+ObjectiveTextPools[4]="LWOTC Gatecrasher"
+ObjectiveTextPools[5]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies.<br/><br/>Note that this is one of the few missions that allows for retrieval of enemy corpses, which are needed for research and building many items. Kills with explosives destroy corpses in LWOTC!"
+; End Translation
+
 
 [Rendezvous_LW X2MissionTemplate]
 DisplayName="集结点"
