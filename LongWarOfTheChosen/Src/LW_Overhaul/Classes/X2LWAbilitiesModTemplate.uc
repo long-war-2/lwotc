@@ -25,6 +25,7 @@ var config bool ALLOW_NEGATIVE_DODGE;
 var config bool DODGE_CONVERTS_GRAZE_TO_MISS;
 var config bool GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND;
 var config bool DISABLE_LOST_HEADSHOT;
+var config int SHADOW_CRIT_MODIFIER;
 
 var config array<bool> HEADSHOT_ENABLED;
 
