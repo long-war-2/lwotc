@@ -52,7 +52,7 @@ function OnAbilityIconMouseEvent(UIPanel Panel, int Cmd)
 
 				PreviewAbility(idx);
 
-				if (!UIArmory_PromotionHero(Screen).IsAbilityLocked(Rank) || UIArmory_PromotionHero(Screen).RevealAllAbilities)
+				if (!UIArmory_PromotionHero(Screen).IsAbilityLocked(Rank) || NPSBDP_UIArmory_PromotionHero(Screen).RevealAllAbilities)
 				{
 					InfoButtons[idx].Show();
 				}
