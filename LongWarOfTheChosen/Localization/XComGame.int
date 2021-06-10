@@ -2687,6 +2687,13 @@ PostMissionType="Escape Covert Action"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="Escape the combat zone"
 
+[CovertEscape_NonPCP_LW X2MissionTemplate]
+DisplayName="Escape Covert Action"
+Briefing="Covert Action - Escape ADVENT Counterops Team"
+PostMissionType="Escape Covert Action"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Escape the combat zone"
+
 [ProtectDevice_LW X2MissionTemplate]
 DisplayName="Protect the Device"
 Briefing="Protect Device"
