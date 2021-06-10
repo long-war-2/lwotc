@@ -70,10 +70,7 @@
     <Folder Include="Content\Movies\" />
     <Folder Include="Content\ShellMaps\" />
     <Folder Include="Src\LW_WeaponsAndArmor\" />
-    <Folder Include="Localization\NewPromotionScreenByDefault_Integrated\" />
-    <Folder Include="Src\NewPromotionScreenByDefault_Integrated\" />
     <Folder Include="Localization\PI_Integrated\" />
-    <Folder Include="Src\NewPromotionScreenByDefault_Integrated\Classes\" />
     <Folder Include="Src\PI_Integrated\" />
     <Folder Include="Src\PI_Integrated\Classes\" />
     <Folder Include="Src\WallClimbOverride\" />
@@ -1201,9 +1198,6 @@
     <Content Include="Src\LW_OfficerPack_Integrated\Classes\X2TargetingMethod_CommandRange.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_XP.uc" />
     <Content Include="Config\XComPromotionUIMod.ini" />
-    <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHero.uc" />
-    <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\NPSBDP_UIArmory_PromotionHeroColumn.uc" />
-    <Content Include="Src\NewPromotionScreenByDefault_Integrated\Classes\X2DownloadableContentInfo_NewPromotionScreenbyDefault.uc" />
     <Content Include="Src\LW_Toolbox_Integrated\Classes\XComGameState_LWToolboxOptions.uc" />
     <Content Include="Config\XComPerfectInformation.ini" />
     <Content Include="Localization\PI_Integrated\PerfectInformation.fra" />

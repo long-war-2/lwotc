@@ -295,6 +295,9 @@ UnitAlreadyInSquad="Unit In Another Squad"
 UnitInSquad="Unit In A Squad"
 RankTooLow="Rank Too Low"
 CannotModifyOnMissionSoldierTooltip="Cannot modify soldier currently on mission"
+; LWOTC Needs Translation
+ReasonClassAbilityPickedAtRank="Already picked a class ability at this rank"
+; End Translation
 
 [XComGameState_LWPersistentSquad]
 +DefaultSquadNames="Menace"

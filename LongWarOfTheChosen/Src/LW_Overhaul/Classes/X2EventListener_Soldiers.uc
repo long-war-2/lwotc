@@ -6,6 +6,7 @@ var localized string UnitAlreadyInSquad;
 var localized string UnitInSquad;
 var localized string RankTooLow;
 var localized string CannotModifyOnMissionSoldierTooltip;
+var localized string ReasonClassAbilityPickedAtRank;
 
 var config array<EInventorySlot> UNMODIFIABLE_SLOTS_WHILE_ON_MISSION;
 
@@ -16,12 +17,23 @@ var config int NUM_HOURS_TO_DAYS;
 var config int BLEEDOUT_CHANCE_BASE;
 var config int DEATH_CHANCE_PER_OVERKILL_DAMAGE;
 
+struct CustomAbilityCost
+{
+	var name AbilityName;
+	var int AbilityCost;
+};
+
+var config array<CustomAbilityCost> CUSTOM_ABILITY_COSTS;
+var config array<int> FACTION_ABILITY_COSTS;
+var config float BASE_ABILITY_COST_MODIFIER;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
 	Templates.AddItem(CreateEquipmentListeners());
 	Templates.AddItem(CreateStatusListeners());
+	Templates.AddItem(CreatePromotionListeners());
 	Templates.AddItem(CreateTrainingListeners());
 	Templates.AddItem(CreateTacticalListeners());
 
@@ -55,12 +67,26 @@ static function CHEventListenerTemplate CreateStatusListeners()
 	Template.AddCHEvent('OverridePersonnelStatus', OnOverridePersonnelStatus, ELD_Immediate);
 	Template.AddCHEvent('OverridePersonnelStatusTime', OnOverridePersonnelStatusTime, ELD_Immediate);
 	Template.AddCHEvent('DSLShouldShowPsi', OnShouldShowPsi, ELD_Immediate);
-	Template.AddCHEvent('OverrideShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate);
-	Template.AddCHEvent('OverridePromotionUIClass', OverridePromotionScreen, ELD_Immediate);
-	Template.AddCHEvent('OverridePromotionBlueprintTagPrefix', OverridePromotionBlueprintTagPrefix, ELD_Immediate);
 
 	// Armory Main Menu - disable buttons for On-Mission soldiers
 	Template.AddCHEvent('OnArmoryMainMenuUpdate', UpdateArmoryMainMenuItems, ELD_Immediate);
+
+	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreatePromotionListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'SoldierPromotionListeners');
+	Template.AddCHEvent('OverrideShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate);
+	Template.AddCHEvent('OverridePromotionBlueprintTagPrefix', OverridePromotionBlueprintTagPrefix, ELD_Immediate);
+	Template.AddCHEvent('CPS_OverrideCanPurchaseAbilityProperties', OverrideRankRequirement, ELD_Immediate);
+	Template.AddCHEvent('CPS_OverrideCanPurchaseAbility', OverrideCanPurchaseAbility, ELD_Immediate);
+	Template.AddCHEvent('CPS_OverrideAbilityPointCost', OverrideAbilityPointCost, ELD_Immediate);
+	Template.AddCHEvent('CPS_AbilityPurchased', UpdateAbilityCostMultiplier, ELD_Immediate);
 
 	Template.RegisterInStrategy = true;
 
@@ -405,36 +431,6 @@ static function EventListenerReturn OnCheckForPsiPromotion(
 	return ELR_NoInterrupt;
 }
 
-static function EventListenerReturn OverridePromotionScreen(
-	Object EventData,
-	Object EventSource,
-	XComGameState GameState,
-	Name InEventID,
-	Object CallbackData)
-{
-	local XComLWTuple Tuple;
-
-	// If RPGO is installed, we'll leave it to that mod to override the
-	// promotion screen.
-	if (class'Helpers_LW'.static.IsModInstalled("XCOM2RPGOverhaul"))
-	{
-		// Don't use the LWOTC promotion screen if RPGO is running, since it
-		// has its own.
-		return ELR_NoInterrupt;
-	}
-
-	Tuple = XComLWTuple(EventData);
-	if (Tuple == none)
-		return ELR_NoInterrupt;
-
-	if (Tuple.Data[0].i == eCHLPST_Standard || Tuple.Data[0].i == eCHLPST_Hero)
-	{
-		Tuple.Data[1].o = class'NPSBDP_UIArmory_PromotionHero';
-	}
-
-	return ELR_NoInterrupt;
-}
-
 // This function makes sure that the camera is placed in the right place
 // on the After Action screen when a unit is being promoted from there.
 // It basically sets the promotion blueprint tag to the hero one for all
@@ -472,6 +468,208 @@ static function EventListenerReturn OverridePromotionBlueprintTagPrefix(
 	return ELR_NoInterrupt;
 }
 
+// Removes the rank requirement for XCOM and pistol abilities.
+static function EventListenerReturn OverrideRankRequirement(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_Unit UnitState;
+	local XComLWTuple Tuple;
+	local int Rank, Branch;
+	local int ClassAbilityRankCount; //Rank is 0 indexed but AbilityRanks is not. This means a >= comparison requires no further adjustments
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	UnitState = XComGameState_Unit(EventSource);
+	if (UnitState == none)
+		return ELR_NoInterrupt;
+
+	Branch = Tuple.Data[2].i;
+	ClassAbilityRankCount = Tuple.Data[12].i;
+
+	// All non-class abilities should be available for purchase as soon as the
+	// training center has been built.
+	if (Branch >= ClassAbilityRankCount)
+	{
+		// Mark the unit as having sufficient rank for these abilities
+		Tuple.Data[8].b = true;
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// Prevents access to multiple class abilities at a single rank unless
+// the 'AllowSameRankAbilities' second wave option is enabled. Also
+// unlocks XCOM row and pistol row abilities at *all* ranks as soon as
+// the Training Center has been built.
+static function EventListenerReturn OverrideCanPurchaseAbility(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_Unit UnitState;
+	local XComLWTuple Tuple;
+	local int Rank, Branch;
+	local int ClassAbilityRankCount; //Rank is 0 indexed but AbilityRanks is not. This means a >= comparison requires no further adjustments
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	UnitState = XComGameState_Unit(EventSource);
+	if (UnitState == none)
+		return ELR_NoInterrupt;
+
+	Rank = Tuple.Data[1].i;
+	Branch = Tuple.Data[2].i;
+	ClassAbilityRankCount = Tuple.Data[12].i;
+
+	// Don't allow purchase of other class abilities at same rank as an already
+	// picked one (unless second wave option enabled)
+	if (!`SecondWaveEnabled('AllowSameRankAbilities') && UnitState.HasPurchasedPerkAtRank(Rank, ClassAbilityRankCount) && Branch < ClassAbilityRankCount)
+	{
+		Tuple.Data[14].b = false; // CanPurchaseAbility
+		Tuple.Data[15].s = default.ReasonClassAbilityPickedAtRank; // LocReasonLocked
+	}
+
+	// All non-class abilities should be available for purchase as soon as the
+	// training center has been built.
+	if (Branch >= ClassAbilityRankCount && `XCOMHQ.HasFacilityByName('RecoveryCenter'))
+	{
+		Tuple.Data[14].b = true;
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// Handles the 'AllowSameRankAbilities' second wave option by applying
+// the current ability cost multiplier for the given unit.
+static function EventListenerReturn OverrideAbilityPointCost(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_Unit UnitState;
+	local XComLWTuple Tuple;
+	local name AbilityName;
+	local int Branch, Rank, idx;
+	local int AbilityCost, ClassAbilityRankCount;
+	local UnitValue AbilityCostModifier;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	UnitState = XComGameState_Unit(EventSource);
+	if (UnitState == none)
+		return ELR_NoInterrupt;
+
+	AbilityCost = Tuple.Data[13].i;
+	AbilityName = Tuple.Data[0].n;
+	Rank = Tuple.Data[1].i;
+	Branch = Tuple.Data[2].i;
+	ClassAbilityRankCount = Tuple.Data[12].i;
+
+	// Skip custom ability costs if base behaviour has ability cost as 0
+	if (AbilityCost == 0)
+		return ELR_NoInterrupt;
+
+	// Default ability point costs used for XCOM-row abilities
+	AbilityCost = class'X2StrategyGameRulesetDataStructures'.default.AbilityPointCosts[Rank];
+
+	// If we get here for non-Resistance heroes, then the player is
+	// attempting to purchase an ability, in which case the base ability
+	// cost is the same as for faction soldiers. Faction soldiers need
+	// to go through this route anyway.
+	if (Branch < ClassAbilityRankCount)
+	{
+		AbilityCost = default.FACTION_ABILITY_COSTS[Rank];
+	}
+	else
+	{
+		idx = default.CUSTOM_ABILITY_COSTS.Find('AbilityName', AbilityName);
+		if (idx != INDEX_NONE)
+		{
+			AbilityCost = default.CUSTOM_ABILITY_COSTS[idx].AbilityCost;
+		}
+	}
+
+	if (UnitState.HasPurchasedPerkAtRank(Rank, ClassAbilityRankCount) && Branch < ClassAbilityRankCount)
+	{
+		// Increase cost of this perk by current ability cost modifier
+		UnitState.GetUnitValue('LWOTC_AbilityCostModifier', AbilityCostModifier);
+		if (AbilityCostModifier.fValue == 0)
+		{
+			AbilityCostModifier.fValue = 1.0 + default.BASE_ABILITY_COST_MODIFIER;
+		}
+		AbilityCost *= AbilityCostModifier.fValue;
+	}
+
+	Tuple.Data[13].i = AbilityCost;
+
+	return ELR_NoInterrupt;
+}
+
+// Updates the unit value that keeps track of the multiplier use to
+// increase the cost of class abilities when a class ability has already
+// been purchased at a given rank.
+static function EventListenerReturn UpdateAbilityCostMultiplier(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_Unit UnitState, PrevUnitState;
+	local XComLWTuple Tuple;
+	local int Branch, Rank;
+	local int ClassAbilityRankCount;
+	local UnitValue AbilityCostModifier;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	UnitState = XComGameState_Unit(EventSource);
+	if (UnitState == none)
+		return ELR_NoInterrupt;
+
+	Rank = Tuple.Data[0].i;
+	Branch = Tuple.Data[1].i;
+	ClassAbilityRankCount = Tuple.Data[2].i;
+
+	// We need to know whether the unit had already purchased a class ability
+	// at this rank before this new ability was purchased. So we look in the
+	// history (before the game state with the new purchase is submitted).
+	PrevUnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitState.ObjectID));
+
+	// Initialise the ability cost modifier for the unit if it hasn't been
+	// done yet.
+	PrevUnitState.GetUnitValue('LWOTC_AbilityCostModifier', AbilityCostModifier);
+	if (AbilityCostModifier.fValue == 0)
+	{
+		AbilityCostModifier.fValue = 1.0 + default.BASE_ABILITY_COST_MODIFIER;
+	}
+
+	// For every extra perk that's purchased at a rank that already
+	// has a perk purchased, increase its cost.
+	if (PrevUnitState.HasPurchasedPerkAtRank(Rank, ClassAbilityRankCount) && Branch < ClassAbilityRankCount)
+	{
+		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+		UnitState.SetUnitFloatValue('LWOTC_AbilityCostModifier', AbilityCostModifier.fValue + default.BASE_ABILITY_COST_MODIFIER, eCleanup_Never);
+	}
+
+	return ELR_NoInterrupt;
+}
 // Scale the respec time for soldiers based on their rank
 static function EventListenerReturn OverrideRespecSoldierProjectPoints(
 	Object EventData,
