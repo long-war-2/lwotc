@@ -21,15 +21,6 @@ var config int APOTHEOSIS_DODGE_BONUS;
 var config int APOTHEOSIS_MOBILITY_BONUS;
 var config float APOTHEOSIS_DAMAGE_MULTIPLIER;
 
-var config int FOCUS1AIM;
-var config int FOCUS1CRIT;
-var config int FOCUS2AIM;
-var config int FOCUS2CRIT;
-var config int FOCUS3AIM;
-var config int FOCUS3CRIT;
-var config int FOCUS4AIM;
-var config int FOCUS4CRIT;
-
 var config int AMPLIFY_SHOTS;
 
 var name PanicImpairingAbilityName;

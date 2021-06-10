@@ -156,10 +156,10 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.MEDITATION_FOCUS_RECOVERY);
 		return true;
 	case 'OverchargeAimBonus':
-		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS1AIM);
+		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.OVERCHARGE_AIM_BONUS);
 		return true;
 	case 'OverchargeCritBonus':
-		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.FOCUS1CRIT);
+		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.OVERCHARGE_CRIT_BONUS);
 		return true;
 	case 'VoltDangerZoneBonus':
 		OutString = string(class'X2LWModTemplate_TemplarAbilities'.default.VOLT_DANGER_ZONE_BONUS_RADIUS);
