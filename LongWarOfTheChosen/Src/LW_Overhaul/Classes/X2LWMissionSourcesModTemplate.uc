@@ -19,6 +19,7 @@ static function UpdateMissionSources(X2StrategyElementTemplate Template, int Dif
 			 // Make sure players can back out of the squad select screen
 			SourceTemplate.bCannotBackOutSquadSelect = false;
 			SourceTemplate.bRequiresSkyrangerTravel = true;
+			SourceTemplate.OnSuccessFn = ChosenAmbushOnSuccess;
 			SourceTemplate.OnFailureFn = ChosenAmbushOnFailure;
 			SourceTemplate.OnExpireFn = ChosenAmbushOnExpire;
 			break;
@@ -65,17 +66,20 @@ static function ChosenAmbushOnExpire(XComGameState NewGameState, XComGameState_M
 // rewards as not to be given.
 static function ChosenAmbushOnFailure(XComGameState NewGameState, XComGameState_MissionSite MissionState)
 {
-	local XComGameState_CovertAction ActionState;
-
 	// Go through default failure implementation for the ambush mission first
 	class'X2StrategyElement_XpackMissionSources'.static.ChosenAmbushOnFailure(NewGameState, MissionState);
 
-	// Now mark the source covert action as not getting rewards (we use this in a
-	// listener to prevent the CA rewards from being given to the player).
-	ActionState = XComGameState_CovertAction(NewGameState.ModifyStateObject(
-			class'XComGameState_CovertAction',
-			XComGameState_MissionSiteChosenAmbush_LW(MissionState).CovertActionRef.ObjectID));
-	ActionState.RewardsNotGivenOnCompletion = true;
+	// Update the covert action tracker
+	class'XComGameState_CovertActionTracker'.static.CreateOrGetCovertActionTracker(NewGameState).LastAmbushMissionFailed = true;
+}
+
+static function ChosenAmbushOnSuccess(XComGameState NewGameState, XComGameState_MissionSite MissionState)
+{
+	// Go through default success implementation for the ambush mission first
+	class'X2StrategyElement_XpackMissionSources'.static.ChosenAmbushOnSuccess(NewGameState, MissionState);
+
+	// Update the covert action tracker
+	class'XComGameState_CovertActionTracker'.static.CreateOrGetCovertActionTracker(NewGameState).LastAmbushMissionFailed = false;
 }
 
 // Marks a unit on a covert action as having been captured by setting its

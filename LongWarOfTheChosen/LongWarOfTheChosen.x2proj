@@ -743,6 +743,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWBlasterLauncher.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWEvacZone.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_LWRocketLauncher.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\XComGameState_CovertActionTracker.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_Effect_TransferMecToOutpost.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_KismetVariableModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XComGameState_LWAlienActivity.uc" />

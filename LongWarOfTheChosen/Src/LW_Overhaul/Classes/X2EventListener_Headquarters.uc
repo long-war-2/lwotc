@@ -361,7 +361,7 @@ static function EventListenerReturn CAPreventRewardOnFailure(
 	if (CAState == none) return ELR_NoInterrupt;
 
 	// Prevent the reward if the covert action failed.
-	Tuple.Data[0].b = class'Helpers_LW'.static.DidCovertActionFail(CAState);
+	Tuple.Data[0].b = class'Utilities_LW'.static.DidCovertActionFail(CAState);
 
 	return ELR_NoInterrupt;
 }
@@ -388,7 +388,7 @@ static function EventListenerReturn CAPreventRecordingOnFailure(
 	// Note that failure should return `false` in the tuple because
 	// `true` means the listener is *allowing* the recording of this
 	// action.
-	Tuple.Data[0].b = !class'Helpers_LW'.static.DidCovertActionFail(CAState);
+	Tuple.Data[0].b = !class'Utilities_LW'.static.DidCovertActionFail(CAState);
 
 	return ELR_NoInterrupt;
 }
@@ -429,7 +429,7 @@ static function EventListenerReturn CAAdjustRiskChance(
 	
 	// We're only interested in altering the risk chance for the failure
 	// risk right now.
-	if (InStr(Caps(Tuple.Data[0].n), Caps(class'Helpers_LW'.default.CA_FAILURE_RISK_MARKER)) == INDEX_NONE)
+	if (InStr(Caps(Tuple.Data[0].n), Caps(class'Utilities_LW'.const.CA_FAILURE_RISK_MARKER)) == INDEX_NONE)
 		return ELR_NoInterrupt;
 	
 	// Go through all the soldier slots, building up the failure risk

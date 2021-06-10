@@ -16,7 +16,7 @@ simulated function RefreshMainPanel()
     ResultsHeader = CovertActions_SlotsHeader;
 
     // Did this covert action fail?
-    if (class'Helpers_LW'.static.DidCovertActionFail(GetAction()))
+    if (class'Utilities_LW'.static.DidCovertActionFail(GetAction()))
     {
         // Show the failure in the screen header.
         ResultsHeader $= ("&nbsp;" $ strCovertActionFailed);
@@ -31,7 +31,7 @@ simulated function RefreshMainPanel()
 simulated function String GetRewardString()
 {
     // Did this covert action fail?
-    if (class'Helpers_LW'.static.DidCovertActionFail(GetAction()))
+    if (class'Utilities_LW'.static.DidCovertActionFail(GetAction()))
     {
         return super.GetRewardString() $ " (" $ strCovertActionFailed $ ")";
     }

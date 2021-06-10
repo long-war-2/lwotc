@@ -14,6 +14,8 @@ var config float REFLEX_ACTION_CHANCE_REDUCTION;
 var config array<float> LOW_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
 var config array<float> HIGH_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
 
+const CA_FAILURE_RISK_MARKER = "CovertActionRisk_Failure";
+
 const OffensiveReflexAction = 'OffensiveReflexActionPoint_LW';
 const DefensiveReflexAction = 'DefensiveReflexActionPoint_LW';
 const NoReflexActionUnitValue = 'NoReflexAction_LW';
@@ -706,6 +708,32 @@ static function bool KillXpIsCapped()
 	}
 
 	return MissionKillXp >= MaxKillXp;
+}
+
+static function bool DidCovertActionFail(XComGameState_CovertAction CAState)
+{
+	local CovertActionRisk Risk;
+
+	foreach CAState.Risks(Risk)
+	{
+		if (InStr(Caps(Risk.RiskTemplateName), Caps(CA_FAILURE_RISK_MARKER)) == 0)
+		{
+			if (Risk.bOccurs)
+			{
+				// The failure risk has triggered, so yes, the covert action failed.
+				return true;
+			}
+		}
+	}
+
+	// Check whether the covert action was ambushed, and if so, whether the mission
+	// was successful.
+	if (CAState.bAmbushed)
+	{
+		return class'XComGameState_CovertActionTracker'.static.CreateOrGetCovertActionTracker().LastAmbushMissionFailed;
+	}
+
+	return CAState.RewardsNotGivenOnCompletion;
 }
 
 // Finds out what the alert level of a given unit was before the current one.
