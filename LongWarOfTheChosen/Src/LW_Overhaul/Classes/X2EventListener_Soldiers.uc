@@ -670,6 +670,7 @@ static function EventListenerReturn UpdateAbilityCostMultiplier(
 
 	return ELR_NoInterrupt;
 }
+
 // Scale the respec time for soldiers based on their rank
 static function EventListenerReturn OverrideRespecSoldierProjectPoints(
 	Object EventData,
