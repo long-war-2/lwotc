@@ -14,6 +14,8 @@ var config int THOUSAND_DAGGERS_COOLDOWN;
 var config int REND_THE_MARKED_CRIT;
 var config int IMPERSONAL_EDGE_AIM;
 var config int BLUESCREEN_KNIVES_PIERCE;
+var config int KNIFE_ENCOUNTERS_MAX_TILES;
+var config array<name> KNIFE_ENCOUNTERS_ABILITY_NAMES;
 
 var localized string RendTheMarkedEffectName;
 var localized string RendTheMarkedEffectDesc;
@@ -605,6 +607,8 @@ static function X2AbilityTemplate AddKnifeEncounters()
 	ActionEffect = new class 'X2Effect_CloseEncounters';
 	ActionEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ActionEffect.BuildPersistentEffect(1, true, false);
+	ActionEffect.MaxTiles = default.KNIFE_ENCOUNTERS_MAX_TILES;
+	ActionEffect.ApplicableAbilities = default.KNIFE_ENCOUNTERS_ABILITY_NAMES;
 	Template.AddTargetEffect(ActionEffect);
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

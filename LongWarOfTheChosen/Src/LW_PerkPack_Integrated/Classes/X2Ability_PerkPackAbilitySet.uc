@@ -122,6 +122,10 @@ var config bool NO_MELEE_ATTACKS_WHEN_ON_FIRE;
 var config int BOMBARD_BONUS_RANGE_TILES;
 var config int SHARPSHOOTERAIM_CRITBONUS;
 
+var config int CE_USES_PER_TURN;
+var config int CE_MAX_TILES;
+var config array<name> CE_ABILITYNAMES;
+
 var localized string LocCoveringFire;
 var localized string LocCoveringFireMalus;
 var localized string LocSoulStealBuff;
@@ -870,6 +874,9 @@ static function X2AbilityTemplate AddCloseEncountersAbility()
 	ActionEffect = new class 'X2Effect_CloseEncounters';
 	ActionEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ActionEffect.BuildPersistentEffect(1, true, false);
+	ActionEffect.MaxUsesPerTurn = default.CE_USES_PER_TURN;
+	ActionEffect.MaxTiles = default.CE_MAX_TILES;
+	ActionEffect.ApplicableAbilities = default.CE_ABILITYNAMES;
 	Template.AddTargetEffect(ActionEffect);
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

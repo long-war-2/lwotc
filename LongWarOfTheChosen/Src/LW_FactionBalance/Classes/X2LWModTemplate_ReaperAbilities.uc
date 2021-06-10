@@ -63,6 +63,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'Shadow':
 			MakeShadowTemporary(Template);
+			Template.AdditionalAbilities.AddItem('Infiltration');
 			break;
 		case 'Sting':
 			UpdateStingForNewShadow(Template);
