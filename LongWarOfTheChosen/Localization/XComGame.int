@@ -6867,8 +6867,8 @@ AbilityDescName="autopistol"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramedic"
-LocLongDescription="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action"
-LocHelpText="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action."
+LocLongDescription="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore four additional hit points."
+LocHelpText="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore four additional hit points."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"
@@ -6900,7 +6900,7 @@ LocPromotionPopupText="<Bullet/> This is a free action.<br/><Bullet/> Some actio
 LocFriendlyName="Arc Wave"
 LocLongDescription="Rend generates a wave of Psionic energy in the direction of the attack. Damage increases with Gauntlet tier."
 LocHelpText="Rend generates a wave of Psionic energy in the direction of the attack."
-LocPromotionPopupText="<Bullet/> Arc Wave does not affect the target of the original Rend attack.<br/><Bullet/> Arc Wave deals 4/7/10 damage depanding on weapon tier.<br/><Bullet/> Arc Wave travels through environmental objects.<br/>"
+LocPromotionPopupText="<Bullet/> Arc Wave does not affect the target of the original Rend attack.<br/><Bullet/> Arc Wave deals 4/6/8 damage depanding on weapon tier.<br/><Bullet/> Arc Wave travels through environmental objects.<br/>"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="Ionic Storm"

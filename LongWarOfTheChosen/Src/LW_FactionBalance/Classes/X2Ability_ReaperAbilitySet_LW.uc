@@ -888,6 +888,7 @@ static function X2DataTemplate AddParamedic()
 	local X2Effect_TemporaryItem		TemporaryItemEffect;
 	local X2Effect_Paramedic ParamedicEffect;
 	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
+	local X2Effect_Savior SaviorEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Paramedic_LW');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_fieldmedic";
@@ -913,6 +914,11 @@ static function X2DataTemplate AddParamedic()
 	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(TemporaryItemEffect);
 
+	SaviorEffect = new class 'X2Effect_Savior';
+	SaviorEffect.DuplicateResponse = eDupe_Allow;
+	SaviorEffect.BuildPersistentEffect (1, true, false);
+	SaviorEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	Template.AddTargetEffect (SaviorEffect);
 
 	ParamedicEffect = new class'X2Effect_Paramedic';
 	ParamedicEffect.BuildPersistentEffect(1, true, true);
