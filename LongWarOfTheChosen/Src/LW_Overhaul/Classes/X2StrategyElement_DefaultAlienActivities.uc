@@ -3402,7 +3402,7 @@ static function X2DataTemplate CreateIntelRaidTemplate()
 	Template.OnActivityStartedFn = EmptyRetalBucket;
 	Template.WasMissionSuccessfulFn = none;  // always one objective
 	Template.GetMissionForceLevelFn = GetTypicalMissionForceLevel; // use regional ForceLevel
-	Template.GetMissionAlertLevelFn = GetTypicalMissionAlertLevel;
+	Template.GetMissionAlertLevelFn = GetIntelRaidAlertLevel;
 	Template.GetTimeUpdateFn = none;
 	Template.OnMissionExpireFn = OnRaidExpired; // just remove the mission
 	Template.GetMissionRewardsFn = GetAnyRaidRewards;
@@ -3796,6 +3796,20 @@ static function int GetTypicalMissionForceLevel(XComGameState_LWAlienActivity Ac
 		`LWTRACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Force Level =" $ RegionalAIState.LocalForceLevel + ActivityState.GetMyTemplate().ForceLevelModifier );
 	}
 	return RegionalAIState.LocalForceLevel + ActivityState.GetMyTemplate().ForceLevelModifier;
+}
+
+static function int GetIntelRaidAlertLevel(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionSite, XComGameState NewGameState)
+{
+	local int AlertLevel;
+
+	AlertLevel = GetTypicalMissionAlertLevel(ActivityState, MissionSite, NewGameState);
+
+	// Adjust the alert level based on Force Level to ensure the first couple of intel raids
+	// aren't quite as strong a shock to the player's system. This is a bit of a hack, but
+	// if it works out, parameterise the 8 (the 4 is just half that value).
+	AlertLevel += Max(0, FFloor((8 - MissionSite.SelectedMissionData.ForceLevel) / 4) + 1);
+
+	return AlertLevel;
 }
 
 static function int GetTypicalMissionAlertLevel(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionSite, XComGameState NewGameState)
