@@ -6921,3 +6921,9 @@ LocHelpText="Summon lightning to strike all nearby enemies. Costs all Focus."
 LocPromotionPopupText="<Bullet/> Ionic Storm's radius increases at higher Focus levels.<br/><Bullet/> Ionic Storm deals double damage to Psionic units.<br/><Bullet/> Ionic Storm has a <Ability:SelfCooldown/> turn cooldown.<br/>"
 
 ; End Translation
+
+; LWOTC Needs Translation
+[Sabotage_LongRangeComms X2SabotageTemplate]
+SummaryText="We've been struggling to maintain long range communications after the recent sabotage by the Chosen. Our covert actions will be delayed by 2 weeks."
+ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
+; End Translation
