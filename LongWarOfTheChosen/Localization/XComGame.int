@@ -6724,51 +6724,52 @@ LocFlyOverText="Bladestorm"
 LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent tile, Bladestorm will trigger if that enemy tries to attack the <Ability:ClassName/>.<br/><Bullet/> If an enemy does not begin their turn in an adjacent tile, then Bladestorm will trigger when that enemy moves into melee range.<br/>"
 
 [TemplarBallisticShield_CV X2WeaponTemplate]
-FriendlyName="Ballistic Shield MK1"
-FriendlyNamePlural="Ballistic Shields MK1"
+FriendlyName="Templar Shield MK1"
+FriendlyNamePlural="Templar Shields MK1"
 BriefSummary="One of the oldest forms of additional protection known to mankind, humans have been using some form of shield since the very earliest days of tool use. This one is a standard anti-ballistic model with metallic or ceramic plates designed to stop penetration from high caliber weaponry."
 TacticalText="<Bullet/>One of the oldest forms of additional protection known to mankind, humans have been using some form of shield since the very earliest days of tool use. This one is a standard anti-ballistic model with metallic or ceramic plates designed to stop penetration from high caliber weaponry."
 
 [TemplarBallisticShield_MG X2WeaponTemplate]
-FriendlyName="Ballistic Shield MK2"
-FriendlyNamePlural="Ballistic Shields MK2"
+FriendlyName="Templar Shield MK2"
+FriendlyNamePlural="Templar Shields MK2"
 BriefSummary="The use of alien alloys has not only made the Ballistic Shield light, but stronger as well. Complex polymers and ceramics also allow for better heat distribution, as such users are less likely to be injured by shrapnel and molten material from their own protective measures. An optional LED tablet can be installed to aid in tactical planning."
 TacticalText="<Bullet/>The use of alien alloys has not only made the Ballistic Shield light, but stronger as well. Complex polymers and ceramics also allow for better heat distribution, as such users are less likely to be injured by shrapnel and molten material from their own protective measures. An optional LED tablet can be installed to aid in tactical planning."
 
 [TemplarBallisticShield_BM X2WeaponTemplate]
-FriendlyName="Ballistic Shield MK3"
-FriendlyNamePlural="Ballistic Shields MK3"
+FriendlyName="Templar Shield MK3"
+FriendlyNamePlural="Templar Shields MK3"
 BriefSummary="Advances in miniaturization allow this shield to pack not only conventional material defences but more esoteric means like energy shields as well. Nanomaterials allow for it to self repair in the field and it can even serve as a charging port during emergencies. An integrated holographic system allows for greater situational awareness."
 TacticalText="<Bullet/>Advances in miniaturization allow this shield to pack not only conventional material defences but more esoteric means like energy shields as well. Nanomaterials allow for it to self repair in the field and it can even serve as a charging port during emergencies. An integrated holographic system allows for greater situational awareness."
 
 [TemplarBallisticShield_GenerateCover X2AbilityTemplate]
-LocFriendlyName="Ballistic Shield"
+LocFriendlyName="Templar Shield"
 LocHelpText="Grants half cover to allies."
 LocLongDescription="Grants half cover to allies."
-LocFlyOverText="Ballistic Shield"
+LocFlyOverText="Templar Shield"
 
 [TemplarBallisticShield_CV X2AbilityTemplate]
-LocFriendlyName="Ballistic Shield"
+LocFriendlyName="Templar Shield"
 LocHelpText="Grants 0 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocLongDescription="Grants 0 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
-LocFlyOverText="Ballistic Shield"
+LocFlyOverText="Templar Shield"
 
 [TemplarBallisticShield_MG X2AbilityTemplate]
-LocFriendlyName="Ballistic Shield"
+LocFriendlyName="Templar Shield"
 LocHelpText="Grants 3 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocLongDescription="Grants 3 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
-LocFlyOverText="Ballistic Shield"
+LocFlyOverText="Templar Shield"
 
 [TemplarBallisticShield_BM X2AbilityTemplate]
-LocFriendlyName="Ballistic Shield"
+LocFriendlyName="Templar Shield"
 LocHelpText="Grants 6 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocLongDescription="Grants 6 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
-LocFlyOverText="Ballistic Shield"
+LocFlyOverText="Templar Shield"
 
 [ShieldBash_LW X2AbilityTemplate]
 LocFriendlyName="Shield Bash"
 LocHelpText="Bash an adjacent enemy with your shield, doing some damage and knocking back the target 2 tiles. Free action."
 LocLongDescription="Bash an adjacent enemy with your shield, doing some damage and knocking back the target 2 tiles. Free action."
+LocPromotionPopupText="<Bullet/> The damage is equivalent to the base damage of the currently equipped shield.<br/><Bullet/> Shield Bash is a free action with a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Can target enemies in adjacent tiles on the diagonal as well.<br/>"
 LocFlyOverText="Shield Bash"
 
 [TemplarInvert X2AbilityTemplate]
