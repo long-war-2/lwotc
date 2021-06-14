@@ -2054,7 +2054,6 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2Condition_UnitProperty          ShooterCondition;
-	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 	local X2AbilityTarget_Single            SingleTarget;
 	local X2AbilityTrigger_EventListener	Trigger;
 	local X2Effect_Knockback				KnockbackEffect;
@@ -2130,8 +2129,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 
 	// Damage Effect
 	//
-	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
-	Template.AddTargetEffect(WeaponDamageEffect);
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
 	Template.bAllowBonusWeaponEffects = true;
 	
 	KnockbackEffect = new class'X2Effect_Knockback';
