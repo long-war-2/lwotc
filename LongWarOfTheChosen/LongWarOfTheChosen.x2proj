@@ -199,6 +199,7 @@
     <Content Include="Localization\LW_Overhaul.kor" />
     <Content Include="Localization\LW_Overhaul.pol" />
     <Content Include="Localization\LW_Overhaul.rus" />
+    <Content Include="Localization\LW_Tutorial.fra" />
     <Content Include="Localization\LW_Tutorial.int" />
     <Content Include="Localization\Subtitles.chn" />
     <Content Include="Localization\Subtitles.cht" />
