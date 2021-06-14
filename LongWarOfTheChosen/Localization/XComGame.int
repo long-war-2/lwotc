@@ -2168,8 +2168,9 @@ strCharacterName="Resistance MEC"
 [Reward_Rebel X2RewardTemplate]
 DisplayName="Resistance Personnel"
 
-[Reward_ResistanceMEC X2RewardTemplate]
+[Reward_ResistanceMec X2RewardTemplate]
 DisplayName="Resistance MEC"
+RewardDetails="You'll get a Resistance MEC to guard one of your Havens."
 
 [Reward_NewResources X2RewardTemplate]
 DisplayName="New Resources"
@@ -2205,10 +2206,6 @@ RewardDetails="You'll get a selection of random enemy corpses."
 
 [Reward_Dummy_StatBoost X2RewardTemplate]
 DisplayName="Stat Boosts"
-
-[Reward_ResistanceMec X2RewardTemplate]
-DisplayName="Resistance MEC"
-RewardDetails="You'll get a Resistance MEC to guard one of your Havens."
 ; End Translation
 
 ; POI Templates
