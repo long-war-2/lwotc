@@ -35,7 +35,7 @@ TrojanVirus="Cheval de Troie"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> a déclenché un cheval de Troie."
 
 [X2Effect_Savior]
-strSavior_WorldMessage="Sauveur : +<XGParam:IntValue0/> PV régénérés en plus."
+strSavior_WorldMessage="Sauveur: +<XGParam:IntValue0/> PV régénérés en plus."
 
 [X2Effect_LWHolotarget]
 HoloTargetEffectName="Visée holographique"
@@ -48,7 +48,7 @@ DenseSmokeGrenadeEffectDisplayDesc="Cette épaisse fumée octroie à cette unit�
 LocCoveringFire="Covering Fire"
 LocCoveringFireMalus="This unit has been targeted by an overwatching unit with the Covering Fire ability, conferring -10 to aim for the rest of the turn."
 ; LWOTC translated
-LocSoulStealBuff="Drain spirituel : PV temporaires"
+LocSoulStealBuff="Drain spirituel: PV temporaires"
 LocSoulStealBuffHelpText="Drain spirituel octroie des PV temporaires lorsqu'il soigne des points excédentaires"
 ; End translated
 

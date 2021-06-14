@@ -9,16 +9,16 @@ LocPromotionPopupText="<Bullet/> Projette un couteau de lancer sur la cible. Lan
 [KnifeJuggler_LW X2AbilityTemplate]
 LocFriendlyName="Virtuose de la lame"
 LocFlyOverText="Virtuose de la lame"
-LocLongDescription="Vos couteaux de lancer gagnent un bonus de +<Ability:KnifeJugglerBonusDamage/> en dégâts et disposent de <Ability:KnifeJugglerExtraAmmo/> charges supplémentaires."
-LocHelpText="Vos couteaux de lancer gagnent un bonus de +<Ability:KnifeJugglerBonusDamage/> en dégâts et disposent de <Ability:KnifeJugglerExtraAmmo/> charges supplémentaires."
-LocPromotionPopupText="<Bullet/> Vos couteaux de lancer gagnent un bonus de +<Ability:KnifeJugglerBonusDamage/> en dégâts et disposent de <Ability:KnifeJugglerExtraAmmo/> charges supplémentaires.<br/>"
+LocLongDescription="Vos couteaux de lancer gagnent un bonus de +<Ability:KnifeJugglerBonusDamage/> en dégâts et disposent de <Ability:KnifeJugglerExtraAmmo/> charge(s) supplémentaire(s)."
+LocHelpText="Vos couteaux de lancer gagnent un bonus de +<Ability:KnifeJugglerBonusDamage/> en dégâts et disposent de <Ability:KnifeJugglerExtraAmmo/> charge(s) supplémentaire(s)."
+LocPromotionPopupText="<Bullet/> Vos couteaux de lancer gagnent un bonus de +<Ability:KnifeJugglerBonusDamage/> en dégâts et disposent de <Ability:KnifeJugglerExtraAmmo/> charge(s) supplémentaire(s).<br/>"
 
 [Hailstorm_LW X2AbilityTemplate]
 LocFriendlyName="Tempête de lames"
 LocFlyOverText="Tempête de lames"
 LocLongDescription="Lancez successivement trois couteaux de lancer sur une cible. L'activation de cette capacité ne vous fait pas sortir de l'obscurité."
 LocHelpText="Lancez successivement trois couteaux sur une cible. L'activation de cette capacité ne vous fait pas sortir de l'obscurité."
-LocPromotionPopupText="<Bullet/> Lancez successivement trois couteaux sur une cible. L'activation de cette capacité ne vous fait pas sortir de l'obscurité.<br/><Bullet/> Chaque attaque est traitée distinctement des autres, et les éventuels bonus procurés par les capacités sont apppliqués séparément à chaque couteau. Les couteaux lancés ne bénéficient pas des capacités dont le déclenchement dépend des points de vie de la cible, à moins que les conditions requises pour leur déclenchement soient réunies lorsque vous lancez le premier couteau."
+LocPromotionPopupText="<Bullet/> Lancez successivement trois couteaux sur une cible. L'activation de cette capacité ne vous fait pas sortir de l'obscurité.<br/><Bullet/> Chaque attaque est traitée distinctement des autres, et les éventuels bonus procurés par les capacités sont apppliqués séparément à chaque couteau. Les couteaux lancés ne bénéficient pas des capacités dont le déclenchement dépend des PV de la cible, à moins que les conditions requises pour leur déclenchement soient réunies lorsque vous lancez le premier couteau."
 
 [ThrowingKnifeFaceoff_LW X2AbilityTemplate]
 LocFriendlyName="Face-à-face"

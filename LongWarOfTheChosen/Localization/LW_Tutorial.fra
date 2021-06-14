@@ -1,0 +1,56 @@
+; LWOTC Needs Translation
+[LWTutorial]
+CampaignStartTitle="Bienvenue dans Long War of the Chosen"
+CampaignStartBody="LWOTC est une conversion totale de XCOM 2 WOTC qui transforme la campagne du jeu de base en une véritable guérilla urbaine contre ADVENT.<br/><br/>Vous pouvez désactiver ce tutoriel via le menu du jeu: Changer la difficulté > Afficher les options avancées."
+
+[X2EventListener_Tutorial]
+DroneSightedTitle="Nouvel ennemi: Drone"
+DroneSightedBody="Les drones d'ADVENT sont des unités mécaniques de reconnaissance renforcées, capables de repérer l'ennemi à longue distance. On les retrouve souvent à patrouiller en solitaire dans la zone d'opération. Leurs capacités de vol en font des unités imprévisibles, pouvant surgir de n'importe où sur le champ de bataille (bâtiments, toits, etc.)."
+RainbowTrooperSightedTitle="Nouveaux ennemis: Infanterie d'ADVENT"
+RainbowTrooperSightedBody="En plus des soldats de base, ADVENT dispose désormais d'une variété d'unités d'infanterie qu'elle peut déployer sur le champ de bataille:<ul><li>Factionnaire (bleu): soldat spécialisé dans le mode Vigilance</li><li>Tirailleur (vert): soldat équipé d'un canon qui inflige d'importants dégâts, capable d'effectuer des tirs de suppression</li><li>Ingénieur (rouge): soldat équipé d'un lance-grenade</li><li>Artilleur (orange): soldat équipé d'un lance-roquette de haute-précision</li></ul>"
+
+HavenHighlightTitle="Administrer votre refuge"
+HavenHighlightBody="Les refuges sont des éléments essentiels d'une campagne LWOTC, car ils vous permettent de détecter de nouvelles missions. De plus, vous ne pouvez contacter que des régions adjacentes aux refuges avec lesquels vous déjà avez pris contact.<br/><br/>Cliquez sur le bouton visible à gauche pour ouvrir l'écran de gestion des refuges."
+
+; LWOTC Needs Translation (2)
+FirstMissionDiscoveredTitle="Première mission découverte"
+FirstMissionDiscoveredBody="Vous avez détecté votre première mission! Vous devez maintenant y assigner une escouade pour l'infiltrer.<br/><br/>Infiltrer une mission prend du temps, et la plupart des missions dispose d'un délai d'expiration. Plus vous affecterez de rebelles à la tâche de Renseignements, et plus le délai d'expiration des missions qu'ils découvriront sera important. Lorsque le Talion est utilisé pour scanner une région, ses capacités de scan procurent un bonus équivalent à 4 rebelles affectés à la tâche de Renseignements."
+FirstRetaliationTitle="Représailles d'ADVENT"
+FirstRetaliationBody="ADVENT cherche à se venger! Ces missions de réaction n'ont pas besoin d'être infiltrées et ne devraient pas être ignorées.<br/><br/>Il existe deux types de représailles. Les représailles de type 'raid' visent à contrecarrer les activités des rebelles dans la région et prennent pour cible un type de tâche spécifique (Renseignements, recruter,etc.). Les rebelles affectés à la tâche visée seront tués si vous n'intervenez pas. Si vous choisissez d'intervenir, le superviseur de refuge ainsi que les rebelles affectés à cette tâche seront présents dans la zone d'opération et devront être protégés. Les représailles de type 'attaque de refuge' sont des assauts d'envergure menés contre tous les habitants du refuge et visent l'anéantissement total des rebelles qui s'y trouvent. Si vous n'intervenez pas ou que vous échouez lors de cette mission, le refuge sera détruit et les rebelles présents sur place seront exécutés par ADVENT. Si vous choisissez d'intervenir, tous les rebelles du refuge seront présents dans la zone d'opération et devront être protégés."
+CommandersQuartersEnteredTitle="Aides LWOTC"
+CommandersQuartersEnteredBody="LWOTC a ajouté de nouvelles informations dans les archives d'XCOM, afin d'expliquer de façon plus détaillée les principaux concepts du mod (comme l'infiltration ou la gestion des refuges).<br/><br/>Vous pouvez passer en revue l'ensemble de vos refuges depuis le menu de Gestion de la résistance."
+; End Translation (2)
+
+[UIScreenListener_HavenManagementTutorial]
+HavenManagementTitle="Gestion des refuges"
+HavenManagementBody="Les refuges abritent des rebelles qui peuvent entreprendre différentes tâches pour soutenir les activités d'XCOM:<br/><ul><li>Renseignements - Pour détecter de nouvelles missions</li><li>Recruter - Pour enrôler de nouveaux rebelles ou des soldats qui pourront être recrutés depuis la caserne</li><li>Ressources - Pour produire des ressources</li></ul><br/>Plus il y a de rebelles affectés à une même tâche, et plus les rendements de cette tâche seront importants. Un conseil: affectez vos rebelles à la tâche Renseignements pour l'instant."
+
+; LWOTC Needs Translation (2)
+HavenAdvisersTitle="Superviseurs de refuge"
+HavenAdvisersBody="Cliquez sur la fenêtre (1) à gauche pour affecter un superviseur au refuge. Vous pouvez y affecter l'un des membres suivants:<br/><ul><li>Soldat - Détecte les Anonymes infiltrés et améliore l'action Recruter</li><li>Scientifique - Améliore le rendement de l'action Renseignements, mais ne peut plus contribuer aux recherches tant qu'il supervise le refuge</li><li>Ingénieur - Améliore le rendement de l'action Ressources</li></ul><br/>Détecter les Anonymes inflitrés vous donne également l'opportunité de vous en débarrasser définitivement, lors d'une mission spéciale. Les Anonymes infiltrés parasitent les activités rebelles et réduisent le rendement des refuges."
+; End Translation (2)
+; End Translation
+
+; LWOTC Needs Translation
+[UIScreenListener_CovertActionsTutorial]
+CovertActionsTutorialTitle="Missions secrètes"
+CovertActionsTutorialBody="Contrairement au jeu de base, les missions secrètes réalisées par vos agents ont une chance d'échouer. Les risques d'échec sont calculés en fonction du grade des agents envoyés en mission. Plus leur grade est élevé, et plus les risques d'échec sont réduits."
+
+[UIScreenListener_InitialHavenTutorial]
+HavenHighlightTitle="Administrer votre refuge"
+HavenHighlightBody="Les refuges sont des éléments essentiels d'une campagne LWOTC, car ils vous permettent de détecter de nouvelles missions. De plus, vous ne pouvez contacter que des régions adjacentes aux refuges avec lesquels vous déjà avez pris contact.<br/><br/>Cliquez sur le bouton visible à gauche pour ouvrir l'écran de gestion des refuges."
+
+[UIScreenListener_MissionBriefTutorial]
+MissionBriefTutorialTitle="Briefings de mission"
+MissionBriefTutorialBody="La durée indiquée dans 'Expiration de mission' indique le temps qu'il vous reste pour infiltrer la mission. Plus vous affectez de rebelles à la tâche Renseignements, plus vous découvrirez précocément les missions et plus vous aurez de temps pour les infiltrer.<br/><br/>Vous ne pourrez pas infiltrer toutes les missions que vous découvrirez, mais essayez d'en réaliser un maximum pour accroître vos chances de remporter la victoire finale contre ADVENT. Un conseil: mieux vaut ne pas prendre part à une mission si son temps d'infiltration est trop court ou si vous ne disposez pas de suffisamment de soldats pour former une escouade apte à la réussir."
+MissionEnemyCountTitle="Nombre d'ennemis"
+MissionEnemyCountBody="L'activité ennemie de référence (indiquée à gauche de l'écran) est une évaluation approximative du nombre d'ennemis que vous aller rencontrer durant votre mission, si son taux d'infiltration atteint 100%.<br/><br/>Ce chiffre peut varier en fonction du taux d'infiltration de la mission: il y aura plus d'ennemis si le taux d'infiltration est inférieur à 100% et moins d'ennemis si le taux d'infiltration est supérieur à 100%."
+
+[UIScreenListener_SquadSelectTutorial]
+SquadSelectInfiltrationTitle="Choisir son escouade"
+SquadSelectInfiltrationBody="Le nombre de soldats que vous pourrez envoyer en mission dépend avant tout du temps dont vous disposez pour l'infiltrer.<br/><br/>Chaque soldat supplémentaire au-delà du quatrième augmente de façon exponentielle le temps d'infiltration de l'escouade. Certaines capacités (Espion) et objets (silencieux) peuvent réduire légèrement ce temps d'infiltration."
+
+[UIScreenListener_InfiltratingMissionTutorial]
+InfiltratingMissionTitle="Missions d'infiltration"
+InfiltratingMissionBody="Vous pouvez lancer une mission d'infiltration à n'importe quel moment, mais les missions dont le taux d'infiltration est inférieur à 100% sont bien plus difficiles à accomplir. Vous pouvez dépenser des points de Renseignements pour accélérer l'infiltration d'une mission et ainsi améliorer les chances de réussite de votre escouade.<br/><br/>Vous pouvez abandonner une mission d'infiltration à n'importe quel moment pour la reprendre plus tard (si elle n'a pas expirée entretemps). Dans ce cas, son taux d'infiltration reprendra à 0%."
+; End Translation

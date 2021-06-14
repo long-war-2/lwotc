@@ -1,7 +1,7 @@
 [UIArmory_LWOfficerPromotion]
 strLeadershipButton="Voir l'historique d'officier"
 strLeadershipDialogueTitle="Missions sous les ordres de cet officier"
-strLeadershipDialogueData="<XGParam:StrValue0/> : <XGParam:IntValue0/>"
+strLeadershipDialogueData="<XGParam:StrValue0/>: <XGParam:IntValue0/>"
 
 [UIScreenListener_Armory_Promotion_LWOfficerPack]
 strOfficerMenuOption="Capacités d'officier"
@@ -33,10 +33,10 @@ strCommandRangeToggleTooltip="Cliquez pour activer/désactiver la Portée de com
 ;m_strAbilityLockedDescription=Get more combat experience to learn new abilities.
 
 [UIArmory_LWOfficerPromotion]
-m_strSelectAbility="CHOIX DE LA CAPACITÉ :"
-m_strAbilityHeader="CAPACITÉS :"
+m_strSelectAbility="CHOIX DE LA CAPACITÉ:"
+m_strAbilityHeader="CAPACITÉS:"
 m_strConfirmAbilityTitle="CONFIRMER CHOIX DE CAPACITÉ"
-m_strConfirmAbilityText="Vous ne pouvez pas supprimer ou modifier les capacités. Voulez-vous vraiment apprendre : <XGParam:StrValue0/> ?"
+m_strConfirmAbilityText="Vous ne pouvez pas supprimer ou modifier les capacités. Voulez-vous vraiment apprendre: <XGParam:StrValue0/>?"
 m_strAbilityLockedTitle="VERROUILLÉ"
 m_strAbilityLockedDescription="Gagnez plus d'expérience au combat pour accéder à de nouvelles capacités."
 
@@ -62,9 +62,9 @@ LWOfficerShortNames[7]="Cmdr"
 
 [UIFacility_LWOfficerSlot]
 m_strTrainOfficerDialogTitle="FORMER OFFICIER"
-m_strTrainOfficerDialogText="Un soldat au grade suffisamment élevé peut suivre un entraînement spécialisé à l'institut de guérilla pour devenir officier. Il sera alors indisponible pour le combat pendant la durée de cet entraînement.\n\nIMPORTANT : en mission, seul l'officier le plus haut gradé de l'escouade peut utiliser ses capacités, alors choisissez bien celui que vous souhaitez promouvoir. \n\nContinuer ?"
+m_strTrainOfficerDialogText="Un soldat au grade suffisamment élevé peut suivre un entraînement spécialisé à l'institut de guérilla pour devenir officier. Il sera alors indisponible pour le combat pendant la durée de cet entraînement.\n\nIMPORTANT: en mission, seul l'officier le plus haut gradé de l'escouade peut utiliser ses capacités, alors choisissez bien celui que vous souhaitez promouvoir. \n\nContinuer?"
 m_strStopTrainOfficerDialogTitle="ANNULER FORMATION D'OFFICIER ?"
-m_strStopTrainOfficerDialogText="Voulez-vous annuler la formation de %UNITNAME ?\n\nATTENTION : la progression de la formation sera perdue."
+m_strStopTrainOfficerDialogText="Voulez-vous annuler la formation de %UNITNAME ?\n\nATTENTION: la progression de la formation sera perdue."
 
 [UIAlert_LWOfficerTrainingComplete]
 m_strTrainingCompleteLabel="FORMATION D'OFFICIER TERMINÉE"
@@ -73,7 +73,7 @@ m_strViewSoldier="VOIR SOLDAT"
 m_strNewAbilityLabel="NOUVELLE CAPACITÉ"
 
 [UIPersonnel_ListItem_SquadSelect_LWOfficerPack]
-strOfficerAlreadySelectedStatus="Attention : officier déjà sélectionné"
+strOfficerAlreadySelectedStatus="Attention: officier déjà sélectionné"
 
 [UIStrategyScreenListener_LWOfficerPack]
 strCommandingOfficerTooltipTitle="Officier responsable"
@@ -82,12 +82,12 @@ strSubordinateOfficerTooltipTitle="Officier subalterne"
 strSubordinateOfficerTooltip="Ne peut pas utiliser les capacités d'officier pendant la mission."
 
 [X2Ability_OfficerAbilitySet]
-strIntervention_WorldMessage="Intervention : -<XGPARAM:IntValue0> renseignements"
-strCollector_WorldMessage="Collectionneur : renseignement +1"
+strIntervention_WorldMessage="Intervention: -<XGPARAM:IntValue0> renseignements"
+strCollector_WorldMessage="Biopsie extraterrestre: renseignement +1"
 FocussedFriendlyName="Tir ciblé"
 FocussedFriendlyDesc="Un ennemi utilisant un Tir ciblé a plus de chances de toucher et de blesser sa cible."
 
 [X2Effect_Scavenger]
 ;the string shown in world message for scavenged items
-m_strScavengerLoot="Récupéré(es) : <XGParam:StrValue0/!ItemName/> (<XGParam:IntValue0/>)"
+m_strScavengerLoot="Récupéré(es): <XGParam:StrValue0/!ItemName/> (<XGParam:IntValue0/>)"
 

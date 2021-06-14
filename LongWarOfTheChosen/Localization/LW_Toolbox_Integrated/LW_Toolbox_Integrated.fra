@@ -26,7 +26,7 @@ MaxDamage="MAX."
 EnableRandomizedLevelupStatsMod="Potentiel caché"
 EnableRandomizedLevelupStatsModTooltip="Les statistiques des soldats augmentent de façon aléatoire lorsqu'ils gagnent un niveau."
 
-RandomizedLevelupStrength="Aléatoire : <XGParam:IntValue0>%"
+RandomizedLevelupStrength="Aléatoire: <XGParam:IntValue0>%"
 RandomizedLevelupStrengthTooltip="Le degré du caractère aléatoire appliqué par l'option Potentiel caché. Plus la valeur est élevée, plus l'évolution des statistiques sera importante en cas de passage de niveau."
 
 EnableRedFogMod="Brouillard rouge"

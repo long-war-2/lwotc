@@ -10,20 +10,20 @@ LocFlyOverText="État critique"
 LocPromotionPopupText="<Bullet/> Deux fois par mission, procure à tous les alliés à Portée de commandement un bonus de +20 en chances de coup critique pour le reste du tour. Coûte 1 action et ne met pas fin au tour.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
 
 [Collector X2AbilityTemplate]
-LocFriendlyName="Collectionneur"
-LocLongDescription="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33 % de chances de recevoir 1 renseignement."
-LocHelpText="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33 % de chances de recevoir 1 renseignement."
-LocFlyOverText="Collectionneur"
+LocFriendlyName="Biopsie extraterrestre"
+LocLongDescription="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
+LocHelpText="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
+LocFlyOverText="Biopsie extraterrestre"
 ; displayed for officer in OfficerAbility UI
-LocPromotionPopupText="<Bullet/> Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33 % de chances de recevoir 1 renseignement."
+LocPromotionPopupText="<Bullet/> Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
 
 ;displayed on officer in tactical container
 [CollectorPassive X2AbilityTemplate]
-LocFriendlyName="Collectionneur"
-LocLongDescription="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33 % de chances de recevoir 1 renseignement."
-LocHelpText="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33 % de chances de recevoir 1 renseignement."
-LocFlyOverText="Collectionneur"
-LocPromotionPopupText="<Bullet/> Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33 % de chances de recevoir 1 renseignement."
+LocFriendlyName="Biopsie extraterrestre"
+LocLongDescription="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
+LocHelpText="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
+LocFlyOverText="Biopsie extraterrestre"
+LocPromotionPopupText="<Bullet/> Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
 
 ;displayed on other soldier that receive the effect
 [Defilade X2AbilityTemplate]
@@ -59,36 +59,36 @@ LocFlyOverText="Ordre de repli"
 LocPromotionPopupText="<Bullet/> Octroyez une action défensive gratuite, mais incontrôlable, à un allié visible qui a consommé toutes ses actions. Action gratuite.<br/><Bullet/>L'allié cherchera généralement une position plus sûre ou une position défensive.<br/><Bullet/> Inutilisable sur les unités en mode Vigilance ou effectuant des tirs de suppression.<br/>"
 
 [Scavenger X2AbilityTemplate]
-LocFriendlyName="Pilleur"
-LocLongDescription="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30 % après les missions réussies. Les membres de l'escouade ont une chance de récupérer des alliages extraterrestres supplémentaires et de l'élérium sur les extraterrestres."
-LocHelpText="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30 % après les missions réussies. Les membres de l'escouade ont une chance de récupérer des alliages extraterrestres supplémentaires et de l'élérium sur les extraterrestres."
-LocFlyOverText="Pilleur"
-LocPromotionPopupText="<Bullet/> Si cet officier survit à la mission en étant conscient, les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30 %.<br/><Bullet> L'escouade peut récupérer des alliages extraterrestres et de l'élérium sur les extraterrestres.<br/>"
+LocFriendlyName="Pillage"
+LocLongDescription="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30% après les missions réussies. Les membres de l'escouade ont une chance de récupérer des alliages extraterrestres supplémentaires et de l'élérium sur les extraterrestres."
+LocHelpText="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30% après les missions réussies. Les membres de l'escouade ont une chance de récupérer des alliages extraterrestres supplémentaires et de l'élérium sur les extraterrestres."
+LocFlyOverText="Pillage"
+LocPromotionPopupText="<Bullet/> Si cet officier survit à la mission en étant conscient, les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30%.<br/><Bullet> L'escouade peut récupérer des alliages extraterrestres et de l'élérium sur les extraterrestres.<br/>"
 
 ;Displayed on officer in tactical container
 [ScavengerPassive X2AbilityTemplate]
-LocFriendlyName="Pilleur"
+LocFriendlyName="Pillage"
 LocLongDescription="Les récompenses en ressources, alliages extraterrestres et élérium bénéficient d'un bonus de 30% en cas de mission réussie. Vous avez une chance d'obtenir des alliages extraterrestres et de l'élérium en tuant des extraterrestres."
-LocHelpText="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30 % après les missions réussies. Les membres de l'escouade ont une chance de récupérer des alliages extraterrestres supplémentaires et de l'élérium sur les extraterrestres."
-LocFlyOverText="Pilleur"
-LocPromotionPopupText="<Bullet/> Si cet officier survit à la mission en bonne condition, les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30 %.<br/><Bullet> L'escouade peut récupérer des alliages extraterrestres et de l'élérium sur les extraterrestres.<br/>"
+LocHelpText="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30% après les missions réussies. Les membres de l'escouade ont une chance de récupérer des alliages extraterrestres supplémentaires et de l'élérium sur les extraterrestres."
+LocFlyOverText="Pillage"
+LocPromotionPopupText="<Bullet/> Si cet officier survit à la mission en bonne condition, les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30%.<br/><Bullet> L'escouade peut récupérer des alliages extraterrestres et de l'élérium sur les extraterrestres.<br/>"
 
 ;displayed on other soldier that receive the effect
 [FireDiscipline X2AbilityTemplate]
 LocFriendlyName="Bonus de tir"
-LocLongDescription="Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +10 % lorsqu'ils réalisent un tir réflexe."
-LocHelpText="Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +10 % lorsqu'ils réalisent un tir réflexe."
+LocLongDescription="Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +10% lorsqu'ils réalisent un tir réflexe."
+LocHelpText="Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +10% lorsqu'ils réalisent un tir réflexe."
 LocFlyOverText="Bonus de tir"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +10 % lorsqu'ils réalisent un tir réflexe.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocPromotionPopupText="<Bullet/> Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +10% lorsqu'ils réalisent un tir réflexe.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
 
 ;Displayed on officer in tactical container
 [FireDisciplinePassive X2AbilityTemplate]
 LocFriendlyName="Bonus de tir"
-LocLongDescription="Toutes les unités alliées à Portée de commandement gagnent un bonus de +10 % lorsqu'elles réalisent des tirs réflexes."
-LocHelpText="Toutes les unités alliées à Portée de commandement gagnent un bonus de +10 % lorsqu'elles réalisent des tirs réflexes."
+LocLongDescription="Toutes les unités alliées à Portée de commandement gagnent un bonus de +10% lorsqu'elles réalisent des tirs réflexes."
+LocHelpText="Toutes les unités alliées à Portée de commandement gagnent un bonus de +10% lorsqu'elles réalisent des tirs réflexes."
 LocFlyOverText="Bonus de tir"
-LocPromotionPopupText="<Bullet/> Toutes les unités alliées à Portée de commandement gagnent un bonus de +10 % lorsqu'elles réalisent des tirs réflexes.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocPromotionPopupText="<Bullet/> Toutes les unités alliées à Portée de commandement gagnent un bonus de +10% lorsqu'elles réalisent des tirs réflexes.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
 
 ;displayed both on officer and on soldiers receiving effect
 [OscarMike X2AbilityTemplate]
@@ -148,8 +148,8 @@ LocPromotionPopupText="<Bullet/> Octroyez une action bonus à n'importe quel mem
 
 [Infiltrator X2AbilityTemplate]
 LocFriendlyName="Infiltré"
-LocLongDescription="L'escouade de cet officier infiltre les cibles adverses plus rapidement."
-LocHelpText="L'escouade de cet officier infiltre les cibles adverses plus rapidement."
+LocLongDescription="L'escouade de cet officier infiltre les missions plus rapidement."
+LocHelpText="L'escouade de cet officier infiltre les missions plus rapidement."
 LocFlyOverText="Infiltré"
 LocPromotionPopupText="<Bullet/> L'escouade d'un officier qui possède cet atout bénéficie d'un grand bonus de furtivité, ce qui réduit le temps d'infiltration de l'équipe.<br/>"
 
@@ -168,10 +168,10 @@ LocFlyOverText="Bloqueur"
 LocPromotionPopupText="<Bullet/> Une fois par combat, retarde de 1 tour l'arrivée des renforts adverses.<br/><Bullet/> À l'utilisation, s'il n'y a pas de renforts en route, l'effet s'applique aux prochains renforts."
 
 [Incoming X2AbilityTemplate]
-LocFriendlyName="Explosif en approche !"
+LocFriendlyName="Explosif en approche!"
 LocLongDescription="Jusqu'à la fin du prochain tour adverse, toutes les unités alliées à Portée de commandement gagnent 4 points de résistance contre les dégâts des attaques explosives. Action gratuite."
 LocHelpText="Jusqu'à la fin du prochain tour adverse, toutes les unités alliées à Portée de commandement gagnent 4 points de résistance contre les dégâts des attaques explosives. Action gratuite."
-LocFlyOverText="Explosif en approche !"
+LocFlyOverText="Explosif en approche!"
 LocPromotionPopupText="<Bullet/> Jusqu'à la fin du prochain tour adverse, toutes les unités alliées à Portée de commandement gagnent 4 points de résistance contre les dégâts des attaques explosives. Action gratuite.<br/><Bullet/> Temps de rechargement de 5 tours. <br/><Bullet/> La portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Ne s'applique pas aux soldats paniqués ou effectuant des tirs de suppression.<br/>"
 
 [Intervention X2AbilityTemplate]
@@ -240,21 +240,21 @@ DisplayName="Formation d'officiers"
 Summary="Débloque un emplacement de soldat pour permettre la formation d'officiers."
 
 [OTSOfficerSlot X2StaffSlotTemplate]
-EmptyText="OUVRIR : SOLDAT REQUIS"
+EmptyText="OUVRIR: SOLDAT REQUIS"
 BonusEmptyText="Apprend des capacités d'officier."
-BonusText="ENTRAÎNEMENT : %SKILL"
-FilledText="%UNITNAME suit maintenant un entraînement intensif : %SKILL !"
-LockedText="VERROUILLÉ : ACHETER AMÉLIORATION"
+BonusText="ENTRAÎNEMENT: %SKILL"
+FilledText="%UNITNAME suit maintenant un entraînement intensif: %SKILL !"
+LockedText="VERROUILLÉ: ACHETER AMÉLIORATION"
 
 [OTS_LWOfficerTrainingUpgrade X2FacilityUpgradeTemplate]
 DisplayName="Station de formation"
 FacilityName="Centre de formation"
-Summary="Ajoute une station où les soldats (1er classe ou plus hauts gradés) peuvent apprendre des capacités de commandement.\nATTENTION : seul l'officier le plus haut gradé d'une escouade pourra utiliser ses capacités en mission, alors choisissez bien qui vous allez promouvoir."
+Summary="Ajoute une station où les soldats (1er classe ou plus hauts gradés) peuvent apprendre des capacités de commandement.\nATTENTION: seul l'officier le plus haut gradé d'une escouade pourra utiliser ses capacités en mission, alors choisissez bien qui vous allez promouvoir."
 
 [OTS_LWOfficerTrainingUpgrade_SecondSlot X2FacilityUpgradeTemplate]
 DisplayName="Station de formation"
 FacilityName="Centre de formation"
-Summary="Ajoute une station où les soldats (1er classe ou plus hauts gradés) peuvent apprendre des capacités de commandement.\nATTENTION : seul l'officier le plus haut gradé d'une escouade pourra utiliser ses capacités en mission, alors choisissez bien qui vous allez promouvoir."
+Summary="Ajoute une station où les soldats (1er classe ou plus hauts gradés) peuvent apprendre des capacités de commandement.\nATTENTION: seul l'officier le plus haut gradé d'une escouade pourra utiliser ses capacités en mission, alors choisissez bien qui vous allez promouvoir."
 
 [UIPersonnel_LWOfficer]
 m_strTitle="Soldat à former en tant qu'officier"

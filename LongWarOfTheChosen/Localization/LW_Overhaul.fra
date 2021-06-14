@@ -2,13 +2,13 @@
 LWOverhaulTabName="LONG WAR (LWOTC)"
 GrazeBandWidthMod="Amplitude écorchure"
 GrazeBandWidthModTooltip="Déterminer la distance nécessaire d'un tir, par rapport à un tir réussi classique, pour qu'il soit considéré comme une écorchure."
-GrazeBandValue="Valeur : <XGParam:IntValue0>"
+GrazeBandValue="Valeur: <XGParam:IntValue0>"
 PauseOnRecruitMod="Pause après recrutement"
 PauseOnRecruitModTooltip="Met le Geoscape en pause quand un refuge recrute un nouveau soldat ou un résistant."
 
 [UIScreenListener_ShellDifficulty]
 strIncompatibleModsTitle="MODS EN DOUBLE DÉTECTÉS"
-strIncompatibleModsText="Mods en double détectés :\n%modnames%\nCes mods sont inclus dans celui-ci et doivent être désactivés. Si vous continuez, l'expérience de jeu risque d'être gâchée par des performances amoindries ou des instabilités. Vous êtes prévenu."
+strIncompatibleModsText="Mods en double détectés:\n%modnames%\nCes mods sont inclus dans celui-ci et doivent être désactivés. Si vous continuez, l'expérience de jeu risque d'être gâchée par des performances amoindries ou des instabilités. Vous êtes prévenu."
 
 [UIMission_LWCustomMission]
 m_strMissionDifficulty_start="ACTIVITÉ ENNEMIE DE RÉFÉRENCE"
@@ -24,16 +24,16 @@ ActivityObjectives[0]="Initier la libération de la région"
 
 [ProtectRegionMid X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion2Activity"
-ActivityObjectives[0]="Libération : sauver un dissident"
+ActivityObjectives[0]="Libération: sauver un dissident"
 
 +MissionDescriptions=(MissionFamily="Extract_LW", Description="Nous pouvons procéder à l'extraction d'un dissident d'ADVENT qui possède de précieuses informations sur les points faibles des extraterrestres dans la région.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="Nous avons découvert qu'un sympathisant de la résistance possédait de précieuses informations sur les points faibles des extraterrestres dans la région.", MissionIndex=0)
 
 [ProtectRegion X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion3Activity"
-ActivityObjectives[0]="Libération : saboter les opérations d'ADVENT"
-ActivityObjectives[1]="Libération : détruire la tour du réseau"
-ActivityObjectives[2]="Libération : prendre d'assaut la base d'ADVENT"
+ActivityObjectives[0]="Libération: saboter les opérations d'ADVENT"
+ActivityObjectives[1]="Libération: détruire la tour du réseau"
+ActivityObjectives[2]="Libération: prendre d'assaut la base d'ADVENT"
 
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Nous avons appris qu'un appareil d'ADVENT provoquait des interférences avec le réseau de communication de la résistance. Nous devons le détruire.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Neutralize_LW", Description="Grâce à nos actions, nous avons pu localiser un fonctionnaire d'ADVENT qui supervise les opérations ennemies dans la région. Nous devons nous occuper de lui.", MissionIndex=0)
@@ -235,16 +235,16 @@ TacticalText="<Bullet/> Le lanceur nucléaire du gantelet avancé est un lance-r
 AbilityDescName="gantelet"
 
 [UISquadSelect_InfiltrationPanel]
-strInfiltrationTitle="INFILTRATION TOTALE :"
-strBaseInfiltrationTitle="Durée de base :"
-strSquadSizeTitle="Taille de l'escouade :"
-strCovertnessTitle="Capacités et équipement :"
-strMissionTimeTitle="Expiration de mission :"
+strInfiltrationTitle="INFILTRATION TOTALE:"
+strBaseInfiltrationTitle="Durée de base:"
+strSquadSizeTitle="Taille de l'escouade:"
+strCovertnessTitle="Capacités et équipement:"
+strMissionTimeTitle="Expiration de mission:"
 strDaysAndHours="<XGParam:IntValue0> jours, <XGParam:IntValue1> heures"
-strMinusDaysAndHours="- <XGParam:IntValue0> jours, <XGParam:IntValue1> heures-"
-strPlusDaysAndHours="+ <XGParam:IntValue0> jours, <XGParam:IntValue1> heures"
+strMinusDaysAndHours="-<XGParam:IntValue0> jours, <XGParam:IntValue1> heures"
+strPlusDaysAndHours="+<XGParam:IntValue0> jours, <XGParam:IntValue1> heures"
 strMissionIndefinite="Durée indéfinie"
-strLiberationTitle="Modificateur de progression (libération) :"
+strLiberationTitle="Modificateur de progression (libération):"
 
 ; LWOTC translated
 UpToText="Jusqu'à"
@@ -265,7 +265,7 @@ strWeight="Poids d'un petit objet"
 AblativeHPLabel="PV bonus"
 
 [X2Ability_LW_TechnicalAbilitySet]
-strMaxScatter="\nDiffusion max (cases) :"
+strMaxScatter="\nDiffusion max (cases):"
 
 [XComGameState_LWListenerManager]
 ResistanceHQBodyText="Accès aux informations des refuges de la résistance"
@@ -296,9 +296,6 @@ UnitInSquad="Unité dans escouade"
 RankTooLow="Rang trop bas"
 CannotModifyOnMissionSoldierTooltip="Impossible de modifier un soldat qui est en mission"
 
-[X2Effect_LWHolotarget]
-HoloTargetEffectName="Visée holographique"
-
 [XComGameState_LWPersistentSquad]
 +DefaultSquadNames="Menace"
 +DefaultSquadNames="Vaudou"
@@ -316,7 +313,7 @@ HoloTargetEffectName="Visée holographique"
 +DefaultSquadNames="Grizzly"
 +DefaultSquadNames="Clé de voûte"
 +DefaultSquadNames="Aigles hurlants"
-+DefaultSquadNames="Tueur à gage"
++DefaultSquadNames="Tueur à gages"
 +DefaultSquadNames="Assassin"
 +DefaultSquadNames="Raptor"
 +DefaultSquadNames="Mocassin"
@@ -384,7 +381,7 @@ strStripWeaponUpgradeDialogueTitle="CONFIRMER LE RETRAIT DES AMÉLIORATIONS"
 strStripWeaponUpgradeDialogueText="Voulez-vous vraiment dépouiller cette arme de toutes ses améliorations ? Elle retournera dans votre inventaire."
 
 [UIPersonnel_SquadBarracks]
-strSquadBarrackTitle="ESCOUADE : <XGParam:StrValue0>"
+strSquadBarrackTitle="ESCOUADE: <XGParam:StrValue0>"
 strUnassignedSoldierTitle="SOLDATS NON ASSIGNÉS"
 strEdit="VOIR"
 strSelect="SÉLECTION"
@@ -397,8 +394,8 @@ strViewUnassigned="ASSIGNER SOLDATS"
 strViewSquad="SOLDATS DE L'ESCOUADE"
 strDeleteSquadConfirm="CONFIRMER SUPPRESSION D'ESCOUADE"
 strDeleteSquadConfirmDesc="Voulez-vous vraiment supprimer cette escouade ?"
-strMissions="Missions : <XGParam:IntValue0>"
-strDefaultSquadBiography="Activation réussie : <XGParam:StrValue0>"
+strMissions="Missions: <XGParam:IntValue0>"
+strDefaultSquadBiography="Activation réussie: <XGParam:StrValue0>"
 
 [UISquadContainer]
 DefaultSquadTitle="ESCOUADE"
@@ -406,7 +403,7 @@ DefaultSquadTitle="ESCOUADE"
 [UISquadListItem]
 sSquadOnMission="EN MISSION"
 sSquadAvailable="DISPONIBLE"
-sCovertness="Furtivité : <XGParam:IntValue0>"
+sCovertness="Furtivité: <XGParam:IntValue0>"
 
 [UIScreenListener_SquadSelect_LW]
 strSave="Sauvegarder"
@@ -415,7 +412,7 @@ strStart="Débuter"
 strInfiltration="Infiltration"
 
 ; LWOTC translated
-strAreaOfOperations="Zone d'opérations :"
+strAreaOfOperations="Zone d'opérations:"
 ; End translated
 
 [UIScreenListener_SkyrangerArrives_LW]
@@ -440,14 +437,14 @@ m_strAbort="ANNULER"
 m_strBoostInfiltration="SOUTENIR L'INFILTRATION"
 m_strAlreadyBoostedInfiltration="Le taux d'infiltration de l'escouade <XGParam:StrValue0> a déjà été augmenté."
 m_strInsufficentIntelForBoostInfiltration="Renseignements insuffisants"
-m_strBoostInfiltrationDescription="Vous pouvez dépenser<XGParam:StrValue0> afin d'augmenter le taux d'infiltration de cette escouade de <XGParam:IntValue1> % pour la mission. Cette option est rétroactive. Dépenser des renseignements ?"
+m_strBoostInfiltrationDescription="Vous pouvez dépenser<XGParam:StrValue0> afin d'augmenter le taux d'infiltration de cette escouade de <XGParam:IntValue1>% pour la mission. Cette option est rétroactive. Dépenser des renseignements?"
 m_strViewSquad="VOIR ESCOUADE"
-m_strInfiltrationStatusExpiring="Infiltration : <XGParam:IntValue0> % / <XGParam:IntValue1>d <XGParam:IntValue2>h avant les 100 %"
-m_strInfiltrationStatusMissionEnding="Infiltration : <XGParam:IntValue0> % / <XGParam:IntValue1>d <XGParam:IntValue2>h avant lancement"
-m_strInfiltrationStatusNonExpiring="<XGParam:IntValue0> % infiltré"
-m_strInfiltrationConsequence="Préparation de l'ennemi : <XGParam:StrValue0>"
-m_strMustLaunchMission="Expiration de la mission : lancez-la ou abandonnez-la."
-m_strInsuffientInfiltrationToLaunch="Le taux d'infiltration doit être d'au moins <XGParam:IntValue0> % pour lancer la mission."
+m_strInfiltrationStatusExpiring="Infiltration: <XGParam:IntValue0>% / <XGParam:IntValue1>d <XGParam:IntValue2>h avant les 100%"
+m_strInfiltrationStatusMissionEnding="Infiltration: <XGParam:IntValue0>% / <XGParam:IntValue1>d <XGParam:IntValue2>h avant lancement"
+m_strInfiltrationStatusNonExpiring="<XGParam:IntValue0>% infiltré"
+m_strInfiltrationConsequence="Préparation de l'ennemi: <XGParam:StrValue0>"
+m_strMustLaunchMission="Expiration de la mission: lancez-la ou abandonnez-la."
+m_strInsuffientInfiltrationToLaunch="Le taux d'infiltration doit être d'au moins <XGParam:IntValue0>% pour lancer la mission."
 
 ; these need to be coordinated in length with the  in LW_InfiltrationSettings.ini : AlertModifierAtInfiltration
 +m_strAlertnessModifierDescriptions[0]="Imprenable"
@@ -477,7 +474,7 @@ m_strInvasionWarning="ALERTE"
 m_strInvasionDesc="Les forces d'ADVENT ont lancé une attaque sur <XGParam:StrValue0/!WorldRegionName/> ! Nous devons riposter immédiatement si nous voulons éviter qu'ADVENT n'en reprenne le contrôle."
 
 [UIStrategyMapItem_Region_LW]
-m_strOutpostTitle="Refuge : <XGParam:StrValue0>"
+m_strOutpostTitle="Refuge: <XGParam:StrValue0>"
 m_strAlertLevel="Puissance d'ADVENT:<XGParam:IntValue0> (V:<XGParam:IntValue2> F:<XGParam:IntValue1>)"
 m_strLiberatedRegion="Région libérée"
 m_strStaffingPinText="Rs:<XGParam:IntValue0> Rn:<XGParam:IntValue1> Rc:<XGParam:IntValue2>"
@@ -499,9 +496,9 @@ m_strRebelCountLabel="REFUGE"
 m_strADVENTUnitSingular="Légion"
 m_strADVENTUnitPlural="Légions"
 
-m_strGlobalAlert="Puissance globale d'ADVENT :"
-m_strGlobalInsurgency="• Menace posée par la résistance mondiale :"
-m_strAvatarPenalty="• Progression du projet Avatar ralentie de <XGParam:IntValue0/> %"
+m_strGlobalAlert="Puissance globale d'ADVENT:"
+m_strGlobalInsurgency="• Menace posée par la résistance mondiale:"
+m_strAvatarPenalty="• Progression du projet Avatar ralentie de <XGParam:IntValue0/>%"
 m_strThreatVeryLow="Faible"
 m_strThreatLow="Protégé"
 m_strThreatMedium="Élevée"
@@ -520,8 +517,8 @@ m_strMission="Mission"
 m_strBuildRadioRelay="Construire un relais radio"
 m_strLiaisonTitle="Superviseur de refuge"
 ; 0=Alert, 1=Vigilance, 2=Force
-m_strRegionalInfo="Puissance d'ADVENT : <XGParam:IntValue0/>"
-m_strResistanceMecs="CEM de la résistance : <XGParam:IntValue0/>"
+m_strRegionalInfo="Puissance d'ADVENT: <XGParam:IntValue0/>"
+m_strResistanceMecs="CEM de la résistance: <XGParam:IntValue0/>"
 m_strProhibited="Interdit"
 m_strCannotChangeLiaisonTitle="Impossible de déplacer l'agent de liaison"
 m_strCannotChangeLiaison="Vous ne pouvez pas changer d'agent de liaison tant que des missions sont actives dans la région."
@@ -564,25 +561,25 @@ m_strStaffingHelp="Recrutez plus de personnel au marché noir."
 [ResistanceManagement_Help LWHelpTemplate]
 m_strHelpTitle="Gestion de la résistance"
 m_strHelpText="L'écran de gestion de la résistance vous permet de gérer les activités des cellules de la résistance du monde entier. Quand vous établissez un contact avec un refuge, il apparaît ici avec des informations sur sa puissance et ses activités. Pour ajuster les priorités de la résistance dans une région, sélectionnez la région en question pour accéder à l'écran de gestion de refuge. Sur l'écran Gestion de la Résistance, un ou deux points à côté d'un nom de région indiquent les progrès accomplis en vue de la libération de celle-ci."
-m_strHelpButtonTooltip="Aide : gestion de la résistance"
+m_strHelpButtonTooltip="Aide: gestion de la résistance"
 
 [OutpostManagement_Help LWHelpTemplate]
 m_strHelpTitle="Gestion de refuge"
 m_strHelpText="Sur cet écran, vous pouvez confier des tâches aux résistants appartenant à tel ou tel refuge, afin qu'ils aident XCOM dans leur combat contre ADVENT. Par ailleurs, en cliquant sur le cadre, vous pouvez demander à un membre d'XCOM de devenir agent de liaison avec un refuge. Les agents de liaison militaires peuvent vous aider avec le recrutement et le service de sécurité, tandis que les agents de liaison scientifiques participent à la récolte de renseignements et les ingénieurs aident à la récupération de ressources. Pour plus d'informations sur ces mécaniques, consultez les entrées relatives aux refuges de la résistance dans les archives XCOM."
-m_strHelpButtonTooltip="Aide : gestion de refuge"
+m_strHelpButtonTooltip="Aide: gestion de refuge"
 
 [Personnel_SquadBarracks_Help LWHelpTemplate]
 m_strHelpTitle="Gestion d'escouade"
-m_strHelpText="Le menu de gestion de l'escouade permet de composer et de gérer les escouades qui partiront en mission. Les escouades sont des groupes de soldats déjà composés que vous pouvez facilement assigner à une mission depuis l'écran de sélection de l'escouade. Voici comment elles fonctionnent :<br/><Bullet/> Jusqu'à 10 soldats peuvent être ajoutés à une escouade. Vous pouvez choisir une escouade depuis l'écran de sélection d'escouade juste avant la mission.<br/><Bullet/> Si le membre d'une escouade est blessé, s'il suit un entraînement ou s'il n'est pas adapté à la mission, vous pouvez le remplacer par un soldat non assigné le temps d'une mission.<br/><Bullet/> Il est même possible de composer une équipe avec uniquement des soldats non assignés, ils recevront alors un nom qui servira de référence sur le Geoscape. Après la mission, cette escouade sera dissoute.<br/><Bullet/> Un soldat doit quitter son escouade actuelle pour en rejoindre une autre."
-m_strHelpButtonTooltip="Aide : gestion de l'escouade"
+m_strHelpText="Le menu de gestion de l'escouade permet de composer et de gérer les escouades qui partiront en mission. Les escouades sont des groupes de soldats déjà composés que vous pouvez facilement assigner à une mission depuis l'écran de sélection de l'escouade. Voici comment elles fonctionnent:<br/><Bullet/> Jusqu'à 10 soldats peuvent être ajoutés à une escouade. Vous pouvez choisir une escouade depuis l'écran de sélection d'escouade juste avant la mission.<br/><Bullet/> Si le membre d'une escouade est blessé, s'il suit un entraînement ou s'il n'est pas adapté à la mission, vous pouvez le remplacer par un soldat non assigné le temps d'une mission.<br/><Bullet/> Il est même possible de composer une équipe avec uniquement des soldats non assignés, ils recevront alors un nom qui servira de référence sur le Geoscape. Après la mission, cette escouade sera dissoute.<br/><Bullet/> Un soldat doit quitter son escouade actuelle pour en rejoindre une autre."
+m_strHelpButtonTooltip="Aide: gestion de l'escouade"
 
 [SquadSelect_Help LWHelpTemplate]
 m_strHelpTitle="Infiltration de l'escouade"
 m_strHelpText="Dans le cas de nombreuses missions, l'escouade doit consacrer du temps à l'infiltration si elle ne veut pas se retrouver face aux forces d'ADVENT les plus lourdement armées. Vous pouvez paramétrer la durée des infiltrations en ajustant la taille de l'escouade et en mobilisant des soldats avec des capacités et de l'équipement furtifs. Pour plus d'informations sur ces mécaniques, consultez les entrées relatives à l'infiltration dans les archives XCOM."
-m_strHelpButtonTooltip="Aide : infiltration"
+m_strHelpButtonTooltip="Aide: infiltration"
 
 [X2StrategyElement_DefaultStaffSlots_LW]
-m_strLiaisonLocation="Superviseur de refuge : <XGParam:StrValue0>"
+m_strLiaisonLocation="Superviseur de refuge: <XGParam:StrValue0>"
 
 [X2StrategyElement_MissionSiteDescriptions_LW]
 ; This goes in front of a city name in invasion missions, e.g. "Free Chicago"
@@ -654,9 +651,9 @@ m_strNoEvac="Pas d'Evac"
 m_strMaxSquadSize="Taille Escouade Max"
 m_strConcealedStart="Départ Camouflé"
 m_strRevealedStart="Départ Révélé"
-m_strObjectiveTimer="Délai Objectif :"
-m_strExtractionTimer="Délai Extraction :"
-m_strEvacTimer="Arrivée Mercure :"
+m_strObjectiveTimer="Délai Objectif:"
+m_strExtractionTimer="Délai Extraction:"
+m_strEvacTimer="Arrivée Mercure:"
 m_strGetCorpses="Récupération Ressources"
 m_strSweepObjective="Nettoyez la zone"
 m_strEvacRequired="Evac Nécessaire"
@@ -700,12 +697,18 @@ strCovertActionFailed="ÉCHEC"
 ScrollObjectiveDescriptionStr="DESCRIPTION D'OBJECTIF"
 ; End translated
 
+[X2Effect_ChosenLoot]
+m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> pour avoir éliminé un Élu."
+
 ; [X2StatusEffects_LW]
 ; HeavyDazedFriendlyName="Hébété(e)"
 ; HeavyDazedFriendlyDesc="Similaire à Sonné, mais la réanimation coûte 1 action et ignore les immunités ennemies."
 ; HeavyDazedEffectAcquiredString="<XGParam:StrValue0/!UnitName/> est Hébété(e)."
 ; HeavyDazedEffectTickedString="<XGParam:StrValue0/!UnitName/> est toujours Hébété(e)."
 ; HeavyDazedEffectLostString="<XGParam:StrValue0/!UnitName/> n'est plus Hébété(e)."
-; HeavyDazedPerActionFriendlyName="Hébété(e) : <Ability:STUNNEDACTIONPOINTS>"
+; HeavyDazedPerActionFriendlyName="Hébété(e): <Ability:STUNNEDACTIONPOINTS>"
 ; HeavyDazedTitle="Hébété(e)"
 ; HeavyDazedName="Hébété(e)"
+
+[X2Effect_LWHolotarget]
+HoloTargetEffectName="Visée holographique"

@@ -5,14 +5,21 @@ LocLongDescription="Lorsque vous sortez de l'obscurité, vous gagnez +<Ability:L
 LocHelpText="Lorsque vous sortez de l'obscurité, vous gagnez +<Ability:LingeringShadowDefenseBonus/> en défense et +<Ability:LingeringShadowDodgeBonus/> en esquive jusqu'au début de votre prochain tour."
 LocPromotionPopupText="<Bullet/> Lorsque vous sortez de l'obscurité, vous gagnez +<Ability:LingeringShadowDefenseBonus/> en défense et +<Ability:LingeringShadowDodgeBonus/> en esquive jusqu'au début de votre prochain tour.<br/><Bullet/> Cette capacité se déclenche dès que le soldat sort de l'obscurité, que ce soit parce qu'il a été révélé par un ennemi ou parce que la capacité obscurité a cessé de faire effet."
 
+; LWOTC translated (2)
+[LingeringShadowTrigger X2AbilityTemplate]
+LocFriendlyName="Ombres persistantes"
+LocLongDescription="Lorsque vous sortez de l'obscurité, vous gagnez +<Ability:LingeringShadowDefenseBonus/> en défense et +<Ability:LingeringShadowDodgeBonus/> en esquive jusqu'au début de votre prochain tour."
+LocHelpText="Lorsque vous sortez de l'obscurité, vous gagnez +<Ability:LingeringShadowDefenseBonus/> en défense et +<Ability:LingeringShadowDodgeBonus/> en esquive jusqu'au début de votre prochain tour."
+; End translated (2)
+
 [Demolitionist X2AbilityTemplate]
 LocFriendlyName="Feux d'artifice"
-LocLongDescription="Le soldat reçoit +<Ability:DemolitionistExtraChargeCount/> charge(s) de plus pour les capacités Déclenchement à distance et Mine guidée."
-LocHelpText="Le soldat reçoit +<Ability:DemolitionistExtraChargeCount/> charge(s) de plus pour les capacités Déclenchement à distance et Mine guidée."
-LocPromotionPopupText="<Bullet/> Le soldat reçoit +<Ability:DemolitionistExtraChargeCount/> charge(s) de plus pour les capacités Déclenchement à distance et Mine guidée.<br/>"
+LocLongDescription="Le soldat reçoit <Ability:DemolitionistExtraChargeCount/> charge(s) de plus pour les capacités Déclenchement à distance et Mine guidée."
+LocHelpText="Le soldat reçoit <Ability:DemolitionistExtraChargeCount/> charge(s) de plus pour les capacités Déclenchement à distance et Mine guidée."
+LocPromotionPopupText="<Bullet/> Le soldat reçoit <Ability:DemolitionistExtraChargeCount/> charge(s) de plus pour les capacités Déclenchement à distance et Mine guidée.<br/>"
 
 [CripplingStrike X2AbilityTemplate]
-LocFriendlyName="Frappe handicapante"
+LocFriendlyName="Crucifixion"
 LocLongDescription="Lancez un couteau qui mutile la cible, réduisant sa mobilité à 0 pendant 1 tour."
 LocHelpText="Lancez un couteau qui mutile la cible, réduisant sa mobilité à 0 pendant 1 tour."
 LocPromotionPopupText="<Bullet/> Lancez un couteau qui mutile la cible, réduisant sa mobilité à 0 pendant 1 tour.<br/><Bullet/> Lancer un couteau ne vous fait pas sortir de l'obscurité.<br>"
@@ -54,39 +61,37 @@ LocPromotionPopupText="<Bullet/> Procure un bonus de <Ability:VoltDangerZoneBonu
 
 ; LWOTC translated
 [TemplarVigilance X2AbilityTemplate]
-LocFriendlyName="Sixième sens"
-LocLongDescription="Gagnez 1 niveau de concentration chaque fois que votre escouade révèle un groupe d'ennemis composé d'au moins 3 unités."
-LocHelpText="Gagnez 1 niveau de concentration chaque fois que votre escouade révèle un groupe d'ennemis composé d'au moins 3 unités."
+LocFriendlyName="Perceptions extrasensorielles"
+LocLongDescription="Gagnez 1 point de concentration chaque fois que votre escouade révèle un groupe d'ennemis composé d'au moins 3 unités."
+LocHelpText="Gagnez 1 point de concentration chaque fois que votre escouade révèle un groupe d'ennemis composé d'au moins 3 unités."
 ; LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Gagnez 1 niveau de concentration chaque fois que votre escouade révèle un groupe d'ennemis composé d'au moins 3 unités.<br/><Bullet/> Si vous avez déjà atteint votre niveau de concentration maximal, les points excédentaires sont perdus."
+LocPromotionPopupText="<Bullet/> Gagnez 1 point de concentration chaque fois que votre escouade révèle un groupe d'ennemis composé d'au moins 3 unités.<br/><Bullet/> Si vous avez déjà atteint votre niveau de concentration maximal, les points excédentaires sont perdus."
 ; End translated (2)
 
 [TemplarTerror X2AbilityTemplate]
-LocFriendlyName="Terreur"
-LocLongDescription="Les unités blessées par la capacité Volt ont une chance d'être pris de panique."
-LocHelpText="Les unités blessées par la capacité Volt ont une chance d'être pris de panique."
-LocPromotionPopupText="<Bullet/> Les unités blessées par la capacité Volt ont une chance d'être pris de panique.<br/><Bullet/> Les chances de panique dépendent à la fois de la force psionique du Templier et de la volonté de la cible."
+LocFriendlyName="Cauchemar voltaïque"
+LocLongDescription="Les unités blessées par la capacité Volt ont une chance d'être prises de panique."
+LocHelpText="Les unités blessées par la capacité Volt ont une chance d'être prises de panique."
+LocPromotionPopupText="<Bullet/> Les unités blessées par la capacité Volt ont une chance d'être prises de panique.<br/><Bullet/> Les chances de panique dépendent à la fois de la force psionique du Templier et de la volonté de la cible."
 
 [Apotheosis X2AbilityTemplate]
-LocFriendlyName="Paroxysme"
+LocFriendlyName="Transe du vide"
 ; LWOTC translated (2)
-LocFlyoverText="Paroxysme!"
+LocFlyoverText="Transe du vide!"
 ; End translated (2)
-LocLongDescription="Augmente massivement votre mobilité, votre esquive et les dégâts infligés par la capacité Taillade. Action gratuite. Nécessite d'avoir au moins 3 niveaux de concentration pour être activé et consomme tous les points de concentration du Templier. La puissance de l'effet dépend du nombre de points de concentation consommés pour l'activer."
-LocHelpText="Augmente massivement votre mobilité, votre esquive et les dégâts infligés par la capacité Taillade. Action gratuite. Nécessite d'avoir au moins 3 niveaux de concentration pour être activé et consomme tous les points de concentration du Templier. La puissance de l'effet dépend du nombre de points de concentation consommés pour l'activer."
-LocPromotionPopupText="<Bullet/> Une action gratuite qui augmente significativement la puissance du Templier.<br/><Bullet/> Augmente les dégâts de Taillade de <Ability:ApotheosisDamageMultiplier/> % pour chaque point de concentration au-delà de 2.<br/><Bullet/> Augmente l'esquive de <Ability:ApotheosisDodgeBonus/>.<br/><Bullet/> Augmente la mobilité de <Ability:ApotheosisMobilityBonus/> pour chaque point de concentration au-delà de 2.<br/><Bullet/> Nécessite d'avoir au moins 3 niveaux de concentration pour être activé. Son activation consomme tous les points de concentration du Templier.<br/><Bullet/> Vous ne gagnez aucun point de concentration lorsque vous éliminez un ennemi avec Taillade tant que cette capacité est active.<br/>"
+LocLongDescription="Augmente massivement votre mobilité, votre esquive et les dégâts de Taillade. Action gratuite. Nécessite d'avoir au moins 3 niveaux de concentration pour être activé et consomme tous les points de concentration du Templier."
+LocHelpText="Augmente massivement votre mobilité, votre esquive et les dégâts de Taillade. Action gratuite. Nécessite d'avoir au moins 3 niveaux de concentration pour être activé et consomme tous les points de concentration du Templier."
+; LWOTC translated (2)
+LocPromotionPopupText="<Bullet/> Une action gratuite qui augmente significativement la puissance du Templier durant 2 tours.<br/><Bullet/> Augmente les dégâts de Taillade de +<Ability:ApotheosisDamageMultiplier/>% pour chaque niveau de concentration au-delà de 2.<br/><Bullet/> Augmente l'esquive de +<Ability:ApotheosisDodgeBonus/>.<br/><Bullet/> Augmente la mobilité de +<Ability:ApotheosisMobilityBonus/> pour chaque niveau de concentration au-delà de 2.<br/><Bullet/> Nécessite d'avoir au moins 3 niveaux de concentration pour être activé. Son activation consomme tous les points de concentration du Templier.<br/><Bullet/> Vous ne gagnez aucun point de concentration lorsque vous éliminez un ennemi avec Taillade tant que cette capacité est active.<br/>"
+; End translated (2)
 ; End translated
-
-; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> A free action that makes the Templar substantially more powerful for one turn.<br/><Bullet/> Increases Rend damage by <Ability:ApotheosisDamageMultiplier/>% for each point of focus above 2.<br/><Bullet/> Increases Dodge by <Ability:ApotheosisDodgeBonus/>.<br/><Bullet/> Increases mobility by <Ability:ApotheosisMobilityBonus/> for each point of focus above 2.<br/><Bullet/> Requires a minimum of 3 focus.<br/><Bullet/> Consumes all focus.<br/><Bullet/> The Templar cannot gain focus from Rend kills while under the effect of Apotheosis."
-; End Translation (2)
 
 ; LWOTC translated
 [ShadowGrenadier X2AbilityTemplate]
 LocFriendlyName="Grenadier de l'ombre"
-LocHelpText="Lancer ou tirer une grenade ne met plus fin à l'obscurité. Procure également un emplacement supplémentaire réservé aux grenades."
-LocLongDescription="Lancer ou tirer une grenade ne met plus fin à l'obscurité. Procure également un emplacement supplémentaire réservé aux grenades."
-LocPromotionPopupText="<Bullet/> Lancer ou tirer une grenade ne met plus fin à l'obscurité. Procure également un emplacement supplémentaire réservé aux grenades.<br/>"
+LocHelpText="Lancer une grenade ne met plus fin à l'obscurité. Annule le temps de rechargement du lancer de grenade et procure un emplacement supplémentaire réservé aux grenades."
+LocLongDescription="Lancer une grenade ne met plus fin à l'obscurité. Annule le temps de rechargement du lancer de grenade et procure un emplacement supplémentaire réservé aux grenades."
+LocPromotionPopupText="<Bullet/> Lancer une grenade ne met plus fin à l'obscurité. Annule le temps de rechargement du lancer de grenade et procure un emplacement supplémentaire réservé aux grenades.<br/>"
 
 [PoisonedBlades X2AbilityTemplate]
 LocFriendlyName="Lames empoisonnées"
@@ -95,13 +100,19 @@ LocLongDescription="Les couteaux de lancer empoisonnent les unités qu'ils touch
 LocPromotionPopupText="<Bullet/> Les couteaux de lancer empoisonnent les unités qu'ils touchent.<br/>"
 
 [ChargeBattery X2AbilityTemplate]
-LocFriendlyName="Ténèbres"
+LocFriendlyName="Ombres rampantes"
 LocFlyoverText="Obscurité: +1 tour"
 LocHelpText="Consommez une charge pour prolonger les effets de l'obscurité de 1 tour. Action gratuite."
 LocLongDescription="Consommez une charge pour prolonger les effets de l'obscurité de 1 tour. Action gratuite."
 ; LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Consommez une charge pour prolonger les effets de l'obscurité de 1 tour.<br/><Bullet/> Ne peut être activée que lorsque le soldat est dissimulé dans l'Obscurité.<br/><Bullet/> Action gratuite. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Cette capacité dispose de <Ability:CHARGE_BATTERY_CHARGES/> charge(s).<br/>"
+LocPromotionPopupText="<Bullet/> Consommez une charge pour prolonger les effets de l'obscurité de 1 tour.<br/><Bullet/> Ne peut être activée que lorsque le soldat est dissimulé dans l'obscurité.<br/><Bullet/> Action gratuite. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Cette capacité dispose de <Ability:CHARGE_BATTERY_CHARGES/> charge(s).<br/>"
 ; End translated (2)
+; End translated
+
+; LWOTC translated
+[SilentKillerDurationExtension X2AbilityTemplate]
+LocFriendlyName="Tueur silencieux renouvelle Obscurité"
+LocFlyoverText="Obscurité: +1 tour"
 ; End translated
 
 ; LWOTC translated
@@ -111,3 +122,52 @@ LocHelpText="Le temps de rechargement de la capacité Grappin de l'Escarmoucheur
 LocLongDescription="Le temps de rechargement de la capacité Grappin de l'Escarmoucheur est réduit de 1 tour."
 LocPromotionPopupText="<Bullet/> Le temps de rechargement de la capacité Grappin de l'Escarmoucheur est réduit de 1 tour.<br/>"
 ; End translated
+
+; LWOTC translated
+[Executioner X2AbilityTemplate]
+LocFriendlyName="Marchand de mort"
+LocLongDescription="Pocure un bonus de +<Ability:DEATH_DEALER_CRIT/> en chances de coup critique. Tant que vous êtes dans l'obscurité, les tirs critiques contre les unités contournées infligent le double de dégâts critiques."
+LocHelpText="Pocure un bonus de +<Ability:DEATH_DEALER_CRIT/> en chances de coup critique. Tant que vous êtes dans l'obscurité, les tirs critiques contre les unités contournées infligent le double de dégâts critiques."
+LocPromotionPopupText="<Bullet/> Pocure un bonus de +<Ability:DEATH_DEALER_CRIT/> en chances de coup critique. Tant que vous êtes dans l'obscurité, les tirs critiques contre les unités contournées infligent le double de dégâts critiques.<br/>"
+
+; End translated
+
+; LWOTC Needs Translation
+[RendTheMarked X2AbilityTemplate]
+LocFriendlyName="Marque de sang"
+LocHelpText="Chaque fois que vous blessez une cible avec un couteau de lancer, toute unité qui la prend pour cible avant la fin du tour gagne un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique."
+LocLongDescription="Chaque fois que vous blessez une cible avec un couteau de lancer, toute unité qui la prend pour cible avant la fin du tour gagne un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique."
+LocPromotionPopupText="Chaque fois que vous blessez une cible avec un couteau de lancer, toute unité qui la prend pour cible avant la fin du tour gagne un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique."
+
+[KnifeEncounters X2AbilityTemplate]
+LocFriendlyName="Duel au couteau"
+LocFlyOverText="Duel au couteau"
+LocLongDescription="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de 4 cases autour de votre position."
+LocHelpText="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de 4 cases autour de votre position."
+LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de 4 cases autour de votre position.<br/><Bullet/> Cette capacité ne peut pas être combinée avec la capacité Course et tir.<br/>"
+
+[ImpersonalEdge X2AbilityTemplate]
+LocFriendlyName="Ombre évanescente"
+LocFlyOverText="Ombre évanescente"
+LocLongDescription="Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer."
+LocHelpText="Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer."
+LocPromotionPopupText="<Bullet/> "Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer.<br/>"
+
+[ImpersonalEdgePassive X2AbilityTemplate]
+LocFriendlyName="Ombre évanescente"
+LocFlyOverText="Ombre évanescente"
+LocLongDescription="Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer."
+LocHelpText="Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer."
+LocPromotionPopupText="<Bullet/> "Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer.<br/>"
+
+[BlueScreenKnives X2AbilityTemplate]
+LocFriendlyName="Couteaux Écran bleu"
+LocHelpText="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
+LocLongDescription="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
+LocPromotionPopupText="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
+
+[LW_FactionBalance.X2Ability_ThrowingKnifeAbilitySet]
+RendTheMarkedEffectName="Marque de sang"
+RendTheMarkedEffectDesc="Chaque fois que vous blessez une cible avec un couteau de lancer, toute unité qui la prend pour cible avant la fin du tour gagne un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique."
+; End Translation
+

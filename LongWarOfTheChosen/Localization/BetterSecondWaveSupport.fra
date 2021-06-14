@@ -1,7 +1,13 @@
 ; LWOTC translated
-[EnableChosen SecondWaveOptionObject]
-Tooltip="Activation des Elus, qui entreront en action à partir d'une date inconnue."
-Description="Elus: Activation des Elus."
+[DisableTutorial SecondWaveOptionObject]
+Tooltip="Désactive le tutoriel de LWOTC."
+Description="On ne vous tend pas la main: Désactive le tutoriel de LWOTC."
+; End translated
+
+; LWOTC translated
+[DisableChosen SecondWaveOptionObject]
+Tooltip="Désative les Élus. Vous n'aurez pas à les affronter."
+Description="Élus en vacances: Désactive les Élus."
 
 [EnableResistanceOrders SecondWaveOptionObject]
 Tooltip="Activation des ordres de la résistance."
@@ -13,3 +19,16 @@ Description="Domination stratégique: Activation des ordres de la résistance."
 Tooltip="Permet aux soldats d'XCOM d'acheter plusieurs capacités de classe du même rang avec des points de capacité."
 Description="Capacités multiples: Permet aux soldats d'XCOM d'acheter plusieurs capacités de classe du même rang avec des points de capacité, une fois que le centre d'entraînement a été construit."
 ; End translated
+
+; LWOTC translated
+[BabyChosen SecondWaveOptionObject]
+Tooltip="Les Élus perdent la capacité Réaction principale (aptitude à réagir durant le tour d'XCOM chaque fois qu'ils sont blessés), ce qui les affaiblit considérablement."
+Description="Élus en devenir: Les Élus perdent la capacité Réaction principale."
+; End translated
+
+;;;;;;;;;;;;;;;;;;;;  SPECIFICITES FRA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; LWotC(FRA) - Was here before, can't say if I've to delete it
+
+[EnableChosen SecondWaveOptionObject]
+Tooltip="Activation des Élus, qui entreront en action à partir d'une date inconnue."
+Description="Élus: Activation des Elus."

@@ -11,7 +11,7 @@ SpokenText="Un groupe de résistants opérant dans le secteur a pris de vitesse 
 SpokenText="Un groupe de la résistance locale opérant dans ce secteur a réussi à coincer une patrouille d'ADVENT et découvert qu'elle transportait une banque de données. D'après ce qu'on sait, elle contiendrait des données critiques sur le projet des extraterrestres que nous avons découvert. Malheureusement, leurs renforts sont vite arrivés sur le site et nous avons perdu tout contact avec les résistants. Nous allons sécuriser la zone. Récupérez les données."
 
 [AssaultAlienBase_TacIntro SoundNodeWave]
-SpokenText="Menace 1-5 : infiltrez et inspectez la zone. Attendez-vous à une résistance importante. Neutralisez tous les contacts hostiles."
+SpokenText="Menace 1-5: infiltrez et inspectez la zone. Attendez-vous à une résistance importante. Neutralisez tous les contacts hostiles."
 
 [T_AssaultNetworkTower_Central_01 SoundNodeWave]
 SpokenText="Commandant, l'attaque se fera en deux temps. Nous commencerons par pirater la tour d'ADVENT pour couper leur réseau. Nous devrons agir vite. L'objectif sera de prendre le contrôle des données, car Shen a préparé une petite surprise qui devrait les occuper un moment. Vous verrouillerez la zone, sécuriserez la proximité immédiate et neutraliserez les forces adverses qui protègent la cible. Si tout se passe bien, ils ne verront rien venir."
