@@ -337,6 +337,7 @@
     <Content Include="Localization\LW_Toolbox_Integrated\XComGame.kor" />
     <Content Include="Localization\LW_Toolbox_Integrated\XComGame.pol" />
     <Content Include="Localization\LW_Toolbox_Integrated\XComGame.rus" />
+    <Content Include="Localization\LW_WeaponsAndArmor\LW_WeaponsAndArmor.int" />
     <Content Include="Localization\Parcels\lg_GeneClinic_01_LW.chn" />
     <Content Include="Localization\Parcels\lg_GeneClinic_01_LW.cht" />
     <Content Include="Localization\Parcels\lg_GeneClinic_01_LW.deu" />

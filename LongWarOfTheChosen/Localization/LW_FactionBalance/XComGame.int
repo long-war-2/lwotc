@@ -166,8 +166,5 @@ LocHelpText="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce an
 LocLongDescription="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
 LocPromotionPopupText="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
 
-[LW_FactionBalance.X2Ability_ThrowingKnifeAbilitySet]
-RendTheMarkedEffectName="Rend The Marked"
-RendTheMarkedEffectDesc="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
 ; End Translation
 

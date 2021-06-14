@@ -1,0 +1,5 @@
+; LWOTC Needs Translation
+[X2Ability_ThrowingKnifeAbilitySet]
+RendTheMarkedEffectName="Rend The Marked"
+RendTheMarkedEffectDesc="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
+; End Translation
