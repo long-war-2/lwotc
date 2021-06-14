@@ -36,6 +36,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_GatherIntel':
 		case 'CovertAction_FormSoldierBond':
 		case 'CovertAction_AlienLoot':
+		case 'CovertAction_ResistanceMec':
 			ConfigureEasyCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RecruitScientist':
