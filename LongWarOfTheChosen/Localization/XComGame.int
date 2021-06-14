@@ -44,6 +44,10 @@ m_strRetributionAlertIncomeDecreasedTitle="HAVEN SABOTAGED"
 m_strRetributionAlertIncomeDescription="Supply, Intel, and Recruit activity efficiency has been decreased by 20%"
 ;LWOTC end translation
 
+; LWOTC Needs Translation
+m_strInfirmaryIntroBody=A scientist can be staffed here to decrease the time it takes soldiers to recover from wounds. Soldiers can be staffed here to remove any negative traits they acquired in combat.
+; End Translation
+
 [XComGame.UIAdventOperations]
 [UIAdventOperations]
 m_strTitleHelp="We have received intel regarding the Aliens' current activities. If the Resistance can detect the source of these operations, we can conduct operations to stop them."
