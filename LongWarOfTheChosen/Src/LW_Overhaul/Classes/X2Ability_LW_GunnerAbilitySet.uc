@@ -334,7 +334,6 @@ static function X2AbilityTemplate AddFlushAbility()
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_UnitProperty			ShooterCondition;
 	local X2Effect_PersistentStatChange		NerfEffect;
-	local X2Effect_ApplyWeaponDamage		WeaponDamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Flush');
 
@@ -406,8 +405,7 @@ static function X2AbilityTemplate AddFlushAbility()
 	NerfEffect.DuplicateResponse = eDupe_Allow;
 	Template.AddTargetEffect(NerfEffect);
 
-	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
-    Template.AddTargetEffect(WeaponDamageEffect);
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
 
 	Template.AdditionalAbilities.AddItem('FlushDamage');
 
