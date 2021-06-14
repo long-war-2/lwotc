@@ -816,6 +816,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Cutthroat.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_DamageControl.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_DamnGoodGround.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_DeadeyeDamage_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_DeadeyeDamage_SnapShot.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_DenseSmokeGrenade.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_DepthPerception.uc" />

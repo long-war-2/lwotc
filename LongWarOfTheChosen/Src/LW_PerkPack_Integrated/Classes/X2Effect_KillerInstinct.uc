@@ -7,21 +7,25 @@ class X2Effect_KillerInstinct extends X2Effect_BonusWeaponDamage config (LW_Sold
 
 var config float KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT;
 
-function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+function float GetPostDefaultAttackingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit Attacker,
+	Damageable TargetDamageable,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData AppliedData,
+	float CurrentDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	XComGameState NewGameState)
 {
     local XComGameState_Item SourceWeapon;
     local XComGameState_Unit TargetUnit;
-	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
-	
-	WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
-	if (WeaponDamageEffect != none)
-	{			
-		if (WeaponDamageEffect.bIgnoreBaseDamage)
-		{	
-			return 0;		
-		}
+
+	if (WeaponDamageEffect.bIgnoreBaseDamage)
+	{	
+		return 0;		
 	}
-    if(AppliedData.AbilityResultContext.HitResult == eHit_Crit)
+
+    if (AppliedData.AbilityResultContext.HitResult == eHit_Crit)
     {
         SourceWeapon = AbilityState.GetSourceWeapon();
         if(SourceWeapon != none) 
@@ -31,11 +35,11 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
             {
 				if (Attacker.HasSoldierAbility('KillerInstinct'))
 				{
-					return int (CurrentDamage * (default.KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT / 100));
+					return CurrentDamage * default.KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT / 100;
 				}
             }
         }
     }
+
     return 0;
 }
-

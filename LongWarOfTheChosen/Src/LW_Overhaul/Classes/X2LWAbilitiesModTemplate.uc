@@ -109,6 +109,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'RevivalProtocol':
 			AllowRevivalProtocolToRemoveStunned(Template);
 			break;
+		case 'DeadeyeDamage':
+			UseNewDeadeyeEffect(Template);
+			break;
 		case 'RestorativeMist':
 			AllowRestorativeMistToRemoveStunned(Template);
 			break;
@@ -733,6 +736,20 @@ static function UpdateSustainEffect(X2AbilityTemplate Template)
 	SustainEffect.EffectName='Sustain';
 	SustainEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(SustainEffect);
+}
+
+static function UseNewDeadeyeEffect(X2AbilityTemplate Template)
+{
+	local X2Effect_DeadeyeDamage_LW DeadeyeEffect;
+
+	// Remove old effect before adding the new one.
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template, 'X2Effect_DeadeyeDamage');
+
+	DeadeyeEffect = new class'X2Effect_DeadeyeDamage_LW';
+	DeadeyeEffect.BuildPersistentEffect(1, true, false, false);
+	DeadeyeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	DeadeyeEffect.DamageMultiplier = class'X2Effect_DeadeyeDamage'.default.DamageMultiplier;
+	Template.AddTargetEffect(DeadeyeEffect);
 }
 
 static function AllowRevivalProtocolToRemoveStunned(X2AbilityTemplate Template)

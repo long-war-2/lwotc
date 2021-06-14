@@ -39,7 +39,9 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	Damageable Target,
 	XComGameState_Ability AbilityState,
 	const out EffectAppliedData ApplyEffectParameters,
-	float WeaponDamage, XComGameState NewGameState)
+	float WeaponDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	XComGameState NewGameState)
 {
 	local XComGameState_Effect_FocusLevel FocusEffectState;
 	local XComGameState_Unit TargetUnit;

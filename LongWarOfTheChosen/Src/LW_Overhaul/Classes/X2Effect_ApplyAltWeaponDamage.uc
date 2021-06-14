@@ -211,7 +211,7 @@ simulated function GetDamagePreview(
 	local StateObjectReference EffectRef;
 	local XComGameState_Effect EffectState;
 	local X2Effect_Persistent EffectTemplate;
-	local int EffectDmg;
+	local int EffectDmg, UnconditionalShred, BaseEffectDmgModMin, BaseEffectDmgModMax;
 	local EffectAppliedData TestEffectParams;
 	local name DamageType;
 	local array<X2WeaponUpgradeTemplate> WeaponUpgradeTemplates;
@@ -219,6 +219,8 @@ simulated function GetDamagePreview(
 	local array<Name> AppliedDamageTypes;
 	local bool bDoesDamageIgnoreShields;
 	local X2MultiWeaponTemplate MultiWeaponTemplate;
+	local DamageModifierInfo DamageModInfo;
+	local array<DamageModifierInfo> DamageMods; // Issue #923
 
 	MinDamagePreview = UpgradeTemplateBonusDamage;
 	MaxDamagePreview = UpgradeTemplateBonusDamage;
@@ -291,7 +293,9 @@ simulated function GetDamagePreview(
 				bDoesDamageIgnoreShields = AmmoTemplate.bBypassShields || bDoesDamageIgnoreShields;
 			}
 			else
+			{
 				LoadedAmmo.GetBaseWeaponDamageValue(TargetUnit, AmmoDamageValue);
+			}
 			ModifyDamageValue(AmmoDamageValue, TargetUnit, AppliedDamageTypes);
 		}
 		if (bAllowWeaponUpgrade)
@@ -305,7 +309,19 @@ simulated function GetDamagePreview(
 
 					ModifyDamageValue(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes);
 
-					UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
+					//	Start Issue #896
+					/// HL-Docs: ref:Bugfixes; issue:896
+					///	Call the (hopefully) relevant delegate, if this weapon upgrade has it.
+					/// This makes the guaranteed damage on missed shots added by Stocks properly benefit from Insider Knowledge
+					if (WeaponUpgradeTemplate.GetBonusAmountFn != none)
+					{
+						UpgradeDamageValue.Damage += WeaponUpgradeTemplate.GetBonusAmountFn(WeaponUpgradeTemplate);
+					}
+					else
+					{
+						UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
+					}
+					//	End Issue #896
 					UpgradeDamageValue.Spread += UpgradeTemplateBonusDamage.Spread;
 					UpgradeDamageValue.Crit += UpgradeTemplateBonusDamage.Crit;
 					UpgradeDamageValue.Pierce += UpgradeTemplateBonusDamage.Pierce;
@@ -315,6 +331,27 @@ simulated function GetDamagePreview(
 				}
 			}
 		}
+		// Issue #237 start
+		// Treat new CH upgrade damage as base damage unless a tag is specified
+		WeaponUpgradeTemplates = SourceWeapon.GetMyWeaponUpgradeTemplates();
+		foreach WeaponUpgradeTemplates(WeaponUpgradeTemplate)
+		{
+			if ((!bIgnoreBaseDamage && DamageTag == '') || WeaponUpgradeTemplate.CHBonusDamage.Tag == DamageTag)
+			{
+				UpgradeTemplateBonusDamage = WeaponUpgradeTemplate.CHBonusDamage;
+
+				ModifyDamageValue(UpgradeTemplateBonusDamage, TargetUnit, AppliedDamageTypes);
+
+				UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
+				UpgradeDamageValue.Spread += UpgradeTemplateBonusDamage.Spread;
+				UpgradeDamageValue.Crit += UpgradeTemplateBonusDamage.Crit;
+				UpgradeDamageValue.Pierce += UpgradeTemplateBonusDamage.Pierce;
+				UpgradeDamageValue.Rupture += UpgradeTemplateBonusDamage.Rupture;
+				UpgradeDamageValue.Shred += UpgradeTemplateBonusDamage.Shred;
+				//  ignores PlusOne as there is no good way to add them up
+			}
+		}
+		// Issue #237 end
 	}
 	BonusEffectDamageValue = GetBonusEffectDamageValue(AbilityState, SourceUnit, SourceWeapon, TargetRef);
 	ModifyDamageValue(BonusEffectDamageValue, TargetUnit, AppliedDamageTypes);
@@ -350,6 +387,42 @@ simulated function GetDamagePreview(
 	TestEffectParams.SourceStateObjectRef = SourceUnit.GetReference();
 	TestEffectParams.PlayerStateObjectRef = SourceUnit.ControllingPlayer;
 	TestEffectParams.TargetStateObjectRef = TargetRef;
+	if (bAsPrimaryTarget)
+		TestEffectParams.AbilityInputContext.PrimaryTarget = TargetRef;
+
+	// Start Issue #923
+	MinDamagePreview.Damage = ApplyPreDefaultDamageModifierEffects(History, SourceUnit, TargetUnit, AbilityState, TestEffectParams, MinDamagePreview.Damage, DamageMods, false);
+	MoveDamageModItemsAlt(MinDamagePreview.BonusDamageInfo, DamageMods);
+	MaxDamagePreview.Damage = ApplyPreDefaultDamageModifierEffects(History, SourceUnit, TargetUnit, AbilityState, TestEffectParams, MaxDamagePreview.Damage, DamageMods, false);
+	MoveDamageModItemsAlt(MaxDamagePreview.BonusDamageInfo, DamageMods);
+	// End Issue #923
+
+	if (TargetUnit != none)
+	{
+		foreach TargetUnit.AffectedByEffects(EffectRef)
+		{
+			EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+			EffectTemplate = EffectState.GetX2Effect();
+			EffectDmg = EffectTemplate.GetBaseDefendingDamageModifier(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MinDamagePreview.Damage, self);
+			BaseEffectDmgModMin += EffectDmg;
+			if (EffectDmg != 0)
+			{
+				DamageModInfo.SourceEffectRef = EffectState.ApplyEffectParameters.EffectRef;
+				DamageModInfo.Value = EffectDmg;
+				MinDamagePreview.BonusDamageInfo.AddItem(DamageModInfo);
+			}
+			EffectDmg = EffectTemplate.GetBaseDefendingDamageModifier(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MaxDamagePreview.Damage, self);
+			BaseEffectDmgModMax += EffectDmg;
+			if (EffectDmg != 0)
+			{
+				DamageModInfo.SourceEffectRef = EffectState.ApplyEffectParameters.EffectRef;
+				DamageModInfo.Value = EffectDmg;
+				MaxDamagePreview.BonusDamageInfo.AddItem(DamageModInfo);
+			}
+		}
+		MinDamagePreview.Damage += BaseEffectDmgModMin;
+		MaxDamagePreview.Damage += BaseEffectDmgModMax;
+	}
 
 	foreach SourceUnit.AffectedByEffects(EffectRef)
 	{
@@ -358,7 +431,20 @@ simulated function GetDamagePreview(
 
 		EffectDmg = EffectTemplate.GetAttackingDamageModifier(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MinDamagePreview.Damage);
 		MinDamagePreview.Damage += EffectDmg;
+		if( EffectDmg != 0 )
+		{
+			DamageModInfo.SourceEffectRef = EffectState.ApplyEffectParameters.EffectRef;
+			DamageModInfo.Value = EffectDmg;
+			MinDamagePreview.BonusDamageInfo.AddItem(DamageModInfo);
+		}
+		EffectDmg = EffectTemplate.GetAttackingDamageModifier(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MaxDamagePreview.Damage);
 		MaxDamagePreview.Damage += EffectDmg;
+		if( EffectDmg != 0 )
+		{
+			DamageModInfo.SourceEffectRef = EffectState.ApplyEffectParameters.EffectRef;
+			DamageModInfo.Value = EffectDmg;
+			MaxDamagePreview.BonusDamageInfo.AddItem(DamageModInfo);
+		}
 
 		EffectDmg = EffectTemplate.GetExtraArmorPiercing(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams);
 		MinDamagePreview.Pierce += EffectDmg;
@@ -369,17 +455,50 @@ simulated function GetDamagePreview(
 		MaxDamagePreview.Shred += EffectDmg;
 	}
 
+	// run through the effects again for any conditional shred.  A second loop as it is possibly dependent on shred outcome of the unconditional first loop.
+	UnconditionalShred = MinDamagePreview.Shred;
+	foreach SourceUnit.AffectedByEffects(EffectRef)
+	{
+		EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+		EffectTemplate = EffectState.GetX2Effect();
+
+		EffectDmg = EffectTemplate.GetConditionalExtraShredValue(UnconditionalShred, EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams);
+		MinDamagePreview.Shred += EffectDmg;
+		MaxDamagePreview.Shred += EffectDmg;
+	}
+
 	if (TargetUnit != none)
 	{
 		foreach TargetUnit.AffectedByEffects(EffectRef)
 		{
 			EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
 			EffectTemplate = EffectState.GetX2Effect();
-			EffectDmg = EffectTemplate.GetDefendingDamageModifier(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MaxDamagePreview.Damage, self);
+			EffectDmg = EffectTemplate.GetDefendingDamageModifier(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MinDamagePreview.Damage, self);
 			MinDamagePreview.Damage += EffectDmg;
+			if( EffectDmg != 0 )
+			{
+				DamageModInfo.SourceEffectRef = EffectState.ApplyEffectParameters.EffectRef;
+				DamageModInfo.Value = EffectDmg;
+				MinDamagePreview.BonusDamageInfo.AddItem(DamageModInfo);
+			}
+			EffectDmg = EffectTemplate.GetDefendingDamageModifier(EffectState, SourceUnit, Damageable(TargetUnit), AbilityState, TestEffectParams, MaxDamagePreview.Damage, self);
 			MaxDamagePreview.Damage += EffectDmg;
+			if (EffectDmg != 0)
+			{
+				DamageModInfo.SourceEffectRef = EffectState.ApplyEffectParameters.EffectRef;
+				DamageModInfo.Value = EffectDmg;
+				MaxDamagePreview.BonusDamageInfo.AddItem(DamageModInfo);
+			}
 		}
 	}
+
+	// Start Issue #923
+	MinDamagePreview.Damage = ApplyPostDefaultDamageModifierEffects(History, SourceUnit, TargetUnit, AbilityState, TestEffectParams, MinDamagePreview.Damage, DamageMods, false);
+	MoveDamageModItemsAlt(MinDamagePreview.BonusDamageInfo, DamageMods);
+	MaxDamagePreview.Damage = ApplyPostDefaultDamageModifierEffects(History, SourceUnit, TargetUnit, AbilityState, TestEffectParams, MaxDamagePreview.Damage, DamageMods, false);
+	MoveDamageModItemsAlt(MaxDamagePreview.BonusDamageInfo, DamageMods);
+	// End Issue #923
+
 	if (!bDoesDamageIgnoreShields)
 		AllowsShield += MaxDamagePreview.Damage;
 }
@@ -409,18 +528,22 @@ simulated function int CalculateDamageAmount(
 	local X2Effect_Persistent EffectTemplate;
 	local WeaponDamageValue BaseDamageValue, ExtraDamageValue, BonusEffectDamageValue, AmmoDamageValue, UpgradeTemplateBonusDamage, UpgradeDamageValue;
 	local X2AmmoTemplate AmmoTemplate;
-	local int RuptureCap, RuptureAmount, OriginalMitigation;
-	local int EnvironmentDamage;
+	local int RuptureCap, RuptureAmount, OriginalMitigation, UnconditionalShred;
+	local int EnvironmentDamage, TargetBaseDmgMod;
 	local XComDestructibleActor kDestructibleActorTarget;
 	local array<X2WeaponUpgradeTemplate> WeaponUpgradeTemplates;
 	local X2WeaponUpgradeTemplate WeaponUpgradeTemplate;
 	local X2MultiWeaponTemplate MultiWeaponTemplate;
+	local DamageModifierInfo ModifierInfo;
+	local bool bWasImmune, bHadAnyDamage;
 
 	ArmorMitigation = 0;
 	NewRupture = 0;
 	NewShred = 0;
 	EnvironmentDamage = 0;
 	bAmmoIgnoresShields = 0;    // FALSE
+	bWasImmune = true;			//	as soon as we check any damage we aren't immune to, this will be set false
+	bHadAnyDamage = false;
 
 	//Cheats can force the damage to a specific value
 	if (`CHEATMGR != none && `CHEATMGR.NextShotDamageRigged )
@@ -434,7 +557,7 @@ simulated function int CalculateDamageAmount(
 	kTarget = Damageable(History.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	kDestructibleActorTarget = XComDestructibleActor(History.GetVisualizer(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	kAbility = XComGameState_Ability(History.GetGameStateForObjectID(ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
-	if (kAbility.SourceAmmo.ObjectID > 0)
+	if (kAbility != none && kAbility.SourceAmmo.ObjectID > 0)
 		kSourceItem = XComGameState_Item(History.GetGameStateForObjectID(kAbility.SourceAmmo.ObjectID));		
 	else
 		kSourceItem = XComGameState_Item(History.GetGameStateForObjectID(ApplyEffectParameters.ItemStateObjectRef.ObjectID));		
@@ -463,18 +586,21 @@ simulated function int CalculateDamageAmount(
 			else
 				kSourceItem.GetBaseWeaponDamageValue(XComGameState_BaseObject(kTarget), BaseDamageValue);
 
-			if(MultiWeaponTemplate != none)
+			if (MultiWeaponTemplate != none)
 				EnvironmentDamage += MultiWeaponTemplate.iAltEnvironmentDamage;
 			else
 				EnvironmentDamage += kSourceItem.GetItemEnvironmentDamage();
 
-			ModifyDamageValue(BaseDamageValue, kTarget, AppliedDamageTypes);
+			if (BaseDamageValue.Damage > 0) bHadAnyDamage = true;
+
+			bWasImmune = bWasImmune && ModifyDamageValue(BaseDamageValue, kTarget, AppliedDamageTypes);
 		}
 		if (DamageTag != '')
 		{
 			kSourceItem.GetWeaponDamageValue(XComGameState_BaseObject(kTarget), DamageTag, ExtraDamageValue);
+			if (ExtraDamageValue.Damage > 0) bHadAnyDamage = true;
 
-			ModifyDamageValue(ExtraDamageValue, kTarget, AppliedDamageTypes);
+			bWasImmune = bWasImmune && ModifyDamageValue(ExtraDamageValue, kTarget, AppliedDamageTypes);
 		}
 		if (kSourceItem.HasLoadedAmmo() && !bIgnoreBaseDamage)
 		{
@@ -493,8 +619,8 @@ simulated function int CalculateDamageAmount(
 				LoadedAmmo.GetBaseWeaponDamageValue(XComGameState_BaseObject(kTarget), AmmoDamageValue);
 				EnvironmentDamage += LoadedAmmo.GetItemEnvironmentDamage();
 			}
-
-			ModifyDamageValue(AmmoDamageValue, kTarget, AppliedDamageTypes);
+			if (AmmoDamageValue.Damage > 0) bHadAnyDamage = true;
+			bWasImmune = bWasImmune && ModifyDamageValue(AmmoDamageValue, kTarget, AppliedDamageTypes);
 		}
 		if (bAllowWeaponUpgrade)
 		{
@@ -505,9 +631,22 @@ simulated function int CalculateDamageAmount(
 				{
 					UpgradeTemplateBonusDamage = WeaponUpgradeTemplate.BonusDamage;
 
-					ModifyDamageValue(UpgradeTemplateBonusDamage, kTarget, AppliedDamageTypes);
+					if (UpgradeTemplateBonusDamage.Damage > 0) bHadAnyDamage = true;
+					bWasImmune = bWasImmune && ModifyDamageValue(UpgradeTemplateBonusDamage, kTarget, AppliedDamageTypes);
 
-					UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
+					//	Start Issue #896
+					/// HL-Docs: ref:Bugfixes; issue:896
+					///	Call the (hopefully) relevant delegate, if this weapon upgrade has it.
+					/// This makes the guaranteed damage on missed shots added by Stocks properly benefit from Insider Knowledge
+					if (WeaponUpgradeTemplate.GetBonusAmountFn != none)
+					{
+						UpgradeDamageValue.Damage += WeaponUpgradeTemplate.GetBonusAmountFn(WeaponUpgradeTemplate);
+					}
+					else
+					{
+						UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
+					}
+					//	End Issue #896
 					UpgradeDamageValue.Spread += UpgradeTemplateBonusDamage.Spread;
 					UpgradeDamageValue.Crit += UpgradeTemplateBonusDamage.Crit;
 					UpgradeDamageValue.Pierce += UpgradeTemplateBonusDamage.Pierce;
@@ -517,6 +656,28 @@ simulated function int CalculateDamageAmount(
 				}
 			}
 		}
+		// Issue #237 start
+		// Treat new CH upgrade damage as base damage unless a tag is specified
+		WeaponUpgradeTemplates = kSourceItem.GetMyWeaponUpgradeTemplates();
+		foreach WeaponUpgradeTemplates(WeaponUpgradeTemplate)
+		{
+			if ((!bIgnoreBaseDamage && DamageTag == '') || WeaponUpgradeTemplate.CHBonusDamage.Tag == DamageTag)
+			{
+				UpgradeTemplateBonusDamage = WeaponUpgradeTemplate.CHBonusDamage;
+
+				if (UpgradeTemplateBonusDamage.Damage > 0) bHadAnyDamage = true;
+				bWasImmune = bWasImmune && ModifyDamageValue(UpgradeTemplateBonusDamage, kTarget, AppliedDamageTypes);
+
+				UpgradeDamageValue.Damage += UpgradeTemplateBonusDamage.Damage;
+				UpgradeDamageValue.Spread += UpgradeTemplateBonusDamage.Spread;
+				UpgradeDamageValue.Crit += UpgradeTemplateBonusDamage.Crit;
+				UpgradeDamageValue.Pierce += UpgradeTemplateBonusDamage.Pierce;
+				UpgradeDamageValue.Rupture += UpgradeTemplateBonusDamage.Rupture;
+				UpgradeDamageValue.Shred += UpgradeTemplateBonusDamage.Shred;
+				//  ignores PlusOne as there is no good way to add them up
+			}
+		}
+		// Issue #237 end
 	}
 
 	// non targeted objects take the environmental damage amount
@@ -526,8 +687,12 @@ simulated function int CalculateDamageAmount(
 	}
 
 	BonusEffectDamageValue = GetBonusEffectDamageValue(kAbility, kSourceUnit, kSourceItem, ApplyEffectParameters.TargetStateObjectRef);
-
-	ModifyDamageValue(BonusEffectDamageValue, kTarget, AppliedDamageTypes);
+	if (BonusEffectDamageValue.Damage > 0 || BonusEffectDamageValue.Crit > 0 || BonusEffectDamageValue.Pierce > 0 || BonusEffectDamageValue.PlusOne > 0 ||
+		BonusEffectDamageValue.Rupture > 0 || BonusEffectDamageValue.Shred > 0 || BonusEffectDamageValue.Spread > 0)
+	{
+		bWasImmune = bWasImmune && ModifyDamageValue(BonusEffectDamageValue, kTarget, AppliedDamageTypes);
+		bHadAnyDamage = true;
+	}
 
 	WeaponDamage = BaseDamageValue.Damage + ExtraDamageValue.Damage + BonusEffectDamageValue.Damage + AmmoDamageValue.Damage + UpgradeDamageValue.Damage;
 	DamageSpread = BaseDamageValue.Spread + ExtraDamageValue.Spread + BonusEffectDamageValue.Spread + AmmoDamageValue.Spread + UpgradeDamageValue.Spread;
@@ -587,9 +752,45 @@ simulated function int CalculateDamageAmount(
 
 	if( kSourceUnit != none)
 	{
+		// Start Issue #923
+		WeaponDamage = ApplyPreDefaultDamageModifierEffects(History, kSourceUnit, kTarget, kAbility, ApplyEffectParameters, WeaponDamage, SpecialDamageMessages,, NewGameState);
+		// End Issue #923
+
+		//  allow target effects that modify only the base damage
+		TargetUnit = XComGameState_Unit(kTarget);
+		if (TargetUnit != none)
+		{
+			foreach TargetUnit.AffectedByEffects(EffectRef)
+			{
+				EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+				EffectTemplate = EffectState.GetX2Effect();
+				EffectDmg = EffectTemplate.GetBaseDefendingDamageModifier(EffectState, kSourceUnit, kTarget, kAbility, ApplyEffectParameters, WeaponDamage, self, NewGameState);
+				if (EffectDmg != 0)
+				{
+					TargetBaseDmgMod += EffectDmg;
+					`log("Defender effect" @ EffectTemplate.EffectName @ "adjusting base damage by" @ EffectDmg, true, 'XCom_HitRolls');
+
+					if (EffectTemplate.bDisplayInSpecialDamageMessageUI)
+					{
+						ModifierInfo.Value = EffectDmg;
+						ModifierInfo.SourceEffectRef = EffectState.ApplyEffectParameters.EffectRef;
+						ModifierInfo.SourceID = EffectRef.ObjectID;
+						SpecialDamageMessages.AddItem(ModifierInfo);
+					}
+				}
+			}
+			if (TargetBaseDmgMod != 0)
+			{
+				WeaponDamage += TargetBaseDmgMod;
+				`log("Total base damage after defender effect mods:" @ WeaponDamage, true, 'XCom_HitRolls');
+			}
+		}
+
 		//  Allow attacker effects to modify damage output before applying final bonuses and reductions
 		foreach kSourceUnit.AffectedByEffects(EffectRef)
 		{
+			ModifierInfo.Value = 0;
+
 			EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
 			EffectTemplate = EffectState.GetX2Effect();
 			EffectDmg = EffectTemplate.GetAttackingDamageModifier(EffectState, kSourceUnit, kTarget, kAbility, ApplyEffectParameters, WeaponDamage, NewGameState);
@@ -597,18 +798,56 @@ simulated function int CalculateDamageAmount(
 			{
 				WeaponDamage += EffectDmg;
 				`log("Attacker effect" @ EffectTemplate.EffectName @ "adjusting damage by" @ EffectDmg $ ", new damage:" @ WeaponDamage, true, 'XCom_HitRolls');				
+
+				ModifierInfo.Value += EffectDmg;
 			}
 			EffectDmg = EffectTemplate.GetExtraArmorPiercing(EffectState, kSourceUnit, kTarget, kAbility, ApplyEffectParameters);
 			if (EffectDmg != 0)
 			{
 				ArmorPiercing += EffectDmg;
 				`log("Attacker effect" @ EffectTemplate.EffectName @ "adjusting armor piercing by" @ EffectDmg $ ", new pierce:" @ ArmorPiercing, true, 'XCom_HitRolls');				
+
+				ModifierInfo.Value += EffectDmg;
 			}
 			EffectDmg = EffectTemplate.GetExtraShredValue(EffectState, kSourceUnit, kTarget, kAbility, ApplyEffectParameters);
 			if (EffectDmg != 0)
 			{
 				NewShred += EffectDmg;
 				`log("Attacker effect" @ EffectTemplate.EffectName @ "adjust new shred value by" @ EffectDmg $ ", new shred:" @ NewShred, true, 'XCom_HitRolls');
+
+				ModifierInfo.Value += EffectDmg;
+			}
+
+			if( ModifierInfo.Value != 0 && EffectTemplate.bDisplayInSpecialDamageMessageUI )
+			{
+				ModifierInfo.SourceEffectRef = EffectState.ApplyEffectParameters.EffectRef;
+				ModifierInfo.SourceID = EffectRef.ObjectID;
+				SpecialDamageMessages.AddItem(ModifierInfo);
+			}
+		}
+
+		// run through the effects again for any conditional shred.  A second loop as it is possibly dependent on shred outcome of the unconditional first loop.
+		UnconditionalShred = NewShred;
+		foreach kSourceUnit.AffectedByEffects(EffectRef)
+		{
+			ModifierInfo.Value = 0;
+			EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+			EffectTemplate = EffectState.GetX2Effect();
+
+			EffectDmg = EffectTemplate.GetConditionalExtraShredValue(UnconditionalShred, EffectState, kSourceUnit, kTarget, kAbility, ApplyEffectParameters);
+			if (EffectDmg != 0)
+			{
+				NewShred += EffectDmg;
+				`log("Attacker effect" @ EffectTemplate.EffectName @ "adjust new shred value by" @ EffectDmg $ ", new shred:" @ NewShred, true, 'XCom_HitRolls');
+
+				ModifierInfo.Value += EffectDmg;
+			}
+
+			if( ModifierInfo.Value != 0 && EffectTemplate.bDisplayInSpecialDamageMessageUI )
+			{
+				ModifierInfo.SourceEffectRef = EffectState.ApplyEffectParameters.EffectRef;
+				ModifierInfo.SourceID = EffectRef.ObjectID;
+				SpecialDamageMessages.AddItem(ModifierInfo);
 			}
 		}
 
@@ -620,16 +859,28 @@ simulated function int CalculateDamageAmount(
 			{
 				EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
 				EffectTemplate = EffectState.GetX2Effect();
-				EffectDmg = EffectTemplate.GetDefendingDamageModifier(EffectState, kSourceUnit, kTarget, kAbility, ApplyEffectParameters, WeaponDamage, self);
+				EffectDmg = EffectTemplate.GetDefendingDamageModifier(EffectState, kSourceUnit, kTarget, kAbility, ApplyEffectParameters, WeaponDamage, self, NewGameState);
 				if (EffectDmg != 0)
 				{
 					WeaponDamage += EffectDmg;
 					`log("Defender effect" @ EffectTemplate.EffectName @ "adjusting damage by" @ EffectDmg $ ", new damage:" @ WeaponDamage, true, 'XCom_HitRolls');				
+
+					if( EffectTemplate.bDisplayInSpecialDamageMessageUI )
+					{
+						ModifierInfo.Value = EffectDmg;
+						ModifierInfo.SourceEffectRef = EffectState.ApplyEffectParameters.EffectRef;
+						ModifierInfo.SourceID = EffectRef.ObjectID;
+						SpecialDamageMessages.AddItem(ModifierInfo);
+					}
 				}
 			}
 		}
 
-		if (kTarget != none)
+		// Start Issue #923
+		WeaponDamage = ApplyPostDefaultDamageModifierEffects(History, kSourceUnit, kTarget, kAbility, ApplyEffectParameters, WeaponDamage, SpecialDamageMessages,, NewGameState);
+		// End Issue #923
+
+		if (kTarget != none && !bIgnoreArmor)
 		{
 			ArmorMitigation = kTarget.GetArmorMitigation(ApplyEffectParameters.AbilityResultContext.ArmorMitigation);
 			if (ArmorMitigation != 0)
@@ -640,8 +891,19 @@ simulated function int CalculateDamageAmount(
 				ArmorMitigation -= ArmorPiercing;				
 				if (ArmorMitigation < 0)
 					ArmorMitigation = 0;
+				// Issue #321
 				if (ArmorMitigation >= WeaponDamage)
-					ArmorMitigation = WeaponDamage - 1;
+				{ 
+					if (class'X2Effect_ApplyWeaponDamage'.default.NO_MINIMUM_DAMAGE)
+					{
+						ArmorMitigation = WeaponDamage;
+					}
+					else
+					{
+						ArmorMitigation = WeaponDamage - 1;
+					}
+				}
+				// End Issue #321
 				if (ArmorMitigation < 0)    //  WeaponDamage could have been 0
 					ArmorMitigation = 0;    
 				`log("  Final mitigation value:" @ ArmorMitigation, true, 'XCom_HitRolls');
@@ -650,6 +912,11 @@ simulated function int CalculateDamageAmount(
 	}
 	//Shred can only shred as much as the maximum armor mitigation
 	NewShred = Min(NewShred, OriginalMitigation);
+	
+	if (`SecondWaveEnabled('ExplosiveFalloff'))
+	{
+		ApplyFalloff( WeaponDamage, kTarget, kSourceItem, kAbility, NewGameState );
+	}
 
 	TotalDamage = WeaponDamage - ArmorMitigation;
 
@@ -662,6 +929,9 @@ simulated function int CalculateDamageAmount(
 	`log("Shred from this attack:" @ NewShred, NewShred > 0, 'XCom_HitRolls');
 
 	// Set the effect's damage
+	bFullyImmune = (bWasImmune && bHadAnyDamage) ? 1 : 0;
+	`log("FULLY IMMUNE", bFullyImmune == 1, 'XCom_HitRolls');
+
 	return TotalDamage;
 }
 
@@ -738,4 +1008,15 @@ function CalculateDamageValues(XComGameState_Item SourceWeapon, XComGameState_Un
 
 	DamageInfo.BonusEffectDamageValue = GetBonusEffectDamageValue(AbilityState, SourceUnit, SourceWeapon, TargetUnit.GetReference());
 	ModifyDamageValue(DamageInfo.BonusEffectDamageValue, TargetUnit, AppliedDamageTypes);
+}
+
+static private function MoveDamageModItemsAlt(out array<DamageModifierInfo> ToArray, out array<DamageModifierInfo> FromArray)
+{
+	local DamageModifierInfo DamageModInfo;
+
+	foreach FromArray(DamageModInfo)
+	{
+		ToArray.AddItem(DamageModInfo);
+	}
+	FromArray.Length = 0;
 }

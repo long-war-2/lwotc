@@ -1,11 +1,12 @@
 //---------------------------------------------------------------------------------------
-//  FILE:   X2Effect_DeadeyeDamage_SnapShot.uc
-//  AUTHOR:  Grobobobo
-//  PURPOSE: Effect that does the same think as deadeye, but for its snapshot variant.
+//  FILE:    X2Effect_DeadeyeDamage_LW.uc
+//  AUTHOR:  Peter Ledbrook
+//  PURPOSE: Modified version of the vanilla effect that uses the Community
+//           Highlander hooks for multiplicative damage multipliers.
 //---------------------------------------------------------------------------------------
-class X2Effect_DeadeyeDamage_SnapShot extends X2Effect_Persistent config(LW_SoldierSKills);
+class X2Effect_DeadeyeDamage_LW extends X2Effect_Persistent;
 
-var config float DamageMultiplier;
+var float DamageMultiplier;
 
 function float GetPostDefaultAttackingDamageModifier_CH(
 	XComGameState_Effect EffectState,
@@ -17,14 +18,12 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
-	local float ExtraDamage;
-
-	if (AbilityState.GetMyTemplateName() == 'DeadeyeSnapShot' && class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
+	if (AbilityState.GetMyTemplateName() == 'Deadeye' && class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
 	{
-		ExtraDamage = CurrentDamage * DamageMultiplier;
+		return CurrentDamage * DamageMultiplier;
 	}
 
-	return ExtraDamage;
+	return 0;
 }
 
 defaultproperties
