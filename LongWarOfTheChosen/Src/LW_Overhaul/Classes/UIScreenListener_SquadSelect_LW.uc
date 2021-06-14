@@ -85,7 +85,16 @@ event OnInit(UIScreen Screen)
 		if(SquadMgr.IsValidInfiltrationMission(XComHQ.MissionRef))
 		{
 			`Log("UIScreenListener_SquadSelect_LW: Setting up for infiltration mission");
-			SquadSelect.LaunchButton.SetText(strStart);
+
+			if (`ISCONTROLLERACTIVE)
+			{
+				SquadSelect.LaunchButton.SetText(class'UIUtilities_Text'.static.InjectImage(
+						class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_START, 26, 26, -10) @ strStart);
+			}
+			else
+			{
+				SquadSelect.LaunchButton.SetText(strStart);
+			}
 			SquadSelect.LaunchButton.SetTitle(strInfiltration);
 
 			InfiltrationInfo = SquadSelect.Spawn(class'UISquadSelect_InfiltrationPanel', SquadSelect);
