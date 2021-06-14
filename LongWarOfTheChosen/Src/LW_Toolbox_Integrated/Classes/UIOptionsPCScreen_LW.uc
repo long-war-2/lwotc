@@ -6,8 +6,6 @@
 
 class UIOptionsPCScreen_LW extends UIOptionsPCScreen dependson(UIDialogueBox) config(LW_Toolbox);
 
-//
-
 var UIList TabList;
 var int FontSize, TabHeight;
 var array<XComGameState_LWModOptions> ButtonToModStateMapping;
@@ -16,7 +14,6 @@ var config int TabListPadding;
 
 var UIButton ResetModOptionsButton;
 var localized string m_strResetCurrentModOption;
-
 
 var XComGameState_LWToolboxOptions ToolboxOptions;
 var config bool TestingTooltips;
@@ -64,7 +61,9 @@ simulated function RefreshData()
 
 		AS_SetTitle(default.m_strTitle);	
 
-		//clear existing hard-coded 5 tabs
+		// KDM : This is where Long War disconnects the options screen from its 5 conventional,
+		// Flash-defined, options tabs. Instead of these tabs, Long War makes use of a UIList, TabList,
+		// filled with UIListItemStrings.
 		AS_SetTabData("", "", "", "", "");
 
 		TabList.SetSelectedNavigation();
@@ -104,7 +103,6 @@ simulated function RefreshData()
 				}
 			}
 		}
-
 		Show();
 	}
 	return;
@@ -121,7 +119,6 @@ simulated public function UpdateNavHelp ( bool bWipeButtons = false )
 		ResetModOptionsButton.SetPosition(690, 800); //Relative to this screen panel
 		ResetModOptionsButton.Hide();
 	}
-
 }
 
 simulated function AddListItem(string text)
@@ -181,55 +178,84 @@ simulated function string GetTabText(int Index)
 	return returnString;
 }
 
-simulated function SetSelectedTab(int iSelect, bool bForce = false)
+simulated function SetSelectedTab(int NewTabIndex, bool ForceTabChange = false)
 {
+	local bool ViewingMainMenuSettings;
 	local int i, PreviousTabValue;
+	local XComGameState_CampaignSettings CampaignSettings;
+
+	CampaignSettings = XComGameState_CampaignSettings(
+		`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_CampaignSettings', true));
+	// KDM : When viewing the main menu options screen, Long War continues to make use of 5 conventional, 
+	// Flash-defined, options tabs. When viewing the in-campaign options screen, Long War disconnects
+	// the conventional, Flash-defined, options tabs, and makes use of its own UIList, TabList.
+	ViewingMainMenuSettings = CampaignSettings == none ? true : false;
+
 	PreviousTabValue = m_iCurrentTab;
 
-	// hack no graphics on PC
-	//if ( WorldInfo.IsConsoleBuild() )
-	//{
-		//if ( iSelect == 1 && m_iCurrentTab == 0 )
-			//iSelect = 2;
-		//else if ( iSelect == 1 && m_iCurrentTab == 2 )
-			//iSelect = 0;
-	//}
-
-	//dont go to the same tab youve already selected
-	if(m_iCurrentTab == iSelect && !bForce)
+	// XCom : If this particular tab is already selected don't re-select it, just exit.
+	if(m_iCurrentTab == NewTabIndex && !ForceTabChange)
 	{
 		Movie.Pres.PlayUISound(eSUISound_MenuClickNegative);
 		return;
 	}
 
-	m_iCurrentTab = iSelect; 
+	m_iCurrentTab = NewTabIndex; 
 
-	// Wrap the ends
-	if( m_iCurrentTab < 0 ) m_iCurrentTab = ButtonToModStateMapping.Length - 1;
-	if( m_iCurrentTab > ButtonToModStateMapping.Length - 1 ) m_iCurrentTab = 0;
+	// LW : Make tab selection loop from top to bottom and bottom to top.
+	if (m_iCurrentTab < 0)
+	{
+		m_iCurrentTab = ButtonToModStateMapping.Length - 1;
+	}
+	if (m_iCurrentTab > ButtonToModStateMapping.Length - 1)
+	{
+		m_iCurrentTab = 0;
+	}
 
-	//Clear the tooltips when switching tabs, else the previous tab tooltips may leak as cached data over on to the new tooltips. 
+	// XCom ; Clear the tooltips when switching tabs, else the previous tab tooltips may leak as
+	// cached data over on to the new tooltips. 
 	Movie.Pres.m_kTooltipMgr.RemoveTooltipByTarget(string(MCPath), true);
 
 	if(PreviousTabValue != m_iCurrentTab)
 	{
-		UnSelectTabByIndex(PreviousTabValue);
+		if (ViewingMainMenuSettings)
+		{
+			UnSelectTabByIndex(PreviousTabValue);
+		}
+		else
+		{
+			// KDM : When viewing the in-campaign options screen, Long War no longer uses the conventional, 
+			// Flash-defined, options tabs; therefore, UnSelectTabByIndex won't remove focus from the 
+			// previously selected tab. 
+			TabList.GetItem(PreviousTabValue).OnLoseFocus();
+		}
 	}
 
 	UpdateTabMechaItems();
 
-	for(i = 0; i < List.ItemCount; ++i)
+	// KDM : Remove focus from all the of tab's sub UI elements.
+	for (i = 0; i < List.ItemCount; i++)
+	{
 		List.GetItem(i).OnLoseFocus();
+	}
 
-	MC.FunctionNum("SetSelectedTab", m_iCurrentTab);
+	if (ViewingMainMenuSettings)
+	{
+		MC.FunctionNum("SetSelectedTab", m_iCurrentTab);
+	}
+	else
+	{
+		// KDM : When viewing the in-campaign options screen, Long War no longer uses the conventional, 
+		// Flash-defined, options tabs; therefore, SetSelectedTab won't place focus on the newly selected 
+		// tab. 
+		TabList.GetItem(m_iCurrentTab).OnReceiveFocus();
+	}
 
-	// if( !`ISCONTROLLERACTIVE )
-	// 	List.Navigator.SetSelected(m_arrMechaItems[0]);
-
-	if( bInputReceived == true )
+	if (bInputReceived == true)
 	{
 		Movie.Pres.PlayUISound(eSUISound_MenuSelect);
 	}
+
 	AttentionType = COAT_CATEGORIES;
 	AS_SetTitle(m_strTitle $ ":" @ GetTabText(m_iCurrentTab));	
 }
@@ -359,10 +385,8 @@ simulated public function ResetCurrentModOptions(UIButton Button)
 	UpdateTabMechaItems();
 }
 
-
 defaultProperties
 {
 	FontSize = 20
 	TabHeight = 40
 }
-
