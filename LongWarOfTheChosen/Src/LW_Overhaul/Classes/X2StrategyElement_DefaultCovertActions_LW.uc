@@ -87,7 +87,6 @@ static function X2DataTemplate CreateResistanceMecTemplate()
     // also adds the Failure risk.
 
 	Template.Risks.AddItem('CovertActionRisk_Ambush');
-	Template.Risks.AddItem('CovertActionRisk_SoldierCaptured');
 
 	Template.Rewards.AddItem(class'X2StrategyElement_DefaultRewards_LW'.const.RESISTANCE_MEC_REWARD_NAME);
 
