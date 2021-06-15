@@ -21,12 +21,12 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
-    local float ExtraDamage;
+	local float ExtraDamage;
 
 	//`LOG ("X2EFFECT_ADM");
 	ExtraDamage = 0.0;
-    if (Mult && AbilityState.GetMyTemplateName() == ActiveAbility)
-    {
+	if (Mult && AbilityState.GetMyTemplateName() == ActiveAbility)
+	{
 		if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
 		{
 			if (Penalty)
@@ -40,19 +40,19 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 				ExtraDamage = CurrentDamage * DamageMod;
 			}
 		}
-    }
+	}
 
-    return ExtraDamage;
+	return ExtraDamage;
 }
 
 function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
 {
-    local int ExtraDamage;
+	local int ExtraDamage;
 
 	//`LOG ("X2EFFECT_ADM");
 	ExtraDamage = 0;
-    if (!Mult && AbilityState.GetMyTemplateName() == ActiveAbility)
-    {
+	if (!Mult && AbilityState.GetMyTemplateName() == ActiveAbility)
+	{
 		if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
 		{
 			if (Penalty)
@@ -66,5 +66,5 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		}
     }
 
-    return ExtraDamage;
+	return ExtraDamage;
 }

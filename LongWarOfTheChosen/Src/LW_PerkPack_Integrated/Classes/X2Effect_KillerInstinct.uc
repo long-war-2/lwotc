@@ -17,18 +17,18 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
-    local XComGameState_Item SourceWeapon;
-    local XComGameState_Unit TargetUnit;
+	local XComGameState_Item SourceWeapon;
+	local XComGameState_Unit TargetUnit;
 
 	if (WeaponDamageEffect.bIgnoreBaseDamage)
 	{	
 		return 0;		
 	}
 
-    if (AppliedData.AbilityResultContext.HitResult == eHit_Crit)
-    {
-        SourceWeapon = AbilityState.GetSourceWeapon();
-        if(SourceWeapon != none) 
+	if (AppliedData.AbilityResultContext.HitResult == eHit_Crit)
+	{
+		SourceWeapon = AbilityState.GetSourceWeapon();
+		if(SourceWeapon != none) 
         {
 			TargetUnit = XComGameState_Unit(TargetDamageable);
             if(TargetUnit != none)
@@ -37,9 +37,9 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 				{
 					return CurrentDamage * default.KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT / 100;
 				}
-            }
-        }
-    }
+			}
+		}
+	}
 
-    return 0;
+	return 0;
 }

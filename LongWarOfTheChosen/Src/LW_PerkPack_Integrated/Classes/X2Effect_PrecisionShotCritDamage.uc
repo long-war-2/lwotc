@@ -12,16 +12,16 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
-    local float ExtraDamage;
+	local float ExtraDamage;
 	
-    if (AbilityState.GetMyTemplateName() == 'PrecisionShot')
-    {
+	if (AbilityState.GetMyTemplateName() == 'PrecisionShot')
+	{
 		//`LOG ("Checking PS");
 		if (AppliedData.AbilityResultContext.HitResult == eHit_Crit)
 		{
 			ExtraDamage = Max(1, CurrentDamage * default.PRECISION_SHOT_CRIT_DAMAGE_MODIFIER);
 		}
-    }
+	}
 
-    return ExtraDamage;
+	return ExtraDamage;
 }

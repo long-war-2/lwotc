@@ -21,14 +21,13 @@ function float GetPostDefaultAttackingDamageModifier_CH(
     local float ExtraDamage;
 
 	ExtraDamage = 0.0;
-    if (AbilityState.GetMyTemplateName() == 'IronCurtainShot')
-    {
+	if (AbilityState.GetMyTemplateName() == 'IronCurtainShot')
+	{
 		if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
 		{
 			ExtraDamage = -CurrentDamage * default.IRON_CURTAIN_DAMAGE_MODIFIER;
 		}
-    }
+	}
 
-    return ExtraDamage;
+	return ExtraDamage;
 }
-
