@@ -5,16 +5,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build (final release)",
-            "type": "shell",
-            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\build.ps1' -mod \"LongWarOfTheChosen\" -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -final_release -forceFullBuild",
-            "group": "build",
-            "problemMatcher": []
-        },
-        {
             "label": "Build (release)",
             "type": "shell",
-            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\build.ps1' -mod \"LongWarOfTheChosen\" -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -forceFullBuild",
+            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\build.ps1' -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -config 'default'",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -24,7 +17,14 @@
         {
             "label": "Build (debug)",
             "type": "shell",
-            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\build.ps1' -mod \"LongWarOfTheChosen\" -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -debug -forceFullBuild",
+            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\build.ps1' -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -config 'debug'",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean",
+            "type": "shell",
+            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\X2ModBuildCommon\\clean.ps1' -modName 'LongWarOfTheChosen' -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}'",
             "group": "build",
             "problemMatcher": []
         }
