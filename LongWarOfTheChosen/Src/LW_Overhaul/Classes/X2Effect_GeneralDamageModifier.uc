@@ -3,7 +3,15 @@ class X2Effect_GeneralDamageModifier extends X2Effect_Persistent;
 var float DamageModifier;
 var name AbilityTemplate;
 
-function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+function float GetPostDefaultAttackingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit Attacker,
+	Damageable TargetDamageable,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData AppliedData,
+	float CurrentDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	XComGameState NewGameState)
 {
 	local float ExtraDamage;
 
@@ -15,7 +23,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 			ExtraDamage = CurrentDamage * DamageModifier;
 		}
 	}
-	return int(ExtraDamage);
+	return ExtraDamage;
 }
 
 defaultproperties

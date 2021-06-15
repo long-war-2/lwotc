@@ -7,12 +7,20 @@ var name MeleeDamageTypeName;
 
 var bool OnlyForDashingAttacks;
 
-function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, 
-										const out EffectAppliedData AppliedData, const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, optional XComGameState NewGameState)
+function float GetPostDefaultDefendingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit Attacker,
+	XComGameState_Unit Target,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData AppliedData,
+	float CurrentDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	XComGameState NewGameState)
 {
 	local bool bIsMeleeDamage;
-	local int CurrentDamageMod;
+	local float CurrentDamageMod;
 	local X2AbilityToHitCalc_StandardAim ToHitCalc;
+
 	// The damage effect's DamageTypes must be empty or have melee in order to adjust the damage
 	if (WeaponDamageEffect.EffectDamageValue.DamageType == MeleeDamageTypeName)
 		bIsMeleeDamage = true;
@@ -23,42 +31,31 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 	else if ((Attacker.GetMyTemplate().CharacterGroupName == 'AdventStunLancer') && WeaponDamageEffect.DamageTypes.Find('Electrical') != INDEX_NONE)
 		bIsMeleeDamage = true;
 
-	// remove from DOT effects
-	if (WeaponDamageEffect != none)
-	{			
-		if (WeaponDamageEffect.bIgnoreBaseDamage)
-		{	
-			return 0;
-		}
+	// Exclude DOT effects and anything else that ignores base weapon damage
+	if (WeaponDamageEffect != none && WeaponDamageEffect.bIgnoreBaseDamage)
+	{
+		return 0;
 	}
 
 	if (bIsMeleeDamage)
 	{
-		CurrentDamageMod = -int(float(CurrentDamage) * DamageMod);
+		CurrentDamageMod = -CurrentDamage * DamageMod;
 		ToHitCalc = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
 		if (ToHitCalc != none && ToHitCalc.bMeleeAttack)
 		{
-			if(OnlyForDashingAttacks)
+			if (OnlyForDashingAttacks)
 			{
-				if(!AbilityState.GetMyTemplate().AbilityTargetStyle.isA('X2AbilityTarget_MovingMelee'))
+				if (!AbilityState.GetMyTemplate().AbilityTargetStyle.isA('X2AbilityTarget_MovingMelee'))
 				{
 					return 0;
 				}
 			}
 
-
-			// Don't let a damage reduction effect reduce damage to less than 1 (or worse, heal).
-			if (CurrentDamageMod < 0 && (CurrentDamage + CurrentDamageMod < 1))
-			{
-				if (CurrentDamage <= 1)
-					return 0;
-
-				return (CurrentDamageMod - 1) * -1;
-			}
 			return CurrentDamageMod;
 		}
 		
 	}
+
 	return 0;
 }
 

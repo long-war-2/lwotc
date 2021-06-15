@@ -5,13 +5,15 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_Amplify_LW extends X2Effect_Amplify;
 
-function float GetPostDefaultDefendingDamageModifier_CH
-(XComGameState_Effect EffectState,
- XComGameState_Unit SourceUnit,
-  XComGameState_Unit TargetUnit,
-   XComGameState_Ability AbilityState,
-    const out EffectAppliedData ApplyEffectParameters,
-	 float WeaponDamage, XComGameState NewGameState)
+function float GetPostDefaultDefendingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit SourceUnit,
+	XComGameState_Unit TargetUnit,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData ApplyEffectParameters,
+	float WeaponDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	XComGameState NewGameState)
 {
 	local XComGameState_Effect_Amplify_LW AmplifyState;
 	local float DamageMod;

@@ -9,15 +9,23 @@ var config float BRAWLER_DR_PCT;
 var config int BRAWLER_MAX_TILES;
 
 
-function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, optional XComGameState NewGameState)
+function float GetPostDefaultDefendingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit Attacker,
+	XComGameState_Unit Target,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData AppliedData,
+	float CurrentDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	XComGameState NewGameState)
 {
 	local int   Tiles;
 
-	Tiles = Attacker.TileDistanceBetween(XComGameState_Unit(TargetDamageable));       
+	Tiles = Attacker.TileDistanceBetween(Target);
 	if (Tiles < default.BRAWLER_MAX_TILES)
 	{
-        return -CurrentDamage * default.BRAWLER_DR_PCT / 100;
-    }
+		return -CurrentDamage * default.BRAWLER_DR_PCT / 100;
+	}
 	
 	return 0;
 }

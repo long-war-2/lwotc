@@ -9,6 +9,7 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	XComGameState_Ability AbilityState,
 	const out EffectAppliedData AppliedData,
 	float WeaponDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
 	local XComGameState_Item SourceWeapon;

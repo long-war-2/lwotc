@@ -6,9 +6,17 @@ var int Armor_Mitigation;
 function int GetArmorChance(XComGameState_Effect EffectState, XComGameState_Unit UnitState) { return 100; }
 function int GetArmorMitigation(XComGameState_Effect EffectState, XComGameState_Unit UnitState) { return Armor_Mitigation; }
 
-function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, optional XComGameState NewGameState)
+function float GetPostDefaultDefendingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit Attacker,
+	XComGameState_Unit Target,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData AppliedData,
+	float CurrentDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	XComGameState NewGameState)
 {
-	local int DamageMod;
+	local float DamageMod;
 	local bool Explosives;
 	local XComGameState_Item SourceWeapon;
 	local X2WeaponTemplate WeaponTemplate;
@@ -34,11 +42,10 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 	if (WeaponTemplate != none && WeaponTemplate.DamageTypeTemplateName == 'BlazingPinions')
 		Explosives = true;
 
-	if(Explosives)
+	if (Explosives)
 	{
-		DamageMod = -int(float(CurrentDamage) * ExplosiveDamageReduction);
+		DamageMod = -CurrentDamage * ExplosiveDamageReduction;
 	}
 
 	return DamageMod;
 }
-
