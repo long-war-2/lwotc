@@ -1,0 +1,4 @@
+[submodule "X2WOTCCommunityHighlander"]
+	path = X2WOTCCommunityHighlander
+	url = https://github.com/long-war-2/X2WOTCCommunityHighlander.git
+	branch = lwotc-dev

@@ -11,4 +11,4 @@ if "%XCOM2GAMEPATH%" == "" (
 )
 
 rem The trailing backslash after %~dp0 is important, otherwise PowerShell thinks the " is being escaped!
-powershell.exe -NonInteractive -ExecutionPolicy Unrestricted  -file "%~dp0.scripts\build.ps1" -mod "LongWarOfTheChosen" -srcDirectory "%~dp0\" -sdkPath "%XCOM2SDKPATH%" -gamePath "%XCOM2GAMEPATH%" %*
+powershell.exe -NonInteractive -ExecutionPolicy Unrestricted  -file "%~dp0.scripts\build.ps1" -srcDirectory "%~dp0\" -sdkPath "%XCOM2SDKPATH%" -gamePath "%XCOM2GAMEPATH%" %*
