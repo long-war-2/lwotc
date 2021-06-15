@@ -262,6 +262,8 @@ var config array<name> ExplosiveFalloffAbility_Exclusions;
 var config array<name> ExplosiveFalloffAbility_Inclusions;
 var config array<name> ExplosiveFalloffItem_Exclusions;
 
+var config array<name> ABILITIES_TO_DISABLE_GRENADE_COOLDOWN;
+
 var config int ALIEN_RULER_ACTION_BONUS_APPLY_CHANCE;
 
 var config bool USE_ACTION_ICON_COLORS;
@@ -961,11 +963,12 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 	local X2Condition_AbilityProperty		AbilityCondition;
 	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
-	local name 								HealType;
+	local name 								HealType, AbilityName;
 	local X2Effect_SharpshooterAim_LW   	AimEffect;
 	local X2AbilityCooldown_Shared			CooldownShared;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
 	local X2AbilityCooldown_AllInstances 	AllInstancesCooldown;
+
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
 	{
@@ -1577,8 +1580,10 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	if (Template.DataName == 'ThrowGrenade')
 	{
 		AllInstancesCooldown = new class'X2AbilityCooldown_AllInstances';
-		AllInstancesCooldown.ExcludeIfTheSoldierHasAbility.AddItem('TotalCombat');
-		AllInstancesCooldown.ExcludeIfTheSoldierHasAbility.AddItem('ShadowGrenadier');
+		foreach default.ABILITIES_TO_DISABLE_GRENADE_COOLDOWN(AbilityName)
+		{
+			AllInstancesCooldown.ExcludeIfTheSoldierHasAbility.AddItem(AbilityName);
+		}
 		AllInstancesCooldown.iNumTurns = default.THROW_GRENADE_COOLDOWN;
 		Template.AbilityCooldown = AllInstancesCooldown;
 		X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bGuaranteedHit = true;
