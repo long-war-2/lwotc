@@ -29,10 +29,10 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	{
 		SourceWeapon = AbilityState.GetSourceWeapon();
 		if(SourceWeapon != none) 
-        {
+		{
 			TargetUnit = XComGameState_Unit(TargetDamageable);
-            if(TargetUnit != none)
-            {
+			if(TargetUnit != none)
+			{
 				if (Attacker.HasSoldierAbility('KillerInstinct'))
 				{
 					return CurrentDamage * default.KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT / 100;
