@@ -13,6 +13,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	CovertActions.AddItem(CreateEnemyCorpsesTemplate());
 	CovertActions.AddItem(CreateIntenseTrainingTemplate());
 	CovertActions.AddItem(CreateResistanceMecTemplate());
+	CovertActions.AddItem(CreateRecruitRebelsTemplate());
 
 	return CovertActions;
 }
@@ -75,7 +76,7 @@ static function X2DataTemplate CreateResistanceMecTemplate()
 
 	`CREATE_X2TEMPLATE(class'X2CovertActionTemplate', Template, 'CovertAction_ResistanceMec');
 
-	Template.ChooseLocationFn = ChooseRandomRegion;
+	Template.ChooseLocationFn = ChooseContactedRegionWithoutMEC;
 	Template.OverworldMeshPath = "UI_3D.Overwold_Final.CovertAction";
 
 	Template.Narratives.AddItem('CovertActionNarrative_ResistanceMec_Skirmishers');
@@ -89,6 +90,32 @@ static function X2DataTemplate CreateResistanceMecTemplate()
 	Template.Risks.AddItem('CovertActionRisk_Ambush');
 
 	Template.Rewards.AddItem(class'X2StrategyElement_DefaultRewards_LW'.const.RESISTANCE_MEC_REWARD_NAME);
+
+	return Template;
+}
+
+static function X2DataTemplate CreateRecruitRebelsTemplate()
+{
+	local X2CovertActionTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2CovertActionTemplate', Template, 'CovertAction_RecruitRebels');
+
+	Template.ChooseLocationFn = ChooseRandomContactedRegion;
+	Template.OverworldMeshPath = "UI_3D.Overwold_Final.CovertAction";
+
+	Template.Narratives.AddItem('CovertActionNarrative_RecruitRebels_Skirmishers');
+	Template.Narratives.AddItem('CovertActionNarrative_RecruitRebels_Reapers');
+	Template.Narratives.AddItem('CovertActionNarrative_RecruitRebels_Templars');
+
+	// NOTE: Soldier slots configured in `X2LWCovertActionsModTemplate` for consistency and
+	// because some Firaxis developer keeps making functions private..... The template mod
+	// also adds the Failure risk.
+
+	Template.Risks.AddItem('CovertActionRisk_Ambush');
+	Template.Risks.AddItem('CovertActionRisk_SoldierCaptured');
+
+	Template.Rewards.AddItem('Reward_Rebel');
+	Template.Rewards.AddItem('Reward_Rebel');
 
 	return Template;
 }
@@ -115,4 +142,38 @@ static function CovertActionSlot CreateDefaultSoldierSlot(name SlotName, optiona
 	}
 
 	return SoldierSlot;
+}
+
+static function ChooseContactedRegionWithoutMEC(XComGameState NewGameState, XComGameState_CovertAction ActionState, out array<StateObjectReference> ExcludeLocations)
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWOutpost OutpostState;
+	local array<StateObjectReference> RegionRefs;
+	local array<StateObjectReference> RegionRefsWithoutMECs;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		if (ExcludeLocations.Find('ObjectID', RegionState.GetReference().ObjectID) == INDEX_NONE && RegionState.HaveMadeContact())
+		{
+			RegionRefs.AddItem(RegionState.GetReference());
+			OutpostState = class'XComGameState_LWOutpostManager'.static.GetOutpostManager().GetOutpostForRegion(RegionState);
+			if (OutpostState != none && OutpostState.GetResistanceMecCount() == 0)
+			{
+				RegionRefsWithoutMECs.AddItem(RegionState.GetReference());
+			}
+		}
+	}
+
+	// Prefer regions without any Resistance MECs
+	if (RegionRefsWithoutMECs.Length > 0)
+	{
+		ActionState.LocationEntity = RegionRefsWithoutMECs[`SYNC_RAND_STATIC(RegionRefsWithoutMECs.Length)];
+	}
+	else
+	{
+		ActionState.LocationEntity = RegionRefs[`SYNC_RAND_STATIC(RegionRefs.Length)];
+	}
 }

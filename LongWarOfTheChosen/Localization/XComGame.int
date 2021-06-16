@@ -5731,6 +5731,9 @@ ActionObjective="Intense Training"
 [CovertAction_ResistanceMec X2CovertActionTemplate]
 ActionObjective="Obtain Resistance MEC"
 
+[CovertAction_RecruitRebels X2CovertActionTemplate]
+ActionObjective="Recruit Rebels"
+
 [CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
 ActionName="Raid an Enemy Morgue"
 ActionPreNarrative="We've discovered where they've been dumping the corpses from all the fighting you've been doing. Could be an opportunity to accelerate your tech development."
@@ -5775,6 +5778,21 @@ ActionPostNarrative="Your team managed to secure an intact MEC unit. It has been
 ActionName="Raid a Robotics Factory"
 ActionPreNarrative="We've discovered a factory that ADVENT uses to build and maintain their mechanized forces. You shouldn't have any trouble finding an inactive but intact MEC to \"recruit\" while our forces distract the security."
 ActionPostNarrative="Your team managed to secure an intact MEC unit. It has been reprogrammed, given a new paint job and sent to a nearby Resistance Haven."
+
+[CovertActionNarrative_RecruitRebels_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Search for Resistance Recruits"
+ActionPreNarrative="We've learned of a small group of dissidents in the region who may be willing to help us directly. Go in and see whether you can recruit them for the haven."
+ActionPostNarrative="Your team persuaded some of the dissidents to join our cause."
+
+[CovertActionNarrative_RecruitRebels_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Search for Resistance Recruits"
+ActionPreNarrative="We've learned of a small group of dissidents in the region who may be willing to help us directly. Go in and see whether you can recruit them for the haven."
+ActionPostNarrative="Your team persuaded some of the dissidents to join our cause."
+
+[CovertActionNarrative_RecruitRebels_Templars X2CovertActionNarrativeTemplate]
+ActionName="Search for Resistance Recruits"
+ActionPreNarrative="We've learned of a small group of dissidents in the region who may be willing to help us directly. Go in and see whether you can recruit them for the haven."
+ActionPostNarrative="Your team persuaded some of the dissidents to join our cause."
 
 [AbilityPoints X2ItemTemplate]
 FriendlyName="Ability Points"

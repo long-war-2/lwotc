@@ -42,7 +42,7 @@ static function X2DataTemplate CreateRebelRewardTemplate()
 
     // Rebels are never available or needed. This isn't checked by the activity manager system, only the black market and
     // resistance HQ. This prevents rebels from appearing for purchase in these places.
-    Template.IsRewardAvailableFn = AlwaysFalseAvailable;
+    Template.IsRewardAvailableFn = AvailableForCovertActionsOnly;
     Template.IsRewardNeededFn = AlwaysFalseNeeded;
     Template.GenerateRewardFn = GenerateRebelReward;
     Template.SetRewardFn = class'X2StrategyElement_DefaultRewards'.static.SetPersonnelReward;
@@ -55,13 +55,19 @@ static function X2DataTemplate CreateRebelRewardTemplate()
     return Template;
 }
 
-function bool AlwaysFalseAvailable(optional XComGameState NewGameState, optional StateObjectReference AuxRef)
+static function bool AlwaysFalseAvailable(optional XComGameState NewGameState, optional StateObjectReference AuxRef)
 {
     return false;
 }
-function bool AlwaysFalseNeeded()
+
+static function bool AlwaysFalseNeeded()
 {
     return false;
+}
+
+static function bool AvailableForCovertActionsOnly(optional XComGameState NewGameState, optional StateObjectReference AuxRef)
+{
+    return XComGameState_ResistanceFaction(`XCOMHISTORY.GetGameStateForObjectID(AuxRef.ObjectID)) != none;
 }
 
 function GenerateRebelReward(XComGameState_Reward RewardState, XComGameState NewGameState, optional float RewardScalar = 1.0, optional StateObjectReference RegionRef)
@@ -69,6 +75,7 @@ function GenerateRebelReward(XComGameState_Reward RewardState, XComGameState New
     local XComGameStateHistory History;
     local StateObjectReference NewUnitRef;
     local XComGameState_WorldRegion RegionState;
+	local XComGameState_CovertAction CovertAction;
     local XComGameState_LWOutpostManager OutpostManager;
     local XComGameState_LWOutpost Outpost;
 
@@ -77,6 +84,11 @@ function GenerateRebelReward(XComGameState_Reward RewardState, XComGameState New
     // ActivityManager must pass a region state for reward generation for these rewards, even though the vanilla template only makes them
     // optional.
     RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionRef.ObjectID));
+	if (RegionState == none)
+	{
+		CovertAction = XComGameState_CovertAction(History.GetGameStateForObjectID(RegionRef.ObjectID));
+		RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(CovertAction.LocationEntity.ObjectID));
+	}
     OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
     Outpost = OutpostManager.GetOutpostForRegion(RegionState);
 
@@ -88,20 +100,27 @@ function GenerateRebelReward(XComGameState_Reward RewardState, XComGameState New
 
 function GiveRebelReward(XComGameState NewGameState, XComGameState_Reward RewardState, optional StateObjectReference AuxRef, optional bool bOrder = false, optional int OrderHours = -1)
 {
-    local XComGameStateHistory History;
-    local XComGameState_WorldRegion Region;
-    local XComGameState_LWOutpostManager OutpostManager;
-    local XComGameState_LWOutpost Outpost;
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion Region;
+	local XComGameState_CovertAction CovertAction;
+	local XComGameState_LWOutpostManager OutpostManager;
+	local XComGameState_LWOutpost Outpost;
 
-    History = `XCOMHISTORY;
-    Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(AuxRef.ObjectID));
-    OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
-    Outpost = OutpostManager.GetOutpostForRegion(Region);
+	History = `XCOMHISTORY;
+	Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(AuxRef.ObjectID));
+	if (Region == none)
+	{
+		CovertAction = XComGameState_CovertAction(History.GetGameStateForObjectID(AuxRef.ObjectID));
+		Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(CovertAction.LocationEntity.ObjectID));
+	}
 
-    Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
-    NewGameState.AddStateObject(Outpost);
+	OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
+	Outpost = OutpostManager.GetOutpostForRegion(Region);
 
-    Outpost.AddRebel(RewardState.RewardObjectReference, NewGameState);
+	Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
+	NewGameState.AddStateObject(Outpost);
+
+	Outpost.AddRebel(RewardState.RewardObjectReference, NewGameState);
 }
 
 function String GetRebelRewardString(XComGameState_Reward RewardState)
@@ -249,7 +268,7 @@ static function X2DataTemplate CreateResistanceMECRewardTemplate()
 	Template.GiveRewardFn = GiveResistanceMECReward;
 	//Template.SetRewardFn = class'X2StrategyElement_DefaultRewards'.static.SetPersonnelReward;
 
-	Template.IsRewardAvailableFn = AlwaysFalseAvailable;
+	Template.IsRewardAvailableFn = AvailableForCovertActionsOnly;
     Template.IsRewardNeededFn = AlwaysFalseNeeded;
 	Template.GetRewardIconFn = class'X2StrategyElement_DefaultRewards'.static.GetGenericRewardIcon;
 	Template.GetRewardStringFn = GetSimpleRewardString;
@@ -259,17 +278,24 @@ static function X2DataTemplate CreateResistanceMECRewardTemplate()
 
 function GiveResistanceMECReward(XComGameState NewGameState, XComGameState_Reward RewardState, optional StateObjectReference AuxRef, optional bool bOrder = false, optional int OrderHours = -1)
 {
-    local XComGameStateHistory History;
-    local XComGameState_WorldRegion Region;
-    local XComGameState_LWOutpostManager OutpostManager;
-    local XComGameState_LWOutpost Outpost;
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion Region;
+	local XComGameState_CovertAction CovertAction;
+	local XComGameState_LWOutpostManager OutpostManager;
+	local XComGameState_LWOutpost Outpost;
 
-    History = `XCOMHISTORY;
-    Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(AuxRef.ObjectID));
-    OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
-    Outpost = OutpostManager.GetOutpostForRegion(Region);
-    Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
-    NewGameState.AddStateObject(Outpost);
+	History = `XCOMHISTORY;
+	Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(AuxRef.ObjectID));
+	if (Region == none)
+	{
+		CovertAction = XComGameState_CovertAction(History.GetGameStateForObjectID(AuxRef.ObjectID));
+		Region = XComGameState_WorldRegion(History.GetGameStateForObjectID(CovertAction.LocationEntity.ObjectID));
+	}
+
+	OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
+	Outpost = OutpostManager.GetOutpostForRegion(Region);
+	Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
+	NewGameState.AddStateObject(Outpost);
 	Outpost.AddResistanceMEC(Outpost.CreateResistanceMec(NewGameState), NewGameState);
 }
 
