@@ -612,6 +612,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_PlaceDelayedEvacZone.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Action_Fire_Firestorm.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Action_ToggleUnitFlag.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2AIBehavior_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Character_Resistance.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_CoupDeGrace.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Condition_MasteredEnemy.uc" />
