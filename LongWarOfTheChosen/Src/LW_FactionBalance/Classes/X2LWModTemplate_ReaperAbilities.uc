@@ -44,7 +44,11 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		ConvertRemoteStartToCharges(Template);
 		break;
 	case 'HomingMine':
-		AddDemolitionistToHomingMine(Template);
+		Template.AdditionalAbilities.AddItem('Shrapnel');
+		break;
+	case 'Shrapnel':
+		// Prevent Homing Mines granting Claymore charges.
+		Template.AdditionalAbilities.RemoveItem('ThrowShrapnel');
 		break;
 	case 'PaleHorse':
 		UpdateEffectForPaleHorse(Template);
@@ -285,12 +289,6 @@ static function ConvertRemoteStartToCharges(X2AbilityTemplate Template)
 	Charges.BonusAbility = 'Demolitionist';
 	Charges.BonusChargesCount = default.REMOTE_START_DEMOLITIONIST_CHARGES;
 	Template.AbilityCharges = Charges;
-}
-
-static function AddDemolitionistToHomingMine(X2AbilityTemplate Template)
-{
-	Template.AdditionalAbilities.AddItem('Shrapnel');
-	//Template.AbilityCharges.AddBonusCharge('Demolitionist', default.REMOTE_START_DEMOLITIONIST_CHARGES);
 }
 
 // Add holo + rupture to Sting
