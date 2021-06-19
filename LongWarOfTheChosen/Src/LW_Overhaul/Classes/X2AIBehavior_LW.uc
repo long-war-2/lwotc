@@ -16,6 +16,8 @@ static event bool FindBTActionDelegate(
 		NameParam = AbilityName;
 	}
 
+	`LWTrace(">>>>> Checking '" $ strName $ "' against custom AI nodes");
+
 	switch (strName)
 	{
 	case 'SetPriorityTargetStack':
