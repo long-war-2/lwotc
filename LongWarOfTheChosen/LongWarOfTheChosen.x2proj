@@ -201,6 +201,7 @@
     <Content Include="Localization\LW_Overhaul.rus" />
     <Content Include="Localization\LW_Tutorial.fra" />
     <Content Include="Localization\LW_Tutorial.int" />
+    <Content Include="Localization\LW_Tutorial.rus" />
     <Content Include="Localization\Subtitles.chn" />
     <Content Include="Localization\Subtitles.cht" />
     <Content Include="Localization\Subtitles.deu" />
