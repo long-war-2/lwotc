@@ -49,6 +49,8 @@ var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
 
 var config array<name> PISTOL_ABILITY_WEAPON_CATS;
 
+var privatewrite X2Condition_Visibility GameplayVisibilityCondition;
+
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
     // Override the FinalizeHitChance calculation for abilities that use standard aim
@@ -1224,7 +1226,7 @@ static function PatchMultiShotFinalShot(X2AbilityTemplate Template, name FirstSh
 	
 	if (default.USE_LOS_FOR_MULTI_SHOT_ABILITIES)
 	{
-		Template.AbilityTargetConditions.AddItem(class'X2Ability'.default.GameplayVisibilityCondition);
+		Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 	}
 	else
 	{
@@ -1251,4 +1253,10 @@ static function name GetMultiShotContinueUnitValueName(name AbilityName)
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
+
+	Begin Object Class=X2Condition_Visibility Name=DefaultGameplayVisibilityCondition
+		bRequireGameplayVisible=true
+		bRequireBasicVisibility=true
+	End Object
+	GameplayVisibilityCondition = DefaultGameplayVisibilityCondition;
 }
