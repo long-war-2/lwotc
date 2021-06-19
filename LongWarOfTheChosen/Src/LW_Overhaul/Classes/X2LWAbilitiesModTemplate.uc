@@ -25,6 +25,7 @@ var config bool ALLOW_NEGATIVE_DODGE;
 var config bool DODGE_CONVERTS_GRAZE_TO_MISS;
 var config bool GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND;
 var config bool DISABLE_LOST_HEADSHOT;
+var config bool USE_LOS_FOR_MULTI_SHOT_ABILITIES;
 
 var config array<bool> HEADSHOT_ENABLED;
 
@@ -199,7 +200,17 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'MindShield':
 			DisplayMindShieldPassive(Template);
 			break;
-		break;
+		// Patch multi-shot abilities
+		case 'RapidFire':
+		case 'ChainShot':
+			PatchMultiShotFirstShot(Template);
+			break;
+		case 'RapidFire2':
+			PatchMultiShotFinalShot(Template, 'RapidFire');
+			break;
+		case 'ChainShot2':
+			PatchMultiShotFinalShot(Template, 'ChainShot');
+			break;
 		default:
 			break;
 
@@ -1189,6 +1200,52 @@ static function X2Condition_WeaponCategory CreatePistolWeaponCatCondition()
 	WeaponCatCondition.WeaponCats = default.PISTOL_ABILITY_WEAPON_CATS;
 
 	return WeaponCatCondition;
+}
+
+static function PatchMultiShotFirstShot(X2AbilityTemplate Template)
+{
+	local X2Effect_SetUnitValue NewEffect;
+
+	if (!default.USE_LOS_FOR_MULTI_SHOT_ABILITIES)
+	{
+		NewEffect = new class'X2Effect_SetUnitValue';
+		NewEffect.UnitName = GetMultiShotContinueUnitValueName(Template.DataName);
+		NewEffect.NewValueToSet = 1.0f;
+		NewEffect.CleanupType = eCleanup_BeginTurn;
+		Template.AddShooterEffect(NewEffect);
+	}
+}
+
+static function PatchMultiShotFinalShot(X2AbilityTemplate Template, name FirstShotName)
+{
+	local X2Condition_UnitValue UnitValueCondition;
+	local X2Effect_ClearUnitValue NewEffect;
+	local name UnitValueName;
+	
+	if (default.USE_LOS_FOR_MULTI_SHOT_ABILITIES)
+	{
+		Template.AbilityTargetConditions.AddItem(class'X2Ability'.default.GameplayVisibilityCondition);
+	}
+	else
+	{
+		UnitValueName = GetMultiShotContinueUnitValueName(FirstShotName);
+
+		// Apply a condition that the first shot must have already been fired.
+		UnitValueCondition = new class'X2Condition_UnitValue';
+		UnitValueCondition.AddCheckValue(UnitValueName, 1.0f);
+		Template.AbilityShooterConditions.AddItem(UnitValueCondition);
+
+		// Make sure the unit value is cleared so the follow up shots are no
+		// longer available.
+		NewEffect = new class'X2Effect_ClearUnitValue';
+		NewEffect.UnitValueName = UnitValueName;
+		Template.AddShooterEffect(NewEffect);
+	}
+}
+
+static function name GetMultiShotContinueUnitValueName(name AbilityName)
+{
+	return name(AbilityName $ "Continue");
 }
 
 defaultproperties
