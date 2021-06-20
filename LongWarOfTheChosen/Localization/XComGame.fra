@@ -698,8 +698,8 @@ LocHelpText="Équiper cet objet réduit la mobilité."
 
 [HighCoverGenerator X2AbilityTemplate]
 LocFriendlyName="Mur-bouclier"
-LocHelpText="Offre une couverture complète aux membres de l'escouade où que se trouve le soldat. L'effet est annulé en cas de déplacement ou d'attaque. Octroie défense + 30 et 3 points d'armure pendant le tour où il est utilisé."
-LocLongDescription="Offre une couverture complète aux membres de l'escouade où que se trouve le soldat. L'effet est annulé en cas de déplacement ou d'attaque. Octroie défense + 30 et 3 points d'armure pendant le tour où il est utilisé."
+LocHelpText="Offre une couverture complète aux membres de l'escouade où que se trouve le soldat. L'effet est annulé en cas de déplacement ou d'attaque. Octroie défense +30 et 3 point(s) d'armure pendant le tour où il est utilisé."
+LocLongDescription="Offre une couverture complète aux membres de l'escouade où que se trouve le soldat. L'effet est annulé en cas de déplacement ou d'attaque. Octroie défense +30 et 3 point(s) d'armure pendant le tour où il est utilisé."
 
 [Scope_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Lunette"
@@ -768,8 +768,8 @@ LocFlyOverText="Arme stable"
 [Needle_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Balles aiguille"
 LocFlyOverText="Balles aiguille"
-LocLongDescription="Inflige 2 points de dégât supplémentaires aux unités d'ADVENT non robotisées. +1 dégât contre tous les ennemis."
-LocHelpText="Inflige 2 points de dégât supplémentaires aux unités d'ADVENT non robotisées. +1 dégât contre tous les ennemis."
+LocLongDescription="Inflige 2 point(s) de dégât supplémentaires aux unités d'ADVENT non robotisées. +1 dégât contre tous les ennemis."
+LocHelpText="Inflige 2 point(s) de dégât supplémentaires aux unités d'ADVENT non robotisées. +1 dégât contre tous les ennemis."
 
 [Shredder_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Munitions déchirantes"
@@ -780,8 +780,8 @@ LocHelpText="Enlèvent 2 point d'armure à chaque tir."
 [Flechette_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Munitions transperçantes"
 LocFlyOverText="Munitions transperçantes"
-LocLongDescription="Infligent 2 points de dégât supplémentaires aux cibles sans armure. +1 dégât contre tous les ennemis."
-LocHelpText="Infligent 2 points de dégât supplémentaires aux cibles sans armure. +1 dégât contre tous les ennemis."
+LocLongDescription="Infligent 2 point(s) de dégât supplémentaires aux cibles sans armure. +1 dégât contre tous les ennemis."
+LocHelpText="Infligent 2 point(s) de dégât supplémentaires aux cibles sans armure. +1 dégât contre tous les ennemis."
 
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Munitions Écran rouge"
@@ -794,14 +794,14 @@ LocHelpText="Chaque coup diminue de <Ability:REDSCREEN_EFFECT_LW/> la défense a
 [Stiletto_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Munitions Poignard"
 LocFlyOverText="Munitions Poignard"
-LocLongDescription="Infligent 2 points de dégât supplémentaires aux extraterrestres non robotisés. +1 dégât contre tous les ennemis."
-LocHelpText="Infligent 2 points de dégât supplémentaires aux extraterrestres non robotisés. +1 dégât contre tous les ennemis."
+LocLongDescription="Infligent 2 point(s) de dégât supplémentaires aux extraterrestres non robotisés. +1 dégât contre tous les ennemis."
+LocHelpText="Infligent 2 point(s) de dégât supplémentaires aux extraterrestres non robotisés. +1 dégât contre tous les ennemis."
 
 [AP_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Munitions antiblindage"
 LocFlyOverText="Munitions antiblindage"
-LocLongDescription="Vos tirs ignorent 2 points d'armure."
-LocHelpText="Vos tirs ignorent 2 points d'armure."
+LocLongDescription="Vos tirs ignorent 2 point(s) d'armure."
+LocHelpText="Vos tirs ignorent 2 point(s) d'armure."
 
 [Tracer_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Munitions traçantes"
@@ -836,38 +836,38 @@ LocHelpText="Vos armes infligent 1 dégât supplémentaire et empoisonnent parfo
 [Ceramic_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Blindage en céramique"
 LocFlyOverText="Blindage en céramique"
-LocLongDescription="Vous gagnez 2 PV bonus."
-LocHelpText="Vous gagnez 2 PV bonus."
+LocLongDescription="Vous gagnez 2PV bonus."
+LocHelpText="Vous gagnez 2PV bonus."
 
 [Alloy_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Blindage d'alliage"
 LocFlyOverText="Blindage d'alliage"
-LocLongDescription="Vous gagnez 3 PV bonus."
-LocHelpText="Vous gagnez 3 PV bonus."
+LocLongDescription="Vous gagnez 3PV bonus."
+LocHelpText="Vous gagnez 3PV bonus."
 
 [Chitin_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Armure de chitine"
 LocFlyOverText="Armure de chitine"
-LocLongDescription="Vous gagnez 4 PV bonus."
-LocHelpText="Vous gagnez 4 PV bonus."
+LocLongDescription="Vous gagnez 4PV bonus."
+LocHelpText="Vous gagnez 4PV bonus."
 
 [Carapace_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Blindage fortifié"
 LocFlyOverText="Blindage fortifié"
-LocLongDescription="Vous gagnez 5 PV bonus."
-LocHelpText="Vous gagnez 5 PV bonus."
+LocLongDescription="Vous gagnez 5PV bonus."
+LocHelpText="Vous gagnez 5PV bonus."
 
 [HazmatVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="Gilet de protection"
 LocFlyOverText="Gilet de protection"
-LocLongDescription="Confère 3 PV et immunise contre les flammes, l'acide et le poison."
-LocHelpText="Confère 3 PV et immunise contre les flammes, l'acide et le poison."
+LocLongDescription="Confère 3PV et immunise contre les flammes, l'acide et le poison."
+LocHelpText="Confère 3PV et immunise contre les flammes, l'acide et le poison."
 
 [NanofiberVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="Gilet nanométrique"
 LocFlyOverText="Gilet nanométrique"
-LocLongDescription="Octroie 2 PV, et les ennemis ont - 25 chances de coup critique contre vous."
-LocHelpText="Octroie 2 PV, et les ennemis ont - 25 chances de coup critique contre vous."
+LocLongDescription="Octroie 2PV, et les ennemis ont -25 chances de coup critique contre vous."
+LocHelpText="Octroie 2PV, et les ennemis ont -25 chances de coup critique contre vous."
 
 [FireControl25 X2AbilityTemplate]
 LocFriendlyName="Tir maîtrisé (25)"
@@ -890,8 +890,8 @@ LocHelpText="L'unité ne fait pas de tir réflexe si les chances de toucher la c
 [Neurowhip_Ability X2AbilityTemplate]
 LocFriendlyName="Fouet nerveux"
 LocFlyoverText="Fouet nerveux"
-LocLongDescription="Confère 10 d'attaque psi en échange de 10 de volonté."
-LocHelpText="Confère 10 d'attaque psi en échange de 10 de volonté."
+LocLongDescription="Confère un bonus de +10 en force psi et un malus de -10 de volonté."
+LocHelpText="Confère un bonus de +10 en force psi et un malus de -10 de volonté."
 
 ;;;;;;;;;;;;;;;;;;;;  ITEM TEMPLATES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -2170,6 +2170,7 @@ DisplayName="Résistant"
 
 [Reward_ResistanceMEC X2RewardTemplate]
 DisplayName="CEM de la résistance"
+RewardDetails="Vous obtiendrez une CEM de la résistance pour protéger l'un de vos refuges."
 
 [Reward_NewResources X2RewardTemplate]
 DisplayName="Nouvelles ressources"
@@ -2365,6 +2366,13 @@ ObjectiveTextPools[0]="Atteindre le point de rendez-vous"
 ObjectiveTextPools[1]="Évacuer au moins un agent"
 ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
 ; End translated
+
+; LWOTC Needs Translation
+[DefaultCovertEscape_NonPCP_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Atteindre le point de rendez-vous"
+ObjectiveTextPools[1]="Évacuer au moins un agent"
+ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
+; End Translation
 
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Nombre de tours avant le départ du Mercure"
@@ -2678,6 +2686,13 @@ PreMissionNarratives[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter
 PreMissionNarratives[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Sabotage_Transmitter_Dropship_Intro_C"
 
 [CovertEscape_LW X2MissionTemplate]
+DisplayName="Mission secrète d'évasion"
+Briefing="Mission secrète - Faire évader les agents"
+PostMissionType="Mission secrète d'évasion"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="S'enfuir de la zone de combat"
+
+[CovertEscape_NonPCP_LW X2MissionTemplate]
 DisplayName="Mission secrète d'évasion"
 Briefing="Mission secrète - Faire évader les agents"
 PostMissionType="Mission secrète d'évasion"
@@ -5399,8 +5414,8 @@ LocPromotionPopupText="<Bullet/> La capacité Justice peut être déclenchée pa
 
 [ManualOverride_LW X2AbilityTemplate]
 LocFriendlyName="Contournement manuel"
-LocLongDescription="Réinitialise les temps de rechargement de toutes les capacités des soldats alliés."
-LocHelpText="Réinitialise les temps de rechargement de toutes les capacités des soldats alliés."
+LocLongDescription="Réinitialise les temps de rechargement de toutes les capacités de l'unité ciblée."
+LocHelpText="Réinitialise les temps de rechargement de toutes les capacités de l'unité ciblée."
 LocPromotionPopupText="<Bullet/> Utilisez les capacités de l'Escarmoucheur tôt et souvent pour profiter pleinement du Contournement manuel.<br/><Bullet/> Coûte 1 action. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
 
 [Battlelord X2AbilityTemplate]
@@ -5418,9 +5433,9 @@ LocPromotionPopupText="<Bullet/> Les tirs manqués avec le pistolet automatique 
 [TemplarFleche X2AbilityTemplate]
 LocFriendlyName="Flèche"
 LocFlyOverText="Flèche"
-LocLongDescription="Attaquez un ennemi à portée de déplacement avec votre sabre. Inflige un point de dégât supplémentaire toutes les <Ability:REND_FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre votre position de départ et la cible."
+LocLongDescription="Attaquez un ennemi à portée de déplacement avec votre sabre. Inflige 1 point de dégât supplémentaire toutes les <Ability:REND_FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre votre position de départ et la cible."
 LocHelpText="Attaquez un ennemi à portée de déplacement avec votre sabre. Inflige des dégâts supplémentaires selon votre distance."
-LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Flèche en plaçant le curseur sur un ennemi.<br/><Bullet/> Un soldat peut \"sprinter\" en utilisant ses deux actions tout en étant capable de lancer une attaque sur un ennemi adjacent.<br/><Bullet/> Inflige un point de dégâts supplémentaire toutes les <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre la position de l'unité au début de son tour et la position de la cible.<br/>"
+LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Flèche en plaçant le curseur sur un ennemi.<br/><Bullet/> Un soldat peut \"sprinter\" en utilisant ses deux actions tout en étant capable de lancer une attaque sur un ennemi adjacent.<br/><Bullet/> Inflige 1 point de dégâts supplémentaire toutes les <Ability:FLECHE_BONUS_DAMAGE_PER_TILES/> cases entre la position de l'unité au début de son tour et la position de la cible.<br/>"
 
 [TemplarSolace X2AbilityTemplate]
 LocFriendlyName="Réconfort"
@@ -5476,28 +5491,28 @@ LocLongDescription="Désactive une arme, en déchargeant ses munitions."
 LocFlyOverText="Sabotage d'arme"
 
 [ShieldAllyM1 X2AbilityTemplate]
-LocFriendlyName="Le plus puissant des sorciers"
+LocFriendlyName="Pouvoir des Anciens"
 LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
 LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
-LocFlyOverText="Le plus puissant des sorciers"
+LocFlyOverText="Pouvoir des Anciens"
 
 [ShieldAllyM2 X2AbilityTemplate]
-LocFriendlyName="Le plus puissant des sorciers"
+LocFriendlyName="Pouvoir des Anciens"
 LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
 LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
-LocFlyOverText="Le plus puissant des sorciers"
+LocFlyOverText="Pouvoir des Anciens"
 
 [ShieldAllyM3 X2AbilityTemplate]
-LocFriendlyName="Le plus puissant des sorciers"
+LocFriendlyName="Pouvoir des Anciens"
 LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
 LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
-LocFlyOverText="Le plus puissant des sorciers"
+LocFlyOverText="Pouvoir des Anciens"
 
 [ShieldAllyM4 X2AbilityTemplate]
-LocFriendlyName="Le plus puissant des sorciers"
+LocFriendlyName="Pouvoir des Anciens"
 LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
 LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
-LocFlyOverText="Le plus puissant des sorciers"
+LocFlyOverText="Pouvoir des Anciens"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Anticipation"
@@ -5713,6 +5728,12 @@ ActionObjective="Vol de cadavres"
 [CovertAction_IntenseTraining X2CovertActionTemplate]
 ActionObjective="Entraînement intense"
 
+[CovertAction_ResistanceMec X2CovertActionTemplate]
+ActionObjective="Obtenir une CEM de la résistance"
+
+[CovertAction_RecruitRebels X2CovertActionTemplate]
+ActionObjective="Recruter des rebelles"
+
 [CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
 ActionName="Pillage d'une morgue ennemie"
 ActionPreNarrative="Nous avons découvert où ils entreposaient les cadavres issus des récents combats. Cela pourrait être l'occasion d'accélérer nos recherches."
@@ -5742,6 +5763,36 @@ ActionPostNarrative="Votre soldat s'est aguerri."
 ActionName="Suivre Entraînement intense (Coût: 5 PC)"
 ActionPreNarrative="Le temps est venu de se préparer au combat. Du nerf, soldat!"
 ActionPostNarrative="Votre soldat s'est aguerri."
+
+[CovertActionNarrative_ResistanceMec_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Piller une usine d'assemblage"
+ActionPreNarrative="Nous avons découvert une usine utilisée par ADVENT pour produire et entretenir ses unités robotiques. Nous devrions aisément pouvoir \"recruter\" une CEM intacte si nos hommes parviennent à tromper la vigilance des systèmes de sécurité."
+ActionPostNarrative="Nos agents sont parvenus à mettre la main sur une CEM intacte. Elle a été reprogrammée et envoyée dans un refuge proche."
+
+[CovertActionNarrative_ResistanceMec_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Piller une usine d'assemblage"
+ActionPreNarrative="Nous avons découvert une usine utilisée par ADVENT pour produire et entretenir ses unités robotiques. Nous devrions aisément pouvoir \"recruter\" une CEM intacte si nos hommes parviennent à tromper la vigilance des systèmes de sécurité."
+ActionPostNarrative="Nos agents sont parvenus à mettre la main sur une CEM intacte. Elle a été reprogrammée et envoyée dans un refuge proche."
+
+[CovertActionNarrative_ResistanceMec_Templars X2CovertActionNarrativeTemplate]
+ActionName="Piller une usine d'assemblage"
+ActionPreNarrative="Nous avons découvert une usine utilisée par ADVENT pour produire et entretenir ses unités robotiques. Nous devrions aisément pouvoir \"recruter\" une CEM intacte si nos hommes parviennent à tromper la vigilance des systèmes de sécurité."
+ActionPostNarrative="Nos agents sont parvenus à mettre la main sur une CEM intacte. Elle a été reprogrammée et envoyée dans un refuge proche."
+
+[CovertActionNarrative_RecruitRebels_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Rallier des dissidents"
+ActionPreNarrative="Nous avons entendu qu'un petit groupe de dissidents de la région souhaitait rejoindre nos rangs. Il serait judicieux de les rencontrer pour tenter de les recruter."
+ActionPostNarrative="Nos agents sont parvenus à rallier des dissidents à notre cause."
+
+[CovertActionNarrative_RecruitRebels_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Rallier des dissidents"
+ActionPreNarrative="Nous avons entendu qu'un petit groupe de dissidents de la région souhaitait rejoindre nos rangs. Il serait judicieux de les rencontrer pour tenter de les recruter."
+ActionPostNarrative="Nos agents sont parvenus à rallier des dissidents à notre cause."
+
+[CovertActionNarrative_RecruitRebels_Templars X2CovertActionNarrativeTemplate]
+ActionName="Rallier des dissidents"
+ActionPreNarrative="Nous avons entendu qu'un petit groupe de dissidents de la région souhaitait rejoindre nos rangs. Il serait judicieux de les rencontrer pour tenter de les recruter."
+ActionPostNarrative="Nos agents sont parvenus à rallier des dissidents à notre cause."
 
 [AbilityPoints X2ItemTemplate]
 FriendlyName="Points de capacité"
@@ -6090,7 +6141,7 @@ LocPromotionPopupText="<Bullet/> Éliminer une unité paniquée ou désorientée
 
 [ZoneOfControl_LW X2AbilityTemplate]
 LocFriendlyName = "Zone de contrôle"
-LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour du <Ability:ClassName/> subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour du <Ability:ClassName/> subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
 LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour du <Ability:ClassName/> subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
 ; LWOTC Ntranslated (2)
 LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour du <Ability:ClassName/> subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
@@ -6714,51 +6765,52 @@ LocFlyOverText="Escrimeur"
 LocPromotionPopupText="<Bullet/> Si un ennemi termine son tour sur une case adjacente et tente d'attaquer le <Ability:ClassName/>, la capacité Escrimeur se déclenche.<br/><Bullet/> Si l'ennemi ne termine pas son tour sur une case adjacente, la capacité Escrimeur se déclenche quand cet ennemi est à portée d'attaque au corps à corps.<br/><Bullet/> Cette capacité ne se déclenche pas pendant votre tour (uniquement pendant le tour adverse).<br/>"
 
 [TemplarBallisticShield_CV X2WeaponTemplate]
-FriendlyName="Bouclier balistique Mk1"
-FriendlyNamePlural="Boucliers balistiques Mk1"
-BriefSummary="Le bouclier balistique est constitué de plaques de métal et de renforts en céramique, afin d'offrir une meilleure protection contre les armes de gros calibre. Il protège aussi bien son utilisateur que les unités alliées qui lui sont adjacentes."
-TacticalText="<Bullet/>Le bouclier balistique est constitué de plaques de métal et de renforts en céramique, afin d'offrir une meilleure protection contre les armes de gros calibre. Il protège aussi bien son utilisateur que les unités alliées qui lui sont adjacentes."
+FriendlyName="Bouclier de templier Mk1"
+FriendlyNamePlural="Boucliers de templier Mk1"
+BriefSummary="Le bouclier du templier est constitué de plaques de métal et de renforts en céramique, afin d'offrir une meilleure protection contre les armes de gros calibre. Il protège aussi bien son utilisateur que les unités alliées qui lui sont adjacentes."
+TacticalText="<Bullet/>Le bouclier du templier est constitué de plaques de métal et de renforts en céramique, afin d'offrir une meilleure protection contre les armes de gros calibre. Il protège aussi bien son utilisateur que les unités alliées qui lui sont adjacentes."
 
 [TemplarBallisticShield_MG X2WeaponTemplate]
-FriendlyName="Bouclier balistique Mk2"
-FriendlyNamePlural="Boucliers balistiques Mk2"
-BriefSummary="Cette nouvelle version du bouclier balistique est constituée d'une structure en alliage qui a été renforcée par des polymères complexes. Ce nouveau modèle est à la fois plus léger mais également plus résistant que l'ancien."
-TacticalText="<Bullet/>Cette nouvelle version du bouclier balistique est constituée d'une structure en alliage qui a été renforcée par des polymères complexes. Ce nouveau modèle est à la fois plus léger mais également plus résistant que l'ancien."
+FriendlyName="Bouclier de templier Mk2"
+FriendlyNamePlural="Boucliers de templier Mk2"
+BriefSummary="Cette nouvelle version du bouclier du templier est constituée d'une structure en alliage qui a été renforcée par des polymères complexes. Ce nouveau modèle est à la fois plus léger mais également plus résistant que l'ancien."
+TacticalText="<Bullet/>Cette nouvelle version du bouclier du templier est constituée d'une structure en alliage qui a été renforcée par des polymères complexes. Ce nouveau modèle est à la fois plus léger mais également plus résistant que l'ancien."
 
 [TemplarBallisticShield_BM X2WeaponTemplate]
-FriendlyName="Bouclier balistique Mk3"
-FriendlyNamePlural="Boucliers balistiques Mk3"
+FriendlyName="Bouclier de templier Mk3"
+FriendlyNamePlural="Boucliers de templier Mk3"
 BriefSummary="Nos récentes avancées en matière de miniaturisation nous ont permis de concevoir nouveau modèle de bouclier. Sa structure avancée dissipe plus efficacement l'énergie cinétique des projectiles, réduisant d'autant leur force d'impact."
 TacticalText="<Bullet/>Nos récentes avancées en matière de miniaturisation nous ont permis de concevoir nouveau modèle de bouclier. Sa structure avancée dissipe plus efficacement l'énergie cinétique des projectiles, réduisant d'autant leur force d'impact."
 
 [TemplarBallisticShield_GenerateCover X2AbilityTemplate]
-LocFriendlyName="Bouclier balistique"
+LocFriendlyName="Bouclier de templier"
 LocHelpText="Procure un abri partiel aux unités alliées."
 LocLongDescription="Procure un abri partiel aux unités alliées."
-LocFlyOverText="Bouclier balistique"
+LocFlyOverText="Bouclier de templier"
 
 [TemplarBallisticShield_CV X2AbilityTemplate]
-LocFriendlyName="Bouclier balistique"
+LocFriendlyName="Bouclier de templier"
 LocHelpText="Octroie 0 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
 LocLongDescription="Octroie 0 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
-LocFlyOverText="Bouclier balistique"
+LocFlyOverText="Bouclier de templier"
 
 [TemplarBallisticShield_MG X2AbilityTemplate]
-LocFriendlyName="Bouclier balistique"
+LocFriendlyName="Bouclier de templier"
 LocHelpText="Octroie 3 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
 LocLongDescription="Octroie 3 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
-LocFlyOverText="Bouclier balistique"
+LocFlyOverText="Bouclier de templier"
 
 [TemplarBallisticShield_BM X2AbilityTemplate]
-LocFriendlyName="Bouclier balistique"
+LocFriendlyName="Bouclier de templier"
 LocHelpText="Octroie 6 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
 LocLongDescription="Octroie 6 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
-LocFlyOverText="Bouclier balistique"
+LocFlyOverText="Bouclier de templier"
 
 [ShieldBash_LW X2AbilityTemplate]
 LocFriendlyName="Coup de bouclier"
 LocHelpText="Frappez un ennemi adjacent avec votre bouclier pour le repousser de 2 cases et lui infliger des dégâts. Action gratuite."
 LocLongDescription="Frappez un ennemi adjacent avec votre bouclier pour le repousser de 2 cases et lui infliger des dégâts. Action gratuite."
+LocPromotionPopupText="<Bullet/> Les dégâts infligés dépendent du bouclier utilisé.<br/><Bullet/> Action gratuite. Temps de rechargement: <Ability:SelfCooldown/> tour(s).<br/><Bullet/> Permet de frapper n'importe quel ennemi situé dans une case adjacente (horizontalement ou diagonalement).<br/>"
 LocFlyOverText="Coup de bouclier"
 
 [TemplarInvert X2AbilityTemplate]
@@ -6864,8 +6916,8 @@ AbilityDescName="pistolet automatique"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramédical"
-LocLongDescription="Procure un médikit gratuit. Les médikits équipés contiennent 2 charges de plus. Utiliser un médikit pour la première fois lors d'un tour est considéré comme une action gratuite."
-LocHelpText="Procure un médikit gratuit. Les médikits équipés contiennent 2 charges de plus. Utiliser un médikit pour la première fois lors d'un tour est considéré comme une action gratuite."
+LocLongDescription="Procure un médikit gratuit. Les médikits équipés contiennent 2 charges de plus. Utiliser un médikit pour la première fois lors d'un tour est considéré comme une action gratuite. Les capacités de soins restaurent 4PV de plus."
+LocHelpText="Procure un médikit gratuit. Les médikits équipés contiennent 2 charges de plus. Utiliser un médikit pour la première fois lors d'un tour est considéré comme une action gratuite. Les capacités de soins restaurent 4PV de plus."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Bannissement"
@@ -6883,9 +6935,9 @@ LocPromotionPopupText="<Bullet/> Cette capacité octroie les capacités Bombarde
 [PackMaster_LW X2AbilityTemplate]
 LocFriendlyName="Équipement tactique"
 LocFlyOverText="Équipement tactique"
-LocLongDescription="Confère +1 charge par grenade ou objet équipé (emplacements utilitaires et emplacements réservés aux grenades)."
-LocHelpText="Confère +1 charge par grenade ou objet équipé (emplacements utilitaires et emplacements réservés aux grenades)."
-LocPromotionPopupText="<Bullet/> Confère +1 charge par grenade ou objet équipé (emplacements utilitaires et emplacements réservés aux grenades).<br/> <Bullet/> S'applique aux emplacements utilitaires ainsi qu'aux emplacmeents réservés aux grenades, mais pas autres types d'emplacements.<br/> Les grenades supplémentaires procurées par les capacités telles que Aveuglement ou Fumigène ne sont pas affectées par cette capacité.<br/>"
+LocLongDescription="Confère +1 charge par grenade ou objet équipé (qu'il soit dans un emplacement utilitaire ou réservé aux grenades)."
+LocHelpText="Confère +1 charge par grenade ou objet équipé (qu'il soit dans un emplacement utilitaire ou réservé aux grenades)."
+LocPromotionPopupText="<Bullet/> Confère +1 charge par grenade ou objet équipé (qu'il soit dans un emplacement utilitaire ou réservé aux grenades).<br/> <Bullet/> S'applique aux emplacements utilitaires ainsi qu'aux emplacmeents réservés aux grenades, mais pas autres types d'emplacements.<br/> Les grenades supplémentaires procurées par les capacités telles que Aveuglement ou Fumigène ne sont pas affectées par cette capacité.<br/>"
 
 [SkirmisherInterrupt_LW X2AbilityTemplate]
 LocFriendlyName="Interruption"
@@ -6897,7 +6949,7 @@ LocPromotionPopupText="<Bullet/> Une forme supérieure de Vigilance. Plutôt que
 LocFriendlyName="Vague arquée"
 LocLongDescription="La Taillade génère une vague d'énergie psionique dans la direction de l'attaque. La Vague arquée n'affecte pas la cible de la Taillade originale. Les versions améliorées des gantelets augmentent les dégâts infligés par cet effet."
 LocHelpText="La Taillade génère une vague d'énergie psionique dans la direction de l'attaque. La Vague arquée n'affecte pas la cible de la Taillade originale."
-LocPromotionPopupText="<Bullet/> La Vague arquée inflige 4/7/10 points de dégâts, en fonction du modèle de gantelets utilisé.<br/><Bullet/> La Vague arquée traverse les éléments du décor.<br/>"
+LocPromotionPopupText="<Bullet/> La Vague arquée inflige 4/6/8 points de dégâts, en fonction du modèle de gantelets utilisé.<br/><Bullet/> La Vague arquée traverse les éléments du décor.<br/>"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="Tempête ionique"
@@ -6905,6 +6957,12 @@ LocLongDescription="Invoque une tempête d'énergie psionique qui frappe tous le
 LocHelpText="Invoque une tempête d'énergie psionique qui frappe tous les ennemis situés à proximité. Inflige le double de dégâts aux unités psioniques. Les dégâts de base et la zone d'effet augmentent avec le niveau de concentration. Consomme tous les points de concentration du Templier."
 LocPromotionPopupText="<Bullet/> Invoque une tempête d'énergie psionique qui frappe tous les ennemis situés à proximité. Inflige le double de dégâts aux unités psioniques. Les dégâts de base et la zone d'effet augmentent avec le niveau de concentration. Consomme tous les points de concentration du Templier.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown/> tour(s).<br/>"
 
+; End Translation
+
+; LWOTC Needs Translation
+[Sabotage_LongRangeComms X2SabotageTemplate]
+SummaryText="Nous sommes incapables de maintenir durablement nos communications à longue distance après le récent sabotage de l'Élu. Les missions secrètes sont retardées de 2 semaines."
+ShortSummaryText="Nos missions secrètes sont retardées de 2 semaines!"
 ; End Translation
 
 ;;;;;;;;;;;;;;;;;;;;  SPECIFICITES FRA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

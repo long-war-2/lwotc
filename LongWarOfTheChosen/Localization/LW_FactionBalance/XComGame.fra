@@ -132,7 +132,7 @@ LocPromotionPopupText="<Bullet/> Pocure un bonus de +<Ability:DEATH_DEALER_CRIT/
 
 ; End translated
 
-; LWOTC Needs Translation
+; LWOTC translated
 [RendTheMarked X2AbilityTemplate]
 LocFriendlyName="Marque de sang"
 LocHelpText="Chaque fois que vous blessez une cible avec un couteau de lancer, toute unité qui la prend pour cible avant la fin du tour gagne un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique."
@@ -169,5 +169,5 @@ LocPromotionPopupText="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVE
 [LW_FactionBalance.X2Ability_ThrowingKnifeAbilitySet]
 RendTheMarkedEffectName="Marque de sang"
 RendTheMarkedEffectDesc="Chaque fois que vous blessez une cible avec un couteau de lancer, toute unité qui la prend pour cible avant la fin du tour gagne un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique."
-; End Translation
+; End translated
 
