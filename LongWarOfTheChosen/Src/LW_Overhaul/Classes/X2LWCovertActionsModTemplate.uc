@@ -35,13 +35,14 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_GatherSupplies':
 		case 'CovertAction_GatherIntel':
 		case 'CovertAction_FormSoldierBond':
-		case 'CovertAction_AlienLoot':
 		case 'CovertAction_ResistanceMec':
 			ConfigureEasyCovertAction(CATemplate);
 			break;
 		case 'CovertAction_RecruitScientist':
 		case 'CovertAction_RecruitEngineer':
 			CaTemplate.RequiredFactionInfluence = eFactionInfluence_Respected;
+		case 'CovertAction_AlienLoot':
+			CATemplate.Risks.RemoveItem('CovertActionRisk_SoldierCaptured');
 		case 'CovertAction_EnemyCorpses':
 		case 'CovertAction_CancelChosenActivity':
 		case 'CovertAction_DelayChosen':
