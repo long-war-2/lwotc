@@ -4285,3 +4285,32 @@ static function bool IsProjectileElementPresent(array<X2UnifiedProjectileElement
     }
     return false;
 }
+
+exec function DumpObjectInfo(int ObjectID)
+{
+	local XComGameStateHistory History;
+	local XComGameState_BaseObject DumpObject;
+
+	History = `XCOMHISTORY;
+
+	DumpObject = History.GetGameStateForObjectID(ObjectID);
+	class'Helpers'.static.OutputMsg("Object class: " $ DumpObject.Class $ ", template: " $ DumpObject.GetMyTemplateName());
+	class'Helpers'.static.OutputMsg("Parent object ID: " $ DumpObject.OwningObjectId);
+}
+
+exec function DumpUnitInfo()
+{
+	local XComGameStateHistory History;
+	local XComGameState_Unit UnitState;
+
+	History = `XCOMHISTORY;
+	foreach History.IterateByClassType(class'XComGameState_Unit', UnitState, eReturnType_Reference, true)
+	{
+		`LWTrace("=== Unit " $ UnitState.ObjectID $ " ===");
+		`LWTrace("  Name: " $ UnitState.GetFullName());
+		`LWTrace("  Unit template: " $ UnitState.GetMyTemplateName());
+		`LWTrace("  Unit class: " $ UnitState.GetSoldierClassTemplateName());
+	}
+
+	class'Helpers'.static.OutputMsg("Unit information dumped to log");
+}
