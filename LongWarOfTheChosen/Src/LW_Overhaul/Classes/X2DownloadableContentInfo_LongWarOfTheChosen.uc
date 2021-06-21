@@ -3797,7 +3797,8 @@ exec function LWForceEvac()
 
 exec function LWPrintVersion()
 {
-	`Log("LongWar2 Version: " $ class'LWVersion'.static.GetVersionString());
+	`Log("Long War of the Chosen Version: " $ class'LWVersion'.static.GetVersionString());
+	class'Helpers'.static.OutputMsg("Long War of the Chosen Version: " $ class'LWVersion'.static.GetVersionString());
 }
 
 exec function LWAddFortressDoom(optional int DoomToAdd = 1)
