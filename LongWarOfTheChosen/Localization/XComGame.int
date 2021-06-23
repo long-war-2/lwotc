@@ -5517,7 +5517,7 @@ LocFlyOverText="The Warlocks Greatest Champion"
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Anticipation"
 LocLongDescription="Takes 50% less damage from dashing melee attacks."
-LocHelpText="Takes 50% less damage from from dashing melee attacks."
+LocHelpText="Takes 50% less damage from dashing melee attacks."
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Blast Shield"
