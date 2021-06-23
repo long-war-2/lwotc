@@ -769,6 +769,24 @@ static function float GetUnitValue(XComGameState_Unit UnitState, Name ValueName)
 	return Value.fValue;
 }
 
+// Returns the force level maintained by LWOTC rather than the one from
+// the alien HQ, since those two force levels may differ.
+static function int GetLWForceLevel()
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState;
+	
+	History = `XCOMHISTORY;
+
+	// Get the first region since all regions have the same force level
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		break;
+	}
+
+	return class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState).LocalForceLevel;
+}
+
 simulated static function bool IsOnStrategyMap()
 {
 	// KDM : If you are on the strategy map return true; if you are in the Avenger return false.

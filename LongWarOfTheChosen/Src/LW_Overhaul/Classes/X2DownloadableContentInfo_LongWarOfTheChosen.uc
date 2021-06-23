@@ -228,7 +228,7 @@ static event OnLoadedSavedGameToStrategy()
 		
 	//Make sure the chosen are of appropriate level
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	Forcelevel = AlienHQ.GetForceLevel();
+	Forcelevel = class'Utilities_LW'.static.GetLWForceLevel();
 	AllChosen = AlienHQ.GetAllChosen();
 
 	ChosenLevel = 3;
@@ -244,7 +244,13 @@ static event OnLoadedSavedGameToStrategy()
 	foreach AllChosen(ChosenState)
 	{
 		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-		Chosenstate.Level = ChosenLevel;
+
+		if (ChosenState.Level != ChosenLevel)
+		{
+			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+			Chosenstate.Level = ChosenLevel;
+		}
+
 		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 		// Replace Old Tag with new Tag in missions
 		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
