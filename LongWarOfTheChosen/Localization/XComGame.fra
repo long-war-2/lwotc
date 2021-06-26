@@ -5289,12 +5289,12 @@ FocusLevelDescriptions[4]="Dégâts de Taillade +<Ability:FOCUS4RENDDAMAGE/> \nM
 
 ; LWOTC translated (2)
 [TemplarFocus X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> En début de mission, les Templiers sont plus faibles que les autres soldats, mais plus leur niveau de concentration est élevé, plus ils deviennent puissants. Apprenez à gérer efficacement la concentration pour profiter au mieux des améliorations de statistiques et de chaque capacité. <br/><Bullet/> Vous gagnez de la concentration en tuant des ennemis avec Taillade. <br/><Bullet/> Niveau 1: dégâts de Taillade +<Ability:FOCUS1RENDDAMAGE/>, mobilité +<Ability:FOCUS1MOBILITY/>, esquive +<Ability:FOCUS1DODGE/> <br/><Bullet/> Niveau 2: dégâts de Taillade +<Ability:FOCUS2RENDDAMAGE/>, mobilité +<Ability:FOCUS2MOBILITY/>, esquive +<Ability:FOCUS2DODGE/> <br/><Bullet/> Niveau 3: dégâts de Taillade +<Ability:FOCUS3RENDDAMAGE/>, mobilité +<Ability:FOCUS3MOBILITY/>, esquive +<Ability:FOCUS3DODGE/><br/> <Bullet/> Niveau 4: dégâts de Taillade +<Ability:FOCUS4RENDDAMAGE/>, mobilité +<Ability:FOCUS4MOBILITY/>, esquive +<Ability:FOCUS4DODGE/><br/>"
+LocPromotionPopupText="<Bullet/> En début de mission, les Templiers sont plus faibles que les autres soldats, mais plus leur niveau de concentration est élevé, plus ils deviennent puissants. Apprenez à gérer efficacement la concentration pour profiter au mieux des améliorations de statistiques et de chaque capacité. <br/><Bullet/> Vous gagnez de la concentration en attaquant à l'aide de la capacité Taillade et ce, quelque soit le résultat de l'attaque (réussite, égratignure ou échec). <br/>"
 
 ; LWOTC translated (3)
 [Rend X2AbilityTemplate]
-LocLongDescription="Les attaques de mêlée ont une chance de d'étourdir ou de désorienter leurs cibles. Déclenche la capacité Élan et génère de la concentration en cas d'attaque."
-LocHelpText="Les attaques de mêlée ont une chance de d'étourdir ou de désorienter leurs cibles. Déclenche la capacité Élan et génère de la concentration en cas d'attaque."
+LocLongDescription="Les attaques de mêlée ont une chance d'étourdir ou de désorienter leurs cibles. Déclenche la capacité Élan et génère de la concentration (quelque soit le résultat de l'attaque: succès, égratignure ou échec)."
+LocHelpText="Les attaques de mêlée ont une chance d'étourdir ou de désorienter leurs cibles. Déclenche la capacité Élan et génère de la concentration (quelque soit le résultat de l'attaque: succès, égratignure ou échec)."
 LocPromotionPopupText="<Bullet/> La capacité Taillade constitue la principale façon pour un Templier de générer de la concentration.<br/><Bullet/> L'utilisation de Taillade déclenche la capacité Élan, qui octroie au Templier une action de déplacement bonus.<br/><Bullet/> Taillade a <Ability:RENDSTUNCHANCE/>% de chances par point de concentration d'étourdir sa cible. Les unités étourdies de cette façon sont également repoussées.<br/><Bullet/> Taillade a <Ability:RENDDISORIENTCHANCE/>% de chances par point de concentration de désorienter sa cible.<br/>"
 ; End translated (3)
 
