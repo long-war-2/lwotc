@@ -3,9 +3,7 @@
 //  AUTHOR:  Grobobobo
 //  PURPOSE: Gives Untouchable, but with cooldown
 //---------------------------------------------------------------------------------------
-class X2Effect_BattlefieldAwareness extends X2Effect_Persistent config(LW_FactionBalance);
-
-var config int BATTLEFIELD_AWARENESS_COOLDOWN;
+class X2Effect_BattlefieldAwareness extends X2Effect_Persistent;
 
 function bool ChangeHitResultForTarget(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit TargetUnit, XComGameState_Ability AbilityState, bool bIsPrimaryTarget, const EAbilityHitResult CurrentResult, out EAbilityHitResult NewHitResult)
 {
