@@ -194,6 +194,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'REFLEX_CRIT_DEF':
 		OutString = string(class'X2LWModTemplate_SkirmisherAbilities'.default.REFLEX_CRIT_DEF);
 		return true;
+	case 'BATTLEFIELD_AWARENESS_COOLDOWN':
+		OutString = string(class'X2Ability_SkirmisherAbilitySet_LW'.default.BATTLEFIELD_AWARENESS_COOLDOWN);
+		return true;
 	}
 
 	return false;
