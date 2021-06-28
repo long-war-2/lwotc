@@ -5273,7 +5273,7 @@ LocFriendlyName="Ripjack Slash"
 LocFlyOverText="Ripjack Slash"
 LocLongDescription="Attack an adjacent target with your Ripjack. Does not end turn."
 LocHelpText="Attack an adjacent target with your Ripjack. Does not end turn."
-LocPromotionPopupText="<Bullet/> Quick Slash can only be used against adjacent targets.<br/>"
+LocPromotionPopupText="<Bullet/> Ripjack Slash can only be used against adjacent targets.<br/>"
 ; End Translation (3)
 
 [SupremeFocus X2AbilityTemplate]
@@ -5402,8 +5402,8 @@ LocFlyOverText="Tracking"
 
 ; LWOTC Needs Translation
 [SkirmisherReflex X2AbilityTemplate]
-LocLongDescription="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn. Additionally, Gain <Ability:REFLEX_CRIT_DEF/> Crit Resistance."
-LocHelpText="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn. Additionally, Gain <Ability:REFLEX_CRIT_DEF/> Crit Resistance."
+LocLongDescription="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn. Attacks against you suffer a -<Ability:REFLEX_CRIT_DEF/> penalty to critical hit chances."
+LocHelpText="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn. Attacks against you suffer a -<Ability:REFLEX_CRIT_DEF/> penalty to critical hit chances."
 LocPromotionPopupText="<Bullet/> The Grapple makes the Skirmisher a great advance scout, and Reflex rewards their aggressive positioning.<br/><Bullet/> Reflex can only be triggered once per turn.<br/>"
 ; End Translation
 
@@ -5422,8 +5422,8 @@ LocPromotionPopupText="<Bullet/> Judgement can be triggered by melee and area of
 ; LWOTC Needs Translation
 [ManualOverride_LW X2AbilityTemplate]
 LocFriendlyName="Manual Override"
-LocLongDescription="Lowers all ability cooldowns on a selected ally soldier by <Ability:OVERRIDE_REDUCTION>."
-LocHelpText="Lowers all ability cooldowns on a selected ally soldier by <Ability:OVERRIDE_REDUCTION>."
+LocLongDescription="Lowers all ability cooldowns on a selected ally soldier by up to <Ability:OVERRIDE_REDUCTION/> turns."
+LocHelpText="Lowers all ability cooldowns on a selected ally soldier by up to <Ability:OVERRIDE_REDUCTION/> turns."
 LocPromotionPopupText="<Bullet/> Use the allies' abilities early and often to take full advantage of Manual Override.<br/><Bullet/> Costs 1 action.<br/><Bullet/> Manual Override has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation
 
@@ -6975,5 +6975,4 @@ LocPromotionPopupText="<Bullet/> Ionic Storm's radius increases at higher Focus 
 SummaryText="We've been struggling to maintain long range communications after the recent sabotage by the Chosen. Our covert actions will be delayed by 2 weeks."
 ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
 ; End Translation
-
 

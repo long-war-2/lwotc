@@ -49,7 +49,6 @@ private function bool ShouldApplyBonuses(XComGameState_Effect EffectState, XComG
 	Target.GetUnitValue('DamageThisTurn', DamageUnitValue);
 	return DamageUnitValue.fValue > 0;
 
-	return false;
 }
 
 defaultproperties
