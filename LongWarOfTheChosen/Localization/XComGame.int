@@ -6797,23 +6797,25 @@ LocHelpText="Grants half cover to allies."
 LocLongDescription="Grants half cover to allies."
 LocFlyOverText="Templar Shield"
 
+; LWOTC Needs Translation(2)
 [TemplarBallisticShield_CV X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocHelpText="Grants 0 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
-LocLongDescription="Grants 0 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocHelpText="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocLongDescription="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Templar Shield"
 
 [TemplarBallisticShield_MG X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocHelpText="Grants 3 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
-LocLongDescription="Grants 3 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocHelpText="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocLongDescription="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Templar Shield"
 
 [TemplarBallisticShield_BM X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocHelpText="Grants 6 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
-LocLongDescription="Grants 6 shield points and half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocHelpText="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocLongDescription="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Templar Shield"
+; End Translation(2)
 
 [ShieldBash_LW X2AbilityTemplate]
 LocFriendlyName="Shield Bash"
