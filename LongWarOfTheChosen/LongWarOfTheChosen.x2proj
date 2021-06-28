@@ -826,6 +826,7 @@
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Bastion.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_BodyShield.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Brawler.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_BreakSquadConcealment.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_BringEmOn.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ClearUnitValue.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_CloseandPersonal.uc" />
