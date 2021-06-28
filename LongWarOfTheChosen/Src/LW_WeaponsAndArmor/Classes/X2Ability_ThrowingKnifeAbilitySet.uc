@@ -750,7 +750,7 @@ static function EventListenerReturn ImpersonalEdgeListener(Object EventData, Obj
 	if (AbilityContext != None && AbilityContext.InterruptionStatus != eInterruptionStatus_Interrupt)
 	{
 		//	were we the killer?
-		if (AbilityContext.InputContext.SourceObject.ObjectID == AbilityState.OwnerStateObject.ObjectID)
+		if (AbilityContext.InputContext.SourceObject.ObjectID == TriggerAbilityState.OwnerStateObject.ObjectID)
 		{
 			if(X2WeaponTemplate(ItemState.GetMyTemplate()) != none && X2WeaponTemplate(ItemState.GetMyTemplate()).WeaponCat == 'throwingknife')
 			{

@@ -166,5 +166,29 @@ LocHelpText="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce an
 LocLongDescription="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
 LocPromotionPopupText="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
 
+; LWOTC Needs Translation
+[BattlefieldAwareness X2AbilityTemplate]
+LocFriendlyName="Battlefield Awareness"
+LocLongDescription="If you score a kill during your turn, the next attack against you during the enemy turn will miss. Upon usage, the ability goes on a 3 turn cooldown."
+LocHelpText="If you score a kill during your turn, the next attack against you during the enemy turn will miss. Upon usage, the ability goes on a 3 turn cooldown."
+LocFlyOverText="Battlefield Awareness"
+LocPromotionPopupText="<Bullet/> When Battlefield Awareness is triggered the soldier is immune to the next damage dealing attack during the enemy turn, even Area of Effect attacks.<br/>"
+
+
+[BattlefieldAwarenessPassive X2AbilityTemplate]
+LocFriendlyName="Battlefield Awareness"
+LocLongDescription="If you score a kill during your turn, the next attack against you during the enemy turn will miss. Upon usage, the ability goes on a 3 turn cooldown."
+LocHelpText="If you score a kill during your turn, the next attack against you during the enemy turn will miss. Upon usage, the ability goes on a 3 turn cooldown."
+LocFlyOverText="Battlefield Awareness"
+LocPromotionPopupText="<Bullet/> When Battlefield Awareness is triggered the soldier is immune to the next damage dealing attack during the enemy turn, even Area of Effect attacks.<br/>"
+
+[BattlefieldAwarenessCooldown X2AbilityTemplate]
+LocFriendlyName="Battlefield Awareness Cooldown"
+LocLongDescription="Battlefield Awareness will not activate untill this effect ends."
+LocHelpText="Battlefield Awareness will not activate untill this effect ends."
+
 ; End Translation
+
+[CombatPresence X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Combat Presence can be used to get squadmates out of tough situations where they need an extra attack or move.<br/><Bullet/> Combat Presence has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 

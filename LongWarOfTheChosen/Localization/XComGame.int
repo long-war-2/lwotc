@@ -5265,14 +5265,16 @@ LocFriendlyName="Charge"
 LocLongDescription="Attack any enemy within movement range with your <Ability:SecondaryWeaponName/>."
 LocHelpText="Attack an enemy within movement range with your <Ability:SecondaryWeaponName/>."
 LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point and is not turn ending. <br/><Bullet/> Charge has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
-
-[SkirmisherSlash X2AbilityTemplate]
-LocFriendlyName="Quick Slash"
-LocFlyOverText="Quick Slash"
-LocLongDescription="Attack an adjacent target with your Ripjack as a free action."
-LocHelpText="Attack an adjacent target with your Ripjack as a free action."
-LocPromotionPopupText="<Bullet/> Quick Slash can only be used against adjacent targets.<br/><Bullet/> Quick Slash has a <Ability:RECKONING_LW_SLASH_COOLDOWN/> turn cooldown.<br/>"
 ; End Translation (2)
+
+; LWOTC Needs Translation (3)
+[SkirmisherSlash X2AbilityTemplate]
+LocFriendlyName="Ripjack Slash"
+LocFlyOverText="Ripjack Slash"
+LocLongDescription="Attack an adjacent target with your Ripjack. Does not end turn."
+LocHelpText="Attack an adjacent target with your Ripjack. Does not end turn."
+LocPromotionPopupText="<Bullet/> Quick Slash can only be used against adjacent targets.<br/>"
+; End Translation (3)
 
 [SupremeFocus X2AbilityTemplate]
 LocFriendlyName="Supreme Focus"
@@ -5352,11 +5354,13 @@ LocPromotionPopupText="<Bullet/> Reduces Shadow's cooldown by 1 turn.<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation (3)
+; LWOTC Needs Translation (4)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="Blood Trail"
-LocLongDescription="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage and reduce target's Dodge by -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> if the target has been wounded this turn."
-LocHelpText="Shots deal +<Ability:BLOODTRAILDAMAGE/> damage and reduce target's Dodge by -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> if the target has been wounded this turn."
-LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> Only works with the primary weapon.<br/>"
+LocLongDescription="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and reduce target's Dodge by -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> if the target has been wounded this turn."
+LocHelpText="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and reduce target's Dodge by -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> if the target has been wounded this turn."
+LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> Works with all weapons.<br/>"
+; End Translation (4)
 
 [PaleHorse X2AbilityTemplate]
 LocFriendlyName="Soul Harvest"
@@ -5396,10 +5400,12 @@ LocPromotionPopupText="<Bullet/> Tracking allows the unit to detect units that a
 LocFriendlyName="Tracking"
 LocFlyOverText="Tracking"
 
+; LWOTC Needs Translation
 [SkirmisherReflex X2AbilityTemplate]
-LocLongDescription="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn."
-LocHelpText="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn."
+LocLongDescription="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn. Additionally, Gain <Ability:REFLEX_CRIT_DEF/> Crit Resistance."
+LocHelpText="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn. Additionally, Gain <Ability:REFLEX_CRIT_DEF/> Crit Resistance."
 LocPromotionPopupText="<Bullet/> The Grapple makes the Skirmisher a great advance scout, and Reflex rewards their aggressive positioning.<br/><Bullet/> Reflex can only be triggered once per turn.<br/>"
+; End Translation
 
 [FullThrottle X2AbilityTemplate]
 LocLongDescription="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
@@ -5412,11 +5418,14 @@ LocHelpText="Has a chance to panic any enemy that attacks this unit. The higher 
 LocFlyOverText="Judgement"
 LocPromotionPopupText="<Bullet/> Judgement can be triggered by melee and area of effect attacks.<br/><Bullet/> Judgement will not trigger when targeted by Overwatch fire.<br/><Bullet/> The chance of panic depends on both the will of the attacking unit and the will of the unit with Judgement.<br/><Bullet/> Judgement works best on units with high will.<br/>"
 
+
+; LWOTC Needs Translation
 [ManualOverride_LW X2AbilityTemplate]
 LocFriendlyName="Manual Override"
-LocLongDescription="Resets all ability cooldowns on ally soldiers."
-LocHelpText="Resets all ability cooldowns on ally soldiers."
+LocLongDescription="Lowers all ability cooldowns on a selected ally soldier by <Ability:OVERRIDE_REDUCTION>."
+LocHelpText="Lowers all ability cooldowns on a selected ally soldier by <Ability:OVERRIDE_REDUCTION>."
 LocPromotionPopupText="<Bullet/> Use the allies' abilities early and often to take full advantage of Manual Override.<br/><Bullet/> Costs 1 action.<br/><Bullet/> Manual Override has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation
 
 [Battlelord X2AbilityTemplate]
 LocLongDescription="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
@@ -6964,3 +6973,5 @@ LocPromotionPopupText="<Bullet/> Ionic Storm's radius increases at higher Focus 
 SummaryText="We've been struggling to maintain long range communications after the recent sabotage by the Chosen. Our covert actions will be delayed by 2 weeks."
 ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
 ; End Translation
+
+
