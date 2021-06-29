@@ -478,7 +478,7 @@ static function EventListenerReturn OverrideRankRequirement(
 {
 	local XComGameState_Unit UnitState;
 	local XComLWTuple Tuple;
-	local int Rank, Branch;
+	local int Branch;
 	local int ClassAbilityRankCount; //Rank is 0 indexed but AbilityRanks is not. This means a >= comparison requires no further adjustments
 
 	Tuple = XComLWTuple(EventData);
