@@ -12,7 +12,6 @@ function bool ChangeHitResultForTarget(XComGameState_Effect EffectState, XComGam
 
 		if (TargetUnit.Untouchable > 0)
 		{
-			TargetUnit.Untouchable--;
 			NewHitResult = eHit_Untouchable;
 			`XEVENTMGR.TriggerEvent('BattlefieldAwarenessTriggered', TargetUnit, TargetUnit);
 			return true;

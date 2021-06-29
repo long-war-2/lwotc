@@ -737,11 +737,10 @@ static function EventListenerReturn ImpersonalEdgeListener(Object EventData, Obj
 {
 	local XComGameStateContext_Ability AbilityContext;
 	local XComGameState_Item ItemState;
-	local XComGameState_Ability AbilityState, TriggerAbilityState;
+	local XComGameState_Ability TriggerAbilityState;
 
 
 	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
-	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID));
 
 	TriggerAbilityState = XComGameState_Ability(CallbackData);
 

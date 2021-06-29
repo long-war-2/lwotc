@@ -8,6 +8,6 @@ class X2Effect_BattlefieldAwarenessCooldown extends X2Effect_Persistent;
 
 defaultproperties
 {
-    EffectName = 'BattlefieldAwarenessCooldown'
+    EffectName = "BattlefieldAwarenessCooldown"
     DuplicateResponse = eDupe_Ignore
 }
