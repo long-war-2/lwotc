@@ -46,13 +46,9 @@ private function bool ShouldApplyBonuses(XComGameState_Effect EffectState, XComG
 {
 	local UnitValue DamageUnitValue;
 
-	if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
-	{
-		Target.GetUnitValue('DamageThisTurn', DamageUnitValue);
-		return DamageUnitValue.fValue > 0;
-	}
+	Target.GetUnitValue('DamageThisTurn', DamageUnitValue);
+	return DamageUnitValue.fValue > 0;
 
-	return false;
 }
 
 defaultproperties

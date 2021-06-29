@@ -13,6 +13,8 @@ var config int WHIPLASH_ACTION_POINT_COST;
 var config int FULL_THROTTLE_DURATION;
 var config int BATTLELORD_ACTION_POINT_COST;
 var config int BATTLELORD_COOLDOWN;
+var config int COMBAT_PRESENCE_COOLDOWN;
+var config int REFLEX_CRIT_DEF;
 
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
@@ -20,6 +22,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	{
 	case 'SkirmisherReflex':
 		Template.AdditionalAbilities.AddItem('SkirmisherReflexTrigger');
+		UpdateReflex(Template);
 		break;
 	case 'JudgmentTrigger':
 		ModifyJudgementPanicChanceFunction(Template);
@@ -46,6 +49,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	case 'TotalCombat':
 		UpdateTotalCombat(Template);
+		break;
+	case 'CombatPresence':
+		UpdateCombatPresence(Template);
 		break;
 	}
 }
@@ -291,7 +297,25 @@ static function UpdateTotalCombat(X2AbilityTemplate Template)
 	Template.AdditionalAbilities.AddItem('VolatileMix');
 }
 
+static function UpdateCombatPresence(X2AbilityTemplate Template)
+{
+	local X2AbilityCooldown	Cooldown;
 
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.COMBAT_PRESENCE_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+}
+
+
+static function UpdateReflex(X2AbilityTemplate Template)
+{
+	local X2Effect_Resilience	CritDefEffect;
+
+	CritDefEffect = new class'X2Effect_Resilience';
+	CritDefEffect.CritDef_Bonus = default.REFLEX_CRIT_DEF;
+	CritDefEffect.BuildPersistentEffect (1, true, false, false);
+	Template.AddTargetEffect(CritDefEffect);
+}
 
 
 defaultproperties

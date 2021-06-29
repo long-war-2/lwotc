@@ -188,6 +188,15 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'GREATER_PADDING_BM':
 		OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_BM);
 		return true;
+	case 'OVERRIDE_REDUCTION':
+		OutString = string(class'X2Effect_ManualOverride_LW'.default.OVERRIDE_REDUCTION);
+		return true;
+	case 'REFLEX_CRIT_DEF':
+		OutString = string(class'X2LWModTemplate_SkirmisherAbilities'.default.REFLEX_CRIT_DEF);
+		return true;
+	case 'BATTLEFIELD_AWARENESS_COOLDOWN':
+		OutString = string(class'X2Ability_SkirmisherAbilitySet_LW'.default.BATTLEFIELD_AWARENESS_COOLDOWN);
+		return true;
 	}
 
 	return false;
