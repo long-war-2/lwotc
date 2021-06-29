@@ -394,9 +394,9 @@ static function X2AbilityTemplate BattlefieldAwareness()
 	
 	EventListenerTrigger = new class'X2AbilityTrigger_EventListener';
 	EventListenerTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
-	EventListenerTrigger.ListenerData.EventID = 'UnitDied';
-	EventListenerTrigger.ListenerData.Filter = eFilter_None;
-	EventListenerTrigger.ListenerData.EventFn = BattlefieldAwarenessListener;
+	EventListenerTrigger.ListenerData.EventID = 'KillMail';
+	EventListenerTrigger.ListenerData.Filter = eFilter_Unit;
+	EventListenerTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Template.AbilityTriggers.AddItem(EventListenerTrigger);
 
 	Effect = new class'X2Effect_BattlefieldAwareness';
@@ -417,35 +417,6 @@ static function X2AbilityTemplate BattlefieldAwareness()
 	return Template;
 }
 
-static function EventListenerReturn BattlefieldAwarenessListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
-{
-	local XComGameStateContext_Ability AbilityContext;
-	local XComGameState_Unit SourceUnit, DeadUnit;
-	local XComGameStateHistory History;
-	local XComGameState_Ability TriggerAbilityState,AbilityState;
-	local XComGameState_Effect EffectState;
-
-	TriggerAbilityState = XComGameState_Ability(CallbackData);
-
-	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
-	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID));
-
-	if (AbilityContext != none)
-	{
-		History = `XCOMHISTORY;
-		EffectState = XComGameState_Effect(EventData);
-
-		SourceUnit = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-		DeadUnit = XComGameState_Unit(EventData);
-
-		if (AbilityContext.InputContext.SourceObject.ObjectID == TriggerAbilityState.OwnerStateObject.ObjectID)
-		{
-			return TriggerAbilityState.AbilityTriggerEventListener_Self(EventData, EventSource, GameState, EventID, CallbackData);
-		}
-	}
-
-	return ELR_NoInterrupt;
-}
 
 
 static function X2AbilityTemplate BattlefieldAwarenessPassive()
@@ -480,8 +451,8 @@ static function X2AbilityTemplate BattlefieldAwarenessCooldown()
 	EventListenerTrigger = new class'X2AbilityTrigger_EventListener';
 	EventListenerTrigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventListenerTrigger.ListenerData.EventID = 'BattlefieldAwarenessTriggered';
-	EventListenerTrigger.ListenerData.Filter = eFilter_None;
-	EventListenerTrigger.ListenerData.EventFn = BattlefieldAwarenessCooldownListener;
+	EventListenerTrigger.ListenerData.Filter = eFilter_Unit;
+	EventListenerTrigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Template.AbilityTriggers.AddItem(EventListenerTrigger);
 
 	BattlefieldAwarenessCooldown = new class 'X2Effect_BattlefieldAwarenessCooldown';
@@ -495,30 +466,4 @@ static function X2AbilityTemplate BattlefieldAwarenessCooldown()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
-}
-
-
-static function EventListenerReturn BattlefieldAwarenessCooldownListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
-{
-	local X2Effect_BattlefieldAwarenessCooldown BattlefieldAwarenessCooldown; 
-	local XComGameState NewGameState;
-	local XcomGameState_Unit UnitState;
-	local XcomGameState_Effect EffectState;
-	local XcomGameState_Ability TriggerAbilityState, AbilityState;
-	local XComGameStateContext_Ability AbilityContext;
-
-
-	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
-
-	UnitState = XComGameState_Unit(EventData);
-	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID));
-	TriggerAbilityState = XComGameState_Ability(CallbackData);
-
-	if (UnitState.GetReference().ObjectID != AbilityContext.InputContext.PrimaryTarget.ObjectID)
-	{
-		return ELR_NoInterrupt;
-	}
-
-
-	return TriggerAbilityState.AbilityTriggerEventListener_Self(EventData, EventSource, GameState, EventID, CallbackData);
 }
