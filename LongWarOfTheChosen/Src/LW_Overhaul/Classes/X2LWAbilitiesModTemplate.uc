@@ -25,7 +25,6 @@ var config bool ALLOW_NEGATIVE_DODGE;
 var config bool DODGE_CONVERTS_GRAZE_TO_MISS;
 var config bool GUARANTEED_HIT_ABILITIES_IGNORE_GRAZE_BAND;
 var config bool DISABLE_LOST_HEADSHOT;
-var config bool USE_LOS_FOR_MULTI_SHOT_ABILITIES;
 
 var config array<bool> HEADSHOT_ENABLED;
 
@@ -48,6 +47,16 @@ var config int MIND_SCORCH_BURN_CHANCE;
 var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
 
 var config array<name> PISTOL_ABILITY_WEAPON_CATS;
+
+// Data structure for multi-shot abilities that need patching
+struct MultiShotAbility
+{
+	var name AbilityName;
+	var array<name> FollowUpAbilityNames;
+};
+
+var config bool USE_LOS_FOR_MULTI_SHOT_ABILITIES;
+var config array<MultiShotAbility> MULTI_SHOT_ABILITIES;
 
 var privatewrite X2Condition_Visibility GameplayVisibilityCondition;
 
@@ -202,17 +211,6 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'MindShield':
 			DisplayMindShieldPassive(Template);
 			break;
-		// Patch multi-shot abilities
-		case 'RapidFire':
-		case 'ChainShot':
-			PatchMultiShotFirstShot(Template);
-			break;
-		case 'RapidFire2':
-			PatchMultiShotFinalShot(Template, 'RapidFire');
-			break;
-		case 'ChainShot2':
-			PatchMultiShotFinalShot(Template, 'ChainShot');
-			break;
 		default:
 			break;
 
@@ -230,6 +228,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			Template.AbilityShooterConditions.AddItem(CreatePistolWeaponCatCondition());
 			break;
 	}
+
+	// Handle multi-shot abilities
+	UpdateMultiShotAbility(Template);
 }
 
 static function bool OverrideFinalHitChance(X2AbilityToHitCalc AbilityToHitCalc, out ShotBreakdown ShotBreakdown)
@@ -1204,6 +1205,46 @@ static function X2Condition_WeaponCategory CreatePistolWeaponCatCondition()
 	return WeaponCatCondition;
 }
 
+// Patches any multi-shot abilities that are configured in the
+// MULTI_SHOT_ABILITIES config.
+static function UpdateMultiShotAbility(X2AbilityTemplate Template)
+{
+	local MultiShotAbility AbilityData;
+	local name AbilityName;
+	local int i;
+
+	foreach default.MULTI_SHOT_ABILITIES(AbilityData)
+	{
+		if (AbilityData.AbilityName == Template.DataName)
+		{
+			`LWTrace("Patching multi-shot primary ability '" $ AbilityData.AbilityName $ "'");
+			PatchMultiShotFirstShot(Template);
+			return;
+		}
+		else
+		{
+			foreach AbilityData.FollowUpAbilityNames(AbilityName, i)
+			{
+				if (AbilityName == Template.DataName)
+				{
+					if (i == AbilityData.FollowUpAbilityNames.Length - 1)
+					{
+						`LWTrace("Patching multi-shot final-shot ability '" $ AbilityData.AbilityName $ "'");
+						PatchMultiShotFinalShot(Template, AbilityData.AbilityName);
+						return;
+					}
+					else
+					{
+						`LWTrace("Patching multi-shot intermediate ability '" $ AbilityData.AbilityName $ "'");
+						PatchMultiShotIntermediateShot(Template, AbilityData.AbilityName);
+						return;
+					}
+				}
+			}
+		}
+	}
+}
+
 static function PatchMultiShotFirstShot(X2AbilityTemplate Template)
 {
 	local X2Effect_SetUnitValue NewEffect;
@@ -1215,6 +1256,26 @@ static function PatchMultiShotFirstShot(X2AbilityTemplate Template)
 		NewEffect.NewValueToSet = 1.0f;
 		NewEffect.CleanupType = eCleanup_BeginTurn;
 		Template.AddShooterEffect(NewEffect);
+	}
+}
+
+static function PatchMultiShotIntermediateShot(X2AbilityTemplate Template, name FirstShotName)
+{
+	local X2Condition_UnitValue UnitValueCondition;
+	local name UnitValueName;
+	
+	if (default.USE_LOS_FOR_MULTI_SHOT_ABILITIES)
+	{
+		Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+	}
+	else
+	{
+		UnitValueName = GetMultiShotContinueUnitValueName(FirstShotName);
+
+		// Apply a condition that the first shot must have already been fired.
+		UnitValueCondition = new class'X2Condition_UnitValue';
+		UnitValueCondition.AddCheckValue(UnitValueName, 1.0f);
+		Template.AbilityShooterConditions.AddItem(UnitValueCondition);
 	}
 }
 

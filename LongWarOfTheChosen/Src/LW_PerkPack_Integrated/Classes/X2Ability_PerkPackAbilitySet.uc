@@ -1399,7 +1399,6 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityCooldown					Cooldown;	
 	local X2Effect_Knockback				KnockbackEffect;
-	local X2Effect_SetUnitValue				ShotContinueEffect;
 	local array<name>                       SkipExclusions;
 	local X2Condition_UnitInventory			InventoryCondition2;
 	local X2Effect_Shredder					WeaponDamageEffect;
@@ -1455,12 +1454,6 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 	WeaponDamageEffect = new class'X2Effect_Shredder';
 	Template.AddTargetEffect(WeaponDamageEffect);
 
-	ShotContinueEffect = new class'X2Effect_SetUnitValue';
-	ShotContinueEffect.UnitName = 'CyclicFireContinue';
-	ShotContinueEffect.NewValueToSet = 1.0f;
-	ShotContinueEffect.CleanupType = eCleanup_BeginTurn;
-	Template.AddShooterEffect(ShotContinueEffect);
-
 	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
@@ -1505,7 +1498,6 @@ static function X2AbilityTemplate CyclicFire2()
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityTrigger_EventListener    Trigger;
-	local X2Condition_UnitValue 			ShotContinueCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CyclicFire2');
 
@@ -1524,11 +1516,6 @@ static function X2AbilityTemplate CyclicFire2()
 	Template.AddShooterEffectExclusions();
 
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
-
-	// Apply a condition that the first shot must have already been fired.
-	ShotContinueCondition = new class'X2Condition_UnitValue';
-	ShotContinueCondition.AddCheckValue('CyclicFireContinue', 1.0f);
-	Template.AbilityShooterConditions.AddItem(ShotContinueCondition);
 
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	Template.AssociatedPassives.AddItem('HoloTargeting');
@@ -1572,8 +1559,6 @@ static function X2AbilityTemplate CyclicFire3()
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityTrigger_EventListener    Trigger;
-	local X2Condition_UnitValue 			ShotContinueCondition;
-	local X2Effect_ClearUnitValue 			ShotContinueBreakEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CyclicFire3');
 
@@ -1591,11 +1576,6 @@ static function X2AbilityTemplate CyclicFire3()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
 
-	// Apply a condition that the first shot must have already been fired.
-	ShotContinueCondition = new class'X2Condition_UnitValue';
-	ShotContinueCondition.AddCheckValue('CyclicFireContinue', 1.0f);
-	Template.AbilityShooterConditions.AddItem(ShotContinueCondition);
-
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
 
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
@@ -1603,10 +1583,6 @@ static function X2AbilityTemplate CyclicFire3()
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
 	Template.bAllowAmmoEffects = true;
 	Template.bAllowBonusWeaponEffects = true;
-
-	ShotContinueBreakEffect = new class'X2Effect_ClearUnitValue';
-	ShotContinueBreakEffect.UnitValueName = 'CyclicFireContinue';
-	Template.AddShooterEffect(ShotContinueBreakEffect);
 
 	Trigger = new class'X2AbilityTrigger_EventListener';
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
