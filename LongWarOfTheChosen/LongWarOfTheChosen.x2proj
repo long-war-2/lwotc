@@ -1306,10 +1306,11 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2AbilityTarget_Cursor_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2DownloadableContentInfo_LW_FactionBalance.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Amplify_LW.uc" />
-    <Content Include="Src\LW_FactionBalance\Classes\XComGameState_Effect_Amplify_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_Apotheosis.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ArcWaveMultiDamage_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_BanishHitMod.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_BattlefieldAwareness.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_BattlefieldAwarenessCooldown.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_BloodTrail_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_BloodTrailBleeding.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2Effect_ChargeBattery.uc" />
@@ -1340,6 +1341,7 @@
     <Content Include="Src\LW_FactionBalance\Classes\X2LWModTemplate_TemplarAbilities.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\X2StrategyElement_AcademyUnlocks_GrappleParkour.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XComGameState_Effect_AbilityTrigger.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\XComGameState_Effect_Amplify_LW.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XComGameState_Effect_FocusLevel.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XMBEffect_RevealUnit_LW.uc" />
     <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_Solace_LW.uc" />
