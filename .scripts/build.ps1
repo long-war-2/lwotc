@@ -24,4 +24,5 @@ switch ($config)
     default { ThrowFailure "Unknown build configuration $config" }
 }
 
+$builder.IncludeSrc("$srcDirectory\X2WOTCCommunityHighlander\X2WOTCCommunityHighlander\Src")
 $builder.InvokeBuild()
