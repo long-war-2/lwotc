@@ -25,4 +25,5 @@ switch ($config)
 }
 
 $builder.IncludeSrc("$srcDirectory\X2WOTCCommunityHighlander\X2WOTCCommunityHighlander\Src")
+$builder.SetContentOptionsJsonFilename("ContentOptions.json")
 $builder.InvokeBuild()

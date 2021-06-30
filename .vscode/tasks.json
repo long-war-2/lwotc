@@ -5,7 +5,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build (release)",
+            "label": "Build LWOTC (release)",
             "type": "shell",
             "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\build.ps1' -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -config 'default'",
             "group": {
@@ -15,16 +15,37 @@
             "problemMatcher": []
         },
         {
-            "label": "Build (debug)",
+            "label": "Build LWOTC (debug)",
             "type": "shell",
             "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\build.ps1' -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -config 'debug'",
             "group": "build",
             "problemMatcher": []
         },
         {
-            "label": "Clean",
+            "label": "Clean LWOTC",
             "type": "shell",
             "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\.scripts\\X2ModBuildCommon\\clean.ps1' -modName 'LongWarOfTheChosen' -srcDirectory '${workspaceRoot}' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}'",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build CHL (final release)",
+            "type": "shell",
+            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\X2WOTCCommunityHighlander\\.scripts\\build.ps1' -srcDirectory '${workspaceRoot}\\X2WOTCCommunityHighlander' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -config final_release",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build CHL (debug)",
+            "type": "shell",
+            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\X2WOTCCommunityHighlander\\.scripts\\build.ps1' -srcDirectory '${workspaceRoot}\\X2WOTCCommunityHighlander' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -config debug",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build DLC2 CHL",
+            "type": "shell",
+            "command": "powershell.exe –NonInteractive –ExecutionPolicy Unrestricted -file '${workspaceRoot}\\X2WOTCCommunityHighlander\\Components\\DLC2CommunityHighlander\\.scripts\\build.ps1' -srcDirectory '${workspaceRoot}\\X2WOTCCommunityHighlander\\Components\\DLC2CommunityHighlander' -sdkPath '${config:xcom.highlander.sdkroot}' -gamePath '${config:xcom.highlander.gameroot}' -config default",
             "group": "build",
             "problemMatcher": []
         }
