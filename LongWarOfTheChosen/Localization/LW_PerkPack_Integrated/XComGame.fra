@@ -20,7 +20,7 @@ BriefSummary="Cet implant octroie +10 en visée au prochain tir avec l'arme prin
 [CombatAwarenessPCS X2EquipmentTemplate]
 FriendlyName="SPC: Attention accrue"
 FriendlyNamePlural="SPC: Attention accrue"
-BriefSummary="Confère 15 défense et un point d'armure en mode Vigilance."
+BriefSummary="En mode Vigilance, vous gagnez 15 défense et 1 point d'armure."
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="SPC: Adrénaline"
@@ -551,9 +551,9 @@ LocPromotionPopupText="<Bullet/> Tir spécial contre les ennemis ne possédant p
 [CombatAwareness X2AbilityTemplate]
 LocFriendlyName="Attention accrue"
 LocFlyOverText="Attention accrue"
-LocLongDescription="En mode Vigilance, gagnez 15 défense et un point d'armure."
-LocHelpText="En mode Vigilance, gagnez 15 défense et un point d'armure."
-LocPromotionPopupText="<Bullet/> En mode Vigilance, gagnez 15 défense et un point d'armure.<br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
+LocLongDescription="En mode Vigilance, gagnez 15 défense et 1 point d'armure."
+LocHelpText="En mode Vigilance, gagnez 15 défense et 1 point d'armure."
+LocPromotionPopupText="<Bullet/> En mode Vigilance, gagnez 15 défense et 1 point d'armure.<br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
 
 [FieldSurgeon X2AbilityTemplate]
 LocFriendlyName="Chirurgien de terrain"
@@ -1087,10 +1087,10 @@ Summary="Les explosifs peuvent infliger des dégâts critiques."
 
 [HuntersInstinct X2AbilityTemplate]
 LocFriendlyName="Instinct du chasseur"
-LocLongDescription="Les attaques à distance sur les ennemis contournés infligent +<Ability:HUNTERSINSTINCTDMG/> points de dégâts."
-LocHelpText="Les attaques à distance sur les ennemis contournés infligent +<Ability:HUNTERSINSTINCTDMG/> points de dégâts."
+LocLongDescription="Les attaques à distance sur les ennemis contournés infligent +<Ability:HUNTERSINSTINCTDMG/> point(s) de dégâts."
+LocHelpText="Les attaques à distance sur les ennemis contournés infligent +<Ability:HUNTERSINSTINCTDMG/> point(s) de dégâts."
 LocFlyOverText="Instinct du chasseur"
-LocPromotionPopupText="<Bullet/> Les attaques à distance sur les ennemis contournés infligent +<Ability:HUNTERSINSTINCTDMG/> points de dégâts."
+LocPromotionPopupText="<Bullet/> Les attaques à distance sur les ennemis contournés infligent +<Ability:HUNTERSINSTINCTDMG/> point(s) de dégâts."
 
 [HitWhereItHurts X2AbilityTemplate]
 LocFriendlyName="Tir mortel"
@@ -1108,10 +1108,10 @@ LocPromotionPopupText="<Bullet/> Vous gagnez +<Ability:COOLUNDERPRESSUREBONUS/> 
 
 [BiggestBooms X2AbilityTemplate]
 LocFriendlyName="Pyrotechnie"
-LocLongDescription="Vos attaques explosives peuvent infliger des dégâts critiques (<Ability:BIGGESTBOOMSCHANCE/>% de chances d'infliger +<Ability:BIGGESTBOOMSDAMAGE/> points de dégâts)."
+LocLongDescription="Vos attaques explosives peuvent infliger des dégâts critiques (<Ability:BIGGESTBOOMSCHANCE/>% de chances d'infliger +<Ability:BIGGESTBOOMSDAMAGE/> point(s) de dégâts)."
 LocHelpText="Vos attaques explosives peuvent infliger des dégâts critiques."
 LocFlyOverText="Pyrotechnie"
-LocPromotionPopupText="<Bullet/> Vos attaques explosives peuvent infliger des dégâts critiques (<Ability:BIGGESTBOOMSCHANCE/>% de chances d'infliger +<Ability:BIGGESTBOOMSDAMAGE/> points de dégâts).<br/>"
+LocPromotionPopupText="<Bullet/> Vos attaques explosives peuvent infliger des dégâts critiques (<Ability:BIGGESTBOOMSCHANCE/>% de chances d'infliger +<Ability:BIGGESTBOOMSDAMAGE/> point(s) de dégâts).<br/>"
 
 [RapidFire X2AbilityTemplate]
 LocFriendlyName="Tir rapide"
