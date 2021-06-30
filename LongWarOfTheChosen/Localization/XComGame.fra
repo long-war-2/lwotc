@@ -2367,7 +2367,7 @@ ObjectiveTextPools[1]="Évacuer au moins un agent"
 ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
 ; End translated
 
-; LWOTC Needs Translation
+; LWOTC Translated
 [DefaultCovertEscape_NonPCP_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Atteindre le point de rendez-vous"
 ObjectiveTextPools[1]="Évacuer au moins un agent"
