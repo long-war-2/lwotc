@@ -166,8 +166,29 @@ LocHelpText="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/>
 LocLongDescription="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
 LocPromotionPopupText="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
 
-[LW_FactionBalance.X2Ability_ThrowingKnifeAbilitySet]
-RendTheMarkedEffectName="Marque de sang"
-RendTheMarkedEffectDesc="Chaque fois que vous blessez une cible avec un couteau de lancer, toute unité qui la prend pour cible avant la fin du tour gagne un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique."
+; LWOTC translated
+[BattlefieldAwareness X2AbilityTemplate]
+LocFriendlyName="Instinct de combat"
+LocLongDescription="Si vous tuez un ennemi pendant votre tour, la prochaine attaque dirigée contre vous pendant le tour de votre adversaire manquera sa cible. Une fois activée, cette capacité deviendra inactive pendant <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> tour(s)."
+LocHelpText="Si vous tuez un ennemi pendant votre tour, la prochaine attaque dirigée contre vous pendant le tour de votre adversaire manquera sa cible. Une fois activée, cette capacité deviendra inactive pendant <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> tour(s)."
+LocFlyOverText="Instinct de combat"
+LocPromotionPopupText="<Bullet/> Lorsque cette capacité se déclenche, le soldat est protégé contre la prochaine attaque infligeant des dégâts pendant le tour de son adversaire, y compris les attaques à zone d'effet.<br/>"
+
+
+[BattlefieldAwarenessPassive X2AbilityTemplate]
+LocFriendlyName="Instinct de combat"
+LocLongDescription="Si vous tuez un ennemi pendant votre tour, la prochaine attaque dirigée contre vous pendant le tour de votre adversaire manquera sa cible. Une fois activée, cette capacité deviendra inactive pendant <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> tour(s)."
+LocHelpText="Si vous tuez un ennemi pendant votre tour, la prochaine attaque dirigée contre vous pendant le tour de votre adversaire manquera sa cible. Une fois activée, cette capacité deviendra inactive pendant <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> tour(s)."
+LocFlyOverText="Instinct de combat"
+
+[BattlefieldAwarenessCooldown X2AbilityTemplate]
+LocFriendlyName="Rechargement de l'Instinct de combat"
+LocLongDescription="La capacité Instinct de combat ne sera pas active tant que cet effet n'aura pas pris fin."
+LocHelpText="La capacité Instinct de combat ne sera pas active tant que cet effet n'aura pas pris fin."
+
 ; End translated
+
+[CombatPresence X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Cett capacité peut être utilisée pour porter secours à des alliés en situation périlleuse.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+
 

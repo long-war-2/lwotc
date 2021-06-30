@@ -295,6 +295,9 @@ UnitAlreadyInSquad="Unité dans escouade différente"
 UnitInSquad="Unité dans escouade"
 RankTooLow="Rang trop bas"
 CannotModifyOnMissionSoldierTooltip="Impossible de modifier un soldat qui est en mission"
+; LWOTC translated
+ReasonClassAbilityPickedAtRank="Capacité déjà choisie pour ce rang"
+; End translated
 
 [XComGameState_LWPersistentSquad]
 +DefaultSquadNames="Menace"
