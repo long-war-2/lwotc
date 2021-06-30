@@ -6959,7 +6959,7 @@ LocPromotionPopupText="<Bullet/> Invoque une tempête d'énergie psionique qui f
 
 ; End Translation
 
-; LWOTC Needs Translation
+; LWOTC Translated
 [Sabotage_LongRangeComms X2SabotageTemplate]
 SummaryText="Nous sommes incapables de maintenir durablement nos communications à longue distance après le récent sabotage de l'Élu. Les missions secrètes sont retardées de 2 semaines."
 ShortSummaryText="Nos missions secrètes sont retardées de 2 semaines!"
