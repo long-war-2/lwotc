@@ -1,0 +1,10 @@
+{
+    "missingUncooked": [
+        "DestroyTransmitter_TempAssets.upk",
+        "MissionAssets_SupplyExtraction.upk",
+        "MissionAssets_XPACK.upk",
+        "PsiTransmitter.upk",
+        "SupplyExtraction_TempAssets.upk"
+    ],
+    "sfCollectionMaps": []
+}

@@ -629,6 +629,9 @@ class BuildProject {
 
 		# We are definitely cooking
 		Write-Host "Starting assets cooking"
+		Write-Host "sfStandaloneNames: $($sfStandaloneNames.Length)"
+		Write-Host "sfMapsNames: $($sfMapsNames.Length)"
+		Write-Host "sfCollectionOnlyMapsNames: $($sfCollectionOnlyMapsNames.Length)"
 
 		# Bit of debug info
 		Write-Host "SF Standalone: $sfStandaloneNames"
