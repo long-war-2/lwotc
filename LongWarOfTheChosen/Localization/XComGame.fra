@@ -2372,7 +2372,7 @@ ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
 ObjectiveTextPools[0]="Atteindre le point de rendez-vous"
 ObjectiveTextPools[1]="Évacuer au moins un agent"
 ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
-; End Translation
+; End Translated
 
 [DefaultExtract_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Nombre de tours avant le départ du Mercure"
