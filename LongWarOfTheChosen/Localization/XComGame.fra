@@ -5265,14 +5265,16 @@ LocFriendlyName="Charge"
 LocLongDescription="Attaquez un ennemi à portée de déplacement avec votre <Ability:SecondaryWeaponName/>. Quelque soit la distance parcourue (déplacement simple ou sprint), l'activation de cette capacité ne coûte qu'une action et ne met pas fin à votre tour."
 LocHelpText="Attaquez un ennemi à portée de déplacement avec votre <Ability:SecondaryWeaponName/>. Quelque soit la distance parcourue (déplacement simple ou sprint), l'activation de cette capacité ne coûte qu'une action et ne met pas fin à votre tour."
 LocPromotionPopupText="<Bullet/> Coûte 1 action et ne met pas fin à votre tour. Contrairement aux autres capacités qui lui sont similaires, Charge ne coûte qu'une action et ce, quelque soit la distance parcourue (déplacement simple ou sprint).<br/><Bullet/> Temps de rechargement de <Ability:RECKONING_LW_COOLDOWN/> tour(s).<br/>"
-
-[SkirmisherSlash X2AbilityTemplate]
-LocFriendlyName="Lacération éclair"
-LocFlyOverText="Lacération éclair"
-LocLongDescription="Attaquez un ennemi adjacent avec votre ripjack. Action gratuite."
-LocHelpText="Attaquez un ennemi adjacent avec votre ripjack. Action gratuite."
-LocPromotionPopupText="<Bullet/> Cette capacité ne peut être utilisée uniquement contre les ennemis adjacents.<br/><Bullet/> Action gratuite.<br/><Bullet/> Temps de rechargement de <Ability:RECKONING_LW_SLASH_COOLDOWN/> tour(s).<br/>"
 ; End translated (2)
+
+; LWOTC translated (3)
+[SkirmisherSlash X2AbilityTemplate]
+LocFriendlyName="Lacération ripjack"
+LocFlyOverText="Lacération ripjack"
+LocLongDescription="Attaquez un ennemi adjacent avec votre ripjack. Coûte 1 action et ne met pas fin au tour."
+LocHelpText="Attaquez un ennemi adjacent avec votre ripjack. Coûte 1 action et ne met pas fin au tour."
+LocPromotionPopupText="<Bullet/> Cette capacité ne peut être utilisée uniquement contre les ennemis adjacents.<br/>"
+; End translated (3)
 
 [SupremeFocus X2AbilityTemplate]
 LocFriendlyName="Concentration suprême"
@@ -5352,11 +5354,13 @@ LocPromotionPopupText="<Bullet/> Le temps de rechargement de la capacité Obscur
 ; End translated
 
 ; LWOTC translated (3)
+; LWOTC translated (4)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="Piste sanglante"
-LocLongDescription="Les tirs infligent <Ability:BLOODTRAILDAMAGE/> point(s) de dégâts en plus et réduisent de -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> l'esquive de la cible si celle-ci a été blessée ce tour-ci."
-LocHelpText="Les tirs infligent <Ability:BLOODTRAILDAMAGE/> point(s) de dégâts en plus et réduisent de -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> l'esquive de la cible si celle-ci a été blessée ce tour-ci."
-LocPromotionPopupText="<Bullet/> S'applique uniquement au tour au cours duquel l'ennemi est blessé.<br/><Bullet/> Planifiez vos attaques avec vos équipiers pour tirer pleinement parti de Piste sanglante.<br/><Bullet/> Les effets de cette capacité s'appliquent uniquement à l'arme principale.<br/>"
+LocLongDescription="Les attaques infligent <Ability:BLOODTRAILDAMAGE/> point(s) de dégâts en plus et réduisent de -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> l'esquive de la cible si celle-ci a été blessée ce tour-ci. Les effets de cette capacité s'appliquent à toutes les armes, y compris les grenades."
+LocHelpText="Les attaques infligent <Ability:BLOODTRAILDAMAGE/> point(s) de dégâts en plus et réduisent de -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> l'esquive de la cible si celle-ci a été blessée ce tour-ci. Les effets de cette capacité s'appliquent à toutes les armes, y compris les grenades."
+LocPromotionPopupText="<Bullet/> S'applique uniquement au tour au cours duquel l'ennemi est blessé.<br/><Bullet/> Planifiez vos attaques avec vos équipiers pour tirer pleinement parti de Piste sanglante.<br/><Bullet/> Les effets de cette capacité s'appliquent à toutes les armes, y compris les grenades.<br/>"
+; End translated (4)
 
 [PaleHorse X2AbilityTemplate]
 LocFriendlyName="Récolte d'âme"
@@ -5396,10 +5400,12 @@ LocPromotionPopupText="<Bullet/> Traque permet à l'unité de détecter les autr
 LocFriendlyName="Traque"
 LocFlyOverText="Traque"
 
+; LWOTC translated (2)
 [SkirmisherReflex X2AbilityTemplate]
-LocLongDescription="L'unité gagne une action bonus au tour suivant lorsqu'un ennemi lui tire dessus. Ne se déclenche qu'une seule fois par tour."
-LocHelpText="L'unité gagne une action bonus au tour suivant lorsqu'un ennemi lui tire dessus. Ne se déclenche qu'une seule fois par tour."
+LocLongDescription="L'unité gagne une action bonus au tour suivant lorsqu'un ennemi lui tire dessus. Ne se déclenche qu'une seule fois par tour. Les attaques qui vous prennent pour cible subissent un malus de -<Ability:REFLEX_CRIT_DEF/> en chances de coup critique."
+LocHelpText="L'unité gagne une action bonus au tour suivant lorsqu'un ennemi lui tire dessus. Ne se déclenche qu'une seule fois par tour. Les attaques qui vous prennent pour cible subissent un malus de -<Ability:REFLEX_CRIT_DEF/> en chances de coup critique."
 LocPromotionPopupText="<Bullet/> Le grappin fait de l'Escarmoucheur un excellent éclaireur, et la capacité Réflexe encourage une approche plus agressive. <br/><Bullet/> Cette capacité ne peut être utilisée qu'une fois par tour.<br/>"
+; End translated (2)
 
 [FullThrottle X2AbilityTemplate]
 LocLongDescription="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tour(s), tour en cours inclus."
@@ -5412,11 +5418,14 @@ LocHelpText="Si l'unité est la cible d'une attaque, l'ennemi qui attaque a une 
 LocFlyOverText="Justice"
 LocPromotionPopupText="<Bullet/> La capacité Justice peut être déclenchée par les attaques au corps à corps et de zone. <br/><Bullet/> La capacité Justice ne se déclenchera pas avec un tir de vigilance.<br/><Bullet/> Les chances de panique dépendent à la fois de la volonté de l'attaquant et de celle de la cible de la capacité Justice.<br/><Bullet/> La capacité Justice est plus efficace avec des unités ayant une volonté élevée.<br/>"
 
+
+; LWOTC translated (2)
 [ManualOverride_LW X2AbilityTemplate]
 LocFriendlyName="Contournement manuel"
-LocLongDescription="Réinitialise les temps de rechargement de toutes les capacités de l'unité ciblée."
-LocHelpText="Réinitialise les temps de rechargement de toutes les capacités de l'unité ciblée."
+LocLongDescription="Réduit les temps de rechargement de toutes les capacités de l'unité ciblée de <Ability:OVERRIDE_REDUCTION/> tour(s)."
+LocHelpText="Réduit les temps de rechargement de toutes les capacités de l'unité ciblée de <Ability:OVERRIDE_REDUCTION/> tour(s)."
 LocPromotionPopupText="<Bullet/> Utilisez les capacités de l'Escarmoucheur tôt et souvent pour profiter pleinement du Contournement manuel.<br/><Bullet/> Coûte 1 action. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+; End translated (2)
 
 [Battlelord X2AbilityTemplate]
 LocLongDescription="Déclenche une action immédiate après le tour de chaque ennemi dans le champ de vision. Les capacités qui octroient des points d'action ne peuvent pas être activées durant cette action immédiate (comme la capacité Frappe et course par exemple)."
@@ -5446,10 +5455,10 @@ LocHelpText="Le Templier peut immédiatement annuler les effets psychiques néga
 LocPromotionPopupText="<Bullet/> Réconfort annule la désorientation, le contrôle mental, la panique et l'étourdissement.<br/><Bullet/> Coûte 1 action et ne met pas fin au tour. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
 ; End translated (2)
 
-; LWOTC Needs Translation (2)
+; LWOTC Needs translated (2)
 [Ghost X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Le Fantôme débute avec un niveau de concentration égal à celui du Templier lorsqu'il l'a invoqué moins 1.<br/><Bullet/> Le Fantôme ne peut pas gagner de concentration et disparaît lorsque sa concentration a été entièrement consommée ou lorsque ses PV deviennent égaux à 0.<br/><Bullet/> Taillade coûte 1 point de concentration lorsqu'elle est utilisée par un Fantôme.<br/><Bullet/> Le Fantôme doit être invoqué sur le cadavre d'un ennemi humanoïde, dans la limite d'une invocation par cadavre.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Le Fantôme n'a pas accès aux capacités de bouclier et ne peut pas faire appel à la capacité Coup de bouclier. Le Fantôme n'a pas accès aux capacités suivantes: Volt, Déviation, Renvoi, Réconfort, Conduit du néant, Escrimeur, Transe du vide, Force d'âme, Tempête ionique et Endurance.<br/>"
-; End Translation (2)
+; End translated (2)
 
 ; LWOTC translated #2 - Shard and Caster gauntlet tactical text and the brief
 ; summaries for the caster gauntlets have been updated.
@@ -5658,7 +5667,7 @@ Description="Si cette mission dispose d'un chronomètre, il sera augmenté de 2 
 [IncreaseTimer4Effect X2SitRepEffect_ModifyKismetVariable]
 FriendlyName="Chronomètre étendu"
 Description="Si cette mission dispose d'un chronomètre, il sera augmenté de 4 tours."
-; End Translation (2)
+; End translated (2)
 
 [CovertActionRisk_Failure_Easy X2CovertActionRiskTemplate]
 RiskName="Échec"
@@ -6661,7 +6670,7 @@ LocHelpText="Réduit le bonus de défense procuré par les couvertures lors des 
 [SmokeFlankingCritProtection X2AbilityTemplate]
 LocFriendlyName="Voile d'ombre"
 LocHelpText="Les unités situées dans la zone d'effet de la fumée ne sont jamais considérées comme des cibles contournées."
-; End Translation (2)
+; End translated (2)
 
 
 [ImpactCompensation_LW X2AbilityTemplate]
@@ -6747,9 +6756,9 @@ LocHelpText="Le Prêtre est entouré d'une aura qui annule ou bloque immédiatem
 LocFlyOverText="Réconfort"
 LocPromotionPopupText="<Bullet/> La capacité Réconfort agit sur un rayon de 4 cases.<br/><Bullet/> Un déplacement près des alliés touchés soignera immédiatement leurs troubles psychiques.<br/>"
 
-; End Translation
+; End translated
 
-; LWOTC Needs Translation
+; LWOTC translated
 [AssassinBladestorm X2AbilityTemplate]
 LocFriendlyName="Escrimeur"
 LocLongDescription="Obtenez des attaques gratuites avec votre <Ability:SecondaryWeaponName/> sur les ennemis qui s'approchent, s'éloignent ou attaquent au corps à corps. Cette capacité ne se déclenche pas pendant votre tour."
@@ -6788,23 +6797,25 @@ LocHelpText="Procure un abri partiel aux unités alliées."
 LocLongDescription="Procure un abri partiel aux unités alliées."
 LocFlyOverText="Bouclier de templier"
 
+; LWOTC translated (2)
 [TemplarBallisticShield_CV X2AbilityTemplate]
 LocFriendlyName="Bouclier de templier"
-LocHelpText="Octroie 0 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
-LocLongDescription="Octroie 0 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
+LocHelpText="Procure un abri partiel aux unités alliées adjacentes. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
+LocLongDescription="Procure un abri partiel aux unités alliées adjacentes. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
 LocFlyOverText="Bouclier de templier"
 
 [TemplarBallisticShield_MG X2AbilityTemplate]
 LocFriendlyName="Bouclier de templier"
-LocHelpText="Octroie 3 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
-LocLongDescription="Octroie 3 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
+LocHelpText="Procure un abri partiel aux unités alliées adjacentes. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
+LocLongDescription="Procure un abri partiel aux unités alliées adjacentes. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
 LocFlyOverText="Bouclier de templier"
 
 [TemplarBallisticShield_BM X2AbilityTemplate]
 LocFriendlyName="Bouclier de templier"
-LocHelpText="Octroie 6 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
-LocLongDescription="Octroie 6 point(s) de bouclier et procure un abri partiel aux unités alliées. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
+LocHelpText="Procure un abri partiel aux unités alliées adjacentes. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
+LocLongDescription="Procure un abri partiel aux unités alliées adjacentes. Procure également un abri partiel à cette unité même lorsqu'elle est contournée."
 LocFlyOverText="Bouclier de templier"
+; End translated (2)
 
 [ShieldBash_LW X2AbilityTemplate]
 LocFriendlyName="Coup de bouclier"
@@ -6926,11 +6937,13 @@ LocHelpText="Tirez sur une cible jusqu'à ce que vous soyez à court de munition
 LocFlyoverText="Bannissement"
 LocPromotionPopupText="<Bullet/> Chaque tir effectué avec Bannissement a une chance individuelle de toucher la cible et peut infliger des coups critiques.<br/><Bullet/> Vous devez avoir plus d'une munition pour activer cette capacité.<br/>"
 
+; LWOTC translated (2)
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Combat total"
-LocLongDescription="Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. Annule le temps de rechargement du lancer de grenade. Octroie les capacités Bombardement et Mélange explosif (grenades: portée +2 cases, zone d'effet +1 case)."
-LocHelpText="Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. Annule le temps de rechargement du lancer de grenade. Octroie les capacités Bombardement et Mélange explosif (grenades: portée +2 cases, zone d'effet +1 case)."
-LocPromotionPopupText="<Bullet/> Cette capacité octroie les capacités Bombardement et Mélange explosif, et ne peut donc pas être combinée avec ces capacités."
+LocLongDescription="Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. Annule le temps de rechargement du lancer de grenade. Octroie les capacités Bombardement et Mélange explosif (grenades: portée +2 cases, zone d'effet +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
+LocHelpText="Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. Annule le temps de rechargement du lancer de grenade. Octroie les capacités Bombardement et Mélange explosif (grenades: portée +2 cases, zone d'effet +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
+LocPromotionPopupText="<Bullet/> Cette capacité octroie les capacités Bombardement et Mélange explosif, et ne peut donc pas être combinée avec ces capacités.<br/>"
+; End translated (2)
 
 [PackMaster_LW X2AbilityTemplate]
 LocFriendlyName="Équipement tactique"
@@ -6957,13 +6970,13 @@ LocLongDescription="Invoque une tempête d'énergie psionique qui frappe tous le
 LocHelpText="Invoque une tempête d'énergie psionique qui frappe tous les ennemis situés à proximité. Inflige le double de dégâts aux unités psioniques. Les dégâts de base et la zone d'effet augmentent avec le niveau de concentration. Consomme tous les points de concentration du Templier."
 LocPromotionPopupText="<Bullet/> Invoque une tempête d'énergie psionique qui frappe tous les ennemis situés à proximité. Inflige le double de dégâts aux unités psioniques. Les dégâts de base et la zone d'effet augmentent avec le niveau de concentration. Consomme tous les points de concentration du Templier.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown/> tour(s).<br/>"
 
-; End Translation
+; End translated
 
-; LWOTC Translated
+; LWOTC translated
 [Sabotage_LongRangeComms X2SabotageTemplate]
 SummaryText="Nous sommes incapables de maintenir durablement nos communications à longue distance après le récent sabotage de l'Élu. Les missions secrètes sont retardées de 2 semaines."
 ShortSummaryText="Nos missions secrètes sont retardées de 2 semaines!"
-; End Translated
+; End translated
 
 ;;;;;;;;;;;;;;;;;;;;  SPECIFICITES FRA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; LWotC(FRA) - Was here before, can't say if I've to delete it
