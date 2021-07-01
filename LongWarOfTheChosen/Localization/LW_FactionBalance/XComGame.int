@@ -142,9 +142,9 @@ LocPromotionPopupText="Throwing knives apply a stacking +<Ability:REND_THE_MARKE
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="Knife Encounters"
 LocFlyOverText="Knife Encounters"
-LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within four tiles."
-LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within four tiles."
-LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within four tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun.<br/>"
+LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within 5 tiles."
+LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within 5 tiles."
+LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within 5 tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun.<br/>"
 
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
