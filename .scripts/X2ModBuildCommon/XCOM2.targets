@@ -1,0 +1,92 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!-- BEGIN Required for ModBuddy -->
+
+    <PropertyGroup>
+        <StartAction>Program</StartAction>
+        <StartProgram>$(XCOM2_GamePath)\..\Binaries\Win64\Launcher\StartDebugging.bat</StartProgram>
+    </PropertyGroup>
+    <PropertyGroup>
+        <OutputPath>.</OutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Default|XCOM 2' ">
+        <OutputPath>.</OutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <OutputPath>.</OutputPath>
+    </PropertyGroup>
+    <PropertyGroup>
+        <ProjectDir Condition="'$(BuildPath)'==''">$(MSBuildProjectDirectory)</ProjectDir>
+        <ModsDir>$(XCOM2_UserPath)\Mods\</ModsDir>
+        <OutputDir>$(ModsDir)$(SafeName)\</OutputDir>
+    </PropertyGroup>
+
+    <!-- Prevent spontaneous build warnings/errors -->
+    <Target Name="GetFrameworkPaths" />
+
+    <!-- END Required for ModBuddy -->
+
+    <!-- Setup default build entrypoint if none is set -->
+    <PropertyGroup>
+        <BuildEntryFileName Condition=" '$(BuildEntryFileName)' == '' ">build.ps1</BuildEntryFileName>
+        <BuildEntryPs1 Condition=" '$(BuildEntryPs1)' == '' ">$(ScriptsDir)$(BuildEntryFileName)</BuildEntryPs1>
+    </PropertyGroup>
+
+    <!-- Setup powershell build config -->
+    <PropertyGroup Condition=" '$(BuildEntryConfig)' == '' ">
+        <BuildEntryConfig Condition=" '$(Configuration)' == 'Default' ">default</BuildEntryConfig>
+        <BuildEntryConfig Condition=" '$(Configuration)' == 'Debug' ">debug</BuildEntryConfig>
+    </PropertyGroup>
+
+    <!-- Misc targets -->
+    <Target Name="Clean">
+        <ItemGroup>
+            <Args Include="modName">
+                <Value>$(SafeName)</Value>
+            </Args>
+        </ItemGroup>
+        <InvokePowershellTask
+            EntryPs1="$([System.IO.Path]::GetFullPath('$(BuildCommonRoot)clean.ps1'))"
+            SolutionRoot="$([System.IO.Path]::GetFullPath('$(SolutionRoot)'))"
+            SdkInstallPath="$([System.IO.Path]::GetFullPath('$(XCOM2_UserPath)..\\'))"
+            GameInstallPath="$([System.IO.Path]::GetFullPath('$(XCOM2_GamePath)..\\'))"
+            AdditionalArgs="@(Args)"
+        />
+    </Target>
+    <Target Name="ReBuild">
+        <CallTarget Targets="Clean;Default"/>
+    </Target>
+
+    <!-- The actual build -->
+    <Target Name="Default">
+        <!-- Uncomment if MSBuild insists that project is up to date -->
+        <!-- <Exec Command="exit" /> -->
+        <ItemGroup>
+            <Args Include="config">
+                <Value>$(BuildEntryConfig)</Value>
+            </Args>
+        </ItemGroup>
+        <!-- Clean up the \..\ from the paths - makes it easier to debug -->
+        <InvokePowershellTask
+            EntryPs1="$([System.IO.Path]::GetFullPath('$(BuildEntryPs1)'))"
+            SolutionRoot="$([System.IO.Path]::GetFullPath('$(SolutionRoot)'))"
+            SdkInstallPath="$([System.IO.Path]::GetFullPath('$(XCOM2_UserPath)..\\'))"
+            GameInstallPath="$([System.IO.Path]::GetFullPath('$(XCOM2_GamePath)..\\'))"
+            AdditionalArgs="@(Args)"
+        />
+    </Target>
+
+    <!-- Task definition -->
+    <UsingTask TaskName="InvokePowershellTask" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+        <ParameterGroup>
+            <EntryPs1 Required="true" />
+            <SolutionRoot Required="true" />
+            <SdkInstallPath Required="true" />
+            <GameInstallPath Required="true" />
+            <AdditionalArgs ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="false" />
+          </ParameterGroup>
+        <Task>
+            <Reference Include="System.Management.Automation" />
+            <Code Language="cs" Source="$(BuildCommonRoot)InvokePowershellTask.cs" />
+        </Task>
+    </UsingTask>
+</Project>

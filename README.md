@@ -1,45 +1,69 @@
-# Long War 2 for War of the Chosen (WOTC)
+# Long War of the Chosen (LWOTC)
 
-This is an attempt to port the Long War 2 (LW2) overhaul mod for XCOM 2 to the War
-of the Chosen (WOTC) expansion. The scope is limited to getting the base LW2 experience
-working, but not necessarily balanced. If WOTC features severely unbalance the game and
-can be removed, they will be.
+This is a port of [Pavonis Interactive](https://www.pavonisinteractive.com/)'s
+Long War 2 (LW2) overhaul mod for XCOM 2 to the War of the Chosen (WOTC)
+expansion and update it for WOTC's new features.
 
 ## Installing and playing the mod
 
 If you just want to install and play the mod, check out our [wiki page](https://github.com/long-war-2/lwotc/wiki/Installing-Long-War-of-the-Chosen) that explains exactly how to do that.
 
+## Contributing translations
+
+If you would like to contribute to translations for LWOTC, then check out the
+[wiki page](https://github.com/long-war-2/lwotc/wiki/Contributing#localization-translating-text-in-the-game)
+that explains how it works.
+
 ## Building and running the mod
 
-Building and running this mod requires several steps:
+If you want to contribute changes to code or assets, then you will need to
+build the mod so that you can test them. Before you can do that, you need to
+set some things up:
 
- 1. The media assets (video, graphics and sound) are kept as a [zip on Dropbox](https://www.dropbox.com/s/axhq462olsgie2b/lwotc-content.zip?dl=0).
-    Download that file and unpack it into this project's _LongWarOfTheChosen/Content_ directory.
+ 1. Make sure you have the WOTC SDK `full_content` branch installed - see the
+    [xcom2mods wiki](https://www.reddit.com/r/xcom2mods/wiki/index#wiki_setting_up_tools_for_modding)
+    for details on how to do that (plus lots of other useful information)
 
- 2. Either clone [my fork of the X2WOTCCommunityHighlander repository](https://github.com/pledbrook/X2WOTCCommunityHighlander)
-    or download the [`lwotc-dev` branch](https://github.com/pledbrook/X2WOTCCommunityHighlander/archive/lwotc-dev.zip)
-	from GitHub.
-	
- 3. If you have cloned the repository, switch your clone to the `lwotc-dev` branch.
- 
- 4. Follow that [project's instructions](https://github.com/pledbrook/X2WOTCCommunityHighlander/blob/lwotc-dev/README.md)
-    for building the highlander. In particular, make sure you copy the files in the highlander's _Src/XComGame/Classes_ to the WOTC SDK's _Development/SrcOrig_ directory, as described in the [_Building Against the Highlander_](https://github.com/X2CommunityCore/X2WOTCCommunityHighlander/#building-against-the-highlander) section.
-    
-    I recommend that after building it in ModBuddy, you cook a release of it. That's because the cooked version runs _much_ more quickly than the noseekfreeloading version. Alternatively, use the highlander's build script, which will build _and_ cook the highlander.
+ 2. [Fork this repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+    and then clone your fork locally, which you can do via [Git for Windows](https://gitforwindows.org/)
+    (a command-line tool), [GitHub Desktop](https://desktop.github.com/), or some other
+    git client tool
+
+ 3. Once you have cloned the repository, you may need to pull the code for the embedded
+    highlander. If the *X2WOTCCommunityHighlander* directory is empty, then use the
+    command line from the project's root directory (the one containing this README.md):
+    ```
+        > git submodule update --init
+    ```
+    or whatever is the equivalent with the git client tool you are using.
+
+ 4. Download the LWOTC media assets (video, graphics and sound) from
+    [this Dropbox link](https://www.dropbox.com/s/209rybpdl3khb26/lwotc-content.zip?dl=0)
+    and unpack the resulting zip file into this project's *LongWarOfTheChosen* directory.
 
  5. Set up the following environment variables:
-    * `XCOM2SDKPATH` — typically <path to Steam>\steamapps\common\XCOM 2 War Of The Chosen SDK
-    * `XCOM2GAMEPATH` — typically <path to Steam>\steamapps\common\XCOM 2\XCom2-WarOfTheChosen
+    * `XCOM2SDKPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2 War Of The Chosen SDK
+    * `XCOM2GAMEPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2\XCom2-WarOfTheChosen
     Don't put these paths in quotes.
 	
- 6. Run the `build-lwotc.bat` file that you find in the root of the LWOTC project.
+ 6. Open a new command prompt after setting those environment variables and run
+    the following from the LWOTC project directory:
+    ```
+    > build-lwotc.bat -config release
+    ```
  
- 7. When the build has finished, launch XCOM 2 WOTC and select both X2WOTCCommunityHighlander and
-    LongWarOfTheChosen mods
+ 7. You should also build the Community Highlander, which you can do by opening
+    the solution file in X2WOTCCommunityHighlander in Mod Buddy and using that
+    to build the project, or you can open the LWOTC project directory in VS Code
+    and use the "Terminal > Run Task..." menu option and select "Build CHL
+    (final release)" and then "Build DLC2 CHL" once the previous task has finished.
+
+Once the highlander and LWOTC are built, you will be able to select them as local
+mods in Alternative Mod Launcher and run Long War of the Chosen.
 
 ## Contributing
 
-Contributions are welcome. If you just want to raise issues, please do so [on GitHub](https://github.com/pledbrook/lwotc/issues),
+Contributions are welcome. If you just want to raise issues, please do so [on GitHub](https://github.com/long-war-2/lwotc/issues),
 preferably including a save file if possible.
 
 If you wish to contribute to development — and this project will rely heavily on such contributions — then please
