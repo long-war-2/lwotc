@@ -63,7 +63,7 @@ To install dev build 27, just delete your existing LongWarOfTheChosen and X2WOTC
 *Templar*
  * Channel (enemies can drop focus) replaces Concentration
  * Arc Wave AoE damage is now 4/6/8, down from 4/7/10
- * Coid Conduit damage per tick is now 3, down from 5
+ * Void Conduit damage per tick is now 3, down from 5
  * Templars no longer get passive ablative from their shields
  * Bonus ablative from One For All is now 4/7/11, up from 4/7/10
 
@@ -103,6 +103,8 @@ To install dev build 27, just delete your existing LongWarOfTheChosen and X2WOTC
 
  * Disabling the pod leader will no longer prevent the rest of the pod from scampering (this fixes a more general issue with pods not scampering if the pod leader skips their move for any reason)
  * Multi-shot abilities will no longer cause lots of lag on missions with many enemies
+ * Reinforcement units spawned from the Avenger on the Avenger Defense mission should now always be controllable
+ * The Dark VIP should now be correctly extracted if carried by the last soldier to evac
  * Avenger and Flush will now shred targets if the shooter has the Shredder ability
  * Impersonal Edge will no longer trigger on other units' kills
  * The Sniper Defense AI behaviour should now work, making it harder for Sharpshooters to get flanking shots on enemy units that have no sight on XCOM
