@@ -6927,8 +6927,8 @@ AbilityDescName="autopistol"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramedic"
-LocLongDescription="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore four additional hit points."
-LocHelpText="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore four additional hit points."
+LocLongDescription="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore three additional hit points."
+LocHelpText="Gain a free medikit. Equipped medikits have 2 extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore three additional hit points."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"
