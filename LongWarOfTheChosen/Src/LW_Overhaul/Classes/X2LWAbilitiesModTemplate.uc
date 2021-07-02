@@ -1255,6 +1255,7 @@ static function PatchMultiShotFirstShot(X2AbilityTemplate Template)
 		NewEffect.UnitName = GetMultiShotContinueUnitValueName(Template.DataName);
 		NewEffect.NewValueToSet = 1.0f;
 		NewEffect.CleanupType = eCleanup_BeginTurn;
+		NewEffect.bApplyOnMiss = true;
 		Template.AddShooterEffect(NewEffect);
 	}
 }
@@ -1302,6 +1303,7 @@ static function PatchMultiShotFinalShot(X2AbilityTemplate Template, name FirstSh
 		// longer available.
 		NewEffect = new class'X2Effect_ClearUnitValue';
 		NewEffect.UnitValueName = UnitValueName;
+		NewEffect.bApplyOnMiss = true;
 		Template.AddShooterEffect(NewEffect);
 	}
 }
