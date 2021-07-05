@@ -599,7 +599,7 @@ class BuildProject {
 		$sfMapsNames = @()
 
 		if (-not(Test-Path $contentForCookPath)) {
-			if ($sfCollectionOnlyMapsNames.Length -lt 1) {
+			if ($sfCollectionOnlyMapsNames.Length -gt 0) {
 				ThrowFailure "Collection map cooking is requested, but no ContentForCook folder is present"
 			}
 
