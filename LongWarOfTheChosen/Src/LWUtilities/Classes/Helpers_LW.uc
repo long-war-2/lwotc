@@ -236,6 +236,23 @@ static function bool DynamicEncounterZonesDisabled()
 	return default.DisableDynamicEncounterZones;
 }
 
+// Uses visibility rules to determine whether one unit is flanked by
+// another. This is because XCGS_Unit.IsFlanked() does not work for
+// squadsight attackers.
+static function bool IsUnitFlankedBy(XComGameState_Unit Target, XComGameState_Unit MaybeFlanker)
+{
+	local GameRulesCache_VisibilityInfo VisInfo;
+
+	if (`TACTICALRULES.VisibilityMgr.GetVisibilityInfo(MaybeFlanker.ObjectID, Target.ObjectID, VisInfo))
+	{
+		return Target.CanTakeCover() && VisInfo.TargetCover == CT_None;
+	}
+	else
+	{
+		return Target.IsFlanked(MaybeFlanker.GetReference(), true);
+	}
+}
+
 // Copied from XComGameState_Unit::GetEnemiesInRange, except will retrieve all units on the alien team within
 // the specified range.
 static function GetAlienUnitsInRange(TTile kLocation, int nMeters, out array<StateObjectReference> OutEnemies)
