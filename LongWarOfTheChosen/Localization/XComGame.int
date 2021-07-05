@@ -5460,16 +5460,19 @@ LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, p
 LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghost has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Shield bash, Shield abilities, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Superior Aptitude, Ionic Storm abd Sustain. <br/>"
 ; End Translation (2)
 
-; LWOTC Needs Translation #2 - Shard and Caster gauntlet tactical text and the brief
+; LWOTC Needs Translation (3)
+; (2) Shard and Caster gauntlet tactical text and the brief
 ; summaries for the caster gauntlets have been updated.
+; (3) Removed references to Fleche
 [ShardGauntlet_CV X2PairedWeaponTemplate]
-TacticalText="<Bullet/> Grants the Fleche ability for more melee damage the further the enemy is from the Templar<br/><Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
 
 [ShardGauntlet_MG X2PairedWeaponTemplate]
-TacticalText="<Bullet/> Grants the Fleche ability for more melee damage the further the enemy is from the Templar<br/><Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
 
 [ShardGauntlet_BM X2PairedWeaponTemplate]
-TacticalText="<Bullet/> Grants the Fleche ability for more melee damage the further the enemy is from the Templar<br/><Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n"
+TacticalText="<Bullet/> Templars can attack adjacent enemies with their shard even after using both actions to move or dash to the extent of their movement range.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n"
+; End Translation (3)
 
 [CasterGauntlet_CV X2PairedWeaponTemplate]
 FriendlyName="Caster Gauntlets"
