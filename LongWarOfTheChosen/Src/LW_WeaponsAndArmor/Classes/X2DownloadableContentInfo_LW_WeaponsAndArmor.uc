@@ -262,8 +262,6 @@ static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameStat
 
 	if (!UnitState.IsSoldier()) return;
 
-	`LWTrace("[LW_WeaponsAndArmor] Updating animations for " $ UnitState.GetFullName() $ " - " $ UnitState.GetSoldierClassTemplateName());
-
 	foreach default.TEMPLAR_GAUNTLETS_FOR_ONE_HANDED_USE(Item)
 	{
 		if (UnitState.HasItemOfTemplateType(Item))
