@@ -142,9 +142,9 @@ LocPromotionPopupText="Chaque fois que vous blessez une cible avec un couteau de
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="Duel au couteau"
 LocFlyOverText="Duel au couteau"
-LocLongDescription="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de 4 cases autour de votre position."
-LocHelpText="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de 4 cases autour de votre position."
-LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de 4 cases autour de votre position.<br/><Bullet/> Cette capacité ne peut pas être combinée avec la capacité Course et tir.<br/>"
+LocLongDescription="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position."
+LocHelpText="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position."
+LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position.<br/><Bullet/> Cette capacité ne peut pas être combinée avec la capacité Course et tir.<br/>"
 
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Ombre évanescente"

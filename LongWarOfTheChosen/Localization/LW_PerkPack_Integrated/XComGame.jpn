@@ -189,9 +189,9 @@ LocPromotionPopupText="<Bullet/>最初の行動でメイン武器による通常
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="クロースエンカウンター"
 LocFlyOverText="クロースエンカウンター"
-LocLongDescription="各ターンに1回、4タイル以内の敵にメイン武器で通常射撃を行うと、ボーナス行動値1を得る。"
-LocHelpText="各ターンに1回、4タイル以内の敵にメイン武器で通常射撃を行うと、ボーナス行動値1を得る。"
-LocPromotionPopupText="<Bullet/>各ターンに1回、4タイル以内の敵にメイン武器で通常射撃を行うと、ボーナス行動値1を得る。<br/><Bullet/>クロースエンカウンターは、ラン&ガン発動後は使用できない。<br/><Bullet/>このアビリティの効果範囲は赤い円でマークされる。<br/><Bullet/>ラン&ガンと同じターンには使用不可。<br/>"
+LocLongDescription="各ターンに1回、<Ability:CLOSE_ENCOUNTERS_RANGE/>タイル以内の敵にメイン武器で通常射撃を行うと、ボーナス行動値1を得る。"
+LocHelpText="各ターンに1回、<Ability:CLOSE_ENCOUNTERS_RANGE/>タイル以内の敵にメイン武器で通常射撃を行うと、ボーナス行動値1を得る。"
+LocPromotionPopupText="<Bullet/>各ターンに1回、<Ability:CLOSE_ENCOUNTERS_RANGE/>タイル以内の敵にメイン武器で通常射撃を行うと、ボーナス行動値1を得る。<br/><Bullet/>クロースエンカウンターは、ラン&ガン発動後は使用できない。<br/><Bullet/>このアビリティの効果範囲は赤い円でマークされる。<br/><Bullet/>ラン&ガンと同じターンには使用不可。<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="ローンウルフ"

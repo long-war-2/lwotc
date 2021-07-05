@@ -189,9 +189,9 @@ LocPromotionPopupText="<Bullet/>第一個行動點使用主武器進行普通射
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="近距遭遇"
 LocFlyOverText="近距遭遇"
-LocLongDescription="使用主武器對4格內的1個敵人進行1次標準射擊後，可獲得額外1個行動點數，每回合發動1次。"
-LocHelpText="使用主武器對4格內的1個敵人進行1次標準射擊後，可獲得額外1個行動點數，每回合發動1次。"
-LocPromotionPopupText="<Bullet/>使用主武器對4格內的1個敵人進行1次標準射擊後，可獲得額外1個行動點數，每回合可發動1次。<br/><Bullet/>在使用奔襲戰術後就無法發動近距遭遇。<br/><Bullet/>一個紅色的環狀圖示會標記此能力的範圍。<Bullet/>無法與奔襲戰術在同一回合使用。<br/>"
+LocLongDescription="使用主武器對<Ability:CLOSE_ENCOUNTERS_RANGE/>格內的1個敵人進行1次標準射擊後，可獲得額外1個行動點數，每回合發動1次。"
+LocHelpText="使用主武器對<Ability:CLOSE_ENCOUNTERS_RANGE/>格內的1個敵人進行1次標準射擊後，可獲得額外1個行動點數，每回合發動1次。"
+LocPromotionPopupText="<Bullet/>使用主武器對<Ability:CLOSE_ENCOUNTERS_RANGE/>格內的1個敵人進行1次標準射擊後，可獲得額外1個行動點數，每回合可發動1次。<br/><Bullet/>在使用奔襲戰術後就無法發動近距遭遇。<br/><Bullet/>一個紅色的環狀圖示會標記此能力的範圍。<Bullet/>無法與奔襲戰術在同一回合使用。<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="孤狼"

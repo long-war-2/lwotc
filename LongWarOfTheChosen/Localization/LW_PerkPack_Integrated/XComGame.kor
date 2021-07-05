@@ -186,9 +186,9 @@ LocPromotionPopupText="<Bullet/> 첫 번째 행동으로 주요 무기를 사용
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="조우전"
 LocFlyOverText="조우전"
-LocLongDescription="매 턴마다 한 번씩, 반경 4타일 이내의 적에게 주요 무기로 일반 사격을 하면 보너스 행동력 1개를 받습니다."
-LocHelpText="매 턴마다 한 번씩, 반경 4타일 이내의 적에게 주요 무기로 일반 사격을 하면 보너스 행동력 1개를 받습니다."
-LocPromotionPopupText="<Bullet/> 매 턴마다 한 번씩, 반경 4타일 이내의 적에게 주요 무기로 일반 사격을 하면 보너스 행동력 1개를 받습니다.<br/><Bullet/> 런 앤 건 발동 후에는 조우전이 적용되지 않습니다.<br/><Bullet/> 이 능력의 사용 범위는 빨간색 원형으로 표시됩니다.<Bullet/> 런 앤 건과 같은 턴에 사용할 수 없습니다.<br/>"
+LocLongDescription="매 턴마다 한 번씩, 반경 <Ability:CLOSE_ENCOUNTERS_RANGE/>타일 이내의 적에게 주요 무기로 일반 사격을 하면 보너스 행동력 1개를 받습니다."
+LocHelpText="매 턴마다 한 번씩, 반경 <Ability:CLOSE_ENCOUNTERS_RANGE/>타일 이내의 적에게 주요 무기로 일반 사격을 하면 보너스 행동력 1개를 받습니다."
+LocPromotionPopupText="<Bullet/> 매 턴마다 한 번씩, 반경 <Ability:CLOSE_ENCOUNTERS_RANGE/>타일 이내의 적에게 주요 무기로 일반 사격을 하면 보너스 행동력 1개를 받습니다.<br/><Bullet/> 런 앤 건 발동 후에는 조우전이 적용되지 않습니다.<br/><Bullet/> 이 능력의 사용 범위는 빨간색 원형으로 표시됩니다.<Bullet/> 런 앤 건과 같은 턴에 사용할 수 없습니다.<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="외로운 늑대"

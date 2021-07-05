@@ -186,9 +186,9 @@ LocPromotionPopupText="<Bullet/> Deine Runde endet nicht mehr automatisch, wenn 
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="Nahkampfbegegnungen"
 LocFlyOverText="Nahkampfbegegnungen"
-LocLongDescription="Du erhältst einmal pro Runde eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von vier Feldern abgibst."
-LocHelpText="Du erhältst einmal pro Runde eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von vier Feldern abgibst."
-LocPromotionPopupText="<Bullet/> Du erhältst einmal pro Runde eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von vier Feldern abgibst.<br/><Bullet/> Nahkampfbegegnungen kann nicht genutzt werden, nachdem Sturm und Schuss aktiviert wurde.<br/><Bullet/> Ein roter Kreis zeigt die Reichweite dieser Fähigkeit an.<br/><Bullet/> Kann nicht in der selben Runde wie Sturm und Schuss verwendet werden.<br/>"
+LocLongDescription="Du erhältst einmal pro Runde eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Feldern abgibst."
+LocHelpText="Du erhältst einmal pro Runde eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Feldern abgibst."
+LocPromotionPopupText="<Bullet/> Du erhältst einmal pro Runde eine Bonusaktion, wenn du mit deiner Primärwaffe einen Standardschuss auf einen Feind innerhalb von <Ability:CLOSE_ENCOUNTERS_RANGE/> Feldern abgibst.<br/><Bullet/> Nahkampfbegegnungen kann nicht genutzt werden, nachdem Sturm und Schuss aktiviert wurde.<br/><Bullet/> Ein roter Kreis zeigt die Reichweite dieser Fähigkeit an.<br/><Bullet/> Kann nicht in der selben Runde wie Sturm und Schuss verwendet werden.<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="Einzelgänger"

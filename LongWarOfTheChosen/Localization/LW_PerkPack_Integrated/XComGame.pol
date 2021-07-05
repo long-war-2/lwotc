@@ -189,9 +189,9 @@ LocPromotionPopupText="<Bullet/> Zwykły strzał z broni głównej w pierwszej a
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="Bliskie spotkania"
 LocFlyOverText="Bliskie spotkania"
-LocLongDescription="Raz na turę otrzymujesz dodatkową akcję po oddaniu zwykłego strzału z broni głównej do wroga w promieniu 4 pól."
-LocHelpText="Raz na turę otrzymujesz dodatkową akcję po oddaniu zwykłego strzału z broni głównej do wroga w promieniu 4 pól."
-LocPromotionPopupText="<Bullet/> Raz na turę otrzymujesz dodatkową akcję po oddaniu zwykłego strzału z broni głównej do wroga w promieniu 4 pól.<br/><Bullet/> Bliskich spotkań nie można uruchomić po użyciu strzelania w biegu.<br/><Bullet/> Zasięg tej zdolności pokazuje czerwony okrąg.<br/><Bullet/> Nie można używać jednocześnie z aktywną zdolnością \"Strzelanie w biegu\".<br/>"
+LocLongDescription="Raz na turę otrzymujesz dodatkową akcję po oddaniu zwykłego strzału z broni głównej do wroga w promieniu <Ability:CLOSE_ENCOUNTERS_RANGE/> pól."
+LocHelpText="Raz na turę otrzymujesz dodatkową akcję po oddaniu zwykłego strzału z broni głównej do wroga w promieniu <Ability:CLOSE_ENCOUNTERS_RANGE/> pól."
+LocPromotionPopupText="<Bullet/> Raz na turę otrzymujesz dodatkową akcję po oddaniu zwykłego strzału z broni głównej do wroga w promieniu <Ability:CLOSE_ENCOUNTERS_RANGE/> pól.<br/><Bullet/> Bliskich spotkań nie można uruchomić po użyciu strzelania w biegu.<br/><Bullet/> Zasięg tej zdolności pokazuje czerwony okrąg.<br/><Bullet/> Nie można używać jednocześnie z aktywną zdolnością \"Strzelanie w biegu\".<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="Samotny wilk"

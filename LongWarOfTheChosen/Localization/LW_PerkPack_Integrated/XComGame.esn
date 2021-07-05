@@ -189,9 +189,9 @@ LocPromotionPopupText="<Bullet/> Efectuar un disparo estándar con tu arma princ
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="Encuentros cercanos"
 LocFlyOverText="Encuentros cercanos"
-LocLongDescription="Una vez por turno, obtienes una acción de bonificación después de efectuar un disparo estándar con tu arma principal contra un enemigo a 4 casillas o menos de distancia."
-LocHelpText="Una vez por turno, obtienes una acción de bonificación después de efectuar un disparo estándar con tu arma principal contra un enemigo a 4 casillas o menos de distancia."
-LocPromotionPopupText="<Bullet/> Una vez por turno, obtienes una acción de bonificación después de efectuar un disparo estándar con tu arma principal contra un enemigo a 4 casillas o menos de distancia.<br/><Bullet/> Encuentros cercanos no se puede usar después de activar Correr y disparar.<br/><Bullet/> Un anillo rojo marcará el alcance de la habilidad.<br/><Bullet/> No se puede usar en el mismo turno que Correr y disparar.<br/>"
+LocLongDescription="Una vez por turno, obtienes una acción de bonificación después de efectuar un disparo estándar con tu arma principal contra un enemigo a <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas o menos de distancia."
+LocHelpText="Una vez por turno, obtienes una acción de bonificación después de efectuar un disparo estándar con tu arma principal contra un enemigo a <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas o menos de distancia."
+LocPromotionPopupText="<Bullet/> Una vez por turno, obtienes una acción de bonificación después de efectuar un disparo estándar con tu arma principal contra un enemigo a <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas o menos de distancia.<br/><Bullet/> Encuentros cercanos no se puede usar después de activar Correr y disparar.<br/><Bullet/> Un anillo rojo marcará el alcance de la habilidad.<br/><Bullet/> No se puede usar en el mismo turno que Correr y disparar.<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="Lobo solitario"

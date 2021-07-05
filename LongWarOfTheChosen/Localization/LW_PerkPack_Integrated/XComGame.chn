@@ -186,9 +186,9 @@ LocPromotionPopupText="<Bullet/>第一个行动点使用主武器进行普通射
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="近距遭遇"
 LocFlyOverText="近距遭遇"
-LocLongDescription="使用主武器对4格内的1个敌人进行1次标准射击后，可额外获得1个行动点，每回合1次。"
-LocHelpText="使用主武器对4格内的1个敌人进行1次标准射击后，可额外获得1个行动点，每回合1次。"
-LocPromotionPopupText="<Bullet/>使用主武器对4格内的1个敌人进行1次标准射击后，可获得额外1个行动点，每回合1次。<br/><Bullet/>在奔袭战术激活后近距遭遇战不可以使用。<br/><Bullet/>一个红色的环状图示会标记此能力的范围。<Bullet/> 不可以和奔袭战术在同一回合使用。<br/>"
+LocLongDescription="使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的1个敌人进行1次标准射击后，可额外获得1个行动点，每回合1次。"
+LocHelpText="使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的1个敌人进行1次标准射击后，可额外获得1个行动点，每回合1次。"
+LocPromotionPopupText="<Bullet/>使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的1个敌人进行1次标准射击后，可获得额外1个行动点，每回合1次。<br/><Bullet/>在奔袭战术激活后近距遭遇战不可以使用。<br/><Bullet/>一个红色的环状图示会标记此能力的范围。<Bullet/> 不可以和奔袭战术在同一回合使用。<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="独狼"

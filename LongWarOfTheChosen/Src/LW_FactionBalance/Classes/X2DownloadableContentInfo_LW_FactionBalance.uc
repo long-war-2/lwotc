@@ -201,3 +201,40 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 
 	return false;
 }
+
+static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseOb, XComGameState GameState)
+{
+	local name Type;
+	local XComGameState_Ability AbilityState;
+	local X2AbilityTemplate AbilityTemplate;
+	local X2Effect_CloseEncounters CEEffect;
+	local int i;
+
+	Type = name(InString);
+	switch(Type)
+	{
+	case 'CLOSE_ENCOUNTERS_RANGE':
+		AbilityTemplate = X2AbilityTemplate(ParseObj);
+		if (AbilityTemplate == none)
+		{
+			AbilityState = XComGameState_Ability(ParseObj);
+			if (AbilityState != none)
+				AbilityTemplate = AbilityState.GetMyTemplate();
+		}
+		if (AbilityTemplate != none)
+		{
+			for (i = 0; i < AbilityTemplate.AbilityTargetEffects.Length; i++)
+			{
+				CEEffect = X2Effect_CloseEncounters(AbilityTemplate.AbilityTargetEffects[i]);
+				if (CEEffect != none)
+				{
+					OutString = string(CEEffect.MaxTiles);
+					return true;
+				}
+			}
+		}
+		return false;
+	default:
+		return false;
+	}
+}

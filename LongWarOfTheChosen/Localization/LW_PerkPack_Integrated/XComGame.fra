@@ -204,9 +204,9 @@ LocPromotionPopupText="<Bullet/> Un tir standard avec votre arme principale ne m
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="Affrontement rapproché"
 LocFlyOverText="Affrontement rapproché"
-LocLongDescription="Une fois par tour, gagnez une action bonus après avoir effectué un tir normal avec votre arme principale sur un ennemi dans un rayon de 4 cases."
-LocHelpText="Une fois par tour, gagnez une action bonus après avoir effectué un tir normal avec votre arme principale sur un ennemi dans un rayon de 4 cases."
-LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir effectué un tir normal avec votre arme principale sur un ennemi dans un rayon de 4 cases.<br/><Bullet/> Affrontement rapproché ne peut pas être utilisé une fois que Course et tir a été activé.<br/><Bullet>  La portée de la capacité est représentée par un anneau rouge.<br/><Bullet/> Ne peut pas être utilisé durant le même tour que Course et tir.<br/>"
+LocLongDescription="Une fois par tour, gagnez une action bonus après avoir effectué un tir normal avec votre arme principale sur un ennemi dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases."
+LocHelpText="Une fois par tour, gagnez une action bonus après avoir effectué un tir normal avec votre arme principale sur un ennemi dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases."
+LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir effectué un tir normal avec votre arme principale sur un ennemi dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases.<br/><Bullet/> Affrontement rapproché ne peut pas être utilisé une fois que Course et tir a été activé.<br/><Bullet>  La portée de la capacité est représentée par un anneau rouge.<br/><Bullet/> Ne peut pas être utilisé durant le même tour que Course et tir.<br/>"
 
 ; LWOTC translated
 [LoneWolf X2AbilityTemplate]

@@ -189,9 +189,9 @@ LocPromotionPopupText="<Bullet/> Sparare un colpo standard con l'arma primaria c
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="Incontri ravvicinati"
 LocFlyOverText="Incontri ravvicinati"
-LocLongDescription="Ottieni un'azione bonus quando spari un colpo standard con l'arma principale a un nemico entro quattro caselle, una volta per turno."
-LocHelpText="Ottieni un'azione bonus quando spari un colpo standard con l'arma principale a un nemico entro quattro caselle, una volta per turno."
-LocPromotionPopupText="<Bullet/> Ottieni un'azione bonus quando spari un colpo standard con l'arma principale a un nemico entro quattro caselle, una volta per turno.<br/><Bullet/> Incontri ravvicinati non può essere usato dopo Fuoco in corsa.<br/><Bullet/> La portata di questa abilità verrà indicata da un cerchio rosso.<br/><Bullet/> Non può essere utilizzata nel medesimo turno di Fuoco in corsa.<br/>"
+LocLongDescription="Ottieni un'azione bonus quando spari un colpo standard con l'arma principale a un nemico entro <Ability:CLOSE_ENCOUNTERS_RANGE/> caselle, una volta per turno."
+LocHelpText="Ottieni un'azione bonus quando spari un colpo standard con l'arma principale a un nemico entro <Ability:CLOSE_ENCOUNTERS_RANGE/> caselle, una volta per turno."
+LocPromotionPopupText="<Bullet/> Ottieni un'azione bonus quando spari un colpo standard con l'arma principale a un nemico entro <Ability:CLOSE_ENCOUNTERS_RANGE/> caselle, una volta per turno.<br/><Bullet/> Incontri ravvicinati non può essere usato dopo Fuoco in corsa.<br/><Bullet/> La portata di questa abilità verrà indicata da un cerchio rosso.<br/><Bullet/> Non può essere utilizzata nel medesimo turno di Fuoco in corsa.<br/>"
 
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="Lupo solitario"
