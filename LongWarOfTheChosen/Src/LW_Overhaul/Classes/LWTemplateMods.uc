@@ -828,103 +828,57 @@ static function X2LWTemplateModTemplate CreateModifyAbilitiesGeneralTemplate()
    return Template;
 }
 
-static function string GetIconColorByActionPoints (X2AbilityTemplate Template)
+static function string GetIconColorByActionPoints(X2AbilityTemplate Template)
 {
-	local int k, k2;
+	local X2AbilityCost_ActionPoints ActionPoints;
+	local int k, k2, ActionPointCost;
 	local bool pass, found;
-	local X2AbilityCost_ActionPoints        ActionPoints;
-	local string AbilityIconColor;
+	local bool IsObjectiveAbility, IsFree, IsTurnEnding, IsPsionic;
+	local string BackgroundColor, ForegroundColor;
 
-	AbilityIconColor = "";
 	for (k = 0; k < Template.AbilityCosts.Length; ++k)
 	{   
 		ActionPoints = X2AbilityCost_ActionPoints(Template.AbilityCosts[k]);
 		if (ActionPoints != none)
 		{
 			Found = true;
+			ActionPointCost = ActionPoints.iNumPoints;
+			IsTurnEnding = ActionPoints.bConsumeAllPoints;
+			IsFree = ActionPoints.bFreeCost;
+
 			if (Template.AbilityIconColor == "53b45e") //Objective
 			{
-				AbilityIconColor = default.ICON_COLOR_OBJECTIVE; // orange
+				IsObjectiveAbility = true; // orange
 			} 
-			else 
+			else  if (Template.AbilitySourceName == 'eAbilitySource_Psionic')
 			{
-				if (Template.AbilitySourceName == 'eAbilitySource_Psionic') 
-				{
-					if (ActionPoints.iNumPoints >= 2) 
-					{
-						AbilityIconColor = default.ICON_COLOR_PSIONIC_2;
-					}
-					else 
-					{
-						if (ActionPoints.bConsumeAllPoints) 
-						{
-							AbilityIconColor = default.ICON_COLOR_PSIONIC_END;
-						} 
-						else 
-						{
-							if (ActionPoints.iNumPoints == 1 && !ActionPoints.bFreeCost)
-							{
-								AbilityIconColor = default.ICON_COLOR_PSIONIC_1; // light lavender
-							}
-							else
-							{   
-								AbilityIconColor = default.ICON_COLOR_PSIONIC_FREE; // lavender-white
-							}
-						}
-					}
-				} 
-				else 
-				{
-					if (ActionPoints.iNumPoints >= 2) 
-					{
-						AbilityIconColor = default.ICON_COLOR_2; // yellow
-					}
-					else 
-					{
-						if (ActionPoints.bConsumeAllPoints) 
-						{
-							AbilityIconColor = default.ICON_COLOR_END; // cyan
-						} 
-						else 
-						{
-							if (ActionPoints.iNumPoints == 1 && !ActionPoints.bFreeCost)
-							{
-								AbilityIconColor = default.ICON_COLOR_1; // white
-							}
-							else
-							{
-								AbilityIconColor = default.ICON_COLOR_FREE; //green
-							}
-						}
-					}
-				}
+				IsPsionic = true;
 			}
 			break;
 		}
 	}
 	if (!found)
 	{
-		pass= false;
+		pass = false;
 		for (k2 = 0; k2 < Template.AbilityTriggers.Length; k2++)
 		{
-		   if(Template.AbilityTriggers[k2].IsA('X2AbilityTrigger_PlayerInput'))
+		   if (Template.AbilityTriggers[k2].IsA('X2AbilityTrigger_PlayerInput'))
 			{
 				pass = true;
 			}
 		}
 		if (pass)
 		{
+			IsFree = true;
 			if (Template.AbilitySourceName == 'eAbilitySource_Psionic') 
 			{
-				AbilityIconColor = default.ICON_COLOR_PSIONIC_FREE;
-			}
-			else
-			{
-				AbilityIconColor = default.ICON_COLOR_FREE;
+				IsPsionic = true;
 			}
 		}
 	}
-	return AbilityIconColor;
+
+	class'Utilities_LW'.static.GetAbilityIconColor(IsObjectiveAbility, IsFree, IsPsionic, IsTurnEnding, ActionPointCost, BackgroundColor, ForegroundColor);
+	return BackgroundColor;
 }
 
 function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
@@ -1806,7 +1760,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			case 'Bombard':
 				Template.AbilityIconColor = default.ICON_COLOR_END; break;
 			default:
-				Template.AbilityIconColor = GetIconColorByActionPoints (Template); break;
+				if (Template.AbilityIconColor != "Variable")
+				{
+					Template.AbilityIconColor = GetIconColorByActionPoints(Template);
+				}
+				break;
 		}
 	}
 	

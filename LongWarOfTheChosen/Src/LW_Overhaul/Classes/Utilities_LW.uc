@@ -769,6 +769,60 @@ static function float GetUnitValue(XComGameState_Unit UnitState, Name ValueName)
 	return Value.fValue;
 }
 
+// Implements the rules for ability icon colors depending on action point cost,
+// whether it's an objective ability, etc.
+static function GetAbilityIconColor(
+	bool IsObjective,
+	bool IsFree,
+	bool IsPsionic,
+	bool IsTurnEnding,
+	int ActionPointCost,
+	out string BackgroundColor,
+	out string ForegroundColor)
+{
+	if (IsObjective)
+	{
+		BackgroundColor = class'LWTemplateMods'.default.ICON_COLOR_OBJECTIVE; // orange
+	}
+	else if (IsPsionic)
+	{
+		if (ActionPointCost >= 2)
+		{
+			BackgroundColor = class'LWTemplateMods'.default.ICON_COLOR_PSIONIC_2;
+		}
+		else if (IsTurnEnding)
+		{
+			BackgroundColor = class'LWTemplateMods'.default.ICON_COLOR_PSIONIC_END;
+		}
+		else if (!IsFree)
+		{
+			BackgroundColor = class'LWTemplateMods'.default.ICON_COLOR_PSIONIC_1; // light lavender
+		}
+		else
+		{
+			BackgroundColor = class'LWTemplateMods'.default.ICON_COLOR_PSIONIC_FREE; // lavender-white
+		}
+	}
+	else if (ActionPointCost >= 2)
+	{
+		BackgroundColor = class'LWTemplateMods'.default.ICON_COLOR_2; // yellow
+	}
+	// Takes precedence over free-action costs mostly for Overwatch
+	// (which is a "free" action but ends the turn).
+	else if (IsTurnEnding)
+	{
+		BackgroundColor = class'LWTemplateMods'.default.ICON_COLOR_END; // cyan
+	}
+	else if (IsFree)
+	{
+		BackgroundColor = class'LWTemplateMods'.default.ICON_COLOR_FREE; //green
+	}
+	else
+	{
+		BackgroundColor = class'LWTemplateMods'.default.ICON_COLOR_1; // white
+	}
+}
+
 // Returns the force level maintained by LWOTC rather than the one from
 // the alien HQ, since those two force levels may differ.
 static function int GetLWForceLevel()
@@ -787,7 +841,7 @@ static function int GetLWForceLevel()
 	return class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState).LocalForceLevel;
 }
 
-simulated static function bool IsOnStrategyMap()
+static function bool IsOnStrategyMap()
 {
 	// KDM : If you are on the strategy map return true; if you are in the Avenger return false.
 	if (`HQGAME == none || `HQPRES == none || `HQPRES.StrategyMap2D == none)
