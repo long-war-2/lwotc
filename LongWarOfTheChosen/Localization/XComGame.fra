@@ -6927,8 +6927,8 @@ AbilityDescName="pistolet automatique"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramédical"
-LocLongDescription="Procure un médikit gratuit. Les médikits équipés contiennent 2 charges de plus. Utiliser un médikit pour la première fois lors d'un tour est considéré comme une action gratuite. Les capacités de soins restaurent 4PV de plus."
-LocHelpText="Procure un médikit gratuit. Les médikits équipés contiennent 2 charges de plus. Utiliser un médikit pour la première fois lors d'un tour est considéré comme une action gratuite. Les capacités de soins restaurent 4PV de plus."
+LocLongDescription="Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charges de plus. Utiliser un médikit pour la première fois lors d'un tour est considéré comme une action gratuite. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
+LocHelpText="Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charges de plus. Utiliser un médikit pour la première fois lors d'un tour est considéré comme une action gratuite. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Bannissement"

@@ -518,8 +518,8 @@ LocPromotionPopupText="<Bullet/> 무료 연막 수류탄 1개가 인벤토리에
 [Savior X2AbilityTemplate]
 LocFriendlyName="구세주"
 LocFlyOverText="구세주"
-LocLongDescription="치료 능력은 4 체력 포인트를 추가로 치료합니다."
-LocHelpText="치료 능력은 4 체력 포인트를 추가로 치료합니다."
+LocLongDescription="치료 능력은 <Ability:SAVIOR_BONUS_HEAL/> 체력 포인트를 추가로 치료합니다."
+LocHelpText="치료 능력은 <Ability:SAVIOR_BONUS_HEAL/> 체력 포인트를 추가로 치료합니다."
 LocPromotionPopupText="<Bullet/> 이 효과는 그렘린 치료, 메디킷, 레스터레이션 능력에 적용됩니다.<br/>"
 
 [DenseSmoke X2AbilityTemplate]

@@ -521,8 +521,8 @@ LocPromotionPopupText="<Bullet/>代価なしでスモークグレネード1個�
 [Savior X2AbilityTemplate]
 LocFriendlyName="救いの神"
 LocFlyOverText="救いの神"
-LocLongDescription="治療アビリティで回復するHP+4。"
-LocHelpText="治療アビリティで回復するHP+4。"
+LocLongDescription="治療アビリティで回復するHP+<Ability:SAVIOR_BONUS_HEAL/>。"
+LocHelpText="治療アビリティで回復するHP+<Ability:SAVIOR_BONUS_HEAL/>。"
 LocPromotionPopupText="<Bullet/>対象は、グレムリン・ヒール、治療キット、回復アビリティ。<br/>"
 
 [DenseSmoke X2AbilityTemplate]

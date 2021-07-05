@@ -579,8 +579,8 @@ LocPromotionPopupText="<Bullet/> Octroie une grenade fumigène gratuite dans vot
 [Savior X2AbilityTemplate]
 LocFriendlyName="Sauveur"
 LocFlyOverText="Sauveur"
-LocLongDescription="Les capacités de soin restaurent 4 PV supplémentaires."
-LocHelpText="Les capacités de soin restaurent 4 PV supplémentaires."
+LocLongDescription="Les capacités de soin restaurent <Ability:SAVIOR_BONUS_HEAL/> PV supplémentaires."
+LocHelpText="Les capacités de soin restaurent <Ability:SAVIOR_BONUS_HEAL/> PV supplémentaires."
 LocPromotionPopupText="<Bullet/> L'effet s'applique aux soins du GREMLIN, aux médikits et aux capacités de régénération.<br/>"
 
 [DenseSmoke X2AbilityTemplate]

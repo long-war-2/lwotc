@@ -518,8 +518,8 @@ LocPromotionPopupText="<Bullet/> Fügt deinem Inventar 1 kostenlose Rauchgranate
 [Savior X2AbilityTemplate]
 LocFriendlyName="Erretter"
 LocFlyOverText="Erretter"
-LocLongDescription="Heilfähigkeiten stellen vier zusätzliche Trefferpunkte wieder her."
-LocHelpText="Heilfähigkeiten stellen 4 zusätzliche Trefferpunkte wieder her."
+LocLongDescription="Heilfähigkeiten stellen <Ability:SAVIOR_BONUS_HEAL/> zusätzliche Trefferpunkte wieder her."
+LocHelpText="Heilfähigkeiten stellen <Ability:SAVIOR_BONUS_HEAL/> zusätzliche Trefferpunkte wieder her."
 LocPromotionPopupText="<Bullet/> Effekt gilt für Gremlin-Heilung, Medikits und Genesungs-Fähigkeiten.<br/>"
 
 [DenseSmoke X2AbilityTemplate]

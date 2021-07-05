@@ -521,8 +521,8 @@ LocPromotionPopupText="<Bullet/> Añade 1 granada de humo gratis a tu inventario
 [Savior X2AbilityTemplate]
 LocFriendlyName="Salvador"
 LocFlyOverText="Salvador"
-LocLongDescription="Las habilidades de curación restablecen 4 puntos de salud adicionales."
-LocHelpText="Las habilidades de curación restablecen 4 puntos de salud adicionales."
+LocLongDescription="Las habilidades de curación restablecen <Ability:SAVIOR_BONUS_HEAL/> puntos de salud adicionales."
+LocHelpText="Las habilidades de curación restablecen <Ability:SAVIOR_BONUS_HEAL/> puntos de salud adicionales."
 LocPromotionPopupText="<Bullet/> El efecto se aplica a la curación con GREMLIN, a los botiquines y a las habilidades de Restablecimiento.<br/>"
 
 [DenseSmoke X2AbilityTemplate]

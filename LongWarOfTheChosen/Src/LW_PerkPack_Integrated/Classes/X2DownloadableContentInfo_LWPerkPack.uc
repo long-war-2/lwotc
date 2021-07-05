@@ -215,6 +215,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'PREDATOR_CRIT_BONUS':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.PREDATOR_CRIT_BONUS);
 			return true;
+		case 'SAVIOR_BONUS_HEAL':
+			OutString = string(class'X2Ability_PerkPackAbilitySet2'.default.SAVIOR_BONUS_HEAL);
+			return true;
 		case 'STILETTO_ARMOR_PIERCING':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.STILETTO_ARMOR_PIERCING);
 			return true;		

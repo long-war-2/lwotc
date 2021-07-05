@@ -579,8 +579,8 @@ LocPromotionPopupText="<Bullet/> Grants one free smoke grenade item to your inve
 [Savior X2AbilityTemplate]
 LocFriendlyName="Savior"
 LocFlyOverText="Savior"
-LocLongDescription="Healing abilities restore four additional hit points."
-LocHelpText="Healing abilities restore 4 additional hit points."
+LocLongDescription="Healing abilities restore <Ability:SAVIOR_BONUS_HEAL/> additional hit points."
+LocHelpText="Healing abilities restore <Ability:SAVIOR_BONUS_HEAL/> additional hit points."
 LocPromotionPopupText="<Bullet/> Effect applies to GREMLIN heal, Medikits and Restoration abilities.<br/>"
 
 [DenseSmoke X2AbilityTemplate]

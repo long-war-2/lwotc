@@ -521,8 +521,8 @@ LocPromotionPopupText="<Bullet/>給你的物品欄添加一個免費的煙霧榴
 [Savior X2AbilityTemplate]
 LocFriendlyName="救世主"
 LocFlyOverText="救世主"
-LocLongDescription="治療能力回復額外4點生命值。"
-LocHelpText="治療能力回復額外4點生命值。"
+LocLongDescription="治療能力回復額外<Ability:SAVIOR_BONUS_HEAL/>點生命值。"
+LocHelpText="治療能力回復額外<Ability:SAVIOR_BONUS_HEAL/>點生命值。"
 LocPromotionPopupText="<Bullet/>效果適用於小精靈治療、急救包和恢復能力。<br/>"
 
 [DenseSmoke X2AbilityTemplate]

@@ -518,8 +518,8 @@ LocPromotionPopupText="<Bullet/> Добавляет одну дымовую гр
 [Savior X2AbilityTemplate]
 LocFriendlyName="Спаситель"
 LocFlyOverText="Спаситель"
-LocLongDescription="Медицинские способности восстанавливают на 4 ед. здоровья больше."
-LocHelpText="Медицинские способности восстанавливают на 4 ед. здоровья больше."
+LocLongDescription="Медицинские способности восстанавливают на <Ability:SAVIOR_BONUS_HEAL/> ед. здоровья больше."
+LocHelpText="Медицинские способности восстанавливают на <Ability:SAVIOR_BONUS_HEAL/> ед. здоровья больше."
 LocPromotionPopupText="<Bullet/> Эффект добавляется к помощи \"Гремлина\", аптечкам и способностям \"Восстановления\".<br/>"
 
 [DenseSmoke X2AbilityTemplate]

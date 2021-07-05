@@ -10,6 +10,7 @@ var localized string TrojanVirus;
 var localized string TrojanVirusTriggered;
 
 var config int NUM_AIRDROP_CHARGES;
+var config int SAVIOR_BONUS_HEAL;
 var config int REQUIRED_TO_HIT_FOR_OVERWATCH;
 var config float BONUS_SLICE_DAMAGE_PER_TILE;
 var config int MAX_SLICE_FLECHE_DAMAGE;
@@ -462,11 +463,14 @@ static function X2AbilityTemplate AddSavior()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
+	Template.bCrossClassEligible = true;
+
 	SaviorEffect = new class 'X2Effect_Savior';
 	SaviorEffect.BuildPersistentEffect (1, true, false);
 	SaviorEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	Template.AddTargetEffect (SaviorEffect);
-	Template.bCrossClassEligible = true;
+	SaviorEffect.BonusHealAmount = default.SAVIOR_BONUS_HEAL;
+	Template.AddTargetEffect(SaviorEffect);
+
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;

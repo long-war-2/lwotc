@@ -521,8 +521,8 @@ LocPromotionPopupText="<Bullet/> Dodaje do twojego wyposażenia jeden darmowy gr
 [Savior X2AbilityTemplate]
 LocFriendlyName="Zbawca"
 LocFlyOverText="Zbawca"
-LocLongDescription="Zdolności leczenia przywracają dodatkowe 4 punkty zdrowia."
-LocHelpText="Zdolności leczenia przywracają dodatkowe 4 punkty zdrowia."
+LocLongDescription="Zdolności leczenia przywracają dodatkowe <Ability:SAVIOR_BONUS_HEAL/> punkty zdrowia."
+LocHelpText="Zdolności leczenia przywracają dodatkowe <Ability:SAVIOR_BONUS_HEAL/> punkty zdrowia."
 LocPromotionPopupText="<Bullet/> Efekt dotyczy leczenia przez gremlina, apteczki i zdolności regeneracji.<br/>"
 
 [DenseSmoke X2AbilityTemplate]

@@ -521,8 +521,8 @@ LocPromotionPopupText="<Bullet/> Conferisce una granata fumogena gratuita nell'i
 [Savior X2AbilityTemplate]
 LocFriendlyName="Salvatore"
 LocFlyOverText="Salvatore"
-LocLongDescription="Le abilità curative ripristinano quattro punti vita in più."
-LocHelpText="Le abilità curative ripristinano 4 punti vita in più."
+LocLongDescription="Le abilità curative ripristinano <Ability:SAVIOR_BONUS_HEAL/> punti vita in più."
+LocHelpText="Le abilità curative ripristinano <Ability:SAVIOR_BONUS_HEAL/> punti vita in più."
 LocPromotionPopupText="<Bullet/> L'effetto si applica a Cura con GREMLIN, ai medikit e a Reintegrazione.<br/>"
 
 [DenseSmoke X2AbilityTemplate]

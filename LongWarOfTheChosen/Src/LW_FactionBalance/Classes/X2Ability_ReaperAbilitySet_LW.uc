@@ -24,6 +24,7 @@ var config int BloodTrailBleedingDamage;
 var config int BloodTrailBleedingChance;
 
 var config int PARAMEDIC_BONUS_CHARGES;
+var config int PARAMEDIC_BONUS_HEAL;
 
 var config int DisablingShotCooldown;
 var config int DisablingShotAmmoCost;
@@ -915,9 +916,10 @@ static function X2DataTemplate AddParamedic()
 	Template.AddTargetEffect(TemporaryItemEffect);
 
 	SaviorEffect = new class 'X2Effect_Savior';
-	SaviorEffect.DuplicateResponse = eDupe_Allow;
 	SaviorEffect.BuildPersistentEffect (1, true, false);
 	SaviorEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	SaviorEffect.EffectName = 'ParamedicBonusHeal';
+	SaviorEffect.BonusHealAmount = default.PARAMEDIC_BONUS_HEAL;
 	Template.AddTargetEffect (SaviorEffect);
 
 	ParamedicEffect = new class'X2Effect_Paramedic';
