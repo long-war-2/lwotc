@@ -1,6 +1,8 @@
-Welcome to **dev build 27** of Long War of the Chosen!
+Welcome to **dev build 27.1** of Long War of the Chosen!
 
 This fixes some significant issues with the game and makes some more balance changes. We're not anticipating any more releases other than hotfixes before a 1.0 release!
+
+(What happened to dev build 27? It was a private test build on Discord because of how significant the changes were.)
 
 Headline changes:
 
@@ -8,6 +10,7 @@ Headline changes:
  * Missions with lots of enemies should be noticeably less laggy
  * The issue with blank soldier rewards should no longer happen (fingers crossed)
  * At least one bug with pods not scampering is now fixed
+ * Dashing-melee attacks (like Fleche) should no longer hang, or only rarely (dev build 27.1)
  * LWOTC now comes packaged with the Community Promotion Screen
 
 **Important** After installing the new build, you will need to enable:
@@ -15,16 +18,34 @@ Headline changes:
  * Long War of the Chosen
  * \[Beta] X2WOTCCommunityHighlander
  * DLC2CommunityHighlander
- * X2WOTCCommunityPromotionScreen
+ * X2WOTCCommunityPromotionScreen (*unless you are using RPGO*)
 
-To install dev build 27, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
+To install dev build 27.1, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
 
 ||  **[Download the full release from Nexus Mods](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
+
+**Upgrading from dev build 27** The above link also contains an update package you can use to upgrade dev build 27 to 27.1. If you use this, *make sure you delete the LongWarOfTheChosen/CookedPCConsole before running the game!*
+
+# New warning dialogs
+
+The highlander may display warnings about "Cycle in Run Order Detected" and "Conflicting Run Order data" when you start up the game. These need to be fixed by the authors of the mods listed, but you should be able to safely ignore the warnings if things were working fine in previous versions of LWOTC.
+
+
+# Changelog dev build 27.1
+
+ * Packages are no longer cooked, which fixes various issues with missing textures such as the black Vipers
+ * The hangs that players experience with dashing-melee attacks like Fleche should be much rarer now, if not gone completely
+ * Rapid Fire works again if you miss the first shot (the workaround for this is no longer needed)
+ * Death Dealer now works at squadsight range
+ * Paramedic only heals for +3 HP now rather than +4
+ * Warlock will no longer teleport units that are unable to attack, for example if they've just been summoned or arrived as reinforcements
+
 
 # Changelog dev build 27
 
 ## Quality of life
 
+ * Community Promotion Screen has settings accessible via Mod Settings (provided by Mod Config Menu)
  * Mission screens on the Geoscape now have button hot links for controller users (e.g. B to cancel, A to launch mission/infiltration)
 
 ## Balance
