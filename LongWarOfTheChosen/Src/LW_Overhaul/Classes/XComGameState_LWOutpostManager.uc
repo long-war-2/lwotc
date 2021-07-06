@@ -225,10 +225,11 @@ simulated function GoToResistanceManagement(optional StateObjectReference Facili
 	SubMenu.Message.Label = LabelCQ_ResistanceManagement;
 	Shortcuts.UpdateSubMenu(eUIAvengerShortcutCat_CommandersQuarters, SubMenu);
 
-	if(HQPres.ScreenStack.IsNotInStack(class'UIResistanceManagement_LW'))
+	if (HQPres.ScreenStack.IsNotInStack(class'UIResistanceManagement_LW'))
 	{
 		TempScreen = HQPres.Spawn(class'UIResistanceManagement_LW', HQPres);
-		HQPres.ScreenStack.Push(TempScreen, HQPres.Get3DMovie());
+		TempScreen.EnableCameraPan = false;
+		HQPres.ScreenStack.Push(TempScreen);
 	}
 }
 
@@ -242,9 +243,8 @@ static function OpenResistanceManagementScreen(optional StateObjectReference Act
 	if (HQPres.ScreenStack.GetFirstInstanceOf(class'UIResistanceManagement_LW') != none) return;
 
 	TempScreen = HQPres.Spawn(class'UIResistanceManagement_LW', HQPres);
-	//TempScreen.ActionToShowOnInitRef = ActionToFocus;
+	TempScreen.EnableCameraPan = false;
 	HQPres.ScreenStack.Push(TempScreen);
-
 }
 
 function bool IsUnitAHavenLiaison(StateObjectReference UnitRef)

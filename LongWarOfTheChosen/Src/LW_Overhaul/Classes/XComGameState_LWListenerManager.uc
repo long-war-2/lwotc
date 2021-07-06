@@ -75,10 +75,6 @@ function InitListeners()
 	// WOTC TODO: Requires change to CHL Helpers and UIMissionSummary
 	// EventMgr.RegisterForEvent(ThisObj, 'GetNumCiviliansKilled', OnNumCiviliansKilled, ELD_Immediate,,,true);
 
-	// WOTC TODO: Don't think this is needed as the game seems to work fine without it.
-	//Special First Mission Icon handling -- only for replacing the Resistance HQ icon functionality
-	// EventMgr.RegisterForEvent(ThisObj, 'OnInsertFirstMissionIcon', OnInsertFirstMissionIcon, ELD_Immediate,,,true);
-
     // VIP Recovery screen
     // EventMgr.RegisterForEvent(ThisObj, 'GetRewardVIPStatus', OnGetRewardVIPStatus, ELD_Immediate,,, true);
 
@@ -93,55 +89,6 @@ function InitListeners()
 
 	// initial psi training time override (this DOES require a change to the highlander)
 	// EventMgr.RegisterForEvent(ThisObj, 'PsiTrainingBegun', OnOverrideInitialPsiTrainingTime, ELD_Immediate,,, true);
-}
-
-function EventListenerReturn OnInsertFirstMissionIcon(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
-{
-	local XComLWTuple Tuple;
-	local UIStrategyMap_MissionIcon MissionIcon;
-	local UIStrategyMap StrategyMap;
-
-	Tuple = XComLWTuple(EventData);
-	if(Tuple == none)
-		return ELR_NoInterrupt;
-
-	StrategyMap = UIStrategyMap(EventSource);
-	if(StrategyMap == none)
-	{
-		`REDSCREEN("OnInsertFirstMissionIcon event triggered with invalid event source.");
-		return ELR_NoInterrupt;
-	}
-
-	MissionIcon = StrategyMap.MissionItemUI.MissionIcons[0];
-	MissionIcon.LoadIcon("img:///UILibrary_StrategyImages.X2StrategyMap.MissionIcon_ResHQ");
-	MissionIcon.OnClickedDelegate = SelectOutpostManager;
-	MissionIcon.HideTooltip();
-	MissionIcon.SetMissionIconTooltip(StrategyMap.m_ResHQLabel, ResistanceHQBodyText);
-
-	MissionIcon.Show();
-
-	Tuple.Data[0].b = true; // skip to the next mission icon
-
-	return ELR_NoInterrupt;
-}
-
-function SelectOutpostManager()
-{
-    //local XComGameState_LWOutpostManager OutpostMgr;
-	local UIResistanceManagement_LW TempScreen;
-    local XComHQPresentationLayer HQPres;
-
-    HQPres = `HQPRES;
-
-    //OutpostMgr = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
-	//OutpostMgr.GoToResistanceManagement();
-
-    if(HQPres.ScreenStack.IsNotInStack(class'UIResistanceManagement_LW'))
-    {
-        TempScreen = HQPres.Spawn(class'UIResistanceManagement_LW', HQPres);
-		TempScreen.EnableCameraPan = false;
-        HQPres.ScreenStack.Push(TempScreen, HQPres.Get3DMovie());
-    }
 }
 
 function EventListenerReturn OnNumCiviliansKilled(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)

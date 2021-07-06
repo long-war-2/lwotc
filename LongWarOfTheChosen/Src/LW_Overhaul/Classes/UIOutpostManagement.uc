@@ -15,6 +15,7 @@ var name DisplayTag;
 var name CameraTag;
 
 var localized string ChangeJobStr, ChangeAllJobsStr, PerksStr;
+var localized string m_strEditLoadout;
 var localized string m_strTitle;
 var localized string m_strLabel;
 var localized string m_strName;
@@ -40,6 +41,7 @@ var UIButton JobHeaderButton;
 var UIButton PerksHeaderButton;
 var UIText LiaisonTitle;
 var UIButton LiaisonButton;
+var UIButton LiaisonLoadoutButton;
 var UIImage LiaisonImage;
 var UIText LiaisonName;
 
@@ -235,6 +237,16 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	LiaisonName.InitText('',"");
 	LiaisonName.SetPosition(LiaisonTitle.X, NextY + LiaisonTitle.Height);
 
+	// Rai : Haven advisor loadout button.
+	LiaisonLoadoutButton = Spawn(class'UIButton', MainPanel);
+	LiaisonLoadoutButton.bAnimateOnInit = false;
+	LiaisonLoadoutButton.bIsNavigable = false;
+	LiaisonLoadoutButton.InitButton(, , OnLiaisonLoadoutClicked);
+	LiaisonLoadoutButton.SetText(m_strEditLoadout);
+	LiaisonLoadoutButton.SetHeight(30);
+	LiaisonLoadoutButton.SetPosition(811 , NextY + LiaisonTitle.Height);// As KDM mentioned below, the button does not seem to anchor to MainPanel, so have resorted to hard coding the values
+	LiaisonLoadoutButton.SetFontSize(24);
+
 	NextY += 81;
 
 	// KDM : Dividing line
@@ -341,8 +353,11 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 	ListBG.ProcessMouseEvents(List.OnChildMouseEvent);
 
 	InitJobNameCache();
-	RefreshNavHelp();
+
+	// Nav help depends on cached liaison, so make sure that happens
+	// before the nav help is updated.
 	GetData();
+	RefreshNavHelp();
 	RefreshData();
 
 	// KDM : Automatically select the 1st rebel row when using a controller.
@@ -417,6 +432,11 @@ simulated function bool ControllerCanBuildRelay()
 	}
 
 	return false;
+}
+
+function bool IsLiaisonPresent()
+{
+	return CachedLiaison.ObjectID != 0;
 }
 
 simulated function bool ShowRadioTowerUpgradeButton()
@@ -545,6 +565,9 @@ simulated function UpdateLiaison()
 	{
 		LiaisonName.SetHtmlText("");
 		LiaisonImage.Hide();
+
+		// Can't edit load out if there is no liaison, so disable that button
+		LiaisonLoadoutButton.SetDisabled(true);
 	}
 	else
 	{
@@ -576,7 +599,11 @@ simulated function UpdateLiaison()
 			LiaisonImage.LoadImage(PathName(LiaisonPicture));
 			LiaisonImage.Show();
 		}
+
+		LiaisonLoadoutButton.SetDisabled(false);
 	}
+
+	RefreshNavHelp();
 }
 
 simulated function UpdateList()
@@ -615,7 +642,13 @@ simulated function RefreshNavHelp()
 		// KDM : Y button brings up the option to build a haven relay, if certain conditions are met.
 		if (ControllerCanBuildRelay())
 		{
-			NavHelp.AddLeftHelp(CAPS(m_strBuildRadioRelay), class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.Icon_Y_TRIANGLE);
+			NavHelp.AddLeftHelp(CAPS(m_strBuildRadioRelay), class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_Y_TRIANGLE);
+		}
+
+		// Left-stick press brings up loadout screen for haven adviser (if one is present)
+		if (IsLiaisonPresent())
+		{
+			NavHelp.AddLeftHelp(CAPS(m_strEditLoadout), class'UIUtilities_Input'.static.GetGamepadIconPrefix() $ class'UIUtilities_Input'.const.ICON_LSCLICK_L3);
 		}
 	}
 	else
@@ -726,6 +759,14 @@ simulated function bool OnUnrealCommand(int cmd, int arg)
 		case class'UIUtilities_Input'.const.FXS_KEY_ESCAPE:
 		case class'UIUtilities_Input'.const.FXS_R_MOUSE_DOWN:
 			OnCancel();
+			break;
+
+		// Left-stick press opens loadout for haven adviser
+		case class'UIUtilities_Input'.const.FXS_BUTTON_L3:
+			if (IsLiaisonPresent())
+			{
+				OnLiaisonLoadoutClicked(none);
+			}
 			break;
 
 		// KDM : X button either :
@@ -913,6 +954,30 @@ simulated function OnLiaisonClicked(UIButton theButton)
 		LiaisonScreen.onSelectedDelegate = OnPersonnelSelected;
 		LiaisonScreen.m_bRemoveWhenUnitSelected = true;
 		Movie.Stack.Push(LiaisonScreen);
+	}
+}
+
+// Rai - On Edit Loadout button click
+simulated function OnLiaisonLoadoutClicked(UIButton theButton)
+{
+	local XComGameState_Unit	Liaison;
+
+	Liaison = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CachedLiaison.ObjectID));
+
+	if (CachedLiaison.ObjectID != 0 && Liaison.IsSoldier())
+	{
+		// Check if we are calling from geoscape or avenger?
+		if (class'Utilities_LW'.static.IsOnStrategyMap())
+		{
+			`HQPRES.UIArmory_MainMenu(CachedLiaison);
+		}
+		else
+		{
+			// Apparently, for this case, the haven and resistance management screens are
+			// still in the stack but appear blank, so need to figure this out. For now, we
+			// just have to double right click to get dumped back to the barracks screen
+			`HQPRES.UIArmory_MainMenu(CachedLiaison);
+		}
 	}
 }
 
