@@ -2837,6 +2837,7 @@ static function EHLDelegateReturn OverrideAbilityIconColors(XComGameState_Abilit
 			{
 				if (class'X2Effect_RapidDeployment'.default.VALID_GRENADE_TYPES.Find(WeaponState.GetMyTemplateName()) != -1)
 				{
+					IsTurnEnding = false;
 					IsFree = true;
 				}
 			}
@@ -2846,6 +2847,7 @@ static function EHLDelegateReturn OverrideAbilityIconColors(XComGameState_Abilit
 			{
 				if (class'X2Effect_RapidDeployment'.default.VALID_GRENADE_TYPES.Find(WeaponState.GetLoadedAmmoTemplate(AbilityState).DataName) != -1)
 				{
+					IsTurnEnding = false;
 					IsFree = true;
 				}
 			}
@@ -2858,6 +2860,7 @@ static function EHLDelegateReturn OverrideAbilityIconColors(XComGameState_Abilit
 				UnitState.GetUnitValue('QuickZap_LW_Uses', CountUnitValue);
 				if (CountUnitValue.fValue == 0)
 				{
+					IsTurnEnding = false;
 					IsFree = true;
 				}
 			}
@@ -2867,6 +2870,7 @@ static function EHLDelegateReturn OverrideAbilityIconColors(XComGameState_Abilit
 		case 'Firestorm':
 			if (UnitState.AffectedByEffectNames.Find('QuickburnEffect') != -1)
 			{
+				IsTurnEnding = false;
 				IsFree = true;
 			}
 			break;
@@ -2879,6 +2883,7 @@ static function EHLDelegateReturn OverrideAbilityIconColors(XComGameState_Abilit
 					UnitState.GetUnitValue ('FreeReload', FreeReloadValue);
 					if (FreeReloadValue.fValue < WeaponUpgrades[k].NumFreeReloads)
 					{
+						IsTurnEnding = false;
 						IsFree = true;
 					}
 					break;
