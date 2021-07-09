@@ -49,8 +49,9 @@ set some things up:
  6. Open a new command prompt after setting those environment variables and run
     the following from the LWOTC project directory:
     ```
-    > build-lwotc.bat -config release
+    > build-lwotc.bat -config default
     ```
+    (You can specify `-config debug` to compile with debug info)
  
  7. You should also build the Community Highlander, which you can do by opening
     the solution file in X2WOTCCommunityHighlander in Mod Buddy and using that
