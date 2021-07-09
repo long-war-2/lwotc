@@ -1,8 +1,10 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    UIScreenListener_ShellDifficulty
-//  AUTHOR:  Amineri / Pavonis Interactive
+//  AUTHOR:  Amineri / Pavonis Interactive, Peter Ledbrook (LWOTC)
 //
-//  PURPOSE: Detects whether there are incompatible LWS mods when starting a new game
+//  PURPOSE: Detects whether there are incompatible LWS mods when starting a new game.
+//           Also loads saved second wave options and applies them to the screen so
+//           players don't have to change the second wave options every new campaign.
 //--------------------------------------------------------------------------------------- 
 
 class UIScreenListener_ShellDifficulty extends UIScreenListener config(LW_Overhaul);
@@ -15,7 +17,14 @@ var localized array<string> Credits;
 
 event OnInit(UIScreen Screen)
 {
-	if (UIShellDifficulty(Screen) == none && UILoadGame(Screen) == none)
+	local UIShellDifficultySW ShellDifficultyUI;
+	local SecondWavePersistentData SWPersistentData;
+	local SecondWavePersistentDataDefaults SWPersistentDataDefaults;
+	local int i, OptionIndex;
+	local bool UseDefaultOption;
+
+	ShellDifficultyUI = UIShellDifficultySW(Screen);
+	if (ShellDifficultyUI == none && UILoadGame(Screen) == none)
 		return;
 
 	// check for any duplicates of standalone mods that have been integrated into overhaul mod
@@ -23,11 +32,51 @@ event OnInit(UIScreen Screen)
 
 	UIShellDifficulty(Screen).ForceTutorialOff();
 
+	// Don't do the rest of the initialisation if this is the UILoadGame screen
+	if (ShellDifficultyUI == none)
+		return;
+
+	// Initialise second wave options with and saved settings
+	SWPersistentData = new class'SecondWavePersistentData';
+	SWPersistentDataDefaults = new class'SecondWavePersistentDataDefaults';
+	for (i = 0; i < ShellDifficultyUI.SecondWaveOptionsReal.Length; i++)
+	{
+		// Find the saved value for this second wave option. If there is
+		// no saved value, fall back to the configured default value if
+		// it exists.
+		UseDefaultOption = false;
+		OptionIndex = SWPersistentData.SecondWaveOptionList.Find('ID', ShellDifficultyUI.SecondWaveOptionsReal[i].OptionData.ID);
+		if (OptionIndex == INDEX_NONE)
+		{
+			OptionIndex = SWPersistentDataDefaults.SecondWaveOptionList.Find('ID', ShellDifficultyUI.SecondWaveOptionsReal[i].OptionData.ID);
+			UseDefaultOption = true;
+		}
+
+		if (OptionIndex != INDEX_NONE)
+		{
+			if (UseDefaultOption)
+			{
+				UIMechaListItem(ShellDifficultyUI.m_SecondWaveList.GetItem(i)).Checkbox.SetChecked(SWPersistentDataDefaults.SecondWaveOptionList[OptionIndex].IsChecked);
+			}
+			else
+			{
+				UIMechaListItem(ShellDifficultyUI.m_SecondWaveList.GetItem(i)).Checkbox.SetChecked(SWPersistentData.SecondWaveOptionList[OptionIndex].IsChecked);
+			}
+		}
+
+		// Disable Precision Explosives second wave option
+		if (ShellDifficultyUI.SecondWaveOptionsReal[i].OptionData.ID == 'ExplosiveFalloff')
+		{
+			UIMechaListItem(ShellDifficultyUI.m_SecondWaveList.GetItem(i)).Checkbox.SetChecked(false);
+			UIMechaListItem(ShellDifficultyUI.m_SecondWaveList.GetItem(i)).SetDisabled(true, class'UIListener_CampaignStartMenu'.default.strDisabledPrecisionExplosivesTooltip);
+		}
+	}
+
 	// Disable credits for now. LWOTC TODO: Consider adding a button or something rather than
 	// overlapping screen real estate.
 	// if (UIShellDifficulty(Screen) != none)
 	// {
-	// 	AddLogoAndCredits(Screen);
+		// AddLogoAndCredits(Screen);
 	// }
 }
 

@@ -25,5 +25,7 @@ switch ($config)
 }
 
 $builder.IncludeSrc("$srcDirectory\X2WOTCCommunityHighlander\X2WOTCCommunityHighlander\Src")
+$builder.IncludeSrc("$srcDirectory\BetterSecondWaveSupport\Src")
+$builder.AddToClean("BetterSecondWaveSupport")
 $builder.SetContentOptionsJsonFilename("ContentOptions.json")
 $builder.InvokeBuild()

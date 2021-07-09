@@ -147,6 +147,12 @@ static event InstallNewCampaign(XComGameState StartState)
 	class'XComGameState_WorldRegion_LWStrategyAI'.static.InitializeRegionalAIs(StartState);
 	class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWOverhaulOptions', StartState);
 
+	// Save the second wave options, but only if we've actually started a new
+	// campaign (hence the check for UIShellDifficulty being open).
+	if (`SCREENSTACK != none && UIShellDifficulty(`SCREENSTACK.GetFirstInstanceOf(class'UIShellDifficulty')) != none)
+	{
+		SaveSecondWaveOptions();
+	}
 
 	StartingRegionState = SetStartingLocationToStartingRegion(StartState);
 	UpdateLockAndLoadBonus(StartState);  // update XComHQ and Continent states to remove LockAndLoad bonus if it was selected
@@ -312,6 +318,48 @@ static function PatchModClassOverrides()
 		LocalEngine.ModClassOverrides.AddItem(MCO);
 		`LWTrace(GetFuncName() @ "Adding Mod Class Override -" @ MCO.BaseGameClass @ MCO.ModClass);
 	}
+}
+
+static function SaveSecondWaveOptions()
+{	
+	local UIShellDifficulty ShellDifficultyUI;
+	local UIShellDifficultySW NewShellDifficultyUI;
+	local SecondWaveOption SWOption;
+	local SecondWaveOptionObject NewSWOption;
+	local SecondWavePersistentData PersistentData;
+	local PersistentSecondWaveOption PersistentOption;
+	local XComGameState_CampaignSettings CampaignSettingsState;
+
+	
+	ShellDifficultyUI = UIShellDifficulty(class'Engine'.static.FindClassDefaultObject("XComGame.UIShellDifficulty"));
+	NewShellDifficultyUI = UIShellDifficultySW(class'Engine'.static.FindClassDefaultObject("BetterSecondWaveSupport.UIShellDifficultySW"));
+	CampaignSettingsState = XComGameState_CampaignSettings(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_CampaignSettings'));
+
+	PersistentData = new class'SecondWavePersistentData';
+
+	// Clear existing data from INI first
+	PersistentData.SecondWaveOptionList.Length = 0;
+	PersistentData.SaveConfig();
+
+	// Add base-game second wave options
+	foreach ShellDifficultyUI.SecondWaveOptions(SWOption)
+	{
+		PersistentOption.ID = SWOption.ID;
+		PersistentOption.IsChecked = CampaignSettingsState.SecondWaveOptions.Find(PersistentOption.ID) != INDEX_NONE;
+		PersistentData.SecondWaveOptionList.AddItem(PersistentOption);
+	}
+
+	// Add extra second wave options
+	foreach NewShellDifficultyUI.SecondWaveOptionsReal(NewSWOption)
+	{
+		PersistentOption.ID = NewSWOption.OptionData.ID;
+		PersistentOption.IsChecked = CampaignSettingsState.SecondWaveOptions.Find(PersistentOption.ID) != INDEX_NONE;
+		PersistentData.SecondWaveOptionList.AddItem(PersistentOption);
+	}
+
+	// Save the new second wave settings
+	`LWTrace("Saving second wave options");
+	PersistentData.SaveConfig();
 }
 
 static function XComGameState_WorldRegion SetStartingLocationToStartingRegion(XComGameState StartState)

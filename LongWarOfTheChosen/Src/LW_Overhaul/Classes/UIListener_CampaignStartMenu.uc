@@ -14,11 +14,6 @@ event OnInit(UIScreen Screen)
 		ShellDifficulty = UIShellDifficulty(Screen);
 		ShellDifficulty.m_TutorialMechaItem.Checkbox.SetChecked(false);
 		ShellDifficulty.m_TutorialMechaItem.SetDisabled(true, strDisabledTutorialTooltip);
-
-		// Disables Advanced Option for Precision Explosives
-		// Hard-coding the index should be fine because Firaxis already relies on these indexes being hard-coded
-		UIMechaListItem(ShellDifficulty.m_SecondWaveList.GetItem(7)).Checkbox.SetChecked(false);
-		UIMechaListItem(ShellDifficulty.m_SecondWaveList.GetItem(7)).SetDisabled(true, strDisabledPrecisionExplosivesTooltip);
 	}
 
 	if (UIShellNarrativeContent(Screen) != none)
