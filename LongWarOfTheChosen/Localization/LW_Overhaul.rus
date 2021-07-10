@@ -460,7 +460,7 @@ m_strInsuffientInfiltrationToLaunch="Для начала задания необ
 +m_strAlertnessModifierDescriptions[15]="Уязвимый"
 
 [UIMission_LWCustomMission]
-+m_strUrgent="ДЫРА В БЕЗОПАСНОСТИ"
++m_strUrgent="УГРОЗА БЕЗОПАСНОСТИ"
 +m_strRendezvousMission="ТАЙНАЯ ВСТРЕЧА"
 +m_strRendezvousDesc="**В убежище Сопротивления в регионе <XGParam:StrValue0/!WorldRegionName> замечены недружественные переговоры** Советник и добровольцы из убежища должны выследить и ликвидировать шпиона и его союзников из \"Адвента\" на месте встречи."
 
@@ -470,7 +470,7 @@ m_strInvasionDesc="Силы \"Адвента\" начали вторжение, 
 
 [UIStrategyMapItem_Region_LW]
 m_strOutpostTitle="Убежище: <XGParam:StrValue0>"
-m_strAlertLevel="Сила \"Адвента\": <XGParam:IntValue0> (Э:<XGParam:IntValue2> M:<XGParam:IntValue1>)"
+m_strAlertLevel="Сила \"Адвента\": <XGParam:IntValue0> (Бд.:<XGParam:IntValue2> Тех.ур.:<XGParam:IntValue1>)"
 m_strLiberatedRegion="Регион освобожден"
 m_strStaffingPinText="М:<XGParam:IntValue0> Д:<XGParam:IntValue1> Р:<XGParam:IntValue2>"
 m_strStaffingPinTextMore="К:<XGParam:IntValue0>"
@@ -485,7 +485,7 @@ m_strTitle="ОБЗОР СОПРОТИВЛЕНИЯ"
 m_strLabel="СВЯЗЬ С УБЕЖИЩАМИ СОПРОТИВЛЕНИЯ..."
 m_strRegionLabel="РЕГИОН"
 m_strStrength="СИЛА \"АДВЕНТА\""
-m_strAdviserLabel="СУ"
+m_strAdviserLabel="Советник"
 m_strIncomeLabel="ДОХОД"
 m_strRebelCountLabel="УБЕЖИЩЕ"
 m_strADVENTUnitSingular="Легион"

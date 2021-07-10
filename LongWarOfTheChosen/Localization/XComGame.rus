@@ -3510,6 +3510,31 @@ CodeName="Фахитас"
 LongDescription="Препарирование трупа мутона-гвардейца прошло успешно. Р. Тайган."
 UnlockedDescription="Получено из трупа мутона-гвардейца: сплавы - <XGParam:StrValue0/!Quantity/>"
 
+; LWOTC Translated
+[RenderAdventPriestCorpse X2TechTemplate]
+DisplayName="Препарирование трупа жреца Адвента"
+Summary="Поскольку наши операции преимущественно связаны с быстрым отступлением, захват останков солдат \"Адвента\" и пришельцев представляет некоторую проблему, однако подобные трофеи крайне важны для наших исследований. Более того, мы можем перерабатывать их в ценные материалы и применять для различных целей. Из жреца Адвента мы сможем добыть 3 сплава."
+CodeName="Omelette"
+LongDescription="Препрарирование жреца прошло успешно.  Р. Тайган."
+UnlockedDescription="Получено из трупа жреца Адвента: <XGParam:StrValue0/!Quantity/>сплава"
+
+[RenderAdventPurifierCorpse X2TechTemplate]
+DisplayName="Препарирование трупа огнеметчика"
+Summary="Поскольку наши операции преимущественно связаны с быстрым отступлением, захват останков солдат \"Адвента\" и пришельцев представляет некоторую проблему, однако подобные трофеи крайне важны для наших исследований. Более того, мы можем перерабатывать их в ценные материалы и применять для различных целей. Из огнеметчика Адвента мы сможем добыть 3 сплава."
+CodeName="Paneer"
+LongDescription="Препаприрование огнеметчика прошло успешно.  Р. Тайган."
+UnlockedDescription="Получено из трупа огнеметчика: <XGParam:StrValue0/!Quantity/> сплава"
+
+[RenderSpectreCorpse X2TechTemplate]
+DisplayName="Препарирование трупа призрака"
+Summary="Поскольку наши операции преимущественно связаны с быстрым отступлением, захват останков солдат \"Адвента\" и пришельцев представляет некоторую проблему, однако подобные трофеи крайне важны для наших исследований. Более того, мы можем перерабатывать их в ценные материалы и применять для различных целей. Из призрака мы можем добыть 4 элериевых кристалла."
+CodeName="Blueberry"
+LongDescription="Препарирование прошло успешно.  Р. Тайган."
+UnlockedDescription="Получено из трупа призрака: <XGParam:StrValue0/!Quantity/> элиревых кристалла"
+; End Translated
+
+
+
 [ResistanceRadio X2TechTemplate]
 DisplayName="Радио Сопротивления"
 Summary="Скопировав коммуникационное оборудование, разработанное на \"Мстителе\", мы сможем установить наземные вышки-ретрансляторы, чтобы повысить зону охвата. Это позволит повысить эффективность операций, проводимых убежищами, и нам будет проще выйти на связь с регионами, удаленными от штаба."
@@ -5695,12 +5720,52 @@ ActionName="Предпринять усиленные тренировки (Ст
 ActionPreNarrative="Время приложить усилия. К тренировке, солдат!"
 ActionPostNarrative="Ваш оперативник теперь лучше"
 
+[CovertAction_ResistanceMec X2CovertActionTemplate]
+ActionObjective="Захватите мэк сопротивления"
+
+[CovertActionNarrative_ResistanceMec_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Рейд на робофабрику"
+ActionPreNarrative="Мы обнаружили завод адвента по производству механических солдат. Будет несложно отвлечь охрану и "позаимствовать" один новый неактивированный экземпляр."
+ActionPostNarrative="Перепрограммированный мэк направится к ближайшему убежищу."
+
+[CovertActionNarrative_ResistanceMec_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Рейд на робофабрику"
+ActionPreNarrative="Мы обнаружили завод адвента по производству механических солдат. Будет несложно отвлечь охрану и "позаимствовать" один новый неактивированный экземпляр."
+ActionPostNarrative="Перепрограммированный мэк направится к ближайшему убежищу."
+
+[CovertActionNarrative_ResistanceMec_Templars X2CovertActionNarrativeTemplate]
+ActionName="Рейд на робофабрику"
+ActionPreNarrative="Мы обнаружили завод адвента по производству механических солдат. Будет несложно отвлечь охрану и "позаимствовать" один новый неактивированный экземпляр."
+ActionPostNarrative="Перепрограммированный мэк направится к ближайшему убежищу."
+
+[CovertAction_RecruitRebels X2CovertActionTemplate]
+ActionObjective="Наём повстанцев в убежища"
+
+[CovertActionNarrative_RecruitRebels_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Поиск рекрутов сопротивления"
+ActionPreNarrative="Нам стало известно о небольшой группировке, которая желает нам помочь в борьбе с адвентом."
+ActionPostNarrative="После недолгих переговоров, они направятся к ближайшему убежищу."
+
+[CovertActionNarrative_RecruitRebels_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Поиск рекрутов сопротивления"
+ActionPreNarrative="Нам стало известно о небольшой группировке, которая желает нам помочь в борьбе с адвентом."
+ActionPostNarrative="После недолгих переговоров, они направятся к ближайшему убежищу."
+
+[CovertActionNarrative_RecruitRebels_Templars X2CovertActionNarrativeTemplate]
+ActionName="Поиск рекрутов сопротивления"
+ActionPreNarrative="Нам стало известно о небольшой группировке, которая желает нам помочь в борьбе с адвентом."
+ActionPostNarrative="После недолгих переговоров, они направятся к ближайшему убежищу."
 
 [AbilityPoints X2ItemTemplate]
 FriendlyName="Очки способностей"
 FriendlyNamePlural="Очки способностей"
 BriefSummary="Резерв очков способностей, которые могут открыть новые способности или улучшить характеристики оперативников"
 ; End Translated
+
+
+
+
+
 
 
 ;LWOTC translated
@@ -6015,4 +6080,145 @@ FriendlyNamePlural="Огнеметчики"
 BriefSummary="Огнеметчик"
 TacticalText="Огнеметчик"
 AbilityDescName="Огнеметчик"
+; End Translated
+
+
+
+;LWOTC translated
+[TotalCombat X2AbilityTemplate]
+LocFriendlyName="Гренадёр"
+LocLongDescription="Бросок гранаты больше не заканчивает ход и становится без перезарядки. К тому же, гранаты летят на 2е клетки дальше и радиус взрыва увеличивается на 1. Активирует дополнительный слот под гранату."
+LocHelpText="Бросок гранаты больше не заканчивает ход и становится без перезарядки. К тому же, гранаты летят на 2е клетки дальше и радиус взрыва увеличивается на 1. Активирует дополнительный слот под гранату."
+LocPromotionPopupText="<Bullet/> Гренадёр предоставляет более гибкие и надежные решения проблем.<br/><Bullet/> Удаляет перезарядку на гранаты.<br/><Bullet/> Имеется бонус бомбардира и гремучей смеси, эти способности не будут стакаться."
+;lwotc Translated(2)
+
+[PackMaster_LW X2AbilityTemplate]
+LocFriendlyName="Дополнительное снаряжение"
+LocFlyOverText="Дополнительное снаряжение"
+LocLongDescription="+1 заряд ко всем предметам или гранатам в экипировке."
+LocHelpText="+1 заряд ко всем предметам или гранатам в экипировке."
+LocPromotionPopupText="<Bullet/> +1 заряд ко всем предметам или гранатам в экипировке..<br/> <Bullet/> Действует на особый слот для гранат.<br/> Не влиет на дымовые и светошумовые гранаты, получаемые через изучение способностей.<br/>"
+
+[SkirmisherInterrupt_LW X2AbilityTemplate]
+LocFriendlyName="Прерывание"
+LocLongDescription="Особая форма наблюдения. Вместо ответного огня предоставляет 1 действие. Свободное использование."
+LocHelpText="Особая форма наблюдения. Вместо ответного огня предоставляет 1 действие. Свободное использование."
+LocPromotionPopupText="<Bullet/> Свободное действие.<br/><Bullet/> Некоторые способности недоступны во время прерывания, например Наблюдение.<br/><Bullet/> Перезарядка <Ability:SelfCooldown_LW/> ходов."
+
+[ArcWavePassive X2AbilityTemplate]
+LocFriendlyName="Волна"
+LocLongDescription="Разрыв создают волну из пси энергии по направлению атаки. Урон повышается с улучшением перчаток."
+LocHelpText="Разрыв создают волну из пси энергии по направлению атаки."
+LocPromotionPopupText="<Bullet/> Волна не действует на основную цель Разрыва.<br/><Bullet/> Наносит 4/6/8 урона в зависимости от уровня перчатки.<br/><Bullet/> Наносит урон через объекты, стены.<br/>"
+
+[IonicStorm X2AbilityTemplate]
+LocFriendlyName="Ионный шторм"
+LocLongDescription="Разряд молний поражающий врагов, находящихся рядом. Урон зависит от концентрации. Стоимость применения - вся концентрация."
+LocHelpText="Разряд молний поражающий врагов, находящихся рядом. Стоимость применения - вся концентрация."
+LocPromotionPopupText="<Bullet/> Радиус Ионного шторма повышается с ростом концентрации.<br/><Bullet/> Двойной урон по врагам с пси-способностями.<br/><Bullet/> Перезарядка <Ability:SelfCooldown/> ходов.<br/>"
+
+; lwotc Translated end
+
+; LWOTC Translated
+[Sabotage_LongRangeComms X2SabotageTemplate]
+SummaryText="После диверсии избранного у нас сильные помехи со связью штабами фракций. Секретные операции отложены на 2 недели."
+ShortSummaryText="Секретные операции нельзя проводить в течении 2ух недель"
+; lwotc Translated end
+
+
+; LWOTC Translated
+[TemplarBallisticShield_CV X2AbilityTemplate]
+LocFriendlyName="Щит храмовника"
+LocHelpText=Действует как полуукрытие для союзников. Имеет такие же бонусы для солдата как полуукрытие."
+LocLongDescription=Действует как полуукрытие для союзников. Имеет такие же бонусы для солдата как полуукрытие."
+LocFlyOverText="Щит храмовника"
+
+[TemplarBallisticShield_MG X2AbilityTemplate]
+LocFriendlyName="Щит храмовника"
+LocHelpText=Действует как полуукрытие для союзников. Имеет такие же бонусы для солдата как полуукрытие."
+LocLongDescription=Действует как полуукрытие для союзников. Имеет такие же бонусы для солдата как полуукрытие."
+LocFlyOverText="Щит храмовника"
+
+[TemplarBallisticShield_BM X2AbilityTemplate]
+LocFriendlyName="Щит храмовника"
+LocHelpText=Действует как низкое укрытие для союзников. Имеет такие же бонусы для солдата как низкое укрытие."
+LocLongDescription=Действует как низкое укрытие для союзников. Имеет такие же бонусы для солдата как низкое укрытие."
+LocFlyOverText="Щит храмовника"
+; End Translated
+
+[ShieldBash_LW X2AbilityTemplate]
+LocFriendlyName="Удар щитом"
+LocHelpText="Удар по врагу рядом, отбрасывает. Свободное действие."
+LocLongDescription="Удар по врагу рядом, отбрасывает. Свободное действие."
+LocPromotionPopupText="<Bullet/> Урон растёт с улучшением версии щита.<br/><Bullet/> Перезарядка <Ability:SelfCooldown/> ходов.<br/><Bullet/> Так же бьет и цели находящиеся по диагонали на соседних клетках.<br/>"
+LocFlyOverText="Удар щитом"
+
+[TemplarInvert X2AbilityTemplate]
+LocFriendlyName="Перестановка"
+LocLongDescription="Меняется позицией с выбранным юнитом. Стоит 1 концентрацию."
+LocHelpText="Меняется позицией с выбранным юнитом. Стоит 1 концентрацию."
+LocPromotionPopupText="<Bullet/> Перезарядка <Ability:SelfCooldown/> ходов, не завершает ход.<br/><Bullet/> Можно использовать на союзников и противников.<br/>"
+
+[OneForAll X2AbilityTemplate]
+LocFriendlyName="Один за всех"
+LocHelpText="Предоставляет полное укрытие на этом месте, отнимает 30 защиты. Движение или атака сбрасывают эффект. Дает бонус абалтивного здоровья, зависящего от улучшения версии щита."
+LocLongDescription="Предоставляет полное укрытие на этом месте, отнимает 30 защиты. Движение или атака сбрасывают эффект. Дает бонус абалтивного здоровья, зависящего от улучшения версии щита."
+LocFlyOverText="Один за всех"
+
+
+[GreaterPadding_CV X2AbilityTemplate]
+LocFriendlyName="Быстрое восстановление"
+LocFlyOverText="Быстрое восстановление"
+LocLongDescription="Убирает время лечения на ранение <Ability:GREATER_PADDING_CV/> здоровья. Не работает, если впадал в кровотечение после смертельного ранения."
+LocHelpText="Уменьшает или вовсе убирает время лечения ранения."
+LocPromotionPopupText="<Bullet/> Быстрое восстановление уменьшает количество здоровья, которое необходимо вылечить <Ability:GREATER_PADDING_CV/>.<br/><Bullet/> Солдаты получившие смертельные ранения и истекавашие кровью не могут использовать этот бонус."
+
+[GreaterPadding_MG X2AbilityTemplate]
+LocFriendlyName="Быстрое восстановление"
+LocFlyOverText="Быстрое восстановление"
+LocLongDescription="Убирает время лечения на ранение <Ability:GREATER_PADDING_MG/> здоровья. Не работает, если впадал в кровотечение после смертельного ранения.
+LocHelpText="Уменьшает или вовсе убирает время лечения ранения."
+LocPromotionPopupText="<Bullet/> Быстрое восстановление уменьшает количество здоровья, которое необходимо вылечить <Ability:GREATER_PADDING_MG/>.<br/><Bullet/> Солдаты получившие смертельные ранения и истекавашие кровью не могут использовать этот бонус."
+
+[GreaterPadding_BM X2AbilityTemplate]
+LocFriendlyName="Быстрое восстановление"
+LocFlyOverText="Быстрое восстановление"
+LocLongDescription="Убирает время лечения на ранение <Ability:GREATER_PADDING_BM/> здоровья. Не работает, если впадал в кровотечение после смертельного ранения.
+LocHelpText="Уменьшает или вовсе убирает время лечения ранения."
+LocPromotionPopupText="<Bullet/> Быстрое восстановление уменьшает количество здоровья, которое необходимо вылечить <Ability:GREATER_PADDING_BM/>.<br/><Bullet/> Солдаты получившие смертельные ранения и истекавашие кровью не могут использовать этот бонус."
+
+[Indomitable X2AbilityTemplate]
+LocFriendlyName="Восприятие"
+LocHelpText="В течение хода получите 1 концентрацию, если вас атаковали. Срабатывает 1 раз за ход."
+LocLongDescription="В течение хода получите 1 концентрацию, если вас атаковали. Срабатывает 1 раз за ход."
+LocPromotionPopupText"<Bullet/>В течение хода получите 1 концентрацию, если вас атаковали.<br/><Bullet/>Действует на ближние и дальние атаки.<br/>"
+LocFlyOverText="Восприятие"
+
+
+[DoubleRendFocus X2AbilityTemplate]
+LocFriendlyName="Жажда силы"
+LocHelpText="Разрыв дает дополнительно 1 бонус к концентрации"
+LocLongDescription="Разрыв дает дополнительно 1 бонус к концентрации"
+LocFlyOverText="Жажда силы"
+
+[DoubleRendFocusPassive X2AbilityTemplate]
+LocFriendlyName="Жажда силы"
+LocHelpText="Разрыв дает дополнительно 1 бонус к концентрации"
+LocLongDescription="Разрыв дает дополнительно 1 бонус к концентрации"
+LocFlyOverText="Жажда силы"
+
+[Amplify X2AbilityTemplate]
+LocFriendlyName="Усиление"
+LocLongDescription="Псионическая метка цели по которой будет увеличен на <Ability:AmplifyDamageMult/>% урон от следующих 2ух атак. Стоит 1 концентрацию, свободное действие."
+LocHelpText="Псионическая метка цели по которой будет увеличен на <Ability:AmplifyDamageMult/>% урон от следующих 2ух атак. Стоит 1 концентрацию, свободное действие."
+LocHitMessage="Усиление"
+LocPromotionPopupText="<Bullet/> Усиление действует на следющих два урона.<br/><Bullet/>Свободное действие.<br/><Bullet/> Перезарядка <Ability:SelfCooldown_LW/> ходов.<br/>"
+
+
+[CrusaderRage_LW X2AbilityTemplate]
+LocFriendlyName="Фанатичная ярость"
+LocHelpText="Бонус 50% урона при уровне здоровья 50% и меньше. Уменьшает ранение, необходимое для восстановления после сражения, на 6 хп"
+LocLongDescription="Бонус 50% урона при уровне здоровья 50% и меньше. Уменьшает ранение, необходимое для восстановления после сражения, на 6 хп"
+LocPromotionPopupText="<Bullet/> Уменьшение не работает, если солдат получил смертельное ранение и истекал кровью.<br/>"
+LocFlyOverText="Фанатичная ярость"
 ; End Translated
