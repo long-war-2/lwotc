@@ -135,7 +135,6 @@ LocHelpText="Бросок ножей пробивает +<Ability:BLUESCREEN_KNI
 LocLongDescription="Бросок ножей пробивает +<Ability:BLUESCREEN_KNIVES_PIERCE/> брони и дезориентирует роботов."
 LocPromotionPopupText="Бросок ножей пробивает +<Ability:BLUESCREEN_KNIVES_PIERCE/> брони и дезориентирует роботов."
 
-; LWOTC Needs Translation
 [BattlefieldAwareness X2AbilityTemplate]
 LocFriendlyName="Защита"
 LocLongDescription="После убийства на своём ходу получите гарантированный промах по вам на ходе противников. После использования наступает перезарядка <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> ходов."
