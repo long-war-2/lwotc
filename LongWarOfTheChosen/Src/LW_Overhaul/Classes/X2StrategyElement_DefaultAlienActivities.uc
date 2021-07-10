@@ -3800,14 +3800,19 @@ static function int GetTypicalMissionForceLevel(XComGameState_LWAlienActivity Ac
 
 static function int GetIntelRaidAlertLevel(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionSite, XComGameState NewGameState)
 {
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState;
 	local int AlertLevel;
+
+	RegionState = MissionSite.GetWorldRegion();
+	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState);
 
 	AlertLevel = GetTypicalMissionAlertLevel(ActivityState, MissionSite, NewGameState);
 
 	// Adjust the alert level based on Force Level to ensure the first couple of intel raids
 	// aren't quite as strong a shock to the player's system. This is a bit of a hack, but
 	// if it works out, parameterise the 8 (the 4 is just half that value).
-	AlertLevel += Max(0, FFloor((8 - MissionSite.SelectedMissionData.ForceLevel) / 4) + 1);
+	AlertLevel -= Max(0, FFloor((8 - RegionalAIState.LocalForceLevel) / 4) + 1);
 
 	return AlertLevel;
 }
