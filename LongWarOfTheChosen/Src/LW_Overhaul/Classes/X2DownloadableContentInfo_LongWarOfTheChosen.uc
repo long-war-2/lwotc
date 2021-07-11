@@ -3235,7 +3235,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'SHIELD_ALLY_PCT_DR':
 			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.SHIELD_ALLY_PCT_DR * 100));
 			return true;
-
+		case 'CHOSEN_RETRIBUTION_DURATION':
+			OutString = string(default.CHOSEN_RETRIBUTION_DURATION);
+			return true;
 		default:
 			return false;
 	}

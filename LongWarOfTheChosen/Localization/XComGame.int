@@ -6699,6 +6699,10 @@ LocPromotionPopupText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> De
 
 ; End Translation
 
+; LWOTC Needs Translation
+[ChosenAction_Retribution X2ChosenActionTemplate]
+SummaryText="A brutal crackdown on the Resistance, lowering all rebel income (intel, recruit and supply) in the region for <Ability:CHOSEN_RETRIBUTION_DURATION/> days."
+; End Translation
 
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
