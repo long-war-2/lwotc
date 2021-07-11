@@ -20,21 +20,23 @@ event OnInit(UIScreen Screen)
 	StrategyMap = UIStrategyMap(Screen);
 	if (StrategyMap == none) return;
 
-	HavenManagementButton = Screen.Spawn(class 'UIStrategyMap_HavenManagementButton', StrategyMap.StrategyMapHUD);
-	HavenManagementButton.InitHMButton();
+	if (!`ISCONTROLLERACTIVE)
+	{
+		HavenManagementButton = Screen.Spawn(class 'UIStrategyMap_HavenManagementButton', StrategyMap.StrategyMapHUD);
+		HavenManagementButton.InitHMButton();
+	}
 
-	HandleInput(true);
 }
 
 public function OnHavenManagementNewButton(UIButton HavenManagementNewButton)
 {
-	class'XComGameState_LWOutpostManager'.static.ResistanceManagementScreen();
+	class'XComGameState_LWOutpostManager'.static.OpenResistanceManagementScreen();
 }
 
 ///////////////////////////////////////////
 /// Handling input (controller support) ///
 ///////////////////////////////////////////
-
+/*
 event OnReceiveFocus(UIScreen screen)
 {
 	if (UIStrategyMap(Screen) == none) return;
@@ -86,3 +88,4 @@ static protected function bool OnUnrealCommand(int cmd, int arg)
 
 	return false;
 }
+*/
