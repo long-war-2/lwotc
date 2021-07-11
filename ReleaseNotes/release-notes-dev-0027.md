@@ -1,4 +1,4 @@
-Welcome to **dev build 27.1** of Long War of the Chosen!
+Welcome to **dev build 27.2** of Long War of the Chosen!
 
 This fixes some significant issues with the game and makes some more balance changes. We're not anticipating any more releases other than hotfixes before a 1.0 release!
 
@@ -20,16 +20,25 @@ Headline changes:
  * DLC2CommunityHighlander
  * X2WOTCCommunityPromotionScreen (*unless you are using RPGO*)
 
-To install dev build 27.1, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
+To install dev build 27.2, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
 
 ||  **[Download the full release from Nexus Mods](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
 
-**Upgrading from dev build 27** The above link also contains an update package you can use to upgrade dev build 27 to 27.1. If you use this, *make sure you delete the LongWarOfTheChosen/CookedPCConsole before running the game!*
+**Upgrading from dev build 27** The above link also contains an update package you can use to upgrade dev build 27.x to 27.2. If you use this, *make sure you delete the XComGame/Mods/LongWarOfTheChosen/CookedPCConsole foldier (if it exists) before running the game!*
 
 # New warning dialogs
 
 The highlander may display warnings about "Cycle in Run Order Detected" and "Conflicting Run Order data" when you start up the game. These need to be fixed by the authors of the mods listed, but you should be able to safely ignore the warnings if things were working fine in previous versions of LWOTC.
 
+
+# Changelog dev build 27.2
+
+ * Early Intel Raids now correctly have a lower enemy activity than normal rather than a higher one
+ * Chosen Assassin's Impact Compensation is now 20% damage reduction up to a maximum of 3 stacks, which solves a problem with the ability being way too strong after an implementation change for dev build 27
+ * Infighter replaces Brawler on the Chosen Assassin, and Infighter is no longer disabled by burning
+ * Shieldbearers will now prioritise good shots over shielding just themselves (but shielding allies still takes precedence over all)
+ * Abilities that are made free by another ability (Rapid Deployment, Quickburn, etc.) will now show as green icons
+ * Second wave options will now persist between campaigns (so now you only have to disable the tutorial once!)
 
 # Changelog dev build 27.1
 
