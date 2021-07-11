@@ -6675,20 +6675,20 @@ LocFriendlyName="Smoke Anti Crit"
 LocHelpText="Negates the crit bonus from flanking"
 ; End Translation (2)
 
-
+; LWOTC Needs Translation (2)
 [ImpactCompensation_LW X2AbilityTemplate]
 LocFriendlyName="Impact Compensation"
 LocFlyOverText="Impact Compensation"
-LocLongDescription="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
-LocHelpText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
-LocPromotionPopupText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+LocLongDescription="After taking damage, gain a stacking <Ability:IMPACT_COMPENSATION_PCT_DR>% damage reduction until the end of your turn. Max stacks: <Ability:IMPACT_COMPENSATION_MAX_STACKS/>."
+LocHelpText="After taking damage, gain a stacking <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn. Max stacks: <Ability:IMPACT_COMPENSATION_MAX_STACKS/>."
+LocPromotionPopupText="<Bullet/> Provides scaling percentage-based damage reduction that increases as you take more damage.<br/><Bullet/> Stacks reset to 0 at the start of your turn.<br/><Bullet/> Stacks apply multiplicatively."
 
 [ImpactCompensationPassive_LW X2AbilityTemplate]
 LocFriendlyName="Impact Compensation"
 LocFlyOverText="Impact Compensation"
-LocLongDescription="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
-LocHelpText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
-LocPromotionPopupText="After taking damage, gain <Ability:IMPACT_COMPENSATION_PCT_DR>% Damage reduction until the end of your turn."
+LocLongDescription="After taking damage, gain a stacking <Ability:IMPACT_COMPENSATION_PCT_DR>% damage reduction until the end of your turn. Max stacks: <Ability:IMPACT_COMPENSATION_MAX_STACKS/>."
+LocHelpText="After taking damage, gain a stacking <Ability:IMPACT_COMPENSATION_PCT_DR>% damage reduction until the end of your turn. Max stacks: <Ability:IMPACT_COMPENSATION_MAX_STACKS/>."
+; End Translation (2)
 
 [MovingTarget_LW X2AbilityTemplate]
 LocFriendlyName="Moving Target"
@@ -6710,8 +6710,10 @@ KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Chosen can launch an assault 
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an additional dark event!"
 
 
-[X2Ability_LW_ChosenAbilities]
-ShieldedStatBuffsLocDescription="Bonus Aim, Critical hit Chance, Will and Psi Offense."
+; LWOTC Needs Translation (2)
+; Remove this section
+; [X2Ability_LW_ChosenAbilities]
+; End Translation (2)
 
 [Magnum_LW X2AbilityTemplate]
 LocFriendlyName="Magnum"

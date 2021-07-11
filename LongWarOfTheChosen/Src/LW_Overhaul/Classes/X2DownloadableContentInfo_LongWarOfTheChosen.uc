@@ -3225,9 +3225,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'RESCUE_CV_CHARGES':
 			Outstring = string(class'X2Ability_LW_SpecialistAbilitySet'.default.RESCUE_CV_CHARGES);
-			return true;			
+			return true;
 		case 'IMPACT_COMPENSATION_PCT_DR':
 			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_COMPENSATION_PCT_DR * 100));
+			return true;
+		case 'IMPACT_COMPENSATION_MAX_STACKS':
+			Outstring = string(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_COMPENSATION_MAX_STACKS);
 			return true;
 		case 'SHIELD_ALLY_PCT_DR':
 			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.SHIELD_ALLY_PCT_DR * 100));
@@ -3242,7 +3245,10 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 {
 	local name Type;
 	local XComGameState_Ability AbilityState;
+	local XComGameState_Effect EffectState;
+	local XComGameState_Unit UnitState;
 	local X2AbilityTemplate AbilityTemplate;
+	local int ImpactCompensationStacks;
 
 	Type = name(InString);
 	switch(Type)
@@ -3263,6 +3269,32 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 				// LW2 doesn't subtract 1 from cooldowns as a general rule, so to keep it consistent
 				// there is substitute tag
 				OutString = string(AbilityTemplate.AbilityCooldown.iNumTurns);
+			}
+		}
+		return true;
+	case 'IMPACT_COMPENSATION_CURRENT_DR':
+		OutString = "0";
+		AbilityState = XComGameState_Ability(ParseObj);
+		if (AbilityState != none)
+		{
+			UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
+		}
+		else
+		{
+			EffectState = XComGameState_Effect(ParseObj);
+			if (EffectState != none)
+			{
+				UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+			}
+		}
+
+		if (UnitState != none)
+		{
+			ImpactCompensationStacks = int(class'Utilities_LW'.static.GetUnitValue(UnitState, class'X2Ability_PerkPackAbilitySet2'.const.DAMAGED_COUNT_NAME));
+			if (ImpactCompensationStacks > 0)
+			{
+				OutString = string(int((1 - (1 - class'X2Ability_LW_ChosenAbilities'.default.IMPACT_COMPENSATION_PCT_DR) **
+						Min(ImpactCompensationStacks, class'X2Ability_LW_ChosenAbilities'.default.IMPACT_COMPENSATION_MAX_STACKS)) * 100));
 			}
 		}
 		return true;

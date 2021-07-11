@@ -16,6 +16,8 @@ var config float BONUS_SLICE_DAMAGE_PER_TILE;
 var config int MAX_SLICE_FLECHE_DAMAGE;
 var config array<name> REQUIRED_OVERWATCH_TO_HIT_EXCLUDED_ABILITIES;
 
+const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -39,6 +41,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddFullKit());
 	Templates.AddItem(AddStingGrenades());
 	Templates.AddItem(AddFieldSurgeon());
+	Templates.AddItem(AddDamageInstanceTracker());
 	
 	return Templates;
 }
@@ -1008,4 +1011,42 @@ static function EventListenerReturn FieldSurgeonOnUnitBeginPlay(Object EventData
 	}
 
 	return ELR_NoInterrupt;
+}
+
+// Ability that tracks how many times a unit has been damaged each turn
+static function X2AbilityTemplate AddDamageInstanceTracker()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityTrigger_EventListener	Trigger;	
+	local X2Effect_IncrementUnitValue		CounterEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'DamageInstanceTracker');
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_standard";
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	CounterEffect = new class'X2Effect_IncrementUnitValue';
+	CounterEffect.UnitName = DAMAGED_COUNT_NAME;
+	CounterEffect.NewValueToSet = 1;
+	CounterEffect.CleanupType = eCleanup_BeginTurn;
+	CounterEffect.bApplyOnHit = true;
+	Template.AddShooterEffect(CounterEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// No visualization for this ability
+
+	return Template;
 }

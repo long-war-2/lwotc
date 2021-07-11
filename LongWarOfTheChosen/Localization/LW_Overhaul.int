@@ -267,6 +267,12 @@ AblativeHPLabel="Ablative HP"
 [X2Ability_LW_TechnicalAbilitySet]
 strMaxScatter="\nMax Scatter (Tiles): "
 
+; LWOTC Needs Translation
+[X2Ability_LW_ChosenAbilities]
+ShieldedStatBuffsLocDescription="Bonus Aim, Critical hit Chance, Will and Psi Offense."
+ImpactCompensationBuffDescription="Reducing all incoming damage by <Ability:IMPACT_COMPENSATION_CURRENT_DR/>%"
+; End Translation
+
 [XComGameState_LWListenerManager]
 ResistanceHQBodyText="Access Resistance Haven Information"
 
