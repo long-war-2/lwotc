@@ -38,6 +38,7 @@ simulated function InitHMButton()
 
 	// Rai - Add resistance outpost icon
 	strLabel = class'UIUtilities_Text'.static.InjectImage("img:///UILibrary_StrategyImages.X2StrategyMap.MissionIcon_ResHQ", 26, 26, ) @ strLabel;
+	strLabel $= "Resistance Management";
 
 	Label = Spawn(class'UIText', self);
 	Label.InitText('Label');
@@ -46,6 +47,8 @@ simulated function InitHMButton()
 	Label.SetWidth(BG.Width - 10);
 	Label.OnTextSizeRealized = OnLabelSizeRealized;
 
+	// Rai - Removed as per suggestion
+	/*
 	if (`ISCONTROLLERACTIVE)
 	{
 		ControllerIcon = Spawn(class'UIImage', self);
@@ -56,7 +59,7 @@ simulated function InitHMButton()
 
 		Label.SetX(ControllerIcon.X + ControllerIcon.Width + 10);
 		Label.SetWidth(BG.Width - ControllerIcon.Width - 20);
-	}
+	}*/
 
 	UpdateLabel();
 	SubscribeToEvents();
@@ -125,7 +128,7 @@ simulated protected function OnClicked()
 	if (Movie.Pres.ScreenStack.GetCurrentScreen() != StrategyMap) return;
 	if (StrategyMap.IsInFlightMode()) return;
 
-	class'XComGameState_LWOutpostManager'.static.ResistanceManagementScreen();
+	class'XComGameState_LWOutpostManager'.static.OpenResistanceManagementScreen();
 	OnLoseFocus();
 }
 
