@@ -9,6 +9,12 @@
     <RootNamespace>lwotc</RootNamespace>
     <ProjectGuid>{c6d96315-2f7d-4066-a9c7-6b9d4264751d}</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup>
+    <SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
+    <ScriptsDir>$(SolutionRoot).scripts\</ScriptsDir>
+    <BuildCommonRoot>$(ScriptsDir)X2ModBuildCommon\</BuildCommonRoot>
+  </PropertyGroup>
+  <Import Project="$(BuildCommonRoot)XCOM2.targets" />
   <ItemGroup>
     <Folder Include="Config\" />
     <Folder Include="Content\" />
@@ -20,6 +26,8 @@
     <Folder Include="Content\LW_SMGPack_Integrated\" />
     <Folder Include="Content\LW_Toolbox_Integrated\" />
     <Folder Include="Content\Maps\" />
+    <Folder Include="Content\Maps\Plots\" />
+    <Folder Include="Content\Maps\Plots\Wilderness\" />
     <Folder Include="Content\Missions\" />
     <Folder Include="Content\Parcels\" />
     <Folder Include="Content\PCPs\" />
@@ -34,6 +42,7 @@
     <Folder Include="Localization\LW_PerkPack_Integrated\" />
     <Folder Include="Localization\LW_SMGPack_Integrated\" />
     <Folder Include="Localization\LW_Toolbox_Integrated\" />
+    <Folder Include="Localization\LW_WeaponsAndArmor\" />
     <Folder Include="Localization\Parcels\" />
     <Folder Include="Src\" />
     <Folder Include="Src\DetailedSoldierListWOTC_Integrated\Classes\" />
@@ -84,8 +93,7 @@
     <Folder Include="Src\XModBase_Core_2_0_2\Classes\" />
     <Folder Include="Src\XModBase_Interfaces\" />
     <Folder Include="Src\XModBase_Interfaces\Classes\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Folder Include="Src\LW_Tutorial" />
     <Content Include="Config\XComAI.ini" />
     <Content Include="Config\XComAIJobs.ini" />
     <Content Include="Config\XComAnimation.ini" />
@@ -1379,11 +1387,63 @@
     <Content Include="Src\LW_Tutorial\Classes\X2DownloadableContentInfo_LW_Tutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\X2EventListener_Tutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\X2StrategyElement_LWTutorialObjectives.uc" />
+    <Content Include="ContentOptions.json" />
+    <Content Include="ModPreview.jpg" />
+    <Content Include="ReadMe.txt" />
+    <Content Include="Config\XComLW_SecondWaveDataDefaults.ini" />
+    <Content Include="Config\XComX2WOTCCommunityPromotionScreen_DEFAULT.ini" />
+    <Content Include="Localization\LW_FactionBalance\XComGame.fra" />
+    <Content Include="Localization\LW_FactionBalance\XComGame.rus" />
+    <Content Include="Localization\LW_WeaponsAndArmor\LW_WeaponsAndArmor.fra" />
+    <Content Include="Localization\LW_WeaponsAndArmor\XComGame.fra" />
+    <Content Include="Localization\LW_WeaponsAndArmor\XComGame.int" />
+    <Content Include="Localization\LW_WeaponsAndArmor\XComGame.rus" />
+    <Content Include="Src\LW_Overhaul\Classes\SecondWavePersistentData.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\SecondWavePersistentDataDefaults.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Campaign.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2AbilityCooldown_Shared.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Condition_TargetHasOneOfTheEffects.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_AddAmmo.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_BloodThirst.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_Fatality_LW.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_ImpactCompensation.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2Effect_LWHolotarget.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\X2StatusEffects_LW.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XComGameState_Effect_Savior.uc" />
+    <Content Include="Src\LW_PerkPack_Integrated\Classes\XMBEffect_RevealUnit_LW.uc" />
+    <Content Include="Src\LW_XModBase\Classes\XMBEffectUtilities.uc" />
+    <Content Include="Src\LW_XModBase\Classes\XMBEffect_AddAbilityCharges.uc" />
+    <Content Include="Content\AutopistolRebalance_LW.upk" />
+    <Content Include="Content\BRMeshPack_LW.upk" />
+    <Content Include="Content\BstarsPerkPack_Icons.upk" />
+    <Content Include="Content\GameUnit_AdvPurifier_Rusty.upk" />
+    <Content Include="Content\HunterTrackingMark_LW.upk" />
+    <Content Include="Content\LWHoloTarget_PerkContent.upk" />
+    <Content Include="Content\LWMultiTarget_PerkContent.upk" />
+    <Content Include="Content\LWRapidTarget_PerkContent.upk" />
+    <Content Include="Content\LW_StrikeRifle.upk" />
+    <Content Include="Content\MusashiCombatKnifeMod_LW.upk" />
+    <Content Include="Content\OneHandedGauntlet_LW.upk" />
+    <Content Include="Content\UILibrary_FavidsPerkPack.upk" />
+    <Content Include="Content\UILibrary_SOCombatEngineer.upk" />
+    <Content Include="Content\UILibrary_SODragoon.upk" />
+    <Content Include="Content\UILibrary_SOHunter.upk" />
+    <Content Include="Content\UILibrary_WeaponPerkIcons.upk" />
+    <Content Include="Content\UILibrary_WolfWeaponPack.upk" />
+    <Content Include="Content\UILibrary_WOTC_APA_Class_Pack.upk" />
+    <Content Include="Content\UILibrary_XPerkIconPack.upk" />
+    <Content Include="Content\WoTC_Ballistic_Shield_LW.upk" />
+    <Content Include="Content\WoTC_Plated_Shield_LW.upk" />
+    <Content Include="Content\WoTC_Powered_Shield_LW.upk" />
+    <Content Include="Content\WoTC_Shield_Animations_LW.upk" />
+    <Content Include="Content\WoTC_Shield_UI_LW.upk" />
+    <Content Include="Content\WP_AdventFlamethrower_Rusty.upk" />
+    <Content Include="Content\WP_BeamGrenadeLauncher.upk" />
+    <Content Include="Content\LW_LaserPack_Integrated\FX_Lwotc_Laser_Shared.upk" />
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_CloseCombatSpecialist.upk" />
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_KnifeEncounters.upk" />
+    <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Highway_LgObj_01.umap" />
+    <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Highway_LgObj_02.umap" />
+    <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Ravine_LgObj_01.umap" />
   </ItemGroup>
-  <PropertyGroup>
-    <SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
-    <ScriptsDir>$(SolutionRoot).scripts\</ScriptsDir>
-    <BuildCommonRoot>$(ScriptsDir)X2ModBuildCommon\</BuildCommonRoot>
-  </PropertyGroup>
-  <Import Project="$(BuildCommonRoot)XCOM2.targets" />
 </Project>
