@@ -2279,7 +2279,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('ChosenImmunitiesPassive');
 		Template.Abilities.AddItem('AssassinSlash_LW');
 		Template.Abilities.AddItem('ImpactCompensation_LW');
-		Template.Abilities.AddItem('Brawler');
+		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('ChosenLootAbility');
 
 		Template.ImmuneTypes.AddItem('Frost');
