@@ -507,6 +507,11 @@ static function EventListenerReturn OverrideRankRequirement(
 		Tuple.Data[8].b = true;
 	}
 
+	// Don't treat any soldiers as if they're faction soldiers in terms of
+	// default CPS behavior. Any abilities other than class abilities *should*
+	// need the Training Center to be built before they can be purchased.
+	Tuple.Data[11].b = false;
+
 	return ELR_NoInterrupt;
 }
 
@@ -586,8 +591,8 @@ static function EventListenerReturn OverrideAbilityPointCost(
 	Branch = Tuple.Data[2].i;
 	ClassAbilityRankCount = Tuple.Data[12].i;
 
-	// Skip custom ability costs if base behaviour has ability cost as 0
-	if (AbilityCost == 0)
+	// Skip custom ability costs if this is a free ability from promotion
+	if (Tuple.Data[10].b)
 		return ELR_NoInterrupt;
 
 	// Default ability point costs used for XCOM-row abilities
