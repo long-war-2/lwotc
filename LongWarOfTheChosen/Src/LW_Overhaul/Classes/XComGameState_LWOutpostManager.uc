@@ -233,7 +233,7 @@ simulated function GoToResistanceManagement(optional StateObjectReference Facili
 }
 
 // Rai - Added function to enable entering the haven management screen from geoscape directly
-static function ResistanceManagementScreen(optional StateObjectReference ActionToFocus)
+static function OpenResistanceManagementScreen(optional StateObjectReference ActionToFocus)
 {
 	local UIResistanceManagement_LW TempScreen;
 	local XComHQPresentationLayer HQPres;
