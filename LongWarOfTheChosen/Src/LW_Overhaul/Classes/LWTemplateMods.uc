@@ -739,8 +739,10 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 	local X2Condition_UnitProperty	UnitCondition;
 	local X2Effect_PersistentStatChange DisorientedEffect;
 	GrenadeTemplate = X2GrenadeTemplate(Template);
+
 	if(GrenadeTemplate == none)
 		return;
+
 	switch(GrenadeTemplate.DataName)
 	{
 		case 'FlashbangGrenade':
@@ -801,14 +803,20 @@ function ModifyGrenadeEffects(X2ItemTemplate Template, int Difficulty)
 			break;
 		case 'EMPGrenade':
 		case 'EMPGrenadeMk2':
-
-			UnitCondition = new class'X2Condition_UnitProperty';
-			UnitCondition.ExcludeOrganic = true;
-			UnitCondition.IncludeWeakAgainstTechLikeRobot = true;
-			UnitCondition.ExcludeFriendlyToSource = false;
-	
 			DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
-			DisorientedEffect.TargetConditions.AddItem(UnitCondition);
+			for (k = 0; k < DisorientedEffect.TargetConditions.Length; k++)
+			{
+				// Modify the existing condition, which applies only to organics
+				UnitCondition = X2Condition_UnitProperty(DisorientedEffect.TargetConditions[k]);
+				if (UnitCondition != none)
+				{
+					UnitCondition.ExcludeOrganic = true;
+					UnitCondition.ExcludeRobotic = false;
+					UnitCondition.IncludeWeakAgainstTechLikeRobot = true;
+					break;
+				}
+			}
+
 			GrenadeTemplate.ThrownGrenadeEffects.AddItem(DisorientedEffect);
 			GrenadeTemplate.LaunchedGrenadeEffects.AddItem(DisorientedEffect);
 			break;
