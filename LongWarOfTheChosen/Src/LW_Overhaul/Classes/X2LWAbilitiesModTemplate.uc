@@ -77,6 +77,11 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'BondmateSolaceCleanse':
 			FixBondmateCleanse(Template);
 			break;
+		case 'BondmateDualStrikeFollowup':
+			// Fix performance issue where it considers every enemy on the map a
+			// valid target.
+			Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+			break;
 		case 'LostHeadshotInit':
 			DisableLostHeadshot(Template);
 			break;
