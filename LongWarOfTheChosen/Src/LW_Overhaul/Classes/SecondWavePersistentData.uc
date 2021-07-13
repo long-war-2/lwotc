@@ -12,4 +12,7 @@ struct PersistentSecondWaveOption
     var bool IsChecked;
 };
 
+var config bool IsDifficultySet;
+var config int Difficulty;
+var config bool DisableBeginnerVO;
 var config array<PersistentSecondWaveOption> SecondWaveOptionList;

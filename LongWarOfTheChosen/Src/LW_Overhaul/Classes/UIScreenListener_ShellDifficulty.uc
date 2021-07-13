@@ -72,6 +72,33 @@ event OnInit(UIScreen Screen)
 		}
 	}
 
+	// If a valid difficulty has been saved, pre select that
+	if (SWPersistentData.IsDifficultySet && SWPersistentData.Difficulty >= 0 &&
+		SWPersistentData.Difficulty < `MAX_DIFFICULTY_INDEX)
+	{
+		for (i = 0; i < `MAX_DIFFICULTY_INDEX; i++)
+		{
+			switch (i)
+			{
+			case 0:
+				ShellDifficultyUI.m_DifficultyRookieMechaItem.Checkbox.SetChecked(SWPersistentData.Difficulty == i);
+				break;
+			case 1:
+				ShellDifficultyUI.m_DifficultyVeteranMechaItem.Checkbox.SetChecked(SWPersistentData.Difficulty == i);
+				break;
+			case 2:
+				ShellDifficultyUI.m_DifficultyCommanderMechaItem.Checkbox.SetChecked(SWPersistentData.Difficulty == i);
+				break;
+			case 3:
+				ShellDifficultyUI.m_DifficultyLegendMechaItem.Checkbox.SetChecked(SWPersistentData.Difficulty == i);
+				break;
+			}
+		}
+	}
+
+	// Apply the remembered setting for Disable Beginner VO
+	ShellDifficultyUI.m_FirstTimeVOMechaItem.Checkbox.SetChecked(SWPersistentData.DisableBeginnerVO);
+
 	// Disable credits for now. LWOTC TODO: Consider adding a button or something rather than
 	// overlapping screen real estate.
 	// if (UIShellDifficulty(Screen) != none)

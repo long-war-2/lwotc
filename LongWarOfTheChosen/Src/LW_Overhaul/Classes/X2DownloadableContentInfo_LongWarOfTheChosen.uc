@@ -341,6 +341,11 @@ static function SaveSecondWaveOptions()
 	PersistentData.SecondWaveOptionList.Length = 0;
 	PersistentData.SaveConfig();
 
+	// Save difficulty and beginner VO settings
+	PersistentData.IsDifficultySet = true;
+	PersistentData.Difficulty = CampaignSettingsState.DifficultySetting;
+	PersistentData.DisableBeginnerVO = CampaignSettingsState.bSuppressFirstTimeNarrative;
+
 	// Add base-game second wave options
 	foreach ShellDifficultyUI.SecondWaveOptions(SWOption)
 	{
