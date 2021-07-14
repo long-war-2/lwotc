@@ -1,4 +1,4 @@
-Welcome to **dev build 27.2** of Long War of the Chosen!
+Welcome to **dev build 27.3** of Long War of the Chosen!
 
 This fixes some significant issues with the game and makes some more balance changes. We're not anticipating any more releases other than hotfixes before a 1.0 release!
 
@@ -20,16 +20,23 @@ Headline changes:
  * DLC2CommunityHighlander
  * X2WOTCCommunityPromotionScreen (*unless you are using RPGO*)
 
-To install dev build 27.2, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
+To install dev build 27.3, just delete your existing LongWarOfTheChosen and X2WOTCCommunityHighlander folders from the *Mods* directory and unpack the following zip there:
 
 ||  **[Download the full release from Nexus Mods](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
 
-**Upgrading from dev build 27** The above link also contains an update package you can use to upgrade dev build 27.x to 27.2. If you use this, *make sure you delete the XComGame/Mods/LongWarOfTheChosen/CookedPCConsole foldier (if it exists) before running the game!*
+**Upgrading from dev build 27** The above link also contains an update package you can use to upgrade dev build 27.x to 27.3. If you use this, *make sure you delete the XComGame/Mods/LongWarOfTheChosen/CookedPCConsole foldier (if it exists) before running the game!*
 
 # New warning dialogs
 
 The highlander may display warnings about "Cycle in Run Order Detected" and "Conflicting Run Order data" when you start up the game. These need to be fixed by the authors of the mods listed, but you should be able to safely ignore the warnings if things were working fine in previous versions of LWOTC.
 
+# Changelog dev build 27.3
+
+ * Second wave options will no longer be missing
+ * EMP grenades now disorient robotics as intended
+ * Dual Strike should no longer cause massive lag issues on missions with lots of enemies
+ * Difficulty and Reduce Beginner VO settings are now remembered between campaigns on top of the second wave options
+ * Apotheosis ability information on promotion screen now correctly states that it applies to all damage abilities on the Templar and that the Templar *can* gain focus while it's active
 
 # Changelog dev build 27.2
 
