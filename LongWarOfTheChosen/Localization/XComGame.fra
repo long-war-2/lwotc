@@ -5313,9 +5313,9 @@ LocPromotionPopupText="<Bullet/> Une forme supérieure de Vigilance. Plutôt que
 
 [Pillar X2AbilityTemplate]
 ; LWOTC translated (2)
-LocLongDescription="Invoque un pilier d'énergie psionique qui est considéré comme un abri total. Action gratuite, qui ne coûte aucun point concentration. Cette capacité se prolonge pendant un nombre de tours égal à la concentration du Templier lorsqu'il a invoqué le pilier."
-LocHelpText="Invoque un pilier d'énergie psionique qui est considéré comme un abri total. Action gratuite, qui ne coûte aucun point concentration. Cette capacité se prolonge pendant un nombre de tours égal à la concentration du Templier lorsqu'il a invoqué le pilier."
-LocPromotionPopupText="<Bullet/> Cette capacité se prolonge pendant un nombre de tours égal à la concentration du Templier lorsqu'il a invoqué le pilier.<br/><Bullet/> Action gratuite. Peut être activé après l'utilsiation de la capacité Taillade.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+LocLongDescription="Invoque un pilier d'énergie psionique qui est considéré comme un abri total. Action gratuite, qui ne coûte aucun point concentration. Cette capacité se prolonge pendant un nombre de tours égal à la concentration du Templier lorsqu'il a invoqué le pilier. Peut être activé après l'utilisation de la capacité Taillade."
+LocHelpText="Invoque un pilier d'énergie psionique qui est considéré comme un abri total. Action gratuite, qui ne coûte aucun point concentration. Cette capacité se prolonge pendant un nombre de tours égal à la concentration du Templier lorsqu'il a invoqué le pilier. Peut être activé après l'utilisation de la capacité Taillade."
+LocPromotionPopupText="<Bullet/> Cette capacité se prolonge pendant un nombre de tours égal à la concentration du Templier lorsqu'il a invoqué le pilier.<br/><Bullet/> Action gratuite. Peut être activé après l'utilisation de la capacité Taillade.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
 ; End translated (2)
 
 [StunStrike X2AbilityTemplate]
@@ -6676,16 +6676,16 @@ LocHelpText="Les unités situées dans la zone d'effet de la fumée ne sont jama
 [ImpactCompensation_LW X2AbilityTemplate]
 LocFriendlyName="Compensation d'impact"
 LocFlyOverText="Compensation d'impact"
-LocLongDescription="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
-LocHelpText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
-LocPromotionPopupText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
+LocLongDescription="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
+LocHelpText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
+LocPromotionPopupText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
 
 [ImpactCompensationPassive_LW X2AbilityTemplate]
 LocFriendlyName="Compensation d'impact"
 LocFlyOverText="Compensation d'impact"
-LocLongDescription="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
-LocHelpText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
-LocPromotionPopupText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
+LocLongDescription="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
+LocHelpText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
+LocPromotionPopupText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
 
 [MovingTarget_LW X2AbilityTemplate]
 LocFriendlyName="Cible mouvante"
@@ -6707,8 +6707,10 @@ KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="L'Élu peut lancer un assaut 
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Chosen peut mener une opération supplémentaire!"
 
 
-[X2Ability_LW_ChosenAbilities]
-ShieldedStatBuffsLocDescription="Bonus en visée, en chances de coup critique, en volonté et en Force psi."
+; LWOTC Needs Translation (2)
+; Remove this section
+; [X2Ability_LW_ChosenAbilities]
+; End Translation (2)
 
 [Magnum_LW X2AbilityTemplate]
 LocFriendlyName="Pistolero"
@@ -6832,8 +6834,8 @@ LocPromotionPopupText="<Bullet/> L'Inversion a un temps de rechargement de <Abil
 
 [OneForAll X2AbilityTemplate]
 LocFriendlyName="Dôme de fer"
-LocHelpText="Procure un abri total aux unités alliées, ainsi qu'un bonus de +30 en défense. Cet effet se dissipe lorsque vous vous déplacez ou que vous attaquez. Octroie des PV bonus durant toute la durée de l'effet (le nombre de PV obtenus dépend du bouclier utilisé)."
-LocLongDescription="Procure un abri total aux unités alliées, ainsi qu'un bonus de +30 en défense. Cet effet se dissipe lorsque vous vous déplacez ou que vous attaquez. Octroie des PV bonus durant toute la durée de l'effet (le nombre de PV obtenus dépend du bouclier utilisé)."
+LocHelpText="Procure un abri total aux unités alliées adjacentes, ainsi qu'un bonus de +30 en défense. Cet effet se dissipe lorsque vous vous déplacez ou que vous attaquez. Octroie des PV bonus durant toute la durée de l'effet (le nombre de PV obtenus dépend du bouclier utilisé)."
+LocLongDescription="Procure un abri total aux unités alliées adjacentes, ainsi qu'un bonus de +30 en défense. Cet effet se dissipe lorsque vous vous déplacez ou que vous attaquez. Octroie des PV bonus durant toute la durée de l'effet (le nombre de PV obtenus dépend du bouclier utilisé)."
 LocFlyOverText="Dôme de fer"
 
 
