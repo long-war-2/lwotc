@@ -550,7 +550,7 @@ static function AddRendTheMarkedEffect(X2AbilityTemplate Template)
 	AbilityCondition.OwnerHasSoldierAbilities.AddItem('RendTheMarked');
 
 	ToHitModifier = new class'X2Effect_ToHitModifier';
-	ToHitModifier.BuildPersistentEffect(1, false, true, true);
+	ToHitModifier.BuildPersistentEffect(1, false, true, true, eGameRule_PlayerTurnBegin);
 	ToHitModifier.DuplicateResponse = eDupe_Allow;
 	ToHitModifier.bApplyAsTarget = true;
 	ToHitModifier.SetDisplayInfo(ePerkBuff_Penalty, default.RendTheMarkedEffectName, `XEXPAND.ExpandString(default.RendTheMarkedEffectDesc), "img:///UILibrary_XPerkIconPack.UIPerk_knife_crit");
