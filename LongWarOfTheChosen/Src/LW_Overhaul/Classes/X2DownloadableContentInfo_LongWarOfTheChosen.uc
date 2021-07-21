@@ -188,7 +188,7 @@ static event OnPostTemplatesCreated()
 	UpdateFirstMissionTemplate();
 	AddObjectivesToParcels();
 	UpdateChosenActivities();
-
+	UpdateChosenSabotages();
 	CHHelpersObj = class'CHHelpers'.static.GetCDO();
 	if (CHHelpersObj == none)
 	{
@@ -2578,6 +2578,103 @@ static function UpdateChosenActivities()
 	UpdateRetribution();
 }
 
+static function UpdateChosenSabotages()
+{
+	UpdateWeaponLockers();
+	UpdateLabStorage();
+	UpdateSecureStorage();
+}
+
+
+static function UpdateWeaponLockers()
+{
+	local X2SabotageTemplate Template;
+
+	Template = X2SabotageTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Sabotage_WeaponLockers'));
+	Template.CanActivateFn = CanActivateWeaponLockers;
+}
+
+static function UpdateLabStorage()
+{
+	local X2SabotageTemplate Template;
+
+	Template = X2SabotageTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Sabotage_LabStorage'));
+	Template.CanActivateFn = CanActivateLabStorage;
+}
+static function UpdateSecureStorage()
+{
+	local X2SabotageTemplate Template;
+
+	Template = X2SabotageTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Sabotage_SecureStorage'));
+	Template.CanActivateFn = CanActivateSecureStorage;
+}
+function bool CanActivateWeaponLockers()
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_Item ItemState;
+	local StateObjectReference ItemRef;
+	local X2WeaponUpgradeTemplate UpgradeTemplate;
+	local int NumUpgrades, MinMods;
+
+	MinMods = `ScaleStrategyArrayInt(class'X2StrategyElement_DefaultSabotages'.default.MinWeaponLockersMods);
+	
+	NumUpgrades = 10;
+	History = `XCOMHISTORY;
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+	foreach XComHQ.Inventory(ItemRef)
+	{
+		ItemState = XComGameState_Item(History.GetGameStateForObjectID(ItemRef.ObjectID));
+
+		if(ItemState != none)
+		{
+			UpgradeTemplate = X2WeaponUpgradeTemplate(ItemState.GetMyTemplate());
+
+			if(UpgradeTemplate != none)
+			{
+				NumUpgrades++;
+				if(NumUpgrades >= MinMods)
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+function bool CanActivateLabStorage()
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameState_Item ItemState;
+	local StateObjectReference ItemRef;
+	local int NumPads, MinPads;
+	NumPads = 0;
+	History = `XCOMHISTORY;
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	MinPads = `ScaleStrategyArrayInt(class'X2StrategyElement_DefaultSabotages'.default.LabStorageMinDatapads);
+	foreach XComHQ.Inventory(ItemRef)
+	{
+		ItemState = XComGameState_Item(History.GetGameStateForObjectID(ItemRef.ObjectID));
+
+		if(ItemState != none && (ItemState.GetMyTemplateName() == 'AdventDatapad' || ItemState.GetMyTemplateName() == 'AlienDatapad'))
+		{
+			NumPads++;
+			if(NumPads >= MinPads)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+static function bool CanActivateSecureStorage()
+{
+	return (class'UIUtilities_Strategy'.static.GetResource('EleriumCore') >= `ScaleStrategyArrayInt(class'X2StrategyElement_DefaultSabotages'.default.MinSecureStorageCores) && class'X2StrategyElement_DefaultSabotages'.static.ExistsValidStaffForWounding());
+}
 static function UpdateTraining()
 {
 	local X2ChosenActionTemplate Template;
