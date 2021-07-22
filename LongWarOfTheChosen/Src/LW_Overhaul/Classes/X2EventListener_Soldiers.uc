@@ -84,7 +84,6 @@ static function CHEventListenerTemplate CreatePromotionListeners()
 	Template.AddCHEvent('OverrideShowPromoteIcon', OnCheckForPsiPromotion, ELD_Immediate);
 	Template.AddCHEvent('OverridePromotionUIClass', OverridePromotionUIClass, ELD_Immediate, 50);
 	Template.AddCHEvent('OverridePromotionBlueprintTagPrefix', OverridePromotionBlueprintTagPrefix, ELD_Immediate);
-	Template.AddCHEvent('CPS_OverrideCanPurchaseAbilityProperties', OverrideRankRequirement, ELD_Immediate);
 	Template.AddCHEvent('CPS_OverrideCanPurchaseAbility', OverrideCanPurchaseAbility, ELD_Immediate);
 	Template.AddCHEvent('CPS_OverrideAbilityPointCost', OverrideAbilityPointCost, ELD_Immediate);
 	Template.AddCHEvent('CPS_AbilityPurchased', UpdateAbilityCostMultiplier, ELD_Immediate);
@@ -475,46 +474,6 @@ static function EventListenerReturn OverridePromotionBlueprintTagPrefix(
 	return ELR_NoInterrupt;
 }
 
-// Removes the rank requirement for XCOM and pistol abilities.
-static function EventListenerReturn OverrideRankRequirement(
-	Object EventData,
-	Object EventSource,
-	XComGameState GameState,
-	Name InEventID,
-	Object CallbackData)
-{
-	local XComGameState_Unit UnitState;
-	local XComLWTuple Tuple;
-	local int Branch;
-	local int ClassAbilityRankCount; //Rank is 0 indexed but AbilityRanks is not. This means a >= comparison requires no further adjustments
-
-	Tuple = XComLWTuple(EventData);
-	if (Tuple == none)
-		return ELR_NoInterrupt;
-
-	UnitState = XComGameState_Unit(EventSource);
-	if (UnitState == none)
-		return ELR_NoInterrupt;
-
-	Branch = Tuple.Data[2].i;
-	ClassAbilityRankCount = Tuple.Data[12].i;
-
-	// All non-class abilities should be available for purchase as soon as the
-	// training center has been built.
-	if (Branch >= ClassAbilityRankCount)
-	{
-		// Mark the unit as having sufficient rank for these abilities
-		Tuple.Data[8].b = true;
-	}
-
-	// Don't treat any soldiers as if they're faction soldiers in terms of
-	// default CPS behavior. Any abilities other than class abilities *should*
-	// need the Training Center to be built before they can be purchased.
-	Tuple.Data[11].b = false;
-
-	return ELR_NoInterrupt;
-}
-
 // Prevents access to multiple class abilities at a single rank unless
 // the 'AllowSameRankAbilities' second wave option is enabled. Also
 // unlocks XCOM row and pistol row abilities at *all* ranks as soon as
@@ -541,21 +500,30 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 
 	Rank = Tuple.Data[1].i;
 	Branch = Tuple.Data[2].i;
-	ClassAbilityRankCount = Tuple.Data[12].i;
+	ClassAbilityRankCount = Tuple.Data[11].i;
 
 	// Don't allow purchase of other class abilities at same rank as an already
 	// picked one (unless second wave option enabled)
 	if (!`SecondWaveEnabled('AllowSameRankAbilities') && UnitState.HasPurchasedPerkAtRank(Rank, ClassAbilityRankCount) && Branch < ClassAbilityRankCount)
 	{
-		Tuple.Data[14].b = false; // CanPurchaseAbility
+		Tuple.Data[13].b = false; // CanPurchaseAbility
 		Tuple.Data[15].s = default.ReasonClassAbilityPickedAtRank; // LocReasonLocked
+		return ELR_NoInterrupt;
 	}
 
 	// All non-class abilities should be available for purchase as soon as the
 	// training center has been built.
-	if (Branch >= ClassAbilityRankCount && `XCOMHQ.HasFacilityByName('RecoveryCenter'))
+	if (Branch >= ClassAbilityRankCount)
 	{
-		Tuple.Data[14].b = true;
+		if (`XCOMHQ.HasFacilityByName('RecoveryCenter'))
+		{
+			Tuple.Data[13].b = true;
+		}
+		else
+		{
+			Tuple.Data[13].b = false;
+			Tuple.Data[14].i = 2;   // Reason: No Training Center
+		}
 	}
 
 	return ELR_NoInterrupt;
