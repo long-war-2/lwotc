@@ -12,6 +12,7 @@ event OnInit(UIScreen Screen)
 	if (UIShellDifficulty(Screen) != none)
 	{
 		ShellDifficulty = UIShellDifficulty(Screen);
+		ShellDifficulty.m_bShowedFirstTimeTutorialNotice = true;
 		ShellDifficulty.m_TutorialMechaItem.Checkbox.SetChecked(false);
 		ShellDifficulty.m_TutorialMechaItem.SetDisabled(true, strDisabledTutorialTooltip);
 	}
@@ -19,6 +20,7 @@ event OnInit(UIScreen Screen)
 	if (UIShellNarrativeContent(Screen) != none)
 	{
 		ShellNarrativeContent = UIShellNarrativeContent(Screen);
+		ShellNarrativeContent.m_bShowedXpackNarrtiveNotice = true;
 		ShellNarrativeContent.m_XpacknarrativeMechaItem.Checkbox.SetChecked(false);
 		ShellNarrativeContent.m_XpacknarrativeMechaItem.SetDisabled(true, strDisabledNarrativeContentTooltip);
 	}
