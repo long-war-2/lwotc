@@ -195,6 +195,7 @@ function int FindNearestTarget(vector vLocation)
 	local int iLowestDist;
 	local float fLowestDistSq;
 	local float distSq;
+
 	iLowestDist = INDEX_NONE;
 	fLowestDistSq = 100000000.0;
 	for (i = 0; i < Targets.Length; i++)
@@ -277,19 +278,19 @@ Begin:
 	UnitPawn.EnableRMAInteractPhysics(true);
 
 	class'XComPerkContent'.static.GetAssociatedPerkInstances(Perks, UnitPawn, AbilityContext.InputContext.AbilityTemplateName);
-	for( x = 0; x < Perks.Length; ++x )
+	for (x = 0; x < Perks.Length; ++x)
 	{
 		kPerkContent = Perks[x];
 
-		if( (kPerkContent.IsInState('ActionActive') || kPerkContent.IsInState('DurationAction')) &&
+		if ((kPerkContent.IsInState('ActionActive') || kPerkContent.IsInState('DurationAction')) &&
 			kPerkContent.m_PerkData.CasterActivationAnim.PlayAnimation &&
-			kPerkContent.m_PerkData.CasterActivationAnim.AdditiveAnim )
+			kPerkContent.m_PerkData.CasterActivationAnim.AdditiveAnim)
 		{
 			PerkAdditiveAnimNames.AddItem(class'XComPerkContent'.static.ChooseAnimationForCover(Unit, kPerkContent.m_PerkData.CasterActivationAnim));
 		}
 	}
 
-	for( x =0; x < PerkAdditiveAnimNames.Length; ++x )
+	for (x = 0; x < PerkAdditiveAnimNames.Length; ++x)
 	{
 		AdditiveAnimParams.AnimName = PerkAdditiveAnimNames[x];
 		UnitPawn.GetAnimTreeController().PlayAdditiveDynamicAnim(AdditiveAnimParams);
@@ -305,7 +306,7 @@ Begin:
 
 	FinishAnim(UnitPawn.GetAnimTreeController().PlayFullBodyDynamicAnim(AnimParams));
 
-	for( x =0; x < PerkAdditiveAnimNames.Length; ++x )
+	for (x = 0; x < PerkAdditiveAnimNames.Length; ++x)
 	{
 		AdditiveAnimParams.AnimName = PerkAdditiveAnimNames[x];
 		UnitPawn.GetAnimTreeController().RemoveAdditiveDynamicAnim(AdditiveAnimParams);
@@ -322,18 +323,18 @@ Begin:
 	//Failure case handling! We failed to notify our targets that damage was done. Notify them now.
 	SetTargetUnitDiscState();
 
-	if( FOWViewer != none )
+	if (FOWViewer != none)
 	{
 		`XWORLD.DestroyFOWViewer(FOWViewer);
 
-		if( XGUnit(PrimaryTarget).IsAlive() )
+		if (XGUnit(PrimaryTarget).IsAlive())
 		{
 			XGUnit(PrimaryTarget).SetForceVisibility(eForceNone);
 			XGUnit(PrimaryTarget).GetPawn().UpdatePawnVisibility();
 		}
 	}
 
-	if( SourceFOWViewer != none )
+	if (SourceFOWViewer != none)
 	{
 		`XWORLD.DestroyFOWViewer(SourceFOWViewer);
 

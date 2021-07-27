@@ -38,7 +38,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateStreetSweeperBonusDamageAbility());
 	Templates.AddItem(CreateChainLightningAbility());
 	//Focus ability for the Chain lightning ability
-	Templates.AddItem(CreateCLFocus('CLFocus',default.CHAIN_LIGHTNING_TARGETS));
+	Templates.AddItem(CreateCLFocus('CLFocus', default.CHAIN_LIGHTNING_TARGETS));
 	
 	return Templates;
 }
@@ -653,7 +653,6 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	local X2Condition_UnitType				ImmuneUnitCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Effect_ApplyWeaponDamage		DamageEffect;
-	//local X2Effect_RemoveEffects			CleanUpEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainLightning');
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
@@ -693,7 +692,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	UnitPropertyCondition.RequireWithinRange = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 	
-	UnitPropertyCondition2=new class'X2Condition_UnitProperty';
+	UnitPropertyCondition2 = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition2.ExcludeConcealed = true;
 	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition2);
 
@@ -748,7 +747,6 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	
 	Template.ActionFireClass = class'X2Action_Fire_ChainLightning';
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	//Template.BuildVisualizationFn = class'X2Ability_SharpshooterAbilitySet'.static.Faceoff_BuildVisualization;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 	

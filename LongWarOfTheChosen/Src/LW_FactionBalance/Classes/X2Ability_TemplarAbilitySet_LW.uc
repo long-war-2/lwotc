@@ -73,6 +73,7 @@ static function X2AbilityTemplate AddSuperGigaOmegaFocus()
 
 	return Template;
 }
+
 static function X2AbilityTemplate AddTemplarSolace()
 {
 	local X2AbilityTemplate						Template;

@@ -665,8 +665,8 @@ LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><B
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
 ; LWOTC Needs Translation (3)
-LocLongDescription="An Arc Thrower Attack that jumps to other targets within 6 tiles, up to 4 times."
-LocHelpText="An Arc Thrower Attack that jumps to other targets within 6 tiles, up to 4 times."
+LocLongDescription="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
+LocHelpText="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
 LocFlyOverText="Chain Lightning"
 LocPromotionPopupText="An Arc Thrower Attack that jumps to other targets within 6 tiles, up to 4 times.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (3)
@@ -6986,4 +6986,3 @@ LocPromotionPopupText="<Bullet/> Ionic Storm's radius increases at higher Focus 
 SummaryText="We've been struggling to maintain long range communications after the recent sabotage by the Chosen. Our covert actions will be delayed by 2 weeks."
 ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
 ; End Translation
-
