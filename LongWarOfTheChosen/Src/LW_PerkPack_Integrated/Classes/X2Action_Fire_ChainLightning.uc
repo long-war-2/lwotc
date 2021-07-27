@@ -1,5 +1,8 @@
-// the first shot is a standard projectile shot
-// everything after that is a cosmetic projectile
+//---------------------------------------------------------------------------------------
+//  FILE:    X2Action_Fire_ChainLightning.uc
+//  AUTHOR:  Robojumper (modified by Grobobobo)
+//  PURPOSE: Fire Animation for Chain lightning, from the LW2's Actual Chain Lightning mod
+//---------------------------------------------------------------------------------------
 class X2Action_Fire_ChainLightning extends X2Action_Fire config(Animation);
 
 struct TargetNode

@@ -536,8 +536,8 @@ static function X2AbilityTemplate CreateStreetSweeperBonusDamageAbility()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	
 	return Template;
-}
-/*
+
+
 static function X2AbilityTemplate CreateChainLightningAbility()
 {
 	local X2AbilityTemplate					Template;	
@@ -549,110 +549,6 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	local X2Condition_UnitType				ImmuneUnitCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	//local X2Effect_RemoveEffects			CleanUpEffect;
-
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainLightning');
-	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
-	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityChainLightning";
-	Template.bCrossClassEligible = false;
-	Template.Hostility = eHostility_Offensive;
-	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-	Template.ActivationSpeech = 'TeslaCannon';
-
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	Template.AbilityTargetConditions.AddItem(default.LivingTargetUnitOnlyProperty);
-	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
-	
-	Template.AbilityTargetStyle = default.SimpleSingleTarget;
-	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_AllAllies';
-	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	Template.AddShooterEffectExclusions();
-
-	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
-	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
-
-	//Template.bAllowAmmoEffects = true;
-	Template.bAllowBonusWeaponEffects = true;
-
-	// Can't target dead; Can't target friendlies -- must be enemy organic
-	UnitPropertyCondition = new class'X2Condition_UnitProperty';
-	UnitPropertyCondition.ExcludeRobotic = true;
-	UnitPropertyCondition.ExcludeOrganic = false;
-	UnitPropertyCondition.ExcludeDead = true;
-	UnitPropertyCondition.ExcludeFriendlyToSource = true;
-	UnitPropertyCondition.RequireWithinRange = true;
-	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
-	
-	UnitPropertyCondition2=new class'X2Condition_UnitProperty';
-	UnitPropertyCondition2.ExcludeConcealed = true;
-	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition2);
-
-	SuppressedCondition = new class'X2Condition_UnitEffects';
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
-
-	ImmuneUnitCondition = new class'X2Condition_UnitType';
-	ImmuneUnitCondition.ExcludeTypes.AddItem('PsiZombie');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
-	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
-	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
-
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.CHAIN_LIGHTNING_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
-
-	// Action Point
-	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = default.CHAIN_LIGHTNING_MIN_ACTION_REQ;
-	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
-	ActionPointCost.bConsumeAllPoints = true;
-	Template.AbilityCosts.AddItem(ActionPointCost);	
-
-	//Stun Effect
-	StunnedEffect = CreateArcthrowerStunnedStatusEffect(100);
-	Template.AddTargetEffect(StunnedEffect);
-	Template.AddMultiTargetEffect(StunnedEffect);
-
-	//CleanUpEffect = CreateStunnedEffectsCleanUpEffect();
-	//Template.AddTargetEffect(CleanUpEffect);
-
-
-	Template.AssociatedPassives.AddItem('Electroshock');
-	Template.AddMultiTargetEffect(ElectroshockDisorientEffect());
-	
-	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
-	ToHitCalc.bOnlyMultiHitWithSuccess = false;
-	ToHitCalc.BuiltInHitMod = default.CHAIN_LIGHTNING_AIM_MOD;
-	Template.AbilityToHitCalc = ToHitCalc;
-	
-
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = class'X2Ability_SharpshooterAbilitySet'.static.Faceoff_BuildVisualization;
-	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
-	
-	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
-	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
-
-	return Template;
-}
-*/
-
-
-static function X2AbilityTemplate CreateChainLightningAbility()
-{
-	local X2AbilityTemplate					Template;	
-	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2Condition_UnitProperty			UnitPropertyCondition, UnitPropertyCondition2;
-	local X2Effect_ArcthrowerStunned		StunnedEffect;
-	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCooldown					Cooldown;	
-	local X2Condition_UnitType				ImmuneUnitCondition;
-	local X2Condition_UnitEffects			SuppressedCondition;
-	local X2Effect_ApplyWeaponDamage		DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainLightning');
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
@@ -689,9 +585,9 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	UnitPropertyCondition.ExcludeOrganic = false;
 	UnitPropertyCondition.ExcludeDead = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
-	UnitPropertyCondition.RequireWithinRange = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 	
+	Template.AbilityMultiTargetConditions.AddItem(UnitPropertyCondition);
 	UnitPropertyCondition2 = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition2.ExcludeConcealed = true;
 	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition2);
@@ -706,6 +602,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
 	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
 	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
+	Template.AbilityMultiTargetConditions.AddItem(ImmuneUnitCondition);
 
 
 
@@ -727,13 +624,6 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 
 	//CleanUpEffect = CreateStunnedEffectsCleanUpEffect();
 	//Template.AddTargetEffect(CleanUpEffect);
-	DamageEffect = new class'X2Effect_ApplyWeaponDamage';
-	DamageEffect.bIgnoreBaseDamage = true;
-	DamageEffect.DamageTag = 'Volt';
-	DamageEffect.bIgnoreArmor = true;
-	DamageEffect.TargetConditions.AddItem(UnitPropertyCondition);
-	Template.AddTargetEffect(DamageEffect);
-	Template.AddMultiTargetEffect(DamageEffect);
 
 
 	Template.AssociatedPassives.AddItem('Electroshock');
