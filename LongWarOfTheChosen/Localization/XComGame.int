@@ -6979,7 +6979,6 @@ LocLongDescription="Summon lightning to strike all nearby enemies. Damage increa
 LocHelpText="Summon lightning to strike all nearby enemies. Costs all Focus."
 LocPromotionPopupText="<Bullet/> Ionic Storm's radius increases at higher Focus levels.<br/><Bullet/> Ionic Storm deals double damage to Psionic units.<br/><Bullet/> Ionic Storm has a <Ability:SelfCooldown/> turn cooldown.<br/>"
 
-; End Translation
 
 ; LWOTC Needs Translation
 [Sabotage_LongRangeComms X2SabotageTemplate]
@@ -6987,3 +6986,17 @@ SummaryText="We've been struggling to maintain long range communications after t
 ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
 ; End Translation
 
+; LWOTC Needs Translation
+[Unstoppable_LW X2AbilityTemplate]
+LocFriendlyName="Unstoppable"
+LocLongDescription="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+LocHelpText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+LocFlyOverText="Unstoppable"
+LocPromotionPopupText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+[UnstoppablePassive_LW X2AbilityTemplate]
+LocFriendlyName="Unstoppable"
+LocLongDescription="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+LocHelpText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+LocFlyOverText="Unstoppable"
+LocPromotionPopupText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+; End Translation

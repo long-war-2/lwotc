@@ -2280,7 +2280,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('BendingReed');
 
 		Template.Abilities.AddItem('ChosenCritImmune');
-		Template.Abilities.AddItem('Banzai_LW');
+		Template.Abilities.AddItem('CombatReadiness');
 		Template.Abilities.AddItem('ChosenKidnap');
 		Template.Abilities.AddItem('AssassinReaction');
 		Template.Abilities.AddItem('BloodThirst_LW');
@@ -2291,6 +2291,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('ImpactCompensation_LW');
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('ChosenLootAbility');
+		Template.Abilities.AddItem('Unstoppable_LW');
 		Template.Abilities.AddItem('TriggerDamagedTeleport');
 
 		Template.ImmuneTypes.AddItem('Frost');
