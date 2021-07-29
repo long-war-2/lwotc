@@ -72,7 +72,7 @@ LocPromotionPopupText="<Bullet/> Adds 1 focus to the Templar when an enemy pod s
 LocFriendlyName="Terrorize"
 LocLongDescription="Adds a chance to panic enemies hit by Volt."
 LocHelpText="Adds a chance to panic enemies hit by Volt."
-LocPromotionPopupText="<Bullet/> Volt can now panic the enemy.<br/><Bullet/> The chance to panic is based on the Templar's Psi Offense stat versus the target's Will."
+LocPromotionPopupText="<Bullet/> Volt can now panic the enemy.<br/><Bullet/> The chance to panic is based on the Templar's Will stat versus the target's Will."
 
 [Apotheosis X2AbilityTemplate]
 LocFriendlyName="Apotheosis"
