@@ -484,7 +484,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	ImpactEffect.BuildPersistentEffect(1,true,true,,eGameRule_PlayerTurnEnd);
 	ImpactEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	ImpactEffect.DuplicateResponse = eDupe_Allow;
-	ImpactEffect.EffectName = 'WarlockDamageReduction';
+	ImpactEffect.EffectName = 'WarlockDamageReduction_LW';
 	Template.AddShooterEffect(ImpactEffect);
 
 
