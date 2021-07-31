@@ -32,6 +32,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateMiscellaneousListeners());
 	Templates.AddItem(CreateDifficultMissionAPListener());
 	Templates.AddItem(CreateVeryDifficultMissionAPListener());
+	Templates.AddItem(ChainActivationListeners());
 
 	return Templates;
 }
@@ -44,7 +45,7 @@ static function CHEventListenerTemplate CreateYellowAlertListeners()
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'YellowAlertListeners');
 	Template.AddCHEvent('OverrideSoundRange', OnOverrideSoundRange, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('OverrideSeesAlertedAllies', DisableSeesAlertedAlliesAlert, ELD_Immediate, GetListenerPriority());
+	//Template.AddCHEvent('OverrideSeesAlertedAllies', DisableSeesAlertedAlliesAlert, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('ProcessReflexMove', OnScamperBegin, ELD_Immediate);
 	Template.AddCHEvent('UnitTakeEffectDamage', OnUnitTookDamage, ELD_OnStateSubmitted);
 	Template.AddCHEvent('OverrideAllowedAlertCause', OnOverrideAllowedAlertCause, ELD_Immediate);
@@ -393,6 +394,8 @@ static function EventListenerReturn OnOverrideAllowedAlertCause(
 			case eAC_SeesSmoke:
 			case eAC_SeesFire:
 			case eAC_AlertedByYell:
+			case eAC_SeesSpottedUnit:
+			case eAC_SeesAlertedAllies:
 				Tuple.Data[1].b = true;
 				break;
 
@@ -1119,4 +1122,179 @@ static protected function EventListenerReturn BindR3ToPlaceDelayedEvacZone(
 	Tuple.Data[1].n = 'PlaceDelayedEvacZone';
 
 	return ELR_NoInterrupt;
+}
+
+static function CHEventListenerTemplate ChainActivationListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`LWTrace("Registering evac event listeners");
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'ChainActivationListeners');
+	Template.AddCHEvent('OverrideSeesAlertedAllies', ActivatePodSeenAllies, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideEnemyFactionsAlertsOutsideVision', MakeSureAItoAIWorks, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('UnitMoveFinished', ChainActivate, ELD_OnStateSubmitted, GetListenerPriority());
+
+	Template.RegisterInTactical = true;
+
+	return Template;
+}
+
+static function EventListenerReturn ActivatePodSeenAllies(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameStateHistory History;
+	local AlertAbilityInfo AlertInfo;	
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	if (Tuple.Id != 'OverrideSeesAlertedAllies')
+		return ELR_NoInterrupt;
+
+	// Copying original LW2 behaviour for now, which is to disable this alert
+	// when yellow alert is enabled.
+	if(	XComGameState_Unit(Tuple.Data[0].o).GetCurrentStat(eStat_AlertLevel) > 1 || XComGameState_Unit(Tuple.Data[1].o).GetCurrentStat(eStat_AlertLevel) > 1) 
+	{			
+		Tuple.Data[2].i = eAC_SeesSpottedUnit;
+	}
+
+	return ELR_NoInterrupt;
+}
+
+
+static function EventListenerReturn MakeSureAItoAIWorks(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+	if (Tuple.Id != 'OverrideEnemyFactionsAlertsOutsideVision')
+		return ELR_NoInterrupt;
+
+	switch( Tuple.Data[1].i )
+	{
+	case eAC_MapwideAlert_Hostile:
+	case eAC_MapwideAlert_Peaceful:
+	case eAC_AlertedByCommLink:
+	case eAC_AlertedByYell:
+	case eAC_TakingFire:
+	case eAC_TookDamage:
+	case eAC_DetectedAllyTakingDamage:
+	case eAC_SeesSpottedUnit:
+		Tuple.Data[0].b = true;
+		break;
+	}
+	
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn ChainActivate(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_AIUnitData AIUnit, MovedUnitData, NewAIUnitData;
+	local XComGameStateHistory History;
+	local XComGameState_Unit AlertedUnit, MovedUnit;
+	local int AlertDataIndex;
+	local int MovedUnitDataID;
+	local AlertAbilityInfo AlertInfo;
+	local XcomGameState NewGameState;
+	local XComGameState_AIGroup AIGroupState;
+	local X2Condition_Visibility VisibiliyCondition;
+	local array<X2Condition> ActivationVisibilityCondition;
+
+	History = `XCOMHISTORY;
+
+	VisibiliyCondition = new class'X2Condition_Visibility';
+	VisibiliyCondition.bRequireGameplayVisible=true;
+
+	ActivationVisibilityCondition.AddItem(VisibiliyCondition);
+	foreach History.IterateByClassType(class'XComGameState_AIUnitData', AIUnit)
+	{
+		AlertedUnit = XComGameState_Unit(History.GetGameStateForObjectID(AIUnit.m_iUnitObjectID));
+		//If the unactivated unit  saw an activated moved unit
+
+		MovedUnit = XComGameState_Unit(EventData);
+		if( MovedUnit == none || AlertedUnit == none || AlertedUnit.IsDead() )
+		{
+			return ELR_NoInterrupt;
+		}
+	
+		if (MovedUnit.GetCurrentStat(eStat_AlertLevel) > 1 && AlertedUnit.GetCurrentStat(eStat_AlertLevel) < 2)
+		{
+
+			if((class'X2TacticalVisibilityHelpers'.static.CanUnitSeeLocation(AIUnit.m_iUnitObjectID, MovedUnit.TileLocation, ActivationVisibilityCondition) || AIUnit.IsKnowledgeAboutUnitAbsolute(MovedUnit.ObjectID, AlertDataIndex)) && AlertedUnit.TileDistanceBetween(MovedUnit) <= 18)
+			{
+				AlertInfo.AlertUnitSourceID = MovedUnit.ObjectID;
+				AlertInfo.AnalyzingHistoryIndex = GameState.HistoryIndex;
+				AlertInfo.AlertTileLocation = MovedUnit.TileLocation;
+
+				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
+				NewAIUnitData = XComGameState_AIUnitData(NewGameState.ModifyStateObject(class'XComGameState_AIUnitData', AIUnit.ObjectID));
+				if( NewAIUnitData.AddAlertData(AIUnit.m_iUnitObjectID, eAC_SeesSpottedUnit, AlertInfo, NewGameState) )
+				{
+					AIGroupState = AlertedUnit.GetGroupMembership();
+					if(AIGroupState != none && !AIGroupState.bProcessedScamper && AlertedUnit.bTriggerRevealAI)
+					{
+						AIGroupState = XComGameState_AIGroup(NewGameState.ModifyStateObject(class'XComGameState_AIGroup', AIGroupState.ObjectID));
+						AIGroupState.InitiateReflexMoveActivate(AlertedUnit, eAC_SeesSpottedUnit);
+
+					}
+					`TACTICALRULES.SubmitGameState(NewGameState);
+				}
+				else
+				{
+					NewGameState.PurgeGameStateForObjectID(NewAIUnitData.ObjectID);
+					History.CleanupPendingGameState(NewGameState);
+				}
+			}
+
+		}
+			/*
+		//If the unactivated moved unit saw an activated unit
+		else if(MovedUnit.GetCurrentStat(eStat_AlertLevel) < 2 && AlertedUnit.GetCurrentStat(eStat_AlertLevel) > 1)
+		{
+			MovedUnitDataID = MovedUnit.GetAIUnitDataID();
+
+			if (MovedUnitDataID > 0 && !MovedUnit.IsDead())
+			{
+				MovedUnitData = XComGameState_AIUnitData(History.GetGameStateForObjectID(MovedUnitDataID));
+
+				if(class'X2TacticalVisibilityHelpers'.static.CanUnitSeeLocation(MovedUnitData.m_iUnitObjectID, AlertedUnit.TileLocation, ActivationVisibilityCondition) || MovedUnitData.IsKnowledgeAboutUnitAbsolute(AlertedUnit.ObjectID, AlertDataIndex))
+				{
+
+					AlertInfo.AlertUnitSourceID = AlertedUnit.ObjectID;
+					AlertInfo.AnalyzingHistoryIndex = GameState.HistoryIndex;
+					AlertInfo.AlertTileLocation = AlertedUnit.TileLocation;
+
+
+
+					NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
+					NewAIUnitData = XComGameState_AIUnitData(NewGameState.ModifyStateObject(class'XComGameState_AIUnitData', MovedUnitData.ObjectID));
+					if( NewAIUnitData.AddAlertData(MovedUnitData.m_iUnitObjectID, eAC_SeesSpottedUnit, AlertInfo, NewGameState) )
+					{
+						AIGroupState = MovedUnit.GetGroupMembership();
+						if(AIGroupState != none && !AIGroupState.bProcessedScamper && MovedUnit.bTriggerRevealAI)
+						{
+							AIGroupState = XComGameState_AIGroup(NewGameState.ModifyStateObject(class'XComGameState_AIGroup', AIGroupState.ObjectID));
+							AIGroupState.InitiateReflexMoveActivate(MovedUnit, eAC_SeesSpottedUnit);
+
+						}
+						`TACTICALRULES.SubmitGameState(NewGameState);
+					}
+					else
+					{
+						NewGameState.PurgeGameStateForObjectID(NewAIUnitData.ObjectID);
+						History.CleanupPendingGameState(NewGameState);
+					}
+				}
+			}
+		}
+			*/
+	}
+
+
+
 }
