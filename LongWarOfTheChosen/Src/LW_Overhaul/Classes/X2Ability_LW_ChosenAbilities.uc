@@ -83,6 +83,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(AssassinBladestorm());
 	Templates.AddItem(AssassinBladestormAttack());
+	Templates.AddItem(ParalyzingBlows());
+	Templates.AddItem(ParalyzingBlowsPassive());
+	
 	
 	return Templates;
 }
@@ -1812,6 +1815,75 @@ static function X2AbilityTemplate AssassinBladestormAttack()
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	return Template;
+}
+
+
+	static function X2AbilityTemplate ParalyzingBlows()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityTrigger_EventListener	EventListener;
+	local XMBCondition_AbilityProperty	MeleeCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ParalyzingBlows');
+
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_mind_crit";
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	MeleeCondition = new class'XMBCondition_AbilityProperty';
+	MeleeCondition.bRequireMelee = true;
+	Template.AbilityTargetConditions.AddItem(MeleeCondition);
+
+	// Trigger on Damage
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'AbilityActivated';
+	EventListener.ListenerData.EventFn = AbilityTriggerEventListener_ParalyzingBlows;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Priority = 40;
+	EventListener.ListenerData.Filter = eFilter_Unit;
+
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	Template.AddTargetEffect(class'X2StatusEffects'.static.CreateStunnedStatusEffect(1,100,false));
+
+	Template.FrameAbilityCameraType = eCameraFraming_Never; 
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.bSkipFireAction = true;	//	this fire action will be merged by Merge Vis function
+	Template.bShowActivation = true;
+	Template.bUsesFiringCamera = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = ApplyEffect_MergeVisualization;
+	Template.BuildInterruptGameStateFn = none;
+
+	Template.AdditionalAbilities.AddItem('ParalyzingBlowsPassive');
+
+	return Template;
+}
+
+static function X2AbilityTemplate ParalyzingBlowsPassive()
+{
+	local X2AbilityTemplate	Template;
+
+	Template = PurePassive('ParalyzingBlowsPassive', "img:///UILibrary_XPerkIconPack.UIPerk_mind_crit", false);
+
+	return Template;
+}
+
+static function EventListenerReturn AbilityTriggerEventListener_ParalyzingBlows(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	return HandleApplyEffectEventTrigger('ParalyzingBlows', EventData, EventSource, GameState);
 }
 
 defaultproperties

@@ -71,7 +71,8 @@ static function X2DataTemplate CreateTemplate_TheLost_MeleeAttack(name WeaponTem
 	Template.BaseDamage.DamageType = 'Melee';
 	Template.iSoundRange = 2;
 	Template.iEnvironmentDamage = 10;
-
+	
+	Template.Aim = 25; //Give them more aim
 	//Build Data
 	Template.StartingItem = false;
 	Template.CanBeBuilt = false;

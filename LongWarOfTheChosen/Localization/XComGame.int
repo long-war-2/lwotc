@@ -4237,6 +4237,7 @@ PreMissionText="Grants ADVENT units bonus offense."
 PostMissionSuccessText="Dark Event Countered: ADVENT Scopes"
 PostMissionFailureText="Failed to Counter Dark Event: ADVENT Scopes"
 
+
 [DarkEvent_ADVENTScopes X2HackRewardTemplate]
 FriendlyName="Dark Event: ADVENT Scopes"
 Description="Some ADVENT soldiers gain +5 aim."
@@ -4244,6 +4245,1175 @@ Description="Some ADVENT soldiers gain +5 aim."
 [ADVENTScopes X2AbilityTemplate]
 LocFriendlyName="ADVENT Scope"
 LocLongDescription="+5 Aim"
+
+
+; LWOTC Needs Translation
+
+[DarkEvent_TrooperOpenFire_LW X2DarkEventTemplate]
+DisplayName="Permanent: Trooper Open Fire"
+SummaryText="Troopers Gain Open Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Open Fire."
+PostMissionSuccessText="Permanent: Trooper Open Fire"
+PostMissionFailureText="Permanent: Trooper Open Fire"
+
+
+[DarkEvent_TrooperImpulse_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Impulse"
+SummaryText="Troopers Gain Impulse."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Impulse."
+PostMissionSuccessText="Permanent: Trooper Impulse"
+PostMissionFailureText="Permanent: Trooper Impulse"
+
+[DarkEvent_TrooperFormidable X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Formidable"
+SummaryText="Troopers Gain Formidable."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Formidable."
+PostMissionSuccessText="Permanent: Trooper Formidable"
+PostMissionFailureText="Permanent: Trooper Formidable"
+
+
+[DarkEvent_TrooperLockedOn X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Locked On"
+SummaryText="Troopers Gain Locked On."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Locked On ."
+PostMissionSuccessText="Permanent: Trooper Locked On"
+PostMissionFailureText="Permanent: Trooper Locked On"
+
+[DarkEvent_TrooperOpenFire_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Open Fire"
+SummaryText="Troopers Gain Open Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Open Fire."
+PostMissionSuccessText="Permanent: Trooper Open Fire"
+PostMissionFailureText="Permanent: Trooper Open Fire"
+
+[DarkEvent_TrooperEvasive X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Evasive"
+SummaryText="Troopers Gain Evasive."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Evasive."
+PostMissionSuccessText="Permanent: Trooper Evasive"
+PostMissionFailureText="Permanent: Trooper Evasive"
+
+[DarkEvent_TrooperChosenViperRounds X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Viper Rounds"
+SummaryText="Troopers Gain Viper Rounds."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Viper Rounds."
+PostMissionSuccessText="Permanent: Trooper Viper Rounds"
+PostMissionFailureText="Permanent: Trooper Viper Rounds"
+
+[DarkEvent_SentryGrazingFire X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Grazing Fire"
+SummaryText="Sentries Gain Grazing Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Grazing Fire."
+PostMissionSuccessText="Permanent: Sentry Grazing Fire"
+PostMissionFailureText="Permanent: Sentry Grazing Fire"
+
+
+[DarkEvent_SentryConcentration_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Concentration"
+SummaryText="Sentries Gain Concentration."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Concentration."
+PostMissionSuccessText="Permanent: Sentry Concentration"
+PostMissionFailureText="Permanent: Sentry Concentration"
+
+[DarkEvent_SentryCombatAwareness X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Combat Awareness"
+SummaryText="Sentries Gain Combat Awareness."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Combat Awareness."
+PostMissionSuccessText="Permanent: Sentry Combat Awareness"
+PostMissionFailureText="Permanent: Sentry Combat Awareness"
+
+[DarkEvent_SentryCoolUnderPressure X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Cool Under Pressure"
+SummaryText="Sentries Gain Cool Under Pressure."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Cool Under Pressure."
+PostMissionSuccessText="Permanent: Sentry Cool Under Pressure"
+PostMissionFailureText="Permanent: Sentry Cool Under Pressure"
+
+[DarkEvent_SentryRapidReaction X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Rapid Reaction"
+SummaryText="Sentries Gain Rapid Reaction."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Rapid Reaction."
+PostMissionSuccessText="Permanent: Sentry Rapid Reaction"
+PostMissionFailureText="Permanent: Sentry Rapid Reaction"
+
+[DarkEvent_SentryHuntersInstinct X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Hunters Instinct"
+SummaryText="Sentries Gain Hunters Instinct."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Hunters Instinct."
+PostMissionSuccessText="Permanent: Sentry Hunters Instinct"
+PostMissionFailureText="Permanent: Sentry Hunters Instinct"
+
+[DarkEvent_GunnerGrazingFire X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Grazing Fire"
+SummaryText="Gunners Gain Grazing Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Grazing Fire."
+PostMissionSuccessText="Permanent: Gunner Grazing Fire"
+PostMissionFailureText="Permanent: Gunner Grazing Fire"
+
+
+[DarkEvent_GunnerOpenFire_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Open Fire"
+SummaryText="Gunners Gain Open Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Open Fire."
+PostMissionSuccessText="Permanent: Gunner Open Fire"
+PostMissionFailureText="Permanent: Gunner Open Fire"
+
+[DarkEvent_GunnerCombatAwareness X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Combat Awareness"
+SummaryText="Gunners Gain Combat Awareness."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Combat Awareness."
+PostMissionSuccessText="Permanent: Gunner Combat Awareness"
+PostMissionFailureText="Permanent: Gunner Combat Awareness"
+
+
+[DarkEvent_GunnerMayhem X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Mayhem"
+SummaryText="Gunners Gain Mayhem."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Mayhem."
+PostMissionSuccessText="Permanent: Gunner Mayhem"
+PostMissionFailureText="Permanent: Gunner Mayhem"
+
+[DarkEvent_GunnerShredder X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Shredder"
+SummaryText="Gunners Gain Shredder."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Shredder."
+PostMissionSuccessText="Permanent: Gunner Shredder"
+PostMissionFailureText="Permanent: Gunner Shredder"
+
+[DarkEvent_GunnerHolotargeting X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Holotargeting"
+SummaryText="Gunners Gain Holotargeting."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Holotargeting."
+PostMissionSuccessText="Permanent: Gunner Holotargeting"
+PostMissionFailureText="Permanent: Gunner Holotargeting"
+
+[DarkEvent_SectoidInstantReactionTime X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Instant Reaction Time"
+SummaryText="Sectoids Gain Instant Reaction Time."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Instant Reaction Time."
+PostMissionSuccessText="Permanent: Sectoid Instant Reaction Time"
+PostMissionFailureText="Permanent: Sectoid Instant Reaction Time"
+
+[DarkEvent_SectoidPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Predator"
+SummaryText="Sectoids Gain Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Predator."
+PostMissionSuccessText="Permanent: Sectoid Predator"
+PostMissionFailureText="Permanent: Sectoid Predator"
+
+[DarkEvent_SectoidShootingSharp_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Shooting Sharp"
+SummaryText="Sectoids Gain Shooting Sharp."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Shooting Sharp."
+PostMissionSuccessText="Permanent: Sectoid Shooting Sharp"
+PostMissionFailureText="Permanent: Sectoid Shooting Sharp"
+
+[DarkEvent_SectoidAggression X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Aggression"
+SummaryText="Sectoids Gain Aggression."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Aggression."
+PostMissionSuccessText="Permanent: Sectoid Aggression"
+PostMissionFailureText="Permanent: Sectoid Aggression"
+
+[DarkEvent_SectoidMindShield X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Mind Shield"
+SummaryText="Sectoids Gain Mind Shield."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Mind Shield."
+PostMissionSuccessText="Permanent: Sectoid Mind Shield"
+PostMissionFailureText="Permanent: Sectoid Mind Shield"
+
+[DarkEvent_SectoidDominant_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Dominant"
+SummaryText="Sectoids Gain Dominant."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Dominant."
+PostMissionSuccessText="Permanent: Sectoid Dominant"
+PostMissionFailureText="Permanent: Sectoid Dominant"
+
+[DarkEvent_SectoidApexPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Apex Predator"
+SummaryText="Sectoids Gain Apex Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Apex Predator."
+PostMissionSuccessText="Permanent: Sectoid Apex Predator"
+PostMissionFailureText="Permanent: Sectoid Apex Predator"
+
+[DarkEvent_SectoidSolace X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Solace"
+SummaryText="Sectoids Gain Solace."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Solace."
+PostMissionSuccessText="Permanent: Sectoid Solace"
+PostMissionFailureText="Permanent: Sectoid Solace"
+
+[DarkEvent_CaptainShootingSharp_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Captain Shooting Sharp"
+SummaryText="Captains Gain Shooting Sharp."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Captains Shooting Sharp."
+PostMissionSuccessText="Permanent: Captain Shooting Sharp"
+PostMissionFailureText="Permanent: Captain Shooting Sharp"
+
+[DarkEvent_CaptainCloseCombatSpecialist X2DarkEventTemplate]
+
+DisplayName="Permanent: Captain Close Combat Specialist"
+SummaryText="Captains Gain Close Combat Specialist."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Captains Close Combat Specialist."
+PostMissionSuccessText="Permanent: Captain Close Combat Specialist"
+PostMissionFailureText="Permanent: Captain Close Combat Specialist"
+
+[DarkEvent_CaptainExecutioner_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Captain Executioner"
+SummaryText="Captains Gain Executioner."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Captains Executioner."
+PostMissionSuccessText="Permanent: Captain Executioner"
+PostMissionFailureText="Permanent: Captain Executioner"
+
+[DarkEvent_CaptainAimAssist_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Captain Aim Assist"
+SummaryText="Captains Gain Aim Assist."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Captains Aim Assist."
+PostMissionSuccessText="Permanent: Captain Aim Assist"
+PostMissionFailureText="Permanent: Captain Aim Assist"
+
+[DarkEvent_CaptainOverbearingSuperiority_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Captain Overbearing Superiority"
+SummaryText="Captains Gain Overbearing Superiority."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Captains Overbearing Superiority."
+PostMissionSuccessText="Permanent: Captain Overbearing Superiority"
+PostMissionFailureText="Permanent: Captain Overbearing Superiority"
+
+[DarkEvent_DronePredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Predator"
+SummaryText="Drones Gain Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones Predator."
+PostMissionSuccessText="Permanent: Drone Predator"
+PostMissionFailureText="Permanent: Drone Predator"
+
+[DarkEvent_DroneBrawler X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Brawler"
+SummaryText="Drones Gain Brawler."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones Brawler."
+PostMissionSuccessText="Permanent: Drone Brawler"
+PostMissionFailureText="Permanent: Drone Brawler"
+
+[DarkEvent_DroneApexPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Apex Predator"
+SummaryText="Drones Gain Apex Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones Apex Predator."
+PostMissionSuccessText="Permanent: Drone Apex Predator"
+PostMissionFailureText="Permanent: Drone Apex Predator"
+
+[DarkEvent_DroneHuntersInstinct_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Hunters Instinct"
+SummaryText="Drones Gain Hunters Instinct."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones Hunters Instinct."
+PostMissionSuccessText="Permanent: Drone Hunters Instinct"
+PostMissionFailureText="Permanent: Drone Hunters Instinct"
+
+[DarkEvent_DroneCloseCombatSpecialist X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Close Combat Specialist"
+SummaryText="Drones Gain Close Combat Specialist."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones Close Combat Specialist."
+PostMissionSuccessText="Permanent: Drone Close Combat Specialist"
+PostMissionFailureText="Permanent: Drone Close Combat Specialist"
+
+[DarkEvent_DroneParalyzingBlows X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Paralyzing Blows"
+SummaryText="Drones Gain Paralyzing Blows."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones ParalyzingBlows."
+PostMissionSuccessText="Permanent: Drone Paralyzing Blows"
+PostMissionFailureText="Permanent: Drone Paralyzing Blows"
+
+[DarkEvent_StunLancerInfighter X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer Infighter"
+SummaryText="Stun Lancers Gain Infighter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Infighter."
+PostMissionSuccessText="Permanent: Stun Lancer Infighter"
+PostMissionFailureText="Permanent: Stun Lancer Infighter"
+
+[DarkEvent_StunLancerZoneOfControl_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer Zone Of Control"
+SummaryText="Stun Lancers Gain Zone Of Control."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Zone Of Control."
+PostMissionSuccessText="Permanent: Stun Lancer Zone Of Control"
+PostMissionFailureText="Permanent: Stun Lancer Zone Of Control"
+
+[DarkEvent_StunLancerFreeGrenades X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer Free Grenades"
+SummaryText="Stun Lancers Gain Free Grenades."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Free Grenades."
+PostMissionSuccessText="Permanent: Stun Lancer Free Grenades"
+PostMissionFailureText="Permanent: Stun Lancer Free Grenades"
+
+[DarkEvent_StunLancerBladestorm X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer Bladestorm"
+SummaryText="Stun Lancers Gain Bladestorm."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Bladestorm."
+PostMissionSuccessText="Permanent: Stun Lancer Bladestorm"
+PostMissionFailureText="Permanent: Stun Lancer Bladestorm"
+
+[DarkEvent_StunLancerParalyzingBlows X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer Paralyzing Blows"
+SummaryText="Stun Lancers Gain Paralyzing Blows."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Paralyzing Blows."
+PostMissionSuccessText="Permanent: Stun Lancer Paralyzing Blows"
+PostMissionFailureText="Permanent: Stun Lancer Paralyzing Blows"
+
+[DarkEvent_StunLancerCoupDeGrace2 X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer CoupDeGrace"
+SummaryText="Stun Lancers Gain Coup De Grace."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Coup De Grace."
+PostMissionSuccessText="Permanent: Stun Lancer Coup De Grace"
+PostMissionFailureText="Permanent: Stun Lancer Coup De Grace"
+
+[DarkEvent_ViperInfighter X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Infighter"
+SummaryText="Vipers Gain Infighter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Infighter."
+PostMissionSuccessText="Permanent: Viper Infighter"
+PostMissionFailureText="Permanent: Viper Infighter"
+
+[DarkEvent_ViperOpenFire_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Open Fire"
+SummaryText="Vipers Gain Open Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Open Fire."
+PostMissionSuccessText="Permanent: Viper Open Fire"
+PostMissionFailureText="Permanent: Viper Open Fire"
+
+[DarkEvent_ViperSurvivalInstinct_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Survival Instinct"
+SummaryText="Vipers Gain Survival Instinct."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Survival Instinct."
+PostMissionSuccessText="Permanent: Viper Survival Instinct"
+PostMissionFailureText="Permanent: Viper Survival Instinct"
+
+[DarkEvent_ViperSteadyHands X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Steady Hands"
+SummaryText="Vipers Gain Steady Hands."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Steady Hands."
+PostMissionSuccessText="Permanent: Viper Steady Hands"
+PostMissionFailureText="Permanent: Viper Steady Hands"
+
+[DarkEvent_ViperSerpentine X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Serpentine"
+SummaryText="Vipers Gain Serpentine."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Serpentine."
+PostMissionSuccessText="Permanent: Viper Serpentine"
+PostMissionFailureText="Permanent: Viper Serpentine"
+
+[DarkEvent_ViperEntwine_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Entwine"
+SummaryText="Vipers Gain Entwine."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Entwine."
+PostMissionSuccessText="Permanent: Viper Entwine"
+PostMissionFailureText="Permanent: Viper Entwine"
+
+[DarkEvent_ViperHazmatVestBonus_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Hazmat Vest Bonus"
+SummaryText="Vipers Gain Hazmat Vest Bonus."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Bonuses Of Hazmat Vest."
+PostMissionSuccessText="Permanent: Viper Hazmat Vest Bonus"
+PostMissionFailureText="Permanent: Viper Hazmat Vest Bonus"
+
+[DarkEvent_PriestImpulse_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Impulse"
+SummaryText="Priests Gain Impulse."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Impulse."
+PostMissionSuccessText="Permanent: Priest Impulse"
+PostMissionFailureText="Permanent: Priest Impulse"
+
+[DarkEvent_PriestInfighter X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Infighter"
+SummaryText="Priests Gain Infighter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Infighter."
+PostMissionSuccessText="Permanent: Priest Infighter"
+PostMissionFailureText="Permanent: Priest Infighter"
+
+[DarkEvent_PriestSuperiorHolyWarrior X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Superior Holy Warrior"
+SummaryText="Priests Gain Superior Holy Warrior."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Superior Holy Warrior."
+PostMissionSuccessText="Permanent: Priest Superior Holy Warrior"
+PostMissionFailureText="Permanent: Priest Superior Holy Warrior"
+
+[DarkEvent_PriestMindShield X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Mind Shield"
+SummaryText="Priests Gain Mind Shield."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Mind Shield."
+PostMissionSuccessText="Permanent: Priest Mind Shield"
+PostMissionFailureText="Permanent: Priest Mind Shield"
+
+[DarkEvent_PriestGrit_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Grit"
+SummaryText="Priests Gain Grit."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Grit."
+PostMissionSuccessText="Permanent: Priest Grit"
+PostMissionFailureText="Permanent: Priest Grit"
+
+[DarkEvent_PriestDominant_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Dominant"
+SummaryText="Priests Gain Dominant."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Dominant."
+PostMissionSuccessText="Permanent: Priest Dominant"
+PostMissionFailureText="Permanent: Priest Dominant"
+
+[DarkEvent_PriestChosenDragonRounds X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Dragon Rounds"
+SummaryText="Priests Gain Dragon Rounds."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Dragon Rounds."
+PostMissionSuccessText="Permanent: Priest Dragon Rounds"
+PostMissionFailureText="Permanent: Priest Dragon Rounds"
+
+[DarkEvent_PriestSolace X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Solace"
+SummaryText="Priests Gain Solace."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Dragon Rounds."
+PostMissionSuccessText="Permanent: Priest Solace"
+PostMissionFailureText="Permanent: Priest Solace"
+
+[DarkEvent_SidewinderInstantReactionTime X2DarkEventTemplate]
+
+DisplayName="Permanent: Sidewinder Instant Reaction Time"
+SummaryText="Sidewinders Gain Instant Reaction Time."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sidewinders Instant Reaction Time."
+PostMissionSuccessText="Permanent: Sidewinder Instant Reaction Time"
+PostMissionFailureText="Permanent: Sidewinder Instant Reaction Time"
+
+[DarkEvent_SidewinderFormidable X2DarkEventTemplate]
+
+DisplayName="Permanent: Sidewinder Formidable"
+SummaryText="Sidewinders Gain Formidable."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sidewinders Formidable."
+PostMissionSuccessText="Permanent: Sidewinder Formidable"
+PostMissionFailureText="Permanent: Sidewinder Formidable"
+
+[DarkEvent_SidewinderPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sidewinder Predator"
+SummaryText="Sidewinders Gain Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sidewinders Predator."
+PostMissionSuccessText="Permanent: Sidewinder Predator"
+PostMissionFailureText="Permanent: Sidewinder Predator"
+
+[DarkEvent_SidewinderQuickRetreat X2DarkEventTemplate]
+
+DisplayName="Permanent: Sidewinder Quick Retreat"
+SummaryText="Sidewinders Gain Quick Retreat."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sidewinders Quick Retreat."
+PostMissionSuccessText="Permanent: Sidewinder Quick Retreat"
+PostMissionFailureText="Permanent: Sidewinder Quick Retreat"
+
+[DarkEvent_SidewinderSerpentine X2DarkEventTemplate]
+
+DisplayName="Permanent: Sidewinder Serpentine"
+SummaryText="Sidewinders Gain Serpentine."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sidewinders Serpentine."
+PostMissionSuccessText="Permanent: Sidewinder Serpentine"
+PostMissionFailureText="Permanent: Sidewinder Serpentine"
+
+[DarkEvent_PurifierMagnum_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Magnum"
+SummaryText="Purifiers Gain Magnum."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Magnum."
+PostMissionSuccessText="Permanent: Purifier Magnum"
+PostMissionFailureText="Permanent: Purifier Magnum"
+
+[DarkEvent_PurifierLowProfile X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Low Profile"
+SummaryText="Purifiers Gain Low Profile."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Low Profile."
+PostMissionSuccessText="Permanent: Purifier Low Profile"
+PostMissionFailureText="Permanent: Purifier Low Profile"
+
+[DarkEvent_PurifierOverKill_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Over Kill"
+SummaryText="Purifiers Gain Over Kill."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Over Kill."
+PostMissionSuccessText="Permanent: Purifier Over Kill"
+PostMissionFailureText="Permanent: Purifier Over Kill"
+
+[DarkEvent_PurifierSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Sprinter"
+SummaryText="Purifiers Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Sprinter."
+PostMissionSuccessText="Permanent: Purifier Sprinter"
+PostMissionFailureText="Permanent: Purifier Sprinter"
+
+[DarkEvent_PurifierInstantReactionTime X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Instant Reaction Time"
+SummaryText="Purifiers Gain Instant Reaction Time."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Instant Reaction Time."
+PostMissionSuccessText="Permanent: Purifier Instant Reaction Time"
+PostMissionFailureText="Permanent: Purifier Instant Reaction Time"
+
+[DarkEvent_PurifierReturnFire X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Return Fire"
+SummaryText="Purifiers Gain Return Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Return Fire."
+PostMissionSuccessText="Permanent: Purifier Return Fire"
+PostMissionFailureText="Permanent: Purifier Return Fire"
+
+[DarkEvent_MutonShredder X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Shredder"
+SummaryText="Mutons Gain Shredder."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Shredder."
+PostMissionSuccessText="Permanent: Muton Shredder"
+PostMissionFailureText="Permanent: Muton Shredder"
+
+[DarkEvent_MutonSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Sprinter"
+SummaryText="Mutons Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Sprinter."
+PostMissionSuccessText="Permanent: Muton Sprinter"
+PostMissionFailureText="Permanent: Muton Sprinter"
+
+[DarkEvent_MutonZoneOfControl_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Zone Of Control"
+SummaryText="Mutons Gain Zone Of Control."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Zone Of Control."
+PostMissionSuccessText="Permanent: Muton Zone Of Control"
+PostMissionFailureText="Permanent: Muton Zone Of Control"
+
+[DarkEvent_MutonPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Predator"
+SummaryText="Mutons Gain Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Predator."
+PostMissionSuccessText="Permanent: Muton Predator"
+PostMissionFailureText="Permanent: Muton Predator"
+
+[DarkEvent_MutonBladeStorm X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Bladestorm"
+SummaryText="Mutons Gain Bladestorm."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Bladestorm."
+PostMissionSuccessText="Permanent: Muton Bladestorm"
+PostMissionFailureText="Permanent: Muton Bladestorm"
+
+[DarkEvent_MutonTotalCombat X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Total Combat"
+SummaryText="Mutons Gain Total Combat."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Total Combat."
+PostMissionSuccessText="Permanent: Muton Total Combat"
+PostMissionFailureText="Permanent: Muton Total Combat"
+
+[DarkEvent_MutonGrit_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Grit"
+SummaryText="Mutons Gain Grit."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Grit."
+PostMissionSuccessText="Permanent: Muton Grit"
+PostMissionFailureText="Permanent: Muton Grit"
+
+[DarkEvent_MecResilience X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Resilience"
+SummaryText="Mecs Gain Resilience."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Resilience."
+PostMissionSuccessText="Permanent: Mec Resilience"
+PostMissionFailureText="Permanent: Mec Resilience"
+
+[DarkEvent_MecShredder X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Shredder"
+SummaryText="Mecs Gain Shredder."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Shredder."
+PostMissionSuccessText="Permanent: Mec Shredder"
+PostMissionFailureText="Permanent: Mec Shredder"
+
+[DarkEvent_MecSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Sprinter"
+SummaryText="Mecs Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Sprinter."
+PostMissionSuccessText="Permanent: Mec Sprinter"
+PostMissionFailureText="Permanent: Mec Sprinter"
+
+[DarkEvent_MecVolatileMix X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Volitile Mix"
+SummaryText="Mecs Gain Volitile Mix."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Volitile Mix."
+PostMissionSuccessText="Permanent: Mec Volitile Mix"
+PostMissionFailureText="Permanent: Mec Volitile Mix"
+
+[DarkEvent_MecReturnFire X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Return Fire"
+SummaryText="Mecs Gain Return Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Return Fire."
+PostMissionSuccessText="Permanent: Mec Return Fire"
+PostMissionFailureText="Permanent: Mec Return Fire"
+
+[DarkEvent_MecAbsorptionFields_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Reactive Sensors"
+SummaryText="Mecs Gain Reactive Sensors."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Reactive Sensors."
+PostMissionSuccessText="Permanent: Mec Reactive Sensors"
+PostMissionFailureText="Permanent: Mec Reactive Sensors"
+
+[DarkEvent_CyberusPredator X2DarkEventTemplate]
+
+DisplayName="Permanent: Cyberus Predator"
+SummaryText="Cyberus Gain Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Cyberus Predator."
+PostMissionSuccessText="Permanent: Cyberus Predator"
+PostMissionFailureText="Permanent: Cyberus Predator"
+
+[DarkEvent_CyberusResilience X2DarkEventTemplate]
+
+DisplayName="Permanent: Cyberus Resilience"
+SummaryText="Cyberus Gain Resilience."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Cyberus Resilience."
+PostMissionSuccessText="Permanent: Cyberus Resilience"
+PostMissionFailureText="Permanent: Cyberus Resilience"
+
+[DarkEvent_CyberusLowProfile X2DarkEventTemplate]
+
+DisplayName="Permanent: Cyberus Low Profile"
+SummaryText="Cyberus Gain Low Profile."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Cyberus Low Profile."
+PostMissionSuccessText="Permanent: Cyberus Low Profile"
+PostMissionFailureText="Permanent: Cyberus Low Profile"
+
+[DarkEvent_CyberusApexPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Cyberus Apex Predator"
+SummaryText="Cyberus Gain Apex Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Cyberus Apex Predator."
+PostMissionSuccessText="Permanent: Cyberus Apex Predator"
+PostMissionFailureText="Permanent: Cyberus Apex Predator"
+
+[DarkEvent_SpectreInfighter X2DarkEventTemplate]
+
+DisplayName="Permanent: Spectre Infighter"
+SummaryText="Spectres Gain Infighter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Spectres Infighter."
+PostMissionSuccessText="Permanent: Spectre Infighter"
+PostMissionFailureText="Permanent: Spectre Infighter"
+
+[DarkEvent_SpectreHuntersInstinct X2DarkEventTemplate]
+
+DisplayName="Permanent: Spectre Hunters Instinct"
+SummaryText="Spectres Gain Hunters Instinct."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Spectres Hunter Instinct."
+PostMissionSuccessText="Permanent: Spectre Hunters Instinct"
+PostMissionFailureText="Permanent: Spectre Hunters Instinct"
+
+[DarkEvent_SpectreLowProfile X2DarkEventTemplate]
+
+DisplayName="Permanent: Spectre Low Profile"
+SummaryText="Spectres Gain Low Profile."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Spectres Low Profile."
+PostMissionSuccessText="Permanent: Spectre Low Profile"
+PostMissionFailureText="Permanent: Spectre Low Profile"
+
+[DarkEvent_SpectreSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Spectre Sprinter"
+SummaryText="Spectres Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Spectres Sprinter."
+PostMissionSuccessText="Permanent: Spectre Sprinter"
+PostMissionFailureText="Permanent: Spectre Sprinter"
+
+[DarkEvent_ShieldBearerBrawler X2DarkEventTemplate]
+
+DisplayName="Permanent: Shield Bearer Brawler"
+SummaryText="Shield Bearers Gain Brawler."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Shield Bearers Brawler."
+PostMissionSuccessText="Permanent: Shield Bearer Brawler"
+PostMissionFailureText="Permanent: Shield Bearer Brawler"
+
+[DarkEvent_ShieldBearerFormidable X2DarkEventTemplate]
+
+DisplayName="Permanent: Shield Bearer Formidable"
+SummaryText="Shield Bearers Gain Formidable."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Shield Bearers Formidable."
+PostMissionSuccessText="Permanent: Shield Bearer Formidable"
+PostMissionFailureText="Permanent: Shield Bearer Formidable"
+
+[DarkEvent_ShieldBearerReadyForAnything X2DarkEventTemplate]
+
+DisplayName="Permanent: Shield Bearer Ready For Anything"
+SummaryText="Shield Bearers Gain Ready For Anything."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Shield Bearers Read For Anything."
+PostMissionSuccessText="Permanent: Shield Bearer Ready For Anything"
+PostMissionFailureText="Permanent: Shield Bearer Ready For Anything"
+
+[DarkEvent_ShieldBearerChosenDragonRounds X2DarkEventTemplate]
+
+DisplayName="Permanent: Shield Bearer Dragon Rounds"
+SummaryText="Shield Bearers Gain Dragon Rounds."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Shield Bearers Dragon Rounds."
+PostMissionSuccessText="Permanent: Shield Bearer Dragon Rounds"
+PostMissionFailureText="Permanent: Shield Bearer Dragon Rounds"
+
+[DarkEvent_BerserkerParalyzingBlows X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Paralyzing Blows"
+SummaryText="Berserkers Gain Paralyzing Blows."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Paralyzing Blows."
+PostMissionSuccessText="Permanent: Berserker Paralyzing Blows"
+PostMissionFailureText="Permanent: Berserker Paralyzing Blows"
+
+[DarkEvent_BerserkerSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Sprinter"
+SummaryText="Berserkers Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Sprinter."
+PostMissionSuccessText="Permanent: Berserker Sprinter"
+PostMissionFailureText="Permanent: Berserker Sprinter"
+
+[DarkEvent_BerserkerZoneOfControl_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Zone Of Control"
+SummaryText="Berserkers Gain Zone Of Control."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Zone Of Control."
+PostMissionSuccessText="Permanent: Berserker Zone Of Control"
+PostMissionFailureText="Permanent: Berserker Zone Of Control"
+
+[DarkEvent_BerserkerResilience X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Resilience"
+SummaryText="Berserkers Gain Resilience."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Resilience."
+PostMissionSuccessText="Permanent: Berserker Resilience"
+PostMissionFailureText="Permanent: Berserker Resilience"
+
+[DarkEvent_BerserkerBladestorm X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Bladestorm"
+SummaryText="Berserkers Gain Bladestorm."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Bladestorm."
+PostMissionSuccessText="Permanent: Berserker Bladestorm"
+PostMissionFailureText="Permanent: Berserker Bladestorm"
+
+[DarkEvent_BerserkerDamageControl X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Damage Control"
+SummaryText="Berserkers Gain Damage Control."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Damage Control."
+PostMissionSuccessText="Permanent: Berserker Damage Control"
+PostMissionFailureText="Permanent: Berserker Damage Control"
+
+[DarkEvent_ChryssalidMovingTarget_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Moving Target"
+SummaryText="Chryssalids Gain Moving Target."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Moving Target."
+PostMissionSuccessText="Permanent: Chryssalid Moving Target"
+PostMissionFailureText="Permanent: Chryssalid Moving Target"
+
+[DarkEvent_ChryssalidInfighter X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Infighter"
+SummaryText="Chryssalids Gain Infighter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Infighter."
+PostMissionSuccessText="Permanent: Chryssalid Infighter"
+PostMissionFailureText="Permanent: Chryssalid Infighter"
+
+[DarkEvent_ChryssalidParalyzingBlows X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Paralyzing Blows"
+SummaryText="Chryssalids Gain Paralyzing Blows."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Paralyzing Blows."
+PostMissionSuccessText="Permanent: Chryssalid Paralyzing Blows"
+PostMissionFailureText="Permanent: Chryssalid Paralyzing Blows"
+
+[DarkEvent_ChryssalidGrit_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Grit"
+SummaryText="Chryssalids Gain Grit."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Grit."
+PostMissionSuccessText="Permanent: Chryssalid Grit"
+PostMissionFailureText="Permanent: Chryssalid Grit"
+
+[DarkEvent_ChryssalidSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Sprinter"
+SummaryText="Chryssalids Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Sprinter."
+PostMissionSuccessText="Permanent: Chryssalid Sprinter"
+PostMissionFailureText="Permanent: Chryssalid Sprinter"
+
+[DarkEvent_ChryssalidInstantReactionTime X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Instant Reaction Time"
+SummaryText="Chryssalids Gain Instant Reaction Time."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Instant Reaction Time."
+PostMissionSuccessText="Permanent: Chryssalid Instant Reaction Time"
+PostMissionFailureText="Permanent: Chryssalid Instant Reaction Time"
+
+[DarkEvent_AndromedonSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Andromedon Sprinter"
+SummaryText="Andromedon Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Andromedon Sprinter."
+PostMissionSuccessText="Permanent: Andromedon Sprinter"
+PostMissionFailureText="Permanent: Andromedon Sprinter"
+
+[DarkEvent_AndromedonVolatileMix X2DarkEventTemplate]
+
+DisplayName="Permanent: Andromedon Volitile Mix"
+SummaryText="Andromedon Gain Volitile Mix."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Andromedon Volitile Mix."
+PostMissionSuccessText="Permanent: Andromedon Volitile Mix"
+PostMissionFailureText="Permanent: Andromedon Volitile Mix"
+
+[DarkEvent_AndromedonSuperDuperRobot X2DarkEventTemplate]
+
+DisplayName="Permanent: Andromedon Super Duper Robot"
+SummaryText="Andromedon Gain Super Duper Robot."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Andromedon Super Duper Robot."
+PostMissionSuccessText="Permanent: Andromedon Super Duper Robot"
+PostMissionFailureText="Permanent: Andromedon Super Duper Robot"
+
+[DarkEvent_AndromedonCloseCombatSpecialist X2DarkEventTemplate]
+
+DisplayName="Permanent: Andromedon Close Combat Specialist"
+SummaryText="Andromedon Gain Close Combat Specialist."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Andromedon Close Combat Specialist."
+PostMissionSuccessText="Permanent: Andromedon Close Combat Specialist"
+PostMissionFailureText="Permanent: Andromedon Close Combat Specialist"
+
+[DarkEvent_ArchonHardTarget X2DarkEventTemplate]
+
+DisplayName="Permanent: Archon Hard Target"
+SummaryText="Archons Gain Hard Target."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Archons Hard Target."
+PostMissionSuccessText="Permanent: Archon Hard Target"
+PostMissionFailureText="Permanent: Archon Hard Target"
+
+[DarkEvent_ArchonCoolUnderPressure X2DarkEventTemplate]
+
+DisplayName="Permanent: Archon Cool Under Pressure"
+SummaryText="Archons Gain Cool Under Pressure."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Archons Cool Under Pressure."
+PostMissionSuccessText="Permanent: Archon Cool Under Pressure"
+PostMissionFailureText="Permanent: Archon Cool Under Pressure"
+
+[DarkEvent_SectopodShredder X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectopod Shredder"
+SummaryText="Sectopods Gain Shredder."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectopods Shredder."
+PostMissionSuccessText="Permanent: Sectopod Shredder"
+PostMissionFailureText="Permanent: Sectopod Shredder"
+
+[DarkEvent_SectopodReturnFire X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectopod Return Fire"
+SummaryText="Sectopods Gain Return Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectopods Return Fire."
+PostMissionSuccessText="Permanent: Sectopod Return Fire"
+PostMissionFailureText="Permanent: Sectopod Return Fire"
+
+[DarkEvent_GatekeeperDefilade X2DarkEventTemplate]
+
+DisplayName="Permanent: Gatekeeper Defilade"
+SummaryText="Gatekeepers Gain Defilade."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gatekeepers Defilade."
+PostMissionSuccessText="Permanent: Gatekeeper Defilade"
+PostMissionFailureText="Permanent: Gatekeeper Defilade"; End Translation
+
+
 
 ; LASER SIGHT
 
@@ -4401,7 +5571,7 @@ PreMissionText="Grants some ADVENT units bonus defense."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Defense)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Defense)"
 
-[DarkEventAbility_TacticalUpgrades X2AbilityTemplate]
+[DarkEvent_TacticalUpgrades X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Defense)"
 LocLongDescription="Some enemy units gain +5 defense."
 
@@ -4421,7 +5591,7 @@ PreMissionText="Grants some aliens the Will to Survive perk."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Will to Survive)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Will to Survive)"
 
-[DarkEventAbility_WilltoSurvive X2AbilityTemplate]
+[DarkEvent_WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Will to Survive)"
 LocLongDescription="Some enemy units gain the Will to Survive ability, which grants a point of armor when protected by cover."
 
@@ -4437,7 +5607,7 @@ PreMissionText="Grants some aliens the Center Mass perk."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Damage)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Damage)"
 
-[DarkEventAbility_CenterMass X2AbilityTemplate]
+[DarkEvent_CenterMass X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Center Mass)"
 LocLongDescription="Some enemy units do additional damage with their primary weapon."
 
@@ -4453,7 +5623,7 @@ PreMissionText="Grants ADVENT Stun Lancers the Infighter ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Infighter)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Infighter)"
 
-[DarkEventAbility_Infighter X2AbilityTemplate]
+[DarkEvent_Infighter X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Infighter)"
 LocLongDescription="ADVENT Stun Lancers gain the Infighter ability, which grants bonus dodge against nearby enemies."
 
@@ -4469,7 +5639,7 @@ PreMissionText="Grants several enemies the Formidable ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Formidable)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Formidable)"
 
-[DarkEventAbility_Formidable X2AbilityTemplate]
+[DarkEvent_Formidable X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Formidable)"
 LocLongDescription="Some enemies gain the Formidable ability, giving them extra armor and resistance to explosives."
 
@@ -4485,7 +5655,7 @@ PreMissionText="Grants some enemies the Lethal ability, causing them to do +2 da
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Lethal)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Lethal)"
 
-[DarkEventAbility_Lethal X2AbilityTemplate]
+[DarkEvent_Lethal X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Lethal)"
 LocLongDescription="Grants some enemies the Lethal ability, causing them to do +2 damage with their primary weapon."
 
@@ -4501,7 +5671,7 @@ PreMissionText="Grants several enemies the Shredder ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Shredder)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Shredder)"
 
-[DarkEventAbility_Shredder X2AbilityTemplate]
+[DarkEvent_Shredder X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Shredder)"
 LocLongDescription="Some enemies gain the Shredder ability, giving their weapons the ability to shred armor with each hit."
 
@@ -4517,7 +5687,7 @@ PreMissionText="Grants many ophidian enemies the Hunter's Instinct ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Hunter's Instincts)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Hunter's Instincts)"
 
-[DarkEventAbility_HuntersInstinct X2AbilityTemplate]
+[DarkEvent_HuntersInstinct X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Hunter's Instincts)"
 LocLongDescription="Many ophidian enemies gain the Hunter's Instinct ability, granting bonus damage against flanked enemies."
 
@@ -4533,7 +5703,7 @@ PreMissionText="Grants some Stun Lancers and other enemies the Lightning Reflexe
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Lightning Reflexes)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Lightning Reflexes)"
 
-[DarkEventAbility_LightningReflexes_LW X2AbilityTemplate]
+[DarkEvent_LightningReflexes_LW X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Lightning Reflexes)"
 LocLongDescription="Some Stun Lancers and other enemies gain the Lightning Reflexes ability, allowing them bonuses to avoid reaction fire."
 
@@ -4549,7 +5719,7 @@ PreMissionText="Grants Archons the Close Combat Specialist ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Close Combat Specialist)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Close Combat Specialist)"
 
-[DarkEventAbility_CloseCombatSpecialist X2AbilityTemplate]
+[DarkEvent_CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Close Combat Specialist)"
 LocLongDescription="Archons gain the Close Combat Specialist ability, granting them reaction fire against any enemy who closes within four tiles."
 
@@ -4564,7 +5734,7 @@ PreMissionText="Grants several enemies the Grazing Fire ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Grazing Fire)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Grazing Fire)"
 
-[DarkEventAbility_GrazingFire X2AbilityTemplate]
+[DarkEvent_GrazingFire X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Grazing Fire)"
 LocLongDescription="Some enemies gain the Grazing Fire ability, providing an increased chance to turn misses into grazes."
 
@@ -4579,7 +5749,7 @@ PreMissionText="Grants Stun Lancers and other enemies the Cutthroat ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Cutthroat)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Cutthroat)"
 
-[DarkEventAbility_Cutthroat X2AbilityTemplate]
+[DarkEvent_Cutthroat X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Cutthroat)"
 LocLongDescription="Stun Lancers and other enemies gain the Cutthroat ability, allowing melee attacks to ignore armor."
 
@@ -4594,7 +5764,7 @@ PreMissionText="Grants ADVENT Sentries the Combat Awareness ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Combat Awareness)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Combat Awareness)"
 
-[DarkEventAbility_CombatAwareness X2AbilityTemplate]
+[DarkEvent_CombatAwareness X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Combat Awareness)"
 LocLongDescription="ADVENT Sentries gain the Combat Awareness ability, granting them bonus defense and armor when in overwatch."
 
@@ -4609,7 +5779,7 @@ PreMissionText="Grants ADVENT robotic units the Iron Skin ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Iron Skin)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Iron Skin)"
 
-[DarkEventAbility_IronSkin X2AbilityTemplate]
+[DarkEvent_IronSkin X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Iron Skin)"
 LocLongDescription="ADVENT robotic units gain the Iron Skin ability, granting them damage reduction against melee attacks."
 
@@ -4624,7 +5794,7 @@ PreMissionText="Grants some enemy units the Tactical Sense ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Tactical Sense)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Tactical Sense)"
 
-[DarkEventAbility_TacticalSense X2AbilityTemplate]
+[DarkEvent_TacticalSense X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Tactical Sense)"
 LocLongDescription="Some enemy units gain the Tactical Sense ability, granting them bonus defense."
 
@@ -4639,7 +5809,7 @@ PreMissionText="Grants some enemy units the Aggression ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Aggression)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Aggression)"
 
-[DarkEventAbility_Aggression X2AbilityTemplate]
+[DarkEvent_Aggression X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Aggression)"
 LocLongDescription="Some enemy units gain the Aggression ability, granting them bonus critical chances."
 
@@ -4654,7 +5824,7 @@ PreMissionText="Grants Codex units the Resilience ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Resilience)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Resilience)"
 
-[DarkEventAbility_Resilience X2AbilityTemplate]
+[DarkEvent_Resilience X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Resilience)"
 LocLongDescription="Grants Codex units the Resilience ability, reducing the chance of critical hits against them."
 
@@ -4669,7 +5839,7 @@ PreMissionText="Grants Codex units the Shadowstep ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Shadowstep)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Shadowstep)"
 
-[DarkEventAbility_Shadowstep X2AbilityTemplate]
+[DarkEvent_Shadowstep X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Shadowstep)"
 LocLongDescription="Codex units gain the Shadowstep ability and cannot be targeted by reaction fire."
 
@@ -4684,7 +5854,7 @@ PreMissionText="Grants some robotic units, turrets, Codexes and Gatekeepers the 
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Damage Control)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Damage Control)"
 
-[DarkEventAbility_DamageControl X2AbilityTemplate]
+[DarkEvent_DamageControl X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Damage Control)"
 LocLongDescription="Some ADVENT robots and some other units gain the Damage Control ability, granting bonus armor after they take damage."
 
@@ -4701,7 +5871,7 @@ PreMissionText="Grants some alien units the Hard Target ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Hard Target)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Hard Target)"
 
-[DarkEventAbility_HardTarget X2AbilityTemplate]
+[DarkEvent_HardTarget X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Hard Target)"
 LocLongDescription="Some alien units gain the Hard Target ability, granting bonus dodge."
 
@@ -4716,7 +5886,7 @@ PreMissionText="The aliens deploy a stronger and deadlier Faceless unit."
 PostMissionSuccessText="Dark Event Countered: Greater Faceless"
 PostMissionFailureText="Failed to Counter Dark Event: Greater Faceless"
 
-[DarkEventAbility_GreaterFacelessStatImprovements X2AbilityTemplate]
+[DarkEvent_GreaterFacelessStatImprovements X2AbilityTemplate]
 LocFriendlyName="Dark Event: Greater Faceless"
 LocLongDescription="The aliens deploy a stronger and deadlier Faceless unit."
 
@@ -6987,3 +8157,139 @@ SummaryText="We've been struggling to maintain long range communications after t
 ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
 ; End Translation
 
+[FreeGrenades X2AbilityTemplate]
+LocFriendlyName="Devastation"
+LocLongDescription="Throwing grenades is a free action."
+LocHelpText="Throwing grenades is a free action."
+LocPromotionPopupText="Throwing grenades is a free action."
+
+[ParalyzingBlowsPassive X2AbilityTemplate]
+LocFriendlyName="Paralyzing Blows"
+LocLongDescription="Melee Attacks now Stun For 1 more action."
+LocHelpText="Melee Attacks now Stun For 1 more action."
+LocPromotionPopupText="Melee Attacks now Stun For 1 more action."
+
+[ParalyzingBlows X2AbilityTemplate]
+LocFriendlyName="Paralyzing Blows"
+LocLongDescription="Melee Attacks now Stun For 1 more action."
+LocHelpText="Melee Attacks now Stun For 1 more action."
+LocPromotionPopupText="Melee Attacks now Stun For 1 more action."
+
+[Serpentine X2AbilityTemplate]
+LocFriendlyName="Serpentine"
+LocHelpText="Poison Spit is now a free action."
+LocLongDescription="Poison Spit is now a free action."
+LocPromotionPopupText="Poison Spit is now a free action."
+LocFlyOverText="Entwine"
+
+[Entwine_LW X2AbilityTemplate]
+LocFriendlyName="Entwine"
+LocHelpText="Gain 30 defense while binding."
+LocLongDescription="Gain 30 defense while binding."
+LocPromotionPopupText="Gain 30 defense while binding."
+LocFlyOverText="Entwine"
+
+[BindM2Damage X2AbilityTemplate]
+LocFriendlyName="Better Bind"
+LocHelpText="Increased Bind Damage."
+LocLongDescription="Increased Bind Damage."
+LocPromotionPopupText="Increased Bind Damage."
+LocFlyOverText="Better Bind"
+
+[BindM3Damage X2AbilityTemplate]
+LocFriendlyName="Better Bind"
+LocHelpText="Increased Bind Damage."
+LocLongDescription="Increased Bind Damage."
+LocPromotionPopupText="Increased Bind Damage."
+LocFlyOverText="Better Bind"
+
+[BindM4Damage X2AbilityTemplate]
+LocFriendlyName="Better Bind"
+LocHelpText="Increased Bind Damage."
+LocLongDescription="Increased Bind Damage."
+LocPromotionPopupText="Increased Bind Damage."
+LocFlyOverText="Better Bind"
+
+[BindM5Damage X2AbilityTemplate]
+LocFriendlyName="Better Bind"
+LocHelpText="Increased Bind Damage."
+LocLongDescription="Increased Bind Damage."
+LocPromotionPopupText="Increased Bind Damage."
+LocFlyOverText="Better Bind"
+
+[Dominant_LW X2AbilityTemplate]
+LocFriendlyName="Dominant"
+LocHelpText="Increases psi offense by 40."
+LocLongDescription="Increases psi offense by 40."
+LocPromotionPopupText="Increases psi offense by 40."
+LocFlyOverText="Better Bind"
+
+[Grit_LW X2AbilityTemplate]
+LocFriendlyName="Grit"
+LocHelpText="Gain 10% + Missing HP%/2 Damage Reduction."
+LocLongDescription="Gain 10% + Missing HP%/2 Damage Reduction."
+LocPromotionPopupText="Gain 10% + Missing HP%/2 Damage Reduction."
+LocFlyOverText="Grit"
+
+[BullRushPassive X2AbilityTemplate]
+LocFriendlyName="Bull Rush"
+LocHelpText="When Damaged, Gain a movement Action."
+LocLongDescription="When Damaged, Gain a movement Action."
+LocPromotionPopupText="When Damaged, Gain a movement Action."
+LocFlyOverText="Bull Rush"
+
+[BullRush X2AbilityTemplate]
+LocFriendlyName="Bull Rush"
+LocHelpText="When Damaged, Gain a movement Action."
+LocLongDescription="When Damaged, Gain a movement Action."
+LocPromotionPopupText="When Damaged, Gain a movement Action."
+LocFlyOverText="Bull Rush"
+
+[QuickRetreatPassive X2AbilityTemplate]
+LocFriendlyName="Quick Retreat"
+LocHelpText="Once per turn, when taking damage and being flanked, take a movement action."
+LocLongDescription="Once per turn, when taking damage and being flanked, take a movement action."
+LocPromotionPopupText="Once per turn, when taking damage and being flanked, take a movement action."
+LocFlyOverText="Quick Retreat"
+
+[QuickRetreat X2AbilityTemplate]
+LocFriendlyName="Quick Retreat"
+LocHelpText="Once per turn, when taking damage and being flanked, take a movement action."
+LocLongDescription="Once per turn, when taking damage and being flanked, take a movement action."
+LocPromotionPopupText="Once per turn, when taking damage and being flanked, take a movement action."
+LocFlyOverText="Quick Retreat"
+
+[AbsorptionFields_LW X2AbilityTemplate]
+LocFriendlyName="Absorbsion Fields"
+LocHelpText="The First Damage you take each turn is reduced by 35%."
+LocLongDescription="The First Damage you take each turn is reduced by 35%."
+LocPromotionPopupText="The First Damage you take each turn is reduced by 35%."
+LocFlyOverText="Absorbsion Fields"
+
+[AbsorptionFieldsTrigger_LW X2AbilityTemplate]
+LocFriendlyName="Absorbsion Fields"
+LocHelpText="The First Damage you take each turn is reduced by 35%."
+LocLongDescription="The First Damage you take each turn is reduced by 35%."
+LocPromotionPopupText="The First Damage you take each turn is reduced by 35%."
+LocFlyOverText="Grit"
+
+
+[ProtectiveServos X2AbilityTemplate]
+LocFriendlyName="Protective Servos"
+LocFlyOverText="Protective Servos"
+LocLongDescription="After taking damage, gain Stackable 1 armor through the end of the turn."
+LocHelpText="After taking damage, gain Stackable 1 armor through the end of the turn."
+LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain 1 armor through the end of the next turn.
+
+[SuperiorHolyWarrior X2AbilityTemplate]
+LocFriendlyName="Superior Holy Warrior"
+LocHelpText="Holy Warrior gains 30 crit."
+LocLongDescription="Holy Warrior gains 30 crit."
+LocPromotionPopupText="Holy Warrior gains 30 crit."
+LocFlyOverText="Grit"
+
+
+[SuperDuperRobot X2AbilityTemplate]
+LocFriendlyName="Super Duper Robot"
+LocLongDescription="Robot Gains 10 Health, 15 aim, and 6 mobility."
+LocHelpText="Robot Gains 10 Health, 15 aim, and 6 mobility."

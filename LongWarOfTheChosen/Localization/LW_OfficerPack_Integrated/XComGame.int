@@ -28,19 +28,19 @@ LocPromotionPopupText="<Bullet/> Any kills of a non-human enemy by the squad hav
 ;displayed on other soldier that receive the effect
 [Defilade X2AbilityTemplate]
 LocFriendlyName="Defilade"
-LocLongDescription="Soldiers within Command Range of the Officer receive +5 bonus to defense value provided by cover."
-LocHelpText="Bonus defense from cover for soldiers near Officer."
+LocLongDescription="Soldiers withing the line of sight of the Officer receive +5 defense while in cover, 10 will, and 10 crit resistance."
+LocHelpText="Bonuses soldiers near Officer."
 LocFlyOverText="Defilade"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> Soldiers within Command Range of the Officer receive +5 bonus to defense value provided by cover.<br/><Bullet/> Command Range increases with each new Officer level."
+LocPromotionPopupText="<Bullet/> Soldiers within the line of sight of the of Officer receive +5 defense while in cover, 10 will, and 10 crit resistance."
 
 ;Displayed on officer in tactical container
 [DefiladePassive X2AbilityTemplate]
 LocFriendlyName="Defilade"
-LocLongDescription="Soldiers within Command Range of the Officer receive +5 bonus to defense value provided by cover."
-LocHelpText="Bonus defense from cover for soldiers near Officer."
+LocLongDescription="Soldiers withing the line of sight of the Officer receive +5 defense while in cover, 10 will, and 10 crit resistance."
+LocHelpText="Bonuses soldiers near Officer."
 LocFlyOverText="Defilade"
-LocPromotionPopupText="<Bullet/> Soldiers within Command Range of the Officer receive +5 bonus to defense value provided by cover.<br/><Bullet/> Command Range increases with each new Officer level."
+LocPromotionPopupText="<Bullet/> Soldiers within the line of sight of the of Officer receive +5 defense while in cover, 10 will, and 10 crit resistance."
 
 ;displayed both on officer and in debuff on target
 [FocusFire X2AbilityTemplate]

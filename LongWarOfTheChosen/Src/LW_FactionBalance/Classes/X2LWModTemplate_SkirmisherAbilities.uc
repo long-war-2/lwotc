@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 class X2LWModTemplate_SkirmisherAbilities extends X2LWTemplateModTemplate config(LW_FactionBalance);
 
-var config int JUSTICE_COOLDOWN;
+var config int Justice_COOLDOWN;
 var config int JUSTICE_IENVIRONMENT_DAMAGE;
 var config int WRATH_COOLDOWN;	
 var config int WHIPLASH_COOLDOWN;
@@ -38,7 +38,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	// Justice and Wrath cooldowns are hard coded in vanilla.
 	case 'Justice':
-		Template.AbilityCooldown.iNumTurns = default.JUSTICE_COOLDOWN;
+		Template.AbilityCooldown.iNumTurns = default.Justice_COOLDOWN;
 		ReduceJusticeEnvironmentDamage(Template);
 		break;
 	case 'SkirmisherVengeance':

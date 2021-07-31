@@ -5,7 +5,9 @@
 //--------------------------------------------------------------------------------------- 
 class X2Ability_OfficerAbilitySet_PassiveAuras extends X2Ability config (LW_OfficerPack);
 
-
+var config int DEFILADE_DEF;
+var config int DEFILADE_WILL;
+var config int DEFILADE_CRIT_DEF;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -34,10 +36,12 @@ static function array<X2DataTemplate> CreateTemplates()
 static function X2AbilityTemplate AddDefiladeAbility()
 {
 	local X2AbilityTemplate                 Template;
-	local X2Effect_Defilade					DefiladeEffect;
+	local XMBEffect_ConditionalBonus		DefenseBonus;
+	local X2Effect_Resilience CritDefEffect;
+	local X2Effect_PersistentStatChange WillEffect;
 	local X2AbilityMultiTarget_AllAllies	MultiTargetStyle;
 	local X2Condition_UnitProperty			MultiTargetProperty;
-
+	local XMBCondition_CoverType	CoverCondition;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Defilade');
 	Template.IconImage = "img:///UILibrary_LW_OfficerPack.LWOfficers_AbilityHitTheDirt"; 
 	Template.AbilitySourceName = class'X2Ability_OfficerAbilitySet'.default.OfficerSourceName; 
@@ -48,6 +52,12 @@ static function X2AbilityTemplate AddDefiladeAbility()
 	Template.DisplayTargetHitChance = false;
 
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Template.AbilityMultiTargetConditions.AddItem(default.GameplayVisibilityCondition);
+
+	CoverCondition = new class'XMBCondition_CoverType';
+	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
+
 
 	MultiTargetProperty = new class'X2Condition_UnitProperty';
 	MultiTargetProperty.ExcludeAlive = false;
@@ -65,10 +75,30 @@ static function X2AbilityTemplate AddDefiladeAbility()
 	MultiTargetStyle.bAddPrimaryTargetAsMultiTarget = false;
 	Template.AbilityMultiTargetStyle = MultiTargetStyle;
 
-	DefiladeEffect = new class'X2Effect_Defilade';
-	DefiladeEffect.BuildPersistentEffect (1, true, false);
-	DefiladeEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
-	Template.AddMultiTargetEffect(DefiladeEffect);
+	DefenseBonus = new class'XMBEffect_ConditionalBonus';
+
+	DefenseBonus.AddToHitAsTargetModifier(-default.DEFILADE_DEF, eHit_Success);
+	DefenseBonus.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
+	DefenseBonus.AbilityTargetConditionsAsTarget.AddItem(CoverCondition);
+	DefenseBonus.DuplicateResponse = eDupe_Ignore;
+	DefenseBonus.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	DefenseBonus.EffectName = 'DefiladeDef';
+	Template.AddMultiTargetEffect(DefenseBonus);
+
+	WillEffect = new class'X2Effect_PersistentStatChange';
+	WillEffect.EffectName = 'DefiladeWill';
+	WillEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
+	WillEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,false,, Template.AbilitySourceName); 
+	WillEffect.AddPersistentStatChange(eStat_Will, default.DEFILADE_WILL);
+	WillEffect.bRemoveWhenTargetDies = true;
+	WillEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddMultiTargetEffect(WillEffect);
+
+	CritDefEffect = new class'X2Effect_Resilience';
+	CritDefEffect.CritDef_Bonus = default.DEFILADE_CRIT_DEF;
+	CritDefEffect.BuildPersistentEffect (1, true, false, false);
+	Template.AddMultiTargetEffect(CritDefEffect);
+
 
 	Template.AdditionalAbilities.AddItem('DefiladePassive');
 
