@@ -5418,6 +5418,9 @@ LocPromotionPopupText="<Bullet/> The Grapple makes the Skirmisher a great advanc
 [FullThrottle X2AbilityTemplate]
 LocLongDescription="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
 LocHelpText="Gain +<Ability:FULLTHROTTLEMOBILITY/> mobility with every kill this turn. Lasts <Ability:FULL_THROTTLE_DURATION/> turns, including the current one."
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Secure kills at the beginning of turns to take advantage of Full Throttle.<br/><Bullet/> Only kills by the Skirmisher count towards Full Throttle.<br/>"
+; End Translation (2)
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="Judgement"
