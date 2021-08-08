@@ -5346,10 +5346,12 @@ LocHelpText="Soldier enters Shadow, an advanced form of concealment, for 2 turns
 LocPromotionPopupText="<Bullet/> Shadow reduces detection ranges to just a few tiles at most.<br/><Bullet/> Reaper has increased mobility while in Shadow.<br/><Bullet/> Entering Shadow is a free action and has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 ; End Translation (2)
 
+; LWOTC Needs Translation (2)
 [SilentKiller X2AbilityTemplate]
 LocLongDescription="Guarantees that the Reaper stays in Shadow with killing shots."
 LocHelpText="Guarantees that the Reaper stays in Shadow with killing shots."
-LocPromotionPopupText="<Bullet/> Allows a Reaper to stay safely in Shadow during the enemy turn if they kill a unit with their primary weapon."
+LocPromotionPopupText="<Bullet/> Allows a Reaper to stay safely in Shadow if they kill a unit with their primary weapon."
+; End Translation (2)
 
 [ShadowRising X2AbilityTemplate]
 LocLongDescription="Reduces Shadow's cooldown by 1 turn."
