@@ -555,14 +555,14 @@ LocPromotionPopupText="<Bullet/> Anytime you equip a pistol (of any technology l
 
 ;;;;;;;;;;;;;;;;;;;;  SHARPSHOOTER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
+; LWOTC Needs Translation (2)
 [Holotarget X2AbilityTemplate]
 LocFriendlyName="Holotarget"
-LocLongDescription="Holotarget your enemy to grant an aim bonus to all attacks on this target by you and your allies for the remainder of the turn."
+LocLongDescription="Holotarget your enemy to grant an aim bonus to all attacks on this target by you and your allies until the start of your next turn."
 LocHelpText="Holotarget an enemy to grant a bonus to attacks against this target."
 LocFlyOverText="Holotarget"
-; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> Holotargeting takes a single action.<br/><Bullet/> The Holotargeting effect lasts until the start of your next turn.<br/><Bullet/> Multiple holotarget effects do not stack with each other.<br/><Bullet/> The aim bonus is +<Ability:HOLO_CV_AIM_BONUS_LW/> for the basic Holotargeter, and improves to +<Ability:HOLO_MG_AIM_BONUS_LW/> and +<Ability:HOLO_BM_AIM_BONUS_LW/> with better technology.<br/><Bullet/> Holotargeting does not break concealment for you or your squad."
-; End Translation 
+; End Translation (2)
 
 [RapidTargeting X2AbilityTemplate]
 LocFriendlyName="Rapid Targeting"
