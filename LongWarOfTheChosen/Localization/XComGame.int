@@ -7009,6 +7009,20 @@ ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
 ; End Translation
 
 ; LWOTC Needs Translation
+[TargetingAimAndCrit X2AbilityTemplate]
+LocLongDescription="Soldier Aim increased by <Ability:TargetingAimAndCrit_AimBonus/> and Critical Hit chance increased by <Ability:TargetingAimAndCrit_CritBonus/> for <Ability:TURNSREMAINING/> turns."
+
+[TargetingDodge X2AbilityTemplate]
+LocLongDescription="Soldier Dodge increased by <Ability:TargetingDodge_DodgeBonus/> for <Ability:TURNSREMAINING/> turns."
+
+[TargetingCrit X2AbilityTemplate]
+LocLongDescription="Soldier Critical Hit chance increased by <Ability:TargetingCrit_CritBonus/> for <Ability:TURNSREMAINING/> turns."
+
+[Hypnography X2AbilityTemplate]
+LocLongDescription="All enemy will reduced by <Ability:Hypnography_WillBonus/>%."
+; End Translation
+
+; LWOTC Needs Translation
 [MicroMissiles X2AbilityTemplate]
 LocHelpText="Target an area with an explosive missile attack."
 ; End Translation
