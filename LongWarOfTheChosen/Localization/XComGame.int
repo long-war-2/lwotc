@@ -489,10 +489,10 @@ LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bul
 str_FlushEffect="Flushed"
 
 ;LWOTC needs translation
-; LWOTC needs translation (2)
+; LWOTC needs translation (3)
 [HailofBullets X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Hail of Bullets requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Hail of Bullets has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Hail of Bullets does not work with shotguns or sniper rifles.<br/>"
-; End Translation (2)
+LocPromotionPopupText="<Bullet/> Hail of Bullets requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Hail of Bullets has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Hail of Bullets does not work with sniper rifles.<br/>"
+; End Translation (3)
 
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Chain Shot requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Chain Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Chain Shot can be devastating against non-cover enemies, or when augmented with aim bonuses.<br/>"
