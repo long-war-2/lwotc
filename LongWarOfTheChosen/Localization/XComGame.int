@@ -1179,6 +1179,16 @@ AbilityDescName="Particle Projection Cannon"
 TacticalText="<Bullet/> Battle Scanners reveal an area hidden by the \"fog of war\" for multiple turns.\n<Bullet/> Battle Scanners also reveal hidden or disguised enemies.\n<Bullet/> Haven Adviser carrying the Battle Scanner will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities)."
 ; End Translation (2)
 
+; LWOTC Needs Translation (2)
+[AdvStunLancerM1_StunLance X2WeaponTemplate]
+AbilityDescName="ADVENT Stun Lance"
+
+[AdvStunLancerM2_StunLance X2WeaponTemplate]
+AbilityDescName="ADVENT Stun Lance"
+
+[AdvStunLancerM3_StunLance X2WeaponTemplate]
+AbilityDescName="ADVENT Stun Lance"
+; End Translation (2)
 ; End Translation
 
 ;;;;;;;;;;;;;;;;;; GEAR LOC OVERRIDES ;;;;;;;;;;;;;;;;;;;;
