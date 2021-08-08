@@ -246,6 +246,8 @@ static function AddParkourSupportToGrapple(X2AbilityTemplate Template)
 
 	// Have the ability check our custom X2AbilityCooldown_Grapple file to get its cooldown time
 	Cooldown = new class'X2AbilityCooldown_Grapple';
+	//This is required, so that the Ability:SelfCooldown_LW tag returns the base value.
+	Cooldown.iNumTurns = class'X2AbilityCooldown_Grapple'.default.GRAPPLE_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 }
 
