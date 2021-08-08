@@ -442,7 +442,9 @@ LocPromotionPopupText="<Bullet/> Your grenades, rockets and heavy weapons do ful
 LocFriendlyName="Ghost Grenade"
 LocLongDescription="A specialized smoke grenade that causes the targeted ally to enter concealment."
 LocHelpText="Put a single XCOM ally into concealment."
-LocPromotionPopupText="<Bullet/> This ability only affects a single targeted ally; others in the smoke cloud are not concealed but do receive the defense bonus.<br/><Bullet/> Uses one action and ends your turn.<br/><Bullet/> One use per mission; abilities that add grenade charges do not provide any bonuses.<br/><Bullet/> Only works on XCOM soldiers, as civilians do not have training in concealment techniques.<br/><Bullet/> Small smoke cloud grants 20 defense; dense smoke bonuses do not apply.<br/><Bullet/> It does not fit in the standard XCOM grenade launcher and must be thrown at a visible ally.<br/><Bullet/> The Grenadier cannot use this ability when concealed."
+; LWOTC Needs Translation
+LocPromotionPopupText="<Bullet/> This ability only affects a single targeted ally; others in the smoke cloud are not concealed but do receive the defense bonus.<br/><Bullet/> Uses one action and ends your turn.<br/><Bullet/> One use per mission; abilities that add grenade charges do not provide any bonuses.<br/><Bullet/> Only works on XCOM soldiers, as civilians do not have training in concealment techniques.<br/><Bullet/> Small smoke cloud grants 20 defense; dense smoke bonuses do not apply.<br/><Bullet/> It does not fit in the standard XCOM grenade launcher and must be thrown at a visible ally.<br/><Bullet/> The <Ability:ClassName/> cannot use this ability when concealed."
+; End Translation
 
 [VanishingAct X2AbilityTemplate]
 LocFriendlyName="Ghost Grenade"
@@ -622,12 +624,14 @@ LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the so
 ; End Translation
 
 ; LWOTC Needs Translation
+; LWOTC Needs Translation (2)
 [EMPulser X2AbilityTemplate]
 LocFriendlyName="Arc Pulser"
 LocLongDescription="Fire your Arc Thrower to incapacitate a target and damage mechanical enemies."
 LocHelpText="Fire your Arc Pulser."
 LocFlyOverText="Arc Pulser"
-LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Damage to mechanical units  increases as arc thrower technology improves.<br/><Bullet/> Reduces enemy hack defense by <Ability:EMPULSER_HACK_DEFENSE_CHANGE_LW/>.<br/>"
+LocPromotionPopupText="<Bullet/> The Arc Thrower is effective anywhere in the soldier's sight range.<br/><Bullet/> Requires one action and ends the soldier's turn when fired.<br/><Bullet/> Can use every other turn.<br/><Bullet/> Damage to mechanical units increases as arc thrower technology improves.<br/><Bullet/> Reduces enemy hack defense by <Ability:EMPULSER_HACK_DEFENSE_CHANGE_LW/>.<br/>"
+; End Translation (2)
 
 [EMPulserPassive X2AbilityTemplate]
 LocFriendlyName="Arc Pulser"
@@ -5301,9 +5305,11 @@ LocPromotionPopupText="<Bullet/> Using Rend is the Templar's primary method for 
 ; End Translation (3)
 
 [Whiplash X2AbilityTemplate]
+; LWOTC Needs Translation (3)
 LocLongDescription="Attack an enemy with an electrical lash. This attack has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="An attack with an electrical lash. Extra damage to robotic units. <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Whiplash does extra damage to robotic enemies.<br/><Bullet/> Whiplash requires one action and does not end your turn.<Bullet/><br/>Whiplash has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Whiplash does extra damage to robotic enemies.<br/><Bullet/> Whiplash requires one action and does not end your turn.<br/><Bullet/> Whiplash has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation (3)
 ; End Translation (2)
 
 [SkirmisherInterrupt X2AbilityTemplate]
@@ -6113,12 +6119,14 @@ LocHelpText="Activate this ability to make your next arc thrower shot a free act
 LocPromotionPopupText="<Bullet/> Activate this ability to make your next arc thrower shot a free action.<br/><Bullet/> Quick Zap has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Applies to the abilities Stun, Arc Pulser and Chain Lightning.<br/>"
 ; End Translation (2)
 
+; LWOTC Needs Translation (2)
 [Hipfire_LW X2AbilityTemplate]
 LocFriendlyName="Hipfire"
 LocFlyOverText="Hipfire"
 LocLongDescription="Firing the sawed-off shotgun no longer ends the turn."
 LocHelpText="Firing the sawed-off shotgun no longer ends the turn."
-LocPromotionPopupText="<Bullet/> With this ability, Point Blank and Both Barrels do not end the turn, allowing the soldier to shoot or move afterwards.<br/><Bullet/>"
+LocPromotionPopupText="<Bullet/> With this ability, Point Blank and Both Barrels do not end the turn, allowing the soldier to shoot or move afterwards.<br/>"
+; End Translation (2)
 
 [NoneShallPass_LW X2AbilityTemplate]
 LocFriendlyName="None Shall Pass"
@@ -6182,11 +6190,11 @@ LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Blinding
 [LeadTheTarget_LW X2AbilityTemplate]
 LocFriendlyName = "Lead The Target"
 LocFlyOverText = "Lead The Target"
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 LocHelpText = "Grants a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delays the shot until the target takes an action on their turn. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
 LocLongDescription = "Grants a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delays the shot until the target takes an action on their turn. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText = "<Bullet/> Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions.<br/><Bullet/>Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
-; End Translation (2)
+LocPromotionPopupText = "<Bullet/> Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the enemies turn. Takes two actions.<br/><Bullet/> Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation (3)
 
 [LeadTheTargetShot_LW X2AbilityTemplate]
 LocFriendlyName = "Lead The Target"
@@ -6212,13 +6220,13 @@ LocHelpText = "You can use your arc thrower to heal friendly mechanical units."
 LocLongDescription = "You can use your arc thrower to heal friendly mechanical units."
 LocPromotionPopupText = "<Bullet/> Starts each battle with <Ability:SUPERCHARGE_CHARGES/> charges that heal <Ability:SUPERCHARGE_HEAL/> HP, <br/><Bullet/> Works for any friendly robotic unit, including SPARKs, resistance MECs and hacked ADVENT units.<br/>"
 
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 [ShootingSharp_LW X2AbilityTemplate]
 LocFriendlyName = "Shooting Sharp"
-LocHelpText = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and  +<Ability:SS_AIM_BONUS/> aim against units in cover."
+LocHelpText = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
 LocLongDescription = "Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover."
 LocPromotionPopupText = "<Bullet/>Your ranged attacks gain +<Ability:SS_PIERCE/> armor piercing and +<Ability:SS_AIM_BONUS/> aim against units in cover. <br/>"
-; End Translation (2)
+; End Translation (3)
 
 [Unlimitedpower_LW X2AbilityTemplate]
 LocFriendlyName = "Unlimited Power"
@@ -6719,13 +6727,14 @@ KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an ad
 ; [X2Ability_LW_ChosenAbilities]
 ; End Translation (2)
 
+; LWOTC Needs Translation (2)
 [Magnum_LW X2AbilityTemplate]
 LocFriendlyName="Magnum"
 LocLongDescription="Standard pistol shots have no long range penalty."
 LocHelpText="Standard pistol shots have no long range penalty."
 LocFlyOverText="Magnum"
-LocPromotionPopupText="<Bullet/>Only applies to standard pistol shot, and pistol overwatch.<br/> <Bullet/>Does not apply to special abilities like Lightning hands, Gunslinger or Faceoff.<br/>"
-
+LocPromotionPopupText="<Bullet/> Only applies to standard pistol shot, and pistol overwatch.<br/><Bullet/> Does not apply to special abilities like Lightning hands, Gunslinger or Faceoff.<br/>"
+; LWOTC Needs Translation (2)
 
 [HunterFlashbang X2GrenadeTemplate]
 FriendlyName="Flashbang Grenade"
@@ -6867,12 +6876,14 @@ LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GRE
 LocHelpText="Reduce wound recovery times for most soldiers."
 LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_BM/>.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
 
+; LWOTC Needs Translation (2)
 [Indomitable X2AbilityTemplate]
 LocFriendlyName="Indomitable"
 LocHelpText="Once per turn, gain 1 focus when you're attacked."
 LocLongDescription="Once per turn, gain 1 focus when you're attacked."
-LocPromotionPopupText"<Bullet/>Once per turn, gain 1 focus when you're attacked.<br/><Bullet/>Applies to both melee and ranged attacks.<br/>"
+LocPromotionPopupText"<Bullet/> Once per turn, gain 1 focus when you're attacked.<br/><Bullet/>Applies to both melee and ranged attacks.<br/>"
 LocFlyOverText="Indomitable"
+; End Translation (2)
 
 [VoltFocusOnKills X2AbilityTemplate]
 LocFriendlyName="AfterShock"
@@ -6885,12 +6896,15 @@ LocFriendlyName="Superior Aptitude"
 LocHelpText="Rend grants an additional focus point."
 LocLongDescription="Rend grants an additional focus point."
 LocFlyOverText="Superior Aptitude"
+LocPromotionPopupText"<Bullet/>Rend grants an additional focus point."
 
+; LWOTC Needs Translation (2)
 [DoubleRendFocusPassive X2AbilityTemplate]
 LocFriendlyName="Superior Aptitude"
 LocHelpText="Rend grants an additional focus point."
 LocLongDescription="Rend grants an additional focus point."
 LocFlyOverText="Superior Aptitude"
+; End Translation (2)
 
 [Volt X2AbilityTemplate]
 LocFriendlyName="Volt"
@@ -6927,17 +6941,22 @@ BriefSummary="The introduction of a magnetic projectile accelerator into the aut
 TacticalText="<Bullet/> Magnetic autopistols are substantially more effective than their conventional precursors.\n<<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
 AbilityDescName="autopistol"
 
+; LWOTC Needs Translation (2)
 [Sidearm_BM X2WeaponTemplate]
 FriendlyName="Beam Autopistol"
 FriendlyNamePlural="Beam Autopistols"
-BriefSummary="This variant of the  autopistol is one of the more impressive feats in our joint effort to reduce the size of portable Elerium cells. Now fully-powered, the weapon delivers focused pulses of energy capable of inflicting severe damage to all but the most heavily armored targets."
+BriefSummary="This variant of the autopistol is one of the more impressive feats in our joint effort to reduce the size of portable Elerium cells. Now fully-powered, the weapon delivers focused pulses of energy capable of inflicting severe damage to all but the most heavily armored targets."
 TacticalText="<Bullet/> The Beam Autopistol is the most powerful handgun available to our soldiers.\n<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
 AbilityDescName="autopistol"
+; End Translation (2)
 
+; LWOTC Needs Translation (2)
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramedic"
 LocLongDescription="Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
 LocHelpText="Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
+LocPromotionPopupText="<Bullet/> Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
+; End Translation (2)
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"
@@ -6946,20 +6965,22 @@ LocHelpText="Fire at a target until you run out of ammo or it dies. Each shot ha
 LocFlyoverText="Banish"
 LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/><Bullet/> Banish shots can crit.<br/>"
 
-;LWOTC needs translation(2)
+;LWOTC needs translation(3)
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Total Combat"
 LocLongDescription="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
 LocHelpText="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
-LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the Skirmisher's turns, allowing actions to be taken exactly when needed.<br/><Bullet/> Removes the cooldown for grenades.<br/><Bullet/> Grants both Bombard and Volatile Mix, hence it does not stack with either of them."
-;End Translation(2)
+LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the <Ability:ClassName/>'s turns, allowing actions to be taken exactly when needed.<br/><Bullet/> Removes the cooldown for grenades.<br/><Bullet/> Grants both Bombard and Volatile Mix, hence it does not stack with either of them."
+;End Translation(3)
 
+;LWOTC needs translation(2)
 [PackMaster_LW X2AbilityTemplate]
 LocFriendlyName="PackMaster"
 LocFlyOverText="PackMaster"
 LocLongDescription="Grants +1 charge to every utility item and grenade equipped."
 LocHelpText="Grants +1 charge to every utility item and grenade equipped."
-LocPromotionPopupText="<Bullet/> Grants +1 charge to every utility item equipped.<br/> <Bullet/> Applies to the grenade slot as well as the standard utility slots, but not other slots.<br/> Extra grenades provided by Smoker and Flashbanger abilities do not get extra charges.<br/>"
+LocPromotionPopupText="<Bullet/> Grants +1 charge to every utility item equipped.<br/><Bullet/> Applies to the grenade slot as well as the standard utility slots, but not other slots.<br/><Bullet/> Extra grenades provided by Smoker and Flashbanger abilities do not get extra charges.<br/>"
+;End Translation(2)
 
 [SkirmisherInterrupt_LW X2AbilityTemplate]
 LocFriendlyName="Interrupt"
@@ -6987,3 +7008,7 @@ SummaryText="We've been struggling to maintain long range communications after t
 ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
 ; End Translation
 
+; LWOTC Needs Translation
+[MicroMissiles X2AbilityTemplate]
+LocHelpText="Target an area with an explosive missile attack."
+; End Translation

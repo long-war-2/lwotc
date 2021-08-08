@@ -133,11 +133,13 @@ LocPromotionPopupText="<Bullet/> Use Shadow's increased mobility and smaller ene
 ; End Translation
 
 ; LWOTC Needs Translation
+; LWOTC Needs Translation (2)
 [RendTheMarked X2AbilityTemplate]
 LocFriendlyName="Rend The Marked"
-LocHelpText="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
-LocLongDescription="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
-LocPromotionPopupText="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
+LocHelpText="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> crit chance against the target from all sources for the remainder of the turn."
+LocLongDescription="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> crit chance against the target from all sources for the remainder of the turn."
+LocPromotionPopupText="<Bullet/> Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> crit chance against the target from all sources for the remainder of the turn."
+; End Translation (2)
 
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="Knife Encounters"
@@ -146,25 +148,27 @@ LocLongDescription="Once per turn, gain a bonus action after throwing a knife at
 LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles."
 LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun.<br/>"
 
+; LWOTC Needs Translation (2)
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
 LocFlyOverText="Impersonal Edge"
 LocLongDescription="Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
 LocHelpText="Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocPromotionPopupText="<Bullet/> "Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
+LocPromotionPopupText="<Bullet/> Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
 
 [ImpersonalEdgePassive X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
 LocFlyOverText="Impersonal Edge"
 LocLongDescription="Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
 LocHelpText="Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocPromotionPopupText="<Bullet/> "Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
+LocPromotionPopupText="<Bullet/> Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
 
 [BlueScreenKnives X2AbilityTemplate]
 LocFriendlyName="Bluescreen knives"
 LocHelpText="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
 LocLongDescription="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
-LocPromotionPopupText="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
+LocPromotionPopupText="<Bullet/> Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
+; End Translation (2)
 
 ; LWOTC Needs Translation
 [BattlefieldAwareness X2AbilityTemplate]
