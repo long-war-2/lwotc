@@ -13,7 +13,7 @@ static function CHEventListenerTemplate CreateCampaignStartListeners()
 {
 	local CHEventListenerTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'CampaignStartListeners');
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'CampaignStartOptionsListeners');
 	Template.AddCHEvent('OnSecondWaveChanged', SaveSecondWaveOptions, ELD_OnStateSubmitted);
 	Template.RegisterInStrategy = true;
 	Template.RegisterInTactical = true;
