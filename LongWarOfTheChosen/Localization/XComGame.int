@@ -1090,7 +1090,9 @@ AbilityDescName="shotgun"
 FriendlyName="Subcoiler"
 FriendlyNamePlural="Subcoiler"
 BriefSummary="A lightweight version of the coil rifle that fires a smaller round but grants its user more mobility on the battlefield."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage, have less ammo, and suffer accuracy penalties at long range.<br/>"
+; LWOTC Needs Translation
+TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage and suffer accuracy penalties at long range.<br/>"
+; End Translation
 AbilityDescName="SMG"
 
 ; LWOTC Needs Translation
