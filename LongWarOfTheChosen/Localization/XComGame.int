@@ -5418,6 +5418,11 @@ LocPromotionPopupText="<Bullet/> Tracking allows the unit to detect units that a
 LocFriendlyName="Tracking"
 LocFlyOverText="Tracking"
 
+; LWOTC Needs Translation
+[Infiltration X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Increases hacking by +<Ability:INFILTRATIONHACKINGBONUS/>. ADVENT security towers cannot see this unit when it's concealed.<br/>"
+; End Translation
+
 ; LWOTC Needs Translation (2)
 [SkirmisherReflex X2AbilityTemplate]
 LocLongDescription="When fired upon, gain one extra action on the next turn. Triggers no more than once per turn. Attacks against you suffer a -<Ability:REFLEX_CRIT_DEF/> penalty to critical hit chances."
