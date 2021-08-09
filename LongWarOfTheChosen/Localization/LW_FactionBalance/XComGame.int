@@ -151,19 +151,21 @@ LocHelpText="Once per turn, gain a bonus action after throwing a knife at an ene
 LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun.<br/>"
 
 ; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
 LocFlyOverText="Impersonal Edge"
-LocLongDescription="Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocHelpText="Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocPromotionPopupText="<Bullet/> Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
+LocLongDescription="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
+LocHelpText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
+LocPromotionPopupText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns.<br/>"
 
 [ImpersonalEdgePassive X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
 LocFlyOverText="Impersonal Edge"
-LocLongDescription="Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocHelpText="Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocPromotionPopupText="<Bullet/> Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
+LocLongDescription="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
+LocHelpText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
+LocPromotionPopupText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns.<br/>"
+; End Translation (3)
 
 [BlueScreenKnives X2AbilityTemplate]
 LocFriendlyName="Bluescreen knives"
