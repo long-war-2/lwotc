@@ -6469,19 +6469,19 @@ strAcquiredText="The Hunter is the master of long range combat, constantly kitin
 strCharacterName="Hunter"
 strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
 
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 [BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 damage for T1/T2/T3/T4. Removed on a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 damage for T1/T2/T3/T4. Removed on a successful kidnap."
 LocFlyOverText="Blood Thirst"
 
 [BloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 Damage for T1/T2/T3/T4. Removed On a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 damage for T1/T2/T3/T4. Removed on a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 damage for T1/T2/T3/T4. Removed on a successful kidnap."
 LocFlyOverText="Blood Thirst"
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="Precise strike"
