@@ -3513,9 +3513,11 @@ Summary="While this design will not afford any bonus protection, it allows our t
 DisplayName="Carapace Plating"
 Summary="This upgraded plating set draws from some old XCOM designs to provide significant ablative protection for the troops."
 
+; LWOTC needs Translation
 [ChitinPlatingProject X2TechTemplate]
 DisplayName="Chitin Plating"
-Summary="After study of the aliens' Chryssalid terror unit, we believe we can incorporate materials from their exoskeleton to create the strongest possible plating set that our troops can carry."
+Summary="After study of the aliens' Chryssalid terror unit, we believe we can incorporate materials from their exoskeleton to create the strong plating set that our troops can carry."
+; End Translation
 
 [APRoundsProject X2TechTemplate]
 DisplayName="Armor Piercing Rounds"
