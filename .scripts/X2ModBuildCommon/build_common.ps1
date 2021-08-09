@@ -3,7 +3,7 @@ Write-Host "Build Common Loading"
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version 3.0
 
-$global:def_robocopy_args = @("/S", "/E", "/DCOPY:DA", "/COPY:DAT", "/PURGE", "/MIR", "/NP", "/R:1000000", "/W:30")
+$global:def_robocopy_args = @("/S", "/E", "/COPY:DAT", "/PURGE", "/MIR", "/NP", "/R:1000000", "/W:30")
 $global:buildCommonSelfPath = split-path -parent $MyInvocation.MyCommand.Definition
 # list of all native script packages
 $global:nativescriptpackages = @("XComGame", "Core", "Engine", "GFxUI", "AkAudio", "GameFramework", "UnrealEd", "GFxUIEditor", "IpDrv", "OnlineSubsystemPC", "OnlineSubsystemLive", "OnlineSubsystemSteamworks", "OnlineSubsystemPSN")
