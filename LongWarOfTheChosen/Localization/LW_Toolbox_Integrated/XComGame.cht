@@ -1,14 +1,14 @@
 [RedFog_LW X2AbilityTemplate]
 LocFriendlyName="血霧"
-LocLongDescription="受傷單位的能力值會降低。"
-LocHelpText="受傷單位的能力值會降低。"
+LocLongDescription="受傷單位的數值會降低。"
+LocHelpText="受傷單位的數值會降低。"
 LocFlyOverText="血霧"
 LocPromotionPopupText="REDFOGLOCPROMOTIONPOPUPTEXT"
 
 [XComGame.UIShellDifficulty]
 [UIShellDifficulty]
-m_arrDifficultyDescStrings[0]="一般來說，比較適合策略類遊戲或XCOM的新手玩家。<br/><br/>Long War選項在戰役開始後將會在選項選單中出現。"
-m_arrDifficultyDescStrings[1]="此難度適合對XCOM比較熟悉的玩家。<br/><br/>Long War選項在戰役開始後將會在選項選單中出現。"
-m_arrDifficultyDescStrings[2]="只為經驗豐富的XCOM 2玩家準備的難度。<br/><br/>Shadow War選項在戰役開始後將會在選項選單中出現。"
-m_arrDifficultyDescStrings[3]="一場殘酷無情的戰役。<br/><br/>Long War選項在戰役開始後將會在選項選單中出現。"
-m_strTutorialOnImpossible="Long War啟用後就不會有教學。<br><br/><font color='#9acbcb'>Long War選項在戰役開始後將會在選項選單中出現。</font>"
+m_arrDifficultyDescStrings[0]="一般來說，比較適合策略類遊戲或XCOM的新手玩家。<br/><br/>LWOTC選項在戰役開始後將會在選項菜單中出現。"
+m_arrDifficultyDescStrings[1]="此難度適合對XCOM比較熟悉的玩家。<br/><br/>LWOTC選項在戰役開始後將會在選項菜單中出現。"
+m_arrDifficultyDescStrings[2]="只為經驗豐富的LWOTC玩家準備的難度。<br/><br/>LWOTC工具箱選項在戰役開始後將會在選項菜單中出現。"
+m_arrDifficultyDescStrings[3]="一場殘酷無情的戰役。<br/><br/>LWOTC選項在戰役開始後將會在選項菜單中出現。"
+m_strTutorialOnImpossible="LWOTC啟用後無教程。<br><br/><font color='#9acbcb'>LWOTC工具箱選項在戰役開始後將會在選項菜單中出現。</font>"

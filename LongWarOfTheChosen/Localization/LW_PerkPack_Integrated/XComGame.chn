@@ -18,14 +18,14 @@ FriendlyNamePlural="个人战斗芯片：超高反应瞳孔"
 BriefSummary="当你未命中目标时，该芯片能让你下一次的主武器射击+10命中。"
 
 [CombatAwarenessPCS X2EquipmentTemplate]
-FriendlyName="个人战斗芯片：战斗意识"
-FriendlyNamePlural="个人战斗芯片：战斗意识"
+FriendlyName="个人战斗芯片：战术意识"
+FriendlyNamePlural="个人战斗芯片：战术意识"
 BriefSummary="在监视时获得15点防御和1点护甲值。"
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：战斗冲锋"
 FriendlyNamePlural="个人战斗芯片：战斗冲锋"
-BriefSummary="你击杀一个敌人后，7格内的友军能暂时获得命中，暴击率和移动力加成。5回合冷却时间。"
+BriefSummary="你击杀一名敌人后，7格内的友军能暂时获得命中，暴击率和移动力加成。5回合冷却时间。"
 
 [DamageControlPCS X2EquipmentTemplate]
 FriendlyName="个人战斗芯片：伤害控制"
@@ -60,44 +60,44 @@ BriefSummary="减少受伤恢复时间，并免疫毒和酸。"
 [CenterMass X2AbilityTemplate]
 LocFriendlyName="中心质量"
 LocFlyOverText="中心质量"
-LocLongDescription="你使用枪械时会造成1点额外基础伤害。"
-LocHelpText="你使用枪械时会造成1点额外基础伤害。"
-LocPromotionPopupText="<Bullet/>你的主武器，手枪或短管霰弹枪会造成1点额外基础伤害。"
+LocLongDescription="你使用主武器，手枪或短管散弹枪时会造成1点额外基础伤害。"
+LocHelpText="你使用主武器，手枪或短管散弹枪时会造成1点额外基础伤害。"
+LocPromotionPopupText="<Bullet/>你的主武器，手枪或短管散弹枪会造成1点额外基础伤害。"
 
 [Lethal X2AbilityTemplate]
 LocFriendlyName="致命武器"
 LocFlyOverText="致命武器"
-LocLongDescription="你的主武器造成额外2点基础伤害。"
-LocHelpText="你的主武器造成额外2点基础伤害。"
-LocPromotionPopupText="<Bullet/>你的主武器造成额外2点基础伤害。"
+LocLongDescription="你的主武器造成额外<Ability:LETHAL_DAMAGE_LW/>基础伤害和额外<Ability:LETHAL_CRIT_DAMAGE_LW/>暴击伤害。"
+LocHelpText="你的主武器造成额外<Ability:LETHAL_DAMAGE_LW/>基础伤害和额外<Ability:LETHAL_CRIT_DAMAGE_LW/>暴击伤害。"
+LocPromotionPopupText="<Bullet/>你的主武器造成额外<Ability:LETHAL_DAMAGE_LW/>基础伤害和额外<Ability:LETHAL_CRIT_DAMAGE_LW/>暴击伤害。"
 
 [HitandSlither X2AbilityTemplate]
 LocFriendlyName="打完就溜"
 LocFlyoverText="打完就溜"
-LocLongDescription="每回合一次，用主武器对一个被夹击或暴露的目标进行一次普通射击后，获得一次额外的行动机会。"
-LocHelpText="每回合一次，用主武器对一个被夹击或暴露的目标进行一次普通射击后，获得一次额外的行动机会。"
-LocPromotionPopupText="<Bullet/>每回合可使用一次，用主武器对一个被夹击或暴露的目标进行一次普通射击后，获得一次额外的行动机会。<br/><Bullet/>游击战术不能在奔袭战术被激活后使用。<br/><Bullet/>会先获得连环杀戮和死神天降的行动点数加成。"
+LocLongDescription="每回合一次，用主武器对一个侧翼或暴露的目标进行一次普通射击后，获得一个额外的移动点。"
+LocHelpText="每回合一次，用主武器对一个侧翼或暴露的目标进行一次普通射击后，获得一个额外的移动点。"
+LocPromotionPopupText="<Bullet/>每回合一次，用主武器对一个侧翼或暴露的目标进行一次普通射击后，获得一个额外的移动点。<br/>"
 
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="游击战术"
 LocFlyOverText="游击战术"
-LocLongDescription="每一回合都都可以对侧击和暴露的敌人进行射击后，获得额外的一点行动力。 "
-LocHelpText="每一回合都都可以对侧击和暴露的敌人进行射击后，获得额外的一点行动力。"
-LocPromotionPopupText="<Bullet/> 不可以和奔袭战术。<br/><Bullet/> 连环射击和死神天降的奖励将会优先获得。"
+LocLongDescription="每回合一次，用主武器对一个侧翼或暴露的目标进行一次普通射击后，获得一个额外的行动点。不能在同一回合触发短兵相接。 "
+LocHelpText="每回合一次，用主武器对一个侧翼或暴露的目标进行一次普通射击后，获得一个额外的行动点。不能在同一回合触发短兵相接。"
+LocPromotionPopupText="<Bullet/> 不能在同一回合使用奔袭战术。<br/><Bullet/> 连环杀戮和死神天降的奖励将会优先获得。"
 
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="近战专家"
 LocFlyOverText="近战专家"
-LocLongDescription="在敌人的回合，在4格内任何可见敌人移动或开火时，使用主武器对其进行1次反应射击。"
-LocHelpText="在敌人的回合，在4格内任何可见敌人移动或开火时，对其进行1次反应射击。"
-LocPromotionPopupText="<Bullet/>士兵在隐蔽状态时不会触发。<br/><Bullet/>使用该能力你可以每回合对每个敌人射击1次。<br/><Bullet/>需要2弹药。<br/>""
+LocLongDescription="在敌人回合时，对4格内任何移动或开火的可见敌人进行1次<Ability:BOUND_WEAPON_NAME/>自由反应射击。"
+LocHelpText="在敌人回合时，对4格内任何移动或开火的可见敌人进行1次<Ability:BOUND_WEAPON_NAME/>自由反应射击。"
+LocPromotionPopupText="<Bullet/>士兵在隐蔽状态时不会触发。<br/><Bullet/>使用该能力可以每回合对每个敌人射击1次。<br/><Bullet/>每次射击消耗2弹药。<br/>""
 
 [CloseCombatSpecialistAttack X2AbilityTemplate]
 LocFriendlyName="近战专家"
 LocFlyOverText="近战专家"
-LocLongDescription="在敌人的回合，在4格内任何可见敌人移动或开火时，使用主武器对其进行1次反应射击。"
-LocHelpText="在敌人的回合，在4格内任何可见敌人移动或开火时，对其进行1次反应射击。"
-LocPromotionPopupText="<Bullet/>士兵在隐蔽状态时不会触发。<br/><Bullet/>使用该能力你可以每回合对每个敌人射击1次。<br/><Bullet/>需要2弹药。<br/>""
+LocLongDescription="在敌人回合时，对4格内任何移动或开火的可见敌人进行1次<Ability:BOUND_WEAPON_NAME/>自由反应射击。"
+LocHelpText="在敌人回合时，对4格内任何移动或开火的可见敌人进行1次<Ability:BOUND_WEAPON_NAME/>自由反应射击。"
+LocPromotionPopupText="<Bullet/>士兵在隐蔽状态时不会触发。<br/><Bullet/>使用该能力可以每回合对每个敌人射击1次。<br/><Bullet/>每次射击消耗2弹药。<br/>""
 
 [CloseandPersonal X2AbilityTemplate]
 LocFriendlyName="近身威胁"
@@ -107,46 +107,46 @@ LocHelpText="攻击邻近敌人时+30暴击率。与目标的距离越远，该�
 LocPromotionPopupText="<Bullet/>攻击邻近敌人时+30暴击率。<br/><Bullet/>与目标距离每增加1格，该增益减少5%，在7格或以外降至0%。<br/>"
 
 [DamnGoodGround X2AbilityTemplate]
-LocFriendlyName="绝佳地形"
-LocFlyOverText="绝佳地形"
+LocFriendlyName="居高临下"
+LocFlyOverText="居高临下"
 LocLongDescription="攻击较低地形下的目标时获得+10命中和+10防御。"
 LocHelpText="攻击较低地形下的目标时获得+10命中和+10防御。"
 LocPromotionPopupText="<Bullet/>攻击较低地形下的目标时获得+10命中和+10防御。<br/><Bullet/>此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
 
 [Executioner_LW X2AbilityTemplate]
-LocFriendlyName="处决者"
-LocFlyOverText="处决者"
-LocLongDescription="攻击只有一半或更少生命值的目标时，获得+10命中和+10暴击率。"
-LocHelpText="攻击只有一半或更少生命值的目标时，获得+10命中和+10暴击率。"
-LocPromotionPopupText="<Bullet/>攻击只有一半或更少生命值的目标时，获得+10命中和+10暴击率。<br/>"
+LocFriendlyName="处刑决者"
+LocFlyOverText="处刑决者"
+LocLongDescription="攻击只有一半或更少生命值的目标时，获得+<Ability:EXECUTIONER_AIM_BONUS/>命中和+<Ability:EXECUTIONER_CRIT_BONUS/>暴击率。"
+LocHelpText="攻击只有一半或更少生命值的目标时，获得+<Ability:EXECUTIONER_AIM_BONUS/>命中和+<Ability:EXECUTIONER_CRIT_BONUS/>暴击率。"
+LocPromotionPopupText="<Bullet/>攻击只有一半或更少生命值的目标时，获得+<Ability:EXECUTIONER_AIM_BONUS/>命中和+<Ability:EXECUTIONER_CRIT_BONUS/>暴击率。<br/>"
 
 [Resilience X2AbilityTemplate]
-LocFriendlyName="适应力"
-LocFlyOverText="适应力"
-LocLongDescription="敌人对你的攻击受到-<ABILITY:RESILIENCE_BONUS_LW/>暴击几率的减益。"
-LocHelpText="敌人对你的攻击受到-<ABILITY:RESILIENCE_BONUS_LW/>暴击几率的减益。"
-LocPromotionPopupText="<Bullet/>敌人对你的攻击受到-<ABILITY:RESILIENCE_BONUS_LW/>暴击几率的减益。<br/>"
+LocFriendlyName="见切之技"
+LocFlyOverText="见切之技"
+LocLongDescription="敌人对你的攻击受到-<ABILITY:RESILIENCE_BONUS_LW/>暴击率的减益。"
+LocHelpText="敌人对你的攻击受到-<ABILITY:RESILIENCE_BONUS_LW/>暴击率的减益。"
+LocPromotionPopupText="<Bullet/>敌人对你的攻击受到-<ABILITY:RESILIENCE_BONUS_LW/>暴击率的减益。<br/>"
 
 [TacticalSense X2AbilityTemplate]
-LocFriendlyName="战术意识"
-LocFlyOverText="战术意识"
+LocFriendlyName="战术素养"
+LocFlyOverText="战术素养"
 LocLongDescription="你视野内的每个敌人使你获得3点防御，最多15点。"
 LocHelpText="你视野内的每个敌人使你获得3点防御，最多15点。"
 LocPromotionPopupText="<Bullet/>你视野内的每个敌人使你获得3点防御，最多15点。<br/><Bullet/>不包括小队视野范围内的单位。<br/><Bullet/>此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
 
 [Aggression X2AbilityTemplate]
-LocFriendlyName="战斗饥渴"
-LocFlyOverText="战斗饥渴"
+LocFriendlyName="穷兵窦武"
+LocFlyOverText="穷兵窦武"
 LocLongDescription="你视野内的每个敌人会为你+5暴击率，最多30。"
 LocHelpText="你视野内的每个敌人会为你+5暴击率，最多30。"
 LocPromotionPopupText="<Bullet/>你视野内的每个敌人会为你+5暴击率，最多30。<br/><Bullet/>在小队视野中可见的单位也会产生此效果。<br/>"
 
 [BringEmOn X2AbilityTemplate]
-LocFriendlyName="战个痛快"
-LocFlyOverText="战个痛快"
-LocLongDescription="每个你视野内的2个敌人都使你获得暴击伤害+1，最多+8。"
-LocHelpText="每个你视野内的2个敌人都使你获得暴击伤害+1，最多+8。"
-LocPromotionPopupText="<Bullet/>每个你视野内的2个敌人都使你获得暴击伤害+1，最多+8。<br/><Bullet/>在小队视野中可见的单位也会提供效果。<br/>"
+LocFriendlyName="背水一战"
+LocFlyOverText="背水一战"
+LocLongDescription="你视野内的每2个敌人都使你获得+1暴击伤害，最多+8。应用于士兵的<Ability:BOUND_WEAPON_NAME/>和爆炸物(破坏性榴弹、火箭等)。"
+LocHelpText="你视野内的每2个敌人都使你获得+1暴击伤害，最多+8。应用于士兵的<Ability:BOUND_WEAPON_NAME/>和爆炸物(破坏性榴弹、火箭等)。"
+LocPromotionPopupText="<Bullet/>你视野内的每2个敌人都使你获得+1暴击伤害，最多+8。<br/><Bullet/>在小队视野中可见的单位也会提供效果<br/><Bullet/> 应用于士兵的<Ability:BOUND_WEAPON_NAME/>和爆炸物(破坏性榴弹、火箭等)。<br/>"
 
 [HardTarget X2AbilityTemplate]
 LocFriendlyName="高难目标"
@@ -158,9 +158,9 @@ LocPromotionPopupText="<Bullet/>你视野内的每个敌人使你获得5点闪�
 [Infighter X2AbilityTemplate]
 LocFriendlyName="近身斗士"
 LocFlyOverText="近身斗士"
-LocLongDescription="对4格以内的攻击获得<Ability:INFIGHTER_DODGE_BONUS/>闪避。"
-LocHelpText="对4格以内的攻击获得<Ability:INFIGHTER_DODGE_BONUS/>闪避。"
-LocPromotionPopupText="<Bullet/>对4格以内的攻击获得<Ability:INFIGHTER_DODGE_BONUS/>闪避。<br/><Bullet/>闪避加成也适用于近战攻击。<br/><Bullet/>此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
+LocLongDescription="对4格以内受到的攻击获得<Ability:INFIGHTER_DODGE_BONUS/>闪避。"
+LocHelpText="对4格以内受到的攻击获得<Ability:INFIGHTER_DODGE_BONUS/>闪避。"
+LocPromotionPopupText="<Bullet/>对4格以内受到的攻击获得<Ability:INFIGHTER_DODGE_BONUS/>闪避。<br/><Bullet/>闪避加成也适用于近战攻击。<br/><Bullet/>此项能力在单位处于混乱、眩晕、恐慌、燃烧或其他受损状态中时将不提供防御加成。"
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="深度感知"
@@ -184,32 +184,32 @@ LocHelpText="第一个行动点使用主武器进行普通射击将不再结束�
 LocPromotionPopupText="<Bullet/>第一个行动点使用主武器进行普通射击将不再结束回合。<br/>"
 
 [CloseEncounters X2AbilityTemplate]
-LocFriendlyName="近距遭遇"
-LocFlyOverText="近距遭遇"
-LocLongDescription="使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的1个敌人进行1次标准射击后，可额外获得1个行动点，每回合1次。"
-LocHelpText="使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的1个敌人进行1次标准射击后，可额外获得1个行动点，每回合1次。"
-LocPromotionPopupText="<Bullet/>使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的1个敌人进行1次标准射击后，可获得额外1个行动点，每回合1次。<br/><Bullet/>在奔袭战术激活后近距遭遇战不可以使用。<br/><Bullet/>一个红色的环状图示会标记此能力的范围。<Bullet/> 不可以和奔袭战术在同一回合使用。<br/>"
+LocFriendlyName="短兵相接"
+LocFlyOverText="短兵相接"
+LocLongDescription="使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的一名敌人进行一次标准射击后，可额外获得1个行动点，每回合1次。"
+LocHelpText="使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的一名敌人进行一次标准射击后，可额外获得1个行动点，每回合1次。"
+LocPromotionPopupText="<Bullet/>使用主武器对<Ability:CLOSE_ENCOUNTERS_RANGE/>格内的一名敌人进行一次标准射击后，可获得额外1个行动点，每回合1次。<br/><Bullet/>在奔袭战术激活后短兵相接不可以使用。<br/><Bullet/>一圈红色的环状图示会标记此能力的范围。<Bullet/>不可以和奔袭战术在同一回合使用。<br/>"
 
 [LoneWolf X2AbilityTemplate]
-LocFriendlyName="独狼"
-LocFlyOverText="独狼"
-LocLongDescription="距离友军7格或更远时获得+10命中和+10防御。"
-LocHelpText="距离友军7格或更远时获得+10命中和+10防御。"
-LocPromotionPopupText="<Bullet/>距离友军7格或更远时获得+10命中和+10防御。<br/><Bullet/>此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
+LocFriendlyName="孤高独狼"
+LocFlyOverText="孤高独狼"
+LocLongDescription="距离友军至少<Ability:LONEWOLF_MIN_BONUS_TILES/>格时获得命中和防御增益。最大值为距离友军<Ability:LONEWOLF_MIN_DIST_TILES/>格时获得+<Ability:LONEWOLF_AIM_BONUS/>命中+<Ability:LONEWOLF_DEF_BONUS/>防御。"
+LocHelpText="距离友军至少<Ability:LONEWOLF_MIN_BONUS_TILES/>格时获得命中和防御增益。最大值为距离友军<Ability:LONEWOLF_MIN_DIST_TILES/>格时获得+<Ability:LONEWOLF_AIM_BONUS/>命中+<Ability:LONEWOLF_DEF_BONUS/>防御。"
+LocPromotionPopupText="<Bullet/> 该士兵与最近的盟友之间的每格距离给予 +<Ability:LONEWOLF_AIM_PER_TILE/>命中和+<Ability:LONEWOLF_DEF_PER_TILE/>防御，起始于<Ability:LONEWOLF_MIN_BONUS_TILES/>格距离。<br/><Bullet/> 增益上限为+<Ability:LONEWOLF_AIM_BONUS/>命中， +<Ability:LONEWOLF_DEF_BONUS/>防御当该士兵与最近的盟友距离<Ability:LONEWOLF_MIN_DIST_TILES/>格或更远的距离。<br/><Bullet/> 此项能力在单位处于混乱、眩晕、恐慌、燃烧或其他受损状态中时将不提供防御加成。"
 
 [LowProfile X2AbilityTemplate]
-LocFriendlyName="低姿态"
-LocFlyOverText="低姿态"
-LocLongDescription="将半身掩体视作全身掩体。"
-LocHelpText="将半身掩体视作全身掩体。"
-LocPromotionPopupText="<Bullet/>将半身掩体视作全身掩体。<br/>"
+LocFriendlyName="华丽低调"
+LocFlyOverText="华丽低调"
+LocLongDescription="将半掩体视作全掩体。"
+LocHelpText="将半掩体视作全掩体。"
+LocPromotionPopupText="<Bullet/>将半掩体视作全掩体。<br/>"
 
 [DoubleTap X2AbilityTemplate]
 LocFriendlyName="双发快射"
 LocFlyOverText="双发快射"
-LocLongDescription="特殊射击：使用你的主武器对同一目标射击2次。需要2个行动点。第2次射击受到-10命中减益。"
-LocHelpText="对同一目标发射2次射击，第2发会有命中减益。"
-LocPromotionPopupText="<Bullet/>双发快射让你对同一目标射击2次，第2发有-10命中减益。需要2个行动点，且会结束回合。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>弹药且需1回合冷却时间。 <br/>"
+LocLongDescription="特殊射击：使用你的主武器对同一目标射击2次。需要2个行动点。第二次射击受到-10命中减益。"
+LocHelpText="对同一目标发射2次射击，第二次射击会有命中减益。"
+LocPromotionPopupText="<Bullet/>双发快射让你对同一目标射击2次，第二次射击有-10命中减益。需要2个行动点，且会结束回合。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>弹药且需<Ability:SelfCooldown_LW/>回合冷却时间。 <br/>"
 
 [TraverseFire X2AbilityTemplate]
 LocFriendlyName="横扫射击"
@@ -219,46 +219,46 @@ LocHelpText="如果首次行动是用主武器进行普通射击，那你还能�
 LocPromotionPopupText="<Bullet/>如果首次行动是用主武器进行普通射击，那你还能再进行一次非移动的行动。<br/>"
 
 [WalkFire X2AbilityTemplate]
-LocFriendlyName="移动射击"
-LocFlyOverText="移动射击"
-LocLongDescription="进行一次高精度射击，+30命中但是伤害减半并且-30暴击。消耗<Ability:SelfAmmoCost/>弹药。"
-LocHelpText="特殊射击：+30命中，-30暴击，伤害减半，消耗<Ability:SelfAmmoCost/>弹药。"
-LocPromotionPopupText="<Bullet/>这是士兵在使用自动武器时调整准星而进行的特殊射击，获得+30命中和-30暴击，只造成一半伤害。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/>每回合仅能用一次。<br/><Bullet/>需要连发武器；主武器为霰弹枪或狙击步枪时不适用。"
+LocFriendlyName="游走射击"
+LocFlyOverText="游走射击"
+LocLongDescription="进行一次高精度射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%伤害并且 -<Ability:WALK_FIRE_CRIT_MALUS>暴击率。消耗<Ability:SelfAmmoCost/>弹药。"
+LocHelpText="进行一次高精度射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%伤害并且 -<Ability:WALK_FIRE_CRIT_MALUS> 暴击率。消耗<Ability:SelfAmmoCost/>弹药。"
+LocPromotionPopupText="<Bullet/>这是士兵在使用自动武器时调整准星而进行的特殊射击，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%伤害并且 -<Ability:WALK_FIRE_CRIT_MALUS> 暴击率。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/>需要连发武器；主武器为散弹枪或狙击步枪时不适用。"
 
 [PrecisionShot X2AbilityTemplate]
 LocFriendlyName="精准射击"
 LocFlyOverText="精准射击"
-LocLongDescription="进行一次+30暴击率和33%暴击伤害加成的射击。冷却时间3回合。"
-LocHelpText="进行一次+30暴击率和33%暴击伤害加成的射击。冷却时间3回合。"
-LocPromotionPopupText="<Bullet/>进行一次+30暴击率和33%暴击伤害加成的射击。冷却时间3回合。<br/>"
+LocLongDescription="进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴击伤害加成的射击。冷却时间<Ability:SelfCooldown_LW/>回合。"
+LocHelpText="进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴击伤害加成的射击。冷却时间<Ability:SelfCooldown_LW/>回合。"
+LocPromotionPopupText="<Bullet/>进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴击伤害加成的射击。冷却时间<Ability:SelfCooldown_LW/>回合。<br/>"
 
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="循环火力"
 LocFlyOverText="循环火力"
-LocLongDescription="特殊射击：在1次攻击中对1个目标进行3次射击。需要2个行动点并且所有射击都会受到命中减益。4回合冷却时间。"
-LocHelpText="特殊射击：在1次攻击中对1个目标进行3次射击。需要2个行动点并且所有射击都会受到命中减益。4回合冷却时间。"
-LocPromotionPopupText="<Bullet/>特殊射击：在1次攻击中对1个目标进行3次射击。需要2个行动点，且所有射击-15命中。<br/><Bullet/>需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/>需要连射击武器；当主武器装备为霰弹枪或狙击步枪时无法使用能力。"
+LocLongDescription="特殊射击：在1次攻击中对1个目标进行3次射击。需要2个行动点并且所有射击都会受到命中减益。<Ability:SelfCooldown_LW/>回合冷却时间。"
+LocHelpText="特殊射击：在1次攻击中对1个目标进行3次射击。需要2个行动点并且所有射击都会受到命中减益。<Ability:SelfCooldown_LW/>回合冷却时间。"
+LocPromotionPopupText="<Bullet/>特殊射击：在1次攻击中对1个目标进行3次射击。需要2个行动点，且所有射击-<Ability:CYCLIC_FIRE_AIM_MALUS/>命中。<br/><Bullet/>需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> <Ability:SelfCooldown_LW/> 回合冷却时间。<br/><Bullet/>需要连发武器；当主武器装备为散弹枪或狙击步枪时无法使用能力。"
 
 [StreetSweeper X2AbilityTemplate]
 LocFriendlyName="堑壕枪"
 LocFlyOverText="堑壕枪"
-LocLongDescription="仅限霰弹枪为主武器时的特殊射击：对附近锥型范围内的目标进行一次攻击。冷却时间3回合。"
-LocHelpText="仅限霰弹枪为主武器时的特殊射击：对附近锥型范围内的目标进行一次攻击。冷却时间3回合。"
-LocPromotionPopupText="<Bullet/>仅限主武器霰弹枪的特殊射击：对附近的目标进行近距离圆锥形的射击。<br/><Bullet/>3回合冷却，使用<Ability:SelfAmmoCost/>点弹药点。<br/><Bullet/>其他主武器不可使用该能力。<br/><Bullet/>该射击不会穿透强掩护，所以该能力最佳使用状况是夹击时。<br/><Bullet/>在范围内的友军也会受到伤害。<br/>"
+LocLongDescription="仅限散弹枪为主武器时的特殊射击：对附近锥型范围内的目标进行一次攻击。冷却时间<Ability:SelfCooldown_LW/>回合。"
+LocHelpText="仅限散弹枪为主武器时的特殊射击：对附近锥型范围内的目标进行一次攻击。冷却时间<Ability:SelfCooldown_LW/>回合。"
+LocPromotionPopupText="<Bullet/>仅限主武器散弹枪的特殊射击：对附近的目标进行近距离圆锥形的射击。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷却，消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/>其他主武器不可使用该能力。<br/><Bullet/>该射击不会穿透重型掩体，所以这种能力最好用在侧翼情况。<br/><Bullet/>在范围内的友军也会受到伤害。<br/>"
 
 [SlugShot X2AbilityTemplate]
 LocFriendlyName="弹头射击"
 LocFlyOverText="弹头射击"
-LocLongDescription="仅限霰弹枪为主武器时的特殊射击：进行一次能够穿透两点护甲并且没有射程惩罚的射击。使用<Ability:SelfAmmoCost/>个弹药。冷却时间三回合。"
-LocHelpText="没有射程惩罚的特殊霰弹枪护甲穿透射击。"
-LocPromotionPopupText="<Bullet/>仅限主武器为霰弹枪的特殊射击：射击1次，没有射程惩罚。<br/><Bullet/>此次射击可穿透两点护甲。<br/><Bullet/>3回合冷却时间。<br/><Bullet/>需要<Ability:SelfAmmoCost/>弹药。<br/>"
+LocLongDescription="仅限散弹枪为主武器时的特殊射击：进行一次能够穿透<Ability:SLUG_SHOT_PIERCE/>点护甲并且没有射程惩罚的射击。使用<Ability:SelfAmmoCost/>个弹药。冷却时间<Ability:SelfCooldown_LW/>回合。"
+LocHelpText="没有射程惩罚的特殊散弹枪护甲穿透射击。"
+LocPromotionPopupText="<Bullet/>仅限主武器为散弹枪的特殊射击：射击1次，没有射程惩罚。<br/><Bullet/>此次射击可穿透<Ability:SLUG_SHOT_PIERCE/>点护甲。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>弹药。<br/>"
 
 [SlugShotRangeEffect X2AbilityTemplate]
 LocFriendlyName="弹头射击"
 LocFlyOverText="弹头射击"
-LocLongDescription="仅限霰弹枪为主武器时的特殊射击：进行一次没有射程减益的射击。使用<Ability:SelfAmmoCost/>个弹药。冷却时间五回合。"
-LocHelpText="仅限霰弹枪为主武器时的特殊射击：进行一次没有射程减益的射击。使用<Ability:SelfAmmoCost/>个弹药。冷却时间五回合。"
-LocPromotionPopupText="<Bullet/>仅限主武器为霰弹枪的特殊射击：射击1次，没有射程惩罚。<br/><Bullet/>5回合冷却时间。<br/><Bullet/>需要<Ability:SelfAmmoCost/>弹药。<br/>"
+LocLongDescription="仅限散弹枪为主武器时的特殊射击：进行一次没有射程减益的射击。使用<Ability:SelfAmmoCost/>个弹药。冷却时间<Ability:SelfCooldown_LW/>回合。"
+LocHelpText="仅限散弹枪为主武器时的特殊射击：进行一次没有射程减益的射击。使用<Ability:SelfAmmoCost/>个弹药。冷却时间<Ability:SelfCooldown_LW/>回合。"
+LocPromotionPopupText="<Bullet/>仅限主武器为散弹枪的特殊射击：射击1次，没有射程惩罚。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/>需要<Ability:SelfAmmoCost/>弹药。<br/>"
 
 [Commissar X2AbilityTemplate]
 LocFriendlyName="督战员"
@@ -268,8 +268,8 @@ LocHelpText="对被敌人心灵控制的友军进行手枪射击+50的命中，�
 LocPromotionPopupText="<Bullet/>对被敌人心灵控制的友军进行手枪射击+50的命中，无法闪避，并且在命中后自动击杀目标。<br/>"
 
 [ClutchShot X2AbilityTemplate]
-LocFriendlyName="关键射击"
-LocFlyOverText="关键射击"
+LocFriendlyName="制胜一击"
+LocFlyOverText="制胜一击"
 LocLongDescription="发射1记必中的手枪射击，每次任务可使用1次。"
 LocHelpText="发射1记必中的手枪射击，每次任务可使用1次。"
 LocPromotionPopupText="<Bullet/>发射1记必中的手枪射击，每次任务可使用1次。<br/>"
@@ -277,9 +277,10 @@ LocPromotionPopupText="<Bullet/>发射1记必中的手枪射击，每次任务�
 [Gunslinger X2AbilityTemplate]
 LocFriendlyName="枪神"
 LocFlyOverText="枪神"
-LocLongDescription="使用手枪对12格内以及一个锥形范围内任意移动或攻击的敌人进行一次反应射击。"
+LocLongDescription="使用手枪对<Ability:GUNSLINGER_TILES_RANGE/>格内以及一个锥形范围内任意移动或攻击的敌人进行一次反应射击。"
 LocHelpText="加强手枪监视的锥形射程。"
-LocPromotionPopupText="<Bullet/>射程为12格。<br/><Bullet/>冷却时间3回合。<br/>"
+LocPromotionPopupText="<Bullet/>射程为<Ability:GUNSLINGER_TILES_RANGE/>格。<br/><Bullet/>冷却时间<Ability:SelfCooldown_LW/>回合。<br/>"
+LocFriendlyNameWhenConcealed="手枪监视 (隐蔽式)"
 
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="超高反应瞳孔"
@@ -296,11 +297,11 @@ LocHelpText="你的主武器的下一次射击获得+20命中。多次使用可�
 LocPromotionPopupText="<Bullet/>你的主武器的下一次射击获得+20命中。如果你使用行动点或受伤就会失去此加成。<br/><Bullet/>被压制时不能使用。<br/><Bullet/>如果什么都不做的话此效果会持续几回合。<br/><Bullet/>连续多次使用稳定武器可以使效果叠加。"
 
 [LockedOn X2AbilityTemplate]
-LocFriendlyName="未解锁"
-LocFlyOverText="未解锁"
-LocLongDescription="对同一敌军单位连续射击时获得+10命中和+10暴击。"
-LocHelpText="对同一敌军单位连续射击时+10命中。"
-LocPromotionPopupText="<Bullet/>使用主武器对同一目标进行连续射击获得+10命中和+10暴击。不可累加，只适用于敌方单位。<br/><Bullet/>范围射击不能获得此加成。"
+LocFriendlyName="锁定"
+LocFlyOverText="锁定"
+LocLongDescription="对同一敌军单位连续射击时获得+<Ability:LOCKEDON_AIM_BONUS/>命中和+<Ability:LOCKEDON_CRIT_BONUS/>暴击率。"
+LocHelpText="对同一敌军单位连续射击时获得+<Ability:LOCKEDON_AIM_BONUS/>命中和+<Ability:LOCKEDON_CRIT_BONUS/>暴击率。"
+LocPromotionPopupText="<Bullet/>使用主武器对同一目标进行连续射击获得+<Ability:LOCKEDON_AIM_BONUS/>命中和+<Ability:LOCKEDON_CRIT_BONUS/>暴击率。不可累加，只适用于敌方单位。<br/><Bullet/>范围射击不能获得此加成。"
 
 [Sentinel_LW X2AbilityTemplate]
 LocFriendlyName="哨兵"
@@ -321,21 +322,21 @@ LocFriendlyName="闪电反射"
 LocFlyOverText="闪电反射"
 LocLongDescription="大幅减少敌人对你的反应射击的命中率。此加成会随着敌人对你反应射击次数的增加而减弱。"
 LocHelpText="减少敌人对你的反应射击的命中率。"
-LocPromotionPopupText="<Bullet/>大幅减少敌人对你的反应射击的命中率。<br/><Bullet/>回合内首次对你的反应射击-100命中；第二次-80；第3次-60；第4次-40；第五次-20。再往后的命中率会恢复正常。<br/><Bullet/>此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
+LocPromotionPopupText="<Bullet/>大幅减少敌人对你的反应射击的命中率。<br/><Bullet/>回合内首次对你的反应射击-100命中；第二次-80；第3次-60；第4次-40；第五次-20。再往后的命中率会恢复正常。<br/><Bullet/>此项能力在单位处于混乱、眩晕、恐慌、燃烧或其他受损状态中时将不提供防御加成。"
 
 [Cutthroat X2AbilityTemplate]
 LocFriendlyName="割喉"
 LocFlyOverText="割喉"
-LocLongDescription="你对生物型敌人的近战攻击无视其护甲并且+15暴击率，+2暴击伤害。"
-LocHelpText="你对生物型敌人的近战攻击无视其护甲并且+15暴击率，+2暴击伤害。"
-LocPromotionPopupText="<Bullet/>你对生物型敌人的近战攻击无视其护甲并且+15暴击率，+2暴击伤害。"
+LocLongDescription="你的近战攻击无视生物敌人的护甲，提供+<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/>暴击率，+<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/>暴击伤害。"
+LocHelpText="你的近战攻击无视生物敌人的护甲，提供+<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/>暴击率，+<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/>暴击伤害。"
+LocPromotionPopupText="<Bullet/>你的近战攻击无视生物敌人的护甲，提供+<Ability:CUTTHROAT_BONUS_CRIT_CHANCE/>暴击率，+<Ability:CUTTHROAT_BONUS_CRIT_DAMAGE/>暴击伤害。"
 
 [KillerInstinct X2AbilityTemplate]
 LocFriendlyName="杀手本能"
 LocFlyOverText="杀手本能"
-LocLongDescription="使用奔袭战术可在本回合内获得+50%暴击伤害。"
-LocHelpText="使用奔袭战术可在本回合内获得+50%暴击伤害。"
-LocPromotionPopupText="<Bullet/>使用奔袭战术可在本回合内获得+50%暴击伤害。<br/>"
+LocLongDescription="激活奔袭战术可在本回合内获得+<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>%暴击伤害。"
+LocHelpText="激活奔袭战术可在本回合内获得+<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>%暴击伤害。"
+LocPromotionPopupText="<Bullet/>激活奔袭战术可在本回合内获得+<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>%暴击伤害。<br/>"
 
 [ExtraConditioning X2AbilityTemplate]
 LocFriendlyName="附加条件"
@@ -349,21 +350,21 @@ LocFriendlyName="奔袭战术"
 LocFlyOverText="奔袭战术"
 LocLongDescription="冲刺后行动。"
 LocHelpText="冲刺后行动。"
-LocPromotionPopupText="<Bullet/>奔袭战术可以让士兵快速接近目标，或者轻松绕到侧翼位置。<br/><Bullet/>奔袭战术有3个回合的冷却时间。<br/>"
+LocPromotionPopupText="<Bullet/>奔袭战术可以让士兵快速接近目标，或者轻松绕到侧翼位置。<br/><Bullet/>奔袭战术有<Ability:RUN_AND_GUN_COOLDOWN/>回合的冷却时间。<br/>"
 
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="压制"
 LocFlyOverText="压制"
 LocLongDescription="向目标进行一连串的射击，如目标移动，则向其发动反应射击，限制其许多能力的使用，并使其命中-<Ability:SUPPRESSIONPENALTY/>。"
 LocHelpText="降低敌人命中，并在他们移动时开火。"
-LocPromotionPopupText="<Bullet/>压制需要消耗<Ability:SelfAmmoCost/>弹药点，但无冷却时间。<br/><Bullet/>进行压制的单位若受到伤害就会中止压制。<br/><Bullet/>如果多个单位压制一个目标，则命中值惩罚会叠加。<br/><Bullet/>装备狙击步枪或霰弹枪类别的武器时不可使用。<br/><Bullet/>压制会限制目标许多能力的使用，包括火箭弹和榴弹的使用。"
+LocPromotionPopupText="<Bullet/>压制消耗<Ability:SelfAmmoCost/>弹药，但无冷却时间。<br/><Bullet/>进行压制的单位若受到伤害就会中止压制。<br/><Bullet/>如果多个单位压制一个目标，命中惩罚不会叠加。<br/><Bullet/>装备狙击步枪或散弹枪类别的武器时不可使用。<br/><Bullet/>压制会限制目标许多能力的使用，包括火箭和榴弹的使用。"
 
 [AreaSuppression X2AbilityTemplate]
 LocFriendlyName="区域压制"
 LocFlyOverText="区域压制"
 LocLongDescription="发射一片弹幕，压制在4格半径范围内的多个目标。对任何移动的目标进行反应射击，并对所有目标的命中附加<Ability:SUPPRESSIONPENALTY/>惩罚，直到压制效果移除。在隐蔽时无法使用。"
 LocHelpText="压制一片区域内的多个目标。"
-LocPromotionPopupText="<Bullet/>士兵隐蔽时无法使用区域压制。<Bullet/>只要进行压制的单位有足够弹药，任何试图移动的单位会受到反应射击。<br/><Bullet/>霰弹枪或狙击步枪无法使用该能力。<br/><Bullet/>区域压制消耗<Ability:SelfAmmoCost/>弹药，每次反应射击要再消耗1个弹药。没有冷却时间。<br/><Bullet/>如果进行压制的单位受到伤害，区域压制将结束。<br/><Bullet/>如果多个单位压制一个目标，则命中值惩罚会叠加。<br/><Bullet/> 压制限制了许多目标的能力，包括火箭弹和榴弹。"
+LocPromotionPopupText="<Bullet/>士兵隐蔽时无法使用区域压制。<Bullet/>只要进行压制的单位有足够弹药，任何试图移动的单位会受到反应射击。<br/><Bullet/>散弹枪或狙击步枪无法使用该能力。<br/><Bullet/>区域压制消耗<Ability:SelfAmmoCost/>弹药，每次反应射击要再消耗1个弹药。没有冷却时间。<br/><Bullet/>如果进行压制的单位受到伤害，区域压制将结束。<br/><Bullet/>如果多个单位压制一个目标，命中惩罚不会叠加。<br/><Bullet/> 压制限制了许多目标的能力，包括火箭和榴弹。"
 
 [SuppressionShot_LW X2AbilityTemplate]
 LocFriendlyName="压制"
@@ -377,39 +378,39 @@ LocHelpText="更大范围的区域压制。"
 LocPromotionPopupText="<Bullet/>区域压制能够压制5格半径内的敌人。<br/>"
 
 [Lockdown X2AbilityTemplate]
-LocFriendlyName="封锁"
-LocFlyOverText="封锁"
-LocLongDescription="对被压制时试图移动的敌人射击+15命中率。"
+LocFriendlyName="禁闭封锁"
+LocFlyOverText="禁闭封锁"
+LocLongDescription="对被压制时试图移动的敌人射击+<Ability:LOCKDOWN_TOHIT_BONUS/>命中率。"
 LocHelpText="射击被压制且试图移动的敌人时获得命中率和伤害加成。"
-LocPromotionPopupText="<Bullet/>对被压制时试图移动的敌人射击+15命中率。<br/><Bullet/>与其他反应射击加成叠加。"
+LocPromotionPopupText="<Bullet/>对被压制时试图移动的敌人射击+<Ability:LOCKDOWN_TOHIT_BONUS/>命中率。<br/><Bullet/>与其他反应射击加成叠加。"
 
-[Lockdown X2AbilityTemplate]
-LocFriendlyName="禁闭"
-LocFlyOverText="禁闭"
-LocLongDescription="对被压制时试图移动的敌人射击+15命中率。"
+[LockdownBonuses X2AbilityTemplate]
+LocFriendlyName="禁闭封锁"
+LocFlyOverText="禁闭封锁"
+LocLongDescription="对被压制时试图移动的敌人射击+<Ability:LOCKDOWN_TOHIT_BONUS/>命中率。"
 LocHelpText="射击被压制且试图移动的敌人时获得命中率和伤害加成。"
-LocPromotionPopupText="<Bullet/>对被压制时试图移动的敌人射击+15命中率。<br/><Bullet/>与其他反应射击加成叠加。"
+LocPromotionPopupText="<Bullet/>对被压制时试图移动的敌人射击+<Ability:LOCKDOWN_TOHIT_BONUS/>命中率。<br/><Bullet/>与其他反应射击加成叠加。"
 
 [Mayhem X2AbilityTemplate]
 LocFriendlyName="暴力美学"
 LocFlyOverText="暴力美学"
-LocLongDescription="对被压制时试图移动的敌人造成25%伤害加成。"
+LocLongDescription="对被压制时试图移动的敌人造成<Ability:MAYHEM_DAMAGE_BONUS_PCT/>%伤害加成。"
 LocHelpText="对被压制时试图移动的敌人射击造成伤害加成。"
-LocPromotionPopupText="<Bullet/>对被压制时试图移动的敌人造成25%伤害加成。<br/>"
+LocPromotionPopupText="<Bullet/>对被压制时试图移动的敌人造成<Ability:MAYHEM_DAMAGE_BONUS_PCT/>%伤害加成。<br/>"
 
 [MayhemBonuses X2AbilityTemplate]
 LocFriendlyName="暴力美学"
 LocFlyOverText="暴力美学"
-LocLongDescription="对被压制时试图移动的敌人造成20%伤害加成。"
+LocLongDescription="对被压制时试图移动的敌人造成<Ability:MAYHEM_DAMAGE_BONUS_PCT/>%伤害加成。"
 LocHelpText="对被压制时试图移动的敌人射击造成伤害加成。"
-LocPromotionPopupText="<Bullet/>对被压制时试图移动的敌人造成20%伤害加成。<br/>"
+LocPromotionPopupText="<Bullet/>对被压制时试图移动的敌人造成<Ability:MAYHEM_DAMAGE_BONUS_PCT/>%伤害加成。<br/>"
 
 [Interference X2AbilityTemplate]
 LocFriendlyName="干扰"
 LocFlyOverText="干扰"
-LocLongDescription="小精灵可以取消目标单位的监视。每次战斗可使用3次。"
+LocLongDescription="小精灵可以取消目标单位的监视。"
 LocHelpText="取消目标单位的监视。"
-LocPromotionPopupText="<Bullet/>取消目标单位的监视。<br/><Bullet/>消耗一个行动点数。<br/><Bullet/>每次战斗可使用3次。<br/>"
+LocPromotionPopupText="<Bullet/>取消目标单位的监视。<br/><Bullet/>自由行动。<br/><Bullet/>每次战斗可使用3次。使用更高层级的小精灵可获得额外2充能。<br/>"
 
 [DamageControl X2AbilityTemplate]
 LocFriendlyName="伤害控制"
@@ -440,28 +441,28 @@ LocHelpText="在你受到伤害前，获得100的闪避。"
 LocPromotionPopupText="<Bullet/>该能力会让首次对士兵变为擦伤，但被无法闪避的攻击命中会在没有加成的情况下直接移除该效果。"
 
 [SnapShot X2AbilityTemplate]
-LocFriendlyName="急速射击"
-LocFlyOverText="急速射击"
-LocLongDescription="移动后使用狙击步枪射击，但是在小队视野的5格之外将会受到严重的命中惩罚。"
+LocFriendlyName="急射"
+LocFlyOverText="急射"
+LocLongDescription="你可以用狙击步枪在一次不结束回合的行动后进行普通射击，但是超过小队视野5格以外的所有射击都会受到严重的射程惩罚。"
 LocHelpText="射击目标。"
-LocPromotionPopupText="<Bullet/> 这个士兵将可以在移动后使用狙击步枪开火，但是将会受到严重的命中惩罚超过22格之外的敌人。<br/><Bullet/> 移动后无法使用监视射击。<br/>
+LocPromotionPopupText="<Bullet/> 这个士兵将可以在一次不结束回合的行动后使用狙击步枪开火，但是将会受到严重的命中惩罚超过22格之外的敌人。<br/><Bullet/> 在一次不结束回合的行动后无法使用狙击步枪进行监视。<br/>
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="监视"
 LocHelpText="向第一个在你视野范围内移动的敌人开火，有命中减益。士兵要进行一次监视射击，命中率至少要为1%。"
-LocLongDescriptionWhenConcealed="当敌人暴露时，攻击你视野范围内第一个移动的敌人。"
+LocLongDescriptionWhenConcealed="向第一个在你视野范围内移动的敌人开火。前提是你已经暴露。"
 LocFlyOverText="监视"
-LocFriendlyNameWhenConcealed="监视（隐蔽中）"
+LocFriendlyNameWhenConcealed="监视（隐蔽式）"
 
 [SnapShotAimModifier X2AbilityTemplate]
-LocFriendlyName="急速射击"
-LocFlyOverText="急速射击"
-LocLongDescription="在移动后你可以用狙击步枪进行普通射击和进入普通监视，但是超过小队视野5格以上的所有射击都会受到严重的射程惩罚。"
-LocHelpText="移动后可以用狙击步枪进行普通射击和监视。"
+LocFriendlyName="急射"
+LocFlyOverText="急射"
+LocLongDescription="你可以用狙击步枪在一次不结束回合的行动后进行普通射击，但是超过小队视野5格以外的所有射击都会受到严重的射程惩罚。"
+LocHelpText="可以用狙击步枪在一次不结束回合的行动后进行普通射击。"
 
 [Trojan X2AbilityTemplate]
-LocFriendlyName="勇士"
-LocFlyOverText="勇士"
+LocFriendlyName="特洛伊"
+LocFlyOverText="特洛伊"
 LocLongDescription="被侵入的敌方单位在侵入效果结束的回合受到伤害且不能行动。"
 LocHelpText="被侵入的单位在侵入效果结束时受到伤害且不能行动。"
 LocPromotionPopupText="<Bullet/>被失控协议侵入的敌方单位在侵入效果结束的回合受到0到8点伤害且不能行动。<br/><Bullet/>适用于被失控协议眩晕或控制的单位。<br/><Bullet/>伤害根据侵入数值和目标的侵入防御数值来计算。<br/>"
@@ -469,27 +470,27 @@ LocPromotionPopupText="<Bullet/>被失控协议侵入的敌方单位在侵入效
 [Covert X2AbilityTemplate]
 LocFriendlyName="隐秘"
 LocFlyOverText="隐秘"
-LocLongDescription="敌人对你的侦查范围减少25%。"
+LocLongDescription="敌人对你的侦查范围减少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%。"
 LocHelpText="敌人对你的侦查范围减少。"
-LocPromotionPopupText="<Bullet/>敌人对你的侦查范围减少25%，由敌人周围的红色区块标识出。<br/><Bullet/>此能力也会略微减少该士兵对潜入时间的影响。<br/><Bullet/>对变种人警戒塔没有效果。"
+LocPromotionPopupText="<Bullet/>敌人对你的侦查范围减少<Ability:COVERT_DETECTION_RANGE_REDUCTION/>%，由敌人周围的红色区块标识出。<br/><Bullet/>该能力也会略微减少该士兵的潜入时间。<br/><Bullet/>对变种人安保塔没有效果。"
 
 [Ghostwalker X2AbilityTemplate]
 LocFriendlyName="鬼行者"
 LocFlyOverText="鬼行者"
-LocLongDescription="启用此能力可在此回合及下一回合内使敌人侦查范围减少25%。"
-LocHelpText="在2回合内使敌人侦查范围减少25%。"
-LocPromotionPopupText="<Bullet/>启用此能力可在2回合内使敌人对你的侦查范围减少25%（包括当前回合），由敌人周围的红色区块标识出。<br/><Bullet/>冷却时间<Ability:SelfCooldown/>回合。<br/><Bullet/>不需要行动点数。<br/><Bullet/>此能力也会略微减少该士兵对潜入时间的影响。<br/><Bullet/>对变种人警戒塔没有效果。"
+LocLongDescription="启用此能力可在<Ability:GHOSTWALKER_DURATION/>回合内使敌人对你的侦查范围减少<Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>%(包括当前回合)，如未发现你的敌人周围的红色格子所示。"
+LocHelpText="启用此能力可在<Ability:GHOSTWALKER_DURATION/>回合内使敌人对你的侦查范围减少<Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>%(包括当前回合)，如未发现你的敌人周围的红色格子所示。"
+LocPromotionPopupText="<Bullet/>启用此能力可在<Ability:GHOSTWALKER_DURATION/>回合内使敌人对你的侦查范围减少<Ability:GHOSTWALKER_DETECTION_RANGE_REDUCTION/>%(包括当前回合)，如未发现你的敌人周围的红色格子所示。<br/><Bullet/>冷却时间<Ability:SelfCooldown/>回合。<br/><Bullet/>不需要行动点数。<br/><Bullet/>该能力也会略微减少该士兵的潜入时间。<br/><Bullet/>对变种人安保塔没有效果。"
 
 [Kubikuri X2AbilityTemplate]
 LocFriendlyName="斩首"
 LocFlyOverText="斩首"
-LocLongDescription="对大多数已经受到任何伤害的敌人进行特殊射击：任何暴击会杀死目标，但是普通命中只造成一半伤害。需要2个行动点，4回合冷却时间。"
-LocHelpText="暴击会立即杀死生命值少于一半的敌人。普通命中会造成一半的伤害。"
-LocPromotionPopupText="<Bullet/>对生命值少于一半的敌人进行特殊射击：任何暴击会杀死目标，但是普通命中只造成一半伤害。<br/><Bullet/>需要2个行动点。<br/><Bullet/>4回合冷却时间。<br/><Bullet/>对上外星裁决者时，暴击会造成2倍普通暴击伤害而不是立刻杀死敌人。"
+LocLongDescription="对大多数已经受到任何伤害的敌人进行特殊射击：任何暴击会击杀目标，但是普通命中只造成一半伤害。需要2个行动点，4回合冷却时间。"
+LocHelpText="暴击会立即击杀生命值少于一半的敌人。普通命中会造成一半的伤害。"
+LocPromotionPopupText="<Bullet/>对生命值少于一半的敌人进行特殊射击：任何暴击会击杀目标，但是普通命中只造成一半伤害。<br/><Bullet/>需要2个行动点。<br/><Bullet/>4回合冷却时间。<br/><Bullet/>对上外星裁决者时，暴击会造成2倍普通暴击伤害而不是立刻击杀敌人。"
 
 [CombatAwareness X2AbilityTemplate]
-LocFriendlyName="战斗意识"
-LocFlyOverText="战斗意识"
+LocFriendlyName="战术意识"
+LocFlyOverText="战术意识"
 LocLongDescription="在监视时获得15点防御和1点护甲值。"
 LocHelpText="在监视时获得15点防御和1点护甲值。"
 LocPromotionPopupText="<Bullet/>在监视时获得15点防御和1点护甲值。<br/><Bullet/>此项能力在单位处于混乱、眩晕、恐慌、着火或其他受损状态中时将不提供防御加成。"
@@ -504,27 +505,27 @@ LocPromotionPopupText="<Bullet/>战地外科减少1点士兵在战斗中从受�
 [Flashbanger X2AbilityTemplate]
 LocFriendlyName="闪光弹手"
 LocFlyOverText="闪光弹手"
-LocLongDescription="为你的物品栏提供一个免费的闪光榴弹。"
-LocHelpText="为你的物品栏提供一个免费的闪光榴弹。"
-LocPromotionPopupText="<Bullet/>为你的物品栏提供一个免费的闪光榴弹。<br/>"
+LocLongDescription="为你的物品栏提供一颗免费的闪光榴弹。"
+LocHelpText="为你的物品栏提供一颗免费的闪光榴弹。"
+LocPromotionPopupText="<Bullet/>为你的物品栏提供一颗免费的闪光榴弹。<br/>"
 
 [SmokeGrenade X2AbilityTemplate]
 LocFriendlyName="烟雾弹手"
 LocFlyOverText="烟雾弹手"
-LocLongDescription="给你的物品栏添加一个免费的烟雾榴弹。"
-LocHelpText="给你的物品栏添加一个免费的烟雾榴弹。"
-LocPromotionPopupText="<Bullet/>给你的物品栏添加一个免费的烟雾榴弹。<br/>"
+LocLongDescription="给你的物品栏添加一颗免费的烟雾榴弹。"
+LocHelpText="给你的物品栏添加一颗免费的烟雾榴弹。"
+LocPromotionPopupText="<Bullet/>给你的物品栏添加一颗免费的烟雾榴弹。<br/>"
 
 [Savior X2AbilityTemplate]
-LocFriendlyName="救世主"
-LocFlyOverText="救世主"
+LocFriendlyName="妙手回春"
+LocFlyOverText="妙手回春"
 LocLongDescription="治疗能力回复额外<Ability:SAVIOR_BONUS_HEAL/>点生命值。"
 LocHelpText="治疗能力回复额外<Ability:SAVIOR_BONUS_HEAL/>点生命值。"
 LocPromotionPopupText="<Bullet/>效果适用于小精灵治疗，急救包和恢复能力。<br/>"
 
 [DenseSmoke X2AbilityTemplate]
-LocFriendlyName="浓烟"
-LocFlyOverText="浓烟"
+LocFriendlyName="浓密烟雾"
+LocFlyOverText="浓密烟雾"
 LocLongDescription="你的烟雾榴弹提供额外10的防御。"
 LocHelpText="你的烟雾榴弹提供额外10的防御。"
 LocPromotionPopupText="<Bullet/>你的烟雾榴弹对处于烟雾中的单位提供额外10的防御，最高30。<br/>"
@@ -554,7 +555,7 @@ LocFriendlyName="尖刺榴弹"
 LocFlyOverText="尖刺榴弹"
 LocLongDescription="你的闪光榴弹有50%几率使范围内敌人眩晕一回合。"
 LocHelpText="你的闪光榴弹有50%几率使敌人眩晕。"
-LocPromotionPopupText="<Bullet/>你的闪光榴弹有50%几率使敌人眩晕。<br/>"
+LocPromotionPopupText="<Bullet/>你的闪光榴弹有50%几率使敌人眩晕。<br/><Bullet/> 敌人天生的闪光抗性不影响眩晕几率。<br/>"
 
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="毒刺榴弹"
@@ -571,11 +572,11 @@ LaunchedAbilityname="发射毒刺榴弹"
 LaunchedAbilityHelpText="除了迷惑敌人以外，还有50%几率使范围内的敌人眩晕。"
 
 [RapidDeployment X2AbilityTemplate]
-LocFriendlyName="迅速部署"
-LocFlyOverText="迅速部署"
-LocLongDescription="在投掷或发射一个辅助型榴弹前使用此技能，榴弹将不耗费行动。"
-LocHelpText="在投掷或发射一个辅助型榴弹前使用此技能，榴弹将不耗费行动。"
-LocPromotionPopupText="<Bullet/>在投掷或发射一个辅助型榴弹前使用此技能，榴弹将不耗费行动点。<br/><Bullet/>适用于烟雾榴弹，闪光榴弹和战场扫描仪。<br/><Bullet/>2回合冷却时间。<br/>"
+LocFriendlyName="快速部署"
+LocFlyOverText="快速部署"
+LocLongDescription="在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。"
+LocHelpText="在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。"
+LocPromotionPopupText="<Bullet/>在投掷或发射一颗辅助型榴弹前使用此技能，投掷或发射将不耗费行动点。<br/><Bullet/>适用于烟雾榴弹，闪光榴弹，成型炸药和战场扫描仪。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 
 [CombatRush X2AbilityTemplate]
 LocFriendlyName="战斗冲锋"
@@ -593,44 +594,44 @@ LocHelpText="附近的友军在2回合内为你提供+10命中，+10暴击率和
 [GrazingFire X2AbilityTemplate]
 LocFriendlyName="低伸火力"
 LocFlyOverText="低伸火力"
-LocLongDescription="主武器的未命中射击获得一次额外机会可能变为擦伤。"
+LocLongDescription="主武器的未命中射击获得一次额外机率可能变为擦伤。"
 LocHelpText="未命中可能会变为擦伤。"
-LocPromotionPopupText="<Bullet/>主武器的未命中射击有<Ability:GRAZING_FIRE_SUCCESS_CHANCE>%的机会变为擦伤。<br/><Bullet/>此效果在通常的命中判定之后进行。<br/><Bullet/>技能的命中率减去目标的闪避值成为擦伤的命中率。"
+LocPromotionPopupText="<Bullet/>主武器的未命中射击有<Ability:GRAZING_FIRE_SUCCESS_CHANCE>%几率变为擦伤。<br/><Bullet/>此效果在常规的命中鉴定之后进行。<br/><Bullet/>技能的命中率减去目标的闪避值成为擦伤的命中率。<br/><Bullet/> 适用于所有武器攻击，包括刀和剑。<br/>"
 
 [HeavyFrags X2AbilityTemplate]
 LocFriendlyName="强力核心"
 LocFlyOverText="强力核心"
-LocLongDescription="爆破型榴弹造成额外伤害。"
-LocHelpText="爆破型榴弹造成额外伤害。"
-LocPromotionPopupText="<Bullet/>你的榴弹包含额外的爆炸物，能造成额外1点伤害，但需要特殊训练来掌握。<br/><Bullet/>这同样应用于榴弹效果，比如火焰武器的火。<br/>"
+LocLongDescription="破坏性榴弹造成额外1点伤害。"
+LocHelpText="破坏性榴弹造成额外1点伤害。"
+LocPromotionPopupText="<Bullet/>你的榴弹包含额外的爆炸物，能造成额外1点伤害，但需要特殊训练来掌握。<br/>"
 
 [Airdrop X2AbilityTemplate]
 LocFriendlyName="空投"
 LocFlyOverText="空投"
-LocLongDescription="小精灵为目标友军提供1个爆炸性的榴弹。每次任务可用2次。"
-LocHelpText="为目标友军提供1个爆炸性的榴弹。"
-LocPromotionPopupText="<Bullet/>为目标友军提供1个爆炸性的榴弹。<br/><Bullet/>空投最初提供1个破片榴弹，但随着XCOM技术提升，它会提供更为高级的设备。<br/><Bullet/> 激活空投使用1个行动点数，不会结束士兵的回合。<br/><Bullet/> 每个任务可用2次。"
+LocLongDescription="小精灵为目标友军提供1颗破坏性榴弹。每次任务可使用<Ability:NUM_AIRDROP_CHARGES/>次。"
+LocHelpText="为目标友军提供1个破坏性榴弹。"
+LocPromotionPopupText="<Bullet/>为目标友军提供1颗破坏性榴弹。<br/><Bullet/>空投最初提供1颗破片榴弹，但随着XCOM技术提升，它会提供更为高级的破坏性榴弹。<br/><Bullet/> 激活空投使用1个行动点数，不会结束士兵的回合。<br/><Bullet/> 激活空投不会打破隐蔽。<br/><Bullet/> 每个任务可使用<Ability:NUM_AIRDROP_CHARGES/>次。"
 
 [SwordSlice_LW X2AbilityTemplate]
 LocFriendlyName="直刺"
 LocFlyOverText="直刺"
 LocLongDescription="你可以用你的剑攻击任何在你移动范围内的敌人。你的起始位置和目标之间的距离每<Ability:FLECHE_BONUS_DAMAGE_PER_TILES/>格造成+1伤害。"
 LocHelpText="使用你的剑攻击任何移动范围内的敌人。从远距离攻击能获得额外伤害。"
-LocPromotionPopupText="<Bullet/>你能通过将移动光标移至1个敌人触发直刺能力。<br/><Bullet/>1个士兵能使用2点行动点移动以使用\"冲刺\"，并且仍旧对邻近敌人触发1次攻击。<br/><Bullet/>单位的回合起始位置和目标之间的距离每<Ability:FLECHE_BONUS_DAMAGE_PER_TILES/>格就能让直刺造成1点额外伤害。<br/>"
+LocPromotionPopupText="<Bullet/>你能通过将移动光标移至1个敌人触发直刺能力。<br/><Bullet/>1个士兵能使用2点行动点移动以使用\"冲刺\"，并且仍旧对邻近敌人触发1次攻击。<br/><Bullet/>单位的回合起始位置和目标之间的距离每<Ability:FLECHE_BONUS_DAMAGE_PER_TILES/>格就能让直刺造成1点额外伤害。最大值为<Ability:MAX_SLICE_FLECHE_DAMAGE/>。<br/>"
 
 [Fleche X2AbilityTemplate]
 LocFriendlyName="直刺"
 LocFlyOverText="直刺"
 LocLongDescription="你可以用你的剑攻击任何在你移动范围内的敌人。你的起始位置和目标之间的距离每<Ability:FLECHE_BONUS_DAMAGE_PER_TILES/>格造成+1伤害。"
 LocHelpText="使用你的剑攻击移动范围内的任意敌人。从远距离攻击能获得额外伤害。"
-LocPromotionPopupText="<Bullet/>你能通过将移动光标移至1个敌人触发直刺能力。<br/><Bullet/>1个士兵能使用2点行动点移动以使用\"冲刺\"，并且仍旧对邻近敌人触发1次攻击。<br/><Bullet/>单位的回合起始位置和目标之间的距离每<Ability:FLECHE_BONUS_DAMAGE_PER_TILES/>格就能让直刺造成1点额外伤害。<br/>"
+LocPromotionPopupText="<Bullet/>你能通过将移动光标移至1个敌人触发直刺能力。<br/><Bullet/>1个士兵能使用2点行动点移动以使用\"冲刺\"，并且仍旧对邻近敌人触发1次攻击。<br/><Bullet/>单位的回合起始位置和目标之间的距离每<Ability:FLECHE_BONUS_DAMAGE_PER_TILES/>格就能让直刺造成1点额外伤害。最大值为<Ability:MAX_SLICE_FLECHE_DAMAGE/>。<br/>"
 
 [FullKit X2AbilityTemplate]
 LocFriendlyName="全副武装"
 LocFlyOverText="全副武装"
-LocLongDescription="在装备栏中为每个榴弹+1使用次数。"
-LocHelpText="在装备栏中为每个榴弹+1使用次数。"
-LocPromotionPopupText="<Bullet/>装备栏里的每个榴弹+1使用次数。<br/><Bullet/>适用于爆破型和辅助型榴弹，以及战场扫描仪。<br/>"
+LocLongDescription="在装备栏中为每颗榴弹+1使用次数。"
+LocHelpText="在装备栏中为每颗榴弹+1使用次数。"
+LocPromotionPopupText="<Bullet/>通用槽的每颗榴弹+1使用次数。<br/><Bullet/>适用于爆破型和辅助型榴弹，以及战场扫描仪。<br/><Bullet/> 烟雾榴弹和闪光榴弹技能提供的额外榴弹不会额外充能。<br/>"
 
 [Bastion X2AbilityTemplate]
 LocFriendlyName="堡垒"
@@ -656,16 +657,16 @@ LocPromotionPopupText="<Bullet/>堡垒有4格半径范围。<br/><Bullet/>移动
 [IronCurtain X2AbilityTemplate]
 LocFriendlyName="铁幕"
 LocFlyOverText="铁幕"
-LocLongDescription="伤害减半的特殊射击，在2回合内减少目标的移动力。使用主武器进行的锥形射击。"
-LocHelpText="低伤害的特殊射击，在2回合内减少敌人的移动力。"
-LocPromotionPopupText="<Bullet/>如果该锥形攻击命中，铁幕造成一半伤害并在2回合内使敌人的移动力-5。<br/><Bullet/>冷却时间3回合。<br/><Bullet/>使用3个弹药。<br/><Bullet/>可在移动后使用。<br/><Bullet/>铁幕不适用于霰弹枪和狙击步枪。<br/><Bullet/>在锥形区域内的友军也会被此能力击中。<br/>"
+LocLongDescription="造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害的特殊射击，在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。使用主武器进行的锥形射击。"
+LocHelpText="造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害的特殊射击，在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。使用主武器进行的锥形射击。"
+LocPromotionPopupText="<Bullet/>如果该锥形攻击命中，铁幕造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害并在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内使敌人的移动力-<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>。<br/><Bullet/>冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/>使用<Ability:IRON_CURTAIN_AMMO_COST>弹药。<br/><Bullet/>可在移动后使用。<br/><Bullet/>铁幕不适用于散弹枪和狙击步枪。<br/><Bullet/>在锥形区域内的友军也会被此能力击中。<br/>"
 
 [IronCurtainShot X2AbilityTemplate]
 LocFriendlyName="铁幕"
 LocFlyOverText="铁幕"
-LocLongDescription="低伤害的特殊射击，在2回合内减少敌人的移动力。使用主武器进行的锥形射击。"
-LocHelpText="低伤害的特殊射击，在2回合内减少敌人的移动力。"
-LocPromotionPopupText="<Bullet/>如果命中，铁幕造成25%伤害并在2回合内使敌人的移动力-4。<br/><Bullet/>冷却时间4回合。<br/><Bullet/>使用<Ability:SelfAmmoCost/>弹药。<br/><Bullet/>可在移动后使用。<br/><Bullet/>铁幕不适用于霰弹枪和狙击步枪。<br/>"
+LocLongDescription="造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害的特殊射击，在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。使用主武器进行的锥形射击。"
+LocHelpText="造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害的特殊射击，在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内减少目标的移动力。使用主武器进行的锥形射击。"
+LocPromotionPopupText="<Bullet/>如果该锥形攻击命中，铁幕造成<Ability:IRON_CURTAIN_DAMAGE_MODIFIER/>%伤害并在<Ability:IRON_CURTAIN_MOB_DAMAGE_DURATION/>回合内使敌人的移动力-<Ability:IRON_CURTAIN_MOBILITY_DAMAGE>。<br/><Bullet/>冷却时间<Ability:SelfCooldown_LW/>回合。<br/><Bullet/>使用<Ability:IRON_CURTAIN_AMMO_COST>弹药。<br/><Bullet/>可在移动后使用。<br/><Bullet/>铁幕不适用于散弹枪和狙击步枪。<br/><Bullet/>在锥形区域内的友军也会被此能力击中。<br/>"
 str_IronCurtainEffect="铁幕"
 
 [Slash_LW X2AbilityTemplate]
@@ -685,9 +686,9 @@ LocPromotionPopupText="<Bullet/>激活一个力场，能够在2回合内减少33
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="全身防护"
 LocFlyOverText="全身防护"
-LocLongDescription="目标敌人在对该士兵时受到-20命中和-50暴击率的惩罚。"
-LocHelpText="目标敌人在对该士兵时受到-20命中和-50暴击率的惩罚。"
-LocPromotionPopupText="<Bullet/>目标敌人在对该士兵时受到-20命中和-50暴击率的惩罚。<br/>"
+LocLongDescription="目标敌人攻击该士兵时受到-20命中和-50暴击率的惩罚。自由行动。<Ability:SelfCooldown_LW/>回合冷却。"
+LocHelpText="目标敌人攻击该士兵时受到-20命中和-50暴击率的惩罚。自由行动。<Ability:SelfCooldown_LW/>回合冷却。"
+LocPromotionPopupText="<Bullet/>目标敌人攻击该士兵时受到-20命中和-50暴击率的惩罚。自由行动。<Ability:SelfCooldown_LW/>回合冷却。<br/>"
 
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="应急生命保障"
@@ -697,11 +698,11 @@ LocHelpText="保证在1个任务中的首次被击杀不会导致直接死亡，
 LocPromotionPopupText="<Bullet/>应急生命保障使得每个任务首次的流血检查自动成功。<br/><Bullet/>流血时间增加2回合。<br/>"
 
 [IronSkin X2AbilityTemplate]
-LocFriendlyName="铁皮肤"
-LocFlyOverText="铁皮肤"
-LocLongDescription="近战伤害减少3。"
-LocHelpText="近战伤害减少3。"
-LocPromotionPopupText="<Bullet/>近战伤害减少3。<br/>"
+LocFriendlyName="铜皮铁甲"
+LocFlyOverText="铜皮铁甲"
+LocLongDescription="受到的近战伤害减少3。"
+LocHelpText="受到的近战伤害减少3。"
+LocPromotionPopupText="<Bullet/>受到的近战伤害减少3。<br/>"
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="智能巨噬细胞"
@@ -715,7 +716,7 @@ LocFriendlyName="心灵融合"
 LocFlyOverText="心灵融合"
 LocLongDescription="给同伴提供额外的意志，暴击率和护盾值，直到玩家的下一回合开始。"
 LocHelptext="给同伴提供额外的意志，暴击率和护盾值。"
-LocPromotionPopupText="<Bullet/>可为目标提供1点额外生命值（护盾），使用心灵融合的灵能士兵的每30点灵能攻击分数还可提供额外1点生命值。<br/><Bullet/>灵能士兵的每10点灵能攻击分数都能给目标友军提供1点意志力。<br/><Bullet/>效果持续到灵能士兵的下回合。<br/><Bullet/>3回合冷却时间。<br/><Bullet/>只有可见的友军才能成为目标。<br/><Bullet/>加强的灵能增幅器能提供额外奖励意志力和生命值。<br/<Bullet/> 使用1个行动点，不会结束回合。<br/><Bullet/> 灵能士兵的每10点灵能值提供1点暴击率。<br/>"
+LocPromotionPopupText="<Bullet/>可为目标提供1点额外生命值（护盾），使用心灵融合的灵能士兵的每20点灵能攻击分数还可提供额外1点生命值。<br/><Bullet/>灵能士兵的每5点灵能攻击分数都能给目标友军提供1点意志力。<br/><Bullet/>灵能士兵的每7点灵能攻击分数都能给目标友军提供1点暴击率。<br/><Bullet/>效果持续到灵能士兵的下回合。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/>只有可见的友军才能成为目标。<br/><Bullet/>加强的灵能增幅器能提供额外奖励意志力和生命值。<br/<Bullet/> 使用1个行动点，不会结束回合。<br/><Bullet/> 如果灵能兵被雇佣为避难所顾问，心灵融合将减少40%的几率招募到无面怪（与其他类似能力叠加）。<br/>"
 
 [SoulMerge X2AbilityTemplate]
 LocFriendlyName="灵魂融合"
@@ -731,11 +732,11 @@ LocHelpText="在隐蔽状态下攻击敌人能够获得额外的命中和暴击�
 LocPromotionPopupText="<Bullet/>在任务中士兵重新进入隐蔽状态时，会获得暗影打击加成。<br/>"
 
 [Formidable X2AbilityTemplate]
-LocFriendlyName="坚定不移"
-LocLongDescription="你的装备包含多一层的防护, 提供2点护盾和减少<Ability:BlastPadding/>%爆炸伤害。"
-LocHelpText="提供两点护盾并且减少爆炸伤害。"
-LocFlyOverText="坚定不移"
-LocPromotionPopupText="<Bullet/> 减少 <Ability:BlastPadding/>%爆炸伤害。
+LocFriendlyName="坚不可摧"
+LocLongDescription="你的装备包含多一层的防护, 提供<Ability:FORMIDABLE_ABLATIVE_HP/>点护盾和减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。"
+LocHelpText="提供<Ability:FORMIDABLE_ABLATIVE_HP/>点护盾和减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。"
+LocFlyOverText="坚不可摧"
+LocPromotionPopupText="<Bullet/> 减少<Ability:FORMIDABLE_EXPLOSIVES_DR/>%爆炸伤害。
 
 ; Updated perk loc
 
@@ -758,26 +759,26 @@ LocFriendlyNameWhenConcealed="杀戮地带（隐蔽）"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="死神天降"
-LocLongDescription="用<Ability:WeaponName/>杀死一个位于低位置的敌人只会花费一个行动点，并且不会结束你的回合。同时为狙击步枪提供远距离命中加成。"
-LocHelpText="用<Ability:WeaponName/>杀死一个位于低位置的敌人只会花费一个行动点，并且不会结束你的回合。"
+LocLongDescription="用<Ability:WeaponName/>击杀一名位于低位置的敌人将返还一个行动点，并且不会结束你的回合。同时在任何高度为狙击步枪提供远距离命中加成。"
+LocHelpText="用<Ability:WeaponName/>击杀一名位于低位置的敌人将返还一个行动点，并且不会结束你的回合。同时在任何高度为狙击步枪提供远距离命中加成。"
 LocFlyOverText="死神天降"
-LocPromotionPopupText="<Bullet/>死神天降能够和手枪能力进行连击，或是简单地让士兵更具移动力。<br/><Bullet/> 同时为狙击步枪提供远距离命中加成。"
+LocPromotionPopupText="<Bullet/> 死神天降能够和手枪能力进行连击，或是简单地让士兵更具移动力。<br/><Bullet/> 同时在任何高度为狙击步枪提供远距离命中加成。"
 
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
 LocFriendlyName="难以平息"
-LocLongDescription="如果你在你的回合中杀死一个或更多敌人，你将获得一次额外的移动。"
-LocHelpText="消灭一个敌人后每回合至多追加一次额外移动机会。"
+LocLongDescription="如果你在你的回合中击杀一名或更多敌人，你将获得一次额外的移动。"
+LocHelpText="消灭一名敌人后每回合至多追加一次额外移动机会。"
 LocFlyOverText="难以平息"
 LocPromotionPopupText="<Bullet/>从难以平息获得移动加成后无法使用直刺能力。<br/>"
 
 [XComGame.VolatileMix X2AbilityTemplate]
 [VolatileMix X2AbilityTemplate]
-LocFriendlyName="爆炸性混合物"
-LocLongDescription="你的榴弹的范围效果提升1格。"
-LocHelpText="你的榴弹将覆盖更巨大的区域。"
-LocFlyOverText="爆炸性混合物"
-LocPromotionPopupText="<Bullet/>你的榴弹造成的更大的普通和环境效果，也适用于任何额外的效果。"
+LocFriendlyName="爆炸挥发"
+LocLongDescription="榴弹的范围效果提升1格。"
+LocHelpText="榴弹将覆盖更巨大的区域。"
+LocFlyOverText="爆炸挥发"
+LocPromotionPopupText="<Bullet/>榴弹造成的更大的普通和环境效果，也适用于任何额外的效果。"
 
 [XComGame.Salvo X2AbilityTemplate]
 [Salvo X2AbilityTemplate]
@@ -798,10 +799,10 @@ LocPromotionPopupText="<Bullet/>快射拔枪可以让士兵在同一个回合内
 [XComGame.SharpshooterAim X2AbilityTemplate]
 [SharpshooterAim X2AbilityTemplate]
 LocFriendlyName="命中"
-LocLongDescription="蹲伏现在会在下一回合的首次射击中给予+<Ability:SHARPSHOOTERAIMBONUS/>的命中增益。"
-LocHelpText="蹲伏现在会在下一回合的首次射击中给予+<Ability:SHARPSHOOTERAIMBONUS/>的命中增益。"
-LocFlyOverText="蹲守命中"
-LocPromotionPopupText="<Bullet/>命中提供的加成可施加到手枪或主武器的射击上。<br/>"
+LocLongDescription="蹲伏现在会在下一回合的首次射击中给予+<Ability:SHARPSHOOTERAIMBONUS/>的命中和+<Ability:SHARPSHOOTERAIM_CRITBONUS/>暴击率。"
+LocHelpText="蹲伏现在会在下一回合的首次射击中给予+<Ability:SHARPSHOOTERAIMBONUS/>的命中和+<Ability:SHARPSHOOTERAIM_CRITBONUS/>暴击率。"
+LocFlyOverText="蹲伏 - 命中"
+LocPromotionPopupText="<Bullet/>命中暴击提供的加成可应用任何武器射击。<br/>"
 
 [XComGame.LightningHands X2AbilityTemplate]
 [LightningHands X2AbilityTemplate]
@@ -872,11 +873,16 @@ LocFriendlyName="隐匿"
 LocLongDescription="每次任务可立即进入隐蔽状态一次。"
 LocHelpText="每次任务可立即进入隐蔽状态一次。"
 LocFlyOverText="隐匿"
-LocPromotionPopupText="<Bullet/>士兵在任何掩体下都能保持隐蔽，但是一旦进入敌人的侦查半径并被敌人夹击，就会立即暴露。<br/>"
+LocPromotionPopupText="<Bullet/>被附近敌人夹击时不能使用隐匿。<br/><Bullet/> 需要一个动作并结束士兵的回合。"
 
 [XComGame.RevivalProtocol X2AbilityTemplate]
 [RevivalProtocol X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/>复活协议可以用来恢复失去意识的士兵，包括因流血过多昏迷后伤势得到稳定的士兵。<br/><Bullet/>如果在初次行动就使用复活协议，不会结束你的回合。<br/><Bullet/>常规的小精灵无人机只有一个复活协议充能条，但升级后可以获得更多的充能条数。<br/>"
+
+[XComGame.ThreatAssessment X2AbilityTemplate]
+[ThreatAssessment X2AbilityTemplate]
+LocLongDescription="援助协议授予目标掩护火力监视射击。"
+LocPromotionPopupText="<Bullet/> 援助协议授予目标掩护火力监视射击。"
 
 
 ; Gear loc updates for new classes
@@ -886,21 +892,21 @@ LocPromotionPopupText="<Bullet/>复活协议可以用来恢复失去意识的士
 FriendlyName="碎片枪"
 FriendlyNamePlural="碎片枪"
 BriefSummary="磁力武器技术可以让我们把外星合金碎片合成水沫状的射弹，我们的士兵使用其会造成可观的效果：距离越近效果越好。"
-TacticalText="<Bullet/>磁力武器技术很有效地提升了XCOM的战斗霰弹枪。\n<Bullet/>霰弹型武器在近距离具有很好的效果，但是它们的命中率在远距离下降得很快。\n<Bullet/>使用从变种人敌人身上取得的升级部件提升碎片枪的战术效果。"
-AbilityDescName="霰弹枪"
+TacticalText="<Bullet/>磁力武器技术很有效地提升了XCOM的战斗散弹枪。\n<Bullet/>霰弹型武器在近距离具有很好的效果，但是它们的命中率在远距离下降得很快。\n<Bullet/>使用从变种人敌人身上取得的升级部件提升碎片枪的战术效果。"
+AbilityDescName="散弹枪"
 
 [XComGame.RangerSword X2WeaponTemplate]
 [RangerSword X2WeaponTemplate]
 FriendlyName="剑"
 FriendlyNamePlural="剑"
-BriefSummary="我们的一些士兵可以训练使用带刃的武器，能让他们在近战中杀死敌人。"
+BriefSummary="我们的一些士兵可以训练使用带刃的武器，能让他们在近战中击杀敌人。"
 TacticalText="<Bullet/>装备剑刃的士兵可以在两次移动或冲刺用完行动点后使用刀剑攻击他们移动范围内的敌人。\n<Bullet/>决定同敌人肉搏应当十分果断和谨慎。\n<Bullet/>注意留心那些能发挥我们剑刃武器效用的机会，敌人也许会有更高科技的东西。"
 
 [XComGame.Sword_CV X2WeaponTemplate]
 [Sword_CV X2WeaponTemplate]
 FriendlyName="剑"
 FriendlyNamePlural="剑"
-BriefSummary="我们的一些士兵可以训练使用带刃的武器，能让他们在近战中杀死敌人。"
+BriefSummary="我们的一些士兵可以训练使用带刃的武器，能让他们在近战中击杀敌人。"
 TacticalText="<Bullet/>装备剑刃的士兵可以在两次移动或冲刺用完行动点后使用刀剑攻击他们移动范围内的敌人。\n<Bullet/>决定同敌人肉搏应当十分果断和谨慎。\n<Bullet/>注意留心那些能发挥我们剑刃武器效用的机会，敌人也许会有更高科技的东西。"
 AbilityDescName="剑"
 
@@ -1018,6 +1024,13 @@ LocHelpText="你的爆炸攻击能够造成暴击伤害。"
 LocFlyOverText="超级炸药"
 LocPromotionPopupText="<Bullet/>你的爆炸攻击能够造成暴击伤害（<Ability:BIGGESTBOOMSCHANCE/>%的几率+<Ability:BIGGESTBOOMSDAMAGE/>伤害）。<br/>"
 
+[RapidFire X2AbilityTemplate]
+LocFriendlyName="速射"
+LocLongDescription="连续向敌人开火两次。 每次射击都有命中惩罚 <Ability:RAPIDFIREPENALTY/>. 消耗一个行动点。"
+LocHelpText="连续向敌人开火两次。每次射击都有命中惩罚 <Ability:RAPIDFIREPENALTY/>."
+LocFlyOverText="速射"
+LocPromotionPopupText="<Bullet/> 速射有 <Ability:SelfCooldown_LW/> 回合冷却时间。<br/>"
+
 ; New Class loc
 
 [PsiOperative X2SoldierClassTemplate]
@@ -1108,8 +1121,8 @@ RandomNicknames_Female[3]="蜂后"
 ;ALPHABETICAL ORDER
 
 [LW_Gunner X2SoldierClassTemplate]
-DisplayName="炮手"
-ClassSummary="炮手可以使用重型武器，对敌人进行高强度的火力打击。"
+DisplayName="机枪手"
+ClassSummary="机枪手可以使用重型武器，对敌人进行高强度的火力打击。"
 LeftAbilityTreeTitle="步枪手"
 RightAbilityTreeTitle="机枪手"
 
@@ -1151,8 +1164,8 @@ RandomNickNames_Female[3]="芒果"
 RandomNickNames_Female[4]="胡椒粉"
 
 [LW_Ranger X2SoldierClassTemplate]
-DisplayName="游侠"
-ClassSummary="游侠精通步枪，经过训练可以获得进攻型或防守型能力。"
+DisplayName="步兵"
+ClassSummary="步兵精通步枪，经过训练可以获得进攻型或防守型能力。"
 LeftAbilityTreeTitle="步兵"
 RightAbilityTreeTitle="守卫"
 
@@ -1484,5 +1497,3 @@ RandomNicknames_Female[4]="女战士"
 RandomNickNames_Female[5]="女武神"
 ;ALPHABETICAL ORDER
 
-[X2Ability_PerkPackAbilitySet]
-LocCoveringFireMalus="这个单位被有掩护射击技能的敌人监视，获得-10命中惩罚直到回合结束。"
