@@ -77,7 +77,7 @@ simulated function UIStrategyMapItem InitMapItem(out XComGameState_GeoscapeEntit
 	// For more information on a similar topic please see the comments in UIStrategyMapItem_Region_LW --> InitMapItem().
 	if (`ISCONTROLLERACTIVE)
 	{
-		ScanButton.mc.SetNull("consoleHint");
+		ScanButton.MC.SetNull("consoleHint");
 	}
 
 	return self;
