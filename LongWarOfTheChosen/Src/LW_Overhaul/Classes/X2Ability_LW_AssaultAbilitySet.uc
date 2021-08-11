@@ -20,6 +20,7 @@ var config int STREET_SWEEPER2_UNARMORED_DAMAGE_BONUS;
 var config int CHAIN_LIGHTNING_COOLDOWN;
 var config int CHAIN_LIGHTNING_MIN_ACTION_REQ;
 var config int CHAIN_LIGHTNING_AIM_MOD;
+var config int CHAIN_LIGHTNING_TARGETS;
 
 
 static function array<X2DataTemplate> CreateTemplates()
@@ -36,6 +37,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateStreetSweeper2Ability());
 	Templates.AddItem(CreateStreetSweeperBonusDamageAbility());
 	Templates.AddItem(CreateChainLightningAbility());
+	//Focus ability for the Chain lightning ability
+	Templates.AddItem(CreateCLFocus('CLFocus', default.CHAIN_LIGHTNING_TARGETS));
+	
 	return Templates;
 }
 
@@ -532,7 +536,7 @@ static function X2AbilityTemplate CreateStreetSweeperBonusDamageAbility()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	
 	return Template;
-}
+
 
 static function X2AbilityTemplate CreateChainLightningAbility()
 {
@@ -561,14 +565,16 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 	
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
-	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_AllAllies';
+	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_Volt';
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.TargetingMethod = class'X2TargetingMethod_Volt';
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
 
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);
+
 
 	//Template.bAllowAmmoEffects = true;
 	Template.bAllowBonusWeaponEffects = true;
@@ -579,10 +585,10 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	UnitPropertyCondition.ExcludeOrganic = false;
 	UnitPropertyCondition.ExcludeDead = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = true;
-	UnitPropertyCondition.RequireWithinRange = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 	
-	UnitPropertyCondition2=new class'X2Condition_UnitProperty';
+	Template.AbilityMultiTargetConditions.AddItem(UnitPropertyCondition);
+	UnitPropertyCondition2 = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition2.ExcludeConcealed = true;
 	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition2);
 
@@ -596,6 +602,9 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM2');
 	ImmuneUnitCondition.ExcludeTypes.AddItem('AdvPsiWitchM3');
 	Template.AbilityTargetConditions.AddItem(ImmuneUnitCondition);
+	Template.AbilityMultiTargetConditions.AddItem(ImmuneUnitCondition);
+
+
 
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.CHAIN_LIGHTNING_COOLDOWN;
@@ -624,14 +633,48 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	ToHitCalc.bOnlyMultiHitWithSuccess = false;
 	ToHitCalc.BuiltInHitMod = default.CHAIN_LIGHTNING_AIM_MOD;
 	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AdditionalAbilities.AddItem('CLFocus');
 	
-
+	Template.ActionFireClass = class'X2Action_Fire_ChainLightning';
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = class'X2Ability_SharpshooterAbilitySet'.static.Faceoff_BuildVisualization;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 	
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate CreateCLFocus(name AbilityName, int FocusLevel)
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_ModifyTemplarFocus FocusEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, AbilityName);
+
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_templarFocus";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.AdditionalAbilities.AddItem('SupremeFocus');
+	Template.AdditionalAbilities.AddItem('DeepFocus');
+	Template.AdditionalAbilities.AddItem('AddSuperGigaOmegaFocus');
+	
+	Template.AddTargetEffect(new class'X2Effect_TemplarFocus');
+
+	FocusEffect = new class'X2Effect_ModifyTemplarFocus';
+	FocusEffect.ModifyFocus = FocusLevel;
+	Template.AddTargetEffect(FocusEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// Note: no visualization on purpose!
 
 	return Template;
 }
