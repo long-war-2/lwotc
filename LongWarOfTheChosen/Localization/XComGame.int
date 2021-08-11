@@ -668,7 +668,7 @@ LocFriendlyName="Chain Lightning"
 LocLongDescription="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
 LocHelpText="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
 LocFlyOverText="Chain Lightning"
-LocPromotionPopupText="An Arc Thrower Attack that jumps to other targets within 6 tiles, up to 4 times.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Fires the Arc Thrower at a target in vision, with the arc chaining up to 4 times to other targets within 6 tiles of each other.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (3)
 
 [Leadership X2AbilityTemplate]
