@@ -127,6 +127,7 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 15;
 	Template.AbilityTriggers.AddItem(Trigger);
 
 	TurnCondition =new class'X2Condition_OnlyOnXCOMTurn';
@@ -200,6 +201,7 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 15;
 	Template.AbilityTriggers.AddItem(Trigger);
 
 	// The unit must be alive and not stunned
@@ -269,6 +271,7 @@ static function X2AbilityTemplate CreateHunterReaction()
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 15;
 	Template.AbilityTriggers.AddItem(Trigger);
 
 	// The unit must be alive and not stunned
@@ -1821,8 +1824,7 @@ static function X2AbilityTemplate AssassinBladestormAttack()
 static function X2AbilityTemplate CreateUnstoppable()
 {
 	local X2AbilityTemplate						Template;	
-	local X2AbilityTrigger_EventListener		EventListener;
-	local X2Effect_Unstoppable 					UnstoppableEffect;
+	local X2Effect_CapStat 					UnstoppableEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Unstoppable_LW');
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_blaze";
@@ -1837,26 +1839,13 @@ static function X2AbilityTemplate CreateUnstoppable()
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
-	// Trigger on Damage
-	EventListener = new class'X2AbilityTrigger_EventListener';
-	EventListener.ListenerData.EventID = 'UnitTakeEffectDamage';
-	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
-	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
-	EventListener.ListenerData.Filter = eFilter_Unit;
-	Template.AbilityTriggers.AddItem(EventListener);
 
-	EventListener = new class'X2AbilityTrigger_EventListener';
-	EventListener.ListenerData.EventID = 'UnitGroupTurnBegun';
-	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
-	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
-	EventListener.ListenerData.Filter = eFilter_Unit;
-	Template.AbilityTriggers.AddItem(EventListener);
-
-	UnstoppableEffect = new class'X2Effect_Unstoppable';
+	UnstoppableEffect = new class'X2Effect_CapStat';
 	UnstoppableEffect.BuildPersistentEffect(1,false,true,,eGameRule_PlayerTurnBegin);
 	UnstoppableEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
-	UnstoppableEffect.MinimumMobility = default.UNSTOPPABLE_MIN_MOB;
+	UnstoppableEffect.AddStatCap(eStat_Mobility,default.UNSTOPPABLE_MIN_MOB,true);
 	Template.AddTargetEffect(UnstoppableEffect);
 
 
@@ -1864,7 +1853,7 @@ static function X2AbilityTemplate CreateUnstoppable()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
-	Template.AdditionalAbilities.AddItem('UnstoppablePassive_LW');
+	//Template.AdditionalAbilities.AddItem('UnstoppablePassive_LW');
 
 	return Template;
 }
