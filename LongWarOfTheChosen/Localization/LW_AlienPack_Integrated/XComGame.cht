@@ -1,34 +1,34 @@
 [XComMultiplayerTacticalUI]
-MutonM2_LW="<Bullet/>異變者百夫長可以完成所有異變者能做到的事情，還可以釋放戰爭咆哮提升附近友軍的能力，並可以對任何衝刺範圍內的敵人進行刺刀衝鋒。\n<Bullet/>與入侵時期的異變者不同的是，這個新混血的異變者在近戰方面更為出色。\n<Bullet/>他們的反擊能力能夠讓他們對任何在近戰方面對其攻擊的敵人進行回擊。\n<Bullet/>他們同樣能夠處決在附近不能行動的敵人；你無論何時都不能讓異變者在被暈眩的單位身邊。\n<Bullet/>他們還能使用步槍進行壓制，他們的戰鬥護甲能提供相當不錯的防禦。"
+MutonM2_LW="<Bullet/>異變者百夫長可以完成所有異變者能做到的事情，還可以釋放一記戰吼提升附近友軍的能力，並可以對任何衝刺範圍內的敵人進行刺刀衝鋒。\n<Bullet/>與入侵使其的異變者不同的是，這個新混血的異變者在近戰方面更為出色。\n<Bullet/>他們的反擊能力能夠讓他們對任何在近戰方面對其攻擊的敵人進行回擊。\n<Bullet/>他們同樣能夠處死附近行動不能的敵人；你無論何時都不能讓敵人的異變者在你被眩暈的單位身邊。\n<Bullet/>他們還能使用步槍進行壓制，他們的戰鬥護甲能提供相當不錯的防禦。"
 MutonM3_LW="<Bullet/>"
 
-DroneM1="<Bullet/>守護者無人機是一種低廉的偵查單位，最初是用於平民的控制。"
+DroneM1="<Bullet/>守護者無人機是一種低廉的偵查單位，最初是用於平民人群控制。"
 
 [CorpseDrone X2ItemTemplate]
 FriendlyName="無人機殘骸"
 FriendlyNamePlural="無人機殘骸"
-BriefSummary="這個輕型自主安全噴氣飛船的殘骸顯示了它在射擊時，主要為了監視公民以及控制民眾。"
+BriefSummary="這個輕型，自動的安保氣墊船殘骸顯示了其監視公民以及人群控制的設計理念。"
 
 [CorpseMutonElite X2ItemTemplate]
-FriendlyName="精英異變者屍體"
-FriendlyNamePlural="精英異變者屍體"
-BriefSummary="這些外星人處於異變者內部等級制度的頂端。不同於其他百夫長，相對於我們之前遇到的標準異變者，他們接受了極大的基因改造。"
+FriendlyName="異變者精英屍體"
+FriendlyNamePlural="異變者精英屍體"
+BriefSummary="這些外星人處於異變者內部等級的頂端。不同於百夫長，和我們碰到的一般異變者比起來他們接受了極大的基因改造。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; NEW ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [WarCry X2AbilityTemplate]
-LocFriendlyName="戰爭咆哮"
-LocLongDescription="為其他異變者提供大量瞄準、意志力、移動力加成；給其他智慧外星人和變種人的加成較少。冷卻時間6回合。"
-LocHelpText="給予其他異變者和外星人加成。"
-LocFlyOverText="戰爭咆哮"
-LocPromotionPopupText="<Bullet/>為其他異變者提供大量瞄準、意志力、移動力加成；給其他智慧外星人和變種人的加成較少。<br/><Bullet/>冷卻時間6回合。<br/>"
+LocFriendlyName="戰吼"
+LocLongDescription="為其他異變者提供大量命中，意志力，移動力加成；其他智能外星人和變種人獲得少量加成。6回合冷卻。"
+LocHelpText="給其他異變者和外星人加成。"
+LocFlyOverText="戰吼"
+LocPromotionPopupText="<Bullet/>為其他異變者提供大量命中，意志力，移動力加成；其他智能外星人和變種人獲得少量加成。<br/><Bullet/>6回合冷卻。<br/>"
 
 [BayonetCharge X2AbilityTemplate]
 LocFriendlyName="刺刀衝鋒"
-LocLongDescription="在衝刺距離內可以在任何地方發動近戰攻擊。4回合冷卻。"
+LocLongDescription="在衝刺距離內可以在任何地方發動近戰攻擊。4回合冷卻時間。"
 LocHelpText="在衝刺距離內可以在任何地方發動近戰攻擊。"
 LocFlyOverText="刺刀衝鋒"
-LocPromotionPopupText="<Bullet/>可以在衝刺距離內的任何地方發動近戰攻擊。<br/><Bullet/>冷卻時間4回合。<br/>"
+LocPromotionPopupText="<Bullet/>在衝刺距離內可以在任何地方發動近戰攻擊。<br/><Bullet/>4回合冷卻時間。<br/>"
 
 [Beastmaster_LW X2AbilityTemplate]
 LocFriendlyName="馴獸師"
@@ -41,16 +41,16 @@ LocPromotionPopupText="<Bullet/>免疫狂戰士的傷害。<br/>"
 LocFriendlyName="群體心靈扭曲"
 LocFlyOverText="群體心靈扭曲"
 LocLongDescription="對錐形區域內的多個目標進行一次心靈扭曲。"
-LocHelpText="對多個目標使出讓人衰弱的靈能攻擊，造成不同的負面效果，包括心靈控制。"
-LocPromotionPopupText="<Bullet/>對多個目標使出讓人衰弱的靈能攻擊，造成不同的負面效果，包括心靈控制。"
-LocMissMessage="已抵抗心靈扭曲！"
+LocHelpText="對多個目標使出一記使人衰弱的靈能攻擊，造成不同的負面效果，包括心靈控制。"
+LocPromotionPopupText="<Bullet/>對多個目標使出一記使人衰弱的靈能攻擊，造成不同的負面效果，包括心靈控制。"
+LocMissMessage="心靈扭曲已抵抗！"
 
 [LWDroneShock X2AbilityTemplate]
-LocFriendlyName="無人機打擊"
-LocLongDescription="此效果造成少量傷害並會使目標混亂，目的是安撫平民。"
+LocFriendlyName="無人機震擊"
+LocLongDescription="為鎮壓平民而設計，此武器只會造成最小的傷害並使目標混亂。"
 LocHelpText="武器造成最小傷害並使目標受損。"
-LocFlyOverText="無人機打擊"
-LocPromotionPopupText="<Bullet/>此效果造成少量傷害並會使目標混亂，目的是安撫平民。<br/>"
+LocFlyOverText="無人機電擊"
+LocPromotionPopupText="<Bullet/>為鎮壓平民而設計，此武器只會造成最小的傷害並使目標混亂。<br/>"
 
 [LWDroneRepair X2AbilityTemplate]
 LocFriendlyName="修理"
@@ -62,75 +62,76 @@ LocPromotionPopupText="<Bullet/>修理任何附近的機械單位。"
 [LWDroneMeleeStun X2AbilityTemplate]
 LocFriendlyName="眩暈"
 LocFlyOverText="眩暈"
-LocHelpText="嘗試眩暈近戰範圍內的任何敵人。"
-LocLongDescription="嘗試眩暈近戰範圍內的任何敵人。"
-LocPromotionPopupText="<Bullet/>嘗試眩暈近戰範圍內的任何敵人。"
+LocHelpText="嘗試眩暈近戰射程內的任何敵人。"
+LocLongDescription="嘗試眩暈近戰射程內的任何敵人。"
+LocPromotionPopupText="<Bullet/>嘗試眩暈近戰射程內的任何敵人。"
 LocMissMessage="未命中！"
 
 [PersonalShield X2AbilityTemplate]
 LocFriendlyName="個人護盾"
 LocFlyOverText="個人護盾"
-LocHelpText="提供5點額外護甲。冷卻時間5回合。"
-LocLongDescription="提供5點額外護甲。冷卻時間5回合。"
-LocPromotionPopupText="<Bullet/>提供5點額外護甲。<br/><Bullet/>冷卻時間5回合。<br/><Bullet/>花費一個行動點數；不會結束回合<br/>"
+LocHelpText="提供5點額外護甲。5回合冷卻。"
+LocLongDescription="提供5點額外護甲。5回合冷卻。"
+LocPromotionPopupText="<Bullet/>提供5點額外護甲。<br/><Bullet/>5回合冷卻。<br/><Bullet/>使用一個行動點；不會結束回合<br/>"
 
 [MassReanimation_LW X2AbilityTemplate]
 LocFriendlyName="群體復活"
 LocFlyOverText="群體復活"
-LocHelpText="復活所有周圍死去的有機體，將它們轉化為僵屍。"
-LocLongDescription="復活所有周圍死去的有機體，將它們轉化為僵屍。"
-LocPromotionPopupText="<Bullet/>復活所有周圍死去的有機體，將它們轉化為僵屍。"
+LocHelpText="復活所有周圍死去的有機體，將它們轉化為殭屍。"
+LocLongDescription="復活所有周圍死去的有機體，將它們轉化為殭屍。"
+LocPromotionPopupText="<Bullet/>復活所有周圍死去的有機體，將它們轉化為殭屍。"
 
 [ReadyForAnything X2AbilityTemplate]
 LocFriendlyName="一切就緒"
 LocFlyOverText="監視：一切就緒"
-LocHelpText="使用主武器進行標準射擊後會進入監視狀態。"
-LocLongDescription="使用主武器進行標準射擊後會進入監視狀態。"
-LocPromotionPopupText="<Bullet/>使用主武器進行標準射擊後會進入監視狀態。"
+LocHelpText="使用主武器進行結束回合的標準射擊後進入監視狀態。"
+LocLongDescription="使用主武器進行結束回合的標準射擊後進入監視狀態。"
+LocPromotionPopupText="<Bullet/>使用主武器進行結束回合的標準射擊後進入監視狀態。"
 
 [ReadyForAnythingFlyover X2AbilityTemplate]
 LocFriendlyName="一切就緒"
 LocFlyOverText="監視：一切就緒"
-LocHelpText="使用主武器進行標準射擊後會進入監視狀態。"
-LocLongDescription="使用主武器進行標準射擊後會進入監視狀態。"
-LocPromotionPopupText="<Bullet/>使用主武器進行標準射擊後會進入監視狀態。"
+LocHelpText="使用主武器進行標準射擊後進入監視狀態。"
+LocLongDescription="使用主武器進行標準射擊後進入監視狀態。"
+LocPromotionPopupText="<Bullet/>使用主武器進行標準射擊後進入監視狀態。"
 
 [RepairServos X2AbilityTemplate]
 LocFriendlyName="傷害控制"
 LocFlyOverText="傷害控制"
-LocLongDescription="在受到傷害後，直到下回合結束前獲得2點護甲。"
-LocHelpText="在受到傷害後，直到下回合結束前獲得2點護甲。"
-LocPromotionPopupText="<Bullet/>在受到衝擊後你的護甲會暫時強化。在受到傷害後，直到下回合結束前獲得2點護甲。<br/><Bullet/>在接下來的回合中受到多次命中會延長有效時間。<br/>"
+LocLongDescription="在受到傷害後，到下回合結束前獲得2點護甲。"
+LocHelpText="在受到傷害後，到下回合結束前獲得2點護甲。"
+LocPromotionPopupText="<Bullet/>在受到衝擊後你的護甲暫時堅硬。在受到傷害後，到下回合結束前獲得2點護甲。<br/><Bullet/>在接下來的回合中受到多次命中會延長有效時間。<br/>"
 
 [RepairServosPassive X2AbilityTemplate]
 LocFriendlyName="傷害控制"
 LocFlyOverText="傷害控制"
-LocLongDescription="在受到傷害後，直到下回合結束前獲得2點護甲。"
-LocHelpText="在受到傷害後，直到下回合結束前獲得2點護甲。"
-LocPromotionPopupText="<Bullet/>在受到傷害後，直到下回合結束前獲得2點護甲。<br/><Bullet/>在接下來的回合中受到多次命中會延長有效時間。<br/>"
+LocLongDescription="在受到傷害後，到下回合結束前獲得2點護甲。"
+LocHelpText="在受到傷害後，到下回合結束前獲得2點護甲。"
+LocPromotionPopupText="<Bullet/>在受到傷害後，到下回合結束前獲得2點護甲。<br/><Bullet/>在接下來的回合中受到多次命中會延長有效時間。<br/>"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; MutonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [X2Ability_MutonM2_Abilities]
-strBayonetChargePenalty="百夫長遭受<XGParam:IntValue1/>防禦，共<XGParam:IntValue0/>回合。"
+strBayonetChargePenalty="百夫長防禦<XGParam:IntValue1/>，共<XGParam:IntValue0/>回合。"
 
 [MutonM2_LW X2CharacterTemplate]
 strCharacterName="異變者百夫長"
 
 [MutonM2_LW_Wpn X2WeaponTemplate]
 FriendlyName="百夫長步槍"
-BriefSummary="XCOM已經成功獲得了一些不同的標準步兵輕型武器，而這是其中最基本的武器，類似於20年前使用的步槍。雖然與變種人磁力武器相比差很多，但在標準技術研究完成後，至少可以用額外的武器部件對它進行升級以增強威力。"
-TacticalText="<Bullet/>用主武器射擊將會結束該士兵的回合\n<Bullet/>如果士兵在兩個行動點都可用時射擊，那麼他可以在減少精準度的條件下射擊3次，但總體上還是提升了效率\n<Bullet/>使用從變種人敵人身上取得的升級部件提升突擊步槍的戰術效果"
+BriefSummary="XCOM已經成功獲得了一些不同的標準步兵小型武器了，這是最基本的武器，類似20年前使用的步槍。雖然這些武器比起變種人磁力技術的武器差得多，但在標準技術研究完成後，至少可以用額外的武器碎片對它們進行升級。"
+TacticalText="<Bullet/>用主武器射擊會結束該士兵的回合\n<Bullet/>如果士兵在兩個行動點都可用時射擊，那麼他可以在減少精準度的條件下射擊3次，但總體上還是提升了效率\n<Bullet/>使用從變種人敵人身上取得的升級部件提升突擊步槍的戰術效率"
+AbilityDescName="等離子步槍"
 
 [MutonM2_LWGrenade X2GrenadeTemplate]
 FriendlyName="外星榴彈"
 FriendlyNamePlural="外星榴彈"
 BriefSummary="每個異變者百夫長都攜帶有一枚高傷害的電漿榴彈。"
-TacticalText="<Bullet/>單發高殺傷性榴彈。"
+TacticalText="<Bullet/>一個單發高傷害性榴彈。"
 ThrownAbilityName="投擲外星榴彈"
 ThrownAbilityHelpText="對目標區域投擲一枚外星榴彈。"
 LaunchedAbilityName="發射外星榴彈"
-LaunchedAbilityHelpText="朝目的地區域發射外星榴彈，可撕裂護甲。"
+LaunchedAbilityHelpText="朝目標區域發射外星榴彈，可撕裂護甲。"
 
 [MutonM2_LW_MeleeAttack X2WeaponTemplate]
 FriendlyName="刺刀"
@@ -138,20 +139,21 @@ FriendlyName="刺刀"
 ;;;;;;;;;;;;;;;;;;;;;;;;;; MutonM3_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [MutonM3_LW X2CharacterTemplate]
-strCharacterName="精英異變者"
+strCharacterName="異變者精英"
 
 [MutonM3_LW_Wpn X2WeaponTemplate]
 FriendlyName="精英電漿加農炮"
+AbilityDescName="電漿加農炮"
 
 [MutonM3_LWGrenade X2GrenadeTemplate]
 FriendlyName="外星榴彈"
 FriendlyNamePlural="外星榴彈"
-BriefSummary="每一個精英異變者都攜有一枚破壞力強大的電漿榴彈。"
-TacticalText="<Bullet/>單發高殺傷性榴彈。"
+BriefSummary="每一個異變者精英都帶著一枚破壞力強大的電漿榴彈。"
+TacticalText="<Bullet/>一個單發高傷害性榴彈。"
 ThrownAbilityName="投擲外星榴彈"
 ThrownAbilityHelpText="對目標區域投擲一枚外星榴彈。"
 LaunchedAbilityName="發射外星榴彈"
-LaunchedAbilityHelpText="朝目的地區域發射外星榴彈，可撕裂護甲。"
+LaunchedAbilityHelpText="朝目標區域發射外星榴彈，可撕裂護甲。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Naja ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -162,16 +164,19 @@ strCharacterName="眼鏡蛇"
 strCharacterName="巨蛇座眼鏡蛇"
 
 [NajaM3 X2CharacterTemplate]
-strCharacterName="精英眼鏡蛇"
+strCharacterName="眼鏡蛇精英"
 
 [NajaM1_WPN X2WeaponTemplate]
 FriendlyName="眼鏡蛇狙擊步槍"
+AbilityDescName="狙擊步槍"
 
 [NajaM2_WPN X2WeaponTemplate]
 FriendlyName="眼鏡蛇狙擊步槍"
+AbilityDescName="狙擊步槍"
 
 [NajaM3_WPN X2WeaponTemplate]
 FriendlyName="眼鏡蛇狙擊步槍"
+AbilityDescName="狙擊步槍"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Sidewinder ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -182,16 +187,19 @@ strCharacterName="響尾蛇"
 strCharacterName="巨蛇座響尾蛇"
 
 [SidewinderM3 X2CharacterTemplate]
-strCharacterName="精英響尾蛇"
+strCharacterName="響尾蛇精英"
 
 [SidewinderM1_WPN X2WeaponTemplate]
 FriendlyName="響尾蛇斯卡拉姆槍"
+AbilityDescName="斯卡拉姆槍"
 
 [SidewinderM2_WPN X2WeaponTemplate]
 FriendlyName="響尾蛇斯卡拉姆槍"
+AbilityDescName="斯卡拉姆槍"
 
 [SidewinderM3_WPN X2WeaponTemplate]
 FriendlyName="響尾蛇斯卡拉姆槍"
+AbilityDescName="斯卡拉姆槍"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Viper ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -199,18 +207,20 @@ FriendlyName="響尾蛇斯卡拉姆槍"
 strCharacterName="巨蛇座毒蛇怪"
 
 [ViperM3_LW X2CharacterTemplate]
-strCharacterName="精英毒蛇怪"
+strCharacterName="毒蛇怪精英"
 
 [ViperM2_LW_WPN X2WeaponTemplate]
 FriendlyName="光束步槍"
+AbilityDescName="等離子步槍"
 
 [ViperM3_LW_WPN X2WeaponTemplate]
 FriendlyName="光束步槍"
+AbilityDescName="等離子步槍"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [ArchonM2_LW X2CharacterTemplate]
-strCharacterName="偉大執政官"
+strCharacterName="大執政官"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; SectoidM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -223,20 +233,22 @@ strCharacterName="灰人指揮官"
 strCharacterName="變種人炮手"
 
 [AdvGunnerM1_WPN X2WeaponTemplate]
-FriendlyName="高斯自動步槍"
+FriendlyName="自動磁力槍"
+AbilityDescName="加農炮"
 
 [AdvGunnerM2 X2CharacterTemplate]
 strCharacterName="變種人重炮手"
 
 [AdvGunnerM2_WPN X2WeaponTemplate]
-FriendlyName="高斯自動步槍"
+FriendlyName="自動磁力槍"
+AbilityDescName="加農炮"
 
 [AdvGunnerM3 X2CharacterTemplate]
 strCharacterName="變種人精英炮手"
 
 [AdvGunnerM3_WPN X2WeaponTemplate]
-FriendlyName="高斯自動步槍"
-
+FriendlyName="自動磁力槍"
+AbilityDescName="加農炮"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvSentryM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -245,23 +257,26 @@ strCharacterName="變種人哨兵"
 
 [AdvSentryM1_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"
 
 [AdvSentryM2 X2CharacterTemplate]
-strCharacterName="變種人守護"
+strCharacterName="變種人守衛"
 
 [AdvSentryM2_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"
 
 [AdvSentryM3 X2CharacterTemplate]
 strCharacterName="變種人哨衛"
 
 [AdvSentryM3_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvGrenadierM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [AdvGrenadierM1 X2CharacterTemplate]
-strCharacterName="變種人工程師"
+strCharacterName="變種人工兵"
 
 [AdvGrenadierM1_GrenadeLauncher X2WeaponTemplate]
 FriendlyName="變種人榴彈發射器"
@@ -281,32 +296,32 @@ FriendlyName="變種人榴彈發射器"
 [AdvGrenadierFlashbangGrenade X2GrenadeTemplate]
 FriendlyName="閃光榴彈"
 FriendlyNamePlural="閃光榴彈"
-BriefSummary="閃光榴彈會在極大的範圍內干擾敵軍並使其混亂，造成巨大的進攻減益。"
+BriefSummary="閃光榴彈會干擾和混亂極大範圍內的敵軍，對其造成巨大的進攻減益。"
 TacticalText="<Bullet/>閃光榴彈不會造成傷害，但會在大範圍內擾亂敵軍。<br><Bullet/>友方小隊成員不會被影響。"
 ThrownAbilityName="投擲閃光榴彈"
-ThrownAbilityHelpText="在指定區域內混亂所有敵軍。"
+ThrownAbilityHelpText="在指定區域內使所有敵軍混亂。"
 LaunchedAbilityname="發射閃光榴彈"
-LaunchedAbilityHelpText="在指定區域內混亂所有敵軍。"
+LaunchedAbilityHelpText="在指定區域內使所有敵軍混亂。"
 
 [AdvGrenadierFireGrenade X2GrenadeTemplate]
 FriendlyName="火焰榴彈"
 FriendlyNamePlural="火焰榴彈"
-BriefSummary="火焰榴彈比起反抗軍多年來一直使用的簡易燃燒武器來說，是技術的一大進步。爆炸後大部分的目標都會被點燃，遭受到持續的燃燒傷害。"
+BriefSummary="火焰榴彈比起反抗軍多年來一直使用的簡易燃燒武器是一個技術進步。爆炸後大部分目標都會被點燃，遭受持續的燃燒傷害。"
 TacticalText="<Bullet/>火焰榴彈會傷害爆炸範圍內的所有單位，並對任何容易受到火焰攻擊的單位施加\"燃燒\"效果。\n<Bullet/>火焰榴彈的爆炸傷害高於其他任何榴彈。\n<Bullet/>有些敵人對火焰免疫，不受\"燃燒\"效果影響，尤其是金屬系敵人。"
 ThrownAbilityName="投擲火焰榴彈"
-ThrownAbilityHelpText="點燃目的地區域及其中的單位。"
+ThrownAbilityHelpText="點燃目標區域及其中的單位。"
 LaunchedAbilityname="發射火焰榴彈"
-LaunchedAbilityHelpText="點燃目的地區域及其中的單位。"
+LaunchedAbilityHelpText="點燃目標區域及其中的單位。"
 
 [AdvGrenadierAcidGrenade X2GrenadeTemplate]
 FriendlyName="酸性榴彈"
 FriendlyNamePlural="酸性榴彈"
-BriefSummary="我們為普通的破片榴彈添加了腐蝕性化學藥劑，把它做成了一種十分有效的破甲武器。受影響的目標在其護甲被腐蝕完畢後自身也將承受長時間的腐蝕傷害。"
+BriefSummary="我們為普通破片榴彈添加了腐蝕性化學添加劑，把它做成了一種十分有效的破甲武器。受影響的目標在其護甲被腐蝕完畢後自身也將承受長時間的腐蝕傷害。"
 TacticalText="<Bullet/>酸性榴彈對護甲造成的損害比標準破片榴彈更高。<br><Bullet/>受酸性腐蝕的敵人將在數回合中承受額外傷害。"
 ThrownAbilityName="投擲酸性榴彈"
-ThrownAbilityHelpText="製造一片可造成傷害的酸性區域。"
+ThrownAbilityHelpText="產生酸性物質，對單位造成傷害。"
 LaunchedAbilityname="發射酸性榴彈"
-LaunchedAbilityHelpText="製造一片可造成傷害的酸性區域。"
+LaunchedAbilityHelpText="產生酸性物質，對單位造成傷害。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvRocketeerM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -330,32 +345,36 @@ strCharacterName="超重型MEC"
 ;;;;;;;;;;;;;;;;;;;;;;;;;; DroneM1-2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [LWDroneM1 X2CharacterTemplate]
-strCharacterName="變種人監視無人機"
+strCharacterName="監視無人機"
 
 [LWDroneM2 X2CharacterTemplate]
-strCharacterName="變種人獵手無人機"
+strCharacterName="獵手無人機"
 
 [LWDroneM1_WPN X2WeaponTemplate]
-FriendlyName="無人機打擊"
+FriendlyName="無人機電擊"
+AbilityDescName="電擊武器"
 
 [LWDroneM2_WPN X2WeaponTemplate]
 FriendlyName="無人機電擊"
+AbilityDescName="電擊武器"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM1 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [AdvMECArcherM1 X2CharacterTemplate]
-strCharacterName="MEC弓兵"
+strCharacterName="MEC射手"
 
 [AdvMECArcher_WPN X2WeaponTemplate]
 FriendlyName="MEC磁力機槍"
+AbilityDescName="微型槍"
 
 [AdvMECArcher_Shoulder_WPN X2WeaponTemplate]
 FriendlyName="火箭炮部隊"
+AbilityDescName="微飛彈"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [AdvMECArcherM2 X2CharacterTemplate]
-strCharacterName="MEC長弓兵"
+strCharacterName="MEC長弓"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Chryssalid Soldier ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -370,59 +389,67 @@ LocHelpText="你的斬擊攻擊造成大量傷害。"
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Hive Queen ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [HiveQueen X2CharacterTemplate]
-strCharacterName="寄生獸蟲后"
+strCharacterName="寄生獸蟲後"
 
 [HiveQueenSlash X2AbilityTemplate]
-LocFriendlyName="巨型寄生獸斬擊"
+LocFriendlyName="巨型寄生獸砍擊"
 LocLongDescription="你的斬擊攻擊造成大量的傷害。"
 LocHelpText="你的斬擊攻擊造成大量的傷害。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 
 [AdvSergeantM1 X2CharacterTemplate]
-strCharacterName="變種人士官"
+strCharacterName="變種人軍士"
 
 [AdvSergeantM1_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"
 
 [AdvSergeantM2 X2CharacterTemplate]
-strCharacterName="變種人士官長"
+strCharacterName="變種人軍士長"
 
 [AdvSergeantM2_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"
 
 [AdvShockTroop X2CharacterTemplate]
 strCharacterName="變種人震波士兵"
 
 [AdvShockTroop_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"
 
 [AdvCommando X2CharacterTemplate]
 strCharacterName="變種人突擊兵"
 
 [AdvCommando_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"
 
 [AdvVanguard X2CharacterTemplate]
 strCharacterName="變種人先鋒"
 
 [AdvVanguard_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"
 
 [AdvScout X2CharacterTemplate]
 strCharacterName="變種人偵察兵"
 
 [AdvScout_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"
 
 [AdvGeneralM1_LW X2CharacterTemplate]
 strCharacterName="變種人將軍"
 
 [AdvGeneralM1_LW_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"
 
 [AdvGeneralM2_LW X2CharacterTemplate]
 strCharacterName="變種人將軍"
 
 [AdvGeneralM2_LW_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
+AbilityDescName="磁力步槍"

@@ -35,10 +35,8 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 		//
 		// NOTE : For a bit more information see IMPORTANT DISCOVERIES above.
 
-		if (`ISCONTROLLERACTIVE)
-		{
-			SetAlpha(0);
-		}
+		// PAL: The Resistance Overview screen can once again be opened from the strategy
+		// map, so removing the ISCONTROLLERACTIVE check.
+		SetAlpha(0);
 	}
 }
-

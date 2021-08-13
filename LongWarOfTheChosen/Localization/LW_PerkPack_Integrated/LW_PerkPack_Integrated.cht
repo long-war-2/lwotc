@@ -2,30 +2,30 @@
 PerkPackTabName="能力"
 
 ViewLockedPerksMod="查看鎖定的技能"
-ViewLockedPerksModTooltip="啟用以允許查看鎖定的技能（不會顯示靈能士兵的技能樹）"
+ViewLockedPerksModTooltip="啟用以允許查看鎖定的技能（不會揭示靈能士兵技能樹）"
 
-BaseGamePerkUIMod="使用基礎遊戲的兩列技能UI"
-BaseGamePerkUIModTooltip="切換在升級時使用原始的兩列技能選擇UI（或使用其他模組的技能UI）"
+BaseGamePerkUIMod="使用基礎遊戲兩列技能UI"
+BaseGamePerkUIModTooltip="切換以在升級時使用原始的兩列技能選擇UI（或使用其他模組的技能UI）"
 
 DefaultTacticalAbilityContainerMod="使用基礎遊戲戰術能力HUD"
-DefaultTacticalAbilityContainerModTooltip="透過創建多個玩家可以在任務中分類的能力圖示頁面，模組允許士兵擁有超過15個可用能力。選擇此選項以關閉其功能（可能會使用其他模組）。"
+DefaultTacticalAbilityContainerModTooltip="通過創建多個玩家可在任務中分類的能力圖標頁面，模組允許士兵擁有超過15個可用能力。選擇此選項以關閉功能（可能會使用其他模組）。"
 
-NumDisplayedAbilitiesMod="在戰術HUD中每頁能力的數量"
-NumDisplayedAbilitiesModTooltip="在戰術HUD中顯示的每頁能力數量。如果將「使用基礎遊戲戰術能力HUD」的選項開啟，則此選項沒有作用。"
+NumDisplayedAbilitiesMod="在戰術HUD中每頁能力數量"
+NumDisplayedAbilitiesModTooltip="在戰術HUD中顯示的每頁能力數量。如果「使用基礎遊戲戰術能力HUD」選項開啟，則該選項沒有作用。"
 
 [UIScreenListener_Armory_MainMenu_LWExpandedPerkTree]
-strExpandedMenuOption="技能"
+strExpandedMenuOption="能力"
 strExpandedTooltip="擴充技能樹"
 ExpandedListItemDescription="擴充技能樹測試按鈕"
 
 [UIScreenListener_Armory_MainMenu_LW_LWExpandedPerkTree]
-strExpandedMenuOption="技能"
+strExpandedMenuOption="能力"
 strExpandedTooltip="擴充技能樹"
 ExpandedListItemDescription="擴充技能樹測試按鈕"
 
 [UITacticalHUD_AbilityContainer_LWExtended]
 strChangePageTitle="額外能力"
-strChangePageDesc="查看其他你可以發動的能力。你也可以使用「x」鍵來查看額外能力。"
+strChangePageDesc="查看其他你可以激活的能力。你也可以使用「x」鍵來查看額外能力。"
 
 [UIArmory_MainMenu_LW]
 m_strNoWeaponUpgradesTooltip="沒有可用的武器升級"
@@ -35,11 +35,28 @@ TrojanVirus="木馬病毒"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/>已觸發木馬病毒。"
 
 [X2Effect_Savior]
-strSavior_WorldMessage="救世主：已治療額外<XGParam:IntValue0/>的生命值。"
+strSavior_WorldMessage="妙手回春：已回復額外<XGParam:IntValue0/>生命值。"
+
+[X2Effect_LWHolotarget]
+HoloTargetEffectName="全息瞄準"
 
 [X2Item_DenseSmokeGrenade]
-DenseSmokeGrenadeEffectDisplayName="濃煙"
-DenseSmokeGrenadeEffectDisplayDesc="濃煙賦予該單位額外的防禦加成。"
+DenseSmokeGrenadeEffectDisplayName="濃密煙霧"
+DenseSmokeGrenadeEffectDisplayDesc="濃密煙霧賦予該單位額外的防禦加成。"
 
 [X2Ability_PerkPackAbilitySet]
-LocCoveringFire="掩護射擊"
+LocCoveringFire="掩護火力"
+LocCoveringFireMalus="該單位已經被一名具有掩護火力技能的監視單位瞄準，在本回合剩餘時間-10命中。"
+; LWOTC Needs Translation
+LocSoulStealBuff="靈魂灼燒"
+LocSoulStealBuffHelpText="靈魂汲取在治療過度時給予護盾"
+; End Translation
+
+; LWOTC Needs Translation
+[X2Effect_RegenerationPCT]
+HealedMessage="+<Heal/> 生命回復"
+
+[X2StatusEffects_LW]
+MaimedFriendlyName="殘廢"
+MaimedFriendlyDesc="單位的機動性降低至零，所以他們不能移動。他們仍然可以射擊和執行其他非移動能力。"
+; End Translation

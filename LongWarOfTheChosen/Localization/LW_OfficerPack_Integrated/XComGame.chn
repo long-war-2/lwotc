@@ -4,51 +4,51 @@
 ;displayed both for officer and soldiers receiving effect
 [GetSome X2AbilityTemplate]
 LocFriendlyName="尝尝这个"
-LocLongDescription="每次任务可使用两次，花费一个行动点让在指挥范围内的所有友军在剩余回合内获得+20的暴击几率加成。"
-LocHelpText="提升长官身边士兵的暴击几率。"
+LocLongDescription="每次任务可使用两次，花费一个行动点让在指挥范围内的所有友军在剩余回合内获得+20的暴击率加成。"
+LocHelpText="提升军官身边士兵的暴击率。"
 LocFlyOverText="尝尝这个"
-LocPromotionPopupText="<Bullet/>花费一个行动点让在指挥范围内的所有友军在剩余回合内获得+20的暴击几率加成。<br/><Bullet/>每次任务可用2次。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>花费一个行动点让在指挥范围内的所有友军在剩余回合内获得+20的暴击率加成。<br/><Bullet/>每次任务可用2次。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 [Collector X2AbilityTemplate]
 LocFriendlyName="收藏家"
-LocLongDescription="只要长官在健康状态下，小队杀死任何非人类敌人都有33%的几率获得1个情报点数。"
+LocLongDescription="只要军官在健康状态下，小队杀死任何非人类敌人都有33%的几率获得1个情报点数。"
 LocHelpText="小队的击杀能获得额外情报。"
 LocFlyOverText="收藏家"
 ; displayed for officer in OfficerAbility UI
-LocPromotionPopupText="<Bullet/>只要长官在健康状态下，小队杀死任何非人类敌人都有33%的几率获得1个情报点数。"
+LocPromotionPopupText="<Bullet/>只要军官在健康状态下，小队杀死任何非人类敌人都有33%的几率获得1个情报点数。"
 
 ;displayed on officer in tactical container
 [CollectorPassive X2AbilityTemplate]
 LocFriendlyName="收藏家"
-LocLongDescription="只要长官在健康状态下，小队杀死任何非人类敌人都有33%的几率获得1个情报点数。"
+LocLongDescription="只要军官在健康状态下，小队杀死任何非人类敌人都有33%的几率获得1个情报点数。"
 LocHelpText="小队的击杀能获得额外情报。"
 LocFlyOverText="收藏家"
-LocPromotionPopupText="<Bullet/>只要长官在健康状态下，小队杀死任何非人类敌人都有33%的几率获得1个情报点数。"
+LocPromotionPopupText="<Bullet/>只要军官在健康状态下，小队杀死任何非人类敌人都有33%的几率获得1个情报点数。"
 
 ;displayed on other soldier that receive the effect
 [Defilade X2AbilityTemplate]
 LocFriendlyName="遮蔽"
-LocLongDescription="在长官指挥范围内的所有友军，掩体提供+5点额外防御值。"
-LocHelpText="长官身边的士兵在掩体下获得额外防御。"
+LocLongDescription="在军官指挥范围内的所有友军，掩体提供+5点额外防御值。"
+LocHelpText="军官身边的士兵在掩体下获得额外防御。"
 LocFlyOverText="遮蔽"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/>在长官指挥范围内的所有友军，掩体提供+5点额外防御值。<br/><Bullet/>指挥范围会随着长官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>在军官指挥范围内的所有友军，掩体提供+5点额外防御值。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 ;Displayed on officer in tactical container
 [DefiladePassive X2AbilityTemplate]
 LocFriendlyName="遮蔽"
-LocLongDescription="在长官指挥范围内的所有友军，掩体提供+5点额外防御值。"
-LocHelpText="长官身边的士兵在掩体下获得额外防御。"
+LocLongDescription="在军官指挥范围内的所有友军，掩体提供+5点额外防御值。"
+LocHelpText="军官身边的士兵在掩体下获得额外防御。"
 LocFlyOverText="遮蔽"
-LocPromotionPopupText="<Bullet/>在长官指挥范围内的所有友军，掩体提供+5点额外防御值。<br/><Bullet/>指挥范围会随着长官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>在军官指挥范围内的所有友军，掩体提供+5点额外防御值。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 ;displayed both on officer and in debuff on target
 [FocusFire X2AbilityTemplate]
 LocFriendlyName="集中火力"
-LocLongDescription="花费一个行动点指定一个目标，在剩余的回合内攻击这个目标时，为你的小队提供累加的命中加成和1的护甲穿透。"
+LocLongDescription="花费一个行动点指定一个目标，在剩余的回合内攻击该目标时，为你的小队提供累加的命中加成和1护甲穿透。"
 LocHelpText="指定一个目标，让你的小队对其获得命中和护甲穿透的加成。"
 LocFlyOverText="集中火力"
-LocPromotionPopupText="<Bullet/>花费一个行动点指定一个目标，在剩余的回合内攻击这个目标时，为你的小队提供累加的命中加成和1的护甲穿透。<br/><Bullet/>每次对该目标成功的武器命中都能在相同回合内提供额外+<ABILITY:FOCUS_FIRE_AIM_BONUS/>的命中加成。<br/><Bullet/>3回合冷却。<br/>"
+LocPromotionPopupText="<Bullet/>花费一个行动点指定一个目标，在剩余的回合内攻击该目标时，为你的小队提供累加的命中加成和1护甲穿透。<br/><Bullet/>每次对该目标成功的武器命中都能在相同回合内提供额外+<ABILITY:FOCUS_FIRE_AIM_BONUS/>的命中加成。<br/><Bullet/>3回合冷却。<br/>"
 
 ;displayed both on officer and on soldiers receiving effect
 [FallBack X2AbilityTemplate]
@@ -63,7 +63,7 @@ LocFriendlyName="拾荒者"
 LocLongDescription="任务成功后奖励的补给，外星合金和超铀提升30%。小队成员有几率从外星人身上收集到额外的外星合金和超铀。"
 LocHelpText="额外的补给，外星合金和超铀。"
 LocFlyOverText="拾荒者"
-LocPromotionPopupText="<Bullet/>如果长官在任务中存活并意识清醒，那么任务奖励的补给，外星合金和超铀提升30%。<br/><Bullet>小队或许会从外星人身上获取外星合金和超铀。<br/>"
+LocPromotionPopupText="<Bullet/>如果军官在任务中存活并意识清醒，那么任务奖励的补给，外星合金和超铀提升30%。<br/><Bullet>小队或许会从外星人身上获取外星合金和超铀。<br/>"
 
 ;Displayed on officer in tactical container
 [ScavengerPassive X2AbilityTemplate]
@@ -71,24 +71,24 @@ LocFriendlyName="拾荒者"
 LocLongDescription="任务成功后奖励的补给，外星合金和超铀提升30%。有几率从外星人身上收集到额外的外星合金和超铀。"
 LocHelpText="额外的补给，外星合金和超铀。"
 LocFlyOverText="拾荒者"
-LocPromotionPopupText="<Bullet/>如果长官在任务中存活并状态良好，那么任务奖励的补给，外星合金和超铀提升30%。<br/><Bullet>小队或许会从外星人身上获取外星合金和超铀。<br/>"
+LocPromotionPopupText="<Bullet/>如果军官在任务中存活并状态良好，那么任务奖励的补给，外星合金和超铀提升30%。<br/><Bullet>小队或许会从外星人身上获取外星合金和超铀。<br/>"
 
 ;displayed on other soldier that receive the effect
 [FireDiscipline X2AbilityTemplate]
 LocFriendlyName="开火纪律"
-LocLongDescription="在长官指挥范围内的所有友军都能在反应射击时+10%的命中。"
-LocHelpText="所有长官身边的友军获得反应射击加成。"
+LocLongDescription="在军官指挥范围内的所有友军都能在反应射击时+10%的命中。"
+LocHelpText="所有军官身边的友军获得反应射击加成。"
 LocFlyOverText="开火纪律"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/>在长官指挥范围内的所有友军都能在反应射击时+10%的命中。<br/><Bullet/>指挥范围会随着长官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>在军官指挥范围内的所有友军都能在反应射击时+10%的命中。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 ;Displayed on officer in tactical container
 [FireDisciplinePassive X2AbilityTemplate]
 LocFriendlyName="开火纪律"
-LocLongDescription="在长官指挥范围内的所有友军都能在反应射击时+10%的命中。"
-LocHelpText="所有长官身边的友军获得反应射击加成。"
+LocLongDescription="在军官指挥范围内的所有友军都能在反应射击时+10%的命中。"
+LocHelpText="所有军官身边的友军获得反应射击加成。"
 LocFlyOverText="开火纪律"
-LocPromotionPopupText="<Bullet/>在长官指挥范围内的所有友军都能在反应射击时+10%的命中。<br/><Bullet/>指挥范围会随着长官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>在军官指挥范围内的所有友军都能在反应射击时+10%的命中。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 ;displayed both on officer and on soldiers receiving effect
 [OscarMike X2AbilityTemplate]
@@ -96,67 +96,67 @@ LocFriendlyName="迅捷行动"
 LocLongDescription="花费一个行动点，在接下来的回合内给所有指挥范围内的友军+5的移动力。每个任务限用一次。"
 LocHelpText="激活以为周围友军提供移动力加成。"
 LocFlyOverText="迅捷行动"
-LocPromotionPopupText="<Bullet/>花费一个行动点，在接下来的回合内给所有指挥范围内的友军+5的移动力。<br/><Bullet/>每个任务限用一次。<br/><Bullet/>指挥范围会随着长官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>花费一个行动点，在接下来的回合内给所有指挥范围内的友军+5的移动力。<br/><Bullet/>每个任务限用一次。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 ;displayed on other soldier that receive the effect
 [LeadByExample X2AbilityTemplate]
 LocFriendlyName="以身作则"
-LocLongDescription="长官提升指挥范围内士兵的命中，意志力，侵入能力，具体数值为士兵和长官数值差额的一半。"
-LocHelpText="在长官身边的友军能获得命中，意志力和侵入能力提升。"
+LocLongDescription="军官提升指挥范围内士兵的命中，意志力，侵入能力，具体数值为士兵和军官数值差额的一半。"
+LocHelpText="在军官身边的友军能获得命中，意志力和侵入能力提升。"
 LocFlyOverText="以身作则"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/>如果长官的命中，意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与长官之间差额一半的加成。<br/><Bullet/>指挥范围会随着长官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>如果军官的命中，意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 ;Displayed on officer in tactical container
 [LeadByExamplePassive X2AbilityTemplate]
 LocFriendlyName="以身作则"
-LocLongDescription="长官提升指挥范围内士兵的命中，意志力，侵入能力，具体数值为士兵和长官数值差额的一半。"
-LocHelpText="在长官身边的友军能获得命中，意志力和侵入能力提升。"
+LocLongDescription="军官提升指挥范围内士兵的命中，意志力，侵入能力，具体数值为士兵和军官数值差额的一半。"
+LocHelpText="在军官身边的友军能获得命中，意志力和侵入能力提升。"
 LocFlyOverText="以身作则"
-LocPromotionPopupText="<Bullet/>如果长官的命中，意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与长官之间差额一半的加成。<br/><Bullet/>指挥范围会随着长官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>如果军官的命中，意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 ;this may not be displayed -- needs testing
 [LeadByExampleLeader X2AbilityTemplate]
 LocFriendlyName="以身作则"
 LocLongDescription="军官提升指挥范围内士兵的命中，意志力，侵入能力，具体数值为士兵和军官数值差额的一半。"
-LocHelpText="在长官身边的友军能获得命中，意志力和侵入能力提升。"
+LocHelpText="在军官身边的友军能获得命中，意志力和侵入能力提升。"
 LocFlyOverText="以身作则"
-LocPromotionPopupText="<Bullet/>如果长官的命中，意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与长官之间差额一半的加成。<br/><Bullet/>指挥范围会随着长官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>如果军官的命中，意志以及（或）侵入能力比指挥范围内的某一士兵要高，那么该士兵获得这些数值与军官之间差额一半的加成。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 ;displayed on other soldier that receive the effect
 [CombinedArms X2AbilityTemplate]
 LocFriendlyName="联合作战"
-LocLongDescription="在长官指挥范围内的所有友军的成功攻击都将+1伤害。"
-LocHelpText="在长官身边的友军获得伤害加成。"
+LocLongDescription="在军官指挥范围内的所有友军的成功攻击都将+1伤害。"
+LocHelpText="在军官身边的友军获得伤害加成。"
 LocFlyOverText="联合作战"
-LocPromotionPopupText="<Bullet/>在长官指挥范围的所有友军的成功攻击都将+1伤害。<br/><Bullet/>指挥范围会随着长官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>在军官指挥范围的所有友军的成功攻击都将+1伤害。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 ;Displayed on officer in tactical container
 [CombinedArmsPassive X2AbilityTemplate]
 LocFriendlyName="联合作战"
-LocLongDescription="在长官指挥范围内的所有友军的成功攻击都将+1伤害。"
-LocHelpText="在长官身边的友军获得伤害加成。"
+LocLongDescription="在军官指挥范围内的所有友军的成功攻击都将+1伤害。"
+LocHelpText="在军官身边的友军获得伤害加成。"
 LocFlyOverText="联合作战"
-LocPromotionPopupText="<Bullet/>在长官指挥范围的所有友军的成功攻击都将+1伤害。<br/><Bullet/>指挥范围会随着长官等级提升而提升。"
+LocPromotionPopupText="<Bullet/>在军官指挥范围的所有友军的成功攻击都将+1伤害。<br/><Bullet/>指挥范围会随着军官等级提升而提升。"
 
 [Command X2AbilityTemplate]
 LocFriendlyName="指挥"
-LocLongDescription="结束你的回合来为小队中任一可见的成员提供一个额外的行动点数。可用次数由长官的级别决定。"
+LocLongDescription="结束你的回合来为小队中任一可见的成员提供一个额外的行动点数。可用次数由军官的级别决定。"
 LocHelpText="赋予友军额外行动点数。"
 LocFlyOverText="指挥"
-LocPromotionPopupText="<Bullet/>消耗一个行动点数并结束你的回合。<br/><Bullet/>中尉和少尉可以使用1次此技能；上尉和少校可以使用2次；中校和上校可以使用3次，战地司令可以使用4次。<br/><Bullet/>无法在正在监视或压制其他目标的单位上使用。"
+LocPromotionPopupText="<Bullet/>消耗一个行动点数并结束你的回合。<br/><Bullet/>少校和中校可以使用1次此技能；上校和大校可以使用2次；少将和中将可以使用3次，上将可以使用4次。<br/><Bullet/>无法在正在监视或压制其他目标的单位上使用。"
 
 [Infiltrator X2AbilityTemplate]
 LocFriendlyName="渗透者"
-LocLongDescription="此长官的小队会更快地潜入敌方目标。"
-LocHelpText="此长官的小队会更快地潜入敌方目标。"
+LocLongDescription="此军官的小队会更快地潜入敌方目标，减少队伍的潜入时间。"
+LocHelpText="此军官的小队会更快地潜入敌方目标，减少队伍的潜入时间。"
 LocFlyOverText="渗透者"
 LocPromotionPopupText="<Bullet/>拥有此技能的军官的小队会获得显著的潜入加成，减少队伍的潜入时间。<br/>"
 
 [AirController X2AbilityTemplate]
 LocFriendlyName="掌空者"
-LocLongDescription="天际游侠号会在撤离时提前<Ability:AIR_CONTROLLER_EVAC_TURN_REDUCTION/>回合到达。"
-LocHelpText="天际游侠号会在撤离时提前两回合到达。"
+LocLongDescription="天际游侠号会在被呼叫时提前<Ability:AIR_CONTROLLER_EVAC_TURN_REDUCTION/>回合到达。"
+LocHelpText="天际游侠号会在被呼叫时提前两回合到达。"
 LocFlyOverText="掌空者"
 LocPromotionPopupText="<Bullet/>这名军官熟练于指挥友方空军，可以让天际游侠号在撤离信号发出后提前2回合到达。<br/><Bullet/>注意天际游侠号到达的时间有一个最小的限制，该限制不会因加成而减少。"
 
@@ -170,7 +170,7 @@ LocPromotionPopupText="<Bullet/>使用此能力可使即将到来的敌方增援
 [Incoming X2AbilityTemplate]
 LocFriendlyName="过来了！"
 LocLongDescription="使用此能力可以使指挥范围内的友军在下回合内受到的爆炸物伤害减少4点。"
-LocHelpText="长官和周围的友军受到的爆炸物伤害减少4点。"
+LocHelpText="军官和周围的友军受到的爆炸物伤害减少4点。"
 LocFlyOverText="过来了！"
 LocPromotionPopupText="<Bullet/>使用此能力可以使指挥范围内的所有友军在下回合内受到的爆炸物伤害减少4点。<br/><Bullet/>不需要行动点数。<br/><Bullet/>5回合冷却时间。<br/><Bullet/>指挥范围会随着军官等级提升而提升。<br/><Bullet/>对恐慌中的或正在压制其他目标的士兵无效。<br/>"
 
@@ -183,37 +183,81 @@ LocPromotionPopUpText="<Bullet/>使用此能力可以花费10情报来获得两�
 
 [TrialByFire X2AbilityTemplate]
 LocFriendlyName="战火洗礼"
-LocLongDescription="任何在中士级别以下的士兵将会获得自动晋升，当这些士兵和拥有该指挥官技能士兵成功的完成一次任务。"
-LocHelpText="任何在中士级别以下的士兵将会获得自动晋升，当这些士兵和拥有该指挥官技能士兵成功的完成一次任务。"
+LocLongDescription="上士级别以下的任何士兵一同与拥有该技能的军官成功完成一次任务后将会获得自动晋升。"
+LocHelpText="上士级别以下的任何士兵一同与拥有该技能的军官成功完成一次任务后将会获得自动晋升。"
 LocPromotionPopUpText="<Bullet/> 只有在当前有效的军官身上拥有此技能时生效，对于在同一任务的其他军官身上无效。"
+
+; LWOTC Needs Translation
+[CommandRange1 X2AbilityTemplate]
+LocFriendlyName="指挥范围 1"
+LocLongDescription="使军官的指挥范围扩大1格"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange2 X2AbilityTemplate]
+LocFriendlyName="指挥范围 2"
+LocLongDescription="使军官的指挥范围扩大2格"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange3 X2AbilityTemplate]
+LocFriendlyName="指挥范围 3"
+LocLongDescription="使军官的指挥范围扩大3格"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange4 X2AbilityTemplate]
+LocFriendlyName="指挥范围 4"
+LocLongDescription="使军官的指挥范围扩大4格"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange5 X2AbilityTemplate]
+LocFriendlyName="指挥范围 5"
+LocLongDescription="使军官的指挥范围扩大5格"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange6 X2AbilityTemplate]
+LocFriendlyName="指挥范围 6"
+LocLongDescription="使军官的指挥范围扩大6格"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange7 X2AbilityTemplate]
+LocFriendlyName="指挥范围 7"
+LocLongDescription="使军官的指挥范围扩大7格"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+; End Translation
 
 ;---- END ABILITIES
 
 ;---- BEGIN OTS / STAFFSLOT
 
 [OfficerTrainingUnlock X2SoldierUnlockTemplate]
-DisplayName="长官训练"
-Summary="解锁士兵槽以允许开始长官训练。"
+DisplayName="军官训练"
+Summary="解锁士兵槽以允许开始军官训练。"
 
 [OTSOfficerSlot X2StaffSlotTemplate]
 EmptyText="空位：需要士兵"
-BonusEmptyText="训练长官能力。"
+BonusEmptyText="训练军官能力。"
 BonusText="%SKILL训练中"
 FilledText="%UNITNAME现在加入了%SKILL训练项目！"
 LockedText="未解锁：购买升级"
 
 [OTS_LWOfficerTrainingUpgrade X2FacilityUpgradeTemplate]
-DisplayName="长官训练站"
+DisplayName="军官训练学校"
 FacilityName="军官训练学校"
-Summary="添加一个站点，可以让准下士及其以上级别的士兵能够训练出特殊的领导能力。\n注意：只有小队中级别最高的长官能够在任务中使用能力，所以要谨慎地选择你想要晋升的对象。"
+Summary="添加一个站点，可以让中士及其以上级别的士兵能够训练出特殊的领导能力。\n注意：只有小队中级别最高的军官能够在任务中使用能力，所以要谨慎地选择你想要晋升的对象。"
 
 [OTS_LWOfficerTrainingUpgrade_SecondSlot X2FacilityUpgradeTemplate]
-DisplayName="长官训练站"
+DisplayName="军官训练学校"
 FacilityName="军官训练学校"
-Summary="添加一个站点，可以让准下士及其以上级别的士兵能够训练出特殊的领导能力。\n注意：只有小队中级别最高的长官能够在任务中使用能力，所以要谨慎地选择你想要晋升的对象。"
+Summary="添加一个站点，可以让中士及其以上级别的士兵能够训练出特殊的领导能力。\n注意：只有小队中级别最高的军官能够在任务中使用能力，所以要谨慎地选择你想要晋升的对象。"
 
 [UIPersonnel_LWOfficer]
-m_strTitle="训练为长官的士兵"
+m_strTitle="训练为军官的士兵"
 EmptyListMessage="无合适的候选人"
 
 ;---- END OTS / STAFFSLOT

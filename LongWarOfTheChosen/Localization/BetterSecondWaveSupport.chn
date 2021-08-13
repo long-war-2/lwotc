@@ -1,0 +1,27 @@
+; LWOTC Needs Translation
+[DisableTutorial SecondWaveOptionObject]
+Tooltip="禁用LWOTC教程。"
+Description="自力更生：禁用LWOTC教程。"
+; End Translation
+
+; LWOTC Needs Translation
+[DisableChosen SecondWaveOptionObject]
+Tooltip="禁用天选者，游戏中将不再出现天选者。"
+Description="天选者休假：禁用天选者。"
+
+[EnableResistanceOrders SecondWaveOptionObject]
+Tooltip="启用反抗军指令。"
+Description="战略支配：启用XCOM的反抗军指令。"
+; End Translation
+
+; LWOTC Needs Translation
+[AllowSameRankAbilities SecondWaveOptionObject]
+Tooltip="启用XCOM士兵在训练中心建成后通过能力点购买同军阶的多个职业技能。"
+Description="同阶技能：用能力点购买同军阶的多个职业技能。"
+; End Translation
+
+; LWOTC Needs Translation
+[BabyChosen SecondWaveOptionObject]
+Tooltip="禁用天选者的主反应，使其更容易战斗。"
+Description="天选宝宝：天选者的主反应被禁用。"
+; End Translation

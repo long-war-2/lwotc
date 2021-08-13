@@ -1,7 +1,5 @@
-
 [X2Ability_LWAlienAbilities]
-strBayonetChargePenalty="百夫長在<XGParam:IntValue0/>回合內防禦<XGParam:IntValue1/>。"
+strBayonetChargePenalty="百夫長在<XGParam:IntValue0/>回合內<XGParam:IntValue1/>防禦。"
 
 [X2Effect_WarCry]
-strWarCryFriendlyDesc="受到瞄準、移動力、意志力的加成。"
-
+strWarCryFriendlyDesc="受到命中，移動力，意志力的加成。"

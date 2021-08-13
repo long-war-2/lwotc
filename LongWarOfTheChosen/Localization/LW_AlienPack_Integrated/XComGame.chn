@@ -84,16 +84,16 @@ LocPromotionPopupText="<Bullet/>复活所有周围死去的有机体，将它们
 [ReadyForAnything X2AbilityTemplate]
 LocFriendlyName="一切就绪"
 LocFlyOverText="监视：一切就绪"
-LocHelpText="使用主武器进行标准射击后会进入监视。"
-LocLongDescription="使用主武器进行标准射击后会进入监视。"
-LocPromotionPopupText="<Bullet/>使用主武器进行标准射击后会进入监视。"
+LocHelpText="使用主武器进行结束回合的标准射击后进入监视状态。"
+LocLongDescription="使用主武器进行结束回合的标准射击后进入监视状态。"
+LocPromotionPopupText="<Bullet/>使用主武器进行结束回合的标准射击后进入监视状态。"
 
 [ReadyForAnythingFlyover X2AbilityTemplate]
 LocFriendlyName="一切就绪"
 LocFlyOverText="监视：一切就绪"
-LocHelpText="使用主武器进行标准射击后会进入监视。"
-LocLongDescription="使用主武器进行标准射击后会进入监视。"
-LocPromotionPopupText="<Bullet/>使用主武器进行标准射击后会进入监视。"
+LocHelpText="使用主武器进行标准射击后进入监视状态。"
+LocLongDescription="使用主武器进行标准射击后进入监视状态。"
+LocPromotionPopupText="<Bullet/>使用主武器进行标准射击后进入监视状态。"
 
 [RepairServos X2AbilityTemplate]
 LocFriendlyName="伤害控制"
@@ -121,6 +121,7 @@ strCharacterName="异变者百夫长"
 FriendlyName="百夫长步枪"
 BriefSummary="XCOM已经成功获得了一些不同的标准步兵小型武器了，这是最基本的武器，类似20年前使用的步枪。虽然这些武器比起变种人磁力技术的武器差得多，但在标准技术研究完成后，至少可以用额外的武器碎片对它们进行升级。"
 TacticalText="<Bullet/>用主武器射击会结束该士兵的回合\n<Bullet/>如果士兵在两个行动点都可用时射击，那么他可以在减少精准度的条件下射击3次，但总体上还是提升了效率\n<Bullet/>使用从变种人敌人身上取得的升级部件提升突击步枪的战术效率"
+AbilityDescName="等离子步枪"
 
 [MutonM2_LWGrenade X2GrenadeTemplate]
 FriendlyName="外星榴弹"
@@ -142,6 +143,7 @@ strCharacterName="异变者精英"
 
 [MutonM3_LW_Wpn X2WeaponTemplate]
 FriendlyName="精英电浆加农炮"
+AbilityDescName="电浆加农炮"
 
 [MutonM3_LWGrenade X2GrenadeTemplate]
 FriendlyName="外星榴弹"
@@ -166,12 +168,15 @@ strCharacterName="眼镜蛇精英"
 
 [NajaM1_WPN X2WeaponTemplate]
 FriendlyName="眼镜蛇狙击步枪"
+AbilityDescName="狙击步枪"
 
 [NajaM2_WPN X2WeaponTemplate]
 FriendlyName="眼镜蛇狙击步枪"
+AbilityDescName="狙击步枪"
 
 [NajaM3_WPN X2WeaponTemplate]
 FriendlyName="眼镜蛇狙击步枪"
+AbilityDescName="狙击步枪"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Sidewinder ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -186,26 +191,31 @@ strCharacterName="响尾蛇精英"
 
 [SidewinderM1_WPN X2WeaponTemplate]
 FriendlyName="响尾蛇斯卡拉姆枪"
+AbilityDescName="斯卡拉姆枪"
 
 [SidewinderM2_WPN X2WeaponTemplate]
 FriendlyName="响尾蛇斯卡拉姆枪"
+AbilityDescName="斯卡拉姆枪"
 
 [SidewinderM3_WPN X2WeaponTemplate]
 FriendlyName="响尾蛇斯卡拉姆枪"
+AbilityDescName="斯卡拉姆枪"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Viper ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [ViperM2_LW X2CharacterTemplate]
-strCharacterName="毒蛇怪巨蛇座"
+strCharacterName="巨蛇座毒蛇怪"
 
 [ViperM3_LW X2CharacterTemplate]
 strCharacterName="毒蛇怪精英"
 
 [ViperM2_LW_WPN X2WeaponTemplate]
 FriendlyName="光束步枪"
+AbilityDescName="等离子步枪"
 
 [ViperM3_LW_WPN X2WeaponTemplate]
 FriendlyName="光束步枪"
+AbilityDescName="等离子步枪"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -224,19 +234,21 @@ strCharacterName="变种人炮手"
 
 [AdvGunnerM1_WPN X2WeaponTemplate]
 FriendlyName="自动磁力枪"
+AbilityDescName="加农炮"
 
 [AdvGunnerM2 X2CharacterTemplate]
 strCharacterName="变种人重炮手"
 
 [AdvGunnerM2_WPN X2WeaponTemplate]
 FriendlyName="自动磁力枪"
+AbilityDescName="加农炮"
 
 [AdvGunnerM3 X2CharacterTemplate]
 strCharacterName="变种人精英炮手"
 
 [AdvGunnerM3_WPN X2WeaponTemplate]
 FriendlyName="自动磁力枪"
-
+AbilityDescName="加农炮"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvSentryM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -245,18 +257,21 @@ strCharacterName="变种人哨兵"
 
 [AdvSentryM1_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"
 
 [AdvSentryM2 X2CharacterTemplate]
 strCharacterName="变种人守卫"
 
 [AdvSentryM2_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"
 
 [AdvSentryM3 X2CharacterTemplate]
 strCharacterName="变种人哨卫"
 
 [AdvSentryM3_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvGrenadierM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -330,16 +345,18 @@ strCharacterName="超重型MEC"
 ;;;;;;;;;;;;;;;;;;;;;;;;;; DroneM1-2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [LWDroneM1 X2CharacterTemplate]
-strCharacterName="变种人监视无人机"
+strCharacterName="监视无人机"
 
 [LWDroneM2 X2CharacterTemplate]
-strCharacterName="变种人猎手无人机"
+strCharacterName="猎手无人机"
 
 [LWDroneM1_WPN X2WeaponTemplate]
 FriendlyName="无人机电击"
+AbilityDescName="电击武器"
 
 [LWDroneM2_WPN X2WeaponTemplate]
 FriendlyName="无人机电击"
+AbilityDescName="电击武器"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM1 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -348,9 +365,11 @@ strCharacterName="MEC射手"
 
 [AdvMECArcher_WPN X2WeaponTemplate]
 FriendlyName="MEC磁力机枪"
+AbilityDescName="微型枪"
 
 [AdvMECArcher_Shoulder_WPN X2WeaponTemplate]
 FriendlyName="火箭炮部队"
+AbilityDescName="微导弹"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -384,45 +403,53 @@ strCharacterName="变种人军士"
 
 [AdvSergeantM1_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"
 
 [AdvSergeantM2 X2CharacterTemplate]
 strCharacterName="变种人军士长"
 
 [AdvSergeantM2_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"
 
 [AdvShockTroop X2CharacterTemplate]
 strCharacterName="变种人震波士兵"
 
 [AdvShockTroop_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"
 
 [AdvCommando X2CharacterTemplate]
 strCharacterName="变种人突击兵"
 
 [AdvCommando_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"
 
 [AdvVanguard X2CharacterTemplate]
 strCharacterName="变种人先锋"
 
 [AdvVanguard_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"
 
 [AdvScout X2CharacterTemplate]
 strCharacterName="变种人侦察兵"
 
 [AdvScout_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"
 
 [AdvGeneralM1_LW X2CharacterTemplate]
 strCharacterName="变种人将军"
 
 [AdvGeneralM1_LW_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"
 
 [AdvGeneralM2_LW X2CharacterTemplate]
 strCharacterName="变种人将军"
 
 [AdvGeneralM2_LW_WPN X2WeaponTemplate]
 FriendlyName="变种人磁力步枪"
+AbilityDescName="磁力步枪"

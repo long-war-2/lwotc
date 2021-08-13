@@ -15,34 +15,34 @@ m_strMissionDifficulty_start="底线敌人活动"
 
 [ProtectRegionEarly X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion1Activity"
-ActivityObjectives[0]="找到一个线索"
+ActivityObjectives[0]="开始解放地区"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们已经发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们已经发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 
 [ProtectRegionMid X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion2Activity"
-ActivityObjectives[0]="解放：解救一位背叛者"
+ActivityObjectives[0]="解放：营救一名叛逃者"
 
-+MissionDescriptions=(MissionFamily="Extract_LW", Description="我们可以在这片区域解救出一位掌握着外星人弱点的重要信息的变种人背叛者。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们已经得知了这片地区一位反抗军支持者拥有外星人弱点的重要信息。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Extract_LW", Description="我们可以在这片区域解救出一名变种人叛逃者，他掌握着外星人弱点的重要信息。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们已经得知了这片地区一名反抗军支持者拥有外星人弱点的重要信息。", MissionIndex=0)
 
 [ProtectRegion X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion3Activity"
-ActivityObjectives[0]="解放：阻碍变种人行动"
+ActivityObjectives[0]="解放：阻止变种人行动"
 ActivityObjectives[1]="解放：摧毁网络塔"
-ActivityObjectives[2]="解放：突击变种人基地"
+ActivityObjectives[2]="解放：突袭变种人基地"
 
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我们得知有变种人的设备在干扰反抗军交流网络。我们必须摧毁它。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我们的工作让我们找到了一位在建议敌人在该地区行动的人类变种人官员。我们需要清除那个人。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我们得知有变种人的装置在干扰反抗军通讯网络。我们必须摧毁它。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我们的努力使我们找到了一位人类变种人官员，他正在为这一地区的敌人行动提供建议。我们需要清除这名官员。", MissionIndex=0)
 
-+MissionDescriptions=(MissionFamily="AssaultNetworkTower_LW", Description="我们在这个地区的胜算正在增加。是时候去摧毁他们在地区中心的交流中枢了。", MissionIndex=1)
++MissionDescriptions=(MissionFamily="AssaultNetworkTower_LW", Description="我们在该地区的胜算正在增加。是时候去摧毁他们在地区中心的通讯中枢了。", MissionIndex=1)
 
 +MissionDescriptions=(MissionFamily="AssaultAlienBase_LW", Description="随着变种人在该地区的行动变得混乱，我们可以突袭他们当地的军事总部，从他们的手中解放这片区域。", MissionIndex=2)
 
 [Counterinsurgency X2LWAlienActivityTemplate]
 ActivityName="CounterinsurgencyActivity"
-ActivityObjectives[0]="阻止反抗军数据泄露"
+ActivityObjectives[0]="防止反抗军数据泄露"
 ActivityObjectives[1]="防守反抗军避难所"
 
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="变种人在这个地区调查我们的行动。我们的避难所可能会有危险。", MissionIndex=0)
@@ -51,8 +51,8 @@ ActivityObjectives[1]="防守反抗军避难所"
 
 [ReinforceActivity X2LWAlienActivityTemplate]
 ActivityName="ReinforceActivity"
-ActivityObjectives[0]="拦截变种人增援"
-+MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="我们已经检测到了变种人的军队，其目的是对我们在该地区的行动作出反应。", MissionIndex=0)
+ActivityObjectives[0]="拦截变种人增援部队"
++MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="我们发现变种人在向该地区派遣部队，其目的是对我们在该地区的行动作出反应。", MissionIndex=0)
 
 [COINResearch X2LWAlienActivityTemplate]
 ActivityName="COINResearchActivity"
@@ -60,15 +60,15 @@ ActivityObjectives[0]="封锁变种人军事研发"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们发现了一个阻止外星人完成一项军事研究计划的机会。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们发现了一个阻止外星人完成一项军事研究计划的机会。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我们发现了一个阻止外星人完成一项外星军事研究计划的机会。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我们发现了一个干掉变种人的人类官员以阻止外星人完成一项军事研究计划的机会。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们发现了一个拯救一位被强迫协助一项外星军事研究计划的科学家的机会。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我们发现了一个消灭变种人的人类官员以阻止外星人完成一项军事研究计划的机会。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们发现了一个营救一名被强迫协助一项外星军事研究计划的科学家的机会。", MissionIndex=0)
 
 [COINOps X2LWAlienActivityTemplate]
 ActivityName="COINOpsActivity"
-ActivityObjectives[0]="攻击变种人反暴动行动。"
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="变种人正在组织行动妨碍反抗军和XCOM。我们有机会阻止他们。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="变种人正在组织行动妨碍反抗军和XCOM。我们有机会阻止他们。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="变种人正在组织行动妨碍反抗军和XCOM。我们有机会阻止他们。", MissionIndex=0)
+ActivityObjectives[0]="攻击变种人反游击行动"
++MissionDescriptions=(MissionFamily="Recover_LW", Description="变种人正在组织行动阻止反抗军和XCOM。我们有机会阻止他们。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="变种人正在组织行动阻止反抗军和XCOM。我们有机会阻止他们。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="变种人正在组织行动阻止反抗军和XCOM。我们有机会阻止他们。", MissionIndex=0)
 
 [BuildResearchFacility X2LWAlienActivityTemplate]
 ActivityName="BuildResearchFacilityActivity"
@@ -76,35 +76,35 @@ ActivityObjectives[0]="伏击变种人工程单位"
 +MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="我们得知外星人打算在这片地区开设一个新的研究设施。我们可以打击工程单位以阻止他们。", MissionIndex=0)
 
 [RegionalAvatarResearch X2LWAlienActivityTemplate]
-ActivityObjectives[0]="突击外星人研究实验室"
+ActivityObjectives[0]="突袭外星人研究实验室"
 +MissionDescriptions=(MissionFamily="Sabotage_LW", Description="我们已经找出了一个重要的外星人研究设施的位置。让我们将其化为焦土吧。", MissionIndex=0)
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到一个线索"
+ActivityObjectives[0]="找到敌人的飞行路线"
 ActivityObjectives[1]="回收幽浮物资"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们已经发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们已经发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="我们的情报告诉我们在地面有一架无法运转的幽浮。", MissionIndex=1)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="我们的情报告诉我们在地面有一艘无法运转的幽浮。", MissionIndex=1)
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到一个线索"
+ActivityObjectives[0]="找到敌人的飞行路线"
 ActivityObjectives[1]="回收幽浮物资"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="我们的情报告诉我们在地面有一架无法运转的幽浮。", MissionIndex=1)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="我们的情报告诉我们在地面有一艘无法运转的幽浮。", MissionIndex=1)
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到一个线索"
+ActivityObjectives[0]="找到敌人的飞行路线"
 ActivityObjectives[1]="回收幽浮物资"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们得知了一位变种人囚犯的位置，他可能有敌人行动的线索。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="我们的情报告诉我们在地面有一架无法运转的幽浮。", MissionIndex=1)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="我们的情报告诉我们在地面有一艘无法运转的幽浮。", MissionIndex=1)
 
 [Invasion X2LWAlienActivityTemplate]
 ActivityName="InvasionActivity"
@@ -125,42 +125,46 @@ ActivityObjectives[1]="防守临时政府"
 [Propaganda X2LWAlienActivityTemplate]
 ActivityName="PropagandaActivity"
 ActivityObjectives[0]="获取变种人的注意"
-+MissionDescriptions=(MissionFamily="SabotageCC_LW", Description="外星人占据了一座相对不受保护的城市中心设施。我们可以进攻他们其中一座纪念碑以传递信息，但是变种人肯定会有所回应。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我们已经得知在变种人管理系统一位高级人类官员，在接下来的一段时间内的所受到的保护势力相对较弱。我们可以干掉他，但变种人一定会有所注意。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SabotageCC_LW", Description="外星人已离开保护相对较弱的市中心。我们可以进攻他们其中一座纪念碑以传递信息，但是变种人肯定会有所回应。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Neutralize_LW", Description="我们已经得知在变种人管理系统的一位高级人类官员，在接下来的一段时间内所受到的保护相对较弱。我们可以干掉他，但变种人一定会有所注意。", MissionIndex=0)
 
 [ProtectResearch X2LWAlienActivityTemplate]
 ActivityName="ProtectResearchActivity"
-ActivityObjectives[0]="找到一个线索"
+ActivityObjectives[0]="找到一个设施线索"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我们发现一个变种人设备正在干扰反抗军通讯。如果摧毁它，我们就可以获得新的情报源和数据。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们得知了一位变种人囚犯的位置，他可能有敌人行动的线索。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Extract_LW", Description="我们得知了一位变种人设施的背叛者的位置，他可能有敌人行动的线索并需要解救。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我们发现一个变种人装置正在干扰反抗军通讯。如果摧毁它，我们就可以获得新的情报源和数据。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们得知了一名变种人囚犯的位置，他可能是敌人活动的潜在线索。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Extract_LW", Description="我们听说有一名囚犯从一处变种人设施逃走，这可能是敌军活动的潜在线索，需要撤离。", MissionIndex=0)
 
 [ProtectData X2LWAlienActivityTemplate]
 ActivityName="ProtectDataActivity"
 ActivityObjectives[0]="找到一个线索"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我们发现一个变种人设备正在干扰反抗军通讯。如果摧毁它，我们就可以获得新的情报源和数据。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们得知了一位变种人囚犯的位置，他可能有敌人行动的线索。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Extract_LW", Description="我们得知了一位变种人设施的背叛者的位置，他可能有敌人行动的线索并需要解救。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="我们发现一个变种人装置正在干扰反抗军通讯。如果摧毁它，我们就可以获得新的情报源和数据。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们得知了一名变种人囚犯的位置，他可能是敌人活动的潜在线索。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Extract_LW", Description="我们听说有一名囚犯从一处变种人设施逃走，这可能是敌军活动的潜在线索，需要撤离。", MissionIndex=0)
 
 [TroopManeuvers X2LWAlienActivityTemplate]
 ActivityName="TroopManeuversActivity"
 ActivityObjectives[0]="减少敌人强度"
-+MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="变种人让他们的一个作战单位暴露在了我们部队的攻势之下。")
++MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="变种人的一支战斗部队暴露在我们部队的攻势之下。")
 
 [HighValuePrisoner X2LWAlienActivityTemplate]
 ActivityName="HighValuePrisonerActivity"
-ActivityObjectives[0]="解救一位重要的囚犯"
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们已经知悉了变种人关押一位重要囚犯的位置了。我们有机会解救他。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Extract_LW", Description="我们得知有一位从变种人设施中逃出来的人员能够帮到反抗军。我们有机会解救他。", MissionIndex=0)
+ActivityObjectives[0]="营救一名重要囚犯"
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们已经知悉了变种人关押的一名重要囚犯的位置了。我们有机会解救他。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Extract_LW", Description="我们得知有一名从变种人设施中逃出来的囚犯能够帮到反抗军。我们有机会解救他。", MissionIndex=0)
 
 [PoliticalPrisoners X2LWAlienActivityTemplate]
 ActivityName="PoliticalPrisonersActivity"
-ActivityObjectives[0]="俘获的反叛者"
+ActivityObjectives[0]="营救被俘反抗军"
 +MissionDescriptions=(MissionFamily="Jailbreak_LW", Description="一组反抗军成员被关押在一个保护设施内。我们有机会解救他们。", MissionIndex=0)
+
+[Logistics X2LWAlienActivityTemplate]
+ActivityObjectives[0]="夺取变种人给养箱"
++MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="反抗军找到一个含有重要资源的变种人补给站，我们可以将这些资源作为己用", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"
@@ -170,19 +174,19 @@ ActivityObjectives[0]="保护反抗军资产"
 [SupplyConvoy X2LWAlienActivityTemplate]
 ActivityName="SupplyConvoyActivity"
 ActivityObjectives[0]="保护反抗军资产"
-+MissionDescriptions=(MissionFamily="SupplyConvoy_LW", Description="变种人军队正打算突袭一个反抗军补给队。我们需要保护我们的人和物资。")
++MissionDescriptions=(MissionFamily="SupplyConvoy_LW", Description="变种人军队正打算突袭一支反抗军补给队。我们需要保护我们的人和物资。")
 
 [RecruitRaid X2LWAlienActivityTemplate]
 ActivityName="RecruitRaidActivity"
 ActivityObjectives[0]="保护反抗军资产"
-+MissionDescriptions=(MissionFamily="RecruitRaid_LW", Description="一个反抗军招募单位遇见了一支变种人巡逻队。我们需要立刻解救出人员。")
++MissionDescriptions=(MissionFamily="RecruitRaid_LW", Description="一名反抗军招募人员遇见了一支变种人巡逻队。我们需要立刻解救出人员。")
 
 [Snare X2LWAlienActivityTemplate]
 ActivityName="SnareActivity"
 ActivityObjectives[0]="找到一个线索"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们得知了一位变种人囚犯的位置，他可能有敌人行动的线索。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们得知了一名变种人囚犯的位置，他可能有敌人行动的线索。", MissionIndex=0)
 
 [DebugMission X2LWAlienActivityTemplate]
 ActivityObjectives[0]="DEBUG Mission"
@@ -237,7 +241,16 @@ strMissionTimeTitle="任务到期时间："
 strDaysAndHours="<XGParam:IntValue0>天， <XGParam:IntValue1>小时"
 strMinusDaysAndHours="- <XGParam:IntValue0>天， <XGParam:IntValue1>小时"
 strPlusDaysAndHours="+ <XGParam:IntValue0>天， <XGParam:IntValue1>小时"
-strMissionIndefinite="无限期："
+strMissionIndefinite="无限期"
+strLiberationTitle="解放进度修正:"
+
+; LWOTC Needs Translation
+UpToText="取决于"
+ExpectedActivityTextStr="预期活动"
+BoostedActivityText="预期活动（增强）"
+BoostTextPre="以及"
+BoostTextPost="促进"
+; End Translation
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="联系迫近"
@@ -250,7 +263,11 @@ strWeight="小型物品重量"
 AblativeHPLabel="额外HP"
 
 [X2Ability_LW_TechnicalAbilitySet]
-strMaxScatter="\n最大散布（区块）："
+strMaxScatter="\n最大散布（格）："
+
+[X2Ability_LW_ChosenAbilities]
+ShieldedStatBuffsLocDescription="命中，暴击率，意志力和灵能攻击增益。"
+ImpactCompensationBuffDescription="减少<Ability:IMPACT_COMPENSATION_CURRENT_DR/>%所有来袭伤害。 "
 
 [XComGameState_LWListenerManager]
 ResistanceHQBodyText="获取反抗军避难所信息"
@@ -268,14 +285,19 @@ m_strTooltipAutofillSquad="自动填补空置小队位置。"
 [X2EventListener_StrategyMap]
 strTimeRemainingHoursOnly="<XGParam:IntValue0>小时"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1>天，<XGParam:IntValue0>小时"
+; LWOTC Needs Translation
+strDarkEventExpiredTitle="黑暗事件已过期"
+strDarkEventExpiredText="已过期"
+; End Translation
 
 [X2EventListener_Soldiers]
 OnLiaisonDuty="避难所顾问"
-OnInfiltrationMission="渗透中"
+OnInfiltrationMission="潜入中"
 UnitAlreadyInSquad="单位在另一支小队中"
 UnitInSquad="单位在一支小队中"
 RankTooLow="级别太低"
 CannotModifyOnMissionSoldierTooltip="不能修改任务中的士兵"
+ReasonClassAbilityPickedAtRank="已经在该军阶选择了一个职业技能"
 
 [X2Effect_LWHolotarget]
 HoloTargetEffectName="被全息瞄准"
@@ -301,7 +323,7 @@ HoloTargetEffectName="被全息瞄准"
 +DefaultSquadNames="刺客"
 +DefaultSquadNames="猛禽"
 +DefaultSquadNames="蝮蛇"
-+DefaultSquadNames="Vega"
++DefaultSquadNames="天琴座"
 +DefaultSquadNames="恶棍"
 +DefaultSquadNames="掠夺者"
 +DefaultSquadNames="黑色守卫"
@@ -312,7 +334,7 @@ HoloTargetEffectName="被全息瞄准"
 
 +TempSquadNames="阿尔法"
 +TempSquadNames="杀手"
-+TempSquadNames="Charlie"
++TempSquadNames="查理"
 +TempSquadNames="三角洲"
 +TempSquadNames="回音"
 +TempSquadNames="狐步"
@@ -357,6 +379,7 @@ m_strRepeatResearch="重复研究"
 
 [UIScreenListener_ArmoryWeaponUpgrade_LW]
 strStripWeaponUpgradesButton="去除武器升级"
+StripAllWeaponUpgradesStr="未行动人员去除武器升级"
 strStripWeaponUpgradesTooltip="去除所有升级和自定义，将武器返回至一般物品栏"
 strStripWeaponUpgradeDialogueTitle="确认去除所有升级"
 strStripWeaponUpgradeDialogueText="你确定要去除该武器的所有升级并将其退回普通武器库？"
@@ -392,6 +415,10 @@ strSquad="小队"
 strStart="开始"
 strInfiltration="潜入"
 
+; LWOTC Needs Translation
+strAreaOfOperations="执行区域:"
+; End Translation
+
 [UIScreenListener_SkyrangerArrives_LW]
 strLaunchInfiltration="开始潜入"
 strAbortInfiltration="放弃潜入"
@@ -403,6 +430,7 @@ TooltipBarracks_SquadManagement="管理未变动的小队"
 
 [UIStrategyMapItem_Mission_LW]
 strRecon="潜入"
+InfiltrationTooltipString="潜入"
 
 [UIMission_LWLaunchDelayedMission]
 m_strMission="潜入"
@@ -423,22 +451,22 @@ m_strMustLaunchMission="任务时限：必须发起或放弃"
 m_strInsuffientInfiltrationToLaunch="离发起任务还需潜入到至少<XGParam:IntValue0>%。"
 
 ; these need to be coordinated in length with the  in LW_InfiltrationSettings.ini : AlertModifierAtInfiltration
-+m_strAlertnessModifierDescriptions[0]="无法攻取的"
-+m_strAlertnessModifierDescriptions[1]="无法攻取的"
-+m_strAlertnessModifierDescriptions[2]="无法攻取的"
++m_strAlertnessModifierDescriptions[0]="无法攻取"
++m_strAlertnessModifierDescriptions[1]="无法攻取"
++m_strAlertnessModifierDescriptions[2]="无法攻取"
 +m_strAlertnessModifierDescriptions[3]="已加固"
 +m_strAlertnessModifierDescriptions[4]="已加固"
 +m_strAlertnessModifierDescriptions[5]="已加固"
-+m_strAlertnessModifierDescriptions[6]="警戒的"
-+m_strAlertnessModifierDescriptions[7]="警戒的"
-+m_strAlertnessModifierDescriptions[8]="警戒的"
-+m_strAlertnessModifierDescriptions[9]="有守备的"
-+m_strAlertnessModifierDescriptions[10]="有守备的"
-+m_strAlertnessModifierDescriptions[11]="有守备的"
++m_strAlertnessModifierDescriptions[6]="警戒"
++m_strAlertnessModifierDescriptions[7]="警戒"
++m_strAlertnessModifierDescriptions[8]="警戒"
++m_strAlertnessModifierDescriptions[9]="有守备"
++m_strAlertnessModifierDescriptions[10]="有守备"
++m_strAlertnessModifierDescriptions[11]="有守备"
 +m_strAlertnessModifierDescriptions[12]="一般"
-+m_strAlertnessModifierDescriptions[13]="脆弱的"
-+m_strAlertnessModifierDescriptions[14]="脆弱的"
-+m_strAlertnessModifierDescriptions[15]="脆弱的"
++m_strAlertnessModifierDescriptions[13]="脆弱"
++m_strAlertnessModifierDescriptions[14]="脆弱"
++m_strAlertnessModifierDescriptions[15]="脆弱"
 
 [UIMission_LWCustomMission]
 +m_strUrgent="安全漏洞"
@@ -451,7 +479,7 @@ m_strInvasionDesc="变种人军队发起了对<XGParam:StrValue0/!WorldRegionNam
 
 [UIStrategyMapItem_Region_LW]
 m_strOutpostTitle="避难所：<XGParam:StrValue0>"
-m_strAlertLevel="变种人力量：<XGParam:IntValue0>"
+m_strAlertLevel="S:<XGParam:IntValue0> V:<XGParam:IntValue2> F:<XGParam:IntValue1>"
 m_strLiberatedRegion="已解放地区："
 m_strStaffingPinText="S:<XGParam:IntValue0> I:<XGParam:IntValue1> R:<XGParam:IntValue2>"
 m_strStaffingPinTextMore="H:<XGParam:IntValue0>"
@@ -481,6 +509,9 @@ m_strThreatMedium="较高"
 m_strThreatHigh="高"
 m_strThreatVeryHigh="严峻"
 m_strLiberated="已解放"
+m_strResistanceManagementLevels="<XGParam:IntValue0> (V:<XGParam:IntValue1>)"
+ViewHavenStr="查看避难所"
+FlyToHavenStr="飞往避难所"
 
 [UIOutpostManagement]
 m_strTitle="避难所管理"
@@ -495,6 +526,9 @@ m_strResistanceMecs="反抗军MEC：<XGParam:IntValue0/>"
 m_strProhibited="被禁止"
 m_strCannotChangeLiaisonTitle="无法移动顾问"
 m_strCannotChangeLiaison="由于该地区有活跃的任务，顾问现在无法更改"
+ChangeJobStr="变更工作"
+ChangeAllJobsStr="变更所有工作"
+PerksStr="技能" 
 
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="撤离已请求"
@@ -545,7 +579,7 @@ m_strHelpButtonTooltip="小队管理帮助"
 
 [SquadSelect_Help LWHelpTemplate]
 m_strHelpTitle="小队潜入"
-m_strHelpText="许多任务都需要小队花费一些时间潜入任务地点，以避免直接面对变种人最强大的部队。指挥官能够通过调整小队人数来管理潜入的次数，或是给士兵分配潜行的能力和装备。要查看这些功能的完整介绍，请查看指挥官舱室XCOM档案库的潜入条目。"
+m_strHelpText="许多任务都需要小队花费一些时间潜入任务地点，以避免直接面对变种人最强大的部队。指挥官能够通过调整小队人数来管理潜入的次数，或是给士兵分配潜入的能力和装备。要查看这些功能的完整介绍，请查看指挥官舱室XCOM档案库的潜入条目。"
 m_strHelpButtonTooltip="潜入帮助"
 
 [X2StrategyElement_DefaultStaffSlots_LW]
@@ -553,11 +587,14 @@ m_strLiaisonLocation="避难所顾问：<XGParam:StrValue0>"
 
 [X2StrategyElement_MissionSiteDescriptions_LW]
 ; This goes in front of a city name in invasion missions, e.g. "Free Chicago"
-m_strLiberatedCityPrefix="Free"
+m_strLiberatedCityPrefix="解放"
 
 [XComGameState_LWOutPost]
 m_strProhibitedJobAlert="由于变种人突袭，在<XGParam:StrValue1/>，<XGParam:IntValue0/>天内反抗军成员无法分配到<XGParam:StrValue0/>工作。该工作的反抗军全体人员都必须进行躲藏。"
 m_strProhibitedJobEnded="<XGParam:StrValue0/>中安排在<XGParam:StrValue1/>的反抗军成员现在开始重新作业。"
+;LWOTC needs translation
+m_strRetributionEnded=" <XGParam:StrValue0/> 中的反抗军成员已从天选者报复中恢复。"
+;End translation
 
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="避难所需要至少<XGParam:IntValue0/>反抗军才能与邻近地区联络"
@@ -570,12 +607,6 @@ m_strInvasionFlare="紧急通信"
 m_strInvasionConfirm="查看入侵地点"
 
 [UIUtilities_LW]
-m_strStripWeaponUpgrades=去除所有武器升级
-m_strStripWeaponUpgradesLower=去除所有武器升级
-m_strStripWeaponUpgradesConfirm=确认去除所有武器升级
-m_strStripWeaponUpgradesConfirmDesc=确认去除所有未由出战当前任务士兵所装备的主武器上的升级配件。该配件可立刻供所有士兵装备。
-m_strTooltipStripWeapons=移除所有未选择为出战当前任务的士兵的武器升级。
-
 m_strInfiltrationMission="潜入任务"
 m_strQuickResponseMission="快速反应任务"
 m_strFixedEvacLocation="固定撤离点"
@@ -595,8 +626,14 @@ m_strTurnSingular="回合"
 m_strTurnPlural="回合"
 m_strMinimumInfiltration="需要 <XGParam:IntValue0>% 潜入"
 m_strYellowAlert="敌人高度警戒"
-
 m_sAverageScatterText="± <XGParam:StrValue0/> 格"
+m_strBullet="•"
+
+m_strStripWeaponUpgrades=去除所有武器升级
+m_strStripWeaponUpgradesLower=去除所有武器升级
+m_strStripWeaponUpgradesConfirm=确认去除所有武器升级
+m_strStripWeaponUpgradesConfirmDesc=确认去除所有未由出战当前任务士兵所装备的主武器上的升级配件。该配件可立刻供所有士兵装备。
+m_strTooltipStripWeapons=移除所有未选择为出战当前任务的士兵的武器升级。
 
 m_strAllHandsToHangar=所有人员前往机库
 m_strAllHandsToHangarConfirm=确认所有人员前往机库
@@ -607,10 +644,22 @@ m_strPrevHaven="上一个避难所"
 m_strNextHaven="下一个避难所"
 
 m_strVIPCaptureReward="（仅俘虏VIP）"
+; LWOTC Needs Translation
+[UIListener_CampaignStartMenu]
 
-[Logistics X2LWAlienActivityTemplate]
-ActivityObjectives[0]="获得变种人的给养箱"
-+MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="反抗军找到一个含有重要资源的变种人补给站，我们可以将这些资源作为己用", MissionIndex=0)
+strDisabledTutorialTooltip="运行天选者之战时禁用教程"
+strDisabledNarrativeContentTooltip="运行天选者之战时失魂者与废弃之都被禁用"
+strDisabledPrecisionExplosivesTooltip="运行天选者之战时精确炸药关闭"
+; End Translation
+
 
 [UICovertActionReport_LW]
 strCovertActionFailed="失败"
+
+[UIScreenListener_ViewObjectives]
+; LWOTC Needs Translation
+ScrollObjectiveDescriptionStr="滚动目标说明"
+; End Translation
+
+[X2Effect_ChosenLoot]
+m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> 击杀天选者获得奖励。"

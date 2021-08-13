@@ -22,53 +22,53 @@ strAutoFillTooltip="自動將小隊補充至滿員"
 strCommandRangeToggleTooltip="點擊以開啟指揮範圍"
 
 [X2StrategyElement_LW_OTS_OfficerStaffSlot]
-;strOTSLocationDisplayString=<XGParam:StrValue0/> Training
+;strOTSLocationDisplayString=<XGParam:StrValue0/> 訓練中
 
 ;[UIArmory_LWOfficerMenu]
-;m_strSelectAbility=SELECT Officer ABILITY:
-;m_strAbilityHeader=Officer ABILITIES:
-;m_strConfirmAbilityTitle=CONFIRM ABILITY SELECTION
-;m_strConfirmAbilityText=You can't remove or change abilities. Are you sure you want to learn <XGParam:StrValue0/>?
-;m_strAbilityLockedTitle=LOCKED
-;m_strAbilityLockedDescription=Get more combat experience to learn new abilities.
+;m_strSelectAbility=選擇軍官能力:
+;m_strAbilityHeader=指揮官能力:
+;m_strConfirmAbilityTitle=確認技能選擇
+;m_strConfirmAbilityText=你不能移除或改變技能。你確定要學習 <XGParam:StrValue0/>?
+;m_strAbilityLockedTitle=鎖定
+;m_strAbilityLockedDescription=獲得更多的戰鬥經驗來學習新的能力。
 
 [UIArmory_LWOfficerPromotion]
 m_strSelectAbility="選擇能力："
 m_strAbilityHeader="能力："
 m_strConfirmAbilityTitle="確認能力選擇"
-m_strConfirmAbilityText="你不能移除或改變能力。確定學習<XGParam:StrValue0/>？"
-m_strAbilityLockedTitle="未解鎖"
+m_strConfirmAbilityText="你不能移除或改變能力。確認學習<XGParam:StrValue0/>嗎？"
+m_strAbilityLockedTitle="鎖定"
 m_strAbilityLockedDescription="獲得更多的戰鬥經驗來學習新的能力。"
 
 [LWOfficerUtilities]
-LWOfficerRankNames[0]="軍士"
-LWOfficerRankNames[1]="少尉"
-LWOfficerRankNames[2]="中尉"
-LWOfficerRankNames[3]="上尉"
-LWOfficerRankNames[4]="少校"
-LWOfficerRankNames[5]="中校"
-LWOfficerRankNames[6]="上校"
-LWOfficerRankNames[7]="戰地指揮官"
+LWOfficerRankNames[0]="士官長"
+LWOfficerRankNames[1]="少校"
+LWOfficerRankNames[2]="中校"
+LWOfficerRankNames[3]="上校"
+LWOfficerRankNames[4]="大校"
+LWOfficerRankNames[5]="少將"
+LWOfficerRankNames[6]="中將"
+LWOfficerRankNames[7]="上將"
 
-LWOfficerShortNames[0]="軍士"
-LWOfficerShortNames[1]="少尉"
-LWOfficerShortNames[2]="中尉"
-LWOfficerShortNames[3]="上尉"
-LWOfficerShortNames[4]="少校"
-LWOfficerShortNames[5]="中校"
-LWOfficerShortNames[6]="上校"
-LWOfficerShortNames[7]="司令"
+LWOfficerShortNames[0]="士官長"
+LWOfficerShortNames[1]="少校"
+LWOfficerShortNames[2]="中校"
+LWOfficerShortNames[3]="上校"
+LWOfficerShortNames[4]="大校"
+LWOfficerShortNames[5]="少將"
+LWOfficerShortNames[6]="中將"
+LWOfficerShortNames[7]="上將"
 
 
 [UIFacility_LWOfficerSlot]
 m_strTrainOfficerDialogTitle="訓練軍官"
-m_strTrainOfficerDialogText="符合一定軍階的士兵們能夠在游擊戰術學院經歷特種訓練，學習如何成為一名軍官。他們將無法在訓練中加入戰鬥。\n\n注意：只有小隊中級別最高的軍官能夠在任務中使用能力，所以要謹慎地選擇你想要晉升的對象。\n\n你是否要繼續？"
+m_strTrainOfficerDialogText="符合一定軍階的士兵能夠在游擊戰術學校進行特殊的訓練成為軍官。在訓練過程中他們無法上場參戰。\n\n重要：只有小隊中級別最高的軍官能夠在任務中使用能力，所以要謹慎地選擇你想要晉升的對象。\n\n你確定要繼續嗎？"
 m_strStopTrainOfficerDialogTitle="停止軍官訓練？"
 m_strStopTrainOfficerDialogText="你是否想要停止%UNITNAME的訓練？\n\n警告：所有軍官訓練進程將會丟失。"
 
 [UIAlert_LWOfficerTrainingComplete]
 m_strTrainingCompleteLabel="軍官訓練完畢"
-m_strTrainingComplete="<XGParam:StrValue0/>已訓練完畢。可在軍械庫檢視並分配其新能力。"
+m_strTrainingComplete="<XGParam:StrValue0/>已經完成了訓練。可以通過在軍械庫中檢視和分配其新能力。"
 m_strViewSoldier="查看士兵"
 m_strNewAbilityLabel="新能力"
 
@@ -76,7 +76,7 @@ m_strNewAbilityLabel="新能力"
 strOfficerAlreadySelectedStatus="警告：軍官已選擇"
 
 [UIStrategyScreenListener_LWOfficerPack]
-strCommandingOfficerTooltipTitle="指揮軍官"
+strCommandingOfficerTooltipTitle="指揮中的軍官"
 strCommandingOfficerTooltip="能夠使用所有的軍官能力。"
 strSubordinateOfficerTooltipTitle="下級軍官"
 strSubordinateOfficerTooltip="不能在任務中使用軍官能力。"
@@ -85,7 +85,7 @@ strSubordinateOfficerTooltip="不能在任務中使用軍官能力。"
 strIntervention_WorldMessage="干預：-<XGPARAM:IntValue0>情報"
 strCollector_WorldMessage="收藏家：+1情報"
 FocussedFriendlyName="集中火力"
-FocussedFriendlyDesc="受集中火力影響的目標更容易被擊中。"
+FocussedFriendlyDesc="受集中火力影響的目標更容易被敵人擊中並傷害"
 
 [X2Effect_Scavenger]
 ;the string shown in world message for scavenged items

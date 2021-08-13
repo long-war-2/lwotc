@@ -4,60 +4,60 @@ m_strResetCurrentModOption="重置目前模組"
 [XComGameState_LWToolboxOptions]
 ToolboxTabName="戰役"
 
-HelpButtonLabel="有用資訊"
+HelpButtonLabel="有用信息"
 HelpButtonLabelText="幫助"
-HelpButtonLabelTooltip="顯示關於工具箱的資訊"
+HelpButtonLabelTooltip="顯示關於工具箱的信息"
 
-SetCameraRotation="設置視角旋轉（度）"
-SetCameraRotationTooltip="選取戰術任務中的視角旋轉角度。"
+SetCameraRotation="設置鏡頭旋轉（角度）"
+SetCameraRotationTooltip="選擇戰術任務中的鏡頭旋轉角度。"
 
-SelectSquadSize="預設小隊規模"
-SelectSquadSizeTooltip="提升預設小隊規模（在任何遊擊戰術學院獎勵之前）。"
+SelectSquadSize="默認小隊規模"
+SelectSquadSizeTooltip="提升默認小隊規模（在任何游擊戰術學校獎勵前）。"
 
 EnableRandomizedDamageMod="傷害輪盤"
-EnableRandomizedDamageModTooltip="根據其限定數值，XCOM和敵人武器傷害的基礎傷害將會波動。"
+EnableRandomizedDamageModTooltip="根據其限定數值，XCOM和敵人的武器傷害的基礎傷害將會波動。"
 
 EnableRandomizedInitialStatsMod="龍生九子"
-EnableRandomizedInitialStatsModTooltip="士兵們的基礎能力值將會以一個基準線進行隨機變動。如果此選項沒有開啟則他們會回到預設數值。該選項可在復仇者號內，或僅在戰術任務的第一回合內，並且沒有人受傷時啟用。"
+EnableRandomizedInitialStatsModTooltip="士兵們的基礎數值將會以一個基準線進行隨機。如果此選項沒有選定則他們會回到默認數值。該選項可在復仇者號內，或僅在戰術任務的第一回合內啟用，並且僅限在沒有人受傷時可用。"
 sCantChangeWithWoundedSoldiers="龍生九子無法在任何XCOM士兵受傷，或在戰術任務結束第一回合後啟用或關閉。"
 NormalDamage="關閉"
 MaxDamage="最大值"
 
 EnableRandomizedLevelupStatsMod="隱藏潛力"
-EnableRandomizedLevelupStatsModTooltip="在升級後士兵們會隨機提升能力值。"
+EnableRandomizedLevelupStatsModTooltip="在升級後士兵們會隨機提升數值。"
 
 RandomizedLevelupStrength="隨機性：<XGParam:IntValue0>%"
-RandomizedLevelupStrengthTooltip="當隱藏潛力啟用時隨機性的程度。更高的設定意味著士兵將有可能在升級時獲得更多的能力數值。"
+RandomizedLevelupStrengthTooltip="當隱藏潛力啟用時隨機性的程度。更高的設定意味著士兵將有可能在升級時獲得更多的數值增加。"
 
 EnableRedFogMod="紅色迷霧"
-EnableRedFogModTooltip="受傷的單位將受到瞄準、意志、移動力和駭客技能降低的懲罰。"
+EnableRedFogModTooltip="受傷的單位將受到瞄準，意志，移動力和黑客技能懲罰。"
 EnableRedFogLinearPenaltiesMod="使用線性血霧減益（而不是平方）"
-EnableRedFogModLinearPenaltiesTooltip="單位將會在受到輕傷時造成更多的能力值下降。"
+EnableRedFogModLinearPenaltiesTooltip="單位將會在輕傷時受到更高的數值懲罰。"
 RedFogOptions[0]="關閉"
 RedFogOptions[1]="僅限XCOM"
 RedFogOptions[2]="僅限外星人"
 RedFogOptions[3]="所有"
 
 EnableSimCombatMod="允許戰鬥自動處理"
-EnableSimCombatModTooltip="在小隊選項內啟用此設定，為目前選擇的小隊自動處理戰鬥任務。因為它與特定的官方DLC不相容，因此功能需要debug控制台開啟，並使用控制台命令LWSetAutoResolveEnabled true來啟動選項設定。僅推薦模組製作者將其作為debug工具使用。"
+EnableSimCombatModTooltip="在小隊選擇內啟用選項以為目前選擇的小隊自動處理戰鬥任務。因為它與特定的官方DLC不兼容，所以此功能需要debug控制台開啟，並使用控制台命令LWSetAutoResolveEnabled true來激活菜單選項。僅推薦模組製作者將其作為debug工具使用。"
 
 [X2Effect_RedFog_LW]
-RedFogEffectName="紅霧"
-RedFogEffectDesc="根據受傷程度降低角色能力值。"
+RedFogEffectName="血霧"
+RedFogEffectDesc="根據受傷程度降低角色數值。"
 
 [UISquadSelect_LW]
-m_strStripWeapons="使武器可供使用"
-m_strStripWeaponsConfirm="確認使武器可供使用"
+m_strStripWeapons="使武器可用"
+m_strStripWeaponsConfirm="確認使武器可用"
 
-m_strStripWeaponsConfirmDesc="確認卸下未被選入本次任務中的所有士兵武器。這些裝備可以立即給任何有需要的士兵使用。"
-m_strTooltipStripWeapons="移除所有沒有被選為當前任務的士兵所裝備的武器。"
+m_strStripWeaponsConfirmDesc="確認卸下未被選入本次任務的士兵的所有武器。這些裝備可以給任何需要的士兵立即裝備上。"
+m_strTooltipStripWeapons="移除所有沒有被選為目前任務的士兵的武器。"
 
 m_strTooltipNeedsFrontRowSoldier=""
 m_strClearSquad="清空小隊"
 m_strTooltipClearSquad="從小隊中移除所有士兵。"
 
 m_strAutofillSquad="自動填補小隊"
-m_strTooltipAutofillSquad="自動填補小隊位置的空缺。"
+m_strTooltipAutofillSquad="自動填補空置小隊位置。"
 
 m_strSimCombat="自動處理"
 m_strTooltipSimCombat="自動處理戰鬥。"
