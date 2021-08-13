@@ -28,7 +28,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 {
 	local XComGameState_Ability					AbilityState;
 	local XComGameState_Unit					TargetUnit;
-	local UnitValue								CEUsesThisTurn, HnRUsesThisTurn;
+	local UnitValue								CEUsesThisTurn, HnRUsesThisTurn, CheapShotUsesThisTurn;
 	local int									iUsesThisTurn;
 	
 	if (SourceUnit.IsUnitAffectedByEffectName(class'X2Effect_Serial'.default.EffectName))
@@ -59,6 +59,11 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	SourceUnit.GetUnitValue (class'X2Effect_HitandRun'.default.HNRUsesName, HnRUsesThisTurn);
 	iUsesThisTurn = int(HnRUsesThisTurn.fValue);
 
+	if (iUsesThisTurn >= 1)
+		return false;
+
+	SourceUnit.GetUnitValue (class'X2Effect_CheapShot'.default.CheapShotUsesName, CheapShotUsesThisTurn);
+	iUsesThisTurn = int(CheapShotUsesThisTurn.fValue);
 	if (iUsesThisTurn >= 1)
 		return false;
 

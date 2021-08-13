@@ -32,6 +32,7 @@ var config int DisablingShotBaseStunActions;
 var config int DisablingShotCritStunActions;
 var config float DisablingShotDamagePenalty;
 
+var config array<name> CHEAPSHOT_ABILITYNAMES;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -55,7 +56,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddPoisonedBlades());
 	Templates.AddItem(AddChargeBattery());
 	Templates.AddItem(AddParamedic());
-
+	Templates.AddItem(AddCheapShotAbility());
+	
 	return Templates;
 }
 
@@ -967,4 +969,29 @@ static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameStat
 
 	SoundAndFlyover = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
 	SoundAndFlyover.SetSoundAndFlyOverParameters(none, Ability.GetMyTemplate().LocFlyOverText, 'None', eColor_Good);
+}
+
+	static function X2AbilityTemplate AddCheapShotAbility()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_CheapShot				CheapShotEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'CheapShot');
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_crit_move2";
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	CheapShotEffect = new class'X2Effect_CheapShot';
+	CheapShotEffect.BuildPersistentEffect(1, true, false, false);
+	CheapShotEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
+	CheapShotEffect.DuplicateResponse = eDupe_Ignore;
+	CheapShotEffect.CHEAPSHOT_FULLACTION = false;
+	CheapShotEffect.CHEAPSHOT_ABILITYNAMES = default.CHEAPSHOT_ABILITYNAMES;
+	Template.AddTargetEffect(CheapShotEffect);
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	return Template;
 }
