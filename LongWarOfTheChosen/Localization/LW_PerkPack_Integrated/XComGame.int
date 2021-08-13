@@ -468,15 +468,15 @@ LocPromotionPopupText="<Bullet/> Cancels overwatch on targeted unit.<br/><Bullet
 [DamageControl X2AbilityTemplate]
 LocFriendlyName="Damage Control"
 LocFlyOverText="Damage Control"
-LocLongDescription="After taking damage, gain 2 armor through the end of the turn."
-LocHelpText="After taking damage, gain 2 armor through the end of the turn."
+LocLongDescription="After taking damage, gain 3 armor through the end of the turn."
+LocHelpText="After taking damage, gain 3 armor through the end of the turn."
 LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain 2 armor through the end of the next turn.
 
 [DamageControlPassive X2AbilityTemplate]
 LocFriendlyName="Damage Control"
 LocFlyOverText="Damage Control"
-LocLongDescription="After taking damage, gain 2 armor through the end of the turn."
-LocHelpText="After taking damage, gain 2 armor through the end of the turn."
+LocLongDescription="After taking damage, gain 3 armor through the end of the turn."
+LocHelpText="After taking damage, gain 3 armor through the end of the turn."
 LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain 2 armor through the end of the next turn.
 
 [Evasive X2AbilityTemplate]

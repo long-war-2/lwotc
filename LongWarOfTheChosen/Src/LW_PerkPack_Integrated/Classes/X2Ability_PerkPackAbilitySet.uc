@@ -126,6 +126,10 @@ var config int CE_USES_PER_TURN;
 var config int CE_MAX_TILES;
 var config array<name> CE_ABILITYNAMES;
 
+var config int WILLTOSURVIVE_DEF_PENALTY;
+var config float WTS_COVER_DR_PCT;
+
+
 var localized string LocCoveringFire;
 var localized string LocCoveringFireMalus;
 var localized string LocSoulStealBuff;
@@ -726,7 +730,7 @@ static function X2AbilityTemplate AddDepthPerceptionAbility()
 	return Template;
 }
 
-static function X2AbilityTemplate AddWilltoSurviveAbility()
+	static function X2AbilityTemplate AddWilltoSurviveAbility()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_WilltoSurvive				ArmorBonus;
@@ -742,16 +746,16 @@ static function X2AbilityTemplate AddWilltoSurviveAbility()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
 	ArmorBonus = new class 'X2Effect_WilltoSurvive';
+	ArmorBonus.WTS_DR = default.WTS_COVER_DR_PCT;
+
 	ArmorBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ArmorBonus.BuildPersistentEffect(1, true, false);
 	Template.AddTargetEffect(ArmorBonus);
 
 	WillBonus = new class'X2Effect_PersistentStatChange';
-	WillBonus.AddPersistentStatChange(eStat_Will, float(default.WILLTOSURVIVE_WILLBONUS));
+	WillBonus.AddPersistentStatChange(eStat_Defense, default.WILLTOSURVIVE_DEF_PENALTY);
 	WillBonus.BuildPersistentEffect (1, true, false, false, 7);
 	Template.AddTargetEffect(WillBonus);
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.WillLabel, eStat_Will, default.WILLTOSURVIVE_WILLBONUS);
-
 	Template.bCrossClassEligible = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  No visualization

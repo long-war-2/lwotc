@@ -30,34 +30,223 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
-	Templates.AddItem(DarkEventAbility_Aggression());
-	Templates.AddItem(DarkEventAbility_CenterMass());
-	Templates.AddItem(DarkEventAbility_CloseCombatSpecialist());
-	Templates.AddItem(DarkEventAbility_CombatAwareness());
+	Templates.AddItem(CreateDarkEventAbility('CloseCombatSpecialist','Captain'));
+	Templates.AddItem(CreateDarkEventAbility('CloseCombatSpecialist','Drone'));
+	Templates.AddItem(CreateDarkEventAbility('CloseCombatSpecialist','Andromdedon'));
+
+	Templates.AddItem(CreateDarkEventAbility('CombatAwareness','Gunner'));
+	Templates.AddItem(CreateDarkEventAbility('CombatAwareness','Sentry'));
+
+	Templates.AddItem(CreateDarkEventAbility('Concentration_LW','Sentry'));
+
+	Templates.AddItem(CreateDarkEventAbility('CoolUnderPressure','Sentry'));
+
+	Templates.AddItem(CreateDarkEventAbility('RapidReaction','Sentry'));
+
+	Templates.AddItem(CreateDarkEventAbility('HuntersInstinct','Sentry'));
+	Templates.AddItem(CreateDarkEventAbility('HuntersInstinct','Drone'));
+	Templates.AddItem(CreateDarkEventAbility('HuntersInstinct','Spectre'));
+
+	Templates.AddItem(CreateDarkEventAbility('SurvivalInstinct_LW','Viper'));
+
+	Templates.AddItem(CreateDarkEventAbility('GrazingFire','Gunner'));
+	Templates.AddItem(CreateDarkEventAbility('GrazingFire','Gunner'));
+
+	Templates.AddItem(CreateDarkEventAbility('Entwine_LW','Viper'));
+
+	Templates.AddItem(CreateDarkEventAbility('Serpentine','Viper'));
+	Templates.AddItem(CreateDarkEventAbility('Serpentine','Sidewinder'));
+
+	Templates.AddItem(CreateDarkEventAbility('Infighter','StunLancer'));
+	Templates.AddItem(CreateDarkEventAbility('Infighter','Viper'));
+	Templates.AddItem(CreateDarkEventAbility('Infighter','Priest'));
+	Templates.AddItem(CreateDarkEventAbility('Infighter','Spectre'));
+	Templates.AddItem(CreateDarkEventAbility('Infighter','Chryssalid'));
+
+	Templates.AddItem(CreateDarkEventAbility('Formidable','Trooper'));
+	Templates.AddItem(CreateDarkEventAbility('Formidable','Sidewinder'));
+	Templates.AddItem(CreateDarkEventAbility('Formidable','Shieldbearer'));
+
+	Templates.AddItem(CreateDarkEventAbility('Impulse_LW','Trooper'));
+	Templates.AddItem(CreateDarkEventAbility('Impulse_LW','Priest'));
+
+	Templates.AddItem(CreateDarkEventAbility('LockedOn','Trooper'));
+
+	Templates.AddItem(CreateDarkEventAbility('OpenFire_LW','Trooper'));
+	Templates.AddItem(CreateDarkEventAbility('OpenFire_LW','Gunner'));
+
+	Templates.AddItem(CreateDarkEventAbility('ChosenVenomRounds','Trooper'));
+
+	Templates.AddItem(CreateDarkEventAbility('Evasive','Trooper'));
+
+	Templates.AddItem(CreateDarkEventAbility('Mayhem','Gunner'));
+
+	Templates.AddItem(CreateDarkEventAbility('Holotargeting','Gunner'));
+
+	Templates.AddItem(CreateDarkEventAbility('Shredder','Gunner'));
+	Templates.AddItem(CreateDarkEventAbility('Shredder','Mec'));
+	Templates.AddItem(CreateDarkEventAbility('Shredder','Sectopod'));
+
+
+	Templates.AddItem(CreateDarkEventAbility('ShootingSharp_LW','Sectoid'));
+	Templates.AddItem(CreateDarkEventAbility('ShootingSharp_LW','Captain'));
+
+	Templates.AddItem(CreateDarkEventAbility('Aggression','Sectoid'));
+
+	Templates.AddItem(CreateDarkEventAbility('Predator_LW','Sectoid'));
+	Templates.AddItem(CreateDarkEventAbility('Predator_LW','Drone'));
+	Templates.AddItem(CreateDarkEventAbility('Predator_LW','Sidewinder'));
+	Templates.AddItem(CreateDarkEventAbility('Predator_LW','Muton'));
+
+	Templates.AddItem(CreateDarkEventAbility('ApexPredator_LW','Sectoid'));
+	Templates.AddItem(CreateDarkEventAbility('ApexPredator_LW','Drone'));
+
+	Templates.AddItem(CreateDarkEventAbility('MindShield','Sectoid'));
+	Templates.AddItem(CreateDarkEventAbility('MindShield','Priest'));
+
+	Templates.AddItem(CreateDarkEventAbility('Solace','Priest'));
+	Templates.AddItem(CreateDarkEventAbility('Solace','Sectoid'));
+
+
+	Templates.AddItem(CreateDarkEventAbility('Dominant_LW','Sectoid'));
+	Templates.AddItem(CreateDarkEventAbility('Dominant_LW','Priest'));
+
+	Templates.AddItem(CreateDarkEventAbility('AimAssist_LW','Captain'));
+
+	Templates.AddItem(CreateDarkEventAbility('Executioner_LW','Captain'));
+
+
+	Templates.AddItem(CreateDarkEventAbility('OverBearingSuperiority_LW','Captain'));
+
+	Templates.AddItem(CreateDarkEventAbility('Brawler','Drone'));
+
+
+
+	Templates.AddItem(CreateDarkEventAbility('FreeGrenades','StunLancer'));
+
+	Templates.AddItem(CreateDarkEventAbility('Bladestorm','StunLancer'));
+
+	Templates.AddItem(CreateDarkEventAbility('ParalyzingBlows','StunLancer'));
+	Templates.AddItem(CreateDarkEventAbility('ParalyzingBlows','Drone'));
+	Templates.AddItem(CreateDarkEventAbility('ParalyzingBlows','Berserker'));
+
+	Templates.AddItem(CreateDarkEventAbility('HazmatVestBonus_LW','Viper'));
+
+	Templates.AddItem(CreateDarkEventAbility('Grit_LW','Priest'));
+	Templates.AddItem(CreateDarkEventAbility('Grit_LW','Muton'));
+	Templates.AddItem(CreateDarkEventAbility('Grit_LW','Chryssalid'));
+
+	Templates.AddItem(CreateDarkEventAbility('SuperiorHolyWarrior','Priest'));
+
+	Templates.AddItem(CreateDarkEventAbility('ChosenDragonRounds','Priest'));
+
+	Templates.AddItem(CreateDarkEventAbility('QuickRetreat','Sidewinder'));
+
+	Templates.AddItem(CreateDarkEventAbility('Magnum_LW','Purifier'));
+
+	Templates.AddItem(CreateDarkEventAbility('LowProfile','Purifier'));
+
+	Templates.AddItem(CreateDarkEventAbility('Overkill_LW','Purifier'));
+
+	Templates.AddItem(CreateDarkEventAbility('Sprinter','Purifier'));
+	Templates.AddItem(CreateDarkEventAbility('Sprinter','Muton'));
+	Templates.AddItem(CreateDarkEventAbility('Sprinter','Mec'));
+	Templates.AddItem(CreateDarkEventAbility('Sprinter','Spectre'));
+	Templates.AddItem(CreateDarkEventAbility('Sprinter','Berserker'));
+
+	Templates.AddItem(CreateDarkEventAbility('ReturnFire','Purifier'));
+
+	Templates.AddItem(CreateDarkEventAbility('InstantReactionTime','Purifier'));
+	Templates.AddItem(CreateDarkEventAbility('InstantReactionTime','Sectoid'));
+	Templates.AddItem(CreateDarkEventAbility('InstantReactionTime','Chryssalid'));
+
+	Templates.AddItem(CreateDarkEventAbility('Bladestorm','Muton'));
+
+	Templates.AddItem(CreateDarkEventAbility('TotalCombat','Muton'));
+
+	Templates.AddItem(CreateDarkEventAbility('FreeGrenades','Trooper'));
+
+	Templates.AddItem(CreateDarkEventAbility('ZoneOfControl_LW','Muton'));
+	Templates.AddItem(CreateDarkEventAbility('ZoneOfControl_LW','Berserker'));
+	Templates.AddItem(CreateDarkEventAbility('ZoneOfControl_LW','StunLancer'));
+
+	Templates.AddItem(CreateDarkEventAbility('Resilience','Mec'));
+	Templates.AddItem(CreateDarkEventAbility('Resilience','Cyberus'));
+	Templates.AddItem(CreateDarkEventAbility('Resilience','Berserker'));
+
+	Templates.AddItem(CreateDarkEventAbility('VolatileMix','Mec'));
+	Templates.AddItem(CreateDarkEventAbility('VolatileMix','Andromedon'));
+
+	Templates.AddItem(CreateDarkEventAbility('AbsorptionFields_LW','Mec'));
+
+	Templates.AddItem(CreateDarkEventAbility('PrimaryReturnFire','Mec'));
+	Templates.AddItem(CreateDarkEventAbility('PrimaryReturnFire','Sectopod'));
+
+	Templates.AddItem(CreateDarkEventAbility('Predator_LW','Cyberus'));
+
+	Templates.AddItem(CreateDarkEventAbility('ApexPredator_LW','Cyberus'));
+
+	Templates.AddItem(CreateDarkEventAbility('LowProfile','Cyberus'));
+	Templates.AddItem(CreateDarkEventAbility('LowProfile','Spectre'));
+	Templates.AddItem(CreateDarkEventAbility('LowProfile','Shieldbearer'));
+
+	Templates.AddItem(CreateDarkEventAbility('Brawler','Shieldbearer'));
+	
+	Templates.AddItem(CreateDarkEventAbility('Formidable','Shieldbearer'));
+
+	Templates.AddItem(CreateDarkEventAbility('ChosenDragonRounds','Shieldbearer'));
+
+	Templates.AddItem(CreateDarkEventAbility('ReadyForAnything','Shieldbearer'));
+
+	Templates.AddItem(CreateDarkEventAbility('Bladestorm','Berserker'));
+
+	Templates.AddItem(CreateDarkEventAbility('DamageControl','Berserker'));
+
+	Templates.AddItem(DarkEventAbility_GreaterFaceless());
+
+	Templates.AddItem(CreateDarkEventAbility('MovingTarget_LW','Chryssalid'));
+
+	Templates.AddItem(CreateDarkEventAbility('ParalyzingBlows','Chryssalid'));
+
+	Templates.AddItem(CreateDarkEventAbility('Sprinter','Andromedon'));
+	
+	Templates.AddItem(CreateDarkEventAbility('CoolUnderPressure','Archon'));
+
+	Templates.AddItem(CreateDarkEventAbility('HardTarget','Archon'));
+	Templates.AddItem(CreateDarkEventAbility('HardTarget','Gatekeeper'));
+
+	Templates.AddItem(CreateDarkEventAbility('SuperDuperRobot','AndromdedonRobot'));
+
+	Templates.AddItem(CreateDarkEventAbility('Defilade','Gatekeeper'));
+
+	/*	
+
+	//Templates.AddItem(CreateDarkEventAbility('Cutthroat','StunLancer');
+	//Templates.AddItem(CreateDarkEventAbility('Cutthroat','Motun');
+
+	//Templates.AddItem(DarkEventAbility_Aggression());
+	//Templates.AddItem(DarkEventAbility_CenterMass());
+	//Templates.AddItem(DarkEventAbility_CombatAwareness());
 	Templates.AddItem(DarkEventAbility_Cutthroat());
 	Templates.AddItem(DarkEventAbility_DamageControl());
 	Templates.AddItem(DarkEventAbility_Formidable());
-	Templates.AddItem(DarkEventAbility_GrazingFire());
-	Templates.AddItem(DarkEventAbility_GreaterFaceless());
+	Templates.AddItem(DarkEventAbility_GrazingFire(,'Sentry'));
+	Templates.AddItem(DarkEventAbility_GrazingFire(,'Gunner'));
 	Templates.AddItem(DarkEventAbility_HardTarget());
 	Templates.AddItem(DarkEventAbility_HuntersInstinct());
-	Templates.AddItem(DarkEventAbility_Infighter());
-	Templates.AddItem(DarkEventAbility_IronSkin());
-	Templates.AddItem(DarkEventAbility_Lethal());
+
 	Templates.AddItem(DarkEventAbility_LightningReflexes());
 	Templates.AddItem(DarkEventAbility_Resilience());
 	Templates.AddItem(DarkEventAbility_Sapper());
-	Templates.AddItem(DarkEventAbility_Shadowstep());
-	Templates.AddItem(DarkEventAbility_Shredder());
 	Templates.AddItem(DarkEventAbility_TacticalSense());
-	Templates.AddItem(DarkEventAbility_WilltoSurvive());
-	
+	Templates.AddItem(DarkEventAbility_SurvivalInstinct_LW());
+	*/
 	return Templates;
 }
 
-static function X2AbilityTemplate DarkEventAbility_Aggression(name BaseAbilityName = 'Aggression')
+static function X2AbilityTemplate CreateDarkEventAbility(name BaseAbilityName = 'Aggression', name EnemyTag = '')
 {
-	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ BaseAbilityName));
+	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ EnemyTag $ BaseAbilityName), EnemyTag);
 }
 
 static function X2AbilityTemplate DarkEventAbility_CenterMass(name BaseAbilityName = 'CenterMass')
@@ -65,9 +254,9 @@ static function X2AbilityTemplate DarkEventAbility_CenterMass(name BaseAbilityNa
 	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ BaseAbilityName));
 }
 
-static function X2AbilityTemplate DarkEventAbility_CloseCombatSpecialist(name BaseAbilityName = 'CloseCombatSpecialist')
+static function X2AbilityTemplate DarkEventAbility_CloseCombatSpecialist(name BaseAbilityName = 'CloseCombatSpecialist', name EnemyTag = '')
 {
-	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ BaseAbilityName));
+	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ EnemyTag $ BaseAbilityName));
 }
 
 static function X2AbilityTemplate DarkEventAbility_CombatAwareness(name BaseAbilityName = 'CombatAwareness')
@@ -90,9 +279,9 @@ static function X2AbilityTemplate DarkEventAbility_Formidable(name BaseAbilityNa
 	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ BaseAbilityName));
 }
 
-static function X2AbilityTemplate DarkEventAbility_GrazingFire(name BaseAbilityName = 'GrazingFire')
+static function X2AbilityTemplate DarkEventAbility_GrazingFire(name BaseAbilityName = 'GrazingFire', name EnemyTag = '')
 {
-	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ BaseAbilityName));
+	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ EnemyTag $  BaseAbilityName));
 }
 
 static function X2AbilityTemplate DarkEventAbility_GreaterFaceless(name BaseAbilityName = 'GreaterFacelessStatImprovements')
@@ -160,7 +349,7 @@ static function X2AbilityTemplate DarkEventAbility_WilltoSurvive(name BaseAbilit
 	return ConfigureDarkEventAbility(BaseAbilityName, name('DarkEvent_' $ BaseAbilityName));
 }
 
-static protected function X2AbilityTemplate ConfigureDarkEventAbility(name AbilityName, name TacticalTag)
+static protected function X2AbilityTemplate ConfigureDarkEventAbility(name AbilityName, name TacticalTag, name EnemyTag = '')
 {
 	local X2AbilityTemplate					Template;
 	local X2Condition_GameplayTag			GameplayCondition;
@@ -169,7 +358,7 @@ static protected function X2AbilityTemplate ConfigureDarkEventAbility(name Abili
 	local DarkEventAbilityDefinition		AbilityDefinition;
 	local int idx;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, name("DarkEventAbility_" $ AbilityName));
+	`CREATE_X2ABILITY_TEMPLATE(Template, name("DarkEventAbility_" $ EnemyTag $ AbilityName));
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_standard";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;

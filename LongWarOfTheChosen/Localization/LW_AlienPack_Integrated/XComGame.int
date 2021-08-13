@@ -117,7 +117,7 @@ LocPromotionPopupText="<Bullet/> After taking damage, gain two armor through the
 strBayonetChargePenalty="Centurion suffers <XGParam:IntValue1/> Defense for <XGParam:IntValue0/> turns."
 
 [MutonM2_LW X2CharacterTemplate]
-strCharacterName="Muton Centurion"
+strCharacterName="Advanced Muton"
 
 [MutonM2_LW_Wpn X2WeaponTemplate]
 FriendlyName="Centurion Rifle"
@@ -143,7 +143,7 @@ FriendlyName="Bayonet"
 ;;;;;;;;;;;;;;;;;;;;;;;;;; MutonM3_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [MutonM3_LW X2CharacterTemplate]
-strCharacterName="Muton Elite"
+strCharacterName="Muton Centurion"
 
 [MutonM3_LW_Wpn X2WeaponTemplate]
 FriendlyName="Elite Plasma Cannon"
@@ -161,6 +161,11 @@ ThrownAbilityHelpText="Throw an Alien Grenade at target area."
 LaunchedAbilityName="Launch Alien Grenade"
 LaunchedAbilityHelpText="Launch an Alien Grenade at target area. Shreds armor."
 
+[MutonM4_LW X2CharacterTemplate]
+strCharacterName="Muton Elite"
+
+[MutonM5_LW X2CharacterTemplate]
+strCharacterName="Bashar"
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Naja ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [NajaM1 X2CharacterTemplate]
@@ -196,10 +201,16 @@ AbilityDescName="sniper rifle"
 strCharacterName="Sidewinder"
 
 [SidewinderM2 X2CharacterTemplate]
-strCharacterName="Sidewinder Serpens"
+strCharacterName="Advanced Sidewinder"
 
 [SidewinderM3 X2CharacterTemplate]
-strCharacterName="Sidewinder Elite"
+strCharacterName="Elite Sidewinder"
+
+[SidewinderM4 X2CharacterTemplate]
+strCharacterName="Supreme Sidewinder"
+
+[SidewinderM5 X2CharacterTemplate]
+strCharacterName="Whisper"
 
 [SidewinderM1_WPN X2WeaponTemplate]
 FriendlyName="Sidewinder Scramgun"
@@ -222,10 +233,16 @@ AbilityDescName="scramgun"
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Viper ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [ViperM2_LW X2CharacterTemplate]
-strCharacterName="Viper Serpens"
+strCharacterName="Advanced Viper"
 
 [ViperM3_LW X2CharacterTemplate]
-strCharacterName="Viper Elite"
+strCharacterName="Elite Viper"
+
+[ViperM4_LW X2CharacterTemplate]
+strCharacterName="Supreme Viper"
+
+[ViperM5_LW X2CharacterTemplate]
+strCharacterName="Typhon"
 
 [ViperM2_LW_WPN X2WeaponTemplate]
 FriendlyName="Beam Rifle"
@@ -244,12 +261,50 @@ AbilityDescName="plasma rifle"
 [ArchonM2_LW X2CharacterTemplate]
 strCharacterName="Great Archon"
 
+[ArchonM3_LW X2CharacterTemplate]
+strCharacterName="Archon Reaver"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;; SectoidM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [SectoidM2_LW X2CharacterTemplate]
-strCharacterName="Sectoid Commander"
+strCharacterName="Advanced Sectoid"
+
+[SectoidM3_LW X2CharacterTemplate]
+strCharacterName="Elite Sectoid"
+
+[SectoidM4_LW X2CharacterTemplate]
+strCharacterName="Supreme Sectoid"
+
+[SectoidM5_LW X2CharacterTemplate]
+strCharacterName="Reticulian"
+
+;;;;;;;;;;;;;;;;;;;;;;;;;; Troopers ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[AdvTrooperM4 X2CharacterTemplate]
+strCharacterName="Supreme Trooper"
+
+[AdvTrooperM5 X2CharacterTemplate]
+strCharacterName="ADVENT Shock Trooper"
+
+
+;;zerkers;;
+[BerserkerM2 X2CharacterTemplate]
+strCharacterName="Elite Berserker"
+
+[BerserkerM3 X2CharacterTemplate]
+strCharacterName="Supreme Berserker"
+
+[BerserkerM4 X2CharacterTemplate]
+strCharacterName="Mongo"
+
+;;;;;;;;;;;;;;;;;;;;;;;;;; Lancer ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[AdvStunLancerM4 X2CharacterTemplate]
+strCharacterName="Supreme Lancer"
+
+[AdvStunLancerM5 X2CharacterTemplate]
+strCharacterName="Advent Praetorian"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvGunnerM1 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 
 [AdvGunnerM1 X2CharacterTemplate]
 strCharacterName="ADVENT Gunner"
@@ -261,7 +316,7 @@ AbilityDescName="cannon"
 ; End translation
 
 [AdvGunnerM2 X2CharacterTemplate]
-strCharacterName="ADVENT Heavy Gunner"
+strCharacterName="Advanced Gunner"
 
 [AdvGunnerM2_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
@@ -270,7 +325,7 @@ AbilityDescName="cannon"
 ; End translation
 
 [AdvGunnerM3 X2CharacterTemplate]
-strCharacterName="ADVENT Elite Gunner"
+strCharacterName="Elite Gunner"
 
 [AdvGunnerM3_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
@@ -278,6 +333,11 @@ FriendlyName="AutoMag"
 AbilityDescName="cannon"
 ; End translation
 
+[AdvGunnerM4 X2CharacterTemplate]
+strCharacterName="Supreme Gunner"
+
+[AdvGunnerM5 X2CharacterTemplate]
+strCharacterName="Advent Heavy"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvSentryM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -291,7 +351,7 @@ AbilityDescName="mag rifle"
 ; End translation
 
 [AdvSentryM2 X2CharacterTemplate]
-strCharacterName="ADVENT Guardian"
+strCharacterName="Advanced Sentry"
 
 [AdvSentryM2_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
@@ -300,13 +360,19 @@ AbilityDescName="mag rifle"
 ; End translation
 
 [AdvSentryM3 X2CharacterTemplate]
-strCharacterName="ADVENT Sentinel"
+strCharacterName="Elite Sentry"
 
 [AdvSentryM3_WPN X2WeaponTemplate]
 FriendlyName="ADVENT Mag Rifle"
 ; LWOTC Needs Translation
 AbilityDescName="mag rifle"
 ; End translation
+
+[AdvSentryM4 X2CharacterTemplate]
+strCharacterName="Supreme Sentry"
+
+[AdvSentryM5 X2CharacterTemplate]
+strCharacterName="Advent Guardian"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvGrenadierM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -377,13 +443,28 @@ FriendlyName="ADVENT Rocket Launcher"
 [AdvMec_M3_LW X2CharacterTemplate]
 strCharacterName="Superheavy MEC"
 
+[AdvMec_M4_LW X2CharacterTemplate]
+strCharacterName="Supreme MEC"
+
+[AdvMec_M5_LW X2CharacterTemplate]
+strCharacterName="Advent Gundham"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;; DroneM1-2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [LWDroneM1 X2CharacterTemplate]
 strCharacterName="ADVENT Surveillance Drone"
 
 [LWDroneM2 X2CharacterTemplate]
-strCharacterName="ADVENT Hunter Drone"
+strCharacterName="Advanced Drone"
+
+[LWDroneM3 X2CharacterTemplate]
+strCharacterName="Elite Drone"
+
+[LWDroneM4 X2CharacterTemplate]
+strCharacterName="Advent Hunter Drone"
+
+[LWDroneM5 X2CharacterTemplate]
+strCharacterName="Omega Drone"
 
 [LWDroneM1_WPN X2WeaponTemplate]
 FriendlyName="Drone Shock"
@@ -439,6 +520,19 @@ LocFriendlyName="Greater Chryssalid Slash"
 LocLongDescription="Your slash attacks do lots of damage."
 LocHelpText="Your slash attacks do lots of damage."
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;; Lids ;;;;;;;;;;;;;;;;;;;;;;;;
+
+[ChryssalidM2 X2CharacterTemplate]
+strCharacterName="Advanced Chryssalid"
+
+[ChryssalidM3 X2CharacterTemplate]
+strCharacterName="Elite Chryssalid"
+
+[ChryssalidM4 X2CharacterTemplate]
+strCharacterName="Supreme Chryssalid"
+
+[ChryssalidM5 X2CharacterTemplate]
+strCharacterName="Chryssalid Warrior"
 ;;;;;;;;;;;;;;;;;;;;;;;;; Additional ADVENT Trooper types ;;;;;;;;;;;;;;;;;;;;;;;;
 
 [AdvSergeantM1 X2CharacterTemplate]
@@ -512,3 +606,67 @@ FriendlyName="ADVENT Mag Rifle"
 ; LWOTC Needs Translation
 AbilityDescName="mag rifle"
 ; End translation
+
+;Shieldbearers
+
+[AdvShieldbearerM4 X2CharacterTemplate]
+strCharacterName="Supreme Shieldbearer"
+
+[AdvShieldbearerM5 X2CharacterTemplate]
+strCharacterName="ADVENT Vanguard"
+
+;Andromedons
+
+[AndromedonM2 X2CharacterTemplate]
+strCharacterName="Supreme Andromedon"
+
+[AndromedonM3 X2CharacterTemplate]
+strCharacterName="Titan"
+
+[AndromedonRobotM2 X2CharacterTemplate]
+strCharacterName="Hardened Shell"
+
+[AndromedonRobotM3 X2CharacterTemplate]
+strCharacterName="Superior Shell"
+
+;Sectopods
+
+[SectopodM2 X2CharacterTemplate]
+strCharacterName="Supreme Sectopod"
+
+[SectopodM3 X2CharacterTemplate]
+strCharacterName="Atlas"
+
+;Gatekeeper
+
+[GatekeeperM2 X2CharacterTemplate]
+strCharacterName="Supreme Gatekeeper"
+
+[GatekeeperM2 X2CharacterTemplate]
+strCharacterName="Dreadnought"
+
+;psi zombies
+[PsiZombieM2 X2CharacterTemplate]
+strCharacterName="Psi Zombie"
+
+[PsiZombieHumanM2 X2CharacterTemplate]
+strCharacterName="Psi Zombie"
+
+[PsiZombieM3 X2CharacterTemplate]
+strCharacterName="Psi Zombie"
+
+[PsiZombieHumanM3 X2CharacterTemplate]
+strCharacterName="Psi Zombie"
+
+[PsiZombieM4 X2CharacterTemplate]
+strCharacterName="Psi Zombie"
+
+[PsiZombieHumanM4 X2CharacterTemplate]
+strCharacterName="Psi Zombie"
+
+[PsiZombieM5 X2CharacterTemplate]
+strCharacterName="Psi Zombie"
+
+[PsiZombieHumanM5 X2CharacterTemplate]
+strCharacterName="Psi Zombie"
+

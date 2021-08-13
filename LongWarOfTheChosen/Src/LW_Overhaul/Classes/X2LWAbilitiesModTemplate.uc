@@ -46,8 +46,13 @@ var config int MIND_SCORCH_BURN_CHANCE;
 
 var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
 
+var config WeaponDamageValue EMPTY_DAMAGE_VALUE;
 var config array<name> PISTOL_ABILITY_WEAPON_CATS;
 
+var config int BIND_M2_BONUSDAMAGE;
+var config int BIND_M3_BONUSDAMAGE;
+var config int BIND_M4_BONUSDAMAGE;
+var config int BIND_M5_BONUSDAMAGE;
 // Data structure for multi-shot abilities that need patching
 struct MultiShotAbility
 {
@@ -141,9 +146,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakeBladestormNotTriggerOnItsTurn(Template);
 			Template.PostActivationEvents.AddItem('BladestormActivated');
 			break;
+
+		case 'Bind':
+		case 'BindSustained':
+		MakeBindDamageScale(Template);
 		//At this point trying to figure out why AI does not do the thing it's supposed to do takes way longer than just doing this
 		case 'GetOverHere':
-		case 'Bind':
 		case 'KingGetOverHere':
 			MakeAbilitiesUnusableOnLost(Template);
 			break;
@@ -216,6 +224,38 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'MindShield':
 			DisplayMindShieldPassive(Template);
 			break;
+		case 'BidDamnPunch':
+		case 'DevastatingPunch':
+			RemoveAbilityWeaponDamage(Template);
+			break;
+		case 'MarkTarget':
+		case 'MindSpin':
+		case 'MassMindSpin':
+		class'Helpers_LW'.static.MakeFreeAction(Template);
+			break;
+
+		case 'PsiReanimation':
+		case 'MassReanimation_LW':
+			MakeAbilityNonTurnEnding(Template);
+			break;			
+
+		case 'StunLance':
+		case 'ShadowBind':
+		case 'Bayonet':
+		case 'BigDamnPunch':
+		case 'StandardMelee':
+			MakeMeleeBlueMove(Template);
+			break;
+
+		case 'HolyWarriorM1':
+		case 'HolyWarriorM2':
+		case 'HolyWarriorM3':
+		case 'HolyWarriorM4':
+		case 'HolyWarriorM5':
+			AddSuperiorholyWarrior(Template);
+			break;
+			
+
 		default:
 			break;
 
@@ -1317,7 +1357,109 @@ static function name GetMultiShotContinueUnitValueName(name AbilityName)
 {
 	return name(AbilityName $ "Continue");
 }
+	
 
+static function RemoveAbilityWeaponDamage(X2AbilityTemplate Template)
+{
+	local X2Effect_ApplyWeaponDamage  WeaponDamage;
+	local X2Effect TempEffect;
+
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_mindshield";
+	foreach Template.AbilityTargetEffects( TempEffect )
+	{
+		if ( X2Effect_ApplyWeaponDamage(TempEffect) != none )
+		{
+			WeaponDamage = X2Effect_ApplyWeaponDamage(TempEffect);
+			WeaponDamage.EffectDamageValue = default.EMPTY_DAMAGE_VALUE;
+		}
+	}
+}
+
+
+static function MakeBindDamageScale(X2AbilityTemplate Template)
+{
+	local X2Condition_AbilityProperty	BindM2Condition, BindM3Condition,BindM4Condition,BindM5Condition;
+	local X2Effect_ApplyWeaponDamage    PhysicalDamageEffect;
+
+
+	BindM2Condition = new class 'X2Condition_AbilityProperty';
+	BindM2Condition.OwnerHasSoldierAbilities.addItem('BindM2Damage');
+
+	BindM3Condition = new class 'X2Condition_AbilityProperty';
+	BindM3Condition.OwnerHasSoldierAbilities.addItem('BindM3Damage');
+
+	BindM4Condition = new class 'X2Condition_AbilityProperty';
+	BindM4Condition.OwnerHasSoldierAbilities.addItem('BindM4Damage');
+
+	BindM5Condition = new class 'X2Condition_AbilityProperty';
+	BindM5Condition.OwnerHasSoldierAbilities.addItem('BindM5Damage');
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue.Damage = default.BIND_M2_BONUSDAMAGE;
+	PhysicalDamageEffect.DamageTypes.AddItem('ViperCrush');
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	PhysicalDamageEffect.bIgnoreArmor = true;
+	PhysicalDamageEffect.TargetConditions.AddItem(BindM2Condition);
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue.Damage = default.BIND_M3_BONUSDAMAGE;
+	PhysicalDamageEffect.DamageTypes.AddItem('ViperCrush');
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	PhysicalDamageEffect.bIgnoreArmor = true;
+	PhysicalDamageEffect.TargetConditions.AddItem(BindM3Condition);
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue.Damage = default.BIND_M4_BONUSDAMAGE;
+	PhysicalDamageEffect.DamageTypes.AddItem('ViperCrush');
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	PhysicalDamageEffect.bIgnoreArmor = true;
+	PhysicalDamageEffect.TargetConditions.AddItem(BindM4Condition);
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue.Damage = default.BIND_M5_BONUSDAMAGE;
+	PhysicalDamageEffect.DamageTypes.AddItem('ViperCrush');
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	PhysicalDamageEffect.bIgnoreArmor = true;
+	PhysicalDamageEffect.TargetConditions.AddItem(BindM5Condition);
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+}
+
+static function MakeMeleeBlueMove(X2AbilityTemplate Template)
+{
+	local X2AbilityTarget_MovingMelee			MeleeTarget;
+
+	MeleeTarget = new class'X2AbilityTarget_MovingMelee';
+	MeleeTarget.MovementRangeAdjustment = 1;
+	Template.AbilityTargetStyle = MeleeTarget;
+	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
+}
+
+
+static function AddSuperiorHolyWarrior(X2AbilityTemplate Template)
+{
+	local X2Condition_AbilityProperty	HolyWarriorCondition;
+	local X2Effect_PersistentStatChange    HolyWarriorEffect;
+
+
+	HolyWarriorCondition = new class 'X2Condition_AbilityProperty';
+	HolyWarriorCondition.OwnerHasSoldierAbilities.addItem('SuperiorHolyWarrior');
+
+	HolyWarriorEffect = new class'X2Effect_PersistentStatChange';
+	HolyWarriorEffect.EffectName = 'SuperiorHolyWarrior';
+	HolyWarriorEffect.DuplicateResponse = eDupe_Ignore;
+	HolyWarriorEffect.BuildPersistentEffect(1, true, false, true);
+	HolyWarriorEffect.bRemoveWhenTargetDies = true;
+	HolyWarriorEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
+	HolyWarriorEffect.AddPersistentStatChange(eStat_CritChance, 30);
+	HolyWarriorEffect.TargetConditions.AddItem(HolyWarriorCondition);
+	Template.AddTargetEffect(HolyWarriorEffect);
+
+
+}
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
