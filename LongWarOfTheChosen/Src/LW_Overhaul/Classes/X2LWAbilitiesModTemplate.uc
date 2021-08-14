@@ -639,7 +639,7 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 		}
 	}	
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone';
 
 	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
@@ -660,7 +660,7 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 
 	// For vanilla targeting
 	Template.PostActivationEvents.AddItem('FlamethrowerActivated');
-	Template.ActionFireClass = class'X2Action_Fire_Flamethrower_LW';
+	Template.ActionFireClass = class'X2Action_Fire_Flamethrower_Purifier';
 
 	//Template.BuildVisualizationFn = class'X2Ability_LW_TechnicalAbilitySet'.static.LWFlamethrower_BuildVisualization;
 
