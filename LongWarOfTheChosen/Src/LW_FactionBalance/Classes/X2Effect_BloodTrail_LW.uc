@@ -13,6 +13,22 @@ var int DodgeReductionBonus;
 function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
 {
 	local XComGameState_Unit TargetUnit;
+	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
+
+
+	if (X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).WeaponCat == 'grenade')
+	{
+		return 0;
+	}
+
+	WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
+	if (WeaponDamageEffect != none)
+	{
+		if (WeaponDamageEffect.bIgnoreBaseDamage)
+		{
+			return 0;
+		}
+	}
 
 	if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) && AbilityState.IsAbilityInputTriggered())
 	{
