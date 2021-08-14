@@ -536,7 +536,7 @@ static function X2AbilityTemplate CreateStreetSweeperBonusDamageAbility()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	
 	return Template;
-
+}
 
 static function X2AbilityTemplate CreateChainLightningAbility()
 {
