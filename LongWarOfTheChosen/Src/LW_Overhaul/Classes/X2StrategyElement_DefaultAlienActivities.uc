@@ -2211,10 +2211,13 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 
 	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 
-	If (RegionState == none)
-	{
-		`LWTRACE ("Repression activity created and ended with no primary region!");
-		return;
+	if (RegionState == none)
+	{	
+	   	RegionState = XComGameState_WorldRegion(`XCOMHistory.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));		
+	   	if (RegionState == none) {
+			`LWTRACE ("Repression activity created and ended with no primary region!");
+			return;
+	   	}
 	}
 
 	if (RegionState.HaveMadeContact() || RegionIsLiberated(RegionState, NewGameState))
@@ -2228,7 +2231,7 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 	AIChange = false;
 	OPChange = false;
 
-	iRoll == `SYNC_RAND_STATIC (100);
+	iRoll = `SYNC_RAND_STATIC (100);
 	if (iRoll < default.REPRESSION_ADVENT_LOSS_CHANCE)
 	{
 		NewRegionalAI.AddVigilance (NewGameState, 1);
@@ -2236,7 +2239,7 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 		AIChange = true;
 	}
 
-	iRoll == `SYNC_RAND_STATIC (100);
+	iRoll = `SYNC_RAND_STATIC (100);
 	if (iRoll < default.REPRESSION_RECRUIT_REBEL_CHANCE)
 	{
 		NewUnitRef = NewOutpostState.CreateRebel(NewGameState, RegionState, true);
@@ -2244,15 +2247,15 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 		OPChange = true;
 	}
 
-	iRoll == `SYNC_RAND_STATIC (100);
+	iRoll = `SYNC_RAND_STATIC (100);
 	if (iRoll < default.REPRESSION_VIGILANCE_INCREASE_CHANCE)
 	{
 		NewRegionalAI.AddVigilance (NewGameState, 1);
 		AIChange = true;
 	}
 
-	iRoll == `SYNC_RAND_STATIC (100);
-	if (iRoll > default.REPRESSION_REBEL_LOST_CHANCE)
+	iRoll = `SYNC_RAND_STATIC (100);
+	if (iRoll < default.REPRESSION_REBEL_LOST_CHANCE)
 	{
 		if (OutPostState.Rebels.length > 1)
 		{
@@ -2267,14 +2270,14 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 		}
 	}
 
-	iRoll == `SYNC_RAND_STATIC (100);
+	iRoll = `SYNC_RAND_STATIC (100);
 	if (iRoll < default.REPRESSION_CLONES_RELEASED_CHANCE)
 	{
 		NewRegionalAI.LocalAlertLevel += 1;
 		AIChange = true;
 	}
 
-	iRoll == `SYNC_RAND_STATIC (100);
+	iRoll = `SYNC_RAND_STATIC (100);
 	if (iRoll < default.REPRESSION_2ND_REBEL_LOST_CHANCE)
 	{
 		if (OutPostState.Rebels.length > 1)
@@ -2295,7 +2298,6 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 		NewGameState.AddStateObject(NewRegionalAI);
 
 	`LWTRACE("Repression Finished" @ RegionState.GetMyTemplate().DisplayName @ "Roll:" @ string (iRoll) @ "Rebels left:" @ string (NewOutPostState.Rebels.length));
-
 }
 
 // ########################
