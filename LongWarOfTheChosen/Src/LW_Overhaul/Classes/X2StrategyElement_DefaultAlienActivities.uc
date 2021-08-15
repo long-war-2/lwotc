@@ -2229,18 +2229,22 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 {
 	local XComGameState_WorldRegion_LWStrategyAI	NewRegionalAI;
 	local XComGameState_WorldRegion					RegionState;
-    local XComGameState_LWOutpost					Outpoststate, NewOutpostState;
-	local XComGameState_LWOutpostManager			OutPostManager;
-	local int										iRoll, RebelToRemove;
+    local XComGameState_LWOutpost					OutpostState, NewOutpostState;
+	local XComGameState_LWOutpostManager			OutpostManager;
 	local StateObjectReference						NewUnitRef;
+	local array<StateObjectReference>				NonFacelessRebels;
+	local int										iRoll, RebelToRemove;
 	local bool										AIchange, OPChange;
 
 	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 
-	If (RegionState == none)
-	{
-		`LWTRACE ("Repression activity created and ended with no primary region!");
-		return;
+	if (RegionState == none)
+	{	
+	   	RegionState = XComGameState_WorldRegion(`XCOMHistory.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));		
+	   	if (RegionState == none) {
+			`LWTRACE ("Repression activity created and ended with no primary region!");
+			return;
+	   	}
 	}
 
 	if (RegionState.HaveMadeContact() || RegionIsLiberated(RegionState, NewGameState))
@@ -2249,20 +2253,20 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 	NewRegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
 	OutpostManager = class'XComGameState_LWOutpostManager'.static.GetOutpostManager();
 	OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
-	NewOutpostState = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', OutPostState.ObjectID));
+	NewOutpostState = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', OutpostState.ObjectID));
 
 	AIChange = false;
 	OPChange = false;
 
-	iRoll == `SYNC_RAND_STATIC (100);
+	iRoll = `SYNC_RAND_STATIC(100);
 	if (iRoll < default.REPRESSION_ADVENT_LOSS_CHANCE)
 	{
-		NewRegionalAI.AddVigilance (NewGameState, 1);
-		NewRegionalAI.LocalAlertLevel = Max (NewRegionalAI.LocalAlertLevel - 1, 1);
+		NewRegionalAI.AddVigilance(NewGameState, 1);
+		NewRegionalAI.LocalAlertLevel = Max(NewRegionalAI.LocalAlertLevel - 1, 1);
 		AIChange = true;
 	}
 
-	iRoll == `SYNC_RAND_STATIC (100);
+	iRoll = `SYNC_RAND_STATIC(100);
 	if (iRoll < default.REPRESSION_RECRUIT_REBEL_CHANCE)
 	{
 		NewUnitRef = NewOutpostState.CreateRebel(NewGameState, RegionState, true);
@@ -2270,58 +2274,77 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 		OPChange = true;
 	}
 
-	iRoll == `SYNC_RAND_STATIC (100);
+	iRoll = `SYNC_RAND_STATIC(100);
 	if (iRoll < default.REPRESSION_VIGILANCE_INCREASE_CHANCE)
 	{
-		NewRegionalAI.AddVigilance (NewGameState, 1);
+		NewRegionalAI.AddVigilance(NewGameState, 1);
 		AIChange = true;
 	}
 
-	iRoll == `SYNC_RAND_STATIC (100);
-	if (iRoll > default.REPRESSION_REBEL_LOST_CHANCE)
+	GetNonFacelessRebels(OutpostState, NonFacelessRebels);
+	iRoll = `SYNC_RAND_STATIC(100);
+	if (iRoll < default.REPRESSION_REBEL_LOST_CHANCE)
 	{
-		if (OutPostState.Rebels.length > 1)
+		if (OutpostState.Rebels.Length > 1 && NonFacelessRebels.Length > 0)
 		{
-			RebeltoRemove = `SYNC_RAND_STATIC(NewOutPostState.Rebels.length);
-			if (!OutPostState.Rebels[RebelToRemove].IsFaceless)
-			{
-				NewOutPostState.RemoveRebel (OutPostState.Rebels[RebeltoRemove].Unit, NewGameState);
-				NewRegionalAI.AddVigilance (NewGameState, -1);
-				AIChange = true;
-				OPChange = true;
-			}
+			RebeltoRemove = `SYNC_RAND_STATIC(NonFacelessRebels.Length);
+			NewOutpostState.RemoveRebel(NonFacelessRebels[RebelToRemove], NewGameState);
+			// AddVigilance() itself checks that the Vigilance won't go below 1, so this
+			// call is safe
+			NewRegionalAI.AddVigilance(NewGameState, -1);
+			AIChange = true;
+			OPChange = true;
 		}
 	}
 
-	iRoll == `SYNC_RAND_STATIC (100);
+	iRoll = `SYNC_RAND_STATIC (100);
 	if (iRoll < default.REPRESSION_CLONES_RELEASED_CHANCE)
 	{
 		NewRegionalAI.LocalAlertLevel += 1;
 		AIChange = true;
 	}
 
-	iRoll == `SYNC_RAND_STATIC (100);
+	iRoll = `SYNC_RAND_STATIC (100);
 	if (iRoll < default.REPRESSION_2ND_REBEL_LOST_CHANCE)
 	{
-		if (OutPostState.Rebels.length > 1)
+		if (OutpostState.Rebels.Length > 1 && NonFacelessRebels.Length > 0)
 		{
-			if (!NewOutPostState.Rebels[RebelToRemove].IsFaceless)
-			{
-				RebeltoRemove = `SYNC_RAND_STATIC(NewOutPostState.Rebels.length);
-				NewOutPostState.RemoveRebel (OutPostState.Rebels[RebeltoRemove].Unit, NewGameState);
-				NewRegionalAI.AddVigilance (NewGameState, -1);
-				AIChange = true;
-				OPChange = true;
-			}
+			RebeltoRemove = `SYNC_RAND_STATIC(NonFacelessRebels.Length);
+			NewOutpostState.RemoveRebel(NonFacelessRebels[RebelToRemove], NewGameState);
+			// AddVigilance() itself checks that the Vigilance won't go below 1, so this
+			// call is safe
+			NewRegionalAI.AddVigilance(NewGameState, -1);
+			AIChange = true;
+			OPChange = true;
 		}
 	}
-	If (OPChange)
-		NewGameState.AddStateObject(NewOutpostState);
+
+	// Remove outpost and regional AI game state objects from the update
+	// if they haven't changed.
+	if (!OPChange)
+	{
+		NewGameState.PurgeGameStateForObjectID(NewOutpostState.ObjectID);
+	}
 	if (AIChange)
-		NewGameState.AddStateObject(NewRegionalAI);
+	{
+		NewGameState.PurgeGameStateForObjectID(NewRegionalAI.ObjectID);
+	}
 
 	`LWTRACE("Repression Finished" @ RegionState.GetMyTemplate().DisplayName @ "Roll:" @ string (iRoll) @ "Rebels left:" @ string (NewOutPostState.Rebels.length));
+}
 
+private static function GetNonFacelessRebels(XComGameState_LWOutpost OutpostState, out array<StateObjectReference> Rebels)
+{
+	local int i;
+
+	Rebels.Length = 0;
+	for (i = 0; i < OutpostState.Rebels.Length - 1; i++)
+	{	
+		if (!OutpostState.Rebels[i].IsFaceless)
+		{
+			Rebels.AddItem(OutpostState.Rebels[i].Unit);
+		}
+	}
 }
 
 // ########################
