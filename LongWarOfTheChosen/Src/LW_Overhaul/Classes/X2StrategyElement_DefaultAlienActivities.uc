@@ -604,6 +604,11 @@ static function OnProtectRegionActivityComplete(bool bAlienSuccess, XComGameStat
 			OutPost.ProhibitedJobs[k].DaysLeft = 0;
 		}
 
+		for (k = 0; k < Outpost.CurrentRetributions.Length; k++)
+		{
+			OutPost.CurrentRetributions[k].DaysLeft = 0;
+		}		
+
 		//distribute the RemainderAlertLevel amongst adjacent regions that haven't been liberated
 		foreach PrimaryRegionState.LinkedRegions(LinkedRegionRef)
 		{
