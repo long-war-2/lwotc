@@ -2894,7 +2894,7 @@ static function XComGameState_WorldRegion ChooseRetributionRegion(XComGameState_
 	// territory contacted to meet the chosen, and you can't lose contact to regions in
 	// LWOTC.
 	ChosenState.RegionAttackDeck = ChosenState.TerritoryRegions;
-	for (i = 0; i < ChosenState.RegionAttackDeck.length; i++)
+	for (i = ChosenState.RegionAttackDeck.length - 1; i >= 0 ; i--)
 	{
 		if (XComGameState_WorldRegion(History.GetGameStateForObjectID(ChosenState.RegionAttackDeck[i].ObjectID)).ResistanceLevel < eResLevel_Contact)
 		ChosenState.RegionAttackDeck.Remove(i, 1);
