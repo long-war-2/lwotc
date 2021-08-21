@@ -5572,8 +5572,8 @@ LocFlyOverText="Чемпион чародея"
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Предугадывание"
-LocLongDescription="Получает на 50% меньше урона от атак с ближней дистанции"
-LocHelpText="Получает на 50% меньше урона от атак с ближней дистанции"
+LocLongDescription="Получает на 50% меньше урона от атак оружием ближнего боя с разбега."
+LocHelpText="Получает на 50% меньше урона от атак оружием ближнего боя с разбега."
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Стойкость"
