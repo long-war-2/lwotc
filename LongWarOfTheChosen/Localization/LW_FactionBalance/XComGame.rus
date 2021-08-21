@@ -94,9 +94,9 @@ LocFlyoverText="Тень: +1 ход"
 ; LWOTC Translated
 [Parkour_LW X2AbilityTemplate]
 LocFriendlyName="Паркур"
-LocHelpText="Перезарядка способности Крюк у Застпника уменьшена на 1 ход."
-LocLongDescription="Перезарядка способности Крюк у Застпника уменьшена на 1 ход."
-LocPromotionPopupText="<Bullet/> Повышает тактическую маневренность Заступика.<br/>"
+LocHelpText="Перезарядка способности Крюк у Заступника уменьшена на 1 ход."
+LocLongDescription="Перезарядка способности Крюк у Заступника уменьшена на 1 ход."
+LocPromotionPopupText="<Bullet/> Повышает тактическую маневренность Заступника.<br/>"
 ; End Translated
 
 ; LWOTC Translated
