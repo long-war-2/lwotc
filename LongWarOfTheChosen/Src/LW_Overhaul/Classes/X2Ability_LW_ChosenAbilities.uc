@@ -468,6 +468,8 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	TargetCondition.ExcludeCosmetic = true;
 	TargetCondition.ExcludeRobotic = true;
 	TargetCondition.FailOnNonUnits = true;
+	TargetCondition.TreatMindControlledSquadmateAsHostile = true;
+	TargetCondition.ExcludeUnrevealedAI = true;
 	Template.AbilityTargetConditions.AddItem(TargetCondition);
 
 	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), ShieldAmount);
@@ -491,7 +493,7 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	ImpactEffect.BuildPersistentEffect(1,true,true,,eGameRule_PlayerTurnEnd);
 	ImpactEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	ImpactEffect.DuplicateResponse = eDupe_Allow;
-	ImpactEffect.EffectName = 'WarlockDamageReduction';
+	ImpactEffect.EffectName = 'WarlockDamageReduction_LW';
 	Template.AddShooterEffect(ImpactEffect);
 
 
@@ -1367,6 +1369,8 @@ static function X2DataTemplate CreateChosenKidnap()
 	local X2Condition_UnitEffects ExcludeEffects;
 	local X2Condition_Character	AllowedUnitCondition;
 	local X2Effect_RemoveEffects RemoveEffects;
+	local array<name> SkipExclusions;
+
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenKidnap'); //intentionally same template so kismet can disable it on special missions without changes to it
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_kidnap";
 	Template.Hostility = eHostility_Offensive;
@@ -1398,6 +1402,11 @@ static function X2DataTemplate CreateChosenKidnap()
 	KidnapEffect.EffectName = 'ChosenKidnap';
 	KidnapEffect.EffectAddedFn = ChosenKidnap_AddedFn;
 	Template.AddShooterEffect(KidnapEffect);
+
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName); //okay when disoriented
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
 
 	NeedOneOfTheEffects=new class'X2Condition_TargetHasOneOfTheEffects';
 	NeedOneOfTheEffects.EffectNames.AddItem(class'X2StatusEffects'.default.BleedingOutName);

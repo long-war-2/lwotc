@@ -292,6 +292,8 @@ strTimeRemainingDaysAndHours="<XGParam:IntValue1>D, <XGParam:IntValue0>H"
 ; LWOTC Needs Translation
 strDarkEventExpiredTitle="Dark Event Expired"
 strDarkEventExpiredText="has expired"
+OpenResistanceManagementStr="OPEN RESISTANCE MANAGEMENT"
+OpenHavenManagementStr="OPEN HAVEN MANAGEMENT"
 ; End Translation
 
 [X2EventListener_Soldiers]
@@ -525,12 +527,13 @@ m_strName="Name"
 m_strMission="Mission"
 m_strBuildRadioRelay="Build Radio Relay"
 m_strLiaisonTitle="Haven Adviser"
+m_strEditLoadout="Adviser Loadout"
 ; 0=Alert, 1=Vigilance, 2=Force
 m_strRegionalInfo="ADVENT Strength: <XGParam:IntValue0/>"
 m_strResistanceMecs="Resistance MECs: <XGParam:IntValue0/>"
 m_strProhibited="Prohibited"
-m_strCannotChangeLiaisonTitle="Cannot Move Adviser"
-m_strCannotChangeLiaison="The adviser cannot be changed at this time due to active missions in the region"
+m_strCannotChangeLiaisonTitle="Cannot Move/Outfit Adviser"
+m_strCannotChangeLiaison="The adviser and their loadout cannot be changed at this time due to active missions in the region"
 ChangeJobStr="CHANGE JOB"
 ChangeAllJobsStr="CHANGE ALL JOBS"
 PerksStr="PERKS" 

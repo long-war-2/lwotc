@@ -419,7 +419,11 @@ simulated function OnRegionSelectedCallback(UIList listCtrl, int itemIndex)
 	}
 	else
 	{
-		HQPres.ScreenStack.Push(OutpostScreen, HQPres.Get3DMovie());
+		// Just use whatever the current background is. Otherwise we would have to
+		// make sure that the outpost management screen's `OnReceiveFocus()` function
+		// moved the camera to the appropriate location based on where it was opened
+		// from.
+		HQPres.ScreenStack.Push(OutpostScreen);
 	}
 }
 
@@ -465,7 +469,23 @@ simulated function OnReceiveFocus()
 
 	RefreshNavHelp();
 
-	// KDM : The calls to DisplayUI3D() have been removed as they appear unnecessary.
+	// Make sure that the camera returns to the appropriate location in case
+	// a screen was opened that shifted it (for example the armory screen).
+	if (!class'Utilities_LW'.static.IsOnStrategyMap())
+	{
+		if (EnableCameraPan)
+		{
+			class'UIUtilities'.static.DisplayUI3D(DisplayTag, CameraTag, `HQINTERPTIME);
+		}
+		else
+		{
+			class'UIUtilities'.static.DisplayUI3D(DisplayTag, CameraTag, 0, true);
+		}
+	}
+	else
+	{
+		`HQPRES.GetCamera().ForceEarthViewImmediately(false);
+	}
 
 	RefreshData();
 

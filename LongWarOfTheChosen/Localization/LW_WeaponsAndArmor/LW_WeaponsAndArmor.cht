@@ -1,0 +1,4 @@
+[X2Ability_ThrowingKnifeAbilitySet]
+RendTheMarkedEffectName="撕裂標記"
+RendTheMarkedEffectDesc="在本回合剩餘時間內從所有來源對目標的攻擊獲得投擲飛刀所施加的+<Ability:REND_THE_MARKED_CRIT/>暴擊率。"
+; End Translation

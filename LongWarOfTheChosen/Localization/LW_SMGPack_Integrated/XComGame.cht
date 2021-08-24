@@ -3,22 +3,22 @@
 ; this includes ability descriptor, as of 5 Jan 2016 update
 
 [SMG_CV X2WeaponTemplate]
-FriendlyName="衝鋒槍"
-FriendlyNamePlural="衝鋒槍"
-BriefSummary="衝鋒槍相對於突擊步槍提供了更輕、更隱蔽的選擇，雖然他們威力一般並且在遠距離精準度也較差。"
-TacticalText="<Bullet/>在未進行特殊訓練前，用主武器射擊將會結束該士兵的回合。\n<Bullet/>使用從變種人敵人那收集的升級部件來提升衝鋒槍的武器效能。\n<Bullet/>衝鋒槍類型的武器相比突擊步槍能提供額外的機動性、近距離精準度和隱蔽性，但他們傷害更低、彈藥更少，並在遠距離受到精準度懲罰。"
-AbilityDescName="衝鋒槍"
+FriendlyName="衝鋒鎗"
+FriendlyNamePlural="衝鋒鎗"
+BriefSummary="衝鋒鎗相對於突擊步槍提供了更輕，更隱蔽的選擇，雖然他們威力一般並且在遠距離精度也較差。"
+TacticalText="<Bullet/>在未進行特殊訓練前，用主武器射擊會結束該士兵的回合。\n<Bullet/>使用從變種人敵人那收集的升級來提升衝鋒鎗的武器效能。\n<Bullet/>衝鋒鎗風格的武器相比突擊步槍能提供額外的移動力，近戰精度和隱蔽性，但他們傷害更低，彈夾更小，並在遠距離受到精度減益。"
+AbilityDescName="衝鋒鎗"
 
 [SMG_MG X2WeaponTemplate]
 FriendlyName="斯塔特磁力槍"
 FriendlyNamePlural="斯塔特磁力槍"
-BriefSummary="斯塔特磁力槍是磁力步槍的輕量版，扮演著和衝鋒槍類似的角色，以威力、彈藥和遠距離精準度為代價，給士兵提供機動性和隱蔽性。"
-TacticalText="<Bullet/>在未進行特殊訓練前，用主武器射擊將會結束該士兵的回合。\n<Bullet/>使用從變種人敵人那收集的升級部件來提升斯塔特磁力槍的武器效能。\n<Bullet/>衝鋒槍類型的武器相比突擊步槍能提供額外的機動性、近距離精準度和隱蔽性，但他們傷害更低、彈藥更少，並在遠距離受到精準度懲罰。"
-AbilityDescName="衝鋒槍"
+BriefSummary="斯塔特磁力槍是磁力步槍的輕量版，扮演著和衝鋒鎗類似的角色，以威力，彈藥和遠距離精度為代價，給士兵提供機動性和隱蔽性。"
+TacticalText="<Bullet/>在未進行特殊訓練前，用主武器射擊會結束該士兵的回合。\n<Bullet/>使用從變種人敵人那收集的升級來提升斯塔特磁力槍的武器效能。\n<Bullet/>衝鋒鎗風格的武器相比突擊步槍能提供額外的移動力，近戰精度和隱蔽性，但他們傷害更低，彈夾更小，並在遠距離受到精度減益。"
+AbilityDescName="衝鋒鎗"
 
 [SMG_BM X2WeaponTemplate]
 FriendlyName="斯卡拉姆槍"
 FriendlyNamePlural="斯卡拉姆槍"
-BriefSummary="斯卡拉姆槍，和衝鋒槍以及斯塔特磁力槍一樣，是一種更小型的主武器，能夠提供機動性和隱蔽性的加成，但傷害更低並在遠距離受到精準度懲罰。不過，它依然是一種有相當威力的個人武器。"
-TacticalText="<Bullet/>用主武器射擊將會結束該士兵的回合\n<Bullet/>使用從變種人敵人那收集的升級部件來提升斯卡拉姆槍的武器效能。\n<Bullet/>衝鋒槍類型的武器相比突擊步槍能提供額外的機動性、近距離精準度和隱蔽性，但他們傷害更低，彈藥更少，並在遠距離受到精度懲罰。<br/><Bullet/>電漿武器在每次命中的時候可以對目標額外造成1點傷害."
-AbilityDescName="衝鋒槍"
+BriefSummary="斯卡拉姆槍，跟衝鋒鎗和斯塔特磁力槍一樣，是一種更小型的主武器，能夠提供移動力和隱蔽性的加成，但傷害更低並在遠距離受到精度減益。不過，它依然是一種有相當威力的個人武器。"
+TacticalText="<Bullet/>用主武器射擊會結束該士兵的回合\n<Bullet/>使用從變種人敵人那收集的升級來提升斯卡拉姆槍的武器效能。\n<Bullet/>衝鋒鎗風格的武器相比突擊步槍能提供額外的移動力，近戰精度和隱蔽性，但他們傷害更低，彈夾更小，並在遠距離受到精度減益。<br/><Bullet/>電漿武器在每次命中的時候可以對目標額外造成1點傷害."
+AbilityDescName="衝鋒鎗"

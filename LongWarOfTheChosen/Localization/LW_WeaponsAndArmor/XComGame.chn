@@ -1,0 +1,53 @@
+; LWOTC Needs Translation
+[MusashiThrowKnifeSecondary_LW X2AbilityTemplate]
+LocFriendlyName="投掷飞刀"
+LocFlyOverText="投掷飞刀"
+LocLongDescription="向目标投掷一把飞刀。 保持暗影状态。"
+LocHelpText="向目标投掷一把飞刀。 保持暗影状态。"
+LocPromotionPopupText="<Bullet/> 飞刀不会打破暗影状态或吸引失魂者。<br/><Bullet/> 这种能力将打破隐蔽。"
+
+[KnifeJuggler_LW X2AbilityTemplate]
+LocFriendlyName="杂耍飞刀"
+LocFlyOverText="杂耍飞刀"
+LocLongDescription="飞刀+<Ability:KnifeJugglerBonusDamage/>伤害并获得额外的<Ability:KnifeJugglerExtraAmmo/>投掷飞刀次数。每次使用主武器击杀都会获得+1投掷飞刀次数。"
+LocHelpText="飞刀+<Ability:KnifeJugglerBonusDamage/>伤害并获得额外的<Ability:KnifeJugglerExtraAmmo/>投掷飞刀次数。每次使用主武器击杀都会获得+1投掷飞刀次数。"
+LocPromotionPopupText="<Bullet/> 飞刀+<Ability:KnifeJugglerBonusDamage/>伤害。<br/><Bullet/> 获得额外的<Ability:KnifeJugglerExtraAmmo/>投掷飞刀次数。<br/><Bullet/> 每次使用主武器击杀都会获得+1投掷飞刀次数。<br/>"
+
+[Hailstorm_LW X2AbilityTemplate]
+LocFriendlyName="冰雹风暴"
+LocFlyOverText="冰雹风暴"
+LocLongDescription="快速连续向目标投掷三把飞刀。 保持暗影状态。"
+LocHelpText="快速连续向目标投掷三把飞刀。 保持暗影状态。"
+LocPromotionPopupText="<Bullet/> 每把飞刀保持飞刀的任何加成，如伤害和状态效果，就像单独的一把飞刀投掷出去一样。<br/><Bullet/> 除非在投掷第一把飞刀之前满足限制条件，否则后续飞刀不会从依赖于目标血量的效果中受益。"
+
+[ThrowingKnifeFaceoff_LW X2AbilityTemplate]
+LocFriendlyName="飞刀对峙"
+LocFlyOverText="飞刀对峙"
+LocLongDescription="向范围内的每个目标投掷飞刀。 保持暗影状态。"
+LocHelpText="向范围内的每个目标投掷飞刀。 保持暗影状态。"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> 仅消耗一点充能，不消耗任何标准的投掷飞刀充能。<br/><Bullet/> 侧翼有多个敌人时的理想选择。<br/>"
+; End Translation (2)
+
+[ThrowingKnife_CV_Secondary X2WeaponTemplate]
+FriendlyName="飞刀"
+FriendlyNamePlural="飞刀"
+BriefSummary="由最先进的钢质合金制成的飞刀。"
+TacticalText="<Bullet/> 投掷飞刀不会打破暗影状态。"
+AbilityDescName="飞刀"
+
+[ThrowingKnife_MG_Secondary X2WeaponTemplate]
+FriendlyName="合金飞刀"
+FriendlyNamePlural="合金飞刀"
+BriefSummary="由外星合金制成的飞刀。"
+TacticalText="<Bullet/> 投掷飞刀不会打破暗影状态。"
+AbilityDescName="飞刀"
+
+[ThrowingKnife_BM_Secondary X2WeaponTemplate]
+FriendlyName="等离子飞刀"
+FriendlyNamePlural="等离子飞刀"
+BriefSummary="具有等离子刃的飞刀，可以像切黄油一样切穿护甲。"
+TacticalText="<Bullet/> 投掷飞刀不会打破暗影状态。"
+AbilityDescName="飞刀"
+
+; End Translation

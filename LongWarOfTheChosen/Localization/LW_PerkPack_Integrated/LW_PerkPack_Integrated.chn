@@ -35,11 +35,28 @@ TrojanVirus="木马病毒"
 TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/>已触发木马病毒。"
 
 [X2Effect_Savior]
-strSavior_WorldMessage="救世主：已治疗额外<XGParam:IntValue0/>的生命值。"
+strSavior_WorldMessage="妙手回春：已回复额外<XGParam:IntValue0/>生命值。"
+
+[X2Effect_LWHolotarget]
+HoloTargetEffectName="全息瞄准"
 
 [X2Item_DenseSmokeGrenade]
-DenseSmokeGrenadeEffectDisplayName="浓烟"
-DenseSmokeGrenadeEffectDisplayDesc="浓烟赋予该单位额外的防御加成。"
+DenseSmokeGrenadeEffectDisplayName="浓密烟雾"
+DenseSmokeGrenadeEffectDisplayDesc="浓密烟雾赋予该单位额外的防御加成。"
 
 [X2Ability_PerkPackAbilitySet]
 LocCoveringFire="掩护火力"
+LocCoveringFireMalus="该单位已经被一名具有掩护火力技能的监视单位瞄准，在本回合剩余时间-10命中。"
+; LWOTC Needs Translation
+LocSoulStealBuff="灵魂灼烧"
+LocSoulStealBuffHelpText="灵魂汲取在治疗过度时给予护盾"
+; End Translation
+
+; LWOTC Needs Translation
+[X2Effect_RegenerationPCT]
+HealedMessage="+<Heal/> 生命回复"
+
+[X2StatusEffects_LW]
+MaimedFriendlyName="残废"
+MaimedFriendlyDesc="单位的机动性降低至零，所以他们不能移动。他们仍然可以射击和执行其他非移动能力。"
+; End Translation

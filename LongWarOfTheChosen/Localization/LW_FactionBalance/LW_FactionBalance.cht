@@ -1,0 +1,9 @@
+; LWOTC Needs Translation
+[X2Effect_VoidConduitPatch]
+ActionsLeftFlyoverText="剩餘動作: <XGParam:IntValue0/>"
+; End Translation
+
+; LWOTC Needs Translation
+[X2LWModTemplate_ReaperAbilities]
+ShadowExpiredFlyover="暗影失效"
+; End Translation

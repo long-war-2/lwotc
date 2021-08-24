@@ -6,14 +6,13 @@ simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParame
 	local XComGameState_Effect	TetherEffectState;
 	local X2Effect_Persistent PersistentEffect;
     local bool DrRemoved, RegenRemoved;
-	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
 
 	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_Effect', TetherEffectState)
 	{
 		if (ApplyEffectParameters.SourceStateObjectRef.ObjectID == TetherEffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID)
 		{
 			PersistentEffect = TetherEffectState.GetX2Effect();
-			if (PersistentEffect.EffectName == 'WarlockDamageReduction' && !DrRemoved)
+			if (PersistentEffect.EffectName == 'WarlockDamageReduction_LW' && !DrRemoved)
 			{
 				if(!TetherEffectState.bRemoved)
 				{	
@@ -33,4 +32,5 @@ simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParame
 			}
         }
 	}
+	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
 }

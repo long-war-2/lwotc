@@ -7,8 +7,8 @@ LocPromotionPopupText="REDFOGLOCPROMOTIONPOPUPTEXT"
 
 [XComGame.UIShellDifficulty]
 [UIShellDifficulty]
-m_arrDifficultyDescStrings[0]="一般来说，比较适合策略类游戏或XCOM的新手玩家。<br/><br/>Long War选项在战役开始后将会在选项菜单中出现。"
-m_arrDifficultyDescStrings[1]="此难度适合对XCOM比较熟悉的玩家。<br/><br/>Long War选项在战役开始后将会在选项菜单中出现。"
-m_arrDifficultyDescStrings[2]="只为经验丰富的Long War玩家准备的难度。<br/><br/>Long War工具箱选项在战役开始后将会在选项菜单中出现。"
-m_arrDifficultyDescStrings[3]="一场残酷无情的战役。<br/><br/>Long War选项在战役开始后将会在选项菜单中出现。"
-m_strTutorialOnImpossible="Long War启用后无教程。<br><br/><font color='#9acbcb'>Long War工具箱选项在战役开始后将会在选项菜单中出现。</font>"
+m_arrDifficultyDescStrings[0]="一般来说，比较适合策略类游戏或XCOM的新手玩家。<br/><br/>LWOTC选项在战役开始后将会在选项菜单中出现。"
+m_arrDifficultyDescStrings[1]="此难度适合对XCOM比较熟悉的玩家。<br/><br/>LWOTC选项在战役开始后将会在选项菜单中出现。"
+m_arrDifficultyDescStrings[2]="只为经验丰富的LWOTC玩家准备的难度。<br/><br/>LWOTC工具箱选项在战役开始后将会在选项菜单中出现。"
+m_arrDifficultyDescStrings[3]="一场残酷无情的战役。<br/><br/>LWOTC选项在战役开始后将会在选项菜单中出现。"
+m_strTutorialOnImpossible="LWOTC启用后无教程。<br><br/><font color='#9acbcb'>LWOTC工具箱选项在战役开始后将会在选项菜单中出现。</font>"

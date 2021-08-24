@@ -225,11 +225,26 @@ simulated function GoToResistanceManagement(optional StateObjectReference Facili
 	SubMenu.Message.Label = LabelCQ_ResistanceManagement;
 	Shortcuts.UpdateSubMenu(eUIAvengerShortcutCat_CommandersQuarters, SubMenu);
 
-	if(HQPres.ScreenStack.IsNotInStack(class'UIResistanceManagement_LW'))
+	if (HQPres.ScreenStack.IsNotInStack(class'UIResistanceManagement_LW'))
 	{
 		TempScreen = HQPres.Spawn(class'UIResistanceManagement_LW', HQPres);
-		HQPres.ScreenStack.Push(TempScreen, HQPres.Get3DMovie());
+		TempScreen.EnableCameraPan = false;
+		HQPres.ScreenStack.Push(TempScreen);
 	}
+}
+
+// Rai - Added function to enable entering the haven management screen from geoscape directly
+static function OpenResistanceManagementScreen(optional StateObjectReference ActionToFocus)
+{
+	local UIResistanceManagement_LW TempScreen;
+	local XComHQPresentationLayer HQPres;
+
+	HQPres = `HQPRES;
+	if (HQPres.ScreenStack.GetFirstInstanceOf(class'UIResistanceManagement_LW') != none) return;
+
+	TempScreen = HQPres.Spawn(class'UIResistanceManagement_LW', HQPres);
+	TempScreen.EnableCameraPan = false;
+	HQPres.ScreenStack.Push(TempScreen);
 }
 
 function bool IsUnitAHavenLiaison(StateObjectReference UnitRef)

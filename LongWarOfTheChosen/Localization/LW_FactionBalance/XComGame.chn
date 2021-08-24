@@ -1,0 +1,198 @@
+; LWOTC Needs Translation
+[LingeringShadow X2AbilityTemplate]
+LocFriendlyName="残影"
+LocLongDescription="当死神脱离暗影状态时提供 +<Ability:LingeringShadowDefenseBonus/> 防御和 +<Ability:LingeringShadowDodgeBonus/> 闪避一回合。"
+LocHelpText="当死神脱离暗影状态时提供 +<Ability:LingeringShadowDefenseBonus/> 防御和 +<Ability:LingeringShadowDodgeBonus/> 闪避一回合。"
+LocPromotionPopupText="<Bullet/> 当死神脱离暗影状态时提供 +<Ability:LingeringShadowDefenseBonus/> 防御和 +<Ability:LingeringShadowDodgeBonus/> 闪避，包括被发现与暗影状态结束.<br/><Bullet/> 持续到XCOM下一回合开始。"
+
+; LWOTC Needs Translation (2)
+[LingeringShadowTrigger X2AbilityTemplate]
+LocFriendlyName="残影"
+LocLongDescription="当死神脱离暗影状态时提供 +<Ability:LingeringShadowDefenseBonus/> 防御和 +<Ability:LingeringShadowDodgeBonus/> 闪避一回合。"
+LocHelpText="当死神脱离暗影状态时提供 +<Ability:LingeringShadowDefenseBonus/> 防御和 +<Ability:LingeringShadowDodgeBonus/> 闪避一回合。"
+; End Translation (2)
+
+[Demolitionist X2AbilityTemplate]
+LocFriendlyName="拆迁者"
+LocLongDescription="死神获得 +<Ability:DemolitionistExtraChargeCount/> 行动点于远程启动与追踪地雷。"
+LocHelpText="死神获得 +<Ability:DemolitionistExtraChargeCount/> 行动点于远程启动与追踪地雷。"
+LocPromotionPopupText="<Bullet/> 增加 <Ability:DemolitionistExtraChargeCount/> 额外行动点于远程启动与追踪地雷。<br/>"
+
+[CripplingStrike X2AbilityTemplate]
+LocFriendlyName="致残打击"
+LocLongDescription="投掷一把飞刀，使目标致残1回合 (0移动力)。"
+LocHelpText="投掷一把飞刀，使目标致残1回合 (0移动力)。"
+LocPromotionPopupText="<Bullet/> 投掷飞刀， 不会打破暗影状态.<br/><Bullet/> 致残状态会将目标的移动性降低至0，使其无法移动。<br>"
+; End Translation
+
+; LWOTC Needs Translation
+[Distraction_LW X2AbilityTemplate]
+LocFriendlyName="分散注意力"
+LocLongDescription="阔剑地雷爆炸时会混乱非机械敌人。"
+LocHelpText="阔剑地雷爆炸时会混乱非机械敌人。"
+LocPromotionPopupText="<Bullet/> 造成混乱于爆炸中所有有机单位的效果。<br/>"
+
+[DisablingShot X2AbilityTemplate]
+LocFriendlyName="阻断射击"
+LocLongDescription="用精确的射击击晕敌人，如果射击暴击，则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
+LocHelpText="用精确的射击击晕敌人，如果射击暴击，则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)眩晕敌人<Ability:DisablingShotStunActions/> 行动点。<br/><Bullet/> 如果暴击额外眩晕敌人 <Ability:DisablingShotCritStunActions/> 行动点, 但是射击不会造成暴击伤害。<br/><Bullet/> 阻断射击需要 <Ability:SelfAmmoCost/> 弹药。<br/><Bullet/> 阻断射击有 <Ability:SelfCooldown_LW/> 回合冷却时间。<br/><Bullet/> 只有化身和灵能僵尸不能被眩晕。"
+; End Translation (2)
+
+[Meditation X2AbilityTemplate]
+LocFriendlyName="冥想"
+LocLongDescription="圣殿骑士增加 <Ability:MeditationFocusRecovery/> 专注。"
+LocHelpText="圣殿骑士增加 <Ability:MeditationFocusRecovery/> 专注。"
+LocPromotionPopupText="<Bullet/> 圣殿骑士增加 <Ability:MeditationFocusRecovery/> 点专注。<br/><Bullet/> 结束本回合。<br/><Bullet/> 有 <Ability:SelfCooldown/>-回合冷却。"
+
+[Overcharge_LW X2AbilityTemplate]
+LocFriendlyName="超载"
+LocLongDescription="圣殿骑士的每一个专注点获得额外的命中和暴击率。"
+LocHelpText="圣殿骑士的每一个专注点获得额外的命中和暴击率。"
+LocPromotionPopupText="<Bullet/> 每个专注点 +<Ability:OverchargeAimBonus/> 命中以及 +<Ability:OverchargeCritBonus/> 暴击率。<br/><Bullet/> 基于当前专注，而不是最大专注。"
+
+[VoltDangerZone X2AbilityTemplate]
+LocFriendlyName="高压电"
+LocLongDescription="增加 <Ability:VoltDangerZoneBonus/>-灵能闪电半径。"
+LocHelpText="增加 <Ability:VoltDangerZoneBonus/>-灵能闪电半径。"
+LocPromotionPopupText="<Bullet/> 增加 <Ability:VoltDangerZoneBonus/>-灵能闪电半径。"
+; End Translation
+
+; LWOTC Needs Translation
+[TemplarVigilance X2AbilityTemplate]
+LocFriendlyName="警惕"
+LocLongDescription="当你的小队激活一个3人或以上的敌人小队时，获得1点专注。"
+LocHelpText="当你的小队激活一个3人或以上的敌人小队时，获得1点专注。"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> 当敌人触发时，给圣殿骑士增加1点专注。<br/><Bullet/> 只有当巡逻队中至少有3个单位时才会触发。<br/><Bullet/> 如果你已经处于最大专注，多出专注将被浪费。"
+; End Translation (2)
+
+[TemplarTerror X2AbilityTemplate]
+LocFriendlyName="恐吓"
+LocLongDescription="灵能闪电增加恐慌敌人效果。"
+LocHelpText="灵能闪电增加恐慌敌人效果。"
+LocPromotionPopupText="<Bullet/> 灵能闪电现在可以使敌人恐慌。<br/><Bullet/> 恐慌的几率取决于圣殿骑士的意志属性和目标的意志。"
+
+[Apotheosis X2AbilityTemplate]
+LocFriendlyName="神化"
+; LWOTC Needs Translation (2)
+LocFlyoverText="神化!"
+; End Translation (2)
+LocLongDescription="化身神，大幅增加你的闪避，撕裂伤害和移动力。至少需要3点专注并消耗所有专注点。"
+LocHelpText="化身神，大幅增加你的闪避，撕裂伤害和移动力。至少需要3点专注并消耗所有专注点。"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> 使圣殿骑士在2回合内变得更加强大的自由动作。<br/><Bullet/> 高于2专注时每点专注增加<Ability:ApotheosisDamageMultiplier/>%所有伤害。<br/><Bullet/> 高于2专注时每点专注增加<Ability:ApotheosisDodgeBonus/>闪避。<br/><Bullet/> 高于2专注时每点专注提高<Ability:ApotheosisMobilityBonus/>移动力。<br/><Bullet/> 至少需要3点专注。<br/><Bullet/> 消耗所有专注点。<br/><Bullet/> 圣殿骑士可以在神化状态下获得专注。"
+; End Translation (2)
+; End Translation
+
+; Needs Translation
+[ShadowGrenadier X2AbilityTemplate]
+LocFriendlyName="暗影投手"
+LocHelpText="投掷或发射榴弹不再打破暗影。手榴弹不再有冷却时间。"
+LocLongDescription="投掷或发射榴弹不再打破暗影。手榴弹不再有冷却时间。"
+LocPromotionPopupText="<Bullet/> 允许士兵在不打破暗影状态的情况下投掷或发射榴弹。<br/><Bullet/> 添加一个榴弹栏位。<br/><Bullet/> 消除手榴弹的冷却时间。<br/>"
+
+[PoisonedBlades X2AbilityTemplate]
+LocFriendlyName="毒刃"
+LocHelpText="飞刀对目标施毒。"
+LocLongDescription="飞刀对目标施毒。"
+LocPromotionPopupText="<Bullet/> 这是一个被动技能，它会给飞刀技能添加毒效果。<br/>"
+
+[ChargeBattery X2AbilityTemplate]
+LocFriendlyName="充能"
+LocFlyoverText="暗影状态: +1 回合"
+LocHelpText="延长暗影的持续时间1回合。"
+LocLongDescription="延长暗影的持续时间1回合。"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> 允许玩家延长暗影状态1回合。<br/><Bullet/> 只能在暗影状态使用。<br/><Bullet/> 充能是个自由动作并有 <Ability:SelfCooldown_LW/> 回合冷却时间。<br/><Bullet/> 每次任务充能可使用 <Ability:CHARGE_BATTERY_CHARGES/> 次。<br/>"
+; End Translation (2)
+; End Translation
+
+; LWOTC Needs Translation
+[SilentKillerDurationExtension X2AbilityTemplate]
+LocFriendlyName="沉默杀手刷新暗影状态"
+LocFlyoverText="暗影状态: +1 回合"
+; End Translation
+
+; LWOTC Needs Translation
+[Parkour_LW X2AbilityTemplate]
+LocFriendlyName="跑酷"
+LocHelpText="散兵的抓钩冷却时间减少1回合。"
+LocLongDescription="散兵的抓钩冷却时间减少1回合。"
+LocPromotionPopupText="<Bullet/> 提高散兵在地图上的机动性。<br/>"
+; End Translation
+
+; LWOTC Needs Translation
+[Executioner X2AbilityTemplate]
+LocFriendlyName="死亡贩子"
+LocLongDescription="给予+<Ability:DEATH_DEALER_CRIT/>暴击率。暗影状态中对侧翼目标的暴击会造成双倍的暴击伤害。"
+LocHelpText="给予+<Ability:DEATH_DEALER_CRIT/>暴击率。暗影状态中对侧翼目标的暴击会造成双倍的暴击伤害。"
+LocPromotionPopupText="<Bullet/> 使用暗影增加的机动性和较小的敌人探测半径来攻击敌人并造成巨大的伤害。<br/>"
+
+; End Translation
+
+; LWOTC Needs Translation
+[RendTheMarked X2AbilityTemplate]
+LocFriendlyName="撕裂标记"
+LocHelpText="撕裂标记赋予投掷飞刀堆叠效果。当飞刀击中一名敌人时，在本回合剩余时间内从所有来源对目标的攻击施加+<Ability:REND_THE_MARKED_CRIT/>暴击率。每次撕裂标记堆叠不影响应用于它的投掷飞刀。"
+LocLongDescription="撕裂标记赋予投掷飞刀堆叠效果。当飞刀击中一名敌人时，在本回合剩余时间内从所有来源对目标的攻击施加+<Ability:REND_THE_MARKED_CRIT/>暴击率。每次撕裂标记堆叠不影响应用于它的投掷飞刀。"
+LocPromotionPopupText="撕裂标记赋予投掷飞刀堆叠效果。当飞刀击中一名敌人时，在本回合剩余时间内从所有来源对目标的攻击施加+<Ability:REND_THE_MARKED_CRIT/>暴击率。每次撕裂标记堆叠不影响应用于它的投掷飞刀。"
+
+[KnifeEncounters X2AbilityTemplate]
+LocFriendlyName="刀锋相接"
+LocFlyOverText="刀锋相接"
+LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。"
+LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。"
+LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术同时使用。<br/>"
+
+[ImpersonalEdge X2AbilityTemplate]
+LocFriendlyName="冷漠边缘"
+LocFlyOverText="冷漠边缘"
+LocLongDescription="当用投掷飞刀击杀1名目标时减少暗影冷却时间1回合并获得可堆叠的 +<Ability:IMPERSONAL_EDGE_AIM/> 命中增益持续3回合。"
+LocHelpText="当用投掷飞刀击杀1名目标时减少暗影冷却时间1回合并获得可堆叠的 +<Ability:IMPERSONAL_EDGE_AIM/> 命中增益持续3回合。"
+LocPromotionPopupText="<Bullet/> 当用投掷飞刀击杀1名目标时减少暗影冷却时间1回合并获得可堆叠的 +<Ability:IMPERSONAL_EDGE_AIM/> 命中增益持续3回合。<br/>"
+
+[ImpersonalEdgePassive X2AbilityTemplate]
+LocFriendlyName="冷漠边缘"
+LocFlyOverText="冷漠边缘"
+LocLongDescription="当用投掷飞刀击杀1名目标时减少暗影冷却时间1回合并获得可堆叠的 +<Ability:IMPERSONAL_EDGE_AIM/> 命中增益持续3回合。"
+LocHelpText="当用投掷飞刀击杀1名目标时减少暗影冷却时间1回合并获得可堆叠的 +<Ability:IMPERSONAL_EDGE_AIM/> 命中增益持续3回合。"
+LocPromotionPopupText="<Bullet/> 当用投掷飞刀击杀1名目标时减少暗影冷却时间1回合并获得可堆叠的 +<Ability:IMPERSONAL_EDGE_AIM/> 命中增益持续3回合。<br/>"
+
+[BlueScreenKnives X2AbilityTemplate]
+LocFriendlyName="蓝屏飞刀"
+LocHelpText="投掷飞刀获得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲并混乱机械单位。"
+LocLongDescription="投掷飞刀获得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲并混乱机械单位。"
+LocPromotionPopupText="投掷飞刀获得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲并混乱机械单位。"
+
+; LWOTC Needs Translation
+[BattlefieldAwareness X2AbilityTemplate]
+LocFriendlyName="战地感知"
+LocLongDescription="如果在你的回合中击杀一名敌人，那么在敌人回合中对你的下一次攻击将会未命中。一经触发，战地感知将冷却 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
+LocHelpText="如果在你的回合中击杀一名敌人，那么在敌人回合中对你的下一次攻击将会未命中。一经触发，战地感知将冷却 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
+LocFlyOverText="战地感知"
+LocPromotionPopupText="<Bullet/> 当战地感知被触发时，士兵在敌人回合中免疫下一次造成伤害的攻击，包括效果区域攻击。<br/>"
+
+
+[BattlefieldAwarenessPassive X2AbilityTemplate]
+LocFriendlyName="战地感知"
+LocLongDescription="如果在你的回合中击杀一名敌人，那么在敌人回合中对你的下一次攻击将会未命中。一经触发，战地感知将冷却 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
+LocHelpText="如果在你的回合中击杀一名敌人，那么在敌人回合中对你的下一次攻击将会未命中。一经触发，战地感知将冷却 <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>回合。"
+LocFlyOverText="战地感知"
+
+[BattlefieldAwarenessCooldown X2AbilityTemplate]
+LocFriendlyName="战地感知冷却"
+LocLongDescription="在该效果结束之前，战地感知不会被激活。"
+LocHelpText="在该效果结束之前，战地感知不会被激活。"
+
+; End Translation
+
+[CombatPresence X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> 战斗存在能让队友利用额外的攻击或移动来脱离险境。<br/><Bullet/> 战斗存在有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+
+[LW_FactionBalance.X2Ability_ThrowingKnifeAbilitySet]
+RendTheMarkedEffectName="撕裂标记"
+RendTheMarkedEffectDesc="在本回合剩余时间内从所有来源对目标的攻击获得投掷飞刀所施加的+<Ability:REND_THE_MARKED_CRIT/>暴击率。"
+; End Translation
+

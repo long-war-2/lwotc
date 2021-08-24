@@ -93,7 +93,9 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_RevealChosenStronghold':
 			`LWTrace("X2LWCovertActionsModTemplate - increasing rank requirement for " $ CATemplate.DataName);
 			ConfigureHardCovertAction(CATemplate, false);
-			CATemplate.Slots[0].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require a MSGT
+			CATemplate.Slots[0].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 3 MSGTs
+			CATemplate.Slots[1].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 3 MSGTs
+			CATemplate.Slots[2].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 3 MSGTs
 			break;
 		default:
 			break;
