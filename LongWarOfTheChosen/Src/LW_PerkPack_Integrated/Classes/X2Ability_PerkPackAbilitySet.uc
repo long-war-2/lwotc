@@ -122,12 +122,15 @@ var config bool NO_MELEE_ATTACKS_WHEN_ON_FIRE;
 var config int BOMBARD_BONUS_RANGE_TILES;
 var config int SHARPSHOOTERAIM_CRITBONUS;
 
+var config int Overexertion_COOLDOWN;
+
 var config int CE_USES_PER_TURN;
 var config int CE_MAX_TILES;
 var config array<name> CE_ABILITYNAMES;
 
 var config int WILLTOSURVIVE_DEF_PENALTY;
 var config float WTS_COVER_DR_PCT;
+var config float WTS_WOUND_REDUCTION;
 
 
 var localized string LocCoveringFire;
@@ -183,6 +186,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddSteadyWeaponAbility());
 	Templates.AddItem(AddLockedOnAbility());
 	Templates.AddItem(AddSentinel_LWAbility());
+	Templates.AddItem(AddSentinelAbility());
 	Templates.AddItem(AddRapidReactionAbility());
 	Templates.AddItem(AddLightningReflexes_LWAbility());
 	Templates.AddItem(AddCutthroatAbility());
@@ -225,6 +229,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddShadowstrike_LWAbility());
 	Templates.AddItem(AddFormidableAbility());
 	Templates.AddItem(AddSoulStealTriggered2());
+	Templates.AddItem(AddOverexertion());
+
 	return Templates;
 }
 
@@ -358,7 +364,8 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	local X2Condition_Visibility						TargetVisibilityCondition;
 	local X2AbilityCost_Ammo							AmmoCost;
 	local X2AbilityTarget_Single_CCS					SingleTarget;
-	//local X2AbilityCooldown								Cooldown;	
+	//local X2AbilityCooldown								Cooldown;
+	local X2Condition_NotItsOwnTurn 					NotItsOwnTurnCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CloseCombatSpecialistAttack');
 
@@ -432,6 +439,9 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 
 	Template.bAllowBonusWeaponEffects = true;
 	Template.AddTargetEffect(class 'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+
+	NotItsOwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(NotItsOwnTurnCondition);
 
 	//Prevent repeatedly hammering on a unit when CCS triggers.
 	//(This effect does nothing, but enables many-to-many marking of which CCS attacks have already occurred each turn.)
@@ -735,7 +745,7 @@ static function X2AbilityTemplate AddDepthPerceptionAbility()
 	local X2AbilityTemplate						Template;
 	local X2Effect_WilltoSurvive				ArmorBonus;
 	local X2Effect_PersistentStatChange			WillBonus;
-
+	local X2Effect_GreaterPadding				GreaterPaddingEffect;
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'WilltoSurvive');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityWilltoSurvive";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -756,6 +766,12 @@ static function X2AbilityTemplate AddDepthPerceptionAbility()
 	WillBonus.AddPersistentStatChange(eStat_Defense, default.WILLTOSURVIVE_DEF_PENALTY);
 	WillBonus.BuildPersistentEffect (1, true, false, false, 7);
 	Template.AddTargetEffect(WillBonus);
+
+	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
+	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
+	GreaterPaddingEffect.Padding_HealHP = default.WTS_WOUND_REDUCTION;	
+	Template.AddTargetEffect(GreaterPaddingEffect);
+
 	Template.bCrossClassEligible = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//  No visualization
@@ -2113,6 +2129,31 @@ static function X2AbilityTemplate AddSentinel_LWAbility()
 	return Template;
 }
 
+
+static function X2AbilityTemplate AddSentinelAbility()
+{
+	local X2AbilityTemplate                 Template;	
+	local X2Effect_Sentinel_LW				PersistentEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Sentinel');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilitySentinel";
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	PersistentEffect = new class'X2Effect_Sentinel_LW';
+	PersistentEffect.BuildPersistentEffect(1, true, false);
+	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+	Template.AddTargetEffect(PersistentEffect);
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.bCrossClassEligible = false;
+	return Template;
+}
+
 static function X2AbilityTemplate AddRapidReactionAbility()
 {
 	local X2AbilityTemplate                 Template;	
@@ -2249,6 +2290,67 @@ static function X2AbilityTemplate AddRunAndGun_LWAbility()
 
 	return Template;
 }
+
+
+	static function X2AbilityTemplate AddOverexertion()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCooldown	Cooldown;
+	local X2Effect_GrantActionPoints		ActionPointEffect;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2Effect_KillerInstinct			DamageEffect;
+	local X2Condition_UnitValue				CECondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Overexertion');
+
+	// Icon Properties
+	Template.DisplayTargetHitChance = false;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';                                       // color of the icon
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_loot_move";
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.AbilityConfirmSound = "TacticalUI_Activate_Ability_Run_N_Gun";
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.Overexertion_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	CECondition = new class 'X2Condition_UnitValue';
+	Template.AbilityShooterConditions.AddItem(CECondition); 
+
+	ActionPointEffect = new class'X2Effect_GrantActionPoints';
+	ActionPointEffect.NumActionPoints = 1;
+	ActionPointEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
+	Template.AddTargetEffect(ActionPointEffect);
+
+	Template.AbilityTargetStyle = default.SelfTarget;	
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	Template.bShowActivation = true;
+	Template.bSkipFireAction = true;
+
+	Template.ActivationSpeech = 'RunAndGun';
+	
+		
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	Template.bCrossClassEligible = true;
+
+	return Template;
+}
+
 
 static function X2AbilityTemplate AddKillerInstinctAbility()
 {
@@ -2844,7 +2946,7 @@ static function X2Effect_Persistent CoveringFireMalusEffect()
     Effect.bRemoveWhenTargetDies = false;
     Effect.bUseSourcePlayerState = true;
 	Effect.bApplyOnMiss = true;
-	Effect.DuplicateResponse=eDupe_Allow;
+	Effect.DuplicateResponse=eDupe_Refresh;
     AbilityCondition = new class'X2Condition_AbilityProperty';
     AbilityCondition.OwnerHasSoldierAbilities.AddItem('CoveringFire');
     Effect.TargetConditions.AddItem(AbilityCondition);
@@ -3831,6 +3933,8 @@ static function X2AbilityTemplate AddSlash_LWAbility()
 	// VGamepliz matters
 	Template.SourceMissSpeech = 'SwordMiss';
 	Template.bSkipMoveStop = true;
+
+	Template.ConcealmentRule = eConceal_Always;
 
 	Template.CinescriptCameraType = "Ranger_Reaper";
     Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;

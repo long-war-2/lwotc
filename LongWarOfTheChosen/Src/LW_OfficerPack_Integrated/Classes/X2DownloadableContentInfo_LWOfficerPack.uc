@@ -28,6 +28,9 @@ static event OnPostTemplatesCreated()
 	FindFacilityTemplateAllDifficulties('OfficerTrainingSchool', FacilityTemplates);
 	foreach FacilityTemplates(FacilityTemplate)
 	{
+		//Remove the train rookie GTS slots, not needed
+		FacilityTemplate.StaffSlotDefs.Length = 0;
+
 		StaffSlotDef.StaffSlotTemplateName = 'OTSStaffSlot';
 		StaffSlotDef.bStartsLocked = false;
 		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);

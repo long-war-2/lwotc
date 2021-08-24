@@ -115,7 +115,7 @@ var const name QuickZapEffectName;
 var const name VampUnitValue;
 var const string CombatReadinessBonusText;
 
-var config int CRUSADER_WOUND_HP_REDUCTTION;
+var config float CRUSADER_WOUND_HP_REDUCTION;
 
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
 var config array<name> BANZAI_EFFECTS_TO_REMOVE;
@@ -127,6 +127,8 @@ var config int ENTWINE_DEF;
 var config float GRIT_BASE_DR;
 
 var config float REACTIVE_SENSORS_DAMAGE_REDUCTION;
+
+var config float SHREDDER_ROUNDS_DMG_PENALTY;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -224,6 +226,12 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddProtectiveServosPassive());
 	Templates.AddItem(AddSuperiorHolyWarrior());
 	Templates.AddItem(AddSuperDuperRobot());
+	Templates.AddItem(ShredderRoundsDamagePenalty());
+
+
+	Templates.AddItem(PrimaryGrenadeLauncherPassive('PrimaryGrenadeLauncher_CV'));
+	Templates.AddItem(PrimaryGrenadeLauncherPassive('PrimaryGrenadeLauncher_MG'));
+	Templates.AddItem(PrimaryGrenadeLauncherPassive('PrimaryGrenadeLauncher_BM'));
 	
 	
 	return Templates;
@@ -638,7 +646,7 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	local X2AbilityTemplate										Template;
 	local X2Condition_Visibility								VisCondition;
 	local X2AbilityCost_ActionPoints							ActionPointCost;
-	local X2AbilityCooldown										Cooldown;
+	local X2AbilityCooldown_ABCProtocol							Cooldown;
 	local X2Condition_UnitProperty								TargetProperty;
 	local X2AbilityTarget_Single								PrimaryTarget;
 	local X2AbilityMultiTarget_Radius							RadiusMultiTarget;
@@ -711,12 +719,11 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	// Ability's Action Point cost and Cooldown
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bConsumeAllPoints = true;
+	ActionPointCost.bConsumeAllPoints = false;
 	ActionPointCost.DoNotConsumeAllEffects.AddItem('LW_ABCProtocols_DoNotConsumeAllActionsEffect');
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.BLINDING_PROTOCOL_COOLDOWN;
+	Cooldown = new class'X2AbilityCooldown_ABCProtocol';
 	Template.AbilityCooldown = Cooldown;
 
 	// Apply the Disoriented effect to valid targets
@@ -2982,7 +2989,7 @@ static function X2AbilityTemplate CrusaderRage()
 
 	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
 	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
-	GreaterPaddingEffect.Padding_HealHP = default.CRUSADER_WOUND_HP_REDUCTTION;	
+	GreaterPaddingEffect.Padding_HealHP = default.CRUSADER_WOUND_HP_REDUCTION;	
 	
 	// Create the template using a helper function
 	Template = Passive('CrusaderRage_LW', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect);
@@ -3345,11 +3352,9 @@ static function X2AbilityTemplate AddProtectiveServosAbility()
 	DamageControlEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	DamageControlEffect.DuplicateResponse = eDupe_Allow;
 	DamageControlEffect.EffectName = 'ProtectiveServos';
-	DamageControlEffect.BonusArmor = 1;
+	DamageControlEffect.BonusArmor = 2;
 	Template.AddTargetEffect(DamageControlEffect);
 
-
-	Template.AddTargetEffect(DamageControlEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
@@ -3410,7 +3415,36 @@ static function X2AbilityTemplate AddSuperiorHolyWarrior()
 	return Template;
 }
 
+static function X2AbilityTemplate ShredderRoundsDamagePenalty()
+{
+	local XMBEffect_ConditionalBonus Effect;
+	local X2Condition_WeaponCanUseAmmo Condition;
 
+	// Create a condition that checks that the unit is at less than 100% HP.
+	// X2Condition_UnitStatCheck can also check absolute values rather than percentages, by
+	// using "false" instead of "true" for the last argument.
+	Condition = new class'X2Condition_WeaponCanUseAmmo';
+	// Create a conditional bonus effect
+	Effect = new class'XMBEffect_ConditionalBonus';
+
+	//Need to add for all of them because apparently if you crit you don't hit lol
+	Effect.AddPercentDamageModifier(-1 * default.SHREDDER_ROUNDS_DMG_PENALTY, eHit_Success);
+	Effect.AddPercentDamageModifier(-1 * default.SHREDDER_ROUNDS_DMG_PENALTY, eHit_Graze);
+	Effect.AddPercentDamageModifier(-1 * default.SHREDDER_ROUNDS_DMG_PENALTY, eHit_Crit);
+	Effect.EffectName = 'ShredderRounds_Penalty';
+
+	// The effect only applies while wounded
+	EFfect.AbilityShooterConditions.AddItem(Condition);
+	
+	return Passive('ShredderRoundsPenalty', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect, false);
+}
+
+	static function X2AbilityTemplate PrimaryGrenadeLauncherPassive(name TemplateName)
+{	
+	return Passive(TemplateName, "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, , false);
+}
+
+	
 defaultproperties
 {
 	LeadTheTargetReserveActionName = "leadthetarget"

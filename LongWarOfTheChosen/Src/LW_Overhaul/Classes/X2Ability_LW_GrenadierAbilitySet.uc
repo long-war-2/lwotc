@@ -130,8 +130,8 @@ static function X2AbilityTemplate AddHEATWarheads()
 static function X2AbilityTemplate AddHeavyOrdnance_LW()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_BonusGrenadeSlotUse			BonusGrenadeEffect;
-
+	//local X2Effect_BonusGrenadeSlotUse			BonusGrenadeEffect;
+	local X2Effect_BonusClipSize PrimaryAmmoEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'HeavyOrdnance_LW');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_aceinthehole";  // re-use icon from base-game Heavy Ordnance
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -142,15 +142,9 @@ static function X2AbilityTemplate AddHeavyOrdnance_LW()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
 
-	BonusGrenadeEffect = new class 'X2Effect_BonusGrenadeSlotUse';
-	BonusGrenadeEffect.EffectName='HeavyOrdnance_LWEffect';
-	BonusGrenadeEffect.bDamagingGrenadesOnly = true;
-	BonusGrenadeEffect.BonusUses = default.HEAVY_ORDNANCE_LW_BONUS_CHARGES;
-	BonusGrenadeEffect.SlotType = eInvSlot_GrenadePocket;
-	BonusGrenadeEffect.BuildPersistentEffect (1, true, false);
-	BonusGrenadeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	Template.AddTargetEffect (BonusGrenadeEffect);
-	
+	PrimaryAmmoEffect = new class'X2Effect_BonusClipSize';
+	PrimaryAmmoEffect.iClipSizeModifier = 1;
+	Template.AddTargetEffect(PrimaryAmmoEffect);
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 

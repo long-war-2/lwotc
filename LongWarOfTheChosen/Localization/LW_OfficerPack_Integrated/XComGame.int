@@ -98,6 +98,14 @@ LocHelpText="Activate to grant bonus Mobility to nearby allies."
 LocFlyOverText="Oscar Mike"
 LocPromotionPopupText="<Bullet/> Spend an action to give all allies within Command Range +5 Mobility for the remainder of the turn.<br/><Bullet/> Usable once per mission.<br/><Bullet/> Command Range increases with each new Officer level."
 
+[Resupply_LW X2AbilityTemplate]
+LocFriendlyName="Resupply"
+LocLongDescription="Make all allies wihthin a command range that have spent their action points reload."
+LocHelpText="Make all allies wihthin a command range that have spent their action points reload."
+LocFlyOverText="Resupply"
+LocPromotionPopupText="<Bullet/> Spend an action to give all allies within Command Range +5 Mobility for the remainder of the turn.<br/><Bullet/> Usable once per mission.<br/><Bullet/> Command Range increases with each new Officer level."
+
+
 ;displayed on other soldier that receive the effect
 [LeadByExample X2AbilityTemplate]
 LocFriendlyName="Lead By Example"

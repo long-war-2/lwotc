@@ -295,6 +295,7 @@ var config WeaponDamageValue WARLOCKPSIM2_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM3_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM4_BASEDAMAGE;
 
+var config float HUNTERS_INSTINCT_DAMAGE_PCT;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -1191,8 +1192,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		Template.AbilityTargetEffects.length = 0;
 		DamageModifier = new class'X2Effect_HuntersInstinctDamage_LW';
-		DamageModifier.BonusDamage = class'X2Ability_RangerAbilitySet'.default.INSTINCT_DMG;
-		DamageModifier.BonusCritChance = class'X2Ability_RangerAbilitySet'.default.INSTINCT_CRIT;
+		DamageModifier.HUNTERS_INSTINCT_DAMAGE_PCT = default.HUNTERS_INSTINCT_DAMAGE_PCT;
 		DamageModifier.BuildPersistentEffect(1, true, false, true);
 		DamageModifier.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DamageModifier);
@@ -1285,26 +1285,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 
-	// Removes Threat Assessment increase
-	if (Template.DataName == 'AidProtocol')
-	{
-		Cooldown = new class'X2AbilityCooldown';
-		Cooldown.iNumTurns = default.AID_PROTOCOL_COOLDOWN;
-		Template.AbilityCooldown = Cooldown;
 
-		RemoveEffects = new class'X2Effect_RemoveEffectsByDamageType';
-		foreach class'X2Ability_XMBPerkAbilitySet'.default.AgentsHealEffectTypes(HealType)
-		{
-			RemoveEffects.DamageTypesToRemove.AddItem(HealType);
-		}
-		AbilityCondition = new class'X2Condition_AbilityProperty';
-		AbilityCondition.OwnerHasSoldierAbilities.AddItem('NeutralizingAgents_LW');
-		RemoveEffects.TargetConditions.AddItem(AbilityCondition);
-
-		Template.AssociatedPassives.AddItem('NeutralizingAgents_LW');
-		Template.AddTargetEffect(RemoveEffects);
-	
-	}
 
 	if (Template.DataName == 'KillZone' || Template.DataName == 'Deadeye' || Template.DataName == 'BulletShred')
 	{
@@ -1405,9 +1386,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			case 'PistolStandardShot':
 			case 'SniperStandardFire':
 			case 'Shadowfall':
+			case 'Overwatch':
+			case 'PistolOverwatch':
 			// Light Em Up and Snap Shot are handled in the template
 				UnitEffects = new class'X2Condition_UnitEffects';
-				UnitEffects.AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
+				UnitEffects.AddExcludeEffect(class'X2StatusEffects_LW'.default.LWBurningName, 'AA_UnitIsBurning');
 				Template.AbilityShooterConditions.AddItem(UnitEffects);
 				break;
 			default:
@@ -1999,7 +1982,7 @@ function bool ValidExplosiveFalloffAbility(X2AbilityTemplate Template, X2Effect_
 	if (!ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', DamageEffect.Class))
 	{
 		// Make
-		`REDSCREEN("Can't apply explosive falloff to" @ DamageEffect.Class @ "as it's not a super class of X2Effect_ApplyExplosiveFalloffWeaponDamage");
+		//`REDSCREEN("Can't apply explosive falloff to" @ DamageEffect.Class @ "as it's not a super class of X2Effect_ApplyExplosiveFalloffWeaponDamage");
 		return false;
 	}
 
@@ -2085,7 +2068,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('Evac');
 	}
 	
-	if(Template.bCanTakeCover)
+	if(Template.bCanTakeCover && !Template.bIsSoldier)
 	{
 		Template.Abilities.AddItem('HunkerDown');
 	}
@@ -2468,11 +2451,43 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponTemplate.WeaponCat == 'cannon')
 		{
 			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LMG_ALL_RANGE;
+			WeaponTemplate.Abilities.AddItem('HeavyWeaponsMobPenalty');
+		}
+		if (WeaponTemplate.WeaponCat == 'lwchemthrower')
+		{
+			WeaponTemplate.Abilities.AddItem('HeavyWeaponsMobPenalty');
+		}
+		if (WeaponTemplate.WeaponCat == 'Bullpup')
+		{
+			WeaponTemplate.Abilities.AddItem('SMG_LS_StatBonus');
 		}
 		if (WeaponTemplate.WeaponCat == 'vektor_rifle')
 		{
 			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.MID_LONG_ALL_RANGE;
 		}
+		if (WeaponTemplate.WeaponCat == 'rifle' || WeaponTemplate.WeaponCat == 'arcthrower')
+		{
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.MEDIUM_ALL_RANGE;
+		}
+		if (WeaponTemplate.WeaponCat == 'sniper_rifle')
+		{
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LONG_ALL_RANGE;
+			WeaponTemplate.Abilities.AddItem('HeavyWeaponsMobPenalty');
+		}
+		if (WeaponTemplate.WeaponCat == 'bullpup'|| 
+		WeaponTemplate.WeaponCat == 'pistol' ||
+		WeaponTemplate.WeaponCat == 'smg' 
+		)
+		{
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.MIDSHORT_ALL_RANGE;
+		}
+		if (WeaponTemplate.WeaponCat == 'shotgun'|| 
+			WeaponTemplate.WeaponCat == 'sidearm'
+			)
+		{
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.SHORT_ALL_RANGE;
+		}
+
 		if (WeaponTemplate.DataName == 'Medikit')
 		{
 			WeaponTemplate.HideIfResearched = '';
@@ -2813,6 +2828,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			if (EquipmentTemplate.Abilities.Find('AP_Rounds_Ability_PP') == -1)
 			{
 				EquipmentTemplate.Abilities.AddItem('AP_Rounds_Ability_PP');
+				EquipmentTemplate.Abilities.AddItem('APRoundsCritPenalty');
 			}
 		}
 		if (EquipmentTemplate.DataName == 'TalonRounds')
@@ -2851,25 +2867,70 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				EquipmentTemplate.Abilities.AddItem('Tracer_Rounds_Ability_PP');
 			}
 		}
+		if (EquipmentTemplate.DataName == 'FalconRounds')
+		{
+			EquipmentTemplate.Abilities.AddItem('ShredderRoundsPenalty');
+		}
+
+			
 		// Adds stat markup for medium plated armor
 		ArmorTemplate = X2ArmorTemplate(Template);
 		if (ArmorTemplate != none)
 		{
 			switch (ArmorTemplate.DataName)
 			{
-				// Let all soldier armors provide an extra utility slot
-				case 'KevlarArmor':
-				case 'LightPlatedArmor':
+				case 'KevlarArmor_DLC_Day0':
+				ArmorTemplate.bAddsUtilitySlot = true;
+				ArmorTemplate.Abilities.AddItem('LightKevlarArmorStats');
+				ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, class'X2Ability_LW_GearAbilities'.default.LIGHT_KEVLAR_MOBILITY_BONUS);
+				ArmorTemplate.strImage = "img:///UILibrary_HeavyAndLightKevlarArmors.LightArmor";
+				break;
+
 				case 'HeavyPlatedArmor':
-				case 'LightPoweredArmor':
+				ArmorTemplate.Abilities.AddItem('Chitin_Plating_Ability');
+				ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, 14, default.MEDIUM_PLATED_MITIGATION_AMOUNT);
+				ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, -1);
+				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 4);
+				ArmorTemplate.Abilities.AddItem('HeavyArmorMobPenalty');
+				break;
+
 				case 'HeavyPoweredArmor':
+				ArmorTemplate.Abilities.AddItem('Carapace_Plating_Ability');
+				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 5);
+				ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, -1);
+				ArmorTemplate.Abilities.AddItem('HeavyArmorMobPenalty');
+				break;
+
+				case 'LightPlatedArmor':
+				ArmorTemplate.bAddsUtilitySlot = true;
+				ArmorTemplate.Abilities.AddItem('Mini_Plating_Ability');
+				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 1);
+				break;
+
+
+				case 'LightPoweredArmor':
+				ArmorTemplate.Abilities.AddItem('Ceramic_Plating_Ability');
+				ArmorTemplate.bAddsUtilitySlot = true;
+				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 2);
+				break;
+
+				case 'KevlarArmor':
 				case 'ReaperArmor':
-				case 'PoweredReaperArmor':
 				case 'SkirmisherArmor':
-				case 'PoweredSkirmisherArmor':
 				case 'TemplarArmor':
+					ArmorTemplate.Abilities.AddItem('Alloy_Plating_Ability');
+					ArmorTemplate.bAddsUtilitySlot = true;
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 3);
+					break;
+
+				// Let all soldier armors provide an extra utility slot
+				case 'MediumPoweredArmor':
+				case 'PoweredReaperArmor':
+				case 'PoweredSkirmisherArmor':
 				case 'PoweredTemplarArmor':
 					ArmorTemplate.bAddsUtilitySlot = true;
+					ArmorTemplate.Abilities.AddItem('Carapace_Plating_Ability');
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 5);
 					break;
 				
 				case 'PlatedReaperArmor':
@@ -2877,7 +2938,9 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				case 'PlatedTemplarArmor':
 					ArmorTemplate.bAddsUtilitySlot = true;
 				case 'MediumPlatedArmor':
+					ArmorTemplate.Abilities.AddItem('Chitin_Plating_Ability');
 					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, 14, default.MEDIUM_PLATED_MITIGATION_AMOUNT);
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 4);
 					break;
 
 				case 'SparkArmor':
@@ -3006,6 +3069,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'AlienHunterPistol_CV':
 			case 'AlienHunterPistol_MG':
 			case 'AlienHunterPistol_BM':
+				X2WeaponTemplate(EquipmentTemplate).InventorySlot = eInvSlot_Pistol;
 				X2WeaponTemplate(EquipmentTemplate).RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_BEAM_RANGE;
 				break;
 			case 'Cannon_CV': // replace archetype with non-suppression shaking variant
@@ -3131,6 +3195,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	WeaponUpgradeTemplate = X2WeaponUpgradeTemplate(Template);
 	if (WeaponUpgradeTemplate != none)
 	{
+		/*
 		//specific alterations
 		if (WeaponUpgradeTemplate.DataName == 'AimUpgrade_Bsc')
 		{
@@ -3159,14 +3224,14 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Scope_LW_Sup_Ability');
 		}
-
+			*/
 		if (WeaponUpgradeTemplate.DataName == 'FreeFireUpgrade_Bsc')
 		{
 			WeaponUpgradeTemplate.FreeFireChance = 0;
 			WeaponUpgradeTemplate.FreeFireCostFn = none;
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
-			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Hair_Trigger_LW_Bsc_Ability');
+			WeaponUpgradeTemplate.BonusAbilities.AddItem ('HyperReactivePupils');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'FreeFireUpgrade_Adv')
 		{
@@ -3190,7 +3255,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
-			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_LW_Bsc_Ability');
+			WeaponUpgradeTemplate.BonusAbilities.AddItem ('GrazingFire');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Adv')
 		{
@@ -3221,6 +3286,11 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ClipSizeUpgrade_Bsc');
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ClipSizeUpgrade_Adv');
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ClipSizeUpgrade_Sup');
+			WeaponUpgradeTemplate.FreeReloadCostFn = none;
+			WeaponUpgradeTemplate.FriendlyRenameFn = none;
+			WeaponUpgradeTemplate.GetBonusAmountFn = none;
+		
+			WeaponUpgradeTemplate.BonusAbilities.AddItem('QuickReload');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Bsc' || WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Adv' || WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Sup')
 		{

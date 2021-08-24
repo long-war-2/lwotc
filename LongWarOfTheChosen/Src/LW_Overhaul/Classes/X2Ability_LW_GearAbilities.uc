@@ -25,6 +25,7 @@ var config int STOCK_BSC_SUCCESS_CHANCE;
 var config int STOCK_ADV_SUCCESS_CHANCE;
 var config int STOCK_SUP_SUCCESS_CHANCE;
 
+var config int MINI_PLATING_HP;
 var config int CERAMIC_PLATING_HP;
 var config int ALLOY_PLATING_HP;
 var config int CARAPACE_PLATING_HP;
@@ -39,6 +40,11 @@ var config int BLUESCREEN_DISORIENT_CHANCE;
 var localized string strWeight;
 var localized string AblativeHPLabel;
 
+var config int LIGHT_KEVLAR_MOBILITY_BONUS;
+var config int HEAVY_ARMOR_MOB_PENALTY;
+var config int HEAVY_WEAPONS_MOB_PENALTY;
+
+var config int AP_ROUNDS_CRIT_PENALTY;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -60,6 +66,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateStockGrazingFireAbility('Stock_GF_Adv_Ability', default.STOCK_ADV_SUCCESS_CHANCE));
 	Templates.AddItem(CreateStockGrazingFireAbility('Stock_GF_Sup_Ability', default.STOCK_SUP_SUCCESS_CHANCE));
 
+	Templates.AddItem(CreateAblativeHPAbility('Mini_Plating_Ability', default.MINI_PLATING_HP));
 	Templates.AddItem(CreateAblativeHPAbility('Ceramic_Plating_Ability', default.CERAMIC_PLATING_HP));
 	Templates.AddItem(CreateAblativeHPAbility('Alloy_Plating_Ability', default.ALLOY_PLATING_HP));
 	Templates.AddItem(CreateAblativeHPAbility('Chitin_Plating_Ability', default.CHITIN_PLATING_HP));
@@ -95,6 +102,11 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateBluescreenRoundsDisorient());
 	//Templates.AddItem(CreateConsumeWhenActivatedAbility ('ConsumeShapedCharge', 'ShapedChargeUsed'));
+
+	Templates.AddItem(CreateLightKevlarAbility());
+	Templates.AddItem(HeavyArmorMobPenalty());
+	Templates.AddItem(HeavyWeaponsMobPenalty());
+	Templates.AddItem(AddAPRoundsCritPenalty());
 
 	return Templates;
 }
@@ -705,3 +717,146 @@ static function X2AbilityTemplate CreateBluescreenRoundsDisorient()
 	return Template;
 }
 	
+static function X2AbilityTemplate CreateLightKevlarAbility()
+{
+	local X2AbilityTemplate                 Template;	
+	local X2AbilityTrigger					Trigger;
+	local X2AbilityTarget_Self				TargetStyle;
+	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'LightKevlarArmorStats');
+	// Template.IconImage  -- no icon needed for armor stats
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+	
+	Template.AbilityToHitCalc = default.DeadEye;
+	
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+	
+	// light armor has dodge and mobility as well as health
+	//
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	// PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, default.MediumPlatedHealthBonusName, default.MediumPlatedHealthBonusDesc, Template.IconImage);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, default.LIGHT_KEVLAR_MOBILITY_BONUS);
+	Template.AddTargetEffect(PersistentStatChangeEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;	
+}
+
+
+static function X2AbilityTemplate HeavyArmorMobPenalty()
+{
+	local X2AbilityTemplate                 Template;	
+	local X2AbilityTrigger					Trigger;
+	local X2AbilityTarget_Self				TargetStyle;
+	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'HeavyArmorMobPenalty');
+	// Template.IconImage  -- no icon needed for armor stats
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+	
+	Template.AbilityToHitCalc = default.DeadEye;
+	
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+	
+	// light armor has dodge and mobility as well as health
+	//
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	// PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, default.MediumPlatedHealthBonusName, default.MediumPlatedHealthBonusDesc, Template.IconImage);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, default.HEAVY_ARMOR_MOB_PENALTY);
+	Template.AddTargetEffect(PersistentStatChangeEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;	
+}
+
+	static function X2AbilityTemplate HeavyWeaponsMobPenalty()
+{
+	local X2AbilityTemplate                 Template;	
+	local X2AbilityTrigger					Trigger;
+	local X2AbilityTarget_Self				TargetStyle;
+	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'HeavyWeaponsMobPenalty');
+	// Template.IconImage  -- no icon needed for armor stats
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+	
+	Template.AbilityToHitCalc = default.DeadEye;
+	
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+	
+	// light armor has dodge and mobility as well as health
+	//
+	PersistentStatChangeEffect = new class'X2Effect_PersistentStatChange';
+	PersistentStatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	// PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Passive, default.MediumPlatedHealthBonusName, default.MediumPlatedHealthBonusDesc, Template.IconImage);
+	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, default.HEAVY_WEAPONS_MOB_PENALTY);
+	Template.AddTargetEffect(PersistentStatChangeEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;	
+}
+
+
+static function X2AbilityTemplate AddAPRoundsCritPenalty()
+{
+	local X2AbilityTemplate						Template;
+	local X2AbilityTargetStyle                  TargetStyle;
+	local X2AbilityTrigger						Trigger;
+	local X2Effect_ToHitModifier                ToHitModifier;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'APRoundsCritPenalty');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_hithurts";
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	ToHitModifier = new class'X2Effect_ToHitModifier';
+	ToHitModifier.BuildPersistentEffect(1, true, true, true);
+	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,false,,Template.AbilitySourceName);
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.AP_ROUNDS_CRIT_PENALTY, Template.LocFriendlyName, /*StandardAim*/, false, true, true, true);
+	Template.AddTargetEffect(ToHitModifier);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  NOTE: No visualization on purpose!
+
+	return Template;
+}

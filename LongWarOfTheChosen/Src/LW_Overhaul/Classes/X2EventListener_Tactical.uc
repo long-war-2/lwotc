@@ -34,6 +34,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateVeryDifficultMissionAPListener());
 	Templates.AddItem(CreateUIFocusOverride());
 	Templates.AddItem(ChainActivationListeners());
+	Templates.AddItem(ConcealmentListeners());
 
 	return Templates;
 }
@@ -73,7 +74,10 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('UnitChangedTeam', ClearUnitStateValues, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('PlayerTurnEnded', RollForPerTurnWillLoss, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('OverrideR3Button', BindR3ToPlaceDelayedEvacZone, ELD_Immediate, GetListenerPriority());
+	//Make Overwatch not broken when dealing damage
+	Template.AddCHEvent('OverrideDamageRemovesReserveActionPoints', OverrideReserveActionPoints, ELD_Immediate, GetListenerPriority());
 
+	
 	// This seems to be causing stutter in the game, so commenting out for now.
 	// if (XCom_Perfect_Information_UIScreenListener.default.ENABLE_PERFECT_INFORMATION)
 	// {
@@ -1158,6 +1162,21 @@ static function CHEventListenerTemplate ChainActivationListeners()
 }
 
 
+static function CHEventListenerTemplate ConcealmentListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`LWTrace("Registering evac event listeners");
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'ConcealmentListeners');
+	Template.AddCHEvent('PlayerTurnBegun', BreakSquadConcealment, ELD_OnStateSubmitted, GetListenerPriority());
+
+	Template.RegisterInTactical = true;
+
+	return Template;
+}
+
+
 static protected function EventListenerReturn HideFocusOnAssaults(
 	Object EventData,
 	Object EventSource,
@@ -1186,8 +1205,6 @@ static protected function EventListenerReturn HideFocusOnAssaults(
 static function EventListenerReturn ActivatePodSeenAllies(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComLWTuple Tuple;
-	local XComGameStateHistory History;
-	local AlertAbilityInfo AlertInfo;	
 
 	Tuple = XComLWTuple(EventData);
 	if (Tuple == none)
@@ -1238,11 +1255,11 @@ static function EventListenerReturn MakeSureAItoAIWorks(Object EventData, Object
 
 static function EventListenerReturn ChainActivate(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComGameState_AIUnitData AIUnit, MovedUnitData, NewAIUnitData;
+	local XComGameState_AIUnitData AIUnit, NewAIUnitData;
 	local XComGameStateHistory History;
 	local XComGameState_Unit AlertedUnit, MovedUnit;
 	local int AlertDataIndex;
-	local int MovedUnitDataID;
+	//local int MovedUnitDataID;
 	local AlertAbilityInfo AlertInfo;
 	local XcomGameState NewGameState;
 	local XComGameState_AIGroup AIGroupState;
@@ -1343,3 +1360,88 @@ static function EventListenerReturn ChainActivate(Object EventData, Object Event
 
 }
 
+
+
+static function EventListenerReturn BreakSquadConcealment(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Player PlayerState;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_Player', PlayerState)
+	{
+		if( PlayerState.GetTeam() == eTeam_XCom )
+		{
+			break;
+		}
+	}
+	if(PlayerState.PlayerTurnCount == 2)
+	{
+		PlayerState.SetSquadConcealment(false);
+	}
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OverrideReserveActionPoints(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_Unit UnitState, SourceUnit;
+	local name ActionPointName;
+	local bool IsSuppression;
+	local DamageResult Result;
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+
+	UnitState = XcomGameState_Unit(EventSource);
+	Tuple = XComLWTuple(EventData);
+
+	if (Tuple == none)
+		return ELR_NoInterrupt;
+
+
+	Result = UnitState.DamageResults[UnitState.DamageResults.Length-1];
+
+	AbilityContext = XComGameStateContext_Ability(Result.Context);
+
+
+	if(UnitState.IsImpaired())
+	{
+		Tuple.Data[0].b = true;
+		return ELR_NoInterrupt;
+	}
+
+	//Check if the source unit has an ability that allows breaking overwatches
+	if(AbilityContext != none)
+	{
+		SourceUnit = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.SourceObject.ObjectID));
+		if(SourceUnit.HasSoldierAbility('Impact') && Result.DamageAmount > 0)
+		{
+			Tuple.Data[0].b = true;
+			return ELR_NoInterrupt;
+		}
+	}
+
+	foreach UnitState.ReserveActionPoints(ActionPointName)
+	{
+		if(ActionPointName == 'Suppression')
+		{
+			IsSuppression = true;
+			break;
+		}
+	}
+
+
+	if(IsSuppression)
+	{
+		Tuple.Data[0].b = true;
+	}
+	else
+	{
+		Tuple.Data[0].b = false;
+	}
+
+	return ELR_NoInterrupt;
+}		

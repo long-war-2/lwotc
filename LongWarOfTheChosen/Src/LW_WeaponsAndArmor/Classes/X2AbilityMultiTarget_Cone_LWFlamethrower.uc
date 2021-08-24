@@ -382,7 +382,7 @@ simulated function UpdateParameters(XComGameState_Ability Ability)
 {
     local XComGameStateHistory		History;
     local XComGameState_Item		SourceItemState;
-	local X2MultiWeaponTemplate		MultiWeaponTemplate;
+	local X2WeaponTemplate		    MultiWeaponTemplate;
 	local XComGameState_Unit		SourceUnit;    
 	local EffectConeSizeModifier	SizeModifier;
 	local EffectConeSizeMultiplier	SizeMultiplier;
@@ -391,11 +391,11 @@ simulated function UpdateParameters(XComGameState_Ability Ability)
 
     History = `XCOMHISTORY;
     SourceItemState = XComGameState_Item( History.GetGameStateForObjectID( Ability.SourceWeapon.ObjectID ) );
-    MultiWeaponTemplate = X2MultiWeaponTemplate(SourceItemState.GetMyTemplate());
+    MultiWeaponTemplate = X2WeaponTemplate(SourceItemState.GetMyTemplate());
     if(MultiWeaponTemplate != none)
     {
-        ConeEndDiameter = MultiWeaponTemplate.iAltRadius * class'XComWorldData'.const.WORLD_StepSize;
-        ConeLength = MultiWeaponTemplate.iAltRange * class'XComWorldData'.const.WORLD_StepSize;
+        ConeEndDiameter = MultiWeaponTemplate.iRadius * class'XComWorldData'.const.WORLD_StepSize;
+        ConeLength = MultiWeaponTemplate.iRange * class'XComWorldData'.const.WORLD_StepSize;
 
         SourceUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(Ability.OwnerStateObject.ObjectID));
         if(SourceUnit == none)

@@ -16,11 +16,22 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	local name						AbilityName;
 	local XComGameState_Ability		AbilityState;
 	local bool						bFreeActivation;
-
+	local UnitValue UsesThisTurn;
+	local int iUsesThisTurn;
 	if (kAbility == none)
 		return false;
 
 	AbilityName = kAbility.GetMyTemplateName();
+
+	SourceUnit.GetUnitValue ('GrenadierUses', UsesThisTurn);
+	iUsesThisTurn = int(UsesThisTurn.fValue);
+
+	if (iUsesThisTurn > 0)
+    {
+        return false;
+
+    }
+
 
 	if (default.VALID_GRENADE_ABILITIES.Find(AbilityName) != -1)
 	{
@@ -34,6 +45,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 			if (AbilityState != none)
 			{
 				SourceUnit.ActionPoints = PreCostActionPoints;
+				SourceUnit.SetUnitFloatValue ('GrenadierUses', 1.0, eCleanup_BeginTurn);
 				return true;
 			}
 		}

@@ -39,10 +39,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	// Justice and Wrath cooldowns are hard coded in vanilla.
 	case 'Justice':
 		Template.AbilityCooldown.iNumTurns = default.Justice_COOLDOWN;
+		Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
 		ReduceJusticeEnvironmentDamage(Template);
 		break;
 	case 'SkirmisherVengeance':
 		Template.AbilityCooldown.iNumTurns = default.WRATH_COOLDOWN;
+		Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
 		break;
 	case 'Battlelord':
 		AddCooldownToBattlelord(Template);
@@ -293,8 +295,8 @@ static function AddCooldownToBattlelord(X2AbilityTemplate Template)
 
 static function UpdateTotalCombat(X2AbilityTemplate Template)
 {
-	Template.AdditionalAbilities.AddItem('Bombard_LW');
-	Template.AdditionalAbilities.AddItem('VolatileMix');
+	//Template.AdditionalAbilities.AddItem('Bombard_LW');
+	//Template.AdditionalAbilities.AddItem('VolatileMix');
 }
 
 static function UpdateCombatPresence(X2AbilityTemplate Template)

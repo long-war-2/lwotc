@@ -13,11 +13,19 @@ var config int NUM_AIRDROP_CHARGES;
 var config int SAVIOR_BONUS_HEAL;
 var config int REQUIRED_TO_HIT_FOR_OVERWATCH;
 var config float BONUS_SLICE_DAMAGE_PER_TILE;
+var config float FIELD_SURGEON_WOUND_REDUCTION;
 var config int MAX_SLICE_FLECHE_DAMAGE;
+var config int FLECHE_COOLDOWN;
 var config array<name> REQUIRED_OVERWATCH_TO_HIT_EXCLUDED_ABILITIES;
 
+var config int PHANTOM_DURATION;
+var config float PHANTOM_DETECTION_RANGE_REDUCTION;
+var config int PHANTOM_COOLDOWN;
+var config int PHANTOM_CHARGES;
+var config int CONCEAL_BONUS_CHARGES;
 const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
 
+var localized string PhantomExpiredFlyover;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -42,6 +50,13 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddStingGrenades());
 	Templates.AddItem(AddFieldSurgeon());
 	Templates.AddItem(AddDamageInstanceTracker());
+	Templates.AddItem(AddNewEVTrigger());
+	Templates.AddItem(AddNewPhantom());
+	Templates.AddItem(CreateImpact());
+	Templates.AddItem(CreatePlatformStability());
+	Templates.AddItem(CreateImpact());
+	Templates.AddItem(CreateNewConceal());
+
 	
 	return Templates;
 }
@@ -682,7 +697,7 @@ static function X2AbilityTemplate AddSwordSlice_LWAbility()
 	local X2AbilityCost_ActionPoints        ActionPointCost;
 	local X2AbilityToHitCalc_StandardMelee  StandardMelee;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
-
+	local X2AbilityCooldown Cooldown;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'SwordSlice_LW');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -700,6 +715,11 @@ static function X2AbilityTemplate AddSwordSlice_LWAbility()
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Cooldown = new class'X2AbilityCooldown';
+    Cooldown.iNumTurns = default.FLECHE_COOLDOWN;
+    Template.AbilityCooldown = Cooldown;
+
 	
 	StandardMelee = new class'X2AbilityToHitCalc_StandardMelee';
 	Template.AbilityToHitCalc = StandardMelee;
@@ -732,6 +752,8 @@ static function X2AbilityTemplate AddSwordSlice_LWAbility()
 	//
 	Template.SourceMissSpeech = 'SwordMiss';
 
+	//Template.ConcealmentRule = eConceal_Always;
+
 	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
 	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
 
@@ -739,7 +761,7 @@ static function X2AbilityTemplate AddSwordSlice_LWAbility()
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
 
-	Template.AdditionalAbilities.AddItem('Fleche');
+	//Template.AdditionalAbilities.AddItem('Fleche');
 
 	return Template;
 }
@@ -961,10 +983,9 @@ static function X2AbilityTemplate AddStingGrenades()
 static function X2AbilityTemplate AddFieldSurgeon()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_FieldSurgeon					FieldSurgeonEffect;
 	local X2AbilityTrigger_EventListener 		EventListener;	
 	local X2Condition_UnitProperty              TargetProperty;
-
+	local X2Effect_GreaterPadding FieldSurgeonEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'FieldSurgeon');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityFieldSurgeon";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -986,11 +1007,14 @@ static function X2AbilityTemplate AddFieldSurgeon()
 	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventListener.ListenerData.Filter = eFilter_None;	
 	Template.AbilityTriggers.AddItem(EventListener);
-	
-	FieldSurgeonEffect = new class 'X2Effect_FieldSurgeon';
+
+	FieldSurgeonEffect = new class 'X2Effect_GreaterPadding';
 	FieldSurgeonEffect.BuildPersistentEffect (1, true, false);
 	FieldSurgeonEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);	
-	Template.AddTargetEffect(FieldSurgeonEffect);
+	FieldSurgeonEffect.EffectName = 'Field_Surgeon_Wound';
+	FieldSurgeonEffect.DuplicateResponse = eDupe_Ignore;
+	FieldSurgeonEffect.Padding_HealHP = default.FIELD_SURGEON_WOUND_REDUCTION;	
+
 
 	Template.bCrossClassEligible = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -1050,3 +1074,239 @@ static function X2AbilityTemplate AddDamageInstanceTracker()
 
 	return Template;
 }
+	
+static function X2AbilityTemplate AddNewEVTrigger()
+{
+	local X2AbilityTemplate						Template;
+	local X2AbilityTargetStyle                  TargetStyle;
+	local X2AbilityTrigger						Trigger;
+	local X2Effect_EverVigilant					EVEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'NewEverVigilantTrigger');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	EVEffect = new class'X2Effect_EverVigilant';
+	EVEffect.BuildPersistentEffect(1, true, false, false, eGameRule_PlayerTurnBegin);
+	Template.AddTargetEffect(EVEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  NOTE: No visualization on purpose!
+
+	return Template;
+}
+
+
+
+static function X2DataTemplate OverrideImpairingAbility()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityTarget_Single            SingleTarget;
+	local X2Effect_Stunned				    StunnedEffect;
+	local X2Condition_UnitProperty          UnitPropertyCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ImpairingAbility');
+
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+
+	Template.bDontDisplayInAbilitySummary = true;
+	SingleTarget = new class'X2AbilityTarget_Single';
+	SingleTarget.OnlyIncludeTargetsInsideWeaponRange = true;
+	Template.AbilityTargetStyle = SingleTarget;
+
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_Placeholder');      //  ability is activated by another ability that hits
+
+	// Target Conditions
+	//
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeImpaired = true;
+	UnitPropertyCondition.ExcludeAlive = false;
+	UnitPropertyCondition.ExcludeDead = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	UnitPropertyCondition.ExcludeHostileToSource = false;
+	UnitPropertyCondition.FailOnNonUnits = true;
+
+	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+
+	// Shooter Conditions
+	//
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	//  Stunned effect for 3 or 4 unblocked hit
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(1, 100, false);
+	StunnedEffect.bRemoveWhenSourceDies = false;
+	Template.AddTargetEffect(StunnedEffect);
+
+	Template.bSkipFireAction = true;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+//BEGIN AUTOGENERATED CODE: Template Overrides 'ImpairingAbility'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'ImpairingAbility'
+
+	return Template;
+}
+
+	static function X2AbilityTemplate AddNewPhantom()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_RangerStealth                StealthEffect;
+	local X2AbilityCharges_BonusCharges                      Charges;
+	local X2Effect_PersistentStatChange StealthyEffect;
+	local X2AbilityCooldown	Cooldown;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Phantom_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_phantom";
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityCosts.AddItem(new class'X2AbilityCost_Charges');
+	Template.AbilityCosts.AddItem(default.FreeActionCost);
+
+	Cooldown = new class'X2AbilityCooldown';
+    Cooldown.iNumTurns = default.PHANTOM_COOLDOWN;
+    Template.AbilityCooldown = Cooldown;
+
+	Charges = new class'X2AbilityCharges_BonusCharges';
+	Charges.InitialCharges = default.PHANTOM_CHARGES;
+	Charges.BonusAbility = 'Stealth_LW';
+	Charges.BonusChargesCount = default.CONCEAL_BONUS_CHARGES;
+	Template.AbilityCharges = Charges;
+
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityShooterConditions.AddItem(new class'X2Condition_Stealth');
+	Template.AddShooterEffectExclusions();
+
+
+	StealthyEffect = new class'X2Effect_PersistentStatChange';
+	StealthyEffect.EffectName = 'TemporaryPhantomConcealment';
+	StealthyEffect.BuildPersistentEffect(default.PHANTOM_DURATION, false, true, false, eGameRule_PlayerTurnBegin);
+	// StealthyEffect.SetDisplayInfo (ePerkBuff_Bonus,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
+	StealthyEffect.AddPersistentStatChange(eStat_DetectionModifier, default.PHANTOM_DETECTION_RANGE_REDUCTION);
+	StealthyEffect.bRemoveWhenTargetDies = true;
+	StealthyEffect.DuplicateResponse = eDupe_Refresh;
+	StealthyEffect.EffectRemovedFn = PhantomExpired;
+	StealthyEffect.EffectRemovedVisualizationFn = VisualizePhantomExpired;
+
+	StealthEffect = new class'X2Effect_RangerStealth';
+	StealthEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
+	StealthEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true);
+	StealthEffect.bRemoveWhenTargetConcealmentBroken = true;
+	Template.AddTargetEffect(StealthEffect);
+
+	Template.AddTargetEffect(class'X2Effect_Spotted'.static.CreateUnspottedEffect());
+
+	Template.ActivationSpeech = 'ActivateConcealment';
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.bSkipFireAction = true;
+
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
+
+	return Template;
+
+}
+
+
+static function PhantomExpired(
+	X2Effect_Persistent PersistentEffect,
+	const out EffectAppliedData ApplyEffectParameters,
+	XComGameState NewGameState,
+	bool bCleansed)
+{
+	local XComGameState_Unit UnitState;
+
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+
+	`XEVENTMGR.TriggerEvent('EffectBreakUnitConcealment', UnitState, UnitState, NewGameState);
+}
+
+
+static function VisualizePhantomExpired(
+	XComGameState VisualizeGameState,
+	out VisualizationActionMetadata ActionMetadata,
+	const name EffectApplyResult)
+{
+	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
+	local XComGameState_Unit UnitState;
+
+	UnitState = XComGameState_Unit(ActionMetadata.StateObject_NewState);
+	if (UnitState == none)
+		return;
+
+	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, VisualizeGameState.GetContext(), false, ActionMetadata.LastActionAdded));
+	SoundAndFlyOver.SetSoundAndFlyOverParameters(none, default.PhantomExpiredFlyover, '', eColor_Bad);
+}
+
+
+static function X2AbilityTemplate CreateImpact()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('Impact', "img:///UILibrary_XPerkIconPack.UIPerk_stasis_overwatch", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreatePlatformStability()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('PlatformStability', "img:///UILibrary_XPerkIconPack.UIPerk_rocket_shot", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateImprovedProtocols()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('ImprovedProtocols', "img:///UILibrary_XPerkIconPack.UIPerk_gremlin_circle", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+	static function X2AbilityTemplate CreateNewConceal()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('Stealth_LW', "img:///UILibrary_PerkIcons.UIPerk_stealth", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+	

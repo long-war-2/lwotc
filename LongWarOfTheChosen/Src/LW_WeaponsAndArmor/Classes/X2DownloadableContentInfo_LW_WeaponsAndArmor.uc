@@ -14,6 +14,7 @@ var config array<name> TEMPLAR_GAUNTLETS_FOR_ONE_HANDED_USE;
 var config array<name> TEMPLAR_SHIELDS;
 var config array<name> AUTOPISTOL_ANIMS_WEAPONCATS_EXCLUDED;
 
+var localized string CannotEquipCanisterLabel, CannotEquipWithCanisterLabel;
 
 /// <summary>
 /// This method is run if the player loads a saved game that was created prior to this DLC / Mod being installed, and allows the 
@@ -387,4 +388,139 @@ static function bool PrimaryWeaponExcluded(XComGameState_Unit UnitState)
 	//	I could declare a bunch of local values to store intermediate steps but meh
 	//	blame Musashi for this kind of style =\
 	return (default.AUTOPISTOL_ANIMS_WEAPONCATS_EXCLUDED.Find(X2WeaponTemplate(UnitState.GetItemInSlot(eInvSlot_PrimaryWeapon).GetMyTemplate()).WeaponCat) != INDEX_NONE);
+}
+
+
+static function bool CanAddItemToInventory_CH_Improved(out int bCanAddItem, const EInventorySlot Slot, const X2ItemTemplate ItemTemplate, int Quantity, XComGameState_Unit UnitState, optional XComGameState CheckGameState, optional out string DisabledReason, optional XComGameState_Item ItemState) 
+{
+    local bool                          OverrideNormalBehavior;
+    local bool                          DoNotOverrideNormalBehavior;
+    local XComGameState_Item            PrimaryWeapon; //, SecondaryWeapon;
+    local X2WeaponTemplate              WeaponTemplate;
+ 
+    OverrideNormalBehavior = CheckGameState != none;
+    DoNotOverrideNormalBehavior = CheckGameState == none;
+ 
+    if(DisabledReason != "")
+        return DoNotOverrideNormalBehavior;
+ 
+    WeaponTemplate = X2WeaponTemplate(ItemTemplate);
+    if (WeaponTemplate != none)
+    {
+        //  Player is attempting to equip a Canister. Check if the unit has a valid primary weapon for that.
+        if (WeaponTemplate.WeaponCat == 'lwcanister')
+        {
+            PrimaryWeapon = UnitState.GetPrimaryWeapon();
+            if (PrimaryWeapon == none || !IsValidPrimaryWeaponCategoryForCanister(PrimaryWeapon.GetWeaponCategory(), PrimaryWeapon.GetMyTemplateName()) )
+            {
+                bCanAddItem = 0;
+                DisabledReason = default.CannotEquipCanisterLabel;
+                return OverrideNormalBehavior;
+            }
+        }   //  Player is attempting to equip a something into a primary weapon slot.
+        else if (Slot == eInvSlot_PrimaryWeapon && DoesUnitHaveCanisterEquipped(UnitState) && !IsValidPrimaryWeaponCategoryForCanister(WeaponTemplate.WeaponCat, WeaponTemplate.DataName)) 
+        {
+            bCanAddItem = 0;
+            DisabledReason = default.CannotEquipWithCanisterLabel;
+            return OverrideNormalBehavior;
+        }
+    }
+
+    return DoNotOverrideNormalBehavior;
+}
+ 
+//  Canisters can be equipped if the primary weapon is a Chemthrower or a SPARK Flamethrower
+static private function bool IsValidPrimaryWeaponCategoryForCanister(const name WeaponCat, const name WeaponName)
+{
+    return WeaponCat == 'lwchemthrower' || class'X2Item_ChemthrowerUpgrades'.default.Sparkthrowers.Find(WeaponName) != INDEX_NONE;
+}
+ 
+static private function bool DoesUnitHaveCanisterEquipped(const XComGameState_Unit UnitState)
+{
+    local array<XComGameState_Item> InventoryItems;
+    local XComGameState_Item        InventoryItem;
+ 
+    InventoryItems = UnitState.GetAllInventoryItems();
+ 
+    foreach InventoryItems(InventoryItem)
+    {
+        if (InventoryItem.GetWeaponCategory() == 'lwcanister')
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+static function bool CanWeaponApplyUpgrade(XComGameState_Item WeaponState, X2WeaponUpgradeTemplate UpgradeTemplate)
+{
+	if ( X2WeaponTemplate(WeaponState.GetMyTemplate()).WeaponCat == 'lwchemthrower' || class'X2Item_ChemthrowerUpgrades'.default.Sparkthrowers.Find(WeaponState.GetMyTemplateName()) != INDEX_NONE )
+	{
+		if ( class'X2Item_ChemthrowerUpgrades'.default.ChemthrowerUpgrades.Find(UpgradeTemplate.DataName) == INDEX_NONE )
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+
+static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseOb, XComGameState GameState)
+{
+	local name					TagText, AbilityName;
+	local array<string>			TagStrings;
+	local XComGameState_Ability AbilityState;
+	//local XComGameState_Effect	EffectState;
+	local X2AbilityTemplate		AbilityTemplate;
+	local int					Idx;
+	local X2Effect_ApplyCanisterDamage ElemDamage;
+	local X2AbilityTemplateManager				AbilityManager;
+	
+	ParseStringIntoArray(InString, TagStrings, "-", false);
+	TagText = name(TagStrings[0]);
+	if ( TagStrings.length > 1 )
+	{
+		AbilityName = name(TagStrings[1]);
+	}
+
+	switch (TagText)
+	{
+		case 'LWCanisterDamage':
+			OutString = "0";
+			if ( AbilityName != '' )
+			{
+				//get the canister activation ability
+				AbilityManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+				AbilityTemplate = AbilityManager.FindAbilityTemplate(AbilityName);
+			}
+			else
+			{
+				AbilityTemplate = X2AbilityTemplate(ParseObj);
+			}
+			if (AbilityTemplate == none)
+			{
+				AbilityState = XComGameState_Ability(ParseObj);
+				if (AbilityState != none)
+					AbilityTemplate = AbilityState.GetMyTemplate();
+			}
+			if (AbilityTemplate != none)
+			{
+				for (Idx = 0; Idx < AbilityTemplate.AbilityMultiTargetEffects.Length; ++Idx)
+				{
+					ElemDamage = X2Effect_ApplyCanisterDamage(AbilityTemplate.AbilityMultiTargetEffects[Idx]);
+					if ( ElemDamage != none )
+					{
+						OutString = string(Round(ElemDamage.Scalar *100)) $ "%";
+						return true;
+					}
+				}
+			}
+			return true;
+		default:
+			return false;
+	}
+
+	return false;
 }

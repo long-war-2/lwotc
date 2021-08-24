@@ -29,6 +29,8 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 	switch (CATemplate.DataName)
 	{
 		case 'CovertAction_SuperiorWeaponUpgrade':
+			CATemplate.RequiredFactionInfluence = EFactionInfluence(eFactionInfluence_MAX + 1);
+			break;
 		case 'CovertAction_SuperiorPCS':
 			CaTemplate.RequiredFactionInfluence = eFactionInfluence_Minimal;
 			CaTemplate.bUnique = false;

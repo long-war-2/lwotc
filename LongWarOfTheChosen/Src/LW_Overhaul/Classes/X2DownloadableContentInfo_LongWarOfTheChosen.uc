@@ -128,6 +128,14 @@ static event OnLoadedSavedGame()
 	//UpdateUtilityItemSlotsForAllSoldiers();
 }
 
+
+static event UpdateDLC()
+{
+
+	LevelUpXTP();
+
+}
+
 /// <summary>
 /// Called when the player starts a new campaign while this DLC / Mod is installed
 /// </summary>
@@ -146,6 +154,7 @@ static event InstallNewCampaign(XComGameState StartState)
 	class'XComGameState_LWAlienActivityManager'.static.CreateAlienActivityManager(StartState);
 	class'XComGameState_WorldRegion_LWStrategyAI'.static.InitializeRegionalAIs(StartState);
 	class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWOverhaulOptions', StartState);
+	class'XComGameState_LWXTP'.static.CreateXTPState(StartState);
 
 	// Save the second wave options, but only if we've actually started a new
 	// campaign (hence the check for UIShellDifficulty being open).
@@ -156,7 +165,8 @@ static event InstallNewCampaign(XComGameState StartState)
 
 	StartingRegionState = SetStartingLocationToStartingRegion(StartState);
 	UpdateLockAndLoadBonus(StartState);  // update XComHQ and Continent states to remove LockAndLoad bonus if it was selected
-	LimitStartingSquadSize(StartState); // possibly limit the starting squad size to something smaller than the maximum
+	//LimitStartingSquadSize(StartState); // possibly limit the starting squad size to something smaller than the maximum
+	SetUpGateCrasherCrew(StartState);
 	DisableUnwantedObjectives(StartState);
 
 	class'XComGameState_LWSquadManager'.static.CreateFirstMissionSquad(StartState);
@@ -2013,6 +2023,71 @@ static function LimitStartingSquadSize(XComGameState StartState)
 	}
 }
 
+
+static function SetUpGateCrasherCrew(XComGameState StartState)
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	local StateObjectReference FactionSoldierRef;
+	local name SelectedClass;
+	local int Index;
+	local XComGameState_Unit NewSoldierState;
+	local XComOnlineProfileSettings ProfileSettings;
+	local XGCharacterGenerator CharacterGenerator;
+	local XComGameState_GameTime GameTime;
+
+
+	ProfileSettings = `XPROFILESETTINGS;
+
+	foreach StartState.IterateByClassType(class'XComGameState_HeadquartersXCom', XComHQ)
+	{
+		break;
+	}
+		foreach StartState.IterateByClassType(class'XComGameState_GameTime', GameTime)
+	{
+		break;
+	}
+
+	FactionSoldierRef = XComHQ.Squad[3];
+	//Reset The Squad count
+	XComHQ.Squad.Length = 0;
+	//Now Add 6 squaddies to crew
+	XComHQ.Squad.AddItem(FactionSoldierRef);
+
+	for( Index = 0; Index < 6; ++Index)
+	{
+
+		NewSoldierState = `CHARACTERPOOLMGR.CreateCharacter(StartState, ProfileSettings.Data.m_eCharPoolUsage);
+		CharacterGenerator = `XCOMGRI.Spawn(NewSoldierState.GetMyTemplate().CharacterGeneratorClass);
+		`assert(CharacterGenerator != none);
+
+		
+		NewSoldierState.RandomizeStats();
+		NewSoldierState.ApplyInventoryLoadout(StartState);
+
+		NewSoldierState.SetXPForRank(1);
+		NewSoldierState.StartingRank = 1;
+
+		SelectedClass = XComHQ.SelectNextSoldierClass();
+		
+		NewSoldierState.RankUpSoldier(StartState, SelectedClass);
+		NewSoldierState.ApplySquaddieLoadout(StartState);
+
+	
+		NewSoldierState.bIsFamous = true;
+
+		NewSoldierState.SetHQLocation(eSoldierLoc_Barracks);
+
+		XComHQ.AddToCrew(StartState, NewSoldierState);
+		NewSoldierState.m_RecruitDate = GameTime.CurrentTime; // AddToCrew does this, but during start state creation the StrategyRuleset hasn't been created yet
+
+		if(XComHQ.Squad.Length < class'X2StrategyGameRulesetDataStructures'.static.GetMaxSoldiersAllowedOnMission())
+		{
+			XComHQ.Squad.AddItem(NewSoldierState.GetReference());
+		}
+	}
+
+}
+
 static function UpdateFirstMissionTemplate()
 {
 	local X2StrategyElementTemplateManager TemplateMgr;
@@ -3131,9 +3206,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'RAPID_TARGETING_COOLDOWN_LW':
 			OutString = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.RAPID_TARGETING_COOLDOWN);
 			return true;
-		case 'MULTI_TARGETING_COOLDOWN_LW':
-			OutString = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.MULTI_TARGETING_COOLDOWN);
-			return true;
+
 		case 'BURNOUT_RADIUS_LW':
 			OutString = Repl(string(class'X2Ability_LW_TechnicalAbilitySet'.default.BURNOUT_RADIUS), "0", "");
 			return true;
@@ -3340,6 +3413,14 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'CHOSEN_RETRIBUTION_DURATION':
 			OutString = string(default.CHOSEN_RETRIBUTION_DURATION);
 			return true;
+		case 'AP_ROUNDS_CRIT_PENALTY':
+			Outstring = string(-1 * class'X2Ability_LW_GearAbilities'.default.AP_ROUNDS_CRIT_PENALTY);
+			return true;
+		case 'HUNTERS_INSTINCT_DAMAGE_PCT':
+			Outstring = string(int(class'LWTemplateMods'.default.HUNTERS_INSTINCT_DAMAGE_PCT * 100));
+		return true;
+
+			
 		default:
 			return false;
 	}
@@ -4661,4 +4742,69 @@ exec function DumpUnitInfo()
 	}
 
 	class'Helpers'.static.OutputMsg("Unit information dumped to log");
+}
+
+
+static function LevelUpXTP(optional int Ranks = 1)
+{
+	local XComGameState NewGameState;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameStateHistory History;
+	local XComGameState_Unit UnitState;
+	local int idx, NewRank;
+
+	History = `XCOMHISTORY;
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Rankup Soldiers XTP");
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+
+	if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP4') != -1)
+	{
+		NewRank = 5;
+	}
+	if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP3') != -1)
+	{
+		NewRank = 4;
+	}
+	else if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP2') != -1)
+	{
+		NewRank = 3;
+	}
+	else if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP1') != -1)
+	{
+		NewRank = 2;
+	}
+	else
+	{
+		NewRank = 1;
+	}
+	
+	for(idx = 0; idx < XComHQ.Crew.Length; idx++)
+	{
+		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(XComHQ.Crew[idx].ObjectID));
+
+		if(UnitState != none && UnitState.IsSoldier() && UnitState.GetRank() < NewRank)
+		{
+			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+
+			if(NewRank >= class'X2ExperienceConfig'.static.GetMaxRank())
+			{
+				NewRank = (class'X2ExperienceConfig'.static.GetMaxRank());
+			}
+
+
+
+			UnitState.StartingRank = NewRank;
+			UnitState.SetXPForRank(NewRank);
+		}
+	}
+
+	if( NewGameState.GetNumGameStateObjects() > 0 )
+	{
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
 }

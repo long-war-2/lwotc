@@ -7,8 +7,8 @@
 class X2Ability_LW_SharpshooterAbilitySet extends X2Ability config(LW_SoldierSkills);
 
 var config int RAPID_TARGETING_COOLDOWN;
-var config int MULTI_TARGETING_COOLDOWN;
-var config int ALPHAMIKEFOXTROT_DAMAGE;
+var config int HOLOTARGETING_COOLDOWN;
+var config float ALPHAMIKEFOXTROT_DAMAGE;
 var config int DOUBLE_TAP_2_COOLDOWN;
 
 var name DoubleTapActionPoint;
@@ -20,13 +20,13 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	//temporary common abilities so the UI will load
 	Templates.AddItem(AddHolotarget());
-	Templates.AddItem(AddRapidTargeting());
+	//Templates.AddItem(AddRapidTargeting());
 	Templates.AddItem(AddMultiTargeting());
 
 	Templates.AddItem(PurePassive('HDHolo', "img:///UILibrary_LW_Overhaul.LW_AbilityHDHolo", true));
 	Templates.AddItem(PurePassive('IndependentTracking', "img:///UILibrary_LW_Overhaul.LW_AbilityIndependentTracking", true));
 	Templates.AddItem(PurePassive('VitalPointTargeting', "img:///UILibrary_LW_Overhaul.LW_AbilityVitalPointTargeting", true));
-	Templates.AddItem(PurePassive('RapidTargeting_Passive', "img:///UILibrary_LW_Overhaul.LW_AbilityRapidTargeting", true));
+	Templates.AddItem(PurePassive('RapidTargeting', "img:///UILibrary_LW_Overhaul.LW_AbilityRapidTargeting", true));
 
 	Templates.AddItem(AddAlphaMikeFoxtrot());
 	Templates.AddItem(AddDoubleTap2());
@@ -42,6 +42,7 @@ static function X2AbilityTemplate AddHolotarget()
 	local X2Effect_LWHoloTarget				Effect;
 	local X2Condition_Visibility			TargetVisibilityCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2AbilityCooldown_Holotarget	Cooldown;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Holotarget');
 
@@ -61,10 +62,14 @@ static function X2AbilityTemplate AddHolotarget()
 	Template.ConcealmentRule = eConceal_Always;
 	//Template.ActivationSpeech = 'TracerBeams';
 
+	Cooldown = new class'X2AbilityCooldown_Holotarget';
+	Cooldown.iNumTurns = default.HOLOTARGETING_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bConsumeAllPoints = true;
-	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('RapidTargeting');
+	ActionPointCost.bFreeCost = true;
+	//ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('RapidTargeting');
 	Template.AbilityCosts.AddItem(ActionPointCost);
 	
 	Template.AbilityToHitCalc = default.DeadEye;
@@ -192,7 +197,7 @@ static function X2AbilityTemplate AddMultiTargeting()
 	local X2AbilityMultiTarget_Radius		RadiusMultiTarget;
 	local X2Effect_LWHoloTarget				Effect;
 	local X2Condition_Visibility			TargetVisibilityCondition;
-	local X2AbilityCooldown                 Cooldown;
+	local X2AbilityCooldown_Holotarget                 Cooldown;
 	local X2Condition_UnitEffects			SuppressedCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Multitargeting');
@@ -205,8 +210,8 @@ static function X2AbilityTemplate AddMultiTargeting()
 	//Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
 	Template.Hostility = eHostility_Neutral;
 
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.MULTI_TARGETING_COOLDOWN;
+	Cooldown = new class'X2AbilityCooldown_Holotarget';
+	Cooldown.iNumTurns = default.HOLOTARGETING_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
 	Template.bDisplayInUITooltip = true;
@@ -218,7 +223,7 @@ static function X2AbilityTemplate AddMultiTargeting()
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bConsumeAllPoints = false;
+	ActionPointCost.bFreeCost = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 	
 	Template.AbilityToHitCalc = default.DeadEye;
@@ -267,7 +272,7 @@ static function X2AbilityTemplate AddMultiTargeting()
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
-	//Template.OverrideAbilities.AddItem('Holotarget'); // add the multi-targeting as a separate ability, so as not to render RapidTargeting useless
+	Template.OverrideAbilities.AddItem('Holotarget');
 
 	return Template;
 }
@@ -275,7 +280,7 @@ static function X2AbilityTemplate AddMultiTargeting()
 static function X2AbilityTemplate AddAlphaMikeFoxtrot()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_PrimaryHitBonusDamage        DamageEffect;
+	local X2Effect_PrimaryPCTBonusDamage        DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'AlphaMikeFoxtrot');
 	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityAMF";
@@ -286,10 +291,8 @@ static function X2AbilityTemplate AddAlphaMikeFoxtrot()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
-	DamageEffect = new class'X2Effect_PrimaryHitBonusDamage';
+	DamageEffect = new class'X2Effect_PrimaryPCTBonusDamage';
 	DamageEffect.BonusDmg = default.ALPHAMIKEFOXTROT_DAMAGE;
-	DamageEffect.includepistols = false;
-	DamageEffect.includesos = false;
 	DamageEffect.BuildPersistentEffect(1, true, false, false);
 	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageEffect);

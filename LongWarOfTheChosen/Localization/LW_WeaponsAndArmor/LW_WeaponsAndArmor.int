@@ -2,4 +2,25 @@
 [X2Ability_ThrowingKnifeAbilitySet]
 RendTheMarkedEffectName="Rend The Marked"
 RendTheMarkedEffectDesc="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
+
+; LWOTC Needs Translation
+[X2Ability_Immolator]
+ThermalBEffectName = "Thermal Bulwark"
+ThermalBEffectDesc = "<Ability:FUMIGATE_BULWARK/>% chance to deflect incoming attacks."
+IncandescenceEffectName = "Incandescence"
+IncandescenceEffectDesc = "Illuminated and <Ability:INCAN_CRIT/>% easier to critically hit"
+ViscousAccelerantEffectName = "Viscous Accelerant"
+ViscousAccelerantEffectDesc = "Takes +<Ability:VISC_BONUS/> damage from damage over time effects."
+
+ChemicalDeflectorSquadName="Chemical Bastion"
+ChemicalDeflectorSquadDesc="Gain immunity to the damage types of the Alchemist's Chemthrower and Canister."
+
+[X2Ability_Canisters]
+MedicCanisterBuffLabel = "Regeneration"
+MedicCanisterBuffDesc = "Regenerate a small amount of health over time."
+
+[X2DownloadableContentInfo_ImmolatorChemthrower]
+CannotEquipCanisterLabel = "Requires Chemthrower"
+CannotEquipWithCanisterLabel = "Must Unequip Canister First"
 ; End Translation
+

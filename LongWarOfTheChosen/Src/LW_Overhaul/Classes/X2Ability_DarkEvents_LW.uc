@@ -50,7 +50,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateDarkEventAbility('SurvivalInstinct_LW','Viper'));
 
 	Templates.AddItem(CreateDarkEventAbility('GrazingFire','Gunner'));
-	Templates.AddItem(CreateDarkEventAbility('GrazingFire','Gunner'));
+	Templates.AddItem(CreateDarkEventAbility('GrazingFire','Sentry'));
 
 	Templates.AddItem(CreateDarkEventAbility('Entwine_LW','Viper'));
 
@@ -74,6 +74,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateDarkEventAbility('OpenFire_LW','Trooper'));
 	Templates.AddItem(CreateDarkEventAbility('OpenFire_LW','Gunner'));
+	Templates.AddItem(CreateDarkEventAbility('OpenFire_LW','Viper'));
 
 	Templates.AddItem(CreateDarkEventAbility('ChosenVenomRounds','Trooper'));
 
