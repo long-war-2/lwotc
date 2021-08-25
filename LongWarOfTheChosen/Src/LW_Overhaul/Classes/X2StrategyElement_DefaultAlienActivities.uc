@@ -597,8 +597,7 @@ static function OnProtectRegionActivityComplete(bool bAlienSuccess, XComGameStat
 
 		//Removing prohibitions on jobs
 		Outpost = `LWOUTPOSTMGR.GetOutpostForRegion(PrimaryRegionState);
-		Outpost = XComGameState_LWOutpost(NewGameState.CreateStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
-		NewGameState.AddStateObject(Outpost);
+		Outpost = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
 		for (k = 0; k < Outpost.ProhibitedJobs.Length; k++)
 		{
 			Outpost.ProhibitedJobs[k].DaysLeft = 0;
