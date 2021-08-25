@@ -606,7 +606,7 @@ static function OnProtectRegionActivityComplete(bool bAlienSuccess, XComGameStat
 
 		for (k = 0; k < Outpost.CurrentRetributions.Length; k++)
 		{
-			OutPost.CurrentRetributions[k].DaysLeft = 0;
+			Outpost.CurrentRetributions[k].DaysLeft = 0;
 		}		
 
 		//distribute the RemainderAlertLevel amongst adjacent regions that haven't been liberated
