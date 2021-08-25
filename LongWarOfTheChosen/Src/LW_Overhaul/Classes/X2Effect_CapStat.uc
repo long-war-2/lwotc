@@ -41,8 +41,8 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 
 	// Register to tick after EVERY action.
 	EventMgr.RegisterForEvent(ListenerObj, 'OnUnitBeginPlay', EventHandler, ELD_OnStateSubmitted, 25, UnitState,, EffectGameState);	
-	//EventMgr.RegisterForEvent(ListenerObj, 'AbilityActivated', EventHandler, ELD_OnStateSubmitted, 25,,, EffectGameState);
-	EventMgr.RegisterForEvent(ListenerObj, 'UnitTakeEffectDamage', EventHandler, ELD_OnStateSubmitted, 25,,, EffectGameState);	
+	EventMgr.RegisterForEvent(ListenerObj, 'UnitAttacked', EventHandler, ELD_OnStateSubmitted, 25,,, EffectGameState);
+	EventMgr.RegisterForEvent(ListenerObj, 'AbilityActivated', EventHandler, ELD_OnStateSubmitted, 150,,, EffectGameState);	
 
 }
 
@@ -92,7 +92,7 @@ static function EventListenerReturn EventHandler(Object EventData, Object EventS
 				StatChangeOther = NewUnitState.GetCurrentStat(LocalStatCap.StatType) - AppliedStatChange;
 
 
-			CappedStat = LocalStatCap.Minimum ? 
+			CappedStat = LocalStatCap.IsMinimum ? 
 			Max(StatChangeOther, LocalStatCap.StatCapValue):
 			Min(StatChangeOther, LocalStatCap.StatCapValue);
 
