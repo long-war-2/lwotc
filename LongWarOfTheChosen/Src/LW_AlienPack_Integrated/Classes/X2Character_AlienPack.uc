@@ -84,6 +84,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_Drone('LWDroneM4'));
 	Templates.AddItem(CreateTemplate_Drone('LWDroneM5'));
 
+	Templates.AddItem(CreateTemplate_Chryssalid('Chryssalid'));
 	Templates.AddItem(CreateTemplate_Chryssalid('ChryssalidM2'));
 	Templates.AddItem(CreateTemplate_Chryssalid('ChryssalidM3'));
 	Templates.AddItem(CreateTemplate_Chryssalid('ChryssalidM4'));

@@ -294,12 +294,16 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'AidProtocol':
 			UpdateAidProtocol(Template);
+			break;
 		case 'CombatProtocol':
 			UpdateCombatProtocol(Template);
-			
+			break;
 		case 'LongWatch':
 			Template.AdditionalAbilities.AddItem('CoolUnderPressure');
-
+		case 'Overwatch':
+		case 'PistolOverwatch':
+		case 'SniperRifleOverwatch':
+			UpdateOverwatch(Template);	
 		default:
 			break;
 
@@ -1633,6 +1637,35 @@ static function UpdateCombatProtocol(X2AbilityTemplate Template)
 }
 
 
+static function UpdateOverwatch(X2AbilityTemplate Template)
+{
+	local X2AbilityMultiTarget_AllUnits MultiTargetMark;
+	local X2Condition_Visibility	VisibilityCondition;
+	local X2Effect_OverwatchMark	OverwatchMark;
+	local X2Condition_AnyEnemyVisible VisibleCondition;
+	MultiTargetMark = new class'X2AbilityMultiTarget_AllUnits';
+	MultiTargetMark.bAcceptEnemyUnits = true;
+
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	if(Template.DataName == 'LongWatch')
+	{
+	VisibilityCondition.bAllowSquadsight = true;
+	}
+
+	Template.AbilityMultiTargetConditions.AddItem(VisibilityCondition);
+
+
+	OverwatchMark =	new class'X2Effect_OverwatchMark';
+	Template.AddMultiTargetEffect(OverwatchMark);
+
+
+	VisibleCondition = new class'X2Condition_AnyEnemyVisible';
+	Template.AbilityShooterConditions.AddItem(VisibleCondition);
+
+}
+
+	
 
 
 

@@ -1,0 +1,7 @@
+[XComGameStateContext_XComScamper]
+FlyOverText="XCom Scamper"
+
+[X2Effect_ScamperPenalty]
+FriendlyEffectName="Scamper penalty"
+FriendlyEffectDescription="Reduced mobility for scamper move. Will be removed if unit gains another move or at the end of turn if no actions are taken"
+RemovedFlyoutText="Scamper penalty removed"

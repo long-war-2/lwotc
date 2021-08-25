@@ -3407,6 +3407,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'IMPACT_COMPENSATION_MAX_STACKS':
 			Outstring = string(class'X2Ability_LW_ChosenAbilities'.default.IMPACT_COMPENSATION_MAX_STACKS);
 			return true;
+		case 'HIGH_VOLUME_FIRE_MALUS':
+			Outstring = string(class'X2Ability_LW_ChosenAbilities'.default.HIGH_VOLUME_FIRE_MALUS);
+			return true;
 		case 'SHIELD_ALLY_PCT_DR':
 			Outstring = string(int(class'X2Ability_LW_ChosenAbilities'.default.SHIELD_ALLY_PCT_DR * 100));
 			return true;

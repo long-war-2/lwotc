@@ -48,7 +48,7 @@ static function X2AbilityTemplate CreateFlameThrower()
 	local array<name>                       SkipExclusions;
 	local X2AbilityCooldown_Immolator		Cooldown;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWFireThrower');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZFireThrower');
 
 
 	Cooldown = new class'X2AbilityCooldown_Immolator';
@@ -183,7 +183,7 @@ static function X2AbilityTemplate CreateFlameThrowerOverwatchShot()
 	local X2Effect_Persistent               BladestormTargetEffect;
 	local X2Condition_UnitEffectsWithAbilitySource BladestormTargetCondition;
 	local X2AbilityCooldown_Immolator	Cooldown;
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWFireThrowerOverwatchShot');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZFireThrowerOverwatchShot');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
@@ -194,7 +194,7 @@ static function X2AbilityTemplate CreateFlameThrowerOverwatchShot()
 
 	Cooldown = new class'X2AbilityCooldown_Immolator';
 	Cooldown.iNumTurns = default.IMMOLATOR_COOLDOWN;
-	Cooldown.SharingCooldownsWith.AddItem('LWFireThrower');
+	Cooldown.SharingCooldownsWith.AddItem('MZFireThrower');
 	Template.AbilityCooldown = Cooldown;
 
 	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';

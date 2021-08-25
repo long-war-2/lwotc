@@ -295,6 +295,12 @@ var config WeaponDamageValue WARLOCKPSIM2_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM3_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM4_BASEDAMAGE;
 
+var config WeaponDamageValue GREMLIN_CV_BASEDAMAGE;
+var config WeaponDamageValue GREMLIN_MG_BASEDAMAGE;
+var config WeaponDamageValue GREMLIN_BM_BASEDAMAGE;
+
+
+
 var config float HUNTERS_INSTINCT_DAMAGE_PCT;
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -2081,6 +2087,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'AdvTrooperM4':
 		case 'AdvTrooperM5':
 		Template.Abilities.AddItem('SkirmisherStrike');
+		break;
 		case 'AdvCaptainM1':
 		case 'AdvCaptainM2':
 		case 'AdvCaptainM3':
@@ -2621,6 +2628,16 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				}
 			}
 			break;
+		case 'Gremlin_CV':
+		WeaponTemplate.BaseDamage = default.GREMLIN_CV_BASEDAMAGE;
+		break;
+		case 'Gremlin_MG':
+		WeaponTemplate.BaseDamage = default.GREMLIN_MG_BASEDAMAGE;
+		break;
+		case 'Gremlin_BM':
+		WeaponTemplate.BaseDamage = default.GREMLIN_MG_BASEDAMAGE;
+		break;
+
 		default:
 			break;
 		}

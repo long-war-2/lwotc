@@ -466,6 +466,27 @@ static function bool CanWeaponApplyUpgrade(XComGameState_Item WeaponState, X2Wea
 	return true;
 }
 
+static function string DLCAppendSockets(XComUnitPawn Pawn)
+{
+    local XComGameState_Unit UnitState;
+
+    UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(Pawn.ObjectID));
+    if (UnitState == none)
+        return "";
+    
+    if (UnitState.IsSoldier())
+    {
+        if (UnitState.kAppearance.iGender == eGender_Male)
+        {
+            return "WP_XCOMCanisterMKII.Sockets.SM_SoldierSockets_M";
+        }
+        else
+        {
+            return "WP_XCOMCanisterMKII.Sockets.SM_SoldierSockets_F";
+        }
+    }
+    return "";
+}
 
 static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseOb, XComGameState GameState)
 {

@@ -54,14 +54,14 @@ AbilityDescName="throwing knife"
 
 ; LWOTC Needs Translation
 
-[LWFireThrower X2AbilityTemplate]
+[MZFireThrower X2AbilityTemplate]
 LocFriendlyName="Fire Immolator"
 LocLongDescription="Expel a stream of highly flammable chemicals, burning and damaging multiple targets."
 LocHelpText="Expel a stream of highly flammable chemicals, burning and damaging multiple targets."
 LocFlyOverText="Fire Immolator"
 LocPromotionPopupText="<Bullet/>Expel a stream of highly flammable chemicals, burning and damaging multiple targets."
 
-[LWFireThrowerOverwatchShot X2AbilityTemplate]
+[MZFireThrowerOverwatchShot X2AbilityTemplate]
 LocFriendlyName="Immolator Overwatch Shot"
 LocFlyOverText="Immolator Overwatch Shot"
 
@@ -73,7 +73,7 @@ TacticalText="A simple mechanical incendiary device, mostly unchanged in design 
 AbilityDescName="Flametorch"
 
 [LWImmolator_CV X2WeaponTemplate]
-FriendlyName="Immolator"
+FriendlyName="Immolator2"
 FriendlyNamePlural="Immolators"
 BriefSummary="This basic chemical thrower fires a stream of highly flamable chemicals, burning and damaging multiple targets."
 TacticalText="<Bullet/> Chemthrowers do low damage in a wide area, making them effective only when dealing with multiple targets.<br> <Bullet/> The Immolator will always burn targets, dealing damage over time and disabling some abilities.<br> <Bullet/> Some enemies may be immune to fire, and take no damage from the immolator.<br> <Bullet/> Extremely effective against the Lost.<br>"

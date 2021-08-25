@@ -1264,9 +1264,14 @@ static function EventListenerReturn ChainActivate(Object EventData, Object Event
 	local XcomGameState NewGameState;
 	local XComGameState_AIGroup AIGroupState;
 	local X2Condition_Visibility VisibiliyCondition;
+	local XGAIPlayer kAI;
+	local XGAIGroup kGroup;
 	local array<X2Condition> ActivationVisibilityCondition;
 
 	History = `XCOMHISTORY;
+
+
+	kAI = XGAIPlayer(`BATTLE.GetAIPlayer());
 
 	VisibiliyCondition = new class'X2Condition_Visibility';
 	VisibiliyCondition.bRequireGameplayVisible=true;
@@ -1286,12 +1291,16 @@ static function EventListenerReturn ChainActivate(Object EventData, Object Event
 		if (MovedUnit.GetCurrentStat(eStat_AlertLevel) > 1 && AlertedUnit.GetCurrentStat(eStat_AlertLevel) < 2)
 		{
 
+
 			if((class'X2TacticalVisibilityHelpers'.static.CanUnitSeeLocation(AIUnit.m_iUnitObjectID, MovedUnit.TileLocation, ActivationVisibilityCondition) || AIUnit.IsKnowledgeAboutUnitAbsolute(MovedUnit.ObjectID, AlertDataIndex)) && AlertedUnit.TileDistanceBetween(MovedUnit) <= 18)
 			{
 				AlertInfo.AlertUnitSourceID = MovedUnit.ObjectID;
 				AlertInfo.AnalyzingHistoryIndex = GameState.HistoryIndex;
 				AlertInfo.AlertTileLocation = MovedUnit.TileLocation;
 
+				kAI.m_kNav.GetGroupInfo(AlertedUnit.ObjectID, kGroup);
+				kAI.ForceAbility(kGroup.m_arrUnitIDs, 'RedAlert');
+	
 				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
 				NewAIUnitData = XComGameState_AIUnitData(NewGameState.ModifyStateObject(class'XComGameState_AIUnitData', AIUnit.ObjectID));
 				if( NewAIUnitData.AddAlertData(AIUnit.m_iUnitObjectID, eAC_SeesSpottedUnit, AlertInfo, NewGameState) )

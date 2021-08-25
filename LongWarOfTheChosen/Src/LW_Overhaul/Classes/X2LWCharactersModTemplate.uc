@@ -55,7 +55,7 @@ static function DoaGlobalStatModifierByDifficulty(X2CharacterTemplate Template, 
 	local X2CharacterTemplate HighestDiffTemplate;
 	local array<X2DataTemplate> DiffTemplates;
 	local X2CharacterTemplateManager TemplateManager;
-
+	local int i;
 
 
 
@@ -72,19 +72,22 @@ static function DoaGlobalStatModifierByDifficulty(X2CharacterTemplate Template, 
 
 	HighestDiffTemplate = X2CharacterTemplate(DiffTemplates[3]);
 
-
-	Template.CharacterBaseStats[eStat_HP] = FCeil(HighestDiffTemplate.CharacterBaseStats[eStat_HP] * default.DIFFICULTY_HP_MODIFIER[Difficulty]);
-	Template.CharacterBaseStats[eStat_Offense] = FCeil(HighestDiffTemplate.CharacterBaseStats[eStat_Offense] + default.DIFFICULTY_AIM_MODIFIER[Difficulty]);
-	Template.CharacterBaseStats[eStat_Will] = FCeil(HighestDiffTemplate.CharacterBaseStats[eStat_Will] + default.DIFFICULTY_Will_MODIFIER[Difficulty]);
-
-	Template.CharacterBaseStats[eStat_ArmorMitigation]=HighestDiffTemplate.CharacterBaseStats[eStat_ArmorMitigation];
-	Template.CharacterBaseStats[eStat_CritChance]=HighestDiffTemplate.CharacterBaseStats[eStat_CritChance];
-	Template.CharacterBaseStats[eStat_Defense]=HighestDiffTemplate.CharacterBaseStats[eStat_Defense];
-	Template.CharacterBaseStats[eStat_Dodge]=HighestDiffTemplate.CharacterBaseStats[eStat_Dodge];
-	Template.CharacterBaseStats[eStat_Mobility]=HighestDiffTemplate.CharacterBaseStats[eStat_Mobility];
-	Template.CharacterBaseStats[eStat_PsiOffense]=HighestDiffTemplate.CharacterBaseStats[eStat_PsiOffense];
-	Template.CharacterBaseStats[eStat_HackDefense]=HighestDiffTemplate.CharacterBaseStats[eStat_HackDefense];
-	Template.CharacterBaseStats[eStat_FlankingCritChance]=HighestDiffTemplate.CharacterBaseStats[eStat_FlankingCritChance];
+	for (i = 0; i< DiffTemplates.length; i++)
+	{
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_HP] = FCeil(HighestDiffTemplate.CharacterBaseStats[eStat_HP] * default.DIFFICULTY_HP_MODIFIER[i]);
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_Offense] = FCeil(HighestDiffTemplate.CharacterBaseStats[eStat_Offense] + default.DIFFICULTY_AIM_MODIFIER[i]);
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_Will] = FCeil(HighestDiffTemplate.CharacterBaseStats[eStat_Will] + default.DIFFICULTY_Will_MODIFIER[i]);
+	
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_ArmorMitigation] = HighestDiffTemplate.CharacterBaseStats[eStat_ArmorMitigation];
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_CritChance] = HighestDiffTemplate.CharacterBaseStats[eStat_CritChance];
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_Defense] = HighestDiffTemplate.CharacterBaseStats[eStat_Defense];
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_Dodge] = HighestDiffTemplate.CharacterBaseStats[eStat_Dodge];
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_Mobility] = HighestDiffTemplate.CharacterBaseStats[eStat_Mobility];
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_PsiOffense] = HighestDiffTemplate.CharacterBaseStats[eStat_PsiOffense];
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_HackDefense] = HighestDiffTemplate.CharacterBaseStats[eStat_HackDefense];
+		X2CharacterTemplate(DiffTemplates[i]).CharacterBaseStats[eStat_FlankingCritChance] = default.GLOBAL_FLANKING_CRIT_CHANCE;
+	
+	}
 
 }
 

@@ -71,6 +71,8 @@ static function UpdateBaseGameOverwatchShot()
 	local X2AbilityTemplate					OverwatchAbilityTemplate;
 	local X2Condition_RequiredToHitChance	RequiredHitChanceCondition;
 	//local X2Condition_OverwatchLimit		OWLimitCondition;
+	local X2Condition_OverwatchMark			OWMarkCondition;
+	
 	local name AbilityName;
 
 	AbilityTemplateManager = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
@@ -83,26 +85,30 @@ static function UpdateBaseGameOverwatchShot()
 	}
 	
 	//OWLimitCondition = new class 'X2Condition_OverwatchLimit';
-
+	OWMarkCondition = new class'X2Condition_OverwatchMark';
 	`PPDEBUG("Updating OverwatchShot for REQUIRED_TO_HIT_FOR_OVERWATCH");
 	OverwatchAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate('OverwatchShot');
 	OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(RequiredHitChanceCondition);
 	//OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(OWLimitCondition);
+	OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(OWMarkCondition);
 
 	`PPDEBUG("Updating KillzoneShot for REQUIRED_TO_HIT_FOR_OVERWATCH");
 	OverwatchAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate('KillzoneShot');
-	//OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(RequiredHitChanceCondition);
+	OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(RequiredHitChanceCondition);
 	// Kill Zone (and Gunslinger) polices multi-shots against hte same target already
 
 	`PPDEBUG("Updating LongWatchShot for REQUIRED_TO_HIT_FOR_OVERWATCH");
 	OverwatchAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate('LongWatchShot');
 	OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(RequiredHitChanceCondition);
 	//OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(OWLimitCondition);
+	OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(OWMarkCondition);
 
 	`PPDEBUG("Updating PistolOverwatchShot for REQUIRED_TO_HIT_FOR_OVERWATCH");
 	OverwatchAbilityTemplate = AbilityTemplateManager.FindAbilityTemplate('PistolOverwatchShot');
 	OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(RequiredHitChanceCondition);
 	//OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(OWLimitCondition);
+	OverwatchAbilityTemplate.AbilityTargetConditions.AddItem(OWMarkCondition);
+
 }
 
 static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseObj, XComGameState GameState)

@@ -78,10 +78,10 @@ static function X2DataTemplate CreateTemplate_Immolator_T0()
 	Template.bMergeAmmo = true;
 	Template.bCanBeDodged = false;
 
-	Template.Abilities.AddItem('LWFirethrower');
+	Template.Abilities.AddItem('MZFireThrower');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('Overwatch');
-	Template.Abilities.AddItem('LWFirethrowerOverwatchShot');
+	Template.Abilities.AddItem('MZFireThrowerOverwatchShot');
 	
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
@@ -136,10 +136,10 @@ static function X2DataTemplate CreateTemplate_Immolator_CV()
 	Template.bMergeAmmo = true;
 	Template.bCanBeDodged = false;
 
-	Template.Abilities.AddItem('LWFirethrower');
+	Template.Abilities.AddItem('MZFireThrower');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('Overwatch');
-	Template.Abilities.AddItem('LWFirethrowerOverwatchShot');
+	Template.Abilities.AddItem('MZFireThrowerOverwatchShot');
 	
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
@@ -193,10 +193,10 @@ static function X2DataTemplate CreateTemplate_Immolator_MG()
 	Template.bMergeAmmo = true;
 	Template.bCanBeDodged = false;
 
-	Template.Abilities.AddItem('LWFirethrower');
+	Template.Abilities.AddItem('MZFireThrower');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('Overwatch');
-	Template.Abilities.AddItem('LWFirethrowerOverwatchShot');
+	Template.Abilities.AddItem('MZFireThrowerOverwatchShot');
 
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
@@ -252,10 +252,10 @@ static function X2DataTemplate CreateTemplate_Immolator_BM()
 	Template.bMergeAmmo = true;
 	Template.bCanBeDodged = false;
 
-	Template.Abilities.AddItem('LWFirethrower');
+	Template.Abilities.AddItem('MZFireThrower');
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('Overwatch');
-	Template.Abilities.AddItem('LWFirethrowerOverwatchShot');
+	Template.Abilities.AddItem('MZFireThrowerOverwatchShot');
 
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;

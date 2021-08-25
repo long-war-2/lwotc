@@ -1297,7 +1297,7 @@ static function X2AbilityTemplate CreateImprovedProtocols()
 	return Template;
 }
 
-	static function X2AbilityTemplate CreateNewConceal()
+static function X2AbilityTemplate CreateNewConceal()
 {
 	local X2AbilityTemplate		Template;
 

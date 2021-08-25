@@ -339,9 +339,9 @@ static public function bool GetScatterParamsForEffectiveAim(const XComGameState_
 		//	Adjust Scatter for Range Table
 		if (!ScatterParams.SkipScatterAimAdjust)
 		{
-			RangeTableModifier = RangeTableModifier / 100;
-			ScatterParams.HitScatter = ScatterParams.HitScatter - ScatterParams.HitScatter * RangeTableModifier;
-			ScatterParams.MissScatter = ScatterParams.MissScatter - ScatterParams.HitScatter * RangeTableModifier;	//	Not a typo, we modify Miss Scatter by Hit Scatter
+			RangeTableModifier = (100 - RangeTableModifier) / 100;
+			ScatterParams.HitScatter = ScatterParams.HitScatter + ScatterParams.HitScatter * RangeTableModifier;
+			ScatterParams.MissScatter = ScatterParams.MissScatter + ScatterParams.HitScatter * RangeTableModifier;	//	Not a typo, we modify Miss Scatter by Hit Scatter
 		}
 
 		//	Clamp the Aim value between 0 and 100, so it can be properly used by UI and Hit Rolls

@@ -12,7 +12,7 @@ event string SummaryString()
 function bool Validate(optional EInterruptionStatus InInterruptionStatus)
 {
 	// Supposedly we should check here that we are going to return a state in ContextBuildGameState or not
-	// Unfortunately, game rules seem to never actually call this function so ¯\_(?)_/¯
+	// Unfortunately, game rules seem to never actually call this function so ï¿½\_(?)_/ï¿½
 	return true;
 }
 
@@ -132,25 +132,15 @@ protected function ContextBuildVisualization()
 		if (MovesUpdate != none) AdditionalParents.AddItem(MovesUpdate);
 		if (BuffsUpdate != none) AdditionalParents.AddItem(BuffsUpdate);
 
-		LookAtAction = X2Action_CameraLookAt(class'X2Action_CameraLookAt'.static.AddToVisualizationTree(ActionMetadata, self,, SoundAndFlyOver, AdditionalParents));
-		LookAtAction.LookAtObject = ActionMetadata.StateObject_NewState;
-		LookAtAction.UseTether = true;
-		LookAtAction.LookAtDuration = 0.2f;
-		LookAtAction.BlockUntilFinished = true;
-
-		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, self,, LookAtAction));
+		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, self,, ActionMetadata.LastActionAdded));
 		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, FlyOverText, '', eColor_Good,, 0.4, true);
 
-		// Do not show the new action point instantly, but wait for flyout to animate in
-		Delay = X2Action_Delay(class'X2Action_Delay'.static.AddToVisualizationTree(ActionMetadata, self,, LookAtAction));
-		Delay.Duration = 0.2;
-		Delay.bIgnoreZipMode = true;
 
-		MovesUpdate = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, self,, Delay));
+		MovesUpdate = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, self,, SoundAndFlyOver));
 		MovesUpdate.UpdateType = EUIUT_UnitFlag_Moves;
 		MovesUpdate.SpecificID = UnitState.ObjectID;
 
-		BuffsUpdate = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, self,, Delay));
+		BuffsUpdate = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, self,,SoundAndFlyOver));
 		BuffsUpdate.UpdateType = EUIUT_UnitFlag_Buffs;
 		BuffsUpdate.SpecificID = UnitState.ObjectID;
 	}
@@ -159,5 +149,5 @@ protected function ContextBuildVisualization()
 defaultproperties
 {
 	bVisualizationFence = true;
-	AssociatedPlayTiming = SPT_AfterSequential;
+	AssociatedPlayTiming = SPT_AfterParallel;
 }

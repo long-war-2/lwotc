@@ -232,6 +232,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(PrimaryGrenadeLauncherPassive('PrimaryGrenadeLauncher_CV'));
 	Templates.AddItem(PrimaryGrenadeLauncherPassive('PrimaryGrenadeLauncher_MG'));
 	Templates.AddItem(PrimaryGrenadeLauncherPassive('PrimaryGrenadeLauncher_BM'));
+	Templates.AddItem(CreateGremlinAnimationsPassive());
 	
 	
 	return Templates;
@@ -664,7 +665,7 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	Template.bSkipFireAction = true;
 	Template.bShowActivation = true;
 	Template.bStationaryWeapon = true;
-	Template.CustomSelfFireAnim = 'NO_DefenseProtocolA';
+	Template.CustomSelfFireAnim = 'NO_BlindingProtocol';
 	Template.bFrameEvenWhenUnitIsHidden = true;
 	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
 	Template.bCrossClassEligible = false;
@@ -720,7 +721,6 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = false;
-	ActionPointCost.DoNotConsumeAllEffects.AddItem('LW_ABCProtocols_DoNotConsumeAllActionsEffect');
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	Cooldown = new class'X2AbilityCooldown_ABCProtocol';
@@ -734,7 +734,7 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
-
+	Template.AdditionalAbilities.AddItem('GremlinBonusAnim');
 	Template.BuildNewGameStateFn = class'X2Ability_SpecialistAbilitySet'.static.AttachGremlinToTarget_BuildGameState;
 	Template.BuildVisualizationFn = ProtocolSingleTarget_BuildVisualization;
 	//Template.BuildVisualizationFn = class'X2Ability_SpecialistAbilitySet'.static.GremlinSingleTarget_BuildVisualization;
@@ -3445,6 +3445,19 @@ static function X2AbilityTemplate ShredderRoundsDamagePenalty()
 }
 
 	
+static function X2AbilityTemplate CreateGremlinAnimationsPassive()
+{	
+	local X2AbilityTemplate Template;
+	local X2Effect_AdditionalAnimSets AnimSetEffect;
+
+	Template = Passive('GremlinBonusAnim', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, , false);
+
+	AnimSetEffect = new class'X2Effect_AdditionalAnimSets';
+	AnimSetEffect.AddAnimSetWithPath("WotC_APA_GremlinAnims.AS_APA_Gremlin");
+	Template.AddTargetEffect(AnimSetEffect);
+
+}
+
 defaultproperties
 {
 	LeadTheTargetReserveActionName = "leadthetarget"
