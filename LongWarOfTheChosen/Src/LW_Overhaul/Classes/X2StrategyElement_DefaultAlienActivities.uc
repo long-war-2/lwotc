@@ -601,7 +601,7 @@ static function OnProtectRegionActivityComplete(bool bAlienSuccess, XComGameStat
 		NewGameState.AddStateObject(Outpost);
 		for (k = 0; k < Outpost.ProhibitedJobs.Length; k++)
 		{
-			OutPost.ProhibitedJobs[k].DaysLeft = 0;
+			Outpost.ProhibitedJobs[k].DaysLeft = 0;
 		}
 
 		for (k = 0; k < Outpost.CurrentRetributions.Length; k++)
