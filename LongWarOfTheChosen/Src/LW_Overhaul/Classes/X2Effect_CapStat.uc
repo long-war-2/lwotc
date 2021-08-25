@@ -12,18 +12,18 @@ struct StatCap
 {
 	var ECharStatType StatType;
 	var float StatCapValue;
-	var bool Minimum; // If true, the cap means that the stat cannot go lower than the amount, if false, the higher
+	var bool IsMinimum; // If true, the cap means that the stat cannot go lower than the amount, if false, the higher
 };
 
 var array<StatCap> StatCaps; 
 
-function AddStatCap(ECharStatType StatType, float StatCapValue, bool Minimum)
+function AddStatCap(ECharStatType StatType, float StatCapValue, bool IsMinimum)
 {
 	local StatCap Cap;
 	
 	Cap.StatType = StatType;
 	Cap.StatCapValue = StatCapValue;
-	Cap.Minimum = Minimum;
+	Cap.IsMinimum = IsMinimum;
 	StatCaps.AddItem(Cap);
 }
 
@@ -61,6 +61,7 @@ static function EventListenerReturn EventHandler(Object EventData, Object EventS
 	local int AppliedStatChangeIndex, StatChangeOther;
 	local float AppliedStatChange, CappedStat, NewStatAmount;
 	local UnitValue ImmobilizeValue;
+
 	EffectState = XComGameState_Effect_CapStats(CallbackData);
 	if (EffectState == none)
 		return ELR_NoInterrupt;

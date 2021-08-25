@@ -1841,7 +1841,7 @@ static function X2AbilityTemplate CreateUnstoppable()
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.AbilityToHitCalc = default.DeadEye;
-    Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.bShowActivation = false;
 	Template.bSkipFireAction = true;
 	//Template.bIsPassive = true;
@@ -1852,8 +1852,8 @@ static function X2AbilityTemplate CreateUnstoppable()
 
 
 	UnstoppableEffect = new class'X2Effect_CapStat';
-	UnstoppableEffect.BuildPersistentEffect(1,false,true,,eGameRule_PlayerTurnBegin);
-	UnstoppableEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	UnstoppableEffect.BuildPersistentEffect(1, false, true,, eGameRule_PlayerTurnBegin);
+	UnstoppableEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
 	UnstoppableEffect.AddStatCap(eStat_Mobility,default.UNSTOPPABLE_MIN_MOB,true);
 	Template.AddTargetEffect(UnstoppableEffect);
 
