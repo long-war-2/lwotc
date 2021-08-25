@@ -4752,59 +4752,67 @@ static function LevelUpXTP(optional int Ranks = 1)
 	local XComGameStateHistory History;
 	local XComGameState_Unit UnitState;
 	local int idx, NewRank;
+	local XComGameState_LWXTP XTPState;
 
-	History = `XCOMHISTORY;
-	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Rankup Soldiers XTP");
-	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	XTPState = class'XComGameState_LWXTP'.static.GetXTPState();
 
-	if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP4') != -1)
+	if (class'X2StrategyGameRulesetDataStructures'.static.LessThan(XTPState.NextUpdateTime, `STRATEGYRULES.GameTime))
 	{
-		NewRank = 5;
-	}
-	if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP3') != -1)
-	{
-		NewRank = 4;
-	}
-	else if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP2') != -1)
-	{
-		NewRank = 3;
-	}
-	else if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP1') != -1)
-	{
-		NewRank = 2;
-	}
-	else
-	{
-		NewRank = 1;
-	}
-	
-	for(idx = 0; idx < XComHQ.Crew.Length; idx++)
-	{
-		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(XComHQ.Crew[idx].ObjectID));
+		History = `XCOMHISTORY;
+		XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Rankup Soldiers XTP");
+		XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+		XTPState = XComGameState_LWXTP(NewGameState.ModifyStateObject(class'XComGameState_LWXTP', XTPState.ObjectID));
+		class'X2StrategyGameRulesetDataStructures'.static.AddDay(XTPState.NextUpdateTime);
 
-		if(UnitState != none && UnitState.IsSoldier() && UnitState.GetRank() < NewRank)
+		if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP4') != -1)
 		{
-			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
-
-			if(NewRank >= class'X2ExperienceConfig'.static.GetMaxRank())
-			{
-				NewRank = (class'X2ExperienceConfig'.static.GetMaxRank());
-			}
-
-
-
-			UnitState.StartingRank = NewRank;
-			UnitState.SetXPForRank(NewRank);
+			NewRank = 5;
 		}
+		if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP3') != -1)
+		{
+			NewRank = 4;
+		}
+		else if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP2') != -1)
+		{
+			NewRank = 3;
+		}
+		else if(`XCOMHQ.SoldierUnlockTemplates.Find('XTP1') != -1)
+		{
+			NewRank = 2;
+		}
+		else
+		{
+			NewRank = 1;
+		}
+		
+		for(idx = 0; idx < XComHQ.Crew.Length; idx++)
+		{
+			UnitState = XComGameState_Unit(History.GetGameStateForObjectID(XComHQ.Crew[idx].ObjectID));
+
+			if(UnitState != none && UnitState.IsSoldier() && UnitState.GetRank() < NewRank)
+			{
+				UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+
+				if(NewRank >= class'X2ExperienceConfig'.static.GetMaxRank())
+				{
+					NewRank = (class'X2ExperienceConfig'.static.GetMaxRank());
+				}
+
+				UnitState.StartingRank = NewRank;
+				UnitState.SetXPForRank(NewRank);
+			}
+		}
+
+		if( NewGameState.GetNumGameStateObjects() > 0 )
+		{
+			`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+		}
+		else
+		{
+			History.CleanupPendingGameState(NewGameState);
+		}
+
 	}
 
-	if( NewGameState.GetNumGameStateObjects() > 0 )
-	{
-		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
-	}
-	else
-	{
-		History.CleanupPendingGameState(NewGameState);
-	}
 }

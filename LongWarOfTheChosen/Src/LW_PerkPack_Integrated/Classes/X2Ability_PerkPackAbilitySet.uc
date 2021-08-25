@@ -2292,13 +2292,12 @@ static function X2AbilityTemplate AddRunAndGun_LWAbility()
 }
 
 
-	static function X2AbilityTemplate AddOverexertion()
+static function X2AbilityTemplate AddOverexertion()
 {
 	local X2AbilityTemplate					Template;
 	local X2AbilityCooldown	Cooldown;
 	local X2Effect_GrantActionPoints		ActionPointEffect;
 	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2Effect_KillerInstinct			DamageEffect;
 	local X2Condition_UnitValue				CECondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Overexertion');

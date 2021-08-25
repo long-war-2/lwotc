@@ -925,8 +925,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Effect_DeathFromAbove_LW        DeathEffect;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 	local X2Condition_AbilityProperty		AbilityCondition;
-	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
-	local name 								HealType, AbilityName;
+	local name 								 AbilityName;
 	local X2Effect_SharpshooterAim_LW   	AimEffect;
 	local X2AbilityCooldown_Shared			CooldownShared;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;

@@ -13,7 +13,6 @@ static function X2DataTemplate CreateMagGrenade()
 {
 	local X2GrenadeTemplate                  Template;
 	local X2Effect_ApplyWeaponDamage         WeaponDamageEffect;
-	local ArtifactCost                       Resources;
 
 	`CREATE_X2TEMPLATE(class'X2GrenadeTemplate', Template, 'MagGrenade_LW');
 

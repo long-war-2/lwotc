@@ -1,7 +1,17 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    XComGameState_LWXTP.uc
+//  AUTHOR:  Grobobobo
+//  PURPOSE: Singleton state for checking the time for updating XTP
+//---------------------------------------------------------------------------------------
+
 class XComGameState_LWXTP extends XComGameState_GeoscapeEntity;
 
+var TDateTime NextUpdateTime;
 
-
+event OnCreation(optional X2DataTemplate InitTemplate)
+{
+	NextUpdateTime = class'UIUtilities_Strategy'.static.GetGameTime().CurrentTime;
+}
 
 static function XComGameState_LWXTP CreateXTPState(optional XComGameState StartState)
 {
