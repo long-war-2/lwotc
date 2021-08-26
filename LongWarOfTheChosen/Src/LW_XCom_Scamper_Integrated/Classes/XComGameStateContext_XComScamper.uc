@@ -101,7 +101,7 @@ protected function ContextBuildVisualization()
 	local XComGameStateHistory History;
 	local X2Action_Delay Delay;
 	local array<X2Action> AdditionalParents;
-
+	local X2Action_MarkerNamed SyncAction;
 	History = `XCOMHISTORY;
 
 	foreach AssociatedState.IterateByClassType(class'XComGameState_Unit', UnitState)
@@ -122,6 +122,9 @@ protected function ContextBuildVisualization()
 	MovesUpdate = none;
 	BuffsUpdate = none;
 
+	SyncAction = X2Action_MarkerNamed(class'X2Action_MarkerNamed'.static.AddToVisualizationTree(ActionMetadata, Context, false));
+	SyncAction.SetName("ReloadStart");
+
 	foreach Units(UnitState)
 	{
 		History.GetCurrentAndPreviousGameStatesForObjectID(UnitState.ObjectID, ActionMetadata.StateObject_OldState, ActionMetadata.StateObject_NewState,, AssociatedState.HistoryIndex);
@@ -132,15 +135,15 @@ protected function ContextBuildVisualization()
 		if (MovesUpdate != none) AdditionalParents.AddItem(MovesUpdate);
 		if (BuffsUpdate != none) AdditionalParents.AddItem(BuffsUpdate);
 
-		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, self,, ActionMetadata.LastActionAdded));
-		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, FlyOverText, '', eColor_Good,, 0.4, true);
+		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, self,, SyncAction));
+		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, 'XCOM Scamper', '', eColor_Good,, 0.4, true);
 
 
-		MovesUpdate = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, self,, SoundAndFlyOver));
+		MovesUpdate = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, self,, SyncAction));
 		MovesUpdate.UpdateType = EUIUT_UnitFlag_Moves;
 		MovesUpdate.SpecificID = UnitState.ObjectID;
 
-		BuffsUpdate = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, self,,SoundAndFlyOver));
+		BuffsUpdate = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, self,,SyncAction));
 		BuffsUpdate.UpdateType = EUIUT_UnitFlag_Buffs;
 		BuffsUpdate.SpecificID = UnitState.ObjectID;
 	}

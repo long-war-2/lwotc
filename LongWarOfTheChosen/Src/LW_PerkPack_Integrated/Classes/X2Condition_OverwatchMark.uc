@@ -23,7 +23,7 @@ event name CallAbilityMeetsCondition(XComGameState_Ability kAbility, XComGameSta
 	TestValueName = name("OverwatchMark" $ AttackingUnit.ObjectID);
 	TargetUnit.GetUnitValue(TestValueName, OWMarkValue);
 	//`LOG (AttackingUnit.GetLastName() @ TestValueName @ "Checked. Value:" @ OWShotValue.fValue);
-	if (OWMarkValue.fValue < 1.0)
+	if (OWMarkValue.fValue <= 0)
 	{
 		//`LOG (AttackingUnit.GetLastName() @ TestValueName @ "Shot Cancelled.");
 		return 'AA_ValueCheckFailed';

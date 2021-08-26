@@ -198,7 +198,7 @@ static function X2AbilityTemplate FireCanisterActivate()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
-	AmmoCost.iAmmo = 1;
+	AmmoCost.iAmmo = 0;
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
@@ -314,7 +314,7 @@ static function X2AbilityTemplate PoisonCanisterActivate()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
-	AmmoCost.iAmmo = 1;
+	AmmoCost.iAmmo = 0;
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
@@ -426,7 +426,7 @@ static function X2AbilityTemplate CurseCanisterActivate()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
-	AmmoCost.iAmmo = 1;
+	AmmoCost.iAmmo = 0;
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
@@ -533,7 +533,7 @@ static function X2AbilityTemplate BluescreenCanisterActivate()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
-	AmmoCost.iAmmo = 1;
+	AmmoCost.iAmmo = 0;
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
@@ -672,7 +672,7 @@ static function X2AbilityTemplate BlastCanisterActivate()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
-	AmmoCost.iAmmo = 1;
+	AmmoCost.iAmmo = 0;
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
@@ -778,7 +778,7 @@ static function X2AbilityTemplate AcidCanisterActivate()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
-	AmmoCost.iAmmo = 1;
+	AmmoCost.iAmmo = 0;
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
@@ -898,7 +898,7 @@ static function X2AbilityTemplate SmokeCanisterActivate()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
-	AmmoCost.iAmmo = 1;
+	AmmoCost.iAmmo = 0;
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	Template.AbilityToHitCalc = default.Deadeye;

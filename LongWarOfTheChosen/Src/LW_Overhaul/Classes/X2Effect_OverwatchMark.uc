@@ -17,7 +17,7 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
     SourceUnit = XComGameState_Unit(NewGameState.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
     TargetUnit = XComGameState_Unit(NewGameState.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
     ValueName = name("OverwatchMark" $ SourceUnit.ObjectID);
-    TargetUnit.SetUnitFloatValue (ValueName, 1.0, eCleanup_BeginTurn);
+    TargetUnit.SetUnitFloatValue (ValueName, 1.0, eCleanup_EndTurn);
 
 
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
