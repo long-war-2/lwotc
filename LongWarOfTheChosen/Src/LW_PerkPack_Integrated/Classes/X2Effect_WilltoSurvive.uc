@@ -33,7 +33,7 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 
 	if (IncomingTypes.Find('Melee') != INDEX_NONE)
 	{
-		return CurrentDamage;
+		return 0;
 	}
 
 	StandardHit = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);	
@@ -56,17 +56,17 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 		if (MyVisInfo.TargetCover == CT_None)
 			return 0;
 		if (MyVisInfo.TargetCover == CT_Midlevel || MyVisInfo.TargetCover == CT_Standing)
-        return CurrentDamage * (1 - WTS_DR);
+        return -CurrentDamage * WTS_DR;
 	}
 	else
 	{
 		if(X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, MyVisInfo))
 		{
             if (MyVisInfo.TargetCover == CT_None)
-			return CurrentDamage;
+			return 0;
             if (MyVisInfo.TargetCover == CT_Midlevel || MyVisInfo.TargetCover == CT_Standing)
-            return CurrentDamage * (1 - WTS_DR);
+            return -CurrentDamage * WTS_DR;
 		}
 	}
-    return CurrentDamage;     
+    return 0;     
 }

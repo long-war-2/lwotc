@@ -1209,6 +1209,7 @@ static function X2DataTemplate OverrideImpairingAbility()
 	StealthyEffect.DuplicateResponse = eDupe_Refresh;
 	StealthyEffect.EffectRemovedFn = PhantomExpired;
 	StealthyEffect.EffectRemovedVisualizationFn = VisualizePhantomExpired;
+	Template.AddTargetEffect(StealthyEffect);
 
 	StealthEffect = new class'X2Effect_RangerStealth';
 	StealthEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);

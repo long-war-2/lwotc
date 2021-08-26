@@ -53,7 +53,7 @@ static function X2AbilityTemplate CreateFlameThrower()
 
 	Cooldown = new class'X2AbilityCooldown_Immolator';
 	Cooldown.iNumTurns = default.IMMOLATOR_COOLDOWN;
-	Cooldown.SharingCooldownsWith.AddItem('FlameThrowerOverwatch');
+	Cooldown.SharingCooldownsWith.AddItem('Overwatch');
 	Template.AbilityCooldown = Cooldown;
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';

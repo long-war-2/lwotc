@@ -528,10 +528,11 @@ LocFriendlyNameWhenConcealed="Overwatch (Concealed)"
 
 [Overwatch X2AbilityTemplate]
 LocFriendlyName="Overwatch"
-LocHelpText="Fire on the first enemy within line of sight (at the time of activating overwatch) that moves. No aim penalty and ignores cover defense."
-LocLongDescriptionWhenConcealed="Fire on the first enemy within line of sight (at the time of activating overwatch) that moves. No aim penalty and ignores cover defense."
+LocHelpText="Fire on the first enemy within line of sight of this soldier (at the time of activating Overwatch) that moves. No aim penalty and ignores cover defense."
+LocLongDescriptionWhenConcealed="Fire on the first enemy within line of sight of this soldier (at the time of activating Overwatch) that moves. No aim penalty and ignores cover defense."
 LocFlyOverText="Overwatch"
 LocFriendlyNameWhenConcealed="Overwatch (Concealed)"
+
 
 [SnapShotAimModifier X2AbilityTemplate]
 LocFriendlyName="Snap Shot"

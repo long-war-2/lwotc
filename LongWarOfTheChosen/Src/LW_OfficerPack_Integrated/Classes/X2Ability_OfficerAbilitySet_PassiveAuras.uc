@@ -74,7 +74,7 @@ static function X2AbilityTemplate AddDefiladeAbility()
 
 	Template.AbilityTargetStyle = default.SelfTarget;
 	MultiTargetStyle = new class'X2AbilityMultiTarget_AllAllies';
-	MultiTargetStyle.bAddPrimaryTargetAsMultiTarget = false;
+	MultiTargetStyle.bAddPrimaryTargetAsMultiTarget = true;
 	Template.AbilityMultiTargetStyle = MultiTargetStyle;
 
 	DefenseBonus = new class'XMBEffect_ConditionalBonus';

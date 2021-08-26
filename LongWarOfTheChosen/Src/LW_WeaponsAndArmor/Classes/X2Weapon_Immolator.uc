@@ -330,14 +330,14 @@ static function X2WeaponTemplate PoisonCanister()
 	local X2WeaponTemplate Template;
 	local ArtifactCost Resources;
 
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'LWPoisonCanister');
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'MZPoisonCanister');
 
 	Template.strImage = "img:///UILibrary_LWImmolator.icon_Poison";
 	Template.EquipSound = "StrategyUI_Grenade_Equip";
 
 	Template.GameArchetype = "WP_XCOMCanisterMKII.Archetype.WP_PoisonCanister";
 
-	Template.Abilities.AddItem('LWPoisonCanister');
+	Template.Abilities.AddItem('MZPoisonCanister');
 	Template.Abilities.AddItem('LWMatchingCanisterPassive');
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'lwcanister';
@@ -376,14 +376,14 @@ static function X2WeaponTemplate SmokeCanister()
 {
 	local X2WeaponTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'LWSmokeCanister');
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'MZSmokeCanister');
 
 	Template.strImage = "img:///UILibrary_LWImmolator.icon_Smoke";
 	Template.EquipSound = "StrategyUI_Grenade_Equip";
 
 	Template.GameArchetype = "WP_XCOMCanisterMKII.Archetype.WP_WhiteCanister";
 
-	Template.Abilities.AddItem('LWSmokeCanister');
+	Template.Abilities.AddItem('MZSmokeCanister');
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'lwcanister';
 	Template.WeaponTech = 'conventional';
@@ -405,14 +405,14 @@ static function X2WeaponTemplate AcidCanister()
 	local X2WeaponTemplate Template;
 	local ArtifactCost Resources;
 
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'LWAcidCanister');
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'MZAcidCanister');
 
 	Template.strImage = "img:///UILibrary_LWImmolator.icon_Acid";
 	Template.EquipSound = "StrategyUI_Grenade_Equip";
 
 	Template.GameArchetype = "WP_XCOMCanisterMKII.Archetype.WP_AcidCanister";
 
-	Template.Abilities.AddItem('LWAcidCanister');
+	Template.Abilities.AddItem('MZAcidCanister');
 	Template.Abilities.AddItem('LWMatchingCanisterPassive');
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'lwcanister';
@@ -499,14 +499,14 @@ static function X2WeaponTemplate IceCanister()
 	local X2WeaponTemplate Template;
 	local ArtifactCost Resources;
 
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'LWIceCanister');
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'MZIceCanister');
 
 	Template.strImage = "img:///UILibrary_LWImmolator.icon_Frost";
 	Template.EquipSound = "StrategyUI_Grenade_Equip";
 
 	Template.GameArchetype = "WP_XCOMCanisterMKII.Archetype.WP_IceCanister";
 
-	Template.Abilities.AddItem('LWIceCanister');
+	Template.Abilities.AddItem('MZIceCanister');
 	Template.Abilities.AddItem('LWMatchingCanisterPassive');
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'lwcanister';
@@ -542,14 +542,14 @@ static function X2WeaponTemplate BlastCanister()
 {
 	local X2WeaponTemplate Template;
 
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'LWBlastCanister');
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'MZBlastCanister');
 
 	Template.strImage = "img:///UILibrary_LWImmolator.icon_Blast";
 	Template.EquipSound = "StrategyUI_Grenade_Equip";
 
 	Template.GameArchetype = "WP_XCOMCanisterMKII.Archetype.WP_BlackCanister";
 
-	Template.Abilities.AddItem('LWBlastCanister');
+	Template.Abilities.AddItem('MZBlastCanister');
 	Template.Abilities.AddItem('LWMatchingCanisterPassive');
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'lwcanister';
@@ -574,14 +574,14 @@ static function X2WeaponTemplate BluescreenCanister()
 	local X2WeaponTemplate Template;
 	local ArtifactCost Resources;
 
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'LWBluescreenCanister');
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'MZBluescreenCanister');
 
 	Template.strImage = "img:///UILibrary_LWImmolator.icon_Electric";
 	Template.EquipSound = "StrategyUI_Grenade_Equip";
 
 	Template.GameArchetype = "WP_XCOMCanisterMKII.Archetype.WP_VoltCanister";
 
-	Template.Abilities.AddItem('LWBluescreenCanister');
+	Template.Abilities.AddItem('MZBluescreenCanister');
 	Template.Abilities.AddItem('LWMatchingCanisterPassive');
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'lwcanister';
@@ -626,7 +626,7 @@ static function X2WeaponTemplate MedicCanister()
 
 	Template.GameArchetype = "WP_XCOMCanisterMKII.Archetype.WP_MedicCanister";
 
-	Template.Abilities.AddItem('LWSmokeCanister');
+	Template.Abilities.AddItem('MZSmokeCanister');
 	Template.Abilities.AddItem('LWMedicCanisterPassive');
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'lwcanister';

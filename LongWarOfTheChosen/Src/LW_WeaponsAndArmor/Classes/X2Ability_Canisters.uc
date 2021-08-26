@@ -18,13 +18,13 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	//Init Abilities are the ones the canisters actually have - they initialize the activation ability if the primary weapon is a chemthrower
 	Templates.AddItem(CanisterInitAbility('LWFireCanister','LWFireCanisterActivate','Fire'));
-	Templates.AddItem(CanisterInitAbility('LWPoisonCanister','LWPoisonCanisterActivate','Poison', "img:///UILibrary_PerkIcons.UIPerk_viper_poisonspit"));
-	Templates.AddItem(CanisterInitAbility('LWIceCanister','LWIceCanisterActivate','Frost', "img:///UILibrary_DLC2Images.UIPerk_freezingbreath"));
+	Templates.AddItem(CanisterInitAbility('MZPoisonCanister','MZPoisonCanisterActivate','Poison', "img:///UILibrary_PerkIcons.UIPerk_viper_poisonspit"));
+	Templates.AddItem(CanisterInitAbility('MZIceCanister','MZIceCanisterActivate','Frost', "img:///UILibrary_DLC2Images.UIPerk_freezingbreath"));
 	Templates.AddItem(CanisterInitAbility('LWCurseCanister','LWCurseCanisterActivate','Psi'));
-	Templates.AddItem(CanisterInitAbility('LWBluescreenCanister','LWBluescreenCanisterActivate','Electrical', "img:///UILibrary_PerkIcons.UIPerk_codex_malfunction"));
-	Templates.AddItem(CanisterInitAbility('LWSmokeCanister','LWSmokeCanisterActivate','Smoke', "img:///UILibrary_PerkIcons.UIPerk_smokebomb"));
-	Templates.AddItem(CanisterInitAbility('LWBlastCanister','LWBlastCanisterActivate','Explosion', "img:///UILibrary_PerkIcons.UIPerk_bigbooms"));
-	Templates.AddItem(CanisterInitAbility('LWAcidCanister','LWAcidCanisterActivate','Acid', "img:///UILibrary_PerkIcons.UIPerk_andromedon_acidblob"));
+	Templates.AddItem(CanisterInitAbility('MZBluescreenCanister','MZBluescreenCanisterActivate','Electrical', "img:///UILibrary_PerkIcons.UIPerk_codex_malfunction"));
+	Templates.AddItem(CanisterInitAbility('MZSmokeCanister','MZSmokeCanisterActivate','Smoke', "img:///UILibrary_PerkIcons.UIPerk_smokebomb"));
+	Templates.AddItem(CanisterInitAbility('MZBlastCanister','MZBlastCanisterActivate','Explosion', "img:///UILibrary_PerkIcons.UIPerk_bigbooms"));
+	Templates.AddItem(CanisterInitAbility('MZAcidCanister','MZAcidCanisterActivate','Acid', "img:///UILibrary_PerkIcons.UIPerk_andromedon_acidblob"));
 
 	Templates.AddItem(MedicCanisterPassive());
 	Templates.AddItem(MatchingCanisterPassive());
@@ -290,7 +290,7 @@ static function X2AbilityTemplate PoisonCanisterActivate()
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2Effect_ApplyPoisonToWorld		PoisonCloudEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWPoisonCanisterActivate');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZPoisonCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
@@ -509,7 +509,7 @@ static function X2AbilityTemplate BluescreenCanisterActivate()
 	local X2Effect_Stunned					RoboStun;
 	local X2Condition_UnitProperty			RoboCondition, NonRoboCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWBluescreenCanisterActivate');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZBluescreenCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
@@ -648,7 +648,7 @@ static function X2AbilityTemplate BlastCanisterActivate()
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWBlastCanisterActivate');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZBlastCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
@@ -754,7 +754,7 @@ static function X2AbilityTemplate AcidCanisterActivate()
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local MZ_Effect_Knockback 				KnockbackEffect;
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWAcidCanisterActivate');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZAcidCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
@@ -874,7 +874,7 @@ static function X2AbilityTemplate SmokeCanisterActivate()
 	local X2Effect_ThermalBulwark			Effect;
 	local X2Effect_Regeneration				RegenEffect;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWSmokeCanisterActivate');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZSmokeCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
