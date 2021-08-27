@@ -2440,10 +2440,20 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	local ArtifactCost Resources;
 	local X2ArmorTemplate ArmorTemplate;
 	local StrategyRequirement AltReq;
-	local X2GremlinTemplate GremlinTemplate;
+	local X2GremlinTemplate GremlinTemplate, GremlinTemplate2;
 	local delegate<X2StrategyGameRulesetDataStructures.SpecialRequirementsDelegate> SpecialRequirement;
 	local X2Effect_Persistent Effect;
 	local UIStatMarkup Markup;
+	local X2CharacterTemplateManager CharMgr;
+	local X2CharacterTemplate CharTemplate;
+	local array<X2DataTemplate>             DifficultyVariants;
+    local X2DataTemplate                    DifficultyVariant;
+	local array<X2DataTemplate>             DifficultyVariants2;
+    local X2DataTemplate                    DifficultyVariant2;
+    local X2ItemTemplateManager				ItemMgr;
+
+	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	CharMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
 	// Reconfig Weapons and Weapon Schematics
 	WeaponTemplate = X2WeaponTemplate(Template);
 	if (WeaponTemplate != none)
@@ -2453,6 +2463,16 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponTemplate.WeaponCat == 'pistol' && !class'CHItemSlot_PistolSlot_LW'.default.DISABLE_LW_PISTOL_SLOT)
 			WeaponTemplate.Abilities.AddItem('PistolStandardShot');
 
+		if(WeaponTemplate.WeaponCat == 'cannon'
+		|| WeaponTemplate.WeaponCat == 'rifle'
+		|| WeaponTemplate.WeaponCat == 'sniper_rifle'
+		|| WeaponTemplate.WeaponCat == 'vektor_rifle'
+		|| WeaponTemplate.WeaponCat == 'bullpup'
+		|| WeaponTemplate.WeaponCat == 'smg'
+		)
+		{
+			WeaponTemplate.Abilities.AddItem('Stock_LW_Bsc_Ability');
+		}
 		// substitute cannon range table
 		if (WeaponTemplate.WeaponCat == 'cannon')
 		{
@@ -2711,11 +2731,39 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	GremlinTemplate = X2GremlinTemplate(Template);
 	if (GremlinTemplate != none)
 	{
+        ItemMgr.FindDataTemplateAllDifficulties(Template.DataName, DifficultyVariants);
+
+        foreach DifficultyVariants(DifficultyVariant)
+        {
+            GremlinTemplate2 = X2GremlinTemplate(DifficultyVariant);
+
+            if (GremlinTemplate2 != none)
+            {
+                if (GremlinTemplate2.weaponcat == 'gremlin')
+				{
+					//`LOG("Gremlin Animation Patch - found gremlin template" @ GremlinTemplate);
+					//`LOG("Gremlin Animation Patch - now looking for" @ GremlinTemplate.CosmeticUnitTemplate);
+				    CharMgr.FindDataTemplateAllDifficulties(name(GremlinTemplate2.CosmeticUnitTemplate), DifficultyVariants2);
+
+					foreach DifficultyVariants2(DifficultyVariant2)
+    				{
+        				CharTemplate = X2CharacterTemplate(DifficultyVariant2);
+        				if (CharTemplate != none)
+				        {
+							//`LOG("Gremlin Animation Patch - patched animations onto" @ CharTemplate);
+							CharTemplate.AdditionalAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WotC_APA_GremlinAnims.AS_APA_Gremlin")));
+				        }
+				    }
+
+				}
+            }
+		}
 		if (GremlinTemplate.DataName == 'Gremlin_MG')
 		{
 			GremlinTemplate.RevivalChargesBonus = 1;
 			GremlinTemplate.ScanningChargesBonus = 1;
 			GremlinTemplate.AidProtocolBonus = 5;
+
 		}
 		if (GremlinTemplate.DataName == 'Gremlin_BM')
 		{

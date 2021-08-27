@@ -263,7 +263,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Reload':
 			MakeAbilityTurnEnding(Template);
 			break;
-		case 'Suppression_LW':
+		case 'Suppression':
 		case 'AreaSuppression':
 			AddSharedSuppressionCooldown(Template);
 			break;
@@ -1527,7 +1527,7 @@ static function AddSharedSuppressionCooldown(X2AbilityTemplate Template)
 
 	Cooldown = new class'X2AbilityCooldown_Shared';
 	Cooldown.iNumTurns = 2;
-	Cooldown.SharingCooldownsWith.AddItem('Suppression_LW'); //Now shares the cooldown with Bayonet
+	Cooldown.SharingCooldownsWith.AddItem('Suppression'); //Now shares the cooldown with Bayonet
 	Cooldown.SharingCooldownsWith.AddItem('AreaSuppression'); //Now shares the cooldown with Bayonet
 	Template.AbilityCooldown = Cooldown;
 }
@@ -1643,8 +1643,11 @@ static function UpdateOverwatch(X2AbilityTemplate Template)
 	local X2Condition_Visibility	VisibilityCondition;
 	local X2Effect_OverwatchMark	OverwatchMark;
 	local X2Condition_AnyEnemyVisible VisibleCondition;
+
 	MultiTargetMark = new class'X2AbilityMultiTarget_AllUnits';
 	MultiTargetMark.bAcceptEnemyUnits = true;
+	MultiTargetMark.bAcceptEnemyUnits = true;
+	Template.AbilityMultiTargetStyle = MultiTargetMark;
 
 	VisibilityCondition = new class'X2Condition_Visibility';
 	VisibilityCondition.bRequireGameplayVisible = true;
@@ -1652,13 +1655,14 @@ static function UpdateOverwatch(X2AbilityTemplate Template)
 	{
 	VisibilityCondition.bAllowSquadsight = true;
 	}
-
 	Template.AbilityMultiTargetConditions.AddItem(VisibilityCondition);
 
 
 	OverwatchMark =	new class'X2Effect_OverwatchMark';
+	OverwatchMark.BuildPersistentEffect(1, false, , , eGameRule_PlayerTurnEnd);
 	Template.AddMultiTargetEffect(OverwatchMark);
 
+	Template.TargetingMethod = class'X2TargetingMethod_TopDown';
 
 	VisibleCondition = new class'X2Condition_AnyEnemyVisible';
 	Template.AbilityShooterConditions.AddItem(VisibleCondition);

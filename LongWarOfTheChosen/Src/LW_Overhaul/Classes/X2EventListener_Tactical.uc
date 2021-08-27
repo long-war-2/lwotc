@@ -399,8 +399,8 @@ static function EventListenerReturn OnOverrideAllowedAlertCause(
 			case eAC_SeesSmoke:
 			case eAC_SeesFire:
 			case eAC_AlertedByYell:
-			case eAC_SeesSpottedUnit:
-			case eAC_SeesAlertedAllies:
+			//case eAC_SeesSpottedUnit:
+			//case eAC_SeesAlertedAllies:
 				Tuple.Data[1].b = true;
 				break;
 
@@ -1154,7 +1154,7 @@ static function CHEventListenerTemplate ChainActivationListeners()
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'ChainActivationListeners');
 	Template.AddCHEvent('OverrideSeesAlertedAllies', ActivatePodSeenAllies, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('OverrideEnemyFactionsAlertsOutsideVision', MakeSureAItoAIWorks, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('UnitMoveFinished', ChainActivate, ELD_OnStateSubmitted, GetListenerPriority());
+	//Template.AddCHEvent('UnitMoveFinished', ChainActivate, ELD_OnStateSubmitted, GetListenerPriority());
 
 	Template.RegisterInTactical = true;
 
@@ -1264,14 +1264,11 @@ static function EventListenerReturn ChainActivate(Object EventData, Object Event
 	local XcomGameState NewGameState;
 	local XComGameState_AIGroup AIGroupState;
 	local X2Condition_Visibility VisibiliyCondition;
-	local XGAIPlayer kAI;
-	local XGAIGroup kGroup;
 	local array<X2Condition> ActivationVisibilityCondition;
+	local X2EventManager EventManager;
 
 	History = `XCOMHISTORY;
 
-
-	kAI = XGAIPlayer(`BATTLE.GetAIPlayer());
 
 	VisibiliyCondition = new class'X2Condition_Visibility';
 	VisibiliyCondition.bRequireGameplayVisible=true;
@@ -1298,18 +1295,22 @@ static function EventListenerReturn ChainActivate(Object EventData, Object Event
 				AlertInfo.AnalyzingHistoryIndex = GameState.HistoryIndex;
 				AlertInfo.AlertTileLocation = MovedUnit.TileLocation;
 
-				kAI.m_kNav.GetGroupInfo(AlertedUnit.ObjectID, kGroup);
-				kAI.ForceAbility(kGroup.m_arrUnitIDs, 'RedAlert');
-	
 				NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState(string(GetFuncName()));
+
+		
+	
 				NewAIUnitData = XComGameState_AIUnitData(NewGameState.ModifyStateObject(class'XComGameState_AIUnitData', AIUnit.ObjectID));
-				if( NewAIUnitData.AddAlertData(AIUnit.m_iUnitObjectID, eAC_SeesSpottedUnit, AlertInfo, NewGameState) )
+				if( NewAIUnitData.AddAlertData(AIUnit.m_iUnitObjectID, eAC_TakingFire, AlertInfo, NewGameState) )
 				{
+					EventManager = `XEVENTMGR;
+
+					EventManager.TriggerEvent('AlertDataTriggerAlertAbility', , AlertedUnit, NewGameState);
+	
 					AIGroupState = AlertedUnit.GetGroupMembership();
 					if(AIGroupState != none && !AIGroupState.bProcessedScamper && AlertedUnit.bTriggerRevealAI)
 					{
 						AIGroupState = XComGameState_AIGroup(NewGameState.ModifyStateObject(class'XComGameState_AIGroup', AIGroupState.ObjectID));
-						AIGroupState.InitiateReflexMoveActivate(AlertedUnit, eAC_SeesSpottedUnit);
+						AIGroupState.InitiateReflexMoveActivate(AlertedUnit, eAC_TakingFire);
 
 					}
 					`TACTICALRULES.SubmitGameState(NewGameState);
@@ -1373,24 +1374,79 @@ static function EventListenerReturn ChainActivate(Object EventData, Object Event
 
 static function EventListenerReturn BreakSquadConcealment(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComGameState_Player PlayerState;
-	local XComGameStateHistory History;
+	local XComGameState_Player Player;
 
-	History = `XCOMHISTORY;
 
-	foreach History.IterateByClassType(class'XComGameState_Player', PlayerState)
-	{
-		if( PlayerState.GetTeam() == eTeam_XCom )
-		{
-			break;
-		}
+	Player = XComGameState_Player(EventData);
+	if(Player.GetTeam() != eTeam_XCom)
+	{	
+		return ELR_NoInterrupt;
 	}
-	if(PlayerState.PlayerTurnCount == 2)
+
+	if(Player.PlayerTurnCount == 2)
 	{
-		PlayerState.SetSquadConcealment(false);
+		Player.SetSquadConcealment(false);
+
+		AlertIfPlayerRevealed(GameState);
 	}
 	return ELR_NoInterrupt;
 }
+
+
+static function  AlertIfPlayerRevealed(XComGameState newGameState) {
+    local XComGameStateHistory History;
+    local XComGameState_Unit UnitState;
+    
+    History = `XCOMHISTORY;
+    foreach History.IterateByClassType(class'XComGameState_Unit', UnitState)
+    {
+        if (!UnitState.ControllingPlayerIsAI()  
+            && !UnitState.bRemovedFromPlay
+            && UnitState.IsAlive()
+            && !UnitState.IsConcealed())
+        {
+            AlertAllUnits(UnitState, newGameState);
+            break;
+        }
+    }
+}		
+
+static function AlertAllUnits(XComGameState_Unit Unit, XComGameState newGameState)
+{
+    local XComGameStateHistory History;
+    local XComGameState_AIGroup AIGroupState;
+    local array<int> LivingUnits;
+    local XComGameState_Unit Member;
+    local int Id;
+    local bool UnitSeen;
+
+    History = `XCOMHISTORY;
+
+    if (class'X2TacticalVisibilityHelpers'.static.GetNumVisibleEnemyTargetsToSource(Unit.ObjectID) > 0)
+    {
+        UnitSeen = true;
+    }
+    else {
+        UnitSeen = false;
+    }
+
+    foreach History.IterateByClassType(class'XComGameState_AIGroup', AIGroupState)
+    {
+        AIGroupState.ApplyAlertAbilityToGroup(eAC_SeesSpottedUnit);
+	    AIGroupState.InitiateReflexMoveActivate(Unit, eAC_SeesSpottedUnit);
+        
+        if (UnitSeen == true)
+        {
+            AIGroupState.GetLivingMembers(LivingUnits);
+            foreach LivingUnits(Id)
+            {
+                Member = XComGameState_Unit(History.GetGameStateForObjectID(Id));
+                class'XComGameState_Unit'.static.UnitAGainsKnowledgeOfUnitB(Member, Unit, newGameState, eAC_SeesSpottedUnit, false);
+            }
+        }
+    }
+}
+
 
 static function EventListenerReturn OverrideReserveActionPoints(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {

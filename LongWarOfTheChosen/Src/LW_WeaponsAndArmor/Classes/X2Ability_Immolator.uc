@@ -456,7 +456,7 @@ static function X2AbilityTemplate CreatePressureBlast()
 	local X2Effect_PersistentStatChange		Disorient;
 	local X2Condition_AbilityProperty		AbilityCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWPressureBlast');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZPressureBlast');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;

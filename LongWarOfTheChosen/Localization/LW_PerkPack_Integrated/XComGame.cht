@@ -352,7 +352,7 @@ LocLongDescription="衝刺後行動。"
 LocHelpText="衝刺後行動。"
 LocPromotionPopupText="<Bullet/>奔襲戰術可以讓士兵快速接近目標，或者輕鬆繞到側翼位置。<br/><Bullet/>奔襲戰術有<Ability:RUN_AND_GUN_COOLDOWN/>回合的冷卻時間。<br/>"
 
-[Suppression_LW X2AbilityTemplate]
+[Suppression X2AbilityTemplate]
 LocFriendlyName="壓制"
 LocFlyOverText="壓制"
 LocLongDescription="向目標進行一連串的射擊，如目標移動，則向其發動反應射擊，限制其許多能力的使用，並使其命中-<Ability:SUPPRESSIONPENALTY/>。"

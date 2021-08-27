@@ -354,7 +354,7 @@ LocLongDescription="ダッシュ後にアクションを行う。"
 LocHelpText="ダッシュ後にアクションを行う。"
 LocPromotionPopupText="<Bullet/>ラン&ガンを使用した兵士は、ターゲットとの距離を素早く縮めることができる。敵の側面や背後に回り込むことも容易だ。<br/><Bullet/>ラン&ガンのクールダウン時間：3ターン。<br/>"
 
-[Suppression_LW X2AbilityTemplate]
+[Suppression X2AbilityTemplate]
 LocFriendlyName="抑圧"
 LocFlyOverText="抑圧"
 LocLongDescription="弾幕を張ってターゲットを釘付けにし、ターゲットが移動すると反応射撃を行い、多くのアビリティの使用を制限する。また、ターゲットの命中率に<Ability:SUPPRESSIONPENALTY/>のペナルティを与える。"

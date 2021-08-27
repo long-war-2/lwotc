@@ -413,7 +413,7 @@ LocHelpText="Gain an action point. Has <Ability:SelfCooldown_LW/> turn cooldown"
 ; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/>Is a free action.<br/>"
 
-[Suppression_LW X2AbilityTemplate]
+[Suppression X2AbilityTemplate]
 LocFriendlyName="Suppression"
 LocFlyOverText="Suppression"
 LocLongDescription="Fire a barrage that pins down a target, reducing their action points by 1, restricting the use of many abilities, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to the target's aim. Grants a covering fire overwatch shot that deals half damage if the target moves or attacks. Has <Ability:SelfCooldown_LW/> turn cooldown."

@@ -465,7 +465,7 @@ static function bool CanWeaponApplyUpgrade(XComGameState_Item WeaponState, X2Wea
 
 	return true;
 }
-
+/* Do not display canisters because they clip
 static function string DLCAppendSockets(XComUnitPawn Pawn)
 {
     local XComGameState_Unit UnitState;
@@ -487,7 +487,7 @@ static function string DLCAppendSockets(XComUnitPawn Pawn)
     }
     return "";
 }
-
+*/
 static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseOb, XComGameState GameState)
 {
 	local name					TagText, AbilityName;

@@ -172,7 +172,7 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_SteadyWeapon				ToHitModifier;
 	local X2Condition_UnitEffects			SuppressedCondition;
-	
+	local X2Condition_AnyEnemyVisible		VisibleCondition;
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilitySteadyWeapon";
 	Template.AbilitySourceName = 'eAbilitySource_Item';
@@ -204,6 +204,9 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
 	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+	VisibleCondition = new class'X2Condition_AnyEnemyVisible';
+	Template.AbilityShooterConditions.AddItem(VisibleCondition);
 
 	Template.CinescriptCameraType = "Overwatch";
 	ToHitModifier = new class'X2Effect_SteadyWeapon';

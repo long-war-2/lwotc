@@ -58,7 +58,7 @@ static function X2AbilityTemplate AddDefiladeAbility()
 	CoverCondition = new class'XMBCondition_CoverType';
 	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
 
-
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	MultiTargetProperty = new class'X2Condition_UnitProperty';
 	MultiTargetProperty.ExcludeAlive = false;
     MultiTargetProperty.ExcludeDead = true;
@@ -97,8 +97,11 @@ static function X2AbilityTemplate AddDefiladeAbility()
 	Template.AddMultiTargetEffect(WillEffect);
 
 	CritDefEffect = new class'X2Effect_Resilience';
+	CritDefEffect.EffectName = 'DefiladeCritDef';
+	CritDefEffect.DuplicateResponse = eDupe_Ignore;
 	CritDefEffect.CritDef_Bonus = default.DEFILADE_CRIT_DEF;
 	CritDefEffect.BuildPersistentEffect (1, true, false, false);
+	CritDefEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,false,, Template.AbilitySourceName); 
 	Template.AddMultiTargetEffect(CritDefEffect);
 
 

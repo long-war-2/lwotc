@@ -158,14 +158,14 @@ AbilityDescName="Canister"
 
 [MZBlastCanister X2AbilityTemplate]
 LocFriendlyName="Activate Blast Canister"
-LocLongDescription="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Useful when targets are resistant to chemthrower's damage type."
-LocHelpText="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Useful when targets are resistant to chemthrower's damage type."
+LocLongDescription="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Has much shorter range than standard flamethrower, but deals much more damage and knocks enemies back. Useful when targets are resistant to chemthrower's damage type."
+LocHelpText="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Has much shorter range than standard flamethrower, but deals much more damage and knocks enemies back. Useful when targets are resistant to chemthrower's damage type."
 LocFlyOverText="Activate Blast Canister"
 
 [MZBlastCanisterActivate X2AbilityTemplate]
 LocFriendlyName="Activate Blast Canister"
-LocLongDescription="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Useful when targets are resistant to chemthrower's damage type."
-LocHelpText="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Useful when targets are resistant to chemthrower's damage type."
+LocLongDescription="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Has much shorter range than standard flamethrower, but deals much more damage and knocks enemies back. Useful when targets are resistant to chemthrower's damage type."
+LocHelpText="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Has much shorter range than standard flamethrower, but deals much more damage and knocks enemies back. Useful when targets are resistant to chemthrower's damage type."
 LocFlyOverText="Activate Blast Canister"
 
 ;

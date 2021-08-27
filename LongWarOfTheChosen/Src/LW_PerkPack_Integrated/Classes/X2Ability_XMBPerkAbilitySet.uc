@@ -3456,6 +3456,8 @@ static function X2AbilityTemplate CreateGremlinAnimationsPassive()
 	AnimSetEffect.AddAnimSetWithPath("WotC_APA_GremlinAnims.AS_APA_Gremlin");
 	Template.AddTargetEffect(AnimSetEffect);
 
+	return Template;
+
 }
 
 defaultproperties

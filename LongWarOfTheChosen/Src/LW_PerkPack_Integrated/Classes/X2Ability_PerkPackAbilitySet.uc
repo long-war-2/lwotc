@@ -757,14 +757,14 @@ static function X2AbilityTemplate AddDepthPerceptionAbility()
 	Template.bIsPassive = true;
 	ArmorBonus = new class 'X2Effect_WilltoSurvive';
 	ArmorBonus.WTS_DR = default.WTS_COVER_DR_PCT;
-
 	ArmorBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ArmorBonus.BuildPersistentEffect(1, true, false);
 	Template.AddTargetEffect(ArmorBonus);
 
 	WillBonus = new class'X2Effect_PersistentStatChange';
 	WillBonus.AddPersistentStatChange(eStat_Defense, default.WILLTOSURVIVE_DEF_PENALTY);
-	WillBonus.BuildPersistentEffect (1, true, false, false, 7);
+	ArmorBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	ArmorBonus.BuildPersistentEffect (1, true, false, false, 7);
 	Template.AddTargetEffect(WillBonus);
 
 	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
@@ -2399,7 +2399,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	local name								WeaponCategory;
 	local X2Condition_UnitEffects			SuppressedCondition;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'Suppression_LW');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Suppression');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;

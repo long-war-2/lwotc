@@ -202,6 +202,8 @@ static function X2AbilityTemplate FireCanisterActivate()
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+	StandardAim.bAllowCrit = false;
+	StandardAim.bGuaranteedHit = true;
 	StandardAim.bMultiTargetOnly = true;
 	Template.AbilityToHitCalc = StandardAim;
 
@@ -318,8 +320,9 @@ static function X2AbilityTemplate PoisonCanisterActivate()
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
-	StandardAim.bMultiTargetOnly = true;
+	StandardAim.bAllowCrit = false;
 	StandardAim.bGuaranteedHit = true;
+	StandardAim.bMultiTargetOnly = true;
 	Template.AbilityToHitCalc = StandardAim;
 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
@@ -430,6 +433,8 @@ static function X2AbilityTemplate CurseCanisterActivate()
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+	StandardAim.bAllowCrit = false;
+	StandardAim.bGuaranteedHit = true;
 	StandardAim.bMultiTargetOnly = true;
 	Template.AbilityToHitCalc = StandardAim;
 
@@ -537,8 +542,9 @@ static function X2AbilityTemplate BluescreenCanisterActivate()
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
-	StandardAim.bMultiTargetOnly = true;
+	StandardAim.bAllowCrit = false;
 	StandardAim.bGuaranteedHit = true;
+	StandardAim.bMultiTargetOnly = true;
 	Template.AbilityToHitCalc = StandardAim;
 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
@@ -647,7 +653,7 @@ static function X2AbilityTemplate BlastCanisterActivate()
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
-
+	local MZ_Effect_Knockback				KnockbackEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZBlastCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -657,6 +663,14 @@ static function X2AbilityTemplate BlastCanisterActivate()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_SHOT_PRIORITY;
 	Template.bDisplayInUITooltip = false;
 	Template.bDisplayInUITacticalText = false;
+
+
+	KnockbackEffect = new class'MZ_Effect_Knockback';
+	KnockbackEffect.KnockbackDistance = class'X2Ability_Immolator'.default.PressureBlast_Knockback;
+	KnockbackEffect.OnlyOnDeath = false;
+	KnockbackEffect.bKnockbackDestroysNonFragile = true;
+	Template.AddMultiTargetEffect(KnockbackEffect);
+
 
 	Charges = new class 'X2AbilityCharges';
 	Charges.InitialCharges = default.BlastCanister_Charges;
@@ -676,8 +690,9 @@ static function X2AbilityTemplate BlastCanisterActivate()
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
-	StandardAim.bMultiTargetOnly = true;
+	StandardAim.bAllowCrit = false;
 	StandardAim.bGuaranteedHit = true;
+	StandardAim.bMultiTargetOnly = true;
 	Template.AbilityToHitCalc = StandardAim;
 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
@@ -753,7 +768,6 @@ static function X2AbilityTemplate AcidCanisterActivate()
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
-	local MZ_Effect_Knockback 				KnockbackEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZAcidCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -782,8 +796,9 @@ static function X2AbilityTemplate AcidCanisterActivate()
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
-	StandardAim.bMultiTargetOnly = true;
+	StandardAim.bAllowCrit = false;
 	StandardAim.bGuaranteedHit = true;
+	StandardAim.bMultiTargetOnly = true;
 	Template.AbilityToHitCalc = StandardAim;
 
 	CursorTarget = new class'X2AbilityTarget_Cursor';
@@ -826,11 +841,6 @@ static function X2AbilityTemplate AcidCanisterActivate()
 	ConeMultiTarget.AddBonusConeSize('LWLengthNozzleSup', 0, 3);
 	Template.AbilityMultiTargetStyle = ConeMultiTarget;
 
-	KnockbackEffect = new class'MZ_Effect_Knockback';
-	KnockbackEffect.KnockbackDistance = class'X2Ability_Immolator'.default.PressureBlast_Knockback;
-	KnockbackEffect.OnlyOnDeath = false;
-	KnockbackEffect.bKnockbackDestroysNonFragile = true;
-	Template.AddMultiTargetEffect(KnockbackEffect);
 
 	Template.bCheckCollision = true;
 	Template.bAffectNeighboringTiles = true;

@@ -1196,7 +1196,7 @@ static function X2DataTemplate OverrideImpairingAbility()
 
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	Template.AbilityShooterConditions.AddItem(new class'X2Condition_Stealth');
+	//Template.AbilityShooterConditions.AddItem(new class'X2Condition_Stealth');
 	Template.AddShooterEffectExclusions();
 
 

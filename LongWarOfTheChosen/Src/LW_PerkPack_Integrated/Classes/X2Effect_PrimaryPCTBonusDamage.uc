@@ -42,7 +42,6 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 			return WeaponDamage * BonusDmg;
 			
 		}
-		WeaponTemplate = X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate());
 	}
 	return 0;
 }

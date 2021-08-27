@@ -28,7 +28,7 @@ LocPromotionPopupText="<Bullet/> Any kills of a non-human enemy by the squad hav
 ;displayed on other soldier that receive the effect
 [Defilade X2AbilityTemplate]
 LocFriendlyName="Defilade"
-LocLongDescription="Soldiers withing the line of sight of the Officer receive +5 defense while in cover, 10 will, and 10 crit resistance."
+LocLongDescription="Soldiers withing the line of sight of the Officer receive +5 defense while in cover, 10 will, and 20 crit resistance."
 LocHelpText="Bonuses soldiers near Officer."
 LocFlyOverText="Defilade"
 ;displayed for officer in Officer Ability UI

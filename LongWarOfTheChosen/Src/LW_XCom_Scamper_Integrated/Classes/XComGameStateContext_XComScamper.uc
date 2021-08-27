@@ -95,12 +95,9 @@ protected function ContextBuildVisualization()
 	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
 	local VisualizationActionMetadata ActionMetadata;
 	local X2Action_UpdateUI MovesUpdate, BuffsUpdate;
-	local X2Action_CameraLookAt LookAtAction;
 	local array<XComGameState_Unit> Units;
 	local XComGameState_Unit UnitState;
 	local XComGameStateHistory History;
-	local X2Action_Delay Delay;
-	local array<X2Action> AdditionalParents;
 	local X2Action_MarkerNamed SyncAction;
 	History = `XCOMHISTORY;
 
@@ -122,7 +119,7 @@ protected function ContextBuildVisualization()
 	MovesUpdate = none;
 	BuffsUpdate = none;
 
-	SyncAction = X2Action_MarkerNamed(class'X2Action_MarkerNamed'.static.AddToVisualizationTree(ActionMetadata, Context, false));
+	SyncAction = X2Action_MarkerNamed(class'X2Action_MarkerNamed'.static.AddToVisualizationTree(ActionMetadata, self, false));
 	SyncAction.SetName("ReloadStart");
 
 	foreach Units(UnitState)
@@ -130,13 +127,9 @@ protected function ContextBuildVisualization()
 		History.GetCurrentAndPreviousGameStatesForObjectID(UnitState.ObjectID, ActionMetadata.StateObject_OldState, ActionMetadata.StateObject_NewState,, AssociatedState.HistoryIndex);
 		ActionMetadata.VisualizeActor = History.GetVisualizer(UnitState.ObjectID);
 		
-		// If we had a UI update before, add that as parent to vis of this unit
-		AdditionalParents.Length = 0;
-		if (MovesUpdate != none) AdditionalParents.AddItem(MovesUpdate);
-		if (BuffsUpdate != none) AdditionalParents.AddItem(BuffsUpdate);
 
 		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, self,, SyncAction));
-		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, 'XCOM Scamper', '', eColor_Good,, 0.4, true);
+		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, "XCOM Scamper", '', eColor_Good,, 0.4, true);
 
 
 		MovesUpdate = X2Action_UpdateUI(class'X2Action_UpdateUI'.static.AddToVisualizationTree(ActionMetadata, self,, SyncAction));
