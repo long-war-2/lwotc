@@ -3110,10 +3110,8 @@ static function X2AbilityTemplate AddDamageControlAbility()
 	DamageControlEffect.BuildPersistentEffect(default.DAMAGE_CONTROL_DURATION,false,true,,eGameRule_PlayerTurnBegin);
 	DamageControlEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	DamageControlEffect.DuplicateResponse = eDupe_Refresh;
+	DamageControlEffect.EffectName = 'DamageControlTrigger';
 	DamageControlEffect.BonusArmor = default.DAMAGE_CONTROL_BONUS_ARMOR;
-	Template.AddTargetEffect(DamageControlEffect);
-
-
 	Template.AddTargetEffect(DamageControlEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

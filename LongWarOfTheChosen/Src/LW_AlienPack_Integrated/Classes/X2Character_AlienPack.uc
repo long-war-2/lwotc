@@ -1486,7 +1486,7 @@ static function X2CharacterTemplate CreateTemplate_AdvMec_LW(name TemplateName)
 	CharTemplate.strScamperBT = "ScamperRoot_Overwatch";
 
 	CharTemplate.Abilities.AddItem('RobotImmunities');
-	CharTemplate.Abilities.AddItem('DamageControl');
+	//CharTemplate.Abilities.AddItem('DamageControl');
 	// WOTC abilities
 	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
 

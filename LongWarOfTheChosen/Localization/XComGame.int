@@ -8408,6 +8408,13 @@ LocLongDescription="After taking damage, gain Stackable 2 armor through the end 
 LocHelpText="After taking damage, gain Stackable 2 armor through the end of the turn."
 LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain 1 armor through the end of the next turn.
 
+[ProtectiveServosPassive X2AbilityTemplate]
+LocFriendlyName="Protective Servos"
+LocFlyOverText="Protective Servos"
+LocLongDescription="After taking damage, gain Stackable 2 armor through the end of the turn."
+LocHelpText="After taking damage, gain Stackable 2 armor through the end of the turn."
+LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain 1 armor through the end of the next turn.
+
 [SuperiorHolyWarrior X2AbilityTemplate]
 LocFriendlyName="Superior Holy Warrior"
 LocHelpText="Holy Warrior gains 30 crit."

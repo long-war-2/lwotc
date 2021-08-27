@@ -416,7 +416,7 @@ LocPromotionPopupText="<Bullet/>Is a free action.<br/>"
 [Suppression X2AbilityTemplate]
 LocFriendlyName="Suppression"
 LocFlyOverText="Suppression"
-LocLongDescription="Fire a barrage that pins down a target, reducing their action points by 1, restricting the use of many abilities, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to the target's aim. Grants a covering fire overwatch shot that deals half damage if the target moves or attacks. Has <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Fire a barrage that pins down a target, reducing their action points by 1 (units unable to take cover are immune), restricting the use of many abilities, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to the target's aim. Grants a covering fire overwatch shot that deals half damage if the target moves or attacks. Has <Ability:SelfCooldown_LW/> turn cooldown."
 LocHelpText="Penalize target's aim and action points and shoot them if they move or attack."
 ; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> Suppression costs <Ability:SelfAmmoCost/> ammo points to use, and has <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> May not be used if sniper rifle or shotgun-class weapons are equipped.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades."
@@ -425,7 +425,7 @@ LocPromotionPopupText="<Bullet/> Suppression costs <Ability:SelfAmmoCost/> ammo 
 [AreaSuppression X2AbilityTemplate]
 LocFriendlyName="Area Suppression"
 LocFlyOverText="Area Suppression"
-LocLongDescription="Fire a barrage that pins down multiple targets within a 4-tile radius, granting reaction fire against anyone that moves, and imposing a <Ability:SUPPRESSIONPENALTY/> penalty to all targets' aim until suppression is removed. Cannot be used when concealed."
+LocLongDescription="Suppress enemies in a 4-tile radius. Cannot be used when concealed."
 LocHelpText="Suppress multiple targets within an area of effect."
 ; LWOTC Needs Translation
 LocPromotionPopupText="<Bullet/> Area Suppression cannot be used when the soldier is concealed.<br/><Bullet/> Any unit that attempts to move will face reaction fire as long as the suppressing unit has ammo remaining.<br/><Bullet/> Does not work with shotguns or sniper rifles.<br/><Bullet/> Area Suppression costs <Ability:SelfAmmoCost/> ammo points to use, plus one additional ammo for each reaction shot. It has no cooldown.<br/><Bullet/> Area suppression will be canceled if the suppressing unit is damaged.<br/><Bullet/> If multiple units suppress a target, the aim penalty will not stack.<br/><Bullet/> Suppression restricts many of the target's abilities, including the use of rockets and grenades.""

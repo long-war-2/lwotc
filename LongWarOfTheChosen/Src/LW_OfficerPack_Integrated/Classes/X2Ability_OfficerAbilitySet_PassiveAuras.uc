@@ -36,9 +36,7 @@ static function array<X2DataTemplate> CreateTemplates()
 static function X2AbilityTemplate AddDefiladeAbility()
 {
 	local X2AbilityTemplate                 Template;
-	local XMBEffect_ConditionalBonus		DefenseBonus;
-	local X2Effect_Resilience CritDefEffect;
-	local X2Effect_PersistentStatChange WillEffect;
+	local XMBEffect_ConditionalBonus		DefenseBonus, CritDefEffect;
 	local X2AbilityMultiTarget_AllAllies	MultiTargetStyle;
 	local X2Condition_UnitProperty			MultiTargetProperty;
 	local XMBCondition_CoverType	CoverCondition;
@@ -52,8 +50,6 @@ static function X2AbilityTemplate AddDefiladeAbility()
 	Template.DisplayTargetHitChance = false;
 
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-
-	Template.AbilityMultiTargetConditions.AddItem(default.GameplayVisibilityCondition);
 
 	CoverCondition = new class'XMBCondition_CoverType';
 	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
@@ -78,29 +74,26 @@ static function X2AbilityTemplate AddDefiladeAbility()
 	Template.AbilityMultiTargetStyle = MultiTargetStyle;
 
 	DefenseBonus = new class'XMBEffect_ConditionalBonus';
-
 	DefenseBonus.AddToHitAsTargetModifier(-default.DEFILADE_DEF, eHit_Success);
 	DefenseBonus.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
 	DefenseBonus.AbilityTargetConditionsAsTarget.AddItem(CoverCondition);
+	DefenseBonus.TargetConditions.AddItem(default.GameplayVisibilityCondition);
 	DefenseBonus.DuplicateResponse = eDupe_Ignore;
+	DefenseBonus.bRemoveWhenSourceDies = true;
+	DefenseBonus.bRemoveWhenTargetDies = true;
 	DefenseBonus.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
 	DefenseBonus.EffectName = 'DefiladeDef';
+
 	Template.AddMultiTargetEffect(DefenseBonus);
 
-	WillEffect = new class'X2Effect_PersistentStatChange';
-	WillEffect.EffectName = 'DefiladeWill';
-	WillEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
-	WillEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,false,, Template.AbilitySourceName); 
-	WillEffect.AddPersistentStatChange(eStat_Will, default.DEFILADE_WILL);
-	WillEffect.bRemoveWhenTargetDies = true;
-	WillEffect.DuplicateResponse = eDupe_Ignore;
-	Template.AddMultiTargetEffect(WillEffect);
-
-	CritDefEffect = new class'X2Effect_Resilience';
+	CritDefEffect = new class'XMBEffect_ConditionalBonus';
+	CritDefEffect.AddToHitAsTargetModifier(-default.DEFILADE_CRIT_DEF, eHit_Crit);
+	CritDefEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
+	CritDefEffect.TargetConditions.AddItem(default.GameplayVisibilityCondition);
 	CritDefEffect.EffectName = 'DefiladeCritDef';
 	CritDefEffect.DuplicateResponse = eDupe_Ignore;
-	CritDefEffect.CritDef_Bonus = default.DEFILADE_CRIT_DEF;
-	CritDefEffect.BuildPersistentEffect (1, true, false, false);
+	CritDefEffect.bRemoveWhenSourceDies = true;
+	CritDefEffect.bRemoveWhenTargetDies = true;
 	CritDefEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,false,, Template.AbilitySourceName); 
 	Template.AddMultiTargetEffect(CritDefEffect);
 

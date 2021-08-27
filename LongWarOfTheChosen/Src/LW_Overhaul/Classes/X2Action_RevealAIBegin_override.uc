@@ -1,68 +1,6 @@
 class X2Action_RevealAIBegin_override extends X2Action_RevealAIBegin;
 
 
-function Init()
-{	
-	
-	local X2CharacterTemplate FirstRevealTemplate;
-	local XGUnit UnitActor;
-	local int Index;
-	local X2EventManager EventManager;
-	local Object ThisObj;
-
-	super.Init();
-	
-	RevealContext = XComGameStateContext_RevealAI(StateChangeContext);	
-
-	History = `XCOMHISTORY;
-
-	FirstRevealTemplate = RevealContext.FirstEncounterCharacterTemplate;
-
-	//First make sure that there are units to be revealed
-	if(RevealContext.RevealedUnitObjectIDs.Length > 0)
-	{		
-		for(Index = 0; Index < RevealContext.RevealedUnitObjectIDs.Length; ++Index)
-		{
-			TempUnitState = XComGameState_Unit(History.GetGameStateForObjectID(RevealContext.RevealedUnitObjectIDs[Index], eReturnType_Reference, RevealContext.AssociatedState.HistoryIndex));
-			if( TempUnitState.IsAbleToAct() ) //Only focus on still living enemies
-			{
-				UnitActor = XGUnit(History.GetVisualizer(TempUnitState.ObjectID));
-				if(MatineeFocusUnitVisualizer == none 
-					|| (FirstRevealTemplate != none && FirstRevealTemplate.DataName != MatineeFocusUnitVisualizer.GetVisualizedGameState().GetMyTemplateName()))
-				{
-					// If this is a first encounter, then favor playing the reveal on a unit of that template type. Otherwise 
-					// take the first one available. Since the pod leader is always at index 0, this will focus him if possible.
-					MatineeFocusUnitVisualizer = UnitActor;		
-					MatineeFocusUnitState = TempUnitState;
-				}
-
-				//RevealedUnitVisualizers.AddItem(UnitActor.GetPawn());
-			}
-		}
-
-		//We can still end up with an empty RevealedUnitVisualizers if the player killed this entire group with AOE or something before the reveal could take place, so account for that 
-		WorldInfo.RemoteEventListeners.AddItem(self);
-
-		EventManager = `XEVENTMGR;
-		ThisObj = self;
-
-		EventManager.RegisterForEvent(ThisObj, 'UIChosenReveal_OnRemoved', OnChosenRevealUI_Removed, ELD_Immediate);
-	}
-	else
-	{
-		`redscreen("Attempted to plan AI reveal action with no AIs!");
-	}
-	
-	EnemyUnitVisualizer = XGUnit(History.GetVisualizer(RevealContext.CausedRevealUnit_ObjectID));
-	if (EnemyUnitVisualizer == None)
-	{
-		// Revealing unit may be dead?  Select any xcom unit?
-		EnemyUnitVisualizer = XGBattle_SP(`BATTLE).GetAIPlayer().GetNearestEnemy(UnitActor.GetLocation());
-	}
-}
-
-
-
 state Executing
 {
 
