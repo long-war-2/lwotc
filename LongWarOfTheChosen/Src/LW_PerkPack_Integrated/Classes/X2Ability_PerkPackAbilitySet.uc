@@ -13,6 +13,7 @@ var config int DOUBLE_TAP_2ND_SHOT_AIM;
 var config int DOUBLE_TAP_COOLDOWN;
 var config int DOUBLE_TAP_MIN_ACTION_REQ;
 var config int RESILIENCE_CRITDEF_BONUS;
+var config int FORTIFIED_CRITDEF_BONUS;
 var config int WALK_FIRE_AIM_BONUS;
 var config int WALK_FIRE_CRIT_MALUS;
 var config int WALK_FIRE_COOLDOWN;
@@ -230,7 +231,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddFormidableAbility());
 	Templates.AddItem(AddSoulStealTriggered2());
 	Templates.AddItem(AddOverexertion());
-
+	Templates.AddItem(AddFortifiedAbility());
+	
 	return Templates;
 }
 
@@ -594,6 +596,32 @@ static function X2AbilityTemplate AddResilienceAbility()
 
 	return Template;		
 }
+
+static function X2AbilityTemplate AddFortifiedAbility()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_Resilience				MyCritModifier;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Fortified');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityResilience";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	MyCritModifier = new class 'X2Effect_Resilience';
+	MyCritModifier.CritDef_Bonus = default.FORTIFIED_CRITDEF_BONUS;
+	MyCritModifier.BuildPersistentEffect (1, true, false, true);
+	MyCritModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (MyCritModifier);
+	Template.bCrossClassEligible = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;		
+}
+
 
 static function X2AbilityTemplate AddTacticalSenseAbility()
 {

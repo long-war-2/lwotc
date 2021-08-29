@@ -3228,6 +3228,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'RESILIENCE_BONUS_LW':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.RESILIENCE_CRITDEF_BONUS);
 			return true;
+		case 'FORTIFIED_BONUS_LW':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.FORTIFIED_CRITDEF_BONUS);
+			return true;
 		case 'ALPHA_MIKE_FOXTROT_DAMAGE_LW':
 			Outstring = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.ALPHAMIKEFOXTROT_DAMAGE);
 			return true;

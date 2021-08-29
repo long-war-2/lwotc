@@ -139,6 +139,13 @@ LocLongDescription="Enemy attacks against you suffer a -<ABILITY:RESILIENCE_BONU
 LocHelpText="Enemy attacks against you suffer a -<ABILITY:RESILIENCE_BONUS_LW/> penalty to critical hit chances."
 LocPromotionPopupText="<Bullet/> Enemy attacks against you suffer a -<ABILITY:RESILIENCE_BONUS_LW/> penalty to critical hit chances.<br/>"
 
+[Fortified X2AbilityTemplate]
+LocFriendlyName="Fortified"
+LocFlyOverText="Fortified"
+LocLongDescription="Enemy attacks against you suffer a -<ABILITY:FORTIFIED_BONUS_LW/> penalty to critical hit chances."
+LocHelpText="Enemy attacks against you suffer a -<ABILITY:FORTIFIED_BONUS_LW/> penalty to critical hit chances."
+LocPromotionPopupText="<Bullet/> Enemy attacks against you suffer a -<ABILITY:FORTIFIED_BONUS_LW/> penalty to critical hit chances.<br/>"
+
 [TacticalSense X2AbilityTemplate]
 LocFriendlyName="Tactical Sense"
 LocFlyOverText="Tactical Sense"
