@@ -806,8 +806,8 @@ LocHelpText="Your hits ignore 2 armor."
 [Tracer_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Tracer Rounds"
 LocFlyOverText="Tracer Rounds"
-LocLongDescription="Your weapons have +5 aim."
-LocHelpText="Your weapons have +5 aim."
+LocLongDescription="Your weapons have +10 aim."
+LocHelpText="Your weapons have +10 aim."
 
 [Talon_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Talon Rounds"
