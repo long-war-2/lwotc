@@ -17,5 +17,5 @@ simulated function int GetNumTurns(XComGameState_Ability kAbility, XComGameState
 
 DefaultProperties
 {
-	iNumTurns = 4;
+	iNumTurns = 5;
 }
