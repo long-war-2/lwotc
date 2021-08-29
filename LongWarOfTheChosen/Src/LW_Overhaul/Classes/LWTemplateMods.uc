@@ -3259,16 +3259,17 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	WeaponUpgradeTemplate = X2WeaponUpgradeTemplate(Template);
 	if (WeaponUpgradeTemplate != none)
 	{
-		/*
-		//specific alterations
+
+				//specific alterations
 		if (WeaponUpgradeTemplate.DataName == 'AimUpgrade_Bsc')
 		{
-			WeaponUpgradeTemplate.AimBonus = 0;
-			//WeaponUpgradeTemplate.AimBonusNoCover = 0;
-			WeaponUpgradeTemplate.AddHitChanceModifierFn = none;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
-			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Scope_LW_Bsc_Ability');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
+		}
+
+		//specific alterations
+		if (WeaponUpgradeTemplate.DataName == 'Critupgrade_bsc')
+		{
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		if (WeaponUpgradeTemplate.DataName == 'AimUpgrade_Adv')
 		{
@@ -3288,7 +3289,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Scope_LW_Sup_Ability');
 		}
-			*/
+
 		if (WeaponUpgradeTemplate.DataName == 'FreeFireUpgrade_Bsc')
 		{
 			WeaponUpgradeTemplate.FreeFireChance = 0;
@@ -3296,6 +3297,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('HyperReactivePupils');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		if (WeaponUpgradeTemplate.DataName == 'FreeFireUpgrade_Adv')
 		{
@@ -3304,6 +3306,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Hair_Trigger_LW_Adv_Ability');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		if (WeaponUpgradeTemplate.DataName == 'FreeFireUpgrade_Sup')
 		{
@@ -3312,6 +3315,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Hair_Trigger_LW_Sup_Ability');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Bsc')
@@ -3320,6 +3324,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('GrazingFire');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Adv')
 		{
@@ -3342,6 +3347,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.FreeKillFn = none;
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			//Abilities are caught elsewhere
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		//make them mutually exclusive
 		if (WeaponUpgradeTemplate.DataName == 'ReloadUpgrade_Bsc' || WeaponUpgradeTemplate.DataName == 'ReloadUpgrade_Adv' || WeaponUpgradeTemplate.DataName == 'ReloadUpgrade_Sup')
@@ -3353,7 +3359,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.FreeReloadCostFn = none;
 			WeaponUpgradeTemplate.FriendlyRenameFn = none;
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-		
+			WeaponUpgradeTemplate.bInfiniteItem = true;
+
 			WeaponUpgradeTemplate.BonusAbilities.AddItem('QuickReload');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Bsc' || WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Adv' || WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Sup')
@@ -3362,6 +3369,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ReloadUpgrade_Bsc');
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ReloadUpgrade_Adv');
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ReloadUpgrade_Sup');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		//Config-able items array -- Weapon Upgrades
 		for (i=0; i < ItemTable.Length; ++i)
