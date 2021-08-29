@@ -102,7 +102,7 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Conventional()
 	Template.iRange = default.SawedOffShotgun_CONVENTIONAL_RANGE;
 	Template.NumUpgradeSlots = 1;
 	
-	Template.InventorySlot = eInvSlot_SecondaryWeapon;
+	Template.InventorySlot = eInvSlot_Pistol;
 	
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "LWSawedoffShotgun.Archetypes.WP_SawedoffShotgun_CV";
@@ -112,6 +112,8 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Conventional()
 	Template.StartingItem = true;
 	Template.CanBeBuilt = false;
 	
+	Template.Abilities.AddItem('PointBlank');
+
 	Template.DamageTypeTemplateName = 'Electrical';
 	
 	return Template;
@@ -141,7 +143,7 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Magnetic()
 	Template.iRange = default.SawedOffShotgun_MAGNETIC_RANGE;
 	Template.NumUpgradeSlots = 1;
 	
-	Template.InventorySlot = eInvSlot_SecondaryWeapon;
+	Template.InventorySlot = eInvSlot_Pistol;
 	
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "LWSawedoffShotgun.Archetypes.WP_SawedoffShotgun_MG";
@@ -153,6 +155,8 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Magnetic()
 
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
+
+	Template.Abilities.AddItem('PointBlank');
 
 	Template.DamageTypeTemplateName = 'Electrical';
 
@@ -183,7 +187,7 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Beam()
 	Template.iRange = default.SawedOffShotgun_BEAM_RANGE;
 	Template.NumUpgradeSlots = 1;
 	
-	Template.InventorySlot = eInvSlot_SecondaryWeapon;
+	Template.InventorySlot = eInvSlot_Pistol;
 	
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "LWSawedoffShotgun.Archetypes.WP_SawedoffShotgun_BM";
@@ -195,6 +199,8 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Beam()
 
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
+
+	Template.Abilities.AddItem('PointBlank');
 
 	Template.DamageTypeTemplateName = 'Electrical';
 
