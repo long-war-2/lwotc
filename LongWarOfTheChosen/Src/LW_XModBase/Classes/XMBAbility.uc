@@ -121,6 +121,13 @@ static function X2AbilityTemplate Passive(name DataName, string IconImage, optio
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
+	if(!ShowInUI)
+	{
+		Template.bDontDisplayInAbilitySummary = true;
+		Template.bDisplayInUITooltip = false;
+		Template.bDisplayInUITacticalText = false;	
+	}
+
 	PersistentEffect = X2Effect_Persistent(Effect);
 	ConditionalBonusEffect = XMBEffect_ConditionalBonus(Effect);
 	ConditionalStatChangeEffect = XMBEffect_ConditionalStatChange(Effect);
