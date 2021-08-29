@@ -248,7 +248,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'ShadowBind':
 		case 'Bayonet':
 		case 'BigDamnPunch':
-		case 'StandardMelee':
+		//case 'StandardMelee':
 			MakeMeleeBlueMove(Template);
 			break;
 
@@ -1534,9 +1534,10 @@ static function AddSharedSuppressionCooldown(X2AbilityTemplate Template)
 
 static function MakeTheShotCoveringFire(X2AbilityTemplate Template)
 {
-	local X2AbilityTrigger_EventListener Trigger;
+	//local X2AbilityTrigger_EventListener Trigger;
 	local X2Effect_GeneralDamageModifier DamageModifier;
 
+	/*
 	Trigger = new class'X2AbilityTrigger_EventListener';
 	Trigger.ListenerData.EventID = 'AbilityActivated';
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
@@ -1544,6 +1545,7 @@ static function MakeTheShotCoveringFire(X2AbilityTemplate Template)
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalAttackListener;
 	Template.AbilityTriggers.AddItem(Trigger);
 
+	*/
 	DamageModifier = new class'X2Effect_GeneralDamageModifier';
 	DamageModifier.AbilityTemplate = Template.DataName;
 	DamageModifier.DamageModifier = default.SUPPRESSION_DAMAGE_MOD;
