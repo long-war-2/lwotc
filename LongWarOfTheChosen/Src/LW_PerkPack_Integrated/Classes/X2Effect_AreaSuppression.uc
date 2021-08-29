@@ -16,6 +16,19 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	super.GetToHitModifiers(EffectState, Attacker, Target, AbilityState, ToHitType, bMelee, bFlanking, bIndirectFire, ShotModifiers);
 }
 
+function ModifyTurnStartActionPoints(XComGameState_Unit UnitState, out array<name> ActionPoints, XComGameState_Effect EffectState)
+{
+
+	if(UnitState.CanTakeCover())
+	{	
+		if(ActionPoints.Length > 1) //Make so multiple suppressions don't completely disable an enemy
+		{
+			ActionPoints.Remove(0, 1);
+		}
+	}
+
+}
+
 //handle switching the suppression target if there is an other remaining suppression target
 simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
 {
