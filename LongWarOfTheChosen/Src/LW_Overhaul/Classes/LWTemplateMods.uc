@@ -2138,7 +2138,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'AdvStunLancerM2':
 		case 'AdvStunLancerM1':
 			Template.Abilities.AddItem('Whirlwind2');
-			Template.Abilities.AddItem('Resilience');
+			//Template.Abilities.AddItem('Resilience');
 			break;
 
 		case 'AdvMec_M1':
