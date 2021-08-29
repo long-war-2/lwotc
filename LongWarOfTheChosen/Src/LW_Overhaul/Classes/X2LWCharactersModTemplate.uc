@@ -93,6 +93,10 @@ static function DoaGlobalStatModifierByDifficulty(X2CharacterTemplate Template, 
 
 static function StandarizeLootForUnits(X2CharacterTemplate Template, int Difficulty)
 {
+	local LootReference  LootTimed, LootVulture; 
+
+	LootTimed.ForceLevel = 0;
+	LootVulture.ForceLevel = 0;
 
 	switch(Template.DataName)
 	{
@@ -113,9 +117,15 @@ static function StandarizeLootForUnits(X2CharacterTemplate Template, int Difficu
 		case'AdvStunLancerM2':
 		case'AdvTrooperM2':
 
-			Template.TimedLoot.LootReferences[0].LootTableName = 'GenericEarlyAlienLoot_LW';
-			Template.VultureLoot.LootReferences[0].LootTableName = 'GenericEarlyAlienVultureLoot_LW';
-			break;
+		Template.TimedLoot.LootReferences.length = 0;
+		Template.VultureLoot.LootReferences.length = 0;
+
+		LootTimed.LootTableName='GenericEarlyAlienLoot_LW';
+		LootVulture.LootTableName='GenericEarlyAlienVultureLoot_LW';
+
+		Template.TimedLoot.LootReferences.AddItem(LootTimed);
+		Template.VultureLoot.LootReferences.AddItem(LootVulture);
+		break;
 		case'SpectreM2':
 		case'AdvPriestM3':
 		case'AdvPurifierM3':
@@ -126,10 +136,19 @@ static function StandarizeLootForUnits(X2CharacterTemplate Template, int Difficu
 		case'Sectopod':
 		case'Andromedon':
 		case'Archon':
-			Template.TimedLoot.LootReferences[0].LootTableName = 'GenericMidAlienLoot_LW';
-			Template.VultureLoot.LootReferences[0].LootTableName = 'GenericMidAlienVultureLoot_LW';
+
+			Template.TimedLoot.LootReferences.length = 0;
+			Template.VultureLoot.LootReferences.length = 0;
+
+			LootTimed.LootTableName='GenericMidAlienLoot_LW';
+			LootVulture.LootTableName='GenericMidAlienVultureLoot_LW';
+
+			Template.TimedLoot.LootReferences.AddItem(LootTimed);
+			Template.VultureLoot.LootReferences.AddItem(LootVulture);
+		
 			break;
 	}
+
 }
 
 defaultproperties
