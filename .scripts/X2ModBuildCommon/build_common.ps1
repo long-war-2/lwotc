@@ -756,8 +756,13 @@ class BuildProject {
 
 		# Dedupe for cases when collection maps are manually made
 		# Also sort for consitency and ease of reading of the command line arguments
-		$cookedMaps = $cookedMaps | Sort-Object -unique
-		$dirtyMaps = $dirtyMaps | Sort-Object -unique
+		if ($cookedMaps.Length -gt 0) {
+			$cookedMaps = $cookedMaps | Sort-Object -unique
+		}
+
+		if ($dirtyMaps.Length -gt 0) {
+			$dirtyMaps = $dirtyMaps | Sort-Object -unique
+		}
 
 		# Prepare the command line arguments
 		# Note that we still need the -TFCSUFFIX even though -DLCName suffixes the TFCs as with only the latter using TFCs will crash at runtime (reads from base game ones?)
