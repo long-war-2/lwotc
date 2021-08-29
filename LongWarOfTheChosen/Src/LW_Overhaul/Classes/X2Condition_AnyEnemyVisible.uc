@@ -10,7 +10,6 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
 	local XComGameStateHistory History;
 	local X2GameRulesetVisibilityManager VisibilityMgr;	
 	local XComGameState_unit SourceState;
-	local X2Condition_Visibility SquadisghtVisible;
 	local array<X2Condition> RequiredConditions;
 	local array<StateObjectReference> VisibleUnits;
 	History = `XCOMHISTORY;
