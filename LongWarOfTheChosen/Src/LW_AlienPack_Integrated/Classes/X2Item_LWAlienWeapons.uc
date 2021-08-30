@@ -753,7 +753,10 @@ static function X2DataTemplate CreateTemplate_AdvGunner_WPN(name TemplateName)
 		Template.BaseDamage = default.ADVGUNNERM2_WPN_BASEDAMAGE;
 	if (TemplateName == 'AdvGunnerM3_WPN')
 		Template.BaseDamage = default.ADVGUNNERM3_WPN_BASEDAMAGE;
-
+	if (TemplateName == 'AdvGunnerM4_WPN')
+		Template.BaseDamage = default.ADVGUNNERM4_WPN_BASEDAMAGE;
+	if (TemplateName == 'AdvGunnerM5_WPN')
+		Template.BaseDamage = default.ADVGUNNERM5_WPN_BASEDAMAGE;
 	Template.iClipSize = default.ADVGUNNER_WPN_CLIPSIZE;
 	Template.iSoundRange = class'X2Item_DefaultWeapons'.default.LMG_MAGNETIC_ISOUNDRANGE;
 	Template.iEnvironmentDamage = class'X2Item_DefaultWeapons'.default.LMG_MAGNETIC_IENVIRONMENTDAMAGE;
@@ -818,6 +821,10 @@ static function X2DataTemplate CreateTemplate_AdvSentry_WPN(name TemplateName)
 		Template.BaseDamage = default.AdvSentryM2_WPN_BASEDAMAGE;
 	if (TemplateName == 'AdvSentryM3_WPN')
 		Template.BaseDamage = default.AdvSentryM3_WPN_BASEDAMAGE;
+	if (TemplateName == 'AdvSentryM4_WPN')
+		Template.BaseDamage = default.AdvSentryM4_WPN_BASEDAMAGE;
+	if (TemplateName == 'AdvSentryM5_WPN')
+		Template.BaseDamage = default.AdvSentryM4_WPN_BASEDAMAGE;
 
     Template.iEnvironmentDamage = class'X2Item_DefaultWeapons'.default.ASSAULTRIFLE_MAGNETIC_IENVIRONMENTDAMAGE;
     Template.iIdealRange = default.ADVSENTRY_IDEALRANGE; //check this
@@ -829,13 +836,14 @@ static function X2DataTemplate CreateTemplate_AdvSentry_WPN(name TemplateName)
 	Template.Abilities.AddItem('Reload');
 	Template.Abilities.AddItem('HotLoadAmmo');
 		
+	/*
 	if (TemplateName == 'AdvSentryM2_WPN')
 	{
 		Template.Abilities.AddItem('CoolUnderPressure');
 		Template.Abilities.AddItem('Sentinel');
 		Template.Abilities.AddItem('CoveringFire');
 	}
-/*
+
 	if (TemplateName == 'AdvSentryM3_WPN')
 	{
 		Template.Abilities.AddItem('CoolUnderPressure');
