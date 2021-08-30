@@ -303,7 +303,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'Overwatch':
 		case 'PistolOverwatch':
 		case 'SniperRifleOverwatch':
-			UpdateOverwatch(Template);	
+			UpdateOverwatch(Template);
 		default:
 			break;
 
@@ -1668,10 +1668,108 @@ static function UpdateOverwatch(X2AbilityTemplate Template)
 
 	VisibleCondition = new class'X2Condition_AnyEnemyVisible';
 	Template.AbilityShooterConditions.AddItem(VisibleCondition);
+	Template.AbilityConfirmSound = "";
 
+	Template.BuildVisualizationFn = OverwatchAbility_BuildVisualization;
 }
 
 	
+static simulated function OverwatchAbility_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameStateContext_Ability  Context;
+	local StateObjectReference          InteractingUnitRef;
+
+	local VisualizationActionMetadata        EmptyTrack;
+	local VisualizationActionMetadata        ActionMetadata;
+
+	local X2Action_CameraFrameAbility FrameAction;
+	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
+	local X2Action_CameraRemove RemoveCameraAction;
+	local UnitValue EverVigilantValue;
+	local XComGameState_Unit UnitState;
+	local X2AbilityTemplate AbilityTemplate;
+	local string FlyOverText, FlyOverImage;
+	local XGUnit UnitVisualizer;
+
+	History = `XCOMHISTORY;
+
+	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+	InteractingUnitRef = Context.InputContext.SourceObject;
+
+	//Configure the visualization track for the shooter
+	//****************************************************************************************
+	ActionMetadata = EmptyTrack;
+	ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+	ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+	UnitState = XComGameState_Unit(ActionMetadata.StateObject_NewState);
+
+	// Only turn the camera on the overwatcher if it is visible to the local player.
+	if( !`XENGINE.IsMultiPlayerGame() || class'X2TacticalVisibilityHelpers'.static.IsUnitVisibleToLocalPlayer(UnitState.ObjectID, VisualizeGameState.HistoryIndex) )
+	{
+		FrameAction = X2Action_CameraFrameAbility(class'X2Action_CameraFrameAbility'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+		FrameAction.AbilitiesToFrame.AddItem(Context);
+		FrameAction.CameraTag = 'OverwatchCamera';
+	}
+					
+	if (UnitState != none && UnitState.GetUnitValue(class'X2Ability_SpecialistAbilitySet'.default.EverVigilantEffectName, EverVigilantValue) && EverVigilantValue.fValue > 0)
+	{
+		AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('EverVigilant');
+		if (UnitState.HasSoldierAbility('CoveringFire'))
+			FlyOverText = class'XLocalizedData'.default.EverVigilantWithCoveringFire;
+		else
+			FlyOverText = AbilityTemplate.LocFlyOverText;
+		FlyOverImage = AbilityTemplate.IconImage;
+	}
+	else if (UnitState != none && UnitState.HasSoldierAbility('ReadyForAnything'))
+	{
+		AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('ReadyForAnything');
+		FlyOverText = AbilityTemplate.LocFlyOverText;
+		FlyOverImage = AbilityTemplate.IconImage;
+	}
+	else if (UnitState != none && UnitState.HasSoldierAbility('CoveringFire'))
+	{
+		AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('CoveringFire');
+		FlyOverText = AbilityTemplate.LocFlyOverText;
+		FlyOverImage = AbilityTemplate.IconImage;
+	}
+	else if (UnitState != none && UnitState.HasSoldierAbility('SkirmisherAmbush'))
+	{
+		AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('SkirmisherAmbush');
+		FlyOverText = AbilityTemplate.LocFlyOverText;
+		FlyOverImage = AbilityTemplate.IconImage;
+	}
+	else
+	{
+		AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate(Context.InputContext.AbilityTemplateName);
+		FlyOverText = AbilityTemplate.LocFlyOverText;
+		FlyOverImage = AbilityTemplate.IconImage;
+	}
+	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+
+	if (UnitState != none)
+	{
+		UnitVisualizer = XGUnit(UnitState.GetVisualizer());
+		if( (UnitVisualizer != none) && !UnitVisualizer.IsMine())
+		{
+			SoundAndFlyOver.SetSoundAndFlyOverParameters(SoundCue'SoundUI.OverwatchCue', FlyOverText, 'Overwatch', eColor_Bad, FlyOverImage);
+		}
+		else
+		{
+			SoundAndFlyOver.SetSoundAndFlyOverParameters(SoundCue'SoundUI.OverwatchCue', FlyOverText, 'Overwatch', eColor_Good, FlyOverImage);
+		}
+	}
+
+	if( FrameAction != none )
+	{
+		RemoveCameraAction = X2Action_CameraRemove(class'X2Action_CameraRemove'.static.AddToVisualizationTree(ActionMetaData, Context));
+		RemoveCameraAction.CameraTagToRemove = 'OverwatchCamera';
+	}
+
+	//****************************************************************************************
+}
 
 
 

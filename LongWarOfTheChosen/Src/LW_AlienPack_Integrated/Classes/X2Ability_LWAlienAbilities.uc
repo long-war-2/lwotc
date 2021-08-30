@@ -1047,7 +1047,7 @@ static function X2DataTemplate CreateReadyForAnythingAbility()
 	ActionPointEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(ActionPointEffect);
 
-	Template.AdditionalAbilities.AddItem('ReadyForAnythingFlyover');
+	//Template.AdditionalAbilities.AddItem('ReadyForAnythingFlyover');
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 

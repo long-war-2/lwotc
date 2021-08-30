@@ -1616,7 +1616,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Cooldown.iNumTurns = default.FUSE_COOLDOWN;
 		Template.AbilityCooldown = Cooldown;
 	}
-
+/*
 	// Sets to one shot per target a turn
 	if (Template.DataName == 'Sentinel')
 	{
@@ -1627,7 +1627,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		GuardianEffect.ProcChance = class'X2Ability_SpecialistAbilitySet'.default.GUARDIAN_PROC;
 		Template.AddTargetEffect(GuardianEffect);
 	}
-
+		*/
 	// Adds shieldHP bonus
 	if (Template.DataName == 'SoulSteal')
 	{
