@@ -630,6 +630,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 
 
 	Template.AssociatedPassives.AddItem('Electroshock');
+	Template.AddTargetEffect(ElectroshockDisorientEffect());
 	Template.AddMultiTargetEffect(ElectroshockDisorientEffect());
 	
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
