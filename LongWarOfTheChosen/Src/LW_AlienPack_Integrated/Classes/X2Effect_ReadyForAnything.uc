@@ -62,7 +62,6 @@ static function EventListenerReturn RFAListener(Object EventData, Object EventSo
 	local XComGameState_Ability OverwatchState;
 	local XComGameStateHistory History;
 	local XComGameState NewGameState;
-	local EffectAppliedData ApplyData;
 	local X2Effect VigilantEffect;
 	local name OverwatchAbilityName;
 	local X2AbilityCost Cost;
