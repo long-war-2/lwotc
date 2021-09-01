@@ -1,5 +1,7 @@
 class XGAIBehavior_override extends XGAIBehavior;
 
+var config bool ENABLE_AI_LOGGING;
+
 function bool IsValidTarget(AvailableTarget kTarget)
 {
 	local bool retVal;
@@ -23,4 +25,18 @@ function bool IsValidTarget(AvailableTarget kTarget)
 	}
 
 	return retVal;
+}
+
+function SaveBTTraversals()
+{
+	local int RootIndex;
+	local array<BTDetailedInfo> arrStatusList;
+
+	if(default.ENABLE_AI_LOGGING)
+	{
+		BT_GetNodeDetailList(arrStatusList);
+		RootIndex = `BEHAVIORTREEMGR.GetNodeIndex(m_kBehaviorTree.m_strName);
+		AddTraversalData(arrStatusList, RootIndex);
+	}
+	
 }
