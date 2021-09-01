@@ -763,6 +763,11 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		}
 	}
 
+	if (MissionState.GeneratedMission.Mission.MissionFamily == "AssaultNetworkTower_LW")
+	{
+		MissionState.GeneratedMission.SitReps.AddItem('StealthMission');
+	}
+
 	// Start Issue #157
 	DLCInfos = `ONLINEEVENTMGR.GetDLCInfos(false);
 	for(i = 0; i < DLCInfos.Length; ++i)

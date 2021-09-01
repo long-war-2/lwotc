@@ -1375,10 +1375,11 @@ static function EventListenerReturn ChainActivate(Object EventData, Object Event
 static function EventListenerReturn BreakSquadConcealment(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
 	local XComGameState_Player Player;
-
-
+	local XComGameState_MissionSite MissionState;
+	
+	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(`XCOMHQ.MissionRef.ObjectID));
 	Player = XComGameState_Player(EventData);
-	if(Player.GetTeam() != eTeam_XCom)
+	if(Player.GetTeam() != eTeam_XCom || MissionState.GeneratedMission.Mission.MissionFamily == "AssaultNetworkTower_LW")
 	{	
 		return ELR_NoInterrupt;
 	}
