@@ -5,7 +5,6 @@ var X2Condition_Visibility SquadsightVisibilityCondition;
 
 event name CallMeetsCondition(XComGameState_BaseObject kTarget) 
 { 
-	local XComGameState_Unit UnitState;
 	local int Index;
 	local XComGameStateHistory History;
 	local X2GameRulesetVisibilityManager VisibilityMgr;	
