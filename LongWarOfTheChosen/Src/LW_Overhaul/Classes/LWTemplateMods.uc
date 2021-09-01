@@ -1543,6 +1543,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bGuaranteedHit = true;
 		Template.TargetingMethod = class'X2TargetingMethod_ConditionalBlasterLauncher';
+		Template.SoldierAbilityPurchasedFn = none;
 	}
 
 	switch (Template.DataName)

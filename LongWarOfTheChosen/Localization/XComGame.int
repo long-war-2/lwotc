@@ -6846,6 +6846,12 @@ Description="The area of operations is larger than normal, so it will probably t
 FriendlyName="Very Large Map"
 Description="The area of operations is much larger than normal, so it will probably take you longer to get to the objective than usual."
 ; End Translation (2)
+; LWOTC Needs Translation (2)
+
+[StealthMission X2SitRepTemplate]
+FriendlyName="Stealth Mission"
+Description="The Concealment does not break at the start of the 2nd turn for this mission."
+; End Translation (2)
 
 [ProjectMiranda X2SitRepTemplate]
 FriendlyName="Project Miranda"
