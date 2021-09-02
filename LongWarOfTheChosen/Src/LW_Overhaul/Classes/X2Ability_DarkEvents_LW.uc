@@ -171,6 +171,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateDarkEventAbility('ZoneOfControl_LW','Berserker'));
 	Templates.AddItem(CreateDarkEventAbility('ZoneOfControl_LW','StunLancer'));
 
+	Templates.AddItem(CreateDarkEventAbility('CoupDeGrace2','StunLancer'));
+
 	Templates.AddItem(CreateDarkEventAbility('Resilience','Mec'));
 	Templates.AddItem(CreateDarkEventAbility('Resilience','Cyberus'));
 	Templates.AddItem(CreateDarkEventAbility('Resilience','Berserker'));
