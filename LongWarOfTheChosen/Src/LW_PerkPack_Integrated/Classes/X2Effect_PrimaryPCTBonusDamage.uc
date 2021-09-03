@@ -14,7 +14,6 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
-	local X2WeaponTemplate WeaponTemplate;
     local X2AbilityToHitCalc_StandardAim StandardHit;
 
 	if (class'XComGameStateContext_Ability'.static.IsHitResultHit(ApplyEffectParameters.AbilityResultContext.HitResult))

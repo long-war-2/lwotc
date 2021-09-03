@@ -222,14 +222,11 @@ function int FindNearestTarget(vector vLocation)
 function AdvanceChain(int iHitIdx, bool bDoNotifyTarget, vector vSourceLocation)
 {
 	local int i;
-	local StateObjectReference Target;
 	if (bDoNotifyTarget)
 	{
 		Targets[iHitIdx].bHasNotified = true;
 		notifiedTargets++;
 		// out parameter, unrealscript dumb
-		Target = Targets[iHitIdx].TargetID;
-		//VisualizationMgr.SendInterTrackMessage(Target, CurrentHistoryIndex);
 	}
 	for (i = 1; i < Targets.Length; i++)
 	{
