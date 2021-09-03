@@ -19,7 +19,7 @@ ChemicalDeflectorSquadDesc="Gain immunity to the damage types of the Alchemist's
 MedicCanisterBuffLabel = "Regeneration"
 MedicCanisterBuffDesc = "Regenerate a small amount of health over time."
 
-[X2DownloadableContentInfo_ImmolatorChemthrower]
+[X2DownloadableContentInfo_LW_WeaponsAndArmor]
 CannotEquipCanisterLabel = "Requires Chemthrower"
 CannotEquipWithCanisterLabel = "Must Unequip Canister First"
 ; End Translation
