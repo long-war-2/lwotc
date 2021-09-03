@@ -280,10 +280,10 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			class'Helpers_LW'.static.MakeFreeAction(Template);
 			break;
 		case 'Reaper':
-			ReworkReaper(Template);
+			//ReworkReaper(Template);
 			break;
 		case 'InTheZone':
-			ReworkSerial(Template);
+			//ReworkSerial(Template);
 			break;
 
 		case 'DevastatingPunch':
@@ -1556,22 +1556,24 @@ static function MakeTheShotCoveringFire(X2AbilityTemplate Template)
 static function ReworkSerial(X2AbilityTemplate Template)
 {
 	local X2Effect_Serial SerialEffect;
+	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 
-	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template, 'X2Effect_Serial');
+	//class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template, 'X2Effect_Serial');
+	class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template, 'X2Effect_SetUnitValue');
+	class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
 
 	SerialEffect = new class'X2Effect_Serial';
-	SerialEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
-	SerialEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	SerialEffect.BuildPersistentEffect (1, true, false);
+	SerialEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(SerialEffect);
 
 
-	Template.AbilityTriggers.Length = 0;
-	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_UnitPostBeginPlay');
+	//Template.AbilityTriggers.Length = 0;
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
 	Template.AbilityCooldown = none;
 
-	class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template, 'X2Effect_SetUnitValue');
-	class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
 }
 	
 static function ReworkReaper(X2AbilityTemplate Template)

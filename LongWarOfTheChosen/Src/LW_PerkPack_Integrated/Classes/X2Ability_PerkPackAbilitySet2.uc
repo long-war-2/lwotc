@@ -23,6 +23,7 @@ var config float PHANTOM_DETECTION_RANGE_REDUCTION;
 var config int PHANTOM_COOLDOWN;
 var config int PHANTOM_CHARGES;
 var config int CONCEAL_BONUS_CHARGES;
+var config float REAPER_PCT_DMG_REDUCTION;
 const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
 
 var localized string PhantomExpiredFlyover;
@@ -56,6 +57,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreatePlatformStability());
 	Templates.AddItem(CreateImpact());
 	Templates.AddItem(CreateNewConceal());
+	Templates.AddItem(InTheZone());
 
 	
 	return Templates;
@@ -1310,4 +1312,89 @@ static function X2AbilityTemplate CreateNewConceal()
 	return Template;
 }
 
+static function X2AbilityTemplate InTheZone()
+{
+	local X2AbilityTemplate				Template;
+	local X2AbilityCooldown				Cooldown;
+	local X2Effect_Serial               SerialEffect;
+	local X2AbilityCost_ActionPoints    ActionPointCost;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'InTheZone');
+
+	// Icon Properties
+	Template.DisplayTargetHitChance = false;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';                                       // color of the icon
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_InTheZone";
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+
+	Template.bIsPassive = true;
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	SerialEffect = new class'X2Effect_Serial';
+	SerialEffect.BuildPersistentEffect(1, true, true);
+	SerialEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(SerialEffect);
+
+	Template.AbilityTargetStyle = default.SelfTarget;	
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	
+	//Template.bShowActivation = true;
+	Template.bSkipFireAction = true;
+
+	//Template.ActivationSpeech = 'InTheZone';
+	Template.bCrossClassEligible = true;
+		
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}
+
+static function X2AbilityTemplate Reaper()
+{
+	local X2AbilityTemplate				Template;
+	local X2AbilityCooldown				Cooldown;
+	local X2Effect_Reaper_LW               ReaperEffect;
+	local X2AbilityCost_ActionPoints    ActionPointCost;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Reaper');
+
+	// Icon Properties
+	Template.DisplayTargetHitChance = false;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';                                       // color of the icon
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_reaper";
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	ReaperEffect = new class'X2Effect_Reaper_LW';
+	ReaperEffect.PCT_DMG_Reduction = default.REAPER_PCT_DMG_REDUCTION;
+	ReaperEffect.BuildPersistentEffect(1, true, true);
+	ReaperEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(ReaperEffect);
+
+	Template.AbilityTargetStyle = default.SelfTarget;	
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	
+	//Template.bShowActivation = true;
+	Template.bSkipFireAction = true;
+
+	//Template.ActivationSpeech = 'Reaper';
+		
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}

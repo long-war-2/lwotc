@@ -921,7 +921,6 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Condition_UnitProperty          UnitPropertyCondition;
 	//local X2AbilityTarget_Single          PrimaryTarget;
 	//local X2AbilityMultiTarget_Radius     RadiusMultiTarget;
-	local X2Effect_SerialCritReduction      SerialCritReduction;
 	local X2AbilityCharges                  Charges;
 	local X2AbilityCost_Charges             ChargeCost;
 	//local X2Effect_SoulSteal_LW           StealEffect;
@@ -1010,7 +1009,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			}
 		}
 	}
-
+		/*
 	if (Template.DataName == 'InTheZone')
 	{
 		SerialCritReduction = new class 'X2Effect_SerialCritReduction';
@@ -1021,7 +1020,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		SerialCritReduction.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true,, Template.AbilitySourceName);
 		SerialCritReduction.EffectName = 'SerialCritReduction';
 		Template.AbilityTargetEffects.AddItem(SerialCritReduction);
-	}
+	}*/
 
 	// Disables the effect so they get full turns on alien turn
 	// if (Template.DataName == 'AlienRulerInitialState')
