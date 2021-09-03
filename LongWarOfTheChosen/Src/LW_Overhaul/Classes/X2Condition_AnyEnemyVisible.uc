@@ -40,8 +40,6 @@ event name CallMeetsCondition(XComGameState_BaseObject kTarget)
 DefaultProperties
 {	
 	Begin Object Class=X2Condition_Visibility Name=DefaultSquadSightVisibilityCondition
-	bRequireLOS=TRUE
-	bRequireBasicVisibility=TRUE
 	bRequireGameplayVisible=TRUE
 	bAllowSquadsight=TRUE
 	End Object	
