@@ -1,4 +1,4 @@
-class XGAIBehavior_override extends XGAIBehavior;
+class XGAIBehavior_override extends XGAIBehavior config(AILogs);
 
 var config bool ENABLE_AI_LOGGING;
 
