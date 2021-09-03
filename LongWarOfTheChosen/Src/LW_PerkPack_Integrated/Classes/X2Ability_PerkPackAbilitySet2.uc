@@ -58,6 +58,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateImpact());
 	Templates.AddItem(CreateNewConceal());
 	Templates.AddItem(InTheZone());
+	Templates.AddItem(Reaper());
 
 	
 	return Templates;
@@ -1315,9 +1316,7 @@ static function X2AbilityTemplate CreateNewConceal()
 static function X2AbilityTemplate InTheZone()
 {
 	local X2AbilityTemplate				Template;
-	local X2AbilityCooldown				Cooldown;
 	local X2Effect_Serial               SerialEffect;
-	local X2AbilityCost_ActionPoints    ActionPointCost;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'InTheZone');
 
@@ -1359,9 +1358,7 @@ static function X2AbilityTemplate InTheZone()
 static function X2AbilityTemplate Reaper()
 {
 	local X2AbilityTemplate				Template;
-	local X2AbilityCooldown				Cooldown;
 	local X2Effect_Reaper_LW               ReaperEffect;
-	local X2AbilityCost_ActionPoints    ActionPointCost;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Reaper');
 
@@ -1382,11 +1379,11 @@ static function X2AbilityTemplate Reaper()
 	ReaperEffect = new class'X2Effect_Reaper_LW';
 	ReaperEffect.PCT_DMG_Reduction = default.REAPER_PCT_DMG_REDUCTION;
 	ReaperEffect.BuildPersistentEffect(1, true, true);
-	ReaperEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	ReaperEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
 	Template.AddTargetEffect(ReaperEffect);
 
 	Template.AbilityTargetStyle = default.SelfTarget;	
-	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	
 	//Template.bShowActivation = true;
 	Template.bSkipFireAction = true;
