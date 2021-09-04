@@ -8292,8 +8292,8 @@ LocPromotionPopupText=""
 
 [SprayAndPray X2AbilityTemplate]
 LocFriendlyName="Spray And Pray"
-LocLongDescription="Attacks with your <Ability:BOUND_WEAPON_NAME/> Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
-LocHelpText="Attacks with your <Ability:BOUND_WEAPON_NAME/> Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
+LocLongDescription="Attacks with your Autopistol Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
+LocHelpText="Attacks with your Autopistol Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
 LocPromotionPopupText=""
 
 [PlatformStability X2AbilityTemplate]

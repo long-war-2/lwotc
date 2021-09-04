@@ -4,7 +4,7 @@
 //  PURPOSE: Defines general use ability templates -- second set to reduce merging issues
 //--------------------------------------------------------------------------------------- 
 
-class X2Ability_PerkPackAbilitySet2 extends X2Ability config (LW_SoldierSkills) dependson(X2Effect_TemporaryItem);
+class X2Ability_PerkPackAbilitySet2 extends XMBAbility config (LW_SoldierSkills) dependson(X2Effect_TemporaryItem);
 
 var localized string TrojanVirus;
 var localized string TrojanVirusTriggered;
@@ -1415,7 +1415,8 @@ static function X2AbilityTemplate SprayAndPray()
 	DodgeModifier.DodgeReductionBonus = default.SPRAY_AND_PRAY_DODGE;
 	DodgeModifier.BuildPersistentEffect (1, true, true);
 	DodgeModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	Template.AddTargetEffect (DodgeModifier);
+	DodgeModifier.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
+	Template.AddTargetEffect(DodgeModifier);
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;		

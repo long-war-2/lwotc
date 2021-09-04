@@ -1,4 +1,4 @@
-class X2Effect_DodgeModifier extends X2Effect_Persistent config(LW_SoldierSkills);
+class X2Effect_DodgeModifier extends XMBEffect_ConditionalBonus config(LW_SoldierSkills);
 
 var() int DodgeReductionBonus;
 
