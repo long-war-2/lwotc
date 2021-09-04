@@ -56,7 +56,6 @@ static function X2DataTemplate Create_Rocket_Main()
 	local X2RocketTemplate 				Template;
 	local X2Effect_ApplyWeaponDamage	WeaponDamageEffect;
 	local X2Effect_Knockback			KnockbackEffect;
-	local X2Effect_IRI_Shredded			Shredded;
 	local ArtifactCost					Resources;
 	local int i;
 	
@@ -122,12 +121,6 @@ static function X2DataTemplate Create_Rocket_Main()
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bExplosiveDamage = true;
 	Template.ThrownGrenadeEffects.AddItem(WeaponDamageEffect);
-
-	Shredded = new class'X2Effect_IRI_Shredded';
-	Shredded.BuildPersistentEffect(1, true);
-	Shredded.DamageMultiplier = default.DAMAGE_MULTIPLIER;
-	Shredded.SetDisplayInfo(ePerkBuff_Penalty, default.ShredderEffectLocName, default.ShredderEffectLocDescription, "img:///IRI_RocketLaunchers.UI.Perk_Shredded", true, "img:///IRI_RocketLaunchers.UI.Status_Shredded");
-	Template.ThrownGrenadeEffects.AddItem(Shredded);
 
 	Template.OnThrowBarkSoundCue = 'RocketLauncher';
 
