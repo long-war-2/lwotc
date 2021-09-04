@@ -25,6 +25,7 @@ static function X2AbilityTemplate PrimaryLightOrdnance(name TemplateName, int Bo
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bDisplayInUITacticalText = false;
 
 	// This will tick once during application at the start of the player's turn and increase ammo of the specified items by the specified amounts
 	AmmoEffect = new class'GrimyClassAN_BonusItemCharges';
