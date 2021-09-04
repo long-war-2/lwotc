@@ -763,7 +763,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		}
 	}
 
-	if (MissionState.GeneratedMission.Mission.MissionFamily == "AssaultNetworkTower_LW")
+	if (class'X2EventListener_Tactical'.default.STEALTH_MISSION_NAMES.Find(MissionState.GeneratedMission.Mission.MissionName) != INDEX_NONE)
 	{
 		MissionState.GeneratedMission.SitReps.AddItem('StealthMission');
 	}

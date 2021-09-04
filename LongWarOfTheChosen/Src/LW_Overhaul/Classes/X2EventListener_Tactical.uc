@@ -24,6 +24,7 @@ var localized string CRIT_CHANCE_MSG;
 var localized string DODGE_CHANCE_MSG;
 var localized string MISS_CHANCE_MSG;
 
+var config array<name> STEALTH_MISSION_NAMES;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -1379,7 +1380,7 @@ static function EventListenerReturn BreakSquadConcealment(Object EventData, Obje
 	
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(`XCOMHQ.MissionRef.ObjectID));
 	Player = XComGameState_Player(EventData);
-	if(Player.GetTeam() != eTeam_XCom || MissionState.GeneratedMission.Mission.MissionFamily == "AssaultNetworkTower_LW")
+	if(Player.GetTeam() != eTeam_XCom || default.STEALTH_MISSION_NAMES.Find(MissionState.GeneratedMission.Mission.MissionName) != INDEX_NONE)
 	{	
 		return ELR_NoInterrupt;
 	}
