@@ -8201,6 +8201,12 @@ BriefSummary="This variant of the  autopistol is one of the more impressive feat
 TacticalText="<Bullet/> The Beam Autopistol is the most powerful handgun available to our soldiers.\n<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
 AbilityDescName="autopistol"
 
+[Medikit X2WeaponTemplate]
+TacticalText="<Bullet/> A Medikit can restore <Ability:MEDIKITPERUSEHP/>HP to a single soldier.\n<Bullet/> A Medikit can also be used to remove Burning, Acid, and Poison effects from any soldier.\n<Bullet/> A Medikit can also be used to stabilize a soldier that is bleeding out.\n<Bullet/>A Medikit only has a single charge, and if used on allies, they must be in an adjacent tile.\n<Bullet/> Does not affect robotic allies.\n"
+
+[NanoMedikit X2WeaponTemplate]
+TacticalText="<Bullet/> A Nanomedikit can restore <Ability:NANOMEDIKITHEALHP/>HP to a single soldier.\n<Bullet/> Like the base Medikit, a Nanomedikit can remove negative environmental effects from soldiers and can stabilize soldiers that are bleeding out.\n<Bullet/> Does not affect robotic allies.\n"
+
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramedic"
 LocLongDescription="Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
