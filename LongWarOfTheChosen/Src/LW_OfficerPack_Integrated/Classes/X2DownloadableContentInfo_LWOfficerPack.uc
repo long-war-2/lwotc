@@ -31,17 +31,14 @@ static event OnPostTemplatesCreated()
 		//Remove the train rookie GTS slots, not needed
 		FacilityTemplate.StaffSlotDefs.Length = 0;
 
-		StaffSlotDef.StaffSlotTemplateName = 'OTSStaffSlot';
+		StaffSlotDef.StaffSlotTemplateName = 'OTSOfficerSlot';
 		StaffSlotDef.bStartsLocked = false;
 		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
-
-		StaffSlotDef.StaffSlotTemplateName = 'OTSOfficerSlot';
 		StaffSlotDef.bStartsLocked = true;
-		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
 		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
 		`log("LW OfficerPack: Added OTSOfficerSlot to facility template OfficerTrainingSchool");
 
-		FacilityTemplate.Upgrades.AddItem('OTS_LWOfficerTrainingUpgrade');
+		//FacilityTemplate.Upgrades.AddItem('OTS_LWOfficerTrainingUpgrade');
 		`log("LW OfficerPack: Added OTS Facility upgrade to facility template OfficerTrainingSchool");
 
 		FacilityTemplate.Upgrades.AddItem('OTS_LWOfficerTrainingUpgrade_SecondSlot');
