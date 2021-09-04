@@ -55,7 +55,7 @@ static function X2DataTemplate CreateBasicWidthNozzle()
 	SetUpTier1Upgrade(Template);
 	SetUpWidthNozzleUpgrade(Template);
 	Template.BonusAbilities.AddItem('LWWidthNozzleBsc');
-	Template.strImage = "img:///LWIRIClausImmolator.UI_Upgrades.HighVolumeInjector_MG";
+	Template.strImage = "img:///IRIClausImmolator.UI_Upgrades.HighVolumeInjector_MG";
 	Template.RewardDecks.AddItem('ChemthrowerUpgradeBsc');
 
 	return Template;
@@ -69,7 +69,7 @@ static function X2DataTemplate CreateBasicLengthNozzle()
 	SetUpTier1Upgrade(Template);
 	SetUpLengthNozzleUpgrade(Template);
 	Template.BonusAbilities.AddItem('LWLengthNozzleBsc');
-	Template.strImage = "img:///LWIRIClausImmolator.UI_Upgrades.PressurizedInjector_MG";
+	Template.strImage = "img:///IRIClausImmolator.UI_Upgrades.PressurizedInjector_MG";
 	Template.RewardDecks.AddItem('ChemthrowerUpgradeBsc');
 
 	return Template;
@@ -93,7 +93,7 @@ static function SetUpWidthNozzleUpgrade(out X2WeaponUpgradeTemplate Template)
 
 	foreach default.ChemthrowerTemplateNames(ChemTemplateName)
 	{
-		Template.AddUpgradeAttachment('Suppressor', '', "", "", ChemTemplateName, , "img:///LWIRIClausImmolator.UI_MG.FlamerMG_HighCapacityInjector_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
+		Template.AddUpgradeAttachment('Suppressor', '', "", "", ChemTemplateName, , "img:///IRIClausImmolator.UI_MG.FlamerMG_HighCapacityInjector_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
 	}
 
 	Template.CanApplyUpgradeToWeaponFn = CanApplyToChemthrower;
@@ -117,7 +117,7 @@ static function SetUpLengthNozzleUpgrade(out X2WeaponUpgradeTemplate Template)
 
 	foreach default.ChemthrowerTemplateNames(ChemTemplateName)
 	{
-		Template.AddUpgradeAttachment('Suppressor', '', "", "", ChemTemplateName, , "img:///LWIRIClausImmolator.UI_MG.FlamerMG_PressurizedInjector_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
+		Template.AddUpgradeAttachment('Suppressor', '', "", "", ChemTemplateName, , "img:///IRIClausImmolator.UI_MG.FlamerMG_PressurizedInjector_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
 	}
 
 	Template.CanApplyUpgradeToWeaponFn = CanApplyToChemthrower;
@@ -131,7 +131,7 @@ static function X2DataTemplate CreateBasicClipSizeFuel()
 	`CREATE_X2TEMPLATE(class'X2WeaponUpgradeTemplate', Template, 'LWClipSizeFuel_Bsc');
 	SetUpClipSizeBonusFuel(Template);
 	SetUpTier1Upgrade(Template);
-	Template.strImage = "img:///LWIRIClausImmolator.UI_Upgrades.ExpandedFuelTank_MG";
+	Template.strImage = "img:///IRIClausImmolator.UI_Upgrades.ExpandedFuelTank_MG";
 	Template.ClipSizeBonus = default.CLIP_SIZE_ADV;
 	Template.RewardDecks.AddItem('ChemthrowerUpgradeBsc');
 
@@ -166,7 +166,7 @@ static function SetUpClipSizeBonusFuel(X2WeaponUpgradeTemplate Template)
 
 	foreach default.ChemthrowerTemplateNames(ChemTemplateName)
 	{
-		Template.AddUpgradeAttachment('Mag', '', "", "", ChemTemplateName, , "img:///LWIRIClausImmolator.UI_MG.FlamerMG_ExpandedFuelTank_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
+		Template.AddUpgradeAttachment('Mag', '', "", "", ChemTemplateName, , "img:///IRIClausImmolator.UI_MG.FlamerMG_ExpandedFuelTank_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
 	}
 
 	Template.CanApplyUpgradeToWeaponFn = CanApplyToChemthrower;
@@ -181,7 +181,7 @@ static function X2DataTemplate CreateBasicReloadFuel()
 
 	SetUpReloadFuel(Template);
 	SetUpTier1Upgrade(Template);
-	Template.strImage = "img:///LWIRIClausImmolator.UI_Upgrades.AutoRefuelTank_MG";
+	Template.strImage = "img:///IRIClausImmolator.UI_Upgrades.AutoRefuelTank_MG";
 	//Template.NumFreeReloads = default.FREE_RELOADS_BSC;
 	Template.BonusAbilities.AddItem('LWAutoloaderFuelBsc');
 	Template.RewardDecks.AddItem('ChemthrowerUpgradeBsc');
@@ -213,7 +213,7 @@ static function SetUpReloadFuel(out X2WeaponUpgradeTemplate Template)
 
 	foreach default.ChemthrowerTemplateNames(ChemTemplateName)
 	{
-		Template.AddUpgradeAttachment('Mag', '', "", "", ChemTemplateName, , "img:///LWIRIClausImmolator.UI_MG.FlamerMG_AutoRefuelTank_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
+		Template.AddUpgradeAttachment('Mag', '', "", "", ChemTemplateName, , "img:///IRIClausImmolator.UI_MG.FlamerMG_AutoRefuelTank_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
 	}
 
 	Template.CanApplyUpgradeToWeaponFn = CanApplyToChemthrower;
@@ -227,7 +227,7 @@ static function X2DataTemplate CreateBasicFuelLine()
 
 	SetUpFuelLine(Template);
 	SetUpTier1Upgrade(Template);
-	Template.strImage = "img:///LWIRIClausImmolator.UI_Upgrades.FuelLine_MG";
+	Template.strImage = "img:///IRIClausImmolator.UI_Upgrades.FuelLine_MG";
 	Template.BonusAbilities.AddItem('LWFuelLineBsc');
 	Template.RewardDecks.AddItem('ChemthrowerUpgradeBsc');
 	
@@ -246,7 +246,7 @@ static function SetUpFuelLine(out X2WeaponUpgradeTemplate Template)
 
 	foreach default.ChemthrowerTemplateNames(ChemTemplateName)
 	{
-		Template.AddUpgradeAttachment('HeatSink', '', "", "", ChemTemplateName, , "img:///LWIRIClausImmolator.UI_MG.FlamerMG_FuelLine_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_battery");
+		Template.AddUpgradeAttachment('HeatSink', '', "", "", ChemTemplateName, , "img:///IRIClausImmolator.UI_MG.FlamerMG_FuelLine_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_battery");
 	}
 
 	Template.CanApplyUpgradeToWeaponFn = CanApplyToChemthrower;
@@ -260,7 +260,7 @@ static function X2DataTemplate CreateBasicFlankCritFrame()
 
 	SetUpLightFrameUpgrade(Template);
 	SetUpTier1Upgrade(Template);
-	Template.strImage = "img:///LWIRIClausImmolator.UI_Upgrades.LightBodyFrame_MG";
+	Template.strImage = "img:///IRIClausImmolator.UI_Upgrades.LightBodyFrame_MG";
 	//Template.NumFreeReloads = default.FREE_RELOADS_BSC;
 	Template.BonusAbilities.AddItem('LWFlankCritFrameBsc');
 	Template.RewardDecks.AddItem('ChemthrowerUpgradeBsc');
@@ -287,7 +287,7 @@ static function SetUpLightFrameUpgrade(out X2WeaponUpgradeTemplate Template)
 
 	foreach default.ChemthrowerTemplateNames(ChemTemplateName)
 	{
-		Template.AddUpgradeAttachment('Stock', '', "", "", ChemTemplateName, , "img:///LWIRIClausImmolator.UI_MG.FlamerMG_LightBodyFrame_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
+		Template.AddUpgradeAttachment('Stock', '', "", "", ChemTemplateName, , "img:///IRIClausImmolator.UI_MG.FlamerMG_LightBodyFrame_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
 	}
 
 	Template.CanApplyUpgradeToWeaponFn = CanApplyToChemthrower;
@@ -301,7 +301,7 @@ static function X2DataTemplate CreateBasicReactionFireFrame()
 
 	SetUpReactionFrameUpgrade(Template);
 	SetUpTier1Upgrade(Template);
-	Template.strImage = "img:///LWIRIClausImmolator.UI_Upgrades.Stabilizer_MG";
+	Template.strImage = "img:///IRIClausImmolator.UI_Upgrades.Stabilizer_MG";
 	//Template.NumFreeReloads = default.FREE_RELOADS_BSC;
 	Template.BonusAbilities.AddItem('LWReactionFireFrameBsc');
 	Template.RewardDecks.AddItem('ChemthrowerUpgradeBsc');
@@ -329,7 +329,7 @@ static function SetUpReactionFrameUpgrade(out X2WeaponUpgradeTemplate Template)
 
 	foreach default.ChemthrowerTemplateNames(ChemTemplateName)
 	{
-		Template.AddUpgradeAttachment('Stock', '', "", "", ChemTemplateName, , "img:///LWIRIClausImmolator.UI_MG.FlamerMG_Stabilizer_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
+		Template.AddUpgradeAttachment('Stock', '', "", "", ChemTemplateName, , "img:///IRIClausImmolator.UI_MG.FlamerMG_Stabilizer_MG_", Template.strImage, "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
 	}
 
 	Template.CanApplyUpgradeToWeaponFn = CanApplyToChemthrower;
