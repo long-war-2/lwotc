@@ -3,6 +3,8 @@ class X2DownloadableContentInfo_LW_RocketLauncher_Integrated extends X2Downloada
 var localized string RocketLaunchersWeaponCategory;
 var localized string RocketsWeaponCategory;
 
+var localized string NeedsRocketLauncher;
+var localized string NeedsRocketLauncherTier;
 //	Filled by SPARK / MEC Weapons mod. Also lets this mod know that mod present in the player's system.
 var config(RocketLaunchers) array<name> SparkCharacterTemplates;
 /*
@@ -504,19 +506,47 @@ static event OnPostTemplatesCreated()
 	//	Patch LW2 Fire Rocket ability so it's available only to Technicals?
 }
 
-/*
+
 static function bool CanAddItemToInventory_CH_Improved(out int bCanAddItem, const EInventorySlot Slot, const X2ItemTemplate ItemTemplate, int Quantity, XComGameState_Unit UnitState, optional XComGameState CheckGameState, optional out string DisabledReason, optional XComGameState_Item ItemState)
 {
-    if (ItemTemplate.DataName == 'IRI_AT4_Cosmetic')
+	local X2WeaponTemplate WeaponTemplate, SecondaryWeapon;
+	local bool                          OverrideNormalBehavior;
+    local bool                          DoNotOverrideNormalBehavior;
+
+	OverrideNormalBehavior = CheckGameState != none;
+    DoNotOverrideNormalBehavior = CheckGameState == none;
+
+    WeaponTemplate = X2WeaponTemplate(ItemTemplate);
+
+    if (WeaponTemplate.WeaponCat == 'Rocket')
     {
-		bCanAddItem = 1;
+		SecondaryWeapon = X2WeaponTemplate(UnitState.GetSecondaryWeapon().GetMyTemplate());
+
+		if(SecondaryWeapon.WeaponCat == 'IRI_Rocket_Launcher')
+		{
+			if(SecondaryWeapon.WeaponTech == WeaponTemplate.WeaponTech)
+			{
+				bCanAddItem = 1;
+				DisabledReason ="";
+				return OverrideNormalBehavior;
+			}
+			else
+			{
+				bCanAddItem = 0;
+				DisabledReason = default.NeedsRocketLauncherTier;
+				return OverrideNormalBehavior;
+			}
+		}
+		else
+		{
+			bCanAddItem = 0;
+			DisabledReason = default.NeedsRocketLauncher;
+			return OverrideNormalBehavior;
+		}
 		//`LOG("DLC Check for: " @ ItemTemplate.DataName,, 'IRIROCKET');
-
-		return true;
     }
-
-    return CanAddItemToInventory_CH(bCanAddItem, Slot, ItemTemplate, Quantity, UnitState, CheckGameState, DisabledReason);
-}*/
+		return DoNotOverrideNormalBehavior;
+}
 
 /*
 static function WeaponInitialized(XGWeapon WeaponArchetype, XComWeapon Weapon, optional XComGameState_Item ItemState=none)
