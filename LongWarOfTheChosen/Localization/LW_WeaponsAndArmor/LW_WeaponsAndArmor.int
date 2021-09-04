@@ -20,7 +20,7 @@ MedicCanisterBuffLabel = "Regeneration"
 MedicCanisterBuffDesc = "Regenerate a small amount of health over time."
 
 [X2DownloadableContentInfo_LW_WeaponsAndArmor]
-CannotEquipCanisterLabel = "Requires Chemthrower"
+CannotEquipCanisterLabel = "Requires Immolator"
 CannotEquipWithCanisterLabel = "Must Unequip Canister First"
 ; End Translation
 

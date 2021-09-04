@@ -3232,10 +3232,10 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.FORTIFIED_CRITDEF_BONUS);
 			return true;
 		case 'ALPHA_MIKE_FOXTROT_DAMAGE_LW':
-			Outstring = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.ALPHAMIKEFOXTROT_DAMAGE);
+			Outstring = string(int(class'X2Ability_LW_SharpshooterAbilitySet'.default.ALPHAMIKEFOXTROT_DAMAGE * 100));
 			return true;
 		case 'ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW':
-			Outstring = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.ALPHAMIKEFOXTROT_DAMAGE / 2);
+			Outstring = string(int(class'X2Ability_LW_SharpshooterAbilitySet'.default.ALPHAMIKEFOXTROT_DAMAGE * 100 / 2));
 			return true;			
 		case 'ROCKETSCATTER':
 			TacticalHUD = UITacticalHUD(`SCREENSTACK.GetScreen(class'UITacticalHUD'));

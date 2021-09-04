@@ -605,9 +605,9 @@ LocPromotionPopupText="<Bullet/> Holotargeting is a free action, with <Ability:S
 LocFriendlyName="Alpha Mike Foxtrot"
 LocFlyOverText="Alpha Mike Foxtrot"
 ; LWOTC Needs Translation
-LocLongDescription="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage and <Ability:ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
-LocHelpText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage and <Ability:ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
-LocPromotionPopupText="<Bullet/> You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage and <Ability:ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
+LocLongDescription="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon."
+LocHelpText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon."
+LocPromotionPopupText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon."
 ; End Translation
 
 ;;;;;;;;;;;;;;;;;;;;  ASSAULT ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -8288,6 +8288,12 @@ LocPromotionPopupText=""
 LocFriendlyName="Impact"
 LocLongDescription="Your Attacks can now remove enemy overwatch on hit."
 LocHelpText="Your Attacks can now remove enemy overwatch on hit."
+LocPromotionPopupText=""
+
+[SprayAndPray X2AbilityTemplate]
+LocFriendlyName="Spray And Pray"
+LocLongDescription="Attacks with your <Ability:BOUND_WEAPON_NAME/> Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
+LocHelpText="Attacks with your <Ability:BOUND_WEAPON_NAME/> Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
 LocPromotionPopupText=""
 
 [PlatformStability X2AbilityTemplate]
