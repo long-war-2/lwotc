@@ -2181,7 +2181,7 @@ static function bool CanAddItemToInventory_CH_Improved(
 	}
 
 	if (Slot == eInvSlot_Pistol && !class'CHItemSlot_PistolSlot_LW'.default.DISABLE_LW_PISTOL_SLOT &&
-			class'CHItemSlot_PistolSlot_LW'.static.IsWeaponAllowedInPistolSlot(WeaponTemplate))
+			class'CHItemSlot_PistolSlot_LW'.static.IsWeaponAllowedInPistolSlot(WeaponTemplate) && DisabledReason != class'X2DownloadableContentInfo_LW_WeaponsAndArmor'.default.CannotEquipCanisterLabel)
 	{
 		// Allow the weapon to be equipped.
 		DisabledReason = "";
