@@ -24,6 +24,7 @@ var config int PHANTOM_COOLDOWN;
 var config int PHANTOM_CHARGES;
 var config int CONCEAL_BONUS_CHARGES;
 var config float REAPER_PCT_DMG_REDUCTION;
+var config int SPRAY_AND_PRAY_DODGE;
 const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
 
 var localized string PhantomExpiredFlyover;
@@ -59,8 +60,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateNewConceal());
 	Templates.AddItem(InTheZone());
 	Templates.AddItem(Reaper());
+	Templates.AddItem(SprayAndPray());
 
-	
 	return Templates;
 }
 
@@ -1394,4 +1395,28 @@ static function X2AbilityTemplate Reaper()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
+}
+
+static function X2AbilityTemplate SprayAndPray()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_DodgeModifier			DodgeModifier;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SprayAndPray');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_blaze";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	DodgeModifier = new class 'X2Effect_DodgeModifier';
+	DodgeModifier.DodgeReductionBonus = default.SPRAY_AND_PRAY_DODGE;
+	DodgeModifier.BuildPersistentEffect (1, true, true);
+	DodgeModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (DodgeModifier);
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	return Template;		
 }

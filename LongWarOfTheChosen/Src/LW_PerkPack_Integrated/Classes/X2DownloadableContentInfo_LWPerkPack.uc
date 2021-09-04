@@ -394,6 +394,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'GUNSLINGER_COOLDOWN':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.GUNSLINGER_COOLDOWN);
 			return true;
+		case 'SPRAY_AND_PRAY_DODGE':
+			OutString = string(class'X2Ability_PerkPackAbilitySet2'.default.SPRAY_AND_PRAY_DODGE);
+			return true;
 		case 'INFIGHTER_DODGE_BONUS':
 			OutString = string(class'X2Effect_Infighter'.default.INFIGHTER_DODGE_BONUS);
 			return true;
