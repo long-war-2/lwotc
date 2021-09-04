@@ -665,8 +665,8 @@ LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><B
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
 ; LWOTC Needs Translation (3)
-LocLongDescription="Your Arc Thrower attacks now a jump up to 2 additional targets, disorienting them."
-LocHelpText="Your Arc Thrower attacks now a jump up to 2 additional targets, disorienting them."
+LocLongDescription="Upgrades the standard stun ability to be able to chain up to 2 other targets within 6 tiles of each other, disorienting them."
+LocHelpText="Upgrades the standard stun ability to be able to chain up to 2 other targets within 6 tiles of each other, disorienting them."
 LocFlyOverText="Chain Lightning"
 LocPromotionPopupText="<Bullet/> Fires the Arc Thrower at a target in vision, with the arc chaining up to 2 times to other targets within 6 tiles of each other.<br/><Bullet/> Replaces standard stun ability.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (3)
@@ -6516,10 +6516,10 @@ LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing t
 
 ; LWOTC Needs Translation (2)
 [SkirmisherFleche X2AbilityTemplate]
-LocFriendlyName="Charge"
+LocFriendlyName="Reckoning"
 LocLongDescription="Attack any enemy within movement range with your <Ability:SecondaryWeaponName/>."
 LocHelpText="Attack an enemy within movement range with your <Ability:SecondaryWeaponName/>."
-LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point and is not turn ending. <br/><Bullet/> Charge has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point and is turn ending. <br/><Bullet/> Charge has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (3)
@@ -6683,8 +6683,8 @@ LocPromotionPopupText="<Bullet/> Use the allies' abilities early and often to ta
 ; End Translation (2)
 
 [Battlelord X2AbilityTemplate]
-LocLongDescription="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
-LocHelpText="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
+LocLongDescription="After you or one of your allies in a line of sight takes damage, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
+LocHelpText="After you or one of your allies in a line of sight takes damage, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
 LocPromotionPopupText="<Bullet/> Battlelord can allow the Skirmisher to prevail in the most dire of circumstances.<br/><Bullet/> Battlelord has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Turns from the Lost and enemy pod reveals do not grant the immediate action.<br/><Bullet/> Abilities that refund action points, like Implacable and Hit and Run, will not work during Battlelord."
 
 [TemplarGrazingFire X2AbilityTemplate]

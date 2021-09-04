@@ -70,7 +70,7 @@ static function X2AbilityTemplate AddSkirmisherFleche()
 	{
 		ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[i]);
 		if (ActionPointCost != none)
-			ActionPointCost.bConsumeAllPoints = false;
+			ActionPointCost.bConsumeAllPoints = true;
 	}
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.RECKONING_LW_COOLDOWN;

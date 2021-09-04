@@ -275,6 +275,7 @@ static function AddCooldownToBattlelord(X2AbilityTemplate Template)
 {
 	local X2AbilityCost_ActionPoints        ActionPointCost;
 	local X2AbilityCooldown					Cooldown;
+	local X2Effect_Battlelord_LW 			BattlelordEffect;
 
 	// Kill the charges and the charge cost
 	Template.AbilityCosts.Length = 0;
@@ -291,6 +292,13 @@ static function AddCooldownToBattlelord(X2AbilityTemplate Template)
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.BATTLELORD_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
+
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Battlelord');
+
+	BattlelordEffect = new class'X2Effect_Battlelord_LW';
+	BattlelordEffect.BuildPersistentEffect(1, false, , , eGameRule_PlayerTurnBegin);
+	BattlelordEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(BattlelordEffect);
 }
 
 static function UpdateTotalCombat(X2AbilityTemplate Template)
