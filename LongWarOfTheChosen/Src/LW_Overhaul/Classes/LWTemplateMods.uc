@@ -3777,14 +3777,18 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			{
     			FacilityTemplate.SoldierUnlockTemplates.RemoveItem(default.GTSUnlocksToRemove[i]);
 			}
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('LightningStrikeUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('IntegratedWarfareUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('StayWithMeUnlock');
+			//FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
+			//FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
+		//	FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
+		//	FacilityTemplate.SoldierUnlockTemplates.AddItem('LightningStrikeUnlock');
+		//	FacilityTemplate.SoldierUnlockTemplates.AddItem('IntegratedWarfareUnlock');
+		//	FacilityTemplate.SoldierUnlockTemplates.AddItem('StayWithMeUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration1Unlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration2Unlock');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('XTP1');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('XTP2');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('XTP3');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('XTP4');
 		}
 		if (FacilityTemplate.DataName == 'Laboratory')
 		{
