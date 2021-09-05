@@ -304,6 +304,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'PistolOverwatch':
 		case 'SniperRifleOverwatch':
 			UpdateOverwatch(Template);
+
+		case 'LaunchGrenade':
+			UpdateLaunchGrenade(Template);
 		default:
 			break;
 
@@ -1650,7 +1653,6 @@ static function UpdateOverwatch(X2AbilityTemplate Template)
 
 	MultiTargetMark = new class'X2AbilityMultiTarget_AllUnits';
 	MultiTargetMark.bAcceptEnemyUnits = true;
-	MultiTargetMark.bAcceptEnemyUnits = true;
 	Template.AbilityMultiTargetStyle = MultiTargetMark;
 
 	VisibilityCondition = new class'X2Condition_Visibility';
@@ -1663,6 +1665,7 @@ static function UpdateOverwatch(X2AbilityTemplate Template)
 
 
 	OverwatchMark =	new class'X2Effect_OverwatchMark';
+	OverwatchMark.DuplicateResponse = eDupe_Allow;
 	OverwatchMark.BuildPersistentEffect(1, false, , , eGameRule_PlayerTurnEnd);
 	Template.AddMultiTargetEffect(OverwatchMark);
 
@@ -1773,8 +1776,19 @@ static simulated function OverwatchAbility_BuildVisualization(XComGameState Visu
 	//****************************************************************************************
 }
 
+	
+static function UpdateLaunchGrenade(X2AbilityTemplate Template)
+{
+	local X2AbilityCost Cost;
 
-
+	foreach Template.AbilityCosts(Cost)
+	{
+		if (Cost.IsA('X2AbilityCost_ActionPoints'))
+		{
+			X2AbilityCost_ActionPoints(Cost).DoNotConsumeAllSoldierAbilities.AddItem('TotalCombat');
+		}
+	}
+}
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities
