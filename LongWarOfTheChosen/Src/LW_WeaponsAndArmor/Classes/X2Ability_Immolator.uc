@@ -76,6 +76,7 @@ static function X2AbilityTemplate CreateFlameThrower()
 
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bMultiTargetOnly = true;
+	StandardAim.bAllowCrit = false;
 	StandardAim.bGuaranteedHit = true;
 	Template.AbilityToHitCalc = StandardAim;
 
