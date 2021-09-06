@@ -1434,18 +1434,21 @@ static function AlertAllUnits(XComGameState_Unit Unit, XComGameState newGameStat
 
     foreach History.IterateByClassType(class'XComGameState_AIGroup', AIGroupState)
     {
-        AIGroupState.ApplyAlertAbilityToGroup(eAC_SeesSpottedUnit);
-	    AIGroupState.InitiateReflexMoveActivate(Unit, eAC_SeesSpottedUnit);
-        
-        if (UnitSeen == true)
-        {
-            AIGroupState.GetLivingMembers(LivingUnits);
-            foreach LivingUnits(Id)
-            {
-                Member = XComGameState_Unit(History.GetGameStateForObjectID(Id));
-                class'XComGameState_Unit'.static.UnitAGainsKnowledgeOfUnitB(Member, Unit, newGameState, eAC_SeesSpottedUnit, false);
-            }
-        }
+		if(AIGroupState.TeamName != eTeam_XCom && AIGroupState.TeamName != eTeam_Neutral && !AIGroupState.GetGroupLeader().GetMyTemplate().bIsCivilian)
+		{
+			AIGroupState.ApplyAlertAbilityToGroup(eAC_SeesSpottedUnit);
+			AIGroupState.InitiateReflexMoveActivate(Unit, eAC_SeesSpottedUnit);
+			
+			if (UnitSeen == true)
+			{
+				AIGroupState.GetLivingMembers(LivingUnits);
+				foreach LivingUnits(Id)
+				{
+					Member = XComGameState_Unit(History.GetGameStateForObjectID(Id));
+					class'XComGameState_Unit'.static.UnitAGainsKnowledgeOfUnitB(Member, Unit, newGameState, eAC_SeesSpottedUnit, false);
+				}
+			}	
+		}
     }
 }
 
