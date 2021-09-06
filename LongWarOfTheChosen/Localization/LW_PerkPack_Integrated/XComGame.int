@@ -164,9 +164,9 @@ LocPromotionPopupText="<Bullet/> Gain +5 critical chance for each enemy you can 
 LocFriendlyName="Bring 'Em On"
 LocFlyOverText="Bring 'Em On"
 ; LWOTC Needs Translation
-LocLongDescription="Gain +1 damage on critical hits for every two enemies you can see, up to a maximum of +8. Works for the soldier's <Ability:BOUND_WEAPON_NAME/> and explosives."
-LocHelpText="Gain +1 damage on critical hits for every two enemies you can see, up to a maximum of +8. Works for the soldier's <Ability:BOUND_WEAPON_NAME/> and explosives."
-LocPromotionPopupText="<Bullet/> Gain +1 damage on critical hits for every two enemies you can see, up to a maximum of +8.<br/><Bullet/> Units visible at squadsight ranges do confer bonus.<br/><Bullet/> Applies to damage from the soldier's <Ability:BOUND_WEAPON_NAME/> and, if the soldier has Biggest Booms, explosives (damaging grenades, rockets, etc.).<br/>"
+LocLongDescription="Gain +1 damage for every two enemies you can see, up to a maximum of +10. Works for the soldier's <Ability:BOUND_WEAPON_NAME/> and explosives."
+LocHelpText="Gain +1 damage on critical hits for every two enemies you can see, up to a maximum of +10. Works for the soldier's <Ability:BOUND_WEAPON_NAME/> and explosives."
+LocPromotionPopupText="<Bullet/> Gain +1 damage on critical hits for every two enemies you can see, up to a maximum of +10.<br/><Bullet/> Units visible at squadsight ranges do confer bonus.<br/><Bullet/> Applies to damage from the soldier's <Ability:BOUND_WEAPON_NAME/> and explosives. (damaging grenades, rockets, etc.).<br/>"
 ; End Translation
 
 [HardTarget X2AbilityTemplate]
