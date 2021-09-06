@@ -19,6 +19,7 @@ static event OnLoadedSavedGame()
 
 static event OnPostTemplatesCreated()
 {
+	
 	local X2FacilityTemplate FacilityTemplate;
 	local array<X2FacilityTemplate> FacilityTemplates;
 	local StaffSlotDefinition StaffSlotDef;
@@ -28,26 +29,23 @@ static event OnPostTemplatesCreated()
 	FindFacilityTemplateAllDifficulties('OfficerTrainingSchool', FacilityTemplates);
 	foreach FacilityTemplates(FacilityTemplate)
 	{
-		//Remove the train rookie GTS slots, not needed
 		FacilityTemplate.StaffSlotDefs.Length = 0;
 
-		StaffSlotDef.StaffSlotTemplateName = 'OTSStaffSlot';
+		StaffSlotDef.StaffSlotTemplateName = 'OTSOfficerSlot';
 		StaffSlotDef.bStartsLocked = false;
 		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
-
-		StaffSlotDef.StaffSlotTemplateName = 'OTSOfficerSlot';
 		StaffSlotDef.bStartsLocked = true;
-		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
 		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
 		`log("LW OfficerPack: Added OTSOfficerSlot to facility template OfficerTrainingSchool");
 
-		FacilityTemplate.Upgrades.AddItem('OTS_LWOfficerTrainingUpgrade');
+		//FacilityTemplate.Upgrades.AddItem('OTS_LWOfficerTrainingUpgrade');
 		`log("LW OfficerPack: Added OTS Facility upgrade to facility template OfficerTrainingSchool");
 
 		FacilityTemplate.Upgrades.AddItem('OTS_LWOfficerTrainingUpgrade_SecondSlot');
 		`log("LW OfficerPack: Added OTS Facility upgrade to facility template OfficerTrainingSchool");
 	}
 	`LOG("LW OfficerPack : Update OTS Templates");
+	
 }
 
 //retrieves all difficulty variants of a given facility template
