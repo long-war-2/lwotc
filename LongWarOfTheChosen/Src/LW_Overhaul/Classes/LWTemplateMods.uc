@@ -1392,6 +1392,9 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			case 'Shadowfall':
 			case 'Overwatch':
 			case 'PistolOverwatch':
+			case 'ThrowGrenade':
+			case 'LaunchGrenade':
+			case 'PoisonSpit':
 			// Light Em Up and Snap Shot are handled in the template
 				UnitEffects = new class'X2Condition_UnitEffects';
 				UnitEffects.AddExcludeEffect(class'X2StatusEffects_LW'.default.LWBurningName, 'AA_UnitIsBurning');
