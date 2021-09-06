@@ -2763,14 +2763,14 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			GremlinTemplate.RevivalChargesBonus = 1;
 			GremlinTemplate.ScanningChargesBonus = 1;
-			GremlinTemplate.AidProtocolBonus = 5;
+			GremlinTemplate.AidProtocolBonus = 0;
 
 		}
 		if (GremlinTemplate.DataName == 'Gremlin_BM')
 		{
 			GremlinTemplate.RevivalChargesBonus = 2;
 			GremlinTemplate.ScanningChargesBonus = 2;
-			GremlinTemplate.AidProtocolBonus = 10;
+			GremlinTemplate.AidProtocolBonus = 0;
 		}
 		if (GremlinTemplate.DataName == 'SparkBit_MG')
 		{
