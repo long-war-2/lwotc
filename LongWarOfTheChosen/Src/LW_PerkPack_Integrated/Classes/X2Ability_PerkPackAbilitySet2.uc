@@ -671,13 +671,20 @@ static function X2AbilityTemplate AddAirdrop()
 	TargetProperty.ExcludeAlien = true;
 	Template.AbilityTargetConditions.AddItem(TargetProperty);
 
-	Conditional.ResearchProjectName = 'PlasmaGrenade';
-	Conditional.ItemName = 'AlienGrenade';
+
 
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
+
+	Conditional.ResearchProjectName = 'AutopsyMuton';
+	Conditional.ItemName = 'MagGrenade_LW';
+	TemporaryItemEffect.ResearchOptionalItems.AddItem(Conditional);
+
+	Conditional.ResearchProjectName = 'AdvancedGrenades';
+	Conditional.ItemName = 'AlienGrenade';
+	TemporaryItemEffect.ResearchOptionalItems.AddItem(Conditional);
+
 	TemporaryItemEffect.EffectName = 'AirdropGrenadeEffect';
 	TemporaryItemEffect.ItemName = 'FragGrenade';
-	TemporaryItemEffect.ResearchOptionalItems.AddItem(Conditional);
 	TemporaryItemEffect.ForceCheckAbilities.AddItem('LaunchGrenade');
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
