@@ -2801,7 +2801,9 @@ static function array<name> PropagandaRewards (XComGameState_LWAlienActivity Act
 	}
 	else
 	{
-		RewardArray[0] = 'Reward_Intel';
+		RewardArray[0] = 'Reward_POI_LW'; // this will only be granted if captured
+		RewardArray[1] = 'Reward_Dummy_POI'; // The first POI rewarded on any mission doesn't display in rewards, so this corrects for that
+		RewardArray[2] = 'Reward_Intel';
 	}
 	return RewardArray;
 }
