@@ -354,6 +354,9 @@ function StateObjectReference AddRebel(StateObjectReference RebelRef, XComGameSt
 	Rebel.Level = 0;
 	Rebel.StartDate = GetCurrentTime();
 	Rebels.AddItem(Rebel);
+	GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_OFFENSE, 0);
+	GiveAWCPerk(Unit, default.REBEL_AWC_ABILITIES_DEFENSE, 0);
+
 
 	`XEVENTMGR.TriggerEvent('RebelAdded_LW', Unit, self, NewGameState);
 
@@ -1814,26 +1817,25 @@ function UpdateRebelAbilities(XComGameState NewGameState)
 		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Rebel.Unit.ObjectID));
 		NewGameState.AddStateObject(UnitState);
 		// Rebel has ranked up but has no abilities, so give them abilities
+
+
 		if (Rebel.Level >= 0 && UnitState.AWCAbilities.Length == 0)
 		{
-
-			if (Rebel.Level >= 0)
-			{
-				GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_OFFENSE, 0); 
-				GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_DEFENSE, 0); 
-			}
-			if (Rebel.Level >= 1)
-			{
-				GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_OFFENSE, 1); 
-				GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_DEFENSE, 1); 
-			}
-
-			if (Rebel.Level >= 2)
-			{
-				GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_OFFENSE, 2); 
-				GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_DEFENSE, 2); 
-			}
+			GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_OFFENSE, 0); 
+			GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_DEFENSE, 0); 
 		}
+		if (Rebel.Level >= 1 && UnitState.AWCAbilities.Length < 4)
+		{
+			GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_OFFENSE, 1); 
+			GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_DEFENSE, 1); 
+		}
+
+		if (Rebel.Level >= 2 && UnitState.AWCAbilities.Length < 6)
+		{
+			GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_OFFENSE, 2); 
+			GiveAWCPerk(UnitState, default.REBEL_AWC_ABILITIES_DEFENSE, 2); 
+		}
+		
 	}
 }
 
