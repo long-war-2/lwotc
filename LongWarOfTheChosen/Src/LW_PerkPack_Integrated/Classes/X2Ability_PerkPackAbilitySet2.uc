@@ -61,7 +61,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(InTheZone());
 	Templates.AddItem(Reaper());
 	Templates.AddItem(SprayAndPray());
-
+	Templates.AddItem(CannonSprayAndPray());
 
 	Templates.AddItem(OverrideImpairingAbility());
 	Templates.AddItem(OverrideStunImpairingAbility());
@@ -1482,7 +1482,34 @@ static function X2AbilityTemplate SprayAndPray()
 	DodgeModifier = new class 'X2Effect_DodgeModifier';
 	DodgeModifier.DodgeReductionBonus = default.SPRAY_AND_PRAY_DODGE;
 	DodgeModifier.BuildPersistentEffect (1, true, true);
-	DodgeModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	DodgeModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	DodgeModifier.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
+	Template.AddTargetEffect(DodgeModifier);
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	return Template;		
+}
+	
+
+
+static function X2AbilityTemplate CannonSprayAndPray()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_DodgeModifier			DodgeModifier;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'CannonSprayAndPray');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_blaze";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	DodgeModifier = new class 'X2Effect_DodgeModifier';
+	DodgeModifier.DodgeReductionBonus = default.SPRAY_AND_PRAY_DODGE;
+	DodgeModifier.BuildPersistentEffect (1, true, true);
+	DodgeModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	DodgeModifier.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
 	Template.AddTargetEffect(DodgeModifier);
 	Template.bCrossClassEligible = false;
