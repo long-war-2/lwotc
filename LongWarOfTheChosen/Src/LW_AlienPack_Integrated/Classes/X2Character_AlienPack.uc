@@ -834,7 +834,7 @@ static function X2CharacterTemplate CreateTemplate_Sectoid_LW(name TemplateName)
 	CharTemplate.Abilities.AddItem('KillSiredZombies');
 	//CharTemplate.Abilities.AddItem('SectoidDeathOverride');  // A: Not sure what this does, but it sounds cool
 
-	CharTemplate.Abilities.AddItem('MassMindspin');
+	CharTemplate.Abilities.AddItem('MindSpin');
 	CharTemplate.Abilities.AddItem('MassReanimation_LW');
 	// WOTC abilities
 	CharTemplate.Abilities.AddItem('DarkEventAbility_Barrier');
