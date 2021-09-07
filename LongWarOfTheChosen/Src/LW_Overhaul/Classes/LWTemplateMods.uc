@@ -2553,12 +2553,14 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			break;
 
 		case 'AdvPriestM1_PsiAmp':
-			WeaponTemplate.Abilities.AddItem('PriestPsiMindControl');
+			//WeaponTemplate.Abilities.AddItem('PriestPsiMindControl');
 			break;
 		case 'AdvPriestM3_PsiAmp':
 			//WeaponTemplate.Abilities.AddItem('Solace');
+			
 		case 'AdvPriestM2_PsiAmp':
 			//WeaponTemplate.Abilities.AddItem('MindShield');
+			WeaponTemplate.Abilities.RemoveItem('PriestPsiMindControl');
 			break;
 		case 'AdvPurifierFlamethrower':
 			WeaponTemplate.iIdealRange = 7;
