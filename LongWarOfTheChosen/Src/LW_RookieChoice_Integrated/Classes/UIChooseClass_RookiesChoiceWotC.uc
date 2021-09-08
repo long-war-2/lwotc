@@ -101,7 +101,7 @@ simulated function array<X2SoldierClassTemplate> GetClasses()
 	
 	SoldierClassTemplateMan = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
 
-	SuperClassTemplate = class'ConfigOptions'.default.SuperClasses[`SYNC_RAND(class'ConfigOptions'.default.SuperClasses.Length)];
+	SuperClassTemplate = class'ConfigOptions'.default.SuperClasses[`SYNC_RAND_STATIC(class'ConfigOptions'.default.SuperClasses.Length)];
 
 	foreach SuperClassTemplate.PossibleClasses(SoldierClassName)
 	{
