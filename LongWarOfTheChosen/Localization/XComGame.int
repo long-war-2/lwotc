@@ -8315,7 +8315,7 @@ LocHelpText="Steady weapon now completely removes rocket scatter."
 LocPromotionPopupText=""
 
 [ImprovedProtocols X2AbilityTemplate]
-LocFriendlyName="Improved Protocols"
+LocFriendlyName="Hot-Charged Batteries"
 LocLongDescription="Cooldown Of ABC Protocols are reduced by 1."
 LocHelpText="Cooldown Of ABC Protocols are reduced by 1."
 LocPromotionPopupText=""

@@ -1362,7 +1362,7 @@ static function X2AbilityTemplate CreateImprovedProtocols()
 {
 	local X2AbilityTemplate		Template;
 
-	Template = PurePassive('ImprovedProtocols', "img:///UILibrary_XPerkIconPack.UIPerk_gremlin_circle", , 'eAbilitySource_Perk');
+	Template = PurePassive('ImprovedProtocols', "img:///UILibrary_WOTC_APA_Class_Pack.perk_HotChargedBatteries", , 'eAbilitySource_Perk');
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
