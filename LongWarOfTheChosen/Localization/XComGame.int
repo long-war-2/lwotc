@@ -1251,7 +1251,7 @@ m_strRemoveUpgrade="REMOVE UPGRADE"
 FriendlyName="Hair Trigger"
 FriendlyNamePlural="Hair Triggers"
 ; LWOTC Needs Translation (2)
-BriefSummary="The soldier gains 15 aim on the next shot after a miss."
+BriefSummary="The soldier gains 25 aim on the next shot after a miss."
 ; End Translation (2)
 TinySummary="bonus to hit after a miss"
 LootTooltip="This weapon upgrade, when installed, adds bonus aim after a miss."

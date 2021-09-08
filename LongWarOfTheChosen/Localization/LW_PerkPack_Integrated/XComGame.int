@@ -329,8 +329,8 @@ LocFriendlyNameWhenConcealed="Overwatch (Concealed)"
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="Hyper-Reactive Pupils"
 LocFlyOverText="Hyper-Reactive Pupils"
-LocLongDescription="Gain +10 aim for your next shot with your primary weapon after a miss."
-LocHelpText="Gain +10 aim for your next shot with your primary weapon after a miss."
+LocLongDescription="Gain +25 aim for your next shot with your primary weapon after a miss."
+LocHelpText="Gain +25 aim for your next shot with your primary weapon after a miss."
 LocPromotionPopupText="<Bullet/> Bonus applies until the next time you hit a target or the mission ends.<br/><Bullet/> Area-of-Effect-based shots do not induce the bonus.<br/>"
 
 [SteadyWeapon X2AbilityTemplate]
