@@ -71,8 +71,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_SawedOffShotgun_Beam()); 
 
 	//create two schematics used to upgrade weapons
-	//Templates.AddItem(CreateTemplate_SawedOffShotgun_Magnetic_Schematic());
-	//Templates.AddItem(CreateTemplate_SawedOffShotgun_Beam_Schematic()); Not used -- JL
+	Templates.AddItem(CreateTemplate_SawedOffShotgun_Magnetic_Schematic());
+	Templates.AddItem(CreateTemplate_SawedOffShotgun_Beam_Schematic());
 
 	return Templates;
 }
