@@ -25,7 +25,13 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 	CATemplate = X2CovertActionTemplate(Template);
 	if (CATemplate == none)
 		return;
-	
+
+	// Disable Wounded and Captured risks, since the Ambush mission
+	// is more interesting and less frustrating to the player than
+	// a random wound.
+	CATemplate.Risks.RemoveItem('CovertActionRisk_SoldierWounded');
+	CATemplate.Risks.RemoveItem('CovertActionRisk_SoldierCaptured');
+
 	switch (CATemplate.DataName)
 	{
 		case 'CovertAction_SuperiorWeaponUpgrade':
@@ -42,7 +48,6 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_RecruitEngineer':
 			CaTemplate.RequiredFactionInfluence = eFactionInfluence_Respected;
 		case 'CovertAction_AlienLoot':
-			CATemplate.Risks.RemoveItem('CovertActionRisk_SoldierCaptured');
 		case 'CovertAction_EnemyCorpses':
 		case 'CovertAction_CancelChosenActivity':
 		case 'CovertAction_DelayChosen':
@@ -115,10 +120,6 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			CATemplate.Slots[i].Rewards.Length = 0;
 		}
 	}
-
-	// Disable Wounded risk, since the Ambush mission is more interesting
-	// and less frustrating to the player than a random wound.
-	CATemplate.Risks.RemoveItem('CovertActionRisk_SoldierWounded');
 }
 
 // Adds a chance of failure to easy covert actions and resets the staff slots.

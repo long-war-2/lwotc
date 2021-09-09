@@ -9,7 +9,9 @@ AbilityDescName="assault rifle"
 FriendlyName="Laser Stengun"
 FriendlyNamePlural="Laser Stenguns"
 BriefSummary="A lightweight version of the Laser Rifle, this fills a similar role to the SMG, trading power, ammo and accuracy at range for increased soldier mobility and concealment."
-TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the Stengun's tactical effectiveness. \n<Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage, have less ammo, and suffer accuracy penalties at long range.\n<Bullet/> Laser weapons receive bonus aim."
+; LWOTC Needs Translation
+TacticalText="<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the Stengun's tactical effectiveness. \n<Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage and suffer accuracy penalties at long range.\n<Bullet/> Laser weapons receive bonus aim."
+; End Translation
 AbilityDescName="SMG"
 
 [Cannon_LS X2WeaponTemplate]

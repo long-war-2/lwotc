@@ -31,7 +31,7 @@ HavenAdvisersBody="Click on the box labeled (1) on the left to assign an adviser
 ; LWOTC Needs Translation
 [UIScreenListener_CovertActionsTutorial]
 CovertActionsTutorialTitle="Covert Actions"
-CovertActionsTutorialBody="Unlike vanilla WOTC, your operatives can fail covert actions. The risk of failure is reduced based on the ranks of the soldiers on the operation. The higher the ranks, the lower the risk of failure."
+CovertActionsTutorialBody="Unlike vanilla WOTC, your operatives can fail covert actions. The risk of failure is reduced based on the ranks of the soldiers on the operation. The higher the ranks, the lower the risk of failure.<br/><br/>Also, the risk of ambush increases the more covert actions are completed without being ambushed. Risk is reset once one is ambushed."
 
 [UIScreenListener_InitialHavenTutorial]
 HavenHighlightTitle="Review Your Haven"
