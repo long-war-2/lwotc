@@ -17,7 +17,7 @@ This build largely contains balance changes.
     weaker than before.
  * When A region is liberated, all job prohibitions due to failed mini-retals are immediately cleared
  * Restored Guardian Angel resistance order
- * The Ability point cost multiplier for buing multiple perks per rank is now much lower, but death from above and snapshot are now completely mutually exclusive abilities.
+ * The Ability point cost multiplier for buying multiple perks per rank is now much lower, but death from above and snapshot are now completely mutually exclusive abilities.
 
 ## Reaper
 
@@ -35,8 +35,8 @@ The reaper marksman and grenadier reaper builds were underperforming compared to
 
 ## Chosen
 
- * Mind Schorch is now Armor-piercing Electrical Damage 
- * Mind Schorch is castable on units immune to fire again
+ * Mind Scorch is now Armor-piercing Electrical Damage 
+ * Mind Scorch is castable on units immune to fire again
  * Mind Scorch Damage rescaled from 1/2/3/4 to 1/2/4/7
  * Danger Zone increases Mind Scorch radius by 2 from 1, and has much higher chance to be selected
 
@@ -60,7 +60,7 @@ They can only do that on a prime reaction, and when they have no other available
  * Chosen Elerium core sabotage now steals from 5 to 10 elerium cores and requires at least 5 elerium cores to activate
  * Chosen Datapad sabotage now steals from 5 to 10 datapads and requires at least 5 datapads to activate
  * Chosen fear of the chosen sabotage now affects 10 random soldiers from 6
- * Chosen Infarmary sabotage to 10 days from 14
+ * Chosen Infirmary sabotage to 10 days from 14
 
  * Warlock can no longer cast WGC on unactivated enemies 
 
@@ -70,7 +70,7 @@ They can only do that on a prime reaction, and when they have no other available
  * Updated the French localization, thanks to Savancosinus
  * Updated the Russian localization thanks to FlashVanMaster
  * Improved the clarity of various other ability descriptions
- * Added button on geoscape to acess resistance management screen
+ * Added button on geoscape to access resistance management screen
  * Added loadout button for adviser in outpost management
  * Made Alien Facilities controller compatible
  * Added Haven/Resistance management Navhelp to geoscape when using the controller
