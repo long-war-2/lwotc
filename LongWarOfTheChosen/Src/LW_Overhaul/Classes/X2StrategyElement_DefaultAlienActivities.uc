@@ -561,6 +561,8 @@ static function OnProtectRegionActivityComplete(bool bAlienSuccess, XComGameStat
 	local StateObjectReference LinkedRegionRef;
 	local array<XComGameState_WorldRegion> ControlledLinkedRegions;
 	local array<int> ControlledLinkedAlertLevelIncreases;
+	local XComGameState_LWOutpost Outpost;
+	local int k;
 
 	if(!bAlienSuccess)
 	{
@@ -592,6 +594,19 @@ static function OnProtectRegionActivityComplete(bool bAlienSuccess, XComGameStat
 		AlertLevelsKilled = default.LIBERATION_ALERT_LEVELS_KILLED + `SYNC_RAND_STATIC (default.LIBERATION_ALERT_LEVELS_KILLED_RAND);
 		RemainderAlertLevel = Max (0, PrimaryRegionalAI.LocalAlertLevel - AlertLevelsKilled);
 		PrimaryRegionalAI.LocalAlertLevel = 1;
+
+		//Removing prohibitions on jobs
+		Outpost = `LWOUTPOSTMGR.GetOutpostForRegion(PrimaryRegionState);
+		Outpost = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', Outpost.ObjectID));
+		for (k = 0; k < Outpost.ProhibitedJobs.Length; k++)
+		{
+			Outpost.ProhibitedJobs[k].DaysLeft = 0;
+		}
+
+		for (k = 0; k < Outpost.CurrentRetributions.Length; k++)
+		{
+			Outpost.CurrentRetributions[k].DaysLeft = 0;
+		}		
 
 		//distribute the RemainderAlertLevel amongst adjacent regions that haven't been liberated
 		foreach PrimaryRegionState.LinkedRegions(LinkedRegionRef)
