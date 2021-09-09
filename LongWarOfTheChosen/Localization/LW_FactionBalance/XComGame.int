@@ -143,12 +143,15 @@ LocLongDescription="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_C
 LocPromotionPopupText="<Bullet/> Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> crit chance against the target from all sources for the remainder of the turn."
 ; End Translation (2)
 
+
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="Knife Encounters"
 LocFlyOverText="Knife Encounters"
-LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles."
-LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles."
-LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun.<br/>"
+;LWOTC needs Translation(2)
+LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Cheap Shot."
+LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Cheap Shot."
+LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun, or Cheap Shot.<br/>"
+;LWOTC End Translation(2)
 
 ; LWOTC Needs Translation (2)
 [ImpersonalEdge X2AbilityTemplate]
@@ -194,7 +197,17 @@ LocFriendlyName="Battlefield Awareness Cooldown"
 LocLongDescription="Battlefield Awareness will not activate until this effect ends."
 LocHelpText="Battlefield Awareness will not activate until this effect ends."
 
-; End Translation
 
 [CombatPresence X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Combat Presence can be used to get squadmates out of tough situations where they need an extra attack or move.<br/><Bullet/> Combat Presence has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+
+
+; LWOTC Needs Translation
+
+[CheapShot X2AbilityTemplate]
+LocFriendlyName="Cheap Shot"
+LocFlyOverText="Cheap Shot"
+LocLongDescription= "Once per turn, Gain a movement action after shooting a unit damaged this turn with standard shot of your primary weapon. Cannot trigger on the same turn as Knife Encounters."
+LocHelpText="Once per turn, Gain a movement action after shooting a unit damaged this turn with standard shot of your primary weapon. Cannot trigger on the same turn as Knife Encounters."
+LocPromotionPopupText="<Bullet/> Works only for standard shots, so it won't trigger for abilities like banish."
+; End Translation
