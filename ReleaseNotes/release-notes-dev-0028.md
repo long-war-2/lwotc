@@ -30,6 +30,7 @@ This build largely contains balance changes.
  * Reaper now gets squadsight on squaddie
  * Squadsight is now replaced by cheap shot
  * Removed the hack bonus from infiltration
+
 The reaper marksman and grenadier reaper builds were underperforming compared to the knife one, this should hopefully make them more viable choices.
 
 ## Chosen
@@ -38,10 +39,12 @@ The reaper marksman and grenadier reaper builds were underperforming compared to
  * Mind Schorch is castable on units immune to fire again
  * Mind Scorch Damage rescaled from 1/2/3/4 to 1/2/4/7
  * Danger Zone increases Mind Scorch radius by 2 from 1, and has much higher chance to be selected
+
  The intention behind the changes is to make warlock not completely countered by wearing hazmat vests and mind shields.
  For clarification, elecrtical is just a damage type, it does not deal any bonus damage to robotic units by itself. 
 
  * Chosen now Teleport like avatars when they are unable to move when they should.
+
 This fixes the issue of people boxing in the chosen, and them getting completely immobilized by poison cloud
 They can only do that on a prime reaction, and when they have no other available options.
 
