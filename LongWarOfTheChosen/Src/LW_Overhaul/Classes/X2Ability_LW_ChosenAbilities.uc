@@ -1833,7 +1833,7 @@ static function X2AbilityTemplate AssassinBladestormAttack()
 static function X2AbilityTemplate CreateUnstoppable()
 {
 	local X2AbilityTemplate						Template;	
-	local X2Effect_CapStat 					UnstoppableEffect;
+	local X2Effect_Unstoppable 					UnstoppableEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Unstoppable_LW');
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_blaze";
@@ -1851,7 +1851,7 @@ static function X2AbilityTemplate CreateUnstoppable()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 
-	UnstoppableEffect = new class'X2Effect_CapStat';
+	UnstoppableEffect = new class'X2Effect_Unstoppable';
 	UnstoppableEffect.BuildPersistentEffect(1, false, true,, eGameRule_PlayerTurnBegin);
 	UnstoppableEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
 	UnstoppableEffect.AddStatCap(eStat_Mobility,default.UNSTOPPABLE_MIN_MOB,true);

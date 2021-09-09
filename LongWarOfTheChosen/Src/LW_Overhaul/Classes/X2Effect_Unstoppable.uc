@@ -1,10 +1,10 @@
 //--------------------------------------------------------------------------------------- 
-//  FILE:    X2Effect_CapStat.uc
+//  FILE:    X2Effect_Unstoppable.uc
 //  AUTHOR:	 Musashi, modified by Grobobobo
 //  PURPOSE: Creates an effect that can cap a stat to a certain point
 //--------------------------------------------------------------------------------------- 
 
-class X2Effect_CapStat extends X2Effect_PersistentStatChange;
+class X2Effect_Unstoppable extends X2Effect_PersistentStatChange;
 
 var array<X2Condition> Conditions;
 
@@ -52,7 +52,7 @@ static function EventListenerReturn EventHandler(Object EventData, Object EventS
 	local XComGameState_Effect_CapStats NewEffectState;
 	local XComGameState_Ability AbilityState;
 	local XComGameState NewGameState;
-	local X2Effect_CapStat EffectTemplate;
+	local X2Effect_Unstoppable EffectTemplate;
 	local XComGameState_Effect_CapStats EffectState;
 	local bool bOldApplicable, bNewApplicable;
 	local array<StatChange> LocalStatChanges;
@@ -70,7 +70,7 @@ static function EventListenerReturn EventHandler(Object EventData, Object EventS
 	SourceUnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
 
-	EffectTemplate = X2Effect_CapStat(EffectState.GetX2Effect());
+	EffectTemplate = X2Effect_Unstoppable(EffectState.GetX2Effect());
 
 	bOldApplicable = EffectState.StatChanges.Length > 0;
 	bNewApplicable = class'XMBEffectUtilities'.static.CheckTargetConditions(EffectTemplate.Conditions, EffectState, SourceUnitState, UnitState, AbilityState) == 'AA_Success';
