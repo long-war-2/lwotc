@@ -3340,6 +3340,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'CHOSEN_RETRIBUTION_DURATION':
 			OutString = string(default.CHOSEN_RETRIBUTION_DURATION);
 			return true;
+		case 'UNSTOPPABLE_MIN_MOB':
+			Outstring = string(class'X2Ability_LW_ChosenAbilities'.default.UNSTOPPABLE_MIN_MOB);
+			return true;
 		default:
 			return false;
 	}

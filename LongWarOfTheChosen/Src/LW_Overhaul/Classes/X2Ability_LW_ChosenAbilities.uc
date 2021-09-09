@@ -30,6 +30,7 @@ var config float SHIELD_ALLY_PCT_DR;
 var config float IMPACT_COMPENSATION_PCT_DR;
 var config int IMPACT_COMPENSATION_MAX_STACKS;
 
+var config int UNSTOPPABLE_MIN_MOB;
 var const string ChosenSummonContextDesc;
 
 var private name ExtractKnowledgeMarkSourceEffectName, ExtractKnowledgeMarkTargetEffectName;
@@ -83,6 +84,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(AssassinBladestorm());
 	Templates.AddItem(AssassinBladestormAttack());
+	Templates.AddItem(CreateUnstoppable());
+	Templates.AddItem(CreateUnstoppablePassive());
+	
 	
 	return Templates;
 }
@@ -123,6 +127,7 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 15;
 	Template.AbilityTriggers.AddItem(Trigger);
 
 	TurnCondition =new class'X2Condition_OnlyOnXCOMTurn';
@@ -196,6 +201,7 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 15;
 	Template.AbilityTriggers.AddItem(Trigger);
 
 	// The unit must be alive and not stunned
@@ -265,6 +271,7 @@ static function X2AbilityTemplate CreateHunterReaction()
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 15;
 	Template.AbilityTriggers.AddItem(Trigger);
 
 	// The unit must be alive and not stunned
@@ -1819,6 +1826,56 @@ static function X2AbilityTemplate AssassinBladestormAttack()
 
 	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateUnstoppable()
+{
+	local X2AbilityTemplate						Template;	
+	local X2Effect_Unstoppable 					UnstoppableEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Unstoppable_LW');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_blaze";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	//Template.bIsPassive = true;
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+
+	UnstoppableEffect = new class'X2Effect_Unstoppable';
+	UnstoppableEffect.BuildPersistentEffect(1, false, true,, eGameRule_PlayerTurnBegin);
+	UnstoppableEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
+	UnstoppableEffect.AddStatCap(eStat_Mobility,default.UNSTOPPABLE_MIN_MOB,true);
+	Template.AddTargetEffect(UnstoppableEffect);
+
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	//Template.AdditionalAbilities.AddItem('UnstoppablePassive_LW');
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate CreateUnstoppablePassive()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('UnstoppablePassive_LW', "img:///UILibrary_XPerkIconPack.UIPerk_move_blaze", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
 
 	return Template;
 }

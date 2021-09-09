@@ -7009,7 +7009,6 @@ LocLongDescription="Summon lightning to strike all nearby enemies. Damage increa
 LocHelpText="Summon lightning to strike all nearby enemies. Costs all Focus."
 LocPromotionPopupText="<Bullet/> Ionic Storm's radius increases at higher Focus levels.<br/><Bullet/> Ionic Storm deals double damage to Psionic units.<br/><Bullet/> Ionic Storm has a <Ability:SelfCooldown/> turn cooldown.<br/>"
 
-; End Translation
 
 ; LWOTC Needs Translation
 [Sabotage_LongRangeComms X2SabotageTemplate]
@@ -7018,6 +7017,21 @@ ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
 ; End Translation
 
 ; LWOTC Needs Translation
+
+[Unstoppable_LW X2AbilityTemplate]
+LocFriendlyName="Unstoppable"
+LocLongDescription="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+LocHelpText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+LocFlyOverText="Unstoppable"
+LocPromotionPopupText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+
+[UnstoppablePassive_LW X2AbilityTemplate]
+LocFriendlyName="Unstoppable"
+LocLongDescription="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+LocHelpText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+LocFlyOverText="Unstoppable"
+LocPromotionPopupText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+
 [TargetingAimAndCrit X2AbilityTemplate]
 LocLongDescription="Soldier Aim increased by <Ability:TargetingAimAndCrit_AimBonus/> and critical chance increased by <Ability:TargetingAimAndCrit_CritBonus/> for <Ability:TURNSREMAINING/> turns."
 
@@ -7034,4 +7048,3 @@ LocLongDescription="All enemy Will reduced by <Ability:Hypnography_WillBonus/>%.
 ; LWOTC Needs Translation
 [MicroMissiles X2AbilityTemplate]
 LocHelpText="Target an area with an explosive missile attack."
-; End Translation
