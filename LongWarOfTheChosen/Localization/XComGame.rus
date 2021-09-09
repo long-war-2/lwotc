@@ -3102,7 +3102,7 @@ LocHelpText="Во время хода противника стреляет от
 LocPromotionPopupText="<Bullet/> Не действует при маскировке.<br/><Bullet/> Только 1 раз за ход.<br/><Bullet/> Расходует 1 боезапас.<br/><Bullet/> Может нанести критический удар.<br/><Bullet/> Работает во время хода противника.<br/>"
 
 [ScrapMetal_LW X2AbilityTemplate]
-LocFriendlyName="Наскрести"
+LocFriendlyName="Наскребсти"
 LocFlyOverText="Восстановить боезапас"
 LocLongDescription="Убийства противника из основого оружия восстанавливают боезапас."
 LocHelpText="Убийства противника из основого оружия восстанавливают боезапас обреза."
@@ -5539,7 +5539,71 @@ LocFlyOverText="Combat Readiness"
 
 ; LWOTC end translated
 
+; LWOTC Translated
+[AmmoDump_LW X2AbilityTemplate]
+LocFriendlyName="Повреждение оружия"
+LocHelpText="Делает оружие небоеспособным, обнуляя боезапас."
+LocLongDescription="Делает оружие небоеспособным, обнуляя боезапас."
+LocFlyOverText="Повреждение оружия"
 
+[ShieldAllyM1 X2AbilityTemplate]
+LocFriendlyName="Чемпион чародея"
+LocHelpText="Дает союзнику щит с бонусом к точности, крит.шансу, воле и пси. Пока этот союзник жив, Чародей получает <Ability:SHIELD_ALLY_PCT_DR>% сопротивления урону."
+LocLongDescription="Дает союзнику щит с бонусом к точности, крит.шансу, воле и пси. Пока этот союзник жив, Чародей получает <Ability:SHIELD_ALLY_PCT_DR>% сопротивления урону."
+LocFlyOverText="Чемпион чародея"
+
+[ShieldAllyM2 X2AbilityTemplate]
+LocFriendlyName="Чемпион чародея"
+LocHelpText="Дает союзнику щит с бонусом к точности, крит.шансу, воле и пси. Пока этот союзник жив, Чародей получает <Ability:SHIELD_ALLY_PCT_DR>% сопротивления урону."
+LocLongDescription="Дает союзнику щит с бонусом к точности, крит.шансу, воле и пси. Пока этот союзник жив, Чародей получает <Ability:SHIELD_ALLY_PCT_DR>% сопротивления урону."
+LocFlyOverText="Чемпион чародея"
+
+[ShieldAllyM3 X2AbilityTemplate]
+LocFriendlyName="Чемпион чародея"
+LocHelpText="Дает союзнику щит с бонусом к точности, крит.шансу, воле и пси. Пока этот союзник жив, Чародей получает <Ability:SHIELD_ALLY_PCT_DR>% сопротивления урону."
+LocLongDescription="Дает союзнику щит с бонусом к точности, крит.шансу, воле и пси. Пока этот союзник жив, Чародей получает <Ability:SHIELD_ALLY_PCT_DR>% сопротивления урону."
+LocFlyOverText="Чемпион чародея"
+
+[ShieldAllyM4 X2AbilityTemplate]
+LocFriendlyName="Чемпион чародея"
+LocHelpText="Дает союзнику щит с бонусом к точности, крит.шансу, воле и пси. Пока этот союзник жив, Чародей получает <Ability:SHIELD_ALLY_PCT_DR>% сопротивления урону."
+LocLongDescription="Дает союзнику щит с бонусом к точности, крит.шансу, воле и пси. Пока этот союзник жив, Чародей получает <Ability:SHIELD_ALLY_PCT_DR>% сопротивления урону."
+LocFlyOverText="Чемпион чародея"
+
+[ChosenImmuneMelee X2AbilityTemplate]
+LocFriendlyName="Предугадывание"
+LocLongDescription="Получает на 50% меньше урона от атак оружием ближнего боя с разбега."
+LocHelpText="Получает на 50% меньше урона от атак оружием ближнего боя с разбега."
+
+[BlastShield X2AbilityTemplate]
+LocFriendlyName="Стойкость"
+LocLongDescription="Сопротивление 50% урону от взрывов."
+LocHelpText="Сопротивление 50% урону от взрывов."
+
+[ChosenCritImmune X2AbilityTemplate]
+LocFriendlyName="Балансирование"
+LocHelpText="Практически иммунитет к критам."
+LocLongDescription="Избранный практически иммунен к критам."
+
+[MC_Stock_Strike X2AbilityTemplate]
+LocFriendlyName="Тычок"
+LocHelpText="Удар по захваченному союзнику прикладом оружия, оглушает на 1 ход."
+LocLongDescription="Удар по захваченному союзнику прикладом оружия, оглушает на 1 ход."
+LocFlyOverText="Леща"
+
+[GetUp X2AbilityTemplate]
+LocFriendlyName="Подъем!"
+LocHelpText="Возвращает в сознание оперативника."
+LocLongDescription="Возвращает в сознание оперативника."
+LocFlyOverText="Пора вставать!"
+
+[ChosenSummonFollowers X2AbilityTemplate]
+LocFriendlyName="Призыв последователей"
+LocHelpText="Призывает подкрепление пришельцев."
+LocLongDescription="Призывает подкрепление пришельцев."
+LocFlyOverText="Призыв пришельцев"
+
+;LWOTC end translated
 
 [LocationScout X2SitRepTemplate]
 Description="Сопротивление установило датчки движения в местности операции, которые передают ифнормацию вашим оперативникам. Позволяет обнаруживать врагов за пределами видимости."
@@ -6257,6 +6321,12 @@ LocLongDescription="Бонус 50% урона при уровне здоровь
 LocPromotionPopupText="<Bullet/> Уменьшение не работает, если солдат получил смертельное ранение и истекал кровью.<br/>"
 LocFlyOverText="Фанатичная ярость"
 ; End Translated
+
+[Volt X2AbilityTemplate]
+LocFriendlyName="Вольт"
+LocLongDescription="Дистанционная пси-атака по органическим целям в области. Ставит пси-метку. Не заканчивает ход. Стоит 1 ед. концентрации."
+LocHelpText="Дистанционная пси-атака по органическим целям в области. Ставит пси-метку. Не заканчивает ход. Стоит 1 ед. концентрации."
+LocPromotionPopupText="<Bullet/> У Вольта нет перезарядки, но есть стоимость 1 ед. концентрации.<br/><Bullet/> Вольт увеличивает меткость отряда по пораженным целям на +<Ability:RECOILAIMBONUS/>.<br/>"
 
 ; Lwotc translated
 [Paramedic_LW X2AbilityTemplate]
