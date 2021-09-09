@@ -10,7 +10,7 @@ var config array<float> CA_RISK_INCREASE_PER_FL;
 var config array<float> CA_AP_REWARD_SCALAR;
 var config array<float> CA_STD_REWARD_SCALAR;
 var config int CA_RISK_FL_CAP;
-var config int AMBUSH_RISK_PER_DIFFICULTY;
+var config int AMBUSH_RISK_MODIFIER;
 
 var config int LISTENER_PRIORITY;
 
@@ -69,7 +69,7 @@ static function CHEventListenerTemplate CreateCovertActionListeners()
 	Template.AddCHEvent('CovertActionRisk_AlterChanceModifier', CAAdjustRiskChance, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertAction_OverrideRiskStrings', CAOverrideRiskStrings, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('CovertAction_OverrideRewardScalar', CAOverrideRewardScalar, ELD_Immediate, GetListenerPriority());
-	Template.AddCHEvent('CovertActionCompleted', CAUpdateUnitOnTraining, ELD_OnStateSubmitted, GetListenerPriority());
+	Template.AddCHEvent('CovertActionCompleted', CAProcessCompletion, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('StaffUpdated', CARecalculateRisksForUI, ELD_OnStateSubmitted, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
@@ -420,10 +420,12 @@ static function EventListenerReturn CAAdjustRiskChance(
 	CAState = XComGameState_CovertAction(EventSource);
 	if (CAState == none) return ELR_NoInterrupt;
 
-	// Modify the Ambush risk based on covert action difficulty
+	// Modify the Ambush risk based the number of covert actions in a row
+	// that haven't been ambushed.
 	if (Tuple.Data[0].n == 'CovertActionRisk_Ambush')
 	{
-		Tuple.Data[4].i += (class'Helpers_LW'.static.GetCovertActionDifficulty(CAState) - 1) * default.AMBUSH_RISK_PER_DIFFICULTY;
+		Tuple.Data[4].i += class'XComGameState_CovertActionTracker'.static.CreateOrGetCovertActionTracker(GameState).ActionsCompletedWithoutAmbush *
+			default.AMBUSH_RISK_MODIFIER;
 		return ELR_NoInterrupt;
 	}
 	
@@ -569,28 +571,61 @@ static function EventListenerReturn CAOverrideRewardScalar(
 }
 
 // We need to keep track of how many times units go on the Intense
-// Training covert action.
-static function EventListenerReturn CAUpdateUnitOnTraining(
+// Training covert action and how many covert actions have not
+// been ambushed (that have an ambush risk).
+static function EventListenerReturn CAProcessCompletion(
 	Object EventData,
 	Object EventSource,
 	XComGameState GameState,
 	Name EventID,
 	Object CallbackData)
 {
+	local XComGameState NewGameState;
 	local XComGameStateHistory History;
-	local XComGameState_CovertAction CAState;
+	local XComGameState_CovertAction CAState, PrevCAState;
+	local XComGameState_CovertActionTracker CATracker;
 	local XComGameState_StaffSlot SlotState;
 	local XComGameState_Unit UnitState;
 	local CovertActionStaffSlot StaffSlot;
-	local XComLWTuple Tuple;
 	local UnitValue UnitValue;
-
-	Tuple = XComLWTuple(EventData);
-	if (Tuple == none) return ELR_NoInterrupt;
 
 	CAState = XComGameState_CovertAction(EventSource);
 	if (CAState == none) return ELR_NoInterrupt;
 
+	// We want to keep track of how many covert actions with an ambush
+	// risk have not been ambushed in a row. This is so we can increase
+	// the ambush chance the more covert actions have not been ambushed.
+	if (CAState.GetMyTemplate().Risks.Find('CovertActionRisk_Ambush') != INDEX_NONE)
+	{
+		// We need to get the last covert action state from history because
+		// the `bAmbushed` flag is cleared just before the covert action
+		// completion processing happens.
+		PrevCAState = XComGameState_CovertAction(`XCOMHISTORY.GetPreviousGameStateForObject(CAState));
+		if (PrevCAState.bAmbushed)
+		{
+			// Covert action was ambushed, so reset the counter
+			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Reset non-ambushed CA counter");
+			CATracker = class'XComGameState_CovertActionTracker'.static.CreateOrGetCovertActionTracker(NewGameState);
+			CATracker = XComGameState_CovertActionTracker(NewGameState.ModifyStateObject(class'XComGameState_CovertActionTracker', CATracker.ObjectID));
+			CATracker.ActionsCompletedWithoutAmbush = 0;
+			`GAMERULES.SubmitGameState(NewGameState);
+		}
+		else
+		{
+			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Increment non-ambushed CA counter");
+			CATracker = class'XComGameState_CovertActionTracker'.static.CreateOrGetCovertActionTracker(NewGameState);
+			CATracker = XComGameState_CovertActionTracker(NewGameState.ModifyStateObject(class'XComGameState_CovertActionTracker', CATracker.ObjectID));
+			CATracker.ActionsCompletedWithoutAmbush++;
+		}
+
+		// We need to force ambush risk values to be updated for all currently
+		// available covert actions, otherwise they will remain as they were
+		// before this covert action completed.
+		RecalculateCovertActionRisks(NewGameState);
+		`GAMERULES.SubmitGameState(NewGameState);
+	}
+
+	// Now handle the Intense Training covert action
 	if (CAState.GetMyTemplateName() != 'CovertAction_IntenseTraining')
 		return ELR_NoInterrupt;
 
@@ -607,6 +642,23 @@ static function EventListenerReturn CAUpdateUnitOnTraining(
 	}
 
 	return ELR_NoInterrupt;
+}
+
+// 
+static function RecalculateCovertActionRisks(XComGameState NewGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_CovertAction CAState;
+
+	History = `XCOMHISTORY;
+	foreach History.IterateByClassType(class'XComGameState_CovertAction', CAState)
+	{
+		if (CAState.GetMyTemplate().Risks.Find('CovertActionRisk_Ambush') != INDEX_NONE)
+		{
+			CAState = XComGameState_CovertAction(NewGameState.ModifyStateObject(class'XComGameState_CovertAction', CAState.ObjectID));
+			CAState.RecalculateRiskChanceToOccurModifiers();
+		}
+	}
 }
 
 // Called when a staff slot is updated, this function will update
