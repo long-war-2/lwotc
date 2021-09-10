@@ -33,7 +33,7 @@ static function array<X2DataTemplate> CreateTemplates()
 {	local array<X2DataTemplate> Weapons;
 	Weapons.AddItem(Create_SparkRifle_Laser());
 	Weapons.AddItem(Create_SparkRifle_Coil());
-	Weapons.AddItem(Create_SPARKChaingun());
+	//Weapons.AddItem(Create_SPARKChaingun());
 	
 
 	
