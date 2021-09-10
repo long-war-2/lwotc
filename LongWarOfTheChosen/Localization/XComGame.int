@@ -480,8 +480,8 @@ LocPromotionPopupText="<Bullet/> You will parry any grazed melee attack against 
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="Flush"
-LocLongDescription="Special shot but has +30 to hit that does half damage, confers dodge penalties and forces target to change position if it hits."
-LocHelpText="Special shot but has +30 to hit that does half damage, confers dodge penalties and forces target to change position if it hits.."
+LocLongDescription="Special shot but has +35 to hit that does -25% damage, confers dodge penalties and forces target to change position if it hits."
+LocHelpText="Special shot but has +35 to hit that does 25% damage, confers dodge penalties and forces target to change position if it hits.."
 LocFlyOverText="Flush"
 ; LWOTC needs translation (2)
 LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> +<Ability:FLUSH_AIM_BONUS/> bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
