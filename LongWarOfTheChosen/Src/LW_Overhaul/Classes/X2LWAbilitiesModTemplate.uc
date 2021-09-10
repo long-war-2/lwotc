@@ -233,9 +233,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'DevastatingPunch':
 			RemoveAbilityWeaponDamage(Template);
 			break;
-		case 'MarkTarget':
 		case 'MindSpin':
-		case 'MassMindSpin':
+			ReworkMindSpin(Template);
+		case 'MarkTarget':
 		class'Helpers_LW'.static.MakeFreeAction(Template);
 			break;
 
@@ -1783,6 +1783,69 @@ static function UpdateLaunchGrenade(X2AbilityTemplate Template)
 			X2AbilityCost_ActionPoints(Cost).DoNotConsumeAllSoldierAbilities.AddItem('TotalCombat');
 		}
 	}
+}
+
+static function ReworkMindSpin(X2AbilityTemplate Template)
+{
+	local X2Effect Effect;
+	local X2Effect_MindControl MindControlEffect;
+	local X2Effect_RemoveEffects MindControlRemoveEffects;
+	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
+	local X2Condition_UnitEffects EffectsCondition;
+	local X2Effect_Persistent DisorientedEffect;
+	local X2Effect_Panicked PanickedEffect;
+	//Remove random mind control
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_MindControl');
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_RemoveEffects');
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Persistent');
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Panicked');
+
+
+	EffectsCondition = new class'X2Condition_UnitEffects';
+	EffectsCondition.AddExcludeEffect(class'X2AbilityTemplateManager'.default.PanickedName, 'AA_AbilityUnavailable');
+	EffectsCondition.AddExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName, 'AA_AbilityUnavailable');
+	EffectsCondition.AddExcludeEffect(class'X2AbilityTemplateManager'.default.StunnedName, 'AA_AbilityUnavailable');
+	EffectsCondition.AddExcludeEffect(class'X2Effect_MindControl'.default.EffectName, 'AA_AbilityUnavailable');
+
+
+
+	NeedOneOfTheEffects = new class'X2Condition_TargetHasOneOfTheEffects';
+	NeedOneOfTheEffects.EffectNames.AddItem(class'X2AbilityTemplateManager'.default.PanickedName);
+	NeedOneOfTheEffects.EffectNames.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	NeedOneOfTheEffects.EffectNames.AddItem(class'X2AbilityTemplateManager'.default.StunnedName);
+
+
+	MindControlEffect = class'X2StatusEffects'.static.CreateMindControlStatusEffect(class'X2Ability_Sectoid'.default.SECTOID_MINDSPIN_CONTROL_DURATION);
+	MindControlEffect.TargetConditions.AddItem(NeedOneOfTheEffects);
+	Template.AddTargetEffect(MindControlEffect);
+
+	MindControlRemoveEffects = class'X2StatusEffects'.static.CreateMindControlRemoveEffects();
+	MindControlRemoveEffects.DamageTypes.AddItem('Mental');
+	MindControlRemoveEffects.TargetConditions.AddItem(NeedOneOfTheEffects);
+	Template.AddTargetEffect(MindControlRemoveEffects);
+
+
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+	DisorientedEffect.iNumTurns = class'X2Ability_Sectoid'.default.SECTOID_MINDSPIN_DISORIENTED_DURATION;
+	DisorientedEffect.MinStatContestResult = 1;
+	DisorientedEffect.MaxStatContestResult = 1;
+	DisorientedEffect.TargetConditions.AddItem(EffectsCondition);
+	Template.AddTargetEffect(DisorientedEffect);
+	//  Disorient effect for 2 unblocked psi hits
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+	DisorientedEffect.iNumTurns = class'X2Ability_Sectoid'.default.SECTOID_MINDSPIN_DISORIENTED_DURATION + 1;
+	DisorientedEffect.MinStatContestResult = 2;
+	DisorientedEffect.MaxStatContestResult = 2;
+	DisorientedEffect.TargetConditions.AddItem(EffectsCondition);
+	Template.AddTargetEffect(DisorientedEffect);
+
+	PanickedEffect = class'X2StatusEffects'.static.CreatePanickedStatusEffect();
+	PanickedEffect.MinStatContestResult = 3;
+	PanickedEffect.MaxStatContestResult = 0;
+	PanickedEffect.TargetConditions.AddItem(EffectsCondition);
+	Template.AddTargetEffect(PanickedEffect);
+
+
 }
 defaultproperties
 {

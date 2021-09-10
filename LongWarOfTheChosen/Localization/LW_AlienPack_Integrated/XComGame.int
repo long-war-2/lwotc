@@ -45,6 +45,13 @@ LocHelpText="Launch a debilitating psionic attack against multiple targets that 
 LocPromotionPopupText="<Bullet/> Launch a debilitating psionic attack against multiple targets target that can inflict different negative conditions, including mental control."
 LocMissMessage="Mindspin resisted!"
 
+[Mindspin X2AbilityTemplate]
+LocFriendlyName="Mindspin"
+LocLongDescription="Debilitating telepathic attack that can inflict different negative mental conditions. It won't mind control by default, but it's guaranteed to mind control against stunned, panicked, or disoriented units."
+LocHelpText="Launch a debilitating Psionic attack against a target that can inflict different negative mental conditions. It won't mind control by default, but it's guaranteed to mind control against stunned, panicked, or disoriented units."
+LocFlyOverText="Mindspin"
+LocMissMessage="Mindspin resisted!"
+
 [LWDroneShock X2AbilityTemplate]
 LocFriendlyName="Drone Shock"
 LocLongDescription="Intended to pacify civilians, this effect does minimal damage and only disorients."
