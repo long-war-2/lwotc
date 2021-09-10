@@ -449,12 +449,13 @@ LocLongDescription="Area Suppression suppresses enemies in a 5-tile radius."
 LocHelpText="Wider Area Suppression."
 LocPromotionPopupText="<Bullet/> Area Suppression suppresses enemies in a 5-tile radius.<br/>
 
-[Lockdown X2AbilityTemplate]
-LocFriendlyName="Lockdown"
-LocFlyOverText="Lockdown"
-LocLongDescription="Gain +<Ability:LOCKDOWN_TOHIT_BONUS/> to hit against enemies who attempt to move when suppressed."
-LocHelpText="Bonus hit chance and damage to enemies who attempt to move when suppressed."
-LocPromotionPopupText="<Bullet/> Gain +<Ability:LOCKDOWN_TOHIT_BONUS/> to hit against enemies who attempt to move when suppressed.<br/><Bullet/> This stacks with other reaction fire bonuses."
+
+[BulletWizard X2AbilityTemplate]
+LocFriendlyName="Bullet Wizard"
+LocFlyOverText="Bullet Wizard"
+LocLongDescription="Grants Area suppression. Suppression and Area suppression deal small amount of damage to the targets."
+LocHelpText="Grants Area suppression. Suppression and Area suppression deal small amount of damage to the targets."
+LocPromotionPopupText="<Bullet/> The Damage is 1/2/3/4/5 depending on the weapon tier."
 
 [LockdownBonuses X2AbilityTemplate]
 LocFriendlyName="Lockdown"
