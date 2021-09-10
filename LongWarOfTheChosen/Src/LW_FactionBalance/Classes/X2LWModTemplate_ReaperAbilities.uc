@@ -25,7 +25,7 @@ var config int BANISH_COOLDOWN;
 var const name BanishFiredTimes;
 
 var config int DEATH_DEALER_CRIT;
-
+var config int SHADOW_FLAT_MOB_BONUS;
 var localized string ShadowExpiredFlyover;
 
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
@@ -96,6 +96,7 @@ static function MakeShadowTemporary(X2AbilityTemplate Template)
 	local X2AbilityCooldown Cooldown;
 	local X2Condition_UnitProperty SuperConcealedCondition;
 	local int i;
+	local X2Effect_PersistentStatChange StatEffect;
 
 	// Kill the charges and the charge cost
 	Template.AbilityCosts.Length = 0;
@@ -142,6 +143,13 @@ static function MakeShadowTemporary(X2AbilityTemplate Template)
 	StayConcealedEffect.EffectName = 'ShadowIndividualConcealment';
 	StayConcealedEffect.BuildPersistentEffect(1, true, false);
 	Template.AddTargetEffect(StayConcealedEffect);
+
+	StatEffect = new class'X2Effect_PersistentStatChange';
+	StatEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
+	StatEffect.bRemoveWhenTargetConcealmentBroken = true;
+	StatEffect.AddPersistentStatChange(eStat_Mobility, default.SHADOW_FLAT_MOB_BONUS);
+	Template.AddTargetEffect(StatEffect);
+
 
 	Template.AddTargetEffect(CreateTemporaryShadowEffect());
 	Template.AdditionalAbilities.AddItem('RemoveShadowOnConcealmentLostTrigger');

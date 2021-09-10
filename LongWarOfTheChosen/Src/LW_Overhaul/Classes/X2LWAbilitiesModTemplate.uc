@@ -730,7 +730,7 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 		}
 	}	
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone';
 
 	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
@@ -751,7 +751,7 @@ static function UpdatePurifierFlamethrower(X2AbilityTemplate Template)
 
 	// For vanilla targeting
 	Template.PostActivationEvents.AddItem('FlamethrowerActivated');
-	Template.ActionFireClass = class'X2Action_Fire_Flamethrower_LW';
+	Template.ActionFireClass = class'X2Action_Fire_Flamethrower_Purifier';
 
 	//Template.BuildVisualizationFn = class'X2Ability_LW_TechnicalAbilitySet'.static.LWFlamethrower_BuildVisualization;
 
@@ -1023,7 +1023,6 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	local X2Effect_Burning BurningEffect;
 	local X2Effect_ApplyWeaponDamage DamageEffect;
 	local array<name> SkipExclusions;
-	local X2Condition_UnitImmunities UnitImmunityCondition;
 
 	ShooterCondition = new class'X2Condition_UnitProperty';
 	ShooterCondition.ExcludeConcealed = true;
@@ -1072,10 +1071,6 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	DamageEffect.TargetConditions.AddItem(TargetCondition);
 	Template.AddTargetEffect(DamageEffect);
 	Template.AddMultiTargetEffect(DamageEffect);
-
-	UnitImmunityCondition = new class'X2Condition_UnitImmunities';
-	UnitImmunityCondition.AddExcludeDamageType('Fire');
-	Template.AbilityTargetConditions.AddItem(UnitImmunityCondition);
 
 	DangerZoneBonus.RequiredAbility = 'MindScorchDangerZone';
 	DangerZoneBonus.fBonusRadius = `TILESTOMETERS(class'X2LWModTemplate_TemplarAbilities'.default.VOLT_DANGER_ZONE_BONUS_RADIUS) + 0.01;

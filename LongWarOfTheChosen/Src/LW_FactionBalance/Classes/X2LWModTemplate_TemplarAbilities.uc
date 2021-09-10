@@ -26,6 +26,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	case 'ArcWave':
 		UpdateArcWave(Template);
 	case 'Rend':
+		MakeRendNotWorkWhenBurning(Template);
 	case 'TemplarBladestormAttack':
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
@@ -393,6 +394,18 @@ static function MakeGhostCooldownInsteadOfCharges(X2AbilityTemplate Template)
 
 }
 
+static function MakeRendNotWorkWhenBurning(X2AbilityTemplate Template)
+{
+	local X2Condition Condition;
+
+	foreach Template.AbilityShooterConditions(Condition)
+	{
+		if(Condition.isA(class'X2Condition_UnitEffects'.name))
+		{
+			X2Condition_UnitEffects(Condition).AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
+		}
+	}
+}
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities

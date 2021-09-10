@@ -29,8 +29,8 @@ EnableRandomizedLevelupStatsModTooltip="在升级后士兵们会随机提升数�
 RandomizedLevelupStrength="随机性：<XGParam:IntValue0>%"
 RandomizedLevelupStrengthTooltip="当隐藏潜力启用时随机性的程度。更高的设定意味着士兵将有可能在升级时获得更多的数值增加。"
 
-EnableRedFogMod="红色迷雾"
-EnableRedFogModTooltip="受伤的单位将受到瞄准，意志，移动力和黑客技能惩罚。"
+EnableRedFogMod="血雾"
+EnableRedFogModTooltip="受伤的单位将受到命中，意志，移动力和侵入惩罚。"
 EnableRedFogLinearPenaltiesMod="使用线性血雾减益（而不是平方）"
 EnableRedFogModLinearPenaltiesTooltip="单位将会在轻伤时受到更高的数值惩罚。"
 RedFogOptions[0]="关闭"
@@ -39,7 +39,7 @@ RedFogOptions[2]="仅限外星人"
 RedFogOptions[3]="所有"
 
 EnableSimCombatMod="允许战斗自动处理"
-EnableSimCombatModTooltip="在小队选择内启用选项以为目前选择的小队自动处理战斗任务。因为它与特定的官方DLC不兼容，所以此功能需要debug控制台开启，并使用控制台命令LWSetAutoResolveEnabled true来激活菜单选项。仅推荐模组制作者将其作为debug工具使用。"
+EnableSimCombatModTooltip="在小队选项内启用此设定，为目前选择的小队自动处理战斗任务。因为它与特定的官方DLC不兼容，所以此功能需要debug控制台开启，并使用控制台命令LWSetAutoResolveEnabled true来激活菜单选项。仅推荐模组制作者将其作为debug工具使用。"
 
 [X2Effect_RedFog_LW]
 RedFogEffectName="血雾"
@@ -50,7 +50,7 @@ m_strStripWeapons="使武器可用"
 m_strStripWeaponsConfirm="确认使武器可用"
 
 m_strStripWeaponsConfirmDesc="确认卸下未被选入本次任务的士兵的所有武器。这些装备可以给任何需要的士兵立即装备上。"
-m_strTooltipStripWeapons="移除所有没有被选为目前任务的士兵的武器。"
+m_strTooltipStripWeapons="移除所有未被选入目前任务的士兵的武器。"
 
 m_strTooltipNeedsFrontRowSoldier=""
 m_strClearSquad="清空小队"

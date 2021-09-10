@@ -1111,7 +1111,14 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 
-		
+	// Make Snap Shot and Death from Above mutually exclusive as they
+	// constitute way too much power when combined together, for little
+	// cost (and early).
+	if (Template.DataName == 'SnapShot')
+		Template.PrerequisiteAbilities.AddItem('NOT_DeathFromAbove');
+	if (Template.DataName == 'DeathFromAbove')
+		Template.PrerequisiteAbilities.AddItem('NOT_SnapShot');
+
 	if (Template.DataName == 'Stasis' || Template.DataName == 'PriestStasis')
 	{
 		UnitPropertyCondition = new class 'X2Condition_UnitProperty';
@@ -2308,6 +2315,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('ChosenCritImmune');
 		Template.Abilities.AddItem('ChosenImmunitiesPassive');
 		Template.Abilities.AddItem('ChosenLootAbility');
+		Template.Abilities.AddItem('TriggerDamagedTeleport');
 
 		Template.InitiativePriority = -100;
 
@@ -2338,6 +2346,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('Disabler');
 		Template.Abilities.AddItem('ChosenLootAbility');
+		Template.Abilities.AddItem('TriggerDamagedTeleport');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
@@ -2351,7 +2360,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.RemoveItem('BendingReed');
 
 		Template.Abilities.AddItem('ChosenCritImmune');
-		Template.Abilities.AddItem('Banzai_LW');
+		Template.Abilities.AddItem('CombatReadiness');
 		Template.Abilities.AddItem('ChosenKidnap');
 		Template.Abilities.AddItem('AssassinReaction');
 		Template.Abilities.AddItem('BloodThirst_LW');
@@ -2362,6 +2371,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('ImpactCompensation_LW');
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('ChosenLootAbility');
+		Template.Abilities.AddItem('Unstoppable_LW');
+		Template.Abilities.AddItem('TriggerDamagedTeleport');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;

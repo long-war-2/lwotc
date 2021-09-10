@@ -79,8 +79,10 @@ LocFriendlyName="Apotheosis"
 ; LWOTC Needs Translation (2)
 LocFlyoverText="Apotheosis!"
 ; End Translation (2)
-LocLongDescription="Become a god, massively increasing your dodge, Rend damage and mobility. Requires a minimum of 3 focus and consumes it all."
-LocHelpText="Become a god, massively increasing your dodge, Rend damage and mobility. Requires a minimum of 3 focus and consumes it all."
+; LWOTC Needs Translation (2)
+LocLongDescription="Become a god, massively increasing your dodge, damage and mobility. Requires a minimum of 3 focus and consumes it all."
+LocHelpText="Become a god, massively increasing your dodge, damage and mobility. Requires a minimum of 3 focus and consumes it all."
+; End Translation (2)
 ; LWOTC Needs Translation (3)
 LocPromotionPopupText="<Bullet/> A free action that makes the Templar substantially more powerful for two turns.<br/><Bullet/> Increases all damage by <Ability:ApotheosisDamageMultiplier/>% for each point of focus above 2.<br/><Bullet/> Increases Dodge by <Ability:ApotheosisDodgeBonus/> for each point of focus above 2.<br/><Bullet/> Increases mobility by <Ability:ApotheosisMobilityBonus/> for each point of focus above 2.<br/><Bullet/> Requires a minimum of 3 focus.<br/><Bullet/> Consumes all focus.<br/><Bullet/> The Templar can gain focus while under the effect of Apotheosis."
 ; End Translation (3)
@@ -133,38 +135,47 @@ LocPromotionPopupText="<Bullet/> Use Shadow's increased mobility and smaller ene
 ; End Translation
 
 ; LWOTC Needs Translation
+; LWOTC Needs Translation (2)
 [RendTheMarked X2AbilityTemplate]
 LocFriendlyName="Rend The Marked"
-LocHelpText="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
-LocLongDescription="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
-LocPromotionPopupText="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> Crit chance against the target from all sources for the remainder of the turn."
+LocHelpText="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> crit chance against the target from all sources for the remainder of the turn."
+LocLongDescription="Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> crit chance against the target from all sources for the remainder of the turn."
+LocPromotionPopupText="<Bullet/> Throwing knives apply a stacking +<Ability:REND_THE_MARKED_CRIT/> crit chance against the target from all sources for the remainder of the turn."
+; End Translation (2)
+
 
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="Knife Encounters"
 LocFlyOverText="Knife Encounters"
-LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles."
-LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles."
-LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun.<br/>"
+;LWOTC needs Translation(2)
+LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Cheap Shot."
+LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Cheap Shot."
+LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun, or Cheap Shot.<br/>"
+;LWOTC End Translation(2)
 
+; LWOTC Needs Translation (2)
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
 LocFlyOverText="Impersonal Edge"
-LocLongDescription="Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocHelpText="Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocPromotionPopupText="<Bullet/> "Reduce Shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
+LocLongDescription="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
+LocHelpText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
+LocPromotionPopupText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns.<br/>"
 
 [ImpersonalEdgePassive X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
 LocFlyOverText="Impersonal Edge"
-LocLongDescription="Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocHelpText="Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife."
-LocPromotionPopupText="<Bullet/> "Reduce shadow cooldown by 1 and gain a stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns when you get a kill with a throwing knife.<br/>"
+LocLongDescription="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
+LocHelpText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns."
+LocPromotionPopupText="When you get a kill with a throwing knife, reduce Shadow cooldown by 1 and gain stackable +<Ability:IMPERSONAL_EDGE_AIM/> aim buff for 3 turns.<br/>"
+; End Translation (2)
 
 [BlueScreenKnives X2AbilityTemplate]
 LocFriendlyName="Bluescreen knives"
 LocHelpText="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
 LocLongDescription="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
-LocPromotionPopupText="Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Throwing knives gain +<Ability:BLUESCREEN_KNIVES_PIERCE/> pierce and will disorient robotic units."
+; End Translation (2)
 
 ; LWOTC Needs Translation
 [BattlefieldAwareness X2AbilityTemplate]
@@ -186,7 +197,17 @@ LocFriendlyName="Battlefield Awareness Cooldown"
 LocLongDescription="Battlefield Awareness will not activate until this effect ends."
 LocHelpText="Battlefield Awareness will not activate until this effect ends."
 
-; End Translation
 
 [CombatPresence X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Combat Presence can be used to get squadmates out of tough situations where they need an extra attack or move.<br/><Bullet/> Combat Presence has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+
+
+; LWOTC Needs Translation
+
+[CheapShot X2AbilityTemplate]
+LocFriendlyName="Cheap Shot"
+LocFlyOverText="Cheap Shot"
+LocLongDescription= "Once per turn, Gain a movement action after shooting a unit damaged this turn with standard shot of your primary weapon. Cannot trigger on the same turn as Knife Encounters."
+LocHelpText="Once per turn, Gain a movement action after shooting a unit damaged this turn with standard shot of your primary weapon. Cannot trigger on the same turn as Knife Encounters."
+LocPromotionPopupText="<Bullet/> Works only for standard shots, so it won't trigger for abilities like banish."
+; End Translation

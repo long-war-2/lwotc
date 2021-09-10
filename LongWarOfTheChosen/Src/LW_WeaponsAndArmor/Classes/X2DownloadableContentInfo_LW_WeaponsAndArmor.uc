@@ -197,12 +197,39 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	Type = name(InString);
 	switch (Type)
 	{
-	case 'KnifeJugglerBonusDamage':
-		OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.KNIFE_JUGGLER_BONUS_DAMAGE);
-		return true;
-	case 'KnifeJugglerExtraAmmo':
-		OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.KNIFE_JUGGLER_EXTRA_AMMO);
-		return true;
+		case 'KnifeJugglerBonusDamage':
+			OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.KNIFE_JUGGLER_BONUS_DAMAGE);
+			return true;
+		case 'KnifeJugglerExtraAmmo':
+			OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.KNIFE_JUGGLER_EXTRA_AMMO);
+			return true;
+		case 'THROWING_KNIFE_CV_BLEED_CHANCE':
+			OutString = string(class'X2Item_SecondaryThrowingKnives'.default.THROWING_KNIFE_CV_BLEED_CHANCE);
+			return true;
+		case 'THROWING_KNIFE_CV_BLEED_DURATION':
+			OutString = string(class'X2Item_SecondaryThrowingKnives'.default.THROWING_KNIFE_CV_BLEED_DURATION);
+			return true;
+		case 'THROWING_KNIFE_CV_BLEED_DAMAGE':
+			OutString = string(class'X2Item_SecondaryThrowingKnives'.default.THROWING_KNIFE_CV_BLEED_DAMAGE);
+			return true;
+		case 'THROWING_KNIFE_MG_BLEED_CHANCE':
+			OutString = string(class'X2Item_SecondaryThrowingKnives'.default.THROWING_KNIFE_MG_BLEED_CHANCE);
+			return true;
+		case 'THROWING_KNIFE_MG_BLEED_DURATION':
+			OutString = string(class'X2Item_SecondaryThrowingKnives'.default.THROWING_KNIFE_MG_BLEED_DURATION);
+			return true;
+		case 'THROWING_KNIFE_MG_BLEED_DAMAGE':
+			OutString = string(class'X2Item_SecondaryThrowingKnives'.default.THROWING_KNIFE_MG_BLEED_DAMAGE);
+			return true;
+		case 'THROWING_KNIFE_BM_BLEED_CHANCE':
+			OutString = string(class'X2Item_SecondaryThrowingKnives'.default.THROWING_KNIFE_BM_BLEED_CHANCE);
+			return true;
+		case 'THROWING_KNIFE_BM_BLEED_DURATION':
+			OutString = string(class'X2Item_SecondaryThrowingKnives'.default.THROWING_KNIFE_BM_BLEED_DURATION);
+			return true;
+		case 'THROWING_KNIFE_BM_BLEED_DAMAGE':
+			OutString = string(class'X2Item_SecondaryThrowingKnives'.default.THROWING_KNIFE_BM_BLEED_DAMAGE);
+			return true;
 	}
 
 	return false;

@@ -1,11 +1,12 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    XComGameState_CovertActionTracker.uc
 //  AUTHOR:  Peter Ledbrook
-//  PURPOSE: This singleton object manages general persistent listeners that should live for both strategy and tactical play
+//  PURPOSE: Tracks information about covert actions across a campaign.
 //---------------------------------------------------------------------------------------
 class XComGameState_CovertActionTracker extends XComGameState_BaseObject;
 
 var bool LastAmbushMissionFailed;
+var int ActionsCompletedWithoutAmbush;
 
 static function XComGameState_CovertActionTracker CreateOrGetCovertActionTracker(optional XComGameState NewGameState)
 {
@@ -25,6 +26,7 @@ static function XComGameState_CovertActionTracker CreateOrGetCovertActionTracker
 	{
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Creating Covert Action Tracker Singleton");
 		CATracker = XComGameState_CovertActionTracker(NewGameState.CreateNewStateObject(class'XComGameState_CovertActionTracker'));
+		`GAMERULES.SubmitGameState(NewGameState);
 	}
 
     return CATracker;

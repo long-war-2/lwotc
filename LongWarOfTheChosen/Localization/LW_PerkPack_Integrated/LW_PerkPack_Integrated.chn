@@ -49,7 +49,7 @@ LocCoveringFire="掩护火力"
 LocCoveringFireMalus="该单位已经被一名具有掩护火力技能的监视单位瞄准，在本回合剩余时间-10命中。"
 ; LWOTC Needs Translation
 LocSoulStealBuff="灵魂灼烧"
-LocSoulStealBuffHelpText="灵魂汲取在治疗过度时给予护盾"
+LocSoulStealBuffHelpText="灵魂汲取在治疗过度时给予护盾。"
 ; End Translation
 
 ; LWOTC Needs Translation
