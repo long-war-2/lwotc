@@ -54,6 +54,12 @@ They can only do that on a prime reaction, and when they have no other available
  * Hunt down the chosen part III covert action now requires 3 master sergeants, and the duration of the covert action is increased by 8 days
 
  Chosen avenger, on average, should happen much later, and people should no longer have any problems killing them before they can launch the avenger assault.
+ 
+ * Chosen assassin no longer has banzai and is able to purge any debuffs but maim
+ * New Ability: Unstoppable - Your Mobility cannot go below 7.
+ * Assassin gains Unstoppable
+
+ * Lightning reflexes and shadowstep strengths on warlock and hunter are now replaced with moving target
 
  * Chosen Research sabotage reduced to 12 days from 21
  * Chosen Weapon sabotage now steals from 8 to 10 weapon upgrades and requires at least 8 upgrades to activate
