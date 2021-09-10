@@ -24,7 +24,7 @@ This build largely contains balance changes.
  * Vektor rifle now grants +10 aim
  * Shadow now grants flat 3 mobility from 20%
  * Banish cooldown to 3 from 4
- * Death dealer bonus crit to 20 from 15
+ * Death dealer bonus crit to 25 from 15
  * Switched ghost grenade and rapid deployment
  * New ability: Cheap shot - Once per turn, Gain a movement action after shooting a unit damaged this turn with standard shot of your primary weapon. Cannot trigger on the same turn as Knife Encounters.
  * Reaper now gets squadsight on squaddie
