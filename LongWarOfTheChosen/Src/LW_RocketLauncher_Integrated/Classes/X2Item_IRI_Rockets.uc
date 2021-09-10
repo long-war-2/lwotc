@@ -80,7 +80,7 @@ static function X2DataTemplate Create_Rocket_Standard()
 
 	Template.Abilities.AddItem('GrenadeFuse');
 	Template.Abilities.AddItem('IRI_FireRocket');
-	Template.Abilities.AddItem('IRI_RocketMobilityPenalty');
+	//Template.Abilities.AddItem('IRI_RocketMobilityPenalty');
 	//Template.Abilities.AddItem('IRI_GiveRocket');
 
 	Template.MobilityPenalty = 1.0f;
@@ -149,7 +149,7 @@ static function X2DataTemplate Create_Rocket_Plasma()
 	Template.Abilities.AddItem('GrenadeFuse');
 	Template.Abilities.AddItem('IRI_FireRocket');
 	//Template.Abilities.AddItem('IRI_DisplayRocket');
-	Template.Abilities.AddItem('IRI_RocketMobilityPenalty');
+	//Template.Abilities.AddItem('IRI_RocketMobilityPenalty');
 	//Template.Abilities.AddItem('IRI_GiveRocket');
 
 	Template.MobilityPenalty = 1.0f;
