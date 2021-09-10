@@ -8,7 +8,6 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	local XComWorldData World;
 	local TTIle TeleportToTile;
 	local Vector PreferredDirection;
-	local X2EventManager EventManager;
 
 	History = `XCOMHISTORY;
 	World = `XWORLD;
