@@ -1019,8 +1019,8 @@ AbilityDescName="combat knife"
 
 ;LWOTC needs translation
 [CombatKnife_BM X2WeaponTemplate]
-FriendlyName="Advanced Vibroblade"
-FriendlyNamePlural="Advanced Vibroblades"
+FriendlyName="Fusion Knife"
+FriendlyNamePlural="Fusion Knives"
 BriefSummary="Dangerous melee weapon for personal defense in close quarters. The Advanced Vibroblade has been enhanced to be sharper, stronger, and more precise."
 TacticalText="<Bullet/> A knife attack requires one action and does not end your turn.<br/>"
 AbilityDescName="combat knife"
@@ -1095,9 +1095,9 @@ AbilityDescName="SMG"
 TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Bullpup's tactical effectiveness."
 
 [Bullpup_LS X2WeaponTemplate]
-FriendlyName="Kal-13 \"Bullpup\""
-FriendlyNamePlural="Kal-13 \"Bullpups\""
-BriefSummary="We can manufacture a modified Laser SMG that can be used by Skirmishers. While Dr.Tygan has correctly stated that this is in fact not a Bullpup, its compact frame and the additional tweaks we've made are enough for them to seriously consider its use in battle."
+FriendlyName="Kal-33 Bullpup"
+FriendlyNamePlural="Kal-33 Bullpups"
+BriefSummary="Unlike most of our pulse laser designs, the bullpup version has more strict size requirements, so we had to significantly reduce the pulse rate to prevent the weapon from overheating. This makes the weapon feel more like a traditional automatic firearm rather than a continuous beam weapon, and makes it harder to deliver deep, intense burns, although it does make the weapon easier to use at close range."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
@@ -1105,9 +1105,9 @@ AbilityDescName="bullpup"
 TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-15 Bullpup's tactical effectiveness."
 
 [Bullpup_CG X2WeaponTemplate]
-FriendlyName="Kal-69 \"Bullpup\""
-FriendlyNamePlural="Kal-69 \"Bullpups\""
-BriefSummary="As the Bullpup frame the skirmishers employ for their weapons has proven too weak to be able control the recoil of a coil weapon and withstand potential damage, we've instead decided to adapt a model of our Subcoilers for field use by skirmishers, just like we did with the Kal-13 \"Bullpup\"."
+FriendlyName="Kal-69 Bullpup"
+FriendlyNamePlural="Kal-69 Bullpups"
+BriefSummary="Designed according to specifications provided by Betos herself, the coil version of the Skirmisher bullpup is a compact and well-balanced weapon. The reduced number of magnetic coils and smaller propellant charges limit its stopping power and accuracy at long range, but superior balance and high rate of fire make it easy to handle and reliable in close quarters."
 TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-69 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
@@ -1118,43 +1118,27 @@ TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage
 [VektorRifle_CV X2WeaponTemplate]
 TacticalText="<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
 
-[CrossbowVektor_CV X2WeaponTemplate]
-FriendlyName="Tactical Crossbow"
-FriendlyNamePlural="Tactical Crossbows"
-BriefSummary="A silent compound crossbow many Reapers prefer to conventional firearms."
-TacticalText="<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> A silent compound crossbow many Reapers prefer to conventional firearms. Functionally the same as a vektor rifle.\n<Bullet/> Use upgrades looted from enemies to improve the crossbows's tactical effectiveness."
-AbilityDescName="crossbow"
-
-; LWOTC Needs Translation (2)
 [Vektor_LS X2WeaponTemplate]
-FriendlyName="Laser Vektor Rifle"
-FriendlyNamePlural="Laser Vektor Rifles"
-BriefSummary="An experimental laser weapon design originating all the way from old-world russia, the Laser Vektor Rifle is close in performance to the traditional marksman rifles used by the Reapers. Now updated with modern alloy shielding and a compact power source, it is quite a formidable weapon in the hands of a skilled sniper."
-TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Laser Vektor Rifle's tactical effectiveness."
+FriendlyName="Crimson Lance"
+FriendlyNamePlural="Crimson Lances"
+BriefSummary="Crimson Lance augments the standard Vektor frame with high density pulse-duration modulated laser oscillators. It's not as powerful as our larger pulse weapon designs, but its ease of use and platform stability grant it unmatched precision. Covered heatsinks reduce the thermal footprint of this weapon, making it harder to track the user."
+TacticalText="Crimson Lance augments the standard Vektor frame with high density pulse-duration modulated laser oscillators. It's not as powerful as our larger pulse weapon designs, but its ease of use and platform stability grant it unmatched precision. Covered heatsinks reduce the thermal footprint of this weapon, making it harder to track the user.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Crimson Lance's tactical effectiveness."
 AbilityDescName="vektor rifle"
-; End Translation (2)
+
+
 
 [VektorRifle_MG X2WeaponTemplate]
 TacticalText="<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Temnotic Rifle's tactical effectiveness."
 
-; LWOTC Needs Translation (2)
 [Vektor_CG X2WeaponTemplate]
-FriendlyName="Temnotic Lance"
-FriendlyNamePlural="Temnotic Lances"
-BriefSummary="Despite the evident firepower of our coilgun technology, a lack of reliability and costly maintenance have so far left the Reapers reluctant to adapt them over the old Temnotic Rifle. This new weapon is the result of a compromise where we did our best to minimize the amount of parts that could fail or break when out in the field."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Temnotic Lance's tactical effectiveness."
+FriendlyName="Tesla Lance"
+FriendlyNamePlural="Tesla Lances"
+BriefSummary="Tesla Lance owes its name to the method of igniting the propellant in its cartridges by an electric current. The long rifled barrel is internally stabilized and does not come in contact with the weapon's frame for its entire length. Both of these factors make this weapon extremely precise and easy to handle."
+TacticalText="Tesla Lance owes its name to the method of igniting the propellant in its cartridges by an electric current. The long rifled barrel is internally stabilized and does not come in contact with the weapon's frame for its entire length. Both of these factors make this weapon extremely precise and easy to handle.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Tesla Lance's tactical effectiveness."
 AbilityDescName="vektor rifle"
-; End Translation (2)
 
 [VektorRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> This is most advanced Vektor Rifle variant available in the XCOM arsenal.\n<Bullet/> Reaper weapons are very accurate at close range, but also maintain good accuracy at longer distances.\n<Bullet/> Use upgrades looted from enemies to improve the Shadow Lance's tactical effectiveness."
-
-[SPARKChaingun X2WeaponTemplate]
-FriendlyName="Heavy Chaingun"
-FriendlyNamePlural="Heavy Chainguns"
-BriefSummary="A massive chaingun with devastating anti-personnel capabilities."
-TacticalText="<Bullet/> This weapon's design is based on R. Shen's blueprints from the original alien invasion.\n<Bullet/> It's functionally identical to the Autocannon. "
-AbilityDescName="Heavy Chaingun"
 
 [SparkRifle_LS X2WeaponTemplate]
 FriendlyName="Heavy Railgun"
@@ -8476,3 +8460,178 @@ LocLongDescription="Advent's standard magnetic grenade"
 LocHelpText="Target a small area with a magnetic grenade."
 
 ;End translation
+
+
+[Sidearm_LS X2WeaponTemplate]
+FriendlyName="Heater"
+FriendlyNamePlural="Heaters"
+BriefSummary="Continuous laser beam of this Autopistol variant effortlessly burns holes in plain and armored targets alike. Variable power output and spacious battery allow this weapon to double as a compact source of heat in cold climate. This unintended, but welcome side effect has earned this weapon its nickname, which has stuck to the point where even Shen can't remember what it was supposed to be called before that."
+TacticalText="Continuous laser beam of this Autopistol variant effortlessly burns holes in plain and armored targets alike. Variable power output and spacious battery allow this weapon to double as a compact source of heat in cold climate. This unintended, but welcome side effect has earned this weapon its nickname, which has stuck to the point where even Shen can't remember what it was supposed to be called before that.<br/><Bullet/> Autopistols can be fired with a single action."
+AbilityDescName="autopistol"
+
+
+[Sidearm_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Pistol_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Pistol_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Sidearm_CG X2WeaponTemplate]
+FriendlyName="Cycler"
+FriendlyNamePlural="Cycler"
+BriefSummary="Cycler was designed from the get-go with two key features in mind: ultracompact dimensions and volume of fire. Switching to caseless ammunition allowed us to achieve both of these goals without significant compromises to accuracy and damage."
+TacticalText="Cycler was designed from the get-go with two key features in mind: ultracompact dimensions and volume of fire. Switching to caseless ammunition allowed us to achieve both of these goals without significant compromises to accuracy and damage.<br/><Bullet/> Autopistols can be fired with a single action."
+AbilityDescName="autopistol"
+
+[Sidearm_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+
+
+[VektorRifle_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+
+
+[VektorRifle_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+
+
+[Bullpup_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+
+[Bullpup_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+[SparkRifle_LS X2WeaponTemplate]
+FriendlyName="Spitfire Pulsecannon"
+FriendlyNamePlural="Spitfire Pulsecannons"
+BriefSummary="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls."
+TacticalText="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Spitfire Pulsecannons's tactical effectiveness."
+AbilityDescName="spitfire pulsecannon"
+
+[SparkRifle_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SPARK"
+
+[SparkRifle_CG X2WeaponTemplate]
+FriendlyName="Rush-Nano Gausscannon"
+FriendlyNamePlural="Rush-Nano Gausscannons"
+BriefSummary="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley."
+TacticalText="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Spitfire Pulsecannons's tactical effectiveness."
+AbilityDescName="rush-nano gausscannon"
+
+[SparkRifle_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SPARK"
+
+
+[IRI_ArtilleryCannon_LS X2WeaponTemplate]
+FriendlyName="RS-9 Redace Superlaser"
+FriendlyNamePlural="RS-9 Redace Superlasers"
+BriefSummary="A pulse laser weapon of the most sophisticated design, Redace Superlaser is capable of causing different effects on targets by modulating the laser beam wavelength and aligning the focusing lens array in different patterns."
+TacticalText="A pulse laser weapon of the most sophisticated design, Redace Superlaser is capable of causing different effects on targets by modulating the laser beam wavelength and aligning the focusing lens array in different patterns.<br/><bullet/> Pulse laser beam fired by the Heavy Cannon can burn through cover, suffering a <Ability:IRI_HEAVY_CANNON_LOW_COVER_DAMAGE_PENALTY/>/<Ability:IRI_HEAVY_CANNON_HIGH_COVER_DAMAGE_PENALTY/> damage penalty instead of an Aim penalty.<br/><bullet/> Heavy Cannons must be reloaded after each shot and they take 2 Action Points to fire.<br/><bullet/> Heavy Cannon's tactical flexibility can be potentially improved by carrying special shell types.<br/><bullet/> All Heavy Cannon attacks benefit from special ammo."
+AbilityDescName="heavy cannon"
+
+[IRI_ArtilleryCannon_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SPARK"
+
+[IRI_ArtilleryCannon_CG X2WeaponTemplate]
+FriendlyName="DON-82 Coilmaster Heavy Cannon"
+FriendlyNamePlural="DON-82 Coilmaster Heavy Cannons"
+BriefSummary="Named after night shift junior technician Donald who nearly made a hole in Avenger's hull while fooling around with its coils, the Coilmaster Heavy Cannon is a versatile smooth-bore artillery piece, capable of delivering shells with various payloads over great distances with unmatched power and precision."
+TacticalText="Named after night shift junior technician Donald who nearly made a hole in Avenger's hull while fooling around with its coils, the Coilmaster Heavy Cannon is a versatile smooth-bore artillery piece, capable of delivering shells with various payloads over great distances with unmatched power and precision.<br/><bullet/> Hypersonic projectiles fired by the Heavy Cannon can break through cover, suffering a <Ability:IRI_HEAVY_CANNON_LOW_COVER_DAMAGE_PENALTY/>/<Ability:IRI_HEAVY_CANNON_HIGH_COVER_DAMAGE_PENALTY/> damage penalty instead of an Aim penalty.<br/><bullet/> Heavy Cannons must be reloaded after each shot and they take 2 Action Points to fire.<br/><bullet/> Heavy Cannon's tactical flexibility can be potentially improved by carrying special shell types.<br/><bullet/> All Heavy Cannon attacks benefit from special ammo."
+AbilityDescName="heavy cannon"
+
+[IRI_ArtilleryCannon_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SPARK"
+
+
+[SawedOffShotgun_LS X2WeaponTemplate]
+FriendlyName="Blazer"
+FriendlyNamePlural="Blazer"
+BriefSummary="Officially designated as Binary Laser, this compact, close range pulse laser weapon has two firing chambers that are loaded with high-impulse disposable power cells. It was immediately dubbed \"Blazer\" by one of our operatives once they saw it fire."
+TacticalText="Officially designated as Binary Laser, this compact, close range pulse laser weapon has two firing chambers that are loaded with high-impulse disposable power cells. It was immediately dubbed \"Blazer\" by one of our operatives once they saw it fire.<br/><Bullet/> Has <Ability:WOTCLW2SW_COLOR_1_OPEN/><Ability:SAWEDOFFSHOTGUN_LS_AMMO/><Ability:WOTCLW2SW_COLOR_CLOSE/> shots per mission without upgrades."
+AbilityDescName="sawed off shotgun"
+
+[SawedOffShotgun_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[SawedOffShotgun_CG X2WeaponTemplate]
+FriendlyName="Coil Shorty"
+FriendlyNamePlural="Coil Shorties"
+BriefSummary="Combine age-old simple design with latest advances in projectile acceleration technology and you'll get a frighteningly effective weapon that will make any foe regret getting too close."
+TacticalText="Combine age-old simple design with latest advances in projectile acceleration technology and you'll get a frighteningly effective weapon that will make any foe regret getting too close.<br/><Bullet/> Has <Ability:WOTCLW2SW_COLOR_1_OPEN/><Ability:SAWEDOFFSHOTGUN_LS_AMMO/><Ability:WOTCLW2SW_COLOR_CLOSE/> shots per mission without upgrades."
+AbilityDescName="sawed off shotgun"
+
+[SawedOffShotgun_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+[WristBlade_LS X2PairedWeaponTemplate]
+FriendlyName="Pulse Ripjack"
+FriendlyNamePlural="Pulse Ripjacks"
+BriefSummary="We have augmented the standard ripjack claw with pulse-projected blade emitters that generate a pair of sharp red talons. Initial field testing has shown that the new claw tends to overheat during prolonged use, but we have received no complaints from Skirmishers."
+TacticalText="We have augmented the standard ripjack claw with pulse-projected blade emitters that generate a pair of sharp red talons. Initial field testing has shown that the new claw tends to overheat during prolonged use, but we have received no complaints from Skirmishers.<Bullet/> Skirmishers can utilize their ripjacks in conjunction with their grapple to become a terror all over the battlefield.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+AbilityDescName="ripjack"
+
+[WristBlade_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SKIRMISHER"
+
+[WristBlade_CG X2PairedWeaponTemplate]
+FriendlyName="Nanotech Ripjack"
+FriendlyNamePlural="Nanotech Ripjacks"
+BriefSummary="The initial prototype of the Nanotech Claw employed monomolecular blades for superior cutting, but field testing by Skirmishers has quickly proven them to be too fragile, so we had to fall back on nanometer-wide cutting edges."
+TacticalText="The initial prototype of the Nanotech Claw employed monomolecular blades for superior cutting, but field testing by Skirmishers has quickly proven them to be too fragile, so we had to fall back on nanometer-wide cutting edges.<Bullet/> Skirmishers can utilize their ripjacks in conjunction with their grapple to become a terror all over the battlefield.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+AbilityDescName="ripjack"
+
+[WristBlade_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SKIRMISHER"
+
+
+[Sword_CG X2WeaponTemplate]
+FriendlyName="Coil Sword"
+FriendlyNamePlural="Coil Swords"
+BriefSummary="Breakthrough advances in alien materials have allowed us to manufacture alloy blades with monomolecular edges. An electromagnetic sharpening system maintains the cutting edge thickness of just one atom, allowing it to cut through most objects without having to apply much force to the swing. We took advantage of that by adding a secondary \"whip\" attack mode with greater reach. AI-controlled gyro-stabilization system guarantees user safety even in the absence of special training this unusual type of weapon would normally require."
+TacticalText="Breakthrough advances in alien materials have allowed us to manufacture alloy blades with monomolecular edges. An electromagnetic sharpening system maintains the cutting edge thickness of just one atom, allowing it to cut through most objects without having to apply much force to the swing. We took advantage of that by adding a secondary \"whip\" attack mode with greater reach. AI-controlled gyro-stabilization system guarantees user safety even in the absence of special training this unusual type of weapon would normally require."
+AbilityDescName="sword"
+
+[Sword_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Sword_LS X2WeaponTemplate]
+FriendlyName="Laser Kriegsmesser"
+FriendlyNamePlural="Laser Kriegsmessers"
+BriefSummary="The laser \"war knife\" is the result of our best effort in the field of projected blade technology. Modulated pulse emitters generate a nearly-solid cutting edge. Shape of the blade is optimized for both slashing and thrusting strikes, and the well-developed cross-guard both protects the user from their own blade and allows to deflect enemy melee attacks with greater effectiveness. A portable battery pack integrated into the sheath ensures sufficient autonomy in the field."
+TacticalText="The laser \"war knife\" is the result of our best effort in the field of projected blade technology. Modulated pulse emitters generate a nearly-solid cutting edge. Shape of the blade is optimized for both slashing and thrusting strikes, and the well-developed cross-guard both protects the user from their own blade and allows to deflect enemy melee attacks with greater effectiveness. A portable battery pack integrated into the sheath ensures sufficient autonomy in the field.
+AbilityDescName="sword"
+
+[Sword_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+[CombatKnife_LS X2WeaponTemplate]
+FriendlyName="Laser Cutlass"
+FriendlyNamePlural="Laser Cutlasses"
+BriefSummary="Laser Cutlass is an advanced melee weapon for personal defense in close quarters. It uses a modified pulse emitter that projects lightwaves with rapidly modulated frequency and wavelength to generate a nearly solid blade that can effortlessly cut through most materials."
+TacticalText="Laser Cutlass is an advanced melee weapon for personal defense in close quarters. It uses a modified pulse emitter that projects lightwaves with rapidly modulated frequency and wavelength to generate a nearly solid blade that can effortlessly cut through most materials.<br/><Bullet/> Lightweight secondary weapon - A knife attack requires one action and does not end your turn.<br/><Bullet/> Attacks with the Combat Knife have a <Ability:WOTCLW2SW_COLOR_2_OPEN/>+<ABILITY:COMBATKNIFE_CV_AIM/>%<Ability:WOTCLW2SW_COLOR_CLOSE/> chance to hit."AbilityDescName="combat knife"
+
+[CombatKnife_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[CombatKnife_CG X2WeaponTemplate]
+FriendlyName="Progressive Knife"
+FriendlyNamePlural="Progressive Knives"
+BriefSummary="Despite its utilitarian appearance, Progressive Knife is a deadly melee weapon. The word \"sharp\" does not even begin to describe its monomolecular cutting edge. The blade is thin and easily broken, so we have set up an automatic replacement system in the knife's hilt."
+TacticalText="Despite its utilitarian appearance, Progressive Knife is a deadly melee weapon. The word \"sharp\" does not even begin to describe its monomolecular cutting edge. The blade is thin and easily broken, so we have set up an automatic replacement system in the knife's hilt.<br/><Bullet/> Lightweight secondary weapon - A knife attack requires one action and does not end your turn.<br/><Bullet/> Attacks with the Combat Knife have a <Ability:WOTCLW2SW_COLOR_2_OPEN/>+<ABILITY:COMBATKNIFE_CV_AIM/>%<Ability:WOTCLW2SW_COLOR_CLOSE/> chance to hit."AbilityDescName="combat knife"
+
+[CombatKnife_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
