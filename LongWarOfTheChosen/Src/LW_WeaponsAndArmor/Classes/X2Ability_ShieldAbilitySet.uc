@@ -23,9 +23,9 @@ var config int OFA_MG_BONUS;
 var config int OFA_BM_BONUS;
 var config int SHIELD_BASH_COOLDOWN;
 
-var config int GREATER_PADDING_CV;
-var config int GREATER_PADDING_MG;
-var config int GREATER_PADDING_BM;
+var config float GREATER_PADDING_CV;
+var config float GREATER_PADDING_MG;
+var config float GREATER_PADDING_BM;
 
 var config bool bLog;
 

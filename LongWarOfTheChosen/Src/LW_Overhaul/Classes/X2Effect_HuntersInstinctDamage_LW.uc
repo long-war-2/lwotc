@@ -1,16 +1,21 @@
 class X2Effect_HuntersInstinctDamage_LW extends X2Effect_HuntersInstinctDamage;
 
 //Overwrites GADM to add CurrentDamage > 0 modifier so flashbangs don't get bonus
-
-function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+var float HUNTERS_INSTINCT_DAMAGE_PCT;
+function float GetPostDefaultDefendingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit SourceUnit,
+	XComGameState_Unit TargetUnit,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData ApplyEffectParameters,
+	float WeaponDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	XComGameState NewGameState)
 {
-	local XComGameState_Unit TargetUnit;
 	local GameRulesCache_VisibilityInfo VisInfo;
 	local bool DamagingAttack;
 	local X2AbilityToHitCalc_StandardAim StandardHit;
-	local X2Effect_ApplyWeaponDamage		WeaponDamageEffect;
 
-	TargetUnit = XComGameState_Unit(TargetDamageable);
 	DamagingAttack = (X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).BaseDamage.Damage > 0 || X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).BaseDamage.PlusOne > 0);
 
 	if (X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).WeaponCat == 'grenade')
@@ -21,7 +26,6 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	{
 		return 0;
 	}
-	WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
 	if (WeaponDamageEffect != none)
 	{
 		if (WeaponDamageEffect.bIgnoreBaseDamage)
@@ -35,13 +39,13 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	{
 		return 0;
 	}
-	if (!AbilityState.IsMeleeAbility() && TargetUnit != None && class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult))
+	if (!AbilityState.IsMeleeAbility() && TargetUnit != None && class'XComGameStateContext_Ability'.static.IsHitResultHit(ApplyEffectParameters.AbilityResultContext.HitResult))
 	{
-		if (`TACTICALRULES.VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, TargetUnit.ObjectID, VisInfo))
+		if (`TACTICALRULES.VisibilityMgr.GetVisibilityInfo(SourceUnit.ObjectID, TargetUnit.ObjectID, VisInfo))
 		{
-			if (Attacker.CanFlank() && TargetUnit.GetMyTemplate().bCanTakeCover && (VisInfo.TargetCover == CT_None || TargetUnit.GetCurrentStat(eStat_AlertLevel) == 0 && TargetUnit.GetTeam() != eTeam_XCom) && DamagingAttack)
+			if (SourceUnit.CanFlank() && TargetUnit.GetMyTemplate().bCanTakeCover && (VisInfo.TargetCover == CT_None || TargetUnit.GetCurrentStat(eStat_AlertLevel) == 0 && TargetUnit.GetTeam() != eTeam_XCom) && DamagingAttack)
 			{
-				return BonusDamage;
+				return WeaponDamage * default.HUNTERS_INSTINCT_DAMAGE_PCT;
 			}
 		}
 	}

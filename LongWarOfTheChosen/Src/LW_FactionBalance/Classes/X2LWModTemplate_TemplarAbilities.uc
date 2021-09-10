@@ -101,7 +101,7 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
-	Template.AdditionalAbilities.AddItem('Reverberation');
+	//Template.AdditionalAbilities.AddItem('Reverberation');
 
 	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
 }

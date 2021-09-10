@@ -9,7 +9,7 @@
 class X2Effect_GreaterPadding extends X2Effect_Persistent;
 
 var const name GreaterPaddingUnitWasBleedingOut;
-var int Padding_HealHP;
+var float Padding_HealHP;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
@@ -33,7 +33,7 @@ function ApplyGreaterPadding(XComGameState_Effect EffectState, XComGameState_Uni
 	local XComGameState_Unit		SourceUnitState, UnitState;
 	local UnitValue					StatusValue;
 	local int						StatusIntValue;
-
+	local int 						HPToHeal;
 	UnitState = XComGameState_Unit(NewGameState.GetGameStateForObjectID(OrigUnitState.ObjectID));
 	if (UnitState == none)
 	{
@@ -58,14 +58,15 @@ function ApplyGreaterPadding(XComGameState_Effect EffectState, XComGameState_Uni
 
 	if (!CanBeHealed(UnitState)) { return; }
 
-	UnitState.LowestHP += Min(UnitState.HighestHP-UnitState.LowestHP, Padding_HealHP);
+	HPToHeal = UnitState.HighestHP * Padding_HealHP;
+	UnitState.LowestHP += Min(UnitState.HighestHP-UnitState.LowestHP, HPToHeal);
 
 	// Armor HP may have already been removed, apparently healing the unit since we have not yet
 	// executed EndTacticalHealthMod. We may only appear injured here for large injuries (or little
 	// armor HP). Current HP is used in the EndTacticalHealthMod adjustment, so we should increase it
 	// if it's less than the max, but don't exceed the max HP.
 	if (UnitState.GetCurrentStat(eStat_HP) < UnitState.GetMaxStat(eStat_HP))
-		UnitState.ModifyCurrentStat(eStat_HP, Min(UnitState.GetMaxStat(eStat_HP) - UnitState.GetCurrentStat(eStat_HP), Padding_HealHP));
+		UnitState.ModifyCurrentStat(eStat_HP, Min(UnitState.GetMaxStat(eStat_HP) - UnitState.GetCurrentStat(eStat_HP), HPToHeal));
 	
 }
 

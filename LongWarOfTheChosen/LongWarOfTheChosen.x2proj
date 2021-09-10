@@ -94,6 +94,8 @@
     <Folder Include="Src\XModBase_Interfaces\" />
     <Folder Include="Src\XModBase_Interfaces\Classes\" />
     <Folder Include="Src\LW_Tutorial" />
+    <Folder Include="Src\LW_RocketLauncher_Integrated" />
+
     <Content Include="Config\XComAI.ini" />
     <Content Include="Config\XComAIJobs.ini" />
     <Content Include="Config\XComAnimation.ini" />
@@ -1238,7 +1240,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_Debug.uc" />
     <Content Include="Src\LW_Overhaul\Classes\UIScreenListener_ChosenEvents.uc" />
     <Content Include="Src\LW_Tuple\Classes\LWTuple.uc" />
-    <Content Include="Src\LW_Overhaul\Classes\X2AbilityMultiTarget_Cone_LWFlamethrower.uc" />
+    <Content Include="Src\LWPerkPack_Integrated\Classes\X2AbilityMultiTarget_Cone_LWFlamethrower.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Action_Fire_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_Cone_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWCovertActionsModTemplate.uc" />

@@ -43,6 +43,7 @@ static function X2AbilityTemplate AddCombatives()
 
 	Template = PurePassive('Combatives', "img:///UILibrary_LW_Overhaul.LW_AbilityCombatives", false, 'eAbilitySource_Perk');
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, default.COMBATIVES_DODGE, true);
+	
 	Template.AdditionalAbilities.AddItem('CombativesAttack');
 	Template.AdditionalAbilities.AddiTEm('CombativesPreparation');
 	Template.AdditionalAbilities.AddItem('CombativesCounterattack');
@@ -53,7 +54,7 @@ static function X2AbilityTemplate AddCombatives()
 static function X2AbilityTemplate CombativesStats()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_PersistentStatChange			StatEffect;
+	local X2Effect_Cutthroat			StatEffect;
 	local X2Effect_AdditionalAnimSets			AnimSetEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CombativesStats');
@@ -66,11 +67,12 @@ static function X2AbilityTemplate CombativesStats()
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 
-	StatEffect = new class'X2Effect_PersistentStatChange';
-	StatEffect.AddPersistentStatChange(eStat_Dodge, float(default.COMBATIVES_DODGE));
-	StatEffect.BuildPersistentEffect(1, true, false, false);
-	Template.AddTargetEffect(StatEffect);
-	Template.bCrossClassEligible = false;
+	StatEffect = new class 'X2Effect_Cutthroat';
+	StatEffect.BuildPersistentEffect (1, true, false);
+	StatEffect.Bonus_Crit_Chance = class'X2Ability_PerkPackAbilitySet'.default.CUTTHROAT_BONUS_CRIT_CHANCE;
+	StatEffect.Bonus_Crit_Damage = class'X2Ability_PerkPackAbilitySet'.default.CUTTHROAT_BONUS_CRIT_DAMAGE;
+	StatEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (StatEffect);
 
 	AnimSetEffect = new class'X2Effect_AdditionalAnimSets';
 	AnimSetEffect.AddAnimSetWithPath("LWCombatKnife.Anims.AS_CombatKnife_CounterAttack");

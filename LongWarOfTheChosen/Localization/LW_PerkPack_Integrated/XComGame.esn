@@ -354,7 +354,7 @@ LocLongDescription="Haz una acción después de correr."
 LocHelpText="Haz una acción después de correr."
 LocPromotionPopupText="<Bullet/> Correr y disparar permite a las unidades acortar distancias con sus objetivos rápidamente o tomar una posición de flanqueo fácilmente.<br/><Bullet/> Correr y disparar tiene un tiempo de enfriamiento de 3 turnos.<br/>"
 
-[Suppression_LW X2AbilityTemplate]
+[Suppression X2AbilityTemplate]
 LocFriendlyName="Contención"
 LocFlyOverText="Contención"
 LocLongDescription="Dispara una ráfaga que inmoviliza al objetivo, concede un disparo de reacción contra él si se mueve y restringe el uso de muchas habilidades. Además, el objetivo sufre una penalización de puntería de <Ability:SUPPRESSIONPENALTY/>."

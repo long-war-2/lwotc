@@ -14,7 +14,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 
 	EventMan = `XEVENTMGR;
 	EffectObj = EffectGameState;
-	EventMan.RegisterForEvent(EffectObj, 'ExhaustedActionPoints', InterruptListener_LW, ELD_OnStateSubmitted,,,, EffectGameState);
+	EventMan.RegisterForEvent(EffectObj, 'UnitMoveFinished', InterruptListener_LW, ELD_OnStateSubmitted,,,, EffectGameState);
 }
 
 

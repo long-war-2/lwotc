@@ -186,13 +186,13 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		OutString = string(class'X2Effect_BanishHitMod'.default.BANISH_HIT_MOD * -1);
 		return true;
 	case 'GREATER_PADDING_CV':
-		OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_CV);
+		OutString = string(int(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_CV * 100));
 		return true;
 	case 'GREATER_PADDING_MG':
-		OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_MG);
+		OutString = string(int(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_MG * 100));
 		return true;
 	case 'GREATER_PADDING_BM':
-		OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_BM);
+		OutString = string(int(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_BM * 100));
 		return true;
 	case 'OVERRIDE_REDUCTION':
 		OutString = string(class'X2Effect_ManualOverride_LW'.default.OVERRIDE_REDUCTION);

@@ -459,7 +459,7 @@ static function X2AbilityTemplate AddDisablingShot()
 	local X2AbilityCooldown                 Cooldown;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2Condition_Visibility			VisibilityCondition;
-	local X2Effect_DisablingShotStunned		StunEffect;
+	local X2Effect_DisableWeapon			DisableWeaponEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
 	local X2Condition_UnitType				ImmuneUnitCondition;
@@ -496,9 +496,8 @@ static function X2AbilityTemplate AddDisablingShot()
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
 	Template.bAllowAmmoEffects = true;
 
-	StunEffect = CreateDisablingShotStunnedEffect(default.DisablingShotBaseStunActions);
-	StunEffect.BonusStunActionsOnCrit = default.DisablingShotCritStunActions;
-	Template.AddTargetEffect(StunEffect);
+	DisableWeaponEffect = new class'X2Effect_DisableWeapon';
+	Template.AddTargetEffect(DisableWeaponEffect);
 
 	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 0;

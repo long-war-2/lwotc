@@ -1,4 +1,4 @@
-Class X2Effect_Sentinel_LW extends X2Effect_Persistent config (LW_SoldierSkills);
+class X2Effect_Sentinel_LW extends X2Effect_Persistent config (LW_SoldierSkills);
 
 var config int SENTINEL_LW_USES_PER_TURN;
 var config array<name> SENTINEL_LW_ABILITYNAMES;

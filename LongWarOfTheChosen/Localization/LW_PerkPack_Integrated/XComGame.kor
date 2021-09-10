@@ -351,7 +351,7 @@ LocLongDescription="돌진 후에 행동을 취할 수 있습니다."
 LocHelpText="돌진 후에 행동을 취할 수 있습니다."
 LocPromotionPopupText="<Bullet/> 런 앤 건을 사용하면, 병사가 대상에게 빠르게 다가가거나 측면 위치를 쉽게 차지할 수 있습니다.<br/><Bullet/> 런 앤 건은 3턴 동안 쿨타임을 가집니다.<br/>"
 
-[Suppression_LW X2AbilityTemplate]
+[Suppression X2AbilityTemplate]
 LocFriendlyName="제압"
 LocFlyOverText="제압"
 LocLongDescription="적에게 총알 세례를 퍼부어 움직이지 못하게 합니다. 목표물이 이동하면 대응 사격을 가하고, 많은 능력의 사용을 제한 시키며, <Ability:SUPPRESSIONPENALTY/>의 조준 페널티를 줍니다."

@@ -17,6 +17,8 @@ var config int FORTIFY_COOLDOWN;
 var config int FORTIFY_DEFENSE;
 var config int SPRINTER_MOBILITY;
 
+var config int TD_SHIELD_HP;
+var config int TD_CRIT_DEF;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -29,6 +31,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddFortify());
 	Templates.AddItem(AddSprinter());
 	Templates.AddItem(AddPassSidearm());
+	Templates.AddItem(AddTenaciousDefense());
 	return Templates;
 }
 
@@ -276,6 +279,47 @@ static function X2AbilityTemplate AddCombatFitness()
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.COMBAT_FITNESS_MOBILITY);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, default.COMBAT_FITNESS_DODGE);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.WillLabel, eStat_Will, default.COMBAT_FITNESS_WILL);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddTenaciousDefense()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_PersistentStatChange			StatEffect;
+	local X2Effect_Resilience					CritDefEffect;
+	local XMBCondition_CoverType	CoverCondition;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TenaciousDefense');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_defense_crit2";
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+
+	StatEffect = new class'X2Effect_PersistentStatChange';
+	StatEffect.AddPersistentStatChange(eStat_ShieldHP, float(default.TD_SHIELD_HP));
+	StatEffect.BuildPersistentEffect(1, true, false, false);
+	StatEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect(StatEffect);
+	Template.bCrossClassEligible = true;
+
+	CoverCondition = new class'XMBCondition_CoverType';
+	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
+
+	CritDefEffect = new class'X2Effect_Resilience';
+	CritDefEffect.CritDef_Bonus = default.TD_CRIT_DEF;
+	CritDefEffect.AbilityTargetConditionsAsTarget.AddItem(CoverCondition);
+	CritDefEffect.BuildPersistentEffect (1, true, false, false);
+	Template.AddTargetEffect(CritDefEffect);
+
+	//Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, default.COMBAT_FITNESS_HP);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 

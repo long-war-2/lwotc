@@ -31,6 +31,9 @@ var config float IMPACT_COMPENSATION_PCT_DR;
 var config int IMPACT_COMPENSATION_MAX_STACKS;
 
 var config int UNSTOPPABLE_MIN_MOB;
+
+var config int HIGH_VOLUME_FIRE_MALUS;
+
 var const string ChosenSummonContextDesc;
 
 var private name ExtractKnowledgeMarkSourceEffectName, ExtractKnowledgeMarkTargetEffectName;
@@ -84,9 +87,15 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(AssassinBladestorm());
 	Templates.AddItem(AssassinBladestormAttack());
-	Templates.AddItem(CreateUnstoppable());
+
+  Templates.AddItem(CreateUnstoppable());
 	Templates.AddItem(CreateUnstoppablePassive());
-	
+
+	Templates.AddItem(ParalyzingBlows());
+	Templates.AddItem(ParalyzingBlowsPassive());
+
+	Templates.AddItem(HighVolumeFire());
+	Templates.AddItem(HighVolumeFirePassive());	
 	
 	return Templates;
 }
@@ -1622,7 +1631,7 @@ static function X2DataTemplate FreeGrenades()
 	local X2Effect_FreeGrenades GrenadeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'FreeGrenades');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_adrenaline_defense";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_aliengrenade_cycle";
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
@@ -1633,6 +1642,7 @@ static function X2DataTemplate FreeGrenades()
 
 	GrenadeEffect = new class'X2Effect_FreeGrenades';
 	GrenadeEffect.BuildPersistentEffect(1, true, true);
+	GrenadeEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 
 	Template.AddTargetEffect(GrenadeEffect);
 
@@ -1863,6 +1873,63 @@ static function X2AbilityTemplate CreateUnstoppable()
 	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
 	//Template.AdditionalAbilities.AddItem('UnstoppablePassive_LW');
+  	return Template;
+}
+
+	static function X2AbilityTemplate ParalyzingBlows()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityTrigger_EventListener	EventListener;
+	local XMBCondition_AbilityProperty	MeleeCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ParalyzingBlows');
+
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_mind_crit";
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	MeleeCondition = new class'XMBCondition_AbilityProperty';
+	MeleeCondition.bRequireMelee = true;
+	Template.AbilityTargetConditions.AddItem(MeleeCondition);
+
+	// Trigger on Damage
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'AbilityActivated';
+	EventListener.ListenerData.EventFn = AbilityTriggerEventListener_ParalyzingBlows;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Priority = 40;
+	EventListener.ListenerData.Filter = eFilter_Unit;
+
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	Template.AddTargetEffect(class'X2StatusEffects'.static.CreateStunnedStatusEffect(1,100,false));
+
+	Template.FrameAbilityCameraType = eCameraFraming_Never; 
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.bSkipFireAction = true;	//	this fire action will be merged by Merge Vis function
+	Template.bShowActivation = true;
+	Template.bUsesFiringCamera = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = ApplyEffect_MergeVisualization;
+	Template.BuildInterruptGameStateFn = none;
+
+	Template.AdditionalAbilities.AddItem('ParalyzingBlowsPassive');
+
+	return Template;
+}
+
+static function X2AbilityTemplate ParalyzingBlowsPassive()
+{
+	local X2AbilityTemplate	Template;
+
+	Template = PurePassive('ParalyzingBlowsPassive', "img:///UILibrary_XPerkIconPack.UIPerk_mind_crit", false);
 
 	return Template;
 }
@@ -1876,9 +1943,93 @@ static function X2AbilityTemplate CreateUnstoppablePassive()
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
+  	return Template;
+}
+
+static function EventListenerReturn AbilityTriggerEventListener_ParalyzingBlows(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	return HandleApplyEffectEventTrigger('ParalyzingBlows', EventData, EventSource, GameState);
+}
+
+
+	static function X2AbilityTemplate HighVolumeFire()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityTrigger_EventListener	EventListener;
+	local X2Effect_PersistentStatChange Effect;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'HighVolumeFire');
+
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_ammo_chevron_x3";
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	// Trigger on Damage
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'AbilityActivated';
+	EventListener.ListenerData.EventFn = AbilityTriggerEventListener_HighVolumeFire;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Priority = 40;
+	EventListener.ListenerData.Filter = eFilter_Unit;
+
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	//	putting the burn effect first so it visualizes correctly
+
+    Effect = new class'X2Effect_PersistentStatChange';
+	Effect.AddPersistentStatChange(eStat_Offense, -default.HIGH_VOLUME_FIRE_MALUS);
+	Effect.BuildPersistentEffect(2, false, false, false, eGameRule_PlayerTurnBegin);
+	Effect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
+    Effect.bRemoveWhenTargetDies = false;
+    Effect.bUseSourcePlayerState = true;
+	Effect.bApplyOnMiss = true;
+	Template.AddTargetEffect(Effect);
+
+
+	Template.FrameAbilityCameraType = eCameraFraming_Never; 
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.bSkipFireAction = true;	//	this fire action will be merged by Merge Vis function
+	Template.bShowActivation = true;
+	Template.bUsesFiringCamera = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = ApplyEffect_MergeVisualization;
+	Template.BuildInterruptGameStateFn = none;
+
+	Template.AdditionalAbilities.AddItem('HighVolumeFirePassive');
 
 	return Template;
 }
+
+
+static function X2AbilityTemplate HighVolumeFirePassive()
+{
+	local X2AbilityTemplate	Template;
+
+	Template = PurePassive('HighVolumeFirePassive', "img:///UILibrary_XPerkIconPack.UIPerk_ammo_chevron_x3", false);
+
+	return Template;
+}
+static function EventListenerReturn AbilityTriggerEventListener_HighVolumeFire(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	return HandleApplyEffectEventTrigger('ChosenVenomRounds', EventData, EventSource, GameState);
+}
+
 
 defaultproperties
 {

@@ -13,7 +13,9 @@ var config string CombatKnife_BM_UIImage;
 
 // ***** Damage arrays for attack actions *****
 var config WeaponDamageValue CombatKnife_CONVENTIONAL_BASEDAMAGE;
+var config WeaponDamageValue CombatKnife_LASER_BASEDAMAGE;
 var config WeaponDamageValue CombatKnife_MAGNETIC_BASEDAMAGE;
+var config WeaponDamageValue CombatKnife_COIL_BASEDAMAGE;
 var config WeaponDamageValue CombatKnife_BEAM_BASEDAMAGE;
 
 // ***** Core properties and variables for weapons *****
@@ -26,6 +28,15 @@ var config int CombatKnife_CONVENTIONAL_ISUPPLIES;
 var config int CombatKnife_CONVENTIONAL_TRADINGPOSTVALUE;
 var config int CombatKnife_CONVENTIONAL_IPOINTS;
 
+var config int CombatKnife_LASER_AIM;
+var config int CombatKnife_LASER_CRITCHANCE;
+var config int CombatKnife_LASER_ICLIPSIZE;
+var config int CombatKnife_LASER_ISOUNDRANGE;
+var config int CombatKnife_LASER_IENVIRONMENTDAMAGE;
+var config int CombatKnife_LASER_ISUPPLIES;
+var config int CombatKnife_LASER_TRADINGPOSTVALUE;
+var config int CombatKnife_LASER_IPOINTS;
+
 var config int CombatKnife_MAGNETIC_AIM;
 var config int CombatKnife_MAGNETIC_CRITCHANCE;
 var config int CombatKnife_MAGNETIC_ICLIPSIZE;
@@ -34,6 +45,15 @@ var config int CombatKnife_MAGNETIC_IENVIRONMENTDAMAGE;
 var config int CombatKnife_MAGNETIC_ISUPPLIES;
 var config int CombatKnife_MAGNETIC_TRADINGPOSTVALUE;
 var config int CombatKnife_MAGNETIC_IPOINTS;
+
+var config int CombatKnife_COIL_AIM;
+var config int CombatKnife_COIL_CRITCHANCE;
+var config int CombatKnife_COIL_ICLIPSIZE;
+var config int CombatKnife_COIL_ISOUNDRANGE;
+var config int CombatKnife_COIL_IENVIRONMENTDAMAGE;
+var config int CombatKnife_COIL_ISUPPLIES;
+var config int CombatKnife_COIL_TRADINGPOSTVALUE;
+var config int CombatKnife_COIL_IPOINTS;
 
 var config int CombatKnife_BEAM_AIM;
 var config int CombatKnife_BEAM_CRITCHANCE;
@@ -61,7 +81,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	//create all three tech tiers of weapons
 	Templates.AddItem(CreateTemplate_CombatKnife_Conventional());
+	Templates.AddItem(CreateTemplate_CombatKnife_Laser());
 	Templates.AddItem(CreateTemplate_CombatKnife_Magnetic());
+	Templates.AddItem(CreateTemplate_CombatKnife_Coil());
 	Templates.AddItem(CreateTemplate_CombatKnife_Beam()); 
 
 	//create two schematics used to upgrade weapons
@@ -106,7 +128,7 @@ static function X2DataTemplate CreateTemplate_CombatKnife_Conventional()
 	Template.InfiniteAmmo = true;
 	
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "LWCombatKnife.Archetypes.WP_CombatKnife_CV";
+	Template.GameArchetype = "LWCombatKnifeWOTC.Archetypes.WP_CombatKnife_CV";
 
 	Template.StartingItem = true;
 	Template.CanBeBuilt = false;
@@ -115,6 +137,53 @@ static function X2DataTemplate CreateTemplate_CombatKnife_Conventional()
 	
 	return Template;
 }
+
+
+static function X2DataTemplate CreateTemplate_CombatKnife_Laser()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'CombatKnife_LS');
+
+	Template.WeaponCat = 'combatknife';
+	Template.WeaponTech = 'beam';
+	Template.ItemCat = 'weapon';
+	Template.EquipSound = "Sword_Equip_Beam";
+	Template.WeaponPanelImage = "_BeamRifle";                       // used by the UI. Probably determines iconview of the weapon.
+	Template.EquipSound = "Beam_Weapon_Equip";
+	Template.Tier = 4;
+	Template.InventorySlot = eInvSlot_SecondaryWeapon;
+	Template.StowedLocation = eSlot_RightBack;
+
+	Template.iRadius = 1;
+	Template.NumUpgradeSlots = 2;
+	Template.InfiniteAmmo = true;
+	Template.iPhysicsImpulse = 5;
+
+	Template.iRange = 0;
+	Template.BaseDamage = default.CombatKnife_LASER_BASEDAMAGE;
+	Template.Aim = default.CombatKnife_LASER_AIM;
+	Template.CritChance = default.CombatKnife_LASER_CRITCHANCE;
+	Template.iClipSize = default.CombatKnife_LASER_ICLIPSIZE;
+	Template.iSoundRange = default.CombatKnife_LASER_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.CombatKnife_LASER_IENVIRONMENTDAMAGE;
+	Template.bHideClipSizeStat = true;
+	Template.InfiniteAmmo = true;
+	
+	
+	Template.GameArchetype = "LWCombatKnifeWOTC.Archetypes.WP_CombatKnife_CV";
+
+	Template.CreatorTemplateName = 'CombatKnife_BM_Schematic'; // The schematic which creates this item
+	Template.BaseItem = 'CombatKnife_MG'; // Which item this will be upgraded from
+
+	Template.CanBeBuilt = false;
+	Template.bInfiniteItem = true;
+
+	Template.DamageTypeTemplateName = 'Melee';
+
+	return Template;
+}
+
 
 static function X2DataTemplate CreateTemplate_CombatKnife_Magnetic()
 {
@@ -149,7 +218,7 @@ static function X2DataTemplate CreateTemplate_CombatKnife_Magnetic()
 	Template.InfiniteAmmo = true;
 	
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "LWCombatKnife.Archetypes.WP_CombatKnife_MG";
+	Template.GameArchetype = "LWCombatKnifeWOTC.Archetypes.WP_CombatKnife_MG";
 	
 	Template.CreatorTemplateName = 'CombatKnife_MG_Schematic'; // The schematic which creates this item
 	Template.BaseItem = 'CombatKnife_CV'; // Which item this will be upgraded from
@@ -161,6 +230,52 @@ static function X2DataTemplate CreateTemplate_CombatKnife_Magnetic()
 
 	return Template;
 }
+
+static function X2DataTemplate CreateTemplate_CombatKnife_Coil()
+{
+	local X2WeaponTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'CombatKnife_CG');
+
+	Template.WeaponCat = 'combatknife';
+	Template.WeaponTech = 'beam';
+	Template.ItemCat = 'weapon';
+	Template.EquipSound = "Sword_Equip_Beam";
+	Template.WeaponPanelImage = "_BeamRifle";                       // used by the UI. Probably determines iconview of the weapon.
+	Template.EquipSound = "Beam_Weapon_Equip";
+	Template.Tier = 4;
+	Template.InventorySlot = eInvSlot_SecondaryWeapon;
+	Template.StowedLocation = eSlot_RightBack;
+
+	Template.iRadius = 1;
+	Template.NumUpgradeSlots = 2;
+	Template.InfiniteAmmo = true;
+	Template.iPhysicsImpulse = 5;
+
+	Template.iRange = 0;
+	Template.BaseDamage = default.CombatKnife_COIL_BASEDAMAGE;
+	Template.Aim = default.CombatKnife_COIL_AIM;
+	Template.CritChance = default.CombatKnife_COIL_CRITCHANCE;
+	Template.iClipSize = default.CombatKnife_COIL_ICLIPSIZE;
+	Template.iSoundRange = default.CombatKnife_COIL_ISOUNDRANGE;
+	Template.iEnvironmentDamage = default.CombatKnife_COIL_IENVIRONMENTDAMAGE;
+	Template.bHideClipSizeStat = true;
+	Template.InfiniteAmmo = true;
+	
+	
+	Template.GameArchetype = "LWCombatKnifeWOTC.Archetypes.WP_CombatKnife_CV";
+
+	Template.CreatorTemplateName = 'CombatKnife_BM_Schematic'; // The schematic which creates this item
+	Template.BaseItem = 'CombatKnife_MG'; // Which item this will be upgraded from
+
+	Template.CanBeBuilt = false;
+	Template.bInfiniteItem = true;
+
+	Template.DamageTypeTemplateName = 'Melee';
+
+	return Template;
+}
+
 
 static function X2DataTemplate CreateTemplate_CombatKnife_Beam()
 {
@@ -195,7 +310,7 @@ static function X2DataTemplate CreateTemplate_CombatKnife_Beam()
 	Template.InfiniteAmmo = true;
 	
 	
-	Template.GameArchetype = "LWCombatKnife.Archetypes.WP_CombatKnife_BM";
+	Template.GameArchetype = "LWCombatKnifeWOTC.Archetypes.WP_CombatKnife_CV";
 
 	Template.CreatorTemplateName = 'CombatKnife_BM_Schematic'; // The schematic which creates this item
 	Template.BaseItem = 'CombatKnife_MG'; // Which item this will be upgraded from

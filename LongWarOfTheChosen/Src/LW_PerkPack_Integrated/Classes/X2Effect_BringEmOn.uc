@@ -5,8 +5,8 @@
 //---------------------------------------------------------------------------------------
 class X2Effect_BringEmOn extends X2Effect_Persistent config (LW_SoldierSkills);
 
-var config float BEO_BONUS_CRIT_DAMAGE_PER_ENEMY;
-var config int BEO_MAX_BONUS_CRIT_DAMAGE;
+var config float BEO_BONUS_DAMAGE_PER_ENEMY;
+var config int BEO_MAX_BONUS_DAMAGE;
 var config bool BEO_SQUADSIGHT_ENEMIES_APPLY;
 var config bool APPLIES_TO_EXPLOSIVES;
 
@@ -20,69 +20,68 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
 	local bool bShouldApply;
 
-    if (AppliedData.AbilityResultContext.HitResult == eHit_Crit)
-    {
-        SourceWeapon = AbilityState.GetSourceWeapon();
-        if (SourceWeapon != none)
-        {
-			if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
+
+	SourceWeapon = AbilityState.GetSourceWeapon();
+	if (SourceWeapon != none)
+	{
+		if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
+		{
+			// If the source weapon matches the weapon slot bound to the ability,
+			// then the crit bonus should apply
+			bShouldApply = true;
+		}
+
+		if (default.APPLIES_TO_EXPLOSIVES)
+		{
+			if (X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).WeaponCat == 'grenade')
 			{
-				// If the source weapon matches the weapon slot bound to the ability,
-				// then the crit bonus should apply
+				// This should apply to any grenades that can crit
 				bShouldApply = true;
 			}
 
-			if (default.APPLIES_TO_EXPLOSIVES)
+			if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
 			{
-				if (X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).WeaponCat == 'grenade')
-				{
-					// This should apply to any grenades that can crit
-					bShouldApply = true;
-				}
-
-				if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
-				{
-					bShouldApply = true;
-				}
-
-				StandardHit = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
-				if (StandardHit != none && StandardHit.bIndirectFire)
-				{
-					// Grenade launchers can get the bonus crit damage too (as well as any
-					// other ability/weapon that uses StandardAim with indirect fire)
-					bShouldApply = true;
-				}
+				bShouldApply = true;
 			}
 
-			if (!bShouldApply)
+			StandardHit = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
+			if (StandardHit != none && StandardHit.bIndirectFire)
+			{
+				// Grenade launchers can get the bonus crit damage too (as well as any
+				// other ability/weapon that uses StandardAim with indirect fire)
+				bShouldApply = true;
+			}
+		}
+
+		if (!bShouldApply)
+		{
+			return 0;
+		}
+
+		WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
+		if (WeaponDamageEffect != none)
+		{
+			if (WeaponDamageEffect.bIgnoreBaseDamage)
 			{
 				return 0;
 			}
-
-			WeaponDamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
-			if (WeaponDamageEffect != none)
+		}
+		TargetUnit = XComGameState_Unit(TargetDamageable);
+		if (TargetUnit != none)
+		{
+			BadGuys = Attacker.GetNumVisibleEnemyUnits (true, false, false, -1, false, false);
+			if (Attacker.HasSquadsight() && default.BEO_SQUADSIGHT_ENEMIES_APPLY)
 			{
-				if (WeaponDamageEffect.bIgnoreBaseDamage)
-				{
-					return 0;
-				}
+				class'X2TacticalVisibilityHelpers'.static.GetAllSquadsightEnemiesForUnit(Attacker.ObjectID, arrSSEnemies, -1, false);
+				BadGuys += arrSSEnemies.length;
 			}
-			TargetUnit = XComGameState_Unit(TargetDamageable);
-            if (TargetUnit != none)
-            {
-                BadGuys = Attacker.GetNumVisibleEnemyUnits (true, false, false, -1, false, false);
-				if (Attacker.HasSquadsight() && default.BEO_SQUADSIGHT_ENEMIES_APPLY)
-				{
-					class'X2TacticalVisibilityHelpers'.static.GetAllSquadsightEnemiesForUnit(Attacker.ObjectID, arrSSEnemies, -1, false);
-					BadGuys += arrSSEnemies.length;
-				}
-				if (BadGuys > 0)
-				{
-					return clamp (BadGuys * default.BEO_BONUS_CRIT_DAMAGE_PER_ENEMY, 0, default.BEO_MAX_BONUS_CRIT_DAMAGE);
-				}
-            }
-        }
-    }
+			if (BadGuys > 0)
+			{
+				return clamp (BadGuys * default.BEO_BONUS_DAMAGE_PER_ENEMY, 0, default.BEO_MAX_BONUS_DAMAGE);
+			}
+		}
+	}
+    
     return 0;
 }
 

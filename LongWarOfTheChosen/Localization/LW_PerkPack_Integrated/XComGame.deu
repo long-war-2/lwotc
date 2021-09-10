@@ -351,7 +351,7 @@ LocLongDescription="Erhalte eine Aktion nach dem Sprinten."
 LocHelpText="Erhalte eine Aktion nach dem Sprinten."
 LocPromotionPopupText="<Bullet/> Sturm und Schuss ermöglicht einer Einheit, schnell nahe an ihr Ziel zu gelangen oder erleichtert das Einnehmen einer flankierenden Position.<br/><Bullet/> Sturm und Schuss hat eine Abklingzeit von 3 Runden.<br/>"
 
-[Suppression_LW X2AbilityTemplate]
+[Suppression X2AbilityTemplate]
 LocFriendlyName="Unterstützungsfeuer"
 LocFlyOverText="Unterstützungsfeuer"
 LocLongDescription="Schießt eine Salve ab, die das Ziel niederhält, einen Reflexschuss ermöglicht, wenn es sich rührt, den Einsatz vieler Fähigkeiten verhindert und die Zielsicherheit des Gegners ändert sich um <Ability:SUPPRESSIONPENALTY/>."

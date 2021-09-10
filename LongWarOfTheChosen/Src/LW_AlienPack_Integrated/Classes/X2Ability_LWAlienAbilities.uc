@@ -48,6 +48,26 @@ var config int HIVE_QUEEN_SLASH_BONUS_DAMAGE;
 var config int REPAIR_SERVOS_BONUS_ARMOR;
 var config int REPAIR_SERVOS_DURATION;
 
+var const config int HOLYWARRIOR_M4_MOBILITY;
+var const config int HOLYWARRIOR_M4_OFFENSE;
+var const config int HOLYWARRIOR_M4_CRIT;
+var const config int HOLYWARRIOR_M4_HP;
+var const config int HOLYWARRIOR_M5_MOBILITY;
+var const config int HOLYWARRIOR_M5_OFFENSE;
+var const config int HOLYWARRIOR_M5_CRIT;
+var const config int HOLYWARRIOR_M5_HP;
+
+var config int ENERGY_SHIELD_MK4_HP;
+var config int ENERGY_SHIELD_MK5_HP;
+
+var config WeaponDamageValue BERSERKERM2_MELEEATTACK_BASEDAMAGE;
+var config WeaponDamageValue BERSERKERM3_MELEEATTACK_BASEDAMAGE;
+var config WeaponDamageValue BERSERKERM4_MELEEATTACK_BASEDAMAGE;
+
+var config WeaponDamageValue CHRYSSALIDM2_MELEEATTACK_BASEDAMAGE;
+var config WeaponDamageValue CHRYSSALIDM3_MELEEATTACK_BASEDAMAGE;
+var config WeaponDamageValue CHRYSSALIDM4_MELEEATTACK_BASEDAMAGE;
+
 var localized string strBayonetChargePenalty;
 
 
@@ -74,6 +94,31 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddRepairServosAbility());
 	Templates.AddItem(AddFireOnDeathAbility());
 	Templates.AddItem(PurePassive('RepairServosPassive', "img:///UILibrary_LWAlienPack.LW_AbilityDamageControl", true, 'eAbilitySource_Perk'));
+
+
+	Templates.AddItem(class'X2Ability_AdvPriest'.static.CreateHolyWarrior('HolyWarriorM4', default.HOLYWARRIOR_M4_MOBILITY, default.HOLYWARRIOR_M4_OFFENSE, default.HOLYWARRIOR_M4_CRIT, default.HOLYWARRIOR_M4_HP));
+	Templates.AddItem(class'X2Ability_AdvPriest'.static.CreateHolyWarrior('HolyWarriorM5', default.HOLYWARRIOR_M5_MOBILITY, default.HOLYWARRIOR_M5_OFFENSE, default.HOLYWARRIOR_M5_CRIT, default.HOLYWARRIOR_M5_HP));
+
+	Templates.AddItem(CreateEnergyShieldAbility('EnergyShieldMk4',default.ENERGY_SHIELD_MK4_HP));
+	Templates.AddItem(CreateEnergyShieldAbility('EnergyShieldMk5',default.ENERGY_SHIELD_MK5_HP));
+
+	Templates.AddItem(CreateDevastatingPunchAbility('DevastatingPunchM2',default.BERSERKERM2_MELEEATTACK_BASEDAMAGE));
+	Templates.AddItem(CreateDevastatingPunchAbility('DevastatingPunchM3',default.BERSERKERM3_MELEEATTACK_BASEDAMAGE));
+	Templates.AddItem(CreateDevastatingPunchAbility('DevastatingPunchM4',default.BERSERKERM4_MELEEATTACK_BASEDAMAGE));
+
+	Templates.AddItem(CreateSlashAbility('ChryssalidSlashM2',default.CHRYSSALIDM2_MELEEATTACK_BASEDAMAGE));
+	Templates.AddItem(CreateSlashAbility('ChryssalidSlashM3',default.CHRYSSALIDM3_MELEEATTACK_BASEDAMAGE));
+	Templates.AddItem(CreateSlashAbility('ChryssalidSlashM4',default.CHRYSSALIDM4_MELEEATTACK_BASEDAMAGE));
+	Templates.AddItem(CreateLostHPBuff());
+
+
+	Templates.AddItem(PurePassive('BindM2Damage', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_command", true, 'eAbilitySource_Perk'));
+	Templates.AddItem(PurePassive('BindM3Damage', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_command_chevron", true, 'eAbilitySource_Perk'));
+	Templates.AddItem(PurePassive('BindM4Damage', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_command_chevron_x2", true, 'eAbilitySource_Perk'));
+	Templates.AddItem(PurePassive('BindM5Damage', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_command_chevron_x3", true, 'eAbilitySource_Perk'));
+	Templates.AddItem(AddNewKillSiredZombies());
+
+	
 	return Templates;
 }
 
@@ -487,6 +532,7 @@ static function X2DataTemplate CreateDroneRepairAbility()
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = default.DRONE_REPAIR_ACTION_COST;
+	ActionPointCost.bfreeCost = true;
 	ActionPointCost.bConsumeAllPoints = false;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
@@ -533,7 +579,7 @@ static function X2AbilityTemplate AddDroneMeleeStun()
 {
 	local X2AbilityTemplate Template;
 	local X2AbilityCost_ActionPoints ActionPointCost;
-	local X2AbilityToHitCalc_StandardAim HitCalc;
+	local X2AbilityToHitCalc_StandardMelee HitCalc;
 	//local X2Effect_ApplyWeaponDamage PhysicalDamageEffect;
 	local X2Effect_Stunned				    StunnedEffect;
 	local X2Condition_UnitProperty			AdjacencyCondition;
@@ -557,7 +603,7 @@ static function X2AbilityTemplate AddDroneMeleeStun()
 	Cooldown.iNumTurns = default.STUNNER_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
-	HitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	HitCalc = new class'X2AbilityToHitCalc_StandardMelee';
 	HitCalc.BuiltInHitMod = default.DRONE_STUN_HIT_MODIFIER;
 	Template.AbilityToHitCalc = HitCalc;
 
@@ -1001,7 +1047,7 @@ static function X2DataTemplate CreateReadyForAnythingAbility()
 	ActionPointEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(ActionPointEffect);
 
-	Template.AdditionalAbilities.AddItem('ReadyForAnythingFlyover');
+	//Template.AdditionalAbilities.AddItem('ReadyForAnythingFlyover');
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
@@ -1162,4 +1208,294 @@ static function X2AbilityTemplate AddFireOnDeathAbility()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
+}
+
+static function X2DataTemplate CreateEnergyShieldAbility(name TemplateName, int ShieldPoints)
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityCost_ActionPoints ActionPointCost;
+	local X2AbilityCharges Charges;
+	local X2AbilityCost_Charges ChargeCost;
+	local X2AbilityCooldown_LocalAndGlobal Cooldown;
+	local X2Condition_UnitProperty UnitPropertyCondition;
+	local X2AbilityTrigger_PlayerInput InputTrigger;
+	local X2Effect_PersistentStatChange ShieldedEffect;
+	local X2AbilityMultiTarget_Radius MultiTarget;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_adventshieldbearer_energyshield";
+
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.Hostility = eHostility_Defensive;
+
+	// This ability is a free action
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Charges = new class 'X2AbilityCharges';
+	Charges.InitialCharges = 1;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
+
+	Cooldown = new class'X2AbilityCooldown_LocalAndGlobal';
+	Cooldown.iNumTurns = class'X2Ability_AdventShieldbearer'.default.ENERGY_SHIELD_COOLDOWN;
+	Cooldown.NumGlobalTurns = class'X2Ability_AdventShieldbearer'.default.ENERGY_SHIELD_GLOBAL_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	//Can't use while dead
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	// Add dead eye to guarantee
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	// Multi target
+	MultiTarget = new class'X2AbilityMultiTarget_Radius';
+	MultiTarget.fTargetRadius = class'X2Ability_AdventShieldbearer'.default.ENERGY_SHIELD_RANGE_METERS;
+	MultiTarget.bIgnoreBlockingCover = true;
+	Template.AbilityMultiTargetStyle = MultiTarget;
+
+	InputTrigger = new class'X2AbilityTrigger_PlayerInput';
+	Template.AbilityTriggers.AddItem(InputTrigger);
+
+	// The Targets must be within the AOE, LOS, and friendly
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	UnitPropertyCondition.ExcludeHostileToSource = true;
+	UnitPropertyCondition.ExcludeCivilian = true;
+	UnitPropertyCondition.FailOnNonUnits = true;
+	Template.AbilityMultiTargetConditions.AddItem(UnitPropertyCondition);
+
+	// Friendlies in the radius receives a shield receives a shield
+	ShieldedEffect = class'X2Ability_AdventShieldbearer'.static.CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), ShieldPoints);
+
+	Template.AddShooterEffect(ShieldedEffect);
+	Template.AddMultiTargetEffect(ShieldedEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = class'X2Ability_AdventShieldbearer'.static.Shielded_BuildVisualization;
+	Template.CinescriptCameraType = "AdvShieldBearer_EnergyShieldArmor";
+
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+	
+	return Template;
+}
+
+
+static function X2AbilityTemplate CreateDevastatingPunchAbility(Name AbilityName, WeaponDamageValue DamageValue, int MovementRangeAdjustment=1)
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityCost_ActionPoints ActionPointCost;
+	local X2AbilityToHitCalc_StandardMelee MeleeHitCalc;
+	local X2Effect_ApplyWeaponDamage PhysicalDamageEffect;
+	local X2Effect_ImmediateAbilityActivation BrainDamageAbilityEffect;
+	local X2AbilityTarget_MovingMelee MeleeTarget;
+	local X2Effect_Knockback KnockbackEffect;
+	local array<name> SkipExclusions;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, AbilityName);
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_muton_punch";
+	Template.Hostility = eHostility_Offensive;
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+
+	Template.AdditionalAbilities.AddItem(class'X2Ability_Impairing'.default.ImpairingAbilityName);
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	MeleeHitCalc = new class'X2AbilityToHitCalc_StandardMelee';
+	Template.AbilityToHitCalc = MeleeHitCalc;
+
+	MeleeTarget = new class'X2AbilityTarget_MovingMelee';
+	MeleeTarget.MovementRangeAdjustment = MovementRangeAdjustment;
+	Template.AbilityTargetStyle = MeleeTarget;
+	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
+
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_PlayerInput');
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	
+	// May punch if the unit is burning or disoriented
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	Template.AbilityTargetConditions.AddItem(new class'X2Condition_BerserkerDevastatingPunch');	
+	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue =DamageValue;
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	PhysicalDamageEffect.HideVisualizationOfResultsAdditional.AddItem('AA_HitResultFailure');
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue = class'X2Item_DefaultWeapons'.default.BERSERKER_MELEEATTACK_MISSDAMAGE;
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	PhysicalDamageEffect.bApplyOnHit = False;
+	PhysicalDamageEffect.bApplyOnMiss = True;
+	PhysicalDamageEffect.bIgnoreBaseDamage = True;
+	PhysicalDamageEffect.HideVisualizationOfResultsAdditional.AddItem('AA_HitResultFailure');
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+	//Impairing effects need to come after the damage. This is needed for proper visualization ordering.
+	//Effect on a successful melee attack is triggering the BrainDamage Ability
+	BrainDamageAbilityEffect = new class 'X2Effect_ImmediateAbilityActivation';
+	BrainDamageAbilityEffect.BuildPersistentEffect(1, false, true, , eGameRule_PlayerTurnBegin);
+	BrainDamageAbilityEffect.EffectName = 'ImmediateBrainDamage';
+	// NOTICE: For now StunLancer, Muton, and Berserker all use this ability. This may change.
+	BrainDamageAbilityEffect.AbilityName = class'X2Ability_Impairing'.default.ImpairingAbilityName;
+	BrainDamageAbilityEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true, , Template.AbilitySourceName);
+	BrainDamageAbilityEffect.bRemoveWhenTargetDies = true;
+	BrainDamageAbilityEffect.VisualizationFn = class'X2Ability_Impairing'.static.ImpairingAbilityEffectTriggeredVisualization;
+	Template.AddTargetEffect(BrainDamageAbilityEffect);
+
+	KnockbackEffect = new class'X2Effect_Knockback';
+	KnockbackEffect.KnockbackDistance = 5; //Knockback 5 meters
+	Template.AddTargetEffect(KnockbackEffect);
+
+	Template.CustomFireAnim = 'FF_Melee';
+	Template.bSkipMoveStop = true;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	Template.bOverrideMeleeDeath = true;
+	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
+	Template.BuildVisualizationFn = class'X2Ability_Berserker'.static.DevastatingPunchAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+	Template.CinescriptCameraType = "Berserker_DevastatingPunch";
+	
+	return Template;
+}
+
+static function X2AbilityTemplate CreateSlashAbility(Name AbilityName, WeaponDamageValue Damage)
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityCost_ActionPoints ActionPointCost;
+	local X2AbilityToHitCalc_StandardMelee MeleeHitCalc;
+	local X2Condition_UnitProperty UnitPropertyCondition;
+	local X2Effect_ApplyWeaponDamage PhysicalDamageEffect;
+	local X2Effect_ParthenogenicPoison ParthenogenicPoisonEffect;
+	local X2AbilityTarget_MovingMelee MeleeTarget;
+	local array<name> SkipExclusions;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, AbilityName);
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_chryssalid_slash";
+	Template.Hostility = eHostility_Offensive;
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	MeleeHitCalc = new class'X2AbilityToHitCalc_StandardMelee';
+	Template.AbilityToHitCalc = MeleeHitCalc;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	
+	// May slash if the unit is burning or disoriented
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false; // Disable this to allow civilians to be attacked.
+	UnitPropertyCondition.ExcludeSquadmates = true;		   // Don't attack other AI units.
+	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+	
+	Template.AbilityTargetConditions.AddItem(default.MeleeVisibilityCondition);
+
+	ParthenogenicPoisonEffect = new class'X2Effect_ParthenogenicPoison';
+	ParthenogenicPoisonEffect.BuildPersistentEffect(class'X2Ability_Chryssalid'.default.POISON_DURATION, true, false, false, eGameRule_PlayerTurnEnd);
+	ParthenogenicPoisonEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2Ability_Chryssalid'.default.ParthenogenicPoisonFriendlyName, class'X2Ability_Chryssalid'.default.ParthenogenicPoisonFriendlyName, Template.IconImage, true);
+	ParthenogenicPoisonEffect.DuplicateResponse = eDupe_Ignore;
+	ParthenogenicPoisonEffect.SetPoisonDamageDamage();
+
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeRobotic = true;
+	UnitPropertyCondition.ExcludeAlive = false;
+	UnitPropertyCondition.ExcludeDead = false;
+	UnitPropertyCondition.FailOnNonUnits = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	ParthenogenicPoisonEffect.TargetConditions.AddItem(UnitPropertyCondition);
+	Template.AddTargetEffect(ParthenogenicPoisonEffect);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue = Damage;
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+	MeleeTarget = new class'X2AbilityTarget_MovingMelee';
+	MeleeTarget.MovementRangeAdjustment = 0;
+	Template.AbilityTargetStyle = MeleeTarget;
+	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
+
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_PlayerInput');
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
+
+	Template.CustomFireAnim = 'FF_Melee';
+	Template.bSkipMoveStop = true;
+	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+	Template.CinescriptCameraType = "Chryssalid_PoisonousClaws";
+
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.MeleeLostSpawnIncreasePerUse;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate CreateLostHPBuff()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_PctHpBuff				StatEffect;
+	local X2AbilityTarget_Self	TargetStyle;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'LostHpPctBuff');
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.IconImage = "img:///Texture2D'UILibrary_LWAlienPack.LWCenturion_AbilityWarCry64'";
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.Deadeye;
+
+	TargetStyle = new class 'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	StatEffect = new class'X2Effect_PctHpBuff';
+
+	StatEffect.Pctbuff = 1.67f;
+
+	StatEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
+	StatEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Effect_WarCry'.default.strWarCryFriendlyDesc, Template.IconImage,false,, Template.AbilitySourceName);
+	StatEffect.DuplicateResponse = eDupe_Refresh;
+
+	Template.AddTargetEffect(StatEffect);
+
+	Template.bSkipFireAction = true;
+	Template.bShowActivation = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddNewKillSiredZombies()
+{
+	return class'X2Ability_Sectoid'.static.AddKillLinkedUnits('KillSiredZombies', class'X2Ability_Sectoid'.default.SireZombieLinkName, class'X2Action_ZombieSireDeath', false);
 }
