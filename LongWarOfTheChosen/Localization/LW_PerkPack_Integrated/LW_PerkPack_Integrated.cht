@@ -45,11 +45,11 @@ DenseSmokeGrenadeEffectDisplayName="濃密煙霧"
 DenseSmokeGrenadeEffectDisplayDesc="濃密煙霧賦予該單位額外的防禦加成。"
 
 [X2Ability_PerkPackAbilitySet]
-LocCoveringFire="掩護火力"
-LocCoveringFireMalus="該單位已經被一名具有掩護火力技能的監視單位瞄準，在本回合剩餘時間-10命中。"
+LocCoveringFire="掩護射擊"
+LocCoveringFireMalus="該單位已經被一名具有掩護射擊技能的監視單位瞄準，在本回合剩餘時間-10命中。"
 ; LWOTC Needs Translation
 LocSoulStealBuff="靈魂灼燒"
-LocSoulStealBuffHelpText="靈魂汲取在治療過度時給予護盾"
+LocSoulStealBuffHelpText="靈魂偷取在治療過度時給予護盾。"
 ; End Translation
 
 ; LWOTC Needs Translation

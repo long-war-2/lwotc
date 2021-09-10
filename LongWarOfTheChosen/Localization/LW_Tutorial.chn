@@ -27,7 +27,7 @@ HavenAdvisersBody="单击左侧标有（1）的框，为避难所指派一名顾
 
 [UIScreenListener_CovertActionsTutorial]
 CovertActionsTutorialTitle="隐秘行动"
-CovertActionsTutorialBody="不像普通的WOTC，你的特工在隐秘行动时有可能会失败。失败的风险根据作战士兵的级别而降低。级别越高，失败的风险越低。"
+CovertActionsTutorialBody="不像普通的WOTC，你的特工在隐秘行动时有可能会失败。失败的风险根据作战士兵的级别而降低。级别越高，失败的风险越低。<br/><br/>此外，没有遭到伏击的情况下，隐秘行动完成得越多，伏击的风险就越大。一旦被伏击，风险就会被重置。"
 
 [UIScreenListener_InitialHavenTutorial]
 HavenHighlightTitle="检查避难所"

@@ -22,7 +22,7 @@ LocPromotionPopupText="<Bullet/> 增加 <Ability:DemolitionistExtraChargeCount/>
 LocFriendlyName="致残打击"
 LocLongDescription="投掷一把飞刀，使目标致残1回合 (0移动力)。"
 LocHelpText="投掷一把飞刀，使目标致残1回合 (0移动力)。"
-LocPromotionPopupText="<Bullet/> 投掷飞刀， 不会打破暗影状态.<br/><Bullet/> 致残状态会将目标的移动性降低至0，使其无法移动。<br>"
+LocPromotionPopupText="<Bullet/> 投掷飞刀不会打破暗影状态。<br/><Bullet/> 致残状态会将目标的移动性降低至0，使其无法移动。<br>"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -79,8 +79,8 @@ LocFriendlyName="神化"
 ; LWOTC Needs Translation (2)
 LocFlyoverText="神化!"
 ; End Translation (2)
-LocLongDescription="化身神，大幅增加你的闪避，撕裂伤害和移动力。至少需要3点专注并消耗所有专注点。"
-LocHelpText="化身神，大幅增加你的闪避，撕裂伤害和移动力。至少需要3点专注并消耗所有专注点。"
+LocLongDescription="化身神，大幅增加你的闪避，伤害和移动力。至少需要3点专注并消耗所有专注点。"
+LocHelpText="化身神，大幅增加你的闪避，伤害和移动力。至少需要3点专注并消耗所有专注点。"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> 使圣殿骑士在2回合内变得更加强大的自由动作。<br/><Bullet/> 高于2专注时每点专注增加<Ability:ApotheosisDamageMultiplier/>%所有伤害。<br/><Bullet/> 高于2专注时每点专注增加<Ability:ApotheosisDodgeBonus/>闪避。<br/><Bullet/> 高于2专注时每点专注提高<Ability:ApotheosisMobilityBonus/>移动力。<br/><Bullet/> 至少需要3点专注。<br/><Bullet/> 消耗所有专注点。<br/><Bullet/> 圣殿骑士可以在神化状态下获得专注。"
 ; End Translation (2)
@@ -142,9 +142,9 @@ LocPromotionPopupText="撕裂标记赋予投掷飞刀堆叠效果。当飞刀击
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="刀锋相接"
 LocFlyOverText="刀锋相接"
-LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。"
-LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。"
-LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术同时使用。<br/>"
+LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
+LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
+LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术或者暗箭伤人同时使用。<br/>"
 
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="冷漠边缘"
@@ -164,7 +164,7 @@ LocPromotionPopupText="<Bullet/> 当用投掷飞刀击杀1名目标时减少暗�
 LocFriendlyName="蓝屏飞刀"
 LocHelpText="投掷飞刀获得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲并混乱机械单位。"
 LocLongDescription="投掷飞刀获得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲并混乱机械单位。"
-LocPromotionPopupText="投掷飞刀获得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲并混乱机械单位。"
+LocPromotionPopupText="<Bullet/> 投掷飞刀获得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲并混乱机械单位。<br/>"
 
 ; LWOTC Needs Translation
 [BattlefieldAwareness X2AbilityTemplate]
@@ -190,6 +190,17 @@ LocHelpText="在该效果结束之前，战地感知不会被激活。"
 
 [CombatPresence X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 战斗存在能让队友利用额外的攻击或移动来脱离险境。<br/><Bullet/> 战斗存在有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
+
+
+; LWOTC Needs Translation
+
+[CheapShot X2AbilityTemplate]
+LocFriendlyName="暗箭伤人"
+LocFlyOverText="暗箭伤人"
+LocLongDescription= "每回合一次，用主武器对一名受伤目标进行一次普通射击后，获得一个额外的移动点。不能在同一回合触发刀锋相接。"
+LocHelpText="每回合一次，用主武器对一名受伤目标进行一次普通射击后，获得一个额外的移动点。不能在同一回合触发刀锋相接。"
+LocPromotionPopupText="<Bullet/> 仅适用于标准射击，所以它不会触发放逐之类的技能。"
+; End Translation
 
 [LW_FactionBalance.X2Ability_ThrowingKnifeAbilitySet]
 RendTheMarkedEffectName="撕裂标记"

@@ -2,21 +2,21 @@
 FriendlyName="雷射步槍"
 FriendlyNamePlural="雷射步槍"
 BriefSummary="雷射步槍發射出一系列微秒級別的光波，能夠破壞目標的化學鍵。"
-TacticalText="<Bullet/>若沒有經過特殊訓練，用主武器射擊將會結束該士兵的回合。\n<Bullet/>使用從變種人敵人身上取得的升級部件提升脈衝步槍的戰術效率。\n<Bullet/>該雷射武器的高能輸出是將外星技術集成到戰前雷射武器而得來的。\n<Bullet/>雷射會獲得額外的命中加成。"
+TacticalText="<Bullet/>若沒有經過特殊訓練，用主武器射擊將會結束該士兵的回合。\n<Bullet/>使用從變種人敵人身上取得的升級部件提升雷射步槍的戰術效率。\n<Bullet/>該雷射武器的高能輸出是將外星技術集成到戰前雷射武器而得來的。\n<Bullet/>雷射會獲得額外的命中加成。"
 AbilityDescName="突擊步槍"
 
 [SMG_LS X2WeaponTemplate]
 FriendlyName="雷射斯登槍"
 FriendlyNamePlural="雷射斯登槍"
-BriefSummary="雷射步槍的輕便版本，擔任與衝鋒鎗類似的角色，以威力、彈藥和遠距離精度為代價，為士兵提供更高的移動力和隱蔽性。"
-TacticalText="<Bullet/>若沒有經過特殊訓練，用主武器射擊將會結束該士兵的回合。\n<Bullet/>使用從變種人敵人身上取得的升級部件提升輕機槍的戰術效率。\n<Bullet/>衝鋒鎗類型的武器相比突擊步槍提供額外的移動力、近程精度以及隱蔽性，但它們的傷害更低、彈藥更少、並且在遠距離有精度減益。\n<Bullet/>雷射會獲得額外的命中加成。"
+BriefSummary="雷射步槍的輕量級版本，擔任與衝鋒鎗類似的角色，以威力、彈藥和遠距離精度為代價，為士兵提供更高的移動力和隱蔽性。"
+TacticalText="<Bullet/>若沒有經過特殊訓練，用主武器射擊將會結束該士兵的回合。\n<Bullet/>使用從變種人敵人身上取得的升級部件提升雷射斯登槍的戰術效率。\n<Bullet/>衝鋒鎗類型的武器相比突擊步槍提供額外的移動力、近程精度以及隱蔽性，但它們的傷害更低，並且在遠距離有精度減益。\n<Bullet/>雷射會獲得額外的命中加成。"
 AbilityDescName="衝鋒鎗"
 
 [Cannon_LS X2WeaponTemplate]
 FriendlyName="雷射加農炮"
 FriendlyNamePlural="雷射加農炮"
 BriefSummary="雷射武器技術中包含了一項改進的冷卻系統，能讓我們部署一種能連發射擊的加農炮，能夠傾瀉更加致命的火力。"
-TacticalText="<Bullet/>雷射加農炮威力更巨大，且用法相同，是傳統加農炮的改進版本。\n<Bullet/>使用從變種人敵人處回收的升級來提升雷射加農炮的戰術效率。\n<Bullet/>雷射會獲得額外的命中加成。"
+TacticalText="<Bullet/>雷射加農炮威力更巨大，且用法相同，是傳統加農炮的改進版本。\n<Bullet/>使用從變種人敵人處回收的升級部件來提升雷射加農炮的戰術效率。\n<Bullet/>雷射會獲得額外的命中加成。"
 AbilityDescName="加農炮"
 
 [Shotgun_LS X2WeaponTemplate]
@@ -29,6 +29,6 @@ AbilityDescName="霰彈槍"
 [SniperRifle_LS X2WeaponTemplate]
 FriendlyName="雷射長槍"
 FriendlyNamePlural="雷射長槍"
-BriefSummary="作為雷射步槍的遠距離步槍版本，雷射長槍集成了極度高能的閃光電容，結果成就了此高精度遠距離的雷射武器。"
+BriefSummary="作為雷射步槍的遠距離步槍版本，雷射長槍集成了極度高能的閃光電容，結果成就了此高精度遠程雷射武器。"
 TacticalText="狙擊步槍總是需要2個行動點來射擊。\n<Bullet/>它們在近距離精確度不高，但是在遠距離具有致命的殺傷能力。\n<Bullet/>使用從敵人身上取得的升級部件提升雷射長槍的戰術效率。\n<Bullet/>雷射會獲得額外的命中加成。"
 AbilityDescName="狙擊步槍"

@@ -144,7 +144,7 @@ LocFriendlyName="重武器"
 LocFlyOverText="重武器"
 LocLongDescription="士兵已受訓可使用XCOM臂套，一種火箭發射器和火焰噴射器的結合體。"
 LocHelpText="士兵已受訓可使用XCOM臂套，一種火箭發射器和火焰噴射器的結合體。"
-LocPromotionPopupText="<Bullet/> XCOM臂套是一種帶有迷你火箭彈發射器和火焰噴射器的高級設備。<br/><Bullet/> 火箭發射器最初攜帶一枚火箭且有3格半徑的範圍效果。<br/><Bullet/> 它能夠瞄準視野範圍內的任何東西。<br/><Bullet/> 根據彈著點的不同，火箭彈的傷害也會減少。<br/><Bullet/> 火焰噴射器是能夠對錐形範圍內的多個目標造成傷害的短距離武器。<br/><Bullet/> 火焰噴射器每次戰鬥可使用2次。在沒有升級前無法傷害機械單位。<br/><Bullet/> 使用任一臂套能力都需要一個行動點並會結束你的回合。<br/><Bullet/> 火箭精確度受到士兵命中、目標距離以及士兵本回合是否使用過行動點等因素影響。低精度的火箭散布值更大，更可能擊中與目標地點相去甚遠的地方。火箭的最大可能散布將在彈窗中給出，具體地點的預計（平均）散布值將伴隨瞄準指針一同顯示。"
+LocPromotionPopupText="<Bullet/> XCOM臂套是一種帶有迷你火箭發射器和火焰噴射器的高級設備。<br/><Bullet/> 火箭發射器最初攜帶一枚火箭且有3格半徑的範圍效果。<br/><Bullet/> 它能夠瞄準視野範圍內的任何東西。<br/><Bullet/> 根據彈著點的不同，火箭的傷害也會減少。<br/><Bullet/> 火焰噴射器是能夠對錐形範圍內的多個目標造成傷害的短距離武器。<br/><Bullet/> 火焰噴射器每次戰鬥可使用2次。在沒有升級前無法傷害機械單位。<br/><Bullet/> 使用任一臂套能力都需要一個行動點並會結束你的回合。<br/><Bullet/> 火箭精確度受到士兵命中、目標距離以及士兵本回合是否使用過行動點等因素影響。低精度的火箭散布值更大，更可能擊中與目標地點相去甚遠的地方。火箭的最大可能散布將在彈窗中給出，具體地點的預計（平均）散布值將伴隨瞄準指針一同顯示。"
 
 [LWFlamethrower X2AbilityTemplate]
 LocFriendlyName="火焰噴射器"
@@ -243,23 +243,23 @@ LocPromotionPopupText="<Bullet/>你裝備一支額外的火箭。<br/>"
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="精準火箭"
 LocFlyOverText="精準火箭"
-LocLongDescription="你的火箭彈更為精準。"
-LocHelpText="你的火箭彈更為精準。"
-LocPromotionPopupText="<Bullet/>你的火箭彈更容易飛向瞄準點，或至少更為接近。<br/><Bullet/>它最多偏離的距離減少2格。"
+LocLongDescription="你的火箭更為精準。"
+LocHelpText="你的火箭更為精準。"
+LocPromotionPopupText="<Bullet/>你的火箭更容易飛向瞄準點，或至少更為接近。<br/><Bullet/>它最多偏離的距離減少2格。"
 
 [JavelinRockets X2AbilityTemplate]
 LocFriendlyName="標槍火箭"
 LocFlyOverText="標槍火箭"
-LocLongDescription="你的火箭彈範圍提升6格而且你可以命中在視野外的目標。"
-LocHelpText="你的火箭彈範圍提升6格而且你可以命中在視野外的目標。"
-LocPromotionPopupText="<Bullet/> 你的火箭彈範圍提升6格而且你可以命中在視野外的目標。<br/>"
+LocLongDescription="你的火箭射程提升6格並且可以擊中在視野外的目標。"
+LocHelpText="你的火箭射程提升6格並且可以擊中在視野外的目標。"
+LocPromotionPopupText="<Bullet/> 你的火箭射程提升6格並且可以擊中在視野外的目標。<br/>"
 
 [BunkerBuster X2AbilityTemplate]
 LocFriendlyName="掩體剋星"
 LocFlyOverText="掩體剋星"
-LocHelpText="發射一枚特殊的火箭彈能夠摧毀環境中的建築物和其他物體。"
-LocLongDescription="發射一枚特殊的火箭彈能夠摧毀環境中的建築物和其他物體。"
-LocPromotionPopupText="<Bullet/> 發射一枚特殊的火箭彈，有著大範圍的效果，對敵人造成的傷害一般，但對建築物、載具和環境中其他物體造成巨大傷害。<br/><Bullet/> 需要2個行動點，每次任務僅可使用1次。<br/>"
+LocHelpText="發射一枚特殊的火箭能夠摧毀環境中的建築物和其他物體。"
+LocLongDescription="發射一枚特殊的火箭能夠摧毀環境中的建築物和其他物體。"
+LocPromotionPopupText="<Bullet/> 發射一枚特殊的火箭，有著大範圍的效果，對敵人造成的傷害一般，但對建築物、載具和環境中其他物體造成巨大傷害。<br/><Bullet/> 需要2個行動點，每次任務僅可使用1次。<br/>"
 
 [FireandSteel X2AbilityTemplate]
 LocFriendlyName="火與鋼"
@@ -272,8 +272,8 @@ LocPromotionPopupText="<Bullet/> 用你的臂套造成的攻擊以及臂套武�
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震盪火箭"
 LocFlyOverText="震盪火箭"
-LocLongDescription="發射一枚特殊的火箭彈，造成的傷害有限但是有幾率使範圍內的有機體敵人眩暈或混亂，並留下煙霧。"
-LocHelpText="一種特殊的火箭彈能夠使目標眩暈或混亂，並留下煙霧。<Ability:ROCKETSCATTER/>"
+LocLongDescription="發射一枚特殊的火箭，造成的傷害有限但是有幾率使範圍內的有機體敵人眩暈或混亂，並留下煙霧。"
+LocHelpText="一種特殊的火箭能夠使目標眩暈或混亂，並留下煙霧。<Ability:ROCKETSCATTER/>"
 LocPromotionPopupText="<Bullet/> 每次任務1充能。<br/><Bullet/> 眩暈幾率基於目標的意志和士兵臂套的層級。<br/><Bullet/> 混亂幾率基於目標的意志。<br/><Bullet/>需要1個行動點並結束士兵的回合。<br/><Bullet/> 精英原典和靈能殭屍免疫所有效果，包括傷害。<br/><Bullet/> 外星人免疫此傷害。<br/>"
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -384,7 +384,7 @@ LocFriendlyName="刺針榴彈"
 LocLongDescription="你的爆炸物擊殺敵人時不會破壞戰利品且對無護甲的敵人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>額外傷害。"
 LocHelpText="你的爆炸物擊殺敵人時不會破壞戰利品且對無護甲的敵人造成<ABILITY:NEEDLE_BONUS_UNARMORED_DMG_LW/>額外傷害。"
 LocFlyOverText="刺針榴彈"
-LocPromotionPopupText="<Bullet/> 你受過額外的訓練，能讓你使用能夠發射出特殊裂片的爆炸性榴彈，使戰利品完好無損，撕裂未加固的材料。<br/><Bullet/> 被該士兵的任何其他爆炸物擊殺的敵人的戰利品和屍體，如重型武器，也被保存下來。"
+LocPromotionPopupText="<Bullet/> 你受過額外的訓練，能讓你使用能夠發射出特殊裂片的爆炸性榴彈，使戰利品完好無損，撕裂未加固的材料。<br/><Bullet/> 被該士兵的任何其他爆炸物擊殺的敵人的戰利品和屍體，如重武器，也被保存下來。"
 
 [HEATWarheads X2AbilityTemplate]
 LocFriendlyName="高熱彈頭"
@@ -409,16 +409,16 @@ LocPromotionPopupText="<Bullet/> 你的閃光榴彈現在能夠使機器人單�
 
 [TandemWarheads X2AbilityTemplate]
 LocFriendlyName="串聯彈頭"
-LocLongDescription="你的榴彈，火箭和重型武器對其範圍內最邊緣的單位造成最大程度的傷害。"
-LocHelpText="你的榴彈，火箭和重型武器對其範圍內最邊緣的單位造成最大程度的傷害。"
+LocLongDescription="你的榴彈，火箭和重武器對其範圍內最邊緣的單位造成最大程度的傷害。"
+LocHelpText="你的榴彈，火箭和重武器對其範圍內最邊緣的單位造成最大程度的傷害。"
 LocFlyOverText="串聯彈頭"
-LocPromotionPopupText="<Bullet/>你的榴彈，火箭和重型武器對其範圍內最邊緣的單位造成最大程度的傷害。<br/><Bullet/>並不適用於環境傷害。"
+LocPromotionPopupText="<Bullet/>你的榴彈，火箭和重武器對其範圍內最邊緣的單位造成最大程度的傷害。<br/><Bullet/>並不適用於環境傷害。"
 
 [GhostGrenade X2AbilityTemplate]
 LocFriendlyName="鬼影榴彈"
 LocLongDescription="一種特殊的煙霧榴彈能讓目標友軍進入隱蔽狀態。"
 LocHelpText="讓1名XCOM友軍進入隱蔽狀態。"
-LocPromotionPopupText="<Bullet/> 該能力僅影響1名目標友軍；其他在煙霧中的目標不會隱蔽，但會受到防禦加成。<br/><Bullet/> 使用1個行動點並會結束你的回合。<br/><Bullet/> 每個任務使用1次；增加榴彈數目的能力不會提供加成。<br/><Bullet/> 僅對XCOM士兵有效，因為平民沒有接受隱蔽技術的訓練。<br/><Bullet/> 小型煙霧提供20的防禦；濃密煙霧的加成不適用。<br/><Bullet/> 它不適用於標準XCOM榴彈發射器，必須對可見友軍投擲。<br/><Bullet/> 榴彈兵無法在隱蔽時使用該能力。"
+LocPromotionPopupText="<Bullet/> 該能力僅影響1名目標友軍；其他在煙霧中的目標不會隱蔽，但會受到防禦加成。<br/><Bullet/> 使用1個行動點並會結束你的回合。<br/><Bullet/> 每個任務使用1次；增加榴彈數目的能力不會提供加成。<br/><Bullet/> 僅對XCOM士兵有效，因為平民沒有接受隱蔽技術的訓練。<br/><Bullet/> 小型煙霧提供20的防禦；濃密煙霧的加成不適用。<br/><Bullet/> 它不適用於標準XCOM榴彈發射器，必須對可見友軍投擲。<br/><Bullet/> <Ability:ClassName/>無法在隱蔽時使用該能力。"
 
 [VanishingAct X2AbilityTemplate]
 LocFriendlyName="鬼影榴彈"
@@ -427,10 +427,10 @@ LocFlyOverText="鬼影榴彈"
 
 [BiggestBooms_LW X2AbilityTemplate]
 LocFriendlyName="超級炸藥"
-LocLongDescription="你的榴彈和標準火箭彈能夠造成暴擊傷害（<Ability:BIGGESTBOOMSCHANCE/>%幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。"
-LocHelpText="你的榴彈、標準火箭彈和微型飛彈能夠造成暴擊傷害。"
+LocLongDescription="你的榴彈和標準火箭能夠造成暴擊傷害（<Ability:BIGGESTBOOMSCHANCE/>%幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。"
+LocHelpText="你的榴彈、標準火箭和微型飛彈能夠造成暴擊傷害。"
 LocFlyOverText="超級炸藥"
-LocPromotionPopupText="<Bullet/> 榴彈、標準火箭彈和MEC微型飛彈能夠造成暴擊傷害。（<Ability:BIGGESTBOOMSCHANCE/>%幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% 暴擊傷害幾率不受其他暴擊率修正的影響。<br/> <Bullet/> 不適用於非傷害型榴彈或是震盪火箭或是掩體剋星能力。<br/><Bullet/> 榴彈造成暴擊傷害後，對榴彈造成的持續性傷害增加1點，例如火焰的燒傷。"
+LocPromotionPopupText="<Bullet/> 榴彈、標準火箭和MEC微型飛彈能夠造成暴擊傷害。（<Ability:BIGGESTBOOMSCHANCE/>%幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。<br/><Bullet/> <Ability:BIGGESTBOOMSCHANCE/>% 暴擊傷害幾率不受其他暴擊率修正的影響。<br/> <Bullet/> 不適用於非傷害型榴彈或是震盪火箭或是掩體剋星能力。<br/><Bullet/> 榴彈造成暴擊傷害後，對榴彈造成的持續性傷害增加1點，例如火焰的燒傷。"
 
 ;;;;;;;;;;;;;;;;;;;;  GUNNER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -458,7 +458,7 @@ str_FlushEffect="驅趕"
 
 ;LWOTC needs translation
 [HailofBullets X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> 槍林彈雨消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 槍林彈雨有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 槍林彈雨不適用於散彈槍和狙擊步槍。<br/>""
+LocPromotionPopupText="<Bullet/> 槍林彈雨消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 槍林彈雨有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 槍林彈雨不適用於狙擊步槍。<br/>""
 
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 連環射擊消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 連環射擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 連環射擊可以對無掩體敵人（如狂戰士，機械敵人）造成毀滅性的打擊，或者增加命中加成。<br/>"
@@ -519,7 +519,7 @@ LocPromotionPopupText="<Bullet/>只要你裝備有手槍（任何科技水平）
 
 [Holotarget X2AbilityTemplate]
 LocFriendlyName="全息瞄準"
-LocLongDescription="用全息瞄準敵人後，你和你的友軍在回合接下來所有的攻擊獲得命中加成。"
+LocLongDescription="用全息瞄準敵人後，你和隊友對該目標的所有攻擊獲得命中加成持續到你下一回合開始。"
 LocHelpText="攻擊被全息瞄準目標獲得加成。"
 LocFlyOverText="全息瞄準"
 LocPromotionPopupText="<Bullet/> 全息瞄準花費1個行動點。<br/><Bullet/> 全息瞄準效果持續到你下一回合開始。<br/><Bullet/> 多個全息瞄準的效果不可以互相疊加。<br/><Bullet/> 基礎全息瞄準器的命中加成是+<Ability:HOLO_CV_AIM_BONUS_LW/>，更好的技術能提升至+<Ability:HOLO_MG_AIM_BONUS_LW/>和+<Ability:HOLO_BM_AIM_BONUS_LW/>。<br/><Bullet/> 全息瞄準不會打破你或你小隊的隱蔽狀態。"
@@ -616,10 +616,10 @@ LocPromotionPopupText="<Bullet/> 中距離射程、錐形範圍的散彈槍攻�
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="閃電鏈"
-LocLongDescription="對每個能被眩暈的可見敵人發射電弧發射器。附帶<Ability:CHAIN_LIGHTNING_AIM_MOD_LW/>命中懲罰。"
-LocHelpText="對每個能被眩暈的可見敵人發射電弧發射器。附帶<Ability:CHAIN_LIGHTNING_AIM_MOD_LW/>命中懲罰。"
+LocLongDescription="發射電弧發射器，電弧從一個目標彈跳到另一個目標，最多可連結4次，每個目標之間的距離不超過6格。"
+LocHelpText="發射電弧發射器，電弧從一個目標彈跳到另一個目標，最多可連結4次，每個目標之間的距離不超過6格。"
 LocFlyOverText="閃電鏈"
-LocPromotionPopupText="<Bullet/> 對每個能被眩暈的可見敵人發射電弧發射器。附帶<Ability:CHAIN_LIGHTNING_AIM_MOD_LW/>命中懲罰。<br/><Bullet/> 需要1個行動點並結束你的回合。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷卻。<br/><Bullet/> 不能在隱蔽狀態下使用。"
+LocPromotionPopupText="<Bullet/> 向視野中的目標發射電弧投擲器，電弧與其他目標之間的距離在6格以內，最多可連結4次。<br/><Bullet/> 需要1個行動點並結束你的回合。<br/><Bullet/> <Ability:SelfCooldown_LW/>回合冷卻。<br/><Bullet/> 不能在隱蔽狀態下使用。"
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="領導力"
@@ -828,8 +828,8 @@ LocHelpText="該單位將不會對75%命中率以下的反應射擊開火。"
 [Neurowhip_Ability X2AbilityTemplate]
 LocFriendlyName="神經鞭"
 LocFlyoverText="神經鞭"
-LocLongDescription="減少10點意志力，增加10點靈能攻擊。"
-LocHelpText="減少10點意志力，增加10點靈能攻擊。"
+LocLongDescription="減少10點意志力，增加10點靈能威力。"
+LocHelpText="減少10點意志力，增加10點靈能威力。"
 
 ;;;;;;;;;;;;;;;;;;;;  ITEM TEMPLATES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -896,7 +896,7 @@ TacticalText="<Bullet/>升級版的短管散彈槍，採用磁力加速器技術
 FriendlyName="電漿短槍"
 FriendlyNamePlural="電漿短槍"
 BriefSummary="一種先進的短管散彈槍，採用等離子加熱元件來增強其破壞力。"
-TacticalText="<Bullet/> "一種先進的短管散彈槍，採用等離子加熱元件來增強其破壞力。<br/><Bullet/> 沒有升級的情況下每個任務可以開火兩次。<br/>"
+TacticalText="<Bullet/> 一種先進的短管散彈槍，採用等離子加熱元件來增強其破壞力。<br/><Bullet/> 沒有升級的情況下每個任務可以開火兩次。<br/>"
 ;end translation
 
 [ArcThrower_CV X2WeaponTemplate]
@@ -968,7 +968,7 @@ AbilityDescName="戰鬥匕首"
 FriendlyName="臂套"
 FriendlyNamePlural="臂套"
 BriefSummary="一種火箭發射器和火焰噴射器的結合體。"
-TacticalText="<Bullet/> XCOM臂套是一種帶有迷你火箭彈發射器和火焰噴射器的高級設備。<br/><Bullet/> 火箭發射器最初攜帶一枚火箭且有3格半徑的範圍效果。<br/><Bullet/> 它能夠瞄準視野範圍內的任何東西。<br/><Bullet/> 根據彈著點的不同，火箭彈的傷害也會減少。<br/><Bullet/> 火焰噴射器是能夠對錐形範圍內的多個目標造成傷害的短距離武器。<br/><Bullet/> 火焰噴射器每次戰鬥可使用2次。在沒有升級前無法傷害機械單位。<br/><Bullet/> 使用任一臂套能力都需要一個行動點並會結束你的回合。<br/><Bullet/> 火箭精確度受到士兵命中、目標距離以及士兵本回合是否使用過行動點等因素影響。低精度的火箭散布值更大，更可能擊中與目標地點相去甚遠的地方。火箭的最大可能散布將在彈窗中給出，具體地點的預計（平均）散布值將伴隨瞄準指針一同顯示。"
+TacticalText="<Bullet/> XCOM臂套是一種帶有迷你火箭發射器和火焰噴射器的高級設備。<br/><Bullet/> 火箭發射器最初攜帶一枚火箭且有3格半徑的範圍效果。<br/><Bullet/> 它能夠瞄準視野範圍內的任何東西。<br/><Bullet/> 根據彈著點的不同，火箭的傷害也會減少。<br/><Bullet/> 火焰噴射器是能夠對錐形範圍內的多個目標造成傷害的短距離武器。<br/><Bullet/> 火焰噴射器每次戰鬥可使用2次。在沒有升級前無法傷害機械單位。<br/><Bullet/> 使用任一臂套能力都需要一個行動點並會結束你的回合。<br/><Bullet/> 火箭精確度受到士兵命中、目標距離以及士兵本回合是否使用過行動點等因素影響。低精度的火箭散布值更大，更可能擊中與目標地點相去甚遠的地方。火箭的最大可能散布將在彈窗中給出，具體地點的預計（平均）散布值將伴隨瞄準指針一同顯示。"
 AbilityDescName="臂套"
 
 ; This should probably never really be seen as it's a "hidden" item like the XPad
@@ -1021,7 +1021,7 @@ AbilityDescName="散彈槍"
 FriendlyName="小線圈"
 FriendlyNamePlural="小線圈"
 BriefSummary="一種輕量型的線圈步槍，威力相對變小但是能提高使用者在戰場上的移動力。"
-TacticalText="<Bullet/>線圈武器會穿透（無視）1點敵方護甲。<br/><Bullet/>衝鋒鎗風格的武器相比突擊步槍能提供額外的移動力，近戰精度和隱蔽性，但他們傷害更低，彈匣更小，並在遠距離受到精度減益。<br/>"
+TacticalText="<Bullet/>線圈武器會穿透（無視）1點敵方護甲。<br/><Bullet/>衝鋒鎗風格的武器相比突擊步槍能提供額外的移動力，近戰精度和隱蔽性，但他們傷害更低，並在遠距離受到精度減益。<br/>"
 AbilityDescName="衝鋒鎗"
 
 ; LWOTC Needs Translation
@@ -1051,13 +1051,13 @@ TacticalText="<Bullet/> 電漿武器命中目標後造成1點額外傷害。\n<B
 
 ; Vektor Rifle changes and new crossbows
 [VektorRifle_CV X2WeaponTemplate]
-TacticalText="<Bullet/> 死神的武器在近距離時非常精準，在遠距離時也能保持良好的準確性。\n<Bullet/> 使用從敵人身上掠奪的升級配件來提高維克托步槍的戰術效果。"
+TacticalText="<Bullet/> 維克托步槍武器射程在近距離射擊時會受到命中懲罰，但可以在小隊視野射程內使用。<br/><Bullet/> 超出小隊視野4格距離時，武器的命中懲罰將逐步增加。<br/><Bullet/> 使用從敵人身上掠奪的升級配件來提高維克托步槍的戰術效果。"
 
 [CrossbowVektor_CV X2WeaponTemplate]
 FriendlyName="戰術弩"
 FriendlyNamePlural="戰術弩"
 BriefSummary="一種許多死神喜歡的無聲複合弩傳統武器。"
-TacticalText="<Bullet/> 死神的武器在近距離時非常精準，在遠距離時也能保持良好的準確性。\n<Bullet/> 一種許多死神喜歡的無聲複合弩傳統武器。功能與維克托步槍相同。\n<Bullet/> 使用從敵人身上掠奪的升級配件來提高戰術弩的戰術效果。"
+TacticalText="<Bullet/> 戰術弩在近距離射擊時會受到命中懲罰，但可以在小隊視野射程內使用。<br/><Bullet/> 超出小隊視野4格距離時，武器的命中懲罰將逐步增加。<br/><Bullet/> 使用從敵人身上掠奪的升級配件來提高維克托步槍的戰術效果。"
 AbilityDescName="戰術弩"
 
 ; LWOTC Needs Translation (2)
@@ -1065,24 +1065,24 @@ AbilityDescName="戰術弩"
 FriendlyName="雷射維克托步槍"
 FriendlyNamePlural="雷射維克托步槍"
 BriefSummary="這種實驗性的雷射武器設計起源於舊世界的俄羅斯，雷射維克托步槍的性能接近於死神使用的傳統神槍手步槍。目前更新了現代合金外殼與緊湊型電源，這在熟練的狙擊手手中是一把相當強大的武器。"
-TacticalText="<Bullet/> 雷射武器會獲得命中加成。\n<Bullet/> 死神的武器在近距離時非常精準，在遠距離時也能保持良好的準確性。\n<Bullet/> 使用從敵人身上掠奪的升級配件來提高雷射維克托步槍的戰術效果。"
+TacticalText="<Bullet/> 雷射武器會獲得命中加成。<br/><Bullet/> 維克托步槍武器射程在近距離射擊時會受到命中懲罰，但可以在小隊視野射程內使用。<br/><Bullet/> 超出小隊視野4格距離時，武器的命中懲罰將逐步增加。<br/><Bullet/> 使用從敵人身上掠奪的升級配件來提高維克托步槍的戰術效果。"
 AbilityDescName="維克托步槍"
 ; End Translation (2)
 
 [VektorRifle_MG X2WeaponTemplate]
-TacticalText="<Bullet/> 死神的武器在近距離時非常精準，在遠距離時也能保持良好的準確性。\n<Bullet/> 使用從敵人身上掠奪的升級配件來提高夜蛾步槍的戰術效果。"
+TacticalText="<Bullet/> 維克托步槍武器射程在近距離射擊時會受到命中懲罰，但可以在小隊視野射程內使用。<br/><Bullet/> 超出小隊視野4格距離時，武器的命中懲罰將逐步增加。<br/><Bullet/> 使用從敵人身上掠奪的升級配件來提高維克托步槍的戰術效果。"
 
 ; LWOTC Needs Translation (2)
 [Vektor_CG X2WeaponTemplate]
 FriendlyName="夜蛾長矛"
 FriendlyNamePlural="夜蛾長矛"
 BriefSummary="儘管我們的螺旋炮技術具有強大的火力，但到目前為止，由於缺乏可靠性和維護成本高，死神不願將其改造用於舊的夜蛾步槍。 這種新武器是折衷方案，我們已盡力將在野外工作時可能發生故障或破裂的零件數量減至最低。"
-TacticalText="<Bullet/> 線圈武器會自動穿透1點敵方護甲。<br/><Bullet/> 死神的武器在近距離時非常精準，在遠距離時也能保持良好的準確性。\n<Bullet/> 使用從敵人身上掠奪的升級配件來提高夜蛾長矛的戰術效果。"
+TacticalText="<Bullet/> 線圈武器會自動穿透1點敵方護甲。<br/><Bullet/> 維克托步槍武器射程在近距離射擊時會受到命中懲罰，但可以在小隊視野射程內使用。<br/><Bullet/> 超出小隊視野4格距離時，武器的命中懲罰將逐步增加。<br/><Bullet/> 使用從敵人身上掠奪的升級配件來提高維克托步槍的戰術效果。"
 AbilityDescName="維克托步槍"
 ; End Translation (2)
 
 [VektorRifle_BM X2WeaponTemplate]
-TacticalText="<Bullet/> 電漿武器命中目標後造成1點額外傷害。\n<Bullet/> 這是XCOM軍械庫中提供的最先進的維克托步槍改進型。\n<Bullet/> 死神的武器在近距離時非常精準，在遠距離時也能保持良好的準確性。\n<Bullet/> 使用從敵人身上掠奪的升級配件來提高暗影長矛的戰術效果。"
+TacticalText="<Bullet/> 電漿武器命中目標後造成1點額外傷害。<br/><Bullet/> 這是XCOM軍械庫中提供的最先進的維克托步槍改進型。<br/><Bullet/> 維克托步槍武器射程在近距離射擊時會受到命中懲罰，但可以在小隊視野射程內使用。<br/><Bullet/> 超出小隊視野4格距離時，武器的命中懲罰將逐步增加。<br/><Bullet/> 使用從敵人身上掠奪的升級配件來提高維克托步槍的戰術效果。"
 
 [SPARKChaingun X2WeaponTemplate]
 FriendlyName="重型鏈炮"
@@ -1110,6 +1110,14 @@ AbilityDescName="粒子投射炮"
 TacticalText="<Bullet/> 戰場掃描器可以揭露一處被「戰爭迷霧」隱藏了多個回合的區域。\n<Bullet/> 戰場掃描器也能顯示隱藏或偽裝的敵人。\n<Bullet/> 攜帶戰場掃描器的避難所顧問將減少40%招募無面怪的幾率（與其他類似能力疊加）。"
 ; End Translation (2)
 
+[AdvStunLancerM1_StunLance X2WeaponTemplate]
+AbilityDescName="變種人眩暈長槍"
+
+[AdvStunLancerM2_StunLance X2WeaponTemplate]
+AbilityDescName="變種人眩暈長槍"
+
+[AdvStunLancerM3_StunLance X2WeaponTemplate]
+AbilityDescName="變種人眩暈長槍"
 ; End Translation
 
 
@@ -1124,8 +1132,8 @@ BriefSummary="由於使用了回收的變種人護甲板材，這種護甲能夠
 TacticalText="<Bullet/>掠食者護甲為士兵提供最大程度的防護，包括額外的生命值和護甲。"
 
 [HeavyPlatedArmor X2ArmorTemplate]
-BriefSummary="這套重型護甲結合使用了強化的變種人鍍層和動力外骨骼，提供了防護和武器承力點。通過進一步研究我們還可以為這套護甲加裝更多的重型武器。"
-TacticalText="<Bullet/> E.X.O.護甲能讓士兵裝備一項重型武器，但缺乏掠食者護甲提供的完整防護。\n<Bullet/> 初始狀態只能配載粉碎炮；其他在試驗場的重武器項目將會解鎖更多可以製造的重武器系統。 \n<Bullet/> 士兵可以不帶重型武器，而是為他們的臂套攜帶額外的彈藥。"
+BriefSummary="這套重型護甲結合使用了強化的變種人鍍層和動力外骨骼，提供了防護和武器承力點。通過進一步研究我們還可以為這套護甲加裝更多的重武器。"
+TacticalText="<Bullet/> E.X.O.護甲能讓士兵裝備一項重武器，但缺乏掠食者護甲提供的完整防護。\n<Bullet/> 初始狀態只能配載粉碎炮；其他在試驗場的重武器項目將會解鎖更多可以製造的重武器系統。 \n<Bullet/> 士兵可以不帶重武器，而是為他們的臂套攜帶額外的彈藥。"
 
 [LightPoweredArmor X2ArmorTemplate]
 TacticalText="<Bullet/>幽靈護甲為士兵提升移動力和閃避數值。\n<Bullet/>幽靈護甲附帶腕帶爪鉤。\n<Bullet/>穿上幽靈護甲後可直接穿過牆壁和其他障礙物。"
@@ -1136,7 +1144,7 @@ TacticalText="<Bullet/>守望護甲專為提高士兵的存活能力而設計，
 
 [HeavyPoweredArmor X2ArmorTemplate]
 BriefSummary="W.A.R.重型動力戰鬥護甲提供了極大的生存能力，同時具有一個裝在手腕處的武器掛載點。它也可以用強大的\"盾牆\"技術為隊友們提供一道臨時的掩護屏障。"
-TacticalText="<Bullet/>穿上W.A.R.護甲後，士兵可在腕部掛載重型武器。\n<Bullet/>W.A.R.護甲附贈\"盾牆\"技能，穿著者可在短時間內為隊友提供類似全身掩體的防護效果。\n<Bullet/>士兵可以不帶重型武器，而是為他們的臂套攜帶額外的彈藥。"
+TacticalText="<Bullet/>穿上W.A.R.護甲後，士兵可在腕部掛載重武器。\n<Bullet/>W.A.R.護甲附贈\"盾牆\"技能，穿著者可在短時間內為隊友提供類似全身掩體的防護效果。\n<Bullet/>士兵可以不帶重武器，而是為他們的臂套攜帶額外的彈藥。"
 
 [FragGrenade X2GrenadeTemplate]
 BriefSummary="一種在小範圍內通過彈片擊殺敵人的標準破片榴彈。對移除敵軍護甲十分有效。傷害會隨著離中心的距離遞增而遞減。"
@@ -1468,26 +1476,26 @@ TacticalText="<Bullet/> 提供高壓能力，為火焰噴射器提供+2的充能
 [ExtraRocket X2WeaponTemplate]
 FriendlyName="額外火箭"
 FriendlyNamePlural="額外火箭"
-BriefSummary="提供第二枚標準臂套火箭彈。"
-TacticalText="<Bullet/>為火箭發射器提供第二枚標準火箭彈。"
+BriefSummary="提供第二枚標準臂套火箭。"
+TacticalText="<Bullet/>為火箭發射器提供第二枚標準火箭。"
 
 [Neurowhip X2EquipmentTemplate]
 FriendlyName="神經鞭"
 FriendlyNamePlural="神經鞭"
 BriefSummary="以意志力為代價增強靈能能力。"
-TacticalText="<Bullet/>減少10點意志力，增加10點靈能攻擊。"
+TacticalText="<Bullet/>減少10點意志力，增加10點靈能威力。"
 UnknownUtilityCategory="神經鞭"
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
-FriendlyName="變種人給養箱"
-FriendlyNamePlural="變種人給養箱"
+FriendlyName="變種人補給箱"
+FriendlyNamePlural="變種人補給箱"
 BriefSummary="一個有價值資源包裹。"
 
 ;;;;;;;;;;;;;;;;;;;;  CLASS TEMPLATES ;;;;;;;;;;;;;;;;;;;;;;;
 
 [LWS_Technical X2SoldierClassTemplate]
 DisplayName="技術兵"
-ClassSummary="我們的技術兵接受過重型武器，如火箭發射器和火焰噴射器的訓練，可以在交戰中提供關鍵的支援。"
+ClassSummary="我們的技術兵接受過重武器，如火箭發射器和火焰噴射器的訓練，可以在交戰中提供關鍵的支援。"
 LeftAbilityTreeTitle="火箭狂人"
 RightAbilityTreeTitle="爆破員"
 
@@ -1750,7 +1758,7 @@ RandomNickNames_Female[7]="縱火狂"
 
 [LWS_Gunner X2SoldierClassTemplate]
 DisplayName="機槍手"
-ClassSummary="機槍手受過了使用重型自動武器的訓練，能夠用壓制火掩護小隊力或直接打擊造成極大傷害。"
+ClassSummary="機槍手受過使用重型自動武器的訓練，能夠用壓制火力掩護小隊或直接打擊造成極大傷害。"
 LeftAbilityTreeTitle="鋸槍手"
 RightAbilityTreeTitle="機槍手"
 
@@ -2294,7 +2302,7 @@ ObjectiveTextPools[2]="撤離所有XCOM士兵"
 
 [DefaultRescue_AdventCell_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="堅守到天際遊俠號抵達"
-ObjectiveTextPools[1]="從變種人監獄解救VIP"
+ObjectiveTextPools[1]="從變種人牢房中營救VIP"
 ObjectiveTextPools[2]="將VIP撤離至指定地點"
 ObjectiveTextPools[3]="撤離所有XCOM士兵"
 
@@ -2404,7 +2412,7 @@ Briefing="阻止變種人的報復行動"
 PostMissionType="阻止變種人的報復行動"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="消滅所有敵方部隊"
-ObjectiveTextPools[1]="儘可能多地營救反抗軍"
+ObjectiveTextPools[1]="儘可能多的營救反抗軍"
 PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.Unique.Central_Unique_Missions_Terror_Attack"
 PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.Unique.T_Unique_Missions_Terror_Attack_Central_02"
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.Unique.T_Unique_Missions_Terror_Attack_Central_03"
@@ -2734,8 +2742,8 @@ PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.support.T_Support_Broadcast
 
 [AssaultAlienFortress_LW X2MissionTemplate]
 DisplayName="突襲外星人要塞"
-Briefing="襲擊外星人要塞"
-PostMissionType="襲擊外星人要塞"
+Briefing="突襲外星人要塞"
+PostMissionType="突襲外星人要塞"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Gateway"
 ObjectiveTextPools[0]="破壞化身指令"
 
@@ -2800,11 +2808,11 @@ ObjectiveTextPools[2]="突襲變種人總部"
 ObjectiveTextPools[3]="隨著這片區域的變種人部隊與指揮失去聯繫，我們現在可以去突襲他們的本地軍事總部了。這裡的勝利將會從變種人的控制中解放這片區域，讓人類能再次領導自己。"
 
 [Jailbreak_LW X2MissionTemplate]
-DisplayName="解救反抗軍聯絡人"
-Briefing="解救反抗軍聯絡人"
+DisplayName="營救反抗軍聯絡人"
+Briefing="營救反抗軍聯絡人"
 PostMissionType="越獄"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
-ObjectiveTextPools[0]="解救反抗軍聯絡人"
+ObjectiveTextPools[0]="營救反抗軍聯絡人"
 ObjectiveTextPools[1]="撤離所有XCOM士兵"
 
 [DefaultJailbreak_LW X2MissionNarrativeTemplate]
@@ -2813,20 +2821,20 @@ ObjectiveTextPools[1]="營救至少1名反抗軍聯絡人"
 ObjectiveTextPools[2]="營救額外反抗軍聯絡人（可選）"
 ObjectiveTextPools[3]="撤離所有XCOM士兵"
 ObjectiveTextPools[4]="越獄"
-ObjectiveTextPools[5]="在一次變種人肅清行動中有一組反抗軍聯絡人被包圍了，並且被關押在了該區域的牢房之中。變種人的載具準備將這些囚犯轉移到一個未知的地點，因此我們突入並營救這些人的時間將很有限。如果我們能安全地解救他們，這將對反抗軍在這片地區的行動有很大的幫助。"
+ObjectiveTextPools[5]="在一次變種人肅清行動中有一組反抗軍聯絡人被包圍了，並且被關押在了該區域的牢房之中。變種人的載具準備將這些囚犯轉移到一個未知的地點，因此我們突入並營救這些人的時間將很有限。如果我們能安全地營救他們，這將對反抗軍在這片地區的行動有很大的幫助。"
 
 [SupplyExtraction_LW X2MissionTemplate]
-DisplayName="給養奪取"
+DisplayName="補給奪取"
 Briefing="搜尋變種人補給"
-PostMissionType="給養奪取"
+PostMissionType="補給奪取"
 BriefingImage="img:///UILibrary_StrategyImages。X2StrategyMap。Alert_Resistance_Ops_Appear"
 ObjectiveTextPools[0]="保護並奪取變種人補給"
 ObjectiveTextPools[1]="撤離所有XCOM士兵"
 
 [SmashNGrab_LW X2MissionTemplate]
-DisplayName="給養突襲"
+DisplayName="補給突襲"
 Briefing="突襲變種人補給站"
-PostMissionType="給養突襲"
+PostMissionType="補給突襲"
 BriefingImage="img:///UILibrary_StrategyImages。X2StrategyMap。Alert_Resistance_Ops_Appear"
 ObjectiveTextPools[0]="儘可能多的獲取變種人資源"
 ObjectiveTextPools[1]="撤離所有XCOM士兵"
@@ -2842,8 +2850,8 @@ ObjectiveTextPools[0]="找到變種人資源"
 ObjectiveTextPools[1]="轉移變種人資源"
 ObjectiveTextPools[2]="找到額外的變種人資源(可選)"
 ObjectiveTextPools[3]="撤離所有XCOM士兵"
-ObjectiveTextPools[4]="給養突襲"
-ObjectiveTextPools[5]="反抗軍找到一個含有各種資源的變種人補給站。 突襲補給站，儘可能多的帶走這些資源，在敵人增員趕來之前撤離。 該任務將會有多個給養目標, 但是一名士兵只能帶走一個給養箱。"
+ObjectiveTextPools[4]="補給突襲"
+ObjectiveTextPools[5]="反抗軍找到一個含有各種資源的變種人補給站。 突襲補給站，儘可能多的帶走這些資源，在敵人增員趕來之前撤離。 該任務將會有多個補給目標, 但是一名士兵只能帶走一個補給箱。"
 
 [TroopManeuvers_LW X2MissionTemplate]
 DisplayName="伏擊一支變種人列隊"
@@ -2917,7 +2925,7 @@ ObjectiveTextPools[0]="護送反抗軍人員前往撤離點"
 ObjectiveTextPools[1]="撤離所有的剩餘的反抗軍成員"
 ObjectiveTextPools[2]="撤離所有XCOM士兵"
 ObjectiveTextPools[3]="緊急撤離"
-ObjectiveTextPools[4]="反抗軍在這片地區的招募行動已經招致了變種人的報復行動。一支進行招募任務的非武裝反抗軍隊伍已經被變種人的巡邏隊發現了。我們必須護送他們前往撤離點並逃離。紅惡魔的燃料有限，飛行位置也較低，因此會優先撤離反抗軍成員。在完成一次撤離後它會返回繼續撤離我們的部隊。沒能解救任何反抗軍成員將讓我們在一段時間內無法在該地區進行招募工作。"
+ObjectiveTextPools[4]="反抗軍在這片地區的招募行動已經招致了變種人的報復行動。一支進行招募任務的非武裝反抗軍隊伍已經被變種人的巡邏隊發現了。我們必須護送他們前往撤離點並逃離。紅惡魔的燃料有限，飛行位置也較低，因此會優先撤離反抗軍成員。在完成一次撤離後它會返回繼續撤離我們的部隊。沒能營救任何反抗軍成員將讓我們在一段時間內無法在該地區進行招募工作。"
 
 [SupplyConvoy_LW X2MissionTemplate]
 DisplayName="保護反抗軍補給車隊"
@@ -3012,7 +3020,7 @@ GameplayTips_Tactical[1]="控制忍者時，右擊敵人可對其發動近戰攻
 GameplayTips_Tactical[4]="閃避值提升後，能讓敵人的射擊造成\"擦傷\"，這樣只會受到部分傷害。"
 GameplayTips_Tactical[10]="擁有魅影技能的士兵每次任務開始都會處於隱蔽狀態，即使小隊其他成員未隱匿也不例外。"
 GameplayTips_Tactical[12]="在更高的難度下，如果敵人在他們的回合巡邏發現了你，那麼有時候他們能獲得額外行動點數。"
-+GameplayTips_Tactical[13]="在襲擊變種人區域總部的時候，儘可能地在小隊中多帶人手。"
++GameplayTips_Tactical[13]="在突襲變種人區域總部的時候，儘可能地在小隊中多帶人手。"
 +GameplayTips_Tactical[14]="沒有\"工兵\"或\"戰鬥工兵\"技能的士兵投擲的破片或外星榴彈不一定能夠摧毀掩體。可以試試火箭。"
 +GameplayTips_Tactical[15]="每個通用物品會減少士兵1點移動力，所以有時候應該把裝備欄留空來獲得額外的移動力。"
 +GameplayTips_Tactical[16]="士兵可以裝備一件護甲裝備和一件防護背心。護甲提供的生命值不能通過治療恢復，但是當損失時也不被視作受傷。"
@@ -3020,7 +3028,7 @@ GameplayTips_Tactical[12]="在更高的難度下，如果敵人在他們的回�
 +GameplayTips_Tactical[18]="任何士兵都可以在裝備欄裝備一把手槍。手槍技能可以在高級戰事中心中訓練。"
 +GameplayTips_Tactical[19]="忍者的斬殺攻擊只消耗一個行動點且不會結束回合。"
 +GameplayTips_Tactical[20]="戰爭協議和電弧脈衝器技能可以在前期有效地對付無人機。"
-+GameplayTips_Tactical[21]="敵方飛碟的防禦極其嚴密，需要一支強力的小隊來處理。"
++GameplayTips_Tactical[21]="敵方幽浮的防禦極其嚴密，需要一支強力的小隊來處理。"
 +GameplayTips_Tactical[22]="現在召喚天際遊俠號進行撤離要花費幾個回合。準備好防守撤離點。"
 
 GameplayTips_Strategy[0]="每個月黑市都會有新的科學家、工程師和老兵可供招募。"
@@ -3038,7 +3046,7 @@ GameplayTips_Strategy[16]="化身計劃可能被暫時延期，但是不會完�
 +GameplayTips_Strategy[18]="在小隊接近100%潛入之前進行任務可能會極大地增加任務的難度。"
 +GameplayTips_Strategy[19]="高等級的專家可以擁有能夠重寫MEC程序，使其為反抗軍而戰的能力。"
 +GameplayTips_Strategy[20]="解放一個地區是獲得敵人屍體的好方法。"
-+GameplayTips_Strategy[21]="如果有飛碟在跟蹤復仇者號，可以召回任務中的老兵小隊來協助防守XCOM總部。"
++GameplayTips_Strategy[21]="如果有幽浮在跟蹤復仇者號，可以召回任務中的老兵小隊來協助防守XCOM總部。"
 +GameplayTips_Strategy[22]="如果你在一個地區成功地進行了幾次任務，變種人會往那裡重新分配部隊，使你的任務變得更困難。"
 +GameplayTips_Strategy[23]="現在黑市買賣物品的時候只用補給來結算。"
 +GameplayTips_Strategy[24]="很多科技和物品需要額外的科技和工程人員來解鎖。基礎的研究和工程科技可以讓你來解決這些限制。"
@@ -3142,7 +3150,7 @@ Summary="變種人在群體控制和戰事方面十分依靠機械單位。雖�
 LongDescription="我們現在已經對變種人機器人戰鬥系統有了初步的了解。驚人的是他們和入侵前我們自己的設計非常類似，只是在動力系統上更為有效率，並且總體上小型化了。我們將該計劃作為理解變種人更為複雜的設計的開端。理查德·泰根。"
 
 [AutopsyMutonElite X2TechTemplate]
-DisplayName="異變者精英解剖"
+DisplayName="解剖異變者精英"
 CodeName="布魯頓"
 Summary="這種巨獸和其他異變者有很大的不同，需要特別的調查。"
 LongDescription="軍事中心長官布拉德福德指出XCOM獲得情報稱有一種精英形態的異變者扮演著長老的守衛者的角色。這種生物外型上變化不大。基因上的加強改進了生物大腦，讓它能夠更好地理解複雜的信息，能在戰鬥狀態中更迅速地處理信息。理查德·泰根。"
@@ -3347,7 +3355,7 @@ UnlockedDescription="原型已加入物品欄"
 
 [EXOSuit X2TechTemplate]
 DisplayName="重型護甲"
-Summary="如果用我們一直在研究的動力輔助護甲原型與我們回收的一些變種人合金鍍層結合，就可以研製出鍍層護甲的變種，能夠讓我們可以直接在護甲上加裝一件重型武器，在單兵護甲上同時獲得強大的進攻和防禦性能。"
+Summary="如果用我們一直在研究的動力輔助護甲原型與我們回收的一些變種人合金鍍層結合，就可以研製出鍍層護甲的變種，能夠讓我們可以直接在護甲上加裝一件重武器，在單兵護甲上同時獲得強大的進攻和防禦性能。"
 CodeName="史塔克"
 LongDescription="對外星人來說，武器越大，或者數量越多，意味著需要體型更龐大的外星人物種來搬運到戰場上使用。我們則要依靠更實用的工具。我一直在研究多種動力輔助型護甲原型，這種護甲至少可以讓我們的士兵投入戰鬥時攜帶多一件武器。用外星合金鍍層配合我們先前研究的樣品，護甲的耐久性將非常好，比之前研發的任何東西都好。莉莉·沈。"
 UnlockedDescription="原型已加入物品欄"
@@ -3377,7 +3385,7 @@ UnlockedDescription="原型已加入物品欄"
 DisplayName="重型套甲"
 Summary="通過利用超鈾的能源，也許我們可以開發出一種能夠產生防禦力場的動力護甲，就像那些在外星人飛船上使用的一樣。"
 CodeName="泰坦"
-LongDescription="由於我們只能從戰場上繳獲超鈾水晶，本想我斗膽提議將它們全都用於一個項目上。然而，就近來的幾個事件看，我們目前的當務之急就是開發出非常牢固並且能夠裝載重型武器的護甲。為此，我們嘗試將超鈾動力電池嵌入更堅固的護甲中。有了超鈾水晶的能量，該護甲能夠生成自我防護力場。也就是說，我們成功複製了外星人普遍用於他們的幽浮中的防禦系統，將其應用在實戰中。莉莉·沈"
+LongDescription="由於我們只能從戰場上繳獲超鈾水晶，本想我斗膽提議將它們全都用於一個項目上。然而，就近來的幾個事件看，我們目前的當務之急就是開發出非常牢固並且能夠裝載重武器的護甲。為此，我們嘗試將超鈾動力電池嵌入更堅固的護甲中。有了超鈾水晶的能量，該護甲能夠生成自我防護力場。也就是說，我們成功複製了外星人普遍用於他們的幽浮中的防禦系統，將其應用在實戰中。莉莉·沈"
 UnlockedDescription="原型已加入物品欄"
 
 ;;;;;;;;;;;;;;;;;;; PROVING GROUNDS TECHS ;;;;;;;;;;;;;
@@ -3412,7 +3420,7 @@ Summary="該項升級是從一些舊式的XCOM設計中找到的靈感，為部�
 
 [ChitinPlatingProject X2TechTemplate]
 DisplayName="殼質護甲"
-Summary="在研究了外星人可怕的寄生獸單位後，我們相信我們能夠利用它們的外骨骼材料來創造我們士兵能攜帶的最堅固的護甲套裝了。"
+Summary="在研究了外星人可怕的寄生獸單位後，我們相信我們能夠利用它們的外骨骼材料來創造我們士兵能攜帶的堅固護甲套裝了。"
 
 [APRoundsProject X2TechTemplate]
 DisplayName="穿甲彈"
@@ -4633,7 +4641,7 @@ DescriptionEntry="這些任務在小隊選擇介面頂部中央有一個「開�
 [Infiltration_Help3 X2EncyclopediaTemplate]
 ListTitle="潛入進度"
 DescriptionTitle="潛入進度"
-DescriptionEntry="如果在對多數地點立刻發動攻擊的同時，若是小隊沒有做好準備工作，那麼可能會遇到兩到三撥相同數量的敵人。額外的敵人數量會顯示在潛入選項面板的敵人狀態的描述中，可能會出現：無法攻取、加強的、警戒的、有守備的、普通和脆弱的。這些類別都有隱形的層次區別，因此在潛入中每多花費一點時間都有可能讓XCOM遇到更少的敵人。潛入花費更多時間也會減少天際遊俠號在小隊投擲了撤離照明彈後抵達的時間。請注意一些重要的任務需要在任務進行前達到至少100%的潛入程度。"
+DescriptionEntry="如果在對多數地點立刻發動攻擊的同時，若是小隊沒有做好準備工作，那麼可能會遇到兩到三撥相同數量的敵人。額外的敵人數量會顯示在潛入選項面板的敵人狀態的描述中，可能會出現：無法攻取、加固、警戒、守備、一般和脆弱。這些類別都有隱形的層次區別，因此在潛入中每多花費一點時間都有可能讓XCOM遇到更少的敵人。潛入花費更多時間也會減少天際遊俠號在小隊投擲了撤離照明彈後抵達的時間。請注意一些重要的任務需要在任務進行前達到至少100%的潛入程度。"
 
 [Infiltration_Help4 X2EncyclopediaTemplate]
 ListTitle="敵人活動"
@@ -4648,7 +4656,7 @@ DescriptionEntry="指揮官也可以通過花費一些XCOM情報資源來協助�
 [Infiltration_Help6 X2EncyclopediaTemplate]
 ListTitle="管理潛入時間"
 DescriptionTitle="管理潛入時間"
-DescriptionEntry="指揮官對潛入一個任務地點要花費的時間也有一定的控制，比如可選更小的還是更大的隊伍，以及選擇特定的士兵技能和裝備。這會在小隊選擇介面顯示。\"基礎潛入\"值代表了一個一般XCOM5人小隊潛入該地點到100%要花的天數。小隊規模調整值受到所選小隊規模的影響。潛入調整值受到能力和裝備的影響。特定的技能，比如潛入者和諜報技術，會降低潛入時間。攜帶衝鋒鎗以及特定潛行裝備的單位也能進一步降低潛入時間。同時，重型武器專家 - 機槍手、榴彈兵和技術兵 - 會提升小隊的潛入時間。"
+DescriptionEntry="指揮官對潛入一個任務地點要花費的時間也有一定的控制，比如可選更小的還是更大的隊伍，以及選擇特定的士兵技能和裝備。這會在小隊選擇介面顯示。\"基礎潛入\"值代表了一個一般XCOM5人小隊潛入該地點到100%要花的天數。小隊規模調整值受到所選小隊規模的影響。潛入調整值受到能力和裝備的影響。特定的技能，比如潛入者和諜報技術，會降低潛入時間。攜帶衝鋒鎗以及特定潛行裝備的單位也能進一步降低潛入時間。同時，重武器專家 - 機槍手、榴彈兵和技術兵 - 會提升小隊的潛入時間。"
 
 [Infiltration_Help7 X2EncyclopediaTemplate]
 ListTitle="任務到期時間"
@@ -4708,7 +4716,7 @@ DescriptionEntry="忍者受過高級潛入技能的訓練，隱蔽能力比普�
 [Gunner_LWS X2EncyclopediaTemplate]
 ListTitle="機槍手"
 DescriptionTitle="機槍手"
-DescriptionEntry="機槍手攜帶加農炮，擅長放出持續的壓制或直接射擊的彈幕火力。由於武器的重量，他們僅可以攜帶一把戰術匕首作為個人防禦。"
+DescriptionEntry="機槍手攜帶加農炮，擅長持續的壓制或直接射擊的彈幕火力。由於武器的重量，他們僅可以攜帶一把戰術匕首作為個人防禦。"
 
 [Technical_LWS X2EncyclopediaTemplate]
 ListTitle="技術兵"
@@ -4733,7 +4741,7 @@ DescriptionEntry="沈博士在逆向研究了外星人科技後，成功在機�
 [Grenadier_LWS X2EncyclopediaTemplate]
 ListTitle="榴彈兵"
 DescriptionTitle="榴彈兵"
-DescriptionEntry="榴彈兵是重型武器專家，他們使用高爆榴彈和閃光榴彈在戰鬥中製造毀滅性的災難，或是用防禦性的煙霧榴彈和其他保護性設備支援其他士兵。"
+DescriptionEntry="榴彈兵是重武器專家，他們使用高爆榴彈和閃光榴彈在戰鬥中製造毀滅性的災難，或是用防禦性的煙霧榴彈和其他保護性設備支援其他士兵。"
 
 [AvatarProject_LW X2EncylopediaTemplate]
 ListTitle="阻止化身計劃"
@@ -4843,7 +4851,7 @@ DisplayName="成功的變種人突襲："
 ; just fix typo
 [Insanity X2AbilityTemplate]
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/>精神錯亂有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 精神錯亂需要靈能士兵的靈能強度數據與目標的意志進行較量。<br/><Bullet/> 如果成功，精神錯亂會使目標混亂，眩暈或被操控。<br/><Bullet/> 機械敵人完全不受精神錯亂的影響。<br/><Bullet/> 精神錯亂只需要一個行動點，不會結束回合。<br/>"
+LocPromotionPopupText="<Bullet/>精神錯亂有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 精神錯亂需要靈能士兵的靈能威力數據與目標的意志進行較量。<br/><Bullet/> 如果成功，精神錯亂會使目標混亂，眩暈或被操控。<br/><Bullet/> 機械敵人完全不受精神錯亂的影響。<br/><Bullet/> 精神錯亂只需要一個行動點，不會結束回合。<br/>"
 ; End Translation
 
 [XComGame.UIEndGameStats]
@@ -4876,13 +4884,13 @@ LocFriendlyName="打開/關閉箱子"
 LocHelpText="打開或關閉一個箱子"
 
 [PsiAmp_CV X2WeaponTemplate]
-TacticalText="<Bullet/>靈能增幅器讓靈能士兵發動靈能能力。\n<Bullet/>更先進的靈能增幅器能夠提升士兵的靈能強度和他們能力的效能。<Bullet/>靈能增幅器將會迷惑敵人的巡邏隊伍，提供額外的潛入加成。"
+TacticalText="<Bullet/>靈能增幅器讓靈能士兵發動靈能能力。\n<Bullet/>更先進的靈能增幅器能夠提升士兵的靈能威力和他們能力的效能。<Bullet/>靈能增幅器將會迷惑敵人的巡邏隊伍，提供額外的潛入加成。"
 
 [PsiAmp_MG X2WeaponTemplate]
-TacticalText="<Bullet/>高級靈能增幅器能讓靈能士兵的靈能強度+10。\n<Bullet/>靈能強度決定了你許多靈能能力的效能。\n<Bullet/>高級靈能增幅器還能提升許多靈能攻擊的傷害。\n<Bullet/>靈能增幅器將會迷惑敵人的巡邏隊伍，提供額外的潛入加成。"
+TacticalText="<Bullet/>高級靈能增幅器能讓靈能士兵的靈能威力+10。\n<Bullet/>靈能威力決定了你許多靈能能力的效能。\n<Bullet/>高級靈能增幅器還能提升許多靈能攻擊的傷害。\n<Bullet/>靈能增幅器將會迷惑敵人的巡邏隊伍，提供額外的潛入加成。"
 
 [PsiAmp_BM X2WeaponTemplate]
-TacticalText="<Bullet/>外星靈能增幅器能讓靈能士兵的靈能強度+20。\n<Bullet/>靈能強度決定了你許多靈能能力的效能。\n<Bullet/>外星靈能增幅器還能提升許多靈能攻擊的傷害。\n<Bullet/>靈能增幅器將會迷惑敵人的巡邏隊伍，提供額外的潛入加成。"
+TacticalText="<Bullet/>外星靈能增幅器能讓靈能士兵的靈能威力+20。\n<Bullet/>靈能威力決定了你許多靈能能力的效能。\n<Bullet/>外星靈能增幅器還能提升許多靈能攻擊的傷害。\n<Bullet/>靈能增幅器將會迷惑敵人的巡邏隊伍，提供額外的潛入加成。"
 
 [Reward_Radio_Relay X2RewardTemplate]
 DisplayName="無線電中繼站"
@@ -4927,7 +4935,7 @@ LocPromotionPopupText="<Bullet/> 靈魂偷取將會恢復受傷士兵的生命�
 
 ; LWOTC Needs Translation
 [Domination X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> 心靈控制需要靈能士兵的靈能強度與目標意志進行比較。<br/><Bullet/> 如果嘗試心靈控制失敗，則在下次嘗試之前會冷卻4回合。<br/><Bullet/> 如果靈能士兵在戰場死亡或離開戰場，那麼控制將被打斷。<br/>"
+LocPromotionPopupText="<Bullet/> 心靈控制需要靈能士兵的靈能威力與目標意志進行比較。<br/><Bullet/> 如果嘗試心靈控制失敗，則在下次嘗試之前會冷卻4回合。<br/><Bullet/> 如果靈能士兵在戰場死亡或離開戰場，那麼控制將被打斷。<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -4953,8 +4961,8 @@ TacticalText="<Bullet/> 光束榴彈發射器將任何榴彈轉換成一個能�
 
 [FlashbangGrenade X2GrenadeTemplate]
 TacticalText="<Bullet/> 閃光榴彈不會造成傷害，但會在大範圍內擾亂敵軍。<br><Bullet/> 友方小隊成員不會被影響。<br/><Bullet/> 一些很強力敵人會免疫閃光榴彈的效果。"
-ThrownAbilityHelpText="讓爆炸區域內敵人產生混亂效果。對靈能敵人有奇效。"
-LaunchedAbilityHelpText="讓爆炸區域內敵人產生混亂效果。對靈能敵人有奇效。"
+ThrownAbilityHelpText="讓爆炸區域內敵人產生混亂效果。"
+LaunchedAbilityHelpText="讓爆炸區域內敵人產生混亂效果。"
 
 [Whirlwind2 X2AbilityTemplate]
 LocFriendlyName="旋風斬"
@@ -5001,8 +5009,8 @@ LocHelpText="提供1點移動行動給友軍並給他們一個小的閃避和機
 LocPromotionPopupText="<Bullet/> 營救協議給予 +<Ability:RESCUE_BONUS_DODGE/> 閃避和 +<Ability:RESCUE_BONUS_MOBILITY/> 移動力。<br/><Bullet/>營救協議只能使用在沒有行動點數的友軍。<br/><Bullet/> 不能使用於正在隱蔽、壓制敵人或是監視射擊的單位。<br/><Bullet/> 同一回合內，士兵無法同時獲得營救協議與命令的效果。<br/><Bullet/> 花費1點行動並且不會結束回合。<br/><Bullet/> 每次任務有<Ability:RESCUE_CV_CHARGES/>充能。<br/><Bullet/> 改進小精靈增加充能次數。<br/>"
 
 [Blademaster X2AbilityTemplate]
-LocLongDescription="所有近戰攻擊 +<Ability:BlademasterDmg/> 額外傷害以及 +<Ability:BLADEMASTERAIM/> 命中。"
-LocHelpText="所有近戰攻擊額外增加傷害和命中"
+LocLongDescription="所有近戰攻擊+<Ability:BlademasterDmg/>額外傷害以及+<Ability:BLADEMASTERAIM/>命中。"
+LocHelpText="所有近戰攻擊額外增加傷害和命中。"
 
 [AssaultRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/>電漿步槍是常用且非常強大的單兵武器系統。\n<Bullet/>用主武器射擊將會結束該士兵的回合。\n<Bullet/>使用從敵人身上取得的升級部件以提升電漿步槍的戰術效能。<br/><Bullet/>電漿武器在每次命中的時候可以對目標額外造成1點傷害。"
@@ -5165,16 +5173,16 @@ LocLongDescription="給予搭檔額外1行動點。每次任務有1到2點充能
 
 ; LWOTC Needs Translation
 [Shadow X2AbilityTemplate]
-LocLongDescription="士兵進入暗影狀態，一種持續2回合減少90%的探測範圍增加20%移動力的高級隱蔽形式。"
-LocHelpText="士兵進入暗影狀態，一種持續2回合減少90%的探測範圍增加20%移動力的高級隱蔽形式。"
+LocLongDescription="士兵進入暗影狀態，一種持續2回合減少偵測範圍增加移動力的高級隱蔽形式。"
+LocHelpText="士兵進入暗影狀態，一種持續2回合減少偵測範圍增加移動力的高級隱蔽形式。"
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> 暗影狀態減少了90%最多只有幾格的探測範圍。<br/><Bullet/> 死神在暗影狀態增加20%移動力。<br/><Bullet/> 暗影是自由行動且有<Ability:SelfCooldown_LW/> 回合冷卻時間。<br/>"
+LocPromotionPopupText="<Bullet/> 暗影將偵測範圍減少到最多只有幾格。<br/><Bullet/> 死神在暗影狀態增加移動力。<br/><Bullet/> 暗影是自由行動且有<Ability:SelfCooldown_LW/> 回合冷卻時間。<br/><Bullet/> 暗影可以防止被變種人安保塔偵測到。<br/>"
 ; End Translation (2)
 
 [SilentKiller X2AbilityTemplate]
 LocLongDescription="用主武器擊殺敵人不再打破暗影。"
 LocHelpText="用主武器擊殺敵人不再打破暗影。"
-LocPromotionPopupText="<Bullet/> 如果死神用他們的主武器擊殺敵人的話，他們可以在敵人回合時安全地保持暗影狀態。"
+LocPromotionPopupText="<Bullet/> 如果死神用他們的主武器擊殺敵人的話，他們可以安全地保持暗影狀態。"
 
 [ShadowRising X2AbilityTemplate]
 LocLongDescription="減少暗影的冷卻時間1回合。"
@@ -5235,6 +5243,7 @@ LocPromotionPopupText="<Bullet/> 爪鉤讓散兵具有更好的偵察優勢，�
 [FullThrottle X2AbilityTemplate]
 LocLongDescription="回合內每次擊殺移動力 +<Ability:FULLTHROTTLEMOBILITY/> 。 持續 <Ability:FULL_THROTTLE_DURATION/> 回合，包括當前回合。"
 LocHelpText="回合內每次擊殺移動力 +<Ability:FULLTHROTTLEMOBILITY/> 。 持續 <Ability:FULL_THROTTLE_DURATION/> 回合，包括當前回合。"
+LocPromotionPopupText="<Bullet/> 在回合開始時確保擊殺，以充分利用開足馬力。<br/><Bullet/> 只有散兵的擊殺才能觸發開足馬力。<br/>"
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="審判"
@@ -5519,7 +5528,7 @@ FriendlyName="潛入不足 (嚴重)"
 Description="因為你潛入不足，敵人的單位將很難被擊敗。"
 
 [InfilSitRep_UltraHard X2SitRepTemplate]
-FriendlyName="潛入不足 (不可能的?)"
+FriendlyName="潛入不足 (不可能?)"
 Description="因為你潛入不足，敵人的單位將非常強大，戰鬥將幾乎不可能獲勝。"
 ; End Translation
 
@@ -5537,7 +5546,7 @@ LocFriendlyName="潛入不足 (嚴重)"
 LocLongDescription="因為你潛入不足，敵人的單位將很難被擊敗。"
 
 [MonstrousScaling X2AbilityTemplate]
-LocFriendlyName="潛入不足 (不可能的?)"
+LocFriendlyName="潛入不足 (不可能?)"
 LocLongDescription="因為你潛入不足，敵人的單位將非常強大，戰鬥將幾乎不可能獲勝。"
 ; End Translation (2)
 ; End Translation
@@ -6032,9 +6041,9 @@ LocPromotionPopupText = "<Bullet/> 每次戰鬥有<Ability:SUPERCHARGE_CHARGES/>
 
 [ShootingSharp_LW X2AbilityTemplate]
 LocFriendlyName = "貫穿射擊"
-LocHelpText = "對掩體中的敵人+<Ability:SS_PIERCE/>護甲穿透和+<Ability:SS_AIM_BONUS/>命中。"
-LocLongDescription = "對掩體中的敵人+<Ability:SS_PIERCE/> 護甲穿透和+<Ability:SS_AIM_BONUS/>命中。"
-LocPromotionPopupText = "<Bullet/>對掩體中的敵人+<Ability:SS_PIERCE/> 護甲穿透和+<Ability:SS_AIM_BONUS/>命中。<br/>"
+LocHelpText = "你的遠程攻擊對掩體中的敵人+<Ability:SS_PIERCE/>護甲穿透和+<Ability:SS_AIM_BONUS/>命中。"
+LocLongDescription = "你的遠程攻擊對掩體中的敵人+<Ability:SS_PIERCE/> 護甲穿透和+<Ability:SS_AIM_BONUS/>命中。"
+LocPromotionPopupText = "<Bullet/>你的遠程攻擊對掩體中的敵人+<Ability:SS_PIERCE/> 護甲穿透和+<Ability:SS_AIM_BONUS/>命中。<br/>"
 
 [Unlimitedpower_LW X2AbilityTemplate]
 LocFriendlyName = "無限電力"
@@ -6165,12 +6174,12 @@ LocPromotionPopupText="<Bullet/> 增加<Ability:VoltDangerZoneBonus/>-格心靈�
 LocFriendlyName="恐怖主義"
 LocLongDescription="增加心靈灼燒恐慌幾率。"
 LocHelpText="增加心靈灼燒恐慌幾率。"
-LocPromotionPopupText="<Bullet/> 心靈灼燒現在可以使敵人恐慌。<br/><Bullet/> 恐慌的幾率取決於靈能攻擊屬性和目標的意志。"
+LocPromotionPopupText="<Bullet/> 心靈灼燒現在可以使敵人恐慌。<br/><Bullet/> 恐慌的幾率取決於靈能威力屬性和目標的意志。"
 
 [MindScorch X2AbilityTemplate]
 LocFriendlyName=" 心靈灼燒"
-LocHelpText="術士向目標敞開心扉，對目標造成傷害，<Ability:MIND_SCORCH_BURN_CHANCE/>%幾率用他們的瘋狂灼燒目標。"
-LocLongDescription="術士向目標敞開心扉，對目標造成傷害，<Ability:MIND_SCORCH_BURN_CHANCE/>%幾率用他們的瘋狂灼燒目標。"
+LocHelpText="術士向目標敞開心扉，對目標造成傷害，<Ability:MIND_SCORCH_BURN_CHANCE/>%幾率灼燒目標。"
+LocLongDescription="術士向目標敞開心扉，對目標造成傷害，<Ability:MIND_SCORCH_BURN_CHANCE/>%幾率灼燒目標。"
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="劫持"
@@ -6262,16 +6271,16 @@ strAcquiredText="獵手是遠程戰鬥的大師，不斷地用他危險的側翼
 
 ; LWOTC Needs Translation (2)
 [BloodThirst_LW X2AbilityTemplate]
-LocFriendlyName="血跡追蹤"
+LocFriendlyName="嗜血"
 LocLongDescription="每次用你的近戰武器攻擊，得到一個堆疊的傷害提升你的近戰攻擊。增益取決於天選者的等級，T1/T2/T3/T4對應+1/1/2/3傷害。成功劫持後移除。"
 LocHelpText="每次用你的近戰武器攻擊，得到一個堆疊的傷害提升你的近戰攻擊。增益取決於天選者的等級，T1/T2/T3/T4對應+1/1/2/3傷害。成功劫持後移除。"
-LocFlyOverText="血跡追蹤"
+LocFlyOverText="嗜血"
 
 [BloodThirstPassive_LW X2AbilityTemplate]
-LocFriendlyName="血跡追蹤"
+LocFriendlyName="嗜血"
 LocLongDescription="每次用你的近戰武器攻擊，得到一個堆疊的傷害提升你的近戰攻擊。增益取決於天選者的等級，T1/T2/T3/T4對應+1/1/2/3傷害。成功劫持後移除。"
 LocHelpText="每次用你的近戰武器攻擊，得到一個堆疊的傷害提升你的近戰攻擊。增益取決於天選者的等級，T1/T2/T3/T4對應+1/1/2/3傷害。成功劫持後移除。"
-LocFlyOverText="血跡追蹤"
+LocFlyOverText="嗜血"
 
 
 [PreciseStrike_LW X2AbilityTemplate]
@@ -6342,16 +6351,16 @@ TacticalText="<Bullet/> 黑爪是一把對付受傷敵人的威力無比的手�
 AbilityDescName="手槍"
 
 [XCOMBloodThirst_LW X2AbilityTemplate]
-LocFriendlyName="血跡追蹤"
+LocFriendlyName="嗜血"
 LocLongDescription="每次用近戰武器攻擊時，會獲得可疊加的1傷害提升。持續4回合。"
 LocHelpText="每次用近戰武器攻擊時，會獲得可疊加的1傷害提升。持續4回合。"
-LocFlyOverText="血跡追蹤"
+LocFlyOverText="嗜血"
 
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
-LocFriendlyName="血跡追蹤"
+LocFriendlyName="嗜血"
 LocLongDescription="每次用近戰武器攻擊時，會獲得可疊加的1傷害提升。持續4回合。"
 LocHelpText="每次用近戰武器攻擊時，會獲得可疊加的1傷害提升。持續4回合。"
-LocFlyOverText="血跡追蹤"
+LocFlyOverText="嗜血"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
 LocFriendlyName="霸氣側漏"
@@ -6373,8 +6382,8 @@ LocFlyOverText="死亡標記"
 
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="宿命"
-LocLongDescription="使用<Ability:WeaponName/>對35％生命或更低的目標增加+100命中和暴擊。"
-LocHelpText="使用<Ability:WeaponName/>對35％生命或更低的目標增加+100命中和暴擊。"
+LocLongDescription="使用<Ability:WeaponName/>對35％生命或更低的目標增加+100命中和暴擊率。"
+LocHelpText="使用<Ability:WeaponName/>對35％生命或更低的目標增加+100命中和暴擊率。"
 LocFlyOverText="宿命"
 
 [Vampirism_LW X2AbilityTemplate]
@@ -6436,8 +6445,8 @@ LocFlyOverText="天選者反應"
 ; LWOTC Needs Translation (2)
 [ChosenImmunitiesPassive X2AbilityTemplate]
 LocFriendlyName="天選者免疫"
-LocLongDescription="天選者對眩暈、混亂和冰凍免疫，並遭受-50%的致殘移動力，而不是被固定住。"
-LocHelpText="天選者對眩暈、混亂和冰凍免疫，並遭受-50%的致殘移動力，而不是被固定住。"
+LocLongDescription="天選者對眩暈、混亂和冰凍免疫，並遭受-50%的致殘移動力，而不是原地不動。"
+LocHelpText="天選者對眩暈、混亂和冰凍免疫，並遭受-50%的致殘移動力，而不是原地不動。"
 LocFlyOverText="天選者免疫"
 ; End Translation (2)
 
@@ -6516,14 +6525,14 @@ KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="天選者可以向復仇者�
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="天選者可以引發額外的黑暗事件！"
 
 ;[X2Ability_LW_ChosenAbilities]
-;ShieldedStatBuffsLocDescription="命中，暴擊率，意志力和靈能攻擊增益。"
+;ShieldedStatBuffsLocDescription="命中，暴擊率，意志力和靈能威力增益。"
 
 [Magnum_LW X2AbilityTemplate]
 LocFriendlyName="馬格南"
 LocLongDescription="標準手槍射擊沒有遠距離懲罰。"
 LocHelpText="標準手槍射擊沒有遠距離懲罰。"
 LocFlyOverText="馬格南"
-LocPromotionPopupText="<Bullet/>僅適用於標準手槍射擊和手槍監視。<br/> <Bullet/>不適用於特殊能力，如雷霆之手，槍神或對峙。<br/>"
+LocPromotionPopupText="<Bullet/>僅適用於標準手槍射擊和手槍監視。<br/><Bullet/>不適用於特殊能力，如雷霆之手，槍神或對峙。<br/>"
 
 
 [HunterFlashbang X2GrenadeTemplate]
@@ -6532,13 +6541,13 @@ FriendlyNamePlural="獵手閃光榴彈"
 BriefSummary="獵手閃光榴彈會干擾和混亂極大範圍內的敵軍，對其造成巨大的進攻減益。"
 TacticalText="<Bullet/>獵手閃光榴彈不會造成傷害，但會在大範圍內擾亂敵軍。<br><Bullet/>友方小隊成員不會被影響。<br/><Bullet/> 一些強大的敵人或許能抵抗獵手閃光榴彈的影響。"
 ThrownAbilityName="投擲獵手閃光榴彈"
-ThrownAbilityHelpText="在指定區域內使所有敵軍混亂。自由行動。對靈能敵人有奇效。"
+ThrownAbilityHelpText="在指定區域內使所有敵軍混亂。自由行動。"
 LaunchedAbilityname="發射獵手閃光榴彈"
-LaunchedAbilityHelpText="在指定區域內使所有敵軍混亂。自由行動。對靈能敵人有奇效。"
+LaunchedAbilityHelpText="在指定區域內使所有敵軍混亂。自由行動。"
 
 [Disabler X2AbilityTemplate]
-LocFriendlyName="失效器"
-LocFlyOverText="失效器"
+LocFriendlyName="繳械者"
+LocFlyOverText="繳械者"
 LocLongDescription="你的手槍攻擊使目標的武器失效。"
 LocHelpText="你的手槍攻擊使目標的武器失效。"
 
@@ -6685,6 +6694,7 @@ LocFriendlyName="天資"
 LocHelpText="撕裂給予額外專注點。"
 LocLongDescription="撕裂給予額外專注點。"
 LocFlyOverText="天資"
+LocPromotionPopupText="<Bullet/>撕裂給予額外專注點。"
 
 [DoubleRendFocusPassive X2AbilityTemplate]
 LocFriendlyName="天資"
@@ -6738,6 +6748,7 @@ AbilityDescName="自動手槍"
 LocFriendlyName="急救專家"
 LocLongDescription="獲得1個免費急救包。裝備的急救包有<Ability:PARAMEDIC_BONUS_CHARGES/>額外充能。每回合第一次使用急救包不消耗行動點。治療能力額外回復<Ability:PARAMEDIC_BONUS_HEAL/>生命值。"
 LocHelpText="獲得1個免費急救包。裝備的急救包有<Ability:PARAMEDIC_BONUS_CHARGES/>額外充能。每回合第一次使用急救包不消耗行動點。治療能力額外回復<Ability:PARAMEDIC_BONUS_HEAL/>生命值。"
+LocPromotionPopupText="<Bullet/> 獲得1個免費急救包。裝備的急救包有<Ability:PARAMEDIC_BONUS_CHARGES/>額外充能。每回合第一次使用急救包不消耗行動點。治療能力額外回復<Ability:PARAMEDIC_BONUS_HEAL/>生命值。"
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="放逐"
@@ -6750,14 +6761,14 @@ LocPromotionPopupText="<Bullet/> 放逐中的每一次射擊都有單獨的命�
 LocFriendlyName="全面戰鬥"
 LocLongDescription="投擲榴彈或使用物品不會結束回合且榴彈不再有冷卻時間。此外，榴彈投擲的距離增加2格，爆炸半徑增加1格。授予榴彈專用槽。"
 LocHelpText="投擲榴彈或使用物品不會結束回合且榴彈不再有冷卻時間。此外，榴彈投擲的距離增加2格，爆炸半徑增加1格。授予榴彈專用槽。"
-LocPromotionPopupText="<Bullet/> 全面戰鬥讓散兵的戰術更為多樣化，能夠在需要的時候採取精準的行動。<br/><Bullet/> 消除榴彈的冷卻時間。<br/><Bullet/> 同時授予轟炸者和爆炸揮發技能，因此它不會與其中任何一個技能疊加。"
+LocPromotionPopupText="<Bullet/> 全面戰鬥讓<Ability:ClassName/>的戰術更為多樣化，能夠在需要的時候採取精準的行動。<br/><Bullet/> 消除榴彈的冷卻時間。<br/><Bullet/> 同時授予轟炸者和爆炸揮發技能，因此它不會與其中任何一個技能疊加。"
 
 [PackMaster_LW X2AbilityTemplate]
 LocFriendlyName="背包大師"
 LocFlyOverText="背包大師"
-LocLongDescription="對裝備的每件物品和榴彈額外增加1充能。"
-LocHelpText="對裝備的每件物品和榴彈額外增加1充能。"
-LocPromotionPopupText="<Bullet/> 對裝備的每件物品和榴彈額外增加1充能。<br/><Bullet/> 適用於榴彈槽以及標準通用槽，但不適用於其他插槽。<br/> 煙霧榴彈和閃光榴彈技能提供的額外榴彈不會額外充能。<br/>"
+LocLongDescription="對裝備的每件通用物品和榴彈額外增加1充能。"
+LocHelpText="對裝備的每件通用物品和榴彈額外增加1充能。"
+LocPromotionPopupText="<Bullet/> 對裝備的每件通用物品和榴彈額外增加1充能。<br/><Bullet/> 適用於榴彈槽以及標準通用槽，但不適用於其他插槽。<br/><Bullet/> 煙霧榴彈和閃光榴彈技能提供的額外榴彈不會額外充能。<br/>"
 
 [SkirmisherInterrupt_LW X2AbilityTemplate]
 LocFriendlyName="阻斷"
@@ -6782,4 +6793,37 @@ SummaryText="在最近被天選者破壞後，我們一直在努力維持遠程�
 ShortSummaryText="我們的隱秘行動將被推遲2周！"
 ; End Translation
 
+; LWOTC Needs Translation
+
+[Unstoppable_LW X2AbilityTemplate]
+LocFriendlyName="勢不可擋"
+LocLongDescription="該單位的移動力不會低於<Ability:UNSTOPPABLE_MIN_MOB>。"
+LocHelpText="該單位的移動力不會低於<Ability:UNSTOPPABLE_MIN_MOB>。"
+LocFlyOverText="勢不可擋"
+LocPromotionPopupText="該單位的移動力不會低於<Ability:UNSTOPPABLE_MIN_MOB>。"
+
+[UnstoppablePassive_LW X2AbilityTemplate]
+LocFriendlyName="勢不可擋"
+LocLongDescription="該單位的移動力不會低於<Ability:UNSTOPPABLE_MIN_MOB>。"
+LocHelpText="該單位的移動力不會低於<Ability:UNSTOPPABLE_MIN_MOB>。"
+LocFlyOverText="勢不可擋"
+LocPromotionPopupText="該單位的移動力不會低於<Ability:UNSTOPPABLE_MIN_MOB>。"
+
+[TargetingAimAndCrit X2AbilityTemplate]
+LocLongDescription="士兵增加<Ability:TargetingAimAndCrit_AimBonus/>命中及<Ability:TargetingAimAndCrit_CritBonus/>暴擊率持續<Ability:TURNSREMAINING/>回合。"
+
+[TargetingDodge X2AbilityTemplate]
+LocLongDescription="士兵增加<Ability:TargetingDodge_DodgeBonus/>閃避持續<Ability:TURNSREMAINING/>回合。"
+
+[TargetingCrit X2AbilityTemplate]
+LocLongDescription="士兵增加<Ability:TargetingCrit_CritBonus/>暴擊率持續<Ability:TURNSREMAINING/>回合。"
+
+[Hypnography X2AbilityTemplate]
+LocLongDescription="所有敵人減少<Ability:Hypnography_WillBonus/>%意志力。"
+; End Translation
+
+; LWOTC Needs Translation
+[MicroMissiles X2AbilityTemplate]
+LocHelpText="用爆炸性飛彈攻擊目標區域。"
+; End Translation
 

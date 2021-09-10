@@ -22,7 +22,7 @@ LocPromotionPopupText="<Bullet/> 增加 <Ability:DemolitionistExtraChargeCount/>
 LocFriendlyName="致殘打擊"
 LocLongDescription="投擲一把飛刀，使目標緻殘1回合 (0移動力)。"
 LocHelpText="投擲一把飛刀，使目標緻殘1回合 (0移動力)。"
-LocPromotionPopupText="<Bullet/> 投擲飛刀， 不會打破暗影狀態.<br/><Bullet/> 致殘狀態會將目標的移動性降低至0，使其無法移動。<br>"
+LocPromotionPopupText="<Bullet/> 投擲飛刀不會打破暗影狀態。<br/><Bullet/> 致殘狀態會將目標的移動性降低至0，使其無法移動。<br>"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -79,8 +79,8 @@ LocFriendlyName="神化"
 ; LWOTC Needs Translation (2)
 LocFlyoverText="神化!"
 ; End Translation (2)
-LocLongDescription="化身神，大幅增加你的閃避，撕裂傷害和移動力。至少需要3點專注並消耗所有專注點。"
-LocHelpText="化身神，大幅增加你的閃避，撕裂傷害和移動力。至少需要3點專注並消耗所有專注點。"
+LocLongDescription="化身神，大幅增加你的閃避，傷害和移動力。至少需要3點專注並消耗所有專注點。"
+LocHelpText="化身神，大幅增加你的閃避，傷害和移動力。至少需要3點專注並消耗所有專注點。"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> 使聖殿騎士在2回合內變得更加強大的自由動作。<br/><Bullet/> 高於2專注時每點專注增加<Ability:ApotheosisDamageMultiplier/>%所有傷害。<br/><Bullet/> 高於2專注時每點專注增加<Ability:ApotheosisDodgeBonus/>閃避。<br/><Bullet/> 高於2專注時每點專注提高<Ability:ApotheosisMobilityBonus/>移動力。<br/><Bullet/> 至少需要3點專注。<br/><Bullet/> 消耗所有專注點。<br/><Bullet/> 聖殿騎士可以在神化狀態下獲得專注。"
 ; End Translation (2)
@@ -142,9 +142,9 @@ LocPromotionPopupText="撕裂標記賦予投擲飛刀堆疊效果。當飛刀擊
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="刀鋒相接"
 LocFlyOverText="刀鋒相接"
-LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。"
-LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。"
-LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。<br/><Bullet/> 一個紅環將標記該能力的範圍。<br/><Bullet/> 刀鋒相接不能與奔襲戰術同時使用。<br/>"
+LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。不能在同一回合觸發暗箭傷人。"
+LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。不能在同一回合觸發暗箭傷人。"
+LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。<br/><Bullet/> 一個紅環將標記該能力的範圍。<br/><Bullet/> 刀鋒相接不能與奔襲戰術或者暗箭傷人同時使用。<br/>"
 
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="冷漠邊緣"
@@ -164,7 +164,7 @@ LocPromotionPopupText="<Bullet/> 當用投擲飛刀擊殺1名目標時減少暗�
 LocFriendlyName="藍屏飛刀"
 LocHelpText="投擲飛刀獲得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲並混亂機械單位。"
 LocLongDescription="投擲飛刀獲得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲並混亂機械單位。"
-LocPromotionPopupText="投擲飛刀獲得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲並混亂機械單位。"
+LocPromotionPopupText="<Bullet/> 投擲飛刀獲得+<Ability:BLUESCREEN_KNIVES_PIERCE/>穿甲並混亂機械單位。<br/>"
 
 ; LWOTC Needs Translation
 [BattlefieldAwareness X2AbilityTemplate]
@@ -190,6 +190,15 @@ LocHelpText="在該效果結束之前，戰地感知不會被激活。"
 
 [CombatPresence X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 戰鬥存在能讓隊友利用額外的攻擊或移動來脫離險境。<br/><Bullet/> 戰鬥存在有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/>"
+; LWOTC Needs Translation
+
+[CheapShot X2AbilityTemplate]
+LocFriendlyName="暗箭傷人"
+LocFlyOverText="暗箭傷人"
+LocLongDescription= "每回合一次，用主武器對一名受傷目標進行一次普通射擊後，獲得一個額外的移動點。不能在同一回合觸發刀鋒相接。"
+LocHelpText="每回合一次，用主武器對一名受傷目標進行一次普通射擊後，獲得一個額外的移動點。不能在同一回合觸發刀鋒相接。"
+LocPromotionPopupText="<Bullet/> 僅適用於標準射擊，所以它不會觸發放逐之類的技能。"
+; End Translation
 
 [LW_FactionBalance.X2Ability_ThrowingKnifeAbilitySet]
 RendTheMarkedEffectName="撕裂標記"

@@ -33,21 +33,21 @@ LocPromotionPopupText="<Bullet/> 僅消耗一點充能，不消耗任何標準�
 FriendlyName="飛刀"
 FriendlyNamePlural="飛刀"
 BriefSummary="由最先進的鋼質合金製成的飛刀。"
-TacticalText="<Bullet/> 投擲飛刀不會打破暗影狀態。"
+TacticalText="<Bullet/> 投擲飛刀不會打破暗影狀態。<br/><Bullet/> 有<Ability:THROWING_KNIFE_CV_BLEED_CHANCE/>%幾率造成流血，每回合受到<Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/>傷害持續<Ability:THROWING_KNIFE_CV_BLEED_DURATION/>回合。"
 AbilityDescName="飛刀"
 
 [ThrowingKnife_MG_Secondary X2WeaponTemplate]
 FriendlyName="合金飛刀"
 FriendlyNamePlural="合金飛刀"
 BriefSummary="由外星合金製成的飛刀。"
-TacticalText="<Bullet/> 投擲飛刀不會打破暗影狀態。"
+TacticalText="<Bullet/> 投擲飛刀不會打破暗影狀態。<br/><Bullet/> 有<Ability:THROWING_KNIFE_MG_BLEED_CHANCE/>%幾率造成流血，每回合受到<Ability:THROWING_KNIFE_MG_BLEED_DAMAGE/>傷害持續<Ability:THROWING_KNIFE_MG_BLEED_DURATION/>回合。"
 AbilityDescName="飛刀"
 
 [ThrowingKnife_BM_Secondary X2WeaponTemplate]
 FriendlyName="等離子飛刀"
 FriendlyNamePlural="等離子飛刀"
 BriefSummary="具有等離子刃的飛刀，可以像切黃油一樣切穿護甲。"
-TacticalText="<Bullet/> 投擲飛刀不會打破暗影狀態。"
+TacticalText="<Bullet/> 投擲飛刀不會打破暗影狀態。<br/><Bullet/> 有<Ability:THROWING_KNIFE_BM_BLEED_CHANCE/>%幾率造成流血，每回合受到<Ability:THROWING_KNIFE_BM_BLEED_DAMAGE/>傷害持續<Ability:THROWING_KNIFE_BM_BLEED_DURATION/>回合。"
 AbilityDescName="飛刀"
 
 ; End Translation

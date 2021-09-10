@@ -88,8 +88,8 @@ LocPromotionPopupText="<Bullet/> 不能在同一回合使用奔襲戰術。<br/>
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="近戰專家"
 LocFlyOverText="近戰專家"
-LocLongDescription="在敵人回合時，對4格內任何移動或開火的可見敵人進行1次<Ability:BOUND_WEAPON_NAME/>自由反應射擊。"
-LocHelpText="在敵人回合時，對4格內任何移動或開火的可見敵人進行1次<Ability:BOUND_WEAPON_NAME/>自由反應射擊。"
+LocLongDescription="對4格內任何移動或開火的可見敵人進行1次<Ability:BOUND_WEAPON_NAME/>自由反應射擊。"
+LocHelpText="對4格內任何移動或開火的可見敵人進行1次<Ability:BOUND_WEAPON_NAME/>自由反應射擊。"
 LocPromotionPopupText="<Bullet/>士兵在隱蔽狀態時不會觸發。<br/><Bullet/>使用該能力可以每回合對每個敵人射擊1次。<br/><Bullet/>每次射擊消耗2彈藥。<br/>""
 
 [CloseCombatSpecialistAttack X2AbilityTemplate]
@@ -244,21 +244,21 @@ LocFriendlyName="塹壕槍"
 LocFlyOverText="塹壕槍"
 LocLongDescription="僅限散彈槍為主武器時的特殊射擊：對附近錐型範圍內的目標進行一次攻擊。冷卻時間<Ability:SelfCooldown_LW/>回合。"
 LocHelpText="僅限散彈槍為主武器時的特殊射擊：對附近錐型範圍內的目標進行一次攻擊。冷卻時間<Ability:SelfCooldown_LW/>回合。"
-LocPromotionPopupText="<Bullet/>僅限主武器散彈槍的特殊射擊：對附近的目標進行近距離圓錐形的射擊。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻，消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/>其他主武器不可使用該能力。<br/><Bullet/>該射擊不會穿透重型掩體，所以這種能力最好用在側翼情況。<br/><Bullet/>在範圍內的友軍也會受到傷害。<br/>"
+LocPromotionPopupText="<Bullet/>僅限主武器散彈槍的特殊射擊：對附近錐型範圍內的目標進行一次攻擊。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻，消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/>其他主武器不可使用該能力。<br/><Bullet/>該射擊不會穿透重型掩體，所以這種能力最好用在側翼情況。<br/><Bullet/>在範圍內的友軍也會受到傷害。<br/>"
 
 [SlugShot X2AbilityTemplate]
-LocFriendlyName="彈頭射擊"
-LocFlyOverText="彈頭射擊"
-LocLongDescription="僅限散彈槍為主武器時的特殊射擊：進行一次能夠穿透<Ability:SLUG_SHOT_PIERCE/>點護甲並且沒有射程懲罰的射擊。使用<Ability:SelfAmmoCost/>個彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
-LocHelpText="沒有射程懲罰的特殊散彈槍護甲穿透射擊。"
-LocPromotionPopupText="<Bullet/>僅限主武器為散彈槍的特殊射擊：射擊1次，沒有射程懲罰。<br/><Bullet/>此次射擊可穿透<Ability:SLUG_SHOT_PIERCE/>點護甲。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/>"
+LocFriendlyName="獨頭彈"
+LocFlyOverText="獨頭彈"
+LocLongDescription="僅限散彈槍為主武器時的特殊射擊：進行一次能夠穿透<Ability:SLUG_SHOT_PIERCE/>點護甲並且沒有射程懲罰的射擊。消耗<Ability:SelfAmmoCost/>彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
+LocHelpText="穿透護甲沒有射程懲罰的特殊散彈槍射擊。"
+LocPromotionPopupText="<Bullet/>僅限主武器為散彈槍的特殊射擊：進行一次沒有射程懲罰的射擊。<br/><Bullet/>此次射擊可穿透<Ability:SLUG_SHOT_PIERCE/>點護甲。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/>"
 
 [SlugShotRangeEffect X2AbilityTemplate]
-LocFriendlyName="彈頭射擊"
-LocFlyOverText="彈頭射擊"
-LocLongDescription="僅限散彈槍為主武器時的特殊射擊：進行一次沒有射程減益的射擊。使用<Ability:SelfAmmoCost/>個彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
-LocHelpText="僅限散彈槍為主武器時的特殊射擊：進行一次沒有射程減益的射擊。使用<Ability:SelfAmmoCost/>個彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
-LocPromotionPopupText="<Bullet/>僅限主武器為散彈槍的特殊射擊：射擊1次，沒有射程懲罰。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/>需要<Ability:SelfAmmoCost/>彈藥。<br/>"
+LocFriendlyName="獨頭彈"
+LocFlyOverText="獨頭彈"
+LocLongDescription="僅限散彈槍為主武器時的特殊射擊：進行一次沒有射程懲罰的射擊。消耗<Ability:SelfAmmoCost/>彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
+LocHelpText="僅限散彈槍為主武器時的特殊射擊：進行一次沒有射程懲罰的射擊。消耗<Ability:SelfAmmoCost/>彈藥。冷卻時間<Ability:SelfCooldown_LW/>回合。"
+LocPromotionPopupText="<Bullet/>僅限主武器為散彈槍的特殊射擊：進行一次沒有射程懲罰的射擊。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/>"
 
 [Commissar X2AbilityTemplate]
 LocFriendlyName="督戰員"
@@ -555,7 +555,7 @@ LocFriendlyName="尖刺榴彈"
 LocFlyOverText="尖刺榴彈"
 LocLongDescription="你的閃光榴彈有50%幾率使範圍內敵人眩暈一回合。"
 LocHelpText="你的閃光榴彈有50%幾率使敵人眩暈。"
-LocPromotionPopupText="<Bullet/>你的閃光榴彈有50%幾率使敵人眩暈。<br/><Bullet/> 敵人天生的閃光抗性不影響眩暈幾率。<br/>"
+LocPromotionPopupText="<Bullet/> 你的閃光榴彈有50%幾率使敵人眩暈。<br/><Bullet/> 敵人天生的閃光抗性不影響眩暈幾率。<br/>"
 
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="毒刺榴彈"
@@ -716,14 +716,14 @@ LocFriendlyName="心靈融合"
 LocFlyOverText="心靈融合"
 LocLongDescription="給同伴提供額外的意志，暴擊率和護盾值，直到玩家的下一回合開始。"
 LocHelptext="給同伴提供額外的意志，暴擊率和護盾值。"
-LocPromotionPopupText="<Bullet/>可為目標提供1點額外生命值（護盾），使用心靈融合的靈能士兵的每20點靈能攻擊分數還可提供額外1點生命值。<br/><Bullet/>靈能士兵的每5點靈能攻擊分數都能給目標友軍提供1點意志力。<br/><Bullet/>靈能士兵的每7點靈能攻擊分數都能給目標友軍提供1點暴擊率。<br/><Bullet/>效果持續到靈能士兵的下回合。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/>只有可見的友軍才能成為目標。<br/><Bullet/>加強的靈能增幅器能提供額外獎勵意志力和生命值。<br/<Bullet/> 使用1個行動點，不會結束回合。<br/><Bullet/> 如果靈能兵被僱傭為避難所顧問，心靈融合將減少40%的幾率招募到無面怪（與其他類似能力疊加）。<br/>"
+LocPromotionPopupText="<Bullet/>可為目標提供1點額外生命值（護盾），使用心靈融合的靈能士兵的每20點靈能威力還可提供額外1點生命值。<br/><Bullet/>靈能士兵的每5點靈能威力都能給目標友軍提供1點意志力。<br/><Bullet/>靈能士兵的每7點靈能威力都能給目標友軍提供1點暴擊率。<br/><Bullet/>效果持續到靈能士兵的下回合。<br/><Bullet/><Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/>只有可見的友軍才能成為目標。<br/><Bullet/>加強的靈能增幅器能提供額外獎勵意志力和生命值。<br/<Bullet/> 使用1個行動點，不會結束回合。<br/><Bullet/> 如果靈能兵被僱傭為避難所顧問，心靈融合將減少40%的幾率招募到無面怪（與其他類似能力疊加）。<br/>"
 
 [SoulMerge X2AbilityTemplate]
 LocFriendlyName="靈魂融合"
 LocFlyOverText="靈魂融合"
 LocLongDescription="增加心靈融合的效率，更多的暴擊率，更高意志力和護盾值。並且減少心靈融合的冷卻時間。"
 LocHelpText="提升心靈融合的效率。"
-LocPromotionPopupText="<Bullet/>減少1回合心靈融合的冷卻時間。<br/><Bullet/>每20點靈能攻擊能使附加的生命值增加1點。<br/><Bullet/>每5點靈能攻擊提升1點意志力。<br/><Bullet/> <Bullet/> 每5點靈能值提供1%的暴擊率。"
+LocPromotionPopupText="<Bullet/>減少1回合心靈融合的冷卻時間。<br/><Bullet/>每20點靈能威力能使附加的生命值增加1點。<br/><Bullet/>每5點靈能威力提升1點意志力。<br/><Bullet/> 每5點靈能值提供1%的暴擊率。"
 
 [Shadowstrike_LW X2AbilityTemplate]
 LocFriendlyName="暗影打擊"
@@ -750,7 +750,7 @@ LocFlyOverText=""
 [XComGame.Killzone X2AbilityTemplate]
 [KillZone X2AbilityTemplate]
 LocFriendlyName="殺戮地帶"
-LocLongDescription="對圓錐範圍內任意移動的敵人進行一次反應射擊。"
+LocLongDescription="對錐形範圍內任意移動的敵人進行一次反應射擊。"
 LocHelpText="加強監視的錐形射程。"
 LocFlyOverText="殺戮地帶"
 LocPromotionPopupText="<Bullet/>士兵發動殺戮地帶沒有彈藥限制。<br/><Bullet/>殺戮地帶可以利用小隊視野，即便士兵沒有守望能力。<br/><Bullet/>殺戮地帶有<Ability:SelfCooldown/>回合冷卻時間。<br/>"
@@ -778,13 +778,13 @@ LocFriendlyName="爆炸揮發"
 LocLongDescription="榴彈的範圍效果提升1格。"
 LocHelpText="榴彈將覆蓋更巨大的區域。"
 LocFlyOverText="爆炸揮發"
-LocPromotionPopupText="<Bullet/>榴彈造成的更大的普通和環境效果，也適用於任何額外的效果。"
+LocPromotionPopupText="<Bullet/>榴彈會在擴大的效果範圍內造成常規和環境的傷害，並在擴大的效果範圍內施加額外的效果。"
 
 [XComGame.Salvo X2AbilityTemplate]
 [Salvo X2AbilityTemplate]
 LocFriendlyName="齊射"
-LocLongDescription="使用你的第一個行動點發射或投擲榴彈，使用重型武器或臂套火箭發射器不會結束你的回合。"
-LocHelpText="榴彈和重型武器，以及臂套火箭發射器能夠在發射後不結束本回合。"
+LocLongDescription="使用你的第一個行動點發射或投擲榴彈，使用重武器或臂套火箭發射器不會結束你的回合。"
+LocHelpText="榴彈和重武器，以及臂套火箭發射器能夠在發射後不結束本回合。"
 LocFlyOverText="齊射"
 LocPromotionPopupText="<Bullet/>擁有齊射能力的士兵是使用重型護甲的最佳人選。<br/>"
 
@@ -1122,7 +1122,7 @@ RandomNicknames_Female[3]="蜂后"
 
 [LW_Gunner X2SoldierClassTemplate]
 DisplayName="機槍手"
-ClassSummary="機槍手可以使用重型武器，對敵人進行高強度的火力打擊。"
+ClassSummary="機槍手可以使用重武器，對敵人進行高強度的火力打擊。"
 LeftAbilityTreeTitle="步槍手"
 RightAbilityTreeTitle="機槍手"
 

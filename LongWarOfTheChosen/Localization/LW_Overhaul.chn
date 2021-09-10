@@ -24,7 +24,7 @@ ActivityObjectives[0]="开始解放地区"
 ActivityName="ProtectRegion2Activity"
 ActivityObjectives[0]="解放：营救一名叛逃者"
 
-+MissionDescriptions=(MissionFamily="Extract_LW", Description="我们可以在这片区域解救出一名变种人叛逃者，他掌握着外星人弱点的重要信息。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Extract_LW", Description="我们可以在这片区域营救出一名变种人叛逃者，他掌握着外星人弱点的重要信息。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们已经得知了这片地区一名反抗军支持者拥有外星人弱点的重要信息。", MissionIndex=0)
 
 [ProtectRegion X2LWAlienActivityTemplate]
@@ -51,7 +51,7 @@ ActivityObjectives[1]="防守反抗军避难所"
 
 [ReinforceActivity X2LWAlienActivityTemplate]
 ActivityName="ReinforceActivity"
-ActivityObjectives[0]="拦截变种人增援部队"
+ActivityObjectives[0]="拦截变种人增援"
 +MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="我们发现变种人在向该地区派遣部队，其目的是对我们在该地区的行动作出反应。", MissionIndex=0)
 
 [COINResearch X2LWAlienActivityTemplate]
@@ -65,7 +65,7 @@ ActivityObjectives[0]="封锁变种人军事研发"
 
 [COINOps X2LWAlienActivityTemplate]
 ActivityName="COINOpsActivity"
-ActivityObjectives[0]="攻击变种人反游击行动"
+ActivityObjectives[0]="阻止变种人反游击行动"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="变种人正在组织行动阻止反抗军和XCOM。我们有机会阻止他们。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="变种人正在组织行动阻止反抗军和XCOM。我们有机会阻止他们。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="变种人正在组织行动阻止反抗军和XCOM。我们有机会阻止他们。", MissionIndex=0)
@@ -148,22 +148,22 @@ ActivityObjectives[0]="找到一个线索"
 
 [TroopManeuvers X2LWAlienActivityTemplate]
 ActivityName="TroopManeuversActivity"
-ActivityObjectives[0]="减少敌人强度"
+ActivityObjectives[0]="减少变种人强度"
 +MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="变种人的一支战斗部队暴露在我们部队的攻势之下。")
 
 [HighValuePrisoner X2LWAlienActivityTemplate]
 ActivityName="HighValuePrisonerActivity"
 ActivityObjectives[0]="营救一名重要囚犯"
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们已经知悉了变种人关押的一名重要囚犯的位置了。我们有机会解救他。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Extract_LW", Description="我们得知有一名从变种人设施中逃出来的囚犯能够帮到反抗军。我们有机会解救他。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="我们已经知悉了变种人关押的一名重要囚犯的位置了。我们有机会营救他。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Extract_LW", Description="我们得知有一名从变种人设施中逃出来的囚犯能够帮到反抗军。我们有机会营救他。", MissionIndex=0)
 
 [PoliticalPrisoners X2LWAlienActivityTemplate]
 ActivityName="PoliticalPrisonersActivity"
 ActivityObjectives[0]="营救被俘反抗军"
-+MissionDescriptions=(MissionFamily="Jailbreak_LW", Description="一组反抗军成员被关押在一个保护设施内。我们有机会解救他们。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Jailbreak_LW", Description="一组反抗军成员被关押在一个保护设施内。我们有机会营救他们。", MissionIndex=0)
 
 [Logistics X2LWAlienActivityTemplate]
-ActivityObjectives[0]="夺取变种人给养箱"
+ActivityObjectives[0]="夺取变种人补给箱"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="反抗军找到一个含有重要资源的变种人补给站，我们可以将这些资源作为己用", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
@@ -179,7 +179,7 @@ ActivityObjectives[0]="保护反抗军资产"
 [RecruitRaid X2LWAlienActivityTemplate]
 ActivityName="RecruitRaidActivity"
 ActivityObjectives[0]="保护反抗军资产"
-+MissionDescriptions=(MissionFamily="RecruitRaid_LW", Description="一名反抗军招募人员遇见了一支变种人巡逻队。我们需要立刻解救出人员。")
++MissionDescriptions=(MissionFamily="RecruitRaid_LW", Description="一名反抗军招募人员遇见了一支变种人巡逻队。我们需要立刻营救出人员。")
 
 [Snare X2LWAlienActivityTemplate]
 ActivityName="SnareActivity"
@@ -207,29 +207,29 @@ SecondaryRadiusLabel="火焰喷射器半径"
 [LWGauntlet_CV X2MultiWeaponTemplate]
 FriendlyName="臂套"
 FriendlyNamePlural="臂套"
-BriefSummary="迷你火箭弹和火焰喷射器相结合的设计，是为了能够使其掌控多样化的战斗情景。"
-TacticalText="<Bullet/> XCOM臂套是一种带有迷你火箭弹发射器和火焰喷射器的高级设备。<br/><Bullet/> 火箭发射器最初携带一枚火箭且有3格半径的范围效果。<br/><Bullet/> 它能够瞄准视野范围内的任何东西。<br/><Bullet/> 根据弹着点的不同，火箭弹的伤害也会减少。<br/><Bullet/> 火焰喷射器是能够对锥形范围内的多个目标造成伤害的短距离武器。<br/><Bullet/> 火焰喷射器拥有两次充能，在没有升级前无法伤害机械单位。<br/><Bullet/> 使用任一臂套能力都需要一个行动点并会结束你的回合。<br/><Bullet/> 火箭精确度受到士兵命中、目标距离以及士兵本回合是否使用过行动点等因素影响。低精度的火箭散布值更大，更可能击中与目标地点相去甚远的地方。火箭的最大可能散布将在弹窗中给出，具体地点的预计（平均）散布值将伴随瞄准指针一同显示。"
+BriefSummary="迷你火箭和火焰喷射器相结合的设计，是为了能够使其掌控多样化的战斗情景。"
+TacticalText="<Bullet/> XCOM臂套是一种带有迷你火箭发射器和火焰喷射器的高级设备。<br/><Bullet/> 火箭发射器最初携带一枚火箭且有3格半径的范围效果。<br/><Bullet/> 它能够瞄准视野范围内的任何东西。<br/><Bullet/> 根据弹着点的不同，火箭的伤害也会减少。<br/><Bullet/> 火焰喷射器是能够对锥形范围内的多个目标造成伤害的短距离武器。<br/><Bullet/> 火焰喷射器拥有两次充能，在没有升级前无法伤害机械单位。<br/><Bullet/> 使用任一臂套能力都需要一个行动点并会结束你的回合。<br/><Bullet/> 火箭精确度受到士兵命中、目标距离以及士兵本回合是否使用过行动点等因素影响。低精度的火箭散布值更大，更可能击中与目标地点相去甚远的地方。火箭的最大可能散布将在弹窗中给出，具体地点的预计（平均）散布值将伴随瞄准指针一同显示。"
 AbilityDescName="臂套"
 
 [LWGauntlet_MG X2MultiWeaponTemplate]
 FriendlyName="臂套第II型"
 FriendlyNamePlural="臂套第II型"
 BriefSummary="第II型臂套拥有比第I型更高的伤害。"
-TacticalText="<Bullet/> XCOM臂套是一种带有迷你火箭弹发射器和火焰喷射器的高级设备。<br/><Bullet/> 火箭发射器最初携带一枚火箭且有3格半径的范围效果。<br/><Bullet/> 它能够瞄准视野范围内的任何东西。<br/><Bullet/> 根据弹着点的不同，火箭弹的伤害也会减少。<br/><Bullet/> 火焰喷射器是能够对锥形范围内的多个目标造成伤害的短距离武器。<br/><Bullet/> 火焰喷射器拥有两次充能，在没有升级前无法伤害机械单位。<br/><Bullet/> 使用任一臂套能力都需要一个行动点并会结束你的回合。<br/><Bullet/> 火箭精确度受到士兵命中、目标距离以及士兵本回合是否使用过行动点等因素影响。低精度的火箭散布值更大，更可能击中与目标地点相去甚远的地方。火箭的最大可能散布将在弹窗中给出，具体地点的预计（平均）散布值将伴随瞄准指针一同显示。"
+TacticalText="<Bullet/> XCOM臂套是一种带有迷你火箭发射器和火焰喷射器的高级设备。<br/><Bullet/> 火箭发射器最初携带一枚火箭且有3格半径的范围效果。<br/><Bullet/> 它能够瞄准视野范围内的任何东西。<br/><Bullet/> 根据弹着点的不同，火箭的伤害也会减少。<br/><Bullet/> 火焰喷射器是能够对锥形范围内的多个目标造成伤害的短距离武器。<br/><Bullet/> 火焰喷射器拥有两次充能，在没有升级前无法伤害机械单位。<br/><Bullet/> 使用任一臂套能力都需要一个行动点并会结束你的回合。<br/><Bullet/> 火箭精确度受到士兵命中、目标距离以及士兵本回合是否使用过行动点等因素影响。低精度的火箭散布值更大，更可能击中与目标地点相去甚远的地方。火箭的最大可能散布将在弹窗中给出，具体地点的预计（平均）散布值将伴随瞄准指针一同显示。"
 AbilityDescName="臂套"
 
 [LWGauntlet_CG X2MultiWeaponTemplate]
 FriendlyName="臂套第III型"
 FriendlyNamePlural="臂套第III型"
 BriefSummary="第III型臂套比第I型和第II型造成更多伤害。"
-TacticalText="<Bullet/> XCOM臂套是一种带有迷你火箭弹发射器和火焰喷射器的高级设备。<br/><Bullet/> 火箭发射器最初携带一枚火箭且有3格半径的范围效果。<br/><Bullet/> 它能够瞄准视野范围内的任何东西。<br/><Bullet/> 根据弹着点的不同，火箭弹的伤害也会减少。<br/><Bullet/> 火焰喷射器是能够对锥形范围内的多个目标造成伤害的短距离武器。<br/><Bullet/> 火焰喷射器拥有两次充能，在没有升级前无法伤害机械单位。<br/><Bullet/> 使用任一臂套能力都需要一个行动点并会结束你的回合。<br/><Bullet/> 火箭精确度受到士兵命中、目标距离以及士兵本回合是否使用过行动点等因素影响。低精度的火箭散布值更大，更可能击中与目标地点相去甚远的地方。火箭的最大可能散布将在弹窗中给出，具体地点的预计（平均）散布值将伴随瞄准指针一同显示。"
+TacticalText="<Bullet/> XCOM臂套是一种带有迷你火箭发射器和火焰喷射器的高级设备。<br/><Bullet/> 火箭发射器最初携带一枚火箭且有3格半径的范围效果。<br/><Bullet/> 它能够瞄准视野范围内的任何东西。<br/><Bullet/> 根据弹着点的不同，火箭的伤害也会减少。<br/><Bullet/> 火焰喷射器是能够对锥形范围内的多个目标造成伤害的短距离武器。<br/><Bullet/> 火焰喷射器拥有两次充能，在没有升级前无法伤害机械单位。<br/><Bullet/> 使用任一臂套能力都需要一个行动点并会结束你的回合。<br/><Bullet/> 火箭精确度受到士兵命中、目标距离以及士兵本回合是否使用过行动点等因素影响。低精度的火箭散布值更大，更可能击中与目标地点相去甚远的地方。火箭的最大可能散布将在弹窗中给出，具体地点的预计（平均）散布值将伴随瞄准指针一同显示。"
 AbilityDescName="臂套"
 
 [LWGauntlet_BM X2MultiWeaponTemplate]
 FriendlyName="爆裂炮臂套"
 FriendlyNamePlural="爆裂炮臂套"
 BriefSummary="高级臂套武器能造成巨大伤害，并且迷你火箭现在也能自动引导至它们的目标了。"
-TacticalText="<Bullet/> 高级臂套的爆裂炮发射器组件能发射一枚高科技的火箭弹，能够通过导航绕过阻碍的地形。\n<Bullet/> 升级的火焰喷射器会在小范围的锥形区域内造成巨量伤害，对环境和敌方目标造成同等伤害。<Bullet/> 根据弹着点的不同，火箭弹的伤害也会减少。<br/><Bullet/> 火焰喷射器是能够对锥形范围内的多个目标造成伤害的短距离武器。<br/><Bullet/> 火焰喷射器拥有两次充能，在没有升级前无法伤害机械单位。<br/><Bullet/> 使用任一臂套能力都需要一个行动点并会结束你的回合。<br/><Bullet/> 火箭精确度受到士兵命中、目标距离以及士兵本回合是否使用过行动点等因素影响。低精度的火箭散布值更大，更可能击中与目标地点相去甚远的地方。火箭的最大可能散布将在弹窗中给出，具体地点的预计（平均）散布值将伴随瞄准指针一同显示。"
+TacticalText="<Bullet/> 高级臂套的爆裂炮发射器组件能发射一枚高科技的火箭，能够通过导航绕过阻碍的地形。\n<Bullet/> 升级的火焰喷射器会在小范围的锥形区域内造成巨量伤害，对环境和敌方目标造成同等伤害。<Bullet/> 根据弹着点的不同，火箭的伤害也会减少。<br/><Bullet/> 火焰喷射器是能够对锥形范围内的多个目标造成伤害的短距离武器。<br/><Bullet/> 火焰喷射器拥有两次充能，在没有升级前无法伤害机械单位。<br/><Bullet/> 使用任一臂套能力都需要一个行动点并会结束你的回合。<br/><Bullet/> 火箭精确度受到士兵命中、目标距离以及士兵本回合是否使用过行动点等因素影响。低精度的火箭散布值更大，更可能击中与目标地点相去甚远的地方。火箭的最大可能散布将在弹窗中给出，具体地点的预计（平均）散布值将伴随瞄准指针一同显示。"
 AbilityDescName="臂套"
 
 [UISquadSelect_InfiltrationPanel]
@@ -266,7 +266,7 @@ AblativeHPLabel="额外HP"
 strMaxScatter="\n最大散布（格）："
 
 [X2Ability_LW_ChosenAbilities]
-ShieldedStatBuffsLocDescription="命中，暴击率，意志力和灵能攻击增益。"
+ShieldedStatBuffsLocDescription="命中，暴击率，意志力和灵能威力增益。"
 ImpactCompensationBuffDescription="减少<Ability:IMPACT_COMPENSATION_CURRENT_DR/>%所有来袭伤害。 "
 
 [XComGameState_LWListenerManager]
@@ -288,6 +288,8 @@ strTimeRemainingDaysAndHours="<XGParam:IntValue1>天，<XGParam:IntValue0>小时
 ; LWOTC Needs Translation
 strDarkEventExpiredTitle="黑暗事件已过期"
 strDarkEventExpiredText="已过期"
+OpenResistanceManagementStr="打开反抗军管理界面"
+OpenHavenManagementStr="打开避难所管理界面"
 ; End Translation
 
 [X2EventListener_Soldiers]
@@ -454,15 +456,15 @@ m_strInsuffientInfiltrationToLaunch="离发起任务还需潜入到至少<XGPara
 +m_strAlertnessModifierDescriptions[0]="无法攻取"
 +m_strAlertnessModifierDescriptions[1]="无法攻取"
 +m_strAlertnessModifierDescriptions[2]="无法攻取"
-+m_strAlertnessModifierDescriptions[3]="已加固"
-+m_strAlertnessModifierDescriptions[4]="已加固"
-+m_strAlertnessModifierDescriptions[5]="已加固"
++m_strAlertnessModifierDescriptions[3]="加固"
++m_strAlertnessModifierDescriptions[4]="加固"
++m_strAlertnessModifierDescriptions[5]="加固"
 +m_strAlertnessModifierDescriptions[6]="警戒"
 +m_strAlertnessModifierDescriptions[7]="警戒"
 +m_strAlertnessModifierDescriptions[8]="警戒"
-+m_strAlertnessModifierDescriptions[9]="有守备"
-+m_strAlertnessModifierDescriptions[10]="有守备"
-+m_strAlertnessModifierDescriptions[11]="有守备"
++m_strAlertnessModifierDescriptions[9]="守备"
++m_strAlertnessModifierDescriptions[10]="守备"
++m_strAlertnessModifierDescriptions[11]="守备"
 +m_strAlertnessModifierDescriptions[12]="一般"
 +m_strAlertnessModifierDescriptions[13]="脆弱"
 +m_strAlertnessModifierDescriptions[14]="脆弱"
@@ -494,7 +496,7 @@ m_strTitle="反抗军总览"
 m_strLabel="反抗军避难所联络中..."
 m_strRegionLabel="地区"
 m_strStrength="变种人强度"
-m_strAdviserLabel="HA"
+m_strAdviserLabel="顾问"
 m_strIncomeLabel="收入"
 m_strRebelCountLabel="避难所"
 m_strADVENTUnitSingular="军团"
@@ -504,7 +506,7 @@ m_strGlobalAlert="总体变种人强度："
 m_strGlobalInsurgency="• 总体反抗军威胁："
 m_strAvatarPenalty="• 化身进度减慢了<XGParam:IntValue0/>%"
 m_strThreatVeryLow="低"
-m_strThreatLow="有守备的"
+m_strThreatLow="守备"
 m_strThreatMedium="较高"
 m_strThreatHigh="高"
 m_strThreatVeryHigh="严峻"
@@ -520,12 +522,13 @@ m_strName="名称"
 m_strMission="任务"
 m_strBuildRadioRelay="建造无线电中继站"
 m_strLiaisonTitle="避难所顾问"
+m_strEditLoadout="顾问装备"
 ; 0=Alert, 1=Vigilance, 2=Force
-m_strRegionalInfo="变种人力量：<XGParam:IntValue0/>"
+m_strRegionalInfo="变种人强度：<XGParam:IntValue0/>"
 m_strResistanceMecs="反抗军MEC：<XGParam:IntValue0/>"
 m_strProhibited="被禁止"
-m_strCannotChangeLiaisonTitle="无法移动顾问"
-m_strCannotChangeLiaison="由于该地区有活跃的任务，顾问现在无法更改"
+m_strCannotChangeLiaisonTitle="无法移动/装备顾问"
+m_strCannotChangeLiaison="由于该地区有活跃的任务，顾问和他们的装备现在无法更改"
 ChangeJobStr="变更工作"
 ChangeAllJobsStr="变更所有工作"
 PerksStr="技能" 

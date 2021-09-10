@@ -2,21 +2,21 @@
 FriendlyName="激光步枪"
 FriendlyNamePlural="激光步枪"
 BriefSummary="激光步枪发射出一系列微秒级别的光波，能够破坏目标的化学键。"
-TacticalText="<Bullet/>若没有经过特殊训练，用主武器射击将会结束该士兵的回合。\n<Bullet/>使用从变种人敌人身上取得的升级部件提升脉冲步枪的战术效率。\n<Bullet/>该激光武器的高能输出是将外星技术集成到战前激光武器而得来的。\n<Bullet/>激光会获得额外的命中加成。"
+TacticalText="<Bullet/>若没有经过特殊训练，用主武器射击将会结束该士兵的回合。\n<Bullet/>使用从变种人敌人身上取得的升级部件提升激光步枪的战术效率。\n<Bullet/>该激光武器的高能输出是将外星技术集成到战前激光武器而得来的。\n<Bullet/>激光会获得额外的命中加成。"
 AbilityDescName="突击步枪"
 
 [SMG_LS X2WeaponTemplate]
 FriendlyName="激光斯登枪"
 FriendlyNamePlural="激光斯登枪"
-BriefSummary="激光步枪的轻便版本，担任与冲锋枪类似的角色，以威力、弹药和远距离精度为代价，为士兵提供更高的移动力和隐蔽性。"
-TacticalText="<Bullet/>若没有经过特殊训练，用主武器射击将会结束该士兵的回合。\n<Bullet/>使用从变种人敌人身上取得的升级部件提升轻机枪的战术效率。\n<Bullet/>冲锋枪类型的武器相比突击步枪提供额外的移动力、近程精度以及隐蔽性，但它们的伤害更低、弹药更少、并且在远距离有精度减益。\n<Bullet/>激光会获得额外的命中加成。"
+BriefSummary="激光步枪的轻量级版本，担任与冲锋枪类似的角色，以威力、弹药和远距离精度为代价，为士兵提供更高的移动力和隐蔽性。"
+TacticalText="<Bullet/>若没有经过特殊训练，用主武器射击将会结束该士兵的回合。\n<Bullet/>使用从变种人敌人身上取得的升级部件提升激光斯登枪的战术效率。\n<Bullet/>冲锋枪类型的武器相比突击步枪提供额外的移动力、近程精度以及隐蔽性，但它们的伤害更低，并且在远距离有精度减益。\n<Bullet/>激光会获得额外的命中加成。"
 AbilityDescName="冲锋枪"
 
 [Cannon_LS X2WeaponTemplate]
 FriendlyName="激光加农炮"
 FriendlyNamePlural="激光加农炮"
 BriefSummary="激光武器技术中包含了一项改进的冷却系统，能让我们部署一种能连发射击的加农炮，能够倾泻更加致命的火力。"
-TacticalText="<Bullet/>激光加农炮威力更巨大，且用法相同，是传统加农炮的改进版本。\n<Bullet/>使用从变种人敌人处回收的升级来提升激光加农炮的战术效率。\n<Bullet/>激光会获得额外的命中加成。"
+TacticalText="<Bullet/>激光加农炮威力更巨大，且用法相同，是传统加农炮的改进版本。\n<Bullet/>使用从变种人敌人处回收的升级部件来提升激光加农炮的战术效率。\n<Bullet/>激光会获得额外的命中加成。"
 AbilityDescName="加农炮"
 
 [Shotgun_LS X2WeaponTemplate]
@@ -29,6 +29,6 @@ AbilityDescName="霰弹枪"
 [SniperRifle_LS X2WeaponTemplate]
 FriendlyName="激光长枪"
 FriendlyNamePlural="激光长枪"
-BriefSummary="作为激光步枪的远距离步枪版本，激光长枪集成了极度高能的闪光电容，结果成就了此高精度远距离的激光武器。"
+BriefSummary="作为激光步枪的远距离步枪版本，激光长枪集成了极度高能的闪光电容，结果成就了此高精度远程激光武器。"
 TacticalText="狙击步枪总是需要2个行动点来射击。\n<Bullet/>它们在近距离精确度不高，但是在远距离具有致命的杀伤能力。\n<Bullet/>使用从敌人身上取得的升级部件提升激光长枪的战术效率。\n<Bullet/>激光会获得额外的命中加成。"
 AbilityDescName="狙击步枪"

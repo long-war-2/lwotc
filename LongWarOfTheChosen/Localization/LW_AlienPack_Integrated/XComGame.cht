@@ -1,5 +1,5 @@
 [XComMultiplayerTacticalUI]
-MutonM2_LW="<Bullet/>異變者百夫長可以完成所有異變者能做到的事情，還可以釋放一記戰吼提升附近友軍的能力，並可以對任何衝刺範圍內的敵人進行刺刀衝鋒。\n<Bullet/>與入侵使其的異變者不同的是，這個新混血的異變者在近戰方面更為出色。\n<Bullet/>他們的反擊能力能夠讓他們對任何在近戰方面對其攻擊的敵人進行回擊。\n<Bullet/>他們同樣能夠處死附近行動不能的敵人；你無論何時都不能讓敵人的異變者在你被眩暈的單位身邊。\n<Bullet/>他們還能使用步槍進行壓制，他們的戰鬥護甲能提供相當不錯的防禦。"
+MutonM2_LW="<Bullet/>異變者百夫長可以完成所有異變者能做到的事情，還可以釋放戰爭咆哮提升附近友軍的能力，並可以對任何衝刺範圍內的敵人進行刺刀衝鋒。\n<Bullet/>與入侵時期的異變者不同的是，這個新混血的異變者在近戰方面更為出色。\n<Bullet/>他們的反擊能力能夠讓他們對任何在近戰方面對其攻擊的敵人進行回擊。\n<Bullet/>他們同樣能夠處死附近不能行動的敵人；你無論何時都不能讓異變者處在被眩暈的單位身邊。\n<Bullet/>他們還能使用步槍進行壓制，他們的戰鬥護甲能提供相當不錯的防禦。"
 MutonM3_LW="<Bullet/>"
 
 DroneM1="<Bullet/>守護者無人機是一種低廉的偵查單位，最初是用於平民人群控制。"
@@ -12,16 +12,16 @@ BriefSummary="這個輕型，自動的安保氣墊船殘骸顯示了其監視公
 [CorpseMutonElite X2ItemTemplate]
 FriendlyName="異變者精英屍體"
 FriendlyNamePlural="異變者精英屍體"
-BriefSummary="這些外星人處於異變者內部等級的頂端。不同於百夫長，和我們碰到的一般異變者比起來他們接受了極大的基因改造。"
+BriefSummary="這些外星人處於異變者內部等級的頂端。不同於百夫長，和我們碰到的一般異變者比起來，他們接受了極大的基因改造。"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; NEW ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [WarCry X2AbilityTemplate]
-LocFriendlyName="戰吼"
-LocLongDescription="為其他異變者提供大量命中，意志力，移動力加成；其他智能外星人和變種人獲得少量加成。6回合冷卻。"
+LocFriendlyName="戰爭咆哮"
+LocLongDescription="為其他異變者提供大量命中，意志力，移動力加成；其他智慧外星人和變種人獲得少量加成。6回合冷卻。"
 LocHelpText="給其他異變者和外星人加成。"
-LocFlyOverText="戰吼"
-LocPromotionPopupText="<Bullet/>為其他異變者提供大量命中，意志力，移動力加成；其他智能外星人和變種人獲得少量加成。<br/><Bullet/>6回合冷卻。<br/>"
+LocFlyOverText="戰爭咆哮"
+LocPromotionPopupText="<Bullet/>為其他異變者提供大量命中，意志力，移動力加成；其他智慧外星人和變種人獲得少量加成。<br/><Bullet/>6回合冷卻。<br/>"
 
 [BayonetCharge X2AbilityTemplate]
 LocFriendlyName="刺刀衝鋒"
@@ -62,9 +62,9 @@ LocPromotionPopupText="<Bullet/>修理任何附近的機械單位。"
 [LWDroneMeleeStun X2AbilityTemplate]
 LocFriendlyName="眩暈"
 LocFlyOverText="眩暈"
-LocHelpText="嘗試眩暈近戰射程內的任何敵人。"
-LocLongDescription="嘗試眩暈近戰射程內的任何敵人。"
-LocPromotionPopupText="<Bullet/>嘗試眩暈近戰射程內的任何敵人。"
+LocHelpText="嘗試眩暈近戰範圍內的任何敵人。"
+LocLongDescription="嘗試眩暈近戰範圍內的任何敵人。"
+LocPromotionPopupText="<Bullet/>嘗試眩暈近戰範圍內的任何敵人。"
 LocMissMessage="未命中！"
 
 [PersonalShield X2AbilityTemplate]
@@ -100,7 +100,7 @@ LocFriendlyName="傷害控制"
 LocFlyOverText="傷害控制"
 LocLongDescription="在受到傷害後，到下回合結束前獲得2點護甲。"
 LocHelpText="在受到傷害後，到下回合結束前獲得2點護甲。"
-LocPromotionPopupText="<Bullet/>在受到衝擊後你的護甲暫時堅硬。在受到傷害後，到下回合結束前獲得2點護甲。<br/><Bullet/>在接下來的回合中受到多次命中會延長有效時間。<br/>"
+LocPromotionPopupText="<Bullet/>在受到衝擊後你的護甲暫時強化。在受到傷害後，到下回合結束前獲得2點護甲。<br/><Bullet/>在接下來的回合中受到多次命中會延長有效時間。<br/>"
 
 [RepairServosPassive X2AbilityTemplate]
 LocFriendlyName="傷害控制"
@@ -112,7 +112,7 @@ LocPromotionPopupText="<Bullet/>在受到傷害後，到下回合結束前獲得
 ;;;;;;;;;;;;;;;;;;;;;;;;;; MutonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [X2Ability_MutonM2_Abilities]
-strBayonetChargePenalty="百夫長防禦<XGParam:IntValue1/>，共<XGParam:IntValue0/>回合。"
+strBayonetChargePenalty="百夫長防禦<XGParam:IntValue1/>，持續<XGParam:IntValue0/>回合。"
 
 [MutonM2_LW X2CharacterTemplate]
 strCharacterName="異變者百夫長"
@@ -127,7 +127,7 @@ AbilityDescName="等離子步槍"
 FriendlyName="外星榴彈"
 FriendlyNamePlural="外星榴彈"
 BriefSummary="每個異變者百夫長都攜帶有一枚高傷害的電漿榴彈。"
-TacticalText="<Bullet/>一個單發高傷害性榴彈。"
+TacticalText="<Bullet/>單發高傷害性榴彈。"
 ThrownAbilityName="投擲外星榴彈"
 ThrownAbilityHelpText="對目標區域投擲一枚外星榴彈。"
 LaunchedAbilityName="發射外星榴彈"
@@ -149,7 +149,7 @@ AbilityDescName="電漿加農炮"
 FriendlyName="外星榴彈"
 FriendlyNamePlural="外星榴彈"
 BriefSummary="每一個異變者精英都帶著一枚破壞力強大的電漿榴彈。"
-TacticalText="<Bullet/>一個單發高傷害性榴彈。"
+TacticalText="<Bullet/>單發高傷害性榴彈。"
 ThrownAbilityName="投擲外星榴彈"
 ThrownAbilityHelpText="對目標區域投擲一枚外星榴彈。"
 LaunchedAbilityName="發射外星榴彈"
@@ -364,11 +364,11 @@ AbilityDescName="電擊武器"
 strCharacterName="MEC射手"
 
 [AdvMECArcher_WPN X2WeaponTemplate]
-FriendlyName="MEC磁力機槍"
+FriendlyName="MEC微型機槍"
 AbilityDescName="微型槍"
 
 [AdvMECArcher_Shoulder_WPN X2WeaponTemplate]
-FriendlyName="火箭炮部隊"
+FriendlyName="火箭炮"
 AbilityDescName="微飛彈"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -382,7 +382,7 @@ strCharacterName="MEC長弓"
 strCharacterName="寄生獸兵蟲"
 
 [ChryssalidSoldierSlash X2AbilityTemplate]
-LocFriendlyName="寄生獸士兵斬擊"
+LocFriendlyName="寄生獸兵蟲斬擊"
 LocLongDescription="你的斬擊攻擊造成大量傷害。"
 LocHelpText="你的斬擊攻擊造成大量傷害。"
 
@@ -392,7 +392,7 @@ LocHelpText="你的斬擊攻擊造成大量傷害。"
 strCharacterName="寄生獸蟲後"
 
 [HiveQueenSlash X2AbilityTemplate]
-LocFriendlyName="巨型寄生獸砍擊"
+LocFriendlyName="寄生獸蟲後斬擊"
 LocLongDescription="你的斬擊攻擊造成大量的傷害。"
 LocHelpText="你的斬擊攻擊造成大量的傷害。"
 
@@ -413,7 +413,7 @@ FriendlyName="變種人磁力步槍"
 AbilityDescName="磁力步槍"
 
 [AdvShockTroop X2CharacterTemplate]
-strCharacterName="變種人震波士兵"
+strCharacterName="變種人震擊兵"
 
 [AdvShockTroop_WPN X2WeaponTemplate]
 FriendlyName="變種人磁力步槍"
