@@ -180,8 +180,6 @@ static function OnPreCreateTemplates()
 /// </summary>
 static event OnPostTemplatesCreated()
 {
-	local CHHelpers CHHelpersObj;
-
 	`Log(">>>> LW_Overhaul OnPostTemplates");
 	class'LWTemplateMods_Utilities'.static.UpdateTemplates();
 	UpdateWeaponAttachmentsForCoilgun();
@@ -189,12 +187,6 @@ static event OnPostTemplatesCreated()
 	AddObjectivesToParcels();
 	UpdateChosenActivities();
 	UpdateChosenSabotages();
-	CHHelpersObj = class'CHHelpers'.static.GetCDO();
-	if (CHHelpersObj == none)
-	{
-		return;
-	}
-	CHHelpersObj.AddOverrideAbilityIconColorsCallback(OverrideAbilityIconColors);
 }
 
 /// <summary>
@@ -2903,154 +2895,6 @@ static function XComGameState_WorldRegion ChooseRetributionRegion(XComGameState_
 	RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(RegionRef.ObjectID));
 
 	return RegionState;
-}
-
-// This takes on a bunch of exceptions to color ability icons
-static function EHLDelegateReturn OverrideAbilityIconColors(XComGameState_Ability AbilityState, bool IsObjectiveAbility, out string BackgroundColor, out string ForegroundColor)
-{
-	local Name						AbilityName;
-	local X2AbilityTemplate			AbilityTemplate;
-	local XComGameState_Unit		UnitState;
-	local XComGameState_Item		WeaponState;
-	local array<X2WeaponUpgradeTemplate> WeaponUpgrades;
-	local int k, k2, ActionPointCost;
-	local bool IsFree, IsTurnEnding, IsPsionic;
-	local UnitValue FreeReloadValue, CountUnitValue;
-	local X2AbilityCost_ActionPoints		ActionPoints;
-
-	// Easy handling of abilities that target objectives
-	if (IsObjectiveAbility && class'LWTemplateMods'.default.USE_ACTION_ICON_COLORS)
-	{
-		BackgroundColor = class'LWTemplateMods'.default.ICON_COLOR_OBJECTIVE;
-		return EHLDR_NoInterrupt;
-	}
-
-	// Drop out if the existing icon color is not "Variable"
-	if (BackgroundColor != "Variable")
-	{
-		return EHLDR_NoInterrupt;
-	}
-
-	// Now deal with the "Variable" ability icons
-	AbilityTemplate = AbilityState.GetMyTemplate();
-	AbilityName = AbilityState.GetMyTemplateName();
-	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
-	WeaponState = AbilityState.GetSourceWeapon();
-	IsPsionic = AbilityTemplate.AbilitySourceName == 'eAbilitySource_Psionic';
-
-	if (UnitState == none)
-	{
-		`LWTRACE ("No UnitState found for OverrideAbilityIconColors");
-		return EHLDR_NoInterrupt;
-	}
-
-	// Salvo, Quickburn, Holotarget
-	for (k = 0; k < AbilityTemplate.AbilityCosts.Length; k++)
-	{
-		ActionPoints = X2AbilityCost_ActionPoints(AbilityTemplate.AbilityCosts[k]);
-		if (ActionPoints != none)
-		{
-			ActionPointCost = ActionPoints.iNumPoints;
-			if (ActionPoints.bAddWeaponTypicalCost)
-			{
-				ActionPointCost = X2WeaponTemplate(WeaponState.GetMyTemplate()).iTypicalActionCost;
-			}
-
-			IsFree = ActionPoints.bFreeCost;
-			IsTurnEnding = ActionPoints.bConsumeAllPoints;
-
-			if (IsTurnEnding)
-			{
-				// Handle DoNotConsumeAllSoldierAbilities
-				for (k2 = 0; k2 < ActionPoints.DoNotConsumeAllSoldierAbilities.Length; k2++)
-				{
-					if (UnitState.HasSoldierAbility(ActionPoints.DoNotConsumeAllSoldierAbilities[k2], true))
-					{
-						IsTurnEnding = false;
-						break;
-					}
-				}
-
-				// Handle Quickdraw
-				if (X2AbilityCost_QuickdrawActionPoints(ActionPoints) != none && UnitState.HasSoldierAbility('Quickdraw'))
-				{
-					IsTurnEnding = false;
-				}
-			}
-		}
-	}
-
-	switch (AbilityName)
-	{
-		case 'ThrowGrenade':
-			if (UnitState.AffectedByEffectNames.Find('RapidDeploymentEffect') != -1)
-			{
-				if (class'X2Effect_RapidDeployment'.default.VALID_GRENADE_TYPES.Find(WeaponState.GetMyTemplateName()) != -1)
-				{
-					IsTurnEnding = false;
-					IsFree = true;
-				}
-			}
-			break;
-		case 'LaunchGrenade':
-			if (UnitState.AffectedByEffectNames.Find('RapidDeploymentEffect') != -1)
-			{
-				if (class'X2Effect_RapidDeployment'.default.VALID_GRENADE_TYPES.Find(WeaponState.GetLoadedAmmoTemplate(AbilityState).DataName) != -1)
-				{
-					IsTurnEnding = false;
-					IsFree = true;
-				}
-			}
-			break;
-		case 'ArcThrowerStun':
-		case 'EMPulser':
-		case 'ChainLightning':
-			if (UnitState.AffectedByEffectNames.Find(class'X2Ability_XMBPerkAbilitySet'.default.QuickZapEffectName) != -1)
-			{
-				UnitState.GetUnitValue('QuickZap_LW_Uses', CountUnitValue);
-				if (CountUnitValue.fValue == 0)
-				{
-					IsTurnEnding = false;
-					IsFree = true;
-				}
-			}
-			break;
-		case 'LWFlamethrower':
-		case 'Roust':
-		case 'Firestorm':
-			if (UnitState.AffectedByEffectNames.Find('QuickburnEffect') != -1)
-			{
-				IsTurnEnding = false;
-				IsFree = true;
-			}
-			break;
-		case 'Reload':
-			WeaponUpgrades = WeaponState.GetMyWeaponUpgradeTemplates();
-			for (k = 0; k < WeaponUpgrades.Length; k++)
-			{
-				if (WeaponUpgrades[k].NumFreeReloads > 0)
-				{
-					UnitState.GetUnitValue ('FreeReload', FreeReloadValue);
-					if (FreeReloadValue.fValue < WeaponUpgrades[k].NumFreeReloads)
-					{
-						IsTurnEnding = false;
-						IsFree = true;
-					}
-					break;
-				}
-			}
-			break;
-		case 'PlaceEvacZone':
-		case 'PlaceDelayedEvacZone':
-			`LWTRACE ("Attempting to change EVAC color");
-			class'XComGameState_BattleData'.static.HighlightObjectiveAbility(AbilityName, true);
-			return EHLDR_NoInterrupt;
-		default: break;
-	}
-
-	class'Utilities_LW'.static.GetAbilityIconColor(IsObjectiveAbility, IsFree, IsPsionic, IsTurnEnding, ActionPointCost, BackgroundColor, ForegroundColor);
-
-	return EHLDR_NoInterrupt;
 }
 
 //=========================================================================================

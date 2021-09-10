@@ -115,6 +115,7 @@ static function CHEventListenerTemplate CreateTacticalListeners()
 	local CHEventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'TacticalEvents');
+	Template.AddCHEvent('OverrideAbilityIconColorImproved', OnOverrideAbilityIconColor, ELD_Immediate);
 	Template.AddCHEvent('OverrideBleedoutChance', OnOverrideBleedOutChance, ELD_Immediate);
 	Template.AddCHEvent('OverrideCollectorActivation', OverrideCollectorActivation, ELD_Immediate);
 	Template.AddCHEvent('OverrideScavengerActivation', OverrideScavengerActivation, ELD_Immediate);
@@ -793,18 +794,18 @@ static private function SetStatusTupleData(
 // This takes on a bunch of exceptions to color ability icons
 static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	local XComLWTuple				OverrideTuple;
-	local Name						AbilityName;
-	local XComGameState_Ability		AbilityState;
-	local X2AbilityTemplate			AbilityTemplate;
-	local XComGameState_Unit		UnitState;
-	local string					IconColor;
-	local XComGameState_Item		WeaponState;
+	local XComLWTuple					OverrideTuple;
+	local Name							AbilityName;
+	local XComGameState_Ability			AbilityState;
+	local X2AbilityTemplate				AbilityTemplate;
+	local X2AbilityCost_ActionPoints	ActionPoints;
+	local XComGameState_Unit			UnitState;
+	local XComGameState_Item			WeaponState;
 	local array<X2WeaponUpgradeTemplate> WeaponUpgrades;
-	local int k, k2;
-	local bool Changed;
+	local int k, k2, ActionPointCost;
+	local bool IsFree, IsTurnEnding, IsPsionic;
 	local UnitValue FreeReloadValue, CountUnitValue;
-	local X2AbilityCost_ActionPoints		ActionPoints;
+	local string ForegroundColor, BackgroundColor;
 
 	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
@@ -834,15 +835,17 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 	}
 
 	// Now deal with the "Variable" ability icons
-	Changed = false;
 	AbilityTemplate = AbilityState.GetMyTemplate();
 	AbilityName = AbilityState.GetMyTemplateName();
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
 	WeaponState = AbilityState.GetSourceWeapon();
+	IsPsionic = AbilityTemplate.AbilitySourceName == 'eAbilitySource_Psionic';
+	BackgroundColor = OverrideTuple.Data[1].s;
+	ForegroundColor = OverrideTuple.Data[2].s;
 
 	if (UnitState == none)
 	{
-		`LWTRACE ("No UnitState found for OnOverrideAbilityIconColor");
+		`LWTRACE ("No UnitState found for OverrideAbilityIconColors");
 		return ELR_NoInterrupt;
 	}
 
@@ -852,40 +855,31 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 		ActionPoints = X2AbilityCost_ActionPoints(AbilityTemplate.AbilityCosts[k]);
 		if (ActionPoints != none)
 		{
-			if (ActionPoints.bConsumeAllPoints)
+			ActionPointCost = ActionPoints.iNumPoints;
+			if (ActionPoints.bAddWeaponTypicalCost)
 			{
+				ActionPointCost = X2WeaponTemplate(WeaponState.GetMyTemplate()).iTypicalActionCost;
+			}
+
+			IsFree = ActionPoints.bFreeCost;
+			IsTurnEnding = ActionPoints.bConsumeAllPoints;
+
+			if (IsTurnEnding)
+			{
+				// Handle DoNotConsumeAllSoldierAbilities
 				for (k2 = 0; k2 < ActionPoints.DoNotConsumeAllSoldierAbilities.Length; k2++)
 				{
 					if (UnitState.HasSoldierAbility(ActionPoints.DoNotConsumeAllSoldierAbilities[k2], true))
 					{
-						IconColor = class'LWTemplateMods'.default.ICON_COLOR_1;
-						Changed = true;
+						IsTurnEnding = false;
 						break;
 					}
 				}
-			}
-			if (ActionPoints.bAddWeaponTypicalCost)
-			{
-				if (X2WeaponTemplate(WeaponState.GetMyTemplate()).iTypicalActionCost >= 2)
+
+				// Handle Quickdraw
+				if (X2AbilityCost_QuickdrawActionPoints(ActionPoints) != none && UnitState.HasSoldierAbility('Quickdraw'))
 				{
-					IconColor = class'LWTemplateMods'.default.ICON_COLOR_2; // yellow
-					Changed = true;
-					break;
-				}
-				else
-				{
-					if (ActionPoints.bConsumeAllPoints)
-					{
-						IconColor = class'LWTemplateMods'.default.ICON_COLOR_END; // cyan
-						Changed = true;
-						break;
-					}
-					else
-					{
-						IconColor = class'LWTemplateMods'.default.ICON_COLOR_1;
-						Changed = true;
-						break;
-					}
+					IsTurnEnding = false;
 				}
 			}
 		}
@@ -898,8 +892,7 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 			{
 				if (class'X2Effect_RapidDeployment'.default.VALID_GRENADE_TYPES.Find(WeaponState.GetMyTemplateName()) != -1)
 				{
-					IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
-					Changed = true;
+					IsFree = true;
 				}
 			}
 			break;
@@ -908,8 +901,7 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 			{
 				if (class'X2Effect_RapidDeployment'.default.VALID_GRENADE_TYPES.Find(WeaponState.GetLoadedAmmoTemplate(AbilityState).DataName) != -1)
 				{
-					IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
-					Changed = true;
+					IsFree = true;
 				}
 			}
 			break;
@@ -921,8 +913,7 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 				UnitState.GetUnitValue('QuickZap_LW_Uses', CountUnitValue);
 				if (CountUnitValue.fValue == 0)
 				{
-					IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
-					Changed = true;
+					IsFree = true;
 				}
 			}
 			break;
@@ -931,8 +922,7 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 		case 'Firestorm':
 			if (UnitState.AffectedByEffectNames.Find('QuickburnEffect') != -1)
 			{
-					IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
-					Changed = true;
+				IsFree = true;
 			}
 			break;
 		case 'Reload':
@@ -944,19 +934,10 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 					UnitState.GetUnitValue ('FreeReload', FreeReloadValue);
 					if (FreeReloadValue.fValue < WeaponUpgrades[k].NumFreeReloads)
 					{
-						IconColor = class'LWTemplateMods'.default.ICON_COLOR_FREE;
-						Changed = true;
+						IsFree = true;
 					}
 					break;
 				}
-			}
-			break;
-		case 'PistolStandardShot':
-		case 'ClutchShot':
-			if (UnitState.HasSoldierAbility('Quickdraw'))
-			{
-				IconColor = class'LWTemplateMods'.default.ICON_COLOR_1;
-				Changed = true;
 			}
 			break;
 		case 'PlaceEvacZone':
@@ -964,18 +945,12 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 			`LWTRACE ("Attempting to change EVAC color");
 			class'XComGameState_BattleData'.static.HighlightObjectiveAbility(AbilityName, true);
 			return ELR_NoInterrupt;
-			break;
 		default: break;
 	}
 
-	if (Changed)
-	{
-		OverrideTuple.Data[1].s = IconColor;
-	}
-	else
-	{
-		OverrideTuple.Data[1].s = class'LWTemplateMods'.static.GetIconColorByActionPoints(AbilityTemplate);
-	}
+	class'Utilities_LW'.static.GetAbilityIconColor(OverrideTuple.Data[0].b, IsFree, IsPsionic, IsTurnEnding, ActionPointCost, BackgroundColor, ForegroundColor);
+	OverrideTuple.Data[1].s = BackgroundColor;
+	OverrideTuple.Data[2].s = ForegroundColor;
 
 	return ELR_NoInterrupt;
 }
