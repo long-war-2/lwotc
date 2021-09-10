@@ -272,7 +272,7 @@ static function CreateBlacksiteMission_LW(XComGameState NewGameState, XComGameSt
 	Rewards.AddItem(RewardState);
 
 	RewardTemplateIntel = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Intel'));
-	RewardStateIntel = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+	RewardStateIntel = RewardTemplateIntel.CreateInstanceFromTemplate(NewGameState);
 	RewardStateIntel.SetReward(, default.BLACKSITE_INTEL);
 
 	Rewards.AddItem(RewardStateIntel);
@@ -426,7 +426,7 @@ static function CreateForgeMission_LW(XComGameState NewGameState, XComGameState_
 		Rewards.AddItem(RewardState);
 
 		RewardTemplateIntel = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Intel'));
-		RewardStateIntel = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+		RewardStateIntel = RewardTemplateIntel.CreateInstanceFromTemplate(NewGameState);
 		RewardStateIntel.SetReward(, default.FORGE_INTEL);
 		Rewards.AddItem(RewardStateIntel);
 
@@ -536,7 +536,7 @@ static function CreateStargateMission_LW(XComGameState NewGameState, XComGameSta
 		Rewards.AddItem(RewardState);
 
 		RewardTemplateIntel = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Intel'));
-		RewardStateIntel = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+		RewardStateIntel = RewardTemplateIntel.CreateInstanceFromTemplate(NewGameState);
 		RewardStateIntel.SetReward(, default.PSIGATE_INTEL);
 		Rewards.AddItem(RewardStateIntel);
 
