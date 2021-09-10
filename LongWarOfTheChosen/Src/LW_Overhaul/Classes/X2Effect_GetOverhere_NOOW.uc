@@ -25,7 +25,6 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 							// If that fails, select any valid neighbor tile.  Drop the validator.
 		   || (!RequireVisibleTile && SourceUnitState.FindAvailableNeighborTileWeighted(PreferredDirection, TeleportToTile)) )
 	{
-		EventManager = `XEVENTMGR;
 
 		// Move the target to this space
 		TargetUnitState.SetVisibilityLocation(TeleportToTile);

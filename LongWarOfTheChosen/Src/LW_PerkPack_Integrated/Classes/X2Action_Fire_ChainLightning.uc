@@ -38,12 +38,6 @@ var int notifiedTargets;
 var int hitTargets;
 
 
-// STOP MAKING SHIT PRIVATE
-// (I have to make it private to prevent the compiler from complaining)
-var protected XComPresentationLayer PresentationLayer;
-var protected array<XComPerkContentInst> Perks;
-var protected array<name> PerkAdditiveAnimNames;
-var protected int x;
 
 function Init()
 {
