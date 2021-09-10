@@ -7,7 +7,7 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
-	//Templates.AddItem(CreateListeners());
+	Templates.AddItem(CreateListeners());
 
 	return Templates;
 }
@@ -17,7 +17,7 @@ static function X2EventListenerTemplate CreateListeners()
 	local X2EventListenerTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2EventListenerTemplate', Template, 'XComScamper');
-	Template.AddEvent('ScamperEnd', OnScamperEnd);
+	//Template.AddEvent('ScamperEnd', OnScamperEnd);
 	Template.RegisterInTactical = true;
 
 	return Template;
