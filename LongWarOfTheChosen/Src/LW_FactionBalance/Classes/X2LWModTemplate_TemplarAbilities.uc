@@ -396,15 +396,11 @@ static function MakeGhostCooldownInsteadOfCharges(X2AbilityTemplate Template)
 
 static function MakeRendNotWorkWhenBurning(X2AbilityTemplate Template)
 {
-	local X2Condition Condition;
+	local X2Condition_UnitEffects BurningCondition;
 
-	foreach Template.AbilityShooterConditions(Condition)
-	{
-		if(Condition.isA(class'X2Condition_UnitEffects'.name))
-		{
-			X2Condition_UnitEffects(Condition).AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
-		}
-	}
+	BurningCondition = new class'X2Condition_UnitEffects';
+	BurningCondition.AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
+	Template.AbilityShooterConditions.AddItem(BurningCondition);
 }
 defaultproperties
 {
