@@ -1194,7 +1194,7 @@ static protected function EventListenerReturn HideFocusOnAssaults(
   Tuple = XComLWTuple(EventData);
 	if (Tuple == none)
 		return ELR_NoInterrupt;
-  	if (Unit.GetSoldierClassTemplate() != none && Unit.GetSoldierClassTemplate().DataName == 'LWS_Assault')
+  	if (Unit.GetSoldierClassTemplate() != none && Unit.GetSoldierClassTemplate().DataName == 'LWS_Assault' || Unit.GetSoldierClassTemplate().DataName == 'LWS_Specialist')
 	{
 		// Hide focus on assaults
 		Tuple.Data[0].b = false;

@@ -7527,6 +7527,12 @@ LocHelpText = "Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> 
 LocLongDescription = "Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns."
 LocPromotionPopupText = "<Bullet/> Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns.<br/>"
 
+[DisassemblyPassive_LW X2AbilityTemplate]
+LocFriendlyName= "Disassembly"
+LocHelpText = "Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns."
+LocLongDescription = "Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns."
+LocPromotionPopupText = "<Bullet/> Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns.<br/>"
+
 [LightningSlash_LW X2AbilityTemplate]
 LocFriendlyName="Lightning Slash"
 ; LWOTC Needs Translation (3)
@@ -8373,9 +8379,23 @@ LocPromotionPopupText=""
 
 [ImprovedProtocols X2AbilityTemplate]
 LocFriendlyName="Hot-Charged Batteries"
-LocLongDescription="Cooldown Of ABC Protocols are reduced by 1."
-LocHelpText="Cooldown Of ABC Protocols are reduced by 1."
+LocLongDescription="Cooldown Of ABC Protocols is reduced by 1."
+LocHelpText="Cooldown Of ABC Protocols is reduced by 1."
 LocPromotionPopupText=""
+
+[AdvancedRobotics_LW X2AbilityTemplate]
+LocFriendlyName="Advanced Robotics"
+LocLongDescription="Upgrades ABC protocols by granting Threat Assessment, Shock Therapy and Chaining Jolt."
+LocHelpText="Upgrades ABC protocols by granting Threat Assessment, Shock Therapy and Chaining Jolt."
+LocPromotionPopupText="<Bullet/> Threat assessment makes Aid protocol target go on overwatch.<br/><Bullet/>Shock therapy makes Blinding protocol have a 50% chance to stun the targets.<br/><Bullet/> Chaining Jolt causes combat protocol to jump to up to 3 targets.<br/>"
+
+[ChainingJolt_LW X2AbilityTemplate]
+LocFriendlyName="Chaining Jolt"
+LocHelpText="Send the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies."
+LocLongDescription="The <Ability:ClassName/> sends the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. Damage is increased against robotic enemies."
+LocFlyOverText="Chaining Jolt"
+LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/> Can only chain to units friendly to the targeted unit.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+
 
 [TenaciousDefense X2AbilityTemplate]
 LocFriendlyName="Tenacious Defense"

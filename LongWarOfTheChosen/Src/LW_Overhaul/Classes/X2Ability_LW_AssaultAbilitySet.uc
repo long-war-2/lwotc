@@ -22,6 +22,8 @@ var config int CHAIN_LIGHTNING_MIN_ACTION_REQ;
 var config int CHAIN_LIGHTNING_AIM_MOD;
 var config int CHAIN_LIGHTNING_TARGETS;
 
+var config int CHAINING_JOLT_TARGETS;
+
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -39,6 +41,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateChainLightningAbility());
 	//Focus ability for the Chain lightning ability
 	Templates.AddItem(CreateCLFocus('CLFocus', default.CHAIN_LIGHTNING_TARGETS));
+	Templates.AddItem(CreateCLFocus('ChainingJoltFocus', default.CHAINING_JOLT_TARGETS));
 	
 	return Templates;
 }

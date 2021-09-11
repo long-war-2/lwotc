@@ -652,7 +652,8 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	local X2AbilityTarget_Single								PrimaryTarget;
 	local X2AbilityMultiTarget_Radius							RadiusMultiTarget;
 	local X2Condition_UnitInventory								InventoryCondition;
-
+	local X2Condition_AbilityProperty StingCondition;
+	local X2Effect_Stunned StunnedEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'BlindingProtocol_LW');
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_BlindingProtocol"; 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -725,6 +726,15 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 
 	Cooldown = new class'X2AbilityCooldown_ABCProtocol';
 	Template.AbilityCooldown = Cooldown;
+
+	StingCondition = new class'X2Condition_AbilityProperty';
+	StingCondition.OwnerHasSoldierAbilities.AddItem('AdvancedRobotics_LW');
+
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(class'X2Item_StingGrenade'.default.STING_GRENADE_STUN_LEVEL, class'X2Item_StingGrenade'.default.STING_GRENADE_STUN_CHANCE, false);
+	StunnedEffect.TargetConditions.AddItem(StingCondition);
+	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.StunnedFriendlyName, class'X2StatusEffects'.default.StunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
+	Template.AddMultiTargetEffect(StunnedEffect);
+	Template.AddTargetEffect(StunnedEffect);
 
 	// Apply the Disoriented effect to valid targets
 	Template.AddMultiTargetEffect(class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false));
