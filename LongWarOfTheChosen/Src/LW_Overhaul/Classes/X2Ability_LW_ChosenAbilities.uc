@@ -31,6 +31,7 @@ var config float IMPACT_COMPENSATION_PCT_DR;
 var config int IMPACT_COMPENSATION_MAX_STACKS;
 
 var config int UNSTOPPABLE_MIN_MOB;
+var config int EXO_SERVOS_MOB;
 
 var config int HIGH_VOLUME_FIRE_MALUS;
 
@@ -96,6 +97,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(HighVolumeFire());
 	Templates.AddItem(HighVolumeFirePassive());	
+	Templates.AddItem(CreateExoskeletonServos());	
 	
 	return Templates;
 }
@@ -1876,7 +1878,7 @@ static function X2AbilityTemplate CreateUnstoppable()
   	return Template;
 }
 
-	static function X2AbilityTemplate ParalyzingBlows()
+static function X2AbilityTemplate ParalyzingBlows()
 {
 	local X2AbilityTemplate					Template;
 	local X2AbilityTrigger_EventListener	EventListener;
@@ -2030,6 +2032,42 @@ static function EventListenerReturn AbilityTriggerEventListener_HighVolumeFire(
 	return HandleApplyEffectEventTrigger('ChosenVenomRounds', EventData, EventSource, GameState);
 }
 
+static function X2AbilityTemplate CreateExoskeletonServos()
+{
+	local X2AbilityTemplate						Template;	
+	local X2Effect_ExoskeletonServos 					UnstoppableEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ExoskeletonServos');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_blaze";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	//Template.bIsPassive = true;
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+
+	UnstoppableEffect = new class'X2Effect_ExoskeletonServos';
+	UnstoppableEffect.BuildPersistentEffect(1, false, true,, eGameRule_PlayerTurnBegin);
+	UnstoppableEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
+	UnstoppableEffect.AddStatCap(eStat_Mobility,default.EXO_SERVOS_MOB,true);
+	UnstoppableEffect.AddStatCap(eStat_Mobility,default.EXO_SERVOS_MOB,false);
+	Template.AddTargetEffect(UnstoppableEffect);
+
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	//Template.AdditionalAbilities.AddItem('UnstoppablePassive_LW');
+  	return Template;
+}
 
 defaultproperties
 {

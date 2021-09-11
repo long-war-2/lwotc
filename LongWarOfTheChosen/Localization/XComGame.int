@@ -1197,8 +1197,8 @@ BriefSummary="Using scavenged plates of ADVENT armor, this suit provides superio
 TacticalText="<Bullet/> Predator Armor maximizes protection for the soldier, granting bonus health and armor."
 
 [HeavyPlatedArmor X2ArmorTemplate]
-BriefSummary="This heavy armor combines reinforced ADVENT plating with a powered exoskeleton, offering protection coupled with a heavy weapon hardpoint. With further study we could unlock additional heavy weapon options for this suit."
-TacticalText="<Bullet/> The E.X.O. Suit allows a soldier to mount a heavy weapon but lacks the full protection offered by the Predator armor.\n<Bullet/> Only the Shredder Gun is available initially. Certain projects in the Proving Grounds will unlock more heavy weapon systems for construction.\n<Bullet/> Instead of a heavy weapon, Technical-class soldiers may instead carry extra ammunition for their Gauntlet."
+BriefSummary="This heavy armor combines reinforced ADVENT plating with a powered exoskeleton, offering protection coupled with a movement support system. It allows units to move unimpared regardless of circumstances."
+TacticalText="<Bullet/> The E.X.O. Suit Grants Exoskeleton Servos at the cost of an item slot.\n<Bullet/> Exoskeleton Servos Sets the unit's mobility to 14 regardless of weight, or other impairments."
 
 [LightPoweredArmor X2ArmorTemplate]
 TacticalText="<Bullet/> The Wraith Suit increases a soldier's mobility and dodge stats.\n<Bullet/> The Wraith Suit has a wrist-mounted grapple.\n<Bullet/> The Wraith Suit can allow the wearer to pass directly through walls and obstacles."
@@ -1208,8 +1208,8 @@ BriefSummary="Our new mastery of the aliens' Elerium technology has lead us to t
 TacticalText="<Bullet/> Warden Armor puts soldier survivability above all other considerations, granting significant bonus health and armor protection."
 
 [HeavyPoweredArmor X2ArmorTemplate]
-BriefSummary="This powered heavy battle armor grants significant survivability, as well as a wrist-mounted heavy weapon hardpoint. The W.A.R. Suit can also generate temporary cover for allies with its powerful \"Shieldwall\" technology."
-TacticalText="<Bullet/> The W.A.R. Suit allows a soldier to wrist mount a heavy weapon.\n<Bullet/> The W.A.R. Suit grants the \"Shieldwall\" ability, allowing the wearer to temporarily act as high cover for squadmates.\n<Bullet/> Instead of a heavy weapon, Technical-class soldiers may instead carry extra ammunition for their Gauntlet."
+BriefSummary="This powered heavy battle armor grants significant survivability, as well as an Exoskeleton movement Support System. The W.A.R. Suit can also generate temporary cover for allies with its powerful \"Shieldwall\" technology."
+TacticalText="<Bullet/> The W.A.R. Suit Grants Exoskeleton Servos.\n<Bullet/> The W.A.R. Suit grants the \"Shieldwall\" ability, allowing the wearer to temporarily act as high cover for squadmates.\n<Bullet/> Exoskeleton Servos Sets the unit's mobility to 14 regardless of weight, or other impairments."
 
 [FragGrenade X2GrenadeTemplate]
 BriefSummary="A standard fragmentation grenade that blasts enemies with shrapnel in a small area of effect. Effective at removing enemy armor. Damage falls off from center of area of effect."
@@ -3453,9 +3453,9 @@ UnlockedDescription="Prototype added to inventory"
 
 [EXOSuit X2TechTemplate]
 DisplayName="Battle Armor"
-Summary="If we combine the power-assisted armor prototypes we've been working on with some of the ADVENT plating we've recovered, we could develop a variant of our plated armor that allows us to add a heavy weapon mount directly to the armor, combining significant defensive and offensive capabilities in a single suit."
+Summary="If we combine the power-assisted armor prototypes we've been working on with some of the ADVENT plating we've recovered, we could develop a variant of our plated armor that allows us to mount an exoskeleton in it, combining significant defensive capabilities with unimpaired movement."
 CodeName="Stark"
-LongDescription="For the aliens, fielding heavier weapons, or more of them, usually means using a larger, heavier alien species to haul the gear into battle. For our needs, we have to rely on something more practical. I've been working on a variety of power-assisted armor prototypes, which, at the very least, should provide a means for our troops to bring another weapon into the fight. By combining these prototypes with the alien alloy plating we've experimented with previously, the armor should be almost as durable as our Predator prototypes. L. Shen."
+LongDescription="Our Heavily armed soldiers can get bogged down by equipment weight, and Aliens Use a variety of tools to Hinder our movement. We can develop an Exoskeleton that will help with our soldier's freedom of movement. L. Shen."
 UnlockedDescription="Prototype added to inventory"
 
 [SpiderSuit X2TechTemplate]
@@ -3483,7 +3483,7 @@ UnlockedDescription="Prototype added to inventory"
 DisplayName="Battlesuits"
 Summary="By harnessing the power of Elerium, it may be possible to create a new powered-armor suit capable of generating a defensive force field not unlike those used on the alien craft."
 CodeName="Titan"
-LongDescription="With our supply of Elerium crystals limited by what our soldiers can recover in the field, I've been hesitant to recommend we commit them to any one project exclusively. However, in the wake of recent events, it seems like we need to work on developing an armor suit with significant durability and the ability to mount a heavy weapon. In order to do that, we've integrated an Elerium-based power cell into one our stronger frames. With the Elerium's incredible energy throughput, the suit can now support the use a self-contained force field. In the simplest of terms, we've mirrored the technologies most commonly used by the aliens in the defense of their UFOs, and fused them with a platform our troops can deploy in the field. I expect great things from this unit. L. Shen." 
+LongDescription="With our supply of Elerium crystals limited by what our soldiers can recover in the field, I've been hesitant to recommend we commit them to any one project exclusively. However, in the wake of recent events, it seems like we need to work on developing an armor suit with significant durability and an Exoskeleton Support system. In order to do that, we've integrated an Elerium-based power cell into one our stronger frames. With the Elerium's incredible energy throughput, the suit can now support the use a self-contained force field. In the simplest of terms, we've mirrored the technologies most commonly used by the aliens in the defense of their UFOs, and fused them with a platform our troops can deploy in the field. I expect great things from this unit. L. Shen." 
 UnlockedDescription="Prototype added to inventory"
 
 ;;;;;;;;;;;;;;;;;;; PROVING GROUNDS TECHS ;;;;;;;;;;;;;
@@ -8298,6 +8298,13 @@ LocLongDescription="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MI
 LocHelpText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
 LocFlyOverText="Unstoppable"
 LocPromotionPopupText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
+
+[ExoskeletonServos X2AbilityTemplate]
+LocFriendlyName="Exoskeleton Servos"
+LocLongDescription="At the start of the mission, This unit's mobility becomes set to 14, and can't be affected by any mobility buffs or debuffs."
+LocHelpText="At the start of the mission, This unit's mobility becomes set to 14, and can't be affected by any mobility buffs or debuffs."
+LocFlyOverText="Exoskeleton Servos"
+
 
 [UnstoppablePassive_LW X2AbilityTemplate]
 LocFriendlyName="Unstoppable"

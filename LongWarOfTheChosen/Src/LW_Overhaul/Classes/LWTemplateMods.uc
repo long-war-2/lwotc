@@ -3006,16 +3006,16 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				case 'HeavyPlatedArmor':
 				ArmorTemplate.Abilities.AddItem('Chitin_Plating_Ability');
 				ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, 14, default.MEDIUM_PLATED_MITIGATION_AMOUNT);
-				ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, -1);
 				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 4);
-				ArmorTemplate.Abilities.AddItem('HeavyArmorMobPenalty');
+				ArmorTemplate.Abilities.AddItem('ExoskeletonServos');
+				ArmorTemplate.bHeavyWeapon = false;
 				break;
 
 				case 'HeavyPoweredArmor':
 				ArmorTemplate.Abilities.AddItem('Carapace_Plating_Ability');
 				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 5);
-				ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, -1);
-				ArmorTemplate.Abilities.AddItem('HeavyArmorMobPenalty');
+				ArmorTemplate.Abilities.AddItem('ExoskeletonServos');
+				ArmorTemplate.bHeavyWeapon = false;
 				break;
 
 				case 'LightPlatedArmor':
