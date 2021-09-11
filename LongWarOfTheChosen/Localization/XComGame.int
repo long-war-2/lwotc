@@ -1133,7 +1133,7 @@ TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage
 TacticalText="<Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
 
 
-[Vektor_LS X2WeaponTemplate]
+[VektorRifle_LS X2WeaponTemplate]
 FriendlyName="Crimson Lance"
 FriendlyNamePlural="Crimson Lances"
 BriefSummary="Crimson Lance augments the standard Vektor frame with high density pulse-duration modulated laser oscillators. It's not as powerful as our larger pulse weapon designs, but its ease of use and platform stability grant it unmatched precision. Covered heatsinks reduce the thermal footprint of this weapon, making it harder to track the user."
@@ -1144,7 +1144,7 @@ AbilityDescName="vektor rifle"
 [VektorRifle_MG X2WeaponTemplate]
 TacticalText="<Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
 
-[Vektor_CG X2WeaponTemplate]
+[VektorRifle_CG X2WeaponTemplate]
 FriendlyName="Tesla Lance"
 FriendlyNamePlural="Tesla Lances"
 BriefSummary="Tesla Lance owes its name to the method of igniting the propellant in its cartridges by an electric current. The long rifled barrel is internally stabilized and does not come in contact with the weapon's frame for its entire length. Both of these factors make this weapon extremely precise and easy to handle."

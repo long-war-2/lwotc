@@ -270,7 +270,7 @@ static function X2DataTemplate CreateVektorCrossbow_CV()
 static function X2DataTemplate CreateVektor_Laser()
 {
 	local X2WeaponTemplate Template;
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Vektor_LS');
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'VektorRifle_LS');
 
 	Template.WeaponCat = 'vektor_rifle';
 	Template.WeaponTech = 'laser_lw'; 
@@ -299,7 +299,7 @@ static function X2DataTemplate CreateVektor_Laser()
 	Template.GameArchetype = "LW_StrikeRifle.Archetypes.WP_DMR_LS";
 
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
-	Template.CreatorTemplateName = 'VEKTOR_LS_Schematic'; // The schematic which creates this item
+	Template.CreatorTemplateName = 'VektorRifle_LS_Schematic'; // The schematic which creates this item
 
 	Template.iPhysicsImpulse = 5;
 	Template.StartingItem = false;
@@ -314,7 +314,7 @@ static function X2DataTemplate CreateVektor_Laser()
 static function X2DataTemplate CreateVektor_Coil()
 {
 	local X2WeaponTemplate Template;
-	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'Vektor_CG');
+	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'VektorRifle_CG');
 
 	Template.WeaponCat = 'vektor_rifle';
 	Template.WeaponTech = 'coilgun_lw';
