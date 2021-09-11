@@ -2816,6 +2816,41 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	{
 		switch (SchematicTemplate.DataName)
 		{
+			//Make the schemacit costs in strategy tuning config
+			case 'Pistol_MG_Schematic':
+			case 'SideArm_MG_Schematic':
+			Template.Cost.ResourceCosts.Length = 0;
+
+			Resources.ItemTemplateName = 'Supplies';
+			Resources.Quantity = 20;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+		
+			Resources.ItemTemplateName = 'AlienAlloy';
+			Resources.Quantity = 1;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+			
+			Resources.ItemTemplateName = 'EleriumDust';
+			Resources.Quantity = 1;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+		
+			break;
+			case 'Pistol_BM_Schematic':
+			case 'SideArm_BM_Schematic':
+			Template.Cost.ResourceCosts.Length = 0;
+
+			Resources.ItemTemplateName = 'Supplies';
+			Resources.Quantity = 35;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+		
+			Resources.ItemTemplateName = 'AlienAlloy';
+			Resources.Quantity = 2;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+			
+			Resources.ItemTemplateName = 'EleriumDust';
+			Resources.Quantity = 2;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+			break;
+
 			case 'HunterRifle_MG_Schematic':
 			case 'HunterRifle_BM_Schematic':
 			case 'HunterPistol_MG_Schematic':

@@ -8542,6 +8542,17 @@ BriefSummary="Continuous laser beam of this Autopistol variant effortlessly burn
 TacticalText="Continuous laser beam of this Autopistol variant effortlessly burns holes in plain and armored targets alike. Variable power output and spacious battery allow this weapon to double as a compact source of heat in cold climate. This unintended, but welcome side effect has earned this weapon its nickname, which has stuck to the point where even Shen can't remember what it was supposed to be called before that.<br/><Bullet/> Autopistols can be fired with a single action."
 AbilityDescName="autopistol"
 
+[Pistol_MG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Pistol_BM_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[SawedOffShotgun_MG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[SawedOffShotgun_BM_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
 
 [Sidearm_LS_Schematic X2SchematicTemplate]
 m_strClassLabel="SQUAD"
@@ -8550,6 +8561,12 @@ m_strClassLabel="SQUAD"
 m_strClassLabel="SQUAD"
 
 [Pistol_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Sidearm_MG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Sidearm_BM_Schematic X2SchematicTemplate]
 m_strClassLabel="SQUAD"
 
 [Sidearm_CG X2WeaponTemplate]
