@@ -38,7 +38,7 @@ static function X2AbilityTemplate CreateFlameThrower()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_ApplyWeaponDamage		WeaponDamageEffect;
 	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower	ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2Effect_PersistentStatChange     DisorientedEffect;
@@ -126,7 +126,7 @@ static function X2AbilityTemplate CreateFlameThrower()
 	DisorientedEffect.TargetConditions.AddItem(AbilityCondition);
 	Template.AddMultiTargetEffect(DisorientedEffect);
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	ConeMultiTarget.ConeEndDiameter = default.FLAMETHROWER_TILE_WIDTH * class'XComWorldData'.const.WORLD_StepSize;
@@ -143,9 +143,9 @@ static function X2AbilityTemplate CreateFlameThrower()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Iridar_Flamethrower";
@@ -169,7 +169,7 @@ static function X2AbilityTemplate CreateFlameThrowerOverwatchShot()
 	local X2AbilityTemplate					Template;
 	local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
 	local X2Effect_ApplyWeaponDamage		WeaponDamageEffect;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2Condition_Visibility			TargetVisibilityCondition;
@@ -294,7 +294,7 @@ static function X2AbilityTemplate CreateFlameThrowerOverwatchShot()
 	Template.AddMultiTargetEffect(DisorientedEffect);
 	Template.AddTargetEffect(DisorientedEffect);
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	ConeMultiTarget.ConeEndDiameter = default.FLAMETHROWER_TILE_WIDTH * class'XComWorldData'.const.WORLD_StepSize;
@@ -312,9 +312,9 @@ static function X2AbilityTemplate CreateFlameThrowerOverwatchShot()
 	Template.bFragileDamageOnly = false;
 	Template.bAllowFreeFireWeaponUpgrade = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	//Template.CinescriptCameraType = "Soldier_HeavyWeapons";
@@ -336,7 +336,7 @@ static function X2AbilityTemplate CreateFulmination()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_ApplyCanisterDamage		WeaponDamageEffect;
 	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2Effect_TriggerEvent				InsanityEvent;
@@ -403,7 +403,7 @@ static function X2AbilityTemplate CreateFulmination()
 	InsanityEvent.ApplyChance = 100;
 	Template.AddMultiTargetEffect(InsanityEvent);
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	ConeMultiTarget.ConeEndDiameter = default.FLAMETHROWER_TILE_WIDTH * class'XComWorldData'.const.WORLD_StepSize;
@@ -420,10 +420,10 @@ static function X2AbilityTemplate CreateFulmination()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 	Template.CustomFireAnim = 'FF_FireLWCanister';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Iridar_Flamethrower";
@@ -538,9 +538,9 @@ static function X2AbilityTemplate CreatePressureBlast()
 	Template.bFragileDamageOnly = false;
 	Template.bPreventsTargetTeleport = true;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Iridar_Flamethrower";
@@ -606,8 +606,8 @@ static function X2AbilityTemplate Suppression()
 	Template.AbilityMultiTargetConditions.AddItem(new class'X2Condition_FineControl');
 
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
 	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
@@ -848,7 +848,7 @@ static function X2AbilityTemplate SuppressionShot()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 
 	Template.TargetingMethod = class'X2TargetingMethod_TopDown';
 

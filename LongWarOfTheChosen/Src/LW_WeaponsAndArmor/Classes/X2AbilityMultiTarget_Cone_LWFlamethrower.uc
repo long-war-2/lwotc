@@ -78,7 +78,7 @@ function AddConeSizeMultiplier(optional name EffectName = 'none', optional float
 //TODO: re-factor now that all calls to this are non-native
 function float GetConeLength(const XComGameState_Ability Ability)
 {
-    UpdateParameters(Ability);
+    //UpdateParameters(Ability);
     return super.GetConeLength(Ability);
 }
 
@@ -111,7 +111,7 @@ simulated function GetValidTilesForLocation(const XComGameState_Ability Ability,
         return;
     }
 
-    UpdateParameters(Ability);
+    //UpdateParameters(Ability);
     
     // Updated Flamethrower tile collection logic
     History = `XCOMHISTORY;
@@ -305,7 +305,7 @@ simulated function int GetSmallestDistanceTile(array<TileDistancePair> Tiles, op
 //Return the Valid Uncollided tiles into ValidTiles and everything else into InValidTiles
 simulated function GetCollisionValidTilesForLocation(const XComGameState_Ability Ability, const vector Location, out array<TTile> ValidTiles, out array<TTile> InValidTiles)
 {
-    UpdateParameters(Ability);
+    //UpdateParameters(Ability);
     GetValidTilesForLocation(Ability, Location, ValidTiles);
 }
 
@@ -394,8 +394,8 @@ simulated function UpdateParameters(XComGameState_Ability Ability)
     MultiWeaponTemplate = X2WeaponTemplate(SourceItemState.GetMyTemplate());
     if(MultiWeaponTemplate != none)
     {
-        ConeEndDiameter = MultiWeaponTemplate.iRadius * class'XComWorldData'.const.WORLD_StepSize;
-        ConeLength = MultiWeaponTemplate.iRange * class'XComWorldData'.const.WORLD_StepSize;
+        //ConeEndDiameter = MultiWeaponTemplate.iRadius * class'XComWorldData'.const.WORLD_StepSize;
+        //ConeLength = MultiWeaponTemplate.iRange * class'XComWorldData'.const.WORLD_StepSize;
 
         SourceUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(Ability.OwnerStateObject.ObjectID));
         if(SourceUnit == none)

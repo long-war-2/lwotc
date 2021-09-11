@@ -169,7 +169,7 @@ static function X2AbilityTemplate FireCanisterActivate()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_ApplyCanisterDamage		WeaponDamageEffect;
 	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2Effect_ApplyFireToWorld			FireToWorldEffect;
@@ -240,7 +240,7 @@ static function X2AbilityTemplate FireCanisterActivate()
 
 	Template.AddMultiTargetEffect(class'X2StatusEffects'.static.CreateBurningStatusEffect(default.FireCanister_BurnDamage, default.FireCanister_BurnSpread));
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	ConeMultiTarget.ConeEndDiameter = default.Canister_Width * class'XComWorldData'.const.WORLD_StepSize;
@@ -257,10 +257,10 @@ static function X2AbilityTemplate FireCanisterActivate()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 	Template.CustomFireAnim = 'FF_FireMZCanister';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Iridar_Flamethrower";
@@ -287,7 +287,7 @@ static function X2AbilityTemplate PoisonCanisterActivate()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_ApplyCanisterDamage		WeaponDamageEffect;
 	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2Effect_ApplyPoisonToWorld		PoisonCloudEffect;
@@ -354,7 +354,7 @@ static function X2AbilityTemplate PoisonCanisterActivate()
 
 	Template.AddMultiTargetEffect(class'X2StatusEffects'.static.CreatePoisonedStatusEffect());
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	ConeMultiTarget.ConeEndDiameter = default.PoisonCanister_Width * class'XComWorldData'.const.WORLD_StepSize;
@@ -371,10 +371,10 @@ static function X2AbilityTemplate PoisonCanisterActivate()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 	Template.CustomFireAnim = 'FF_FireMZCanister';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Iridar_Flamethrower";
@@ -401,7 +401,7 @@ static function X2AbilityTemplate CurseCanisterActivate()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_ApplyCanisterDamage		WeaponDamageEffect;
 	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 
@@ -460,7 +460,7 @@ static function X2AbilityTemplate CurseCanisterActivate()
 	WeaponDamageEffect.Scalar = default.CurseCanister_Scalar;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	ConeMultiTarget.ConeEndDiameter = default.Canister_Width * class'XComWorldData'.const.WORLD_StepSize;
@@ -477,10 +477,10 @@ static function X2AbilityTemplate CurseCanisterActivate()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 	Template.CustomFireAnim = 'FF_FireMZCanister';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Iridar_Flamethrower";
@@ -507,7 +507,7 @@ static function X2AbilityTemplate BluescreenCanisterActivate()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_ApplyCanisterDamage		WeaponDamageEffect;
 	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	//local X2Effect_PersistentStatChange		Disorient;
@@ -595,7 +595,7 @@ static function X2AbilityTemplate BluescreenCanisterActivate()
 	RoboStun.TargetConditions.AddItem(RoboCondition);
 	Template.AddMultiTargetEffect(RoboStun);
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	ConeMultiTarget.ConeEndDiameter = default.Canister_Width * class'XComWorldData'.const.WORLD_StepSize;
@@ -612,10 +612,10 @@ static function X2AbilityTemplate BluescreenCanisterActivate()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 	Template.CustomFireAnim = 'FF_FireMZCanister';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Volt';
 	Template.CinescriptCameraType = "Iridar_Flamethrower";
@@ -650,7 +650,7 @@ static function X2AbilityTemplate BlastCanisterActivate()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_ApplyCanisterDamage		WeaponDamageEffect;
 	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local MZ_Effect_Knockback				KnockbackEffect;
@@ -718,7 +718,7 @@ static function X2AbilityTemplate BlastCanisterActivate()
 	WeaponDamageEffect.Scalar = default.BlastCanister_Scalar;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	ConeMultiTarget.ConeEndDiameter = default.BlastCanister_Width * class'XComWorldData'.const.WORLD_StepSize;
@@ -735,10 +735,10 @@ static function X2AbilityTemplate BlastCanisterActivate()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 	Template.CustomFireAnim = 'FF_FireMZCanister';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Iridar_Flamethrower";
@@ -765,7 +765,7 @@ static function X2AbilityTemplate AcidCanisterActivate()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_ApplyCanisterDamage		WeaponDamageEffect;
 	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZAcidCanisterActivate');
@@ -828,7 +828,7 @@ static function X2AbilityTemplate AcidCanisterActivate()
 	Template.AddMultiTargetEffect( class'X2StatusEffects'.static.CreateAcidBurningStatusEffect(default.AcidCanister_BurnDamage, default.AcidCanister_BurnSpread));
 	Template.AddMultiTargetEffect( new class'X2Effect_ApplyAcidToWorld_Cone');
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	ConeMultiTarget.ConeEndDiameter = default.Canister_Width * class'XComWorldData'.const.WORLD_StepSize;
@@ -846,10 +846,10 @@ static function X2AbilityTemplate AcidCanisterActivate()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 	Template.CustomFireAnim = 'FF_FireMZCanister';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Iridar_Flamethrower";
@@ -877,7 +877,7 @@ static function X2AbilityTemplate SmokeCanisterActivate()
 	local X2AbilityCost_Charges                 ChargeCost;
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2AbilityTarget_Cursor			CursorTarget;
-	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
+	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2Effect_ApplySmokeGrenadeToWorld WeaponEffect;
 	local X2Condition_AbilityProperty		AbilityCondition;
@@ -956,7 +956,7 @@ static function X2AbilityTemplate SmokeCanisterActivate()
 	Effect.TargetConditions.AddItem(AbilityCondition);
 	Template.AddMultiTargetEffect( Effect );
 
-	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
+	ConeMultiTarget = new class'X2AbilityMultiTarget_Cone_LWFlamethrower';
 	ConeMultiTarget.bUseWeaponRadius = true;
 	ConeMultiTarget.bIgnoreBlockingCover = true;
 	ConeMultiTarget.ConeEndDiameter = default.SmokeCanister_Width * class'XComWorldData'.const.WORLD_StepSize;
@@ -973,10 +973,10 @@ static function X2AbilityTemplate SmokeCanisterActivate()
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = false;
 
-	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower';
+	Template.ActionFireClass =  class'X2Action_Fire_Flamethrower_LW';
 	Template.CustomFireAnim = 'FF_FireLWMedispray';
 
-	Template.TargetingMethod = class'X2TargetingMethod_Cone';
+	Template.TargetingMethod = class'X2TargetingMethod_Cone_Flamethrower_LW';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Iridar_Flamethrower";
