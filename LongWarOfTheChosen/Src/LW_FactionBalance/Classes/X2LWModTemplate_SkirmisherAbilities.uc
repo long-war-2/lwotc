@@ -61,6 +61,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 static function ModifyJudgementPanicChanceFunction(X2AbilityTemplate Template)
 {
 	local X2Effect CurrentEffect;
+	local X2Condition_UnitEffects EffectsCondition;
+
+	EffectsCondition = new class'X2Condition_UnitEffects';
+	EffectsCondition.AddExcludeEffect('HunkerDown', 'AA_UnitIsImmune');
+	Template.AbilityShooterConditions.AddItem(EffectsCondition);
+
 
 	foreach Template.AbilityTargetEffects(CurrentEffect)
 	{

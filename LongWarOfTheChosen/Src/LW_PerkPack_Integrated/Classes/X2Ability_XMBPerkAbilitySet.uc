@@ -2096,7 +2096,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	local array<name>                       SkipExclusions;
 	local X2Condition_Visibility            TargetVisibilityCondition;
 	local X2AbilityCost_Ammo				AmmoCost;
-
+	local X2Condition_UnitEffects	EffectsCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'PrimaryReturnFireShot');
 
@@ -2113,6 +2113,10 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	AmmoCost.iAmmo = 1;
 	Template.AbilityCosts.AddItem(AmmoCost);
 	
+	EffectsCondition = new class'X2Condition_UnitEffects';
+	EffectsCondition.AddExcludeEffect('HunkerDown', 'AA_UnitIsImmune');
+	Template.AbilityShooterConditions.AddItem(EffectsCondition);
+
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bReactionFire = true;
 	Template.AbilityToHitCalc = StandardAim;
