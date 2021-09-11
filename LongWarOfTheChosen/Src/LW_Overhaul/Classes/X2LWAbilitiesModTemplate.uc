@@ -1787,7 +1787,6 @@ static function UpdateLaunchGrenade(X2AbilityTemplate Template)
 
 static function ReworkMindSpin(X2AbilityTemplate Template)
 {
-	local X2Effect Effect;
 	local X2Effect_MindControl MindControlEffect;
 	local X2Effect_RemoveEffects MindControlRemoveEffects;
 	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
