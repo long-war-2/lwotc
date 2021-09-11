@@ -512,6 +512,11 @@ LocFlyOverText="Point Blank"
 LocPromotionPopupText="<Bullet/> Rapidly loses accuracy beyond four tiles range.<br/><Bullet/> Uses one action.<br/><Bullet/> Shotgun has two ammo.<br/>"
 ; End Translation
 
+[SawedOffReload X2AbilityTemplate]
+LocFriendlyName="Reload Sawed-Off"
+LocHelpText="Reload your Sawed-Off Shotgun."
+LocFlyOverText="Reloading"
+
 [BothBarrels X2AbilityTemplate]
 LocFriendlyName="Both Barrels"
 LocLongDescription="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."

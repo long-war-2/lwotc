@@ -66,6 +66,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(OverrideImpairingAbility());
 	Templates.AddItem(OverrideStunImpairingAbility());
 
+	Templates.AddItem(AddSawedOffReload());
+	
 	
 	return Templates;
 }
@@ -1515,4 +1517,76 @@ static function X2AbilityTemplate CannonSprayAndPray()
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;		
+}
+
+static function X2AbilityTemplate CreateAdvancedRobotics()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('AdvancedRobotics_LW', "img:///UILibrary_WOTC_APA_Class_Pack.perk_AdvancedRobotics", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	Template.AdditionalAbilities.AddItem('ThreatAssessment');
+	Template.AdditionalAbilities.AddItem('ChainingJolt');
+	Template.AdditionalAbilities.AddItem('StingProtocol');
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddSawedOffReload()
+{
+    local X2AbilityTemplate                 Template;   
+    local X2AbilityCost_ActionPoints        ActionPointCost;
+    local X2Condition_UnitProperty          ShooterPropertyCondition;
+    local X2Condition_AbilitySourceWeapon   WeaponCondition;
+    local X2AbilityTrigger_PlayerInput      InputTrigger;
+    local array<name>                       SkipExclusions;
+    
+    `CREATE_X2ABILITY_TEMPLATE(Template, 'SawedOffReload');
+    
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	// Charges
+	ShooterPropertyCondition = new class'X2Condition_UnitProperty';	
+	ShooterPropertyCondition.ExcludeDead = true;
+	Template.AbilityShooterConditions.AddItem(ShooterPropertyCondition);
+
+	WeaponCondition = new class'X2Condition_AbilitySourceWeapon';
+	WeaponCondition.WantsReload = true;
+	Template.AbilityShooterConditions.AddItem(WeaponCondition);
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	InputTrigger = new class'X2AbilityTrigger_PlayerInput';
+	Template.AbilityTriggers.AddItem(InputTrigger);
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.IconImage = "img:///UILibrary_LWSecondariesWOTC.UIPerk_ReloadSawedOff";
+    Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_PISTOL_SHOT_PRIORITY + 2;
+
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.DisplayTargetHitChance = false;
+	Template.bDontDisplayInAbilitySummary = false;
+	
+	Template.CustomFireAnim = 'HL_ReloadSawedOffA';
+	Template.CustomSelfFireAnim = 'HL_ReloadSawedOffA';
+	Template.bSkipExitCoverWhenFiring = false;
+	Template.ActivationSpeech = 'Reloading';
+	Template.Hostility = eHostility_Neutral;
+	Template.CinescriptCameraType = "GenericAccentCam";
+	Template.BuildNewGameStateFn = class'X2Ability_DefaultAbilitySet'.static.ReloadAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;	
+
+	return Template;	
 }

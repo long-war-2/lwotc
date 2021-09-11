@@ -237,6 +237,7 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Magnetic()
 	Template.bInfiniteItem = true;
 
 	Template.Abilities.AddItem('PointBlank');
+	Template.Abilities.AddItem('SawedOffReload');
 
 	Template.DamageTypeTemplateName = 'Electrical';
 
@@ -325,6 +326,7 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Beam()
 	Template.bInfiniteItem = true;
 
 	Template.Abilities.AddItem('PointBlank');
+	Template.Abilities.AddItem('SawedOffReload');
 
 	Template.DamageTypeTemplateName = 'Electrical';
 
