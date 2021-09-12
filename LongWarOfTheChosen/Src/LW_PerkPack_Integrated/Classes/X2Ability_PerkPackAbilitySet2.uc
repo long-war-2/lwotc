@@ -1408,7 +1408,7 @@ static function X2AbilityTemplate InTheZone()
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AddShooterEffectExclusions();
 
-	SerialEffect = new class'X2Effect_Serial';
+	SerialEffect = new class'X2Effect_Serial_LW';
 	SerialEffect.BuildPersistentEffect(1, true, true);
 	SerialEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
 	Template.AddTargetEffect(SerialEffect);
