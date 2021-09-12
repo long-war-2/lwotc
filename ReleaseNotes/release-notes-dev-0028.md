@@ -1,4 +1,4 @@
-Welcome to **dev build 28** of Long War of the Chosen!
+Welcome to **dev build 28.1** of Long War of the Chosen!
 
 This build largely contains balance changes.
 
@@ -9,13 +9,20 @@ Headline changes:
  * Chain Lightning actually chains now and has no aim penalty, but it can't hit as many enemies as before
  * The Community Promotion Screen is no longer part of the LWOTC package: you will have to subscribe to it on Steam Workshop
 
-To install dev build 28, just delete your existing LongWarOfTheChosen, X2WOTCCommunityHighlander, etc. folders from the *Mods* directory and unpack the following zip there:
+To install dev build 28.1, just delete your existing LongWarOfTheChosen, X2WOTCCommunityHighlander, etc. folders from the *Mods* directory and unpack the following zip there:
 
 ||  **[Download the full release from Nexus Mods](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
 
-**Upgrading from dev build 27** The above link also contains an update package you can use to upgrade dev build 27.x to dev build 28, instead of deleting the old version. If you use this, you will need to **delete the X2CommunityPromotionScreen folder from the *Mods* directory** and subscribe to Community Promotion Screen on the Steam Workshop.
+**Upgrading from dev build 27** The above link also contains an update package you can use to upgrade dev build 27.x or 28 to dev build 28.1, instead of deleting the old version. If you use this, you will need to **delete the X2CommunityPromotionScreen folder from the *Mods* directory** and subscribe to Community Promotion Screen on the Steam Workshop.
 
-# Balance
+# Changelog dev build 28.1
+
+ * Faction soldier AP costs for class abilities are now correct
+ * Burning no longer disables all the abilities in the universe
+ * Cheap Shot no longer procs against undamaged units
+ * Cheap Shot no longer works with Serial (brings it into line with similar action-refunding abilities, like Hit and Run)
+
+# Changelog dev build 28
 
 ## General
 
