@@ -554,14 +554,14 @@ static function EventListenerReturn OverrideAbilityPointCost(
 	if (UnitState == none)
 		return ELR_NoInterrupt;
 
-	AbilityCost = Tuple.Data[13].i;
+	AbilityCost = Tuple.Data[12].i;
 	AbilityName = Tuple.Data[0].n;
 	Rank = Tuple.Data[1].i;
 	Branch = Tuple.Data[2].i;
-	ClassAbilityRankCount = Tuple.Data[12].i;
+	ClassAbilityRankCount = Tuple.Data[11].i;
 
 	// Skip custom ability costs if this is a free ability from promotion
-	if (Tuple.Data[10].b)
+	if (AbilityCost == 0)
 		return ELR_NoInterrupt;
 
 	// Default ability point costs used for XCOM-row abilities
@@ -595,7 +595,7 @@ static function EventListenerReturn OverrideAbilityPointCost(
 		AbilityCost *= AbilityCostModifier.fValue;
 	}
 
-	Tuple.Data[13].i = AbilityCost;
+	Tuple.Data[12].i = AbilityCost;
 
 	return ELR_NoInterrupt;
 }

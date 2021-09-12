@@ -32,8 +32,8 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	local int									iUsesThisTurn;
 	local UnitValue								CheapShotUsesThisTurn, CEUsesThisTurn;
 	//  if under the effect of Serial, let that handle restoring the full action cost - will this work?
-	//if (SourceUnit.IsUnitAffectedByEffectName(class'X2Effect_Serial'.default.EffectName))
-	//	return false;
+	if (SourceUnit.IsUnitAffectedByEffectName(class'X2Effect_Serial'.default.EffectName))
+		return false;
 
 	if (PreCostActionPoints.Find('RunAndGun') != -1)
 		return false;
@@ -59,7 +59,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	if (kAbility.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
 	{
 		History = `XCOMHISTORY;
-		TargetUnit = XComGameState_Unit(NewGameState.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+		TargetUnit = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
 		if (!AbilityState.IsMeleeAbility() && TargetUnit != none)
 		{
 			if(X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).VisibilityMgr.GetVisibilityInfo(SourceUnit.ObjectID, TargetUnit.ObjectID, VisInfo))
