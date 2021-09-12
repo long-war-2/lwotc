@@ -932,7 +932,7 @@ FriendlyName="Gauss Pistol"
 FriendlyNamePlural="Gauss Pistols"
 UnknownUtilityCategory="Pistol"
 BriefSummary="A powerful, coil-tech sidearm that can punch through enemy armor."
-TacticalText="<Bullet/> Coil weapons automatically pierce 1 enemy armor.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
 AbilityDescName="pistol"
 
 [LWPistol_BM X2WeaponTemplate]
@@ -1065,21 +1065,21 @@ FriendlyNamePlural="Mag Rifles"
 FriendlyName="Coil Rifle"
 FriendlyNamePlural="Coil Rifles"
 BriefSummary="A powerful, mid-range, armor-piercing coilgun that fills the assault rifle role."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Firing the primary weapon ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the Coil Rifles's tactical effectiveness.<br/>"
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> Firing the primary weapon ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the Coil Rifles's tactical effectiveness.<br/>"
 AbilityDescName="assault rifle"
 
 [Cannon_CG X2WeaponTemplate]
 FriendlyName="Gauss Cannon"
 FriendlyNamePlural="Gauss Cannons"
 BriefSummary="A heavy duty, automatic coilgun with a huge rate of fire."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> The cannon serves in a squad automatic weapon role, has more ammo and does more damage than its rifle counterpart, but it is cumbersome to carry.<br/><Bullet/> Use upgrades recovered from ADVENT enemies to improve the Gauss Cannon's tactical effectiveness.<br/>"
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> The cannon serves in a squad automatic weapon role, has more ammo and does more damage than its rifle counterpart, but it is cumbersome to carry.<br/><Bullet/> Use upgrades recovered from ADVENT enemies to improve the Gauss Cannon's tactical effectiveness.<br/>"
 AbilityDescName="cannon"
 
 [SniperRifle_CG X2WeaponTemplate]
 FriendlyName="Gauss Long Rifle"
 FriendlyNamePlural="Gauss Long Rifles"
 BriefSummary="An extended coil rifle that may be employed by our Sharpshooters."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Sniper rifles typically require both actions to fire without special training.\n<Bullet/> They are less accurate at close range, but deadly at a distance.\n<Bullet/> Use upgrades looted from enemies to improve the Gauss Long Rifle's tactical effectiveness."
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> Sniper rifles typically require both actions to fire without special training.\n<Bullet/> They are less accurate at close range, but deadly at a distance.\n<Bullet/> Use upgrades looted from enemies to improve the Gauss Long Rifle's tactical effectiveness."
 AbilityDescName="sniper rifle"
 
 [Shotgun_CG X2WeaponTemplate]
@@ -1089,7 +1089,7 @@ FriendlyNamePlural="Gauss Scatterguns"
 ; End Translation
 BriefSummary="A close-quarters coil-tech weapon that fills the shotgun role."
 ; LWOTC Needs Translation
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Shotgun-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Gauss Scattergun's tactical effectiveness."
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> Shotgun-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Gauss Scattergun's tactical effectiveness."
 ; End Translation
 AbilityDescName="shotgun"
 
@@ -1098,39 +1098,39 @@ FriendlyName="Subcoiler"
 FriendlyNamePlural="Subcoiler"
 BriefSummary="A lightweight version of the coil rifle that fires a smaller round but grants its user more mobility on the battlefield."
 ; LWOTC Needs Translation
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage and suffer accuracy penalties at long range.<br/>"
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage and suffer accuracy penalties at long range.<br/>"
 ; End Translation
 AbilityDescName="SMG"
 
 ; LWOTC Needs Translation
 ; Bullpup changes and new templates
 [Bullpup_CV X2WeaponTemplate]
-TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Bullpup-style weapons are far more accurate then rifles at close and medium ranges, but they have long range penalties.\n<Bullet/> They also increase the Skirmisher's mobility.\n<Bullet/> Use upgrades looted from enemies to improve the Bullpup's tactical effectiveness."
 
 [Bullpup_LS X2WeaponTemplate]
 FriendlyName="Kal-33 Bullpup"
 FriendlyNamePlural="Kal-33 Bullpups"
 BriefSummary="Unlike most of our pulse laser designs, the bullpup version has more strict size requirements, so we had to significantly reduce the pulse rate to prevent the weapon from overheating. This makes the weapon feel more like a traditional automatic firearm rather than a continuous beam weapon, and makes it harder to deliver deep, intense burns, although it does make the weapon easier to use at close range."
-TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Bullpup-style weapons are far more accurate then rifles at close and medium ranges, but they have long range penalties.\n<Bullet/> They also increase the Skirmisher's mobility.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
 [Bullpup_MG X2WeaponTemplate]
-TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-15 Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-15 Bullpup's tactical effectiveness."
 
 [Bullpup_CG X2WeaponTemplate]
 FriendlyName="Kal-69 Bullpup"
 FriendlyNamePlural="Kal-69 Bullpups"
 BriefSummary="Designed according to specifications provided by Betos herself, the coil version of the Skirmisher bullpup is a compact and well-balanced weapon. The reduced number of magnetic coils and smaller propellant charges limit its stopping power and accuracy at long range, but superior balance and high rate of fire make it easy to handle and reliable in close quarters."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-69 Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-69 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
 [Bullpup_BM X2WeaponTemplate]
-TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-90 Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-90 Bullpup's tactical effectiveness."
 
 ; LWOTC Needs Translation (3)
 ; Vektor Rifle changes and new crossbows
 [VektorRifle_CV X2WeaponTemplate]
-TacticalText="<Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
+TacticalText="<Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close and medium range, but have decently high aim at long range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
 
 
 [VektorRifle_LS X2WeaponTemplate]
@@ -1166,7 +1166,7 @@ AbilityDescName="Heavy Railgun"
 FriendlyName="Particle Projection Cannon"
 FriendlyNamePlural="Particle Projection Cannons"
 BriefSummary="PPC uses several acceleration contours to create a focused beam of supercharged particles that remain effective at any range." 
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
 AbilityDescName="Particle Projection Cannon"
 
 ; LWOTC Needs Translation (2)
