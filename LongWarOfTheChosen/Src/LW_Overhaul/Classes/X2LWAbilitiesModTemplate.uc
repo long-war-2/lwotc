@@ -304,7 +304,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'PistolOverwatch':
 		case 'SniperRifleOverwatch':
 			UpdateOverwatch(Template);
-
+			break;
 		case 'LaunchGrenade':
 			UpdateLaunchGrenade(Template);
 		default:
