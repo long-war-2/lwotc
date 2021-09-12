@@ -41,14 +41,18 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 		}
 	}
 
-	if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) && AbilityState.IsAbilityInputTriggered())
+	if(AbilityState.SourceWeapon == AppliedData.ItemStateObjectRef)
 	{
-		TargetUnit = XComGameState_Unit(TargetDamageable);
-		if (TargetUnit != none && ShouldApplyBonuses(EffectState, TargetUnit, AbilityState, Attacker))
+		if (class'XComGameStateContext_Ability'.static.IsHitResultHit(AppliedData.AbilityResultContext.HitResult) && AbilityState.IsAbilityInputTriggered())
 		{
-			return CurrentDamage * BonusDamage;
+			TargetUnit = XComGameState_Unit(TargetDamageable);
+			if (TargetUnit != none && ShouldApplyBonuses(EffectState, TargetUnit, AbilityState, Attacker))
+			{
+				return CurrentDamage * BonusDamage;
+			}
 		}
 	}
+
 	return 0;
 	}
 
