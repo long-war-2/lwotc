@@ -2778,16 +2778,22 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		}
 		if (GremlinTemplate.DataName == 'Gremlin_MG')
 		{
+			//To get the radius increase for blinding protocol
+			GremlinTemplate.Abilities.AddItem('LW_T2GremlinIndicator');
+
 			GremlinTemplate.RevivalChargesBonus = 1;
 			GremlinTemplate.ScanningChargesBonus = 1;
-			GremlinTemplate.AidProtocolBonus = 0;
+			GremlinTemplate.AidProtocolBonus = 5;
 
 		}
 		if (GremlinTemplate.DataName == 'Gremlin_BM')
 		{
+			//To get the radius increase for blinding protocol
+			GremlinTemplate.Abilities.AddItem('LW_T3GremlinIndicator');
+
 			GremlinTemplate.RevivalChargesBonus = 2;
 			GremlinTemplate.ScanningChargesBonus = 2;
-			GremlinTemplate.AidProtocolBonus = 0;
+			GremlinTemplate.AidProtocolBonus = 10;
 		}
 		if (GremlinTemplate.DataName == 'SparkBit_MG')
 		{
