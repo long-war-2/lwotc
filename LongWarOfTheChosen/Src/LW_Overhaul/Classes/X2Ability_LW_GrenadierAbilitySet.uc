@@ -303,6 +303,7 @@ static function X2AbilityTemplate AddVanishingActAbility()
 	local X2AbilityCharges					Charges;
 	local X2AbilityCost_Charges				ChargeCost;
 	local X2Condition_UnitEffects			NotCarryingCondition;
+	local X2Effect_PersistentStatChange		StealthyEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'VanishingAct');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_ghost"; 
@@ -321,7 +322,7 @@ static function X2AbilityTemplate AddVanishingActAbility()
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
     ActionPointCost.iNumPoints = 1;
-    ActionPointCost.bConsumeAllPoints = true;
+    ActionPointCost.bFreeCost = true;
     Template.AbilityCosts.AddItem(ActionPointCost);
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
@@ -374,12 +375,24 @@ static function X2AbilityTemplate AddVanishingActAbility()
 	Template.AddTargetEffect(WeaponEffect);
 	Template.AddTargetEffect(class'X2Item_DefaultGrenades'.static.SmokeGrenadeEffect());
 
+	StealthyEffect = new class'X2Effect_PersistentStatChange';
+	StealthyEffect.EffectName = 'TemporaryPhantomConcealment';
+	StealthyEffect.BuildPersistentEffect(class'X2Ability_PerkPackAbilitySet2'.default.PHANTOM_DURATION, false, true, false, eGameRule_PlayerTurnBegin);
+	// StealthyEffect.SetDisplayInfo (ePerkBuff_Bonus,Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName); 
+	StealthyEffect.AddPersistentStatChange(eStat_DetectionModifier, class'X2Ability_PerkPackAbilitySet2'.default.PHANTOM_DETECTION_RANGE_REDUCTION);
+	StealthyEffect.bRemoveWhenTargetDies = true;
+	StealthyEffect.DuplicateResponse = eDupe_Refresh;
+	StealthyEffect.EffectRemovedFn = class'X2Ability_PerkPackAbilitySet2'.static.PhantomExpired;
+	StealthyEffect.EffectRemovedVisualizationFn = class'X2Ability_PerkPackAbilitySet2'.static.VisualizePhantomExpired;
+	Template.AddTargetEffect(StealthyEffect);
+
 	StealthEffect = new class'X2Effect_RangerStealth';
-    StealthEffect.BuildPersistentEffect(1, true, false, false, 8);
-    StealthEffect.SetDisplayInfo(1, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true);
-    StealthEffect.bRemoveWhenTargetConcealmentBroken = true;
-    Template.AddTargetEffect(StealthEffect);
-    Template.AddTargetEffect(class'X2Effect_Spotted'.static.CreateUnspottedEffect());
+	StealthEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
+	StealthEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true);
+	StealthEffect.bRemoveWhenTargetConcealmentBroken = true;
+	Template.AddTargetEffect(StealthEffect);
+
+	Template.AddTargetEffect(class'X2Effect_Spotted'.static.CreateUnspottedEffect());
 
 	Template.TargetingMethod = class'X2TargetingMethod_OvertheShoulder';
     Template.CinescriptCameraType = "Grenadier_GrenadeLauncher";
