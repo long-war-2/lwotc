@@ -33,6 +33,7 @@ var config int DisablingShotCritStunActions;
 var config float DisablingShotDamagePenalty;
 
 var config array<name> CHEAPSHOT_ABILITYNAMES;
+var config float CHEAPSHOT_BONUS_DAMAGE;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -974,7 +975,7 @@ static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameStat
 {
 	local X2AbilityTemplate					Template;
 	local X2Effect_CheapShot				CheapShotEffect;
-
+	local X2Effect_BloodTrail_LW Effect;
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'CheapShot');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -990,6 +991,14 @@ static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameStat
 	CheapShotEffect.CHEAPSHOT_FULLACTION = false;
 	CheapShotEffect.CHEAPSHOT_ABILITYNAMES = default.CHEAPSHOT_ABILITYNAMES;
 	Template.AddTargetEffect(CheapShotEffect);
+
+	Effect = new class'X2Effect_BloodTrail_LW';
+	Effect.BonusDamage = default.CHEAPSHOT_BONUS_DAMAGE;
+	Effect.DodgeReductionBonus = 0;
+	Effect.BuildPersistentEffect(1, true, false, false);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(Effect);
+
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
