@@ -17,10 +17,9 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 			AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
 			if (AbilityState != none)
 			{
-				SourceUnit.ActionPoints = PreCostActionPoints;
-                  for (i = 0; i < PreCostActionPoints.Length; i++)
-                 {
-                      SourceUnit.ActionPoints.AddItem(class'X2CharacterTemplateManager'.default.StandardActionPoint);
+                for (i = 0; i < PreCostActionPoints.Length; i++)
+                {
+					SourceUnit.ActionPoints.AddItem(PreCostActionPoints[i]);
                 }
 				EventMgr = `XEVENTMGR;
 				EventMgr.TriggerEvent('SerialKiller', AbilityState, SourceUnit, NewGameState);

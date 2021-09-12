@@ -136,9 +136,9 @@ static function X2DataTemplate Create_Rocket_Main()
 	//Template.Abilities.AddItem('IRI_RocketMobilityPenalty');
 	//Template.Abilities.AddItem('IRI_GiveRocket');
 	Template.Abilities.AddItem('IRI_AggregateRocketAmmo');
-	Template.Abilities.AddItem('IRI_ArmRocket');
+	//Template.Abilities.AddItem('IRI_ArmRocket');
 	Template.Abilities.AddItem('IRI_SabotHitBonus');
-	Template.Abilities.AddItem('IRI_DisarmRocket');
+	//Template.Abilities.AddItem('IRI_DisarmRocket');
 
 	Template.iPhysicsImpulse = 10;
 

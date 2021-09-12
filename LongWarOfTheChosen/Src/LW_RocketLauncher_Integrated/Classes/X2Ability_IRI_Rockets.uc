@@ -101,7 +101,7 @@ static function X2AbilityTemplate Setup_FireRocketAbility(name TemplateName, opt
 	local X2Condition_RocketArmedCheck		RocketArmedCheck;
 	local X2Effect_IRI_PersistentSquadViewer    ViewerEffect;
 	local X2AbilityCooldown_RocketLauncher	Cooldown;
-
+	local X2Condition_UnitEffects			SuppressedCondition;
 	
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 
@@ -129,6 +129,11 @@ static function X2AbilityTemplate Setup_FireRocketAbility(name TemplateName, opt
 	Template.bUseAmmoAsChargesForHUD = true;
 	Template.DamagePreviewFn = class'X2Ability_Grenades'.static.GrenadeDamagePreview;
 	
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
 	//	Ability costs
 	Template.AbilityCosts.AddItem(default.RocketActionCost);
 
@@ -1494,7 +1499,7 @@ static function X2AbilityTemplate Create_FireRocketLauncherAbility()
 	local X2Condition_IRI_HasOneAbilityFromList	HasAbilityCondition;
 	//local X2Condition_UnitEffects			SuppressedCondition;
 	local X2AbilityCooldown_RocketLauncher	Cooldown;
-
+	local X2Condition_UnitEffects 			SuppressedCondition;
 	Template = class'X2Ability_HeavyWeapons'.static.RocketLauncherAbility('IRI_FireRocketLauncher');
 
 
@@ -1515,6 +1520,11 @@ static function X2AbilityTemplate Create_FireRocketLauncherAbility()
 	Template.bDisplayInUITacticalText = false;
 	Template.bDontDisplayInAbilitySummary = true;
 	Template.bHideOnClassUnlock = true;
+
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
 	//Template.DamagePreviewFn = class'X2Ability_Grenades'.static.GrenadeDamagePreview;
 
