@@ -157,6 +157,7 @@ static function X2AbilityTemplate Setup_FireRocketAbility(name TemplateName, opt
 	RadiusMultiTarget.bUseWeaponRadius = true;
 	//RadiusMultiTarget.bIgnoreBlockingCover = true;
 	RadiusMultiTarget.bUseWeaponBlockingCoverFlag = true;
+	RadiusMultiTarget.AddAbilityBonusRadius('VolatileMix', 1.0);
 	RadiusMultiTarget.fTargetRadius = - 24.0f * class'XComWorldData'.const.WORLD_UNITS_TO_METERS_MULTIPLIER;
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
@@ -1539,6 +1540,7 @@ static function X2AbilityTemplate Create_FireRocketLauncherAbility()
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
 	RadiusMultiTarget.bUseWeaponRadius = true;
 	RadiusMultiTarget.bUseWeaponBlockingCoverFlag = true;
+	RadiusMultiTarget.AddAbilityBonusRadius('VolatileMix', 1.0);
 	RadiusMultiTarget.fTargetRadius = - 24.0f * class'XComWorldData'.const.WORLD_UNITS_TO_METERS_MULTIPLIER;
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
@@ -1548,7 +1550,7 @@ static function X2AbilityTemplate Create_FireRocketLauncherAbility()
 	HasAbilityCondition.AbilityNames.AddItem('HeavyArmaments');
 	//	ShockAndAwe is included into LW2 Secondary Weapons mod, it grants +1 Rockets (to 1 that's alreeady there by default).
 	//	RPGO changes the default number of rockets to 0 and makes ShockAndAwe a starting Rocketeer perk.
-	HasAbilityCondition.AbilityNames.AddItem('ShockAndAwe');
+	//HasAbilityCondition.AbilityNames.AddItem('ShockAndAwe');
 	Template.AbilityShooterConditions.AddItem(HasAbilityCondition);
 
 	//	Cannot be used while suppressed

@@ -893,7 +893,7 @@ LocPromotionPopupText="<Bullet/> The Fleche ability cannot be used after gaining
 [XComGame.VolatileMix X2AbilityTemplate]
 [VolatileMix X2AbilityTemplate]
 LocFriendlyName="Volatile Mix"
-LocLongDescription="Your grenades' area of effect is increased by one tile."
+LocLongDescription="Your explosives' area of effect is increased by one tile."
 LocHelpText="Your grenades cover a greater area of effect."
 LocFlyOverText="Volatile Mix"
 LocPromotionPopupText="<Bullet/> Your grenades do regular and environmental damage in the expanded area of effect, and apply any additional effects there as well.
