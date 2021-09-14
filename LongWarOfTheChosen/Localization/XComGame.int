@@ -7308,8 +7308,8 @@ LocPromotionPopupText="<Bullet/> Grants a free medikit.<br/><Bullet/> A Nanomedi
 [OpenFire_LW X2AbilityTemplate]
 LocFriendlyName="Open Fire"
 LocFlyOverText="Open Fire"
-LocLongDescription="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
-LocHelpText="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
+LocLongDescription="Your ranged attacks gain <Ability:+Crit/> Crit against targets that are at full health."
+LocHelpText="Your ranged attacks gain <Ability:+Crit/> Crit against targets that are at full health."
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/>"
 ; End Translation (2)
