@@ -97,52 +97,52 @@ static function X2Effect_Burning CreateAcidBurningStatusEffect(int DamagePerTick
 }
 
 
-static function X2Effect_PersistentStatChange CreateDisorientedStatusEffect(optional bool bExcludeFriendlyToSource=false, float DelayVisualizationSec=0.0f, optional bool bIsMentalDamage = true)
-{
-	local X2Effect_DisorientRemoveOverwatch  PersistentStatChangeEffect;
-	local X2Condition_UnitProperty			UnitPropCondition;
+// static function X2Effect_PersistentStatChange CreateDisorientedStatusEffect(optional bool bExcludeFriendlyToSource=false, float DelayVisualizationSec=0.0f, optional bool bIsMentalDamage = true)
+// {
+// 	local X2Effect_DisorientRemoveOverwatch  PersistentStatChangeEffect;
+// 	local X2Condition_UnitProperty			UnitPropCondition;
 
-	PersistentStatChangeEffect = new class'X2Effect_DisorientRemoveOverwatch';
-	PersistentStatChangeEffect.EffectName = class'X2AbilityTemplateManager'.default.DisorientedName;
-	PersistentStatChangeEffect.DuplicateResponse = eDupe_Refresh;
-	PersistentStatChangeEffect.BuildPersistentEffect(default.DISORIENTED_TURNS,, false,,eGameRule_PlayerTurnBegin);
-	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, default.DisorientedFriendlyName, default.DisorientedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_disoriented");
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, default.DISORIENTED_MOBILITY_ADJUST);
-	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Offense, default.DISORIENTED_AIM_ADJUST);
-	PersistentStatChangeEffect.VisualizationFn = DisorientedVisualization;
-	PersistentStatChangeEffect.EffectTickedVisualizationFn = DisorientedVisualizationTicked;
-	PersistentStatChangeEffect.EffectRemovedVisualizationFn = DisorientedVisualizationRemoved;
-	PersistentStatChangeEffect.EffectHierarchyValue = default.DISORIENTED_HIERARCHY_VALUE;
-	PersistentStatChangeEffect.bRemoveWhenTargetDies = true;
-	PersistentStatChangeEffect.bIsImpairingMomentarily = true;
+// 	PersistentStatChangeEffect = new class'X2Effect_DisorientRemoveOverwatch';
+// 	PersistentStatChangeEffect.EffectName = class'X2AbilityTemplateManager'.default.DisorientedName;
+// 	PersistentStatChangeEffect.DuplicateResponse = eDupe_Refresh;
+// 	PersistentStatChangeEffect.BuildPersistentEffect(default.DISORIENTED_TURNS,, false,,eGameRule_PlayerTurnBegin);
+// 	PersistentStatChangeEffect.SetDisplayInfo(ePerkBuff_Penalty, default.DisorientedFriendlyName, default.DisorientedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_disoriented");
+// 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Mobility, default.DISORIENTED_MOBILITY_ADJUST);
+// 	PersistentStatChangeEffect.AddPersistentStatChange(eStat_Offense, default.DISORIENTED_AIM_ADJUST);
+// 	PersistentStatChangeEffect.VisualizationFn = DisorientedVisualization;
+// 	PersistentStatChangeEffect.EffectTickedVisualizationFn = DisorientedVisualizationTicked;
+// 	PersistentStatChangeEffect.EffectRemovedVisualizationFn = DisorientedVisualizationRemoved;
+// 	PersistentStatChangeEffect.EffectHierarchyValue = default.DISORIENTED_HIERARCHY_VALUE;
+// 	PersistentStatChangeEffect.bRemoveWhenTargetDies = true;
+// 	PersistentStatChangeEffect.bIsImpairingMomentarily = true;
 
-	// Start Issue #475
-	PersistentStatChangeEffect.bForceReapplyOnRefresh = true;
-	// End Issue #475
+// 	// Start Issue #475
+// 	PersistentStatChangeEffect.bForceReapplyOnRefresh = true;
+// 	// End Issue #475
 
-	PersistentStatChangeEffect.DamageTypes.AddItem(class'X2Item_DefaultDamageTypes'.default.DisorientDamageType);
-	if( bIsMentalDamage )
-	{
-		PersistentStatChangeEffect.DamageTypes.AddItem('Mental');
-	}
-	PersistentStatChangeEffect.EffectAddedFn = DisorientedAdded;
-	PersistentStatChangeEffect.DelayVisualizationSec = DelayVisualizationSec;
-	PersistentStatChangeEffect.bCanTickEveryAction = true;
+// 	PersistentStatChangeEffect.DamageTypes.AddItem(class'X2Item_DefaultDamageTypes'.default.DisorientDamageType);
+// 	if( bIsMentalDamage )
+// 	{
+// 		PersistentStatChangeEffect.DamageTypes.AddItem('Mental');
+// 	}
+// 	PersistentStatChangeEffect.EffectAddedFn = DisorientedAdded;
+// 	PersistentStatChangeEffect.DelayVisualizationSec = DelayVisualizationSec;
+// 	PersistentStatChangeEffect.bCanTickEveryAction = true;
 
-	if (default.DisorientedParticle_Name != "")
-	{
-		PersistentStatChangeEffect.VFXTemplateName = default.DisorientedParticle_Name;
-		PersistentStatChangeEffect.VFXSocket = default.DisorientedSocket_Name;
-		PersistentStatChangeEffect.VFXSocketsArrayName = default.DisorientedSocketsArray_Name;
-	}
+// 	if (default.DisorientedParticle_Name != "")
+// 	{
+// 		PersistentStatChangeEffect.VFXTemplateName = default.DisorientedParticle_Name;
+// 		PersistentStatChangeEffect.VFXSocket = default.DisorientedSocket_Name;
+// 		PersistentStatChangeEffect.VFXSocketsArrayName = default.DisorientedSocketsArray_Name;
+// 	}
 
-	UnitPropCondition = new class'X2Condition_UnitProperty';
-	UnitPropCondition.ExcludeFriendlyToSource = bExcludeFriendlyToSource;
-	UnitPropCondition.ExcludeRobotic = true;
-	PersistentStatChangeEffect.TargetConditions.AddItem(UnitPropCondition);
+// 	UnitPropCondition = new class'X2Condition_UnitProperty';
+// 	UnitPropCondition.ExcludeFriendlyToSource = bExcludeFriendlyToSource;
+// 	UnitPropCondition.ExcludeRobotic = true;
+// 	PersistentStatChangeEffect.TargetConditions.AddItem(UnitPropCondition);
 
-	return PersistentStatChangeEffect;
-}
+// 	return PersistentStatChangeEffect;
+// }
 
 DefaultProperties
 {

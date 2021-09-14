@@ -1498,7 +1498,7 @@ static function EventListenerReturn OverrideReserveActionPoints(Object EventData
 	{
 		if(ActionPointName == 'Suppression')
 		{
-			//IsSuppression = true;
+			IsSuppression = true;
 			break;
 		}
 	}
