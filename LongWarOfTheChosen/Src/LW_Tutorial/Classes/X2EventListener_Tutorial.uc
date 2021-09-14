@@ -124,7 +124,7 @@ static function EventListenerReturn OnChosenSighted(Object EventData, Object Eve
 		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
 				default.TacticalChosenTitle,
 				default.TacticalChosenBody,
-				"img:///UILibrary_XPACK_StrategyImages.DarkEvent_Loyalty_Among_Thieves_Assasin");
+				"img:///UILibrary_XPACK_StrategyImages.DarkEvent_MadeWhole");
 	}
 	return ELR_NoInterrupt;
 }
