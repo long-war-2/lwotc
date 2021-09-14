@@ -837,7 +837,6 @@ static function X2AbilityTemplate HeavyArmorMobPenalty()
 	local X2AbilityTemplate                 Template;	
 	local X2AbilityTrigger					Trigger;
 	local X2AbilityTarget_Self				TargetStyle;
-	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_T2GremlinIndicator');
 	// Template.IconImage  -- no icon needed for armor stats
@@ -866,7 +865,6 @@ static function X2AbilityTemplate Gremlin_T3_Indicator()
 	local X2AbilityTemplate                 Template;	
 	local X2AbilityTrigger					Trigger;
 	local X2AbilityTarget_Self				TargetStyle;
-	local X2Effect_PersistentStatChange		PersistentStatChangeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_T3GremlinIndicator');
 	// Template.IconImage  -- no icon needed for armor stats
