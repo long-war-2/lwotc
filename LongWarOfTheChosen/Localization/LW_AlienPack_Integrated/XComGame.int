@@ -614,6 +614,34 @@ FriendlyName="ADVENT Mag Rifle"
 AbilityDescName="mag rifle"
 ; End translation
 
+[AdvGeneralM3_LW X2CharacterTemplate]
+strCharacterName="ADVENT General"
+
+[AdvGeneralM3_LW_WPN X2WeaponTemplate]
+FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
+
+[AdvGeneralM4_LW X2CharacterTemplate]
+strCharacterName="ADVENT General"
+
+[AdvGeneralM4_LW_WPN X2WeaponTemplate]
+FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
+
+
+[AdvGeneralM5_LW X2CharacterTemplate]
+strCharacterName="ADVENT General"
+
+[AdvGeneralM5_LW_WPN X2WeaponTemplate]
+FriendlyName="ADVENT Mag Rifle"
+; LWOTC Needs Translation
+AbilityDescName="mag rifle"
+; End translation
+
 ;Shieldbearers
 
 [AdvShieldbearerM4 X2CharacterTemplate]

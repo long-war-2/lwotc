@@ -142,6 +142,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	
 	Templates.AddItem(CreateTemplate_AdvGeneric('AdvGeneralM1_LW'));
 	Templates.AddItem(CreateTemplate_AdvGeneric('AdvGeneralM2_LW'));
+	Templates.AddItem(CreateTemplate_AdvGeneric('AdvGeneralM3_LW'));
+	Templates.AddItem(CreateTemplate_AdvGeneric('AdvGeneralM4_LW'));
+	Templates.AddItem(CreateTemplate_AdvGeneric('AdvGeneralM5_LW'));
 
 	Templates.AddItem(CreateTemplate_AdvGeneric('AdvSergeantM1'));
 	Templates.AddItem(CreateTemplate_AdvGeneric('AdvSergeantM2'));
@@ -1946,8 +1949,53 @@ static function X2CharacterTemplate CreateTemplate_AdvGeneric(name TemplateName)
 			CharTemplate.CharacterGroupName='AdventCaptain';
 			CharTemplate.DefaultLoadout='AdvGeneralM2_LW_Loadout';
 			LootBase.LootTableName='AdvCaptainM3_BaseLoot';
-			LootTimed.LootTableName='AdvCaptainM3_TimedLoot';
-			LootVulture.LootTableName='AdvCaptainM3_VultureLoot';
+			LootTimed.LootTableName='GenericEarlyAlienLoot_LW';
+			LootVulture.LootTableName='GenericEarlyAlienVultureLoot_LW';
+			CharTemplate.Abilities.AddItem('MarkTarget');
+			CharTemplate.Abilities.AddItem('TacticalSense');
+			CharTemplate.Abilities.AddItem('ReadyForAnything');
+			CharTemplate.Abilities.AddItem('Defilade');
+			CharTemplate.Abilities.AddItem('FireDiscipline');
+			CharTemplate.RevealMatineePrefix = "CIN_Advent_Captain";
+			CharTemplate.SightedNarrativeMoments.length = 0;
+			CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_AdvCaptainM1');
+			break;
+		case 'AdvGeneralM3_LW':
+			CharTemplate.CharacterGroupName='AdventCaptain';
+			CharTemplate.DefaultLoadout='AdvGeneralM3_LW_Loadout';
+			LootBase.LootTableName='AdvCaptainM3_BaseLoot';
+			LootTimed.LootTableName='GenericMidAlienLoot_LW';
+			LootVulture.LootTableName='GenericMidAlienVultureLoot_LW';
+			CharTemplate.Abilities.AddItem('MarkTarget');
+			CharTemplate.Abilities.AddItem('TacticalSense');
+			CharTemplate.Abilities.AddItem('ReadyForAnything');
+			CharTemplate.Abilities.AddItem('Defilade');
+			CharTemplate.Abilities.AddItem('FireDiscipline');
+			CharTemplate.RevealMatineePrefix = "CIN_Advent_Captain";
+			CharTemplate.SightedNarrativeMoments.length = 0;
+			CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_AdvCaptainM1');
+			break;
+		case 'AdvGeneralM4_LW':
+			CharTemplate.CharacterGroupName='AdventCaptain';
+			CharTemplate.DefaultLoadout='AdvGeneralM4_LW_Loadout';
+			LootBase.LootTableName='AdvCaptainM3_BaseLoot';
+			LootTimed.LootTableName='GenericMidAlienLoot_LW';
+			LootVulture.LootTableName='GenericMidAlienVultureLoot_LW';
+			CharTemplate.Abilities.AddItem('MarkTarget');
+			CharTemplate.Abilities.AddItem('TacticalSense');
+			CharTemplate.Abilities.AddItem('ReadyForAnything');
+			CharTemplate.Abilities.AddItem('Defilade');
+			CharTemplate.Abilities.AddItem('FireDiscipline');
+			CharTemplate.RevealMatineePrefix = "CIN_Advent_Captain";
+			CharTemplate.SightedNarrativeMoments.length = 0;
+			CharTemplate.SightedNarrativeMoments.AddItem(XComNarrativeMoment'X2NarrativeMoments.TACTICAL.AlienSitings.T_Central_AlienSightings_AdvCaptainM1');
+			break;
+		case 'AdvGeneralM5_LW':
+			CharTemplate.CharacterGroupName='AdventCaptain';
+			CharTemplate.DefaultLoadout='AdvGeneralM5_LW_Loadout';
+			LootBase.LootTableName='AdvCaptainM3_BaseLoot';
+			LootTimed.LootTableName='GenericMidAlienLoot_LW';
+			LootVulture.LootTableName='GenericMidAlienVultureLoot_LW';
 			CharTemplate.Abilities.AddItem('MarkTarget');
 			CharTemplate.Abilities.AddItem('TacticalSense');
 			CharTemplate.Abilities.AddItem('ReadyForAnything');

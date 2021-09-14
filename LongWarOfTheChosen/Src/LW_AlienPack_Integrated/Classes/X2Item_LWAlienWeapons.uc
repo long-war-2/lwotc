@@ -138,8 +138,12 @@ var config WeaponDamageValue AdvShockTroop_WPN_BASEDAMAGE;
 var config WeaponDamageValue AdvCommando_WPN_BASEDAMAGE;
 var config WeaponDamageValue AdvVanguard_WPN_BASEDAMAGE;
 var config WeaponDamageValue AdvScout_WPN_BASEDAMAGE;
+
 var config WeaponDamageValue AdvGeneralM1_LW_WPN_BASEDAMAGE;
 var config WeaponDamageValue AdvGeneralM2_LW_WPN_BASEDAMAGE;
+var config WeaponDamageValue AdvGeneralM3_LW_WPN_BASEDAMAGE;
+var config WeaponDamageValue AdvGeneralM4_LW_WPN_BASEDAMAGE;
+var config WeaponDamageValue AdvGeneralM5_LW_WPN_BASEDAMAGE;
 
 var config WeaponDamageValue ADVTROOPERM4_WPN_BASEDAMAGE;
 var config WeaponDamageValue ADVTROOPERM5_WPN_BASEDAMAGE;
@@ -295,6 +299,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvCommando_WPN'));
 	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM1_LW_WPN'));
 	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM2_LW_WPN'));
+	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM3_LW_WPN'));
+	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM4_LW_WPN'));
+	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvGeneralM5_LW_WPN'));
 
 	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvTrooperM4_WPN'));
 	Templates.AddItem(CreateTemplate_AdvElite_WPN('AdvTrooperM5_WPN'));
@@ -1314,6 +1321,9 @@ static function X2DataTemplate CreateTemplate_AdvElite_WPN(name TemplateName)
 		case 'AdvScout_WPN': Template.BaseDamage = default.AdvScout_WPN_BASEDAMAGE; break;
 		case 'AdvGeneralM1_LW_WPN': Template.BaseDamage = default.AdvGeneralM1_LW_WPN_BASEDAMAGE; break;
 		case 'AdvGeneralM2_LW_WPN': Template.BaseDamage = default.AdvGeneralM2_LW_WPN_BASEDAMAGE; break;
+		case 'AdvGeneralM3_LW_WPN': Template.BaseDamage = default.AdvGeneralM3_LW_WPN_BASEDAMAGE; break;
+		case 'AdvGeneralM4_LW_WPN': Template.BaseDamage = default.AdvGeneralM4_LW_WPN_BASEDAMAGE; break;
+		case 'AdvGeneralM5_LW_WPN': Template.BaseDamage = default.AdvGeneralM5_LW_WPN_BASEDAMAGE; break;
 
 		case 'AdvTrooperM4_WPN': Template.BaseDamage = default.AdvTrooperM4_WPN_BASEDAMAGE; break;
 		case 'AdvTrooperM5_WPN': Template.BaseDamage = default.AdvTrooperM5_WPN_BASEDAMAGE; break;
