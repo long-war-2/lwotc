@@ -1128,7 +1128,7 @@ static function CHEventListenerTemplate CreateUIFocusOverride()
 
 	`LWTrace("Registering evac event listeners");
 
-	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'YellowAlertListeners');
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'FocusUIListeners');
 	//Needed because chain lightning uses focus for its targeting now
 	Template.AddCHEvent('OverrideUnitFocusUI', HideFocusOnAssaults, ELD_Immediate, GetListenerPriority());
 
