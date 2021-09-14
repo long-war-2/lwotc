@@ -2438,7 +2438,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Effect_BulletWizard 			BwizEffect;
 	local X2Condition_AbilityProperty		BwizCondition;
-
+	local X2Effect_Pinned PinnedEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Suppression');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
@@ -2489,10 +2489,16 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	SuppressionEffect.bRemoveWhenTargetDies = true;
 	SuppressionEffect.bRemoveWhenSourceDamaged = true;
 	SuppressionEffect.bBringRemoveVisualizationForward = true;
-	SuppressionEffect.DuplicateResponse=eDupe_Allow;
+	SuppressionEffect.DuplicateResponse=eDupe_Ignore;
 	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
 	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
 	Template.AddTargetEffect(SuppressionEffect);
+
+	PinnedEffect = new class'X2Effect_Pinned';
+	PinnedEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
+	PinnedEffect.DuplicateResponse=eDupe_Allow;
+	PinnedEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage, false);
+	Template.AddTargetEffect(PinnedEffect);
 
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	Template.AddMultiTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
@@ -2754,6 +2760,7 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	local X2Condition_UnitEffects						SuppressedCondition;
 	local X2Condition_AbilityProperty					BwizCondition;
 	local X2Effect_BulletWizard							BwizEffect;
+	local X2Effect_Pinned PinnedEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AreaSuppression');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AreaSuppression";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -2803,6 +2810,14 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	ReserveActionPointsEffect.ReserveType = 'Suppression';
 	ReserveActionPointsEffect.NumPoints = default.AREA_SUPPRESSION_MAX_SHOTS;
 	Template.AddShooterEffect(ReserveActionPointsEffect);
+
+	PinnedEffect = new class'X2Effect_Pinned';
+	PinnedEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
+	PinnedEffect.DuplicateResponse=eDupe_Ignore;
+	PinnedEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage, false);
+	Template.AddTargetEffect(PinnedEffect);
+	Template.AddMultiTargetEffect(PinnedEffect);
+
 
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);

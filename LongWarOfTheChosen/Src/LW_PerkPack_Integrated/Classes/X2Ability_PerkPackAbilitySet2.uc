@@ -1601,7 +1601,6 @@ static function X2AbilityTemplate ChainingJolt()
 	local X2AbilityCost_ActionPoints            ActionPointCost;
 	local X2Effect_ApplyWeaponDamage            RobotDamage;
 	local X2AbilityCooldown_ABCProtocol         Cooldown;
-	local X2Condition_UnitProperty				DamageCondition;
 	local X2Condition_Visibility                VisCondition;
 	local X2Condition_AbilityProperty			ShockTherapyCondition;
 	local X2Effect_Persistent					DisorientedEffect;
