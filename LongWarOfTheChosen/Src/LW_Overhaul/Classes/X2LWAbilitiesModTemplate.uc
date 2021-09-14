@@ -279,12 +279,6 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'SectopodLightningField':
 			class'Helpers_LW'.static.MakeFreeAction(Template);
 			break;
-		case 'Reaper':
-			//ReworkReaper(Template);
-			break;
-		case 'InTheZone':
-			//ReworkSerial(Template);
-			break;
 
 		case 'DevastatingPunch':
 		case 'DevastatingPunchM2':
@@ -1533,7 +1527,7 @@ static function AddSharedSuppressionCooldown(X2AbilityTemplate Template)
 static function MakeTheShotCoveringFire(X2AbilityTemplate Template)
 {
 	//local X2AbilityTrigger_EventListener Trigger;
-	local X2Effect_GeneralDamageModifier DamageModifier;
+	local X2Effect_AbilityDamageMult DamagePenalty;
 
 	/*
 	Trigger = new class'X2AbilityTrigger_EventListener';
@@ -1544,57 +1538,14 @@ static function MakeTheShotCoveringFire(X2AbilityTemplate Template)
 	Template.AbilityTriggers.AddItem(Trigger);
 
 	*/
-	DamageModifier = new class'X2Effect_GeneralDamageModifier';
-	DamageModifier.AbilityTemplate = Template.DataName;
-	DamageModifier.DamageModifier = default.SUPPRESSION_DAMAGE_MOD;
-
-	Template.AbilityShooterEffects.AddItem(DamageModifier);
+	DamagePenalty = new class'X2Effect_AbilityDamageMult';
+	DamagePenalty.Penalty = true;
+	DamagePenalty.Mult = true;
+	DamagePenalty.DamageMod = default.SUPPRESSION_DAMAGE_MOD;
+	DamagePenalty.ActiveAbility = Template.DataName;
+    DamagePenalty.BuildPersistentEffect(1, true, false, false);
+    Template.AddTargetEffect(DamagePenalty);
 }
-
-static function ReworkSerial(X2AbilityTemplate Template)
-{
-	local X2Effect_Serial SerialEffect;
-	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-
-	//class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template, 'X2Effect_Serial');
-	class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template, 'X2Effect_SetUnitValue');
-	class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
-
-	SerialEffect = new class'X2Effect_Serial';
-	SerialEffect.BuildPersistentEffect (1, true, false);
-	SerialEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
-	Template.AddTargetEffect(SerialEffect);
-
-
-	//Template.AbilityTriggers.Length = 0;
-	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
-	Template.AbilityTriggers.AddItem(Trigger);
-	Template.AbilityCooldown = none;
-
-}
-	
-static function ReworkReaper(X2AbilityTemplate Template)
-{
-	local X2Effect_Reaper_LW ReaperEffect;
-
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
-
-	Template.AbilityTriggers.Length = 0;
-	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_UnitPostBeginPlay');
-	Template.AbilityCooldown = none;
-
-	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template, 'X2Effect_Reaper');
-
-	ReaperEffect = new class'X2Effect_Reaper_LW';
-	ReaperEffect.PCT_DMG_Reduction = default.REAPER_PCT_DMG_REDUCTION;
-	ReaperEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
-	ReaperEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
-	Template.AddTargetEffect(ReaperEffect);
-
-	class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template, 'X2Effect_SetUnitValue');
-	class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
-}	
 
 static function UpdateAidProtocol(X2AbilityTemplate Template)
 {
