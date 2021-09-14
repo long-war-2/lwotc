@@ -68,6 +68,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(OverrideImpairingAbility());
 	Templates.AddItem(OverrideStunImpairingAbility());
+	Templates.AddItem(CreateImprovedProtocols());
 
 	Templates.AddItem(AddSawedOffReload());
 	Templates.AddItem(CreateAdvancedRobotics());
@@ -1597,7 +1598,6 @@ static function X2AbilityTemplate AddSawedOffReload()
 	Template.CinescriptCameraType = "GenericAccentCam";
 	Template.BuildNewGameStateFn = class'X2Ability_DefaultAbilitySet'.static.ReloadAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;	
-	Template.OverrideAbilities.AddItem('CombatProtocol');
 
 	return Template;	
 }
@@ -1725,6 +1725,7 @@ static function X2AbilityTemplate ChainingJolt()
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+	Template.OverrideAbilities.AddItem('CombatProtocol');
 
 	//Template.ActivationSpeech = 'AbilCombatProtocol';
 
