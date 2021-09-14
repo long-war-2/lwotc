@@ -268,9 +268,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			AddSharedSuppressionCooldown(Template);
 			break;
 
-		case 'SuppressionShot_LW':
-		case 'AreaSuppressionShot_LW':
-			MakeTheShotCoveringFire(Template);
+		case 'MedikitHeal':
+		case 'NanoMedikitHeal':
+			AddCooldownToMedikits(Template);
 			break;
 		case 'EverVigilant':
 			Template.AdditionalAbilities.Removeitem('EverVigilantTrigger');
@@ -1524,27 +1524,16 @@ static function AddSharedSuppressionCooldown(X2AbilityTemplate Template)
 	Template.AbilityCooldown = Cooldown;
 }
 
-static function MakeTheShotCoveringFire(X2AbilityTemplate Template)
+static function AddCooldownToMedikits(X2AbilityTemplate Template)
 {
-	//local X2AbilityTrigger_EventListener Trigger;
-	local X2Effect_AbilityDamageMult DamagePenalty;
+	local X2AbilityCooldown_Shared	Cooldown;
 
-	/*
-	Trigger = new class'X2AbilityTrigger_EventListener';
-	Trigger.ListenerData.EventID = 'AbilityActivated';
-	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
-	Trigger.ListenerData.Filter = eFilter_None;
-	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalAttackListener;
-	Template.AbilityTriggers.AddItem(Trigger);
-
-	*/
-	DamagePenalty = new class'X2Effect_AbilityDamageMult';
-	DamagePenalty.Penalty = true;
-	DamagePenalty.Mult = true;
-	DamagePenalty.DamageMod = default.SUPPRESSION_DAMAGE_MOD;
-	DamagePenalty.ActiveAbility = Template.DataName;
-    DamagePenalty.BuildPersistentEffect(1, true, false, false);
-    Template.AddTargetEffect(DamagePenalty);
+	Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown.SharingCooldownsWith.AddItem('MedikitHeal');
+	Cooldown.SharingCooldownsWith.AddItem('NanoMedikitHeal');
+	Cooldown.SharingCooldownsWith.AddItem('MedikitStabilize');
+	Cooldown.iNumTurns = 1;
+	Template.AbilityCooldown = Cooldown;
 }
 
 static function UpdateAidProtocol(X2AbilityTemplate Template)

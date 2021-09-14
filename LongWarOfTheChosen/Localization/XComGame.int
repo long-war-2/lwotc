@@ -8235,10 +8235,10 @@ TacticalText="<Bullet/> A Nanomedikit can restore <Ability:NANOMEDIKITHEALHP/>HP
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramedic"
-LocLongDescription="Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
-LocHelpText="Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
+LocLongDescription="Using a medikit for the first time in a turn is a free action."
+LocHelpText="Using a medikit for the first time in a turn is a free action."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [SoulReaper X2AbilityTemplate]

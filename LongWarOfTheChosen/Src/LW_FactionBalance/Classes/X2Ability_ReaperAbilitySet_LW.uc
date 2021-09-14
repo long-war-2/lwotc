@@ -888,7 +888,7 @@ static function X2DataTemplate AddChargeBattery()
 static function X2DataTemplate AddParamedic()
 {
 	local X2AbilityTemplate				Template;
-	local X2Effect_TemporaryItem		TemporaryItemEffect;
+	//local X2Effect_TemporaryItem		TemporaryItemEffect;
 	local X2Effect_Paramedic ParamedicEffect;
 	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
 	local X2Effect_Savior SaviorEffect;
@@ -907,22 +907,22 @@ static function X2DataTemplate AddParamedic()
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = true;
 
-	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
-	TemporaryItemEffect.EffectName = 'ParamedicMedikits';
-	TemporaryItemEffect.ItemName = 'Medikit';
-	TemporaryItemEffect.AlternativeItemNames.AddItem('NanoMedikit');
-	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
-	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
-	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
-	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
-	Template.AddTargetEffect(TemporaryItemEffect);
+	// TemporaryItemEffect = new class'X2Effect_TemporaryItem';
+	// TemporaryItemEffect.EffectName = 'ParamedicMedikits';
+	// TemporaryItemEffect.ItemName = 'Medikit';
+	// TemporaryItemEffect.AlternativeItemNames.AddItem('NanoMedikit');
+	// TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
+	// TemporaryItemEffect.BuildPersistentEffect(1, true, false);
+	// TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	// TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
+	// Template.AddTargetEffect(TemporaryItemEffect);
 
-	SaviorEffect = new class 'X2Effect_Savior';
-	SaviorEffect.BuildPersistentEffect (1, true, false);
-	SaviorEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
-	SaviorEffect.EffectName = 'ParamedicBonusHeal';
-	SaviorEffect.BonusHealAmount = default.PARAMEDIC_BONUS_HEAL;
-	Template.AddTargetEffect (SaviorEffect);
+	// SaviorEffect = new class 'X2Effect_Savior';
+	// SaviorEffect.BuildPersistentEffect (1, true, false);
+	// SaviorEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	// SaviorEffect.EffectName = 'ParamedicBonusHeal';
+	// SaviorEffect.BonusHealAmount = default.PARAMEDIC_BONUS_HEAL;
+	// Template.AddTargetEffect (SaviorEffect);
 
 	ParamedicEffect = new class'X2Effect_Paramedic';
 	ParamedicEffect.BuildPersistentEffect(1, true, true);
