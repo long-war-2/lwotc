@@ -2488,7 +2488,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LMG_ALL_RANGE;
 			WeaponTemplate.Abilities.AddItem('HeavyWeaponsMobPenalty');
-			WeaponTemplate.Abilities.AddItem('CannonSprayAndPray');
+			//WeaponTemplate.Abilities.AddItem('CannonSprayAndPray');
 			WeaponTemplate.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_LW_GearAbilities'.default.HEAVY_WEAPONS_MOB_PENALTY);
 		}
 		if (WeaponTemplate.WeaponCat == 'lwchemthrower')
