@@ -1,8 +1,7 @@
 class X2Effect_PrimaryPCTBonusDamage extends X2Effect_Persistent;
 
 var float BonusDmg;
-var bool includepistols;
-var bool includesos;
+var bool IncludeExplosives;
 
 function float GetPostDefaultAttackingDamageModifier_CH(
 	XComGameState_Effect EffectState,
@@ -14,7 +13,6 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
-    local X2AbilityToHitCalc_StandardAim StandardHit;
 
 	if (class'XComGameStateContext_Ability'.static.IsHitResultHit(ApplyEffectParameters.AbilityResultContext.HitResult))
 	{
@@ -26,15 +24,13 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 			}
 		}
 
-		if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
+		if((AbilityState.GetMyTemplateName() == 'ThrowGrenade' || AbilityState.GetMyTemplateName() == 'LaunchGrenade' 
+		|| AbilityState.GetMyTemplateName() == 'IRI_FireRocket' || AbilityState.GetMyTemplateName() == 'IRI_FireRocketLauncher')
+		&& IncludeExplosives)
 		{
-			return 0;
+			return WeaponDamage * BonusDmg;
 		}
-		StandardHit = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);
-		if (StandardHit != none && StandardHit.bIndirectFire)
-		{
-			return 0;
-		}		
+		
 		if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
 		{
 			

@@ -7,7 +7,7 @@
 class X2Ability_PerkPackAbilitySet extends X2Ability config (LW_SoldierSkills);
 
 var config int CENTERMASS_DAMAGE;
-var config int LETHAL_DAMAGE;
+var config float LETHAL_DAMAGE;
 var config int DOUBLE_TAP_1ST_SHOT_AIM;
 var config int DOUBLE_TAP_2ND_SHOT_AIM;
 var config int DOUBLE_TAP_COOLDOWN;
@@ -269,7 +269,7 @@ static function X2AbilityTemplate AddCenterMassAbility()
 static function X2AbilityTemplate AddLethalAbility()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_PrimaryHitBonusDamage        DamageEffect;
+	local X2Effect_PrimaryPCTBonusDamage        DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'Lethal');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityKinetic";
@@ -280,10 +280,9 @@ static function X2AbilityTemplate AddLethalAbility()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
-	DamageEffect = new class'X2Effect_PrimaryHitBonusDamage';
+	DamageEffect = new class'X2Effect_PrimaryPCTBonusDamage';
 	DamageEffect.BonusDmg = default.LETHAL_DAMAGE;
-	DamageEffect.includepistols = false;
-	DamageEffect.includesos = false;
+	DamageEffect.IncludeExplosives = true;
 	DamageEffect.BuildPersistentEffect(1, true, false, false);
 	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageEffect);
