@@ -2244,9 +2244,12 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'Soldier': 
 		case 'ReaperSoldier':
 		case 'SkirmisherSoldier':
+			Template.CharacterGroupName = 'XCOMSoldier';
+		case 'RebelSoldierProxy':
+		case 'RebelSoldierProxyM2':
+		case 'RebelSoldierProxyM3':
 			Template.Abilities.AddItem('MC_Stock_Strike');
 			Template.Abilities.AddItem('GetUp');
-			Template.CharacterGroupName = 'XCOMSoldier';
 			break;
 		//Need to rescale the loadouts of these templates, and can't think of a better way since it needs to be by hp basis 
 		case 'TheLostHP2':

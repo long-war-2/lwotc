@@ -6775,29 +6775,38 @@ LocHelpText="Disables a weapon, dumping the ammo."
 LocLongDescription="Disables a weapon, dumping the ammo."
 LocFlyOverText="Sabotage Weapon"
 
+; LWOTC Needs Translation (2)
+;(2) Added the Cooldown Text
 [ShieldAllyM1 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM2 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction.."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM3 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM4 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction."
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
 LocFlyOverText="The Warlocks Greatest Champion"
+
+[PsiMindControl X2AbilityTemplate]
+LocFriendlyName="Mind Control"
+LocLongDescription="Seize active control of the target's mind, forcing them to turn on their companions. <Ability:SelfCooldown_LW/> Turn Cooldown."
+LocHelpText="Assume full mental control of the target for a short duration. <Ability:SelfCooldown_LW/> Turn Cooldown."
+LocFlyOverText="Mind Control"
+; End Translation #2
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Anticipation"
@@ -6826,18 +6835,22 @@ LocHelpText="Remove the unconcious effect from a soldier."
 LocLongDescription="Remove the unconcious effect from a soldier"
 LocFlyOverText="Get up!"
 
+
 ;LWOTC Needs Translation
 [QuickReload X2AbilityTemplate]
 LocFriendlyName="Quick Reload"
 LocHelpText="Reload your primary weapon for 2 ammo, non-turn ending."
 LocFlyOverText="Reloading"
 ;LWOTC end translation
+
+; LWOTC Needs Translation (2)
+;(2) Added the Cooldown Text
 [ChosenSummonFollowers X2AbilityTemplate]
 LocFriendlyName="Summon Followers"
-LocHelpText="Summon alliens."
-LocLongDescription="Summon alliens."
+LocHelpText="Summon aliens. <Ability:SelfCooldown_LW/>"
+LocLongDescription="Summon aliens."
 LocFlyOverText="Summonnin' ayys"
-
+; End Translation #2
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -7646,8 +7659,8 @@ LocPromotionPopupText="<Bullet/> Mind Scorch can now panic the enemy.<br/><Bulle
 
 [MindScorch X2AbilityTemplate]
 LocFriendlyName="Mind Scorch"
-LocHelpText="The Warlock opens their mind to the target, damaging and having a <Ability:MIND_SCORCH_BURN_CHANCE/> % chance to burn the target with their madness."
-LocLongDescription="The Warlock opens their mind to the target, damaging and burning the target with their madness."
+LocHelpText="The Warlock opens their mind to the target, damaging and having a <Ability:MIND_SCORCH_BURN_CHANCE/> % chance to burn the target with their madness. <Ability:SelfCooldown_LW/> Turn Cooldown."
+LocLongDescription="The Warlock opens their mind to the target, damaging and burning the target with their madness. <Ability:SelfCooldown_LW/> Turn Cooldown."
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Kidnap"
@@ -7924,12 +7937,14 @@ LocHelpText="Chosen are immune to stun, disorient, and frost and suffer -50% mob
 LocFlyOverText="Chosen Immunities"
 ; End Translation (2)
 
-
+; LWOTC Needs Translation (2)
+;(2) Added the Cooldown Text
 [HarborWave X2AbilityTemplate]
 LocFriendlyName="Harbor Wave"
-LocLongDescription="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst."
-LocHelpText="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst."
+LocLongDescription="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst. <Ability:SelfCooldown_LW/> Turn Cooldown."
+LocHelpText="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst. <Ability:SelfCooldown_LW/> Turn Cooldown."
 LocFlyOverText="Harbor Wave"
+; End Translation (2)
 
 ; LWOTC Needs Translation (2)
 [Brawler X2AbilityTemplate]

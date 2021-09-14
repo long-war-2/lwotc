@@ -1822,7 +1822,7 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_AdventChosen ChosenState;
 	local array<XComGameState_AdventChosen> AllChosen;
-
+	local int i;
 	if (!`SecondWaveEnabled('DisableChosen'))
 	{
 		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
@@ -1831,10 +1831,21 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 		AllChosen = AlienHQ.GetAllChosen();
 
 		//MAKE ABSOLUTELY 100% FULL ON SURE THAT CHOSEN START WITH 0 STRENGTHS BECAUSE THE CONFIGS LIE
+		//ALSO REMOVE ALL WEAKNESSES FROM THEM
 		foreach AllChosen(ChosenState)
 		{
 			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
 			ChosenState.Strengths.length = 0;
+
+			for(i = ChosenState.Weaknesses.length - 1; i>=0; i--)
+			{
+				if(ChosenState.Weaknesses[i] != 'ChosenSkirmisherAdversary' && 
+				ChosenState.Weaknesses[i] != 'ChosenTemplarAdversary' &&
+				ChosenState.Weaknesses[i] != 'ChosenReaperAdversary')
+				{
+					ChosenState.Weaknesses.Remove(i,1);
+				}
+			}
 		}
 	}
 }
