@@ -3383,6 +3383,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('GrazingFire');
+			WeaponUpgradeTemplate.BonusAbilities.AddItem ('StockSprayAndPray');
+	
 			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Adv')

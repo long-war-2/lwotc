@@ -1310,9 +1310,9 @@ LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attac
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Stock"
 FriendlyNamePlural="Stocks"
-BriefSummary="Grants the Grazing Fire ability, Giving missed shots  an additional roll to become a graze."
-TinySummary="Grants Grazing Fire"
-LootTooltip="This weapon upgrade, when installed, grants the Grazing Fire ability."
+BriefSummary="Your primary weapon attacks ignore up to 15 dodge, and missed ones have a 50% chance to become a graze instead."
+TinySummary="Grants Grazing Fire, and makes attacks ignore up to 15 dodge."
+LootTooltip="This weapon upgrade, when installed, grants the Grazing Fire ability, and 15 dodge resistance."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Stock"
@@ -8125,8 +8125,8 @@ LocFlyOverText="Shield Bash"
 
 [TemplarInvert X2AbilityTemplate]
 LocFriendlyName="Invert"
-LocLongDescription="Switch locations with a unit. Costs 1 Focus."
-LocHelpText="Switch locations with a unit. Costs 1 Focus."
+LocLongDescription="Switch locations with a unit. Costs 2 Focus."
+LocHelpText="Switch locations with a unit. Costs 2 Focus."
 LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the Templar's turn.<br/><Bullet/> Can target both ally and enemy units.<br/>"
 
 [OneForAll X2AbilityTemplate]
@@ -8371,11 +8371,11 @@ LocFriendlyName="Spray And Pray"
 LocLongDescription="Attacks with your Autopistol Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
 LocHelpText="Attacks with your Autopistol Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
 LocPromotionPopupText=""
-;needed cause it fucks up other stuff
-[CannonSprayAndPray X2AbilityTemplate]
+
+[StockSprayAndPray X2AbilityTemplate]
 LocFriendlyName="Spray And Pray"
-LocLongDescription="Attacks with your Cannon Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
-LocHelpText="Attacks with your Cannon Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
+LocLongDescription="Attacks with your Primary Weapon Ignore up to 15 Dodge."
+LocHelpText="Attacks with your Primary Weapon Ignore up to 15 Dodge."
 LocPromotionPopupText=""
 
 [PlatformStability X2AbilityTemplate]
