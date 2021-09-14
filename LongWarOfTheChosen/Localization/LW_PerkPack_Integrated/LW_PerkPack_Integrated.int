@@ -60,3 +60,6 @@ HealedMessage="+<Heal/> HP Regenerated"
 MaimedFriendlyName="Maimed"
 MaimedFriendlyDesc="Unit's mobility is reduced to zero and so they cannot move. They can still shoot and perform other non-movement abilities."
 ; End Translation
+
+[X2Ability_PerkPackAbilitySet2]
+PhantomExpiredFlyover = "Phantom Expired"

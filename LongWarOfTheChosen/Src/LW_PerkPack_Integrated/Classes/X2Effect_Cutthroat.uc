@@ -18,7 +18,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
     if(AbilityState.GetMyTemplate().IsMelee())
 	{
 		//`LOG ("Cutthroat 2");
-		if (Target != none && !Target.IsRobotic())
+		if (Target != none)
 		{
 			//`LOG ("Cutthroat 3");
 			SourceWeapon = AbilityState.GetSourceWeapon();
@@ -44,7 +44,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	    if(AppliedData.AbilityResultContext.HitResult == eHit_Crit)
 		{
 			Target = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AppliedData.TargetStateObjectRef.ObjectID));
-			if (Target != none && !Target.IsRobotic())
+			if (Target != none)
 			{
 				if (CurrentDamage > 0)
 				{
@@ -62,26 +62,6 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 			}
         }
     }
-	return 0;
-}
-
-function int GetExtraArmorPiercing(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData)
-{
-	local XComGameState_Item		SourceWeapon;
-	local XComGameState_Unit		Target;
-
-	if(AbilityState.GetMyTemplate().IsMelee())
-	{
-		Target = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AppliedData.TargetStateObjectRef.ObjectID));
-		if (Target != none && !Target.IsRobotic())
-		{		
-			SourceWeapon = AbilityState.GetSourceWeapon();
-			if (SourceWeapon != none)
-			{				
-				return 9999;
-			}
-		}
-	}	
 	return 0;
 }
 

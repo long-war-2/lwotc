@@ -101,7 +101,7 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
-	Template.AdditionalAbilities.AddItem('Reverberation');
+	//Template.AdditionalAbilities.AddItem('Reverberation');
 
 	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
 }
@@ -171,7 +171,7 @@ static function MergeInvertWithExchange(X2AbilityTemplate Template)
 	local X2Condition_UnitProperty UnitCondition;
 	local int i;
 	local X2Condition_Visibility VisibilityCondition;
-
+	local X2AbilityCost Cost;
 	Template.Hostility = eHostility_Offensive;
 	for (i = 0; i < Template.AbilityTargetConditions.Length; i++)
 	{
@@ -179,6 +179,14 @@ static function MergeInvertWithExchange(X2AbilityTemplate Template)
 		if (UnitCondition != none)
 		{
 			UnitCondition.ExcludeFriendlyToSource = false;
+		}
+	}
+	//Make Invert Cost 2 focus
+	foreach Template.AbilityCosts(Cost)
+	{
+		if (Cost.IsA('X2AbilityCost_Focus'))
+		{
+			X2AbilityCost_Focus(Cost).FocusAmount = 2;
 		}
 	}
 

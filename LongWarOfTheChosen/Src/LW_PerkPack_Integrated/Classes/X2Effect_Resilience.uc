@@ -4,7 +4,7 @@
 //  PURPOSE: Sets up crit protection from perks
 //--------------------------------------------------------------------------------------- 
 
-class X2Effect_Resilience extends X2Effect_Persistent;
+class X2Effect_Resilience extends XMBEffect_ConditionalBonus;
 
 var int CritDef_Bonus;
 

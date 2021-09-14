@@ -46,7 +46,17 @@ var config int MIND_SCORCH_BURN_CHANCE;
 
 var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
 
+var config WeaponDamageValue EMPTY_DAMAGE_VALUE;
 var config array<name> PISTOL_ABILITY_WEAPON_CATS;
+
+var config int BIND_M2_BONUSDAMAGE;
+var config int BIND_M3_BONUSDAMAGE;
+var config int BIND_M4_BONUSDAMAGE;
+var config int BIND_M5_BONUSDAMAGE;
+
+var config float SUPPRESSION_DAMAGE_MOD;
+var config float REAPER_PCT_DMG_REDUCTION;
+
 
 // Data structure for multi-shot abilities that need patching
 struct MultiShotAbility
@@ -141,9 +151,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakeBladestormNotTriggerOnItsTurn(Template);
 			Template.PostActivationEvents.AddItem('BladestormActivated');
 			break;
+
+		case 'Bind':
+		case 'BindSustained':
+		MakeBindDamageScale(Template);
 		//At this point trying to figure out why AI does not do the thing it's supposed to do takes way longer than just doing this
 		case 'GetOverHere':
-		case 'Bind':
 		case 'KingGetOverHere':
 			MakeAbilitiesUnusableOnLost(Template);
 			break;
@@ -216,6 +229,78 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'MindShield':
 			DisplayMindShieldPassive(Template);
 			break;
+		case 'BidDamnPunch':
+		case 'DevastatingPunch':
+			RemoveAbilityWeaponDamage(Template);
+			break;
+		case 'MindSpin':
+			ReworkMindSpin(Template);
+		case 'MarkTarget':
+		class'Helpers_LW'.static.MakeFreeAction(Template);
+			break;
+
+		case 'PsiReanimation':
+		case 'MassReanimation_LW':
+			MakeAbilityNonTurnEnding(Template);
+			break;			
+
+		case 'StunLance':
+		case 'ShadowBind':
+		case 'Bayonet':
+		case 'BigDamnPunch':
+		//case 'StandardMelee':
+			MakeMeleeBlueMove(Template);
+			break;
+
+		case 'HolyWarriorM1':
+		case 'HolyWarriorM2':
+		case 'HolyWarriorM3':
+		case 'HolyWarriorM4':
+		case 'HolyWarriorM5':
+			AddSuperiorholyWarrior(Template);
+			break;
+
+		case 'Reload':
+			MakeAbilityTurnEnding(Template);
+			break;
+		case 'Suppression':
+		case 'AreaSuppression':
+			AddSharedSuppressionCooldown(Template);
+			break;
+
+		case 'MedikitHeal':
+		case 'NanoMedikitHeal':
+			AddCooldownToMedikits(Template);
+			break;
+		case 'EverVigilant':
+			Template.AdditionalAbilities.Removeitem('EverVigilantTrigger');
+			Template.AdditionalAbilities.AddItem('NewEverVigilantTrigger');
+			break;
+		case 'SectopodLightningField':
+			class'Helpers_LW'.static.MakeFreeAction(Template);
+			break;
+
+		case 'DevastatingPunch':
+		case 'DevastatingPunchM2':
+		case 'DevastatingPunchM3':
+		case 'DevastatingPunchM4':
+			class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_ImmediateAbilityActivation');
+			break;
+		case 'AidProtocol':
+			UpdateAidProtocol(Template);
+			break;
+		case 'CombatProtocol':
+			UpdateCombatProtocol(Template);
+			break;
+		case 'LongWatch':
+			Template.AdditionalAbilities.AddItem('CoolUnderPressure');
+		case 'Overwatch':
+		case 'PistolOverwatch':
+		case 'SniperRifleOverwatch':
+			UpdateOverwatch(Template);
+			break;
+		case 'LaunchGrenade':
+			UpdateLaunchGrenade(Template);
 		default:
 			break;
 
@@ -679,6 +764,18 @@ static function MakeAbilityNonTurnEnding(X2AbilityTemplate Template)
 	}
 }
 
+static function MakeAbilityTurnEnding(X2AbilityTemplate Template)
+{
+	local X2AbilityCost Cost;
+
+	foreach Template.AbilityCosts(Cost)
+	{
+		if (Cost.IsA('X2AbilityCost_ActionPoints'))
+		{
+			X2AbilityCost_ActionPoints(Cost).bConsumeAllPoints = true;
+		}
+	}
+}
 // Adds an extra unit condition to both Solace and Solace Cleanse that
 // prevents them from affecting robotic units. This also removes Holy
 // Warrior from the list of effects that Solace Cleanse removes.
@@ -1312,7 +1409,383 @@ static function name GetMultiShotContinueUnitValueName(name AbilityName)
 {
 	return name(AbilityName $ "Continue");
 }
+	
 
+static function RemoveAbilityWeaponDamage(X2AbilityTemplate Template)
+{
+	local X2Effect_ApplyWeaponDamage  WeaponDamage;
+	local X2Effect TempEffect;
+
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_mindshield";
+	foreach Template.AbilityTargetEffects( TempEffect )
+	{
+		if ( X2Effect_ApplyWeaponDamage(TempEffect) != none )
+		{
+			WeaponDamage = X2Effect_ApplyWeaponDamage(TempEffect);
+			WeaponDamage.EffectDamageValue = default.EMPTY_DAMAGE_VALUE;
+		}
+	}
+}
+
+
+static function MakeBindDamageScale(X2AbilityTemplate Template)
+{
+	local X2Condition_AbilityProperty	BindM2Condition, BindM3Condition,BindM4Condition,BindM5Condition;
+	local X2Effect_ApplyWeaponDamage    PhysicalDamageEffect;
+
+
+	BindM2Condition = new class 'X2Condition_AbilityProperty';
+	BindM2Condition.OwnerHasSoldierAbilities.addItem('BindM2Damage');
+
+	BindM3Condition = new class 'X2Condition_AbilityProperty';
+	BindM3Condition.OwnerHasSoldierAbilities.addItem('BindM3Damage');
+
+	BindM4Condition = new class 'X2Condition_AbilityProperty';
+	BindM4Condition.OwnerHasSoldierAbilities.addItem('BindM4Damage');
+
+	BindM5Condition = new class 'X2Condition_AbilityProperty';
+	BindM5Condition.OwnerHasSoldierAbilities.addItem('BindM5Damage');
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue.Damage = default.BIND_M2_BONUSDAMAGE;
+	PhysicalDamageEffect.DamageTypes.AddItem('ViperCrush');
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	PhysicalDamageEffect.bIgnoreArmor = true;
+	PhysicalDamageEffect.TargetConditions.AddItem(BindM2Condition);
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue.Damage = default.BIND_M3_BONUSDAMAGE;
+	PhysicalDamageEffect.DamageTypes.AddItem('ViperCrush');
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	PhysicalDamageEffect.bIgnoreArmor = true;
+	PhysicalDamageEffect.TargetConditions.AddItem(BindM3Condition);
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue.Damage = default.BIND_M4_BONUSDAMAGE;
+	PhysicalDamageEffect.DamageTypes.AddItem('ViperCrush');
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	PhysicalDamageEffect.bIgnoreArmor = true;
+	PhysicalDamageEffect.TargetConditions.AddItem(BindM4Condition);
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+	PhysicalDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	PhysicalDamageEffect.EffectDamageValue.Damage = default.BIND_M5_BONUSDAMAGE;
+	PhysicalDamageEffect.DamageTypes.AddItem('ViperCrush');
+	PhysicalDamageEffect.EffectDamageValue.DamageType = 'Melee';
+	PhysicalDamageEffect.bIgnoreArmor = true;
+	PhysicalDamageEffect.TargetConditions.AddItem(BindM5Condition);
+	Template.AddTargetEffect(PhysicalDamageEffect);
+
+}
+
+static function MakeMeleeBlueMove(X2AbilityTemplate Template)
+{
+	local X2AbilityTarget_MovingMelee			MeleeTarget;
+
+	MeleeTarget = new class'X2AbilityTarget_MovingMelee';
+	MeleeTarget.MovementRangeAdjustment = 1;
+	Template.AbilityTargetStyle = MeleeTarget;
+	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
+}
+
+
+static function AddSuperiorHolyWarrior(X2AbilityTemplate Template)
+{
+	local X2Condition_AbilityProperty	HolyWarriorCondition;
+	local X2Effect_PersistentStatChange    HolyWarriorEffect;
+
+
+	HolyWarriorCondition = new class 'X2Condition_AbilityProperty';
+	HolyWarriorCondition.OwnerHasSoldierAbilities.addItem('SuperiorHolyWarrior');
+
+	HolyWarriorEffect = new class'X2Effect_PersistentStatChange';
+	HolyWarriorEffect.EffectName = 'SuperiorHolyWarrior';
+	HolyWarriorEffect.DuplicateResponse = eDupe_Ignore;
+	HolyWarriorEffect.BuildPersistentEffect(1, true, false, true);
+	HolyWarriorEffect.bRemoveWhenTargetDies = true;
+	HolyWarriorEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
+	HolyWarriorEffect.AddPersistentStatChange(eStat_CritChance, 30);
+	HolyWarriorEffect.TargetConditions.AddItem(HolyWarriorCondition);
+	Template.AddTargetEffect(HolyWarriorEffect);
+
+
+}
+
+static function AddSharedSuppressionCooldown(X2AbilityTemplate Template)
+{
+	local X2AbilityCooldown_Shared	Cooldown;
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown.iNumTurns = 2;
+	Cooldown.SharingCooldownsWith.AddItem('Suppression'); //Now shares the cooldown with Bayonet
+	Cooldown.SharingCooldownsWith.AddItem('AreaSuppression'); //Now shares the cooldown with Bayonet
+	Template.AbilityCooldown = Cooldown;
+}
+
+static function AddCooldownToMedikits(X2AbilityTemplate Template)
+{
+	local X2AbilityCooldown_Shared	Cooldown;
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown.SharingCooldownsWith.AddItem('MedikitHeal');
+	Cooldown.SharingCooldownsWith.AddItem('NanoMedikitHeal');
+	Cooldown.SharingCooldownsWith.AddItem('MedikitStabilize');
+	Cooldown.iNumTurns = 1;
+	Template.AbilityCooldown = Cooldown;
+}
+
+static function UpdateAidProtocol(X2AbilityTemplate Template)
+{
+	local X2AbilityCooldown_ABCProtocol 	Cooldown;
+	local X2Condition_AbilityProperty AbilityCondition;
+	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
+	local name HealType;
+
+	Cooldown = new class'X2AbilityCooldown_ABCProtocol';
+	Template.AbilityCooldown = Cooldown;
+
+	RemoveEffects = new class'X2Effect_RemoveEffectsByDamageType';
+	foreach class'X2Ability_XMBPerkAbilitySet'.default.AgentsHealEffectTypes(HealType)
+	{
+		RemoveEffects.DamageTypesToRemove.AddItem(HealType);
+	}
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('NeutralizingAgents_LW');
+	RemoveEffects.TargetConditions.AddItem(AbilityCondition);
+
+	Template.AssociatedPassives.AddItem('NeutralizingAgents_LW');
+	Template.AddTargetEffect(RemoveEffects);
+}
+
+
+static function UpdateCombatProtocol(X2AbilityTemplate Template)
+{
+	local X2AbilityCooldown_ABCProtocol 	Cooldown;
+	local X2AbilityCost_ActionPoints ActionPointCost;
+
+
+	Cooldown = new class'X2AbilityCooldown_ABCProtocol';
+	Template.AbilityCooldown = Cooldown;
+
+	Template.AbilityCharges = none;
+	Template.AbilityCosts.Length = 0;
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = false;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+}
+
+
+static function UpdateOverwatch(X2AbilityTemplate Template)
+{
+	local X2AbilityMultiTarget_AllUnits MultiTargetMark;
+	local X2Condition_Visibility	VisibilityCondition;
+	local X2Effect_OverwatchMark	OverwatchMark;
+	local X2Condition_AnyEnemyVisible VisibleCondition;
+
+	MultiTargetMark = new class'X2AbilityMultiTarget_AllUnits';
+	MultiTargetMark.bAcceptEnemyUnits = true;
+	Template.AbilityMultiTargetStyle = MultiTargetMark;
+
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	if(Template.DataName == 'LongWatch')
+	{
+	VisibilityCondition.bAllowSquadsight = true;
+	}
+	Template.AbilityMultiTargetConditions.AddItem(VisibilityCondition);
+
+
+	OverwatchMark =	new class'X2Effect_OverwatchMark';
+	OverwatchMark.DuplicateResponse = eDupe_Allow;
+	OverwatchMark.BuildPersistentEffect(1, false, , , eGameRule_PlayerTurnEnd);
+	Template.AddMultiTargetEffect(OverwatchMark);
+
+	Template.TargetingMethod = class'X2TargetingMethod_TopDown';
+
+	VisibleCondition = new class'X2Condition_AnyEnemyVisible';
+	Template.AbilityShooterConditions.AddItem(VisibleCondition);
+	Template.AbilityConfirmSound = "";
+
+	Template.BuildVisualizationFn = OverwatchAbility_BuildVisualization;
+}
+
+	
+static simulated function OverwatchAbility_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameStateContext_Ability  Context;
+	local StateObjectReference          InteractingUnitRef;
+
+	local VisualizationActionMetadata        EmptyTrack;
+	local VisualizationActionMetadata        ActionMetadata;
+
+	local X2Action_CameraFrameAbility FrameAction;
+	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
+	local X2Action_CameraRemove RemoveCameraAction;
+	local UnitValue EverVigilantValue;
+	local XComGameState_Unit UnitState;
+	local X2AbilityTemplate AbilityTemplate;
+	local string FlyOverText, FlyOverImage;
+	local XGUnit UnitVisualizer;
+
+	History = `XCOMHISTORY;
+
+	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+	InteractingUnitRef = Context.InputContext.SourceObject;
+
+	//Configure the visualization track for the shooter
+	//****************************************************************************************
+	ActionMetadata = EmptyTrack;
+	ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
+	ActionMetadata.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+	UnitState = XComGameState_Unit(ActionMetadata.StateObject_NewState);
+
+	// Only turn the camera on the overwatcher if it is visible to the local player.
+	if( !`XENGINE.IsMultiPlayerGame() || class'X2TacticalVisibilityHelpers'.static.IsUnitVisibleToLocalPlayer(UnitState.ObjectID, VisualizeGameState.HistoryIndex) )
+	{
+		FrameAction = X2Action_CameraFrameAbility(class'X2Action_CameraFrameAbility'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+		FrameAction.AbilitiesToFrame.AddItem(Context);
+		FrameAction.CameraTag = 'OverwatchCamera';
+	}
+					
+	if (UnitState != none && UnitState.GetUnitValue(class'X2Ability_SpecialistAbilitySet'.default.EverVigilantEffectName, EverVigilantValue) && EverVigilantValue.fValue > 0)
+	{
+		AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('EverVigilant');
+		if (UnitState.HasSoldierAbility('CoveringFire'))
+			FlyOverText = class'XLocalizedData'.default.EverVigilantWithCoveringFire;
+		else
+			FlyOverText = AbilityTemplate.LocFlyOverText;
+		FlyOverImage = AbilityTemplate.IconImage;
+	}
+	else if (UnitState != none && UnitState.HasSoldierAbility('ReadyForAnything'))
+	{
+		AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('ReadyForAnything');
+		FlyOverText = AbilityTemplate.LocFlyOverText;
+		FlyOverImage = AbilityTemplate.IconImage;
+	}
+	else if (UnitState != none && UnitState.HasSoldierAbility('CoveringFire'))
+	{
+		AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('CoveringFire');
+		FlyOverText = AbilityTemplate.LocFlyOverText;
+		FlyOverImage = AbilityTemplate.IconImage;
+	}
+	else if (UnitState != none && UnitState.HasSoldierAbility('SkirmisherAmbush'))
+	{
+		AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate('SkirmisherAmbush');
+		FlyOverText = AbilityTemplate.LocFlyOverText;
+		FlyOverImage = AbilityTemplate.IconImage;
+	}
+	else
+	{
+		AbilityTemplate = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager().FindAbilityTemplate(Context.InputContext.AbilityTemplateName);
+		FlyOverText = AbilityTemplate.LocFlyOverText;
+		FlyOverImage = AbilityTemplate.IconImage;
+	}
+	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, ActionMetadata.LastActionAdded));
+
+	if (UnitState != none)
+	{
+		UnitVisualizer = XGUnit(UnitState.GetVisualizer());
+		if( (UnitVisualizer != none) && !UnitVisualizer.IsMine())
+		{
+			SoundAndFlyOver.SetSoundAndFlyOverParameters(SoundCue'SoundUI.OverwatchCue', FlyOverText, 'Overwatch', eColor_Bad, FlyOverImage);
+		}
+		else
+		{
+			SoundAndFlyOver.SetSoundAndFlyOverParameters(SoundCue'SoundUI.OverwatchCue', FlyOverText, 'Overwatch', eColor_Good, FlyOverImage);
+		}
+	}
+
+	if( FrameAction != none )
+	{
+		RemoveCameraAction = X2Action_CameraRemove(class'X2Action_CameraRemove'.static.AddToVisualizationTree(ActionMetaData, Context));
+		RemoveCameraAction.CameraTagToRemove = 'OverwatchCamera';
+	}
+
+	//****************************************************************************************
+}
+
+	
+static function UpdateLaunchGrenade(X2AbilityTemplate Template)
+{
+	local X2AbilityCost Cost;
+
+	foreach Template.AbilityCosts(Cost)
+	{
+		if (Cost.IsA('X2AbilityCost_ActionPoints'))
+		{
+			X2AbilityCost_ActionPoints(Cost).DoNotConsumeAllSoldierAbilities.AddItem('TotalCombat');
+		}
+	}
+}
+
+static function ReworkMindSpin(X2AbilityTemplate Template)
+{
+	local X2Effect_MindControl MindControlEffect;
+	local X2Effect_RemoveEffects MindControlRemoveEffects;
+	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
+	local X2Condition_UnitEffects EffectsCondition;
+	local X2Effect_Persistent DisorientedEffect;
+	local X2Effect_Panicked PanickedEffect;
+	//Remove random mind control
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_MindControl');
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_RemoveEffects');
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Persistent');
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Panicked');
+
+
+	EffectsCondition = new class'X2Condition_UnitEffects';
+	EffectsCondition.AddExcludeEffect(class'X2AbilityTemplateManager'.default.PanickedName, 'AA_AbilityUnavailable');
+	EffectsCondition.AddExcludeEffect(class'X2AbilityTemplateManager'.default.DisorientedName, 'AA_AbilityUnavailable');
+	EffectsCondition.AddExcludeEffect(class'X2AbilityTemplateManager'.default.StunnedName, 'AA_AbilityUnavailable');
+	EffectsCondition.AddExcludeEffect(class'X2Effect_MindControl'.default.EffectName, 'AA_AbilityUnavailable');
+
+
+
+	NeedOneOfTheEffects = new class'X2Condition_TargetHasOneOfTheEffects';
+	NeedOneOfTheEffects.EffectNames.AddItem(class'X2AbilityTemplateManager'.default.PanickedName);
+	NeedOneOfTheEffects.EffectNames.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	NeedOneOfTheEffects.EffectNames.AddItem(class'X2AbilityTemplateManager'.default.StunnedName);
+
+
+	MindControlEffect = class'X2StatusEffects'.static.CreateMindControlStatusEffect(class'X2Ability_Sectoid'.default.SECTOID_MINDSPIN_CONTROL_DURATION);
+	MindControlEffect.TargetConditions.AddItem(NeedOneOfTheEffects);
+	Template.AddTargetEffect(MindControlEffect);
+
+	MindControlRemoveEffects = class'X2StatusEffects'.static.CreateMindControlRemoveEffects();
+	MindControlRemoveEffects.DamageTypes.AddItem('Mental');
+	MindControlRemoveEffects.TargetConditions.AddItem(NeedOneOfTheEffects);
+	Template.AddTargetEffect(MindControlRemoveEffects);
+
+
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+	DisorientedEffect.iNumTurns = class'X2Ability_Sectoid'.default.SECTOID_MINDSPIN_DISORIENTED_DURATION;
+	DisorientedEffect.MinStatContestResult = 1;
+	DisorientedEffect.MaxStatContestResult = 1;
+	DisorientedEffect.TargetConditions.AddItem(EffectsCondition);
+	Template.AddTargetEffect(DisorientedEffect);
+	//  Disorient effect for 2 unblocked psi hits
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+	DisorientedEffect.iNumTurns = class'X2Ability_Sectoid'.default.SECTOID_MINDSPIN_DISORIENTED_DURATION + 1;
+	DisorientedEffect.MinStatContestResult = 2;
+	DisorientedEffect.MaxStatContestResult = 2;
+	DisorientedEffect.TargetConditions.AddItem(EffectsCondition);
+	Template.AddTargetEffect(DisorientedEffect);
+
+	PanickedEffect = class'X2StatusEffects'.static.CreatePanickedStatusEffect();
+	PanickedEffect.MinStatContestResult = 3;
+	PanickedEffect.MaxStatContestResult = 0;
+	PanickedEffect.TargetConditions.AddItem(EffectsCondition);
+	Template.AddTargetEffect(PanickedEffect);
+
+
+}
 defaultproperties
 {
 	AbilityTemplateModFn=UpdateAbilities

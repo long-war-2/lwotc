@@ -295,6 +295,13 @@ var config WeaponDamageValue WARLOCKPSIM2_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM3_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM4_BASEDAMAGE;
 
+var config WeaponDamageValue GREMLIN_CV_BASEDAMAGE;
+var config WeaponDamageValue GREMLIN_MG_BASEDAMAGE;
+var config WeaponDamageValue GREMLIN_BM_BASEDAMAGE;
+
+
+
+var config float HUNTERS_INSTINCT_DAMAGE_PCT;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -914,18 +921,16 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2Condition_UnitProperty          UnitPropertyCondition;
 	//local X2AbilityTarget_Single          PrimaryTarget;
 	//local X2AbilityMultiTarget_Radius     RadiusMultiTarget;
-	local X2Effect_SerialCritReduction      SerialCritReduction;
 	local X2AbilityCharges                  Charges;
 	local X2AbilityCost_Charges             ChargeCost;
 	//local X2Effect_SoulSteal_LW           StealEffect;
-	local X2Effect_Guardian_LW              GuardianEffect;
+//	local X2Effect_Guardian_LW              GuardianEffect;
 	local X2Effect                          ShotEffect;
 	local X2Effect_MaybeApplyDirectionalWorldDamage WorldDamage;
 	local X2Effect_DeathFromAbove_LW        DeathEffect;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 	local X2Condition_AbilityProperty		AbilityCondition;
-	local X2Effect_RemoveEffectsByDamageType RemoveEffects;
-	local name 								HealType, AbilityName;
+	local name 								 AbilityName;
 	local X2Effect_SharpshooterAim_LW   	AimEffect;
 	local X2AbilityCooldown_Shared			CooldownShared;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
@@ -1004,7 +1009,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			}
 		}
 	}
-
+		/*
 	if (Template.DataName == 'InTheZone')
 	{
 		SerialCritReduction = new class 'X2Effect_SerialCritReduction';
@@ -1015,7 +1020,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		SerialCritReduction.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true,, Template.AbilitySourceName);
 		SerialCritReduction.EffectName = 'SerialCritReduction';
 		Template.AbilityTargetEffects.AddItem(SerialCritReduction);
-	}
+	}*/
 
 	// Disables the effect so they get full turns on alien turn
 	// if (Template.DataName == 'AlienRulerInitialState')
@@ -1198,8 +1203,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		Template.AbilityTargetEffects.length = 0;
 		DamageModifier = new class'X2Effect_HuntersInstinctDamage_LW';
-		DamageModifier.BonusDamage = class'X2Ability_RangerAbilitySet'.default.INSTINCT_DMG;
-		DamageModifier.BonusCritChance = class'X2Ability_RangerAbilitySet'.default.INSTINCT_CRIT;
+		DamageModifier.HUNTERS_INSTINCT_DAMAGE_PCT = default.HUNTERS_INSTINCT_DAMAGE_PCT;
 		DamageModifier.BuildPersistentEffect(1, true, false, true);
 		DamageModifier.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DamageModifier);
@@ -1292,26 +1296,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 
-	// Removes Threat Assessment increase
-	if (Template.DataName == 'AidProtocol')
-	{
-		Cooldown = new class'X2AbilityCooldown';
-		Cooldown.iNumTurns = default.AID_PROTOCOL_COOLDOWN;
-		Template.AbilityCooldown = Cooldown;
 
-		RemoveEffects = new class'X2Effect_RemoveEffectsByDamageType';
-		foreach class'X2Ability_XMBPerkAbilitySet'.default.AgentsHealEffectTypes(HealType)
-		{
-			RemoveEffects.DamageTypesToRemove.AddItem(HealType);
-		}
-		AbilityCondition = new class'X2Condition_AbilityProperty';
-		AbilityCondition.OwnerHasSoldierAbilities.AddItem('NeutralizingAgents_LW');
-		RemoveEffects.TargetConditions.AddItem(AbilityCondition);
-
-		Template.AssociatedPassives.AddItem('NeutralizingAgents_LW');
-		Template.AddTargetEffect(RemoveEffects);
-	
-	}
 
 	if (Template.DataName == 'KillZone' || Template.DataName == 'Deadeye' || Template.DataName == 'BulletShred')
 	{
@@ -1412,9 +1397,14 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			case 'PistolStandardShot':
 			case 'SniperStandardFire':
 			case 'Shadowfall':
+			case 'Overwatch':
+			case 'PistolOverwatch':
+			case 'ThrowGrenade':
+			case 'LaunchGrenade':
+			case 'PoisonSpit':
 			// Light Em Up and Snap Shot are handled in the template
 				UnitEffects = new class'X2Condition_UnitEffects';
-				UnitEffects.AddExcludeEffect(class'X2StatusEffects'.default.BurningName, 'AA_UnitIsBurning');
+				UnitEffects.AddExcludeEffect(class'X2StatusEffects_LW'.default.LWBurningName, 'AA_UnitIsBurning');
 				Template.AbilityShooterConditions.AddItem(UnitEffects);
 				break;
 			default:
@@ -1562,6 +1552,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	{
 		X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bGuaranteedHit = true;
 		Template.TargetingMethod = class'X2TargetingMethod_ConditionalBlasterLauncher';
+		Template.SoldierAbilityPurchasedFn = none;
 	}
 
 	switch (Template.DataName)
@@ -1635,7 +1626,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Cooldown.iNumTurns = default.FUSE_COOLDOWN;
 		Template.AbilityCooldown = Cooldown;
 	}
-
+/*
 	// Sets to one shot per target a turn
 	if (Template.DataName == 'Sentinel')
 	{
@@ -1646,7 +1637,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		GuardianEffect.ProcChance = class'X2Ability_SpecialistAbilitySet'.default.GUARDIAN_PROC;
 		Template.AddTargetEffect(GuardianEffect);
 	}
-
+		*/
 	// Adds shieldHP bonus
 	if (Template.DataName == 'SoulSteal')
 	{
@@ -2006,7 +1997,7 @@ function bool ValidExplosiveFalloffAbility(X2AbilityTemplate Template, X2Effect_
 	if (!ClassIsChildOf(class'X2Effect_ApplyExplosiveFalloffWeaponDamage', DamageEffect.Class))
 	{
 		// Make
-		`REDSCREEN("Can't apply explosive falloff to" @ DamageEffect.Class @ "as it's not a super class of X2Effect_ApplyExplosiveFalloffWeaponDamage");
+		//`REDSCREEN("Can't apply explosive falloff to" @ DamageEffect.Class @ "as it's not a super class of X2Effect_ApplyExplosiveFalloffWeaponDamage");
 		return false;
 	}
 
@@ -2091,6 +2082,11 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		`Log("Adding evac to " $ Template.DataName);
 		Template.Abilities.AddItem('Evac');
 	}
+	
+	if(Template.bCanTakeCover && !Template.bIsSoldier)
+	{
+		Template.Abilities.AddItem('HunkerDown');
+	}
 
 	switch (Template.DataName)
 	{
@@ -2098,14 +2094,36 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'AdvTrooperM1':
 		case 'AdvTrooperM2':
 		case 'AdvTrooperM3':
+		case 'AdvTrooperM4':
+		case 'AdvTrooperM5':
+		Template.Abilities.AddItem('SkirmisherStrike');
+		break;
 		case 'AdvCaptainM1':
 		case 'AdvCaptainM2':
 		case 'AdvCaptainM3':
-		case 'AdvShieldbearerM2':
-		case 'AdvShieldbearerM3':
-		case 'AdvStunLancerM1':
-			Template.Abilities.AddItem('HunkerDown');
-			break;
+		case 'AdvCaptainM4':
+		case 'AdvCaptainM5':
+		Template.Abilities.AddItem('Defilade');
+		break;
+		case 'Muton':
+		case 'MutonM2_LW':
+		case 'MutonM3_LW':
+		case 'MutonM4_LW':
+		case 'MutonM5_LW':
+		Template.Abilities.AddItem('WillToSurvive');
+		break;
+		case 'Viper':
+		case 'ViperM2_LW':
+		case 'ViperM3_LW':
+		case 'ViperM4_LW':
+		case 'ViperM5_LW':
+		Template.ImmuneTypes.RemoveItem('Poison');
+		break;
+
+		case 'Cyberus':
+		Template.Abilities.AddItem('Evasive');
+		break;
+
 		case 'FacelessCivilian':
 			// Set 'FacelessCivilian' as being hostile. These are mostly only used
 			// with the Infiltrators DE, and without this set it's trivial to detect
@@ -2120,21 +2138,50 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.Loot.LootReferences.AddItem(Loot);
 			break;
 		case 'Gatekeeper':
-			Template.ImmuneTypes.AddItem('Poison');
-			Template.ImmuneTypes.AddItem(class'X2Item_DefaultDamageTypes'.default.ParthenogenicPoisonType);
+			//Template.ImmuneTypes.AddItem('Poison');
+			//Template.ImmuneTypes.AddItem(class'X2Item_DefaultDamageTypes'.default.ParthenogenicPoisonType);
 			Template.ImmuneTypes.AddItem('Fire');
 			break;
-		case 'AdvStunLancerM2':
-			Template.Abilities.AddItem('HunkerDown');
-			Template.Abilities.AddItem('CoupdeGrace2');
-			break;
+		case 'AdvStunLancerM5':
+		case 'AdvStunLancerM4':
 		case 'AdvStunLancerM3':
-			Template.Abilities.AddItem('HunkerDown');
-			Template.Abilities.AddItem('CoupdeGrace2');
+		case 'AdvStunLancerM2':
+		case 'AdvStunLancerM1':
 			Template.Abilities.AddItem('Whirlwind2');
+			//Template.Abilities.AddItem('Resilience');
 			break;
+
+		case 'AdvMec_M1':
+		case 'AdvMec_M2':
+		case 'AdvMec_M3_LW':
+		case 'AdvMec_M4_LW':
+		case 'AdvMec_M5_LW':
+			Template.Abilities.AddItem('DamageControl');
+			break;
+		case 'Sectoid':
+			Template.Abilities.RemoveItem('VulnerabilityMelee');
+			break;
+		case 'AdvShielbearerM2':
+		case 'AdvShielbearerM3':
+		case 'AdvShielbearerM4':
+		case 'AdvShielbearerM5':
+		Template.Abilities.AddItem('FreeGrenades');
+		break;	
+	
+		case 'Berserker':
+		Template.DefaultLoadout='Berserker_Loadout';
+		case 'BerserkerM2':
+		case 'BerserkerM3':
+		case 'BerserkerM4':
+		//Template.Abilities.AddItem('Grit_LW');
+		Template.Abilities.AddItem('Brawler');
+		Template.Abilities.AddItem('BullRush');
+		break;
+
+		case 'AdvPurifierM5':
+		case 'AdvPurifierM4':
 		case 'AdvPurifierM3':
-			Template.Abilities.AddItem('Formidable');
+			//Template.Abilities.AddItem('Formidable');
 		case 'AdvPurifierM2':
 			Template.Abilities.AddItem('Burnout');
 			Template.Abilities.AddItem('PhosphorusPassive');
@@ -2148,11 +2195,36 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'AdvPurifierM1':
 			Template.strScamperBT = "ScamperRoot_Purifier";
 			break;
-		case 'SpectreM2':
-			Template.Abilities.AddItem('LowProfile');
-			break;
 
-		// Should turn off tick damage every action
+		case 'Andromedon':
+		case 'AndromedonM2':
+		case 'AndromedonM3':
+		Template.Abilities.AddItem('WillToSurvive');
+		break;
+
+
+		case 'AndromedonRobot':
+		case 'AndromedonRobotM2':
+		case 'AndromedonRobotM3':
+		Template.Abilities.AddItem('DamageControl');
+		break;
+
+		case 'Archon':
+		case 'ArchonM2_LW':
+		case 'ArchonM3_LW':
+		Template.Abilities.AddItem('CloseCombatSpecialist');
+		break;
+
+		case 'Sectopod':
+		case 'SectopodM2':
+		case 'SectopodM3':
+		Template.Abilities.AddItem('ProtectiveServos');
+		break;
+
+		case 'SpectreM2':
+		case 'SpectreM1':
+			break;
+				// Should turn off tick damage every action
 		case 'ViperKing':
 		case 'BerserkerQueen':
 		case 'ArchonKing':
@@ -2226,6 +2298,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	// Allow the Lost to climb walls
 	if (InStr(Template.DataName, "TheLost") == 0)
 	{
+		Template.Abilities.AddItem('LostHpPctBuff');
 		Template.bCanUse_eTraversal_WallClimb = true;
 		Template.ImmuneTypes.AddItem('Acid');
 	}
@@ -2354,13 +2427,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	Template.Abilities.AddItem('MindControlCleanse');
 	Template.Abilities.AddItem('SmokeFlankingCritProtection');
 
-	// LWOTC Grant reaction fire a bonus against units in cover (the
-	// effect applies to the *target* of such shots) unless Revert
-	// Overwatch Rules mod is being used.
-	if (!class'Helpers_LW'.static.IsModInstalled("WOTCRevertOverwatchRules") && Template.bCanTakeCover)
-	{
-		Template.Abilities.AddItem('ReactionFireAgainstCoverBonus');
-	}
+
+	Template.Abilities.AddItem('ReactionFireAgainstCoverBonus');
+	
 }
 
 static function X2LWTemplateModTemplate CreateReconfigGearTemplate()
@@ -2384,10 +2453,20 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	local ArtifactCost Resources;
 	local X2ArmorTemplate ArmorTemplate;
 	local StrategyRequirement AltReq;
-	local X2GremlinTemplate GremlinTemplate;
+	local X2GremlinTemplate GremlinTemplate, GremlinTemplate2;
 	local delegate<X2StrategyGameRulesetDataStructures.SpecialRequirementsDelegate> SpecialRequirement;
 	local X2Effect_Persistent Effect;
 	local UIStatMarkup Markup;
+	local X2CharacterTemplateManager CharMgr;
+	local X2CharacterTemplate CharTemplate;
+	local array<X2DataTemplate>             DifficultyVariants;
+    local X2DataTemplate                    DifficultyVariant;
+	local array<X2DataTemplate>             DifficultyVariants2;
+    local X2DataTemplate                    DifficultyVariant2;
+    local X2ItemTemplateManager				ItemMgr;
+
+	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	CharMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
 	// Reconfig Weapons and Weapon Schematics
 	WeaponTemplate = X2WeaponTemplate(Template);
 	if (WeaponTemplate != none)
@@ -2397,22 +2476,70 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponTemplate.WeaponCat == 'pistol' && !class'CHItemSlot_PistolSlot_LW'.default.DISABLE_LW_PISTOL_SLOT)
 			WeaponTemplate.Abilities.AddItem('PistolStandardShot');
 
+		if(WeaponTemplate.WeaponCat == 'cannon'
+		|| WeaponTemplate.WeaponCat == 'rifle'
+		|| WeaponTemplate.WeaponCat == 'sniper_rifle'
+		|| WeaponTemplate.WeaponCat == 'vektor_rifle'
+		|| WeaponTemplate.WeaponCat == 'bullpup'
+		|| WeaponTemplate.WeaponCat == 'smg'
+		)
+		{
+			WeaponTemplate.Abilities.AddItem('Stock_LW_Bsc_Ability');
+		}
 		// substitute cannon range table
 		if (WeaponTemplate.WeaponCat == 'cannon')
 		{
 			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LMG_ALL_RANGE;
+			WeaponTemplate.Abilities.AddItem('HeavyWeaponsMobPenalty');
+			//WeaponTemplate.Abilities.AddItem('CannonSprayAndPray');
+			WeaponTemplate.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_LW_GearAbilities'.default.HEAVY_WEAPONS_MOB_PENALTY);
+		}
+		if (WeaponTemplate.WeaponCat == 'lwchemthrower')
+		{
+			WeaponTemplate.Abilities.AddItem('HeavyWeaponsMobPenalty');
+			WeaponTemplate.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_LW_GearAbilities'.default.HEAVY_WEAPONS_MOB_PENALTY);
+		}
+		if (WeaponTemplate.WeaponCat == 'Bullpup')
+		{
+			WeaponTemplate.Abilities.AddItem('SMG_LS_StatBonus');
 		}
 		if (WeaponTemplate.WeaponCat == 'vektor_rifle')
 		{
 			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.MID_LONG_ALL_RANGE;
 		}
+		if (WeaponTemplate.WeaponCat == 'rifle' || WeaponTemplate.WeaponCat == 'arcthrower')
+		{
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.MEDIUM_ALL_RANGE;
+		}
+		if (WeaponTemplate.WeaponCat == 'sniper_rifle')
+		{
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.LONG_ALL_RANGE;
+			WeaponTemplate.Abilities.AddItem('HeavyWeaponsMobPenalty');
+			WeaponTemplate.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_LW_GearAbilities'.default.HEAVY_WEAPONS_MOB_PENALTY);
+		}
+		if (WeaponTemplate.WeaponCat == 'bullpup'|| 
+		WeaponTemplate.WeaponCat == 'pistol' ||
+		WeaponTemplate.WeaponCat == 'smg' 
+		)
+		{
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.MIDSHORT_ALL_RANGE;
+		}
+		if (WeaponTemplate.WeaponCat == 'shotgun'|| 
+			WeaponTemplate.WeaponCat == 'sidearm'
+			)
+		{
+			WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeaponMods_LW'.default.SHORT_ALL_RANGE;
+		}
+
 		if (WeaponTemplate.DataName == 'Medikit')
 		{
 			WeaponTemplate.HideIfResearched = '';
 		}
 		if (WeaponTemplate.DataName == 'Medikit' || WeaponTemplate.DataName == 'NanoMedikit')
 		{
-			WeaponTemplate.Abilities.AddItem('Sedate');
+			//WeaponTemplate.Abilities.AddItem('Sedate');
+			WeaponTemplate.Abilities.RemoveItem('MedikitBonus');
+			WeaponTemplate.Abilities.RemoveItem('NanoMedikitBonus');
 		}
 		if (WeaponTemplate.DataName == 'AdvTurretM1_WPN' && default.EARLY_TURRET_SQUADSIGHT)
 		{
@@ -2426,16 +2553,32 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		{
 			WeaponTemplate.Abilities.AddItem('Squadsight');
 		}
+		if (WeaponTemplate.DataName == 'ANDROMEDONROBOT_MELEEATTACK')
+		{
+			WeaponTemplate.Abilities.RemoveItem('StandardMelee');
+		}
+
+			
 
 		switch (WeaponTemplate.DataName)
 		{
+
+		case 'AcidBlob':
+		case 'AcidBlobM2':
+		case 'AcidBlobM3':
+		case 'AcidBlobM4':
+			X2GrenadeTemplate(WeaponTemplate).iRadius = 2;
+			break;
+
 		case 'AdvPriestM1_PsiAmp':
-			WeaponTemplate.Abilities.AddItem('PriestPsiMindControl');
+			//WeaponTemplate.Abilities.AddItem('PriestPsiMindControl');
 			break;
 		case 'AdvPriestM3_PsiAmp':
-			WeaponTemplate.Abilities.AddItem('Solace');
+			//WeaponTemplate.Abilities.AddItem('Solace');
+			
 		case 'AdvPriestM2_PsiAmp':
-			WeaponTemplate.Abilities.AddItem('MindShield');
+			//WeaponTemplate.Abilities.AddItem('MindShield');
+			WeaponTemplate.Abilities.RemoveItem('PriestPsiMindControl');
 			break;
 		case 'AdvPurifierFlamethrower':
 			WeaponTemplate.iIdealRange = 7;
@@ -2526,6 +2669,16 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				}
 			}
 			break;
+		case 'Gremlin_CV':
+		WeaponTemplate.BaseDamage = default.GREMLIN_CV_BASEDAMAGE;
+		break;
+		case 'Gremlin_MG':
+		WeaponTemplate.BaseDamage = default.GREMLIN_MG_BASEDAMAGE;
+		break;
+		case 'Gremlin_BM':
+		WeaponTemplate.BaseDamage = default.GREMLIN_MG_BASEDAMAGE;
+		break;
+
 		default:
 			break;
 		}
@@ -2599,14 +2752,48 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	GremlinTemplate = X2GremlinTemplate(Template);
 	if (GremlinTemplate != none)
 	{
+        ItemMgr.FindDataTemplateAllDifficulties(Template.DataName, DifficultyVariants);
+
+        foreach DifficultyVariants(DifficultyVariant)
+        {
+            GremlinTemplate2 = X2GremlinTemplate(DifficultyVariant);
+
+            if (GremlinTemplate2 != none)
+            {
+                if (GremlinTemplate2.weaponcat == 'gremlin')
+				{
+					//`LOG("Gremlin Animation Patch - found gremlin template" @ GremlinTemplate);
+					//`LOG("Gremlin Animation Patch - now looking for" @ GremlinTemplate.CosmeticUnitTemplate);
+				    CharMgr.FindDataTemplateAllDifficulties(name(GremlinTemplate2.CosmeticUnitTemplate), DifficultyVariants2);
+
+					foreach DifficultyVariants2(DifficultyVariant2)
+    				{
+        				CharTemplate = X2CharacterTemplate(DifficultyVariant2);
+        				if (CharTemplate != none)
+				        {
+							//`LOG("Gremlin Animation Patch - patched animations onto" @ CharTemplate);
+							CharTemplate.AdditionalAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WotC_APA_GremlinAnims.AS_APA_Gremlin")));
+				        }
+				    }
+
+				}
+            }
+		}
 		if (GremlinTemplate.DataName == 'Gremlin_MG')
 		{
+			//To get the radius increase for blinding protocol
+			GremlinTemplate.Abilities.AddItem('LW_T2GremlinIndicator');
+
 			GremlinTemplate.RevivalChargesBonus = 1;
 			GremlinTemplate.ScanningChargesBonus = 1;
 			GremlinTemplate.AidProtocolBonus = 5;
+
 		}
 		if (GremlinTemplate.DataName == 'Gremlin_BM')
 		{
+			//To get the radius increase for blinding protocol
+			GremlinTemplate.Abilities.AddItem('LW_T3GremlinIndicator');
+
 			GremlinTemplate.RevivalChargesBonus = 2;
 			GremlinTemplate.ScanningChargesBonus = 2;
 			GremlinTemplate.AidProtocolBonus = 10;
@@ -2638,6 +2825,41 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	{
 		switch (SchematicTemplate.DataName)
 		{
+			//Make the schemacit costs in strategy tuning config
+			case 'Pistol_MG_Schematic':
+			case 'SideArm_MG_Schematic':
+			Template.Cost.ResourceCosts.Length = 0;
+
+			Resources.ItemTemplateName = 'Supplies';
+			Resources.Quantity = 20;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+		
+			Resources.ItemTemplateName = 'AlienAlloy';
+			Resources.Quantity = 1;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+			
+			Resources.ItemTemplateName = 'EleriumDust';
+			Resources.Quantity = 1;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+		
+			break;
+			case 'Pistol_BM_Schematic':
+			case 'SideArm_BM_Schematic':
+			Template.Cost.ResourceCosts.Length = 0;
+
+			Resources.ItemTemplateName = 'Supplies';
+			Resources.Quantity = 35;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+		
+			Resources.ItemTemplateName = 'AlienAlloy';
+			Resources.Quantity = 2;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+			
+			Resources.ItemTemplateName = 'EleriumDust';
+			Resources.Quantity = 2;
+			Template.Cost.ResourceCosts.AddItem(Resources);
+			break;
+
 			case 'HunterRifle_MG_Schematic':
 			case 'HunterRifle_BM_Schematic':
 			case 'HunterPistol_MG_Schematic':
@@ -2732,6 +2954,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			if (EquipmentTemplate.Abilities.Find('AP_Rounds_Ability_PP') == -1)
 			{
 				EquipmentTemplate.Abilities.AddItem('AP_Rounds_Ability_PP');
+				EquipmentTemplate.Abilities.AddItem('APRoundsCritPenalty');
 			}
 		}
 		if (EquipmentTemplate.DataName == 'TalonRounds')
@@ -2770,25 +2993,70 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				EquipmentTemplate.Abilities.AddItem('Tracer_Rounds_Ability_PP');
 			}
 		}
+		if (EquipmentTemplate.DataName == 'FalconRounds')
+		{
+			EquipmentTemplate.Abilities.AddItem('ShredderRoundsPenalty');
+		}
+
+			
 		// Adds stat markup for medium plated armor
 		ArmorTemplate = X2ArmorTemplate(Template);
 		if (ArmorTemplate != none)
 		{
 			switch (ArmorTemplate.DataName)
 			{
-				// Let all soldier armors provide an extra utility slot
-				case 'KevlarArmor':
-				case 'LightPlatedArmor':
+				case 'KevlarArmor_DLC_Day0':
+				ArmorTemplate.bAddsUtilitySlot = true;
+				ArmorTemplate.Abilities.AddItem('LightKevlarArmorStats');
+				ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, class'X2Ability_LW_GearAbilities'.default.LIGHT_KEVLAR_MOBILITY_BONUS);
+				ArmorTemplate.strImage = "img:///UILibrary_HeavyAndLightKevlarArmors.LightArmor";
+				break;
+
 				case 'HeavyPlatedArmor':
-				case 'LightPoweredArmor':
+				ArmorTemplate.Abilities.AddItem('Chitin_Plating_Ability');
+				ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, 14, default.MEDIUM_PLATED_MITIGATION_AMOUNT);
+				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 4);
+				ArmorTemplate.Abilities.AddItem('ExoskeletonServos');
+				ArmorTemplate.bHeavyWeapon = false;
+				break;
+
 				case 'HeavyPoweredArmor':
+				ArmorTemplate.Abilities.AddItem('Carapace_Plating_Ability');
+				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 5);
+				ArmorTemplate.Abilities.AddItem('ExoskeletonServos');
+				ArmorTemplate.bHeavyWeapon = false;
+				break;
+
+				case 'LightPlatedArmor':
+				ArmorTemplate.bAddsUtilitySlot = true;
+				ArmorTemplate.Abilities.AddItem('Mini_Plating_Ability');
+				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 1);
+				break;
+
+
+				case 'LightPoweredArmor':
+				ArmorTemplate.Abilities.AddItem('Ceramic_Plating_Ability');
+				ArmorTemplate.bAddsUtilitySlot = true;
+				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 2);
+				break;
+
+				case 'KevlarArmor':
 				case 'ReaperArmor':
-				case 'PoweredReaperArmor':
 				case 'SkirmisherArmor':
-				case 'PoweredSkirmisherArmor':
 				case 'TemplarArmor':
+					ArmorTemplate.Abilities.AddItem('Alloy_Plating_Ability');
+					ArmorTemplate.bAddsUtilitySlot = true;
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 3);
+					break;
+
+				// Let all soldier armors provide an extra utility slot
+				case 'MediumPoweredArmor':
+				case 'PoweredReaperArmor':
+				case 'PoweredSkirmisherArmor':
 				case 'PoweredTemplarArmor':
 					ArmorTemplate.bAddsUtilitySlot = true;
+					ArmorTemplate.Abilities.AddItem('Carapace_Plating_Ability');
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 5);
 					break;
 				
 				case 'PlatedReaperArmor':
@@ -2796,7 +3064,9 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				case 'PlatedTemplarArmor':
 					ArmorTemplate.bAddsUtilitySlot = true;
 				case 'MediumPlatedArmor':
+					ArmorTemplate.Abilities.AddItem('Chitin_Plating_Ability');
 					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, 14, default.MEDIUM_PLATED_MITIGATION_AMOUNT);
+					ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 4);
 					break;
 
 				case 'SparkArmor':
@@ -2925,6 +3195,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			case 'AlienHunterPistol_CV':
 			case 'AlienHunterPistol_MG':
 			case 'AlienHunterPistol_BM':
+				X2WeaponTemplate(EquipmentTemplate).InventorySlot = eInvSlot_Pistol;
 				X2WeaponTemplate(EquipmentTemplate).RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_BEAM_RANGE;
 				break;
 			case 'Cannon_CV': // replace archetype with non-suppression shaking variant
@@ -3050,15 +3321,17 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 	WeaponUpgradeTemplate = X2WeaponUpgradeTemplate(Template);
 	if (WeaponUpgradeTemplate != none)
 	{
-		//specific alterations
+
+				//specific alterations
 		if (WeaponUpgradeTemplate.DataName == 'AimUpgrade_Bsc')
 		{
-			WeaponUpgradeTemplate.AimBonus = 0;
-			//WeaponUpgradeTemplate.AimBonusNoCover = 0;
-			WeaponUpgradeTemplate.AddHitChanceModifierFn = none;
-			WeaponUpgradeTemplate.GetBonusAmountFn = none;
-			WeaponUpgradeTemplate.BonusAbilities.length = 0;
-			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Scope_LW_Bsc_Ability');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
+		}
+
+		//specific alterations
+		if (WeaponUpgradeTemplate.DataName == 'Critupgrade_bsc')
+		{
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		if (WeaponUpgradeTemplate.DataName == 'AimUpgrade_Adv')
 		{
@@ -3085,7 +3358,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.FreeFireCostFn = none;
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
-			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Hair_Trigger_LW_Bsc_Ability');
+			WeaponUpgradeTemplate.BonusAbilities.AddItem ('HyperReactivePupils');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		if (WeaponUpgradeTemplate.DataName == 'FreeFireUpgrade_Adv')
 		{
@@ -3094,6 +3368,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Hair_Trigger_LW_Adv_Ability');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		if (WeaponUpgradeTemplate.DataName == 'FreeFireUpgrade_Sup')
 		{
@@ -3102,6 +3377,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
 			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Hair_Trigger_LW_Sup_Ability');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Bsc')
@@ -3109,7 +3385,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.BonusDamage.Damage = 0;
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			WeaponUpgradeTemplate.BonusAbilities.length = 0;
-			WeaponUpgradeTemplate.BonusAbilities.AddItem ('Stock_LW_Bsc_Ability');
+			WeaponUpgradeTemplate.BonusAbilities.AddItem ('GrazingFire');
+			WeaponUpgradeTemplate.BonusAbilities.AddItem ('StockSprayAndPray');
+	
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		if (WeaponUpgradeTemplate.DataName == 'MissDamageUpgrade_Adv')
 		{
@@ -3132,6 +3411,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.FreeKillFn = none;
 			WeaponUpgradeTemplate.GetBonusAmountFn = none;
 			//Abilities are caught elsewhere
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		//make them mutually exclusive
 		if (WeaponUpgradeTemplate.DataName == 'ReloadUpgrade_Bsc' || WeaponUpgradeTemplate.DataName == 'ReloadUpgrade_Adv' || WeaponUpgradeTemplate.DataName == 'ReloadUpgrade_Sup')
@@ -3140,6 +3420,12 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ClipSizeUpgrade_Bsc');
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ClipSizeUpgrade_Adv');
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ClipSizeUpgrade_Sup');
+			WeaponUpgradeTemplate.FreeReloadCostFn = none;
+			WeaponUpgradeTemplate.FriendlyRenameFn = none;
+			WeaponUpgradeTemplate.GetBonusAmountFn = none;
+			WeaponUpgradeTemplate.bInfiniteItem = true;
+
+			WeaponUpgradeTemplate.BonusAbilities.AddItem('QuickReload');
 		}
 		if (WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Bsc' || WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Adv' || WeaponUpgradeTemplate.DataName == 'ClipSizeUpgrade_Sup')
 		{
@@ -3147,6 +3433,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ReloadUpgrade_Bsc');
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ReloadUpgrade_Adv');
 			WeaponUpgradeTemplate.MutuallyExclusiveUpgrades.AddItem('ReloadUpgrade_Sup');
+			WeaponUpgradeTemplate.bInfiniteItem = true;
 		}
 		//Config-able items array -- Weapon Upgrades
 		for (i=0; i < ItemTable.Length; ++i)
@@ -3556,14 +3843,18 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 			{
     			FacilityTemplate.SoldierUnlockTemplates.RemoveItem(default.GTSUnlocksToRemove[i]);
 			}
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('LightningStrikeUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('IntegratedWarfareUnlock');
-			FacilityTemplate.SoldierUnlockTemplates.AddItem('StayWithMeUnlock');
+			//FacilityTemplate.SoldierUnlockTemplates.AddItem('VultureUnlock');
+			//FacilityTemplate.SoldierUnlockTemplates.AddItem('VengeanceUnlock');
+		//	FacilityTemplate.SoldierUnlockTemplates.AddItem('WetWorkUnlock');
+		//	FacilityTemplate.SoldierUnlockTemplates.AddItem('LightningStrikeUnlock');
+		//	FacilityTemplate.SoldierUnlockTemplates.AddItem('IntegratedWarfareUnlock');
+		//	FacilityTemplate.SoldierUnlockTemplates.AddItem('StayWithMeUnlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration1Unlock');
 			FacilityTemplate.SoldierUnlockTemplates.AddItem('Infiltration2Unlock');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('XTP1');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('XTP2');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('XTP3');
+			FacilityTemplate.SoldierUnlockTemplates.AddItem('XTP4');
 		}
 		if (FacilityTemplate.DataName == 'Laboratory')
 		{

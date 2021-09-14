@@ -15,7 +15,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		{
 			Explosives = true;
 		}
-		if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
+		if (AbilityState.GetMyTemplateName() == 'IRI_FireRocket' || AbilityState.GetMyTemplateName() == 'IRI_FireRocketLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
 		{
 			Explosives = true;
 		}
@@ -31,7 +31,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 						return 0;
 					}
 				}
-				return default.CRIT_DAMAGE_BONUS;
+				return CurrentDamage;
 			}
 		}
     }

@@ -47,7 +47,7 @@ simulated function Refresh(StateObjectReference LocationRef, delegate<UIStaffSlo
 				case class'UIFacility_Academy':
 					if (i == 0 || i == 1)
 					{
-						StaffSlots.AddItem(Spawn(class'UIFacility_AcademySlot', self).InitStaffSlot(self, LocationRef, i, onStaffUpdatedDelegate));
+						StaffSlots.AddItem(Spawn(class'UIFacility_LWOfficerSlot', self).InitStaffSlot(self, LocationRef, i, onStaffUpdatedDelegate));
 					} 
 					else if (i == 2 || i == 3)
 					{

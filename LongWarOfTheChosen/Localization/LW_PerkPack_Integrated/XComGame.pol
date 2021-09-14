@@ -354,7 +354,7 @@ LocLongDescription="Wykonaj akcję po sprincie."
 LocHelpText="Wykonaj akcję po sprincie."
 LocPromotionPopupText="<Bullet/> Strzelanie w biegu umożliwia żołnierzom szybkie zbliżenie się do wroga albo jego oskrzydlenie.<br/><Bullet/> Czas odnawiania strzelania w biegu wynosi 3 tury.<br/>"
 
-[Suppression_LW X2AbilityTemplate]
+[Suppression X2AbilityTemplate]
 LocFriendlyName="Przygwożdżenie"
 LocFlyOverText="Przygwożdżenie"
 LocLongDescription="Wystrzel salwę przygniatającą cel i dającą możliwość zareagowania ogniem na jego ruch oraz ograniczającą mu dostęp do wielu zdolności. Wróg otrzymuje też karę <Ability:SUPPRESSIONPENALTY/> do celności."

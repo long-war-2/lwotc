@@ -32,13 +32,13 @@ LocLongDescription="The Claymore disorients non-robotic enemies when it explodes
 LocHelpText="The Claymore disorients non-robotic enemies when it explodes."
 LocPromotionPopupText="<Bullet/> Adds a disorient effect that applies to all organic units caught in the explosion.<br/>"
 
+; LWOTC Needs Translation (3)
 [DisablingShot X2AbilityTemplate]
 LocFriendlyName="Disabling Shot"
-LocLongDescription="Stun enemies with a precise shot, with a bonus stun duration if the shot crits. The shot can not do critical damage."
-LocHelpText="Stun enemies with a precise shot, with a bonus stun duration if the shot crits. The shot can not do critical damage."
-; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Stuns enemies for <Ability:DisablingShotStunActions/> actions if the shot hits (including if it grazes).<br/><Bullet/> Stuns for an extra <Ability:DisablingShotCritStunActions/> actions if the shot crits, but the shot won't inflict the critical damage.<br/><Bullet/> Disabling Shot requires <Ability:SelfAmmoCost/> ammo to use.<br/><Bullet/> Disabling Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Only Avatars and Psi Zombies can not be stunned."
-; End Translation (2)
+LocLongDescription="Fire a shot that deals half damage but disables the enemy weapon on hit."
+LocHelpText="Fire a shot that deals half damage but disables the enemy weapon on hit."
+LocPromotionPopupText="<Bullet/> Disabling Shot requires <Ability:SelfAmmoCost/> ammo to use.<br/><Bullet/> Disabling Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+; End Translation (3)
 
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Meditation"
@@ -207,7 +207,7 @@ LocPromotionPopupText="<Bullet/> Combat Presence can be used to get squadmates o
 [CheapShot X2AbilityTemplate]
 LocFriendlyName="Cheap Shot"
 LocFlyOverText="Cheap Shot"
-LocLongDescription= "Once per turn, Gain a movement action after shooting a unit damaged this turn with standard shot of your primary weapon. Cannot trigger on the same turn as Knife Encounters."
-LocHelpText="Once per turn, Gain a movement action after shooting a unit damaged this turn with standard shot of your primary weapon. Cannot trigger on the same turn as Knife Encounters."
-LocPromotionPopupText="<Bullet/> Works only for standard shots, so it won't trigger for abilities like banish."
+LocLongDescription= "Once per turn, deal 25% more damage and Gain a movement action after shooting a unit damaged this turn with your primary weapon. Cannot trigger on the same turn as Knife Encounters."
+LocHelpText="Once per turn, deal 25% more damage and Gain a movement action after shooting a unit damaged this turn with your primary weapon. Cannot trigger on the same turn as Knife Encounters."
+LocPromotionPopupText="<Bullet/> Also works for abilities like banish."
 ; End Translation

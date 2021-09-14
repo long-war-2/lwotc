@@ -191,7 +191,7 @@ function array<StateObjectReference> GetBlackMarketForSalePersonnel()
 		switch (RewardName)
 		{
 			case 'Reward_Scientist':
-			case 'Reward_Engineert':
+			case 'Reward_Engineer':
 			case 'Reward_Soldier':
 				PersonnelRewards.AddItem(RewardState.GetReference());
 				break;

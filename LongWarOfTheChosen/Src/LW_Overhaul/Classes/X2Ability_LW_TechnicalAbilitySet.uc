@@ -136,7 +136,7 @@ static function X2AbilityTemplate AddJavelinRockets()
 static function X2AbilityTemplate AddShockAndAwe()
 {
 	local X2AbilityTemplate				Template;
-	local X2Effect_BonusRocketCharges	RocketChargesEffect;
+	//local X2Effect_BonusRocketCharges	RocketChargesEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ShockAndAwe');
 	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityShockAndAwe";
@@ -148,6 +148,7 @@ static function X2AbilityTemplate AddShockAndAwe()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
 
+	/*
 	RocketChargesEffect = new class 'X2Effect_BonusRocketCharges';
 	RocketChargesEffect.BonusUses=default.SHOCK_AND_AWE_BONUS_CHARGES;
 	RocketChargesEffect.SlotType=eInvSlot_SecondaryWeapon;
@@ -155,6 +156,7 @@ static function X2AbilityTemplate AddShockAndAwe()
 	RocketChargesEffect.BuildPersistentEffect (1, true, false);
 	RocketChargesEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect (RocketChargesEffect);
+	*/
 
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

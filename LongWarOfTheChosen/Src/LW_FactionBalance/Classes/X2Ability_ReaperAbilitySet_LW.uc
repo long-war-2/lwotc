@@ -33,6 +33,7 @@ var config int DisablingShotCritStunActions;
 var config float DisablingShotDamagePenalty;
 
 var config array<name> CHEAPSHOT_ABILITYNAMES;
+var config float CHEAPSHOT_BONUS_DAMAGE;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -459,7 +460,7 @@ static function X2AbilityTemplate AddDisablingShot()
 	local X2AbilityCooldown                 Cooldown;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2Condition_Visibility			VisibilityCondition;
-	local X2Effect_DisablingShotStunned		StunEffect;
+	local X2Effect_DisableWeapon			DisableWeaponEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
 	local X2Condition_UnitType				ImmuneUnitCondition;
@@ -496,9 +497,8 @@ static function X2AbilityTemplate AddDisablingShot()
 	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
 	Template.bAllowAmmoEffects = true;
 
-	StunEffect = CreateDisablingShotStunnedEffect(default.DisablingShotBaseStunActions);
-	StunEffect.BonusStunActionsOnCrit = default.DisablingShotCritStunActions;
-	Template.AddTargetEffect(StunEffect);
+	DisableWeaponEffect = new class'X2Effect_DisableWeapon';
+	Template.AddTargetEffect(DisableWeaponEffect);
 
 	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 0;
@@ -888,7 +888,7 @@ static function X2DataTemplate AddChargeBattery()
 static function X2DataTemplate AddParamedic()
 {
 	local X2AbilityTemplate				Template;
-	local X2Effect_TemporaryItem		TemporaryItemEffect;
+	//local X2Effect_TemporaryItem		TemporaryItemEffect;
 	local X2Effect_Paramedic ParamedicEffect;
 	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
 	local X2Effect_Savior SaviorEffect;
@@ -907,22 +907,22 @@ static function X2DataTemplate AddParamedic()
 	Template.bIsPassive = true;
 	Template.bCrossClassEligible = true;
 
-	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
-	TemporaryItemEffect.EffectName = 'ParamedicMedikits';
-	TemporaryItemEffect.ItemName = 'Medikit';
-	TemporaryItemEffect.AlternativeItemNames.AddItem('NanoMedikit');
-	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
-	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
-	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
-	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
-	Template.AddTargetEffect(TemporaryItemEffect);
+	// TemporaryItemEffect = new class'X2Effect_TemporaryItem';
+	// TemporaryItemEffect.EffectName = 'ParamedicMedikits';
+	// TemporaryItemEffect.ItemName = 'Medikit';
+	// TemporaryItemEffect.AlternativeItemNames.AddItem('NanoMedikit');
+	// TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
+	// TemporaryItemEffect.BuildPersistentEffect(1, true, false);
+	// TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	// TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
+	// Template.AddTargetEffect(TemporaryItemEffect);
 
-	SaviorEffect = new class 'X2Effect_Savior';
-	SaviorEffect.BuildPersistentEffect (1, true, false);
-	SaviorEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
-	SaviorEffect.EffectName = 'ParamedicBonusHeal';
-	SaviorEffect.BonusHealAmount = default.PARAMEDIC_BONUS_HEAL;
-	Template.AddTargetEffect (SaviorEffect);
+	// SaviorEffect = new class 'X2Effect_Savior';
+	// SaviorEffect.BuildPersistentEffect (1, true, false);
+	// SaviorEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	// SaviorEffect.EffectName = 'ParamedicBonusHeal';
+	// SaviorEffect.BonusHealAmount = default.PARAMEDIC_BONUS_HEAL;
+	// Template.AddTargetEffect (SaviorEffect);
 
 	ParamedicEffect = new class'X2Effect_Paramedic';
 	ParamedicEffect.BuildPersistentEffect(1, true, true);
@@ -975,7 +975,7 @@ static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameStat
 {
 	local X2AbilityTemplate					Template;
 	local X2Effect_CheapShot				CheapShotEffect;
-
+	local X2Effect_BloodTrail_LW Effect;
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'CheapShot');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -991,6 +991,14 @@ static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameStat
 	CheapShotEffect.CHEAPSHOT_FULLACTION = false;
 	CheapShotEffect.CHEAPSHOT_ABILITYNAMES = default.CHEAPSHOT_ABILITYNAMES;
 	Template.AddTargetEffect(CheapShotEffect);
+
+	Effect = new class'X2Effect_BloodTrail_LW';
+	Effect.BonusDamage = default.CHEAPSHOT_BONUS_DAMAGE;
+	Effect.DodgeReductionBonus = 0;
+	Effect.BuildPersistentEffect(1, true, false, false);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(Effect);
+
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;

@@ -354,7 +354,7 @@ LocLongDescription="Effettua un'azione dopo lo scatto."
 LocHelpText="Effettua un'azione dopo lo scatto."
 LocPromotionPopupText="<Bullet/> Fuoco in corsa permette ai soldati di coprire rapidamente la distanza che li separa dai bersagli o di raggiungere facilmente una posizione per attaccare sui fianchi.<br/><Bullet/> Fuoco in corsa ha 3 turni di ricarica.<br/>"
 
-[Suppression_LW X2AbilityTemplate]
+[Suppression X2AbilityTemplate]
 LocFriendlyName="Soppressione"
 LocFlyOverText="Soppressione"
 LocLongDescription="Genera un fuoco di sbarramento che blocca un bersaglio sul posto, limita l'uso di molte delle sue abilità, garantisce un attacco di reazione ai suoi danni se si muove e impone una penalità di <Ability:SUPPRESSIONPENALTY/> alla sua Mira."

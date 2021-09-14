@@ -13,7 +13,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	`LWTrace("  >> X2Item_PerkPCS.CreateTemplates()");
 	
 	Resources.AddItem(CreateDepthPerceptionPCS());
-	Resources.AddItem(CreateHyperReactivePupilsPCS());
+	//Resources.AddItem(CreateHyperReactivePupilsPCS());
 	Resources.AddItem(CreateCombatRushPCS());
 	Resources.AddItem(CreateCombatAwarenessPCS());
 	Resources.AddItem(CreateDamageControlPCS());

@@ -763,6 +763,11 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		}
 	}
 
+	if (class'X2EventListener_Tactical'.default.STEALTH_MISSION_NAMES.Find(MissionState.GeneratedMission.Mission.MissionName) != INDEX_NONE)
+	{
+		MissionState.GeneratedMission.SitReps.AddItem('StealthMission');
+	}
+
 	// Start Issue #157
 	DLCInfos = `ONLINEEVENTMGR.GetDLCInfos(false);
 	for(i = 0; i < DLCInfos.Length; ++i)

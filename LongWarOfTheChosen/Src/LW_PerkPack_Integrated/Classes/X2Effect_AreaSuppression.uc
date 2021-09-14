@@ -16,6 +16,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	super.GetToHitModifiers(EffectState, Attacker, Target, AbilityState, ToHitType, bMelee, bFlanking, bIndirectFire, ShotModifiers);
 }
 
+
 //handle switching the suppression target if there is an other remaining suppression target
 simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
 {

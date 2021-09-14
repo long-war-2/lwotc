@@ -47,8 +47,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	}
 	if (XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID)) == none)
 		return false;
-	if (!AbilityContext.IsResultContextHit())
-		return false;
+
 	if (SourceUnit.ReserveActionPoints.Length != PreCostReservePoints.Length && default.RAPID_REACTION_ABILITYNAMES.Find(kAbility.GetMyTemplateName()) != -1)
 	{
 		AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));

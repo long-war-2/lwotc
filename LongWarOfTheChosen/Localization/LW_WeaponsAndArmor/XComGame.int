@@ -53,3 +53,237 @@ AbilityDescName="throwing knife"
 ; End Translation (2)
 
 ; End Translation
+
+; LWOTC Needs Translation
+
+[MZFireThrower X2AbilityTemplate]
+LocFriendlyName="Fire Immolator"
+LocLongDescription="Expel a stream of highly flammable chemicals, burning and damaging multiple targets."
+LocHelpText="Expel a stream of highly flammable chemicals, burning and damaging multiple targets."
+LocFlyOverText="Fire Immolator"
+LocPromotionPopupText="<Bullet/>Expel a stream of highly flammable chemicals, burning and damaging multiple targets."
+
+[MZFireThrowerOverwatchShot X2AbilityTemplate]
+LocFriendlyName="Immolator Overwatch Shot"
+LocFlyOverText="Immolator Overwatch Shot"
+
+[LWImmolator_T0 X2WeaponTemplate]
+FriendlyName="Flametorch"
+FriendlyNamePlural="Flametorch"
+BriefSummary="A simple mechanical incendiary device, mostly unchanged in design since the 20th century. With little room for improvement in terms of weapon attachments, its simplicity makes it an effective and affordable weapon of psychological warfare."
+TacticalText="A simple mechanical incendiary device, mostly unchanged in design since the 20th century. With little room for improvement in terms of weapon attachments, its simplicity makes it an effective and affordable weapon of psychological warfare.<br/><Bullet/> The Flametorch provides a limited-range cone of fire.\n<Bullet/>Use with caution, as it can burn friend and foe alike.\n<Bullet/> Canisters with diverse chemical agents can provide added versatility."
+AbilityDescName="Flametorch"
+
+[LWImmolator_CV X2WeaponTemplate]
+FriendlyName="Immolator2"
+FriendlyNamePlural="Immolators"
+BriefSummary="This basic chemical thrower fires a stream of highly flamable chemicals, burning and damaging multiple targets."
+TacticalText="<Bullet/> Chemthrowers do low damage in a wide area, making them effective only when dealing with multiple targets.<br> <Bullet/> The Immolator will always burn targets, dealing damage over time and disabling some abilities.<br> <Bullet/> Some enemies may be immune to fire, and take no damage from the immolator.<br> <Bullet/> Extremely effective against the Lost.<br>"
+AbilityDescName="Immolator"
+
+[LWImmolator_MG X2WeaponTemplate]
+FriendlyName="Advanced Immolator"
+FriendlyNamePlural="Advanced Immolators"
+BriefSummary="This basic chemical thrower fires a stream of highly flamable chemicals, burning and damaging multiple targets."
+TacticalText="<Bullet/> Chemthrowers do low damage in a wide area, making them effective only when dealing with multiple targets.<br> <Bullet/> The Immolator will always burn targets, dealing damage over time and disabling some abilities.<br> <Bullet/> Some enemies may be immune to fire, and take no damage from the immolator.<br> <Bullet/> Extremely effective against the Lost.<br>"
+AbilityDescName="Immolator"
+
+[LWImmolator_BM X2WeaponTemplate]
+FriendlyName="Superior Immolator"
+FriendlyNamePlural="Superior Immolators"
+BriefSummary="This basic chemical thrower fires a stream of highly flamable chemicals, burning and damaging multiple targets."
+TacticalText="<Bullet/> Chemthrowers do low damage in a wide area, making them effective only when dealing with multiple targets.<br> <Bullet/> The Immolator will always burn targets, dealing damage over time and disabling some abilities.<br> <Bullet/> Some enemies may be immune to fire, and take no damage from the immolator.<br> <Bullet/> Extremely effective against the Lost.<br>"
+AbilityDescName="Immolator"
+
+
+[LWWidthNozzle_Bsc X2WeaponUpgradeTemplate]
+FriendlyName="Wide Angle Nozzle"
+FriendlyNamePlural="Wide Angle Nozzles"
+BriefSummary="Increase chemthrower cone end width by 2 tiles."
+TinySummary="Increased Cone Width +2"
+LootTooltip="This weapon upgrade will slightly increase the width of cone abilities of the chemthrower it is attached to."
+
+[LWLengthNozzle_Bsc X2WeaponUpgradeTemplate]
+FriendlyName="High Velocity Nozzle"
+FriendlyNamePlural="High Velocity Nozzles"
+BriefSummary="Increase chemthrower maximum range by 1 tile."
+TinySummary="Increased Range +1"
+LootTooltip="This weapon upgrade will slightly increase the maximum range of abilities of the chemthrower it is attached to."
+
+[LWClipSizeFuel_Bsc X2WeaponUpgradeTemplate]
+FriendlyName="Expanded Fuel Tank"
+FriendlyNamePlural="Expanded Fuel Tanks"
+BriefSummary="Clip size is increased by 2."
+TinySummary="Increased Clip Size 2."
+LootTooltip="This chemthrower upgrade will slightly increase maximum ammo capacity."
+
+[LWReloadFuel_Bsc X2WeaponUpgradeTemplate]
+FriendlyName="Heat Resistant Tank"
+FriendlyNamePlural="Heat Resistant Tank"
+BriefSummary="Reduce the cooldown of firing the flamethrower by 2."
+TinySummary="Reduce the cooldown of firing the flamethrower by 2."
+LootTooltip="Reduce the cooldown of firing the flamethrower by 2."
+
+[LWFuelLine_Bsc X2WeaponUpgradeTemplate]
+FriendlyName="Fuel Line"
+FriendlyNamePlural="Fuel Line"
+BriefSummary="Increases Canister charges by 1."
+TinySummary="Increases Canister charges by 1."
+LootTooltip="This Chemthrower upgrade provides one additional use of the ability granted by a Canister."
+
+[LWReactionFireFrame_Bsc X2WeaponUpgradeTemplate]
+FriendlyName="Light Frame"
+FriendlyNamePlural="Light Frames"
+BriefSummary="Increase the weapon's mobility by 1 at the cost of 35% weapon damage."
+TinySummary="Increase the weapon's mobility by 1 at the cost of 35% weapon damage."
+LootTooltip="This chemthrower upgrade, when installed, Increases the weapon's mobility at the cost of damage."
+
+[LWReactionFireFrameBsc X2AbilityTemplate]
+FriendlyName="Light Frame"
+
+[LWFlankCritFrame_Bsc X2WeaponUpgradeTemplate]
+FriendlyName="Outrider Frame"
+FriendlyNamePlural="Outrider Frames"
+BriefSummary="Reduce the weapon's infiltration time."
+TinySummary="Reduce the weapon's infiltration time."
+LootTooltip="This chemthrower upgrade, when installed, Reduces the weapon's infiltration time."
+
+[LWFlankCritFrameBsc X2AbilityTemplate]
+FriendlyName="Outrider Frame"
+
+[MZBlastCanister X2WeaponTemplate]
+FriendlyName="Blast Canister"
+FriendlyNamePlural="Blast Canisters"
+BriefSummary="This basic Canister enables the soldier to use an alternative explosive attack with thier Chemthrower."
+TacticalText="<Bullet/> Canisters can only be used alongside Chemthrowers.<br><Bullet/> Grants <Ability:BLASTCANISTER_USES> uses of an explosive chemthrower attack.<br/><Bullet/> Deals <Ability:LWCanisterDamage-MZBlastCanisterActivate/> of the Chemthrower's base damage as Explosive damage.<br><Bullet/> The explosive attack this Canister provides is useful against enemies immune to fire.<br><Bullet/> If equipped with an explosive chemthrower, the chemthrower will do +<Ability:MATCHINGCANISTER_BONUS> bonus damage on direct attacks."
+AbilityDescName="Canister"
+
+[MZBlastCanister X2AbilityTemplate]
+LocFriendlyName="Activate Blast Canister"
+LocLongDescription="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Has much shorter range than standard flamethrower, but deals much more damage and knocks enemies back. Useful when targets are resistant to chemthrower's damage type."
+LocHelpText="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Has much shorter range than standard flamethrower, but deals much more damage and knocks enemies back. Useful when targets are resistant to chemthrower's damage type."
+LocFlyOverText="Activate Blast Canister"
+
+[MZBlastCanisterActivate X2AbilityTemplate]
+LocFriendlyName="Activate Blast Canister"
+LocLongDescription="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Has much shorter range than standard flamethrower, but deals much more damage and knocks enemies back. Useful when targets are resistant to chemthrower's damage type."
+LocHelpText="Activate to expel a stream of explosive compounds in a cone with your chemthrower. Has much shorter range than standard flamethrower, but deals much more damage and knocks enemies back. Useful when targets are resistant to chemthrower's damage type."
+LocFlyOverText="Activate Blast Canister"
+
+;
+
+[LWFireCanister X2WeaponTemplate]
+FriendlyName="Flame Canister"
+FriendlyNamePlural="Flame Canisters"
+BriefSummary="This Canister enables the soldier to use an alternative fire attack with thier Chemthrower."
+TacticalText="<Bullet/> Canisters can only be used alongside Chemthrowers.<br><Bullet/> Grants <Ability:FIRECANISTER_USES> uses of an fiery chemthrower attack.<br/><Bullet/> Deals <Ability:LWCanisterDamage-LWFireCanisterActivate/> of the Chemthrower's base damage as Fire damage.<br><Bullet/> This sets enemies on fire, limiting the abilites they can use and doing damage over time.<br><Bullet/> If equipped with a fire chemthrower, the chemthrower will do +<Ability:MATCHINGCANISTER_BONUS> bonus damage on direct attacks."
+AbilityDescName="Canister"
+[LWFireCanister X2AbilityTemplate]
+LocFriendlyName="Activate Flame Canister"
+LocLongDescription="Activate to expel a stream of highly flammable compounds in a cone with your chemthrower. Inflicts burning and fire damage."
+LocHelpText="Activate to expel a stream of highly flammable compounds in a cone with your chemthrower. Inflicts burning and fire damage."
+LocFlyOverText="Activate Flame Canister"
+[LWFireCanisterActivate X2AbilityTemplate]
+LocFriendlyName="Activate Flame Canister"
+LocLongDescription="Activate to expel a stream of highly flammable compounds in a cone with your chemthrower. Inflicts burning and fire damage."
+LocHelpText="Activate to expel a stream of highly flammable compounds in a cone with your chemthrower. Inflicts burning and fire damage."
+LocFlyOverText="Activate Flame Canister"
+
+[MZPoisonCanister X2WeaponTemplate]
+FriendlyName="Toxic Gas Canister"
+FriendlyNamePlural="Toxic Gas Canisters"
+BriefSummary="This Canister enables the soldier to use an alternative poison attack with thier Chemthrower."
+TacticalText="<Bullet/> Canisters can only be used alongside Chemthrowers.<br><Bullet/>Grants <Ability:POISONCANISTER_USES> uses of a toxic gas chemthrower attack.<br/><Bullet/> Deals <Ability:LWCanisterDamage-MZPoisonCanisterActivate/> of the Chemthrower's base damage as Poison damage.<br><Bullet/> This bypasses shields and poisons enemies, impairing aim and mobility.<br><Bullet/> If equipped with a poison chemthrower, the chemthrower will do +<Ability:MATCHINGCANISTER_BONUS> bonus damage on direct attacks."
+AbilityDescName="Canister"
+[MZPoisonCanister X2AbilityTemplate]
+LocFriendlyName="Activate Toxic Gas Canister"
+LocLongDescription="Activate to expel a stream of toxic gas in a cone with your chemthrower. Inflicts poison and poison damage that bypasses shields."
+LocHelpText="Activate to expel a stream of toxic gas in a cone with your chemthrower. Inflicts poison and poison damage that bypasses shields."
+LocFlyOverText="Activate Toxic Gas Canister"
+[MZPoisonCanisterActivate X2AbilityTemplate]
+LocFriendlyName="Activate Toxic Gas Canister"
+LocLongDescription="Activate to expel a stream of toxic gas in a cone with your chemthrower. Inflicts poison and poison damage that bypasses shields."
+LocHelpText="Activate to expel a stream of toxic gas in a cone with your chemthrower. Inflicts poison and poison damage that bypasses shields."
+LocFlyOverText="Activate Toxic Gas Canister"
+
+[MZAcidCanister X2WeaponTemplate]
+FriendlyName="Acid Canister"
+FriendlyNamePlural="Acid Canisters"
+BriefSummary="This Canister enables the soldier to use an alternative acid attack with thier Chemthrower."
+TacticalText="<Bullet/> Canisters can only be used alongside Chemthrowers.<br><Bullet/> Grants <Ability:ACIDCANISTER_USES> uses of an acidic chemthrower attack.<br/><Bullet/> Deals <Ability:LWCanisterDamage-MZAcidCanisterActivate/> of the Chemthrower's base damage as Acid damage.<br><Bullet/> This shreds armour and inflicts acid burning, dealing damage over time.<br><Bullet/> If equipped with a acid chemthrower, the chemthrower will do +<Ability:MATCHINGCANISTER_BONUS> bonus damage on direct attacks."
+AbilityDescName="Canister"
+[MZAcidCanister X2AbilityTemplate]
+LocFriendlyName="Activate Acid Canister"
+LocLongDescription="Activate to expel a stream of highly corrosive compounds in a cone with your chemthrower. Inflicts acid burning and acid damage that shreds armour."
+LocHelpText="Activate to expel a stream of highly corrosive compounds in a cone with your chemthrower. Inflicts acid burning and acid that shreds armour."
+LocFlyOverText="Activate Acid Canister"
+[MZAcidCanisterActivate X2AbilityTemplate]
+LocFriendlyName="Activate Acid Canister"
+LocLongDescription="Activate to expel a stream of highly corrosive compounds in a cone with your chemthrower. Inflicts acid burning and acid damage that shreds armour."
+LocHelpText="Activate to expel a stream of highly corrosive compounds in a cone with your chemthrower. Inflicts acid burning and acid that shreds armour."
+LocFlyOverText="Activate Acid Canister"
+
+[MZBluescreenCanister X2WeaponTemplate]
+FriendlyName="Bluescreen Canister"
+FriendlyNamePlural="Bluescreen Canisters"
+BriefSummary="This Canister enables the soldier to use an alternative electrical attack with thier Chemthrower."
+TacticalText="<Bullet/> Canisters can only be used alongside Chemthrowers.<br><Bullet/> Grants <Ability:BLUESCREENCANISTER_USES> uses of an electrical chemthrower attack.<br/><Bullet/> Deals <Ability:LWCanisterDamage-MZBluescreenCanisterActivate/> of the Chemthrower's base damage as Electrical damage.<br><Bullet/> This attack stuns and ignores the armour of robotic fores.<br><Bullet/> Other foes are disoriented.<br><Bullet/> If equipped with an electric chemthrower, the chemthrower will do +<Ability:MATCHINGCANISTER_BONUS> bonus damage on direct attacks."
+AbilityDescName="Canister"
+[MZBluescreenCanister X2AbilityTemplate]
+LocFriendlyName="Activate Bluescreen Canister"
+LocLongDescription="Activate to expel a stream of magnetized particulate in a cone with your chemthrower. Inflicts armour piercing electrical damage and stun to robotics. Inflicts disorient and electric damage to other foes."
+LocHelpText="Activate to expel a stream of magnetized particulate in a cone with your chemthrower. Inflicts armour piercing electrical damage and stun to robotics. Inflicts disorient and electric damage to other foes."
+LocFlyOverText="Activate Bluescreen Canister"
+[MZBluescreenCanisterActivate X2AbilityTemplate]
+LocFriendlyName="Activate Bluescreen Canister"
+LocLongDescription="Activate to expel a stream of magnetized particulate in a cone with your chemthrower. Inflicts armour piercing electrical damage and stun to robotics. Inflicts disorient and electric damage to other foes."
+LocHelpText="Activate to expel a stream of magnetized particulate in a cone with your chemthrower. Inflicts armour piercing electrical damage and stun to robotics. Inflicts disorient and electric damage to other foes."
+LocFlyOverText="Activate Bluescreen Canister"
+
+[LWCurseCanister X2WeaponTemplate]
+FriendlyName="Curse Canister"
+FriendlyNamePlural="Curse Canisters"
+BriefSummary="This Canister enables the soldier to use an alternative psionic attack with thier Chemthrower."
+TacticalText="<Bullet/> Canisters can only be used alongside Chemthrowers.<br><Bullet/> Grants <Ability:CURSECANISTER_USES> uses of a psionic chemthrower attack.<br/><Bullet/> Deals <Ability:LWCanisterDamage-LWCurseCanisterActivate/> of the Chemthrower's base damage as Psi damage.<br><Bullet/> This inflicts blood curse, dealing damage over time and reducing mental stats.<br><Bullet/> Enemies killed by this can't be saved by sustain effects.<br><Bullet/> If equipped with a psionic chemthrower, the chemthrower will do +<Ability:MATCHINGCANISTER_BONUS> bonus damage on direct attacks."
+AbilityDescName="Canister"
+[LWCurseCanister X2AbilityTemplate]
+LocFriendlyName="Activate Curse Canister"
+LocLongDescription="Activate to expel a malevolent curse in a cone with your chemthrower. Inflicts blood curse and psionic damage that bypasses Sustain effects."
+LocHelpText="Activate to expel a malevolent curse in a cone with your chemthrower. Inflicts blood curse and psionic damage that bypasses Sustain effects."
+LocFlyOverText="Activate Curse Canister"
+[LWCurseCanisterActivate X2AbilityTemplate]
+LocFriendlyName="Activate Curse Canister"
+LocLongDescription="Activate to expel a malevolent curse in a cone with your chemthrower. Inflicts blood curse and psionic damage that bypasses Sustain effects."
+LocHelpText="Activate to expel a malevolent curse in a cone with your chemthrower. Inflicts blood curse and psionic damage that bypasses Sustain effects."
+LocFlyOverText="Activate Curse Canister"
+
+[MZSmokeCanister X2WeaponTemplate]
+FriendlyName="Smoke Canister"
+FriendlyNamePlural="Smoke Canisters"
+BriefSummary="This basic Canister enables the soldier to use an alternative smoke generating ability with thier Chemthrower."
+TacticalText="<Bullet/> Canisters can only be used alongside Chemthrowers.<br><Bullet/> Grants <Ability:SMOKECANISTER_USES> uses of a smoke generating ability.<br><Bullet/> This provides the same defensive benefits as smoke grenades in a cone."
+AbilityDescName="Canister"
+[MZSmokeCanister X2AbilityTemplate]
+LocFriendlyName="Activate Smoke Canister"
+LocLongDescription="Activate to expel a stream of smoke in a cone with your chemthrower. Boosts defense of units standing in the smoke."
+LocHelpText="Activate to expel a stream of smoke in a cone with your chemthrower. Boosts defense of units standing in the smoke."
+LocFlyOverText="Activate Smoke Canister"
+[MZSmokeCanisterActivate X2AbilityTemplate]
+LocFriendlyName="Activate Smoke Canister"
+LocLongDescription="Activate to expel a stream of smoke in a cone with your chemthrower. Boosts defense of units standing in the smoke."
+LocHelpText="Activate to expel a stream of smoke in a cone with your chemthrower. Boosts defense of units standing in the smoke."
+LocFlyOverText="Activate Smoke Canister"
+
+[LWMedicCanister X2WeaponTemplate]
+FriendlyName="Medical Canister"
+FriendlyNamePlural="Medical Canisters"
+BriefSummary="This Canister is an upgraded version of the Smoke Canister, providing additional health regen for the soldier and anyone the smoke is applied to."
+TacticalText="<Bullet/> Canisters can only be used alongside Chemthrowers.<br><Bullet/> Grants <Ability:SMOKECANISTER_USES> uses of a smoke generating ability.<br><Bullet/> This provides the same defensive benefits as smoke grenades in a cone.<br><Bullet/> The soldier will passively regenrate health over time. <br><Bullet/> Targets effected by the smoke ability, Fumigate or Medispray also benefit from this regen temporarily.<br><Bullet/> Additional provides <Ability:MEDICCANISTER_USES> additional Medispray charges, if the ability has been learned."
+AbilityDescName="Canister"
+
+[LWMedicCanisterPassive X2AbilityTemplate]
+LocFriendlyName="Medical Canister"
+LocLongDescription="The Medical Canister provides additional health regen for the soldier and anyone the smoke is applied to."
+LocHelpText="The Medical Canister provides additional health regen for the soldier and anyone the smoke is applied to."
+LocFlyOverText="Medical Canister"
+; End Translation

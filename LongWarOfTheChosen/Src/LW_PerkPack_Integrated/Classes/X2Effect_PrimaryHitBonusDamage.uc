@@ -20,11 +20,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 				return 0;		
 			}
 		}
-		WeaponTemplate = X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate());
-		if (WeaponTemplate.weaponcat == 'grenade')
-		{
-			return 0;
-		}
+
 		if (AbilityState.GetMyTemplateName() == 'LWRocketLauncher' || AbilityState.GetMyTemplateName() == 'LWBlasterLauncher' || AbilityState.GetMyTemplateName() == 'MicroMissiles')
 		{
 			return 0;
