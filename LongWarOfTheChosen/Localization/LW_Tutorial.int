@@ -19,6 +19,24 @@ CommandersQuartersEnteredTitle="LWOTC Help"
 CommandersQuartersEnteredBody="LWOTC adds several entries to the XCOM Archives that explain some of its core concepts in more detail, like infiltration and haven management.<br/><br/>You can also review all your havens from one screen via the Resistance Management menu."
 ; End Translation (2)
 
+; LWOTC Needs Translation (2)
+GeneralChosenTitle="The Chosen"
+GeneralChosenBody="A Chosen will appear on this mission. In LWOTC, they respond to XCOM activity by taking part only in retaliations and the core story missions (Black Site, etc.). They will not appear on other missions.<br/><br/>Their goal is still to gain knowledge about the location of the Avenger and assault it. Beware, defending against it will not be easy!"
+
+TacticalChosenTitle="The Chosen in Battle"
+TacticalChosenBody="The Chosen are far more dangerous in person in LWOTC:<br/><ul><li>They are near immune to critical hits</li><li>They take an action (\"prime reaction\") every time XCOM damages them during XCOM's turn</li><li>They can kidnap bleeding-out soldiers at range, at the cost of a full turn</li><li>They gain significant strengths on level up (use F1 when targeting them for detailed information)</li></ul>"
+
+AssassinSightedTitle="The Assassin"
+AssassinSightedBody="The Assassin reduces incoming damage with each consecutive hit she receives on a turn. While her Sword and Harbour Wave damage start low, they will increase in power as she uses them until she captures a soldier. <br/><br/>Be careful with unit placement, as she can use her prime reaction to slash an adjacent soldier."
+
+WarlockSightedTitle="The Warlock"
+WarlockSightedBody="The Warlock has a Warlock's Greatest Champion ability that can target allies. While that ally remains alive, the Warlock will take significantly less damage. You should also be wary of his Mind Scorch, which applies burning in an area around a target. <br/><br/>If a soldier is mind controlled, note that your soldiers can use Stock Strike on them in LWOTC."
+
+HunterSightedTitle="The Hunter"
+HunterSightedBody="The Hunter will keep his distance and try to pick off soldiers from a safe position. Be careful as you approach: his pistol shot will now disable XCOM weapons and he can throw his flashbangs as a free action."
+; End Translation (2)
+
+
 [UIScreenListener_HavenManagementTutorial]
 HavenManagementTitle="Haven Management"
 HavenManagementBody="Havens are home to a collection of rebels who can undertake several jobs:<br/><ul><li>Intel - detects missions</li><li>Recruit - recruits rebels and rookies</li><li>Supply - generates supplies</li></ul><br/>The more rebels that are on a job, the more you get from it. Keep your rebels on Intel for now."
