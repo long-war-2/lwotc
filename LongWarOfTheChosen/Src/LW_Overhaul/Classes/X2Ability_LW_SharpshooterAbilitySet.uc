@@ -293,6 +293,7 @@ static function X2AbilityTemplate AddAlphaMikeFoxtrot()
 	Template.bIsPassive = true;
 	DamageEffect = new class'X2Effect_PrimaryPCTBonusDamage';
 	DamageEffect.BonusDmg = default.ALPHAMIKEFOXTROT_DAMAGE;
+	DamageEffect.IncludeExplosives = true;
 	DamageEffect.BuildPersistentEffect(1, true, false, false);
 	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageEffect);

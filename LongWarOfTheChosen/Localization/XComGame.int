@@ -614,9 +614,9 @@ LocPromotionPopupText="<Bullet/> Holotargeting is a free action, with <Ability:S
 LocFriendlyName="Alpha Mike Foxtrot"
 LocFlyOverText="Alpha Mike Foxtrot"
 ; LWOTC Needs Translation
-LocLongDescription="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon."
-LocHelpText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon."
-LocPromotionPopupText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon."
+LocLongDescription="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon and explosives."
+LocHelpText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon and explosives."
+LocPromotionPopupText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon and explosives."
 ; End Translation
 
 ;;;;;;;;;;;;;;;;;;;;  ASSAULT ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
