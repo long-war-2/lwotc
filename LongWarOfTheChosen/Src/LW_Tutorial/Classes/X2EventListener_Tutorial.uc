@@ -23,6 +23,20 @@ var localized string FirstRetaliationBody;
 var localized string CommandersQuartersEnteredTitle;
 var localized string CommandersQuartersEnteredBody;
 
+var localized string GeneralChosenTitle;
+var localized string GeneralChosenBody;
+
+var localized string TacticalChosenTitle;
+var localized string TacticalChosenBody;
+
+var localized string AssassinSightedTitle;
+var localized string AssassinSightedBody;
+
+var localized string WarlockSightedTitle;
+var localized string WarlockSightedBody;
+
+var localized string HunterSightedTitle;
+var localized string HunterSightedBody;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -45,6 +59,10 @@ static function CHEventListenerTemplate CreateTacticalListeners()
 	Template.AddCHEvent('SentrySighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
 	Template.AddCHEvent('GunnerSighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
 	Template.AddCHEvent('RocketeerSighted', OnRainbowTrooperSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('ChosenSighted', OnChosenSighted, ELD_OnStateSubmitted, 80);
+	Template.AddCHEvent('AssassinSighted', OnAssassinSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('WarlockSighted', OnWarlockSighted, ELD_OnStateSubmitted, 90);
+	Template.AddCHEvent('HunterSighted', OnHunterSighted, ELD_OnStateSubmitted, 90);
 	Template.RegisterInTactical = true;
 
 	return Template;
@@ -96,6 +114,64 @@ static function EventListenerReturn OnRainbowTrooperSighted(Object EventData, Ob
 	return ELR_NoInterrupt;
 }
 
+static function EventListenerReturn OnChosenSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_ChosenTactical'))
+	{
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_ChosenTactical');
+
+		// Show the tutorial box for rainbow troopers
+		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
+				default.TacticalChosenTitle,
+				default.TacticalChosenBody,
+				"img:///UILibrary_XPACK_StrategyImages.DarkEvent_Loyalty_Among_Thieves_Assasin");
+	}
+	return ELR_NoInterrupt;
+}
+static function EventListenerReturn OnAssassinSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_AssassinSighted'))
+	{
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_AssassinSighted');
+
+		// Show the tutorial box for rainbow troopers
+		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
+				default.AssassinSightedTitle,
+				default.AssassinSightedBody,
+				"img:///UILibrary_XPACK_StrategyImages.DarkEvent_Loyalty_Among_Thieves_Assasin");
+	}
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OnHunterSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_HunterSighted'))
+	{
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_HunterSighted');
+
+		// Show the tutorial box for rainbow troopers
+		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
+				default.HunterSightedTitle,
+				default.HunterSightedBody,
+				"img:///UILibrary_XPACK_StrategyImages.DarkEvent_Loyalty_Among_Thieves_Hunter");
+	}
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OnWarlockSighted(Object EventData, Object EventSource, XComGameState GameState, Name InEventID, Object CallbackData)
+{
+	if (class'LWTutorial'.static.IsObjectiveInProgress('LW_TUT_WarlockSighted'))
+	{
+		class'LWTutorial'.static.CompleteObjective('LW_TUT_WarlockSighted');
+
+		// Show the tutorial box for rainbow troopers
+		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
+				default.WarlockSightedTitle,
+				default.WarlockSightedBody,
+				"img:///UILibrary_XPACK_StrategyImages.DarkEvent_Loyalty_Among_Thieves_Warlock");
+	}
+	return ELR_NoInterrupt;
+}
 // Pop up a tutorial box when the Geoscape is first entered that directs the
 // player to their starting haven/outpost.
 static function EventListenerReturn OnMissionDiscovered(
@@ -143,6 +219,14 @@ static function EventListenerReturn HandleFirstRetaliation(
 		{
 			// Not a retal
 			return ELR_NoInterrupt;
+		}
+		if(!`SecondWaveEnabled('DisableChosen'))
+		{
+			class'LWTutorial'.static.CompleteObjective('LW_TUT_GeneralChosen');
+			`PRESBASE.UITutorialBox(
+			default.GeneralChosenTitle,
+			default.GeneralChosenBody,
+			"img:///UILibrary_XPACK_StrategyImages.DarkEvent_MadeWhole");
 		}
 
 		class'LWTutorial'.static.CompleteObjective('LW_TUT_FirstRetaliation');

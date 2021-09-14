@@ -23,6 +23,14 @@ static function array<X2DataTemplate> CreateTemplates()
 	Objectives.AddItem(CreateLW_TUT_FirstRetaliation());
 	Objectives.AddItem(CreateLW_TUT_CovertActions());
 
+	Objectives.AddItem(CreateLW_TUT_GeneralChosen());
+	Objectives.AddItem(CreateLW_TUT_ChosenTactical());
+	
+	Objectives.AddItem(CreateLW_TUT_AssassinSightedTemplate());
+	Objectives.AddItem(CreateLW_TUT_WarlockSightedTemplate());
+	Objectives.AddItem(CreateLW_TUT_HunterSightedTemplate());
+
+
 	return Objectives;
 }
 
@@ -39,6 +47,10 @@ static function X2DataTemplate CreateLW_TUT_GatecrasherStartTemplate()
 
 	Template.NextObjectives.AddItem('LW_TUT_DroneSighted');
 	Template.NextObjectives.AddItem('LW_TUT_RainbowTrooperSighted');
+	Template.NextObjectives.AddItem('LW_TUT_ChosenTactical');
+	Template.NextObjectives.AddItem('LW_TUT_AssassinSighted');
+	Template.NextObjectives.AddItem('LW_TUT_WarlockSighted');
+	Template.NextObjectives.AddItem('LW_TUT_HunterSighted');
 	// Template.Steps.AddItem('LW_TUT_EngineerSighted');
 	// Template.Steps.AddItem('LW_TUT_SentrySighted');
 	// Template.Steps.AddItem('LW_TUT_GunnerSighted');
@@ -95,6 +107,7 @@ static function X2DataTemplate CreateLW_TUT_CampaignStartTemplate()
 	Template.NextObjectives.AddItem('LW_TUT_InfiltratingMission');
 	Template.NextObjectives.AddItem('LW_TUT_FirstRetaliation');
 	Template.NextObjectives.AddItem('LW_TUT_CovertActions');
+	Template.NextObjectives.AddItem('LW_TUT_GeneralChosen');
 
 	return Template;
 }
@@ -205,6 +218,72 @@ static function X2DataTemplate CreateLW_TUT_CovertActions()
 	Template.bMainObjective = true;
 	Template.bNeverShowObjective = true;
 	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_ChosenTactical()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_ChosenTactical');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_GeneralChosen()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_GeneralChosen');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_AssassinSightedTemplate()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_AssassinSighted');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	Template.CompletionEvent = 'AssassinSighted';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_WarlockSightedTemplate()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_WarlockSighted');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	Template.CompletionEvent = 'WarlockSighted';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_HunterSightedTemplate()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_HunterSighted');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	Template.CompletionEvent = 'HunterSighted';
 
 	return Template;
 }

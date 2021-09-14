@@ -34,6 +34,27 @@ static function UpdateCharacters(X2CharacterTemplate Template, int Difficulty)
 	case 'AdvRocketeerM3':
 		Template.SightedEvents.AddItem('RocketeerSighted');
 		break;
+	case'ChosenAssassin':
+	case'ChosenAssassinM2':
+	case'ChosenAssassinM3':
+	case'ChosenAssassinM4':
+		Template.SightedEvents.AddItem('AssassinSighted');
+		Template.SightedEvents.AddItem('ChosenSighted');
+		break;
+	case'ChosenWarlock':
+	case'ChosenWarlockM2':
+	case'ChosenWarlockM3':
+	case'ChosenWarlockM4':
+		Template.SightedEvents.AddItem('WarlockSighted');
+		Template.SightedEvents.AddItem('ChosenSighted');
+	break;
+	case'ChosenHunter':
+	case'ChosenHunterM2':
+	case'ChosenHunterM3':
+	case'ChosenHunterM4':
+		Template.SightedEvents.AddItem('HunterSighted');
+		Template.SightedEvents.AddItem('ChosenSighted');
+	break;
 	default:
 		break;
 	}
