@@ -166,7 +166,7 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Laser()
 
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'sawedoffshotgun';
-	Template.WeaponTech = 'conventional';
+	Template.WeaponTech = 'laser_LW';
 	Template.strImage = default.SawedOffShotgun_LS_UIImage; 
 	Template.EquipSound = "Secondary_Weapon_Equip_Conventional";
 	Template.WeaponPanelImage = "_ConventionalRifle";                       // used by the UI. Probably determines iconview of the weapon.
@@ -188,7 +188,11 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Laser()
 
 	Template.iPhysicsImpulse = 5;
 
-	Template.StartingItem = true;
+	
+	Template.CreatorTemplateName = 'SawedOffShotgun_LS_Schematic'; // The schematic which creates this item
+	Template.BaseItem = 'SawedoffShotgun_CV'; // Which item this will be upgraded from
+
+	Template.StartingItem = false;
 	Template.CanBeBuilt = false;
 	
 	Template.Abilities.AddItem('PointBlank');
@@ -231,7 +235,7 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Magnetic()
 	Template.iPhysicsImpulse = 5;
 	
 	Template.CreatorTemplateName = 'SawedoffShotgun_MG_Schematic'; // The schematic which creates this item
-	Template.BaseItem = 'SawedoffShotgun_CV'; // Which item this will be upgraded from
+	Template.BaseItem = 'SawedoffShotgun_LS'; // Which item this will be upgraded from
 
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
@@ -254,7 +258,7 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Coil()
 
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'sawedoffshotgun';
-	Template.WeaponTech = 'conventional';
+	Template.WeaponTech = 'coilgun_LW';
 	Template.strImage = default.SawedOffShotgun_CG_UIImage; 
 	Template.EquipSound = "Secondary_Weapon_Equip_Conventional";
 	Template.WeaponPanelImage = "_ConventionalRifle";                       // used by the UI. Probably determines iconview of the weapon.
@@ -320,7 +324,7 @@ static function X2DataTemplate CreateTemplate_SawedOffShotgun_Beam()
 	Template.iPhysicsImpulse = 5;
 
 	Template.CreatorTemplateName = 'SawedoffShotgun_BM_Schematic'; // The schematic which creates this item
-	Template.BaseItem = 'SawedoffShotgun_MG'; // Which item this will be upgraded from
+	Template.BaseItem = 'SawedoffShotgun_CG'; // Which item this will be upgraded from
 
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;

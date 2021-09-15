@@ -956,20 +956,20 @@ TacticalText="<Bullet/> Powered Shadowkeeper's strength is comparable to a Plasm
 FriendlyName="Sawed-Off Shotgun"
 FriendlyNamePlural="Sawed-Off Shotguns"
 BriefSummary="A powerful, if short-ranged, secondary weapon."
-TacticalText="<Bullet/> Adaptation of concealable pre-invasion weaponry.<br/><Bullet/> Two shots per mission without upgrades."
+TacticalText="<Bullet/> Adaptation of concealable pre-invasion weaponry.<br/>"
 
 [SawedOffShotgun_MG X2WeaponTemplate]
 FriendlyName="Mag Shorty"
 FriendlyNamePlural="Mag Shorties"
 BriefSummary="An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage."
-TacticalText="<Bullet/> An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage.<br/><Bullet/> Two shots per mission without upgrades.<br/>"
+TacticalText="<Bullet/> An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage.<br/>"
 
 ;LWOTC needs translation
 [SawedOffShotgun_BM X2WeaponTemplate]
 FriendlyName="Plasma Shorty"
 FriendlyNamePlural="Plasma Shorties"
 BriefSummary="An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage."
-TacticalText="<Bullet/> An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage.<br/><Bullet/> Two shots per mission without upgrades.<br/>"
+TacticalText="<Bullet/> An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage.<br/>"
 ;end translation
 
 [ArcThrower_CV X2WeaponTemplate]
@@ -8690,8 +8690,8 @@ m_strClassLabel="SPARK"
 [SawedOffShotgun_LS X2WeaponTemplate]
 FriendlyName="Blazer"
 FriendlyNamePlural="Blazer"
-BriefSummary="Officially designated as Binary Laser, this compact, close range pulse laser weapon has two firing chambers that are loaded with high-impulse disposable power cells. It was immediately dubbed \"Blazer\" by one of our operatives once they saw it fire."
-TacticalText="Officially designated as Binary Laser, this compact, close range pulse laser weapon has two firing chambers that are loaded with high-impulse disposable power cells. It was immediately dubbed \"Blazer\" by one of our operatives once they saw it fire.<br/><Bullet/> Has <Ability:WOTCLW2SW_COLOR_1_OPEN/><Ability:SAWEDOFFSHOTGUN_LS_AMMO/><Ability:WOTCLW2SW_COLOR_CLOSE/> shots per mission without upgrades."
+BriefSummary="Officially designated as Binary Laser, this compact, close range pulse laser weapon has two firing chambers that are loaded with high-impulse disposable power cells. It was immediately dubbed \"Blazer\" by one of our operatives once they saw it fire.<br/>"
+TacticalText="Officially designated as Binary Laser, this compact, close range pulse laser weapon has two firing chambers that are loaded with high-impulse disposable power cells. It was immediately dubbed \"Blazer\" by one of our operatives once they saw it fire.<br/>"
 AbilityDescName="sawed off shotgun"
 
 [SawedOffShotgun_LS_Schematic X2SchematicTemplate]
@@ -8701,7 +8701,7 @@ m_strClassLabel="SQUAD"
 FriendlyName="Coil Shorty"
 FriendlyNamePlural="Coil Shorties"
 BriefSummary="Combine age-old simple design with latest advances in projectile acceleration technology and you'll get a frighteningly effective weapon that will make any foe regret getting too close."
-TacticalText="Combine age-old simple design with latest advances in projectile acceleration technology and you'll get a frighteningly effective weapon that will make any foe regret getting too close.<br/><Bullet/> Has <Ability:WOTCLW2SW_COLOR_1_OPEN/><Ability:SAWEDOFFSHOTGUN_LS_AMMO/><Ability:WOTCLW2SW_COLOR_CLOSE/> shots per mission without upgrades."
+TacticalText="Combine age-old simple design with latest advances in projectile acceleration technology and you'll get a frighteningly effective weapon that will make any foe regret getting too close.<br/>"
 AbilityDescName="sawed off shotgun"
 
 [SawedOffShotgun_CG_Schematic X2SchematicTemplate]

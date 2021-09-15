@@ -64,12 +64,20 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 		break;
 	case 'Sidearm_CV':
 	case 'Sidearm_LS':
-	case 'Sidearm_MG':
 	case 'Sidearm_CG':
-	case 'Sidearm_BM':
 		WeaponTemplate.Abilities.AddItem('SprayAndPray');
 		//WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeapons'.default.SHORT_CONVENTIONAL_RANGE;
 		break;
+
+	case 'Sidearm_MG':
+		WeaponTemplate.BaseItem = 'Sidearm_LS';
+		WeaponTemplate.Abilities.AddItem('SprayAndPray');
+		break;
+	case 'Sidearm_BM':
+		WeaponTemplate.BaseItem = 'Sidearm_CG';
+		WeaponTemplate.Abilities.AddItem('SprayAndPray');
+		break;
+
 	default:
 		break;
 	}

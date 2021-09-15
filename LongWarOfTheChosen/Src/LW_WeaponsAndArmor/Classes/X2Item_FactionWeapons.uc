@@ -442,17 +442,17 @@ static function X2DataTemplate CreateTemplate_Sidearm_Laser_Schematic()
 
 	// Requirements
 	Template.Requirements.RequiredTechs.AddItem('LaserWeapons');
-	Template.Requirements.RequiredEngineeringScore = 5;
+	Template.Requirements.RequiredEngineeringScore = 10;
 	//Template.Requirements.RequiredSoldierClass = 'Templar';
 	//Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 
 	// Cost
 	Resources.ItemTemplateName = 'Supplies';
-    Resources.Quantity = 25;
+    Resources.Quantity = 15;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	Resources.ItemTemplateName = 'AlienAlloy';
-    Resources.Quantity = 2;
+    Resources.Quantity = 1;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
 	return Template;
@@ -551,6 +551,11 @@ static function X2DataTemplate CreateTemplate_Sidearm_Coil_Schematic()
 	Resources.ItemTemplateName = 'AlienAlloy';
     Resources.Quantity = 2;
 	Template.Cost.ResourceCosts.AddItem(Resources);
+
+	Resources.ItemTemplateName = 'EleriumDust';
+    Resources.Quantity = 1;
+	Template.Cost.ResourceCosts.AddItem(Resources);
+
 
 	return Template;
 }

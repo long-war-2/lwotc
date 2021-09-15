@@ -76,7 +76,7 @@ static function X2DataTemplate CreateTemplate_LWPistol_Laser()
 
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'pistol';
-	Template.WeaponTech = 'pulse';
+	Template.WeaponTech = 'laser_LW';
 	Template.strImage = "img:///UILibrary_LW_LaserPack.Inv_Laser_Pistol";
 	Template.EquipSound = "Secondary_Weapon_Equip_Magnetic";
 	Template.Tier = 2;
@@ -110,7 +110,7 @@ static function X2DataTemplate CreateTemplate_LWPistol_Laser()
 	Template.iPhysicsImpulse = 5;
 
 	Template.CreatorTemplateName = 'Pistol_LS_Schematic'; // The schematic which creates this item
-	Template.BaseItem = 'Pistol_MG'; // Which item this will be upgraded from
+	Template.BaseItem = 'Pistol_CV'; // Which item this will be upgraded from
 
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
@@ -228,7 +228,7 @@ static function X2DataTemplate CreateTemplate_Pistol_Coil_Schematic()
 	local X2SchematicTemplate Template;
 	local ArtifactCost Resources, Artifacts;
 
-	`CREATE_X2TEMPLATE(class'X2SchematicTemplate', Template, 'Pistol_LS_Schematic');
+	`CREATE_X2TEMPLATE(class'X2SchematicTemplate', Template, 'Pistol_CG_Schematic');
 
 	Template.ItemCat = 'weapon';
 	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Coil_Pistol"; 
