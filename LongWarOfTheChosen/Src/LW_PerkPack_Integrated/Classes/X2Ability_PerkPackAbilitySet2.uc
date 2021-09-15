@@ -1491,8 +1491,10 @@ static function X2AbilityTemplate SprayAndPray()
 	DodgeModifier.DodgeReductionBonus = default.SPRAY_AND_PRAY_DODGE;
 	DodgeModifier.BuildPersistentEffect (1, true, true);
 	DodgeModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
-	DodgeModifier.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
 	Template.AddTargetEffect(DodgeModifier);
+
+	Template.DefaultSourceItemSlot = eInvSlot_Pistol;
+
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;		
@@ -1522,9 +1524,9 @@ static function X2AbilityTemplate StockSprayAndPray()
 	DodgeModifier.DodgeReductionBonus = default.STOCK_SPRAY_AND_PRAY_DODGE;
 	DodgeModifier.BuildPersistentEffect (1, true, true);
 	DodgeModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
-	DodgeModifier.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
 	DodgeModifier.TargetConditions.AddItem(PrimaryWeaponCondition);
 	Template.AddTargetEffect(DodgeModifier);
+	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;		

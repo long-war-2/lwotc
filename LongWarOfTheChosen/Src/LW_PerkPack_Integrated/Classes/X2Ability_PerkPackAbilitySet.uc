@@ -2154,6 +2154,8 @@ static function X2AbilityTemplate AddSentinel_LWAbility()
 	Template.AddTargetEffect(PersistentEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.bCrossClassEligible = false;
+
+	Template.AdditionalAbilities.AddItem('CoolUnderPressure');
 	return Template;
 }
 

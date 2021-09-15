@@ -7,12 +7,15 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	local ShotModifierInfo ShotInfo;
 	local int DodgeReduction;
 
-	DodgeReduction = Min(DodgeReductionBonus, Target.GetCurrentStat(eStat_Dodge));
+	if (AbilityState.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)
+	{
+		DodgeReduction = Min(DodgeReductionBonus, Target.GetCurrentStat(eStat_Dodge));
 
-	ShotInfo.ModType = eHit_Graze;
-	ShotInfo.Reason = FriendlyName;
-	ShotInfo.Value = -1 * DodgeReduction;
-	ShotModifiers.AddItem(ShotInfo);
+		ShotInfo.ModType = eHit_Graze;
+		ShotInfo.Reason = FriendlyName;
+		ShotInfo.Value = -1 * DodgeReduction;
+		ShotModifiers.AddItem(ShotInfo);
+	}
 }
 
 defaultproperties

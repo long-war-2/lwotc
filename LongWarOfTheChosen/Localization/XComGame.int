@@ -480,8 +480,8 @@ LocPromotionPopupText="<Bullet/> You will parry any grazed melee attack against 
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="Flush"
-LocLongDescription="Special shot but has +35 to hit that does -25% damage, confers dodge penalties and forces target to change position if it hits."
-LocHelpText="Special shot but has +35 to hit that does 25% damage, confers dodge penalties and forces target to change position if it hits.."
+LocLongDescription="Special shot but has +35 to hit that does -35% damage, confers dodge penalties and forces target to change position if it hits."
+LocHelpText="Special shot but has +35 to hit that does -35% damage, confers dodge penalties and forces target to change position if it hits.."
 LocFlyOverText="Flush"
 ; LWOTC needs translation (2)
 LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> +<Ability:FLUSH_AIM_BONUS/> bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
@@ -8114,19 +8114,19 @@ LocFlyOverText="Templar Shield"
 ; LWOTC Needs Translation(2)
 [TemplarBallisticShield_CV X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocHelpText="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocHelpText="Grants 2 Ablative HP. Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocLongDescription="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Templar Shield"
 
 [TemplarBallisticShield_MG X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocHelpText="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocHelpText="Grants 3 Ablative HP. Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocLongDescription="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Templar Shield"
 
 [TemplarBallisticShield_BM X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocHelpText="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocHelpText="Grants 4 Ablative HP. Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocLongDescription="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Templar Shield"
 ; End Translation(2)
@@ -8146,8 +8146,8 @@ LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn coold
 
 [OneForAll X2AbilityTemplate]
 LocFriendlyName="One For All"
-LocHelpText="Provide high cover to squadmates wherever you stand, and gain -30 defense. Moving or attacking will cancel the effect. Grants bonus ablative HP based on the shield tier for the duration of the effect."
-LocLongDescription="Provide high cover to squadmates wherever you stand, and gain -30 defense. Moving or attacking will cancel the effect. Grants bonus ablative HP based on the shield tier for the duration of the effect."
+LocHelpText="Grants <Ability:OFA_DAMAGE_REDUCTION/>% Damage Reduction. Provide high cover to squadmates wherever you stand, and gain -40 defense. Moving or attacking will cancel the effect. "
+LocLongDescription="Grants <Ability:OFA_DAMAGE_REDUCTION/>% Damage Reduction. Provide high cover to squadmates wherever you stand, and gain -40 defense. Moving or attacking will cancel the effect."
 LocFlyOverText="One For All"
 
 
