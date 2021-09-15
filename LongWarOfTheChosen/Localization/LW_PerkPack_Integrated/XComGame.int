@@ -70,9 +70,9 @@ LocPromotionPopupText="<Bullet/> You do one additional point of base damage with
 LocFriendlyName="Lethal"
 LocFlyOverText="Lethal"
 ; LWOTC Needs Translation
-LocLongDescription="You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon and grenades."
-LocHelpText="You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon and grenades."
-LocPromotionPopupText="<Bullet/> You do <Ability:LETHAL_DAMAGE_LW/> additional points of base damage and <Ability:LETHAL_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon and grenades."
+LocLongDescription="You deal <Ability:LETHAL_DAMAGE_LW/>% more damage with your primary weapon and explosives."
+LocHelpText="You deal <Ability:LETHAL_DAMAGE_LW/>% more damage with your primary weapon and explosives."
+LocPromotionPopupText="You deal <Ability:LETHAL_DAMAGE_LW/>% more damage with your primary weapon and explosives."
 ; End Translation
 
 [HitandSlither X2AbilityTemplate]

@@ -426,7 +426,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 					(class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_BONUS / class'X2Effect_LoneWolf'.default.LONEWOLF_AIM_PER_TILE) + 1);
 			return true;
 		case 'LETHAL_DAMAGE_LW':
-			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.LETHAL_DAMAGE);
+			OutString = string(int(class'X2Ability_PerkPackAbilitySet'.default.LETHAL_DAMAGE * 100));
 			return true;
 		case 'LETHAL_CRIT_DAMAGE_LW':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.LETHAL_DAMAGE / 2);
