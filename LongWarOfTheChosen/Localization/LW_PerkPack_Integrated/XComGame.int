@@ -91,7 +91,7 @@ LocLongDescription="Once per turn, gain an additional action after taking a stan
 LocHelpText="Once per turn, gain an additional action after taking a standard shot at a flanked or exposed target with your primary weapon."
 LocPromotionPopupText="<Bullet/> Cannot be used on the same turn as Run and Gun.<br/><Bullet/> Bonus full actions from Serial and Death from Above will be awarded first."
 
-[HitandRun X2AbilityTemplate]
+[Merciless_LW X2AbilityTemplate]
 LocFriendlyName="Merciless"
 LocFlyOverText="Merciless"
 ; LWOTC Needs Translation 
