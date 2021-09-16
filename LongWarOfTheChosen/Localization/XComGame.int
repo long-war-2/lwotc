@@ -3741,15 +3741,15 @@ Summary="Knowledge on alien encryption Should allow us to comprehend more alien 
 DisplayName="Wet Work"
 Summary="New Knowledge on alien units will allow our soldier to gain +100 XP on kills"
 
-[StayWithMeUnlock X2TechTemplate]
+[StayWithMeProject X2TechTemplate]
 DisplayName="Stay With Me"
 Summary="The Newfound horrific knowledge of chryssalids reinforced out Soldier's will to stay alive at all costs. Soldiers will be more likely to bleed out than to die outright."
 
-[IntegratedWarfareUnlock X2TechTemplate]
+[IntegratedWarfareProject X2TechTemplate]
 DisplayName="Integrated Warfare"
 Summary="PCS bonuses are significantly improved."
 
-[VengeanceUnlock X2TechTemplate]
+[VengeanceProject X2TechTemplate]
 DisplayName="Vengeance"
 Summary="The autopsy of the trooper made us remember what they took from us. If a squadmate dies or is critically wounded, gain random tactical bonuses for two turns."
 
