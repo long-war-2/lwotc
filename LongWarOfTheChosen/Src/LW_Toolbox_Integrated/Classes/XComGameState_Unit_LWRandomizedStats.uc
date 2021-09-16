@@ -73,7 +73,7 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 
 	//set up
 	
-	if(!bIsFirstMission)
+	if(!bIsFirstMissionSoldier)
 	{
 		NumSwaps = RollNumStatSwaps();
 	}
