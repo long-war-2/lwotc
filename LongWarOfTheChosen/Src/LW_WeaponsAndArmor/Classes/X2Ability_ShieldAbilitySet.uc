@@ -57,6 +57,8 @@ static function X2AbilityTemplate OneForAll()
 
 	X2AbilityCost_ActionPoints(Template.AbilityCosts[0]).AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.MomentumActionPoint);
 
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template, 'X2Effect_RemoveEffects');
+
 	Template.IconImage = "img:///WoTC_Shield_UI_LW.ShieldWall_Icon";
 
 	if (default.SHIELD_WALL_FREE_ACTION)
