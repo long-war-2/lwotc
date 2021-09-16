@@ -2713,7 +2713,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		switch (WeaponTemplate.DataName)
 		{
 			case 'Viper_Tongue_WPN':
-				WeaponTemplate.iAim = 10;
+			WeaponTemplate.Aim = 10;
 			case 'Muton_MeleeAttack':
 			case 'AndromedonRobot_MeleeAttack':
 			case 'ArchonStaff':
