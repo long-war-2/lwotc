@@ -31,7 +31,7 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 
         DamageReduction = WeaponDamage;
 
-        DamageReduction = DamageReduction * (default.PCT_DMG_Reduction ** int(UnitVal.fValue));
+        DamageReduction = DamageReduction * (PCT_DMG_Reduction ** int(UnitVal.fValue));
     
         DamageMod = WeaponDamage - DamageReduction;
 	}

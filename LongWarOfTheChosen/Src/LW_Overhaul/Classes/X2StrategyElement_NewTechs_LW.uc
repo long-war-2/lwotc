@@ -1996,7 +1996,7 @@ static function X2DataTemplate AddWeaponUpgradeBreakthrough1()
 	Template.ResearchCompletedFn = BreakthroughWeaponUpgradeCompleted1;
 
 	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
-	Template.Requirements.RequiredTechs.AddItem('AutopsyAdvTrooper');
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventTrooper');
 	//Template.Requirements.RequiredSoldierClass = 'Reaper';
 
 	Template.bBreakthrough = false;
@@ -2023,7 +2023,7 @@ static function X2DataTemplate AddWeaponUpgradeBreakthrough2()
 	Template.ResearchCompletedFn = BreakthroughWeaponUpgradeCompleted2;
 
 	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
-	Template.Requirements.RequiredTechs.AddItem('AutopsyAdvTrooper');
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventTrooper');
 
 	Template.bBreakthrough = false;
 	Template.bProvingGround = true;
