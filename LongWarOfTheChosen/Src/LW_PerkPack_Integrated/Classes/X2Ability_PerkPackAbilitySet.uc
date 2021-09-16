@@ -187,7 +187,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddSteadyWeaponAbility());
 	Templates.AddItem(AddLockedOnAbility());
 	Templates.AddItem(AddSentinel_LWAbility());
-	Templates.AddItem(AddSentinelAbility());
+	//Templates.AddItem(AddSentinelAbility());
 	Templates.AddItem(AddRapidReactionAbility());
 	Templates.AddItem(AddLightningReflexes_LWAbility());
 	Templates.AddItem(AddCutthroatAbility());
@@ -233,6 +233,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddSoulStealTriggered2());
 	Templates.AddItem(AddOverexertion());
 	Templates.AddItem(AddFortifiedAbility());
+	Templates.AddItem(AddMerciless());
+	
 	
 	return Templates;
 }
@@ -319,6 +321,31 @@ static function X2AbilityTemplate AddHitandRunAbility()
 	return Template;
 }
 
+static function X2AbilityTemplate AddMerciless()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_Merciless				HitandRunEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'Merciless_LW');
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ShockAndMaul";
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	HitandRunEffect = new class'X2Effect_Merciless';
+	HitandRunEffect.BuildPersistentEffect(1, true, false, false);
+	HitandRunEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
+	HitandRunEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(HitandRunEffect);
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  NOTE: Visualization handled in X2Effect_HitandRun
+	return Template;
+}
+
+	
 static function X2AbilityTemplate AddHitandSlitherAbility()
 {
 	local X2AbilityTemplate					Template;

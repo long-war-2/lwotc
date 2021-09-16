@@ -91,6 +91,15 @@ LocLongDescription="Once per turn, gain an additional action after taking a stan
 LocHelpText="Once per turn, gain an additional action after taking a standard shot at a flanked or exposed target with your primary weapon."
 LocPromotionPopupText="<Bullet/> Cannot be used on the same turn as Run and Gun.<br/><Bullet/> Bonus full actions from Serial and Death from Above will be awarded first."
 
+[HitandRun X2AbilityTemplate]
+LocFriendlyName="Merciless"
+LocFlyOverText="Merciless"
+; LWOTC Needs Translation 
+LocLongDescription="Once per turn, taking a standard shot with your primary weapon on a disoriented, panicked, or stunned enemy will refund your actions."
+; End Translation 
+LocHelpText="Once per turn, taking a standard shot with your primary weapon on a disoriented, panicked, or stunned enemy will refund your actions"
+LocPromotionPopupText="<Bullet/> Cannot be used on the same turn as Run and Gun, or Close encounters.<br/>"
+
 [CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="Close Combat Specialist"
 LocFlyOverText="Close Combat Specialist"
@@ -362,14 +371,6 @@ LocFlyOverText="Rapid Reaction"
 LocLongDescription="When in overwatch, you may take three reaction shots."
 LocHelpText="When in overwatch, you may take three reaction shots."
 LocPromotionPopupText="<Bullet/> When in overwatch, you may take three reaction shots."
-
-[Sentinel X2AbilityTemplate]
-LocFriendlyName="Guardian"
-LocFlyOverText="Guardian"
-LocLongDescription="When in overwatch, you may take two reaction shots."
-LocHelpText="When in overwatch, you may take two reaction shots."
-LocPromotionPopupText="<Bullet/> Reaction shots may be at one or multiple targets, depending on alien movement.<br/>"
-
 
 [LightningReflexes_LW X2AbilityTemplate]
 LocFriendlyName="Lightning Reflexes"
