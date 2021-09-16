@@ -695,11 +695,17 @@ static function X2DataTemplate CreateTemplate_Sidewinder_WPN(name TemplateName)
 		Template.BaseDamage = default.SIDEWINDERM2_WPN_BASEDAMAGE;
 	if (TemplateName == 'SidewinderM3_WPN')
 		Template.BaseDamage = default.SIDEWINDERM3_WPN_BASEDAMAGE;
+	if (TemplateName == 'SidewinderM4_WPN')
+		Template.BaseDamage = default.SIDEWINDERM4_WPN_BASEDAMAGE;
+	if (TemplateName == 'SidewinderM5_WPN')
+		Template.BaseDamage = default.SIDEWINDERM5_WPN_BASEDAMAGE;
 
 	Template.iClipSize = default.SIDEWINDER_WPN_ICLIPSIZE;
 	Template.iSoundRange = class'X2Item_DefaultWeapons'.default.ASSAULTRIFLE_MAGNETIC_ISOUNDRANGE;
 	Template.iEnvironmentDamage = class'X2Item_DefaultWeapons'.default.ASSAULTRIFLE_MAGNETIC_IENVIRONMENTDAMAGE;
 	Template.iIdealRange = default.SIDEWINDER_IDEALRANGE;
+
+	Template.CritChance = class'X2Item_SMGWeapon'.default.SMG_CONVENTIONAL_CRITCHANCE;
 
 	Template.DamageTypeTemplateName = 'Heavy';
 	
@@ -717,10 +723,6 @@ static function X2DataTemplate CreateTemplate_Sidewinder_WPN(name TemplateName)
 	if (TemplateName == 'SidewinderM2_WPN' || TemplateName == 'SidewinderM3_WPN')
 	{	
 		//future use
-	}
-	if (TemplateName == 'SidewinderM3_WPN')
-	{
-		Template.Abilities.AddItem('HuntersInstinct');
 	}
 	
 	// This all the resources; sounds, animations, models, physics, the works.
