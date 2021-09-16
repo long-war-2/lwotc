@@ -96,6 +96,25 @@ static function X2Effect_Burning CreateAcidBurningStatusEffect(int DamagePerTick
 	return BurningEffect;
 }
 
+static function X2Effect_RemoveEffects CreateMindControlRemoveEffects()
+{
+	local X2Effect_MCRemoveEffects RemoveEffects;
+
+	// remove other impairing mental effects
+	RemoveEffects = new class'X2Effect_MCRemoveEffects'; 
+	RemoveEffects.EffectNamesToRemove.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	RemoveEffects.EffectNamesToRemove.AddItem(class'X2AbilityTemplateManager'.default.ConfusedName);
+	RemoveEffects.EffectNamesToRemove.AddItem(class'X2AbilityTemplateManager'.default.PanickedName);
+	RemoveEffects.EffectNamesToRemove.AddItem(class'X2AbilityTemplateManager'.default.StunnedName);
+	RemoveEffects.EffectNamesToRemove.AddItem(class'X2AbilityTemplateManager'.default.DazedName);
+	RemoveEffects.EffectNamesToRemove.AddItem(class'X2AbilityTemplateManager'.default.ObsessedName);
+	RemoveEffects.EffectNamesToRemove.AddItem(class'X2AbilityTemplateManager'.default.BerserkName);
+	RemoveEffects.EffectNamesToRemove.AddItem(class'X2AbilityTemplateManager'.default.ShatteredName);
+	RemoveEffects.EffectNamesToRemove.AddItem(class'X2Ability_AdvPriest'.default.HolyWarriorEffectName);
+	RemoveEffects.DamageTypes.AddItem('mental'); 
+
+	return RemoveEffects;
+}
 
 // static function X2Effect_PersistentStatChange CreateDisorientedStatusEffect(optional bool bExcludeFriendlyToSource=false, float DelayVisualizationSec=0.0f, optional bool bIsMentalDamage = true)
 // {
