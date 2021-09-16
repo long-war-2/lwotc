@@ -891,7 +891,7 @@ static function X2DataTemplate AddParamedic()
 	//local X2Effect_TemporaryItem		TemporaryItemEffect;
 	local X2Effect_Paramedic ParamedicEffect;
 	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
-	local X2Effect_Savior SaviorEffect;
+	//local X2Effect_Savior SaviorEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Paramedic_LW');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_fieldmedic";
