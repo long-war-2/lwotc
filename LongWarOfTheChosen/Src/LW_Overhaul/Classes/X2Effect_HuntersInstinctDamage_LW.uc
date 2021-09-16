@@ -2,10 +2,10 @@ class X2Effect_HuntersInstinctDamage_LW extends X2Effect_HuntersInstinctDamage;
 
 //Overwrites GADM to add CurrentDamage > 0 modifier so flashbangs don't get bonus
 var float HUNTERS_INSTINCT_DAMAGE_PCT;
-function float GetPostDefaultDefendingDamageModifier_CH(
+function float GetPostDefaultAttackingDamageModifier_CH(
 	XComGameState_Effect EffectState,
 	XComGameState_Unit SourceUnit,
-	XComGameState_Unit TargetUnit,
+	Damageable Target,
 	XComGameState_Ability AbilityState,
 	const out EffectAppliedData ApplyEffectParameters,
 	float WeaponDamage,
@@ -15,7 +15,9 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	local GameRulesCache_VisibilityInfo VisInfo;
 	local bool DamagingAttack;
 	local X2AbilityToHitCalc_StandardAim StandardHit;
-
+	local XComGameState_Unit TargetUnit;
+	local float DamageBonus;
+	TargetUnit = XComGameState_Unit(Target);
 	DamagingAttack = (X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).BaseDamage.Damage > 0 || X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).BaseDamage.PlusOne > 0);
 
 	if (X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).WeaponCat == 'grenade')
@@ -45,14 +47,22 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 		{
 			if (SourceUnit.CanFlank() && TargetUnit.GetMyTemplate().bCanTakeCover && (VisInfo.TargetCover == CT_None || TargetUnit.GetCurrentStat(eStat_AlertLevel) == 0 && TargetUnit.GetTeam() != eTeam_XCom) && DamagingAttack)
 			{
-				return WeaponDamage * default.HUNTERS_INSTINCT_DAMAGE_PCT;
+				DamageBonus = WeaponDamage * HUNTERS_INSTINCT_DAMAGE_PCT;
+				return DamageBonus;
 			}
 		}
 	}
 	return 0;
 }
 
+
+function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+{
+	return 0;
+}
+
 DefaultProperties
 {
 	DuplicateResponse = eDupe_Ignore
+	bDisplayInSpecialDamageMessageUI = true
 }
