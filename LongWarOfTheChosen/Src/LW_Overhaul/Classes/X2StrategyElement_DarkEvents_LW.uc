@@ -458,12 +458,17 @@ function bool SeenAnyofThem(array<name> Charlist)
 	Result = false;
 	for (k = 0; k < CharList.Length; ++k)
 	{
-		if (`XCOMHQ.HasSeenCharacterTemplate(class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager().FindCharacterTemplate(CharList[k])))
+		if (HasSeenCharacterTemplate(class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager().FindCharacterTemplate(CharList[k])))
 		{
 			Result = true;
 		}
 	}
 	return Result;
+}
+
+function bool HasSeenCharacterTemplate(X2CharacterTemplate CharacterTemplate)
+{
+	return (`XCOMHQ.SeenCharacterTemplates.Find(CharacterTemplate.DataName) != INDEX_NONE);
 }
 
 
