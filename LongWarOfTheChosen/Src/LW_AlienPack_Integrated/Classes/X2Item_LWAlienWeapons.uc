@@ -258,6 +258,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_AdvGunner_WPN('AdvGunnerM1_WPN'));
 	Templates.AddItem(CreateTemplate_AdvGunner_WPN('AdvGunnerM2_WPN'));
 	Templates.AddItem(CreateTemplate_AdvGunner_WPN('AdvGunnerM3_WPN'));
+	Templates.AddItem(CreateTemplate_AdvGunner_WPN('AdvGunnerM4_WPN'));
+	Templates.AddItem(CreateTemplate_AdvGunner_WPN('AdvGunnerM5_WPN'));
 	
 	Templates.AddItem(CreateTemplate_AdvSentry_WPN('AdvSentryM1_WPN'));
 	Templates.AddItem(CreateTemplate_AdvSentry_WPN('AdvSentryM2_WPN'));
