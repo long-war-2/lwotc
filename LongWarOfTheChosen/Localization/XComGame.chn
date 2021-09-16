@@ -6577,7 +6577,6 @@ LocPromotionPopupText="<Bullet/> 慰藉的作用范围有4格。<br/><Bullet/> �
 ; End Translation
 
 ; LWOTC Needs Translation
-<<<<<<< HEAD
 [AssassinBladestorm X2AbilityTemplate]
 LocFriendlyName="剑刃风暴"
 LocLongDescription="对所有进入或从近战攻击范围内发起攻击的敌人进行自由<Ability:SecondaryWeaponName/>攻击。"
@@ -6592,8 +6591,6 @@ LocHelpText="对所有进入或从近战攻击范围内发起攻击的敌人进�
 LocFlyOverText="剑刃风暴"
 LocPromotionPopupText="<Bullet/> 敌人在相邻位置开始回合且打算攻击<Ability:ClassName/>时会触发剑刃风暴。<br/><Bullet/> 如果敌人在回合开始时不在相邻位置，则剑刃风暴在敌人进入近战范围内后触发。<br/>"
 
-=======
->>>>>>> 998d3d12... Apply suggestions from code review
 [TemplarBallisticShield_CV X2WeaponTemplate]
 FriendlyName="MK1 圣殿骑士护盾"
 FriendlyNamePlural="MK1 圣殿骑士护盾"
