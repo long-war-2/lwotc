@@ -818,7 +818,7 @@ static function X2AbilityTemplate AddDepthPerceptionAbility()
 
 	WillBonus = new class'X2Effect_PersistentStatChange';
 	WillBonus.AddPersistentStatChange(eStat_Defense, default.WILLTOSURVIVE_DEF_PENALTY);
-	ArmorBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	ArmorBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ArmorBonus.BuildPersistentEffect (1, true, false, false, 7);
 	Template.AddTargetEffect(WillBonus);
 
