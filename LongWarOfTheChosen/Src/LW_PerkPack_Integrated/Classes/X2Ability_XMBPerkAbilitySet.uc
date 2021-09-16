@@ -3192,6 +3192,7 @@ static function X2AbilityTemplate CreateAbsorptionFieldsTrigger()
 	local X2AbilityTrigger_EventListener Trigger;
 	local X2Condition_UnitProperty UnitPropertyCondition;
 	local X2Effect_SetUnitValue	UnitValueEffect;
+	local X2Condition_UnitValue UnitValue;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AbsorptionFieldsTrigger_LW');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -3208,6 +3209,11 @@ static function X2AbilityTemplate CreateAbsorptionFieldsTrigger()
 	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
 	UnitValueEffect.NewValueToSet = 1;
 	Template.AddTargetEffect(UnitValueEffect);
+
+	UnitValue = new class'X2Condition_UnitValue';
+	UnitValue.AddCheckValue('AbsorptionFieldsTimes', 1, eCheck_LessThan);
+	Template.AbilityTargetConditions.AddItem(UnitValue);
+
 
 
 	Trigger = new class'X2AbilityTrigger_EventListener';
@@ -3241,18 +3247,15 @@ static function X2AbilityTemplate CreateAbsorptionFields()
 {
 	local X2AbilityTemplate Template;
 	local X2Condition_UnitValue UnitValue;
-	local X2Effect_GeneralDamageReduction Effect;
+	local X2Effect_AbsorbsionFields Effect;
 
 	// Create an armor piercing bonus
-	Effect = new class'X2Effect_GeneralDamageReduction';
+	Effect = new class'X2Effect_AbsorbsionFields';
 	Effect.DamageReduction = default.REACTIVE_SENSORS_DAMAGE_REDUCTION;
 	
 	// Activated ability that targets user
 	Template = Passive('AbsorptionFields_LW', "img:///UILibrary_LW_PerkPack.LW_AbilityAbsorptionFields", true, Effect);
 
-	UnitValue = new class'X2Condition_UnitValue';
-	UnitValue.AddCheckValue('AbsorptionFieldsTimes', 1, eCheck_LessThan);
-	Template.AbilityTargetConditions.AddItem(UnitValue);
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.AdditionalAbilities.AddItem('AbsorptionFieldsTrigger_LW');

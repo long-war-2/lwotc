@@ -8511,9 +8511,9 @@ LocFlyOverText="Quick Retreat"
 
 [AbsorptionFields_LW X2AbilityTemplate]
 LocFriendlyName="Absorbsion Fields"
-LocHelpText="The First Damage you take each turn is reduced by 35%."
-LocLongDescription="The First Damage you take each turn is reduced by 35%."
-LocPromotionPopupText="The First Damage you take each turn is reduced by 35%."
+LocHelpText="The First Damage you take each turn is reduced by 25%."
+LocLongDescription="The First Damage you take each turn is reduced by 25%."
+LocPromotionPopupText="The First Damage you take each turn is reduced by 25%."
 LocFlyOverText="Absorbsion Fields"
 
 [AbsorptionFieldsTrigger_LW X2AbilityTemplate]

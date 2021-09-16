@@ -1,4 +1,4 @@
-class X2Effect_GeneralDamageReduction extends X2Effect_Persistent;
+class X2Effect_AbsorbsionFields extends X2Effect_Persistent;
 
 var float DamageReduction;
 
@@ -12,7 +12,19 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
-    return -(CurrentDamage * DamageReduction);
+	
+	local UnitValue AbsorbsionValue;
+
+	Target.GetUnitValue('AbsorptionFieldsTimes', AbsorbsionValue);
+	if(AbsorbsionValue.fValue <= 0.1)
+	{
+		return -(CurrentDamage * DamageReduction);
+	}
+	else
+	{
+		return 0;
+	}
+	
 }
 
 
