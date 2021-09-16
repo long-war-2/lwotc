@@ -42,6 +42,12 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 	if (class'Helpers_LW'.static.IsUnitInterruptingEnemyTurn(SourceUnit))
 		return false;
 
+	SourceUnit.GetUnitValue ('CloseEncountersUses', CEUsesThisTurn);
+	iUsesThisTurn = int(CEUsesThisTurn.fValue);
+	
+	if (iUsesThisTurn >= 1)
+			return false;
+
 	SourceUnit.GetUnitValue (CheapShotUsesName, CheapShotUsesThisTurn);
 	iUsesThisTurn = int(CheapShotUsesThisTurn.fValue);
 
@@ -49,11 +55,7 @@ function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStat
 		return false;
 
 
-	SourceUnit.GetUnitValue ('CloseEncountersUses', CEUsesThisTurn);
-	iUsesThisTurn = int(CEUsesThisTurn.fValue);
 
-	if (iUsesThisTurn >= 1)
-		return false;
 
 	//  match the weapon associated with Cheap Shot to the attacking weapon
 	if (kAbility.SourceWeapon == EffectState.ApplyEffectParameters.ItemStateObjectRef)

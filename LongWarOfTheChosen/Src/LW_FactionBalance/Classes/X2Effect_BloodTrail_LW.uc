@@ -80,7 +80,7 @@ private function bool ShouldApplyBonuses(XComGameState_Effect EffectState, XComG
 
 	Attacker.GetUnitValue ('CheapShotUses', CheapShotUsesThisTurn);
 
-	return DamageUnitValue.fValue > 0 && CheapShotUsesThisTurn.fValue < 1.0;
+	return DamageUnitValue.fValue > 0 && CheapShotUsesThisTurn.fValue <= 0.1f;
 }
 
 defaultproperties
