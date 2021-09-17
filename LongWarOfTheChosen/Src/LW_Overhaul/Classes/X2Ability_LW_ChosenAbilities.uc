@@ -2076,7 +2076,7 @@ static function EventListenerReturn AbilityTriggerEventListener_HighVolumeFire(
 static function X2AbilityTemplate CreateExoskeletonServos()
 {
 	local X2AbilityTemplate						Template;	
-	local X2Effect_ExoskeletonServos 					UnstoppableEffect;
+	local X2Effect_Unstoppable 					UnstoppableEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ExoskeletonServos');
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_blaze";
@@ -2094,11 +2094,11 @@ static function X2AbilityTemplate CreateExoskeletonServos()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 
-	UnstoppableEffect = new class'X2Effect_ExoskeletonServos';
-	UnstoppableEffect.BuildPersistentEffect(1, false, true,, eGameRule_PlayerTurnBegin);
-	UnstoppableEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
+	UnstoppableEffect = new class'X2Effect_Unstoppable';
+	UnstoppableEffect.BuildPersistentEffect(1, true, true,, eGameRule_PlayerTurnBegin);
+	UnstoppableEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	UnstoppableEffect.AddStatCap(eStat_Mobility,default.EXO_SERVOS_MOB,true);
-	UnstoppableEffect.AddStatCap(eStat_Mobility,default.EXO_SERVOS_MOB,false);
+	//UnstoppableEffect.AddStatCap(eStat_Mobility,default.EXO_SERVOS_MOB,false);
 	Template.AddTargetEffect(UnstoppableEffect);
 
 

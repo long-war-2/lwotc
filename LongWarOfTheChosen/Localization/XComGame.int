@@ -8316,8 +8316,8 @@ LocPromotionPopupText="This unit's mobility cannot go below <Ability:UNSTOPPABLE
 
 [ExoskeletonServos X2AbilityTemplate]
 LocFriendlyName="Exoskeleton Servos"
-LocLongDescription="At the start of the mission, This unit's mobility becomes set to 14, and can't be affected by any mobility buffs or debuffs."
-LocHelpText="At the start of the mission, This unit's mobility becomes set to 14, and can't be affected by any mobility buffs or debuffs."
+LocLongDescription="This Unit's mobility cannot go below 14."
+LocHelpText="This Unit's mobility cannot go below 14."
 LocFlyOverText="Exoskeleton Servos"
 
 
