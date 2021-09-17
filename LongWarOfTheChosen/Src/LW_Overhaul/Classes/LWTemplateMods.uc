@@ -2316,7 +2316,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('ChosenCritImmune');
 		Template.Abilities.AddItem('ChosenImmunitiesPassive');
 		Template.Abilities.AddItem('ChosenLootAbility');
-		Template.Abilities.AddItem('TriggerDamagedTeleport');
+		Template.Abilities.AddItem('TriggerDamagedTeleport_LW');
 
 		Template.InitiativePriority = -100;
 
@@ -2347,7 +2347,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('Disabler');
 		Template.Abilities.AddItem('ChosenLootAbility');
-		Template.Abilities.AddItem('TriggerDamagedTeleport');
+		Template.Abilities.AddItem('TriggerDamagedTeleport_LW');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
@@ -2373,7 +2373,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('ChosenLootAbility');
 		Template.Abilities.AddItem('Unstoppable_LW');
-		Template.Abilities.AddItem('TriggerDamagedTeleport');
+		Template.Abilities.AddItem('TriggerDamagedTeleport_LW');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
