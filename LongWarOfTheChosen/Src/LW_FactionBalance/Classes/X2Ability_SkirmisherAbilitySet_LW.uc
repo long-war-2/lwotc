@@ -36,7 +36,9 @@ static function X2AbilityTemplate AddBattlemaster()
 {
 	local X2AbilityTemplate       Template;
 
-	Template = PurePassive('Battlemaster', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_ManualOverride", false, 'eAbilitySource_Perk');
+	Template = PurePassive('Battlemaster', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Justice", false, 'eAbilitySource_Perk', false);
+	Template.AdditionalAbilities.AddItem('Justice');
+	Template.AdditionalAbilities.AddItem('SkirmisherVengeance');
 	Template.bCrossClassEligible = false;
 	return Template;
 }
@@ -68,7 +70,7 @@ static function X2AbilityTemplate AddSkirmisherFleche()
 	{
 		ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[i]);
 		if (ActionPointCost != none)
-			ActionPointCost.bConsumeAllPoints = false;
+			ActionPointCost.bConsumeAllPoints = true;
 	}
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.RECKONING_LW_COOLDOWN;

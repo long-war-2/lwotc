@@ -19,8 +19,10 @@ function int GetExtraArmorPiercing(XComGameState_Effect EffectState, XComGameSta
 	if(WeaponTemplate == none)
 		return 0;
 
-	// make sure the weapon is either a grenade or a grenade launcher
-	if(X2GrenadeTemplate(WeaponTemplate) != none || X2GrenadeLauncherTemplate(WeaponTemplate) != none)
+	// make sure the weapon is explosive or primary
+	if(AbilityState.GetMyTemplateName() == 'ThrowGrenade' || AbilityState.GetMyTemplateName() == 'LaunchGrenade' 
+	|| AbilityState.GetMyTemplateName() == 'IRI_FireRocket' || AbilityState.GetMyTemplateName() == 'IRI_FireRocketLauncher'
+	|| WeaponTemplate.InventorySlot == eInvSlot_PrimaryWeapon)
 	{
 		return Pierce;
 	}

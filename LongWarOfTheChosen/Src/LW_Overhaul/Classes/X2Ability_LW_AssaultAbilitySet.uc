@@ -22,6 +22,8 @@ var config int CHAIN_LIGHTNING_MIN_ACTION_REQ;
 var config int CHAIN_LIGHTNING_AIM_MOD;
 var config int CHAIN_LIGHTNING_TARGETS;
 
+var config int CHAINING_JOLT_TARGETS;
+
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -39,6 +41,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateChainLightningAbility());
 	//Focus ability for the Chain lightning ability
 	Templates.AddItem(CreateCLFocus('CLFocus', default.CHAIN_LIGHTNING_TARGETS));
+	Templates.AddItem(CreateCLFocus('ChainingJoltFocus', default.CHAINING_JOLT_TARGETS));
 	
 	return Templates;
 }
@@ -105,8 +108,8 @@ static function X2AbilityTemplate AddArcthrowerStun()
 	// Action Point
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
-	ActionPointCost.bConsumeAllPoints = true;
+	//ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
+	ActionPointCost.bConsumeAllPoints = false;
 	Template.AbilityCosts.AddItem(ActionPointCost);	
 
 	//Stun Effect
@@ -373,8 +376,9 @@ static function X2AbilityTemplate AddEMPulser()
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	Template.AdditionalAbilities.AddItem('ArcthrowerPassive');
-	Template.AdditionalAbilities.AddItem('EMPulserPassive');
 	Template.OverrideAbilities.AddItem('ArcthrowerStun');
+
+	Template.AdditionalAbilities.AddItem('EMPulserPassive');
 
 	return Template;	
 }
@@ -548,6 +552,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	local X2AbilityCooldown					Cooldown;	
 	local X2Condition_UnitType				ImmuneUnitCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Effect_Persistent				DisorientedEffect;
 	//local X2Effect_RemoveEffects			CleanUpEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainLightning');
@@ -613,20 +618,22 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	// Action Point
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = default.CHAIN_LIGHTNING_MIN_ACTION_REQ;
-	ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Unlimitedpower_LW');
-	ActionPointCost.bConsumeAllPoints = true;
+	ActionPointCost.bConsumeAllPoints = false;
 	Template.AbilityCosts.AddItem(ActionPointCost);	
 
 	//Stun Effect
 	StunnedEffect = CreateArcthrowerStunnedStatusEffect(100);
 	Template.AddTargetEffect(StunnedEffect);
-	Template.AddMultiTargetEffect(StunnedEffect);
+
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect();
+	Template.AddMultiTargetEffect(DisorientedEffect);
 
 	//CleanUpEffect = CreateStunnedEffectsCleanUpEffect();
 	//Template.AddTargetEffect(CleanUpEffect);
 
 
 	Template.AssociatedPassives.AddItem('Electroshock');
+	Template.AddTargetEffect(ElectroshockDisorientEffect());
 	Template.AddMultiTargetEffect(ElectroshockDisorientEffect());
 	
 	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
@@ -642,6 +649,9 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+	Template.AdditionalAbilities.AddItem('ArcthrowerPassive');
+	Template.OverrideAbilities.AddItem('ArcthrowerStun');
 
 	return Template;
 }

@@ -4,14 +4,20 @@
 //  PURPOSE: Sets up bonus armor from W2S
 //--------------------------------------------------------------------------------------- 
 
-class X2Effect_WilltoSurvive extends X2Effect_BonusArmor config (LW_SoldierSkills);
+class X2Effect_WilltoSurvive extends X2Effect_BonusArmor config (GameData_SoldierSkills);
 
-var config int W2S_HIGH_COVER_ARMOR_BONUS;
-var config int W2S_LOW_COVER_ARMOR_BONUS;
+var float WTS_DR;
 
-function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, X2Effect_ApplyWeaponDamage WeaponDamageEffect, optional XComGameState NewGameState)
+function float GetPostDefaultDefendingDamageModifier_CH(
+	XComGameState_Effect EffectState,
+	XComGameState_Unit Attacker,
+	XComGameState_Unit Target,
+	XComGameState_Ability AbilityState,
+	const out EffectAppliedData AppliedData,
+	float CurrentDamage,
+	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
+	XComGameState NewGameState)
 {
-	local XComGameState_Unit					Target;
 	local GameRulesCache_VisibilityInfo			MyVisInfo;
 	local array<GameRulesCache_VisibilityInfo>	VisInfoArray;
 	local X2AbilityToHitCalc_StandardAim		StandardHit;
@@ -21,11 +27,14 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local XComGameStateHistory					History;	
 	local X2AbilityTarget_Cursor				TargetStyle;
 	local X2AbilityMultiTarget_Radius			MultiTargetStyle;
+	local array<name> IncomingTypes;
 
-	Target = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	WeaponDamageEffect.GetEffectDamageTypes(NewGameState, AppliedData, IncomingTypes);
 
-	if (Target.IsImpaired(false) || Target.IsBurning() || Target.IsPanicked())
+	if (IncomingTypes.Find('Melee') != INDEX_NONE)
+	{
 		return 0;
+	}
 
 	StandardHit = X2AbilityToHitCalc_StandardAim(AbilityState.GetMyTemplate().AbilityToHitCalc);	
 	TargetStyle = X2AbilityTarget_Cursor(AbilityState.GetMyTemplate().AbilityTargetStyle);
@@ -46,21 +55,17 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 		}
 		if (MyVisInfo.TargetCover == CT_None)
 			return 0;
-		if (MyVisInfo.TargetCover == CT_Midlevel)
-			return -W2S_LOW_COVER_ARMOR_BONUS;
-		if (MyVisInfo.TargetCover == CT_Standing)
-			return -W2S_HIGH_COVER_ARMOR_BONUS;
+		if (MyVisInfo.TargetCover == CT_Midlevel || MyVisInfo.TargetCover == CT_Standing)
+        return -CurrentDamage * WTS_DR;
 	}
 	else
 	{
 		if(X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, MyVisInfo))
 		{
-			if (MyVisInfo.TargetCover == CT_None) 
-				return 0;
-			if (MyVisInfo.TargetCover == CT_Midlevel)
-				return -W2S_LOW_COVER_ARMOR_BONUS;
-			if (MyVisInfo.TargetCover == CT_Standing)
-				return -W2S_HIGH_COVER_ARMOR_BONUS;				
+            if (MyVisInfo.TargetCover == CT_None)
+			return 0;
+            if (MyVisInfo.TargetCover == CT_Midlevel || MyVisInfo.TargetCover == CT_Standing)
+            return -CurrentDamage * WTS_DR;
 		}
 	}
     return 0;     

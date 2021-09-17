@@ -1126,7 +1126,7 @@ TacticalText="<Bullet/> Les armes des Faucheurs sont très efficaces de près, e
 AbilityDescName="arbalère"
 
 ; LWOTC translated (2)
-[Vektor_LS X2WeaponTemplate]
+[VektorRifle_LS X2WeaponTemplate]
 FriendlyName="Fusil Vektor laser"
 FriendlyNamePlural="Fusil Vektor laser"
 BriefSummary="Le fusil Vektor laser est doté de renforts en alliage et d'une source d'énergie compacte, qui le rendent particulièrement redoutable dans les mains d'un sniper expérimenté."
@@ -1138,7 +1138,7 @@ AbilityDescName="fusil Vektor"
 TacticalText="<Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil temnotique."
 
 ; LWOTC translated (2)
-[Vektor_CG X2WeaponTemplate]
+[VektorRifle_CG X2WeaponTemplate]
 FriendlyName="Lance temnotique"
 FriendlyNamePlural="Lance temnotiques"
 BriefSummary="La lance temnotique est une évolution du fusil temnotique, associée à la technologie gauss."

@@ -1,0 +1,4 @@
+[UIScreenListener_RookiesChoiceWotC]
+strCCMenuOption="Promote to Class"
+strCCTooltip=""
+CCListItemDescription="Promote the soldier to one of a limited selection of classes"

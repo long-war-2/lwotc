@@ -397,7 +397,7 @@ LocHelpText="Permet d'effectuer une action après un sprint."
 LocPromotionPopupText="<Bullet/> La capacité Course et tir permet aux soldats de franchir rapidement la distance qui les sépare de leur cible ou de contourner facilement l'ennemi.<br/><Bullet/> Temps de rechargement de <Ability:RUN_AND_GUN_COOLDOWN/> tour(s).<br/>"
 ; End translated
 
-[Suppression_LW X2AbilityTemplate]
+[Suppression X2AbilityTemplate]
 LocFriendlyName="Suppression"
 LocFlyOverText="Suppression"
 LocLongDescription="Tir de barrage qui bloque une cible et confère un tir réflexe si celle-ci se déplace. Bloque également certaines de ses capacités et lui inflige une pénalité de -<Ability:SUPPRESSIONPENALTY/> en visée."

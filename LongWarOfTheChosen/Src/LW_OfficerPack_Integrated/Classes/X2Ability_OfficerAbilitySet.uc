@@ -9,7 +9,7 @@ var config int GETSOME_ACTIONPOINTCOST;
 var config int GETSOME_CRIT_BONUS;
 var config int GETSOME_CHARGES;
 var config int GETSOME_DURATION;
-var config int FALLBACK_COOLDOWN;
+var config int FALLBACK_CHARGES;
 var config int OSCARMIKE_ACTIONPOINTCOST;
 var config int OSCARMIKE_CHARGES;
 var config int OSCARMIKE_DURATION;
@@ -76,7 +76,8 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(AddLeadershipAbility());
 	Templates.AddItem(AddEspritdeCorpsAbility());
-
+	Templates.AddItem(AddResupplyAbility());
+	
 	Templates.AddItem(PurePassive('TrialByFire', "img:///UILibrary_LW_Overhaul.UIPerk_TrialByFire", true));
 
 	// Add the command bonus range ability templates, one for each officer rank.
@@ -444,12 +445,12 @@ static function X2AbilityTemplate AddFocusFireAbility()
 static function X2AbilityTemplate AddFallBackAbility()
 {
 	local X2AbilityTemplate                 Template;
-	local X2AbilityCooldown					Cooldown;
 	local X2Condition_Visibility			TargetVisibilityCondition;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
 	local X2Effect_FallBack					FallBackEffect;
 	local X2Condition_UnitActionPoints		ValidTargetCondition;
-
+	local X2AbilityCharges		Charges;
+	local X2AbilityCost_Charges	ChargeCost;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'FallBack');
 	Template.IconImage = "img:///UILibrary_LW_OfficerPack.LWOfficers_AbilityFallBack";
 	Template.AbilitySourceName = default.OfficerSourceName;
@@ -459,9 +460,13 @@ static function X2AbilityTemplate AddFallBackAbility()
 
 	Template.AbilityCosts.AddItem(default.FreeActionCost);
 
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.FALLBACK_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
+	Charges = new class'X2AbilityCharges';
+    Charges.InitialCharges = default.FALLBACK_CHARGES;
+    Template.AbilityCharges = Charges;
+    ChargeCost = new class'X2AbilityCost_Charges';
+    ChargeCost.NumCharges = 1;
+    Template.AbilityCosts.AddItem(ChargeCost);
+
 
 	Template.AbilityToHitCalc = default.Deadeye;
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
@@ -1530,6 +1535,173 @@ static function ConfigureCommandRangeMultiTargetStyle(X2AbilityTemplate Template
 	Template.TargetingMethod = class'X2TargetingMethod_CommandRange';
 }
 
+static function X2AbilityTemplate AddResupplyAbility()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityCharges					Charges;
+	local X2Condition_UnitProperty			MultiTargetProperty;
+	local X2AbilityCost_Charges				ChargeCost;
+	local X2Condition_UnitActionPoints ValidTargetCondition;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Resupply_LW');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_ammo_defense2";
+	Template.AbilitySourceName = default.OfficerSourceName;
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.bSkipFireAction = true;
+	Template.bShowActivation = true;
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = default.OSCARMIKE_ACTIONPOINTCOST;
+	ActionPointCost.bfreeCost = false;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Charges = new class'X2AbilityCharges';
+    Charges.InitialCharges = default.OSCARMIKE_CHARGES;
+    Template.AbilityCharges = Charges;
+    ChargeCost = new class'X2AbilityCost_Charges';
+    ChargeCost.NumCharges = 1;
+    Template.AbilityCosts.AddItem(ChargeCost);
+
+	Template.AbilityToHitCalc = default.Deadeye;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityTargetStyle = new class 'X2AbilityTarget_Self';
+
+	MultiTargetProperty = new class'X2Condition_UnitProperty';
+	MultiTargetProperty.ExcludeAlive = false;
+    MultiTargetProperty.ExcludeDead = true;
+    MultiTargetProperty.ExcludeHostileToSource = true;
+    MultiTargetProperty.ExcludeFriendlyToSource = false;
+    MultiTargetProperty.RequireSquadmates = true;
+    MultiTargetProperty.ExcludePanicked = true;
+	MultiTargetProperty.ExcludeRobotic = true;
+	MultiTargetProperty.ExcludeStunned = true;
+	MultiTargetProperty.ExcludeCivilian = true;
+	MultiTargetProperty.TreatMindControlledSquadmateAsHostile = true;
+
+	ConfigureCommandRangeMultiTargetStyle(Template, true);
+	Template.AbilityMultiTargetConditions.AddItem(MultiTargetProperty);
+
+	ValidTargetCondition = new class'X2Condition_UnitActionPoints';
+	ValidTargetCondition.AddActionPointCheck(0,class'X2CharacterTemplateManager'.default.OverwatchReserveActionPoint,true,eCheck_LessThanOrEqual);
+	Template.AbilityMultiTargetConditions.AddItem(ValidTargetCondition);
+
+	ValidTargetCondition = new class'X2Condition_UnitActionPoints';
+	ValidTargetCondition.AddActionPointCheck(0,'Suppression',true,eCheck_LessThanOrEqual);
+	Template.AbilityMultiTargetConditions.AddItem(ValidTargetCondition);
+
+	ValidTargetcondition = new class'X2Condition_UnitActionPoints';
+	ValidTargetCondition.AddActionPointCheck(0,,false,eCheck_LessThanOrEqual);
+	Template.AbilityMultiTargetConditions.AddItem(ValidTargetCondition);
+
+	ValidTargetCondition = new class'X2Condition_UnitActionPoints';
+	ValidTargetCondition.AddActionPointCheck(0,class'X2Ability_SharpshooterAbilitySet'.default.KillZoneReserveType,true,eCheck_LessThanOrEqual);
+	Template.AbilityMultiTargetConditions.AddItem(ValidTargetCondition);
+
+
+	//add command range
+
+	Template.AbilityConfirmSound = "Unreal2DSounds_OfficerSchoolPurchase";
+
+	Template.BuildNewGameStateFn = ReloadAbility_BuildGameState;
+	Template.BuildVisualizationFn = ReloadAbility_BuildVisualization;
+
+	return Template;
+}
+
+simulated function ReloadAbility_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameStateContext_Ability  Context;
+	local StateObjectReference          ShootingUnitRef;	
+	local X2Action_PlayAnimation		PlayAnimation;
+
+	local VisualizationActionMetadata        EmptyTrack;
+	local VisualizationActionMetadata        ActionMetadata;
+	local int i;
+	local XComGameState_Ability Ability;
+	local X2Action_PlaySoundAndFlyOver SoundAndFlyover;
+	local X2Action_MarkerNamed SyncAction;
+	History = `XCOMHISTORY;
+
+	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+
+	SyncAction = X2Action_MarkerNamed(class'X2Action_MarkerNamed'.static.AddToVisualizationTree(ActionMetadata, Context, false));
+	SyncAction.SetName("ReloadStart");
+
+	ShootingUnitRef = Context.InputContext.SourceObject;
+
+	//Configure the visualization track for the shooter
+	//****************************************************************************************
+	ActionMetadata = EmptyTrack;
+	ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(ShootingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(ShootingUnitRef.ObjectID);
+	ActionMetadata.VisualizeActor = History.GetVisualizer(ShootingUnitRef.ObjectID);
+					
+	PlayAnimation = X2Action_PlayAnimation(class'X2Action_PlayAnimation'.static.AddToVisualizationTree(ActionMetadata, Context, false, SyncAction));
+	PlayAnimation.Params.AnimName = 'HL_Reload';
+
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID));
+	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false, SyncAction));
+	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, "", Ability.GetMyTemplate().ActivationSpeech, eColor_Good);
+
+
+	for (i = 0; i < Context.InputContext.MultiTargets.Length; ++i)
+	{
+	ShootingUnitRef = Context.InputContext.MultiTargets[i];
+
+	ActionMetadata = EmptyTrack;
+	ActionMetadata.StateObject_OldState = History.GetGameStateForObjectID(ShootingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	ActionMetadata.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(ShootingUnitRef.ObjectID);
+	ActionMetadata.VisualizeActor = History.GetVisualizer(ShootingUnitRef.ObjectID);
+
+	PlayAnimation = X2Action_PlayAnimation(class'X2Action_PlayAnimation'.static.AddToVisualizationTree(ActionMetadata, Context, false,SyncAction));
+	PlayAnimation.Params.AnimName = 'HL_Reload';
+
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID));
+	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(ActionMetadata, Context, false,SyncAction));
+	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, "", Ability.GetMyTemplate().ActivationSpeech, eColor_Good);
+
+	}
+
+		//****************************************************************************************
+}
+
+simulated function XComGameState ReloadAbility_BuildGameState( XComGameStateContext Context )
+{
+	local XComGameState NewGameState;
+	local XComGameState_Unit UnitState;
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameState_Ability AbilityState;
+	local XComGameState_Item WeaponState, NewWeaponState;
+	local int i;
+
+	NewGameState = `XCOMHISTORY.CreateNewGameState(true, Context);	
+	AbilityContext = XComGameStateContext_Ability(Context);	
+	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID( AbilityContext.InputContext.AbilityRef.ObjectID ));
+
+	WeaponState = AbilityState.GetSourceWeapon();
+	NewWeaponState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', WeaponState.ObjectID));
+
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));	
+
+	NewWeaponState.Ammo = NewWeaponState.GetClipSize();
+
+
+	for (i = 0; i < AbilityContext.InputContext.MultiTargets.Length; ++i)
+	{
+		UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', AbilityContext.InputContext.MultiTargets[i].ObjectID));	
+		WeaponState = UnitState.GetPrimaryWeapon();
+		NewWeaponState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', WeaponState.ObjectID));
+	
+		NewWeaponState.Ammo = NewWeaponState.GetClipSize();
+	}
+	return NewGameState;	
+}
 
 DefaultProperties
 {

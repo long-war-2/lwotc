@@ -1061,7 +1061,7 @@ TacticalText="<Bullet/> 戰術弩在近距離射擊時會受到命中懲罰，�
 AbilityDescName="戰術弩"
 
 ; LWOTC Needs Translation (2)
-[Vektor_LS X2WeaponTemplate]
+[VektorRifle_LS X2WeaponTemplate]
 FriendlyName="雷射維克托步槍"
 FriendlyNamePlural="雷射維克托步槍"
 BriefSummary="這種實驗性的雷射武器設計起源於舊世界的俄羅斯，雷射維克托步槍的性能接近於死神使用的傳統神槍手步槍。目前更新了現代合金外殼與緊湊型電源，這在熟練的狙擊手手中是一把相當強大的武器。"
@@ -1073,7 +1073,7 @@ AbilityDescName="維克托步槍"
 TacticalText="<Bullet/> 維克托步槍武器射程在近距離射擊時會受到命中懲罰，但可以在小隊視野射程內使用。<br/><Bullet/> 超出小隊視野4格距離時，武器的命中懲罰將逐步增加。<br/><Bullet/> 使用從敵人身上掠奪的升級配件來提高維克托步槍的戰術效果。"
 
 ; LWOTC Needs Translation (2)
-[Vektor_CG X2WeaponTemplate]
+[VektorRifle_CG X2WeaponTemplate]
 FriendlyName="夜蛾長矛"
 FriendlyNamePlural="夜蛾長矛"
 BriefSummary="儘管我們的螺旋炮技術具有強大的火力，但到目前為止，由於缺乏可靠性和維護成本高，死神不願將其改造用於舊的夜蛾步槍。 這種新武器是折衷方案，我們已盡力將在野外工作時可能發生故障或破裂的零件數量減至最低。"

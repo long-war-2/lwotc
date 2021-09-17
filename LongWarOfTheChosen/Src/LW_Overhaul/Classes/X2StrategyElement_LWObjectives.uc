@@ -5,6 +5,9 @@
 //---------------------------------------------------------------------------------------
 class X2StrategyElement_LWObjectives extends X2StrategyElement_DefaultObjectives config(LW_Overhaul);
 
+var config int BLACKSITE_INTEL;
+var config int FORGE_INTEL;
+var config int PSIGATE_INTEL;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Objectives;
@@ -25,6 +28,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Objectives.AddItem(CreateLW_T2_M1_N1_RevealBlacksiteObjectiveTemplate());
 	Objectives.AddItem(CreateLW_T2_M1_N2_RevealAvatarProjectTemplate());
 
+	Objectives.AddItem(CreateT2_M3_CompleteForgeMissionTemplate_LW()); //Add rewards to, and make GP happen earlier
+	Objectives.AddItem(CreateT4_M1_CompleteStargateMissionTemplate_LW()); //Add rewards to, and make GP happen earlier
+	
 	return Objectives;
 }
 
@@ -253,16 +259,24 @@ static function CreateBlacksiteMission_LW(XComGameState NewGameState, XComGameSt
 {
 	local array<XComGameState_Reward> Rewards;
 	local X2StrategyElementTemplateManager StratMgr;
-	local X2RewardTemplate RewardTemplate;
-	local XComGameState_Reward RewardState;
+	local X2RewardTemplate RewardTemplate, RewardTemplateIntel;
+	local XComGameState_Reward RewardState, RewardStateIntel;
 	local XComGameState_MissionSite MissionState;
 	local XComGameState_WorldRegion RegionState;
 
 	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
-	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_None')); // no rewards for completing story objectives
+
+	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Supplies'));
 	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+	RewardState.SetReward(, GetBlacksiteSupplyAmount());
 	Rewards.AddItem(RewardState);
-	MissionState = CreateMission(NewGameState, Rewards, 'MissionSource_BlackSite', 8); // as far away from player as possible, because reasons
+
+	RewardTemplateIntel = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Intel'));
+	RewardStateIntel = RewardTemplateIntel.CreateInstanceFromTemplate(NewGameState);
+	RewardStateIntel.SetReward(, default.BLACKSITE_INTEL);
+
+	Rewards.AddItem(RewardStateIntel);
+	MissionState = CreateMission(NewGameState, Rewards, 'MissionSource_BlackSite', 0); // as far away from player as possible, because reasons
 
 	RegionState = MissionState.GetWorldRegion();
 	RegionState = XComGameState_WorldRegion(NewGameState.CreateStateObject(class'XComGameState_WorldRegion', RegionState.ObjectID));
@@ -307,4 +321,226 @@ function RevealAvatarProject()
 	CinematicComplete();
 
 	`HQPRES.UIFortressReveal();
+}
+
+static function X2DataTemplate CreateT2_M3_CompleteForgeMissionTemplate_LW()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'T2_M3_CompleteForgeMission');
+	Template.bMainObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Forged";
+
+	Template.NextObjectives.AddItem('T2_M4_BuildStasisSuit');
+
+	Template.AssignObjectiveFn = CreateForgeMission_LW;
+	Template.CompletionRequirements.RequiredItems.AddItem('StasisSuitComponent');
+	Template.CompletionEvent = 'PostMissionDone';
+	
+
+	Template.NagDelayHours = 336;
+
+	Template.AddNarrativeTrigger("X2NarrativeMoments.Strategy.GP_ForgeMissionScreen", NAW_OnReveal, '', '', ELD_OnStateSubmitted, NPC_Once, '', ShowShadowProjectResearchReport);
+
+	return Template;
+}
+
+static function CreateForgeMission_LW(XComGameState NewGameState, XComGameState_Objective ObjectiveState)
+{
+	local XComGameState_MissionSite MissionState;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameStateHistory History;
+	local array<XComGameState_Reward> Rewards;
+	local X2StrategyElementTemplateManager StratMgr;
+	local X2RewardTemplate RewardTemplate, RewardTemplateIntel;
+	local XComGameState_Reward RewardState, RewardStateIntel;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local int SuppliesToAdd;
+	local bool bFound;
+
+	bFound = false;
+	SuppliesToAdd = 0;
+	History = `XCOMHISTORY;
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+	if(XComHQ.IsObjectiveCompleted('T1_M4_S1_StudyCodexBrainPt1'))
+	{
+		SuppliesToAdd = GetPsiGateForgeSupplyAdd();
+	}
+
+	foreach NewGameState.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+	{
+		if(MissionState.Source == 'MissionSource_Forge')
+		{
+			MissionState.Available = true;
+			bFound = true;
+			break;
+		}
+	}
+
+	if(!bFound)
+	{
+		foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+		{
+			if(MissionState.Source == 'MissionSource_Forge')
+			{
+				MissionState = XComGameState_MissionSite(NewGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionState.ObjectID));
+				MissionState.Available = true;
+				bFound = true;
+				break;
+			}
+		}
+	}
+
+	if(bFound)
+	{
+		// Flag the region to update its shortest path to a player-contacted region, used for region link display states
+		RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(MissionState.Region.ObjectID));
+
+		if(RegionState == none)
+		{
+			RegionState = XComGameState_WorldRegion(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion', MissionState.Region.ObjectID));
+		}
+		
+		RegionState.SetShortestPathToContactRegion(NewGameState);
+
+		if(SuppliesToAdd != 0)
+		{
+			RewardState = XComGameState_Reward(NewGameState.GetGameStateForObjectID(MissionState.Rewards[0].ObjectID));
+
+			if(RewardState == none)
+			{
+				RewardState = XComGameState_Reward(NewGameState.ModifyStateObject(class'XComGameState_Reward', MissionState.Rewards[0].ObjectID));
+			}
+
+			RewardState.SetReward(, (GetPsiGateForgeSupplyAmount() + SuppliesToAdd));
+		}
+	}
+	else
+	{
+		// Should only reach this point on very old saves
+		StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+		RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Supplies'));
+		RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+		RewardState.SetReward(, (GetPsiGateForgeSupplyAmount() + SuppliesToAdd));
+		Rewards.AddItem(RewardState);
+
+		RewardTemplateIntel = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Intel'));
+		RewardStateIntel = RewardTemplateIntel.CreateInstanceFromTemplate(NewGameState);
+		RewardStateIntel.SetReward(, default.FORGE_INTEL);
+		Rewards.AddItem(RewardStateIntel);
+
+		CreateMission(NewGameState, Rewards, 'MissionSource_Forge', 1);
+	}
+}
+static function X2DataTemplate CreateT4_M1_CompleteStargateMissionTemplate_LW()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'T4_M1_CompleteStargateMission');
+	Template.bMainObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_PsiGate";
+
+	Template.NextObjectives.AddItem('T4_M2_ConstructPsiGate');
+
+	Template.AssignObjectiveFn = CreateStargateMission_LW;
+	Template.CompletionRequirements.RequiredItems.AddItem('PsiGateArtifact');
+	Template.CompletionEvent = 'PostMissionDone';
+	
+	Template.NagDelayHours = 336;
+
+	Template.AddNarrativeTrigger("X2NarrativeMoments.TACTICAL.goldenpath.GP_FirstPsiGateAppears_Tygan", NAW_OnReveal, 'PsiGateSeen', '', ELD_OnStateSubmitted, NPC_Once, '');
+
+	return Template;
+}
+
+
+static function CreateStargateMission_LW(XComGameState NewGameState, XComGameState_Objective ObjectiveState)
+{
+	local XComGameState_MissionSite MissionState;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameStateHistory History;
+	local array<XComGameState_Reward> Rewards;
+	local X2StrategyElementTemplateManager StratMgr;
+	local X2RewardTemplate RewardTemplate, RewardTemplateIntel;
+	local XComGameState_Reward RewardState, RewardStateIntel;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local int SuppliesToAdd;
+	local bool bFound;
+
+	bFound = false;
+	SuppliesToAdd = 0;
+	History = `XCOMHISTORY;
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+	if(XComHQ.IsObjectiveCompleted('T2_M2_StudyBlacksiteData'))
+	{
+		SuppliesToAdd = GetPsiGateForgeSupplyAdd();
+	}
+
+	foreach NewGameState.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+	{
+		if(MissionState.Source == 'MissionSource_PsiGate')
+		{
+			MissionState.Available = true;
+			bFound = true;
+			break;
+		}
+	}
+
+	if(!bFound)
+	{
+		foreach History.IterateByClassType(class'XComGameState_MissionSite', MissionState)
+		{
+			if(MissionState.Source == 'MissionSource_PsiGate')
+			{
+				MissionState = XComGameState_MissionSite(NewGameState.ModifyStateObject(class'XComGameState_MissionSite', MissionState.ObjectID));
+				MissionState.Available = true;
+				bFound = true;
+				break;
+			}
+		}
+	}
+
+	if(bFound)
+	{
+		// Flag the region to update its shortest path to a player-contacted region, used for region link display states
+		RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(MissionState.Region.ObjectID));
+
+		if(RegionState == none)
+		{
+			RegionState = XComGameState_WorldRegion(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion', MissionState.Region.ObjectID));
+		}
+
+		RegionState.SetShortestPathToContactRegion(NewGameState);
+
+		if(SuppliesToAdd != 0)
+		{
+			RewardState = XComGameState_Reward(NewGameState.GetGameStateForObjectID(MissionState.Rewards[0].ObjectID));
+
+			if(RewardState == none)
+			{
+				RewardState = XComGameState_Reward(NewGameState.ModifyStateObject(class'XComGameState_Reward', MissionState.Rewards[0].ObjectID));
+			}
+
+			RewardState.SetReward(, (GetPsiGateForgeSupplyAmount() + SuppliesToAdd));
+		}
+	}
+	else
+	{
+		// Should only reach this point on very old saves
+		StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+		RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Supplies'));
+		RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+		RewardState.SetReward(, (GetPsiGateForgeSupplyAmount() + SuppliesToAdd));
+		Rewards.AddItem(RewardState);
+
+		RewardTemplateIntel = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_Intel'));
+		RewardStateIntel = RewardTemplateIntel.CreateInstanceFromTemplate(NewGameState);
+		RewardStateIntel.SetReward(, default.PSIGATE_INTEL);
+		Rewards.AddItem(RewardStateIntel);
+
+
+		CreateMission(NewGameState, Rewards, 'MissionSource_PsiGate', 1);
+	}
 }

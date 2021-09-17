@@ -1061,7 +1061,7 @@ TacticalText="<Bullet/> 战术弩在近距离射击时会受到命中惩罚，�
 AbilityDescName="战术弩"
 
 ; LWOTC Needs Translation (2)
-[Vektor_LS X2WeaponTemplate]
+[VektorRifle_LS X2WeaponTemplate]
 FriendlyName="激光维克托步枪"
 FriendlyNamePlural="激光维克托步枪"
 BriefSummary="这种实验性的激光武器设计起源于旧世界的俄罗斯，激光维克托步枪的性能接近于死神使用的传统神枪手步枪。目前更新了现代合金外壳与紧凑型电源，这在熟练的狙击手手中是一把相当强大的武器。"
@@ -1073,7 +1073,7 @@ AbilityDescName="维克托步枪"
 TacticalText="<Bullet/> 维克托步枪武器射程在近距离射击时会受到命中惩罚，但可以在小队视野射程内使用。<br/><Bullet/> 超出小队视野4格距离时，武器的命中惩罚将逐步增加。<br/><Bullet/> 使用从敌人身上掠夺的升级配件来提高维克托步枪的战术效果。"
 
 ; LWOTC Needs Translation (2)
-[Vektor_CG X2WeaponTemplate]
+[VektorRifle_CG X2WeaponTemplate]
 FriendlyName="夜蛾长矛"
 FriendlyNamePlural="夜蛾长矛"
 BriefSummary="尽管我们的螺旋炮技术具有强大的火力，但到目前为止，由于缺乏可靠性和维护成本高，死神不愿将其改造用于旧的夜蛾步枪。 这种新武器是折衷方案，我们已尽力将在野外工作时可能发生故障或破裂的零件数量减至最低。"
@@ -6577,7 +6577,6 @@ LocPromotionPopupText="<Bullet/> 慰藉的作用范围有4格。<br/><Bullet/> �
 ; End Translation
 
 ; LWOTC Needs Translation
-<<<<<<< HEAD
 [AssassinBladestorm X2AbilityTemplate]
 LocFriendlyName="剑刃风暴"
 LocLongDescription="对所有进入或从近战攻击范围内发起攻击的敌人进行自由<Ability:SecondaryWeaponName/>攻击。"
@@ -6592,8 +6591,6 @@ LocHelpText="对所有进入或从近战攻击范围内发起攻击的敌人进�
 LocFlyOverText="剑刃风暴"
 LocPromotionPopupText="<Bullet/> 敌人在相邻位置开始回合且打算攻击<Ability:ClassName/>时会触发剑刃风暴。<br/><Bullet/> 如果敌人在回合开始时不在相邻位置，则剑刃风暴在敌人进入近战范围内后触发。<br/>"
 
-=======
->>>>>>> 998d3d12... Apply suggestions from code review
 [TemplarBallisticShield_CV X2WeaponTemplate]
 FriendlyName="MK1 圣殿骑士护盾"
 FriendlyNamePlural="MK1 圣殿骑士护盾"

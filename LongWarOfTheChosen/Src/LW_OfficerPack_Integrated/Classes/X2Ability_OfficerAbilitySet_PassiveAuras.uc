@@ -5,7 +5,9 @@
 //--------------------------------------------------------------------------------------- 
 class X2Ability_OfficerAbilitySet_PassiveAuras extends X2Ability config (LW_OfficerPack);
 
-
+var config int DEFILADE_DEF;
+var config int DEFILADE_WILL;
+var config int DEFILADE_CRIT_DEF;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -34,10 +36,11 @@ static function array<X2DataTemplate> CreateTemplates()
 static function X2AbilityTemplate AddDefiladeAbility()
 {
 	local X2AbilityTemplate                 Template;
-	local X2Effect_Defilade					DefiladeEffect;
+	local XMBEffect_ConditionalBonus		CritDefEffect;
 	local X2AbilityMultiTarget_AllAllies	MultiTargetStyle;
 	local X2Condition_UnitProperty			MultiTargetProperty;
-
+	local XMBCondition_CoverType	CoverCondition;
+	local X2AbilityTrigger_EventListener  EventListener;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Defilade');
 	Template.IconImage = "img:///UILibrary_LW_OfficerPack.LWOfficers_AbilityHitTheDirt"; 
 	Template.AbilitySourceName = class'X2Ability_OfficerAbilitySet'.default.OfficerSourceName; 
@@ -49,6 +52,10 @@ static function X2AbilityTemplate AddDefiladeAbility()
 
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
+	CoverCondition = new class'XMBCondition_CoverType';
+	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	MultiTargetProperty = new class'X2Condition_UnitProperty';
 	MultiTargetProperty.ExcludeAlive = false;
     MultiTargetProperty.ExcludeDead = true;
@@ -58,17 +65,46 @@ static function X2AbilityTemplate AddDefiladeAbility()
     MultiTargetProperty.ExcludePanicked = true;
 	MultiTargetProperty.ExcludeRobotic = true;
 	MultiTargetProperty.ExcludeStunned = true;
+	MultiTargetProperty.TreatMindControlledSquadmateAsHostile = true;
+	MultiTargetProperty.ExcludeUnrevealedAI = true;
 	Template.AbilityMultiTargetConditions.AddItem(MultiTargetProperty);
 
 	Template.AbilityTargetStyle = default.SelfTarget;
 	MultiTargetStyle = new class'X2AbilityMultiTarget_AllAllies';
-	MultiTargetStyle.bAddPrimaryTargetAsMultiTarget = false;
+	MultiTargetStyle.bAddPrimaryTargetAsMultiTarget = true;
 	Template.AbilityMultiTargetStyle = MultiTargetStyle;
+/*
+	DefenseBonus = new class'XMBEffect_ConditionalBonus';
+	DefenseBonus.AddToHitAsTargetModifier(-default.DEFILADE_DEF, eHit_Success);
+	DefenseBonus.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
+	DefenseBonus.AbilityTargetConditionsAsTarget.AddItem(CoverCondition);
+	DefenseBonus.TargetConditions.AddItem(default.GameplayVisibilityCondition);
+	DefenseBonus.DuplicateResponse = eDupe_Ignore;
+	DefenseBonus.bRemoveWhenSourceDies = true;
+	DefenseBonus.bRemoveWhenTargetDies = true;
+	DefenseBonus.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	DefenseBonus.EffectName = 'DefiladeDef';
 
-	DefiladeEffect = new class'X2Effect_Defilade';
-	DefiladeEffect.BuildPersistentEffect (1, true, false);
-	DefiladeEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
-	Template.AddMultiTargetEffect(DefiladeEffect);
+	Template.AddMultiTargetEffect(DefenseBonus);
+	*/
+	CritDefEffect = new class'XMBEffect_ConditionalBonus';
+	CritDefEffect.AddToHitAsTargetModifier(-default.DEFILADE_CRIT_DEF, eHit_Crit);
+	CritDefEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
+	CritDefEffect.TargetConditions.AddItem(default.GameplayVisibilityCondition);
+	CritDefEffect.EffectName = 'DefiladeCritDef';
+	CritDefEffect.DuplicateResponse = eDupe_Ignore;
+	CritDefEffect.bRemoveWhenSourceDies = true;
+	CritDefEffect.bRemoveWhenTargetDies = true;
+	CritDefEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddMultiTargetEffect(CritDefEffect);
+
+	//Just in case
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventID = 'PlayerTurnBegun';
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.Filter = eFilter_Player;
+	Template.AbilityTriggers.AddItem(EventListener);
 
 	Template.AdditionalAbilities.AddItem('DefiladePassive');
 

@@ -115,11 +115,20 @@ var const name QuickZapEffectName;
 var const name VampUnitValue;
 var const string CombatReadinessBonusText;
 
-var config int CRUSADER_WOUND_HP_REDUCTTION;
+var config float CRUSADER_WOUND_HP_REDUCTION;
 
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
 var config array<name> BANZAI_EFFECTS_TO_REMOVE;
 
+var config array<name> SERPENTINE_ABILITIES;
+
+var config int ENTWINE_DEF;
+
+var config float GRIT_BASE_DR;
+
+var config float REACTIVE_SENSORS_DAMAGE_REDUCTION;
+
+var config float SHREDDER_ROUNDS_DMG_PENALTY;
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -203,8 +212,27 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(BanzaiPassive());
 	Templates.AddItem(Magnum());
 	Templates.AddItem(CrusaderRage());
+	Templates.AddItem(Entwine());
+	Templates.AddItem(Serpentine());
+	Templates.AddItem(Dominant());
+	Templates.AddItem(Grit());
+	Templates.AddItem(CreateQuickRetreat());
+	Templates.AddItem(CreateQuickRetreatPassive());
+	Templates.AddItem(CreateAbsorptionFields());
+	Templates.AddItem(CreateAbsorptionFieldsTrigger());
+	Templates.AddItem(CreateBullRush());
+	Templates.AddItem(CreateBullRushPassive());
+	Templates.AddItem(AddProtectiveServosAbility());
+	Templates.AddItem(AddProtectiveServosPassive());
+	Templates.AddItem(AddSuperiorHolyWarrior());
+	Templates.AddItem(AddSuperDuperRobot());
+	Templates.AddItem(ShredderRoundsDamagePenalty());
 
 
+	Templates.AddItem(PrimaryGrenadeLauncherPassive('PrimaryGrenadeLauncher_CV'));
+	Templates.AddItem(PrimaryGrenadeLauncherPassive('PrimaryGrenadeLauncher_MG'));
+	Templates.AddItem(PrimaryGrenadeLauncherPassive('PrimaryGrenadeLauncher_BM'));
+	Templates.AddItem(CreateGremlinAnimationsPassive());
 	
 	
 	return Templates;
@@ -619,12 +647,13 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	local X2AbilityTemplate										Template;
 	local X2Condition_Visibility								VisCondition;
 	local X2AbilityCost_ActionPoints							ActionPointCost;
-	local X2AbilityCooldown										Cooldown;
+	local X2AbilityCooldown_ABCProtocol							Cooldown;
 	local X2Condition_UnitProperty								TargetProperty;
 	local X2AbilityTarget_Single								PrimaryTarget;
 	local X2AbilityMultiTarget_Radius							RadiusMultiTarget;
 	local X2Condition_UnitInventory								InventoryCondition;
-
+	local X2Condition_AbilityProperty StingCondition;
+	local X2Effect_Stunned StunnedEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'BlindingProtocol_LW');
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_BlindingProtocol"; 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -637,7 +666,7 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	Template.bSkipFireAction = true;
 	Template.bShowActivation = true;
 	Template.bStationaryWeapon = true;
-	Template.CustomSelfFireAnim = 'NO_DefenseProtocolA';
+	Template.CustomSelfFireAnim = 'NO_BlindingProtocol';
 	Template.bFrameEvenWhenUnitIsHidden = true;
 	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
 	Template.bCrossClassEligible = false;
@@ -692,13 +721,20 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	// Ability's Action Point cost and Cooldown
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.bConsumeAllPoints = true;
-	ActionPointCost.DoNotConsumeAllEffects.AddItem('LW_ABCProtocols_DoNotConsumeAllActionsEffect');
+	ActionPointCost.bConsumeAllPoints = false;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.BLINDING_PROTOCOL_COOLDOWN;
+	Cooldown = new class'X2AbilityCooldown_ABCProtocol';
 	Template.AbilityCooldown = Cooldown;
+
+	StingCondition = new class'X2Condition_AbilityProperty';
+	StingCondition.OwnerHasSoldierAbilities.AddItem('AdvancedRobotics_LW');
+
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(class'X2Item_StingGrenade'.default.STING_GRENADE_STUN_LEVEL, class'X2Item_StingGrenade'.default.STING_GRENADE_STUN_CHANCE, false);
+	StunnedEffect.TargetConditions.AddItem(StingCondition);
+	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.StunnedFriendlyName, class'X2StatusEffects'.default.StunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
+	Template.AddMultiTargetEffect(StunnedEffect);
+	Template.AddTargetEffect(StunnedEffect);
 
 	// Apply the Disoriented effect to valid targets
 	Template.AddMultiTargetEffect(class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false));
@@ -708,7 +744,7 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
-
+	Template.AdditionalAbilities.AddItem('GremlinBonusAnim');
 	Template.BuildNewGameStateFn = class'X2Ability_SpecialistAbilitySet'.static.AttachGremlinToTarget_BuildGameState;
 	Template.BuildVisualizationFn = ProtocolSingleTarget_BuildVisualization;
 	//Template.BuildVisualizationFn = class'X2Ability_SpecialistAbilitySet'.static.GremlinSingleTarget_BuildVisualization;
@@ -2060,7 +2096,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	local array<name>                       SkipExclusions;
 	local X2Condition_Visibility            TargetVisibilityCondition;
 	local X2AbilityCost_Ammo				AmmoCost;
-
+	local X2Condition_UnitEffects	EffectsCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'PrimaryReturnFireShot');
 
@@ -2077,6 +2113,10 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	AmmoCost.iAmmo = 1;
 	Template.AbilityCosts.AddItem(AmmoCost);
 	
+	EffectsCondition = new class'X2Condition_UnitEffects';
+	EffectsCondition.AddExcludeEffect('HunkerDown', 'AA_UnitIsImmune');
+	Template.AbilityShooterConditions.AddItem(EffectsCondition);
+
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bReactionFire = true;
 	Template.AbilityToHitCalc = StandardAim;
@@ -2934,7 +2974,7 @@ static function X2AbilityTemplate Magnum()
 	return Passive('Magnum_LW', "img:///UILibrary_XPerkIconPack.UIPerk_pistol_sniper", false, Effect);
 }
 
-
+ 
 static function X2AbilityTemplate CrusaderRage()
 {
 	local XMBEffect_ConditionalBonus Effect;
@@ -2963,7 +3003,7 @@ static function X2AbilityTemplate CrusaderRage()
 
 	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
 	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
-	GreaterPaddingEffect.Padding_HealHP = default.CRUSADER_WOUND_HP_REDUCTTION;	
+	GreaterPaddingEffect.Padding_HealHP = default.CRUSADER_WOUND_HP_REDUCTION;	
 	
 	// Create the template using a helper function
 	Template = Passive('CrusaderRage_LW', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect);
@@ -2971,7 +3011,471 @@ static function X2AbilityTemplate CrusaderRage()
 	return Template;
 }
 
+static function X2AbilityTemplate Serpentine()
+{
+	local XMBEffect_AbilityCostRefund Effect;
+	local XMBCondition_AbilityName AbilityNameCondition;
+	
+	// Create an effect that will refund the cost of the action
+	Effect = new class'XMBEffect_AbilityCostRefund';
+	Effect.EffectName = 'Serpentine';
+	Effect.TriggeredEvent = 'Serpentine';
 
+	// The bonus only applies to specified abilities
+	AbilityNameCondition = new class'XMBCondition_AbilityName';
+	AbilityNameCondition.IncludeAbilityNames = default.SERPENTINE_ABILITIES;
+	Effect.AbilityTargetConditions.AddItem(AbilityNameCondition);
+
+	// Create the template using a helper function
+	return Passive('Serpentine', "img:///UILibrary_MZChimeraIcons.Ability_BindRelease", false, Effect);
+}
+
+static function X2AbilityTemplate Entwine()
+{
+	local XMBEffect_ConditionalBonus Effect;
+	local X2AbilityTemplate Template;
+	local X2Condition_UnitEffects	UnitEffectsCondition;
+
+	UnitEffectsCondition = new class'X2Condition_UnitEffects';
+	UnitEffectsCondition.AddRequireEffect(class'X2Ability_Viper'.default.BindSustainedEffectName, 'AA_MissingRequiredEffect');
+
+	// Create a conditional bonus effect
+	Effect = new class'XMBEffect_ConditionalBonus';
+
+	//Need to add for all of them because apparently if you crit you don't hit lol
+	Effect.AddToHitAsTargetModifier(-default.ENTWINE_DEF, eHit_Success);
+	Effect.EffectName = 'EntwineEffect';
+
+	// The effect only applies while wounded
+	EFfect.AbilityShooterConditions.AddItem(UnitEffectsCondition);
+	
+	// Create the template using a helper function
+	Template = Passive('Entwine_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_defense", true, Effect);
+	return Template;
+}
+
+static function X2AbilityTemplate Dominant()
+{
+	local X2Effect_PersistentStatChange PsEffect ;
+	local X2AbilityTemplate Template;
+
+	// Activated ability that targets user
+	Template = Passive('Dominant_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_command_psi", true);
+
+	PsEffect = new class'X2Effect_PersistentStatChange';
+	PsEffect.EffectName = 'Dominant';
+	PsEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
+	PsEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,false,, Template.AbilitySourceName); 
+	PsEffect.AddPersistentStatChange(eStat_PsiOffense, 40);
+	PsEffect.bRemoveWhenTargetDies = true;
+	PsEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(PsEffect);
+	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
+	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
+
+	return Template;
+}
+
+static function X2AbilityTemplate Grit()
+{
+	local X2Effect_Grit GritEffect;
+	local X2AbilityTemplate Template;
+
+
+	
+	// Activated ability that targets user
+	Template = Passive('Grit_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shield_plus", true);
+
+	GritEffect = new class'X2Effect_Grit';
+	GritEffect.Grit_Base_Dr = default.GRIT_BASE_DR;
+	GritEffect.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
+	GritEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,false,, Template.AbilitySourceName); 
+	GritEffect.DuplicateResponse = eDupe_Ignore;
+
+	Template.AddTargetEffect(GritEffect);
+
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateQuickRetreat()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener Trigger;
+	local X2Effect_RunBehaviorTree ReactionEffect;
+	local X2Effect_GrantActionPoints AddAPEffect;
+	local array<name> SkipExclusions;
+	local X2Condition_UnitProperty UnitPropertyCondition;
+	local X2Condition_UnitValue UnitValue;
+	local X2Effect_SetUnitValue	UnitValueEffect;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'QuickRetreat');
+
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_combatstims";
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Template.AbilityTargetConditions.AddItem(default.FlankedCondition);
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.ConfusedName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	UnitValueEffect = new class'X2Effect_SetUnitValue';
+	UnitValueEffect.UnitName = 'QuickRetreatTimes';
+	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
+	UnitValueEffect.NewValueToSet = 1;
+	Template.AddTargetEffect(UnitValueEffect);
+
+
+	UnitValue = new class'X2Condition_UnitValue';
+	UnitValue.AddCheckValue('QuickRetreatTimes', 1, eCheck_LessThan);
+	Template.AbilityTargetConditions.AddItem(UnitValue);
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	// The unit must be alive and not stunned
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = true;
+	UnitPropertyCondition.ExcludeAlive = false;
+	UnitPropertyCondition.ExcludeStunned = true;
+	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
+
+	AddAPEffect = new class'X2Effect_GrantActionPoints';
+	AddAPEffect.NumActionPoints = 1;
+	AddAPEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
+	Template.AddTargetEffect(AddAPEffect);
+
+	ReactionEffect = new class'X2Effect_RunBehaviorTree';
+	ReactionEffect.BehaviorTreeName = 'QuickRetreat';
+	Template.AddTargetEffect(ReactionEffect);
+
+	Template.bShowActivation = true;
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.bSkipFireAction = true;
+
+	Template.FrameAbilityCameraType = eCameraFraming_Always;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	Template.AdditionalAbilities.AddItem('QuickRetreatPassive');
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateQuickRetreatPassive()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('QuickRetreatPassive', "img:///UILibrary_PerkIcons.UIPerk_combatstims", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate CreateAbsorptionFieldsTrigger()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener Trigger;
+	local X2Condition_UnitProperty UnitPropertyCondition;
+	local X2Effect_SetUnitValue	UnitValueEffect;
+	local X2Condition_UnitValue UnitValue;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'AbsorptionFieldsTrigger_LW');
+
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityAbsorptionFields";
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	UnitValueEffect = new class'X2Effect_SetUnitValue';
+	UnitValueEffect.UnitName = 'AbsorptionFieldsTimes';
+	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
+	UnitValueEffect.NewValueToSet = 1;
+	Template.AddTargetEffect(UnitValueEffect);
+
+	UnitValue = new class'X2Condition_UnitValue';
+	UnitValue.AddCheckValue('AbsorptionFieldsTimes', 1, eCheck_LessThan);
+	Template.AbilityTargetConditions.AddItem(UnitValue);
+
+
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	// The unit must be alive and not stunned
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = true;
+	UnitPropertyCondition.ExcludeAlive = false;
+	UnitPropertyCondition.ExcludeStunned = true;
+	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
+
+	Template.bShowActivation = true;
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.bSkipFireAction = true;
+
+	Template.FrameAbilityCameraType = eCameraFraming_Always;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate CreateAbsorptionFields()
+{
+	local X2AbilityTemplate Template;
+	local X2Condition_UnitValue UnitValue;
+	local X2Effect_AbsorbsionFields Effect;
+
+	// Create an armor piercing bonus
+	Effect = new class'X2Effect_AbsorbsionFields';
+	Effect.DamageReduction = default.REACTIVE_SENSORS_DAMAGE_REDUCTION;
+	
+	// Activated ability that targets user
+	Template = Passive('AbsorptionFields_LW', "img:///UILibrary_LW_PerkPack.LW_AbilityAbsorptionFields", true, Effect);
+
+
+	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
+	Template.AdditionalAbilities.AddItem('AbsorptionFieldsTrigger_LW');
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateBullRush()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityTrigger_EventListener Trigger;
+	local X2Effect_RunBehaviorTree ReactionEffect;
+	local X2Effect_GrantActionPoints AddAPEffect;
+	local array<name> SkipExclusions;
+	local X2Condition_UnitProperty UnitPropertyCondition;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'BullRush');
+
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_combatstims";
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.ConfusedName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	// The unit must be alive and not stunned
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = true;
+	UnitPropertyCondition.ExcludeAlive = false;
+	UnitPropertyCondition.ExcludeStunned = true;
+	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
+
+	AddAPEffect = new class'X2Effect_GrantActionPoints';
+	AddAPEffect.NumActionPoints = 1;
+	AddAPEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
+	Template.AddTargetEffect(AddAPEffect);
+
+	ReactionEffect = new class'X2Effect_RunBehaviorTree';
+	ReactionEffect.BehaviorTreeName = 'BerserkerReaction';
+	Template.AddTargetEffect(ReactionEffect);
+
+	Template.bShowActivation = true;
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.bSkipFireAction = true;
+
+	Template.FrameAbilityCameraType = eCameraFraming_Always;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	Template.AdditionalAbilities.AddItem('BullRushPassive');
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateBullRushPassive()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('BullRushPassive', "img:///UILibrary_PerkIcons.UIPerk_combatstims", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddProtectiveServosAbility()
+{
+	local X2AbilityTemplate						Template;	
+	local X2AbilityTrigger_EventListener		EventListener;
+	local X2Effect_DamageControl 				DamageControlEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ProtectiveServos');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityDamageControl";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bShowActivation = true;
+	Template.bSkipFireAction = true;
+	//Template.bIsPassive = true;
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	// Trigger on Damage
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'UnitTakeEffectDamage';
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_Unit;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	DamageControlEffect = new class'X2Effect_DamageControl';
+	DamageControlEffect.BuildPersistentEffect(1,false,true,,eGameRule_PlayerTurnBegin);
+	DamageControlEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	DamageControlEffect.DuplicateResponse = eDupe_Allow;
+	DamageControlEffect.EffectName = 'ProtectiveServos';
+	DamageControlEffect.BonusArmor = 2;
+	Template.AddTargetEffect(DamageControlEffect);
+
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	Template.AdditionalAbilities.AddItem('ProtectiveServosPassive');
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddProtectiveServosPassive()
+{
+	local X2AbilityTemplate                 Template;	
+
+	Template = PurePassive('ProtectiveServosPassive', "img:///UILibrary_LW_PerkPack.LW_AbilityDamageControl", true, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+	//Template.AdditionalAbilities.AddItem('DamageControlAbilityActivated');
+	return Template;
+}
+
+static function X2AbilityTemplate AddSuperiorHolyWarrior()
+{
+	local X2AbilityTemplate                 Template;	
+
+	Template = PurePassive('SuperiorHolyWarrior', "img:///UILibrary_XPerkIconPack.UIPerk_gremlin_psi", true, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+	//Template.AdditionalAbilities.AddItem('DamageControlAbilityActivated');
+	return Template;
+}
+
+	static function X2AbilityTemplate AddSuperDuperRobot()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_PersistentStatChange			StatEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'SuperDuperRobot');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityExtraConditioning";
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+
+	StatEffect = new class'X2Effect_PersistentStatChange';
+	StatEffect.AddPersistentStatChange(eStat_HP, float(10));
+	StatEffect.AddPersistentStatChange(eStat_Offense, float(15));
+	StatEffect.AddPersistentStatChange(eStat_Mobility, float(6));
+	StatEffect.BuildPersistentEffect(1, true, false, false);
+	StatEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect(StatEffect);
+	Template.bCrossClassEligible = true;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate ShredderRoundsDamagePenalty()
+{
+	local XMBEffect_ConditionalBonus Effect;
+	local X2Condition_WeaponCanUseAmmo Condition;
+
+	// Create a condition that checks that the unit is at less than 100% HP.
+	// X2Condition_UnitStatCheck can also check absolute values rather than percentages, by
+	// using "false" instead of "true" for the last argument.
+	Condition = new class'X2Condition_WeaponCanUseAmmo';
+	// Create a conditional bonus effect
+	Effect = new class'XMBEffect_ConditionalBonus';
+
+	//Need to add for all of them because apparently if you crit you don't hit lol
+	Effect.AddPercentDamageModifier(-1 * default.SHREDDER_ROUNDS_DMG_PENALTY, eHit_Success);
+	Effect.AddPercentDamageModifier(-1 * default.SHREDDER_ROUNDS_DMG_PENALTY, eHit_Graze);
+	Effect.AddPercentDamageModifier(-1 * default.SHREDDER_ROUNDS_DMG_PENALTY, eHit_Crit);
+	Effect.EffectName = 'ShredderRounds_Penalty';
+
+	// The effect only applies while wounded
+	EFfect.AbilityShooterConditions.AddItem(Condition);
+	
+	return Passive('ShredderRoundsPenalty', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect, false);
+}
+
+	static function X2AbilityTemplate PrimaryGrenadeLauncherPassive(name TemplateName)
+{	
+	return Passive(TemplateName, "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, , false);
+}
+
+	
+static function X2AbilityTemplate CreateGremlinAnimationsPassive()
+{	
+	local X2AbilityTemplate Template;
+	local X2Effect_AdditionalAnimSets AnimSetEffect;
+
+	Template = Passive('GremlinBonusAnim', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, , false);
+
+	AnimSetEffect = new class'X2Effect_AdditionalAnimSets';
+	AnimSetEffect.AddAnimSetWithPath("WotC_APA_GremlinAnims.AS_APA_Gremlin");
+	Template.AddTargetEffect(AnimSetEffect);
+
+	return Template;
+
+}
 
 defaultproperties
 {

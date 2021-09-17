@@ -114,6 +114,8 @@ static function X2DataTemplate CreateTemplate_Arcthrower_Conventional()
 	
 	Template.DamageTypeTemplateName = 'Electrical';
 
+	Template.Abilities.AddItem('Electroshock');
+
 	return Template;
 }
 
@@ -156,6 +158,7 @@ static function X2DataTemplate CreateTemplate_Arcthrower_Magnetic()
 	Template.bInfiniteItem = false;
 
 	Template.DamageTypeTemplateName = 'Electrical';
+	Template.Abilities.AddItem('Electroshock');
 
 	return Template;
 }
@@ -199,6 +202,7 @@ static function X2DataTemplate CreateTemplate_Arcthrower_Beam()
 	Template.bInfiniteItem = true;
 
 	Template.DamageTypeTemplateName = 'Electrical';
+	Template.Abilities.AddItem('Electroshock');
 
 	return Template;
 }

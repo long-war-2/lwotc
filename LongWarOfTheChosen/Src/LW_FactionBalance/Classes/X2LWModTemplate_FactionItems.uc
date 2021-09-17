@@ -35,17 +35,17 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 	case 'Bullpup_CV':
 		WeaponTemplate.Abilities.AddItem('Bullpup_CV_StatBonus');
 		WeaponTemplate.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_CONVENTIONAL_MOBILITY_BONUS);
-		WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.SKIRMISHER_SMG_RANGE;
+		//WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.SKIRMISHER_SMG_RANGE;
 		break;
 	case 'Bullpup_MG':
 		WeaponTemplate.Abilities.AddItem('Bullpup_MG_StatBonus');
 		WeaponTemplate.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_MAGNETIC_MOBILITY_BONUS);
-		WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.SKIRMISHER_SMG_RANGE;
+		//WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.SKIRMISHER_SMG_RANGE;
 		break;
 	case 'Bullpup_BM':
 		WeaponTemplate.Abilities.AddItem('Bullpup_BM_StatBonus');
 		WeaponTemplate.SetUIStatMarkup("Mobility", eStat_Mobility, class'X2Ability_FactionWeaponAbilities'.default.BULLPUP_BEAM_MOBILITY_BONUS);
-		WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.SKIRMISHER_SMG_RANGE;
+		//WeaponTemplate.RangeAccuracy = class'X2Item_FactionWeapons'.default.SKIRMISHER_SMG_RANGE;
 		break;
 	case 'ShardGauntlet_BM':
 		WeaponTemplate.Abilities.AddItem('SupremeFocus');
@@ -63,10 +63,21 @@ static function UpdateWeapons(X2WeaponTemplate WeaponTemplate, int Difficulty)
 		WeaponTemplate.ExtraDamage = default.WHIPLASH_BEAM_DAMAGE;
 		break;
 	case 'Sidearm_CV':
-	case 'Sidearm_MG':
-	case 'Sidearm_BM':
-		WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeapons'.default.SHORT_CONVENTIONAL_RANGE;
+	case 'Sidearm_LS':
+	case 'Sidearm_CG':
+		WeaponTemplate.Abilities.AddItem('SprayAndPray');
+		//WeaponTemplate.RangeAccuracy = class'X2Item_DefaultWeapons'.default.SHORT_CONVENTIONAL_RANGE;
 		break;
+
+	case 'Sidearm_MG':
+		WeaponTemplate.BaseItem = 'Sidearm_LS';
+		WeaponTemplate.Abilities.AddItem('SprayAndPray');
+		break;
+	case 'Sidearm_BM':
+		WeaponTemplate.BaseItem = 'Sidearm_CG';
+		WeaponTemplate.Abilities.AddItem('SprayAndPray');
+		break;
+
 	default:
 		break;
 	}

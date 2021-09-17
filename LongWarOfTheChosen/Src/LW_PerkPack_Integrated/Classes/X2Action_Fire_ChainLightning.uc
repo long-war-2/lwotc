@@ -38,12 +38,6 @@ var int notifiedTargets;
 var int hitTargets;
 
 
-// STOP MAKING SHIT PRIVATE
-// (I have to make it private to prevent the compiler from complaining)
-var protected XComPresentationLayer PresentationLayer;
-var protected array<XComPerkContentInst> Perks;
-var protected array<name> PerkAdditiveAnimNames;
-var protected int x;
 
 function Init()
 {
@@ -222,14 +216,11 @@ function int FindNearestTarget(vector vLocation)
 function AdvanceChain(int iHitIdx, bool bDoNotifyTarget, vector vSourceLocation)
 {
 	local int i;
-	local StateObjectReference Target;
 	if (bDoNotifyTarget)
 	{
 		Targets[iHitIdx].bHasNotified = true;
 		notifiedTargets++;
 		// out parameter, unrealscript dumb
-		Target = Targets[iHitIdx].TargetID;
-		//VisualizationMgr.SendInterTrackMessage(Target, CurrentHistoryIndex);
 	}
 	for (i = 1; i < Targets.Length; i++)
 	{

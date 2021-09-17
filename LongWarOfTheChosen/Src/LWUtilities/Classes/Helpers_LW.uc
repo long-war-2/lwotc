@@ -792,6 +792,18 @@ static function RemoveAbilityShooterConditions(X2AbilityTemplate Template, name 
 	}
 }
 
+static function RemoveAbilityTargetConditions(X2AbilityTemplate Template, name EffectClass)
+{
+	local int i;
+	for (i = Template.AbilityTargetConditions.Length - 1; i >= 0; i--)
+	{
+		if (Template.AbilityTargetConditions[i].isA(EffectClass))
+		{
+			Template.AbilityTargetConditions.Remove(i, 1);
+		}
+	}
+}
+
 static function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name EffectClass)
 {
 	local int i;

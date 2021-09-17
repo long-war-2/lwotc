@@ -244,9 +244,9 @@ LocPromotionPopupText="<Bullet/> This unit is immune to fire damage.<br/>"
 [ShockAndAwe X2AbilityTemplate]
 LocFriendlyName="Shock and Awe"
 LocFlyOverText="Shock and Awe"
-LocLongDescription="You equip one additional rocket."
-LocHelpText="You equip one additional rocket."
-LocPromotionPopupText="<Bullet/> You equip one additional rocket.<br/>"
+LocLongDescription="Rocket Cooldown is decreased by 1."
+LocHelpText="Rocket Cooldown is decreased by 1.."
+LocPromotionPopupText="<Bullet/> Rocket Cooldown is decreased by 1.<br/>"
 
 [FireInTheHole X2AbilityTemplate]
 LocFriendlyName="Fire In The Hole"
@@ -374,10 +374,10 @@ LocPromotionPopupText="<Bullet/> All non-damaging grenades except Ghost Grenades
 
 [HeavyOrdnance_LW X2AbilityTemplate]
 LocFriendlyName="Heavy Ordnance"
-LocLongDescription="Any damaging grenade in your grenade-only slot gains a bonus use."
-LocHelpText="Any damaging grenade in your grenade-only slot gains a bonus use."
+LocLongDescription="Gain +1 ammo to your primary weapon, and a grenade-only slot."
+LocHelpText="Gain +1 ammo to your primary weapon, and a grenade-only slot."
 LocFlyOverText="Heavy Ordnance"
-LocPromotionPopupText="<Bullet/> All damaging grenades are viable for Heavy Ordnance.<br/>"
+LocPromotionPopupText="Gain +1 ammo to your primary weapon, and a grenade-only slot."
 
 [Sapper X2AbilityTemplate]
 LocFriendlyName="Sapper"
@@ -403,12 +403,12 @@ LocPromotionPopupText="<Bullet/> You have received extra training that enables y
 ; End Translation (2)
 
 [HEATWarheads X2AbilityTemplate]
-LocFriendlyName="HEAT Warheads"
+LocFriendlyName="HEAT Ordnance"
 ; LWOTC Needs Translation
-LocLongDescription="Your grenades now pierce up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor and shred <ABILITY:HEAT_WARHEADS_SHRED_LW/> additional point(s) of armor."
-LocHelpText="Your grenades now pierce up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor and shred <ABILITY:HEAT_WARHEADS_SHRED_LW/> additional point(s) of armor."
-LocFlyOverText="HEAT Warheads"
-LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor and shred <ABILITY:HEAT_WARHEADS_SHRED_LW/> additional point(s) of armor.<br/>"
+LocLongDescription="Your explosives and Primary Weapons now pierce up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> points of armor."
+LocHelpText="Your explosives and Primary Weapons now pierce up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> points of armor."
+LocFlyOverText="HEAT Ordnance"
+LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor.<br/>"
 ; End Translation
 
 [Bombard_LW X2AbilityTemplate]
@@ -453,7 +453,7 @@ LocFlyOverText="Ghost Grenade"
 
 [BiggestBooms_LW X2AbilityTemplate]
 LocFriendlyName="Biggest Booms"
-LocLongDescription="Your grenades and standard rockets can inflict critical damage (<Ability:BIGGESTBOOMSCHANCE/>% chance for +<Ability:BIGGESTBOOMSDAMAGE/> damage)."
+LocLongDescription="Your Explosives have a <Ability:BIGGESTBOOMSCHANCE/>% chance to crit and deal double damage."
 LocHelpText="Your grenades, standard rockets and micromissiles can inflict critical damage."
 LocFlyOverText="Biggest Booms"
 ; LWOTC Needs Translation
@@ -471,20 +471,20 @@ LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end you
 
 [Combatives X2AbilityTemplate]
 LocFriendlyName="Combatives"
-LocLongDescription="You may parry melee attacks and counterattack with your melee weapon. Also gain +<ABILITY:COMBATIVES_DODGE_LW/> dodge."
-LocHelpText="You may parry melee attacks and counterattack with your melee weapon."
+LocLongDescription="You may sometimes parry melee attacks and counterattack with your melee weapon. Also your melee attack gain <Ability:CUTTHROAT_BONUS_CRIT_CHANCE/> bonus critical chance."
+LocHelpText="You may sometimes parry melee attacks and counterattack with your melee weapon."
 LocFlyOverText="Combatives"
 ; LWOTC needs translation
-LocPromotionPopupText="<Bullet/> You will parry any grazed melee attack against you and counterattack with your melee weapon.<br/><Bullet/> Combatives grant +<Ability:COUNTERATTACK_DODGE_AMOUNT_LW/> dodge against first melee attack against you in a turn.<br/><Bullet/> Soldier also gains <ABILITY:COMBATIVES_DODGE_LW/> dodge."
+LocPromotionPopupText="<Bullet/> You will parry any grazed melee attack against you and counterattack with your melee weapon.<br/><Bullet/> Combatives grant +<Ability:COUNTERATTACK_DODGE_AMOUNT_LW/> dodge against first melee attack against you in a turn.<br/>"
 ; End Translation
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="Flush"
-LocLongDescription="Special shot with a bonus to hit that does little or no damage but confers defense and dodge penalties and forces target to change position if it hits."
-LocHelpText="Special shot that does little or no damage but confers defense and dodge penalties and forces target to change position."
+LocLongDescription="Special shot but has +35 to hit that does -35% damage, confers dodge penalties and forces target to change position if it hits."
+LocHelpText="Special shot but has +35 to hit that does -35% damage, confers dodge penalties and forces target to change position if it hits.."
 LocFlyOverText="Flush"
 ; LWOTC needs translation (2)
-LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> +<Ability:FLUSH_AIM_BONUS/> bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DEFENSE_REDUCTION> defense and <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> +<Ability:FLUSH_AIM_BONUS/> bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
 ; End Translation (2)
 str_FlushEffect="Flushed"
 
@@ -511,6 +511,11 @@ LocFlyOverText="Point Blank"
 ;LWOTC needs translation
 LocPromotionPopupText="<Bullet/> Rapidly loses accuracy beyond four tiles range.<br/><Bullet/> Uses one action.<br/><Bullet/> Shotgun has two ammo.<br/>"
 ; End Translation
+
+[SawedOffReload X2AbilityTemplate]
+LocFriendlyName="Reload Sawed-Off"
+LocHelpText="Reload your Sawed-Off Shotgun."
+LocFlyOverText="Reloading"
 
 [BothBarrels X2AbilityTemplate]
 LocFriendlyName="Both Barrels"
@@ -561,15 +566,17 @@ LocFriendlyName="Holotarget"
 LocLongDescription="Holotarget your enemy to grant an aim bonus to all attacks on this target by you and your allies until the start of your next turn."
 LocHelpText="Holotarget an enemy to grant a bonus to attacks against this target."
 LocFlyOverText="Holotarget"
-LocPromotionPopupText="<Bullet/> Holotargeting takes a single action.<br/><Bullet/> The Holotargeting effect lasts until the start of your next turn.<br/><Bullet/> Multiple holotarget effects do not stack with each other.<br/><Bullet/> The aim bonus is +<Ability:HOLO_CV_AIM_BONUS_LW/> for the basic Holotargeter, and improves to +<Ability:HOLO_MG_AIM_BONUS_LW/> and +<Ability:HOLO_BM_AIM_BONUS_LW/> with better technology.<br/><Bullet/> Holotargeting does not break concealment for you or your squad."
-; End Translation (2)
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Holotargeting is a free action, with <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> The Holotargeting effect lasts until the start of your next turn.<br/><Bullet/> Multiple holotarget effects do not stack with each other.<br/><Bullet/> The aim bonus is +<Ability:HOLO_CV_AIM_BONUS_LW/> for the basic Holotargeter, and improves to +<Ability:HOLO_MG_AIM_BONUS_LW/> and +<Ability:HOLO_BM_AIM_BONUS_LW/> with better technology.<br/><Bullet/> Holotargeting does not break concealment for you or your squad."
+; End Translation 
+
 
 [RapidTargeting X2AbilityTemplate]
 LocFriendlyName="Rapid Targeting"
-LocLongDescription="You may Holotarget an enemy as a free action with a <Ability:SelfCooldown_LW/> turn cooldown. In addition, Holotargeting no longer ends your turn."
-LocHelpText="Activate to Holotarget an enemy as a free action."
+LocLongDescription="Holotargeting Cooldown is reduced by 1 turn."
+LocHelpText="Holotargeting Cooldown is reduced by 1 turn."
 LocFlyOverText="Holotarget"
-LocPromotionPopupText="<Bullet/> Using your Holotargeter no longer ends your turn.<br/><Bullet/> In addition, Rapid Targeting lets you periodically use Holotargeting against a single enemy as a free action.<br/><Bullet/> This works with HiDef Holo, Independent Tracking, and Vital Point Targeting.<br/><Bullet/> This does not stack with Multitargeting.<br/><Bullet/> Rapid Targeting has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Holotargeting does not break concealment for your squad."
+LocPromotionPopupText=""
 
 [RapidTargeting_Passive X2AbilityTemplate]
 LocFriendlyName="Rapid Targeting"
@@ -598,18 +605,18 @@ LocPromotionPopupText="<Bullet/> The Vital Point Targeting damage bonus is +<Abi
 
 [Multitargeting X2AbilityTemplate]
 LocFriendlyName="Multitargeting"
-LocLongDescription="You may Holotarget multiple enemies with a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Holotargeting now affects multiple enemies in a radius."
 LocHelpText="Holotarget multiple enemies in an area of effect."
 LocFlyOverText="Multitargeting"
-LocPromotionPopupText="<Bullet/> HiDef Holo, Independent Tracking, and Vital Point Targeting apply to all targets.<br/><Bullet/> Area of effect radius is <Ability:MULTI_HOLO_CV_RADIUS_LW/> tiles for the basic Holotargeter and improves to <Ability:MULTI_HOLO_MG_RADIUS_LW/> and <Ability:MULTI_HOLO_BM_RADIUS_LW/> tiles with better technology.<br/><Bullet/> Multitargeting has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Holotargeting does not break concealment for your squad."
+LocPromotionPopupText="<Bullet/> Holotargeting is a free action, with <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Area of effect radius is <Ability:MULTI_HOLO_CV_RADIUS_LW/> tiles for the basic Holotargeter and improves to <Ability:MULTI_HOLO_MG_RADIUS_LW/> and <Ability:MULTI_HOLO_BM_RADIUS_LW/> tiles with better technology.<br/><Bullet/> Multitargeting has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Holotargeting does not break concealment for your squad."
 
 [AlphaMikeFoxtrot X2AbilityTemplate]
 LocFriendlyName="Alpha Mike Foxtrot"
 LocFlyOverText="Alpha Mike Foxtrot"
 ; LWOTC Needs Translation
-LocLongDescription="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage and <Ability:ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
-LocHelpText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage and <Ability:ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
-LocPromotionPopupText="<Bullet/> You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/> additional points of base damage and <Ability:ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW/> additional point(s) of bonus critical damage with your primary weapon."
+LocLongDescription="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon and explosives."
+LocHelpText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon and explosives."
+LocPromotionPopupText="You do <Ability:ALPHA_MIKE_FOXTROT_DAMAGE_LW/>% more damage with your primary weapon and explosives."
 ; End Translation
 
 ;;;;;;;;;;;;;;;;;;;;  ASSAULT ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
@@ -669,10 +676,10 @@ LocPromotionPopupText="<Bullet/> Medium-range, cone-based shotgun attack.<br/><B
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Chain Lightning"
 ; LWOTC Needs Translation (3)
-LocLongDescription="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
-LocHelpText="An Arc Thrower attack that jumps from target to target up to 4 times, while each target is within 6 tiles of each other."
+LocLongDescription="Upgrades the standard stun ability to be able to chain up to 2 other targets within 6 tiles of each other, disorienting them."
+LocHelpText="Upgrades the standard stun ability to be able to chain up to 2 other targets within 6 tiles of each other, disorienting them."
 LocFlyOverText="Chain Lightning"
-LocPromotionPopupText="<Bullet/> Fires the Arc Thrower at a target in vision, with the arc chaining up to 4 times to other targets within 6 tiles of each other.<br/><Bullet/> Requires one action and ends your turn.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
+LocPromotionPopupText="<Bullet/> Fires the Arc Thrower at a target in vision, with the arc chaining up to 2 times to other targets within 6 tiles of each other.<br/><Bullet/> Replaces standard stun ability.<br/><Bullet/> Chain Lightning has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (3)
 
 [Leadership X2AbilityTemplate]
@@ -751,8 +758,8 @@ LocFlyOverText="Elite Hair Trigger"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
-LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are impaired."
+LocHelpText="Steady Weapon: Bonus to hit on next shot if you take another action"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
@@ -810,8 +817,8 @@ LocHelpText="Your hits ignore 2 armor."
 [Tracer_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Tracer Rounds"
 LocFlyOverText="Tracer Rounds"
-LocLongDescription="Your weapons have +5 aim."
-LocHelpText="Your weapons have +5 aim."
+LocLongDescription="Your weapons have +10 aim."
+LocHelpText="Your weapons have +10 aim."
 
 [Talon_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Talon Rounds"
@@ -925,7 +932,7 @@ FriendlyName="Gauss Pistol"
 FriendlyNamePlural="Gauss Pistols"
 UnknownUtilityCategory="Pistol"
 BriefSummary="A powerful, coil-tech sidearm that can punch through enemy armor."
-TacticalText="<Bullet/> Coil weapons automatically pierce 1 enemy armor.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
 AbilityDescName="pistol"
 
 [LWPistol_BM X2WeaponTemplate]
@@ -949,20 +956,20 @@ TacticalText="<Bullet/> Powered Shadowkeeper's strength is comparable to a Plasm
 FriendlyName="Sawed-Off Shotgun"
 FriendlyNamePlural="Sawed-Off Shotguns"
 BriefSummary="A powerful, if short-ranged, secondary weapon."
-TacticalText="<Bullet/> Adaptation of concealable pre-invasion weaponry.<br/><Bullet/> Two shots per mission without upgrades."
+TacticalText="<Bullet/> Adaptation of concealable pre-invasion weaponry.<br/>"
 
 [SawedOffShotgun_MG X2WeaponTemplate]
 FriendlyName="Mag Shorty"
 FriendlyNamePlural="Mag Shorties"
 BriefSummary="An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage."
-TacticalText="<Bullet/> An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage.<br/><Bullet/> Two shots per mission without upgrades.<br/>"
+TacticalText="<Bullet/> An upgraded version of the sawed-off shotgun that incorporates magnetic accelerator technologies to boost its damage.<br/>"
 
 ;LWOTC needs translation
 [SawedOffShotgun_BM X2WeaponTemplate]
 FriendlyName="Plasma Shorty"
 FriendlyNamePlural="Plasma Shorties"
 BriefSummary="An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage."
-TacticalText="<Bullet/> An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage.<br/><Bullet/> Two shots per mission without upgrades.<br/>"
+TacticalText="<Bullet/> An advanced version of the sawed-off shotgun that incorporates plasma heating elements to boost its damage.<br/>"
 ;end translation
 
 [ArcThrower_CV X2WeaponTemplate]
@@ -1023,8 +1030,8 @@ AbilityDescName="combat knife"
 
 ;LWOTC needs translation
 [CombatKnife_BM X2WeaponTemplate]
-FriendlyName="Advanced Vibroblade"
-FriendlyNamePlural="Advanced Vibroblades"
+FriendlyName="Fusion Knife"
+FriendlyNamePlural="Fusion Knives"
 BriefSummary="Dangerous melee weapon for personal defense in close quarters. The Advanced Vibroblade has been enhanced to be sharper, stronger, and more precise."
 TacticalText="<Bullet/> A knife attack requires one action and does not end your turn.<br/>"
 AbilityDescName="combat knife"
@@ -1058,21 +1065,21 @@ FriendlyNamePlural="Mag Rifles"
 FriendlyName="Coil Rifle"
 FriendlyNamePlural="Coil Rifles"
 BriefSummary="A powerful, mid-range, armor-piercing coilgun that fills the assault rifle role."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Firing the primary weapon ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the Coil Rifles's tactical effectiveness.<br/>"
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> Firing the primary weapon ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades recovered from ADVENT enemies to improve the Coil Rifles's tactical effectiveness.<br/>"
 AbilityDescName="assault rifle"
 
 [Cannon_CG X2WeaponTemplate]
 FriendlyName="Gauss Cannon"
 FriendlyNamePlural="Gauss Cannons"
 BriefSummary="A heavy duty, automatic coilgun with a huge rate of fire."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> The cannon serves in a squad automatic weapon role, has more ammo and does more damage than its rifle counterpart, but it is cumbersome to carry.<br/><Bullet/> Use upgrades recovered from ADVENT enemies to improve the Gauss Cannon's tactical effectiveness.<br/>"
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> The cannon serves in a squad automatic weapon role, has more ammo and does more damage than its rifle counterpart, but it is cumbersome to carry.<br/><Bullet/> Use upgrades recovered from ADVENT enemies to improve the Gauss Cannon's tactical effectiveness.<br/>"
 AbilityDescName="cannon"
 
 [SniperRifle_CG X2WeaponTemplate]
 FriendlyName="Gauss Long Rifle"
 FriendlyNamePlural="Gauss Long Rifles"
 BriefSummary="An extended coil rifle that may be employed by our Sharpshooters."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Sniper rifles typically require both actions to fire without special training.\n<Bullet/> They are less accurate at close range, but deadly at a distance.\n<Bullet/> Use upgrades looted from enemies to improve the Gauss Long Rifle's tactical effectiveness."
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> Sniper rifles typically require both actions to fire without special training.\n<Bullet/> They are less accurate at close range, but deadly at a distance.\n<Bullet/> Use upgrades looted from enemies to improve the Gauss Long Rifle's tactical effectiveness."
 AbilityDescName="sniper rifle"
 
 [Shotgun_CG X2WeaponTemplate]
@@ -1082,7 +1089,7 @@ FriendlyNamePlural="Gauss Scatterguns"
 ; End Translation
 BriefSummary="A close-quarters coil-tech weapon that fills the shotgun role."
 ; LWOTC Needs Translation
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Shotgun-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Gauss Scattergun's tactical effectiveness."
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> Shotgun-style weapons are extremely effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Gauss Scattergun's tactical effectiveness."
 ; End Translation
 AbilityDescName="shotgun"
 
@@ -1091,74 +1098,62 @@ FriendlyName="Subcoiler"
 FriendlyNamePlural="Subcoiler"
 BriefSummary="A lightweight version of the coil rifle that fires a smaller round but grants its user more mobility on the battlefield."
 ; LWOTC Needs Translation
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage and suffer accuracy penalties at long range.<br/>"
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> SMG-style weapons offer bonus mobility, close-quarters accuracy and concealment relative to assault rifles, but they do less damage and suffer accuracy penalties at long range.<br/>"
 ; End Translation
 AbilityDescName="SMG"
 
 ; LWOTC Needs Translation
 ; Bullpup changes and new templates
 [Bullpup_CV X2WeaponTemplate]
-TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Bullpup-style weapons are far more accurate then rifles at close and medium ranges, but they have long range penalties.\n<Bullet/> They also increase the Skirmisher's mobility.\n<Bullet/> Use upgrades looted from enemies to improve the Bullpup's tactical effectiveness."
 
 [Bullpup_LS X2WeaponTemplate]
-FriendlyName="Kal-13 \"Bullpup\""
-FriendlyNamePlural="Kal-13 \"Bullpups\""
-BriefSummary="We can manufacture a modified Laser SMG that can be used by Skirmishers. While Dr.Tygan has correctly stated that this is in fact not a Bullpup, its compact frame and the additional tweaks we've made are enough for them to seriously consider its use in battle."
-TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
+FriendlyName="Kal-33 Bullpup"
+FriendlyNamePlural="Kal-33 Bullpups"
+BriefSummary="Unlike most of our pulse laser designs, the bullpup version has more strict size requirements, so we had to significantly reduce the pulse rate to prevent the weapon from overheating. This makes the weapon feel more like a traditional automatic firearm rather than a continuous beam weapon, and makes it harder to deliver deep, intense burns, although it does make the weapon easier to use at close range."
+TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Bullpup-style weapons are far more accurate then rifles at close and medium ranges, but they have long range penalties.\n<Bullet/> They also increase the Skirmisher's mobility.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
 [Bullpup_MG X2WeaponTemplate]
-TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-15 Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-15 Bullpup's tactical effectiveness."
 
 [Bullpup_CG X2WeaponTemplate]
-FriendlyName="Kal-69 \"Bullpup\""
-FriendlyNamePlural="Kal-69 \"Bullpups\""
-BriefSummary="As the Bullpup frame the skirmishers employ for their weapons has proven too weak to be able control the recoil of a coil weapon and withstand potential damage, we've instead decided to adapt a model of our Subcoilers for field use by skirmishers, just like we did with the Kal-13 \"Bullpup\"."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-69 Bullpup's tactical effectiveness."
+FriendlyName="Kal-69 Bullpup"
+FriendlyNamePlural="Kal-69 Bullpups"
+BriefSummary="Designed according to specifications provided by Betos herself, the coil version of the Skirmisher bullpup is a compact and well-balanced weapon. The reduced number of magnetic coils and smaller propellant charges limit its stopping power and accuracy at long range, but superior balance and high rate of fire make it easy to handle and reliable in close quarters."
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-69 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
 [Bullpup_BM X2WeaponTemplate]
-TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-90 Bullpup's tactical effectiveness."
+TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-90 Bullpup's tactical effectiveness."
 
 ; LWOTC Needs Translation (3)
 ; Vektor Rifle changes and new crossbows
 [VektorRifle_CV X2WeaponTemplate]
-TacticalText="<Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
+TacticalText="<Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close and medium range, but have decently high aim at long range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
 
-[CrossbowVektor_CV X2WeaponTemplate]
-FriendlyName="Tactical Crossbow"
-FriendlyNamePlural="Tactical Crossbows"
-BriefSummary="A silent compound crossbow many Reapers prefer to conventional firearms."
-TacticalText="<Bullet/> Crossbows suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
-AbilityDescName="crossbow"
 
-[Vektor_LS X2WeaponTemplate]
-FriendlyName="Laser Vektor Rifle"
-FriendlyNamePlural="Laser Vektor Rifles"
-BriefSummary="An experimental laser weapon design originating all the way from old-world russia, the Laser Vektor Rifle is close in performance to the traditional marksman rifles used by the Reapers. Now updated with modern alloy shielding and a compact power source, it is quite a formidable weapon in the hands of a skilled sniper."
-TacticalText="<Bullet/> Laser weapons receive bonus aim.<br/><Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
+[VektorRifle_LS X2WeaponTemplate]
+FriendlyName="Crimson Lance"
+FriendlyNamePlural="Crimson Lances"
+BriefSummary="Crimson Lance augments the standard Vektor frame with high density pulse-duration modulated laser oscillators. It's not as powerful as our larger pulse weapon designs, but its ease of use and platform stability grant it unmatched precision. Covered heatsinks reduce the thermal footprint of this weapon, making it harder to track the user."
+TacticalText="Crimson Lance augments the standard Vektor frame with high density pulse-duration modulated laser oscillators. It's not as powerful as our larger pulse weapon designs, but its ease of use and platform stability grant it unmatched precision. Covered heatsinks reduce the thermal footprint of this weapon, making it harder to track the user.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Crimson Lance's tactical effectiveness."
 AbilityDescName="vektor rifle"
+
 
 [VektorRifle_MG X2WeaponTemplate]
 TacticalText="<Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
 
-[Vektor_CG X2WeaponTemplate]
-FriendlyName="Temnotic Lance"
-FriendlyNamePlural="Temnotic Lances"
-BriefSummary="Despite the evident firepower of our coilgun technology, a lack of reliability and costly maintenance have so far left the Reapers reluctant to adapt them over the old Temnotic Rifle. This new weapon is the result of a compromise where we did our best to minimize the amount of parts that could fail or break when out in the field."
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
+[VektorRifle_CG X2WeaponTemplate]
+FriendlyName="Tesla Lance"
+FriendlyNamePlural="Tesla Lances"
+BriefSummary="Tesla Lance owes its name to the method of igniting the propellant in its cartridges by an electric current. The long rifled barrel is internally stabilized and does not come in contact with the weapon's frame for its entire length. Both of these factors make this weapon extremely precise and easy to handle."
+TacticalText="Tesla Lance owes its name to the method of igniting the propellant in its cartridges by an electric current. The long rifled barrel is internally stabilized and does not come in contact with the weapon's frame for its entire length. Both of these factors make this weapon extremely precise and easy to handle.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Tesla Lance's tactical effectiveness."
 AbilityDescName="vektor rifle"
 
 [VektorRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.<br/><Bullet/> This is most advanced Vektor Rifle variant available in the XCOM arsenal.<br/><Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
 ; End Translation (3)
-
-[SPARKChaingun X2WeaponTemplate]
-FriendlyName="Heavy Chaingun"
-FriendlyNamePlural="Heavy Chainguns"
-BriefSummary="A massive chaingun with devastating anti-personnel capabilities."
-TacticalText="<Bullet/> This weapon's design is based on R. Shen's blueprints from the original alien invasion.\n<Bullet/> It's functionally identical to the Autocannon. "
-AbilityDescName="Heavy Chaingun"
 
 [SparkRifle_LS X2WeaponTemplate]
 FriendlyName="Heavy Railgun"
@@ -1171,7 +1166,7 @@ AbilityDescName="Heavy Railgun"
 FriendlyName="Particle Projection Cannon"
 FriendlyNamePlural="Particle Projection Cannons"
 BriefSummary="PPC uses several acceleration contours to create a focused beam of supercharged particles that remain effective at any range." 
-TacticalText="<Bullet/> Coil weapons automatically pierce (ignore) 1 enemy armor.<br/><Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
+TacticalText="<Bullet/> Coil weapons Gain 10 crit.<br/><Bullet/> Particle Projection Cannon is the Coil equivalent of the Autocannon."
 AbilityDescName="Particle Projection Cannon"
 
 ; LWOTC Needs Translation (2)
@@ -1202,8 +1197,8 @@ BriefSummary="Using scavenged plates of ADVENT armor, this suit provides superio
 TacticalText="<Bullet/> Predator Armor maximizes protection for the soldier, granting bonus health and armor."
 
 [HeavyPlatedArmor X2ArmorTemplate]
-BriefSummary="This heavy armor combines reinforced ADVENT plating with a powered exoskeleton, offering protection coupled with a heavy weapon hardpoint. With further study we could unlock additional heavy weapon options for this suit."
-TacticalText="<Bullet/> The E.X.O. Suit allows a soldier to mount a heavy weapon but lacks the full protection offered by the Predator armor.\n<Bullet/> Only the Shredder Gun is available initially. Certain projects in the Proving Grounds will unlock more heavy weapon systems for construction.\n<Bullet/> Instead of a heavy weapon, Technical-class soldiers may instead carry extra ammunition for their Gauntlet."
+BriefSummary="This heavy armor combines reinforced ADVENT plating with a powered exoskeleton, offering protection coupled with a movement support system. It allows units to move unimpared regardless of circumstances."
+TacticalText="<Bullet/> The E.X.O. Suit Grants Exoskeleton Servos at the cost of an item slot.\n<Bullet/> Exoskeleton Servos Sets the unit's mobility to 14 regardless of weight, or other impairments."
 
 [LightPoweredArmor X2ArmorTemplate]
 TacticalText="<Bullet/> The Wraith Suit increases a soldier's mobility and dodge stats.\n<Bullet/> The Wraith Suit has a wrist-mounted grapple.\n<Bullet/> The Wraith Suit can allow the wearer to pass directly through walls and obstacles."
@@ -1213,8 +1208,8 @@ BriefSummary="Our new mastery of the aliens' Elerium technology has lead us to t
 TacticalText="<Bullet/> Warden Armor puts soldier survivability above all other considerations, granting significant bonus health and armor protection."
 
 [HeavyPoweredArmor X2ArmorTemplate]
-BriefSummary="This powered heavy battle armor grants significant survivability, as well as a wrist-mounted heavy weapon hardpoint. The W.A.R. Suit can also generate temporary cover for allies with its powerful \"Shieldwall\" technology."
-TacticalText="<Bullet/> The W.A.R. Suit allows a soldier to wrist mount a heavy weapon.\n<Bullet/> The W.A.R. Suit grants the \"Shieldwall\" ability, allowing the wearer to temporarily act as high cover for squadmates.\n<Bullet/> Instead of a heavy weapon, Technical-class soldiers may instead carry extra ammunition for their Gauntlet."
+BriefSummary="This powered heavy battle armor grants significant survivability, as well as an Exoskeleton movement Support System. The W.A.R. Suit can also generate temporary cover for allies with its powerful \"Shieldwall\" technology."
+TacticalText="<Bullet/> The W.A.R. Suit Grants Exoskeleton Servos.\n<Bullet/> The W.A.R. Suit grants the \"Shieldwall\" ability, allowing the wearer to temporarily act as high cover for squadmates.\n<Bullet/> Exoskeleton Servos Sets the unit's mobility to 14 regardless of weight, or other impairments."
 
 [FragGrenade X2GrenadeTemplate]
 BriefSummary="A standard fragmentation grenade that blasts enemies with shrapnel in a small area of effect. Effective at removing enemy armor. Damage falls off from center of area of effect."
@@ -1264,11 +1259,11 @@ m_strRemoveUpgrade="REMOVE UPGRADE"
 [FreeFireUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Hair Trigger"
 FriendlyNamePlural="Hair Triggers"
-; LWOTC Needs Translation
-BriefSummary="The soldier gains <Ability:TRIGGER_BSC_AIM_BONUS/> bonus aim on reaction fire shots (after reaction fire penalty)."
-; End Translation
-TinySummary="Bonus Reaction Fire To-Hit"
-LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fire shots."
+; LWOTC Needs Translation (2)
+BriefSummary="The soldier gains 25 aim on the next shot after a miss."
+; End Translation (2)
+TinySummary="bonus to hit after a miss"
+LootTooltip="This weapon upgrade, when installed, adds bonus aim after a miss."
 
 [FreeFireUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Hair Trigger"
@@ -1288,12 +1283,14 @@ BriefSummary="The soldier gains <Ability:TRIGGER_SUP_AIM_BONUS/> bonus aim on re
 TinySummary="Bonus Reaction Fire To-Hit"
 LootTooltip="This weapon upgrade, when installed, adds bonus aim to reaction fire shots."
 
+;LWOTC needs translation
 [AimUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Scope"
 FriendlyNamePlural="Scopes"
-BriefSummary="Increase aim by <Ability:SCOPE_BSC_AIM_BONUS/> on non-reaction fire shots."
-TinySummary="Increased Non-reaction Aim"
-LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
+BriefSummary="Increase aim by +<Ability:SCOPEAIMINCREASE/>%."
+TinySummary="Increased Aim"
+LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to."
+;LWOTC end Translation
 
 [AimUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Scope"
@@ -1310,13 +1307,12 @@ TinySummary="Increased Non-reaction Aim"
 LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attached to for non-reaction fire shots."
 
 ;LWOTC needs translation (2)
-
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Stock"
 FriendlyNamePlural="Stocks"
-BriefSummary="Grants the Steady Weapon ability, which confers +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and +<Ability:STOCK_BSC_SW_AIM_BONUS/> critical chance on the next shot."
-TinySummary="Grants Steady Weapon"
-LootTooltip="This weapon upgrade, when installed, grants the Steady Weapon ability."
+BriefSummary="Your primary weapon attacks ignore up to 15 dodge, and missed ones have a 50% chance to become a graze instead."
+TinySummary="Grants Grazing Fire, and makes attacks ignore up to 15 dodge."
+LootTooltip="This weapon upgrade, when installed, grants the Grazing Fire ability, and 15 dodge resistance."
 
 [MissDamageUpgrade_Adv X2WeaponUpgradeTemplate]
 FriendlyName="Advanced Stock"
@@ -1379,6 +1375,13 @@ FriendlyNamePlural="Elite Expanded Magazines"
 [ReloadUpgrade_Sup X2WeaponUpgradeTemplate]
 FriendlyName="Elite Auto-Loader"
 FriendlyNamePlural="Elite Auto-Loaders"
+
+[ReloadUpgrade_Bsc X2WeaponUpgradeTemplate]
+FriendlyName="Auto-Loader"
+FriendlyNamePlural="Auto-Loaders"
+BriefSummary="Grants the quick reload ability, allowing you to reload 2 ammo without ending your turn."
+TinySummary="Free Reloads"
+LootTooltip="This weapon upgrade will allow you to quickly reload a small amount of ammo without ending your turn."
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; GEAR ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1549,11 +1552,11 @@ TacticalText="<Bullet/> Does +2 damage to nonrobotic ADVENT personnel.<br/><Bull
 [FalconRounds X2AmmoTemplate]
 FriendlyName="Shredder Rounds"
 FriendlyNamePlural="Shredder Rounds"
-BriefSummary="Shreds 2 enemy armor with every hit."
-TacticalText="<Bullet/> Shreds 2 enemy armor with every hit.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+BriefSummary="Shreds 1 enemy armor with every hit, at the cost of -<Ability:SHREDDER_ROUNDS_DMG_PENALTY/>% damage penalty."
+TacticalText="<Bullet/> Shreds 1 enemy armor with every hit.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
 
 [APRounds X2AmmoTemplate]
-BriefSummary="Hand machined from ultra strong, ultra light alien alloys, these deadly rounds will effectively bypass <Ability:APROUNDSPIERCEBONUS/> enemy armor to deal unmitigated damage."
+BriefSummary="Hand machined from ultra strong, ultra light alien alloys, these deadly rounds will effectively bypass <Ability:APROUNDSPIERCEBONUS/> enemy armor to deal unmitigated damage, at the cost of <Ability:AP_ROUNDS_CRIT_PENALTY/> crit."
 
 [HighPressureTanks X2WeaponTemplate]
 FriendlyName="High Pressure Tanks"
@@ -3450,9 +3453,9 @@ UnlockedDescription="Prototype added to inventory"
 
 [EXOSuit X2TechTemplate]
 DisplayName="Battle Armor"
-Summary="If we combine the power-assisted armor prototypes we've been working on with some of the ADVENT plating we've recovered, we could develop a variant of our plated armor that allows us to add a heavy weapon mount directly to the armor, combining significant defensive and offensive capabilities in a single suit."
+Summary="If we combine the power-assisted armor prototypes we've been working on with some of the ADVENT plating we've recovered, we could develop a variant of our plated armor that allows us to mount an exoskeleton in it, combining significant defensive capabilities with unimpaired movement."
 CodeName="Stark"
-LongDescription="For the aliens, fielding heavier weapons, or more of them, usually means using a larger, heavier alien species to haul the gear into battle. For our needs, we have to rely on something more practical. I've been working on a variety of power-assisted armor prototypes, which, at the very least, should provide a means for our troops to bring another weapon into the fight. By combining these prototypes with the alien alloy plating we've experimented with previously, the armor should be almost as durable as our Predator prototypes. L. Shen."
+LongDescription="Our Heavily armed soldiers can get bogged down by equipment weight, and Aliens Use a variety of tools to Hinder our movement. We can develop an Exoskeleton that will help with our soldier's freedom of movement. L. Shen."
 UnlockedDescription="Prototype added to inventory"
 
 [SpiderSuit X2TechTemplate]
@@ -3480,7 +3483,7 @@ UnlockedDescription="Prototype added to inventory"
 DisplayName="Battlesuits"
 Summary="By harnessing the power of Elerium, it may be possible to create a new powered-armor suit capable of generating a defensive force field not unlike those used on the alien craft."
 CodeName="Titan"
-LongDescription="With our supply of Elerium crystals limited by what our soldiers can recover in the field, I've been hesitant to recommend we commit them to any one project exclusively. However, in the wake of recent events, it seems like we need to work on developing an armor suit with significant durability and the ability to mount a heavy weapon. In order to do that, we've integrated an Elerium-based power cell into one our stronger frames. With the Elerium's incredible energy throughput, the suit can now support the use a self-contained force field. In the simplest of terms, we've mirrored the technologies most commonly used by the aliens in the defense of their UFOs, and fused them with a platform our troops can deploy in the field. I expect great things from this unit. L. Shen." 
+LongDescription="With our supply of Elerium crystals limited by what our soldiers can recover in the field, I've been hesitant to recommend we commit them to any one project exclusively. However, in the wake of recent events, it seems like we need to work on developing an armor suit with significant durability and an Exoskeleton Support system. In order to do that, we've integrated an Elerium-based power cell into one our stronger frames. With the Elerium's incredible energy throughput, the suit can now support the use a self-contained force field. In the simplest of terms, we've mirrored the technologies most commonly used by the aliens in the defense of their UFOs, and fused them with a platform our troops can deploy in the field. I expect great things from this unit. L. Shen." 
 UnlockedDescription="Prototype added to inventory"
 
 ;;;;;;;;;;;;;;;;;;; PROVING GROUNDS TECHS ;;;;;;;;;;;;;
@@ -3710,6 +3713,46 @@ Summary="Allows mass-production of these upgrades, which significantly reduce in
 [BuildSpark X2TechTemplate]
 DisplayName="SPARK"
 Summary="Designed by the late Dr. Raymond Shen before the initial invasion some 20 years ago, the captured SPARK robotic prototype apparently served as the progenitor for all future ADVENT MEC designs. The SPARK is a robotic combat unit, serving in either defensive or high-powered combat roles. We can disguise them as ADVENT MECs during infiltrations, but they do take longer to infiltrate targets than human soldiers. Note that SPARKs cannot become Haven advisers, train abilities in the Advanced Warfare Center, or serve as officers. They are also not affected by many officer abilities."
+
+
+;Proving ground techs
+[BreakthroughWeaponUpgrade1 X2TechTemplate]
+DisplayName="Modular Primary Weapons"
+Summary="Despite initial concerns over balance, our recent breakthrough will allow us to add another weapon upgrade slot to all Primary Weapons." 
+
+[BreakthroughWeaponUpgrade2 X2TechTemplate]
+DisplayName="Modular Primary Weapons II"
+Summary="Despite initial concerns over balance, our recent breakthrough will allow us to add another weapon upgrade slot to all Primary Weapons." 
+
+
+[ReinforcedUnderlay1 X2TechTemplate]
+DisplayName="Reinforced Underlay"
+Summary="The Reinforced Underlay project will provide and additional ablative point to all of our armors."
+
+[ReinforcedUnderlay2 X2TechTemplate]
+DisplayName="Reinforced Underlay II"
+Summary="The Reinforced Underlay II project will provide yet another ablative point to all of our armors."
+
+[VultureProject X2TechTemplate]
+DisplayName="Vulture"
+Summary="Knowledge on alien encryption Should allow us to comprehend more alien technology. Enemies will often drop an additional item with every timed loot drop."
+
+[WetWorkProject X2TechTemplate]
+DisplayName="Wet Work"
+Summary="New Knowledge on alien units will allow our soldier to gain +100 XP on kills"
+
+[StayWithMeProject X2TechTemplate]
+DisplayName="Stay With Me"
+Summary="The Newfound horrific knowledge of chryssalids reinforced out Soldier's will to stay alive at all costs. Soldiers will be more likely to bleed out than to die outright."
+
+[IntegratedWarfareProject X2TechTemplate]
+DisplayName="Integrated Warfare"
+Summary="PCS bonuses are significantly improved."
+
+[VengeanceProject X2TechTemplate]
+DisplayName="Vengeance"
+Summary="The autopsy of the trooper made us remember what they took from us. If a squadmate dies or is critically wounded, gain random tactical bonuses for two turns."
+
 
 [PatrolRoutes X2QuestItemTemplate]
 FriendlyName="Data Cache"
@@ -4253,6 +4296,7 @@ PreMissionText="Grants ADVENT units bonus offense."
 PostMissionSuccessText="Dark Event Countered: ADVENT Scopes"
 PostMissionFailureText="Failed to Counter Dark Event: ADVENT Scopes"
 
+
 [DarkEvent_ADVENTScopes X2HackRewardTemplate]
 FriendlyName="Dark Event: ADVENT Scopes"
 Description="Some ADVENT soldiers gain +5 aim."
@@ -4260,6 +4304,1175 @@ Description="Some ADVENT soldiers gain +5 aim."
 [ADVENTScopes X2AbilityTemplate]
 LocFriendlyName="ADVENT Scope"
 LocLongDescription="+5 Aim"
+
+
+; LWOTC Needs Translation
+
+[DarkEvent_TrooperOpenFire_LW X2DarkEventTemplate]
+DisplayName="Permanent: Trooper Open Fire"
+SummaryText="Troopers Gain Open Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Open Fire."
+PostMissionSuccessText="Permanent: Trooper Open Fire"
+PostMissionFailureText="Permanent: Trooper Open Fire"
+
+
+[DarkEvent_TrooperImpulse_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Impulse"
+SummaryText="Troopers Gain Impulse."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Impulse."
+PostMissionSuccessText="Permanent: Trooper Impulse"
+PostMissionFailureText="Permanent: Trooper Impulse"
+
+[DarkEvent_TrooperFormidable X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Formidable"
+SummaryText="Troopers Gain Formidable."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Formidable."
+PostMissionSuccessText="Permanent: Trooper Formidable"
+PostMissionFailureText="Permanent: Trooper Formidable"
+
+
+[DarkEvent_TrooperLockedOn X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Locked On"
+SummaryText="Troopers Gain Locked On."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Locked On ."
+PostMissionSuccessText="Permanent: Trooper Locked On"
+PostMissionFailureText="Permanent: Trooper Locked On"
+
+[DarkEvent_TrooperOpenFire_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Open Fire"
+SummaryText="Troopers Gain Open Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Open Fire."
+PostMissionSuccessText="Permanent: Trooper Open Fire"
+PostMissionFailureText="Permanent: Trooper Open Fire"
+
+[DarkEvent_TrooperEvasive X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Evasive"
+SummaryText="Troopers Gain Evasive."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Evasive."
+PostMissionSuccessText="Permanent: Trooper Evasive"
+PostMissionFailureText="Permanent: Trooper Evasive"
+
+[DarkEvent_TrooperChosenViperRounds X2DarkEventTemplate]
+
+DisplayName="Permanent: Trooper Viper Rounds"
+SummaryText="Troopers Gain Viper Rounds."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Troopers Viper Rounds."
+PostMissionSuccessText="Permanent: Trooper Viper Rounds"
+PostMissionFailureText="Permanent: Trooper Viper Rounds"
+
+[DarkEvent_SentryGrazingFire X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Grazing Fire"
+SummaryText="Sentries Gain Grazing Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Grazing Fire."
+PostMissionSuccessText="Permanent: Sentry Grazing Fire"
+PostMissionFailureText="Permanent: Sentry Grazing Fire"
+
+
+[DarkEvent_SentryConcentration_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Concentration"
+SummaryText="Sentries Gain Concentration."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Concentration."
+PostMissionSuccessText="Permanent: Sentry Concentration"
+PostMissionFailureText="Permanent: Sentry Concentration"
+
+[DarkEvent_SentryCombatAwareness X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Combat Awareness"
+SummaryText="Sentries Gain Combat Awareness."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Combat Awareness."
+PostMissionSuccessText="Permanent: Sentry Combat Awareness"
+PostMissionFailureText="Permanent: Sentry Combat Awareness"
+
+[DarkEvent_SentryCoolUnderPressure X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Cool Under Pressure"
+SummaryText="Sentries Gain Cool Under Pressure."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Cool Under Pressure."
+PostMissionSuccessText="Permanent: Sentry Cool Under Pressure"
+PostMissionFailureText="Permanent: Sentry Cool Under Pressure"
+
+[DarkEvent_SentryRapidReaction X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Rapid Reaction"
+SummaryText="Sentries Gain Rapid Reaction."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Rapid Reaction."
+PostMissionSuccessText="Permanent: Sentry Rapid Reaction"
+PostMissionFailureText="Permanent: Sentry Rapid Reaction"
+
+[DarkEvent_SentryHuntersInstinct X2DarkEventTemplate]
+
+DisplayName="Permanent: Sentry Hunters Instinct"
+SummaryText="Sentries Gain Hunters Instinct."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sentries Hunters Instinct."
+PostMissionSuccessText="Permanent: Sentry Hunters Instinct"
+PostMissionFailureText="Permanent: Sentry Hunters Instinct"
+
+[DarkEvent_GunnerGrazingFire X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Grazing Fire"
+SummaryText="Gunners Gain Grazing Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Grazing Fire."
+PostMissionSuccessText="Permanent: Gunner Grazing Fire"
+PostMissionFailureText="Permanent: Gunner Grazing Fire"
+
+
+[DarkEvent_GunnerOpenFire_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Open Fire"
+SummaryText="Gunners Gain Open Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Open Fire."
+PostMissionSuccessText="Permanent: Gunner Open Fire"
+PostMissionFailureText="Permanent: Gunner Open Fire"
+
+[DarkEvent_GunnerCombatAwareness X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Combat Awareness"
+SummaryText="Gunners Gain Combat Awareness."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Combat Awareness."
+PostMissionSuccessText="Permanent: Gunner Combat Awareness"
+PostMissionFailureText="Permanent: Gunner Combat Awareness"
+
+
+[DarkEvent_GunnerMayhem X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Mayhem"
+SummaryText="Gunners Gain Mayhem."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Mayhem."
+PostMissionSuccessText="Permanent: Gunner Mayhem"
+PostMissionFailureText="Permanent: Gunner Mayhem"
+
+[DarkEvent_GunnerShredder X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Shredder"
+SummaryText="Gunners Gain Shredder."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Shredder."
+PostMissionSuccessText="Permanent: Gunner Shredder"
+PostMissionFailureText="Permanent: Gunner Shredder"
+
+[DarkEvent_GunnerHolotargeting X2DarkEventTemplate]
+
+DisplayName="Permanent: Gunner Holotargeting"
+SummaryText="Gunners Gain Holotargeting."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gunners Holotargeting."
+PostMissionSuccessText="Permanent: Gunner Holotargeting"
+PostMissionFailureText="Permanent: Gunner Holotargeting"
+
+[DarkEvent_SectoidInstantReactionTime X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Instant Reaction Time"
+SummaryText="Sectoids Gain Instant Reaction Time."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Instant Reaction Time."
+PostMissionSuccessText="Permanent: Sectoid Instant Reaction Time"
+PostMissionFailureText="Permanent: Sectoid Instant Reaction Time"
+
+[DarkEvent_SectoidPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Predator"
+SummaryText="Sectoids Gain Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Predator."
+PostMissionSuccessText="Permanent: Sectoid Predator"
+PostMissionFailureText="Permanent: Sectoid Predator"
+
+[DarkEvent_SectoidShootingSharp_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Shooting Sharp"
+SummaryText="Sectoids Gain Shooting Sharp."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Shooting Sharp."
+PostMissionSuccessText="Permanent: Sectoid Shooting Sharp"
+PostMissionFailureText="Permanent: Sectoid Shooting Sharp"
+
+[DarkEvent_SectoidAggression X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Aggression"
+SummaryText="Sectoids Gain Aggression."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Aggression."
+PostMissionSuccessText="Permanent: Sectoid Aggression"
+PostMissionFailureText="Permanent: Sectoid Aggression"
+
+[DarkEvent_SectoidMindShield X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Mind Shield"
+SummaryText="Sectoids Gain Mind Shield."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Mind Shield."
+PostMissionSuccessText="Permanent: Sectoid Mind Shield"
+PostMissionFailureText="Permanent: Sectoid Mind Shield"
+
+[DarkEvent_SectoidDominant_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Dominant"
+SummaryText="Sectoids Gain Dominant."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Dominant."
+PostMissionSuccessText="Permanent: Sectoid Dominant"
+PostMissionFailureText="Permanent: Sectoid Dominant"
+
+[DarkEvent_SectoidApexPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Apex Predator"
+SummaryText="Sectoids Gain Apex Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Apex Predator."
+PostMissionSuccessText="Permanent: Sectoid Apex Predator"
+PostMissionFailureText="Permanent: Sectoid Apex Predator"
+
+[DarkEvent_SectoidSolace X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectoid Solace"
+SummaryText="Sectoids Gain Solace."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectoids Solace."
+PostMissionSuccessText="Permanent: Sectoid Solace"
+PostMissionFailureText="Permanent: Sectoid Solace"
+
+[DarkEvent_CaptainShootingSharp_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Captain Shooting Sharp"
+SummaryText="Captains Gain Shooting Sharp."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Captains Shooting Sharp."
+PostMissionSuccessText="Permanent: Captain Shooting Sharp"
+PostMissionFailureText="Permanent: Captain Shooting Sharp"
+
+[DarkEvent_CaptainCloseCombatSpecialist X2DarkEventTemplate]
+
+DisplayName="Permanent: Captain Close Combat Specialist"
+SummaryText="Captains Gain Close Combat Specialist."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Captains Close Combat Specialist."
+PostMissionSuccessText="Permanent: Captain Close Combat Specialist"
+PostMissionFailureText="Permanent: Captain Close Combat Specialist"
+
+[DarkEvent_CaptainExecutioner_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Captain Executioner"
+SummaryText="Captains Gain Executioner."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Captains Executioner."
+PostMissionSuccessText="Permanent: Captain Executioner"
+PostMissionFailureText="Permanent: Captain Executioner"
+
+[DarkEvent_CaptainAimAssist_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Captain Aim Assist"
+SummaryText="Captains Gain Aim Assist."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Captains Aim Assist."
+PostMissionSuccessText="Permanent: Captain Aim Assist"
+PostMissionFailureText="Permanent: Captain Aim Assist"
+
+[DarkEvent_CaptainOverbearingSuperiority_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Captain Overbearing Superiority"
+SummaryText="Captains Gain Overbearing Superiority."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Captains Overbearing Superiority."
+PostMissionSuccessText="Permanent: Captain Overbearing Superiority"
+PostMissionFailureText="Permanent: Captain Overbearing Superiority"
+
+[DarkEvent_DronePredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Predator"
+SummaryText="Drones Gain Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones Predator."
+PostMissionSuccessText="Permanent: Drone Predator"
+PostMissionFailureText="Permanent: Drone Predator"
+
+[DarkEvent_DroneBrawler X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Brawler"
+SummaryText="Drones Gain Brawler."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones Brawler."
+PostMissionSuccessText="Permanent: Drone Brawler"
+PostMissionFailureText="Permanent: Drone Brawler"
+
+[DarkEvent_DroneApexPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Apex Predator"
+SummaryText="Drones Gain Apex Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones Apex Predator."
+PostMissionSuccessText="Permanent: Drone Apex Predator"
+PostMissionFailureText="Permanent: Drone Apex Predator"
+
+[DarkEvent_DroneHuntersInstinct X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Hunters Instinct"
+SummaryText="Drones Gain Hunters Instinct."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones Hunters Instinct."
+PostMissionSuccessText="Permanent: Drone Hunters Instinct"
+PostMissionFailureText="Permanent: Drone Hunters Instinct"
+
+[DarkEvent_DroneCloseCombatSpecialist X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Close Combat Specialist"
+SummaryText="Drones Gain Close Combat Specialist."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones Close Combat Specialist."
+PostMissionSuccessText="Permanent: Drone Close Combat Specialist"
+PostMissionFailureText="Permanent: Drone Close Combat Specialist"
+
+[DarkEvent_DroneParalyzingBlows X2DarkEventTemplate]
+
+DisplayName="Permanent: Drone Paralyzing Blows"
+SummaryText="Drones Gain Paralyzing Blows."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Drones ParalyzingBlows."
+PostMissionSuccessText="Permanent: Drone Paralyzing Blows"
+PostMissionFailureText="Permanent: Drone Paralyzing Blows"
+
+[DarkEvent_StunLancerInfighter X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer Infighter"
+SummaryText="Stun Lancers Gain Infighter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Infighter."
+PostMissionSuccessText="Permanent: Stun Lancer Infighter"
+PostMissionFailureText="Permanent: Stun Lancer Infighter"
+
+[DarkEvent_StunLancerZoneOfControl_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer Zone Of Control"
+SummaryText="Stun Lancers Gain Zone Of Control."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Zone Of Control."
+PostMissionSuccessText="Permanent: Stun Lancer Zone Of Control"
+PostMissionFailureText="Permanent: Stun Lancer Zone Of Control"
+
+[DarkEvent_StunLancerFreeGrenades X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer Grenadier"
+SummaryText="Stun Lancers Gain Grenadier."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Grenadier."
+PostMissionSuccessText="Permanent: Stun Lancer Grenadier"
+PostMissionFailureText="Permanent: Stun Lancer Grenadier"
+
+[DarkEvent_StunLancerBladestorm X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer Bladestorm"
+SummaryText="Stun Lancers Gain Bladestorm."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Bladestorm."
+PostMissionSuccessText="Permanent: Stun Lancer Bladestorm"
+PostMissionFailureText="Permanent: Stun Lancer Bladestorm"
+
+[DarkEvent_StunLancerParalyzingBlows X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer Paralyzing Blows"
+SummaryText="Stun Lancers Gain Paralyzing Blows."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Paralyzing Blows."
+PostMissionSuccessText="Permanent: Stun Lancer Paralyzing Blows"
+PostMissionFailureText="Permanent: Stun Lancer Paralyzing Blows"
+
+[DarkEvent_StunLancerCoupDeGrace2 X2DarkEventTemplate]
+
+DisplayName="Permanent: Stun Lancer CoupDeGrace"
+SummaryText="Stun Lancers Gain Coup De Grace."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Stun Lancers Coup De Grace."
+PostMissionSuccessText="Permanent: Stun Lancer Coup De Grace"
+PostMissionFailureText="Permanent: Stun Lancer Coup De Grace"
+
+[DarkEvent_ViperInfighter X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Infighter"
+SummaryText="Vipers Gain Infighter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Infighter."
+PostMissionSuccessText="Permanent: Viper Infighter"
+PostMissionFailureText="Permanent: Viper Infighter"
+
+[DarkEvent_ViperOpenFire_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Open Fire"
+SummaryText="Vipers Gain Open Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Open Fire."
+PostMissionSuccessText="Permanent: Viper Open Fire"
+PostMissionFailureText="Permanent: Viper Open Fire"
+
+[DarkEvent_ViperSurvivalInstinct_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Survival Instinct"
+SummaryText="Vipers Gain Survival Instinct."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Survival Instinct."
+PostMissionSuccessText="Permanent: Viper Survival Instinct"
+PostMissionFailureText="Permanent: Viper Survival Instinct"
+
+[DarkEvent_ViperSteadyHands X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Steady Hands"
+SummaryText="Vipers Gain Steady Hands."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Steady Hands."
+PostMissionSuccessText="Permanent: Viper Steady Hands"
+PostMissionFailureText="Permanent: Viper Steady Hands"
+
+[DarkEvent_ViperSerpentine X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Serpentine"
+SummaryText="Vipers Gain Serpentine."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Serpentine."
+PostMissionSuccessText="Permanent: Viper Serpentine"
+PostMissionFailureText="Permanent: Viper Serpentine"
+
+[DarkEvent_ViperEntwine_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Entwine"
+SummaryText="Vipers Gain Entwine."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Entwine."
+PostMissionSuccessText="Permanent: Viper Entwine"
+PostMissionFailureText="Permanent: Viper Entwine"
+
+[DarkEvent_ViperHazmatVestBonus_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Viper Hazmat Vest Bonus"
+SummaryText="Vipers Gain Hazmat Vest Bonus."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Vipers Bonuses Of Hazmat Vest."
+PostMissionSuccessText="Permanent: Viper Hazmat Vest Bonus"
+PostMissionFailureText="Permanent: Viper Hazmat Vest Bonus"
+
+[DarkEvent_PriestImpulse_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Impulse"
+SummaryText="Priests Gain Impulse."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Impulse."
+PostMissionSuccessText="Permanent: Priest Impulse"
+PostMissionFailureText="Permanent: Priest Impulse"
+
+[DarkEvent_PriestInfighter X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Infighter"
+SummaryText="Priests Gain Infighter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Infighter."
+PostMissionSuccessText="Permanent: Priest Infighter"
+PostMissionFailureText="Permanent: Priest Infighter"
+
+[DarkEvent_PriestSuperiorHolyWarrior X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Superior Holy Warrior"
+SummaryText="Priests Gain Superior Holy Warrior."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Superior Holy Warrior."
+PostMissionSuccessText="Permanent: Priest Superior Holy Warrior"
+PostMissionFailureText="Permanent: Priest Superior Holy Warrior"
+
+[DarkEvent_PriestMindShield X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Mind Shield"
+SummaryText="Priests Gain Mind Shield."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Mind Shield."
+PostMissionSuccessText="Permanent: Priest Mind Shield"
+PostMissionFailureText="Permanent: Priest Mind Shield"
+
+[DarkEvent_PriestGrit_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Grit"
+SummaryText="Priests Gain Grit."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Grit."
+PostMissionSuccessText="Permanent: Priest Grit"
+PostMissionFailureText="Permanent: Priest Grit"
+
+[DarkEvent_PriestDominant_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Dominant"
+SummaryText="Priests Gain Dominant."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Dominant."
+PostMissionSuccessText="Permanent: Priest Dominant"
+PostMissionFailureText="Permanent: Priest Dominant"
+
+[DarkEvent_PriestChosenDragonRounds X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Dragon Rounds"
+SummaryText="Priests Gain Dragon Rounds."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Dragon Rounds."
+PostMissionSuccessText="Permanent: Priest Dragon Rounds"
+PostMissionFailureText="Permanent: Priest Dragon Rounds"
+
+[DarkEvent_PriestSolace X2DarkEventTemplate]
+
+DisplayName="Permanent: Priest Solace"
+SummaryText="Priests Gain Solace."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Priests Dragon Rounds."
+PostMissionSuccessText="Permanent: Priest Solace"
+PostMissionFailureText="Permanent: Priest Solace"
+
+[DarkEvent_SidewinderInstantReactionTime X2DarkEventTemplate]
+
+DisplayName="Permanent: Sidewinder Instant Reaction Time"
+SummaryText="Sidewinders Gain Instant Reaction Time."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sidewinders Instant Reaction Time."
+PostMissionSuccessText="Permanent: Sidewinder Instant Reaction Time"
+PostMissionFailureText="Permanent: Sidewinder Instant Reaction Time"
+
+[DarkEvent_SidewinderFormidable X2DarkEventTemplate]
+
+DisplayName="Permanent: Sidewinder Formidable"
+SummaryText="Sidewinders Gain Formidable."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sidewinders Formidable."
+PostMissionSuccessText="Permanent: Sidewinder Formidable"
+PostMissionFailureText="Permanent: Sidewinder Formidable"
+
+[DarkEvent_SidewinderPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Sidewinder Predator"
+SummaryText="Sidewinders Gain Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sidewinders Predator."
+PostMissionSuccessText="Permanent: Sidewinder Predator"
+PostMissionFailureText="Permanent: Sidewinder Predator"
+
+[DarkEvent_SidewinderQuickRetreat X2DarkEventTemplate]
+
+DisplayName="Permanent: Sidewinder Quick Retreat"
+SummaryText="Sidewinders Gain Quick Retreat."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sidewinders Quick Retreat."
+PostMissionSuccessText="Permanent: Sidewinder Quick Retreat"
+PostMissionFailureText="Permanent: Sidewinder Quick Retreat"
+
+[DarkEvent_SidewinderSerpentine X2DarkEventTemplate]
+
+DisplayName="Permanent: Sidewinder Serpentine"
+SummaryText="Sidewinders Gain Serpentine."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sidewinders Serpentine."
+PostMissionSuccessText="Permanent: Sidewinder Serpentine"
+PostMissionFailureText="Permanent: Sidewinder Serpentine"
+
+[DarkEvent_PurifierMagnum_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Magnum"
+SummaryText="Purifiers Gain Magnum."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Magnum."
+PostMissionSuccessText="Permanent: Purifier Magnum"
+PostMissionFailureText="Permanent: Purifier Magnum"
+
+[DarkEvent_PurifierLowProfile X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Low Profile"
+SummaryText="Purifiers Gain Low Profile."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Low Profile."
+PostMissionSuccessText="Permanent: Purifier Low Profile"
+PostMissionFailureText="Permanent: Purifier Low Profile"
+
+[DarkEvent_PurifierOverKill_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Over Kill"
+SummaryText="Purifiers Gain Over Kill."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Over Kill."
+PostMissionSuccessText="Permanent: Purifier Over Kill"
+PostMissionFailureText="Permanent: Purifier Over Kill"
+
+[DarkEvent_PurifierSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Sprinter"
+SummaryText="Purifiers Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Sprinter."
+PostMissionSuccessText="Permanent: Purifier Sprinter"
+PostMissionFailureText="Permanent: Purifier Sprinter"
+
+[DarkEvent_PurifierInstantReactionTime X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Instant Reaction Time"
+SummaryText="Purifiers Gain Instant Reaction Time."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Instant Reaction Time."
+PostMissionSuccessText="Permanent: Purifier Instant Reaction Time"
+PostMissionFailureText="Permanent: Purifier Instant Reaction Time"
+
+[DarkEvent_PurifierReturnFire X2DarkEventTemplate]
+
+DisplayName="Permanent: Purifier Return Fire"
+SummaryText="Purifiers Gain Return Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Purifiers Return Fire."
+PostMissionSuccessText="Permanent: Purifier Return Fire"
+PostMissionFailureText="Permanent: Purifier Return Fire"
+
+[DarkEvent_MutonShredder X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Shredder"
+SummaryText="Mutons Gain Shredder."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Shredder."
+PostMissionSuccessText="Permanent: Muton Shredder"
+PostMissionFailureText="Permanent: Muton Shredder"
+
+[DarkEvent_MutonSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Sprinter"
+SummaryText="Mutons Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Sprinter."
+PostMissionSuccessText="Permanent: Muton Sprinter"
+PostMissionFailureText="Permanent: Muton Sprinter"
+
+[DarkEvent_MutonZoneOfControl_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Zone Of Control"
+SummaryText="Mutons Gain Zone Of Control."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Zone Of Control."
+PostMissionSuccessText="Permanent: Muton Zone Of Control"
+PostMissionFailureText="Permanent: Muton Zone Of Control"
+
+[DarkEvent_MutonPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Predator"
+SummaryText="Mutons Gain Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Predator."
+PostMissionSuccessText="Permanent: Muton Predator"
+PostMissionFailureText="Permanent: Muton Predator"
+
+[DarkEvent_MutonBladeStorm X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Bladestorm"
+SummaryText="Mutons Gain Bladestorm."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Bladestorm."
+PostMissionSuccessText="Permanent: Muton Bladestorm"
+PostMissionFailureText="Permanent: Muton Bladestorm"
+
+[DarkEvent_MutonTotalCombat X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Total Combat"
+SummaryText="Mutons Gain Total Combat."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Total Combat."
+PostMissionSuccessText="Permanent: Muton Total Combat"
+PostMissionFailureText="Permanent: Muton Total Combat"
+
+[DarkEvent_MutonGrit_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Muton Grit"
+SummaryText="Mutons Gain Grit."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mutons Grit."
+PostMissionSuccessText="Permanent: Muton Grit"
+PostMissionFailureText="Permanent: Muton Grit"
+
+[DarkEvent_MecResilience X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Resilience"
+SummaryText="Mecs Gain Resilience."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Resilience."
+PostMissionSuccessText="Permanent: Mec Resilience"
+PostMissionFailureText="Permanent: Mec Resilience"
+
+[DarkEvent_MecShredder X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Shredder"
+SummaryText="Mecs Gain Shredder."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Shredder."
+PostMissionSuccessText="Permanent: Mec Shredder"
+PostMissionFailureText="Permanent: Mec Shredder"
+
+[DarkEvent_MecSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Sprinter"
+SummaryText="Mecs Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Sprinter."
+PostMissionSuccessText="Permanent: Mec Sprinter"
+PostMissionFailureText="Permanent: Mec Sprinter"
+
+[DarkEvent_MecVolatileMix X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Volitile Mix"
+SummaryText="Mecs Gain Volitile Mix."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Volitile Mix."
+PostMissionSuccessText="Permanent: Mec Volitile Mix"
+PostMissionFailureText="Permanent: Mec Volitile Mix"
+
+[DarkEvent_MecReturnFire X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Return Fire"
+SummaryText="Mecs Gain Return Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Return Fire."
+PostMissionSuccessText="Permanent: Mec Return Fire"
+PostMissionFailureText="Permanent: Mec Return Fire"
+
+[DarkEvent_MecAbsorptionFields_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Mec Reactive Sensors"
+SummaryText="Mecs Gain Reactive Sensors."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Mecs Reactive Sensors."
+PostMissionSuccessText="Permanent: Mec Reactive Sensors"
+PostMissionFailureText="Permanent: Mec Reactive Sensors"
+
+[DarkEvent_CyberusPredator X2DarkEventTemplate]
+
+DisplayName="Permanent: Cyberus Predator"
+SummaryText="Cyberus Gain Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Cyberus Predator."
+PostMissionSuccessText="Permanent: Cyberus Predator"
+PostMissionFailureText="Permanent: Cyberus Predator"
+
+[DarkEvent_CyberusResilience X2DarkEventTemplate]
+
+DisplayName="Permanent: Cyberus Resilience"
+SummaryText="Cyberus Gain Resilience."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Cyberus Resilience."
+PostMissionSuccessText="Permanent: Cyberus Resilience"
+PostMissionFailureText="Permanent: Cyberus Resilience"
+
+[DarkEvent_CyberusLowProfile X2DarkEventTemplate]
+
+DisplayName="Permanent: Cyberus Low Profile"
+SummaryText="Cyberus Gain Low Profile."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Cyberus Low Profile."
+PostMissionSuccessText="Permanent: Cyberus Low Profile"
+PostMissionFailureText="Permanent: Cyberus Low Profile"
+
+[DarkEvent_CyberusApexPredator_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Cyberus Apex Predator"
+SummaryText="Cyberus Gain Apex Predator."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Cyberus Apex Predator."
+PostMissionSuccessText="Permanent: Cyberus Apex Predator"
+PostMissionFailureText="Permanent: Cyberus Apex Predator"
+
+[DarkEvent_SpectreInfighter X2DarkEventTemplate]
+
+DisplayName="Permanent: Spectre Infighter"
+SummaryText="Spectres Gain Infighter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Spectres Infighter."
+PostMissionSuccessText="Permanent: Spectre Infighter"
+PostMissionFailureText="Permanent: Spectre Infighter"
+
+[DarkEvent_SpectreHuntersInstinct X2DarkEventTemplate]
+
+DisplayName="Permanent: Spectre Hunters Instinct"
+SummaryText="Spectres Gain Hunters Instinct."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Spectres Hunter Instinct."
+PostMissionSuccessText="Permanent: Spectre Hunters Instinct"
+PostMissionFailureText="Permanent: Spectre Hunters Instinct"
+
+[DarkEvent_SpectreLowProfile X2DarkEventTemplate]
+
+DisplayName="Permanent: Spectre Low Profile"
+SummaryText="Spectres Gain Low Profile."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Spectres Low Profile."
+PostMissionSuccessText="Permanent: Spectre Low Profile"
+PostMissionFailureText="Permanent: Spectre Low Profile"
+
+[DarkEvent_SpectreSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Spectre Sprinter"
+SummaryText="Spectres Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Spectres Sprinter."
+PostMissionSuccessText="Permanent: Spectre Sprinter"
+PostMissionFailureText="Permanent: Spectre Sprinter"
+
+[DarkEvent_ShieldBearerBrawler X2DarkEventTemplate]
+
+DisplayName="Permanent: Shield Bearer Brawler"
+SummaryText="Shield Bearers Gain Brawler."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Shield Bearers Brawler."
+PostMissionSuccessText="Permanent: Shield Bearer Brawler"
+PostMissionFailureText="Permanent: Shield Bearer Brawler"
+
+[DarkEvent_ShieldBearerFormidable X2DarkEventTemplate]
+
+DisplayName="Permanent: Shield Bearer Formidable"
+SummaryText="Shield Bearers Gain Formidable."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Shield Bearers Formidable."
+PostMissionSuccessText="Permanent: Shield Bearer Formidable"
+PostMissionFailureText="Permanent: Shield Bearer Formidable"
+
+[DarkEvent_ShieldBearerReadyForAnything X2DarkEventTemplate]
+
+DisplayName="Permanent: Shield Bearer Ready For Anything"
+SummaryText="Shield Bearers Gain Ready For Anything."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Shield Bearers Read For Anything."
+PostMissionSuccessText="Permanent: Shield Bearer Ready For Anything"
+PostMissionFailureText="Permanent: Shield Bearer Ready For Anything"
+
+[DarkEvent_ShieldBearerChosenDragonRounds X2DarkEventTemplate]
+
+DisplayName="Permanent: Shield Bearer Dragon Rounds"
+SummaryText="Shield Bearers Gain Dragon Rounds."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Shield Bearers Dragon Rounds."
+PostMissionSuccessText="Permanent: Shield Bearer Dragon Rounds"
+PostMissionFailureText="Permanent: Shield Bearer Dragon Rounds"
+
+[DarkEvent_BerserkerParalyzingBlows X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Paralyzing Blows"
+SummaryText="Berserkers Gain Paralyzing Blows."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Paralyzing Blows."
+PostMissionSuccessText="Permanent: Berserker Paralyzing Blows"
+PostMissionFailureText="Permanent: Berserker Paralyzing Blows"
+
+[DarkEvent_BerserkerSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Sprinter"
+SummaryText="Berserkers Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Sprinter."
+PostMissionSuccessText="Permanent: Berserker Sprinter"
+PostMissionFailureText="Permanent: Berserker Sprinter"
+
+[DarkEvent_BerserkerZoneOfControl_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Zone Of Control"
+SummaryText="Berserkers Gain Zone Of Control."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Zone Of Control."
+PostMissionSuccessText="Permanent: Berserker Zone Of Control"
+PostMissionFailureText="Permanent: Berserker Zone Of Control"
+
+[DarkEvent_BerserkerResilience X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Resilience"
+SummaryText="Berserkers Gain Resilience."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Resilience."
+PostMissionSuccessText="Permanent: Berserker Resilience"
+PostMissionFailureText="Permanent: Berserker Resilience"
+
+[DarkEvent_BerserkerBladestorm X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Bladestorm"
+SummaryText="Berserkers Gain Bladestorm."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Bladestorm."
+PostMissionSuccessText="Permanent: Berserker Bladestorm"
+PostMissionFailureText="Permanent: Berserker Bladestorm"
+
+[DarkEvent_BerserkerDamageControl X2DarkEventTemplate]
+
+DisplayName="Permanent: Berserker Damage Control"
+SummaryText="Berserkers Gain Damage Control."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Berserkers Damage Control."
+PostMissionSuccessText="Permanent: Berserker Damage Control"
+PostMissionFailureText="Permanent: Berserker Damage Control"
+
+[DarkEvent_ChryssalidMovingTarget_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Moving Target"
+SummaryText="Chryssalids Gain Moving Target."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Moving Target."
+PostMissionSuccessText="Permanent: Chryssalid Moving Target"
+PostMissionFailureText="Permanent: Chryssalid Moving Target"
+
+[DarkEvent_ChryssalidInfighter X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Infighter"
+SummaryText="Chryssalids Gain Infighter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Infighter."
+PostMissionSuccessText="Permanent: Chryssalid Infighter"
+PostMissionFailureText="Permanent: Chryssalid Infighter"
+
+[DarkEvent_ChryssalidParalyzingBlows X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Paralyzing Blows"
+SummaryText="Chryssalids Gain Paralyzing Blows."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Paralyzing Blows."
+PostMissionSuccessText="Permanent: Chryssalid Paralyzing Blows"
+PostMissionFailureText="Permanent: Chryssalid Paralyzing Blows"
+
+[DarkEvent_ChryssalidGrit_LW X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Grit"
+SummaryText="Chryssalids Gain Grit."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Grit."
+PostMissionSuccessText="Permanent: Chryssalid Grit"
+PostMissionFailureText="Permanent: Chryssalid Grit"
+
+[DarkEvent_ChryssalidSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Sprinter"
+SummaryText="Chryssalids Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Sprinter."
+PostMissionSuccessText="Permanent: Chryssalid Sprinter"
+PostMissionFailureText="Permanent: Chryssalid Sprinter"
+
+[DarkEvent_ChryssalidInstantReactionTime X2DarkEventTemplate]
+
+DisplayName="Permanent: Chryssalid Instant Reaction Time"
+SummaryText="Chryssalids Gain Instant Reaction Time."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Chryssalids Instant Reaction Time."
+PostMissionSuccessText="Permanent: Chryssalid Instant Reaction Time"
+PostMissionFailureText="Permanent: Chryssalid Instant Reaction Time"
+
+[DarkEvent_AndromedonSprinter X2DarkEventTemplate]
+
+DisplayName="Permanent: Andromedon Sprinter"
+SummaryText="Andromedon Gain Sprinter."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Andromedon Sprinter."
+PostMissionSuccessText="Permanent: Andromedon Sprinter"
+PostMissionFailureText="Permanent: Andromedon Sprinter"
+
+[DarkEvent_AndromedonVolatileMix X2DarkEventTemplate]
+
+DisplayName="Permanent: Andromedon Volitile Mix"
+SummaryText="Andromedon Gain Volitile Mix."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Andromedon Volitile Mix."
+PostMissionSuccessText="Permanent: Andromedon Volitile Mix"
+PostMissionFailureText="Permanent: Andromedon Volitile Mix"
+
+[DarkEvent_AndromedonSuperDuperRobot X2DarkEventTemplate]
+
+DisplayName="Permanent: Andromedon Super Duper Robot"
+SummaryText="Andromedon Gain Super Duper Robot."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Andromedon Super Duper Robot."
+PostMissionSuccessText="Permanent: Andromedon Super Duper Robot"
+PostMissionFailureText="Permanent: Andromedon Super Duper Robot"
+
+[DarkEvent_AndromedonCloseCombatSpecialist X2DarkEventTemplate]
+
+DisplayName="Permanent: Andromedon Close Combat Specialist"
+SummaryText="Andromedon Gain Close Combat Specialist."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Andromedon Close Combat Specialist."
+PostMissionSuccessText="Permanent: Andromedon Close Combat Specialist"
+PostMissionFailureText="Permanent: Andromedon Close Combat Specialist"
+
+[DarkEvent_ArchonHardTarget X2DarkEventTemplate]
+
+DisplayName="Permanent: Archon Hard Target"
+SummaryText="Archons Gain Hard Target."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Archons Hard Target."
+PostMissionSuccessText="Permanent: Archon Hard Target"
+PostMissionFailureText="Permanent: Archon Hard Target"
+
+[DarkEvent_ArchonCoolUnderPressure X2DarkEventTemplate]
+
+DisplayName="Permanent: Archon Cool Under Pressure"
+SummaryText="Archons Gain Cool Under Pressure."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Archons Cool Under Pressure."
+PostMissionSuccessText="Permanent: Archon Cool Under Pressure"
+PostMissionFailureText="Permanent: Archon Cool Under Pressure"
+
+[DarkEvent_SectopodShredder X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectopod Shredder"
+SummaryText="Sectopods Gain Shredder."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectopods Shredder."
+PostMissionSuccessText="Permanent: Sectopod Shredder"
+PostMissionFailureText="Permanent: Sectopod Shredder"
+
+[DarkEvent_SectopodReturnFire X2DarkEventTemplate]
+
+DisplayName="Permanent: Sectopod Return Fire"
+SummaryText="Sectopods Gain Return Fire."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Sectopods Return Fire."
+PostMissionSuccessText="Permanent: Sectopod Return Fire"
+PostMissionFailureText="Permanent: Sectopod Return Fire"
+
+[DarkEvent_GatekeeperDefilade X2DarkEventTemplate]
+
+DisplayName="Permanent: Gatekeeper Defilade"
+SummaryText="Gatekeepers Gain Defilade."
+QuoteText="\"More Dark Events? Not this Shit Again\""
+QuoteTextAuthor="- Everyone"
+PreMissionText="Grants Gatekeepers Defilade."
+PostMissionSuccessText="Permanent: Gatekeeper Defilade"
+PostMissionFailureText="Permanent: Gatekeeper Defilade"; End Translation
+
+
 
 ; LASER SIGHT
 
@@ -4417,7 +5630,7 @@ PreMissionText="Grants some ADVENT units bonus defense."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Defense)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Defense)"
 
-[DarkEventAbility_TacticalUpgrades X2AbilityTemplate]
+[DarkEvent_TacticalUpgrades X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Defense)"
 LocLongDescription="Some enemy units gain +5 defense."
 
@@ -4437,7 +5650,7 @@ PreMissionText="Grants some aliens the Will to Survive perk."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Will to Survive)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Will to Survive)"
 
-[DarkEventAbility_WilltoSurvive X2AbilityTemplate]
+[DarkEvent_WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Will to Survive)"
 LocLongDescription="Some enemy units gain the Will to Survive ability, which grants a point of armor when protected by cover."
 
@@ -4453,7 +5666,7 @@ PreMissionText="Grants some aliens the Center Mass perk."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Damage)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Damage)"
 
-[DarkEventAbility_CenterMass X2AbilityTemplate]
+[DarkEvent_CenterMass X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Center Mass)"
 LocLongDescription="Some enemy units do additional damage with their primary weapon."
 
@@ -4469,7 +5682,7 @@ PreMissionText="Grants ADVENT Stun Lancers the Infighter ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Infighter)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Infighter)"
 
-[DarkEventAbility_Infighter X2AbilityTemplate]
+[DarkEvent_Infighter X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Infighter)"
 LocLongDescription="ADVENT Stun Lancers gain the Infighter ability, which grants bonus dodge against nearby enemies."
 
@@ -4485,7 +5698,7 @@ PreMissionText="Grants several enemies the Formidable ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Formidable)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Formidable)"
 
-[DarkEventAbility_Formidable X2AbilityTemplate]
+[DarkEvent_Formidable X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Formidable)"
 LocLongDescription="Some enemies gain the Formidable ability, giving them extra armor and resistance to explosives."
 
@@ -4501,7 +5714,7 @@ PreMissionText="Grants some enemies the Lethal ability, causing them to do +2 da
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Lethal)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Lethal)"
 
-[DarkEventAbility_Lethal X2AbilityTemplate]
+[DarkEvent_Lethal X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Lethal)"
 LocLongDescription="Grants some enemies the Lethal ability, causing them to do +2 damage with their primary weapon."
 
@@ -4517,7 +5730,7 @@ PreMissionText="Grants several enemies the Shredder ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Shredder)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Shredder)"
 
-[DarkEventAbility_Shredder X2AbilityTemplate]
+[DarkEvent_Shredder X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Shredder)"
 LocLongDescription="Some enemies gain the Shredder ability, giving their weapons the ability to shred armor with each hit."
 
@@ -4533,7 +5746,7 @@ PreMissionText="Grants many ophidian enemies the Hunter's Instinct ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Hunter's Instincts)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Hunter's Instincts)"
 
-[DarkEventAbility_HuntersInstinct X2AbilityTemplate]
+[DarkEvent_HuntersInstinct X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Hunter's Instincts)"
 LocLongDescription="Many ophidian enemies gain the Hunter's Instinct ability, granting bonus damage against flanked enemies."
 
@@ -4549,7 +5762,7 @@ PreMissionText="Grants some Stun Lancers and other enemies the Lightning Reflexe
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Lightning Reflexes)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Lightning Reflexes)"
 
-[DarkEventAbility_LightningReflexes_LW X2AbilityTemplate]
+[DarkEvent_LightningReflexes_LW X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Lightning Reflexes)"
 LocLongDescription="Some Stun Lancers and other enemies gain the Lightning Reflexes ability, allowing them bonuses to avoid reaction fire."
 
@@ -4565,7 +5778,7 @@ PreMissionText="Grants Archons the Close Combat Specialist ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Close Combat Specialist)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Close Combat Specialist)"
 
-[DarkEventAbility_CloseCombatSpecialist X2AbilityTemplate]
+[DarkEvent_CloseCombatSpecialist X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Close Combat Specialist)"
 LocLongDescription="Archons gain the Close Combat Specialist ability, granting them reaction fire against any enemy who closes within four tiles."
 
@@ -4580,7 +5793,7 @@ PreMissionText="Grants several enemies the Grazing Fire ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Grazing Fire)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Grazing Fire)"
 
-[DarkEventAbility_GrazingFire X2AbilityTemplate]
+[DarkEvent_GrazingFire X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Grazing Fire)"
 LocLongDescription="Some enemies gain the Grazing Fire ability, providing an increased chance to turn misses into grazes."
 
@@ -4595,7 +5808,7 @@ PreMissionText="Grants Stun Lancers and other enemies the Cutthroat ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Cutthroat)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Cutthroat)"
 
-[DarkEventAbility_Cutthroat X2AbilityTemplate]
+[DarkEvent_Cutthroat X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Cutthroat)"
 LocLongDescription="Stun Lancers and other enemies gain the Cutthroat ability, allowing melee attacks to ignore armor."
 
@@ -4610,7 +5823,7 @@ PreMissionText="Grants ADVENT Sentries the Combat Awareness ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Combat Awareness)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Combat Awareness)"
 
-[DarkEventAbility_CombatAwareness X2AbilityTemplate]
+[DarkEvent_CombatAwareness X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Combat Awareness)"
 LocLongDescription="ADVENT Sentries gain the Combat Awareness ability, granting them bonus defense and armor when in overwatch."
 
@@ -4625,7 +5838,7 @@ PreMissionText="Grants ADVENT robotic units the Iron Skin ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Iron Skin)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Iron Skin)"
 
-[DarkEventAbility_IronSkin X2AbilityTemplate]
+[DarkEvent_IronSkin X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Iron Skin)"
 LocLongDescription="ADVENT robotic units gain the Iron Skin ability, granting them damage reduction against melee attacks."
 
@@ -4640,7 +5853,7 @@ PreMissionText="Grants some enemy units the Tactical Sense ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Tactical Sense)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Tactical Sense)"
 
-[DarkEventAbility_TacticalSense X2AbilityTemplate]
+[DarkEvent_TacticalSense X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Tactical Sense)"
 LocLongDescription="Some enemy units gain the Tactical Sense ability, granting them bonus defense."
 
@@ -4655,7 +5868,7 @@ PreMissionText="Grants some enemy units the Aggression ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Aggression)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Aggression)"
 
-[DarkEventAbility_Aggression X2AbilityTemplate]
+[DarkEvent_Aggression X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Aggression)"
 LocLongDescription="Some enemy units gain the Aggression ability, granting them bonus critical chances."
 
@@ -4670,7 +5883,7 @@ PreMissionText="Grants Codex units the Resilience ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Resilience)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Resilience)"
 
-[DarkEventAbility_Resilience X2AbilityTemplate]
+[DarkEvent_Resilience X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Resilience)"
 LocLongDescription="Grants Codex units the Resilience ability, reducing the chance of critical hits against them."
 
@@ -4685,7 +5898,7 @@ PreMissionText="Grants Codex units the Shadowstep ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Shadowstep)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Shadowstep)"
 
-[DarkEventAbility_Shadowstep X2AbilityTemplate]
+[DarkEvent_Shadowstep X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Shadowstep)"
 LocLongDescription="Codex units gain the Shadowstep ability and cannot be targeted by reaction fire."
 
@@ -4700,7 +5913,7 @@ PreMissionText="Grants some robotic units, turrets, Codexes and Gatekeepers the 
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Damage Control)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Damage Control)"
 
-[DarkEventAbility_DamageControl X2AbilityTemplate]
+[DarkEvent_DamageControl X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Damage Control)"
 LocLongDescription="Some ADVENT robots and some other units gain the Damage Control ability, granting bonus armor after they take damage."
 
@@ -4717,7 +5930,7 @@ PreMissionText="Grants some alien units the Hard Target ability."
 PostMissionSuccessText="Dark Event Countered: Tactical Upgrades (Hard Target)"
 PostMissionFailureText="Failed to Counter Dark Event: Tactical Upgrades (Hard Target)"
 
-[DarkEventAbility_HardTarget X2AbilityTemplate]
+[DarkEvent_HardTarget X2AbilityTemplate]
 LocFriendlyName="Dark Event: Tactical Upgrades (Hard Target)"
 LocLongDescription="Some alien units gain the Hard Target ability, granting bonus dodge."
 
@@ -4732,7 +5945,7 @@ PreMissionText="The aliens deploy a stronger and deadlier Faceless unit."
 PostMissionSuccessText="Dark Event Countered: Greater Faceless"
 PostMissionFailureText="Failed to Counter Dark Event: Greater Faceless"
 
-[DarkEventAbility_GreaterFacelessStatImprovements X2AbilityTemplate]
+[DarkEvent_GreaterFacelessStatImprovements X2AbilityTemplate]
 LocFriendlyName="Dark Event: Greater Faceless"
 LocLongDescription="The aliens deploy a stronger and deadlier Faceless unit."
 
@@ -4984,6 +6197,22 @@ Summary="Infiltrations for squads of 6 or 7 soldiers will take less time.<br/><b
 DisplayName="Large Unit Infiltrations"
 Summary="Infiltrations for squads of 8 to 10 soldiers will take less time.<br/><br/>Special Requirement: This upgrade requires an officer of at least Colonel rank to unlock."
 
+[XTP1 X2SoldierUnlockTemplate]
+DisplayName="XCom Training Program"
+Summary="Soldiers Automatically level up to LCPL"
+
+[XTP2 X2SoldierUnlockTemplate]
+DisplayName="XCom Training Program II"
+Summary="Soldiers Automatically level up to CPL"
+
+[XTP3 X2SoldierUnlockTemplate]
+DisplayName="XCom Training Program III"
+Summary="Soldiers Automatically level up to SGT"
+
+[XTP4 X2SoldierUnlockTemplate]
+DisplayName="XCom Training Program IV"
+Summary="Soldiers Automatically level up to SSGT"
+
 [UITodoWidget]
 DescLowScienceScoreText="There are not enough scientists to begin the majority of available research projects. Build, upgrade, or staff a Laboratory to boost a scientists' contribution, or buy a scientist from the Black Market."
 DescLowEngineeringScoreText="There are not enough engineers to build available weapons or armor. Recruit an engineer from the Black Market!"
@@ -5071,7 +6300,11 @@ TimerDefendTitle="Reinforcements"
 TimerDefendSubtitle="Turns until Advent arrival"
 
 [InTheZone X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/><Bullet/> Every successful kill does result in a reduction to critical hit chance and damage, however.<br/><Bullet/> Serial has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocFriendlyName="Serial"
+LocLongDescription="A powerful passive chained shot ability. For every kill made with your <Ability:WeaponName/>, your actions will be refunded."
+LocHelpText="A powerful passive chained shot ability. For every kill made with your <Ability:WeaponName/>, your actions will be refunded."
+LocFlyOverText="Serial"
+LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/>"
 
 ;LWOTC needs translation
 [Fuse X2AbilityTemplate]
@@ -5116,9 +6349,21 @@ LocPromotionPopupText="<Bullet/> Generate an explosive field of Psionic energy t
 LocLongDescription="Reaction shots confer an aim malus on enemies and can now be triggered by any enemy action, not just movement."
 LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a temporary aim penalty upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not.<br/>"
 
-[GrenadeLauncher_MG X2GrenadeLauncherTemplate]
+[PrimaryGrenadeLauncher_CV X2GrenadeLauncherTemplate]
+FriendlyName="Grenade Launcher"
+FriendlyNamePlural="Grenade Launchers"
+BriefSummary="A Grenade Launcher allows the Grenadier to launch Grenades much further than other soldiers, and increase the radius of their explosive attacks."
+TacticalText="<Bullet/> The grenade launcher is the Grenadier's specialty weapon.\n<Bullet/> It has a substantially increased range relative to throwing.\n<Bullet/> Grenadiers can train several abilities that enhance their use of the Grenade Launcher."
+AbilityDescName="grenade launcher"
+
+[PrimaryGrenadeLauncher_MG X2GrenadeLauncherTemplate]
+FriendlyName="Advanced Grenade Launcher"
+FriendlyNamePlural="Advanced Grenade Launchers"
 BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher."
 TacticalText="<Bullet/> The Advanced Grenade Launcher has an increased range over the standard Grenade Launcher.\n."
+AbilityDescName="grenade launcher"
+
+
 
 ; LWOTC Needs Translation
 [GrenadeLauncher_BM X2GrenadeLauncherTemplate]
@@ -5127,6 +6372,12 @@ FriendlyNamePlural="Beam Grenade Launchers"
 BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision."
 TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease."
 ; End Translation
+
+[PrimaryGrenadeLauncher_BM X2GrenadeLauncherTemplate]
+FriendlyName="Beam Grenade Launcher"
+FriendlyNamePlural="Beam Grenade Launchers"
+BriefSummary="The Beam Grenade Launcher combines our latest breakthroughs in beam technology-based propulsion and AI-assisted targeting systems to deliver payloads with unprecedented precision."
+TacticalText="<Bullet/> The Beam Grenade Launcher transforms any grenade into an autonomous projectile that can navigate around obstacles with ease."
 
 [FlashbangGrenade X2GrenadeTemplate]
 TacticalText="<Bullet/> Flashbang grenades don't do damage, but disorient and disrupt enemies in a large radius.<br><Bullet/> Friendly squad members will not be affected.<br/><Bullet/> Some powerful enemies may be able to resist their effects."
@@ -5261,9 +6512,8 @@ LocPromotionPopupText="<Bullet/> If an enemy begins their turn in an adjacent ti
 ; LWOTC Needs Translation
 [Battlemaster X2AbilityTemplate]
 LocFriendlyName="Battlemaster"
-LocLongDescription="Skirmishers are elite soldiers, due to their past as ADVENT, granting them a grenade slot."
-LocHelpText="Skirmishers are elite soldiers, due to their past as ADVENT, granting them a grenade slot."
-LocPromotionPopupText="<Bullet/> An additional grenade can be equipped in a unique grenade-only slot.<br/>"
+LocLongDescription="Unlock Justice And Wrath."
+LocHelpText="Unlock Justice And Wrath."
 
 [SkirmisherGrapple X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Grapple allows the Skirmisher to get into position without using an action.<br/><Bullet/> Grapple has a <Ability:SelfCooldown_LW/> turn cooldown."
@@ -5277,10 +6527,10 @@ LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing t
 
 ; LWOTC Needs Translation (2)
 [SkirmisherFleche X2AbilityTemplate]
-LocFriendlyName="Charge"
+LocFriendlyName="Reckoning"
 LocLongDescription="Attack any enemy within movement range with your <Ability:SecondaryWeaponName/>."
 LocHelpText="Attack an enemy within movement range with your <Ability:SecondaryWeaponName/>."
-LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point and is not turn ending. <br/><Bullet/> Charge has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/><Bullet/> A Skirmisher can perform a dash move with the Charge attack and it will still only cost 1 action point.<br/>"
+LocPromotionPopupText="<Bullet/> You can trigger the Charge ability by placing the movement cursor over an enemy and right-clicking (as with Fleche on Shinobis).<br/><Bullet/> Charge costs 1 action point and is turn ending. <br/><Bullet/> Charge has a <Ability:RECKONING_LW_COOLDOWN/> turn cooldown.<br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (3)
@@ -5439,7 +6689,7 @@ LocFriendlyName="Judgement"
 LocLongDescription="Has a chance to panic any enemy that attacks this unit. The higher the will of this unit, the higher the panic chance."
 LocHelpText="Has a chance to panic any enemy that attacks this unit. The higher the will of this unit, the higher the panic chance."
 LocFlyOverText="Judgement"
-LocPromotionPopupText="<Bullet/> Judgement can be triggered by melee and area of effect attacks.<br/><Bullet/> Judgement will not trigger when targeted by Overwatch fire.<br/><Bullet/> The chance of panic depends on both the will of the attacking unit and the will of the unit with Judgement.<br/><Bullet/> Judgement works best on units with high will.<br/>"
+LocPromotionPopupText="<Bullet/> Judgement can be triggered by melee and area of effect attacks.<br/><Bullet/> Judgement will not trigger when targeted by Overwatch fire.<br/><Bullet/> The chance of panic depends on both the will of the attacking unit and the will of the unit with Judgement.<br/><Bullet/> Judgement does not work while hunkered down.<br/>"
 
 
 ; LWOTC Needs Translation (2)
@@ -5451,8 +6701,8 @@ LocPromotionPopupText="<Bullet/> Use the allies' abilities early and often to ta
 ; End Translation (2)
 
 [Battlelord X2AbilityTemplate]
-LocLongDescription="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
-LocHelpText="After each enemy in line of sight takes a turn, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
+LocLongDescription="After you or one of your allies in a line of sight takes damage, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
+LocHelpText="After you or one of your allies in a line of sight takes damage, take an immediate action. No action points will be refunded (e.g. from Hit and Run)."
 LocPromotionPopupText="<Bullet/> Battlelord can allow the Skirmisher to prevail in the most dire of circumstances.<br/><Bullet/> Battlelord has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Turns from the Lost and enemy pod reveals do not grant the immediate action.<br/><Bullet/> Abilities that refund action points, like Implacable and Hit and Run, will not work during Battlelord."
 
 [TemplarGrazingFire X2AbilityTemplate]
@@ -5585,6 +6835,14 @@ LocHelpText="Remove the unconcious effect from a soldier."
 LocLongDescription="Remove the unconcious effect from a soldier"
 LocFlyOverText="Get up!"
 
+
+;LWOTC Needs Translation
+[QuickReload X2AbilityTemplate]
+LocFriendlyName="Quick Reload"
+LocHelpText="Reload your primary weapon for 2 ammo, non-turn ending."
+LocFlyOverText="Reloading"
+;LWOTC end translation
+
 ; LWOTC Needs Translation (2)
 ;(2) Added the Cooldown Text
 [ChosenSummonFollowers X2AbilityTemplate]
@@ -5618,6 +6876,12 @@ Description="The area of operations is larger than normal, so it will probably t
 [VeryLargeMap X2SitRepTemplate]
 FriendlyName="Very Large Map"
 Description="The area of operations is much larger than normal, so it will probably take you longer to get to the objective than usual."
+; End Translation (2)
+; LWOTC Needs Translation (2)
+
+[StealthMission X2SitRepTemplate]
+FriendlyName="Stealth Mission"
+Description="The Concealment does not break at the start of the 2nd turn for this mission."
 ; End Translation (2)
 
 [ProjectMiranda X2SitRepTemplate]
@@ -5849,7 +7113,7 @@ BriefSummary="A pool of points that can be used to grant abilities and stats to 
 ; LWOTC Needs Translation
 [XComGame.UIArmory_Loadout]
 [UIArmory_Loadout]
-m_strInventoryLabels[eInvSlot_Pistol]="PISTOL"
+m_strInventoryLabels[eInvSlot_Pistol]="SIDEARM"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -6057,8 +7321,8 @@ LocPromotionPopupText="<Bullet/> Grants a free medikit.<br/><Bullet/> A Nanomedi
 [OpenFire_LW X2AbilityTemplate]
 LocFriendlyName="Open Fire"
 LocFlyOverText="Open Fire"
-LocLongDescription="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
-LocHelpText="Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health."
+LocLongDescription="Your ranged attacks gain <Ability:+Crit/> Crit against targets that are at full health."
+LocHelpText="Your ranged attacks gain <Ability:+Crit/> Crit against targets that are at full health."
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:+ToHit/> Aim and <Ability:+Crit/> Crit against targets that are at full health.<br/>"
 ; End Translation (2)
@@ -6276,6 +7540,12 @@ LocHelpText = "Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> 
 LocLongDescription = "Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns."
 LocPromotionPopupText = "<Bullet/> Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns.<br/>"
 
+[DisassemblyPassive_LW X2AbilityTemplate]
+LocFriendlyName= "Disassembly"
+LocHelpText = "Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns."
+LocLongDescription = "Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns."
+LocPromotionPopupText = "<Bullet/> Killing an enemy grants a stackable +<Ability:DISASSEMBLY_HACK/> hack bonus that lasts 3 turns.<br/>"
+
 [LightningSlash_LW X2AbilityTemplate]
 LocFriendlyName="Lightning Slash"
 ; LWOTC Needs Translation (3)
@@ -6297,7 +7567,7 @@ LocPromotionPopupText="<Bullet/> Give a friendly unit <Ability:INSPIRE_DODGE/> D
 LocFriendlyName="Return Fire"
 LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
 LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
-LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
+LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/><Bullet/> Return fire does not work while hunkered down."
 
 [PrimaryReturnFireShot X2AbilityTemplate]
 LocFriendlyName="Return Fire"
@@ -6844,19 +8114,19 @@ LocFlyOverText="Templar Shield"
 ; LWOTC Needs Translation(2)
 [TemplarBallisticShield_CV X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocHelpText="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocHelpText="Grants 2 Ablative HP. Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocLongDescription="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Templar Shield"
 
 [TemplarBallisticShield_MG X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocHelpText="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocHelpText="Grants 3 Ablative HP. Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocLongDescription="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Templar Shield"
 
 [TemplarBallisticShield_BM X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
-LocHelpText="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
+LocHelpText="Grants 4 Ablative HP. Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocLongDescription="Grants half cover to allies. Gives low cover bonuses to this unit even when flanked."
 LocFlyOverText="Templar Shield"
 ; End Translation(2)
@@ -6870,37 +8140,37 @@ LocFlyOverText="Shield Bash"
 
 [TemplarInvert X2AbilityTemplate]
 LocFriendlyName="Invert"
-LocLongDescription="Switch locations with a unit. Costs 1 Focus."
-LocHelpText="Switch locations with a unit. Costs 1 Focus."
+LocLongDescription="Switch locations with a unit. Costs 2 Focus."
+LocHelpText="Switch locations with a unit. Costs 2 Focus."
 LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the Templar's turn.<br/><Bullet/> Can target both ally and enemy units.<br/>"
 
 [OneForAll X2AbilityTemplate]
 LocFriendlyName="One For All"
-LocHelpText="Provide high cover to squadmates wherever you stand, and gain -30 defense. Moving or attacking will cancel the effect. Grants bonus ablative HP based on the shield tier for the duration of the effect."
-LocLongDescription="Provide high cover to squadmates wherever you stand, and gain -30 defense. Moving or attacking will cancel the effect. Grants bonus ablative HP based on the shield tier for the duration of the effect."
+LocHelpText="Grants <Ability:OFA_DAMAGE_REDUCTION/>% Damage Reduction. Provide high cover to squadmates wherever you stand, and gain -40 defense. Moving or attacking will cancel the effect. "
+LocLongDescription="Grants <Ability:OFA_DAMAGE_REDUCTION/>% Damage Reduction. Provide high cover to squadmates wherever you stand, and gain -40 defense. Moving or attacking will cancel the effect."
 LocFlyOverText="One For All"
 
 
 [GreaterPadding_CV X2AbilityTemplate]
 LocFriendlyName="Greater Padding"
 LocFlyOverText="Greater Padding"
-LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GREATER_PADDING_CV/> HP. Doesn't work if the soldier bleeds out."
+LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GREATER_PADDING_CV/>% of max HP. Doesn't work if the soldier bleeds out."
 LocHelpText="Reduce wound recovery times for your soldier."
-LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_CV/>.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
+LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_CV/>% of max HP.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
 
 [GreaterPadding_MG X2AbilityTemplate]
 LocFriendlyName="Greater Padding"
 LocFlyOverText="Greater Padding"
-LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GREATER_PADDING_MG/> HP. Doesn't work if the soldier bleeds out."
+LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GREATER_PADDING_MG/>% of max HP. Doesn't work if the soldier bleeds out."
 LocHelpText="Reduce wound recovery times for most soldiers."
-LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_MG/>.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
+LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_MG/>% of max HP.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
 
 [GreaterPadding_BM X2AbilityTemplate]
 LocFriendlyName="Greater Padding"
 LocFlyOverText="Greater Padding"
-LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GREATER_PADDING_BM/> HP. Doesn't work if the soldier bleeds out."
+LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GREATER_PADDING_BM/>% of max HP. Doesn't work if the soldier bleeds out."
 LocHelpText="Reduce wound recovery times for most soldiers."
-LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_BM/>.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
+LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_BM/>% of max HP.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
 
 [Indomitable X2AbilityTemplate]
 LocFriendlyName="Indomitable"
@@ -6946,8 +8216,8 @@ LocPromotionPopupText="<Bullet/> Amplify will last for two damage instances.<br/
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Crusader's Rage"
-LocHelpText="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 6 HP"
-LocLongDescription="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 6 HP."
+LocHelpText="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by <Ability:CRUSADER_WOUND_HP_REDUCTION/>% of max HP"
+LocLongDescription="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by <Ability:CRUSADER_WOUND_HP_REDUCTION/>% of max HP."
 LocPromotionPopupText="<Bullet/> Wound reduction does not work if the soldier entered a bleeding out state during the mission.<br/>"
 LocFlyOverText="Psychotic Rage"
 
@@ -6972,12 +8242,18 @@ BriefSummary="This variant of the autopistol is one of the more impressive feats
 TacticalText="<Bullet/> The Beam Autopistol is the most powerful handgun available to our soldiers.\n<Bullet/> The autopistol has a significantly shorter range than the pistol, lower base damage, but higher crit damage and a massive crit bonus."
 AbilityDescName="autopistol"
 
+[Medikit X2WeaponTemplate]
+TacticalText="<Bullet/> A Medikit can restore <Ability:MEDIKITPERUSEHP/>HP to a single soldier.\n<Bullet/> A Medikit can also be used to remove Burning, Acid, and Poison effects from any soldier.\n<Bullet/> A Medikit can also be used to stabilize a soldier that is bleeding out.\n<Bullet/>A Medikit only has a single charge, and if used on allies, they must be in an adjacent tile.\n<Bullet/> Does not affect robotic allies.\n"
+
+[NanoMedikit X2WeaponTemplate]
+TacticalText="<Bullet/> A Nanomedikit can restore <Ability:NANOMEDIKITHEALHP/>HP to a single soldier.\n<Bullet/> Like the base Medikit, a Nanomedikit can remove negative environmental effects from soldiers and can stabilize soldiers that are bleeding out.\n<Bullet/> Does not affect robotic allies.\n"
+
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramedic"
-LocLongDescription="Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
-LocHelpText="Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
+LocLongDescription="Using a medikit for the first time in a turn is a free action."
+LocHelpText="Using a medikit for the first time in a turn is a free action."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Using a medikit for the first time in a turn is a free action. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
+LocPromotionPopupText=""
 ; End Translation (2)
 
 [SoulReaper X2AbilityTemplate]
@@ -6990,9 +8266,9 @@ LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to 
 ;LWOTC needs translation(3)
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Total Combat"
-LocLongDescription="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
+LocLongDescription="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, their radius is increased by 1. Grants a Grenade-only slot."
 LocHelpText="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
-LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the <Ability:ClassName/>'s turns, allowing actions to be taken exactly when needed.<br/><Bullet/> Removes the cooldown for grenades.<br/><Bullet/> Grants both Bombard and Volatile Mix, hence it does not stack with either of them."
+LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the Skirmisher's turns, allowing actions to be taken exactly when needed.<br/><Bullet/> Removes the cooldown for grenades.<br/>"
 ;End Translation(3)
 
 [PackMaster_LW X2AbilityTemplate]
@@ -7038,6 +8314,13 @@ LocHelpText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>.
 LocFlyOverText="Unstoppable"
 LocPromotionPopupText="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
 
+[ExoskeletonServos X2AbilityTemplate]
+LocFriendlyName="Exoskeleton Servos"
+LocLongDescription="At the start of the mission, This unit's mobility becomes set to 14, and can't be affected by any mobility buffs or debuffs."
+LocHelpText="At the start of the mission, This unit's mobility becomes set to 14, and can't be affected by any mobility buffs or debuffs."
+LocFlyOverText="Exoskeleton Servos"
+
+
 [UnstoppablePassive_LW X2AbilityTemplate]
 LocFriendlyName="Unstoppable"
 LocLongDescription="This unit's mobility cannot go below <Ability:UNSTOPPABLE_MIN_MOB>."
@@ -7061,3 +8344,426 @@ LocLongDescription="All enemy Will reduced by <Ability:Hypnography_WillBonus/>%.
 ; LWOTC Needs Translation
 [MicroMissiles X2AbilityTemplate]
 LocHelpText="Target an area with an explosive missile attack."
+
+[FreeGrenades X2AbilityTemplate]
+LocFriendlyName="Grenadier"
+LocLongDescription="Once per turn, throwing a grenade is a free action."
+LocHelpText="Once per turn, throwing a grenade is a free action."
+LocPromotionPopupText="Once per turn, throwing a grenade is a free action."
+
+[ParalyzingBlowsPassive X2AbilityTemplate]
+LocFriendlyName="Paralyzing Blows"
+LocLongDescription="Melee Attacks now Stun For 1 more action."
+LocHelpText="Melee Attacks now Stun For 1 more action."
+LocPromotionPopupText="Melee Attacks now Stun For 1 more action."
+
+[ParalyzingBlows X2AbilityTemplate]
+LocFriendlyName="Paralyzing Blows"
+LocLongDescription="Melee Attacks now Stun For 1 more action."
+LocHelpText="Melee Attacks now Stun For 1 more action."
+LocPromotionPopupText="Melee Attacks now Stun For 1 more action."
+
+[HighVolumeFire X2AbilityTemplate]
+LocFriendlyName="High Volume Fire"
+LocLongDescription="Your Primary weapon Shots will decrease target's aim by <Ability:HIGH_VOLUME_FIRE_MALUS/> until the next turn, Stackable."
+LocHelpText="Your Primary weapon Shots will decrease target's aim."
+LocPromotionPopupText=""
+
+[HighVolumeFirePassive X2AbilityTemplate]
+LocFriendlyName="High Volume Fire"
+LocLongDescription="Your Primary weapon Shots will decrease target's aim by <Ability:HIGH_VOLUME_FIRE_MALUS/> until the next turn, Stackable."
+LocHelpText="Your Primary weapon Shots will decrease target's aim."
+LocPromotionPopupText=""
+
+[Impact X2AbilityTemplate]
+LocFriendlyName="Impact"
+LocLongDescription="Your Attacks can now remove enemy overwatch on hit."
+LocHelpText="Your Attacks can now remove enemy overwatch on hit."
+LocPromotionPopupText=""
+
+[SprayAndPray X2AbilityTemplate]
+LocFriendlyName="Spray And Pray"
+LocLongDescription="Attacks with your Autopistol Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
+LocHelpText="Attacks with your Autopistol Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."
+LocPromotionPopupText=""
+
+[StockSprayAndPray X2AbilityTemplate]
+LocFriendlyName="Spray And Pray"
+LocLongDescription="Attacks with your Primary Weapon Ignore up to 15 Dodge."
+LocHelpText="Attacks with your Primary Weapon Ignore up to 15 Dodge."
+LocPromotionPopupText=""
+
+[PlatformStability X2AbilityTemplate]
+LocFriendlyName="Platform Stability"
+LocLongDescription="Steady weapon now completely removes rocket scatter."
+LocHelpText="Steady weapon now completely removes rocket scatter."
+LocPromotionPopupText=""
+
+[ImprovedProtocols X2AbilityTemplate]
+LocFriendlyName="Hot-Charged Batteries"
+LocLongDescription="Cooldown Of ABC Protocols is reduced by 1."
+LocHelpText="Cooldown Of ABC Protocols is reduced by 1."
+LocPromotionPopupText=""
+
+[AdvancedRobotics_LW X2AbilityTemplate]
+LocFriendlyName="Advanced Robotics"
+LocLongDescription="Upgrades ABC protocols by granting Threat Assessment, Shock Therapy and Chaining Jolt."
+LocHelpText="Upgrades ABC protocols by granting Threat Assessment, Shock Therapy and Chaining Jolt."
+LocPromotionPopupText="<Bullet/> Threat assessment makes Aid protocol target go on overwatch.<br/><Bullet/>Shock therapy makes Blinding protocol have a 50% chance to stun the targets.<br/><Bullet/> Chaining Jolt causes combat protocol to jump to up to 3 targets.<br/>"
+
+[ChainingJolt_LW X2AbilityTemplate]
+LocFriendlyName="Chaining Jolt"
+LocHelpText="Send the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies."
+LocLongDescription="The <Ability:ClassName/> sends the GREMLIN to an enemy to jolt them. Attack chains to nearby enemies. Damage is increased against robotic enemies."
+LocFlyOverText="Chaining Jolt"
+LocPromotionPopupText="<Bullet/> Deals electrical damage that pierces armour.<br/><Bullet/> Can only chain to units friendly to the targeted unit.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+
+
+[TenaciousDefense X2AbilityTemplate]
+LocFriendlyName="Tenacious Defense"
+LocLongDescription="Gain 3 ablative HP and 40% crit resistance when protected by cover."
+LocHelpText="Gain 3 ablative HP and 40% crit resistance when protected by cover."
+LocPromotionPopupText=""
+
+[Serpentine X2AbilityTemplate]
+LocFriendlyName="Serpentine"
+LocHelpText="Poison Spit is now a free action."
+LocLongDescription="Poison Spit is now a free action."
+LocPromotionPopupText="Poison Spit is now a free action."
+LocFlyOverText="Entwine"
+
+[Entwine_LW X2AbilityTemplate]
+LocFriendlyName="Entwine"
+LocHelpText="Gain 30 defense while binding."
+LocLongDescription="Gain 30 defense while binding."
+LocPromotionPopupText="Gain 30 defense while binding."
+LocFlyOverText="Entwine"
+
+[BindM2Damage X2AbilityTemplate]
+LocFriendlyName="Better Bind"
+LocHelpText="Increased Bind Damage."
+LocLongDescription="Increased Bind Damage."
+LocPromotionPopupText="Increased Bind Damage."
+LocFlyOverText="Better Bind"
+
+[BindM3Damage X2AbilityTemplate]
+LocFriendlyName="Better Bind"
+LocHelpText="Increased Bind Damage."
+LocLongDescription="Increased Bind Damage."
+LocPromotionPopupText="Increased Bind Damage."
+LocFlyOverText="Better Bind"
+
+[BindM4Damage X2AbilityTemplate]
+LocFriendlyName="Better Bind"
+LocHelpText="Increased Bind Damage."
+LocLongDescription="Increased Bind Damage."
+LocPromotionPopupText="Increased Bind Damage."
+LocFlyOverText="Better Bind"
+
+[BindM5Damage X2AbilityTemplate]
+LocFriendlyName="Better Bind"
+LocHelpText="Increased Bind Damage."
+LocLongDescription="Increased Bind Damage."
+LocPromotionPopupText="Increased Bind Damage."
+LocFlyOverText="Better Bind"
+
+[Dominant_LW X2AbilityTemplate]
+LocFriendlyName="Dominant"
+LocHelpText="Increases psi offense by 40."
+LocLongDescription="Increases psi offense by 40."
+LocPromotionPopupText="Increases psi offense by 40."
+LocFlyOverText="Better Bind"
+
+[Grit_LW X2AbilityTemplate]
+LocFriendlyName="Grit"
+LocHelpText="Gain 10% + Missing HP%/2 Damage Reduction."
+LocLongDescription="Gain 10% + Missing HP%/2 Damage Reduction."
+LocPromotionPopupText="Gain 10% + Missing HP%/2 Damage Reduction."
+LocFlyOverText="Grit"
+
+[BullRushPassive X2AbilityTemplate]
+LocFriendlyName="Bull Rush"
+LocHelpText="When Damaged, Gain a movement Action."
+LocLongDescription="When Damaged, Gain a movement Action."
+LocPromotionPopupText="When Damaged, Gain a movement Action."
+LocFlyOverText="Bull Rush"
+
+[BullRush X2AbilityTemplate]
+LocFriendlyName="Bull Rush"
+LocHelpText="When Damaged, Gain a movement Action."
+LocLongDescription="When Damaged, Gain a movement Action."
+LocPromotionPopupText="When Damaged, Gain a movement Action."
+LocFlyOverText="Bull Rush"
+
+[QuickRetreatPassive X2AbilityTemplate]
+LocFriendlyName="Quick Retreat"
+LocHelpText="Once per turn, when taking damage and being flanked, take a movement action."
+LocLongDescription="Once per turn, when taking damage and being flanked, take a movement action."
+LocPromotionPopupText="Once per turn, when taking damage and being flanked, take a movement action."
+LocFlyOverText="Quick Retreat"
+
+[QuickRetreat X2AbilityTemplate]
+LocFriendlyName="Quick Retreat"
+LocHelpText="Once per turn, when taking damage and being flanked, take a movement action."
+LocLongDescription="Once per turn, when taking damage and being flanked, take a movement action."
+LocPromotionPopupText="Once per turn, when taking damage and being flanked, take a movement action."
+LocFlyOverText="Quick Retreat"
+
+[AbsorptionFields_LW X2AbilityTemplate]
+LocFriendlyName="Absorbsion Fields"
+LocHelpText="The First Damage you take each turn is reduced by 25%."
+LocLongDescription="The First Damage you take each turn is reduced by 25%."
+LocPromotionPopupText="The First Damage you take each turn is reduced by 25%."
+LocFlyOverText="Absorbsion Fields"
+
+[AbsorptionFieldsTrigger_LW X2AbilityTemplate]
+LocFriendlyName="Absorbsion Fields"
+LocHelpText="The First Damage you take each turn is reduced by 35%."
+LocLongDescription="The First Damage you take each turn is reduced by 35%."
+LocPromotionPopupText="The First Damage you take each turn is reduced by 35%."
+LocFlyOverText="Grit"
+
+
+[ProtectiveServos X2AbilityTemplate]
+LocFriendlyName="Protective Servos"
+LocFlyOverText="Protective Servos"
+LocLongDescription="After taking damage, gain Stackable 2 armor through the end of the turn."
+LocHelpText="After taking damage, gain Stackable 2 armor through the end of the turn."
+LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain 1 armor through the end of the next turn.
+
+[ProtectiveServosPassive X2AbilityTemplate]
+LocFriendlyName="Protective Servos"
+LocFlyOverText="Protective Servos"
+LocLongDescription="After taking damage, gain Stackable 2 armor through the end of the turn."
+LocHelpText="After taking damage, gain Stackable 2 armor through the end of the turn."
+LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain 1 armor through the end of the next turn.
+
+[SuperiorHolyWarrior X2AbilityTemplate]
+LocFriendlyName="Superior Holy Warrior"
+LocHelpText="Holy Warrior gains 30 crit."
+LocLongDescription="Holy Warrior gains 30 crit."
+LocPromotionPopupText="Holy Warrior gains 30 crit."
+LocFlyOverText="Grit"
+
+
+[SuperDuperRobot X2AbilityTemplate]
+LocFriendlyName="Super Duper Robot"
+LocLongDescription="Robot Gains 10 Health, 15 aim, and 6 mobility."
+LocHelpText="Robot Gains 10 Health, 15 aim, and 6 mobility."
+
+;LWOTC NEEDS TRANSLATION
+;Armor
+[KevlarArmor_DLC_Day0 X2ArmorTemplate]
+FriendlyName = "Light Kevlar Armor"
+FriendlyNamePlural = "Light Kevlar Armor"
+BriefSummary = "This basic armor consists of improvised protection cobbled together from salvage and Resistance arms caches. It provides minimal protection against ADVENT and alien weaponry."
+TacticalText = "<Bullet/> A lighter variant of our conventional Kevlar Armor.\n<Bullet/> Research can give us access to better armor."
+
+[MagGrenade_LW X2GrenadeTemplate]
+FriendlyName="Magnetic Grenade"
+FriendlyNamePlural="Magnetic Grenades"
+BriefSummary="A concussive grenade augmented by magnetic technology, the magnetic grenade deals more damage than a Frag grenade."
+TacticalText="<Bullet/> Magnetic grenades will damage all units in the blast radius."
+ThrownAbilityName="Throw Magnetic Grenade"
+ThrownAbilityHelpText="Damages units in the target area."
+LaunchedAbilityname="Launch Magnetic Grenade"
+LaunchedAbilityHelpText="Damages units in the target area."
+
+[MagGrenade X2AbilityTemplate]
+LocFriendlyName="Fire mag grenade"
+LocLongDescription="Advent's standard magnetic grenade"
+LocHelpText="Target a small area with a magnetic grenade."
+
+;End translation
+
+
+[Sidearm_LS X2WeaponTemplate]
+FriendlyName="Heater"
+FriendlyNamePlural="Heaters"
+BriefSummary="Continuous laser beam of this Autopistol variant effortlessly burns holes in plain and armored targets alike. Variable power output and spacious battery allow this weapon to double as a compact source of heat in cold climate. This unintended, but welcome side effect has earned this weapon its nickname, which has stuck to the point where even Shen can't remember what it was supposed to be called before that."
+TacticalText="Continuous laser beam of this Autopistol variant effortlessly burns holes in plain and armored targets alike. Variable power output and spacious battery allow this weapon to double as a compact source of heat in cold climate. This unintended, but welcome side effect has earned this weapon its nickname, which has stuck to the point where even Shen can't remember what it was supposed to be called before that.<br/><Bullet/> Autopistols can be fired with a single action."
+AbilityDescName="autopistol"
+
+[Pistol_MG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Pistol_BM_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[SawedOffShotgun_MG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[SawedOffShotgun_BM_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Sidearm_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Pistol_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Pistol_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Sidearm_MG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Sidearm_BM_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Sidearm_CG X2WeaponTemplate]
+FriendlyName="Cycler"
+FriendlyNamePlural="Cycler"
+BriefSummary="Cycler was designed from the get-go with two key features in mind: ultracompact dimensions and volume of fire. Switching to caseless ammunition allowed us to achieve both of these goals without significant compromises to accuracy and damage."
+TacticalText="Cycler was designed from the get-go with two key features in mind: ultracompact dimensions and volume of fire. Switching to caseless ammunition allowed us to achieve both of these goals without significant compromises to accuracy and damage.<br/><Bullet/> Autopistols can be fired with a single action."
+AbilityDescName="autopistol"
+
+[Sidearm_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+
+
+[VektorRifle_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+
+
+[VektorRifle_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+
+
+[Bullpup_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+
+[Bullpup_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+[SparkRifle_LS X2WeaponTemplate]
+FriendlyName="Spitfire Pulsecannon"
+FriendlyNamePlural="Spitfire Pulsecannons"
+BriefSummary="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls."
+TacticalText="The Spitfire Pulsecannon is the largest portable automatic laser weapon in our arsenal. Using the rotating barrel assembly solves the overheating problem, and the fragile barrel parts are protected by individual retractable cowls.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Spitfire Pulsecannons's tactical effectiveness."
+AbilityDescName="spitfire pulsecannon"
+
+[SparkRifle_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SPARK"
+
+[SparkRifle_CG X2WeaponTemplate]
+FriendlyName="Rush-Nano Gausscannon"
+FriendlyNamePlural="Rush-Nano Gausscannons"
+BriefSummary="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley."
+TacticalText="Introduction of new Elerium-based rush capacitors with separation distance of mere nanometers has allowed us to develop a new kind of autocannon, where capacitors are overloaded and discharged one by one during firing, which keeps the damage output consistently high during a volley.\n<Bullet/> Firing the primary weapon always ends the soldier's turn, in the absence of special training.\n<Bullet/> Use upgrades looted from enemies to improve the Spitfire Pulsecannons's tactical effectiveness."
+AbilityDescName="rush-nano gausscannon"
+
+[SparkRifle_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SPARK"
+
+
+[IRI_ArtilleryCannon_LS X2WeaponTemplate]
+FriendlyName="RS-9 Redace Superlaser"
+FriendlyNamePlural="RS-9 Redace Superlasers"
+BriefSummary="A pulse laser weapon of the most sophisticated design, Redace Superlaser is capable of causing different effects on targets by modulating the laser beam wavelength and aligning the focusing lens array in different patterns."
+TacticalText="A pulse laser weapon of the most sophisticated design, Redace Superlaser is capable of causing different effects on targets by modulating the laser beam wavelength and aligning the focusing lens array in different patterns.<br/><bullet/> Pulse laser beam fired by the Heavy Cannon can burn through cover, suffering a <Ability:IRI_HEAVY_CANNON_LOW_COVER_DAMAGE_PENALTY/>/<Ability:IRI_HEAVY_CANNON_HIGH_COVER_DAMAGE_PENALTY/> damage penalty instead of an Aim penalty.<br/><bullet/> Heavy Cannons must be reloaded after each shot and they take 2 Action Points to fire.<br/><bullet/> Heavy Cannon's tactical flexibility can be potentially improved by carrying special shell types.<br/><bullet/> All Heavy Cannon attacks benefit from special ammo."
+AbilityDescName="heavy cannon"
+
+[IRI_ArtilleryCannon_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SPARK"
+
+[IRI_ArtilleryCannon_CG X2WeaponTemplate]
+FriendlyName="DON-82 Coilmaster Heavy Cannon"
+FriendlyNamePlural="DON-82 Coilmaster Heavy Cannons"
+BriefSummary="Named after night shift junior technician Donald who nearly made a hole in Avenger's hull while fooling around with its coils, the Coilmaster Heavy Cannon is a versatile smooth-bore artillery piece, capable of delivering shells with various payloads over great distances with unmatched power and precision."
+TacticalText="Named after night shift junior technician Donald who nearly made a hole in Avenger's hull while fooling around with its coils, the Coilmaster Heavy Cannon is a versatile smooth-bore artillery piece, capable of delivering shells with various payloads over great distances with unmatched power and precision.<br/><bullet/> Hypersonic projectiles fired by the Heavy Cannon can break through cover, suffering a <Ability:IRI_HEAVY_CANNON_LOW_COVER_DAMAGE_PENALTY/>/<Ability:IRI_HEAVY_CANNON_HIGH_COVER_DAMAGE_PENALTY/> damage penalty instead of an Aim penalty.<br/><bullet/> Heavy Cannons must be reloaded after each shot and they take 2 Action Points to fire.<br/><bullet/> Heavy Cannon's tactical flexibility can be potentially improved by carrying special shell types.<br/><bullet/> All Heavy Cannon attacks benefit from special ammo."
+AbilityDescName="heavy cannon"
+
+[IRI_ArtilleryCannon_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SPARK"
+
+
+[SawedOffShotgun_LS X2WeaponTemplate]
+FriendlyName="Blazer"
+FriendlyNamePlural="Blazer"
+BriefSummary="Officially designated as Binary Laser, this compact, close range pulse laser weapon has two firing chambers that are loaded with high-impulse disposable power cells. It was immediately dubbed \"Blazer\" by one of our operatives once they saw it fire.<br/>"
+TacticalText="Officially designated as Binary Laser, this compact, close range pulse laser weapon has two firing chambers that are loaded with high-impulse disposable power cells. It was immediately dubbed \"Blazer\" by one of our operatives once they saw it fire.<br/>"
+AbilityDescName="sawed off shotgun"
+
+[SawedOffShotgun_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[SawedOffShotgun_CG X2WeaponTemplate]
+FriendlyName="Coil Shorty"
+FriendlyNamePlural="Coil Shorties"
+BriefSummary="Combine age-old simple design with latest advances in projectile acceleration technology and you'll get a frighteningly effective weapon that will make any foe regret getting too close."
+TacticalText="Combine age-old simple design with latest advances in projectile acceleration technology and you'll get a frighteningly effective weapon that will make any foe regret getting too close.<br/>"
+AbilityDescName="sawed off shotgun"
+
+[SawedOffShotgun_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+[WristBlade_LS X2PairedWeaponTemplate]
+FriendlyName="Pulse Ripjack"
+FriendlyNamePlural="Pulse Ripjacks"
+BriefSummary="We have augmented the standard ripjack claw with pulse-projected blade emitters that generate a pair of sharp red talons. Initial field testing has shown that the new claw tends to overheat during prolonged use, but we have received no complaints from Skirmishers."
+TacticalText="We have augmented the standard ripjack claw with pulse-projected blade emitters that generate a pair of sharp red talons. Initial field testing has shown that the new claw tends to overheat during prolonged use, but we have received no complaints from Skirmishers.<Bullet/> Skirmishers can utilize their ripjacks in conjunction with their grapple to become a terror all over the battlefield.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+AbilityDescName="ripjack"
+
+[WristBlade_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SKIRMISHER"
+
+[WristBlade_CG X2PairedWeaponTemplate]
+FriendlyName="Nanotech Ripjack"
+FriendlyNamePlural="Nanotech Ripjacks"
+BriefSummary="The initial prototype of the Nanotech Claw employed monomolecular blades for superior cutting, but field testing by Skirmishers has quickly proven them to be too fragile, so we had to fall back on nanometer-wide cutting edges."
+TacticalText="The initial prototype of the Nanotech Claw employed monomolecular blades for superior cutting, but field testing by Skirmishers has quickly proven them to be too fragile, so we had to fall back on nanometer-wide cutting edges.<Bullet/> Skirmishers can utilize their ripjacks in conjunction with their grapple to become a terror all over the battlefield.\n<Bullet/> The decision to engage the enemy in melee combat can be a decisive one; exercise caution.\n<Bullet/> Keep an eye out for opportunities to improve our edged weapon effectiveness - the enemy may have access to much better technology."
+AbilityDescName="ripjack"
+
+[WristBlade_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SKIRMISHER"
+
+
+[Sword_CG X2WeaponTemplate]
+FriendlyName="Coil Sword"
+FriendlyNamePlural="Coil Swords"
+BriefSummary="Breakthrough advances in alien materials have allowed us to manufacture alloy blades with monomolecular edges. An electromagnetic sharpening system maintains the cutting edge thickness of just one atom, allowing it to cut through most objects without having to apply much force to the swing. We took advantage of that by adding a secondary \"whip\" attack mode with greater reach. AI-controlled gyro-stabilization system guarantees user safety even in the absence of special training this unusual type of weapon would normally require."
+TacticalText="Breakthrough advances in alien materials have allowed us to manufacture alloy blades with monomolecular edges. An electromagnetic sharpening system maintains the cutting edge thickness of just one atom, allowing it to cut through most objects without having to apply much force to the swing. We took advantage of that by adding a secondary \"whip\" attack mode with greater reach. AI-controlled gyro-stabilization system guarantees user safety even in the absence of special training this unusual type of weapon would normally require."
+AbilityDescName="sword"
+
+[Sword_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[Sword_LS X2WeaponTemplate]
+FriendlyName="Laser Kriegsmesser"
+FriendlyNamePlural="Laser Kriegsmessers"
+BriefSummary="The laser \"war knife\" is the result of our best effort in the field of projected blade technology. Modulated pulse emitters generate a nearly-solid cutting edge. Shape of the blade is optimized for both slashing and thrusting strikes, and the well-developed cross-guard both protects the user from their own blade and allows to deflect enemy melee attacks with greater effectiveness. A portable battery pack integrated into the sheath ensures sufficient autonomy in the field."
+TacticalText="The laser \"war knife\" is the result of our best effort in the field of projected blade technology. Modulated pulse emitters generate a nearly-solid cutting edge. Shape of the blade is optimized for both slashing and thrusting strikes, and the well-developed cross-guard both protects the user from their own blade and allows to deflect enemy melee attacks with greater effectiveness. A portable battery pack integrated into the sheath ensures sufficient autonomy in the field.
+AbilityDescName="sword"
+
+[Sword_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+
+[CombatKnife_LS X2WeaponTemplate]
+FriendlyName="Laser Cutlass"
+FriendlyNamePlural="Laser Cutlasses"
+BriefSummary="Laser Cutlass is an advanced melee weapon for personal defense in close quarters. It uses a modified pulse emitter that projects lightwaves with rapidly modulated frequency and wavelength to generate a nearly solid blade that can effortlessly cut through most materials."
+TacticalText="Laser Cutlass is an advanced melee weapon for personal defense in close quarters. It uses a modified pulse emitter that projects lightwaves with rapidly modulated frequency and wavelength to generate a nearly solid blade that can effortlessly cut through most materials.<br/><Bullet/> Lightweight secondary weapon - A knife attack requires one action and does not end your turn.<br/><Bullet/> Attacks with the Combat Knife have a <Ability:WOTCLW2SW_COLOR_2_OPEN/>+<ABILITY:COMBATKNIFE_CV_AIM/>%<Ability:WOTCLW2SW_COLOR_CLOSE/> chance to hit."AbilityDescName="combat knife"
+
+[CombatKnife_LS_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"
+
+[CombatKnife_CG X2WeaponTemplate]
+FriendlyName="Progressive Knife"
+FriendlyNamePlural="Progressive Knives"
+BriefSummary="Despite its utilitarian appearance, Progressive Knife is a deadly melee weapon. The word \"sharp\" does not even begin to describe its monomolecular cutting edge. The blade is thin and easily broken, so we have set up an automatic replacement system in the knife's hilt."
+TacticalText="Despite its utilitarian appearance, Progressive Knife is a deadly melee weapon. The word \"sharp\" does not even begin to describe its monomolecular cutting edge. The blade is thin and easily broken, so we have set up an automatic replacement system in the knife's hilt.<br/><Bullet/> Lightweight secondary weapon - A knife attack requires one action and does not end your turn.<br/><Bullet/> Attacks with the Combat Knife have a <Ability:WOTCLW2SW_COLOR_2_OPEN/>+<ABILITY:COMBATKNIFE_CV_AIM/>%<Ability:WOTCLW2SW_COLOR_CLOSE/> chance to hit."AbilityDescName="combat knife"
+
+[CombatKnife_CG_Schematic X2SchematicTemplate]
+m_strClassLabel="SQUAD"

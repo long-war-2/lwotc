@@ -291,7 +291,7 @@ static function ReplaceBloodTrailEffect(X2AbilityTemplate Template)
 	}
 
 	Effect = new class'X2Effect_BloodTrail_LW';
-	Effect.BonusDamage = class'X2Ability_ReaperAbilitySet'.default.BloodTrailDamage;
+	Effect.BonusDamage = 0.25;
 	Effect.DodgeReductionBonus = default.BLOOD_TRAIL_ANTIDODGE_BONUS;
 	Effect.BuildPersistentEffect(1, true, false, false);
 	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true, , Template.AbilitySourceName);

@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 class X2LWModTemplate_SkirmisherAbilities extends X2LWTemplateModTemplate config(LW_FactionBalance);
 
-var config int JUSTICE_COOLDOWN;
+var config int Justice_COOLDOWN;
 var config int JUSTICE_IENVIRONMENT_DAMAGE;
 var config int WRATH_COOLDOWN;	
 var config int WHIPLASH_COOLDOWN;
@@ -38,11 +38,13 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	// Justice and Wrath cooldowns are hard coded in vanilla.
 	case 'Justice':
-		Template.AbilityCooldown.iNumTurns = default.JUSTICE_COOLDOWN;
+		Template.AbilityCooldown.iNumTurns = default.Justice_COOLDOWN;
+		Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
 		ReduceJusticeEnvironmentDamage(Template);
 		break;
 	case 'SkirmisherVengeance':
 		Template.AbilityCooldown.iNumTurns = default.WRATH_COOLDOWN;
+		Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
 		break;
 	case 'Battlelord':
 		AddCooldownToBattlelord(Template);
@@ -59,6 +61,12 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 static function ModifyJudgementPanicChanceFunction(X2AbilityTemplate Template)
 {
 	local X2Effect CurrentEffect;
+	local X2Condition_UnitEffects EffectsCondition;
+
+	EffectsCondition = new class'X2Condition_UnitEffects';
+	EffectsCondition.AddExcludeEffect('HunkerDown', 'AA_UnitIsImmune');
+	Template.AbilityShooterConditions.AddItem(EffectsCondition);
+
 
 	foreach Template.AbilityTargetEffects(CurrentEffect)
 	{
@@ -275,6 +283,7 @@ static function AddCooldownToBattlelord(X2AbilityTemplate Template)
 {
 	local X2AbilityCost_ActionPoints        ActionPointCost;
 	local X2AbilityCooldown					Cooldown;
+	local X2Effect_Battlelord_LW 			BattlelordEffect;
 
 	// Kill the charges and the charge cost
 	Template.AbilityCosts.Length = 0;
@@ -291,12 +300,19 @@ static function AddCooldownToBattlelord(X2AbilityTemplate Template)
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.BATTLELORD_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
+
+	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Battlelord');
+
+	BattlelordEffect = new class'X2Effect_Battlelord_LW';
+	BattlelordEffect.BuildPersistentEffect(1, false, , , eGameRule_PlayerTurnBegin);
+	BattlelordEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(BattlelordEffect);
 }
 
 static function UpdateTotalCombat(X2AbilityTemplate Template)
 {
-	Template.AdditionalAbilities.AddItem('Bombard_LW');
-	Template.AdditionalAbilities.AddItem('VolatileMix');
+	//Template.AdditionalAbilities.AddItem('Bombard_LW');
+	//Template.AdditionalAbilities.AddItem('VolatileMix');
 }
 
 static function UpdateCombatPresence(X2AbilityTemplate Template)

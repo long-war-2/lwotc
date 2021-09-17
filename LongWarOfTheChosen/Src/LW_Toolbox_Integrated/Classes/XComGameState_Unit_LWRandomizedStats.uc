@@ -72,7 +72,15 @@ function RandomizeInitialStats(XComGameState_Unit Unit)
 
 
 	//set up
-	NumSwaps = RollNumStatSwaps();
+	
+	if(!bIsFirstMissionSoldier)
+	{
+		NumSwaps = RollNumStatSwaps();
+	}
+	else
+	{
+		NumSwaps = 0;
+	}
 
 	TotalWeight = 0.0f;
 	foreach default.STAT_SWAPS(Swap)

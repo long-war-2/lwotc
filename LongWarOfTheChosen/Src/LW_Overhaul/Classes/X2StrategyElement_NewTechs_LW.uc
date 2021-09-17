@@ -126,6 +126,18 @@ static function array<X2DataTemplate> CreateTemplates()
 	Techs.AddItem(CreateAdvancedSuppressorProjectTemplate());
 	Techs.AddItem(CreateSuperiorSuppressorProjectTemplate());
 
+	//Breakthroughs get re-integrated as proving ground projects that increase damage
+	Techs.AddItem(AddWeaponUpgradeBreakthrough1());
+	Techs.AddItem(AddWeaponUpgradeBreakthrough2());
+	Techs.AddItem(CreateReinforcedUnderlay1());
+	Techs.AddItem(CreateReinforcedUnderlay2());
+	Techs.AddItem(CreateWetWorkProject());
+	Techs.AddItem(CreateIntegratedWarfareProject());
+	Techs.AddItem(CreateVengeanceProject());
+	Techs.AddItem(CreateVultureProject());
+	Techs.AddItem(StayWithMeProject());
+
+	
 	return Techs;
 }
 
@@ -284,6 +296,7 @@ static function X2DataTemplate CreateRenderTech (name TechName, string strImage,
 	Template.RepeatPointsIncrease = 0;
 	Template.SortingTier = 3;
 	Template.bRepeatable = true;
+	Template.bProvingGround = true;
 
 	Template.Requirements.bVisibleIfTechsNotMet = false;
 	Template.Requirements.bVisibleIfItemsNotMet = false;
@@ -383,7 +396,7 @@ function RenderTechCompleted(XComGameState NewGameState, XComGameState_Tech Tech
 		ItemTemplate = ItemTemplateManager.FindItemTemplate(TechState.GetMyTemplate().ItemRewards[TechState.GetMyTemplate().ItemRewards.length-1]);
 		class'XComGameState_HeadquartersXCom'.static.GiveItem(NewGameState, ItemTemplate);
 		TechState.ItemRewards.AddItem(ItemTemplate);
-		TechState.bSeenResearchCompleteScreen = false;
+		//TechState.bSeenResearchCompleteScreen = false;
 	}
 }
 
@@ -1970,4 +1983,239 @@ static function X2DataTemplate CreateSuperiorSuppressorProjectTemplate()
 	Template.Cost.ArtifactCosts.AddItem(Resources);
 
 	return Template;
+}
+
+static function X2DataTemplate AddWeaponUpgradeBreakthrough1()
+{
+	local X2TechTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BreakthroughWeaponUpgrade1');
+	Template.PointsToComplete = 2000;
+
+	Template.strImage = "img:///UILibrary_XPACK_Common.BT_modAR";
+	Template.ResearchCompletedFn = BreakthroughWeaponUpgradeCompleted1;
+
+	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventTrooper');
+	//Template.Requirements.RequiredSoldierClass = 'Reaper';
+
+	Template.bBreakthrough = false;
+	Template.bProvingGround = true;
+
+	return Template;
+}
+
+static function BreakthroughWeaponUpgradeCompleted1(XComGameState NewGameState, XComGameState_Tech TechState)
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+
+	XComHQ = GetNewXComHQState(NewGameState);
+	XComHQ.bExtraWeaponUpgrade = true;
+}
+
+static function X2DataTemplate AddWeaponUpgradeBreakthrough2()
+{
+	local X2TechTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'BreakthroughWeaponUpgrade2');
+	Template.PointsToComplete = 2000;
+	Template.strImage = "img:///UILibrary_XPACK_Common.BT_modAR";
+	Template.ResearchCompletedFn = BreakthroughWeaponUpgradeCompleted2;
+
+	Template.Requirements.RequiredTechs.AddItem('ModularWeapons');
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventTrooper');
+
+	Template.bBreakthrough = false;
+	Template.bProvingGround = true;
+
+	return Template;
+}
+
+function BreakthroughWeaponUpgradeCompleted2(XComGameState NewGameState, XComGameState_Tech TechState)
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	local name Category;
+
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	
+	foreach class'X2ItemTemplateManager'.default.WeaponCategories(Category)
+	{
+		XComHQ.ExtraUpgradeWeaponCats.AddItem(Category);
+	}
+}
+
+
+static function X2DataTemplate CreateReinforcedUnderlay1()
+{
+	local X2TechTemplate Template;
+	local X2BreakthroughCondition_ItemType TechCondition;
+
+	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'ReinforcedUnderlay1');
+	Template.PointsToComplete = 2000;
+	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_ExperimentalArmor";
+	Template.SortingTier = 2;
+
+
+	// Requirements
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventOfficer');
+
+	Template.ResearchCompletedFn = BreakthroughItemTacticalBonusCompleted;
+
+	Template.RewardName = 'ReinforcedUnderlay1';
+
+	TechCondition = new class'X2BreakthroughCondition_ItemType';
+	TechCondition.ItemTypeMatch = 'armor';
+	Template.BreakthroughCondition = TechCondition;
+
+	return Template;
+}
+
+static function X2DataTemplate CreateReinforcedUnderlay2()
+{
+	local X2TechTemplate Template;
+	local X2BreakthroughCondition_ItemType TechCondition;
+
+	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'ReinforcedUnderlay2');
+	Template.PointsToComplete = 2000;
+	Template.strImage = "img:///UILibrary_StrategyImages.ResearchTech.TECH_ExperimentalArmor";
+	Template.SortingTier = 2;
+
+
+	// Requirements
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventOfficer');
+
+	Template.ResearchCompletedFn = BreakthroughItemTacticalBonusCompleted;
+
+	Template.RewardName = 'ReinforcedUnderlay2';
+
+	TechCondition = new class'X2BreakthroughCondition_ItemType';
+	TechCondition.ItemTypeMatch = 'armor';
+	Template.BreakthroughCondition = TechCondition;
+
+	return Template;
+}
+
+
+function BreakthroughItemTacticalBonusCompleted(XComGameState NewGameState, XComGameState_Tech TechState)
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+
+	XComHQ = XComGameState_HeadquartersXCom( `XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom') );
+	XComHQ = XComGameState_HeadquartersXCom( NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID) );
+	XComHQ.TacticalTechBreakthroughs.AddItem( TechState.GetReference() );
+}
+
+
+static function X2DataTemplate CreateWetWorkProject()
+{
+	local X2TechTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'WetWorkProject');
+	Template.PointsToComplete = 2000;
+	Template.strImage = "img:///UILibrary_StrategyImages.GTS.GTS_WetWork";
+	Template.SortingTier = 2;
+
+	// Requirements
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventOfficer');
+
+	Template.ResearchCompletedFn = AddSoldierUnlockTemplate;
+
+	Template.RewardName = 'WetWorkUnlock';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateIntegratedWarfareProject()
+{
+	local X2TechTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'IntegratedWarfareProject');
+	Template.PointsToComplete = 2000;
+	Template.strImage = "img:///UILibrary_StrategyImages.GTS.GTS_IntegratedWarfare";
+	Template.SortingTier = 2;
+
+	// Requirements
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventOfficer');
+
+	Template.ResearchCompletedFn = AddSoldierUnlockTemplate;
+
+	Template.RewardName = 'IntegratedWarfareUnlock';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateVengeanceProject()
+{
+	local X2TechTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'VengeanceProject');
+	Template.PointsToComplete = 2000;
+	Template.strImage = "img:///UILibrary_StrategyImages.GTS.GTS_Vengeance";
+	Template.SortingTier = 2;
+
+	// Requirements
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventOfficer');
+
+	Template.ResearchCompletedFn = AddSoldierUnlockTemplate;
+
+	Template.RewardName = 'VengeanceUnlock';
+
+	return Template;
+}
+
+static function X2DataTemplate CreateVultureProject()
+{
+	local X2TechTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'VultureProject');
+	Template.PointsToComplete = 2000;
+	Template.strImage = "img:///UILibrary_StrategyImages.GTS.GTS_Vulture";
+	Template.SortingTier = 2;
+
+	// Requirements
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventOfficer');
+
+	Template.ResearchCompletedFn = AddSoldierUnlockTemplate;
+
+	Template.RewardName = 'VultureUnlock';
+
+	return Template;
+}
+
+static function X2DataTemplate StayWithMeProject()
+{
+	local X2TechTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2TechTemplate', Template, 'StayWithMeProject');
+	Template.PointsToComplete = 2000;
+	Template.strImage = "img:///UILibrary_StrategyImages.GTS.GTS_StayWithMe";
+	Template.SortingTier = 2;
+
+	// Requirements
+	Template.Requirements.RequiredTechs.AddItem('AutopsyAdventOfficer');
+
+	Template.ResearchCompletedFn = AddSoldierUnlockTemplate;
+
+	Template.RewardName = 'StayWithMeUnlock';
+
+	return Template;
+}
+
+
+function AddSoldierUnlockTemplate(XComGameState NewGameState, XComGameState_Tech TechState)
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	local X2SoldierUnlockTemplate UnlockTemplate;
+	local X2StrategyElementTemplateManager	TemplateMan;
+
+	TemplateMan = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+	UnlockTemplate = X2SoldierUnlockTemplate(TemplateMan.FindStrategyElementTemplate(TechState.GetMyTemplate().RewardName));
+
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	//XComHQ.SoldierUnlockTemplates.AddItem(UnlockTemplate.DataName);
+	XComHQ.AddSoldierUnlockTemplate(NewGameState, UnlockTemplate);
+
+	UnlockTemplate.OnSoldierUnlockPurchased(NewGameState);
 }

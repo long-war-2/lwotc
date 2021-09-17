@@ -7,12 +7,13 @@
 class X2Ability_PerkPackAbilitySet extends X2Ability config (LW_SoldierSkills);
 
 var config int CENTERMASS_DAMAGE;
-var config int LETHAL_DAMAGE;
+var config float LETHAL_DAMAGE;
 var config int DOUBLE_TAP_1ST_SHOT_AIM;
 var config int DOUBLE_TAP_2ND_SHOT_AIM;
 var config int DOUBLE_TAP_COOLDOWN;
 var config int DOUBLE_TAP_MIN_ACTION_REQ;
 var config int RESILIENCE_CRITDEF_BONUS;
+var config int FORTIFIED_CRITDEF_BONUS;
 var config int WALK_FIRE_AIM_BONUS;
 var config int WALK_FIRE_CRIT_MALUS;
 var config int WALK_FIRE_COOLDOWN;
@@ -122,9 +123,17 @@ var config bool NO_MELEE_ATTACKS_WHEN_ON_FIRE;
 var config int BOMBARD_BONUS_RANGE_TILES;
 var config int SHARPSHOOTERAIM_CRITBONUS;
 
+var config int Overexertion_COOLDOWN;
+
 var config int CE_USES_PER_TURN;
 var config int CE_MAX_TILES;
 var config array<name> CE_ABILITYNAMES;
+
+var config int WILLTOSURVIVE_DEF_PENALTY;
+var config int WTS_ABLATIVE;
+var config float WTS_COVER_DR_PCT;
+var config float WTS_WOUND_REDUCTION;
+
 
 var localized string LocCoveringFire;
 var localized string LocCoveringFireMalus;
@@ -179,6 +188,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddSteadyWeaponAbility());
 	Templates.AddItem(AddLockedOnAbility());
 	Templates.AddItem(AddSentinel_LWAbility());
+	//Templates.AddItem(AddSentinelAbility());
 	Templates.AddItem(AddRapidReactionAbility());
 	Templates.AddItem(AddLightningReflexes_LWAbility());
 	Templates.AddItem(AddCutthroatAbility());
@@ -190,6 +200,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddAreaSuppressionAbility());
 	Templates.AddItem(AreaSuppressionShot_LW()); //Additional Ability
 	Templates.AddItem(AddLockdownAbility());
+	Templates.AddItem(AddBulletWizardAbility());
 	Templates.AddItem(AddDangerZoneAbility());
 	Templates.AddItem(LockdownBonuses()); //Additional Ability
 	Templates.AddItem(PurePassive('Mayhem', "img:///UILibrary_LW_PerkPack.LW_AbilityMayhem", false, 'eAbilitySource_Perk'));
@@ -221,6 +232,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddShadowstrike_LWAbility());
 	Templates.AddItem(AddFormidableAbility());
 	Templates.AddItem(AddSoulStealTriggered2());
+	Templates.AddItem(AddOverexertion());
+	Templates.AddItem(AddFortifiedAbility());
+	Templates.AddItem(AddMerciless());
+	
+	
 	return Templates;
 }
 
@@ -256,7 +272,7 @@ static function X2AbilityTemplate AddCenterMassAbility()
 static function X2AbilityTemplate AddLethalAbility()
 {
 	local X2AbilityTemplate						Template;
-	local X2Effect_PrimaryHitBonusDamage        DamageEffect;
+	local X2Effect_PrimaryPCTBonusDamage        DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'Lethal');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityKinetic";
@@ -267,10 +283,9 @@ static function X2AbilityTemplate AddLethalAbility()
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
-	DamageEffect = new class'X2Effect_PrimaryHitBonusDamage';
+	DamageEffect = new class'X2Effect_PrimaryPCTBonusDamage';
 	DamageEffect.BonusDmg = default.LETHAL_DAMAGE;
-	DamageEffect.includepistols = false;
-	DamageEffect.includesos = false;
+	DamageEffect.IncludeExplosives = true;
 	DamageEffect.BuildPersistentEffect(1, true, false, false);
 	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageEffect);
@@ -307,6 +322,31 @@ static function X2AbilityTemplate AddHitandRunAbility()
 	return Template;
 }
 
+static function X2AbilityTemplate AddMerciless()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_Merciless				HitandRunEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'Merciless_LW');
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ShockAndMaul";
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	HitandRunEffect = new class'X2Effect_Merciless';
+	HitandRunEffect.BuildPersistentEffect(1, true, false, false);
+	HitandRunEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
+	HitandRunEffect.DuplicateResponse = eDupe_Ignore;
+	Template.AddTargetEffect(HitandRunEffect);
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  NOTE: Visualization handled in X2Effect_HitandRun
+	return Template;
+}
+
+	
 static function X2AbilityTemplate AddHitandSlitherAbility()
 {
 	local X2AbilityTemplate					Template;
@@ -354,7 +394,8 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 	local X2Condition_Visibility						TargetVisibilityCondition;
 	local X2AbilityCost_Ammo							AmmoCost;
 	local X2AbilityTarget_Single_CCS					SingleTarget;
-	//local X2AbilityCooldown								Cooldown;	
+	//local X2AbilityCooldown								Cooldown;
+	local X2Condition_NotItsOwnTurn 					NotItsOwnTurnCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CloseCombatSpecialistAttack');
 
@@ -428,6 +469,9 @@ static function X2AbilityTemplate CloseCombatSpecialistAttack()
 
 	Template.bAllowBonusWeaponEffects = true;
 	Template.AddTargetEffect(class 'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+
+	NotItsOwnTurnCondition = new class'X2Condition_NotItsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(NotItsOwnTurnCondition);
 
 	//Prevent repeatedly hammering on a unit when CCS triggers.
 	//(This effect does nothing, but enables many-to-many marking of which CCS attacks have already occurred each turn.)
@@ -581,6 +625,32 @@ static function X2AbilityTemplate AddResilienceAbility()
 	return Template;		
 }
 
+static function X2AbilityTemplate AddFortifiedAbility()
+{
+	local X2AbilityTemplate					Template;
+	local X2Effect_Resilience				MyCritModifier;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Fortified');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityResilience";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	MyCritModifier = new class 'X2Effect_Resilience';
+	MyCritModifier.CritDef_Bonus = default.FORTIFIED_CRITDEF_BONUS;
+	MyCritModifier.BuildPersistentEffect (1, true, false, true);
+	MyCritModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect (MyCritModifier);
+	Template.bCrossClassEligible = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;		
+}
+
+
 static function X2AbilityTemplate AddTacticalSenseAbility()
 {
 	local X2AbilityTemplate				Template;
@@ -726,12 +796,12 @@ static function X2AbilityTemplate AddDepthPerceptionAbility()
 	return Template;
 }
 
-static function X2AbilityTemplate AddWilltoSurviveAbility()
+	static function X2AbilityTemplate AddWilltoSurviveAbility()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_WilltoSurvive				ArmorBonus;
 	local X2Effect_PersistentStatChange			WillBonus;
-
+	local X2Effect_GreaterPadding				GreaterPaddingEffect;
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'WilltoSurvive');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityWilltoSurvive";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -742,15 +812,22 @@ static function X2AbilityTemplate AddWilltoSurviveAbility()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	Template.bIsPassive = true;
 	ArmorBonus = new class 'X2Effect_WilltoSurvive';
+	ArmorBonus.WTS_DR = default.WTS_COVER_DR_PCT;
 	ArmorBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ArmorBonus.BuildPersistentEffect(1, true, false);
 	Template.AddTargetEffect(ArmorBonus);
 
 	WillBonus = new class'X2Effect_PersistentStatChange';
-	WillBonus.AddPersistentStatChange(eStat_Will, float(default.WILLTOSURVIVE_WILLBONUS));
-	WillBonus.BuildPersistentEffect (1, true, false, false, 7);
+	WillBonus.AddPersistentStatChange(eStat_Defense, default.WILLTOSURVIVE_DEF_PENALTY);
+	WillBonus.AddPersistentStatChange(eStat_ShieldHP, default.WTS_ABLATIVE);
+	ArmorBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	ArmorBonus.BuildPersistentEffect (1, true, false, false, 7);
 	Template.AddTargetEffect(WillBonus);
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.WillLabel, eStat_Will, default.WILLTOSURVIVE_WILLBONUS);
+
+	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
+	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
+	GreaterPaddingEffect.Padding_HealHP = default.WTS_WOUND_REDUCTION;	
+	Template.AddTargetEffect(GreaterPaddingEffect);
 
 	Template.bCrossClassEligible = true;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -2106,6 +2183,33 @@ static function X2AbilityTemplate AddSentinel_LWAbility()
 	Template.AddTargetEffect(PersistentEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.bCrossClassEligible = false;
+
+	Template.AdditionalAbilities.AddItem('CoolUnderPressure');
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddSentinelAbility()
+{
+	local X2AbilityTemplate                 Template;	
+	local X2Effect_Sentinel_LW				PersistentEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Sentinel');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilitySentinel";
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bIsPassive = true;
+	PersistentEffect = new class'X2Effect_Sentinel_LW';
+	PersistentEffect.BuildPersistentEffect(1, true, false);
+	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+	Template.AddTargetEffect(PersistentEffect);
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.bCrossClassEligible = false;
 	return Template;
 }
 
@@ -2246,6 +2350,66 @@ static function X2AbilityTemplate AddRunAndGun_LWAbility()
 	return Template;
 }
 
+
+static function X2AbilityTemplate AddOverexertion()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCooldown	Cooldown;
+	local X2Effect_GrantActionPoints		ActionPointEffect;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2Condition_UnitValue				CECondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Overexertion');
+
+	// Icon Properties
+	Template.DisplayTargetHitChance = false;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';                                       // color of the icon
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_loot_move";
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.AbilityConfirmSound = "TacticalUI_Activate_Ability_Run_N_Gun";
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.Overexertion_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	CECondition = new class 'X2Condition_UnitValue';
+	Template.AbilityShooterConditions.AddItem(CECondition); 
+
+	ActionPointEffect = new class'X2Effect_GrantActionPoints';
+	ActionPointEffect.NumActionPoints = 1;
+	ActionPointEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
+	Template.AddTargetEffect(ActionPointEffect);
+
+	Template.AbilityTargetStyle = default.SelfTarget;	
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	Template.bShowActivation = true;
+	Template.bSkipFireAction = true;
+
+	Template.ActivationSpeech = 'RunAndGun';
+	
+		
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	Template.bCrossClassEligible = true;
+
+	return Template;
+}
+
+
 static function X2AbilityTemplate AddKillerInstinctAbility()
 {
 	local X2AbilityTemplate                 Template;	
@@ -2283,6 +2447,16 @@ static function X2AbilityTemplate AddLockdownAbility()
 	return Template;
 }
 
+static function X2AbilityTemplate AddBulletWizardAbility()
+{
+	local X2AbilityTemplate                 Template;	
+
+	Template = PurePassive('BulletWizard', "img:///UILibrary_WOTC_APA_Class_Pack.perk_WitheringBarrage", false, 'eAbilitySource_Perk');
+	Template.bCrossClassEligible = false;
+	Template.AdditionalAbilities.AddItem('AreaSuppression');
+	return Template;
+}
+
 static function X2AbilityTemplate AddSuppressionAbility_LW()
 {
 	local X2AbilityTemplate                 Template;	
@@ -2293,8 +2467,10 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	local X2Condition_UnitInventory         UnitInventoryCondition;
 	local name								WeaponCategory;
 	local X2Condition_UnitEffects			SuppressedCondition;
-
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'Suppression_LW');
+	local X2Effect_BulletWizard 			BwizEffect;
+	local X2Condition_AbilityProperty		BwizCondition;
+	local X2Effect_Pinned PinnedEffect;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Suppression');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
@@ -2344,12 +2520,28 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	SuppressionEffect.bRemoveWhenTargetDies = true;
 	SuppressionEffect.bRemoveWhenSourceDamaged = true;
 	SuppressionEffect.bBringRemoveVisualizationForward = true;
-	SuppressionEffect.DuplicateResponse=eDupe_Allow;
+	SuppressionEffect.DuplicateResponse=eDupe_Ignore;
 	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
 	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
 	Template.AddTargetEffect(SuppressionEffect);
+
+	PinnedEffect = new class'X2Effect_Pinned';
+	PinnedEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
+	PinnedEffect.DuplicateResponse=eDupe_Allow;
+	PinnedEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage, false);
+	Template.AddTargetEffect(PinnedEffect);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	Template.AddMultiTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	
+	BwizCondition = new class'X2Condition_AbilityProperty';
+	BwizCondition.OwnerHasSoldierAbilities.AddItem('BulletWizard');
+
+	BwizEffect = new class 'X2Effect_BulletWizard';
+	BwizEffect.TargetConditions.AddItem(BwizCondition);
+	Template.AddTargetEffect(BwizEffect);
+
+
 	Template.AdditionalAbilities.AddItem('SuppressionShot_LW');
 	Template.AdditionalAbilities.AddItem('LockdownBonuses');
 	Template.AdditionalAbilities.AddItem('MayhemBonuses');
@@ -2363,7 +2555,7 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = Suppression_BuildVisualization_LW;
 	Template.BuildAppliedVisualizationSyncFn = class'X2Ability_GrenadierAbilitySet'.static.SuppressionBuildVisualizationSync;
-	Template.CinescriptCameraType = "StandardSuppression";
+	Template.CinescriptCameraType = "StandardGunFiring";
 
 	Template.Hostility = eHostility_Offensive;
 	
@@ -2471,11 +2663,22 @@ static function Suppression_BuildVisualization_LW(XComGameState VisualizeGameSta
 
 	local XComGameState_Ability         Ability;
 	local X2Action_PlaySoundAndFlyOver SoundAndFlyOver;
-
+	local int EffectIndex;
+	local X2AbilityTemplate AbilityTemplate;
+	local XComGameState_Ability ShootAbilityState;
+	local Actor TargetVisualizer;
+	local X2Action_MarkerNamed SyncDamageAction;
+	local X2Action_ApplyWeaponDamageToUnit ApplyWeaponDamageAction;
+	local  name ApplyResult;
+	local XComGameStateVisualizationMgr VisualizationMgr;
 	History = `XCOMHISTORY;
+	VisualizationMgr = `XCOMVISUALIZATIONMGR;
 
 	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
 	InteractingUnitRef = Context.InputContext.SourceObject;
+
+	ShootAbilityState = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID));	
+	AbilityTemplate = ShootAbilityState.GetMyTemplate();
 
 	//Configure the visualization track for the shooter
 	//****************************************************************************************
@@ -2504,6 +2707,10 @@ static function Suppression_BuildVisualization_LW(XComGameState VisualizeGameSta
 	}
 
 	class'X2Action_ExitCover'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
+
+	SyncDamageAction = X2Action_MarkerNamed(class'X2Action_MarkerNamed'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+	SyncDamageAction.SetName("MayhemDamage");
+
 	class'X2Action_StartSuppression'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
 
 	//****************************************************************************************
@@ -2521,6 +2728,35 @@ static function Suppression_BuildVisualization_LW(XComGameState VisualizeGameSta
 		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
 		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
 	}
+
+	for (EffectIndex = 0; EffectIndex < AbilityTemplate.AbilityTargetEffects.Length; ++EffectIndex)
+	{
+		if(AbilityTemplate.AbilityTargetEffects[EffectIndex].IsA('X2Effect_BulletWizard'))
+		{
+			ApplyResult = Context.FindTargetEffectApplyResult(AbilityTemplate.AbilityTargetEffects[EffectIndex]);
+
+			// Target effect visualization
+			if( !Context.bSkipAdditionalVisualizationSteps )
+			{
+				AbilityTemplate.AbilityTargetEffects[EffectIndex].AddX2ActionsForVisualization(VisualizeGameState, BuildTrack, ApplyResult);
+			}
+
+			TargetVisualizer = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+			ApplyWeaponDamageAction = X2Action_ApplyWeaponDamageToUnit(VisualizationMgr.GetNodeOfType(VisualizationMgr.BuildVisTree, class'X2Action_ApplyWeaponDamageToUnit', TargetVisualizer));
+			if( ApplyWeaponDamageAction != None )
+			{
+				VisualizationMgr.DisconnectAction(ApplyWeaponDamageAction);
+				VisualizationMgr.ConnectAction(ApplyWeaponDamageAction, VisualizationMgr.BuildVisTree, false, SyncDamageAction);
+			}
+			break;
+		}
+		// Source effect visualization
+		//AbilityTemplate.AbilityTargetEffects[EffectIndex].AddX2ActionsForVisualizationSource(VisualizeGameState, SourceData, ApplyResult);
+	}
+
+
+
 }
 
 // code based on XComIdleAnimationStateMachine.state'Fire'.GetSuppressAnimName
@@ -2553,7 +2789,9 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	local AbilityGrantedBonusRadius						DangerZoneBonus;
 	local X2Condition_UnitProperty						ShooterCondition;
 	local X2Condition_UnitEffects						SuppressedCondition;
-
+	local X2Condition_AbilityProperty					BwizCondition;
+	local X2Effect_BulletWizard							BwizEffect;
+	local X2Effect_Pinned PinnedEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AreaSuppression');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AreaSuppression";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -2604,6 +2842,14 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	ReserveActionPointsEffect.NumPoints = default.AREA_SUPPRESSION_MAX_SHOTS;
 	Template.AddShooterEffect(ReserveActionPointsEffect);
 
+	PinnedEffect = new class'X2Effect_Pinned';
+	PinnedEffect.BuildPersistentEffect(2, false, true, false, eGameRule_PlayerTurnBegin);
+	PinnedEffect.DuplicateResponse=eDupe_Ignore;
+	PinnedEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage, false);
+	Template.AddTargetEffect(PinnedEffect);
+	Template.AddMultiTargetEffect(PinnedEffect);
+
+
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
 
@@ -2646,11 +2892,23 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	Template.AdditionalAbilities.AddItem('LockdownBonuses');
 	Template.AdditionalAbilities.AddItem('MayhemBonuses');
 
+	BwizCondition = new class'X2Condition_AbilityProperty';
+	BwizCondition.OwnerHasSoldierAbilities.AddItem('BulletWizard');
+
+	BwizEffect = new class 'X2Effect_BulletWizard';
+	BwizEffect.TargetConditions.AddItem(BwizCondition);
+	Template.AddTargetEffect(BwizEffect);
+	Template.AddMultiTargetEffect(BwizEffect);
+
 	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
 
 	Template.BuildVisualizationFn = AreaSuppression_BuildVisualization_LW;
 	Template.BuildAppliedVisualizationSyncFn = AreaSuppression_BuildVisualizationSync;
-	Template.CinescriptCameraType = "StandardSuppression";	
+
+	//Template.CinescriptCameraType = "StandardSuppression";
+	Template.CinescriptCameraType = "StandardGunFiring";
+	Template.ActionFireClass = class'X2Action_Fire_SaturationFire';
+
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	
 	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
@@ -2670,11 +2928,22 @@ simulated function AreaSuppression_BuildVisualization_LW(XComGameState Visualize
 	local VisualizationActionMetadata   BuildTrack;
 	local XComGameState_Ability         Ability;
 	local X2Action_PlaySoundAndFlyOver	SoundAndFlyOver;
+	local int EffectIndex;
+	local X2AbilityTemplate AbilityTemplate;
+	local XComGameState_Ability ShootAbilityState;
+	local  name ApplyResult;
+	local X2Action_MarkerNamed SyncDamageAction, SyncFlyoverAction;
+	local Actor                    TargetVisualizer;
+	local X2Action_ApplyWeaponDamageToUnit	ApplyWeaponDamageAction;
+	local XComGameStateVisualizationMgr VisualizationMgr;
 
 	History = `XCOMHISTORY;
+	VisualizationMgr = `XCOMVISUALIZATIONMGR;
 
 	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
 	InteractingUnitRef = Context.InputContext.SourceObject;
+	ShootAbilityState = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID));	
+	AbilityTemplate = ShootAbilityState.GetMyTemplate();
 
 	//Configure the visualization track for the shooter
 	//****************************************************************************************
@@ -2683,9 +2952,18 @@ simulated function AreaSuppression_BuildVisualization_LW(XComGameState Visualize
 	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
 	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
 	
+
 	class'X2Action_ExitCover'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
+
+	SyncFlyoverAction = X2Action_MarkerNamed(class'X2Action_MarkerNamed'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+	SyncFlyoverAction.SetName("Flyovers");
+		
+	SyncDamageAction = X2Action_MarkerNamed(class'X2Action_MarkerNamed'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+	SyncDamageAction.SetName("MayhemDamage");
+
 	class'X2Action_StartSuppression'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded);
 	
+
 	//****************************************************************************************
 	//Configure the visualization track for the primary target
 
@@ -2695,6 +2973,9 @@ simulated function AreaSuppression_BuildVisualization_LW(XComGameState Visualize
 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
 	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
 	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+
+
 	SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
 	SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
 	if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
@@ -2702,6 +2983,34 @@ simulated function AreaSuppression_BuildVisualization_LW(XComGameState Visualize
 		SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
 		SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
 	}
+
+
+
+
+	for (EffectIndex = 0; EffectIndex < AbilityTemplate.AbilityTargetEffects.Length; ++EffectIndex)
+	{
+		if(AbilityTemplate.AbilityTargetEffects[EffectIndex].IsA('X2Effect_BulletWizard'))
+		{
+			ApplyResult = Context.FindTargetEffectApplyResult(AbilityTemplate.AbilityTargetEffects[EffectIndex]);
+
+			// Target effect visualization
+			if( !Context.bSkipAdditionalVisualizationSteps )
+			{
+				AbilityTemplate.AbilityTargetEffects[EffectIndex].AddX2ActionsForVisualization(VisualizeGameState, BuildTrack, ApplyResult);
+			}
+			TargetVisualizer = History.GetVisualizer(Context.InputContext.PrimaryTarget.ObjectID);
+
+			ApplyWeaponDamageAction = X2Action_ApplyWeaponDamageToUnit(VisualizationMgr.GetNodeOfType(VisualizationMgr.BuildVisTree, class'X2Action_ApplyWeaponDamageToUnit', TargetVisualizer));
+			if( ApplyWeaponDamageAction != None )
+			{
+				VisualizationMgr.DisconnectAction(ApplyWeaponDamageAction);
+				VisualizationMgr.ConnectAction(ApplyWeaponDamageAction, VisualizationMgr.BuildVisTree, false, SyncDamageAction);
+			}
+			break;
+		}
+	}
+
+
 
 	//Configure for the rest of the targets in AOE Suppression
 	if (Context.InputContext.MultiTargets.Length > 0)
@@ -2713,13 +3022,38 @@ simulated function AreaSuppression_BuildVisualization_LW(XComGameState Visualize
 			BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
 			BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
 			BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
-			SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+			SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, SyncFlyoverAction));
 			SoundAndFlyOver.SetSoundAndFlyOverParameters(None, Ability.GetMyTemplate().LocFlyOverText, '', eColor_Bad);
 			if (XComGameState_Unit(BuildTrack.StateObject_OldState).ReserveActionPoints.Length != 0 && XComGameState_Unit(BuildTrack.StateObject_NewState).ReserveActionPoints.Length == 0)
 			{
-				SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
+				SoundAndFlyOver = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, SyncFlyoverAction));
 				SoundAndFlyOver.SetSoundAndFlyOverParameters(none, class'XLocalizedData'.default.OverwatchRemovedMsg, '', eColor_Bad);
 			}
+
+				for (EffectIndex = 0; EffectIndex < AbilityTemplate.AbilityMultiTargetEffects.Length; ++EffectIndex)
+				{
+					if(AbilityTemplate.AbilityMultiTargetEffects[EffectIndex].IsA('X2Effect_BulletWizard'))
+					{
+						ApplyResult = Context.FindTargetEffectApplyResult(AbilityTemplate.AbilityMultiTargetEffects[EffectIndex]);
+
+						// Target effect visualization
+						if( !Context.bSkipAdditionalVisualizationSteps )
+						{
+							AbilityTemplate.AbilityMultiTargetEffects[EffectIndex].AddX2ActionsForVisualization(VisualizeGameState, BuildTrack, ApplyResult);
+						}
+
+							TargetVisualizer = History.GetVisualizer(InteractingUnitRef.ObjectID);
+
+							ApplyWeaponDamageAction = X2Action_ApplyWeaponDamageToUnit(VisualizationMgr.GetNodeOfType(VisualizationMgr.BuildVisTree, class'X2Action_ApplyWeaponDamageToUnit', TargetVisualizer));
+							if( ApplyWeaponDamageAction != None )
+							{
+								VisualizationMgr.DisconnectAction(ApplyWeaponDamageAction);
+								VisualizationMgr.ConnectAction(ApplyWeaponDamageAction, VisualizationMgr.BuildVisTree, false, SyncDamageAction);
+							}
+							break;
+				
+					}
+				}
 		}
 	}
 }
@@ -2736,6 +3070,8 @@ simulated function AreaSuppression_BuildVisualizationSync(name EffectName, XComG
 		class'X2Action_StartSuppression'.static.AddToVisualizationTree( BuildTrack, VisualizeGameState.GetContext(), false, BuildTrack.LastActionAdded );
 	}
 }
+
+
 
 
 static function X2AbilityTemplate AreaSuppressionShot_LW()
@@ -2840,7 +3176,7 @@ static function X2Effect_Persistent CoveringFireMalusEffect()
     Effect.bRemoveWhenTargetDies = false;
     Effect.bUseSourcePlayerState = true;
 	Effect.bApplyOnMiss = true;
-	Effect.DuplicateResponse=eDupe_Allow;
+	Effect.DuplicateResponse=eDupe_Refresh;
     AbilityCondition = new class'X2Condition_AbilityProperty';
     AbilityCondition.OwnerHasSoldierAbilities.AddItem('CoveringFire');
     Effect.TargetConditions.AddItem(AbilityCondition);
@@ -3005,10 +3341,8 @@ static function X2AbilityTemplate AddDamageControlAbility()
 	DamageControlEffect.BuildPersistentEffect(default.DAMAGE_CONTROL_DURATION,false,true,,eGameRule_PlayerTurnBegin);
 	DamageControlEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	DamageControlEffect.DuplicateResponse = eDupe_Refresh;
+	DamageControlEffect.EffectName = 'DamageControlTrigger';
 	DamageControlEffect.BonusArmor = default.DAMAGE_CONTROL_BONUS_ARMOR;
-	Template.AddTargetEffect(DamageControlEffect);
-
-
 	Template.AddTargetEffect(DamageControlEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -3827,6 +4161,8 @@ static function X2AbilityTemplate AddSlash_LWAbility()
 	// VGamepliz matters
 	Template.SourceMissSpeech = 'SwordMiss';
 	Template.bSkipMoveStop = true;
+
+	Template.ConcealmentRule = eConceal_Always;
 
 	Template.CinescriptCameraType = "Ranger_Reaper";
     Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;

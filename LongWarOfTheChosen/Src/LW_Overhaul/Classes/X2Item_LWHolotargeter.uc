@@ -157,6 +157,8 @@ static function X2DataTemplate CreateTemplate_Holotargeter_Magnetic()
 	Template.CreatorTemplateName = 'Holotargeter_MG_Schematic'; // The schematic which creates this item
 	Template.BaseItem = 'Holotargeter_CV'; // Which item this will be upgraded from
 
+	Template.Abilities.AddItem('HDHolo');
+
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
 
@@ -205,7 +207,9 @@ static function X2DataTemplate CreateTemplate_Holotargeter_Beam()
 
 	Template.CanBeBuilt = false;
 	Template.bInfiniteItem = true;
-
+	
+	Template.Abilities.AddItem('HDHolo');
+	Template.Abilities.AddItem('VitalPointTargeting');
 	Template.DamageTypeTemplateName = 'Electrical';
 
 	Template.bHideClipSizeStat = true;

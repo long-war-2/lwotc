@@ -18,14 +18,12 @@ var config int SHIELD_POINTS_BM;
 var config int SHIELD_MOBILITY_PENALTY;
 var config int SHIELD_AIM_PENALTY;
 
-var config int OFA_BASE_SHIELD;
-var config int OFA_MG_BONUS;
-var config int OFA_BM_BONUS;
+var config float OFA_DAMAGE_REDUCTION;
 var config int SHIELD_BASH_COOLDOWN;
 
-var config int GREATER_PADDING_CV;
-var config int GREATER_PADDING_MG;
-var config int GREATER_PADDING_BM;
+var config float GREATER_PADDING_CV;
+var config float GREATER_PADDING_MG;
+var config float GREATER_PADDING_BM;
 
 var config bool bLog;
 
@@ -82,9 +80,7 @@ static function X2AbilityTemplate OneForAll()
 	Template.AddTargetEffect(CoverEffect);
 
 	ShieldedEffect = new class'X2Effect_OneForAll';
-	ShieldedEffect.BaseShieldHPIncrease = default.OFA_BASE_SHIELD;
-	ShieldedEffect.MK2ShieldIncrease= default.OFA_MG_BONUS;
-	ShieldedEffect.MK3ShieldIncrease= default.OFA_BM_BONUS;
+	ShieldedEffect.DamageReduction = default.OFA_DAMAGE_REDUCTION;
 	ShieldedEffect.BuildPersistentEffect (1, false, false, false, eGameRule_PlayerTurnBegin);
 	ShieldedEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,false,, Template.AbilitySourceName);
 	Template.AddTargetEffect(ShieldedEffect);
