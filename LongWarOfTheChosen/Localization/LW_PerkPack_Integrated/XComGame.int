@@ -204,8 +204,8 @@ LocPromotionPopupText="<Bullet/> Gain 5 aim and reduce enemies' dodge by 25 when
 [WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="Will to Survive"
 LocFlyOverText="Will to Survive"
-LocLongDescription="Gain <Ability:WILLTOSURVIVE_DEF_PENALTY/> defense. Enemy damage is reduced by <Ability:WTS_COVER_DR_PCT/>% when in cover and attacked through that cover. Reduce wound recovery times for this soldier by <Ability:WTS_WOUND_REDUCTION/>% of max HP."
-LocHelpText="Gain <Ability:WILLTOSURVIVE_DEF_PENALTY/> defense. Enemy damage is reduced by <Ability:WTS_COVER_DR_PCT/>% when in cover and attacked through that cover."
+LocLongDescription="Gain <Ability:WILLTOSURVIVE_DEF_PENALTY/> defense. Gain 2 Ablative HP. Enemy damage is reduced by <Ability:WTS_COVER_DR_PCT/>% when in cover and attacked through that cover. Reduce wound recovery times for this soldier by <Ability:WTS_WOUND_REDUCTION/>% of max HP."
+LocHelpText="Gain <Ability:WILLTOSURVIVE_DEF_PENALTY/> defense. Gain 2 Ablative HP. Enemy damage is reduced by <Ability:WTS_COVER_DR_PCT/>% when in cover and attacked through that cover."
 LocPromotionPopupText="<Bullet/> Cover against explosives and other indirect attacks is calculated from the point of the explosion.<br/><Bullet/> Armor piercing effects do not eliminate this bonus.<br/>"
 
 [LightEmUp X2AbilityTemplate]

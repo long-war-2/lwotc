@@ -130,6 +130,7 @@ var config int CE_MAX_TILES;
 var config array<name> CE_ABILITYNAMES;
 
 var config int WILLTOSURVIVE_DEF_PENALTY;
+var config int WTS_ABLATIVE;
 var config float WTS_COVER_DR_PCT;
 var config float WTS_WOUND_REDUCTION;
 
@@ -818,6 +819,7 @@ static function X2AbilityTemplate AddDepthPerceptionAbility()
 
 	WillBonus = new class'X2Effect_PersistentStatChange';
 	WillBonus.AddPersistentStatChange(eStat_Defense, default.WILLTOSURVIVE_DEF_PENALTY);
+	WillBonus.AddPersistentStatChange(eStat_ShieldHP, default.WTS_ABLATIVE);
 	ArmorBonus.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ArmorBonus.BuildPersistentEffect (1, true, false, false, 7);
 	Template.AddTargetEffect(WillBonus);
