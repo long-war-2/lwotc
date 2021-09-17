@@ -3013,7 +3013,6 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 
 				case 'HeavyPlatedArmor':
 				ArmorTemplate.Abilities.AddItem('Chitin_Plating_Ability');
-				ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, 14, default.MEDIUM_PLATED_MITIGATION_AMOUNT);
 				ArmorTemplate.SetUIStatMarkup(class'X2Ability_LW_GearAbilities'.default.AblativeHPLabel, eStat_ShieldHP, 4);
 				ArmorTemplate.Abilities.AddItem('ExoskeletonServos');
 				ArmorTemplate.bHeavyWeapon = false;
