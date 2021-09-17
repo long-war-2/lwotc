@@ -1,4 +1,4 @@
-Welcome to **dev build 28.1** of Long War of the Chosen!
+Welcome to **dev build 28.2** of Long War of the Chosen!
 
 This build largely contains balance changes.
 
@@ -9,11 +9,21 @@ Headline changes:
  * Chain Lightning actually chains now and has no aim penalty, but it can't hit as many enemies as before
  * The Community Promotion Screen is no longer part of the LWOTC package: you will have to subscribe to it on Steam Workshop
 
-To install dev build 28.1, just delete your existing LongWarOfTheChosen, X2WOTCCommunityHighlander, etc. folders from the *Mods* directory and unpack the following zip there:
+To install dev build 28.2, just delete your existing LongWarOfTheChosen, X2WOTCCommunityHighlander, etc. folders from the *Mods* directory and unpack the following zip there:
 
 ||  **[Download the full release from Nexus Mods](https://www.nexusmods.com/xcom2/mods/757?tab=files)** ||
 
-**Upgrading from dev build 27** The above link also contains an update package you can use to upgrade dev build 27.x or 28 to dev build 28.1, instead of deleting the old version. If you use this, you will need to **delete the X2CommunityPromotionScreen folder from the *Mods* directory** and subscribe to Community Promotion Screen on the Steam Workshop.
+**Upgrading from dev build 27** The above link also contains an update package you can use to upgrade dev build 27.x or 28 to dev build 28.2, instead of deleting the old version. If you use this, you will need to **delete the X2CommunityPromotionScreen folder from the *Mods* directory** and subscribe to Community Promotion Screen on the Steam Workshop.
+
+# Changelog dev build 28.2
+
+ * Yellow-alert reflex actions, civilians running and other related issues are now fixed
+ * Chosen no longer have weaknesses except for the adversary ones (Reaper, Templar, Skirmisher)
+ * The adversary weaknesses are now slightly stronger (from +20% damage to +25%)
+ * One For All no longer removes burning
+ * One For All now uses the Shield Wall visualisation
+ * Rebels now get Stock Strike and Get Up
+ * New tutorial boxes have been added for the Chosen to help players adjust to the changes
 
 # Changelog dev build 28.1
 
@@ -87,7 +97,7 @@ They can only use teleport as a prime reaction and only when they have no other 
 
  * Warlock can no longer cast Warlock's Greatest Champion on unactivated enemies 
 
-# Quality of life
+## Quality of life
 
  * Disabled "Enable Introduction?" alert at the campaign start so people can't accidentally enable Lost and Abandoned, bricking their campaigns
  * Updated the Simplified and Traditional Chinese localization, thanks to cdq55555
@@ -100,7 +110,7 @@ They can only use teleport as a prime reaction and only when they have no other 
  * The launch dialog for alien-facility missions now has controller hotlinks
  * Added Haven/Resistance management nav help to geoscape when using the controller
 
- # Bug Fixes
+ ## Bug Fixes
 
  * Fixed the bug where Rend the Mark effect was permament
  * Fixed Terrorize localization incorrectly saying that chance to panic is based on Templar's psi offense (it's based on will)
