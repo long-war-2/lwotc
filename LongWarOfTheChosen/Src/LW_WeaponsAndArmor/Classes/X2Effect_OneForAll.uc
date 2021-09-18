@@ -18,7 +18,7 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	X2Effect_ApplyWeaponDamage WeaponDamageEffect,
 	XComGameState NewGameState)
 {
-	return -CurrentDamage * DamageReduction / 100.0;
+	return -CurrentDamage * DamageReduction;
 }
 
 
