@@ -54,6 +54,15 @@ static function X2AbilityTemplate CreateFlameThrower()
 	Cooldown = new class'X2AbilityCooldown_Immolator';
 	Cooldown.iNumTurns = default.IMMOLATOR_COOLDOWN;
 	Cooldown.SharingCooldownsWith.AddItem('Overwatch');
+	Cooldown.SharingCooldownsWith.AddItem('MZFireThrower');
+	Cooldown.SharingCooldownsWith.AddItem('MZBlastCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZPoisonCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZIceCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('LWCurseCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZBluescreenCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZSmokeCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZAcidCanisterActivate');
+
 	Template.AbilityCooldown = Cooldown;
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';

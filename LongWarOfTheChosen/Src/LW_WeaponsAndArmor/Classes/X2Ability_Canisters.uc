@@ -291,7 +291,7 @@ static function X2AbilityTemplate PoisonCanisterActivate()
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2Effect_ApplyPoisonToWorld		PoisonCloudEffect;
-
+	local X2AbilityCooldown_Immolator		Cooldown;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZPoisonCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -301,6 +301,20 @@ static function X2AbilityTemplate PoisonCanisterActivate()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_SHOT_PRIORITY;
 	Template.bDisplayInUITooltip = false;
 	Template.bDisplayInUITacticalText = false;
+
+	Cooldown = new class'X2AbilityCooldown_Immolator';
+	Cooldown.iNumTurns = class'X2Ability_Immolator'.default.IMMOLATOR_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('Overwatch');
+	Cooldown.SharingCooldownsWith.AddItem('MZFireThrower');
+	Cooldown.SharingCooldownsWith.AddItem('MZBlastCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZPoisonCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZIceCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('LWCurseCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZBluescreenCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZSmokeCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZAcidCanisterActivate');
+
+	Template.AbilityCooldown = Cooldown;
 
 	Charges = new class 'X2AbilityCharges';
 	Charges.InitialCharges = default.PoisonCanister_Charges;
@@ -404,8 +418,23 @@ static function X2AbilityTemplate CurseCanisterActivate()
 	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityCooldown_Immolator		Cooldown;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LWCurseCanisterActivate');
+
+	Cooldown = new class'X2AbilityCooldown_Immolator';
+	Cooldown.iNumTurns = class'X2Ability_Immolator'.default.IMMOLATOR_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('Overwatch');
+	Cooldown.SharingCooldownsWith.AddItem('MZFireThrower');
+	Cooldown.SharingCooldownsWith.AddItem('MZBlastCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZPoisonCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZIceCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('LWCurseCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZBluescreenCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZSmokeCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZAcidCanisterActivate');
+
+	Template.AbilityCooldown = Cooldown;
 
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
@@ -513,7 +542,7 @@ static function X2AbilityTemplate BluescreenCanisterActivate()
 	//local X2Effect_PersistentStatChange		Disorient;
 	local X2Effect_Stunned					RoboStun;
 	local X2Condition_UnitProperty			RoboCondition, NonRoboCondition;
-
+	local X2AbilityCooldown_Immolator		Cooldown;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZBluescreenCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -523,6 +552,20 @@ static function X2AbilityTemplate BluescreenCanisterActivate()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_SHOT_PRIORITY;
 	Template.bDisplayInUITooltip = false;
 	Template.bDisplayInUITacticalText = false;
+
+	Cooldown = new class'X2AbilityCooldown_Immolator';
+	Cooldown.iNumTurns = class'X2Ability_Immolator'.default.IMMOLATOR_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('Overwatch');
+	Cooldown.SharingCooldownsWith.AddItem('MZFireThrower');
+	Cooldown.SharingCooldownsWith.AddItem('MZBlastCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZPoisonCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZIceCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('LWCurseCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZBluescreenCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZSmokeCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZAcidCanisterActivate');
+
+	Template.AbilityCooldown = Cooldown;
 
 	Charges = new class 'X2AbilityCharges';
 	Charges.InitialCharges = default.BluescreenCanister_Charges;
@@ -654,6 +697,7 @@ static function X2AbilityTemplate BlastCanisterActivate()
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local MZ_Effect_Knockback				KnockbackEffect;
+	local X2AbilityCooldown_Immolator		Cooldown;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZBlastCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -663,6 +707,20 @@ static function X2AbilityTemplate BlastCanisterActivate()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_SHOT_PRIORITY;
 	Template.bDisplayInUITooltip = false;
 	Template.bDisplayInUITacticalText = false;
+
+	Cooldown = new class'X2AbilityCooldown_Immolator';
+	Cooldown.iNumTurns = class'X2Ability_Immolator'.default.IMMOLATOR_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('Overwatch');
+	Cooldown.SharingCooldownsWith.AddItem('MZFireThrower');
+	Cooldown.SharingCooldownsWith.AddItem('MZBlastCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZPoisonCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZIceCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('LWCurseCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZBluescreenCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZSmokeCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZAcidCanisterActivate');
+
+	Template.AbilityCooldown = Cooldown;
 
 
 	KnockbackEffect = new class'MZ_Effect_Knockback';
@@ -768,6 +826,7 @@ static function X2AbilityTemplate AcidCanisterActivate()
 	local X2AbilityMultiTarget_Cone_LWFlamethrower			ConeMultiTarget;
 	local X2AbilityToHitCalc_StandardAim	StandardAim;
 	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityCooldown_Immolator		Cooldown;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZAcidCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -777,6 +836,21 @@ static function X2AbilityTemplate AcidCanisterActivate()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_SHOT_PRIORITY;
 	Template.bDisplayInUITooltip = false;
 	Template.bDisplayInUITacticalText = false;
+
+	Cooldown = new class'X2AbilityCooldown_Immolator';
+	Cooldown.iNumTurns = class'X2Ability_Immolator'.default.IMMOLATOR_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('Overwatch');
+	Cooldown.SharingCooldownsWith.AddItem('MZFireThrower');
+	Cooldown.SharingCooldownsWith.AddItem('MZBlastCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZPoisonCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZIceCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('LWCurseCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZBluescreenCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZSmokeCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZAcidCanisterActivate');
+
+	Template.AbilityCooldown = Cooldown;
+
 
 	Charges = new class 'X2AbilityCharges';
 	Charges.InitialCharges = default.AcidCanister_Charges;
@@ -883,7 +957,7 @@ static function X2AbilityTemplate SmokeCanisterActivate()
 	local X2Condition_AbilityProperty		AbilityCondition;
 	local X2Effect_ThermalBulwark			Effect;
 	local X2Effect_Regeneration				RegenEffect;
-
+	local X2AbilityCooldown_Immolator		Cooldown;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'MZSmokeCanisterActivate');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
@@ -893,6 +967,21 @@ static function X2AbilityTemplate SmokeCanisterActivate()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_SHOT_PRIORITY;
 	Template.bDisplayInUITooltip = false;
 	Template.bDisplayInUITacticalText = false;
+
+	Cooldown = new class'X2AbilityCooldown_Immolator';
+	Cooldown.iNumTurns = class'X2Ability_Immolator'.default.IMMOLATOR_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('Overwatch');
+	Cooldown.SharingCooldownsWith.AddItem('MZFireThrower');
+	Cooldown.SharingCooldownsWith.AddItem('MZBlastCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZPoisonCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZIceCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('LWCurseCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZBluescreenCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZSmokeCanisterActivate');
+	Cooldown.SharingCooldownsWith.AddItem('MZAcidCanisterActivate');
+
+	Template.AbilityCooldown = Cooldown;
+
 
 	Charges = new class 'X2AbilityCharges';
 	Charges.InitialCharges = default.SmokeCanister_Charges;
