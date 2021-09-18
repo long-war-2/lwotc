@@ -15,10 +15,12 @@ This is a Fundamental Rebalance of Long War Of the Chosen, with the following de
 Currently the Mod is in alpha, in a playable but feature incomplete and unpolished state.
 
 Particularly, the not-implemented features (In this case: Not rebalanced/redesigned yet) so far include:
-Psi ops
-Sparks
-Alien Hunters DLC
-The Chosen
+* Psi ops
+* Sparks
+* Alien Hunters DLC
+* The Chosen
+
+Also, Gotcha again overwatch indicators are unreliable for now.
 
 ## Features
 
@@ -208,6 +210,7 @@ More detailed enemy changes can be found here, I'll just present some more impor
 Base Damage is 4/5/6/7/8 depending on weapon tier (from 4/5.5/7/8.5/10)
 
 * Significantly decreased the amount of shred in the game - makes armor actually important
+* Critical Damage is now +50% of a weapon's base damage (Ex. Assault rifle with base damage of 4 will have +2 critical damage)
 * Rebalanced Primary weapons the following way
 
 #### AR
