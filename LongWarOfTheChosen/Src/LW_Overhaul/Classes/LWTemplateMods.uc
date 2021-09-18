@@ -935,7 +935,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	local X2AbilityCooldown_Shared			CooldownShared;
 	local X2AbilityMultiTarget_Cone			ConeMultiTarget;
 	local X2AbilityCooldown_AllInstances 	AllInstancesCooldown;
-
+	local X2Effect_RemoveEffects 			RemoveEffects;
 	// WOTC TODO: Trying this out. Should be put somewhere more appropriate.
 	if (Template.DataName == 'ReflexShotModifier')
 	{
@@ -1616,8 +1616,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		AbilityCondition = new class'X2Condition_AbilityProperty';
 		AbilityCondition.OwnerHasSoldierAbilities.AddItem('SharpshooterAim');
 		AimEffect.TargetConditions.AddItem(AbilityCondition);
-
 		Template.AddTargetEffect(AimEffect);
+
+		RemoveEffects = new class'X2Effect_RemoveEffects';
+		RemoveEffects.EffectNamesToRemove.AddItem(class'X2StatusEffects_LW'.default.LWBurningName);
+		Template.AddTargetEffect(RemoveEffects);
 	}
 
 	if (Template.DataName == 'Fuse' && default.FUSE_COOLDOWN > 0)
