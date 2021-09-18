@@ -75,7 +75,7 @@ TacticalText="A simple mechanical incendiary device, mostly unchanged in design 
 AbilityDescName="Flametorch"
 
 [LWImmolator_CV X2WeaponTemplate]
-FriendlyName="Immolator2"
+FriendlyName="Immolator"
 FriendlyNamePlural="Immolators"
 BriefSummary="This basic chemical thrower fires a stream of highly flamable chemicals, burning and damaging multiple targets."
 TacticalText="<Bullet/> Chemthrowers do low damage in a wide area, making them effective only when dealing with multiple targets.<br> <Bullet/> The Immolator will always burn targets, dealing damage over time and disabling some abilities.<br> <Bullet/> Some enemies may be immune to fire, and take no damage from the immolator.<br> <Bullet/> Extremely effective against the Lost.<br>"
