@@ -167,6 +167,12 @@ More detailed enemy changes can be found here, I'll just present some more impor
 #### Priests
 * No longer have Mind Control by default
 
+#### Vipers
+* Enemies can no longer shoot bound units
+* Bind damage severely increased
+* Damaging the viper no longer breaks the bind
+* Tongue grab aim decreased by 10
+
 #### Sidewinders
 * Have Hit and Slither by default
 
