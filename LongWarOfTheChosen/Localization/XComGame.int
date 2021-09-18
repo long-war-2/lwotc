@@ -1310,7 +1310,7 @@ LootTooltip="This weapon upgrade will add an aim bonus to any weapon it is attac
 [MissDamageUpgrade_Bsc X2WeaponUpgradeTemplate]
 FriendlyName="Stock"
 FriendlyNamePlural="Stocks"
-BriefSummary="Your primary weapon attacks ignore up to 15 dodge, and missed ones have a 50% chance to become a graze instead."
+BriefSummary="Your primary weapon attacks ignore up to 15 dodge, and missed ones have a 35% chance to become a graze instead."
 TinySummary="Grants Grazing Fire, and makes attacks ignore up to 15 dodge."
 LootTooltip="This weapon upgrade, when installed, grants the Grazing Fire ability, and 15 dodge resistance."
 
