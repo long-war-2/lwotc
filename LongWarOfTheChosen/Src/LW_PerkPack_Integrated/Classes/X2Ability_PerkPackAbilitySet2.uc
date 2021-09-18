@@ -73,6 +73,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddSawedOffReload());
 	Templates.AddItem(CreateAdvancedRobotics());
 	Templates.AddItem(ChainingJolt());
+	Templates.AddItem(CreateBulletStorm());
 	
 	
 	return Templates;
@@ -1347,6 +1348,18 @@ static function X2AbilityTemplate CreateImpact()
 	local X2AbilityTemplate		Template;
 
 	Template = PurePassive('Impact', "img:///UILibrary_XPerkIconPack.UIPerk_stasis_overwatch", , 'eAbilitySource_Perk');
+
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateBulletStorm()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('BulletStorm', "img:///UILibrary_XPerkIconPack.UIPerk_suppression_bullet_x3", , 'eAbilitySource_Perk');
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;

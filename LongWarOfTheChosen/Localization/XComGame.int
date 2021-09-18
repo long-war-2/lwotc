@@ -8381,6 +8381,12 @@ LocLongDescription="Your Attacks can now remove enemy overwatch on hit."
 LocHelpText="Your Attacks can now remove enemy overwatch on hit."
 LocPromotionPopupText=""
 
+[BulletStorm X2AbilityTemplate]
+LocFriendlyName="Bullet Storm"
+LocLongDescription="Suppression Cooldown is reduced by 1."
+LocHelpText="Suppression Cooldown is reduced by 1."
+LocPromotionPopupText=""
+
 [SprayAndPray X2AbilityTemplate]
 LocFriendlyName="Spray And Pray"
 LocLongDescription="Attacks with your Autopistol Ignore up to <Ability:SPRAY_AND_PRAY_DODGE/> Dodge."

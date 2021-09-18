@@ -2100,6 +2100,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'AdvTrooperM4':
 		case 'AdvTrooperM5':
 		Template.Abilities.AddItem('SkirmisherStrike');
+		Template.Abilities.AddItem('Suppression');
 		break;
 		case 'AdvCaptainM1':
 		case 'AdvCaptainM2':
@@ -2107,6 +2108,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'AdvCaptainM4':
 		case 'AdvCaptainM5':
 		Template.Abilities.AddItem('Defilade');
+		Template.Abilities.AddItem('Suppression');
 		break;
 		case 'Muton':
 		case 'MutonM2_LW':

@@ -1515,9 +1515,9 @@ static function AddSuperiorHolyWarrior(X2AbilityTemplate Template)
 
 static function AddSharedSuppressionCooldown(X2AbilityTemplate Template)
 {
-	local X2AbilityCooldown_Shared	Cooldown;
+	local X2AbilityCooldown_Suppression	Cooldown;
 
-	Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown = new class'X2AbilityCooldown_Suppression';
 	Cooldown.iNumTurns = 2;
 	Cooldown.SharingCooldownsWith.AddItem('Suppression'); //Now shares the cooldown with Bayonet
 	Cooldown.SharingCooldownsWith.AddItem('AreaSuppression'); //Now shares the cooldown with Bayonet
