@@ -80,7 +80,7 @@ static function X2DataTemplate CreateTemplate_Immolator_T0()
 
 	Template.Abilities.AddItem('MZFireThrower');
 	Template.Abilities.AddItem('Reload');
-	Template.Abilities.AddItem('Overwatch');
+	//Template.Abilities.AddItem('Overwatch');
 	Template.Abilities.AddItem('MZFireThrowerOverwatchShot');
 	
 	Template.CanBeBuilt = false;
@@ -138,7 +138,7 @@ static function X2DataTemplate CreateTemplate_Immolator_CV()
 
 	Template.Abilities.AddItem('MZFireThrower');
 	Template.Abilities.AddItem('Reload');
-	Template.Abilities.AddItem('Overwatch');
+	//Template.Abilities.AddItem('Overwatch');
 	Template.Abilities.AddItem('MZFireThrowerOverwatchShot');
 	
 	Template.CanBeBuilt = false;
@@ -195,7 +195,7 @@ static function X2DataTemplate CreateTemplate_Immolator_MG()
 
 	Template.Abilities.AddItem('MZFireThrower');
 	Template.Abilities.AddItem('Reload');
-	Template.Abilities.AddItem('Overwatch');
+	//Template.Abilities.AddItem('Overwatch');
 	Template.Abilities.AddItem('MZFireThrowerOverwatchShot');
 
 	Template.CanBeBuilt = false;
@@ -254,7 +254,7 @@ static function X2DataTemplate CreateTemplate_Immolator_BM()
 
 	Template.Abilities.AddItem('MZFireThrower');
 	Template.Abilities.AddItem('Reload');
-	Template.Abilities.AddItem('Overwatch');
+	//Template.Abilities.AddItem('Overwatch');
 	Template.Abilities.AddItem('MZFireThrowerOverwatchShot');
 
 	Template.CanBeBuilt = false;

@@ -196,6 +196,7 @@ static function X2AbilityTemplate CreateFlameThrowerOverwatchShot()
 	Cooldown = new class'X2AbilityCooldown_Immolator';
 	Cooldown.iNumTurns = default.IMMOLATOR_COOLDOWN;
 	Cooldown.SharingCooldownsWith.AddItem('MZFireThrower');
+	Cooldown.SharingCooldownsWith.AddItem('Overwatch');
 	Template.AbilityCooldown = Cooldown;
 
 	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
