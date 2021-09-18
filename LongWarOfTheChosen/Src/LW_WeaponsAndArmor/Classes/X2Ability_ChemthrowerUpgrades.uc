@@ -20,9 +20,9 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(FuelLineAttachment('LWFuelLineBsc', default.FuelLine_Charges_Bsc));
 
-	Templates.AddItem(AddHiddenPassive('LWReactionFireFrameBsc'));
+	Templates.AddItem(AddHiddenPassive('LWFlankCritFrameBsc'));
 
-	Templates.AddItem(FlankCritFrameAttachment());
+	Templates.AddItem(ReactionFireFrameAttachment());
 
 	return Templates;
 }
@@ -57,14 +57,14 @@ static function X2AbilityTemplate AddHiddenPassive(name TemplateName)
 }
 
 
-static function X2AbilityTemplate FlankCritFrameAttachment()
+static function X2AbilityTemplate ReactionFireFrameAttachment()
 {
 	local XMBEffect_ConditionalBonus Effect;
 	local X2Condition_WeaponCategoryList Condition;
 	local X2AbilityTemplate Template;
 	local X2Effect_PersistentStatChange	PersistentStatChangeEffect;
 
-	Template = AddHiddenPassive('LWFlankCritFrameBsc');
+	Template = AddHiddenPassive('LWReactionFireFrameBsc');
 
 	// Create a conditional bonus effect
 	Effect = new class'XMBEffect_ConditionalBonus';
