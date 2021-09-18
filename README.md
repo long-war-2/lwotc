@@ -751,6 +751,10 @@ Vulture: Unlocked with Alien Encryption research
 * Resupply vs Scavenger
 * Combined Arms vs Infiltrator
 
+### Golden Path
+* Golden path missions now spawn much closer to contacted regions and offer significantly better rewards - Encourages the player to do them earlier
+* Blacksite and forge EVAC zone has been reverted to vanilla placement - There isn't any more risk to stealthing missions 
+
 ## Acknowledgements and Credits
 
 ### LWOTC Credits:
