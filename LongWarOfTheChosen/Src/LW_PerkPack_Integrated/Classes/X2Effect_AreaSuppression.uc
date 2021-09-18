@@ -165,6 +165,10 @@ static function bool ShouldRemoveAreaSuppression(XComGameState_Unit SourceUnit, 
 				bShouldRemove = true;
 			}
 		}
+		if(SourceUnit.IsImpaired() || SourceUnit.AffectedByEffectNames.Find(class'X2StatusEffects_LW'.default.LWBurningName) != -1)
+		{
+			bShouldRemove = true;
+		}
 	}
 
 	return bShouldRemove;

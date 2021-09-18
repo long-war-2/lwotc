@@ -1477,7 +1477,7 @@ static function EventListenerReturn OverrideReserveActionPoints(Object EventData
 	AbilityContext = XComGameStateContext_Ability(Result.Context);
 
 
-	if(UnitState.IsImpaired())
+	if(UnitState.IsImpaired() || UnitState.AffectedByEffectNames.Find(class'X2StatusEffects_LW'.default.LWBurningName) != -1)
 	{
 		Tuple.Data[0].b = true;
 		return ELR_NoInterrupt;
