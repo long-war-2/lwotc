@@ -24,12 +24,17 @@ function name GetUnitToSpawnName(const out EffectAppliedData ApplyEffectParamete
                 return 'PsiZombieHuman';
             case 'SectoidM2_LW':
                 return 'PsiZombieHumanM2';
+            case 'GateKeeper':
             case 'SectoidM3_LW':
                 return 'PsiZombieHumanM3';
+            case 'GateKeeperM2':
             case 'SectoidM4_LW':
                 return 'PsiZombieHumanM4';
+            case 'GateKeeperM3':
             case 'SectoidM5_LW':
                 return 'PsiZombieHumanM5';
+            default:                
+                return 'PsiZombieHuman';
         }
 		UnitName = AltUnitToSpawnName;
 	}
@@ -41,12 +46,18 @@ function name GetUnitToSpawnName(const out EffectAppliedData ApplyEffectParamete
                 return 'PsiZombie';
             case 'SectoidM2_LW':
                 return 'PsiZombieM2';
+            case 'GateKeeper':
             case 'SectoidM3_LW':
                 return 'PsiZombieM3';
+            case 'GateKeeperM2':
             case 'SectoidM4_LW':
                 return 'PsiZombieM4';
+            case 'GateKeeperM3':
             case 'SectoidM5_LW':
                 return 'PsiZombieM5';
+            default:                
+            return 'PsiZombie';
+
         }
     }
 
