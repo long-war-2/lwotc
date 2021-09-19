@@ -8269,6 +8269,14 @@ LocFriendlyName="Total Combat"
 LocLongDescription="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, their radius is increased by 1. Grants a Grenade-only slot."
 LocHelpText="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
 LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the Skirmisher's turns, allowing actions to be taken exactly when needed.<br/><Bullet/> Removes the cooldown for grenades.<br/>"
+
+[Reaper X2AbilityTemplate]
+LocFriendlyName="Reaper"
+LocLongDescription="Each melee kill grants an extra action, but further melee attacks have reduced damage."
+LocHelpText="Each melee kill in Reaper mode grants an extra action, but further melee attacks have reduced damage."
+LocFlyOverText="Reaper"
+LocPromotionPopupText="<Bullet/> Reaper Is a passive.<br/><Bullet/> As the damage with each successful Reaper strike is reduced, careful ordering of targets may be required to ensure the longest chain of attacks.<br/>"
+
 ;End Translation(3)
 
 [PackMaster_LW X2AbilityTemplate]

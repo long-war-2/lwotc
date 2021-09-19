@@ -23,15 +23,21 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 	XComGameState NewGameState)
 {
 	local UnitValue UnitVal;
-	local float DamageMod;
     local float DamageReduction;
+	local float DamageMod;
 	if (AbilityState.GetMyTemplate().IsMelee())
 	{
 		SourceUnit.GetUnitValue(default.ReaperKillName, UnitVal);
 
+		if(UnitVal.fValue > 0)
+		{
+
         DamageReduction = WeaponDamage;
 
-        DamageReduction = DamageReduction * (PCT_DMG_Reduction ** int(UnitVal.fValue));
+		DamageMod = (1- PCT_DMG_Reduction)** UnitVal.fValue;
+
+		DamageReduction = DamageReduction * (1-DamageMod);
+		}
     }
 
 	return -DamageReduction;
