@@ -3246,7 +3246,6 @@ static function X2AbilityTemplate CreateAbsorptionFieldsTrigger()
 static function X2AbilityTemplate CreateAbsorptionFields()
 {
 	local X2AbilityTemplate Template;
-	local X2Condition_UnitValue UnitValue;
 	local X2Effect_AbsorbsionFields Effect;
 
 	// Create an armor piercing bonus

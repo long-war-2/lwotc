@@ -2027,7 +2027,6 @@ static function X2AbilityTemplate HighVolumeFirePassive()
 static function X2AbilityTemplate CreateTriggerDamagedTeleportAbility_LW()
 {
 	local X2AbilityTemplate Template;
-	local X2AbilityTrigger_EventListener EventListener;
 	local X2Condition_UnitProperty UnitPropertyCondition;
 	local array<name> SkipExclusions;
 	
