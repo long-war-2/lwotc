@@ -1067,7 +1067,7 @@ static function X2CharacterTemplate CreateTemplate_AdvGunner(name TemplateName)
 	CharTemplate.bIsSoldier = false;
 
 	CharTemplate.Abilities.AddItem('HunkerDown');
-	CharTemplate.Abilities.AddItem('BulletStorm');
+	//CharTemplate.Abilities.AddItem('BulletStorm');
 	
 	// WOTC abilities
 	CharTemplate.Abilities.AddItem('DarkEventAbility_SealedArmor');
