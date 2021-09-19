@@ -2,6 +2,11 @@ class XGAIBehavior_override extends XGAIBehavior config(AILogs);
 
 var config bool ENABLE_AI_LOGGING;
 
+function bool BT_IsFlanked()
+{
+	return UnitState.IsFlanked(,true);
+}
+
 function bool IsValidTarget(AvailableTarget kTarget)
 {
 	local bool retVal;
