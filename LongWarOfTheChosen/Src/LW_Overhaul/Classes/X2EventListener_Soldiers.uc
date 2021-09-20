@@ -367,10 +367,10 @@ static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventDa
 
 static function EventListenerReturn OnShouldShowPsi(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	local XComLWTuple			Tuple;
+	local LWTuple				Tuple;
 	local XComGameState_Unit	UnitState;
 
-	Tuple = XComLWTuple(EventData);
+	Tuple = LWTuple(EventData);
 	if (Tuple == none)
 	{
 		`REDSCREEN("OnShouldShowPsi event triggered with invalid event data.");
