@@ -2085,6 +2085,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	local LootReference Loot;
 	local DarkEventAbilityDefinition AbilityDefinition;
 	local bool bApplyToUnit;
+	local int k;
 
 	if (class'X2Effect_TransferMecToOutpost'.default.VALID_FULLOVERRIDE_TYPES_TO_TRANSFER_TO_OUTPOST.Find(Template.DataName) >= 0)
 	{
@@ -2361,6 +2362,15 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	{
 		Template.Abilities.AddItem('ReactionFireAgainstCoverBonus');
 	}
+	
+	for (k = 0; k < default.ENEMY_FLASHBANG_RESIST.length; k++)
+	{
+		if (default.ENEMY_FLASHBANG_RESIST[k].UnitName == Template.DataName)
+		{
+			Template.Abilities.AddItem('FlashbangResistancePassive');
+			break;
+		}
+	}	
 }
 
 static function X2LWTemplateModTemplate CreateReconfigGearTemplate()
