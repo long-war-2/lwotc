@@ -130,7 +130,7 @@ ActivityObjectives[0]="Привлеките внимание \"Адвента\""
 
 [ProtectResearch X2LWAlienActivityTemplate]
 ActivityName="ProtectResearchActivity"
-ActivityObjectives[0]="Найдите улику"
+ActivityObjectives[0]="Найдите руководителя объекта"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Мы обнаружили устройство, с помощью которого \"Адвент\" глушит связь Сопротивления. Если его уничтожить, мы сможем выйти на новые источники разведданных.", MissionIndex=0)
