@@ -500,7 +500,7 @@ m_strThreatMedium="Повышенная"
 m_strThreatHigh="Критическая"
 m_strThreatVeryHigh="Высокая"
 m_strLiberated="Освобожден"
-m_strResistanceManagementLevels="<XGParam:IntValue0> (Э:<XGParam:IntValue1>)"
+m_strResistanceManagementLevels="<XGParam:IntValue0> (Бд.:<XGParam:IntValue1>)"
 
 [UIOutpostManagement]
 m_strTitle="УПРАВЛЕНИЕ УБЕЖИЩЕМ"
@@ -509,6 +509,7 @@ m_strName="Имя"
 m_strMission="Задание"
 m_strBuildRadioRelay="Постройте радиоретранслятор"
 m_strLiaisonTitle="Советник убежища"
+m_strEditLoadout="Оснащение советника"
 ; 0=Alert, 1=Vigilance, 2=Force
 m_strRegionalInfo="Сила \"Адвента\": <XGParam:IntValue0/>"
 m_strResistanceMecs="МЭКи Сопротивления: <XGParam:IntValue0/>"
