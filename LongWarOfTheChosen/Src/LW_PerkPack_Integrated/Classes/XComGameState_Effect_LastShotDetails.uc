@@ -24,6 +24,9 @@ static function EventListenerReturn RecordShot(Object EventData, Object EventSou
 	local XComGameState_Ability						ActivatedAbilityState;
     local XComGameStateContext_Ability				ActivatedAbilityStateContext;
 	local XComGameState_Unit						TargetUnit;
+	local XComGameState_Unit 						UnitStateHRPOwner;
+	local XComGameState_Unit 						UnitStateAbilityOwner;
+	local XComGameState_Ability 					AbilityStateHRP;
 
 	ThisEffect = XComGameState_Effect_LastShotDetails(CallbackData);
 	if (ThisEffect == None)
@@ -31,6 +34,20 @@ static function EventListenerReturn RecordShot(Object EventData, Object EventSou
 		`REDSCREEN("Wrong callback data passed to XComGameState_Effect_LastShotDetails.RecordShot()");
 		return ELR_NoInterrupt;
 	}
+
+	AbilityStateHRP = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(ThisEffect.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
+	if (AbilityStateHRP == none)
+		return ELR_NoInterrupt;
+
+	UnitStateHRPOwner = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityStateHRP.OwnerStateObject.ObjectID));
+	UnitStateAbilityOwner = XComGameState_Unit(EventSource);
+
+	if (UnitStateHRPOwner == none || UnitStateAbilityOwner == none)
+		return ELR_NoInterrupt;
+
+	// Check that it's the unit with the Hyper-Reactive Pupils that activated the ability
+	if (UnitStateHRPOwner.ObjectID != UnitStateAbilityOwner.ObjectID)
+		return ELR_NoInterrupt;
 
 	ActivatedAbilityState = XComGameState_Ability(EventData);
 	if (ActivatedAbilityState != none)
