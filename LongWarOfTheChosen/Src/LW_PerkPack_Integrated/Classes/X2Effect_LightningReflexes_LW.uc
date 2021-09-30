@@ -4,7 +4,6 @@ Class X2Effect_LightningReflexes_LW extends X2Effect_Persistent config (LW_Soldi
 
 var config int LR_LW_FIRST_SHOT_PENALTY;
 var config int LR_LW_PENALTY_REDUCTION_PER_SHOT;
-var config array<name> LR_REACTION_FIRE_ABILITYNAMES;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
@@ -23,28 +22,31 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 
 static function EventListenerReturn IncomingReactionFireCheck(Object EventData, Object EventSource, XComGameState GameState, name EventID, Object CallbackData)
 {
-	local XComGameState_Unit			AttackingUnit, DefendingUnit;
+	local XComGameState_Unit			AttackingUnit, DefendingUnit, OwnerUnit;
 	local XComGameState_Ability			ActivatedAbilityState;
 	local XComGameState_Ability			LightningReflexesAbilityState;
 	local XComGameStateContext_Ability	AbilityContext;
 	local XComGameState_Effect			EffectState;
 	local UnitValue						LightningReflexesCounterValue;
+	local X2AbilityToHitCalc_StandardAim 	StandardAim;
 
 	EffectState = XComGameState_Effect(CallbackData);
 	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
 	LightningReflexesAbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
 	DefendingUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
+	OwnerUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));	
 	if (DefendingUnit != none)
 	{
-		if (DefendingUnit.HasSoldierAbility('LightningReflexes_LW') && !DefendingUnit.IsImpaired(false) && !DefendingUnit.IsBurning() && !DefendingUnit.IsPanicked())
+		if (DefendingUnit.HasSoldierAbility('LightningReflexes_LW') && !DefendingUnit.IsImpaired(false) && !DefendingUnit.IsBurning() && !DefendingUnit.IsPanicked() && DefendingUnit.ObjectID == OwnerUnit.ObjectID)
 		{
 			AttackingUnit = class'X2TacticalGameRulesetDataStructures'.static.GetAttackingUnitState(GameState);
 			if(AttackingUnit != none && AttackingUnit.IsEnemyUnit(DefendingUnit))
 			{
 				ActivatedAbilityState = XComGameState_Ability(EventData);
 				if (ActivatedAbilityState != none)
-				{		
-					if (default.LR_REACTION_FIRE_ABILITYNAMES.Find(ActivatedAbilityState.GetMyTemplateName()) != -1)
+				{
+					StandardAim = X2AbilityToHitCalc_StandardAim(ActivatedAbilityState.GetMyTemplate().AbilityToHitCalc);
+					if (StandardAim != none && StandardAim.bReactionFire)
 					{
 						// Update the Lightning Reflexes counter
 						DefendingUnit.GetUnitValue('LW2WotC_LightningReflexes_Counter', LightningReflexesCounterValue);
