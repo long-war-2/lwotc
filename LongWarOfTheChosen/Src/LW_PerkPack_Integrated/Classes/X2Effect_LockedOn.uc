@@ -82,8 +82,8 @@ static function EventListenerReturn LockedOnListener(Object EventData, Object Ev
 		{
 			NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("LockedOn");
 			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(UnitState.Class, UnitState.ObjectID));
-			UnitState.SetUnitFloatValue('LockedOnShots', 1);
-			UnitState.SetUnitFloatValue('LockedOnTarget', AbilityContext.InputContext.PrimaryTarget.ObjectID);
+			UnitState.SetUnitFloatValue('LockedOnShots', 1, eCleanup_BeginTactical);
+			UnitState.SetUnitFloatValue('LockedOnTarget', AbilityContext.InputContext.PrimaryTarget.ObjectID, eCleanup_BeginTactical);
 
 			if (UnitState.ActionPoints.Length > 0)
 			{
