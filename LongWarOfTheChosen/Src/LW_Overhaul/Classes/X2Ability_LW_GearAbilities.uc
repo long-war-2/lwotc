@@ -70,18 +70,18 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateNeurowhipAbility());
 	Templates.AddItem(CreateStilettoRoundsAbility());
 
-	Templates.AddItem(PurePassive('Stiletto_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_stiletto", false));
-	Templates.AddItem(PurePassive('Needle_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_ammo_needle", false));
-	Templates.AddItem(PurePassive('Redscreen_Rounds_Ability', "img:///UILibrary_LW_Overhaul.LW_AbilityRedscreen", false));
+	Templates.AddItem(PurePassive('Stiletto_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_stiletto", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('Needle_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_ammo_needle", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('Redscreen_Rounds_Ability', "img:///UILibrary_LW_Overhaul.LW_AbilityRedscreen", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Flechette_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_ammo_fletchette", false)); // notice bad spelling in perk filename
-	Templates.AddItem(PurePassive('Shredder_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_maximumordanance", false));
+	Templates.AddItem(PurePassive('Shredder_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_maximumordanance", false, 'eAbilitySource_Item'));
 	
-	Templates.AddItem(PurePassive('Dragon_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_incendiary", false));
-	Templates.AddItem(PurePassive('Bluescreen_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_bluescreen", false));
-	Templates.AddItem(PurePassive('Talon_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_talon", false));
-	Templates.AddItem(PurePassive('AP_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_ap", false));
-	Templates.AddItem(PurePassive('Venom_Rounds_Ability_PP', "img:///UILibrary_LW_Overhaul.LW_AbilityVenomRounds", false));
-	Templates.AddItem(PurePassive('Tracer_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_tracer", false));
+	Templates.AddItem(PurePassive('Dragon_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_incendiary", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('Bluescreen_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_bluescreen", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('Talon_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_talon", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('AP_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_ap", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('Venom_Rounds_Ability_PP', "img:///UILibrary_LW_Overhaul.LW_AbilityVenomRounds", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('Tracer_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_tracer", false, 'eAbilitySource_Item'));
 
 	Templates.AddItem(PurePassive('FireControl25', "img:///UILibrary_LW_Overhaul.LW_AbilityFireControl", false));
 	Templates.AddItem(PurePassive('FireControl50', "img:///UILibrary_LW_Overhaul.LW_AbilityFireControl", false));
@@ -364,7 +364,7 @@ static function X2AbilityTemplate CreateStilettoRoundsAbility()
 	Effect = new class'X2Effect_StilettoRounds';
 	Effect.BonusDmg = class'X2Item_LWUtilityItems'.default.STILETTO_ALIEN_DMG;
 	Effect.BuildPersistentEffect (1, true, false, false);
-	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false, , Template.AbilitySourceName);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true, , Template.AbilitySourceName);
 	Template.AddTargetEffect (Effect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

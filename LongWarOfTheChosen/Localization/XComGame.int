@@ -795,11 +795,13 @@ LocLongDescription="Lowers target's hack defense by <Ability:REDSCREEN_EFFECT_LW
 LocHelpText="Lowers target's hack defense by <Ability:REDSCREEN_EFFECT_LW/>. Does not stack, but does refresh."
 ; Ends Translation
 
-[Stiletto_Rounds_Ability_PP X2AbilityTemplate]
+; LWOTC Needs Translation
+[Stiletto_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Stiletto Rounds"
 LocFlyOverText="Stiletto Rounds"
 LocLongDescription="Does +1 damage to all targets and +2 damage to nonrobotic aliens."
 LocHelpText="Does +1 damage to all targets and +2 damage to nonrobotic aliens."
+; Ends Translation
 
 [AP_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Armor Piercing Rounds"
