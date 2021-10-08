@@ -203,6 +203,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'BATTLEFIELD_AWARENESS_COOLDOWN':
 		OutString = string(class'X2Ability_SkirmisherAbilitySet_LW'.default.BATTLEFIELD_AWARENESS_COOLDOWN);
 		return true;
+	case 'JUDGEMENT_LW_APPLYCHANCE':
+		OutString = string(class'X2Ability_SkirmisherAbilitySet'.default.JUDGMENT_APPLYCHANCEATTACKVAL + class'X2AbilityToHitCalc_PanicCheck'.default.BaseValue);
+		return true;
+	case 'TERROR_STAT_CHECK_BASE_VALUE':
+		OutString = string(class'X2Ability_TemplarAbilitySet_LW'.default.TERROR_STAT_CHECK_BASE_VALUE);
+		return true;
 	}
 
 	return false;

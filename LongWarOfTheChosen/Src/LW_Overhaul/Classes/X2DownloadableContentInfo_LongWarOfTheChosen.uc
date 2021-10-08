@@ -3187,6 +3187,18 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'UNSTOPPABLE_MIN_MOB':
 			Outstring = string(class'X2Ability_LW_ChosenAbilities'.default.UNSTOPPABLE_MIN_MOB);
 			return true;
+		case 'NAPALM_X_BASEVALUE':
+			Outstring = string(class'X2AbilityToHitCalc_StatCheck_LWFlamethrower'.default.BaseValue);
+			return true;
+		case 'GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH':
+			Outstring = string(class'X2Item_LWGauntlet'.default.Gauntlet_Secondary_CONVENTIONAL_OPPOSED_STAT_STRENTH);
+			return true;
+		case 'GAUNTLET_MAG_OPPOSED_STAT_STRENTH':
+			Outstring = string(class'X2Item_LWGauntlet'.default.Gauntlet_Secondary_MAG_OPPOSED_STAT_STRENTH);
+			return true;
+		case 'GAUNTLET_BEAM_OPPOSED_STAT_STRENTH':
+			Outstring = string(class'X2Item_LWGauntlet'.default.Gauntlet_Secondary_BEAM_OPPOSED_STAT_STRENTH);
+			return true;
 		default:
 			return false;
 	}

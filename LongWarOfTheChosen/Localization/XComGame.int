@@ -170,11 +170,11 @@ LocHelpText="Fire a guided Blaster Bomb at a target area. <Ability:ROCKETSCATTER
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
 LocFlyOverText="Napalm-X"
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 LocLongDescription="Your Flamethrower can now panic enemies."
 LocHelpText="Your Flamethrower can now panic enemies."
-LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/>"
-; End Translation (2)
+LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/><Bullet/> The chance to panic is <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, depending on soldier's gauntlet tier, and is negatively affected by target's Will score."
+; End Translation (3)
 
 [PhosphorusPassive X2AbilityTemplate]
 LocFriendlyName="Phosphorus"
@@ -5436,10 +5436,12 @@ LocPromotionPopupText="<Bullet/> Secure kills at the beginning of turns to take 
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="Judgement"
-LocLongDescription="Has a chance to panic any enemy that attacks this unit. The higher the will of this unit, the higher the panic chance."
-LocHelpText="Has a chance to panic any enemy that attacks this unit. The higher the will of this unit, the higher the panic chance."
+; LWOTC Needs Translation (2)
+LocLongDescription="Has a chance to panic any enemy that attacks this unit. The higher the Will of this unit, the higher the panic chance."
+LocHelpText="Has a chance to panic any enemy that attacks this unit. The higher the Will of this unit, the higher the panic chance."
 LocFlyOverText="Judgement"
-LocPromotionPopupText="<Bullet/> Judgement can be triggered by melee and area of effect attacks.<br/><Bullet/> Judgement will not trigger when targeted by Overwatch fire.<br/><Bullet/> The chance of panic depends on both the will of the attacking unit and the will of the unit with Judgement.<br/><Bullet/> Judgement works best on units with high will.<br/>"
+LocPromotionPopupText="<Bullet/> Judgement can be triggered by melee and area of effect attacks.<br/><Bullet/> Judgement will not trigger when targeted by Overwatch fire.<br/><Bullet/> The chance to panic is <Ability:JUDGEMENT_LW_APPLYCHANCE/>% and is affected by both the Will of the attacking unit and the Will of the unit with Judgement.<br/><Bullet/> Judgement works best on units with high Will.<br/>"
+; End Translation (2)
 
 
 ; LWOTC Needs Translation (2)
@@ -6198,11 +6200,11 @@ LocPromotionPopupText = "<Bullet/> All enemies within the <Ability:ClassName/>'s
 [ApexPredator_LW X2AbilityTemplate]
 LocFriendlyName = "Apex Predator"
 LocFlyOverText = "Apex Predator"
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 LocHelpText = "Critical hits with your primary weapon have a chance to panic the target and nearby enemies."
 LocLongDescription = "Critical hits with your primary weapon have a chance to panic the target and nearby enemies."
-LocPromotionPopupText = "<Bullet/> Critical hits with your primary weapon have a chance to panic the target and nearby (within <Ability:APEX_PREDATOR_PANIC_RADIUS/> tiles) enemies.<br/>"
-; End Translation (2)
+LocPromotionPopupText = "<Bullet/> Critical hits with your primary weapon have a chance to panic the target and nearby (within <Ability:APEX_PREDATOR_PANIC_RADIUS/> tiles) enemies.<br/><Bullet/> The chance to panic is <Ability:APEX_PREDATOR_BASE_PANIC_CHANCE/>% and is negatively affected by target's Will."
+; End Translation (3)
 
 [BlindingProtocol_LW X2AbilityTemplate]
 LocFriendlyName = "Blinding Protocol"
