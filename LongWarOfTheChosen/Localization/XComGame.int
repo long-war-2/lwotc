@@ -5531,32 +5531,42 @@ LocFlyOverText="Sabotage Weapon"
 ;(2) Added the Cooldown Text
 [ShieldAllyM1 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
+; LWOTC Needs Translation (3)
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+; End Translation (3)
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM2 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
+; LWOTC Needs Translation (3)
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+; End Translation (3)
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM3 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
+; LWOTC Needs Translation (3)
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+; End Translation (3)
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [ShieldAllyM4 X2AbilityTemplate]
 LocFriendlyName="The Warlocks Greatest Champion"
-LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
-LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> Turn Cooldown."
+; LWOTC Needs Translation (3)
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+; End Translation (3)
 LocFlyOverText="The Warlocks Greatest Champion"
 
 [PsiMindControl X2AbilityTemplate]
 LocFriendlyName="Mind Control"
-LocLongDescription="Seize active control of the target's mind, forcing them to turn on their companions. <Ability:SelfCooldown_LW/> Turn Cooldown."
-LocHelpText="Assume full mental control of the target for a short duration. <Ability:SelfCooldown_LW/> Turn Cooldown."
+; LWOTC Needs Translation (3)
+LocLongDescription="Seize active control of the target's mind, forcing them to turn on their companions. <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Assume full mental control of the target for a short duration. <Ability:SelfCooldown_LW/> turn cooldown."
+; End Translation (3)
 LocFlyOverText="Mind Control"
 ; End Translation #2
 
@@ -5567,13 +5577,17 @@ LocHelpText="Takes 50% less damage from dashing melee attacks."
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Blast Shield"
-LocLongDescription="Takes 50% less damage from Explosions."
-LocHelpText="Takes 50% less damage from Explosions."
+; LWOTC Needs Translation (2)
+LocLongDescription="Takes 50% less damage from explosive attacks."
+LocHelpText="Takes 50% less damage from explosive attacks."
+; End Translation (2)
 
 [ChosenCritImmune X2AbilityTemplate]
 LocFriendlyName="Balanced"
-LocHelpText="Near immune to critical Hits."
-LocLongDescription="This Chosen is near immune to critical Hits."
+; LWOTC Needs Translation (2)
+LocHelpText="Near immune to critical hits."
+LocLongDescription="This Chosen is near immune to critical hits."
+; End Translation (2)
 
 [MC_Stock_Strike X2AbilityTemplate]
 LocFriendlyName="Stock Strike"
@@ -5591,7 +5605,9 @@ LocFlyOverText="Get up!"
 ;(2) Added the Cooldown Text
 [ChosenSummonFollowers X2AbilityTemplate]
 LocFriendlyName="Summon Followers"
-LocHelpText="Summon aliens. <Ability:SelfCooldown_LW/>"
+; LWOTC Needs Translation (3)
+LocHelpText="Summon aliens. <Ability:SelfCooldown_LW/> turn cooldown."
+; End Translation (3)
 LocLongDescription="Summon aliens."
 LocFlyOverText="Summonnin' ayys"
 ; End Translation #2
@@ -6391,8 +6407,10 @@ LocPromotionPopupText="<Bullet/> Mind Scorch can now panic the enemy.<br/><Bulle
 
 [MindScorch X2AbilityTemplate]
 LocFriendlyName="Mind Scorch"
-LocHelpText="The Warlock opens their mind to the target, damaging and having a <Ability:MIND_SCORCH_BURN_CHANCE/> % chance to burn the target with their madness. <Ability:SelfCooldown_LW/> Turn Cooldown."
-LocLongDescription="The Warlock opens their mind to the target, damaging and burning the target with their madness. <Ability:SelfCooldown_LW/> Turn Cooldown."
+; LWOTC Needs Translation (2)
+LocHelpText="The Warlock opens their mind to the target, damaging and having a <Ability:MIND_SCORCH_BURN_CHANCE/>% chance to burn the target with their madness. <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="The Warlock opens their mind to the target, damaging and burning the target with their madness. <Ability:SelfCooldown_LW/> turn cooldown."
+; End Translation (2)
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Kidnap"
@@ -6406,33 +6424,35 @@ LocLongDescription="For Soldiers only (Not rebels) Bleeding Out is a 100% chance
 LocHelpText="For Soldiers only (Not rebels) Bleeding Out is a 100% chance when dealt a killing blow when chosen is present."
 LocFlyOverText="Keen"
 
-;LWOTC needs translation (2)
+; LWOTC needs translation (2)
 [CombatReadiness X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
-LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn."
+LocLongDescription="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
+LocHelpText="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn."
 LocFlyOverText="Combat Readiness"
 ; End translation (2)
 
-;LWOTC needs translation
+; LWOTC needs translation (2)
 [CombatReadinessPassive X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
-LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn."
+LocLongDescription="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
+LocHelpText="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn."
 LocFlyOverText="Combat Readiness"
-; End translation
+; End translation (2)
 
+; LWOTC needs translation
 [Banzai_LW X2AbilityTemplate]
 LocFriendlyName="BANZAI"
-LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
-LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocLongDescription="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocHelpText="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove most debuffs."
 LocFlyOverText="BANZAI"
 
 [BanzaiPassive_LW X2AbilityTemplate]
 LocFriendlyName="BANZAI"
-LocLongDescription="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
-LocHelpText="Gain a stackable 10 aim and 10 defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocLongDescription="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove most debuffs."
+LocHelpText="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove most debuffs."
 LocFlyOverText="BANZAI"
+; End translation
 
 ;LWOTC needs translation (2)
 [ChosenAssassin X2CharacterTemplate]
@@ -6484,17 +6504,19 @@ strAcquiredText="The Hunter is the master of long range combat, constantly kitin
 strCharacterName="Hunter"
 strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
 
+; LWOTC Needs Translation (2)
 [BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 damage for T1/T2/T3/T4. Removed on a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 damage for T1/T2/T3/T4. Removed on a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
 LocFlyOverText="Blood Thirst"
 
 [BloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 damage for T1/T2/T3/T4. Removed on a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus Depends on Chosen tier, +1/1/2/3 damage for T1/T2/T3/T4. Removed on a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
 LocFlyOverText="Blood Thirst"
+; End Translation (2)
 
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="Precise strike"
@@ -6567,30 +6589,32 @@ BriefSummary="Although it would almost appear to mimic the design of traditional
 TacticalText="<Bullet/> The Darkclaw is an extremely powerful pistol against wounded enemies."
 AbilityDescName="pistol"
 
-;LWOTC Needs translation(2)
+;LWOTC Needs translation(3)
 [XCOMBloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks. Lasts 4 turns."
-LocHelpText="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable +<Ability:BLOODTHIRST_T1_DMG/> damage boost to your melee attacks. Lasts 4 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable +<Ability:BLOODTHIRST_T1_DMG/> damage boost to your melee attacks."
 LocFlyOverText="Blood Thirst"
 
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks. Lasts 4 turns."
-LocHelpText="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable +<Ability:BLOODTHIRST_T1_DMG/> damage boost to your melee attacks. Lasts 4 turns."
+LocHelpText="Every time you attack with your melee weapon, get a stackable +<Ability:BLOODTHIRST_T1_DMG/> damage boost to your melee attacks."
 LocFlyOverText="Blood Thirst"
-;End Translation(2)
+;End Translation(3)
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
 LocFriendlyName="Overbearing Superiority"
 LocLongDescription="Whenever you get a critical hit with your primary weapon, your actions are refunded."
-LocHelpText="whenever you get a critical hit with your primary weapon, your actions are refunded."
+;LWOTC Needs translation(2)
+LocHelpText="Whenever you get a critical hit with your primary weapon, your actions are refunded."
+;End Translation(2)
 LocFlyOverText="Overbearing Superiority"
 
 [DisruptorRifleCrit X2AbilityTemplate]
 LocFriendlyName="Wrath Against Unworthy"
-LocLongDescription="Gain +20 crit against psionic units."
-LocHelpText="Gain +20 crit against psionic units."
+LocLongDescription="Gain +<Ability:DISRUPTOR_RIFLE_PSI_CRIT/> crit against psionic units."
+LocHelpText="Gain +<Ability:DISRUPTOR_RIFLE_PSI_CRIT/> crit against psionic units."
 LocFlyOverText="Wrath Against Unworthy"
 
 [XCOMHunterMark_LW X2AbilityTemplate]
@@ -6601,8 +6625,10 @@ LocFlyOverText="Mark For Death"
 
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="Fatality"
-LocLongDescription="Gain +100 aim and crit against units at 35%hp or lower with your <Ability:WeaponName/>"
-LocHelpText="Gain +100 aim and crit against units at 35%hp or lower with your <Ability:WeaponName/>"
+;LWOTC Needs translation(2)
+LocLongDescription="Gain +100 aim and crit against units at 35% hp or lower with your <Ability:WeaponName/>."
+LocHelpText="Gain +100 aim and crit against units at 35% hp or lower with your <Ability:WeaponName/>."
+;End Translation(2)
 LocFlyOverText="Fatality"
 
 [Vampirism_LW X2AbilityTemplate]
@@ -6669,14 +6695,14 @@ LocHelpText="Chosen are immune to stun, disorient, and frost and suffer -50% mob
 LocFlyOverText="Chosen Immunities"
 ; End Translation (2)
 
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 ;(2) Added the Cooldown Text
 [HarborWave X2AbilityTemplate]
 LocFriendlyName="Harbor Wave"
-LocLongDescription="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst. <Ability:SelfCooldown_LW/> Turn Cooldown."
-LocHelpText="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst. <Ability:SelfCooldown_LW/> Turn Cooldown."
+LocLongDescription="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst. <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Send a psionic wave that deals damage. Gets bonuses from Blood Thirst. <Ability:SelfCooldown_LW/> turn cooldown."
 LocFlyOverText="Harbor Wave"
-; End Translation (2)
+; End Translation (3)
 
 ; LWOTC Needs Translation (2)
 [Brawler X2AbilityTemplate]
@@ -6777,8 +6803,10 @@ LaunchedAbilityHelpText="Disorient hostile targets in the affected area."
 [Disabler X2AbilityTemplate]
 LocFriendlyName="Disabler"
 LocFlyOverText="Disabler"
-LocLongDescription="Your Pistol Attacks Disable your target's weapons."
-LocHelpText="Your Pistol Attacks Disable your target's weapons."
+; LWOTC Needs Translation (2)
+LocLongDescription="Your pistol attacks disable your target's weapons."
+LocHelpText="Your pistol attacks disable your target's weapons."
+; End Translation (2)
 
 
 [AdvPurifierm2Flamethrower X2WeaponTemplate]

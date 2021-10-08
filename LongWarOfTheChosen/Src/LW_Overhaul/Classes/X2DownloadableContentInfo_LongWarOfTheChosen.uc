@@ -3235,6 +3235,27 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'GAUNTLET_BEAM_OPPOSED_STAT_STRENTH':
 			Outstring = string(class'X2Item_LWGauntlet'.default.Gauntlet_Secondary_BEAM_OPPOSED_STAT_STRENTH);
 			return true;
+		case 'COMBATREADINESS_DEF':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.COMBATREADINESS_DEF);
+			return true;
+		case 'COMBATREADINESS_AIM':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.COMBATREADINESS_AIM);
+			return true;
+		case 'BLOODTHIRST_T1_DMG':
+			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T1_DMG);
+			return true;
+		case 'BLOODTHIRST_T2_DMG':
+			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T2_DMG);
+			return true;
+		case 'BLOODTHIRST_T3_DMG':
+			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T3_DMG);
+			return true;
+		case 'BLOODTHIRST_T4_DMG':
+			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T4_DMG);
+			return true;
+		case 'DISRUPTOR_RIFLE_PSI_CRIT':
+			Outstring = string(class'X2Ability_XPackAbilitySet'.default.DISRUPTOR_RIFLE_PSI_CRIT);
+			return true;
 		default:
 			return false;
 	}
