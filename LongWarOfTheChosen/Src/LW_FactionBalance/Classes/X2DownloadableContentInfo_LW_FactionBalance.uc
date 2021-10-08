@@ -245,7 +245,8 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 				}
 			}
 		}
-		return false;
+		OutString = string(class'X2Effect_CloseEncounters'.default.MaxTiles);
+		return true;
 	default:
 		return false;
 	}

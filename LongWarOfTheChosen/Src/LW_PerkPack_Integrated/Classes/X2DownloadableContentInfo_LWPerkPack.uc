@@ -135,7 +135,8 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 				OutString = ItemTemplate.GetItemAbilityDescName();
 				return true;
 			}
-			return false;
+			OutString = "weapon";
+			return true;
         case 'FLECHE_BONUS_DAMAGE_PER_TILES':
 			TempFloat = 1 / class'X2Ability_PerkPackAbilitySet2'.default.BONUS_SLICE_DAMAGE_PER_TILE;
 			TempFloat = Round(TempFloat * 10.0) / 10.0;
