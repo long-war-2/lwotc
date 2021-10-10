@@ -932,7 +932,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 	local XMBEffect_ConditionalStatChange						ZOCEffect;
 	local X2Effect_Persistent									IconEffect;
 	local X2Effect_SetUnitValue									SetUnitValue;					
-	
+	local X2AbilityTrigger_EventListener						EventListener;
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'ZoneOfControl_LW');
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -944,6 +944,14 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 	Template.bCrossClassEligible = false;
 	Template.bUniqueSource = true;
 	Template.bIsPassive = true;
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+    EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+    EventListener.ListenerData.EventID = 'PlayerTurnBegun';
+    EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+    EventListener.ListenerData.Filter = eFilter_Player;
+    Template.AbilityTriggers.AddItem(EventListener);
+
 
 	// Dummy effect to show a passive icon in the tactical UI for the SourceUnit
 	IconEffect = new class'X2Effect_Persistent';
@@ -984,6 +992,8 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 	Template.AddMultiTargetEffect(ZOCEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	Template.AbilityShooterConditions.AddItem(TargetProperty);
 
 	return Template;
 }
