@@ -554,10 +554,10 @@ LocPromotionPopupText="<Bullet/> Выстрел из дробовика сред
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Цепь молний"
-LocLongDescription="Выстрел из дугомета по каждому видимому врагу, которого можно оглушить."
+LocLongDescription="Выстрел из дугомета по 4 врагам не далее 6 клеток друг от друга."
 LocHelpText="Выстрел из дугомета по каждому видимому врагу, которого можно оглушить."
 LocFlyOverText="Цепь молний"
-LocPromotionPopupText="<Bullet/> Выстрел из дугомета по каждому видимому врагу, которого можно оглушить.<br/><Bullet/> Требует одно действие и заканчивает ход.<br/><Bullet/> Перезарядка 5 ходов.<br/><Bullet/> Не может быть использовано из режима скрытности."
+LocPromotionPopupText="<Bullet/> Выстрел из дугомета по 4 врагам не далее 6 клеток друг от друга.<br/><Bullet/> Требует одно действие и заканчивает ход.<br/><Bullet/> Перезарядка 5 ходов.<br/><Bullet/> Не может быть использовано из режима скрытности."
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="Лидерство"
