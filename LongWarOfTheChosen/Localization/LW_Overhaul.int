@@ -176,7 +176,7 @@ ActivityObjectives[0]="Protect Resistance Assets"
 [SupplyConvoy X2LWAlienActivityTemplate]
 ActivityName="SupplyConvoyActivity"
 ActivityObjectives[0]="Protect Resistance Assets"
-+MissionDescriptions=(MissionFamily="SupplyConvoy_LW", Description="ADVENT forces are moving to strike a Resistance supply convoy. We need to protect our people and materiel.")
++MissionDescriptions=(MissionFamily="SupplyConvoy_LW", Description="ADVENT forces are moving to strike a Resistance supply convoy. We need to protect our people and material.")
 
 [RecruitRaid X2LWAlienActivityTemplate]
 ActivityName="RecruitRaidActivity"

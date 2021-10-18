@@ -4755,7 +4755,7 @@ DescriptionEntry="In Long War 2, the Commander will take over management of the 
 [OutpostManagement_Supply X2EncyclopediaTemplate]
 ListTitle="The Supply Job"
 DescriptionTitle="The Supply Job"
-DescriptionEntry="Resistance personnel on the SUPPLY job are focused on scavenging supplies from around their regions. More rebels assigned to the Supply job will mean a larger Supply drop each month. Note that over time in a given region, the Supply job will grow less effective as the Resistance scrounges the most easily recovered materiel."
+DescriptionEntry="Resistance personnel on the SUPPLY job are focused on scavenging supplies from around their regions. More rebels assigned to the Supply job will mean a larger Supply drop each month. Note that over time in a given region, the Supply job will grow less effective as the Resistance scrounges the most easily recovered material."
 
 [OutpostManagement_Recruit X2EncyclopediaTemplate]
 ListTitle="The Recruit Job"
