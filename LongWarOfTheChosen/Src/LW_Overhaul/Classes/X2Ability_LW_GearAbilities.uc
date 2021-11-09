@@ -69,11 +69,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateNanofiberBonusAbility_LW());
 	Templates.AddItem(CreateNeurowhipAbility());
 	Templates.AddItem(CreateStilettoRoundsAbility());
+	Templates.AddItem(CreateFlechetteRoundsAbility());
 
 	Templates.AddItem(PurePassive('Stiletto_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_stiletto", false));
 	Templates.AddItem(PurePassive('Needle_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_ammo_needle", false));
 	Templates.AddItem(PurePassive('Redscreen_Rounds_Ability', "img:///UILibrary_LW_Overhaul.LW_AbilityRedscreen", false));
-	Templates.AddItem(PurePassive('Flechette_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_ammo_fletchette", false)); // notice bad spelling in perk filename
 	Templates.AddItem(PurePassive('Shredder_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_maximumordanance", false));
 	
 	Templates.AddItem(PurePassive('Dragon_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_incendiary", false));
@@ -366,6 +366,34 @@ static function X2AbilityTemplate CreateStilettoRoundsAbility()
 	Effect.BuildPersistentEffect (1, true, false, false);
 	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false, , Template.AbilitySourceName);
 	Template.AddTargetEffect (Effect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;	
+}
+
+static function X2AbilityTemplate CreateFlechetteRoundsAbility()
+{
+	local X2AbilityTemplate                 Template;	
+	local X2Effect_FlechetteRounds			Effect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Flechette_Rounds_Ability');
+
+	Template.AbilitySourceName = 'eAbilitySource_Item';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bDisplayInUITacticalText = false;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_ammo_fletchette";
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	Effect = new class'X2Effect_FlechetteRounds';
+	Effect.BonusDmg = class'X2Item_LWUtilityItems'.default.FLECHETTE_BONUS_DMG;
+	Effect.BuildPersistentEffect (1, true, false, false);
+	Effect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddTargetEffect(Effect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
