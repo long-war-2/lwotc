@@ -5414,7 +5414,7 @@ LocFriendlyName="Tracking"
 LocLongDescription="You detect nearby units even without line of sight."
 LocHelpText="You detect nearby units even without line of sight."
 LocFlyOverText="Tracking"
-LocPromotionPopupText="<Bullet/> Tracking allows the unit to detect units that are behind walls and other line-of-sight blockers.<br/><Bullet/> Tracking detects enemies up to very slightly outside normal visual range.<br/><Bullet/> Detected units will appear as a visual outline.<br/><Bullet/> Units will remain detected until the end of the player's turn. If they are outside Tracking's range at that point, they will count as no longer detected.<br/>"
+LocPromotionPopupText="<Bullet/> Tracking allows the unit to detect units that are behind walls and other line-of-sight blockers.<br/><Bullet/> Tracking detects enemies up to 14 tiles.<br/><Bullet/> Detected units will appear as a visual outline.<br/><Bullet/> Units will remain detected until the end of the player's turn. If they are outside Tracking's range at that point, they will count as no longer detected.<br/>"
 
 [Hero_TrackingTrigger X2AbilityTemplate]
 LocFriendlyName="Tracking"
