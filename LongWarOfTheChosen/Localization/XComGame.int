@@ -3040,7 +3040,7 @@ MissionPinLabel="LWS Overhaul Generic Mission"
 MissionExpiredText="This mission is no longer available."
 
 [DefaultChosenAvengerDefense X2MissionNarrativeTemplate]
-ObjectiveTextPools[0]="Plant X4 on back of Turrets !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
+ObjectiveTextPools[0]="(optional) Plant X4 on back of Turrets !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
 ObjectiveTextPools[1]="Plant Bomb to Destroy the Mobile Power Generator !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
 ObjectiveTextPools[2]="Eliminate all enemy forces"
 
