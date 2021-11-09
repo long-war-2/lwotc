@@ -23,9 +23,6 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
 	{
-	case 'TemplarFocus':
-		Template.AdditionalAbilities.RemoveItem('FocusKillTracker');
-		break;
 	case 'ArcWave':
 		UpdateArcWave(Template);
 	case 'Rend':
@@ -57,6 +54,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	case 'TemplarFocus':
 		SupportSupremeFocusInTemplarFocus(Template);
+		Template.AdditionalAbilities.RemoveItem('FocusKillTracker');
 		break;
 	case 'VoidConduit':
 		FixVoidConduit(Template);
@@ -189,6 +187,8 @@ static function MergeInvertWithExchange(X2AbilityTemplate Template)
 	VisibilityCondition.bRequireGameplayVisible = true;
 	VisibilityCondition.bRequireBasicVisibility = true;
 	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+
+	Template.AbilityTargetConditions.AddItem(new class'X2Condition_ExcludeChosen');
 }
 
 // Changes StunStrike to stun target units rather than disorient them (the

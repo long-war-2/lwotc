@@ -6872,7 +6872,7 @@ LocFlyOverText="Shield Bash"
 LocFriendlyName="Invert"
 LocLongDescription="Switch locations with a unit. Costs 1 Focus."
 LocHelpText="Switch locations with a unit. Costs 1 Focus."
-LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the Templar's turn.<br/><Bullet/> Can target both ally and enemy units.<br/>"
+LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the Templar's turn.<br/><Bullet/> Can target both ally and enemy units.<br/><Bullet/> Cannot Target Chosen.<br/>"
 
 [OneForAll X2AbilityTemplate]
 LocFriendlyName="One For All"
