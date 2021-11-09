@@ -7014,7 +7014,7 @@ LocPromotionPopupText="<Bullet/> This is a free action.<br/><Bullet/> Some actio
 LocFriendlyName="Arc Wave"
 LocLongDescription="Rend generates a wave of Psionic energy in the direction of the attack. Damage increases with Gauntlet tier."
 LocHelpText="Rend generates a wave of Psionic energy in the direction of the attack."
-LocPromotionPopupText="<Bullet/> Arc Wave does not affect the target of the original Rend attack.<br/><Bullet/> Arc Wave deals 4/6/8 damage depanding on weapon tier.<br/><Bullet/> Arc Wave travels through environmental objects.<br/>"
+LocPromotionPopupText="<Bullet/> Arc Wave does not affect the target of the original Rend attack.<br/><Bullet/> Arc Wave deals 4/7/10 damage depanding on weapon tier.<br/><Bullet/> Arc Wave travels through environmental objects.<br/>"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="Ionic Storm"
