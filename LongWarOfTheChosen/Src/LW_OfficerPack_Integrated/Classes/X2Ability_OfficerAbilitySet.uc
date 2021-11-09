@@ -81,7 +81,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	// Add the command bonus range ability templates, one for each officer rank.
 	// i == 1 is 2nd Lieutenant.
-	for (i = 1; i < class'LWOfficerUtilities'.default.MaxOfficerRank; i++)
+	for (i = 1; i <= class'LWOfficerUtilities'.default.MaxOfficerRank; i++)
 	{
 		Templates.AddItem(PurePassive(
 			class'LWOfficerUtilities'.static.GetCommandRangeAbilityName(i),
@@ -1519,7 +1519,7 @@ static function ConfigureCommandRangeMultiTargetStyle(X2AbilityTemplate Template
 	MultiTarget.bAllowSameTarget = false;
 	MultiTarget.bExcludeSelfAsTargetIfWithinRadius = ExcludeSelf;
 
-	for (i = 1; i < class'LWOfficerUtilities'.default.MaxOfficerRank; i++)
+	for (i = 1; i <= class'LWOfficerUtilities'.default.MaxOfficerRank; i++)
 	{
 		MultiTarget.AddAbilityBonusRadius(
 			class'LWOfficerUtilities'.static.GetCommandRangeAbilityName(i),
