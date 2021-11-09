@@ -23,6 +23,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
 	{
+	case 'TemplarFocus':
+		Template.AdditionalAbilities.RemoveItem('FocusKillTracker');
+		break;
 	case 'ArcWave':
 		UpdateArcWave(Template);
 	case 'Rend':
@@ -35,7 +38,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		ModifyVoltTargeting(Template);
 		AddTerrorToVolt(Template);
 		MakeAbilityNonTurnEnding(Template);
-		Template.AdditionalAbilities.AddItem('OverCharge');
+		Template.AdditionalAbilities.AddItem('SingleRendFocus');
 		break;
 	case 'Deflect':
 		ModifyDeflectEffect(Template);
