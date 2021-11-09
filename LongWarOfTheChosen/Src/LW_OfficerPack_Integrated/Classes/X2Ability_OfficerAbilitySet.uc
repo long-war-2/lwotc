@@ -1459,6 +1459,8 @@ static function X2AbilityTemplate AddEspritdeCorpsAbility()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_EspritdeCorps				StatEffect;
+	local X2AbilityTrigger_EventListener 		EventListener;
+	local X2Condition_UnitProperty              TargetProperty;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'EspritdeCorps');
 
@@ -1468,10 +1470,20 @@ static function X2AbilityTemplate AddEspritdeCorpsAbility()
 	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityLeadership";
 
 	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityMultiTargetStyle = new class'X2AbilityMultiTarget_AllAllies';
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	TargetProperty = new class'X2Condition_UnitProperty';
+	TargetProperty.ExcludeDead = true;
+	TargetProperty.ExcludeHostileToSource = true;
+	TargetProperty.ExcludeFriendlyToSource = false;
+	TargetProperty.RequireSquadmates = true;	
+	Template.AbilityTargetConditions.AddItem(TargetProperty);
 
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'OnUnitBeginPlay';
+	EventListener.ListenerData.EventFn = AuraOnUnitBeginPlay;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_None;
+	Template.AbilityTriggers.AddItem(EventListener);
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 
@@ -1488,7 +1500,7 @@ static function X2AbilityTemplate AddEspritdeCorpsAbility()
 	StatEFfect.AimCap = default.LEADERSHIP_AIM_CAP;
 	StatEFfect.DefensePerMission = default.LEADERSHIP_DEFENSE_PER_MISSION;
 	StatEFfect.DefenseCap = default.LEADERSHIP_DEFENSE_CAP;
-	Template.AddMultiTargetEffect(StatEffect);
+	Template.AddTargetEffect(StatEffect);
 
 	Template.bSkipFireAction = true;
 	Template.bCrossClassEligible = false;
@@ -1500,6 +1512,21 @@ static function X2AbilityTemplate AddEspritdeCorpsAbility()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
 	return Template;
+}
+
+static function EventListenerReturn AuraOnUnitBeginPlay(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Unit UnitState;
+	local XComGameState_Ability SourceAbilityState;
+
+	SourceAbilityState = XComGameState_Ability(CallbackData);	
+	UnitState = XComGameState_Unit(EventData);
+
+	if (SourceAbilityState != None  && UnitState != none) {	
+		SourceAbilityState.AbilityTriggerAgainstSingleTarget(UnitState.GetReference(), false);
+	}
+
+	return ELR_NoInterrupt;
 }
 
 // Configures the given template to use a radius-based multi-target style centered
