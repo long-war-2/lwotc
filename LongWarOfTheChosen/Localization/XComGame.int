@@ -7061,3 +7061,10 @@ LocLongDescription="All enemy Will reduced by <Ability:Hypnography_WillBonus/>%.
 ; LWOTC Needs Translation
 [MicroMissiles X2AbilityTemplate]
 LocHelpText="Target an area with an explosive missile attack."
+
+; LWOTC Needs Translation
+[FlashbangResistancePassive X2AbilityTemplate]
+LocFriendlyName="Flashbang Resistance"
+LocLongDescription="This unit has a <Ability:FLASHBANG_RESIST_VALUE/>% chance to resist disorientation from flashbang grenades."
+LocHelpText="This unit has a <Ability:FLASHBANG_RESIST_VALUE/>% chance to resist disorientation from flashbang grenades."
+; End translation
