@@ -2962,10 +2962,10 @@ static function X2AbilityTemplate CrusaderRage()
 	Effect = new class'XMBEffect_ConditionalBonus';
 
 	//Need to add for all of them because apparently if you crit you don't hit lol
-	Effect.AddPercentDamageModifier(50, eHit_Success);
-	Effect.AddPercentDamageModifier(50, eHit_Graze);
-	Effect.AddPercentDamageModifier(50, eHit_Crit);
-	Effect.EffectName = 'CrusaderRage_Bonus';
+	Effect.AddPercentDamageModifier(20, eHit_Success);
+	Effect.AddPercentDamageModifier(20, eHit_Graze);
+	Effect.AddPercentDamageModifier(20, eHit_Crit);
+	Effect.EffectName = 'CrusaderRage_Bonus2';
 
 	// The effect only applies while wounded
 	EFfect.AbilityShooterConditions.AddItem(Condition);
@@ -2978,6 +2978,23 @@ static function X2AbilityTemplate CrusaderRage()
 	// Create the template using a helper function
 	Template = Passive('CrusaderRage_LW', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect);
 	Template.AddTargetEffect(GreaterPaddingEffect);
+
+	Condition = new class'X2Condition_UnitStatCheck';
+	Condition.AddCheckStat(eStat_HP, 76, eCheck_LessThan,,, true);
+
+	// Create a conditional bonus effect
+	Effect = new class'XMBEffect_ConditionalBonus';
+
+	//Need to add for all of them because apparently if you crit you don't hit lol
+	Effect.AddPercentDamageModifier(25, eHit_Success);
+	Effect.AddPercentDamageModifier(25, eHit_Graze);
+	Effect.AddPercentDamageModifier(25, eHit_Crit);
+	Effect.EffectName = 'CrusaderRage_Bonus';
+	EFfect.AbilityShooterConditions.AddItem(Condition);
+	Effect.AbilityTargetConditionsAsTarget.AddItem(Condition);
+
+	Template.AddTargetEffect(Effect);
+
 	return Template;
 }
 
