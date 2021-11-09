@@ -2267,7 +2267,7 @@ POIImages[2]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_Abandoned"
 ; LWOTC Needs Translation
 [LW_T2_M0_Outpost X2ObjectiveTemplate]
 Title="Manage Your Havens"
-LocLongDescription="Assign rebels to jobs based on what you want them to do ('intel' for detecting missions, 'supply' for generating supplies, and 'recruit' for recruiting new rebels to the haven and rookies). You can also a haven adviser to help with the various activities and (if the adviser is a soldier) help detect Faceless among the rebels."
+LocLongDescription="Assign rebels to jobs based on what you want them to do ('intel' for detecting missions, 'supply' for generating supplies, and 'recruit' for recruiting new rebels to the haven and rookies). You can also assign a haven adviser to help with the various activities and (if the adviser is a soldier) help detect Faceless among the rebels."
 ; End Translation
 
 [LW_T2_M0_Liberate_Region X2ObjectiveTemplate]
@@ -4898,7 +4898,7 @@ DescriptionEntry="The Ranger serves as our primary front-line soldier, specializ
 [Assault_LWS X2EncyclopediaTemplate]
 ListTitle="Assault Class"
 DescriptionTitle="Assault Class"
-DescriptionEntry="Our assaults trace some ancestry to pre-war police Special Weapons and Tactics personnel, along with soldiers who specialized in urban counterinsurgencies shorly before the alien invasion. They typically carry a shotgun as their primary weapon and can specialize in combat or survival abilities. For long-distance work, they carry the arc thrower, an improved version of the XCOM weapon devised during the invasion's early days that is capable of stunning targets."
+DescriptionEntry="Our assaults trace some ancestry to pre-war police Special Weapons and Tactics personnel, along with soldiers who specialized in urban counterinsurgencies shortly before the alien invasion. They typically carry a shotgun as their primary weapon and can specialize in combat or survival abilities. For long-distance work, they carry the arc thrower, an improved version of the XCOM weapon devised during the invasion's early days that is capable of stunning targets."
 
 [Specialist_LWS X2EncyclopediaTemplate]
 ListTitle="Specialist Class"
