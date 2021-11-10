@@ -207,7 +207,7 @@ LocPromotionPopupText="<Bullet/> Combat Presence can be used to get squadmates o
 [CheapShot X2AbilityTemplate]
 LocFriendlyName="Cheap Shot"
 LocFlyOverText="Cheap Shot"
-LocLongDescription= "Once per turn, Gain a movement action after shooting a unit damaged this turn with standard shot of your primary weapon. Cannot trigger on the same turn as Knife Encounters."
-LocHelpText="Once per turn, Gain a movement action after shooting a unit damaged this turn with standard shot of your primary weapon. Cannot trigger on the same turn as Knife Encounters."
-LocPromotionPopupText="<Bullet/> Works only for standard shots, so it won't trigger for abilities like banish."
+LocLongDescription= "Once per turn, Gain a movement action after shooting a unit damaged this turn with your primary weapon. Cannot trigger on the same turn as Knife Encounters."
+LocHelpText="Once per turn, Gain a movement action after shooting a unit damaged this turn with your primary weapon. Cannot trigger on the same turn as Knife Encounters."
+LocPromotionPopupText="<Bullet/> Also works for abilities like banish."
 ; End Translation

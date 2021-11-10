@@ -34,8 +34,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 			DamageEffect = X2Effect_ApplyWeaponDamage(class'X2Effect'.static.GetX2Effect(AppliedData.EffectRef));
 			if (TargetUnit != none)
 			{
-
-				if (DamageEffect != none && !DamageEffect.bIgnoreBaseDamage && TargetUnit.GetCurrentStat(eStat_ArmorMitigation) == 0)
+				if (DamageEffect != none && !DamageEffect.bIgnoreBaseDamage && TargetUnit.GetArmorMitigation(AppliedData.AbilityResultContext.ArmorMitigation) == 0)
 				{
 					return BonusDamage;
 				}

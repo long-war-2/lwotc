@@ -655,6 +655,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Failsafe.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Fatality_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_FireEventOnCrit.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2Effect_FlechetteRounds.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_GeneralDamageModifier.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_GreatestChampion.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Effect_Guardian_LW.uc" />

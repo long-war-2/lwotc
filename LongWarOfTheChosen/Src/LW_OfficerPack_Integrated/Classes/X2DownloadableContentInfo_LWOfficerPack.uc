@@ -139,13 +139,20 @@ static function ModifyEarnedSoldierAbilities(out array<SoldierClassAbilityType> 
 	local XComGameState_Unit_LWOfficer OfficerState;
 	local ClassAgnosticAbility Ability;
 	local string CallStack;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local XComGameStateHistory History;
+	local StateObjectReference UnitRef;
+	local bool OfficerAlreadyPresent;
+	local XComGameState_Unit UnitStateOtherSoldier;
 
 	if(UnitState == none)
 	{
 		`REDSCREEN("ModifyEarnedSoldierAbilities called with none unit.");
 		return;
 	}
-	
+
+	OfficerAlreadyPresent = false;
+
 	// don't add for non-commanding officers when called from GatherUnitAbilitiesForInit -- ID 1673
 	CallStack = GetScriptTrace();
 	if (InStr(CallStack, "GatherUnitAbilitiesForInit") != -1)
@@ -154,11 +161,35 @@ static function ModifyEarnedSoldierAbilities(out array<SoldierClassAbilityType> 
 		{
 			return;
 		}
+		
+		//If there is already a unit with the officer abilities present, then that means current unit is later deployed one (e.g. Avenger Defense reinforcements, liaisons, covert ops).
+		//In that case, adding officer abilites to this unit would lead to two officers present in the mission.
+		//Rather than removing abilities from previous lower-ranked officer, we are not making this unit officer instead. 
+		XComHQ = `XCOMHQ;
+		History = `XCOMHISTORY;
+		
+		if (XComHQ != none) {			
+			foreach XComHQ.Squad(UnitRef)
+			{
+				UnitStateOtherSoldier = XComGameState_Unit(History.GetGameStateForObjectID(UnitRef.ObjectID));
+				if (UnitStateOtherSoldier != none)
+				{
+					if (UnitState.ObjectID == UnitStateOtherSoldier.ObjectID)
+					{
+						continue;
+					}
+					if (UnitStateOtherSoldier.FindAbility(class'LWOfficerUtilities'.static.GetAbilityName(0, 0)).ObjectID > 0) {// this should generally be the command ability
+						OfficerAlreadyPresent = true;
+						break;
+					}					
+				}
+			}
+		}		
 	}
 
 	// add all earned officer abilities as EarnedSoldierAbilities
 	OfficerState = class'LWOfficerUtilities'.static.GetOfficerComponent(UnitState);
-	if (OfficerState != none)
+	if (OfficerState != none && !OfficerAlreadyPresent)
 	{
 		//add the rank 0 starter abilities so they show up in right-hand panels
 		foreach OfficerState.OfficerAbilities(Ability)

@@ -12,7 +12,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 		TargetUnit = XComGameState_Unit(TargetDamageable);
 		if(TargetUnit != none)
 		{
-			if (TargetUnit.GetCurrentStat (eStat_ArmorMitigation) == 0)
+			if (TargetUnit.GetArmorMitigation(AppliedData.AbilityResultContext.ArmorMitigation) == 0)
 			{
 				if (Unarmored_Damage_Multiplier != 0.0)
 				{

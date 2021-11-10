@@ -2269,7 +2269,7 @@ POIImages[2]="img:///UILibrary_StrategyImages.X2StrategyMap.POI_Abandoned"
 ; LWOTC Needs Translation
 [LW_T2_M0_Outpost X2ObjectiveTemplate]
 Title="Manage Your Havens"
-LocLongDescription="Assign rebels to jobs based on what you want them to do ('intel' for detecting missions, 'supply' for generating supplies, and 'recruit' for recruiting new rebels to the haven and rookies). You can also a haven adviser to help with the various activities and (if the adviser is a soldier) help detect Faceless among the rebels."
+LocLongDescription="Assign rebels to jobs based on what you want them to do ('intel' for detecting missions, 'supply' for generating supplies, and 'recruit' for recruiting new rebels to the haven and rookies). You can also assign a haven adviser to help with the various activities and (if the adviser is a soldier) help detect Faceless among the rebels."
 ; End Translation
 
 [LW_T2_M0_Liberate_Region X2ObjectiveTemplate]
@@ -3042,7 +3042,7 @@ MissionPinLabel="LWS Overhaul Generic Mission"
 MissionExpiredText="This mission is no longer available."
 
 [DefaultChosenAvengerDefense X2MissionNarrativeTemplate]
-ObjectiveTextPools[0]="Plant X4 on back of Turrets !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
+ObjectiveTextPools[0]="(optional) Plant X4 on back of Turrets !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
 ObjectiveTextPools[1]="Plant Bomb to Destroy the Mobile Power Generator !WARNING! EXPLOSIVE WILL DETONATE ON TURN END"
 ObjectiveTextPools[2]="Eliminate all enemy forces"
 
@@ -4900,7 +4900,7 @@ DescriptionEntry="The Ranger serves as our primary front-line soldier, specializ
 [Assault_LWS X2EncyclopediaTemplate]
 ListTitle="Assault Class"
 DescriptionTitle="Assault Class"
-DescriptionEntry="Our assaults trace some ancestry to pre-war police Special Weapons and Tactics personnel, along with soldiers who specialized in urban counterinsurgencies shorly before the alien invasion. They typically carry a shotgun as their primary weapon and can specialize in combat or survival abilities. For long-distance work, they carry the arc thrower, an improved version of the XCOM weapon devised during the invasion's early days that is capable of stunning targets."
+DescriptionEntry="Our assaults trace some ancestry to pre-war police Special Weapons and Tactics personnel, along with soldiers who specialized in urban counterinsurgencies shortly before the alien invasion. They typically carry a shotgun as their primary weapon and can specialize in combat or survival abilities. For long-distance work, they carry the arc thrower, an improved version of the XCOM weapon devised during the invasion's early days that is capable of stunning targets."
 
 [Specialist_LWS X2EncyclopediaTemplate]
 ListTitle="Specialist Class"
@@ -5416,7 +5416,7 @@ LocFriendlyName="Tracking"
 LocLongDescription="You detect nearby units even without line of sight."
 LocHelpText="You detect nearby units even without line of sight."
 LocFlyOverText="Tracking"
-LocPromotionPopupText="<Bullet/> Tracking allows the unit to detect units that are behind walls and other line-of-sight blockers.<br/><Bullet/> Tracking detects enemies up to very slightly outside normal visual range.<br/><Bullet/> Detected units will appear as a visual outline.<br/><Bullet/> Units will remain detected until the end of the player's turn. If they are outside Tracking's range at that point, they will count as no longer detected.<br/>"
+LocPromotionPopupText="<Bullet/> Tracking allows the unit to detect units that are behind walls and other line-of-sight blockers.<br/><Bullet/> Tracking detects enemies up to 14 tiles.<br/><Bullet/> Detected units will appear as a visual outline.<br/><Bullet/> Units will remain detected until the end of the player's turn. If they are outside Tracking's range at that point, they will count as no longer detected.<br/>"
 
 [Hero_TrackingTrigger X2AbilityTemplate]
 LocFriendlyName="Tracking"
@@ -6874,7 +6874,7 @@ LocFlyOverText="Shield Bash"
 LocFriendlyName="Invert"
 LocLongDescription="Switch locations with a unit. Costs 1 Focus."
 LocHelpText="Switch locations with a unit. Costs 1 Focus."
-LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the Templar's turn.<br/><Bullet/> Can target both ally and enemy units.<br/>"
+LocPromotionPopupText="<Bullet/> Invert has a <Ability:SelfCooldown/> turn cooldown, and does not end the Templar's turn.<br/><Bullet/> Can target both ally and enemy units.<br/><Bullet/> Cannot Target Chosen.<br/>"
 
 [OneForAll X2AbilityTemplate]
 LocFriendlyName="One For All"
@@ -6948,8 +6948,8 @@ LocPromotionPopupText="<Bullet/> Amplify will last for two damage instances.<br/
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Crusader's Rage"
-LocHelpText="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 6 HP"
-LocLongDescription="Gain a 50% damage boost when at 50% hp or less. Reduce wound recovery times for this soldier by 6 HP."
+LocHelpText="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 4 HP"
+LocLongDescription="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 4 HP."
 LocPromotionPopupText="<Bullet/> Wound reduction does not work if the soldier entered a bleeding out state during the mission.<br/>"
 LocFlyOverText="Psychotic Rage"
 
@@ -6992,9 +6992,9 @@ LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to 
 ;LWOTC needs translation(3)
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Total Combat"
-LocLongDescription="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
-LocHelpText="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
-LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the <Ability:ClassName/>'s turns, allowing actions to be taken exactly when needed.<br/><Bullet/> Removes the cooldown for grenades.<br/><Bullet/> Grants both Bombard and Volatile Mix, hence it does not stack with either of them."
+LocLongDescription="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 3 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
+LocHelpText="Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 3 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
+LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the <Ability:ClassName/>'s turns, allowing actions to be taken exactly when needed.<br/><Bullet/> Removes the cooldown for grenades.<br/><Bullet/> Grants Volatile Mix, hence it does not stack with it."
 ;End Translation(3)
 
 [PackMaster_LW X2AbilityTemplate]
@@ -7016,7 +7016,7 @@ LocPromotionPopupText="<Bullet/> This is a free action.<br/><Bullet/> Some actio
 LocFriendlyName="Arc Wave"
 LocLongDescription="Rend generates a wave of Psionic energy in the direction of the attack. Damage increases with Gauntlet tier."
 LocHelpText="Rend generates a wave of Psionic energy in the direction of the attack."
-LocPromotionPopupText="<Bullet/> Arc Wave does not affect the target of the original Rend attack.<br/><Bullet/> Arc Wave deals 4/6/8 damage depanding on weapon tier.<br/><Bullet/> Arc Wave travels through environmental objects.<br/>"
+LocPromotionPopupText="<Bullet/> Arc Wave does not affect the target of the original Rend attack.<br/><Bullet/> Arc Wave deals 4/7/10 damage depanding on weapon tier.<br/><Bullet/> Arc Wave travels through environmental objects.<br/>"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="Ionic Storm"
@@ -7063,3 +7063,10 @@ LocLongDescription="All enemy Will reduced by <Ability:Hypnography_WillBonus/>%.
 ; LWOTC Needs Translation
 [MicroMissiles X2AbilityTemplate]
 LocHelpText="Target an area with an explosive missile attack."
+
+; LWOTC Needs Translation
+[FlashbangResistancePassive X2AbilityTemplate]
+LocFriendlyName="Flashbang Resistance"
+LocLongDescription="This unit has a <Ability:FLASHBANG_RESIST_VALUE/>% chance to resist disorientation from flashbang grenades."
+LocHelpText="This unit has a <Ability:FLASHBANG_RESIST_VALUE/>% chance to resist disorientation from flashbang grenades."
+; End translation
