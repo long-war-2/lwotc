@@ -40,10 +40,10 @@ var int hitTargets;
 
 // STOP MAKING SHIT PRIVATE
 // (I have to make it private to prevent the compiler from complaining)
-var protected XComPresentationLayer PresentationLayer;
-var protected array<XComPerkContentInst> Perks;
-var protected array<name> PerkAdditiveAnimNames;
-var protected int x;
+var protected XComPresentationLayer PresentationLayer_CL;
+var protected array<XComPerkContentInst> Perks_CL;
+var protected array<name> PerkAdditiveAnimNames_CL;
+var protected int x_CL;
 
 function Init()
 {
@@ -54,7 +54,7 @@ function Init()
 
 	super.Init();
 
-	PresentationLayer = `PRES;
+	PresentationLayer_CL = `PRES;
 
 	// primary target
 	BuildTarget = EmptyTarget;
@@ -222,14 +222,11 @@ function int FindNearestTarget(vector vLocation)
 function AdvanceChain(int iHitIdx, bool bDoNotifyTarget, vector vSourceLocation)
 {
 	local int i;
-	local StateObjectReference Target;
 	if (bDoNotifyTarget)
 	{
 		Targets[iHitIdx].bHasNotified = true;
 		notifiedTargets++;
 		// out parameter, unrealscript dumb
-		Target = Targets[iHitIdx].TargetID;
-		//VisualizationMgr.SendInterTrackMessage(Target, CurrentHistoryIndex);
 	}
 	for (i = 1; i < Targets.Length; i++)
 	{
@@ -280,27 +277,27 @@ Begin:
 	UnitPawn.EnableRMA(true, true);
 	UnitPawn.EnableRMAInteractPhysics(true);
 
-	class'XComPerkContent'.static.GetAssociatedPerkInstances(Perks, UnitPawn, AbilityContext.InputContext.AbilityTemplateName);
-	for (x = 0; x < Perks.Length; ++x)
+	class'XComPerkContent'.static.GetAssociatedPerkInstances(Perks_CL, UnitPawn, AbilityContext.InputContext.AbilityTemplateName);
+	for (x_CL = 0; x_CL < Perks_CL.Length; ++x_CL)
 	{
-		kPerkContent = Perks[x];
+		kPerkContent = Perks_CL[x_CL];
 
 		if ((kPerkContent.IsInState('ActionActive') || kPerkContent.IsInState('DurationAction')) &&
 			kPerkContent.m_PerkData.CasterActivationAnim.PlayAnimation &&
 			kPerkContent.m_PerkData.CasterActivationAnim.AdditiveAnim)
 		{
-			PerkAdditiveAnimNames.AddItem(class'XComPerkContent'.static.ChooseAnimationForCover(Unit, kPerkContent.m_PerkData.CasterActivationAnim));
+			PerkAdditiveAnimNames_CL.AddItem(class'XComPerkContent'.static.ChooseAnimationForCover(Unit, kPerkContent.m_PerkData.CasterActivationAnim));
 		}
 	}
 
-	for (x = 0; x < PerkAdditiveAnimNames.Length; ++x)
+	for (x_CL = 0; x_CL < PerkAdditiveAnimNames_CL.Length; ++x_CL)
 	{
-		AdditiveAnimParams.AnimName = PerkAdditiveAnimNames[x];
+		AdditiveAnimParams.AnimName = PerkAdditiveAnimNames_CL[x_CL];
 		UnitPawn.GetAnimTreeController().PlayAdditiveDynamicAnim(AdditiveAnimParams);
 	}
-	for (x = 0; x < ShooterAdditiveAnims.Length; ++x)
+	for (x_CL = 0; x_CL < ShooterAdditiveAnims.Length; ++x_CL)
 	{
-		AdditiveAnimParams.AnimName = ShooterAdditiveAnims[x];
+		AdditiveAnimParams.AnimName = ShooterAdditiveAnims[x_CL];
 		UnitPawn.GetAnimTreeController().PlayAdditiveDynamicAnim(AdditiveAnimParams);
 	}
 	
@@ -309,19 +306,19 @@ Begin:
 
 	FinishAnim(UnitPawn.GetAnimTreeController().PlayFullBodyDynamicAnim(AnimParams));
 
-	for (x = 0; x < PerkAdditiveAnimNames.Length; ++x)
+	for (x_CL = 0; x_CL < PerkAdditiveAnimNames_CL.Length; ++x_CL)
 	{
-		AdditiveAnimParams.AnimName = PerkAdditiveAnimNames[x];
+		AdditiveAnimParams.AnimName = PerkAdditiveAnimNames_CL[x_CL];
 		UnitPawn.GetAnimTreeController().RemoveAdditiveDynamicAnim(AdditiveAnimParams);
 	}
-	for (x = 0; x < ShooterAdditiveAnims.Length; ++x)
+	for (x_CL = 0; x_CL < ShooterAdditiveAnims.Length; ++x_CL)
 	{
-		AdditiveAnimParams.AnimName = ShooterAdditiveAnims[x];
+		AdditiveAnimParams.AnimName = ShooterAdditiveAnims[x_CL];
 		UnitPawn.GetAnimTreeController().RemoveAdditiveDynamicAnim(AdditiveAnimParams);
 	}
 
 	// Taking a shot causes overwatch to be removed
-	PresentationLayer.m_kUnitFlagManager.RealizeOverwatch(Unit.ObjectID, History.GetCurrentHistoryIndex());
+	PresentationLayer_CL.m_kUnitFlagManager.RealizeOverwatch(Unit.ObjectID, History.GetCurrentHistoryIndex());
 
 	//Failure case handling! We failed to notify our targets that damage was done. Notify them now.
 	SetTargetUnitDiscState();
