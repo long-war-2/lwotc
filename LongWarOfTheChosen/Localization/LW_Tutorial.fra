@@ -8,23 +8,38 @@ DroneSightedTitle="Nouvel ennemi: Drone"
 DroneSightedBody="Les drones d'ADVENT sont des unités mécaniques de reconnaissance renforcées, capables de repérer l'ennemi à longue distance. On les retrouve souvent à patrouiller en solitaire dans la zone d'opération. Leurs capacités de vol en font des unités imprévisibles, pouvant surgir de n'importe où sur le champ de bataille (bâtiments, toits, etc.)."
 RainbowTrooperSightedTitle="Nouveaux ennemis: Infanterie d'ADVENT"
 RainbowTrooperSightedBody="En plus des soldats de base, ADVENT dispose désormais d'une variété d'unités d'infanterie qu'elle peut déployer sur le champ de bataille:<ul><li>Factionnaire (bleu): soldat spécialisé dans le mode Vigilance</li><li>Tirailleur (vert): soldat équipé d'un canon qui inflige d'importants dégâts, capable d'effectuer des tirs de suppression</li><li>Ingénieur (rouge): soldat équipé d'un lance-grenade</li><li>Artilleur (orange): soldat équipé d'un lance-roquette de haute-précision</li></ul>"
-
 HavenHighlightTitle="Administrer votre refuge"
 HavenHighlightBody="Les refuges sont des éléments essentiels d'une campagne LWOTC, car ils vous permettent de détecter de nouvelles missions. De plus, vous ne pouvez contacter que des régions adjacentes aux refuges avec lesquels vous déjà avez pris contact.<br/><br/>Cliquez sur le bouton visible à gauche pour ouvrir l'écran de gestion des refuges."
-
-; LWOTC Needs Translation (2)
+; LWOTC translated (2)
 FirstMissionDiscoveredTitle="Première mission découverte"
 FirstMissionDiscoveredBody="Vous avez détecté votre première mission! Vous devez maintenant y assigner une escouade pour l'infiltrer.<br/><br/>Infiltrer une mission prend du temps, et la plupart des missions dispose d'un délai d'expiration. Plus vous affecterez de rebelles à la tâche de Renseignements, et plus le délai d'expiration des missions qu'ils découvriront sera important. Lorsque le Talion est utilisé pour scanner une région, ses capacités de scan procurent un bonus équivalent à 4 rebelles affectés à la tâche de Renseignements."
 FirstRetaliationTitle="Représailles d'ADVENT"
 FirstRetaliationBody="ADVENT cherche à se venger! Ces missions de réaction n'ont pas besoin d'être infiltrées et ne devraient pas être ignorées.<br/><br/>Il existe deux types de représailles. Les représailles de type 'raid' visent à contrecarrer les activités des rebelles dans la région et prennent pour cible un type de tâche spécifique (Renseignements, recruter,etc.). Les rebelles affectés à la tâche visée seront tués si vous n'intervenez pas. Si vous choisissez d'intervenir, le superviseur de refuge ainsi que les rebelles affectés à cette tâche seront présents dans la zone d'opération et devront être protégés. Les représailles de type 'attaque de refuge' sont des assauts d'envergure menés contre tous les habitants du refuge et visent l'anéantissement total des rebelles qui s'y trouvent. Si vous n'intervenez pas ou que vous échouez lors de cette mission, le refuge sera détruit et les rebelles présents sur place seront exécutés par ADVENT. Si vous choisissez d'intervenir, tous les rebelles du refuge seront présents dans la zone d'opération et devront être protégés."
 CommandersQuartersEnteredTitle="Aides LWOTC"
 CommandersQuartersEnteredBody="LWOTC a ajouté de nouvelles informations dans les archives d'XCOM, afin d'expliquer de façon plus détaillée les principaux concepts du mod (comme l'infiltration ou la gestion des refuges).<br/><br/>Vous pouvez passer en revue l'ensemble de vos refuges depuis le menu de Gestion de la résistance."
+; End translated (2)
+
+; LWOTC Needs Translation (2)
+GeneralChosenTitle="L'Élu"
+GeneralChosenBody="Un Élu risque d'intrvenir lors de cette mission. Dans LWOTC, les Élus ne prennent part qu'aux missions de représailles ou aux missions principales de la campagne (Site secret, etc.). Ils n'apparaîtront pas lors des autres missions.<br/><br/>Leur objectif est toujours d'obtenir des renseignements sur la position du Talion et de le prendre d'assaut. Soyez prévenu, se défendre contre eux ne sera pas une chose facile!"
+
+TacticalChosenTitle="Les Élus en combat"
+TacticalChosenBody="Dans LWOTC, les Élus sont bien plus dangereux en combat:<br/><ul><li>Ils sont immunisés aux coups critiques.</li><li>Ils réalisent une action (\"Action primaire\") chaque fois qu'XCOM les blesse durant le tour de jeu d'XCOM.</li><li>Ils peuvent kidnapper les soldats hors-combat situés à portée, au prix d'un tour de jeu complet.</li><li>Ils gagnent de puissantes capacités lorsqu'ils gagnent des niveaux (appuyez sur F1 lorsque vous les ciblez pour plus d'informations).</li></ul>"
+
+AssassinSightedTitle="L'Assassin"
+AssassinSightedBody="The Assassin reduces incoming damage with each consecutive hit she receives on a turn. Si les dégâts de son sabre et sa capacité \"Raz-de-marée\" sont réduits en début de combat, ils augmenteront inexorablement jusqu'à ce qu'elle capture l'un de vos soldats. <br/><br/>Soyez vigilant dans votre placement, car elle peut utiliser son action primaire pour réaliser une attaque de Lacération sur un soldat adjacent."
+
+WarlockSightedTitle="Le Sorcier"
+WarlockSightedBody="Le Sorcier peut invoquer des alliés et utiliser ses pouvoirs afin de renforcer leurs capacités. Tant que ses alliés restent en vie, le Sorcier subira beaucoup moins de dégâts lorsque vous le blesserez. Vous devriez également vous méfier de son pouvoir \"Esprit écorché\", qui applique un effet de feu dans la zone située autour de la cible. <br/><br/>Dans WOTC, si l'un de vos soldats est contrôlé mentalement, vous pouvez le neutraliser temporairement avec un coup de crosse."
+
+HunterSightedTitle="Le Chasseur"
+HunterSightedBody="Le Chasseur combat à longue distance et tentera d'éliminer vos soldats depuis une position sûre et protégée. Soyez prudent lorsque vous l'approchez: son pistolet est capable de désactiver les armes de ses adversaires et il peut lancer ses grenades flash avec une action gratuite."
 ; End Translation (2)
+
 
 [UIScreenListener_HavenManagementTutorial]
 HavenManagementTitle="Gestion des refuges"
 HavenManagementBody="Les refuges abritent des rebelles qui peuvent entreprendre différentes tâches pour soutenir les activités d'XCOM:<br/><ul><li>Renseignements - Pour détecter de nouvelles missions</li><li>Recruter - Pour enrôler de nouveaux rebelles ou des soldats qui pourront être recrutés depuis la caserne</li><li>Ressources - Pour produire des ressources</li></ul><br/>Plus il y a de rebelles affectés à une même tâche, et plus les rendements de cette tâche seront importants. Un conseil: affectez vos rebelles à la tâche Renseignements pour l'instant."
-
 ; LWOTC Needs Translation (2)
 HavenAdvisersTitle="Superviseurs de refuge"
 HavenAdvisersBody="Cliquez sur la fenêtre (1) à gauche pour affecter un superviseur au refuge. Vous pouvez y affecter l'un des membres suivants:<br/><ul><li>Soldat - Détecte les Anonymes infiltrés et améliore l'action Recruter</li><li>Scientifique - Améliore le rendement de l'action Renseignements, mais ne peut plus contribuer aux recherches tant qu'il supervise le refuge</li><li>Ingénieur - Améliore le rendement de l'action Ressources</li></ul><br/>Détecter les Anonymes inflitrés vous donne également l'opportunité de vous en débarrasser définitivement, lors d'une mission spéciale. Les Anonymes infiltrés parasitent les activités rebelles et réduisent le rendement des refuges."

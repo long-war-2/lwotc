@@ -442,7 +442,9 @@ LocPromotionPopupText="<Bullet/> Vos armes explosives (grenades, roquettes et ar
 LocFriendlyName="Grenade fantôme"
 LocLongDescription="Grenade fumigène spéciale qui dissimule l'allié ciblé."
 LocHelpText="Dissimule un soldat unique."
-LocPromotionPopupText="<Bullet/> Seule l'unité visée est dissimulée. Les autres unités présentes dans le nuage de fumée bénéficient quand même du bonus de défense.<br/><Bullet/> Coûte 1 action et met fin au tour.<br/><Bullet/> Utilisable une seule fois par mission, même avec les capacités qui augmentent le nombre d'utilisation des grenades.<br/><Bullet/> Ne fonctionne que sur les soldats XCOM, car les civils n'ont jamais suivi d'entraînement à la dissimulation.<br/><Bullet/> La fumée procure défense +20. Les bonus de Fumée dense ne s'appliquent pas.<br/><Bullet/> Ne peut pas être tirée par le lance-grenades et doit être lancée sur un allié visible.<br/><Bullet/> Le Grenadier ne peut pas utiliser cette capacité s'il est dissimulé."
+; LWOTC Needs translated
+LocPromotionPopupText="<Bullet/> Seule l'unité visée est dissimulée. Les autres unités présentes dans le nuage de fumée bénéficient quand même du bonus de défense.<br/><Bullet/> Coûte 1 action et met fin au tour.<br/><Bullet/> Utilisable une seule fois par mission, même avec les capacités qui augmentent le nombre d'utilisation des grenades.<br/><Bullet/> Ne fonctionne que sur les soldats XCOM, car les civils n'ont jamais suivi d'entraînement à la dissimulation.<br/><Bullet/> La fumée procure défense +20. Les bonus de Fumée dense ne s'appliquent pas.<br/><Bullet/> Ne peut pas être tirée par le lance-grenades et doit être lancée sur un allié visible.<br/><Bullet/> Le <Ability:ClassName/> ne peut pas utiliser cette capacité s'il est dissimulé."
+; End translated
 
 [VanishingAct X2AbilityTemplate]
 LocFriendlyName="Grenade fantôme"
@@ -482,15 +484,15 @@ LocLongDescription="Tir précis mais peu puissant qui force les ennemis touchés
 LocHelpText="Tir précis mais peu puissant qui force les ennemis touchés à changer de position et leur impose un malus de -<Ability:FLUSH_DEFENSE_REDUCTION> en défense et de -<Ability:FLUSH_DODGE_REDUCTION> en esquive pendant <Ability:FLUSH_STATEFFECT_DURATION> tours."
 LocFlyOverText="Débusquement"
 ;LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Consomme <Ability:SelfAmmoCost/> munitions.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tours.<br/><Bullet/> Bonus de +<Ability:FLUSH_AIM_BONUS/> en visée.<br/><Bullet/> N'inflige pas de coups critiques et ignore les effets des munitions. Ne peut pas être activée tant que vous êtes dissimulé.<br/><Bullet/>La cible subit un malus de -<Ability:FLUSH_DEFENSE_REDUCTION> en défense et de -<Ability:FLUSH_DODGE_REDUCTION> en esquive pendant <Ability:FLUSH_STATEFFECT_DURATION> tour(s).<br/>"
+LocPromotionPopupText="<Bullet/> Consomme <Ability:SelfAmmoCost/> munitions.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tours.<br/><Bullet/> Bonus de +<Ability:FLUSH_AIM_BONUS/> en visée.<br/><Bullet/> N'inflige pas de coups critiques et ignore les effets des munitions. Ne peut pas être activée tant que vous êtes dissimulé.<br/><Bullet/> La cible subit un malus de -<Ability:FLUSH_DEFENSE_REDUCTION> en défense et de -<Ability:FLUSH_DODGE_REDUCTION> en esquive pendant <Ability:FLUSH_STATEFFECT_DURATION> tour(s).<br/>"
 ;End translated (2)
 str_FlushEffect="Débusqué"
 
 ;LWOTC translated
-;LWOTC translated (2)
+;LWOTC translated (3)
 [HailofBullets X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Cette capacité nécessite <Ability:SelfAmmoCost/> munition(s).<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tours.<br/><Bullet/> Cette capacité ne peut pas être utilisée avec un fusil à pompe ou un fusil de précision.<br/>"
-; End translated (2)
+LocPromotionPopupText="<Bullet/> Cette capacité nécessite <Ability:SelfAmmoCost/> munition(s).<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tours.<br/><Bullet/> Cette capacité ne peut pas être utilisée avec un fusil de précision.<br/>"
+; End translated (3)
 
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Cette capacité nécessite <Ability:SelfAmmoCost/> munition(s).<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tours.<br/>"
@@ -553,14 +555,14 @@ LocPromotionPopupText="<Bullet/> Dès que vous équipez un pistolet (tous niveau
 
 ;;;;;;;;;;;;;;;;;;;;  SHARPSHOOTER ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
+; LWOTC translated (2)
 [Holotarget X2AbilityTemplate]
 LocFriendlyName="Visée holographique"
-LocLongDescription="Utiliser la Visée holographique sur un ennemi donne un bonus aux attaques que vous et vos alliés dirigez contre lui pendant le reste du tour. Coûte 1 action et met fin au tour."
-LocHelpText="Utiliser la Visée holographique sur un ennemi donne un bonus aux attaques que vous et vos alliés dirigez contre lui pendant le reste du tour. Coûte 1 action et met fin au tour."
+LocLongDescription="Utiliser la Visée holographique sur un ennemi donne un bonus aux attaques que vous et vos alliés dirigez contre lui jusqu'au début de votre prochain tour. Coûte 1 action et met fin au tour."
+LocHelpText="Utiliser la Visée holographique sur un ennemi donne un bonus aux attaques que vous et vos alliés dirigez contre lui jusqu'au début de votre prochain tour. Coûte 1 action et met fin au tour."
 LocFlyOverText="Visée holographique"
-; LWOTC translated
-LocPromotionPopupText="<Bullet/> Utiliser la Visée holographique sur un ennemi donne un bonus aux attaques que vous et vos alliés dirigez contre lui pendant le reste du tour. Coûte 1 action et met fin au tour.<br/><Bullet/> Les effets de la Visée holographique se prolongent jusqu'au début de votre prochain tour. Les effets multiples de Visée holographique ne sont pas cumulatifs entre eux.<br/><Bullet/> Le bonus de visée est de +<Ability:HOLO_CV_AIM_BONUS_LW/> pour le viseur holographique de base, puis de +<Ability:HOLO_MG_AIM_BONUS_LW/> et de +<Ability:HOLO_BM_AIM_BONUS_LW/> avec une Visée holographique plus performante.<br/><Bullet/> La Visée holographique n'interrompt pas la dissimulation de votre escouade ni de vous-même."
-; End translated 
+LocPromotionPopupText="<Bullet/> Utiliser la Visée holographique sur un ennemi donne un bonus aux attaques que vous et vos alliés dirigez contre lui jusqu'au début de votre prochain tour. Coûte 1 action et met fin au tour.<br/><Bullet/> Les effets multiples de Visée holographique ne sont pas cumulatifs entre eux.<br/><Bullet/> Le bonus de visée est de +<Ability:HOLO_CV_AIM_BONUS_LW/> pour le viseur holographique de base, puis de +<Ability:HOLO_MG_AIM_BONUS_LW/> et de +<Ability:HOLO_BM_AIM_BONUS_LW/> avec une Visée holographique plus performante.<br/><Bullet/> La Visée holographique n'interrompt pas la dissimulation de votre escouade ni de vous-même."
+; End translated  (2)
 
 [RapidTargeting X2AbilityTemplate]
 LocFriendlyName="Ciblage rapide"
@@ -622,12 +624,14 @@ LocPromotionPopupText="<Bullet/> L'électro flux est utilisable sur toute cible 
 ; LWOTC translated
 
 ; LWOTC translated
+; LWOTC translated (2)
 [EMPulser X2AbilityTemplate]
 LocFriendlyName="Électro impulsion"
 LocLongDescription="Utiliser l'Électro impulsion pour désorienter la cible et infliger des dégâts aux ennemis mécanisés."
 LocHelpText="Utiliser l'Électro impulsion."
 LocFlyOverText="Électro impulsion"
-LocPromotionPopupText="<Bullet/> L'électro flux est utilisable sur toute cible visible.<br/><Bullet/> Les versions améliorées augmentent la durée de l'étourdissement.<br/><Bullet/> Coûte 1 action et met fin au tour.<br/><Bullet/> Utilisable tous les 2 tours.<br/><Bullet/> Les versions avancées de l'électro flux infligent plus de dégâts.<br/><Bullet/> Réduit la défense anti-piratage de l'ennemi de <Ability:EMPULSER_HACK_DEFENSE_CHANGE_LW/>.<br/>"
+LocPromotionPopupText="<Bullet/> L'électro flux est utilisable sur toute cible visible.<br/><Bullet/> Les versions améliorées augmentent la durée de l'étourdissement.<br/><Bullet/> Coûte 1 action et met fin au tour.<br/><Bullet/> Utilisable tous les 2 tours.<br/><Bullet/> Les versions avancées de l'électro flux infligent plus de dégâts aux unités robotiques.<br/><Bullet/> Réduit la défense anti-piratage de l'ennemi de <Ability:EMPULSER_HACK_DEFENSE_CHANGE_LW/>.<br/>"
+; End translated (2)
 
 [EMPulserPassive X2AbilityTemplate]
 LocFriendlyName="Électro impulsion"
@@ -664,12 +668,12 @@ LocPromotionPopupText="<Bullet/> Attaque conique de moyenne portée. Le gabarit 
 
 [ChainLightning X2AbilityTemplate]
 LocFriendlyName="Foudroiement"
-; LWOTC translated (2)
-LocLongDescription="Utiliser l'électro flux sur tous les ennemis visibles et susceptibles d'être étourdis, avec un malus de -<Ability:CHAIN_LIGHTNING_AIM_MOD_LW/> en visée."
-LocHelpText="Utiliser l'électro flux sur tous les ennemis visibles et susceptibles d'être étourdis, avec un malus de -<Ability:CHAIN_LIGHTNING_AIM_MOD_LW/> en visée."
+; LWOTC translated (3)
+LocLongDescription="Utiliser l'électro flux pour générer un arc électrique qui bondit de cible en cible (jusqu'à 4 fois par attaque). Les cibles doivent se trouver à une distance de 6 cases les unes des autres."
+LocHelpText="Utiliser l'électro flux pour générer un arc électrique qui bondit de cible en cible (jusqu'à 4 fois par attaque). Les cibles doivent se trouver à une distance de 6 cases les unes des autres."
 LocFlyOverText="Foudroiement"
-LocPromotionPopupText="<Bullet/> Utiliser l'électro flux sur tous les ennemis visibles et susceptibles d'être étourdis, avec un malus de -<Ability:CHAIN_LIGHTNING_AIM_MOD_LW/> en visée.<br/><Bullet/> Coûte 1 action et met fin au tour.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Ne peut pas être utilisé en étant dissimulé."
-; End translated (2)
+LocPromotionPopupText="<Bullet/> Utiliser l'électro flux pour générer un arc électrique qui bondit de cible en cible (jusqu'à 4 fois par attaque). Les cibles doivent se trouver à une distance de 6 cases les unes des autres.<br/><Bullet/> Coûte 1 action et met fin au tour.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Ne peut pas être utilisé en étant dissimulé."
+; End translated (3)
 
 [Leadership X2AbilityTemplate]
 LocFriendlyName="Leadership"
@@ -1086,7 +1090,9 @@ AbilityDescName="fusil à pompe"
 FriendlyName="Sous-bobine"
 FriendlyNamePlural="Sous-bobine"
 BriefSummary="Cette version légère du fusil à bobine tire des projectiles plus petits mais offre une meilleure mobilité à son utilisateur."
-TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 armure adverse.\n<Bullet/> Les armes semblables au pistolet-mitrailleur offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais elles ont moins de dégâts, de munitions et de précision à longue portée.<br/>"
+; LWOTC translated
+TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 armure adverse.\n<Bullet/> Les armes semblables au pistolet-mitrailleur offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais elles infligent moins de dégâts et moins précises à longue portée.<br/>"
+; End translated
 AbilityDescName="Pistolet-mitrailleur"
 
 ; LWOTC translated
@@ -1114,40 +1120,38 @@ AbilityDescName="bullpup"
 [Bullpup_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Les bullpups sont très efficaces à courte portée et ont été conçus pour le combat rapproché et les tactiques de guérilla.\n<Bullet/> Les bullpups offrent également une plus grande mobilité aux Escarmoucheurs, leur permettant ainsi de traverser plus facilement les lignes ennemies sans être repérés.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du bullpup."
 
+; LWOTC translated (3)
 ; Vektor Rifle changes and new crossbows
 [VektorRifle_CV X2WeaponTemplate]
-TacticalText="<Bullet/> Le fusil Vektor est très efficace de près, et conserve une bonne précision de loin.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil Vektor."
+TacticalText="<Bullet/> Le fusil Vektor peut être combiné avec la Vision commune pour des tirs à longue portée, mais souffre d'une pénalité de visée contre les cibles proches. <br/><Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil Vektor."
 
 [CrossbowVektor_CV X2WeaponTemplate]
 FriendlyName="Arbalère tactique"
 FriendlyNamePlural="Arbalères tactiques"
 BriefSummary="Une arme silencieuse et discrète, que de nombreux Faucheurs préfèrent aux armes à feu conventionnelles."
-TacticalText="<Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.<br/><Bullet/> Fonctionnellement identique au fusil Vektor. Fonctionnellement identique au fusil Vektor."
+TacticalText="<Bullet/> L'arbalète peut être combinée avec la Vision commune pour des tirs à longue portée, mais souffre d'une pénalité de visée contre les cibles proches.<br/><Bullet/> Fonctionnellement identique au fusil Vektor."
 AbilityDescName="arbalère"
 
-; LWOTC translated (2)
 [Vektor_LS X2WeaponTemplate]
 FriendlyName="Fusil Vektor laser"
 FriendlyNamePlural="Fusil Vektor laser"
 BriefSummary="Le fusil Vektor laser est doté de renforts en alliage et d'une source d'énergie compacte, qui le rendent particulièrement redoutable dans les mains d'un sniper expérimenté."
-TacticalText="<Bullet/> Les armes laser disposent d'un bonus de visée.<br/><Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.<br/>"
+TacticalText="<Bullet/> Les armes laser disposent d'un bonus de visée.<br/><Bullet/> Le fusil Vektor peut être combiné avec la Vision commune pour des tirs à longue portée, mais souffre d'une pénalité de visée contre les cibles proches. <br/>"
 AbilityDescName="fusil Vektor"
-; End translated (2)
 
 [VektorRifle_MG X2WeaponTemplate]
-TacticalText="<Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil temnotique."
+TacticalText="<Bullet/> Le fusil Vektor peut être combiné avec la Vision commune pour des tirs à longue portée, mais souffre d'une pénalité de visée contre les cibles proches.<br/><Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique du fusil temnotique."
 
-; LWOTC translated (2)
 [Vektor_CG X2WeaponTemplate]
 FriendlyName="Lance temnotique"
 FriendlyNamePlural="Lance temnotiques"
 BriefSummary="La lance temnotique est une évolution du fusil temnotique, associée à la technologie gauss."
-TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 armure adverse.<br/><Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique de la lance temnotique."
+TacticalText="<Bullet/> Les armes à bobine ignorent automatiquement 1 armure adverse.<br/><Bullet/> Le fusil Vektor peut être combiné avec la Vision commune pour des tirs à longue portée, mais souffre d'une pénalité de visée contre les cibles proches. <br/><Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique de la lance temnotique."
 AbilityDescName="fusil Vektor"
-; End translated (2)
 
 [VektorRifle_BM X2WeaponTemplate]
-TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Cette version du fusil Vektor est la plus avancée de tout l'arsenal d'XCOM.\n<Bullet/> Les armes des Faucheurs sont très efficaces de près, et conservent une bonne précision de loin.\n<Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique de la lance obscure."
+TacticalText="<Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme. <br/><Bullet/> Cette version du fusil Vektor est la plus avancée de tout l'arsenal d'XCOM. <br/><Bullet/>  Le fusil Vektor peut être combiné avec la Vision commune pour des tirs à longue portée, mais souffre d'une pénalité de visée contre les cibles proches. <br/><Bullet/> Utilisez les améliorations récupérées sur les ennemis pour augmenter l'efficacité tactique de la lance obscure."
+; End translated (3)
 
 [SPARKChaingun X2WeaponTemplate]
 FriendlyName="Minigun"
@@ -1175,6 +1179,16 @@ AbilityDescName="canon à particules"
 TacticalText="<Bullet/> Les détecteurs révèlent les zones dissimulées par le \"brouillard de guerre\" durant plusieurs tours.\n<Bullet/> Les détecteurs révèlent également les ennemis dissimulés ou camouflés.\n<Bullet/> Si un soldat équipé d'un détecteur est affecté au poste de superviseur, cet objet réduira de 40% ses chances de recruter un Anonyme (cumulatif avec les autres bonus de ce type)."
 ; End translated (2)
 
+; LWOTC translated (2)
+[AdvStunLancerM1_StunLance X2WeaponTemplate]
+AbilityDescName="Lance paralysante"
+
+[AdvStunLancerM2_StunLance X2WeaponTemplate]
+AbilityDescName="Lance paralysante"
+
+[AdvStunLancerM3_StunLance X2WeaponTemplate]
+AbilityDescName="Lance paralysante"
+; End translated (2)
 ; End translated
 
 ;;;;;;;;;;;;;;;;;; GEAR LOC OVERRIDES ;;;;;;;;;;;;;;;;;;;;
@@ -3026,7 +3040,7 @@ MissionPinLabel="Missions standard retravaillées LWS"
 MissionExpiredText="Cette mission n'est plus disponible."
 
 [DefaultChosenAvengerDefense X2MissionNarrativeTemplate]
-ObjectiveTextPools[0]="Placez des charges de X4 au dos des tourelles !ATTENTION! LES EXPLOSIFS SE DECLENCHERONT À LA FIN DU TOUR"
+ObjectiveTextPools[0]="(Optionnel) Placez des charges de X4 au dos des tourelles !ATTENTION! LES EXPLOSIFS SE DECLENCHERONT À LA FIN DU TOUR"
 ObjectiveTextPools[1]="Placez une bombe pour détruire le générateur mobile !ATTENTION! LES EXPLOSIFS SE DECLENCHERONT À LA FIN DU TOUR"
 ObjectiveTextPools[2]="Éliminer toutes les cibles hostiles"
 
@@ -3499,9 +3513,11 @@ Summary="Cet équipement ne fournit aucun bonus de défense, mais permet aux sol
 DisplayName="Blindage fortifié"
 Summary="Ce blindage s'inspire d'un ancien modèle d'XCOM et offre une protection supplémentaire importante aux soldats."
 
+; LWOTC translated
 [ChitinPlatingProject X2TechTemplate]
 DisplayName="Armure de chitine"
 Summary="Maintenant que nous avons étudié ce terrifiant Chrysalis, nous pensons être en mesure d'exploiter les matériaux de son exosquelette pour créer un blindage à la résistance inégalée."
+; LWOTC translated
 
 [APRoundsProject X2TechTemplate]
 DisplayName="Munitions antiblindage"
@@ -5301,9 +5317,11 @@ LocPromotionPopupText="<Bullet/> La capacité Taillade constitue la principale f
 ; End translated (3)
 
 [Whiplash X2AbilityTemplate]
+; LWOTC translated (3)
 LocLongDescription="Attaque un ennemi avec un fouet électrique, qui inflige des dégâts supplémentaires contre les unités mécaniques. Coûte 1 action et ne met pas fin au tour. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocHelpText="Attaque un ennemi avec un fouet électrique, qui inflige des dégâts supplémentaires contre les unités mécaniques. Coûte 1 action et ne met pas fin au tour. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocPromotionPopupText="<Bullet/> Attaque un ennemi avec un fouet électrique, qui inflige des dégâts supplémentaires contre les unités mécaniques. Coûte 1 action et ne met pas fin au tour. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocPromotionPopupText="<Bullet/> Attaque un ennemi avec un fouet électrique, qui inflige des dégâts supplémentaires contre les unités mécaniques. <br/><Bullet/> Coûte 1 action et ne met pas fin au tour. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s). <br/>"
+; End translated (3)
 ; End translated (2)
 
 [SkirmisherInterrupt X2AbilityTemplate]
@@ -5334,16 +5352,18 @@ LocLongDescription="Octroie une action bonus à un frère d'armes. De une à deu
 
 ; LWOTC translated
 [Shadow X2AbilityTemplate]
-LocLongDescription="Le soldat entre dans l'obscurité, une technique de dissimulation avancée. Cet effet se prolonge durant 2 tours. Action gratuite."
-LocHelpText="Le soldat entre dans l'obscurité, une technique de dissimulation avancée. Cet effet se prolonge durant 2 tours. Action gratuite."
-; LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Cette capacité réduit de 100% la portée de détection des unités ennemies, ce qui rend le soldat totalement invisible aux yeux de ses adversaires.<br/><Bullet/> La mobilité du soldat augmente dans l'Obscurité.<br/><Bullet/> Action gratuite. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
-; End translated (2)
+LocLongDescription="Le soldat entre dans l'obscurité, une technique de dissimulation avancée. Cet effet se prolonge durant 2 tours. Action gratuite. Un soldat qui entre dans l'obscurité ne peut pas être détecté par les tours d'ADVENT."
+LocHelpText="Le soldat entre dans l'obscurité, une technique de dissimulation avancée. Cet effet se prolonge durant 2 tours. Action gratuite. Un soldat qui entre dans l'obscurité ne peut pas être détecté par les tours d'ADVENT."
+; LWOTC translated (3)
+LocPromotionPopupText="<Bullet/> Cette capacité réduit la portée de détection des unités ennemies de quelques cases au mieux.<br/><Bullet/> La mobilité du soldat augmente dans l'Obscurité.<br/><Bullet/> Action gratuite. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Un soldat qui entre dans l'obscurité ne peut pas être détecté par les tours d'ADVENT.<br/>"
+; End translated (3)
 
+; LWOTC translated (2)
 [SilentKiller X2AbilityTemplate]
 LocLongDescription="Le Faucheur ne quitte pas l'obscurité lorsqu'il élimine un ennemi avec son arme principale."
 LocHelpText="Le Faucheur ne quitte pas l'obscurité lorsqu'il élimine un ennemi avec son arme principale."
-LocPromotionPopupText="<Bullet/> Le Faucheur ne quitte pas l'obscurité lorsqu'il élimine un ennemi avec son arme principale. En cas d'élimination, il est donc assuré de rester dissimulé durant le tour adverse.<br/>"
+LocPromotionPopupText="<Bullet/> Le Faucheur ne quitte pas l'obscurité lorsqu'il élimine un ennemi avec son arme principale.<br/>"
+; End translated (2)
 
 [ShadowRising X2AbilityTemplate]
 LocLongDescription="Le temps de rechargement de la capacité Obscurité est réduit de 1 tour."
@@ -5394,7 +5414,7 @@ LocFriendlyName="Traque"
 LocLongDescription="Vous détectez les unités proches même si vous n'avez pas de ligne de vue dégagée vers elles."
 LocHelpText="Vous détectez les unités proches même si vous n'avez pas de ligne de vue dégagée vers elles."
 LocFlyOverText="Traque"
-LocPromotionPopupText="<Bullet/> Traque permet à l'unité de détecter les autres unités situées derrière n'importe quel élément susceptible de bloquer la ligne de vue (mur, etc.).<br/><Bullet/> Traque permet de détecter les ennemis situés à une distance légèrement inférieure à la portée visuelle normale.<br/><Bullet/> Les unités détectées apparaîtront sous forme de silhouettes.<br/><Bullet/> Les unités resteront visibles jusqu'à la fin du tour du joueur. Si les unités détectées ce tour-ci se trouvent hors du champ d'action de la capacité Traque à la fin du tour du joueur, elles cessent immédiatement d'être détectées.<br/>"
+LocPromotionPopupText="<Bullet/> Traque permet à l'unité de détecter les autres unités situées derrière n'importe quel élément susceptible de bloquer la ligne de vue (mur, etc.).<br/><Bullet/> Traque permet de détecter les ennemis situés à une distance de 14 cases.<br/><Bullet/> Les unités détectées apparaîtront sous forme de silhouettes.<br/><Bullet/> Les unités resteront visibles jusqu'à la fin du tour du joueur. Si les unités détectées ce tour-ci se trouvent hors du champ d'action de la capacité Traque à la fin du tour du joueur, elles cessent immédiatement d'être détectées.<br/>"
 
 [Hero_TrackingTrigger X2AbilityTemplate]
 LocFriendlyName="Traque"
@@ -5408,8 +5428,11 @@ LocPromotionPopupText="<Bullet/> Le grappin fait de l'Escarmoucheur un excellent
 ; End translated (2)
 
 [FullThrottle X2AbilityTemplate]
-LocLongDescription="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tour(s), tour en cours inclus."
-LocHelpText="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tour(s), tour en cours inclus."
+LocLongDescription="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tour(s), tour en cours inclus. Seules les unités éliminées par cette unité sont prises en compte par cette capacité."
+LocHelpText="Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tour(s), tour en cours inclus. Seules les unités éliminées par cette unité sont prises en compte par cette capacité."
+; LWOTC translated (2)
+LocPromotionPopupText="<Bullet/> Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à chaque victime pour ce tour. Dure <Ability:FULL_THROTTLE_DURATION/> tour(s), tour en cours inclus. Seules les unités éliminées par cette unité sont prises en compte par cette capacité.<br/>"
+; End translated (2)
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="Justice"
@@ -5460,8 +5483,10 @@ LocPromotionPopupText="<Bullet/> Réconfort annule la désorientation, le contr�
 LocPromotionPopupText="<Bullet/> Le Fantôme débute avec un niveau de concentration égal à celui du Templier lorsqu'il l'a invoqué moins 1.<br/><Bullet/> Le Fantôme ne peut pas gagner de concentration et disparaît lorsque sa concentration a été entièrement consommée ou lorsque ses PV deviennent égaux à 0.<br/><Bullet/> Taillade coûte 1 point de concentration lorsqu'elle est utilisée par un Fantôme.<br/><Bullet/> Le Fantôme doit être invoqué sur le cadavre d'un ennemi humanoïde, dans la limite d'une invocation par cadavre.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Le Fantôme n'a pas accès aux capacités de bouclier et ne peut pas faire appel à la capacité Coup de bouclier. Le Fantôme n'a pas accès aux capacités suivantes: Volt, Déviation, Renvoi, Réconfort, Conduit du néant, Escrimeur, Transe du vide, Force d'âme, Tempête ionique et Endurance.<br/>"
 ; End translated (2)
 
-; LWOTC translated #2 - Shard and Caster gauntlet tactical text and the brief
+; LWOTC Needs Translation (3)
+; (2) Shard and Caster gauntlet tactical text and the brief
 ; summaries for the caster gauntlets have been updated.
+; (3) Removed references to Fleche
 [ShardGauntlet_CV X2PairedWeaponTemplate]
 TacticalText="<Bullet/> Les Templiers peuvent \"sprinter\" en utilisant leurs deux actions tout en étant capables de lancer une attaque sur un ennemi adjacent.\n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps!\n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
 
@@ -5470,6 +5495,7 @@ TacticalText="<Bullet/> Les Templiers peuvent \"sprinter\" en utilisant leurs de
 
 [ShardGauntlet_BM X2PairedWeaponTemplate]
 TacticalText="<Bullet/> Les Templiers peuvent \"sprinter\" en utilisant leurs deux actions tout en étant capables de lancer une attaque sur un ennemi adjacent.\n<Bullet/> Pesez bien le pour et le contre avant d'attaquer un ennemi au corps à corps!\n<Bullet/> Tâchez de repérer les opportunités d'améliorer l'efficacité de nos armes blanches ; l'ennemi aura parfois accès à des technologies bien meilleures que les nôtres."
+; End translated (3)
 
 [CasterGauntlet_CV X2PairedWeaponTemplate]
 FriendlyName="Gantelets de l'invocateur"
@@ -5499,29 +5525,38 @@ LocHelpText="Désactive une arme, en déchargeant ses munitions."
 LocLongDescription="Désactive une arme, en déchargeant ses munitions."
 LocFlyOverText="Sabotage d'arme"
 
+; LWOTC translated (2)
+;(2) Added the Cooldown Text
 [ShieldAllyM1 X2AbilityTemplate]
 LocFriendlyName="Pouvoir des Anciens"
-LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
-LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
+LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocFlyOverText="Pouvoir des Anciens"
 
 [ShieldAllyM2 X2AbilityTemplate]
 LocFriendlyName="Pouvoir des Anciens"
-LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
-LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
+LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocFlyOverText="Pouvoir des Anciens"
 
 [ShieldAllyM3 X2AbilityTemplate]
 LocFriendlyName="Pouvoir des Anciens"
-LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
-LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
+LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocFlyOverText="Pouvoir des Anciens"
 
 [ShieldAllyM4 X2AbilityTemplate]
 LocFriendlyName="Pouvoir des Anciens"
-LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
-LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%."
+LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocFlyOverText="Pouvoir des Anciens"
+
+[PsiMindControl X2AbilityTemplate]
+LocFriendlyName="Contrôle mental"
+LocLongDescription="Prend le contrôle de l'unité ciblée, la forçant à se retourner contre ses anciens alliés. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocHelpText="Prend le contrôle de l'unité ciblée, la forçant à se retourner contre ses anciens alliés. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocFlyOverText="Contrôle mental"
+; End translated #2
 
 [ChosenImmuneMelee X2AbilityTemplate]
 LocFriendlyName="Anticipation"
@@ -5550,13 +5585,15 @@ LocHelpText="Réanime un soldat inconscient."
 LocLongDescription="Réanime un soldat inconscient."
 LocFlyOverText="Debout!"
 
+; LWOTC translated (2)
+;(2) Added the Cooldown Text
 [ChosenSummonFollowers X2AbilityTemplate]
 LocFriendlyName="Appel aux fidèles"
-LocHelpText="Peut appeler des extraterrestres."
+LocHelpText="Peut appeler des extraterrestres. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocLongDescription="Peut appeler des extraterrestres."
 LocFlyOverText="Appel aux fidèles"
-
-; End Translated
+; End translated #2
+; End translated
 
 ; LWOTC Translated
 [Lethargy X2AbilityTemplate]
@@ -6110,19 +6147,21 @@ LocHelpText="Activez cette capacité avant d'utiliser votre électro flux pour q
 LocPromotionPopupText="<Bullet/> Activez cette capacité avant d'utiliser votre électro flux pour que son utilisation soit traitée comme une action gratuite. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Peut être combinée aux capacités Étourdissement, Électro Impulsion et Foudroiement.<br/>"
 ; End translated (2)
 
+; LWOTC translatedn (2)
 [Hipfire_LW X2AbilityTemplate]
 LocFriendlyName="Tir de hanche"
 LocFlyOverText="Tir de hanche"
 LocLongDescription="Tirer avec le fusil à canon scié ne met plus fin à votre tour."
 LocHelpText="Tirer avec le fusil à canon scié ne met plus fin à votre tour."
 LocPromotionPopupText="<Bullet/> Grâce à cette capacité les capacités À bout portant et Double canon du fusil à canon scié ne mettent plus fin à votre tour.<br/>"
+; End translated (2)
 
 [NoneShallPass_LW X2AbilityTemplate]
 LocFriendlyName="Barrage"
 LocFlyOverText="Barrage"
 LocLongDescription="Une fois par tour ennemi, effectuez un tir réflexe gratuit avec votre fusil à canon scié contre n'importe quel ennemi visible qui se déplace ou réalise un tir dans un rayon de <Ability:NONE_SHALL_PASS_TILE_RANGE/> cases. Ce tir gratuit peut infliger des coups critiques. Cette capacité ne se déclenche pas pendant votre tour."
 LocHelpText="Une fois par tour ennemi, effectuez un tir réflexe gratuit avec votre fusil à canon scié contre n'importe quel ennemi visible qui se déplace ou réalise un tir dans un rayon de <Ability:NONE_SHALL_PASS_TILE_RANGE/> cases. Ce tir gratuit peut infliger des coups critiques. Cette capacité ne se déclenche pas pendant votre tour."
-LocPromotionPopupText="<Bullet/> Cette capacité ne se déclenchera pas si vous êtes dissimulé.<br/><Bullet/>Ne se déclenche qu'une fois par tour.<br/><Bullet/> Cette capacité consomme 1 munition et ne se déclenchera uniquement si le fusil à canon scié est chargé.<br/><Bullet/> Peut infliger des coups critiques.<br/><Bullet/> Cette capacité ne se déclenche pas pendant votre tour (uniquement pendant le tour adverse). Fonctionne durant n'importe quel tour ennemi: extraterretsre, Ombre, Élus and Rois.<br/>"
+LocPromotionPopupText="<Bullet/> Cette capacité ne se déclenchera pas si vous êtes dissimulé.<br/><Bullet/> Ne se déclenche qu'une fois par tour.<br/><Bullet/> Cette capacité consomme 1 munition et ne se déclenchera uniquement si le fusil à canon scié est chargé.<br/><Bullet/> Peut infliger des coups critiques.<br/><Bullet/> Cette capacité ne se déclenche pas pendant votre tour (uniquement pendant le tour adverse). Fonctionne durant n'importe quel tour ennemi: extraterretsre, Ombre, Élus and Rois.<br/>"
 
 [ScrapMetal_LW X2AbilityTemplate]
 LocFriendlyName="Ferraille"
@@ -6179,11 +6218,11 @@ LocPromotionPopupText = "<Bullet/> Envoyez le GREMLIN étourdir la cible ainsi q
 [LeadTheTarget_LW X2AbilityTemplate]
 LocFriendlyName = "Exécution"
 LocFlyOverText = "Exécution"
-; LWOTC translated (2)
-LocHelpText = "Maintenez durablement la cible dans votre ligne de mire pour réaliser un tir lent mais particulièrement dévastateur. Ce tir augmente les chances de coup critique de <Ability:LEAD_TARGET_AIM_BONUS/>%, mais sa résolution est retardée jusqu'au prochain tour adverse, lorsque la cible tentera d'agir (tir, déplacement, etc.). Coûte 2 actions. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocLongDescription = "Maintenez durablement la cible dans votre ligne de mire pour réaliser un tir lent mais particulièrement dévastateur. Ce tir augmente les chances de coup critique de <Ability:LEAD_TARGET_AIM_BONUS/>%, mais sa résolution est retardée jusqu'au prochain tour adverse, lorsque la cible tentera d'agir (tir, déplacement, etc.). Coûte 2 actions. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
-LocPromotionPopupText = "<Bullet/> Maintenez durablement la cible dans votre ligne de mire pour réaliser un tir lent mais particulièrement dévastateur. Ce tir augmente les chances de coup critique de <Ability:LEAD_TARGET_AIM_BONUS/>%, mais sa résolution est retardée jusqu'au prochain tour adverse, lorsque la cible tentera d'agir (tir, déplacement, etc.). Coûte 2 actions. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
-; End translated (2)
+; LWOTC translated (3)
+LocHelpText = "Tir spécial qui augmente les chances de coup critique de <Ability:LEAD_TARGET_AIM_BONUS/>%, mais dont la résolution est retardée jusqu'au prochain tour adverse, lorsque la cible tentera d'agir (tir, déplacement, etc.). Coûte 2 actions. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocLongDescription = "Tir spécial qui augmente les chances de coup critique de <Ability:LEAD_TARGET_AIM_BONUS/>%, mais dont la résolution est retardée jusqu'au prochain tour adverse, lorsque la cible tentera d'agir (tir, déplacement, etc.). Coûte 2 actions. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocPromotionPopupText = "<Bullet/> Tir spécial qui augmente les chances de coup critique de <Ability:LEAD_TARGET_AIM_BONUS/>%, mais dont la résolution est retardée jusqu'au prochain tour adverse, lorsque la cible tentera d'agir (tir, déplacement, etc.). Coûte 2 actions. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+; End translated (3)
 
 [LeadTheTargetShot_LW X2AbilityTemplate]
 LocFriendlyName = "Exécution"
@@ -6209,13 +6248,13 @@ LocHelpText = "Vous pouvez utiliser l'électro flux pour soigner les unités mé
 LocLongDescription = "Vous pouvez utiliser l'électro flux pour soigner les unités mécaniques."
 LocPromotionPopupText = "<Bullet/> Vous pouvez utiliser l'électro flux pour soigner les unités mécaniques.<br/><Bullet/> Vous débutez chaque mission avec <Ability:SUPERCHARGE_CHARGES/> charges capables de soigner <Ability:SUPERCHARGE_HEAL/> PV chacune.<br/><Bullet/> Cette capacité peut être utilisée pour soigner n'importe quel type d'unité mécanique: SPARK, CEM de la résitance, unités piratées d'ADVENT, etc.<br/>"
 
-; LWOTC translated (2)
+; LWOTC translated (3)
 [ShootingSharp_LW X2AbilityTemplate]
 LocFriendlyName = "Œil d'aigle"
 LocHelpText = "Vos attaques à distance gagnent un bonus additionnel de +<Ability:SS_AIM_BONUS/> en visée et ignorent <Ability:SS_PIERCE/> point(s) d'armure lorsque vous prenez pour cible une unité à couvert."
 LocLongDescription = "Vos attaques à distance gagnent un bonus additionnel de +<Ability:SS_AIM_BONUS/> en visée et ignorent <Ability:SS_PIERCE/> point(s) d'armure lorsque vous prenez pour cible une unité à couvert."
 LocPromotionPopupText = "<Bullet/> Vos attaques à distance gagnent un bonus additionnel de +<Ability:SS_AIM_BONUS/> en visée et ignorent <Ability:SS_PIERCE/> point(s) d'armure lorsque vous prenez pour cible une unité à couvert.<br/>"
-; End translated (2)
+; End translated (3)
 
 [Unlimitedpower_LW X2AbilityTemplate]
 LocFriendlyName = "Batteries auxiliaires"
@@ -6350,8 +6389,8 @@ LocPromotionPopupText="<Bullet/> Les unités affectées par la capacité Esprit 
 
 [MindScorch X2AbilityTemplate]
 LocFriendlyName="Esprit écorché"
-LocHelpText="Le Sorcier projette des visions cauchemardesques dans l'esprit de sa cible. Cette attaque inflige des dégâts à la cible et a <Ability:MIND_SCORCH_BURN_CHANCE/>% de chances de l'embraser."
-LocLongDescription="Le Sorcier projette des visions cauchemardesques dans l'esprit de sa cible. Cette attaque inflige des dégâts à la cible et a <Ability:MIND_SCORCH_BURN_CHANCE/>% de chances de l'embraser."
+LocHelpText="Le Sorcier projette des visions cauchemardesques dans l'esprit de sa cible. Cette attaque inflige des dégâts à la cible et a <Ability:MIND_SCORCH_BURN_CHANCE/>% de chances de l'embraser. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocLongDescription="Le Sorcier projette des visions cauchemardesques dans l'esprit de sa cible. Cette attaque inflige des dégâts à la cible et a <Ability:MIND_SCORCH_BURN_CHANCE/>% de chances de l'embraser. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Kidnapping"
@@ -6443,7 +6482,6 @@ strAcquiredText="Le Chasseur est le maître incontesté des armes à longue port
 strCharacterName="Chasseur"
 strAcquiredText="Le Chasseur est le maître incontesté des armes à longue portée, harcelant vos troupes à distance et profitant de la moindre erreur pour les abattre d'un tir bien placé. S'il est plus faible en combat rapproché, il ne doit pas être sous-estimé pour autant."
 
-; LWOTC translated (2)
 [BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Soif de sang"
 LocLongDescription="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Retiré en cas de kidnapping réussi. Le bonus dépend de la force de l'Élu (+1/1/2/3)."
@@ -6455,7 +6493,6 @@ LocFriendlyName="Soif de sang"
 LocLongDescription="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Le bonus dépend de la force de l'Élu (+1/1/2/3). Retiré en cas de kidnapping réussi."
 LocHelpText="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Le bonus dépend de la force de l'Élu (+1/1/2/3). Retiré en cas de kidnapping réussi."
 LocFlyOverText="Soif de sang"
-; LWOTC translated (2)
 
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="Frappe précise"
@@ -6630,12 +6667,14 @@ LocHelpText="L'Élu est immunisé à l'étourdissement, la désorientation et la
 LocFlyOverText="Immunités de l'Élu"
 ; End translated (2)
 
-
+; LWOTC translated (2)
+;(2) Added the Cooldown Text
 [HarborWave X2AbilityTemplate]
 LocFriendlyName="Raz-de-marée"
-LocLongDescription="Projette une vague psionique qui inflige des dégâts. Le cas échéant, les bonus de la capacité Soif de sang y sont appliqués."
-LocHelpText="Projette une vague psionique qui inflige des dégâts. Le cas échéant, les bonus de la capacité Soif de sang y sont appliqués."
+LocLongDescription="Projette une vague psionique qui inflige des dégâts. Le cas échéant, les bonus de la capacité Soif de sang y sont appliqués. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+LocHelpText="Projette une vague psionique qui inflige des dégâts. Le cas échéant, les bonus de la capacité Soif de sang y sont appliqués. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocFlyOverText="Raz-de-marée"
+; End Translation (2)
 
 ; LWOTC translated (2)
 [Brawler X2AbilityTemplate]
@@ -6672,20 +6711,20 @@ LocFriendlyName="Voile d'ombre"
 LocHelpText="Les unités situées dans la zone d'effet de la fumée ne sont jamais considérées comme des cibles contournées."
 ; End translated (2)
 
-
+; LWOTC Needs Translation (2)
 [ImpactCompensation_LW X2AbilityTemplate]
 LocFriendlyName="Compensation d'impact"
 LocFlyOverText="Compensation d'impact"
-LocLongDescription="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
-LocHelpText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
-LocPromotionPopupText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
+LocLongDescription="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
+LocHelpText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
+LocPromotionPopupText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
 
 [ImpactCompensationPassive_LW X2AbilityTemplate]
 LocFriendlyName="Compensation d'impact"
 LocFlyOverText="Compensation d'impact"
-LocLongDescription="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
-LocHelpText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
-LocPromotionPopupText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>). Cet effet est réinitialisé à 0 au début de votre tour."
+LocLongDescription="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
+LocHelpText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
+LocPromotionPopupText="Après avoir subi des dégâts, gagnez une réduction des dégâts cumulative de <Ability:IMPACT_COMPENSATION_PCT_DR>% jusqu'à la fin de votre tour (jusqu'à un maximum de <Ability:IMPACT_COMPENSATION_MAX_STACKS/>)."
 
 [MovingTarget_LW X2AbilityTemplate]
 LocFriendlyName="Cible mouvante"
@@ -6696,6 +6735,10 @@ LocPromotionPopupText="Vous gagnez un bonus additionnel de +<Ability:MOVING_TARG
 
 ; End translated
 
+; LWOTC translated
+[ChosenAction_Retribution X2ChosenActionTemplate]
+SummaryText="De violentes représailles dirigées contre la résistance, qui a pou effet de réduire l'efficacité des actions des rebels dans la région (Ressources, Renseignements et Recruter) pendant <Ability:CHOSEN_RETRIBUTION_DURATION/> jours."
+; End translated
 
 ; LWOTC translated
 [XComGameState_AdventChosen]
@@ -6707,18 +6750,17 @@ KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="L'Élu peut lancer un assaut 
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Chosen peut mener une opération supplémentaire!"
 
 
-; LWOTC Needs Translation (2)
+; LWOTC translated (2)
 ; Remove this section
 ; [X2Ability_LW_ChosenAbilities]
-; End Translation (2)
+; End translated (2)
 
 [Magnum_LW X2AbilityTemplate]
 LocFriendlyName="Pistolero"
 LocLongDescription="Les tirs standards et les tirs réflexes au pistolet ne subissent plus de malus de portée."
 LocHelpText="Les tirs standards et les tirs réflexes au pistolet ne subissent plus de malus de portée."
 LocFlyOverText="Pistolero"
-LocPromotionPopupText="<Bullet/> Les tirs standards et les tirs réflexes au pistolet ne subissent plus de malus de portée.<br/> <Bullet/> Ne s'applique pas aux capacités de pistolet comme Mains fulgurantes, Fin tireur or Confrontation.<br/>"
-
+LocPromotionPopupText="<Bullet/> Les tirs standards et les tirs réflexes au pistolet ne subissent plus de malus de portée.<br/> <Bullet/> Ne s'applique pas aux capacités de pistolet comme Mains fulgurantes, Fin tireur ou Confrontation.<br/>"
 
 [HunterFlashbang X2GrenadeTemplate]
 FriendlyName="Grenade flash"
@@ -6779,19 +6821,19 @@ LocPromotionPopupText="<Bullet/> Si un ennemi termine son tour sur une case adja
 FriendlyName="Bouclier de templier Mk1"
 FriendlyNamePlural="Boucliers de templier Mk1"
 BriefSummary="Le bouclier du templier est constitué de plaques de métal et de renforts en céramique, afin d'offrir une meilleure protection contre les armes de gros calibre. Il protège aussi bien son utilisateur que les unités alliées qui lui sont adjacentes."
-TacticalText="<Bullet/>Le bouclier du templier est constitué de plaques de métal et de renforts en céramique, afin d'offrir une meilleure protection contre les armes de gros calibre. Il protège aussi bien son utilisateur que les unités alliées qui lui sont adjacentes."
+TacticalText="<Bullet/> Le bouclier du templier est constitué de plaques de métal et de renforts en céramique, afin d'offrir une meilleure protection contre les armes de gros calibre. Il protège aussi bien son utilisateur que les unités alliées qui lui sont adjacentes."
 
 [TemplarBallisticShield_MG X2WeaponTemplate]
 FriendlyName="Bouclier de templier Mk2"
 FriendlyNamePlural="Boucliers de templier Mk2"
 BriefSummary="Cette nouvelle version du bouclier du templier est constituée d'une structure en alliage qui a été renforcée par des polymères complexes. Ce nouveau modèle est à la fois plus léger mais également plus résistant que l'ancien."
-TacticalText="<Bullet/>Cette nouvelle version du bouclier du templier est constituée d'une structure en alliage qui a été renforcée par des polymères complexes. Ce nouveau modèle est à la fois plus léger mais également plus résistant que l'ancien."
+TacticalText="<Bullet/> Cette nouvelle version du bouclier du templier est constituée d'une structure en alliage qui a été renforcée par des polymères complexes. Ce nouveau modèle est à la fois plus léger mais également plus résistant que l'ancien."
 
 [TemplarBallisticShield_BM X2WeaponTemplate]
 FriendlyName="Bouclier de templier Mk3"
 FriendlyNamePlural="Boucliers de templier Mk3"
 BriefSummary="Nos récentes avancées en matière de miniaturisation nous ont permis de concevoir nouveau modèle de bouclier. Sa structure avancée dissipe plus efficacement l'énergie cinétique des projectiles, réduisant d'autant leur force d'impact."
-TacticalText="<Bullet/>Nos récentes avancées en matière de miniaturisation nous ont permis de concevoir nouveau modèle de bouclier. Sa structure avancée dissipe plus efficacement l'énergie cinétique des projectiles, réduisant d'autant leur force d'impact."
+TacticalText="<Bullet/> Nos récentes avancées en matière de miniaturisation nous ont permis de concevoir nouveau modèle de bouclier. Sa structure avancée dissipe plus efficacement l'énergie cinétique des projectiles, réduisant d'autant leur force d'impact."
 
 [TemplarBallisticShield_GenerateCover X2AbilityTemplate]
 LocFriendlyName="Bouclier de templier"
@@ -6828,9 +6870,9 @@ LocFlyOverText="Coup de bouclier"
 
 [TemplarInvert X2AbilityTemplate]
 LocFriendlyName="Inversion"
-LocLongDescription="Inversez votre position avec celle d'une autre unité (alliée ou ennemie). Coûte 1 point de concentration."
-LocHelpText="Inversez votre position avec celle d'une autre unité (alliée ou ennemie). Coûte 1 point de concentration."
-LocPromotionPopupText="<Bullet/> L'Inversion a un temps de rechargement de <Ability:SelfCooldown/> tour(s) et ne met pas fin à votre tour.<br/><Bullet/> Cette capacité peut être utilisée pour cibler une unité alliée ou ennemie.<br/>"
+LocLongDescription="Inversez votre position avec celle d'une autre unité (alliée ou ennemie). Coûte 1 point de concentration. Ne peut pas cibler un Élu."
+LocHelpText="Inversez votre position avec celle d'une autre unité (alliée ou ennemie). Coûte 1 point de concentration. Ne peut pas cibler un Élu."
+LocPromotionPopupText="<Bullet/> L'Inversion a un temps de rechargement de <Ability:SelfCooldown/> tour(s) et ne met pas fin à votre tour.<br/><Bullet/> Cette capacité peut être utilisée pour cibler une unité alliée ou ennemie, mais ne peut pas cibler un Élu.<br/>"
 
 [OneForAll X2AbilityTemplate]
 LocFriendlyName="Dôme de fer"
@@ -6864,7 +6906,7 @@ LocPromotionPopupText="<Bullet/> Réduit le temps de guérison de ce soldat de <
 LocFriendlyName="Indomptable"
 LocHelpText="Une fois par tour, gagnez 1 point de concentration lorsque vous êtes pris pour cible par une attaque (à distance ou au corps à corps)."
 LocLongDescription="Une fois par tour, gagnez 1 point de concentration lorsque vous êtes pris pour cible par une attaque (à distance ou au corps à corps)."
-LocPromotionPopupText"<Bullet/>Une fois par tour, gagnez 1 point de concentration lorsque vous êtes pris pour cible par une attaque (à distance ou au corps à corps).<br/>"
+LocPromotionPopupText"<Bullet/> Une fois par tour, gagnez 1 point de concentration lorsque vous êtes pris pour cible par une attaque (à distance ou au corps à corps).<br/>"
 LocFlyOverText="Indomptable"
 
 [VoltFocusOnKills X2AbilityTemplate]
@@ -6878,12 +6920,15 @@ LocFriendlyName="Force d'âme"
 LocHelpText="La capacité Taillade génère 1 point de concentration de plus."
 LocLongDescription="La capacité Taillade génère 1 point de concentration de plus."
 LocFlyOverText="Force d'âme"
+LocPromotionPopupText"<Bullet/> La capacité Taillade génère 1 point de concentration de plus."
 
+; LWOTC translated (2)
 [DoubleRendFocusPassive X2AbilityTemplate]
 LocFriendlyName="Force d'âme"
 LocHelpText="La capacité Taillade génère 1 point de concentration de plus."
 LocLongDescription="La capacité Taillade génère 1 point de concentration de plus."
 LocFlyOverText="Force d'âme"
+; End translated (2)
 
 [Volt X2AbilityTemplate]
 LocFriendlyName="Volt"
@@ -6901,8 +6946,8 @@ LocPromotionPopupText="<Bullet/> Marque une cible avec une lentille psionique, q
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Ferveur"
-LocHelpText="Infligez 50% de dégâts supplémentaires si vos PV actuels sont inférieurs ou égaux à 50% de vos PV initiaux. Cette capacité réduit également le temps de guérison du soldat de 6 PV."
-LocLongDescription="Infligez 50% de dégâts supplémentaires si vos PV actuels sont inférieurs ou égaux à 50% de vos PV initiaux. Cette capacité réduit également le temps de guérison du soldat de 6 PV."
+LocHelpText="Infligez 25% de dégâts supplémentaires pour chaque tranche de 25% de PV que vous avez perdu (jusqu'à un maximum de 50%). Cette capacité réduit également le temps de guérison du soldat de 4 PV."
+LocLongDescription="Infligez 25% de dégâts supplémentaires pour chaque tranche de 25% de PV que vous avez perdu (jusqu'à un maximum de 50%). Cette capacité réduit également le temps de guérison du soldat de 4 PV."
 LocPromotionPopupText="<Bullet/> La réduction du temps de guérison est ignorée si le soldat a été éliminé, mis hors-combat ou stabilisé durant la mission.<br/>"
 LocFlyOverText="Ferveur"
 
@@ -6929,8 +6974,11 @@ AbilityDescName="pistolet automatique"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramédical"
-LocLongDescription="Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charges de plus. Utiliser un médikit pour la première fois lors d'un tour est considéré comme une action gratuite. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
-LocHelpText="Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charges de plus. Utiliser un médikit pour la première fois lors d'un tour est considéré comme une action gratuite. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
+LocLongDescription="Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Utiliser un médikit pour la première fois du tour est considéré comme une action gratuite. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
+LocHelpText="Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Utiliser un médikit pour la première fois du tour est considéré comme une action gratuite. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
+; LWOTC translated (2)
+LocPromotionPopupText="<Bullet/> Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Utiliser un médikit pour la première fois du tour est considéré comme une action gratuite. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
+; End translated (2)
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Bannissement"
@@ -6939,20 +6987,22 @@ LocHelpText="Tirez sur une cible jusqu'à ce que vous soyez à court de munition
 LocFlyoverText="Bannissement"
 LocPromotionPopupText="<Bullet/> Chaque tir effectué avec Bannissement a une chance individuelle de toucher la cible et peut infliger des coups critiques.<br/><Bullet/> Vous devez avoir plus d'une munition pour activer cette capacité.<br/>"
 
-; LWOTC translated (2)
+; LWOTC translated (3)
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Combat total"
-LocLongDescription="Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. Annule le temps de rechargement du lancer de grenade. Octroie les capacités Bombardement et Mélange explosif (grenades: portée +2 cases, zone d'effet +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
-LocHelpText="Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. Annule le temps de rechargement du lancer de grenade. Octroie les capacités Bombardement et Mélange explosif (grenades: portée +2 cases, zone d'effet +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
-LocPromotionPopupText="<Bullet/> Cette capacité octroie les capacités Bombardement et Mélange explosif, et ne peut donc pas être combinée avec ces capacités.<br/>"
-; End translated (2)
+LocLongDescription="Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
+LocHelpText="Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
+LocPromotionPopupText="<Bullet/> Cette capacité octroie la capacité Mélange explosif, et ne peut donc pas être combinée avec cette capacité.<br/>"
+; End translated (3)
 
 [PackMaster_LW X2AbilityTemplate]
 LocFriendlyName="Équipement tactique"
 LocFlyOverText="Équipement tactique"
 LocLongDescription="Confère +1 charge par grenade ou objet équipé (qu'il soit dans un emplacement utilitaire ou réservé aux grenades)."
 LocHelpText="Confère +1 charge par grenade ou objet équipé (qu'il soit dans un emplacement utilitaire ou réservé aux grenades)."
-LocPromotionPopupText="<Bullet/> Confère +1 charge par grenade ou objet équipé (qu'il soit dans un emplacement utilitaire ou réservé aux grenades).<br/> <Bullet/> S'applique aux emplacements utilitaires ainsi qu'aux emplacmeents réservés aux grenades, mais pas autres types d'emplacements.<br/> Les grenades supplémentaires procurées par les capacités telles que Aveuglement ou Fumigène ne sont pas affectées par cette capacité.<br/>"
+; LWOTC translated (2)
+LocPromotionPopupText="<Bullet/> Confère +1 charge par grenade ou objet équipé (qu'il soit dans un emplacement utilitaire ou réservé aux grenades).<br/> <Bullet/> S'applique aux emplacements utilitaires ainsi qu'aux emplacements réservés aux grenades, mais pas aux autres types d'emplacements.<br/> Les grenades supplémentaires procurées par les capacités telles que Aveuglement ou Fumigène ne sont pas affectées par cette capacité.<br/>"
+; End translated (2)
 
 [SkirmisherInterrupt_LW X2AbilityTemplate]
 LocFriendlyName="Interruption"
@@ -6964,7 +7014,7 @@ LocPromotionPopupText="<Bullet/> Une forme supérieure de Vigilance. Plutôt que
 LocFriendlyName="Vague arquée"
 LocLongDescription="La Taillade génère une vague d'énergie psionique dans la direction de l'attaque. La Vague arquée n'affecte pas la cible de la Taillade originale. Les versions améliorées des gantelets augmentent les dégâts infligés par cet effet."
 LocHelpText="La Taillade génère une vague d'énergie psionique dans la direction de l'attaque. La Vague arquée n'affecte pas la cible de la Taillade originale."
-LocPromotionPopupText="<Bullet/> La Vague arquée inflige 4/6/8 points de dégâts, en fonction du modèle de gantelets utilisé.<br/><Bullet/> La Vague arquée traverse les éléments du décor.<br/>"
+LocPromotionPopupText="<Bullet/> La Vague arquée inflige 4/7/10 points de dégâts, en fonction du modèle de gantelets utilisé.<br/><Bullet/> La Vague arquée traverse les éléments du décor.<br/>"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="Tempête ionique"
@@ -6972,13 +7022,53 @@ LocLongDescription="Invoque une tempête d'énergie psionique qui frappe tous le
 LocHelpText="Invoque une tempête d'énergie psionique qui frappe tous les ennemis situés à proximité. Inflige le double de dégâts aux unités psioniques. Les dégâts de base et la zone d'effet augmentent avec le niveau de concentration. Consomme tous les points de concentration du Templier."
 LocPromotionPopupText="<Bullet/> Invoque une tempête d'énergie psionique qui frappe tous les ennemis situés à proximité. Inflige le double de dégâts aux unités psioniques. Les dégâts de base et la zone d'effet augmentent avec le niveau de concentration. Consomme tous les points de concentration du Templier.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown/> tour(s).<br/>"
 
-; End translated
 
 ; LWOTC translated
 [Sabotage_LongRangeComms X2SabotageTemplate]
 SummaryText="Nous sommes incapables de maintenir durablement nos communications à longue distance après le récent sabotage de l'Élu. Les missions secrètes sont retardées de 2 semaines."
 ShortSummaryText="Nos missions secrètes sont retardées de 2 semaines!"
 ; End translated
+
+; LWOTC translated
+
+[Unstoppable_LW X2AbilityTemplate]
+LocFriendlyName="Instoppable"
+LocLongDescription="La mobilité de cette unité ne peut être réduite en-dessous de <Ability:UNSTOPPABLE_MIN_MOB>."
+LocHelpText="La mobilité de cette unité ne peut être réduite en-dessous de <Ability:UNSTOPPABLE_MIN_MOB>."
+LocFlyOverText="Instoppable"
+LocPromotionPopupText="La mobilité de cette unité ne peut être réduite en-dessous de <Ability:UNSTOPPABLE_MIN_MOB>."
+
+[UnstoppablePassive_LW X2AbilityTemplate]
+LocFriendlyName="Instoppable"
+LocLongDescription="La mobilité de cette unité ne peut être réduite en-dessous de <Ability:UNSTOPPABLE_MIN_MOB>."
+LocHelpText="La mobilité de cette unité ne peut être réduite en-dessous de <Ability:UNSTOPPABLE_MIN_MOB>."
+LocFlyOverText="Instoppable"
+LocPromotionPopupText="La mobilité de cette unité ne peut être réduite en-dessous de <Ability:UNSTOPPABLE_MIN_MOB>."
+
+[TargetingAimAndCrit X2AbilityTemplate]
+LocLongDescription="Visée du soldat augmentée de <Ability:TargetingAimAndCrit_AimBonus/> et chances de coups critiques augmentées de <Ability:TargetingAimAndCrit_CritBonus/> pendant <Ability:TURNSREMAINING/> tour(s)."
+
+[TargetingDodge X2AbilityTemplate]
+LocLongDescription="Esquive du soldat augmentée de <Ability:TargetingDodge_DodgeBonus/> pendant <Ability:TURNSREMAINING/> tour(s)."
+
+[TargetingCrit X2AbilityTemplate]
+LocLongDescription="Chances de coups critiques du soldat augmentées de <Ability:TargetingCrit_CritBonus/> pendant <Ability:TURNSREMAINING/> tour(s)."
+
+[Hypnography X2AbilityTemplate]
+LocLongDescription="La volonté des unités adverses est réduite de <Ability:Hypnography_WillBonus/>%."
+; End translated
+
+; LWOTC translated
+[MicroMissiles X2AbilityTemplate]
+LocHelpText="Cible une zone de jeu avec une attaque de missiles explosifs."
+
+; LWOTC translated
+[FlashbangResistancePassive X2AbilityTemplate]
+LocFriendlyName="Résistance aux grenades flash"
+LocLongDescription="Cette unité a <Ability:FLASHBANG_RESIST_VALUE/>% de résister aux désorientations provoquées par les grenades flash."
+LocHelpText="Cette unité a <Ability:FLASHBANG_RESIST_VALUE/>% de résister aux désorientations provoquées par les grenades flash."
+; End translated
+
 
 ;;;;;;;;;;;;;;;;;;;;  SPECIFICITES FRA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; LWotC(FRA) - Was here before, can't say if I've to delete it
