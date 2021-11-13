@@ -9,7 +9,9 @@ AbilityDescName="fusil d'assaut"
 FriendlyName="Pistolet-mitrailleur laser"
 FriendlyNamePlural="Pistolets-mitrailleurs laser"
 BriefSummary="Une version plus légère du fusil laser, qui remplit un rôle proche de celui du pistolet-mitrailleur troquant la puissance, les munitions et la précision à distance contre un camouflage et une mobilité accrus pour son porteur."
-TacticalText="<Bullet/> Un tir avec son arme principale met toujours fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis d'ADVENT pour augmenter l'efficacité tactique du pistolet-mitrailleur. \n<Bullet/> Les armes semblables au pistolet-mitrailleur offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais font moins de dégâts, ont moins de munitions et sont moins précises à longue portée.\n<Bullet/> Les armes laser disposent d'un bonus de visée."
+; LWOTC translated
+TacticalText="<Bullet/> Un tir avec son arme principale met toujours fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis d'ADVENT pour augmenter l'efficacité tactique du pistolet-mitrailleur. \n<Bullet/> Les armes semblables au pistolet-mitrailleur offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais font moins de dégâts et sont moins précises à longue portée.\n<Bullet/> Les armes laser disposent d'un bonus de visée."
+; LWOTC translated
 AbilityDescName="Mitraillette"
 
 [Cannon_LS X2WeaponTemplate]
