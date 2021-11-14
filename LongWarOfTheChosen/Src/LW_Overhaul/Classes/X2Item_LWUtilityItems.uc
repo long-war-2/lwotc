@@ -170,7 +170,6 @@ static function X2AmmoTemplate CreateStilettoRounds()
 	Template.CanBeBuilt = true;
 
 	Template.Abilities.AddItem('Stiletto_Rounds_Ability');
-	Template.Abilities.AddItem('Stiletto_Rounds_Ability_PP');
 
 	//FX References
 	//Template.GameArchetype = "Ammo_Stiletto.PJ_Stiletto"; // present, placeholder FX
