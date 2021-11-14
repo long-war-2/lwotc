@@ -933,7 +933,7 @@ static function X2DataTemplate AddParamedic()
 	Template.GetBonusWeaponAmmoFn = Paramedic_BonusCharges;
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//  NOTE: No visualization on purpose!
 
 	return Template;
 }
