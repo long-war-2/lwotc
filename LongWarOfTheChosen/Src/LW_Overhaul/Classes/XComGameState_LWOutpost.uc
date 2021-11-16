@@ -300,8 +300,8 @@ function StateObjectReference CreateRebel(XComGameState NewGameState, XComGameSt
 			FacelessChance *= (default.FACELESS_CHANCE_MULTIPLIER_LIMIT + FacelessChanceModifier);
 		}
 	}
-
-	if (forceFaceless || (allowFaceless && `SYNC_FRAND() < FacelessChance && GetNumFaceless() / GetRebelCount() < default.MAX_FACELESS_PROPORTION))
+ 
+	if (forceFaceless || (allowFaceless && `SYNC_FRAND() < FacelessChance && GetRebelCount() > 0 && float(GetNumFaceless()) / float(GetRebelCount()) < default.MAX_FACELESS_PROPORTION))
 	{
 		CharacterTemplateName = 'FacelessRebel';
 	}
