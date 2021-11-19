@@ -1176,6 +1176,7 @@ function XComGameState JammerAbility_BuildGameState( XComGameStateContext Contex
 	AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext());
 	AbilityState = XComGameState_Ability(History.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID, eReturnType_Reference));
 	AbilityTemplate = AbilityState.GetMyTemplate();
+	AbilityState = XComGameState_Ability(NewGameState.ModifyStateObject(AbilityState.Class, AbilityState.ObjectID));
 
 	UnitState = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', AbilityContext.InputContext.SourceObject.ObjectID));
 	//Apply the cost of the ability
