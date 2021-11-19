@@ -430,8 +430,44 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FOCUS_FIRE_ARMORPIERCING':
 			OutString = string(class'X2Effect_FocusFire'.default.ARMORPIERCINGEFFECT);
 			return true;
+		case 'GETSOME_CRIT_BONUS':
+			OutString = string(class'X2Ability_OfficerAbilitySet'.default.GETSOME_CRIT_BONUS);
+			return true;
+		case 'COLLECTOR_BONUS_CHANCE':
+			OutString = string(class'X2Ability_OfficerAbilitySet'.default.COLLECTOR_BONUS_CHANCE);
+			return true;
+		case 'COLLECTOR_MAX_INTEL_PER_MISSION':
+			OutString = string(class'X2Ability_OfficerAbilitySet'.default.COLLECTOR_MAX_INTEL_PER_MISSION);
+			return true;
+		case 'DEFILADE_DEFENSE_BONUS':
+			OutString = string(class'X2Effect_Defilade'.default.DEFILADE_DEFENSE_BONUS);
+			return true;
+		case 'SCAVENGER_BONUS_MULTIPLIER':
+			OutString = string(int(class'X2Effect_Scavenger'.default.SCAVENGER_BONUS_MULTIPLIER * 100));
+			return true;
+		case 'FIREDISCIPLINE_REACTIONFIRE_BONUS':
+			OutString = string(class'X2Effect_FireDiscipline'.default.FIREDISCIPLINE_REACTIONFIRE_BONUS);
+			return true;
+		case 'OSCARMIKE_MOBILITY_BONUS':
+			OutString = string(class'X2Ability_OfficerAbilitySet'.default.OSCARMIKE_MOBILITY_BONUS);
+			return true;
+		case 'COMBINEDARMS_DAMAGE_BONUS':
+			OutString = string(int(class'X2Effect_CombinedArms'.default.COMBINEDARMS_DAMAGE_BONUS));
+			return true;
+		case 'INCOMING_COOLDOWN':
+			OutString = string(class'X2Ability_OfficerAbilitySet'.default.INCOMING_COOLDOWN);
+			return true;
+		case 'INCOMING_EXPLOSIVES_DR':
+			OutString = string(class'X2Ability_OfficerAbilitySet'.default.INCOMING_EXPLOSIVES_DR);
+			return true;
+		case 'INTERVENTION_INTEL_COST':
+			OutString = string(class'X2Ability_OfficerAbilitySet'.default.INTERVENTION_INTEL_COST);
+			return true;
+		case 'INTERVENTION_EXTRA_TURNS':
+			OutString = string(class'X2Ability_OfficerAbilitySet'.default.INTERVENTION_EXTRA_TURNS);
+			return true;
         default:
             return false;
     }
-    return ReturnValue;    
+	return ReturnValue;
 }

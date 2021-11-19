@@ -135,7 +135,8 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 				OutString = ItemTemplate.GetItemAbilityDescName();
 				return true;
 			}
-			return false;
+			OutString = AbilityTemplate.LocDefaultPrimaryWeapon;
+			return true;
         case 'FLECHE_BONUS_DAMAGE_PER_TILES':
 			TempFloat = 1 / class'X2Ability_PerkPackAbilitySet2'.default.BONUS_SLICE_DAMAGE_PER_TILE;
 			TempFloat = Round(TempFloat * 10.0) / 10.0;
@@ -208,6 +209,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'APEX_PREDATOR_PANIC_RADIUS':
 			OutString = string(int(class'X2Ability_XMBPerkAbilitySet'.default.APEX_PREDATOR_PANIC_RADIUS));
+			return true;
+		case 'APEX_PREDATOR_BASE_PANIC_CHANCE':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.APEX_PREDATOR_BASE_PANIC_CHANCE + class'X2AbilityToHitCalc_PanicCheck'.default.BaseValue);
 			return true;
 		case 'PREDATOR_AIM_BONUS':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.PREDATOR_AIM_BONUS);
