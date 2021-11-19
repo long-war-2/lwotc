@@ -2105,6 +2105,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'AdvShieldbearerM2':
 		case 'AdvShieldbearerM3':
 		case 'AdvStunLancerM1':
+		
+			Template.Abilities.AddItem('ZoneOfControl_LW');
+
 			Template.Abilities.AddItem('HunkerDown');
 			break;
 		case 'FacelessCivilian':
