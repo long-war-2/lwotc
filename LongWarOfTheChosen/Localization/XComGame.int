@@ -6987,8 +6987,8 @@ LocPromotionPopupText="<Bullet/> Volt has no cooldown, but costs 1 Focus.<br/><B
 
 [Amplify X2AbilityTemplate]
 LocFriendlyName="Amplify"
-LocLongDescription="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 2 attacks. Costs 1 Focus, free action."
-LocHelpText="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 2 attacks. Costs 1 Focus, free action."
+LocLongDescription="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 3 attacks. Costs 1 Focus, free action."
+LocHelpText="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 3 attacks. Costs 1 Focus, free action."
 LocHitMessage="Amplified"
 LocPromotionPopupText="<Bullet/> Amplify will last for two damage instances.<br/><Bullet/> Amplify is a free action.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
@@ -7023,12 +7023,11 @@ AbilityDescName="autopistol"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramedic"
-LocLongDescription="Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit.  Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
-LocHelpText="Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit.  Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
+LocLongDescription="Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
+LocHelpText="Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> "Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit.  Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
+LocPromotionPopupText="<Bullet/> "Unlocks an ability to perform a dash move to use a medikit on an ally. Gain a free medikit. Equipped medikits have <Ability:PARAMEDIC_BONUS_CHARGES/> extra charges. Healing abilities restore <Ability:PARAMEDIC_BONUS_HEAL/> additional hit points."
 ; End Translation (2)
-
 [ParaMedikitHeal X2AbilityTemplate]
 LocFriendlyName="Paramedic Heal"
 LocLongDescription="Run towards an Ally and heal them with your medikit."

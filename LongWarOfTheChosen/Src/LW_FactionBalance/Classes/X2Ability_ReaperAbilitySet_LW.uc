@@ -926,7 +926,7 @@ static function X2DataTemplate AddParamedic()
 	Template.AddTargetEffect (SaviorEffect);
 
 
-	//Template.GetBonusWeaponAmmoFn = Paramedic_BonusCharges;
+	Template.GetBonusWeaponAmmoFn = Paramedic_BonusCharges;
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
