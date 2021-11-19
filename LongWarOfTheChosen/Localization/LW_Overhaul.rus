@@ -15,7 +15,7 @@ m_strMissionDifficulty_start="БАЗОВАЯ АКТИВНОСТЬ ПРОТИВН
 
 [ProtectRegionEarly X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion1Activity"
-ActivityObjectives[0]="Найдите улику"
+ActivityObjectives[0]="Начните освобождение региона"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
@@ -81,7 +81,7 @@ ActivityObjectives[0]="Атакуйте научную лабораторию п
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Найдите улику"
+ActivityObjectives[0]="Вычислите маршрут перелётов"
 ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
@@ -90,7 +90,7 @@ ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Найдите улику"
+ActivityObjectives[0]="Вычислите маршрут перелётов"
 ActivityObjectives[1]="Заберите артефакты с НЛО"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
@@ -98,7 +98,7 @@ ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Найдите улику"
+ActivityObjectives[0]="Вычислите маршрут перелётов"
 ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
@@ -130,7 +130,7 @@ ActivityObjectives[0]="Привлеките внимание \"Адвента\""
 
 [ProtectResearch X2LWAlienActivityTemplate]
 ActivityName="ProtectResearchActivity"
-ActivityObjectives[0]="Найдите улику"
+ActivityObjectives[0]="Найдите руководителя объекта"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Мы обнаружили устройство, с помощью которого \"Адвент\" глушит связь Сопротивления. Если его уничтожить, мы сможем выйти на новые источники разведданных.", MissionIndex=0)
@@ -500,7 +500,7 @@ m_strThreatMedium="Повышенная"
 m_strThreatHigh="Критическая"
 m_strThreatVeryHigh="Высокая"
 m_strLiberated="Освобожден"
-m_strResistanceManagementLevels="<XGParam:IntValue0> (Э:<XGParam:IntValue1>)"
+m_strResistanceManagementLevels="<XGParam:IntValue0> (Бд.:<XGParam:IntValue1>)"
 
 [UIOutpostManagement]
 m_strTitle="УПРАВЛЕНИЕ УБЕЖИЩЕМ"
@@ -509,6 +509,7 @@ m_strName="Имя"
 m_strMission="Задание"
 m_strBuildRadioRelay="Постройте радиоретранслятор"
 m_strLiaisonTitle="Советник убежища"
+m_strEditLoadout="Оснащение советника"
 ; 0=Alert, 1=Vigilance, 2=Force
 m_strRegionalInfo="Сила \"Адвента\": <XGParam:IntValue0/>"
 m_strResistanceMecs="МЭКи Сопротивления: <XGParam:IntValue0/>"

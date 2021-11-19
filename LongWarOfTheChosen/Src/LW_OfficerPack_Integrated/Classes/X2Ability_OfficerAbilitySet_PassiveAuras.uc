@@ -35,8 +35,8 @@ static function X2AbilityTemplate AddDefiladeAbility()
 {
 	local X2AbilityTemplate                 Template;
 	local X2Effect_Defilade					DefiladeEffect;
-	local X2AbilityMultiTarget_AllAllies	MultiTargetStyle;
-	local X2Condition_UnitProperty			MultiTargetProperty;
+	local X2AbilityTrigger_EventListener 	EventListener;
+	local X2Condition_UnitProperty			TargetProperty;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Defilade');
 	Template.IconImage = "img:///UILibrary_LW_OfficerPack.LWOfficers_AbilityHitTheDirt"; 
@@ -47,28 +47,28 @@ static function X2AbilityTemplate AddDefiladeAbility()
 	Template.bDisplayInUITacticalText = false;
 	Template.DisplayTargetHitChance = false;
 
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	TargetProperty = new class'X2Condition_UnitProperty';
+	TargetProperty.ExcludeDead = true;
+	TargetProperty.ExcludeHostileToSource = true;
+	TargetProperty.ExcludeFriendlyToSource = false;
+	TargetProperty.RequireSquadmates = true;
+	TargetProperty.ExcludePanicked = true;
+	TargetProperty.ExcludeRobotic = true;
+	TargetProperty.ExcludeStunned = true;
+	Template.AbilityTargetConditions.AddItem(TargetProperty);
 
-	MultiTargetProperty = new class'X2Condition_UnitProperty';
-	MultiTargetProperty.ExcludeAlive = false;
-    MultiTargetProperty.ExcludeDead = true;
-    MultiTargetProperty.ExcludeHostileToSource = true;
-    MultiTargetProperty.ExcludeFriendlyToSource = false;
-    MultiTargetProperty.RequireSquadmates = true;
-    MultiTargetProperty.ExcludePanicked = true;
-	MultiTargetProperty.ExcludeRobotic = true;
-	MultiTargetProperty.ExcludeStunned = true;
-	Template.AbilityMultiTargetConditions.AddItem(MultiTargetProperty);
-
-	Template.AbilityTargetStyle = default.SelfTarget;
-	MultiTargetStyle = new class'X2AbilityMultiTarget_AllAllies';
-	MultiTargetStyle.bAddPrimaryTargetAsMultiTarget = false;
-	Template.AbilityMultiTargetStyle = MultiTargetStyle;
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'OnUnitBeginPlay';
+	EventListener.ListenerData.EventFn = AuraOnUnitBeginPlay;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_None;
+	Template.AbilityTriggers.AddItem(EventListener);
 
 	DefiladeEffect = new class'X2Effect_Defilade';
 	DefiladeEffect.BuildPersistentEffect (1, true, false);
 	DefiladeEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
-	Template.AddMultiTargetEffect(DefiladeEffect);
+	Template.AddTargetEffect(DefiladeEffect);
 
 	Template.AdditionalAbilities.AddItem('DefiladePassive');
 
@@ -89,8 +89,8 @@ static function X2AbilityTemplate AddFireDisciplineAbility()
 {
 	local X2AbilityTemplate                 Template;
 	local X2Effect_FireDiscipline				FireDisciplineEffect;
-	local X2AbilityMultiTarget_AllAllies	MultiTargetStyle;
-	local X2Condition_UnitProperty			MultiTargetProperty;
+	local X2AbilityTrigger_EventListener 	EventListener;
+	local X2Condition_UnitProperty			TargetProperty;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'FireDiscipline');
 	Template.IconImage = "img:///UILibrary_LW_OfficerPack.LWOfficers_AbilityFireDiscipline"; 
@@ -101,28 +101,28 @@ static function X2AbilityTemplate AddFireDisciplineAbility()
 	Template.bDisplayInUITacticalText = false;
 	Template.DisplayTargetHitChance = false;
 
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	TargetProperty = new class'X2Condition_UnitProperty';
+	TargetProperty.ExcludeDead = true;
+	TargetProperty.ExcludeHostileToSource = true;
+	TargetProperty.ExcludeFriendlyToSource = false;
+	TargetProperty.RequireSquadmates = true;
+	TargetProperty.ExcludePanicked = true;
+	TargetProperty.ExcludeRobotic = true;
+	TargetProperty.ExcludeStunned = true;
+	Template.AbilityTargetConditions.AddItem(TargetProperty);
 
-	MultiTargetProperty = new class'X2Condition_UnitProperty';
-	MultiTargetProperty.ExcludeAlive = false;
-    MultiTargetProperty.ExcludeDead = true;
-    MultiTargetProperty.ExcludeHostileToSource = true;
-    MultiTargetProperty.ExcludeFriendlyToSource = false;
-    MultiTargetProperty.RequireSquadmates = true;
-    MultiTargetProperty.ExcludePanicked = true;
-	MultiTargetProperty.ExcludeRobotic = true;
-	MultiTargetProperty.ExcludeStunned = true;
-	Template.AbilityMultiTargetConditions.AddItem(MultiTargetProperty);
-
-	Template.AbilityTargetStyle = default.SelfTarget;
-	MultiTargetStyle = new class'X2AbilityMultiTarget_AllAllies';
-	MultiTargetStyle.bAddPrimaryTargetAsMultiTarget = false;
-	Template.AbilityMultiTargetStyle = MultiTargetStyle;
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'OnUnitBeginPlay';
+	EventListener.ListenerData.EventFn = AuraOnUnitBeginPlay;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_None;
+	Template.AbilityTriggers.AddItem(EventListener);
 
 	FireDisciplineEffect = new class'X2Effect_FireDiscipline';
 	FireDisciplineEffect.BuildPersistentEffect (1, true, false);
 	FireDisciplineEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
-	Template.AddMultiTargetEffect(FireDisciplineEffect);
+	Template.AddTargetEffect(FireDisciplineEffect);
 
 	Template.AdditionalAbilities.AddItem('FireDisciplinePassive');
 
@@ -319,9 +319,9 @@ static function X2AbilityTemplate LeadByExampleLeader()
 static function X2AbilityTemplate AddCombinedArmsAbility()
 {
 	local X2AbilityTemplate                 Template;
-	local X2Effect_CombinedArms				CombinedArmsEffect;
-	local X2AbilityMultiTarget_AllAllies	MultiTargetStyle;
-	local X2Condition_UnitProperty			MultiTargetProperty;
+	local X2Effect_CombinedArms				CombinedArmsEffect;	
+	local X2AbilityTrigger_EventListener 	EventListener;
+	local X2Condition_UnitProperty			TargetProperty;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CombinedArms');
 	Template.IconImage = "img:///UILibrary_LW_OfficerPack.LWOfficers_AbilityCombinedArms"; 
@@ -332,28 +332,29 @@ static function X2AbilityTemplate AddCombinedArmsAbility()
 	Template.bDisplayInUITacticalText = false;
 	Template.DisplayTargetHitChance = false;
 
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	TargetProperty = new class'X2Condition_UnitProperty';
+	TargetProperty.ExcludeDead = true;
+	TargetProperty.ExcludeHostileToSource = true;
+	TargetProperty.ExcludeFriendlyToSource = false;
+	TargetProperty.RequireSquadmates = true;
+	TargetProperty.ExcludePanicked = true;
+	TargetProperty.ExcludeRobotic = true;
+	TargetProperty.ExcludeStunned = true;
+	Template.AbilityTargetConditions.AddItem(TargetProperty);
 
-	MultiTargetProperty = new class'X2Condition_UnitProperty';
-	MultiTargetProperty.ExcludeAlive = false;
-    MultiTargetProperty.ExcludeDead = true;
-    MultiTargetProperty.ExcludeHostileToSource = true;
-    MultiTargetProperty.ExcludeFriendlyToSource = false;
-    MultiTargetProperty.RequireSquadmates = true;
-    MultiTargetProperty.ExcludePanicked = true;
-	MultiTargetProperty.ExcludeRobotic = true;
-	MultiTargetProperty.ExcludeStunned = true;
-	Template.AbilityMultiTargetConditions.AddItem(MultiTargetProperty);
-
-	Template.AbilityTargetStyle = default.SelfTarget;
-	MultiTargetStyle = new class'X2AbilityMultiTarget_AllAllies';
-	MultiTargetStyle.bAddPrimaryTargetAsMultiTarget = false;
-	Template.AbilityMultiTargetStyle = MultiTargetStyle;
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'OnUnitBeginPlay';
+	EventListener.ListenerData.EventFn = AuraOnUnitBeginPlay;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_None;
+	Template.AbilityTriggers.AddItem(EventListener);
 
 	CombinedArmsEffect = new class'X2Effect_CombinedArms';
 	CombinedArmsEffect.BuildPersistentEffect (1, true, false);
 	CombinedArmsEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
-	Template.AddMultiTargetEffect(CombinedArmsEffect);
+	Template.AddTargetEffect(CombinedArmsEffect);
 
 	Template.AdditionalAbilities.AddItem('CombinedArmsPassive');
 
@@ -369,6 +370,19 @@ static function X2AbilityTemplate CombinedArmsPassive()
 	return PurePassive('CombinedArmsPassive', "img:///UILibrary_LW_OfficerPack.LWOfficers_AbilityCombinedArms", , class'X2Ability_OfficerAbilitySet'.default.OfficerSourceName);
 }
 
+static function EventListenerReturn AuraOnUnitBeginPlay(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Unit UnitState;
+	local XComGameState_Ability SourceAbilityState;
 
+	SourceAbilityState = XComGameState_Ability(CallbackData);	
+	UnitState = XComGameState_Unit(EventData);
+
+	if (SourceAbilityState != None  && UnitState != none) {
+		SourceAbilityState.AbilityTriggerAgainstSingleTarget(UnitState.GetReference(), false);
+	}
+
+	return ELR_NoInterrupt;
+}
 
 

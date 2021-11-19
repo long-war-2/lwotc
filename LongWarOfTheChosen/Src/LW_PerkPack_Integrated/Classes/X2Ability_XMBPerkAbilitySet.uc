@@ -139,7 +139,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(ApexPredatorPanic_LW());
 	Templates.AddItem(NeutralizingAgents());
 	Templates.AddItem(ZoneOfControl_LW());
-	
+	Templates.AddItem(AddZoCPassive());
+	Templates.AddItem(AddZoCCleanse());
+
 	
 	Templates.AddItem(Concentration());
 	Templates.AddItem(LikeLightning());
@@ -922,7 +924,7 @@ static function X2AbilityTemplate NeutralizingAgents()
 	return Template;
 }
 
-
+/*
 static function X2AbilityTemplate ZoneOfControl_LW()
 {
 
@@ -932,7 +934,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 	local XMBEffect_ConditionalStatChange						ZOCEffect;
 	local X2Effect_Persistent									IconEffect;
 	local X2Effect_SetUnitValue									SetUnitValue;					
-	
+	local X2AbilityTrigger_EventListener						EventListener;
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'ZoneOfControl_LW');
 	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -944,6 +946,14 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 	Template.bCrossClassEligible = false;
 	Template.bUniqueSource = true;
 	Template.bIsPassive = true;
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+    EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+    EventListener.ListenerData.EventID = 'PlayerTurnBegun';
+    EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+    EventListener.ListenerData.Filter = eFilter_Player;
+    Template.AbilityTriggers.AddItem(EventListener);
+
 
 	// Dummy effect to show a passive icon in the tactical UI for the SourceUnit
 	IconEffect = new class'X2Effect_Persistent';
@@ -985,8 +995,115 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
+	Template.AbilityShooterConditions.AddItem(TargetProperty);
+
 	return Template;
 }
+
+*/
+static function X2AbilityTemplate ZoneOfControl_LW()
+{
+	local X2AbilityTemplate             Template;
+	//local X2Effect_ZoneOfControl        Effect;
+	local X2AbilityMultiTarget_AllUnits	TargetStyle;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ZoneOfControl_LW');
+
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bCrossClassEligible = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	TargetStyle = new class'X2AbilityMultiTarget_AllUnits';
+	TargetStyle.bAcceptEnemyUnits = true;
+	Template.AbilityMultiTargetStyle = TargetStyle;
+	/*
+	Effect = new class'X2Effect_ZoneOfControl';
+	Effect.ZoC_Distance = default.ZONE_CONTROL_RADIUS;
+	Effect.BuildPersistentEffect(1, true, false);
+	Effect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
+	Template.AddMultiTargetEffect(Effect);
+	*/
+	Template.AdditionalAbilities.AddItem('ZoCCleanse');
+	Template.AdditionalAbilities.AddItem('ZoCPassive');
+
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddZoCPassive()
+{
+	return PurePassive('ZoCPassive', "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl", , 'eAbilitySource_Perk');
+}
+
+static function X2AbilityTemplate AddZoCCleanse()
+{
+	local X2AbilityTemplate                     Template;
+	local X2AbilityTrigger_EventListener        EventListener;
+	local X2Condition_UnitProperty              DistanceCondition;
+	local XMBEffect_ConditionalStatChange		ZOCEffect;
+	local X2Effect_RemoveEffects RemoveEffect;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ZoCCleanse');
+
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	DistanceCondition = new class'X2Condition_UnitProperty';
+	DistanceCondition.RequireWithinRange = true;
+	DistanceCondition.WithinRange = Sqrt(default.ZONE_CONTROL_RADIUS) *  class'XComWorldData'.const.WORLD_StepSize; // same as Solace for now
+	DistanceCondition.ExcludeFriendlyToSource = true;
+	DistanceCondition.ExcludeHostileToSource = false;
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventID = 'UnitMoveFinished';
+	EventListener.ListenerData.Filter = eFilter_None;
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.SolaceCleanseListener;  // keep this, since it's generically just calling the associate ability
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	//Remove the ZOC Effect in case it already exists, becuse eDupe_Refresh only refreshes duration and not the entire effect data.
+	//It's important in case of multiple units with Zone of control.
+	RemoveEffect = new class'X2Effect_RemoveEffects';
+	RemoveEffect.EffectNamesToRemove.AddItem('ZoneOfControl_LWEffect');
+	RemoveEffect.TargetConditions.AddItem(DistanceCondition);
+	RemoveEffect.bDoNotVisualize = true;
+	Template.AddTargetEffect(RemoveEffect);
+
+
+	ZOCEffect = new class'XMBEffect_ConditionalStatChange';
+	ZOCEffect.EffectName = 'ZoneOfControl_LWEffect';
+	ZOCEffect.AddPersistentStatChange(eStat_Mobility, default.ZONE_CONTROL_MOBILITY_PENALTY);
+	ZOCEffect.AddPersistentStatChange(eStat_Offense, default.ZONE_CONTROL_AIM_PENALTY);
+	ZOCEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage, true,,Template.AbilitySourceName);
+	ZOCEffect.DuplicateResponse = eDupe_Refresh;
+	ZOCEffect.bRemoveWhenSourceDies = true;
+	ZOCEffect.Conditions.AddItem(DistanceCondition);
+	Template.AddTargetEffect(ZOCEffect);
+
+	Template.AbilityTargetConditions.AddItem(DistanceCondition);
+
+
+
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}
+
 
 static function X2AbilityTemplate ApexPredator_LW()
 {
@@ -2526,7 +2643,7 @@ static function X2AbilityTemplate CreateXCOMBloodThirst()
 	Template.AbilityTriggers.AddItem(EventListener);
 
 	DamageEffect = new class'X2Effect_BloodThirst';
-	DamageEffect.BuildPersistentEffect(4, false, true, false, eGameRule_PlayerTurnBegin);
+	DamageEffect.BuildPersistentEffect(5, false, true, false, eGameRule_PlayerTurnBegin);
 	DamageEffect.DuplicateResponse = eDupe_Allow;
 	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageEffect);
@@ -2952,10 +3069,10 @@ static function X2AbilityTemplate CrusaderRage()
 	Effect = new class'XMBEffect_ConditionalBonus';
 
 	//Need to add for all of them because apparently if you crit you don't hit lol
-	Effect.AddPercentDamageModifier(50, eHit_Success);
-	Effect.AddPercentDamageModifier(50, eHit_Graze);
-	Effect.AddPercentDamageModifier(50, eHit_Crit);
-	Effect.EffectName = 'CrusaderRage_Bonus';
+	Effect.AddPercentDamageModifier(20, eHit_Success);
+	Effect.AddPercentDamageModifier(20, eHit_Graze);
+	Effect.AddPercentDamageModifier(20, eHit_Crit);
+	Effect.EffectName = 'CrusaderRage_Bonus2';
 
 	// The effect only applies while wounded
 	EFfect.AbilityShooterConditions.AddItem(Condition);
@@ -2968,6 +3085,23 @@ static function X2AbilityTemplate CrusaderRage()
 	// Create the template using a helper function
 	Template = Passive('CrusaderRage_LW', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect);
 	Template.AddTargetEffect(GreaterPaddingEffect);
+
+	Condition = new class'X2Condition_UnitStatCheck';
+	Condition.AddCheckStat(eStat_HP, 76, eCheck_LessThan,,, true);
+
+	// Create a conditional bonus effect
+	Effect = new class'XMBEffect_ConditionalBonus';
+
+	//Need to add for all of them because apparently if you crit you don't hit lol
+	Effect.AddPercentDamageModifier(25, eHit_Success);
+	Effect.AddPercentDamageModifier(25, eHit_Graze);
+	Effect.AddPercentDamageModifier(25, eHit_Crit);
+	Effect.EffectName = 'CrusaderRage_Bonus';
+	EFfect.AbilityShooterConditions.AddItem(Condition);
+	Effect.AbilityTargetConditionsAsTarget.AddItem(Condition);
+
+	Template.AddTargetEffect(Effect);
+
 	return Template;
 }
 

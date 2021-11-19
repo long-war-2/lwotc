@@ -170,7 +170,6 @@ static function X2AmmoTemplate CreateStilettoRounds()
 	Template.CanBeBuilt = true;
 
 	Template.Abilities.AddItem('Stiletto_Rounds_Ability');
-	Template.Abilities.AddItem('Stiletto_Rounds_Ability_PP');
 
 	//FX References
 	//Template.GameArchetype = "Ammo_Stiletto.PJ_Stiletto"; // present, placeholder FX
@@ -224,7 +223,6 @@ static function X2AmmoTemplate CreateFalconRounds()
 static function X2AmmoTemplate CreateFlechetteRounds()
 {
 	local X2AmmoTemplate				Template;
-	local X2Condition_UnitStatCheck		Condition;
 	local WeaponDamageValue				DamageValue;
 
 	`CREATE_X2TEMPLATE(class'X2AmmoTemplate', Template, 'FlechetteRounds');
@@ -238,15 +236,10 @@ static function X2AmmoTemplate CreateFlechetteRounds()
 	Template.CanBeBuilt = true;
 
 	DamageValue.Damage = default.FLECHETTE_DMGMOD;
-    DamageValue.DamageType = 'Flechette';
-    Template.AddAmmoDamageModifier(none, DamageValue);
+	DamageValue.DamageType = 'Flechette';
+	Template.AddAmmoDamageModifier(none, DamageValue);
 
-	Condition = new class'X2Condition_UnitStatCheck';
-	Condition.AddCheckStat (eStat_ArmorMitigation, 0, eCheck_LessThanOrEqual);
-	DamageValue.Damage = default.FLECHETTE_BONUS_DMG;
-	Template.AddAmmoDamageModifier(Condition, DamageValue);
-	
-	Template.Abilities.AddItem('Flechette_Rounds_Ability');
+	Template.Abilities.AddItem('Flechette_Rounds_Ability');	
 
 	Template.GameArchetype = "Ammo_Flechette.PJ_Flechette"; // present
 	//FX References

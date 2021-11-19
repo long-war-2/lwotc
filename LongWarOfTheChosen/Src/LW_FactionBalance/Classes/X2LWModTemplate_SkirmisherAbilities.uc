@@ -15,7 +15,9 @@ var config int BATTLELORD_ACTION_POINT_COST;
 var config int BATTLELORD_COOLDOWN;
 var config int COMBAT_PRESENCE_COOLDOWN;
 var config int REFLEX_CRIT_DEF;
-
+var config int TOTAL_COMBAT_BONUS_RANGE;
+var config int TOTAL_COMBAT_MOBILITY;
+var config int TOTAL_COMBAT_AIM;
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
@@ -295,8 +297,28 @@ static function AddCooldownToBattlelord(X2AbilityTemplate Template)
 
 static function UpdateTotalCombat(X2AbilityTemplate Template)
 {
-	Template.AdditionalAbilities.AddItem('Bombard_LW');
+	local X2Effect_TotalCombatRange	BombardEffect;
+	local X2Effect_PersistentStatChange StatEffect;
+
 	Template.AdditionalAbilities.AddItem('VolatileMix');
+
+	BombardEffect = new class 'X2Effect_TotalCombatRange';
+	BombardEffect.BuildPersistentEffect (1, true, false);
+	BombardEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	Template.AddTargetEffect (BombardEffect);
+	
+	StatEffect = new class'X2Effect_PersistentStatChange';
+	StatEffect.AddPersistentStatChange(eStat_Mobility, float(default.TOTAL_COMBAT_MOBILITY));
+	StatEffect.AddPersistentStatChange(eStat_Offense, float(default.TOTAL_COMBAT_AIM));
+	StatEffect.BuildPersistentEffect(1, true, false, false);
+	StatEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Template.AddTargetEffect(StatEffect);
+	Template.bCrossClassEligible = true;
+
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.TOTAL_COMBAT_MOBILITY);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, default.TOTAL_COMBAT_AIM);
+
+
 }
 
 static function UpdateCombatPresence(X2AbilityTemplate Template)

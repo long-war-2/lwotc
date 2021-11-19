@@ -19,6 +19,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateMindControlCleanse());
 	Templates.AddItem(CreateReactionFireAgainstCoverBonus());
 	Templates.AddItem(CreateSmokeFlankingCritProtection());
+	Templates.AddItem(CreateFlashbangResistancePassive());
 
 	return Templates;
 }
@@ -244,6 +245,17 @@ static function X2AbilityTemplate CreateSmokeFlankingCritProtection()
 	Template.AddTargetEffect(SmokeAntiCritEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateFlashbangResistancePassive()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('FlashbangResistancePassive', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_mindshield", , 'eAbilitySource_Perk');
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
 
 	return Template;
 }

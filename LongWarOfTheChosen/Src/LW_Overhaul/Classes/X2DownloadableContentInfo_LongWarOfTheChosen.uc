@@ -1732,8 +1732,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 
 	// Certain missions should just use vanilla Chosen behaviour, like the Chosen
 	// Avenger Defense
-	if (default.SKIP_CHOSEN_OVERRIDE_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE ||
-			MissionState.GetMissionSource().bGoldenPath)
+	if (default.SKIP_CHOSEN_OVERRIDE_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
 	{
 		return;
 	}
@@ -3269,6 +3268,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 	local XComGameState_Unit UnitState;
 	local X2AbilityTemplate AbilityTemplate;
 	local int ImpactCompensationStacks;
+	local int k;
 
 	Type = name(InString);
 	switch(Type)
@@ -3315,6 +3315,34 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			{
 				OutString = string(int((1 - (1 - class'X2Ability_LW_ChosenAbilities'.default.IMPACT_COMPENSATION_PCT_DR) **
 						Min(ImpactCompensationStacks, class'X2Ability_LW_ChosenAbilities'.default.IMPACT_COMPENSATION_MAX_STACKS)) * 100));
+			}
+		}
+		return true;
+	case 'FLASHBANG_RESIST_VALUE':
+		OutString = "0";
+		AbilityState = XComGameState_Ability(ParseObj);
+		if (AbilityState != none)
+		{
+			UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
+		}
+		else
+		{
+			EffectState = XComGameState_Effect(ParseObj);
+			if (EffectState != none)
+			{
+				UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+			}
+		}
+
+		if (UnitState != none)
+		{
+			for (k = 0; k < class'LWTemplateMods'.default.ENEMY_FLASHBANG_RESIST.length; k++)
+			{
+				if (class'LWTemplateMods'.default.ENEMY_FLASHBANG_RESIST[k].UnitName == UnitState.GetMyTemplateName())
+				{
+					OutString = string(class'LWTemplateMods'.default.ENEMY_FLASHBANG_RESIST[k].Chance);
+					break;
+				}
 			}
 		}
 		return true;

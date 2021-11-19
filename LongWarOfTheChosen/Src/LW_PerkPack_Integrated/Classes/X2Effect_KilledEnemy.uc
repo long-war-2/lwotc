@@ -12,34 +12,37 @@ var bool bShowActivation;
 
 function RegisterForEvents(XComGameState_Effect EffectGameState)
 {
-    local X2EventManager EventMgr;
-    local XComGameState_Unit UnitState;
-    local Object EffectObj;
+	local X2EventManager EventMgr;
+	local Object EffectObj;
 
-	if (bshowactivation)
-	{
-		EventMgr = `XEVENTMGR;
-		EffectObj = EffectGameState;
-		UnitState = XComGameState_Unit(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-		EventMgr.RegisterForEvent(EffectObj, eventid, EffectGameState.TriggerAbilityFlyover, 1,, UnitState);  
-	}
+	EventMgr = `XEVENTMGR;
+	EffectObj = EffectGameState;
+	EventMgr.RegisterForEvent(EffectObj, 'KillMail', UnitDiedEventListener, ELD_OnStateSubmitted,,,, EffectObj);
 }
 
-function bool PostAbilityCostPaid(XComGameState_Effect EffectState, XComGameStateContext_Ability AbilityContext, XComGameState_Ability kAbility, XComGameState_Unit SourceUnit, XComGameState_Item AffectWeapon, XComGameState NewGameState, const array<name> PreCostActionPoints, const array<name> PreCostReservePoints)
+static function EventListenerReturn UnitDiedEventListener(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
 {
-    local XComGameState_Unit TargetUnit;
-    local X2EventManager EventMgr;
-    local XComGameState_Ability AbilityState;
+	local XComGameState_Effect EffectState;
+	local XComGameState_Unit SourceUnit;
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameState_Ability Ability;
 
-   TargetUnit = XComGameState_Unit(NewGameState.GetGameStateForObjectID(AbilityContext.InputContext.PrimaryTarget.ObjectID));
-   if(TargetUnit != none && TargetUnit.IsEnemyUnit(SourceUnit) && TargetUnit.IsDead())
-   {
-		AbilityState = XComGameState_Ability(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(EffectState.ApplyEffectParameters.AbilityStateObjectRef.ObjectID));
-		if(AbilityState != none)
-        {
-			EventMgr = `XEVENTMGR;	
-            EventMgr.TriggerEvent(eventid, AbilityState, SourceUnit, NewGameState);            
-        }
-    }
-    return false;
+	AbilityContext = XComGameStateContext_Ability(GameState.GetContext());
+	EffectState = XComGameState_Effect(CallbackData);
+	if (EffectState != none)
+	{
+		SourceUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+		if (AbilityContext != none && AbilityContext.InterruptionStatus != eInterruptionStatus_Interrupt)
+		{
+			if (AbilityContext.InputContext.SourceObject.ObjectID == SourceUnit.ObjectID)
+			{
+				Ability = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(SourceUnit.FindAbility('BroadcastCombatRush').ObjectID));
+				if (Ability != none) {
+					Ability.AbilityTriggerAgainstSingleTarget(SourceUnit.GetReference(), false);    
+				}
+			}
+		}
+	}
+
+	return ELR_NoInterrupt;
 }
