@@ -2503,8 +2503,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenSniperRifle_XCOM':
 			WeaponTemplate.iTypicalActionCost = 2;
 			WeaponTemplate.Abilities.AddItem('XCOMHunterMark_LW');
-			WeaponTemplate.Abilities.RemoveItem('Reload');
-			WeaponTemplate.Abilities.AddItem('ComplexReload_LW'); 
+			//WeaponTemplate.Abilities.RemoveItem('Reload');
+			//WeaponTemplate.Abilities.AddItem('ComplexReload_LW'); 
 			WeaponTemplate.OnAcquiredFn = none;
 			WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, class'X2Item_XpackWeapons'.default.CHOSENSNIPERRIFLE_XCOM_AIM);
 			WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.CritLabel, eStat_CritChance, class'X2Item_XpackWeapons'.default.CHOSENSNIPERRIFLE_XCOM_CRITCHANCE);
