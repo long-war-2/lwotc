@@ -17,6 +17,7 @@ var config int COMBAT_PRESENCE_COOLDOWN;
 var config int REFLEX_CRIT_DEF;
 var config int TOTAL_COMBAT_BONUS_RANGE;
 var config int TOTAL_COMBAT_MOBILITY;
+var config int TOTAL_COMBAT_AIM;
 static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
@@ -308,12 +309,14 @@ static function UpdateTotalCombat(X2AbilityTemplate Template)
 	
 	StatEffect = new class'X2Effect_PersistentStatChange';
 	StatEffect.AddPersistentStatChange(eStat_Mobility, float(default.TOTAL_COMBAT_MOBILITY));
+	StatEffect.AddPersistentStatChange(eStat_Offense, float(default.TOTAL_COMBAT_AIM));
 	StatEffect.BuildPersistentEffect(1, true, false, false);
 	StatEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(StatEffect);
 	Template.bCrossClassEligible = true;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.TOTAL_COMBAT_MOBILITY);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, default.TOTAL_COMBAT_AIM);
 
 
 }
