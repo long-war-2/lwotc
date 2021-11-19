@@ -910,7 +910,7 @@ static function bool WillChosenAppearOnMission(XComGameState_AdventChosen Chosen
 		`LWTrace("Chosen can't be added to missions of type" @ MissionState.GeneratedMission.Mission.sType);
 		return false;
 	}
-	else if (MissionState.GetMissionSource().bGoldenPath || class'XComGameState_LWAlienActivity'.default.GuaranteeChosenInMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
+	else if (class'XComGameState_LWAlienActivity'.default.GuaranteeChosenInMissionTypes.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
 	{
 		// Guaranteed on this mission
 		return true;
