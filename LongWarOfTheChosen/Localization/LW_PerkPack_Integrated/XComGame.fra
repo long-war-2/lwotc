@@ -169,14 +169,14 @@ LocLongDescription="Gagnez +5 en esquive par ennemi que vous voyez, jusqu'à un 
 LocHelpText="Gagnez +5 en esquive par ennemi que vous voyez, jusqu'à un maximum de +30."
 LocPromotionPopupText="<Bullet/> Gagnez +5 en esquive par ennemi que vous voyez, jusqu'à un maximum de +30.<br/><Bullet/> Les unités visibles en vision commune confèrent aussi un bonus.<br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
 
-; LWOTC translated
+; LWOTC translated (2)
 [Infighter X2AbilityTemplate]
 LocFriendlyName="Arts martiaux"
 LocFlyOverText="Arts martiaux"
 LocLongDescription="Esquive +<Ability:INFIGHTER_DODGE_BONUS/> contre les attaques dans un rayon de 4 cases."
 LocHelpText="Esquive +<Ability:INFIGHTER_DODGE_BONUS/> contre les attaques dans un rayon de 4 cases."
-LocPromotionPopupText="<Bullet/> Esquive +<Ability:INFIGHTER_DODGE_BONUS/> contre les attaques dans un rayon de 4 cases. <br/><Bullet/> Le bonus s'applique également aux attaques au corps à corps. <br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique, en feu ou subit tout autre type de handicap."
-; End translated
+LocPromotionPopupText="<Bullet/> Esquive +<Ability:INFIGHTER_DODGE_BONUS/> contre les attaques dans un rayon de 4 cases. <br/><Bullet/> Le bonus s'applique également aux attaques au corps à corps. <br/><Bullet/> Cette capacité ne fournit pas de bonus défensif si l'unité est désorientée, étourdie, en panique ou subit tout autre type de handicap (le feu n'empêche pas l'activation de cette capacité)."
+; End translated (2)
 
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Perception de profondeur"

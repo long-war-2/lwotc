@@ -79,8 +79,10 @@ LocFriendlyName="Transe du vide"
 ; LWOTC translated (2)
 LocFlyoverText="Transe du vide!"
 ; End translated (2)
+; LWOTC translated (2)
 LocLongDescription="Action gratuite, qui augmente massivement votre mobilité, votre esquive et les dégâts que vous infligez durant 2 tours. Nécessite d'avoir au moins 3 niveaux de concentration pour être activé et consomme tous les points de concentration du Templier."
 LocHelpText="Action gratuite, qui augmente massivement votre mobilité, votre esquive et les dégâts que vous infligez durant 2 tours. Nécessite d'avoir au moins 3 niveaux de concentration pour être activé et consomme tous les points de concentration du Templier."
+; End translated (2)
 ; LWOTC translated (3)
 LocPromotionPopupText="<Bullet/> Action gratuite, qui augmente massivement votre mobilité, votre esquive et les dégâts que vous infligez durant 2 tours. Nécessite d'avoir au moins 3 niveaux de concentration pour être activé et consomme tous les points de concentration du Templier.<br/><Bullet/> Augmente les dégâts que vous infligez de +<Ability:ApotheosisDamageMultiplier/>% pour chaque niveau de concentration au-delà de 2.<br/><Bullet/> Augmente l'esquive de +<Ability:ApotheosisDodgeBonus/> pour chaque niveau de concentration au-delà de 2.<br/><Bullet/> Augmente la mobilité de +<Ability:ApotheosisMobilityBonus/> pour chaque niveau de concentration au-delà de 2.<br/><Bullet/> Nécessite d'avoir au moins 3 niveaux de concentration pour être activé. Son activation consomme tous les points de concentration du Templier.<br/>"
 ; End translated (3)
@@ -133,19 +135,25 @@ LocPromotionPopupText="<Bullet/> Pocure un bonus de +<Ability:DEATH_DEALER_CRIT/
 ; End translated
 
 ; LWOTC translated
+; LWOTC translated (2)
 [RendTheMarked X2AbilityTemplate]
 LocFriendlyName="Marque de sang"
-LocHelpText="Chaque fois que vous blessez une cible avec un couteau de lancer, toute unité qui la prend pour cible avant la fin du tour gagne un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique."
-LocLongDescription="Chaque fois que vous blessez une cible avec un couteau de lancer, toute unité qui la prend pour cible avant la fin du tour gagne un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique."
-LocPromotionPopupText="Chaque fois que vous blessez une cible avec un couteau de lancer, toute unité qui la prend pour cible avant la fin du tour gagne un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique."
+LocHelpText="Vos couteaux de lancer procurent un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique à toute unité qui prend pour cible une unité qu'ils viennent de blesser. Ce bonus se prolonge jusqu'à la fin du tour."
+LocLongDescription="Vos couteaux de lancer procurent un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique à toute unité qui prend pour cible une unité qu'ils viennent de blesser. Ce bonus se prolonge jusqu'à la fin du tour."
+LocPromotionPopupText="Vos couteaux de lancer procurent un bonus cumulatif de +<Ability:REND_THE_MARKED_CRIT/> en chances de coup critique à toute unité qui prend pour cible une unité qu'ils viennent de blesser. Ce bonus se prolonge jusqu'à la fin du tour."
+; End Translation (2)
+
 
 [KnifeEncounters X2AbilityTemplate]
 LocFriendlyName="Duel au couteau"
 LocFlyOverText="Duel au couteau"
-LocLongDescription="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position."
-LocHelpText="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position."
-LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position.<br/><Bullet/> Cette capacité ne peut pas être combinée avec la capacité Course et tir.<br/>"
+; LWOTC translated (2)
+LocLongDescription="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois."
+LocHelpText="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois."
+LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois.<br/><Bullet/> Cette capacité ne peut pas être combinée avec la capacité Course et tir.<br/>"
+; End translated (2)
 
+; LWOTC translated (2)
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Ombre évanescente"
 LocFlyOverText="Ombre évanescente"
@@ -156,15 +164,18 @@ LocPromotionPopupText="<Bullet/> "Réduit le temps de rechargement de la capacit
 [ImpersonalEdgePassive X2AbilityTemplate]
 LocFriendlyName="Ombre évanescente"
 LocFlyOverText="Ombre évanescente"
-LocLongDescription="Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer."
-LocHelpText="Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer."
-LocPromotionPopupText="<Bullet/> "Réduit le temps de rechargement de la capacité Obscurité de 1 tour. Procure un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours chaque fois que vous éliminez une unité avec un couteau de lancer.<br/>"
+LocLongDescription="Chaque fois que vous éliminez une unité adverse avec un couteau de lancer, réduisez de 1 tour le temps de rechargement de la capacité Obscurité et gagnez un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours."
+LocHelpText="Chaque fois que vous éliminez une unité adverse avec un couteau de lancer, réduisez de 1 tour le temps de rechargement de la capacité Obscurité et gagnez un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours."
+LocPromotionPopupText="<Bullet/> Chaque fois que vous éliminez une unité adverse avec un couteau de lancer, réduisez de 1 tour le temps de rechargement de la capacité Obscurité et gagnez un bonus cumulatif de +<Ability:IMPERSONAL_EDGE_AIM/> en visée durant 3 tours.<br/>"
+; End translated (2)
 
 [BlueScreenKnives X2AbilityTemplate]
 LocFriendlyName="Couteaux Écran bleu"
 LocHelpText="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
 LocLongDescription="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
+; LWOTC translated (2)
 LocPromotionPopupText="Les couteaux de lancer ignorent <Ability:BLUESCREEN_KNIVES_PIERCE/> point(s) d'armure et désorientent les ennemis robotiques."
+; End translated (2)
 
 ; LWOTC translated
 [BattlefieldAwareness X2AbilityTemplate]
@@ -186,9 +197,18 @@ LocFriendlyName="Rechargement de l'Instinct de combat"
 LocLongDescription="La capacité Instinct de combat ne sera pas active tant que cet effet n'aura pas pris fin."
 LocHelpText="La capacité Instinct de combat ne sera pas active tant que cet effet n'aura pas pris fin."
 
-; End translated
 
 [CombatPresence X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Cett capacité peut être utilisée pour porter secours à des alliés en situation périlleuse.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+LocPromotionPopupText="<Bullet/> Cette capacité peut être utilisée pour porter secours à des alliés en situation périlleuse.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
 
+
+; LWOTC translated
+
+[CheapShot X2AbilityTemplate]
+LocFriendlyName="Tir sournois"
+LocFlyOverText="Tir sournois"
+LocLongDescription= "Une fois par tour, gagnez une action de déplacement après avoir tiré avec votre arme principale sur une cible qui a déjà été blessée ce tour-ci. Ne peut pas se déclencher durant le même tour que Duel au couteau."
+LocHelpText="Une fois par tour, gagnez une action de déplacement après avoir tiré avec votre arme principale sur une cible qui a déjà été blessée ce tour-ci. Ne peut pas se déclencher durant le même tour que Duel au couteau."
+LocPromotionPopupText="<Bullet/> Peut être combiné avec d'autres capacités comme Bannissement."
+; End translated
 

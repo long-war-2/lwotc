@@ -6,19 +6,25 @@
 FriendlyName="Pistolet-mitrailleur"
 FriendlyNamePlural="Pistolets-mitrailleurs"
 BriefSummary="Les pistolets-mitrailleurs offrent une alternative plus légère et plus discrète au fusil d'assaut standard, bien qu'ils n'aient pas la même puissance et qu'ils manquent de précision à longue portée."
-TacticalText="<Bullet/> Sans entraînement spécial préalable, un tir avec son arme principale met fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis d'ADVENT pour augmenter l'efficacité tactique du pistolet-mitrailleur. \n<Bullet/> Les armes de ce type offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais font moins de dégâts, ont moins de munitions et sont moins précises à longue portée."
+; LWOTC translated
+TacticalText="<Bullet/> Sans entraînement spécial préalable, un tir avec son arme principale met fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis d'ADVENT pour augmenter l'efficacité tactique du pistolet-mitrailleur. \n<Bullet/> Les armes de ce type offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais font moins de dégâts et sont moins précises à longue portée."
+; End translated
 AbilityDescName="Pistolet-mitrailleur"
 
 [SMG_MG X2WeaponTemplate]
 FriendlyName="Rafale"
 FriendlyNamePlural="Rafales"
 BriefSummary="Le Rafale est une version plus légère du fusil magnétique et remplit un rôle proche de celui du pistolet-mitrailleur troquant la puissance, les munitions et la précision à distance contre un camouflage et une mobilité accrus pour son porteur."
-TacticalText="<Bullet/> Sans entraînement spécial préalable, un tir avec son arme principale met toujours fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis d'ADVENT pour augmenter l'efficacité tactique du Rafale. \n<Bullet/> Les armes semblables au pistolet-mitrailleur offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais font moins de dégâts, ont moins de munitions et sont moins précises à longue portée."
+; LWOTC translated
+TacticalText="<Bullet/> Sans entraînement spécial préalable, un tir avec son arme principale met toujours fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis d'ADVENT pour augmenter l'efficacité tactique du Rafale. \n<Bullet/> Les armes semblables au pistolet-mitrailleur offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais font moins de dégâts et sont moins précises à longue portée."
+; End translated
 AbilityDescName="Pistolet-mitrailleur"
 
 [SMG_BM X2WeaponTemplate]
 FriendlyName="Débusqueur"
 FriendlyNamePlural="Débusqueurs"
 BriefSummary="Le Débusqueur, comme le pistolet-mitrailleur et le Rafale, est une arme principale plus petite qui offre plus de mobilité et de discrétion, mais qui fait moins de dégâts et qui est moins précise à longue portée. Cela reste malgré tout une arme portative puissante."
-TacticalText="<Bullet/> Un tir avec son arme principale met toujours fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis d'ADVENT pour augmenter l'efficacité tactique du Débusqueur. \n<Bullet/> Les armes semblables au pistolet-mitrailleur offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais font moins de dégâts, ont moins de munitions et sont moins précises à longue portée.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel chaque fois qu'ils seront touchés par n'importe quelle arme."
+; LWOTC translated
+TacticalText="<Bullet/> Un tir avec son arme principale met toujours fin au tour d'un soldat. \n<Bullet/> Utilisez les améliorations récupérées sur les ennemis d'ADVENT pour augmenter l'efficacité tactique du Débusqueur. \n<Bullet/> Les armes semblables au pistolet-mitrailleur offrent plus de mobilité, de précision en combat rapproché et de camouflage par rapport aux fusils d'assaut, mais font moins de dégâts et sont moins précises à longue portée.<br/><Bullet/> Les cibles touchées par une arme à plasma subiront également un dégât additionnel (effet de rupture) chaque fois qu'ils seront touchés par n'importe quelle arme."
+; End translated
 AbilityDescName="Pistolet-mitrailleur"
