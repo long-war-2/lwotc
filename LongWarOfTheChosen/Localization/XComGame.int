@@ -6570,7 +6570,7 @@ AbilityDescName="pistol"
 ;LWOTC Needs translation(2)
 [XCOMBloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks. Lasts 4 turns."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks. Lasts 5 turns."
 LocHelpText="Every time you attack with your melee weapon, get a stackable +1 damage boost to your melee attacks."
 LocFlyOverText="Blood Thirst"
 
