@@ -2423,6 +2423,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponTemplate.DataName == 'Medikit' || WeaponTemplate.DataName == 'NanoMedikit')
 		{
 			WeaponTemplate.Abilities.AddItem('Sedate');
+			WeaponTemplate.Abilities.AddItem('ParaMedikitHeal');
+			WeaponTemplate.Abilities.AddItem('ParaMedikitStabilize');
 		}
 		if (WeaponTemplate.DataName == 'AdvTurretM1_WPN' && default.EARLY_TURRET_SQUADSIGHT)
 		{

@@ -58,6 +58,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddParamedic());
 	Templates.AddItem(AddCheapShotAbility());
 	
+	Templates.AddItem(ParaMedikitHeal());
+	Templates.AddItem(ParaMedikitStabilize());
 	return Templates;
 }
 
@@ -889,7 +891,6 @@ static function X2DataTemplate AddParamedic()
 {
 	local X2AbilityTemplate				Template;
 	local X2Effect_TemporaryItem		TemporaryItemEffect;
-	local X2Effect_Paramedic ParamedicEffect;
 	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
 	local X2Effect_Savior SaviorEffect;
 
@@ -924,16 +925,10 @@ static function X2DataTemplate AddParamedic()
 	SaviorEffect.BonusHealAmount = default.PARAMEDIC_BONUS_HEAL;
 	Template.AddTargetEffect (SaviorEffect);
 
-	ParamedicEffect = new class'X2Effect_Paramedic';
-	ParamedicEffect.BuildPersistentEffect(1, true, true);
 
-	Template.AddTargetEffect(ParamedicEffect);
-
-
-	Template.GetBonusWeaponAmmoFn = Paramedic_BonusCharges;
+	//Template.GetBonusWeaponAmmoFn = Paramedic_BonusCharges;
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
 }
@@ -944,6 +939,206 @@ static function int Paramedic_BonusCharges(XComGameState_Unit UnitState, XComGam
 		return default.PARAMEDIC_BONUS_CHARGES;
 
 	return 0;
+}
+
+static function X2AbilityTemplate ParaMedikitHeal()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2Condition_UnitProperty          UnitPropertyCondition;
+	local X2Condition_UnitStatCheck         UnitStatCheckCondition;
+	local X2Condition_UnitEffects           UnitEffectsCondition;
+	local X2Effect_ApplyMedikitHeal         MedikitHeal;
+	local array<name>                       SkipExclusions;
+	local X2AbilityCost_Ammo	AmmoCost;
+	local X2Condition_AbilityProperty ParamedicCondition;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ParaMedikitHeal');
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;	
+	Template.AbilityCosts.AddItem(ActionPointCost);
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
+	Template.HideErrors.AddItem('AA_AbilityUnavailable');
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.MEDIKIT_HEAL_PRIORITY;
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	AmmoCost.bReturnChargesError = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	Template.bUseAmmoAsChargesForHUD = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
+	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = false; //Hack: See following comment.
+	UnitPropertyCondition.ExcludeHostileToSource = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	UnitPropertyCondition.ExcludeFullHealth = true;
+	UnitPropertyCondition.ExcludeRobotic = true;
+	UnitPropertyCondition.ExcludeTurret = true;
+	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+
+	//Hack: Do this instead of ExcludeDead, to only exclude properly-dead or bleeding-out units.
+	UnitStatCheckCondition = new class'X2Condition_UnitStatCheck';
+	UnitStatCheckCondition.AddCheckStat(eStat_HP, 0, eCheck_GreaterThan);
+	Template.AbilityTargetConditions.AddItem(UnitStatCheckCondition);
+
+	UnitEffectsCondition = new class'X2Condition_UnitEffects';
+	UnitEffectsCondition.AddExcludeEffect(class'X2StatusEffects'.default.BleedingOutName, 'AA_UnitIsImpaired');
+	Template.AbilityTargetConditions.AddItem(UnitEffectsCondition);
+
+	MedikitHeal = new class'X2Effect_ApplyMedikitHeal';
+	MedikitHeal.PerUseHP = class'X2Ability_DefaultAbilitySet'.default.MEDIKIT_PERUSEHP;
+	MedikitHeal.IncreasedHealProject = 'BattlefieldMedicine';
+	MedikitHeal.IncreasedPerUseHP = class'X2Ability_DefaultAbilitySet'.default.NANOMEDIKIT_PERUSEHP;
+	Template.AddTargetEffect(MedikitHeal);
+
+	Template.AddTargetEffect(class'X2Ability_SpecialistAbilitySet'.static.RemoveAllEffectsByDamageType());
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
+
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_medkit";
+	Template.Hostility = eHostility_Defensive;
+	Template.bDisplayInUITooltip = false;
+	Template.bLimitTargetIcons = true;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+
+	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
+	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+	Template.BuildVisualizationFn = Paramedic_BuildVisualization;
+
+	Template.ActivationSpeech = 'HealingAlly';
+	Template.bSkipMoveStop = false;
+	//Template.CustomSelfFireAnim = 'FF_FireMedkitSelf';
+
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
+
+	ParamedicCondition = new class'X2Condition_AbilityProperty';
+	ParamedicCondition.OwnerHasSoldierAbilities.AddItem('Paramedic_LW');
+	Template.AbilityShooterConditions.AddItem(ParamedicCondition);
+
+	return Template;
+}
+
+static function X2AbilityTemplate ParaMedikitStabilize()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2Condition_UnitProperty          UnitPropertyCondition;
+	local array<name>                       SkipExclusions;
+	local X2AbilityCost_Ammo	AmmoCost;
+	local X2Condition_AbilityProperty ParamedicCondition;
+	local X2Effect_RemoveEffects RemoveEffects;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ParaMedikitStabilize');
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;	
+	Template.AbilityCosts.AddItem(ActionPointCost);
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
+	Template.HideErrors.AddItem('AA_AbilityUnavailable');
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.MEDIKIT_HEAL_PRIORITY;
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	AmmoCost.bReturnChargesError = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	Template.bUseAmmoAsChargesForHUD = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
+	Template.TargetingMethod = class'X2TargetingMethod_MeleePath';
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	//Hack: Do this instead of ExcludeDead, to only exclude properly-dead or bleeding-out units.
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = false;
+	UnitPropertyCondition.ExcludeAlive = false;
+	UnitPropertyCondition.ExcludeHostileToSource = true;
+	UnitPropertyCondition.ExcludeFriendlyToSource = false;
+	UnitPropertyCondition.IsBleedingOut = true;
+	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
+
+	RemoveEffects = new class'X2Effect_RemoveEffects';
+	RemoveEffects.EffectNamesToRemove.AddItem(class'X2StatusEffects'.default.BleedingOutName);
+	Template.AddTargetEffect(RemoveEffects);
+	Template.AddTargetEffect(class'X2StatusEffects'.static.CreateUnconsciousStatusEffect(, true));
+
+	Template.AddTargetEffect(class'X2Ability_SpecialistAbilitySet'.static.RemoveAllEffectsByDamageType());
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
+
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_stabilize_move2";
+	Template.Hostility = eHostility_Defensive;
+	Template.bDisplayInUITooltip = false;
+	Template.bLimitTargetIcons = true;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+
+	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
+	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+	Template.BuildVisualizationFn = Paramedic_BuildVisualization;
+
+	Template.ActivationSpeech = 'StabilizingAlly';
+	Template.bSkipMoveStop = false;
+	//Template.CustomSelfFireAnim = 'FF_FireMedkitSelf';
+
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.NonAggressiveChosenActivationIncreasePerUse;
+
+	ParamedicCondition = new class'X2Condition_AbilityProperty';
+	ParamedicCondition.OwnerHasSoldierAbilities.AddItem('Paramedic_LW');
+	Template.AbilityShooterConditions.AddItem(ParamedicCondition);
+
+	return Template;
+}
+
+static function Paramedic_BuildVisualization(XComGameState VisualizeGameState)
+{
+	local XComGameStateVisualizationMgr VisMgr;
+	local X2Action_Fire FireAction;
+	local XComGameStateContext_Ability Context;
+	local XComGameState_Unit SourceState, TargetState;
+	local VisualizationActionMetadata		EmptyTrack, BuildTrack;
+	local vector TargetLocation;
+	local X2Action_MoveTurn	TurnAction;
+	local XComGameStateHistory History;
+
+	class'X2Ability'.static.TypicalAbility_BuildVisualization(VisualizeGameState);
+
+	VisMgr = `XCOMVISUALIZATIONMGR;
+	History = `XCOMHISTORY;
+
+	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
+
+	SourceState = XComGameState_Unit(History.GetGameStateForObjectID(Context.InputContext.SourceObject.ObjectID));
+
+	BuildTrack = EmptyTrack;
+	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(SourceState.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
+	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(SourceState.ObjectID);
+	BuildTrack.VisualizeActor = History.GetVisualizer(SourceState.ObjectID);
+
+
+	FireAction = X2Action_Fire(VisMgr.GetNodeOfType(VisMgr.BuildVisTree, class'X2Action_Fire', none, Context.InputContext.SourceObject.ObjectID));
+
+	TargetState = XComGameState_Unit(History.GetGameStateForObjectID(Context.InputContext.PrimaryTarget.ObjectID));
+
+	TargetLocation = `XWORLD.GetPositionFromTileCoordinates(TargetState.TileLocation);
+
+	TurnAction = X2Action_MoveTurn(class'X2Action_MoveTurn'.static.AddToVisualizationTree(BuildTrack, VisualizeGameState.GetContext(), true, FireAction.ParentActions[0]));
+	TurnAction.ParsePathSetParameters(TargetLocation);
 }
 
 
