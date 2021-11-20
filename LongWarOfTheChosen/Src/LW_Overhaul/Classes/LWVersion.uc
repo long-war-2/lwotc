@@ -49,5 +49,5 @@ defaultproperties
     MajorVersion = 1;
     MinorVersion = 0;
     PatchVersion = 0;
-    Classifier = "dev 28.2"
+    Classifier = "beta 5"
 }
