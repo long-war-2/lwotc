@@ -71,7 +71,6 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateStilettoRoundsAbility());
 	Templates.AddItem(CreateFlechetteRoundsAbility());
 
-	Templates.AddItem(PurePassive('Stiletto_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_stiletto", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Needle_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_ammo_needle", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Redscreen_Rounds_Ability', "img:///UILibrary_LW_Overhaul.LW_AbilityRedscreen", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Shredder_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_maximumordanance", false, 'eAbilitySource_Item'));
