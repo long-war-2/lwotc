@@ -34,8 +34,8 @@ LocPromotionPopupText="<Bullet/> 造成混亂於爆炸中所有有機單位的�
 
 [DisablingShot X2AbilityTemplate]
 LocFriendlyName="阻斷射擊"
-LocLongDescription="用精確的射擊擊暈敵人，如果射擊暴擊，則造成額外的眩暈持續時間。 射擊不會造成暴擊傷害。"
-LocHelpText="用精確的射擊擊暈敵人，如果射擊暴擊，則造成額外的眩暈持續時間。 射擊不會造成暴擊傷害。"
+LocLongDescription="用精確的射擊擊暈敵人，如果暴擊則造成額外的眩暈持續時間。 射擊不會造成暴擊傷害。"
+LocHelpText="用精確的射擊擊暈敵人，如果暴擊則造成額外的眩暈持續時間。 射擊不會造成暴擊傷害。"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> 如果命中(包括擦傷)眩暈敵人<Ability:DisablingShotStunActions/> 行動點。<br/><Bullet/> 如果暴擊額外眩暈敵人 <Ability:DisablingShotCritStunActions/> 行動點, 但是射擊不會造成暴擊傷害。<br/><Bullet/> 阻斷射擊需要 <Ability:SelfAmmoCost/> 彈藥。<br/><Bullet/> 阻斷射擊有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/><Bullet/> 只有化身和靈能殭屍不能被眩暈。"
 ; End Translation (2)
@@ -72,7 +72,7 @@ LocPromotionPopupText="<Bullet/> 當敵人觸發時，給聖殿騎士增加1點�
 LocFriendlyName="恐嚇"
 LocLongDescription="靈能閃電增加恐慌敵人效果。"
 LocHelpText="靈能閃電增加恐慌敵人效果。"
-LocPromotionPopupText="<Bullet/> 靈能閃電現在可以使敵人恐慌。<br/><Bullet/> 恐慌的幾率取決於聖殿騎士的意志屬性和目標的意志。"
+LocPromotionPopupText="<Bullet/> 靈能閃電現在可以使敵人恐慌。<br/><Bullet/> 恐慌幾率為<Ability:TERROR_STAT_CHECK_BASE_VALUE/>%同時受到聖殿騎士和目標意志力的影響。"
 
 [Apotheosis X2AbilityTemplate]
 LocFriendlyName="神化"
@@ -195,9 +195,9 @@ LocPromotionPopupText="<Bullet/> 戰鬥存在能讓隊友利用額外的攻擊�
 [CheapShot X2AbilityTemplate]
 LocFriendlyName="暗箭傷人"
 LocFlyOverText="暗箭傷人"
-LocLongDescription= "每回合一次，用主武器對一名受傷目標進行一次普通射擊後，獲得一個額外的移動點。不能在同一回合觸發刀鋒相接。"
-LocHelpText="每回合一次，用主武器對一名受傷目標進行一次普通射擊後，獲得一個額外的移動點。不能在同一回合觸發刀鋒相接。"
-LocPromotionPopupText="<Bullet/> 僅適用於標準射擊，所以它不會觸發放逐之類的技能。"
+LocLongDescription= "每回合一次，用主武器對一名該回合受到傷害的目標進行射擊後，獲得一個額外的移動點。不能在同一回合觸發刀鋒相接。"
+LocHelpText="每回合一次，用主武器對一名該回合受到傷害的目標進行射擊後，獲得一個額外的移動點。不能在同一回合觸發刀鋒相接。"
+LocPromotionPopupText="<Bullet/> 同樣適用於放逐之類的技能。"
 ; End Translation
 
 [LW_FactionBalance.X2Ability_ThrowingKnifeAbilitySet]

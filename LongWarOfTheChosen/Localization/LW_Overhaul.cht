@@ -51,7 +51,7 @@ ActivityObjectives[1]="防守反抗軍避難所"
 
 [ReinforceActivity X2LWAlienActivityTemplate]
 ActivityName="ReinforceActivity"
-ActivityObjectives[0]="攔截變種人增援"
+ActivityObjectives[0]="攔截變種人增援部隊"
 +MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="我們發現變種人在向該地區派遣部隊，其目的是對我們在該地區的行動作出反應。", MissionIndex=0)
 
 [COINResearch X2LWAlienActivityTemplate]
@@ -72,7 +72,7 @@ ActivityObjectives[0]="阻止變種人反游擊行動"
 
 [BuildResearchFacility X2LWAlienActivityTemplate]
 ActivityName="BuildResearchFacilityActivity"
-ActivityObjectives[0]="伏擊變種人工程單位"
+ActivityObjectives[0]="伏擊設施工程單位"
 +MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="我們得知外星人打算在這片地區開設一個新的研究設施。我們可以打擊工程單位以阻止他們。", MissionIndex=0)
 
 [RegionalAvatarResearch X2LWAlienActivityTemplate]
@@ -81,7 +81,7 @@ ActivityObjectives[0]="突襲外星人研究實驗室"
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到敵人的飛行路線"
+ActivityObjectives[0]="找到幽浮的飛行路線"
 ActivityObjectives[1]="回收幽浮物資"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我們已經發現了一個變種人活動的潛在線索。應該前去調查。", MissionIndex=0)
@@ -90,7 +90,7 @@ ActivityObjectives[1]="回收幽浮物資"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到敵人的飛行路線"
+ActivityObjectives[0]="找到幽浮的飛行路線"
 ActivityObjectives[1]="回收幽浮物資"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我們發現了一個變種人活動的潛在線索。應該前去調查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我們發現了一個變種人活動的潛在線索。應該前去調查。", MissionIndex=0)
@@ -98,7 +98,7 @@ ActivityObjectives[1]="回收幽浮物資"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到敵人的飛行路線"
+ActivityObjectives[0]="找到幽浮的飛行路線"
 ActivityObjectives[1]="回收幽浮物資"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我們發現了一個變種人活動的潛在線索。應該前去調查。", MissionIndex=0)
@@ -108,19 +108,19 @@ ActivityObjectives[1]="回收幽浮物資"
 
 [Invasion X2LWAlienActivityTemplate]
 ActivityName="InvasionActivity"
-ActivityObjectives[0]="伏擊變種人高級部隊"
-ActivityObjectives[1]="防守臨時政府"
+ActivityObjectives[0]="伏擊變種人先遣部隊"
+ActivityObjectives[1]="保衛臨時政府"
 
 +MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="我們已經監測到變種人軍隊已進入了這片區域。阻止他們的前進非常重要。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Invasion_LW", Description="變種人正試圖入侵該地區並進攻臨時政府。防守我們的人民，不然外星人將再次控制這片區域。", MissionIndex=1)
++MissionDescriptions=(MissionFamily="Invasion_LW", Description="變種人正試圖入侵該地區並進攻臨時政府。保衛我們的人民，不然外星人將再次控制這片區域。", MissionIndex=1)
 
 [Foothold X2LWAlienActivityTemplate]
 ActivityName="FootholdActivity"
-ActivityObjectives[0]="攻擊幽浮突襲運輸艦"
-ActivityObjectives[1]="防守臨時政府"
+ActivityObjectives[0]="突襲幽浮運輸艦"
+ActivityObjectives[1]="保衛臨時政府"
 
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="外星人正試圖在地球上重建據點。我們可以通過在他們的突襲運輸艦著陸時攻擊他們來阻止。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Invasion_LW", Description="外星人正試圖入侵該地區並進攻臨時政府。防守我們的人民，不然外星人將再次控制這片區域。", MissionIndex=1)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="外星人正試圖在地球上重建據點。我們可以通過在他們的運輸艦著陸時突襲他們來阻止。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Invasion_LW", Description="外星人正試圖入侵該地區並進攻臨時政府。保衛我們的人民，不然外星人將再次控制這片區域。", MissionIndex=1)
 
 [Propaganda X2LWAlienActivityTemplate]
 ActivityName="PropagandaActivity"
@@ -380,11 +380,11 @@ m_strInvasionConfirm="查看入侵地點"
 m_strRepeatResearch="重複研究"
 
 [UIScreenListener_ArmoryWeaponUpgrade_LW]
-strStripWeaponUpgradesButton="去除武器升級"
-StripAllWeaponUpgradesStr="未行動人員去除武器升級"
-strStripWeaponUpgradesTooltip="去除所有升級和自定義，將武器返回至一般物品欄"
-strStripWeaponUpgradeDialogueTitle="確認去除所有升級"
-strStripWeaponUpgradeDialogueText="你確定要去除該武器的所有升級並將其退回普通武器庫？"
+strStripWeaponUpgradesButton="移除武器升級"
+StripAllWeaponUpgradesStr="移除未參戰士兵武器升級"
+strStripWeaponUpgradesTooltip="去除所有升級和自定義，將武器送回至武器庫"
+strStripWeaponUpgradeDialogueTitle="確認移除所有升級"
+strStripWeaponUpgradeDialogueText="你確定要移除該武器的所有升級並將其送回武器庫？"
 
 [UIPersonnel_SquadBarracks]
 strSquadBarrackTitle="小隊：<XGParam:StrValue0>"

@@ -1,54 +1,55 @@
-
+﻿
 ;---- BEGIN ABILITIES
 
 ;displayed both for officer and soldiers receiving effect
 [GetSome X2AbilityTemplate]
 LocFriendlyName="嘗嘗這個"
-LocLongDescription="每次任務可使用兩次，花費一個行動點讓在指揮範圍內的所有友軍在剩餘回合內獲得+20的暴擊率加成。"
+LocLongDescription="每次任務可使用兩次，花費一個行動點讓在指揮範圍內的所有友軍在回合剩餘時間獲得+<ABILITY:GETSOME_CRIT_BONUS/>暴擊率加成。"
 LocHelpText="提升軍官身邊士兵的暴擊率。"
 LocFlyOverText="嘗嘗這個"
-LocPromotionPopupText="<Bullet/>花費一個行動點讓在指揮範圍內的所有友軍在剩餘回合內獲得+20的暴擊率加成。<br/><Bullet/>每次任務可用2次。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
+LocPromotionPopupText="<Bullet/>花費一個行動點讓在指揮範圍內的所有友軍在回合剩餘時間獲得+<ABILITY:GETSOME_CRIT_BONUS/>暴擊率加成。<br/><Bullet/>每次任務可用2次。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
 
 [Collector X2AbilityTemplate]
 LocFriendlyName="收藏家"
-LocLongDescription="只要軍官在健康狀態下，小隊殺死任何非人類敵人都有33%的幾率獲得1個情報點數。"
+LocLongDescription="只要軍官在健康狀態下，小隊殺死任何非人類敵人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的幾率獲得1個情報點數。"
 LocHelpText="小隊的擊殺能獲得額外情報。"
 LocFlyOverText="收藏家"
 ; displayed for officer in OfficerAbility UI
-LocPromotionPopupText="<Bullet/>只要軍官在健康狀態下，小隊殺死任何非人類敵人都有33%的幾率獲得1個情報點數。"
+LocPromotionPopupText="<Bullet/>只要軍官在健康狀態下，小隊殺死任何非人類敵人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的幾率獲得1個情報點數。"
 
 ;displayed on officer in tactical container
+;This effect is unused.
 [CollectorPassive X2AbilityTemplate]
 LocFriendlyName="收藏家"
-LocLongDescription="只要軍官在健康狀態下，小隊殺死任何非人類敵人都有33%的幾率獲得1個情報點數。"
+LocLongDescription="只要軍官在健康狀態下，小隊殺死任何非人類敵人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的幾率獲得1個情報點數。"
 LocHelpText="小隊的擊殺能獲得額外情報。"
 LocFlyOverText="收藏家"
-LocPromotionPopupText="<Bullet/>只要軍官在健康狀態下，小隊殺死任何非人類敵人都有33%的幾率獲得1個情報點數。"
+LocPromotionPopupText="<Bullet/>只要軍官在健康狀態下，小隊殺死任何非人類敵人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的幾率獲得1個情報點數。"
 
 ;displayed on other soldier that receive the effect
 [Defilade X2AbilityTemplate]
 LocFriendlyName="遮蔽"
-LocLongDescription="在軍官指揮範圍內的所有友軍，掩體提供+5點額外防禦值。"
+LocLongDescription="在軍官指揮範圍內的所有友軍，掩體提供+<ABILITY:DEFILADE_DEFENSE_BONUS/>點額外防禦值。"
 LocHelpText="軍官身邊的士兵在掩體下獲得額外防禦。"
 LocFlyOverText="遮蔽"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/>在軍官指揮範圍內的所有友軍，掩體提供+5點額外防禦值。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
+LocPromotionPopupText="<Bullet/>在軍官指揮範圍內的所有友軍，掩體提供+<ABILITY:DEFILADE_DEFENSE_BONUS/>點額外防禦值。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
 
 ;Displayed on officer in tactical container
 [DefiladePassive X2AbilityTemplate]
 LocFriendlyName="遮蔽"
-LocLongDescription="在軍官指揮範圍內的所有友軍，掩體提供+5點額外防禦值。"
+LocLongDescription="在軍官指揮範圍內的所有友軍，掩體提供+<ABILITY:DEFILADE_DEFENSE_BONUS/>點額外防禦值。"
 LocHelpText="軍官身邊的士兵在掩體下獲得額外防禦。"
 LocFlyOverText="遮蔽"
-LocPromotionPopupText="<Bullet/>在軍官指揮範圍內的所有友軍，掩體提供+5點額外防禦值。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
+LocPromotionPopupText="<Bullet/>在軍官指揮範圍內的所有友軍，掩體提供+<ABILITY:DEFILADE_DEFENSE_BONUS/>點額外防禦值。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
 
 ;displayed both on officer and in debuff on target
 [FocusFire X2AbilityTemplate]
 LocFriendlyName="集中火力"
-LocLongDescription="花費一個行動點指定一個目標，在剩餘的回合內攻擊該目標時，為你的小隊提供累加的命中加成和1護甲穿透。"
+LocLongDescription="花費一個行動點指定一個目標，在回合剩餘時間攻擊該目標時，為你的小隊提供累加的命中加成和<ABILITY:FOCUS_FIRE_ARMORPIERCING/>護甲穿透。"
 LocHelpText="指定一個目標，讓你的小隊對其獲得命中和護甲穿透的加成。"
 LocFlyOverText="集中火力"
-LocPromotionPopupText="<Bullet/>花費一個行動點指定一個目標，在剩餘的回合內攻擊該目標時，為你的小隊提供累加的命中加成和1護甲穿透。<br/><Bullet/>每次對該目標成功的武器命中都能在相同回合內提供額外+<ABILITY:FOCUS_FIRE_AIM_BONUS/>的命中加成。<br/><Bullet/>3回合冷卻。<br/>"
+LocPromotionPopupText="<Bullet/>花費一個行動點指定一個目標，在回合剩餘時間攻擊該目標時，為你的小隊提供累加的命中加成和<ABILITY:FOCUS_FIRE_ARMORPIERCING/>護甲穿透。<br/><Bullet/>每次對該目標成功的武器命中都能在相同回合內提供額外+<ABILITY:FOCUS_FIRE_AIM_BONUS/>的命中加成。<br/><Bullet/><ABILITY:FOCUS_FIRE_COOLDOWN/>回合冷卻。<br/>"
 
 ;displayed both on officer and on soldiers receiving effect
 [FallBack X2AbilityTemplate]
@@ -56,47 +57,47 @@ LocFriendlyName="後撤！"
 LocLongDescription="給視野內的任一完成所有動作的友軍提供一次無消耗但無法控制的防禦動作。"
 LocHelpText="任一可見的友軍獲得一個無消耗但無法控制的防禦動作。"
 LocFlyOverText="後撤！"
-LocPromotionPopupText="<Bullet/> 任一可見的友軍獲得一個無消耗但無法控制的防禦動作。該友軍通常會嘗試去尋找更安全的位置或掩體蹲守。<br/><Bullet/> 對正在壓制或監視的單位無效。<br/><Bullet/> 無需行動點數。"
+LocPromotionPopupText="<Bullet/> 任一可見的友軍獲得一個無消耗但無法控制的防禦動作。該友軍通常會嘗試去尋找更安全的位置或蹲伏。<br/><Bullet/> 對正在壓制或監視的單位無效。<br/><Bullet/> 無需行動點數。"
 
 [Scavenger X2AbilityTemplate]
 LocFriendlyName="拾荒者"
-LocLongDescription="任務成功後獎勵的補給，外星合金和超鈾提升30%。小隊成員有幾率從外星人身上收集到額外的外星合金和超鈾。"
+LocLongDescription="任務成功後獎勵的補給，外星合金和超鈾提升<ABILITY:SCAVENGER_BONUS_MULTIPLIER/>%。小隊成員有幾率從外星人身上收集到額外的外星合金和超鈾。"
 LocHelpText="額外的補給，外星合金和超鈾。"
 LocFlyOverText="拾荒者"
-LocPromotionPopupText="<Bullet/>如果軍官在任務中存活並意識清醒，那麼任務獎勵的補給，外星合金和超鈾提升30%。<br/><Bullet>小隊或許會從外星人身上獲取外星合金和超鈾。<br/>"
+LocPromotionPopupText="<Bullet/>如果軍官在任務中存活並意識清醒，那麼任務獎勵的補給，外星合金和超鈾提升<ABILITY:SCAVENGER_BONUS_MULTIPLIER/>%。<br/><Bullet>小隊有幾率從外星人身上獲取外星合金和超鈾，只要該軍官在場，並且沒有眩暈、恐慌或其他負面狀態。<br/>"
 
 ;Displayed on officer in tactical container
 [ScavengerPassive X2AbilityTemplate]
 LocFriendlyName="拾荒者"
-LocLongDescription="任務成功後獎勵的補給，外星合金和超鈾提升30%。有幾率從外星人身上收集到額外的外星合金和超鈾。"
+LocLongDescription="任務成功後獎勵的補給，外星合金和超鈾提升<ABILITY:SCAVENGER_BONUS_MULTIPLIER/>%。有幾率從外星人身上收集到額外的外星合金和超鈾。"
 LocHelpText="額外的補給，外星合金和超鈾。"
 LocFlyOverText="拾荒者"
-LocPromotionPopupText="<Bullet/>如果軍官在任務中存活並狀態良好，那麼任務獎勵的補給，外星合金和超鈾提升30%。<br/><Bullet>小隊或許會從外星人身上獲取外星合金和超鈾。<br/>"
+LocPromotionPopupText="<Bullet/>如果軍官在任務中存活並狀態良好，那麼任務獎勵的補給，外星合金和超鈾提升<ABILITY:SCAVENGER_BONUS_MULTIPLIER/>%。<br/><Bullet>小隊有幾率從外星人身上獲取外星合金和超鈾，只要該軍官在場，並且沒有眩暈、恐慌或其他負面狀態。<br/>"
 
 ;displayed on other soldier that receive the effect
 [FireDiscipline X2AbilityTemplate]
 LocFriendlyName="開火紀律"
-LocLongDescription="在軍官指揮範圍內的所有友軍都能在反應射擊時+10%的命中。"
+LocLongDescription="在軍官指揮範圍內的所有友軍都能在反應射擊時+<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>%的命中。"
 LocHelpText="所有軍官身邊的友軍獲得反應射擊加成。"
 LocFlyOverText="開火紀律"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/>在軍官指揮範圍內的所有友軍都能在反應射擊時+10%的命中。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
+LocPromotionPopupText="<Bullet/>在軍官指揮範圍內的所有友軍都能在反應射擊時+<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>%的命中。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>此技能不會為軍官自身提供增益。<br/><Bullet/>如果軍官或士兵混亂、眩暈、恐慌、中毒、著火或受到其他傷害，則該技能不提供增益。<br/><Bullet/>此技能不會為機器人盟友和平民提供增益。"
 
 ;Displayed on officer in tactical container
 [FireDisciplinePassive X2AbilityTemplate]
 LocFriendlyName="開火紀律"
-LocLongDescription="在軍官指揮範圍內的所有友軍都能在反應射擊時+10%的命中。"
+LocLongDescription="在軍官指揮範圍內的所有友軍都能在反應射擊時+<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>%的命中。"
 LocHelpText="所有軍官身邊的友軍獲得反應射擊加成。"
 LocFlyOverText="開火紀律"
-LocPromotionPopupText="<Bullet/>在軍官指揮範圍內的所有友軍都能在反應射擊時+10%的命中。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
+LocPromotionPopupText="<Bullet/>在軍官指揮範圍內的所有友軍都能在反應射擊時+<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>%的命中。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>此技能不會為軍官自身提供增益。<br/><Bullet/>如果軍官或士兵混亂、眩暈、恐慌、中毒、著火或受到其他傷害，則該技能不提供增益。<br/><Bullet/>此技能不會為機器人盟友和平民提供增益。"
 
 ;displayed both on officer and on soldiers receiving effect
 [OscarMike X2AbilityTemplate]
 LocFriendlyName="迅捷行動"
-LocLongDescription="花費一個行動點，在接下來的回合內給所有指揮範圍內的友軍+5的移動力。每個任務限用一次。"
-LocHelpText="激活以為周圍友軍提供移動力加成。"
+LocLongDescription="花費一個行動點，在回合剩餘時間給所有指揮範圍內的友軍+<ABILITY:OSCARMIKE_MOBILITY_BONUS/>移動力。每個任務限用一次。"
+LocHelpText="使周圍友軍獲得移動力加成。"
 LocFlyOverText="迅捷行動"
-LocPromotionPopupText="<Bullet/>花費一個行動點，在接下來的回合內給所有指揮範圍內的友軍+5的移動力。<br/><Bullet/>每個任務限用一次。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
+LocPromotionPopupText="<Bullet/>花費一個行動點，在回合剩餘時間給所有指揮範圍內的友軍+<ABILITY:OSCARMIKE_MOBILITY_BONUS/>移動力。<br/><Bullet/>每個任務限用一次。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>此技能不會為眩暈或恐慌的盟友提供增益。<br/><Bullet/>此技能不會為機器人盟友和平民提供增益。"
 
 ;displayed on other soldier that receive the effect
 [LeadByExample X2AbilityTemplate]
@@ -105,7 +106,7 @@ LocLongDescription="軍官提升指揮範圍內士兵的命中，意志力，侵
 LocHelpText="在軍官身邊的友軍能獲得命中，意志力和侵入能力提升。"
 LocFlyOverText="以身作則"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/>如果軍官的命中，意志以及（或）侵入能力比指揮範圍內的某一士兵要高，那麼該士兵獲得這些數值與軍官之間差額一半的加成。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
+LocPromotionPopupText="<Bullet/>如果軍官的命中，意志以及（或）侵入能力比指揮範圍內的某一士兵要高，那麼該士兵獲得這些數值與軍官之間差額一半的加成。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>此技能不會為眩暈或恐慌的盟友提供增益。<br/><Bullet/>此技能不會為機器人盟友提供增益。"
 
 ;Displayed on officer in tactical container
 [LeadByExamplePassive X2AbilityTemplate]
@@ -113,7 +114,7 @@ LocFriendlyName="以身作則"
 LocLongDescription="軍官提升指揮範圍內士兵的命中，意志力，侵入能力，具體數值為士兵和軍官數值差額的一半。"
 LocHelpText="在軍官身邊的友軍能獲得命中，意志力和侵入能力提升。"
 LocFlyOverText="以身作則"
-LocPromotionPopupText="<Bullet/>如果軍官的命中，意志以及（或）侵入能力比指揮範圍內的某一士兵要高，那麼該士兵獲得這些數值與軍官之間差額一半的加成。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
+LocPromotionPopupText="<Bullet/>如果軍官的命中，意志以及（或）侵入能力比指揮範圍內的某一士兵要高，那麼該士兵獲得這些數值與軍官之間差額一半的加成。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>此技能不會為眩暈或恐慌的盟友提供增益。<br/><Bullet/>此技能不會為機器人盟友提供增益。"
 
 ;this may not be displayed -- needs testing
 [LeadByExampleLeader X2AbilityTemplate]
@@ -126,25 +127,25 @@ LocPromotionPopupText="<Bullet/>如果軍官的命中，意志以及（或）侵
 ;displayed on other soldier that receive the effect
 [CombinedArms X2AbilityTemplate]
 LocFriendlyName="聯合作戰"
-LocLongDescription="在軍官指揮範圍內的所有友軍的成功攻擊都將+1傷害。"
+LocLongDescription="在軍官指揮範圍內的所有友軍的成功攻擊都將+<ABILITY:COMBINEDARMS_DAMAGE_BONUS/>傷害。"
 LocHelpText="在軍官身邊的友軍獲得傷害加成。"
 LocFlyOverText="聯合作戰"
-LocPromotionPopupText="<Bullet/>在軍官指揮範圍的所有友軍的成功攻擊都將+1傷害。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
+LocPromotionPopupText="<Bullet/>在軍官指揮範圍的所有友軍的成功攻擊都將+<ABILITY:COMBINEDARMS_DAMAGE_BONUS/>傷害。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>此技能不會為軍官自身提供增益。<br/><Bullet/>如果軍官或士兵混亂、眩暈、恐慌、中毒、著火或受到其他傷害，則該技能不提供增益。<br/><Bullet/>此技能不會為機器人盟友提供增益。"
 
 ;Displayed on officer in tactical container
 [CombinedArmsPassive X2AbilityTemplate]
 LocFriendlyName="聯合作戰"
-LocLongDescription="在軍官指揮範圍內的所有友軍的成功攻擊都將+1傷害。"
+LocLongDescription="在軍官指揮範圍內的所有友軍的成功攻擊都將+<ABILITY:COMBINEDARMS_DAMAGE_BONUS/>傷害。"
 LocHelpText="在軍官身邊的友軍獲得傷害加成。"
 LocFlyOverText="聯合作戰"
-LocPromotionPopupText="<Bullet/>在軍官指揮範圍的所有友軍的成功攻擊都將+1傷害。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。"
+LocPromotionPopupText="<Bullet/>在軍官指揮範圍的所有友軍的成功攻擊都將+<ABILITY:COMBINEDARMS_DAMAGE_BONUS/>傷害。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>此技能不會為軍官自身提供增益。<br/><Bullet/>如果軍官或士兵混亂、眩暈、恐慌、中毒、著火或受到其他傷害，則該技能不提供增益。<br/><Bullet/>此技能不會為機器人盟友提供增益。"
 
 [Command X2AbilityTemplate]
 LocFriendlyName="指揮"
 LocLongDescription="結束你的回合來為小隊中任一可見的成員提供一個額外的行動點數。可用次數由軍官的級別決定。"
 LocHelpText="賦予友軍額外行動點數。"
 LocFlyOverText="指揮"
-LocPromotionPopupText="<Bullet/>消耗一個行動點數並結束你的回合。<br/><Bullet/>少校和中校可以使用1次此技能；上校和大校可以使用2次；少將和中將可以使用3次，上將可以使用4次。<br/><Bullet/>無法在正在監視或壓制其他目標的單位上使用。"
+LocPromotionPopupText="<Bullet/>消耗一個行動點數並結束你的回合。<br/><Bullet/>少校和中校可以使用1次此技能；上校和大校可以使用2次；少將和中將可以使用3次，上將可以使用4次。<br/><Bullet/>無法在正在監視或壓制其他目標的單位上使用。<br/><Bullet/>不能在機器人盟友和平民身上使用。"
 
 [Infiltrator X2AbilityTemplate]
 LocFriendlyName="滲透者"
@@ -165,21 +166,21 @@ LocFriendlyName="干擾機"
 LocLongDescription="每次戰鬥可用一次，減緩敵人1回合的增援到達時間。"
 LocHelpText="減緩敵人1回合的增援到達時間。"
 LocFlyOverText="干擾機"
-LocPromotionPopupText="<Bullet/>使用此能力可使即將到來的敵方增援推遲1回合。<br/><Bullet/>如果沒有敵方增援，則會推遲將來的增援。"
+LocPromotionPopupText="<Bullet/>使用此能力可使敵方增援到達時間推遲1回合。"
 
 [Incoming X2AbilityTemplate]
 LocFriendlyName="過來了！"
-LocLongDescription="使用此能力可以使指揮範圍內的友軍在下回合內受到的爆炸物傷害減少4點。"
-LocHelpText="軍官和周圍的友軍受到的爆炸物傷害減少4點。"
+LocLongDescription="使用此能力可以使指揮範圍內的友軍在下個外星人回合結束時受到的爆炸物傷害減少<Ability:INCOMING_EXPLOSIVES_DR/>點。"
+LocHelpText="軍官和周圍的友軍受到的爆炸物傷害減少<Ability:INCOMING_EXPLOSIVES_DR/>點。"
 LocFlyOverText="過來了！"
-LocPromotionPopupText="<Bullet/>使用此能力可以使指揮範圍內的所有友軍在下回合內受到的爆炸物傷害減少4點。<br/><Bullet/>不需要行動點數。<br/><Bullet/>5回合冷卻時間。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>對恐慌中的或正在壓制其他目標的士兵無效。<br/>"
+LocPromotionPopupText="<Bullet/>使用此能力可以使指揮範圍內的所有友軍在下個外星人回合結束時受到的爆炸物傷害減少<Ability:INCOMING_EXPLOSIVES_DR/>點。<br/><Bullet/>不需要行動點數。<br/><Bullet/><Ability:INCOMING_COOLDOWN/>回合冷卻時間。<br/><Bullet/>指揮範圍會隨著軍官等級提升而提升。<br/><Bullet/>對恐慌或眩暈中的或正在壓制其他目標的士兵或平民無效。<br/>"
 
 [Intervention X2AbilityTemplate]
 LocFriendlyName="干預"
-LocLongDescription="使用此能力可以花費10情報來獲得兩回合行動時間。可用次數由軍官的級別決定。"
-LocHelpText="激活以花費情報在任務計時器中獲得額外2回合時間。"
+LocLongDescription="使用此能力可以花費<Ability:INTERVENTION_INTEL_COST/>情報在任務計時器中獲得額外<Ability:INTERVENTION_EXTRA_TURNS/>回合行動時間。可用次數由軍官的級別決定。"
+LocHelpText="激活以花費情報在任務計時器中獲得額外<Ability:INTERVENTION_EXTRA_TURNS/>回合時間。"
 LocFlyOverText="干預"
-LocPromotionPopUpText="<Bullet/>使用此能力可以花費10情報來獲得兩回合行動時間。<br/><Bullet/>消耗1個行動點數。<br/><Bullet/>可用次數由軍官的級別決定。<br/><Bullet/>如果沒有任務倒計時的話則無效。<br/><Bullet/>情報花費將會受事件影響；如果XCOM的情報不足10則不能使用。<br/>"
+LocPromotionPopUpText="<Bullet/>使用此能力可以花費<Ability:INTERVENTION_INTEL_COST/>情報來獲得<Ability:INTERVENTION_EXTRA_TURNS/>回合行動時間。<br/><Bullet/>消耗1個行動點數，不結束回合。<br/><Bullet/>可用次數由軍官的級別決定。<br/><Bullet/>如果沒有任務計時器的話則無效。<br/><Bullet/>情報花費將會受事件影響；如果XCOM的情報不足<Ability:INTERVENTION_INTEL_COST/>則不能使用。<br/>"
 
 [TrialByFire X2AbilityTemplate]
 LocFriendlyName="戰火洗禮"

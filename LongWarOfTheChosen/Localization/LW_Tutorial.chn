@@ -11,11 +11,28 @@ RainbowTrooperSightedBody="变种人现在除了基本的步兵外，还部署�
 HavenHighlightTitle="检查避难所"
 HavenHighlightBody="避难所对你的战役至关重要，因为它们被用来在该地区寻找任务。此外，您只能联系连接到现有避难所的区域。<br/><br/>单击左侧显示的按钮打开“避难所管理”界面。"
 FirstMissionDiscoveredTitle="发现第一个任务"
-FirstMissionDiscoveredBody="您已经检测到您的第一个任务！下一步是分配一个小队进行潜入。<br/><br/>大多数任务的失效日期和潜入时间都很长。安排更多的反抗军进行情报工作提高潜入率达到100％的几率。与复仇者号一起扫描一个避难所将贡献4名反抗军的情报。"
+FirstMissionDiscoveredBody="您已经检测到您的第一个任务！下一步是分配一个小队进行潜入。<br/><br/>大多数任务的失效日期和潜入时间都很长。安排更多的反抗军进行情报工作提高潜入率达到100％。与复仇者号一起扫描一个避难所将贡献4名反抗军的情报。"
 FirstRetaliationTitle="变种人报复"
 FirstRetaliationBody="变种人正在报复！这些是您不应该忽略的快速反应任务。<br/><br/>这是一次全面的报复，如果被忽视或丢失，则会摧毁避难所，以及针对具体工作的报复，如果忽视这些报复，从事这项工作的反抗军将会被杀死。你的避难所顾问会和一些反抗军一起执行任务。"
 CommandersQuartersEnteredTitle="LWOTC帮助"
 CommandersQuartersEnteredBody="LWOTC添加了一些条目到XCOM档案中，以更详细地解释其一些核心概念，例如潜入和避难所管理。<br/><br/>还可以通过反抗军管理菜单从一个界面查看所有避难所。"
+
+; LWOTC Needs Translation (2)
+GeneralChosenTitle="天选者"
+GeneralChosenBody="天选者将出现在这次任务中。在LWOTC中，他们只参与报复和核心故事任务(黑地等)，以此回应XCOM的活动。他们不会出现在其他任务中。<br/><br/>他们的目标仍然是找到复仇者号的位置并攻击它。当心，防御它并不容易！"
+
+TacticalChosenTitle="战斗中的天选者"
+TacticalChosenBody="天选者在LWOTC中更危险：<br/><ul><li>他们对暴击近乎免疫</li><li>每次在XCOM回合对他们造成伤害时都会采取行动(\"主反应\")</li><li>他们可以在射程内以消耗一回合劫持失血的士兵</li><li>他们在升级时获得显著优势(选定他们时使用F1获取详细信息)</li></ul>"
+
+AssassinSightedTitle="刺客"
+AssassinSightedBody="刺客在回合中每受到一次攻击，就会减少来袭伤害。虽然她的剑和波浪绕射伤害开始很低，但在她使用剑和波浪绕射时，它们的威力会增加，直到她劫持一名士兵。<br/><br/>小心部署士兵站位，因为她可以用她的主反应斩击一名临近的士兵。"
+
+WarlockSightedTitle="术士"
+WarlockSightedBody="术士拥有强大的冠军术士能力，可以链接盟友。当该盟友存活时，术士受到的伤害会明显减少。你也应该提防他的心灵灼伤，它会在目标周围区域燃烧。<br/><br/>如果一名士兵被精神控制，请注意，在LWOTC中你的士兵可以对他们使用叩击。"
+
+HunterSightedTitle="猎手"
+HunterSightedBody="猎手将始终保持有效距离，并试图从安全的位置劫持士兵。在你接近时要小心：他的手枪射击现在会使XCOM武器失效，并且可以自由投掷他的闪光榴弹。"
+; End Translation (2)
 
 ; [UIScreenListener_OutpostManagementTutorial]
 [UIScreenListener_HavenManagementTutorial]
@@ -35,7 +52,7 @@ HavenHighlightBody="避难所对你的战役至关重要，因为它们被用来
 
 [UIScreenListener_MissionBriefTutorial]
 MissionBriefTutorialTitle="任务简介"
-MissionBriefTutorialBody="任务期限决定了你要潜入任务多久。你从反抗军情报工作中获得的任务情报越多，你越早发现任务，潜入的时间就越长。<br/><br/>你不必做每一项任务，但你应该尽可能多地做。如果你没有一个小队或者没有足够的时间，那么不要害怕跳过一个任务。"
+MissionBriefTutorialBody="任务期限决定了你要潜入任务多久。你从反抗军情报工作中获得的任务情报越多，你越早发现任务，潜入的时间就越长。<br/><br/>你不必做每一项任务，但你应该尽可能多地去做。如果你没有一个小队或者没有足够的时间，那么不要害怕跳过一个任务。"
 MissionEnemyCountTitle="敌人数量"
 MissionEnemyCountBody="左边显示的敌人数量是一个近似值，如果你达到100%潜入，那么有多少敌人将执行任务。<br/><br/>潜入不足（未达到100%）导致更多的敌人执行任务。深度潜入有可能减少敌人的数量。"
 
@@ -45,6 +62,6 @@ SquadSelectInfiltrationBody="除了选择足够强大的小队成员执行任务
 
 [UIScreenListener_InfiltratingMissionTutorial]
 InfiltratingMissionTitle="潜入任务"
-InfiltratingMissionBody="你可以随时发起潜入任务，但潜入不足会使任务更加困难。你可以用情报来提高潜入速度，让它更快完成。<br/><br/>如果任务还没有到期，你可以随时中止潜入，然后重新开始。重新启动将潜入设置回0%。"
+InfiltratingMissionBody="你可以随时发起潜入任务，但潜入不足会使任务更加困难。你可以用情报来提高潜入速度，让它更快完成。<br/><br/>如果任务还没有到期，你可以随时终止潜入，然后重新开始。重新启动将潜入设置回0%。"
 
 ; End Translation

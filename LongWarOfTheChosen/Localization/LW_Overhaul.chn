@@ -51,7 +51,7 @@ ActivityObjectives[1]="防守反抗军避难所"
 
 [ReinforceActivity X2LWAlienActivityTemplate]
 ActivityName="ReinforceActivity"
-ActivityObjectives[0]="拦截变种人增援"
+ActivityObjectives[0]="拦截变种人增援部队"
 +MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="我们发现变种人在向该地区派遣部队，其目的是对我们在该地区的行动作出反应。", MissionIndex=0)
 
 [COINResearch X2LWAlienActivityTemplate]
@@ -72,7 +72,7 @@ ActivityObjectives[0]="阻止变种人反游击行动"
 
 [BuildResearchFacility X2LWAlienActivityTemplate]
 ActivityName="BuildResearchFacilityActivity"
-ActivityObjectives[0]="伏击变种人工程单位"
+ActivityObjectives[0]="伏击设施工程单位"
 +MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="我们得知外星人打算在这片地区开设一个新的研究设施。我们可以打击工程单位以阻止他们。", MissionIndex=0)
 
 [RegionalAvatarResearch X2LWAlienActivityTemplate]
@@ -81,7 +81,7 @@ ActivityObjectives[0]="突袭外星人研究实验室"
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到敌人的飞行路线"
+ActivityObjectives[0]="找到幽浮的飞行路线"
 ActivityObjectives[1]="回收幽浮物资"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们已经发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
@@ -90,7 +90,7 @@ ActivityObjectives[1]="回收幽浮物资"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到敌人的飞行路线"
+ActivityObjectives[0]="找到幽浮的飞行路线"
 ActivityObjectives[1]="回收幽浮物资"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
@@ -98,7 +98,7 @@ ActivityObjectives[1]="回收幽浮物资"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="找到敌人的飞行路线"
+ActivityObjectives[0]="找到幽浮的飞行路线"
 ActivityObjectives[1]="回收幽浮物资"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="我们发现了一个变种人活动的潜在线索。应该前去调查。", MissionIndex=0)
@@ -108,19 +108,19 @@ ActivityObjectives[1]="回收幽浮物资"
 
 [Invasion X2LWAlienActivityTemplate]
 ActivityName="InvasionActivity"
-ActivityObjectives[0]="伏击变种人高级部队"
-ActivityObjectives[1]="防守临时政府"
+ActivityObjectives[0]="伏击变种人先遣部队"
+ActivityObjectives[1]="保卫临时政府"
 
 +MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="我们已经监测到变种人军队已进入了这片区域。阻止他们的前进非常重要。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Invasion_LW", Description="变种人正试图入侵该地区并进攻临时政府。防守我们的人民，不然外星人将再次控制这片区域。", MissionIndex=1)
++MissionDescriptions=(MissionFamily="Invasion_LW", Description="变种人正试图入侵该地区并进攻临时政府。保卫我们的人民，不然外星人将再次控制这片区域。", MissionIndex=1)
 
 [Foothold X2LWAlienActivityTemplate]
 ActivityName="FootholdActivity"
-ActivityObjectives[0]="攻击幽浮突袭运输舰"
-ActivityObjectives[1]="防守临时政府"
+ActivityObjectives[0]="突袭幽浮运输舰"
+ActivityObjectives[1]="保卫临时政府"
 
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="外星人正试图在地球上重建据点。我们可以通过在他们的突袭运输舰着陆时攻击他们来阻止。", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Invasion_LW", Description="外星人正试图入侵该地区并进攻临时政府。防守我们的人民，不然外星人将再次控制这片区域。", MissionIndex=1)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="外星人正试图在地球上重建据点。我们可以通过在他们的运输舰着陆时突袭他们来阻止。", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Invasion_LW", Description="外星人正试图入侵该地区并进攻临时政府。保卫我们的人民，不然外星人将再次控制这片区域。", MissionIndex=1)
 
 [Propaganda X2LWAlienActivityTemplate]
 ActivityName="PropagandaActivity"
@@ -380,11 +380,11 @@ m_strInvasionConfirm="查看入侵地点"
 m_strRepeatResearch="重复研究"
 
 [UIScreenListener_ArmoryWeaponUpgrade_LW]
-strStripWeaponUpgradesButton="去除武器升级"
-StripAllWeaponUpgradesStr="未行动人员去除武器升级"
-strStripWeaponUpgradesTooltip="去除所有升级和自定义，将武器返回至一般物品栏"
-strStripWeaponUpgradeDialogueTitle="确认去除所有升级"
-strStripWeaponUpgradeDialogueText="你确定要去除该武器的所有升级并将其退回普通武器库？"
+strStripWeaponUpgradesButton="移除武器升级"
+StripAllWeaponUpgradesStr="移除未参战士兵武器升级"
+strStripWeaponUpgradesTooltip="移除所有升级和自定义，将武器送回至武器库"
+strStripWeaponUpgradeDialogueTitle="确认移除所有升级"
+strStripWeaponUpgradeDialogueText="你确定要移除该武器的所有升级并将其送回武器库？"
 
 [UIPersonnel_SquadBarracks]
 strSquadBarrackTitle="小队：<XGParam:StrValue0>"
@@ -632,10 +632,10 @@ m_strYellowAlert="敌人高度警戒"
 m_sAverageScatterText="± <XGParam:StrValue0/> 格"
 m_strBullet="•"
 
-m_strStripWeaponUpgrades=去除所有武器升级
-m_strStripWeaponUpgradesLower=去除所有武器升级
-m_strStripWeaponUpgradesConfirm=确认去除所有武器升级
-m_strStripWeaponUpgradesConfirmDesc=确认去除所有未由出战当前任务士兵所装备的主武器上的升级配件。该配件可立刻供所有士兵装备。
+m_strStripWeaponUpgrades=移除所有武器升级
+m_strStripWeaponUpgradesLower=移除所有武器升级
+m_strStripWeaponUpgradesConfirm=确认移除所有武器升级
+m_strStripWeaponUpgradesConfirmDesc=确认移除所有未由出战当前任务士兵所装备的主武器上的升级配件。该配件可立刻供所有士兵装备。
 m_strTooltipStripWeapons=移除所有未选择为出战当前任务的士兵的武器升级。
 
 m_strAllHandsToHangar=所有人员前往机库

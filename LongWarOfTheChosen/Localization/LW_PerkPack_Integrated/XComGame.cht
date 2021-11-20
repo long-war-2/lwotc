@@ -74,15 +74,15 @@ LocPromotionPopupText="<Bullet/>你的主武器造成額外<Ability:LETHAL_DAMAG
 [HitandSlither X2AbilityTemplate]
 LocFriendlyName="打完就溜"
 LocFlyoverText="打完就溜"
-LocLongDescription="每回合一次，用主武器對一個側翼或暴露的目標進行一次普通射擊後，獲得一個額外的移動點。"
-LocHelpText="每回合一次，用主武器對一個側翼或暴露的目標進行一次普通射擊後，獲得一個額外的移動點。"
-LocPromotionPopupText="<Bullet/>每回合一次，用主武器對一個側翼或暴露的目標進行一次普通射擊後，獲得一個額外的移動點。<br/>"
+LocLongDescription="每回合一次，用主武器對一個側翼或暴露的目標進行一次標準射擊後，獲得一個額外的移動點。"
+LocHelpText="每回合一次，用主武器對一個側翼或暴露的目標進行一次標準射擊後，獲得一個額外的移動點。"
+LocPromotionPopupText="<Bullet/>每回合一次，用主武器對一個側翼或暴露的目標進行一次標準射擊後，獲得一個額外的移動點。<br/>"
 
 [HitandRun X2AbilityTemplate]
 LocFriendlyName="游擊戰術"
 LocFlyOverText="游擊戰術"
-LocLongDescription="每回合一次，用主武器對一個側翼或暴露的目標進行一次普通射擊後，獲得一個額外的行動點。不能在同一回合觸發短兵相接。 "
-LocHelpText="每回合一次，用主武器對一個側翼或暴露的目標進行一次普通射擊後，獲得一個額外的行動點。不能在同一回合觸發短兵相接。"
+LocLongDescription="每回合一次，用主武器對一個側翼或暴露的目標進行一次標準射擊後，獲得一個額外的行動點。不能在同一回合觸發短兵相接。 "
+LocHelpText="每回合一次，用主武器對一個側翼或暴露的目標進行一次標準射擊後，獲得一個額外的行動點。不能在同一回合觸發短兵相接。"
 LocPromotionPopupText="<Bullet/> 不能在同一回合使用奔襲戰術。<br/><Bullet/> 連環殺戮和死神天降的獎勵將會優先獲得。"
 
 [CloseCombatSpecialist X2AbilityTemplate]
@@ -179,9 +179,9 @@ LocPromotionPopupText="<Bullet/>在掩體中並受到穿透掩體的攻擊時，
 [LightEmUp X2AbilityTemplate]
 LocFriendlyName="趕盡殺絕"
 LocFlyOverText="趕盡殺絕"
-LocLongDescription="第一個行動點使用主武器進行普通射擊將不再結束回合。"
-LocHelpText="第一個行動點使用主武器進行普通射擊將不再結束回合。"
-LocPromotionPopupText="<Bullet/>第一個行動點使用主武器進行普通射擊將不再結束回合。<br/>"
+LocLongDescription="第一個行動點使用主武器進行標準射擊將不再結束回合。"
+LocHelpText="第一個行動點使用主武器進行標準射擊將不再結束回合。"
+LocPromotionPopupText="<Bullet/>第一個行動點使用主武器進行標準射擊將不再結束回合。<br/>"
 
 [CloseEncounters X2AbilityTemplate]
 LocFriendlyName="短兵相接"
@@ -214,16 +214,16 @@ LocPromotionPopupText="<Bullet/>雙發快射讓你對同一目標射擊2次，�
 [TraverseFire X2AbilityTemplate]
 LocFriendlyName="橫掃射擊"
 LocFlyOverText="橫掃射擊"
-LocLongDescription="如果首次行動是用主武器進行普通射擊，那你還能再進行一次非移動的行動。"
-LocHelpText="如果首次行動是用主武器進行普通射擊，那你還能再進行一次非移動的行動。"
-LocPromotionPopupText="<Bullet/>如果首次行動是用主武器進行普通射擊，那你還能再進行一次非移動的行動。<br/>"
+LocLongDescription="如果首次行動是用主武器進行標準射擊，那你還能再進行一次非移動的行動。"
+LocHelpText="如果首次行動是用主武器進行標準射擊，那你還能再進行一次非移動的行動。"
+LocPromotionPopupText="<Bullet/>如果首次行動是用主武器進行標準射擊，那你還能再進行一次非移動的行動。<br/>"
 
 [WalkFire X2AbilityTemplate]
 LocFriendlyName="遊走射擊"
 LocFlyOverText="遊走射擊"
-LocLongDescription="進行一次高精度射擊，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%傷害並且 -<Ability:WALK_FIRE_CRIT_MALUS>暴擊率。消耗<Ability:SelfAmmoCost/>彈藥。"
-LocHelpText="進行一次高精度射擊，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%傷害並且 -<Ability:WALK_FIRE_CRIT_MALUS> 暴擊率。消耗<Ability:SelfAmmoCost/>彈藥。"
-LocPromotionPopupText="<Bullet/>這是士兵在使用自動武器時調整準星而進行的特殊射擊，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%傷害並且 -<Ability:WALK_FIRE_CRIT_MALUS> 暴擊率。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/>需要連發武器；主武器為散彈槍或狙擊步槍時不適用。"
+LocLongDescription="進行一次高精度射擊，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%傷害並且-<Ability:WALK_FIRE_CRIT_MALUS>暴擊率。消耗<Ability:SelfAmmoCost/>彈藥。"
+LocHelpText="進行一次高精度射擊，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%傷害並且-<Ability:WALK_FIRE_CRIT_MALUS> 暴擊率。消耗<Ability:SelfAmmoCost/>彈藥。"
+LocPromotionPopupText="<Bullet/>這是士兵在使用自動武器時調整準星而進行的特殊射擊，+<Ability:WALK_FIRE_AIM_BONUS>命中但是只造成<Ability:WALK_FIRE_DMG>%傷害並且-<Ability:WALK_FIRE_CRIT_MALUS> 暴擊率。<br/><Bullet/>消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/>需要連發武器；主武器為散彈槍或狙擊步槍時不適用。"
 
 [PrecisionShot X2AbilityTemplate]
 LocFriendlyName="精準射擊"
@@ -299,9 +299,9 @@ LocPromotionPopupText="<Bullet/>你的主武器的下一次射擊獲得+20命中
 [LockedOn X2AbilityTemplate]
 LocFriendlyName="鎖定"
 LocFlyOverText="鎖定"
-LocLongDescription="對同一敵軍單位連續射擊時獲得+<Ability:LOCKEDON_AIM_BONUS/>命中和+<Ability:LOCKEDON_CRIT_BONUS/>暴擊率。"
-LocHelpText="對同一敵軍單位連續射擊時獲得+<Ability:LOCKEDON_AIM_BONUS/>命中和+<Ability:LOCKEDON_CRIT_BONUS/>暴擊率。"
-LocPromotionPopupText="<Bullet/>使用主武器對同一目標進行連續射擊獲得+<Ability:LOCKEDON_AIM_BONUS/>命中和+<Ability:LOCKEDON_CRIT_BONUS/>暴擊率。不可累加，只適用於敵方單位。<br/><Bullet/>範圍射擊不能獲得此加成。"
+LocLongDescription="用你的<Ability:BOUND_WEAPON_NAME/>對同一敵軍單位連續射擊時獲得+<Ability:LOCKEDON_AIM_BONUS/>命中和+<Ability:LOCKEDON_CRIT_BONUS/>暴擊率。"
+LocHelpText="用你的<Ability:BOUND_WEAPON_NAME/>對同一敵軍單位連續射擊時獲得+<Ability:LOCKEDON_AIM_BONUS/>命中和+<Ability:LOCKEDON_CRIT_BONUS/>暴擊率。"
+LocPromotionPopupText="<Bullet/>用你的<Ability:BOUND_WEAPON_NAME/>對同一目標進行連續射擊獲得+<Ability:LOCKEDON_AIM_BONUS/>命中和+<Ability:LOCKEDON_CRIT_BONUS/>暴擊率。不可累加，只適用於敵方單位。<br/><Bullet/>範圍射擊不能獲得此加成。"
 
 [Sentinel_LW X2AbilityTemplate]
 LocFriendlyName="哨兵"
@@ -355,7 +355,7 @@ LocPromotionPopupText="<Bullet/>奔襲戰術可以讓士兵快速接近目標，
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="壓制"
 LocFlyOverText="壓制"
-LocLongDescription="向目標進行一連串的射擊，如目標移動，則向其發動反應射擊，限制其許多能力的使用，並使其命中-<Ability:SUPPRESSIONPENALTY/>。"
+LocLongDescription="向目標進行一連串的射擊，如目標移動，則向其發動反應射擊，限制其許多能力的使用，並使其命中<Ability:SUPPRESSIONPENALTY/>。"
 LocHelpText="降低敵人命中，並在他們移動時開火。"
 LocPromotionPopupText="<Bullet/>壓制消耗<Ability:SelfAmmoCost/>彈藥，但無冷卻時間。<br/><Bullet/>進行壓制的單位若受到傷害就會中止壓制。<br/><Bullet/>如果多個單位壓制一個目標，命中懲罰不會疊加。<br/><Bullet/>裝備狙擊步槍或散彈槍類別的武器時不可使用。<br/><Bullet/>壓制會限制目標許多能力的使用，包括火箭和榴彈的使用。"
 
@@ -443,7 +443,7 @@ LocPromotionPopupText="<Bullet/>該能力會讓首次對士兵變為擦傷，但
 [SnapShot X2AbilityTemplate]
 LocFriendlyName="急射"
 LocFlyOverText="急射"
-LocLongDescription="你可以用狙擊步槍在一次不結束回合的行動後進行普通射擊，但是超過小隊視野5格以外的所有射擊都會受到嚴重的射程懲罰。"
+LocLongDescription="你可以用狙擊步槍在一次不結束回合的行動後進行標準射擊，但是超過小隊視野5格以外的所有射擊都會受到嚴重的射程懲罰。"
 LocHelpText="射擊目標。"
 LocPromotionPopupText="<Bullet/> 這個士兵將可以在一次不結束回合的行動後使用狙擊步槍開火，但是將會受到嚴重的命中懲罰超過22格之外的敵人。<br/><Bullet/> 在一次不結束回合的行動後無法使用狙擊步槍進行監視。<br/>
 
@@ -457,8 +457,8 @@ LocFriendlyNameWhenConcealed="監視（隱蔽式）"
 [SnapShotAimModifier X2AbilityTemplate]
 LocFriendlyName="急射"
 LocFlyOverText="急射"
-LocLongDescription="你可以用狙擊步槍在一次不結束回合的行動後進行普通射擊，但是超過小隊視野5格以外的所有射擊都會受到嚴重的射程懲罰。"
-LocHelpText="可以用狙擊步槍在一次不結束回合的行動後進行普通射擊。"
+LocLongDescription="你可以用狙擊步槍在一次不結束回合的行動後進行標準射擊，但是超過小隊視野5格以外的所有射擊都會受到嚴重的射程懲罰。"
+LocHelpText="可以用狙擊步槍在一次不結束回合的行動後進行標準射擊。"
 
 [Trojan X2AbilityTemplate]
 LocFriendlyName="特洛伊"
@@ -635,22 +635,22 @@ LocPromotionPopupText="<Bullet/>通用槽的每顆榴彈+1使用次數。<br/><B
 
 [Bastion X2AbilityTemplate]
 LocFriendlyName="堡壘"
-LocLongDescription="要塞現對周圍隊友提供傷害免疫。"
-LocHelpText="要塞現對周圍隊友提供傷害免疫。"
+LocLongDescription="要塞現在為附近隊友提供免疫。"
+LocHelpText="要塞現在為附近隊友提供免疫。"
 LocFlyOverText="堡壘"
 LocPromotionPopupText="<Bullet/>堡壘有4格半徑範圍。<br/><Bullet/>移動到受折磨的友軍附近會立刻清除它們的負面物理狀態效果。<br/>"
 
 [BastionPassive X2AbilityTemplate]
 LocFriendlyName="堡壘"
-LocLongDescription="要塞現對周圍隊友提供傷害免疫。"
-LocHelpText="要塞現對周圍隊友提供傷害免疫。"
+LocLongDescription="要塞現在為附近隊友提供免疫。"
+LocHelpText="要塞現在為附近隊友提供免疫。"
 LocFlyOverText="堡壘"
 LocPromotionPopupText="<Bullet/>堡壘有4格半徑範圍。<br/><Bullet/>移動到受折磨的友軍附近會立刻清除它們的負面物理狀態效果。<br/>"
 
 [BastionCleanse X2AbilityTemplate]
 LocFriendlyName="堡壘"
-LocLongDescription="要塞現對周圍隊友提供傷害免疫。"
-LocHelpText="要塞現對周圍隊友提供傷害免疫。"
+LocLongDescription="要塞現在為附近隊友提供免疫。"
+LocHelpText="要塞現在為附近隊友提供免疫。"
 LocFlyOverText="堡壘"
 LocPromotionPopupText="<Bullet/>堡壘有4格半徑範圍。<br/><Bullet/>移動到受折磨的友軍附近會立刻清除它們的負面物理狀態效果。<br/>"
 
@@ -759,8 +759,8 @@ LocFriendlyNameWhenConcealed="殺戮地帶（隱蔽）"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="死神天降"
-LocLongDescription="用<Ability:WeaponName/>擊殺一名位於低位置的敵人將返還一個行動點，並且不會結束你的回合。同時在任何高度為狙擊步槍提供遠距離命中加成。"
-LocHelpText="用<Ability:WeaponName/>擊殺一名位於低位置的敵人將返還一個行動點，並且不會結束你的回合。同時在任何高度為狙擊步槍提供遠距離命中加成。"
+LocLongDescription="用<Ability:WeaponName/>擊殺一名位於低處的敵人將返還一個行動點，並且不會結束你的回合。同時在任何高度為狙擊步槍提供遠距離命中加成。"
+LocHelpText="用<Ability:WeaponName/>擊殺一名位於低處的敵人將返還一個行動點，並且不會結束你的回合。同時在任何高度為狙擊步槍提供遠距離命中加成。"
 LocFlyOverText="死神天降"
 LocPromotionPopupText="<Bullet/> 死神天降能夠和手槍能力進行連擊，或是簡單地讓士兵更具移動力。<br/><Bullet/> 同時在任何高度為狙擊步槍提供遠距離命中加成。"
 
@@ -1026,8 +1026,8 @@ LocPromotionPopupText="<Bullet/>你的爆炸攻擊能夠造成暴擊傷害（<Ab
 
 [RapidFire X2AbilityTemplate]
 LocFriendlyName="速射"
-LocLongDescription="連續向敵人開火兩次。 每次射擊都有命中懲罰 <Ability:RAPIDFIREPENALTY/>. 消耗一個行動點。"
-LocHelpText="連續向敵人開火兩次。每次射擊都有命中懲罰 <Ability:RAPIDFIREPENALTY/>."
+LocLongDescription="連續向敵人開火兩次。 每次射擊<Ability:RAPIDFIREPENALTY/>命中懲罰。消耗一個行動點。"
+LocHelpText="連續向敵人開火兩次。每次射擊<Ability:RAPIDFIREPENALTY/>命中懲罰。"
 LocFlyOverText="速射"
 LocPromotionPopupText="<Bullet/> 速射有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/>"
 

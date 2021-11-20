@@ -11,11 +11,28 @@ RainbowTrooperSightedBody="變種人現在除了基本的步兵外，還部署�
 HavenHighlightTitle="檢查避難所"
 HavenHighlightBody="避難所對你的戰役至關重要，因為它們被用來在該地區尋找任務。此外，您只能聯繫連接到現有避難所的區域。<br/><br/>單擊左側顯示的按鈕打開「避難所管理」介面。"
 FirstMissionDiscoveredTitle="發現第一個任務"
-FirstMissionDiscoveredBody="您已經檢測到您的第一個任務！下一步是分配一個小隊進行潛入。<br/><br/>大多數任務的失效日期和潛入時間都很長。安排更多的反抗軍進行情報工作提高潛入率達到100％的幾率。與復仇者號一起掃描一個避難所將貢獻4名反抗軍的情報。"
+FirstMissionDiscoveredBody="您已經檢測到您的第一個任務！下一步是分配一個小隊進行潛入。<br/><br/>大多數任務的失效日期和潛入時間都很長。安排更多的反抗軍進行情報工作提高潛入率達到100％。與復仇者號一起掃描一個避難所將貢獻4名反抗軍的情報。"
 FirstRetaliationTitle="變種人報復"
 FirstRetaliationBody="變種人正在報復！這些是您不應該忽略的快速反應任務。<br/><br/>這是一次全面的報復，如果被忽視或丟失，則會摧毀避難所，以及針對具體工作的報復，如果忽視這些報復，從事這項工作的反抗軍將會被殺死。你的避難所顧問會和一些反抗軍一起執行任務。"
 CommandersQuartersEnteredTitle="LWOTC幫助"
 CommandersQuartersEnteredBody="LWOTC添加了一些條目到XCOM檔案中，以更詳細地解釋其一些核心概念，例如潛入和避難所管理。<br/><br/>還可以通過反抗軍管理菜單從一個介面查看所有避難所。"
+
+; LWOTC Needs Translation (2)
+GeneralChosenTitle="天選者"
+GeneralChosenBody="天選者將出現在這次任務中。在LWOTC中，他們只參與報復和核心故事任務(黑地等)，以此回應XCOM的活動。他們不會出現在其他任務中。<br/><br/>他們的目標仍然是找到復仇者號的位置並攻擊它。當心，防禦它並不容易！"
+
+TacticalChosenTitle="戰鬥中的天選者"
+TacticalChosenBody="天選者在LWOTC中更危險：<br/><ul><li>他們對暴擊近乎免疫</li><li>每次在XCOM回合對他們造成傷害時都會採取行動(\"主反應\")</li><li>他們可以在射程內以消耗一回合劫持失血的士兵</li><li>他們在升級時獲得顯著優勢(選定他們時使用F1獲取詳細信息)</li></ul>"
+
+AssassinSightedTitle="刺客"
+AssassinSightedBody="刺客在回合中每受到一次攻擊，就會減少來襲傷害。雖然她的劍和波浪繞射傷害開始很低，但在她使用劍和波浪繞射時，它們的威力會增加，直到她劫持一名士兵。<br/><br/>小心部署士兵站位，因為她可以用她的主反應斬擊一名臨近的士兵。"
+
+WarlockSightedTitle="術士"
+WarlockSightedBody="術士擁有強大的冠軍術士能力，可以連結盟友。當該盟友存活時，術士受到的傷害會明顯減少。你也應該提防他的心靈灼傷，它會在目標周圍區域燃燒。<br/><br/>如果一名士兵被精神控制，請注意，在LWOTC中你的士兵可以對他們使用叩擊。"
+
+HunterSightedTitle="獵手"
+HunterSightedBody="獵手將始終保持有效距離，並試圖從安全的位置劫持士兵。在你接近時要小心：他的手槍射擊現在會使XCOM武器失效，並且可以自由投擲他的閃光榴彈。"
+; End Translation (2)
 
 ; [UIScreenListener_OutpostManagementTutorial]
 [UIScreenListener_HavenManagementTutorial]
@@ -45,6 +62,6 @@ SquadSelectInfiltrationBody="除了選擇足夠強大的小隊成員執行任務
 
 [UIScreenListener_InfiltratingMissionTutorial]
 InfiltratingMissionTitle="潛入任務"
-InfiltratingMissionBody="你可以隨時發起潛入任務，但潛入不足會使任務更加困難。你可以用情報來提高潛入速度，讓它更快完成。<br/><br/>如果任務還沒有到期，你可以隨時中止潛入，然後重新開始。重新啟動將潛入設置回0%。"
+InfiltratingMissionBody="你可以隨時發起潛入任務，但潛入不足會使任務更加困難。你可以用情報來提高潛入速度，讓它更快完成。<br/><br/>如果任務還沒有到期，你可以隨時終止潛入，然後重新開始。重新啟動將潛入設置回0%。"
 
 ; End Translation
