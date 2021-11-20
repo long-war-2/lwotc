@@ -304,7 +304,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.LEAD_TARGET_COOLDOWN);
 			return true;
 		case 'ZONE_CONTROL_RADIUS':
-			OutString = string(int(sqrt(class'X2Ability_XMBPerkAbilitySet'.default.ZONE_CONTROL_RADIUS)));
+			OutString = string(int(sqrt(class'X2Ability_XMBPerkAbilitySet'.default.ZONE_CONTROL_RADIUS_SQ)));
 			return true;
 		case 'EXECUTIONER_AIM_BONUS':
 			OutString = string(class'X2Effect_Executioner_LW'.default.EXECUTIONER_AIM_BONUS);

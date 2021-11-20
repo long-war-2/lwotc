@@ -68,7 +68,7 @@ var config int BLINDING_PROTOCOL_COOLDOWN;
 
 var config int ZONE_CONTROL_MOBILITY_PENALTY;
 var config int ZONE_CONTROL_AIM_PENALTY;
-var config float ZONE_CONTROL_RADIUS;
+var config float ZONE_CONTROL_RADIUS_SQ;
 
 var config int AIM_ASSIST_AIM_BONUS;
 var config int AIM_ASSIST_CRIT_BONUS;
@@ -965,7 +965,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 	// Set CQB Range according to rank conditions
 	SetUnitValue = new class'X2Effect_SetUnitValue';
 	SetUnitValue.UnitName = default.ZONE_CONTROL_RADIUS_NAME;
-	SetUnitValue.NewValueToSet = default.ZONE_CONTROL_RADIUS;
+	SetUnitValue.NewValueToSet = default.ZONE_CONTROL_RADIUS_SQ;
 	SetUnitValue.CleanupType = eCleanup_BeginTactical;
 	Template.AddTargetEffect(SetUnitValue);
 
@@ -1023,7 +1023,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 	Template.AbilityMultiTargetStyle = TargetStyle;
 	/*
 	Effect = new class'X2Effect_ZoneOfControl';
-	Effect.ZoC_Distance = default.ZONE_CONTROL_RADIUS;
+	Effect.ZoC_Distance = default.ZONE_CONTROL_RADIUS_SQ;
 	Effect.BuildPersistentEffect(1, true, false);
 	Effect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
 	Template.AddMultiTargetEffect(Effect);
@@ -1063,7 +1063,7 @@ static function X2AbilityTemplate AddZoCCleanse()
 
 	DistanceCondition = new class'X2Condition_UnitProperty';
 	DistanceCondition.RequireWithinRange = true;
-	DistanceCondition.WithinRange = Sqrt(default.ZONE_CONTROL_RADIUS) *  class'XComWorldData'.const.WORLD_StepSize; // same as Solace for now
+	DistanceCondition.WithinRange = Sqrt(default.ZONE_CONTROL_RADIUS_SQ) *  class'XComWorldData'.const.WORLD_StepSize; // same as Solace for now
 	DistanceCondition.ExcludeFriendlyToSource = true;
 	DistanceCondition.ExcludeHostileToSource = false;
 
