@@ -311,14 +311,12 @@ static function UpdateTotalCombat(X2AbilityTemplate Template)
 	StatEffect.AddPersistentStatChange(eStat_Mobility, float(default.TOTAL_COMBAT_MOBILITY));
 	StatEffect.AddPersistentStatChange(eStat_Offense, float(default.TOTAL_COMBAT_AIM));
 	StatEffect.BuildPersistentEffect(1, true, false, false);
-	StatEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	StatEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	Template.AddTargetEffect(StatEffect);
 	Template.bCrossClassEligible = true;
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.TOTAL_COMBAT_MOBILITY);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, default.TOTAL_COMBAT_AIM);
-
-
 }
 
 static function UpdateCombatPresence(X2AbilityTemplate Template)
