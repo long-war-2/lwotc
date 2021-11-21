@@ -7049,8 +7049,8 @@ LocPromotionPopupText="<Bullet/> Chaque tir effectué avec Bannissement a une ch
 ; LWOTC translated (3)
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Combat total"
-LocLongDescription="Procure un bonus de +1 en Mobilité et de +10 en visée. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
-LocHelpText="Procure un bonus de +1 en Mobilité et de +10 en visée. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
+LocLongDescription="Procure un bonus de +1 en Mobilité et de +5 en visée. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
+LocHelpText="Procure un bonus de +1 en Mobilité et de +5 en visée. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
 LocPromotionPopupText="<Bullet/> Cette capacité octroie la capacité Mélange explosif, et ne peut donc pas être combinée avec cette capacité.<br/>"
 ; End translated (3)
 
