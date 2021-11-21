@@ -6377,7 +6377,7 @@ LocFlyOverText="嗜血"
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="嗜血"
 LocLongDescription="每次用近战武器攻击时，会获得可叠加的+<Ability:BLOODTHIRST_T1_DMG/>近战伤害提升。持续4回合。"
-LocHelpText="每次用近战武器攻击时，会获得可叠加的+<Ability:BLOODTHIRST_T1_DMG/>近战伤害提升。持续4回合。"
+LocHelpText="每次用近战武器攻击时，会获得可叠加的+<Ability:BLOODTHIRST_T1_DMG/>近战伤害提升。持续5回合。"
 LocFlyOverText="嗜血"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]

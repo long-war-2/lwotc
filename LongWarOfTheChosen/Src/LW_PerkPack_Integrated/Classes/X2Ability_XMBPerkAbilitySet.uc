@@ -101,6 +101,8 @@ var config int MOVING_TARGET_DODGE;
 var config int COMBATREADINESS_DEF;
 var config int COMBATREADINESS_AIM;
 
+var config int XCOM_BLOOD_THIRST_DURATION;
+
 var config array<name> AgentsHealEffectTypes;    
 
 var string Dissassemblybonustext;
@@ -2643,7 +2645,7 @@ static function X2AbilityTemplate CreateXCOMBloodThirst()
 	Template.AbilityTriggers.AddItem(EventListener);
 
 	DamageEffect = new class'X2Effect_BloodThirst';
-	DamageEffect.BuildPersistentEffect(5, false, true, false, eGameRule_PlayerTurnBegin);
+	DamageEffect.BuildPersistentEffect(default.XCOM_BLOOD_THIRST_DURATION, false, true, false, eGameRule_PlayerTurnBegin);
 	DamageEffect.DuplicateResponse = eDupe_Allow;
 	DamageEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(DamageEffect);
