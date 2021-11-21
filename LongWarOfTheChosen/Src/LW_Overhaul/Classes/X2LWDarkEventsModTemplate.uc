@@ -54,6 +54,8 @@ static function UpdateDarkEvents(X2StrategyElementTemplate Template, int Difficu
 		case 'DarkEvent_DarkTower': // Doesn't work for our Will loss mechanic yet. TODO: maybe change that
 		case 'DarkEvent_TheCollectors': // Chosen always try to capture
 		case 'DarkEvent_MadeWhole':  // Chosen are strong enough without losing their weaknesses too!
+		case 'DarkEvent_LeftBehind':  // Covert actions no longer have a capture risk, so shouldn't guarantee it on all CAs with this DE
+		case 'DarkEvent_CounterintelligenceSweep':  // (Nearly) Everyone hates this!
 			// Remove these from play
 			DETemplate.StartingWeight = 0;
 			DETemplate.MinWeight = 0;
