@@ -86,7 +86,12 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
 ### Reaper
 
  * Vektor rifle now grants +10 aim
- * Shadow now grants flat +3 Mobility instead of a 20% increase
+ * Changed Shadow in several ways:
+  - Grants a flat +3 Mobility instead of a 20% increase
+  - Can now be activated while flanked
+  - Detection radius reduction is now 90%, down from 100%
+  - Bonuses no longer passively apply when the Reaper starts a mission in concealment (the Reaper *has* to activate Shadow to get them)
+ * Reapers get Infiltration by default, which means they can't be detected by towers while in concealment or Shadow; there is no associated bonus to Hack from Infiltration any more
  * Reaper now gets Squadsight at Squaddie
  * Tracking replaces Tradecraft at Squaddie
  * The range of Tracking is now 14 tiles, down from 18
@@ -99,64 +104,55 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
  * Death Dealer bonus crit chance is now +25, up from +15
  * Switched Ghost Grenade and Rapid Deployment on the tree
  * Banish cooldown to 3 from 4
- * Removed the hack bonus from Infiltration (the ability tied to Shadow that prevents ADVENT towers from breaking concealment on the unit)
  * Total Combat replaces Shadow Grenadier (the latter was too easy to cheese with)
  * Blood Trail (+2 damage and -40 Dodge against units wounded that turn) replaces Tracking
- * Shadow can now be activated while flanked
- * Shadow Mobility bonus is now +20%, down from +37.5%
- * Shadow detection radius reduction is now 90%, down from 100%
- * Shadow bonuses no longer passively apply when the Reaper starts a mission in concealment (the Reaper *has* to activate Shadow to get them)
- * Reapers get Infiltration by default, which means they can't be detected by towers (and they get +25 Hack)
  * Knife Encounters range is now 5 tiles, up from 4
  * Homing Mine ability no longer grants Claymore charges as well
- * Tracking range tiles to 14 from 18
  * Reworked Paramedic:
   - Unlocks an ability to perform a dash move to use a medikit on an ally
   - Grants a free medikit charge
-  - Healing abilities restore 3 additional hit points.
+  - Healing abilities restore 2 additional hit points
 
 ### Skirmisher
 
  * Ripjack Slash ability replaces Battlemaster at Squaddie
  * Chain Shot replaces Deadeye
- * Battlefield Awareness (Untouchable with a 3-turn cooldown) replaces Untouchable
+ * Battlefield Awareness (Untouchable with a 4-turn cooldown) replaces Untouchable
  * Manual Override reduces cooldown of abilities by 3 turns instead of effectively resetting them; cooldown of Manual Override itself is now 4 turns, down from 5
  * Reflex additionally reduces crit chances against the Skirmisher by 15 (like Resilience)
- * Combat Presence now has a 4-turn cooldown, up from 3
+ * Combat Presence cooldown is now 5 turns, up from 3
  * Total Combat has several changes:
   - Grants the bonus grenade slot (previously Battlemaster did this)
   - Grants +3 bonus range to grenades, up from 2
   - Grants +1 Mobility and +10 Aim
  * Justice and Wrath bonus Aim is now +15, up from +10
- * Battlefield Awareness cooldown is now 4 turns, up from 3
  * Full Throttle bonus to Mobility is now 2, down from 3
- * Combat Presence cooldown is now 5 turns, up from 4
  * Interrupt cooldown is now 2 turns, down from 3
 
 ### Templar
 
  * Channel (enemies can drop focus) replaces Concentration
- * Arc Wave AoE damage is now 4/6/8, down from 4/7/10
  * Void Conduit damage per tick is now 3, down from 5
  * Templars no longer get passive ablative from their shields
  * Bonus ablative from One For All is now 4/7/11, up from 4/7/10
+ * One For All no longer removes burning
+ * One For All now uses the Shield Wall visualisation
  * Aftershock bonus aim reduced to +10, down from +15
  * Invert can no longer target Chosen
  * Reworked Crusader's Rage:
   - Gain a 25% damage boost for every 25% HP missing, up to 50%
   - Reduce wound recovery times for this soldier by 4 HP
- * Reworked Chain Lightning:
-  - Chain Lightning now uses Volt targeting, with the arc chaining to
-    targets within a 6-tile range of each unit hit
-  - It can chain up to 4 times
-  - Its cooldown has been reduced to 4 turns
-  - It no longer has an aim malus
- * Fixed the incorrect localization where arc wave was said to deal 4/6/8 damage instead of 4/7/10
+ * Amplify now applies to the following 3 attacks (up from 2), but has a 3-turn cooldown (up from 2)
+ * Fixed the incorrect localization where Arc Wave was said to deal 4/6/8 damage instead of 4/7/10
 
 ### Miscellaneous
 
- * Paramedic now also increases medikit heal by 3HP
  * Shooting Sharp bonus aim against units in cover is now +15, up from +10
+ * Reworked Chain Lightning:
+  - Chain Lightning now uses Volt targeting from vanilla WOTC (not the version used by LWOTC's Volt), with the arc chaining to targets within a 6-tile range of each unit hit
+  - It can chain up to 4 times
+  - Its cooldown has been reduced to 4 turns
+  - It no longer has an aim malus
 
 ## Balance
 
@@ -171,6 +167,8 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
  * Covert Action ambush chance now works on a pseudo-random basis - the initial chance is now much lower (down to 5-10% from 15-20%) but it increases every time a covert action completes without being ambushed, resetting back to the initial chance once an ambush does finally proc
  * Restored the Guardian Angel resistance order (prevents ambushes on covert actions)
  * Alien Loot covert action now awards some alloys and elerium, with the quantity depending on how far into the campaign you are
+ * Removed the Left Behind dark event (the one that added capture risk to all covert actions)
+ * Removed the Counterintelligence Sweep dark event (the one that reduces rebel intel generation by half)
  * Rescued soldiers are now healed for a significant portion of their health to compensate for time spent captured
  * Class abilities purchased with AP when another class ability at the same rank has already been picked once again incur a cost multiplier, though a smaller one than it used to be - the aim being to discourage all AP being funnelled into the A team
  * Snap Shot and Death From Above are mutually exclusive now, because it's a brokenly strong combo that's very cheap
@@ -181,8 +179,6 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
  * Slowed down reinforcements on invasions and recruit retaliations to make these missions a little less oppressive
  * Sectopods should now use their Lightning Field ability on XCOM
  * Shieldbearers will now prioritise good shots over shielding just themselves (but shielding allies still takes precedence over all)
- * One For All no longer removes burning
- * One For All now uses the Shield Wall visualisation
  * Rebels now get Stock Strike and Get Up
  * SPARKs can now trigger and benefit from Focus Fire
 
@@ -201,6 +197,7 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
  * You should no longer encounter blank soldier rewards or buggy rescued soldiers
  * You should no longer encounter Chosen at a higher level than intended for the current force level
  * Faceless rebels can no longer be recruited in a haven if the proportion of Faceless in that haven is greater than 32%
+ * Chosen can no longer select uncontacted regions for the Retribution activity
 
 ### Tactical
 
@@ -217,9 +214,8 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
  * Terrorize localization no longer incorrectly says that chance to panic is based on Templar's psi offense (it's based on will)
  * Warlock's Greatest Champion should now be properly removed from the Warlock on the death of the affected unit
  * The Purifier's flamethrower should now be using the sweep animation
- * Chosen can no longer kidnap while burning
  * Rend no longer works while the Templar is burning
- * Chosen can no longer select uncontacted regions for the Retribution activity
+ * Chosen can kidnap while burning
  * Removed Indomitable and Terrorize from Templar Ghost
  * Blood Trail no longer works on explosives and damage over time (DoTs like bleeding and poison)
  * Zone of Control now works and has a green ring around units with that ability
@@ -236,7 +232,6 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
  * Units using weapons other than a sniper rifle can now overwatch after using Double Tap
  * Locked On now persists across turns and no longer disappears when the shooter performs a non-offensive action (this is back to the Long War 2 behavior); it now only works for the primary weapon
  * Jammer charges are no longer restored on reloading a save file
- * The hack bonus from Infiltration is now correctly zero
 
 ## Modding
 
