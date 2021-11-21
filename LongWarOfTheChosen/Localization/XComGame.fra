@@ -6209,26 +6209,26 @@ LocPromotionPopupText="<Bullet/> Éliminer une unité paniquée ou désorientée
 
 [ZoneOfControl_LW X2AbilityTemplate]
 LocFriendlyName = "Distraction"
-LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
-LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
 ; LWOTC Ntranslated (2)
-LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
+LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
 ; End translated (2)
 
 [ZoCCleanse X2AbilityTemplate]
 LocFriendlyName = "Distraction"
-LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
-LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
+LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
 ; End Translation (2)
 
 [ZoCPassive X2AbilityTemplate]
 LocFriendlyName = "Distraction"
-LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
-LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
+LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
 ; End Translation (2)
 
 
