@@ -124,7 +124,7 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
  * Total Combat has several changes:
   - Grants the bonus grenade slot (previously Battlemaster did this)
   - Grants +3 bonus range to grenades, up from 2
-  - Grants +1 Mobility and +10 Aim
+  - Grants +1 Mobility and +5 Aim
  * Justice and Wrath bonus Aim is now +15, up from +10
  * Full Throttle bonus to Mobility is now 2, down from 3
  * Interrupt cooldown is now 2 turns, down from 3
