@@ -3,52 +3,61 @@
 
 ;displayed both for officer and soldiers receiving effect
 [GetSome X2AbilityTemplate]
-LocFriendlyName="État critique"
-LocLongDescription="Deux fois par mission, procure à tous les alliés à Portée de commandement un bonus de +20 en chances de coup critique pour le reste du tour. Coûte 1 action et ne met pas fin au tour."
-LocHelpText="Deux fois par mission, procure à tous les alliés à Portée de commandement un bonus de +20 en chances de coup critique pour le reste du tour. Coûte 1 action et ne met pas fin au tour."
-LocFlyOverText="État critique"
-LocPromotionPopupText="<Bullet/> Deux fois par mission, procure à tous les alliés à Portée de commandement un bonus de +20 en chances de coup critique pour le reste du tour. Coûte 1 action et ne met pas fin au tour.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocFriendlyName="Pas de quartier!"
+; LWOTC translated
+LocLongDescription="Deux fois par mission, procure à tous les alliés à Portée de commandement un bonus de +<ABILITY:GETSOME_CRIT_BONUS/> en chances de coup critique pour le reste du tour. Coûte 1 action et ne met pas fin au tour."
+LocHelpText="Deux fois par mission, procure à tous les alliés à Portée de commandement un bonus de +<ABILITY:GETSOME_CRIT_BONUS/> en chances de coup critique pour le reste du tour. Coûte 1 action et ne met pas fin au tour."
+LocFlyOverText="Pas de quartier!"
+LocPromotionPopupText="<Bullet/> Deux fois par mission, procure à tous les alliés à Portée de commandement un bonus de +<ABILITY:GETSOME_CRIT_BONUS/> en chances de coup critique pour le reste du tour. Coûte 1 action et ne met pas fin au tour.<br/><Bullet/> Il n'est pas possible de bénéficier plusieurs de cette capacité au cours d'un même tour.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Les capacités d'officier s'appliquent aux alliés de l'officier situés à portée, mais pas à l'officier lui-même.<br/><Bullet/> Les capacités d'officier ne procurent aucun bonus aux unités désorientées ou paniquées, aux unités robotiques et aux unités civiles.<br/>"
+; End translated
 
 [Collector X2AbilityTemplate]
 LocFriendlyName="Biopsie extraterrestre"
-LocLongDescription="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
-LocHelpText="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
+; LWOTC translated
+LocLongDescription="Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de votre escouade ont <ABILITY:COLLECTOR_BONUS_CHANCE/>% de chances de recevoir 1 renseignement lorsqu'ils éliminent un ennemi non humain (jusqu'à un maximum de <ABILITY:COLLECTOR_MAX_INTEL_PER_MISSION/> renseignements par mission)."
+LocHelpText="Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de votre escouade ont <ABILITY:COLLECTOR_BONUS_CHANCE/>% de chances de recevoir 1 renseignement lorsqu'ils éliminent un ennemi non humain (jusqu'à un maximum de <ABILITY:COLLECTOR_MAX_INTEL_PER_MISSION/> renseignements par mission)."
 LocFlyOverText="Biopsie extraterrestre"
 ; displayed for officer in OfficerAbility UI
-LocPromotionPopupText="<Bullet/> Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
+LocPromotionPopupText="<Bullet/> Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de votre escouade ont <ABILITY:COLLECTOR_BONUS_CHANCE/>% de chances de recevoir 1 renseignement lorsqu'ils éliminent un ennemi non humain (jusqu'à un maximum de <ABILITY:COLLECTOR_MAX_INTEL_PER_MISSION/> renseignements par mission).<br/>"
+; End translated
 
 ;displayed on officer in tactical container
+;This effect is unused.
 [CollectorPassive X2AbilityTemplate]
 LocFriendlyName="Biopsie extraterrestre"
-LocLongDescription="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
-LocHelpText="Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
+LocLongDescription="Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de votre escouade ont <ABILITY:COLLECTOR_BONUS_CHANCE/>% de chances de recevoir 1 renseignement lorsqu'ils éliminent un ennemi non humain (jusqu'à un maximum de <ABILITY:COLLECTOR_MAX_INTEL_PER_MISSION/> renseignements par mission)."
+LocHelpText="Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de votre escouade ont <ABILITY:COLLECTOR_BONUS_CHANCE/>% de chances de recevoir 1 renseignement lorsqu'ils éliminent un ennemi non humain (jusqu'à un maximum de <ABILITY:COLLECTOR_MAX_INTEL_PER_MISSION/> renseignements par mission)."
 LocFlyOverText="Biopsie extraterrestre"
-LocPromotionPopupText="<Bullet/> Quand votre escouade élimine un ennemi non humain et que cet officier est indemne, vous avez 33% de chances de recevoir 1 renseignement."
+LocPromotionPopupText="<Bullet/> Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de votre escouade ont <ABILITY:COLLECTOR_BONUS_CHANCE/>% de chances de recevoir 1 renseignement lorsqu'ils éliminent un ennemi non humain (jusqu'à un maximum de <ABILITY:COLLECTOR_MAX_INTEL_PER_MISSION/> renseignements par mission)."
 
 ;displayed on other soldier that receive the effect
 [Defilade X2AbilityTemplate]
-LocFriendlyName="Tous aux abris"
-LocLongDescription="Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +5 en défense quand ils sont à couvert."
-LocHelpText="Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +5 en défense quand ils sont à couvert."
-LocFlyOverText="Tous aux abris"
+LocFriendlyName="Tactiques défensives"
+LocLongDescription="Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +<ABILITY:DEFILADE_DEFENSE_BONUS/> en défense quand ils sont à couvert."
+; LWOTC translated
+LocHelpText="Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +<ABILITY:DEFILADE_DEFENSE_BONUS/> en défense quand ils sont à couvert."
+LocFlyOverText="Tactiques défensives"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +5 en défense quand ils sont à couvert.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocPromotionPopupText="<Bullet/> Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +<ABILITY:DEFILADE_DEFENSE_BONUS/> en défense quand ils sont à couvert.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Les capacités d'officier s'appliquent aux alliés de l'officier situés à portée, mais pas à l'officier lui-même.<br/><Bullet/> Les capacités d'officier ne procurent aucun bonus aux unités désorientées ou paniquées, aux unités robotiques et aux unités civiles.<br/>"
 
 ;Displayed on officer in tactical container
 [DefiladePassive X2AbilityTemplate]
-LocFriendlyName="Tous aux abris"
-LocLongDescription="Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +5 en défense quand ils sont à couvert."
-LocHelpText="Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +5 en défense quand ils sont à couvert."
-LocFlyOverText="Tous aux abris"
-LocPromotionPopupText="<Bullet/> Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +5 en défense quand ils sont à couvert.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocFriendlyName="Tactiques défensives"
+LocLongDescription="Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +<ABILITY:DEFILADE_DEFENSE_BONUS/> en défense quand ils sont à couvert."
+LocHelpText="Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +<ABILITY:DEFILADE_DEFENSE_BONUS/> en défense quand ils sont à couvert."
+LocFlyOverText="Tactiques défensives"
+LocPromotionPopupText="<Bullet/> Les soldats à Portée de commandement de l'officier gagnent un bonus additionnel de +<ABILITY:DEFILADE_DEFENSE_BONUS/> en défense quand ils sont à couvert.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Les capacités d'officier s'appliquent aux alliés de l'officier situés à portée, mais pas à l'officier lui-même.<br/><Bullet/> Les capacités d'officier ne procurent aucun bonus aux unités désorientées ou paniquées, aux unités robotiques et aux unités civiles.<br/>"
+; End translated
 
 ;displayed both on officer and in debuff on target
 [FocusFire X2AbilityTemplate]
-LocFriendlyName="Tir ciblé"
-LocLongDescription="Localisez une cible avec précision pour conférer à toute l'escouade un bonus cumulatif de visée et un bonus de +1 dégât d'armure lors des attaques contre cette cible pour le reste du tour. Coûte 1 action et ne met pas fin au tour."
-LocHelpText="Localisez une cible avec précision pour conférer à toute l'escouade un bonus cumulatif de visée et un bonus de +1 dégât d'armure lors des attaques contre cette cible pour le reste du tour. Coûte 1 action et ne met pas fin au tour."
-LocFlyOverText="Tir ciblé"
-LocPromotionPopupText="<Bullet/> Localisez une cible avec précision pour conférer à toute l'escouade un bonus cumulatif de visée et un bonus de +1 dégât d'armure lors des attaques contre cette cible pour le reste du tour. Coûte 1 action et ne met pas fin au tour.<br/><Bullet/> Chaque attaque armée directe et successive contre la cible pendant le même tour octroie un bonus supplémentaire de visée de +<ABILITY:FOCUS_FIRE_AIM_BONUS/>. <br/><Bullet/> Temps de rechargement de 3 tour(s).<br/>"
+LocFriendlyName="Marquage de cible"
+LocLongDescription="Jusqu'à la fin du tour, localisez une unité avec précision pour conférer à toute l'escouade un bonus cumulatif de +<ABILITY:FOCUS_FIRE_AIM_BONUS/> en visée chaque fois que cette unité est prise pour cible par une attaque directe. Les attaques contre cette cible ignorent également <ABILITY:FOCUS_FIRE_ARMORPIERCING/> point(s) d'armure. Coûte 1 action et ne met pas fin au tour. Temps de rechargement de <ABILITY:FOCUS_FIRE_COOLDOWN/> tour(s)."
+LocHelpText="Jusqu'à la fin du tour, localisez une unité avec précision pour conférer à toute l'escouade un bonus cumulatif de +<ABILITY:FOCUS_FIRE_AIM_BONUS/> en visée chaque fois que cette unité est prise pour cible par une attaque directe. Les attaques contre cette cible ignorent également <ABILITY:FOCUS_FIRE_ARMORPIERCING/> point(s) d'armure. Coûte 1 action et ne met pas fin au tour. Temps de rechargement de <ABILITY:FOCUS_FIRE_COOLDOWN/> tour(s)."
+LocFlyOverText="Marquage de cible"
+; LWOTC translated
+LocPromotionPopupText="<Bullet/> Jusqu'à la fin du tour, localisez une unité avec précision pour conférer à toute l'escouade un bonus cumulatif de +<ABILITY:FOCUS_FIRE_AIM_BONUS/> en visée chaque fois que cette unité est prise pour cible par une attaque directe. Les attaques contre cette cible ignorent également <ABILITY:FOCUS_FIRE_ARMORPIERCING/> point(s) d'armure. Coûte 1 action et ne met pas fin au tour. Temps de rechargement de <ABILITY:FOCUS_FIRE_COOLDOWN/> tour(s).<br/><Bullet/> Chaque attaque armée directe et successive contre la cible pendant le même tour octroie un bonus supplémentaire de visée de +<ABILITY:FOCUS_FIRE_AIM_BONUS/>.<br/>"
+; End translated
 
 ;displayed both on officer and on soldiers receiving effect
 [FallBack X2AbilityTemplate]
@@ -60,91 +69,106 @@ LocPromotionPopupText="<Bullet/> Octroyez une action défensive gratuite, mais i
 
 [Scavenger X2AbilityTemplate]
 LocFriendlyName="Pillage"
-LocLongDescription="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30% après les missions réussies. Les membres de l'escouade ont une chance de récupérer des alliages extraterrestres supplémentaires et de l'élérium sur les extraterrestres."
-LocHelpText="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30% après les missions réussies. Les membres de l'escouade ont une chance de récupérer des alliages extraterrestres supplémentaires et de l'élérium sur les extraterrestres."
+; LWOTC translated
+LocLongDescription="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de <ABILITY:SCAVENGER_BONUS_MULTIPLIER/>% après les missions réussies. Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de l'escouade ont une chance de récupérer de l'alliage extraterrestre et de l'élérium lorsqu'ils éliminent des extraterrestres."
+LocHelpText="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de <ABILITY:SCAVENGER_BONUS_MULTIPLIER/>% après les missions réussies. Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de l'escouade ont une chance de récupérer de l'alliage extraterrestre et de l'élérium lorsqu'ils éliminent des extraterrestres."
 LocFlyOverText="Pillage"
-LocPromotionPopupText="<Bullet/> Si cet officier survit à la mission en étant conscient, les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30%.<br/><Bullet> L'escouade peut récupérer des alliages extraterrestres et de l'élérium sur les extraterrestres.<br/>"
+LocPromotionPopupText="<Bullet/> Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de <ABILITY:SCAVENGER_BONUS_MULTIPLIER/>% après les missions réussies. Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de l'escouade ont une chance de récupérer de l'alliage extraterrestre et de l'élérium lorsqu'ils éliminent des extraterrestres.<br/>"
+; End translated
+
 
 ;Displayed on officer in tactical container
 [ScavengerPassive X2AbilityTemplate]
 LocFriendlyName="Pillage"
-LocLongDescription="Les récompenses en ressources, alliages extraterrestres et élérium bénéficient d'un bonus de 30% en cas de mission réussie. Vous avez une chance d'obtenir des alliages extraterrestres et de l'élérium en tuant des extraterrestres."
-LocHelpText="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30% après les missions réussies. Les membres de l'escouade ont une chance de récupérer des alliages extraterrestres supplémentaires et de l'élérium sur les extraterrestres."
+; LWOTC translated
+LocLongDescription="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de <ABILITY:SCAVENGER_BONUS_MULTIPLIER/>% après les missions réussies. Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de l'escouade ont une chance de récupérer de l'alliage extraterrestre et de l'élérium lorsqu'ils éliminent des extraterrestres.""
+LocHelpText="Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de <ABILITY:SCAVENGER_BONUS_MULTIPLIER/>% après les missions réussies. Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de l'escouade ont une chance de récupérer de l'alliage extraterrestre et de l'élérium lorsqu'ils éliminent des extraterrestres.""
 LocFlyOverText="Pillage"
-LocPromotionPopupText="<Bullet/> Si cet officier survit à la mission en bonne condition, les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de 30%.<br/><Bullet> L'escouade peut récupérer des alliages extraterrestres et de l'élérium sur les extraterrestres.<br/>"
+LocPromotionPopupText="<Bullet/> Les ressources gagnées en récompense, les alliages extraterrestres et l'élérium augmentent de <ABILITY:SCAVENGER_BONUS_MULTIPLIER/>% après les missions réussies. Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), les membres de l'escouade ont une chance de récupérer de l'alliage extraterrestre et de l'élérium lorsqu'ils éliminent des extraterrestres."<br/>"
+; End translated
 
 ;displayed on other soldier that receive the effect
 [FireDiscipline X2AbilityTemplate]
-LocFriendlyName="Bonus de tir"
-LocLongDescription="Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +10% lorsqu'ils réalisent un tir réflexe."
-LocHelpText="Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +10% lorsqu'ils réalisent un tir réflexe."
-LocFlyOverText="Bonus de tir"
+LocFriendlyName="État d'alerte"
+; LWOTC translated
+LocLongDescription="Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% lorsqu'ils réalisent un tir réflexe."
+LocHelpText="Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% lorsqu'ils réalisent un tir réflexe."
+LocFlyOverText="État d'alerte"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +10% lorsqu'ils réalisent un tir réflexe.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocPromotionPopupText="<Bullet/> Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% lorsqu'ils réalisent un tir réflexe.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/>"
 
 ;Displayed on officer in tactical container
 [FireDisciplinePassive X2AbilityTemplate]
-LocFriendlyName="Bonus de tir"
-LocLongDescription="Toutes les unités alliées à Portée de commandement gagnent un bonus de +10% lorsqu'elles réalisent des tirs réflexes."
-LocHelpText="Toutes les unités alliées à Portée de commandement gagnent un bonus de +10% lorsqu'elles réalisent des tirs réflexes."
-LocFlyOverText="Bonus de tir"
-LocPromotionPopupText="<Bullet/> Toutes les unités alliées à Portée de commandement gagnent un bonus de +10% lorsqu'elles réalisent des tirs réflexes.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocFriendlyName="État d'alerte"
+LocLongDescription="Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% lorsqu'ils réalisent un tir réflexe."
+LocHelpText="Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% lorsqu'ils réalisent un tir réflexe."
+LocFlyOverText="État d'alerte"
+LocPromotionPopupText="<Bullet/> Tous les alliés à Portée de commandement de l'officier gagnent un bonus de +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% lorsqu'ils réalisent un tir réflexe.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/>"
+; End translated
 
 ;displayed both on officer and on soldiers receiving effect
 [OscarMike X2AbilityTemplate]
 LocFriendlyName="Ordre de mouvement"
-LocLongDescription="Toutes les unités alliées à Portée de commandement gagnent un bonus de +5 en mobilité pour le reste du tour. Coûte 1 action et ne met pas fin au tour. Utilisable une fois par mission."
-LocHelpText="Toutes les unités alliées à Portée de commandement gagnent un bonus de +5 en mobilité pour le reste du tour. Coûte 1 action et ne met pas fin au tour. Utilisable une fois par mission."
+; LWOTC translated
+LocLongDescription="Toutes les unités alliées à Portée de commandement gagnent un bonus de +<ABILITY:OSCARMIKE_MOBILITY_BONUS/> en mobilité pour le reste du tour. Coûte 1 action et ne met pas fin au tour. Utilisable une fois par mission."
+LocHelpText="Toutes les unités alliées à Portée de commandement gagnent un bonus de +<ABILITY:OSCARMIKE_MOBILITY_BONUS/> en mobilité pour le reste du tour. Coûte 1 action et ne met pas fin au tour. Utilisable une fois par mission."
 LocFlyOverText="Ordre de mouvement"
-LocPromotionPopupText="<Bullet/> Toutes les unités alliées à Portée de commandement gagnent un bonus de +5 en mobilité pour le reste du tour. Coûte 1 action et ne met pas fin au tour. Utilisable une fois par mission.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocPromotionPopupText="<Bullet/> Toutes les unités alliées à Portée de commandement gagnent un bonus de +<ABILITY:OSCARMIKE_MOBILITY_BONUS/> en mobilité pour le reste du tour. Coûte 1 action et ne met pas fin au tour. Utilisable une fois par mission.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Contrairement aux autres capacités d'officier, cette capacité s'applique aux alliés de l'officier et à l'officier lui-même.<br/><Bullet/> Cette capacité ne procure aucun bonus aux unités désorientées ou paniquées, aux unités robotiques et aux unités civiles.<br/>"
+; End translated
 
 ;displayed on other soldier that receive the effect
 [LeadByExample X2AbilityTemplate]
-LocFriendlyName="Différence de scores"
+LocFriendlyName="Leader-né"
 LocLongDescription="Cet officier améliore la visée, la volonté et le piratage des soldats à Portée de commandement. Le bonus est égal à la moitié de la différence entre l'officier et le soldat."
 LocHelpText="Visée, volonté et piratage améliorés pour les alliés proches de l'officier."
-LocFlyOverText="Différence de scores"
+LocFlyOverText="Leader-né"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> Si les valeurs de visée, de volonté et/ou de piratage de cet officier sont supérieures à celles des soldats à Portée de commandement, ceux-ci obtiennent des bonus dans les catégories concernées, à hauteur de la moitié de la différence officier-soldat.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+; LWOTC translated
+LocPromotionPopupText="<Bullet/> Si les valeurs de visée, de volonté et/ou de piratage de cet officier sont supérieures à celles des soldats à Portée de commandement, ceux-ci obtiennent des bonus dans les catégories concernées, à hauteur de la moitié de la différence officier-soldat.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Les capacités d'officier s'appliquent à tous les alliés de l'officier, mais pas à l'officier lui-même.<br/><Bullet/> Les capacités d'officier ne procurent aucun bonus aux unités désorientées ou paniquées, aux unités robotiques et aux unités civiles.<br/>"
+; End translated
 
 ;Displayed on officer in tactical container
 [LeadByExamplePassive X2AbilityTemplate]
-LocFriendlyName="Différence de scores"
+LocFriendlyName="Leader-né"
 LocLongDescription="Cet officier améliore la visée, la volonté et le piratage des soldats à Portée de commandement. Le bonus est égal à la moitié de la différence entre l'officier et le soldat."
 LocHelpText="Visée, volonté et piratage améliorés pour les alliés proches de l'officier."
-LocFlyOverText="Différence de scores"
-LocPromotionPopupText="<Bullet/> Si les valeurs de visée, de volonté et/ou de piratage de cet officier sont supérieures à celles des soldats à Portée de commandement, ceux-ci obtiennent des bonus dans les catégories concernées, à hauteur de la moitié de la différence officier-soldat.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocFlyOverText="Leader-né"
+LocPromotionPopupText="<Bullet/> Si les valeurs de visée, de volonté et/ou de piratage de cet officier sont supérieures à celles des soldats à Portée de commandement, ceux-ci obtiennent des bonus dans les catégories concernées, à hauteur de la moitié de la différence officier-soldat.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Les capacités d'officier s'appliquent à tous les alliés de l'officier, mais pas à l'officier lui-même.<br/><Bullet/> Les capacités d'officier ne procurent aucun bonus aux unités désorientées ou paniquées, aux unités robotiques et aux unités civiles.<br/>"
 
 ;this may not be displayed -- needs testing
 [LeadByExampleLeader X2AbilityTemplate]
-LocFriendlyName="Différence de scores"
+LocFriendlyName="Leader-né"
 LocLongDescription="Cet officier améliore la visée, la volonté et le piratage des soldats à Portée de commandement. Le bonus est égal à la moitié de la différence entre l'officier et le soldat."
 LocHelpText="Visée, volonté et piratage améliorés pour les alliés proches de l'officier."
-LocFlyOverText="Différence de scores"
-LocPromotionPopupText="<Bullet/> Si les valeurs de visée, de volonté et/ou de piratage de cet officier sont supérieures à celles des soldats à Portée de commandement, ceux-ci obtiennent des bonus dans les catégories concernées, à hauteur de la moitié de la différence officier-soldat.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocFlyOverText="Leader-né"
+LocPromotionPopupText="<Bullet/> Si les valeurs de visée, de volonté et/ou de piratage de cet officier sont supérieures à celles des soldats à Portée de commandement, ceux-ci obtiennent des bonus dans les catégories concernées, à hauteur de la moitié de la différence officier-soldat.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Les capacités d'officier s'appliquent à tous les alliés de l'officier, mais pas à l'officier lui-même.<br/><Bullet/> Les capacités d'officier ne procurent aucun bonus aux unités désorientées ou paniquées, aux unités robotiques et aux unités civiles.<br/>"
 
 ;displayed on other soldier that receive the effect
 [CombinedArms X2AbilityTemplate]
 LocFriendlyName="Armes combinées"
-LocLongDescription="Toutes les unités alliées à Portée de commandement infligent +1 dégât en cas d'attaque réussie."
-LocHelpText="Toutes les unités alliées à Portée de commandement infligent +1 dégât en cas d'attaque réussie."
+; LWOTC translated
+LocLongDescription="Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), toutes les unités alliées à Portée de commandement infligent +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> dégât(s) de plus en cas d'attaque réussie."
+LocHelpText="Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), toutes les unités alliées à Portée de commandement infligent +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> dégât(s) de plus en cas d'attaque réussie."
 LocFlyOverText="Armes combinées"
-LocPromotionPopupText="<Bullet/> Toutes les unités alliées à Portée de commandement infligent +1 dégât en cas d'attaque réussie.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocPromotionPopupText="<Bullet/> Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), toutes les unités alliées à Portée de commandement infligent +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> dégât(s) de plus en cas d'attaque réussie.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Les capacités d'officier s'appliquent à tous les alliés de l'officier, mais pas à l'officier lui-même.<br/><Bullet/> Les capacités d'officier ne procurent aucun bonus aux unités désorientées ou paniquées, aux unités robotiques et aux unités civiles.<br/>"
 
 ;Displayed on officer in tactical container
 [CombinedArmsPassive X2AbilityTemplate]
 LocFriendlyName="Armes combinées"
-LocLongDescription="Toutes les unités alliées à Portée de commandement infligent +1 dégât en cas d'attaque réussie."
-LocHelpText="Toutes les unités alliées à Portée de commandement infligent +1 dégât en cas d'attaque réussie."
+LocLongDescription="Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), toutes les unités alliées à Portée de commandement infligent +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> dégât(s) de plus en cas d'attaque réussie."
+LocHelpText="Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), toutes les unités alliées à Portée de commandement infligent +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> dégât(s) de plus en cas d'attaque réussie."
 LocFlyOverText="Armes combinées"
-LocPromotionPopupText="<Bullet/> Toutes les unités alliées à Portée de commandement infligent +1 dégât en cas d'attaque réussie.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier."
+LocPromotionPopupText="<Bullet/> Tant que cet officier n'est affecté par aucun état négatif (désorienté, empoisonné, etc.), toutes les unités alliées à Portée de commandement infligent +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> dégât(s) de plus en cas d'attaque réussie.<br/><Bullet/> La Portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Les capacités d'officier s'appliquent à tous les alliés de l'officier, mais pas à l'officier lui-même.<br/><Bullet/> Les capacités d'officier ne procurent aucun bonus aux unités désorientées ou paniquées, aux unités robotiques et aux unités civiles.<br/>"
+; End translated
 
 [Command X2AbilityTemplate]
 LocFriendlyName="Commandement"
 LocLongDescription="Octroyez une action bonus à n'importe quel membre de l'escouade visible. Coûte 1 action et met fin au tour. Le nombre de charges dépend du grade de l'officier."
 LocHelpText="Octroyez une action bonus à n'importe quel membre de l'escouade visible. Coûte 1 action et met fin au tour. Le nombre de charges dépend du grade de l'officier."
 LocFlyOverText="Commandement"
-LocPromotionPopupText="<Bullet/> Octroyez une action bonus à n'importe quel membre de l'escouade visible. Coûte 1 action et met fin au tour. Le nombre de charges dépend du grade de l'officier.<br/><Bullet/> Les majors et les sous-lieutenants possèdent 1 charge de cette capacité, les lieutenants et les capitaines en ont 2, les lieutenants-colonels et les colonels en ont 3 et les commandeurs en ont 4.<br/><Bullet/> Inutilisable sur les unités en mode Vigilance ou effectuant des tirs de suppression."
+; LWOTC translated
+LocPromotionPopupText="<Bullet/> Octroyez une action bonus à n'importe quel membre de l'escouade visible. Coûte 1 action et met fin au tour. Le nombre de charges dépend du grade de l'officier.<br/><Bullet/> Les majors et les sous-lieutenants possèdent 1 charge de cette capacité, les lieutenants et les capitaines en ont 2, les lieutenants-colonels et les colonels en ont 3 et les commandeurs en ont 4.<br/><Bullet/> Inutilisable sur les unités en mode Vigilance ou effectuant des tirs de suppression. Ne peut pas cibler une unité robotique ou une unité civile.<br/>"
+; End translated
 
 [Infiltrator X2AbilityTemplate]
 LocFriendlyName="Infiltré"
@@ -158,31 +182,38 @@ LocFriendlyName="Contrôle aérien"
 LocLongDescription="Le Mercure arrive <Ability:AIR_CONTROLLER_EVAC_TURN_REDUCTION/> tours plus tôt en cas de demande d'évacuation."
 LocHelpText="Le Mercure arrive <Ability:AIR_CONTROLLER_EVAC_TURN_REDUCTION/> tours plus tôt en cas de demande d'évacuation."
 LocFlyOverText="Contrôle aérien"
-LocPromotionPopupText="<Bullet/> Le Mercure arrive <Ability:AIR_CONTROLLER_EVAC_TURN_REDUCTION/> tours plus tôt en cas de demande d'évacuation.<br/><Bullet/> Sachez que le Mercure mettra un certain temps à arriver, quels que soient les bonus actifs."
+LocPromotionPopupText="<Bullet/> Le Mercure arrive <Ability:AIR_CONTROLLER_EVAC_TURN_REDUCTION/> tours plus tôt en cas de demande d'évacuation.<br/><Bullet/> Sachez que le Mercure mettra un certain temps à arriver, quels que soient les bonus actifs.<br/>"
 
 [Jammer X2AbilityTemplate]
+; LWOTC translated
 LocFriendlyName="Bloqueur"
-LocLongDescription="Une fois par combat, retarde de 1 tour l'arrivée des renforts adverses."
-LocHelpText="Retarde de 1 tour l'arrivée des renforts adverses."
+LocLongDescription="Une fois par combat, retardez de 1 tour l'arrivée des renforts adverses en route pour la zone d'opération."
+LocHelpText="Une fois par combat, retardez de 1 tour l'arrivée des renforts adverses en route pour la zone d'opération."
 LocFlyOverText="Bloqueur"
-LocPromotionPopupText="<Bullet/> Une fois par combat, retarde de 1 tour l'arrivée des renforts adverses.<br/><Bullet/> À l'utilisation, s'il n'y a pas de renforts en route, l'effet s'applique aux prochains renforts."
+LocPromotionPopupText="<Bullet/> Une fois par combat, retardez de 1 tour l'arrivée des renforts adverses en route pour la zone d'opération.<br/>"
+; End translated
 
 [Incoming X2AbilityTemplate]
 LocFriendlyName="Explosif en approche!"
-LocLongDescription="Jusqu'à la fin du prochain tour adverse, toutes les unités alliées à Portée de commandement gagnent 4 points de résistance contre les dégâts des attaques explosives. Action gratuite."
-LocHelpText="Jusqu'à la fin du prochain tour adverse, toutes les unités alliées à Portée de commandement gagnent 4 points de résistance contre les dégâts des attaques explosives. Action gratuite."
+; LWOTC translated
+LocLongDescription="Jusqu'à la fin du prochain tour adverse, toutes les unités alliées à Portée de commandement gagnent <Ability:INCOMING_EXPLOSIVES_DR/> point(s) de résistance contre les dégâts des attaques explosives. Action gratuite."
+LocHelpText="Jusqu'à la fin du prochain tour adverse, toutes les unités alliées à Portée de commandement gagnent <Ability:INCOMING_EXPLOSIVES_DR/> point(s) de résistance contre les dégâts des attaques explosives. Action gratuite."
 LocFlyOverText="Explosif en approche!"
-LocPromotionPopupText="<Bullet/> Jusqu'à la fin du prochain tour adverse, toutes les unités alliées à Portée de commandement gagnent 4 points de résistance contre les dégâts des attaques explosives. Action gratuite.<br/><Bullet/> Temps de rechargement de 5 tours. <br/><Bullet/> La portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Ne s'applique pas aux soldats paniqués ou effectuant des tirs de suppression.<br/>"
+LocPromotionPopupText="<Bullet/> Jusqu'à la fin du prochain tour adverse, toutes les unités alliées à Portée de commandement gagnent <Ability:INCOMING_EXPLOSIVES_DR/> point(s) de résistance contre les dégâts des attaques explosives. Action gratuite.<br/><Bullet/> Temps de rechargement de <Ability:INCOMING_COOLDOWN/> tour(s).<br/><Bullet/> La portée de commandement augmente à chaque grade d'officier.<br/><Bullet/> Les capacités d'officier s'appliquent à tous les alliés de l'officier, mais pas à l'officier lui-même.<br/><Bullet/> Les capacités d'officier ne procurent aucun bonus aux unités désorientées ou paniquées, aux unités robotiques et aux unités civiles.<br/><Bullet/> Cette capacité ne procure aucun bonus aux unités en mode Vigilance ou effectuant des tirs de suppression.<br/>"
+; End translated
+
 
 [Intervention X2AbilityTemplate]
 LocFriendlyName="Intervention"
-LocLongDescription="Activez pour dépenser 10 renseignements et rajouter 2 tours au chrono de la mission. Coûte 1 action. Utilisable six fois par mission. Le nombre de charges dépend du grade de l'officier."
-LocHelpText="Activez pour dépenser 10 renseignements et rajouter 2 tours au chrono de la mission. Coûte 1 action."
+; LWOTC translated
+LocLongDescription="Activez pour dépenser <Ability:INTERVENTION_INTEL_COST/> renseignements et rajouter <Ability:INTERVENTION_EXTRA_TURNS/> tour(s) au chrono de la mission. Coûte 1 action et ne met pas fin au tour. Le nombre de charges dépend du grade de l'officier."
+LocHelpText="Activez pour dépenser <Ability:INTERVENTION_INTEL_COST/> renseignements et rajouter <Ability:INTERVENTION_EXTRA_TURNS/> tour(s) au chrono de la mission. Coûte 1 action et ne met pas fin au tour. Le nombre de charges dépend du grade de l'officier."
 LocFlyOverText="Intervention"
-LocPromotionPopUpText="<Bullet/> Activez pour dépenser 10 renseignements et rajouter 2 tours au chrono de la mission. Coûte 1 action.<br/><Bullet/> Le nombre de charges dépend du grade de l'officier. <br/><Bullet/> Sans effet si la mission ne comporte pas de chrono. <br/><Bullet/> Les événements peuvent influencer le coup en renseignements. Ne s'active pas si XCOM possède moins de 10 renseignements.<br/>"
+LocPromotionPopUpText="<Bullet/> Activez pour dépenser <Ability:INTERVENTION_INTEL_COST/> renseignements et rajouter <Ability:INTERVENTION_EXTRA_TURNS/> tour(s) au chrono de la mission. Coûte 1 action et ne met pas fin au tour. Le nombre de charges dépend du grade de l'officier.<br/><Bullet/> Sans effet si la mission ne comporte pas de chrono. <br/><Bullet/> Les événements peuvent influencer le coup en renseignements. Ne s'active pas si XCOM possède moins de <Ability:INTERVENTION_INTEL_COST/> renseignements.<br/>"
+; End translated
 
 [TrialByFire X2AbilityTemplate]
-LocFriendlyName="L'épreuve du feu"
+LocFriendlyName="Épreuve du feu"
 LocLongDescription="Tout soldat de rang inférieur à Sergent recevra automatiquement une promotion après une mission réussie sous les ordres de cet officier."
 LocHelpText="Tout soldat de rang inférieur à Sergent recevra automatiquement une promotion après une mission réussie sous les ordres de cet officier."
 LocPromotionPopUpText="<Bullet/> Ce bonus ne s'applique que si l'officier responsable possède cette capacité et n’octroie pas de bonus aux autres officiers participant à la mission."

@@ -72,12 +72,12 @@ LocPromotionPopupText="<Bullet/> Gagnez 1 point de concentration chaque fois que
 LocFriendlyName="Cauchemar voltaïque"
 LocLongDescription="Les unités blessées par la capacité Volt ont une chance d'être prises de panique."
 LocHelpText="Les unités blessées par la capacité Volt ont une chance d'être prises de panique."
-LocPromotionPopupText="<Bullet/> Les unités blessées par la capacité Volt ont une chance d'être prises de panique.<br/><Bullet/> Les chances de panique dépendent à la fois de la force psionique du Templier et de la volonté de la cible."
+LocPromotionPopupText="<Bullet/> Les unités blessées par la capacité Volt ont une chance d'être prises de panique.<br/><Bullet/> Les chances de panique sont de <Ability:TERROR_STAT_CHECK_BASE_VALUE/>%, modifiées par la volonté du Templier et la volonté de sa cible."
 
 [Apotheosis X2AbilityTemplate]
-LocFriendlyName="Transe du vide"
+LocFriendlyName="Paroxysme"
 ; LWOTC translated (2)
-LocFlyoverText="Transe du vide!"
+LocFlyoverText="Paroxysme!"
 ; End translated (2)
 ; LWOTC translated (2)
 LocLongDescription="Action gratuite, qui augmente massivement votre mobilité, votre esquive et les dégâts que vous infligez durant 2 tours. Nécessite d'avoir au moins 3 niveaux de concentration pour être activé et consomme tous les points de concentration du Templier."

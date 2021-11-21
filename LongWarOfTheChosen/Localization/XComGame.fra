@@ -170,11 +170,11 @@ LocHelpText="Tir de missile nucléaire sur la zone ciblée. <Ability:ROCKETSCATT
 [NapalmX X2AbilityTemplate]
 LocFriendlyName="Napalm-X"
 LocFlyOverText="Napalm-X"
-; LWOTC translated (2)
+; LWOTC translated (3)
 LocLongDescription="Votre lance-flammes peut maintenant faire paniquer les ennemis."
 LocHelpText="Votre lance-flammes peut maintenant faire paniquer les ennemis."
-LocPromotionPopupText="<Bullet/> Votre lance-flammes peut maintenant faire paniquer les ennemis. La volonté des unités ennemies permet ou non d'éviter les effets négatifs.<br/>"
-; End translated (2)
+LocPromotionPopupText="<Bullet/> Votre lance-flammes peut maintenant faire paniquer les ennemis.<br/><Bullet/> Les chances de panique sont calculées de la façon suivante: <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH> / <Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH> / <Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%. La volonté de la cible et les modèles améliorés de gantelet modifient également les chances de panique.<br/>"
+; End translated (3)
 
 [PhosphorusPassive X2AbilityTemplate]
 LocFriendlyName="Phosphore"
@@ -5438,10 +5438,12 @@ LocPromotionPopupText="<Bullet/> Mobilité +<Ability:FULLTHROTTLEMOBILITY/> à c
 
 [Judgment X2AbilityTemplate]
 LocFriendlyName="Justice"
+; LWOTC translated (2)
 LocLongDescription="Si l'unité est la cible d'une attaque, l'ennemi qui attaque a une chance d'être pris de panique. Plus la volonté de cette unité est élevée, et plus les chances de paniquer sont importantes."
 LocHelpText="Si l'unité est la cible d'une attaque, l'ennemi qui attaque a une chance d'être pris de panique. Plus la volonté de cette unité est élevée, et plus les chances de paniquer sont importantes."
 LocFlyOverText="Justice"
-LocPromotionPopupText="<Bullet/> La capacité Justice peut être déclenchée par les attaques au corps à corps et de zone. <br/><Bullet/> La capacité Justice ne se déclenchera pas avec un tir de vigilance.<br/><Bullet/> Les chances de panique dépendent à la fois de la volonté de l'attaquant et de celle de la cible de la capacité Justice.<br/><Bullet/> La capacité Justice est plus efficace avec des unités ayant une volonté élevée.<br/>"
+LocPromotionPopupText="<Bullet/> La capacité Justice peut être déclenchée par les tirs, les attaques au corps à corps ou les attaques de zone. <br/><Bullet/> La capacité Justice ne se déclenchera pas avec un tir de vigilance.<br/><Bullet/> Les chances de panique sont de <Ability:JUDGEMENT_LW_APPLYCHANCE/>%. La volonté de la cible et de cette unité modifient également les chances de panique.<br/>"
+; End translated (2)
 
 
 ; LWOTC translated (2)
@@ -5482,7 +5484,7 @@ LocPromotionPopupText="<Bullet/> Réconfort annule la désorientation, le contr�
 
 ; LWOTC Needs translated (2)
 [Ghost X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Le Fantôme débute avec un niveau de concentration égal à celui du Templier lorsqu'il l'a invoqué moins 1.<br/><Bullet/> Le Fantôme ne peut pas gagner de concentration et disparaît lorsque sa concentration a été entièrement consommée ou lorsque ses PV deviennent égaux à 0.<br/><Bullet/> Taillade coûte 1 point de concentration lorsqu'elle est utilisée par un Fantôme.<br/><Bullet/> Le Fantôme doit être invoqué sur le cadavre d'un ennemi humanoïde, dans la limite d'une invocation par cadavre.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Le Fantôme n'a pas accès aux capacités de bouclier et ne peut pas faire appel à la capacité Coup de bouclier. Le Fantôme n'a pas accès aux capacités suivantes: Volt, Déviation, Renvoi, Réconfort, Conduit du néant, Escrimeur, Transe du vide, Force d'âme, Tempête ionique et Endurance.<br/>"
+LocPromotionPopupText="<Bullet/> Le Fantôme débute avec un niveau de concentration égal à celui du Templier lorsqu'il l'a invoqué moins 1.<br/><Bullet/> Le Fantôme ne peut pas gagner de concentration et disparaît lorsque sa concentration a été entièrement consommée ou lorsque ses PV deviennent égaux à 0.<br/><Bullet/> Taillade coûte 1 point de concentration lorsqu'elle est utilisée par un Fantôme.<br/><Bullet/> Le Fantôme doit être invoqué sur le cadavre d'un ennemi humanoïde, dans la limite d'une invocation par cadavre.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Le Fantôme n'a pas accès aux capacités de bouclier et ne peut pas faire appel à la capacité Coup de bouclier. Le Fantôme n'a pas accès aux capacités suivantes: Volt, Déviation, Renvoi, Réconfort, Conduit du néant, Escrimeur, Paroxysme, Force d'âme, Tempête ionique et Endurance.<br/>"
 ; End translated (2)
 
 ; LWOTC Needs Translation (3)
@@ -5531,32 +5533,42 @@ LocFlyOverText="Sabotage d'arme"
 ;(2) Added the Cooldown Text
 [ShieldAllyM1 X2AbilityTemplate]
 LocFriendlyName="Pouvoir des Anciens"
+; LWOTC translated (3)
 LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+; End translated (3)
 LocFlyOverText="Pouvoir des Anciens"
 
 [ShieldAllyM2 X2AbilityTemplate]
 LocFriendlyName="Pouvoir des Anciens"
+; LWOTC translated (3)
 LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+; End translated (3)
 LocFlyOverText="Pouvoir des Anciens"
 
 [ShieldAllyM3 X2AbilityTemplate]
 LocFriendlyName="Pouvoir des Anciens"
+; LWOTC translated (3)
 LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+; End translated (3)
 LocFlyOverText="Pouvoir des Anciens"
 
 [ShieldAllyM4 X2AbilityTemplate]
 LocFriendlyName="Pouvoir des Anciens"
+; LWOTC translated (3)
 LocHelpText="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocLongDescription="Octroie des points de bouclier ainsi qu'un bonus en visée, chances de coup critique, volonté et force psi à un allié. Tant que cet allié est vivant, le Sorcier gagne une réduction des dégâts de <Ability:SHIELD_ALLY_PCT_DR>%. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+; End translated (3)
 LocFlyOverText="Pouvoir des Anciens"
 
 [PsiMindControl X2AbilityTemplate]
 LocFriendlyName="Contrôle mental"
+; LWOTC translated (3)
 LocLongDescription="Prend le contrôle de l'unité ciblée, la forçant à se retourner contre ses anciens alliés. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocHelpText="Prend le contrôle de l'unité ciblée, la forçant à se retourner contre ses anciens alliés. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+; End translated (3)
 LocFlyOverText="Contrôle mental"
 ; End translated #2
 
@@ -5567,13 +5579,17 @@ LocHelpText="Les attaques au corps à corps qui nécessitent de sprinter inflige
 
 [BlastShield X2AbilityTemplate]
 LocFriendlyName="Pare-explosion"
+; LWOTC translated (2)
 LocLongDescription="Les explosions infligent 50% de dégâts en moins."
 LocHelpText="Les explosions infligent 50% de dégâts en moins."
+; End translated (2)
 
 [ChosenCritImmune X2AbilityTemplate]
 LocFriendlyName="Equilibré"
+; LWOTC translated (2)
 LocHelpText="Pratiquement insensible aux coups critiques."
 LocLongDescription="Cet Élu est pratiquement insensible aux coups critiques."
+; End translated (2)
 
 [MC_Stock_Strike X2AbilityTemplate]
 LocFriendlyName="Coup de crosse"
@@ -5591,8 +5607,10 @@ LocFlyOverText="Debout!"
 ;(2) Added the Cooldown Text
 [ChosenSummonFollowers X2AbilityTemplate]
 LocFriendlyName="Appel aux fidèles"
+; LWOTC translated (3)
 LocHelpText="Peut appeler des extraterrestres. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocLongDescription="Peut appeler des extraterrestres."
+; End translated (3)
 LocFlyOverText="Appel aux fidèles"
 ; End translated #2
 ; End translated
@@ -6190,21 +6208,38 @@ LocHelpText="Éliminer une unité paniquée ou désorientée avec votre fusil à
 LocPromotionPopupText="<Bullet/> Éliminer une unité paniquée ou désorientée avec votre fusil à canon scié, vous octroie une action bonus. Cette capacité peut être utilisée un nombre quelconque de fois par tour.<br/><Bullet/> Combinez cette capacité avec la capacité Brutalité pour enchaîner les éliminations.<br/>"
 
 [ZoneOfControl_LW X2AbilityTemplate]
-LocFriendlyName = "Zone de contrôle"
-LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour du <Ability:ClassName/> subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
-LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour du <Ability:ClassName/> subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocFriendlyName = "Distraction"
+LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
 ; LWOTC Ntranslated (2)
-LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour du <Ability:ClassName/> subissent un malus de -<Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de -<Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
+LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
 ; End translated (2)
+
+[ZoCCleanse X2AbilityTemplate]
+LocFriendlyName = "Distraction"
+LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+; LWOTC Needs Translation (2)
+LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
+; End Translation (2)
+
+[ZoCPassive X2AbilityTemplate]
+LocFriendlyName = "Distraction"
+LocHelpText = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+LocLongDescription = "Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité."
+; LWOTC Needs Translation (2)
+LocPromotionPopupText = "<Bullet/> Tous les ennemis situés dans un rayon de <Ability:ZONE_CONTROL_RADIUS/> cases autour de votre position subissent un malus de <Ability:ZONE_CONTROL_AIM_PENALTY/> en visée et de <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> en mobilité.<br/>"
+; End Translation (2)
+
 
 [ApexPredator_LW X2AbilityTemplate]
 LocFriendlyName = "Critiques sanglants"
 LocFlyOverText = "Critiques sanglants"
-; LWOTC translated (2)
+; LWOTC translated (3)
 LocHelpText = "Les coups critiques avec votre arme principale ont une chance de paniquer la cible ainsi que toutes les unités situées dans un rayon de <Ability:APEX_PREDATOR_PANIC_RADIUS/> cases autour d'elle."
 LocLongDescription = "Les coups critiques avec votre arme principale ont une chance de paniquer la cible ainsi que toutes les unités situées dans un rayon de <Ability:APEX_PREDATOR_PANIC_RADIUS/> cases autour d'elle."
-LocPromotionPopupText = "<Bullet/> Les coups critiques avec votre arme principale ont une chance de paniquer la cible ainsi que toutes les unités situées dans un rayon de <Ability:APEX_PREDATOR_PANIC_RADIUS/> cases autour d'elle.<br/>"
-; End translated (2)
+LocPromotionPopupText = "<Bullet/> Les coups critiques avec votre arme principale ont une chance de paniquer la cible ainsi que toutes les unités situées dans un rayon de <Ability:APEX_PREDATOR_PANIC_RADIUS/> cases autour d'elle.<br/><Bullet/> Les chances de panique sont de <Ability:APEX_PREDATOR_BASE_PANIC_CHANCE/>%. La volonté de la cible modifie également les chances de panique.<br/>"
+; End translated (3)
 
 [BlindingProtocol_LW X2AbilityTemplate]
 LocFriendlyName = "Protocole d'aveuglement"
@@ -6391,8 +6426,10 @@ LocPromotionPopupText="<Bullet/> Les unités affectées par la capacité Esprit 
 
 [MindScorch X2AbilityTemplate]
 LocFriendlyName="Esprit écorché"
+; LWOTC translated (2)
 LocHelpText="Le Sorcier projette des visions cauchemardesques dans l'esprit de sa cible. Cette attaque inflige des dégâts à la cible et a <Ability:MIND_SCORCH_BURN_CHANCE/>% de chances de l'embraser. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocLongDescription="Le Sorcier projette des visions cauchemardesques dans l'esprit de sa cible. Cette attaque inflige des dégâts à la cible et a <Ability:MIND_SCORCH_BURN_CHANCE/>% de chances de l'embraser. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+; End translated (2)
 
 [ChosenKidnap X2AbilityTemplate]
 LocFriendlyName="Kidnapping"
@@ -6409,30 +6446,32 @@ LocFlyOverText="Tranchant"
 ; LWOTC translated (2)
 [CombatReadiness X2AbilityTemplate]
 LocFriendlyName="Préparation au combat"
-LocLongDescription="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +10 en visée et de +10 en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
-LocHelpText="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +10 en visée et de +10 en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
+LocLongDescription="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +<Ability:COMBATREADINESS_AIM/> en visée et de +<Ability:COMBATREADINESS_DEF/> en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
+LocHelpText="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +<Ability:COMBATREADINESS_AIM/> en visée et de +<Ability:COMBATREADINESS_DEF/> en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
+LocFlyOverText="Préparation au combat"
+; End translated (2)
+
+; LWOTC translated (2)
+[CombatReadinessPassive X2AbilityTemplate]
+LocFriendlyName="Préparation au combat"
+LocLongDescription="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +<Ability:COMBATREADINESS_AIM/> en visée et de +<Ability:COMBATREADINESS_DEF/> en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
+LocHelpText="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +<Ability:COMBATREADINESS_AIM/> en visée et de +<Ability:COMBATREADINESS_DEF/> en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
 LocFlyOverText="Préparation au combat"
 ; End translated (2)
 
 ; LWOTC translated
-[CombatReadinessPassive X2AbilityTemplate]
-LocFriendlyName="Préparation au combat"
-LocLongDescription="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +10 en visée et de +10 en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
-LocHelpText="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +10 en visée et de +10 en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
-LocFlyOverText="Préparation au combat"
-; End translated
-
 [Banzai_LW X2AbilityTemplate]
 LocFriendlyName="Banzaï!"
-LocLongDescription="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +10 en visée et de +10 en défense jusqu'à la fin de votre tour. Annule également la plupart des pénalités."
-LocHelpText="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +10 en visée et de +10 en défense jusqu'à la fin de votre tour. Annule également la plupart des pénalités."
+LocLongDescription="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +<Ability:COMBATREADINESS_AIM/> en visée et de +<Ability:COMBATREADINESS_DEF/> en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
+LocHelpText="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +<Ability:COMBATREADINESS_AIM/> en visée et de +<Ability:COMBATREADINESS_DEF/> en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
 LocFlyOverText="Banzaï!"
 
 [BanzaiPassive_LW X2AbilityTemplate]
 LocFriendlyName="Banzaï!"
-LocLongDescription="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +10 en visée et de +10 en défense jusqu'à la fin de votre tour. Annule également la plupart des pénalités."
-LocHelpText="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +10 en visée et de +10 en défense jusqu'à la fin de votre tour. Annule également la plupart des pénalités."
+LocLongDescription="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +<Ability:COMBATREADINESS_AIM/> en visée et de +<Ability:COMBATREADINESS_DEF/> en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
+LocHelpText="Tant que vous êtes à couvert, vous gagnez un bonus cumulatif de +<Ability:COMBATREADINESS_AIM/> en visée et de +<Ability:COMBATREADINESS_DEF/> en défense jusqu'à la fin de votre tour. Annule également les pénalités de mobilité."
 LocFlyOverText="Banzaï!"
+; End translated
 
 ;LWOTC translated (2)
 [ChosenAssassin X2CharacterTemplate]
@@ -6484,17 +6523,19 @@ strAcquiredText="Le Chasseur est le maître incontesté des armes à longue port
 strCharacterName="Chasseur"
 strAcquiredText="Le Chasseur est le maître incontesté des armes à longue portée, harcelant vos troupes à distance et profitant de la moindre erreur pour les abattre d'un tir bien placé. S'il est plus faible en combat rapproché, il ne doit pas être sous-estimé pour autant."
 
+; LWOTC translated (2)
 [BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Soif de sang"
-LocLongDescription="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Retiré en cas de kidnapping réussi. Le bonus dépend de la force de l'Élu (+1/1/2/3)."
-LocHelpText="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Retiré en cas de kidnapping réussi. Le bonus dépend de la force de l'Élu (+1/1/2/3)."
+LocLongDescription="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Retiré en cas de kidnapping réussi. Le bonus dépend de la force de l'Élu (+<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>)."
+LocHelpText="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Retiré en cas de kidnapping réussi. Le bonus dépend de la force de l'Élu (+<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>)."
 LocFlyOverText="Soif de sang"
 
 [BloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Soif de sang"
-LocLongDescription="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Le bonus dépend de la force de l'Élu (+1/1/2/3). Retiré en cas de kidnapping réussi."
-LocHelpText="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Le bonus dépend de la force de l'Élu (+1/1/2/3). Retiré en cas de kidnapping réussi."
+LocLongDescription="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Retiré en cas de kidnapping réussi. Le bonus dépend de la force de l'Élu (+<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>)."
+LocHelpText="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif aux dégâts infligés. Retiré en cas de kidnapping réussi. Le bonus dépend de la force de l'Élu (+<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>)."
 LocFlyOverText="Soif de sang"
+; End translated (2)
 
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="Frappe précise"
@@ -6567,30 +6608,32 @@ BriefSummary="Si l'apparence de cette arme laisse à penser qu'elle cherche à i
 TacticalText="<Bullet/> Ce pistolet se révèle être une arme dévastatrice contre les unités blessées."
 AbilityDescName="pistolet"
 
-; LWOTC translated (2)
+; LWOTC translated (3)
 [XCOMBloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Soif de sang"
-LocLongDescription="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif de +1 aux dégâts infligés. Dure 4 tours."
-LocHelpText="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif de +1 aux dégâts infligés. Dure 4 tours."
+LocLongDescription="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif de +<Ability:BLOODTHIRST_T1_DMG/> aux dégâts infligés. Dure 5 tours."
+LocHelpText="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif de +<Ability:BLOODTHIRST_T1_DMG/> aux dégâts infligés. Dure 5 tours."
 LocFlyOverText="Soif de sang"
 
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Soif de sang"
-LocLongDescription="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif de +1 aux dégâts infligés. Dure 4 tours."
-LocHelpText="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif de +1 aux dégâts infligés. Dure 4 tours."
+LocLongDescription="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif de +<Ability:BLOODTHIRST_T1_DMG/> aux dégâts infligés. Dure 5 tours."
+LocHelpText="Chaque fois que vous attaquez avec votre arme de mêlée, vous gagnez un bonus cumulatif de +<Ability:BLOODTHIRST_T1_DMG/> aux dégâts infligés. Dure 5 tours."
 LocFlyOverText="Soif de sang"
-; End translated (2)
+; End translated (3)
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
 LocFriendlyName="Domination sans partage"
 LocLongDescription="Lorsque vous infligez un coup critique avec votre arme principale, vous récupérez vos points d'action."
+; LWOTC translated (2)
 LocHelpText="Lorsque vous infligez un coup critique avec votre arme principale, vous récupérez vos points d'action."
+; End translated (2)
 LocFlyOverText="Domination sans partage"
 
 [DisruptorRifleCrit X2AbilityTemplate]
 LocFriendlyName="Colère contre les impies"
-LocLongDescription="Bonus de +20 en chances de coup critique contre les unités psioniques."
-LocHelpText="Bonus de +20 en chances de coup critique contre les unités psioniques."
+LocLongDescription="Bonus de +<Ability:DISRUPTOR_RIFLE_PSI_CRIT/> en chances de coup critique contre les unités psioniques."
+LocHelpText="Bonus de +<Ability:DISRUPTOR_RIFLE_PSI_CRIT/> en chances de coup critique contre les unités psioniques."
 LocFlyOverText="Colère contre les impies"
 
 [XCOMHunterMark_LW X2AbilityTemplate]
@@ -6601,8 +6644,10 @@ LocFlyOverText="Marque noire"
 
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="Fatalité"
+; LWOTC translated (2)
 LocLongDescription="Gagnez un bonus de +100 en visée et en chances de coup critique avec votre <Ability:WeaponName/> contre les unités dont les PV actuels sont inférieurs ou égaux à 35% de leurs PV initiaux."
 LocHelpText="Gagnez un bonus de +100 en visée et en chances de coup critique avec votre <Ability:WeaponName/> contre les unités dont les PV actuels sont inférieurs ou égaux à 35% de leurs PV initiaux."
+; End translated (2)
 LocFlyOverText="Fatalité"
 
 [Vampirism_LW X2AbilityTemplate]
@@ -6669,14 +6714,14 @@ LocHelpText="L'Élu est immunisé à l'étourdissement, la désorientation et la
 LocFlyOverText="Immunités de l'Élu"
 ; End translated (2)
 
-; LWOTC translated (2)
+; LWOTC translated (3)
 ;(2) Added the Cooldown Text
 [HarborWave X2AbilityTemplate]
 LocFriendlyName="Raz-de-marée"
 LocLongDescription="Projette une vague psionique qui inflige des dégâts. Le cas échéant, les bonus de la capacité Soif de sang y sont appliqués. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocHelpText="Projette une vague psionique qui inflige des dégâts. Le cas échéant, les bonus de la capacité Soif de sang y sont appliqués. Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
 LocFlyOverText="Raz-de-marée"
-; End Translation (2)
+; End Translation (3)
 
 ; LWOTC translated (2)
 [Brawler X2AbilityTemplate]
@@ -6777,8 +6822,10 @@ LaunchedAbilityHelpText="Désoriente toutes les cibles hostiles dans la zone aff
 [Disabler X2AbilityTemplate]
 LocFriendlyName="Désarmement"
 LocFlyOverText="Désarmement"
+; LWOTC translated (2)
 LocLongDescription="Les tirs au pistolet désactivent les armes de votre cible."
 LocHelpText="Les tirs au pistolet désactivent les armes de votre cible."
+; End translated (2)
 
 
 [AdvPurifierm2Flamethrower X2WeaponTemplate]
@@ -6940,10 +6987,10 @@ LocPromotionPopupText="<Bullet/> Une attaque de zone qui marque les unités affe
 
 [Amplify X2AbilityTemplate]
 LocFriendlyName="Amplification"
-LocLongDescription="Marque une cible avec une lentille psionique, qui augmente de <Ability:AmplifyDamageMult/>% les dégâts subis par cette unité lors des 2 prochaines attaques. Action gratuite. Coûte 1 point de concentration."
-LocHelpText="Marque une cible avec une lentille psionique, qui augmente de <Ability:AmplifyDamageMult/>% les dégâts subis par cette unité lors des 2 prochaines attaques. Action gratuite. Coûte 1 point de concentration."
+LocLongDescription="Marque une cible avec une lentille psionique, qui augmente de <Ability:AmplifyDamageMult/>% les dégâts subis par cette unité lors des 3 prochaines attaques. Action gratuite. Coûte 1 point de concentration."
+LocHelpText="Marque une cible avec une lentille psionique, qui augmente de <Ability:AmplifyDamageMult/>% les dégâts subis par cette unité lors des 3 prochaines attaques. Action gratuite. Coûte 1 point de concentration."
 LocHitMessage="Amplifié(e)"
-LocPromotionPopupText="<Bullet/> Marque une cible avec une lentille psionique, qui augmente de <Ability:AmplifyDamageMult/>% les dégâts subis par cette unité lors des 2 prochaines attaques. Action gratuite. Coûte 1 point de concentration.<br/>"
+LocPromotionPopupText="<Bullet/> Marque une cible avec une lentille psionique, qui augmente de <Ability:AmplifyDamageMult/>% les dégâts subis par cette unité lors des 3 prochaines attaques. Action gratuite. Coûte 1 point de concentration.<br/>"
 
 
 [CrusaderRage_LW X2AbilityTemplate]
@@ -6976,11 +7023,21 @@ AbilityDescName="pistolet automatique"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramédical"
-LocLongDescription="Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Utiliser un médikit pour la première fois du tour est considéré comme une action gratuite. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
-LocHelpText="Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Utiliser un médikit pour la première fois du tour est considéré comme une action gratuite. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
+LocLongDescription="Débloque une action spéciale, qui vous permet de sprinter vers une unité alliée et de la soigner avec un médikit. Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
+LocHelpText="Débloque une action spéciale, qui vous permet de sprinter vers une unité alliée et de la soigner avec un médikit. Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
 ; LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Utiliser un médikit pour la première fois du tour est considéré comme une action gratuite. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
+LocPromotionPopupText="<Bullet/> Débloque une action spéciale, qui vous permet de sprinter vers une unité alliée et de la soigner avec un médikit. Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
 ; End translated (2)
+[ParaMedikitHeal X2AbilityTemplate]
+LocFriendlyName="Soins paramédicaux"
+LocLongDescription="Sprintez vers une unité alliée et soignez-la avec votre médikit."
+LocHelpText="Sprintez vers une unité alliée et soignez-la avec votre médikit."
+
+
+[ParaMedikitStabilize X2AbilityTemplate]
+LocFriendlyName="Stabilisation paramédicale"
+LocLongDescription="Sprintez vers une unité alliée et stabilisez-la avec votre médikit."
+LocHelpText="Sprintez vers une unité alliée et stabilisez-la avec votre médikit."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Bannissement"
@@ -6992,8 +7049,8 @@ LocPromotionPopupText="<Bullet/> Chaque tir effectué avec Bannissement a une ch
 ; LWOTC translated (3)
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Combat total"
-LocLongDescription="Mobilité +1. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
-LocHelpText="Mobilité +1. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
+LocLongDescription="Procure un bonus de +1 en Mobilité et de +10 en visée. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
+LocHelpText="Procure un bonus de +1 en Mobilité et de +10 en visée. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
 LocPromotionPopupText="<Bullet/> Cette capacité octroie la capacité Mélange explosif, et ne peut donc pas être combinée avec cette capacité.<br/>"
 ; End translated (3)
 
