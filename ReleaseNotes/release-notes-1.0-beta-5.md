@@ -126,6 +126,7 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
   - Grants +3 bonus range to grenades, up from 2
   - Grants +1 Mobility and +5 Aim
  * Justice and Wrath bonus Aim is now +15, up from +10
+ * Ripjack bonus weapon Aim is now +25, up from +20 (Justice and Wrath do not use the ripjack aim bonus)
  * Full Throttle bonus to Mobility is now 2, down from 3
  * Interrupt cooldown is now 2 turns, down from 3
 
