@@ -24,7 +24,6 @@ var config int BloodTrailBleedingDamage;
 var config int BloodTrailBleedingChance;
 
 var config int PARAMEDIC_BONUS_CHARGES;
-var config int PARAMEDIC_BONUS_HEAL;
 
 var config int DisablingShotCooldown;
 var config int DisablingShotAmmoCost;
@@ -892,7 +891,6 @@ static function X2DataTemplate AddParamedic()
 	local X2AbilityTemplate				Template;
 	local X2Effect_TemporaryItem		TemporaryItemEffect;
 	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
-	local X2Effect_Savior SaviorEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Paramedic_LW');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_fieldmedic";
@@ -917,13 +915,6 @@ static function X2DataTemplate AddParamedic()
 	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(TemporaryItemEffect);
-
-	SaviorEffect = new class 'X2Effect_Savior';
-	SaviorEffect.BuildPersistentEffect (1, true, false);
-	SaviorEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
-	SaviorEffect.EffectName = 'ParamedicBonusHeal';
-	SaviorEffect.BonusHealAmount = default.PARAMEDIC_BONUS_HEAL;
-	Template.AddTargetEffect (SaviorEffect);
 
 
 	Template.GetBonusWeaponAmmoFn = Paramedic_BonusCharges;
@@ -1004,7 +995,7 @@ static function X2AbilityTemplate ParaMedikitHeal()
 	Template.AddTargetEffect(class'X2Ability_SpecialistAbilitySet'.static.RemoveAllEffectsByDamageType());
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
+	//Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
 
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_medkit";
 	Template.Hostility = eHostility_Defensive;
@@ -1080,7 +1071,7 @@ static function X2AbilityTemplate ParaMedikitStabilize()
 	Template.AddTargetEffect(class'X2Ability_SpecialistAbilitySet'.static.RemoveAllEffectsByDamageType());
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
-	Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
+	//Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
 
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_stabilize_move2";
 	Template.Hostility = eHostility_Defensive;

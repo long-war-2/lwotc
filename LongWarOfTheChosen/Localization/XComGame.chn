@@ -6764,9 +6764,9 @@ AbilityDescName="自动手枪"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="急救专家"
-LocLongDescription="解锁进行冲刺后对盟友使用急救包的能力。获得1个免费急救包。装备的急救包获得<Ability:PARAMEDIC_BONUS_CHARGES/>额外充能。治疗能力额外回复<Ability:PARAMEDIC_BONUS_HEAL/>生命值。"
-LocHelpText="解锁进行冲刺后对盟友使用急救包的能力。获得1个免费急救包。装备的急救包获得<Ability:PARAMEDIC_BONUS_CHARGES/>额外充能。治疗能力额外回复<Ability:PARAMEDIC_BONUS_HEAL/>生命值。"
-LocPromotionPopupText="<Bullet/> 解锁进行冲刺后对盟友使用急救包的能力。获得1个免费急救包。装备的急救包获得<Ability:PARAMEDIC_BONUS_CHARGES/>额外充能。治疗能力额外回复<Ability:PARAMEDIC_BONUS_HEAL/>生命值。"
+LocLongDescription="解锁进行冲刺后对盟友使用急救包的能力。获得1个免费急救包。装备的急救包获得<Ability:PARAMEDIC_BONUS_CHARGES/>额外充能。"
+LocHelpText="解锁进行冲刺后对盟友使用急救包的能力。获得1个免费急救包。装备的急救包获得<Ability:PARAMEDIC_BONUS_CHARGES/>额外充能。"
+LocPromotionPopupText="<Bullet/> 解锁进行冲刺后对盟友使用急救包的能力。获得1个免费急救包。装备的急救包获得<Ability:PARAMEDIC_BONUS_CHARGES/>额外充能。"
 
 [ParaMedikitHeal X2AbilityTemplate]
 LocFriendlyName="急救治疗"

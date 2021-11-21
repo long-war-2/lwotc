@@ -110,8 +110,8 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
  * Homing Mine ability no longer grants Claymore charges as well
  * Reworked Paramedic:
   - Unlocks an ability to perform a dash move to use a medikit on an ally
-  - Grants a free medikit charge
-  - Healing abilities restore 2 additional hit points
+  - Grants a free medikit
+  - Equipped medikits have 2 bonus charges
 
 ### Skirmisher
 

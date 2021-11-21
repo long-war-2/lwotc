@@ -6344,6 +6344,6 @@ LocPromotionPopupText="<Bullet/> У Вольта нет перезарядки, 
 ; Lwotc translated
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Медик"
-LocLongDescription="Получите аптечку. Аптечки в экипировке содержат на <Ability:PARAMEDIC_BONUS_CHARGES/> больше зарядов. Один раз за ход использование 1ой аптечки становится бесплатным действием. Лечит дополнительно <Ability:PARAMEDIC_BONUS_HEAL/> единиц здоровья."
-LocHelpText="Получите аптечку. Аптечки в экипировке содержат на <Ability:PARAMEDIC_BONUS_CHARGES/> больше зарядов. Один раз за ход использование 1ой аптечки становится бесплатным действием. Лечит дополнительно <Ability:PARAMEDIC_BONUS_HEAL/> единиц здоровья."
+LocLongDescription="Получите аптечку. Аптечки в экипировке содержат на <Ability:PARAMEDIC_BONUS_CHARGES/> больше зарядов. Один раз за ход использование 1ой аптечки становится бесплатным действием."
+LocHelpText="Получите аптечку. Аптечки в экипировке содержат на <Ability:PARAMEDIC_BONUS_CHARGES/> больше зарядов. Один раз за ход использование 1ой аптечки становится бесплатным действием."
 ; End translated

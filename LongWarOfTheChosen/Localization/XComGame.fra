@@ -7023,10 +7023,10 @@ AbilityDescName="pistolet automatique"
 
 [Paramedic_LW X2AbilityTemplate]
 LocFriendlyName="Paramédical"
-LocLongDescription="Débloque une action spéciale, qui vous permet de sprinter vers une unité alliée et de la soigner avec un médikit. Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
-LocHelpText="Débloque une action spéciale, qui vous permet de sprinter vers une unité alliée et de la soigner avec un médikit. Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
+LocLongDescription="Débloque une action spéciale, qui vous permet de sprinter vers une unité alliée et de la soigner avec un médikit. Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus."
+LocHelpText="Débloque une action spéciale, qui vous permet de sprinter vers une unité alliée et de la soigner avec un médikit. Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus."
 ; LWOTC translated (2)
-LocPromotionPopupText="<Bullet/> Débloque une action spéciale, qui vous permet de sprinter vers une unité alliée et de la soigner avec un médikit. Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus. Les capacités de soins restaurent <Ability:PARAMEDIC_BONUS_HEAL/>PV de plus."
+LocPromotionPopupText="<Bullet/> Débloque une action spéciale, qui vous permet de sprinter vers une unité alliée et de la soigner avec un médikit. Procure un médikit gratuit. Les médikits équipés contiennent <Ability:PARAMEDIC_BONUS_CHARGES/> charge(s) de plus."
 ; End translated (2)
 [ParaMedikitHeal X2AbilityTemplate]
 LocFriendlyName="Soins paramédicaux"
