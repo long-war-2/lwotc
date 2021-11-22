@@ -2,7 +2,7 @@ Welcome to a new version of Long War of the Chosen!
 
 Beta 5 will hopefully be the last of the betas and will for the most part be the same as the 1.0 release version.. sees a lot of changes to LWOTC in several key areas: Chosen, Lost, hero/faction soldiers, psi operatives and more. This is intended to be the last beta before we hit version 1.0 proper.
 
-**IMPORTANT** You should start a new campaign if upgrading from any version prior to dev build 28!
+We recommend that you should start a new campaign if upgrading from any version prior to dev build 28, but it's not critical. Existing faction soldiers will retain their old ability trees and the changes to Chosen knowledge gain may hurt more than help if you're already some way into a campaign. Players upgrading from dev build 28.2 shouldn't have any issues.
 
 Here are some of the headline changes you may be interested in:
 
@@ -23,7 +23,7 @@ Please feel free to join us on our [Discord server](https://discord.gg/9fUCvcR),
 
 # Changelog
 
-What follows are all the changes to LWOTC since the beta 4.1 release.
+What follows are all the changes to LWOTC since the beta 4.1 release. If you're upgrading from dev build 28.x, you can find a summary of the changes since then at the end.
 
 ## Mods
 
@@ -189,7 +189,7 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
  * Disabled "Enable Introduction?" alert at the campaign start so people can't accidentally enable Lost and Abandoned, bricking their campaigns
  * Added button on geoscape to access resistance management screen (contributed by Rai)
  * Added loadout button for adviser in outpost management (contributed by Rai)
- * Flashbang resistance is now visible as a passive effect on enemies that have it (Muton Centurions, Elites, Sectoid Commanders, etc.)
+ * Flashbang resistance is now visible as a passive effect on enemies that have it (Muton Centurions, Elites, Sectoid Commanders, etc. - contributed by Amnesieri)
 
 ## Bug fixes
 
@@ -207,6 +207,7 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
  * Multi-shot abilities will no longer cause lots of lag on missions with many enemies
  * Reinforcement units spawned from the Avenger on the Avenger Defense mission should now always be controllable
  * The Dark VIP should now be correctly extracted if carried by the last soldier to evac
+ * Fire Discipline now works (it did nothing before)
  * Avenger and Flush will now shred targets if the shooter has the Shredder ability
  * Impersonal Edge will no longer trigger on other units' kills
  * The Sniper Defense AI behaviour should now work, making it harder for Sharpshooters to get flanking shots on enemy units that have no sight on XCOM
@@ -237,6 +238,55 @@ We have tried to tackle the issue of the Chosen Avenger Defense mission appearin
 ## Modding
 
  * Mods can patch multi-shot abilities that are implemented like Rapid Fire/Chain Shot by adding them to the `MULTI_SHOT_ABILITIES` config array in *XComLW_Overhaul.ini*, fixing a performance issue that causes big pauses on large missions
+
+# Changes since dev build 28.2
+
+All the following are also in the above main changelog, they're just repeated here for the convenience of players upgrading from dev build 28.2:
+
+ * Chosen will no longer show up on the main story missions (otherwise known as Golden Path missions)
+ * The Infiltration Hack bonus for Reapers is now correctly 0
+ * The range of Tracking is now 14 tiles, down from 18
+ * Reworked Paramedic:
+  - Unlocks an ability to perform a dash move to use a medikit on an ally
+  - Grants a free medikit
+  - Equipped medikits have 2 bonus charges
+ * Cheap Shot now works with multi-shot abilities, like Banish and Chain Shot
+ * Total Combat has several changes:
+  - Grants +3 bonus range to grenades, up from 2
+  - Grants +1 Mobility and +5 Aim
+ * Justice and Wrath bonus Aim is now +15, up from +10
+ * Ripjack bonus weapon Aim is now +25, up from +20 (Justice and Wrath do not use the ripjack aim bonus)
+ * Full Throttle bonus to Mobility is now +2, down from +3
+ * Battlefield Awareness cooldown is now 4 turns, up from 3
+ * Combat Presence cooldown is now 5 turns, up from 3
+ * Interrupt cooldown is now 2 turns, down from 3
+ * Aftershock bonus aim reduced to +10, down from +15
+ * Amplify now applies to the following 3 attacks (up from 2), but has a 3-turn cooldown (up from 2)
+ * Reworked Crusader's Rage:
+  - Gain a 25% damage boost for every 25% HP missing, up to 50%
+  - Reduce wound recovery times for this soldier by 4 HP
+ * Arc Wave spash damage is now shown in descriptions and help text with the correct values
+ * Arc Wave no longer grants focus on killing disoriented units
+ * Invert can no longer target Chosen
+ * XCOM's Darklance no longer has Complex Reload
+ * XCOM's Katana gains +10 to aim and the Blood Thirst duration is now 5 turns, up from 4
+ * Flashbang resistance is now visible as a passive effect on enemies that have it (Muton Centurions, Elites, Sectoid Commanders, etc. - contributed by Amnesieri)
+ * Locked On now persists across turns and no longer disappears when the shooter performs a non-offensive action (this is back to the Long War 2 behavior); it now only works for the primary weapon
+ * Units using weapons other than a sniper rifle can now overwatch after using Double Tap
+ * Zone of Control now works properly and adds a green ring around units with the ability, highlighting its range
+ * SPARKs can now trigger and benefit from Focus Fire
+ * Fire Discipline now works (it did nothing before)
+ * Jammer charges are no longer restored on reloading a save file
+ * Field Commanders (max-rank officers) now get their +1 bonus to Command range
+ * Combat Rush now triggers on kills with area-of-effect abilities
+ * Hyper Reactive Pupils no longer procs when any unit misses, not just the one with the HRP PCS
+ * When Lightning Reflexes triggers, it no longer reduces the effect on *all units on the map* that have Lightning Reflexes
+ * Lightning Reflexes will now properly have reduced effect after being procced by abilities like Hunter Protocol and the Lost Grappler's reaction attack
+ * Abilities that apply to "unarmored" units now also work on units that have had all their armor shredded off
+ * Officer abilities that apply buffs to units in range now apply to haven advisers
+ * Missions can no longer have two or more officers on them (this could happen before if the second officer was not part of the original squad, for example as a haven adviser or Avenger Defense reinforcement)
+ * The "mobile" turrets on Chosen Avenger Assault are now optional, as there is a chance that environment destruction can break those objectives
+ * Faceless rebels can no longer be recruited in a haven if the proportion of Faceless in that haven is greater than 32%
 
 # Credits and Acknowledgements
 
