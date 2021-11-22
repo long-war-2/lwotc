@@ -1,6 +1,6 @@
 Welcome to a new version of Long War of the Chosen!
 
-Beta 5 will hopefully be the last of the betas and will for the most part be the same as the 1.0 release version.. sees a lot of changes to LWOTC in several key areas: Chosen, Lost, hero/faction soldiers, psi operatives and more. This is intended to be the last beta before we hit version 1.0 proper.
+Beta 5 will hopefully be the last of the betas and will for the most part be the same as the 1.0 release version when that finally happens.
 
 We recommend that you should start a new campaign if upgrading from any version prior to dev build 28, but it's not critical. Existing faction soldiers will retain their old ability trees and the changes to Chosen knowledge gain may hurt more than help if you're already some way into a campaign. Players upgrading from dev build 28.2 shouldn't have any issues.
 
