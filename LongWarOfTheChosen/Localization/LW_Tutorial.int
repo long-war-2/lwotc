@@ -47,6 +47,12 @@ HavenAdvisersBody="Click on the box labeled (1) on the left to assign an adviser
 ; End Translation
 
 ; LWOTC Needs Translation
+[UIScreenListener_PromotionScreenTutorial]
+PistolAbilitiesTutorialTitle="Pistol Abilities"
+PistolAbilitiesTutorialBody="Pistol abilities are available to all your soldiers once you have built the Training Center, except for SPARKs and Psi Operatives. They work with pistols and autopistols.\n\nScroll down on this screen to see them!"
+; End Translation
+
+; LWOTC Needs Translation
 [UIScreenListener_CovertActionsTutorial]
 CovertActionsTutorialTitle="Covert Actions"
 CovertActionsTutorialBody="Unlike vanilla WOTC, your operatives can fail covert actions. The risk of failure is reduced based on the ranks of the soldiers on the operation. The higher the ranks, the lower the risk of failure.<br/><br/>Also, the risk of ambush increases the more covert actions are completed without being ambushed. Risk is reset once one is ambushed."

@@ -22,6 +22,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Objectives.AddItem(CreateLW_TUT_InfiltratingMission());
 	Objectives.AddItem(CreateLW_TUT_FirstRetaliation());
 	Objectives.AddItem(CreateLW_TUT_CovertActions());
+	Objectives.AddItem(CreateLW_TUT_PistolAbilities());
 
 	Objectives.AddItem(CreateLW_TUT_GeneralChosen());
 	Objectives.AddItem(CreateLW_TUT_ChosenTactical());
@@ -107,6 +108,7 @@ static function X2DataTemplate CreateLW_TUT_CampaignStartTemplate()
 	Template.NextObjectives.AddItem('LW_TUT_InfiltratingMission');
 	Template.NextObjectives.AddItem('LW_TUT_FirstRetaliation');
 	Template.NextObjectives.AddItem('LW_TUT_CovertActions');
+	Template.NextObjectives.AddItem('LW_TUT_PistolAbilities');
 	Template.NextObjectives.AddItem('LW_TUT_GeneralChosen');
 
 	return Template;
@@ -215,6 +217,18 @@ static function X2DataTemplate CreateLW_TUT_CovertActions()
 	local X2ObjectiveTemplate Template;
 
 	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_CovertActions');
+	Template.bMainObjective = true;
+	Template.bNeverShowObjective = true;
+	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLW_TUT_PistolAbilities()
+{
+	local X2ObjectiveTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_TUT_PistolAbilities');
 	Template.bMainObjective = true;
 	Template.bNeverShowObjective = true;
 	Template.ImagePath = "img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Contact_Resistance";
