@@ -6990,8 +6990,7 @@ LocFriendlyName="Amplify"
 LocLongDescription="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 3 attacks. Costs 1 Focus, free action."
 LocHelpText="Mark a single target with a Psionic lens, causing them to take an additional <Ability:AmplifyDamageMult/>% damage from the next 3 attacks. Costs 1 Focus, free action."
 LocHitMessage="Amplified"
-LocPromotionPopupText="<Bullet/> Amplify will last for two damage instances.<br/><Bullet/> Amplify is a free action.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
-
+LocPromotionPopupText="<Bullet/> Amplify will last for 3 damage instances.<br/><Bullet/> Amplify is a free action.<br/><Bullet/> Has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Crusader's Rage"
