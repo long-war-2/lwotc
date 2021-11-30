@@ -7126,3 +7126,9 @@ LocFriendlyName="Flashbang Resistance"
 LocLongDescription="This unit has a <Ability:FLASHBANG_RESIST_VALUE/>% chance to resist disorientation from flashbang grenades."
 LocHelpText="This unit has a <Ability:FLASHBANG_RESIST_VALUE/>% chance to resist disorientation from flashbang grenades."
 ; End translation
+
+; LWOTC Needs Translation
+[Infiltration X2AbilityTemplate]
+LocLongDescription="ADVENT security towers cannot see this unit when it's concealed or in Shadow."
+LocHelpText="ADVENT security towers cannot see this unit when it's concealed or in Shadow."
+; End Translation
