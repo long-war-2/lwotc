@@ -56,6 +56,9 @@ static function UpdateDarkEvents(X2StrategyElementTemplate Template, int Difficu
 		case 'DarkEvent_MadeWhole':  // Chosen are strong enough without losing their weaknesses too!
 		case 'DarkEvent_LeftBehind':  // Covert actions no longer have a capture risk, so shouldn't guarantee it on all CAs with this DE
 		case 'DarkEvent_CounterintelligenceSweep':  // (Nearly) Everyone hates this!
+		case 'DarkEvent_LoyaltyAmongThieves_Assassin':  // Having Chosen share knowledge could easily end up with players
+		case 'DarkEvent_LoyaltyAmongThieves_Hunter':    // (unfairly) doing multiple Chosen Avenger Assaults. We're not
+		case 'DarkEvent_LoyaltyAmongThieves_Warlock':   // balancing around that.
 			// Remove these from play
 			DETemplate.StartingWeight = 0;
 			DETemplate.MinWeight = 0;
