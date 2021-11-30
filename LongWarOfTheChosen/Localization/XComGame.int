@@ -5379,9 +5379,9 @@ LocPromotionPopupText="<Bullet/> Reduces Shadow's cooldown by 1 turn.<br/>"
 ; LWOTC Needs Translation (4)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="Blood Trail"
-LocLongDescription="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and reduce target's Dodge by -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> if the target has been wounded this turn."
-LocHelpText="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and reduce target's Dodge by -<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> if the target has been wounded this turn."
-LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Plan ahead with squadmate attacks to take full advantage of Blood Trail.<br/><Bullet/> Works with all weapons, including grenades.<br/>"
+LocLongDescription="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has been wounded this turn."
+LocHelpText="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has been wounded this turn."
+LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Works with all weapons, including grenades.<br/>"
 ; End Translation (4)
 
 [PaleHorse X2AbilityTemplate]
