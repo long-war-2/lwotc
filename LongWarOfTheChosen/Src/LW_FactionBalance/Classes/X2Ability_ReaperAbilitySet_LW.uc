@@ -950,6 +950,7 @@ static function X2AbilityTemplate ParaMedikitHeal()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
 	Template.HideErrors.AddItem('AA_AbilityUnavailable');
+	Template.HideErrors.AddItem('AA_CannotAfford_Charges');
 
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.MEDIKIT_HEAL_PRIORITY;
 
@@ -1000,6 +1001,7 @@ static function X2AbilityTemplate ParaMedikitHeal()
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_medkit";
 	Template.Hostility = eHostility_Defensive;
 	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
 	Template.bLimitTargetIcons = true;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 
@@ -1036,6 +1038,7 @@ static function X2AbilityTemplate ParaMedikitStabilize()
 	Template.AbilityCosts.AddItem(ActionPointCost);
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
 	Template.HideErrors.AddItem('AA_AbilityUnavailable');
+	Template.HideErrors.AddItem('AA_CannotAfford_Charges');
 
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.MEDIKIT_HEAL_PRIORITY;
 
@@ -1076,6 +1079,7 @@ static function X2AbilityTemplate ParaMedikitStabilize()
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_stabilize_move2";
 	Template.Hostility = eHostility_Defensive;
 	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
 	Template.bLimitTargetIcons = true;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 
