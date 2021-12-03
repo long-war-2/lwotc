@@ -467,7 +467,7 @@ static function UpdateBanish2(X2AbilityTemplate Template)
 static function ChangeBanishHitCalc(X2AbilityTemplate Template)
 {
 	local X2Effect_SetUnitValue BanishCount;
-
+	local X2Condition_Visibility VisibilityCondition;
 	X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bAllowCrit = true;
 
 	BanishCount = new class'X2Effect_IncrementUnitValue';
@@ -477,6 +477,15 @@ static function ChangeBanishHitCalc(X2AbilityTemplate Template)
 	BanishCount.bApplyOnHit = true;
 	BanishCount.bApplyOnMiss = true;
 	Template.AddShooterEffect(BanishCount);
+
+		//make it work with squadsight
+	class 'Helpers_LW'.static.RemoveAbilityTargetConditions(Template,'X2Condition_Visibility');
+
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bAllowSquadsight = true;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+	
 }
 	
 defaultproperties
