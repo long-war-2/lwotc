@@ -6995,8 +6995,8 @@ LocPromotionPopupText="<Bullet/> Marque une cible avec une lentille psionique, q
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Ferveur"
-LocHelpText="Infligez 25% de dégâts supplémentaires pour chaque tranche de 25% de PV que vous avez perdu (jusqu'à un maximum de 50%). Cette capacité réduit également le temps de guérison du soldat de 4 PV."
-LocLongDescription="Infligez 25% de dégâts supplémentaires pour chaque tranche de 25% de PV que vous avez perdu (jusqu'à un maximum de 50%). Cette capacité réduit également le temps de guérison du soldat de 4 PV."
+LocHelpText="Infligez 25% de dégâts supplémentaires pour chaque tranche de 25% de PV que vous avez perdu (jusqu'à un maximum de 50%). Cette capacité réduit également le temps de guérison du soldat de 8 PV."
+LocLongDescription="Infligez 25% de dégâts supplémentaires pour chaque tranche de 25% de PV que vous avez perdu (jusqu'à un maximum de 50%). Cette capacité réduit également le temps de guérison du soldat de 8 PV."
 LocPromotionPopupText="<Bullet/> La réduction du temps de guérison est ignorée si le soldat a été éliminé, mis hors-combat ou stabilisé durant la mission.<br/>"
 LocFlyOverText="Ferveur"
 

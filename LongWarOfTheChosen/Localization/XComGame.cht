@@ -6735,8 +6735,8 @@ LocPromotionPopupText="<Bullet/> 標記持續3次傷害。<br/><Bullet/> 標記�
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="聖殿之怒"
-LocHelpText="每損失25%生命值給予25%傷害提升，最多50%傷害提升。使該士兵的傷口恢復時間減少4HP。"
-LocLongDescription="每損失25%生命值給予25%傷害提升，最多50%傷害提升。使該士兵的傷口恢復時間減少4HP。"
+LocHelpText="每損失25%生命值給予25%傷害提升，最多50%傷害提升。使該士兵的傷口恢復時間減少8HP。"
+LocLongDescription="每損失25%生命值給予25%傷害提升，最多50%傷害提升。使該士兵的傷口恢復時間減少8HP。"
 LocPromotionPopupText="<Bullet/> 如果士兵在執行任務期間進入失血狀態，則傷口恢復不起作用。<br/>"
 LocFlyOverText="精神發狂"
 

@@ -6994,8 +6994,8 @@ LocPromotionPopupText="<Bullet/> Amplify will last for 3 damage instances.<br/><
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Crusader's Rage"
-LocHelpText="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 4 HP"
-LocLongDescription="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 4 HP."
+LocHelpText="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 8 HP"
+LocLongDescription="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 8 HP."
 LocPromotionPopupText="<Bullet/> Wound reduction does not work if the soldier entered a bleeding out state during the mission.<br/>"
 LocFlyOverText="Psychotic Rage"
 
