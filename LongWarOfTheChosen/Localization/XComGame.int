@@ -7132,3 +7132,17 @@ LocHelpText="This unit has a <Ability:FLASHBANG_RESIST_VALUE/>% chance to resist
 LocLongDescription="ADVENT security towers cannot see this unit when it's concealed or in Shadow."
 LocHelpText="ADVENT security towers cannot see this unit when it's concealed or in Shadow."
 ; End Translation
+
+; LWOTC Needs Translation
+[MindShield X2AbilityTemplate]
+LocLongDescription="Makes wearer immune to negative mental conditions such as panic, mind control and stuns."
+
+[Sustain X2AbilityTemplate]
+LocLongDescription="If the unit takes enough damage to be killed, they are immediately put in Stasis for 1 turn and their health is only reduced to 1 HP. This can only happen once per mission."
+LocHelpText="If the unit takes enough damage to be killed, they are immediately put in Stasis for 1 turn and their health is only reduced to 1 HP. This can only happen once per mission."
+LocPromotionPopupText="<Bullet/> Beware that a sustained unit may retain damaging status effects like poison or burning after emerging from Stasis.<br/>"
+
+[SustainTriggered X2AbilityTemplate]
+LocLongDescription="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
+LocHelpText="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
+; End Translation
