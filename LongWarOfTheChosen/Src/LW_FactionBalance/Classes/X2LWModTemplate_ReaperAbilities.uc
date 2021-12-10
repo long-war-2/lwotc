@@ -106,6 +106,7 @@ static function MakeShadowTemporary(X2AbilityTemplate Template)
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bFreeCost = true;
+	ActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.MoveActionPoint);
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	// Shadow doesn't have a cooldown by default (it's managed by an EffectRemoved
