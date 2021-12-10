@@ -209,7 +209,7 @@ LocPromotionPopupText="<Bullet/> Combat Presence can be used to get squadmates o
 [CheapShot X2AbilityTemplate]
 LocFriendlyName="Cheap Shot"
 LocFlyOverText="Cheap Shot"
-LocLongDescription= "Once per turn, gain a movement action after shooting a unit damaged this turn with your primary weapon. Cannot trigger on the same turn as Knife Encounters."
-LocHelpText="Once per turn, gain a movement action after shooting a unit damaged this turn with your primary weapon. Cannot trigger on the same turn as Knife Encounters."
-LocPromotionPopupText="<Bullet/> Also works for abilities like Banish."
+LocLongDescription= "Once per turn, gain a movement action after shooting with your primary weapon at a unit that was damaged this turn. Cannot trigger on the same turn as Knife Encounters."
+LocHelpText="Once per turn, gain a movement action after shooting with your primary weapon at a unit that was damaged this turn. Cannot trigger on the same turn as Knife Encounters."
+LocPromotionPopupText="<Bullet/> Cheap Shot triggers if the target was previously damaged by any type of damage since the player's last turn, i.e. overwatch and damage over time during the enemy turn counts.<br/><Bullet/> Works for Light 'em Up, Chain Shot and Banish in addition to the standard shot.<br/><Bullet/> The movement action can be used to enter Shadow if it's off cooldown.<br/>"
 ; End Translation
