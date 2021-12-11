@@ -42,6 +42,12 @@ HavenManagementBody="避难所是反抗军的聚集地，他们可以从事几�
 HavenAdvisersTitle="避难所顾问"
 HavenAdvisersBody="单击左侧标有（1）的框，为避难所指派一名顾问。您可以指定以下选项之一：<br/><ul><li>士兵-发现无面怪并帮助招募。装备战场扫描器或有扫描协议的专家或有心灵融合的灵能兵可以提高发现率</li><li>科学家-提高情报的工作产出，但不再有助于研究</li><li>工程师-提高补给工作产出</li></ul><br/>发现无面怪可以让你驱逐他们。"
 
+; LWOTC Needs Translation
+[UIScreenListener_PromotionScreenTutorial]
+PistolAbilitiesTutorialTitle="手枪技能"
+PistolAbilitiesTutorialBody="一旦你建立了训练中心，你的所有士兵都可以使用手枪技能，除了SPARK和灵能兵。他们可以使用手枪和自动手枪。\n\n在该界面向下滚动以查看它们！"
+; End Translation
+
 [UIScreenListener_CovertActionsTutorial]
 CovertActionsTutorialTitle="隐秘行动"
 CovertActionsTutorialBody="不像普通的WOTC，你的特工在隐秘行动时有可能会失败。失败的风险根据作战士兵的级别而降低。级别越高，失败的风险越低。<br/><br/>此外，没有遭到伏击的情况下，隐秘行动完成得越多，伏击的风险就越大。一旦被伏击，风险就会被重置。"

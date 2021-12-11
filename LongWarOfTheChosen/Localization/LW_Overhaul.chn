@@ -636,7 +636,7 @@ m_strStripWeaponUpgrades=移除所有武器升级
 m_strStripWeaponUpgradesLower=移除所有武器升级
 m_strStripWeaponUpgradesConfirm=确认移除所有武器升级
 m_strStripWeaponUpgradesConfirmDesc=确认移除所有未由出战当前任务士兵所装备的主武器上的升级配件。该配件可立刻供所有士兵装备。
-m_strTooltipStripWeapons=移除所有未选择为出战当前任务的士兵的武器升级。
+m_strTooltipStripWeapons=移除所有未出战当前任务的士兵的武器升级。
 
 m_strAllHandsToHangar=所有人员前往机库
 m_strAllHandsToHangarConfirm=确认所有人员前往机库

@@ -11,20 +11,20 @@ LocPromotionPopupText="<Bullet/> 花费一个行动点让在指挥范围内的�
 
 [Collector X2AbilityTemplate]
 LocFriendlyName="收藏家"
-LocLongDescription="只要军官在健康状态下，小队杀死任何非人类敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数。"
+LocLongDescription="只要军官在健康状态下，小队杀死任何非人形敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数。"
 LocHelpText="小队的击杀能获得额外情报。"
 LocFlyOverText="收藏家"
 ; displayed for officer in OfficerAbility UI
-LocPromotionPopupText="<Bullet/> 只要军官在健康状态下，小队杀死任何非人类敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数。"
+LocPromotionPopupText="<Bullet/> 只要军官在健康状态下，小队杀死任何非人形敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数。"
 
 ;displayed on officer in tactical container
 ;This effect is unused.
 [CollectorPassive X2AbilityTemplate]
 LocFriendlyName="收藏家"
-LocLongDescription="只要军官在健康状态下，小队杀死任何非人类敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数。"
+LocLongDescription="只要军官在健康状态下，小队杀死任何非人形敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数。"
 LocHelpText="小队的击杀能获得额外情报。"
 LocFlyOverText="收藏家"
-LocPromotionPopupText="<Bullet/> 只要军官在健康状态下，小队杀死任何非人类敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数。"
+LocPromotionPopupText="<Bullet/> 只要军官在健康状态下，小队杀死任何非人形敌人都有<ABILITY:COLLECTOR_BONUS_CHANCE/>%的几率获得1个情报点数。"
 
 ;displayed on other soldier that receive the effect
 [Defilade X2AbilityTemplate]

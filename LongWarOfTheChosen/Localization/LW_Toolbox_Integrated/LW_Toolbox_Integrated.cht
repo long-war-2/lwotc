@@ -24,10 +24,10 @@ NormalDamage="關閉"
 MaxDamage="最大值"
 
 EnableRandomizedLevelupStatsMod="隱藏潛力"
-EnableRandomizedLevelupStatsModTooltip="在升級後士兵們會隨機提升數值。"
+EnableRandomizedLevelupStatsModTooltip="在升級後士兵們會隨機提升各項屬性數值。"
 
 RandomizedLevelupStrength="隨機性：<XGParam:IntValue0>%"
-RandomizedLevelupStrengthTooltip="當隱藏潛力啟用時隨機性的程度。更高的設定意味著士兵將有可能在升級時獲得更多的數值增加。"
+RandomizedLevelupStrengthTooltip="當隱藏潛力啟用時隨機性的程度。更高的設定意味著士兵將有可能在升級時隨機提升各項屬性數值的浮動更大。"
 
 EnableRedFogMod="血霧"
 EnableRedFogModTooltip="受傷的單位將受到命中，意志，移動力和侵入懲罰。"

@@ -199,7 +199,7 @@ LocFriendlyName="暗箭伤人"
 LocFlyOverText="暗箭伤人"
 LocLongDescription= "每回合一次，用主武器对一名该回合受到伤害的目标进行射击后，获得一个额外的移动点。不能在同一回合触发刀锋相接。"
 LocHelpText="每回合一次，用主武器对一名该回合受到伤害的目标进行射击后，获得一个额外的移动点。不能在同一回合触发刀锋相接。"
-LocPromotionPopupText="<Bullet/> 同样适用于放逐之类的技能。"
+LocPromotionPopupText="<Bullet/> 如果目标在玩家最后回合前受到任何类型的伤害，如在敌人回合期间受到的监视伤害和持续性伤害，则触发暗箭伤人。<br/><Bullet/> 除了标准射击外，还适用于赶尽杀绝、连环射击和放逐。<br/><Bullet/> 如果暗影不是冷却状态，该移动点可用于进入暗影。"
 ; End Translation
 
 [LW_FactionBalance.X2Ability_ThrowingKnifeAbilitySet]

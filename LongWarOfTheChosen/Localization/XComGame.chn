@@ -66,7 +66,7 @@ RankNames[7]="中尉"
 RankNames[8]="上尉"
 
 ShortNames[0]="新兵"
-ShortNames[1]="上等"
+ShortNames[1]="上等兵"
 ShortNames[2]="下士"
 ShortNames[3]="中士"
 ShortNames[4]="上士"
@@ -5197,8 +5197,8 @@ LocPromotionPopupText="<Bullet/> 减少暗影的冷却时间1回合。<br/>"
 ; LWOTC Needs Translation (3)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="血迹追踪"
-LocLongDescription="若目标此回合已受过伤，则攻击造成伤害+<Ability:BLOODTRAILDAMAGE/>并且敌人闪避-<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> 。"
-LocHelpText="若目标此回合已受过伤，则攻击造成伤害+<Ability:BLOODTRAILDAMAGE/> 并且敌人闪避-<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>。"
+LocLongDescription="若目标此回合已受过伤，则攻击造成+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避 。"
+LocHelpText="若目标此回合已受过伤，则攻击造成+<Ability:BLOODTRAILDAMAGE/>伤害并且无视敌人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>闪避 。"
 LocPromotionPopupText="<Bullet/> 只适用于敌人受到伤害的同一回合。<br/><Bullet/> 提前计划好小队攻击顺序，充分利用血迹追踪。<br/><Bullet/> 适用于所有武器，包括榴弹。<br/>"
 
 [PaleHorse X2AbilityTemplate]
@@ -6376,7 +6376,7 @@ LocFlyOverText="嗜血"
 
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="嗜血"
-LocLongDescription="每次用近战武器攻击时，会获得可叠加的+<Ability:BLOODTHIRST_T1_DMG/>近战伤害提升。持续4回合。"
+LocLongDescription="每次用近战武器攻击时，会获得可叠加的+<Ability:BLOODTHIRST_T1_DMG/>近战伤害提升。持续5回合。"
 LocHelpText="每次用近战武器攻击时，会获得可叠加的+<Ability:BLOODTHIRST_T1_DMG/>近战伤害提升。持续5回合。"
 LocFlyOverText="嗜血"
 
@@ -6861,3 +6861,22 @@ LocLongDescription="该单位有<Ability:FLASHBANG_RESIST_VALUE/>%几率抵抗�
 LocHelpText="该单位有<Ability:FLASHBANG_RESIST_VALUE/>%几率抵抗闪光榴弹造成的混乱。"
 ; End translation
 
+; LWOTC Needs Translation
+[Infiltration X2AbilityTemplate]
+LocLongDescription="当该单位处于隐蔽或暗影状态时，变种人安保哨塔无法发现他。"
+LocHelpText="当该单位处于隐蔽或暗影状态时，变种人安保哨塔无法发现他。"
+; End Translation
+
+; LWOTC Needs Translation
+[MindShield X2AbilityTemplate]
+LocLongDescription="使穿戴者对负面精神状况免疫，如恐慌，心灵控制和眩晕。"
+
+[Sustain X2AbilityTemplate]
+LocLongDescription="如果该单位受到足以致命的伤害，他会立刻进入静滞状态，持续1回合，且生命值会降到1点。此能力每次任务发动一次。"
+LocHelpText="如果该单位受到足以致命的伤害，他会立刻进入静滞状态，持续1回合，且生命值会降到1点。此能力每次任务发动一次。"
+LocPromotionPopupText="<Bullet/>注意，在坚守状态下的单位在从静滞状态恢复时依然会受到状态效果如毒素或燃烧的伤害。<br/>"
+
+[SustainTriggered X2AbilityTemplate]
+LocLongDescription="该单位逃过一次致死攻击，并进入静滞状态1回合。本次战斗中仅触发一次。"
+LocHelpText="该单位逃过一次致死攻击，并进入静滞状态1回合。本次战斗中仅触发一次。"
+; End Translation

@@ -66,7 +66,7 @@ RankNames[7]="中尉"
 RankNames[8]="上尉"
 
 ShortNames[0]="新兵"
-ShortNames[1]="上等"
+ShortNames[1]="上等兵"
 ShortNames[2]="下士"
 ShortNames[3]="中士"
 ShortNames[4]="上士"
@@ -5196,8 +5196,8 @@ LocPromotionPopupText="<Bullet/> 減少暗影的冷卻時間1回合。<br/>"
 ; LWOTC Needs Translation (3)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="血跡追蹤"
-LocLongDescription="若目標此回合已受過傷，則攻擊造成傷害 +<Ability:BLOODTRAILDAMAGE/> 並且敵人閃避-<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> 。"
-LocHelpText="若目標此回合已受過傷，則攻擊造成傷害 +<Ability:BLOODTRAILDAMAGE/> 並且敵人閃避-<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> 。"
+LocLongDescription="若目標此回合已受過傷，則攻擊造成+<Ability:BLOODTRAILDAMAGE/>傷害並且無視敵人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>閃避 。"
+LocHelpText="若目標此回合已受過傷，則攻擊造成+<Ability:BLOODTRAILDAMAGE/>傷害並且無視敵人<Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/>閃避 。"
 LocPromotionPopupText="<Bullet/> 只適用於敵人受到傷害的同一回合。<br/><Bullet/> 提前計劃好小隊攻擊順序，充分利用血跡追蹤。<br/><Bullet/> 適用於所有武器，包括榴彈。<br/>"
 
 [PaleHorse X2AbilityTemplate]
@@ -6375,7 +6375,7 @@ LocFlyOverText="嗜血"
 
 [XCOMBloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="嗜血"
-LocLongDescription="每次用近戰武器攻擊時，會獲得可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續4回合。"
+LocLongDescription="每次用近戰武器攻擊時，會獲得可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續5回合。"
 LocHelpText="每次用近戰武器攻擊時，會獲得可疊加的+<Ability:BLOODTHIRST_T1_DMG/>近戰傷害提升。持續5回合。"
 LocFlyOverText="嗜血"
 
@@ -6859,3 +6859,23 @@ LocFriendlyName="閃光抗性"
 LocLongDescription="該單位有<Ability:FLASHBANG_RESIST_VALUE/>%幾率抵抗閃光榴彈造成的混亂。"
 LocHelpText="該單位有<Ability:FLASHBANG_RESIST_VALUE/>%幾率抵抗閃光榴彈造成的混亂。"
 ; End translation
+
+; LWOTC Needs Translation
+[Infiltration X2AbilityTemplate]
+LocLongDescription="當該單位處於隱蔽或暗影狀態時，變種人安保哨塔無法發現他。"
+LocHelpText="當該單位處於隱蔽或暗影狀態時，變種人安保哨塔無法發現他。"
+; End Translation
+
+; LWOTC Needs Translation
+[MindShield X2AbilityTemplate]
+LocLongDescription="使穿戴者對負面精神狀況免疫，如恐慌，心靈控制和眩暈。"
+
+[Sustain X2AbilityTemplate]
+LocLongDescription="如果該單位受到足以致命的傷害，他會立刻進入靜滯狀態，持續1回合，且生命值會降到1點。此能力每次任務發動一次。"
+LocHelpText="如果該單位受到足以致命的傷害，他會立刻進入靜滯狀態，持續1回合，且生命值會降到1點。此能力每次任務發動一次。"
+LocPromotionPopupText="<Bullet/>注意，在堅守狀態下的單位在從靜滯狀態恢復時依然會受到狀態效果如毒素或燃燒的傷害。<br/>"
+
+[SustainTriggered X2AbilityTemplate]
+LocLongDescription="該單位逃過一次致死攻擊，並進入靜滯狀態1回合。本次戰鬥中僅觸發一次。"
+LocHelpText="該單位逃過一次致死攻擊，並進入靜滯狀態1回合。本次戰鬥中僅觸發一次。"
+; End Translation
