@@ -102,6 +102,10 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 			CATemplate.Slots[1].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 3 MSGTs
 			CATemplate.Slots[2].iMinRank = default.THIRD_CHOSEN_CA_REQ_RANK;  // Require 3 MSGTs
 			break;
+		case 'CovertAction_RescueSoldier':
+			// There are currently no risks to mitigate
+			CATemplate.OptionalCosts.Length = 0;
+			break;
 		default:
 			break;
 	}
