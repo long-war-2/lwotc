@@ -432,7 +432,7 @@ static function UpdateBanish(X2AbilityTemplate Template)
 {
 	local X2AbilityCost Cost;
 	local X2AbilityCooldown Cooldown;
-
+	local X2Effect_BanishHitMod HitMod;
 
 	ChangeBanishHitCalc(Template);
 
@@ -451,17 +451,16 @@ static function UpdateBanish(X2AbilityTemplate Template)
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = default.BANISH_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
+
+	HitMod = new class'X2Effect_BanishHitMod';
+	HitMod.BuildPersistentEffect (1, true, true);
+	HitMod.DuplicateResponse = eDupe_Ignore;
+	Template.AddShooterEffect(HitMod);
 }
 
 static function UpdateBanish2(X2AbilityTemplate Template)
 {
-	local X2Effect_BanishHitMod HitMod;
-
 	ChangeBanishHitCalc(Template);
-
-	HitMod = new class'X2Effect_BanishHitMod';
-	HitMod.BuildPersistentEffect (1, true, true);
-	Template.AddShooterEffect(HitMod);
 }
 
 
