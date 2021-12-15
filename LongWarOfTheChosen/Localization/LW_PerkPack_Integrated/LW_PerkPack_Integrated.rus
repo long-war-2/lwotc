@@ -37,6 +37,9 @@ TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> активирует тро
 [X2Effect_Savior]
 strSavior_WorldMessage="Спаситель: восстанавливается дополнительно <XGParam:IntValue0/> здоровья."
 
+[X2Effect_LWHolotarget]
+HoloTargetEffectName="Голографическая метка"
+
 [X2Item_DenseSmokeGrenade]
 DenseSmokeGrenadeEffectDisplayName="Густой дым"
 DenseSmokeGrenadeEffectDisplayDesc="Густой дым дополнительно увеличивает защиту этого солдата."
@@ -46,10 +49,15 @@ LocCoveringFire="Огневая поддержка"
 LocCoveringFireMalus="По этому юниту был произведен выстрел из режима наблюдения со способностью \"Огневая поддержка\", дающий штраф -10 к меткости до конца хода."
 
 ; LWOTC Translated
-[LoneWolf X2AbilityTemplate]
-LocFriendlyName="Одинокий волк"
-LocFlyOverText="Одинокий волк"
-LocLongDescription="Получает дополнительную точносить и защиту когда минимум <Ability:LONEWOLF_MIN_BONUS_TILES/> клеток до ближайшего союзника. Максимум бонуса +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> на расстоянии <Ability:LONEWOLF_MIN_DIST_TILES/>+ клеток."
-LocHelpText="Получает дополнительную точносить и защиту когда минимум <Ability:LONEWOLF_MIN_BONUS_TILES/> клеток до ближайшего союзника. Максимум бонуса +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> на расстоянии <Ability:LONEWOLF_MIN_DIST_TILES/>+ клеток."
-LocPromotionPopupText="<Bullet/> Получает +<Ability:LONEWOLF_AIM_PER_TILE/> Меткости и +<Ability:LONEWOLF_DEF_PER_TILE/> Защиты за каждую клетку между вами и ближайшим союзником, начиная с дистанции <Ability:LONEWOLF_MIN_BONUS_TILES/> клеток.<br/><Bullet/> Максимальный бонус +<Ability:LONEWOLF_AIM_BONUS/> Меткости, +<Ability:LONEWOLF_DEF_BONUS/> Защиты когда расстояние между вами и союзником как минимум <Ability:LONEWOLF_MIN_DIST_TILES/> клеток или больше.<br/><Bullet/> Бонус Защиты не работает, если солдат паникует, оглушён, дизориентирован, горит или ослаблен."
-; End Translated
+LocSoulStealBuff="Кража души: щит"
+LocSoulStealBuffHelpText="Кража души дает дополнительные единицы щита, если украдено болше ОЗ, чем надо для лечения"
+; End Translation
+
+; LWOTC Translated
+[X2Effect_RegenerationPCT]
+HealedMessage="+<Heal/> ОЗ восстановлено"
+
+[X2StatusEffects_LW]
+MaimedFriendlyName="Покалечен"
+MaimedFriendlyDesc="Мобильность этого бойца снижена до 0, он не может двигаться. Одако стрельба и прочие действия без движения возможны."
+; End Translation

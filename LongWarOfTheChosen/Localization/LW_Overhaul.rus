@@ -81,7 +81,7 @@ ActivityObjectives[0]="Атакуйте научную лабораторию п
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Вычислите маршрут перелётов"
+ActivityObjectives[0]="Найдите вражеские пути подкреплений"
 ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
@@ -90,7 +90,7 @@ ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Вычислите маршрут перелётов"
+ActivityObjectives[0]="Найдите вражеские пути подкреплений"
 ActivityObjectives[1]="Заберите артефакты с НЛО"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
@@ -98,7 +98,7 @@ ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Вычислите маршрут перелётов"
+ActivityObjectives[0]="Найдите вражеские пути подкреплений"
 ActivityObjectives[1]="Заберите артефакты с НЛО"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Мы нашли потенциальную улику, касающуюся действий \"Адвента\". Нужно провести расследование.", MissionIndex=0)
@@ -460,7 +460,7 @@ m_strInsuffientInfiltrationToLaunch="Для начала задания необ
 +m_strAlertnessModifierDescriptions[15]="Уязвимый"
 
 [UIMission_LWCustomMission]
-+m_strUrgent="УГРОЗА БЕЗОПАСНОСТИ"
++m_strUrgent="ДЫРА В БЕЗОПАСНОСТИ"
 +m_strRendezvousMission="ТАЙНАЯ ВСТРЕЧА"
 +m_strRendezvousDesc="**В убежище Сопротивления в регионе <XGParam:StrValue0/!WorldRegionName> замечены недружественные переговоры** Советник и добровольцы из убежища должны выследить и ликвидировать шпиона и его союзников из \"Адвента\" на месте встречи."
 
@@ -509,7 +509,7 @@ m_strName="Имя"
 m_strMission="Задание"
 m_strBuildRadioRelay="Постройте радиоретранслятор"
 m_strLiaisonTitle="Советник убежища"
-m_strEditLoadout="Оснащение советника"
+m_strEditLoadout="Оснащение советника"														
 ; 0=Alert, 1=Vigilance, 2=Force
 m_strRegionalInfo="Сила \"Адвента\": <XGParam:IntValue0/>"
 m_strResistanceMecs="МЭКи Сопротивления: <XGParam:IntValue0/>"
