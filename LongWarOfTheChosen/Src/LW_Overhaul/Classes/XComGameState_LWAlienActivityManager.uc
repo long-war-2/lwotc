@@ -470,6 +470,7 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 
 	//cache the difficulty
 	MissionSite.CacheSelectedMissionData(ForceLevel, AlertLevel);
+	`LWTrace("Selected mission schedule: " $ MissionSite.SelectedMissionData.SelectedMissionScheduleName);
 
 	// LWOTC: The call above to CacheSelectedMissionData() means that the shadow
 	// chamber strings never get updated by the vanilla code. So we have to force

@@ -719,7 +719,7 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 	}
 
 	// find a plot that supports the biome and the mission
-	SelectBiomeAndPlotDefinition(MissionState.GeneratedMission.Mission, Biome, SelectedPlotDef, SitRepNames);
+	SelectBiomeAndPlotDefinition(MissionState, Biome, SelectedPlotDef, SitRepNames);
 
 	// do a weighted selection of our plot
 	MissionState.GeneratedMission.Plot = SelectedPlotDef;
@@ -924,21 +924,23 @@ static function bool WillChosenAppearOnMission(XComGameState_AdventChosen Chosen
 //---------------------------------------------------------------------------------------
 // Code (next 3 functions) copied from XComGameState_MissionSite
 //
-function SelectBiomeAndPlotDefinition(MissionDefinition MissionDef, out string Biome, out PlotDefinition SelectedDef, optional array<name> SitRepNames)
+function SelectBiomeAndPlotDefinition(XComGameState_MissionSite MissionState, out string Biome, out PlotDefinition SelectedDef, optional array<name> SitRepNames)
 {
 	local XComParcelManager ParcelMgr;
+	local MissionDefinition MissionDef;
 	local string PrevBiome;
 	local array<string> ExcludeBiomes;
 
 	ParcelMgr = `PARCELMGR;
 	ExcludeBiomes.Length = 0;
-	
-	Biome = SelectBiome(MissionDef, ExcludeBiomes);
+
+	MissionDef = MissionState.GeneratedMission.Mission;
+	Biome = SelectBiome(MissionState, ExcludeBiomes);
 	PrevBiome = Biome;
 
 	while(!SelectPlotDefinition(MissionDef, Biome, SelectedDef, ExcludeBiomes, SitRepNames))
 	{
-		Biome = SelectBiome(MissionDef, ExcludeBiomes);
+		Biome = SelectBiome(MissionState, ExcludeBiomes);
 
 		if(Biome == PrevBiome)
 		{
@@ -947,25 +949,27 @@ function SelectBiomeAndPlotDefinition(MissionDefinition MissionDef, out string B
 			return;
 		}
 	}
+
+	`LWDebug("Selected plot '" $ SelectedDef.MapName $ "' with biome '" $ Biome $ "'");
 }
 
 //---------------------------------------------------------------------------------------
-function string SelectBiome(MissionDefinition MissionDef, out array<string> ExcludeBiomes)
+function string SelectBiome(XComGameState_MissionSite MissionState, out array<string> ExcludeBiomes)
 {
 	local string Biome;
 	local int TotalValue, RollValue, CurrentValue, idx, BiomeIndex;
 	local array<BiomeChance> BiomeChances;
 	local string TestBiome;
 
-	if(MissionDef.ForcedBiome != "")
+	if (MissionState.GeneratedMission.Mission.ForcedBiome != "")
 	{
-		return MissionDef.ForcedBiome;
+		return MissionState.GeneratedMission.Mission.ForcedBiome;
 	}
 
 	// Grab Biome from location
-	Biome = class'X2StrategyGameRulesetDataStructures'.static.GetBiome(Get2DLocation());
+	Biome = class'X2StrategyGameRulesetDataStructures'.static.GetBiome(MissionState.Get2DLocation());
 
-	if(ExcludeBiomes.Find(Biome) != INDEX_NONE)
+	if (ExcludeBiomes.Find(Biome) != INDEX_NONE)
 	{
 		Biome = "";
 	}
@@ -978,14 +982,14 @@ function string SelectBiome(MissionDefinition MissionDef, out array<string> Excl
 	{
 		BiomeIndex = BiomeChances.Find('BiomeName', TestBiome);
 
-		if(BiomeIndex != INDEX_NONE)
+		if (BiomeIndex != INDEX_NONE)
 		{
 			BiomeChances.Remove(BiomeIndex, 1);
 		}
 	}
 
 	// If no "extra" biomes just return the world map biome
-	if(BiomeChances.Length == 0)
+	if (BiomeChances.Length == 0)
 	{
 		return Biome;
 	}
@@ -993,13 +997,13 @@ function string SelectBiome(MissionDefinition MissionDef, out array<string> Excl
 	// Calculate total value of roll to see if we want to swap to another biome
 	TotalValue = 0;
 
-	for(idx = 0; idx < BiomeChances.Length; idx++)
+	for (idx = 0; idx < BiomeChances.Length; idx++)
 	{
 		TotalValue += BiomeChances[idx].Chance;
 	}
 
 	// Chance to use location biome is remainder of 100
-	if(TotalValue < 100)
+	if (TotalValue < 100)
 	{
 		TotalValue = 100;
 	}
@@ -1008,11 +1012,11 @@ function string SelectBiome(MissionDefinition MissionDef, out array<string> Excl
 	RollValue = `SYNC_RAND(TotalValue);
 	CurrentValue = 0;
 
-	for(idx = 0; idx < BiomeChances.Length; idx++)
+	for (idx = 0; idx < BiomeChances.Length; idx++)
 	{
 		CurrentValue += BiomeChances[idx].Chance;
 
-		if(RollValue < CurrentValue)
+		if (RollValue < CurrentValue)
 		{
 			Biome = BiomeChances[idx].BiomeName;
 			break;
