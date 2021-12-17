@@ -216,6 +216,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'MindShield':
 			DisplayMindShieldPassive(Template);
 			break;
+		case 'SteadyHands':
+			FixSteadyHands(Template);
+			break;
 		default:
 			break;
 
@@ -1203,6 +1206,52 @@ static function X2Condition_WeaponCategory CreatePistolWeaponCatCondition()
 	WeaponCatCondition.WeaponCats = default.PISTOL_ABILITY_WEAPON_CATS;
 
 	return WeaponCatCondition;
+}
+
+// Fixes Steady Hands so that it applies correctly at all times. The vanilla
+// implementation has it occasionally applying when it shouldn't and not
+// applying when it should.
+static function FixSteadyHands(X2AbilityTemplate Template)
+{
+	local XMBEffect_ConditionalBonus StatChangeEffect;
+	local X2Condition_UnitValue ValueCondition;
+	local X2Condition_PlayerTurns TurnsCondition;
+	local X2Effect_Persistent CurrEffect;
+	local int i;
+
+	StatChangeEffect = new class'XMBEffect_ConditionalBonus';
+	StatChangeEffect.EffectName = 'SteadyHandsStatBoost';
+	StatChangeEffect.AddToHitModifier(class'X2Ability_SharpshooterAbilitySet'.default.STEADYHANDS_AIM_BONUS, eHit_Success);
+	StatChangeEffect.AddToHitModifier(class'X2Ability_SharpshooterAbilitySet'.default.STEADYHANDS_AIM_BONUS, eHit_Crit);
+
+	//  this condition check guarantees the unit did not move last turn before allowing the bonus to be applied
+	ValueCondition = new class'X2Condition_UnitValue';
+	ValueCondition.AddCheckValue('MovesLastTurn', 0, eCheck_Exact);
+	StatChangeEffect.AbilityShooterConditions.AddItem(ValueCondition);
+
+	//  this condition guarantees the player has started more than 1 turn. the first turn of the game does not count for steady hands, as there was no "previous" turn.
+	TurnsCondition = new class'X2Condition_PlayerTurns';
+	TurnsCondition.NumTurnsCheck.CheckType = eCheck_GreaterThan;
+	TurnsCondition.NumTurnsCheck.Value = 1;
+	StatChangeEffect.AbilityShooterConditions.AddItem(TurnsCondition);
+
+	StatChangeEffect.BuildPersistentEffect(1, true, false, false);
+	StatChangeEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.LocHelpText, Template.IconImage, true,,Template.AbilitySourceName);
+	StatChangeEffect.bHideWhenNotRelevant = true;
+
+	// class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template, 'X2Effect_Persistent', 'SteadyHands');
+	Template.AddShooterEffect(StatChangeEffect);
+
+	for (i = 0; i < Template.AbilityShooterEffects.Length; i++)
+	{
+		CurrEffect = X2Effect_Persistent(Template.AbilityShooterEffects[i]);
+		if (CurrEffect.EffectName == 'SteadyHands')
+		{
+			// Clear the stat change bonus as it doesn't seem to work.
+			CurrEffect.ApplyOnTick.Length = 0;
+			break;
+		}
+	}
 }
 
 // Patches any multi-shot abilities that are configured in the
