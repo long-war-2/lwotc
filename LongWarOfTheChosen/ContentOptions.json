@@ -86,7 +86,6 @@
         "WP_AdventFlamethrower_Rusty",
         "WP_BeamGrenadeLauncher",
 
-        "FX_Lwotc_Laser_Shared",
         "LWAttachments_LS",
         "LWAssaultRifle_LS",
         "LWCannon_LS",
@@ -111,6 +110,7 @@
         "UILibrary_LW_Coilguns",
         "UILibrary_LW_LaserPack",
         "UILibrary_LW_Overhaul",
+        "UILibrary_Refs",
         "UILibrary_SMG"
     ]
 }
