@@ -40,6 +40,8 @@ static function CHEventListenerTemplate CreateXComHQListeners()
 	Template.AddCHEvent('UIAvengerShortcuts_ShowCQResistanceOrders', ShowOrHideResistanceOrdersButton, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UIPersonnel_OnSortFinished', OnUIPersonnelDataRefreshed, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('UpdateResources', OnUpdateResources_LW, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OnResearchReport', ShowItemGrantedPopup, ELD_Immediate, GetListenerPriority());
+	Template.AddCHEvent('OverrideImageForItemAvaliable', FixResearchItemImages, ELD_Immediate, GetListenerPriority());
 
 	Template.RegisterInStrategy = true;
 
@@ -342,6 +344,61 @@ static function EventListenerReturn OnUpdateResources_LW(Object EventData, Objec
 	return ELR_NoInterrupt;
 }
 
+// Forces the "item granted" popup to show when research is complete,
+// since the base game doesn't do this.
+static function EventListenerReturn ShowItemGrantedPopup(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local XComGameState_Tech TechState;
+	// local X2ItemTemplateManager ItemTemplateManager;
+	local X2ItemTemplate ItemTemplate;
+	local array<X2ItemTemplate> ItemRewards;
+
+	TechState = XComGameState_Tech(EventData);
+	if (TechState == none) return ELR_NoInterrupt;
+
+	// ItemTemplateManager = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	ItemRewards = TechState.ItemRewards;
+
+	foreach ItemRewards(ItemTemplate)
+	{
+		`HQPRES.UIItemReceived(ItemTemplate);
+	}
+
+	return ELR_NoInterrupt;
+}
+
+// Items unlocked by research are displayed in popups using the
+// "base" images, i.e. without attachments. Looks really weird.
+// This listener overrides those with the correct images. Thanks
+// to Xymanek and the Prototype Armoury mod from which this code
+// was copied.
+static function EventListenerReturn FixResearchItemImages(
+	Object EventData,
+	Object EventSource,
+	XComGameState GameState,
+	Name EventID,
+	Object CallbackData)
+{
+	local X2ItemTemplate CurrentItemTemplate;
+	local XComLWTuple Tuple;
+
+	Tuple = XComLWTuple(EventData);
+	if (Tuple == none || Tuple.Id != 'OverrideImageForItemAvaliable') return ELR_NoInterrupt;
+
+	CurrentItemTemplate = X2ItemTemplate(Tuple.Data[1].o);
+
+	if (CurrentItemTemplate.strInventoryImage != "")
+	{
+		Tuple.Data[0].s = CurrentItemTemplate.strInventoryImage;
+	}
+
+	return ELR_NoInterrupt;
+}
 
 // Don't give the rewards if the covert action failed.
 static function EventListenerReturn CAPreventRewardOnFailure(
