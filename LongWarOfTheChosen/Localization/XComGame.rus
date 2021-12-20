@@ -5281,7 +5281,7 @@ ObjectiveTextPools[1]="Эвакуировать всех XCOM солдат"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Найдите и отбейте контейнеры \"Адвента\""
-ObjectiveTextPools[1]="Уничтожьте всех врагов"
+ObjectiveTextPools[1]="Найдите и отбейте контейнеры \"Адвента\""
 ObjectiveTextPools[2]="Эвакуируйте всех солдат XCOM"
 ObjectiveTextPools[3]="ИЛИ ликвидируйте всех оставшихся врагов"
 
