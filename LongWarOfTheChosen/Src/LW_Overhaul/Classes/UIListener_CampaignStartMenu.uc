@@ -14,6 +14,10 @@ event OnInit(UIScreen Screen)
 		ShellDifficulty = UIShellDifficulty(Screen);
 		ShellDifficulty.m_bShowedFirstTimeTutorialNotice = true;
 		ShellDifficulty.m_TutorialMechaItem.Checkbox.SetChecked(false);
+		ShellDifficulty.UpdateTutorial(ShellDifficulty.m_TutorialMechaItem.Checkbox);
+
+		// Disable the checkbox - must be after UpdateTutorial() above as that will set it to enabled
+		// (thanks to Covert Infiltration for this suggestion with `UpdateTutorial()`)
 		ShellDifficulty.m_TutorialMechaItem.SetDisabled(true, strDisabledTutorialTooltip);
 	}
 
