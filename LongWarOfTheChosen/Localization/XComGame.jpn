@@ -4577,7 +4577,7 @@ ObjectiveTextPools[1]="全てのXCOM兵士を回収する"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="アドヴェントのコンテナをマーキングして回収する"
-ObjectiveTextPools[1]="すべての敵を無力化する"
+ObjectiveTextPools[1]="アドヴェントのコンテナをマーキングして回収する"
 ObjectiveTextPools[2]="XCOM兵を全員撤収させる"
 ObjectiveTextPools[3]="または：残っている敵をすべて排除する"
 

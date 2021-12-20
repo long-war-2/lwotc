@@ -4577,7 +4577,7 @@ ObjectiveTextPools[1]="Ewakuuj wszystkich żołnierzy XCOM"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Oznacz i zdobądź skrzynie ADVENT-u"
-ObjectiveTextPools[1]="Zneutralizuj wszystkich wrogów"
+ObjectiveTextPools[1]="Oznacz i zdobądź skrzynie ADVENT-u"
 ObjectiveTextPools[2]="Ewakuuj wszystkich żołnierzy XCOM"
 ObjectiveTextPools[3]="Albo: zneutralizuj resztę wrogów"
 

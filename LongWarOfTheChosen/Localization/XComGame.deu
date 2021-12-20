@@ -4579,7 +4579,7 @@ ObjectiveTextPools[1]="Evakuiere alle XCOM-Soldaten"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Markiere und birg ADVENT-Kisten"
-ObjectiveTextPools[1]="Neutralisiere alle feindlichen Ziele"
+ObjectiveTextPools[1]="Markiere und birg ADVENT-Kisten"
 ObjectiveTextPools[2]="Evakuiere alle XCOM-Soldaten"
 ObjectiveTextPools[3]="ODER: Eliminiere alle übrigen feindlichen Ziele"
 

@@ -2936,7 +2936,9 @@ ObjectiveTextPools[1]="Extract all XCOM soldiers"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Mark and recover ADVENT crates"
-ObjectiveTextPools[1]="Neutralize all enemy targets"
+; LWOTC Needs Translation
+ObjectiveTextPools[1]="Recover at least 4 crates"
+; End Translation
 ObjectiveTextPools[2]="Extract all XCOM soldiers"
 ObjectiveTextPools[3]="OR: Eliminate all remaining hostile targets"
 
