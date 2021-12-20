@@ -2936,7 +2936,7 @@ ObjectiveTextPools[1]="Évacuer tous les soldats XCOM"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Marquer et récupérer les caisses d'ADVENT"
-ObjectiveTextPools[1]="Neutraliser toutes les cibles ennemies"
+ObjectiveTextPools[1]="Marquer et récupérer les caisses d'ADVENT"
 ObjectiveTextPools[2]="Évacuer tous les soldats d'XCOM"
 ObjectiveTextPools[3]="Éliminer toutes les cibles hostiles restantes"
 

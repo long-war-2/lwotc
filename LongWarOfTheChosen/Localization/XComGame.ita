@@ -4580,7 +4580,7 @@ ObjectiveTextPools[1]="Estrai tutti i soldati XCOM"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Segnala e recupera le casse della ADVENT"
-ObjectiveTextPools[1]="Neutralizza i bersagli nemici"
+ObjectiveTextPools[1]="Segnala e recupera le casse della ADVENT"
 ObjectiveTextPools[2]="Estrai tutti i soldati XCOM"
 ObjectiveTextPools[3]="OPPURE: elimina tutti i bersagli nemici rimasti"
 

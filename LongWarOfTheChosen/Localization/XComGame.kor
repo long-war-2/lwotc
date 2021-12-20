@@ -4577,7 +4577,7 @@ ObjectiveTextPools[1]="모든 XCOM 병사 탈출시키기"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="어드밴트 상자를 표시하고 회수하기"
-ObjectiveTextPools[1]="모든 적군 처치하기"
+ObjectiveTextPools[1]="어드밴트 상자를 표시하고 회수하기"
 ObjectiveTextPools[2]="모든 XCOM 병사 탈출시키기"
 ObjectiveTextPools[3]="또는: 남아있는 모든 적대적 목표물을 제거하기"
 

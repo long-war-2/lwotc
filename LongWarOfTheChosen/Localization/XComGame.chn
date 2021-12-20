@@ -2843,7 +2843,7 @@ ObjectiveTextPools[1]="撤离所有XCOM士兵"
 
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="标记并回收变种人物资箱"
-ObjectiveTextPools[1]="消灭所有目标敌人"
+ObjectiveTextPools[1]="标记并回收变种人物资箱"
 ObjectiveTextPools[2]="撤离所有XCOM士兵"
 ObjectiveTextPools[3]="消灭所有残存目标敌人(可选)"
 
