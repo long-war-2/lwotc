@@ -2711,6 +2711,14 @@ m_strGoodRating="Aceptable"
 CannotBeDodged="Anula el efecto del atributo de esquivar del objetivo."
 EndTurnLabel=""
 
+;LWOTC translated
+ReaperTutorialTitle="Sombra de los Segadores"
+ReaperTutorialText="Los Segadores en Long War of The Chosen han recibido una reestructuración considerable: ya no poseen sigilo permanente; en cambio \"Sombra\" ahora es una habilidad basada en el tiempo de reutilización, y otorga una invisibilidad durante 2 turnos, que es básicamente una versión muy fuerte de ocultación. Claymore como tal ha sido eliminado a favor de Cuchillos arrojadizos. Por último, el rifle Vektor ahora se comporta más como un fusil de precisión de Long War 1, es decir, con una leve penalización para apuntar a corta distancia, pero permitirá usarlo con Vista de Pelotón, hasta cierto punto (la penalización de puntería comienza a aplicarse aproximadamente 5 casillas después desde el alcance normal del arma). Mientras los Segadores están en Sombra, estos tienen una movilidad aumentada y sus enemigos cuentan con un radio de detección menor."
+
+TemplarTutorialTitle="Concentración de los Templarios"
+TemplarTutorialText="Los Templarios al igual que Segadores han mejorado en prestaciones (a fin de diferenciarlo del Ninja de Long War 2); la clase ahora lleva un escudo en lugar de la pistola automática que proporciona interesantes habilidades defensivas (aun así seguirá siendo factible equiparla en la ranura creada expresamente para ello). Los Templarios continuarán ganando concentración durante las misiones al matar a unidades con Hender. Cada punto de concentración aumenta la eficacia del Templario en combate al mejorar su movilidad, capacidad de esquivar y el daño que inflige con Hender. También se puede invertir concentración en habilidades poderosas que tienen una efectividad mayor cuando se utilizan a los niveles de concentración más altos."
+;End translated
+
 [ContinentBonus_QuidProQuo X2GameplayMutatorTemplate]
 SummaryText="Los artículos del mercado negro cuestan un %VALUE% menos de suministros."
 
