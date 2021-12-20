@@ -14,6 +14,8 @@ var config float REFLEX_ACTION_CHANCE_REDUCTION;
 var config array<float> LOW_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
 var config array<float> HIGH_INFILTRATION_MODIFIER_ON_REFLEX_ACTIONS;
 
+var config array<string> RETALIATION_MISSION_TYPES;
+
 const CA_FAILURE_RISK_MARKER = "CovertActionRisk_Failure";
 
 const OffensiveReflexAction = 'OffensiveReflexActionPoint_LW';
@@ -185,7 +187,23 @@ function static bool GetMissionSettings(XComGameState_MissionSite MissionSite, o
     return false;
 }
 
+// Determines whether the given mission is a retaliation of some sort
+// (could be full, mini or invasion).
+function static bool IsMissionRetaliation(StateObjectReference MissionRef)
+{
+	local XComGameState_MissionSite MissionState;
 
+	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
+	if (MissionState == none)
+	{
+		`REDSCREEN("Object reference passed to IsMissionRetaliation() is not a mission site");
+		return false;
+	}
+	return default.RETALIATION_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE;
+}
+
+// Determines whether the currently active mission is a retaliation with
+// civilians on it.
 function static bool CurrentMissionIsRetaliation()
 {
     local String MissionType;
