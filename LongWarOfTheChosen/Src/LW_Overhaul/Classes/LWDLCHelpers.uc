@@ -352,12 +352,14 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 				StaffSlotState = UnitState.GetStaffSlot();
 				if(StaffSlotState != none)
 				{
+					StaffSlotState = XComGameState_StaffSlot(NewGameState.ModifyStateObject(class'XComGameState_StaffSlot', StaffSlotState.ObjectID));
 					StaffSlotState.EmptySlot(NewGameState);
 				}
 				//and pause any healing project
 				HealSparkProject = GetHealSparkProject(UnitState.GetReference());
 				if (HealSparkProject != none)
 				{
+					HealSparkProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersProjectHealSoldier', HealSparkProject.ObjectID));
 					HealSparkProject.PauseProject();
 				}
 			}
