@@ -19,7 +19,7 @@ CommandersQuartersEnteredBody="LWOTC添加了一些條目到XCOM檔案中，以�
 
 ; LWOTC Needs Translation (2)
 GeneralChosenTitle="天選者"
-GeneralChosenBody="天選者將出現在這次任務中。在LWOTC中，他們只參與報復和核心故事任務(黑地等)，以此回應XCOM的活動。他們不會出現在其他任務中。<br/><br/>他們的目標仍然是找到復仇者號的位置並攻擊它。當心，防禦它並不容易！"
+GeneralChosenBody="天選者將出現在這次任務中。在LWOTC中，他們只參與報復和主線故事任務(黑地等)，以此回應XCOM的活動。他們不會出現在其他任務中。<br/><br/>他們的目標仍然是找到復仇者號的位置並攻擊它。當心，防禦它並不容易！"
 
 TacticalChosenTitle="戰鬥中的天選者"
 TacticalChosenBody="天選者在LWOTC中更危險：<br/><ul><li>他們對暴擊近乎免疫</li><li>每次在XCOM回合對他們造成傷害時都會採取行動(\"主反應\")</li><li>他們可以在射程內以消耗一回合劫持失血的士兵</li><li>他們在升級時獲得顯著優勢(選定他們時使用F1獲取詳細信息)</li></ul>"

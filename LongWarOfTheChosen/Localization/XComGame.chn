@@ -671,20 +671,20 @@ LocFlyOverText="精英瞄准镜"
 
 [Hair_Trigger_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="微力扳机"
-LocLongDescription="用你的主武器射击将会有+<Ability:TRIGGER_BSC_AIM_BONUS/>的反应射击命中（反应射击惩罚后）加成。"
-LocHelpText="微力扳机：反应射击的命中加成"
+LocLongDescription="用你的主武器射击将会有+<Ability:TRIGGER_BSC_AIM_BONUS/>反应射击命中（反应射击惩罚后）加成。"
+LocHelpText="微力扳机：反应射击命中加成"
 LocFlyOverText="微力扳机"
 
 [Hair_Trigger_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="高级微力扳机"
-LocLongDescription="用你的主武器射击将会有+<Ability:TRIGGER_ADV_AIM_BONUS/>的反应射击命中（反应射击惩罚后）加成。"
-LocHelpText="微力扳机：反应射击的命中加成"
+LocLongDescription="用你的主武器射击将会有+<Ability:TRIGGER_ADV_AIM_BONUS/>反应射击命中（反应射击惩罚后）加成。"
+LocHelpText="微力扳机：反应射击命中加成"
 LocFlyOverText="高级微力扳机"
 
 [Hair_Trigger_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="精英微力扳机"
-LocLongDescription="用你的主武器射击将会有+<Ability:TRIGGER_SUP_AIM_BONUS/>的反应射击命中（反应射击惩罚后）加成。"
-LocHelpText="微力扳机：反应射击的命中加成"
+LocLongDescription="用你的主武器射击将会有+<Ability:TRIGGER_SUP_AIM_BONUS/>反应射击命中（反应射击惩罚后）加成。"
+LocHelpText="微力扳机：反应射击命中加成"
 LocFlyOverText="精英微力扳机"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
@@ -3001,6 +3001,21 @@ m_strGoodRating="可接受"
 [XLocalizedData]
 CannotBeDodged="消除目标的闪避能力。"
 EndTurnLabel=""
+
+; LWOTC Needs Translation
+ReaperTutorialTitle="死神暗影"
+ReaperTutorialText="死神使用一种叫做“暗影”的高级隐形装置，是一种持续2回合非常强大的隐蔽形式。在暗影状态时，死神提高了移动力，极大的减少敌人的侦测半径。他们也可以投掷飞刀而不打破暗影。"
+
+TemplarTutorialTitle="圣殿骑士专注"
+TemplarTutorialText="圣殿骑士在执行任务时通过使用撕裂获得专注，无论它是否命中。专注可以花在强大的能力上，其中一些能力在更高的专注等级上使用会提高效率。"
+
+TemplarMomentumTutorialTitle="圣殿骑士气势&格挡"
+TemplarMomentumTutorialText="使用撕裂后，圣殿骑士总是会触发气势，这是一种自由移动的动作，可以让他们回到安全的掩护处，或者使用舍我其谁吸引一些攻击。舍我其谁给予圣殿骑士护盾增益，同时显著降低他们的防御。"
+
+SkirmisherTutorialTitle="散兵"
+SkirmisherTutorialText="散兵是一种机动单位，他可以向侧翼单位发射他们的无托式，让他们可以再次射击、移动、投掷榴弹或做其他事情。钩爪增加了他们的多功能性，允许散兵快速穿越战场，进入有利位置。"
+
+; End Translation
 
 [ContinentBonus_QuidProQuo X2GameplayMutatorTemplate]
 SummaryText="黑市物品消耗补给减少%VALUE%"
