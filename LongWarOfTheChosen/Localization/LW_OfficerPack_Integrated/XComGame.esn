@@ -4,18 +4,22 @@
 ;displayed both for officer and soldiers receiving effect
 [GetSome X2AbilityTemplate]
 LocFriendlyName="Traga plomo"
-LocLongDescription="Gasta una acción dos veces por misión para conceder a todos los aliados a distancia de mando una bonificación de +20 a la probabilidad de impacto crítico durante el resto del turno."
+; LWOTC translated
+LocLongDescription="Gasta una acción dos veces por misión para conceder a todos los aliados a distancia de mando una bonificación de +<ABILITY:GETSOME_CRIT_BONUS/> a la probabilidad de impacto crítico durante el resto del turno."
 LocHelpText="Mejora la probabilidad de impacto crítico de los soldados cercanos al oficial."
 LocFlyOverText="Traga plomo"
-LocPromotionPopupText="<Bullet/> Gasta una acción para conceder a todas las unidades aliadas a distancia de mando una bonificación de +20 a la probabilidad de impacto crítico durante el resto del turno.<br/><Bullet/> Puede utilizarse dos veces por misión.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+LocPromotionPopupText="<Bullet/> Gasta una acción para conceder a todas las unidades aliadas a distancia de mando una bonificación de +<ABILITY:GETSOME_CRIT_BONUS/> a la probabilidad de impacto crítico durante el resto del turno.<br/><Bullet/> No se acumula pero se renueva.<br/><Bullet/> Puede utilizarse dos veces por misión.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> Este talento no otorga beneficios al propio Oficial, ni tampoco a los civiles o aliados robóticos."
+; End translated
 
 [Collector X2AbilityTemplate]
 LocFriendlyName="Coleccionista"
-LocLongDescription="El pelotón tiene un 33% de probabilidad de obtener 1 punto de datos al matar a cualquier enemigo no humano mientras el oficial esté sano."
+; LWOTC translated
+LocLongDescription="El pelotón tiene un <ABILITY:COLLECTOR_BONUS_CHANCE/>% de probabilidad de obtener 1 punto de datos al matar a cualquier enemigo no humano mientras el oficial esté sano."
 LocHelpText="Obtienes datos adicionales por las bajas causadas por el pelotón."
 LocFlyOverText="Coleccionista"
 ; displayed for officer in OfficerAbility UI
-LocPromotionPopupText="<Bullet/> El pelotón tiene un 33% de probabilidad de obtener 1 punto de datos al matar a cualquier enemigo no humano mientras el oficial esté sano."
+LocPromotionPopupText="<Bullet/> El pelotón tiene un <ABILITY:COLLECTOR_BONUS_CHANCE/>% de probabilidad de obtener 1 punto de datos al matar a cualquier enemigo no humano mientras el oficial no se encuentre estuneado, en pánico u otro efecto negativo.<br/><Bullet/> La cantidad de información recopilada tiene un límite de <ABILITY:COLLECTOR_MAX_INTEL_PER_MISSION/> de datos por misión."
+; End translated
 
 ;displayed on officer in tactical container
 [CollectorPassive X2AbilityTemplate]
@@ -28,27 +32,31 @@ LocPromotionPopupText="<Bullet/> El pelotón tiene un 33% de probabilidad de obt
 ;displayed on other soldier that receive the effect
 [Defilade X2AbilityTemplate]
 LocFriendlyName="Tácticas de cobertura"
-LocLongDescription="Los soldados a distancia de mando del oficial reciben +5 de bonificación al valor defensivo proporcionado por la cobertura."
+; End translated
+LocLongDescription="Los soldados a distancia de mando del oficial reciben +<ABILITY:DEFILADE_DEFENSE_BONUS/> de bonificación al valor defensivo proporcionado por la cobertura."
 LocHelpText="Los soldados cercanos al oficial obtienen una bonificación defensiva por la cobertura."
 LocFlyOverText="Tácticas de cobertura"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> Los soldados a distancia de mando del oficial reciben +5 de bonificación al valor defensivo proporcionado por la cobertura.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+LocPromotionPopupText="<Bullet/> Los soldados a distancia de mando del oficial reciben +<ABILITY:DEFILADE_DEFENSE_BONUS/> de bonificación al valor defensivo proporcionado por la cobertura.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> Esta habilidad no concede bonificaciones al propio Oficial, ni a los aliados estuneados o en pánico, ni a civiles ni a unidades robóticas amistosas."
 
 ;Displayed on officer in tactical container
 [DefiladePassive X2AbilityTemplate]
 LocFriendlyName="Tácticas de cobertura"
-LocLongDescription="Los soldados a distancia de mando del oficial reciben +5 de bonificación al valor defensivo proporcionado por la cobertura."
+LocLongDescription="Los soldados a distancia de mando del oficial reciben +<ABILITY:DEFILADE_DEFENSE_BONUS/> de bonificación al valor defensivo proporcionado por la cobertura."
 LocHelpText="Los soldados cercanos al oficial obtienen una bonificación defensiva por la cobertura."
 LocFlyOverText="Tácticas de cobertura"
-LocPromotionPopupText="<Bullet/> Los soldados a distancia de mando del oficial reciben +5 de bonificación al valor defensivo proporcionado por la cobertura.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+LocPromotionPopupText="<Bullet/> Los soldados a distancia de mando del oficial reciben +<ABILITY:DEFILADE_DEFENSE_BONUS/> de bonificación al valor defensivo proporcionado por la cobertura.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> Esta habilidad no concede bonificaciones al propio Oficial, ni a los aliados estuneados o en pánico, ni a civiles ni a unidades robóticas amistosas."
+; End translated
 
 ;displayed both on officer and in debuff on target
 [FocusFire X2AbilityTemplate]
 LocFriendlyName="Fuego concentrado"
-LocLongDescription="Gasta una acción para marcar un objetivo y conceder a tu pelotón bonificaciones acumulativas de puntería y 1 de perforación de blindaje en ataques contra ese objetivo durante el resto del turno."
+; LWOTC translated
+LocLongDescription="Gasta una acción para marcar un objetivo y conceder a tu pelotón bonificaciones acumulativas de puntería y <ABILITY:FOCUS_FIRE_ARMORPIERCING/> de perforación de blindaje en ataques contra ese objetivo durante el resto del turno."
 LocHelpText="Marca un objetivo para que tu pelotón obtenga bonificaciones de puntería y perforación de blindaje contra él."
 LocFlyOverText="Fuego concentrado"
-LocPromotionPopupText="<Bullet/> Gasta una acción para marcar un objetivo y conceder a tu pelotón bonificaciones acumulativas de puntería y 1 de perforación de blindaje en ataques contra ese objetivo durante el resto del turno.<br/><Bullet/> Cada ataque con arma directo contra el objetivo en el mismo turno de forma sucesiva concede una bonificación adicional de +<ABILITY:FOCUS_FIRE_AIM_BONUS/> a la puntería.<br/><Bullet/> Tiempo de enfriamiento de tres turnos.<br/>"
+LocPromotionPopupText="<Bullet/> Gasta una acción para marcar un objetivo y conceder a tu pelotón bonificaciones acumulativas de puntería y <ABILITY:FOCUS_FIRE_ARMORPIERCING/> de perforación de blindaje en ataques contra ese objetivo durante el resto del turno.<br/><Bullet/> Cada ataque con arma directo contra el objetivo en el mismo turno de forma sucesiva concede una bonificación adicional de +<ABILITY:FOCUS_FIRE_AIM_BONUS/> a la puntería.<br/><Bullet/> Tiempo de enfriamiento de <ABILITY:FOCUS_FIRE_COOLDOWN/> turnos.<br/>"
+; End translated
 
 ;displayed both on officer and on soldiers receiving effect
 [FallBack X2AbilityTemplate]
@@ -60,43 +68,48 @@ LocPromotionPopupText="<Bullet/> Concede una acción defensiva gratuita pero sin
 
 [Scavenger X2AbilityTemplate]
 LocFriendlyName="Aprovechador"
-LocLongDescription="Las recompensas de la misión en forma de suministros, aleaciones alienígenas y elerio aumentan un 30% tras las misiones exitosas. Los miembros del pelotón tienen una posibilidad de recoger elerio y aleaciones alienígenas adicionales de los alienígenas."
+; LWOTC translated
+LocLongDescription="Las recompensas de la misión en forma de suministros, aleaciones alienígenas y elerio aumentan un <ABILITY:SCAVENGER_BONUS_MULTIPLIER/>% tras las misiones exitosas. Los miembros del pelotón tienen una posibilidad de recoger elerio y aleaciones alienígenas adicionales de los alienígenas."
 LocHelpText="Suministros, aleaciones alienígenas y elerio adicionales."
 LocFlyOverText="Aprovechador"
-LocPromotionPopupText="<Bullet/> Si el oficial sobrevive a la misión y está consciente, las recompensas de la misión en forma de suministros, aleaciones alienígenas y elerio aumentan un 30%.<br/><Bullet> El pelotón puede sacar aleaciones alienígenas y elerio de los alienígenas muertos."
+LocPromotionPopupText="<Bullet/> Si el oficial sobrevive a la misión y está consciente, las recompensas de la misión en forma de suministros, aleaciones alienígenas y elerio aumentan un <ABILITY:SCAVENGER_BONUS_MULTIPLIER/>%.<br/><Bullet> El pelotón puede sacar aleaciones alienígenas y elerio de los alienígenas muertos siempre que el Oficial esté presente y no se encuentre aturdido, en pánico o afectado de otra manera."
 
 ;Displayed on officer in tactical container
 [ScavengerPassive X2AbilityTemplate]
 LocFriendlyName="Aprovechador"
-LocLongDescription="Las recompensas de la misión en forma de suministros, aleaciones alienígenas y elerio aumentan un 30% tras las misiones exitosas. Posibilidad de recoger elerio y aleaciones alienígenas de los alienígenas."
+LocLongDescription="Las recompensas de la misión en forma de suministros, aleaciones alienígenas y elerio aumentan un <ABILITY:SCAVENGER_BONUS_MULTIPLIER/>% tras las misiones exitosas. Posibilidad de recoger elerio y aleaciones alienígenas de los alienígenas."
 LocHelpText="Suministros, aleaciones alienígenas y elerio adicionales."
 LocFlyOverText="Aprovechador"
-LocPromotionPopupText="<Bullet/> Si el oficial sobrevive a la misión en buenas condiciones, las recompensas de la misión en forma de suministros, aleaciones alienígenas y elerio aumentan un 30%.<br/><Bullet> El pelotón puede sacar aleaciones alienígenas y elerio de los alienígenas muertos."
+LocPromotionPopupText="<Bullet/> Si el oficial sobrevive a la misión en buenas condiciones, las recompensas de la misión en forma de suministros, aleaciones alienígenas y elerio aumentan un <ABILITY:SCAVENGER_BONUS_MULTIPLIER/>%.<br/><Bullet> El pelotón puede sacar aleaciones alienígenas y elerio de los alienígenas muertos ."
+; End translated
 
 ;displayed on other soldier that receive the effect
 [FireDiscipline X2AbilityTemplate]
+; LWOTC translated
 LocFriendlyName="Disciplina de fuego"
-LocLongDescription="Todos los aliados a distancia de mando del oficial obtienen un +10% a la probabilidad de impactar en disparos de reacción."
+LocLongDescription="Todos los aliados a distancia de mando del oficial obtienen un +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% a la probabilidad de impactar en disparos de reacción."
 LocHelpText="Todos los aliados cercanos al oficial reciben una bonificación de disparo de reacción."
 LocFlyOverText="Disciplina de fuego"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> Todos los aliados a distancia de mando del oficial obtienen un +10% a la probabilidad de impactar en disparos de reacción.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+LocPromotionPopupText="<Bullet/> Todos los aliados a distancia de mando del oficial obtienen un +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% a la probabilidad de impactar en disparos de reacción.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> Este talento no genera bonificaciones al propio Oficial, ni a soldados desorientados, estuneados, presa del pánico, envenenados, ardiendo o cualquier efecto similar; ni tampoco a civiles y unidades robóticas amistosas."
 
 ;Displayed on officer in tactical container
 [FireDisciplinePassive X2AbilityTemplate]
 LocFriendlyName="Disciplina de fuego"
-LocLongDescription="Todos los aliados a distancia de mando del oficial obtienen un +10% a la probabilidad de impactar en disparos de reacción."
+LocLongDescription="Todos los aliados a distancia de mando del oficial obtienen un +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% a la probabilidad de impactar en disparos de reacción."
 LocHelpText="Todos los aliados cercanos al oficial reciben una bonificación de disparo de reacción."
 LocFlyOverText="Disciplina de fuego"
-LocPromotionPopupText="<Bullet/> Todos los aliados a distancia de mando del oficial obtienen un +10% a la probabilidad de impactar en disparos de reacción.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+LocPromotionPopupText="<Bullet/> Todos los aliados a distancia de mando del oficial obtienen un +<ABILITY:FIREDISCIPLINE_REACTIONFIRE_BONUS/>% a la probabilidad de impactar en disparos de reacción.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+; End translated
 
 ;displayed both on officer and on soldiers receiving effect
 [OscarMike X2AbilityTemplate]
 LocFriendlyName="Oscar Mike"
-LocLongDescription="Gasta una acción para conceder a todos los aliados a distancia de mando una bonificación de movilidad de +5 durante el resto del turno. Solo se puede utilizar una vez por misión."
+LocLongDescription="Gasta una acción para conceder a todos los aliados a distancia de mando una bonificación de movilidad de +<ABILITY:OSCARMIKE_MOBILITY_BONUS/> durante el resto del turno. Solo se puede utilizar una vez por misión."
 LocHelpText="Actívala para conceder una bonificación de movilidad a los aliados cercanos."
 LocFlyOverText="Oscar Mike"
-LocPromotionPopupText="<Bullet/> Gasta una acción para conceder a todos los aliados a distancia de mando una bonificación de movilidad de +5 durante el resto del turno.<br/><Bullet/> Solo se puede utilizar una vez por misión.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+LocPromotionPopupText="<Bullet/> Gasta una acción para conceder a todos los aliados a distancia de mando una bonificación de movilidad de +<ABILITY:OSCARMIKE_MOBILITY_BONUS/> durante el resto del turno.<br/><Bullet/> Solo se puede utilizar una vez por misión.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> Esta habilidad no proporciona bonificaciones a los soldados aliados estuneados o en pánico, ni a civiles o unidades robóticas amistosas."
+; End translated
 
 ;displayed on other soldier that receive the effect
 [LeadByExample X2AbilityTemplate]
@@ -105,7 +118,9 @@ LocLongDescription="El oficial mejora la puntería, la voluntad y el pirateo de 
 LocHelpText="Los aliados cercanos al oficial pueden mejorar la puntería, la voluntad y el pirateo."
 LocFlyOverText="Dando ejemplo"
 ;displayed for officer in Officer Ability UI
-LocPromotionPopupText="<Bullet/> Si las puntuaciones de puntería, voluntad o pirateo del oficial son superiores a las de cualquier soldado a distancia de mando, el soldado obtiene bonificaciones iguales a la mitad de la diferencia entre el oficial y él.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+; LWOTC translated
+LocPromotionPopupText="<Bullet/> Si las puntuaciones de puntería, voluntad o pirateo del oficial son superiores a las de cualquier soldado a distancia de mando, el soldado obtiene bonificaciones iguales a la mitad de la diferencia entre el oficial y él.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> Esta habilidad no proporciona bonificaciones a los soldados aliados estuneados o en pánico, ni a civiles o unidades robóticas amistosas."
+; End translated"
 
 ;Displayed on officer in tactical container
 [LeadByExamplePassive X2AbilityTemplate]
@@ -123,28 +138,33 @@ LocHelpText="Los aliados cercanos al oficial pueden mejorar la puntería, la vol
 LocFlyOverText="Dando ejemplo"
 LocPromotionPopupText="<Bullet/> Si las puntuaciones de puntería, voluntad o pirateo del oficial son superiores a las de cualquier soldado a distancia de mando, el soldado obtiene bonificaciones iguales a la mitad de la diferencia entre el oficial y él.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
 
+; LWOTC translated
 ;displayed on other soldier that receive the effect
 [CombinedArms X2AbilityTemplate]
 LocFriendlyName="Armas combinadas"
-LocLongDescription="Los ataques con éxito de todos los aliados a distancia de mando del oficial infligen +1 de daño."
+LocLongDescription="Los ataques con éxito de todos los aliados a distancia de mando del oficial infligen +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> de daño."
 LocHelpText="Los aliados cercanos al oficial obtienen una bonificación de daño."
 LocFlyOverText="Armas combinadas"
-LocPromotionPopupText="<Bullet/> Los ataques con éxito de todos los aliados a distancia de mando del oficial infligen +1 de daño.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+LocPromotionPopupText="<Bullet/> Los ataques con éxito de todos los aliados a distancia de mando del oficial infligen +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> de daño.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> Este talento no genera bonificaciones al propio Oficial, ni a soldados desorientados, estuneados, presa del pánico, envenenados, ardiendo o cualquier efecto similar; ni tampoco a civiles y unidades robóticas amistosas."
 
 ;Displayed on officer in tactical container
 [CombinedArmsPassive X2AbilityTemplate]
 LocFriendlyName="Armas combinadas"
-LocLongDescription="Los ataques con éxito de todos los aliados a distancia de mando del oficial infligen +1 de daño."
+LocLongDescription="Los ataques con éxito de todos los aliados a distancia de mando del oficial infligen +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> de daño."
 LocHelpText="Los aliados cercanos al oficial obtienen una bonificación de daño."
 LocFlyOverText="Armas combinadas"
-LocPromotionPopupText="<Bullet/> Los ataques con éxito de todos los aliados a distancia de mando del oficial infligen +1 de daño.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+LocPromotionPopupText="<Bullet/> Los ataques con éxito de todos los aliados a distancia de mando del oficial infligen +<ABILITY:COMBINEDARMS_DAMAGE_BONUS/> de daño.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial."
+; End translated
 
+; LWOTC translated
 [Command X2AbilityTemplate]
 LocFriendlyName="Ordenar"
 LocLongDescription="Termina tu turno para otorgar una acción extra a cualquier miembro visible del pelotón. El número de cargas depende del rango del oficial."
 LocHelpText="Otorga acciones extra a los aliados."
 LocFlyOverText="Ordenar"
-LocPromotionPopupText="<Bullet/> Requiere una acción y termina tu turno.<br/><Bullet/> Los tenientes primero y segundo tienen una carga de la habilidad; los capitanes y mayores, dos cargas; los tenientes coronel y coroneles, tres; y los comandantes de campo, cuatro.<br/><Bullet/> No se puede usar en unidades que estén en guardia o conteniendo a otro objetivo."
+LocPromotionPopupText="<Bullet/> Requiere una acción y termina tu turno.<br/><Bullet/> Los tenientes primero y segundo tienen una carga de la habilidad; los capitanes y mayores, dos cargas; los tenientes coronel y coroneles, tres; y los comandantes de campo, cuatro.<br/><Bullet/> No se puede usar en unidades que estén en guardia o conteniendo a otro objetivo.<br/><Bullet/> No puede emplearse en civiles ni unidades robóticas aliadas."
+; End translated
+
 
 [Infiltrator X2AbilityTemplate]
 LocFriendlyName="Infiltrador"
@@ -165,27 +185,77 @@ LocFriendlyName="Bloqueador"
 LocLongDescription="Una vez por combate, retrasa un turno la llegada de los refuerzos enemigos en camino."
 LocHelpText="Retrasa un turno la llegada de refuerzos enemigos."
 LocFlyOverText="Bloqueador"
-LocPromotionPopupText="<Bullet/> Activa esta habilidad para retrasar un turno la llegada de refuerzos enemigos en camino.<br/><Bullet/> Si no hay ningún refuerzo en camino, retrasará los refuerzos futuros."
+; LWOTC translated
+LocPromotionPopupText="<Bullet/> Activa esta habilidad para retrasar un turno la llegada de refuerzos enemigos en camino."
+; End translated
 
+; LWOTC translated
 [Incoming X2AbilityTemplate]
 LocFriendlyName="¡Ahí va!"
-LocLongDescription="Activa esta habilidad para otorgar a todos los que estén dentro de la distancia de mando cuatro puntos de resistencia al daño contra los ataques explosivos hasta el final del siguiente turno de los alienígenas."
-LocHelpText="Los oficiales y los aliados cercanos tienen 4 de resistencia al daño contra explosivos."
+LocLongDescription="Activa esta habilidad para otorgar a todos los que estén dentro de la distancia de mando <Ability:INCOMING_EXPLOSIVES_DR/> de resistencia al daño contra los ataques explosivos hasta el final del siguiente turno de los alienígenas."
+LocHelpText="Los oficiales y los aliados cercanos tienen <Ability:INCOMING_EXPLOSIVES_DR/> de resistencia al daño contra explosivos."
 LocFlyOverText="¡Ahí va!"
-LocPromotionPopupText="<Bullet/> Activa esta habilidad para otorgar a todos los aliados que estén dentro de la distancia de mando cuatro puntos de resistencia al daño contra los ataques explosivos hasta el final del siguiente turno de los alienígenas.<br/><Bullet/> No requiere acciones.<br/><Bullet/> Tiempo de enfriamiento de 5 turnos.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> No se aplica a los soldados que estén en pánico o a las unidades que estén conteniendo a otros objetivos.<br/>"
+LocPromotionPopupText="<Bullet/> Activa esta habilidad para otorgar a todos los aliados que estén dentro de la distancia de mando <Ability:INCOMING_EXPLOSIVES_DR/> de resistencia al daño contra los ataques explosivos hasta el final del siguiente turno de los alienígenas.<br/><Bullet/> No requiere acciones.<br/><Bullet/> Tiempo de enfriamiento de <Ability:INCOMING_COOLDOWN/> turnos.<br/><Bullet/> La distancia de mando aumenta con cada nuevo nivel de oficial.<br/><Bullet/> No se aplica a los soldados que estén en pánico o estuneados, o a las unidades que estén conteniendo a otros objetivos o a los civiles.<br/>"
+; End translated
 
+; LWOTC translated
 [Intervention X2AbilityTemplate]
 LocFriendlyName="Intervención"
-LocLongDescription="Activa esta habilidad para gastar 10 de datos y obtener dos turnos de tiempo en la misión actual. El número de cargas depende del rango del oficial."
-LocHelpText="Activar para gastar datos y obtener dos turnos de tiempo en la misión."
+LocLongDescription="Activa esta habilidad para gastar <Ability:INTERVENTION_INTEL_COST/> de datos y obtener <Ability:INTERVENTION_EXTRA_TURNS/> turnos de tiempo en la misión actual. El número de cargas depende del rango del oficial."
+LocHelpText="Activar para gastar datos y obtener <Ability:INTERVENTION_EXTRA_TURNS/> turnos de tiempo en la misión."
 LocFlyOverText="Intervención"
-LocPromotionPopUpText="<Bullet/> Activa esta habilidad para gastar 10 de datos y obtener dos turnos de tiempo en la misión actual.<br/><Bullet/> Requiere una acción.<br/><Bullet/> El número de cargas depende del rango del oficial.<br/><Bullet/> No servirá de nada si la misión no tiene tiempo límite.<br/><Bullet/> El coste de datos puede estar influenciado por eventos; la habilidad no se activará si XCOM tiene menos de 10 de datos.<br/>"
+LocPromotionPopUpText="<Bullet/> Activa esta habilidad para gastar <Ability:INTERVENTION_INTEL_COST/> de datos y obtener <Ability:INTERVENTION_EXTRA_TURNS/> turnos de tiempo en la misión actual.<br/><Bullet/> Requiere una acción y no termina tu turno.<br/><Bullet/> El número de cargas depende del rango del oficial.<br/><Bullet/> No servirá de nada si la misión no tiene tiempo límite.<br/><Bullet/> El coste de datos puede estar influenciado por eventos; la habilidad no se activará si XCOM tiene menos de <Ability:INTERVENTION_INTEL_COST/> de datos.<br/>"
+; End translated
 
 [TrialByFire X2AbilityTemplate]
 LocFriendlyName="Prueba de fuego"
 LocLongDescription="Cualquier soldado por debajo del rango de sargento será automáticamente promovido después de una misión exitosa con este oficial."
 LocHelpText="Cualquier soldado por debajo del rango de sargento será automáticamente promovido después de una misión exitosa con este oficial."
 LocPromotionPopUpText="<Bullet/> Esta bonificación solo se aplica si el oficial al mando tiene este beneficio, y no confiere bonificaciones a otros oficiales en la misión."
+
+; LWOTC translated
+[CommandRange1 X2AbilityTemplate]
+LocFriendlyName="Rango de Comando 1"
+LocLongDescription="Extiende el radio de alcance de mando del oficial en 1 casilla"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange2 X2AbilityTemplate]
+LocFriendlyName="Rango de Comando 2"
+LocLongDescription="Extiende el radio de alcance de mando del oficial en 2 casillas"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange3 X2AbilityTemplate]
+LocFriendlyName="Rango de Comando 3"
+LocLongDescription="Extiende el radio de alcance de mando del oficial en 3 casillas"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange4 X2AbilityTemplate]
+LocFriendlyName="Rango de Comando 4"
+LocLongDescription="Extiende el radio de alcance de mando del oficial en 4 casillas"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange5 X2AbilityTemplate]
+LocFriendlyName="Rango de Comando 5"
+LocLongDescription="Extiende el radio de alcance de mando del oficial en 5 casillas"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange6 X2AbilityTemplate]
+LocFriendlyName="Rango de Comando 6"
+LocLongDescription="Extiende el radio de alcance de mando del oficial en 6 casillas"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+
+[CommandRange7 X2AbilityTemplate]
+LocFriendlyName="Rango de Comando 7"
+LocLongDescription="Extiende el radio de alcance de mando del oficial en 7 casillas"
+LocHelpText=""
+LocPromotionPopupText="TBC............"
+; End translated
 
 ;---- END ABILITIES
 

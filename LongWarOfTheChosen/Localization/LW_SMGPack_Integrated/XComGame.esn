@@ -1,24 +1,27 @@
 ; SMG item localization 
 ; this includes schematics, as of 13 Oct 2015 update
 ; this includes ability descriptor, as of 5 Jan 2016 update
+; LWOTC translated
 
 [SMG_CV X2WeaponTemplate]
 FriendlyName="Subfusil"
 FriendlyNamePlural="Subfusiles"
 BriefSummary="Los subfusiles son una alternativa más ligera y fácil de ocultar que el fusil de asalto estándar, aunque carecen de la misma pegada y son menos precisos a larga distancia."
-TacticalText="<Bullet/> Disparar el arma principal termina el turno del soldado si no cuenta con entrenamiento especial.\n<Bullet/> Usa las mejoras recuperadas de los enemigos de ADVENT para mejorar la eficacia táctica del subfusil. \n<Bullet/> Las armas de tipo subfusil ofrecen una mayor movilidad, precisión a corta distancia y ocultación comparadas con los fusiles de asalto, pero infligen menos daño, tienen menos munición y sufren penalizaciones en su precisión a larga distancia."
+TacticalText="<Bullet/> Disparar el arma principal termina el turno del soldado si no cuenta con entrenamiento especial.\n<Bullet/> Usa las mejoras recuperadas de los enemigos de ADVENT para mejorar la eficacia táctica del subfusil. \n<Bullet/> Las armas de tipo subfusil ofrecen una mayor movilidad, precisión a corta distancia y ocultación comparadas con los fusiles de asalto, pero infligen menos daño y sufren penalizaciones en su precisión a larga distancia."
 AbilityDescName="Subfusil"
+
 
 [SMG_MG X2WeaponTemplate]
 FriendlyName="Subfusil magnético"
 FriendlyNamePlural="Subfusiles magnéticos"
 BriefSummary="El subfusil magnético es una versión ligera del fusil magnético. Cumple una función similar a la del subfusil y sacrifica potencia, munición y precisión a distancia a cambio de una mayor movilidad y ocultación del soldado."
-TacticalText="<Bullet/> Disparar el arma principal siempre termina el turno del soldado si no cuenta con entrenamiento especial.\n<Bullet/> Usa las mejoras recuperadas de los enemigos de ADVENT para mejorar la eficacia táctica del subfusil magnético. \n<Bullet/> Las armas de tipo subfusil ofrecen una mayor movilidad, precisión a corta distancia y ocultación comparadas con los fusiles de asalto, pero infligen menos daño, tienen menos munición y sufren penalizaciones en su precisión a larga distancia."
+TacticalText="<Bullet/> Disparar el arma principal siempre termina el turno del soldado si no cuenta con entrenamiento especial.\n<Bullet/> Usa las mejoras recuperadas de los enemigos de ADVENT para mejorar la eficacia táctica del subfusil magnético. \n<Bullet/> Las armas de tipo subfusil ofrecen una mayor movilidad, precisión a corta distancia y ocultación comparadas con los fusiles de asalto, pero infligen menos daño y sufren penalizaciones en su precisión a larga distancia."
 AbilityDescName="Subfusil"
 
 [SMG_BM X2WeaponTemplate]
 FriendlyName="Arma ahuyentadora"
 FriendlyNamePlural="Armas ahuyentadoras"
 BriefSummary="Al igual que el subfusil y el subfusil magnético, el arma ahuyentadora es un arma principal más pequeña que concede bonificaciones de movilidad y ocultación, pero que inflige menos daño y sufre penalizaciones en su precisión a mayores distancias. Aun así es un arma personal de considerable potencia."
-TacticalText="<Bullet/> Disparar el arma principal siempre termina el turno del soldado.\n<Bullet/> Usa las mejoras recuperadas de los enemigos de ADVENT para mejorar la eficacia táctica del arma ahuyentadora. \n<Bullet/> Las armas de tipo subfusil ofrecen una mayor movilidad, precisión a corta distancia y ocultación comparadas con los fusiles de asalto, pero infligen menos daño, tienen menos munición y sufren penalizaciones en su precisión a larga distancia.<br/><Bullet/> Las armas de plasma también hacen que el objetivo reciba 1 punto de daño addicional cada vez que es golpeado."
+TacticalText="<Bullet/> Disparar el arma principal siempre termina el turno del soldado.\n<Bullet/> Usa las mejoras recuperadas de los enemigos de ADVENT para mejorar la eficacia táctica del arma ahuyentadora. \n<Bullet/> Las armas de tipo subfusil ofrecen una mayor movilidad, precisión a corta distancia y ocultación comparadas con los fusiles de asalto, pero infligen menos daño y sufren penalizaciones en su precisión a larga distancia.<br/><Bullet/> Las armas de plasma también hacen que el objetivo reciba 1 punto de daño addicional cada vez que es golpeado."
 AbilityDescName="Subfusil"
+; End translated

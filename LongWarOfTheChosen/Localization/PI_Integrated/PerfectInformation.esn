@@ -1,0 +1,74 @@
+[PI_MCMListener]
+MOD_NAME="Perfect Information"
+OPTIONS_HEADER="Opciones"
+
+DURATION_TITLE_DAMAGE="Duración ventana emergente daño"
+DURATION_DESCRIPTION_DAMAGE="Duración ventana emergente daño garantizado"
+
+FLYOVER_TITLE_XCOM="Mostrar ventana emergente para Xcom"
+FLYOVER_TITLE_ENEMY="Mostrar ventana emergente para los enemigos"
+
+REACTION_FLYOVERS_TITLE="Sólo Mostrar ventana emergente para disparos de reacción"
+AIM_ASSIST_FLYOVER_TITLE="Mostrar ventana emergente para puntería asistida"
+
+HIT_CHANCE_TITLE="Mostrar probabilidad de golpe"
+CRIT_CHANCE_TITLE="Mostrar probabilidad de crítico"
+DODGE_CHANCE_TITLE="Mostrar probabilidad de esquivar"
+MISS_CHANCE_TITLE="Mostrar probabilidad de fallo"
+
+SHORT_STRING_TITLE="Utilizar frases cortas"
+
+SHOW_GUARANTEED_HITS_TITLE="Mostrar golpes garantizados"
+SHOW_GUARANTEED_MISS_TITLE="Mostrar fallos garantizadosS"
+
+REPEATER_TITLE="Mostrar ventana emergente del mod del arma Repetidor"
+
+SHOW_ENEMY_STATS_TITLE="Mostrar descripción emergente de las stats del enemigo"
+
+SHOW_EXTRA_WEAPONSTATS_TITLE="Mostrar estadísticas extra de armas"
+
+SHOW_AIM_ASSIST_MAIN_HUD_TITLE="Mostrar puntería asistida en la interfaz de disparo"
+SHOW_MISS_CHANCE_MAIN_HUD_TITLE="Mostrar la probabilidad de fallo en la interfaz de disparo"
+
+AIM_LEFT_OF_CRIT_TITLE="Mostrar la puntería a la izquierda del crítico en la barra de disparo"
+PREVIEW_MINIMUM_TITLE="La vista previa de daños muestra el mínimo"
+SHOW_DODGE_TITLE="Muestra la esquiva en la interfaz de disparo"
+SHOW_CRIT_DMG_TITLE="Muestra el daño crítico en la interfaz de disparo"
+PREVIEW_HACKING_TITLE="Vista previa de piratería"
+
+SHOW_AIM_ASSIST_OVER_ENEMY_ICON_TITLE="Mostrar puntería asistida encima del icono enemigo"
+SHOW_MISS_CHANCE_OVER_ENEMY_ICON_TITLE="Mostrar probabilidad de fallo encima del icono enemigo"
+
+SHOW_ALWAYS_SHOT_BREAKDOWN_HUD_TITLE="Siempre mostrar el desglose de disparos"
+SHOW_MISS_CHANCE_BREAKDOWN_HUD_TITLE="Mostrar desglose de probabilidad de fallo"
+SHOW_AIM_ASSIST_BREAKDOWN_HUD_TITLE="Mostrar desglose de la puntería asistida"
+
+[XCom_Perfect_Information_X2Action_ApplyWeaponDamageToUnit]
+//HIT_CHANCE_MSG ="PUNTERÍA:";
+CRIT_CHANCE_MSG ="CRÍTICO:";
+//DODGE_CHANCE_MSG ="ESQUIVA:";
+DODGE_CHANCE_MSG ="ROZADO:";
+MISS_CHANCE_MSG ="¡Fallado!:";
+
+GUARANTEED_HIT_MSG =" - IMPACTO GARANTIZADO";
+GUARANTEED_MISS_MSG =" - FALLO GARANTIZADO";
+
+REPEATER_KILL_MSG =" - mod de arma Repetidor activado!! a tomar x culo cabronazo!!: ";
+
+[XCom_Perfect_Information_UITacticalHUD_ShotWings]
+LOWER_DIFFICULTY_MSG = "MENOR DIFICULTAD";
+MISS_STREAK_MSG = "RACHA FALLIDA";
+SOLDIER_LOST_BONUS = "EL SOLDADO PERDIÓ EL BONUS";
+
+[XCom_Perfect_Information_UITacticalHUD_SoldierInfoTooltip]
+KILLS_LABEL = "Muertes";
+ASSIST_LABEL = "Asistir";
+FLANKING_CRIT_LABEL = "Crítico de flanqueo";
+
+[XCom_Perfect_Information_UITacticalHUD_EnemyTooltip]
+PrimaryBase = "Daño base"
+PrimarySpread = "Daño variable"
+PrimaryPlusOne = "Daño +1"
+
+[XCom_Perfect_Information_UIEffectListItem]
+TURNS_REMAINING = "TURNOS RESTANTES"

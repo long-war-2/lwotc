@@ -15,7 +15,9 @@ m_strMissionDifficulty_start="ACTIVIDAD ENEMIGA ESTÁNDAR"
 
 [ProtectRegionEarly X2LWAlienActivityTemplate]
 ActivityName="ProtectRegion1Activity"
-ActivityObjectives[0]="Encontrar una pista"
+; LWOTC translated
+ActivityObjectives[0]="Contrainteligencia para liberar la región"
+; End translated
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
@@ -239,6 +241,14 @@ strMinusDaysAndHours="- <XGParam:IntValue0> días, <XGParam:IntValue1> horas"
 strPlusDaysAndHours="<XGParam:IntValue0> días, <XGParam:IntValue1> horas"
 strMissionIndefinite="Duración indefinida"
 
+; LWOTC translated
+UpToText="Hasta"
+ExpectedActivityTextStr="Actividad esperada"
+BoostedActivityText="Actividad esperada (potenciada)"
+BoostTextPre="Con"
+BoostTextPost="Potenciar"
+; End translated
+
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="CONTACTO INMINENTE"
 
@@ -251,6 +261,12 @@ AblativeHPLabel="PS ablativos"
 
 [X2Ability_LW_TechnicalAbilitySet]
 strMaxScatter="\nDispersión máxima (casillas):"
+
+; LWOTC translated
+[X2Ability_LW_ChosenAbilities]
+ShieldedStatBuffsLocDescription="Bonificaciones a puntería, golpe crítico, voluntad y ataque psiónico."
+ImpactCompensationBuffDescription="Reduciendo todo el daño recibido en un <Ability:IMPACT_COMPENSATION_CURRENT_DR/>%."
+; End translated
 
 [XComGameState_LWListenerManager]
 ResistanceHQBodyText="Accede a la información del refugio de la resistencia."
@@ -269,6 +285,13 @@ m_strTooltipAutofillSquad="Completa los puestos vacíos del pelotón automática
 strTimeRemainingHoursOnly="<XGParam:IntValue0> horas"
 strTimeRemainingDaysAndHours="<XGParam:IntValue1> d, <XGParam:IntValue0> h"
 
+; LWOTC translated
+strDarkEventExpiredTitle="Evento Oscuro expirado"
+strDarkEventExpiredText="ha expirado"
+OpenResistanceManagementStr="ACTIVA GESTIÓN DE LA RESISTENCIA"
+OpenHavenManagementStr="ACTIVA GESTIÓN DEL REFUGIO"
+; End translated
+
 [X2EventListener_Soldiers]
 OnLiaisonDuty="Asesor de refugio"
 OnInfiltrationMission="Infiltración"
@@ -276,6 +299,9 @@ UnitAlreadyInSquad="Unidad en otro pelotón"
 UnitInSquad="Unidad en un pelotón"
 RankTooLow="Rango demasiado bajo"
 CannotModifyOnMissionSoldierTooltip="No se puede modificar al soldado actualmente en misión."
+; LWOTC translated
+ReasonClassAbilityPickedAtRank="Ya elegiste una habilidad de clase en este rango."
+; End translated
 
 [X2Effect_LWHolotarget]
 HoloTargetEffectName="Holoapuntado"
@@ -356,7 +382,10 @@ m_strInvasionConfirm="VER LUGAR DE INVASIÓN"
 m_strRepeatResearch="REPETIR INVESTIGACIÓN"
 
 [UIScreenListener_ArmoryWeaponUpgrade_LW]
-strStripWeaponUpgradesButton="Quitar las mejoras del arma"
+; LWOTC translated
+strStripWeaponUpgradesButton="Quitar mejoras"
+StripAllWeaponUpgradesStr="Quitar las mejoras de soldados inactivos"
+; End translated
 strStripWeaponUpgradesTooltip="Quitar todas las mejoras y personalizaciones y devolver el arma al inventario general"
 strStripWeaponUpgradeDialogueTitle="CONFIRMAR QUITAR TODAS LAS MEJORAS"
 strStripWeaponUpgradeDialogueText="¿Seguro que quieres quitar todas las mejoras de esta arma y devolverla a la reserva común?"
@@ -391,6 +420,10 @@ strSave="Guardar"
 strSquad="Pelotón"
 strStart="Iniciar"
 strInfiltration="Infiltración"
+
+; LWOTC translated
+strAreaOfOperations="Área de Operaciones:"
+; End translated
 
 [UIScreenListener_SkyrangerArrives_LW]
 strLaunchInfiltration="COMENZAR INFILTRACIÓN"
@@ -490,6 +523,9 @@ m_strName="Nombre"
 m_strMission="Misión"
 m_strBuildRadioRelay="Construir repetidor de radio"
 m_strLiaisonTitle="Asesor de refugio"
+; LWOTC translated
+m_strEditLoadout="Editar soldado"
+; End translated
 ; 0=Alert, 1=Vigilance, 2=Force
 m_strRegionalInfo="Fuerza de ADVENT: <XGParam:IntValue0/>"
 m_strResistanceMecs="CEM de la resistencia: <XGParam:IntValue0/>"
@@ -559,9 +595,12 @@ m_strLiberatedCityPrefix="Libre"
 [XComGameState_LWOutPost]
 m_strProhibitedJobAlert="A causa de un ataque de ADVENT, no se pueden asignar miembros de la resistencia al trabajo de <XGParam:StrValue0/> durante <XGParam:IntValue0/> días en <XGParam:StrValue1/>. Todo el personal de la resistencia que realizaba ese trabajo se ha escondido."
 m_strProhibitedJobEnded="Los miembros de la resistencia de <XGParam:StrValue0/> asignados al trabajo de <XGParam:StrValue1/> volverán a ser productivos."
-
+; LWOTC translated
+m_strRetributionEnded="<XGParam:StrValue0/> miembros de la Resistencia se han recuperado de la venganza del Elegido."
+; End translated
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="Necesitas al menos <XGParam:IntValue0/> rebeldes en el refugio para contactar con los vecinos."
+
 
 [UIScreenListener_Alert]
 m_strInvasionTitle="INVASIÓN DE ADVENT"
@@ -598,8 +637,16 @@ m_strTurnSingular="Turno"
 m_strTurnPlural="Turnos"
 m_strMinimumInfiltration="Requiere <XGParam:IntValue0>% de Infiltración"
 m_strYellowAlert="Enemigos en Alerta Elevada"
-
 m_sAverageScatterText="± <XGParam:StrValue0/> Cuadros"
+m_strBullet="•"
+
+m_strStripWeaponUpgrades=QUITAR TODAS LAS MEJORAS DE ARMAS
+m_strStripWeaponUpgradesLower=Quitar todas las mejoras de armas
+; LWOTC translated
+m_strStripWeaponUpgradesConfirm=CONFIRMAR QUITAR LAS MEJORAS DE SOLDADOS INACTIVOS
+m_strStripWeaponUpgradesConfirmDesc=Confirma la eliminación de las mejoras de armas de todas las armas principales no equipadas, así como de todas las armas principales en poder de los soldados inactivos. Las armas principales en mano de los soldados de operaciones encubiertas así como los soldados seleccionados para el deber de la misión actual no se verán afectadas. Ten en cuenta que esta eliminación es permanente; después de este reseteo y si es tu elección, la próxima vez que equipes un arma principal 'virgen' será necesario agregarle mejoras de arma.
+m_strTooltipStripWeapons=Elimina todas las mejoras de armas de las armas principales no equipadas así como las armas principales en poder de los soldados inactivos.
+; End translated
 
 m_strAllHandsToHangar=TODOS AL HANGAR
 m_strAllHandsToHangarConfirm=CONFIRMAR TODOS AL HANGAR
@@ -609,9 +656,41 @@ m_strTooltipAllHandsToHangar=Quita a todos los soldados de proyectos de entrenam
 m_strPrevHaven="REFUGIO ANTERIOR"
 m_strNextHaven="REFUGIO SIGUIENTE"
 
+; LWOTC translated
+m_strVIPCaptureReward="(Captura de VIP solamente)"
+[UIListener_CampaignStartMenu]
+; End translated
+
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Apodérate de alijos de recursos ADVENT"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="La resistencia ha aprendido la ubicación de recursos enemigos vitales que podemos adquirir para nuestros propios usos.", MissionIndex=0)
 
+; LWOTC translated
+[UIListener_CampaignStartMenu]
+
+strDisabledTutorialTooltip="El tutorial está deshabilitado mientras se ejecuta Long War of the Chosen"
+strDisabledNarrativeContentTooltip="Perdidos y abandonados está deshabilitado mientras se ejecuta Long War of the Chosen"
+strDisabledPrecisionExplosivesTooltip="Explosivos de precisión se desactivará mientras se ejecuta Long War of the Chosen"
+
+[X2StatusEffects_LW]
+HeavyDazedFriendlyName="Extremadamente deslumbrado"
+HeavyDazedFriendlyDesc="Como deslumbrado pero revivir requiere 1 punto de acción y atraviesa la inmunidad mental."
+HeavyDazedEffectAcquiredString="<XGParam:StrValue0/!UnitName/> está extremadamente deslumbrado."
+HeavyDazedEffectTickedString="<XGParam:StrValue0/!UnitName/> todavía sigue extremadamente deslumbrado."
+HeavyDazedEffectLostString="<XGParam:StrValue0/!UnitName/> ya no sufre extremadamente deslumbrado"
+HeavyDazedPerActionFriendlyName="Extremadamente deslumbrado: <Ability:STUNNEDACTIONPOINTS>"
+HeavyDazedTitle="Deslumbrado"
+HeavyDazedName="Extremadamente deslumbrado"
+; End translated
+
 [UICovertActionReport_LW]
-strCovertActionFailed="FALLIDO"
+strCovertActionFailed="FALLIDA"
+
+[UIScreenListener_ViewObjectives]
+; LWOTC translated
+ScrollObjectiveDescriptionStr="EXAMINA EN LA DESCRIPCIÓN DEL OBJETIVO"
+; End translated
+
+[X2Effect_ChosenLoot]
+m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> Recompensado por matar al Elegido."
+; End translated

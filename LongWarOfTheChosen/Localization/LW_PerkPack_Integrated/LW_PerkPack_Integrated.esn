@@ -43,3 +43,17 @@ DenseSmokeGrenadeEffectDisplayDesc="El humo denso concede una bonificación defe
 
 [X2Ability_PerkPackAbilitySet]
 LocCoveringFire="Fuego de cobertura"
+LocCoveringFireMalus="Esta unidad ha sido el objetivo de una guardia con el talento Fuego de cobertura, lo que le confiere -10 para apuntar durante el resto del turno."
+; LWOTC translated
+LocSoulStealBuff="Robo de alma ablativo"
+LocSoulStealBuffHelpText="Robo de alma otorga puntos de defensa ablativos cuando se cura en exceso."
+; End translated
+
+; LWOTC Needs Translation
+[X2Effect_RegenerationPCT]
+HealedMessage="+<Heal/> Puntos de salud regenerados."
+
+[X2StatusEffects_LW]
+MaimedFriendlyName="Mutilado"
+MaimedFriendlyDesc="La movilidad de la unidad se reduce a cero, por lo que no puede moverse. Todavía es factible disparar y realizar otras habilidades sin movimiento."
+; End translated
