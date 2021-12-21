@@ -176,22 +176,22 @@ FriendlyName="Снайперская винтовка найи"
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Sidewinder ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [SidewinderM1 X2CharacterTemplate]
-strCharacterName="Кроталус"
+strCharacterName="Гремучник"
 
 [SidewinderM2 X2CharacterTemplate]
-strCharacterName="Кроталус Серпенс"
+strCharacterName="Гремучник Серпенс"
 
 [SidewinderM3 X2CharacterTemplate]
-strCharacterName="Кроталус-гвардеец"
+strCharacterName="Гремучник-гвардеец"
 
 [SidewinderM1_WPN X2WeaponTemplate]
-FriendlyName="Гиперпистолет кроталуса"
+FriendlyName="Гиперпистолет гремучника"
 
 [SidewinderM2_WPN X2WeaponTemplate]
-FriendlyName="Гиперпистолет кроталуса"
+FriendlyName="Гиперпистолет гремучника"
 
 [SidewinderM3_WPN X2WeaponTemplate]
-FriendlyName="Гиперпистолет кроталуса"
+FriendlyName="Гиперпистолет гремучника"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Viper ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
