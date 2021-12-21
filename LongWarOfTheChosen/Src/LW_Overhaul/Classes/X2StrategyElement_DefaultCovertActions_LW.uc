@@ -112,7 +112,6 @@ static function X2DataTemplate CreateRecruitRebelsTemplate()
 	// also adds the Failure risk.
 
 	Template.Risks.AddItem('CovertActionRisk_Ambush');
-	Template.Risks.AddItem('CovertActionRisk_SoldierCaptured');
 
 	Template.Rewards.AddItem('Reward_Rebel');
 	Template.Rewards.AddItem('Reward_Rebel');
