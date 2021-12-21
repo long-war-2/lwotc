@@ -496,19 +496,19 @@ FriendlyName="Fusil magnético de ADVENT"
 AbilityDescName="rifle magnético"
 ; End translated
 
-[AdvGeneralM1_LW X2CharacterTemplate]
+[AdvGeneralM1 X2CharacterTemplate]
 strCharacterName="General de ADVENT"
 
-[AdvGeneralM1_LW_WPN X2WeaponTemplate]
+[AdvGeneralM1_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
 ; LWOTC translated
 AbilityDescName="rifle magnético"
 ; End translated
 
-[AdvGeneralM2_LW X2CharacterTemplate]
+[AdvGeneralM2 X2CharacterTemplate]
 strCharacterName="General de ADVENT"
 
-[AdvGeneralM2_LW_WPN X2WeaponTemplate]
+[AdvGeneralM2_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
 ; LWOTC translated
 AbilityDescName="rifle magnético"
