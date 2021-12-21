@@ -1,0 +1,27 @@
+ LWOTC translated
+[DisableTutorial SecondWaveOptionObject]
+Tooltip="Desactiva el tutorial de Long War of the Chosen."
+Description="Sin ayudas extras: deshabilita el tutorial de LWOTC. ¡A sudar sangre xD!"
+; End translated
+
+; LWOTC translated
+[DisableChosen SecondWaveOptionObject]
+Tooltip="Si seleccionas esta casilla no tendrás que enfrentarte a los Elegidos en tu futura campaña."
+Description="Los Elegidos se toman un descanso: Desactivas a los Elegidos."
+
+[EnableResistanceOrders SecondWaveOptionObject]
+Tooltip="Activa órdenes de la Resistencia."
+Description="Dominio estratégico: Habilita órdenes de la Resistencia para XCOM."
+; End translated
+
+; LWOTC translated
+[AllowSameRankAbilities SecondWaveOptionObject]
+Tooltip="Permite a los soldados de XCOM comprar con puntos de habilidad múltiples habilidades de clase del mismo rango."
+Description="Desbloquea habilidades del mismo rango: Concede a los soldados de XCOM la posibilidad de adquirir múltiples habilidades de clase del mismo rango mediante puntos de habilidad una vez que se ha construido el Centro de entrenamiento."
+; End translated
+
+; LWOTC translated
+[BabyChosen SecondWaveOptionObject]
+Tooltip="Desactiva las reacciones principales en los Elegidos consiguiendo rebajar exponencialmente la dificultad al combatir contra ellos."
+Description="Elegidos nerfeados: Los Elegidos tienen sus reacciones principales deshabilitadas."
+; End translated

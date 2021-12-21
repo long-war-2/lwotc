@@ -1,0 +1,211 @@
+; LWOTC translated
+[LingeringShadow X2AbilityTemplate]
+LocFriendlyName="Sombra persistente"
+LocLongDescription="Proporciona +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el Segador pierde Sombra."
+LocHelpText="Proporciona +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el Segador pierde Sombra."
+LocPromotionPopupText="<Bullet/> Proporciona +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva tan pronto como el Segador deja de estar en Sombra, ya sea con motivo de salir del ocultamiento o porque Sombra expire.<br/><Bullet/> Dura hasta el inicio del siguiente turno de XCOM."
+
+; LWOTC translated
+[LingeringShadowTrigger X2AbilityTemplate]
+LocFriendlyName="Sombra persistente"
+LocLongDescription="Concede +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el Segador pierde Sombra."
+LocHelpText="Concede +<Ability:LingeringShadowDefenseBonus/> de defensa y +<Ability:LingeringShadowDodgeBonus/> de esquiva durante un turno cuando el Segador pierde Sombra."
+; End translated
+
+[Demolitionist X2AbilityTemplate]
+LocFriendlyName="Demolicionista"
+LocLongDescription="El Segador gana +<Ability:DemolitionistExtraChargeCount/> carga de Accionamiento a distancia y Mina buscadora."
+LocHelpText="El Segador gana +<Ability:DemolitionistExtraChargeCount/> carga de Accionamiento a distancia y Mina buscadora."
+LocPromotionPopupText="<Bullet/> Añade <Ability:DemolitionistExtraChargeCount/> carga extra de Accionamiento a distancia y Mina buscadora.<br/>"
+
+[CripplingStrike X2AbilityTemplate]
+LocFriendlyName="Cuchilla mutilante"
+LocLongDescription="Lanza un cuchillo que hace que el objetivo quede mutilado durante 1 turno (movilidad cero)."
+LocHelpText="Lanza un cuchillo que hace que el objetivo quede mutilado durante 1 turno (movilidad cero)."
+LocPromotionPopupText="<Bullet/> Lanza un cuchillo sin romper Sombra.<br/><Bullet/> El estado mutilado reduce la movilidad del objetivo a 0, dejándolo inmóvil.<br>"
+; End translated
+
+; LWOTC translated
+[Distraction_LW X2AbilityTemplate]
+LocFriendlyName="Distracción"
+LocLongDescription="El Claymore desorienta a los enemigos no-robóticos cuando explota."
+LocHelpText="El Claymore desorienta a los enemigos no-robóticos cuando explota."
+LocPromotionPopupText="<Bullet/> Agrega un efecto de desorientación que se aplica a todas las unidades orgánicas atrapadas en la explosión.<br/>"
+
+[DisablingShot X2AbilityTemplate]
+LocFriendlyName="Sometimiento"
+LocLongDescription="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
+LocHelpText="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
+LocPromotionPopupText="<Bullet/> Aturde a los enemigos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/> , pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> Solamente Avatares y Zombies Psiónicos no se verán afectados."
+
+[Meditation X2AbilityTemplate]
+LocFriendlyName="Meditación"
+LocLongDescription="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración."
+LocHelpText="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración."
+LocPromotionPopupText="<Bullet/> Agrega al Templario <Ability:MeditationFocusRecovery/> puntos de concentración.<br/><Bullet/> Finaliza el turno.<br/><Bullet/> Tiene un tiempo de reutilización de <Ability:SelfCooldown/> turnos."
+
+[Overcharge_LW X2AbilityTemplate]
+LocFriendlyName="Heroísmo"
+LocLongDescription="Obtienes una bonificación de puntería y probabilidad crítica por cada punto de concentración que tenga el Templario"
+LocHelpText="Obtienes una bonificación de puntería y probabilidad crítica por cada punto de concentración que tenga el Templario"
+LocPromotionPopupText="<Bullet/> Cada punto de concentración proporciona +<Ability:OverchargeAimBonus/> de puntería y +<Ability:OverchargeCritBonus/> a la probabilidad crítica.<br/><Bullet/> Tiene en cuenta el nivel de concentración actual y no el máximo."
+
+[VoltDangerZone X2AbilityTemplate]
+LocFriendlyName="Alto Voltaje"
+LocLongDescription="Gana un bonus de <Ability:VoltDangerZoneBonus/> de radio de impacto para la habilidad Voltio."
+LocHelpText="Gana un bonus de <Ability:VoltDangerZoneBonus/> de radio de impacto para la habilidad Voltio."
+LocPromotionPopupText="<Bullet/> Concede una bonificación de radio de impacto de <Ability:VoltDangerZoneBonus/> para la habilidad Voltio."
+; End translated
+
+; LWOTC translated
+[TemplarVigilance X2AbilityTemplate]
+LocFriendlyName="Vigilancia"
+LocLongDescription="Gana 1 de concentración cada vez que tu escuadrón activa un grupo enemigo del tamaño de 3 o más."
+LocHelpText="Gana 1 de concentración cada vez que tu escuadrón activa un grupo enemigo del tamaño de 3 o más."
+LocPromotionPopupText="<Bullet/> Consigue 1 de concentración para el Templario cuando un grupo enemigo se active.<br/><Bullet/> Sólo funciona si el grupo tiene al menos 3 unidades.<br/><Bullet/> Si estás ya al máximo de concentración la bonificación se desperdiciará."
+
+[TemplarTerror X2AbilityTemplate]
+LocFriendlyName="Aterrorizar"
+LocLongDescription="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio."
+LocHelpText="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio."
+LocPromotionPopupText="<Bullet/> Voltio ahora incorpora una posibilidad de generar pánico a los enemigos.<br/><Bullet/> Su probabilidad está basada en la fuerza Psiónica del Templario frente a la voluntad del objetivo."
+
+[Apotheosis X2AbilityTemplate]
+LocFriendlyName="Apoteosis"
+LocFlyoverText="Apoteosis"
+LocLongDescription="Conviértete en un dios aumentando enormemente tu daño, esquiva y movilidad. Requiere un mínimo de 3 de concentración, la cual se consume por completo."
+LocHelpText="Conviértete en un dios aumentando enormemente tu daño, esquiva y movilidad. Requiere un mínimo de 3 de concentración, el cual se consume por completo."
+LocPromotionPopupText="<Bullet/> Acción gratuita que hace a los Templarios sustancialmente más poderosos durante dos turnos.<br/><Bullet/> Incrementa todo el daño en un <Ability:ApotheosisDamageMultiplier/>% por cada punto de concentración por encima de 2.<br/><Bullet/> Incrementa la esquiva en un <Ability:ApotheosisDodgeBonus/> por cada punto de concentración por encima de 2.<br/><Bullet/> Incrementa la movilidad en <Ability:ApotheosisMobilityBonus/> por cada punto de concentración por encima de 2.<br/><Bullet/> Requiere un mínimo de 3 de concentración que consumirá completamente.<br/><Bullet/> El Templario puede obtener concentración mientras está bajo el efecto de Apoteosis."
+; End translated
+
+; LWOTC translated
+[ShadowGrenadier X2AbilityTemplate]
+LocFriendlyName="Granadero en la Sombra"
+LocHelpText="Lanzar o tirar granadas ya no rompe la Sombra y las granadas no tienen tiempo de reutilización."
+LocLongDescription="Lanzar o tirar granadas ya no rompe la Sombra y las granadas no tienen tiempo de reutilización."
+LocPromotionPopupText="<Bullet/> Permite al soldado lanzar o tirar granadas sin romper Sombra.<br/><Bullet/> Agrega un hueco para granadas.<br/><Bullet/> Elimina el tiempo de reutilización de las granadas.<br/>"
+
+[PoisonedBlades X2AbilityTemplate]
+LocFriendlyName="Cuchillas envenenadas"
+LocHelpText="Los cuchillos arrojadizos aplican veneno al objetivo."
+LocLongDescription="Los cuchillos arrojadizos aplican veneno al objetivo."
+LocPromotionPopupText="<Bullet/> Esta es una habilidad pasiva que incorpora veneno a todas las habilidades de lanzar cuchillos.<br/>"
+
+[ChargeBattery X2AbilityTemplate]
+LocFriendlyName="Cargar batería"
+LocFlyoverText="Sombra: +1 Turno"
+LocHelpText="Consume una carga para extender la duración de Sombra en 1 turno."
+LocLongDescription="Consume una carga para extender la duración de Sombra en 1 turno."
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Permite al jugador extender la Sombra 1 turno.<br/><Bullet/> Sólo se puede utilizar mientras estés en Sombra.<br/><Bullet/> Cargar batería es una acción gratuita y tiene un tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Cargar batería proporciona <Ability:CHARGE_BATTERY_CHARGES/> carga/as.<br/>"
+; End translated
+
+
+; LWOTC translated
+[SilentKillerDurationExtension X2AbilityTemplate]
+LocFriendlyName="Asesino silencioso renueva Sombra"
+LocFlyoverText="Sombra: +1 Turno"
+; End translated
+
+; LWOTC translated
+[Parkour_LW X2AbilityTemplate]
+LocFriendlyName="Parkour"
+LocHelpText="El gancho del Guerrillero reduce su tiempo de reutilización en 1 turno."
+LocLongDescription="El gancho del Guerrillero reduce su tiempo de reutilización en 1 turno."
+LocPromotionPopupText="<Bullet/> Ahora será más frecuente escalar por los edificios y desplazarse con celeridad.<br/>"
+; End translated
+
+
+; LWOTC translated
+[Executioner X2AbilityTemplate]
+LocFriendlyName="Distribuidor de muerte"
+LocLongDescription="Proporciona +<Ability:DEATH_DEALER_CRIT/> de probabilidad crítica. Mientras permanezcas en Sombra los disparos críticos contra un objetivo flanqueado causarán el doble de daño."
+LocHelpText="Proporciona +<Ability:DEATH_DEALER_CRIT/> de probabilidad crítica. Mientras permanezcas en Sombra los disparos críticos contra un objetivo flanqueado causarán el doble de daño."
+LocPromotionPopupText="<Bullet/> Muévete más ágilmente y con menos posibilidades de ser detectado gracias a Sombra; con estas aptitudes, flanquear enemigos y por ende producir daño crítico será bastante más asequible.<br/>"
+
+; End translated
+
+
+; LWOTC translated
+[RendTheMarked X2AbilityTemplate]
+LocFriendlyName="Desgarrar a los marcados"
+LocHelpText="Los cuchillos arrojadizos aplican +<Ability:REND_THE_MARKED_CRIT/> de probabilidad crítica acumulable contra el objetivo de todos los ataques durante el resto del turno."
+LocLongDescription="Los cuchillos arrojadizos aplican +<Ability:REND_THE_MARKED_CRIT/> de probabilidad crítica acumulable contra el objetivo de todos los ataques durante el resto del turno."
+LocPromotionPopupText="<Bullet/> Los cuchillos arrojadizos aplican +<Ability:REND_THE_MARKED_CRIT/> de probabilidad crítica acumulable contra el objetivo de todos los ataques durante el resto del turno."
+; End translated
+
+
+
+[KnifeEncounters X2AbilityTemplate]
+LocFriendlyName="Encuentros a cuchillo"
+LocFlyOverText="Encuentros a cuchillo"
+;LWOTC needs Translation(2)
+LocLongDescription="Una vez por turno, gana una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas. No se puede utilizar en el mismo turno que Apresurarse."
+LocHelpText="Una vez por turno, gana una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas. No se puede utilizar en el mismo turno que Apresurarse."
+LocPromotionPopupText="<Bullet/> Una vez por turno, benefíciate de una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas.<br/><Bullet/> Un círculo rojo marcará el alcance de esta habilidad.<br/><Bullet/> Encuentros a cuchillo no se puede utilizar en el mismo turno que Apresurarse y Correr y disparar.<br/>"
+; LWOTC translated
+
+
+; LWOTC translated
+
+[ImpersonalEdge X2AbilityTemplate]
+LocFriendlyName="Especialista en cuchillas"
+LocFlyOverText="Especialista en cuchillas"
+LocLongDescription="Cuando causes una baja con tu cuchillo arrojadizo reducirás el tiempo de reutilización de Sombra en 1 y te beneficiarás de +<Ability:IMPERSONAL_EDGE_AIM/> de puntería acumulable durante 3 turnos."
+LocHelpText="Cuando causes una baja con tu cuchillo arrojadizo reducirás el tiempo de reutilización de Sombra en 1 y te beneficiarás de +<Ability:IMPERSONAL_EDGE_AIM/> de puntería acumulable durante 3 turnos."
+LocPromotionPopupText="Cuando causes una baja con tu cuchillo arrojadizo reducirás el tiempo de reutilización de Sombra en 1 y te beneficiarás de +<Ability:IMPERSONAL_EDGE_AIM/> de puntería acumulable durante 3 turnos.<br/>"
+
+[ImpersonalEdgePassive X2AbilityTemplate]
+LocFriendlyName="Especialista en cuchillas"
+LocFlyOverText="Especialista en cuchillas"
+LocLongDescription="Cuando logres una baja con tu cuchillo arrojadizo reducirás el tiempo de reutilización de Sombra en 1 y te beneficiarás de +<Ability:IMPERSONAL_EDGE_AIM/> de puntería acumulable durante 3 turnos."
+LocHelpText="Cuando logres una baja con tu cuchillo arrojadizo reducirás el tiempo de reutilización de Sombra en 1 y te beneficiarás de +<Ability:IMPERSONAL_EDGE_AIM/> de puntería acumulable durante 3 turnos."
+LocPromotionPopupText="Cuando logres una baja con tu cuchillo arrojadizo reducirás el tiempo de reutilización de Sombra en 1 y te beneficiarás de +<Ability:IMPERSONAL_EDGE_AIM/> de puntería acumulable durante 3 turnos.<br/>"
+; End translated
+
+
+[BlueScreenKnives X2AbilityTemplate]
+LocFriendlyName="Cuchillas de pantallaazul"
+LocHelpText="Los cuchillos arrojadizos proporcionan +<Ability:BLUESCREEN_KNIVES_PIERCE/> en triturar y desorientan unidades robóticas."
+LocLongDescription="Los cuchillos arrojadizos proporcionan +<Ability:BLUESCREEN_KNIVES_PIERCE/> en triturar y desorientan unidades robóticas."
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> Los cuchillos arrojadizos proporcionan +<Ability:BLUESCREEN_KNIVES_PIERCE/> en triturar y desorientan unidades robóticas."
+; End translated
+
+
+; LWOTC translated
+[BattlefieldAwareness X2AbilityTemplate]
+LocFriendlyName="Experto en el campo de batalla"
+LocLongDescription=Si anotas una muerte durante tu turno, el próximo ataque contra ti en el turno de ADVENT fallará. Tras su uso, la habilidad quedará recuperándose un periodo de <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> turnos."
+LocHelpText="Si anotas una muerte durante tu turno, el próximo ataque contra ti en el turno de ADVENT fallará. Tras su uso, la habilidad quedará recuperándose un periodo de <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> turnos."
+LocFlyOverText="Experto en el campo de batalla"
+LocPromotionPopupText="<Bullet/> Cuando se activa Experto en el campo de batalla el soldado es inmune al próximo ataque que produzca daño durante el turno enemigo, incluidos los ataques de área de efecto.<br/>"
+
+
+[BattlefieldAwarenessPassive X2AbilityTemplate]
+LocFriendlyName="Experto en el campo de batalla"
+LocLongDescription="Si anotas una muerte durante tu turno, el próximo ataque contra ti en el turno de ADVENT fallará. Tras su uso, la habilidad quedará recuperándose un periodo de <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> turnos."
+LocHelpText="Si anotas una muerte durante tu turno, el próximo ataque contra ti en el turno de ADVENT fallará. Tras su uso, la habilidad quedará recuperándose un periodo de <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/> turnos."
+LocFlyOverText="Experto en el campo de batalla"
+
+[BattlefieldAwarenessCooldown X2AbilityTemplate]
+LocFriendlyName="-- Recargándose -- Experto en el campo de batalla"
+LocLongDescription="Experto en el campo de batalla no se activará hasta que finalice este efecto."
+LocHelpText="Experto en el campo de batalla no se activará hasta que finalice este efecto."
+
+
+[CombatPresence X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Presencia de combate salvará de un apuro a tus compañeros de escuadrón en situaciones extremas en las que necesitan un ataque o movimiento adicional.<br/><Bullet/> Tiene un tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/>"
+
+
+; LWOTC translated
+
+[CheapShot X2AbilityTemplate]
+LocFriendlyName="Apresurarse"
+LocFlyOverText="Apresurarse"
+LocLongDescription= "Una vez por turno obtén una acción de movimiento después de disparar con tu arma principal a una unidad que resultó herida ese turno. No se puede ejecutar en el mismo turno que los Encuentros a cuchillo."
+LocHelpText="Una vez por turno obtén una acción de movimiento después de disparar con tu arma principal a una unidad que resultó herida ese turno. No se puede ejecutar en el mismo turno que los Encuentros a cuchillo."
+LocPromotionPopupText="<Bullet/> Apresurarse se activa si el objetivo fue previamente dañado desde el último turno del jugador por cualquier tipo de impacto, por ejemplo, con una guardia o daño periódico.<br/><Bullet/> Adicionalmente al disparo estándar, también funciona con Dáles caña, Disparo en cadena y Desterrar.<br/><Bullet/> La acción de movimiento se puede utilizar para entrar en Sombra si está fuera de tiempo de reutilización.<br/>"
+; End translated
+
+

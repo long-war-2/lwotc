@@ -1,0 +1,6 @@
+
+; LWOTC translated
+[X2Ability_ThrowingKnifeAbilitySet]
+RendTheMarkedEffectName="Desgarrar a los marcados"
+RendTheMarkedEffectDesc="Los cuchillos arrojadizos aplican +<Ability:REND_THE_MARKED_CRIT/> de probabilidad crítica acumulable contra el objetivo de todos los ataques durante el resto del turno."
+; End translated

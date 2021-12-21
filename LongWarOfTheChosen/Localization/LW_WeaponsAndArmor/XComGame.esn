@@ -1,0 +1,54 @@
+; LWOTC translated
+[MusashiThrowKnifeSecondary_LW X2AbilityTemplate]
+LocFriendlyName="Cuchillo arrojadizo"
+LocFlyOverText="Cuchillo arrojadizo"
+LocLongDescription="Lanza un cuchillo arrojadizo a un enemigo. No revela al Segador mientras permanece en Sombra."
+LocHelpText="Lanza un cuchillo arrojadizo a un enemigo. No revela al Segador mientras permanece en Sombra."
+LocPromotionPopupText="<Bullet/> Lanzar un cuchillo no romperá Sombra ni atraerá a los perdidos..<br/><Bullet/> Esta habilidad sin embargo sí rompe la ocultación normal."
+
+[KnifeJuggler_LW X2AbilityTemplate]
+LocFriendlyName="Malabarista de cuchillos"
+LocFlyOverText="Malabarista de cuchillos"
+LocLongDescription="Añade +<Ability:KnifeJugglerBonusDamage/> de bonus de daño a los cuchillos arrojadizos y proporciona <Ability:KnifeJugglerExtraAmmo/> cuchillo(s) extra más. Cada muerte con el arma principal otorga una carga de cuchillo."
+LocHelpText="Añade +<Ability:KnifeJugglerBonusDamage/> de bonus de daño a los cuchillos arrojadizos y proporciona <Ability:KnifeJugglerExtraAmmo/> cuchillo(s) extra más. Cada muerte con el arma principal otorga una carga de cuchillo."
+LocPromotionPopupText="<Bullet/> Añade +<Ability:KnifeJugglerBonusDamage/> de bonus de daño a los cuchillos arrojadizos.<br/><Bullet/> Agrega <Ability:KnifeJugglerExtraAmmo/> carga/as adicionales para los cuchillos arrojadizos.<br/><Bullet/> Cada muerte con el arma principal otorga una carga de cuchillo.<br/>"
+
+[Hailstorm_LW X2AbilityTemplate]
+LocFriendlyName="Torbellino"
+LocFlyOverText="Torbellino"
+LocLongDescription="Lanza tres cuchillos al objetivo a una gran velocidad. No revelará al Segador mientras transite en Sombra."
+LocHelpText="Lanza tres cuchillos al objetivo a una gran velocidad. No revelará al Segador mientras transite en Sombra."
+LocPromotionPopupText="<Bullet/> Cada cuchillo conserva las mismas bonificaciones, como daños y efectos de estado, que presenta un solo lanzamiento.<br/><Bullet/> Eso sí, no se benefician de los efectos que dependen de los puntos de salud del objetivo, a menos que se cumpla la restricción antes de que se lance el primer cuchillo."
+
+[ThrowingKnifeFaceoff_LW X2AbilityTemplate]
+LocFriendlyName="Tranquilos, hay para todos"
+LocFlyOverText="Tranquilos, hay para todos"
+LocLongDescription="Lanza un cuchillo a cualquier objetivo ADVENT a tu alcance. No revelará al Segador mientras transite en Sombra."
+LocHelpText="Lanza un cuchillo a cualquier objetivo ADVENT a tu alcance. No revelará al Segador mientras transite en Sombra."
+; LWOTC translated
+LocPromotionPopupText="<Bullet/> Tiene sólo una carga y no consume ninguna carga estándar de cuchillo arrojadizo.<br/><Bullet/> Será de gran utilidad cuando flanquees a múltiples enemigos.<br/>"
+; End translated
+
+; LWOTC translated
+[ThrowingKnife_CV_Secondary X2WeaponTemplate]
+FriendlyName="Cuchillo arrojadizo"
+FriendlyNamePlural="Cuchillos arrojadizos"
+BriefSummary="Un cuchillo arrojadizo fabricado con nuestras aleaciones de acero convencionales más avanzadas."
+TacticalText="<Bullet/> Lanzar un cuchillo no romperá Sombra.<br/><Bullet/> Probabilidad del <Ability:THROWING_KNIFE_CV_BLEED_CHANCE/>% en causar sangrado, generando <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> de daño cada turno durante <Ability:THROWING_KNIFE_CV_BLEED_DURATION/> turno(os)."
+AbilityDescName="cuchillo arrojadizo"
+
+[ThrowingKnife_MG_Secondary X2WeaponTemplate]
+FriendlyName="Cuchillo arrojadizo de aleación"
+FriendlyNamePlural="Cuchillos arrojadizos de aleaciones"
+BriefSummary="Un cuchillo arrojadizo fabricado en aleaciones alienígenas."
+TacticalText="<Bullet/> Lanzar un cuchillo no romperá Sombra.<br/><Bullet/> Probabilidad del <Ability:THROWING_KNIFE_MG_BLEED_CHANCE/>% en causar sangrado, generando <Ability:THROWING_KNIFE_MG_BLEED_DAMAGE/> de daño cada turno durante <Ability:THROWING_KNIFE_MG_BLEED_DURATION/> turno(os)."
+AbilityDescName="cuchillo arrojadizo"
+
+[ThrowingKnife_BM_Secondary X2WeaponTemplate]
+FriendlyName="Cuchillo arrojadizo de plasma"
+FriendlyNamePlural="Cuchillos arrojadizos de plasma"
+BriefSummary="Un cuchillo arrojadizo con un filo de plasma que atraviesa la armadura como si fuera mantequilla."
+TacticalText="<Bullet/> Lanzar un cuchillo no romperá Sombra.<br/><Bullet/> Probabilidad del <Ability:THROWING_KNIFE_BM_BLEED_CHANCE/>% en causar sangrado, generando <Ability:THROWING_KNIFE_BM_BLEED_DAMAGE/> de daño cada turno durante <Ability:THROWING_KNIFE_BM_BLEED_DURATION/> turno(os)."
+AbilityDescName="cuchillo arrojadizo"
+; End translated
+

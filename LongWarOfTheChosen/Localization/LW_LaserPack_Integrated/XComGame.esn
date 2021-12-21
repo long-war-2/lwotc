@@ -9,7 +9,9 @@ AbilityDescName="fusil de asalto"
 FriendlyName="Subfusil Sten láser"
 FriendlyNamePlural="Subfusiles Sten láser"
 BriefSummary="Se trata de una versión ligera del fusil láser. Cumple una función similar a la del subfusil y sacrifica potencia, munición y precisión a distancia a cambio de una mayor movilidad y ocultación del soldado."
-TacticalText="<Bullet/> Disparar el arma principal siempre termina el turno del soldado si no cuenta con entrenamiento especial.\n<Bullet/> Usa las mejoras recuperadas de los enemigos de ADVENT para mejorar la eficacia táctica del subfusil Sten láser. \n<Bullet/> Las armas de tipo subfusil ofrecen una mayor movilidad, precisión a corta distancia y ocultación comparadas con los fusiles de asalto, pero infligen menos daño, tienen menos munición y sufren penalizaciones en su precisión a larga distancia.\n<Bullet/> Los láseres reciben una bonificación a la puntería."
+; LWOTC translated
+TacticalText="<Bullet/> Disparar el arma principal siempre termina el turno del soldado si no cuenta con entrenamiento especial.\n<Bullet/> Usa las mejoras recuperadas de los enemigos de ADVENT para incrementar la eficacia táctica del subfusil Sten láser. \n<Bullet/> Las armas de tipo subfusil ofrecen una mayor movilidad, precisión a corta distancia y ocultación comparadas con los fusiles de asalto, pero infligen menos daño y sufren penalizaciones en su precisión a larga distancia.\n<Bullet/> Los láseres reciben una bonificación a la puntería."
+; End translated
 AbilityDescName="Subfusil"
 
 [Cannon_LS X2WeaponTemplate]

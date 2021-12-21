@@ -121,6 +121,9 @@ strCharacterName="Centurión Mutón"
 FriendlyName="Fusil de centurión"
 BriefSummary="XCOM ha logrado recuperar diversas armas pequeñas de infantería estándar; esta es la variedad más común, similar al fusil utilizado hace veinte años. Aunque claramente inferior a la tecnología magnética de ADVENT, al menos puede mejorarse recuperando más material de armas, una vez adoptado un enfoque técnico estándar."
 TacticalText="<Bullet/> Disparar el arma principal siempre termina el turno del soldado.\n<Bullet/> Si el soldado dispara con las dos acciones disponibles, se harán tres disparos con una precisión menor, pero una mayor eficiencia global.\n<Bullet/> Usa las mejoras saqueadas de los enemigos para mejorar la eficacia táctica del fusil de asalto."
+; LWOTC translated
+AbilityDescName="rifle de plasma"
+; End translated
 
 [MutonM2_LWGrenade X2GrenadeTemplate]
 FriendlyName="Granada alienígena"
@@ -142,6 +145,10 @@ strCharacterName="Mutón de élite"
 
 [MutonM3_LW_Wpn X2WeaponTemplate]
 FriendlyName="Cañón de plasma de élite"
+; LWOTC translated
+AbilityDescName="cañón de plasma"
+; End translated
+
 
 [MutonM3_LWGrenade X2GrenadeTemplate]
 FriendlyName="Granada alienígena"
@@ -166,12 +173,21 @@ strCharacterName="Naja de élite"
 
 [NajaM1_WPN X2WeaponTemplate]
 FriendlyName="Fusil de francotirador de Naja"
+; LWOTC translated
+AbilityDescName="rifle de francotirador"
+; End translated
 
 [NajaM2_WPN X2WeaponTemplate]
 FriendlyName="Fusil de francotirador de Naja"
+; LWOTC translated
+AbilityDescName="rifle de francotirador"
+; End translated
 
 [NajaM3_WPN X2WeaponTemplate]
 FriendlyName="Fusil de francotirador de Naja"
+; LWOTC translated
+AbilityDescName="rifle de francotirador"
+; End translated
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Sidewinder ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -186,12 +202,22 @@ strCharacterName="Crótalo de élite"
 
 [SidewinderM1_WPN X2WeaponTemplate]
 FriendlyName="Arma ahuyentadora de Crótalo"
+; LWOTC translated
+AbilityDescName="arma dispersadora"
+; End translated
+
 
 [SidewinderM2_WPN X2WeaponTemplate]
 FriendlyName="Arma ahuyentadora de Crótalo"
+; LWOTC translated
+AbilityDescName="arma dispersadora"
+; End translated
 
 [SidewinderM3_WPN X2WeaponTemplate]
 FriendlyName="Arma ahuyentadora de Crótalo"
+; LWOTC translated
+AbilityDescName="arma dispersadora"
+; End translated
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Viper ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -203,9 +229,15 @@ strCharacterName="Víbora de élite"
 
 [ViperM2_LW_WPN X2WeaponTemplate]
 FriendlyName="Fusil de rayo"
+; LWOTC translated
+AbilityDescName="rifle de plasma"
+; End translated
 
 [ViperM3_LW_WPN X2WeaponTemplate]
 FriendlyName="Fusil de rayo"
+; LWOTC translated
+AbilityDescName="rifle de plasma"
+; End translated
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -224,18 +256,27 @@ strCharacterName="Artillero de ADVENT"
 
 [AdvGunnerM1_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
+; LWOTC translated
+AbilityDescName="cañón"
+; End translated
 
 [AdvGunnerM2 X2CharacterTemplate]
 strCharacterName="Artillero pesado de ADVENT"
 
 [AdvGunnerM2_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
+; LWOTC translated
+AbilityDescName="cañón"
+; End translated
 
 [AdvGunnerM3 X2CharacterTemplate]
 strCharacterName="Artillero de élite de ADVENT"
 
 [AdvGunnerM3_WPN X2WeaponTemplate]
 FriendlyName="AutoMag"
+; LWOTC translated
+AbilityDescName="cañón"
+; End translated
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvSentryM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -245,18 +286,28 @@ strCharacterName="Vigilante de ADVENT"
 
 [AdvSentryM1_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
 
 [AdvSentryM2 X2CharacterTemplate]
 strCharacterName="Guardián de ADVENT"
 
 [AdvSentryM2_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
 
 [AdvSentryM3 X2CharacterTemplate]
 strCharacterName="Centinela de ADVENT"
 
 [AdvSentryM3_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvGrenadierM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -337,9 +388,15 @@ strCharacterName="Dron cazador de ADVENT"
 
 [LWDroneM1_WPN X2WeaponTemplate]
 FriendlyName="Descarga de dron"
+; LWOTC translated
+AbilityDescName="arma paralizante"
+; End translated
 
 [LWDroneM2_WPN X2WeaponTemplate]
 FriendlyName="Descarga eléctrica de dron"
+; LWOTC translated
+AbilityDescName="arma paralizante"
+; End translated
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM1 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -348,9 +405,15 @@ strCharacterName="CEM Archer"
 
 [AdvMECArcher_WPN X2WeaponTemplate]
 FriendlyName="MiniMag de CEM"
+; LWOTC translated
+AbilityDescName="minicañón"
+; End translated
 
 [AdvMECArcher_Shoulder_WPN X2WeaponTemplate]
 FriendlyName="Artillería de cohete"
+; LWOTC translated
+AbilityDescName="minicañón"
+; End translated
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -384,45 +447,69 @@ strCharacterName="Sargento de ADVENT"
 
 [AdvSergeantM1_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
 
 [AdvSergeantM2 X2CharacterTemplate]
 strCharacterName="Sargento primero de ADVENT"
 
 [AdvSergeantM2_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
 
 [AdvShockTroop X2CharacterTemplate]
 strCharacterName="Soldado de asalto de ADVENT"
 
 [AdvShockTroop_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
 
 [AdvCommando X2CharacterTemplate]
 strCharacterName="Comando de ADVENT"
 
 [AdvCommando_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
 
 [AdvVanguard X2CharacterTemplate]
 strCharacterName="Vanguardia de ADVENT"
 
 [AdvVanguard_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
 
 [AdvScout X2CharacterTemplate]
 strCharacterName="Explorador de ADVENT"
 
 [AdvScout_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
 
-[AdvGeneralM1_LW X2CharacterTemplate]
+[AdvGeneralM1 X2CharacterTemplate]
 strCharacterName="General de ADVENT"
 
-[AdvGeneralM1_LW_WPN X2WeaponTemplate]
+[AdvGeneralM1_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
 
-[AdvGeneralM2_LW X2CharacterTemplate]
+[AdvGeneralM2 X2CharacterTemplate]
 strCharacterName="General de ADVENT"
 
-[AdvGeneralM2_LW_WPN X2WeaponTemplate]
+[AdvGeneralM2_WPN X2WeaponTemplate]
 FriendlyName="Fusil magnético de ADVENT"
+; LWOTC translated
+AbilityDescName="rifle magnético"
+; End translated
