@@ -6723,13 +6723,13 @@ LocLongDescription="Gain a movement action or Combat Readiness after taking dama
 LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocFlyOverText="Chosen Prime Reaction"
 
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (3)
 [ChosenImmunitiesPassive X2AbilityTemplate]
 LocFriendlyName="Chosen Immunities"
-LocLongDescription="Chosen are immune to stun, disorient, and frost and suffer -50% mobility from maim instead of being immobilized."
-LocHelpText="Chosen are immune to stun, disorient, and frost and suffer -50% mobility from maim instead of being immobilized."
+LocLongDescription="Chosen are immune to stun, disorient, and frost."
+LocHelpText="Chosen are immune to stun, disorient, and frost."
 LocFlyOverText="Chosen Immunities"
-; End Translation (2)
+; End Translation (3)
 
 ; LWOTC Needs Translation (3)
 ;(2) Added the Cooldown Text
