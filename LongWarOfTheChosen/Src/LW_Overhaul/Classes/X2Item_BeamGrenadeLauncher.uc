@@ -39,7 +39,7 @@ static function X2GrenadeLauncherTemplate CreateTemplate_BeamGrenadeLauncher()
 
 	`CREATE_X2TEMPLATE(class'X2GrenadeLauncherTemplate', Template, 'GrenadeLauncher_BM');
 
-	Template.strImage = "img:///WP_BeamGrenadeLauncher.UI.BeamLauncher";
+	Template.strImage = "img:///WP_BeamGrenadeLauncher_LW.UI.BeamLauncher";
 	Template.EquipSound = "Secondary_Weapon_Equip_Beam";
 
 	Template.iSoundRange = default.BEAMGRENADELAUNCHER_ISOUNDRANGE;
@@ -51,7 +51,7 @@ static function X2GrenadeLauncherTemplate CreateTemplate_BeamGrenadeLauncher()
 	Template.IncreaseGrenadeRadius = default.BEAMGRENADELAUNCHER_RADIUSBONUS;
 	Template.IncreaseGrenadeRange = default.BEAMGRENADELAUNCHER_RANGEBONUS;
 
-	Template.GameArchetype = "WP_BeamGrenadeLauncher.WP_BeamGrenadeLauncher";
+	Template.GameArchetype = "WP_BeamGrenadeLauncher_LW.WP_BeamGrenadeLauncher_LW";
 
 	Template.CreatorTemplateName = 'GrenadeLauncher_BM_Schematic'; // The schematic which creates this item
 	Template.BaseItem = 'GrenadeLauncher_MG'; // Which item this will be upgraded from
@@ -77,7 +77,7 @@ static function X2SchematicTemplate CreateTemplate_BeamGrenadeLauncher_Schematic
 	`CREATE_X2TEMPLATE(class'X2SchematicTemplate', Template, 'GrenadeLauncher_BM_Schematic');
 
 	Template.ItemCat = 'weapon'; 
-	Template.strImage = "img:///WP_BeamGrenadeLauncher.UI.BeamLauncher";
+	Template.strImage = "img:///WP_BeamGrenadeLauncher_LW.UI.BeamLauncher";
 	Template.PointsToComplete = 0;
 	Template.Tier = 2;
 	Template.OnBuiltFn = class'X2Item_DefaultSchematics'.static.UpgradeItems;

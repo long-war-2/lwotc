@@ -227,7 +227,7 @@ static function X2DataTemplate CreateVektorCrossbow_CV()
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'vektor_rifle';
 	Template.WeaponTech = 'conventional';
-	Template.strImage = "img:///CrossbowVektor.Inv_CrossbowVektor";
+	Template.strImage = "img:///CrossbowVektor_LW.Inv_CrossbowVektor";
 	Template.EquipSound = "Conventional_Weapon_Equip";
 	Template.Tier = 0;
 
@@ -249,7 +249,7 @@ static function X2DataTemplate CreateVektorCrossbow_CV()
 	Template.Abilities.AddItem('HotLoadAmmo');
 
 	// This all the resources; sounds, animations, models, physics, the works.
-	Template.GameArchetype = "CrossbowVektor.WP_CrossbowVektor_CV";
+	Template.GameArchetype = "CrossbowVektor_LW.WP_CrossbowVektor_CV";
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
 
 	Template.iPhysicsImpulse = 5;

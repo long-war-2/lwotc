@@ -64,9 +64,9 @@
         "AutopistolRebalance_LW",
         "BRMeshPack_LW",
         "Cannon_NoShake_LW",
-        "CrossbowVektor",
-        "EW_MEC_Weapons",
+        "CrossbowVektor_LW",
         "GameUnit_AdvPurifier_Rusty",
+        "EW_MEC_Weapons_LW",
         "LW_PsiOverhaul",
         "LWArcthrower",
         "LWCombatKnife",
@@ -74,6 +74,10 @@
         "LWHoloTarget_PerkContent",
         "LWHolotargeter",
         "LWMultiTarget_PerkContent",
+        "LWOTC_PerkContent_BunkerBusterProjectile",
+        "LWOTC_PerkContent_ConcussionRocket",
+        "LWOTC_PerkContent_BlasterLauncher",
+        "LWOTC_PerkContent_RocketProjectile",
         "LWRapidTarget_PerkContent",
         "LWResistanceMEC",
         "LWSawedoffShotgun",
@@ -84,7 +88,7 @@
         "WoTC_Powered_Shield_LW",
         "WoTC_Shield_Animations_LW",
         "WP_AdventFlamethrower_Rusty",
-        "WP_BeamGrenadeLauncher",
+        "WP_BeamGrenadeLauncher_LW",
 
         "LWAttachments_LS",
         "LWAssaultRifle_LS",
@@ -111,6 +115,8 @@
         "UILibrary_LW_LaserPack",
         "UILibrary_LW_Overhaul",
         "UILibrary_Refs",
-        "UILibrary_SMG"
+        "UILibrary_SMG",
+        "UILibrary_WolfWeaponPack_LW",
+        "UILibrary_XPerkIconPack_LW"
     ]
 }

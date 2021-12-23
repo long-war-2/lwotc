@@ -239,7 +239,7 @@ static function X2AbilityTemplate RapidStun()
 	Effect.VisualizationFn = EffectFlyOver_Visualization;
 
 	// Create activated ability that adds the refund effect
-	Template = SelfTargetActivated('QuickZap_LW', "img:///BstarsPerkPack_Icons.UIPerk_RapidStun", true, Effect,, eCost_Free);
+	Template = SelfTargetActivated('QuickZap_LW', "img:///LW_BstarsPerkPack_Icons.UIPerk_RapidStun", true, Effect,, eCost_Free);
 	AddCooldown(Template, default.RAPID_STUN_COOLDOWN);
 
 	// Cannot be used while burning, etc.
@@ -257,7 +257,7 @@ static function X2AbilityTemplate ThatsCloseEnough()
 	// Create a stun effect that removes 2 actions and has a 100% chance of success if the attack hits.
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2, 100, false);
 
-	Template = Attack('ThatsCloseEnough_LW', "img:///Texture2D'BstarsPerkPack_Icons.UIPerk_ThatsCloseEnough'", false, StunnedEffect, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
+	Template = Attack('ThatsCloseEnough_LW', "img:///Texture2D'LW_BstarsPerkPack_Icons.UIPerk_ThatsCloseEnough'", false, StunnedEffect, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
 	
 	HidePerkIcon(Template);
 	AddIconPassive(Template);
@@ -283,7 +283,7 @@ static function X2AbilityTemplate SawedOffOverwatch()
 	local X2AbilityTemplate 				Template;
 	local X2AbilityToHitCalc_StandardAim 	ToHit;
 
-	Template = Attack('NoneShallPass_LW', "img:///'BstarsPerkPack_Icons.UIPerk_SawedOffOverwatch'", false, none, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
+	Template = Attack('NoneShallPass_LW', "img:///'LW_BstarsPerkPack_Icons.UIPerk_SawedOffOverwatch'", false, none, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_None);
 	
 	HidePerkIcon(Template);
 	AddIconPassive(Template);
@@ -315,7 +315,7 @@ static function X2AbilityTemplate ScrapMetal()
 {
 	local X2AbilityTemplate 			Template;
 		
-	Template = PurePassive('ScrapMetal_LW', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('ScrapMetal_LW', "img:///'LW_BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, 'eAbilitySource_Perk', true);
 	Template.AdditionalAbilities.AddItem('ScrapMetalTrigger_LW');
 	
 	return Template;
@@ -330,7 +330,7 @@ static function X2AbilityTemplate ScrapMetalTrigger()
 	AmmoEffect = new class'X2Effect_AddAmmo';
 	AmmoEffect.ExtraAmmoAmount = default.SCRAP_METAL_AMMO_AMOUNT;
 	
-	Template = SelfTargetTrigger('ScrapMetalTrigger_LW', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, AmmoEffect, 'KillMail');
+	Template = SelfTargetTrigger('ScrapMetalTrigger_LW', "img:///'LW_BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, AmmoEffect, 'KillMail');
 	    
 	AddTriggerTargetCondition(Template, default.MatchingWeaponCondition);
 
@@ -357,7 +357,7 @@ static function X2AbilityTemplate Brutality()
 	//local X2AbilityTarget_Single 			PrimaryTarget;
 	local X2Condition_UnitProperty 			TargetCondition, UnitPropertyCondition;
 
-	Template = TargetedDebuff('Brutality_LW', "img:///'BstarsPerkPack_Icons.UIPerk_Brutality'", false, none,, eCost_None);
+	Template = TargetedDebuff('Brutality_LW', "img:///'LW_BstarsPerkPack_Icons.UIPerk_Brutality'", false, none,, eCost_None);
 	Template.bSkipFireAction = true;
 	Template.SourceMissSpeech = '';
 	Template.SourceHitSpeech = '';
@@ -428,7 +428,7 @@ static function X2AbilityTemplate Ruthless()
 	local X2Effect_Ruthless               		ActionPointEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Ruthless_LW');
-	Template.IconImage = "img:///'BstarsPerkPack_Icons.UIPerk_Ruthless'";
+	Template.IconImage = "img:///'LW_BstarsPerkPack_Icons.UIPerk_Ruthless'";
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -463,7 +463,7 @@ static function X2AbilityTemplate LeadTheTarget_LW()
 	
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'LeadTheTarget_LW');
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_LeadTheTarget";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_LeadTheTarget";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
@@ -601,7 +601,7 @@ static function X2AbilityTemplate LeadTheTargetShot_LW()
 	Template.bDisplayInUITacticalText = false;
 
 	Template.TargetingMethod = class'X2TargetingMethod_OverTheShoulder';
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_LeadTheTarget";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_LeadTheTarget";
 	Template.bUsesFiringCamera = true;
 	Template.bShowActivation = true;
 	Template.CinescriptCameraType = "StandardGunFiring";
@@ -630,7 +630,7 @@ static function X2AbilityTemplate BlindingProtocol_LW()
 	local X2Condition_UnitInventory								InventoryCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'BlindingProtocol_LW');
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_BlindingProtocol"; 
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_BlindingProtocol"; 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY + 2;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
@@ -921,7 +921,7 @@ static function X2AbilityTemplate NeutralizingAgents()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('NeutralizingAgents_LW', "img:///UILibrary_WOTC_APA_Class_Pack.perk_NeutralizingAgents", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('NeutralizingAgents_LW', "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_NeutralizingAgents", false, 'eAbilitySource_Perk', true);
 
 	return Template;
 }
@@ -938,7 +938,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 	local X2Effect_SetUnitValue									SetUnitValue;					
 	local X2AbilityTrigger_EventListener						EventListener;
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'ZoneOfControl_LW');
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ZoneOfControl";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -1010,7 +1010,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 	local X2AbilityMultiTarget_AllUnits	TargetStyle;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ZoneOfControl_LW');
 
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ZoneOfControl";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -1042,7 +1042,7 @@ static function X2AbilityTemplate ZoneOfControl_LW()
 
 static function X2AbilityTemplate AddZoCPassive()
 {
-	return PurePassive('ZoCPassive', "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl", , 'eAbilitySource_Perk');
+	return PurePassive('ZoCPassive', "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ZoneOfControl", , 'eAbilitySource_Perk');
 }
 
 static function X2AbilityTemplate AddZoCCleanse()
@@ -1054,7 +1054,7 @@ static function X2AbilityTemplate AddZoCCleanse()
 	local X2Effect_RemoveEffects RemoveEffect;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ZoCCleanse');
 
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ZoneOfControl";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ZoneOfControl";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -1118,7 +1118,7 @@ static function X2AbilityTemplate ApexPredator_LW()
 	PanicTrigger = new class'X2Effect_ApexPredator_LW';
 	PanicTrigger.BuildPersistentEffect(1, true, false, false);
 
-	Template = Passive('ApexPredator_LW', "img:///UILibrary_WOTC_APA_Class_Pack.perk_ApexPredator", true, PanicTrigger);
+	Template = Passive('ApexPredator_LW', "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ApexPredator", true, PanicTrigger);
 
 	Template.AdditionalAbilities.AddItem('ApexPredatorPanic_LW');
 
@@ -1137,7 +1137,7 @@ static function X2AbilityTemplate ApexPredatorPanic_LW()
 
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ApexPredatorPanic_LW');
-	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack.perk_ApexPredator";
+	Template.IconImage = "img:///UILibrary_WOTC_APA_Class_Pack_LW.perk_ApexPredator";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -1234,7 +1234,7 @@ static function X2AbilityTemplate Concentration()
 	Effect.NewResult = eHit_Success;
 
 	// Create the template using a helper function
-	Template = Passive('Concentration_LW', "img:///UILibrary_FavidsPerkPack.UIPerk_Concentration", true, Effect);
+	Template = Passive('Concentration_LW', "img:///UILibrary_FavidsPerkPack_LW.UIPerk_Concentration", true, Effect);
 
 	return Template;
 }
@@ -1252,7 +1252,7 @@ static function X2AbilityTemplate LikeLightning()
 	ReduceCooldownEffect.AbilitiesToTick.AddItem('EMPulser');
 
 	// Create a triggered ability that will activate whenever the unit uses an ability that meets the condition
-	Template = SelfTargetTrigger('LikeLightning_LW', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_chevron", false, ReduceCooldownEffect, 'AbilityActivated');
+	Template = SelfTargetTrigger('LikeLightning_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_lightning_chevron", false, ReduceCooldownEffect, 'AbilityActivated');
 
 	// Only when Run and Gun abilities are used
 	NameCondition = new class'XMBCondition_AbilityName';
@@ -1298,7 +1298,7 @@ static function X2AbilityTemplate LikeLightningRefund()
 	Effect.AbilityShooterConditions.AddItem(RunAndGunCondition);
 
 	// Create the template using a helper function
-	return Passive('LikeLightning_LW_Refund', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_chevron", false, Effect);
+	return Passive('LikeLightning_LW_Refund', "img:///UILibrary_XPerkIconPack_LW.UIPerk_lightning_chevron", false, Effect);
 }
 */
 
@@ -1308,7 +1308,7 @@ static function X2AbilityTemplate Maim()
 	local X2Effect_Immobilize MaimedEffect;
 	
 	// Create the template using a helper function
-	Template = Attack('Maim_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_blossom", false, none, class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY, eCost_WeaponConsumeAll, default.MAIM_AMMO_COST);
+	Template = Attack('Maim_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_shot_blossom", false, none, class'UIUtilities_Tactical'.const.CLASS_LIEUTENANT_PRIORITY, eCost_WeaponConsumeAll, default.MAIM_AMMO_COST);
 
 	// Cooldown
 	AddCooldown(Template, default.MAIM_COOLDOWN);
@@ -1346,7 +1346,7 @@ static function X2AbilityTemplate Preservation()
 	DefenseEffect.VisualizationFn = EffectFlyOver_Visualization;
 
 	// Ability is triggered when concealment is broken
-	Template = SelfTargetTrigger('Preservation_LW', "img:///UILibrary_XPerkIconPack.UIPerk_stealth_defense2", true, DefenseEffect, 'UnitConcealmentBroken', eFilter_Unit);
+	Template = SelfTargetTrigger('Preservation_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_stealth_defense2", true, DefenseEffect, 'UnitConcealmentBroken', eFilter_Unit);
 	
 	// Trigger abilities don't appear as passives. Add a passive ability icon.
 	AddIconPassive(Template);
@@ -1361,7 +1361,7 @@ static function X2AbilityTemplate LickYourWounds()
 	local X2Effect_ApplyHeal HealEffect;
 	
 	// Create a triggered ability that will activate whenever the unit uses an ability that meets the condition
-	Template = SelfTargetTrigger('LickYourWounds_LW', "img:///UILibrary_FavidsPerkPack.UIPerk_LickYourWounds", true, none, 'AbilityActivated');
+	Template = SelfTargetTrigger('LickYourWounds_LW', "img:///UILibrary_FavidsPerkPack_LW.UIPerk_LickYourWounds", true, none, 'AbilityActivated');
 
 	// Only trigger with Hunker Down
 	NameCondition = new class'XMBCondition_AbilityName';
@@ -1406,7 +1406,7 @@ static function X2AbilityTemplate Impulse()
 	OffenseEffect.AbilityTargetConditions.AddItem(default.RangedCondition);
 
 	// Create the template using a helper function
-	Template = Passive('Impulse_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_move2", false, OffenseEffect);
+	Template = Passive('Impulse_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_shot_move2", false, OffenseEffect);
 
 	return Template;
 }
@@ -1421,7 +1421,7 @@ static function X2AbilityTemplate LockNLoad()
 	Effect.AmmoToReload = default.LOCKNLOAD_AMMO_TO_RELOAD;
 	
 	// Create a triggered ability that activates whenever the unit gets a kill
-	Template = SelfTargetTrigger('LockNLoad_LW', "img:///UILibrary_XPerkIconPack.UIPerk_reload_shot", true, Effect, 'KillMail');
+	Template = SelfTargetTrigger('LockNLoad_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_reload_shot", true, Effect, 'KillMail');
     
 	// Effect only applies to matching weapon
 	AddTriggerTargetCondition(Template, default.MatchingWeaponCondition);
@@ -1450,7 +1450,7 @@ static function X2AbilityTemplate TrenchWarfare()
 	ValueEffect.CleanupType = eCleanup_BeginTurn;
     
 	// Create a triggered ability that runs when the owner gets a kill
-	Template = SelfTargetTrigger('TrenchWarfare_LW', "img:///UILibrary_FavidsPerkPack.UIPerk_TrenchWarfare", true, ValueEffect, 'KillMail');
+	Template = SelfTargetTrigger('TrenchWarfare_LW', "img:///UILibrary_FavidsPerkPack_LW.UIPerk_TrenchWarfare", true, ValueEffect, 'KillMail');
 
 	// Trigger abilities don't appear as passives. Add a passive ability icon.
 	AddIconPassive(Template);
@@ -1474,7 +1474,7 @@ static function X2AbilityTemplate TrenchWarfareActivator()
 	local X2Condition_UnitValue ValueCondition;
 
 	// Create a triggered ability that runs at the end of the player's turn
-	Template = SelfTargetTrigger('TrenchWarfare_Activator_LW', "img:///UILibrary_FavidsPerkPack.UIPerk_TrenchWarfare", false, none, 'PlayerTurnEnded', eFilter_Player);
+	Template = SelfTargetTrigger('TrenchWarfare_Activator_LW', "img:///UILibrary_FavidsPerkPack_LW.UIPerk_TrenchWarfare", false, none, 'PlayerTurnEnded', eFilter_Player);
 
 	// Require not already hunkered down
 	EffectsCondition = new class'X2Condition_UnitEffects';
@@ -1516,7 +1516,7 @@ static function X2AbilityTemplate TrenchWarfareActivator()
 	local X2Effect_PersistentStatChange Effect;
 	
 	// Activated ability that targets user
-	Template = SelfTargetActivated('Dedication_LW', "img:///UILibrary_FavidsPerkPack.Perk_Ph_Dedication", true, none, class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY, eCost_Free);
+	Template = SelfTargetActivated('Dedication_LW', "img:///UILibrary_FavidsPerkPack_LW.Perk_Ph_Dedication", true, none, class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY, eCost_Free);
 	Template.bShowActivation = true;
 
 	// Create a persistent stat change effect that grants a mobility bonus - naming the effect Shadowstep lets you ignore reaction fire
@@ -1547,7 +1547,7 @@ static function X2AbilityTemplate Corpsman()
 	TemporaryItemEffect.DataName = 'Medikit';
 
 	// Create the template using a helper function
-	Template = Passive('Corpsman_LW', "img:///UILibrary_XPerkIconPack.UIPerk_medkit_box", true, TemporaryItemEffect);
+	Template = Passive('Corpsman_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_medkit_box", true, TemporaryItemEffect);
 
 	return Template;
 }
@@ -1569,7 +1569,7 @@ static function X2AbilityTemplate Corpsman()
 	Effect.AbilityTargetConditions.AddItem(Condition);
 	Effect.AbilityTargetConditions.AddItem(default.RangedCondition);
 
-	Template = Passive('OpenFire_LW', "img:///UILibrary_XPerkIconPack.UIPerk_stabilize_shot_2", true, Effect);
+	Template = Passive('OpenFire_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_stabilize_shot_2", true, Effect);
 
     return Template;
 }
@@ -1586,7 +1586,7 @@ static function X2AbilityTemplate WatchThemRun()
     // Effect granting an overwatch shot
 	Effect = new class'X2Effect_AddOverwatchActionPoints';
     
-	Template = SelfTargetTrigger('WatchThemRun_LW', "img:///UILibrary_XPerkIconPack.UIPerk_overwatch_grenade", true, Effect, 'AbilityActivated');
+	Template = SelfTargetTrigger('WatchThemRun_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_overwatch_grenade", true, Effect, 'AbilityActivated');
     Template.bShowActivation = true;
 
 	// Only when Throw/Launch Grenade abilities are used
@@ -1630,7 +1630,7 @@ static function X2AbilityTemplate Avenger()
 	local X2Effect_ReturnFireAOE                FireEffect;
 	
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Avenger_LW');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_pistol_circle";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_pistol_circle";
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -1680,7 +1680,7 @@ static function X2AbilityTemplate Predator()
 	Effect.AbilityTargetConditions.AddItem(default.RangedCondition);
 
 	// Create the template using a helper function
-	return Passive('Predator_LW', "img:///UILibrary_FavidsPerkPack.Perk_Ph_Predator", true, Effect);
+	return Passive('Predator_LW', "img:///UILibrary_FavidsPerkPack_LW.Perk_Ph_Predator", true, Effect);
 }
 
 static function X2AbilityTemplate Stiletto()
@@ -1734,7 +1734,7 @@ static function X2AbilityTemplate SurvivalInstinct()
 	Effect.AbilityTargetConditionsAsTarget.AddItem(Condition);
 	
 	// Create the template using a helper function
-	return Passive('SurvivalInstinct_LW', "img:///UILibrary_SOHunter.UIPerk_survivalinstinct", true, Effect);
+	return Passive('SurvivalInstinct_LW', "img:///UILibrary_SOHunter_LW.UIPerk_survivalinstinct", true, Effect);
 }
 
 
@@ -1748,7 +1748,7 @@ static function X2AbilityTemplate Reposition()
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
-	Template.IconImage = "img:///UILibrary_SOCombatEngineer.UIPerk_skirmisher";
+	Template.IconImage = "img:///UILibrary_SOCombatEngineer_LW.UIPerk_skirmisher";
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
@@ -1772,14 +1772,14 @@ static function X2AbilityTemplate Overkill()
 	Effect = new class'X2Effect_Overkill';
 	Effect.BonusDamage = default.OverkillBonusDamage;
 
-	return Passive('Overkill_LW', "img:///UILibrary_SODragoon.UIPerk_overkill", true, Effect);
+	return Passive('Overkill_LW', "img:///UILibrary_SODragoon_LW.UIPerk_overkill", true, Effect);
 }
 
 static function X2AbilityTemplate UnlimitedPower()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('Unlimitedpower_LW', "img:///UILibrary_XPerkIconPack.UIPerk_lightning_pistol", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('Unlimitedpower_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_lightning_pistol", false, 'eAbilitySource_Perk', true);
 
 	return Template;
 }
@@ -1799,7 +1799,7 @@ static function X2AbilityTemplate SuperCharge()
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.Hostility = eHostility_Neutral;
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_lightning_stabilize";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_lightning_stabilize";
 
 	Charges = new class'X2AbilityCharges';
 	Charges.InitialCharges = default.SUPERCHARGE_CHARGES;
@@ -1852,7 +1852,7 @@ static function X2AbilityTemplate Disassembly()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Disassembly_LW');
 //BEGIN AUTOGENERATED CODE: Template Overrides 'FullThrottle'
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_gremlin_crit2";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_gremlin_crit2";
 	Template.ActivationSpeech = 'FullThrottle';
 //END AUTOGENERATED CODE: Template Overrides 'FullThrottle'
 
@@ -1891,7 +1891,7 @@ static function X2AbilityTemplate DisassemblyPassive()
 {
 	local X2AbilityTemplate		Template;
 
-	Template = PurePassive('DisassemblyPassive_LW', "img:///UILibrary_XPerkIconPack.UIPerk_gremlin_crit2", , 'eAbilitySource_Perk');
+	Template = PurePassive('DisassemblyPassive_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_gremlin_crit2", , 'eAbilitySource_Perk');
 
 	return Template;
 }
@@ -1906,7 +1906,7 @@ static function X2AbilityTemplate WeaponHandling()
 	Effect.bShortRange = true;
 	Effect.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
 
-	return Passive('WeaponHandling_LW', "img:///UILibrary_SOHunter.UIPerk_point_blank", false, Effect);
+	return Passive('WeaponHandling_LW', "img:///UILibrary_SOHunter_LW.UIPerk_point_blank", false, Effect);
 }
 
 static function X2AbilityTemplate ShootingSharp()
@@ -1939,7 +1939,7 @@ static function X2AbilityTemplate ShootingSharp()
 	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
 	
 	// Activated ability that targets user
-	Template = Passive('ShootingSharp_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_box", true, ShootingEffect);
+	Template = Passive('ShootingSharp_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_shot_box", true, ShootingEffect);
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
@@ -1972,7 +1972,7 @@ static function X2AbilityTemplate TargetFocus()
 	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
 	
 	// Activated ability that targets user
-	Template = Passive('TargetFocus_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_shot_overwatch", true, ShootingEffect);
+	Template = Passive('TargetFocus_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_enemy_shot_overwatch", true, ShootingEffect);
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
@@ -1999,7 +1999,7 @@ static function X2AbilityTemplate AimingAssist()
 	Effect.AbilityTargetConditions.AddItem(NeedOneOfTheEffects);
 
 	// Create the template using a helper function
-	return Passive('AimAssist_LW', "img:///UILibrary_XPerkIconPack.UIPerk_shot_circle", true, Effect);
+	return Passive('AimAssist_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_shot_circle", true, Effect);
 }
 
 static function X2AbilityTemplate LightningSlash()
@@ -2020,7 +2020,7 @@ static function X2AbilityTemplate LightningSlash()
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
 	Template.HideErrors.AddItem('AA_WeaponIncompatible');
 	Template.CinescriptCameraType = "Ranger_Reaper";
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_lightning_knife";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_lightning_knife";
 	Template.bHideOnClassUnlock = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY;
 	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
@@ -2095,7 +2095,7 @@ static function X2AbilityTemplate InspireAgility()
 	Effect.VisualizationFn = EffectFlyOver_Visualization;
 
 	// Create a targeted buff that affects allies
-	Template = TargetedBuff('InspireAgility_LW', "img:///UILibrary_XPerkIconPack.UIPerk_move_command", true, Effect, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_Free);
+	Template = TargetedBuff('InspireAgility_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_move_command", true, Effect, class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY, eCost_Free);
 
 	// The ability starts out with a single charge
 	AddCharges(Template, 1);
@@ -2122,7 +2122,7 @@ static function X2AbilityTemplate InspireAgilityTrigger()
 	Effect.BonusCharges = 1;
 
 	// Create a triggered ability that activates when the unit gets a kill
-	return SelfTargetTrigger('InspireAgilityTrigger_LW', "img:///UILibrary_XPerkIconPack.UIPerk_move_command", false, Effect, 'KillMail');
+	return SelfTargetTrigger('InspireAgilityTrigger_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_move_command", false, Effect, 'KillMail');
 }
 
 static function X2AbilityTemplate PrimaryReturnFire()
@@ -2396,7 +2396,7 @@ static function X2AbilityTemplate YouCannotHide()
 	Effect.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
 
 	// Create the template using a helper function
-	return Passive('YouCannotHide_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_overwatch_shot", true, Effect);
+	return Passive('YouCannotHide_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_enemy_overwatch_shot", true, Effect);
 }
 
 
@@ -2425,7 +2425,7 @@ static function X2AbilityTemplate PsychoticRage()
 	Effect.AbilityTargetConditionsAsTarget.AddItem(Condition);
 	
 	// Create the template using a helper function
-	return Passive('PsychoticRage_LW', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect);
+	return Passive('PsychoticRage_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_melee_adrenaline", true, Effect);
 }
 
 static function X2AbilityTemplate PreciseStrike()
@@ -2448,7 +2448,7 @@ static function X2AbilityTemplate PreciseStrike()
 	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
 	
 	// Activated ability that targets user
-	Template = Passive('PreciseStrike_LW', "img:///UILibrary_XPerkIconPack.UIPerk_knife_shot", true, ShootingEffect);
+	Template = Passive('PreciseStrike_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_knife_shot", true, ShootingEffect);
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
@@ -2604,7 +2604,7 @@ static function X2AbilityTemplate OverbearingSuperiority()
 	SuperiorityEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
 
 	// Create the template for an activated ability using a helper function.
-	Template = Passive('OverbearingSuperiority_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_crit_chevron_x3", true, SuperiorityEffect);
+	Template = Passive('OverbearingSuperiority_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_enemy_crit_chevron_x3", true, SuperiorityEffect);
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
@@ -2681,7 +2681,7 @@ static function X2AbilityTemplate Fatality()
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
 
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_panic_crit";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_panic_crit";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -2832,7 +2832,7 @@ static function X2AbilityTemplate AddBrawler()
 	local X2Effect_Brawler					DamageReduction;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'Brawler');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_enemy_defense_chevron";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_enemy_defense_chevron";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -2861,7 +2861,7 @@ static function X2AbilityTemplate AddInstantReactionTime()
 	local X2Effect_InstantReactionTime			DodgeBonus;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'InstantReactionTime');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_blossom";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_move_blossom";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -2891,7 +2891,7 @@ static function X2AbilityTemplate AddCombatReadiness()
 	local XMBCondition_CoverType CoverCondition;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CombatReadiness');
 //BEGIN AUTOGENERATED CODE: Template Overrides 'FullThrottle'
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_command_defense";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_command_defense";
 	Template.ActivationSpeech = 'FullThrottle';
 //END AUTOGENERATED CODE: Template Overrides 'FullThrottle'
 
@@ -2952,7 +2952,7 @@ static function X2AbilityTemplate AddBanzai()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Banzai_LW');
 //BEGIN AUTOGENERATED CODE: Template Overrides 'FullThrottle'
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_command_defense";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_command_defense";
 	Template.ActivationSpeech = 'FullThrottle';
 //END AUTOGENERATED CODE: Template Overrides 'FullThrottle'
 
@@ -3007,7 +3007,7 @@ static function X2AbilityTemplate BanzaiPassive()
 {
 	local X2AbilityTemplate		Template;
 
-	Template = PurePassive('BanzaiPassive_LW', "img:///UILibrary_XPerkIconPack.UIPerk_command_defense", , 'eAbilitySource_Perk');
+	Template = PurePassive('BanzaiPassive_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_command_defense", , 'eAbilitySource_Perk');
 
 	return Template;
 }
@@ -3016,7 +3016,7 @@ static function X2AbilityTemplate CombatReadinessPassive()
 {
 	local X2AbilityTemplate		Template;
 
-	Template = PurePassive('CombatReadinessPassive', "img:///UILibrary_XPerkIconPack.UIPerk_command_defense", , 'eAbilitySource_Perk');
+	Template = PurePassive('CombatReadinessPassive', "img:///UILibrary_XPerkIconPack_LW.UIPerk_command_defense", , 'eAbilitySource_Perk');
 
 	return Template;
 }
@@ -3050,7 +3050,7 @@ static function X2AbilityTemplate Magnum()
 
 	Effect.AbilityTargetConditions.AddItem(NameCondition);
 
-	return Passive('Magnum_LW', "img:///UILibrary_XPerkIconPack.UIPerk_pistol_sniper", false, Effect);
+	return Passive('Magnum_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_pistol_sniper", false, Effect);
 }
 
 
@@ -3085,7 +3085,7 @@ static function X2AbilityTemplate CrusaderRage()
 	GreaterPaddingEffect.Padding_HealHP = default.CRUSADER_WOUND_HP_REDUCTTION;	
 	
 	// Create the template using a helper function
-	Template = Passive('CrusaderRage_LW', "img:///UILibrary_XPerkIconPack.UIPerk_melee_adrenaline", true, Effect);
+	Template = Passive('CrusaderRage_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_melee_adrenaline", true, Effect);
 	Template.AddTargetEffect(GreaterPaddingEffect);
 
 	Condition = new class'X2Condition_UnitStatCheck';

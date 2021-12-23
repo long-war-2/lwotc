@@ -16,7 +16,7 @@ static function X2Effect_Immobilize CreateMaimedStatusEffect(optional int NumTur
 	ImmobilizeEffect.DuplicateResponse = eDupe_Refresh;
 	ImmobilizeEffect.BuildPersistentEffect(NumTurns, false, false, , eGameRule_PlayerTurnBegin);
 	ImmobilizeEffect.SetDisplayInfo(ePerkBuff_Penalty, default.MaimedFriendlyName, default.MaimedFriendlyDesc,
-			"img:///UILibrary_XPerkIconPack.UIPerk_move_blossom", true, , AbilitySourceName);
+			"img:///UILibrary_XPerkIconPack_LW.UIPerk_move_blossom", true, , AbilitySourceName);
 	ImmobilizeEffect.AddPersistentStatChange(eStat_Mobility, 0.0f, MODOP_PostMultiplication);
 	ImmobilizeEffect.VisualizationFn = class'XMBAbility'.static.EffectFlyOver_Visualization;
 

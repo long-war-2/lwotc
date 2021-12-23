@@ -253,7 +253,7 @@ static function X2AbilityTemplate AddTrackingSpawnTrigger()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Hero_TrackingSpawnTrigger');
 
-	Template.IconImage = "img:///UILibrary_SOHunter.UIPerk_tracking";
+	Template.IconImage = "img:///UILibrary_SOHunter_LW.UIPerk_tracking";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -802,7 +802,7 @@ static function X2DataTemplate AddShadowGrenadier()
 	local X2Effect_ShadowGrenadier			Effect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ShadowGrenadier');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_stealth_grenade";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_stealth_grenade";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -825,7 +825,7 @@ static function X2DataTemplate AddPoisonedBlades()
 {
 	local X2AbilityTemplate Template;
 
-	Template = PurePassive('PoisonedBlades', "img:///UILibrary_XPerkIconPack.UIPerk_knife_adrenaline", false, 'eAbilitySource_Perk');
+	Template = PurePassive('PoisonedBlades', "img:///UILibrary_XPerkIconPack_LW.UIPerk_knife_adrenaline", false, 'eAbilitySource_Perk');
 	Template.bCrossClassEligible = false;
 
 	return Template;
@@ -841,7 +841,7 @@ static function X2DataTemplate AddChargeBattery()
 	local X2Condition_UnitProperty		ConcealedCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChargeBattery');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_lightning_stealth";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_lightning_stealth";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.Hostility = eHostility_Neutral;
 	Template.ConcealmentRule = eConceal_Always;
@@ -998,7 +998,7 @@ static function X2AbilityTemplate ParaMedikitHeal()
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 	//Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
 
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_medkit";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_move_medkit";
 	Template.Hostility = eHostility_Defensive;
 	Template.bDisplayInUITooltip = false;
 	Template.bDisplayInUITacticalText = false;
@@ -1076,7 +1076,7 @@ static function X2AbilityTemplate ParaMedikitStabilize()
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 	//Template.AbilityTriggers.AddItem(new class'X2AbilityTrigger_EndOfMove');
 
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_stabilize_move2";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_stabilize_move2";
 	Template.Hostility = eHostility_Defensive;
 	Template.bDisplayInUITooltip = false;
 	Template.bDisplayInUITacticalText = false;
@@ -1170,7 +1170,7 @@ static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameStat
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_crit_move2";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_crit_move2";
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);

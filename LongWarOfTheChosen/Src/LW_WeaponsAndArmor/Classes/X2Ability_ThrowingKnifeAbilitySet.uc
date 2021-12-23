@@ -553,7 +553,7 @@ static function AddRendTheMarkedEffect(X2AbilityTemplate Template)
 	ToHitModifier.BuildPersistentEffect(1, false, true, true, eGameRule_PlayerTurnBegin);
 	ToHitModifier.DuplicateResponse = eDupe_Allow;
 	ToHitModifier.bApplyAsTarget = true;
-	ToHitModifier.SetDisplayInfo(ePerkBuff_Penalty, default.RendTheMarkedEffectName, `XEXPAND.ExpandString(default.RendTheMarkedEffectDesc), "img:///UILibrary_XPerkIconPack.UIPerk_knife_crit");
+	ToHitModifier.SetDisplayInfo(ePerkBuff_Penalty, default.RendTheMarkedEffectName, `XEXPAND.ExpandString(default.RendTheMarkedEffectDesc), "img:///UILibrary_XPerkIconPack_LW.UIPerk_knife_crit");
 	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.REND_THE_MARKED_CRIT, default.RendTheMarkedEffectName);
 	ToHitModifier.TargetConditions.AddItem(AbilityCondition);
 
@@ -571,9 +571,7 @@ static function X2AbilityTemplate AddKnifeJugglerTrigger()
 	AmmoEffect = new class'X2Effect_AddAmmo';
 	AmmoEffect.ExtraAmmoAmount = 1;
 
-	
-	Template = SelfTargetTrigger('KnifeJugglerTrigger_LW', "img:///'BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, AmmoEffect, 'KillMail');
-	    
+	Template = SelfTargetTrigger('KnifeJugglerTrigger_LW', "img:///'LW_BstarsPerkPack_Icons.UIPerk_ScrapMetal'", false, AmmoEffect, 'KillMail');
 
 	PrimaryWeaponCondition = new class'X2Condition_PrimaryWeapon';
 	PrimaryWeaponCondition.RequirePrimary = true;
@@ -685,7 +683,7 @@ static function X2AbilityTemplate BlueScreenKnives()
 	ShootingEffect.BuildPersistentEffect(1, true, false, false, eGameRule_TacticalGameStart);
 	
 	// Activated ability that targets user
-	Template = Passive('BlueScreenKnives', "img:///UILibrary_XPerkIconPack.UIPerk_gremlin_knife", true, ShootingEffect);
+	Template = Passive('BlueScreenKnives', "img:///UILibrary_XPerkIconPack_LW.UIPerk_gremlin_knife", true, ShootingEffect);
 
 	// If this ability is set up as a cross class ability, but it's not directly assigned to any classes, this is the weapon slot it will use
 	Template.DefaultSourceItemSlot = eInvSlot_SecondaryWeapon;
@@ -729,7 +727,7 @@ static function X2AbilityTemplate RendTheMarked()
 {
 	local X2AbilityTemplate		Template;
 
-	Template = PurePassive('RendTheMarked', "img:///UILibrary_XPerkIconPack.UIPerk_knife_crit", , 'eAbilitySource_Perk');
+	Template = PurePassive('RendTheMarked', "img:///UILibrary_XPerkIconPack_LW.UIPerk_knife_crit", , 'eAbilitySource_Perk');
 
 	return Template;
 }

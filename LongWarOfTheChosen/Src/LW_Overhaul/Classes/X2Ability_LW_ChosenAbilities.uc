@@ -917,7 +917,7 @@ static function X2DataTemplate CreateKeen()
 	local X2Effect_ChosenKeen KeenEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenKeen');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_adrenaline_defense";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_adrenaline_defense";
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
@@ -1624,7 +1624,7 @@ static function X2DataTemplate FreeGrenades()
 	local X2Effect_FreeGrenades GrenadeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'FreeGrenades');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_adrenaline_defense";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_adrenaline_defense";
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
@@ -1776,7 +1776,7 @@ static function X2AbilityTemplate CreateDisabler()
 {
 	local X2AbilityTemplate		Template;
 
-	Template = PurePassive('Disabler', "img:///UILibrary_XPerkIconPack.UIPerk_reload_shot", , 'eAbilitySource_Perk');
+	Template = PurePassive('Disabler', "img:///UILibrary_XPerkIconPack_LW.UIPerk_reload_shot", , 'eAbilitySource_Perk');
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
@@ -1838,7 +1838,7 @@ static function X2AbilityTemplate CreateUnstoppable()
 	local X2Effect_Unstoppable 					UnstoppableEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Unstoppable_LW');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_move_blaze";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_move_blaze";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
@@ -1874,7 +1874,7 @@ static function X2AbilityTemplate CreateUnstoppablePassive()
 {
 	local X2AbilityTemplate		Template;
 
-	Template = PurePassive('UnstoppablePassive_LW', "img:///UILibrary_XPerkIconPack.UIPerk_move_blaze", , 'eAbilitySource_Perk');
+	Template = PurePassive('UnstoppablePassive_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_move_blaze", , 'eAbilitySource_Perk');
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;

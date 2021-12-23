@@ -47,7 +47,7 @@ static function X2DataTemplate Create_SPARKChaingun()
 
 	`CREATE_X2TEMPLATE(class'X2WeaponTemplate', Template, 'SPARKChaingun');
 
-	Template.strImage = "img:///EW_MEC_Weapons.UI.HeavyChaingun";
+	Template.strImage = "img:///EW_MEC_Weapons_LW.UI.HeavyChaingun";
 
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_AssaultRifle';
 	Template.WeaponPanelImage = "_ConventionalRifle";
@@ -75,7 +75,7 @@ static function X2DataTemplate Create_SPARKChaingun()
 	Template.NumUpgradeSlots = 3;
 	
 		
-	Template.GameArchetype = "EW_MEC_Weapons.Archetypes.WP_MEC_Chaingun";
+	Template.GameArchetype = "EW_MEC_Weapons_LW.Archetypes.WP_MEC_Chaingun";
 
 	Template.bIsLargeWeapon = true;	//Used in Weapon Upgrade UI to determine distance from camera.
 	Template.StartingItem = true;
@@ -126,7 +126,7 @@ static function X2DataTemplate Create_SparkRifle_Laser()
 	Template.NumUpgradeSlots = default.SPARKRIFLE_LASER_UPGRADESLOTS;
 	
 
-	Template.GameArchetype = "EW_MEC_Weapons.Archetypes.WP_MEC_Railgun";
+	Template.GameArchetype = "EW_MEC_Weapons_LW.Archetypes.WP_MEC_Railgun";
 	
 	Template.CreatorTemplateName = 'SparkRifle_LS_Schematic'; // The schematic which creates this item
 	
@@ -190,7 +190,7 @@ static function X2DataTemplate Create_SparkRifle_Coil()
 	Template.NumUpgradeSlots = default.SPARKRIFLE_COIL_UPGRADESLOTS;
 	
 
-	Template.GameArchetype = "EW_MEC_Weapons.Archetypes.WP_MEC_PPC";
+	Template.GameArchetype = "EW_MEC_Weapons_LW.Archetypes.WP_MEC_PPC";
 	
 	Template.CreatorTemplateName = 'SparkRifle_CG_Schematic'; // The schematic which creates this item
 
