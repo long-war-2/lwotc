@@ -322,11 +322,11 @@ static protected function EventListenerReturn IsPlotValidForMission(
 	Name EventID,
 	Object CallbackData)
 {
-	local XComLWTuple Tuple;
+	local LWTuple Tuple;
 	local MissionTypePlotTypeOverride OverrideDef;
 	local int i;
 	
-	Tuple = XComLWTuple(EventData);
+	Tuple = LWTuple(EventData);
 	if (Tuple == none)
 		return ELR_NoInterrupt;
 

@@ -626,16 +626,16 @@ function float GetIncreaseFromDarkEvents()
 // except the first (which contains the input level).
 function float GetIncreaseFromMods()
 {
-    local XComLWTuple Tuple;
-    local XComLWTValue Value;
+    local LWTuple Tuple;
+    local LWTValue Value;
     local int i;
     local float Result;
 
-    Tuple = new class'XComLWTuple';
+    Tuple = new class'LWTuple';
     Tuple.Id = 'GetReinforcementValue';
 
     // Add the current reinforce chance
-    Value.Kind = XComLWTVFloat;
+    Value.Kind = LWTVFloat;
     Value.f = Bucket;
     Tuple.Data.AddItem(Value);
 
@@ -643,7 +643,7 @@ function float GetIncreaseFromMods()
 
     for (i = 1; i < Tuple.Data.Length; ++i)
     {
-        if (Tuple.Data[i].Kind == XComLWTVFloat)
+        if (Tuple.Data[i].Kind == LWTVFloat)
         {
             Result += Tuple.Data[i].f;
         }

@@ -29,20 +29,20 @@ function static bool IsContinentBonusActive (name TestContinentBonus)
 static function bool CanRankUpPsiSoldier(XComGameState_Unit Unit)
 {
 	local int NumKills;
-	local XComLWTuple CustomPsiRankCond; // LWS  added
+	local LWTuple CustomPsiRankCond; // LWS  added
 
 	// inserted hook at LeaderEnemyBoss' request
-	CustomPsiRankCond = new class'XComLWTuple';
+	CustomPsiRankCond = new class'LWTuple';
 	CustomPsiRankCond.Id = 'CustomPsiRankupCondition';
 	CustomPsiRankCond.Data.Add(2);
-	CustomPsiRankCond.Data[0].kind = XComLWTVbool;
+	CustomPsiRankCond.Data[0].kind = LWTVbool;
 	CustomPsiRankCond.Data[0].b = false;
-	CustomPsiRankCond.Data[1].kind = XComLWTVbool;
+	CustomPsiRankCond.Data[1].kind = LWTVbool;
 	CustomPsiRankCond.Data[1].b = false;
    
 	`XEVENTMGR.TriggerEvent('CustomPsiRankupCondition', CustomPsiRankCond, Unit);
    
-	If (CustomPsiRankCond.Data[0].b)
+	if (CustomPsiRankCond.Data[0].b)
 	{
 		return CustomPsiRankCond.Data[1].b;
 	}

@@ -85,14 +85,6 @@ function bool CanBeDetected(XComGameState_LWAlienActivity ActivityState, XComGam
 
 	ActivityTemplate = ActivityState.GetMyTemplate();
 
-	//DEPRECATED -- liberation activity now directly removes/modifies activities directly
-	// activities may "effectively" disappear after liberation -- we do this for undetected ones by making them undetectable
-	//if(class'X2StrategyElement_DefaultAlienActivities'.static.RegionIsLiberated(RegionState, NewGameState))
-	//{
-		//if(ShouldSkipLiberatedRegion(ActivityTemplate))
-			//return false;
-	//}
-
 	ActivityState.MissionResourcePool += GetMissionIncomeForUpdate(OutpostState);
 	ActivityState.MissionResourcePool += GetExternalMissionModifiersForUpdate(ActivityState, NewGameState); // for other mods to hook into
 
@@ -186,20 +178,20 @@ function float GetMissionIncomeForUpdate(XComGameState_LWOutpost OutpostState)
 
 function float GetExternalMissionModifiersForUpdate(XComGameState_LWAlienActivity ActivityState, XComGameState NewGameState)
 {
-    local XComLWTuple Tuple;
+    local LWTuple Tuple;
 
-    Tuple = new class'XComLWTuple';
+    Tuple = new class'LWTuple';
 	Tuple.Data.Add(1);
     Tuple.Id = 'GetActivityDetectionIncomeModifier';
 
     // add the new amount
-    Tuple.Data[0].Kind = XComLWTVFloat;
+    Tuple.Data[0].Kind = LWTVFloat;
     Tuple.Data[0].f = 0;
 
     // Fire the event
     `XEVENTMGR.TriggerEvent('GetActivityDetectionIncomeModifier', Tuple, ActivityState, NewGameState);
 
-    if (Tuple.Data.Length == 0 || Tuple.Data[0].Kind != XComLWTVFloat)
+    if (Tuple.Data.Length == 0 || Tuple.Data[0].Kind != LWTVFloat)
 		return 0;
 	else
 		return Tuple.Data[0].f;

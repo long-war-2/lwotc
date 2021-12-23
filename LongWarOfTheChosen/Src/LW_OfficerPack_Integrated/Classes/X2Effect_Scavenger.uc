@@ -33,7 +33,7 @@ static function EventListenerReturn ScavengerAutoLoot(Object EventData, Object E
 	local XComGameState_Effect_EffectCounter EffectState;
 	local XComGameState_Unit KillerUnit, DeadUnit, ScavengingUnit;
 	local XComGameStateHistory History;
-	local XComLWTuple OverrideActivation;
+	local LWTuple OverrideActivation;
 
 	History = `XCOMHISTORY;
 
@@ -66,10 +66,10 @@ static function EventListenerReturn ScavengerAutoLoot(Object EventData, Object E
 
 	// Allow an event handler to override the activation of scavenger by setting the boolean
 	// value of the Tuple to false.
-	OverrideActivation = new class'XComLWTuple';
+	OverrideActivation = new class'LWTuple';
 	OverrideActivation.Id = 'OverrideScavengerActivation';
 	OverrideActivation.Data.Length = 1;
-	OverrideActivation.Data[0].kind = XComLWTVBool;
+	OverrideActivation.Data[0].kind = LWTVBool;
 	OverrideActivation.Data[0].b = false;
 	`XEVENTMGR.TriggerEvent('OverrideScavengerActivation', OverrideActivation, EffectState);
 

@@ -113,21 +113,21 @@ static protected function int GetListenerPriority()
 // infiltration percentage, squad size, etc.
 static function EventListenerReturn OnPlacedDelayedEvacZone(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComLWTuple EvacDelayTuple;
+	local LWTuple EvacDelayTuple;
 	local XComGameState_HeadquartersXCom XComHQ;
 	local XComGameState_LWSquadManager SquadMgr;
 	local XComGameState_LWPersistentSquad Squad;
 	local XComGameState_MissionSite MissionState;
 	local XComGameState_LWAlienActivity CurrentActivity;
 
-	EvacDelayTuple = XComLWTuple(EventData);
+	EvacDelayTuple = LWTuple(EventData);
 	if(EvacDelayTuple == none)
 		return ELR_NoInterrupt;
 
 	if(EvacDelayTuple.Id != 'DelayedEvacTurns')
 		return ELR_NoInterrupt;
 
-	if(EvacDelayTuple.Data[0].Kind != XComLWTVInt)
+	if(EvacDelayTuple.Data[0].Kind != LWTVInt)
 		return ELR_NoInterrupt;
 
 	XComHQ = `XCOMHQ;

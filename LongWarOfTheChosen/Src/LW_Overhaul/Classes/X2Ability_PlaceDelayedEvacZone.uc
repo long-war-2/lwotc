@@ -95,8 +95,8 @@ static function X2AbilityTemplate PlaceDelayedEvacZone()
 static function int GetEvacDelay()
 {
     local XComGameState_LWEvacSpawner EvacSpawner;
-    local XComLWTuple EvacDelayTuple;
-    local XComLWTValue Value;
+    local LWTuple EvacDelayTuple;
+    local LWTValue Value;
     local int Delay;
 
     // Handle cases where this isn't the first time we've placed an evac zone on this map. If it takes
@@ -124,16 +124,16 @@ static function int GetEvacDelay()
 
     // Below here, we're spawning a new one for the first time, so use the full delay.
 
-    Value.Kind = XComLWTVInt;
+    Value.Kind = LWTVInt;
     Value.i = default.DEFAULT_EVAC_PLACEMENT_DELAY[`STRATEGYDIFFICULTYSETTING];
 
-    EvacDelayTuple = new class'XComLWTuple';
+    EvacDelayTuple = new class'LWTuple';
     EvacDelayTuple.Data.AddItem(Value);
     EvacDelayTuple.Id = 'DelayedEvacTurns';
 
     `XEVENTMGR.TriggerEvent('GetEvacPlacementDelay', EvacDelayTuple, none);
 
-    if (EvacDelayTuple.Data.Length != 1 || EvacDelayTuple.Data[0].Kind != XComLWTVInt)
+    if (EvacDelayTuple.Data.Length != 1 || EvacDelayTuple.Data[0].Kind != LWTVInt)
     {
         // oops, someone set a bad value.
         `log("X2Ability_PlaceDelayedEvacZone.PlaceDelayedEvacZone_BuildGameState: Bad tuple value returned.");

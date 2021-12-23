@@ -9,16 +9,16 @@ class XComGameState_Effect_AirController extends XComGameState_Effect;
 // once it's placed
 static function EventListenerReturn OnPlacedDelayedEvacZone(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
 {
-	local XComLWTuple EvacDelayTuple;
+	local LWTuple EvacDelayTuple;
 
-	EvacDelayTuple = XComLWTuple(EventData);
+	EvacDelayTuple = LWTuple(EventData);
 	if(EvacDelayTuple == none)
 		return ELR_NoInterrupt;
 
 	if(EvacDelayTuple.Id != 'DelayedEvacTurns')
 		return ELR_NoInterrupt;
 
-	if(EvacDelayTuple.Data[0].Kind != XComLWTVInt)
+	if(EvacDelayTuple.Data[0].Kind != LWTVInt)
 		return ELR_NoInterrupt;
 
 	if(EvacDelayTuple.Data[0].i > 0)

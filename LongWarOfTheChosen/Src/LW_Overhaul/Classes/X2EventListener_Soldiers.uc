@@ -1008,12 +1008,12 @@ static function EventListenerReturn EquipNewSoldier(Object EventData, Object Eve
 
 static function EventListenerReturn OverrideCollectorActivation(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	local XComLWTuple OverrideActivation;
+	local LWTuple OverrideActivation;
 
-	OverrideActivation = XComLWTuple(EventData);
+	OverrideActivation = LWTuple(EventData);
 	`assert(OverrideActivation != none);
 	`assert(OverrideActivation.Id == 'OverrideCollectorActivation');
-	`assert(OverrideActivation.Data[0].kind == XComLWTVBool);
+	`assert(OverrideActivation.Data[0].kind == LWTVBool);
 
 	OverrideActivation.Data[0].b = class'Utilities_LW'.static.KillXpIsCapped();
 
@@ -1022,12 +1022,12 @@ static function EventListenerReturn OverrideCollectorActivation(Object EventData
 
 static function EventListenerReturn OverrideScavengerActivation(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	local XComLWTuple OverrideActivation;
+	local LWTuple OverrideActivation;
 
-	OverrideActivation = XComLWTuple(EventData);
+	OverrideActivation = LWTuple(EventData);
 	`assert(OverrideActivation != none);
 	`assert(OverrideActivation.Id == 'OverrideScavengerActivation');
-	`assert(OverrideActivation.Data[0].kind == XComLWTVBool);
+	`assert(OverrideActivation.Data[0].kind == LWTVBool);
 
 	OverrideActivation.Data[0].b = class'Utilities_LW'.static.KillXpIsCapped();
 

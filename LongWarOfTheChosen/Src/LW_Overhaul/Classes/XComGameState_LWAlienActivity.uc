@@ -1111,24 +1111,24 @@ function bool TriggerOverridePlotValidForMission(
 	PlotDefinition PlotDef,
 	out int IsAllowed)
 {
-	local XComLWTuple Tuple;
+	local LWTuple Tuple;
 
-	Tuple = new class'XComLWTuple';
+	Tuple = new class'LWTuple';
 	Tuple.Id = 'OverridePlotValidForMission';
 	Tuple.Data.Add(7);
-	Tuple.Data[0].kind = XComLWTVString;
+	Tuple.Data[0].kind = LWTVString;
 	Tuple.Data[0].s = MissionDef.sType;
-	Tuple.Data[1].kind = XComLWTVString;
+	Tuple.Data[1].kind = LWTVString;
 	Tuple.Data[1].s = MissionDef.MissionFamily;
-	Tuple.Data[2].kind = XComLWTVString;
+	Tuple.Data[2].kind = LWTVString;
 	Tuple.Data[2].s = PlotDef.strType;
-	Tuple.Data[3].kind = XComLWTVString;
+	Tuple.Data[3].kind = LWTVString;
 	Tuple.Data[3].s = PlotDef.MapName;
-	Tuple.Data[4].kind = XComLWTVBool;
+	Tuple.Data[4].kind = LWTVBool;
 	Tuple.Data[4].b = PlotDef.ExcludeFromStrategy;
-	Tuple.Data[5].kind = XComLWTVBool;
+	Tuple.Data[5].kind = LWTVBool;
 	Tuple.Data[5].b = IsAllowed == 1;    // Allow the plot or not?
-	Tuple.Data[6].kind = XComLWTVBool;
+	Tuple.Data[6].kind = LWTVBool;
 	Tuple.Data[6].b = false;   // Override the default behaviour?
 
 	`XEVENTMGR.TriggerEvent(Tuple.Id, Tuple, self);

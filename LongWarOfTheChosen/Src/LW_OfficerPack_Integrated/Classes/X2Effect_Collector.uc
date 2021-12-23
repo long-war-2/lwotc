@@ -27,7 +27,7 @@ static function EventListenerReturn CollectionCheck(Object EventData, Object Eve
 	local int								RandRoll, IntelGain;
 	local XComGameState_Unit				SourceUnit, DeadUnit, CollectionUnit;
 	local XComGameState_Effect_EffectCounter EffectState;
-	local XComLWTuple OverrideActivation;
+	local LWTuple OverrideActivation;
 
 	History = `XCOMHISTORY;
 
@@ -56,10 +56,10 @@ static function EventListenerReturn CollectionCheck(Object EventData, Object Eve
 
 	// Allow an event handler to override the activation of collector by setting the boolean
 	// value of the Tuple to true.
-	OverrideActivation = new class'XComLWTuple';
+	OverrideActivation = new class'LWTuple';
 	OverrideActivation.Id = 'OverrideCollectorActivation';
 	OverrideActivation.Data.Length = 1;
-	OverrideActivation.Data[0].kind = XComLWTVBool;
+	OverrideActivation.Data[0].kind = LWTVBool;
 	OverrideActivation.Data[0].b = true;
 	`XEVENTMGR.TriggerEvent('OverrideCollectorActivation', OverrideActivation, EffectState);
 

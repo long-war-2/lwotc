@@ -344,12 +344,12 @@ static function int CompareByPriority(SitRepChance SitRepWithChanceA, SitRepChan
 /// You should use ELD_Immediate for your listeners for this event.
 static function bool ShouldAddRandomSitRepToMission(XComGameState_MissionSite MissionState)
 {
-	local XComLWTuple Tuple;
+	local LWTuple Tuple;
 
-	Tuple = new class'XComLWTuple';
+	Tuple = new class'LWTuple';
 	Tuple.Id = 'OverrideRandomSitRepChance_LW';
 	Tuple.Data.Add(1);
-	Tuple.Data[0].Kind = XComLWTVBool;
+	Tuple.Data[0].Kind = LWTVBool;
 
 	// Default to a simple random chance
 	Tuple.Data[0].b = `SYNC_FRAND_STATIC() < default.SIT_REP_CHANCE;
@@ -363,24 +363,32 @@ static function bool ShouldAddRandomSitRepToMission(XComGameState_MissionSite Mi
 // chosen for the given mission using the following event:
 /// ```event
 /// EventID: OverrideMissionSitReps_LW,
-/// EventData: [ inout array<name> ActiveSitReps ],
+/// EventData: [ inout name ActiveSitRep1, inout name ActiveSitRep2, ... ],
 /// EventSource: XComGameState_MissionSite,
 /// NewGameState: no
 /// ```
 /// You should use ELD_Immediate for your listeners for this event.
 static function TriggerOverrideMissionSitReps(XComGameState_MissionSite MissionState, out array<name> ActiveSitReps)
 {
-	local XComLWTuple Tuple;
+	local LWTuple Tuple;
+	local int i;
 
-	Tuple = new class'XComLWTuple';
+	Tuple = new class'LWTuple';
 	Tuple.Id = 'OverrideMissionSitReps_LW';
-	Tuple.Data.Add(1);
-	Tuple.Data[0].Kind = XComLWTVArrayNames;
-	Tuple.Data[0].an = ActiveSitReps;
+	Tuple.Data.Add(ActiveSitReps.Length);
+	for (i = 0; i < Tuple.Data.Length - 1; i++)
+	{
+		Tuple.Data[i].Kind = LWTVName;
+		Tuple.Data[i].n = ActiveSitReps[i];
+	}
 
 	`XEVENTMGR.TriggerEvent(Tuple.Id, Tuple, MissionState);
 
-	ActiveSitReps = Tuple.Data[0].an;
+	ActiveSitReps.Length = Tuple.Data.Length;
+	for (i = 0; i < Tuple.Data.Length - 1; i++)
+	{
+		ActiveSitReps[i] = Tuple.Data[i].n;
+	}
 }
 
 // Checks whether the sit rep with the given name can be applied to the given
