@@ -4664,3 +4664,4 @@ defaultProperties
 		MaxRestricted_Category=1
 	End Object
 	LiberationCondition = DefaultLiberationCondition;
+}
