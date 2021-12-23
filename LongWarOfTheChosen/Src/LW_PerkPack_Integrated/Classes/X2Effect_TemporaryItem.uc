@@ -178,10 +178,11 @@ simulated function XComGameState_Item AddNewItemToUnit(X2EquipmentTemplate Equip
 			AddAbilityToUnit(AbilityName, UnitState, ItemState.GetReference(), NewGameState);
 		}
 		AbilityRef = UnitState.FindAbility(AbilityName, ItemState.GetReference());
-		if(AbilityRef.ObjectID > 0)
+		if(AbilityRef.ObjectID > 0) {
 			`PPTRACE("TempItem : Post AddAbilityToUnit -- Ability + Item combo found");
-		else
+		} else {
 			`PPTRACE("TempItem : Post AddAbilityToUnit -- Ability + Item combo NOT found");
+		}
 	}
 
 	//special handling for LaunchGrenade and maybe some other stuff
@@ -215,10 +216,11 @@ simulated function XComGameState_Item AddNewItemToUnit(X2EquipmentTemplate Equip
 			}
 		}
 		AbilityRef = UnitState.FindAbility(AbilityName, ItemState.GetReference());
-		if(AbilityRef.ObjectID > 0)
+		if(AbilityRef.ObjectID > 0) {
 			`PPTRACE("TempItem : Post AddAbilityToUnit -- Ability + Item combo found");
-		else
+		} else {
 			`PPTRACE("TempItem : Post AddAbilityToUnit -- Ability + Item combo NOT found");
+		}
 	}
 
 	//Create the visualizer for the new item, and attach it if needed
