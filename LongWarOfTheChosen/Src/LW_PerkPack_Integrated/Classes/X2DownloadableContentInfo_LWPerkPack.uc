@@ -436,7 +436,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
         default:
             return false;
     }
-    return ReturnValue;    
+    return false;    
 }
 
 static function X2ItemTemplate GetItemBoundToAbilityFromUnit(XComGameState_Unit UnitState, name AbilityName, XComGameState GameState)
