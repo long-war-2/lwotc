@@ -1294,7 +1294,6 @@ protected function ResetJobIncomePools(XComGameState NewGameState)
 
 function bool Update(XComGameState NewGameState, optional out array<LWRebelJobTemplate> JobsPendingVisualization)
 {
-	local XComGameState_LWMissionDetectionModifier DetectionMod;
 	local XComGameState_WorldRegion WorldRegion;
 	local int k;
 	local string AlertString;
