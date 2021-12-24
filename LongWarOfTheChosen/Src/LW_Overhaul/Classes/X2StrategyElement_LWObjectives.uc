@@ -5,6 +5,8 @@
 //---------------------------------------------------------------------------------------
 class X2StrategyElement_LWObjectives extends X2StrategyElement_DefaultObjectives config(LW_Overhaul);
 
+var config int REGIONS_TO_BLACKSITE;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Objectives;
@@ -262,7 +264,7 @@ static function CreateBlacksiteMission_LW(XComGameState NewGameState, XComGameSt
 	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_None')); // no rewards for completing story objectives
 	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
 	Rewards.AddItem(RewardState);
-	MissionState = CreateMission(NewGameState, Rewards, 'MissionSource_BlackSite', 8); // as far away from player as possible, because reasons
+	MissionState = CreateMission(NewGameState, Rewards, 'MissionSource_BlackSite', default.REGIONS_TO_BLACKSITE);
 
 	RegionState = MissionState.GetWorldRegion();
 	RegionState = XComGameState_WorldRegion(NewGameState.CreateStateObject(class'XComGameState_WorldRegion', RegionState.ObjectID));
