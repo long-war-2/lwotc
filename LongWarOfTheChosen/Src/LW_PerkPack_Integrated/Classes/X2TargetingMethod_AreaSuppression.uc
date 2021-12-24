@@ -23,7 +23,7 @@ function Update(float DeltaTime)
 		}
 	}
 
-	MarkTargetedActors(CurrentlyMarkedTargets, ((!AbilityIsOffensive) ? FiringUnit.GetTeam() : 0));
+	MarkTargetedActors(CurrentlyMarkedTargets, ((!AbilityIsOffensive) ? FiringUnit.GetTeam() : eTeam_None));
 }
 
 function Canceled()

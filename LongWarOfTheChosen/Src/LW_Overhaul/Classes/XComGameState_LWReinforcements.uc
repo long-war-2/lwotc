@@ -233,7 +233,7 @@ function bool AnyEnemiesInRedAlert()
     AIPlayer.GetAliveUnits(Enemies_array);
     foreach Enemies_array(Enemy)
     {
-        if(Enemy.GetCurrentStat(10) > float(1))
+        if(Enemy.GetCurrentStat(eStat_AlertLevel) > float(1))
 		{
 			return true;
 		}

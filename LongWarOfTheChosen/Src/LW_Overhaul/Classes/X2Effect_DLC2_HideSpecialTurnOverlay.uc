@@ -15,9 +15,9 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
     EventMgr = `XEVENTMGR;
     EffectObj = EffectGameState;
     UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
-    EventMgr.RegisterForEvent(EffectObj, 'ExhaustedActionPoints', ExhaustedActionCheck, 2,, UnitState);
-    EventMgr.RegisterForEvent(EffectObj, 'NoActionPointsAvailable', ExhaustedActionCheck, 2,, UnitState);
-    EventMgr.RegisterForEvent(EffectObj, 'UnitDied', ExhaustedActionCheck, 2,, UnitState);
+    EventMgr.RegisterForEvent(EffectObj, 'ExhaustedActionPoints', ExhaustedActionCheck, ELD_OnVisualizationBlockCompleted,, UnitState);
+    EventMgr.RegisterForEvent(EffectObj, 'NoActionPointsAvailable', ExhaustedActionCheck, ELD_OnVisualizationBlockCompleted,, UnitState);
+    EventMgr.RegisterForEvent(EffectObj, 'UnitDied', ExhaustedActionCheck, ELD_OnVisualizationBlockCompleted,, UnitState);
 }
 
 static function EventListenerReturn ExhaustedActionCheck(
