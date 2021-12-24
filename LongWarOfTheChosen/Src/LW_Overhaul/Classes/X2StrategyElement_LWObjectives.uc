@@ -158,7 +158,7 @@ static function X2DataTemplate CreateLW_T2_M0_S5_CompleteActivityTemplate()
 
 	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_T2_M0_S5_CompleteActivity');
 	Template.bMainObjective = false;
-	Template.NextObjectives.AddItem('LW_T2_M1_N2_RevealAvatarProject');
+	// Template.NextObjectives.AddItem('LW_T2_M1_N2_RevealAvatarProject');
 	Template.CompletionEvent = 'RegionLiberatedFlagSet';
 	Template.InProgressFn = AnyProtectRegion3ActivityVisible;
 	return Template;
@@ -278,7 +278,7 @@ static function X2DataTemplate CreateLW_T2_M1_N2_RevealAvatarProjectTemplate()
 	Template.bMainObjective = true;
 	Template.bNeverShowObjective = true;
 
-	Template.RevealEvent = '';
+	Template.RevealEvent = 'StartAvatarProjectReveal';
 	Template.CompletionEvent = 'AvatarProjectRevealComplete';
 
 	Template.AddNarrativeTrigger("", NAW_OnReveal, '', '', ELD_OnStateSubmitted, NPC_Once, '', RevealAvatarProject);
