@@ -539,11 +539,11 @@ static function X2Effect_Persistent CreateSedatedStatusEffect()
 
     PersistentEffect = new class'X2Effect_Persistent';
     PersistentEffect.EffectName = class'X2StatusEffects'.default.UnconsciousName;
-    PersistentEffect.DuplicateResponse = 2;
+    PersistentEffect.DuplicateResponse = eDupe_Ignore;
     PersistentEffect.BuildPersistentEffect(1, true, false);
     PersistentEffect.bRemoveWhenTargetDies = true;
     PersistentEffect.bIsImpairing = true;
-    PersistentEffect.SetDisplayInfo(2, class'X2StatusEffects'.default.UnconsciousFriendlyName, class'X2StatusEffects'.default.UnconsciousFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun", true, "img:///UILibrary_Common.status_unconscious");
+    PersistentEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.UnconsciousFriendlyName, class'X2StatusEffects'.default.UnconsciousFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun", true, "img:///UILibrary_Common.status_unconscious");
     PersistentEffect.EffectAddedFn = class'X2StatusEffects'.static.UnconsciousEffectAdded;
     PersistentEffect.EffectRemovedFn = class'X2StatusEffects'.static.UnconsciousEffectRemoved;
     PersistentEffect.VisualizationFn = SedatedVisualization;
@@ -641,17 +641,17 @@ static function X2AbilityTemplate CreateConsumeWhenActivatedAbility(name Ability
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.bDontDisplayInAbilitySummary = true;
 
-	Template.eAbilityIconBehaviorHUD = 2;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
     Template.Hostility = eHostility_Neutral;
 
     Template.AbilitySourceName = 'eAbilitySource_Item';
 	Template.AbilityCosts.AddItem(new class'X2AbilityCost_ConsumeItem');
 
 	EventListener = new class'X2AbilityTrigger_EventListener';
-	EventListener.ListenerData.Deferral = 1;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventListener.ListenerData.EventID = EventName;
 	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
-	EventListener.ListenerData.Filter = 1;
+	EventListener.ListenerData.Filter = eFilter_Unit;
     Template.AbilityTriggers.AddItem(EventListener);
 
 	Template.AbilityTargetStyle = default.SelfTarget;

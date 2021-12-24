@@ -62,7 +62,7 @@ static function X2AbilityTemplate AddBiggestBooms_LW()
     Template.AbilityTriggers.AddItem(Trigger);
     BiggestBoomsEffect = new class'X2Effect_BiggestBooms_LW';
     BiggestBoomsEffect.BuildPersistentEffect(1, true, false, true);
-    BiggestBoomsEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
+    BiggestBoomsEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
     Template.AddTargetEffect(BiggestBoomsEffect);
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
     return Template;
@@ -381,8 +381,8 @@ static function X2AbilityTemplate AddVanishingActAbility()
 	Template.AddTargetEffect(class'X2Item_DefaultGrenades'.static.SmokeGrenadeEffect());
 
 	StealthEffect = new class'X2Effect_RangerStealth';
-    StealthEffect.BuildPersistentEffect(1, true, false, false, 8);
-    StealthEffect.SetDisplayInfo(1, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true);
+    StealthEffect.BuildPersistentEffect(1, true, false, false, eGameRule_PlayerTurnEnd);
+    StealthEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true);
     StealthEffect.bRemoveWhenTargetConcealmentBroken = true;
     Template.AddTargetEffect(StealthEffect);
     Template.AddTargetEffect(class'X2Effect_Spotted'.static.CreateUnspottedEffect());

@@ -1012,7 +1012,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		SerialCritReduction.CritReductionPerKill = default.SERIAL_CRIT_MALUS_PER_KILL;
 		SerialCritReduction.AimReductionPerKill = default.SERIAL_AIM_MALUS_PER_KILL;
 		SerialCritReduction.Damage_Falloff = default.SERIAL_DAMAGE_FALLOFF;
-		SerialCritReduction.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true,, Template.AbilitySourceName);
+		SerialCritReduction.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true,, Template.AbilitySourceName);
 		SerialCritReduction.EffectName = 'SerialCritReduction';
 		Template.AbilityTargetEffects.AddItem(SerialCritReduction);
 	}
@@ -1037,11 +1037,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.AbilityTargetEffects.Length = 0;
 		DFAEffect = New class'X2Effect_CancelLongRangePenalty';
 		DFAEffect.BuildPersistentEffect (1, true, false);
-		DFAEffect.SetDisplayInfo (0, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false,, Template.AbilitySourceName);
+		DFAEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, false,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DFAEffect);
 		DeathEffect = new class'X2Effect_DeathFromAbove_LW';
 		DeathEffect.BuildPersistentEffect(1, true, false, false);
-		DeathEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
+		DeathEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DeathEffect);
 	}
 
@@ -1201,7 +1201,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		DamageModifier.BonusDamage = class'X2Ability_RangerAbilitySet'.default.INSTINCT_DMG;
 		DamageModifier.BonusCritChance = class'X2Ability_RangerAbilitySet'.default.INSTINCT_CRIT;
 		DamageModifier.BuildPersistentEffect(1, true, false, true);
-		DamageModifier.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+		DamageModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(DamageModifier);
 	}
 
@@ -1211,7 +1211,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.AbilityTargetEffects.length = 0;
 		Squadsight = new class'X2Effect_Squadsight';
 		Squadsight.BuildPersistentEffect(1, true, false, true);
-		Squadsight.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
+		Squadsight.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
 		Template.AddTargetEffect(Squadsight);
 	}
 
@@ -1220,8 +1220,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.AbilityTargetEffects.length = 0;
 		ToHitModifier = new class'X2Effect_ToHitModifier';
 		ToHitModifier.BuildPersistentEffect(1, true, false, true);
-		ToHitModifier.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
-		ToHitModifier.AddEffectHitModifier(1, class'X2Ability_SharpshooterAbilitySet'.default.HITWHEREITHURTS_CRIT, Template.LocFriendlyName,, false, true, true, true);
+		ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
+		ToHitModifier.AddEffectHitModifier(eHit_Crit, class'X2Ability_SharpshooterAbilitySet'.default.HITWHEREITHURTS_CRIT, Template.LocFriendlyName,, false, true, true, true);
 		Template.AddTargetEffect(ToHitModifier);
 	}
 
@@ -1230,7 +1230,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.AbilityTargetEffects.length = 0;
 		PersistentEffect = new class'X2Effect_Persistent';
 		PersistentEffect.BuildPersistentEffect(1, true, false);
-		PersistentEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
+		PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 		Template.AddTargetEffect(PersistentEffect);
 	}
 
@@ -1239,7 +1239,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.AbilityTargetEffects.length = 0;
 		MixEffect = new class'X2Effect_VolatileMix';
 		MixEffect.BuildPersistentEffect(1, true, false, true);
-		MixEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
+		MixEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
 		MixEffect.BonusDamage = class'X2Ability_GrenadierAbilitySet'.default.VOLATILE_DAMAGE;
 		Template.AddTargetEffect(MixEffect);
 	}   
@@ -1251,7 +1251,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		ReactionFire.bAllowCrit = true;
 		ReactionFire.ReactionModifier = class'X2Ability_SpecialistAbilitySet'.default.UNDER_PRESSURE_BONUS;
 		ReactionFire.BuildPersistentEffect(1, true, false, true);
-		ReactionFire.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
+		ReactionFire.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,, Template.AbilitySourceName);
 		Template.AddTargetEffect(ReactionFire);
 	}   
 
@@ -1613,7 +1613,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		HunkerDownEffect = new class 'X2Effect_HunkerDown_LW';
 		HunkerDownEffect.EffectName = 'HunkerDown';
 		HunkerDownEffect.DuplicateResponse = eDupe_Refresh;
-		HunkerDownEFfect.BuildPersistentEffect (1,,,, 7);
+		HunkerDownEffect.BuildPersistentEffect (1,,,, eGameRule_PlayerTurnBegin);
 		HunkerDownEffect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage);
 		Template.AddTargetEffect(HunkerDownEffect);
 
@@ -1642,7 +1642,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.AbilityTargetEffects.length = 0;
 		GuardianEffect = new class'X2Effect_Guardian_LW';
 		GuardianEffect.BuildPersistentEffect(1, true, false);
-		GuardianEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+		GuardianEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 		GuardianEffect.ProcChance = class'X2Ability_SpecialistAbilitySet'.default.GUARDIAN_PROC;
 		Template.AddTargetEffect(GuardianEffect);
 	}
@@ -2804,7 +2804,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				case 'PlatedTemplarArmor':
 					ArmorTemplate.bAddsUtilitySlot = true;
 				case 'MediumPlatedArmor':
-					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, 14, default.MEDIUM_PLATED_MITIGATION_AMOUNT);
+					ArmorTemplate.SetUIStatMarkup(class'XLocalizedData'.default.ArmorLabel, eStat_ArmorMitigation, default.MEDIUM_PLATED_MITIGATION_AMOUNT);
 					break;
 
 				case 'SparkArmor':

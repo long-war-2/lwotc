@@ -748,7 +748,7 @@ static function X2AbilityTemplate AddWilltoSurviveAbility()
 
 	WillBonus = new class'X2Effect_PersistentStatChange';
 	WillBonus.AddPersistentStatChange(eStat_Will, float(default.WILLTOSURVIVE_WILLBONUS));
-	WillBonus.BuildPersistentEffect (1, true, false, false, 7);
+	WillBonus.BuildPersistentEffect (1, true, false, false, eGameRule_PlayerTurnBegin);
 	Template.AddTargetEffect(WillBonus);
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.WillLabel, eStat_Will, default.WILLTOSURVIVE_WILLBONUS);
 
@@ -1273,14 +1273,14 @@ static function X2AbilityTemplate WalkFireDamage()
     `CREATE_X2ABILITY_TEMPLATE (Template, 'WalkFireDamage');
     Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_momentum";
     Template.AbilitySourceName = 'eAbilitySource_Perk';
-    Template.eAbilityIconBehaviorHUD = 2;
-    Template.Hostility = 2;
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
     Template.AbilityToHitCalc = default.DeadEye;
     Template.AbilityTargetStyle = default.SelfTarget;
     Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
     DamageEffect = new class'X2Effect_WalkFireDamage';
     DamageEffect.BuildPersistentEffect(1, true, false, false);
-    DamageEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
+    DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
     Template.AddTargetEffect(DamageEffect);
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
     return Template;
@@ -1377,14 +1377,14 @@ static function X2AbilityTemplate PrecisionShotCritDamage()
     `CREATE_X2ABILITY_TEMPLATE (Template, 'PrecisionShotCritDamage');
     Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_momentum";
     Template.AbilitySourceName = 'eAbilitySource_Perk';
-    Template.eAbilityIconBehaviorHUD = 2;
-    Template.Hostility = 2;
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
     Template.AbilityToHitCalc = default.DeadEye;
     Template.AbilityTargetStyle = default.SelfTarget;
     Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
     CritEffect = new class'X2Effect_PrecisionShotCritDamage';
     CritEffect.BuildPersistentEffect(1, true, false, false);
-    CritEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
+    CritEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
     Template.AddTargetEffect(CritEffect);
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
     return Template;
@@ -3264,14 +3264,14 @@ static function X2AbilityTemplate KubikiriDamage()
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'KubikuriDamage');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityKubikuri";
     Template.AbilitySourceName = 'eAbilitySource_Perk';
-    Template.eAbilityIconBehaviorHUD = 2;
-    Template.Hostility = 2;
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
     Template.AbilityToHitCalc = default.DeadEye;
     Template.AbilityTargetStyle = default.SelfTarget;
     Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	DamageEffect=new class'X2Effect_Kubikuri';
     DamageEffect.BuildPersistentEffect(1, true, false, false);
-    DamageEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
+    DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
     Template.AddTargetEffect(DamageEffect);
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
     return Template;
@@ -3420,7 +3420,7 @@ function CombatRush_BuildVisualization(XComGameState VisualizeGameState)
 
     History = `XCOMHISTORY;
     context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
     InteractingUnitRef = context.InputContext.SourceObject;
     BuildTrack = EmptyTrack;
     BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
