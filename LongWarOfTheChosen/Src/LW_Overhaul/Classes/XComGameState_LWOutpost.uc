@@ -156,6 +156,8 @@ var localized string m_strProhibitedJobEnded;
 var array <RetributionJobStruct> CurrentRetributions;
 var localized string m_strRetributionEnded;
 
+var array<XComGameState_LWMissionDetectionModifier> DetectionModifiers;
+
 // DEBUG VARs
 
 // Force the next recruit in this outpost to roll the given value.
@@ -167,10 +169,8 @@ static function XComGameState_LWOutpost CreateOutpost(XComGameState NewState, XC
 {
 	local XComGameState_LWOutpost Outpost;
 
-	Outpost = XComGameState_LWOutpost(NewState.CreateStateObject(class'XComGameState_LWOutpost'));
-
+	Outpost = XComGameState_LWOutpost(NewState.CreateNewStateObject(class'XComGameState_LWOutpost'));
 	Outpost.InitOutpost(NewState, WorldRegion);
-	NewState.AddStateObject(Outpost);
 	return Outpost;
 }
 
@@ -366,10 +366,13 @@ function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegi
 	local int i;
 	local int InitCount;
 	local StateObjectReference RebelReference;
-	local XComGameState_StaffSlot StaffSlotState;
-	local X2StaffSlotTemplate StaffSlotTemplate;
+	local X2StrategyElementTemplateManager StratMgr;
 	local XComGameState_FacilityXCom FacilityState;
+	local XComGameState_StaffSlot StaffSlotState;
+	local X2LWMissionDetectionModifierTemplate DetectionModifierTemplate;
+	local X2StaffSlotTemplate StaffSlotTemplate;
 
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 	Region = WorldRegion.GetReference();
 	MaxRebels = DEFAULT_OUTPOST_MAX_SIZE;
 
@@ -411,7 +414,7 @@ function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegi
 	UpdateJobs(NewState);
 
 	// Initialize the staff slot
-	StaffSlotTemplate = X2StaffSlotTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate(STAFF_SLOT_TEMPLATE_NAME));
+	StaffSlotTemplate = X2StaffSlotTemplate(StratMgr.FindStrategyElementTemplate(STAFF_SLOT_TEMPLATE_NAME));
 	StaffSlotState = StaffSlotTemplate.CreateInstanceFromTemplate(NewState);
 	StaffSlot = StaffSlotState.GetReference();
 	// Attach the staff slot to the commander's quarters (all slots need an associated room)
@@ -431,6 +434,16 @@ function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegi
 	SuppliesTaken = 0;
 	FacelessDays = 0;
 	`LWTRACE ("New campaign Supply Cap" @ WorldRegion.GetDisplayName() @ string (SupplyCap));
+
+	// Set up the basic detection modifiers provided by each rebel job
+	DetectionModifierTemplate = X2LWMissionDetectionModifierTemplate(StratMgr.FindStrategyElementTemplate('IntelJobDetectionModifier'));
+	DetectionModifiers.AddItem(DetectionModifierTemplate.CreateInstanceFromTemplate(GetReference(), NewState));
+
+	DetectionModifierTemplate = X2LWMissionDetectionModifierTemplate(StratMgr.FindStrategyElementTemplate('RecruitJobDetectionModifier'));
+	DetectionModifiers.AddItem(DetectionModifierTemplate.CreateInstanceFromTemplate(GetReference(), NewState));
+
+	DetectionModifierTemplate = X2LWMissionDetectionModifierTemplate(StratMgr.FindStrategyElementTemplate('SupplyJobDetectionModifier'));
+	DetectionModifiers.AddItem(DetectionModifierTemplate.CreateInstanceFromTemplate(GetReference(), NewState));
 
 	NextUpdateTime = GetCurrentTime();
 	class'X2StrategyGameRulesetDataStructures'.static.AddDay(NextUpdateTime);
@@ -861,6 +874,18 @@ function bool WipeOutOutpost(XComGameState NewGameState)
 	// Update mecs.
 	ResistanceMecs.Length = 0;
 
+	// Clear up any mission detection modifiers that have an expiry, even
+	// if they haven't expired.
+	for (i = DetectionModifiers.Length - 1; i >= 0; i--)
+	{
+		if (DetectionModifiers[i].GetMyTemplate().ModifierDurationHours > 0)
+		{
+			// Clean it up!
+			DetectionModifiers.Remove(i, 1);
+			NewGameState.RemoveStateObject(DetectionModifiers[i].ObjectID);
+		}
+	}
+
 	`HQPRES.m_kAvengerHUD.UpdateResources();
 
 	return true;
@@ -1269,6 +1294,7 @@ protected function ResetJobIncomePools(XComGameState NewGameState)
 
 function bool Update(XComGameState NewGameState, optional out array<LWRebelJobTemplate> JobsPendingVisualization)
 {
+	local XComGameState_LWMissionDetectionModifier DetectionMod;
 	local XComGameState_WorldRegion WorldRegion;
 	local int k;
 	local string AlertString;
@@ -1338,6 +1364,23 @@ function bool Update(XComGameState NewGameState, optional out array<LWRebelJobTe
 
 		// Update the jobs to refresh the supply totals shown in regions and in the top right sum.
 		UpdateJobs(NewGameState);
+
+		// Clear up any expired mission detection modifiers
+		for (k = DetectionModifiers.Length - 1; k >= 0; k--)
+		{
+			if (DetectionModifiers[k].GetMyTemplate().ModifierDurationHours <= 0)
+			{
+				// Detection modifier has no expiration
+				continue;
+			}
+
+			if (class'X2StrategyGameRulesetDataStructures'.static.LessThan(DetectionModifiers[k].ExpirationDateTime, GetCurrentTime()))
+			{
+				// Clean it up!
+				DetectionModifiers.Remove(k, 1);
+				NewGameState.RemoveStateObject(DetectionModifiers[k].ObjectID);
+			}
+		}
 
 		// Same time tomorrow. We gotta keep ticking up this next update time every day even for uncontacted
 		// regions, otherwise when they do become contacted this update will fire on each update (which are very frequent),

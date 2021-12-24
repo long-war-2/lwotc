@@ -25,6 +25,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateMiscellaneousListeners());
 	Templates.AddItem(CreateEndOfMonthListeners());
 	Templates.AddItem(CreateCampaignStartListeners());
+	Templates.AddItem(CreateOutpostListeners());
 
 	return Templates;
 }
@@ -120,6 +121,17 @@ static function CHEventListenerTemplate CreateEndOfMonthListeners()
 	// Supply loss monthly report string replacement
 	Template.AddCHEvent('OverrideSupplyLossStrings', OnGetSupplyDropDecreaseStrings, ELD_Immediate, GetListenerPriority());
 
+	Template.RegisterInStrategy = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreateOutpostListeners()
+{
+	local CHEventListenerTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'OutpostListeners');
+	Template.AddCHEvent('GetActivityDetectionIncomeModifier', ApplyMissionDetectionModifiers, ELD_Immediate, GetListenerPriority());
 	Template.RegisterInStrategy = true;
 
 	return Template;
@@ -1124,5 +1136,41 @@ static function EventListenerReturn AllowOutOfContinentStartingRegionLinks(
 	// No restrictions.
 	Tuple.Data[1].b = true;
 
+	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn ApplyMissionDetectionModifiers(
+	Object EventData,
+	Object EventSource,
+	XComGameState NewGameState,
+	Name InEventID,
+	Object CallbackData)
+{
+	local XComGameState_LWAlienActivity ActivityState;
+	local XComGameState_LWOutpost OutpostState;
+	local XComGameState_LWMissionDetectionModifier ModifierState;
+	local LWTuple Tuple;
+	local float IncomeModifier, BaseModifier;
+
+	Tuple = LWTuple(EventData);
+	if (Tuple == none)
+	{
+		`REDSCREEN("Event data for 'GetActivityDetectionIncomeModifier' is not of the correct type");
+		return ELR_NoInterrupt;
+	}
+
+	ActivityState = XComGameState_LWAlienActivity(Tuple.Data[1].o);
+	OutpostState = XComGameState_LWOutpost(EventSource);
+	BaseModifier = ActivityState.MissionResourcePool;
+
+	// Iterate through all the outpost's detection modifiers
+	IncomeModifier = 0;
+	foreach OutpostState.DetectionModifiers(ModifierState)
+	{
+		IncomeModifier += ModifierState.GetMyTemplate().GetModifier(OutpostState, ActivityState, BaseModifier);
+	}
+
+	// Return the resulting income modifier in the event data
+	Tuple.Data[0].f = IncomeModifier;
 	return ELR_NoInterrupt;
 }

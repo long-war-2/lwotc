@@ -86,7 +86,7 @@ function bool CanBeDetected(XComGameState_LWAlienActivity ActivityState, XComGam
 	ActivityTemplate = ActivityState.GetMyTemplate();
 
 	ActivityState.MissionResourcePool += GetMissionIncomeForUpdate(OutpostState);
-	ActivityState.MissionResourcePool += GetExternalMissionModifiersForUpdate(ActivityState, NewGameState); // for other mods to hook into
+	ActivityState.MissionResourcePool += GetExternalMissionModifiersForUpdate(OutpostState, ActivityState, NewGameState); // for other mods to hook into
 
 	if(MeetsRequiredMissionIncome(ActivityState, ActivityTemplate)) // have enough income
 	{
@@ -176,22 +176,25 @@ function float GetMissionIncomeForUpdate(XComGameState_LWOutpost OutpostState)
 	return NewIncome;
 }
 
-function float GetExternalMissionModifiersForUpdate(XComGameState_LWAlienActivity ActivityState, XComGameState NewGameState)
+function float GetExternalMissionModifiersForUpdate(
+	XComGameState_LWOutpost OutpostState,
+	XComGameState_LWAlienActivity ActivityState,
+	XComGameState NewGameState)
 {
-    local LWTuple Tuple;
+	local LWTuple Tuple;
 
-    Tuple = new class'LWTuple';
-	Tuple.Data.Add(1);
-    Tuple.Id = 'GetActivityDetectionIncomeModifier';
+	Tuple = new class'LWTuple';
+	Tuple.Data.Add(2);
+	Tuple.Id = 'GetActivityDetectionIncomeModifier';
+	Tuple.Data[0].Kind = LWTVFloat;
+	Tuple.Data[0].f = 0;
+	Tuple.Data[1].Kind = LWTVObject;
+	Tuple.Data[1].o = ActivityState;
 
-    // add the new amount
-    Tuple.Data[0].Kind = LWTVFloat;
-    Tuple.Data[0].f = 0;
+	// Fire the event
+	`XEVENTMGR.TriggerEvent('GetActivityDetectionIncomeModifier', Tuple, OutpostState, NewGameState);
 
-    // Fire the event
-    `XEVENTMGR.TriggerEvent('GetActivityDetectionIncomeModifier', Tuple, ActivityState, NewGameState);
-
-    if (Tuple.Data.Length == 0 || Tuple.Data[0].Kind != LWTVFloat)
+	if (Tuple.Data.Length == 0 || Tuple.Data[0].Kind != LWTVFloat)
 		return 0;
 	else
 		return Tuple.Data[0].f;
