@@ -469,5 +469,5 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
         default:
             return false;
     }
-	return ReturnValue;
+	return false;
 }
