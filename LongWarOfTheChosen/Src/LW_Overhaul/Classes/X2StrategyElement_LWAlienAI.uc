@@ -58,7 +58,13 @@ static function AddFortressDoom()
 	NewGameState.AddStateObject(AlienHQ);
 
 	OnFortressDoomTimerComplete(AlienHQ, NewGameState);
-	
+
+	// Complete the Avatar reveal project as soon as doom is added to the fortress
+	// so players not what they're up against.
+	`LWTrace("Triggering Avatar Project reveal...");
+	class'XComGameState_Objective'.static.StartObjectiveByName(NewGameState, 'LW_T2_M1_N2_RevealAvatarProject');
+	`XEVENTMGR.TriggerEvent('StartAvatarProjectReveal');
+
 	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 }
 
