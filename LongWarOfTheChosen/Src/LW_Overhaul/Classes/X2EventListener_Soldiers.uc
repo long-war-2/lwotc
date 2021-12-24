@@ -821,8 +821,15 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 		return ELR_NoInterrupt;
 	}
 
+	// First check that we are colouring the action icons
+	if (!class'LWTemplateMods'.default.USE_ACTION_ICON_COLORS ||
+		class'Helpers_LW'.static.IsModInstalled("WOTC_CostBasedAbilityColors"))
+	{
+		return ELR_NoInterrupt;
+	}
+
 	// Easy handling of abilities that target objectives
-	if (OverrideTuple.Data[0].b && class'LWTemplateMods'.default.USE_ACTION_ICON_COLORS)
+	if (OverrideTuple.Data[0].b)
 	{
 		OverrideTuple.Data[1].s = class'LWTemplateMods'.default.ICON_COLOR_OBJECTIVE;
 		return ELR_NoInterrupt;

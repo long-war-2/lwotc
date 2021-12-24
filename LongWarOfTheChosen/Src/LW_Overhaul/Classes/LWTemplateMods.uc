@@ -1704,9 +1704,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			break;
 	}
 
-	// that isn't available with X2WOTCCommunityHighlander right now. I'm building against a custom
-	// version.
-	if (default.USE_ACTION_ICON_COLORS)
+	if (default.USE_ACTION_ICON_COLORS && !class'Helpers_LW'.static.IsModInstalled("WOTC_CostBasedAbilityColors"))
 	{
 		for (k = 0; k < Template.AbilityCosts.length; k++)
 		{
