@@ -197,72 +197,9 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState NewGameState;
 	local XComGameStateHistory History;
 	local XComGameState_Objective ObjectiveState;
-	local int i, Forcelevel, ChosenLevel;
-	local XComGameState_HeadquartersAlien AlienHQ;
-	local XComGameState_LWOutpostManager OutpostManager;
-	local XComGameState_WorldRegion RegionState;
-	local XComGameState_LWOutpost OutpostState;
-	local XComGameState_LWToolboxOptions ToolboxOptions;
-	
-	local array<XComGameState_AdventChosen> AllChosen;
-	local name OldTacticalTag, NewTacticalTag;
-	local XComGameState_AdventChosen ChosenState;
 	
 	History = `XCOMHISTORY;
-
-	// TODO: Remove these post 1.0 - START
-
-	// LWOTC beta 2: Remove the 'OnMonthlyReportAlert' listener as it's no
-	// longer needed (Not Created Equally is handled by the 'UnitRandomizedStats'
-	// event now).
-	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
-	`XEVENTMGR.UnRegisterFromEvent(ToolboxOptions, 'OnMonthlyReportAlert');
-
-	// Make sure pistol abilities apply to the new pistol slot
-	LWMigratePistolAbilities();
-
-	// If there are rebels that have already ranked up, make sure they have some abilities
-	OutpostManager = `LWOUTPOSTMGR;
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Patching existing campaign data");
-	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
-	{
-		if (RegionState.HaveMadeContact())
-		{
-			OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
-			OutpostState.UpdateRebelAbilities(NewGameState);
-		}
-	}
-		
-	//Make sure the chosen are of appropriate level
-	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	Forcelevel = class'Utilities_LW'.static.GetLWForceLevel();
-	AllChosen = AlienHQ.GetAllChosen();
-
-	ChosenLevel = 3;
-	for (i = 0; i < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.Length; i++)
-	{
-		if (ForceLevel < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[i])
-		{
-			ChosenLevel = i;
-			break;
-		}
-	}
-
-	foreach AllChosen(ChosenState)
-	{
-		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
-		if (ChosenState.Level != ChosenLevel)
-		{
-			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
-			Chosenstate.Level = ChosenLevel;
-		}
-
-		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-		// Replace Old Tag with new Tag in missions
-		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
-	}
-	// Remove these post 1.0 - END
 
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
