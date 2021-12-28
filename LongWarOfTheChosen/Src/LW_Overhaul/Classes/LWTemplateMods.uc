@@ -3603,6 +3603,9 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 
 			// Remove the second upgrade, since there's only the one staff slot to unlock
 			FacilityTemplate.Upgrades.RemoveItem('ResistanceRing_UpgradeII');
+
+			// No longer mark it as being a priority/requiring attention
+			FacilityTemplate.bPriority = false;
 		}
 		//if (FacilityTemplate.DataName == 'Storage') Didn't work
 		//{
