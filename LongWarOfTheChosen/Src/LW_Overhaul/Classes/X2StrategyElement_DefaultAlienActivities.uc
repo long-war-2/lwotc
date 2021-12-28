@@ -2234,6 +2234,10 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 	AIChange = false;
 	OPChange = false;
 
+	`LWTRACE("Repression starting -" @ RegionState.GetMyTemplate().DisplayName @
+			 "- Alert:" @ NewRegionalAI.LocalAlertLevel $ ", Vig:" @ NewRegionalAI.LocalVigilanceLevel $
+			 ", Rebels left:" @ string (NewOutPostState.Rebels.length));
+
 	iRoll = `SYNC_RAND_STATIC(100);
 	if (iRoll < default.REPRESSION_ADVENT_LOSS_CHANCE)
 	{
@@ -2306,7 +2310,9 @@ static function RepressionComplete (bool bAlienSuccess, XComGameState_LWAlienAct
 		NewGameState.PurgeGameStateForObjectID(NewRegionalAI.ObjectID);
 	}
 
-	`LWTRACE("Repression Finished" @ RegionState.GetMyTemplate().DisplayName @ "Roll:" @ string (iRoll) @ "Rebels left:" @ string (NewOutPostState.Rebels.length));
+	`LWTRACE("Repression finished -" @ RegionState.GetMyTemplate().DisplayName @
+		"- Alert:" @ NewRegionalAI.LocalAlertLevel $ ", Vig:" @ NewRegionalAI.LocalVigilanceLevel $
+		", Rebels left:" @ string (NewOutPostState.Rebels.length));
 }
 
 private static function GetNonFacelessRebels(XComGameState_LWOutpost OutpostState, out array<StateObjectReference> Rebels)
