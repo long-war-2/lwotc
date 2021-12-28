@@ -132,14 +132,12 @@ static protected function EventListenerReturn OnOverrideItemUnequipBehavior(Obje
 	local XComGameState_Item	ItemState;
 	local X2EquipmentTemplate	EquipmentTemplate;
 
-	`LWTRACE("OverrideItemUnequipBehavior : Starting listener.");
 	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
 	{
 		`REDSCREEN("OverrideItemUnequipBehavior event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideItemUnequipBehavior : Parsed XComLWTuple.");
 
 	ItemState = XComGameState_Item(EventSource);
 	if(ItemState == none)
@@ -147,7 +145,6 @@ static protected function EventListenerReturn OnOverrideItemUnequipBehavior(Obje
 		`REDSCREEN("OverrideItemUnequipBehavior event triggered with invalid source data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideItemUnequipBehavior : EventSource valid.");
 
 	if(OverrideTuple.Id != 'OverrideItemUnequipBehavior')
 		return ELR_NoInterrupt;
@@ -367,10 +364,10 @@ static function EventListenerReturn OnOverridePersonnelStatusTime(Object EventDa
 
 static function EventListenerReturn OnShouldShowPsi(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
-	local XComLWTuple			Tuple;
-	local XComGameState_Unit	UnitState;
+	local XComGameState_Unit UnitState;
+	local LWTuple Tuple;
 
-	Tuple = XComLWTuple(EventData);
+	Tuple = LWTuple(EventData);
 	if (Tuple == none)
 	{
 		`REDSCREEN("OnShouldShowPsi event triggered with invalid event data.");
@@ -821,8 +818,15 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 		return ELR_NoInterrupt;
 	}
 
+	// First check that we are colouring the action icons
+	if (!class'LWTemplateMods'.default.USE_ACTION_ICON_COLORS ||
+		class'Helpers_LW'.static.IsModInstalled("WOTC_CostBasedAbilityColors"))
+	{
+		return ELR_NoInterrupt;
+	}
+
 	// Easy handling of abilities that target objectives
-	if (OverrideTuple.Data[0].b && class'LWTemplateMods'.default.USE_ACTION_ICON_COLORS)
+	if (OverrideTuple.Data[0].b)
 	{
 		OverrideTuple.Data[1].s = class'LWTemplateMods'.default.ICON_COLOR_OBJECTIVE;
 		return ELR_NoInterrupt;

@@ -1704,9 +1704,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			break;
 	}
 
-	// that isn't available with X2WOTCCommunityHighlander right now. I'm building against a custom
-	// version.
-	if (default.USE_ACTION_ICON_COLORS)
+	if (default.USE_ACTION_ICON_COLORS && !class'Helpers_LW'.static.IsModInstalled("WOTC_CostBasedAbilityColors"))
 	{
 		for (k = 0; k < Template.AbilityCosts.length; k++)
 		{
@@ -3605,6 +3603,9 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 
 			// Remove the second upgrade, since there's only the one staff slot to unlock
 			FacilityTemplate.Upgrades.RemoveItem('ResistanceRing_UpgradeII');
+
+			// No longer mark it as being a priority/requiring attention
+			FacilityTemplate.bPriority = false;
 		}
 		//if (FacilityTemplate.DataName == 'Storage') Didn't work
 		//{

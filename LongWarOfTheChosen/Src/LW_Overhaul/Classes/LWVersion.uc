@@ -49,5 +49,5 @@ defaultproperties
     MajorVersion = 1;
     MinorVersion = 1;
     PatchVersion = 0;
-    Classifier = "dev 29"
+    Classifier = "dev 30"
 }

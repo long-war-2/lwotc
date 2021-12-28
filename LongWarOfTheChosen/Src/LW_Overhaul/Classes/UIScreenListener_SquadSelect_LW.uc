@@ -38,8 +38,6 @@ event OnInit(UIScreen Screen)
 
 	if(!Screen.IsA('UISquadSelect')) return;
 
-	`Log("UIScreenListener_SquadSelect_LW: Initializing");
-	
 	SquadSelect = UISquadSelect(Screen);
 	if(SquadSelect == none) return;
 
@@ -244,8 +242,6 @@ event OnReceiveFocus(UIScreen Screen)
 	SquadSelect = UISquadSelect(Screen);
 	if(SquadSelect == none) return;
 
-	`Log("UIScreenListener_SquadSelect_LW: Received focus");
-	
 	SquadSelect.bDirty = true; // Workaround for bug in currently published version of squad select
 	SquadSelect.UpdateData();
 	SquadSelect.UpdateNavHelp();
@@ -255,8 +251,6 @@ event OnReceiveFocus(UIScreen Screen)
 	InfiltrationInfo = UISquadSelect_InfiltrationPanel(SquadSelect.GetChildByName('SquadSelect_InfiltrationInfo_LW', false));
 	if (InfiltrationInfo != none)
 	{
-		`Log("UIScreenListener_SquadSelect_LW: Found infiltration panel");
-		
 		//remove and recreate infiltration info in order to prevent issues with Flash text updates not getting processed
 		InfiltrationInfo.Remove();
 
