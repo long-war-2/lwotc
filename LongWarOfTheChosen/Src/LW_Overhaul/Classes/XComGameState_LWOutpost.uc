@@ -1226,7 +1226,6 @@ function UpdateJobBuckets(XComGameState NewGameState)
 	local array<X2StrategyElementTemplate> Templates;
 	local int idx, RebelsOnJob, k, DetectionChance;
 	local name JobName;
-	local RebelJobDays JobDaysBucket, EmptyJobDaysBucket;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
 
 	StrategyTemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
@@ -1235,21 +1234,6 @@ function UpdateJobBuckets(XComGameState NewGameState)
 	RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(GetWorldRegionForOutpost(), NewGameState);
 
 	`LWTRACE("UpdateJobBuckets");
-
-	// updates campaigns to 1.3
-	if (JobBuckets.length == 0)
-	{
-		`LWTRACE ("Adding Missing Job Buckets");
-
-		for (idx = 0; idx < Templates.Length; ++idx)
-		{
-			JobDaysBucket = EmptyJobDaysBucket;
-			JobDaysBucket.Job = Templates[idx].DataName;
-			JobDaysBucket.Days = 0;
-			`LWTRACE ("Adding" @ JobDaysBucket.Job);
-			JobBuckets.AddItem(JobDaysBucket);
-		}
-	}
 
 	for (idx = 0; idx < Templates.Length; ++idx)
 	{
@@ -1263,14 +1247,13 @@ function UpdateJobBuckets(XComGameState NewGameState)
 				DetectionChance = default.JOB_DETECTION_CHANCE[`STRATEGYDIFFICULTYSETTING];
 				DetectionChance += GetNumFaceless() * default.JOB_DETECTION_CHANCE_BONUS_PER_FACELESS[`STRATEGYDIFFICULTYSETTING];
 				DetectionChance += RegionalAI.LocalVigilanceLevel * default.JOB_DETECTION_CHANCE_BONUS_PER_VIGILANCE[`STRATEGYDIFFICULTYSETTING];
-				DetectionChance += RegionalAI.LocalAlertLevel * default.JOB_DETECTION_CHANCE_BONUS_PER_ALERT[`STRATEGYDIFFICULTYSETTING];
-				DetectionChance += RegionalAI.LocalAlertLevel * default.JOB_DETECTION_CHANCE_BONUS_PER_FORCE[`STRATEGYDIFFICULTYSETTING];
+				// DetectionChance += RegionalAI.LocalAlertLevel * default.JOB_DETECTION_CHANCE_BONUS_PER_ALERT[`STRATEGYDIFFICULTYSETTING];
+				// DetectionChance += RegionalAI.LocalAlertLevel * default.JOB_DETECTION_CHANCE_BONUS_PER_FORCE[`STRATEGYDIFFICULTYSETTING];
 
 				if (`SYNC_RAND (100) < DetectionChance)
 				{
 					//`LWTRACE ("Rebel Activity Detected");
 					JobBuckets[idx].Days += 1;
-					TotalResistanceBucket += 1;
 				}
 			}
 		}

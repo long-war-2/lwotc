@@ -162,6 +162,8 @@ var config int VIGILANCE_CHANGE_ON_XCOM_RAID_WIN;
 var config int VIGILANCE_CHANGE_ON_XCOM_RETAL_WIN;
 
 var config int COIN_BUCKET;
+var config int RETAL_BUCKET_MISSION_CHANCE;
+var config float RETAL_BUCKET_INCREASE_ON_MISSION_SUCCESS;
 var config int SUPPLY_RAID_BUCKET;
 var config int INTEL_RAID_BUCKET;
 var config int RECRUIT_RAID_BUCKET;
@@ -734,11 +736,7 @@ static function RemoveOrAdjustExistingActivitiesFromRegion(XComGameState_WorldRe
 static function X2DataTemplate CreateCounterinsurgencyTemplate()
 {
 	local X2LWAlienActivityTemplate Template;
-	local X2LWActivityCooldown Cooldown;
-	local X2LWActivityCondition_MinRebels RebelCondition1;
-	local X2LWActivityCondition_MinWorkingRebels RebelCondition2;
-	local X2LWActivityCondition_FullOutpostJobBuckets BucketFill;
-	local X2LWActivityCondition_RetalMixer RetalMixer;
+	local X2LWActivityCondition_FullRetalBucket BucketFill;
 
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.CounterinsurgencyName);
 	Template.iPriority = 50; // 50 is default, lower priority gets created earlier
@@ -746,38 +744,15 @@ static function X2DataTemplate CreateCounterinsurgencyTemplate()
 
 	//these define the requirements for creating each activity
 	Template.ActivityCreation = new class'X2LWActivityCreation';
-	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInWorld);
+	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInRegion);
 	Template.ActivityCreation.Conditions.AddItem(default.ContactedAlienRegion);
-	Template.ActivityCreation.Conditions.AddItem(new class'X2LWActivityCondition_AlertVigilance');
-	Template.ActivityCreation.Conditions.AddItem(new class'X2LWActivityCondition_RetalMixer');
 
-	RetalMixer = new class'X2LWActivityCondition_RetalMixer';
-	RetalMixer.UseSpecificJob = false;
-	Template.ActivityCreation.Conditions.AddItem(RetalMixer);
-
-	// This makes sure there are enough warm bodies for the mission to be meaningful
-	RebelCondition1 = new class 'X2LWActivityCondition_MinRebels';
-	RebelCondition1.MinRebels = default.ATTEMPT_COUNTERINSURGENCY_MIN_REBELS;
-	Template.ActivityCreation.Conditions.AddItem(RebelCondition1);
-
-	// This lets you hide rebels to avoid the mission
-	RebelCondition2 = new class 'X2LWActivityCondition_MinWorkingRebels';
-	RebelCondition2.MinWorkingRebels = default.ATTEMPT_COUNTERINSURGENCY_MIN_WORKING_REBELS;
-	Template.ActivityCreation.Conditions.AddItem(RebelCondition2);
-
-	BucketFill = new class 'X2LWActivityCondition_FullOutpostJobBuckets';
-	BucketFill.FullRetal = true;
-	BucketFill.RequiredDays = default.COIN_BUCKET;
+	BucketFill = new class 'X2LWActivityCondition_FullRetalBucket';
+	BucketFill.BucketCapacity = default.COIN_BUCKET;
 	Template.ActivityCreation.Conditions.AddItem(BucketFill);
 
 	//these define the requirements for discovering each activity, based on the RebelJob "Missions"
 	Template.DetectionCalc = new class'X2LWActivityDetectionCalc_Terror';
-
-	//REgional Cooldown
-	Cooldown = new class'X2LWActivityCooldown';
-	Cooldown.Cooldown_Hours = default.COIN_MIN_COOLDOWN_HOURS;
-	Cooldown.RandCooldown_Hours = default.COIN_MAX_COOLDOWN_HOURS - default.COIN_MIN_COOLDOWN_HOURS;
-	Template.ActivityCooldown = Cooldown;
 
 	// required delegates
 	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
@@ -1823,6 +1798,7 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 	local XComGameState_AdventChosen ChosenState;
 	local array<XComGameState_AdventChosen> AllChosen;
 	local int i;
+
 	if (!`SecondWaveEnabled('DisableChosen'))
 	{
 		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
@@ -3402,11 +3378,9 @@ static function StartGeneralOp (XComGameState_LWAlienActivity ActivityState, XCo
 static function X2DataTemplate CreateIntelRaidTemplate()
 {
 	local X2LWAlienActivityTemplate					Template;
-	local X2LWActivityCooldown						Cooldown;
 	local X2LWActivityCondition_MinRebelsOnJob		RebelCondition;
 	local X2LWActivityDetectionCalc					AlwaysDetect;
-	local X2LWActivityCondition_FullOutpostJobBuckets BucketFill;
-	local X2LWActivityCondition_RetalMixer				RetalMixer;
+	local X2LWActivityCondition_FullRetalBucket		BucketFill;
 
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.IntelRaidName);
 	Template.ActivityCategory = 'RetalOps';
@@ -3417,33 +3391,21 @@ static function X2DataTemplate CreateIntelRaidTemplate()
 
 	//these define the requirements for creating each activity
 	Template.ActivityCreation = new class'X2LWActivityCreation';
-	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInWorld);
+	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInRegion);
 	Template.ActivityCreation.Conditions.AddItem(default.ContactedAlienRegion);
 	Template.ActivityCreation.Conditions.AddItem(default.RetalOpsCondition);
 	Template.ActivityCreation.Conditions.AddItem(new class'X2LWActivityCondition_AlertVigilance');
 
-	//This makes certain regions more or less likely
-	RetalMixer = new class'X2LWActivityCondition_RetalMixer';
-	RetalMixer.UseSpecificJob = true;
-	RetalMixer.SpecificJob = class'LWRebelJob_DefaultJobSet'.const.INTEL_JOB;
-	Template.ActivityCreation.Conditions.AddItem(RetalMixer);
-
 	RebelCondition = new class 'X2LWActivityCondition_MinRebelsOnJob';
 	RebelCondition.MinRebelsOnJob = default.MIN_REBELS_TO_TRIGGER_INTEL_RAID;
-	RebelCondition.FacelessReduceMinimum=true;
+	RebelCondition.FacelessReduceMinimum = false;
 	RebelCondition.Job = class'LWRebelJob_DefaultJobSet'.const.INTEL_JOB;
 	Template.ActivityCreation.Conditions.AddItem(RebelCondition);
 
-	BucketFill = new class 'X2LWActivityCondition_FullOutpostJobBuckets';
-	BucketFill.FullRetal = false;
-	BucketFill.Job = class'LWRebelJob_DefaultJobSet'.const.INTEL_JOB;
-	BucketFill.RequiredDays = default.INTEL_RAID_BUCKET;
+	BucketFill = new class 'X2LWActivityCondition_FullRetalBucket';
+	BucketFill.RebelJob = class'LWRebelJob_DefaultJobSet'.const.INTEL_JOB;
+	BucketFill.BucketCapacity = default.INTEL_RAID_BUCKET;
 	Template.ActivityCreation.Conditions.AddItem(BucketFill);
-
-	Cooldown = new class'X2LWActivityCooldown';
-	Cooldown.Cooldown_Hours = default.INTEL_RAID_REGIONAL_COOLDOWN_HOURS_MIN;
-	Cooldown.RandCooldown_Hours = default.INTEL_RAID_REGIONAL_COOLDOWN_HOURS_MAX - default.INTEL_RAID_REGIONAL_COOLDOWN_HOURS_MIN;
-	Template.ActivityCooldown = Cooldown;
 
 	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
 	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
@@ -3465,7 +3427,7 @@ static function X2DataTemplate CreateIntelRaidTemplate()
 
 
 
-static function EmptyRetalBucket (XComGameState_LWAlienActivity ActivityState, XComGameState NewGameState)
+static function EmptyRetalBucket(XComGameState_LWAlienActivity ActivityState, XComGameState NewGameState)
 {
 	local XComGameState_LWOutpost							Outpost;
 	local XComGameState_WorldRegion							Region;
@@ -3615,9 +3577,7 @@ static function X2DataTemplate CreateSupplyConvoyTemplate()
 	local X2LWAlienActivityTemplate					Template;
 	local X2LWActivityCondition_MinRebelsOnJob		RebelCondition;
 	local X2LWActivityDetectionCalc					AlwaysDetect;
-	local X2LWActivityCooldown						Cooldown;
-	local X2LWActivityCondition_FullOutpostJobBuckets BucketFill;
-	local X2LWActivityCondition_RetalMixer				RetalMixer;
+	local X2LWActivityCondition_FullRetalBucket 	BucketFill;
 
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.SupplyConvoyName);
 	Template.ActivityCategory = 'RetalOps';
@@ -3627,32 +3587,21 @@ static function X2DataTemplate CreateSupplyConvoyTemplate()
 	Template.DetectionCalc = AlwaysDetect;
 
 	Template.ActivityCreation = new class'X2LWActivityCreation';
-	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInWorld);
+	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInRegion);
 	Template.ActivityCreation.Conditions.AddItem(default.ContactedAlienRegion);
 	Template.ActivityCreation.Conditions.AddItem(default.RetalOpsCondition);
 	Template.ActivityCreation.Conditions.AddItem(new class'X2LWActivityCondition_AlertVigilance');
 
-	RetalMixer = new class'X2LWActivityCondition_RetalMixer';
-	RetalMixer.UseSpecificJob = true;
-	RetalMixer.SpecificJob = class'LWRebelJob_DefaultJobSet'.const.SUPPLY_JOB;
-	Template.ActivityCreation.Conditions.AddItem(RetalMixer);
-
 	RebelCondition = new class 'X2LWActivityCondition_MinRebelsOnJob';
 	RebelCondition.MinRebelsOnJob = default.MIN_REBELS_TO_TRIGGER_SUPPLY_RAID;
 	RebelCondition.Job = class'LWRebelJob_DefaultJobSet'.const.SUPPLY_JOB;
-	RebelCondition.FacelessReduceMinimum=false;
+	RebelCondition.FacelessReduceMinimum = false;
 	Template.ActivityCreation.Conditions.AddItem(RebelCondition);
 
-	BucketFill = new class 'X2LWActivityCondition_FullOutpostJobBuckets';
-	BucketFill.FullRetal = false;
-	BucketFill.Job = class'LWRebelJob_DefaultJobSet'.const.SUPPLY_JOB;
-	BucketFill.RequiredDays = default.SUPPLY_RAID_BUCKET;
+	BucketFill = new class 'X2LWActivityCondition_FullRetalBucket';
+	BucketFill.RebelJob = class'LWRebelJob_DefaultJobSet'.const.SUPPLY_JOB;
+	BucketFill.BucketCapacity = default.SUPPLY_RAID_BUCKET;
 	Template.ActivityCreation.Conditions.AddItem(BucketFill);
-
-	Cooldown = new class'X2LWActivityCooldown';
-	Cooldown.Cooldown_Hours = default.SUPPLY_RAID_REGIONAL_COOLDOWN_HOURS_MIN;
-	Cooldown.RandCooldown_Hours = default.SUPPLY_RAID_REGIONAL_COOLDOWN_HOURS_MAX - default.SUPPLY_RAID_REGIONAL_COOLDOWN_HOURS_MIN;
-	Template.ActivityCooldown = Cooldown;
 
 	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
 	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
@@ -3700,12 +3649,10 @@ static function SupplyConvoyCompleted (bool bAlienSuccess, XComGameState_LWAlien
 
 static function X2DataTemplate CreateRecruitRaidTemplate()
 {
-	local X2LWAlienActivityTemplate						Template;
-	local X2LWActivityCondition_MinRebelsOnJob			RebelCondition;
-	local X2LWActivityDetectionCalc						AlwaysDetect;
-	local X2LWActivityCooldown							Cooldown;
-	local X2LWActivityCondition_FullOutpostJobBuckets	BucketFill;
-	local X2LWActivityCondition_RetalMixer				RetalMixer;
+	local X2LWAlienActivityTemplate					Template;
+	local X2LWActivityCondition_MinRebelsOnJob		RebelCondition;
+	local X2LWActivityDetectionCalc					AlwaysDetect;
+	local X2LWActivityCondition_FullRetalBucket		BucketFill;
 
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.RecruitRaidName);
 	Template.ActivityCategory = 'RetalOps';
@@ -3715,32 +3662,21 @@ static function X2DataTemplate CreateRecruitRaidTemplate()
 	Template.DetectionCalc = AlwaysDetect;
 
 	Template.ActivityCreation = new class'X2LWActivityCreation';
-	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInWorld);
+	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInRegion);
 	Template.ActivityCreation.Conditions.AddItem(default.ContactedAlienRegion);
 	Template.ActivityCreation.Conditions.AddItem(default.RetalOpsCondition);
 	Template.ActivityCreation.Conditions.AddItem(new class'X2LWActivityCondition_AlertVigilance');
 
-	RetalMixer = new class'X2LWActivityCondition_RetalMixer';
-	RetalMixer.UseSpecificJob = true;
-	RetalMixer.SpecificJob = class'LWRebelJob_DefaultJobSet'.const.RECRUIT_JOB;
-	Template.ActivityCreation.Conditions.AddItem(RetalMixer);
-
 	RebelCondition = new class 'X2LWActivityCondition_MinRebelsOnJob';
 	RebelCondition.MinRebelsOnJob = default.MIN_REBELS_TO_TRIGGER_RECRUIT_RAID;
-	RebelCondition.FacelessReduceMinimum=true;
+	RebelCondition.FacelessReduceMinimum = false;
 	RebelCondition.Job = class'LWRebelJob_DefaultJobSet'.const.RECRUIT_JOB;
 	Template.ActivityCreation.Conditions.AddItem(RebelCondition);
 
-	BucketFill = new class 'X2LWActivityCondition_FullOutpostJobBuckets';
-	BucketFill.FullRetal = false;
-	BucketFill.Job = class'LWRebelJob_DefaultJobSet'.const.RECRUIT_JOB;
-	BucketFill.RequiredDays = default.RECRUIT_RAID_BUCKET;
+	BucketFill = new class 'X2LWActivityCondition_FullRetalBucket';
+	BucketFill.RebelJob = class'LWRebelJob_DefaultJobSet'.const.RECRUIT_JOB;
+	BucketFill.BucketCapacity = default.RECRUIT_RAID_BUCKET;
 	Template.ActivityCreation.Conditions.AddItem(BucketFill);
-
-	Cooldown = new class'X2LWActivityCooldown';
-	Cooldown.Cooldown_Hours = default.RECRUIT_RAID_REGIONAL_COOLDOWN_HOURS_MIN;
-	Cooldown.RandCooldown_Hours = default.RECRUIT_RAID_REGIONAL_COOLDOWN_HOURS_MAX - default.RECRUIT_RAID_REGIONAL_COOLDOWN_HOURS_MIN;
-	Template.ActivityCooldown = Cooldown;
 
 	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
 	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
@@ -3893,6 +3829,9 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 	ActivityTemplate = ActivityState.GetMyTemplate();
 	NewGameState.AddStateObject(ActivityState);
 
+	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	if(RegionState == none)
+		RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 
     // We need to apply the rewards immediately, but don't want to run them twice if we need to also defer the
     // activity update until we're back at the geoscape.
@@ -3903,6 +3842,7 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 			ExcludeIndices = GetRewardExcludeIndices(ActivityState, MissionState, NewGameState);
 		    GiveRewards(NewGameState, MissionState, ExcludeIndices);
 		    RecordResistanceActivity(true, ActivityState, MissionState, NewGameState);
+			IncrementRetalBucket(RegionState, NewGameState);
 
 		    MissionState.RemoveEntity(NewGameState);
 	    }
@@ -3930,10 +3870,6 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 
 	//advance to the next mission in the chain
 	ActivityState.CurrentMissionLevel++;
-
-	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
-	if(RegionState == none)
-		RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 
 	//when a region is liberated, activities can no longer be advanced
 	if(RegionState != none && RegionIsLiberated(RegionState, NewGameState) && !ActivityTemplate.CanOccurInLiberatedRegion)
@@ -3976,13 +3912,18 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 static function TypicalEndActivityOnMissionSuccess(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
 {
 	local X2LWAlienActivityTemplate ActivityTemplate;
+	local XComGameState_WorldRegion RegionState;
 	local array<int> ExcludeIndices;
 
-	if(ActivityState == none)
+	if (ActivityState == none)
 		`REDSCREEN("AlienActivities : TypicalEndActivityOnMissionSuccess -- no ActivityState");
 
 	ActivityTemplate = ActivityState.GetMyTemplate();
 	NewGameState.AddStateObject(ActivityState);
+
+	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	if (RegionState == none)
+		RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 
 	if (MissionState != none)
 	{
@@ -3990,6 +3931,7 @@ static function TypicalEndActivityOnMissionSuccess(XComGameState_LWAlienActivity
 
 		GiveRewards(NewGameState, MissionState, ExcludeIndices);
 		RecordResistanceActivity(true, ActivityState, MissionState, NewGameState);
+		IncrementRetalBucket(RegionState, NewGameState);
 
 		MissionState.RemoveEntity(NewGameState);
 	}
@@ -4031,7 +3973,9 @@ static function TypicalNoActionOnMissionFailure(XComGameState_LWAlienActivity Ac
 
 	//record failure
 	if (MissionState != none)
+	{
 		RecordResistanceActivity(false, ActivityState, MissionState, NewGameState);
+	}
 }
 
 //handles the case where mission failure advances the chain to the next mission
@@ -4150,6 +4094,20 @@ static function AddVigilanceNearby (XComGameState NewGameState, XComGameState_Wo
 	}
 }
 
+static function IncrementRetalBucket(XComGameState_WorldRegion RegionState, XComGameState NewGameState)
+{
+	local XComGameState_LWOutpost OutpostState;
+
+	// Get the outpost for the region and increment its bucket
+	OutpostState = `LWOUTPOSTMGR.GetOutpostForRegion(RegionState);
+	OutpostState = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', OutpostState.ObjectID));
+
+	if (`SYNC_RAND_STATIC(100) <= default.RETAL_BUCKET_MISSION_CHANCE)
+	{
+		OutpostState.TotalResistanceBucket += default.RETAL_BUCKET_INCREASE_ON_MISSION_SUCCESS;
+		`LWTrace("Incremented full retal bucket - now at:" @ OutpostState.TotalResistanceBucket);
+	}
+}
 
 static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
 {
@@ -4594,8 +4552,6 @@ static function XComGameState_MissionSite GetRebelRaidMissionSite(XComGameState_
 
     return RaidMission;
 }
-
-
 
 defaultProperties
 {

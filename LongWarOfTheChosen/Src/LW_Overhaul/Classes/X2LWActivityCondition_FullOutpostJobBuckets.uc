@@ -1,6 +1,11 @@
+//---------------------------------------------------------------------------------------
+//  FILE:    X2LWActivityCondition_FullOutpostJobBuckets.uc
+//  AUTHOR:  Pavonis Interactive
+//  PURPOSE: (Unused) A condition for any retal that requires the associated bucket
+//           to be full. Can be used for full and job-specific retals.
+//---------------------------------------------------------------------------------------
+
 class X2LWActivityCondition_FullOutpostJobBuckets extends X2LWActivityCondition config(LW_Activities);
-
-
 
 var config float CONTACTED_REGIONS_BASE_BUCKET_MOD;
 var config float LIBERATED_REGIONS_BASE_BUCKET_MOD;
