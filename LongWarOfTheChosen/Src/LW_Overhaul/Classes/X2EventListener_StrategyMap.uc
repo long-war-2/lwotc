@@ -1146,6 +1146,7 @@ static function EventListenerReturn ApplyMissionDetectionModifiers(
 	Name InEventID,
 	Object CallbackData)
 {
+	local array<XComGameState_LWMissionDetectionModifier> DetectionModifiers;
 	local XComGameState_LWAlienActivity ActivityState;
 	local XComGameState_LWOutpost OutpostState;
 	local XComGameState_LWMissionDetectionModifier ModifierState;
@@ -1161,12 +1162,14 @@ static function EventListenerReturn ApplyMissionDetectionModifiers(
 
 	ActivityState = XComGameState_LWAlienActivity(Tuple.Data[1].o);
 	OutpostState = XComGameState_LWOutpost(EventSource);
-	BaseModifier = ActivityState.MissionResourcePool;
+	DetectionModifiers = OutpostState.GetMissionDetectionModifiers();
+	BaseModifier = Tuple.Data[2].f;
 
 	// Iterate through all the outpost's detection modifiers
 	IncomeModifier = 0;
-	foreach OutpostState.DetectionModifiers(ModifierState)
+	foreach DetectionModifiers(ModifierState)
 	{
+		`LWTrace("Applying detection income modifier '" $ ModifierState.GetMyTemplateName() $ "'");
 		IncomeModifier += ModifierState.GetMyTemplate().GetModifier(OutpostState, ActivityState, BaseModifier);
 	}
 

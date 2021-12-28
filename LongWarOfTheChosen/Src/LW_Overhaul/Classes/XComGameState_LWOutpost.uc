@@ -156,7 +156,7 @@ var localized string m_strProhibitedJobEnded;
 var array <RetributionJobStruct> CurrentRetributions;
 var localized string m_strRetributionEnded;
 
-var array<XComGameState_LWMissionDetectionModifier> DetectionModifiers;
+var array<StateObjectReference> DetectionModifiers;
 
 // DEBUG VARs
 
@@ -437,13 +437,13 @@ function InitOutpost(XComGameState NewState, XComGameState_WorldRegion WorldRegi
 
 	// Set up the basic detection modifiers provided by each rebel job
 	DetectionModifierTemplate = X2LWMissionDetectionModifierTemplate(StratMgr.FindStrategyElementTemplate('IntelJobDetectionModifier'));
-	DetectionModifiers.AddItem(DetectionModifierTemplate.CreateInstanceFromTemplate(GetReference(), NewState));
+	DetectionModifiers.AddItem(DetectionModifierTemplate.CreateInstanceFromTemplate(GetReference(), NewState).GetReference());
 
 	DetectionModifierTemplate = X2LWMissionDetectionModifierTemplate(StratMgr.FindStrategyElementTemplate('RecruitJobDetectionModifier'));
-	DetectionModifiers.AddItem(DetectionModifierTemplate.CreateInstanceFromTemplate(GetReference(), NewState));
+	DetectionModifiers.AddItem(DetectionModifierTemplate.CreateInstanceFromTemplate(GetReference(), NewState).GetReference());
 
 	DetectionModifierTemplate = X2LWMissionDetectionModifierTemplate(StratMgr.FindStrategyElementTemplate('SupplyJobDetectionModifier'));
-	DetectionModifiers.AddItem(DetectionModifierTemplate.CreateInstanceFromTemplate(GetReference(), NewState));
+	DetectionModifiers.AddItem(DetectionModifierTemplate.CreateInstanceFromTemplate(GetReference(), NewState).GetReference());
 
 	NextUpdateTime = GetCurrentTime();
 	class'X2StrategyGameRulesetDataStructures'.static.AddDay(NextUpdateTime);
@@ -823,6 +823,7 @@ function bool WipeOutOutpost(XComGameState NewGameState)
 	local XComGameState_Unit Unit;
 	local XComGameStateHistory History;
 	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWMissionDetectionModifier DetectionMod;
 
 	History = `XCOMHISTORY;
 
@@ -878,11 +879,12 @@ function bool WipeOutOutpost(XComGameState NewGameState)
 	// if they haven't expired.
 	for (i = DetectionModifiers.Length - 1; i >= 0; i--)
 	{
-		if (DetectionModifiers[i].GetMyTemplate().ModifierDurationHours > 0)
+		DetectionMod = XComGameState_LWMissionDetectionModifier(History.GetGameStateForObjectID(DetectionModifiers[i].ObjectID));
+		if (DetectionMod.GetMyTemplate().ModifierDurationHours > 0)
 		{
 			// Clean it up!
 			DetectionModifiers.Remove(i, 1);
-			NewGameState.RemoveStateObject(DetectionModifiers[i].ObjectID);
+			NewGameState.RemoveStateObject(DetectionMod.ObjectID);
 		}
 	}
 
@@ -1294,13 +1296,16 @@ protected function ResetJobIncomePools(XComGameState NewGameState)
 
 function bool Update(XComGameState NewGameState, optional out array<LWRebelJobTemplate> JobsPendingVisualization)
 {
+	local XComGameStateHistory History;
 	local XComGameState_WorldRegion WorldRegion;
+	local XComGameState_LWMissionDetectionModifier DetectionMod;
 	local int k;
 	local string AlertString;
 	local XGParamTag ParamTag;
 	local UIStrategyMap StrategyMap;
 	local XGGeoscape Geoscape;
 
+	History = `XCOMHISTORY;
 	WorldRegion = GetWorldRegionForOutpost();
 
 	if (class'X2StrategyGameRulesetDataStructures'.static.LessThan(NextUpdateTime, GetCurrentTime()))
@@ -1367,17 +1372,18 @@ function bool Update(XComGameState NewGameState, optional out array<LWRebelJobTe
 		// Clear up any expired mission detection modifiers
 		for (k = DetectionModifiers.Length - 1; k >= 0; k--)
 		{
-			if (DetectionModifiers[k].GetMyTemplate().ModifierDurationHours <= 0)
+			DetectionMod = XComGameState_LWMissionDetectionModifier(History.GetGameStateForObjectID(DetectionModifiers[k].ObjectID));
+			if (DetectionMod.GetMyTemplate().ModifierDurationHours <= 0)
 			{
 				// Detection modifier has no expiration
 				continue;
 			}
 
-			if (class'X2StrategyGameRulesetDataStructures'.static.LessThan(DetectionModifiers[k].ExpirationDateTime, GetCurrentTime()))
+			if (class'X2StrategyGameRulesetDataStructures'.static.LessThan(DetectionMod.ExpirationDateTime, GetCurrentTime()))
 			{
 				// Clean it up!
 				DetectionModifiers.Remove(k, 1);
-				NewGameState.RemoveStateObject(DetectionModifiers[k].ObjectID);
+				NewGameState.RemoveStateObject(DetectionMod.ObjectID);
 			}
 		}
 
@@ -1871,6 +1877,21 @@ function UpdateRebelAbilities(XComGameState NewGameState)
 			}
 		}
 	}
+}
+
+function array<XComGameState_LWMissionDetectionModifier> GetMissionDetectionModifiers()
+{
+	local XComGameStateHistory History;
+	local array<XComGameState_LWMissionDetectionModifier> Modifiers;
+	local StateObjectReference ModifierRef;
+
+	History = `XCOMHISTORY;
+	foreach DetectionModifiers(ModifierRef)
+	{
+		Modifiers.AddItem(XComGameState_LWMissionDetectionModifier(History.GetGameStateForObjectID(ModifierRef.ObjectID)));
+	}
+
+	return Modifiers;
 }
 
 function AddChosenRetribution(int DurationinDays)

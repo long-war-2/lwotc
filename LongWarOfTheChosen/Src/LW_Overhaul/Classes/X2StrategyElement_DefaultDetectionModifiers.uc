@@ -3,7 +3,7 @@
 //  AUTHOR:  Peter Ledbrook
 //  PURPOSE: Sets up the standard LWOTC mission detection modifier templates
 //---------------------------------------------------------------------------------------
-class X2StrategyElement_DefaultDetectionModifiers extends Object config(LW_Overhaul);
+class X2StrategyElement_DefaultDetectionModifiers extends X2StrategyElement config(LW_Overhaul);
 
 var config array<name> ACTIVITIES_WITH_INTEL_JOB_BONUS;
 var config array<name> ACTIVITIES_WITH_RECRUIT_JOB_BONUS;
@@ -52,6 +52,7 @@ static function float GetIntelJobDetectionModifier(XComGameState_LWOutpost Outpo
 	// Check that we have some rebels on the Intel job, otherwise there is no bonus
 	RebelsOnJobCount = OutpostState.GetRebelLevelsOnJob(class'LWRebelJob_DefaultJobSet'.const.INTEL_JOB);
 
+	`LWTrace("Applying intel job modifier bonus: [" $ BaseModifier $ ", " $ RebelsOnJobCount $ ", " $ default.INTEL_JOB_MULTIPLIER_PER_REBEL $ "]");
 	return BaseModifier * RebelsOnJobCount * default.INTEL_JOB_MULTIPLIER_PER_REBEL;
 }
 
@@ -79,6 +80,7 @@ static function float GetRecruitJobDetectionModifier(XComGameState_LWOutpost Out
 	// Check that we have some rebels on the Intel job, otherwise there is no bonus
 	RebelsOnJobCount = OutpostState.GetRebelLevelsOnJob(class'LWRebelJob_DefaultJobSet'.const.RECRUIT_JOB);
 
+	`LWTrace("Applying recruit job modifier bonus: [" $ BaseModifier $ ", " $ RebelsOnJobCount $ ", " $ default.RECRUIT_JOB_MULTIPLIER_PER_REBEL $ "]");
 	return BaseModifier * RebelsOnJobCount * default.RECRUIT_JOB_MULTIPLIER_PER_REBEL;
 }
 
@@ -106,6 +108,7 @@ static function float GetSupplyJobDetectionModifier(XComGameState_LWOutpost Outp
 	// Check that we have some rebels on the Intel job, otherwise there is no bonus
 	RebelsOnJobCount = OutpostState.GetRebelLevelsOnJob(class'LWRebelJob_DefaultJobSet'.const.SUPPLY_JOB);
 
+	`LWTrace("Applying supply job modifier bonus: [" $ BaseModifier $ ", " $ RebelsOnJobCount $ ", " $ default.SUPPLY_JOB_MULTIPLIER_PER_REBEL $ "]");
 	return BaseModifier * RebelsOnJobCount * default.SUPPLY_JOB_MULTIPLIER_PER_REBEL;
 }
 

@@ -1,7 +1,8 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    XComGameState_LWMissionDetectionModifier.uc
 //  AUTHOR:  Peter Ledbrook
-//  PURPOSE: 
+//  PURPOSE: A persistent detection modifier for missions in a given outpost that
+//           can either make activities/missions easier or harder to detect.
 //---------------------------------------------------------------------------------------
 class XComGameState_LWMissionDetectionModifier extends XComGameState_BaseObject;
 

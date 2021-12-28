@@ -56,7 +56,7 @@ function bool CanBeDetected(XComGameState_LWAlienActivity ActivityState, XComGam
 	local XComGameState_LWOutpost OutpostState;
 	local XComGameState_LWOutpostManager OutpostManager;
 	local X2LWAlienActivityTemplate ActivityTemplate;
-	local float DetectionChance, RandValue;
+	local float DetectionChance, RandValue, BaseMissionIncome;
 
 	//`LWTRACE("TypicalActivity Discovery: Starting");
 	if(bAlwaysDetected)
@@ -85,8 +85,9 @@ function bool CanBeDetected(XComGameState_LWAlienActivity ActivityState, XComGam
 
 	ActivityTemplate = ActivityState.GetMyTemplate();
 
-	ActivityState.MissionResourcePool += GetMissionIncomeForUpdate(OutpostState);
-	ActivityState.MissionResourcePool += GetExternalMissionModifiersForUpdate(OutpostState, ActivityState, NewGameState); // for other mods to hook into
+	BaseMissionIncome = GetMissionIncomeForUpdate(OutpostState);
+	ActivityState.MissionResourcePool += BaseMissionIncome;
+	ActivityState.MissionResourcePool += GetExternalMissionModifiersForUpdate(OutpostState, ActivityState, BaseMissionIncome, NewGameState); // for other mods to hook into
 
 	if(MeetsRequiredMissionIncome(ActivityState, ActivityTemplate)) // have enough income
 	{
@@ -179,25 +180,35 @@ function float GetMissionIncomeForUpdate(XComGameState_LWOutpost OutpostState)
 function float GetExternalMissionModifiersForUpdate(
 	XComGameState_LWOutpost OutpostState,
 	XComGameState_LWAlienActivity ActivityState,
+	float BaseMissionIncome,
 	XComGameState NewGameState)
 {
 	local LWTuple Tuple;
 
 	Tuple = new class'LWTuple';
-	Tuple.Data.Add(2);
+	Tuple.Data.Add(3);
 	Tuple.Id = 'GetActivityDetectionIncomeModifier';
 	Tuple.Data[0].Kind = LWTVFloat;
-	Tuple.Data[0].f = 0;
+	Tuple.Data[0].f = 0;    // Total extra income modifier
 	Tuple.Data[1].Kind = LWTVObject;
 	Tuple.Data[1].o = ActivityState;
+	Tuple.Data[2].Kind = LWTVFloat;
+	Tuple.Data[2].f = BaseMissionIncome;
 
 	// Fire the event
 	`XEVENTMGR.TriggerEvent('GetActivityDetectionIncomeModifier', Tuple, OutpostState, NewGameState);
 
 	if (Tuple.Data.Length == 0 || Tuple.Data[0].Kind != LWTVFloat)
+	{
 		return 0;
+	}
 	else
+	{
+		`LWTrace("Modified detection income for" @ ActivityState.GetMyTemplateName() @ "in" @
+			OutpostState.GetWorldRegion().GetDisplayName() $ ":" @ Tuple.Data[0].f @ "(Base: " @
+			BaseMissionIncome $ ")");
 		return Tuple.Data[0].f;
+	}
 }
 
 function XComGameState_WorldRegion GetRegion(XComGameState_LWAlienActivity ActivityState)
