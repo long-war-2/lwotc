@@ -14,6 +14,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	CovertActions.AddItem(CreateIntenseTrainingTemplate());
 	CovertActions.AddItem(CreateResistanceMecTemplate());
 	CovertActions.AddItem(CreateRecruitRebelsTemplate());
+	CovertActions.AddItem(CreateLiberationIntelTemplate());
 
 	return CovertActions;
 }
@@ -115,6 +116,30 @@ static function X2DataTemplate CreateRecruitRebelsTemplate()
 
 	Template.Rewards.AddItem('Reward_Rebel');
 	Template.Rewards.AddItem('Reward_Rebel');
+
+	return Template;
+}
+
+static function X2DataTemplate CreateLiberationIntelTemplate()
+{
+	local X2CovertActionTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2CovertActionTemplate', Template, 'CovertAction_LiberationIntel');
+
+	Template.ChooseLocationFn = ChooseRandomContactedRegion;
+	Template.OverworldMeshPath = "UI_3D.Overwold_Final.CovertAction";
+
+	Template.Narratives.AddItem('CovertActionNarrative_LiberationIntel_Skirmishers');
+	Template.Narratives.AddItem('CovertActionNarrative_LiberationIntel_Reapers');
+	Template.Narratives.AddItem('CovertActionNarrative_LiberationIntel_Templars');
+
+	// NOTE: Soldier slots configured in `X2LWCovertActionsModTemplate` for consistency and
+	// because some Firaxis developer keeps making functions private..... The template mod
+	// also adds the Failure risk.
+
+	Template.Risks.AddItem('CovertActionRisk_Ambush');
+
+	Template.Rewards.AddItem('Reward_LiberationIntel');
 
 	return Template;
 }

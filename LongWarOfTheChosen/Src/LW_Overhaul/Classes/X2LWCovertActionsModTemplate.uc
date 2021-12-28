@@ -53,6 +53,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_DelayChosen':
 		case 'CovertAction_ResistanceContact':
 		case 'CovertAction_RecruitRebels':
+		case 'CovertAction_LiberationIntel':
 		case 'CovertAction_SharedAbilityPoints':
 			ConfigureModerateCovertAction(CATemplate);
 			break;

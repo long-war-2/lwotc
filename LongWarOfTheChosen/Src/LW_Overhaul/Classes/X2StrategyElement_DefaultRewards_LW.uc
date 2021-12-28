@@ -30,6 +30,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Rewards.AddItem(CreateFactionInfluenceRewardTemplate());
 	Rewards.AddItem(CreateEnemyCorpsesRewardTemplate());
 	Rewards.AddItem(CreateDummyStatBoostRewardTemplate());
+	Rewards.AddItem(CreateLiberationIntelRewardTemplate());
 	return Rewards;
 }
 
@@ -428,6 +429,96 @@ static function bool IsCorpseRewardAvailable(optional XComGameState NewGameState
 
 	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
     return AuxRef.ObjectID != 0 && AlienHQ.GetForceLevel() >= 5;
+}
+
+static function X2DataTemplate CreateLiberationIntelRewardTemplate()
+{
+    local X2RewardTemplate Template;
+
+    `CREATE_X2Reward_TEMPLATE(Template, 'Reward_LiberationIntel');
+    Template.rewardObjectTemplateName = 'Rebel';
+
+    Template.IsRewardAvailableFn = AvailableForCovertActionsOnly;
+    Template.IsRewardNeededFn = AlwaysFalseNeeded;
+    Template.GenerateRewardFn = GenerateLiberationIntelReward;
+    Template.SetRewardFn = class'X2StrategyElement_DefaultRewards'.static.SetPersonnelReward;
+    Template.GiveRewardFn = GiveLiberationIntelReward;
+    Template.GetRewardImageFn = class'X2StrategyElement_DefaultRewards'.static.GetTechRushRewardImage;
+    Template.GetBlackMarketStringFn = GetRebelBlackMarketString;
+    Template.GetRewardIconFn = class'X2StrategyElement_DefaultRewards'.static.GetGenericRewardIcon;
+
+    return Template;
+}
+
+function GenerateLiberationIntelReward(
+	XComGameState_Reward RewardState,
+	XComGameState NewGameState,
+	optional float RewardScalar = 1.0,
+	optional StateObjectReference AuxRef)
+{
+	local XComGameStateHistory History;
+	local X2LWMissionDetectionModifierTemplate Template;
+	local X2StrategyElementTemplateManager StratMgr;
+	local XComGameState_LWMissionDetectionModifier ModifierState;
+	local XComGameState_LWOutpost OutpostState;
+	local XComGameState_CovertAction CAState;
+	local XComGameState_WorldRegion RegionState;
+
+	History = `XCOMHISTORY;
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	Template = X2LWMissionDetectionModifierTemplate(StratMgr.FindStrategyElementTemplate('LiberationMissionDetectionModifier'));
+
+	RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(AuxRef.ObjectID));
+	if (RegionState == none)
+	{
+		// The source of the reward is a covert action, so grab the region from that
+		CAState = XComGameState_CovertAction(History.GetGameStateForObjectID(AuxRef.ObjectID));
+		RegionState = XComGameState_WorldRegion(History.GetGameStateForObjectID(CAState.Region.ObjectID));
+	}
+
+	OutpostState = `LWOUTPOSTMGR.GetOutpostForRegion(RegionState);
+
+	ModifierState = Template.CreateInstanceFromTemplate(OutpostState.GetReference(), NewGameState);	
+	RewardState.RewardObjectReference = ModifierState.GetReference();
+}
+
+function GiveLiberationIntelReward(
+	XComGameState NewGameState,
+	XComGameState_Reward RewardState,
+	optional StateObjectReference AuxRef,
+	optional bool bOrder = false,
+	optional int OrderHours = -1)
+{
+	local XComGameStateHistory History;
+	local XComGameState_LWMissionDetectionModifier ModifierState;
+	local XComGameState_LWOutpost OutpostState;
+
+	History = `XCOMHISTORY;
+	ModifierState = XComGameState_LWMissionDetectionModifier(History.GetGameStateForObjectID(RewardState.RewardObjectReference.ObjectID));
+	OutpostState = XComGameState_LWOutpost(NewGameState.ModifyStateObject(class'XComGameState_LWOutpost', ModifierState.OwnerOutpostRef.ObjectID));
+	OutpostState.DetectionModifiers.AddItem(ModifierState.GetReference());
+}
+
+// function String GetLiberationIntelRewardString(XComGameState_Reward RewardState)
+// {
+//     local XComGameStateHistory History;
+//     local XComGameState_Unit Unit;
+
+//     History = `XCOMHISTORY;
+//     Unit = XComGameState_Unit(History.GetGameStateForObjectID(RewardState.RewardObjectReference.ObjectID));
+
+//     if (Unit != none)
+//     {
+//         return Unit.GetName(eNameType_Full) @ "-" @ RewardState.GetMyTemplate().DisplayName;
+//     }
+
+//     return "";
+// }
+
+function String GetLiberationIntelBlackMarketString(XComGameState_Reward RewardState)
+{
+    `redscreen("GetLiberationIntelBlackMarketString called. Liberation intel should not be in Black Market!");
+    return "";
 }
 
 static function X2DataTemplate CreateDummyStatBoostRewardTemplate()

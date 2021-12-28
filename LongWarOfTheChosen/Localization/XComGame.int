@@ -2220,6 +2220,12 @@ DisplayName="Increase Faction Influence"
 DisplayName="Enemy Corpses"
 RewardDetails="You'll get a selection of random enemy corpses."
 
+; LWOTC Needs Translation (2)
+[Reward_LiberationIntel X2RewardTemplate]
+DisplayName="Liberation Intel"
+RewardDetails="Provides a boost to detection of liberation missions."
+; End Translation (2)
+
 [Reward_Dummy_StatBoost X2RewardTemplate]
 DisplayName="Stat Boosts"
 ; End Translation
@@ -5817,6 +5823,9 @@ ActionObjective="Obtain Resistance MEC"
 [CovertAction_RecruitRebels X2CovertActionTemplate]
 ActionObjective="Recruit Rebels"
 
+[CovertAction_LiberationIntel X2CovertActionTemplate]
+ActionObjective="Investigate Liberating Region"
+
 [CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
 ActionName="Raid an Enemy Morgue"
 ActionPreNarrative="We've discovered where they've been dumping the corpses from all the fighting you've been doing. Could be an opportunity to accelerate your tech development."
@@ -5876,6 +5885,21 @@ ActionPostNarrative="Your team persuaded some of the dissidents to join our caus
 ActionName="Search for Resistance Recruits"
 ActionPreNarrative="We've learned of a small group of dissidents in the region who may be willing to help us directly. Go in and see whether you can recruit them for the haven."
 ActionPostNarrative="Your team persuaded some of the dissidents to join our cause."
+
+[CovertActionNarrative_LiberationIntel_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Investigate Liberating Region"
+ActionPreNarrative="An opportunity has opened up to learn more about how we can liberate this region. Go in and gather whatever intel you can."
+ActionPostNarrative="Liberation missions are now easier to detect for 3 weeks."
+
+[CovertActionNarrative_LiberationIntel_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Investigate Liberating Region"
+ActionPreNarrative="An opportunity has opened up to learn more about how we can liberate this region. Go in and gather whatever intel you can."
+ActionPostNarrative="Liberation missions are now easier to detect for 3 weeks."
+
+[CovertActionNarrative_LiberationIntel_Templars X2CovertActionNarrativeTemplate]
+ActionName="Investigate Liberating Region"
+ActionPreNarrative="An opportunity has opened up to learn more about how we can liberate this region. Go in and gather whatever intel you can."
+ActionPostNarrative="Liberation missions are now easier to detect for 3 weeks."
 
 [AbilityPoints X2ItemTemplate]
 FriendlyName="Ability Points"
