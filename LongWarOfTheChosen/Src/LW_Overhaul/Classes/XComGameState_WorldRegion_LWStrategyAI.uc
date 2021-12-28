@@ -397,25 +397,24 @@ function bool UpdateRegionalAI(XComGameState NewGameState)
 	}
 	
 	// Vigilance Decay
-	if (GetOwningRegion().HaveMadeContact() && LocalVigilanceLevel > 1)
+	if (LocalVigilanceLevel > 1)
 	{
 		CurrentTime = class'XComGameState_GeoscapeEntity'.static.GetCurrentTime();
 		NextVigilanceDecayTime = LastVigilanceUpdateTime;
 		class'X2StrategyGameRulesetDataStructures'.static.AddHours(NextVigilanceDecayTime, default.LOCAL_VIGILANCE_DECAY_RATE_HOURS);
-		
-		// modify by number of hidings / inactives. First count people on jobs. subtract that from the max who can be working in a haven (13)
-		HoursMod = 0;
-		OutPostState = `LWOUTPOSTMGR.GetOutpostForRegion(GetOwningRegion());
-		WorkingRebels = OutPostState.Rebels.Length - OutPostState.GetNumRebelsOnJob (class'LWRebelJob_DefaultJobSet'.const.HIDING_JOB);
-		EmptySlots = class'XComGameState_LWOutpost'.default.DEFAULT_OUTPOST_MAX_SIZE - WorkingRebels;
-		SlotsDelta = class'XComGameState_LWOutPost'.default.DEFAULT_OUTPOST_MAX_SIZE - default.BASELINE_OUTPOST_WORKERS_FOR_STD_VIG_DECAY - EmptySlots;
-		HoursMod = (float (SlotsDelta) / float (default.BASELINE_OUTPOST_WORKERS_FOR_STD_VIG_DECAY)) * default.MAX_VIG_DECAY_CHANGE_HOURS;
-		//`LWTRACE("Setting new HoursMod for this region" @ HoursMod @ EmptySlots @ SlotsDelta);
-		If (!default.BUSY_HAVENS_SLOW_VIGILANCE_DECAY && HoursMod > 0.0)
+
+		if (GetOwningRegion().HaveMadeContact() && default.BUSY_HAVENS_SLOW_VIGILANCE_DECAY)
 		{
+			// modify by number of hidings / inactives. First count people on jobs. subtract that from the max who can be working in a haven (13)
 			HoursMod = 0;
+			OutPostState = `LWOUTPOSTMGR.GetOutpostForRegion(GetOwningRegion());
+			WorkingRebels = OutPostState.Rebels.Length - OutPostState.GetNumRebelsOnJob (class'LWRebelJob_DefaultJobSet'.const.HIDING_JOB);
+			EmptySlots = class'XComGameState_LWOutpost'.default.DEFAULT_OUTPOST_MAX_SIZE - WorkingRebels;
+			SlotsDelta = class'XComGameState_LWOutPost'.default.DEFAULT_OUTPOST_MAX_SIZE - default.BASELINE_OUTPOST_WORKERS_FOR_STD_VIG_DECAY - EmptySlots;
+			HoursMod = (float (SlotsDelta) / float (default.BASELINE_OUTPOST_WORKERS_FOR_STD_VIG_DECAY)) * default.MAX_VIG_DECAY_CHANGE_HOURS;
+			//`LWTRACE("Setting new HoursMod for this region" @ HoursMod @ EmptySlots @ SlotsDelta);
+			class'X2StrategyGameRulesetDataStructures'.static.AddHours(NextVigilanceDecayTime, HoursMod);
 		}
-		class'X2StrategyGameRulesetDataStructures'.static.AddHours(NextVigilanceDecayTime, HoursMod);
 
 		//`LWTRACE("Current Time:" @ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(CurrentTime) @ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(CurrentTime));
 		//`LWTRACE("Next Vigilance Decay for" @ GetOwningRegion().GetMyTemplateName() @ "scheduled for" @ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(NextVigilanceDecayTime) @ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(NextVigilanceDecayTime));
