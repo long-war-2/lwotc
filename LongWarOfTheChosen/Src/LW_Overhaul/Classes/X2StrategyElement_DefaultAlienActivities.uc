@@ -170,6 +170,7 @@ var config int RECRUIT_RAID_BUCKET;
 
 var config int ALIEN_BASE_DOOM_REMOVAL;
 
+var config int CHOSEN_KNOWLEDGE_GAIN_MISSIONS;
 var config int CHOSEN_ACTIVATE_AT_FL;
 var config array<int> CHOSEN_LEVEL_FL_THRESHOLDS;
 
@@ -1813,11 +1814,14 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
 			ChosenState.Strengths.length = 0;
 
-			for(i = ChosenState.Weaknesses.length - 1; i>=0; i--)
+			// Get them training and learning about XCOM straight away
+			ChosenState.bMetXCom = true;
+
+			for (i = ChosenState.Weaknesses.length - 1; i >= 0; i--)
 			{
-				if(ChosenState.Weaknesses[i] != 'ChosenSkirmisherAdversary' && 
-				ChosenState.Weaknesses[i] != 'ChosenTemplarAdversary' &&
-				ChosenState.Weaknesses[i] != 'ChosenReaperAdversary')
+				if (ChosenState.Weaknesses[i] != 'ChosenSkirmisherAdversary' && 
+					ChosenState.Weaknesses[i] != 'ChosenTemplarAdversary' &&
+					ChosenState.Weaknesses[i] != 'ChosenReaperAdversary')
 				{
 					ChosenState.Weaknesses.Remove(i,1);
 				}
@@ -3849,6 +3853,7 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 		    GiveRewards(NewGameState, MissionState, ExcludeIndices);
 		    RecordResistanceActivity(true, ActivityState, MissionState, NewGameState);
 			IncrementRetalBucket(RegionState, NewGameState);
+			IncreaseChosenKnowledge(RegionState, NewGameState);
 
 		    MissionState.RemoveEntity(NewGameState);
 	    }
@@ -3938,6 +3943,7 @@ static function TypicalEndActivityOnMissionSuccess(XComGameState_LWAlienActivity
 		GiveRewards(NewGameState, MissionState, ExcludeIndices);
 		RecordResistanceActivity(true, ActivityState, MissionState, NewGameState);
 		IncrementRetalBucket(RegionState, NewGameState);
+		IncreaseChosenKnowledge(RegionState, NewGameState);
 
 		MissionState.RemoveEntity(NewGameState);
 	}
@@ -4113,6 +4119,15 @@ static function IncrementRetalBucket(XComGameState_WorldRegion RegionState, XCom
 		OutpostState.TotalResistanceBucket += default.RETAL_BUCKET_INCREASE_ON_MISSION_SUCCESS;
 		`LWTrace("Incremented full retal bucket - now at:" @ OutpostState.TotalResistanceBucket);
 	}
+}
+
+static function IncreaseChosenKnowledge(XComGameState_WorldRegion RegionState, XComGameState NewGameState)
+{
+	local XComGameState_AdventChosen ChosenState;
+
+	ChosenState = RegionState.GetControllingChosen();
+	ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+	ChosenState.ModifyKnowledgeScore(NewGameState, default.CHOSEN_KNOWLEDGE_GAIN_MISSIONS);
 }
 
 static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
