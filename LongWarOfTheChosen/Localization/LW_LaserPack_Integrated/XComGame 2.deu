@@ -1,0 +1,34 @@
+[AssaultRifle_LS X2WeaponTemplate]
+FriendlyName="Lasergewehr"
+FriendlyNamePlural="Lasergewehre"
+BriefSummary="Das Lasergewehr emittiert eine Reihe von nur wenige Mikrosekunden langen Lichtstößen, die bei den getroffenen Zielen chemische Verbindungen zerstören."
+TacticalText="<Bullet/> Das Abfeuern der Primärwaffe beendet die Runde eines Soldaten ohne Spezialausbildung.\n<Bullet/> Benutze von ADVENT-Gegnern erbeutete Verbesserungen, um die taktische Effektivität dieses Lasergewehrs zu erhöhen.\n<Bullet/> Der hohe Energieausstoß dieser Laserwaffen ergibt sich durch die Integration von Alien-Technologie in erbeutete Vorkriegs-Laserwaffen.\n<Bullet/> Laser erhalten einen Bonus auf Zielsicherheit."
+AbilityDescName="Sturmgewehr"
+
+[SMG_LS X2WeaponTemplate]
+FriendlyName="Laser-Stengun"
+FriendlyNamePlural="Laser-Stenguns"
+BriefSummary="Als leichtere Version des Lasergewehrs erfüllt diese Waffe eine ähnliche Rolle wie die MP, indem sie Feuerkraft, Munition und Präzision auf Entfernung gegen gesteigerte Soldatenmobilität und -verborgenheit tauscht."
+TacticalText="<Bullet/> Das Abfeuern der Primärwaffe beendet die Runde eines Soldaten ohne Spezialausbildung.\n<Bullet/> Benutze von ADVENT-Gegnern erbeutete Verbesserungen, um die taktische Effektivität der Stengun zu verbessern.\n<Bullet/> MP-artige Waffen bieten im Vergleich zu Sturmgewehren gesteigerte Mobilität, Nahkampfpräzision und Verborgenheit, verursachen dafür jedoch weniger Schaden, verfügen über weniger Munition und erleiden Präzisionsabzüge auf große Entfernungen.\n<Bullet/> Laser erhalten einen Bonus auf Zielsicherheit."
+AbilityDescName="MP"
+
+[Cannon_LS X2WeaponTemplate]
+FriendlyName="Laserkanone"
+FriendlyNamePlural="Laserkanonen"
+BriefSummary="Durch Kombination der Laserwaffentechnologie mit einem verbesserten Kühlsystem können wir eine Schnellfeuerversion der Kanone mit deutlich höherer Feuerleistung schaffen."
+TacticalText="<Bullet/> Die Laserkanone ist eine wesentlich stärkere und dennoch genauso breit einsetzbare Version der konventionellen Kanone.\n<Bullet/> Benutze von Feinden erbeutete Verbesserungen, um die taktische Effektivität der Laserkanone zu erhöhen.\n<Bullet/> Laser erhalten einen Bonus auf Zielsicherheit."
+AbilityDescName="Kanone"
+
+[Shotgun_LS X2WeaponTemplate]
+FriendlyName="Streustrahl"
+FriendlyNamePlural="Streustrahl"
+BriefSummary="Der Streustrahl ist eine Umsetzung der Lasertechnologie, die eine Wirkung ähnlich einer Schrotflinte erzielt; aufgrund der Strahlendiffusion eignet sie sich vor allem für kurze Distanzen."
+TacticalText="<Bullet/> Waffen vom Typ einer Schrotflinte sind im Nahkampf äußerst effektiv, verlieren aber mit zunehmender Entfernung schnell an Präzision.\n<Bullet/> Benutze von Feinden erbeutete Verbesserungen, um die taktische Effektivität des Streustrahls zu erhöhen.\n<Bullet/> Laser erhalten einen Bonus auf Zielsicherheit."
+AbilityDescName="Schrotflinte"
+
+[SniperRifle_LS X2WeaponTemplate]
+FriendlyName="Laserlanze"
+FriendlyNamePlural="Laserlanzen"
+BriefSummary="Die Laserlanze ist eine Langgewehr-Version des Lasergewehrs und nutzt Hochenergie-Blitzkondensatoren; im Zusammenspiel ergibt sich eine hochpräzise Langstrecken-Laserwaffe."
+TacticalText="Zum Abfeuern von Präzisionsgewehren werden immer beide Aktionen benötigt.\n<Bullet/> Sie sind im Nahkampf nicht sehr präzise, aber auf große Distanz tödlich.\n<Bullet/> Benutze von Feinden erbeutete Verbesserungen, um die taktische Effektivität der Laserlanze zu erhöhen.\n<Bullet/> Laser erhalten einen Bonus auf Zielsicherheit."
+AbilityDescName="Präzisionsgewehr"

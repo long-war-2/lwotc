@@ -1,0 +1,219 @@
+
+;---- BEGIN ABILITIES
+
+;displayed both for officer and soldiers receiving effect
+[GetSome X2AbilityTemplate]
+LocFriendlyName="Hol's dir"
+LocLongDescription="Zweimal pro Einsatz kannst du eine Aktion aufwenden, um allen Verbündeten innerhalb der Befehlsreichweite für den Rest der Runde einen Bonus von +20 auf ihre kritische Trefferchance zu gewähren."
+LocHelpText="Erhöht die kritische Trefferchance von Soldaten in der Nähe des Offiziers."
+LocFlyOverText="Hol's dir"
+LocPromotionPopupText="<Bullet/> Verwende einmal pro Einsatz eine Aktion, um Verbündeten innerhalb der Befehlsreichweite für den Rest der Runde einen Bonus von +20 auf ihre kritische Trefferchance zu gewähren.<br/><Bullet/> Zweimal pro Mission einsetzbar.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+[Collector X2AbilityTemplate]
+LocFriendlyName="Sammler"
+LocLongDescription="Alle Kills von nicht-menschlichen Gegnern durch den Trupp gewähren mit einer Wahrscheinlichkeit von 33% einen Infopunkt, solange der Offizier gesund ist."
+LocHelpText="Erhalte zusätzliche Informationen durch vom Trupp erzielte Kills."
+LocFlyOverText="Sammler"
+; displayed for officer in OfficerAbility UI
+LocPromotionPopupText="<Bullet/> Alle Kills von nicht-menschlichen Gegnern durch den Trupp gewähren mit einer Wahrscheinlichkeit von 33 % einen Infopunkt, solange der Offizier gesund ist."
+
+;displayed on officer in tactical container
+[CollectorPassive X2AbilityTemplate]
+LocFriendlyName="Sammler"
+LocLongDescription="Alle Kills von nicht-menschlichen Gegnern durch den Trupp gewähren mit einer Wahrscheinlichkeit von 33 % einen Infopunkt, solange der Offizier gesund ist."
+LocHelpText="Erhalte zusätzliche Informationen durch vom Trupp erzielte Kills."
+LocFlyOverText="Sammler"
+LocPromotionPopupText="<Bullet/> Alle Kills von nicht-menschlichen Gegnern durch den Trupp gewähren mit einer Wahrscheinlichkeit von 33 % einen Infopunkt, solange der Offizier gesund ist."
+
+;displayed on other soldier that receive the effect
+[Defilade X2AbilityTemplate]
+LocFriendlyName="Mehr Deckung"
+LocLongDescription="Soldaten innerhalb der Befehlsreichweite erhalten einen Bonus von +5 auf den durch Deckung gewährten Verteidigungswert."
+LocHelpText="Bonusverteidigung durch Deckung für Soldaten in der Nähe des Offiziers."
+LocFlyOverText="Mehr Deckung"
+;displayed for officer in Officer Ability UI
+LocPromotionPopupText="<Bullet/> Soldaten innerhalb der Befehlsreichweite erhalten einen Bonus von +5 auf den durch Deckung gewährten Verteidigungswert.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+;Displayed on officer in tactical container
+[DefiladePassive X2AbilityTemplate]
+LocFriendlyName="Mehr Deckung"
+LocLongDescription="Soldaten innerhalb der Befehlsreichweite erhalten einen Bonus von +5 auf den durch Deckung gewährten Verteidigungswert."
+LocHelpText="Bonusverteidigung durch Deckung für Soldaten in der Nähe des Offiziers."
+LocFlyOverText="Mehr Deckung"
+LocPromotionPopupText="<Bullet/> Soldaten innerhalb der Befehlsreichweite erhalten einen Bonus von +5 auf den durch Deckung gewährten Verteidigungswert.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+;displayed both on officer and in debuff on target
+[FocusFire X2AbilityTemplate]
+LocFriendlyName="Feuer konzentrieren"
+LocLongDescription="Verwende eine Aktion, um ein Ziel zu bestimmen und deinem Trupp für den Rest der Runde kumulative Boni auf ihre Zielsicherheit sowie 1 Panzerbrechen für Angriffe gegen dieses Ziel zu gewähren."
+LocHelpText="Bestimme ein Ziel, gegen das dein Trupp Boni auf Zielsicherheit und Rüstungspenetration erhält."
+LocFlyOverText="Feuer konzentrieren"
+LocPromotionPopupText="<Bullet/> Verwende eine Aktion, um ein Ziel zu bestimmen und deinem Trupp für den Rest der Runde kumulative Boni auf ihre Zielsicherheit sowie 1 Panzerbrechen für Angriffe gegen dieses Ziel zu gewähren.<br/><Bullet/> Jeder erfolgreiche direkte Waffenangriff auf dieses Ziel innerhalb derselben Runde gewährt einen zusätzlichen Zielsicherheitsbonus in Höhe von +<ABILITY:FOCUS_FIRE_AIM_BONUS/>.<br/><Bullet/> Abklingzeit von drei Runden.<br/>"
+
+;displayed both on officer and on soldiers receiving effect
+[FallBack X2AbilityTemplate]
+LocFriendlyName="Rückzug!"
+LocLongDescription="Gewähre allen sichtbaren Verbündeten, die bereits all ihre Aktionen verbraucht haben, eine kostenlose, aber unkontrollierte Verteidigungsaktion."
+LocHelpText="Gewährt einem beliebigen sichtbaren Verbündeten eine kostenlose, aber unkontrollierte Verteidigungsaktion."
+LocFlyOverText="Rückzug!"
+LocPromotionPopupText="<Bullet/> Gewähre einem beliebigen sichtbaren Verbündeten eine kostenlose, aber unkontrollierte Verteidigungsaktion. Der Verbündete wird in der Regel versuchen, eine sicherere Position zu erreichen oder in Deckung gehen.<br/><Bullet/> Lässt sich nicht auf Einheiten anwenden, die Feuerschutz oder Unterstützungsfeuer leisten.<br/><Bullet/> Kostenlose Aktion."
+
+[Scavenger X2AbilityTemplate]
+LocFriendlyName="Plünderer"
+LocLongDescription="Einsatzbelohnungen wie Vorräte, Alien-Legierungen und Elerium werden nach erfolgreichen Einsätzen um 30 % erhöht. Truppmitglieder haben eine Chance auf Extra-Alien-Legierungen und Elerium."
+LocHelpText="Zusätzliche Vorräte, Alien-Legierungen und Elerium durch Einsätze."
+LocFlyOverText="Plünderer"
+LocPromotionPopupText="<Bullet/> Wenn der Offizier die Mission übersteht und bei Bewusstsein ist, werden Einsatzbelohnungen wie Vorräte, Alien-Legierungen und Elerium um 30 Prozent erhöht.<br/><Bullet> Trupp kann Alien-Legierungen und Elerium von toten Aliens bergen.<br/>"
+
+;Displayed on officer in tactical container
+[ScavengerPassive X2AbilityTemplate]
+LocFriendlyName="Plünderer"
+LocLongDescription="Einsatzbelohnungen wie Vorräte, Alien-Legierungen und Elerium werden nach erfolgreichen Einsätzen um 30 % erhöht. Zusätzliche Chance auf Extra-Alien-Legierungen und Elerium."
+LocHelpText="Zusätzliche Vorräte, Alien-Legierungen und Elerium durch Einsätze."
+LocFlyOverText="Plünderer"
+LocPromotionPopupText="<Bullet/> Wenn der Offizier die Mission in gutem Zustand übersteht, werden Einsatzbelohnungen wie Vorräte, Alien-Legierungen und Elerium um 30 Prozent erhöht.<br/><Bullet> Trupp kann Alien-Legierungen und Elerium von toten Aliens bergen.<br/>"
+
+;displayed on other soldier that receive the effect
+[FireDiscipline X2AbilityTemplate]
+LocFriendlyName="Feuerdisziplin"
+LocLongDescription="Alle Verbündeten innerhalb der Befehlsreichweite erhalten einen Bonus in Höhe von +10 % auf ihre Trefferchance bei Reflexschüssen."
+LocHelpText="Alle Verbündeten in der Nähe des Offiziers erhalten einen Reflexschuss-Bonus."
+LocFlyOverText="Feuerdisziplin"
+;displayed for officer in Officer Ability UI
+LocPromotionPopupText="<Bullet/> Alle Verbündeten innerhalb der Befehlsreichweite erhalten einen Bonus in Höhe von +10 % auf ihre Trefferchance bei Reflexschüssen.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+;Displayed on officer in tactical container
+[FireDisciplinePassive X2AbilityTemplate]
+LocFriendlyName="Feuerdisziplin"
+LocLongDescription="Alle Verbündeten innerhalb der Befehlsreichweite erhalten einen Bonus in Höhe von +10 % auf ihre Trefferchance bei Reflexschüssen."
+LocHelpText="Alle Verbündeten in der Nähe des Offiziers erhalten einen Reflexschuss-Bonus."
+LocFlyOverText="Feuerdisziplin"
+LocPromotionPopupText="<Bullet/> Alle Verbündeten innerhalb der Befehlsreichweite erhalten einen Bonus in Höhe von +10 % auf ihre Trefferchance bei Reflexschüssen.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+;displayed both on officer and on soldiers receiving effect
+[OscarMike X2AbilityTemplate]
+LocFriendlyName="Sind unterwegs"
+LocLongDescription="Verwende eine Aktion, um allen Verbündeten innerhalb der Befehlsreichweite für den Rest der Runde +5 Mobilität zu gewähren. Einmal pro Mission einsetzbar."
+LocHelpText="Aktivieren, um Verbündeten in der Nähe einen Mobilitätsbonus zu gewähren"
+LocFlyOverText="Sind unterwegs"
+LocPromotionPopupText="<Bullet/> Verwende eine Aktion, um allen Verbündeten innerhalb der Befehlsreichweite für den Rest der Runde +5 Mobilität zu gewähren.<br/><Bullet/> Einmal pro Mission einsetzbar.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+;displayed on other soldier that receive the effect
+[LeadByExample X2AbilityTemplate]
+LocFriendlyName="Gutes Beispiel"
+LocLongDescription="Der Offizier verbessert Zielsicherheit, Wille und Hacken von Soldaten innerhalb der Befehlsreichweite um die Hälfte der Differenz zwischen dem Soldaten und dem Offizier."
+LocHelpText="Verbündete in der Nähe eines Offiziers können mehr Zielsicherheit, Wille und Hacken erhalten."
+LocFlyOverText="Gutes Beispiel"
+;displayed for officer in Officer Ability UI
+LocPromotionPopupText="<Bullet/> Wenn die Zielsicherheits-, Willens- und/oder Hackwerte des Offiziers höher sind als die von Soldaten innerhalb der Befehlsreichweite, erhalten die betroffenen Soldaten auf diese Werte Boni in Höhe der Hälfte der Differenz zwischen Soldat und Offizier.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+;Displayed on officer in tactical container
+[LeadByExamplePassive X2AbilityTemplate]
+LocFriendlyName="Gutes Beispiel"
+LocLongDescription="Der Offizier verbessert Zielsicherheit, Wille und Hacken von Soldaten innerhalb der Befehlsreichweite um die Hälfte der Differenz zwischen dem Soldaten und dem Offizier."
+LocHelpText="Verbündete in der Nähe eines Offiziers können mehr Zielsicherheit, Wille und Hacken erhalten."
+LocFlyOverText="Gutes Beispiel"
+LocPromotionPopupText="<Bullet/> Wenn die Zielsicherheits-, Willens- und/oder Hackwerte des Offiziers höher sind als die von Soldaten innerhalb der Befehlsreichweite, erhalten die betroffenen Soldaten auf diese Werte Boni in Höhe der Hälfte der Differenz zwischen Soldat und Offizier.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+;this may not be displayed -- needs testing
+[LeadByExampleLeader X2AbilityTemplate]
+LocFriendlyName="Gutes Beispiel"
+LocLongDescription="Der Offizier verbessert Zielsicherheit, Wille und Hacken von Soldaten innerhalb der Befehlsreichweite um die Hälfte der Differenz zwischen dem Soldaten und dem Offizier."
+LocHelpText="Verbündete in der Nähe eines Offiziers können mehr Zielsicherheit, Wille und Hacken erhalten."
+LocFlyOverText="Gutes Beispiel"
+LocPromotionPopupText="<Bullet/> Wenn die Zielsicherheits-, Willens- und/oder Hackwerte des Offiziers höher sind als die von Soldaten innerhalb der Befehlsreichweite, erhalten die betroffenen Soldaten auf diese Werte Boni in Höhe der Hälfte der Differenz zwischen Soldat und Offizier.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+;displayed on other soldier that receive the effect
+[CombinedArms X2AbilityTemplate]
+LocFriendlyName="Kombinierte Waffen"
+LocLongDescription="Alle Verbündeten innerhalb der Befehlsreichweite verursachen bei erfolgreichen Angriffen +1 zusätzlichen Schaden."
+LocHelpText="Verbündete in der Nähe eines Offiziers verursachen zusätzlichen Schaden."
+LocFlyOverText="Kombinierte Waffen"
+LocPromotionPopupText="<Bullet/> Alle Verbündeten innerhalb der Befehlsreichweite verursachen bei erfolgreichen Angriffen +1 zusätzlichen Schaden.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+;Displayed on officer in tactical container
+[CombinedArmsPassive X2AbilityTemplate]
+LocFriendlyName="Kombinierte Waffen"
+LocLongDescription="Alle Verbündeten innerhalb der Befehlsreichweite verursachen bei erfolgreichen Angriffen +1 zusätzlichen Schaden."
+LocHelpText="Verbündete in der Nähe eines Offiziers verursachen zusätzlichen Schaden."
+LocFlyOverText="Kombinierte Waffen"
+LocPromotionPopupText="<Bullet/> Alle Verbündeten innerhalb der Befehlsreichweite verursachen bei erfolgreichen Angriffen +1 zusätzlichen Schaden.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe."
+
+[Command X2AbilityTemplate]
+LocFriendlyName="Befehl"
+LocLongDescription="Beende deine Runde, um einem beliebigen sichtbaren Truppmitglied eine Bonusaktion zu gewähren. Die Anzahl der Ladungen hängt vom Rang des Offiziers ab."
+LocHelpText="Gewährt Verbündeten Bonusaktionen."
+LocFlyOverText="Befehl"
+LocPromotionPopupText="<Bullet/> Erfordert eine Aktion und beendet deine Runde.<br/><Bullet/> Second und First Lieutenants haben eine Ladung; Captains und Majors haben zwei Ladungen; Lieutenants und Colonels haben drei Ladungen und Field Commander haben vier Ladungen.<br/><Bullet/> Lässt sich nicht auf Einheiten anwenden, die Feuerschutz geben oder andere Ziele unterdrücken."
+
+[Infiltrator X2AbilityTemplate]
+LocFriendlyName="Infiltrator"
+LocLongDescription="Der Trupp des Offiziers infiltriert gegnerische Ziele schneller."
+LocHelpText="Der Trupp des Offiziers infiltriert gegnerische Ziele schneller."
+LocFlyOverText="Infiltrator"
+LocPromotionPopupText="<Bullet/> Der Trupp eines Offiziers mit dieser Fähigkeit ist erheblich unauffälliger als er es sonst wäre, und verkürzt so seine Infiltrationszeit.<br/>"
+
+[AirController X2AbilityTemplate]
+LocFriendlyName="Fluglotse"
+LocLongDescription="Der Skyranger trifft bei Evakuierungen <Ability:AIR_CONTROLLER_EVAC_TURN_REDUCTION/> Runden früher ein."
+LocHelpText="Der Skyranger trifft bei Evakuierungen zwei Runden früher ein."
+LocFlyOverText="Fluglotse"
+LocPromotionPopupText="<Bullet/> Der Offizier ist geübt im Koordinieren verbündeter Lufteinheiten, sodass der Skyranger zwei Runden früher eintrifft, nachdem ein Evakuierungssignal eingesetzt wurde.<br/><Bullet/> Bitte beachte, dass der Skyranger ungeachtet aller Boni eine gewisse Mindestzeit bis zum Eintreffen nicht unterschreiten kann."
+
+[Jammer X2AbilityTemplate]
+LocFriendlyName="Jammer"
+LocLongDescription="Einmal pro Kampf können gegnerische Verstärkungen um eine Runde verzögert werden."
+LocHelpText="Verzögert die Ankunft von feindlichen Verstärkungen um eine Runde."
+LocFlyOverText="Jammer"
+LocPromotionPopupText="<Bullet/> Aktiviere diese Fähigkeit, um die Ankunft gegnerischer Verstärkungen um eine Runde zu verzögern.<br/><Bullet/> Wenn keine Verstärkung auf dem Weg ist, werden zukünftige Verstärkungen verzögert."
+
+[Incoming X2AbilityTemplate]
+LocFriendlyName="Vorsicht!"
+LocLongDescription="Aktiviere diese Fähigkeit, um allen Verbündeten in Befehlsreichweite bis zum Ende der nächsten Alien-Runde 4 Punkte Schadenswiderstand gegen Explosivangriffe zu gewähren."
+LocHelpText="Der Offizier und Verbündete in der Nähe erhalten 4 SW gegen Sprengkörper."
+LocFlyOverText="Vorsicht!"
+LocPromotionPopupText="<Bullet/> Aktiviere diese Fähigkeit, um allen Verbündeten in Befehlsreichweite bis zum Ende der nächsten Alien-Runde 4 Punkte Schadenswiderstand gegen Explosivangriffe zu gewähren.<br/><Bullet/> Erfordert keine Aktion.<br/><Bullet/> Hat eine Abklingzeit von 5 Runden.<br/><Bullet/> Die Befehlsreichweite wächst mit jeder neuen Offiziersstufe.<br/><Bullet/> Lässt sich nicht auf Soldaten in Panik oder auf Einheiten, die andere Ziele unterdrücken, anwenden.<br/>"
+
+[Intervention X2AbilityTemplate]
+LocFriendlyName="Intervention"
+LocLongDescription="Aktiviere diese Fähigkeit, um für 10 Informationen zwei Runden auf dem aktuellen Einsatz-Timer zu erhalten. Die Anzahl der Ladungen hängt vom Rang des Offiziers ab."
+LocHelpText="Aktivieren, um Informationen für zwei zusätzliche Runden auf dem Einsatz-Timer auszugeben."
+LocFlyOverText="Intervention"
+LocPromotionPopUpText="<Bullet/> Aktiviere diese Fähigkeit, um 10 Informationen auszugeben und zwei Runden auf dem aktuellen Einsatz-Timer zu erhalten.<br/><Bullet/> Erfordert eine Aktion.<br/><Bullet/> Die Anzahl der Ladungen hängt vom Rang des Offiziers ab.<br/><Bullet/> Hat keine Auswirkungen, wenn es keinen Einsatz-Timer gibt.<br/><Bullet/> Informationskosten können durch Ereignisse beeinflusst werden; wird nicht ausgelöst, wenn XCOM weniger als 10 Informationen hat.<br/>"
+
+[TrialByFire X2AbilityTemplate]
+LocFriendlyName="Feuerprobe"
+LocLongDescription="Jeder Soldat unterhalb des Rangs eines Sergeant wird nach einer erfolgreichen Mission unter diesem Offizier automatisch befördert."
+LocHelpText="Jeder Soldat unterhalb des Rangs eines Sergeant wird nach einer erfolgreichen Mission unter diesem Offizier automatisch befördert."
+LocPromotionPopUpText="<Bullet/> Dieser Bonus gilt nur, wenn der kommandierende Offizier diese Fähigkeit besitzt und gilt auch nicht für andere Offiziere in dem selben Einsatz."
+
+;---- END ABILITIES
+
+;---- BEGIN OTS / STAFFSLOT
+
+[OfficerTrainingUnlock X2SoldierUnlockTemplate]
+DisplayName="Offiziersausbildung"
+Summary="Schaltet einen Soldatenplatz frei, der die Ausbildung von Offizieren ermöglicht."
+
+[OTSOfficerSlot X2StaffSlotTemplate]
+EmptyText="OFFEN: SOLDAT BENÖTIGT"
+BonusEmptyText="Trainiert Offiziersfähigkeiten."
+BonusText="%SKILL-AUSBILDUNG"
+FilledText="%UNITNAME ist jetzt für ein umfassendes %SKILL-Ausbildungsprogramm angemeldet!"
+LockedText="GESPERRT: VERBESSERUNG KAUFEN"
+
+[OTS_LWOfficerTrainingUpgrade X2FacilityUpgradeTemplate]
+DisplayName="Offiziers-Ausbildungsstation"
+FacilityName="Offiziersschule"
+Summary="Fügt eine Station hinzu, wo Soldaten mit dem Rang Lance Corporal oder höher spezielle Führungsfähigkeiten trainieren können. WICHTIG: Nur der Offizier mit dem höchsten Rang in einem Trupp kann seine Fähigkeiten im Einsatz nutzen, also entscheide sorgsam, wen du befördern möchtest."
+
+[OTS_LWOfficerTrainingUpgrade_SecondSlot X2FacilityUpgradeTemplate]
+DisplayName="Offiziers-Ausbildungsstation"
+FacilityName="Offiziersschule"
+Summary="Fügt eine Station hinzu, wo Soldaten mit dem Rang Lance Corporal oder höher spezielle Führungsfähigkeiten trainieren können. WICHTIG: Nur der Offizier mit dem höchsten Rang in einem Trupp kann seine Fähigkeiten im Einsatz nutzen, also entscheide sorgsam, wen du befördern möchtest."
+
+[UIPersonnel_LWOfficer]
+m_strTitle="Soldat zum Offizier ausbilden"
+EmptyListMessage="KEINE QUALIFIZIERTEN KANDIDATEN"
+
+;---- END OTS / STAFFSLOT
