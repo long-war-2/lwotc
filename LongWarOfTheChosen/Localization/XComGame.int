@@ -6655,7 +6655,7 @@ LocFlyOverText="Wrath Against Unworthy"
 
 [XCOMHunterMark_LW X2AbilityTemplate]
 LocFriendlyName="Mark For Death"
-LocLongDescription="Mark a target for death, granting your standard shots and snapshots against that unit to be refunded. Ends the soldier's turn. Effect Lasts till XCOM's next turn."
+LocLongDescription="Mark a target for death, granting your standard shots and snap shots against that unit to be refunded. Ends the soldier's turn. Effect Lasts till the end of XCOM's next turn."
 LocHelpText="Mark a target for death, granting your shots against that unit to be refunded."
 LocFlyOverText="Mark For Death"
 
