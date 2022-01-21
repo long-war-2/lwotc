@@ -51,6 +51,7 @@ LocFriendlyName="Surcharge"
 LocLongDescription="Gagnez un bonus de visée et de chances de coup critique pour chaque niveau de concentration du Templier."
 LocHelpText="Gagnez un bonus de visée et de chances de coup critique pour chaque niveau de concentration du Templier."
 LocPromotionPopupText="<Bullet/> +<Ability:OverchargeAimBonus/> en visée et +<Ability:OverchargeCritBonus/> en chances de coup critique pour chaque niveau de concentration.<br/><Bullet/> Surcharge prend en compte le niveau de concentration actuel du Templier (et non son niveau maximum)."
+
 [VoltDangerZone X2AbilityTemplate]
 LocFriendlyName="Haute tension"
 LocLongDescription="Augmente de <Ability:VoltDangerZoneBonus/> case(s) la zone d'effet de Volt."
