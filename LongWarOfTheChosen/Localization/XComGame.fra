@@ -6638,7 +6638,7 @@ LocFlyOverText="Colère contre les impies"
 
 [XCOMHunterMark_LW X2AbilityTemplate]
 LocFriendlyName="Marque noire"
-LocLongDescription="Appose la marque noire sur une unité, garantissant que vos tirs standard et vos tirs éclair contre cette unité vous feront récupérer vos points d'action. Met fin au tour Cet effet dure jusqu'au prochain tour d'XCOM."
+LocLongDescription="Appose la marque noire sur une unité, garantissant que vos tirs standard et vos tirs éclair contre cette unité vous feront récupérer vos points d'action. Met fin au tour. Cet effet dure jusqu'à la fin du prochain tour d'XCOM."
 LocHelpText="Appose la marque noire sur une unité, garantissant que vos tirs contre cette unité vous feront récupérer vos points d'action. Cet effet dure jusqu'au prochain tour d'XCOM."
 LocFlyOverText="Marque noire"
 
