@@ -6831,11 +6831,11 @@ SummaryText="A brutal crackdown on the Resistance, lowering all rebel income (in
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="Chosen can hinder rebel activities!"
-KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Chosen increases risks on Covert Actions!"
-KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Chosen can sabotage the Avenger!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]=""
+KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an additional dark event!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Chosen can hinder rebel activities!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Chosen can launch an assault on the Avenger!"
-KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an additional dark event!"
+KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]=""
 
 
 ; LWOTC Needs Translation (2)
@@ -7124,8 +7124,8 @@ LocPromotionPopupText="<Bullet/> Ionic Storm's radius increases at higher Focus 
 
 ; LWOTC Needs Translation
 [Sabotage_LongRangeComms X2SabotageTemplate]
-SummaryText="We've been struggling to maintain long range communications after the recent sabotage by the Chosen. Our covert actions will be delayed by 2 weeks."
-ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
+SummaryText="We've been struggling to maintain long range communications after the recent sabotage by the Chosen. Our covert actions will be delayed by 5 days."
+ShortSummaryText="Our covert actions have been delayed by 5 days!"
 ; End Translation
 
 ; LWOTC Needs Translation
