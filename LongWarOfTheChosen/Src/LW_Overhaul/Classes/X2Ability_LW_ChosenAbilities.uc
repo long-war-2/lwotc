@@ -26,6 +26,7 @@ var config int GREATEST_CHAMPION_AIM;
 var config int GREATEST_CHAMPION_CRIT;
 var config int GREATEST_CHAMPION_WILL;
 var config int GREATEST_CHAMPION_PSIOFFENSE;
+var config float UNHOLY_ASCENSION_MOD;
 var config float SHIELD_ALLY_PCT_DR;
 var config float IMPACT_COMPENSATION_PCT_DR;
 var config int IMPACT_COMPENSATION_MAX_STACKS;
@@ -67,6 +68,12 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateBloodThirst());
 	Templates.AddItem(BloodThirstPassive());
 	Templates.AddItem(AddMindScorchTerror());
+
+	Templates.AddItem(UnholyAscension_LW());
+	Templates.AddItem(CreaterRuptureImmunity());
+	Templates.AddItem(AddBloodBath());
+	Templates.AddItem(AddMistyMadness());
+	Templates.AddItem(AddImpenetrable());
 	
 	Templates.AddItem(FreeGrenades());
 	Templates.AddItem(AssassinPrimeReactionPassive());
@@ -428,6 +435,9 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	local X2Effect_GreatestChampion StatBuffsEffect;
 	local X2Effect_PCTDamageReduction ImpactEffect;
 	local X2Condition_Visibility	VisibilityCondition;
+	local X2Condition_AbilityProperty AbilityCondition;
+	local X2Effect_Resilience MyCritModifier;
+	local X2Condition_OwnerDoesNotHaveAbility DoesNotHaveAbilityCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, Templatename);
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_mindscorch";
@@ -474,7 +484,15 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	TargetCondition.ExcludeUnrevealedAI = true;
 	Template.AbilityTargetConditions.AddItem(TargetCondition);
 
+	DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
+	DoesNotHaveAbilityCondition.AbilityName = 'UnholyAscension_LW';
+
+	AbilityCondition = new class 'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('UnholyAscension_LW');
+
+
 	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), ShieldAmount);
+	ShieldedEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
 	Template.AddTargetEffect(ShieldedEffect);
 
 	StatBuffsEffect = new class'X2Effect_GreatestChampion';
@@ -486,7 +504,32 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	StatBuffsEffect.AddPersistentStatChange(eStat_CritChance, default.GREATEST_CHAMPION_CRIT);
 	StatBuffsEffect.AddPersistentStatChange(eStat_Will, default.GREATEST_CHAMPION_WILL);
 	StatBuffsEffect.AddPersistentStatChange(eStat_PsiOffense, default.GREATEST_CHAMPION_PSIOFFENSE);
+	StatBuffsEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
 	Template.AddTargetEffect(StatBuffsEffect);
+
+
+	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), int(ShieldAmount * default.UNHOLY_ASCENSION_MOD));
+	ShieldedEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(ShieldedEffect);
+
+	StatBuffsEffect = new class'X2Effect_GreatestChampion';
+	StatBuffsEffect.BuildPersistentEffect(1, true, true);
+	StatBuffsEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, default.ShieldedStatBuffsLocDescription, "img:///UILibrary_PerkIcons.UIPerk_adventshieldbearer_energyshield", true);
+	StatBuffsEffect.bRemoveWhenTargetDies = true;
+	//StatBuffsEffect.bRemoveWhenTargetUnconscious = true;
+	StatBuffsEffect.AddPersistentStatChange(eStat_Offense, int(default.GREATEST_CHAMPION_AIM * default.UNHOLY_ASCENSION_MOD));
+	StatBuffsEffect.AddPersistentStatChange(eStat_CritChance, int(default.GREATEST_CHAMPION_CRIT * default.UNHOLY_ASCENSION_MOD));
+	StatBuffsEffect.AddPersistentStatChange(eStat_Will, int(default.GREATEST_CHAMPION_WILL * default.UNHOLY_ASCENSION_MOD));
+	StatBuffsEffect.AddPersistentStatChange(eStat_PsiOffense, int(default.GREATEST_CHAMPION_PSIOFFENSE * default.UNHOLY_ASCENSION_MOD));
+	StatBuffsEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(StatBuffsEffect);
+
+	MyCritModifier = new class 'X2Effect_Resilience';
+	MyCritModifier.CritDef_Bonus = 200;
+	MyCritModifier.BuildPersistentEffect (1, true, false, true);
+	MyCritModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	MyCritModifier.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect (MyCritModifier);
 
 
 	ImpactEffect = new class'X2Effect_PCTDamageReduction';
@@ -1311,6 +1354,35 @@ static function X2AbilityTemplate AddMindScorchTerror()
 	return Template;
 }
 
+
+static function X2AbilityTemplate AddBloodBath()
+{
+	local X2AbilityTemplate		Template;
+	
+	Template = PurePassive('BloodBath_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_adrenaline_x2", false, 'eAbilitySource_Perk', true);
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddMistyMadness()
+{
+	local X2AbilityTemplate		Template;
+	
+	Template = PurePassive('MistyMadness_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_smoke_chevron_x3", false, 'eAbilitySource_Perk', true);
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddImpenetrable()
+{
+	local X2AbilityTemplate		Template;
+	
+	Template = PurePassive('Impenetrable_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_defense_blossom", false, 'eAbilitySource_Perk', true);
+
+	return Template;
+}
+
 static function X2DataTemplate AddTerrorPanicAbility()
 {
 	local X2AbilityTemplate			Template;
@@ -1618,6 +1690,15 @@ static function X2AbilityTemplate BloodThirstPassive()
 	return Template;
 }
 
+static function X2AbilityTemplate UnholyAscension_LW()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('UnholyAscension_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Corrupt", , 'eAbilitySource_Perk');
+
+	return Template;
+}
+
 static function X2DataTemplate FreeGrenades()
 {
 	local X2AbilityTemplate Template;
@@ -1878,6 +1959,40 @@ static function X2AbilityTemplate CreateUnstoppablePassive()
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreaterRuptureImmunity()
+{
+	local X2AbilityTemplate						Template;	
+	local X2Effect_RuptureImmunity 					RuptureImmunityEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RuptureImmunity');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_knife_defense";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	//Template.bIsPassive = true;
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+
+	RuptureImmunityEffect = new class'X2Effect_RuptureImmunity';
+	RuptureImmunityEffect.BuildPersistentEffect(1, true, true,, eGameRule_PlayerTurnBegin);
+	RuptureImmunityEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+	Template.AddTargetEffect(RuptureImmunityEffect);
+
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
 	return Template;
 }

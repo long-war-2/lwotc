@@ -119,6 +119,11 @@ var const string CombatReadinessBonusText;
 
 var config int CRUSADER_WOUND_HP_REDUCTTION;
 
+var config float HERO_SLAYER_DMG;
+
+var config int PSYCHOTIC_RAGE_BELOW_THRESHOLD;
+var config int PSYCHOTIC_RAGE_DMG_BONUS;
+
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
 var config array<name> BANZAI_EFFECTS_TO_REMOVE;
 
@@ -207,6 +212,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(BanzaiPassive());
 	Templates.AddItem(Magnum());
 	Templates.AddItem(CrusaderRage());
+	Templates.AddItem(HeroSlayer_LW());
 
 
 	
@@ -2409,15 +2415,15 @@ static function X2AbilityTemplate PsychoticRage()
 	// X2Condition_UnitStatCheck can also check absolute values rather than percentages, by
 	// using "false" instead of "true" for the last argument.
 	Condition = new class'X2Condition_UnitStatCheck';
-	Condition.AddCheckStat(eStat_HP, 36, eCheck_LessThan,,, true);
+	Condition.AddCheckStat(eStat_HP, default.PSYCHOTIC_RAGE_BELOW_THRESHOLD, eCheck_LessThan,,, true);
 
 	// Create a conditional bonus effect
 	Effect = new class'XMBEffect_ConditionalBonus';
 
 	//Need to add for all of them because apparently if you crit you don't hit lol
-	Effect.AddPercentDamageModifier(50, eHit_Success);
-	Effect.AddPercentDamageModifier(50, eHit_Graze);
-	Effect.AddPercentDamageModifier(50, eHit_Crit);
+	Effect.AddPercentDamageModifier(default.PSYCHOTIC_RAGE_DMG_BONUS, eHit_Success);
+	Effect.AddPercentDamageModifier(default.PSYCHOTIC_RAGE_DMG_BONUS, eHit_Graze);
+	Effect.AddPercentDamageModifier(default.PSYCHOTIC_RAGE_DMG_BONUS, eHit_Crit);
 	Effect.EffectName = 'PsychoticRage_Bonus';
 
 	// The effect only applies while wounded
@@ -3107,6 +3113,34 @@ static function X2AbilityTemplate CrusaderRage()
 	return Template;
 }
 
+static function X2AbilityTemplate HeroSlayer_LW()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_HeroSlayer                	DamageEffect;
+
+	// Icon Properties
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'HeroSlayer_LW');
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_ambush";
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	DamageEffect = new class'X2Effect_HeroSlayer';
+	DamageEffect.DmgMod = default.HERO_SLAYER_DMG;
+	DamageEffect.BuildPersistentEffect(1, true, false, false);
+	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	Template.AddTargetEffect(DamageEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  NOTE: No visualization on purpose!
+
+	return Template;
+}
 
 
 defaultproperties

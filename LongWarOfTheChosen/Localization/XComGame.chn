@@ -6415,8 +6415,8 @@ LocFlyOverText="死亡标记"
 
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="宿命"
-LocLongDescription="使用<Ability:WeaponName/>对35％生命或更低的目标增加+100命中和暴击率。"
-LocHelpText="使用<Ability:WeaponName/>对35％生命或更低的目标增加+100命中和暴击率。"
+LocLongDescription="使用<Ability:WeaponName/>对<Ability:FATALITY_THRESHOLD/>％生命或更低的目标增加+100命中和暴击率。"
+LocHelpText="使用<Ability:WeaponName/>对<Ability:FATALITY_THRESHOLD/>％生命或更低的目标增加+100命中和暴击率。"
 LocFlyOverText="宿命"
 
 [Vampirism_LW X2AbilityTemplate]

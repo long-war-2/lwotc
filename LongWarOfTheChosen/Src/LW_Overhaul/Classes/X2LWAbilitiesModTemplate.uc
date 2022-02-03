@@ -923,6 +923,13 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	local X2Effect_Burning BurningEffect;
 	local X2Effect_ApplyWeaponDamage DamageEffect;
 	local array<name> SkipExclusions;
+	local X2AbilityCooldown_MindScorch Cooldown;
+
+
+	Cooldown = new class'X2AbilityCooldown_MindScorch';
+	Cooldown.iNumTurns = class'X2Ability_ChosenWarlock'.default.MINDSCORCH_COOLDOWN_LOCAL;
+	Cooldown.NumGlobalTurns = class'X2Ability_ChosenWarlock'.default.MINDSCORCH_COOLDOWN_GLOBAL;
+	Template.AbilityCooldown = Cooldown;
 
 	ShooterCondition = new class'X2Condition_UnitProperty';
 	ShooterCondition.ExcludeConcealed = true;
@@ -1143,7 +1150,7 @@ static function UpdateChosenRegenerate(X2AbilityTemplate Template)
 
 static function ReworkHarborWave(X2AbilityTemplate Template)
 {
-	local X2Effect_ApplyWeaponDamage DamageEffect;
+	local X2Effect_ApplyHarborWaveDamage DamageEffect;
 
 
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
@@ -1152,7 +1159,7 @@ static function ReworkHarborWave(X2AbilityTemplate Template)
 	class'Helpers_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_ApplyWeaponDamage');
 	class'Helpers_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Knockback');
 
-	DamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	DamageEffect = new class'X2Effect_ApplyHarborWaveDamage';
 	DamageEffect.bIgnoreArmor = true;
 	Template.AddMultiTargetEffect(DamageEffect);
 
@@ -1180,6 +1187,10 @@ static function AddDisablingShotEffect(X2AbilityTemplate Template)
 	DisableWeaponEffect.TargetConditions.AddItem(AbilityCondition);
 
 	Template.AddTargetEffect(DisableWeaponEffect);
+	if(Template.DataName == 'FaceOff')
+	{
+		Template.AddMultiTargetEffect(DisableWeaponEffect);
+	}
 }
 
 static function DisplayMindShieldPassive(X2AbilityTemplate Template)

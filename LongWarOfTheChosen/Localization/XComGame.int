@@ -6454,10 +6454,10 @@ LocLongDescription="Your Primary weapon attacks will bleed enemies."
 LocHelpText="Your Primary weapon attacks will bleed enemies."
 
 [MindScorchDangerZone X2AbilityTemplate]
-LocFriendlyName="High Voltage"
-LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch."
-LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch."
-LocPromotionPopupText="<Bullet/> Provides a <Ability:VoltDangerZoneBonus/>-tile bonus to the radius of Mind Scorch."
+LocFriendlyName="Mind Combustion"
+LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch, and reduce the cooldown of mind scorch by 1."
+LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch, and reduce the cooldown of mind scorch by 1."
+LocPromotionPopupText=""
 
 [MindScorchTerror X2AbilityTemplate]
 LocFriendlyName="Terrorize"
@@ -6578,6 +6578,18 @@ LocHelpText="Every time you attack with your melee weapon, get a stackable damag
 LocFlyOverText="Blood Thirst"
 ; End Translation (2)
 
+[UnholyAscension_LW X2AbilityTemplate]
+LocFriendlyName="Unholy Ascension"
+LocLongDescription="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
+LocHelpText="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
+LocFlyOverText="Unholy Ascension"
+
+[RuptureImmunity X2AbilityTemplate]
+LocFriendlyName="Unbreakable"
+LocLongDescription="All Rupture Effects inflicted on you will be instantly removed."
+LocHelpText="All Rupture Effects inflicted on you will be instantly removed."
+LocFlyOverText="Unbreakable"
+
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="Precise strike"
 LocLongDescription="Your melee attacks pierce 3 armor."
@@ -6586,9 +6598,33 @@ LocFlyOverText="Precise strike"
 
 [PsychoticRage_LW X2AbilityTemplate]
 LocFriendlyName="Psychotic Rage"
-LocHelpText="Gain a 50% damage boost when at 35% hp or less"
-LocLongDescription="Gain a 50% damage boost when at 35% hp or less."
+LocHelpText="Gain a <Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>% damage boost when at <Ability:PSYCHOTIC_RAGE_DMG_BONUS/>% hp or less."
+LocLongDescription="Gain a <Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>% damage boost when at <Ability:PSYCHOTIC_RAGE_DMG_BONUS/>% hp or less."
 LocFlyOverText="Psychotic Rage"
+
+[HeroSlayer_LW X2AbilityTemplate]
+LocFriendlyName="Big Game Hunter"
+LocHelpText="You deal +<Ability:HERO_SLAYER_DMG/>% damage against hero classes."
+LocLongDescription="You deal +<Ability:HERO_SLAYER_DMG/>% damage against hero classes."
+LocFlyOverText="Big Game Hunter"
+
+[BloodBath_LW X2AbilityTemplate]
+LocFriendlyName="Blood Bath"
+LocHelpText="Harbor wave cone is wider by 2 tiles, and each enemy hit by it grants a blood thirst stack."
+LocLongDescription="Harbor wave cone is wider by 2 tiles, and each enemy hit by it grants a blood thirst stack."
+LocFlyOverText="Blood Bath"
+
+[MistyMadness_LW X2AbilityTemplate]
+LocFriendlyName="Misty Madness"
+LocHelpText="The radius of your mist grenade is increased by 2."
+LocLongDescription="The radius of your mist grenade is increased by 2."
+LocFlyOverText="Misty Madness"
+
+[Impenetrable_LW X2AbilityTemplate]
+LocFriendlyName="Impenetrable"
+LocHelpText="Impact Compensation Stacking limit is increased by 1."
+LocLongDescription="Impact Compensation Stacking limit is increased by 1."
+LocFlyOverText="Impenetrable"
 
 [YouCannotHide_LW X2AbilityTemplate]
 ; LWOTC Needs Translation (2)
@@ -6686,8 +6722,8 @@ LocFlyOverText="Mark For Death"
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="Fatality"
 ;LWOTC Needs translation(2)
-LocLongDescription="Gain +100 aim and crit against units at 35% hp or lower with your <Ability:WeaponName/>."
-LocHelpText="Gain +100 aim and crit against units at 35% hp or lower with your <Ability:WeaponName/>."
+LocLongDescription="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your <Ability:WeaponName/>."
+LocHelpText="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your <Ability:WeaponName/>."
 ;End Translation(2)
 LocFlyOverText="Fatality"
 

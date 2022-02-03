@@ -6312,8 +6312,8 @@ LocFlyOverText="Метка смерти"
 
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="Фаталити"
-LocLongDescription="Бонус +100% точности и критического попадания против целей со здоровьем меньше 35% (оружие: <Ability:WeaponName/>)"
-LocHelpText="Бонус +100% точности и критического попадания против целей со здоровьем меньше 35% (оружие: <Ability:WeaponName/>)"
+LocLongDescription="Бонус +100% точности и критического попадания против целей со здоровьем меньше <Ability:FATALITY_THRESHOLD/>% (оружие: <Ability:WeaponName/>)"
+LocHelpText="Бонус +100% точности и критического попадания против целей со здоровьем меньше <Ability:FATALITY_THRESHOLD/>% (оружие: <Ability:WeaponName/>)"
 LocFlyOverText="Фаталити"
 
 [Vampirism_LW X2AbilityTemplate]

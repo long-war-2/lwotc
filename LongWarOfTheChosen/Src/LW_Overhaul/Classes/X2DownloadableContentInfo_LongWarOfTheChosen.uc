@@ -3192,6 +3192,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'DISRUPTOR_RIFLE_PSI_CRIT':
 			Outstring = string(class'X2Ability_XPackAbilitySet'.default.DISRUPTOR_RIFLE_PSI_CRIT);
 			return true;
+		case 'FATALITY_THRESHOLD':
+			Outstring = string(int(class'X2Ability_XMBPerkAbilitySet'.default.FATALITY_THRESHOLD * 100));
+			return true;
 		default:
 			return false;
 	}
