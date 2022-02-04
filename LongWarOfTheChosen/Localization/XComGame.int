@@ -6487,16 +6487,16 @@ LocFlyOverText="Keen"
 ; LWOTC needs translation (2)
 [CombatReadiness X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
-LocHelpText="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn."
+LocLongDescription="Gain a stackable <Ability:COMBAT_READINESS_EXPLOSIVE_DR/>% explosive damage reduction and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
+LocHelpText="Gain a stackable <Ability:COMBAT_READINESS_EXPLOSIVE_DR/>% explosive damage reduction and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
 LocFlyOverText="Combat Readiness"
 ; End translation (2)
 
 ; LWOTC needs translation (2)
 [CombatReadinessPassive X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
-LocHelpText="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn."
+LocLongDescription="Gain a stackable <Ability:COMBAT_READINESS_EXPLOSIVE_DR/>% explosive damage reduction and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
+LocHelpText="Gain a stackable <Ability:COMBAT_READINESS_EXPLOSIVE_DR/>% explosive damage reduction and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
 LocFlyOverText="Combat Readiness"
 ; End translation (2)
 

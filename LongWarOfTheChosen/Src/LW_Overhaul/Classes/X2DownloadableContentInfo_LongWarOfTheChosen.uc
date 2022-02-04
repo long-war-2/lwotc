@@ -3177,6 +3177,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'COMBATREADINESS_AIM':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.COMBATREADINESS_AIM);
 			return true;
+		case 'COMBAT_READINESS_EXPLOSIVE_DR':
+			Outstring = string(int(class'X2Ability_XMBPerkAbilitySet'.default.COMBAT_READINESS_EXPLOSIVE_DR * 100));
+			return true;
 		case 'BLOODTHIRST_T1_DMG':
 			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T1_DMG);
 			return true;
