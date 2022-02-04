@@ -2518,7 +2518,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.OnAcquiredFn = none;
 			break;
 		case 'ChosenShotgun_XCOM':
-			WeaponTemplate.Abilities.AddItem('Brawler');
+			//WeaponTemplate.Abilities.AddItem('Brawler');
 			WeaponTemplate.Abilities.AddItem('Vampirism_LW');
 			WeaponTemplate.Abilities.AddItem('ImpactCompensation_LW');
 			WeaponTemplate.OnAcquiredFn = none;
