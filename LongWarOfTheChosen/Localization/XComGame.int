@@ -5631,7 +5631,7 @@ LocFlyOverText="Get up!"
 [ChosenSummonFollowers X2AbilityTemplate]
 LocFriendlyName="Summon Followers"
 ; LWOTC Needs Translation (3)
-LocHelpText="Summon aliens. <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Summon aliens."
 ; End Translation (3)
 LocLongDescription="Summon aliens."
 LocFlyOverText="Summonnin' ayys"
@@ -6532,6 +6532,12 @@ strCharacterName="Assassin"
 strAcquiredText="Now a close-combat menace, the Assassin is a juggernaut that will run towards you and slash you whenever possible. Her initially-low, but ever-increasing damage cannot be underestimated."
 ;end translation (2)
 
+;LWOTC needs translation
+[ChosenAssassinM5 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Now a close-combat menace, the Assassin is a juggernaut that will run towards you and slash you whenever possible. Her initially-low, but ever-increasing damage cannot be underestimated."
+;end translation
+
 [ChosenWarlock X2CharacterTemplate]
 strCharacterName="Warlock"
 strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
@@ -6547,6 +6553,12 @@ strAcquiredText="The Elder's greatest champion is an incredibly dangerous suppor
 [ChosenWarlockM4 X2CharacterTemplate]
 strCharacterName="Warlock"
 strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+
+;LWOTC needs translation
+[ChosenWarlockM5 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+;end translation
 
 [ChosenSniper X2CharacterTemplate]
 strCharacterName="Hunter"
@@ -6564,17 +6576,60 @@ strAcquiredText="The Hunter is the master of long range combat, constantly kitin
 strCharacterName="Hunter"
 strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
 
+;LWOTC needs translation
+[ChosenSniperM5 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
+;end translation
+
+;LWOTC needs translation
+[ChosenShotgun_T5 X2WeaponTemplate]
+FriendlyName="Chosen Ultra Shotgun"
+FriendlyNamePlural="Chosen Ultra Shotguns"
+BriefSummary="The Storm Gun fires a concentrated set of beam pulses, piercing and melting the target across a substantial surface area."
+TacticalText="<Bullet/> This is the most advanced shotgun-style weapon available in the XCOM arsenal.\n<Bullet/> Shotgun-style weapons are very effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Storm Gun's tactical effectiveness."
+AbilityDescName="shotgun"
+
+[ChosenSword_T5 X2WeaponTemplate]
+FriendlyName="Chosen Ultra Sword"
+FriendlyNamePlural="Chosen Ultra Swords"
+BriefSummary="The Fusion Blade encases a plasma-heated metallic core in a micro-thin magnetic field, enabling devastating melee attacks that are capable of setting enemies aflame."
+TacticalText="<Bullet/> This is the most advanced version of the Ranger's sword, dealing maximum damage with a chance to burn enemy targets."
+AbilityDescName="sword"
+
+[ChosenSniperRifle_T5 X2WeaponTemplate]
+FriendlyName="Chosen Ultra Sniper Rifle"
+FriendlyNamePlural="Chosen Ultra Sniper Rifles"
+BriefSummary="The aliens' focused beam technology has obvious applications for improving sniper rifles. The Plasma Lance is an unmatched sniper rifle."
+TacticalText="<Bullet/> This is the apex of sniper rifle technology.\n<Bullet/> Sniper rifles always require both actions to fire.\n<Bullet/> They are less accurate at close range, but deadly at a distance.\n<Bullet/> Use upgrades looted from enemies to improve the plasma sniper rifle's tactical effectiveness."
+AbilityDescName="sniper rifle"
+
+
+[ChosenSniperPistol_T5 X2WeaponTemplate]
+FriendlyName="Chosen Ultra Pistol"
+FriendlyNamePlural="Chosen Ultra Pistols"
+BriefSummary="The ultimate sidearm, this pistol integrates the aliens' beam weapons technology to powerful effect."
+TacticalText="<Bullet/> Beam pistols are the most powerful handguns on Earth.\n<Bullet/> Unlike the sniper rifle, pistols can be fired with a single action."
+
+[ChosenRifle_T5 X2WeaponTemplate]
+FriendlyName="Chosen Ultra Rifle"
+FriendlyNamePlural="Chosen Ultra Rifle"
+BriefSummary="Now that we've finally deciphered the aliens' devastating weapon technology and can develop beam weapons of our own, we can build rifles that will be the match of any enemy our soldiers encounter in the field."
+TacticalText="<Bullet/> The Plasma Rifle is a general purpose, supremely powerful primary infantry weapons system.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n<Bullet/> Use upgrades looted from enemies to improve the Plasma Rifle's tactical effectiveness."
+AbilityDescName="assault rifle"
+;end translation
+
 ; LWOTC Needs Translation (2)
 [BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>/<Ability:BLOODTHIRST_T5_DMG/> damage for T1/T2/T3/T4/T5. Removed on a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>/<Ability:BLOODTHIRST_T5_DMG/> damage for T1/T2/T3/T4/T5. Removed on a successful kidnap."
 LocFlyOverText="Blood Thirst"
 
 [BloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>/<Ability:BLOODTHIRST_T5_DMG/> damage for T1/T2/T3/T4/T5. Removed on a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>/<Ability:BLOODTHIRST_T5_DMG/> damage for T1/T2/T3/T4/T5. Removed on a successful kidnap."
 LocFlyOverText="Blood Thirst"
 ; End Translation (2)
 
@@ -7223,3 +7278,4 @@ LocPromotionPopupText="<Bullet/> Beware that a sustained unit may retain damagin
 LocLongDescription="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
 LocHelpText="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
 ; End Translation
+

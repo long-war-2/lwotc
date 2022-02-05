@@ -17,6 +17,9 @@ var config int SHIELDALLYM1_SHIELD;
 var config int SHIELDALLYM2_SHIELD;
 var config int SHIELDALLYM3_SHIELD;
 var config int SHIELDALLYM4_SHIELD;
+var config int SHIELDALLYM5_SHIELD;
+
+
 var config array<name> KIDNAP_ELIGIBLE_CHARTYPES;
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
 
@@ -48,6 +51,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateShieldAlly('ShieldAllyM2',default.SHIELDALLYM2_SHIELD));
 	Templates.AddItem(CreateShieldAlly('ShieldAllyM3',default.SHIELDALLYM3_SHIELD));
 	Templates.AddItem(CreateShieldAlly('ShieldAllyM4',default.SHIELDALLYM4_SHIELD));
+	Templates.AddItem(CreateShieldAlly('ShieldAllyM5',default.SHIELDALLYM5_SHIELD));
 	Templates.AddItem(CreateTraitResilience());
 	Templates.AddItem(CreateChosenKidnap());
 	Templates.AddItem(CreateKeen());
