@@ -2248,6 +2248,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('TriggerDamagedTeleport_LW');
 		Template.Abilities.AddItem('MovingTarget_LW');
 
+		Template.strScamperBT = "ScamperRoot_ChosenWarlock";
+		Template.ScamperActionPoints = 3;
+
 		Template.InitiativePriority = -100;
 
 		//Since they no longer have the ability by default

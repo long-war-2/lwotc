@@ -5586,6 +5586,14 @@ LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi of
 ; End Translation (3)
 LocFlyOverText="The Warlocks Greatest Champion"
 
+; LWOTC Needs Translation
+[ShieldAllyM5 X2AbilityTemplate]
+LocFriendlyName="The Warlocks Greatest Champion"
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+LocFlyOverText="The Warlocks Greatest Champion"
+; End Translation
+
 [PsiMindControl X2AbilityTemplate]
 LocFriendlyName="Mind Control"
 ; LWOTC Needs Translation (3)

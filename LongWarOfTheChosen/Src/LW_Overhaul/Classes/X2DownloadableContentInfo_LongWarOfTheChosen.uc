@@ -1415,7 +1415,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			SetupData[i].SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();
 		}	
 	}
-
+	/*
 	// Prevent units summoned by the Chosen from dropping loot and corpses
 	if (StartState.GetContext().IsA(class'XComGameStateContext_Ability'.Name))
 	{
@@ -1450,6 +1450,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			}
 		}
 	}
+	*/
 }
 
 static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTemplate CharTemplate)

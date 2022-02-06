@@ -1094,16 +1094,12 @@ static function BuffTeleportAlly(X2AbilityTemplate Template)
 
 static function UpdateSummon(X2AbilityTemplate Template)
 {
-	local X2AbilityCooldown					Cooldown;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 
-	class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template,'X2Effect_SetUnitValue');
-	class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
+	//class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template,'X2Effect_SetUnitValue');
+	//class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
 
-
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.SUMMON_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
+	class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_BattleState');
 
 	Template.BuildNewGameStateFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildGameState;
 	Template.BuildVisualizationFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildVisualization;
