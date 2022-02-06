@@ -9,6 +9,7 @@ var config int BLOODTHIRST_T1_DMG;
 var config int BLOODTHIRST_T2_DMG;
 var config int BLOODTHIRST_T3_DMG;
 var config int BLOODTHIRST_T4_DMG;
+var config int BLOODTHIRST_T5_DMG;
 
 function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
 {
@@ -37,6 +38,8 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 				return default.BLOODTHIRST_T3_DMG;
 			case 'ChosenSword_T4':
 				return default.BLOODTHIRST_T4_DMG;
+			case 'ChosenSword_T5':
+				return default.BLOODTHIRST_T5_DMG;
 			default:
 				return 0;
 		}

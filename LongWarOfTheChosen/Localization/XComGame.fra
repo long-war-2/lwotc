@@ -6645,8 +6645,8 @@ LocFlyOverText="Marque noire"
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="Fatalité"
 ; LWOTC translated (2)
-LocLongDescription="Gagnez un bonus de +100 en visée et en chances de coup critique avec votre <Ability:WeaponName/> contre les unités dont les PV actuels sont inférieurs ou égaux à 35% de leurs PV initiaux."
-LocHelpText="Gagnez un bonus de +100 en visée et en chances de coup critique avec votre <Ability:WeaponName/> contre les unités dont les PV actuels sont inférieurs ou égaux à 35% de leurs PV initiaux."
+LocLongDescription="Gagnez un bonus de +100 en visée et en chances de coup critique avec votre <Ability:WeaponName/> contre les unités dont les PV actuels sont inférieurs ou égaux à <Ability:FATALITY_THRESHOLD/>% de leurs PV initiaux."
+LocHelpText="Gagnez un bonus de +100 en visée et en chances de coup critique avec votre <Ability:WeaponName/> contre les unités dont les PV actuels sont inférieurs ou égaux à <Ability:FATALITY_THRESHOLD/>% de leurs PV initiaux."
 ; End translated (2)
 LocFlyOverText="Fatalité"
 
@@ -6707,7 +6707,7 @@ LocHelpText="Gagne une action de déplacement ou de Préparation au combat aprè
 LocFlyOverText="Réaction instinctive de l'Élu"
 
 ; LWOTC translated (2)
-[ChosenImmunitiesPassive X2AbilityTemplate]
+[ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="Immunités de l'Élu"
 LocLongDescription="L'Élu est immunisé à l'étourdissement, la désorientation et la glace. Il subit un malus de -50% en mobilité en cas de Mutilation (au lieu d'être totalement immobilisé, comme c'est normalement le cas)."
 LocHelpText="L'Élu est immunisé à l'étourdissement, la désorientation et la glace. Il subit un malus de -50% en mobilité en cas de Mutilation (au lieu d'être totalement immobilisé, comme c'est normalement le cas)."

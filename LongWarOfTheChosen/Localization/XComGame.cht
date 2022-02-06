@@ -6413,8 +6413,8 @@ LocFlyOverText="死亡標記"
 
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="宿命"
-LocLongDescription="使用<Ability:WeaponName/>對35％生命或更低的目標增加+100命中和暴擊率。"
-LocHelpText="使用<Ability:WeaponName/>對35％生命或更低的目標增加+100命中和暴擊率。"
+LocLongDescription="使用<Ability:WeaponName/>對<Ability:FATALITY_THRESHOLD/>％生命或更低的目標增加+100命中和暴擊率。"
+LocHelpText="使用<Ability:WeaponName/>對<Ability:FATALITY_THRESHOLD/>％生命或更低的目標增加+100命中和暴擊率。"
 LocFlyOverText="宿命"
 
 [Vampirism_LW X2AbilityTemplate]
@@ -6474,7 +6474,7 @@ LocHelpText="在XCOM回合受到傷害後，獲得移動動作或戰備狀態。
 LocFlyOverText="天選者反應"
 
 ; LWOTC Needs Translation (2)
-[ChosenImmunitiesPassive X2AbilityTemplate]
+[ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="天選者免疫"
 LocLongDescription="天選者對眩暈、混亂和冰凍免疫，並遭受-50%的致殘移動力，而不是原地不動。"
 LocHelpText="天選者對眩暈、混亂和冰凍免疫，並遭受-50%的致殘移動力，而不是原地不動。"
