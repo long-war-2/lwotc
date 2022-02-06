@@ -46,9 +46,9 @@ LocPromotionPopupText="<Bullet/> Добавляет <Ability:MeditationFocusReco
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="Заряженность"
-LocLongDescription="Дает бонус к Меткости и Защите за каждую единицу концентрации Храмовника."
-LocHelpText="Дает бонус к Меткости и Защите за каждую единицу концентрации Храмовника."
-LocPromotionPopupText="<Bullet/> Каждая единица дает бонус в +<Ability:OverchargeAimBonus/> к меткости и +<Ability:OverchargeDefenseBonus/> к защите.<br/><Bullet/> Рассчитывается по текущему (а не максимальному) показателю концентрации."
+LocLongDescription="Дает бонус к Меткости и Шансу критического попадания за каждую единицу концентрации Храмовника."
+LocHelpText="Дает бонус к Меткости и Шансу критического попадания за каждую единицу концентрации Храмовника."
+LocPromotionPopupText="<Bullet/> Каждая единица дает бонус в +<Ability:OverchargeAimBonus/> к меткости и +<Ability:OverchargeCritBonus/> к шансу критического попадания.<br/><Bullet/> Рассчитывается по текущему (а не максимальному) показателю концентрации."
 
 [VoltDangerZone X2AbilityTemplate]
 LocFriendlyName="Высокое напряжение"
