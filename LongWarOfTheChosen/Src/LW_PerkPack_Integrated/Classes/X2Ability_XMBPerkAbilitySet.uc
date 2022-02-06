@@ -2572,6 +2572,7 @@ static function X2AbilityTemplate HunterMarkHit()
 
 	NameCondition = new class'XMBCondition_AbilityName';
 	NameCondition.IncludeAbilityNames.AddItem('SniperStandardFire');
+	NameCondition.IncludeAbilityNames.AddITem('SnapShot');
 
 
 	RefundEffect.AbilityTargetConditions.AddItem(NeedOneOfTheEffects);

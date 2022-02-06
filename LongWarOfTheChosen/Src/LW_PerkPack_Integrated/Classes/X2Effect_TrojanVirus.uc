@@ -60,7 +60,7 @@ static function EventListenerReturn PostEffectTickCheck(Object EventData, Object
 	// effect has worn off, Trojan Virus now kicks in
 	// Compute damage
 	Damage = 0;
-	AttackerHackStat = SourceState.GetCurrentStat(eStat_Hacking);
+	AttackerHackStat = SourceState.GetCurrentStat(eStat_Hacking) + SourceState.GetUIStatFromAbilities(eStat_Hacking) + SourceState.GetUIStatFromInventory(eStat_Hacking, GameState);
 	DefenderHackDefense = OldTargetState.GetCurrentStat(eStat_HackDefense);
 	for(idx = 0; idx < default.TROJANVIRUSROLLS; idx++)
 	{
