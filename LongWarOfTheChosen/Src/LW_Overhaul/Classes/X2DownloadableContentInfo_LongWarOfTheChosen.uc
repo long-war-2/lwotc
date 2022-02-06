@@ -2699,18 +2699,15 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 {
 	local X2CharacterTemplate ChosenTemplate;
 	local array<ChosenStrengthWeighted> ChosenStrengths , ValidChosenStrengths;	
+	local array<ChosenStrengthWeighted> BackupChosenStrengths, FurtherBackupChosenStrengths;	
 	local ChosenStrengthWeighted WStrength;
-	local X2AbilityTemplate TraitTemplate;
-	local X2AbilityTemplateManager AbilityMgr;
 	local float finder, selection, TotalWeight;
-	local name Traitname, ExcludeTraitName;
 	local int i;
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameStateHistory History;
 
 	History = `XCOMHISTORY;
 
-	AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 	ChosenTemplate = ChosenState.GetChosenTemplate();
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 
@@ -2720,10 +2717,13 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 		if(AlienHQ.GetForceLevel() > 14)
 		{
 			ChosenStrengths = default.HUNTER_STRENGTHS_T3;
+			BackupChosenStrengths = default.HUNTER_STRENGTHS_T2;
+			FurtherBackupChosenStrengths = default.HUNTER_STRENGTHS_T1;
 		}
 		else if(AlienHQ.GetForceLevel() > 9)
 		{
 			ChosenStrengths = default.HUNTER_STRENGTHS_T2;
+			BackupChosenStrengths = default.HUNTER_STRENGTHS_T1;
 		}
 		else 
 		{
@@ -2735,10 +2735,13 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 		if(AlienHQ.GetForceLevel() > 14)
 		{
 			ChosenStrengths = default.WARLOCK_STRENGTHS_T3;
+			BackupChosenStrengths = default.WARLOCK_STRENGTHS_T2;
+			FurtherBackupChosenStrengths = default.WARLOCK_STRENGTHS_T1;
 		}
 		else if(AlienHQ.GetForceLevel() > 9)
 		{
 			ChosenStrengths = default.WARLOCK_STRENGTHS_T2;
+			BackupChosenStrengths = default.WARLOCK_STRENGTHS_T1;
 		}
 		else 
 		{
@@ -2750,10 +2753,13 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 		if(AlienHQ.GetForceLevel() > 14)
 		{
 			ChosenStrengths = default.ASSASSIN_STRENGTHS_T3;
+			BackupChosenStrengths = default.ASSASSIN_STRENGTHS_T2;
+			FurtherBackupChosenStrengths = default.ASSASSIN_STRENGTHS_T1;
 		}
 		else if(AlienHQ.GetForceLevel() > 9)
 		{
 			ChosenStrengths = default.ASSASSIN_STRENGTHS_T2;
+			BackupChosenStrengths = default.ASSASSIN_STRENGTHS_T1;
 		}
 		else 
 		{
@@ -2763,6 +2769,46 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 	ValidChosenStrengths = ChosenStrengths;
 
 	//Remove Strengths Are already added, and those that are excluded by already added strengths
+	ValidateStrengthList(ValidChosenStrengths, ChosenState);
+	if(ValidChosenStrengths.Length == 0)
+	{
+		ValidChosenStrengths = BackupChosenStrengths;
+		ValidateStrengthList(ValidChosenStrengths, ChosenState);
+		if(ValidChosenStrengths.Length == 0)
+		{
+			ValidChosenStrengths = FurtherBackupChosenStrengths;
+			ValidateStrengthList(ValidChosenStrengths, ChosenState);
+		}
+	}
+
+		TotalWeight = 0.0f;
+		foreach ValidChosenStrengths(WStrength)
+		{
+			TotalWeight+=WStrength.Weight;
+		}
+		for(i=0; i<NumStrengthsPerLevel; i++)
+		{
+			finder = 0.0f;
+			selection = `SYNC_FRAND_STATIC() * TotalWeight;
+			foreach ValidChosenStrengths(WStrength)
+			{
+				finder += WStrength.Weight;
+				if(finder > selection)
+				{
+					break;
+				}
+			}
+			ChosenState.Strengths.AddItem(WStrength.Strength);
+		}
+}
+
+static function ValidateStrengthList(out array<ChosenStrengthWeighted> ValidChosenStrengths, XComGameState_AdventChosen ChosenState)
+{
+	local name Traitname, ExcludeTraitName;
+	local X2AbilityTemplate TraitTemplate;
+	local X2AbilityTemplateManager AbilityMgr;
+	local int i;
+	AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 
 	foreach ChosenState.Strengths(Traitname)
 	{
@@ -2804,28 +2850,7 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 			}
 		}
 	}
-		TotalWeight = 0.0f;
-		foreach ValidChosenStrengths(WStrength)
-		{
-			TotalWeight+=WStrength.Weight;
-		}
-		for(i=0; i<NumStrengthsPerLevel; i++)
-		{
-			finder = 0.0f;
-			selection = `SYNC_FRAND_STATIC() * TotalWeight;
-			foreach ValidChosenStrengths(WStrength)
-			{
-				finder += WStrength.Weight;
-				if(finder > selection)
-				{
-					break;
-				}
-			}
-			ChosenState.Strengths.AddItem(WStrength.Strength);
-		}
 }
-
-
 
 static function UpdateRetribution()
 {
