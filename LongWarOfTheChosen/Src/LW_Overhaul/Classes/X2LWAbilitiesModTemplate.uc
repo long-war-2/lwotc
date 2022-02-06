@@ -111,6 +111,11 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakeAbilityNonTurnEnding(Template);
 			MakeAbilitiesUnusableOnLost(Template);
 			break;
+		case 'HunterGrapple':
+		case 'Grapple':
+		case 'PoweredGrapple':
+			AddGrappleUnitValue(Template);
+			break;
 		case 'Solace':
 			RemoveRoboticsAsValidTargetsOfSolace(Template);
 			break;
@@ -196,6 +201,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'ChosenRegenerate':
 			UpdateChosenRegenerate(Template);
+			break;
+		case 'TrackingShot':
+			class'Helpers_LW'.static.MakeFreeAction(Template);
 			break;
 		case 'HarborWave':
 			ReworkHarborWave(Template);
@@ -1092,6 +1100,18 @@ static function BuffTeleportAlly(X2AbilityTemplate Template)
 	*/
 }
 
+static function AddGrappleUnitValue(X2AbilityTemplate Template)
+{
+	local X2Effect_SetUnitValue UnitValueEffect;
+
+	UnitValueEffect = new class'X2Effect_SetUnitValue';
+	UnitValueEffect.UnitName = 'GrappledThisTurn';
+	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
+	UnitValueEffect.NewValueToSet = 1;
+	Template.AddTargetEffect(UnitValueEffect);
+}
+
+	
 static function UpdateSummon(X2AbilityTemplate Template)
 {
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;

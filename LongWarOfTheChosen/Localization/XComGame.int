@@ -6641,6 +6641,7 @@ LocHelpText="Every time you attack with your melee weapon, get a stackable damag
 LocFlyOverText="Blood Thirst"
 ; End Translation (2)
 
+; LWOTC Needs Translation (2)
 [UnholyAscension_LW X2AbilityTemplate]
 LocFriendlyName="Unholy Ascension"
 LocLongDescription="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
@@ -6652,6 +6653,17 @@ LocFriendlyName="Unbreakable"
 LocLongDescription="All Rupture Effects inflicted on you will be instantly removed."
 LocHelpText="All Rupture Effects inflicted on you will be instantly removed."
 LocFlyOverText="Unbreakable"
+
+[TrackingShotMark X2AbilityTemplate]
+LocFriendlyName="Tracking Shot Mark"
+LocHelpText="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
+LocLongDescription="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
+
+[TrackingShot X2AbilityTemplate]
+LocFriendlyName="Tracking Shot"
+LocHelpText="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
+LocLongDescription="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
+;end translation (2)
 
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="Precise strike"

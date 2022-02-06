@@ -2274,7 +2274,6 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('LongWatch');
 		Template.Abilities.AddItem('quickdraw');
 		Template.Abilities.AddItem('ChosenImmuneMelee');
-		Template.Abilities.AddItem('ReadyForAnything');
 		
 		Template.Abilities.AddItem('FreeGrenades');
 		Template.Abilities.AddItem('Infighter');
@@ -2471,10 +2470,10 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenSniperPistol_T4':
 			WeaponTemplate.Abilities.RemoveItem('LethalDose');
 			break;
-		case 'ChosenSniperPistol_CV':
-		case 'ChosenSniperPistol_MG':
-		case 'ChosenSniperPistol_BM':
-		case 'ChosenSniperPistol_T4':
+		case 'ChosenSniperRifle_CV':
+		case 'ChosenSniperRifle_MG':
+		case 'ChosenSniperRifle_BM':
+		case 'ChosenSniperRifle_T4':
 			//WeaponTemplate.Abilities.RemoveItem('TrackingShot');
 			WeaponTemplate.Abilities.RemoveItem('HunterKillzone');
 			break;
