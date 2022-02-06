@@ -206,10 +206,61 @@ static event OnLoadedSavedGameToStrategy()
 	//local XComGameState_LWOutpost OutpostState;
 	//local XComGameState_LWToolboxOptions ToolboxOptions;
 	
-
-	
 	History = `XCOMHISTORY;
+
+	// TODO: Remove these post 1.0 - START
+
+	// LWOTC beta 2: Remove the 'OnMonthlyReportAlert' listener as it's no
+	// longer needed (Not Created Equally is handled by the 'UnitRandomizedStats'
+	// event now).
+	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
+	`XEVENTMGR.UnRegisterFromEvent(ToolboxOptions, 'OnMonthlyReportAlert');
+
+	// Make sure pistol abilities apply to the new pistol slot
+	LWMigratePistolAbilities();
+
+	// If there are rebels that have already ranked up, make sure they have some abilities
+	OutpostManager = `LWOUTPOSTMGR;
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Patching existing campaign data");
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		if (RegionState.HaveMadeContact())
+		{
+			OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
+			OutpostState.UpdateRebelAbilities(NewGameState);
+		}
+	}
+		
+	//Make sure the chosen are of appropriate level
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	Forcelevel = class'Utilities_LW'.static.GetLWForceLevel();
+	AllChosen = AlienHQ.GetAllChosen();
+
+	ChosenLevel = 4;
+	for (i = 0; i < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.Length; i++)
+	{
+		if (ForceLevel < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[i])
+		{
+			ChosenLevel = i;
+			break;
+		}
+	}
+
+	foreach AllChosen(ChosenState)
+	{
+		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+		if (ChosenState.Level != ChosenLevel)
+		{
+			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+			Chosenstate.Level = ChosenLevel;
+		}
+
+		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+		// Replace Old Tag with new Tag in missions
+		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+	}
+	// Remove these post 1.0 - END
 
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
@@ -1364,7 +1415,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			SetupData[i].SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();
 		}	
 	}
-
+	/*
 	// Prevent units summoned by the Chosen from dropping loot and corpses
 	if (StartState.GetContext().IsA(class'XComGameStateContext_Ability'.Name))
 	{
@@ -1399,6 +1450,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			}
 		}
 	}
+	*/
 }
 
 static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTemplate CharTemplate)
@@ -2672,18 +2724,15 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 {
 	local X2CharacterTemplate ChosenTemplate;
 	local array<ChosenStrengthWeighted> ChosenStrengths , ValidChosenStrengths;	
+	local array<ChosenStrengthWeighted> BackupChosenStrengths, FurtherBackupChosenStrengths;	
 	local ChosenStrengthWeighted WStrength;
-	local X2AbilityTemplate TraitTemplate;
-	local X2AbilityTemplateManager AbilityMgr;
 	local float finder, selection, TotalWeight;
-	local name Traitname, ExcludeTraitName;
 	local int i;
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameStateHistory History;
 
 	History = `XCOMHISTORY;
 
-	AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 	ChosenTemplate = ChosenState.GetChosenTemplate();
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 
@@ -2693,10 +2742,13 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 		if(AlienHQ.GetForceLevel() > 14)
 		{
 			ChosenStrengths = default.HUNTER_STRENGTHS_T3;
+			BackupChosenStrengths = default.HUNTER_STRENGTHS_T2;
+			FurtherBackupChosenStrengths = default.HUNTER_STRENGTHS_T1;
 		}
 		else if(AlienHQ.GetForceLevel() > 9)
 		{
 			ChosenStrengths = default.HUNTER_STRENGTHS_T2;
+			BackupChosenStrengths = default.HUNTER_STRENGTHS_T1;
 		}
 		else 
 		{
@@ -2708,10 +2760,13 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 		if(AlienHQ.GetForceLevel() > 14)
 		{
 			ChosenStrengths = default.WARLOCK_STRENGTHS_T3;
+			BackupChosenStrengths = default.WARLOCK_STRENGTHS_T2;
+			FurtherBackupChosenStrengths = default.WARLOCK_STRENGTHS_T1;
 		}
 		else if(AlienHQ.GetForceLevel() > 9)
 		{
 			ChosenStrengths = default.WARLOCK_STRENGTHS_T2;
+			BackupChosenStrengths = default.WARLOCK_STRENGTHS_T1;
 		}
 		else 
 		{
@@ -2723,10 +2778,13 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 		if(AlienHQ.GetForceLevel() > 14)
 		{
 			ChosenStrengths = default.ASSASSIN_STRENGTHS_T3;
+			BackupChosenStrengths = default.ASSASSIN_STRENGTHS_T2;
+			FurtherBackupChosenStrengths = default.ASSASSIN_STRENGTHS_T1;
 		}
 		else if(AlienHQ.GetForceLevel() > 9)
 		{
 			ChosenStrengths = default.ASSASSIN_STRENGTHS_T2;
+			BackupChosenStrengths = default.ASSASSIN_STRENGTHS_T1;
 		}
 		else 
 		{
@@ -2736,6 +2794,46 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 	ValidChosenStrengths = ChosenStrengths;
 
 	//Remove Strengths Are already added, and those that are excluded by already added strengths
+	ValidateStrengthList(ValidChosenStrengths, ChosenState);
+	if(ValidChosenStrengths.Length == 0)
+	{
+		ValidChosenStrengths = BackupChosenStrengths;
+		ValidateStrengthList(ValidChosenStrengths, ChosenState);
+		if(ValidChosenStrengths.Length == 0)
+		{
+			ValidChosenStrengths = FurtherBackupChosenStrengths;
+			ValidateStrengthList(ValidChosenStrengths, ChosenState);
+		}
+	}
+
+		TotalWeight = 0.0f;
+		foreach ValidChosenStrengths(WStrength)
+		{
+			TotalWeight+=WStrength.Weight;
+		}
+		for(i=0; i<NumStrengthsPerLevel; i++)
+		{
+			finder = 0.0f;
+			selection = `SYNC_FRAND_STATIC() * TotalWeight;
+			foreach ValidChosenStrengths(WStrength)
+			{
+				finder += WStrength.Weight;
+				if(finder > selection)
+				{
+					break;
+				}
+			}
+			ChosenState.Strengths.AddItem(WStrength.Strength);
+		}
+}
+
+static function ValidateStrengthList(out array<ChosenStrengthWeighted> ValidChosenStrengths, XComGameState_AdventChosen ChosenState)
+{
+	local name Traitname, ExcludeTraitName;
+	local X2AbilityTemplate TraitTemplate;
+	local X2AbilityTemplateManager AbilityMgr;
+	local int i;
+	AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 
 	foreach ChosenState.Strengths(Traitname)
 	{
@@ -2777,28 +2875,7 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 			}
 		}
 	}
-		TotalWeight = 0.0f;
-		foreach ValidChosenStrengths(WStrength)
-		{
-			TotalWeight+=WStrength.Weight;
-		}
-		for(i=0; i<NumStrengthsPerLevel; i++)
-		{
-			finder = 0.0f;
-			selection = `SYNC_FRAND_STATIC() * TotalWeight;
-			foreach ValidChosenStrengths(WStrength)
-			{
-				finder += WStrength.Weight;
-				if(finder > selection)
-				{
-					break;
-				}
-			}
-			ChosenState.Strengths.AddItem(WStrength.Strength);
-		}
 }
-
-
 
 static function UpdateRetribution()
 {
@@ -3217,6 +3294,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'COMBATREADINESS_AIM':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.COMBATREADINESS_AIM);
 			return true;
+		case 'COMBAT_READINESS_EXPLOSIVE_DR':
+			Outstring = string(int(class'X2Ability_XMBPerkAbilitySet'.default.COMBAT_READINESS_EXPLOSIVE_DR * 100));
+			return true;
 		case 'BLOODTHIRST_T1_DMG':
 			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T1_DMG);
 			return true;
@@ -3229,8 +3309,14 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'BLOODTHIRST_T4_DMG':
 			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T4_DMG);
 			return true;
+		case 'BLOODTHIRST_T5_DMG':
+			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T5_DMG);
+			return true;
 		case 'DISRUPTOR_RIFLE_PSI_CRIT':
 			Outstring = string(class'X2Ability_XPackAbilitySet'.default.DISRUPTOR_RIFLE_PSI_CRIT);
+			return true;
+		case 'FATALITY_THRESHOLD':
+			Outstring = string(int(class'X2Ability_XMBPerkAbilitySet'.default.FATALITY_THRESHOLD * 100));
 			return true;
 		default:
 			return false;

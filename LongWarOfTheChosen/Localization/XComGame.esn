@@ -6637,8 +6637,8 @@ LocFlyOverText="La marca de la muerte"
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="Fatalidad"
 ; LWOTC translated
-LocLongDescription="Gana +100 de puntería y crítico con tu <Ability:WeaponName/> contra unidades con un 35% de salud o menos."
-LocHelpText="Gana +100 de puntería y crítico con tu <Ability:WeaponName/> contra unidades con un 35% de salud o menos."
+LocLongDescription="Gana +100 de puntería y crítico con tu <Ability:WeaponName/> contra unidades con un <Ability:FATALITY_THRESHOLD/>% de salud o menos."
+LocHelpText="Gana +100 de puntería y crítico con tu <Ability:WeaponName/> contra unidades con un <Ability:FATALITY_THRESHOLD/>% de salud o menos."
 ; End translated
 LocFlyOverText="Fatalidad"
 
@@ -6699,7 +6699,7 @@ LocHelpText="Gana una acción de movimiento o Preparación para el combate despu
 LocFlyOverText="Reacción primaria del Elegido"
 
 ; LWOTC translated
-[ChosenImmunitiesPassive X2AbilityTemplate]
+[ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="Inmunidad de los Elegidos"
 LocLongDescription="Los Elegidos son inmunes al aturdimiento, desorientación y congelación."
 LocHelpText="Los Elegidos son inmunes al aturdimiento, desorientación y congelación."

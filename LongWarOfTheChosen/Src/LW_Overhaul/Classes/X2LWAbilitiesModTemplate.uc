@@ -113,6 +113,11 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			MakeAbilityNonTurnEnding(Template);
 			MakeAbilitiesUnusableOnLost(Template);
 			break;
+		case 'HunterGrapple':
+		case 'Grapple':
+		case 'PoweredGrapple':
+			AddGrappleUnitValue(Template);
+			break;
 		case 'Solace':
 			RemoveRoboticsAsValidTargetsOfSolace(Template);
 			break;
@@ -198,6 +203,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'ChosenRegenerate':
 			UpdateChosenRegenerate(Template);
+			break;
+		case 'TrackingShot':
+			class'Helpers_LW'.static.MakeFreeAction(Template);
 			break;
 		case 'HarborWave':
 			ReworkHarborWave(Template);
@@ -944,6 +952,13 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	local X2Effect_Burning BurningEffect;
 	local X2Effect_ApplyWeaponDamage DamageEffect;
 	local array<name> SkipExclusions;
+	local X2AbilityCooldown_MindScorch Cooldown;
+
+
+	Cooldown = new class'X2AbilityCooldown_MindScorch';
+	Cooldown.iNumTurns = class'X2Ability_ChosenWarlock'.default.MINDSCORCH_COOLDOWN_LOCAL;
+	Cooldown.NumGlobalTurns = class'X2Ability_ChosenWarlock'.default.MINDSCORCH_COOLDOWN_GLOBAL;
+	Template.AbilityCooldown = Cooldown;
 
 	ShooterCondition = new class'X2Condition_UnitProperty';
 	ShooterCondition.ExcludeConcealed = true;
@@ -1106,18 +1121,26 @@ static function BuffTeleportAlly(X2AbilityTemplate Template)
 	*/
 }
 
+static function AddGrappleUnitValue(X2AbilityTemplate Template)
+{
+	local X2Effect_SetUnitValue UnitValueEffect;
+
+	UnitValueEffect = new class'X2Effect_SetUnitValue';
+	UnitValueEffect.UnitName = 'GrappledThisTurn';
+	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
+	UnitValueEffect.NewValueToSet = 1;
+	Template.AddTargetEffect(UnitValueEffect);
+}
+
+	
 static function UpdateSummon(X2AbilityTemplate Template)
 {
-	local X2AbilityCooldown					Cooldown;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 
-	class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template,'X2Effect_SetUnitValue');
-	class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
+	//class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template,'X2Effect_SetUnitValue');
+	//class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
 
-
-	Cooldown = new class'X2AbilityCooldown';
-	Cooldown.iNumTurns = default.SUMMON_COOLDOWN;
-	Template.AbilityCooldown = Cooldown;
+	class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_BattleState');
 
 	Template.BuildNewGameStateFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildGameState;
 	Template.BuildVisualizationFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildVisualization;
@@ -1164,7 +1187,7 @@ static function UpdateChosenRegenerate(X2AbilityTemplate Template)
 
 static function ReworkHarborWave(X2AbilityTemplate Template)
 {
-	local X2Effect_ApplyWeaponDamage DamageEffect;
+	local X2Effect_ApplyHarborWaveDamage DamageEffect;
 
 
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
@@ -1173,7 +1196,7 @@ static function ReworkHarborWave(X2AbilityTemplate Template)
 	class'Helpers_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_ApplyWeaponDamage');
 	class'Helpers_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Knockback');
 
-	DamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	DamageEffect = new class'X2Effect_ApplyHarborWaveDamage';
 	DamageEffect.bIgnoreArmor = true;
 	Template.AddMultiTargetEffect(DamageEffect);
 
@@ -1207,6 +1230,10 @@ static function AddDisablingShotEffect(X2AbilityTemplate Template)
 	DisableWeaponEffect.TargetConditions.AddItem(AbilityCondition);
 
 	Template.AddTargetEffect(DisableWeaponEffect);
+	if(Template.DataName == 'FaceOff')
+	{
+		Template.AddMultiTargetEffect(DisableWeaponEffect);
+	}
 }
 
 static function DisplayMindShieldPassive(X2AbilityTemplate Template)
