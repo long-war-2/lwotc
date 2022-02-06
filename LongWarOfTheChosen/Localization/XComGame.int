@@ -6839,7 +6839,7 @@ LocHelpText="Gain a movement action or Combat Readiness after taking damage on X
 LocFlyOverText="Chosen Prime Reaction"
 
 ; LWOTC Needs Translation (3)
-[ChosenImmunitiesPassive X2AbilityTemplate]
+[ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="Chosen Immunities"
 LocLongDescription="Chosen are immune to stun, disorient, and frost."
 LocHelpText="Chosen are immune to stun, disorient, and frost."

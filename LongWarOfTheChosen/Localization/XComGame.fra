@@ -6707,7 +6707,7 @@ LocHelpText="Gagne une action de déplacement ou de Préparation au combat aprè
 LocFlyOverText="Réaction instinctive de l'Élu"
 
 ; LWOTC translated (2)
-[ChosenImmunitiesPassive X2AbilityTemplate]
+[ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="Immunités de l'Élu"
 LocLongDescription="L'Élu est immunisé à l'étourdissement, la désorientation et la glace. Il subit un malus de -50% en mobilité en cas de Mutilation (au lieu d'être totalement immobilisé, comme c'est normalement le cas)."
 LocHelpText="L'Élu est immunisé à l'étourdissement, la désorientation et la glace. Il subit un malus de -50% en mobilité en cas de Mutilation (au lieu d'être totalement immobilisé, comme c'est normalement le cas)."

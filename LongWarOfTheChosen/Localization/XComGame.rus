@@ -6367,7 +6367,7 @@ LocFlyOverText="Реакция Избранного"
 ; End Translated
 
 ; LWOTC Translated (2)
-[ChosenImmunitiesPassive X2AbilityTemplate]
+[ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="Неуязвимость Избранного"
 LocLongDescription="Избранный неуязвим к оглушению, дезориентации, заморозке и имеет 50% штраф от увечья вместо 100%."
 LocHelpText="Избранный неуязвим к оглушению, дезориентации, заморозке и имеет 50% штраф от увечья вместо 100%."

@@ -6668,7 +6668,7 @@ LocHelpText="Gana una acción de movimiento o Preparación para el combate despu
 LocFlyOverText="Reacción primaria del Elegido"
 
 ; LWOTC translated
-[ChosenImmunitiesPassive X2AbilityTemplate]
+[ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="Inmunidad de los Elegidos"
 LocLongDescription="Los Elegidos son inmunes al aturdimiento, desorientación, congelación y sufren un -50% de movilidad por Mutilar en lugar de ser inmovilizados."
 LocHelpText="Los Elegidos son inmunes al aturdimiento, desorientación, congelación y sufren un -50% de movilidad por Mutilar en lugar de ser inmovilizados."

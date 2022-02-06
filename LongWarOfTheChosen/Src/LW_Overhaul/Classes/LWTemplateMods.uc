@@ -2243,7 +2243,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('WarlockReaction');
 		//Template.Abilities.AddItem('AmmoDump_LW');
 		Template.Abilities.AddItem('ChosenCritImmune');
-		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		
 		Template.Abilities.AddItem('ChosenLootAbility');
 		Template.Abilities.AddItem('TriggerDamagedTeleport_LW');
 		Template.Abilities.AddItem('MovingTarget_LW');
@@ -2272,7 +2272,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('quickdraw');
 		Template.Abilities.AddItem('ChosenImmuneMelee');
 		Template.Abilities.AddItem('ReadyForAnything');
-		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		
 		Template.Abilities.AddItem('FreeGrenades');
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('Disabler');
@@ -2298,7 +2298,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('BloodThirst_LW');
 		Template.Abilities.AddItem('Hitandrun');
 		Template.Abilities.AddItem('FreeGrenades');
-		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		
 		Template.Abilities.AddItem('AssassinSlash_LW');
 		Template.Abilities.AddItem('ImpactCompensation_LW');
 		Template.Abilities.AddItem('Infighter');
