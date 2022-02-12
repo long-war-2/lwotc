@@ -1105,7 +1105,7 @@ TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close r
 [Bullpup_LS X2WeaponTemplate]
 FriendlyName="Kal-13 \"Bullpup\""
 FriendlyNamePlural="Kal-13 \"Bullpups\""
-BriefSummary="We can manufacture a modified Laser SMG that can be used by Skirmishers. While Dr.Tygan has correctly stated that this is in fact not a Bullpup, its compact frame and the additional tweaks we've made are enough for them to seriously consider its use in battle."
+BriefSummary="We can manufacture a modified Laser SMG that can be used by Skirmishers. While Dr. Tygan has correctly stated that this is in fact not a Bullpup, its compact frame and the additional tweaks we've made are enough for them to seriously consider its use in battle."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
