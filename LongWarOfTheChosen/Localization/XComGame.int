@@ -5501,7 +5501,7 @@ LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, p
 
 ; LWOTC Needs Translation (2)
 [Ghost X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghost has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Shield bash, Shield abilities, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Superior Aptitude, Ionic Storm abd Sustain. <br/>"
+LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghost has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Shield bash, Shield abilities, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Superior Aptitude, Ionic Storm and Sustain. <br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (3)
