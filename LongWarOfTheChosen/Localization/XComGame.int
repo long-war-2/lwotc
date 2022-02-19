@@ -1506,21 +1506,21 @@ FriendlyName="Alloy Plating"
 FriendlyNamePlural="Alloy Plating"
 UnknownUtilityCategory="Plating"
 BriefSummary="Grants 3 ablative armor points."
-TacticalText="<Bullet/> Grants 3 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of albative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 3 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [ChitinPlating X2EquipmentTemplate]
 FriendlyName="Chitin Plating"
 FriendlyNamePlural="Chitin Plating"
 UnknownUtilityCategory="Plating"
 BriefSummary="Grants 4 ablative armor points."
-TacticalText="<Bullet/> Grants 4 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of albative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 4 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [CarapacePlating X2EquipmentTemplate]
 FriendlyName="Carapace Plating"
 FriendlyNamePlural="Carapace Plating"
 UnknownUtilityCategory="Plating"
 BriefSummary="Grants 5 ablative armor points."
-TacticalText="<Bullet/> Grants 5 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of albative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 5 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [StilettoRounds X2AmmoTemplate]
 FriendlyName="Stiletto Rounds"
