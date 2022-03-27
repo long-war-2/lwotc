@@ -186,11 +186,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'VanishingWindReveal':
 			Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 			break;
-		case 'ShadowStep': //Make these exclusive for chosen
-			Template.ChosenExcludeTraits.AddItem('LightningReflexes_LW');
-			break;
-		case 'LightningReflexes_LW':
-			Template.ChosenExcludeTraits.AddItem('ShadowStep');
+		case 'ChosenAllSeeing':
+			Template.ChosenExcludeTraits.Length = 0;
 			break;
 		case 'Slash_LW':
 		case 'SwordSlice_LW':
