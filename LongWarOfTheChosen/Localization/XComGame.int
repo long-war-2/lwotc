@@ -6397,6 +6397,18 @@ LocHelpText="When targeted by enemy fire, automatically fire back with your <Abi
 LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
+[TriggerBot X2AbilityTemplate]
+LocFriendlyName="Trigger Bot"
+LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocPromotionPopupText="<Bullet/> Trigger Bot will only trigger once per turn.<br/><Bullet/> Trigger Bot can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Trigger Bot will not trigger when targeted by overwatch fire.<br/>"
+
+[TriggerBotShot X2AbilityTemplate]
+LocFriendlyName="Trigger Bot"
+LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocPromotionPopupText="<Bullet/> Trigger Bot will only trigger once per turn.<br/><Bullet/> Trigger Bot can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Trigger Bot will not trigger when targeted by overwatch fire.<br/>"
+
 [DeadeyeSnapShot X2AbilityTemplate]
 LocFriendlyName="Deadeye (Snap Shot)"
 LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
