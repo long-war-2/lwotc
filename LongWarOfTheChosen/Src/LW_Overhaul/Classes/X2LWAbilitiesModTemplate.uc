@@ -44,6 +44,8 @@ var config int MIND_SCORCH_BURNING_BASE_DAMAGE;
 var config int MIND_SCORCH_BURNING_DAMAGE_SPREAD;
 var config int MIND_SCORCH_BURN_CHANCE;
 
+var config int SUSTAIN_WOUND_HP_REDUCTTION;
+
 var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
 
 var config array<name> PISTOL_ABILITY_WEAPON_CATS;
@@ -755,7 +757,7 @@ static function RemoveTheDeathFromHolyWarriorDeath(X2AbilityTemplate Template)
 static function UpdateSustainEffect(X2AbilityTemplate Template)
 {
 	local X2Effect_Sustain_LW SustainEffect;
-
+	local X2Effect_GreaterPadding	GreaterPaddingEffect;
 	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Sustain');
 
 	SustainEffect = new class'X2Effect_Sustain_LW';
@@ -763,6 +765,11 @@ static function UpdateSustainEffect(X2AbilityTemplate Template)
 	SustainEffect.EffectName='Sustain';
 	SustainEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(SustainEffect);
+
+	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
+	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
+	GreaterPaddingEffect.Padding_HealHP = default.SUSTAIN_WOUND_HP_REDUCTTION;	
+
 }
 
 static function UseNewDeadeyeEffect(X2AbilityTemplate Template)

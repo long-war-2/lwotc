@@ -1418,7 +1418,6 @@
     <Content Include="Content\LWRapidTarget_PerkContent.upk" />
     <Content Include="Content\LW_StrikeRifle.upk" />
     <Content Include="Content\MusashiCombatKnifeMod_LW.upk" />
-    <Content Include="Content\OneHandedGauntlet_LW.upk" />
     <Content Include="Content\UILibrary_FavidsPerkPack_LW.upk" />
     <Content Include="Content\UILibrary_SOCombatEngineer_LW.upk" />
     <Content Include="Content\UILibrary_SODragoon_LW.upk" />
@@ -1427,11 +1426,6 @@
     <Content Include="Content\UILibrary_WolfWeaponPack_LW.upk" />
     <Content Include="Content\UILibrary_WOTC_APA_Class_Pack_LW.upk" />
     <Content Include="Content\UILibrary_XPerkIconPack_LW.upk" />
-    <Content Include="Content\WoTC_Ballistic_Shield_LW.upk" />
-    <Content Include="Content\WoTC_Plated_Shield_LW.upk" />
-    <Content Include="Content\WoTC_Powered_Shield_LW.upk" />
-    <Content Include="Content\WoTC_Shield_Animations_LW.upk" />
-    <Content Include="Content\WoTC_Shield_UI_LW.upk" />
     <Content Include="Content\WP_AdventFlamethrower_Rusty.upk" />
     <Content Include="Content\WP_BeamGrenadeLauncher_LW.upk" />
     <Content Include="Content\LW_LaserPack_Integrated\FX_Lwotc_Laser_Shared.upk" />
