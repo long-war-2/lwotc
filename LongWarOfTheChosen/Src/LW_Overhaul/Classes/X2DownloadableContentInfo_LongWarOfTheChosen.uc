@@ -231,37 +231,6 @@ static event OnLoadedSavedGameToStrategy()
 		}
 	}
 		
-	//Make sure the chosen are of appropriate level
-	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	Forcelevel = class'Utilities_LW'.static.GetLWForceLevel();
-	AllChosen = AlienHQ.GetAllChosen();
-
-	ChosenLevel = 4;
-	for (i = 0; i < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.Length; i++)
-	{
-		if (ForceLevel < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[i])
-		{
-			ChosenLevel = i;
-			break;
-		}
-	}
-
-	foreach AllChosen(ChosenState)
-	{
-		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
-		if (ChosenState.Level != ChosenLevel)
-		{
-			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
-			Chosenstate.Level = ChosenLevel;
-		}
-
-		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-		// Replace Old Tag with new Tag in missions
-		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
-	}
-	// Remove these post 1.0 - END
-
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
 
