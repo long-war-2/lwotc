@@ -193,6 +193,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'OVERBEARING_SUPERIORITY_CRIT':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.OVERBEARING_SUPERIORITY_CRIT);
 			return true;
+		case 'TRIGGER_BOT_DAMAGE_PENALTY':
+			OutString = string(int(class'X2Ability_XMBPerkAbilitySet'.default.TRIGGER_BOT_DAMAGE_PENALTY * 100));
+			return true;
 		case 'LICKYOURWOUNDS_HEALAMOUNT':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.LICKYOURWOUNDS_HEALAMOUNT);
 			return true;

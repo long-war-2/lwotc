@@ -228,6 +228,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(TriggerBot());
 	Templates.AddItem(TriggerBotShot());
+	Templates.AddItem(TriggerBotDamage());
 
 	
 	
@@ -2285,7 +2286,7 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	return Template;
 }
 
-	static function X2AbilityTemplate TriggerBot()
+static function X2AbilityTemplate TriggerBot()
 {
 	local X2AbilityTemplate						Template;
 	local X2AbilityTargetStyle                  TargetStyle;
