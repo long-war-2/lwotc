@@ -95,6 +95,8 @@ var config int MAIM_COOLDOWN;
 
 var config int SCRAP_METAL_AMMO_AMOUNT;
 
+var config int OVERBEARING_SUPERIORITY_CRIT;
+
 var config int MOVING_TARGET_DEFENSE;
 var config int MOVING_TARGET_DODGE;
 
@@ -2931,6 +2933,7 @@ static function X2AbilityTemplate OverbearingSuperiority()
 {
 	local X2AbilityTemplate Template;
 	local XMBEffect_AbilityCostRefund SuperiorityEffect;
+	local X2Effect_ToHitModifier	ToHitModifier;
 
 	// Create an effect that refunds the action point cost of abilities
 	SuperiorityEffect = new class'XMBEffect_AbilityCostRefund';
@@ -2948,6 +2951,12 @@ static function X2AbilityTemplate OverbearingSuperiority()
 
 	// Create the template for an activated ability using a helper function.
 	Template = Passive('OverbearingSuperiority_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_crit_chevron_x3", true, SuperiorityEffect);
+
+	ToHitModifier = new class'X2Effect_ToHitModifier';
+	ToHitModifier.BuildPersistentEffect(1, true, true, true);
+	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.OVERBEARING_SUPERIORITY_CRIT, Template.LocFriendlyName,,,,,,,,true);
+	Template.AddTargetEffect(ToHitModifier);
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;

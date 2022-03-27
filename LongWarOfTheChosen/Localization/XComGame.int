@@ -6782,10 +6782,10 @@ LocFlyOverText="Blood Thirst"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
 LocFriendlyName="Overbearing Superiority"
-LocLongDescription="Whenever you get a critical hit with your primary weapon, your actions are refunded."
-;LWOTC Needs translation(2)
-LocHelpText="Whenever you get a critical hit with your primary weapon, your actions are refunded."
-;End Translation(2)
+;LWOTC Needs translation(3)
+LocLongDescription="Gain +<Ability:OVERBEARING_SUPERIORITY_CRIT/> Crit Chance with your Primary Weapon. Whenever you get a critical hit with your primary weapon, your actions are refunded."
+LocHelpText="Gain +<Ability:OVERBEARING_SUPERIORITY_CRIT/> Crit Chance with your Primary Weapon. Whenever you get a critical hit with your primary weapon, your actions are refunded."
+;End Translation(3)
 LocFlyOverText="Overbearing Superiority"
 
 [DisruptorRifleCrit X2AbilityTemplate]

@@ -190,6 +190,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'MAIM_COOLDOWN':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.MAIM_COOLDOWN);
 			return true;
+		case 'OVERBEARING_SUPERIORITY_CRIT':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.OVERBEARING_SUPERIORITY_CRIT);
+			return true
 		case 'LICKYOURWOUNDS_HEALAMOUNT':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.LICKYOURWOUNDS_HEALAMOUNT);
 			return true;
