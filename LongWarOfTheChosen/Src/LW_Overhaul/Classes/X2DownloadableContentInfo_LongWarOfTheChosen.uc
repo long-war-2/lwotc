@@ -200,6 +200,13 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState NewGameState;
 	local XComGameStateHistory History;
 	local XComGameState_Objective ObjectiveState;
+
+	local XComGameState_LWOutpostManager OutpostManager;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWOutpost OutpostState;
+	local XComGameState_LWToolboxOptions ToolboxOptions;
+	
+
 	
 	History = `XCOMHISTORY;
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Patching existing campaign data");
@@ -3140,6 +3147,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'MIND_SCORCH_BURN_CHANCE':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.MIND_SCORCH_BURN_CHANCE);
+			return true;
+		case 'SUSTAIN_WOUND_HP_REDUCTTION':
+			Outstring = string(class'X2LWAbilitiesModTemplate'.default.SUSTAIN_WOUND_HP_REDUCTTION);
 			return true;
 		case 'NULL_WARD_BASE_SHIELD':
 			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.NULL_WARD_BASE_SHIELD);

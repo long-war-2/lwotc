@@ -36,6 +36,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		AddTerrorToVolt(Template);
 		MakeAbilityNonTurnEnding(Template);
 		Template.AdditionalAbilities.AddItem('SingleRendFocus');
+		Template.AdditionalAbilities.AddItem('TemplarShield_LW');
 		break;
 	case 'Deflect':
 		ModifyDeflectEffect(Template);
@@ -96,7 +97,7 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = `TILESTOMETERS(default.VOLT_TILE_RADIUS) + 0.01;
 
-	DangerZoneBonus.RequiredAbility = 'VoltDangerZone';
+	DangerZoneBonus.RequiredAbility = 'TemplarTerror';
 	DangerZoneBonus.fBonusRadius = `TILESTOMETERS(default.VOLT_DANGER_ZONE_BONUS_RADIUS) + 0.01;
 	RadiusMultiTarget.AbilityBonusRadii.AddItem(DangerZoneBonus);
 
