@@ -107,7 +107,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			UpdatePurifierFlamethrower(Template);
 			break;
 		case 'Fuse':
-			class'Helpers_LW'.static.MakeFreeAction(Template);
+			//class'Helpers_LW'.static.MakeFreeAction(Template);
 			break;
 		case 'PriestStasis':
 			MakeAbilityNonTurnEnding(Template);

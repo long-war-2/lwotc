@@ -1155,11 +1155,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.PrerequisiteAbilities.RemoveItem('Soulfire');
 	}
 
-	if (Template.DataName == 'Soulfire')
-	{
-		Cooldown = new class 'X2AbilityCooldown_Soulfire';
-		Template.AbilityCooldown = Cooldown;
-	}
+	// if (Template.DataName == 'Soulfire')
+	// {
+	// 	Cooldown = new class 'X2AbilityCooldown_Soulfire';
+	// 	Template.AbilityCooldown = Cooldown;
+	// }
 	
 	if (Template.DataName == 'PoisonSpit' || Template.DataName == 'MicroMissiles')
 	{
