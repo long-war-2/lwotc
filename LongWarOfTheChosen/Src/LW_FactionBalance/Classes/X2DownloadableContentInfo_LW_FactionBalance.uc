@@ -277,3 +277,34 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		return false;
 	}
 }
+
+static function string DLCAppendSockets(XComUnitPawn Pawn)
+{
+	local array<SkeletalMeshSocket> NewSockets;
+	local SkeletalMeshSocket		NewSocket;
+
+	// ******************************************************************
+	//						SOUL SHOT
+
+	// For playing the arrow particle effect when firing the soul bow
+	NewSocket = new class'SkeletalMeshSocket';
+    NewSocket.SocketName = 'IRI_SoulBow_Arrow';
+    NewSocket.BoneName = 'RHand';
+    NewSocket.RelativeRotation.Pitch = -1183;
+    NewSocket.RelativeRotation.Yaw = -364;
+	NewSockets.AddItem(NewSocket);
+
+	// For playing the "arrow stuck in body" particle effect when hit by the soul bow
+	NewSocket = new class'SkeletalMeshSocket';
+    NewSocket.SocketName = 'IRI_SoulBow_Arrow_Hit';
+    NewSocket.BoneName = 'Ribcage';
+    NewSocket.RelativeRotation.Yaw = 16384;
+	NewSocket.RelativeRotation.Roll = -16384;
+	NewSockets.AddItem(NewSocket);
+
+	// ******************************************************************
+
+	Pawn.Mesh.AppendSockets(NewSockets, true);
+
+	return "";
+}
