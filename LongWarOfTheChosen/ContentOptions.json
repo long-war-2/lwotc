@@ -85,13 +85,11 @@
         "WP_AdventFlamethrower_Rusty",
         "WP_BeamGrenadeLauncher_LW",
 
-        "IRIApotheosis",
-        "IRIApotheosisPerk",
-        "IRIParryRework",
-        "IRIParryReworkPerk",
-        "IRISoulShot",
-        "IRISoulShotPerk",
         "IRIPerkPack_UILibrary_LW",
+        "IRIParryReworkPerk",
+        "IRIParryReworkAnims",
+        "IRISoulShotPerk",
+        "IRIApotheosisPerk",
 
         "LWAttachments_LS",
         "LWAssaultRifle_LS",

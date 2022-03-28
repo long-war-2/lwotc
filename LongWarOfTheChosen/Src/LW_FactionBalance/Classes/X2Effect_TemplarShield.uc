@@ -73,7 +73,7 @@ static final function int GetShieldStrength(const XComGameState_Unit UnitState, 
 	if (WeaponTemplate == none)
 		return 0;
 
-	Index = WeaponTemplate.ExtraDamage.Find('Tag', 'TemplarShield_LW');
+	Index = WeaponTemplate.ExtraDamage.Find('Tag', 'IRI_TemplarShield');
 	if (Index == INDEX_NONE)
 		return 0;
 
@@ -500,6 +500,6 @@ private static function CopyActionProperties(out X2Action_TemplarShield_ApplyWea
 
 defaultproperties
 {
-	EffectName = "TemplarShield_LW_Effect"
+	EffectName = "IRI_TemplarShield_Effect"
 	EffectRemovedVisualizationFn = OnShieldRemoved_BuildVisualization
 }

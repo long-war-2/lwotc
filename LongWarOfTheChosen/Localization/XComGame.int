@@ -7115,13 +7115,13 @@ LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GRE
 LocHelpText="Reduce wound recovery times for most soldiers."
 LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_BM/>.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
 
-[SoulShot_LW X2AbilityTemplate]
+[IRI_SoulShot X2AbilityTemplate]
 LocFriendlyName="Soul Shot"
 LocLongDescription="A powerful aim-based ranged attack that can crit and does not end turn. Costs 1 Focus."
 LocHelpText="A powerful aim-based ranged attack that can crit and does not end turn. Costs 1 Focus."
 LocPromotionPopupText="<Bullet/> Soul Shot has no cooldown."
 
-[TemplarShield_LW X2AbilityTemplate]
+[IRI_TemplarShield X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
 LocLongDescription="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions."
 LocHelpText="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions."

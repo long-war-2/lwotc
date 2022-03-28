@@ -36,7 +36,6 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		AddTerrorToVolt(Template);
 		MakeAbilityNonTurnEnding(Template);
 		Template.AdditionalAbilities.AddItem('SingleRendFocus');
-		Template.AdditionalAbilities.AddItem('TemplarShield_LW');
 		break;
 	case 'Deflect':
 		ModifyDeflectEffect(Template);

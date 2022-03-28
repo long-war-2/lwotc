@@ -495,7 +495,7 @@ static function X2AbilityTemplate AddApotheosis()
 
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_andromedon_robotbattlesuit";
+	Template.IconImage = "img:///IRIPerkPack_UILibrary_LW.UIPerk_Apotheosis";
 	Template.ActivationSpeech = 'IonicStorm';
 	Template.Hostility = eHostility_Neutral;
 
@@ -553,7 +553,7 @@ static function X2AbilityTemplate TemplarShield()
 	local X2Effect_TemplarShieldAnimations	AnimSetEffect;
 	local X2Effect_TemplarShield			ShieldedEffect;
 	
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'TemplarShield_LW');
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_TemplarShield');
 
 	// Icon Setup
 	Template.IconImage = "img:///IRIPerkPack_UILibrary_LW.UIPerk_TemplarShield";
@@ -629,10 +629,11 @@ static function X2AbilityTemplate SoulShot()
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
 	local X2Condition_Visibility            TargetVisibilityCondition;
 	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'SoulShot_LW');
+	local X2AbilityCost_Focus				FocusCost;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_SoulShot');
 
 	// Icon Setup
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_soulfire";
+	Template.IconImage = "img:///IRIPerkPack_UILibrary_LW.UIPerk_SoulShot";
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
@@ -650,7 +651,7 @@ static function X2AbilityTemplate SoulShot()
 
 	// Target Conditions
 	TargetProperty = new class'X2Condition_UnitProperty';
-	TargetProperty.ExcludeRobotic = true;
+	//TargetProperty.ExcludeRobotic = true;
 	TargetProperty.FailOnNonUnits = true;
 	TargetProperty.TreatMindControlledSquadmateAsHostile = true;
 	Template.AbilityTargetConditions.AddItem(TargetProperty);
@@ -662,14 +663,18 @@ static function X2AbilityTemplate SoulShot()
 
 	// Costs
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.bConsumeAllPoints = true;
+	ActionPointCost.bConsumeAllPoints = false;
 	ActionPointCost.iNumPoints = 1;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 	
+	FocusCost = new class'X2AbilityCost_Focus';
+	FocusCost.FocusAmount = 1;
+	Template.AbilityCosts.AddItem(FocusCost);
+
 	// Effects
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	WeaponDamageEffect.DamageTag = 'SoulShot_LW';
+	WeaponDamageEffect.DamageTag = 'IRI_SoulShot';
 	//WeaponDamageEffect.bBypassShields = true;
 	//WeaponDamageEffect.bIgnoreArmor = true;
 	Template.AddTargetEffect(WeaponDamageEffect);
@@ -689,7 +694,7 @@ static function X2AbilityTemplate SoulShot()
 
 	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
 	Template.ActivationSpeech = 'IonicStorm';
-	Template.CinescriptCameraType = "SoulShot_LW";
+	Template.CinescriptCameraType = "IRI_SoulShot";
 
 	Template.bFrameEvenWhenUnitIsHidden = true;
 	Template.Hostility = eHostility_Offensive;
