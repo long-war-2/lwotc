@@ -116,7 +116,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'HunterGrapple':
 		case 'Grapple':
 		case 'PoweredGrapple':
-			AddGrappleUnitValue(Template);
+			AddGrappledThisTurnEffect(Template);
 			break;
 		case 'Solace':
 			RemoveRoboticsAsValidTargetsOfSolace(Template);
@@ -1117,16 +1117,15 @@ static function BuffTeleportAlly(X2AbilityTemplate Template)
 	Template.AddTargetEffect(ReactionEffect);
 	*/
 }
-
-static function AddGrappleUnitValue(X2AbilityTemplate Template)
+//For whatever reason effects and unit value don't seem to be working
+static function AddGrappledThisTurnEffect(X2AbilityTemplate Template)
 {
-	local X2Effect_SetUnitValue UnitValueEffect;
+	local AdditionalCooldownInfo CooldownInfo;
+	CooldownInfo.AbilityName = 'TrackingShotMark';
+	CooldownInfo.NumTurns = 1;
 
-	UnitValueEffect = new class'X2Effect_SetUnitValue';
-	UnitValueEffect.UnitName = 'GrappledThisTurn';
-	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
-	UnitValueEffect.NewValueToSet = 1;
-	Template.AddTargetEffect(UnitValueEffect);
+	Template.AbilityCooldown.AditionalAbilityCooldowns.AddItem(CooldownInfo);
+
 }
 
 	
