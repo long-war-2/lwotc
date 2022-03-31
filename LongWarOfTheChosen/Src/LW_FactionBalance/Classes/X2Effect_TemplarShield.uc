@@ -3,14 +3,49 @@ class X2Effect_TemplarShield extends X2Effect_EnergyShield;
 simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
 	local XComGameState_Unit UnitState;
+	local int ShieldStrength;
 
 	UnitState = XComGameState_Unit(kNewTargetState);
+	ShieldStrength = GetShieldStrength(UnitState, NewGameState);
 	if (UnitState != none)
 	{
 		m_aStatChanges.Length = 0;
-		AddPersistentStatChange(eStat_ShieldHP, GetShieldStrength(UnitState, NewGameState));
+		AddPersistentStatChange(eStat_ShieldHP, ShieldStrength);
 	}
+
+		UnitState.SetUnitFloatValue('TemplarShieldHP', ShieldStrength, eCleanup_BeginTactical);
+		UnitState.SetUnitFloatValue('PreTemplarShieldHP', UnitState.GetCurrentStat(eStat_ShieldHP), eCleanup_BeginTactical);
+	
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
+}
+
+simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed, XComGameState_Effect RemovedEffectState)
+{
+	local int TemplarGrantedShieldHP, PreTemplarShieldHP, PreRemovalShieldHP, FullyShieldedHP, ShieldHPDamage, NewShieldHP;
+	local XComGameState_Unit UnitState;
+	local UnitValue TemplarShieldShieldHP, OtherShieldHP;
+
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	PreRemovalShieldHP = UnitState.GetCurrentStat(eStat_ShieldHP);
+
+	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
+
+	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	UnitState.GetUnitValue('TemplarShieldHP', TemplarShieldShieldHP);
+	UnitState.GetUnitValue('PreTemplarShieldHP', OtherShieldHP);
+	TemplarGrantedShieldHP = int(TemplarShieldShieldHP.fValue);		// How many you got
+	PreTemplarShieldHP = int(OtherShieldHP.fValue);				// how many you had
+	FullyShieldedHP = PreTemplarShieldHP + TemplarGrantedShieldHP;
+	//ShieldHP = UnitState.GetCurrentStat(eStat_ShieldHP);						// how many you have now
+
+	ShieldHPDamage = FullyShieldedHP - PreRemovalShieldHP;
+	if (ShieldHPDamage > 0 && PreTemplarShieldHP > 0 && ShieldHPDamage < FullyShieldedHP)
+	{
+		NewShieldHP = Clamp(PreTemplarShieldHP + TemplarGrantedShieldHP - ShieldHPDamage, 0, PreTemplarShieldHP);
+		UnitState = XComGameState_Unit(NewGameState.CreateStateObject(UnitState.Class, UnitState.ObjectID));
+		UnitState.SetCurrentStat(estat_ShieldHP, NewShieldHP);
+		NewGameState.AddStateObject(UnitState);
+	}
 }
 
 private function OnShieldRemoved_BuildVisualization(XComGameState VisualizeGameState, out VisualizationActionMetadata ActionMetadata, const name EffectApplyResult)
@@ -39,24 +74,26 @@ private function OnShieldRemoved_BuildVisualization(XComGameState VisualizeGameS
 
 static final function bool WasUnitFullyProtected(const XComGameState_Unit OldUnitState, const XComGameState_Unit NewUnitState)
 {
+	local UnitValue PreAblativeValue;
+
+	NewUnitState.GetUnitValue('PreTemplarShieldHP',PreAblativeValue);
+
 	//`LOG(GetFuncName() @ OldUnitState.GetFullName(),, 'TemplarParryRework');
 	//`LOG("Old HP:" @ OldUnitState.GetCurrentStat(eStat_HP),, 'TemplarParryRework');
 	//`LOG("New HP:" @ NewUnitState.GetCurrentStat(eStat_HP),, 'TemplarParryRework');
 	//`LOG("Unit fully protected:" @ NewUnitState.GetCurrentStat(eStat_HP) >= OldUnitState.GetCurrentStat(eStat_HP),, 'TemplarParryRework');
 
 	// Bleeding out check is required, because if the unit had 1 HP before the attack that made them start bleeding out, they will still have 1 HP while bleeding out.
-	return NewUnitState.GetCurrentStat(eStat_HP) >= OldUnitState.GetCurrentStat(eStat_HP) && !NewUnitState.IsBleedingOut();
+	return NewUnitState.GetCurrentStat(eStat_HP) >= OldUnitState.GetCurrentStat(eStat_HP) && !NewUnitState.IsBleedingOut() && NewUnitState.GetCurrentStat(eStat_ShieldHP) >= PreAblativeValue.fvalue;
 }
 
 static final function bool WasShieldFullyConsumed(const XComGameState_Unit OldUnitState, const XComGameState_Unit NewUnitState)
 {
-	//`LOG(GetFuncName() @ OldUnitState.GetFullName(),, 'TemplarParryRework');
-	//`LOG("Old shield HP:" @ OldUnitState.GetCurrentStat(eStat_ShieldHP),, 'TemplarParryRework');
-	//`LOG("New shield HP:" @ NewUnitState.GetCurrentStat(eStat_ShieldHP),, 'TemplarParryRework');
-	//`LOG("Shield fully consumed:" @ NewUnitState.GetCurrentStat(eStat_ShieldHP) <= 0,, 'TemplarParryRework');
+	local UnitValue PreAblativeValue;
 
-	// Hacky, doesn't take into account Shield HP from other sources.
-	return NewUnitState.GetCurrentStat(eStat_ShieldHP) <= 0;
+	NewUnitState.GetUnitValue('PreTemplarShieldHP',PreAblativeValue);
+
+	return NewUnitState.GetCurrentStat(eStat_ShieldHP) <= PreAblativeValue.fvalue;
 }
 
 static final function int GetShieldStrength(const XComGameState_Unit UnitState, XComGameState CheckGameState)
