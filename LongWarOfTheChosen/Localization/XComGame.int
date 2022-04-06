@@ -6391,6 +6391,18 @@ LocHelpText="When targeted by enemy fire, automatically fire back with your <Abi
 LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
+[TriggerBot X2AbilityTemplate]
+LocFriendlyName="Trigger Bot"
+LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocPromotionPopupText="<Bullet/> Trigger Bot will only trigger once per turn.<br/><Bullet/> Trigger Bot can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Trigger Bot will not trigger when targeted by overwatch fire.<br/>"
+
+[TriggerBotShot X2AbilityTemplate]
+LocFriendlyName="Trigger Bot"
+LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocPromotionPopupText="<Bullet/> Trigger Bot will only trigger once per turn.<br/><Bullet/> Trigger Bot can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Trigger Bot will not trigger when targeted by overwatch fire.<br/>"
+
 [DeadeyeSnapShot X2AbilityTemplate]
 LocFriendlyName="Deadeye (Snap Shot)"
 LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
@@ -6776,10 +6788,10 @@ LocFlyOverText="Blood Thirst"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
 LocFriendlyName="Overbearing Superiority"
-LocLongDescription="Whenever you get a critical hit with your primary weapon, your actions are refunded."
-;LWOTC Needs translation(2)
-LocHelpText="Whenever you get a critical hit with your primary weapon, your actions are refunded."
-;End Translation(2)
+;LWOTC Needs translation(3)
+LocLongDescription="Gain +<Ability:OVERBEARING_SUPERIORITY_CRIT/> Crit Chance with your Primary Weapon. Whenever you get a critical hit with your primary weapon, your actions are refunded."
+LocHelpText="Gain +<Ability:OVERBEARING_SUPERIORITY_CRIT/> Crit Chance with your Primary Weapon. Whenever you get a critical hit with your primary weapon, your actions are refunded."
+;End Translation(3)
 LocFlyOverText="Overbearing Superiority"
 
 [DisruptorRifleCrit X2AbilityTemplate]
@@ -7103,6 +7115,18 @@ LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GRE
 LocHelpText="Reduce wound recovery times for most soldiers."
 LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_BM/>.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
 
+[IRI_SoulShot X2AbilityTemplate]
+LocFriendlyName="Soul Shot"
+LocLongDescription="A powerful aim-based ranged attack that can crit and does not end turn. Costs 1 Focus."
+LocHelpText="A powerful aim-based ranged attack that can crit and does not end turn. Costs 1 Focus."
+LocPromotionPopupText="<Bullet/> Soul Shot has no cooldown."
+
+[IRI_TemplarShield X2AbilityTemplate]
+LocFriendlyName="Templar Shield"
+LocLongDescription="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions."
+LocHelpText="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions."
+LocPromotionPopupText="<bullet/> Ends turn when used.<br/><bullet/> Shield strength will increase with shard gauntlets' tech level."
+
 [Indomitable X2AbilityTemplate]
 LocFriendlyName="Indomitable"
 LocHelpText="Once per turn, gain 1 focus when you're attacked."
@@ -7146,8 +7170,8 @@ LocPromotionPopupText="<Bullet/> Amplify will last for 3 damage instances.<br/><
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Crusader's Rage"
-LocHelpText="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 8 HP"
-LocLongDescription="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 8 HP."
+LocHelpText="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 6 HP"
+LocLongDescription="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 6 HP."
 LocPromotionPopupText="<Bullet/> Wound reduction does not work if the soldier entered a bleeding out state during the mission.<br/>"
 LocFlyOverText="Psychotic Rage"
 
@@ -7290,7 +7314,7 @@ LocHelpText="ADVENT security towers cannot see this unit when it's concealed or 
 LocLongDescription="Makes wearer immune to negative mental conditions such as panic, mind control and stuns."
 
 [Sustain X2AbilityTemplate]
-LocLongDescription="If the unit takes enough damage to be killed, they are immediately put in Stasis for 1 turn and their health is only reduced to 1 HP. This can only happen once per mission."
+LocLongDescription="Reduce wound recovery times for this soldier by <Ability:SUSTAIN_WOUND_HP_REDUCTTION/> HP. If the unit takes enough damage to be killed, they are immediately put in Stasis for 1 turn and their health is only reduced to 1 HP. This can only happen once per mission."
 LocHelpText="If the unit takes enough damage to be killed, they are immediately put in Stasis for 1 turn and their health is only reduced to 1 HP. This can only happen once per mission."
 LocPromotionPopupText="<Bullet/> Beware that a sustained unit may retain damaging status effects like poison or burning after emerging from Stasis.<br/>"
 

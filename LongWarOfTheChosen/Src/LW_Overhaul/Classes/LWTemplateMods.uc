@@ -1153,11 +1153,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.PrerequisiteAbilities.RemoveItem('Soulfire');
 	}
 
-	if (Template.DataName == 'Soulfire')
-	{
-		Cooldown = new class 'X2AbilityCooldown_Soulfire';
-		Template.AbilityCooldown = Cooldown;
-	}
+	// if (Template.DataName == 'Soulfire')
+	// {
+	// 	Cooldown = new class 'X2AbilityCooldown_Soulfire';
+	// 	Template.AbilityCooldown = Cooldown;
+	// }
 	
 	if (Template.DataName == 'PoisonSpit' || Template.DataName == 'MicroMissiles')
 	{
@@ -2513,7 +2513,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenRifle_XCOM':
 			WeaponTemplate.Abilities.AddItem('OverbearingSuperiority_LW');
 			WeaponTemplate.OnAcquiredFn = none;
-			WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, class'X2Item_XpackWeapons'.default.CHOSENRIFLE_XCOM_AIM);
+			//WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, class'X2Item_XpackWeapons'.default.CHOSENRIFLE_XCOM_AIM);
 			break;
 		case 'ChosenSniperRifle_XCOM':
 			WeaponTemplate.iTypicalActionCost = 2;

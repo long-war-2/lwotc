@@ -197,16 +197,11 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState NewGameState;
 	local XComGameStateHistory History;
 	local XComGameState_Objective ObjectiveState;
-	local int i, Forcelevel, ChosenLevel;
-	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_LWOutpostManager OutpostManager;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_LWOutpost OutpostState;
 	local XComGameState_LWToolboxOptions ToolboxOptions;
 	
-	local array<XComGameState_AdventChosen> AllChosen;
-	local name OldTacticalTag, NewTacticalTag;
-	local XComGameState_AdventChosen ChosenState;
 	
 	History = `XCOMHISTORY;
 
@@ -233,37 +228,6 @@ static event OnLoadedSavedGameToStrategy()
 		}
 	}
 		
-	//Make sure the chosen are of appropriate level
-	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	Forcelevel = class'Utilities_LW'.static.GetLWForceLevel();
-	AllChosen = AlienHQ.GetAllChosen();
-
-	ChosenLevel = 4;
-	for (i = 0; i < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.Length; i++)
-	{
-		if (ForceLevel < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[i])
-		{
-			ChosenLevel = i;
-			break;
-		}
-	}
-
-	foreach AllChosen(ChosenState)
-	{
-		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
-		if (ChosenState.Level != ChosenLevel)
-		{
-			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
-			Chosenstate.Level = ChosenLevel;
-		}
-
-		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-		// Replace Old Tag with new Tag in missions
-		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
-	}
-	// Remove these post 1.0 - END
-
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
 
@@ -3199,6 +3163,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'MIND_SCORCH_BURN_CHANCE':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.MIND_SCORCH_BURN_CHANCE);
+			return true;
+		case 'SUSTAIN_WOUND_HP_REDUCTTION':
+			Outstring = string(class'X2LWAbilitiesModTemplate'.default.SUSTAIN_WOUND_HP_REDUCTTION);
 			return true;
 		case 'NULL_WARD_BASE_SHIELD':
 			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.NULL_WARD_BASE_SHIELD);

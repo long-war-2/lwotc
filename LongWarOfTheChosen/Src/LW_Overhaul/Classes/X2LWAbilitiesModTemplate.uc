@@ -44,6 +44,8 @@ var config int MIND_SCORCH_BURNING_BASE_DAMAGE;
 var config int MIND_SCORCH_BURNING_DAMAGE_SPREAD;
 var config int MIND_SCORCH_BURN_CHANCE;
 
+var config int SUSTAIN_WOUND_HP_REDUCTTION;
+
 var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
 
 var config array<name> PISTOL_ABILITY_WEAPON_CATS;
@@ -105,7 +107,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			UpdatePurifierFlamethrower(Template);
 			break;
 		case 'Fuse':
-			class'Helpers_LW'.static.MakeFreeAction(Template);
+			//class'Helpers_LW'.static.MakeFreeAction(Template);
 			break;
 		case 'PriestStasis':
 			MakeAbilityNonTurnEnding(Template);
@@ -114,7 +116,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'HunterGrapple':
 		case 'Grapple':
 		case 'PoweredGrapple':
-			AddGrappleUnitValue(Template);
+			AddGrappledThisTurnEffect(Template);
 			break;
 		case 'Solace':
 			RemoveRoboticsAsValidTargetsOfSolace(Template);
@@ -184,11 +186,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'VanishingWindReveal':
 			Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 			break;
-		case 'ShadowStep': //Make these exclusive for chosen
-			Template.ChosenExcludeTraits.AddItem('LightningReflexes_LW');
-			break;
-		case 'LightningReflexes_LW':
-			Template.ChosenExcludeTraits.AddItem('ShadowStep');
+		case 'ChosenAllSeeing':
+			Template.ChosenExcludeTraits.Length = 0;
 			break;
 		case 'Slash_LW':
 		case 'SwordSlice_LW':
@@ -758,7 +757,7 @@ static function RemoveTheDeathFromHolyWarriorDeath(X2AbilityTemplate Template)
 static function UpdateSustainEffect(X2AbilityTemplate Template)
 {
 	local X2Effect_Sustain_LW SustainEffect;
-
+	local X2Effect_GreaterPadding	GreaterPaddingEffect;
 	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Sustain');
 
 	SustainEffect = new class'X2Effect_Sustain_LW';
@@ -766,6 +765,11 @@ static function UpdateSustainEffect(X2AbilityTemplate Template)
 	SustainEffect.EffectName='Sustain';
 	SustainEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(SustainEffect);
+
+	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
+	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
+	GreaterPaddingEffect.Padding_HealHP = default.SUSTAIN_WOUND_HP_REDUCTTION;	
+
 }
 
 static function UseNewDeadeyeEffect(X2AbilityTemplate Template)
@@ -1099,16 +1103,15 @@ static function BuffTeleportAlly(X2AbilityTemplate Template)
 	Template.AddTargetEffect(ReactionEffect);
 	*/
 }
-
-static function AddGrappleUnitValue(X2AbilityTemplate Template)
+//For whatever reason effects and unit value don't seem to be working
+static function AddGrappledThisTurnEffect(X2AbilityTemplate Template)
 {
-	local X2Effect_SetUnitValue UnitValueEffect;
+	local AdditionalCooldownInfo CooldownInfo;
+	CooldownInfo.AbilityName = 'TrackingShotMark';
+	CooldownInfo.NumTurns = 1;
 
-	UnitValueEffect = new class'X2Effect_SetUnitValue';
-	UnitValueEffect.UnitName = 'GrappledThisTurn';
-	UnitValueEffect.CleanupType = eCleanup_BeginTurn;
-	UnitValueEffect.NewValueToSet = 1;
-	Template.AddTargetEffect(UnitValueEffect);
+	Template.AbilityCooldown.AditionalAbilityCooldowns.AddItem(CooldownInfo);
+
 }
 
 	

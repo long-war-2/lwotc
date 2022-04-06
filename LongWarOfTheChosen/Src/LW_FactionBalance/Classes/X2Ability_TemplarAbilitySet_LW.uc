@@ -50,6 +50,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(DoubleRendFocus());
 	Templates.AddItem(DoubleRendFocusPassive());
 	Templates.AddItem(SingleRendFocus());
+	Templates.AddItem(TemplarShield());
+	Templates.AddItem(SoulShot());
+
 	
 	return Templates;
 }
@@ -492,7 +495,7 @@ static function X2AbilityTemplate AddApotheosis()
 
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_andromedon_robotbattlesuit";
+	Template.IconImage = "img:///IRIPerkPack_UILibrary_LW.UIPerk_Apotheosis";
 	Template.ActivationSpeech = 'IonicStorm';
 	Template.Hostility = eHostility_Neutral;
 
@@ -526,39 +529,185 @@ static function X2AbilityTemplate AddApotheosis()
 	Effect.arrFocusModifiers.AddItem(CreateFocusLevelModifiers(2 * default.APOTHEOSIS_DODGE_BONUS, 2 * default.APOTHEOSIS_MOBILITY_BONUS));
 	Template.AddTargetEffect(Effect);
 
-	Template.bSkipFireAction = false;
-	Template.CustomFireAnim = 'HL_IonicStorm';
+	// State and Viz
+	Template.Hostility = eHostility_Neutral;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = Apotheosis_BuildVisualization;
-
-	// Template.AdditionalAbilities.AddItem('MeditationPreparationPassive');
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+	Template.bShowActivation = false; // Don't show flyover, it obscures the fancy animation.
+	Template.CustomSelfFireAnim = 'HL_Apotheosis';
+	Template.CustomFireAnim = 'HL_Apotheosis';
+	Template.CinescriptCameraType = "Templar_Ghost";
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.bSkipFireAction = false;
 
 	return Template;
 }
 
-static function Apotheosis_BuildVisualization(XComGameState VisualizeGameState)
+static function X2AbilityTemplate TemplarShield()
 {
-	local XComGameStateHistory				History;
-	local XComGameStateContext_Ability		Context;
-	local StateObjectReference				InteractingUnitRef;
-	local VisualizationActionMetadata		EmptyTrack, BuildTrack;
-	local X2Action_PlaySoundAndFlyOver		SoundAndFlyover;
-	local XComGameState_Ability				Ability;
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2Effect_TemplarShieldAnimations	AnimSetEffect;
+	local X2Effect_TemplarShield			ShieldedEffect;
+	
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_TemplarShield');
 
-	class'X2Ability'.static.TypicalAbility_BuildVisualization(VisualizeGameState);
+	// Icon Setup
+	Template.IconImage = "img:///IRIPerkPack_UILibrary_LW.UIPerk_TemplarShield";
+	Template.AbilitySourceName = 'eAbilitySource_Psionic';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY;
 
-	History = `XCOMHISTORY;
-	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
-	InteractingUnitRef = Context.InputContext.SourceObject;
-	BuildTrack = EmptyTrack;
-	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
-	BuildTrack.StateObject_NewState = VisualizeGameState.GetGameStateForObjectID(InteractingUnitRef.ObjectID);
-	BuildTrack.VisualizeActor = History.GetVisualizer(InteractingUnitRef.ObjectID);
+	// Shooter Conditions
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+ 	Template.AddShooterEffectExclusions();
 
-	SoundAndFlyover = X2Action_PlaySoundAndFlyOver(class'X2Action_PlaySoundAndFlyOver'.static.AddToVisualizationTree(BuildTrack, Context, false, BuildTrack.LastActionAdded));
-	SoundAndFlyover.SetSoundAndFlyOverParameters(none, Ability.GetMyTemplate().LocFlyOverText, 'None', eColor_Good);
+	// Triggering and Targeting
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	// Costs
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	//ActionPointCost.AllowedTypes.Length = 0;
+	ActionPointCost.AllowedTypes.AddItem('Momentum');
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	// Effects
+	AnimSetEffect = new class'X2Effect_TemplarShieldAnimations';
+	AnimSetEffect.BuildPersistentEffect(1, false, true,, eGameRule_PlayerTurnBegin);
+	AnimSetEffect.AddAnimSetWithPath("IRIParryReworkAnims.Anims.AS_BallisticShield");
+	AnimSetEffect.AddAnimSetWithPath("IRIParryReworkAnims.Anims.AS_TemplarShield");
+	Template.AddTargetEffect(AnimSetEffect);
+
+	ShieldedEffect = new class'X2Effect_TemplarShield';
+	ShieldedEffect.BuildPersistentEffect(1, false, true,, eGameRule_PlayerTurnBegin);
+	ShieldedEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	ShieldedEffect.EffectName = class'X2Effect_TemplarShield'.default.EffectName;
+	Template.AddTargetEffect(ShieldedEffect);
+
+	// State and Viz
+	Template.Hostility = eHostility_Defensive;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+	Template.bShowActivation = false; // Don't show flyover, it obscures the fancy animation.
+	Template.CustomSelfFireAnim = 'HL_Shield_Extend';
+	Template.CustomFireAnim = 'HL_Shield_Extend';
+	Template.bSkipExitCoverWhenFiring = true;
+	Template.bSkipFireAction = false;
+	Template.OverrideAbilityAvailabilityFn = TemplarShield_OverrideAbilityAvailability;
+
+	Template.OverrideAbilities.AddItem('ParryActivate');
+	Template.OverrideAbilities.AddItem('Parry');
+	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
+
+	return Template;
 }
+
+private static function TemplarShield_OverrideAbilityAvailability(out AvailableAction Action, XComGameState_Ability AbilityState, XComGameState_Unit OwnerState)
+{
+	if (Action.AvailableCode == 'AA_Success')
+	{
+		if (OwnerState.ActionPoints.Length == 1 && OwnerState.ActionPoints[0] == 'Momentum')
+			Action.ShotHUDPriority = class'UIUtilities_Tactical'.const.PARRY_PRIORITY;
+	}
+}
+
+static function X2AbilityTemplate SoulShot()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_ActionPoints        ActionPointCost;
+	local X2Condition_UnitProperty          TargetProperty;
+	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
+	local X2Condition_Visibility            TargetVisibilityCondition;
+	local X2AbilityToHitCalc_StandardAim	ToHitCalc;
+	local X2AbilityCost_Focus				FocusCost;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_SoulShot');
+
+	// Icon Setup
+	Template.IconImage = "img:///IRIPerkPack_UILibrary_LW.UIPerk_SoulShot";
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.AbilitySourceName = 'eAbilitySource_Psionic';
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	// Shooter Conditions
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	// Target Conditions
+	TargetProperty = new class'X2Condition_UnitProperty';
+	//TargetProperty.ExcludeRobotic = true;
+	TargetProperty.FailOnNonUnits = true;
+	TargetProperty.TreatMindControlledSquadmateAsHostile = true;
+	Template.AbilityTargetConditions.AddItem(TargetProperty);
+
+	TargetVisibilityCondition = new class'X2Condition_Visibility';
+	TargetVisibilityCondition.bRequireGameplayVisible = true;
+	TargetVisibilityCondition.bAllowSquadsight = true;
+	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+
+	// Costs
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.bConsumeAllPoints = false;
+	ActionPointCost.iNumPoints = 1;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+	
+	FocusCost = new class'X2AbilityCost_Focus';
+	FocusCost.FocusAmount = 1;
+	Template.AbilityCosts.AddItem(FocusCost);
+
+	// Effects
+	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	WeaponDamageEffect.bIgnoreBaseDamage = true;
+	WeaponDamageEffect.DamageTag = 'IRI_SoulShot';
+	//WeaponDamageEffect.bBypassShields = true;
+	//WeaponDamageEffect.bIgnoreArmor = true;
+	Template.AddTargetEffect(WeaponDamageEffect);
+	Template.AddTargetEffect(new class'X2Effect_SoulShot_ArrowHit');
+
+	// State and Viz
+	Template.bShowActivation = false;
+	Template.CustomFireAnim = 'HL_SoulShot';
+	Template.CustomFireKillAnim = 'HL_SoulShot';
+	Template.CustomMovingFireAnim = 'HL_SoulShot';
+	Template.CustomMovingFireKillAnim = 'HL_SoulShot';
+	Template.CustomMovingTurnLeftFireAnim = 'HL_SoulShot';
+	Template.CustomMovingTurnLeftFireKillAnim = 'HL_SoulShot';
+	Template.CustomMovingTurnRightFireAnim = 'HL_SoulShot';
+	Template.CustomMovingTurnRightFireKillAnim = 'HL_SoulShot';
+
+
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+	Template.ActivationSpeech = 'IonicStorm';
+	Template.CinescriptCameraType = "IRI_SoulShot";
+
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	Template.Hostility = eHostility_Offensive;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+	
+	return Template;
+}
+
 
 static function FocusLevelModifiers CreateFocusLevelModifiers(int DodgeBonus, int MobilityBonus)
 {

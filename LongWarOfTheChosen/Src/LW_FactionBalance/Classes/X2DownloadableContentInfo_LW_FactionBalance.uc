@@ -182,15 +182,15 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	case 'BANISH_HIT_MOD':
 		OutString = string(class'X2Effect_BanishHitMod'.default.BANISH_HIT_MOD * -1);
 		return true;
-	case 'GREATER_PADDING_CV':
-		OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_CV);
-		return true;
-	case 'GREATER_PADDING_MG':
-		OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_MG);
-		return true;
-	case 'GREATER_PADDING_BM':
-		OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_BM);
-		return true;
+	// case 'GREATER_PADDING_CV':
+	// 	OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_CV);
+	// 	return true;
+	// case 'GREATER_PADDING_MG':
+	// 	OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_MG);
+	// 	return true;
+	// case 'GREATER_PADDING_BM':
+	// 	OutString = string(class'X2Ability_ShieldAbilitySet'.default.GREATER_PADDING_BM);
+	// 	return true;
 	case 'OVERRIDE_REDUCTION':
 		OutString = string(class'X2Effect_ManualOverride_LW'.default.OVERRIDE_REDUCTION);
 		return true;
@@ -211,13 +211,16 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	return false;
 }
 
-static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseOb, XComGameState GameState)
+static function bool AbilityTagExpandHandler_CH(string InString, out string OutString, Object ParseObj, Object StrategyParseObj, XComGameState GameState)
 {
 	local name Type;
 	local XComGameState_Ability AbilityState;
 	local X2AbilityTemplate AbilityTemplate;
 	local X2Effect_CloseEncounters CEEffect;
 	local int i;
+	local XComGameStateHistory	History;
+    local XComGameState_Effect	EffectState;
+    local XComGameState_Unit	UnitState;
 
 	Type = name(InString);
 	switch(Type)
@@ -244,7 +247,64 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		}
 		OutString = string(class'X2Effect_CloseEncounters'.default.MaxTiles);
 		return true;
+	case 'TEMPLAR_SHIELD_TAG':
+
+	UnitState = XComGameState_Unit(StrategyParseObj);
+	if (UnitState == none)
+	{
+		History = `XCOMHISTORY;
+		EffectState = XComGameState_Effect(ParseObj);
+		if (EffectState != none)
+		{
+			UnitState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+		}
+		else 
+		{
+			AbilityState = XComGameState_Ability(ParseObj);
+			if (AbilityState != none)
+			{
+				UnitState = XComGameState_Unit(History.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
+			}
+		}
+	}
+    if (UnitState == none)
+		return false;
+
+	OutString = "<font color='#a622fa'>" $ class'X2Effect_TemplarShield'.static.GetShieldStrength(UnitState, GameState) $ "</font>";
+    return true;
+
 	default:
 		return false;
 	}
+}
+
+static function string DLCAppendSockets(XComUnitPawn Pawn)
+{
+	local array<SkeletalMeshSocket> NewSockets;
+	local SkeletalMeshSocket		NewSocket;
+
+	// ******************************************************************
+	//						SOUL SHOT
+
+	// For playing the arrow particle effect when firing the soul bow
+	NewSocket = new class'SkeletalMeshSocket';
+    NewSocket.SocketName = 'IRI_SoulBow_Arrow';
+    NewSocket.BoneName = 'RHand';
+    NewSocket.RelativeRotation.Pitch = -1183;
+    NewSocket.RelativeRotation.Yaw = -364;
+	NewSockets.AddItem(NewSocket);
+
+	// For playing the "arrow stuck in body" particle effect when hit by the soul bow
+	NewSocket = new class'SkeletalMeshSocket';
+    NewSocket.SocketName = 'IRI_SoulBow_Arrow_Hit';
+    NewSocket.BoneName = 'Ribcage';
+    NewSocket.RelativeRotation.Yaw = 16384;
+	NewSocket.RelativeRotation.Roll = -16384;
+	NewSockets.AddItem(NewSocket);
+
+	// ******************************************************************
+
+	Pawn.Mesh.AppendSockets(NewSockets, true);
+
+	return "";
 }

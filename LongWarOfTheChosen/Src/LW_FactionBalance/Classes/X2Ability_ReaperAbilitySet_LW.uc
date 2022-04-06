@@ -970,7 +970,7 @@ static function X2AbilityTemplate ParaMedikitHeal()
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
-	UnitPropertyCondition.ExcludeDead = false; //Hack: See following comment.
+	UnitPropertyCondition.ExcludeDead = true; //Hack: See following comment.
 	UnitPropertyCondition.ExcludeHostileToSource = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = false;
 	UnitPropertyCondition.ExcludeFullHealth = true;
