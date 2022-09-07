@@ -515,7 +515,15 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 	{
 		if (`XCOMHQ.HasFacilityByName('RecoveryCenter'))
 		{
-			Tuple.Data[13].b = true;
+			if (Tuple.Data[12].b)
+			{
+				Tuple.Data[13].b = true;
+			}
+			else
+			{
+				Tuple.Data[13].b = false;
+				Tuple.Data[14].i = 3;   // Reason: Not enough AP
+			}
 		}
 		else
 		{
