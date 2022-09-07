@@ -107,6 +107,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			UpdatePurifierFlamethrower(Template);
 			break;
 		case 'Fuse':
+			MakeAbilityNonTurnEnding(Template);
 			//class'Helpers_LW'.static.MakeFreeAction(Template);
 			break;
 		case 'PriestStasis':
@@ -770,6 +771,7 @@ static function UpdateSustainEffect(X2AbilityTemplate Template)
 	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
 	GreaterPaddingEffect.Padding_HealHP = default.SUSTAIN_WOUND_HP_REDUCTTION;	
 
+	Template.AddTargetEffect(GreaterPaddingEffect);
 }
 
 static function UseNewDeadeyeEffect(X2AbilityTemplate Template)
