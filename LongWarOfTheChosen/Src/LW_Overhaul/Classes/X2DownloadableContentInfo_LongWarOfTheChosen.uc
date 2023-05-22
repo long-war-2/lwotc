@@ -1453,28 +1453,53 @@ static function CleanupObsoleteTacticalGamestate()
 
 static function bool UnitTypeShouldBeCleanedUp(XComGameState_Unit UnitState)
 {
-	local X2CharacterTemplate CharTemplate;
-	local name CharTemplateName;
-	local int ExcludeIdx;
+    local X2CharacterTemplate CharTemplate;
+    local name CharTemplateName;
+    local int ExcludeIdx;
 
-	CharTemplate = UnitState.GetMyTemplate();
-	if (CharTemplate == none) { return false; }
-	CharTemplateName = UnitState.GetMyTemplateName();
-	if (CharTemplateName == '') { return false; }
-	if (class'LWDLCHelpers'.static.IsAlienRuler(CharTemplateName)) { return false; }
-	if (!CharTemplate.bIsSoldier)
-	{
-		if (CharTemplate.bIsAlien || CharTemplate.bIsAdvent || CharTemplate.bIsCivilian)
-		{
-			ExcludeIdx = default.CharacterTypesExemptFromCleanup.Find(CharTemplateName);
-			if (ExcludeIdx == -1)
-			{
-				return true;
-			}
-		}
+    CharTemplate = UnitState.GetMyTemplate();
+    if (CharTemplate == none) { return false; }
+
+    CharTemplateName = UnitState.GetMyTemplateName();
+    if (CharTemplateName == '') { return false; }
+
+    if (class'LWDLCHelpers'.static.IsAlienRuler(CharTemplateName, CharTemplate.bDontClearRemovedFromPlay)) 
+	{ 
+		return false; 
 	}
-	return false;
+
+    if(HasSpecialUnitValue(UnitState)) 
+	{ 
+		return false; 
+	}
+
+    if (!CharTemplate.bIsSoldier)
+    {
+        if (CharTemplate.bIsAlien || CharTemplate.bIsAdvent || CharTemplate.bIsCivilian)
+        {
+            ExcludeIdx = default.CharacterTypesExemptFromCleanup.Find(CharTemplateName);
+            if (ExcludeIdx == -1)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }
+
+static function bool HasSpecialUnitValue(XComGameState_Unit UnitState)
+{
+    local UnitValue SpecialUnitValue;
+
+    if(UnitState.GetUnitValue('TacticalCleaner_DoNotDeleteMe', SpecialUnitValue)) // if a unit has this value set on them at all, assume we do not touch it
+    {
+        if(SpecialUnitValue.fValue > 0.0)
+            return true;
+    }
+
+    return false;
+}
+
 
 static function AddObjectivesToParcels()
 {
