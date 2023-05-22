@@ -1105,7 +1105,7 @@ TacticalText="<Bullet/> Bullpup-style weapons are extremely effective at close r
 [Bullpup_LS X2WeaponTemplate]
 FriendlyName="Kal-13 \"Bullpup\""
 FriendlyNamePlural="Kal-13 \"Bullpups\""
-BriefSummary="We can manufacture a modified Laser SMG that can be used by Skirmishers. While Dr.Tygan has correctly stated that this is in fact not a Bullpup, its compact frame and the additional tweaks we've made are enough for them to seriously consider its use in battle."
+BriefSummary="We can manufacture a modified Laser SMG that can be used by Skirmishers. While Dr. Tygan has correctly stated that this is in fact not a Bullpup, its compact frame and the additional tweaks we've made are enough for them to seriously consider its use in battle."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.\n<Bullet/> Bullpup-style weapons are extremely effective at close range and are designed for hit-and-run tactics.\n<Bullet/> They also increase the Skirmisher's mobility and improve their ability to slip by ADVENT forces undetected.\n<Bullet/> Use upgrades looted from enemies to improve the Kal-13 Bullpup's tactical effectiveness."
 AbilityDescName="bullpup"
 
@@ -1506,21 +1506,21 @@ FriendlyName="Alloy Plating"
 FriendlyNamePlural="Alloy Plating"
 UnknownUtilityCategory="Plating"
 BriefSummary="Grants 3 ablative armor points."
-TacticalText="<Bullet/> Grants 3 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of albative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 3 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [ChitinPlating X2EquipmentTemplate]
 FriendlyName="Chitin Plating"
 FriendlyNamePlural="Chitin Plating"
 UnknownUtilityCategory="Plating"
 BriefSummary="Grants 4 ablative armor points."
-TacticalText="<Bullet/> Grants 4 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of albative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 4 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [CarapacePlating X2EquipmentTemplate]
 FriendlyName="Carapace Plating"
 FriendlyNamePlural="Carapace Plating"
 UnknownUtilityCategory="Plating"
 BriefSummary="Grants 5 ablative armor points."
-TacticalText="<Bullet/> Grants 5 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of albative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 5 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [StilettoRounds X2AmmoTemplate]
 FriendlyName="Stiletto Rounds"
@@ -5501,7 +5501,7 @@ LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, p
 
 ; LWOTC Needs Translation (2)
 [Ghost X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghost has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Shield bash, Shield abilities, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Superior Aptitude, Ionic Storm abd Sustain. <br/>"
+LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghost has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Shield bash, Shield abilities, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Superior Aptitude, Ionic Storm and Sustain. <br/>"
 ; End Translation (2)
 
 ; LWOTC Needs Translation (3)
@@ -5549,36 +5549,36 @@ LocFlyOverText="Sabotage Weapon"
 ; LWOTC Needs Translation (2)
 ;(2) Added the Cooldown Text
 [ShieldAllyM1 X2AbilityTemplate]
-LocFriendlyName="The Warlocks Greatest Champion"
+LocFriendlyName="The Warlock's Greatest Champion"
 ; LWOTC Needs Translation (3)
 LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
 LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation (3)
-LocFlyOverText="The Warlocks Greatest Champion"
+LocFlyOverText="The Warlock's Greatest Champion"
 
 [ShieldAllyM2 X2AbilityTemplate]
-LocFriendlyName="The Warlocks Greatest Champion"
+LocFriendlyName="The Warlock's Greatest Champion"
 ; LWOTC Needs Translation (3)
 LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
 LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation (3)
-LocFlyOverText="The Warlocks Greatest Champion"
+LocFlyOverText="The Warlock's Greatest Champion"
 
 [ShieldAllyM3 X2AbilityTemplate]
-LocFriendlyName="The Warlocks Greatest Champion"
+LocFriendlyName="The Warlock's Greatest Champion"
 ; LWOTC Needs Translation (3)
 LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
 LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation (3)
-LocFlyOverText="The Warlocks Greatest Champion"
+LocFlyOverText="The Warlock's Greatest Champion"
 
 [ShieldAllyM4 X2AbilityTemplate]
-LocFriendlyName="The Warlocks Greatest Champion"
+LocFriendlyName="The Warlock's Greatest Champion"
 ; LWOTC Needs Translation (3)
 LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
 LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation (3)
-LocFlyOverText="The Warlocks Greatest Champion"
+LocFlyOverText="The Warlock's Greatest Champion"
 
 [PsiMindControl X2AbilityTemplate]
 LocFriendlyName="Mind Control"
