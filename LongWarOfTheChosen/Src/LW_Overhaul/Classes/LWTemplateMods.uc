@@ -2147,7 +2147,12 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'AdvPurifierM1':
 			Template.strScamperBT = "ScamperRoot_Purifier";
 			break;
+		case 'SpectreM1':
+			Template.Abilities.RemoveItem('LightningReflexes');
+			Template.Abilities.AddItem('LightningReflexes_LW');
 		case 'SpectreM2':
+			Template.Abilities.RemoveItem('LightningReflexes');
+			Template.Abilities.AddItem('LightningReflexes_LW');
 			Template.Abilities.AddItem('LowProfile');
 			break;
 
