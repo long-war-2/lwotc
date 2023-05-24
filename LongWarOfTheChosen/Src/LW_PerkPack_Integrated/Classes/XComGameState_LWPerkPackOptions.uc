@@ -10,6 +10,10 @@ class XComGameState_LWPerkPackOptions extends XComGameState_LWModOptions
 `include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
 var config array<name> Suppress;
+var config bool UseBaseGameHUD;
+var config bool ViewLockedPerks;
+var config bool UseBaseGamePerkUI;
+
 
 var localized string PerkPackTabName;
 
@@ -46,6 +50,10 @@ var localized string NumDisplayedAbilitiesModTooltip;
 function XComGameState_LWModOptions InitComponent(class NewClassType)
 {
 	super.InitComponent(NewClassType);
+	bViewLockedPerksEnabled=ViewLockedPerks;
+	bDefaultTacticalAbilityContainer=UseBaseGameHUD;
+	bBaseGamePerkUIEnabled=UseBaseGamePerkUI;
+	
 	return self;
 }
 
