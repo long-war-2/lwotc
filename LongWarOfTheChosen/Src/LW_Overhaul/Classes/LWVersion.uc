@@ -48,6 +48,6 @@ defaultproperties
 {
     MajorVersion = 1;
     MinorVersion = 1;
-    PatchVersion = 0;
-    Classifier = "dev 29"
+    PatchVersion = 1;
+    Classifier = "1.0.3"
 }
