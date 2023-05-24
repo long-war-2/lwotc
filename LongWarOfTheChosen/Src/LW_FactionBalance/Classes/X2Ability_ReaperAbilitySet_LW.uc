@@ -23,6 +23,7 @@ var config int BloodTrailBleedingTurns;
 var config int BloodTrailBleedingDamage;
 var config int BloodTrailBleedingChance;
 
+var config array<name> AlternativeMedikitNames;
 var config int PARAMEDIC_BONUS_CHARGES;
 
 var config int DisablingShotCooldown;
@@ -891,6 +892,7 @@ static function X2DataTemplate AddParamedic()
 	local X2AbilityTemplate				Template;
 	local X2Effect_TemporaryItem		TemporaryItemEffect;
 	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
+	local name MedikitName;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Paramedic_LW');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_fieldmedic";
@@ -909,10 +911,12 @@ static function X2DataTemplate AddParamedic()
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
 	TemporaryItemEffect.EffectName = 'ParamedicMedikits';
 	TemporaryItemEffect.ItemName = 'Medikit';
-	foreach (default.AlternativeMedikitNames(MedikitName))
+
+	foreach default.AlternativeMedikitNames(MedikitName)
     {
     	TemporaryItemEffect.AlternativeItemNames.AddItem(MedikitName);
    	}
+
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
 	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
