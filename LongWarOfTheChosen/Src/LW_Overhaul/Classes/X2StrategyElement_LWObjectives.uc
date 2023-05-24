@@ -298,9 +298,13 @@ function RevealAvatarProject()
 
 	History = `XCOMHISTORY;
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Reveal AVATAR Project");
-	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.CreateStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
-	NewGameState.AddStateObject(AlienHQ);
+	if(AlienHQ != none)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Reveal AVATAR Project");
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.CreateStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+		NewGameState.AddStateObject(AlienHQ);
+	
+	
 
 	AlienHQ.bHasSeenFortress = true;
 
@@ -309,4 +313,5 @@ function RevealAvatarProject()
 	CinematicComplete();
 
 	`HQPRES.UIFortressReveal();
+	}
 }

@@ -53,19 +53,22 @@ static function AddFortressDoom()
 
 	History = `XCOMHISTORY;
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("AIAction: AddFortressDoom");
-	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.CreateStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
-	NewGameState.AddStateObject(AlienHQ);
+	if(AlienHQ != none)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("AIAction: AddFortressDoom");
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+		NewGameState.AddStateObject(AlienHQ);
+	
 
 	OnFortressDoomTimerComplete(AlienHQ, NewGameState);
 
-	// Complete the Avatar reveal project as soon as doom is added to the fortress
-	// so players not what they're up against.
+	// Complete the Avatar reveal project as soon as doom is added to the fortress so players know what they're up against.
 	`LWTrace("Triggering Avatar Project reveal...");
 	class'XComGameState_Objective'.static.StartObjectiveByName(NewGameState, 'LW_T2_M1_N2_RevealAvatarProject');
 	`XEVENTMGR.TriggerEvent('StartAvatarProjectReveal');
 
 	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
 }
 
 static function OnFortressDoomTimerComplete(XComGameState_HeadquartersAlien AlienHQ, XComGameState NewGameState)
