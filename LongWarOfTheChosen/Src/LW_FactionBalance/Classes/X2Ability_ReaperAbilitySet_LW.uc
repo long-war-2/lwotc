@@ -909,7 +909,10 @@ static function X2DataTemplate AddParamedic()
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
 	TemporaryItemEffect.EffectName = 'ParamedicMedikits';
 	TemporaryItemEffect.ItemName = 'Medikit';
-	TemporaryItemEffect.AlternativeItemNames.AddItem('NanoMedikit');
+	foreach (default.AlternativeMedikitNames(MedikitName))
+    {
+    	TemporaryItemEffect.AlternativeItemNames.AddItem(MedikitName);
+   	}
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
 	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
