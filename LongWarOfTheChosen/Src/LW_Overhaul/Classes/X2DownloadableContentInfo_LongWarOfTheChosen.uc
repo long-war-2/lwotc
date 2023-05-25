@@ -226,6 +226,7 @@ static event OnLoadedSavedGameToStrategy()
 	}
 
 	CleanupObsoleteTacticalGamestate();
+	CacheInfiltration_Static();
 }
 
 // Make sure we're not overriding classes already overridden by another
@@ -666,6 +667,7 @@ static event OnPostMission()
 
 	`LWSQUADMGR.UpdateSquadPostMission(, true); // completed mission
 	`LWOUTPOSTMGR.UpdateOutpostsPostMission();
+	CacheInfiltration_Static();
 }
 
 // Disable the Lost if we don't meet certain conditions. This is also
@@ -4569,7 +4571,13 @@ exec function DumpUnitInfo()
 	class'Helpers'.static.OutputMsg("Unit information dumped to log");
 }
 
+
 exec function CacheInfiltration()
+{
+	CacheInfiltration_Static();
+}
+
+static function CacheInfiltration_Static()
 {
 	local XComGameStateHistory History;
 	local XComGameState_LWSquadManager SquadMgr;
@@ -4588,9 +4596,12 @@ exec function CacheInfiltration()
 
 		if(SquadState != none)
 		{
-			SquadState = XComGameState_LWPersistentSquad(NewGameState.ModifyStateObject(class'XComGameState_LWPersistentSquad', SquadState.ObjectID));
-			SquadState.SquadCovertnessCached = SquadState.GetSquadCovertness(SquadState.SquadSoldiersOnMission);
-			`Log("caching Covertness value" @SquadState.SquadCovertnessCached @"for" @SquadState,,'TedLog');
+			if(SquadState.bOnMission)
+			{
+				SquadState = XComGameState_LWPersistentSquad(NewGameState.ModifyStateObject(class'XComGameState_LWPersistentSquad', SquadState.ObjectID));
+				SquadState.SquadCovertnessCached = SquadState.GetSquadCovertness(SquadState.SquadSoldiersOnMission);
+				`Log("caching Covertness value" @SquadState.SquadCovertnessCached @"for" @SquadState,,'TedLog');
+			}
 		}
 	}
 

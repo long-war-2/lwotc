@@ -997,7 +997,7 @@ function float GetSecondsRemainingToFullInfiltration()
 	local float SecondsOfInfiltration;
 	local float SecondsToInfiltrate;
 
-	TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltration();
+	TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
 	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
 	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
 
