@@ -1141,7 +1141,7 @@ function float GetHoursToFullInfiltrationCached(optional out int SquadSizeHours,
 		MissionRef = CurrentMission;
 	}
 	HoursToFullInfiltration = GetHoursToFullInfiltrationCached_Static(SquadSoldiersOnMission, SquadCovertnessCached, MissionRef, SquadSizeHours, CovertnessHours, LiberationHours);
-
+	//`LOG("Squad" @self @"covertness:"@SquadCovertnessCached,,'TedLog');
 	if (bHasBoostedInfiltration)
 		HoursToFullInfiltration /= DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
 

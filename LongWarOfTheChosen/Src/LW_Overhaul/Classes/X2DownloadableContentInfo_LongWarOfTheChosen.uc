@@ -4568,3 +4568,32 @@ exec function DumpUnitInfo()
 
 	class'Helpers'.static.OutputMsg("Unit information dumped to log");
 }
+
+exec function CacheInfiltration()
+{
+	local XComGameStateHistory History;
+	local XComGameState_LWSquadManager SquadMgr;
+	local StateObjectReference Squad;
+	local XComGameState_LWPersistentSquad SquadState;
+	local XComGameState NewGameState;
+
+	SquadMgr = `LWSQUADMGR;
+	History = `XCOMHISTORY;
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Cache covertness values");
+	
+	foreach SquadMgr.Squads (Squad)
+	{
+		SquadState = XComGameState_LWPersistentSquad(History.GetGameStateForObjectID(Squad.ObjectID));
+
+		if(SquadState != none)
+		{
+			SquadState = XComGameState_LWPersistentSquad(NewGameState.ModifyStateObject(class'XComGameState_LWPersistentSquad', SquadState.ObjectID));
+			SquadState.SquadCovertnessCached = SquadState.GetSquadCovertness(SquadState.SquadSoldiersOnMission);
+			`Log("caching Covertness value" @SquadState.SquadCovertnessCached @"for" @SquadState,,'TedLog');
+		}
+	}
+
+
+	`GAMERULES.SubmitGameState(NewGameState);
+}
