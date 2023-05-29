@@ -1,13 +1,13 @@
 ; LWOTC translated
 [LWTutorial]
 CampaignStartTitle="Bienvenido al Gran Mod Long War of the Chosen"
-CampaignStartBody="LWOTC es una revisión completa de XCOM 2 WOTC; Hace la campaña más desafiante sintiéndose como una guerra de guerrillas.<br/><br/>Puedes desactivar este tutorial a través de cambiar dificultad> opciones avanzadas en el menú del juego."
+CampaignStartBody="LWOTC es una revisión completa de XCOM 2 WOTC: Hace la campaña más desafiante sintiéndose como una guerra de guerrillas.<br/><br/>Puedes desactivar este tutorial a través de cambiar dificultad> opciones avanzadas en el menú del juego."
 
 [X2EventListener_Tutorial]
 DroneSightedTitle="Nuevo Enemigo: Dron"
 DroneSightedBody="Los drones ADVENT son robustos exploradores robóticos con un alto rango de detección y armas de control de multitudes. A menudo se encuentran patrullando solos y pueden aparecer dentro de los edificios y en los tejados."
 RainbowTrooperSightedTitle="Nuevos Enemigos: Infantería ADVENT"
-RainbowTrooperSightedBody="ADVENT ahora presenta una variedad de unidades de infantería además del soldado básico: <br/> <ul><li>Vigilantes (azul) se especializan en mantenerse siempre en alerta con su guardia automática.</li><li>Artilleros (verde) lucen un cañón de alto daño con capacidades de supresión.</li><li>Granaderos (rojo) usan un lanzagranadas para el control de multitudes y el daño.</li><li>Coheteros (naranja) disparan cohetes de alta precisión.</li></ul>"
+RainbowTrooperSightedBody="ADVENT ahora presenta una variedad de unidades de infantería además del soldado básico: <br/> <ul><li>Vigilantes (azul) se especializan en mantenerse siempre en alerta con su guardia automática.</li><li>Artilleros (verde) lucen un cañón de daño elevado con capacidades de supresión.</li><li>Ingenieros (rojo) usan un lanzagranadas para el control de multitudes y el daño.</li><li>Coheteros (naranja) disparan cohetes de alta precisión.</li></ul>"
 HavenHighlightTitle="Revisa tu Refugio"
 HavenHighlightBody="Los Refugios son esenciales para la campaña, ya que se utilizan para encontrar misiones en la región. Además, sólo puedes ponerte en contacto con regiones que están conectadas a un refugio existente. <br/> <br/> Haz clic en el botón que se muestra a la izquierda para abrir la pantalla de administración de Refugio."
 
@@ -24,13 +24,13 @@ GeneralChosenTitle="Los Elegidos"
 GeneralChosenBody="Un Elegido aparecerá en esta misión. En LWOTC responden a la actividad de XCOM participando sólo en represalias y misiones de la historia principal (Sitio Secreto, etc). No aparecerán en otras misiones.<br/><br/>"Su objetivo sigue siendo conocer la ubicación del Avenger y asaltarlo. ¡Cuidado, defenderse de él no será fácil!"
 
 TacticalChosenTitle="Los Elegidos en Combate"
-TacticalChosenBody="Los Elegidos son mucho más peligrosos en LWOTC:<br/><ul><li>Son casi inmunes a los golpes críticos</li><li>Toman una acción (\"reacción principal\") cada vez que las tropas les dañan durante el turno de XCOM</li><li>Poseen la cualidad de secuestrar soldados desangrados que estén a su alcance a costa de un turno completo</li><li>Obtienen atributos significativos al subir de nivel (usa F1 cuando les apuntes para recabar información detallada).</li></ul>"
+TacticalChosenBody="Los Elegidos son mucho más peligrosos en LWOTC:<br/><ul><li>Son casi inmunes a los golpes críticos.</li><li>Toman una acción de movimiento o se preparan para el combate cada vez que las tropas les dañan durante el turno de XCOM.</li><li>Poseen la cualidad de secuestrar soldados desangrados que estén a su alcance a costa de un turno completo.</li><li>Obtienen atributos significativos al subir de nivel (usa F1 cuando les apuntes para recabar información detallada).</li></ul>"
 
 AssassinSightedTitle="La Asesina"
-AssassinSightedBody="La Asesina reduce el daño recibido con cada golpe consecutivo que soporta en un turno. Si bien el daño de su Katana y Maremoto comienza bajo, aumentará su poder a medida que las use hasta que capture a un soldado. <br/><br/>Ten cuidado con la ubicación de la unidades, ya que puede usar su reacción principal para atacar a un soldado adyacente."
+AssassinSightedBody="La Asesina reduce el daño recibido con cada golpe consecutivo que soporta en un turno. Si bien el daño de su Katana y Maremoto comienza bajo, aumentará su poder a medida que las use hasta que capture a un soldado. <br/><br/>Fíjate bien dónde ubicas las unidades, ya que puede usar su reacción principal para atacar a un soldado adyacente."
 
 WarlockSightedTitle="El Brujo"
-WarlockSightedBody="El Brujo tiene la habilidad "El más grande Campeón de los Brujos" que otorga beneficios al usarse en un aliado. Mientras esa unidad permanezca viva el brujo sufrirá significativamente menos daño. También debes tener cuidado de su Arrasar mentes, ya que aplica una ola de energía psiónica aldededor de un objetivo. <br/><br/>Si un soldado es controlado mentalmente ten en cuenta que en LWOTC el resto puede usar Golpe incapacitante en él."
+WarlockSightedBody="El Brujo tiene la habilidad \"El más grande Campeón del Brujo\" que otorga beneficios al usarse en un aliado. Mientras esa unidad permanezca con vida, el brujo sufrirá significativamente menos daño. También debes tener cuidado de su Arrasar mentes, ya que aplica una ola de energía psiónica aldededor de un objetivo. <br/><br/>Si un soldado es controlado mentalmente ten en cuenta que en LWOTC el resto puede usar Golpe incapacitante en él."
 
 HunterSightedTitle="El Cazador"
 HunterSightedBody="El Cazador mantendrá su distancia e intentará eliminar a los soldados desde una posición segura. Ten cuidado al acercarte: su disparo de pistola ahora desactivará las armas XCOM y también podrá lanzar sus granadas cegadoras como acción gratuita."
@@ -39,10 +39,16 @@ HunterSightedBody="El Cazador mantendrá su distancia e intentará eliminar a lo
 
 [UIScreenListener_HavenManagementTutorial]
 HavenManagementTitle="Gestión del Refugio"
-HavenManagementBody="Los Refugios albergan una colección de rebeldes que pueden realizar varios trabajos: <br/> <ul> <li> Datos: detecta misiones </li> <li> Reclutar: recluta rebeldes y soldados novatos </li> <li> Suministros: genera suministros </li> </ul> <br/> Cuantos más rebeldes haya en un trabajo, más obtienes de él. Mantén a tus rebeldes en Datos por ahora."
+HavenManagementBody="Los Refugios albergan una colección de rebeldes que pueden realizar varios trabajos: <br/> <ul> <li> Datos: detecta misiones </li> <li> Reclutar: recluta rebeldes y soldados novatos </li> <li> Suministros: genera suministros </li> </ul> <br/> Cuantos más rebeldes haya en un trabajo, más obtienes de él. Mantén a tus rebeldes en Datos por ahora y quizás alguno en Reclutar."
 ; LWOTC translated
 HavenAdvisersTitle="Asesores de Refugio"
-HavenAdvisersBody="Haz clic en el cuadro etiquetado (1) a la izquierda para asignar un asesor al Refugio. Puedes seleccionar uno de: <br/> <ul> <li> Soldado: detecta Sin Caras y ayuda a reclutar </li> <li> Científico: incrementa la producción en trabajos de Datos, pero ya no contribuye a la investigación </li> <li> Ingeniero: mejora la producción en trabajos de Suministros </li> </ul> <br/> Detectar Sin Caras te permite exterminarlos."
+HavenAdvisersBody="Haz clic en el cuadro etiquetado (1) a la izquierda para asignar un asesor al Refugio. Puedes seleccionar uno de: <br/> <ul> <li> Soldado: detecta Sin Caras y ayuda a reclutar </li> <li> Científico: incrementa la producción en trabajos de Datos, pero ya no contribuye a la investigación </li> <li> Ingeniero: se centra en aumentar los ingresos mensuales de Suministros </li> </ul> <br/> Detectar Sin Caras te permite exterminarlos."
+; End translated
+
+; LWOTC translated
+[UIScreenListener_PromotionScreenTutorial]
+PistolAbilitiesTutorialTitle="Habilidades de pistola"
+PistolAbilitiesTutorialBody="Las habilidades de pistola están disponibles para todos tus soldados una vez que hayas construido el Centro de entrenamiento, excepto para SPARKS y soldados psiónicos. Funcionan con pistolas y pistolas automáticas.\n\n!Desplaza en esta pantalla hacia abajo para verlas¡"
 ; End translated
 
 ; LWOTC translated
@@ -66,5 +72,5 @@ SquadSelectInfiltrationBody="Además de seleccionar miembros para el escuadrón 
 
 [UIScreenListener_InfiltratingMissionTutorial]
 InfiltratingMissionTitle="Misiones infiltradas"
-InfiltratingMissionBody="Siempre que quieras puedes adentrarte en una misión, pero la infiltración insuficiente hará que las misiones sean más complicadas. Si potencias la infiltración gastando Datos conllevará que la misión se complete más rápido. <br/> <br/> Puedes abortarla en cualquier momento sin ninguna penalización y reiniciarla más tarde si la misión aún no ha expirado. Al reiniciar, la infiltración vuelve al 0%."
+InfiltratingMissionBody="Siempre que quieras puedes adentrarte en una misión, pero la infiltración insuficiente hará que las misiones sean más complicadas. Si potencias la infiltración gastando datos conllevará que la misión se complete más rápido. <br/> <br/> Puedes abortarla en cualquier momento sin ninguna penalización y reiniciarla más tarde si la misión aún no ha expirado. Al reiniciar, la infiltración vuelve al 0%."
 ; End translated
