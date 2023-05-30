@@ -37,7 +37,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	if (Target.GetCurrentStat(eStat_HP) > Target.GetMaxStat(eStat_HP) / 2)
 		return 0;
  
- 	//fix: don't add 2 damage to things that don't deal damage.
+ 	//fix: don't add bonus damage to things that don't deal damage.
 	if(CurrentDamage == 0)
 		return 0;
 
