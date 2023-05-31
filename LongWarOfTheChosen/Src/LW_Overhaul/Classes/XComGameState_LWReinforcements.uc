@@ -106,6 +106,7 @@ var float TimerBucketModifier;
 var bool RedAlertTriggered;
 var bool ExternallyTriggered;
 var bool Disabled;
+var bool bBetaStrike;
 var Mission_Reinforcements_Modifiers_Struct_LW ReinfRules;
 
 function Reset()
@@ -131,6 +132,7 @@ function Initialize()
 	local int k;
 	local Mission_Reinforcements_Modifiers_Struct_LW EmptyReinfRules;
 	local float BaseTimerLength, CurrentTimerLength;
+	
 
     `LWTrace("LWRNF: Initializing RNF state");
 
@@ -144,6 +146,7 @@ function Initialize()
 	RedAlertTriggered = false;
 	ExternallyTriggered = false;
 	ReinfRules = EmptyReinfRules;
+	bBetaStrike = `SecondWaveEnabled('BetaStrike');
 
 	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(`XCOMHQ.MissionRef.ObjectID));
 	CurrentActivity = class'XComGameState_LWAlienActivityManager'.static.FindAlienActivityByMission(MissionState);
@@ -176,6 +179,13 @@ function Initialize()
 			MissionState.GeneratedMission.Mission.sType,
 			MissionState.GeneratedMission.Mission.MissionFamily);
 		TimerBucketModifier = BaseTimerLength / CurrentTimerLength;
+	}
+
+	if(bBetaStrike)
+	{
+		ReinfRules.CavalryWinTurn *= 2;
+		ReinfRules.CavalryAbsoluteTurn *=2;
+		ReinfRules.ForcedReinforcementsTurn *=2;
 	}
 
     IsInitialized = true;
@@ -409,35 +419,35 @@ function int CheckForReinforcements()
 	PlayerState = class'Utilities_LW'.static.FindPlayer(eTeam_XCom);
 	if (CanAddToBucket())
 	{
-	    TmpValue = GetIncreaseFromRegion();
+	    TmpValue = GetIncreaseFromRegion() / BetaStrikeMod();
 		`LWTrace("LWRNF: Adding " $ TmpValue $ " to reinforcement bucket from region status");
 		BucketFiller += TmpValue;
 
-		TmpValue = GetIncreaseFromDarkEvents();
+		TmpValue = GetIncreaseFromDarkEvents() / BetaStrikeMod();
 		`LWTrace("LWRNF: Adding " $ TmpValue $ " to reinforcement bucket from dark events");
 		BucketFiller += TmpValue;
 
-		TmpValue = GetIncreaseFromMods();
+		TmpValue = GetIncreaseFromMods() / BetaStrikeMod();
 		`LWTrace("LWRNF: Adding " $ TmpValue $ " to reinforcement bucket from mods");
 		BucketFiller += TmpValue;
 
-		TmpValue = ReinfRules.BucketModifier;
+		TmpValue = ReinfRules.BucketModifier / BetaStrikeMod();
 		`LWTrace("LWRNF: Adding " $ TmpValue $ " to reinforcement bucket from mission/activity");
 		BucketFiller += TmpValue;
 
-		TmpValue = default.DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING];
+		TmpValue = (default.DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]) / BetaStrikeMod();
 		`LWTrace("LWRNF: Adding " $ string(TmpValue) $ " to reinforcement bucket from difficulty");
 		BucketFiller += TmpValue;
 
-		TmpValue = ReinfRules.AccelerateMultiplier * BucketFiller * Spawns;
+		TmpValue = (ReinfRules.AccelerateMultiplier * BucketFiller * Spawns) / BetaStrikeMod();
 		`LWTrace("LWRNF: Applying acceleration value multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value");
 		BucketFiller += TmpValue;
 
-		TmpValue = ReinfRules.BucketMultiplier;
+		TmpValue = ReinfRules.BucketMultiplier / BetaStrikeMod();
 		`LWTrace("LWRNF: Applying multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value from mission/activity");
 		BucketFiller *= TmpValue;
 
-		TmpValue = TimerBucketModifier;
+		TmpValue = TimerBucketModifier / BetaStrikeMod();
 		`LWTrace("LWRNF: Applying timer-based multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value");
 		BucketFiller *= TmpValue;
 
@@ -458,7 +468,7 @@ function int CheckForReinforcements()
 				if (AtTurnThreshhold(ReinfRules.ForcedReinforcementsTurn))
 				{
 					`LWTRACE ("Adding 1.0 to bucket to Force Reinforcements on Turn" @ PlayerState.PlayerTurnCount);
-					Bucket += 1.0;
+					Bucket += 1.0 / BetaStrikeMod();
 				}
 			}
 		}
@@ -490,7 +500,7 @@ function int CheckForReinforcements()
 					if (ReachedTurnThreshhold (ReinfRules.CavalryWinTurn, true))
 					{
 						`LWTRACE("LWRNF: Forcing Reinforcements to punish loitering after victory");
-						Bucket += 1.0;
+						Bucket += 1.0  / BetaStrikeMod();
 					}
 				}
 			}
@@ -511,7 +521,7 @@ function int CheckForReinforcements()
 				{
 					if (ReachedTurnThreshhold (ReinfRules.CavalryAbsoluteTurn))
 					{
-						Bucket += 1.0;
+						Bucket += 1.0 / BetaStrikeMod();
 					}
 				}
 			}
@@ -676,4 +686,14 @@ function StartReinforcements()
 function DisableReinforcements()
 {
 	Disabled = true;
+}
+
+//checks if second wave option for beta strike is on.
+function float BetaStrikeMod()
+{
+	if(bBetaStrike)
+	{
+		return 2.0f;
+	}
+	else return 1.0f;
 }
