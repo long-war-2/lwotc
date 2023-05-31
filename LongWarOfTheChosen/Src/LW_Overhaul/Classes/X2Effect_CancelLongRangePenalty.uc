@@ -22,7 +22,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 		if(SourceWeapon != none)
 		{
 			WeaponTemplate = X2WeaponTemplate(SourceWeapon.GetMyTemplate());
-			if (WeaponTemplate.WeaponCat == 'sniper_rifle' || WeaponTemplate.WeaponCat == 'vektor_rifle')
+			if (WeaponTemplate.WeaponCat == 'sniper_rifle' || WeaponTemplate.WeaponCat == 'vektor_rifle') //Tedster - added Vektor rifles here as well.
 			{
 				RangeTable = WeaponTemplate.RangeAccuracy;
 				Tiles = Attacker.TileDistanceBetween(Target); 
