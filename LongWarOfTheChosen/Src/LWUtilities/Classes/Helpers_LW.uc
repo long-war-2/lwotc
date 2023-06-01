@@ -820,6 +820,11 @@ static function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name
 	}
 }
 
+static function bool AlwaysFail()
+{
+	return false;
+}
+
 defaultproperties
 {
 	CHOSEN_SPAWN_TAG_SUFFIX="_LWOTC_ChosenTag"

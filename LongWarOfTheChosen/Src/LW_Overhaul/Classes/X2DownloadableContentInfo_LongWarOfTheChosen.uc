@@ -109,6 +109,8 @@ var config array<int> RULER_POD_SIZE_ALERT_THRESHOLDS;
 // Scaling multiplier for the Brute's pawn
 var config float BRUTE_SIZE_MULTIPLIER;
 
+var config array<Name> SitrepsToDisable;
+
 // End data and data structures
 //-----------------------------
 
@@ -187,6 +189,7 @@ static event OnPostTemplatesCreated()
 	AddObjectivesToParcels();
 	UpdateChosenActivities();
 	UpdateChosenSabotages();
+	UpdateSitreps();
 }
 
 /// <summary>
@@ -4607,4 +4610,27 @@ static function CacheInfiltration_Static()
 
 
 	`GAMERULES.SubmitGameState(NewGameState);
+}
+
+static function UpdateSitreps()
+{
+	local X2SitRepTemplateManager SitRepMgr;
+	local name SitRepName;
+	local X2SitRepTemplate Sitrep;
+
+	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
+
+	foreach default.SitrepsToDisable(SitRepName)
+	{
+		Sitrep = SitRepMgr.FindSitRepTemplate(SitRepName);
+		if(Sitrep != none)
+		{
+			`LWTrace("Disabling Sitrep" @SitRepName @"From appearing normally on missions");
+			Sitrep.StrategyReqs.SpecialRequirementsFn = class'Helpers_LW'.static.AlwaysFail;
+		}
+
+
+	}
+
+
 }
