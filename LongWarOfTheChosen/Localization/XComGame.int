@@ -119,28 +119,30 @@ RankIcons[6]="UILibrary_Common.rank_colonel"
 RankIcons[7]="UILibrary_Common.rank_commander"
 RankIcons[8]="UILibrary_Common.rank_fieldmarshall"
 
-; LWOTC Needs Translation
 
-; LWOTC: Hunker down doesn't remove burning in this mod
+
+; LWOTC Needs Translation
 [HunkerDown X2AbilityTemplate]
 LocFriendlyName="Hunker Down"
-LocHelpText="Increase Defense by <Ability:HUNKERDEFENSEBONUS/>, and Dodge by <Ability:HUNKERDODGEBONUS/>. Only works in cover."
+LocHelpText="Increase Defense by <Ability:HUNKERDEFENSEBONUS/>, and Dodge by <Ability:HUNKERDODGEBONUS/>. Only works in cover. Does not put out burning."
 LocFlyOverText="Hunker Down"
+; End translation
 
 [ReturnFire X2AbilityTemplate]
 LocHelpText="When targeted by enemy fire, automatically fire back with your pistol once per turn."
 LocLongDescription="When targeted by enemy fire, automatically fire back with your pistol once per turn."
-
+; LWOTC Needs Translation
 [Quickdraw X2AbilityTemplate]
 LocLongDescription="Negates the mobility penalty for carrying a pistol, and firing your pistol with your first action no longer ends your turn."
 LocHelpText="Negates the mobility penalty for carrying a pistol, and firing your pistol with your first action no longer ends your turn."
+; End Translation
 
 [LightningHands X2AbilityTemplate]
 LocLongDescription="Fire your pistol at a target. This attack does not cost an action."
 LocHelpText="Fire your pistol at a target. This attack does not cost an action."
 LocPromotionPopupText="<Bullet/> Lightning Hands can combo well with other <Ability:ClassName/> abilities, as it does not prevent the use of other abilities in the same turn.<br/><Bullet/> Lightning Hands has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
-; End Translation
+
 
 
 ;;;;;;;;;;;;;;;;;;;;  TECHNICAL ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
