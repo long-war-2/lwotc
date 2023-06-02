@@ -122,6 +122,8 @@ var config int CRUSADER_WOUND_HP_REDUCTTION;
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
 var config array<name> BANZAI_EFFECTS_TO_REMOVE;
 
+var config int QUICKDRAW_MOBILITY_INCREASE;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -207,6 +209,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(BanzaiPassive());
 	Templates.AddItem(Magnum());
 	Templates.AddItem(CrusaderRage());
+	Templates.AddItem(QuickdrawMobility());
 
 
 	
@@ -3054,6 +3057,41 @@ static function X2AbilityTemplate Magnum()
 	return Passive('Magnum_LW', "img:///UILibrary_XPerkIconPack.UIPerk_pistol_sniper", false, Effect);
 }
 
+static function X2AbilityTemplate QuickdrawMobility()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_PersistentStatChange  MobilityIncreaseEffect;
+	local X2Condition_UnitInventory WeaponCatCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'QuickdrawMobilityIncrease');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.bIsPassive = true;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	WeaponCatCondition = new class'X2Condition_UnitInventory';
+	WeaponCatCondition.RelevantSlot = eInvSlot_Pistol;
+	WeaponCatCondition.RequireWeaponCategory = 'pistol';
+	Template.AbilityTargetConditions.AddItem(WeaponCatCondition);
+
+	MobilityIncreaseEffect = new class'X2Effect_PersistentStatChange';
+	MobilityIncreaseEffect.BuildPersistentEffect(1, true, false);
+	
+	MobilityIncreaseEffect.AddPersistentStatChange(eStat_Mobility, default.QUICKDRAW_MOBILITY_INCREASE);
+	Template.AddTargetEffect(MobilityIncreaseEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	Template.bCrossClassEligible = false;
+
+	//Template = Passive('QuickdrawMobilityIncrease',"img:///UILibrary_PerkIcons.UIPerk_quickdraw", false, MobilityIncreaseEffect);
+	return Template;
+}
 
 static function X2AbilityTemplate CrusaderRage()
 {

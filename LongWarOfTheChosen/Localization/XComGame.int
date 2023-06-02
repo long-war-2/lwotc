@@ -132,8 +132,8 @@ LocHelpText="When targeted by enemy fire, automatically fire back with your pist
 LocLongDescription="When targeted by enemy fire, automatically fire back with your pistol once per turn."
 
 [Quickdraw X2AbilityTemplate]
-LocLongDescription="Firing your pistol with your first action no longer ends your turn."
-LocHelpText="Firing your pistol with your first action no longer ends your turn."
+LocLongDescription="Negates the mobility penalty for carrying a pistol, and firing your pistol with your first action no longer ends your turn."
+LocHelpText="Negates the mobility penalty for carrying a pistol, and firing your pistol with your first action no longer ends your turn."
 
 [LightningHands X2AbilityTemplate]
 LocLongDescription="Fire your pistol at a target. This attack does not cost an action."
