@@ -1320,7 +1320,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
 			ConeMultiTarget.bUseWeaponRadius = true;
 			ConeMultiTarget.ConeEndDiameter = 12 * class'XComWorldData'.const.WORLD_StepSize;
-			ConeMultiTarget.ConeLength = 18 * class'XComWorldData'.const.WORLD_StepSize;
+			ConeMultiTarget.ConeLength = 40 * class'XComWorldData'.const.WORLD_StepSize;
 			Template.AbilityMultiTargetStyle = ConeMultiTarget;
 		}
 		if (Template.DataName == 'Deadeye')
