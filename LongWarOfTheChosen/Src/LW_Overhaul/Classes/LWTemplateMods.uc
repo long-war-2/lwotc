@@ -216,6 +216,8 @@ var config int SERIAL_CRIT_MALUS_PER_KILL;
 var config int SERIAL_AIM_MALUS_PER_KILL;
 var config bool SERIAL_DAMAGE_FALLOFF;
 var config int FUSION_SWORD_FIRE_CHANCE;
+var config int KILLZONE_CONE_LENGTH;
+var config int KILLZONE_CONE_WIDTH;
 
 var config array<ItemTableEntry> ItemTable;
 var config array<TechTableEntry> TechTable;
@@ -1319,8 +1321,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		{
 			ConeMultiTarget = new class'X2AbilityMultiTarget_Cone';
 			ConeMultiTarget.bUseWeaponRadius = true;
-			ConeMultiTarget.ConeEndDiameter = 12 * class'XComWorldData'.const.WORLD_StepSize;
-			ConeMultiTarget.ConeLength = 40 * class'XComWorldData'.const.WORLD_StepSize;
+			ConeMultiTarget.ConeEndDiameter = default.KILLZONE_CONE_WIDTH * class'XComWorldData'.const.WORLD_StepSize;
+			ConeMultiTarget.ConeLength = default.KILLZONE_CONE_LENGTH * class'XComWorldData'.const.WORLD_StepSize;
 			Template.AbilityMultiTargetStyle = ConeMultiTarget;
 		}
 		if (Template.DataName == 'Deadeye')
