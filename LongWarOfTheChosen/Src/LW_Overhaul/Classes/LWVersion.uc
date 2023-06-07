@@ -47,7 +47,7 @@ function static int GetVersionNumber(optional out int Major, optional out int Mi
 defaultproperties
 {
     MajorVersion = 1;
-    MinorVersion = 0;
+    MinorVersion = 1;
     PatchVersion = 1;
-    Classifier = ""
+    Classifier = "1.0.3"
 }

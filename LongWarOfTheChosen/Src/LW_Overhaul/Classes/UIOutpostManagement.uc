@@ -203,7 +203,7 @@ simulated function InitScreen(XComPlayerController InitController, UIMovie InitM
 		JobDetail = Spawn(class'UIScrollingText', MainPanel);
 		JobDetail.bAnimateOnInit = false;
 		JobDetail.InitScrollingText('OutPost_JobDetail_LW', "", panelW - BorderPadding * 2, BorderPadding,
-			RegionalInfo.Y + RegionalInfo.Height + (OutPost.GetResistanceMecCount() > 0) ? ResistanceMECs.Height : 0.0f);
+			RegionalInfo.Y + RegionalInfo.Height + ((OutPost.GetResistanceMecCount() > 0) ? ResistanceMECs.Height : 0.0f));
 		JobDetail.SetHTMLText("<p align=\'RIGHT\'><font size=\'24\' color=\'#fef4cb\'>" $
 			GetJobProhibitedString(Outpost, IntelProhibited, SupplyProhibited, RecruitProhibited) $ "</font></p>");
 		JobDetail.SetAlpha(67.1875);

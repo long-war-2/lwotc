@@ -176,7 +176,7 @@ static function X2AbilityTemplate AddTemplarFleche()
 	FlecheBonusDamageEffect.MaxBonusDamage = default.MAX_REND_FLECHE_DAMAGE;
 	FlecheBonusDamageEffect.AbilityNames.AddItem('Rend');
 	FlecheBonusDamageEffect.AbilityNames.AddItem('ArcWave');
-	FlecheBonusDamageEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	FlecheBonusDamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	FlecheBonusDamageEffect.BuildPersistentEffect (1, true, false);
 	Template.AddTargetEffect (FlecheBonusDamageEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -549,7 +549,7 @@ static function Apotheosis_BuildVisualization(XComGameState VisualizeGameState)
 
 	History = `XCOMHISTORY;
 	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
 	InteractingUnitRef = Context.InputContext.SourceObject;
 	BuildTrack = EmptyTrack;
 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);

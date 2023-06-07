@@ -38,7 +38,7 @@ set some things up:
     or whatever is the equivalent with the git client tool you are using.
 
  4. Download the LWOTC media assets (video, graphics and sound) from
-    [this Dropbox link](https://www.dropbox.com/s/209rybpdl3khb26/lwotc-content.zip?dl=0)
+    [this Dropbox link](https://www.dropbox.com/s/qrrnygrjydj8qbt/lwotc-content-with-cooking.zip?dl=0)
     and unpack the resulting zip file into this project's *LongWarOfTheChosen* directory.
 
  5. Set up the following environment variables:

@@ -20,6 +20,8 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
 	local bool bShouldApply;
 
+	
+
     if (AppliedData.AbilityResultContext.HitResult == eHit_Crit)
     {
         SourceWeapon = AbilityState.GetSourceWeapon();
@@ -32,7 +34,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 				bShouldApply = true;
 			}
 
-			if (default.APPLIES_TO_EXPLOSIVES)
+			if (default.APPLIES_TO_EXPLOSIVES && CurrentDamage > 0) //add damage check on grenades function to exclude support grenades from BEM bonus. 
 			{
 				if (X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).WeaponCat == 'grenade')
 				{

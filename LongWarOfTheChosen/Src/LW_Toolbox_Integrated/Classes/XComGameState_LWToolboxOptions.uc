@@ -8,7 +8,7 @@ class XComGameState_LWToolboxOptions extends XComGameState_LWToolboxPrototype
 	config(LW_Toolbox)
 	dependson(X2DownloadableContentInfo_LWToolbox);
 
-//
+
 
 struct MissionOverride
 {
@@ -16,6 +16,10 @@ struct MissionOverride
 	var MissionMaxSoldiersOverrideType Type;
 	var float Value;
 };
+
+var config bool RedFogForXCom;
+var config bool RedFogForAliens;
+var config bool RedFogLinear;
 
 var config array<name> Suppress;
 
@@ -126,6 +130,11 @@ function XComGameState_LWModOptions InitComponent(class NewClassType)
 	super.InitComponent(NewClassType);
 	CameraRotationIndex = default.DEFAULT_CAMERA_ROTATION_INDEX;
 	CameraRotationIndex_Cached = CameraRotationIndex;
+
+	bRedFogXComActive = RedFogForXCom;
+	bRedFogAliensActive = RedFogForAliens;
+	bRedFogLinearPenalties = RedFogLinear;
+
 	return self;
 }
 
@@ -153,6 +162,7 @@ function InitModOptions()
 	bRedFogLinearPenalties_Cached = bRedFogLinearPenalties;
 
 	bEnableSimCombat_Cached = bEnableSimCombat;
+
 
 }
 

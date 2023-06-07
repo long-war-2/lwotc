@@ -8,6 +8,10 @@
 
 class Helpers_LW extends Object config(GameCore) dependson(Engine);
 
+var config bool EnableLWTrace;
+var config bool EnableLWDebug;
+var config bool EnableLWPMTrace;
+
 var const string CHOSEN_SPAWN_TAG_SUFFIX;
 
 struct ProjectileSoundMapping
@@ -814,6 +818,11 @@ static function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name
 			Template.AbilityMultiTargetEffects.Remove(i, 1);
 		}
 	}
+}
+
+static function bool AlwaysFail()
+{
+	return false;
 }
 
 defaultproperties

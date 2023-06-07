@@ -166,17 +166,18 @@ static function bool IsLostTowersNarrativeContentComplete()
     return false;
 }
 
-static function bool IsAlienRuler(name CharacterTemplateName)
+static function bool IsAlienRuler(name CharacterTemplateName, bool HasRulerOnlyBool)
 {
-	switch (CharacterTemplateName)
-	{
-		case 'ArchonKing':
-		case 'BerserkerQueen':
-		case 'ViperKing':
-			return true;
-		default:
-			return false;
-	}
+    switch (CharacterTemplateName)
+    {
+        case 'ArchonKing':
+        case 'BerserkerQueen':
+        case 'ViperKing':
+        case 'CXQueen':
+            return true;
+        default:
+            return HasRulerOnlyBool;
+    }
 }
 
 // Checks the given mission's tactical gameplay tags to see whether

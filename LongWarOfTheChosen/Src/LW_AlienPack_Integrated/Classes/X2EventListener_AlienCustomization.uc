@@ -98,6 +98,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> Templates;
 
 	Templates.AddItem(CreateCustomisationListeners());
+	Templates.AddItem(CreateCustomisationListeners_Bestiary());
 
 	return Templates;
 }
@@ -113,6 +114,22 @@ static function CHEventListenerTemplate CreateCustomisationListeners()
 	Template.AddCHEvent('OnUnitBeginPlay', OnUnitBeginPlay, ELD_OnStateSubmitted, 55);
 
 	Template.RegisterInTactical = true;
+
+	return Template;
+}
+
+static function CHEventListenerTemplate CreateCustomisationListeners_Bestiary()
+{
+	local CHEventListenerTemplate Template;
+
+    `CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'AlienCustomisationListeners_Bestiary');
+    
+    // Don't know how important the priority is. Just be aware that reducing it may affect
+    // summoned units and reinforcements in terms of their rendering.
+	Template.AddCHEvent('OnUnitShownInBestiary', OnUnitShownInBestiary, ELD_Immediate, 55);
+
+	Template.RegisterInTactical = false;
+	Template.RegisterInStrategy = true;
 
 	return Template;
 }
@@ -217,4 +234,60 @@ static function CustomizeAliens_BuildVisualization(XComGameState VisualizeGameSt
 				false);
 		}
 	}
+}
+
+
+// Loops over alien units and tweaks Customization in the Bestiary. ONLY CALLED/USED from the UFOPedia/Bestiary mod
+static function EventListenerReturn OnUnitShownInBestiary( Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState NewGameState;
+	local XComGameStateContext_ChangeContainer ChangeContainer;
+	local XComGameState_Unit_AlienCustomization AlienCustomization;
+	local XComGameState_Unit UnitState, UpdatedUnitState;
+	local LWUnitVariation UnitVariation;
+	local XComUnitPawn Pawn;
+
+	UnitState = XComGameState_Unit(EventData);
+	Pawn = XComUnitPawn(EventSource);
+
+	`APTRACE("AlienCustomization_Bestiary: Num Variations =" @ default.UnitVariations.Length);
+
+	if (UnitState != none && (UnitState.IsAlien() || UnitState.IsAdvent()))
+	{
+		`APTRACE("AlienCustomization_Bestiary: Placing Unit:" @ UnitState.GetFullName());
+		AlienCustomization = class'XComGameState_Unit_AlienCustomization'.static.GetCustomizationComponent(UnitState);
+		if (AlienCustomization == none || AlienCustomization.bAutomatic) // only add if new or overriding an automatic customization
+		{
+			foreach default.UnitVariations(UnitVariation)
+			{
+				`APTRACE("AlienCustomization_Bestiary: Testing Variation for :" @ UnitVariation.CharacterNames[0]);
+
+				if (UnitVariation.CharacterNames.Find(UnitState.GetMyTemplateName()) != -1) 
+				{
+					`APTRACE("AlienCustomization_Bestiary: Valid template found :" @ UnitVariation.CharacterNames[0]);
+
+					//valid unit type without random variation, so roll the dice
+					if (`SYNC_FRAND_STATIC() < UnitVariation.Probability || UnitVariation.Automatic)
+					{
+						`APTRACE("AlienCustomization_Bestiary: Template passed, applying :" @ UnitVariation.CharacterNames[0]);
+
+						NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Creating Alien Customization Component");
+						UpdatedUnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+						AlienCustomization = class'XComGameState_Unit_AlienCustomization'.static.CreateCustomizationComponent(UpdatedUnitState, NewGameState);
+						AlienCustomization.GenerateCustomization(UnitVariation, UpdatedUnitState, NewGameState);
+						`GAMERULES.SubmitGameState(NewGameState);
+
+						AlienCustomization.ApplyCustomization(Pawn);
+
+						if (!AlienCustomization.bAutomatic)
+						{
+							return ELR_NoInterrupt;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return ELR_NoInterrupt;
 }

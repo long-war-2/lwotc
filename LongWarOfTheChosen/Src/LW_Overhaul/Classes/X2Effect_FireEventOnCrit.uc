@@ -22,7 +22,7 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 		EventMgr = `XEVENTMGR;
 		EffectObj = EffectGameState;
 		UnitState = XComGameState_Unit(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-		EventMgr.RegisterForEvent(EffectObj, EventId, EffectGameState.TriggerAbilityFlyover, 1,, UnitState);  
+		EventMgr.RegisterForEvent(EffectObj, EventId, EffectGameState.TriggerAbilityFlyover, ELD_OnStateSubmitted,, UnitState);  
 	}
 }
 
