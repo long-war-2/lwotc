@@ -47,6 +47,7 @@ var TDateTime StartInfiltrationDateTime; // the time when the current infiltrati
 var bool bHasBoostedInfiltration; // indicates if the player has boosted infiltration for this squad
 var bool bHasPausedAtIdealInfiltration; // DEPRECATED, but kept for backward compatibility -- indicated if the game has paused once at reaching ideal infiltration
 var bool bCannotCancelAbort; // indicates the squad has been marked to abort their mission cannot continue it
+var float SquadCovertnessCached; // cached value for Squad Covertness
 
 var string sSquadName;  // auto-generated or user-customize squad name
 var string SquadImagePath;  // option to set a Squad Image custom for this squad
@@ -70,6 +71,7 @@ var config array<float> SquadSizeInfiltrationFactor;
 var config float InfiltrationCovertness_Baseline;
 var config float InfiltrationCovertness_RateUp;
 var config float InfiltrationCovertness_RateDown;
+
 
 var config float RequiredInfiltrationToLaunch;
 var config array<float> DefaultBoostInfiltrationFactor;  // allows for boosting infiltration rate in various ways
@@ -682,12 +684,13 @@ function StartMissionInfiltration(StateObjectReference MissionRef)
 	`XCOMGAME.GameRuleset.SubmitGameState(UpdateState);
 }
 
-function InitInfiltration(XComGameState NewGameState, StateObjectReference MissionRef, float Infiltration)
+function InitInfiltration(XComGameState NewGameState, StateObjectReference MissionRef, float Infiltration) // add cache call here for covertness
 {
 	CurrentMission = MissionRef;
 	bOnMission = true;
 	CurrentInfiltration = Infiltration;
 	CurrentEnemyAlertnessModifier = 99999;
+	SquadCovertnessCached=GetSquadCovertness(SquadSoldiersOnMission);
 	GetAlertnessModifierForCurrentInfiltration(NewGameState, true);
 	StartInfiltrationDateTime = class'XComGameState_GeoscapeEntity'.static.GetCurrentTime();
 	InfiltrationPointPassed.Length = 0;
@@ -833,7 +836,7 @@ function UpdateInfiltrationState(bool AllowPause)
 	if(CurrentMission.ObjectID == 0) return;  // only needs update when on mission
 	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
 	HoursOfInfiltration = float(SecondsOfInfiltration) / 3600.0;
-	HoursToFullInfiltration = GetHoursToFullInfiltration();
+	HoursToFullInfiltration = GetHoursToFullInfiltrationCached();
 	
 	// Add the liberation infiltration bonus to the infiltration time if the region has been liberated.
 	// This handles boosting of missions that are still around after liberating the region where the boost
@@ -846,7 +849,7 @@ function UpdateInfiltrationState(bool AllowPause)
 		if(RegionalAI.bLiberated)
 		{
 			InfiltrationBonusOnLiberation = class'X2StrategyElement_DefaultAlienActivities'.default.INFILTRATION_BONUS_ON_LIBERATION[`STRATEGYDIFFICULTYSETTING] / 100.0;
-			HoursOfInfiltration += GetHoursToFullInfiltration_Static(SquadSoldiersOnMission, CurrentMission) * InfiltrationBonusOnLiberation;
+			HoursOfInfiltration += GetHoursToFullInfiltrationCached_Static(SquadSoldiersOnMission, SquadCovertnessCached, CurrentMission) * InfiltrationBonusOnLiberation;
 		}
 	}
 	
@@ -994,7 +997,7 @@ function float GetSecondsRemainingToFullInfiltration()
 	local float SecondsOfInfiltration;
 	local float SecondsToInfiltrate;
 
-	TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltration();
+	TotalSecondsToInfiltrate = 3600.0 * GetHoursToFullInfiltrationCached(); // test caching here roo
 	SecondsOfInfiltration = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInSeconds(GetCurrentTime(), StartInfiltrationDateTime);
 	SecondsToInfiltrate = TotalSecondsToInfiltrate - SecondsOfInfiltration;
 
@@ -1048,7 +1051,7 @@ static function float GetBaselineHoursToInfiltration(StateObjectReference Missio
 	return BaseHours;
 }
 
-function float GetHoursToFullInfiltration(optional out int SquadSizeHours, optional StateObjectReference MissionRef, optional out int CovertnessHours, optional out int LiberationHours)
+function float GetHoursToFullInfiltration(optional out int SquadSizeHours, optional StateObjectReference MissionRef, optional out int CovertnessHours, optional out int LiberationHours) // make copy to reference new static version
 {
 	local float HoursToFullInfiltration;
 
@@ -1064,7 +1067,7 @@ function float GetHoursToFullInfiltration(optional out int SquadSizeHours, optio
 	return HoursToFullInfiltration;
 }
 
-static function float GetHoursToFullInfiltration_Static(array<StateObjectReference> Soldiers, StateObjectReference MissionRef, optional out int SquadSizeHours, optional out int CovertnessHours, optional out int LiberationHours)
+static function float GetHoursToFullInfiltration_Static(array<StateObjectReference> Soldiers, StateObjectReference MissionRef, optional out int SquadSizeHours, optional out int CovertnessHours, optional out int LiberationHours) // make copy to use cached covertness 
 {
 	local float BaseHours;
 	local float SquadSize;
@@ -1077,6 +1080,87 @@ static function float GetHoursToFullInfiltration_Static(array<StateObjectReferen
 
 	SquadSize = float(GetSquadCount_Static(Soldiers));
 	Covertness = GetSquadCovertness(Soldiers);
+
+	if(SquadSize >= default.SquadSizeInfiltrationFactor.Length)
+		SquadSizeFactor = default.SquadSizeInfiltrationFactor[default.SquadSizeInfiltrationFactor.Length - 1];
+	else
+		SquadSizeFactor = default.SquadSizeInfiltrationFactor[SquadSize];
+
+	if (`XCOMHQ.SoldierUnlockTemplates.Find('Infiltration1Unlock') != -1)
+		SquadSizeFactor -= default.GTSInfiltration1Modifier[SquadSize];
+
+	if (`XCOMHQ.SoldierUnlockTemplates.Find('Infiltration2Unlock') != -1)
+		SquadSizeFactor -= default.GTSInfiltration2Modifier[SquadSize];
+	
+
+	//if(SquadSize < default.InfiltrationSquadSize_Baseline)
+		//SquadSizeFactor -= (default.InfiltrationSquadSize_Baseline - SquadSize) * InfiltrationSquadSize_RateDown;
+	//else
+		//SquadSizeFactor += (SquadSize- default.InfiltrationSquadSize_Baseline) * InfiltrationSquadSize_RateUp;
+
+	BaseHours = GetBaselineHoursToInfiltration(MissionRef);
+
+	SquadSizeFactor = FClamp(SquadSizeFactor, 0.05, 10.0);
+	SquadSizeHours = Round(BaseHours * (SquadSizeFactor - 1.0));
+
+	CovertnessFactor = 1.0;
+	if(Covertness < default.InfiltrationCovertness_Baseline)
+		CovertnessFactor -= (default.InfiltrationCovertness_Baseline - Covertness) * default.InfiltrationCovertness_RateDown / 100.0;
+	else
+		CovertnessFactor += (Covertness - default.InfiltrationCovertness_Baseline) * default.InfiltrationCovertness_RateUp / 100.0;
+
+	CovertnessFactor = FClamp(CovertnessFactor, 0.05, 10.0);
+	CovertnessHours = Round((BaseHours + FMax(0.0, SquadSizeHours)) * (CovertnessFactor - 1.0));
+
+	MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(MissionRef.ObjectID));
+	if (default.MissionsAffectedByLiberationStatus.Find (MissionState.GeneratedMission.Mission.MissionName) != -1)
+	{
+		LiberationFactor = GetLiberationFactor(MissionState);
+		LiberationHours = Round(BaseHours * (LiberationFactor - 1.0));
+	}
+	else
+	{
+		LiberationFactor = 1.0;
+		LiberationHours = 0;
+	}
+	ReturnHours = BaseHours;
+	ReturnHours += SquadSizeHours;
+	ReturnHours += CovertnessHours;
+	ReturnHours += LiberationHours;
+	ReturnHours = FClamp(ReturnHours, default.InfiltrationTime_MinHours, default.InfiltrationTime_MaxHours);
+
+	return ReturnHours;
+}
+
+function float GetHoursToFullInfiltrationCached(optional out int SquadSizeHours, optional StateObjectReference MissionRef, optional out int CovertnessHours, optional out int LiberationHours) // make copy to reference new static version
+{
+	local float HoursToFullInfiltration;
+
+	if (MissionRef.ObjectID == 0)
+	{
+		MissionRef = CurrentMission;
+	}
+	HoursToFullInfiltration = GetHoursToFullInfiltrationCached_Static(SquadSoldiersOnMission, SquadCovertnessCached, MissionRef, SquadSizeHours, CovertnessHours, LiberationHours);
+	//`LOG("Squad" @self @"covertness:"@SquadCovertnessCached,,'TedLog');
+	if (bHasBoostedInfiltration)
+		HoursToFullInfiltration /= DefaultBoostInfiltrationFactor[`STRATEGYDIFFICULTYSETTING];
+
+	return HoursToFullInfiltration;
+}
+
+static function float GetHoursToFullInfiltrationCached_Static(array<StateObjectReference> Soldiers, float CachedCovertness, StateObjectReference MissionRef, optional out int SquadSizeHours, optional out int CovertnessHours, optional out int LiberationHours) // make copy to use cached covertness 
+{
+	local float BaseHours;
+	local float SquadSize;
+	local float Covertness;
+	local float SquadSizeFactor, CovertnessFactor, LiberationFactor;
+	local float ReturnHours;
+	local XComGameState_MissionSite MissionState;
+	//if(Soldiers.Length == 0)
+		//Soldiers = SquadSoldiers;
+
+	SquadSize = float(GetSquadCount_Static(Soldiers));
+	Covertness = CachedCovertness;
 
 	if(SquadSize >= default.SquadSizeInfiltrationFactor.Length)
 		SquadSizeFactor = default.SquadSizeInfiltrationFactor[default.SquadSizeInfiltrationFactor.Length - 1];

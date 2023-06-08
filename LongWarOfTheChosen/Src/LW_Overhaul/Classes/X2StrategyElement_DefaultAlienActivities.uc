@@ -175,6 +175,9 @@ var protected name RebelMissionsJob;
 
 var localized string m_strInsufficientRebels;
 
+var config int COINOPS_MIN_VIGILANCE;
+var config int COINOPS_MIN_ALERT;
+
 //helpers for checking for name typos
 var name ProtectRegionEarlyName;
 var name ProtectRegionMidName;
@@ -1247,6 +1250,7 @@ static function X2DataTemplate CreateCOINOpsTemplate()
 	local X2LWActivityCondition_RestrictedActivity RestrictedActivity;
 	local X2LWActivityCooldown_Global Cooldown;
 	local X2LWActivityCondition_Month MonthRestriction;
+	local X2LWActivityCondition_AlertVigilance AlertVigilanceCondition;
 
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.COINOpsName);
 	Template.iPriority = 50; // 50 is default, lower priority gets created earlier
@@ -1255,7 +1259,13 @@ static function X2DataTemplate CreateCOINOpsTemplate()
 	Template.ActivityCreation = new class'X2LWActivityCreation';
 	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInWorld);
 	Template.ActivityCreation.Conditions.AddItem(default.ContactedAlienRegion);
-	Template.ActivityCreation.Conditions.AddItem(new class'X2LWActivityCondition_AlertVigilance');
+
+	//Add different setup condition for Alert/Vigilance
+
+	AlertVigilanceCondition = new class'X2LWActivityCondition_AlertVigilance';
+	AlertVigilanceCondition.MinAlert=default.COINOPS_MIN_ALERT;
+	AlertVigilanceCondition.MinVigilance=default.COINOPS_MIN_VIGILANCE;
+	Template.ActivityCreation.Conditions.AddItem(AlertVigilanceCondition);
 
 	ResearchFacility = new class'X2LWActivityCondition_ResearchFacility';
  	ResearchFacility.bAllowedAlienResearchFacilityInRegion = false;
@@ -4664,3 +4674,4 @@ defaultProperties
 		MaxRestricted_Category=1
 	End Object
 	LiberationCondition = DefaultLiberationCondition;
+}

@@ -585,7 +585,7 @@ static function RapidDeployment_BuildVisualization(XComGameState VisualizeGameSt
 
     History = `XCOMHISTORY;
     context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
     InteractingUnitRef = context.InputContext.SourceObject;
     BuildTrack = EmptyTrack;
     BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);

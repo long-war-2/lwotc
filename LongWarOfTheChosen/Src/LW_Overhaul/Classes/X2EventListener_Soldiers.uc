@@ -132,14 +132,12 @@ static protected function EventListenerReturn OnOverrideItemUnequipBehavior(Obje
 	local XComGameState_Item	ItemState;
 	local X2EquipmentTemplate	EquipmentTemplate;
 
-	`LWTRACE("OverrideItemUnequipBehavior : Starting listener.");
 	OverrideTuple = XComLWTuple(EventData);
 	if(OverrideTuple == none)
 	{
 		`REDSCREEN("OverrideItemUnequipBehavior event triggered with invalid event data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideItemUnequipBehavior : Parsed XComLWTuple.");
 
 	ItemState = XComGameState_Item(EventSource);
 	if(ItemState == none)
@@ -147,7 +145,6 @@ static protected function EventListenerReturn OnOverrideItemUnequipBehavior(Obje
 		`REDSCREEN("OverrideItemUnequipBehavior event triggered with invalid source data.");
 		return ELR_NoInterrupt;
 	}
-	`LWTRACE("OverrideItemUnequipBehavior : EventSource valid.");
 
 	if(OverrideTuple.Id != 'OverrideItemUnequipBehavior')
 		return ELR_NoInterrupt;
@@ -518,7 +515,15 @@ static function EventListenerReturn OverrideCanPurchaseAbility(
 	{
 		if (`XCOMHQ.HasFacilityByName('RecoveryCenter'))
 		{
-			Tuple.Data[13].b = true;
+			if (Tuple.Data[12].b)
+			{
+				Tuple.Data[13].b = true;
+			}
+			else
+			{
+				Tuple.Data[13].b = false;
+				Tuple.Data[14].i = 3;   // Reason: Not enough AP
+			}
 		}
 		else
 		{

@@ -1082,7 +1082,7 @@ TacticalText="<Bullet/> Las armas de estilo Bullpup son extremadamente efectivas
 [Bullpup_LS X2WeaponTemplate]
 FriendlyName="Kal-13 \"Bullpup\""
 FriendlyNamePlural="Kal-13 \"Bullpups\""
-BriefSummary=""Podemos fabricar un subfusil láser modificado que los Guerrilleros pueden usar. Si bien Tygan ha afirmado correctamente que, de hecho, no se trata de un Bullpup, su estructura compacta y los ajustes adicionales que hemos realizado son suficientes para que consideren seriamente su uso en la batalla."
+BriefSummary="Podemos fabricar un subfusil láser modificado que los Guerrilleros pueden usar. Si bien Tygan ha afirmado correctamente que, de hecho, no se trata de un Bullpup, su estructura compacta y los ajustes adicionales que hemos realizado son suficientes para que consideréis seriamente su uso en la batalla."
 TacticalText="<Bullet/> Las armas láser reciben puntería adicional.\n<Bullet/> Las armas de estilo Bullpup son extremadamente efectivas a corta distancia y están diseñadas para tácticas de golpear y huir.\n<Bullet/> También aumentan la movilidad del Guerrillero y mejoran su capacidad de infiltrarse en las fuerzas de ADVENT sin ser detectados.\n<Bullet/> Añade las mejoras obtenidas de los enemigos para incrementar la efectividad táctica del Bullpup Kal-13."
 AbilityDescName="bullpup"
 
@@ -1113,7 +1113,7 @@ AbilityDescName="crossbow"
 [Vektor_LS X2WeaponTemplate]
 FriendlyName="Perforacielos"
 FriendlyNamePlural="Perforacielos"
-BriefSummary="Un diseño de arma láser experimental que se originó en la Rusia del viejo mundo; el rifle láser Vektor "Perforacielos" tiene un rendimiento similar a los rifles de tirador tradicionales utilizados por los Segadores, sin embargo ha sido actualizada con un moderno blindaje de aleación y una fuente de energía compacta: se ha transformado en una formidable arma en manos de un francotirador experto."
+BriefSummary="Un diseño de arma láser experimental que se originó en la Rusia del viejo mundo; el rifle láser Vektor \"Perforacielos\" tiene un rendimiento similar a los rifles de tirador tradicionales utilizados por los Segadores, sin embargo ha sido actualizado con un moderno blindaje de aleación y una fuente de energía compacta: se ha transformado en una formidable arma en manos de un francotirador experto."
 TacticalText="<Bullet/> Las armas láser reciben puntería adicional.<br/><Bullet/> Las armas de Segador sufren una merma de puntería a corto alcance; sin embargo, poseen la habilidad Vista de pelotón de los francotiradores.<br/><Bullet/> Penalización de puntería cada vez mayor a partir de 4 casillas más allá del alcance de visión del escuadrón.<br/><Bullet/> Añade las mejoras obtenidas de los enemigos para incrementar la efectividad del fusil láser."
 AbilityDescName="vektor rifle"
 
@@ -2148,6 +2148,9 @@ DisplayName="Personal de la resistencia"
 
 [Reward_ResistanceMEC X2RewardTemplate]
 DisplayName="CEM de la resistencia"
+; LWOTC translated
+RewardDetails="Conseguiste un CEM para proteger uno de tus Refugios. ¡De puta madre!"
+; End translated
 
 [Reward_NewResources X2RewardTemplate]
 DisplayName="Nuevos recursos"
@@ -2993,7 +2996,7 @@ MissionDifficultyLabels[19]="Loco"
 ; LWOTC translated
 DisplayName="Enfermería"
 CompletedSummary="Los soldados ahora sino están heridos después de completar misiones tácticas tienen la posibilidad de recuperarse de los rasgos negativos.\nNuevo espacio de personal disponible - Aumenta la velocidad de curación del soldado\nNuevo espacio de personal disponible - Elimina todos los rasgos negativos"
-Summary="Es posible dotar de personal científico en la enfermería a fin de reducir el tiempo que nuestros soldados necesitan para recuperarse de las heridas. Una vez construida la enfermería, los soldados se pueden asignar aquí para eliminar los rasgos negativos adquiridos en combate. La actualización del módulo hipervital permite paralizar temporalmente las heridas de un soldado a fin de hacerle disponible en el despliegue de una misión específica."
+Summary="Es posible dotar de personal científico en la enfermería a fin de reducir el tiempo que nuestros soldados necesitan para recuperarse de las heridas. Una vez construida la enfermería, los soldados se pueden asignar aquí para eliminar los rasgos negativos adquiridos en combate. La actualización del módulo hipervital permite paralizar temporalmente las heridas de un soldado con el objetivo de que pueda estar disponible en el despliegue de una misión específica."
 ; End translated
 
 [OfficerTrainingSchool X2FacilityTemplate]
@@ -3016,6 +3019,10 @@ ReaperTutorialText="Los Segadores en Long War of The Chosen han recibido una ree
 
 TemplarTutorialTitle="Concentración de los Templarios"
 TemplarTutorialText="Los Templarios al igual que Segadores han mejorado en prestaciones (a fin de diferenciarlo del Ninja de Long War 2); la clase ahora lleva un escudo en lugar de la pistola automática que proporciona interesantes habilidades defensivas (aun así seguirá siendo factible equiparla en la ranura creada expresamente para ello). Los Templarios continuarán ganando concentración durante las misiones al matar a unidades con Hender. Cada punto de concentración aumenta la eficacia del Templario en combate al mejorar su movilidad, capacidad de esquivar y el daño que inflige con Hender. También se puede invertir concentración en habilidades poderosas que tienen una efectividad mayor cuando se utilizan a los niveles de concentración más altos."
+
+TemplarMomentumTutorialTitle="Templarios: Ímpetu y Uno para todos"
+TemplarMomentumTutorialText="Después de utilizar Hender, los Templarios siempre activan Ímpetu, una acción de movimiento sin coste que les permite volver a cubierto. El Templario también cuenta con la habilidad \"Uno para todos\", que proporciona un aumento en la defensa ablativa y sirve como cobertura completa para un aliado, pero a costa de perder su defensa base."
+
 ;End translated
 
 [ContinentBonus_QuidProQuo X2GameplayMutatorTemplate]
@@ -3334,6 +3341,30 @@ Summary="Dada nuestra preferencia por las misiones de ataque y huida, en muchas 
 CodeName="Fajita"
 LongDescription="Hemos conseguido reciclar este Mutón de élite. R. Tygan."
 UnlockedDescription="Del cadáver del Mutón de élite se han sacado <XGParam:StrValue0/!Quantity/> aleaciones."
+
+; LWOTC translated
+[RenderAdventPriestCorpse X2TechTemplate]
+DisplayName="Reciclar cadáver de Sacerdote ADVENT"
+Summary="Dada nuestra preferencia por las misiones de ataque y huida, en muchas misiones es difícil recuperar restos alienígenas y de ADVENT, aunque son recursos valiosos para nuestra campaña de investigación y construcción. No obstante, también somos capaces de reciclarlos para obtener materiales indispensables para una gran variedad de aplicaciones. Del sacerdote ADVENT deberíamos de sacar 3 aleaciones."
+CodeName="Omelette"
+LongDescription="Hemos conseguido reciclar este sacerdote ADVENT. R. Tygan."
+UnlockedDescription="Del cadáver del sacerdote ADVENT se han sacado <XGParam:StrValue0/!Quantity/> aleaciones."
+
+[RenderAdventPurifierCorpse X2TechTemplate]
+DisplayName="Reciclar cadáver de Purificador ADVENT"
+Summary="Dada nuestra preferencia por las misiones de ataque y huida, en muchas misiones es difícil recuperar restos alienígenas y de ADVENT, aunque son recursos valiosos para nuestra campaña de investigación y construcción. No obstante, también somos capaces de reciclarlos para obtener materiales indispensables para una gran variedad de aplicaciones. Del purificador ADVENT deberíamos de sacar 3 aleaciones."
+CodeName="Paneer"
+LongDescription="Hemos conseguido reciclar este purificador ADVENT. R. Tygan."
+UnlockedDescription="Del cadáver del purificador ADVENT se han sacado <XGParam:StrValue0/!Quantity/> aleaciones."
+
+[RenderSpectreCorpse X2TechTemplate]
+DisplayName="Reciclar cadáver de Espectro"
+Summary="Dada nuestra preferencia por las misiones de ataque y huida, en muchas misiones es difícil recuperar restos alienígenas y de ADVENT, aunque son recursos valiosos para nuestra campaña de investigación y construcción. No obstante, también somos capaces de reciclarlos para obtener materiales indispensables para una gran variedad de aplicaciones. Del espectro deberíamos de sacar 4 cristales de elerio."
+CodeName="Arándano"
+LongDescription="Hemos conseguido reciclar este espectro ADVENT. R. Tygan."
+UnlockedDescription="Del cadáver del espectro se han sacado <XGParam:StrValue0/!Quantity/> cristales de elerio."
+; End translated
+
 
 [ResistanceRadio X2TechTemplate]
 DisplayName="Radio de la resistencia"
@@ -4989,7 +5020,7 @@ ObjectiveTextPools[1]="Extrae recursos de ADVENT"
 ObjectiveTextPools[2]="Recupera y extrae recursos adicionales (Opcional)"
 ObjectiveTextPools[3]="Extrae a todos los soldados de XCOM"
 ObjectiveTextPools[4]="Robo relámpago"
-ObjectiveTextPools[5]="La resistencia ha descubierto un almacén ADVENT vulnerable lleno de suministros y recursos valiosos. Irrumpe, toma todo lo que puedas, y escapa antes de que lleguen los refuerzos. Habrán múltiples cajas de alijos en esta misión pero sólo podrán recoger 1 por persona."
+ObjectiveTextPools[5]="La resistencia ha descubierto un almacén ADVENT vulnerable lleno de suministros y recursos valiosos. Irrumpe, toma todo lo que puedas, y escapa antes de que lleguen los refuerzos. Habrán múltiples cajas de alijos en esta misión pero solamente se podrá recoger 1 por soldado."
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="Alijo de recursos ADVENT"
@@ -5397,7 +5428,7 @@ LocPromotionPopupText="<Bullet/> Veredicto se puede activar con ataques cuerpo a
 LocFriendlyName="Anulación manual"
 ; LWOTC translated
 LocLongDescription="Reinicia todos los tiempos de reutilización de las habilidades de los soldados aliados hasta en <Ability:OVERRIDE_REDUCTION/> turnos."
-LocHelpText="Reinicia todos los tiempos de reutilización de las habilidades de los soldados aliados hasta en <Ability:OVERRIDE_REDUCTION/> turnos..
+LocHelpText="Reinicia todos los tiempos de reutilización de las habilidades de los soldados aliados hasta en <Ability:OVERRIDE_REDUCTION/> turnos.
 LocPromotionPopupText="<Bullet/> Utiliza las cualidades del Guerrillero al comienzo y durante cada misión para aprovechar al máximo la Anulación manual.<br/><Bullet/> Coste de 1 acción, <Ability:SelfCooldown_LW/> turnos de tiempo de enfriamiento.<br/>"
 ; End translated
 
@@ -5491,28 +5522,28 @@ LocFlyOverText="Sabotaje"
 
 ; LWOTC translated
 [ShieldAllyM1 X2AbilityTemplate]
-LocFriendlyName="El más grande Campeón de los Brujos"
+LocFriendlyName="El más grande Campeón del Brujo"
 LocHelpText="Otorga puntería, probabilidad crítica, voluntad, poder psiónico y un escudo ablativo a un aliado. Cuando esa unidad permanece con vida el Brujo gana <Ability:SHIELD_ALLY_PCT_DR>% de mitigación al daño. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
 LocLongDescription="Otorga puntería, probabilidad crítica, voluntad, poder psiónico y un escudo ablativo a un aliado. Cuando esa unidad permanece con vida el Brujo gana <Ability:SHIELD_ALLY_PCT_DR>% de mitigación al daño. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
-LocFlyOverText="El más grande Campeón de los Brujos"
+LocFlyOverText="El más grande Campeón del Brujo"
 
 [ShieldAllyM2 X2AbilityTemplate]
-LocFriendlyName="El más grande Campeón de los Brujos"
+LocFriendlyName="El más grande Campeón del Brujo"
 LocHelpText="Otorga puntería, probabilidad crítica, voluntad, poder psiónico y un escudo ablativo a un aliado. Cuando esa unidad permanece con vida el Brujo gana <Ability:SHIELD_ALLY_PCT_DR>% de mitigación al daño. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
 LocLongDescription="Otorga puntería, probabilidad crítica, voluntad, poder psiónico y un escudo ablativo a un aliado. Cuando esa unidad permanece con vida el Brujo gana <Ability:SHIELD_ALLY_PCT_DR>% de mitigación al daño. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
-LocFlyOverText="El más grande Campeón de los Brujos"
+LocFlyOverText="El más grande Campeón del Brujo"
 
 [ShieldAllyM3 X2AbilityTemplate]
-LocFriendlyName="El más grande Campeón de los Brujos"
+LocFriendlyName="El más grande Campeón del Brujo"
 LocHelpText="Otorga puntería, probabilidad crítica, voluntad, poder psiónico y un escudo ablativo a un aliado. Cuando esa unidad permanece con vida el Brujo gana <Ability:SHIELD_ALLY_PCT_DR>% de mitigación al daño. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
 LocLongDescription="Otorga puntería, probabilidad crítica, voluntad, poder psiónico y un escudo ablativo a un aliado. Cuando esa unidad permanece con vida el Brujo gana <Ability:SHIELD_ALLY_PCT_DR>% de mitigación al daño. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
-LocFlyOverText="El más grande Campeón de los Brujos"
+LocFlyOverText="El más grande Campeón del Brujo"
 
 [ShieldAllyM4 X2AbilityTemplate]
-LocFriendlyName="El más grande Campeón de los Brujos"
+LocFriendlyName="El más grande Campeón del Brujo"
 LocHelpText="Otorga puntería, probabilidad crítica, voluntad, poder psiónico y un escudo ablativo a un aliado. Cuando esa unidad permanece con vida el Brujo gana <Ability:SHIELD_ALLY_PCT_DR>% de mitigación al daño. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
 LocLongDescription="Otorga puntería, probabilidad crítica, voluntad, poder psiónico y un escudo ablativo a un aliado. Cuando esa unidad permanece con vida el Brujo gana <Ability:SHIELD_ALLY_PCT_DR>% de mitigación al daño. Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos."
-LocFlyOverText="El más grande Campeón de los Brujos"
+LocFlyOverText="El más grande Campeón del Brujo"
 ; End translated
 
 ; LWOTC translated
@@ -5755,7 +5786,7 @@ ActionObjective="Robar cadáveres"
 ActionObjective="Entrenamiento intensivo"
 
 [CovertAction_ResistanceMec X2CovertActionTemplate]
-ActionObjective="Apropiarse un MEC para la Resistencia"
+ActionObjective="Apropiarse un CEM para la Resistencia"
 
 [CovertAction_RecruitRebels X2CovertActionTemplate]
 ActionObjective="Reclutar rebeldes"
@@ -6075,9 +6106,9 @@ LocPromotionPopupText="<Bullet/> Tus ataques a distancia adquieren <Ability:PRED
 LocFriendlyName="Estilete"
 LocFlyOverText="Estilete"
 ; LWOTC translated
-LocLongDescription= "Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> trituran <Ability:STILETTO_ARMOR_PIERCING/> de armadura."
-LocHelpText="Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> trituran <Ability:STILETTO_ARMOR_PIERCING/> de armadura."
-LocPromotionPopupText="<Bullet/> Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> trituran <Ability:STILETTO_ARMOR_PIERCING/> de armadura.<br/>"
+LocLongDescription= "Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> ignoran <Ability:STILETTO_ARMOR_PIERCING/> de armadura."
+LocHelpText="Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> perforan <Ability:STILETTO_ARMOR_PIERCING/> de armadura."
+LocPromotionPopupText="<Bullet/> Los disparos realizados con tu <Ability:BOUND_WEAPON_NAME/> perforan <Ability:STILETTO_ARMOR_PIERCING/> de armadura.<br/>"
 ; End translated
 
 [Reposition_LW X2AbilityTemplate]
@@ -6107,7 +6138,7 @@ LocLongDescription="Reduce la penalización al apuntado en disparos de corto alc
 LocHelpText="Reduce la penalización al apuntado en disparos de corto alcance con tu <Ability:WeaponName/> en un <Ability:WPN_HANDLING_MODIFIER/>%."
 LocFlyOverText="Manejo de armas"
 ; LWOTC translated
-LocPromotionPopupText="<Bullet/> Manejo de armas no afecta a la penalización de puntería de Ojos de lince.<br/>"
+LocPromotionPopupText="<Bullet/> Manejo de armas no afecta a la penalización de puntería de Ojo de lince.<br/>"
 ; End translated
 
 [ThatsCloseEnough_LW X2AbilityTemplate]
@@ -6142,7 +6173,7 @@ LocFriendlyName="No pasarán"
 LocFlyOverText="No pasarán"
 LocLongDescription="Durante los turnos enemigos ejecuta un disparo de reacción gratuito con tu escopeta recortada que podrá impactar críticamente a cualquier enemigo visible que se mueva o dispare dentro de un radio de <Ability:NONE_SHALL_PASS_TILE_RANGE/> casillas. Un uso por turno."
 LocHelpText="Durante los turnos enemigos ejecuta un disparo de reacción gratuito con tu escopeta recortada que podrá impactar críticamente a cualquier enemigo visible que se mueva o dispare dentro de un radio de <Ability:NONE_SHALL_PASS_TILE_RANGE/> casillas. Un uso por turno."
-LocPromotionPopupText="<Bullet/> No se efectuará si el soldado se encuentra en ocultación.<br/><Bullet/> Un uso por turno.<br/><Bullet/> Necesita 1 de munición y sólo se realizará si la escopeta de corredera está cargada..<br/><Bullet/> Posibilidad de impacto crítico.<br/><Bullet/> Funciona durante cualquier turno enemigo: alienígena, perdidos, Elegidos y Jefes dominantes.<br/>"
+LocPromotionPopupText="<Bullet/> No se efectuará si el soldado se encuentra en ocultación.<br/><Bullet/> Un uso por turno.<br/><Bullet/> Necesita 1 de munición y sólo se realizará si la escopeta de corredera está cargada.<br/><Bullet/> Posibilidad de impacto crítico.<br/><Bullet/> Funciona durante cualquier turno enemigo: alienígena, perdidos, Elegidos y Jefes dominantes.<br/>"
 
 [ScrapMetal_LW X2AbilityTemplate]
 LocFriendlyName="Chatarra"
@@ -6162,18 +6193,18 @@ LocHelpText="Asesinando enemigos orgánicos con tu escopeta de corredera consigu
 LocPromotionPopupText="<Bullet/> Usa Brutalidad como una herramienta de control de multitudes a fin de permitir que el soldado avance de manera más agresiva y combínala con la habilidad Despiadado para aumentar tu cantidad de bajas.<br/>"
 
 [Ruthless_LW X2AbilityTemplate]
-LocFriendlyName="Despiadado"
+LocFriendlyName="Impasible"
 LocLongDescription="Matar a un enemigo en pánico o desorientado con tu escopeta de corredera te devuelve un punto de acción."
 LocHelpText="Matar a un enemigo en pánico o desorientado con tu escopeta de corredera te devuelve un punto de acción."
-LocFlyOverText="Despiadado"
-LocPromotionPopupText="<Bullet/> Compaginar inteligentemente los efectos Despiadado y Brutalidad lograrás matar a varios enemigos por turno con tu escopeta de corredera.<br/><Bullet/> Sin límite de uso por turno, habilidad Top.<br/>"
+LocFlyOverText="Impasible"
+LocPromotionPopupText="<Bullet/> Compaginando inteligentemente los efectos Impasible y Brutalidad lograrás matar a varios enemigos por turno con tu escopeta de corredera.<br/><Bullet/> Sin límite de uso por turno; habilidad Top.<br/>"
 
 [ZoneOfControl_LW X2AbilityTemplate]
 LocFriendlyName = "Zona de control"
 LocHelpText = "Todos los enemigos que se posicionen dentro del aura del <Ability:ClassName/> en un radio de <Ability:ZONE_CONTROL_RADIUS/> casillas sufren penalizaciones de <Ability:ZONE_CONTROL_AIM_PENALTY/> de puntería y <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> de movilidad."
 LocLongDescription = "Todos los enemigos que se posicionen dentro del aura del <Ability:ClassName/> en un radio de <Ability:ZONE_CONTROL_RADIUS/> casillas sufren penalizaciones a apuntado y movilidad."
 ; LWOTC translated
-LocPromotionPopupText = "<Bullet/> Todos los enemigos que se encuentren dentro del aura del <Ability:ClassName/>'s en un radio de <Ability:ZONE_CONTROL_RADIUS/> casillas sufren penalizaciones de <Ability:ZONE_CONTROL_AIM_PENALTY/> de puntería y <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> de movilidad.<br/>"
+LocPromotionPopupText = "<Bullet/> Todos los enemigos que se encuentren dentro del aura del <Ability:ClassName/> en un radio de <Ability:ZONE_CONTROL_RADIUS/> casillas sufren penalizaciones de <Ability:ZONE_CONTROL_AIM_PENALTY/> de puntería y <Ability:ZONE_CONTROL_MOBILITY_PENALTY/> de movilidad.<br/>"
 ; End translated
 
 [ZoCCleanse X2AbilityTemplate]
@@ -6207,7 +6238,7 @@ LocFriendlyName = "Protocolo cegador"
 LocFlyOverText = "Protocolo cegador"
 ; LWOTC translated
 LocHelpText = "Envía al Gremlin a que lance una pequeña granada cegadora a una unidad enemiga, desorientándole no sólo a él sino también a todas las restantes enemigas dentro de un radio pequeño (reducirán su puntería en <Ability:DISORIENTED_AIM_ADJUST/> y su movilidad en <Ability:DISORIENTED_MOBILITY_ADJUST/>)."
-LocLongDescription = Envía al Gremlin a que lance una pequeña granada cegadora a una unidad enemiga, desorientándole no sólo a él sino también a todas las restantes enemigas dentro de un radio pequeño (reducirán su puntería en <Ability:DISORIENTED_AIM_ADJUST/> y su movilidad en <Ability:DISORIENTED_MOBILITY_ADJUST/>)."
+LocLongDescription = "Envía al Gremlin a que lance una pequeña granada cegadora a una unidad enemiga, desorientándole no sólo a él sino también a todas las restantes enemigas dentro de un radio pequeño (reducirán su puntería en <Ability:DISORIENTED_AIM_ADJUST/> y su movilidad en <Ability:DISORIENTED_MOBILITY_ADJUST/>)."
 ; End translated
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText = "<Bullet/> Funciona con Vista de pelotón.<br/><Bullet/> Protocolo cegador tiene un tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos y finaliza las acciones del soldado.<br/>"
@@ -6217,9 +6248,9 @@ LocPromotionPopupText = "<Bullet/> Funciona con Vista de pelotón.<br/><Bullet/>
 LocFriendlyName = "Te tengo en la mira"
 LocFlyOverText = "Te tengo en la mira"
 ; LWOTC translated
-LocHelpText = "Concede +<Ability:LEAD_TARGET_AIM_BONUS/>% a la probabilidad de acertar contra una unidad pero retrasa el disparo hasta que el objetivo realice una acción en su turno. Cuesta dos acciones y tiene un tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
-LocLongDescription = "Concede +<Ability:LEAD_TARGET_AIM_BONUS/>% a la probabilidad de acertar contra una unidad pero retrasa el disparo hasta que el objetivo realice una acción en su turno. Cuesta dos acciones y tiene un tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
-LocPromotionPopupText = "<Bullet/> Te tengo en la mira es un talento que permite al soldado mantener su atención fijada en un enemmigo mejorando su precisión, garantizando +<Ability:LEAD_TARGET_AIM_BONUS/>% a la probabilidad de acertar, aunque retrasa el disparo hasta que el objetivo realice una acción en su turno. Cuesta dos acciones.<br/><Bullet/> Te tengo en la mira tiene un tiempo de refresco de <Ability:SelfCooldown_LW/> turnos.<br/>"
+LocHelpText = "Concede +<Ability:LEAD_TARGET_AIM_BONUS/>% a la probabilidad de acertar contra una unidad pero retrasa el disparo hasta que el objetivo realice un movimiento. Cuesta dos acciones y tiene un tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+LocLongDescription = "Concede +<Ability:LEAD_TARGET_AIM_BONUS/>% a la probabilidad de acertar contra una unidad pero retrasa el disparo hasta que el objetivo realice un movimiento. Cuesta dos acciones y tiene un tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+LocPromotionPopupText = "<Bullet/> Te tengo en la mira es un talento que permite al soldado mantener su atención fijada en un enemmigo mejorando su precisión, garantizando +<Ability:LEAD_TARGET_AIM_BONUS/>% a la probabilidad de acertar, aunque retrasa el disparo hasta que el objetivo realice un movimiento. Cuesta dos acciones.<br/><Bullet/> Te tengo en la mira tiene un tiempo de refresco de <Ability:SelfCooldown_LW/> turnos.<br/>"
 ; End translated
 
 [LeadTheTargetShot_LW X2AbilityTemplate]
@@ -6228,10 +6259,10 @@ LocFlyOverText = "Te tengo en la mira"
 
 [TargetFocus_LW X2AbilityTemplate]
 LocFriendlyName = "Asolar"
-LocHelpText = "Tus ataques a distancia ganan +<Ability:TARGET_FOCUS_AIM_BONUS/> de puntería y trituran <Ability:TARGET_FOCUS_PEN_BONUS/> de armadura contra enemigos inflanqueables."
-LocLongDescription = "Tus ataques a distancia ganan +<Ability:TARGET_FOCUS_AIM_BONUS/> de puntería y trituran <Ability:TARGET_FOCUS_PEN_BONUS/> de armadura contra enemigos inflanqueables."
+LocHelpText = "Tus ataques a distancia ganan +<Ability:TARGET_FOCUS_AIM_BONUS/> de puntería y perforan <Ability:TARGET_FOCUS_PEN_BONUS/> de armadura contra enemigos inflanqueables."
+LocLongDescription = "Tus ataques a distancia ganan +<Ability:TARGET_FOCUS_AIM_BONUS/> de puntería y perforan <Ability:TARGET_FOCUS_PEN_BONUS/> de armadura contra enemigos inflanqueables."
 ; LWOTC translated
-LocPromotionPopupText = "<Bullet/> Tus ataques a distancia obtienen +<Ability:TARGET_FOCUS_AIM_BONUS/> de puntería y trituran <Ability:TARGET_FOCUS_PEN_BONUS/> de armadura contra enemigos inflanqueables. <br/><Bullet/> Las unidades que no permiten flanquearlas son las que no poseen la cualidad de ponerse a cubierto, como los drones, MECs y berserkers.<br/>"
+LocPromotionPopupText = "<Bullet/> Tus ataques a distancia obtienen +<Ability:TARGET_FOCUS_AIM_BONUS/> de puntería e ignoran <Ability:TARGET_FOCUS_PEN_BONUS/> de armadura contra enemigos inflanqueables. <br/><Bullet/> Las unidades que no permiten flanquearlas son las que no poseen la cualidad de ponerse a cubierto, como los drones, MECs y berserkers.<br/>"
 ; End translated
 
 [AimAssist_LW X2AbilityTemplate]
@@ -6249,9 +6280,9 @@ LocPromotionPopupText = "<Bullet/> Comienza cada misión con <Ability:SUPERCHARG
 ; LWOTC Needs Translation (3)
 [ShootingSharp_LW X2AbilityTemplate]
 LocFriendlyName = "Disparo perforante"
-LocHelpText = "Tus ataques a distancia ganan +<Ability:SS_PIERCE/> en triturar armadura y +<Ability:SS_AIM_BONUS/> de puntería contra las unidades a cubierto."
-LocLongDescription = "Tus ataques a distancia ganan +<Ability:SS_PIERCE/> en triturar armadura y +<Ability:SS_AIM_BONUS/> de puntería contra las unidades a cubierto."
-LocPromotionPopupText = "<Bullet/>Tus ataques a distancia ganan +<Ability:SS_PIERCE/> en triturar armadura y +<Ability:SS_AIM_BONUS/> de puntería contra las unidades a cubierto.<br/>"
+LocHelpText = "Tus ataques a distancia ganan +<Ability:SS_PIERCE/> en perforar armadura y +<Ability:SS_AIM_BONUS/> de puntería contra las unidades a cubierto."
+LocLongDescription = "Tus ataques a distancia ganan +<Ability:SS_PIERCE/> en perforar armadura y +<Ability:SS_AIM_BONUS/> de puntería contra las unidades a cubierto."
+LocPromotionPopupText = "<Bullet/>Tus ataques a distancia ganan +<Ability:SS_PIERCE/> en perforar armadura y +<Ability:SS_AIM_BONUS/> de puntería contra las unidades a cubierto.<br/>"
 ; End translated
 
 [Unlimitedpower_LW X2AbilityTemplate]
@@ -6316,7 +6347,7 @@ LocHelpText="Dispara con una pequeña penalización a la puntería a cambio de u
 LocPromotionPopupText="<Bullet/> Ojo de lince reduce la probabilidad de impacto en un <Ability:DeadEyeAim/>% pero aumenta el daño base en un <Ability:DeadEyeDmg/>%.<br/><Bullet/> Ojo de lince tiene un tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/>"
 
 [Deadeye X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Ojo de lince reduce la probabilidad de impacto en un <Ability:DeadEyeAim/>% pero aumenta el daño base en un <Ability:DeadEyeDmg/>%.<br/><Bullet/> Ojo de lince tiene un tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Funciona con Disparo rápido.<br/>"
+LocPromotionPopupText="<Bullet/> Ojo de lince reduce la probabilidad de impacto en un <Ability:DeadEyeAim/>% pero aumenta el daño base en un <Ability:DeadEyeDmg/>%.<br/><Bullet/> Ojo de lince tiene un tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Funciona con Disparo instantáneo.<br/>"
 
 ; AdvPriest Abilities
 [HolyWarriorM1 X2AbilityTemplate]
@@ -6500,8 +6531,8 @@ LocFlyOverText="Sed de sangre"
 
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="Golpe preciso"
-LocLongDescription="Tus ataques cuerpo a cuerpo trituran 3 de armadura."
-LocHelpText="Tus ataques cuerpo a cuerpo trituran 3 de armadura."
+LocLongDescription="Tus ataques cuerpo a cuerpo perforan 3 de armadura."
+LocHelpText="Tus ataques cuerpo a cuerpo perforan 3 de armadura."
 LocFlyOverText="Golpe preciso"
 
 [PsychoticRage_LW X2AbilityTemplate]
@@ -6670,8 +6701,8 @@ LocFlyOverText="Reacción primaria del Elegido"
 ; LWOTC translated
 [ChosenImmunitiesPassive X2AbilityTemplate]
 LocFriendlyName="Inmunidad de los Elegidos"
-LocLongDescription="Los Elegidos son inmunes al aturdimiento, desorientación, congelación y sufren un -50% de movilidad por Mutilar en lugar de ser inmovilizados."
-LocHelpText="Los Elegidos son inmunes al aturdimiento, desorientación, congelación y sufren un -50% de movilidad por Mutilar en lugar de ser inmovilizados."
+LocLongDescription="Los Elegidos son inmunes al aturdimiento, desorientación y congelación."
+LocHelpText="Los Elegidos son inmunes al aturdimiento, desorientación y congelación."
 LocFlyOverText="Inmunidad de los Elegidos"
 ; End translated
 
@@ -6695,7 +6726,7 @@ LocPromotionPopupText="<Bullet/> Recibes <Ability:BRAWLER_DR_PCT>% menos de dañ
 LocFriendlyName="Tiempo de reacción instantáneo"
 LocFlyOverText="Tiempo de reacción instantáneo"
 LocLongDescription="Concede <Ability:IRT_DODGE_PER_TILE> de esquivar por cada casilla alejada del ataque de una unidad."
-LocHelpText="Concede <Ability:IRT_DODGE_PER_TILE> de esquivar por cada casilla alejada del ataque de una unidad.."
+LocHelpText="Concede <Ability:IRT_DODGE_PER_TILE> de esquivar por cada casilla alejada del ataque de una unidad."
 LocPromotionPopupText="Concede <Ability:IRT_DODGE_PER_TILE> de esquivar por cada casilla alejada del ataque de una unidad."
 
 [AssassinSlash_LW X2AbilityTemplate]
@@ -6965,7 +6996,7 @@ LocFlyOverText="Rabia del Cruzado"
 FriendlyName="Pistola automática"
 FriendlyNamePlural="Pistolas automáticas"
 BriefSummary="Si su poder les falla por alguna razón, nuestros soldados cuentan con una pistola relativamente convencional que se ha modificado para mejorar su cadencia de disparo y su manejo. Este simple diseño contribuye a la fiabilidad del arma, pese a la variopinta calidad de los materiales con los que está construida."
-TacticalText="<Bullet/> La pistola automática tiene un alcance significativamente más corto que la pistola normal y un daño base más bajo; sin embargo producen un daño crítico mayor unipersona y zonal. ."
+TacticalText="<Bullet/> La pistola automática tiene un alcance significativamente más corto que la pistola normal y un daño base más bajo; sin embargo producen un daño crítico mayor unipersona y zonal."
 AbilityDescName="Pistola automática"
 
 [Sidearm_MG X2WeaponTemplate]

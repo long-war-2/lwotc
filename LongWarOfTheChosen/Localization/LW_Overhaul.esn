@@ -67,7 +67,7 @@ ActivityObjectives[0]="Impedir la I+D militar de ADVENT"
 
 [COINOps X2LWAlienActivityTemplate]
 ActivityName="COINOpsActivity"
-ActivityObjectives[0]="Atacar las operaciones contrainsurgencia de ADVENT"
+ActivityObjectives[0]="Atacar las operaciones de contrainsurgencia de ADVENT"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="ADVENT ha estado actuando para perjudicar a la resistencia y a XCOM. Tenemos una oportunidad para detenerlos.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="ADVENT ha estado actuando para perjudicar a la resistencia y a XCOM. Tenemos una oportunidad para detenerlos.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="ADVENT ha estado actuando para perjudicar a la resistencia y a XCOM. Tenemos una oportunidad para detenerlos.", MissionIndex=0)
@@ -83,7 +83,7 @@ ActivityObjectives[0]="Atacar un laboratorio de investigación alienígena"
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Encontrar una pista"
+ActivityObjectives[0]="Localizar rutas de vuelo enemigas"
 ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
@@ -92,7 +92,7 @@ ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Encontrar una pista"
+ActivityObjectives[0]="Localizar rutas de vuelo enemigas"
 ActivityObjectives[1]="Recuperar artefactos de OVNI"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
@@ -100,7 +100,7 @@ ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Encontrar una pista"
+ActivityObjectives[0]="Localizar rutas de vuelo enemigas"
 ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
@@ -132,19 +132,19 @@ ActivityObjectives[0]="Llamar la atención de ADVENT"
 
 [ProtectResearch X2LWAlienActivityTemplate]
 ActivityName="ProtectResearchActivity"
-ActivityObjectives[0]="Encontrar una pista"
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Hemos descubierto un dispositivo de ADVENT que interfiere con las comunicaciones de la resistencia. Si lo destruimos, podríamos conseguir nuevas fuetes de información y de datos.", MissionIndex=0)
+ActivityObjectives[0]="Pista sobre instalación ADVENT"
++MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial que puede llevarnos a detectar una instalación ADVENT. Deberíamos investigarla.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="Hemos descubierto una pista potencial que puede llevarnos a detectar una instalación ADVENT. Deberíamos investigarla.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Hemos descubierto un dispositivo de ADVENT que interfiere con las comunicaciones de la resistencia. Si lo destruimos, podríamos conseguir nuevas fuentes de información y de datos.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="Hemos descubierto a un prisionero de ADVENT que podría tener pistas sobre actividades enemigas.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Extract_LW", Description="Hemos sabido de alguien que se fugó de una instalación de ADVENT y que podría tener pistas sobre actividades enemigas. Es necesario efectuar su extracción.", MissionIndex=0)
 
 [ProtectData X2LWAlienActivityTemplate]
 ActivityName="ProtectDataActivity"
-ActivityObjectives[0]="Encontrar una pista"
+ActivityObjectives[0]="Contrainteligencia para liberar la región"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Hemos descubierto un dispositivo de ADVENT que interfiere con las comunicaciones de la resistencia. Si lo destruimos, podríamos conseguir nuevas fuetes de información y de datos.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Hemos descubierto un dispositivo de ADVENT que interfiere con las comunicaciones de la resistencia. Si lo destruimos, podríamos conseguir nuevas fuentes de información y de datos.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="Hemos descubierto a un prisionero de ADVENT que podría tener pistas sobre actividades enemigas.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Extract_LW", Description="Hemos sabido de alguien que se fugó de una instalación de ADVENT y que podría tener pistas sobre actividades enemigas. Es necesario efectuar su extracción.", MissionIndex=0)
 
@@ -181,7 +181,7 @@ ActivityObjectives[0]="Proteger los recursos de la resistencia"
 
 [Snare X2LWAlienActivityTemplate]
 ActivityName="SnareActivity"
-ActivityObjectives[0]="Encontrar una pista"
+ActivityObjectives[0]="Contrainteligencia para liberar la región"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Rescue_LW", Description="Hemos descubierto a un prisionero de ADVENT que podría tener pistas sobre actividades enemigas.", MissionIndex=0)
@@ -692,5 +692,5 @@ ScrollObjectiveDescriptionStr="EXAMINA EN LA DESCRIPCIÓN DEL OBJETIVO"
 ; End translated
 
 [X2Effect_ChosenLoot]
-m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> Recompensado por matar al Elegido."
+m_strChosenLoot=" Recompensa por matar al Elegido: ¡(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/>!"
 ; End translated

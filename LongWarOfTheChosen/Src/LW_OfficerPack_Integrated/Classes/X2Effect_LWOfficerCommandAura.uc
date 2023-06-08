@@ -6,14 +6,7 @@
 //--------------------------------------------------------------------------------------- 
 class X2Effect_LWOfficerCommandAura extends X2Effect_Persistent;
 
-var XComGameState_Unit OfficerSource;
-
-simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
-{
-	//cache officer source unit for later checks
-	OfficerSource = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
-}
+//remove OfficerSource caching from base mod
 
 simulated function bool IsEffectCurrentlyRelevant(XComGameState_Effect EffectGameState, XComGameState_Unit TargetUnit)
 {
@@ -22,7 +15,7 @@ simulated function bool IsEffectCurrentlyRelevant(XComGameState_Effect EffectGam
 	if (EffectGameState != none)
 		SourceUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 	if (SourceUnit == none)
-		SourceUnit = OfficerSource;
+		return false;
 
 	if (UnitCannotAcceptAura(SourceUnit) || UnitCannotAcceptAura(TargetUnit) ||
 		SourceUnit.GetReference().ObjectID == TargetUnit.GetReference().ObjectID)

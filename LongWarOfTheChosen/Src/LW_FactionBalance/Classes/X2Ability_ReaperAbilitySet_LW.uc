@@ -23,6 +23,7 @@ var config int BloodTrailBleedingTurns;
 var config int BloodTrailBleedingDamage;
 var config int BloodTrailBleedingChance;
 
+var config array<name> AlternativeMedikitNames;
 var config int PARAMEDIC_BONUS_CHARGES;
 
 var config int DisablingShotCooldown;
@@ -891,6 +892,7 @@ static function X2DataTemplate AddParamedic()
 	local X2AbilityTemplate				Template;
 	local X2Effect_TemporaryItem		TemporaryItemEffect;
 	local X2AbilityTrigger_UnitPostBeginPlay Trigger;
+	local name MedikitName;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Paramedic_LW');
 	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_fieldmedic";
@@ -909,7 +911,12 @@ static function X2DataTemplate AddParamedic()
 	TemporaryItemEffect = new class'X2Effect_TemporaryItem';
 	TemporaryItemEffect.EffectName = 'ParamedicMedikits';
 	TemporaryItemEffect.ItemName = 'Medikit';
-	TemporaryItemEffect.AlternativeItemNames.AddItem('NanoMedikit');
+
+	foreach default.AlternativeMedikitNames(MedikitName)
+    {
+    	TemporaryItemEffect.AlternativeItemNames.AddItem(MedikitName);
+   	}
+
 	TemporaryItemEffect.bIgnoreItemEquipRestrictions = true;
 	TemporaryItemEffect.BuildPersistentEffect(1, true, false);
 	TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
@@ -970,7 +977,7 @@ static function X2AbilityTemplate ParaMedikitHeal()
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
-	UnitPropertyCondition.ExcludeDead = false; //Hack: See following comment.
+	UnitPropertyCondition.ExcludeDead = true; //Hack: See following comment.
 	UnitPropertyCondition.ExcludeHostileToSource = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = false;
 	UnitPropertyCondition.ExcludeFullHealth = true;
@@ -1150,7 +1157,7 @@ static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameStat
 
 	History = `XCOMHISTORY;
 	Context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(Context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
 	InteractingUnitRef = Context.InputContext.SourceObject;
 	BuildTrack = EmptyTrack;
 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);

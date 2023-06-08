@@ -1085,7 +1085,7 @@ static function X2AbilityTemplate CreateHighPressureAbility()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	PersistentEffect = new class'X2Effect_Persistent';
 	PersistentEffect.BuildPersistentEffect(1, true, false);
-	PersistentEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
+	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(PersistentEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.bCrossClassEligible =false;
@@ -1388,7 +1388,7 @@ static function Quickburn_BuildVisualization(XComGameState VisualizeGameState)
 
 	History = `XCOMHISTORY;
 	context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
 	InteractingUnitRef = context.InputContext.SourceObject;
 	BuildTrack = EmptyTrack;
 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);

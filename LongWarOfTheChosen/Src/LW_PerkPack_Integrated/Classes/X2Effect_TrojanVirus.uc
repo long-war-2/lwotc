@@ -20,7 +20,8 @@ function RegisterForEvents(XComGameState_Effect EffectGameState)
 	// Use a low priority so that the listener triggers *after* the last shutdown tick. Otherwise,
 	// the check for IsStunned() happens while the target is still stunned, so the virus doesn't
 	// trigger, but then the stun is removed and the target has actions to do something horrible.
-	EventMgr.RegisterForEvent(EffectObj,  'UnitGroupTurnBegun', PostEffectTickCheck, ELD_OnStateSubmitted, 25,,, EffectObj);
+	// Tedster: try dropping Trojan ELR priority even more to catch post hack end.
+	EventMgr.RegisterForEvent(EffectObj,  'UnitGroupTurnBegun', PostEffectTickCheck, ELD_OnStateSubmitted, 12,,, EffectObj);
 }
 
 //This is triggered at the start of each turn, after OnTickEffects (so after Hack stun/Mind Control effects are lost)
@@ -43,11 +44,14 @@ static function EventListenerReturn PostEffectTickCheck(Object EventData, Object
 	SourceState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 
 	// Ignore if the current group doesn't match the target's
+	`LWTrace("Trojan check: current unit:" @OldTargetState);
+	`LWTrace("Trojan check: unit group is " @OldTargetState.GetGroupMembership() @"Compared to" @GroupState);
 	if (OldTargetState.GetGroupMembership().ObjectID != GroupState.ObjectID)
 	{
 		return ELR_NoInterrupt;
 	}
 
+	`LWTrace("Trojan check: unit is mindcontrolled:" @OldTargetState.IsMindControlled() @". unit is stunned:" @OldTargetState.IsStunned());
 	// don't do anything if unit is still mind controlled or stunned
 	if(OldTargetState.IsMindControlled() || OldTargetState.IsStunned())
 		return ELR_NoInterrupt;

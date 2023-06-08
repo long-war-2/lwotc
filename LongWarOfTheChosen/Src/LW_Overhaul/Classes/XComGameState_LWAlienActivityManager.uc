@@ -83,6 +83,7 @@ function bool Update(XComGameState NewGameState)
 	
 	if (class'X2StrategyGameRulesetDataStructures'.static.LessThan(NextUpdateTime, `STRATEGYRULES.GameTime))
 	{
+		`LWTrace("   >>>>> Net global vigilance = " $ GetNetVigilance());
 		//`LOG("Alien Activity Manager : Updating, CurrentTime=" $ 
 			//class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(`STRATEGYRULES.GameTime) $ ":" $ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(`STRATEGYRULES.GameTime) $
 			//", NextUpdateTime=" $ class'X2StrategyGameRulesetDataStructures'.static.GetTimeString(NextUpdateTime) $ ":" $ class'X2StrategyGameRulesetDataStructures'.static.GetDateString(NextUpdateTime));

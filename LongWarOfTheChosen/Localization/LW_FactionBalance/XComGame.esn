@@ -166,10 +166,10 @@ LocPromotionPopupText="Cuando logres una baja con tu cuchillo arrojadizo reducir
 
 [BlueScreenKnives X2AbilityTemplate]
 LocFriendlyName="Cuchillas de pantallaazul"
-LocHelpText="Los cuchillos arrojadizos proporcionan +<Ability:BLUESCREEN_KNIVES_PIERCE/> en triturar y desorientan unidades robóticas."
-LocLongDescription="Los cuchillos arrojadizos proporcionan +<Ability:BLUESCREEN_KNIVES_PIERCE/> en triturar y desorientan unidades robóticas."
+LocHelpText="Los cuchillos arrojadizos proporcionan +<Ability:BLUESCREEN_KNIVES_PIERCE/> en perforar y desorientan unidades robóticas."
+LocLongDescription="Los cuchillos arrojadizos proporcionan +<Ability:BLUESCREEN_KNIVES_PIERCE/> en perforar y desorientan unidades robóticas."
 ; LWOTC Needs Translation (2)
-LocPromotionPopupText="<Bullet/> Los cuchillos arrojadizos proporcionan +<Ability:BLUESCREEN_KNIVES_PIERCE/> en triturar y desorientan unidades robóticas."
+LocPromotionPopupText="<Bullet/> Los cuchillos arrojadizos proporcionan +<Ability:BLUESCREEN_KNIVES_PIERCE/> en perforar y desorientan unidades robóticas."
 ; End translated
 
 

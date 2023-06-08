@@ -742,7 +742,7 @@ static function X2AbilityTemplate AddCommandAbility()
 
 	ActionPointPersistEffect = new class'X2Effect_Persistent';
     ActionPointPersistEffect.EffectName = 'Command';
-    ActionPointPersistEffect.BuildPersistentEffect(1, false, true, false, 8);
+    ActionPointPersistEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
     ActionPointPersistEffect.bRemoveWhenTargetDies = true;
     Template.AddTargetEffect(ActionPointPersistEffect);
 
@@ -1244,7 +1244,7 @@ function GetSome_BuildVisualization(XComGameState VisualizeGameState)
 
     History = `XCOMHISTORY;
     context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
     InteractingUnitRef = context.InputContext.SourceObject;
     BuildTrack = EmptyTrack;
     BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
@@ -1291,7 +1291,7 @@ function Incoming_BuildVisualization(XComGameState VisualizeGameState)
 
     History = `XCOMHISTORY;
     context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
     InteractingUnitRef = context.InputContext.SourceObject;
     BuildTrack = EmptyTrack;
     BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
@@ -1346,7 +1346,7 @@ function OscarMike_BuildVisualization(XComGameState VisualizeGameState)
 
     History = `XCOMHISTORY;
     context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
     InteractingUnitRef = context.InputContext.SourceObject;
     BuildTrack = EmptyTrack;
     BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
@@ -1395,7 +1395,7 @@ function FocusFire_BuildVisualization(XComGameState VisualizeGameState)
 
     History = `XCOMHISTORY;
     context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
     InteractingUnitRef = context.InputContext.SourceObject;
     BuildTrack = EmptyTrack;
     BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);
@@ -1446,7 +1446,7 @@ static function X2AbilityTemplate AddLeadershipAbility()
 
 	PersistentEffect = new class'X2Effect_Persistent';
     PersistentEffect.BuildPersistentEffect(1, true, false);
-    PersistentEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
+    PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
     Template.AddTargetEffect(PersistentEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;

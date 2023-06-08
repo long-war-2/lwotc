@@ -1205,7 +1205,6 @@ simulated function string GetMissionIconImage(XComGameState_MissionSite MissionS
 
     if (class'Utilities_LW'.static.GetMissionSettings(MissionSite, MissionSettings))
 	{
-		`LWTrace(" >> Mission icon path = " $ MissionSettings.MissionIconPath);
         return MissionSettings.MissionIconPath;
 	}
 
