@@ -21,6 +21,7 @@ struct SitRepChance
 // LWOTC: Base chance for a mission to have a sit rep
 var config float SIT_REP_CHANCE;
 var config float DARK_EVENT_SIT_REP_CHANCE;
+var config int NUM_SITREPS_TO_ROLL; // allow configuring the number of additional sitreps to roll (assuming you can roll other sitreps)
 
 // Special sit reps that are rolled separately from the standard mechanism
 // to ensure that they occur more frequently than they would otherwise do.
@@ -169,6 +170,7 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	local string SitRepLabel;
 	local name SitRepName;
 	local bool AddMoreSitReps;
+	local int i;
 
 	CardMgr = class'X2CardManager'.static.GetCardManager();
 	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
@@ -198,19 +200,22 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 		AddMoreSitReps = false;
 	}
 
-	AddMoreSitReps = AddMoreSitReps && ShouldAddRandomSitRepToMission(MissionState);
-
-	if (AddMoreSitReps)
+	for(i = 0; i < default.NUM_SITREPS_TO_ROLL; i++)
 	{
-		// Grab the next valid SitRep from the deck
-		ValidationData = new class'XComLWTuple';
-		ValidationData.Data[0].an = ActiveSitReps;
-		ValidationData.Data[1].o = MissionState;
-		CardMgr.SelectNextCardFromDeck('SitReps', SitRepLabel, ValidateSitRepForMission, ValidationData);
-
-		if (SitRepLabel != "")
+		AddMoreSitReps = AddMoreSitReps && ShouldAddRandomSitRepToMission(MissionState);
+	
+		if (AddMoreSitReps)
 		{
-			ActiveSitReps.AddItem(name(SitRepLabel));
+			// Grab the next valid SitRep from the deck
+			ValidationData = new class'XComLWTuple';
+			ValidationData.Data[0].an = ActiveSitReps;
+			ValidationData.Data[1].o = MissionState;
+			CardMgr.SelectNextCardFromDeck('SitReps', SitRepLabel, ValidateSitRepForMission, ValidationData);
+	
+			if (SitRepLabel != "")
+			{
+				ActiveSitReps.AddItem(name(SitRepLabel));
+			}
 		}
 	}
 
