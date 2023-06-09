@@ -22,6 +22,7 @@ struct SitRepChance
 var config float SIT_REP_CHANCE;
 var config float DARK_EVENT_SIT_REP_CHANCE;
 var config int NUM_SITREPS_TO_ROLL; // allow configuring the number of additional sitreps to roll (assuming you can roll other sitreps)
+var config bool ROLL_ADITIONAL_SITREPS_WITH_SPECIAL_SITREP; //allow rolling additional sitreps even if a special sitrep is rolled.
 
 // Special sit reps that are rolled separately from the standard mechanism
 // to ensure that they occur more frequently than they would otherwise do.
@@ -169,7 +170,7 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	local array<name> ActiveSitReps, ActiveSitRepDarkEvents;
 	local string SitRepLabel;
 	local name SitRepName;
-	local bool AddMoreSitReps;
+	local bool AddMoreSitReps, ShouldApplySitreps;
 	local int i;
 
 	CardMgr = class'X2CardManager'.static.GetCardManager();
@@ -202,7 +203,9 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 
 	for(i = 0; i < default.NUM_SITREPS_TO_ROLL; i++)
 	{
-		AddMoreSitReps = AddMoreSitReps && ShouldAddRandomSitRepToMission(MissionState);
+		ShouldApplySitreps = ShouldAddRandomSitRepToMission(MissionState);
+
+		AddMoreSitReps = (AddMoreSitReps && ShouldApplySitreps)||(default.ROLL_ADITIONAL_SITREPS_WITH_SPECIAL_SITREP && ShouldApplySitreps);
 	
 		if (AddMoreSitReps)
 		{
