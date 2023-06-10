@@ -189,6 +189,7 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	// LWOTC: Find any active dark events that have associated sit reps and
 	// then roll for each of them. Pick *one* out of any successful rolls.
 	ActiveSitRepDarkEvents = GetActiveSitRepDarkEvents(MissionState);
+	
 	for(j=0; j<default.NUM_DARK_EVENT_SITREPS_TO_ROLL; j++)
 	{
 		SitRepName = PickActiveDarkEventSitRep(ActiveSitRepDarkEvents, MissionState);
