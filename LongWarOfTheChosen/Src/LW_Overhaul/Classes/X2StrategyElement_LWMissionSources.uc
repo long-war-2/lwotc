@@ -22,6 +22,7 @@ struct SitRepChance
 var config float SIT_REP_CHANCE;
 var config float DARK_EVENT_SIT_REP_CHANCE;
 var config int NUM_SITREPS_TO_ROLL; // allow configuring the number of additional sitreps to roll (assuming you can roll other sitreps)
+var config int NUM_DARK_EVENT_SITREPS_TO_ROLL; // allow configuring the number of DE  sitreps to roll.
 var config bool ROLL_ADITIONAL_SITREPS_WITH_SPECIAL_SITREP; //allow rolling additional sitreps even if a special sitrep is rolled.
 
 // Special sit reps that are rolled separately from the standard mechanism
@@ -171,7 +172,7 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	local string SitRepLabel;
 	local name SitRepName;
 	local bool AddMoreSitReps, ShouldApplySitreps;
-	local int i;
+	local int i,j;
 
 	CardMgr = class'X2CardManager'.static.GetCardManager();
 	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
@@ -188,15 +189,18 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	// LWOTC: Find any active dark events that have associated sit reps and
 	// then roll for each of them. Pick *one* out of any successful rolls.
 	ActiveSitRepDarkEvents = GetActiveSitRepDarkEvents(MissionState);
-	SitRepName = PickActiveDarkEventSitRep(ActiveSitRepDarkEvents, MissionState);
-	if (SitRepName != '')
-		ActiveSitReps.AddItem(SitRepName);
+	for(j=0; j<default.NUM_DARK_EVENT_SITREPS_TO_ROLL; j++)
+	{
+		SitRepName = PickActiveDarkEventSitRep(ActiveSitRepDarkEvents, MissionState);
+		if (SitRepName != '')
+			ActiveSitReps.AddItem(SitRepName);
+			ActiveSitRepDarkEvents.RemoveItem(SitRepName); //remove it from the active array so we don't roll it twice in a row, and the array gets rebuilt anyways every time this is called.
+	}
 
 	SitRepName = PickSpecialSitRep(MissionState);
 	if (SitRepName != '' && AddMoreSitReps)
 	{
-		// A special sit rep has been selected, so add it to the list of active
-		// sit reps and return so we don't add a normal sit rep on top.
+		// A special sit rep has been selected, so add it to the list of active sitreps, and check if we want to still add more sitreps.
 		ActiveSitReps.AddItem(SitRepName);
 
 		if(!default.ROLL_ADITIONAL_SITREPS_WITH_SPECIAL_SITREP)
