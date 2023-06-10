@@ -198,14 +198,16 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 		// A special sit rep has been selected, so add it to the list of active
 		// sit reps and return so we don't add a normal sit rep on top.
 		ActiveSitReps.AddItem(SitRepName);
-		AddMoreSitReps = false;
+
+		if(!default.ROLL_ADITIONAL_SITREPS_WITH_SPECIAL_SITREP)
+			AddMoreSitReps = false;
 	}
 
 	for(i = 0; i < default.NUM_SITREPS_TO_ROLL; i++)
 	{
 		ShouldApplySitreps = ShouldAddRandomSitRepToMission(MissionState);
 
-		AddMoreSitReps = (AddMoreSitReps && ShouldApplySitreps)||(default.ROLL_ADITIONAL_SITREPS_WITH_SPECIAL_SITREP && ShouldApplySitreps);
+		AddMoreSitReps = (AddMoreSitReps && ShouldApplySitreps);
 	
 		if (AddMoreSitReps)
 		{
