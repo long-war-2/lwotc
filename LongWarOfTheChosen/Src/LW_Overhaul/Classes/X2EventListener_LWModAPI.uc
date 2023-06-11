@@ -44,7 +44,7 @@ static function CHEventListenerTemplate CreateLWUnitSquadInfoReturn()
 
     //    Should listen to the event while on Avenger?
     Template.RegisterInStrategy = true;
-    Template.AddCHEvent('GetLWUnitSquadInfo', LWUnitInfoReturn, ELD_Immediate, 80);
+    Template.AddCHEvent('GetLWUnitSquadInfo', LWUnitSquadInfoReturn, ELD_Immediate, 80);
 
     return Template;
 }
