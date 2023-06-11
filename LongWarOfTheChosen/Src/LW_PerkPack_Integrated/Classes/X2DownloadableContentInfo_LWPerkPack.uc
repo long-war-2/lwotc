@@ -415,6 +415,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'SLUG_SHOT_PIERCE':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SLUG_SHOT_PIERCE);
 			return true;
+		case 'SLUG_SHOT_ACC_BONUS':
+			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.SLUG_SHOT_ACC_BONUS);
+			return true;
 		case 'KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT':
 			OutString = string(int(class'X2Effect_KillerInstinct'.default.KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT));
 			return true;
