@@ -539,8 +539,11 @@ static function X2AbilityTemplate CreateFirestorm()
 	//0 dmg effect to attempt to add environmental damage to Firestorm.
 	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	WeaponDamageEffect.bIgnoreBaseDamage = true;
-	//WeaponDamageEffect.EffectDamageValue=(Damage=0, Spread=0, PlusOne=0, Crit=0, Pierce=0, Shred=0, Tag="", DamageType="Fire");
 	WeaponDamageEffect.EnvironmentalDamageAmount=default.FIRESTORM_ENV_DAMAGE;
+	WeaponDamageEffect.bApplyOnHit = false;
+    WeaponDamageEffect.bApplyOnMiss = false;
+    WeaponDamageEffect.bApplyToWorldOnHit = true;
+    WeaponDamageEffect.bApplyToWorldOnMiss = true;
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
 	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.FLAMETHROWER_BURNING_BASE_DAMAGE, default.FLAMETHROWER_BURNING_DAMAGE_SPREAD);
