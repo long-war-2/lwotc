@@ -155,5 +155,11 @@ static protected function EventListenerReturn LWUnitSquadInfoReturn(Object Event
 		Tuple.Data[5].ao = SquadState.GetTempSoldiers();								//grabs soldiers on the mission the squad is currently on that are not formally assigned to the squad
 	}
 
+	`LWTrace("Squad Info Tuple called");
+	`LWTrace("Tuple 0:" @Tuple.Data[0].b.ToString());
+	`LWTrace("Tuple 1:" @Tuple.Data[1].s.ToString());
+	`LWTrace("Tuple 2:" @Tuple.Data[2].s.ToString());
+	`LWTrace("Tuple 3:" @Tuple.Data[3].b.ToString());
+
 	return ELR_NoInterrupt;
 }
