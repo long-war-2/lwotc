@@ -139,6 +139,7 @@ static protected function EventListenerReturn LWUnitSquadInfoReturn(Object Event
 	Tuple = XComLWTuple(EventData);
 	Unit = XComGameState_Unit(EventSource);
 	`LWTrace("Squad info Tuple called with unit:" @Unit);
+
 	`LWTrace("Tuple Received:" @Tuple.Id);
 
 	//abort if inputs incorrect
