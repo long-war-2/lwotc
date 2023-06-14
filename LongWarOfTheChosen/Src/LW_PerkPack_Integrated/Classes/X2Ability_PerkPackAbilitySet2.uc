@@ -146,6 +146,7 @@ static function X2AbilityTemplate AddSnapShot()
 	//Template.OverrideAbilities.AddItem('SniperStandardFire');
 
 	Template.AdditionalAbilities.AddItem('SnapShotAimModifier');
+	Template.AdditionalAbilities.AddItem('WeaponHandling_LW');
 	//Template.AdditionalAbilities.AddItem('SnapShotOverwatch');
 
 	return Template;	
