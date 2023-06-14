@@ -499,6 +499,26 @@ LocPromotionPopupText="<Bullet/> Hail of Bullets requires <Ability:SelfAmmoCost/
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Chain Shot requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Chain Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Chain Shot can be devastating against non-cover enemies, or when augmented with aim bonuses.<br/>"
 
+
+
+[ChainShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Chain Shot (Snap Shot)"
+LocLongDescription="Take a shot with an aim penalty of <Ability:CHAINSHOTPENALTY/>. If you hit the target, you take another shot on the target automatically."
+LocHelpText="Take a shot with an aim penalty of <Ability:CHAINSHOTPENALTY/>. If you hit the target, you take another shot on the target automatically."
+LocFlyOverText="Chain Shot"
+LocPromotionPopupText="<Bullet/> Chain Shot requires <Ability:SelfAmmoCost/> ammo points, and has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Chain Shot can be devastating against non-cover enemies, or when augmented with aim bonuses.<br/>"
+
+
+[ChainShotSnapShot X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Chain Shot requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Chain Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Chain Shot can be devastating against non-cover enemies, or when augmented with aim bonuses.<br/>"
+
+[ChainShotSnapShot2 X2AbilityTemplate]
+LocFriendlyName="Chain Shot"
+LocFlyOverText="Chain Shot"
+LocPromotionPopupText=""
+
+
+
 [SaturationFire X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Saturation Fire requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Saturation Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Saturation Fire will take a standard shot at every enemy in the cone, and will damage or destroy random cover elements in the cone.<br/>"
 ;End Translation

@@ -182,6 +182,10 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(PrimaryReturnFireShot());
 	Templates.AddItem(DeadeyeSnapshotAbility());
 	Templates.AddItem(DeadeyeSnapShotDamage());
+	Templates.AddItem(RapidFireSnapshotAbility());
+	Templates.AddItem(RapidFireSnapShot2());
+	Templates.AddItem(ChainShotSnapShot());
+	Templates.AddItem(ChainShotSnapShot2());
 
 	Templates.AddItem(PsychoticRage());
 	Templates.AddItem(PreciseStrike());
@@ -2384,6 +2388,334 @@ static function X2AbilityTemplate DeadeyeSnapShotDamage()
 	//  NOTE: No visualization on purpose!
 
 	return Template;
+}
+
+static function X2AbilityTemplate RapidFireSnapshotAbility()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityCooldown_Shared			Cooldown;
+	local X2Condition_AbilityProperty   	AbilityCondition;
+	local X2Condition_UnitActionPoints		ActionPointCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RapidFireSnapShot');
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Template.Hostility = eHostility_Offensive;
+	
+
+	//  require 2 ammo to be present so that both shots can be taken
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 2;
+	AmmoCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
+	//  actually charge 1 ammo for this shot. the 2nd shot will charge the extra ammo.
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown.iNumTurns = 1;
+	Cooldown.SharingCooldownsWith.AddItem('RapidFire');
+	Template.AbilityCooldown = Cooldown;
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = class'X2Ability_RangerAbilitySet'.default.RAPIDFIRE_AIM;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_rapidfire";
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
+	Template.AbilityShooterConditions.Additem(AbilityCondition);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	Template.AdditionalAbilities.AddItem('RapidFireSnapShot2');
+	Template.PostActivationEvents.AddItem('RapidFireSnapShot2');
+
+	Template.bCrossClassEligible = true;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+
+	return Template;
+}
+
+static function X2AbilityTemplate RapidFireSnapShot2()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityTrigger_EventListener    Trigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RapidFireSnapShot2');
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = class'X2Ability_RangerAbilitySet'.default.RAPIDFIRE_AIM;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'RapidFireSnapShot2';
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_OriginalTarget;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_rapidfire";
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = SequentialShot_MergeVisualization;
+	
+	Template.bShowActivation = true;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+//BEGIN AUTOGENERATED CODE: Template Overrides 'RapidFire2'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'RapidFire2'
+
+	return Template;
+}
+
+static function X2AbilityTemplate ChainShotSnapShot()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityCooldown_Shared                 Cooldown;
+	local X2Condition_AbilityProperty   	AbilityCondition;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2Condition_UnitActionPoints		ActionPointCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainShotSnapShot');
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Template.Hostility = eHostility_Offensive;
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown.iNumTurns = class'X2Ability_GrenadierAbilitySet'.default.CHAINSHOT_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('ChainShot');
+	Template.AbilityCooldown = Cooldown;
+
+	//  require 2 ammo to be present so that both shots can be taken
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 2;
+	AmmoCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
+	//  actually charge 1 ammo for this shot. the 2nd shot will charge the extra ammo.
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = class'X2Ability_GrenadierAbilitySet'.default.CHAINSHOT_HIT_MOD;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.AddTargetEffect(class'X2Ability'.default.WeaponUpgradeMissDamage);
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_chainshot";
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	Template.AdditionalAbilities.AddItem('ChainShotSnapShot2');
+	Template.PostActivationEvents.AddItem('ChainShotSnapShot2');
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
+	Template.AbilityShooterConditions.Additem(AbilityCondition);
+
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+
+	Template.DamagePreviewFn = ChainShotSnapShotDamagePreview;
+	Template.bCrossClassEligible = true;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+
+//BEGIN AUTOGENERATED CODE: Template Overrides 'ChainShot'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'ChainShot'
+
+	return Template;
+}
+
+static function X2AbilityTemplate ChainShotSnapShot2()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityTrigger_EventListener    Trigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainShotSnapShot2');
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = class'X2Ability_GrenadierAbilitySet'.default.CHAINSHOT_HIT_MOD;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.AddTargetEffect(class'X2Ability'.default.WeaponUpgradeMissDamage);
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'ChainShotSnapShot2';
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.ChainShotListener;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_chainshot";
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = SequentialShot_MergeVisualization;
+	Template.bShowActivation = true;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+	
+	//BEGIN AUTOGENERATED CODE: Template Overrides 'ChainShot2'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	//END AUTOGENERATED CODE: Template Overrides 'ChainShot2'
+
+	return Template;
+}
+
+function bool ChainShotSnapShotDamagePreview(XComGameState_Ability AbilityState, StateObjectReference TargetRef, out WeaponDamageValue MinDamagePreview, out WeaponDamageValue MaxDamagePreview, out int AllowsShield)
+{
+	local XComGameState_Unit AbilityOwner;
+	local StateObjectReference ChainShot2Ref;
+	local XComGameState_Ability ChainShot2Ability;
+	local XComGameStateHistory History;
+
+	AbilityState.NormalDamagePreview(TargetRef, MinDamagePreview, MaxDamagePreview, AllowsShield);
+
+	History = `XCOMHISTORY;
+	AbilityOwner = XComGameState_Unit(History.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
+	ChainShot2Ref = AbilityOwner.FindAbility('ChainShotSnapShot2');
+	ChainShot2Ability = XComGameState_Ability(History.GetGameStateForObjectID(ChainShot2Ref.ObjectID));
+	if (ChainShot2Ability == none)
+	{
+		`RedScreenOnce("Unit has ChainShot but is missing ChainShot2. Not good. -jbouscher @gameplay");
+	}
+	else
+	{
+		ChainShot2Ability.NormalDamagePreview(TargetRef, MinDamagePreview, MaxDamagePreview, AllowsShield);
+	}
+	return true;
 }
 
 static function X2AbilityTemplate YouCannotHide()

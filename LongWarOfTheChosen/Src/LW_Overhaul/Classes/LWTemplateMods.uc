@@ -1327,7 +1327,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 		if (Template.DataName == 'Deadeye')
 		{
-			Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+			Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
+				Template.HideIfAvailable.AddItem('DeadeyeSnapShot');
 			CooldownShared = new class'X2AbilityCooldown_Shared';
 			CooldownShared.iNumTurns = class'X2Ability_SharpshooterAbilitySet'.default.DEADEYE_COOLDOWN;
 			CooldownShared.SharingCooldownsWith.AddItem('DeadeyeSnapShot');
@@ -1346,12 +1347,45 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 
+	if (Template.DataName == 'ChainShot')
+	{
+		for (k = 0; k < Template.AbilityCosts.length; k++)
+		{
+			ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[k]);
+			if (ActionPointCost != none)
+			{
+				Template.AbilityCosts.RemoveItem(ActionPointCost);
+				ActionPointCost = new class'X2AbilityCost_ActionPoints';
+			
+				ActionPointCost.iNumPoints = 0;
+				ActionPointCost.bAddWeaponTypicalCost = true;
+				ActionPointCost.bConsumeAllPoints = true;
+		
+				Template.AbilityCosts.AddItem(ActionPointCost);
+			}
+		}
+		Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
+		Template.HideIfAvailable.AddItem('ChainShotSnapShot');
+		CooldownShared = new class'X2AbilityCooldown_Shared';
+		CooldownShared.iNumTurns = class'X2Ability_GrenadierAbilitySet'.default.CHAINSHOT_COOLDOWN;
+		CooldownShared.SharingCooldownsWith.AddItem('ChainShotSnapShot');
+		Template.AbilityCooldown = CooldownShared;
+		
+		Template.AdditionalAbilities.AddItem('ChainShotSnapShot');
+	}
+
 	if (Template.DataName == 'RapidFire') 
 	{
-		Cooldown = new class'X2AbilityCooldown';
+		Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
+		Template.HideIfAvailable.AddItem('RapidFireSnapShot');
+		Cooldown = new class'X2AbilityCooldown_Shared';
 		Cooldown.iNumTurns = default.RAPIDFIRE_COOLDOWN;
+		CooldownShared.SharingCooldownsWith.AddItem('RapidFireSnapShot');
 		Template.AbilityCooldown = Cooldown;
+
+		Template.AdditionalAbilities.AddItem('RapidFireSnapShot');
 	}
+	
 	// Steady Hands
 	// Stasis Vest
 	// Air Controller
