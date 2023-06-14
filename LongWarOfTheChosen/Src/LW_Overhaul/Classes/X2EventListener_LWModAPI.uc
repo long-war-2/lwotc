@@ -44,7 +44,7 @@ static function CHEventListenerTemplate CreateLWUnitSquadInfoReturn()
 
     //    Should listen to the event while on Avenger?
     Template.RegisterInStrategy = true;
-    Template.AddCHEvent('GetLWUnitSquadInfo', LWUnitInfoReturn, ELD_Immediate, 80);
+    Template.AddCHEvent('GetLWUnitSquadInfo', LWUnitSquadInfoReturn, ELD_Immediate, 80);
 
     return Template;
 }
@@ -124,8 +124,8 @@ static protected function EventListenerReturn LWUnitInfoReturn(Object EventData,
 	Tuple.Data[1].kind = XComLWTVString;		Tuple.Data[1].s = "";		//The squad's name
 	Tuple.Data[2].kind = XComLWTVString;		Tuple.Data[2].s = "";		//The squad's icon path
 	Tuple.Data[3].kind = XComLWTVBool;			Tuple.Data[3].b = false;	//Is the unit a temporary member, or permanently assigned to the squad
-	Tuple.Data[4].kind = XComLWTVArrayObjects;	Tuple.Data[4].ao = none;	//Array of XComGameState_Units that are normally part of the squad
-	Tuple.Data[5].kind = XComLWTVArrayObjects;	Tuple.Data[5].ao = none;	//Array of XComGameState_Units that are temporarily part of the squad
+	Tuple.Data[4].kind = XComLWTVArrayObjects;	Tuple.Data[4].ao = [];	//Array of XComGameState_Units that are normally part of the squad
+	Tuple.Data[5].kind = XComLWTVArrayObjects;	Tuple.Data[5].ao = [];	//Array of XComGameState_Units that are temporarily part of the squad
 
 	`XEVENTMGR.TriggerEvent('GetLWUnitSquadInfo', Tuple, Unit, GameState);
 */
@@ -138,6 +138,9 @@ static protected function EventListenerReturn LWUnitSquadInfoReturn(Object Event
 
 	Tuple = XComLWTuple(EventData);
 	Unit = XComGameState_Unit(EventSource);
+	`LWTrace("Squad info Tuple called with unit:" @Unit);
+
+	`LWTrace("Tuple Received:" @Tuple.Id);
 
 	//abort if inputs incorrect
 	if(Tuple == none || Tuple.Id != 'GetLWUnitSquadInfo' || Unit == none)
@@ -154,6 +157,12 @@ static protected function EventListenerReturn LWUnitSquadInfoReturn(Object Event
 		Tuple.Data[4].ao = SquadState.GetSoldiers();									//grabs all soldiers assigned to the squad
 		Tuple.Data[5].ao = SquadState.GetTempSoldiers();								//grabs soldiers on the mission the squad is currently on that are not formally assigned to the squad
 	}
+
+	`LWTrace("Squad Info Tuple data:");
+	`LWTrace("Tuple 0:" @Tuple.Data[0].b);
+	`LWTrace("Tuple 1:" @Tuple.Data[1].s);
+	`LWTrace("Tuple 2:" @Tuple.Data[2].s);
+	`LWTrace("Tuple 3:" @Tuple.Data[3].b);
 
 	return ELR_NoInterrupt;
 }

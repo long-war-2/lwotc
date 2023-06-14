@@ -7,6 +7,7 @@
 class X2Effect_SlugShot extends X2Effect_Persistent config (LW_SoldierSkills);
 
 var int Pierce;
+var int AccBonus;
 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 
@@ -33,6 +34,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
             {
                 Modifier = -RangeTable[RangeTable.Length - 1];
             }
+			Modifier += AccBonus;
 			if (Modifier > 0)
 			{
 				ShotInfo.Value = Modifier;

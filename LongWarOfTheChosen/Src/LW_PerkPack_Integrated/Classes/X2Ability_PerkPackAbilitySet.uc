@@ -35,6 +35,7 @@ var config int SLUG_SHOT_COOLDOWN;
 var config int SLUG_SHOT_AMMO_COST;
 var config int SLUG_SHOT_MIN_ACTION_REQ;
 var config int SLUG_SHOT_PIERCE;
+var config int SLUG_SHOT_ACC_BONUS;
 var config int GRAZING_FIRE_SUCCESS_CHANCE;
 var config int CLUTCH_SHOT_MIN_ACTION_REQ;
 var config int CLUTCH_SHOT_AMMO_COST;
@@ -1705,6 +1706,7 @@ static function X2AbilityTemplate SlugShotRangeEffect()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	SlugShotEffect = new class'X2Effect_SlugShot';
 	SlugShotEffect.BuildPersistentEffect (1, true, false);
+	SlugShotEffect.AccBonus = default.SLUG_SHOT_ACC_BONUS;
 	SlugShotEffect.Pierce = default.SLUG_SHOT_PIERCE;
 	SlugShotEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	Template.AddTargetEffect(SlugShotEffect);
