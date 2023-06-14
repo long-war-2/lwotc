@@ -21,7 +21,7 @@ CommandersQuartersEnteredBody="LWOTC adds several entries to the XCOM Archives t
 
 ; LWOTC Needs Translation (2)
 GeneralChosenTitle="The Chosen"
-GeneralChosenBody="A Chosen will appear on this mission. In LWOTC, they respond to XCOM activity by taking part only in retaliations and the core story missions (Black Site, etc.). They will not appear on other missions.<br/><br/>Their goal is still to gain knowledge about the location of the Avenger and assault it. Beware, defending against it will not be easy!"
+GeneralChosenBody="A Chosen will appear on this mission. In LWOTC, they respond to XCOM activity by taking part only in retaliations (intel, supply, recruit, full, and invasion). They will not appear on other missions.<br/><br/>Their goal is still to gain knowledge about the location of the Avenger and assault it. Beware, defending against it will not be easy!"
 
 TacticalChosenTitle="The Chosen in Battle"
 TacticalChosenBody="The Chosen are far more dangerous in person in LWOTC:<br/><ul><li>They are near immune to critical hits</li><li>They take an action (\"prime reaction\") every time XCOM damages them during XCOM's turn</li><li>They can kidnap bleeding-out soldiers at range, at the cost of a full turn</li><li>They gain significant strengths on level up (use F1 when targeting them for detailed information)</li></ul>"
