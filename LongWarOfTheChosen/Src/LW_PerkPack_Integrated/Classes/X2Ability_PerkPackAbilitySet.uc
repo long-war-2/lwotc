@@ -165,6 +165,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddWalkFireAbility());
 	Templates.AddItem(WalkFireDamage()); //Additional Ability
 	Templates.AddItem(AddPrecisionShotAbility());
+	Templates.AddItem(AddPrecisionShotSnapShotAbility());
 	Templates.AddItem(PrecisionShotCritDamage()); //Additional Ability
 	Templates.AddItem(AddCyclicFireAbility());
 	Templates.AddItem(CyclicFire2()); //Additional Ability
@@ -1294,7 +1295,7 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCooldown					Cooldown;	
+	local X2AbilityCooldown_Shared			Cooldown;	
 	local X2Effect_Knockback				KnockbackEffect;
 	local X2Condition_Visibility            VisibilityCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
@@ -1303,6 +1304,8 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityPrecisionShot";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
+	Template.HideIfAvailable.AddItem('PrecisionShotSnapShot');
 	Template.DisplayTargetHitChance = true;
 	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
 	Template.CinescriptCameraType = "StandardGunFiring";
@@ -1325,8 +1328,9 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	Template.AbilityToHitCalc = ToHitCalc;
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
 
-	Cooldown = new class'X2AbilityCooldown';
+	Cooldown = new class'X2AbilityCooldown_Shared';
     Cooldown.iNumTurns = default.PRECISION_SHOT_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('PrecisionShotSnapShot');
     Template.AbilityCooldown = Cooldown;
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
@@ -1366,6 +1370,103 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	Template.AdditionalAbilities.AddItem('PrecisionShotCritDamage');
+	Template.AdditionalAbilities.AddItem('PrecisionShotSnapShot');
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddPrecisionShotSnapShotAbility()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityCooldown_Shared					Cooldown;	
+	local X2Effect_Knockback				KnockbackEffect;
+	local X2Condition_Visibility            VisibilityCondition;
+	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty   	AbilityCondition;
+	local X2Condition_UnitActionPoints		ActionPointCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'PrecisionShotSnapShot');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityPrecisionShot";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
+	Template.DisplayTargetHitChance = true;
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+	Template.CinescriptCameraType = "StandardGunFiring";
+	Template.TargetingMethod = class'X2TargetingMethod_OverTheShoulder';
+	Template.bCrossClassEligible = true;
+	Template.bUsesFiringCamera = true;
+	Template.Hostility = eHostility_Offensive;
+	Template.bPreventsTargetTeleport = false;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInCritMod = default.PRECISION_SHOT_CRIT_BONUS;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+    Cooldown.iNumTurns = default.PRECISION_SHOT_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('PrecisionShot');
+    Template.AbilityCooldown = Cooldown;
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = default.PRECISION_SHOT_AMMO_COST;
+	Template.AbilityCosts.AddItem(AmmoCost);
+	Template.bAllowAmmoEffects = true;
+		 
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AddShooterEffectExclusions();
+
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bAllowSquadsight = true;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.bAllowAmmoEffects = true;
+
+	KnockbackEffect = new class'X2Effect_Knockback';
+	KnockbackEffect.KnockbackDistance = 2;
+	Template.AddTargetEffect(KnockbackEffect);
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
+	Template.AbilityShooterConditions.Additem(AbilityCondition);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+    Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+	
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+	Template.AdditionalAbilities.AddItem('PrecisionShotCritDamage');
+
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
 
 	return Template;
 }

@@ -1386,6 +1386,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.AdditionalAbilities.AddItem('RapidFireSnapShot');
 	}
 	
+	
 	// Steady Hands
 	// Stasis Vest
 	// Air Controller
