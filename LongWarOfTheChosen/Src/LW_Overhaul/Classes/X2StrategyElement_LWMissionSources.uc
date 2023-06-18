@@ -22,6 +22,7 @@ struct SitRepChance
 var config float SIT_REP_CHANCE;
 var config float DARK_EVENT_SIT_REP_CHANCE;
 var config int NUM_SITREPS_TO_ROLL; // allow configuring the number of additional sitreps to roll (assuming you can roll other sitreps)
+var config int NUM_SPECIAL_SITREPS_TO_ROLL; //allow configuring number of special sitreps to roll.
 var config int NUM_DARK_EVENT_SITREPS_TO_ROLL; // allow configuring the number of DE  sitreps to roll.
 var config bool ROLL_ADITIONAL_SITREPS_WITH_SPECIAL_SITREP; //allow rolling additional sitreps even if a special sitrep is rolled.
 
@@ -172,7 +173,8 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 	local string SitRepLabel;
 	local name SitRepName;
 	local bool AddMoreSitReps, ShouldApplySitreps;
-	local int i,j;
+	local int i,j,k;
+	local array<SitRepChance> SpecialSitreps;
 
 	CardMgr = class'X2CardManager'.static.GetCardManager();
 	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
@@ -198,16 +200,24 @@ static function array<name> GetValidSitReps(XComGameState_MissionSite MissionSta
 			ActiveSitRepDarkEvents.RemoveItem(SitRepName); //remove it from the active array so we don't roll it twice in a row, and the array gets rebuilt anyways every time this is called.
 	}
 
-	SitRepName = PickSpecialSitRep(MissionState);
-	if (SitRepName != '' && AddMoreSitReps)
+	default.SPECIAL_SIT_REPS.Sort(CompareByPriority);
+
+	SpecialSitreps=default.SPECIAL_SIT_REPS;
+	
+	for(k=0; k<default.NUM_SPECIAL_SITREPS_TO_ROLL; k++)
 	{
-		// A special sit rep has been selected, so add it to the list of active sitreps, and check if we want to still add more sitreps.
-		ActiveSitReps.AddItem(SitRepName);
+	SitRepName = PickSpecialSitRep(MissionState, SpecialSitreps);
+		if (SitRepName != '' && AddMoreSitReps)
+		{
+			// A special sit rep has been selected, so add it to the list of active sitreps, and check if we want to still add more sitreps.
+			ActiveSitReps.AddItem(SitRepName);
+			
+			//duplicates removed from SpecialSitreps by change to PickSpecialSitRep
 
-		if(!default.ROLL_ADITIONAL_SITREPS_WITH_SPECIAL_SITREP)
-			AddMoreSitReps = false;
+			if(!default.ROLL_ADITIONAL_SITREPS_WITH_SPECIAL_SITREP)
+				AddMoreSitReps = false;
+		}
 	}
-
 	for(i = 0; i < default.NUM_SITREPS_TO_ROLL; i++)
 	{
 		ShouldApplySitreps = ShouldAddRandomSitRepToMission(MissionState);
@@ -320,20 +330,21 @@ static function name GetSitRepNameForDarkEvent(name DarkEventName)
 // its name, skipping any remaining special sit reps.
 //
 // Returns an empty name if no successful roll was made.
-static function name PickSpecialSitRep(XComGameState_MissionSite MissionState)
+static function name PickSpecialSitRep(XComGameState_MissionSite MissionState, out array<SitRepChance> SpecialSitreps)
 {
 	local SitRepChance SitRepWithChance;
 
 	// Make sure the special sit reps are ordered first. This allows mods to influence
 	// the priority of their own special sit reps without having to mess around with
 	// the array.
-	default.SPECIAL_SIT_REPS.Sort(CompareByPriority);
+	
 
-	foreach default.SPECIAL_SIT_REPS(SitRepWithChance)
+	foreach SpecialSitreps(SitRepWithChance)
 	{
 		if (IsSitRepValidForMission(SitRepWithChance.SitRepName, MissionState) &&
 				`SYNC_FRAND_STATIC() < SitRepWithChance.Chance)
 		{
+			SpecialSitreps.RemoveItem(SitRepWithChance);
 			return SitRepWithChance.SitRepName;
 		}
 	}
