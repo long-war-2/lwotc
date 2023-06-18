@@ -7,6 +7,9 @@
 class XComGameState_LWOverhaulOptions extends XComGameState_LWModOptions
 	config(LW_Overhaul);
 
+var config bool EnablePauseOnRecruit;
+var config int InitialGrazeBandWidth;
+
 var localized string LWOverhaulTabName;
 
 // ***** GRAZE BAND CONFIGURATION ***** //
@@ -29,6 +32,8 @@ var localized string PauseOnRecruitModTooltip;
 function XComGameState_LWModOptions InitComponent(class NewClassType)
 {
 	super.InitComponent(NewClassType);
+	PauseOnRecruit=EnablePauseOnRecruit;
+	GrazeBandWidth=InitialGrazeBandWidth;
 	return self;
 }
 

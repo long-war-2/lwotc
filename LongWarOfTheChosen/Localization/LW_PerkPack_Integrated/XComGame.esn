@@ -198,7 +198,7 @@ LocFriendlyName="Lobo solitario"
 LocFlyOverText="Lobo solitario"
 LocLongDescription="Obtienes +10 de puntería y +10 de defensa cuando estés a una distancia de 7 o más casillas de cualquier aliado."
 LocHelpText="Obtienes +10 de puntería y +10 de defensa cuando estés a una distancia de 7 o más casillas de cualquier aliado."
-LocPromotionPopupText="<Bullet/> Obtienes +10 de puntería y +10 de defensa cuando estés a una distancia de 7 o más casillas de cualquier aliado.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
+LocPromotionPopupText="<Bullet/> Obtienes +10 de puntería y +10 de defensa cuando estés a una distancia de 7 o más casillas de cualquier aliado.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas o de alguna otra manera desabilitada."
 
 [LowProfile X2AbilityTemplate]
 LocFriendlyName="Discreción"
@@ -410,9 +410,11 @@ LocPromotionPopupText="<Bullet/> Obtienes 20% de daño de bonificación contra l
 [Interference X2AbilityTemplate]
 LocFriendlyName="Interferencia"
 LocFlyOverText="Interferencia"
-LocLongDescription="El GREMLIN cancela la guardia sobre la unidad objetivo. Se usa 3 veces por combate."
+LocLongDescription="El GREMLIN cancela la guardia sobre la unidad objetivo. Se usa 3 veces por combate ampliable mediante mejora del Gremlin."
 LocHelpText="Cancela la guardia sobre la unidad objetivo."
-LocPromotionPopupText="<Bullet/> Cancela la guardia sobre la unidad objetivo.<br/><Bullet/> Utiliza 1 acción.<br/><Bullet/> 3 cargas por combate.<br/>"
+; LWOTC translated
+LocPromotionPopupText="<Bullet/> Cancela la guardia sobre la unidad objetivo.<br/><Bullet/> Acción gratuita.<br/><Bullet/> 3 cargas por combate, añadiendo +2 por cada mejora del Gremlin.<br/>"
+; End translated
 
 [DamageControl X2AbilityTemplate]
 LocFriendlyName="Control de daños"

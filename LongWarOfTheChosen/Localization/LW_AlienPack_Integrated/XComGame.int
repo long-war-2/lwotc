@@ -86,7 +86,7 @@ LocFriendlyName="Ready For Anything"
 LocFlyOverText="Overwatch: Ready For Anything"
 ; LWOTC Needs Translation
 LocHelpText="Enter overwatch after firing a turn-ending standard shot with your primary weapon."
-LocLongDescription="Enter overwatch after firing a turn-ending standard shot  with your primary weapon."
+LocLongDescription="Enter overwatch after firing a turn-ending standard shot with your primary weapon."
 LocPromotionPopupText="<Bullet/> Enter overwatch after firing a turn-ending standard shot with your primary weapon."
 ; End Translation
 

@@ -40,6 +40,7 @@ var config int FIRESTORM_NUM_CHARGES;
 var config int FIRESTORM_HIGH_PRESSURE_CHARGES;
 var config int FIRESTORM_RADIUS_METERS;
 var config float FIRESTORM_DAMAGE_BONUS;
+var config int FIRESTORM_ENV_DAMAGE;
 var config int SHOCK_AND_AWE_BONUS_CHARGES;
 var config int JAVELIN_ROCKETS_BONUS_RANGE_TILES;
 var config WeaponDamageValue BUNKER_BUSTER_DAMAGE_VALUE;
@@ -484,6 +485,7 @@ static function X2AbilityTemplate CreateFirestorm()
 	local X2AbilityToHitCalc_StandardAim		StandardAim;
 	local X2Effect_Burning						BurningEffect;
 	local X2Condition_UnitEffects				SuppressedCondition;
+	local X2Effect_ApplyWeaponDamage			WeaponDamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Firestorm');
 
@@ -533,6 +535,16 @@ static function X2AbilityTemplate CreateFirestorm()
 	FireToWorldEffect.FireChance_Level2 = 0.25f;
 	FireToWorldEffect.FireChance_Level3 = 0.60f;
 	FireToWorldEffect.bCheckForLOSFromTargetLocation = false; //The flamethrower does its own LOS filtering
+
+	//0 dmg effect to attempt to add environmental damage to Firestorm.
+	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	WeaponDamageEffect.bIgnoreBaseDamage = true;
+	WeaponDamageEffect.EnvironmentalDamageAmount=default.FIRESTORM_ENV_DAMAGE;
+	WeaponDamageEffect.bApplyOnHit = false;
+    WeaponDamageEffect.bApplyOnMiss = false;
+    WeaponDamageEffect.bApplyToWorldOnHit = true;
+    WeaponDamageEffect.bApplyToWorldOnMiss = true;
+	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
 	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.FLAMETHROWER_BURNING_BASE_DAMAGE, default.FLAMETHROWER_BURNING_DAMAGE_SPREAD);
 	BurningEffect.ApplyChance = default.FLAMETHROWER_DIRECT_APPLY_CHANCE;
@@ -1085,7 +1097,7 @@ static function X2AbilityTemplate CreateHighPressureAbility()
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 	PersistentEffect = new class'X2Effect_Persistent';
 	PersistentEffect.BuildPersistentEffect(1, true, false);
-	PersistentEffect.SetDisplayInfo(0, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
+	PersistentEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.LocLongDescription, Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(PersistentEffect);
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.bCrossClassEligible =false;
@@ -1388,7 +1400,7 @@ static function Quickburn_BuildVisualization(XComGameState VisualizeGameState)
 
 	History = `XCOMHISTORY;
 	context = XComGameStateContext_Ability(VisualizeGameState.GetContext());
-	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, 1, VisualizeGameState.HistoryIndex - 1));
+	Ability = XComGameState_Ability(History.GetGameStateForObjectID(context.InputContext.AbilityRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1));
 	InteractingUnitRef = context.InputContext.SourceObject;
 	BuildTrack = EmptyTrack;
 	BuildTrack.StateObject_OldState = History.GetGameStateForObjectID(InteractingUnitRef.ObjectID, eReturnType_Reference, VisualizeGameState.HistoryIndex - 1);

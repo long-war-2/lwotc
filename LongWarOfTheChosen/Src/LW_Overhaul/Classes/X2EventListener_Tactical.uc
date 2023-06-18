@@ -1070,8 +1070,8 @@ static protected function EventListenerReturn CheckForMissionCompleted(
 	if (APTemplate == none || BattleData == none)
 		return ELR_NoInterrupt;
 
-	// Only trigger an AP award if the tactical game has ended with a player win
-	if (!`TACTICALRULES.HasTacticalGameEnded() && BattleData.bLocalPlayerWon && !BattleData.bMissionAborted)
+	// Only trigger an AP award if the tactical game has ended with a player win.  If you don't win, 
+	if (!(`TACTICALRULES.HasTacticalGameEnded() && BattleData.bLocalPlayerWon))
 		return ELR_NoInterrupt;
 
 	// Is the mission difficulty right for this AP award?

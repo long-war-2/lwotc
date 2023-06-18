@@ -5,6 +5,8 @@
 //---------------------------------------------------------------------------------------
 class X2StrategyElement_LWObjectives extends X2StrategyElement_DefaultObjectives config(LW_Overhaul);
 
+var config int REGIONS_TO_BLACKSITE;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Objectives;
@@ -158,7 +160,7 @@ static function X2DataTemplate CreateLW_T2_M0_S5_CompleteActivityTemplate()
 
 	`CREATE_X2TEMPLATE(class'X2ObjectiveTemplate', Template, 'LW_T2_M0_S5_CompleteActivity');
 	Template.bMainObjective = false;
-	Template.NextObjectives.AddItem('LW_T2_M1_N2_RevealAvatarProject');
+	// Template.NextObjectives.AddItem('LW_T2_M1_N2_RevealAvatarProject');
 	Template.CompletionEvent = 'RegionLiberatedFlagSet';
 	Template.InProgressFn = AnyProtectRegion3ActivityVisible;
 	return Template;
@@ -262,7 +264,7 @@ static function CreateBlacksiteMission_LW(XComGameState NewGameState, XComGameSt
 	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_None')); // no rewards for completing story objectives
 	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
 	Rewards.AddItem(RewardState);
-	MissionState = CreateMission(NewGameState, Rewards, 'MissionSource_BlackSite', 8); // as far away from player as possible, because reasons
+	MissionState = CreateMission(NewGameState, Rewards, 'MissionSource_BlackSite', default.REGIONS_TO_BLACKSITE);
 
 	RegionState = MissionState.GetWorldRegion();
 	RegionState = XComGameState_WorldRegion(NewGameState.CreateStateObject(class'XComGameState_WorldRegion', RegionState.ObjectID));
@@ -278,7 +280,7 @@ static function X2DataTemplate CreateLW_T2_M1_N2_RevealAvatarProjectTemplate()
 	Template.bMainObjective = true;
 	Template.bNeverShowObjective = true;
 
-	Template.RevealEvent = '';
+	Template.RevealEvent = 'StartAvatarProjectReveal';
 	Template.CompletionEvent = 'AvatarProjectRevealComplete';
 
 	Template.AddNarrativeTrigger("", NAW_OnReveal, '', '', ELD_OnStateSubmitted, NPC_Once, '', RevealAvatarProject);
@@ -296,9 +298,13 @@ function RevealAvatarProject()
 
 	History = `XCOMHISTORY;
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Reveal AVATAR Project");
-	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.CreateStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
-	NewGameState.AddStateObject(AlienHQ);
+	if(AlienHQ != none)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Reveal AVATAR Project");
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.CreateStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+		NewGameState.AddStateObject(AlienHQ);
+	
+	
 
 	AlienHQ.bHasSeenFortress = true;
 
@@ -307,4 +313,5 @@ function RevealAvatarProject()
 	CinematicComplete();
 
 	`HQPRES.UIFortressReveal();
+	}
 }

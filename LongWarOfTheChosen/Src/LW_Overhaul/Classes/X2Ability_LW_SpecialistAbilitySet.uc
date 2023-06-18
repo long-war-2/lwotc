@@ -383,7 +383,7 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Permanent()
 
 	Buff = new class'X2Effect_PersistentStatChange';
 	Buff.BuildPersistentEffect (1, true, true);
-	Buff.SetDisplayInfo(1, class'X2Ability_HackRewards'.default.ControlRobotStatName, class'X2Ability_HackRewards'.default.ControlRobotStatDesc, "img:///UILibrary_PerkIcons.UIPerk_hack_reward", true);
+	Buff.SetDisplayInfo(ePerkBuff_Bonus, class'X2Ability_HackRewards'.default.ControlRobotStatName, class'X2Ability_HackRewards'.default.ControlRobotStatDesc, "img:///UILibrary_PerkIcons.UIPerk_hack_reward", true);
 	Buff.AddPersistentStatChange(eStat_Offense, float(class'X2Ability_HackRewards'.default.CONTROL_ROBOT_AIM_BONUS));
     Buff.AddPersistentStatChange(eStat_CritChance, float(class'X2Ability_HackRewards'.default.CONTROL_ROBOT_CRIT_BONUS));
     Buff.AddPersistentStatChange(eStat_Mobility, float(class'X2Ability_HackRewards'.default.CONTROL_ROBOT_MOBILITY_BONUS));
@@ -558,7 +558,7 @@ static function X2AbilityTemplate AddRescueProtocol()
 
 	ActionPointPersistEffect = new class'X2Effect_Persistent';
     ActionPointPersistEffect.EffectName = 'Rescued';
-    ActionPointPersistEffect.BuildPersistentEffect(1, false, true, false, 8);
+    ActionPointPersistEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
     ActionPointPersistEffect.bRemoveWhenTargetDies = true;
     Template.AddTargetEffect(ActionPointPersistEffect);
 

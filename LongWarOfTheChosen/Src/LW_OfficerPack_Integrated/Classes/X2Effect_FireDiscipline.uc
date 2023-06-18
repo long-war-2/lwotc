@@ -10,9 +10,14 @@ var config int FIREDISCIPLINE_REACTIONFIRE_BONUS;
 
 simulated function ModifyReactionFireSuccess(XComGameState_Unit UnitState, XComGameState_Unit TargetState, out int Modifier)
 {
-	if (IsEffectCurrentlyRelevant(none, UnitState))
+	local XComGameState_Effect EffectState; //add Effect State so that this actually works
+	EffectState = UnitState.GetUnitAffectedByEffectState(default.EffectName);
+	if(EffectState != none)
 	{
-		Modifier = default.FIREDISCIPLINE_REACTIONFIRE_BONUS;
+		if (IsEffectCurrentlyRelevant(EffectState, UnitState))
+		{
+			Modifier = default.FIREDISCIPLINE_REACTIONFIRE_BONUS;
+		}
 	}
 }
 

@@ -203,7 +203,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'HunterRifleShot':
 			MakeAbilityWorkWhenBurning(Template);
 			break;
-
+		case 'Quickdraw':
+			AddQuickdrawMobilityBoost(Template);
 		case 'PistolStandardShot':
 		case 'PistolOverwatchShot':
 		case 'FanFire':
@@ -1167,6 +1168,12 @@ static function	MakeAbilityWorkWhenBurning(X2AbilityTemplate Template)
 	Template.AddShooterEffectExclusions(SkipExclusions);
 }
 
+static function AddQuickdrawMobilityBoost(X2AbilityTemplate Template)
+
+{
+	Template. AdditionalAbilities.AddItem('QuickdrawMobilityIncrease');
+	
+}
 
 static function AddDisablingShotEffect(X2AbilityTemplate Template)
 {

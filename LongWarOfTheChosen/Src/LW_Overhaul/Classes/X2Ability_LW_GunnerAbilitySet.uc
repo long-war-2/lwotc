@@ -429,8 +429,8 @@ static function X2AbilityTemplate FlushDamage()
     `CREATE_X2ABILITY_TEMPLATE (Template, 'FlushDamage');
     Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_momentum";
     Template.AbilitySourceName = 'eAbilitySource_Perk';
-    Template.eAbilityIconBehaviorHUD = 2;
-    Template.Hostility = 2;
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
     Template.AbilityToHitCalc = default.DeadEye;
     Template.AbilityTargetStyle = default.SelfTarget;
     Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);

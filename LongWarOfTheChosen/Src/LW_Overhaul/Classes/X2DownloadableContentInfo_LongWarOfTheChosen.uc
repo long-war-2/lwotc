@@ -109,6 +109,8 @@ var config array<int> RULER_POD_SIZE_ALERT_THRESHOLDS;
 // Scaling multiplier for the Brute's pawn
 var config float BRUTE_SIZE_MULTIPLIER;
 
+var config array<Name> SitrepsToDisable;
+
 // End data and data structures
 //-----------------------------
 
@@ -187,6 +189,7 @@ static event OnPostTemplatesCreated()
 	AddObjectivesToParcels();
 	UpdateChosenActivities();
 	UpdateChosenSabotages();
+	UpdateSitreps();
 }
 
 /// <summary>
@@ -197,72 +200,9 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState NewGameState;
 	local XComGameStateHistory History;
 	local XComGameState_Objective ObjectiveState;
-	local int i, Forcelevel, ChosenLevel;
-	local XComGameState_HeadquartersAlien AlienHQ;
-	local XComGameState_LWOutpostManager OutpostManager;
-	local XComGameState_WorldRegion RegionState;
-	local XComGameState_LWOutpost OutpostState;
-	local XComGameState_LWToolboxOptions ToolboxOptions;
-	
-	local array<XComGameState_AdventChosen> AllChosen;
-	local name OldTacticalTag, NewTacticalTag;
-	local XComGameState_AdventChosen ChosenState;
 	
 	History = `XCOMHISTORY;
-
-	// TODO: Remove these post 1.0 - START
-
-	// LWOTC beta 2: Remove the 'OnMonthlyReportAlert' listener as it's no
-	// longer needed (Not Created Equally is handled by the 'UnitRandomizedStats'
-	// event now).
-	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
-	`XEVENTMGR.UnRegisterFromEvent(ToolboxOptions, 'OnMonthlyReportAlert');
-
-	// Make sure pistol abilities apply to the new pistol slot
-	LWMigratePistolAbilities();
-
-	// If there are rebels that have already ranked up, make sure they have some abilities
-	OutpostManager = `LWOUTPOSTMGR;
 	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Patching existing campaign data");
-	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
-	{
-		if (RegionState.HaveMadeContact())
-		{
-			OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
-			OutpostState.UpdateRebelAbilities(NewGameState);
-		}
-	}
-		
-	//Make sure the chosen are of appropriate level
-	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	Forcelevel = class'Utilities_LW'.static.GetLWForceLevel();
-	AllChosen = AlienHQ.GetAllChosen();
-
-	ChosenLevel = 3;
-	for (i = 0; i < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.Length; i++)
-	{
-		if (ForceLevel < class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[i])
-		{
-			ChosenLevel = i;
-			break;
-		}
-	}
-
-	foreach AllChosen(ChosenState)
-	{
-		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-
-		if (ChosenState.Level != ChosenLevel)
-		{
-			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
-			Chosenstate.Level = ChosenLevel;
-		}
-
-		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-		// Replace Old Tag with new Tag in missions
-		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
-	}
-	// Remove these post 1.0 - END
 
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
@@ -289,6 +229,7 @@ static event OnLoadedSavedGameToStrategy()
 	}
 
 	CleanupObsoleteTacticalGamestate();
+	CacheInfiltration_Static();
 }
 
 // Make sure we're not overriding classes already overridden by another
@@ -729,6 +670,7 @@ static event OnPostMission()
 
 	`LWSQUADMGR.UpdateSquadPostMission(, true); // completed mission
 	`LWOUTPOSTMGR.UpdateOutpostsPostMission();
+	CacheInfiltration_Static();
 }
 
 // Disable the Lost if we don't meet certain conditions. This is also
@@ -1516,28 +1458,53 @@ static function CleanupObsoleteTacticalGamestate()
 
 static function bool UnitTypeShouldBeCleanedUp(XComGameState_Unit UnitState)
 {
-	local X2CharacterTemplate CharTemplate;
-	local name CharTemplateName;
-	local int ExcludeIdx;
+    local X2CharacterTemplate CharTemplate;
+    local name CharTemplateName;
+    local int ExcludeIdx;
 
-	CharTemplate = UnitState.GetMyTemplate();
-	if (CharTemplate == none) { return false; }
-	CharTemplateName = UnitState.GetMyTemplateName();
-	if (CharTemplateName == '') { return false; }
-	if (class'LWDLCHelpers'.static.IsAlienRuler(CharTemplateName)) { return false; }
-	if (!CharTemplate.bIsSoldier)
-	{
-		if (CharTemplate.bIsAlien || CharTemplate.bIsAdvent || CharTemplate.bIsCivilian)
-		{
-			ExcludeIdx = default.CharacterTypesExemptFromCleanup.Find(CharTemplateName);
-			if (ExcludeIdx == -1)
-			{
-				return true;
-			}
-		}
+    CharTemplate = UnitState.GetMyTemplate();
+    if (CharTemplate == none) { return false; }
+
+    CharTemplateName = UnitState.GetMyTemplateName();
+    if (CharTemplateName == '') { return false; }
+
+    if (class'LWDLCHelpers'.static.IsAlienRuler(CharTemplateName, CharTemplate.bDontClearRemovedFromPlay)) 
+	{ 
+		return false; 
 	}
-	return false;
+
+    if(HasSpecialUnitValue(UnitState)) 
+	{ 
+		return false; 
+	}
+
+    if (!CharTemplate.bIsSoldier)
+    {
+        if (CharTemplate.bIsAlien || CharTemplate.bIsAdvent || CharTemplate.bIsCivilian)
+        {
+            ExcludeIdx = default.CharacterTypesExemptFromCleanup.Find(CharTemplateName);
+            if (ExcludeIdx == -1)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }
+
+static function bool HasSpecialUnitValue(XComGameState_Unit UnitState)
+{
+    local UnitValue SpecialUnitValue;
+
+    if(UnitState.GetUnitValue('TacticalCleaner_DoNotDeleteMe', SpecialUnitValue)) // if a unit has this value set on them at all, assume we do not touch it
+    {
+        if(SpecialUnitValue.fValue > 0.0)
+            return true;
+    }
+
+    return false;
+}
+
 
 static function AddObjectivesToParcels()
 {
@@ -4605,4 +4572,65 @@ exec function DumpUnitInfo()
 	}
 
 	class'Helpers'.static.OutputMsg("Unit information dumped to log");
+}
+
+
+exec function CacheInfiltration()
+{
+	CacheInfiltration_Static();
+}
+
+static function CacheInfiltration_Static()
+{
+	local XComGameStateHistory History;
+	local XComGameState_LWSquadManager SquadMgr;
+	local StateObjectReference Squad;
+	local XComGameState_LWPersistentSquad SquadState;
+	local XComGameState NewGameState;
+
+	SquadMgr = `LWSQUADMGR;
+	History = `XCOMHISTORY;
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Cache covertness values");
+	
+	foreach SquadMgr.Squads (Squad)
+	{
+		SquadState = XComGameState_LWPersistentSquad(History.GetGameStateForObjectID(Squad.ObjectID));
+
+		if(SquadState != none)
+		{
+			if(SquadState.bOnMission)
+			{
+				SquadState = XComGameState_LWPersistentSquad(NewGameState.ModifyStateObject(class'XComGameState_LWPersistentSquad', SquadState.ObjectID));
+				SquadState.SquadCovertnessCached = SquadState.GetSquadCovertness(SquadState.SquadSoldiersOnMission);
+				`Log("caching Covertness value" @SquadState.SquadCovertnessCached @"for" @SquadState,,'TedLog');
+			}
+		}
+	}
+
+
+	`GAMERULES.SubmitGameState(NewGameState);
+}
+
+static function UpdateSitreps()
+{
+	local X2SitRepTemplateManager SitRepMgr;
+	local name SitRepName;
+	local X2SitRepTemplate Sitrep;
+
+	SitRepMgr = class'X2SitRepTemplateManager'.static.GetSitRepTemplateManager();
+
+	foreach default.SitrepsToDisable(SitRepName)
+	{
+		Sitrep = SitRepMgr.FindSitRepTemplate(SitRepName);
+		if(Sitrep != none)
+		{
+			`LWTrace("Disabling Sitrep" @SitRepName @"From appearing normally on missions");
+			Sitrep.StrategyReqs.SpecialRequirementsFn = class'Helpers_LW'.static.AlwaysFail;
+		}
+
+
+	}
+
+
 }

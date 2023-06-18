@@ -15,8 +15,8 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
     local ShotModifierInfo					ModInfo;
 	local GameRulesCache_VisibilityInfo		VisInfo;
 
-
-	if (IsEffectCurrentlyRelevant(EffectState, Attacker))
+ //swapped attacker to target to fix #1554 in LWOTC repository
+	if (IsEffectCurrentlyRelevant(EffectState, Target))
 	{
 		if((Target.CanTakeCover()) && (!bFlanking) && (X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, VisInfo)))
 		{
