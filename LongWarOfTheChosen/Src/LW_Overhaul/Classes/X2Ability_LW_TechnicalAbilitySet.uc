@@ -812,7 +812,7 @@ static function X2AbilityTemplate CreateBurnoutAbility()
 
 	Template.AdditionalAbilities.AddItem('BurnoutPassive');
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-	Template.BuildVisualizationFn = LWFlamethrower_BuildVisualization;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
 }
