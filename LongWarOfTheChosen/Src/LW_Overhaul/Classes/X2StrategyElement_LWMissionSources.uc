@@ -302,7 +302,7 @@ static function name PickActiveDarkEventSitRep(out array<name> ActiveSitRepDarkE
 	foreach ActiveSitRepDarkEvents(DarkEventName)
 	{
 		if (`SYNC_FRAND_STATIC() < default.DARK_EVENT_SIT_REP_CHANCE)
-			PossibleDarkEvents.AddItem(DarkEventName);
+			PossibleDarkEvents.AddItem(DarkEventName); //Tedster - remove from the list if you picked one so no duplicates
 	}
 
 	// Now pick one of the successful rolls
