@@ -23,7 +23,7 @@ BriefSummary="Este implante confiere +10 de puntería para tu siguiente disparo 
 [CombatAwarenessPCS X2EquipmentTemplate]
 FriendlyName="SCP: Percepción de combate"
 FriendlyNamePlural="SCP: Percepción de combate"
-BriefSummary="Concede 15 de defensa y un punto de blindaje cuando estás en guardia."
+BriefSummary="Concede 15 de defensa y un punto de blindaje cuando estás en guardia o conteniendo a un enemigo."
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="SCP: Adrenalina de combate"
@@ -48,7 +48,7 @@ BriefSummary="El enemigo objetivo sufre -20 de puntería y -50 de probabilidad d
 [EmergencyLifeSupportPCS X2EquipmentTemplate]
 FriendlyName="SCP: Soporte vital de emergencia"
 FriendlyNamePlural="SCP: Soporte vital de emergencia"
-BriefSummary="Este implante garantiza que el primer golpe mortal en una misión no cause la muerte instantánea y aumenta el tiempo de desangrado en 2 turnos."
+BriefSummary="Este implante aumenta drásticamente el umbral de daño excesivo necesario para evitar el desangrado, lo que hace que sea menos probable que su soldado muera cuando le disparan fatalmente y extiende el tiempo de desangrado en 2 turnos."
 
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="SCP: Piel de hierro"
@@ -252,14 +252,14 @@ LocPromotionPopupText="<Bullet/> Disparo especial exclusivo de las armas princip
 [SlugShot X2AbilityTemplate]
 LocFriendlyName="Disparo de posta"
 LocFlyOverText="Disparo de posta"
-LocLongDescription="Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo que atraviesa 2 de blindaje y no tiene penalización por alcance. Usa <Ability:SelfAmmoCost/> de munición. Tiempo de enfriamiento de 3 turnos."
+LocLongDescription="Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo que atraviesa <Ability:SLUG_SHOT_PIERCE/> de blindaje, no tiene penalización por alcance y genera +<Ability:SLUG_SHOT_ACC_BONUS> de puntería adicional. Usa <Ability:SelfAmmoCost/> de munición. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
 LocHelpText="Disparo especial de escopeta que perfora el blindaje sin penalizaciones por alcance."
 LocPromotionPopupText="<Bullet/> Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo sin penalizaciones por alcance.<br/><Bullet/> El disparo perforará 2 puntos de blindaje.<br/><Bullet/> Tiempo de enfriamiento de 3 turnos.<br/><Bullet/> Requiere <Ability:SelfAmmoCost/> de munición.<br/>"
 
 [SlugShotRangeEffect X2AbilityTemplate]
 LocFriendlyName="Disparo de posta"
 LocFlyOverText="Disparo de posta"
-LocLongDescription="Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo sin penalizaciones por alcance. Usa <Ability:SelfAmmoCost/> de munición. Tiempo de enfriamiento de 5 turnos."
+LocLongDescription="Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo sin penalizaciones por alcance y genera +<Ability:SLUG_SHOT_ACC_BONUS> de puntería adicional. Usa <Ability:SelfAmmoCost/> de munición. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
 LocHelpText="Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo sin penalizaciones por alcance. Usa <Ability:SelfAmmoCost/> de munición. Tiempo de enfriamiento de 5 turnos."
 LocPromotionPopupText="<Bullet/> Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo sin penalizaciones de alcance.<br/><Bullet/> Tiempo de enfriamiento de 5 turnos.<br/><Bullet/> Requiere <Ability:SelfAmmoCost/> de munición.<br/>"
 
@@ -336,9 +336,9 @@ LocPromotionPopupText="<Bullet/> Tus ataques cuerpo a cuerpo contra enemigos bio
 [KillerInstinct X2AbilityTemplate]
 LocFriendlyName="Instinto asesino"
 LocFlyOverText="Instinto asesino"
-LocLongDescription="Activar Correr y disparar concede +50% de daño crítico durante el resto del turno."
-LocHelpText="Activar Correr y disparar concede +50% de daño crítico durante el resto del turno."
-LocPromotionPopupText="<Bullet/> Activar Correr y disparar concede +50% de daño crítico durante el resto del turno.<br/>"
+LocLongDescription="Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de daño total después de un golpe crítico durante el resto del turno."
+LocHelpText="Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de daño total después de un golpe crítico durante el resto del turno."
+LocPromotionPopupText="<Bullet/> Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de daño total después de un golpe crítico durante el resto del turno.<br/>"
 
 [ExtraConditioning X2AbilityTemplate]
 LocFriendlyName="Condicionamiento extra"
@@ -350,9 +350,9 @@ LocPromotionPopupText="<Bullet/> El tiempo de enfriamiento de Correr y disparar 
 [RunAndGun_LW X2AbilityTemplate]
 LocFriendlyName="Correr y disparar"
 LocFlyOverText="Correr y disparar"
-LocLongDescription="Haz una acción después de correr."
-LocHelpText="Haz una acción después de correr."
-LocPromotionPopupText="<Bullet/> Correr y disparar permite a las unidades acortar distancias con sus objetivos rápidamente o tomar una posición de flanqueo fácilmente.<br/><Bullet/> Correr y disparar tiene un tiempo de enfriamiento de 3 turnos.<br/>"
+LocLongDescription="Haz una acción después de correr. La activación de esta habilidad desactiva la mayoría de las otras ventajas que devuelven puntos de acción, como Encuentros Cercanos o Dispara y Huye."
+LocHelpText="Haz una acción después de correr. Inhabilita habilidades que otorgan puntos de acción al soldado."
+LocPromotionPopupText="<Bullet/> Correr y disparar permite a las unidades acortar distancias con sus objetivos rápidamente o tomar una posición de flanqueo fácilmente.<br/><Bullet/> Correr y disparar tiene un tiempo de enfriamiento de <Ability:RUN_AND_GUN_COOLDOWN/> turnos. Esta habilidad desactiva las ventajas que otorgan puntos de acción, como Encuentros Cercanos o Dispara y Huye.<br/>"
 
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="Contención"
@@ -467,8 +467,8 @@ LocHelpText="Permite efectuar disparos estándar y de guardia con fusiles de fra
 [Trojan X2AbilityTemplate]
 LocFriendlyName="Troyano"
 LocFlyOverText="Troyano"
-LocLongDescription="Las unidades enemigas pirateadas sufren daño y pierden sus acciones del turno en el que termine el efecto del pirateo."
-LocHelpText="Las unidades pirateadas sufren daño y pierden acciones cuando el efecto del pirateo termina."
+LocLongDescription="Las unidades enemigas pirateadas sufren daño y pierden sus acciones del turno en el que termine el efecto del pirateo. Troyano nunca romperá la ocultación de los escuadrones incluso si no logra destruir su objetivo."
+LocHelpText="Las unidades pirateadas sufren daño y pierden acciones cuando el efecto del pirateo termina. Esta habilidad permite que nuestros Especialistas destruyan los drones de ADVENT sin romper la ocultación. Incluso si la víctima sobrevive al ataque Troyano, el sigilo no se romperá."
 LocPromotionPopupText="<Bullet/> Las unidades enemigas pirateadas mediante Protocolo de control reciben de 0 a 8 de daño y pierden sus acciones del turno en el que termina el efecto del pirateo.<br/><Bullet/> Se aplica a las unidades aturdidas o bajo el dominio de Protocolo de control.<br/><Bullet/> El daño se calcula en función del atributo de pirateo comparado con la defensa de pirateo del objetivo.<br/>"
 
 [Covert X2AbilityTemplate]
@@ -767,7 +767,7 @@ LocFriendlyNameWhenConcealed="Zona de eliminación (oculto)"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Muerte desde las alturas"
-LocLongDescription="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno. También aporta una mejora de precisión a larga distancia en los rifles de francotirador."
+LocLongDescription="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno. También aporta una mejora de precisión a larga distancia en los rifles de francotirador y Vektor."
 LocHelpText="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno."
 LocFlyOverText="Muerte desde las alturas"
 LocPromotionPopupText="<Bullet/> Muerte desde las alturas se combina bien con las habilidades de pistola, o simplemente puede volver más móvil a un soldado.<br/><Bullet/> También aporta una mejora de precisión a larga distancia en los rifles de francotirador."

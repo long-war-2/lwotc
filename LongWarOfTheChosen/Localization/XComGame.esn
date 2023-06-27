@@ -118,7 +118,7 @@ RankIcons[8]="UILibrary_Common.rank_fieldmarshall"
 ; LWOTC: Resguardarse no elimina el estado ardiendo en este mod
 [HunkerDown X2AbilityTemplate]
 LocFriendlyName="Resguardarse"
-LocHelpText="Aumenta la defensa en <Ability:HUNKERDEFENSEBONUS/> y esquivar en <Ability:HUNKERDODGEBONUS/>. Solo funciona a cubierto."
+LocHelpText="Aumenta la defensa en <Ability:HUNKERDEFENSEBONUS/> y esquivar en <Ability:HUNKERDODGEBONUS/>. Solo funciona a cubierto. No elimina el estado Ardiendo."
 LocFlyOverText="Resguardarse"
 
 [ReturnFire X2AbilityTemplate]
@@ -126,8 +126,8 @@ LocHelpText="Cuando sea objetivo del fuego enemigo, dispara automáticamente con
 LocLongDescription="Cuando sea objetivo del fuego enemigo, dispara automáticamente con tu pistola una vez por turno."
 
 [Quickdraw X2AbilityTemplate]
-LocLongDescription="Disparar tu pistola con tu primera acción ya no termina tu turno."
-LocHelpText="Disparar tu pistola con tu primera acción ya no termina tu turno."
+LocLongDescription="Anula la penalización de movilidad por llevar una pistola, y disparar con ella como primera acción ya no termina tu turno."
+LocHelpText="Anula la penalización de movilidad por llevar una pistola, y disparar con ella como primera acción ya no termina tu turno."
 
 [LightningHands X2AbilityTemplate]
 LocLongDescription="Dispara tu pistola a un objetivo. Este ataque no cuesta una acción."
@@ -5020,7 +5020,7 @@ ObjectiveTextPools[1]="Extrae recursos de ADVENT"
 ObjectiveTextPools[2]="Recupera y extrae recursos adicionales (Opcional)"
 ObjectiveTextPools[3]="Extrae a todos los soldados de XCOM"
 ObjectiveTextPools[4]="Robo relámpago"
-ObjectiveTextPools[5]="La resistencia ha descubierto un almacén ADVENT vulnerable lleno de suministros y recursos valiosos. Irrumpe, toma todo lo que puedas, y escapa antes de que lleguen los refuerzos. Habrán múltiples cajas de alijos en esta misión pero solamente se podrá recoger 1 por soldado."
+ObjectiveTextPools[5]="La resistencia ha descubierto un almacén ADVENT vulnerable lleno de suministros y recursos valiosos. Irrumpe, toma todo lo que puedas, y escapa antes de que lleguen los refuerzos. Habrán múltiples cajas de alijos en esta misión pero sólo podrán recoger 1 por persona."
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="Alijo de recursos ADVENT"
@@ -6630,7 +6630,7 @@ LocFlyOverText="Ira contra indignos"
 
 [XCOMHunterMark_LW X2AbilityTemplate]
 LocFriendlyName="La marca de la muerte"
-LocLongDescription="Marca un objetivo para la muerte garantizando la restitución de tus disparos. El efecto se mantiene hasta el próximo turno de XCOM."
+LocLongDescription="Marca un objetivo para la muerte garantizando la restitución de tus disparos estándar e instantáneos. Finaliza el turno del soldado. El efecto se mantiene hasta el próximo turno de XCOM."
 LocHelpText="Marca un objetivo para la muerte garantizando la restitución de tus disparos."
 LocFlyOverText="La marca de la muerte"
 
