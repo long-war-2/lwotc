@@ -201,10 +201,10 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameStateHistory History;
 	local XComGameState_Objective ObjectiveState;
 
-	//local XComGameState_LWOutpostManager OutpostManager;
-	//local XComGameState_WorldRegion RegionState;
-	//local XComGameState_LWOutpost OutpostState;
-	//local XComGameState_LWToolboxOptions ToolboxOptions;
+	local XComGameState_LWOutpostManager OutpostManager;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWOutpost OutpostState;
+	local XComGameState_LWToolboxOptions ToolboxOptions;
 	
 
 	

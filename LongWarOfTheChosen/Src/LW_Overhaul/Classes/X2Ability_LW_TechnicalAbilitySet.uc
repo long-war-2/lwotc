@@ -482,7 +482,7 @@ static function X2AbilityTemplate CreateFirestorm()
 	local X2AbilityMultiTarget_Radius			RadiusMultiTarget;
 	local X2Condition_UnitProperty				UnitPropertyCondition;
 	local X2AbilityTrigger_PlayerInput			InputTrigger;
-	//local X2AbilityToHitCalc_StandardAim		StandardAim;
+	local X2AbilityToHitCalc_StandardAim		StandardAim;
 	local X2Condition_UnitEffects				SuppressedCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Firestorm');
@@ -530,11 +530,6 @@ static function X2AbilityTemplate CreateFirestorm()
 	UnitPropertyCondition = new class'X2Condition_UnitProperty';
 	UnitPropertyCondition.ExcludeDead = true;
 	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
-
-	SuppressedCondition = new class'X2Condition_UnitEffects';
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
-	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
 	Template.AddShooterEffectExclusions();
 
@@ -598,8 +593,8 @@ static function X2AbilityTemplate CreateFirestormActivation()
 	local X2AbilityTrigger_EventListener		Trigger;
 	local X2AbilityTarget_Cursor				CursorTarget;
 	local X2AbilityMultiTarget_Radius			RadiusMultiTarget;
-	//local X2Condition_UnitProperty				UnitPropertyCondition;
-	//local X2AbilityTrigger_PlayerInput			InputTrigger;
+	local X2Condition_UnitProperty				UnitPropertyCondition;
+	local X2AbilityTrigger_PlayerInput			InputTrigger;
 	local X2Effect_ApplyFireToWorld_Limited		FireToWorldEffect;
 	local X2AbilityToHitCalc_StandardAim		StandardAim;
 	local X2Effect_Burning						BurningEffect;
@@ -655,7 +650,7 @@ static function X2AbilityTemplate CreateFirestormActivation()
 	Template.AddMultiTargetEffect(CreateFlamethrowerDamageAbility());
 	Template.AddMultiTargetEffect(FireToWorldEffect);
 
-	//CursorTarget = new class'X2AbilityTarget_Cursor';
+	CursorTarget = new class'X2AbilityTarget_Cursor';
 	//CursorTarget.bRestrictToWeaponRange = false;
 	//CursorTarget.FixedAbilityRange = 1;
 	//Template.AbilityTargetStyle=CursorTarget;
