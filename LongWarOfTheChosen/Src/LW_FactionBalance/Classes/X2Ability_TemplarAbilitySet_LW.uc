@@ -573,7 +573,7 @@ static function X2AbilityTemplate TemplarShield()
 	// Costs
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = 1;
-	ActionPointCost.AllowedTypes.Length = 0;
+	//ActionPointCost.AllowedTypes.Length = 0;
 	ActionPointCost.AllowedTypes.AddItem('Momentum');
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
