@@ -1,6 +1,5 @@
 {
     "missingUncooked": [
-
         "FX_Glows_Env.upk",
         "FX_Exhaust_Vapors_Env.upk"
     ],
@@ -86,11 +85,11 @@
         "WP_AdventFlamethrower_Rusty",
         "WP_BeamGrenadeLauncher_LW",
 
-        "IRIPerkPack_UILibrary_LW",
+
         "IRIParryReworkPerk",
         "IRIParryReworkAnims",
         "IRISoulShotPerk",
-        "IRIApotheosisPerk",
+
 
         "LWAttachments_LS",
         "LWAssaultRifle_LS",
@@ -117,7 +116,8 @@
         "UILibrary_LW_LaserPack",
         "UILibrary_LW_Overhaul",
         "UILibrary_Refs",
-        "UILibrary_SMG"
-
+        "UILibrary_SMG",
+        "UILibrary_WolfWeaponPack_LW",
+        "UILibrary_XPerkIconPack_LW"
     ]
 }
