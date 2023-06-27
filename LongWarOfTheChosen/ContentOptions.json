@@ -1,10 +1,6 @@
 {
     "missingUncooked": [
-        "DestroyTransmitter_TempAssets.upk",
-        "MissionAssets_SupplyExtraction.upk",
-        "MissionAssets_XPACK.upk",
-        "PsiTransmitter.upk",
-        "SupplyExtraction_TempAssets.upk",
+
         "FX_Glows_Env.upk",
         "FX_Exhaust_Vapors_Env.upk"
     ],
