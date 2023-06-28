@@ -112,8 +112,6 @@
         "UILibrary_LWAlienPack",
         "UILibrary_LW_Coilguns",
         "UILibrary_LW_LaserPack",
-        "UILibrary_LW_Overhaul",
-        "UILibrary_Refs",
-        "UILibrary_SMG"
+        "UILibrary_Refs"
     ]
 }
