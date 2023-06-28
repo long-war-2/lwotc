@@ -723,6 +723,17 @@ static function RemoveRoboticsAsValidTargetsOfSolaceCleanse(X2AbilityTemplate Te
 	local X2Effect_RemoveEffects RemoveEffects;
 	local X2Condition_UnitProperty UnitCondition;
 	local int i, j;
+	local X2AbilityTrigger_EventListener EventListener;
+
+	//Tedster - swap ELR to a final one for a bit of a performance boost.
+	Template.AbilityTriggers.Length=0;
+
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.EventID = 'UnitMoveFinished';
+	EventListener.ListenerData.Filter = eFilter_None;
+	EventListener.ListenerData.EventFn = class'X2Ability_PerkPackAbilitySet2'.static.SolaceBastionCleanseListener;  // keep this, since it's generically just calling the associate ability
+	Template.AbilityTriggers.AddItem(EventListener);
 
 	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
 	{
