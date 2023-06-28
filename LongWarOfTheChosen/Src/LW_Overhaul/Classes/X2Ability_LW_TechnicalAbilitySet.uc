@@ -596,7 +596,7 @@ static function X2AbilityTemplate CreateFirestormActivation()
 {
 	local X2AbilityTemplate						Template;
 	local X2AbilityTrigger_EventListener		Trigger;
-	local X2AbilityTarget_Cursor				CursorTarget;
+	//local X2AbilityTarget_Cursor				CursorTarget;
 	local X2AbilityMultiTarget_Radius			RadiusMultiTarget;
 	//local X2Condition_UnitProperty				UnitPropertyCondition;
 	//local X2AbilityTrigger_PlayerInput			InputTrigger;
