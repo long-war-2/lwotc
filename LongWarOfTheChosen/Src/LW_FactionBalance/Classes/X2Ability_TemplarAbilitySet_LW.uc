@@ -495,7 +495,7 @@ static function X2AbilityTemplate AddApotheosis()
 
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///IRIPerkPack_UILibrary_LW.UIPerk_Apotheosis";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_Apotheosis";
 	Template.ActivationSpeech = 'IonicStorm';
 	Template.Hostility = eHostility_Neutral;
 
@@ -556,7 +556,7 @@ static function X2AbilityTemplate TemplarShield()
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_TemplarShield');
 
 	// Icon Setup
-	Template.IconImage = "img:///IRIPerkPack_UILibrary_LW.UIPerk_TemplarShield";
+	Template.IconImage = "img:///IRIParryReworkPerk.UIPerk_TemplarShield";
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY;
@@ -633,7 +633,7 @@ static function X2AbilityTemplate SoulShot()
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_SoulShot');
 
 	// Icon Setup
-	Template.IconImage = "img:///IRIPerkPack_UILibrary_LW.UIPerk_SoulShot";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_SoulShot";
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
