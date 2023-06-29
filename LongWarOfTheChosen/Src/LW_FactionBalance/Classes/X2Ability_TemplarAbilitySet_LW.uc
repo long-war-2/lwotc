@@ -495,7 +495,7 @@ static function X2AbilityTemplate AddApotheosis()
 
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_Apotheosis";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.UIPerk_Apotheosis";
 	Template.ActivationSpeech = 'IonicStorm';
 	Template.Hostility = eHostility_Neutral;
 
@@ -633,7 +633,7 @@ static function X2AbilityTemplate SoulShot()
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_SoulShot');
 
 	// Icon Setup
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_SoulShot";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.UIPerk_SoulShot";
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.AbilitySourceName = 'eAbilitySource_Psionic';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
