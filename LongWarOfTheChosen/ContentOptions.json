@@ -68,7 +68,6 @@
         "GameUnit_AdvPurifier_Rusty",
         "EW_MEC_Weapons",
         "LW_PsiOverhaul",
-        "LWArcthrower",
         "LWCombatKnife",
         "LWGauntletWOTC",
         "LWHoloTarget_PerkContent",
@@ -81,12 +80,11 @@
         "WP_AdventFlamethrower_Rusty",
         "WP_BeamGrenadeLauncher_LW",
 
-
+        "IRISoulShotPerk",
+        "IRIApotheosisPerk",
         "IRIParryReworkPerk",
         "IRIParryReworkAnims",
-        "IRISoulShotPerk",
-        "IRIApotheosis",
-        "IRIApotheosisPerk",
+        "IRIPerkPack_UILibrary_LW",
 
 
         "LWAttachments_LS",
