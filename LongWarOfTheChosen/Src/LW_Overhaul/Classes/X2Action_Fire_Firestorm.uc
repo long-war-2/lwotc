@@ -201,7 +201,7 @@ simulated state Executing
 		//`SHAPEMGR.DrawLine(StartLocation, SweepEndLocation_End, 6, MakeLinearColor(1.0f, 1.0f, 0.0f, 1.0f));
 		//`SHAPEMGR.DrawSphere(EndLocation, Vect(10, 10, 10), MakeLinearColor(0.0f, 1.0f, 0.0f, 1.0f));
 
-		`log("UnitPawn class name: " @UnitPawn.Class.Name);
+		//`log("UnitPawn class name: " @UnitPawn.Class.Name);
 		if (UnitPawn.AimEnabled)
 		{
 			if (!beginAimingAnim_F)
@@ -266,7 +266,7 @@ simulated state Executing
 
 			//blend aim anim
 			//`log("StartLocation" @StartLocation @ "Endlocation " @ EndLocation @ " aimAngle : " @ aimAngle @ " unitAngle : " @ unitAngle  @"Facing: " @Facing @ " currDuration : " @ currDuration_F @ " DT : " @ DT );
-			`LOG("ArcDelta:" @ ArcDelta * RadToDeg @ "unitAngle:" @ unitAngle* RadToDeg @ "aimAngle:" @ aimAngle* RadToDeg @ "Facing:" @ Facing.Yaw * UnrRotToDeg);
+			//`LOG("ArcDelta:" @ ArcDelta * RadToDeg @ "unitAngle:" @ unitAngle* RadToDeg @ "aimAngle:" @ aimAngle* RadToDeg @ "Facing:" @ Facing.Yaw * UnrRotToDeg);
 			UnitPawn.SetRotation(PawnStartRotation + Facing);
 			UnitPawn.TargetLoc = EndLocation;
 
