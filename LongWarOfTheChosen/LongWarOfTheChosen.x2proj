@@ -1242,6 +1242,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2AbilityMultiTarget_Cone_LWFlamethrower.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Action_Fire_Flamethrower_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_Cone_Flamethrower_LW.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2TargetingMethod_TopDownAOE.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWCovertActionsModTemplate.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWCovertActionRisksModTemplate.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWMissionSourcesModTemplate.uc" />

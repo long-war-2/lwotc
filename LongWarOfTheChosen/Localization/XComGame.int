@@ -236,6 +236,14 @@ LocLongDescription="Once per battle, attack all units in a complete circle aroun
 LocHelpText="Spray fire in a complete circle around your position."
 LocPromotionPopupText="<Bullet/> This will light fires and do fire damage to all enemies in a circle around the soldier's position, doing +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> bonus damage over regular Flamethrower attacks.<br/><Bullet/> Firestorm also grants immunity to fire damage.<br/><Bullet/> Requires one action point and will end the soldier's turn when used.<br/><Bullet/> Usable once per battle.<br/><Bullet/> It is not recommended the soldier uses Firestorm on rooftops."
 
+[Firestorm2 X2AbilityTemplate]
+LocFriendlyName="Test Firestorm"
+LocFlyOverText="Test Firestorm"
+LocLongDescription="Once per battle, attack all units in a complete circle around the soldier's position. Also grants immunity to fire damage."
+LocHelpText="Spray fire in a complete circle around your position."
+LocPromotionPopupText="<Bullet/> This will light fires and do fire damage to all enemies in a circle around the soldier's position, doing +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> bonus damage over regular Flamethrower attacks.<br/><Bullet/> Firestorm also grants immunity to fire damage.<br/><Bullet/> Requires one action point and will end the soldier's turn when used.<br/><Bullet/> Usable once per battle.<br/><Bullet/> It is not recommended the soldier uses Firestorm on rooftops."
+
+
 [TechnicalFireImmunity X2AbilityTemplate]
 LocFriendlyName="Fire Immunity"
 LocFlyOverText="Fire Immunity"

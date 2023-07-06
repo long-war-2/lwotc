@@ -87,6 +87,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateFirestorm());
 	Templates.AddItem(CreateFirestormActivation());
 	Templates.AddItem(FirestormDamage());
+	Templates.AddItem(CreateFirestorm2());
 	Templates.AddItem(CreateHighPressureAbility());
 	Templates.AddItem(CreateTechnicalFireImmunityAbility());
 	Templates.AddItem(CreatePhosphorusBonusAbility());
@@ -624,9 +625,154 @@ static function X2AbilityTemplate CreateFirestormActivation()
 	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
 	StandardAim.bAllowCrit = false;
 	StandardAim.bGuaranteedHit = true;
+	//Template.AbilityToHitCalc = StandardAim;
+	Template.AbilityToHitCalc = default.DeadEye;
+
+
+	//Panic effects need to come before the damage. This is needed for proper visualization ordering.
+	Template.AddMultiTargetEffect(CreateNapalmXPanicEffect());
+
+	//0 dmg effect to add environmental damage to Firestorm.
+	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	WeaponDamageEffect.bIgnoreBaseDamage = true;
+	WeaponDamageEffect.EnvironmentalDamageAmount=default.FIRESTORM_ENV_DAMAGE;
+	WeaponDamageEffect.bApplyOnHit = false;
+    WeaponDamageEffect.bApplyOnMiss = false;
+    WeaponDamageEffect.bApplyToWorldOnHit = true;
+    WeaponDamageEffect.bApplyToWorldOnMiss = true;
+	Template.AddMultiTargetEffect(WeaponDamageEffect);
+
+	FireToWorldEffect = new class'X2Effect_ApplyFireToWorld_Limited';
+	FireToWorldEffect.bUseFireChanceLevel = true;
+	FireToWorldEffect.bDamageFragileOnly = true;
+	FireToWorldEffect.FireChance_Level1 = 0.10f;
+	FireToWorldEffect.FireChance_Level2 = 0.25f;
+	FireToWorldEffect.FireChance_Level3 = 0.60f;
+	FireToWorldEffect.bCheckForLOSFromTargetLocation = false; //The flamethrower does its own LOS filtering
+
+
+
+	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.FLAMETHROWER_BURNING_BASE_DAMAGE, default.FLAMETHROWER_BURNING_DAMAGE_SPREAD);
+	BurningEffect.ApplyChance = default.FLAMETHROWER_DIRECT_APPLY_CHANCE;
+	Template.AddMultiTargetEffect(BurningEffect);
+
+	Template.AddMultiTargetEffect(CreateFlamethrowerDamageAbility());
+	Template.AddMultiTargetEffect(FireToWorldEffect);
+
+	
+
+	//CursorTarget = new class'X2AbilityTarget_Cursor';
+	//CursorTarget.bRestrictToWeaponRange = false;
+	//CursorTarget.FixedAbilityRange = 1;
+	//Template.AbilityTargetStyle=CursorTarget;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	//Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.ARMOR_ACTIVE_PRIORITY;
+
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.fTargetRadius = default.FIRESTORM_RADIUS_METERS;
+	RadiusMultiTarget.bIgnoreBlockingCover = true;
+	RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius=true;
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+
+	Template.bCheckCollision = true;
+	Template.bAffectNeighboringTiles = true;
+	Template.bFragileDamageOnly = true;
+
+	Template.ActionFireClass = class'X2Action_Fire_Firestorm';
+
+	Template.ActivationSpeech = 'Flamethrower';
+	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
+
+	Template.PostActivationEvents.AddItem('FlamethrowerActivated');
+
+	//Template.TargetingMethod = class'X2TargetingMethod_TopDownAOE';
+
+	Template.ModifyNewContextFn = Firestorm_ModifyContext;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = LWFlamethrower_BuildVisualization;
+	//Template.BuildVisualizationFn = LWFirestorm_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	// Interactions with the Chosen and Shadow
+	// NOTE: Does NOT increase rate of Lost spawns
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+
+	return Template;
+}
+
+static function Firestorm_ModifyContext(XComGameStateContext Context)
+{
+	local XComGameStateContext_Ability AbilityContext;
+	local XComGameState_Unit UnitState;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+	AbilityContext = XComGameStateContext_Ability(Context);
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(AbilityContext.InputContext.SourceObject.ObjectID));
+
+	AbilityContext.InputContext.TargetLocations.length = 0;
+	AbilityContext.InputContext.TargetLocations.AddItem(`XWORLD.GetPositionFromTileCoordinates(UnitState.TileLocation));
+
+}
+
+static function X2AbilityTemplate CreateFirestorm2()
+{
+	local X2AbilityTemplate						Template;
+	local X2AbilityCharges_BonusCharges			Charges;
+	local X2AbilityCost_Charges					ChargeCost;
+	local X2AbilityCost_ActionPoints			ActionPointCost;
+	local X2AbilityTarget_Cursor				CursorTarget;
+	local X2AbilityMultiTarget_Radius			RadiusMultiTarget;
+	local X2Condition_UnitProperty				UnitPropertyCondition;
+	local X2AbilityTrigger_PlayerInput			InputTrigger;
+	local X2Effect_ApplyFireToWorld_Limited		FireToWorldEffect;
+	local X2AbilityToHitCalc_StandardAim		StandardAim;
+	local X2Effect_Burning						BurningEffect;
+	local X2Condition_UnitEffects				SuppressedCondition;
+	local X2Effect_ApplyWeaponDamage			WeaponDamageEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Firestorm2');
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFirestorm";
+	//Template.bUseAmmoAsChargesForHUD = true;
+
+	InputTrigger = new class'X2AbilityTrigger_PlayerInput';
+	Template.AbilityTriggers.AddItem(InputTrigger);
+
+	Charges = new class 'X2AbilityCharges_BonusCharges';
+	Charges.InitialCharges = default.FIRESTORM_NUM_CHARGES;
+	Charges.BonusAbility = 'HighPressure';
+	Charges.BonusItem = 'HighPressureTanks';
+	Charges.BonusChargesCount = default.FIRESTORM_HIGH_PRESSURE_CHARGES;
+	Template.AbilityCharges = Charges;
+
+	ChargeCost = new class'X2AbilityCost_Charges';
+	ChargeCost.NumCharges = 1;
+	Template.AbilityCosts.AddItem(ChargeCost);
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	//ActionPointCost.DoNotConsumeAllSoldierAbilities.AddItem('Quickburn');
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	StandardAim = new class'X2AbilityToHitCalc_StandardAim';
+	StandardAim.bAllowCrit = false;
+	StandardAim.bGuaranteedHit = true;
 	Template.AbilityToHitCalc = StandardAim;
 
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
 
+	Template.AdditionalAbilities.AddItem(default.PanicImpairingAbilityName);
 	//Panic effects need to come before the damage. This is needed for proper visualization ordering.
 	Template.AddMultiTargetEffect(CreateNapalmXPanicEffect());
 
@@ -655,12 +801,10 @@ static function X2AbilityTemplate CreateFirestormActivation()
 	Template.AddMultiTargetEffect(CreateFlamethrowerDamageAbility());
 	Template.AddMultiTargetEffect(FireToWorldEffect);
 
-	//CursorTarget = new class'X2AbilityTarget_Cursor';
-	//CursorTarget.bRestrictToWeaponRange = false;
-	//CursorTarget.FixedAbilityRange = 1;
-	//Template.AbilityTargetStyle=CursorTarget;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	//Template.AbilityTargetStyle = new class'X2AbilityTarget_MovingMelee';
+	CursorTarget = new class'X2AbilityTarget_Cursor';
+	CursorTarget.bRestrictToWeaponRange = false;
+	CursorTarget.FixedAbilityRange = 1;
+	Template.AbilityTargetStyle = CursorTarget;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.ARMOR_ACTIVE_PRIORITY;
 
 	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
@@ -669,22 +813,30 @@ static function X2AbilityTemplate CreateFirestormActivation()
 	RadiusMultiTarget.bExcludeSelfAsTargetIfWithinRadius = true;
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
+	UnitPropertyCondition = new class'X2Condition_UnitProperty';
+	UnitPropertyCondition.ExcludeDead = true;
+	Template.AbilityShooterConditions.AddItem(UnitPropertyCondition);
+
+	Template.AddShooterEffectExclusions();
 
 	Template.bCheckCollision = true;
 	Template.bAffectNeighboringTiles = true;
 	Template.bFragileDamageOnly = true;
 
 	Template.ActionFireClass = class'X2Action_Fire_Firestorm';
+	Template.TargetingMethod = class'X2TargetingMethod_Grenade';
 
 	Template.ActivationSpeech = 'Flamethrower';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
+	Template.AdditionalAbilities.AddItem('TechnicalFireImmunity');
+	Template.AdditionalAbilities.AddItem('FirestormDamage');
+
 	Template.PostActivationEvents.AddItem('FlamethrowerActivated');
 
-	Template.BuildNewGameStateFn = TypicalMoveEndAbility_BuildGameState;
-	//Template.BuildVisualizationFn = LWFlamethrower_BuildVisualization;
-	Template.BuildVisualizationFn = LWFirestorm_BuildVisualization;
-	Template.BuildInterruptGameStateFn = TypicalMoveEndAbility_BuildInterruptGameState;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = LWFlamethrower_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
 	// Interactions with the Chosen and Shadow
 	// NOTE: Does NOT increase rate of Lost spawns
@@ -693,6 +845,7 @@ static function X2AbilityTemplate CreateFirestormActivation()
 
 	return Template;
 }
+
 
 static function X2AbilityTemplate FirestormDamage()
 {
