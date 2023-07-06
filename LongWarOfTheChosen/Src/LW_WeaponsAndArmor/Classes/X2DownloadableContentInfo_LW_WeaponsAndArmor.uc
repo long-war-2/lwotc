@@ -10,6 +10,8 @@
 
 class X2DownloadableContentInfo_LW_WeaponsAndArmor extends X2DownloadableContentInfo config(GameData);
 
+var config array<name> TEMPLAR_SHIELDS;
+var config array<name> TEMPLAR_GAUNTLETS_FOR_ONE_HANDED_USE;
 var config array<name> AUTOPISTOL_ANIMS_WEAPONCATS_EXCLUDED;
 
 
@@ -305,6 +307,103 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 // 	}
 
 // }
+
+// Tedster - re-add Templar animations update
+
+static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameState_Unit UnitState, XComUnitPawn Pawn)
+{
+	local name Item;
+	local X2WeaponTemplate PrimaryWeaponTemplate, SecondaryWeaponTemplate;
+	local string AnimSetToLoad;
+
+	PrimaryWeaponTemplate = X2WeaponTemplate(UnitState.GetPrimaryWeapon().GetMyTemplate());
+	SecondaryWeaponTemplate = X2WeaponTemplate( UnitState.GetSecondaryWeapon().GetMyTemplate());
+
+	if (!UnitState.IsSoldier()) return;
+
+	foreach default.TEMPLAR_GAUNTLETS_FOR_ONE_HANDED_USE(Item)
+	{
+		if (UnitState.HasItemOfTemplateType(Item))
+		{
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("OneHandedGauntlet_LW.Anims.AS_RightHandedTemplar")));
+			if (UnitState.kAppearance.iGender == eGender_Female)
+			{
+				CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("OneHandedGauntlet_LW.Anims.AS_RightHandedTemplar_F")));
+			}
+
+			break;
+		}
+	}
+	if (SecondaryWeaponTemplate.WeaponCat == 'templarshield')
+	{
+		CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Medkit")));
+		CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Grenade")));
+
+		switch (PrimaryWeaponTemplate.WeaponCat)
+		{
+			case 'rifle':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_AssaultRifle'";
+				break;
+			case 'sidearm':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_AutoPistol'";
+				break;
+			case 'pistol': 
+			case 'sawedoff':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_Pistol'";
+				break;
+			case 'shotgun':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_Shotgun'";
+				break;
+			case 'bullpup':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_SMG'";
+				break;
+			case 'sword':
+			case 'combatknife':
+				AnimSetToLoad = "AnimSet'WoTC_Shield_Animations_LW.Anims.AS_Shield_Sword'";
+				break;
+		}
+		
+		if (AnimSetToLoad != "")
+		{
+			`LWTrace("[LW_WeaponsAndArmor] Adding animset '" $ AnimSetToLoad $"' for primary weapon type '" $ PrimaryWeaponTemplate.WeaponCat $ "'");
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype(AnimSetToLoad)));
+		}
+		if (PrimaryWeaponTemplate.WeaponCat == 'sword' || PrimaryWeaponTemplate.WeaponCat == 'gauntlet')
+		{
+			`LWTrace("[LW_WeaponsAndArmor] Adding animset 'AS_Shield_Melee' for primary weapon type '" $ PrimaryWeaponTemplate.WeaponCat $ "'");
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Melee")));
+		}
+		else
+		{
+			`LWTrace("[LW_WeaponsAndArmor] Adding animset 'AS_Shield' for primary weapon type '" $ PrimaryWeaponTemplate.WeaponCat $ "'");
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield")));
+		}
+
+		if (PrimaryWeaponTemplate.WeaponCat != 'gauntlet')
+		{
+			`LWTrace("[LW_WeaponsAndArmor] Adding animset 'AS_Shield_Armory' for primary weapon type '" $ PrimaryWeaponTemplate.WeaponCat $ "'");
+			CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("WoTC_Shield_Animations_LW.Anims.AS_Shield_Armory")));
+		}
+	}
+
+	if (UnitState.GetMyTemplateName() == 'TemplarSoldier')
+	{
+		if (UnitState.GetItemInSlot(eInvSlot_Pistol) != none)
+		{
+			if (UnitState.GetItemInSlot(eInvSlot_Pistol).GetWeaponCategory() == 'sidearm')
+			{
+				`LWTrace("[LW_WeaponsAndArmor] Adding animset 'AS_TemplarAutoPistol'");
+				CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("Templar_ANIM.AS_TemplarAutoPistol")));
+			}
+			else if (UnitState.GetItemInSlot(eInvSlot_Pistol).GetWeaponCategory() == 'pistol')
+			{
+				`LWTrace("[LW_WeaponsAndArmor] Adding animset 'AS_Pistol'");
+				CustomAnimSets.AddItem(AnimSet(`CONTENT.RequestGameArchetype("Soldier_ANIM.AS_Pistol")));
+			}
+		}
+	}
+
+}
 
 
 static function WeaponInitialized(XGWeapon WeaponArchetype, XComWeapon Weapon, optional XComGameState_Item ItemState=none)
