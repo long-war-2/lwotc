@@ -102,6 +102,8 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
+	Template.bFriendlyFireWarning = false; //disable the friendly fire popup
+
 	Template.AdditionalAbilities.AddItem('Reverberation');
 
 	Template.TargetingMethod = class'X2TargetingMethod_AreaSuppression';
