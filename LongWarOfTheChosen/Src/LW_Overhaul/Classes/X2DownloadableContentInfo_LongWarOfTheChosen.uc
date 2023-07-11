@@ -2096,7 +2096,12 @@ static function bool CanAddItemToInventory_CH_Improved(
 	{
 		// Allow the weapon to be equipped.
 		DisabledReason = "";
-		bCanAddItem = 1;
+
+		// added none check based on CHL issue # 1056
+		if (CheckGameState != none && UnitState.GetItemInSlot(Slot, CheckGameState) == none)
+		{
+    		bCanAddItem = 1;
+		}
 		
 		// Override normal behavior.
 		return CheckGameState != none;
