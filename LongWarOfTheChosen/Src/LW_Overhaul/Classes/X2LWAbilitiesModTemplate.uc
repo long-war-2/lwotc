@@ -108,6 +108,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'Fuse':
 			//class'Helpers_LW'.static.MakeFreeAction(Template);
+			MakeFuseNonTurnEnding(Template);
 			break;
 		case 'PriestStasis':
 			MakeAbilityNonTurnEnding(Template);
@@ -1210,8 +1211,25 @@ static function	MakeAbilityWorkWhenBurning(X2AbilityTemplate Template)
 static function AddQuickdrawMobilityBoost(X2AbilityTemplate Template)
 
 {
-	Template. AdditionalAbilities.AddItem('QuickdrawMobilityIncrease');
+	Template.AdditionalAbilities.AddItem('QuickdrawMobilityIncrease');
 	
+}
+
+static function MakeFuseNonTurnEnding(X2AbilityTemplate Template)
+{
+	local int i;
+	local X2AbilityCost_ActionPoints ActionPointCost;
+
+	for(i = 0; i < Template.AbilityCosts.Length; i++)
+	{
+		ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[i]);
+
+		if(ActionPointCost != none)
+		{
+			ActionPointCost.bConsumeAllPoints=false;
+			break;
+		}
+	}
 }
 
 static function AddDisablingShotEffect(X2AbilityTemplate Template)
