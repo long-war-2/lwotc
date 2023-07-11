@@ -2946,8 +2946,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				case 'MutonGrenade' :
 				case 'MutonM2_LWGrenade' :
 				case 'MutonM3_LWGrenade' :
-					GrenadeTemplate.AddAbilityIconOverride('ThrowGrenade', "img:///UILibrary_LW_Overhaul.UIPerk_grenade_aliengrenade");
-					GrenadeTemplate.AddAbilityIconOverride('LaunchGrenade', "img:///UILibrary_LW_Overhaul.UIPerk_grenade_aliengrenade");
+					GrenadeTemplate.AddAbilityIconOverride('ThrowGrenade', "img:///UILibrary_LWOTC.UIPerk_grenade_aliengrenade");
+					GrenadeTemplate.AddAbilityIconOverride('LaunchGrenade', "img:///UILibrary_LWOTC.UIPerk_grenade_aliengrenade");
 					`LWTRACE("Added Ability Icon Override for Alien Grenade");
 					break;
 				default :

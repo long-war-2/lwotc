@@ -23,10 +23,10 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddRapidTargeting());
 	Templates.AddItem(AddMultiTargeting());
 
-	Templates.AddItem(PurePassive('HDHolo', "img:///UILibrary_LW_Overhaul.LW_AbilityHDHolo", true));
-	Templates.AddItem(PurePassive('IndependentTracking', "img:///UILibrary_LW_Overhaul.LW_AbilityIndependentTracking", true));
-	Templates.AddItem(PurePassive('VitalPointTargeting', "img:///UILibrary_LW_Overhaul.LW_AbilityVitalPointTargeting", true));
-	Templates.AddItem(PurePassive('RapidTargeting_Passive', "img:///UILibrary_LW_Overhaul.LW_AbilityRapidTargeting", true));
+	Templates.AddItem(PurePassive('HDHolo', "img:///UILibrary_LWOTC.LW_AbilityHDHolo", true));
+	Templates.AddItem(PurePassive('IndependentTracking', "img:///UILibrary_LWOTC.LW_AbilityIndependentTracking", true));
+	Templates.AddItem(PurePassive('VitalPointTargeting', "img:///UILibrary_LWOTC.LW_AbilityVitalPointTargeting", true));
+	Templates.AddItem(PurePassive('RapidTargeting_Passive', "img:///UILibrary_LWOTC.LW_AbilityRapidTargeting", true));
 
 	Templates.AddItem(AddAlphaMikeFoxtrot());
 	Templates.AddItem(AddDoubleTap2());
@@ -47,7 +47,7 @@ static function X2AbilityTemplate AddHolotarget()
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityHolotargeting";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityHolotargeting";
 	Template.bHideOnClassUnlock = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
 	//Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
@@ -120,7 +120,7 @@ static function X2AbilityTemplate AddRapidTargeting()
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityRapidTargeting";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityRapidTargeting";
 	Template.bHideOnClassUnlock = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY;
 	Template.Hostility = eHostility_Neutral;
@@ -199,7 +199,7 @@ static function X2AbilityTemplate AddMultiTargeting()
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityMultiTargeting";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityMultiTargeting";
 	Template.bHideOnClassUnlock = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
 	//Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
@@ -278,7 +278,7 @@ static function X2AbilityTemplate AddAlphaMikeFoxtrot()
 	local X2Effect_PrimaryHitBonusDamage        DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'AlphaMikeFoxtrot');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityAMF";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityAMF";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;

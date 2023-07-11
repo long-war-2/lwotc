@@ -39,7 +39,7 @@ static function X2AbilityTemplate AddFailsafe()
 	local X2Effect_Failsafe			FailsafeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Failsafe');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFailsafe";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFailsafe";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -69,7 +69,7 @@ static function X2AbilityTemplate AddFullOverride()
 
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFullOverride";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFullOverride";
 
 	Charges = new class'X2AbilityCharges';
 	Charges.InitialCharges = 1;

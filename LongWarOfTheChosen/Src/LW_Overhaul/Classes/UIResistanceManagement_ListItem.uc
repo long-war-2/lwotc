@@ -185,7 +185,7 @@ simulated function UpdateData(bool Focused = false)
 	{
 		strCount $= "  ";
 		strCount $= class'UIUtilities_Text'.static.GetColoredText(string(Outpost.GetResistanceMecCount()), Focused ? -1 : eUIState_Normal, TheListItemFontSize);
-		strCount $= class'UIUtilities_Text'.static.InjectImage("img:///UILibrary_LW_Overhaul.Resistance_Mec_icon", TheIconSize, TheIconSize, TheIconOffset);
+		strCount $= class'UIUtilities_Text'.static.InjectImage("img:///UILibrary_LWOTC.Resistance_Mec_icon", TheIconSize, TheIconSize, TheIconOffset);
 	}
 
 	RebelCount.SetCenteredText(strCount);

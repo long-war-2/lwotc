@@ -77,7 +77,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddLeadershipAbility());
 	Templates.AddItem(AddEspritdeCorpsAbility());
 
-	Templates.AddItem(PurePassive('TrialByFire', "img:///UILibrary_LW_Overhaul.UIPerk_TrialByFire", true));
+	Templates.AddItem(PurePassive('TrialByFire', "img:///UILibrary_LWOTC.UIPerk_TrialByFire", true));
 
 	// Add the command bonus range ability templates, one for each officer rank.
 	// i == 1 is 2nd Lieutenant.
@@ -772,7 +772,7 @@ static function X2AbilityTemplate AddInterventionAbility()
 	local X2Condition_HasEnoughIntel		IntelCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Intervention');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityIntervention";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityIntervention";
 	Template.AbilitySourceName = default.OfficerSourceName;
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
@@ -1024,7 +1024,7 @@ static function X2AbilityTemplate AddIncomingAbility()
 	local X2Condition_UnitActionPoints		ValidTargetCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Incoming');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityIncoming";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityIncoming";
 	Template.AbilitySourceName = default.OfficerSourceName;
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
@@ -1095,7 +1095,7 @@ static function X2AbilityTemplate AddJammerAbility()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Jammer');
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityJammer";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityJammer";
 	Template.AbilitySourceName = default.OfficerSourceName;
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
@@ -1200,7 +1200,7 @@ static function X2AbilityTemplate AddAirControllerAbility()
 	local X2Effect_AirController			AirControllerEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AirController');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityAirController";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityAirController";
 	Template.AbilitySourceName = default.OfficerSourceName;
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -1226,7 +1226,7 @@ static function X2AbilityTemplate AddInfiltratorAbility()
 {
 	local X2AbilityTemplate                 Template;
 
-	Template = PurePassive('Infiltrator', "img:///UILibrary_LW_Overhaul.LW_AbilityInfiltrator", false, 'eAbilitySource_Perk');
+	Template = PurePassive('Infiltrator', "img:///UILibrary_LWOTC.LW_AbilityInfiltrator", false, 'eAbilitySource_Perk');
 	return Template;
 }
 
@@ -1433,7 +1433,7 @@ static function X2AbilityTemplate AddLeadershipAbility()
 	local x2Effect_Persistent					PersistentEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Leadership');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityLeadership";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityLeadership";
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
@@ -1468,7 +1468,7 @@ static function X2AbilityTemplate AddEspritdeCorpsAbility()
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityLeadership";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityLeadership";
 
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;

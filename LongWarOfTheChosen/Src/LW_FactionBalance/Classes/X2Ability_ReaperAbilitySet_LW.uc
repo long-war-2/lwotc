@@ -68,7 +68,7 @@ static function X2AbilityTemplate AddLingeringShadow()
 {
 	local X2AbilityTemplate Template;
 
-	Template = PurePassive('LingeringShadow', "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_LingeringShadow", false);
+	Template = PurePassive('LingeringShadow', "img:///UILibrary_LWOTC.PerkIcons.UIPerk_LingeringShadow", false);
 	Template.AdditionalAbilities.AddItem('LingeringShadowTrigger');
 
 	return Template;
@@ -83,7 +83,7 @@ static function X2AbilityTemplate AddLingeringShadowTrigger()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'LingeringShadowTrigger');
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_LingeringShadow";
+	Template.IconImage = "img:///UILibrary_LWOTC.PerkIcons.UIPerk_LingeringShadow";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -127,7 +127,7 @@ static function X2AbilityTemplate AddRemoveShadowOnConcealmentLostTrigger()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'RemoveShadowOnConcealmentLostTrigger');
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_LingeringShadow";
+	Template.IconImage = "img:///UILibrary_LWOTC.PerkIcons.UIPerk_LingeringShadow";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -468,7 +468,7 @@ static function X2AbilityTemplate AddDisablingShot()
 	local X2Condition_UnitType				ImmuneUnitCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'DisablingShot');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityElectroshock";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityElectroshock";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
@@ -572,7 +572,7 @@ static function X2AbilityTemplate AddDisablingShotSnapShot()
 	local X2Condition_UnitActionPoints		ActionPointCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'DisablingShotSnapShot');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityElectroshock";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityElectroshock";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
@@ -748,7 +748,7 @@ static function X2AbilityTemplate AddDemolitionist()
 {
 	local X2AbilityTemplate Template;
 
-	Template = PurePassive('Demolitionist', "img:///UILibrary_LW_Overhaul.PerkIcons.UIPerk_Demolitionist", true);
+	Template = PurePassive('Demolitionist', "img:///UILibrary_LWOTC.PerkIcons.UIPerk_Demolitionist", true);
 	Template.PrerequisiteAbilities.AddItem('RemoteStart');
 
 	return Template;

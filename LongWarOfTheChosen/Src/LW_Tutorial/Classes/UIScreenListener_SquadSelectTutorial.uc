@@ -25,7 +25,7 @@ event OnInit(UIScreen Screen)
 		`PRESBASE.UITutorialBox(
 			default.SquadSelectInfiltrationTitle,
 			default.SquadSelectInfiltrationBody,
-			"img:///UILibrary_LW_Overhaul.TutorialImages.LWSquad_Select_Infiltration");
+			"img:///UILibrary_LWOTC.TutorialImages.LWSquad_Select_Infiltration");
 	}
 }
 

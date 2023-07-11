@@ -1020,7 +1020,7 @@
     <Content Include="Content\LW_PsiOverhaul.upk" />
     <Content Include="Content\LW_PsiOverhaul_Perks.upk" />
     <Content Include="Content\LW_ShapedCharge.upk" />
-    <Content Include="Content\UILibrary_LW_Overhaul.upk" />
+    <Content Include="Content\UILibrary_LWOTC.upk" />
     <Content Include="Content\WP_AssaultRiflePlasma_ICON.upk" />
     <Content Include="Content\WP_CombatKnife_ICON.upk" />
     <Content Include="Content\Blueprints\AdventCrate_LoCov_1x1_SmashNGrab_LW.umap" />

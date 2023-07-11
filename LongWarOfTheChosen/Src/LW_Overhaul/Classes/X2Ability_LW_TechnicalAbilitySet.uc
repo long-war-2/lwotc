@@ -72,13 +72,13 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 	`Log("LW_TechnicalAbilitySet.CreateTemplates --------------------------------");
-	Templates.AddItem(PurePassive('HeavyArmaments', "img:///UILibrary_LW_Overhaul.LW_AbilityHeavyArmaments"));
+	Templates.AddItem(PurePassive('HeavyArmaments', "img:///UILibrary_LWOTC.LW_AbilityHeavyArmaments"));
 
 	Templates.AddItem(CreateLWFlamethrowerAbility());
 
-	Templates.AddItem(PurePassive('PhosphorusPassive', "img:///UILibrary_LW_Overhaul.LW_AbilityPhosphorus"));
-	Templates.AddItem(PurePassive('NapalmX', "img:///UILibrary_LW_Overhaul.LW_AbilityNapalmX"));
-	Templates.AddItem(PurePassive('Incinerator', "img:///UILibrary_LW_Overhaul.LW_AbilityHighPressure"));
+	Templates.AddItem(PurePassive('PhosphorusPassive', "img:///UILibrary_LWOTC.LW_AbilityPhosphorus"));
+	Templates.AddItem(PurePassive('NapalmX', "img:///UILibrary_LWOTC.LW_AbilityNapalmX"));
+	Templates.AddItem(PurePassive('Incinerator', "img:///UILibrary_LWOTC.LW_AbilityHighPressure"));
 	Templates.AddItem(AddQuickburn());
 	Templates.AddItem(CreateRoustAbility());
 	Templates.AddItem(CreateBurnoutAbility());
@@ -94,8 +94,8 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(LWRocketLauncherAbility());
 	Templates.AddItem(LWBlasterLauncherAbility());
-	Templates.AddItem(PurePassive('FireInTheHole', "img:///UILibrary_LW_Overhaul.LW_AbilityFireInTheHole"));
-	Templates.AddItem(PurePassive('TandemWarheads', "img:///UILibrary_LW_Overhaul.LW_AbilityTandemWarheads"));
+	Templates.AddItem(PurePassive('FireInTheHole', "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole"));
+	Templates.AddItem(PurePassive('TandemWarheads', "img:///UILibrary_LWOTC.LW_AbilityTandemWarheads"));
 	Templates.AddItem(AddShockAndAwe());
 	Templates.AddItem(AddJavelinRockets());
 	Templates.AddItem(CreateConcussionRocketAbility());
@@ -115,7 +115,7 @@ static function X2AbilityTemplate AddJavelinRockets()
 	local X2Effect_JavelinRockets		JavelinRocketsEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'JavelinRockets');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityJavelinRockets";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityJavelinRockets";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -142,7 +142,7 @@ static function X2AbilityTemplate AddShockAndAwe()
 	local X2Effect_BonusRocketCharges	RocketChargesEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ShockAndAwe');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityShockAndAwe";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityShockAndAwe";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -303,7 +303,7 @@ static function X2AbilityTemplate CreatePhosphorusBonusAbility()
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.bCrossClassEligible = false;
 	Template.Hostility = eHostility_Neutral;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityPhosphorus";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityPhosphorus";
 	Template.bDontDisplayInAbilitySummary = true;
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
@@ -340,7 +340,7 @@ static function X2AbilityTemplate CreateRoustAbility()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Roust');
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityRoust";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityRoust";
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
@@ -451,7 +451,7 @@ static function X2AbilityTemplate RoustDamage()
 	local X2Effect_RoustDamage					DamagePenalty;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'RoustDamage');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityRoust";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityRoust";
 	Template.bDontDisplayInAbilitySummary = true;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -490,7 +490,7 @@ static function X2AbilityTemplate CreateFirestorm()
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFirestorm";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFirestorm";
 	Template.bSKipFireAction=true;
 	//Template.bUseAmmoAsChargesForHUD = true;
 
@@ -610,7 +610,7 @@ static function X2AbilityTemplate CreateFirestormActivation()
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFirestorm";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFirestorm";
 	//Template.bUseAmmoAsChargesForHUD = true;
 
 	Trigger = new class'X2AbilityTrigger_EventListener';
@@ -739,7 +739,7 @@ static function X2AbilityTemplate CreateFirestorm2()
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFirestorm";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFirestorm";
 	//Template.bUseAmmoAsChargesForHUD = true;
 
 	InputTrigger = new class'X2AbilityTrigger_PlayerInput';
@@ -854,7 +854,7 @@ static function X2AbilityTemplate FirestormDamage()
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'FirestormDamage');
 	Template.bDontDisplayInAbilitySummary = true;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFirestorm";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFirestorm";
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.Hostility = eHostility_Neutral;
@@ -884,7 +884,7 @@ static function X2AbilityTemplate CreateTechnicalFireImmunityAbility()
 	local X2Effect_DamageImmunity           DamageImmunity;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'TechnicalFireImmunity');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFirestorm";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFirestorm";
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -933,7 +933,7 @@ static function X2AbilityTemplate CreateBurnoutAbility()
 	local X2Effect_ApplySmokeGrenadeToWorld WeaponEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Burnout');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityIgnition";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityIgnition";
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -977,7 +977,7 @@ static function X2AbilityTemplate CreateBurnoutAbility()
 
 static function X2AbilityTemplate BurnoutPassive()
 {
-	return PurePassive('BurnoutPassive', "img:///UILibrary_LW_Overhaul.LW_AbilityIgnition", false, 'eAbilitySource_Perk', true);
+	return PurePassive('BurnoutPassive', "img:///UILibrary_LWOTC.LW_AbilityIgnition", false, 'eAbilitySource_Perk', true);
 }
 
 // this is a hack to allow the flamethrower to be merged with rocket launcher, but still have custom anims at each tier
@@ -1288,7 +1288,7 @@ static function X2AbilityTemplate CreateFireandSteelAbility()
 	local X2Effect_BonusWeaponDOT			DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'FireandSteel');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFireandSteel";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFireandSteel";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -1523,7 +1523,7 @@ static function X2AbilityTemplate CreateHighPressureAbility()
 	PostBeginPlayTrigger.Priority = 40;
 	Template.AbilityTriggers.AddItem(PostBeginPlayTrigger);
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityInferno";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityInferno";
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
 	Template.bIsPassive = true;
@@ -1561,7 +1561,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityConcussionRocket";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityConcussionRocket";
 	Template.bCrossClassEligible = false;
 	Template.Hostility = eHostility_Offensive;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
@@ -1791,7 +1791,7 @@ static function X2AbilityTemplate AddQuickburn()
 	local X2AbilityCooldown					Cooldown;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Quickburn');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityQuickburn";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityQuickburn";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STASIS_LANCE_PRIORITY;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;

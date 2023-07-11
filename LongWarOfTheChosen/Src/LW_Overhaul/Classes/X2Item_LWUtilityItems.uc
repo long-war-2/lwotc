@@ -60,7 +60,7 @@ static function X2DataTemplate CreateCeramicPlating()
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'CeramicPlating');
 	Template.ItemCat = 'plating';
 	Template.InventorySlot = eInvSlot_Utility;
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Flame_Sealant_512";
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Flame_Sealant_512";
 	Template.EquipSound = "StrategyUI_Vest_Equip";
 
 	Template.Tier = 0;
@@ -99,7 +99,7 @@ static function X2DataTemplate CreateCarapacePlating()
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'CarapacePlating');
 	Template.ItemCat = 'plating';
 	Template.InventorySlot = eInvSlot_Utility;
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Power_Armor512";
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Power_Armor512";
 	Template.EquipSound = "StrategyUI_Vest_Equip";
 
 	Template.Tier = 3;
@@ -119,7 +119,7 @@ static function X2DataTemplate CreateChitinPlating()
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'ChitinPlating');
 	Template.ItemCat = 'plating';
 	Template.InventorySlot = eInvSlot_Utility;
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Heat_Absorption_512";
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Heat_Absorption_512";
 	Template.EquipSound = "StrategyUI_Vest_Equip";
 
 	Template.Tier = 2;
@@ -138,7 +138,7 @@ static function X2DataTemplate CreateChameleonSuit()
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'ChameleonSuit');
 	Template.ItemCat = 'defense';
 	Template.InventorySlot = eInvSlot_Utility;
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Tarantula_Suit_512";
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Tarantula_Suit_512";
 	Template.EquipSound = "StrategyUI_Vest_Equip";
 
 	Template.Tier = 2;
@@ -156,7 +156,7 @@ static function X2AmmoTemplate CreateStilettoRounds()
 	local WeaponDamageValue DamageValue;	
 
 	`CREATE_X2TEMPLATE(class'X2AmmoTemplate', Template, 'StilettoRounds');
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Stiletto_Rounds_512";
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Stiletto_Rounds_512";
 	Template.EquipSound = "StrategyUI_Ammo_Equip";
 	Template.Tier = 2;
 	Template.InventorySlot = eInvSlot_Utility;
@@ -185,7 +185,7 @@ static function X2DataTemplate CreateNeurowhip()
 	Template.InventorySlot = eInvSlot_Utility;
     Template.CanBeBuilt = true;
 	Template.EquipSound = "StrategyUI_Mindshield_Equip";
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Neurowhip";
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Neurowhip";
 	Template.Abilities.AddItem('Neurowhip_Ability');
 
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.PsiOffenseLabel, eStat_PsiOffense, default.NEUROWHIP_PSI_BONUS);
@@ -201,7 +201,7 @@ static function X2AmmoTemplate CreateFalconRounds()
 	local WeaponDamageValue DamageValue;
 
 	`CREATE_X2TEMPLATE(class'X2AmmoTemplate', Template, 'FalconRounds');
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Falcon_Rounds_512";
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Falcon_Rounds_512";
 	Template.EquipSound = "StrategyUI_Ammo_Equip";
 	Template.Tier = 2;
 	Template.InventorySlot = eInvSlot_Utility;
@@ -253,7 +253,7 @@ static function X2AmmoTemplate CreateRedScreenRounds()
 	local X2Effect_PersistentStatChange HackDefenseEffect;
 
 	`CREATE_X2TEMPLATE(class'X2AmmoTemplate', Template, 'RedscreenRounds');
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Redscreen_Rounds_512";
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Redscreen_Rounds_512";
 	Template.EquipSound = "StrategyUI_Ammo_Equip";
 	Template.Tier = 2;
 	Template.InventorySlot = eInvSlot_Utility;
@@ -287,7 +287,7 @@ static function X2AmmoTemplate CreateNeedleRounds()
 	local WeaponDamageValue				DamageValue;
 
 	`CREATE_X2TEMPLATE(class'X2AmmoTemplate', Template, 'NeedleRounds');
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Needle_Rounds_512";
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Needle_Rounds_512";
 	Template.EquipSound = "StrategyUI_Ammo_Equip";
 	Template.Tier = 2;
 	Template.InventorySlot = eInvSlot_Utility;
@@ -323,7 +323,7 @@ static function X2DataTemplate CreateHighPressureTanks()
 	Template.WeaponCat = 'heavyammo';
 	Template.ItemCat = 'weapon';
 	Template.InventorySlot = eInvSlot_HeavyWeapon;
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_HighPressureTanks"; 
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_HighPressureTanks"; 
 	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
 	Template.Abilities.AddItem ('HighPressure');
 	Template.CanBeBuilt = false;
@@ -342,7 +342,7 @@ static function X2DataTemplate CreateExtraRocket()
 	Template.WeaponCat = 'heavyammo';
 	Template.ItemCat = 'weapon';
 	Template.InventorySlot = eInvSlot_HeavyWeapon;
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_ExtraRocket"; 
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_ExtraRocket"; 
 	Template.EquipSound = "StrategyUI_Heavy_Weapon_Equip";
 	Template.Abilities.AddItem ('ShockAndAwe');
 	Template.CanBeBuilt = false;

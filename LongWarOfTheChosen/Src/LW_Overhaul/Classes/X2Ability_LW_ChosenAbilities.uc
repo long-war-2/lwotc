@@ -1164,7 +1164,7 @@ static function X2AbilityTemplate ChosenDragonRoundsPassive()
 {
 	local X2AbilityTemplate	Template;
 
-	Template = PurePassive('ChosenDragonRoundsPassive', "img:///UILibrary_LW_Overhaul.UIPerk_ammo_incendiary", false);
+	Template = PurePassive('ChosenDragonRoundsPassive', "img:///UILibrary_LWOTC.UIPerk_ammo_incendiary", false);
 
 	return Template;
 }
@@ -1229,7 +1229,7 @@ static function X2AbilityTemplate ChosenBleedingRoundsPassive()
 {
 	local X2AbilityTemplate	Template;
 
-	Template = PurePassive('ChosenBleedingRoundsPassive', "img:///UILibrary_LW_Overhaul.UIPerk_ammo_incendiary", false);
+	Template = PurePassive('ChosenBleedingRoundsPassive', "img:///UILibrary_LWOTC.UIPerk_ammo_incendiary", false);
 
 	return Template;
 }
@@ -1249,7 +1249,7 @@ static function X2AbilityTemplate ChosenVenomRounds()
 	local X2AbilityTrigger_EventListener	EventListener;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenVenomRounds');
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityVenomRounds";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityVenomRounds";
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
 
@@ -1291,7 +1291,7 @@ static function X2AbilityTemplate ChosenVenomRoundsPassive()
 {
 	local X2AbilityTemplate	Template;
 
-	Template = PurePassive('ChosenVenomRoundsPassive', "img:///UILibrary_LW_Overhaul.LW_AbilityVenomRounds", false);
+	Template = PurePassive('ChosenVenomRoundsPassive', "img:///UILibrary_LWOTC.LW_AbilityVenomRounds", false);
 
 	return Template;
 }
@@ -1479,7 +1479,7 @@ static function X2AbilityTemplate AddMindScorchTerror()
 {
 	local X2AbilityTemplate Template;
 
-	Template = PurePassive('MindScorchTerror', "img:///UILibrary_LW_Overhaul.LW_AbilityNapalmX", false, 'eAbilitySource_Perk');
+	Template = PurePassive('MindScorchTerror', "img:///UILibrary_LWOTC.LW_AbilityNapalmX", false, 'eAbilitySource_Perk');
 	Template.bCrossClassEligible = false;
 	return Template;
 }
