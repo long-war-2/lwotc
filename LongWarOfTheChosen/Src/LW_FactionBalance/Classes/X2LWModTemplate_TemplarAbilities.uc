@@ -23,19 +23,24 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 {
 	switch (Template.DataName)
 	{
+		//refactor the start here so SingleRendFocus is only given to Rend and not Volt
 	case 'ArcWave':
 		UpdateArcWave(Template);
-	case 'Rend':
 		MakeRendNotWorkWhenBurning(Template);
 	case 'TemplarBladestormAttack':
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
 		break;
+	case 'Rend':
+		MakeRendNotWorkWhenBurning(Template);
+		// Allow Rend to miss and graze.
+		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
+		Template.AdditionalAbilities.AddItem('SingleRendFocus'); //move this thing to Rend so Rend has the thing that gives focus on Rend instead of Volt because ???
+		break;
 	case 'Volt':
 		ModifyVoltTargeting(Template);
 		AddTerrorToVolt(Template);
 		MakeAbilityNonTurnEnding(Template);
-		Template.AdditionalAbilities.AddItem('SingleRendFocus');
 		break;
 	case 'Deflect':
 		ModifyDeflectEffect(Template);
