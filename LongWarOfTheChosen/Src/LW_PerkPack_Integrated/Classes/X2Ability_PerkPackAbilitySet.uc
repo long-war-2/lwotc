@@ -1400,7 +1400,7 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
 	local X2AbilityCooldown					Cooldown;	
 	local X2Effect_Knockback				KnockbackEffect;
-	local array<name>                       SkipExclusions;
+	//local array<name>                       SkipExclusions;
 	local X2Condition_UnitInventory			InventoryCondition2;
 	local X2Effect_Shredder					WeaponDamageEffect;
 
@@ -1455,8 +1455,8 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 	WeaponDamageEffect = new class'X2Effect_Shredder';
 	Template.AddTargetEffect(WeaponDamageEffect);
 
-	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
-	Template.AddShooterEffectExclusions(SkipExclusions);
+	//SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	//Template.AddShooterEffectExclusions(SkipExclusions);
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
