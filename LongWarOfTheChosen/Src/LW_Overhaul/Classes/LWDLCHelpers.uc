@@ -314,7 +314,8 @@ static function bool IsUnitOnMission(XComGameState_Unit UnitState)
 {
 	switch (UnitState.GetMyTemplateName())
 	{
-		case  'SparkSoldier':
+		case 'SparkSoldier':
+		case 'LostTowersSpark':
 			//sparks can be wounded and on a mission, so instead we have to do a more brute force check of existing squads and havens
 			if (UnitState.GetStatus() == eStatus_CovertAction)
 			{
@@ -345,7 +346,8 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 
 	switch (UnitState.GetMyTemplateName())
 	{
-		case  'SparkSoldier':
+		case 'SparkSoldier':
+		case 'LostTowersSpark':
 			//sparks can be wounded and set on a mission, in which case don't update their status, but pull them from the healing bay
 			if (UnitState.GetStatus() == eStatus_Healing)
 			{
