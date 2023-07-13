@@ -228,7 +228,7 @@ static function bool IsUnitValidForSparkSlotWithInfiltration(XComGameState_Staff
 		&& Unit.GetReference().ObjectID != SlotState.GetAssignedStaffRef().ObjectID
 		&& Unit.IsSoldier()
 		&& Unit.IsInjured()
-		&& Unit.GetMyTemplateName() == 'SparkSoldier'
+		&& (Unit.GetMyTemplateName() == 'SparkSoldier' || Unit.GetMyTemplateName() == 'LostTowersSpark')
 		&& !class'LWDLCHelpers'.static.IsUnitOnMission(Unit)) // added condition to prevent healing spark units on mission here
 	{
 		return true;
