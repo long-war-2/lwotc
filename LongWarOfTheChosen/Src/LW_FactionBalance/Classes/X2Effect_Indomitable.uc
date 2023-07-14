@@ -41,10 +41,11 @@ static function EventListenerReturn IndomitableListener(Object EventData, Object
 				if (SourceUnit == none)
 					return ELR_NoInterrupt;
 
-				TargetUnit = XComGameState_Unit(GameState.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+				TargetUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+				//`assert(TargetUnit != none);
+
 				if (TargetUnit == none)
-					TargetUnit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectGameState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
-				`assert(TargetUnit != none);
+					return ELR_NoInterrupt;
 
 				if (TargetUnit.IsFriendlyUnit(SourceUnit))
 					return ELR_NoInterrupt;
