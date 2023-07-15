@@ -4719,7 +4719,7 @@ exec function LWOTC_SetSelectedUnitActive()
 		Armory = UIArmory(`SCREENSTACK.GetFirstInstanceOf(class'UIArmory'));
 	if (Armory == none)
 	{
-		class'Helpers'.static.OutputMsg("No Unit Selected");
+		class'Helpers'.static.OutputMsg("Error: Not in Armory");
 		return;
 	}
 
@@ -4727,18 +4727,18 @@ exec function LWOTC_SetSelectedUnitActive()
 	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(UnitRef.ObjectID));
 	if (UnitState == none)
 	{
-		class'Helpers'.static.OutputMsg("No Unit Selected");
+		class'Helpers'.static.OutputMsg("Error: No Unit Selected");
 		return;
 	}
 
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Levelup Soldier");
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Force unit active");
 	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
 	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
 	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
 
 	UnitState.SetStatus(eStatus_Active);
 
-	class'Helpers'.static.OutputMsg("Unit marked as active");
+	class'Helpers'.static.OutputMsg("Unit marked as active" @ `SHOWVAR(UnitState.GetFullName() ));
 
 	if( NewGameState.GetNumGameStateObjects() > 0 )
 	{
