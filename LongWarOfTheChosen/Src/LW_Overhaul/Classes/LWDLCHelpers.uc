@@ -314,7 +314,8 @@ static function bool IsUnitOnMission(XComGameState_Unit UnitState)
 {
 	switch (UnitState.GetMyTemplateName())
 	{
-		case  'SparkSoldier':
+		case 'SparkSoldier':
+		case 'LostTowersSpark':
 			//sparks can be wounded and on a mission, so instead we have to do a more brute force check of existing squads and havens
 			if (UnitState.GetStatus() == eStatus_CovertAction)
 			{
@@ -343,31 +344,26 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 	local XComGameState_StaffSlot StaffSlotState;
 	local XComGameState_HeadquartersProjectHealSoldier HealSparkProject;
 
-	switch (UnitState.GetMyTemplateName())
+	
+	//If we're here, I'm going to assume you're allowed to be on the mission already, meaning that if you're in a slot you should be removed from it.
+	StaffSlotState = UnitState.GetStaffSlot();
+	if(StaffSlotState != none)
 	{
-		case  'SparkSoldier':
-			//sparks can be wounded and set on a mission, in which case don't update their status, but pull them from the healing bay
-			if (UnitState.GetStatus() == eStatus_Healing)
-			{
-				//if it's in a healing slot, remove it from slot
-				StaffSlotState = UnitState.GetStaffSlot();
-				if(StaffSlotState != none)
-				{
-					StaffSlotState = XComGameState_StaffSlot(NewGameState.ModifyStateObject(class'XComGameState_StaffSlot', StaffSlotState.ObjectID));
-					StaffSlotState.EmptySlot(NewGameState);
-				}
-				//and pause any healing project
-				HealSparkProject = GetHealSparkProject(UnitState.GetReference());
-				if (HealSparkProject != none)
-				{
-					HealSparkProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersProjectHealSoldier', HealSparkProject.ObjectID));
-					HealSparkProject.PauseProject();
-				}
-			}
-			break;
-		default:
-			break;
+		StaffSlotState = XComGameState_StaffSlot(NewGameState.ModifyStateObject(class'XComGameState_StaffSlot', StaffSlotState.ObjectID));
+		StaffSlotState.EmptySlot(NewGameState);
 	}
+
+	if (UnitState.GetStatus() == eStatus_Healing)
+	{
+		//and pause any healing project
+		HealSparkProject = GetHealSparkProject(UnitState.GetReference());
+		if (HealSparkProject != none)
+		{
+			HealSparkProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersProjectHealSoldier', HealSparkProject.ObjectID));
+			HealSparkProject.PauseProject();
+		}
+	}
+
 	UnitState.SetStatus(eStatus_CovertAction);
 	class'Helpers_LW'.static.UpdateUnitWillRecoveryProject(UnitState);
 }
