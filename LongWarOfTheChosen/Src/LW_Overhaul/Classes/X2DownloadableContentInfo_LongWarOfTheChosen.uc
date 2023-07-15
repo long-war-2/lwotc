@@ -4639,3 +4639,50 @@ static function UpdateSitreps()
 
 
 }
+
+exec function LWOTC_SetSelectedUnitActive()
+{
+	local XComGameStateHistory				History;
+	local UIArmory							Armory;
+	local StateObjectReference				UnitRef;
+	local XComGameState_Unit				UnitState;
+	local XComGameState						NewGameState;
+	local XComGameState_HeadquartersXCom	XComHQ;
+
+	History = `XCOMHISTORY;
+
+		Armory = UIArmory(`SCREENSTACK.GetFirstInstanceOf(class'UIArmory'));
+	if (Armory == none)
+	{
+		class'Helpers'.static.OutputMsg("No Unit Selected");
+		return;
+	}
+
+	UnitRef = Armory.GetUnitRef();
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(UnitRef.ObjectID));
+	if (UnitState == none)
+	{
+		class'Helpers'.static.OutputMsg("No Unit Selected");
+		return;
+	}
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Levelup Soldier");
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+
+	UnitState.SetStatus(eStatus_Active);
+
+	class'Helpers'.static.OutputMsg("Unit marked as active");
+
+	if( NewGameState.GetNumGameStateObjects() > 0 )
+	{
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
+
+	Armory.PopulateData();
+}
