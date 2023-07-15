@@ -50,6 +50,10 @@ var config int FIRE_AND_STEEL_DAMAGE_BONUS;
 var config int CONCUSSION_ROCKET_RADIUS_TILES;
 var config int CONCUSSION_ROCKET_TARGET_WILL_MALUS_DISORIENT;
 var config int CONCUSSION_ROCKET_TARGET_WILL_MALUS_STUN;
+var config int CONCUSSION_ROCKET_STUN_CHANCE;
+var config int CONCUSSION_ROCKET_DISORIENT_CHANCE;
+var config bool USE_CONCUSSION_ROCKET_WILL_CALCS;
+var config bool ENABLE_CONCUSSION_ROCKET_SMOKE;
 var config WeaponDamageValue CONCUSSION_ROCKET_DAMAGE_VALUE;
 var config int CONCUSSION_ROCKET_ENV_DAMAGE;
 var config float BURNOUT_RADIUS;
@@ -1550,8 +1554,8 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2Effect_PersistentStatChange		DisorientedEffect;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
-	//local X2Effect_SmokeGrenade				SmokeEffect;
-	//local X2Effect_ApplySmokeGrenadeToWorld WeaponEffect;
+	local X2Effect_SmokeGrenade				SmokeEffect;
+	local X2Effect_ApplySmokeGrenadeToWorld WeaponEffect;
 	local X2Effect_Stunned					StunnedEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
 	local X2Condition_UnitProperty			UnitPropertyCondition;
@@ -1625,22 +1629,26 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	//Template.AddTargetEffect(WeaponDamageEffect);
 	Template.AddMultiTargetEffect(WeaponDamageEffect);
 
-	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,50,false);
+	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(2,default.CONCUSSION_ROCKET_STUN_CHANCE,false);
 	StunnedEffect.bRemoveWhenSourceDies = false;
-	//StunnedEffect.ApplyChanceFn = ApplyChance_Concussion_Stunned;
+	if(default.USE_CONCUSSION_ROCKET_WILL_CALCS)
+		StunnedEffect.ApplyChanceFn = ApplyChance_Concussion_Stunned;
 	//Template.AddTargetEffect(StunnedEffect);
 	Template.AddMultiTargetEffect(StunnedEffect);
 
-	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
-	//DisorientedEffect.ApplyChanceFn = ApplyChance_Concussion_Disoriented;
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, default.CONCUSSION_ROCKET_DISORIENT_CHANCE, false);
+	if(default.USE_CONCUSSION_ROCKET_WILL_CALCS)
+		DisorientedEffect.ApplyChanceFn = ApplyChance_Concussion_Disoriented;
 	//Template.AddTargetEffect(DisorientedEffect);
 	Template.AddMultiTargetEffect(DisorientedEffect);
 
-	//WeaponEffect = new class'X2Effect_ApplySmokeGrenadeToWorld';
-	//Template.AddMultiTargetEffect (WeaponEffect);
+	if(default.ENABLE_CONCUSSION_ROCKET_SMOKE)
+	{
+		WeaponEffect = new class'X2Effect_ApplySmokeGrenadeToWorld';
+		Template.AddMultiTargetEffect (WeaponEffect);
 
-	//Template.AddMultiTargetEffect (class'X2Item_DefaultGrenades'.static.SmokeGrenadeEffect());
-
+		Template.AddMultiTargetEffect (class'X2Item_DefaultGrenades'.static.SmokeGrenadeEffect());
+	}
 	Template.ActivationSpeech = 'Explosion';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
