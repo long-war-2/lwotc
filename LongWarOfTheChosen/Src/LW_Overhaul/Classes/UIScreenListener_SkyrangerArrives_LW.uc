@@ -200,6 +200,7 @@ simulated function OnLaunchInfiltration(UIButton Button)
 		UpdatedSquadMgr.LaunchingMissionSquad = NullRef;
 
 		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+		`XCOMHQ.HandlePowerOrStaffingChange();
 	}
 	else // not persistent, create a new temporary squad for this mission
 	{
