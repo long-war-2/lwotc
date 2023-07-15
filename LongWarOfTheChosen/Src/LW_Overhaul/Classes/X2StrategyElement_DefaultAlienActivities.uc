@@ -3884,6 +3884,9 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 	ActivityTemplate = ActivityState.GetMyTemplate();
 	NewGameState.AddStateObject(ActivityState);
 
+	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	if(RegionState == none)
+		RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 
     // We need to apply the rewards immediately, but don't want to run them twice if we need to also defer the
     // activity update until we're back at the geoscape.
@@ -3896,7 +3899,6 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 		    RecordResistanceActivity(true, ActivityState, MissionState, NewGameState);
 
 			IncreaseChosenKnowledge(RegionState, NewGameState);
-
 
 		    MissionState.RemoveEntity(NewGameState);
 	    }
@@ -3970,6 +3972,7 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 static function TypicalEndActivityOnMissionSuccess(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
 {
 	local X2LWAlienActivityTemplate ActivityTemplate;
+	local XComGameState_WorldRegion RegionState;
 	local array<int> ExcludeIndices;
 
 	if(ActivityState == none)
@@ -3978,6 +3981,10 @@ static function TypicalEndActivityOnMissionSuccess(XComGameState_LWAlienActivity
 	ActivityTemplate = ActivityState.GetMyTemplate();
 	NewGameState.AddStateObject(ActivityState);
 
+	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	if(RegionState == none)
+		RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+
 	if (MissionState != none)
 	{
 		ExcludeIndices = GetRewardExcludeIndices(ActivityState, MissionState, NewGameState);
@@ -3985,9 +3992,7 @@ static function TypicalEndActivityOnMissionSuccess(XComGameState_LWAlienActivity
 		GiveRewards(NewGameState, MissionState, ExcludeIndices);
 		RecordResistanceActivity(true, ActivityState, MissionState, NewGameState);
 
-
 		IncreaseChosenKnowledge(RegionState, NewGameState);
-
 
 		MissionState.RemoveEntity(NewGameState);
 	}
