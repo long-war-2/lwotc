@@ -420,6 +420,7 @@ function XComGameState_LWPersistentSquad AddSquad(optional array<StateObjectRefe
 	NewGameState.AddStateObject(NewSquad);
 	NewGameState.AddStateObject(UpdatedSquadMgr);
 	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	`XCOMHQ.HandlePowerOrStaffingChange();
 
 	return NewSquad;
 }
