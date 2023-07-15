@@ -159,6 +159,7 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_SteadyWeapon				ToHitModifier;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2AbilityCost_Ammo				AmmoCost;
 	
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilitySteadyWeapon";
@@ -175,6 +176,12 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	//Template.DefaultKeyBinding = 539;
 	//Template.bNoConfirmationWithHotKey = true;
 	Template.AddShooterEffectExclusions();
+
+	//require 1 ammo but don't actually consume it, so you can't steady an empty weapon.
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	AmmoCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
 
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = 1;
