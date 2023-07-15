@@ -339,20 +339,20 @@ static function bool IsUnitOnMission(XComGameState_Unit UnitState)
 
 //class'LWDLCHelpers'.static.SetOnMissionStatus(UnitState, NewGameState)
 // helper for sparks to update healing project and staffslot
-static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState NewGameState)
+static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState NewGameState, optional bool bClearSlot = true)
 {
 	local XComGameState_StaffSlot StaffSlotState;
 	local XComGameState_HeadquartersProjectHealSoldier HealSparkProject;
 
-	
-	//If we're here, I'm going to assume you're allowed to be on the mission already, meaning that if you're in a slot you should be removed from it.
-	StaffSlotState = UnitState.GetStaffSlot();
-	if(StaffSlotState != none)
-	{
-		StaffSlotState = XComGameState_StaffSlot(NewGameState.ModifyStateObject(class'XComGameState_StaffSlot', StaffSlotState.ObjectID));
-		StaffSlotState.EmptySlot(NewGameState);
+	if(bClearSlot)
+	{//If we're here, I'm going to assume you're allowed to be on the mission already, meaning that if you're in a slot you should be removed from it.
+		StaffSlotState = UnitState.GetStaffSlot();
+		if(StaffSlotState != none)
+		{
+			StaffSlotState = XComGameState_StaffSlot(NewGameState.ModifyStateObject(class'XComGameState_StaffSlot', StaffSlotState.ObjectID));
+			StaffSlotState.EmptySlot(NewGameState);
+		}
 	}
-
 	if (UnitState.GetStatus() == eStatus_Healing)
 	{
 		//and pause any healing project

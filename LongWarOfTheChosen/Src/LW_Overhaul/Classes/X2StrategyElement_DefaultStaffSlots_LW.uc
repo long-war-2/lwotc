@@ -64,7 +64,7 @@ static function FillOutpostLiaison(XComGameState NewGameState, StateObjectRefere
     {
         Unit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
         NewGameState.AddStateObject(Unit);
-        class'LWDLCHelpers'.static.SetOnMissionStatus(Unit, NewGameState);
+        class'LWDLCHelpers'.static.SetOnMissionStatus(Unit, NewGameState, false);
     }
 }
 
