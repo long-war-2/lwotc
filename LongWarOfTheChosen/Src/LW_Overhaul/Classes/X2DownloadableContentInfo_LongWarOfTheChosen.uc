@@ -4752,6 +4752,47 @@ exec function LWOTC_SetSelectedUnitActive()
 	Armory.PopulateData();
 }
 
+
+
+exec function LWOTC_Fix_HealSelectedUnit()
+{
+	local XComGameStateHistory				History;
+	local UIArmory							Armory;
+	local StateObjectReference				UnitRef;
+	local XComGameState_Unit				UnitState;
+	local XComGameState_HeadquartersProjectHealSoldier HealProject;
+
+	History = `XCOMHISTORY;
+
+	Armory = UIArmory(`SCREENSTACK.GetFirstInstanceOf(class'UIArmory'));
+
+	if (Armory == none)
+	{
+		class'Helpers'.static.OutputMsg("Error: Not in Armory");
+		return;
+	}
+
+	UnitRef = Armory.GetUnitRef();
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(UnitRef.ObjectID));
+
+	if (UnitState == none)
+	{
+		class'Helpers'.static.OutputMsg("Error: No Unit Selected");
+		return;
+	}
+
+
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersProjectHealSoldier', HealProject)
+	{
+		if(HealProject.ProjectFocus.ObjectID == UnitRef.ObjectID)
+		{
+			HealProject.OnProjectCompleted();
+			class'Helpers'.static.OutputMsg("Unit healed" @ `SHOWVAR(UnitState.GetFullName()));
+			break;
+		}
+	}
+}
+
 exec function LWOTC_ForceAllUnitsActive()
 {
 	local XComGameStateHistory 		History;
