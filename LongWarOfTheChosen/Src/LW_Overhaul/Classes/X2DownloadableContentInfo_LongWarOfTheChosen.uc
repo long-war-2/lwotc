@@ -4686,3 +4686,37 @@ exec function LWOTC_SetSelectedUnitActive()
 
 	Armory.PopulateData();
 }
+
+exec function LWOTC_ForceAllUnitsActive()
+{
+	local XComGameStateHistory 		History;
+	local XComGameState_Unit 		UnitState;
+	local XComGameState				NewGameState;
+	local StateObjectReference		UnitReference;
+	local XComGameState_HeadquartersXCom		XComHQ;
+
+	History = `XCOMHISTORY;
+	
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Force all units active");
+
+	foreach XComHQ.Crew(UnitReference)
+	{
+		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(UnitReference.ObjectID));
+		if (UnitState != none)
+		{
+			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+			UnitState.SetStatus(eStatus_Active);
+		}
+	}
+
+	if( NewGameState.GetNumGameStateObjects() > 0 )
+	{
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
+}

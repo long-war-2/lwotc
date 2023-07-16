@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "LWoTC Stable Source",
+			"path": ".."
+		},
+		{
+			"name": "SrcOrig",
+			"path": "../../Steam/steamapps/common/XCOM 2 War of the Chosen SDK/Development/SrcOrig"
+		}
+	],
+	"settings": {}
+}

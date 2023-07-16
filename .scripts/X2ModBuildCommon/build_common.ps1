@@ -3,18 +3,25 @@ Write-Host "Build Common Loading"
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version 3.0
 
-$global:def_robocopy_args = @("/S", "/E", "/COPY:DAT", "/PURGE", "/MIR", "/NP", "/R:1000000", "/W:30")
 $global:buildCommonSelfPath = split-path -parent $MyInvocation.MyCommand.Definition
+
+$cleanCookerOutput = Join-Path -Path $global:buildCommonSelfPath "clean_cooker_output.ps1"
+Write-Host "Sourcing $cleanCookerOutput"
+. $cleanCookerOutput
+
 # list of all native script packages
 $global:nativescriptpackages = @("XComGame", "Core", "Engine", "GFxUI", "AkAudio", "GameFramework", "UnrealEd", "GFxUIEditor", "IpDrv", "OnlineSubsystemPC", "OnlineSubsystemLive", "OnlineSubsystemSteamworks", "OnlineSubsystemPSN")
+$global:def_robocopy_args = @("/S", "/E", "/COPY:DAT", "/PURGE", "/MIR", "/NP", "/R:1000000", "/W:30")
 
 $global:invarCulture = [System.Globalization.CultureInfo]::InvariantCulture
 
 class BuildProject {
 	[string] $modNameCanonical
+	[string] $modNameFull
 	[string] $projectRoot
 	[string] $sdkPath
 	[string] $gamePath
+	[string] $finalModPath
 	[string] $contentOptionsJsonFilename
 	[long] $publishID = -1
 	[bool] $debug = $false
@@ -29,16 +36,20 @@ class BuildProject {
 
 	# lazily set
 	[string] $modSrcRoot
+	[string] $modX2projPath
 	[string] $devSrcRoot
 	[string] $stagingPath
+	[string] $xcomModPath
 	[string] $commandletHostPath
 	[string] $buildCachePath
-	[string] $modcookdir
+	[string] $cookerOutputPath
 	[string] $makeFingerprintsPath
 	[string[]] $thismodpackages
 	[bool] $isHl
 	[bool] $cookHL
 	[PSCustomObject] $contentOptions
+	[string] $sdkEngineIniPath
+	[string] $sdkEngineIniContent
 
 	BuildProject(
 		[string]$mod,
@@ -46,7 +57,8 @@ class BuildProject {
 		[string]$sdkPath,
 		[string]$gamePath
 	){
-		$this.modNameCanonical = $mod
+		$this.modNameFull = $mod
+		$this.modNameCanonical = $mod -Replace '[\s;]',''
 		$this.projectRoot = $projectRoot
 		$this.sdkPath = $sdkPath
 		$this.gamePath = $gamePath
@@ -195,8 +207,11 @@ class BuildProject {
 	}
 
 	[void]_SetupUtils() {
-		$this.modSrcRoot = "$($this.projectRoot)\$($this.modNameCanonical)"
+		$this.modSrcRoot = "$($this.projectRoot)\$($this.modNameFull)"
+		$this.modX2projPath = "$($this.modSrcRoot)\$($this.modNameFull).x2proj"
 		$this.stagingPath = "$($this.sdkPath)\XComGame\Mods\$($this.modNameCanonical)"
+		$this.xcomModPath = "$($this.stagingPath)\$($this.modNameCanonical).XComMod"
+		$this.finalModPath = "$($this.gamePath)\XComGame\Mods\$($this.modNameCanonical)"
 		$this.devSrcRoot = "$($this.sdkPath)\Development\Src"
 		$this.commandletHostPath = "$($this.sdkPath)/binaries/Win64/XComGame.com"
 
@@ -211,13 +226,16 @@ class BuildProject {
 			ThrowFailure "-final_release only makes sense if the mod in question is a Highlander"
 		}
 
-		$this.modcookdir = [io.path]::combine($this.sdkPath, 'XComGame', 'Published', 'CookedPCConsole')
+		$this.cookerOutputPath = [io.path]::combine($this.sdkPath, 'XComGame', 'Published', 'CookedPCConsole')
 
 		$this.buildCachePath = [io.path]::combine($this.projectRoot, 'BuildCache')
 		if (!(Test-Path $this.buildCachePath))
 		{
 			New-Item -ItemType "directory" -Path $this.buildCachePath
 		}
+
+		$this.sdkEngineIniPath = "$($this.sdkPath)/XComGame/Config/DefaultEngine.ini"
+		$this.sdkEngineIniContent = Get-Content $this.sdkEngineIniPath | Out-String
 
 		$this.makeFingerprintsPath = "$($this.sdkPath)\XComGame\lastBuildDetails.json"
 		$lastBuildDetails = if (Test-Path $this.makeFingerprintsPath) {
@@ -260,6 +278,18 @@ class BuildProject {
 			$this.contentOptions | Add-Member -MemberType NoteProperty -Name 'missingUncooked' -Value @()
 		}
 
+		if (($this.contentOptions.PSobject.Properties | ForEach-Object {$_.Name}) -notcontains "sfStandalone")
+		{
+			Write-Host "No packages to make SF"
+			$this.contentOptions | Add-Member -MemberType NoteProperty -Name 'sfStandalone' -Value @()
+		}
+		
+		if (($this.contentOptions.PSobject.Properties | ForEach-Object {$_.Name}) -notcontains "sfMaps")
+		{
+			Write-Host "No umaps to cook"
+			$this.contentOptions | Add-Member -MemberType NoteProperty -Name 'sfMaps' -Value @()
+		}
+
 		if (($this.contentOptions.PSobject.Properties | ForEach-Object {$_.Name}) -notcontains "sfCollectionMaps")
 		{
 			Write-Host "No collection maps to cook"
@@ -275,15 +305,16 @@ class BuildProject {
 		}
 		
 		Write-Host "Copying mod project to staging..."
-		Robocopy.exe "$($this.modSrcRoot)" "$($this.sdkPath)\XComGame\Mods\$($this.modNameCanonical)" *.* $global:def_robocopy_args /XF @xf /XD "ContentForCook"
+		Robocopy.exe "$($this.modSrcRoot)" "$($this.stagingPath)" *.* $global:def_robocopy_args /XF @xf /XD "ContentForCook"
 		Write-Host "Copied project to staging."
 
 		New-Item "$($this.stagingPath)/Script" -ItemType Directory
 
 		# read mod metadata from the x2proj file
-		Write-Host "Reading mod metadata from $($this.modSrcRoot)\$($this.modNameCanonical).x2proj..."
-		[xml]$x2projXml = Get-Content -Path "$($this.modSrcRoot)\$($this.modNameCanonical).x2proj"
-		$modProperties = $x2projXml.Project.PropertyGroup[0]
+		Write-Host "Reading mod metadata from $($this.modX2ProjPath)"
+		[xml]$x2projXml = Get-Content -Path "$($this.modX2ProjPath)"
+		$xmlPropertyGroup = $x2projXml.Project.PropertyGroup
+		$modProperties = if ($xmlPropertyGroup -is [array]) { $xmlPropertyGroup[0] } else { $xmlPropertyGroup }
 		$publishedId = $modProperties.SteamPublishID
 		if ($this.publishID -ne -1) {
 			$publishedId = $this.publishID
@@ -294,7 +325,7 @@ class BuildProject {
 		Write-Host "Read."
 
 		Write-Host "Writing mod metadata..."
-		Set-Content "$($this.sdkPath)/XComGame/Mods/$($this.modNameCanonical)/$($this.modNameCanonical).XComMod" "[mod]`npublishedFileId=$publishedId`nTitle=$title`nDescription=$description`nRequiresXPACK=true"
+		Set-Content "$($this.xcomModPath)" "[mod]`npublishedFileId=$publishedId`nTitle=$title`nDescription=$description`nRequiresXPACK=true"
 		Write-Host "Written."
 
 		# Create CookedPCConsole folder for the mod
@@ -462,7 +493,7 @@ class BuildProject {
 			$scriptsMakeArguments = "$scriptsMakeArguments -debug"
 		}
 
-		$handler = [MakeStdoutReceiver]::new($this.devSrcRoot, "$($this.modSrcRoot)\Src")
+		$handler = [MakeStdoutReceiver]::new($this)
 		$handler.processDescr = "compiling base game scripts"
 		$this._InvokeEditorCmdlet($handler, $scriptsMakeArguments, 50)
 
@@ -471,7 +502,7 @@ class BuildProject {
 		{
 			Write-Host "Compiling base game scripts without final_release..."
 			$scriptsMakeArguments = "make -nopause -unattended"
-			$handler = [MakeStdoutReceiver]::new($this.devSrcRoot, "$($this.modSrcRoot)\Src")
+			$handler = [MakeStdoutReceiver]::new($this)
 			$handler.processDescr = "compiling base game scripts"
 			$this._InvokeEditorCmdlet($handler, $scriptsMakeArguments, 50)
 		}
@@ -484,7 +515,7 @@ class BuildProject {
 		{
 			$scriptsMakeArguments = "$scriptsMakeArguments -debug"
 		}
-		$handler = [MakeStdoutReceiver]::new($this.devSrcRoot, "$($this.modSrcRoot)\Src")
+		$handler = [MakeStdoutReceiver]::new($this)
 		$handler.processDescr = "compiling mod scripts"
 		$this._InvokeEditorCmdlet($handler, $scriptsMakeArguments, 50)
 	}
@@ -508,9 +539,9 @@ class BuildProject {
 			if ($this.cookHL -and $global:nativescriptpackages.Contains($name))
 			{
 				# This is a native (cooked) script package -- copy important upks
-				Copy-Item "$($this.modcookdir)\$name.upk" "$($this.stagingPath)\CookedPCConsole" -Force -WarningAction SilentlyContinue
-				Copy-Item "$($this.modcookdir)\$name.upk.uncompressed_size" "$($this.stagingPath)\CookedPCConsole" -Force -WarningAction SilentlyContinue
-				Write-Host "$($this.modcookdir)\$name.upk"
+				Copy-Item "$($this.cookerOutputPath)\$name.upk" "$($this.stagingPath)\CookedPCConsole" -Force -WarningAction SilentlyContinue
+				Copy-Item "$($this.cookerOutputPath)\$name.upk.uncompressed_size" "$($this.stagingPath)\CookedPCConsole" -Force -WarningAction SilentlyContinue
+				Write-Host "$($this.cookerOutputPath)\$name.upk"
 			}
 			else
 			{
@@ -525,16 +556,14 @@ class BuildProject {
 		Write-Host "Checking the need to PrecompileShaders"
 		$contentfiles = @()
 
+		# We don't need to consider
+		# .umaps - they will never contain material (instances) objects - only reference them
+		# ContentForCook - seekfree packages have an inlined shader cache
+
 		if (Test-Path "$($this.modSrcRoot)/Content")
 		{
-			$contentfiles = $contentfiles + (Get-ChildItem "$($this.modSrcRoot)/Content" -Include *.upk, *.umap -Recurse -File)
+			$contentfiles += Get-ChildItem "$($this.modSrcRoot)/Content" -Include *.upk -Recurse -File
 		}
-		
-		# Turns out that seekfree packages contain an inlined shader cache, so there is no need to pass them through the shader precompiler
-		# if (Test-Path "$($this.modSrcRoot)/ContentForCook")
-		# {
-		# 	$contentfiles = $contentfiles + (Get-ChildItem "$($this.modSrcRoot)/ContentForCook" -Include *.upk, *.umap -Recurse -File)
-		# }
 
 		if ($contentfiles.length -eq 0) {
 			Write-Host "No content files, skipping PrecompileShaders."
@@ -590,387 +619,31 @@ class BuildProject {
 	}
 
 	[void]_RunCookAssets() {
-		# Preliminary step: figure out what we need to do
-
-		$contentForCookPath = "$($this.modSrcRoot)\ContentForCook"
-
-		$sfCollectionOnlyMapsNames = @($this.contentOptions.sfCollectionMaps | ForEach-Object { $_.name })
-		$sfStandaloneNames = @()
-		$sfMapsNames = @()
-
-		if (-not(Test-Path $contentForCookPath)) {
-			if ($sfCollectionOnlyMapsNames.Length -gt 0) {
-				ThrowFailure "Collection map cooking is requested, but no ContentForCook folder is present"
-			}
-
-			Write-Host "No assets to cook, skipping"
-			return
-		}
-
-		if (Test-Path "$contentForCookPath/Maps") {
-			$sfMapsNames = @(Get-ChildItem -Path "$contentForCookPath/Maps" -Recurse -Include *.umap | ForEach-Object { $_.BaseName })
-
-			# Allow using the force-package-into-map functionality for non-empty maps
-			$sfCollectionOnlyMapsNames = @($sfCollectionOnlyMapsNames | Where-Object { $sfMapsNames -notcontains $_ })
-		}
-
-		if (Test-Path "$contentForCookPath/Standalone") {
-			$sfStandaloneNames = @(Get-ChildItem -Path "$contentForCookPath/Standalone" -Recurse -Include *.upk | ForEach-Object { $_.BaseName })
-		}
-
-		if (($sfMapsNames.Length -lt 1) -and ($sfStandaloneNames.Length -lt 1) -and ($sfCollectionOnlyMapsNames.Length -lt 1)) {
-			if ((Test-Path "$contentForCookPath/Secondary") -and ($null -ne (Get-ChildItem -Path "$contentForCookPath/Secondary" -Recurse -Include *.upk))) {
-				ThrowFailure "Found secondary packages for cooking but nothing ever could use them"
-			}
-
-			Write-Host "No assets to cook, skipping"
-			return
-		}
-
-		# We are definitely cooking
-		Write-Host "Starting assets cooking"
-
-		# Bit of debug info
-		Write-Host "SF Standalone: $sfStandaloneNames"
-		Write-Host "Maps: $sfMapsNames"
-		Write-Host "Collection only maps: $sfCollectionOnlyMapsNames"
-
-		# Step 0. Basic preparation
-		
-		$projectCookCacheDir = [io.path]::combine($this.buildCachePath, 'PublishedCookedPCConsole')
-		$collectionMapsPath = [io.path]::combine($this.buildCachePath, 'CollectionMaps')
-		$tfcSuffix = "_$($this.modNameCanonical)_"
-		
-		$sdkEnginePath = "$($this.sdkPath)/XComGame/Config/DefaultEngine.ini"
-		$sdkEngineContentOriginal = Get-Content $sdkEnginePath | Out-String
-		$sdkEngineChangesPreamble = "HACKS FOR MOD ASSETS COOKING"
-		
-		$cookOutputParentDir = [io.path]::combine($this.sdkPath, 'XComGame', 'Published')
-		$cookOutputDir = [io.path]::combine($cookOutputParentDir, 'CookedPCConsole')
-
-		$sdkContentModsDir = [io.path]::combine($this.sdkPath, 'XComGame', 'Content', 'Mods')
-		$sdkContentModsOurDir = [io.path]::combine($sdkContentModsDir, $this.modNameCanonical)
-		$sdkContentModsOurStandaloneDir = [io.path]::combine($sdkContentModsOurDir, "Standalone")
-		$sdkContentModsOurGuardDir = [io.path]::combine($sdkContentModsOurDir, "aaaaaa")
-		$sdkContentModsOurGuardPackagePath = [io.path]::combine($sdkContentModsOurGuardDir, "TEMP_DlcCookIteratorGuard_$($this.modNameCanonical).upk")
-		
-		# First, we need to check that everything is ready for us to do these shenanigans
-		# This doesn't use locks, so it can break if multiple builds are running at the same time,
-		# so let's hope that mod devs are smart enough to not run simultanoues builds
-		
-		if ($sdkEngineContentOriginal.Contains($sdkEngineChangesPreamble))
-		{
-			ThrowFailure "Another cook is already in progress (DefaultEngine.ini)"
-		}
-
-		# Prepare the changes to the engine ini
-		$newEngineLines = @()
-
-		# Denote the beginning of our changes (+ used by the check above)
-		$newEngineLines += ";$sdkEngineChangesPreamble - $($this.modNameCanonical)"
-
-		# Collection maps
-		$newEngineLines += "[Engine.PackagesToForceCookPerMap]"
-		foreach ($mapDef in $this.contentOptions.sfCollectionMaps) {
-			$newEngineLines += "+Map=$($mapDef.name)"
-
-			foreach ($package in $mapDef.packages) {
-				$newEngineLines += "+Package=$package"
-			}
-		}
-
-		# Paths
-		$newEngineLines += "[Core.System]"
-		if ($sfMapsNames.Length -gt 0) { $newEngineLines += "+Paths=$contentForCookPath\Maps" }
-		if ($sfCollectionOnlyMapsNames.Length -gt 0) { $newEngineLines += "+Paths=$collectionMapsPath" }
-		if (Test-Path "$contentForCookPath/Secondary") { $newEngineLines += "+Paths=$contentForCookPath\Secondary" }
-
-		# Final content
-		$sdkEngineContentNew = $newEngineLines -join "`n"
-		$sdkEngineContentNew = "$sdkEngineContentOriginal`n$sdkEngineContentNew"
-
-		# Prepare the cook output folder
-		$previousCookOutputDirPath = $null
-		if (Test-Path $cookOutputDir)
-		{
-			$previousCookOutputDirName = "Pre_$($this.modNameCanonical)_Cook_CookedPCConsole"
-			$previousCookOutputDirPath = [io.path]::combine($this.sdkPath, 'XComGame', 'Published', $previousCookOutputDirName)
-			
-			Rename-Item $cookOutputDir $previousCookOutputDirName
-		} 
-
-		# Make sure our local cache folder exists
-		if (!(Test-Path $projectCookCacheDir))
-		{
-			New-Item -ItemType "directory" -Path $projectCookCacheDir
-		}
-
-		# Prepare the list of maps to cook
-		$cookedMaps = @()
-		$dirtyMaps = @()
-
-		# Check the dev-made maps
-		# Not the best (doesn't take into account the dependencies) but will suffice for now
-		foreach ($map in $sfMapsNames) {
-			$cookedMaps += $map
-
-			$cookedPath = "$projectCookCacheDir\$map.upk"
-
-			if (!(Test-Path $cookedPath)) {
-				Write-Host "$map has no cached cooked version"
-				$dirtyMaps += $map
-			}
-			else {
-				$original = Get-ChildItem -Path "$contentForCookPath\Maps" -Include "$map.umap" -Recurse
-
-				if ($original.LastWriteTime -gt (Get-Item $cookedPath).LastWriteTime) {
-					$dirtyMaps += $map
-					Write-Host "$map original was updated"
-				}
-			}
-		}
-
-		# Check the collection maps
-		foreach ($mapDef in $this.contentOptions.sfCollectionMaps) {
-			$map = $mapDef.name
-			$cookedPath = "$projectCookCacheDir\$map.upk"
-
-			$cookedMaps += $map
-
-			if (!(Test-Path $cookedPath)) {
-				Write-Host "$map has no cached cooked version"
-				$dirtyMaps += $map
-			}
-			else {
-				$existingCooked = Get-Item $cookedPath
-
-				foreach ($package in $mapDef.packages) {
-					if (((Get-ChildItem -Path "$contentForCookPath\Secondary" -Include "$package.upk" -Recurse).LastWriteTime) -gt $existingCooked.LastWriteTime) {
-						Write-Host "$map dependency was updated ($package)"
-						$dirtyMaps += $map
-						break
-					}
-				}
-			}
-		}
-
-		# Dedupe for cases when collection maps are manually made
-		# Also sort for consitency and ease of reading of the command line arguments
-		$cookedMaps = $cookedMaps | Sort-Object -unique
-		$dirtyMaps = $dirtyMaps | Sort-Object -unique
-
-		# Prepare the command line arguments
-		# Note that we still need the -TFCSUFFIX even though -DLCName suffixes the TFCs as with only the latter using TFCs will crash at runtime (reads from base game ones?)
-		$mapsString = $dirtyMaps -join " "
-		$cookFlags = "CookPackages $mapsString -skipmaps -platform=pcconsole -unattended -DLCName=$($this.modNameCanonical) -singlethread -TFCSUFFIX=$tfcSuffix"
-
-		# Prepare the output handler
-		$handler = [ModcookReceiver]::new()
-		$handler.processDescr = "cooking mod packages"
-
-		# Prep the folder for the collection maps
-		# Not the most efficient approach, but there are bigger time saves to be had
-		if ($sfCollectionOnlyMapsNames.Length -gt 0) {
-			Remove-Item $collectionMapsPath -Force -Recurse -WarningAction SilentlyContinue -ErrorAction SilentlyContinue
-			New-Item -ItemType "directory" -Path $collectionMapsPath
-
-			foreach ($map in $sfCollectionOnlyMapsNames) {
-				# Important: we cannot use .umap extension here - git lfs (if in use) gets confused during git subtree add
-				# See https://github.com/X2CommunityCore/X2ModBuildCommon/wiki/Do-not-use-.umap-for-files-in-this-repo
-				Copy-Item "$global:buildCommonSelfPath\EmptyUMap" "$collectionMapsPath\$map.umap"
-			}
-		}
-
-		# Prep the folder for the SF standalone packages
-
-		if (!(Test-Path $sdkContentModsDir)) {
-			New-Item -ItemType "directory" -Path $sdkContentModsDir
-		} else {
-			if (Test-Path $sdkContentModsOurDir) {
-				# If we have any files, then something is happening here - abort
-				if ((Get-ChildItem -Path $sdkContentModsOurDir -Force -File -Recurse).Length -gt 0) {
-					ThrowFailure "$sdkContentModsOurDir is already in use (not empty)"
-				}
-			}
-		}
-
-		if ($sfStandaloneNames.Length -gt 0) {
-			if (Test-Path $sdkContentModsOurDir) {
-				# Empty folders don't matter at all - clean them up so that they don't get in the way
-				Get-ChildItem -Path $sdkContentModsOurDir -Force -Directory |
-					ForEach-Object { $_.FullName } |
-					Remove-Item -Recurse
-			} else {
-				New-Item -ItemType "directory" -Path $sdkContentModsOurDir
-			}
-
-			# Prep the guard package.
-			# When the cooker iterates the packages to decide what to cook, it will always skip the first
-			# one alphabetically. To counteract this, we make a dummy package which will always be
-			# iterated first
-			New-Item -ItemType "directory" -Path $sdkContentModsOurGuardDir
-			Copy-Item "$global:buildCommonSelfPath\EmptyPackage" $sdkContentModsOurGuardPackagePath
-		} else {
-			if (Test-Path $sdkContentModsOurDir) {
-				# Just delete the folder so it doesn't cause any confusion
-				Remove-Item $sdkContentModsOurDir -Force -Recurse
-			}
-		}
-
-		# Backup the DefaultEngine.ini
-		Copy-Item $sdkEnginePath "$($this.sdkPath)/XComGame/Config/DefaultEngine.ini.bak_PRE_ASSET_COOKING"
-
-		# This try block needs to be kept as small as possible as it puts the SDK into a (temporary) invalid state
-		try {
-			# Redirect all the cook output to our local cache
-			# This allows us to not recook everything when switching between projects (e.g. CHL)
-			# Ensure parent directory exists
-			if (-not (Test-Path -Path $cookOutputParentDir)) {
-				New-Item -Path $cookOutputParentDir -Type Directory
-			}
-			New-Junction $cookOutputDir $projectCookCacheDir
-
-			# Put our standalone packages in a place where the cooker looks for them
-			if ($sfStandaloneNames.Length -gt 0) { New-Junction $sdkContentModsOurStandaloneDir "$contentForCookPath/Standalone" }
-
-			# Set the modified engine.ini
-			$sdkEngineContentNew | Set-Content $sdkEnginePath -NoNewline
-
-			# while ($true) {}
-
-			Write-Host "Invoking cooker"
-			Write-Host $cookFlags
-
-			# Invoke the cooker
-			# Even a sleep of 1 ms causes a noticable delay between cooker being done (files created)
-			# and output completing. So, just spin
-			$this._InvokeEditorCmdlet($handler, $cookFlags, 0)
-		}
-		finally {
-			Write-Host "Cleaning up the asset cooking hacks"
-
-			# Revert ini
-			try {
-				$sdkEngineContentOriginal | Set-Content $sdkEnginePath -NoNewline
-				Write-Host "Reverted $sdkEnginePath"	
-			}
-			catch {
-				FailureMessage "Failed to revert $sdkEnginePath"
-				FailureMessage $_
-			}
-
-			# Revert junctions
-
-			try {
-				Remove-Junction $cookOutputDir
-				Write-Host "Removed $cookOutputDir junction"
-			}
-			catch {
-				FailureMessage "Failed to remove $cookOutputDir junction"
-				FailureMessage $_
-			}
-
-			if ($sfStandaloneNames.Length -gt 0) {
-				try {
-					Remove-Junction $sdkContentModsOurStandaloneDir
-					Write-Host "Removed $sdkContentModsOurStandaloneDir junction"
-				}
-				catch {
-					FailureMessage "Failed to remove $sdkContentModsOurStandaloneDir junction"
-					FailureMessage $_
-				}
-
-				try {
-					Remove-Item $sdkContentModsOurGuardDir -Recurse
-					Write-Host "Removed $sdkContentModsOurGuardDir folder"
-				}
-				catch {
-					FailureMessage "Failed to remove $sdkContentModsOurGuardDir folder"
-					FailureMessage $_
-				}
-
-				try {
-					# Important: not recursive!
-					# If we failed to undo the Standalone junction above, we will nuke the original
-					# packages in the mod project if this is a recursive removal
-					Remove-Item $sdkContentModsOurDir 
-					Write-Host "Removed $sdkContentModsOurDir folder"
-				}
-				catch {
-					FailureMessage "Failed to remove $sdkContentModsOurDir folder"
-					FailureMessage $_
-				}
-			}
-			
-			# Restore the HL cook folder
-			if (![string]::IsNullOrEmpty($previousCookOutputDirPath))
-			{
-				try {
-					if (Test-Path $cookOutputDir) {
-						ThrowFailure "$cookOutputDir still exists, cannot restore previous"
-					}
-
-					Rename-Item $previousCookOutputDirPath "CookedPCConsole"
-					Write-Host "Restored previous $cookOutputDir"	
-				}
-				catch {
-					FailureMessage "Failed to restore previous $cookOutputDir"
-					FailureMessage $_
-				}
-			}
-		}
-
-		# Prepare the folder for cooked stuff
-		$stagingCookedDir = [io.path]::combine($this.stagingPath, 'CookedPCConsole')
-		if (!(Test-Path $stagingCookedDir)) {
-			New-Item -ItemType "directory" -Path $stagingCookedDir
-		}
-		
-		# Copy over the TFC files
-		# The name of the file is extrenely long and stupid, but I'm tired of various weird behaviours, so better safe than sorry
-		Get-ChildItem -Path $projectCookCacheDir -Filter "*_$($this.modNameCanonical)_DLCTFC$tfcSuffix.tfc" | Copy-Item -Destination $stagingCookedDir
-		
-		# Copy over the maps
-		for ($i = 0; $i -lt $cookedMaps.Length; $i++) {
-			$umap = $cookedMaps[$i];
-			Copy-Item "$projectCookCacheDir\$umap.upk" -Destination $stagingCookedDir
-		}
-		
-		# Copy over the SF standalone packages
-		foreach ($package in $sfStandaloneNames) {
-			# Since we don't ship the GuidCache with the mod, we need to remove the _SF suffix.
-			# Otherwise the game won't find the package
-			$dest = [io.path]::Combine($stagingCookedDir, "$package.upk")
-			Copy-Item "$projectCookCacheDir\${package}_SF.upk" -Destination $dest
-		}
-
-		Write-Host "Assets cook completed"
+		$step = [ModAssetsCookStep]::new($this)
+		$step.Execute()
 	}
 
 	[void]_RunCookHL() {
+		$this._EnsureCookerOutputParentDirExists()
+
 		# Cook it
 		# Normally, the mod tools create a symlink in the SDK directory to the game CookedPCConsole directory,
 		# but we'll just be using the game one to make it more robust
 		$cookedpcconsoledir = [io.path]::combine($this.gamePath, 'XComGame', 'CookedPCConsole')
-		if(-not(Test-Path $this.modcookdir))
-		{
-			Write-Host "Creating Published/CookedPCConsole directory..."
-			New-Item $this.modcookdir -ItemType Directory
-		}
 
 		[System.String[]]$files = "GuidCache.upk", "GlobalPersistentCookerData.upk", "PersistentCookerShaderData.bin"
 		foreach ($name in $files) {
-			if(-not(Test-Path ([io.path]::combine($this.modcookdir, $name))))
+			if(-not(Test-Path ([io.path]::combine($this.cookerOutputPath, $name))))
 			{
 				Write-Host "Copying $name..."
-				Copy-Item ([io.path]::combine($cookedpcconsoledir, $name)) $this.modcookdir
+				Copy-Item ([io.path]::combine($cookedpcconsoledir, $name)) $this.cookerOutputPath
 			}
 		}
 
 		# Ideally, the cooking process wouldn't modify the big *.tfc files, but it does, so we don't overwrite existing ones (/XC /XN /XO)
 		# In order to "reset" the cooking direcory, just delete it and let the script recreate them
 		Write-Host "Copying Texture File Caches..."
-		Robocopy.exe "$cookedpcconsoledir" "$($this.modcookdir)" *.tfc /NJH /XC /XN /XO
+		Robocopy.exe "$cookedpcconsoledir" "$($this.cookerOutputPath)" *.tfc /NJH /XC /XN /XO
 		Write-Host "Copied Texture File Caches."
 		
 		# Prepare editor args
@@ -992,6 +665,13 @@ class BuildProject {
 		# Cook it!
 		Write-Host "Invoking CookPackages (this may take a while)"
 		$this._InvokeEditorCmdlet($handler, $cook_args, 10)
+	}
+
+	[void] _EnsureCookerOutputParentDirExists () {
+		if(-not(Test-Path $this.cookerOutputPath)) {
+			Write-Host "Creating Published/CookedPCConsole directory..."
+			New-Item $this.cookerOutputPath -ItemType Directory
+		}
 	}
 
 	[void]_CopyMissingUncooked() {
@@ -1018,11 +698,19 @@ class BuildProject {
 	}
 
 	[void]_FinalCopy() {
-		$finalModPath = "$($this.gamePath)\XComGame\Mods\$($this.modNameCanonical)"
-
 		# copy all staged files to the actual game's mods folder
 		# TODO: Is the string interpolation required in the robocopy calls?
-		Robocopy.exe "$($this.stagingPath)" "$($finalModPath)" *.* $global:def_robocopy_args
+		Robocopy.exe "$($this.stagingPath)" "$($this.finalModPath)" *.* $global:def_robocopy_args
+	}
+
+	[string[]] _PrepareBuildCacheEngineIniWithAdditions ([string] $fileNamePrefix, [array] $lines) {
+		$localDefaultEngineIniPath = [io.path]::combine($this.buildCachePath, $fileNamePrefix + "_DefaultEngine.ini")
+		$localXComEngineIniPath = [io.path]::combine($this.buildCachePath, $fileNamePrefix + "_XComEngine.ini")
+
+		$newEngineIniContent = $this.sdkEngineIniContent + "`n" + ($lines -join "`n") + "`n"
+		$newEngineIniContent | Set-Content $localDefaultEngineIniPath -NoNewline
+
+		return @($localDefaultEngineIniPath, $localXComEngineIniPath)
 	}
 
 	[void]_InvokeEditorCmdlet([StdoutReceiver] $receiver, [string] $makeFlags, [int] $sleepMsDuration) {
@@ -1101,6 +789,522 @@ class BuildProject {
 	}
 }
 
+class ModAssetsCookStep {
+	[BuildProject] $project
+
+	[string] $xpackTfcSuffix = '_XPACK_'
+	[string] $actualTfcSuffix
+
+	[string] $contentForCookPath
+	[string] $collectionMapsPath
+
+	[string] $sdkContentModsDir
+	[string] $sdkContentModsOurDir
+
+	[string[]] $dirtyMaps
+	[string[]] $cookedMaps
+	[string[]] $sfCollectionOnlyMaps
+
+	[string] $engineIniDefaultPath
+	[string] $engineIniXComPath
+
+	[string] $editorArgs
+
+	[string] $cookerOutputTrackerPath
+	[object] $cookerOutputTracker
+
+	ModAssetsCookStep ([BuildProject] $project) {
+		$this.project = $project
+	}
+
+	[void] Execute() {
+		if (($this.project.contentOptions.sfStandalone.Length -lt 1) -and ($this.project.contentOptions.sfMaps.Length -lt 1) -and ($this.project.contentOptions.sfCollectionMaps.Length -lt 1)) {
+			Write-Host "No asset cooking is requested, skipping"
+			return
+
+			# TODO: Check if there are any assets in ContentForCook when no cooking is configured
+		}
+
+		Write-Host "Initializing assets cooking"
+
+		$this._Init()
+		$this._Verify()
+		
+		Write-Host "Preparing assets cooking"
+
+		$this._PrepareSdkFolders()
+		$this._PrepareProjectCache()
+		
+		$this._VerifyCachedTfcsNotAltered() # Needs to be after _PrepareProjectCache (CollectionMaps are created) and _PrepareSdkFolders (otherwise Get-ChildItem for TFCs fails)
+		$this._VerifyCachedSfPackagesNotAltered()
+		
+		$this._DetermineDirtyMaps()
+		$this._PrepareEngineIni()
+		$this._PrepareEditorArgs()
+
+		Write-Host "Starting assets cooking"
+		
+		$this._ExecuteCore()
+		$this._WarnTfcGrowth()
+		$this._RecordCookerOutputTracker()
+		$this._StageArtifacts()
+
+		Write-Host "Assets cook completed"
+	}
+
+	[void] _Init() {
+		$this.actualTfcSuffix = "_$($this.project.modNameCanonical)_DLCTFC$($this.xpackTfcSuffix)"
+
+		$this.contentForCookPath = "$($this.project.modSrcRoot)\ContentForCook"
+		$this.collectionMapsPath = [io.path]::combine($this.project.buildCachePath, 'CollectionMaps')
+		
+		$this.sdkContentModsDir = [io.path]::combine($this.project.sdkPath, 'XComGame', 'Content', 'Mods')
+		$this.sdkContentModsOurDir = [io.path]::combine($this.sdkContentModsDir, $this.project.modNameCanonical)
+
+		$this.cookedMaps = @($this.project.contentOptions.sfMaps)
+		foreach ($mapDef in $this.project.contentOptions.sfCollectionMaps) {
+			$this.cookedMaps += $mapDef.name
+		}
+	
+		$this.sfCollectionOnlyMaps = @()
+		foreach ($mapDef in $this.project.contentOptions.sfCollectionMaps) {
+			if ($null -eq (Get-ChildItem -Path $this.contentForCookPath -Filter $mapDef.name -Recurse)) {
+				$this.sfCollectionOnlyMaps += $mapDef.name
+			}
+		}
+
+		$this.cookerOutputTrackerPath = [io.path]::combine($this.project.buildCachePath, 'AssetsCookerOutputTracker.json')
+
+		if (Test-Path $this.cookerOutputTrackerPath) {
+			$this.cookerOutputTracker = Get-Content $this.cookerOutputTrackerPath | ConvertFrom-Json
+		} else {
+			$this.cookerOutputTracker = [PSCustomObject]@{
+				tfcFiles = @() # Assume no TFCs if no info is stored. This will cause a full recook if any are found
+				sfPackages = @()
+			}
+		}
+	}
+
+	[void] _Verify() {
+		# TODO: consider removing this requirement.
+		# It might be legitimate use case to cook a "secondary" vanilla package or a collection map that consists of only vanilla packages
+		if (-not(Test-Path $this.contentForCookPath))
+		{
+			ThrowFailure "Asset cooking is requested, but no ContentForCook folder is present"
+		}
+
+		if (Test-Path $this.sdkContentModsOurDir) {
+			# If we have any files, then something is happening here - abort
+			if ($null -ne (Get-ChildItem -Path $this.sdkContentModsOurDir -Force -Recurse)) {
+				ThrowFailure "$($this.sdkContentModsOurDir) is already in use (not empty)"
+		}
+	}
+
+		# The DLC cooker needs to read/copy the shipped GPCD
+		$shippedGpcdPath = [io.path]::combine($this.project.sdkPath, 'XComGame', 'CookedPCConsole', 'GlobalPersistentCookerData.upk')
+		if (!(Test-Path $shippedGpcdPath)) {
+			ThrowFailure "$shippedGpcdPath does not exist. Please verify your that your SDK is configured correctly"
+		}
+		}
+
+	[void] _PrepareProjectCache() {
+		# Prep the folder for the collection maps
+		# Not the most efficient approach, but there are bigger time saves to be had
+		Remove-Item $this.collectionMapsPath -Force -Recurse -WarningAction SilentlyContinue -ErrorAction SilentlyContinue
+		New-Item -ItemType "directory" -Path $this.collectionMapsPath
+
+		foreach ($map in $this.sfCollectionOnlyMaps) {
+			# Important: we cannot use .umap extension here - git lfs (if in use) gets confused during git subtree add
+			# See https://github.com/X2CommunityCore/X2ModBuildCommon/wiki/Do-not-use-.umap-for-files-in-this-repo
+			Copy-Item "$global:buildCommonSelfPath\EmptyUMap" "$($this.collectionMapsPath)\$map.umap"
+		}
+	}
+			
+	[void] _VerifyCachedTfcsNotAltered () {
+		if (!$this._CheckCachedTfcsNotAltered()) {
+			Write-Host "Performing a full recook"
+			CleanModAssetCookerOutput $this.project.sdkPath $this.project.modNameCanonical @($this.contentForCookPath, $this.collectionMapsPath)
+
+			# Save that everything is deleted
+			$this.cookerOutputTracker.tfcFiles = @()
+			$this._RecordCookerOutputTracker()
+				 }
+			}
+
+	[bool] _CheckCachedTfcsNotAltered () {
+		[System.Collections.ArrayList] $currentTfcs = @($this._GetOurTfcFiles() | Select-Object -ExpandProperty Name)
+
+		foreach ($trackedFileData in $this.cookerOutputTracker.tfcFiles) {
+			if (!$currentTfcs.Contains($trackedFileData.fullFileName)) {
+				Write-Host "$($trackedFileData.fullFileName) is missing"
+				return $false
+			}
+
+			$path = [io.path]::combine($this.project.cookerOutputPath, $trackedFileData.fullFileName)
+			$file = Get-Item $path
+
+			if ($file.LastWriteTimeUtc.Ticks -ne $trackedFileData.lastUpdatedUtc) {
+				Write-Host "$($trackedFileData.fullFileName) timestamp mismatch"
+				return $false
+		}
+
+			$currentTfcs.Remove($trackedFileData.fullFileName)
+	}
+
+		if ($currentTfcs.Count -gt 0) {
+			Write-Host "Unexpected TFCs found: $currentTfcs"
+			return $false
+		}
+
+		return $true
+	}
+
+	# Why is this needed?
+	# It's technically fine to cook the same package from multiple mods.
+	# However, if the package ends up having any textures that point to a TFC file,
+	# they will be pointing to a TFC that we will not ship (as it is of a different DLC)
+	# which at runtime will at best cause missing mip levels, and at worst, crash the game.
+	[void] _VerifyCachedSfPackagesNotAltered () {
+		# Delete tracked if timestamp doesn't match
+
+		foreach ($trackedFileData in $this.cookerOutputTracker.sfPackages) {
+			$path = [io.path]::combine($this.project.cookerOutputPath, $trackedFileData.fullFileName)
+
+			if (Test-Path $path) {
+				$file = Get-Item $path
+
+				if ($file.LastWriteTimeUtc.Ticks -ne $trackedFileData.lastUpdatedUtc) {
+					Write-Host "$($trackedFileData.fullFileName) timestamp mismatch - deleting"
+					Remove-Item $path -Force
+				}
+			}
+		}
+
+		# Delete supposed-to-cook if they exist but are not tracked
+
+		foreach ($fileName in $this._GetDesiredOutputPackageFileNames()) {
+			$path = [io.path]::combine($this.project.cookerOutputPath, $fileName)
+			$trackedFileData = $this._GetSfPackageTrackerData($fileName)
+
+			if ($null -eq $trackedFileData -and (Test-Path $path)) {
+				Write-Host "$fileName exists, but is not tracked - deleting"
+				Remove-Item $path -Force
+			}
+		}
+	}
+
+	[void] _DetermineDirtyMaps () {
+		$this.dirtyMaps = @()
+
+		# Check the dev-made maps
+		# Not the best (doesn't take into account the dependencies - FIXME) but will suffice for now.
+		foreach ($map in $this.cookedMaps) {
+			if ($this.sfCollectionOnlyMaps.Contains($map)) { continue; }
+
+			$cookedPath = [io.path]::combine($this.project.cookerOutputPath, "$map.upk")
+
+			if (!(Test-Path $cookedPath)) {
+				Write-Host "$map has no cooked version"
+				$this.dirtyMaps += $map
+			}
+			else {
+				$original = Get-ChildItem -Path $this.contentForCookPath -Include "$map.umap" -Recurse
+
+				if ($original.LastWriteTime -gt (Get-Item $cookedPath).LastWriteTime) {
+					$this.dirtyMaps += $map
+					Write-Host "$map original was updated"
+				}
+			}
+		}
+
+		# Check the collection maps
+		foreach ($mapDef in $this.project.contentOptions.sfCollectionMaps) {
+			$map = $mapDef.name
+			$cookedPath = [io.path]::combine($this.project.cookerOutputPath, "$map.upk")
+
+			if ($this.dirtyMaps.Contains($map)) { continue; }
+
+			if (!(Test-Path $cookedPath)) {
+				Write-Host "$map has no cooked version"
+				$this.dirtyMaps += $map
+			}
+			else {
+				$existingCooked = Get-Item $cookedPath
+
+				foreach ($package in $mapDef.packages) {
+					if (((Get-ChildItem -Path $this.contentForCookPath -Include "$package.upk" -Recurse).LastWriteTime) -gt $existingCooked.LastWriteTime) {
+						Write-Host "$map dependency was updated ($package)"
+						$this.dirtyMaps += $map
+						break
+					}
+				}
+			}
+		}
+	}
+
+	[void] _PrepareEngineIni() {
+		$this.engineIniDefaultPath, $this.engineIniXComPath =
+			$this.project._PrepareBuildCacheEngineIniWithAdditions("AssetsCook", $this._PrepareEngineIniAdditions())
+	}
+
+	[string[]] _PrepareEngineIniAdditions () {
+		$lines = @()
+
+		# "Inject" our assets into the SDK to make them visible to the cooker
+		$lines += "[Core.System]"
+		$lines += "+Paths=$($this.contentForCookPath)"
+		$lines += "-Paths=..\..\XComGame\Content\Mods" # Do not actually load the packages from there
+
+		if ($this.sfCollectionOnlyMaps.Length -gt 0) {
+		$lines += "+Paths=$($this.collectionMapsPath)"
+	}
+
+		# Stop all the "Adding [...]" garbage
+		# TODO: our maps here?
+		$lines += "[Engine.X2DirectoriesToSkipEnumeration]"
+		$lines += ".Directory=..\..\XComGame"
+		$lines += ".Directory=..\..\Engine"
+
+		# Collection maps
+		# TODO: Switch + to .
+		$lines += "[Engine.PackagesToForceCookPerMap]"
+		foreach ($mapDef in $this.project.contentOptions.sfCollectionMaps) {
+			$lines += "+Map=$($mapDef.name)"
+
+			foreach ($package in $mapDef.packages) {
+				$lines += "+Package=$package"
+			}
+		}
+
+		return $lines
+	}
+
+	[void] _PrepareSdkFolders () {
+		$this.project._EnsureCookerOutputParentDirExists()
+				
+		if (-not(Test-Path $this.sdkContentModsOurDir)) {
+			Write-Host "Creating $($this.sdkContentModsOurDir) directory..."
+			New-Item $this.sdkContentModsOurDir -ItemType Directory
+		}
+	}
+
+	[void] _PrepareEditorArgs () {
+		$cookerFlags = "-platform=pcconsole -skipmaps -TFCSUFFIX=$($this.xpackTfcSuffix) -singlethread -unattended -DLCName=$($this.project.modNameCanonical)"
+		$mapsString = $this.dirtyMaps -join " "
+
+		$this.editorArgs = "CookPackages $mapsString $cookerFlags -DEFENGINEINI=""$($this.engineIniDefaultPath)"" -ENGINEINI=""$($this.engineIniXComPath)"""
+	}
+
+	[void] _ExecuteCore () {
+		# This try block needs to be kept as small as possible as it puts the SDK into a (temporary) invalid state
+		try {
+			if ($this.project.contentOptions.sfStandalone.Length -gt 0) {
+				# Create iterator guard (the first package alphabetically is always skipped)
+				$this._CreateMarkerPackageFile('000000000_________IteratorGuard')
+
+				# Create dummy files for each of the seekfree standalone packages
+				foreach ($package in $this.project.contentOptions.sfStandalone) {
+					$this._CreateMarkerPackageFile($package)
+				}
+			}
+
+			$this._InvokeAssetCooker($this.editorArgs)
+		}
+		finally {
+			Write-Host "Cleaning up the asset cooking hacks"
+			$cleanupFailed = $false
+
+				try {
+				Remove-Item -Recurse -Force "$($this.sdkContentModsOurDir)\*"
+				Write-Host "Emptied $($this.sdkContentModsOurDir)"
+				}
+				catch {
+				FailureMessage "Failed to empty $($($this.sdkContentModsOurDir))"
+					FailureMessage $_
+
+					$cleanupFailed = $true
+			}
+
+			if ($cleanupFailed) {
+				Write-Host ""
+				Write-Host ""
+				ThrowFailure "Failed to clean up the asset cooking hacks - your SDK is now in a corrupted state. Please preform the cleanup manually before building a mod or opening the editor."
+			}
+		}
+	}
+
+	[void] _CreateMarkerPackageFile ([string] $packageName) {
+		New-Item -Path $this.sdkContentModsOurDir -Name "$packageName.upk" -ItemType File
+	}
+
+	[void] _InvokeAssetCooker ([string] $editorArguments) {
+		Write-Host $editorArguments
+
+		$handler = [ModcookReceiver]::new()
+		$handler.processDescr = "cooking mod packages"
+
+		# Even a sleep of 1 ms causes a noticable delay between cooker being done (files created)
+		# and output completing. So, just spin
+		$this.project._InvokeEditorCmdlet($handler, $editorArguments, 0)
+	}
+
+	[void] _WarnTfcGrowth () {
+		$tfcs = $this._GetOurTfcFiles()
+		$growthEntries = @()
+
+		foreach ($file in $tfcs) {
+			$trackedFileData = $this._GetTfcTrackerData($file.Name)
+
+			if ($null -eq $trackedFileData) {
+				# New file - ignore
+				continue
+			}
+
+			if ($file.Length -eq $trackedFileData.originalSize) {
+				continue
+			}
+
+			$increase = $file.Length / $trackedFileData.originalSize
+
+			$growthEntries += [PSCustomObject]@{
+				Name = $file.Name
+				OriginalSize = FormatFileSize($trackedFileData.originalSize)
+				CurrentSize = FormatFileSize($file.Length)
+				Increase = "${increase}x"
+			}
+		}
+
+		if ($growthEntries.Length -gt 0) {
+			$growthEntries | Format-Table | Out-String | Write-Host
+
+			Write-Host "WARNING: TFC files grew since initial creation. This could indicate data duplication."
+			Write-Host "Your mod will still function normally, but the file size might be larger than needed"
+			Write-Host "(i.e. useless data present). See above for details."
+			Write-Host "You should consider doing a full rebuild before distributing your mod (e.g. via the workshop)."
+			Write-Host ""
+		}
+
+		# TODO: current logic doesn't account for case when a package (which has/had textures) is removed from the seekfree list.
+		# We will keep shipping the TFC (with useless data) in this case without any warnings
+	}
+
+	[void] _RecordCookerOutputTracker () {
+		# TFCs
+
+		$tfcs = $this._GetOurTfcFiles()
+
+		foreach ($file in $tfcs) {
+			$trackedFileData = $this._GetTfcTrackerData($file.Name)
+
+			if ($null -eq $trackedFileData) {
+				# Write-Host "New file: $($file.Name)"
+
+				$this.cookerOutputTracker.tfcFiles += [PSCustomObject]@{
+					fullFileName = $file.Name
+					originalSize = $file.Length
+					lastUpdatedUtc = $file.LastWriteTimeUtc.Ticks
+				}
+
+				continue
+			}
+
+			# Not a new file - just store the new last updated time
+			$trackedFileData.lastUpdatedUtc = $file.LastWriteTimeUtc.Ticks
+		}
+
+		# SF packages
+
+		$sfPackageFilesNames = $this._GetDesiredOutputPackageFileNames()
+		# Write-Host "sfPackages: $sfPackageFilesNames"
+
+		# SF packages (removed)
+		$this.cookerOutputTracker.sfPackages = @($this.cookerOutputTracker.sfPackages | Where-Object { $sfPackageFilesNames.Contains($_.fullFileName) })
+		
+		# SF packages (new/updated)
+
+		foreach ($fileName in $sfPackageFilesNames) {
+			$file = Get-Item "$($this.project.cookerOutputPath)\$fileName"
+			$trackedFileData = $this._GetSfPackageTrackerData($file.Name)
+
+			if ($null -eq $trackedFileData) {
+				# Write-Host "New file: $($file.Name)"
+
+				$this.cookerOutputTracker.sfPackages += [PSCustomObject]@{
+					fullFileName = $file.Name
+					lastUpdatedUtc = $file.LastWriteTimeUtc.Ticks
+				}
+
+				continue
+			}
+
+			# Not a new file - just store the new last updated time
+			$trackedFileData.lastUpdatedUtc = $file.LastWriteTimeUtc.Ticks
+		}
+
+		# Write the file
+		$this.cookerOutputTracker | ConvertTo-Json | Set-Content -Path $this.cookerOutputTrackerPath
+	}
+
+	[string[]] _GetDesiredOutputPackageFileNames () {
+		$sfPackageFilesNames = @($this.project.contentOptions.sfStandalone | Foreach-Object { "${_}_SF" })
+		$sfPackageFilesNames += $this.cookedMaps
+
+		return @($sfPackageFilesNames | Foreach-Object { "$_.upk" })
+	}
+
+	[PSCustomObject] _GetTfcTrackerData ([string] $fullFileName) {
+		foreach ($fileData in $this.cookerOutputTracker.tfcFiles) {
+			if ($fullFileName -eq $fileData.fullFileName) {
+				return $fileData
+			}
+		}
+		
+		return $null
+	}
+
+	[PSCustomObject] _GetSfPackageTrackerData ([string] $fullFileName) {
+		foreach ($fileData in $this.cookerOutputTracker.sfPackages) {
+			if ($fullFileName -eq $fileData.fullFileName) {
+				return $fileData
+			}
+		}
+
+		return $null
+	}
+
+	[void] _StageArtifacts () {
+		# Prepare the folder for cooked stuff
+		$stagingCookedDir = [io.path]::combine($this.project.stagingPath, 'CookedPCConsole')
+		if (!(Test-Path $stagingCookedDir)) {
+			New-Item -ItemType "directory" -Path $stagingCookedDir
+		}
+
+		# Copy over the TFC files
+		$this._GetOurTfcFiles() | Copy-Item -Destination $stagingCookedDir
+
+		# Copy over the maps
+		for ($i = 0; $i -lt $this.cookedMaps.Length; $i++) 
+		{
+			$umap = $this.cookedMaps[$i];
+			Copy-Item "$($this.project.cookerOutputPath)\$umap.upk" -Destination $stagingCookedDir
+		}
+
+		# Copy over the SF packages
+		for ($i = 0; $i -lt $this.project.contentOptions.sfStandalone.Length; $i++) 
+		{
+			$package = $this.project.contentOptions.sfStandalone[$i];
+			$dest = [io.path]::Combine($stagingCookedDir, "${package}.upk");
+			
+			# We need to remove the _SF suffix, otherwise the game won't find the package
+			Copy-Item "$($this.project.cookerOutputPath)\${package}_SF.upk" -Destination $dest
+		}
+	}
+
+	[System.IO.FileInfo[]] _GetOurTfcFiles () {
+		return @(Get-ChildItem -Path $this.project.cookerOutputPath -Filter "*$($this.actualTfcSuffix).tfc")
+	}
+}
+
 class StdoutReceiver {
 	[bool] $crashDetected = $false
 	[string] $processDescr = ""
@@ -1159,28 +1363,45 @@ class BufferingReceiver : StdoutReceiver {
 
 
 class MakeStdoutReceiver : StdoutReceiver {
-	[string] $developmentDirectory
-	[string] $modSrcRoot
+	[BuildProject] $proj
+	[string[]] $reversePaths
 
 	MakeStdoutReceiver(
-		[string]$developmentDirectory,
-		[string]$modSrcRoot
+		[BuildProject]$proj
 	){
-		$this.developmentDirectory = $developmentDirectory
-		$this.modSrcRoot = $modSrcRoot
+		$this.proj = $proj
+		# Since later paths overwrite earlier files, check paths in reverse order
+		$this.reversePaths = @("$($this.proj.sdkPath)\Development\SrcOrig") +
+			$this.proj.include + @("$($this.proj.modSrcRoot)\Src")
+		[array]::Reverse($this.reversePaths)
 	}
 
 	[void]ParseLine([string] $outTxt) {
 		([StdoutReceiver]$this).ParseLine($outTxt)
 		$messagePattern = "^(.*)\(([0-9]*)\) : (.*)$"
 		if (($outTxt -Match "Error|Warning") -And ($outTxt -Match $messagePattern)) {
-			# And just do a regex replace on the sdk Development directory with the mod src directory.
-			# The pattern needs escaping to avoid backslashes in the path being interpreted as regex escapes, etc.
-			$pattern = [regex]::Escape($this.developmentDirectory)
-			# n.b. -Replace is case insensitive
-			$replacementTxt = $outtxt -Replace $pattern, $this.modSrcRoot
-			# this syntax works with both VS Code and ModBuddy
-			$outTxt = $replacementTxt -Replace $messagePattern, '$1($2) : $3'
+			# extract original path from $matches automatic variable created by above -Match
+			$origPath = $matches[1]
+
+			# create regex pattern specifically from the part we're interested in replacing
+			$pattern = [regex]::Escape("$($this.proj.sdkPath)\Development\Src")
+
+			$found = $false
+			foreach ($checkPath in $this.reversePaths) {
+				$testPath = $origPath -Replace $pattern,$checkPath
+				# if the file exists, it's certainly the one that caused the error
+				if (Test-Path $testPath) {
+					# Normalize path to get rid of `..`s
+					$testPath = [IO.Path]::GetFullPath($testPath)
+					# this syntax works with both VS Code and ModBuddy
+					$outTxt = $outTxt -Replace $messagePattern, ($testPath + '($2) : $3')
+					$found = $true
+					break
+				}
+			}
+			if (-not $found) {
+				$outTxt = $outTxt -Replace $messagePattern, ($origPath + '($2) : $3')
+			}
 		}
 
 		$summPattern = "^(Success|Failure) - ([0-9]+) error\(s\), ([0-9]+) warning\(s\) \(([0-9]+) Unique Errors, ([0-9]+) Unique Warnings\)"
@@ -1215,7 +1436,6 @@ class MakeStdoutReceiver : StdoutReceiver {
 
 class ModcookReceiver : StdoutReceiver {
 	[bool] $lastLineWasAdding = $false
-	[bool] $permitAdditional = $false
 
 	ModcookReceiver(){
 	}
@@ -1224,21 +1444,14 @@ class ModcookReceiver : StdoutReceiver {
 		([StdoutReceiver]$this).ParseLine($outTxt)
 		$permitLine = $true # Default to true in case there is something we don't handle
 
-		if ($outTxt.StartsWith("Adding package") -or $outTxt.StartsWith("Adding level") -or $outTxt.StartsWith("GFx movie package")) {
-			if ($outTxt.Contains("\BuildCache\") -or $outTxt.Contains("\ContentForCook\") -or $outTxt.Contains("\Mods\")) {
-				$permitLine = $true
-			} else {
+		if ($outTxt.StartsWith("GFx movie package")) {
 				$permitLine = $false
 
 				if (!$this.lastLineWasAdding) {
-					Write-Host "[Adding sdk assets ...]"
-				}
+				Write-Host "[GFx movie packages ...]"
 			}
 
-			$this.lastLineWasAdding = !$permitLine
-			$this.permitAdditional = $permitLine
-		} elseif ($outTxt.StartsWith("Adding additional")) {
-			$permitLine = $this.permitAdditional
+			$this.lastLineWasAdding = $true
 		} else {
 			$this.lastLineWasAdding = $false
 			$permitLine = $true
@@ -1276,20 +1489,21 @@ function FormatElapsed($elapsed) {
 	return $elapsed.TotalSeconds.ToString("0.00s", $global:invarCulture)
 }
 
-function New-Junction ([string] $source, [string] $destination) {
-	Write-Host "Creating Junction: $source -> $destination"
-	&"$global:buildCommonSelfPath\junction.exe" -nobanner -accepteula "$source" "$destination"
-}
-
-function Remove-Junction ([string] $path) {
-	Write-Host "Removing Junction: $path"
-	&"$global:buildCommonSelfPath\junction.exe" -nobanner -accepteula -d "$path"
-}
-
 # https://stackoverflow.com/a/55942155/2588539
 # $process.Kill() works but we really need to kill the child as well, since it's the one which is actually doing work
 # Unfotunately, $process.Kill($true) does nothing 
 function KillProcessTree ([int] $ppid) {
 	Get-CimInstance Win32_Process | Where-Object { $_.ParentProcessId -eq $ppid } | ForEach-Object { KillProcessTree $_.ProcessId }
 	Stop-Process -Id $ppid
+}
+
+# https://superuser.com/a/468795/673577
+Function FormatFileSize () {
+    Param ([int64]$size)
+    If     ($size -gt 1TB) {[string]::Format("{0:0.00} TB", $size / 1TB)}
+    ElseIf ($size -gt 1GB) {[string]::Format("{0:0.00} GB", $size / 1GB)}
+    ElseIf ($size -gt 1MB) {[string]::Format("{0:0.00} MB", $size / 1MB)}
+    ElseIf ($size -gt 1KB) {[string]::Format("{0:0.00} kB", $size / 1KB)}
+    ElseIf ($size -gt 0)   {[string]::Format("{0:0.00} B", $size)}
+    Else                   {""}
 }
