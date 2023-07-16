@@ -29,7 +29,7 @@ Open a command line prompt (cmd or powershell, does not matter) in the `[modRoot
 your working tree is clean and run the following command:
 
 ```
-git subtree add --prefix .scripts/X2ModBuildCommon https://github.com/X2CommunityCore/X2ModBuildCommon v1.1.0 --squash
+git subtree add --prefix .scripts/X2ModBuildCommon https://github.com/X2CommunityCore/X2ModBuildCommon v1.1.2 --squash
 ```
 
 ### Your mod does not use git
@@ -80,7 +80,14 @@ switch ($config)
 $builder.InvokeBuild()
 ```
 
-Replace `YourProjectName` with the internal mod name (e.g. the name of your `.XCOM_sln` file without the extension)
+Replace `YourProjectName` with the mod project name (e.g. the name of your `.XCOM_sln` file without the extension).
+
+If you're transitioning an existing mod to X2ModBuildCommon, this advice might come too late, but we recommend that
+the project name contain only ASCII alphabetic characters, numbers and underscores (matching the regular expression `^[A-Za-z][A-Za-z0-9_]*$`).
+The ModBuddy project generator lets you create projects with a large variety of characters that will break the ModBuddy
+build already (like brackets and dashes), but spaces and semicolons are allowed and work fine with the Firaxis ModBuddy plugin.
+`X2ModBuildCommon` will do its best to support project names with spaces, but it's historically been a common source of bugs
+and you may run into fewer of them if you keep your mod name simple.
 
 ## IDE integration
 At this point your mod is actually ready for building but invoking the powershell script with all the arguments each time manually
@@ -182,7 +189,7 @@ If you don't use git, simply download the new version and overwrite the old file
 If you use git, run the same command as before, replacing `add` with `pull`:
 
 ```
-git subtree pull --prefix .scripts/X2ModBuildCommon https://github.com/X2CommunityCore/X2ModBuildCommon v1.1.0 --squash
+git subtree pull --prefix .scripts/X2ModBuildCommon https://github.com/X2CommunityCore/X2ModBuildCommon v1.1.2 --squash
 ```
 
 # Configuration options
@@ -297,7 +304,7 @@ Assuming the file is named `ContentOptions.json`:
 $builder.SetContentOptionsJsonFilename("ContentOptions.json")
 ```
 
-Two options are avaliable: `missingUncooked` and `sfCollectionMaps`. Omitting an option (or the file entirely)
+Four options are available: `missingUncooked`, `sfStandalone`, `sfMaps`, `sfCollectionMaps`. Omitting an option (or the file entirely)
 is treated the same as setting it to an empty array
 
 ### Including missing uncooked
@@ -318,8 +325,8 @@ Example from Covert Infiltration:
 
 ### Asset cooking
 
-The other option is for the mod assets cooking. Because it is such a complex process, the package and map configuration is
-described in a separate file. See [Asset Cooking](https://github.com/X2CommunityCore/X2ModBuildCommon/wiki/Asset-cooking-(v1.2.0)) for details.
+The rest of the options are for the mod assets cooking. Because it is such a complex process, the package and map configuration is
+described in a separate file. See [Asset Cooking](https://github.com/X2CommunityCore/X2ModBuildCommon/wiki/Asset-cooking) for details.
 
 # Additional features
 
