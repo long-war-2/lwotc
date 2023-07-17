@@ -52,6 +52,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(SingleRendFocus());
 	Templates.AddItem(TemplarShield());
 	Templates.AddItem(SoulShot());
+	Templates.AddItem(class'XComGame.X2Ability_TemplarAbilitySet'.static.Rend('Rend_LW'));
 
 	
 	return Templates;
@@ -177,7 +178,7 @@ static function X2AbilityTemplate AddTemplarFleche()
 	FlecheBonusDamageEffect = new class 'X2Effect_FlecheBonusDamage';
 	FlecheBonusDamageEffect.BonusDmgPerTile = default.BONUS_REND_DAMAGE_PER_TILE;
 	FlecheBonusDamageEffect.MaxBonusDamage = default.MAX_REND_FLECHE_DAMAGE;
-	FlecheBonusDamageEffect.AbilityNames.AddItem('Rend');
+	FlecheBonusDamageEffect.AbilityNames.AddItem('Rend_LW');
 	FlecheBonusDamageEffect.AbilityNames.AddItem('ArcWave');
 	FlecheBonusDamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	FlecheBonusDamageEffect.BuildPersistentEffect (1, true, false);
@@ -932,6 +933,8 @@ static function X2AbilityTemplate DoubleRendFocusPassive()
 	Template.bCrossClassEligible = false;
 	return Template;
 }
+
+
 
 defaultproperties
 {

@@ -5151,7 +5151,7 @@ FocusLevelDescriptions[4]="撕裂伤害+<Ability:FOCUS4RENDDAMAGE/>\n移动力+<
 [TemplarFocus X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 圣殿骑士在开始任务时比其他士兵弱，但在更高的专注水平下会变得非常强大。<br/><Bullet/> 专注是通过用撕裂攻击敌人获得的（即使未命中也能获得）。<br/>"
 
-[Rend X2AbilityTemplate]
+[Rend_LW X2AbilityTemplate]
 LocLongDescription="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
 LocHelpText="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
 LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士产生专注的主要方法。<br/><Bullet/> 施展撕裂后，圣殿骑士将获得气势，允许他们进行一次移动动作。攻击后撤回掩体。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDSTUNCHANCE/>%几率眩晕。眩晕的目标也会被击退。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDDISORIENTCHANCE/>%几率混乱。<br/>"

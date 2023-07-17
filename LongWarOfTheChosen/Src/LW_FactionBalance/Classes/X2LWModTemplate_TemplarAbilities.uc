@@ -32,6 +32,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
 		break;
 	case 'Rend':
+	case 'Rend_LW':
 		MakeRendNotWorkWhenBurning(Template);
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
