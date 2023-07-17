@@ -1456,7 +1456,7 @@ static function X2AbilityTemplate AddCyclicFireAbility()
 	Template.AddTargetEffect(WeaponDamageEffect);
 
 	//SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
-	//Template.AddShooterEffectExclusions(SkipExclusions);
+	Template.AddShooterEffectExclusions(); // modify this to properly disable when burning/disoriented.
 
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
