@@ -125,7 +125,7 @@
     <Content Include="Config\XComLW_SoldierSkills.ini" />
     <Content Include="Config\XComLW_Toolbox.ini" />
     <Content Include="Config\XComLW2SquadIcons.ini" />
-    <Content Include="Config\XComLW_UI.ini">
+    <Content Include="Config\XComLW_UI.ini" />
     <Content Include="Config\XComWOTC_DisplayHitChance_MCMDefaults.ini">
       <SubType>Content</SubType>
     </Content>
