@@ -5292,7 +5292,7 @@ FocusLevelDescriptions[4]="Daño de Hender +<Ability:FOCUS4RENDDAMAGE/>\nMovilid
 LocPromotionPopupText="<Bullet/> Los Templarios comienzan las misiones más débiles que otros soldados, pero aumentarán extremadamente su fuerza en niveles de concentración más elevadas. Administrar concentración de manera efectiva para aprovechar al máximo cada habilidad y los aumentos de estadísticas es fundamental para regir un Templario.<br/><Bullet/> La concentración se consigue atacando enemigos con Hender (incluso si fallas).<br/>"
 
 ; LWOTC translated
-[Rend X2AbilityTemplate]
+[Rend_LW X2AbilityTemplate]
 LocLongDescription="Ataque cuerpo a cuerpo con la posibilidad de aturdir o desorientar al objetivo. Activa Ímpetu y genera concentración en los ataques."
 LocHelpText="Ataque cuerpo a cuerpo con la posibilidad de aturdir o desorientar al objetivo. Activa Ímpetu y genera concentración en los ataques."
 LocPromotionPopupText="<Bullet/> Usar Hender es el método principal de los Templarios para generar concentración.<br/><Bullet/> Después de lanzar Hender el Templario ganará Ímpetu lo que le permitirá una acción de movimiento gratuita. Empléala para volver a trasladarte a una cobertura después de atacar.<br/><Bullet/> Hender tiene un <Ability:RENDSTUNCHANCE/>% de probabilidad de aturdir con concentración. Los objetivos aturdidos también serán derribados.<br/><Bullet/> Hender también posee un <Ability:RENDDISORIENTCHANCE/>% de probabilidad de desorientar mediante concentración.<br/>"
