@@ -206,7 +206,7 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_LWOutpost OutpostState;
 	local XComGameState_LWToolboxOptions ToolboxOptions;
-	
+	local XComGameState_LWOverhaulOptions OverhaulOptions;
 	
 	History = `XCOMHISTORY;
 
@@ -236,6 +236,14 @@ static event OnLoadedSavedGameToStrategy()
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
 
+	`LWTrace("Chosen Knowledge array length:" @ `LWOVERHAULOPTIONS.GetChosenKnowledgeGains_Randomized().length);
+	OverhaulOptions = `LWOVERHAULOPTIONS;
+	if(OverhaulOptions.GetChosenKnowledgeGains_Randomized().length == 0)
+	{
+		OverhaulOptions = XComGameState_LWOverhaulOptions(NewGameState.ModifyStateObject(class'XComGameState_LWOverhaulOptions', OverhaulOptions.ObjectID));
+		OverhaulOptions.InitChosenKnowledge();
+	}
+
 	if (NewGameState.GetNumGameStateObjects() > 0)
 		History.AddGameStateToHistory(NewGameState);
 	else
@@ -257,10 +265,7 @@ static event OnLoadedSavedGameToStrategy()
 		}
 	}
 
-	if(`LWOVERHAULOPTIONS.GetChosenKnowledgeGains_Randomized().length == 0)
-	{
-		`LWOVERHAULOPTIONS.InitChosenKnowledge();
-	}
+
 
 	CleanupObsoleteTacticalGamestate();
 	CacheInfiltration_Static();

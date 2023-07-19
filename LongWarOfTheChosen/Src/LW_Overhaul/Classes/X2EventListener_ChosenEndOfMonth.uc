@@ -52,6 +52,8 @@ static function EventListenerReturn LW_ChosenEOM_Listener(Object EventData, Obje
 	{
 	    ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
 
+        if(ChosenState.bMetXCom != true)
+            continue;
         // Force assign the chosen a number in the array to use instead of just iterating over the AllChosenArray randomly
         switch (ChosenState.GetMyTemplateName())
         {
@@ -72,9 +74,3 @@ static function EventListenerReturn LW_ChosenEOM_Listener(Object EventData, Obje
     return ELR_NoInterrupt;
 }
 
-defaultproperties
-{
-    CHOSEN_KNOWLEDGE_GAINS[0]=5;
-    CHOSEN_KNOWLEDGE_GAINS[1]=3;
-    CHOSEN_KNOWLEDGE_GAINS[2]=2;
-}
