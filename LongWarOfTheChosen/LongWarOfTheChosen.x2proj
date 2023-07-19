@@ -1371,6 +1371,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2Item_LostWeapons_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2Ability_SitRepGrantedAbilitySet_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2SitRep_DefaultSitRepEffects_LW.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2EventListener_LW_ChosenEndOfMonth.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XMBEffect_AddAbilityCharges.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XMBEffectUtilities.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_DefaultCovertActionRisks_LW.uc" />

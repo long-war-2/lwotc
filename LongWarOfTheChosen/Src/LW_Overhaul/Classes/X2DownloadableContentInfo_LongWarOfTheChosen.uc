@@ -40,6 +40,8 @@ var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T1;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T2;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T3;
 
+
+
 // An array of mission types where we should just let vanilla do its
 // thing with regard to the Chosen rather than try to override its
 // behaviour.
@@ -253,6 +255,11 @@ static event OnLoadedSavedGameToStrategy()
 			}
 			break;
 		}
+	}
+
+	if(`LWOVERHAULOPTIONS.GetChosenKnowledgeGains_Randomized().length == 0)
+	{
+		`LWOVERHAULOPTIONS.InitChosenKnowledge();
 	}
 
 	CleanupObsoleteTacticalGamestate();
@@ -4825,4 +4832,19 @@ exec function LWOTC_ForceAllUnitsActive()
 	{
 		History.CleanupPendingGameState(NewGameState);
 	}
+}
+
+exec function LWOTC_ShowChosenKnowledgeRandomValues()
+{
+	local XComGameState_LWOverhaulOptions LWOverhaulOptions;
+
+	local array<int> chosenKnowledge;
+
+	LWOverhaulOptions = `LWOVERHAULOPTIONS;
+
+	chosenKnowledge = LWOverhaulOptions.GetChosenKnowledgeGains_Randomized();
+
+	class'Helpers'.static.OutputMsg(`SHOWVAR(chosenKnowledge[0]));
+	class'Helpers'.static.OutputMsg(`SHOWVAR(chosenKnowledge[1]));
+	class'Helpers'.static.OutputMsg(`SHOWVAR(chosenKnowledge[2]));
 }
