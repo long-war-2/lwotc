@@ -5150,6 +5150,7 @@ FocusLevelDescriptions[4]="撕裂傷害 +<Ability:FOCUS4RENDDAMAGE/>\n移動力 
 LocPromotionPopupText="<Bullet/> 聖殿騎士在開始任務時比其他士兵弱，但在更高的專注水平下會變得非常強大。<br/><Bullet/> 專注是通過用撕裂攻擊敵人獲得的（即使未命中也能獲得）。<br/>"
 
 [Rend_LW X2AbilityTemplate]
+LocFriendlyName="撕裂"
 LocLongDescription="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
 LocHelpText="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
 LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士產生專注的主要方法。<br/><Bullet/> 施展撕裂後，聖殿騎士將獲得氣勢，允許他們進行一次移動動作。攻擊後撤回掩體。<br/><Bullet/> 撕裂每1點專注有<Ability:RENDSTUNCHANCE/>%幾率眩暈。眩暈的目標也會被擊退。<br/><Bullet/> 撕裂每1點專注有 <Ability:RENDDISORIENTCHANCE/>%幾率混亂。<br/>"
@@ -6817,7 +6818,7 @@ LocLongDescription="一種強有力的監視方式。觸發時不再自動開火
 LocHelpText="一種強有力的監視方式。觸發時不再自動開火，而是執行任何單個動作。自由行動。"
 LocPromotionPopupText="<Bullet/> 自由行動。<br/><Bullet/> 某些操作在阻斷期間不可用，例如監視。<br/><Bullet/> 阻斷有 <Ability:SelfCooldown_LW/> 回合冷卻時間。"
 
-[ArcWavePassive X2AbilityTemplate]
+[ArcWavePassive_LW X2AbilityTemplate]
 LocFriendlyName="電弧波"
 LocLongDescription="撕裂在攻擊方向產生一個心靈能量波。傷害隨碎片拳刃層級增加。"
 LocHelpText="撕裂在攻擊方向產生一個心靈能量波。"

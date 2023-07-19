@@ -25,6 +25,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	{
 		//refactor the start here so SingleRendFocus is only given to Rend and not Volt
 	case 'ArcWave':
+	case 'ArcWave_LW':
 		UpdateArcWave(Template);
 		MakeRendNotWorkWhenBurning(Template);
 	case 'TemplarBladestormAttack':
