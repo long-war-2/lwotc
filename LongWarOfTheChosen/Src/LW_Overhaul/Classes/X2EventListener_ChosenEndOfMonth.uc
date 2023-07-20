@@ -3,7 +3,10 @@
 
 class X2EventListener_ChosenEndOfMonth extends X2EventListener config(LW_Overhaul);
 
+var config int STARTING_CHOSEN_KNOWLEDGE_GAIN;
 var config array<int> CHOSEN_KNOWLEDGE_GAINS;
+
+
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -36,7 +39,6 @@ static function EventListenerReturn LW_ChosenEOM_Listener(Object EventData, Obje
     local XComGameState_HeadquartersAlien AlienHQ;
     local array<XComGameState_AdventChosen> AllChosen;
     local XComGameState_AdventChosen ChosenState;
-    local int ChosenNum;
     local array<int> RandomChosenKnowledgeGains;
 
 
@@ -57,18 +59,18 @@ static function EventListenerReturn LW_ChosenEOM_Listener(Object EventData, Obje
         // Force assign the chosen a number in the array to use instead of just iterating over the AllChosenArray randomly
         switch (ChosenState.GetMyTemplateName())
         {
-            case 'Chosen_Assassin':
-                ChosenNum=0;
+            case `LWOVERHAULOPTIONS.StartingChosen:
+                ChosenState.ModifyKnowledgeScore(NewGameState, default.STARTING_CHOSEN_KNOWLEDGE_GAIN);
                 break;
-            case 'Chosen_Warlock':
-                ChosenNum=1;
+            case `LWOVERHAULOPTIONS.ChosenNames[0]:
+                ChosenState.ModifyKnowledgeScore(NewGameState, RandomChosenKnowledgeGains[0]);
                 break;
-            case 'Chosen_Sniper':
-                ChosenNum=2;
+            case `LWOVERHAULOPTIONS.ChosenNames[1]:
+                ChosenState.ModifyKnowledgeScore(NewGameState, RandomChosenKnowledgeGains[1]);
                 break;
         }
         //actually add the chosen knowledge to the chosen
-	    ChosenState.ModifyKnowledgeScore(NewGameState, RandomChosenKnowledgeGains[ChosenNum]);
+	    
     }
     
     return ELR_NoInterrupt;

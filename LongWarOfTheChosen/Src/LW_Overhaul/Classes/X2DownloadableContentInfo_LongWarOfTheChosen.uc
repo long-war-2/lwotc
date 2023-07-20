@@ -163,6 +163,10 @@ static event InstallNewCampaign(XComGameState StartState)
 	LimitStartingSquadSize(StartState); // possibly limit the starting squad size to something smaller than the maximum
 	DisableUnwantedObjectives(StartState);
 
+	`LWOVERHAULOPTIONS.StartingChosen = StartingRegionState.GetControllingChosen().GetMyTemplateName();
+
+	`LWOVERHAULOptions.InitChosenKnowledge();
+
 	class'XComGameState_LWSquadManager'.static.CreateFirstMissionSquad(StartState);
 
 	// Clear starting resistance modes because we don't actually start
@@ -241,6 +245,7 @@ static event OnLoadedSavedGameToStrategy()
 	if(OverhaulOptions.GetChosenKnowledgeGains_Randomized().length == 0)
 	{
 		OverhaulOptions = XComGameState_LWOverhaulOptions(NewGameState.ModifyStateObject(class'XComGameState_LWOverhaulOptions', OverhaulOptions.ObjectID));
+		OverhaulOptions.StartingChosen = XComGameState_WorldRegion(History.GetGameStateForObjectID(`XCOMHQ.StartingRegion.ObjectID)).GetControllingChosen().GetMyTemplateName();
 		OverhaulOptions.InitChosenKnowledge();
 	}
 
@@ -4848,8 +4853,10 @@ exec function LWOTC_ShowChosenKnowledgeRandomValues()
 	LWOverhaulOptions = `LWOVERHAULOPTIONS;
 
 	chosenKnowledge = LWOverhaulOptions.GetChosenKnowledgeGains_Randomized();
-
+	class'Helpers'.static.OutputMsg(`SHOWVAR(LWOverhaulOptions.StartingChosen));
+	class'Helpers'.static.OutputMsg(`SHOWVAR(class'X2EventListener_ChosenEndOfMonth'.default.STARTING_CHOSEN_KNOWLEDGE_GAIN));
+	class'Helpers'.static.OutputMsg(`SHOWVAR(LWOverhaulOptions.ChosenNames[0]));
 	class'Helpers'.static.OutputMsg(`SHOWVAR(chosenKnowledge[0]));
+	class'Helpers'.static.OutputMsg(`SHOWVAR(LWOverhaulOptions.ChosenNames[1]));	
 	class'Helpers'.static.OutputMsg(`SHOWVAR(chosenKnowledge[1]));
-	class'Helpers'.static.OutputMsg(`SHOWVAR(chosenKnowledge[2]));
 }
