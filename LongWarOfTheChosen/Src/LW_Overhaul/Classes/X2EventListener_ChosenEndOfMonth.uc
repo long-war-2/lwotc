@@ -54,22 +54,27 @@ static function EventListenerReturn LW_ChosenEOM_Listener(Object EventData, Obje
 	{
 	    ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
 
+        // short circuit if chosen aren't active yet.
         if(ChosenState.bMetXCom != true)
             continue;
-        // Force assign the chosen a number in the array to use instead of just iterating over the AllChosenArray randomly
+
+        //actually add the chosen knowledge to the chosen.
         switch (ChosenState.GetMyTemplateName())
-        {
+        {       
             case `LWOVERHAULOPTIONS.StartingChosen:
+                `LWTrace("Adding" @ default.STARTING_CHOSEN_KNOWLEDGE_GAIN @ "To Chosen" @ `SHOWVAR(ChosenState.GetMyTemplateName()));
                 ChosenState.ModifyKnowledgeScore(NewGameState, default.STARTING_CHOSEN_KNOWLEDGE_GAIN);
                 break;
             case `LWOVERHAULOPTIONS.ChosenNames[0]:
+                `LWTrace("Adding" @ RandomChosenKnowledgeGains[0] @ "To Chosen" @ `SHOWVAR(ChosenState.GetMyTemplateName()));
                 ChosenState.ModifyKnowledgeScore(NewGameState, RandomChosenKnowledgeGains[0]);
                 break;
             case `LWOVERHAULOPTIONS.ChosenNames[1]:
+                `LWTrace("Adding" @ RandomChosenKnowledgeGains[1] @ "To Chosen" @ `SHOWVAR(ChosenState.GetMyTemplateName()));
                 ChosenState.ModifyKnowledgeScore(NewGameState, RandomChosenKnowledgeGains[1]);
                 break;
         }
-        //actually add the chosen knowledge to the chosen
+       
 	    
     }
     

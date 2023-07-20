@@ -219,5 +219,5 @@ defaultProperties
     PauseOnRecruit=false
 	ChosenNames.Add("Chosen_Assassin");
 	ChosenNames.Add("Chosen_Warlock");
-	ChosenNames.Add("Chosen_Sniper");
+	ChosenNames.Add("Chosen_Hunter");
 }
