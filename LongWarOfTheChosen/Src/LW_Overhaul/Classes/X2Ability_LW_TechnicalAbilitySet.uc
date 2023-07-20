@@ -1554,7 +1554,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	local X2AbilityToHitCalc_StandardAim    StandardAim;
 	local X2Effect_PersistentStatChange		DisorientedEffect;
 	local X2Effect_ApplyWeaponDamage        WeaponDamageEffect;
-	local X2Effect_SmokeGrenade				SmokeEffect;
+//	local X2Effect_SmokeGrenade				SmokeEffect;
 	local X2Effect_ApplySmokeGrenadeToWorld WeaponEffect;
 	local X2Effect_Stunned					StunnedEffect;
 	local X2Condition_UnitEffects			SuppressedCondition;
@@ -1649,6 +1649,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 
 		Template.AddMultiTargetEffect (class'X2Item_DefaultGrenades'.static.SmokeGrenadeEffect());
 	}
+	
 	Template.ActivationSpeech = 'Explosion';
 	Template.CinescriptCameraType = "Soldier_HeavyWeapons";
 
