@@ -83,7 +83,7 @@ ActivityObjectives[0]="Atacar un laboratorio de investigación alienígena"
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Localizar rutas de vuelo enemigas"
+ActivityObjectives[0]="Localizar rutas de vuelo de Refuerzos de ADVENT"
 ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
@@ -92,7 +92,7 @@ ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Localizar rutas de vuelo enemigas"
+ActivityObjectives[0]="Localizar rutas de vuelo de Refuerzos de Emergencia de ADVENT"
 ActivityObjectives[1]="Recuperar artefactos de OVNI"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
@@ -100,7 +100,7 @@ ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Localizar rutas de vuelo enemigas"
+ActivityObjectives[0]="Localizar rutas de vuelo de Refuerzos de Emergencia de ADVENT de gran escala"
 ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
