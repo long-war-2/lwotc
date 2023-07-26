@@ -170,6 +170,7 @@ ActivityObjectives[0]="Free Captured Rebels"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Seize ADVENT resource cache"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="The Resistance has learned the location of vital enemy resources that we can acquire for our own uses.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="The Resistance has learned the location of vital enemy resources that we can acquire for our own uses.", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"

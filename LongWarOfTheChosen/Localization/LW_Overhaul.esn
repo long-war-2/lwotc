@@ -664,6 +664,8 @@ m_strVIPCaptureReward="(Captura de VIP solamente)"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Apodérate de alijos de recursos ADVENT"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="La resistencia ha aprendido la ubicación de recursos enemigos vitales que podemos adquirir para nuestros propios usos.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="La resistencia ha aprendido la ubicación de recursos enemigos vitales que podemos adquirir para nuestros propios usos.", MissionIndex=0)
+
 
 ; LWOTC translated
 [UIListener_CampaignStartMenu]

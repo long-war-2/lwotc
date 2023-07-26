@@ -611,6 +611,8 @@ m_strNextHaven="次 解放区"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="アドヴェントの物資を奪取せよ"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="我々が入手して使うことのできる敵の重要な物資の場所をレジスタンスが察知した", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="我々が入手して使うことのできる敵の重要な物資の場所をレジスタンスが察知した", MissionIndex=0)
+
 
 [UICovertActionReport_LW]
 strCovertActionFailed="失敗"
