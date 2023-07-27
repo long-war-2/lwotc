@@ -1,5 +1,11 @@
 {
     "sfStandalone": [
-        "LWMutonM3"
+        "LWCombatKnife",
+        "LWMutonM3",
+        "LWHiveQueen",
+        "WoTC_Ballistic_Shield_LW",
+        "WoTC_Plated_Shield_LW",
+        "WoTC_Powered_Shield_LW",
+        "WoTC_Shield_Animations_LW"
     ]
 }
