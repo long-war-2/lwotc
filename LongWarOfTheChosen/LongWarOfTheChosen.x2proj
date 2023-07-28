@@ -1092,6 +1092,8 @@
     <Content Include="Content\Maps\CIN_Loading_Infiltration_CityCenter.umap" />
     <Content Include="Content\Maps\CIN_Loading_Infiltration_SmallTown.umap" />
     <Content Include="Content\Maps\CIN_SkyrangerIntros_Infiltration.umap" />
+    <Content Include="Content\Parcels\lg_AdventSupplyExtract_02.umap" />
+    <Content Include="Content\Parcels\lg_AdventSupplyExtract_03.umap" />
     <Content Include="Content\Movies\1080_LoadingScreen_LWS_DarkAdvent_1.bk2" />
     <Content Include="Content\Movies\1080_LoadingScreen_LWS_DarkAdvent_1.webm" />
     <Content Include="Content\Movies\1080_LoadingScreen_LWS_DarkAdvent_2.bk2" />
