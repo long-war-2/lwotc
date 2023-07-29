@@ -149,7 +149,7 @@ var config bool EverVigilantExcludeBurning;
 // was not wounded, simply because the soldier HP was greater than the proxy.
 var config bool UseUnitHPForProxies;
 
-// Cache installed mods during OnPreTemplates
+// Cache installed mods during OPTC
 
 var config array<string> cachedInstalledModNames;
 
