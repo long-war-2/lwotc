@@ -439,7 +439,7 @@ static function EventListenerReturn OverridePromotionUIClass(
 	Name InEventID,
 	Object CallbackData)
 {
-	if (class'Helpers_LW'.static.IsModInstalled("XCOM2RPGOverhaul"))
+	if (class'Helpers_LW'.default.XCOM2RPGOverhaulActive)
 	{
 		// Prevent CPS from overriding RPGO's promotion screen.
 		return ELR_InterruptListeners;
@@ -463,7 +463,7 @@ static function EventListenerReturn OverridePromotionBlueprintTagPrefix(
 {
 	// If RPGO is installed, we'll leave it to that mod to handle the
 	// After Action blueprint tags.
-	if (class'Helpers_LW'.static.IsModInstalled("XCOM2RPGOverhaul"))
+	if (class'Helpers_LW'.default.XCOM2RPGOverhaulActive)
 	{
 		// Prevent CPS from overriding RPGO's promotion screen.
 		return ELR_InterruptListeners;
@@ -797,7 +797,7 @@ static private function SetStatusTupleData(
 }
 
 // This takes on a bunch of exceptions to color ability icons
-static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
+static final function EventListenerReturn OnOverrideAbilityIconColor(Object EventData, Object EventSource, XComGameState NewGameState, Name InEventID, Object CallbackData)
 {
 	local XComLWTuple					OverrideTuple;
 	local Name							AbilityName;
@@ -828,7 +828,7 @@ static function EventListenerReturn OnOverrideAbilityIconColor(Object EventData,
 
 	// First check that we are colouring the action icons
 	if (!class'LWTemplateMods'.default.USE_ACTION_ICON_COLORS ||
-		class'Helpers_LW'.static.IsModInstalled("WOTC_CostBasedAbilityColors"))
+		class'Helpers_LW'.default.bWOTCCostBasedAbilityColorsActive)
 	{
 		return ELR_NoInterrupt;
 	}
