@@ -149,7 +149,17 @@ var config bool EverVigilantExcludeBurning;
 // was not wounded, simply because the soldier HP was greater than the proxy.
 var config bool UseUnitHPForProxies;
 
-static function bool IsModInstalled(coerce string DLCIdentifer)
+// Cache installed mods during OPTC
+
+var config bool bSmokeStopsFlanksActive;
+var config bool bImprovedSmokeDefenseActive;
+
+var config bool bWOTCRevertOverwatchRulesActive;
+var config bool bWOTCCostBasedAbilityColorsActive;
+var config bool bWorldWarLostActive;
+var config bool XCOM2RPGOverhaulActive;
+
+static final function bool IsModInstalled(coerce string DLCIdentifer)
 {
 	local array<string> Mods;
 
