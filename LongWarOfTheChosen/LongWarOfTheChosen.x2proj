@@ -1156,6 +1156,8 @@
     <Content Include="Content\Parcels\sm_ChosenBulwark_02.umap" />
     <Content Include="Content\Parcels\sm_ServerRoom_01_LW.umap" />
     <Content Include="Content\Parcels\sm_VipOffice_01_LW.umap" />
+    <Content Include="Content\Parcels\lg_AdventSupplyExtract_02.umap" />
+    <Content Include="Content\Parcels\lg_AdventSupplyExtract_03.umap" />
     <Content Include="Content\PCPs\WLD_SupplyConvoy_16x64_LW_01.umap" />
     <Content Include="Content\Plots\Plot_CTY_LgObj_Civic_10_LW.umap" />
     <Content Include="Content\Plots\Plot_CTY_LgObj_Civic_11_LW.umap" />
@@ -1273,6 +1275,8 @@
     <Content Include="Content\Plots\Plot_WLD_Ravine_LgObj_02.umap" />
     <Content Include="Content\Plots\Plot_WLD_Stream_LgObj_01.umap" />
     <Content Include="Content\Plots\Plot_WLD_Stream_LgObj_02.umap" />
+    <Content Include="Content\Plots\Plot_WLD_SupplyExtract_LgObj_Ravine_orig.umap" />
+    <Content Include="Content\Plots\Plot_WLD_SupplyExtract_LgObj_Stream.umap" />
     <Content Include="Content\Plots\Plot_CTY_LgObj_Civic_01.umap" />
     <Content Include="Content\Plots\Plot_CTY_LgObj_Civic_02.umap" />
     <Content Include="Content\Plots\Plot_CTY_LgObj_Mixed_01.umap" />
