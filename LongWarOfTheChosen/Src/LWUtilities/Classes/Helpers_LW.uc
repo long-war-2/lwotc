@@ -159,14 +159,17 @@ var config bool bWOTCCostBasedAbilityColorsActive;
 var config bool bWorldWarLostActive;
 var config bool XCOM2RPGOverhaulActive;
 
+var config array<string> cachedInstalledModNames;
+
 static final function bool IsModInstalled(coerce string DLCIdentifer)
 {
-	local array<string> Mods;
+    if (default.cachedInstalledModNames.Length == 0)
+    {
+        default.cachedInstalledModNames = class'Helpers'.static.GetInstalledModNames();
+    }
 
-	Mods = class'Helpers'.static.GetInstalledModNames();
-	return Mods.Find(DLCIdentifer) != INDEX_NONE;
+    return default.cachedInstalledModNames.Find(DLCIdentifer) != INDEX_NONE;
 }
-
 static function bool IsDLCInstalled(coerce string DLCIdentifer)
 {
 	local array<string> DLCs;

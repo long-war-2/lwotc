@@ -1706,7 +1706,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			break;
 	}
 
-	if (default.USE_ACTION_ICON_COLORS && !class'Helpers_LW'.default.XCOM2RPGOverhaulActive)
+	if (default.USE_ACTION_ICON_COLORS && !class'Helpers_LW'.default.bWOTCCostBasedAbilityColorsActive)
 	{
 		for (k = 0; k < Template.AbilityCosts.length; k++)
 		{
