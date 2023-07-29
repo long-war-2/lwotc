@@ -4736,6 +4736,13 @@ static function CacheInstalledMods()
 	class'Helpers_LW'.default.bWorldWarLostActive = class'Helpers_LW'.static.IsModInstalled("WorldWarLost");
 	class'Helpers_LW'.default.XCOM2RPGOverhaulActive = class'Helpers_LW'.static.IsModInstalled("XCOM2RPGOverhaul");
 
+	`LWTrace("cached bSmokeStopsFlanksActive: " @ class'Helpers_LW'.default.bSmokeStopsFlanksActive );
+	`LWTrace("cached bImprovedSmokeDefenseActive: " @class'Helpers_LW'.default.bImprovedSmokeDefenseActive);
+	`LWTrace("cached bWOTCRevertOverwatchRulesActive: " @class'Helpers_LW'.default.bWOTCRevertOverwatchRulesActive);
+	`LWTrace("cached bWOTCCostBasedAbilityColorsActive: " @class'Helpers_LW'.default.bWOTCCostBasedAbilityColorsActive);
+	`LWTrace("cached bWorldWarLostActive: " @class'Helpers_LW'.default.bWorldWarLostActive);
+	`LWTrace("cached XCOM2RPGOverhaulActive: " @class'Helpers_LW'.default.XCOM2RPGOverhaulActive);
+
 }
 
 exec function LWOTC_SetSelectedUnitActive()
