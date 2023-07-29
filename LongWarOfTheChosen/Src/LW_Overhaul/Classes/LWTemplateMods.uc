@@ -1706,7 +1706,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 			break;
 	}
 
-	if (default.USE_ACTION_ICON_COLORS && !class'Helpers_LW'.default.XCOM2RPGOverhaulActive)
+	if (default.USE_ACTION_ICON_COLORS && !class'Helpers_LW'.static.IsModInstalled("WOTC_CostBasedAbilityColors"))
 	{
 		for (k = 0; k < Template.AbilityCosts.length; k++)
 		{
@@ -2364,7 +2364,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 	// LWOTC Grant reaction fire a bonus against units in cover (the
 	// effect applies to the *target* of such shots) unless Revert
 	// Overwatch Rules mod is being used.
-	if (!class'Helpers_LW'.default.bWOTCRevertOverwatchRulesActive && Template.bCanTakeCover)
+	if (!class'Helpers_LW'.static.IsModInstalled("WOTCRevertOverwatchRules") && Template.bCanTakeCover)
 	{
 		Template.Abilities.AddItem('ReactionFireAgainstCoverBonus');
 	}
