@@ -149,12 +149,26 @@ var config bool EverVigilantExcludeBurning;
 // was not wounded, simply because the soldier HP was greater than the proxy.
 var config bool UseUnitHPForProxies;
 
-static function bool IsModInstalled(coerce string DLCIdentifer)
-{
-	local array<string> Mods;
+// Cache installed mods during OnPreTemplates
 
-	Mods = class'Helpers'.static.GetInstalledModNames();
-	return Mods.Find(DLCIdentifer) != INDEX_NONE;
+var config array<string> cachedInstalledModNames;
+
+var config bool bSmokeStopsFlanksActive;
+var config bool bImprovedSmokeDefenseActive;
+
+var config bool bWOTCRevertOverwatchRulesActive;
+var config bool bWOTCCostBasedAbilityColorsActive;
+var config bool bWorldWarLostActive;
+var config bool XCOM2RPGOverhaulActive;
+
+static final function bool IsModInstalled(coerce string DLCIdentifer)
+{
+    if (default.cachedInstalledModNames.Length == 0)
+    {
+        default.cachedInstalledModNames = class'Helpers'.static.GetInstalledModNames();
+    }
+
+    return default.cachedInstalledModNames.Find(DLCIdentifer) != INDEX_NONE;
 }
 
 static function bool IsDLCInstalled(coerce string DLCIdentifer)
