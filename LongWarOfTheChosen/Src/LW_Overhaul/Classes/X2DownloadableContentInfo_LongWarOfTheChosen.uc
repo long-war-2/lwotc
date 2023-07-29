@@ -1602,6 +1602,7 @@ static function AddObjectivesToParcels()
 			{
 				`LWTrace("Adding 'LargePlot' objective tag to " $ PlotDef.MapName);
 				ParcelMgr.arrPlots[i].ObjectiveTags.AddItem("LargePlot");
+
 			}
 			else if (InStr(PlotDef.MapName, "_MdObj_") != INDEX_NONE && PlotDef.ObjectiveTags.Find("MediumPlot") == INDEX_NONE)
 			{

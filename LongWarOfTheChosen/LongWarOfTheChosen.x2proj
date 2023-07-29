@@ -1459,5 +1459,8 @@
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Highway_LgObj_01.umap" />
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Highway_LgObj_02.umap" />
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Ravine_LgObj_01.umap" />
+    <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_SupplyExtract_LgObj_Ravine.umap" />
+    <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_SupplyExtract_LgObj_Ravine_orig.umap" />
+    <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_SupplyExtract_LgObj_Stream.umap" />
   </ItemGroup>
 </Project>
