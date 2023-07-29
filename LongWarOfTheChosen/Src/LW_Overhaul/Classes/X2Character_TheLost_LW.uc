@@ -58,7 +58,7 @@ static function X2CharacterTemplate CreateTemplate_TheLostBrute(name LostName, n
 	CharTemplate.SightedNarrativeMoments.Length = 0;
 	CharTemplate.Abilities.AddItem('WallBreaking');
 	CharTemplate.strPawnArchetypes.Length = 0;
-	if (class'Helpers_LW'.static.IsModInstalled("WorldWarLost"))
+	if (class'Helpers_LW'.default.bWorldWarLostActive)
 	{
 		CharTemplate.strPawnArchetypes.AddItem("CX_Extra_Lost_Brute.Archetypes.ARC_GameUnit_TheLost_CXBrute"); //Brute Lost
 	}

@@ -241,6 +241,8 @@ static function X2AbilityTemplate CreateSmokeFlankingCritProtection()
 
 	SmokeAntiCritEffect = new class'X2Effect_SmokeFlankingCritProtection';
 	SmokeAntiCritEffect.BuildPersistentEffect(1, true);
+	SmokeAntiCritEffect.bSmokeStopsFlanks = class'Helpers_LW'.default.bSmokeStopsFlanksActive;
+	SmokeAntiCritEffect.bImprovedDefensiveSmoke = class'Helpers_LW'.default.bImprovedSmokeDefenseActive;
 	SmokeAntiCritEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, false);
 	Template.AddTargetEffect(SmokeAntiCritEffect);
 

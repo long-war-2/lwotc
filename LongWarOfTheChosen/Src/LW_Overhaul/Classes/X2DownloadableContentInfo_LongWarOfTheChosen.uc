@@ -109,6 +109,7 @@ var config array<int> RULER_POD_SIZE_ALERT_THRESHOLDS;
 // Scaling multiplier for the Brute's pawn
 var config float BRUTE_SIZE_MULTIPLIER;
 
+// List of sitreps to remove
 var config array<Name> SitrepsToDisable;
 
 // End data and data structures
@@ -175,6 +176,7 @@ static function OnPreCreateTemplates()
 {
 	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString());
 	PatchModClassOverrides();
+	CacheInstalledMods();
 }
 
 /// <summary>
@@ -190,6 +192,7 @@ static event OnPostTemplatesCreated()
 	UpdateChosenActivities();
 	UpdateChosenSabotages();
 	UpdateSitreps();
+	
 }
 
 /// <summary>
@@ -1262,7 +1265,7 @@ static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameStat
 
 	// No need to scale the Brute's pawn size if World War Lost is installed
 	// because we'll be using its dedicated Brute model.
-	if (class'Helpers_LW'.static.IsModInstalled("WorldWarLost"))
+	if (class'Helpers_LW'.default.bWorldWarLostActive)
 		return;
 
 	Pawn.Mesh.SetScale(default.BRUTE_SIZE_MULTIPLIER);
@@ -4637,6 +4640,18 @@ static function UpdateSitreps()
 
 	}
 
+
+}
+
+static function CacheInstalledMods()
+{
+	class'Helpers_LW'.default.bSmokeStopsFlanksActive = class'Helpers_LW'.static.IsModInstalled("SmokeStopsFlanks");
+	class'Helpers_LW'.default.bImprovedSmokeDefenseActive = class'Helpers_LW'.static.IsModInstalled("ImprovedSmokeDefense");
+
+	class'Helpers_LW'.default.bWOTCRevertOverwatchRulesActive = class'Helpers_LW'.static.IsModInstalled("WOTCRevertOverwatchRules");
+	class'Helpers_LW'.default.bWOTCCostBasedAbilityColorsActive = class'Helpers_LW'.static.IsModInstalled("WOTC_CostBasedAbilityColors");
+	class'Helpers_LW'.default.bWorldWarLostActive = class'Helpers_LW'.static.IsModInstalled("WorldWarLost");
+	class'Helpers_LW'.default.XCOM2RPGOverhaulActive = class'Helpers_LW'.static.IsModInstalled("XCOM2RPGOverhaul");
 
 }
 
