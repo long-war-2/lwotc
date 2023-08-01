@@ -1291,7 +1291,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2LWSitRepEffectsModTemplate.uc" />
     <Content Include="Content\BaseGameMissionAssets\MissionAssets_SupplyExtraction.upk" />
     <Content Include="Content\BaseGameMissionAssets\DestroyTransmitter_TempAssets.upk" />
-    <Content Include="Content\BaseGameMissionAssets\MissionAssets_XPACK.upk" />
+    <Content Include="Content\MissionAssets_XPACK.upk" />
     <Content Include="Content\BaseGameMissionAssets\PsiTransmitter.upk" />
     <Content Include="Content\BaseGameMissionAssets\README.txt" />
     <Content Include="Content\BaseGameMissionAssets\SupplyExtraction_TempAssets.upk" />
