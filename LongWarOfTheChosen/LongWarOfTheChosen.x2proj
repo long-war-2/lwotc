@@ -1092,8 +1092,8 @@
     <Content Include="Content\Maps\CIN_Loading_Infiltration_CityCenter.umap" />
     <Content Include="Content\Maps\CIN_Loading_Infiltration_SmallTown.umap" />
     <Content Include="Content\Maps\CIN_SkyrangerIntros_Infiltration.umap" />
-    <Content Include="Content\Parcels\lg_AdventSupplyExtract_02.umap" />
-    <Content Include="Content\Parcels\lg_AdventSupplyExtract_03.umap" />
+    <Content Include="Content\Parcels\lg_TedAdventSupplyExtract_02.umap" />
+    <Content Include="Content\Parcels\lg_TedAdventSupplyExtract_03.umap" />
     <Content Include="Content\Movies\1080_LoadingScreen_LWS_DarkAdvent_1.bk2" />
     <Content Include="Content\Movies\1080_LoadingScreen_LWS_DarkAdvent_1.webm" />
     <Content Include="Content\Movies\1080_LoadingScreen_LWS_DarkAdvent_2.bk2" />
@@ -1438,6 +1438,8 @@
     <Content Include="Content\IRISoulShot.upk" />
     <Content Include="Content\IRISoulShotPerk.upk" />
     <Content Include="Content\MusashiCombatKnifeMod_LW.upk" />
+    <Content Include="Content\PCP_Archetypes.upk" />
+    <Content Include="Content\PCP_Archetypes_XPACK.upk" />
     <Content Include="Content\UILibrary_FavidsPerkPack_LW.upk" />
     <Content Include="Content\UILibrary_SOCombatEngineer_LW.upk" />
     <Content Include="Content\UILibrary_SODragoon_LW.upk" />
@@ -1459,8 +1461,7 @@
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Highway_LgObj_01.umap" />
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Highway_LgObj_02.umap" />
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Ravine_LgObj_01.umap" />
-    <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_SupplyExtract_LgObj_Ravine.umap" />
-    <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_SupplyExtract_LgObj_Ravine_orig.umap" />
-    <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_SupplyExtract_LgObj_Stream.umap" />
+    <Content Include="Content\Plots\Plot_WLD_SupplyExtractRavine_Ted.umap" />
+    <Content Include="Content\Plots\Plot_WLD_SupplyExtract_LgObj_Stream_Ted.umap" />
   </ItemGroup>
 </Project>
