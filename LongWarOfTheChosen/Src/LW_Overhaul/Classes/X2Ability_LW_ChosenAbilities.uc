@@ -915,6 +915,7 @@ static function X2DataTemplate CreateKeen()
 {
 	local X2AbilityTemplate Template;
 	local X2Effect_ChosenKeen KeenEffect;
+	local X2AbilityTrigger_EventListener EventListener;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenKeen');
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_adrenaline_defense";
@@ -926,11 +927,22 @@ static function X2DataTemplate CreateKeen()
 
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
+
+	//fire this after any unit spawns
+	EventListener = new class'X2AbilityTrigger_EventListener';
+	EventListener.ListenerData.EventID = 'OnUnitBeginPlay';
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
+	EventListener.ListenerData.Filter = eFilter_None;
+	Template.AbilityTriggers.AddItem(EventListener);
+
+	//fire it when the Chosen spawns.
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 	KeenEffect = new class'X2Effect_ChosenKeen';
 	KeenEffect.BuildPersistentEffect(1, true, true);
 	KeenEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true, , Template.AbilitySourceName);
+	KeenEffect.DuplicateResponse = eDupe_Refresh; // to handle it being applied multiple times
 
 	Template.AddMultiTargetEffect(KeenEffect);
 
