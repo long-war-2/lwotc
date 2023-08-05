@@ -2075,7 +2075,7 @@ static function X2AbilityTemplate LightningSlash()
 	// Shooter Conditions
 	//
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	//SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
 
 	// Damage Effect
