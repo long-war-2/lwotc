@@ -3441,11 +3441,11 @@ LocFlyOverText="Святой воин"
 
 [XcomGame.X2StrategyGameRulesetDataStructures]
 [X2StrategyGameRulesetDataStructures]
-ComIntLabels[eComInt_Standard]="Очень низкий"
-ComIntLabels[eComInt_AboveAverage]="Низкий"
-ComIntLabels[eComInt_Gifted]="Средний"
-ComIntLabels[eComInt_Genius]="Высокий"
-ComIntLabels[eComInt_Savant]="Очень высокиий"
+ComIntLabels[eComInt_Standard]="Обычный"
+ComIntLabels[eComInt_AboveAverage]="Выше среднего,"
+ComIntLabels[eComInt_Gifted]="Одаренный"
+ComIntLabels[eComInt_Genius]="Гений"
+ComIntLabels[eComInt_Savant]="Светлая голова"
 
 ; End Translated
 
