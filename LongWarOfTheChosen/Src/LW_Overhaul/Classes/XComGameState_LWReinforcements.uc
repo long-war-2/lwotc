@@ -80,8 +80,9 @@ var config array<float> DIFFICULTY_MODIFIER;
 // Randomization amount for alert factor. Alert value will be randomized +/- this amount as a percentage.
 var config const float ALERT_RANDOM_FACTOR;
 
-// Float value for scaling the 
+// Float value for scaling the reinforcement bucket fill rate.
 var config float REINFORCEMENT_BUCKET_FILL_MODIFIER;
+var config float BETA_STRIKE_RNF_MOD;
 
 // How many times have we called reinforcements on this mission?
 var private int Count;
@@ -422,35 +423,35 @@ function int CheckForReinforcements()
 	PlayerState = class'Utilities_LW'.static.FindPlayer(eTeam_XCom);
 	if (CanAddToBucket())
 	{
-	    TmpValue = GetIncreaseFromRegion() / BetaStrikeMod();
+	    TmpValue = GetIncreaseFromRegion() / ReinforcementModifiers();
 		`LWTrace("LWRNF: Adding " $ TmpValue $ " to reinforcement bucket from region status");
 		BucketFiller += TmpValue;
 
-		TmpValue = GetIncreaseFromDarkEvents() / BetaStrikeMod();
+		TmpValue = GetIncreaseFromDarkEvents() / ReinforcementModifiers();
 		`LWTrace("LWRNF: Adding " $ TmpValue $ " to reinforcement bucket from dark events");
 		BucketFiller += TmpValue;
 
-		TmpValue = GetIncreaseFromMods() / BetaStrikeMod();
+		TmpValue = GetIncreaseFromMods() / ReinforcementModifiers();
 		`LWTrace("LWRNF: Adding " $ TmpValue $ " to reinforcement bucket from mods");
 		BucketFiller += TmpValue;
 
-		TmpValue = ReinfRules.BucketModifier / BetaStrikeMod();
+		TmpValue = ReinfRules.BucketModifier / ReinforcementModifiers();
 		`LWTrace("LWRNF: Adding " $ TmpValue $ " to reinforcement bucket from mission/activity");
 		BucketFiller += TmpValue;
 
-		TmpValue = (default.DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]) / BetaStrikeMod();
+		TmpValue = (default.DIFFICULTY_MODIFIER[`TACTICALDIFFICULTYSETTING]) / ReinforcementModifiers();
 		`LWTrace("LWRNF: Adding " $ string(TmpValue) $ " to reinforcement bucket from difficulty");
 		BucketFiller += TmpValue;
 
-		TmpValue = (ReinfRules.AccelerateMultiplier * BucketFiller * Spawns) / BetaStrikeMod();
+		TmpValue = (ReinfRules.AccelerateMultiplier * BucketFiller * Spawns) / ReinforcementModifiers();
 		`LWTrace("LWRNF: Applying acceleration value multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value");
 		BucketFiller += TmpValue;
 
-		TmpValue = ReinfRules.BucketMultiplier / BetaStrikeMod();
+		TmpValue = ReinfRules.BucketMultiplier / ReinforcementModifiers();
 		`LWTrace("LWRNF: Applying multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value from mission/activity");
 		BucketFiller *= TmpValue;
 
-		TmpValue = TimerBucketModifier / BetaStrikeMod();
+		TmpValue = TimerBucketModifier / ReinforcementModifiers();
 		`LWTrace("LWRNF: Applying timer-based multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value");
 		BucketFiller *= TmpValue;
 
@@ -471,7 +472,7 @@ function int CheckForReinforcements()
 				if (AtTurnThreshhold(ReinfRules.ForcedReinforcementsTurn))
 				{
 					`LWTRACE ("Adding 1.0 to bucket to Force Reinforcements on Turn" @ PlayerState.PlayerTurnCount);
-					Bucket += 1.0 / BetaStrikeMod();
+					Bucket += 1.0 / ReinforcementModifiers();
 				}
 			}
 		}
@@ -503,7 +504,7 @@ function int CheckForReinforcements()
 					if (ReachedTurnThreshhold (ReinfRules.CavalryWinTurn, true))
 					{
 						`LWTRACE("LWRNF: Forcing Reinforcements to punish loitering after victory");
-						Bucket += 1.0  / BetaStrikeMod();
+						Bucket += 1.0  / ReinforcementModifiers();
 					}
 				}
 			}
@@ -524,7 +525,7 @@ function int CheckForReinforcements()
 				{
 					if (ReachedTurnThreshhold (ReinfRules.CavalryAbsoluteTurn))
 					{
-						Bucket += 1.0 / BetaStrikeMod();
+						Bucket += 1.0 / ReinforcementModifiers();
 					}
 				}
 			}
@@ -691,13 +692,12 @@ function DisableReinforcements()
 	Disabled = true;
 }
 
-//checks if second wave option for beta strike is on.
-function float BetaStrikeMod()
+//Adjusts RNF 
+function float ReinforcementModifiers()
 {
-
 	if(bBetaStrike)
 	{
-		return default.REINFORCEMENT_BUCKET_FILL_MODIFIER * 2.0f;
+		return default.REINFORCEMENT_BUCKET_FILL_MODIFIER * default.BETA_STRIKE_RNF_MOD;
 	}
 	else return default.REINFORCEMENT_BUCKET_FILL_MODIFIER;
 }
