@@ -80,6 +80,9 @@ var config array<float> DIFFICULTY_MODIFIER;
 // Randomization amount for alert factor. Alert value will be randomized +/- this amount as a percentage.
 var config const float ALERT_RANDOM_FACTOR;
 
+// Float value for scaling the 
+var config float REINFORCEMENT_BUCKET_FILL_MODIFIER;
+
 // How many times have we called reinforcements on this mission?
 var private int Count;
 
@@ -691,9 +694,10 @@ function DisableReinforcements()
 //checks if second wave option for beta strike is on.
 function float BetaStrikeMod()
 {
+
 	if(bBetaStrike)
 	{
-		return 2.0f;
+		return default.REINFORCEMENT_BUCKET_FILL_MODIFIER * 2.0f;
 	}
-	else return 1.0f;
+	else return default.REINFORCEMENT_BUCKET_FILL_MODIFIER;
 }
