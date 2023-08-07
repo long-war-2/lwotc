@@ -126,6 +126,7 @@
     <Content Include="Config\XComLW_Toolbox.ini" />
     <Content Include="Config\XComLW2SquadIcons.ini" />
     <Content Include="Config\XComLW_UI.ini" />
+    <Content Include="Config\OldTemplarClassData.ini" />
     <Content Include="Config\XComWOTC_DisplayHitChance_MCMDefaults.ini">
       <SubType>Content</SubType>
     </Content>
@@ -1463,5 +1464,6 @@
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Ravine_LgObj_01.umap" />
     <Content Include="Content\Plots\Plot_WLD_SupplyExtractRavine_Ted.umap" />
     <Content Include="Content\Plots\Plot_WLD_SupplyExtract_LgObj_Stream_Ted.umap" />
+    <Content Include="Content\Plots\Plot_ABN_SupplyExtract_Waterfront2_Ted.umap" />
   </ItemGroup>
 </Project>
