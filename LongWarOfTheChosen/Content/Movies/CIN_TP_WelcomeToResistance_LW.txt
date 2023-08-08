@@ -1,0 +1,3 @@
+1000
+6500 17250 CIN_TP_WelcomeResistance_01
+17500 52000 CIN_TP_WelcomeResistance_02
