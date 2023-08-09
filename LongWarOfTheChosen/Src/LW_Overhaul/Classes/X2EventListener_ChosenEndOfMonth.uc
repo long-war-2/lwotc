@@ -58,6 +58,10 @@ static function EventListenerReturn LW_ChosenEOM_Listener(Object EventData, Obje
         if(ChosenState.bMetXCom != true)
             continue;
 
+        // short circuit if chosen is defeated.
+        if(ChosenState.bDefeated == true)
+            continue;
+
         //actually add the chosen knowledge to the chosen.
         switch (ChosenState.GetMyTemplateName())
         {       
