@@ -51,7 +51,6 @@ var config int CONCUSSION_ROCKET_RADIUS_TILES;
 var config int CONCUSSION_ROCKET_TARGET_WILL_MALUS_DISORIENT;
 var config int CONCUSSION_ROCKET_TARGET_WILL_MALUS_STUN;
 var config int CONCUSSION_ROCKET_STUN_CHANCE;
-var config int CONCUSSION_ROCKET_DISORIENT_CHANCE;
 var config bool USE_CONCUSSION_ROCKET_WILL_CALCS;
 var config bool ENABLE_CONCUSSION_ROCKET_SMOKE;
 var config WeaponDamageValue CONCUSSION_ROCKET_DAMAGE_VALUE;
@@ -1636,7 +1635,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	//Template.AddTargetEffect(StunnedEffect);
 	Template.AddMultiTargetEffect(StunnedEffect);
 
-	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, default.CONCUSSION_ROCKET_DISORIENT_CHANCE, false);
+	DisorientedEffect = class'X2StatusEffects'.static.CreateDisorientedStatusEffect(, , false);
 	if(default.USE_CONCUSSION_ROCKET_WILL_CALCS)
 		DisorientedEffect.ApplyChanceFn = ApplyChance_Concussion_Disoriented;
 	//Template.AddTargetEffect(DisorientedEffect);
