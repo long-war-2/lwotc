@@ -271,6 +271,8 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Mission()
 
 	bInfiniteDuration = true;
 	ControlEffect = class'X2StatusEffects'.static.CreateMindControlStatusEffect(99, true, bInfiniteDuration);
+	// Rename effect so that Stasis doesn't cancel the hack.
+	ControlEffect.EffectName = 'FullOverrideMindControl';
 	Template.AddTargetEffect(ControlEffect);
 
 	// Remove any pre-existing disorient.
@@ -368,6 +370,8 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Permanent()
 
 	bInfiniteDuration = true;
 	ControlEffect = class'X2StatusEffects'.static.CreateMindControlStatusEffect(99, true, bInfiniteDuration);
+	// Rename effect so that Stasis doesn't cancel the hack.
+	ControlEffect.EffectName = 'FullOverrideMindControl';
 	ControlEffect.bRemoveWhenSourceDies = false; // added for ID 1733 -- mind control effect is no longer lost when source unit dies or evacs
 	ControlEffect.EffectRemovedVisualizationFn = none; // No visualization of this effect being removed (which happens when the unit evacs or dies)
 	Template.AddTargetEffect(ControlEffect);
