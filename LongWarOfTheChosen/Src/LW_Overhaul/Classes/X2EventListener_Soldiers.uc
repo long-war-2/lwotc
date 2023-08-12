@@ -685,7 +685,7 @@ static function EventListenerReturn OverrideRespecSoldierProjectPoints(
 	if (default.TIERED_RESPEC_TIMES)
 	{
 		// Respec days = rank * difficulty setting
-		Tuple.Data[1].i = UnitState.GetRank() * class'XComGameState_HeadquartersXCom'.default.XComHeadquarters_DefaultRespecSoldierDays[`STRATEGYDIFFICULTYSETTING] * 24;
+		Tuple.Data[1].i = UnitState.GetRank() * class'XComGameState_HeadquartersXCom'.default.XComHeadquarters_DefaultRespecSoldierDays[`STRATEGYDIFFICULTYSETTING] * 12;
 	}
 
 	return ELR_NoInterrupt;
