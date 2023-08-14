@@ -6550,9 +6550,9 @@ SummaryText="殘酷鎮壓反抗軍，減少該地區反抗軍未來<Ability:CHOS
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="天選者可以阻礙反抗軍活動！"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="天選者可以蓄意破壞復仇者號！"
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="天選者增加隱秘行動的風險！"
-KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="天選者可以蓄意破壞復仇者號！"
+KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="天選者可以阻礙反抗軍活動！"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="天選者可以向復仇者號發起攻擊！"
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="天選者可以引發額外的黑暗事件！"
 
