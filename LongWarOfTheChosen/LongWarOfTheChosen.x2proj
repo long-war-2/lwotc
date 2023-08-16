@@ -1382,6 +1382,7 @@
     <Content Include="Config\XComSniperDefense.ini" />
     <Content Include="Src\LW_Overhaul\Classes\SniperDefense_UIScreenListener.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWStaffSlotsModTemplate.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\XGAIBehavior_Civilian_LW.uc" />
     <Content Include="Src\LW_Tutorial\Classes\LWTutorial.uc" />
     <Content Include="Src\LW_Tutorial\Classes\SeqAct_HandleGatecrasherTutorialText.uc" />
     <Content Include="Src\LW_Tutorial\Classes\SeqAct_LWTutorialIsActive.uc" />
