@@ -214,6 +214,7 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState_LWOutpost OutpostState;
 	local XComGameState_LWToolboxOptions ToolboxOptions;
 	local XComGameState_LWOverhaulOptions OverhaulOptions;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
 	
 	History = `XCOMHISTORY;
 
@@ -250,6 +251,40 @@ static event OnLoadedSavedGameToStrategy()
 		OverhaulOptions = XComGameState_LWOverhaulOptions(NewGameState.ModifyStateObject(class'XComGameState_LWOverhaulOptions', OverhaulOptions.ObjectID));
 		OverhaulOptions.StartingChosen = XComGameState_WorldRegion(History.GetGameStateForObjectID(`XCOMHQ.StartingRegion.ObjectID)).GetControllingChosen().GetMyTemplateName();
 		OverhaulOptions.InitChosenKnowledge();
+	}
+	// Patch chosen if enabled:
+
+	if (!`SecondWaveEnabled('DisableChosen'))
+	{
+		foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+			{
+				// Patch chosen if needed
+				RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
+				if(RegionalAI.LocalForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_ACTIVATE_AT_FL)
+				{	
+				class'X2StrategyElement_DefaultAlienActivities'.static.ActivateChosenIfEnabled(NewGameState);
+			}
+
+			//patch chosen level if needed.
+
+			if(RegionalAI.LocalForceLevel == 7 || RegionalAI.LocalForceLevel == 8)
+			{
+				class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(7, NewGameState);
+			}
+			if(RegionalAI.LocalForceLevel >= 11 && RegionalAI.LocalForceLevel <= 13)
+			{
+				class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(11, NewGameState);
+			}
+			if(RegionalAI.LocalForceLevel >= 16 && RegionalAI.LocalForceLevel <= 19)
+			{
+				class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(16, NewGameState);
+			}
+			if(RegionalAI.LocalForceLevel >= 20)
+			{
+				class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(20, NewGameState);
+			}
+			break;
+		}
 	}
 
 	if (NewGameState.GetNumGameStateObjects() > 0)

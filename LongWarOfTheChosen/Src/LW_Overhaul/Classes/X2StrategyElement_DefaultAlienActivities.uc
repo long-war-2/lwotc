@@ -1828,6 +1828,63 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 	`GAMERULES.SubmitGameState(NewGameState);
 }
 
+// version that takes in a NewGameState for DLCInfo use
+static function TryIncreasingChosenLevelWithGameState(int CurrentForceLevel, XComGameState NewGameState)
+{
+	local XComGameStateHistory History;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_AdventChosen ChosenState;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local name OldTacticalTag, NewTacticalTag;
+
+	// Ignore force levels that aren't Chosen level thresholds
+	if (default.CHOSEN_LEVEL_FL_THRESHOLDS.Find(CurrentForceLevel) == INDEX_NONE)
+		return;
+
+	History = `XCOMHISTORY;
+
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen();
+
+	foreach AllChosen(ChosenState)
+	{
+		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+		switch (CurrentForceLevel)
+		{
+			case 7:
+			case 8:
+				Chosenstate.Level = 1;
+				break;
+			case 11:
+			case 12:
+			case 13:
+				Chosenstate.Level = 2;
+				break;
+			case 16:
+			case 17:
+			case 18:
+			case 19:
+				ChosenState.Level = 3;
+				break;
+			case 20:
+				ChosenState.Level = 4;
+				break;
+			// default catches FL21+ campaigns
+			default:
+				ChosenState.Level = 4;
+				break;
+		}
+		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+		if (ChosenState.bMetXCom && !ChosenState.bDefeated)
+		{
+			ChosenState.bJustLeveledUp = true;
+		}
+		// Replace Old Tag with new Tag in missions
+		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+	}
+
+}
+
 static function ActivateChosenIfEnabled(XComGameState NewGameState)
 {
 	local XComGameState_HeadquartersAlien AlienHQ;
