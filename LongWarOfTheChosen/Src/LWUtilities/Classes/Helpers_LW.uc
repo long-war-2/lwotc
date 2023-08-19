@@ -171,7 +171,7 @@ static final function bool IsModInstalled(coerce string DLCIdentifer)
     return default.cachedInstalledModNames.Find(DLCIdentifer) != INDEX_NONE;
 }
 
-static function bool IsDLCInstalled(coerce string DLCIdentifer)
+static final function bool IsDLCInstalled(coerce string DLCIdentifer)
 {
 	local array<string> DLCs;
 
@@ -179,7 +179,7 @@ static function bool IsDLCInstalled(coerce string DLCIdentifer)
 	return DLCs.Find(DLCIdentifer) != INDEX_NONE;
 }
 
-simulated static function class<object> LWCheckForRecursiveOverride(class<object> ClassToCheck)
+simulated final static function class<object> LWCheckForRecursiveOverride(class<object> ClassToCheck)
 {
 	local int idx;
 	local class<object> CurrentBestClass, TestClass;
@@ -209,7 +209,7 @@ simulated static function class<object> LWCheckForRecursiveOverride(class<object
 	return CurrentBestClass;
 }
 
-static function XComGameState_BaseObject GetGameStateForObjectIDFromPendingOrHistory(int ObjectID, optional XComGameState NewGameState = none)
+static final function XComGameState_BaseObject GetGameStateForObjectIDFromPendingOrHistory(int ObjectID, optional XComGameState NewGameState = none)
 {
 	local XComGameState_BaseObject GameStateObject;
 
@@ -226,7 +226,7 @@ static function XComGameState_BaseObject GetGameStateForObjectIDFromPendingOrHis
 	return GameStateObject;
 }
 
-static function bool ShouldUseRadiusManagerForMission(String MissionType)
+static final function bool ShouldUseRadiusManagerForMission(String MissionType)
 {
 	local XComGameStateHistory History;
 	local XComGameState_BattleData BattleData;
@@ -244,12 +244,12 @@ static function bool ShouldUseRadiusManagerForMission(String MissionType)
     return default.RadiusManagerMissionTypes.Find(MissionType) >= 0;
 }
 
-static function bool YellowAlertEnabled()
+static final function bool YellowAlertEnabled()
 {
     return default.EnableYellowAlert;
 }
 
-static function bool DynamicEncounterZonesDisabled()
+static final function bool DynamicEncounterZonesDisabled()
 {
 	return default.DisableDynamicEncounterZones;
 }
@@ -257,7 +257,7 @@ static function bool DynamicEncounterZonesDisabled()
 // Uses visibility rules to determine whether one unit is flanked by
 // another. This is because XCGS_Unit.IsFlanked() does not work for
 // squadsight attackers.
-static function bool IsUnitFlankedBy(XComGameState_Unit Target, XComGameState_Unit MaybeFlanker)
+static final function bool IsUnitFlankedBy(XComGameState_Unit Target, XComGameState_Unit MaybeFlanker)
 {
 	local GameRulesCache_VisibilityInfo VisInfo;
 
@@ -273,7 +273,7 @@ static function bool IsUnitFlankedBy(XComGameState_Unit Target, XComGameState_Un
 
 // Copied from XComGameState_Unit::GetEnemiesInRange, except will retrieve all units on the alien team within
 // the specified range.
-static function GetAlienUnitsInRange(TTile kLocation, int nMeters, out array<StateObjectReference> OutEnemies)
+static final function GetAlienUnitsInRange(TTile kLocation, int nMeters, out array<StateObjectReference> OutEnemies)
 {
 	local vector vCenter, vLoc;
 	local float fDistSq;
@@ -373,7 +373,7 @@ function static SoundCue FindDeathSound(String ObjectArchetypeName, int Index, o
 
 // Returns the game state object reference for the faction whose rival
 // Chosen controls the given region.
-static function XComGameState_ResistanceFaction GetFactionFromRegion(StateObjectReference RegionRef)
+static final function XComGameState_ResistanceFaction GetFactionFromRegion(StateObjectReference RegionRef)
 {
 	local XComGameStateHistory History;
 	local XComGameState_AdventChosen ChosenState;
@@ -401,7 +401,7 @@ static function XComGameState_ResistanceFaction GetFactionFromRegion(StateObject
 	return FactionState;
 }
 
-static function name GetChosenActiveMissionTag(XComGameState_AdventChosen ChosenState)
+static final function name GetChosenActiveMissionTag(XComGameState_AdventChosen ChosenState)
 {
 	local name ChosenSpawningTag;
 
@@ -417,7 +417,7 @@ static function name GetChosenActiveMissionTag(XComGameState_AdventChosen Chosen
 //
 // Note that the HackDefenseChangeAmount should be negative for an actual reduction
 // in hack defense.
-static function X2Effect_PersistentStatChange CreateHackDefenseReductionStatusEffect(
+static final function X2Effect_PersistentStatChange CreateHackDefenseReductionStatusEffect(
 	name EffectName,
 	int HackDefenseChangeAmount,
 	optional X2Condition Condition)
@@ -434,7 +434,7 @@ static function X2Effect_PersistentStatChange CreateHackDefenseReductionStatusEf
 
 // Recursively prints all visualization actions in the tree that is rooted
 // at the given action. `iLayer` is the starting tree depth to start at.
-static function PrintActionRecursive(X2Action Action, int iLayer)
+static final function PrintActionRecursive(X2Action Action, int iLayer)
 {
     local X2Action ChildAction;
 
@@ -453,7 +453,7 @@ static function PrintActionRecursive(X2Action Action, int iLayer)
 // TODO: This check for active resistance orders is only needed for the transition
 // when introducing the second wave option on existing campaigns. We can't hide the
 // Resistance Orders UI while there are active cards.
-static function bool AreResistanceOrdersEnabled()
+static final function bool AreResistanceOrdersEnabled()
 {
 	local XComGameState_HeadquartersResistance ResistanceHQ;
 	local array<XComGameState_ResistanceFaction> AllFactions;
@@ -488,7 +488,7 @@ static function bool AreResistanceOrdersEnabled()
 
 // Resumes or pauses any Will recovery projects for the given unit when
 // updating their status.
-static function UpdateUnitWillRecoveryProject(XComGameState_Unit UnitState)
+static final function UpdateUnitWillRecoveryProject(XComGameState_Unit UnitState)
 {
 	local XComGameState_HeadquartersProjectRecoverWill WillProject;
 	local ESoldierStatus UnitStatus;
@@ -510,12 +510,12 @@ static function UpdateUnitWillRecoveryProject(XComGameState_Unit UnitState)
 	}
 }
 
-static function bool IsHQProjectPaused(XComGameState_HeadquartersProject ProjectState)
+static final function bool IsHQProjectPaused(XComGameState_HeadquartersProject ProjectState)
 {
 	return ProjectState.CompletionDateTime.m_iYear == 9999;
 }
 
-static function XComGameState_HeadquartersProjectRecoverWill GetWillRecoveryProject(StateObjectReference UnitRef)
+static final function XComGameState_HeadquartersProjectRecoverWill GetWillRecoveryProject(StateObjectReference UnitRef)
 {
 	local XComGameState_HeadquartersProjectRecoverWill WillProject;
 
@@ -534,7 +534,7 @@ static function XComGameState_HeadquartersProjectRecoverWill GetWillRecoveryProj
 //  1 - Easy
 //  2 - Moderate
 //  3 - Hard
-static function int GetCovertActionDifficulty(XComGameState_CovertAction ActionState)
+static final function int GetCovertActionDifficulty(XComGameState_CovertAction ActionState)
 {
 	local CovertActionRisk Risk;
 
@@ -559,7 +559,7 @@ static function int GetCovertActionDifficulty(XComGameState_CovertAction ActionS
 
 // Use this to determine whether a unit is interrupting another team's turn,
 // for example via Skirmisher's Battlelord or Skirmisher Interrupt.
-static function bool IsUnitInterruptingEnemyTurn(XComGameState_Unit UnitState)
+static final function bool IsUnitInterruptingEnemyTurn(XComGameState_Unit UnitState)
 {
 	local XComGameState_BattleData BattleState;
 
@@ -569,7 +569,7 @@ static function bool IsUnitInterruptingEnemyTurn(XComGameState_Unit UnitState)
 
 // Adds the given unit to the XCom (primary) initiative group, ensuring that the unit
 // is controllable by the player.
-function static AddUnitToXComGroup(XComGameState NewGameState, XComGameState_Unit Unit, XComGameState_Player Player, optional XComGameStateHistory History = None)
+static final function AddUnitToXComGroup(XComGameState NewGameState, XComGameState_Unit Unit, XComGameState_Player Player, optional XComGameStateHistory History = None)
 {
     local XComGameState_Unit CurrentUnit;
     local XComGameState_AIGroup Group;
@@ -596,7 +596,7 @@ function static AddUnitToXComGroup(XComGameState NewGameState, XComGameState_Uni
 // Copied from LW2's highlander. Since `XComGameState_Unit.HasSoldierAbility()`
 // does not take into account any mod additions to `XCGS_Unit.GetEarnedSoldierAbilities()`,
 // we need this custom implementation to check for officer abilities.
-static function bool HasSoldierAbility(XComGameState_Unit Unit, name Ability, optional bool bSearchAllAbilities = true)
+static final function bool HasSoldierAbility(XComGameState_Unit Unit, name Ability, optional bool bSearchAllAbilities = true)
 {
 	local array<SoldierClassAbilityType> EarnedAbilities;
 	local SoldierClassAbilityType EarnedAbility;
@@ -627,7 +627,7 @@ static function bool HasSoldierAbility(XComGameState_Unit Unit, name Ability, op
 //
 // If no such soldier can be found, this returns an empty reference, i.e. the `ObjectID`
 // is zero.
-static function array<StateObjectReference> FindAvailableCapturedSoldiers(optional XComGameState NewGameState = none)
+static final function array<StateObjectReference> FindAvailableCapturedSoldiers(optional XComGameState NewGameState = none)
 {
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_AdventChosen ChosenState;
@@ -669,7 +669,7 @@ static function array<StateObjectReference> FindAvailableCapturedSoldiers(option
 // Determines whether a mission or covert action has spawned that has the
 // given (captured) soldier as a reward. If there is such a mission or covert
 // action, even one that is in progress, this returns `true`.
-static function bool IsRescueMissionAvailableForSoldier(StateObjectReference CapturedSoldierRef, optional XComGameState NewGameState = none)
+static final function bool IsRescueMissionAvailableForSoldier(StateObjectReference CapturedSoldierRef, optional XComGameState NewGameState = none)
 {
 	local XComGameStateHistory History;
 	local XComGameState_ResistanceFaction FactionState;
@@ -740,7 +740,7 @@ static function bool IsRescueMissionAvailableForSoldier(StateObjectReference Cap
 
 // Determines whether the given covert action has the given reward
 // attached. Returns true if the covert action does have that reward.
-static function bool CovertActionHasReward(XComGameState_CovertAction ActionState, StateObjectReference RewardRef)
+static final function bool CovertActionHasReward(XComGameState_CovertAction ActionState, StateObjectReference RewardRef)
 {
 	local XComGameStateHistory History;
 	local XComGameState_Reward RewardState;
@@ -759,7 +759,7 @@ static function bool CovertActionHasReward(XComGameState_CovertAction ActionStat
 // be careful calling it on an ability that is already a free action,
 // since the behaviour may subtly change. For example if the original
 // ability point cost is zero and free, that will change to 1 and free.
-static function MakeFreeAction(X2AbilityTemplate Template)
+static final function MakeFreeAction(X2AbilityTemplate Template)
 {
 	local X2AbilityCost Cost;
 
@@ -774,7 +774,7 @@ static function MakeFreeAction(X2AbilityTemplate Template)
 	}
 }
 
-static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name EffectClass)
+static final function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name EffectClass)
 {
 	local int i;
 	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0; i--)
@@ -786,7 +786,7 @@ static function RemoveAbilityTargetEffects(X2AbilityTemplate Template, name Effe
 	}
 }
 
-static function RemoveAbilityShooterEffects(X2AbilityTemplate Template, name EffectClass)
+static final function RemoveAbilityShooterEffects(X2AbilityTemplate Template, name EffectClass)
 {
 	local int i;
 	for (i = Template.AbilityShooterEffects.Length - 1; i >= 0; i--)
@@ -798,7 +798,7 @@ static function RemoveAbilityShooterEffects(X2AbilityTemplate Template, name Eff
 	}
 }
 
-static function RemoveAbilityShooterConditions(X2AbilityTemplate Template, name EffectClass)
+static final function RemoveAbilityShooterConditions(X2AbilityTemplate Template, name EffectClass)
 {
 	local int i;
 	for (i = Template.AbilityShooterConditions.Length - 1; i >= 0; i--)
@@ -810,7 +810,7 @@ static function RemoveAbilityShooterConditions(X2AbilityTemplate Template, name 
 	}
 }
 
-static function RemoveAbilityTargetConditions(X2AbilityTemplate Template, name EffectClass)
+static final function RemoveAbilityTargetConditions(X2AbilityTemplate Template, name EffectClass)
 {
 	local int i;
 	for (i = Template.AbilityTargetConditions.Length - 1; i >= 0; i--)
@@ -822,7 +822,7 @@ static function RemoveAbilityTargetConditions(X2AbilityTemplate Template, name E
 	}
 }
 
-static function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name EffectClass)
+static final function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name EffectClass)
 {
 	local int i;
 	for (i = Template.AbilityMultiTargetEffects.Length - 1; i >= 0; i--)
@@ -834,7 +834,7 @@ static function RemoveAbilityMultiTargetEffects(X2AbilityTemplate Template, name
 	}
 }
 
-static function bool AlwaysFail()
+static final function bool AlwaysFail()
 {
 	return false;
 }

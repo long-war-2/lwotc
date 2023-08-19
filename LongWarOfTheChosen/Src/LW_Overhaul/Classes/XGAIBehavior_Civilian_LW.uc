@@ -4,7 +4,7 @@ function BTRunCompletePreExecute()
 {
 	local AvailableAction YellAction;
 	local int TargetIndex;
-	super.BTRunCompletePreExecute();
+	//super.BTRunCompletePreExecute();
     
     // LWS Add: Configurable disabling of civilian yell
     if (!class'Helpers_LW'.default.EnableCivilianYellOnPreMove)

@@ -2102,6 +2102,8 @@ function ReplacePlaceEvacAbility(X2CharacterTemplate Template, int Difficulty)
 	if (Template.Abilities.Find('PlaceEvacZone') != -1)
 	{
 		Template.Abilities.RemoveItem('PlaceEvacZone');
+		// Give them the flare instead; this ability gives PlaceDelatedEvacZone
+		Template.Abilities.AddItem('GrantEvacFlare');
 	}
 }
 
@@ -2594,6 +2596,12 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				}
 			}
 			break;
+		case 'AlienHunterRifle_CV':
+		case 'AlienHunterRifle_MG':
+		case 'AlienHunterRifle_BM':
+			WeaponTemplate.Abilities.AddItem('LockNLoad_LW');
+			WeaponTemplate.Abilities.AddItem('Concentration_LW');
+		break;
 		default:
 			break;
 		}

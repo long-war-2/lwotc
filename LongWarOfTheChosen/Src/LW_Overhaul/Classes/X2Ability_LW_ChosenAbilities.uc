@@ -1501,7 +1501,7 @@ static function X2AbilityTemplate AddBloodBath()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('BloodBath_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_adrenaline_x2", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('BloodBath_LW', "img:///UILibrary_XPerkIconPack.UIPerk_adrenaline_x2", false, 'eAbilitySource_Perk', true);
 
 	return Template;
 }
@@ -1510,7 +1510,7 @@ static function X2AbilityTemplate AddMistyMadness()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('MistyMadness_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_smoke_chevron_x3", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('MistyMadness_LW', "img:///UILibrary_XPerkIconPack.UIPerk_smoke_chevron_x3", false, 'eAbilitySource_Perk', true);
 
 	return Template;
 }
@@ -1520,7 +1520,7 @@ static function X2AbilityTemplate AddImpenetrable()
 {
 	local X2AbilityTemplate		Template;
 	
-	Template = PurePassive('Impenetrable_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_defense_blossom", false, 'eAbilitySource_Perk', true);
+	Template = PurePassive('Impenetrable_LW', "img:///UILibrary_XPerkIconPack.UIPerk_defense_blossom", false, 'eAbilitySource_Perk', true);
 
 	return Template;
 }
@@ -2111,7 +2111,7 @@ static function X2AbilityTemplate CreaterRuptureImmunity()
 	local X2Effect_RuptureImmunity 					RuptureImmunityEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'RuptureImmunity');
-	Template.IconImage = "img:///UILibrary_XPerkIconPack_LW.UIPerk_knife_defense";
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_knife_defense";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;

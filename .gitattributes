@@ -1,3 +1,0 @@
-*.upk filter=lfs diff=lfs merge=lfs -text
-*.umap filter=lfs diff=lfs merge=lfs -text
-*.bik filter=lfs diff=lfs merge=lfs -text

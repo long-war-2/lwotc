@@ -26,6 +26,13 @@ static event OnLoadedSavedGame()
 /// </summary>
 static event InstallNewCampaign(XComGameState StartState)
 {
+	//short circuit if in shell:
+	if(class'WorldInfo'.static.GetWorldInfo().GRI.GameClass.name == 'XComShell')
+	{
+		`LWTrace("InstallNewCampaign called in Shell, aborting.");
+		return;
+	}
+	
 	class'XComGameState_LWPerkPackOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWPerkPackOptions', StartState);
 }
 

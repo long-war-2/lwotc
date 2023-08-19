@@ -78,6 +78,11 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
 	}
 }
 
+function bool IsThisEffectBetterThanExistingEffect(const out XComGameState_Effect ExistingEffect)
+{
+	return true;
+}
+
 function bool HasOnlySingleTargetDamage(XComGameState_Ability AbilityState)
 {
  local X2AbilityTemplate   AbilityTemplate;

@@ -1816,6 +1816,15 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 	{
 		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 		Chosenstate.Level++;
+		// Tedster - Cap chosen levels at the length of the level FL thresholds array, which should line up with the max level value since both start at 0.
+		ChosenState.Level = MIN(default.CHOSEN_LEVEL_FL_THRESHOLDS.Length, Chosenstate.Level);
+
+		//5th tier of chosen created by using PostEncounterCreation
+		if(ChosenState.Level == 4)
+		{
+			ChosenState.Level = 3;
+		}
+
 		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 		if (ChosenState.bMetXCom && !ChosenState.bDefeated)
 		{
@@ -1828,52 +1837,65 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 	`GAMERULES.SubmitGameState(NewGameState);
 }
 
-// version that takes in a NewGameState for DLCInfo use
-static function TryIncreasingChosenLevelWithGameState(int CurrentForceLevel, XComGameState NewGameState)
+// version that takes in a NewGameState for DLCInfo use for patching existing campaigns.
+static function TryIncreasingChosenLevelWithGameState(int CurrentForceLevel, XComGameState NewGameState, XComGameState_AdventChosen ChosenState)
 {
-	local XComGameStateHistory History;
-	local XComGameState_HeadquartersAlien AlienHQ;
-	local XComGameState_AdventChosen ChosenState;
-	local array<XComGameState_AdventChosen> AllChosen;
+
 	local name OldTacticalTag, NewTacticalTag;
+	local int NewChosenLevel;
 
-	// Ignore force levels that aren't Chosen level thresholds
-	if (default.CHOSEN_LEVEL_FL_THRESHOLDS.Find(CurrentForceLevel) == INDEX_NONE)
-		return;
 
-	History = `XCOMHISTORY;
-
-	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	AllChosen = AlienHQ.GetAllChosen();
-
-	foreach AllChosen(ChosenState)
-	{
 		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+		ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+		
+		//handle all force levels here.
 		switch (CurrentForceLevel)
 		{
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+				NewChosenLevel = 0;
+				break;
 			case 7:
 			case 8:
-				Chosenstate.Level = 1;
+			case 9:
+			case 10:
+				NewChosenLevel = 1;
 				break;
 			case 11:
 			case 12:
 			case 13:
-				Chosenstate.Level = 2;
+			case 14:
+			case 15:
+				NewChosenLevel = 2;
 				break;
 			case 16:
 			case 17:
 			case 18:
 			case 19:
-				ChosenState.Level = 3;
-				break;
 			case 20:
-				ChosenState.Level = 4;
+				NewChosenLevel = 3;
 				break;
 			// default catches FL21+ campaigns
 			default:
-				ChosenState.Level = 4;
+				NewChosenLevel = 3;
 				break;
 		}
+		if(NewChosenLevel == ChosenState.Level)
+			return;
+
+		ChosenState.Level = NewChosenLevel;
+
+		if(ChosenState.Level > 3)
+		{
+			ChosenState.Level = 3;
+		}
+
+
 		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 		if (ChosenState.bMetXCom && !ChosenState.bDefeated)
 		{
@@ -1881,7 +1903,7 @@ static function TryIncreasingChosenLevelWithGameState(int CurrentForceLevel, XCo
 		}
 		// Replace Old Tag with new Tag in missions
 		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
-	}
+	
 
 }
 
@@ -1893,7 +1915,9 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 	local int i;
 	if (!`SecondWaveEnabled('DisableChosen'))
 	{
+
 		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
 		AlienHQ.OnChosenActivation(NewGameState);
 
 		AllChosen = AlienHQ.GetAllChosen();
@@ -1902,19 +1926,24 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 		//ALSO REMOVE ALL WEAKNESSES FROM THEM
 		foreach AllChosen(ChosenState)
 		{
-			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
-			ChosenState.Strengths.length = 0;
-
-			// Get them training and learning about XCOM straight away
-			ChosenState.bMetXCom = true;
-
-			for (i = ChosenState.Weaknesses.length - 1; i >= 0; i--)
+			if (!ChosenState.bMetXCom)
 			{
-				if (ChosenState.Weaknesses[i] != 'ChosenSkirmisherAdversary' && 
-					ChosenState.Weaknesses[i] != 'ChosenTemplarAdversary' &&
-					ChosenState.Weaknesses[i] != 'ChosenReaperAdversary')
+				ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+				ChosenState.Strengths.length = 0;
+				
+
+				// Get them training and learning about XCOM straight away
+				ChosenState.bMetXCom = true;
+				ChosenState.NumEncounters++; 
+
+				for (i = ChosenState.Weaknesses.length - 1; i >= 0; i--)
 				{
-					ChosenState.Weaknesses.Remove(i,1);
+					if (ChosenState.Weaknesses[i] != 'ChosenSkirmisherAdversary' && 
+						ChosenState.Weaknesses[i] != 'ChosenTemplarAdversary' &&
+						ChosenState.Weaknesses[i] != 'ChosenReaperAdversary')
+					{
+						ChosenState.Weaknesses.Remove(i,1);
+					}
 				}
 			}
 		}
@@ -4663,6 +4692,7 @@ static function XComGameState_MissionSite GetRebelRaidMissionSite(XComGameState_
 
     return RaidMission;
 }
+
 
 
 

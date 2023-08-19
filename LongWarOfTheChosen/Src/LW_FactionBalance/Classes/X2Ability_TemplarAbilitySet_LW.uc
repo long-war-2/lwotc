@@ -551,11 +551,12 @@ static function X2AbilityTemplate AddApotheosis()
 
 static function X2AbilityTemplate TemplarShield()
 {
-	local X2AbilityTemplate					Template;
-	local X2AbilityCost_ActionPoints		ActionPointCost;
-	local X2Effect_TemplarShieldAnimations	AnimSetEffect;
-	local X2Effect_TemplarShield			ShieldedEffect;
-	
+	local X2AbilityTemplate						Template;
+	local X2AbilityCost_ActionPoints			ActionPointCost;
+	local X2Effect_TemplarShieldAnimations		AnimSetEffect;
+	local X2Effect_TemplarShield				ShieldedEffect;
+	local X2Effect_TemplarShieldCritDefense		AntiFlankEffect;
+
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'IRI_TemplarShield');
 
 	// Icon Setup
@@ -593,6 +594,11 @@ static function X2AbilityTemplate TemplarShield()
 	ShieldedEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
 	ShieldedEffect.EffectName = class'X2Effect_TemplarShield'.default.EffectName;
 	Template.AddTargetEffect(ShieldedEffect);
+
+	AntiFlankEffect = new class'X2Effect_TemplarShieldCritDefense';
+	AntiFlankEffect.BuildPersistentEffect(1, false, true,, eGameRule_PlayerTurnBegin);
+	AntiFlankEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, true, , Template.AbilitySourceName);
+	Template.AddShooterEffect(AntiFlankEffect);
 
 	// State and Viz
 	Template.Hostility = eHostility_Defensive;

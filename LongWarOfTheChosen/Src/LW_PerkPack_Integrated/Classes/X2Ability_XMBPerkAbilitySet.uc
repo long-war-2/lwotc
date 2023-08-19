@@ -2905,7 +2905,7 @@ static function X2AbilityTemplate YouCannotHide()
 	Effect = new class'XMBEffect_ConditionalBonus';
 
 	// The bonus adds the aim and crit chance
-	Effect.AddToHitModifier(100, eHit_Success);
+	Effect.AddToHitModifier(30, eHit_Success);
 
 	Effect.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
 
@@ -3121,6 +3121,12 @@ static function X2AbilityTemplate OverbearingSuperiority()
 
 	// Create the template for an activated ability using a helper function.
 	Template = Passive('OverbearingSuperiority_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_crit_chevron_x3", true, SuperiorityEffect);
+
+	ToHitModifier = new class'X2Effect_ToHitModifier';
+	ToHitModifier.BuildPersistentEffect(1, true, true, true);
+	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.OVERBEARING_SUPERIORITY_CRIT, Template.LocFriendlyName,,,,,,,,true);
+	Template.AddTargetEffect(ToHitModifier);
 
 	ToHitModifier = new class'X2Effect_ToHitModifier';
 	ToHitModifier.BuildPersistentEffect(1, true, true, true);

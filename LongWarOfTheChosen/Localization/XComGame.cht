@@ -5149,6 +5149,12 @@ FocusLevelDescriptions[4]="撕裂傷害 +<Ability:FOCUS4RENDDAMAGE/>\n移動力 
 [TemplarFocus X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 聖殿騎士在開始任務時比其他士兵弱，但在更高的專注水平下會變得非常強大。<br/><Bullet/> 專注是通過用撕裂攻擊敵人獲得的（即使未命中也能獲得）。<br/>"
 
+[ArcWave_LW X2AbilityTemplate]
+LocFriendlyName="撕裂"
+LocLongDescription="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
+LocHelpText="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
+LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士產生專注的主要方法。<br/><Bullet/> 施展撕裂後，聖殿騎士將獲得氣勢，允許他們進行一次移動動作。攻擊後撤回掩體。<br/><Bullet/> 撕裂每1點專注有<Ability:RENDSTUNCHANCE/>%幾率眩暈。眩暈的目標也會被擊退。<br/><Bullet/> 撕裂每1點專注有 <Ability:RENDDISORIENTCHANCE/>%幾率混亂。<br/>"
+
 [Rend_LW X2AbilityTemplate]
 LocFriendlyName="撕裂"
 LocLongDescription="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
@@ -6329,8 +6335,8 @@ LocFlyOverText="精神發狂"
 
 [YouCannotHide_LW X2AbilityTemplate]
 LocFriendlyName="無所遁形"
-LocHelpText="你的主武器增加100命中。"
-LocLongDescription="你的主武器增加100命中。"
+LocHelpText="你的主武器增加30命中。"
+LocLongDescription="你的主武器增加30命中。"
 LocFlyOverText="逃跑吧。"
 
 [RebelHPUpgrade_T1 X2AbilityTemplate]

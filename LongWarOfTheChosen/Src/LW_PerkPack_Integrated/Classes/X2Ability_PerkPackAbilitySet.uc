@@ -3083,6 +3083,7 @@ static function X2AbilityTemplate AddDamageControlAbility()
 	local X2AbilityTemplate						Template;	
 	local X2AbilityTrigger_EventListener		EventListener;
 	local X2Effect_DamageControl 				DamageControlEffect;
+	local X2AbilityCooldown                     Cooldown;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'DamageControl');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityDamageControl";
@@ -3091,7 +3092,7 @@ static function X2AbilityTemplate AddDamageControlAbility()
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.AbilityToHitCalc = default.DeadEye;
     Template.AbilityTargetStyle = default.SelfTarget;
-	Template.bShowActivation = true;
+	Template.bShowActivation = false;
 	Template.bSkipFireAction = true;
 	//Template.bIsPassive = true;
 	Template.bDisplayInUITooltip = true;
@@ -3106,11 +3107,17 @@ static function X2AbilityTemplate AddDamageControlAbility()
 	EventListener.ListenerData.Filter = eFilter_Unit;
 	Template.AbilityTriggers.AddItem(EventListener);
 
+	// Add a cooldown to reduce flyover spam
+	Cooldown = new class'X2AbilityCooldown';
+    Cooldown.iNumTurns = 1;
+    Template.AbilityCooldown = Cooldown;
+
 	DamageControlEffect = new class'X2Effect_DamageControl';
 	DamageControlEffect.BuildPersistentEffect(default.DAMAGE_CONTROL_DURATION,false,true,,eGameRule_PlayerTurnBegin);
 	DamageControlEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	DamageControlEffect.DuplicateResponse = eDupe_Refresh;
 	DamageControlEffect.BonusArmor = default.DAMAGE_CONTROL_BONUS_ARMOR;
+	DamageControlEffect.Flyover = Template.LocFriendlyName;
 	Template.AddTargetEffect(DamageControlEffect);
 
 

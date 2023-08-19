@@ -1150,11 +1150,14 @@
     <Content Include="Content\Parcels\md_Restaurant_01_LW_PD.umap" />
     <Content Include="Content\Parcels\md_ShootingRange_01_LW.umap" />
     <Content Include="Content\Parcels\md_Studio_01_LW.umap" />
+    <Content Include="Content\Parcels\md_Studio_02_LW.umap" />
+    <Content Include="Content\Parcels\md_LandingPad_01_LW.umap" />
     <Content Include="Content\Parcels\sm_ChosenBulwark_01.umap" />
     <Content Include="Content\Parcels\sm_ChosenBulwark_02.umap" />
     <Content Include="Content\Parcels\sm_ServerRoom_01_LW.umap" />
     <Content Include="Content\Parcels\sm_VipOffice_01_LW.umap" />
     <Content Include="Content\PCPs\WLD_SupplyConvoy_16x64_LW_01.umap" />
+    <Content Include="Content\PCPs\RFT_Walkway_06x06_Skybridge_01_fixed.umap" />
     <Content Include="Content\Plots\Plot_CTY_LgObj_Civic_10_LW.umap" />
     <Content Include="Content\Plots\Plot_CTY_LgObj_Civic_11_LW.umap" />
     <Content Include="Content\Plots\Plot_CTY_LgObj_Mixed_10_LW.umap" />
@@ -1163,6 +1166,9 @@
     <Content Include="Content\Plots\Plot_CVY_ResistanceConvoy_01_LW.umap" />
     <Content Include="Content\Plots\Plot_RFT_01_LW.umap" />
     <Content Include="Content\Plots\Plot_RFT_02_LW.umap" />
+    <Content Include="Content\Plots\Plot_RFT_03_LW.umap" />
+    <Content Include="Content\Plots\Plot_RFT_04_LW.umap" />
+    <Content Include="Content\Plots\Plot_RFT_05_LW.umap" />
     <Content Include="Content\Plots\Plot_RFT_CentralBroadcastTower_01_LW.umap" />
     <Content Include="Content\Plots\Plot_RVS_Highway_LgObj_01_LW.umap" />
     <Content Include="Content\Plots\Plot_RVS_Highway_MdObj_01_LW.umap" />
@@ -1377,9 +1383,11 @@
     <Content Include="Src\LW_Overhaul\Classes\X2EventListener_LW_ChosenEndOfMonth.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XMBEffect_AddAbilityCharges.uc" />
     <Content Include="Src\LW_FactionBalance\Classes\XMBEffectUtilities.uc" />
+    <Content Include="Src\LW_FactionBalance\Classes\X2Effect_TemplarShieldCritDefense.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_DefaultCovertActionRisks_LW.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2StrategyElement_DefaultCovertActions_LW.uc" />
     <Content Include="Config\XComSniperDefense.ini" />
+    <Content Include="Config\XComStrategyTuning.ini" />
     <Content Include="Src\LW_Overhaul\Classes\SniperDefense_UIScreenListener.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWStaffSlotsModTemplate.uc" />
     <Content Include="Src\LW_Overhaul\Classes\XGAIBehavior_Civilian_LW.uc" />
@@ -1449,7 +1457,7 @@
     <Content Include="Content\UILibrary_WeaponPerkIcons.upk" />
     <Content Include="Content\UILibrary_WolfWeaponPack_LW.upk" />
     <Content Include="Content\UILibrary_WOTC_APA_Class_Pack_LW.upk" />
-    <Content Include="Content\UILibrary_XPerkIconPack_LW.upk" />
+    <Content Include="Content\UILibrary_XPerkIconPack.upk" />
     <Content Include="Content\WoTC_Ballistic_Shield_LW.upk" />
     <Content Include="Content\WoTC_Plated_Shield_LW.upk" />
     <Content Include="Content\WoTC_Powered_Shield_LW.upk" />
@@ -1463,8 +1471,11 @@
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Highway_LgObj_01.umap" />
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Highway_LgObj_02.umap" />
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Ravine_LgObj_01.umap" />
-    <Content Include="Content\Plots\Plot_WLD_SupplyExtractRavine_Ted.umap" />
+    <Content Include="Content\Plots\Plot_WLD_SupplyExtract_Ravine_Ted.umap" />
+    <Content Include="Content\Plots\Plot_WLD_SupplyExtract_Ravine_Ted2.umap" />
     <Content Include="Content\Plots\Plot_WLD_SupplyExtract_LgObj_Stream_Ted.umap" />
     <Content Include="Content\Plots\Plot_ABN_SupplyExtract_Waterfront2_Ted.umap" />
+    <Content Include="Content\Plots\Plot_CTY_Extract_LgObj_Park_2.umap" />
+    <Content Include="Content\Plots\Plot_CTY_Extract_LgObj_Plaza_2.umap" />
   </ItemGroup>
 </Project>

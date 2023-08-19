@@ -139,6 +139,7 @@ static function X2DataTemplate BallisticShield_MG()
 
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
+	Template.Requirements.SpecialRequirementsFn = ShouldBuildShields;
 
 	Template.DamageTypeTemplateName = 'Melee';
 	
@@ -185,6 +186,7 @@ static function X2DataTemplate BallisticShield_BM()
 
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
+	Template.Requirements.SpecialRequirementsFn = ShouldBuildShields;
 	
 	Template.DamageTypeTemplateName = 'Melee';
 	
@@ -201,4 +203,32 @@ static function AddAbilities(out X2WeaponTemplate Template, array<name> Abilitie
 			Template.Abilities.AddItem(Ability);
 		}
 	}
+}
+
+static function bool ShouldBuildShields()
+{
+	local X2SoldierClassTemplateManager SoldierClassMgr;
+	local array<X2SoldierClassTemplate> SoldierClasses;
+	local X2SoldierClassTemplate SoldierTemplate;
+	local int i;
+
+	SoldierClassMgr  = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
+
+	SoldierClasses = SoldierClassMgr.GetAllSoldierClassTemplates();
+
+	foreach SoldierClasses (SoldierTemplate)
+	{
+		if (SoldierTemplate == none)
+		    continue;
+
+			for (i = 0; i < SoldierTemplate.AllowedWeapons.Length; ++i)
+		{
+			if (SoldierTemplate.AllowedWeapons[i].WeaponType == 'templarshield')
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
 }

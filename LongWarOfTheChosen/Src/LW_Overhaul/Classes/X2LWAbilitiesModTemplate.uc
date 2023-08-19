@@ -113,6 +113,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'PriestStasis':
 			MakeAbilityNonTurnEnding(Template);
 			MakeAbilitiesUnusableOnLost(Template);
+			MakeAbilityHostile(Template);
 			break;
 		case 'HunterGrapple':
 		case 'Grapple':
@@ -1428,6 +1429,11 @@ static function PatchMultiShotFinalShot(X2AbilityTemplate Template, name FirstSh
 static function name GetMultiShotContinueUnitValueName(name AbilityName)
 {
 	return name(AbilityName $ "Continue");
+}
+
+static function MakeAbilityHostile(X2AbilityTemplate Template)
+{
+	Template.Hostility = eHostility_Offensive;
 }
 
 defaultproperties

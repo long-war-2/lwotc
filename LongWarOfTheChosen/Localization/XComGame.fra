@@ -6553,8 +6553,8 @@ LocFlyOverText="Rage psychotique"
 [YouCannotHide_LW X2AbilityTemplate]
 ; LWOTC translated (2)
 LocFriendlyName="Se cacher est inutile"
-LocHelpText="Gagnez un bonus de +100 en visée avec votre arme principale."
-LocLongDescription="Gagnez un bonus de +100 en visée avec votre arme principale."
+LocHelpText="Gagnez un bonus de +30 en visée avec votre arme principale."
+LocLongDescription="Gagnez un bonus de +30 en visée avec votre arme principale."
 ; LWOTC translated (2)
 LocFlyOverText="Cours."
 
@@ -7050,8 +7050,8 @@ LocPromotionPopupText="<Bullet/> Chaque tir effectué avec Bannissement a une ch
 ; LWOTC translated (3)
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Combat total"
-LocLongDescription="Procure un bonus de +1 en Mobilité et de +5 en visée. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
-LocHelpText="Procure un bonus de +1 en Mobilité et de +5 en visée. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 3 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
+LocLongDescription="Procure un bonus de +1 en Mobilité et de +5 en visée. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 2 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
+LocHelpText="Procure un bonus de +1 en Mobilité et de +5 en visée. Lancer une grenade ou utiliser un objet ne met plus fin à votre tour. La portée de vos grenades est augmentée de 2 cases et leurs temps de rechargement est réduit à 0. Octroie la capacité Mélange explosif (zone d'effet des grenades +1 case). Une grenade supplémentaire peut être équipée à l'emplacement réservé aux grenades."
 LocPromotionPopupText="<Bullet/> Cette capacité octroie la capacité Mélange explosif, et ne peut donc pas être combinée avec cette capacité.<br/>"
 ; End translated (3)
 
@@ -7069,6 +7069,13 @@ LocFriendlyName="Interruption"
 LocLongDescription="Une forme supérieure de Vigilance. Plutôt que de tirer automatiquement, effectue n'importe quelle action simple. Action gratuite."
 LocHelpText="Une forme supérieure de Vigilance. Plutôt que de tirer automatiquement, effectue n'importe quelle action simple. Action gratuite."
 LocPromotionPopupText="<Bullet/> Une forme supérieure de Vigilance. Plutôt que de tirer automatiquement, effectue n'importe quelle action simple. Action gratuite.<br/><Bullet/> Certaines actions, telles que Vigilance, ne sont pas disponibles lors d'une Interruption.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s)."
+
+[ArcWave_LW X2AbilityTemplate]
+LocFriendlyName="Taillade"
+LocLongDescription="Les attaques de mêlée ont une chance d'étourdir ou de désorienter leurs cibles. Déclenche la capacité Élan et génère de la concentration (quelque soit le résultat de l'attaque: succès, égratignure ou échec)."
+LocHelpText="Les attaques de mêlée ont une chance d'étourdir ou de désorienter leurs cibles. Déclenche la capacité Élan et génère de la concentration (quelque soit le résultat de l'attaque: succès, égratignure ou échec)."
+LocPromotionPopupText="<Bullet/> La capacité Taillade constitue la principale façon pour un Templier de générer de la concentration.<br/><Bullet/> L'utilisation de Taillade déclenche la capacité Élan, qui octroie au Templier une action de déplacement bonus.<br/><Bullet/> Taillade a <Ability:RENDSTUNCHANCE/>% de chances par point de concentration d'étourdir sa cible. Les unités étourdies de cette façon sont également repoussées.<br/><Bullet/> Taillade a <Ability:RENDDISORIENTCHANCE/>% de chances par point de concentration de désorienter sa cible.<br/>"
+
 
 [ArcWavePassive_LW X2AbilityTemplate]
 LocFriendlyName="Vague arquée"

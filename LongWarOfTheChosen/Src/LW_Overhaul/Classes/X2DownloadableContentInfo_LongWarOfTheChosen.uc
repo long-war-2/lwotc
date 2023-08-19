@@ -40,6 +40,9 @@ var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T1;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T2;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T3;
 
+var config int ENCRYPTION_SERVER_CHANCE;
+
+
 
 
 // An array of mission types where we should just let vanilla do its
@@ -141,6 +144,13 @@ static event InstallNewCampaign(XComGameState StartState)
 	local XComGameState_WorldRegion StartingRegionState;
 	local XComGameState_ResistanceFaction StartingFactionState;
 
+	//short circuit if in shell:
+	if(class'WorldInfo'.static.GetWorldInfo().GRI.GameClass.name == 'XComShell')
+	{
+		`LWTrace("InstallNewCampaign called in Shell, aborting.");
+		return;
+	}
+
 	// WOTC TODO: Note that this method is called twice if you start a new campaign.
 	// Make sure that's not causing issues.
 	`Log("LWOTC: Installing a new campaign");
@@ -198,7 +208,28 @@ static event OnPostTemplatesCreated()
 	UpdateChosenActivities();
 	UpdateChosenSabotages();
 	UpdateSitreps();
+	ModifyYellAbility();
 	
+}
+
+// Remove the red alert affect from the yell ability since it cause AI units to go into red alert
+// Credit to RedDobe for this function.
+static function ModifyYellAbility()
+{
+    local X2AbilityTemplateManager        AbilityMgr;
+    local array<X2AbilityTemplate>        arrTemplate;
+    local int                            i;
+
+    // Access Ability Template Manager
+    AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+    
+    // Access Template for all difficulties
+    AbilityMgr.FindAbilityTemplateAllDifficulties('Yell', arrTemplate);
+    for (i = 0; i < arrTemplate.Length; i++)
+    {
+        arrTemplate[i].AbilityMultiTargetEffects.length = 0;
+          `Log("Removing Yell Red Alert effects");
+    }
 }
 
 /// <summary>
@@ -215,6 +246,11 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState_LWToolboxOptions ToolboxOptions;
 	local XComGameState_LWOverhaulOptions OverhaulOptions;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local int i;
+
 	
 	History = `XCOMHISTORY;
 
@@ -252,45 +288,65 @@ static event OnLoadedSavedGameToStrategy()
 		OverhaulOptions.StartingChosen = XComGameState_WorldRegion(History.GetGameStateForObjectID(`XCOMHQ.StartingRegion.ObjectID)).GetControllingChosen().GetMyTemplateName();
 		OverhaulOptions.InitChosenKnowledge();
 	}
-	// Patch chosen if enabled:
+	
 
+	
+	// Patch chosen if enabled:
 	if (!`SecondWaveEnabled('DisableChosen'))
 	{
+
+		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+		AllChosen = AlienHQ.GetAllChosen(, true);
+
+
 		foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
-			{
-				// Patch chosen if needed
-				RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
-				if(RegionalAI.LocalForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_ACTIVATE_AT_FL)
-				{	
-				class'X2StrategyElement_DefaultAlienActivities'.static.ActivateChosenIfEnabled(NewGameState);
-			}
+		{
+			// check we're above the minimum FL to activate chosen
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
+			if(RegionalAI.LocalForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_ACTIVATE_AT_FL)
+			{	
+				// loop over each chosen
+				foreach AllChosen (ChosenState)
+				{
+					// Only activate chosen that aren't already active
+					if (!ChosenState.bMetXCom)
+					{
 
-			//patch chosen level if needed.
+						if(!ALienHQ.bChosenActive) //mark chosen as active on HQ if they weren't active yet.
+						{
+							AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+							AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+							AlienHQ.OnChosenActivation(NewGameState);
+						}
 
-			if(RegionalAI.LocalForceLevel == 7 || RegionalAI.LocalForceLevel == 8)
-			{
-				class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(7, NewGameState);
-			}
-			if(RegionalAI.LocalForceLevel >= 11 && RegionalAI.LocalForceLevel <= 13)
-			{
-				class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(11, NewGameState);
-			}
-			if(RegionalAI.LocalForceLevel >= 16 && RegionalAI.LocalForceLevel <= 19)
-			{
-				class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(16, NewGameState);
-			}
-			if(RegionalAI.LocalForceLevel >= 20)
-			{
-				class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(20, NewGameState);
-			}
+						ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+						ChosenState.Strengths.length = 0;
+						ChosenState.NumEncounters++; 
+
+						// Activate this chosen if they aren't active yet
+						ChosenState.bMetXCom = true;
+
+						for (i = ChosenState.Weaknesses.length - 1; i >= 0; i--)
+						{
+							if (ChosenState.Weaknesses[i] != 'ChosenSkirmisherAdversary' && 
+								ChosenState.Weaknesses[i] != 'ChosenTemplarAdversary' &&
+								ChosenState.Weaknesses[i] != 'ChosenReaperAdversary')
+							{
+								ChosenState.Weaknesses.Remove(i,1);
+							}
+						}
+						
+					}
+					//patch the chosen level if needed
+					class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(RegionalAI.LocalForceLevel, NewGameState, ChosenState);
+				}			
+			// only do the outer loop once since only one region is needed
 			break;
+			}
 		}
 	}
 
-	if (NewGameState.GetNumGameStateObjects() > 0)
-		History.AddGameStateToHistory(NewGameState);
-	else
-		History.CleanupPendingGameState(NewGameState);
+	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 
 	//make sure that critical narrative moments are active
 	foreach History.IterateByClassType(class'XComGameState_Objective', ObjectiveState)
@@ -307,8 +363,6 @@ static event OnLoadedSavedGameToStrategy()
 			break;
 		}
 	}
-
-
 
 	CleanupObsoleteTacticalGamestate();
 	CacheInfiltration_Static();
@@ -884,6 +938,15 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 	swap = false;
 
+	// Tedster - none check leader Character template
+	if(LeaderCharacterTemplate == none)
+	{
+		`LWTrace("Nonexistant Pod Leader found.");
+		swap = true;
+		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
+		`LWTRACE ("Swapping Nonexistant leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0] @ "and rerolling followers");
+	}
+
 	// override native insisting every mission have a codex while certain tactical options are active
 	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
 
@@ -975,17 +1038,25 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 		if (!swap)
 		{
-			for (k = 0; k < SpawnInfo.SelectedCharacterTemplateNames.Length; k++)
+			for (k = 1; k < SpawnInfo.SelectedCharacterTemplateNames.Length; k++)
 			{
 				FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[k]);
-				if (CountMembers(SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) > FollowerCharacterTemplate.default.MaxCharactersPerGroup)
+				// Tedster - add none check for follower templates
+				if(FollowerCharacterTemplate == none)
 				{
+					`LWTrace("Detected nonexistant follower" @ SpawnInfo.SelectedCharacterTemplateNames[k]);
+					swap = true;
+				}
+				// Tedster - fix below check to check spawn entry and not character template MCPG setting.
+				if (CountMembers(SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) > GetCharacterSpawnEntry(FollowerSpawnList, FollowerCharacterTemplate, ForceLevel).MaxCharactersPerGroup)
+				{
+					`LWTrace ("Too many" @SpawnInfo.SelectedCharacterTemplateNames[k]);
 					swap = true;
 				}
 			}
 			if (swap)
 			{
-				`LWTRACE("Mixing up pod that violates MCPG setting");
+				`LWTRACE("Mixing up pod that violates MCPG setting or contains nonexistant units.");
 			}
 		}
 
@@ -1020,17 +1091,26 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				// let's look at
 				foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 				{
-					if (idx <= 2)
+					CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
+					`LWTrace("Looking at" @CurrentCharacterTemplate.DataName);
+					//Tedster - add none check here as well:
+					if(CurrentCharacterTemplate == none)
+					{
+						`LWTrace("Rerolling nonexistant Character Template.");
+						SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+					}
+
+					if (idx <= 1) // Tedster - fix off by one error 2 -> 1
 						continue;
 
 					if (SpawnInfo.SelectedCharacterTemplateNames[idx] != FirstFollowerName)
 						continue;
 
-					CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
 					if (CurrentCharacterTemplate.bIsTurret)
 						continue;
 
 					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+					`LWTrace("Changed to" @SpawnInfo.SelectedCharacterTemplateNames[idx] );
 				}
 				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
 				// Let's look over our outcome and see if it's any better
@@ -1080,22 +1160,25 @@ static function GetSpawnDistributionList(
 {
 	local SpawnDistributionList CurrentList;
 	local SpawnDistributionListEntry CurrentListEntry;
+	local XComTacticalMissionManager MissionManager;
 	local name SpawnListID;
 	local int idx;
 
-	idx = class'XComTacticalMissionManager'.default.ConfigurableEncounters.Find('EncounterID', EncounterName);
+	MissionManager = `TACTICALMISSIONMGR;
+
+	idx = MissionManager.ConfigurableEncounters.Find('EncounterID', EncounterName);
 	if (IsLeaderList)
 	{
-		if (class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterLeaderSpawnList != '')
+		if (MissionManager.ConfigurableEncounters[idx].EncounterLeaderSpawnList != '')
 		{
-			SpawnListID = class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterLeaderSpawnList;
+			SpawnListID = MissionManager.ConfigurableEncounters[idx].EncounterLeaderSpawnList;
 		}
 	}
 	else
 	{
-		if (class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterFollowerSpawnList != '')
+		if (MissionManager.ConfigurableEncounters[idx].EncounterFollowerSpawnList != '')
 		{
-			SpawnListID = class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterFollowerSpawnList;
+			SpawnListID = MissionManager.ConfigurableEncounters[idx].EncounterFollowerSpawnList;
 		}
 	}
 
@@ -1104,14 +1187,14 @@ static function GetSpawnDistributionList(
 	// Fall back to using the schedule's default spawn distribution list
 	if (SpawnListID == '')
 	{
-		idx = class'XComTacticalMissionManager'.default.MissionSchedules.Find('ScheduleID', MissionState.SelectedMissionData.SelectedMissionScheduleName);
+		idx = MissionManager.MissionSchedules.Find('ScheduleID', MissionState.SelectedMissionData.SelectedMissionScheduleName);
 		if (IsLeaderList)
 		{
-			SpawnListID = class'XComTacticalMissionManager'.default.MissionSchedules[idx].DefaultEncounterLeaderSpawnList;
+			SpawnListID = MissionManager.default.MissionSchedules[idx].DefaultEncounterLeaderSpawnList;
 		}
 		else
 		{
-			SpawnListID = class'XComTacticalMissionManager'.default.MissionSchedules[idx].DefaultEncounterFollowerSpawnList;
+			SpawnListID = MissionManager.MissionSchedules[idx].DefaultEncounterFollowerSpawnList;
 		}
 	}
 
@@ -1119,7 +1202,7 @@ static function GetSpawnDistributionList(
 	
 	// Build a merged list of all spawn distribution list entries that satisfy the selected
 	// list ID and force level.
-	foreach class'XComTacticalMissionManager'.default.SpawnDistributionLists(CurrentList)
+	foreach MissionManager.SpawnDistributionLists(CurrentList)
 	{
 		if (CurrentList.ListID == SpawnListID)
 		{
@@ -1332,8 +1415,32 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 	return PossibleChars[PossibleChars.length - 1];
 }
 
+
 static function PostReinforcementCreation(out name EncounterName, out PodSpawnInfo Encounter, int ForceLevel, int AlertLevel, optional XComGameState_BaseObject SourceObject, optional XComGameState_BaseObject ReinforcementState)
 {
+    // M5 chosen handling:
+    `LWTrace("PostReinforcementCreation called. Current Force Level:" @ ForceLevel);
+
+	if (class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.length < 4)
+		return;
+
+    if (ForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[3])
+    {
+        `LWTrace("Swapping M4 Chosen" @Encounter.SelectedCharacterTemplateNames[0] @"...");  //PREVIOUS CHOSEN FOR LOGGING
+
+        switch (Encounter.SelectedCharacterTemplateNames[0])
+        {
+            case 'ChosenWarlockM4'  : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenWarlockM5';    break;
+            case 'ChosenSniperM4'   : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenSniperM5';     break;
+            case 'ChosenAssassinM4' : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenAssassinM5';   break;
+            default:
+                //selected template isn't one we care about
+                break;
+        }
+
+        `LWTrace("... for M5 Chosen" @Encounter.SelectedCharacterTemplateNames[0]); //POST SWAP FOR LOGGING
+      
+    }
 }
 
 // Increase the size of Lost Brutes (unless WWL is installed)
@@ -2630,6 +2737,7 @@ static function UpdateChosenSabotages()
 	UpdateWeaponLockers();
 	UpdateLabStorage();
 	UpdateSecureStorage();
+	UpdateEncryptionServer();
 }
 
 
@@ -2655,6 +2763,31 @@ static function UpdateSecureStorage()
 	Template = X2SabotageTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Sabotage_SecureStorage'));
 	Template.CanActivateFn = CanActivateSecureStorage;
 }
+
+static function UpdateEncryptionServer()
+{
+	local X2SabotageTemplate Template;
+
+	Template = X2SabotageTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Sabotage_EncryptionServer'));
+	Template.CanActivateFn = CanActivateEncryptionServer;
+
+}
+
+function bool CanActivateEncryptionServer()
+{
+	local XComGameStateHistory History;
+	local XComGameState_BlackMarket MarketState;
+
+	History = `XCOMHISTORY;
+	MarketState = XComGameState_BlackMarket(History.GetSingleGameStateObjectForClass(class'XComGameState_BlackMarket'));
+
+	if(`SYNC_RAND_STATIC(100) < default.ENCRYPTION_SERVER_CHANCE)
+	{
+		return (MarketState.bIsOpen && MarketState.ForSaleItems.Length > 0);
+	}
+	else return false;
+}
+
 function bool CanActivateWeaponLockers()
 {
 	local XComGameStateHistory History;
@@ -2666,7 +2799,7 @@ function bool CanActivateWeaponLockers()
 
 	MinMods = `ScaleStrategyArrayInt(class'X2StrategyElement_DefaultSabotages'.default.MinWeaponLockersMods);
 	
-	NumUpgrades = 10;
+	NumUpgrades = 0;
 	History = `XCOMHISTORY;
 	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
 
@@ -3781,6 +3914,9 @@ exec function LWSetForceLevel(int NewLevel, optional name RegionName)
 	local XComGameState NewGameState;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState, UpdatedRegionalAI;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
 
 	History = `XCOMHISTORY;
 
@@ -3797,6 +3933,17 @@ exec function LWSetForceLevel(int NewLevel, optional name RegionName)
 			UpdatedRegionalAI.LocalForceLevel = NewLevel;
 		}
 	}
+
+	//patch the chosen level if needed
+	
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, true);
+
+	foreach AllChosen(ChosenState)
+	{
+		class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(RegionalAIState.LocalForceLevel, NewGameState, ChosenState);
+	}
+
 	if (NewGameState.GetNumGameStateObjects() > 0)
 		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 	else
@@ -4185,6 +4332,28 @@ exec function LWPrintVersion()
 	class'Helpers'.static.OutputMsg("Long War of the Chosen Version: " $ class'LWVersion'.static.GetVersionString());
 }
 
+exec function LWOTC_RevealAvatarProject()
+{
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+	local XComGameState_HeadquartersAlien AlienHQ;
+
+	History = `XCOMHISTORY;
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	if(AlienHQ != none)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Console Command Activate Avatar Project");
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+		NewGameState.AddStateObject(AlienHQ);
+
+	// Complete the Avatar reveal project as soon as doom is added to the fortress so players know what they're up against.
+	`LWTrace("Triggering Avatar Project reveal...");
+	class'XComGameState_Objective'.static.StartObjectiveByName(NewGameState, 'LW_T2_M1_N2_RevealAvatarProject');
+	`XEVENTMGR.TriggerEvent('StartAvatarProjectReveal');
+
+	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+}
 exec function LWAddFortressDoom(optional int DoomToAdd = 1)
 {
 	local XComGameState NewGameState;
@@ -4754,11 +4923,7 @@ static function UpdateSitreps()
 			`LWTrace("Disabling Sitrep" @SitRepName @"From appearing normally on missions");
 			Sitrep.StrategyReqs.SpecialRequirementsFn = class'Helpers_LW'.static.AlwaysFail;
 		}
-
-
 	}
-
-
 }
 
 static function CacheInstalledMods()
@@ -4917,4 +5082,106 @@ exec function LWOTC_ShowChosenKnowledgeRandomValues()
 	class'Helpers'.static.OutputMsg(`SHOWVAR(chosenKnowledge[0]));
 	class'Helpers'.static.OutputMsg(`SHOWVAR(LWOverhaulOptions.ChosenNames[1]));	
 	class'Helpers'.static.OutputMsg(`SHOWVAR(chosenKnowledge[1]));
+}
+
+exec function LWOTC_ShowChosenLevels()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			class'Helpers'.static.OutputMsg(`SHOWVAR(ChosenState.GetMyTemplateName()));
+			class'Helpers'.static.OutputMsg("Chosen Level:" @`SHOWVAR(ChosenState.Level));
+		}
+}
+
+exec function LWOTC_ShowChosenStrengths()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local name ChosenStrength;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			class'Helpers'.static.OutputMsg(`SHOWVAR(ChosenState.GetMyTemplateName()));
+			foreach ChosenState.Strengths (ChosenStrength)
+			{
+				class'Helpers'.static.OutputMsg("Chosen strengths:" @ ChosenStrength);
+			}
+		}
+}
+
+exec function LWOTC_ShowChosenStrongholdMissions()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			class'Helpers'.static.OutputMsg(`SHOWVAR(ChosenState.GetMyTemplateName()));
+			class'Helpers'.static.OutputMsg("Chosen Stronghold Mission ID:" @ ChosenState.StrongholdMission.ObjectID);
+		}
+}
+
+exec function LWOTC_SpawnChosenStrongholdMission(name ChosenName)
+{
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_MissionSite MissionState;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_Reward RewardState;
+	local X2RewardTemplate RewardTemplate;
+	local X2StrategyElementTemplateManager StratMgr;
+	local X2MissionSourceTemplate MissionSource;
+	local array<XComGameState_Reward> MissionRewards;
+	local bool bFound;
+
+	History = `XCOMHISTORY;
+	bFound = false;
+
+	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
+	{
+		if(ChosenState.GetMyTemplateName() == ChosenName)
+		{
+			bFound = true;
+			break;
+		}
+	}
+
+	if(!bFound)
+	{
+		return;
+	}
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("CHEAT: TriggerChosenAvengerAssault");
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	RegionState = ChosenState.GetHomeRegion();
+
+	MissionRewards.Length = 0;
+	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_None'));
+	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+	MissionRewards.AddItem(RewardState);
+
+	MissionSource = X2MissionSourceTemplate(StratMgr.FindStrategyElementTemplate('MissionSource_ChosenStronghold'));
+	MissionState = XComGameState_MissionSite(NewGameState.CreateNewStateObject(class'XComGameState_MissionSite'));
+	MissionState.BuildMission(MissionSource, RegionState.GetRandom2DLocationInRegion(), RegionState.GetReference(), MissionRewards);
+	MissionState.ResistanceFaction = ChosenState.RivalFaction;
+	ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+	ChosenState.StrongholdMission = MissionState.GetReference();
+
+	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 }

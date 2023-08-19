@@ -5309,7 +5309,8 @@ FocusLevelDescriptions[4]="Daño de Hender +<Ability:FOCUS4RENDDAMAGE/>\nMovilid
 LocPromotionPopupText="<Bullet/> Los Templarios comienzan las misiones más débiles que otros soldados, pero aumentarán extremadamente su fuerza en niveles de concentración más elevadas. Administrar concentración de manera efectiva para aprovechar al máximo cada habilidad y los aumentos de estadísticas es fundamental para regir un Templario.<br/><Bullet/> La concentración se consigue atacando enemigos con Hender (incluso si fallas).<br/>"
 
 ; LWOTC translated
-[Rend X2AbilityTemplate]
+[Rend_LW X2AbilityTemplate]
+LocFriendlyName="Hender"
 LocLongDescription="Ataque cuerpo a cuerpo con la posibilidad de aturdir o desorientar al objetivo. Activa Ímpetu y genera concentración en los ataques."
 LocHelpText="Ataque cuerpo a cuerpo con la posibilidad de aturdir o desorientar al objetivo. Activa Ímpetu y genera concentración en los ataques."
 LocPromotionPopupText="<Bullet/> Usar Hender es el método principal de los Templarios para generar concentración.<br/><Bullet/> Después de lanzar Hender el Templario ganará Ímpetu lo que le permitirá una acción de movimiento gratuita. Empléala para volver a trasladarte a una cobertura después de atacar.<br/><Bullet/> Hender tiene un <Ability:RENDSTUNCHANCE/>% de probabilidad de aturdir con concentración. Los objetivos aturdidos también serán derribados.<br/><Bullet/> Hender también posee un <Ability:RENDDISORIENTCHANCE/>% de probabilidad de desorientar mediante concentración.<br/>"
@@ -6561,8 +6562,8 @@ LocFlyOverText="Rabia psicótica"
 [YouCannotHide_LW X2AbilityTemplate]
 ; LWOTC translated
 LocFriendlyName="No puedes esconderte"
-LocHelpText="Consigues 100 de puntería con tu arma principal."
-LocLongDescription="Consigues 100 de puntería con tu arma principal."
+LocHelpText="Consigues 30 de puntería con tu arma principal."
+LocLongDescription="Consigues 30 de puntería con tu arma principal."
 ; End translated
 LocFlyOverText="¡Correr!."
 
@@ -7089,6 +7090,12 @@ LocFriendlyName="Interrupción"
 LocLongDescription="Una forma poderosa de guardia. En lugar de disparar automáticamente realiza una sola acción. Actividad sin coste."
 LocHelpText="Una forma poderosa de guardia. En lugar de disparar automáticamente realiza una sola acción. Actividad sin coste."
 LocPromotionPopupText="<Bullet/> No cuesta ninguna acción.<br/><Bullet/> Algunas actividades no están disponibles durante la interrupción, como guardia.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+
+[ArcWave_LW X2AbilityTemplate]
+LocFriendlyName="Hender"
+LocLongDescription="Ataque cuerpo a cuerpo con la posibilidad de aturdir o desorientar al objetivo. Activa Ímpetu y genera concentración en los ataques."
+LocHelpText="Ataque cuerpo a cuerpo con la posibilidad de aturdir o desorientar al objetivo. Activa Ímpetu y genera concentración en los ataques."
+LocPromotionPopupText="<Bullet/> Usar Hender es el método principal de los Templarios para generar concentración.<br/><Bullet/> Después de lanzar Hender el Templario ganará Ímpetu lo que le permitirá una acción de movimiento gratuita. Empléala para volver a trasladarte a una cobertura después de atacar.<br/><Bullet/> Hender tiene un <Ability:RENDSTUNCHANCE/>% de probabilidad de aturdir con concentración. Los objetivos aturdidos también serán derribados.<br/><Bullet/> Hender también posee un <Ability:RENDDISORIENTCHANCE/>% de probabilidad de desorientar mediante concentración.<br/>"
 
 [ArcWavePassive X2AbilityTemplate]
 LocFriendlyName="Onda psiónica"
