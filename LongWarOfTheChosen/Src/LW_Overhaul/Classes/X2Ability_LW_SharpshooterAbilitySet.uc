@@ -42,6 +42,7 @@ static function X2AbilityTemplate AddHolotarget()
 	local X2Effect_LWHoloTarget				Effect;
 	local X2Condition_Visibility			TargetVisibilityCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty		IndependentTargetingCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Holotarget');
 
@@ -101,6 +102,22 @@ static function X2AbilityTemplate AddHolotarget()
 	Effect.bApplyOnMiss = true;
 	Template.AddTargetEffect(Effect);
 
+	//independent targeting effect
+
+	Effect = new class'X2Effect_LWHoloTarget';
+	Effect.BuildPersistentEffect(1+class'X2Effect_LWHoloTarget'.default.INDEPENDENT_TARGETING_NUM_BONUS_TURNS, false, false, false, eGameRule_PlayerTurnBegin);
+	Effect.SetDisplayInfo(ePerkBuff_Penalty, class'X2Effect_LWHolotarget'.default.HoloTargetEffectName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Effect.bRemoveWhenTargetDies = true;
+	Effect.bUseSourcePlayerState = true;
+	Effect.bApplyOnHit = true;
+	Effect.bApplyOnMiss = true;
+
+	IndependentTargetingCondition = new class'X2Condition_AbilityProperty';
+	IndependentTargetingCondition.OwnerHasSoldierAbilities.AddItem('IndependentTracking');
+	Effect.TargetConditions.AddItem(IndependentTargetingCondition);
+
+	Template.AddTargetEffect(Effect);
+
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
@@ -115,6 +132,7 @@ static function X2AbilityTemplate AddRapidTargeting()
 	local X2AbilityCooldown                 Cooldown;
 	local X2Condition_Visibility			TargetVisibilityCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty		IndependentTargetingCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Rapidtargeting');
 
@@ -176,6 +194,22 @@ static function X2AbilityTemplate AddRapidTargeting()
 	Effect.bApplyOnMiss = true;
 	Template.AddTargetEffect(Effect);
 
+	//independent targeting effect
+
+	Effect = new class'X2Effect_LWHoloTarget';
+	Effect.BuildPersistentEffect(1+class'X2Effect_LWHoloTarget'.default.INDEPENDENT_TARGETING_NUM_BONUS_TURNS, false, false, false, eGameRule_PlayerTurnBegin);
+	Effect.SetDisplayInfo(ePerkBuff_Penalty, class'X2Effect_LWHolotarget'.default.HoloTargetEffectName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Effect.bRemoveWhenTargetDies = true;
+	Effect.bUseSourcePlayerState = true;
+	Effect.bApplyOnHit = true;
+	Effect.bApplyOnMiss = true;
+
+	IndependentTargetingCondition = new class'X2Condition_AbilityProperty';
+	IndependentTargetingCondition.OwnerHasSoldierAbilities.AddItem('IndependentTracking');
+	Effect.TargetConditions.AddItem(IndependentTargetingCondition);
+
+	Template.AddTargetEffect(Effect);
+
 	Template.AdditionalAbilities.AddItem('RapidTargeting_Passive');
 
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -194,6 +228,7 @@ static function X2AbilityTemplate AddMultiTargeting()
 	local X2Condition_Visibility			TargetVisibilityCondition;
 	local X2AbilityCooldown                 Cooldown;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty		IndependentTargetingCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Multitargeting');
 
@@ -260,6 +295,23 @@ static function X2AbilityTemplate AddMultiTargeting()
 	Effect.bUseSourcePlayerState = true;
 	Effect.bApplyOnHit = true;
 	Effect.bApplyOnMiss = true;
+	Template.AddTargetEffect(Effect);
+	Template.AddMultiTargetEffect(Effect);
+
+	//independent targeting effect
+
+	Effect = new class'X2Effect_LWHoloTarget';
+	Effect.BuildPersistentEffect(1+class'X2Effect_LWHoloTarget'.default.INDEPENDENT_TARGETING_NUM_BONUS_TURNS, false, false, false, eGameRule_PlayerTurnBegin);
+	Effect.SetDisplayInfo(ePerkBuff_Penalty, class'X2Effect_LWHolotarget'.default.HoloTargetEffectName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Effect.bRemoveWhenTargetDies = true;
+	Effect.bUseSourcePlayerState = true;
+	Effect.bApplyOnHit = true;
+	Effect.bApplyOnMiss = true;
+
+	IndependentTargetingCondition = new class'X2Condition_AbilityProperty';
+	IndependentTargetingCondition.OwnerHasSoldierAbilities.AddItem('IndependentTracking');
+	Effect.TargetConditions.AddItem(IndependentTargetingCondition);
+
 	Template.AddTargetEffect(Effect);
 	Template.AddMultiTargetEffect(Effect);
 
