@@ -2029,7 +2029,7 @@ static function X2AbilityTemplate LightningSlash()
 	local X2AbilityToHitCalc_StandardMelee					StandardMelee;
 	local X2AbilityTarget_MovingMelee						MeleeTarget;
 	local X2Effect_ApplyWeaponDamage						WeaponDamageEffect;
-	local array<name>										SkipExclusions;
+	//local array<name>										SkipExclusions;
 	local X2AbilityCooldown									Cooldown;
 	local X2AbilityCost_ActionPoints						ActionPointCost;
 
@@ -2076,7 +2076,7 @@ static function X2AbilityTemplate LightningSlash()
 	//
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
 	//SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
-	Template.AddShooterEffectExclusions(SkipExclusions);
+	Template.AddShooterEffectExclusions();
 
 	// Damage Effect
 	//
