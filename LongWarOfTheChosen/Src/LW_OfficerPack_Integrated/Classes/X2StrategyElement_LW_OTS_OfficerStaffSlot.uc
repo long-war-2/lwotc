@@ -109,8 +109,20 @@ static function X2DataTemplate CreateOTS_OfficerTrainingSecondSlotUpgradeTemplat
 
 static function OTS_LWOfficerTrainingUpgradeAdded(XComGameState NewGameState, XComGameState_FacilityUpgrade Upgrade, XComGameState_FacilityXCom Facility)
 {
-	Facility.UpkeepCost += Upgrade.GetMyTemplate().UpkeepCost;
-	Facility.UnlockStaffSlot(NewGameState);
+	local XComGameState_StaffSlot StaffSlotState;
+    local int i;
+
+    for (i = 0; i < Facility.StaffSlots.Length; i++)
+    {
+        StaffSlotState = XComGameState_StaffSlot(`XCOMHISTORY.GetGameStateForObjectID(Facility.StaffSlots[i].ObjectID));
+
+        if (StaffSlotState.IsLocked() && StaffslotState.GetMyTemplate().DataName == 'OTSOfficerSlot' )
+        {
+            StaffSlotState = XComGameState_StaffSlot(NewGameState.ModifyStateObject(class'XComGameState_StaffSlot', Facility.StaffSlots[i].ObjectID));
+            StaffSlotState.UnlockSlot();
+            return;
+        }
+    }
 }
 
 static function bool IsGTSProjectActive(StateObjectReference FacilityRef)

@@ -316,6 +316,7 @@ static function XComGameState_WorldRegion_LWStrategyAI GetRegionalAI(XComGameSta
 	if (RegionState == none)
 	{
 		`LWTRACE("GetRegionalAI ERROR : NONE Region Passed");
+		ScriptTrace();
 		return none;
 	}
 	if (NewGameState != none)

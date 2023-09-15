@@ -95,11 +95,16 @@ var config int MAIM_COOLDOWN;
 
 var config int SCRAP_METAL_AMMO_AMOUNT;
 
+var config int OVERBEARING_SUPERIORITY_CRIT;
+
+var config float TRIGGER_BOT_DAMAGE_PENALTY;
+
 var config int MOVING_TARGET_DEFENSE;
 var config int MOVING_TARGET_DODGE;
 
 var config int COMBATREADINESS_DEF;
 var config int COMBATREADINESS_AIM;
+var config float COMBAT_READINESS_EXPLOSIVE_DR;
 
 var config int XCOM_BLOOD_THIRST_DURATION;
 
@@ -118,6 +123,11 @@ var const name VampUnitValue;
 var const string CombatReadinessBonusText;
 
 var config int CRUSADER_WOUND_HP_REDUCTTION;
+
+var config float HERO_SLAYER_DMG;
+
+var config int PSYCHOTIC_RAGE_BELOW_THRESHOLD;
+var config int PSYCHOTIC_RAGE_DMG_BONUS;
 
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
 var config array<name> BANZAI_EFFECTS_TO_REMOVE;
@@ -182,6 +192,10 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(PrimaryReturnFireShot());
 	Templates.AddItem(DeadeyeSnapshotAbility());
 	Templates.AddItem(DeadeyeSnapShotDamage());
+	Templates.AddItem(RapidFireSnapshotAbility());
+	Templates.AddItem(RapidFireSnapShot2());
+	Templates.AddItem(ChainShotSnapShot());
+	Templates.AddItem(ChainShotSnapShot2());
 
 	Templates.AddItem(PsychoticRage());
 	Templates.AddItem(PreciseStrike());
@@ -210,7 +224,11 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(Magnum());
 	Templates.AddItem(CrusaderRage());
 	Templates.AddItem(QuickdrawMobility());
+	Templates.AddItem(HeroSlayer_LW());
 
+	Templates.AddItem(TriggerBot());
+	Templates.AddItem(TriggerBotShot());
+	Templates.AddItem(TriggerBotDamage());
 
 	
 	
@@ -2011,7 +2029,7 @@ static function X2AbilityTemplate LightningSlash()
 	local X2AbilityToHitCalc_StandardMelee					StandardMelee;
 	local X2AbilityTarget_MovingMelee						MeleeTarget;
 	local X2Effect_ApplyWeaponDamage						WeaponDamageEffect;
-	local array<name>										SkipExclusions;
+	//local array<name>										SkipExclusions;
 	local X2AbilityCooldown									Cooldown;
 	local X2AbilityCost_ActionPoints						ActionPointCost;
 
@@ -2057,8 +2075,8 @@ static function X2AbilityTemplate LightningSlash()
 	// Shooter Conditions
 	//
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
-	Template.AddShooterEffectExclusions(SkipExclusions);
+	//SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions();
 
 	// Damage Effect
 	//
@@ -2268,6 +2286,171 @@ static function X2AbilityTemplate PrimaryReturnFireShot()
 	return Template;
 }
 
+static function X2AbilityTemplate TriggerBot()
+{
+	local X2AbilityTemplate						Template;
+	local X2AbilityTargetStyle                  TargetStyle;
+	local X2AbilityTrigger						Trigger;
+	local X2Effect_ReturnFire                   FireEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TriggerBot');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_returnfire";
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	TargetStyle = new class'X2AbilityTarget_Self';
+	Template.AbilityTargetStyle = TargetStyle;
+
+	Trigger = new class'X2AbilityTrigger_UnitPostBeginPlay';
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	FireEffect = new class'X2Effect_ReturnFire';
+	FireEffect.BuildPersistentEffect(1, true, false, false, eGameRule_PlayerTurnBegin);
+	FireEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage,,,Template.AbilitySourceName);
+	FireEffect.EffectName = 'TriggerBotShot';
+	FireEffect.AbilityToActivate = 'TriggerBotShot';
+	FireEffect.bDirectAttackOnly = true;
+	FireEffect.bOnlyWhenAttackMisses = false;
+	Template.AddTargetEffect(FireEffect);
+
+	Template.AdditionalAbilities.AddItem('TriggerBotShot');
+	Template.AdditionalAbilities.AddItem('TriggerBotDamage');
+	
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  NOTE: No visualization on purpose!
+
+	Template.bCrossClassEligible = false;       //  this can only work with pistols, which only sharpshooters have
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate TriggerBotShot()
+{
+	local X2AbilityTemplate                 Template;
+	local X2AbilityCost_ReserveActionPoints ReserveActionPointCost;
+	local X2Condition_UnitProperty          ShooterCondition;
+	local X2AbilityTarget_Single            SingleTarget;
+	local X2AbilityTrigger_EventListener	Trigger;
+	local X2Effect_Knockback				KnockbackEffect;
+	local array<name>                       SkipExclusions;
+	local X2Condition_Visibility            TargetVisibilityCondition;
+	local X2AbilityCost_Ammo				AmmoCost;
+
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TriggerBotShot');
+
+	Template.bDontDisplayInAbilitySummary = true;
+	ReserveActionPointCost = new class'X2AbilityCost_ReserveActionPoints';
+	ReserveActionPointCost.iNumPoints = 1;
+	ReserveActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.PistolOverwatchReserveActionPoint);
+	ReserveActionPointCost.AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.ReturnFireActionPoint);
+	Template.AbilityCosts.AddItem(ReserveActionPointCost);
+
+	//	pistols are typically infinite ammo weapons which will bypass the ammo cost automatically.
+	//  but if this ability is attached to a weapon that DOES use ammo, it should use it.
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+	
+	Template.AbilityToHitCalc = default.DeadEye;
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitDisallowMindControlProperty);	
+	TargetVisibilityCondition = new class'X2Condition_Visibility';
+	TargetVisibilityCondition.bRequireGameplayVisible = true;
+	TargetVisibilityCondition.bRequireBasicVisibility = true;
+	TargetVisibilityCondition.bDisablePeeksOnMovement = false; //Don't use peek tiles for over watch shots	
+	Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+
+	Template.AbilityTargetConditions.AddItem(new class'X2Condition_EverVigilant');
+	Template.AbilityTargetConditions.AddItem(class'X2Ability_DefaultAbilitySet'.static.OverwatchTargetEffectsCondition());
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);	
+	ShooterCondition = new class'X2Condition_UnitProperty';
+	ShooterCondition.ExcludeConcealed = true;
+	Template.AbilityShooterConditions.AddItem(ShooterCondition);
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+	
+	SingleTarget = new class'X2AbilityTarget_Single';
+	SingleTarget.OnlyIncludeTargetsInsideWeaponRange = false;
+	Template.AbilityTargetStyle = SingleTarget;
+
+	//Trigger on movement - interrupt the move
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.EventID = 'ObjectMoved';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.Filter = eFilter_None;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.TypicalOverwatchListener;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	Template.CinescriptCameraType = "StandardGunFiring";	
+	
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_overwatch";
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.PISTOL_OVERWATCH_PRIORITY;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.DisplayTargetHitChance = false;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.bAllowFreeFireWeaponUpgrade = false;	
+	Template.bAllowAmmoEffects = true;
+
+	// Damage Effect
+	//
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.bAllowBonusWeaponEffects = true;
+	
+	KnockbackEffect = new class'X2Effect_Knockback';
+	KnockbackEffect.KnockbackDistance = 2;
+	Template.AddTargetEffect(KnockbackEffect);
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_returnfire";
+	Template.bShowPostActivation = true;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	Template.DefaultSourceItemSlot = eInvSlot_PrimaryWeapon;
+
+	return Template;
+}
+
+static function X2AbilityTemplate TriggerBotDamage()
+{
+    local X2AbilityTemplate						Template;
+	local X2Effect_AbilityDamageMult			DamagePenalty;
+
+    `CREATE_X2ABILITY_TEMPLATE (Template, 'TriggerBotDamage');
+    Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_momentum";
+    Template.AbilitySourceName = 'eAbilitySource_Perk';
+    Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+    Template.Hostility = eHostility_Neutral;
+    Template.AbilityToHitCalc = default.DeadEye;
+    Template.AbilityTargetStyle = default.SelfTarget;
+    Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	DamagePenalty = new class'X2Effect_AbilityDamageMult';
+	DamagePenalty.Penalty = true;
+	DamagePenalty.Mult = true;
+	DamagePenalty.DamageMod = default.TRIGGER_BOT_DAMAGE_PENALTY;
+	DamagePenalty.ActiveAbility = 'TriggerBotShot';
+    DamagePenalty.BuildPersistentEffect(1, true, false, false);
+    Template.AddTargetEffect(DamagePenalty);
+
+    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+    return Template;
+}
+
 static function X2AbilityTemplate DeadeyeSnapshotAbility()
 {
 	local X2AbilityTemplate                 Template;
@@ -2386,6 +2569,334 @@ static function X2AbilityTemplate DeadeyeSnapShotDamage()
 	return Template;
 }
 
+static function X2AbilityTemplate RapidFireSnapshotAbility()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityCooldown_Shared			Cooldown;
+	local X2Condition_AbilityProperty   	AbilityCondition;
+	local X2Condition_UnitActionPoints		ActionPointCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RapidFireSnapShot');
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Template.Hostility = eHostility_Offensive;
+	
+
+	//  require 2 ammo to be present so that both shots can be taken
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 2;
+	AmmoCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
+	//  actually charge 1 ammo for this shot. the 2nd shot will charge the extra ammo.
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown.iNumTurns = 1;
+	Cooldown.SharingCooldownsWith.AddItem('RapidFire');
+	Template.AbilityCooldown = Cooldown;
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = class'X2Ability_RangerAbilitySet'.default.RAPIDFIRE_AIM;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_rapidfire";
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
+	Template.AbilityShooterConditions.Additem(AbilityCondition);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	Template.AdditionalAbilities.AddItem('RapidFireSnapShot2');
+	Template.PostActivationEvents.AddItem('RapidFireSnapShot2');
+
+	Template.bCrossClassEligible = true;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+
+	return Template;
+}
+
+static function X2AbilityTemplate RapidFireSnapShot2()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityTrigger_EventListener    Trigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RapidFireSnapShot2');
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = class'X2Ability_RangerAbilitySet'.default.RAPIDFIRE_AIM;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'RapidFireSnapShot2';
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_OriginalTarget;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_rapidfire";
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = SequentialShot_MergeVisualization;
+	
+	Template.bShowActivation = true;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+//BEGIN AUTOGENERATED CODE: Template Overrides 'RapidFire2'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'RapidFire2'
+
+	return Template;
+}
+
+static function X2AbilityTemplate ChainShotSnapShot()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityCooldown_Shared                 Cooldown;
+	local X2Condition_AbilityProperty   	AbilityCondition;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2Condition_UnitActionPoints		ActionPointCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainShotSnapShot');
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Template.Hostility = eHostility_Offensive;
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+	Cooldown.iNumTurns = class'X2Ability_GrenadierAbilitySet'.default.CHAINSHOT_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('ChainShot');
+	Template.AbilityCooldown = Cooldown;
+
+	//  require 2 ammo to be present so that both shots can be taken
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 2;
+	AmmoCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
+	//  actually charge 1 ammo for this shot. the 2nd shot will charge the extra ammo.
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = class'X2Ability_GrenadierAbilitySet'.default.CHAINSHOT_HIT_MOD;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AbilityTargetConditions.AddItem(default.GameplayVisibilityCondition);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.AddTargetEffect(class'X2Ability'.default.WeaponUpgradeMissDamage);
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_chainshot";
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	Template.AdditionalAbilities.AddItem('ChainShotSnapShot2');
+	Template.PostActivationEvents.AddItem('ChainShotSnapShot2');
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
+	Template.AbilityShooterConditions.Additem(AbilityCondition);
+
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+
+	Template.DamagePreviewFn = ChainShotSnapShotDamagePreview;
+	Template.bCrossClassEligible = true;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+
+//BEGIN AUTOGENERATED CODE: Template Overrides 'ChainShot'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'ChainShot'
+
+	return Template;
+}
+
+static function X2AbilityTemplate ChainShotSnapShot2()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityTrigger_EventListener    Trigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChainShotSnapShot2');
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInHitMod = class'X2Ability_GrenadierAbilitySet'.default.CHAINSHOT_HIT_MOD;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.AddTargetEffect(class'X2Ability'.default.WeaponUpgradeMissDamage);
+	Template.bAllowAmmoEffects = true;
+	Template.bAllowBonusWeaponEffects = true;
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'ChainShotSnapShot2';
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.ChainShotListener;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_chainshot";
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.MergeVisualizationFn = SequentialShot_MergeVisualization;
+	Template.bShowActivation = true;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+	
+	//BEGIN AUTOGENERATED CODE: Template Overrides 'ChainShot2'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	//END AUTOGENERATED CODE: Template Overrides 'ChainShot2'
+
+	return Template;
+}
+
+function bool ChainShotSnapShotDamagePreview(XComGameState_Ability AbilityState, StateObjectReference TargetRef, out WeaponDamageValue MinDamagePreview, out WeaponDamageValue MaxDamagePreview, out int AllowsShield)
+{
+	local XComGameState_Unit AbilityOwner;
+	local StateObjectReference ChainShot2Ref;
+	local XComGameState_Ability ChainShot2Ability;
+	local XComGameStateHistory History;
+
+	AbilityState.NormalDamagePreview(TargetRef, MinDamagePreview, MaxDamagePreview, AllowsShield);
+
+	History = `XCOMHISTORY;
+	AbilityOwner = XComGameState_Unit(History.GetGameStateForObjectID(AbilityState.OwnerStateObject.ObjectID));
+	ChainShot2Ref = AbilityOwner.FindAbility('ChainShotSnapShot2');
+	ChainShot2Ability = XComGameState_Ability(History.GetGameStateForObjectID(ChainShot2Ref.ObjectID));
+	if (ChainShot2Ability == none)
+	{
+		`RedScreenOnce("Unit has ChainShot but is missing ChainShot2. Not good. -jbouscher @gameplay");
+	}
+	else
+	{
+		ChainShot2Ability.NormalDamagePreview(TargetRef, MinDamagePreview, MaxDamagePreview, AllowsShield);
+	}
+	return true;
+}
+
 static function X2AbilityTemplate YouCannotHide()
 {
 	local XMBEffect_ConditionalBonus Effect;
@@ -2394,7 +2905,7 @@ static function X2AbilityTemplate YouCannotHide()
 	Effect = new class'XMBEffect_ConditionalBonus';
 
 	// The bonus adds the aim and crit chance
-	Effect.AddToHitModifier(100, eHit_Success);
+	Effect.AddToHitModifier(30, eHit_Success);
 
 	Effect.AbilityTargetConditions.AddItem(default.MatchingWeaponCondition);
 
@@ -2412,15 +2923,15 @@ static function X2AbilityTemplate PsychoticRage()
 	// X2Condition_UnitStatCheck can also check absolute values rather than percentages, by
 	// using "false" instead of "true" for the last argument.
 	Condition = new class'X2Condition_UnitStatCheck';
-	Condition.AddCheckStat(eStat_HP, 36, eCheck_LessThan,,, true);
+	Condition.AddCheckStat(eStat_HP, default.PSYCHOTIC_RAGE_BELOW_THRESHOLD, eCheck_LessThan,,, true);
 
 	// Create a conditional bonus effect
 	Effect = new class'XMBEffect_ConditionalBonus';
 
 	//Need to add for all of them because apparently if you crit you don't hit lol
-	Effect.AddPercentDamageModifier(50, eHit_Success);
-	Effect.AddPercentDamageModifier(50, eHit_Graze);
-	Effect.AddPercentDamageModifier(50, eHit_Crit);
+	Effect.AddPercentDamageModifier(default.PSYCHOTIC_RAGE_DMG_BONUS, eHit_Success);
+	Effect.AddPercentDamageModifier(default.PSYCHOTIC_RAGE_DMG_BONUS, eHit_Graze);
+	Effect.AddPercentDamageModifier(default.PSYCHOTIC_RAGE_DMG_BONUS, eHit_Crit);
 	Effect.EffectName = 'PsychoticRage_Bonus';
 
 	// The effect only applies while wounded
@@ -2592,6 +3103,7 @@ static function X2AbilityTemplate OverbearingSuperiority()
 {
 	local X2AbilityTemplate Template;
 	local XMBEffect_AbilityCostRefund SuperiorityEffect;
+	local X2Effect_ToHitModifier	ToHitModifier;
 
 	// Create an effect that refunds the action point cost of abilities
 	SuperiorityEffect = new class'XMBEffect_AbilityCostRefund';
@@ -2609,6 +3121,18 @@ static function X2AbilityTemplate OverbearingSuperiority()
 
 	// Create the template for an activated ability using a helper function.
 	Template = Passive('OverbearingSuperiority_LW', "img:///UILibrary_XPerkIconPack.UIPerk_enemy_crit_chevron_x3", true, SuperiorityEffect);
+
+	ToHitModifier = new class'X2Effect_ToHitModifier';
+	ToHitModifier.BuildPersistentEffect(1, true, true, true);
+	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.OVERBEARING_SUPERIORITY_CRIT, Template.LocFriendlyName,,,,,,,,true);
+	Template.AddTargetEffect(ToHitModifier);
+
+	ToHitModifier = new class'X2Effect_ToHitModifier';
+	ToHitModifier.BuildPersistentEffect(1, true, true, true);
+	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.OVERBEARING_SUPERIORITY_CRIT, Template.LocFriendlyName,,,,,,,,true);
+	Template.AddTargetEffect(ToHitModifier);
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
@@ -2889,10 +3413,12 @@ static function X2AbilityTemplate AddCombatReadiness()
 {
 	local X2AbilityTemplate						Template;
 	local XMBEffect_ConditionalBonus			DefenseBonus;
-	local X2Effect_PersistentStatChange 			AimBonus;
+	//local X2Effect_PersistentStatChange 			AimBonus;
 	local X2Effect_RemoveEffects	RemoveEffects;
 	local name	EffectName;
 	local XMBCondition_CoverType CoverCondition;
+	local X2Effect_Formidable ExplosiveDREffect;
+
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CombatReadiness');
 //BEGIN AUTOGENERATED CODE: Template Overrides 'FullThrottle'
 	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_command_defense";
@@ -2921,13 +3447,21 @@ static function X2AbilityTemplate AddCombatReadiness()
 	DefenseBonus.EffectName = 'CombatReadinessDef';
 	Template.AddTargetEffect(DefenseBonus);
 
+	/*
 	AimBonus = new class 'X2Effect_PersistentStatChange';
 	AimBonus.AddPersistentStatChange(eStat_Offense, default.COMBATREADINESS_AIM);	
 	AimBonus.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
 	AimBonus.DuplicateResponse = eDupe_Allow;
 	AimBonus.EffectName = 'CombatReadiness';
 	Template.AddTargetEffect(AimBonus);
+	*/
 
+	ExplosiveDREffect = new class'X2Effect_Formidable';
+	ExplosiveDREffect.ExplosiveDamageReduction = default.COMBAT_READINESS_EXPLOSIVE_DR;
+	ExplosiveDREffect.DuplicateResponse = eDupe_Allow;
+	ExplosiveDREffect.BuildPersistentEffect(1, true, false);
+	ExplosiveDREffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,false,,Template.AbilitySourceName);
+	Template.AddTargetEffect(ExplosiveDREffect);
 	RemoveEffects = new class'X2Effect_RemoveEffects';
 	foreach default.COMBAT_READINESS_EFFECTS_TO_REMOVE(EffectName)
 	{
@@ -3146,6 +3680,34 @@ static function X2AbilityTemplate CrusaderRage()
 	return Template;
 }
 
+static function X2AbilityTemplate HeroSlayer_LW()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_HeroSlayer                	DamageEffect;
+
+	// Icon Properties
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'HeroSlayer_LW');
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_ambush";
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	DamageEffect = new class'X2Effect_HeroSlayer';
+	DamageEffect.DmgMod = default.HERO_SLAYER_DMG;
+	DamageEffect.BuildPersistentEffect(1, true, false, false);
+	DamageEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	Template.AddTargetEffect(DamageEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	//  NOTE: No visualization on purpose!
+
+	return Template;
+}
 
 
 defaultproperties

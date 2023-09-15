@@ -635,6 +635,8 @@ m_strNextHaven="СЛЕД. УБЕЖИЩЕ"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Захватить набор ресурсов \"Адвента\""
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Сопротивление обнаружило расположение ценных ресурсов противника которые мы можем заполучить для своих потребностей.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="Сопротивление обнаружило расположение ценных ресурсов противника которые мы можем заполучить для своих потребностей.", MissionIndex=0)
+
 
 ; LWOTC Translated
 [UIListener_CampaignStartMenu]

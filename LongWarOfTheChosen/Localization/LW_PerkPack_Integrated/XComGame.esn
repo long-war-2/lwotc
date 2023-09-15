@@ -23,7 +23,7 @@ BriefSummary="Este implante confiere +10 de puntería para tu siguiente disparo 
 [CombatAwarenessPCS X2EquipmentTemplate]
 FriendlyName="SCP: Percepción de combate"
 FriendlyNamePlural="SCP: Percepción de combate"
-BriefSummary="Concede 15 de defensa y un punto de blindaje cuando estás en guardia."
+BriefSummary="Concede 15 de defensa y un punto de blindaje cuando estás en guardia o conteniendo a un enemigo."
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="SCP: Adrenalina de combate"
@@ -48,7 +48,7 @@ BriefSummary="El enemigo objetivo sufre -20 de puntería y -50 de probabilidad d
 [EmergencyLifeSupportPCS X2EquipmentTemplate]
 FriendlyName="SCP: Soporte vital de emergencia"
 FriendlyNamePlural="SCP: Soporte vital de emergencia"
-BriefSummary="Este implante garantiza que el primer golpe mortal en una misión no cause la muerte instantánea y aumenta el tiempo de desangrado en 2 turnos."
+BriefSummary="Este implante aumenta drásticamente el umbral de daño excesivo necesario para evitar el desangrado, lo que hace que sea menos probable que su soldado muera cuando le disparan fatalmente y extiende el tiempo de desangrado en 2 turnos."
 
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="SCP: Piel de hierro"
@@ -196,9 +196,9 @@ LocPromotionPopupText="<Bullet/> Una vez por turno, obtienes una acción de boni
 [LoneWolf X2AbilityTemplate]
 LocFriendlyName="Lobo solitario"
 LocFlyOverText="Lobo solitario"
-LocLongDescription="Obtienes +10 de puntería y +10 de defensa cuando estés a una distancia de 7 o más casillas de cualquier aliado."
-LocHelpText="Obtienes +10 de puntería y +10 de defensa cuando estés a una distancia de 7 o más casillas de cualquier aliado."
-LocPromotionPopupText="<Bullet/> Obtienes +10 de puntería y +10 de defensa cuando estés a una distancia de 7 o más casillas de cualquier aliado.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas o de alguna otra manera desabilitada."
+LocLongDescription="Obtienes un bonus de puntería y defensa cuando estés a una distancia de al menos <Ability:LONEWOLF_MIN_BONUS_TILES/> casillas de cualquier aliado, con un máximo de +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> a <Ability:LONEWOLF_MIN_DIST_TILES/> casillas."
+LocHelpText="Obtienes un bonus de puntería y defensa cuando estés a una distancia de al menos <Ability:LONEWOLF_MIN_BONUS_TILES/> casillas de cualquier aliado, con un máximo de +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> a <Ability:LONEWOLF_MIN_DIST_TILES/> casillas."
+LocPromotionPopupText="<Bullet/> Obtienes un bonus de puntería y defensa cuando estés a una distancia de al menos <Ability:LONEWOLF_MIN_BONUS_TILES/> casillas de cualquier aliado, con un máximo de +<Ability:LONEWOLF_AIM_BONUS/>/+<Ability:LONEWOLF_DEF_BONUS/> a <Ability:LONEWOLF_MIN_DIST_TILES/> casillas.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas o de alguna otra manera desabilitada."
 
 [LowProfile X2AbilityTemplate]
 LocFriendlyName="Discreción"
@@ -224,16 +224,24 @@ LocPromotionPopupText="<Bullet/> Después de efectuar un disparo estándar con t
 [WalkFire X2AbilityTemplate]
 LocFriendlyName="Disparo en marcha"
 LocFlyOverText="Disparo en marcha"
-LocLongDescription="Efectúas un disparo muy certero con un +30 de bonificación de impacto, la mitad de daño y -30 de probabilidad de crítico. Usa <Ability:SelfAmmoCost/> de munición."
-LocHelpText="Disparo especial: +30 de puntería, -30 de probabilidad de crítico, mitad de daño, usa <Ability:SelfAmmoCost/> de munición."
-LocPromotionPopupText="<Bullet/> Se trata de un disparo especial en que el soldado ajusta su puntería en mitad de una ráfaga de arma automática. Confiere +30 de puntería, -30 de probabilidad de crítico y causa la mitad de daño.<br/><Bullet/> Consume <Ability:SelfAmmoCost/> de munición.<br/><Bullet/> Se puede usar una vez por turno.<br/><Bullet/> Requiere un arma de disparo de ráfaga; la habilidad no estará disponible cuando se equipe una escopeta o un fusil de francotirador como arma principal."
+LocLongDescription="Efectúas un disparo muy certero con un +<Ability:WALK_FIRE_AIM_BONUS> de bonificación de impacto, <Ability:WALK_FIRE_DMG>% de daño y -<Ability:WALK_FIRE_CRIT_MALUS> de probabilidad de crítico. Usa <Ability:SelfAmmoCost/> de munición."
+LocHelpText="Disparo especial: +<Ability:WALK_FIRE_AIM_BONUS> de puntería, -<Ability:WALK_FIRE_CRIT_MALUS> de probabilidad de crítico, <Ability:WALK_FIRE_DMG>% de daño, usa <Ability:SelfAmmoCost/> de munición."
+LocPromotionPopupText="<Bullet/> Se trata de un disparo especial en que el soldado ajusta su puntería en mitad de una ráfaga de arma automática. Confiere +<Ability:WALK_FIRE_AIM_BONUS> de puntería, -<Ability:WALK_FIRE_CRIT_MALUS> de probabilidad de crítico y causa <Ability:WALK_FIRE_DMG>% de daño.<br/><Bullet/> Consume <Ability:SelfAmmoCost/> de munición.<br/><Bullet/> Se puede usar una vez por turno.<br/><Bullet/> Requiere un arma de disparo de ráfaga; la habilidad no estará disponible cuando se equipe una escopeta o un fusil de francotirador como arma principal."
 
 [PrecisionShot X2AbilityTemplate]
 LocFriendlyName="Disparo de precisión"
 LocFlyOverText="Disparo de precisión"
-LocLongDescription="Efectúas un disparo especial con una bonificación de +30 a la probabilidad de crítico y del 33% al daño crítico. Tiempo de enfriamiento de 3 turnos."
-LocHelpText="Efectúas un disparo especial con una bonificación de +30 a la probabilidad de crítico y del 33% al daño crítico. Tiempo de enfriamiento de 3 turnos."
-LocPromotionPopupText="<Bullet/> Efectúas un disparo especial con una bonificación de +30 a la probabilidad de crítico y del 33% al daño crítico. Tiempo de enfriamiento de 3 turnos.<br/>"
+LocLongDescription="Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+LocHelpText="Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+LocPromotionPopupText="<Bullet/> Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/>"
+
+[PrecisionShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Disparo de precisión"
+LocFlyOverText="Disparo de precisión"
+LocLongDescription="Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+LocHelpText="Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+LocPromotionPopupText="<Bullet/> Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/>"
+
 
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Fuego cíclico"
@@ -252,14 +260,14 @@ LocPromotionPopupText="<Bullet/> Disparo especial exclusivo de las armas princip
 [SlugShot X2AbilityTemplate]
 LocFriendlyName="Disparo de posta"
 LocFlyOverText="Disparo de posta"
-LocLongDescription="Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo que atraviesa 2 de blindaje y no tiene penalización por alcance. Usa <Ability:SelfAmmoCost/> de munición. Tiempo de enfriamiento de 3 turnos."
+LocLongDescription="Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo que atraviesa <Ability:SLUG_SHOT_PIERCE/> de blindaje, no tiene penalización por alcance y genera +<Ability:SLUG_SHOT_ACC_BONUS> de puntería adicional. Usa <Ability:SelfAmmoCost/> de munición. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
 LocHelpText="Disparo especial de escopeta que perfora el blindaje sin penalizaciones por alcance."
 LocPromotionPopupText="<Bullet/> Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo sin penalizaciones por alcance.<br/><Bullet/> El disparo perforará 2 puntos de blindaje.<br/><Bullet/> Tiempo de enfriamiento de 3 turnos.<br/><Bullet/> Requiere <Ability:SelfAmmoCost/> de munición.<br/>"
 
 [SlugShotRangeEffect X2AbilityTemplate]
 LocFriendlyName="Disparo de posta"
 LocFlyOverText="Disparo de posta"
-LocLongDescription="Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo sin penalizaciones por alcance. Usa <Ability:SelfAmmoCost/> de munición. Tiempo de enfriamiento de 5 turnos."
+LocLongDescription="Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo sin penalizaciones por alcance y genera +<Ability:SLUG_SHOT_ACC_BONUS> de puntería adicional. Usa <Ability:SelfAmmoCost/> de munición. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
 LocHelpText="Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo sin penalizaciones por alcance. Usa <Ability:SelfAmmoCost/> de munición. Tiempo de enfriamiento de 5 turnos."
 LocPromotionPopupText="<Bullet/> Disparo especial exclusivo de las armas principales de tipo escopeta: efectúa un disparo sin penalizaciones de alcance.<br/><Bullet/> Tiempo de enfriamiento de 5 turnos.<br/><Bullet/> Requiere <Ability:SelfAmmoCost/> de munición.<br/>"
 
@@ -336,9 +344,9 @@ LocPromotionPopupText="<Bullet/> Tus ataques cuerpo a cuerpo contra enemigos bio
 [KillerInstinct X2AbilityTemplate]
 LocFriendlyName="Instinto asesino"
 LocFlyOverText="Instinto asesino"
-LocLongDescription="Activar Correr y disparar concede +50% de daño crítico durante el resto del turno."
-LocHelpText="Activar Correr y disparar concede +50% de daño crítico durante el resto del turno."
-LocPromotionPopupText="<Bullet/> Activar Correr y disparar concede +50% de daño crítico durante el resto del turno.<br/>"
+LocLongDescription="Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de daño total después de un golpe crítico durante el resto del turno."
+LocHelpText="Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de daño total después de un golpe crítico durante el resto del turno."
+LocPromotionPopupText="<Bullet/> Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de daño total después de un golpe crítico durante el resto del turno.<br/>"
 
 [ExtraConditioning X2AbilityTemplate]
 LocFriendlyName="Condicionamiento extra"
@@ -350,9 +358,9 @@ LocPromotionPopupText="<Bullet/> El tiempo de enfriamiento de Correr y disparar 
 [RunAndGun_LW X2AbilityTemplate]
 LocFriendlyName="Correr y disparar"
 LocFlyOverText="Correr y disparar"
-LocLongDescription="Haz una acción después de correr."
-LocHelpText="Haz una acción después de correr."
-LocPromotionPopupText="<Bullet/> Correr y disparar permite a las unidades acortar distancias con sus objetivos rápidamente o tomar una posición de flanqueo fácilmente.<br/><Bullet/> Correr y disparar tiene un tiempo de enfriamiento de 3 turnos.<br/>"
+LocLongDescription="Haz una acción después de correr. La activación de esta habilidad desactiva la mayoría de las otras ventajas que devuelven puntos de acción, como Encuentros Cercanos o Dispara y Huye."
+LocHelpText="Haz una acción después de correr. Inhabilita habilidades que otorgan puntos de acción al soldado."
+LocPromotionPopupText="<Bullet/> Correr y disparar permite a las unidades acortar distancias con sus objetivos rápidamente o tomar una posición de flanqueo fácilmente.<br/><Bullet/> Correr y disparar tiene un tiempo de enfriamiento de <Ability:RUN_AND_GUN_COOLDOWN/> turnos. Esta habilidad desactiva las ventajas que otorgan puntos de acción, como Encuentros Cercanos o Dispara y Huye.<br/>"
 
 [Suppression_LW X2AbilityTemplate]
 LocFriendlyName="Contención"
@@ -467,8 +475,8 @@ LocHelpText="Permite efectuar disparos estándar y de guardia con fusiles de fra
 [Trojan X2AbilityTemplate]
 LocFriendlyName="Troyano"
 LocFlyOverText="Troyano"
-LocLongDescription="Las unidades enemigas pirateadas sufren daño y pierden sus acciones del turno en el que termine el efecto del pirateo."
-LocHelpText="Las unidades pirateadas sufren daño y pierden acciones cuando el efecto del pirateo termina."
+LocLongDescription="Las unidades enemigas pirateadas sufren daño y pierden sus acciones del turno en el que termine el efecto del pirateo. Troyano nunca romperá la ocultación de los escuadrones incluso si no logra destruir su objetivo."
+LocHelpText="Las unidades pirateadas sufren daño y pierden acciones cuando el efecto del pirateo termina. Esta habilidad permite que nuestros Especialistas destruyan los drones de ADVENT sin romper la ocultación. Incluso si la víctima sobrevive al ataque Troyano, el sigilo no se romperá."
 LocPromotionPopupText="<Bullet/> Las unidades enemigas pirateadas mediante Protocolo de control reciben de 0 a 8 de daño y pierden sus acciones del turno en el que termina el efecto del pirateo.<br/><Bullet/> Se aplica a las unidades aturdidas o bajo el dominio de Protocolo de control.<br/><Bullet/> El daño se calcula en función del atributo de pirateo comparado con la defensa de pirateo del objetivo.<br/>"
 
 [Covert X2AbilityTemplate]
@@ -767,7 +775,7 @@ LocFriendlyNameWhenConcealed="Zona de eliminación (oculto)"
 [XComGame.DeathFromAbove X2AbilityTemplate]
 [DeathFromAbove X2AbilityTemplate]
 LocFriendlyName="Muerte desde las alturas"
-LocLongDescription="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno. También aporta una mejora de precisión a larga distancia en los rifles de francotirador."
+LocLongDescription="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno. También aporta una mejora de precisión a larga distancia en los rifles de francotirador y Vektor."
 LocHelpText="Matar a un enemigo en una elevación inferior con tu <Ability:WeaponName/> cuesta una sola acción y no termina el turno."
 LocFlyOverText="Muerte desde las alturas"
 LocPromotionPopupText="<Bullet/> Muerte desde las alturas se combina bien con las habilidades de pistola, o simplemente puede volver más móvil a un soldado.<br/><Bullet/> También aporta una mejora de precisión a larga distancia en los rifles de francotirador."
@@ -1027,6 +1035,24 @@ LocLongDescription="Tus ataques explosivos pueden infligir daño crítico (<Abil
 LocHelpText="Tus explosivos pueden infligir daño crítico."
 LocFlyOverText="Mayores explosiones"
 LocPromotionPopupText="<Bullet/> Tus ataques explosivos pueden infligir daño crítico (<Ability:BIGGESTBOOMSCHANCE/>% de probabilidad de +<Ability:BIGGESTBOOMSDAMAGE/> de daño).<br/>"
+
+[RapidFire X2AbilityTemplate]
+LocFriendlyName="Fuego rápido"
+LocLongDescription="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería."
+LocHelpText="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería."
+LocFlyOverText="Fuego rápido"
+LocPromotionPopupText="<Bullet/> Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos. Fuego rápido es una habilidad devastadora para infligir daño a distancia.<br/>"
+
+[RapidFireSnapShot X2AbilityTemplate]
+LocFriendlyName="Fuego rápido (Disparo instantáneo)"
+LocLongDescription="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería."
+LocHelpText="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería."
+LocFlyOverText="Fuego rápido"
+LocPromotionPopupText="<Bullet/> Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos. Fuego rápido es una habilidad devastadora para infligir daño a distancia.<br/>"
+
+[RapidFireSnapShot2 X2AbilityTemplate]
+LocFriendlyName="Fuego rápido"
+LocFlyOverText="Fuego rápido"
 
 ; New Class loc
 

@@ -81,9 +81,10 @@ ActivityObjectives[0]="Ambush an ADVENT Construction Unit"
 ActivityObjectives[0]="Assault an Alien Research Lab"
 +MissionDescriptions=(MissionFamily="Sabotage_LW", Description="We have uncovered an important alien research facility. Let's burn it to the ground.", MissionIndex=0)
 
+; LWOTC Needs Translation
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Find Enemy Flight Paths"
+ActivityObjectives[0]="Find Enemy Flight Paths: Force Level UFO"
 ActivityObjectives[1]="Recover UFO artifacts"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
@@ -92,7 +93,7 @@ ActivityObjectives[1]="Recover UFO artifacts"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Find Enemy Flight Paths"
+ActivityObjectives[0]="Find Enemy Flight Paths: Standard UFO"
 ActivityObjectives[1]="Recover UFO artifacts"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
@@ -100,8 +101,10 @@ ActivityObjectives[1]="Recover UFO artifacts"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Find Enemy Flight Paths"
+ActivityObjectives[0]="Find Enemy Flight Paths: Super UFO"
 ActivityObjectives[1]="Recover UFO artifacts"
+
+; End Translation
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
@@ -167,6 +170,7 @@ ActivityObjectives[0]="Free Captured Rebels"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Seize ADVENT resource cache"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="The Resistance has learned the location of vital enemy resources that we can acquire for our own uses.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="The Resistance has learned the location of vital enemy resources that we can acquire for our own uses.", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"

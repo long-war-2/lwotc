@@ -21,6 +21,7 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local XComGameStateHistory					History;	
 	local X2AbilityTarget_Cursor				TargetStyle;
 	local X2AbilityMultiTarget_Radius			MultiTargetStyle;
+	local int currentModifier;
 
 	Target = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(EffectState.ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 
@@ -47,20 +48,39 @@ function int GetDefendingDamageModifier(XComGameState_Effect EffectState, XComGa
 		if (MyVisInfo.TargetCover == CT_None)
 			return 0;
 		if (MyVisInfo.TargetCover == CT_Midlevel)
-			return -W2S_LOW_COVER_ARMOR_BONUS;
+			currentModifier = -W2S_LOW_COVER_ARMOR_BONUS;
 		if (MyVisInfo.TargetCover == CT_Standing)
-			return -W2S_HIGH_COVER_ARMOR_BONUS;
+			currentModifier =  -W2S_HIGH_COVER_ARMOR_BONUS;
+
+		if (currentModifier < 0 && (CurrentDamage + currentModifier < 1))
+			{
+				if (CurrentDamage <= 1)
+					return 0;
+
+				return (CurrentDamage - 1) * -1;
+			}
+		return currentModifier;
+
 	}
 	else
 	{
 		if(X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, MyVisInfo))
 		{
-			if (MyVisInfo.TargetCover == CT_None) 
-				return 0;
-			if (MyVisInfo.TargetCover == CT_Midlevel)
-				return -W2S_LOW_COVER_ARMOR_BONUS;
-			if (MyVisInfo.TargetCover == CT_Standing)
-				return -W2S_HIGH_COVER_ARMOR_BONUS;				
+			if (MyVisInfo.TargetCover == CT_None)
+			return 0;
+		if (MyVisInfo.TargetCover == CT_Midlevel)
+			currentModifier = -W2S_LOW_COVER_ARMOR_BONUS;
+		if (MyVisInfo.TargetCover == CT_Standing)
+			currentModifier =  -W2S_HIGH_COVER_ARMOR_BONUS;
+
+		if (currentModifier < 0 && (CurrentDamage + currentModifier < 1))
+			{
+				if (CurrentDamage <= 1)
+					return 0;
+
+				return (CurrentDamage - 1) * -1;
+			}
+		return currentModifier;			
 		}
 	}
     return 0;     

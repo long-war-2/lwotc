@@ -50,8 +50,43 @@ static function X2DataTemplate CreatePistolSlotTemplate()
 	Template.GetPriorityFn = PistolGetPriority;
 	Template.ShowItemInLockerListFn = ShowPistolItemInLockerList;
 	Template.GetSlotUnequipBehaviorFn = PistolGetUnequipBehavior;
+	Template.ValidateLoadoutFn = SlotValidateLoadout;
 
 	return Template;
+}
+
+//Code borrowed from Iridar to remove items from slots.
+static function SlotValidateLoadout(CHItemSlot Slot, XComGameState_Unit Unit, XComGameState_HeadquartersXCom XComHQ, XComGameState NewGameState)
+{
+	local XComGameState_Item	ItemState;
+	local string				strDummy;
+	local bool					HasSlot;
+	local bool					bShouldUnequip;
+
+	ItemState = Unit.GetItemInSlot(Slot.InvSlot, NewGameState);
+	HasSlot = Slot.UnitHasSlot(Unit, strDummy, NewGameState);
+	if (!HasSlot)
+	{
+		bShouldUnequip = true;
+	}
+	else if (ItemState != none)
+	{
+		if (!IsWeaponAllowedInPistolSlot(X2WeaponTemplate(ItemState.GetMyTemplate())))
+		{
+			bShouldUnequip = true;
+		}
+	}
+
+	//	If there's an item equipped in the slot, but the unit is not supposed to have the slot, or the item is not supposed to be in the slot, then unequip it and put it into HQ Inventory.
+	if (bShouldUnequip && ItemState != none)
+	{
+		ItemState = XComGameState_Item(NewGameState.ModifyStateObject(class'XComGameState_Item', ItemState.ObjectID));
+		Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
+		if (Unit.RemoveItemFromInventory(ItemState, NewGameState))
+		{
+			XComHQ.PutItemInInventory(NewGameState, ItemState);
+		}	
+	}
 }
 
 static function bool CanAddItemToPistolSlot(
