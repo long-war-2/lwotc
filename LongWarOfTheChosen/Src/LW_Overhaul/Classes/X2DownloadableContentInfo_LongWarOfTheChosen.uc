@@ -145,11 +145,11 @@ static event InstallNewCampaign(XComGameState StartState)
 	local XComGameState_ResistanceFaction StartingFactionState;
 
 	//short circuit if in shell:
-	if(class'WorldInfo'.static.GetWorldInfo().GRI.GameClass.name == 'XComShell')
-	{
-		`LWTrace("InstallNewCampaign called in Shell, aborting.");
-		return;
-	}
+	//if(class'WorldInfo'.static.GetWorldInfo().GRI.GameClass.name == 'XComShell')
+	//{
+	//	`LWTrace("InstallNewCampaign called in Shell, aborting.");
+	//	return;
+	//}
 
 	// WOTC TODO: Note that this method is called twice if you start a new campaign.
 	// Make sure that's not causing issues.
