@@ -350,8 +350,8 @@ static function UpdateOTSFacility()
 	local XComGameStateHistory History;
 	local name TemplateName;
 	local XComGameState_FacilityXCom FacilityState, OTSState;
-	local StateObjectReference StaffSlotReference;
-	local XComGameState_StaffSLot StaffSlotState;
+	///local StateObjectReference StaffSlotReference;
+	//local XComGameState_StaffSLot StaffSlotState;
 
 	`Log("LW OfficerPack : Searching for existing OTS Facility");
 	TemplateName = 'OfficerTrainingSchool';
@@ -372,13 +372,13 @@ static function UpdateOTSFacility()
 	}
 
 	`Log("LW OfficerPack: Found existing OTS, Attempting to update StaffSlots");
-
+/*
 	foreach OTSState.StaffSLots(StaffSlotReference)
 	{
 		StaffSlotState = XComGameState_StaffSlot(`XCOMHISTORY.GetGameStateForObjectID(StaffSlotReference.ObjectID));
 
 		//loop here
-	}
+	}  */
 
 	if(OTSState.StaffSlots.length == 1)
 	{
