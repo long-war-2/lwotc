@@ -16,17 +16,17 @@ var config int HDHOLO_BM_CRIT_BONUS;
 var localized string HoloTargetEffectName;
 
 //implements independent targeting
-//simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
-//{
-//	local XComGameState_Unit		SourceUnit;
-//	local XComGameStateHistory		History;
-//
-//	History = `XCOMHISTORY;
-//	SourceUnit = XComGameState_Unit(History.GetGameStateForObjectID(NewEffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-//	if(SourceUnit.FindAbility('IndependentTracking').ObjectID > 0)
-//		NewEffectState.iTurnsRemaining += default.INDEPENDENT_TARGETING_NUM_BONUS_TURNS; 
-//	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
-//}
+simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
+{
+	local XComGameState_Unit		SourceUnit;
+	local XComGameStateHistory		History;
+
+	History = `XCOMHISTORY;
+	SourceUnit = XComGameState_Unit(History.GetGameStateForObjectID(NewEffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	if(SourceUnit.FindAbility('IndependentTracking').ObjectID > 0)
+		NewEffectState.iTurnsRemaining += default.INDEPENDENT_TARGETING_NUM_BONUS_TURNS; 
+	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
+}
 
 function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
@@ -76,11 +76,6 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
 			ShotModifiers.AddItem(ModInfo);
 		}
 	}
-}
-
-function bool IsThisEffectBetterThanExistingEffect(const out XComGameState_Effect ExistingEffect)
-{
-	return true;
 }
 
 function bool HasOnlySingleTargetDamage(XComGameState_Ability AbilityState)

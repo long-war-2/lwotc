@@ -48,7 +48,7 @@ static function X2AbilityTemplate AddPointBlank()
 
 	// Icon Properties
 	//Template.bDontDisplayInAbilitySummary = true;
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityPointBlank";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityPointBlank";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_PISTOL_SHOT_PRIORITY;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.DisplayTargetHitChance = true;
@@ -141,7 +141,7 @@ static function X2AbilityTemplate AddBothBarrels()
 
 	// Icon Properties
 	//Template.bDontDisplayInAbilitySummary = true;
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityBothBarrels";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityBothBarrels";
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_PISTOL_SHOT_PRIORITY;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.DisplayTargetHitChance = true;
@@ -226,7 +226,7 @@ static function X2AbilityTemplate AddPumpAction()
 	local X2Effect_AddAmmo						AddAmmoEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'PumpAction');
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityPumpAction";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityPumpAction";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -289,7 +289,7 @@ static function X2AbilityTemplate AddFortify()
 	local X2AbilityCooldown					Cooldown;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Fortify');
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFortify";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFortify";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
 	Template.ShotHUDPriority = 401;
@@ -333,7 +333,7 @@ static function X2AbilityTemplate AddSprinter()
 	local X2Effect_PersistentStatChange			StatEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Sprinter');
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilitySprinter";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilitySprinter";
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
@@ -371,7 +371,7 @@ static function X2AbilityTemplate AddPassSidearm()
 	local X2Condition_AbilityProperty			ShooterAbilityCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'TakeThis');
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityTakeThis";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityTakeThis";
 	//Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
 	Template.Hostility = eHostility_Neutral;

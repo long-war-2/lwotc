@@ -15,8 +15,6 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
     local ShotModifierInfo ShotInfo;
     local int CurrentFocus;
 
-	if(AbilityState.IsMeleeAbility())
-	{
 	CurrentFocus = Attacker.GetTemplarFocusLevel();
 
 	if (CurrentFocus > 0)
@@ -30,6 +28,5 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 		ShotInfo.Reason = FriendlyName;
 		ShotInfo.Value = CritBonusPerFocus * CurrentFocus;
 		ShotModifiers.AddItem(ShotInfo);
-		}
 	}
 }

@@ -52,7 +52,6 @@ static function X2GrenadeLauncherTemplate CreateTemplate_BeamGrenadeLauncher()
 	Template.IncreaseGrenadeRange = default.BEAMGRENADELAUNCHER_RANGEBONUS;
 
 	Template.GameArchetype = "WP_BeamGrenadeLauncher.WP_BeamGrenadeLauncher";
-	// Template.GameArchetype = "WP_BeamGrenadeLauncher_LW.WP_BeamGrenadeLauncher_LW";
 
 	Template.CreatorTemplateName = 'GrenadeLauncher_BM_Schematic'; // The schematic which creates this item
 	Template.BaseItem = 'GrenadeLauncher_MG'; // Which item this will be upgraded from

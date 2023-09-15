@@ -80,7 +80,7 @@ static protected function EventListenerReturn LWUnitInfoReturn(Object EventData,
 	Unit = XComGameState_Unit(EventSource);
 
 	//abort if inputs incorrect
-	if(Tuple == none || Unit == none || Tuple.Id != 'GetLWUnitInfo' )
+	if(Tuple == none || Tuple.Id != 'GetLWUnitInfo' || Unit == none)
 	{
 		return ELR_NoInterrupt;
 	}

@@ -145,11 +145,6 @@ simulated function ApplyEffectToWorld(const out EffectAppliedData ApplyEffectPar
 	local int i;
 
 	//If this damage effect has an associated position, it does world damage
-	`LWTrace("ApplyFireToWorld effect target locations length:" @ ApplyEffectParameters.AbilityInputContext.TargetLocations.Length);
-	`LWTrace("ApplyFireToWorld effect Ability Input Context name:" @ ApplyEffectParameters.AbilityInputContext.AbilityTemplateName);
-	`LWTrace("ApplyFireToWorld effect primary target:" @ ApplyEffectParameters.AbilityInputContext.PrimaryTarget.ObjectID);
-	`LWTrace("ApplyFireToWorld effect input context multitargets length:" @ ApplyEffectParameters.AbilityInputContext.MultiTargets.Length);
-
 	if( ApplyEffectParameters.AbilityInputContext.TargetLocations.Length > 0 )
 	{
 		History = `XCOMHISTORY;

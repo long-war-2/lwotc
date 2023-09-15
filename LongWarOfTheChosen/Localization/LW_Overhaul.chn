@@ -165,7 +165,6 @@ ActivityObjectives[0]="营救被俘反抗军"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="夺取变种人补给箱"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="反抗军找到一个含有重要资源的变种人补给站，我们可以将这些资源作为己用", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="反抗军找到一个含有重要资源的变种人补给站，我们可以将这些资源作为己用", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"

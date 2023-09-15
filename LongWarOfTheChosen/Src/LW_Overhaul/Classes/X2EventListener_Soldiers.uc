@@ -685,7 +685,7 @@ static function EventListenerReturn OverrideRespecSoldierProjectPoints(
 	if (default.TIERED_RESPEC_TIMES)
 	{
 		// Respec days = rank * difficulty setting
-		Tuple.Data[1].i = UnitState.GetRank() * class'XComGameState_HeadquartersXCom'.default.XComHeadquarters_DefaultRespecSoldierDays[`STRATEGYDIFFICULTYSETTING] * 12;
+		Tuple.Data[1].i = UnitState.GetRank() * class'XComGameState_HeadquartersXCom'.default.XComHeadquarters_DefaultRespecSoldierDays[`STRATEGYDIFFICULTYSETTING] * 24;
 	}
 
 	return ELR_NoInterrupt;
@@ -1169,28 +1169,28 @@ static function EventListenerReturn GetPCSImage(Object EventData, Object EventSo
 
 	switch (ItemState.GetMyTemplateName())
 	{
-		case 'DepthPerceptionPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_depthperception"; break;
-		case 'HyperReactivePupilsPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_hyperreactivepupils"; break;
-		case 'CombatAwarenessPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_threatassessment"; break;
-		case 'DamageControlPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_damagecontrol"; break;
-		case 'AbsorptionFieldsPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_impactfield"; break;
-		case 'BodyShieldPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_bodyshield"; break;
-		case 'EmergencyLifeSupportPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_emergencylifesupport"; break;
-		case 'IronSkinPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_ironskin"; break;
-		case 'SmartMacrophagesPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_smartmacrophages"; break;
-		case 'CombatRushPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_combatrush"; break;
-		case 'CommonPCSDefense': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_defense"; break;
-		case 'RarePCSDefense': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_defense"; break;
-		case 'EpicPCSDefense': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_defense"; break;
-		case 'CommonPCSAgility': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_dodge"; break;
-		case 'RarePCSAgility': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_dodge"; break;
-		case 'EpicPCSAgility': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_dodge"; break;
-		case 'CommonPCSHacking': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_hacking"; break;
-		case 'RarePCSHacking': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_hacking"; break;
-		case 'EpicPCSHacking': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_hacking"; break;
-		case 'FireControl25PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_firecontrol"; break;
-		case 'FireControl50PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_firecontrol"; break;
-		case 'FireControl75PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LWOTC.implants_firecontrol"; break;
+		case 'DepthPerceptionPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_depthperception"; break;
+		case 'HyperReactivePupilsPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hyperreactivepupils"; break;
+		case 'CombatAwarenessPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_threatassessment"; break;
+		case 'DamageControlPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_damagecontrol"; break;
+		case 'AbsorptionFieldsPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_impactfield"; break;
+		case 'BodyShieldPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_bodyshield"; break;
+		case 'EmergencyLifeSupportPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_emergencylifesupport"; break;
+		case 'IronSkinPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_ironskin"; break;
+		case 'SmartMacrophagesPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_smartmacrophages"; break;
+		case 'CombatRushPCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_combatrush"; break;
+		case 'CommonPCSDefense': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
+		case 'RarePCSDefense': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
+		case 'EpicPCSDefense': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_defense"; break;
+		case 'CommonPCSAgility': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
+		case 'RarePCSAgility': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
+		case 'EpicPCSAgility': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_dodge"; break;
+		case 'CommonPCSHacking': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
+		case 'RarePCSHacking': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
+		case 'EpicPCSHacking': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_hacking"; break;
+		case 'FireControl25PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
+		case 'FireControl50PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
+		case 'FireControl75PCS': OverridePCSImageTuple.Data[1].s = "img:///UILibrary_LW_Overhaul.implants_firecontrol"; break;
 
 		default: break;
 	}

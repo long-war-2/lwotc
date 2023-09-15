@@ -62,7 +62,7 @@ static function EventListenerReturn ReturnFireAOECheck(Object EventData, Object 
 		{
 			//`LOG("=== ReturnFireAOECheck 2");
 			CoveringFireEffect = X2Effect_ReturnFireAOE(EffectState.GetX2Effect());
-			//`assert(CoveringFireEffect != none);
+			`assert(CoveringFireEffect != none);
 
 			if (CoveringFireEffect.bOnlyDuringEnemyTurn)
 			{

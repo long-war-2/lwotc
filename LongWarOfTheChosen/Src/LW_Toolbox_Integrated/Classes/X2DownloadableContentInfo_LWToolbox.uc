@@ -56,13 +56,6 @@ static event InstallNewCampaign(XComGameState StartState)
 {
 	local XComGameState_LWToolboxOptions ToolboxOptions;
 
-	//short circuit if in shell:
-	if(class'WorldInfo'.static.GetWorldInfo().GRI.GameClass.name == 'XComShell')
-	{
-		`LWTrace("InstallNewCampaign called in Shell, aborting.");
-		return;
-	}
-
 	`LOG("X2DLCInfo: InstallNewCampaign",, 'LW_Toolbox');
 	ToolboxOptions = XComGameState_LWToolboxOptions(class'XComGameState_LWToolboxOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWToolboxOptions', StartState));
 

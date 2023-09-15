@@ -72,19 +72,19 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateFlechetteRoundsAbility());
 
 	Templates.AddItem(PurePassive('Needle_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_ammo_needle", false, 'eAbilitySource_Item'));
-	Templates.AddItem(PurePassive('Redscreen_Rounds_Ability', "img:///UILibrary_LWOTC.LW_AbilityRedscreen", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('Redscreen_Rounds_Ability', "img:///UILibrary_LW_Overhaul.LW_AbilityRedscreen", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Shredder_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_maximumordanance", false, 'eAbilitySource_Item'));
 	
 	Templates.AddItem(PurePassive('Dragon_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_incendiary", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Bluescreen_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_bluescreen", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Talon_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_talon", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('AP_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_ap", false, 'eAbilitySource_Item'));
-	Templates.AddItem(PurePassive('Venom_Rounds_Ability_PP', "img:///UILibrary_LWOTC.LW_AbilityVenomRounds", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('Venom_Rounds_Ability_PP', "img:///UILibrary_LW_Overhaul.LW_AbilityVenomRounds", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Tracer_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_tracer", false, 'eAbilitySource_Item'));
 
-	Templates.AddItem(PurePassive('FireControl25', "img:///UILibrary_LWOTC.LW_AbilityFireControl", false));
-	Templates.AddItem(PurePassive('FireControl50', "img:///UILibrary_LWOTC.LW_AbilityFireControl", false));
-	Templates.AddItem(PurePassive('FireControl75', "img:///UILibrary_LWOTC.LW_AbilityFireControl", false));
+	Templates.AddItem(PurePassive('FireControl25', "img:///UILibrary_LW_Overhaul.LW_AbilityFireControl", false));
+	Templates.AddItem(PurePassive('FireControl50', "img:///UILibrary_LW_Overhaul.LW_AbilityFireControl", false));
+	Templates.AddItem(PurePassive('FireControl75', "img:///UILibrary_LW_Overhaul.LW_AbilityFireControl", false));
 
 	Templates.AddItem(CreateSmallItemWeightAbility());
 	Templates.AddItem(RemoveGrenadeWeightAbility()); // does not work

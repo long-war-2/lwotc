@@ -48,8 +48,8 @@ LocPromotionPopupText="<Bullet/> Adds <Ability:MeditationFocusRecovery/> points 
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="Overcharge"
-LocLongDescription="Gain bonus aim and crit chance on melee attacks for each point of focus the Templar has."
-LocHelpText="Gain bonus aim and crit chance on melee attacks for each point of focus the Templar has."
+LocLongDescription="Gain bonus aim and crit chance for each point of focus the Templar has."
+LocHelpText="Gain bonus aim and crit chance for each point of focus the Templar has."
 LocPromotionPopupText="<Bullet/> Each point of focus provides +<Ability:OverchargeAimBonus/> aim and +<Ability:OverchargeCritBonus/> crit chance.<br/><Bullet/> Based on the current focus, not max focus."
 
 [VoltDangerZone X2AbilityTemplate]
@@ -70,8 +70,8 @@ LocPromotionPopupText="<Bullet/> Adds 1 focus to the Templar when an enemy pod s
 
 [TemplarTerror X2AbilityTemplate]
 LocFriendlyName="Terrorize"
-LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Volt. Adds a chance to panic enemies hit by Volt."
-LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Volt. Adds a chance to panic enemies hit by Volt."
+LocLongDescription="Adds a chance to panic enemies hit by Volt."
+LocHelpText="Adds a chance to panic enemies hit by Volt."
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet/> Volt can now panic the enemy.<br/><Bullet/> The chance to panic is <Ability:TERROR_STAT_CHECK_BASE_VALUE/>% and is affected by both the Templar's Will and the target's Will."
 ; End Translation (2)

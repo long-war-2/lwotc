@@ -31,12 +31,10 @@ simulated function bool MeetsCondition(X2LWActivityCreation ActivityCreation, XC
 			if (FullRetal)
 			{
 				BucketSize += OutPostState.TotalResistanceBucket;
-				`LWTrace("Adding" @OutPostState.TotalResistanceBucket @ "to full retal bucket.");
 			}
 			else
 			{
 				BucketSize += OutPostState.GetJobBucketForJob (Job);
-				`LWTrace("Adding" @ OutPostState.GetJobBucketForJob(Job) @ "to" @ Job @ "retal bucket.");
 			}
 			ContactedRegions += 1;
 		}
@@ -46,7 +44,7 @@ simulated function bool MeetsCondition(X2LWActivityCreation ActivityCreation, XC
 			LiberatedRegions += 1;
 		}
 	}
-	`LWTrace("Bucket size pre adjustments:" @BucketSize);
+	
 	BucketSize = BucketSize * (default.CONTACTED_REGIONS_BASE_BUCKET_MOD ** (ContactedRegions - 1));
 	BucketSize = Bucketsize * (default.LIBERATED_REGIONS_BASE_BUCKET_MOD ** (LiberatedRegions));
 	`LWTRACE ("Testing for Retalbucket (post adjustment):" @ (FullRetal ? "Full" : string(Job)) @ "Condition passed if" @ BucketSize @ ">=" @ RequiredDays);

@@ -1125,7 +1125,7 @@ static function X2AbilityTemplate AddFireOnDeathAbility()
 	local X2AbilityTrigger_EventListener		Trigger;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'FireOnDeath');
-	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityIgnition";
+	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityIgnition";
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;

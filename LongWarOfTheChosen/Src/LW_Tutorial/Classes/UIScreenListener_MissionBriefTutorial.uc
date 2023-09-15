@@ -28,12 +28,12 @@ event OnInit(UIScreen Screen)
 		`PRESBASE.UITutorialBox(
 			default.MissionEnemyCountTitle,
 			default.MissionEnemyCountBody,
-			"img:///UILibrary_LWOTC.TutorialImages.LWMission_Numbers");
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWMission_Numbers");
 
 		`PRESBASE.UITutorialBox(
 			default.MissionBriefTutorialTitle,
 			default.MissionBriefTutorialBody,
-			"img:///UILibrary_LWOTC.TutorialImages.LWMission_Brief");
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWMission_Brief");
 
 		// Showing the tutorial box hides the screen below it, but we actually want
 		// the mission brief screen to be visible behind the tutorial box. So we

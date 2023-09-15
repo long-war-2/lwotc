@@ -18,7 +18,7 @@ static function DoCampaignStart()
 		`PRESBASE.UITutorialBox(
 			default.CampaignStartTitle,
 			default.CampaignStartBody,
-			"img:///UILibrary_LWOTC.TutorialImages.LWOTC_Logo");
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWOTC_Logo");
 	}
 }
 

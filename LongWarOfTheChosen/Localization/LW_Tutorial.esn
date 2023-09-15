@@ -21,7 +21,7 @@ CommandersQuartersEnteredBody="LWOTC agrega varias entradas a los Archivos XCOM 
 
 ; LWOTC translated
 GeneralChosenTitle="Los Elegidos"
-GeneralChosenBody="Un Elegido aparecerá en esta misión. En LWOTC responden a la actividad de XCOM participando sólo en represalias (de datos, suministros, reclutar, de rescatar miembros de la Resistencia e invasión). No aparecerán en otras misiones.<br/><br/>"Su objetivo sigue siendo conocer la ubicación del Avenger y asaltarlo. ¡Cuidado, defenderse de él no será fácil!"
+GeneralChosenBody="Un Elegido aparecerá en esta misión. En LWOTC responden a la actividad de XCOM participando sólo en represalias y misiones de la historia principal (Sitio Secreto, etc). No aparecerán en otras misiones.<br/><br/>"Su objetivo sigue siendo conocer la ubicación del Avenger y asaltarlo. ¡Cuidado, defenderse de él no será fácil!"
 
 TacticalChosenTitle="Los Elegidos en Combate"
 TacticalChosenBody="Los Elegidos son mucho más peligrosos en LWOTC:<br/><ul><li>Son casi inmunes a los golpes críticos.</li><li>Toman una acción de movimiento o se preparan para el combate cada vez que las tropas les dañan durante el turno de XCOM.</li><li>Poseen la cualidad de secuestrar soldados desangrados que estén a su alcance a costa de un turno completo.</li><li>Obtienen atributos significativos al subir de nivel (usa F1 cuando les apuntes para recabar información detallada).</li></ul>"
