@@ -265,7 +265,7 @@ static function X2DataTemplate CreateCommonPCSDefense()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'CommonPCSDefense');
     Template.LootStaticMesh = staticmesh'AdventPCS';
-    Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.LW_Inv_CombatSim_Defense";
+    Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.LW_Inv_CombatSim_Defense";
     Template.ItemCat = 'CombatSim';
     Template.TradingPostValue = 15;
     Template.bAlwaysUnique = false;
@@ -284,7 +284,7 @@ static function X2DataTemplate CreateRarePCSDefense()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'RarePCSDefense');
     Template.LootStaticMesh = staticmesh'AdventPCS';
-    Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.LW_Inv_CombatSim_Defense";
+    Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.LW_Inv_CombatSim_Defense";
     Template.ItemCat = 'CombatSim';
     Template.TradingPostValue = 15;
     Template.bAlwaysUnique = false;
@@ -303,7 +303,7 @@ static function X2DataTemplate CreateEpicPCSDefense()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'EpicPCSDefense');
     Template.LootStaticMesh = staticmesh'AdventPCS';
-    Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.LW_Inv_CombatSim_Defense";
+    Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.LW_Inv_CombatSim_Defense";
     Template.ItemCat = 'CombatSim';
     Template.TradingPostValue = 15;
     Template.bAlwaysUnique = false;
@@ -380,7 +380,7 @@ static function X2DataTemplate CreateCommonPCSHacking()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'CommonPCSHacking');
     Template.LootStaticMesh = staticmesh'AdventPCS';
-    Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.LW_Inv_CombatSim_Hacking";
+    Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.LW_Inv_CombatSim_Hacking";
     Template.ItemCat = 'CombatSim';
     Template.TradingPostValue = 15;
     Template.bAlwaysUnique = false;
@@ -399,7 +399,7 @@ static function X2DataTemplate CreateRarePCSHacking()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'RarePCSHacking');
     Template.LootStaticMesh = staticmesh'AdventPCS';
-    Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.LW_Inv_CombatSim_Hacking";
+    Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.LW_Inv_CombatSim_Hacking";
     Template.ItemCat = 'CombatSim';
     Template.TradingPostValue = 15;
     Template.bAlwaysUnique = false;
@@ -418,7 +418,7 @@ static function X2DataTemplate CreateEpicPCSHacking()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'EpicPCSHacking');
     Template.LootStaticMesh = staticmesh'AdventPCS';
-    Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.LW_Inv_CombatSim_Hacking";
+    Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.LW_Inv_CombatSim_Hacking";
     Template.ItemCat = 'CombatSim';
     Template.TradingPostValue = 15;
     Template.bAlwaysUnique = false;
@@ -437,7 +437,7 @@ static function X2DataTemplate CreateFireControl25PCS()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'FireControl25PCS');
     Template.LootStaticMesh = staticmesh'AdventPCS';
-    Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.LW_Inv_CombatSim_FireControl";
+    Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.LW_Inv_CombatSim_FireControl";
     Template.ItemCat = 'CombatSim';
     Template.TradingPostValue = -999;
     Template.bAlwaysUnique = false;
@@ -454,7 +454,7 @@ static function X2DataTemplate CreateFireControl50PCS()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'FireControl50PCS');
     Template.LootStaticMesh = staticmesh'AdventPCS';
-    Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.LW_Inv_CombatSim_FireControl";
+    Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.LW_Inv_CombatSim_FireControl";
     Template.ItemCat = 'CombatSim';
     Template.TradingPostValue = -999;
     Template.bAlwaysUnique = false;
@@ -471,7 +471,7 @@ static function X2DataTemplate CreateFireControl75PCS()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'FireControl75PCS');
     Template.LootStaticMesh = staticmesh'AdventPCS';
-    Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.LW_Inv_CombatSim_FireControl";
+    Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.LW_Inv_CombatSim_FireControl";
     Template.ItemCat = 'CombatSim';
     Template.TradingPostValue = -999;
     Template.bAlwaysUnique = false;

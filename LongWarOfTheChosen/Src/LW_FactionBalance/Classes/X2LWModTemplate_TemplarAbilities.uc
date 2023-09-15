@@ -25,6 +25,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	{
 		//refactor the start here so SingleRendFocus is only given to Rend and not Volt
 	case 'ArcWave':
+	case 'ArcWave_LW':
 		UpdateArcWave(Template);
 		MakeRendNotWorkWhenBurning(Template);
 	case 'TemplarBladestormAttack':
@@ -32,6 +33,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
 		break;
 	case 'Rend':
+	case 'Rend_LW':
+
 		MakeRendNotWorkWhenBurning(Template);
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
@@ -101,7 +104,7 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = `TILESTOMETERS(default.VOLT_TILE_RADIUS) + 0.01;
 
-	DangerZoneBonus.RequiredAbility = 'VoltDangerZone';
+	DangerZoneBonus.RequiredAbility = 'TemplarTerror';
 	DangerZoneBonus.fBonusRadius = `TILESTOMETERS(default.VOLT_DANGER_ZONE_BONUS_RADIUS) + 0.01;
 	RadiusMultiTarget.AbilityBonusRadii.AddItem(DangerZoneBonus);
 

@@ -5151,7 +5151,14 @@ FocusLevelDescriptions[4]="撕裂伤害+<Ability:FOCUS4RENDDAMAGE/>\n移动力+<
 [TemplarFocus X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 圣殿骑士在开始任务时比其他士兵弱，但在更高的专注水平下会变得非常强大。<br/><Bullet/> 专注是通过用撕裂攻击敌人获得的（即使未命中也能获得）。<br/>"
 
-[Rend X2AbilityTemplate]
+[ArcWave_LW X2AbilityTemplate]
+LocFriendlyName="撕裂"
+LocLongDescription="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
+LocHelpText="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
+LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士产生专注的主要方法。<br/><Bullet/> 施展撕裂后，圣殿骑士将获得气势，允许他们进行一次移动动作。攻击后撤回掩体。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDSTUNCHANCE/>%几率眩晕。眩晕的目标也会被击退。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDDISORIENTCHANCE/>%几率混乱。<br/>"
+
+[Rend_LW X2AbilityTemplate]
+LocFriendlyName="撕裂"
 LocLongDescription="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
 LocHelpText="近战攻击有几率使目标眩晕或混乱。触发气势，产生专注。"
 LocPromotionPopupText="<Bullet/> 使用撕裂是圣殿骑士产生专注的主要方法。<br/><Bullet/> 施展撕裂后，圣殿骑士将获得气势，允许他们进行一次移动动作。攻击后撤回掩体。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDSTUNCHANCE/>%几率眩晕。眩晕的目标也会被击退。<br/><Bullet/> 撕裂每1点专注有<Ability:RENDDISORIENTCHANCE/>%几率混乱。<br/>"
@@ -6330,8 +6337,8 @@ LocFlyOverText="精神发狂"
 
 [YouCannotHide_LW X2AbilityTemplate]
 LocFriendlyName="无所遁形"
-LocHelpText="你的主武器增加100命中。"
-LocLongDescription="你的主武器增加100命中。"
+LocHelpText="你的主武器增加30命中。"
+LocLongDescription="你的主武器增加30命中。"
 LocFlyOverText="逃跑吧。"
 
 [RebelHPUpgrade_T1 X2AbilityTemplate]
@@ -6415,8 +6422,8 @@ LocFlyOverText="死亡标记"
 
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="宿命"
-LocLongDescription="使用<Ability:WeaponName/>对35％生命或更低的目标增加+100命中和暴击率。"
-LocHelpText="使用<Ability:WeaponName/>对35％生命或更低的目标增加+100命中和暴击率。"
+LocLongDescription="使用<Ability:WeaponName/>对<Ability:FATALITY_THRESHOLD/>％生命或更低的目标增加+100命中和暴击率。"
+LocHelpText="使用<Ability:WeaponName/>对<Ability:FATALITY_THRESHOLD/>％生命或更低的目标增加+100命中和暴击率。"
 LocFlyOverText="宿命"
 
 [Vampirism_LW X2AbilityTemplate]
@@ -6476,7 +6483,7 @@ LocHelpText="在XCOM回合受到伤害后，获得移动动作或战备状态。
 LocFlyOverText="天选者反应"
 
 ; LWOTC Needs Translation (2)
-[ChosenImmunitiesPassive X2AbilityTemplate]
+[ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="天选者免疫"
 LocLongDescription="天选者对眩晕、混乱和冰冻免疫，并遭受-50%的致残移动力，而不是原地不动。"
 LocHelpText="天选者对眩晕、混乱和冰冻免疫，并遭受-50%的致残移动力，而不是原地不动。"
@@ -6551,9 +6558,9 @@ SummaryText="残酷镇压反抗军，减少该地区反抗军未来<Ability:CHOS
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="天选者可以阻碍反抗军活动！"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="天选者可以蓄意破坏复仇者号！"
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="天选者增加隐秘行动的风险！"
-KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="天选者可以蓄意破坏复仇者号！"
+KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="天选者可以阻碍反抗军活动！"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="天选者可以向复仇者号发起攻击！"
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="天选者可以引发额外的黑暗事件！"
 
@@ -6819,7 +6826,7 @@ LocLongDescription="一种强有力的监视方式。触发时不再自动开火
 LocHelpText="一种强有力的监视方式。触发时不再自动开火，而是执行任何单个动作。自由行动。"
 LocPromotionPopupText="<Bullet/> 自由行动。<br/><Bullet/> 某些操作在阻断期间不可用，例如监视。<br/><Bullet/> 阻断有<Ability:SelfCooldown_LW/>回合冷却时间。"
 
-[ArcWavePassive X2AbilityTemplate]
+[ArcWavePassive_LW X2AbilityTemplate]
 LocFriendlyName="电弧波"
 LocLongDescription="撕裂在攻击方向产生一个心灵能量波。伤害随碎片拳刃层级增加。"
 LocHelpText="撕裂在攻击方向产生一个心灵能量波。"

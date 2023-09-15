@@ -4,7 +4,7 @@
 //  PURPOSE: Defines all Long War Chosen-specific abilities, Credit to DerBK for some abilities
 //---------------------------------------------------------------------------------------
 
-class X2Ability_LW_ChosenAbilities extends X2Ability config(LW_SoldierSkills);
+class X2Ability_LW_ChosenAbilities extends XMBAbility config(LW_SoldierSkills);
 
 var localized string ShieldedStatBuffsLocDescription;
 var localized string ImpactCompensationBuffDescription;
@@ -17,6 +17,9 @@ var config int SHIELDALLYM1_SHIELD;
 var config int SHIELDALLYM2_SHIELD;
 var config int SHIELDALLYM3_SHIELD;
 var config int SHIELDALLYM4_SHIELD;
+var config int SHIELDALLYM5_SHIELD;
+
+
 var config array<name> KIDNAP_ELIGIBLE_CHARTYPES;
 var config array<name> COMBAT_READINESS_EFFECTS_TO_REMOVE;
 
@@ -26,6 +29,7 @@ var config int GREATEST_CHAMPION_AIM;
 var config int GREATEST_CHAMPION_CRIT;
 var config int GREATEST_CHAMPION_WILL;
 var config int GREATEST_CHAMPION_PSIOFFENSE;
+var config float UNHOLY_ASCENSION_MOD;
 var config float SHIELD_ALLY_PCT_DR;
 var config float IMPACT_COMPENSATION_PCT_DR;
 var config int IMPACT_COMPENSATION_MAX_STACKS;
@@ -47,10 +51,14 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateShieldAlly('ShieldAllyM2',default.SHIELDALLYM2_SHIELD));
 	Templates.AddItem(CreateShieldAlly('ShieldAllyM3',default.SHIELDALLYM3_SHIELD));
 	Templates.AddItem(CreateShieldAlly('ShieldAllyM4',default.SHIELDALLYM4_SHIELD));
+	Templates.AddItem(CreateShieldAlly('ShieldAllyM5',default.SHIELDALLYM5_SHIELD));
 	Templates.AddItem(CreateTraitResilience());
 	Templates.AddItem(CreateChosenKidnap());
 	Templates.AddItem(CreateKeen());
 	Templates.AddItem(CreateFollowerDefeatedEscape());
+
+	Templates.AddItem(CreateTrackingShotMark());
+	Templates.AddItem(CreateMarkForDeathHunter());
 
 	Templates.AddItem(ChosenDragonRounds());
 	Templates.AddItem(ChosenDragonRoundsPassive());
@@ -67,6 +75,12 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateBloodThirst());
 	Templates.AddItem(BloodThirstPassive());
 	Templates.AddItem(AddMindScorchTerror());
+
+	Templates.AddItem(UnholyAscension_LW());
+	Templates.AddItem(CreaterRuptureImmunity());
+	Templates.AddItem(AddBloodBath());
+	Templates.AddItem(AddMistyMadness());
+	Templates.AddItem(AddImpenetrable());
 	
 	Templates.AddItem(FreeGrenades());
 	Templates.AddItem(AssassinPrimeReactionPassive());
@@ -428,6 +442,9 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	local X2Effect_GreatestChampion StatBuffsEffect;
 	local X2Effect_PCTDamageReduction ImpactEffect;
 	local X2Condition_Visibility	VisibilityCondition;
+	local X2Condition_AbilityProperty AbilityCondition;
+	local X2Effect_Resilience MyCritModifier;
+	local X2Condition_OwnerDoesNotHaveAbility DoesNotHaveAbilityCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, Templatename);
 	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_mindscorch";
@@ -474,7 +491,15 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	TargetCondition.ExcludeUnrevealedAI = true;
 	Template.AbilityTargetConditions.AddItem(TargetCondition);
 
+	DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
+	DoesNotHaveAbilityCondition.AbilityName = 'UnholyAscension_LW';
+
+	AbilityCondition = new class 'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('UnholyAscension_LW');
+
+
 	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), ShieldAmount);
+	ShieldedEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
 	Template.AddTargetEffect(ShieldedEffect);
 
 	StatBuffsEffect = new class'X2Effect_GreatestChampion';
@@ -486,7 +511,32 @@ static function X2AbilityTemplate CreateShieldAlly(name Templatename, int Shield
 	StatBuffsEffect.AddPersistentStatChange(eStat_CritChance, default.GREATEST_CHAMPION_CRIT);
 	StatBuffsEffect.AddPersistentStatChange(eStat_Will, default.GREATEST_CHAMPION_WILL);
 	StatBuffsEffect.AddPersistentStatChange(eStat_PsiOffense, default.GREATEST_CHAMPION_PSIOFFENSE);
+	StatBuffsEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
 	Template.AddTargetEffect(StatBuffsEffect);
+
+
+	ShieldedEffect = CreateShieldedEffect(Template.LocFriendlyName, Template.GetMyLongDescription(), int(ShieldAmount * default.UNHOLY_ASCENSION_MOD));
+	ShieldedEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(ShieldedEffect);
+
+	StatBuffsEffect = new class'X2Effect_GreatestChampion';
+	StatBuffsEffect.BuildPersistentEffect(1, true, true);
+	StatBuffsEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, default.ShieldedStatBuffsLocDescription, "img:///UILibrary_PerkIcons.UIPerk_adventshieldbearer_energyshield", true);
+	StatBuffsEffect.bRemoveWhenTargetDies = true;
+	//StatBuffsEffect.bRemoveWhenTargetUnconscious = true;
+	StatBuffsEffect.AddPersistentStatChange(eStat_Offense, int(default.GREATEST_CHAMPION_AIM * default.UNHOLY_ASCENSION_MOD));
+	StatBuffsEffect.AddPersistentStatChange(eStat_CritChance, int(default.GREATEST_CHAMPION_CRIT * default.UNHOLY_ASCENSION_MOD));
+	StatBuffsEffect.AddPersistentStatChange(eStat_Will, int(default.GREATEST_CHAMPION_WILL * default.UNHOLY_ASCENSION_MOD));
+	StatBuffsEffect.AddPersistentStatChange(eStat_PsiOffense, int(default.GREATEST_CHAMPION_PSIOFFENSE * default.UNHOLY_ASCENSION_MOD));
+	StatBuffsEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(StatBuffsEffect);
+
+	MyCritModifier = new class 'X2Effect_Resilience';
+	MyCritModifier.CritDef_Bonus = 200;
+	MyCritModifier.BuildPersistentEffect (1, true, false, true);
+	MyCritModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	MyCritModifier.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect (MyCritModifier);
 
 
 	ImpactEffect = new class'X2Effect_PCTDamageReduction';
@@ -877,39 +927,6 @@ static function name GetReinforcementGroupName(int AlertLevel)
 
 	return GroupName;
 }
-/*
-static function X2DataTemplate CreatePassiveChosenKidnap()
-{
-	local X2Effect_Kidnap KidnapEffect;
-	local X2AbilityTemplate Template;
-
-	`CREATE_X2ABILITY_TEMPLATE(Template, 'LW_ChosenKidnap');
-	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_kidnap";
-	Template.Hostility = eHostility_Offensive;
-	Template.AbilitySourceName = 'eAbilitySource_Standard';
-//BEGIN AUTOGENERATED CODE: Template Overrides 'ChosenKidnap'
-	Template.bFrameEvenWhenUnitIsHidden = true;
-	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-//END AUTOGENERATED CODE: Template Overrides 'ChosenKidnap'
-
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-
-	KidnapEffect = new class'X2Effect_Kidnap';
-	KidnapEffect.BuildPersistentEffect(1, true, true, true);
-	Template.AddShooterEffect(KidnapEffect);
-
-	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-
-	// The Target must be alive and a humanoid
-	Template.bSkipFireAction = true;
-	Template.bShowActivation = true;	
-	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-
-	return Template;
-}
-*/
 
 static function X2DataTemplate CreateKeen()
 {
@@ -950,6 +967,162 @@ static function X2DataTemplate CreateKeen()
 
 	return Template;
 }
+
+static function X2DataTemplate CreateTrackingShotMark()
+{
+	local X2AbilityTemplate Template;
+	local X2AbilityCost_ActionPoints ActionPointCost;
+	//local X2Condition_Visibility TargetVisibilityCondition;
+	local X2Condition_UnitProperty TargetCondition;
+	local X2Condition_UnitEffects UnitEffectsCondition;
+	local X2Effect_Persistent TrackingShotMarkSource;
+	local X2Effect_TrackingShotMarkTarget TrackingShotMarkTarget;
+	local array<name> SkipExclusions;
+	local X2AbilityCooldown Cooldown;
+	local X2Condition_UnitValue UnitValueCheck;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TrackingShotMark');
+
+//BEGIN AUTOGENERATED CODE: Template Overrides 'TrackingShotMark'
+	Template.bShowActivation = true;
+	Template.bFrameEvenWhenUnitIsHidden = true;
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_trackingshot";
+//END AUTOGENERATED CODE: Template Overrides 'TrackingShotMark'
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.Hostility = eHostility_Neutral;
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = 1;
+	Template.AbilityCooldown = Cooldown;
+
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 2;
+	ActionPointCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+
+	UnitValueCheck = new class'X2Condition_UnitValue';
+	UnitValueCheck.AddCheckValue('GrappledThisTurn', 1, eCheck_LessThan);
+	Template.AbilityShooterConditions.AddItem(UnitValueCheck);
+
+
+	// Shooter Conditions
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Template.AbilityTargetConditions.AddItem(default.FlankedCondition);
+
+	// Source cannot already be targeting
+	UnitEffectsCondition = new class'X2Condition_UnitEffects';
+	UnitEffectsCondition.AddExcludeEffect(class'X2Ability_ChosenSniper'.default.TrackingShotMarkSourceEffectName, 'AA_DuplicateEffectIgnored');
+	Template.AbilityShooterConditions.AddItem(UnitEffectsCondition);
+
+	// Source Effect
+	TrackingShotMarkSource = new class 'X2Effect_Persistent';
+	TrackingShotMarkSource.EffectName = class'X2Ability_ChosenSniper'.default.TrackingShotMarkSourceEffectName;
+	TrackingShotMarkSource.DuplicateResponse = eDupe_Ignore;
+	TrackingShotMarkSource.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnBegin);
+	TrackingShotMarkSource.bRemoveWhenTargetDies = true;
+	Template.AddShooterEffect(TrackingShotMarkSource);
+
+	// Target Conditions
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
+
+	// Target cannot already be targeted
+	UnitEffectsCondition = new class'X2Condition_UnitEffects';
+	UnitEffectsCondition.AddExcludeEffect(class'X2Ability_ChosenSniper'.default.TrackingShotMarkTargetEffectName, 'AA_DuplicateEffectIgnored');
+	Template.AbilityTargetConditions.AddItem(UnitEffectsCondition);
+
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.DisorientedName);
+	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
+	SkipExclusions.AddItem(class'X2AbilityTemplateManager'.default.ConfusedName);
+	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	// Target must be visible
+	//TargetVisibilityCondition = new class'X2Condition_Visibility';
+	//TargetVisibilityCondition.bRequireLOS = true;
+	//Template.AbilityTargetConditions.AddItem(TargetVisibilityCondition);
+
+	// And not concealed
+	TargetCondition = new class'X2Condition_UnitProperty';
+	TargetCondition.ExcludeConcealed = true;
+	Template.AbilityTargetConditions.AddItem(TargetCondition);
+
+	// Target Effect
+	TrackingShotMarkTarget = new class 'X2Effect_TrackingShotMarkTarget';
+	TrackingShotMarkTarget.EffectName = class'X2Ability_ChosenSniper'.default.TrackingShotMarkTargetEffectName;
+	//TrackingShotMarkTarget.ConeEndDiameter = default.TRACKINGSHOT_END_DIAMETER_TILES * class'XComWorldData'.const.WORLD_StepSize;
+	//TrackingShotMarkTarget.ConeLength = default.TRACKINGSHOT_LENGTH_TILES * class'XComWorldData'.const.WORLD_StepSize;
+	TrackingShotMarkTarget.DuplicateResponse = eDupe_Ignore;
+	TrackingShotMarkTarget.BuildPersistentEffect(1, true, true, false, eGameRule_PlayerTurnEnd);
+	TrackingShotMarkTarget.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, , , Template.AbilitySourceName);
+	TrackingShotMarkTarget.bRemoveWhenTargetDies = true;
+	//TrackingShotMarkTarget.EffectTickedFn = TrackingShotMark_EffectTicked;
+	TrackingShotMarkTarget.VisualizationFn = class'X2Ability_ChosenSniper'.static.TrackingShotMarkTarget_VisualizationFn;
+	TrackingShotMarkTarget.EffectRemovedVisualizationFn = class'X2Ability_ChosenSniper'.static.TrackingShotMarkTarget_RemovedVisualizationFn;
+	Template.AddTargetEffect(TrackingShotMarkTarget);
+
+	Template.bSkipFireAction = true;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = class'X2Ability_ChosenSniper'.static.TrackingShotMark_BuildVisualization;
+
+	Template.CinescriptCameraType = "ChosenSniper_TrackingShotMark";
+
+	Template.AdditionalAbilities.AddItem('MarkedForDeath_Hunter');
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate CreateMarkForDeathHunter()
+{
+	local X2AbilityTemplate                 Template;
+	local X2Condition_TargetHasOneOfTheEffects NeedOneOfTheEffects;
+	local XMBEffect_AbilityCostRefund	RefundEffect;
+	local XMBCondition_AbilityName	NameCondition;
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'MarkedForDeath_Hunter');
+
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.bDontDisplayInAbilitySummary = true;
+	Template.bHideOnClassUnlock = true;
+	Template.IconImage = "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_trackingshot";
+
+	Template.Hostility = eHostility_Neutral;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	
+	RefundEffect = new class'XMBEffect_AbilityCostRefund';
+	RefundEffect.EffectName = 'MarkedForDeath';
+	RefundEffect.TriggeredEvent = 'MarkedForDeath';
+	RefundEffect.bShowFlyOver=false;
+	NeedOneOfTheEffects=new class'X2Condition_TargetHasOneOfTheEffects';
+	NeedOneOfTheEffects.EffectNames.AddItem(class'X2Ability_ChosenSniper'.default.TrackingShotMarkTargetEffectName);
+
+	NameCondition = new class'XMBCondition_AbilityName';
+	NameCondition.IncludeAbilityNames.AddItem('HunterRifleShot');
+
+
+	RefundEffect.AbilityTargetConditions.AddItem(NeedOneOfTheEffects);
+	RefundEffect.AbilityTargetConditions.AddItem(NameCondition);
+
+	Template.AddTargetEffect(RefundEffect);
+
+	Template.AddTargetEffect(new class'X2Effect_LW_RemoveMark');
+
+	
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
 
 static function X2AbilityTemplate ChosenDragonRounds()
 {
@@ -1003,7 +1176,7 @@ static function X2AbilityTemplate ChosenDragonRoundsPassive()
 {
 	local X2AbilityTemplate	Template;
 
-	Template = PurePassive('ChosenDragonRoundsPassive', "img:///UILibrary_LW_Overhaul.UIPerk_ammo_incendiary", false);
+	Template = PurePassive('ChosenDragonRoundsPassive', "img:///UILibrary_LWOTC.UIPerk_ammo_incendiary", false);
 
 	return Template;
 }
@@ -1068,7 +1241,7 @@ static function X2AbilityTemplate ChosenBleedingRoundsPassive()
 {
 	local X2AbilityTemplate	Template;
 
-	Template = PurePassive('ChosenBleedingRoundsPassive', "img:///UILibrary_LW_Overhaul.UIPerk_ammo_incendiary", false);
+	Template = PurePassive('ChosenBleedingRoundsPassive', "img:///UILibrary_LWOTC.UIPerk_ammo_incendiary", false);
 
 	return Template;
 }
@@ -1088,7 +1261,7 @@ static function X2AbilityTemplate ChosenVenomRounds()
 	local X2AbilityTrigger_EventListener	EventListener;
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ChosenVenomRounds');
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityVenomRounds";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityVenomRounds";
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
 
@@ -1130,7 +1303,7 @@ static function X2AbilityTemplate ChosenVenomRoundsPassive()
 {
 	local X2AbilityTemplate	Template;
 
-	Template = PurePassive('ChosenVenomRoundsPassive', "img:///UILibrary_LW_Overhaul.LW_AbilityVenomRounds", false);
+	Template = PurePassive('ChosenVenomRoundsPassive', "img:///UILibrary_LWOTC.LW_AbilityVenomRounds", false);
 
 	return Template;
 }
@@ -1318,8 +1491,37 @@ static function X2AbilityTemplate AddMindScorchTerror()
 {
 	local X2AbilityTemplate Template;
 
-	Template = PurePassive('MindScorchTerror', "img:///UILibrary_LW_Overhaul.LW_AbilityNapalmX", false, 'eAbilitySource_Perk');
+	Template = PurePassive('MindScorchTerror', "img:///UILibrary_LWOTC.LW_AbilityNapalmX", false, 'eAbilitySource_Perk');
 	Template.bCrossClassEligible = false;
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddBloodBath()
+{
+	local X2AbilityTemplate		Template;
+	
+	Template = PurePassive('BloodBath_LW', "img:///UILibrary_XPerkIconPack.UIPerk_adrenaline_x2", false, 'eAbilitySource_Perk', true);
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddMistyMadness()
+{
+	local X2AbilityTemplate		Template;
+	
+	Template = PurePassive('MistyMadness_LW', "img:///UILibrary_XPerkIconPack.UIPerk_smoke_chevron_x3", false, 'eAbilitySource_Perk', true);
+
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddImpenetrable()
+{
+	local X2AbilityTemplate		Template;
+	
+	Template = PurePassive('Impenetrable_LW', "img:///UILibrary_XPerkIconPack.UIPerk_defense_blossom", false, 'eAbilitySource_Perk', true);
+
 	return Template;
 }
 
@@ -1630,6 +1832,15 @@ static function X2AbilityTemplate BloodThirstPassive()
 	return Template;
 }
 
+static function X2AbilityTemplate UnholyAscension_LW()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('UnholyAscension_LW', "img:///UILibrary_XPACK_Common.PerkIcons.UIPerk_Corrupt", , 'eAbilitySource_Perk');
+
+	return Template;
+}
+
 static function X2DataTemplate FreeGrenades()
 {
 	local X2AbilityTemplate Template;
@@ -1890,6 +2101,40 @@ static function X2AbilityTemplate CreateUnstoppablePassive()
 
 	Template.bDisplayInUITooltip = true;
 	Template.bDisplayInUITacticalText = true;
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreaterRuptureImmunity()
+{
+	local X2AbilityTemplate						Template;	
+	local X2Effect_RuptureImmunity 					RuptureImmunityEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'RuptureImmunity');
+	Template.IconImage = "img:///UILibrary_XPerkIconPack.UIPerk_knife_defense";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	//Template.bIsPassive = true;
+	Template.bDisplayInUITooltip = true;
+	Template.bDisplayInUITacticalText = true;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+
+	RuptureImmunityEffect = new class'X2Effect_RuptureImmunity';
+	RuptureImmunityEffect.BuildPersistentEffect(1, true, true,, eGameRule_PlayerTurnBegin);
+	RuptureImmunityEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+	Template.AddTargetEffect(RuptureImmunityEffect);
+
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	//Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 
 	return Template;
 }

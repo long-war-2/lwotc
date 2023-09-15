@@ -296,6 +296,7 @@ var config WeaponDamageValue WARLOCKPSIM1_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM2_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM3_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM4_BASEDAMAGE;
+var config WeaponDamageValue WARLOCKPSIM5_BASEDAMAGE;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -1154,11 +1155,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.PrerequisiteAbilities.RemoveItem('Soulfire');
 	}
 
-	if (Template.DataName == 'Soulfire')
-	{
-		Cooldown = new class 'X2AbilityCooldown_Soulfire';
-		Template.AbilityCooldown = Cooldown;
-	}
+	// if (Template.DataName == 'Soulfire')
+	// {
+	// 	Cooldown = new class 'X2AbilityCooldown_Soulfire';
+	// 	Template.AbilityCooldown = Cooldown;
+	// }
 	
 	if (Template.DataName == 'PoisonSpit' || Template.DataName == 'MicroMissiles')
 	{
@@ -1327,7 +1328,8 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 		if (Template.DataName == 'Deadeye')
 		{
-			Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+			Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
+				Template.HideIfAvailable.AddItem('DeadeyeSnapShot');
 			CooldownShared = new class'X2AbilityCooldown_Shared';
 			CooldownShared.iNumTurns = class'X2Ability_SharpshooterAbilitySet'.default.DEADEYE_COOLDOWN;
 			CooldownShared.SharingCooldownsWith.AddItem('DeadeyeSnapShot');
@@ -1346,12 +1348,46 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		}
 	}
 
+	if (Template.DataName == 'ChainShot')
+	{
+		for (k = 0; k < Template.AbilityCosts.length; k++)
+		{
+			ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[k]);
+			if (ActionPointCost != none)
+			{
+				Template.AbilityCosts.RemoveItem(ActionPointCost);
+				ActionPointCost = new class'X2AbilityCost_ActionPoints';
+			
+				ActionPointCost.iNumPoints = 0;
+				ActionPointCost.bAddWeaponTypicalCost = true;
+				ActionPointCost.bConsumeAllPoints = true;
+		
+				Template.AbilityCosts.AddItem(ActionPointCost);
+			}
+		}
+		Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
+		Template.HideIfAvailable.AddItem('ChainShotSnapShot');
+		CooldownShared = new class'X2AbilityCooldown_Shared';
+		CooldownShared.iNumTurns = class'X2Ability_GrenadierAbilitySet'.default.CHAINSHOT_COOLDOWN;
+		CooldownShared.SharingCooldownsWith.AddItem('ChainShotSnapShot');
+		Template.AbilityCooldown = CooldownShared;
+		
+		Template.AdditionalAbilities.AddItem('ChainShotSnapShot');
+	}
+
 	if (Template.DataName == 'RapidFire') 
 	{
-		Cooldown = new class'X2AbilityCooldown';
+		Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
+		Template.HideIfAvailable.AddItem('RapidFireSnapShot');
+		Cooldown = new class'X2AbilityCooldown_Shared';
 		Cooldown.iNumTurns = default.RAPIDFIRE_COOLDOWN;
+		CooldownShared.SharingCooldownsWith.AddItem('RapidFireSnapShot');
 		Template.AbilityCooldown = Cooldown;
+
+		Template.AdditionalAbilities.AddItem('RapidFireSnapShot');
 	}
+	
+	
 	// Steady Hands
 	// Stasis Vest
 	// Air Controller
@@ -2066,6 +2102,8 @@ function ReplacePlaceEvacAbility(X2CharacterTemplate Template, int Difficulty)
 	if (Template.Abilities.Find('PlaceEvacZone') != -1)
 	{
 		Template.Abilities.RemoveItem('PlaceEvacZone');
+		// Give them the flare instead; this ability gives PlaceDelatedEvacZone
+		Template.Abilities.AddItem('GrantEvacFlare');
 	}
 }
 
@@ -2250,9 +2288,13 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('WarlockReaction');
 		//Template.Abilities.AddItem('AmmoDump_LW');
 		Template.Abilities.AddItem('ChosenCritImmune');
-		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		
 		Template.Abilities.AddItem('ChosenLootAbility');
 		Template.Abilities.AddItem('TriggerDamagedTeleport_LW');
+		Template.Abilities.AddItem('MovingTarget_LW');
+
+		Template.strScamperBT = "ScamperRoot_ChosenWarlock";
+		Template.ScamperActionPoints = 3;
 
 		Template.InitiativePriority = -100;
 
@@ -2277,13 +2319,13 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('LongWatch');
 		Template.Abilities.AddItem('quickdraw');
 		Template.Abilities.AddItem('ChosenImmuneMelee');
-		Template.Abilities.AddItem('ReadyForAnything');
-		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		
 		Template.Abilities.AddItem('FreeGrenades');
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('Disabler');
 		Template.Abilities.AddItem('ChosenLootAbility');
 		Template.Abilities.AddItem('TriggerDamagedTeleport_LW');
+		Template.Abilities.AddItem('MovingTarget_LW');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
@@ -2303,13 +2345,14 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('BloodThirst_LW');
 		Template.Abilities.AddItem('Hitandrun');
 		Template.Abilities.AddItem('FreeGrenades');
-		Template.Abilities.AddItem('ChosenImmunitiesPassive');
+		
 		Template.Abilities.AddItem('AssassinSlash_LW');
 		Template.Abilities.AddItem('ImpactCompensation_LW');
 		Template.Abilities.AddItem('Infighter');
 		Template.Abilities.AddItem('ChosenLootAbility');
 		Template.Abilities.AddItem('Unstoppable_LW');
 		Template.Abilities.AddItem('TriggerDamagedTeleport_LW');
+		Template.Abilities.AddItem('MovingTarget_LW');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
@@ -2472,6 +2515,13 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'ChosenSniperPistol_T4':
 			WeaponTemplate.Abilities.RemoveItem('LethalDose');
 			break;
+		case 'ChosenSniperRifle_CV':
+		case 'ChosenSniperRifle_MG':
+		case 'ChosenSniperRifle_BM':
+		case 'ChosenSniperRifle_T4':
+			//WeaponTemplate.Abilities.RemoveItem('TrackingShot');
+			WeaponTemplate.Abilities.RemoveItem('HunterKillzone');
+			break;
 
 		case 'Warlock_PsiWeapon':
 			WeaponTemplate.Abilities.AddItem('ShieldAllyM1');
@@ -2500,11 +2550,15 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.Abilities.RemoveItem('SpectralArmyM4');
 			WeaponTemplate.Abilities.RemoveItem('CorressM4');
 			break;
+		case 'WarlockM5_PsiWeapon':
+			WeaponTemplate.Abilities.AddItem('ShieldAllyM5');
+			WeaponTemplate.BaseDamage = default.WARLOCKPSIM5_BASEDAMAGE;
+			break;
 
 		case 'ChosenRifle_XCOM':
 			WeaponTemplate.Abilities.AddItem('OverbearingSuperiority_LW');
 			WeaponTemplate.OnAcquiredFn = none;
-			WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, class'X2Item_XpackWeapons'.default.CHOSENRIFLE_XCOM_AIM);
+			//WeaponTemplate.SetUIStatMarkup(class'XLocalizedData'.default.AimLabel, eStat_Offense, class'X2Item_XpackWeapons'.default.CHOSENRIFLE_XCOM_AIM);
 			break;
 		case 'ChosenSniperRifle_XCOM':
 			WeaponTemplate.iTypicalActionCost = 2;
@@ -2526,7 +2580,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.OnAcquiredFn = none;
 			break;
 		case 'ChosenShotgun_XCOM':
-			WeaponTemplate.Abilities.AddItem('Brawler');
+			//WeaponTemplate.Abilities.AddItem('Brawler');
 			WeaponTemplate.Abilities.AddItem('Vampirism_LW');
 			WeaponTemplate.Abilities.AddItem('ImpactCompensation_LW');
 			WeaponTemplate.OnAcquiredFn = none;
@@ -2542,6 +2596,12 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				}
 			}
 			break;
+		case 'AlienHunterRifle_CV':
+		case 'AlienHunterRifle_MG':
+		case 'AlienHunterRifle_BM':
+			WeaponTemplate.Abilities.AddItem('LockNLoad_LW');
+			WeaponTemplate.Abilities.AddItem('Concentration_LW');
+		break;
 		default:
 			break;
 		}
@@ -2894,8 +2954,8 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 				case 'MutonGrenade' :
 				case 'MutonM2_LWGrenade' :
 				case 'MutonM3_LWGrenade' :
-					GrenadeTemplate.AddAbilityIconOverride('ThrowGrenade', "img:///UILibrary_LW_Overhaul.UIPerk_grenade_aliengrenade");
-					GrenadeTemplate.AddAbilityIconOverride('LaunchGrenade', "img:///UILibrary_LW_Overhaul.UIPerk_grenade_aliengrenade");
+					GrenadeTemplate.AddAbilityIconOverride('ThrowGrenade', "img:///UILibrary_LWOTC.UIPerk_grenade_aliengrenade");
+					GrenadeTemplate.AddAbilityIconOverride('LaunchGrenade', "img:///UILibrary_LWOTC.UIPerk_grenade_aliengrenade");
 					`LWTRACE("Added Ability Icon Override for Alien Grenade");
 					break;
 				default :

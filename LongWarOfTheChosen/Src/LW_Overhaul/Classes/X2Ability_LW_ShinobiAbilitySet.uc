@@ -28,7 +28,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddCoupDeGraceAbility());
 	Templates.AddItem(AddCoupDeGracePassive());
 	Templates.AddItem(AddCoupDeGrace2Ability());
-	Templates.AddItem(PurePassive('Tradecraft', "img:///UILibrary_LW_Overhaul.LW_AbilityTradecraft", true));
+	Templates.AddItem(PurePassive('Tradecraft', "img:///UILibrary_LWOTC.LW_AbilityTradecraft", true));
 	return Templates;
 }
 
@@ -40,7 +40,7 @@ static function X2AbilityTemplate AddCoupDeGrace2Ability()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CoupDeGrace2');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityCoupDeGrace";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityCoupDeGrace";
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
@@ -77,7 +77,7 @@ static function X2AbilityTemplate AddCoupDeGraceAbility()
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityCoupDeGrace";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityCoupDeGrace";
 	Template.bHideOnClassUnlock = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
 	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
@@ -148,7 +148,7 @@ static function X2AbilityTemplate AddCoupDeGracePassive()
 	local X2Effect_CoupDeGrace				CoupDeGraceEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CoupDeGracePassive');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityCoupDeGrace";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityCoupDeGrace";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
