@@ -172,6 +172,7 @@ static final function bool IsModInstalled(coerce string DLCIdentifer)
 }
 
 static final function bool IsDLCInstalled(coerce string DLCIdentifer)
+
 {
 	local array<string> DLCs;
 

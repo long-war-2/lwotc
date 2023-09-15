@@ -50,4 +50,5 @@ defaultproperties
     MinorVersion = 1;
     PatchVersion = 0;
     Classifier = "RC8"
+
 }

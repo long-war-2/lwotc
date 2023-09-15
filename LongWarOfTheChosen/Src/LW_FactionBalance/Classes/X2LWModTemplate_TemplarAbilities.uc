@@ -34,6 +34,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	case 'Rend':
 	case 'Rend_LW':
+
 		MakeRendNotWorkWhenBurning(Template);
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
@@ -61,7 +62,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		break;
 	case 'TemplarFocus':
 		SupportSupremeFocusInTemplarFocus(Template);
-		//Template.AdditionalAbilities.RemoveItem('FocusKillTracker'); //commented out because Rend is already removed from the list of focus kill counter activities.
+		Template.AdditionalAbilities.RemoveItem('FocusKillTracker'); //commented out because Rend is already removed from the list of focus kill counter activities.  - welp, need a better fix so re-adding
 		break;
 	case 'VoidConduit':
 		FixVoidConduit(Template);
