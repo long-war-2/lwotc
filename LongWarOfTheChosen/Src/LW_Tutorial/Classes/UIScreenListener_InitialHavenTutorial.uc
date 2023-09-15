@@ -20,7 +20,7 @@ event OnRemoved(UIScreen Screen)
 		`PRESBASE.UITutorialBox(
 			default.HavenHighlightTitle,
 			default.HavenHighlightBody,
-			"img:///UILibrary_LWOTC.TutorialImages.LWHaven_Map_Icon");
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWHaven_Map_Icon");
 	}
 }
 

@@ -1,9 +1,5 @@
 /*.code-workspace
 BuildCache/
 PublishedFileID.Id
-git-sizer.exe
-/LongWarOfTheChosen/Content/
-/LongWarOfTheChosen/ContentForCook/
 *.upk
-*.bik
 *.umap

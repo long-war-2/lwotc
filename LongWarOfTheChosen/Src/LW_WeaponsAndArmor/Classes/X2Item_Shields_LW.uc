@@ -6,8 +6,6 @@
 //---------------------------------------------------------------------------------------
 class X2Item_Shields_LW extends X2Item config(GameData_WeaponData);
 
-var config bool ENABLE_SHIELDS;
-
 var config WeaponDamageValue SHIELD_CV_BASEDAMAGE;
 var config WeaponDamageValue SHIELD_MG_BASEDAMAGE;
 var config WeaponDamageValue SHIELD_BM_BASEDAMAGE;
@@ -40,12 +38,9 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Weapons;
 
-	if(default.ENABLE_SHIELDS)
-	{
-		Weapons.AddItem(BallisticShield_CV());
-		Weapons.AddItem(BallisticShield_MG());
-		Weapons.AddItem(BallisticShield_BM());
-	}
+	Weapons.AddItem(BallisticShield_CV());
+	Weapons.AddItem(BallisticShield_MG());
+	Weapons.AddItem(BallisticShield_BM());
 
 	return Weapons;
 }
@@ -139,7 +134,6 @@ static function X2DataTemplate BallisticShield_MG()
 
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
-	Template.Requirements.SpecialRequirementsFn = ShouldBuildShields;
 
 	Template.DamageTypeTemplateName = 'Melee';
 	
@@ -186,7 +180,6 @@ static function X2DataTemplate BallisticShield_BM()
 
 	Template.CanBeBuilt = true;
 	Template.bInfiniteItem = false;
-	Template.Requirements.SpecialRequirementsFn = ShouldBuildShields;
 	
 	Template.DamageTypeTemplateName = 'Melee';
 	
@@ -203,32 +196,4 @@ static function AddAbilities(out X2WeaponTemplate Template, array<name> Abilitie
 			Template.Abilities.AddItem(Ability);
 		}
 	}
-}
-
-static function bool ShouldBuildShields()
-{
-	local X2SoldierClassTemplateManager SoldierClassMgr;
-	local array<X2SoldierClassTemplate> SoldierClasses;
-	local X2SoldierClassTemplate SoldierTemplate;
-	local int i;
-
-	SoldierClassMgr  = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
-
-	SoldierClasses = SoldierClassMgr.GetAllSoldierClassTemplates();
-
-	foreach SoldierClasses (SoldierTemplate)
-	{
-		if (SoldierTemplate == none)
-		    continue;
-
-			for (i = 0; i < SoldierTemplate.AllowedWeapons.Length; ++i)
-		{
-			if (SoldierTemplate.AllowedWeapons[i].WeaponType == 'templarshield')
-			{
-				return true;
-			}
-		}
-	}
-
-	return false;
 }

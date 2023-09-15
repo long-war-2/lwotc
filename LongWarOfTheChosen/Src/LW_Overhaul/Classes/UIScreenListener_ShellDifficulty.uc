@@ -117,13 +117,13 @@ function AddLogoAndCredits(UIScreen Screen)
 
     LongWar2Image = Screen.Spawn(class'UIImage', Screen);
 	LongWar2Image.bAnimateOnInit = false;
-	LongWar2Image.InitImage('LongWar2ShellImage', "img:///UILibrary_LWOTC.longwar_fin_white");
+	LongWar2Image.InitImage('LongWar2ShellImage', "img:///UILibrary_LW_Overhaul.longwar_fin_white");
     LongWar2Image.SetPosition(-436, -103);
     LongWar2Image.SetScale(0.818);
 
     PavonisImage = Screen.Spawn(class'UIImage', Screen);
 	PavonisImage.bAnimateOnInit = false;
-	PavonisImage.InitImage('PavonisShellImage', "img:///UILibrary_LWOTC.512pxPavonisLogofinalmerged");
+	PavonisImage.InitImage('PavonisShellImage', "img:///UILibrary_LW_Overhaul.512pxPavonisLogofinalmerged");
     PavonisImage.SetPosition(-461, 510);
     PavonisImage.SetScale(0.5);
 

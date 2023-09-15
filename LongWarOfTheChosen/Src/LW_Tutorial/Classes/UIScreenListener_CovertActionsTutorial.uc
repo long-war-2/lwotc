@@ -21,7 +21,7 @@ event OnInit(UIScreen Screen)
 		`PRESBASE.UITutorialBox(
 			default.CovertActionsTutorialTitle,
 			default.CovertActionsTutorialBody,
-			"img:///UILibrary_LWOTC.TutorialImages.LWCovert_Actions_Failure");
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWCovert_Actions_Failure");
 
 		// Showing the tutorial box hides the screen below it, but we actually want
 		// the covert actions screen to be visible behind the tutorial box. So we

@@ -30,10 +30,6 @@ var private float currDuration_F;
 var private float CurrentFlameLength_F;
 var private float TargetFlameLength_F;
 var private bool bWaitingToFire_F;
-var bool bInitUpdateAim;
-
-var XGUnit                      SourceXGUnit;
-var XComUnitPawn                SourceUnitPawn;
 
 var private array<StateObjectReference> alreadySignaledTracks_F;
 
@@ -56,46 +52,28 @@ function bool FindTrack(StateObjectReference find)
 
 function Init()
 {
-	super.Init();
-	bInitUpdateAim=false;
-}
-
-function InitUpdateAim()
-{
 	local Vector TempDir;
-	
+
+	super.Init();
+
 	AbilityState = XComGameState_Ability(`XCOMHISTORY.GetGameStateForObjectID(AbilityContext.InputContext.AbilityRef.ObjectID));
 
-
-//Commenting out the targeting method check so I can change the targeting method on Firestorm.
-//	if (ClassIsChildOf(AbilityState.GetMyTemplate().TargetingMethod, class'X2TargetingMethod_Grenade'))
-//	{
+	if (ClassIsChildOf(AbilityState.GetMyTemplate().TargetingMethod, class'X2TargetingMethod_Grenade'))
+	{
 		radiusTemplate = X2AbilityMultiTarget_Radius(AbilityState.GetMyTemplate().AbilityMultiTargetStyle);
 
 		//ConeLength = radiusTemplate.GetConeLength(AbilityState);
 		//ConeWidth = radiusTemplate.GetConeEndDiameter(AbilityState) * 1.35;
 		ConeLength = radiusTemplate.GetTargetRadius(AbilityState) * 1.35;
 
-		//StartLocation = zeroVector;
-		//EndLocation = zeroVector;
-
-		if (AbilityContext.InputContext.MovementPaths.Length > 0)
-		{
-			StartLocation = AbilityContext.InputContext.MovementPaths[0].MovementData[AbilityContext.InputContext.MovementPaths[0].MovementData.Length - 1].Position;
-		}
-		else
-		{
-    		StartLocation = UnitPawn.Location;
-			
-		}
-		EndLocation = StartLocation;
-		EndLocation.x += 1.0;
+		StartLocation = UnitPawn.Location;
+		EndLocation = UnitPawn.Location;
 		EndLocation.x += 1.0;
 		//EndLocation = AbilityContext.InputContext.TargetLocations[0];
-		UnitDir = Normal(vector(UnitPawn.Rotation));
+		
 
 		ConeDir = EndLocation - StartLocation;
-		
+		UnitDir = Normal(vector(UnitPawn.Rotation));
 
 		ConeAngle = PI; // * 2;
 
@@ -114,8 +92,7 @@ function InitUpdateAim()
 		SweepEndLocation_End = StartLocation + (TempDir * ConeLength);
 
 		SecondaryTiles = AbilityContext.InputContext.VisibleNeighborTiles;
-		//`Log("SecondaryTiles Array length: " @SecondaryTiles.Length);
-	//}
+	}
 
 	PawnStartRotation = UnitPawn.Rotation;
 
@@ -141,8 +118,6 @@ simulated state Executing
 
 	simulated function UpdateAim(float DT)
 	{
-	
-
 		local ParticleSystemComponent p;
 		local int i;
 		local float aimAngle, unitAngle;
@@ -170,12 +145,6 @@ simulated state Executing
 		local Actor HitActor;
 		local XComGameStateVisualizationMgr VisMgr;
 
-		if (!bInitUpdateAim)
-   		{
-        	InitUpdateAim();
-        	bInitUpdateAim = true;
-    	}
-
 		VisMgr = `XCOMVISUALIZATIONMGR;
 
 		//find endlocation of target arc
@@ -188,9 +157,6 @@ simulated state Executing
 
 		Facing.Yaw = unitAngle * RadToUnrRot;
 
-		//experimental:
-
-
 		EndLocation = StartLocation + (TempDir * ConeLength);
 
 		//Modify EndLocation based on any hits against the world
@@ -201,7 +167,6 @@ simulated state Executing
 		//`SHAPEMGR.DrawLine(StartLocation, SweepEndLocation_End, 6, MakeLinearColor(1.0f, 1.0f, 0.0f, 1.0f));
 		//`SHAPEMGR.DrawSphere(EndLocation, Vect(10, 10, 10), MakeLinearColor(0.0f, 1.0f, 0.0f, 1.0f));
 
-		//`log("UnitPawn class name: " @UnitPawn.Class.Name);
 		if (UnitPawn.AimEnabled)
 		{
 			if (!beginAimingAnim_F)
@@ -265,8 +230,7 @@ simulated state Executing
 			}
 
 			//blend aim anim
-			//`log("StartLocation" @StartLocation @ "Endlocation " @ EndLocation @ " aimAngle : " @ aimAngle @ " unitAngle : " @ unitAngle  @"Facing: " @Facing @ " currDuration : " @ currDuration_F @ " DT : " @ DT );
-			//`LOG("ArcDelta:" @ ArcDelta * RadToDeg @ "unitAngle:" @ unitAngle* RadToDeg @ "aimAngle:" @ aimAngle* RadToDeg @ "Facing:" @ Facing.Yaw * UnrRotToDeg);
+			`log("Endlocation " @ EndLocation @ " aimAngle : " @ aimAngle @ " unitAngle : " @ unitAngle @ " currDuration : " @ currDuration_F @ " DT : " @ DT );
 			UnitPawn.SetRotation(PawnStartRotation + Facing);
 			UnitPawn.TargetLoc = EndLocation;
 
@@ -447,11 +411,7 @@ Begin:
 		//// Sleep long enough for the fog to be revealed
 		//Sleep(1.0f * GetDelayModifier());
 	//}
-	//while(Unit.IdleStateMachine.IsEvaluatingStance())
-//	{
-//		Sleep(0.0f);
-//	}
-	Unit.IdleStateMachine.GoDormant();
+
 	Unit.CurrentFireAction = self;
 	UnitPawn.EnableRMA(true, true);
 	UnitPawn.EnableRMAInteractPhysics(true);

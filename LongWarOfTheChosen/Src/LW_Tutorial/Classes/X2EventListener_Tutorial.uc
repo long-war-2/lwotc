@@ -94,7 +94,7 @@ static function EventListenerReturn OnDroneSighted(Object EventData, Object Even
 		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
 				default.DroneSightedTitle,
 				default.DroneSightedBody,
-				"img:///UILibrary_LWOTC.TutorialImages.LWDrone");
+				"img:///UILibrary_LW_Overhaul.TutorialImages.LWDrone");
 	}
 	return ELR_NoInterrupt;
 }
@@ -109,7 +109,7 @@ static function EventListenerReturn OnRainbowTrooperSighted(Object EventData, Ob
 		class'XComGameStateContext_TutorialBox'.static.AddModalTutorialBoxToHistoryExplicit(
 				default.RainbowTrooperSightedTitle,
 				default.RainbowTrooperSightedBody,
-				"img:///UILibrary_LWOTC.TutorialImages.LWRainbow");
+				"img:///UILibrary_LW_Overhaul.TutorialImages.LWRainbow");
 	}
 	return ELR_NoInterrupt;
 }
@@ -187,7 +187,7 @@ static function EventListenerReturn OnMissionDiscovered(
 		`PRESBASE.UITutorialBox(
 			default.FirstMissionDiscoveredTitle,
 			default.FirstMissionDiscoveredBody,
-			"img:///UILibrary_LWOTC.TutorialImages.LWMission_Map_Icon");
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWMission_Map_Icon");
 	}
 
 	return ELR_NoInterrupt;
@@ -234,7 +234,7 @@ static function EventListenerReturn HandleFirstRetaliation(
 		`PRESBASE.UITutorialBox(
 			default.FirstRetaliationTitle,
 			default.FirstRetaliationBody,
-			"img:///UILibrary_LWOTC.TutorialImages.LWOTC_Logo");
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWOTC_Logo");
 	}
 
 	return ELR_NoInterrupt;
@@ -255,7 +255,7 @@ static function EventListenerReturn ShowArchivesTutorial(
 		`PRESBASE.UITutorialBox(
 			default.CommandersQuartersEnteredTitle,
 			default.CommandersQuartersEnteredBody,
-			"img:///UILibrary_LWOTC.TutorialImages.LWOTC_Logo");
+			"img:///UILibrary_LW_Overhaul.TutorialImages.LWOTC_Logo");
 	}
 
 	return ELR_NoInterrupt;

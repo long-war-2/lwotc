@@ -181,9 +181,9 @@ static function X2DataTemplate CreateBullpup_Coil_Template()
 
 	Template.GameArchetype = "LWSMG_CG.Archetypes.WP_SMG_CG";
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_AssaultRifle';
-	Template.AddDefaultAttachment('Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagA", , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_MagA");
-	Template.AddDefaultAttachment('Stock', "LWAccessories_CG.Meshes.LW_Coil_StockA", , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_StockA");
-	Template.AddDefaultAttachment('Reargrip', "LWAccessories_CG.Meshes.LW_Coil_ReargripA", , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_ReargripA");
+	Template.AddDefaultAttachment('Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagA", , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_MagA");
+	Template.AddDefaultAttachment('Stock', "LWAccessories_CG.Meshes.LW_Coil_StockA", , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_StockA");
+	Template.AddDefaultAttachment('Reargrip', "LWAccessories_CG.Meshes.LW_Coil_ReargripA", , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_ReargripA");
 	Template.AddDefaultAttachment('Light', "BeamAttachments.Meshes.BeamFlashLight"); //, , "img:///UILibrary_Common.ConvAssaultRifle.ConvAssault_LightA");  // re-use common conventional flashlight
 
 
@@ -341,11 +341,11 @@ static function X2DataTemplate CreateVektor_Coil()
 	Template.NumUpgradeSlots = 3;
 
 	Template.GameArchetype = "LW_StrikeRifle.Archetypes.WP_DMR_CG";
-	Template.AddDefaultAttachment('Mag', "LWSniperRifle_CG.Meshes.LW_CoilSniper_MagA");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_MagA");
-	Template.AddDefaultAttachment('Stock', "LWAccessories_CG.Meshes.LW_Coil_StockB");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_StockA");
-	Template.AddDefaultAttachment('Reargrip', "LWAccessories_CG.Meshes.LW_Coil_ReargripA");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_ReargripA");
+	Template.AddDefaultAttachment('Mag', "LWSniperRifle_CG.Meshes.LW_CoilSniper_MagA");//, , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_MagA");
+	Template.AddDefaultAttachment('Stock', "LWAccessories_CG.Meshes.LW_Coil_StockB");//, , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_StockA");
+	Template.AddDefaultAttachment('Reargrip', "LWAccessories_CG.Meshes.LW_Coil_ReargripA");//, , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_ReargripA");
 	Template.AddDefaultAttachment('Light', "BeamAttachments.Meshes.BeamFlashLight"); //);//, , "img:///UILibrary_Common.ConvAssaultRifle.ConvAssault_LightA");  // re-use common conventional flashlight
-	Template.AddDefaultAttachment('Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticC");//, , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_OpticA");
+	Template.AddDefaultAttachment('Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticC");//, , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSniperRifle_OpticA");
 
 	Template.UIArmoryCameraPointTag = 'UIPawnLocation_WeaponUpgrade_Sniper';
 

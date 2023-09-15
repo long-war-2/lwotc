@@ -146,7 +146,6 @@ static function X2AbilityTemplate AddSnapShot()
 	//Template.OverrideAbilities.AddItem('SniperStandardFire');
 
 	Template.AdditionalAbilities.AddItem('SnapShotAimModifier');
-	Template.AdditionalAbilities.AddItem('WeaponHandling_LW');
 	//Template.AdditionalAbilities.AddItem('SnapShotOverwatch');
 
 	return Template;	
@@ -815,25 +814,6 @@ static function X2AbilityTemplate AddBastionPassive()
 	return PurePassive('BastionPassive', "img:///UILibrary_LW_PerkPack.LW_AbilityBastion", , 'eAbilitySource_Psionic');
 }
 
-final static function EventListenerReturn SolaceBastionCleanseListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
-{
-	local XComGameState_Unit TargetUnit;
-	local XComGameState_Ability SourceAbility;
-
-	SourceAbility = XComGameState_Ability(CallbackData);
-	if (SourceAbility == None)
-	{
-		return ELR_NoInterrupt;
-	}
-
-	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_Unit', TargetUnit, , , GameState.HistoryIndex)
-	{
-		SourceAbility.AbilityTriggerAgainstSingleTarget(TargetUnit.GetReference(), false);
-	}
-
-	return ELR_NoInterrupt;
-}
-
 static function X2AbilityTemplate AddBastionCleanse()
 {
 	local X2AbilityTemplate                     Template;
@@ -857,7 +837,7 @@ static function X2AbilityTemplate AddBastionCleanse()
 	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventListener.ListenerData.EventID = 'UnitMoveFinished';
 	EventListener.ListenerData.Filter = eFilter_None;
-	EventListener.ListenerData.EventFn = SolaceBastionCleanseListener;  // keep this, since it's generically just calling the associate ability
+	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.SolaceCleanseListener;  // keep this, since it's generically just calling the associate ability
 	Template.AbilityTriggers.AddItem(EventListener);
 
 	//removes any ongoing effects

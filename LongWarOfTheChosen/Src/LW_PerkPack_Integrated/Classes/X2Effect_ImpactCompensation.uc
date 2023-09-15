@@ -20,14 +20,6 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	XComGameState NewGameState)
 {
 	local UnitValue Value;
-	local int PotentialMaxStacks;
-
-	PotentialMaxStacks = MaxStacks;
-
-	if(TargetDamageable.HasSoldierAbility('Impenetrable_LW'))
-	{
-		PotentialMaxStacks+= 1;
-	}
 
 	Value.fValue = 0.0;
 	TargetDamageable.GetUnitValue(class'X2Ability_PerkPackAbilitySet2'.const.DAMAGED_COUNT_NAME, Value);
@@ -35,7 +27,7 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	if (Value.fValue == 0)
 		return 0;
 
-	return -CurrentDamage * (1 - ((1 - DamageModifier) ** Min(PotentialMaxStacks, Value.fValue)));
+	return -CurrentDamage * (1 - ((1 - DamageModifier) ** Min(MaxStacks, Value.fValue)));
 }
 
 defaultproperties

@@ -13,8 +13,8 @@ class X2DownloadableContentInfo_LWOfficerPack extends X2DownloadableContentInfo;
 /// </summary>
 static event OnLoadedSavedGame()
 {
-	//`Log("LW OfficerPack : Starting OnLoadedSavedGame");
-	//UpdateOTSFacility();
+	`Log("LW OfficerPack : Starting OnLoadedSavedGame");
+	UpdateOTSFacility();
 }
 
 static event OnPostTemplatesCreated()
@@ -30,12 +30,12 @@ static event OnPostTemplatesCreated()
 	{
 		StaffSlotDef.StaffSlotTemplateName = 'OTSStaffSlot';
 		StaffSlotDef.bStartsLocked = false;
-		FacilityTemplate.StaffSlotDefs.InsertItem(1, StaffSlotDef);
+		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
 
 		StaffSlotDef.StaffSlotTemplateName = 'OTSOfficerSlot';
 		StaffSlotDef.bStartsLocked = true;
-		FacilityTemplate.StaffSlotDefs.InsertItem(2, StaffSlotDef);
-		FacilityTemplate.StaffSlotDefs.InsertItem(3, StaffSlotDef);
+		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
+		FacilityTemplate.StaffSlotDefs.AddItem(StaffSlotDef);
 		`log("LW OfficerPack: Added OTSOfficerSlot to facility template OfficerTrainingSchool");
 
 		FacilityTemplate.Upgrades.AddItem('OTS_LWOfficerTrainingUpgrade');
@@ -76,7 +76,7 @@ static function FindFacilityTemplateAllDifficulties(name DataName, out array<X2F
 /// </summary>
 static event OnLoadedSavedGameToStrategy()
 {
-	//UpdateOTSFacility();
+	UpdateOTSFacility();
 	TransferLegacyOfficerAbilities();
 }
 
@@ -129,7 +129,7 @@ static function TransferLegacyOfficerAbilities()
 // update OTS Facility data
 static event OnPostMission()
 {
-	//UpdateOTSFacility();
+	UpdateOTSFacility();
 	UpdateScavengerRewards();
 	TransferLegacyOfficerAbilities();
 }
@@ -350,8 +350,6 @@ static function UpdateOTSFacility()
 	local XComGameStateHistory History;
 	local name TemplateName;
 	local XComGameState_FacilityXCom FacilityState, OTSState;
-	///local StateObjectReference StaffSlotReference;
-	//local XComGameState_StaffSLot StaffSlotState;
 
 	`Log("LW OfficerPack : Searching for existing OTS Facility");
 	TemplateName = 'OfficerTrainingSchool';
@@ -372,15 +370,7 @@ static function UpdateOTSFacility()
 	}
 
 	`Log("LW OfficerPack: Found existing OTS, Attempting to update StaffSlots");
-/*
-	foreach OTSState.StaffSLots(StaffSlotReference)
-	{
-		StaffSlotState = XComGameState_StaffSlot(`XCOMHISTORY.GetGameStateForObjectID(StaffSlotReference.ObjectID));
-
-		//loop here
-	}  */
-
-	if(OTSState.StaffSlots.length == 1)
+	if(OTSState.StaffSlots.Length == 1)
 	{
 		`log("LW OfficerPack: OTS had only single staff slot, attempting to update facility"); 
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Updating OTS Facility for LW_OfficerPack");

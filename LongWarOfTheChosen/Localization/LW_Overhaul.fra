@@ -167,8 +167,6 @@ ActivityObjectives[0]="Libérer les rebelles captifs"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Capturer des caches de ressources ADVENT"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="La Résistance a découvert la localisation de ressources ennemies vitales que nous pourrions récupérer pour notre propre usage.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="La Résistance a découvert la localisation de ressources ennemies vitales que nous pourrions récupérer pour notre propre usage.", MissionIndex=0)
-
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"

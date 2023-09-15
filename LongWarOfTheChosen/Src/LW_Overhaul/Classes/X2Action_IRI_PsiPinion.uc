@@ -103,7 +103,7 @@ Begin:
 
 	for (LW_TimeDelayIndex = 0; LW_TimeDelayIndex < AbilityContext.InputContext.MultiTargets.Length; LW_TimeDelayIndex++)
 	{
-		Sleep(0.1f);
+		Sleep(0.2f);
 		AddProjectiles(LW_TimeDelayIndex);
 	}
 

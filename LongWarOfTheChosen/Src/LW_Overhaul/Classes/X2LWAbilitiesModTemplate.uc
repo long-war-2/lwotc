@@ -44,8 +44,6 @@ var config int MIND_SCORCH_BURNING_BASE_DAMAGE;
 var config int MIND_SCORCH_BURNING_DAMAGE_SPREAD;
 var config int MIND_SCORCH_BURN_CHANCE;
 
-var config int SUSTAIN_WOUND_HP_REDUCTTION;
-
 var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
 
 var config array<name> PISTOL_ABILITY_WEAPON_CATS;
@@ -107,18 +105,11 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			UpdatePurifierFlamethrower(Template);
 			break;
 		case 'Fuse':
-			//class'Helpers_LW'.static.MakeFreeAction(Template);
-			MakeFuseNonTurnEnding(Template);
+			class'Helpers_LW'.static.MakeFreeAction(Template);
 			break;
 		case 'PriestStasis':
 			MakeAbilityNonTurnEnding(Template);
 			MakeAbilitiesUnusableOnLost(Template);
-			MakeAbilityHostile(Template);
-			break;
-		case 'HunterGrapple':
-		case 'Grapple':
-		case 'PoweredGrapple':
-			AddGrappledThisTurnEffect(Template);
 			break;
 		case 'Solace':
 			RemoveRoboticsAsValidTargetsOfSolace(Template);
@@ -188,8 +179,11 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'VanishingWindReveal':
 			Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 			break;
-		case 'ChosenAllSeeing':
-			Template.ChosenExcludeTraits.Length = 0;
+		case 'ShadowStep': //Make these exclusive for chosen
+			Template.ChosenExcludeTraits.AddItem('LightningReflexes_LW');
+			break;
+		case 'LightningReflexes_LW':
+			Template.ChosenExcludeTraits.AddItem('ShadowStep');
 			break;
 		case 'Slash_LW':
 		case 'SwordSlice_LW':
@@ -202,9 +196,6 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'ChosenRegenerate':
 			UpdateChosenRegenerate(Template);
-			break;
-		case 'TrackingShot':
-			class'Helpers_LW'.static.MakeFreeAction(Template);
 			break;
 		case 'HarborWave':
 			ReworkHarborWave(Template);
@@ -730,17 +721,6 @@ static function RemoveRoboticsAsValidTargetsOfSolaceCleanse(X2AbilityTemplate Te
 	local X2Effect_RemoveEffects RemoveEffects;
 	local X2Condition_UnitProperty UnitCondition;
 	local int i, j;
-	local X2AbilityTrigger_EventListener EventListener;
-
-	//Tedster - swap ELR to a final one for a bit of a performance boost.
-	Template.AbilityTriggers.Length=0;
-
-	EventListener = new class'X2AbilityTrigger_EventListener';
-	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
-	EventListener.ListenerData.EventID = 'UnitMoveFinished';
-	EventListener.ListenerData.Filter = eFilter_None;
-	EventListener.ListenerData.EventFn = class'X2Ability_PerkPackAbilitySet2'.static.SolaceBastionCleanseListener;  // keep this, since it's generically just calling the associate ability
-	Template.AbilityTriggers.AddItem(EventListener);
 
 	for (i = 0; i < Template.AbilityTargetEffects.Length; i++)
 	{
@@ -771,7 +751,7 @@ static function RemoveTheDeathFromHolyWarriorDeath(X2AbilityTemplate Template)
 static function UpdateSustainEffect(X2AbilityTemplate Template)
 {
 	local X2Effect_Sustain_LW SustainEffect;
-	local X2Effect_GreaterPadding	GreaterPaddingEffect;
+
 	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_Sustain');
 
 	SustainEffect = new class'X2Effect_Sustain_LW';
@@ -779,13 +759,6 @@ static function UpdateSustainEffect(X2AbilityTemplate Template)
 	SustainEffect.EffectName='Sustain';
 	SustainEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
 	Template.AddTargetEffect(SustainEffect);
-
-	GreaterPaddingEffect = new class 'X2Effect_GreaterPadding';
-	GreaterPaddingEffect.BuildPersistentEffect (1, true, false);
-	GreaterPaddingEffect.Padding_HealHP = default.SUSTAIN_WOUND_HP_REDUCTTION;
-
-	Template.AddTargetEffect(GreaterPaddingEffect);
-
 }
 
 static function UseNewDeadeyeEffect(X2AbilityTemplate Template)
@@ -951,13 +924,6 @@ static function ReworkMindScorch(X2AbilityTemplate Template)
 	local X2Effect_Burning BurningEffect;
 	local X2Effect_ApplyWeaponDamage DamageEffect;
 	local array<name> SkipExclusions;
-	local X2AbilityCooldown_MindScorch Cooldown;
-
-
-	Cooldown = new class'X2AbilityCooldown_MindScorch';
-	Cooldown.iNumTurns = class'X2Ability_ChosenWarlock'.default.MINDSCORCH_COOLDOWN_LOCAL;
-	Cooldown.NumGlobalTurns = class'X2Ability_ChosenWarlock'.default.MINDSCORCH_COOLDOWN_GLOBAL;
-	Template.AbilityCooldown = Cooldown;
 
 	ShooterCondition = new class'X2Condition_UnitProperty';
 	ShooterCondition.ExcludeConcealed = true;
@@ -1119,26 +1085,19 @@ static function BuffTeleportAlly(X2AbilityTemplate Template)
 	Template.AddTargetEffect(ReactionEffect);
 	*/
 }
-//For whatever reason effects and unit value don't seem to be working
-static function AddGrappledThisTurnEffect(X2AbilityTemplate Template)
-{
-	local AdditionalCooldownInfo CooldownInfo;
-	CooldownInfo.AbilityName = 'TrackingShotMark';
-	CooldownInfo.NumTurns = 1;
 
-	Template.AbilityCooldown.AditionalAbilityCooldowns.AddItem(CooldownInfo);
-
-}
-
-	
 static function UpdateSummon(X2AbilityTemplate Template)
 {
+	local X2AbilityCooldown					Cooldown;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 
-	//class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template,'X2Effect_SetUnitValue');
-	//class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
+	class'Helpers_LW'.static.RemoveAbilityShooterEffects(Template,'X2Effect_SetUnitValue');
+	class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_UnitValue');
 
-	class'Helpers_LW'.static.RemoveAbilityShooterConditions(Template, 'X2Condition_BattleState');
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.SUMMON_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
 
 	Template.BuildNewGameStateFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildGameState;
 	Template.BuildVisualizationFn = class'X2Ability_LW_ChosenAbilities'.static.ChosenSummonFollowers_BuildVisualization;
@@ -1185,7 +1144,7 @@ static function UpdateChosenRegenerate(X2AbilityTemplate Template)
 
 static function ReworkHarborWave(X2AbilityTemplate Template)
 {
-	local X2Effect_ApplyHarborWaveDamage DamageEffect;
+	local X2Effect_ApplyWeaponDamage DamageEffect;
 
 
 	Template.AbilityToHitCalc = new class'X2AbilityToHitCalc_DeadEye';
@@ -1194,7 +1153,7 @@ static function ReworkHarborWave(X2AbilityTemplate Template)
 	class'Helpers_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_ApplyWeaponDamage');
 	class'Helpers_LW'.static.RemoveAbilityMultiTargetEffects(Template, 'X2Effect_Knockback');
 
-	DamageEffect = new class'X2Effect_ApplyHarborWaveDamage';
+	DamageEffect = new class'X2Effect_ApplyWeaponDamage';
 	DamageEffect.bIgnoreArmor = true;
 	Template.AddMultiTargetEffect(DamageEffect);
 
@@ -1212,25 +1171,8 @@ static function	MakeAbilityWorkWhenBurning(X2AbilityTemplate Template)
 static function AddQuickdrawMobilityBoost(X2AbilityTemplate Template)
 
 {
-	Template.AdditionalAbilities.AddItem('QuickdrawMobilityIncrease');
+	Template. AdditionalAbilities.AddItem('QuickdrawMobilityIncrease');
 	
-}
-
-static function MakeFuseNonTurnEnding(X2AbilityTemplate Template)
-{
-	local int i;
-	local X2AbilityCost_ActionPoints ActionPointCost;
-
-	for(i = 0; i < Template.AbilityCosts.Length; i++)
-	{
-		ActionPointCost = X2AbilityCost_ActionPoints(Template.AbilityCosts[i]);
-
-		if(ActionPointCost != none)
-		{
-			ActionPointCost.bConsumeAllPoints=false;
-			break;
-		}
-	}
 }
 
 static function AddDisablingShotEffect(X2AbilityTemplate Template)
@@ -1245,10 +1187,6 @@ static function AddDisablingShotEffect(X2AbilityTemplate Template)
 	DisableWeaponEffect.TargetConditions.AddItem(AbilityCondition);
 
 	Template.AddTargetEffect(DisableWeaponEffect);
-	if(Template.DataName == 'FaceOff')
-	{
-		Template.AddMultiTargetEffect(DisableWeaponEffect);
-	}
 }
 
 static function DisplayMindShieldPassive(X2AbilityTemplate Template)
@@ -1429,11 +1367,6 @@ static function PatchMultiShotFinalShot(X2AbilityTemplate Template, name FirstSh
 static function name GetMultiShotContinueUnitValueName(name AbilityName)
 {
 	return name(AbilityName $ "Continue");
-}
-
-static function MakeAbilityHostile(X2AbilityTemplate Template)
-{
-	Template.Hostility = eHostility_Offensive;
 }
 
 defaultproperties

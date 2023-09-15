@@ -22,8 +22,6 @@ static function array<X2DataTemplate> CreateTemplates()
     local array<X2DataTemplate> Templates;
 
     Templates.AddItem(PlaceDelayedEvacZone());
-    Templates.AddItem(GrantEvacFlare());
-
     return Templates;
 }
 
@@ -52,7 +50,6 @@ static function X2AbilityTemplate PlaceDelayedEvacZone()
 
     StandardAim = new class'X2AbilityToHitCalc_StandardAim';
     StandardAim.bIndirectFire = true;
-    StandardAim.bGuaranteedHit = true;
     StandardAim.bAllowCrit = false;
     Template.AbilityToHitCalc = StandardAim;
 
@@ -93,39 +90,6 @@ static function X2AbilityTemplate PlaceDelayedEvacZone()
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
     return Template;
-}
-
-static function X2AbilityTemplate GrantEvacFlare()
-{
-    local X2AbilityTemplate Template;
-    local X2Effect_TemporaryItem ItemEffect;
-
-    `CREATE_X2ABILITY_TEMPLATE(Template, 'GrantEvacFlare');
-
-    Template.AbilitySourceName = 'eAbilitySource_Standard';
-	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
-	Template.Hostility = eHostility_Neutral;
-	Template.AbilityToHitCalc = default.DeadEye;
-	Template.AbilityTargetStyle = default.SelfTarget;
-	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	Template.bCrossClassEligible = false;
-	Template.bUniqueSource = true;
-
-    Template.bDontDisplayInAbilitySummary = true;
-    Template.bDisplayInUITooltip = false;
-
-    ItemEffect = new class'X2Effect_TemporaryItem';
-    ItemEffect.ItemName = 'EvacFlare';
-    ItemEffect.EffectName = 'GrantEvacFlareEffect';
-    ItemEffect.DuplicateResponse = eDupe_Ignore;
-
-    ItemEffect.BuildPersistentEffect(1, true, false, false);
-	Template.AddTargetEffect(ItemEffect);
-
-    Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
-
-    return Template;
-
 }
 
 static function int GetEvacDelay()
@@ -207,8 +171,6 @@ simulated function XComGameState PlaceDelayedEvacZone_BuildGameState(XComGameSta
 
     `assert(AbilityContext.InputContext.TargetLocations.Length == 1);
     SpawnLocation = AbilityContext.InputContext.TargetLocations[0];
-    `LWTrace("Evac Target location Array length:" @ AbilityContext.InputContext.TargetLocations.Length);
-    `LWTrace(`SHOWVAR(AbilityContext.InputContext.TargetLocations[0]));
 
     Delay = GetEvacDelay();
     class'XComGameState_LWEvacSpawner'.static.InitiateEvacZoneDeployment(Delay, SpawnLocation, NewGameState);
