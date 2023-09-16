@@ -463,6 +463,10 @@ LocPromotionPopupText="<Bullet/> 槍林彈雨消耗<Ability:SelfAmmoCost/>彈藥
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 連環射擊消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 連環射擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 連環射擊可以對無掩體敵人（如狂戰士，機械敵人）造成毀滅性的打擊，或者增加命中加成。<br/>"
 
+[ChainShotSnapShot X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> 連環射擊消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 連環射擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 連環射擊可以對無掩體敵人（如狂戰士，機械敵人）造成毀滅性的打擊，或者增加命中加成。<br/>"
+
+
 [SaturationFire X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 飽和火力消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 飽和火力有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 飽和火力將對錐型範圍內的每一個敵人進行標準射擊，並將損壞或摧毀錐型範圍內隨機的掩體。<br/>"
 ;End Translation

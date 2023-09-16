@@ -463,6 +463,10 @@ LocPromotionPopupText="<Bullet/> 枪林弹雨消耗<Ability:SelfAmmoCost/>弹药
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击可以对无掩体敌人（如狂战士，机械敌人）造成毁灭性的打击，或者增加命中加成。<br/>"
 
+[ChainShotSnapShot X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击可以对无掩体敌人（如狂战士，机械敌人）造成毁灭性的打击，或者增加命中加成。<br/>"
+
+
 [SaturationFire X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 饱和火力消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 饱和火力有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 饱和火力将对锥型范围内的每一个敌人进行标准射击，并将损坏或摧毁锥型范围内随机的掩体。<br/>"
 ;End Translation

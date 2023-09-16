@@ -1893,7 +1893,6 @@ static function TryIncreasingChosenLevelWithGameState(int CurrentForceLevel, XCo
 			ChosenState.Level = 3;
 		}
 
-
 		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 		if (ChosenState.bMetXCom && !ChosenState.bDefeated)
 		{
@@ -1901,7 +1900,6 @@ static function TryIncreasingChosenLevelWithGameState(int CurrentForceLevel, XCo
 		}
 		// Replace Old Tag with new Tag in missions
 		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
-	
 
 }
 

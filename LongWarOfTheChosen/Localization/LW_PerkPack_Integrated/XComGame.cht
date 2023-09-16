@@ -232,6 +232,14 @@ LocLongDescription="進行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴擊率�
 LocHelpText="進行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴擊率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴擊傷害加成的射擊。冷卻時間<Ability:SelfCooldown_LW/>回合。"
 LocPromotionPopupText="<Bullet/>進行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴擊率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴擊傷害加成的射擊。冷卻時間<Ability:SelfCooldown_LW/>回合。<br/>"
 
+[PrecisionShotSnapShot X2AbilityTemplate]
+LocFriendlyName="精準射擊"
+LocFlyOverText="精準射擊"
+LocLongDescription="進行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴擊率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴擊傷害加成的射擊。冷卻時間<Ability:SelfCooldown_LW/>回合。"
+LocHelpText="進行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴擊率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴擊傷害加成的射擊。冷卻時間<Ability:SelfCooldown_LW/>回合。"
+LocPromotionPopupText="<Bullet/>進行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴擊率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴擊傷害加成的射擊。冷卻時間<Ability:SelfCooldown_LW/>回合。<br/>"
+
+
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="循環火力"
 LocFlyOverText="循環火力"
@@ -1025,6 +1033,13 @@ LocFlyOverText="超級炸藥"
 LocPromotionPopupText="<Bullet/>你的爆炸攻擊能夠造成暴擊傷害（<Ability:BIGGESTBOOMSCHANCE/>%的幾率+<Ability:BIGGESTBOOMSDAMAGE/>傷害）。<br/>"
 
 [RapidFire X2AbilityTemplate]
+LocFriendlyName="速射"
+LocLongDescription="連續向敵人開火兩次。 每次射擊<Ability:RAPIDFIREPENALTY/>命中懲罰。消耗一個行動點。"
+LocHelpText="連續向敵人開火兩次。每次射擊<Ability:RAPIDFIREPENALTY/>命中懲罰。"
+LocFlyOverText="速射"
+LocPromotionPopupText="<Bullet/> 速射有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/>"
+
+[RapidFireSnapShot X2AbilityTemplate]
 LocFriendlyName="速射"
 LocLongDescription="連續向敵人開火兩次。 每次射擊<Ability:RAPIDFIREPENALTY/>命中懲罰。消耗一個行動點。"
 LocHelpText="連續向敵人開火兩次。每次射擊<Ability:RAPIDFIREPENALTY/>命中懲罰。"

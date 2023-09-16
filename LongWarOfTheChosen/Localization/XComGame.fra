@@ -497,6 +497,10 @@ LocPromotionPopupText="<Bullet/> Cette capacité nécessite <Ability:SelfAmmoCos
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Cette capacité nécessite <Ability:SelfAmmoCost/> munition(s).<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tours.<br/>"
 
+[ChainShotSnapShot X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Cette capacité nécessite <Ability:SelfAmmoCost/> munition(s).<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tours.<br/>"
+
+
 [SaturationFire X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Cette capacité nécessite <Ability:SelfAmmoCost/> munition(s).<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tours.<br/><Bullet/> Déclenche un tir normal sur chaque ennemi dans le cône et endommage ou détruit aléatoirement des abris dans la zone d'effet.<br/>"
 ;End translated

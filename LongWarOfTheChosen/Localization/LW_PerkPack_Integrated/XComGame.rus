@@ -233,6 +233,14 @@ LocLongDescription="Особый выстрел: +<Ability:PRECISION_SHOT_CRIT_B
 LocHelpText="Особый выстрел: +<Ability:PRECISION_SHOT_CRIT_BONUS/> к шансу нанести критический урон и +<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% к критическому урону. Ходов до перезарядки: <Ability:SelfCooldown_LW/>."
 LocPromotionPopupText="<Bullet/> Особый выстрел: +<Ability:PRECISION_SHOT_CRIT_BONUS/> к шансу нанести критический урон и +<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% к критическому урону.<br/><Bullet/> Ходов до перезарядки: <Ability:SelfCooldown_LW/>."
 
+[PrecisionShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Точный выстрел"
+LocFlyOverText="Точный выстрел"
+LocLongDescription="Особый выстрел: +<Ability:PRECISION_SHOT_CRIT_BONUS/> к шансу нанести критический урон и +<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% к критическому урону. Ходов до перезарядки: <Ability:SelfCooldown_LW/>."
+LocHelpText="Особый выстрел: +<Ability:PRECISION_SHOT_CRIT_BONUS/> к шансу нанести критический урон и +<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% к критическому урону. Ходов до перезарядки: <Ability:SelfCooldown_LW/>."
+LocPromotionPopupText="<Bullet/> Особый выстрел: +<Ability:PRECISION_SHOT_CRIT_BONUS/> к шансу нанести критический урон и +<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% к критическому урону.<br/><Bullet/> Ходов до перезарядки: <Ability:SelfCooldown_LW/>."
+
+
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Серия выстрелов"
 LocFlyOverText="Серия выстрелов"

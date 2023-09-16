@@ -38,6 +38,13 @@ LocLongDescription="Aturde a los enemigos con un disparo preciso; la duración d
 LocHelpText="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
 LocPromotionPopupText="<Bullet/> Aturde a los enemigos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/> , pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> Solamente Avatares y Zombies Psiónicos no se verán afectados."
 
+[DisablingShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Sometimiento"
+LocLongDescription="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
+LocHelpText="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
+LocPromotionPopupText="<Bullet/> Aturde a los enemigos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/> , pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> Solamente Avatares y Zombies Psiónicos no se verán afectados."
+
+
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Meditación"
 LocLongDescription="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración."

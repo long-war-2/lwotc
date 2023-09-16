@@ -430,6 +430,10 @@ LocPromotionPopupText="<Bullet/> Способность требует <Ability:
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Способность требует <Ability:SelfAmmoCost/> ед. патронов.<br/><Bullet/> Перезарядка: <Ability:SelfCooldown_LW/> ход(ов).<br/><Bullet/> Способность может быть смертоносной против неприкрытых врагов или при использовании улучшений на меткость.<br/>"
 
+[ChainShotSnapShot X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Способность требует <Ability:SelfAmmoCost/> ед. патронов.<br/><Bullet/> Перезарядка: <Ability:SelfCooldown_LW/> ход(ов).<br/><Bullet/> Способность может быть смертоносной против неприкрытых врагов или при использовании улучшений на меткость.<br/>"
+
+
 [SaturationFire X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Способность требует <Ability:SelfAmmoCost/> ед. патронов.<br/><Bullet/> Перезарядка: <Ability:SelfCooldown_LW/> ход(ов).<br/><Bullet/> Способность позволяет произвести обычный выстрел по каждой цели (а также повредить случайные укрытия и прочие элементы окружения) в конической зоне обстрела.<br/>"
 

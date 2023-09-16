@@ -38,6 +38,13 @@ LocLongDescription="Выстрел, оглушающий врагов, но не
 LocHelpText="Выстрел, только оглушающий врагов. Критический удар добавляет время оглушения. Не наносит критический урон."
 LocPromotionPopupText="<Bullet/> Оглушает врагов на <Ability:DisablingShotStunActions/> действий при попадании (включая царапины).<br/><Bullet/> Оглушает дополнительно на  <Ability:DisablingShotCritStunActions/> действий при криттческом попадании, не наносит критический урон.<br/><Bullet/> Оглушающий выстрел требует <Ability:SelfAmmoCost/> ед. боекомплекта, ходов до перезарядки: <Ability:SelfCooldown/>.<br/><Bullet/> Только Аватар и Пси-зомби не могут быть оглушены."
 
+[DisablingShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Оглушающий выстрел"
+LocLongDescription="Выстрел, оглушающий врагов, но не наносящий урона. Критическое попадание добавляет время оглушения, но урона всё равно не наносит."
+LocHelpText="Выстрел, только оглушающий врагов. Критический удар добавляет время оглушения. Не наносит критический урон."
+LocPromotionPopupText="<Bullet/> Оглушает врагов на <Ability:DisablingShotStunActions/> действий при попадании (включая царапины).<br/><Bullet/> Оглушает дополнительно на  <Ability:DisablingShotCritStunActions/> действий при криттческом попадании, не наносит критический урон.<br/><Bullet/> Оглушающий выстрел требует <Ability:SelfAmmoCost/> ед. боекомплекта, ходов до перезарядки: <Ability:SelfCooldown/>.<br/><Bullet/> Только Аватар и Пси-зомби не могут быть оглушены."
+
+
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Медитация"
 LocLongDescription="Увеличивает концентрацию Храмовника на <Ability:MeditationFocusRecovery/>."
