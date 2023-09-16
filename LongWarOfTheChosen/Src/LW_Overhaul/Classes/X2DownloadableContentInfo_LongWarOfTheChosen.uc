@@ -314,7 +314,6 @@ static event OnLoadedSavedGameToStrategy()
 
 						if(!ALienHQ.bChosenActive) //mark chosen as active on HQ if they weren't active yet.
 						{
-							AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 							AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
 							AlienHQ.OnChosenActivation(NewGameState);
 						}
@@ -3927,7 +3926,7 @@ exec function LWSetForceLevel(int NewLevel, optional name RegionName)
 		if(RegionName == '' || RegionState.GetMyTemplateName() == RegionName)
 		{
 			RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
-			UpdatedRegionalAI = XComGameState_WorldRegion_LWStrategyAI(NewGameState.CreateStateObject(class'XComGameState_WorldRegion_LWStrategyAI', RegionalAIState.ObjectID));
+			UpdatedRegionalAI = XComGameState_WorldRegion_LWStrategyAI(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion_LWStrategyAI', RegionalAIState.ObjectID));
 			NewGameState.AddStateObject(UpdatedRegionalAI);
 
 			UpdatedRegionalAI.LocalForceLevel = NewLevel;
@@ -3936,7 +3935,8 @@ exec function LWSetForceLevel(int NewLevel, optional name RegionName)
 
 	//patch the chosen level if needed
 	
-	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
 	AllChosen = AlienHQ.GetAllChosen(, true);
 
 	foreach AllChosen(ChosenState)

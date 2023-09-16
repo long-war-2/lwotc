@@ -1840,10 +1840,8 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 // version that takes in a NewGameState for DLCInfo use for patching existing campaigns.
 static function TryIncreasingChosenLevelWithGameState(int CurrentForceLevel, XComGameState NewGameState, XComGameState_AdventChosen ChosenState)
 {
-
 	local name OldTacticalTag, NewTacticalTag;
 	local int NewChosenLevel;
-
 
 		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 
