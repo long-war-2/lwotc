@@ -90,9 +90,34 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 	local string Text, nums;
 	local int Difficulty, LabelsLength, EnemyUnits;
 	local array<X2CharacterTemplate> Dummy;
+	local XComGameState_MissionSite DummyMissionSite;
 
-	MissionState.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
-	Difficulty = Max (1, ((EnemyUnits-4) / 3) + AlertModifier);
+	if(class'Helpers_LW'.default.bUseTrueDifficultyCalc)
+	{
+		if(AlertModifier == 0)
+		{
+			MissionState.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
+			`LWTrace("Schedule Selected for Dummy Mission:" @MissionState.SelectedMissionData.SelectedMissionScheduleName);
+			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @EnemyUnits);
+		}
+		else
+		{
+
+			DummyMissionSite = new class'XComGameState_MissionSite'(MissionState);
+			DummyMissionSite.Source = 'LWInfilListDummyMission';
+			DummyMissionSite.CacheSelectedMissionData(MissionState.SelectedMissionData.ForceLevel, MissionState.SelectedMissionData.AlertLevel + AlertModifier);
+			DummyMissionSite.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
+			`LWTrace("Schedule Selected for Dummy Mission:" @DummyMissionSite.SelectedMissionData.SelectedMissionScheduleName);
+			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @EnemyUnits);
+		}
+			Difficulty = Max (1, ((EnemyUnits-4) / 3));
+	}
+	else
+	{
+		MissionState.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
+		Difficulty = Max (1, ((EnemyUnits + (AlertModifier * 1.5)-4) / 3));
+	}
+
 	LabelsLength = class'X2StrategyGameRulesetDataStructures'.default.MissionDifficultyLabels.Length;
 	if(Difficulty >= LabelsLength - 1)
 	{
