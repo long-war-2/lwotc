@@ -365,6 +365,90 @@ static event OnLoadedSavedGameToStrategy()
 
 	CleanupObsoleteTacticalGamestate();
 	CacheInfiltration_Static();
+	//PatchTemplarShieldsIfNeeded();
+	RespecTemplarsIfNeeded();
+}
+
+static function RespecTemplarsIfNeeded()
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	local StateObjectReference CrewReference;
+	local XComGameState_Unit UnitState;
+
+	XComHQ = `XCOMHQ;
+
+	`LWTrace("Respeccing Templars if needed");
+	foreach XComHQ.Crew (CrewReference)
+	{
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CrewReference.ObjectID));
+		//`LWTrace("UnitState:" @UnitState);
+		if(UnitState != none)
+		{
+			//`LWTrace("Unit Class:" @UnitState.GetSoldierClassTemplate().DataName);
+			if(UnitState.GetSoldierClassTemplate().DataName == 'Templar')
+			{
+				`LWTrace("Templar Status: " @ UnitState.GetStatus());
+				// Covert Action status used for infiltrating units.
+				if(UnitState.GetStatus() == eStatus_CovertAction)
+				{
+					continue;
+				}
+
+				//Account for Kiruka's overhaul
+				//if(class'Helpers_LW'.default.bKirukaFactionOverhaulActive && !class'Helpers_LW'.default.bNewTemplarModJamActive)
+				//{
+				//	`LWTrace("Kiruka overhaul found, aborting respec");
+				//	return;
+				//}
+
+			`LWTrace("Templar abilities at squaddie pos 0:" @UnitState.AbilityTree[0].Abilities[0].AbilityName);
+			`LWTrace("Templar abilities at squaddie pos 1:" @UnitState.AbilityTree[0].Abilities[1].AbilityName);
+			`LWTrace("Templar abilities at squaddie pos 2:" @UnitState.AbilityTree[0].Abilities[2].AbilityName);
+			`LWTrace("Templar abilities at squaddie pos 3:" @UnitState.AbilityTree[0].Abilities[3].AbilityName);
+			`LWTrace("Templar abilities at squaddie pos 4:" @UnitState.AbilityTree[0].Abilities[4].AbilityName);
+			 if(UnitState.AbilityTree[0].Abilities.Find('AbilityName','IRI_TemplarShield') == INDEX_NONE)
+			 {
+				`LWTrace("New Templar Shield not found on the unit, respeccing.");
+				RespecSoldier(UnitState, true);
+			 }
+			}
+		}
+	}
+}
+
+
+static function PatchTemplarShieldsIfNeeded()
+{
+	local X2SoldierClassTemplateManager ClassMGR;
+	local array<X2DataTemplate> DifficultyVariants;
+	local X2DataTemplate DifficultyVariant;
+	local X2SoldierClassTemplate TemplarTemplate;
+	local SoldierClassWeaponType SoldierWeaponType;
+
+	`LWTrace("Patching Templar Class Template if needed");
+	if(class'Helpers_LW'.default.bKirukaFactionOverhaulActive && !class'Helpers_LW'.default.bNewTemplarModJamActive)
+	{
+		`LWTrace("Kiruka overhaul found, adding shields back to Templar");
+
+		ClassMGR = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
+		ClassMGR.FindDataTemplateAllDifficulties('Templar', DifficultyVariants);
+		foreach DifficultyVariants (DifficultyVariant)
+		{
+			TemplarTemplate = X2SoldierClassTemplate(DifficultyVariant);
+			`LWTrace("Templar Template Found:" @TemplarTemplate);
+
+			if(TemplarTemplate != none)
+			{
+				TemplarTemplate.bNoSecondaryWeapon=false;
+
+				SoldierWeaponType.WeaponType = 'templarshield';
+				SoldierWeaponType.SlotType = eInvSlot_SecondaryWeapon;
+
+				TemplarTemplate.AllowedWeapons.AddItem(SoldierWeaponType);
+			}
+		}
+	}
+	return;
 }
 
 // Make sure we're not overriding classes already overridden by another
@@ -1091,7 +1175,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 				{
 					CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
-					`LWTrace("Looking at" @CurrentCharacterTemplate.DataName);
+					//`LWTrace("Looking at" @CurrentCharacterTemplate.DataName);
 					//Tedster - add none check here as well:
 					if(CurrentCharacterTemplate == none)
 					{
@@ -1109,7 +1193,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 						continue;
 
 					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
-					`LWTrace("Changed to" @SpawnInfo.SelectedCharacterTemplateNames[idx] );
+					//`LWTrace("Changed to" @SpawnInfo.SelectedCharacterTemplateNames[idx] );
 				}
 				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
 				// Let's look over our outcome and see if it's any better
@@ -1209,7 +1293,7 @@ static function GetSpawnDistributionList(
 			{
 				if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
 				{
-					`LWTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+					//`LWTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
 					SpawnList.AddItem(CurrentListEntry);
 				}
 			}
@@ -1598,6 +1682,7 @@ static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTempl
 static event OnExitPostMissionSequence()
 {
 	CleanupObsoleteTacticalGamestate();
+	RespecTemplarsIfNeeded();
 }
 
 static function CleanupObsoleteTacticalGamestate()
@@ -3936,12 +4021,12 @@ exec function LWSetForceLevel(int NewLevel, optional name RegionName)
 	//patch the chosen level if needed
 	
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
-	AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+	//AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
 	AllChosen = AlienHQ.GetAllChosen(, true);
 
 	foreach AllChosen(ChosenState)
 	{
-		class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(RegionalAIState.LocalForceLevel, NewGameState, ChosenState);
+		class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(NewLevel, NewGameState, ChosenState);
 	}
 
 	if (NewGameState.GetNumGameStateObjects() > 0)
@@ -4660,7 +4745,7 @@ exec function RespecAllSoldiers()
 	}
 }
 
-static function RespecSoldier(XComGameState_Unit UnitState)
+static function RespecSoldier(XComGameState_Unit UnitState, optional bool bResetLoadout = false)
 {
 	local XComGameStateHistory				History;
 	local XComGameState						NewGameState;
@@ -4704,7 +4789,10 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	{
 		UnitState.RankUpSoldier(NewGameState, ClassName);
 	}
-	// UnitState.ApplySquaddieLoadout(NewGameState, XComHQ);
+	if(bResetLoadout)
+	 {
+	 	UnitState.ApplySquaddieLoadout(NewGameState, XComHQ);
+	 }
 
 	// Reapply Stat Modifiers (Beta Strike HP, etc.)
 	UnitState.bEverAppliedFirstTimeStatModifiers = false;
@@ -4935,6 +5023,8 @@ static function CacheInstalledMods()
 	class'Helpers_LW'.default.bWOTCCostBasedAbilityColorsActive = class'Helpers_LW'.static.IsModInstalled("WOTC_CostBasedAbilityColors");
 	class'Helpers_LW'.default.bWorldWarLostActive = class'Helpers_LW'.static.IsModInstalled("WorldWarLost");
 	class'Helpers_LW'.default.XCOM2RPGOverhaulActive = class'Helpers_LW'.static.IsModInstalled("XCOM2RPGOverhaul");
+	class'Helpers_LW'.default.bKirukaFactionOverhaulActive = class'Helpers_LW'.static.IsModInstalled("KirukasFactionSoldiersLWOTC");
+	class'Helpers_LW'.default.bNewTemplarModJamActive = class'Helpers_LW'.static.IsModInstalled("NewTemplarModJam");
 
 	`LWTrace("cached bSmokeStopsFlanksActive: " @ class'Helpers_LW'.default.bSmokeStopsFlanksActive );
 	`LWTrace("cached bImprovedSmokeDefenseActive: " @class'Helpers_LW'.default.bImprovedSmokeDefenseActive);
@@ -4942,6 +5032,8 @@ static function CacheInstalledMods()
 	`LWTrace("cached bWOTCCostBasedAbilityColorsActive: " @class'Helpers_LW'.default.bWOTCCostBasedAbilityColorsActive);
 	`LWTrace("cached bWorldWarLostActive: " @class'Helpers_LW'.default.bWorldWarLostActive);
 	`LWTrace("cached XCOM2RPGOverhaulActive: " @class'Helpers_LW'.default.XCOM2RPGOverhaulActive);
+	`LWTrace("cached bKirukaFactionOverhaulActive: " @class'Helpers_LW'.default.bKirukaFactionOverhaulActive);
+	`LWTrace("cached bNewTemplarModJamActive: " @class'Helpers_LW'.default.bNewTemplarModJamActive);
 
 }
 

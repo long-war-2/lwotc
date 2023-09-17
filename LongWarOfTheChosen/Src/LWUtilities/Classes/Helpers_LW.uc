@@ -159,6 +159,9 @@ var config bool bWOTCCostBasedAbilityColorsActive;
 var config bool bWorldWarLostActive;
 var config bool XCOM2RPGOverhaulActive;
 
+var config bool bKirukaFactionOverhaulActive;
+var config bool bNewTemplarModJamActive;
+
 var config array<string> cachedInstalledModNames;
 
 static final function bool IsModInstalled(coerce string DLCIdentifer)
