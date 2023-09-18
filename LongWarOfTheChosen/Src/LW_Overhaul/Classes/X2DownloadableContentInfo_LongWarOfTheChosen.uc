@@ -117,6 +117,10 @@ var config float BRUTE_SIZE_MULTIPLIER;
 // List of sitreps to remove
 var config array<Name> SitrepsToDisable;
 
+// disable patching Templars
+
+var config bool bDisableRespeccingTemplars;
+
 // End data and data structures
 //-----------------------------
 
@@ -376,6 +380,11 @@ static function RespecTemplarsIfNeeded()
 	local XComGameState_Unit UnitState;
 
 	XComHQ = `XCOMHQ;
+
+	if(default.bDisableRespeccingTemplars)
+	{
+		return;	
+	}
 
 	`LWTrace("Respeccing Templars if needed");
 	foreach XComHQ.Crew (CrewReference)
@@ -942,7 +951,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			MissionState = XComGameState_MissionSite(History.GetGameStateForObjectID(BattleData.m_iMissionID));
 		}
 	}
-	
+
 	// filter out dummy missions used by squad select infiltration calcs
 	if(MissionState.Source == 'LWInfilListDummyMission')
 	{
