@@ -845,11 +845,14 @@ function UpdateInfiltrationState(bool AllowPause)
 	if(MissionSite != none)
 	{
 		RegionState = MissionSite.GetWorldRegion();
-		RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
-		if(RegionalAI.bLiberated)
+		if(RegionState != none)
 		{
-			InfiltrationBonusOnLiberation = class'X2StrategyElement_DefaultAlienActivities'.default.INFILTRATION_BONUS_ON_LIBERATION[`STRATEGYDIFFICULTYSETTING] / 100.0;
-			HoursOfInfiltration += GetHoursToFullInfiltrationCached_Static(SquadSoldiersOnMission, SquadCovertnessCached, CurrentMission) * InfiltrationBonusOnLiberation;
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
+			if(RegionalAI.bLiberated)
+			{
+				InfiltrationBonusOnLiberation = class'X2StrategyElement_DefaultAlienActivities'.default.INFILTRATION_BONUS_ON_LIBERATION[`STRATEGYDIFFICULTYSETTING] / 100.0;
+				HoursOfInfiltration += GetHoursToFullInfiltrationCached_Static(SquadSoldiersOnMission, SquadCovertnessCached, CurrentMission) * InfiltrationBonusOnLiberation;
+			}
 		}
 	}
 	

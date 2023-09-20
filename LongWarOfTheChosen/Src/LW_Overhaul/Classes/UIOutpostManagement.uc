@@ -1026,7 +1026,7 @@ simulated function SaveLiaison()
 		if (CachedLiaison.ObjectID != 0)
 		{
 			Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', CachedLiaison.ObjectID));
-			class'LWDLCHelpers'.static.SetOnMissionStatus(Unit, NewGameState);
+			class'LWDLCHelpers'.static.SetOnMissionStatus(Unit, NewGameState, false);
 		}
 
 		// Tell XComHQ that we have a potential staffing change to update any sci/eng jobs.

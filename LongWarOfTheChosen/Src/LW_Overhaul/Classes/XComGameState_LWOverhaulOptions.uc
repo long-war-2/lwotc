@@ -25,6 +25,15 @@ var bool PauseOnRecruit_Cached;
 var localized string PauseOnRecruitMod;
 var localized string PauseOnRecruitModTooltip;
 
+
+// ***** CHosen Knowledge ***** //
+
+var Name StartingChosen;
+var array<int> ChosenKnowledgeGains_Randomized;
+
+var array<Name> ChosenNames;
+
+
 // ========================================================
 // PROTOTYPE DEFINITIONS 
 // ========================================================
@@ -34,6 +43,8 @@ function XComGameState_LWModOptions InitComponent(class NewClassType)
 	super.InitComponent(NewClassType);
 	PauseOnRecruit=EnablePauseOnRecruit;
 	GrazeBandWidth=InitialGrazeBandWidth;
+	//InitChosenKnowledge();
+	
 	return self;
 }
 
@@ -46,6 +57,16 @@ function InitModOptions()
 {
 	GrazeBandWidth_Cached = GrazeBandWidth;
     PauseOnRecruit_Cached = PauseOnRecruit;
+}
+
+function InitChosenKnowledge()
+{
+	//Remove the Starting Chosen from the other Chosen names in the array
+	ChosenNames.RemoveItem(StartingChosen);
+
+	//randomize the other two as well;
+	ChosenKnowledgeGains_Randomized = class'X2EventListener_ChosenEndOfMonth'.default.CHOSEN_KNOWLEDGE_GAINS;
+	ChosenKnowledgeGains_Randomized.RandomizeOrder();
 }
 
 //returns the number of MechaItems set -- this is the number that will be enabled in the calling UIScreen
@@ -164,6 +185,11 @@ function bool GetPauseOnRecruit()
     return PauseOnRecruit;
 }
 
+function array<int> GetChosenKnowledgeGains_Randomized()
+{
+	return ChosenKnowledgeGains_Randomized;
+}
+
 // ========================================================
 // GRAZE BAND 
 // ========================================================
@@ -191,4 +217,7 @@ defaultProperties
 {
 	GrazeBandWidth=10
     PauseOnRecruit=false
+	ChosenNames.Add("Chosen_Assassin");
+	ChosenNames.Add("Chosen_Warlock");
+	ChosenNames.Add("Chosen_Hunter");
 }

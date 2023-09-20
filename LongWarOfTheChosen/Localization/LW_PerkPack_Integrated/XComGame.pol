@@ -235,6 +235,14 @@ LocLongDescription="Oddaj strzał specjalny z premią +30 do szansy trafienia kr
 LocHelpText="Oddaj strzał specjalny z premią +30 do szansy trafienia krytycznego i 33% do obrażeń krytycznych. Czas odnawiania wynosi 3 tury."
 LocPromotionPopupText="<Bullet/> Oddaj strzał specjalny z premią +30 do szansy trafienia krytycznego i 33% do obrażeń krytycznych. Czas odnawiania wynosi 3 tury.<br/>"
 
+[PrecisionShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Precyzyjny strzał"
+LocFlyOverText="Precyzyjny strzał"
+LocLongDescription="Oddaj strzał specjalny z premią +30 do szansy trafienia krytycznego i 33% do obrażeń krytycznych. Czas odnawiania wynosi 3 tury."
+LocHelpText="Oddaj strzał specjalny z premią +30 do szansy trafienia krytycznego i 33% do obrażeń krytycznych. Czas odnawiania wynosi 3 tury."
+LocPromotionPopupText="<Bullet/> Oddaj strzał specjalny z premią +30 do szansy trafienia krytycznego i 33% do obrażeń krytycznych. Czas odnawiania wynosi 3 tury.<br/>"
+
+
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Szybki ostrzał"
 LocFlyOverText="Szybki ostrzał"

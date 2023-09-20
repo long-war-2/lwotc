@@ -22,12 +22,12 @@ static function array<X2DataTemplate> CreateTemplates()
 	`Log("LW_GrenadierAbilitySet.CreateTemplates --------------------------------");
 
 	//Effects implemented in same code that handles damage falloff for both units and environment
-	Templates.AddItem(PurePassive('Sapper', "img:///UILibrary_LW_Overhaul.LW_AbilitySapper", true));
-	Templates.AddItem(PurePassive('CombatEngineer', "img:///UILibrary_LW_Overhaul.LW_AbilityCombatEngineer", true));
-	Templates.AddItem(PurePassive('TandemWarheads', "img:///UILibrary_LW_Overhaul.LW_AbilityTandemWarheads", true));
-	//Templates.AddItem(PurePassive('NeedleGrenades', "img:///UILibrary_LW_Overhaul.LW_AbilityNeedleGrenades", true));
+	Templates.AddItem(PurePassive('Sapper', "img:///UILibrary_LWOTC.LW_AbilitySapper", true));
+	Templates.AddItem(PurePassive('CombatEngineer', "img:///UILibrary_LWOTC.LW_AbilityCombatEngineer", true));
+	Templates.AddItem(PurePassive('TandemWarheads', "img:///UILibrary_LWOTC.LW_AbilityTandemWarheads", true));
+	//Templates.AddItem(PurePassive('NeedleGrenades', "img:///UILibrary_LWOTC.LW_AbilityNeedleGrenades", true));
 	Templates.AddItem(NeedleGrenades());
-	Templates.AddItem(PurePassive('BluescreenBombs', "img:///UILibrary_LW_Overhaul.LW_AbilityBluescreenBombs", true));
+	Templates.AddItem(PurePassive('BluescreenBombs', "img:///UILibrary_LWOTC.LW_AbilityBluescreenBombs", true));
 	
 	Templates.AddItem(AddHeavyOrdnance_LW());
 	Templates.AddItem(AddProtector());
@@ -38,7 +38,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddBiggestBooms_LW());
 
 	//temporary common abilities so the UI will load
-	Templates.AddItem(PurePassive('FireInTheHole', "img:///UILibrary_LW_Overhaul.LW_AbilityFireInTheHole", true));
+	Templates.AddItem(PurePassive('FireInTheHole', "img:///UILibrary_LWOTC.LW_AbilityFireInTheHole", true));
 
 	return Templates;
 }
@@ -103,7 +103,7 @@ static function X2AbilityTemplate AddHEATWarheads()
 	local X2Effect_HEATGrenades			HEATEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'HEATWarheads');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityHEATWarheads"; 
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityHEATWarheads"; 
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -410,7 +410,7 @@ static function X2AbilityTemplate NeedleGrenades()
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'NeedleGrenades');
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityNeedleGrenades";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityNeedleGrenades";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;

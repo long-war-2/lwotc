@@ -232,6 +232,14 @@ LocLongDescription="30 치명타율 보너스를 받고 치명타 대미지가 3
 LocHelpText="30 치명타율 보너스를 받고 치명타 대미지가 33% 늘어나는 특수 사격을 합니다. 3턴 동안 쿨타임을 가집니다."
 LocPromotionPopupText="<Bullet/> 30 치명타율 보너스를 받고 치명타 대미지가 33% 늘어나는 특수 사격을 합니다. 3턴 동안 쿨타임을 가집니다.<br/>"
 
+[PrecisionShotSnapShot X2AbilityTemplate]
+LocFriendlyName="정밀 사격"
+LocFlyOverText="정밀 사격"
+LocLongDescription="30 치명타율 보너스를 받고 치명타 대미지가 33% 늘어나는 특수 사격을 합니다. 3턴 동안 쿨타임을 가집니다."
+LocHelpText="30 치명타율 보너스를 받고 치명타 대미지가 33% 늘어나는 특수 사격을 합니다. 3턴 동안 쿨타임을 가집니다."
+LocPromotionPopupText="<Bullet/> 30 치명타율 보너스를 받고 치명타 대미지가 33% 늘어나는 특수 사격을 합니다. 3턴 동안 쿨타임을 가집니다.<br/>"
+
+
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="순환 사격"
 LocFlyOverText="순환 사격"

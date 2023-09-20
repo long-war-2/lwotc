@@ -235,6 +235,14 @@ LocLongDescription="Spara un colpo speciale con +30 alla Probabilità di critico
 LocHelpText="Spara un colpo speciale con +30 alla Probabilità di critico e il 33% di danni critici bonus. Tre turni di ricarica."
 LocPromotionPopupText="<Bullet/> Spara un colpo speciale con +30 alla Probabilità di critico e il 33% di danni critici bonus. Tre turni di ricarica.<br/>"
 
+[PrecisionShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Colpo preciso"
+LocFlyOverText="Colpo preciso"
+LocLongDescription="Spara un colpo speciale con +30 alla Probabilità di critico e il 33% di danni critici bonus. Tre turni di ricarica."
+LocHelpText="Spara un colpo speciale con +30 alla Probabilità di critico e il 33% di danni critici bonus. Tre turni di ricarica."
+LocPromotionPopupText="<Bullet/> Spara un colpo speciale con +30 alla Probabilità di critico e il 33% di danni critici bonus. Tre turni di ricarica.<br/>"
+
+
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Fuoco ciclico"
 LocFlyOverText="Fuoco ciclico"

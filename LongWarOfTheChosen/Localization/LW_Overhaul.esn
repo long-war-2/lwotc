@@ -83,7 +83,7 @@ ActivityObjectives[0]="Atacar un laboratorio de investigación alienígena"
 
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Localizar rutas de vuelo enemigas"
+ActivityObjectives[0]="Localizar rutas de vuelo de Refuerzos de ADVENT"
 ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
@@ -92,7 +92,7 @@ ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Localizar rutas de vuelo enemigas"
+ActivityObjectives[0]="Localizar rutas de vuelo de Refuerzos de Emergencia de ADVENT"
 ActivityObjectives[1]="Recuperar artefactos de OVNI"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
@@ -100,7 +100,7 @@ ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Localizar rutas de vuelo enemigas"
+ActivityObjectives[0]="Localizar rutas de vuelo de Refuerzos de Emergencia de ADVENT de gran escala"
 ActivityObjectives[1]="Recuperar artefactos de OVNI"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Hemos descubierto una pista potencial sobre las actividades de ADVENT. Deberíamos investigarla.", MissionIndex=0)
@@ -664,6 +664,8 @@ m_strVIPCaptureReward="(Captura de VIP solamente)"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Apodérate de alijos de recursos ADVENT"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="La resistencia ha aprendido la ubicación de recursos enemigos vitales que podemos adquirir para nuestros propios usos.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="La resistencia ha aprendido la ubicación de recursos enemigos vitales que podemos adquirir para nuestros propios usos.", MissionIndex=0)
+
 
 ; LWOTC translated
 [UIListener_CampaignStartMenu]

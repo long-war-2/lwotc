@@ -39,7 +39,7 @@ static function X2AbilityTemplate AddFailsafe()
 	local X2Effect_Failsafe			FailsafeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Failsafe');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFailsafe";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFailsafe";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -69,7 +69,7 @@ static function X2AbilityTemplate AddFullOverride()
 
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFullOverride";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFullOverride";
 
 	Charges = new class'X2AbilityCharges';
 	Charges.InitialCharges = 1;
@@ -271,6 +271,8 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Mission()
 
 	bInfiniteDuration = true;
 	ControlEffect = class'X2StatusEffects'.static.CreateMindControlStatusEffect(99, true, bInfiniteDuration);
+	// Rename effect so that Stasis doesn't cancel the hack.
+	ControlEffect.EffectName = 'FullOverrideMindControl';
 	Template.AddTargetEffect(ControlEffect);
 
 	// Remove any pre-existing disorient.
@@ -368,6 +370,8 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Permanent()
 
 	bInfiniteDuration = true;
 	ControlEffect = class'X2StatusEffects'.static.CreateMindControlStatusEffect(99, true, bInfiniteDuration);
+	// Rename effect so that Stasis doesn't cancel the hack.
+	ControlEffect.EffectName = 'FullOverrideMindControl';
 	ControlEffect.bRemoveWhenSourceDies = false; // added for ID 1733 -- mind control effect is no longer lost when source unit dies or evacs
 	ControlEffect.EffectRemovedVisualizationFn = none; // No visualization of this effect being removed (which happens when the unit evacs or dies)
 	Template.AddTargetEffect(ControlEffect);

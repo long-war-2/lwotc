@@ -40,6 +40,11 @@ var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T1;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T2;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T3;
 
+var config int ENCRYPTION_SERVER_CHANCE;
+
+
+
+
 // An array of mission types where we should just let vanilla do its
 // thing with regard to the Chosen rather than try to override its
 // behaviour.
@@ -109,7 +114,12 @@ var config array<int> RULER_POD_SIZE_ALERT_THRESHOLDS;
 // Scaling multiplier for the Brute's pawn
 var config float BRUTE_SIZE_MULTIPLIER;
 
+// List of sitreps to remove
 var config array<Name> SitrepsToDisable;
+
+// disable patching Templars
+
+var config bool bDisableRespeccingTemplars;
 
 // End data and data structures
 //-----------------------------
@@ -138,6 +148,13 @@ static event InstallNewCampaign(XComGameState StartState)
 	local XComGameState_WorldRegion StartingRegionState;
 	local XComGameState_ResistanceFaction StartingFactionState;
 
+	//short circuit if in shell:
+	//if(class'WorldInfo'.static.GetWorldInfo().GRI.GameClass.name == 'XComShell')
+	//{
+	//	`LWTrace("InstallNewCampaign called in Shell, aborting.");
+	//	return;
+	//}
+
 	// WOTC TODO: Note that this method is called twice if you start a new campaign.
 	// Make sure that's not causing issues.
 	`Log("LWOTC: Installing a new campaign");
@@ -161,6 +178,10 @@ static event InstallNewCampaign(XComGameState StartState)
 	LimitStartingSquadSize(StartState); // possibly limit the starting squad size to something smaller than the maximum
 	DisableUnwantedObjectives(StartState);
 
+	`LWOVERHAULOPTIONS.StartingChosen = StartingRegionState.GetControllingChosen().GetMyTemplateName();
+
+	`LWOVERHAULOptions.InitChosenKnowledge();
+
 	class'XComGameState_LWSquadManager'.static.CreateFirstMissionSquad(StartState);
 
 	// Clear starting resistance modes because we don't actually start
@@ -175,6 +196,7 @@ static function OnPreCreateTemplates()
 {
 	`Log("Long War of the Chosen (LWOTC) version: " $ class'LWVersion'.static.GetVersionString());
 	PatchModClassOverrides();
+	CacheInstalledMods();
 }
 
 /// <summary>
@@ -190,6 +212,28 @@ static event OnPostTemplatesCreated()
 	UpdateChosenActivities();
 	UpdateChosenSabotages();
 	UpdateSitreps();
+	ModifyYellAbility();
+	
+}
+
+// Remove the red alert affect from the yell ability since it cause AI units to go into red alert
+// Credit to RedDobe for this function.
+static function ModifyYellAbility()
+{
+    local X2AbilityTemplateManager        AbilityMgr;
+    local array<X2AbilityTemplate>        arrTemplate;
+    local int                            i;
+
+    // Access Ability Template Manager
+    AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
+    
+    // Access Template for all difficulties
+    AbilityMgr.FindAbilityTemplateAllDifficulties('Yell', arrTemplate);
+    for (i = 0; i < arrTemplate.Length; i++)
+    {
+        arrTemplate[i].AbilityMultiTargetEffects.length = 0;
+          `Log("Removing Yell Red Alert effects");
+    }
 }
 
 /// <summary>
@@ -200,17 +244,112 @@ static event OnLoadedSavedGameToStrategy()
 	local XComGameState NewGameState;
 	local XComGameStateHistory History;
 	local XComGameState_Objective ObjectiveState;
+	local XComGameState_LWOutpostManager OutpostManager;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_LWOutpost OutpostState;
+	local XComGameState_LWToolboxOptions ToolboxOptions;
+	local XComGameState_LWOverhaulOptions OverhaulOptions;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local int i;
+
 	
 	History = `XCOMHISTORY;
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Patching existing campaign data");
 
+	// TODO: Remove these post 1.0 - START
+
+	// LWOTC beta 2: Remove the 'OnMonthlyReportAlert' listener as it's no
+	// longer needed (Not Created Equally is handled by the 'UnitRandomizedStats'
+	// event now).
+	ToolboxOptions = class'XComGameState_LWToolboxOptions'.static.GetToolboxOptions();
+	`XEVENTMGR.UnRegisterFromEvent(ToolboxOptions, 'OnMonthlyReportAlert');
+
+	// Make sure pistol abilities apply to the new pistol slot
+	LWMigratePistolAbilities();
+
+	// If there are rebels that have already ranked up, make sure they have some abilities
+	OutpostManager = `LWOUTPOSTMGR;
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Patching existing campaign data");
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		if (RegionState.HaveMadeContact())
+		{
+			OutpostState = OutpostManager.GetOutpostForRegion(RegionState);
+			OutpostState.UpdateRebelAbilities(NewGameState);
+		}
+	}
+		
 	if (`LWOVERHAULOPTIONS == none)
 		class'XComGameState_LWOverhaulOptions'.static.CreateModSettingsState_ExistingCampaign(class'XComGameState_LWOverhaulOptions');
 
-	if (NewGameState.GetNumGameStateObjects() > 0)
-		History.AddGameStateToHistory(NewGameState);
-	else
-		History.CleanupPendingGameState(NewGameState);
+	`LWTrace("Chosen Knowledge array length:" @ `LWOVERHAULOPTIONS.GetChosenKnowledgeGains_Randomized().length);
+	OverhaulOptions = `LWOVERHAULOPTIONS;
+	if(OverhaulOptions.GetChosenKnowledgeGains_Randomized().length == 0)
+	{
+		OverhaulOptions = XComGameState_LWOverhaulOptions(NewGameState.ModifyStateObject(class'XComGameState_LWOverhaulOptions', OverhaulOptions.ObjectID));
+		OverhaulOptions.StartingChosen = XComGameState_WorldRegion(History.GetGameStateForObjectID(`XCOMHQ.StartingRegion.ObjectID)).GetControllingChosen().GetMyTemplateName();
+		OverhaulOptions.InitChosenKnowledge();
+	}
+	
+
+	
+	// Patch chosen if enabled:
+	if (!`SecondWaveEnabled('DisableChosen'))
+	{
+
+		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+		AllChosen = AlienHQ.GetAllChosen(, true);
+
+
+		foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+		{
+			// check we're above the minimum FL to activate chosen
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
+			if(RegionalAI.LocalForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_ACTIVATE_AT_FL)
+			{	
+				// loop over each chosen
+				foreach AllChosen (ChosenState)
+				{
+					// Only activate chosen that aren't already active
+					if (!ChosenState.bMetXCom)
+					{
+
+						if(!ALienHQ.bChosenActive) //mark chosen as active on HQ if they weren't active yet.
+						{
+							AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+							AlienHQ.OnChosenActivation(NewGameState);
+						}
+
+						ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+						ChosenState.Strengths.length = 0;
+						ChosenState.NumEncounters++; 
+
+						// Activate this chosen if they aren't active yet
+						ChosenState.bMetXCom = true;
+
+						for (i = ChosenState.Weaknesses.length - 1; i >= 0; i--)
+						{
+							if (ChosenState.Weaknesses[i] != 'ChosenSkirmisherAdversary' && 
+								ChosenState.Weaknesses[i] != 'ChosenTemplarAdversary' &&
+								ChosenState.Weaknesses[i] != 'ChosenReaperAdversary')
+							{
+								ChosenState.Weaknesses.Remove(i,1);
+							}
+						}
+						
+					}
+					//patch the chosen level if needed
+					class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(RegionalAI.LocalForceLevel, NewGameState, ChosenState);
+				}			
+			// only do the outer loop once since only one region is needed
+			break;
+			}
+		}
+	}
+
+	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 
 	//make sure that critical narrative moments are active
 	foreach History.IterateByClassType(class'XComGameState_Objective', ObjectiveState)
@@ -230,6 +369,95 @@ static event OnLoadedSavedGameToStrategy()
 
 	CleanupObsoleteTacticalGamestate();
 	CacheInfiltration_Static();
+	//PatchTemplarShieldsIfNeeded();
+	RespecTemplarsIfNeeded();
+}
+
+static function RespecTemplarsIfNeeded()
+{
+	local XComGameState_HeadquartersXCom XComHQ;
+	local StateObjectReference CrewReference;
+	local XComGameState_Unit UnitState;
+
+	XComHQ = `XCOMHQ;
+
+	if(default.bDisableRespeccingTemplars)
+	{
+		return;	
+	}
+
+	`LWTrace("Respeccing Templars if needed");
+	foreach XComHQ.Crew (CrewReference)
+	{
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CrewReference.ObjectID));
+		//`LWTrace("UnitState:" @UnitState);
+		if(UnitState != none)
+		{
+			//`LWTrace("Unit Class:" @UnitState.GetSoldierClassTemplate().DataName);
+			if(UnitState.GetSoldierClassTemplate().DataName == 'Templar')
+			{
+				`LWTrace("Templar Status: " @ UnitState.GetStatus());
+				// Covert Action status used for infiltrating units.
+				if(UnitState.GetStatus() == eStatus_CovertAction)
+				{
+					continue;
+				}
+
+				//Account for Kiruka's overhaul
+				//if(class'Helpers_LW'.default.bKirukaFactionOverhaulActive && !class'Helpers_LW'.default.bNewTemplarModJamActive)
+				//{
+				//	`LWTrace("Kiruka overhaul found, aborting respec");
+				//	return;
+				//}
+
+			`LWTrace("Templar abilities at squaddie pos 0:" @UnitState.AbilityTree[0].Abilities[0].AbilityName);
+			`LWTrace("Templar abilities at squaddie pos 1:" @UnitState.AbilityTree[0].Abilities[1].AbilityName);
+			`LWTrace("Templar abilities at squaddie pos 2:" @UnitState.AbilityTree[0].Abilities[2].AbilityName);
+			`LWTrace("Templar abilities at squaddie pos 3:" @UnitState.AbilityTree[0].Abilities[3].AbilityName);
+			`LWTrace("Templar abilities at squaddie pos 4:" @UnitState.AbilityTree[0].Abilities[4].AbilityName);
+			 if(UnitState.AbilityTree[0].Abilities.Find('AbilityName','IRI_TemplarShield') == INDEX_NONE)
+			 {
+				`LWTrace("New Templar Shield not found on the unit, respeccing.");
+				RespecSoldier(UnitState, true);
+			 }
+			}
+		}
+	}
+}
+
+
+static function PatchTemplarShieldsIfNeeded()
+{
+	local X2SoldierClassTemplateManager ClassMGR;
+	local array<X2DataTemplate> DifficultyVariants;
+	local X2DataTemplate DifficultyVariant;
+	local X2SoldierClassTemplate TemplarTemplate;
+	local SoldierClassWeaponType SoldierWeaponType;
+
+	`LWTrace("Patching Templar Class Template if needed");
+	if(class'Helpers_LW'.default.bKirukaFactionOverhaulActive && !class'Helpers_LW'.default.bNewTemplarModJamActive)
+	{
+		`LWTrace("Kiruka overhaul found, adding shields back to Templar");
+
+		ClassMGR = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
+		ClassMGR.FindDataTemplateAllDifficulties('Templar', DifficultyVariants);
+		foreach DifficultyVariants (DifficultyVariant)
+		{
+			TemplarTemplate = X2SoldierClassTemplate(DifficultyVariant);
+			`LWTrace("Templar Template Found:" @TemplarTemplate);
+
+			if(TemplarTemplate != none)
+			{
+				TemplarTemplate.bNoSecondaryWeapon=false;
+
+				SoldierWeaponType.WeaponType = 'templarshield';
+				SoldierWeaponType.SlotType = eInvSlot_SecondaryWeapon;
+
+				TemplarTemplate.AllowedWeapons.AddItem(SoldierWeaponType);
+			}
+		}
+	}
+	return;
 }
 
 // Make sure we're not overriding classes already overridden by another
@@ -706,7 +934,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local array<SpawnDistributionListEntry>	LeaderSpawnList;
 	local array<SpawnDistributionListEntry>	FollowerSpawnList;
 
-	`LWTRACE("Parsing Encounter : " $ EncounterName);
+	`LWDiversityTrace("Parsing Encounter : " $ EncounterName);
 
 	History = `XCOMHISTORY;
 	MissionState = XComGameState_MissionSite(SourceObject);
@@ -715,7 +943,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		BattleData = XComGameState_BattleData(History.GetSingleGameStateObjectForClass(class'XComGameState_BattleData', true));
 		if (BattleData == none)
 		{
-			`LWTRACE("Could not detect mission type. Aborting with no mission variations applied.");
+			`LWDiversityTrace("Could not detect mission type. Aborting with no mission variations applied.");
 			return;
 		}
 		else
@@ -724,19 +952,26 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		}
 	}
 
+	// filter out dummy missions used by squad select infiltration calcs
+	if(MissionState.Source == 'LWInfilListDummyMission')
+	{
+		`LWDiversityTrace("Dummy mission for squad select detected, aborting");
+		return;
+	}
+
 	// Ignore the final and any DLC missions
-	`LWTRACE("Mission type = " $ MissionState.GeneratedMission.Mission.sType $ " detected.");
+	`LWDiversityTrace("Mission type = " $ MissionState.GeneratedMission.Mission.sType $ " detected.");
 	switch(MissionState.GeneratedMission.Mission.sType)
 	{
 		case "GP_Fortress":
 		case "GP_Fortress_LW":
-			`LWTRACE("Fortress mission detected. Aborting with no mission variations applied.");
+			`LWDiversityTrace("Fortress mission detected. Aborting with no mission variations applied.");
 			return;
 		case "AlienNest":
 		case "LastGift":
 		case "LastGiftB":
 		case "LastGiftC":
-			`LWTRACE("DLC mission detected. Aborting with no mission variations applied.");
+			`LWDiversityTrace("DLC mission detected. Aborting with no mission variations applied.");
 			return;
 		default:
 			break;
@@ -747,7 +982,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	// checked]
 	if (Left(string(EncounterName), 11) == "GP_Fortress")
 	{
-		`LWTRACE("Fortress mission detected. Aborting with no mission variations applied.");
+		`LWDiversityTrace("Fortress mission detected. Aborting with no mission variations applied.");
 		return;
 	}
 
@@ -777,22 +1012,22 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	//	`LWTRACE ("PE2");
 	if (RNFSpawnerState != none)
 	{
-		`LWTRACE("Called from AIReinforcementSpawner.OnReinforcementSpawnerCreated -- modifying reinforcement spawninfo");
+		`LWDiversityTrace("Called from AIReinforcementSpawner.OnReinforcementSpawnerCreated -- modifying reinforcement spawninfo");
 	}
 	else
 	{
 		if (MissionState != none)
 		{
-			`LWTRACE("Called from MissionSite.CacheSelectedMissionData -- modifying preplaced spawninfo");
+			`LWDiversityTrace("Called from MissionSite.CacheSelectedMissionData -- modifying preplaced spawninfo");
 		}
 	}
 
 	//`LWTRACE ("PE3");
 
-	`LWTRACE("Encounter composition:");
+	`LWDiversityTrace("Encounter composition:");
 	foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 	{
-		`LWTRACE("Character[" $ idx $ "] = " $ CharacterTemplateName);
+		`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
 	}
 
 	PodSize = SpawnInfo.SelectedCharacterTemplateNames.length;
@@ -802,6 +1037,15 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 	swap = false;
 
+	// Tedster - none check leader Character template
+	if(LeaderCharacterTemplate == none)
+	{
+		`LWDiversityTrace("Nonexistant Pod Leader found.");
+		swap = true;
+		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
+		`LWDiversityTrace("Swapping Nonexistant leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0] @ "and rerolling followers");
+	}
+
 	// override native insisting every mission have a codex while certain tactical options are active
 	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
 
@@ -810,7 +1054,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	{
 		swap = true;
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
-		`LWTRACE ("Swapping Codex leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+		`LWDiversityTrace("Swapping Codex leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 	}
 
 	// forces special conditions for avatar to pop
@@ -827,7 +1071,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				default:
 					swap = true;
 					SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
-					`LWTRACE ("Swapping Avatar leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+					`LWDiversityTrace("Swapping Avatar leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 					break;
 			}
 		}
@@ -842,7 +1086,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') == eObjectiveState_InProgress)
 		swap = true;
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
-		`LWTRACE ("Swapping Reinf Captain leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+		`LWDiversityTrace("Swapping Reinf Captain leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
 	}
 
 	// Now deal with followers
@@ -854,56 +1098,64 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		FirstFollowerName = FindMostCommonMember(SpawnInfo.SelectedCharacterTemplateNames);
 		FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(FirstFollowerName);
 
-		`LWTRACE("Pod Leader:" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
-		`LWTRACE("Pod Follower:" @ FirstFollowerName);
+		`LWDiversityTrace("Pod Leader:" @ SpawnInfo.SelectedCharacterTemplateNames[0]);
+		`LWDiversityTrace("Pod Follower:" @ FirstFollowerName);
 
 		if (LeaderCharacterTemplate.bIsTurret)
 			return;
 
 		if (InStr(EncounterName, "LIST_BOSSx") != -1 && InStr(EncounterName, "_LW") == -1)
 		{
-			`LWTRACE("Don't Edit certain vanilla Boss pods");
+			`LWDiversityTrace("Don't Edit certain vanilla Boss pods");
 			return;
 		}
 		if (Instr(EncounterName, "Chryssalids") != -1)
 		{
-			`LWTRACE("Don't edit Chryssypods");
+			`LWDiversityTrace("Don't edit Chryssypods");
 			return;
 		}
 
 		// Handle vanilla pod construction of one type of alien follower;
 		if (!swap && LeaderCharacterTemplate.bIsAlien && FollowerCharacterTemplate.bIsAlien && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) > 1)
 		{
-			`LWTRACE("Mixing up alien-dominant pod");
+			`LWDiversityTrace("Mixing up alien-dominant pod");
 			swap = true;
 		}
 
 		// Check for pod members that shouldn't appear yet for plot reaons
 		if (CountMembers('Cyberus', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed)
 		{
-			`LWTRACE("Removing Codex for objective reasons");
+			`LWDiversityTrace("Removing Codex for objective reasons");
 			swap = true;
 		}
 
 		if (CountMembers ('AdvPsiWitch', SpawnInfo.SelectedCharacterTemplateNames) >= 1 && XCOMHQ.GetObjectiveStatus('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 		{
-			`LWTRACE("Exicising Avatar for objective reasons");
+			`LWDiversityTrace("Exicising Avatar for objective reasons");
 			swap = true;
 		}
 
 		if (!swap)
 		{
-			for (k = 0; k < SpawnInfo.SelectedCharacterTemplateNames.Length; k++)
+			for (k = 1; k < SpawnInfo.SelectedCharacterTemplateNames.Length; k++)
 			{
 				FollowerCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[k]);
-				if (CountMembers(SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) > FollowerCharacterTemplate.default.MaxCharactersPerGroup)
+				// Tedster - add none check for follower templates
+				if(FollowerCharacterTemplate == none)
 				{
+					`LWDiversityTrace("Detected nonexistant follower" @ SpawnInfo.SelectedCharacterTemplateNames[k]);
+					swap = true;
+				}
+				// Tedster - fix below check to check spawn entry and not character template MCPG setting.
+				if (CountMembers(SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) > GetCharacterSpawnEntry(FollowerSpawnList, FollowerCharacterTemplate, ForceLevel).MaxCharactersPerGroup)
+				{
+					`LWDiversityTrace("Too many" @SpawnInfo.SelectedCharacterTemplateNames[k]);
 					swap = true;
 				}
 			}
 			if (swap)
 			{
-				`LWTRACE("Mixing up pod that violates MCPG setting");
+				`LWDiversityTrace("Mixing up pod that violates MCPG setting or contains nonexistant units.");
 			}
 		}
 
@@ -912,7 +1164,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		{
 			if (CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 1)
 			{
-				`LWTRACE ("Mixing up undiverse 4/5-enemy pod");
+				`LWDiversityTrace("Mixing up undiverse 4/5-enemy pod");
 				swap = true;
 			}
 		}
@@ -923,7 +1175,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 			// if a max of one guy is different
 			if (!swap && CountMembers(FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) >= PodSize - 2)
 			{
-				`LWTRACE ("Mixing up undiverse 5+ enemy pod");
+				`LWDiversityTrace("Mixing up undiverse 5+ enemy pod");
 				swap = true;
 			}
 		}
@@ -938,17 +1190,26 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				// let's look at
 				foreach SpawnInfo.SelectedCharacterTemplateNames(CharacterTemplateName, idx)
 				{
-					if (idx <= 2)
+					CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
+					//`LWTrace("Looking at" @CurrentCharacterTemplate.DataName);
+					//Tedster - add none check here as well:
+					if(CurrentCharacterTemplate == none)
+					{
+						`LWDiversityTrace("Rerolling nonexistant Character Template.");
+						SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+					}
+
+					if (idx <= 1) // Tedster - fix off by one error 2 -> 1
 						continue;
 
 					if (SpawnInfo.SelectedCharacterTemplateNames[idx] != FirstFollowerName)
 						continue;
 
-					CurrentCharacterTemplate = TemplateManager.FindCharacterTemplate(SpawnInfo.SelectedCharacterTemplateNames[idx]);
 					if (CurrentCharacterTemplate.bIsTurret)
 						continue;
 
-					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+					//`LWTrace("Changed to" @SpawnInfo.SelectedCharacterTemplateNames[idx] );
 				}
 				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
 				// Let's look over our outcome and see if it's any better
@@ -968,10 +1229,10 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					}
 				}
 			}
-			`LWTRACE("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory) @ "New encounter composition:");
+			`LWDiversityTrace("Attempted to edit Encounter to add more enemy diversity! Satisfactory:" @ string(satisfactory) @ "New encounter composition:");
 			foreach SpawnInfo.SelectedCharacterTemplateNames (CharacterTemplateName, idx)
 			{
-				`LWTRACE("Character[" $ idx $ "] = " $ CharacterTemplateName);
+				`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
 			}
 		}
 	}
@@ -998,22 +1259,25 @@ static function GetSpawnDistributionList(
 {
 	local SpawnDistributionList CurrentList;
 	local SpawnDistributionListEntry CurrentListEntry;
+	local XComTacticalMissionManager MissionManager;
 	local name SpawnListID;
 	local int idx;
 
-	idx = class'XComTacticalMissionManager'.default.ConfigurableEncounters.Find('EncounterID', EncounterName);
+	MissionManager = `TACTICALMISSIONMGR;
+
+	idx = MissionManager.ConfigurableEncounters.Find('EncounterID', EncounterName);
 	if (IsLeaderList)
 	{
-		if (class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterLeaderSpawnList != '')
+		if (MissionManager.ConfigurableEncounters[idx].EncounterLeaderSpawnList != '')
 		{
-			SpawnListID = class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterLeaderSpawnList;
+			SpawnListID = MissionManager.ConfigurableEncounters[idx].EncounterLeaderSpawnList;
 		}
 	}
 	else
 	{
-		if (class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterFollowerSpawnList != '')
+		if (MissionManager.ConfigurableEncounters[idx].EncounterFollowerSpawnList != '')
 		{
-			SpawnListID = class'XComTacticalMissionManager'.default.ConfigurableEncounters[idx].EncounterFollowerSpawnList;
+			SpawnListID = MissionManager.ConfigurableEncounters[idx].EncounterFollowerSpawnList;
 		}
 	}
 
@@ -1022,22 +1286,22 @@ static function GetSpawnDistributionList(
 	// Fall back to using the schedule's default spawn distribution list
 	if (SpawnListID == '')
 	{
-		idx = class'XComTacticalMissionManager'.default.MissionSchedules.Find('ScheduleID', MissionState.SelectedMissionData.SelectedMissionScheduleName);
+		idx = MissionManager.MissionSchedules.Find('ScheduleID', MissionState.SelectedMissionData.SelectedMissionScheduleName);
 		if (IsLeaderList)
 		{
-			SpawnListID = class'XComTacticalMissionManager'.default.MissionSchedules[idx].DefaultEncounterLeaderSpawnList;
+			SpawnListID = MissionManager.default.MissionSchedules[idx].DefaultEncounterLeaderSpawnList;
 		}
 		else
 		{
-			SpawnListID = class'XComTacticalMissionManager'.default.MissionSchedules[idx].DefaultEncounterFollowerSpawnList;
+			SpawnListID = MissionManager.MissionSchedules[idx].DefaultEncounterFollowerSpawnList;
 		}
 	}
 
-	`LWTrace("Using spawn distribution list " $ SpawnListID);
+	`LWDiversityTrace("Using spawn distribution list " $ SpawnListID);
 	
 	// Build a merged list of all spawn distribution list entries that satisfy the selected
 	// list ID and force level.
-	foreach class'XComTacticalMissionManager'.default.SpawnDistributionLists(CurrentList)
+	foreach MissionManager.SpawnDistributionLists(CurrentList)
 	{
 		if (CurrentList.ListID == SpawnListID)
 		{
@@ -1045,7 +1309,7 @@ static function GetSpawnDistributionList(
 			{
 				if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
 				{
-					`LWTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+					`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
 					SpawnList.AddItem(CurrentListEntry);
 				}
 			}
@@ -1250,8 +1514,127 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 	return PossibleChars[PossibleChars.length - 1];
 }
 
+// improved version that doesn't have nested loops
+static function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+{
+	local X2CharacterTemplateManager CharacterTemplateMgr;
+	local X2CharacterTemplate CharacterTemplate;
+	local SpawnDistributionListEntry SpawnEntry;
+	local array<name> PossibleChars;
+	local array<float> PossibleWeights;
+	local float TotalWeight, TestWeight, RandomWeight;
+	local int k;
+	local XComGameState_HeadquartersXCom XCOMHQ;
+
+	local bool bCodexObjective, bAvatarObjective;
+
+	// setup
+	PossibleChars.Length = 0;
+	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
+
+	bCodexObjective = (XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed);
+	bAvatarObjective = (XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed);
+
+	foreach SpawnList(SpawnEntry)
+	{
+		// if entry doesn't have a unit
+		if(SpawnEntry.Template == '')
+		{
+			continue;
+		}
+
+		// short circuit if unit template doesn't exist.
+		CharacterTemplate = CharacterTemplateMgr.FindCharacterTemplate(SpawnEntry.Template);
+		if(CharacterTemplate == none)
+		{
+			continue;
+		}
+
+
+		// if entry out of force level range.
+		if (ForceLevel < SpawnEntry.MinForceLevel && ForceLevel > SpawnEntry.MaxForceLevel)
+		{
+			continue;
+		}
+
+		// if entry not in unit's supported follower list
+		if (SupportedFollowers.Find(SpawnEntry.Template) == -1)
+		{
+			continue;
+		}
+
+		// don't let cyberuses in yet
+		if (CharacterTemplate.DataName == 'Cyberus' && bCodexObjective)
+			continue;
+
+		// don't let Avatars in yet
+		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && bAvatarObjective)
+			continue;
+
+		
+		// if too many of the unit already exist
+		if (CountMembers(SpawnEntry.Template, SpawnInfo.SelectedCharacterTemplateNames) >= SpawnEntry.MaxCharactersPerGroup)
+		{
+			continue;
+		}
+		
+		TestWeight = SpawnEntry.SpawnWeight;
+		if (TestWeight > 0.0)
+		{
+			// this is a valid character type, so store off data for later random selection
+			PossibleChars.AddItem (SpawnEntry.Template);
+			PossibleWeights.AddItem (TestWeight);
+			TotalWeight += TestWeight;
+		}
+	}
+
+	//failsafe
+	if (PossibleChars.length == 0)
+	{
+		return 'AdvTrooperM1';
+	}
+
+	// roll a unit
+	RandomWeight = `SYNC_FRAND_STATIC() * TotalWeight;
+	TestWeight = 0.0;
+	for (k = 0; k < PossibleChars.length; k++)
+	{
+		TestWeight += PossibleWeights[k];
+		if (RandomWeight < TestWeight)
+		{
+			return PossibleChars[k];
+		}
+	}
+	return PossibleChars[PossibleChars.length - 1];
+}
+
+
 static function PostReinforcementCreation(out name EncounterName, out PodSpawnInfo Encounter, int ForceLevel, int AlertLevel, optional XComGameState_BaseObject SourceObject, optional XComGameState_BaseObject ReinforcementState)
 {
+    // M5 chosen handling:
+    `LWTrace("PostReinforcementCreation called. Current Force Level:" @ ForceLevel);
+
+	if (class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS.length < 4)
+		return;
+
+    if (ForceLevel >= class'X2StrategyElement_DefaultAlienActivities'.default.CHOSEN_LEVEL_FL_THRESHOLDS[3])
+    {
+        `LWTrace("Swapping M4 Chosen" @Encounter.SelectedCharacterTemplateNames[0] @"...");  //PREVIOUS CHOSEN FOR LOGGING
+
+        switch (Encounter.SelectedCharacterTemplateNames[0])
+        {
+            case 'ChosenWarlockM4'  : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenWarlockM5';    break;
+            case 'ChosenSniperM4'   : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenSniperM5';     break;
+            case 'ChosenAssassinM4' : Encounter.SelectedCharacterTemplateNames[0] = 'ChosenAssassinM5';   break;
+            default:
+                //selected template isn't one we care about
+                break;
+        }
+
+        `LWTrace("... for M5 Chosen" @Encounter.SelectedCharacterTemplateNames[0]); //POST SWAP FOR LOGGING
+      
+    }
 }
 
 // Increase the size of Lost Brutes (unless WWL is installed)
@@ -1262,7 +1645,7 @@ static function UpdateAnimations(out array<AnimSet> CustomAnimSets, XComGameStat
 
 	// No need to scale the Brute's pawn size if World War Lost is installed
 	// because we'll be using its dedicated Brute model.
-	if (class'Helpers_LW'.static.IsModInstalled("WorldWarLost"))
+	if (class'Helpers_LW'.default.bWorldWarLostActive)
 		return;
 
 	Pawn.Mesh.SetScale(default.BRUTE_SIZE_MULTIPLIER);
@@ -1357,7 +1740,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			SetupData[i].SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();
 		}	
 	}
-
+	/*
 	// Prevent units summoned by the Chosen from dropping loot and corpses
 	if (StartState.GetContext().IsA(class'XComGameStateContext_Ability'.Name))
 	{
@@ -1392,6 +1775,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 			}
 		}
 	}
+	*/
 }
 
 static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTemplate CharTemplate)
@@ -1409,6 +1793,7 @@ static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTempl
 static event OnExitPostMissionSequence()
 {
 	CleanupObsoleteTacticalGamestate();
+	RespecTemplarsIfNeeded();
 }
 
 static function CleanupObsoleteTacticalGamestate()
@@ -1557,6 +1942,7 @@ static function AddObjectivesToParcels()
 			{
 				`LWTrace("Adding 'LargePlot' objective tag to " $ PlotDef.MapName);
 				ParcelMgr.arrPlots[i].ObjectiveTags.AddItem("LargePlot");
+
 			}
 			else if (InStr(PlotDef.MapName, "_MdObj_") != INDEX_NONE && PlotDef.ObjectiveTags.Find("MediumPlot") == INDEX_NONE)
 			{
@@ -2221,19 +2607,19 @@ static function AddCritUpgrade(X2ItemTemplateManager ItemTemplateManager, Name T
 	}
 	//Parameters are : 	AttachSocket, UIArmoryCameraPointTag, MeshName, ProjectileName, MatchWeaponTemplate, AttachToPawn, IconName, InventoryIconName, InventoryCategoryIcon, ValidateAttachmentFn
 	// Assault Rifle
-	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticB", "", 'AssaultRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_OpticB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticB", "", 'AssaultRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_OpticB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgun_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 	//SMG
-	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticB", "", 'SMG_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_OpticB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticB", "", 'SMG_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_OpticB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgun_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 	// Shotgun
-	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Shotgun_Optic', "BeamShotgun.Meshes.SM_BeamShotgun_OpticB", "", 'Shotgun_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilShotgun_OpticB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Shotgun_Optic', "BeamShotgun.Meshes.SM_BeamShotgun_OpticB", "", 'Shotgun_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilShotgun_OpticB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgun_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 	// Sniper Rifle
-	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Sniper_Optic', "BeamSniper.Meshes.SM_BeamSniper_OpticB", "", 'SniperRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSniperRifle_OpticB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilSniperRifle_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Sniper_Optic', "BeamSniper.Meshes.SM_BeamSniper_OpticB", "", 'SniperRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_OpticB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilSniperRifle_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 	// Cannon
-	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "LWCannon_CG.Meshes.LW_CoilCannon_OpticB", "", 'Cannon_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilCannon_OpticB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilCannon_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "LWCannon_CG.Meshes.LW_CoilCannon_OpticB", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_OpticB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_OpticB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 }
 
@@ -2249,19 +2635,19 @@ static function AddAimBonusUpgrade(X2ItemTemplateManager ItemTemplateManager, Na
 	}
 	//Parameters are : 	AttachSocket, UIArmoryCameraPointTag, MeshName, ProjectileName, MatchWeaponTemplate, AttachToPawn, IconName, InventoryIconName, InventoryCategoryIcon, ValidateAttachmentFn
 	// Assault Rifle
-	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticC", "", 'AssaultRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_OpticC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticC", "", 'AssaultRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_OpticC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgun_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 	//SMG
-	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticC", "", 'SMG_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_OpticC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Optic', "BeamAssaultRifle.Meshes.SM_BeamAssaultRifle_OpticC", "", 'SMG_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_OpticC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgun_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 	// Shotgun
-	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Shotgun_Optic', "BeamShotgun.Meshes.SM_BeamShotgun_OpticC", "", 'Shotgun_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilShotgun_OpticC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Shotgun_Optic', "BeamShotgun.Meshes.SM_BeamShotgun_OpticC", "", 'Shotgun_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilShotgun_OpticC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgun_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 	// Sniper Rifle
-	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Sniper_Optic', "BeamSniper.Meshes.SM_BeamSniper_OpticC", "", 'SniperRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSniperRifle_OpticC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilSniperRifle_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Sniper_Optic', "BeamSniper.Meshes.SM_BeamSniper_OpticC", "", 'SniperRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_OpticC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilSniperRifle_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 	// Cannon
-	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "LWCannon_CG.Meshes.LW_CoilCannon_OpticC", "", 'Cannon_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilCannon_OpticC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilCannon_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
+	Template.AddUpgradeAttachment('Optic', 'UIPawnLocation_WeaponUpgrade_Cannon_Optic', "LWCannon_CG.Meshes.LW_CoilCannon_OpticC", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_OpticC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_OpticC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_scope");
 
 }
 
@@ -2277,21 +2663,21 @@ static function AddClipSizeBonusUpgrade(X2ItemTemplateManager ItemTemplateManage
 	}
 	//Parameters are : 	AttachSocket, UIArmoryCameraPointTag, MeshName, ProjectileName, MatchWeaponTemplate, AttachToPawn, IconName, InventoryIconName, InventoryCategoryIcon, ValidateAttachmentFn
 	// Assault Rifle
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagB", "", 'AssaultRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_MagB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMG_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagB", "", 'AssaultRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_MagB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMG_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
 
 	//SMG
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagB", "", 'SMG_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_MagB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMG_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagB", "", 'SMG_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_MagB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMG_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
 
 	// Shotgun
-	//Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "LWShotgun_CG.Meshes.LW_CoilShotgun_MagB", "", 'Shotgun_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilShotgun_MagB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilShotgun_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "LWShotgun_CG.Meshes.LW_CoilShotgun_MagB", "", 'Shotgun_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilShotgun_MagB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilShotgun_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
+	//Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "LWShotgun_CG.Meshes.LW_CoilShotgun_MagB", "", 'Shotgun_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilShotgun_MagB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilShotgun_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "LWShotgun_CG.Meshes.LW_CoilShotgun_MagB", "", 'Shotgun_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilShotgun_MagB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilShotgun_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
 
 	// Sniper Rifle
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Sniper_Mag', "LWSniperRifle_CG.Meshes.LW_CoilSniper_MagB", "", 'SniperRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSniperRifle_MagB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilSniperRifle_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Sniper_Mag', "LWSniperRifle_CG.Meshes.LW_CoilSniper_MagB", "", 'SniperRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_MagB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilSniperRifle_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
 
 	// Cannon
-	//Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagB", "", 'Cannon_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilCannon_MagB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilCannon_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagB", "", 'Cannon_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilCannon_MagB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilCannon_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
+	//Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagB", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_MagB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagB", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_MagB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_MagB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoReloadUpgradePresent);
 
 }
 
@@ -2307,19 +2693,19 @@ static function AddFreeFireBonusUpgrade(X2ItemTemplateManager ItemTemplateManage
 	}
 	//Parameters are : 	AttachSocket, UIArmoryCameraPointTag, MeshName, ProjectileName, MatchWeaponTemplate, AttachToPawn, IconName, InventoryIconName, InventoryCategoryIcon, ValidateAttachmentFn
 	// Assault Rifle
-	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAccessories_CG.Meshes.LW_Coil_ReargripB", "", 'AssaultRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_ReargripB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgunSniper_TriggerB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
+	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAccessories_CG.Meshes.LW_Coil_ReargripB", "", 'AssaultRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_ReargripB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgunSniper_TriggerB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
 
 	//SMG
-	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAccessories_CG.Meshes.LW_Coil_ReargripB", "", 'SMG_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_ReargripB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgunSniper_TriggerB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
+	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAccessories_CG.Meshes.LW_Coil_ReargripB", "", 'SMG_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_ReargripB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgunSniper_TriggerB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
 
 	// Shotgun
-	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_Shotgun_Stock', "LWAccessories_CG.Meshes.LW_Coil_ReargripB", "", 'Shotgun_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilShotgun_ReargripB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgunSniper_TriggerB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
+	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_Shotgun_Stock', "LWAccessories_CG.Meshes.LW_Coil_ReargripB", "", 'Shotgun_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilShotgun_ReargripB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgunSniper_TriggerB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
 
 	// Sniper
-	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_Sniper_Mag', "LWAccessories_CG.Meshes.LW_Coil_ReargripB", "", 'SniperRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSniperRifle_ReargripB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgunSniper_TriggerB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
+	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_Sniper_Mag', "LWAccessories_CG.Meshes.LW_Coil_ReargripB", "", 'SniperRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_ReargripB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgunSniper_TriggerB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
 
 	// Cannon
-	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_ReargripB", "", 'Cannon_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilCannon_ReargripB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilCannon_ReargripB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
+	Template.AddUpgradeAttachment('Reargrip', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_ReargripB", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_ReargripB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_ReargripB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_trigger");
 
 }
 
@@ -2335,26 +2721,26 @@ static function AddReloadUpgrade(X2ItemTemplateManager ItemTemplateManager, Name
 	}
 	//Parameters are : 	AttachSocket, UIArmoryCameraPointTag, MeshName, ProjectileName, MatchWeaponTemplate, AttachToPawn, IconName, InventoryIconName, InventoryCategoryIcon, ValidateAttachmentFn
 	// Assault Rifle
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagC", "", 'AssaultRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_MagC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMG_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagD", "", 'AssaultRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_MagD", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMG_MagD", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagC", "", 'AssaultRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_MagC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMG_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagD", "", 'AssaultRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_MagD", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMG_MagD", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
 
 	//SMG
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagC", "", 'SMG_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_MagC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMG_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagD", "", 'SMG_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_MagD", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMG_MagD", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagC", "", 'SMG_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_MagC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMG_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Mag', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_MagD", "", 'SMG_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_MagD", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMG_MagD", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
 
 	// Shotgun
-	//Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "LWShotgun_CG.Meshes.LW_CoilShotgun_MagC", "", 'Shotgun_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilShotgun_MagC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilShotgun_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "LWShotgun_CG.Meshes.LW_CoilShotgun_MagC", "", 'Shotgun_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilShotgun_MagC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilShotgun_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "LWShotgun_CG.Meshes.LW_CoilShotgun_MagD", "", 'Shotgun_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilShotgun_MagD", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilShotgun_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
+	//Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "LWShotgun_CG.Meshes.LW_CoilShotgun_MagC", "", 'Shotgun_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilShotgun_MagC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilShotgun_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "LWShotgun_CG.Meshes.LW_CoilShotgun_MagC", "", 'Shotgun_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilShotgun_MagC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilShotgun_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Shotgun_Mag', "LWShotgun_CG.Meshes.LW_CoilShotgun_MagD", "", 'Shotgun_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilShotgun_MagD", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilShotgun_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
 
 	// Sniper
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Sniper_Mag', "LWSniperRifle_CG.Meshes.LW_CoilSniper_MagC", "", 'SniperRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSniperRifle_MagC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilSniperRifle_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Sniper_Mag', "LWSniperRifle_CG.Meshes.LW_CoilSniper_MagD", "", 'SniperRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSniperRifle_MagD", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilSniperRifle_MagD", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Sniper_Mag', "LWSniperRifle_CG.Meshes.LW_CoilSniper_MagC", "", 'SniperRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_MagC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilSniperRifle_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Sniper_Mag', "LWSniperRifle_CG.Meshes.LW_CoilSniper_MagD", "", 'SniperRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_MagD", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilSniperRifle_MagD", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
 
 	// Cannon
-	//Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagC", "", 'Cannon_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilCannon_MagC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilCannon_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagC", "", 'Cannon_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilCannon_MagC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilCannon_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
-	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagD", "", 'Cannon_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilCannon_MagD", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilCannon_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
+	//Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagC", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_MagC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip");
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagC", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_MagC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.NoClipSizeUpgradePresent);
+	Template.AddUpgradeAttachment('Mag', 'UIPawnLocation_WeaponUpgrade_Cannon_Mag', "LWCannon_CG.Meshes.LW_CoilCannon_MagD", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_MagD", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_MagC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_clip", class'X2Item_DefaultUpgrades'.static.ClipSizeUpgradePresent);
 
 }
 
@@ -2370,19 +2756,19 @@ static function AddMissDamageUpgrade(X2ItemTemplateManager ItemTemplateManager, 
 	}
 	//Parameters are : 	AttachSocket, UIArmoryCameraPointTag, MeshName, ProjectileName, MatchWeaponTemplate, AttachToPawn, IconName, InventoryIconName, InventoryCategoryIcon, ValidateAttachmentFn
 	// Assault Rifle
-	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Stock', "LWAccessories_CG.Meshes.LW_Coil_StockB", "", 'AssaultRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_StockB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_StockB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
+	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Stock', "LWAccessories_CG.Meshes.LW_Coil_StockB", "", 'AssaultRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_StockB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgun_StockB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
 
 	//SMG
-	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Stock', "LWAccessories_CG.Meshes.LW_Coil_StockB", "", 'SMG_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_StockB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_StockB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
+	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Stock', "LWAccessories_CG.Meshes.LW_Coil_StockB", "", 'SMG_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_StockB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgun_StockB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
 
 	// Shotgun
-	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_Shotgun_Stock', "LWAccessories_CG.Meshes.LW_Coil_StockB", "", 'Shotgun_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilShotgun_StockB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMGShotgun_StockB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
+	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_Shotgun_Stock', "LWAccessories_CG.Meshes.LW_Coil_StockB", "", 'Shotgun_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilShotgun_StockB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMGShotgun_StockB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
 
 	// Sniper Rifle
-	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_Sniper_Stock', "LWAccessories_CG.Meshes.LW_Coil_StockC", "", 'SniperRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSniperRifle_StockC", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilSniperRifle_StockC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
+	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_Sniper_Stock', "LWAccessories_CG.Meshes.LW_Coil_StockC", "", 'SniperRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_StockC", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilSniperRifle_StockC", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
 
 	// Cannon
-	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_Cannon_Stock', "LWCannon_CG.Meshes.LW_CoilCannon_StockB", "", 'Cannon_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilCannon_StockB", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilCannon_StockB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
+	Template.AddUpgradeAttachment('Stock', 'UIPawnLocation_WeaponUpgrade_Cannon_Stock', "LWCannon_CG.Meshes.LW_CoilCannon_StockB", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_StockB", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_StockB", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_stock");
 	Template.AddUpgradeAttachment('StockSupport', '', "LWCannon_CG.Meshes.LW_CoilCannon_StockSupportB", "", 'Cannon_CG');
 
 }
@@ -2399,19 +2785,19 @@ static function AddFreeKillUpgrade(X2ItemTemplateManager ItemTemplateManager, Na
 	}
 	//Parameters are : 	AttachSocket, UIArmoryCameraPointTag, MeshName, ProjectileName, MatchWeaponTemplate, AttachToPawn, IconName, InventoryIconName, InventoryCategoryIcon, ValidateAttachmentFn
 	// Assault Rifle
-	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Suppressor', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_Silencer", "", 'AssaultRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilRifle_Suppressor", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMG_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
+	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Suppressor', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_Silencer", "", 'AssaultRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilRifle_Suppressor", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMG_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
 
 	//SMG
-	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Suppressor', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_Silencer", "", 'SMG_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSMG_Suppressor", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilRifleSMG_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
+	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Suppressor', "LWAssaultRifle_CG.Meshes.LW_CoilRifle_Silencer", "", 'SMG_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSMG_Suppressor", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilRifleSMG_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
 
 	// Shotgun
-	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_Shotgun_Suppressor', "LWShotgun_CG.Meshes.LW_CoilShotgun_Suppressor", "", 'Shotgun_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilShotgun_Suppressor", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilShotgun_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
+	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_Shotgun_Suppressor', "LWShotgun_CG.Meshes.LW_CoilShotgun_Suppressor", "", 'Shotgun_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilShotgun_Suppressor", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilShotgun_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
 
 	// Sniper Rifle
-	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_Sniper_Suppressor', "LWSniperRifle_CG.Meshes.LW_CoilSniper_Suppressor", "", 'SniperRifle_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilSniperRifle_Suppressor", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilSniperRifle_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
+	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_Sniper_Suppressor', "LWSniperRifle_CG.Meshes.LW_CoilSniper_Suppressor", "", 'SniperRifle_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilSniperRifle_Suppressor", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilSniperRifle_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
 
 	// Cannon
-	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_Cannon_Suppressor', "LWCannon_CG.Meshes.LW_CoilCannon_Suppressor", "", 'Cannon_CG', , "img:///UILibrary_LW_Overhaul.InventoryArt.CoilCannon_Suppressor", "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_CoilCannon_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
+	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_Cannon_Suppressor', "LWCannon_CG.Meshes.LW_CoilCannon_Suppressor", "", 'Cannon_CG', , "img:///UILibrary_LWOTC.InventoryArt.CoilCannon_Suppressor", "img:///UILibrary_LWOTC.InventoryArt.Inv_CoilCannon_Suppressor", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
 
 }
 
@@ -2546,6 +2932,7 @@ static function UpdateChosenSabotages()
 	UpdateWeaponLockers();
 	UpdateLabStorage();
 	UpdateSecureStorage();
+	UpdateEncryptionServer();
 }
 
 
@@ -2571,6 +2958,31 @@ static function UpdateSecureStorage()
 	Template = X2SabotageTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Sabotage_SecureStorage'));
 	Template.CanActivateFn = CanActivateSecureStorage;
 }
+
+static function UpdateEncryptionServer()
+{
+	local X2SabotageTemplate Template;
+
+	Template = X2SabotageTemplate(class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager().FindStrategyElementTemplate('Sabotage_EncryptionServer'));
+	Template.CanActivateFn = CanActivateEncryptionServer;
+
+}
+
+function bool CanActivateEncryptionServer()
+{
+	local XComGameStateHistory History;
+	local XComGameState_BlackMarket MarketState;
+
+	History = `XCOMHISTORY;
+	MarketState = XComGameState_BlackMarket(History.GetSingleGameStateObjectForClass(class'XComGameState_BlackMarket'));
+
+	if(`SYNC_RAND_STATIC(100) < default.ENCRYPTION_SERVER_CHANCE)
+	{
+		return (MarketState.bIsOpen && MarketState.ForSaleItems.Length > 0);
+	}
+	else return false;
+}
+
 function bool CanActivateWeaponLockers()
 {
 	local XComGameStateHistory History;
@@ -2582,7 +2994,7 @@ function bool CanActivateWeaponLockers()
 
 	MinMods = `ScaleStrategyArrayInt(class'X2StrategyElement_DefaultSabotages'.default.MinWeaponLockersMods);
 	
-	NumUpgrades = 10;
+	NumUpgrades = 0;
 	History = `XCOMHISTORY;
 	XComHQ = XComGameState_HeadquartersXCom(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
 
@@ -2670,18 +3082,15 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 {
 	local X2CharacterTemplate ChosenTemplate;
 	local array<ChosenStrengthWeighted> ChosenStrengths , ValidChosenStrengths;	
+	local array<ChosenStrengthWeighted> BackupChosenStrengths, FurtherBackupChosenStrengths;	
 	local ChosenStrengthWeighted WStrength;
-	local X2AbilityTemplate TraitTemplate;
-	local X2AbilityTemplateManager AbilityMgr;
 	local float finder, selection, TotalWeight;
-	local name Traitname, ExcludeTraitName;
 	local int i;
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameStateHistory History;
 
 	History = `XCOMHISTORY;
 
-	AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 	ChosenTemplate = ChosenState.GetChosenTemplate();
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
 
@@ -2691,10 +3100,13 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 		if(AlienHQ.GetForceLevel() > 14)
 		{
 			ChosenStrengths = default.HUNTER_STRENGTHS_T3;
+			BackupChosenStrengths = default.HUNTER_STRENGTHS_T2;
+			FurtherBackupChosenStrengths = default.HUNTER_STRENGTHS_T1;
 		}
 		else if(AlienHQ.GetForceLevel() > 9)
 		{
 			ChosenStrengths = default.HUNTER_STRENGTHS_T2;
+			BackupChosenStrengths = default.HUNTER_STRENGTHS_T1;
 		}
 		else 
 		{
@@ -2706,10 +3118,13 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 		if(AlienHQ.GetForceLevel() > 14)
 		{
 			ChosenStrengths = default.WARLOCK_STRENGTHS_T3;
+			BackupChosenStrengths = default.WARLOCK_STRENGTHS_T2;
+			FurtherBackupChosenStrengths = default.WARLOCK_STRENGTHS_T1;
 		}
 		else if(AlienHQ.GetForceLevel() > 9)
 		{
 			ChosenStrengths = default.WARLOCK_STRENGTHS_T2;
+			BackupChosenStrengths = default.WARLOCK_STRENGTHS_T1;
 		}
 		else 
 		{
@@ -2721,10 +3136,13 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 		if(AlienHQ.GetForceLevel() > 14)
 		{
 			ChosenStrengths = default.ASSASSIN_STRENGTHS_T3;
+			BackupChosenStrengths = default.ASSASSIN_STRENGTHS_T2;
+			FurtherBackupChosenStrengths = default.ASSASSIN_STRENGTHS_T1;
 		}
 		else if(AlienHQ.GetForceLevel() > 9)
 		{
 			ChosenStrengths = default.ASSASSIN_STRENGTHS_T2;
+			BackupChosenStrengths = default.ASSASSIN_STRENGTHS_T1;
 		}
 		else 
 		{
@@ -2734,6 +3152,46 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 	ValidChosenStrengths = ChosenStrengths;
 
 	//Remove Strengths Are already added, and those that are excluded by already added strengths
+	ValidateStrengthList(ValidChosenStrengths, ChosenState);
+	if(ValidChosenStrengths.Length == 0)
+	{
+		ValidChosenStrengths = BackupChosenStrengths;
+		ValidateStrengthList(ValidChosenStrengths, ChosenState);
+		if(ValidChosenStrengths.Length == 0)
+		{
+			ValidChosenStrengths = FurtherBackupChosenStrengths;
+			ValidateStrengthList(ValidChosenStrengths, ChosenState);
+		}
+	}
+
+		TotalWeight = 0.0f;
+		foreach ValidChosenStrengths(WStrength)
+		{
+			TotalWeight+=WStrength.Weight;
+		}
+		for(i=0; i<NumStrengthsPerLevel; i++)
+		{
+			finder = 0.0f;
+			selection = `SYNC_FRAND_STATIC() * TotalWeight;
+			foreach ValidChosenStrengths(WStrength)
+			{
+				finder += WStrength.Weight;
+				if(finder > selection)
+				{
+					break;
+				}
+			}
+			ChosenState.Strengths.AddItem(WStrength.Strength);
+		}
+}
+
+static function ValidateStrengthList(out array<ChosenStrengthWeighted> ValidChosenStrengths, XComGameState_AdventChosen ChosenState)
+{
+	local name Traitname, ExcludeTraitName;
+	local X2AbilityTemplate TraitTemplate;
+	local X2AbilityTemplateManager AbilityMgr;
+	local int i;
+	AbilityMgr = class'X2AbilityTemplateManager'.static.GetAbilityTemplateManager();
 
 	foreach ChosenState.Strengths(Traitname)
 	{
@@ -2775,28 +3233,7 @@ static function	GainNewStrengths(XComGameState NewGameState, int NumStrengthsPer
 			}
 		}
 	}
-		TotalWeight = 0.0f;
-		foreach ValidChosenStrengths(WStrength)
-		{
-			TotalWeight+=WStrength.Weight;
-		}
-		for(i=0; i<NumStrengthsPerLevel; i++)
-		{
-			finder = 0.0f;
-			selection = `SYNC_FRAND_STATIC() * TotalWeight;
-			foreach ValidChosenStrengths(WStrength)
-			{
-				finder += WStrength.Weight;
-				if(finder > selection)
-				{
-					break;
-				}
-			}
-			ChosenState.Strengths.AddItem(WStrength.Strength);
-		}
 }
-
-
 
 static function UpdateRetribution()
 {
@@ -3146,6 +3583,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'MIND_SCORCH_BURN_CHANCE':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.MIND_SCORCH_BURN_CHANCE);
 			return true;
+		case 'SUSTAIN_WOUND_HP_REDUCTTION':
+			Outstring = string(class'X2LWAbilitiesModTemplate'.default.SUSTAIN_WOUND_HP_REDUCTTION);
+			return true;
 		case 'NULL_WARD_BASE_SHIELD':
 			Outstring = string(class'X2Ability_LW_PsiOperativeAbilitySet'.default.NULL_WARD_BASE_SHIELD);
 			return true;
@@ -3212,6 +3652,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'COMBATREADINESS_AIM':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.COMBATREADINESS_AIM);
 			return true;
+		case 'COMBAT_READINESS_EXPLOSIVE_DR':
+			Outstring = string(int(class'X2Ability_XMBPerkAbilitySet'.default.COMBAT_READINESS_EXPLOSIVE_DR * 100));
+			return true;
 		case 'BLOODTHIRST_T1_DMG':
 			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T1_DMG);
 			return true;
@@ -3224,8 +3667,14 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'BLOODTHIRST_T4_DMG':
 			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T4_DMG);
 			return true;
+		case 'BLOODTHIRST_T5_DMG':
+			Outstring = string(class'X2Effect_BloodThirst'.default.BLOODTHIRST_T5_DMG);
+			return true;
 		case 'DISRUPTOR_RIFLE_PSI_CRIT':
 			Outstring = string(class'X2Ability_XPackAbilitySet'.default.DISRUPTOR_RIFLE_PSI_CRIT);
+			return true;
+		case 'FATALITY_THRESHOLD':
+			Outstring = string(int(class'X2Ability_XMBPerkAbilitySet'.default.FATALITY_THRESHOLD * 100));
 			return true;
 		default:
 			return false;
@@ -3660,6 +4109,9 @@ exec function LWSetForceLevel(int NewLevel, optional name RegionName)
 	local XComGameState NewGameState;
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState, UpdatedRegionalAI;
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
 
 	History = `XCOMHISTORY;
 
@@ -3670,12 +4122,24 @@ exec function LWSetForceLevel(int NewLevel, optional name RegionName)
 		if(RegionName == '' || RegionState.GetMyTemplateName() == RegionName)
 		{
 			RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
-			UpdatedRegionalAI = XComGameState_WorldRegion_LWStrategyAI(NewGameState.CreateStateObject(class'XComGameState_WorldRegion_LWStrategyAI', RegionalAIState.ObjectID));
+			UpdatedRegionalAI = XComGameState_WorldRegion_LWStrategyAI(NewGameState.ModifyStateObject(class'XComGameState_WorldRegion_LWStrategyAI', RegionalAIState.ObjectID));
 			NewGameState.AddStateObject(UpdatedRegionalAI);
 
 			UpdatedRegionalAI.LocalForceLevel = NewLevel;
 		}
 	}
+
+	//patch the chosen level if needed
+	
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	//AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+	AllChosen = AlienHQ.GetAllChosen(, true);
+
+	foreach AllChosen(ChosenState)
+	{
+		class'X2StrategyElement_DefaultAlienActivities'.static.TryIncreasingChosenLevelWithGameState(NewLevel, NewGameState, ChosenState);
+	}
+
 	if (NewGameState.GetNumGameStateObjects() > 0)
 		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 	else
@@ -4064,6 +4528,28 @@ exec function LWPrintVersion()
 	class'Helpers'.static.OutputMsg("Long War of the Chosen Version: " $ class'LWVersion'.static.GetVersionString());
 }
 
+exec function LWOTC_RevealAvatarProject()
+{
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+	local XComGameState_HeadquartersAlien AlienHQ;
+
+	History = `XCOMHISTORY;
+	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	if(AlienHQ != none)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Console Command Activate Avatar Project");
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
+		NewGameState.AddStateObject(AlienHQ);
+
+	// Complete the Avatar reveal project as soon as doom is added to the fortress so players know what they're up against.
+	`LWTrace("Triggering Avatar Project reveal...");
+	class'XComGameState_Objective'.static.StartObjectiveByName(NewGameState, 'LW_T2_M1_N2_RevealAvatarProject');
+	`XEVENTMGR.TriggerEvent('StartAvatarProjectReveal');
+
+	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+}
 exec function LWAddFortressDoom(optional int DoomToAdd = 1)
 {
 	local XComGameState NewGameState;
@@ -4370,7 +4856,7 @@ exec function RespecAllSoldiers()
 	}
 }
 
-static function RespecSoldier(XComGameState_Unit UnitState)
+static function RespecSoldier(XComGameState_Unit UnitState, optional bool bResetLoadout = false)
 {
 	local XComGameStateHistory				History;
 	local XComGameState						NewGameState;
@@ -4414,7 +4900,10 @@ static function RespecSoldier(XComGameState_Unit UnitState)
 	{
 		UnitState.RankUpSoldier(NewGameState, ClassName);
 	}
-	// UnitState.ApplySquaddieLoadout(NewGameState, XComHQ);
+	if(bResetLoadout)
+	 {
+	 	UnitState.ApplySquaddieLoadout(NewGameState, XComHQ);
+	 }
 
 	// Reapply Stat Modifiers (Beta Strike HP, etc.)
 	UnitState.bEverAppliedFirstTimeStatModifiers = false;
@@ -4633,9 +5122,269 @@ static function UpdateSitreps()
 			`LWTrace("Disabling Sitrep" @SitRepName @"From appearing normally on missions");
 			Sitrep.StrategyReqs.SpecialRequirementsFn = class'Helpers_LW'.static.AlwaysFail;
 		}
+	}
+}
+
+static function CacheInstalledMods()
+{
+	class'Helpers_LW'.default.bSmokeStopsFlanksActive = class'Helpers_LW'.static.IsModInstalled("SmokeStopsFlanks");
+	class'Helpers_LW'.default.bImprovedSmokeDefenseActive = class'Helpers_LW'.static.IsModInstalled("ImprovedSmokeDefense");
+
+	class'Helpers_LW'.default.bWOTCRevertOverwatchRulesActive = class'Helpers_LW'.static.IsModInstalled("WOTCRevertOverwatchRules");
+	class'Helpers_LW'.default.bWOTCCostBasedAbilityColorsActive = class'Helpers_LW'.static.IsModInstalled("WOTC_CostBasedAbilityColors");
+	class'Helpers_LW'.default.bWorldWarLostActive = class'Helpers_LW'.static.IsModInstalled("WorldWarLost");
+	class'Helpers_LW'.default.XCOM2RPGOverhaulActive = class'Helpers_LW'.static.IsModInstalled("XCOM2RPGOverhaul");
+	class'Helpers_LW'.default.bKirukaFactionOverhaulActive = class'Helpers_LW'.static.IsModInstalled("KirukasFactionSoldiersLWOTC");
+	class'Helpers_LW'.default.bNewTemplarModJamActive = class'Helpers_LW'.static.IsModInstalled("NewTemplarModJam");
+
+	`LWTrace("cached bSmokeStopsFlanksActive: " @ class'Helpers_LW'.default.bSmokeStopsFlanksActive );
+	`LWTrace("cached bImprovedSmokeDefenseActive: " @class'Helpers_LW'.default.bImprovedSmokeDefenseActive);
+	`LWTrace("cached bWOTCRevertOverwatchRulesActive: " @class'Helpers_LW'.default.bWOTCRevertOverwatchRulesActive);
+	`LWTrace("cached bWOTCCostBasedAbilityColorsActive: " @class'Helpers_LW'.default.bWOTCCostBasedAbilityColorsActive);
+	`LWTrace("cached bWorldWarLostActive: " @class'Helpers_LW'.default.bWorldWarLostActive);
+	`LWTrace("cached XCOM2RPGOverhaulActive: " @class'Helpers_LW'.default.XCOM2RPGOverhaulActive);
+	`LWTrace("cached bKirukaFactionOverhaulActive: " @class'Helpers_LW'.default.bKirukaFactionOverhaulActive);
+	`LWTrace("cached bNewTemplarModJamActive: " @class'Helpers_LW'.default.bNewTemplarModJamActive);
+
+}
+
+exec function LWOTC_SetSelectedUnitActive()
+{
+	local XComGameStateHistory				History;
+	local UIArmory							Armory;
+	local StateObjectReference				UnitRef;
+	local XComGameState_Unit				UnitState;
+	local XComGameState						NewGameState;
+	local XComGameState_HeadquartersXCom	XComHQ;
+
+	History = `XCOMHISTORY;
+
+		Armory = UIArmory(`SCREENSTACK.GetFirstInstanceOf(class'UIArmory'));
+	if (Armory == none)
+	{
+		class'Helpers'.static.OutputMsg("Error: Not in Armory");
+		return;
+	}
+
+	UnitRef = Armory.GetUnitRef();
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(UnitRef.ObjectID));
+	if (UnitState == none)
+	{
+		class'Helpers'.static.OutputMsg("Error: No Unit Selected");
+		return;
+	}
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Force unit active");
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+	XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', XComHQ.ObjectID));
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+
+	UnitState.SetStatus(eStatus_Active);
+
+	class'Helpers'.static.OutputMsg("Unit marked as active" @ `SHOWVAR(UnitState.GetFullName() ));
+
+	if( NewGameState.GetNumGameStateObjects() > 0 )
+	{
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
+
+	Armory.PopulateData();
+}
 
 
+
+exec function LWOTC_Fix_HealSelectedUnit()
+{
+	local XComGameStateHistory				History;
+	local UIArmory							Armory;
+	local StateObjectReference				UnitRef;
+	local XComGameState_Unit				UnitState;
+	local XComGameState_HeadquartersProjectHealSoldier HealProject;
+
+	History = `XCOMHISTORY;
+
+	Armory = UIArmory(`SCREENSTACK.GetFirstInstanceOf(class'UIArmory'));
+
+	if (Armory == none)
+	{
+		class'Helpers'.static.OutputMsg("Error: Not in Armory");
+		return;
+	}
+
+	UnitRef = Armory.GetUnitRef();
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(UnitRef.ObjectID));
+
+	if (UnitState == none)
+	{
+		class'Helpers'.static.OutputMsg("Error: No Unit Selected");
+		return;
 	}
 
 
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersProjectHealSoldier', HealProject)
+	{
+		if(HealProject.ProjectFocus.ObjectID == UnitRef.ObjectID)
+		{
+			HealProject.OnProjectCompleted();
+			class'Helpers'.static.OutputMsg("Unit healed" @ `SHOWVAR(UnitState.GetFullName()));
+			break;
+		}
+	}
+}
+
+exec function LWOTC_ForceAllUnitsActive()
+{
+	local XComGameStateHistory 		History;
+	local XComGameState_Unit 		UnitState;
+	local XComGameState				NewGameState;
+	local StateObjectReference		UnitReference;
+	local XComGameState_HeadquartersXCom		XComHQ;
+
+	History = `XCOMHISTORY;
+	
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Force all units active");
+
+	foreach XComHQ.Crew(UnitReference)
+	{
+		UnitState = XComGameState_Unit(History.GetGameStateForObjectID(UnitReference.ObjectID));
+		if (UnitState != none)
+		{
+			UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', UnitState.ObjectID));
+			UnitState.SetStatus(eStatus_Active);
+		}
+	}
+
+	if( NewGameState.GetNumGameStateObjects() > 0 )
+	{
+		`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
+	}
+	else
+	{
+		History.CleanupPendingGameState(NewGameState);
+	}
+}
+
+exec function LWOTC_ShowChosenKnowledgeRandomValues()
+{
+	local XComGameState_LWOverhaulOptions LWOverhaulOptions;
+
+	local array<int> chosenKnowledge;
+
+	LWOverhaulOptions = `LWOVERHAULOPTIONS;
+
+	chosenKnowledge = LWOverhaulOptions.GetChosenKnowledgeGains_Randomized();
+	class'Helpers'.static.OutputMsg(`SHOWVAR(LWOverhaulOptions.StartingChosen));
+	class'Helpers'.static.OutputMsg(`SHOWVAR(class'X2EventListener_ChosenEndOfMonth'.default.STARTING_CHOSEN_KNOWLEDGE_GAIN));
+	class'Helpers'.static.OutputMsg(`SHOWVAR(LWOverhaulOptions.ChosenNames[0]));
+	class'Helpers'.static.OutputMsg(`SHOWVAR(chosenKnowledge[0]));
+	class'Helpers'.static.OutputMsg(`SHOWVAR(LWOverhaulOptions.ChosenNames[1]));	
+	class'Helpers'.static.OutputMsg(`SHOWVAR(chosenKnowledge[1]));
+}
+
+exec function LWOTC_ShowChosenLevels()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			class'Helpers'.static.OutputMsg(`SHOWVAR(ChosenState.GetMyTemplateName()));
+			class'Helpers'.static.OutputMsg("Chosen Level:" @`SHOWVAR(ChosenState.Level));
+		}
+}
+
+exec function LWOTC_ShowChosenStrengths()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+	local name ChosenStrength;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			class'Helpers'.static.OutputMsg(`SHOWVAR(ChosenState.GetMyTemplateName()));
+			foreach ChosenState.Strengths (ChosenStrength)
+			{
+				class'Helpers'.static.OutputMsg("Chosen strengths:" @ ChosenStrength);
+			}
+		}
+}
+
+exec function LWOTC_ShowChosenStrongholdMissions()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local array<XComGameState_AdventChosen> AllChosen;
+	local XComGameState_AdventChosen ChosenState;
+
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			class'Helpers'.static.OutputMsg(`SHOWVAR(ChosenState.GetMyTemplateName()));
+			class'Helpers'.static.OutputMsg("Chosen Stronghold Mission ID:" @ ChosenState.StrongholdMission.ObjectID);
+		}
+}
+
+exec function LWOTC_SpawnChosenStrongholdMission(name ChosenName)
+{
+	local XComGameStateHistory History;
+	local XComGameState NewGameState;
+	local XComGameState_AdventChosen ChosenState;
+	local XComGameState_MissionSite MissionState;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_Reward RewardState;
+	local X2RewardTemplate RewardTemplate;
+	local X2StrategyElementTemplateManager StratMgr;
+	local X2MissionSourceTemplate MissionSource;
+	local array<XComGameState_Reward> MissionRewards;
+	local bool bFound;
+
+	History = `XCOMHISTORY;
+	bFound = false;
+
+	foreach History.IterateByClassType(class'XComGameState_AdventChosen', ChosenState)
+	{
+		if(ChosenState.GetMyTemplateName() == ChosenName)
+		{
+			bFound = true;
+			break;
+		}
+	}
+
+	if(!bFound)
+	{
+		return;
+	}
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("CHEAT: TriggerChosenAvengerAssault");
+	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	RegionState = ChosenState.GetHomeRegion();
+
+	MissionRewards.Length = 0;
+	RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_None'));
+	RewardState = RewardTemplate.CreateInstanceFromTemplate(NewGameState);
+	MissionRewards.AddItem(RewardState);
+
+	MissionSource = X2MissionSourceTemplate(StratMgr.FindStrategyElementTemplate('MissionSource_ChosenStronghold'));
+	MissionState = XComGameState_MissionSite(NewGameState.CreateNewStateObject(class'XComGameState_MissionSite'));
+	MissionState.BuildMission(MissionSource, RegionState.GetRandom2DLocationInRegion(), RegionState.GetReference(), MissionRewards);
+	MissionState.ResistanceFaction = ChosenState.RivalFaction;
+	ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+	ChosenState.StrongholdMission = MissionState.GetReference();
+
+	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 }

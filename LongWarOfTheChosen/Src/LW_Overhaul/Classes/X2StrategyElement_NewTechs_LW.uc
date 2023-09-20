@@ -66,8 +66,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Techs.AddItem(CreateRenderTech ('RenderAdventPurifierCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Purifier", 'CorpseAdventPurifier', 600, 'AlienBiotech'));
 	Techs.AddItem(CreateRenderTech ('RenderSpectreCorpse', "img:///UILibrary_XPACK_StrategyImages.IC_Spectre", 'CorpseSpectre', 600, 'AlienBiotech'));
 
-	Techs.AddItem(CreateRenderTech ('RenderAdventDroneWreck', "img:///UILibrary_LW_Overhaul.LW_IC_AutopsyDrone", 'CorpseDrone', 300, 'HybridMaterials'));
-	Techs.AddItem(CreateRenderTech ('RenderBlutonCorpse', "img:///UILibrary_LW_Overhaul.IC_AutopsyBluton", 'CorpseMutonElite', 700, 'AlienBiotech'));
+	Techs.AddItem(CreateRenderTech ('RenderAdventDroneWreck', "img:///UILibrary_LWOTC.LW_IC_AutopsyDrone", 'CorpseDrone', 300, 'HybridMaterials'));
+	Techs.AddItem(CreateRenderTech ('RenderBlutonCorpse', "img:///UILibrary_LWOTC.IC_AutopsyBluton", 'CorpseMutonElite', 700, 'AlienBiotech'));
 
 	//O so many LW Overhaul Proving Grounds Projects
 	Techs.AddItem(CreateHazMatVestProjectTemplate());
@@ -224,7 +224,7 @@ static function X2DataTemplate CreateAutopsyDroneTemplate()
 	Template.PointsToComplete = 3000;
 	Template.SortingTier = 2;
 
-	Template.strImage = "img:///UILibrary_LW_Overhaul.LW_IC_AutopsyDrone"; 
+	Template.strImage = "img:///UILibrary_LWOTC.LW_IC_AutopsyDrone"; 
 	Template.Requirements.RequiredScienceScore = 10;
 	Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 
@@ -255,7 +255,7 @@ static function X2DataTemplate CreateAutopsyBlutonTemplate()
 
 	Template.TechStartedNarrative = "LWNarrativeMoments_Bink.Strategy.Autopsy_MutonM3_LW";
 
-	Template.strImage = "img:///UILibrary_LW_Overhaul.IC_AutopsyBluton"; 
+	Template.strImage = "img:///UILibrary_LWOTC.IC_AutopsyBluton"; 
 	Template.Requirements.RequiredScienceScore = 10;
 	Template.Requirements.bVisibleIfPersonnelGatesNotMet = true;
 

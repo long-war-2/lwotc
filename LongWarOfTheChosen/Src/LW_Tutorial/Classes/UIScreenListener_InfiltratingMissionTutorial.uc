@@ -25,7 +25,7 @@ event OnInit(UIScreen Screen)
 		`PRESBASE.UITutorialBox(
 			default.InfiltratingMissionTitle,
 			default.InfiltratingMissionBody,
-			"img:///UILibrary_LW_Overhaul.TutorialImages.LWInfiltrating_Mission");
+			"img:///UILibrary_LWOTC.TutorialImages.LWInfiltrating_Mission");
 
 		// Showing the tutorial box hides the screen below it, but we actually want
 		// the mission brief screen to be visible behind the tutorial box. So we

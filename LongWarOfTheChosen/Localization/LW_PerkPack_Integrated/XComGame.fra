@@ -1120,6 +1120,15 @@ LocHelpText="Deux tirs à la suite sur un ennemi. Chaque tir subit une pénalit�
 LocFlyOverText="Tir rapide"
 LocPromotionPopupText="<Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
 
+
+[RapidFireSnapShot X2AbilityTemplate]
+LocFriendlyName="Tir rapide"
+LocLongDescription="Deux tirs à la suite sur un ennemi. Chaque tir subit une pénalité de visée de <Ability:RAPIDFIREPENALTY/>. Pas de temps de rechargement."
+LocHelpText="Deux tirs à la suite sur un ennemi. Chaque tir subit une pénalité de visée de <Ability:RAPIDFIREPENALTY/>. Pas de temps de rechargement."
+LocFlyOverText="Tir rapide"
+LocPromotionPopupText="<Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+
+
 ; New Class loc
 
 [PsiOperative X2SoldierClassTemplate]

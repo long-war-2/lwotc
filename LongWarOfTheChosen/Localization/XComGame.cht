@@ -463,6 +463,10 @@ LocPromotionPopupText="<Bullet/> 槍林彈雨消耗<Ability:SelfAmmoCost/>彈藥
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 連環射擊消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 連環射擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 連環射擊可以對無掩體敵人（如狂戰士，機械敵人）造成毀滅性的打擊，或者增加命中加成。<br/>"
 
+[ChainShotSnapShot X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> 連環射擊消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 連環射擊有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 連環射擊可以對無掩體敵人（如狂戰士，機械敵人）造成毀滅性的打擊，或者增加命中加成。<br/>"
+
+
 [SaturationFire X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 飽和火力消耗<Ability:SelfAmmoCost/>彈藥。<br/><Bullet/> 飽和火力有<Ability:SelfCooldown_LW/>回合冷卻時間。<br/><Bullet/> 飽和火力將對錐型範圍內的每一個敵人進行標準射擊，並將損壞或摧毀錐型範圍內隨機的掩體。<br/>"
 ;End Translation
@@ -5149,7 +5153,14 @@ FocusLevelDescriptions[4]="撕裂傷害 +<Ability:FOCUS4RENDDAMAGE/>\n移動力 
 [TemplarFocus X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> 聖殿騎士在開始任務時比其他士兵弱，但在更高的專注水平下會變得非常強大。<br/><Bullet/> 專注是通過用撕裂攻擊敵人獲得的（即使未命中也能獲得）。<br/>"
 
-[Rend X2AbilityTemplate]
+[ArcWave_LW X2AbilityTemplate]
+LocFriendlyName="撕裂"
+LocLongDescription="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
+LocHelpText="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
+LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士產生專注的主要方法。<br/><Bullet/> 施展撕裂後，聖殿騎士將獲得氣勢，允許他們進行一次移動動作。攻擊後撤回掩體。<br/><Bullet/> 撕裂每1點專注有<Ability:RENDSTUNCHANCE/>%幾率眩暈。眩暈的目標也會被擊退。<br/><Bullet/> 撕裂每1點專注有 <Ability:RENDDISORIENTCHANCE/>%幾率混亂。<br/>"
+
+[Rend_LW X2AbilityTemplate]
+LocFriendlyName="撕裂"
 LocLongDescription="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
 LocHelpText="近戰攻擊有幾率使目標眩暈或混亂。觸發氣勢，產生專注。"
 LocPromotionPopupText="<Bullet/> 使用撕裂是聖殿騎士產生專注的主要方法。<br/><Bullet/> 施展撕裂後，聖殿騎士將獲得氣勢，允許他們進行一次移動動作。攻擊後撤回掩體。<br/><Bullet/> 撕裂每1點專注有<Ability:RENDSTUNCHANCE/>%幾率眩暈。眩暈的目標也會被擊退。<br/><Bullet/> 撕裂每1點專注有 <Ability:RENDDISORIENTCHANCE/>%幾率混亂。<br/>"
@@ -6328,8 +6339,8 @@ LocFlyOverText="精神發狂"
 
 [YouCannotHide_LW X2AbilityTemplate]
 LocFriendlyName="無所遁形"
-LocHelpText="你的主武器增加100命中。"
-LocLongDescription="你的主武器增加100命中。"
+LocHelpText="你的主武器增加30命中。"
+LocLongDescription="你的主武器增加30命中。"
 LocFlyOverText="逃跑吧。"
 
 [RebelHPUpgrade_T1 X2AbilityTemplate]
@@ -6413,8 +6424,8 @@ LocFlyOverText="死亡標記"
 
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="宿命"
-LocLongDescription="使用<Ability:WeaponName/>對35％生命或更低的目標增加+100命中和暴擊率。"
-LocHelpText="使用<Ability:WeaponName/>對35％生命或更低的目標增加+100命中和暴擊率。"
+LocLongDescription="使用<Ability:WeaponName/>對<Ability:FATALITY_THRESHOLD/>％生命或更低的目標增加+100命中和暴擊率。"
+LocHelpText="使用<Ability:WeaponName/>對<Ability:FATALITY_THRESHOLD/>％生命或更低的目標增加+100命中和暴擊率。"
 LocFlyOverText="宿命"
 
 [Vampirism_LW X2AbilityTemplate]
@@ -6474,7 +6485,7 @@ LocHelpText="在XCOM回合受到傷害後，獲得移動動作或戰備狀態。
 LocFlyOverText="天選者反應"
 
 ; LWOTC Needs Translation (2)
-[ChosenImmunitiesPassive X2AbilityTemplate]
+[ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="天選者免疫"
 LocLongDescription="天選者對眩暈、混亂和冰凍免疫，並遭受-50%的致殘移動力，而不是原地不動。"
 LocHelpText="天選者對眩暈、混亂和冰凍免疫，並遭受-50%的致殘移動力，而不是原地不動。"
@@ -6549,9 +6560,9 @@ SummaryText="殘酷鎮壓反抗軍，減少該地區反抗軍未來<Ability:CHOS
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="天選者可以阻礙反抗軍活動！"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="天選者可以蓄意破壞復仇者號！"
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="天選者增加隱秘行動的風險！"
-KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="天選者可以蓄意破壞復仇者號！"
+KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="天選者可以阻礙反抗軍活動！"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="天選者可以向復仇者號發起攻擊！"
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="天選者可以引發額外的黑暗事件！"
 
@@ -6817,7 +6828,7 @@ LocLongDescription="一種強有力的監視方式。觸發時不再自動開火
 LocHelpText="一種強有力的監視方式。觸發時不再自動開火，而是執行任何單個動作。自由行動。"
 LocPromotionPopupText="<Bullet/> 自由行動。<br/><Bullet/> 某些操作在阻斷期間不可用，例如監視。<br/><Bullet/> 阻斷有 <Ability:SelfCooldown_LW/> 回合冷卻時間。"
 
-[ArcWavePassive X2AbilityTemplate]
+[ArcWavePassive_LW X2AbilityTemplate]
 LocFriendlyName="電弧波"
 LocLongDescription="撕裂在攻擊方向產生一個心靈能量波。傷害隨碎片拳刃層級增加。"
 LocHelpText="撕裂在攻擊方向產生一個心靈能量波。"

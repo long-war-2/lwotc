@@ -72,19 +72,19 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateFlechetteRoundsAbility());
 
 	Templates.AddItem(PurePassive('Needle_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_ammo_needle", false, 'eAbilitySource_Item'));
-	Templates.AddItem(PurePassive('Redscreen_Rounds_Ability', "img:///UILibrary_LW_Overhaul.LW_AbilityRedscreen", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('Redscreen_Rounds_Ability', "img:///UILibrary_LWOTC.LW_AbilityRedscreen", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Shredder_Rounds_Ability', "img:///UILibrary_PerkIcons.UIPerk_maximumordanance", false, 'eAbilitySource_Item'));
 	
 	Templates.AddItem(PurePassive('Dragon_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_incendiary", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Bluescreen_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_bluescreen", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Talon_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_talon", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('AP_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_ap", false, 'eAbilitySource_Item'));
-	Templates.AddItem(PurePassive('Venom_Rounds_Ability_PP', "img:///UILibrary_LW_Overhaul.LW_AbilityVenomRounds", false, 'eAbilitySource_Item'));
+	Templates.AddItem(PurePassive('Venom_Rounds_Ability_PP', "img:///UILibrary_LWOTC.LW_AbilityVenomRounds", false, 'eAbilitySource_Item'));
 	Templates.AddItem(PurePassive('Tracer_Rounds_Ability_PP', "img:///UILibrary_PerkIcons.UIPerk_ammo_tracer", false, 'eAbilitySource_Item'));
 
-	Templates.AddItem(PurePassive('FireControl25', "img:///UILibrary_LW_Overhaul.LW_AbilityFireControl", false));
-	Templates.AddItem(PurePassive('FireControl50', "img:///UILibrary_LW_Overhaul.LW_AbilityFireControl", false));
-	Templates.AddItem(PurePassive('FireControl75', "img:///UILibrary_LW_Overhaul.LW_AbilityFireControl", false));
+	Templates.AddItem(PurePassive('FireControl25', "img:///UILibrary_LWOTC.LW_AbilityFireControl", false));
+	Templates.AddItem(PurePassive('FireControl50', "img:///UILibrary_LWOTC.LW_AbilityFireControl", false));
+	Templates.AddItem(PurePassive('FireControl75', "img:///UILibrary_LWOTC.LW_AbilityFireControl", false));
 
 	Templates.AddItem(CreateSmallItemWeightAbility());
 	Templates.AddItem(RemoveGrenadeWeightAbility()); // does not work
@@ -159,6 +159,7 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2Effect_SteadyWeapon				ToHitModifier;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2AbilityCost_Ammo				AmmoCost;
 	
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilitySteadyWeapon";
@@ -175,6 +176,12 @@ static function X2AbilityTemplate CreateStockSteadyWeaponAbility(name TemplateNa
 	//Template.DefaultKeyBinding = 539;
 	//Template.bNoConfirmationWithHotKey = true;
 	Template.AddShooterEffectExclusions();
+
+	//require 1 ammo but don't actually consume it, so you can't steady an empty weapon.
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = 1;
+	AmmoCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
 
 	Cooldown = new class'X2AbilityCooldown';
 	Cooldown.iNumTurns = 1;

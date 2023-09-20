@@ -21,7 +21,7 @@ event OnInit(UIScreen Screen)
 		`PRESBASE.UITutorialBox(
 			default.PistolAbilitiesTutorialTitle,
 			default.PistolAbilitiesTutorialBody,
-			"img:///UILibrary_LW_Overhaul.TutorialImages.LWPistol_Abilities");
+			"img:///UILibrary_LWOTC.TutorialImages.LWPistol_Abilities");
 
 		// Showing the tutorial box hides the screen below it, but we actually want
 		// the promotion screen to be visible behind the tutorial box. So we

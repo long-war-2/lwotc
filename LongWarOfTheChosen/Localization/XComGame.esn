@@ -118,7 +118,7 @@ RankIcons[8]="UILibrary_Common.rank_fieldmarshall"
 ; LWOTC: Resguardarse no elimina el estado ardiendo en este mod
 [HunkerDown X2AbilityTemplate]
 LocFriendlyName="Resguardarse"
-LocHelpText="Aumenta la defensa en <Ability:HUNKERDEFENSEBONUS/> y esquivar en <Ability:HUNKERDODGEBONUS/>. Solo funciona a cubierto."
+LocHelpText="Aumenta la defensa en <Ability:HUNKERDEFENSEBONUS/> y esquivar en <Ability:HUNKERDODGEBONUS/>. Solo funciona a cubierto. No elimina el estado Ardiendo."
 LocFlyOverText="Resguardarse"
 
 [ReturnFire X2AbilityTemplate]
@@ -126,8 +126,8 @@ LocHelpText="Cuando sea objetivo del fuego enemigo, dispara automáticamente con
 LocLongDescription="Cuando sea objetivo del fuego enemigo, dispara automáticamente con tu pistola una vez por turno."
 
 [Quickdraw X2AbilityTemplate]
-LocLongDescription="Disparar tu pistola con tu primera acción ya no termina tu turno."
-LocHelpText="Disparar tu pistola con tu primera acción ya no termina tu turno."
+LocLongDescription="Anula la penalización de movilidad por llevar una pistola, y disparar con ella como primera acción ya no termina tu turno."
+LocHelpText="Anula la penalización de movilidad por llevar una pistola, y disparar con ella como primera acción ya no termina tu turno."
 
 [LightningHands X2AbilityTemplate]
 LocLongDescription="Dispara tu pistola a un objetivo. Este ataque no cuesta una acción."
@@ -484,6 +484,23 @@ LocPromotionPopupText="<Bullet/> Lluvia de balas consume <Ability:SelfAmmoCost/>
 
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Disparo en cadena consume <Ability:SelfAmmoCost/> puntos de munición.<br/><Bullet/> Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Disparo en cadena puede ser devastador contra enemigos que no están cubiertos o cuando es potenciado con bonificaciones de puntería.<br/>"
+
+[ChainShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Disparo en cadena"
+LocLongDescription="Dispara con una penalización de <Ability:CHAINSHOTPENALTY/> a la puntería. Si aciertas el objetivo, haces otro disparo al objetivo automáticamente."
+LocHelpText="Dispara con una penalización de <Ability:CHAINSHOTPENALTY/> a la puntería. Si aciertas el objetivo, haces otro disparo al objetivo automáticamente."
+LocFlyOverText="Disparo en cadena"
+LocPromotionPopupText="<Bullet/> Disparo en cadena requiere <Ability:SelfAmmoCost/> puntos de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> Disparo en cadena puede ser devastador contra enemigos que no están a cubierto o cuando se aumenta con bonificaciones de puntería.<br/>"
+
+[ChainShotSnapShot X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Disparo en cadena consume <Ability:SelfAmmoCost/> puntos de munición.<br/><Bullet/> Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Disparo en cadena puede ser devastador contra enemigos que no están cubiertos o cuando es potenciado con bonificaciones de puntería.<br/>"
+
+[ChainShotSnapShot2 X2AbilityTemplate]
+LocFriendlyName="Disparo en cadena"
+LocFlyOverText="Disparo en cadena"
+LocPromotionPopupText=""
+
+
 
 [SaturationFire X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Fuego de saturación requiere <Ability:SelfAmmoCost/> puntos de munición.<br/><Bullet/> Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Fuego de saturación realiza un disparo estándar a cada objetivo en el cono de visión y dañará o destruirá elementos de cobertura aleatorios.<br/>"
@@ -3018,10 +3035,10 @@ ReaperTutorialTitle="Sombra de los Segadores"
 ReaperTutorialText="Los Segadores en Long War of The Chosen han recibido una reestructuración considerable: ya no poseen sigilo permanente; en cambio \"Sombra\" ahora es una habilidad basada en el tiempo de reutilización, y otorga una invisibilidad durante 2 turnos, que es básicamente una versión muy fuerte de ocultación. Claymore como tal ha sido eliminado a favor de Cuchillos arrojadizos. Por último, el rifle Vektor ahora se comporta más como un fusil de precisión de Long War 1, es decir, con una leve penalización para apuntar a corta distancia, pero permitirá usarlo con Vista de Pelotón, hasta cierto punto (la penalización de puntería comienza a aplicarse aproximadamente 5 casillas después del alcance normal del arma). Mientras los Segadores están en Sombra, estos tienen una movilidad aumentada y sus enemigos cuentan con un radio de detección menor."
 
 TemplarTutorialTitle="Concentración de los Templarios"
-TemplarTutorialText="Los Templarios al igual que Segadores han mejorado en prestaciones (a fin de diferenciarlo del Ninja de Long War 2); la clase ahora lleva un escudo en lugar de la pistola automática que proporciona interesantes habilidades defensivas (aun así seguirá siendo factible equiparla en la ranura creada expresamente para ello). Los Templarios continuarán ganando concentración durante las misiones al matar a unidades con Hender. Cada punto de concentración aumenta la eficacia del Templario en combate al mejorar su movilidad, capacidad de esquivar y el daño que inflige con Hender. También se puede invertir concentración en habilidades poderosas que tienen una efectividad mayor cuando se utilizan a los niveles de concentración más altos."
+TemplarTutorialText="Los Templarios al igual que Segadores han mejorado en prestaciones (a fin de diferenciarlo del Ninja de Long War 2); la clase ahora lleva un escudo psiónico en lugar de la pistola automática que proporciona una protección ablativa extra (aun así seguirá siendo factible equiparla en la ranura creada expresamente para ello). Los Templarios continuarán ganando concentración durante las misiones al matar a unidades con Hender. Cada punto de concentración aumenta la eficacia del Templario en combate al mejorar su movilidad, capacidad de esquivar y el daño que inflige con Hender. También se puede invertir concentración en habilidades poderosas que tienen una efectividad mayor cuando se utilizan a los niveles de concentración más altos."
 
-TemplarMomentumTutorialTitle="Templarios: Ímpetu y Uno para todos"
-TemplarMomentumTutorialText="Después de utilizar Hender, los Templarios siempre activan Ímpetu, una acción de movimiento sin coste que les permite volver a cubierto. El Templario también cuenta con la habilidad \"Uno para todos\", que proporciona un aumento en la defensa ablativa y sirve como cobertura completa para un aliado, pero a costa de perder su defensa base."
+TemplarMomentumTutorialTitle="Templarios: Ímpetu y otras habilidades"
+TemplarMomentumTutorialText="Después de utilizar Hender, los Templarios siempre activan Ímpetu, una acción de movimiento sin coste que les permite volver a cubierto. El Templario también contará más adelante, si así lo deseas, con interesantes habilidades defensivas como \"Inquebrantable\", la cual mitiga el daño un 35% en un radio de hasta 4 casillas."
 
 ;End translated
 
@@ -5020,7 +5037,7 @@ ObjectiveTextPools[1]="Extrae recursos de ADVENT"
 ObjectiveTextPools[2]="Recupera y extrae recursos adicionales (Opcional)"
 ObjectiveTextPools[3]="Extrae a todos los soldados de XCOM"
 ObjectiveTextPools[4]="Robo relámpago"
-ObjectiveTextPools[5]="La resistencia ha descubierto un almacén ADVENT vulnerable lleno de suministros y recursos valiosos. Irrumpe, toma todo lo que puedas, y escapa antes de que lleguen los refuerzos. Habrán múltiples cajas de alijos en esta misión pero solamente se podrá recoger 1 por soldado."
+ObjectiveTextPools[5]="La resistencia ha descubierto un almacén ADVENT vulnerable lleno de suministros y recursos valiosos. Irrumpe, toma todo lo que puedas, y escapa antes de que lleguen los refuerzos. Habrán múltiples cajas de alijos en esta misión pero sólo podrán recoger 1 por persona."
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="Alijo de recursos ADVENT"
@@ -5292,7 +5309,8 @@ FocusLevelDescriptions[4]="Daño de Hender +<Ability:FOCUS4RENDDAMAGE/>\nMovilid
 LocPromotionPopupText="<Bullet/> Los Templarios comienzan las misiones más débiles que otros soldados, pero aumentarán extremadamente su fuerza en niveles de concentración más elevadas. Administrar concentración de manera efectiva para aprovechar al máximo cada habilidad y los aumentos de estadísticas es fundamental para regir un Templario.<br/><Bullet/> La concentración se consigue atacando enemigos con Hender (incluso si fallas).<br/>"
 
 ; LWOTC translated
-[Rend X2AbilityTemplate]
+[Rend_LW X2AbilityTemplate]
+LocFriendlyName="Hender"
 LocLongDescription="Ataque cuerpo a cuerpo con la posibilidad de aturdir o desorientar al objetivo. Activa Ímpetu y genera concentración en los ataques."
 LocHelpText="Ataque cuerpo a cuerpo con la posibilidad de aturdir o desorientar al objetivo. Activa Ímpetu y genera concentración en los ataques."
 LocPromotionPopupText="<Bullet/> Usar Hender es el método principal de los Templarios para generar concentración.<br/><Bullet/> Después de lanzar Hender el Templario ganará Ímpetu lo que le permitirá una acción de movimiento gratuita. Empléala para volver a trasladarte a una cobertura después de atacar.<br/><Bullet/> Hender tiene un <Ability:RENDSTUNCHANCE/>% de probabilidad de aturdir con concentración. Los objetivos aturdidos también serán derribados.<br/><Bullet/> Hender también posee un <Ability:RENDDISORIENTCHANCE/>% de probabilidad de desorientar mediante concentración.<br/>"
@@ -6544,8 +6562,8 @@ LocFlyOverText="Rabia psicótica"
 [YouCannotHide_LW X2AbilityTemplate]
 ; LWOTC translated
 LocFriendlyName="No puedes esconderte"
-LocHelpText="Consigues 100 de puntería con tu arma principal."
-LocLongDescription="Consigues 100 de puntería con tu arma principal."
+LocHelpText="Consigues 30 de puntería con tu arma principal."
+LocLongDescription="Consigues 30 de puntería con tu arma principal."
 ; End translated
 LocFlyOverText="¡Correr!."
 
@@ -6630,7 +6648,7 @@ LocFlyOverText="Ira contra indignos"
 
 [XCOMHunterMark_LW X2AbilityTemplate]
 LocFriendlyName="La marca de la muerte"
-LocLongDescription="Marca un objetivo para la muerte garantizando la restitución de tus disparos. El efecto se mantiene hasta el próximo turno de XCOM."
+LocLongDescription="Marca un objetivo para la muerte garantizando la restitución de tus disparos estándar e instantáneos. Finaliza el turno del soldado. El efecto se mantiene hasta el próximo turno de XCOM."
 LocHelpText="Marca un objetivo para la muerte garantizando la restitución de tus disparos."
 LocFlyOverText="La marca de la muerte"
 
@@ -6718,9 +6736,9 @@ LocFlyOverText="Maremoto"
 [Brawler X2AbilityTemplate]
 LocFriendlyName="Inquebrantable"
 LocFlyOverText="Inquebrantable"
-LocLongDescription="Recibes <Ability:BRAWLER_DR_PCT>% menos de daño en ataques cercanos de hasta cuatro casillas de distancia."
-LocHelpText="Recibes <Ability:BRAWLER_DR_PCT>% menos de daño en ataques cercanos de hasta cuatro casillas de distancia."
-LocPromotionPopupText="<Bullet/> Recibes <Ability:BRAWLER_DR_PCT>% menos de daño en ataques cercanos de hasta cuatro casillas de distancia.<br/>"
+LocLongDescription="Recibes <Ability:BRAWLER_DR_PCT>% menos de daño en ataques cercanos de hasta cuatro casillas de distancia. Asimismo, seguirá ejecutándose en los ataques a meleé realizados por el Templario, independientemente de la posición inicial."
+LocHelpText="Recibes <Ability:BRAWLER_DR_PCT>% menos de daño en ataques cercanos de hasta cuatro casillas de distancia. Asimismo, seguirá ejecutándose en los ataques realizados a meleé por el Templario, independientemente de la posición inicial."
+LocPromotionPopupText="<Bullet/> Recibes <Ability:BRAWLER_DR_PCT>% menos de daño en ataques cercanos de hasta cuatro casillas de distancia. Asimismo, seguirá ejecutándose en los ataques realizados a meleé por el Templario, independientemente de la posición inicial.<br/>"
 
 [InstantReactionTime X2AbilityTemplate]
 LocFriendlyName="Tiempo de reacción instantáneo"
@@ -6781,9 +6799,9 @@ SummaryText="Una brutal represalia contra la Resistencia, reduciendo todos los i
 ; LWOTC translated
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="¡Los Elegidos se están planteando obstaculizar las actividades rebeldes!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="¡Los Elegidos pretenden hallar la forma de sabotear al Avenger!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="¡Los Elegidos aumentarán el peligro en las operaciones encubiertas!"
-KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="¡Los Elegidos pretenden hallar la forma de sabotear al Avenger!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="¡Los Elegidos se están planteando obstaculizar las actividades rebeldes!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="¡Es posible que los Elegidos organicen un asalto contra el Avenger!"
 KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="¡Los Elegidos pueden impulsar la aparición de un evento oscuro adicional!"
 
@@ -6881,6 +6899,25 @@ LocHelpText="Otorga media cobertura a los aliados."
 LocLongDescription="Otorga media cobertura a los aliados."
 LocFlyOverText="Escudo Templario"
 
+[TemplarInvert X2AbilityTemplate]
+LocFriendlyName="Invertir"
+LocLongDescription="Cambia de ubicación con una unidad. Coste de 1 de Concentración."
+LocHelpText="Cambia de ubicación con una unidad. Coste de 1 de Concentración."
+LocPromotionPopupText="<Bullet/> Invertir tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos y no finaliza el turno del Templario.<br/><Bullet/> Utilizable tanto en unidades aliadas como enemigas.<br/><Bullet/> No sirve con los Elegidos.<br/>"
+
+[OneForAll X2AbilityTemplate]
+LocFriendlyName="Uno para todos"
+LocHelpText="Proporciona cobertura alta a tus compañeros de escuadrón donde sea que te encuentres y como penalización resta -30 de defensa. A favor aplicará escudos ablativos extra según el nivel de escudo del Templario durante la duración del efecto. Moverse o atacar cancelará la habilidad."
+LocLongDescription="Proporciona cobertura alta a tus compañeros de escuadrón donde sea que te encuentres y como penalización resta -30 de defensa. A favor aplicará escudos ablativos extra según el nivel de escudo del Templario durante la duración del efecto. Moverse o atacar cancelará la habilidad."
+LocFlyOverText="Uno para todos"
+
+[ShieldBash_LW X2AbilityTemplate]
+LocFriendlyName="Golpe de escudo"
+LocHelpText="Golpea a un enemigo adyacente con tu escudo; inflige un poco de daño y empuja al objetivo 2 casillas. Acción gratuita."
+LocLongDescription="Golpea a un enemigo adyacente con tu escudo; inflige un poco de daño y empuja al objetivo 2 casillas. Acción gratuita."
+LocPromotionPopupText="<Bullet/> El daño es equivalente al daño base del escudo actualmente equipado.<br/><Bullet/> Golpe de escudo es una acción sin coste con un tiempo de reutilización de <Ability:SelfCooldown/> turnos.<br/><Bullet/> También es posible ejecutar el talento con enemigos en casillas adyacentes que se encuentren en diagonal.<br/>"
+LocFlyOverText="Golpe de escudo"
+
 ; LWOTC translated
 [TemplarBallisticShield_CV X2AbilityTemplate]
 LocFriendlyName="Escudo Templario"
@@ -6901,24 +6938,6 @@ LocLongDescription="Otorga media cobertura a los aliados. Garantiza a esta unida
 LocFlyOverText="Escudo Templario"
 ; End translated
 
-[ShieldBash_LW X2AbilityTemplate]
-LocFriendlyName="Golpe de escudo"
-LocHelpText="Golpea a un enemigo adyacente con tu escudo; inflige un poco de daño y empuja al objetivo 2 casillas. Acción gratuita."
-LocLongDescription="Golpea a un enemigo adyacente con tu escudo; inflige un poco de daño y empuja al objetivo 2 casillas. Acción gratuita."
-LocPromotionPopupText="<Bullet/> El daño es equivalente al daño base del escudo actualmente equipado.<br/><Bullet/> Golpe de escudo es una acción sin coste con un tiempo de reutilización de <Ability:SelfCooldown/> turnos.<br/><Bullet/> También es posible ejecutar el talento con enemigos en casillas adyacentes que se encuentren en diagonal.<br/>"
-LocFlyOverText="Golpe de escudo"
-
-[TemplarInvert X2AbilityTemplate]
-LocFriendlyName="Invertir"
-LocLongDescription="Cambia de ubicación con una unidad. Coste de 1 de Concentración."
-LocHelpText="Cambia de ubicación con una unidad. Coste de 1 de Concentración."
-LocPromotionPopupText="<Bullet/> Invertir tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos y no finaliza el turno del Templario.<br/><Bullet/> Utilizable tanto en unidades aliadas como enemigas.<br/><Bullet/> No sirve con los Elegidos.<br/>"
-
-[OneForAll X2AbilityTemplate]
-LocFriendlyName="Uno para todos"
-LocHelpText="Proporciona cobertura alta a tus compañeros de escuadrón donde sea que te encuentres y como penalización resta -30 de defensa. A favor aplicará escudos ablativos extra según el nivel de escudo del Templario durante la duración del efecto. Moverse o atacar cancelará la habilidad."
-LocLongDescription="Proporciona cobertura alta a tus compañeros de escuadrón donde sea que te encuentres y como penalización resta -30 de defensa. A favor aplicará escudos ablativos extra según el nivel de escudo del Templario durante la duración del efecto. Moverse o atacar cancelará la habilidad."
-LocFlyOverText="Uno para todos"
 
 
 [GreaterPadding_CV X2AbilityTemplate]
@@ -6941,6 +6960,18 @@ LocFlyOverText="Mayor acolchado"
 LocLongDescription="Reduce los tiempos de recuperación de las heridas de este soldado en <Ability:GREATER_PADDING_CV/> puntos. No funciona si el objetivo regresó desangrándose."
 LocHelpText="Reduce los tiempos de recuperación de las heridas de este soldado"
 LocPromotionPopupText="<Bullet/> Mayor acolchado reduce en <Ability:GREATER_PADDING_CV/> puntos la cantidad de salud que un soldado debe recuperar después de ser herido en batalla.<br/><Bullet/> No afecta a los soldados que sufrieron heridas mortales y están estabilizados para no desangrarse."
+
+[IRI_SoulShot X2AbilityTemplate]
+LocFriendlyName="Flecha mística"
+LocLongDescription="Un poderoso ataque a distancia basado en la puntería que puede generar críticos y no finaliza el turno. Cuesta 1 de Concentración."
+LocHelpText="Un poderoso ataque a distancia basado en la puntería que puede generar críticos y no finaliza el turno. Cuesta 1 de Concentración."
+LocPromotionPopupText="<Bullet/> Flecha mística no tiene tiempo de reutilización."
+
+[IRI_TemplarShield X2AbilityTemplate]
+LocFriendlyName="Escudo Templario"
+LocLongDescription="Usa tu guantelete para generar un escudo psiónico y obtener <Ability:TEMPLAR_SHIELD_TAG/> de defensa ablativa que durará hasta el inicio del siguiente turno. También es posible activarlo después de Hender."
+LocHelpText="Usa tu guantelete para generar un escudo psiónico y obtener <Ability:TEMPLAR_SHIELD_TAG/> de defensa ablativa que durará hasta el inicio del siguiente turno. También es posible activarlo después de Hender."
+LocPromotionPopupText="<bullet/> Finaliza el turno cuando se usa.<br/><bullet/> La fuerza del escudo se irá incrementando conforme se mejore el guantelete."
 
 [Indomitable X2AbilityTemplate]
 LocFriendlyName="Indomable"
@@ -6974,7 +7005,7 @@ LocFlyOverText="Aptitud superior"
 LocFriendlyName="Voltio"
 LocLongDescription="Un ataque psiónico que inflige poco daño pero que \"salta\" a las unidades cercanas en los niveles de concentración más altos. Cuesta 1 de concentración."
 LocHelpText="Un ataque psiónico que inflige poco daño pero que \"salta\" a las unidades cercanas en los niveles de concentración más altos. Cuesta 1 de concentración."
-LocPromotionPopupText="Voltio no tiene tiempo de enfriamiento, pero cuesta 1 de concentración.<br/><Bullet/> Voltio aumenta la puntería de tu escuadrón contra los objetivos en +<Ability:RECOILAIMBONUS/>.<br/>"
+LocPromotionPopupText="<Bullet/> Voltio no tiene tiempo de enfriamiento, pero cuesta 1 de concentración.<br/><Bullet/> Voltio aumenta la puntería de tu escuadrón contra los objetivos en +<Ability:RECOILAIMBONUS/>.<br/>"
 
 [Amplify X2AbilityTemplate]
 LocFriendlyName="Amplificar"
@@ -6986,8 +7017,8 @@ LocPromotionPopupText="<Bullet/> Amplificar durará 3 acciones una vez le tengas
 ; LWOTC translated
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Rabia del Cruzado"
-LocHelpText="Obtienes un aumento del daño del 25% por cada 25% de puntos de salud que falten, hasta un incremento del 50%. Reduce el tiempo de recuperación de las heridas de este soldado en 8."
-LocLongDescription="Obtienes un aumento del daño del 25% por cada 25% de puntos de salud que falten, hasta un incremento del 50%. Reduce el tiempo de recuperación de las heridas de este soldado en 8."
+LocHelpText="Obtienes un aumento del daño del 25% por cada 25% de puntos de salud que falten, hasta un incremento del 50%. Reduce el tiempo de recuperación de las heridas de este soldado en 6."
+LocLongDescription="Obtienes un aumento del daño del 25% por cada 25% de puntos de salud que falten, hasta un incremento del 50%. Reduce el tiempo de recuperación de las heridas de este soldado en 6."
 LocPromotionPopupText="<Bullet/> La reducción en los tiempos de regeneración de heridas no se implementa si el soldado se desangró durante la misión.<br/>"
 LocFlyOverText="Rabia del Cruzado"
 ; End translated
@@ -7040,8 +7071,8 @@ LocPromotionPopupText="<Bullet/> Cada disparo en Desterrar genera una probabilid
 ; LWOTC translated
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Combate total"
-LocLongDescription="Concede 1 de movilidad y 5 de puntería. Lanzar una granada o usar un objeto ya no termina el turno y las granadas no tienen tiempo de reutilización. Además, puedes lanzar granadas a 3 casillas más de distancia y su radio aumenta en 1. Otorga un espacio sólo para granadas."
-LocHelpText="Concede 1 de movilidad y 5 de puntería. Lanzar una granada o usar un objeto ya no termina el turno y las granadas no tienen tiempo de reutilización. Además, puedes lanzar granadas a 3 casillas más de distancia y su radio aumenta en 1. Otorga un espacio sólo para granadas."
+LocLongDescription="Concede 1 de movilidad y 5 de puntería. Lanzar una granada o usar un objeto ya no termina el turno y las granadas no tienen tiempo de reutilización. Además, puedes lanzar granadas a 2 casillas más de distancia y su radio aumenta en 1. Otorga un espacio sólo para granadas."
+LocHelpText="Concede 1 de movilidad y 5 de puntería. Lanzar una granada o usar un objeto ya no termina el turno y las granadas no tienen tiempo de reutilización. Además, puedes lanzar granadas a 2 casillas más de distancia y su radio aumenta en 1. Otorga un espacio sólo para granadas."
 LocPromotionPopupText="<Bullet/> Elimina el tiempo de reutilización de las granadas.<br/><Bullet/> Obtiene Mezcla volátil, por lo tanto, no se acumula con ella."
 ; End translated
 
@@ -7059,6 +7090,12 @@ LocFriendlyName="Interrupción"
 LocLongDescription="Una forma poderosa de guardia. En lugar de disparar automáticamente realiza una sola acción. Actividad sin coste."
 LocHelpText="Una forma poderosa de guardia. En lugar de disparar automáticamente realiza una sola acción. Actividad sin coste."
 LocPromotionPopupText="<Bullet/> No cuesta ninguna acción.<br/><Bullet/> Algunas actividades no están disponibles durante la interrupción, como guardia.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
+
+[ArcWave_LW X2AbilityTemplate]
+LocFriendlyName="Hender"
+LocLongDescription="Ataque cuerpo a cuerpo con la posibilidad de aturdir o desorientar al objetivo. Activa Ímpetu y genera concentración en los ataques."
+LocHelpText="Ataque cuerpo a cuerpo con la posibilidad de aturdir o desorientar al objetivo. Activa Ímpetu y genera concentración en los ataques."
+LocPromotionPopupText="<Bullet/> Usar Hender es el método principal de los Templarios para generar concentración.<br/><Bullet/> Después de lanzar Hender el Templario ganará Ímpetu lo que le permitirá una acción de movimiento gratuita. Empléala para volver a trasladarte a una cobertura después de atacar.<br/><Bullet/> Hender tiene un <Ability:RENDSTUNCHANCE/>% de probabilidad de aturdir con concentración. Los objetivos aturdidos también serán derribados.<br/><Bullet/> Hender también posee un <Ability:RENDDISORIENTCHANCE/>% de probabilidad de desorientar mediante concentración.<br/>"
 
 [ArcWavePassive X2AbilityTemplate]
 LocFriendlyName="Onda psiónica"
@@ -7130,8 +7167,8 @@ LocHelpText="Las torres de seguridad ADVENT no pueden percibir esta unidad cuand
 LocLongDescription="El portador de este artilugio será inmune a las condiciones mentales negativas como el pánico, control mental y los aturdimientos."
 
 [Sustain X2AbilityTemplate]
-LocLongDescription="Si la unidad recibe suficiente daño como para ser asesinada, se pone inmediatamente en Estasis durante 1 turno y su salud se reduce a 1. Esto sólo puede suceder una vez por misión."
-LocHelpText="Si la unidad recibe suficiente daño como para ser asesinada, se pone inmediatamente en Estasis durante 1 turno y su salud se reduce a 1. Esto sólo puede suceder una vez por misión."
+LocLongDescription="Si la unidad recibe suficiente daño como para ser asesinada, se pone inmediatamente en Estasis durante 1 turno y su salud se reduce a 1. Esto sólo puede suceder una vez por misión. Reduce los tiempos de recuperación de heridas de este soldado en <Ability:SUSTAIN_WOUND_HP_REDUCTTION/>."
+LocHelpText="Si la unidad recibe suficiente daño como para ser asesinada, se pone inmediatamente en Estasis durante 1 turno y su salud se reduce a 1. Esto sólo puede suceder una vez por misión. Reduce los tiempos de recuperación de heridas de este soldado en <Ability:SUSTAIN_WOUND_HP_REDUCTTION/>."
 LocPromotionPopupText="<Bullet/> Ten en cuenta que una unidad en Estasis puede conservar efectos negativos dañinos como veneno o quemaduras una vez reaparezca.<br/>"
 
 [SustainTriggered X2AbilityTemplate]

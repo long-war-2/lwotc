@@ -26,6 +26,13 @@ static event OnLoadedSavedGame()
 /// </summary>
 static event InstallNewCampaign(XComGameState StartState)
 {
+	//short circuit if in shell:
+//	if(class'WorldInfo'.static.GetWorldInfo().GRI.GameClass.name == 'XComShell')
+//	{
+//		`LWTrace("InstallNewCampaign called in Shell, aborting.");
+//		return;
+//	}
+	
 	class'XComGameState_LWPerkPackOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWPerkPackOptions', StartState);
 }
 
@@ -54,6 +61,10 @@ static function UpdateBaseGameThrowGrenade()
 	X2AbilityMultiTarget_Radius(LaunchGrenadeAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('VolatileMix', 1.0);
 	X2AbilityMultiTarget_Radius(ProximityMineAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('VolatileMix', 1.0);
 
+	X2AbilityMultiTarget_Radius(ThrowGrenadeAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('MistyMadness_LW', 2.0);
+	X2AbilityMultiTarget_Radius(LaunchGrenadeAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('MistyMadness_LW', 2.0);
+	X2AbilityMultiTarget_Radius(ProximityMineAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('MistyMadness_LW', 2.0);
+	
 	`PPDEBUG ("Updated Grenades to respect VM radius increase");
 }
 
@@ -185,6 +196,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'MAIM_COOLDOWN':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.MAIM_COOLDOWN);
+			return true;
+		case 'OVERBEARING_SUPERIORITY_CRIT':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.OVERBEARING_SUPERIORITY_CRIT);
+			return true;
+		case 'TRIGGER_BOT_DAMAGE_PENALTY':
+			OutString = string(int(class'X2Ability_XMBPerkAbilitySet'.default.TRIGGER_BOT_DAMAGE_PENALTY * 100));
 			return true;
 		case 'LICKYOURWOUNDS_HEALAMOUNT':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.LICKYOURWOUNDS_HEALAMOUNT);
@@ -435,6 +452,15 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'MOVING_TARGET_DODGE':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.MOVING_TARGET_DODGE);
+			return true;
+		case 'HERO_SLAYER_DMG':
+			Outstring = string(int(class'X2Ability_XMBPerkAbilitySet'.default.HERO_SLAYER_DMG * 100));
+			return true;
+		case 'PSYCHOTIC_RAGE_BELOW_THRESHOLD':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.PSYCHOTIC_RAGE_BELOW_THRESHOLD);
+			return true;
+		case 'PSYCHOTIC_RAGE_DMG_BONUS':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.PSYCHOTIC_RAGE_DMG_BONUS);
 			return true;
         default:
             return false;

@@ -38,6 +38,13 @@ LocLongDescription="Aturde a los enemigos con un disparo preciso; la duración d
 LocHelpText="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
 LocPromotionPopupText="<Bullet/> Aturde a los enemigos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/> , pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> Solamente Avatares y Zombies Psiónicos no se verán afectados."
 
+[DisablingShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Sometimiento"
+LocLongDescription="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
+LocHelpText="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
+LocPromotionPopupText="<Bullet/> Aturde a los enemigos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/> , pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> Solamente Avatares y Zombies Psiónicos no se verán afectados."
+
+
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Meditación"
 LocLongDescription="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración."
@@ -46,8 +53,8 @@ LocPromotionPopupText="<Bullet/> Agrega al Templario <Ability:MeditationFocusRec
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="Heroísmo"
-LocLongDescription="Obtienes una bonificación de puntería y probabilidad crítica por cada punto de concentración que tenga el Templario"
-LocHelpText="Obtienes una bonificación de puntería y probabilidad crítica por cada punto de concentración que tenga el Templario"
+LocLongDescription="Obtienes una bonificación de puntería y probabilidad crítica en ataques cuerpo a cuerpo por cada punto de concentración que tenga el Templario."
+LocHelpText="Obtienes una bonificación de puntería y probabilidad crítica en ataques cuerpo a cuerpo por cada punto de concentración que tenga el Templario."
 LocPromotionPopupText="<Bullet/> Cada punto de concentración proporciona +<Ability:OverchargeAimBonus/> de puntería y +<Ability:OverchargeCritBonus/> a la probabilidad crítica.<br/><Bullet/> Tiene en cuenta el nivel de concentración actual y no el máximo."
 
 [VoltDangerZone X2AbilityTemplate]
@@ -66,8 +73,8 @@ LocPromotionPopupText="<Bullet/> Consigue 1 de concentración para el Templario 
 
 [TemplarTerror X2AbilityTemplate]
 LocFriendlyName="Aterrorizar"
-LocLongDescription="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio."
-LocHelpText="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio."
+LocLongDescription="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio. Además, se obtiene <Ability:VoltDangerZoneBonus/> de bonificación al radio de acción."
+LocHelpText="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio. Además, se obtiene <Ability:VoltDangerZoneBonus/> de bonificación al radio de acción."
 LocPromotionPopupText="<Bullet/> Voltio ahora incorpora una posibilidad de generar pánico a los enemigos.<br/><Bullet/> Su probabilidad está basada en la fuerza Psiónica del Templario frente a la voluntad del objetivo."
 
 [Apotheosis X2AbilityTemplate]

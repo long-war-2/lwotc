@@ -27,12 +27,12 @@ event OnInit(UIScreen Screen)
 		`PRESBASE.UITutorialBox(
 			default.HavenAdvisersTitle,
 			default.HavenAdvisersBody,
-			"img:///UILibrary_LW_Overhaul.TutorialImages.LWHaven_Management");
+			"img:///UILibrary_LWOTC.TutorialImages.LWHaven_Management");
 
 		`PRESBASE.UITutorialBox(
 			default.HavenManagementTitle,
 			default.HavenManagementBody,
-			"img:///UILibrary_LW_Overhaul.TutorialImages.LWHaven_Management");
+			"img:///UILibrary_LWOTC.TutorialImages.LWHaven_Management");
 
 		// Showing the tutorial box hides the screen below it, but we actually want
 		// the haven management screen to be visible behind the tutorial box. So we
