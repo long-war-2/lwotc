@@ -828,6 +828,7 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	local XComGameState_PointOfInterest POIState;
 	local XComGameState_HeadquartersAlien AlienHQ;
 	local XComGameState_MissionCalendar CalendarState;
+	local name TacticalTag;
 
 	History = `XCOMHISTORY;
 
@@ -856,6 +857,16 @@ static event OnPreMission(XComGameState StartGameState, XComGameState_MissionSit
 	if (POIState != none)
 	{
 		`LWTRACE("PreMission : MissionPOI name = " $ POIState.GetMyTemplateName());
+	}
+
+	foreach MissionState.TacticalGameplayTags (TacticalTag)
+	{
+		`LWTrace("Tactical Tag on mission:" @TacticalTag);
+	}
+
+	foreach `XCOMHQ.TacticalGameplayTags (TacticalTag)
+	{
+		`LWTrace("Tactical Tag on HQ:" @TacticalTag);
 	}
 
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
@@ -2105,12 +2116,12 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	if (AlienHQ.bChosenActive)
 	{
 		XComHQ = `XCOMHQ;
-		AllChosen = AlienHQ.GetAllChosen(, true);
+		AllChosen = ALienHQ.GetAllChosen();
 
-		foreach AllChosen(ChosenState)
+		//remove all chosen tags regardless of if chosen are defeated.
+		forEach AllChosen(ChosenState)
 		{
 			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
-			ChosenSpawningTagLWOTC = class'Helpers_LW'.static.GetChosenActiveMissionTag(ChosenState);
 
 			// Remove All vanilla chosen tags if they are attached to this mission. This is the only
 			// place that should add Chosen tactical mission tags to the XCOM HQ. This
@@ -2118,8 +2129,19 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 			SpawningTags = ChosenState.GetMyTemplate().ChosenProgressionData.SpawningTags;
 			foreach SpawningTags(ChosenSpawningTagRemove)
 			{
+				`LWTrace("removing Chosen Spawning tag"@ChosenSpawningTagRemove);
 				XComHQ.TacticalGameplayTags.RemoveItem(ChosenSpawningTagRemove);
 			}
+		}
+
+		// now grab the undefeated chosen
+		AllChosen = AlienHQ.GetAllChosen(, true);
+
+		foreach AllChosen(ChosenState)
+		{
+			ChosenSpawningTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+			ChosenSpawningTagLWOTC = class'Helpers_LW'.static.GetChosenActiveMissionTag(ChosenState);
+
 
 			// Now add the appropriate tactical gameplay tag for this Chosen if the
 			// corresponding LWOTC-specific one is in the mission's tactical tags.
@@ -2127,6 +2149,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 				MissionState.TacticalGameplayTags.Find(ChosenSpawningTagLWOTC) != INDEX_NONE)
 			{
 				XComHQ.TacticalGameplayTags.AddItem(ChosenSpawningTag);
+				`LWTrace("Adding Chosen Spawning Tag" @ChosenSpawningTag);
 			}
 		}
 	}
