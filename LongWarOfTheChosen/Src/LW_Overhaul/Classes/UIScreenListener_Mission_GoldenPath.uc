@@ -10,12 +10,18 @@
 
 class UIScreenListener_Mission_GoldenPath extends UIScreenListener;
 
-var UIMission_GoldenPath GoldenPathScreen;
-var UIButton Button1, Button2, LockedButton;
+var private string PathToGoldenPathScreen;
+//var UIMission_GoldenPath GoldenPathScreen;
+//var UIButton Button1, Button2, LockedButton;
 
 event OnInit(UIScreen Screen)
 {
+	local UIMission_GoldenPath GoldenPathScreen;
+	local UIButton Button1, Button2, LockedButton;
+
 	GoldenPathScreen = UIMission_GoldenPath(Screen);
+
+	PathToGoldenPathScreen = PathName(GoldenPathScreen);
 	// KDM : If CanTakeMission is true then LockedButton will be 'none'; if CanTakeMission is false then Button1 
 	// and Button2 will both be 'none'. Buttons which are not 'none' will have the eUIButtonStyle_HOTLINK_BUTTON style
 	// and will resize according to their text.
@@ -78,23 +84,7 @@ event OnInit(UIScreen Screen)
 
 event OnRemoved(UIScreen Screen)
 {
-	if (Button1 != none)
-	{
-		Button1.OnSizeRealized = none;
-	}
-	if (Button2 != none)
-	{
-		Button2.OnSizeRealized = none;
-	}
-	if (LockedButton != none)
-	{
-		LockedButton.OnSizeRealized = none;
-	}
-
-	Button1 = none;
-	Button2 = none;
-	LockedButton = none;
-	GoldenPathScreen = none;
+	PathToGoldenPathScreen = "";
 
 	`HQPRES.ScreenStack.UnsubscribeFromOnInputForScreen(Screen, OnGoldenPathMissionCommand);
 }
@@ -103,6 +93,9 @@ simulated function RefreshNavigation()
 {
 	local bool SelectionSet;
 	local UIPanel DefaultPanel;
+	local UIMission_GoldenPath GoldenPathScreen;
+
+	GoldenPathScreen = UIMission_GoldenPath(FindObject(PathToGoldenPathScreen, class'UIMission_GoldenPath'));
 
 	SelectionSet = false;
 
@@ -125,41 +118,52 @@ simulated function RefreshNavigation()
 		if (GoldenPathScreen.CanTakeMission())
 		{
 			// KDM : Add the 'launch mission' and 'cancel mission' buttons to the Navigator.
-			SelectionSet = class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(GoldenPathScreen, Button1, SelectionSet);
-			SelectionSet = class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(GoldenPathScreen, Button2, SelectionSet);
+			SelectionSet = class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(GoldenPathScreen, GoldenPathScreen.Button1, SelectionSet);
+			SelectionSet = class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(GoldenPathScreen, GoldenPathScreen.Button2, SelectionSet);
 		}
 		else
 		{
 			// KDM : Add the 'locked mission' button to the Navigator.
-			class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(GoldenPathScreen, LockedButton, SelectionSet);
+			class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(GoldenPathScreen, GoldenPathScreen.LockedButton, SelectionSet);
 		}
 	}
 }
 
 simulated function OnButtonSizeRealized()
 {
+	local UIMission_GoldenPath GoldenPathScreen;
+
+	GoldenPathScreen = UIMission_GoldenPath(FindObject(PathToGoldenPathScreen, class'UIMission_GoldenPath'));
+
 	if (GoldenPathScreen != none)
 	{
-		Button1.SetX(-Button1.Width / 2.0);
-		Button1.SetY(10.0);
+		GoldenPathScreen.Button1.SetX(-GoldenPathScreen.Button1.Width / 2.0);
+		GoldenPathScreen.Button1.SetY(10.0);
 
-		Button2.SetX(-Button2.Width / 2.0);
-		Button2.SetY(40.0);
+		GoldenPathScreen.Button2.SetX(-GoldenPathScreen.Button2.Width / 2.0);
+		GoldenPathScreen.Button2.SetY(40.0);
 	}
 }
 
 simulated function OnLockedButtonSizeRealized()
 {
+	local UIMission_GoldenPath GoldenPathScreen;
+
+	GoldenPathScreen = UIMission_GoldenPath(FindObject(PathToGoldenPathScreen, class'UIMission_GoldenPath'));
+
 	if (GoldenPathScreen != none)
 	{
-		LockedButton.SetX(200 - LockedButton.Width / 2.0);
-		LockedButton.SetY(125.0);
+		GoldenPathScreen.LockedButton.SetX(200 - GoldenPathScreen.LockedButton.Width / 2.0);
+		GoldenPathScreen.LockedButton.SetY(125.0);
 	}
 }
 
 simulated protected function bool OnGoldenPathMissionCommand(UIScreen Screen, int cmd, int arg)
 {
 	local UIButton SelectedButton;
+	local UIMission_GoldenPath GoldenPathScreen;
+
+	GoldenPathScreen = UIMission_GoldenPath(FindObject(PathToGoldenPathScreen, class'UIMission_GoldenPath'));
 
 	if (!Screen.CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
 	{

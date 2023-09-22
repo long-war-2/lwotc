@@ -7,17 +7,21 @@
 
 class UIScreenListener_ChooseUpgrade_LWOfficerPack extends UIScreenListener;
 
-var UIChooseUpgrade ParentScreen;
+var private string PathToParentScreen;
+//var UIChooseUpgrade ParentScreen;
 
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
 {
+	local UIChooseUpgrade ParentScreen;
 	local XComGameState_FacilityXCom Facility;
 
 	`Log("LW OfficerPack (ChooseUpgrade): Starting OnInit");
 
 	ParentScreen = UIChooseUpgrade(Screen);
 	Facility = XComGameState_FacilityXCom(`XCOMHISTORY.GetGameStateForObjectID(ParentScreen.m_FacilityRef.ObjectID));
+
+	PathToParentScreen = PathName(ParentScreen);
 
 	// only update OTS
 	if (Facility.GetMyTemplateName() == 'OfficerTrainingSchool')
@@ -35,7 +39,8 @@ event OnInit(UIScreen Screen)
 event OnRemoved(UIScreen Screen)
 {
 	//clear reference to UIScreen so it can be garbage collected
-	ParentScreen = none;
+	//ParentScreen = none;
+	PathToParentScreen = "";
 }
 
 // Copied from UIChooseUpgrade.uc
@@ -44,9 +49,12 @@ simulated function UpdateSelection(UIList list, int itemIndex)
 	local int power;
 	local string Summary, Requirements, StratReqs, InsufficientResourcesWarning, DividerHTML, UpkeepCostStr;
 	local bool HasPower, AlreadyUpgraded;
+	local UIChooseUpgrade ParentScreen;
 
 	DividerHTML = "<font color='#546f6f'> | </font>";
 	
+	ParentScreen = UIChooseUpgrade(FindObject(PathToParentScreen, class'UIChooseUpgrade'));
+
 	ParentScreen.SelectedIndex = itemIndex;
 	ParentScreen.m_selectedUpgrade = ParentScreen.m_arrUpgrades[ParentScreen.SelectedIndex];
 	HasPower = ParentScreen.HasEnoughPower(ParentScreen.m_selectedUpgrade); 
