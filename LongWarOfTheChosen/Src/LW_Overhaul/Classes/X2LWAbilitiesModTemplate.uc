@@ -229,6 +229,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'SteadyHands':
 			FixSteadyHands(Template);
 			break;
+		case 'HackRewardControlRobot_Permanent_Fuller_Override':
+			PatchFullerOverride(Template);
+			break;
 		default:
 			break;
 
@@ -1319,6 +1322,22 @@ static function FixSteadyHands(X2AbilityTemplate Template)
 			// Clear the stat change bonus as it doesn't seem to work.
 			CurrEffect.ApplyOnTick.Length = 0;
 			break;
+		}
+	}
+}
+
+// Here in case Fuller Override doesn't actually update
+static function PatchFullerOverride(X2AbilityTemplate Template)
+{
+	local X2Effect Effect;
+	local X2Effect_MindControl MindControlEffect;
+
+	foreach Template.AbilityTargetEffects (Effect)
+	{
+		MindControlEffect = X2Effect_MindControl(Effect);
+		if(MindControlEffect != none)
+		{
+			MindControlEffect.EffectName = 'FullOverride';
 		}
 	}
 }
