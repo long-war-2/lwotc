@@ -1629,6 +1629,7 @@ static function X2AbilityTemplate CyclicFire2()
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	Trigger.ListenerData.EventID = 'CyclicFire2';
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 80;
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_OriginalTarget;
 	Template.AbilityTriggers.AddItem(Trigger);
 
@@ -1690,6 +1691,7 @@ static function X2AbilityTemplate CyclicFire3()
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	Trigger.ListenerData.EventID = 'CyclicFire3';
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 80;
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_OriginalTarget;
 	Template.AbilityTriggers.AddItem(Trigger);
 

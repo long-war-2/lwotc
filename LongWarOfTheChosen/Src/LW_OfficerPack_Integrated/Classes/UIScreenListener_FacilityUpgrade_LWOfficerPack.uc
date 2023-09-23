@@ -51,7 +51,6 @@ private function UIFacilityUpgrade GetParentScreen()
             return ParentScreen;
         }
     }
-
     ParentScreen = UIFacilityUpgrade(FindObject(PathToParentScreen, class'UIFacilityUpgrade'));
     return ParentScreen;
 }
