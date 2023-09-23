@@ -199,6 +199,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'DisruptorRifleCrit':
 			Template.bDisplayInUITooltip = true;
 			Template.bDisplayInUITacticalText = true;
+			Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_aim";
 			break;
 		case 'ChosenRegenerate':
 			UpdateChosenRegenerate(Template);
