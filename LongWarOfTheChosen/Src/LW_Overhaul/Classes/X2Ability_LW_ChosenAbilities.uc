@@ -143,7 +143,7 @@ static function X2AbilityTemplate CreateWarlockReaction()
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Trigger.ListenerData.Filter = eFilter_Unit;
-	Trigger.ListenerData.Priority = 15;
+	Trigger.ListenerData.Priority = 2;
 	Template.AbilityTriggers.AddItem(Trigger);
 
 	TurnCondition =new class'X2Condition_OnlyOnXCOMTurn';
@@ -217,7 +217,7 @@ static function X2AbilityTemplate CreateAssassinReaction()
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Trigger.ListenerData.Filter = eFilter_Unit;
-	Trigger.ListenerData.Priority = 15;
+	Trigger.ListenerData.Priority = 2;
 	Template.AbilityTriggers.AddItem(Trigger);
 
 	// The unit must be alive and not stunned
@@ -287,7 +287,7 @@ static function X2AbilityTemplate CreateHunterReaction()
 	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Trigger.ListenerData.Filter = eFilter_Unit;
-	Trigger.ListenerData.Priority = 15;
+	Trigger.ListenerData.Priority = 2;
 	Template.AbilityTriggers.AddItem(Trigger);
 
 	// The unit must be alive and not stunned

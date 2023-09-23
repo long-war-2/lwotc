@@ -2849,6 +2849,7 @@ static function X2AbilityTemplate ChainShotSnapShot2()
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	Trigger.ListenerData.EventID = 'ChainShotSnapShot2';
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 80;
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.ChainShotListener;
 	Template.AbilityTriggers.AddItem(Trigger);
 
