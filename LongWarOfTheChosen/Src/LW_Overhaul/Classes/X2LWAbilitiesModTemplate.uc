@@ -59,6 +59,7 @@ struct MultiShotAbility
 
 var config bool USE_LOS_FOR_MULTI_SHOT_ABILITIES;
 var config array<MultiShotAbility> MULTI_SHOT_ABILITIES;
+var config array<Name> MELEE_ABILITIES_FOR_BLOODTHIRST;
 
 var privatewrite X2Condition_Visibility GameplayVisibilityCondition;
 
@@ -191,11 +192,6 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'ChosenAllSeeing':
 			Template.ChosenExcludeTraits.Length = 0;
 			break;
-		case 'Slash_LW':
-		case 'SwordSlice_LW':
-		case 'CombativesCounterattack':
-			Template.PostActivationEvents.AddItem('SlashActivated');
-			break;
 		case 'DisruptorRifleCrit':
 			Template.bDisplayInUITooltip = true;
 			Template.bDisplayInUITacticalText = true;
@@ -253,6 +249,23 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 
 	// Handle multi-shot abilities
 	UpdateMultiShotAbility(Template);
+	UpdateMeleeAbilityForBloodThirst(Template);
+}
+
+
+
+static function UpdateMeleeAbilityForBloodThirst(X2AbilityTemplate Template)
+{
+	local name AbilityName;
+
+	foreach default.MELEE_ABILITIES_FOR_BLOODTHIRST(AbilityName)
+	{
+		if(Template.Dataname == AbilityName)
+		{
+			Template.PostActivationEvents.AddItem('SlashActivated');
+			return;
+		}
+	}
 }
 
 static function bool OverrideFinalHitChance(X2AbilityToHitCalc AbilityToHitCalc, out ShotBreakdown ShotBreakdown)
