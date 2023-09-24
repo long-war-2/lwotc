@@ -16,8 +16,12 @@ var bool bRegisteredForEvents;
 // Has this registered since a tactical/strategy switch ?
 var bool bLastUpdateStrategy; 
 
-var UIArmory_MainMenu ArmoryMainMenu;
-var UIListItemString LeaderAbilityButton;
+var private string PathToArmoryMainMenu;
+var private string PathToLeaderAbilityButton;
+
+//var UIArmory_MainMenu ArmoryMainMenu;
+//var UIListItemString LeaderAbilityButton;
+
 var delegate<OnItemSelectedCallback> NextOnSelectionChanged;
 
 delegate OnItemSelectedCallback(UIList _list, int itemIndex);
@@ -26,6 +30,8 @@ private function bool IsInStrategy()
 {
 	return ((`HQGAME  != none) && (`HQPC != None) && (`HQPRES != none));
 }
+
+
 
 event OnInit(UIScreen Screen)
 {
@@ -316,6 +322,8 @@ function EventListenerReturn AddArmoryMainMenuItem(Object EventData, Object Even
 {
 	local UIList List;
 	local XComGameState_Unit Unit;
+	local UIArmory_MainMenu ArmoryMainMenu;
+	local UIListItemString LeaderAbilityButton;
 
 	// `LOG("AddArmoryMainMenuItem: Starting.");
 
@@ -331,6 +339,7 @@ function EventListenerReturn AddArmoryMainMenuItem(Object EventData, Object Even
 		`REDSCREEN("Add Armory MainMenu event triggered with invalid event source.");
 		return ELR_NoInterrupt;
 	}
+	PathToArmoryMainMenu = PathName(ArmoryMainMenu);
 
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ArmoryMainMenu.UnitReference.ObjectID));
 
@@ -340,6 +349,9 @@ function EventListenerReturn AddArmoryMainMenuItem(Object EventData, Object Even
 	{
 		LeaderAbilityButton = ArmoryMainMenu.Spawn(class'UIListItemString', List.ItemContainer).InitListItem(CAPS(class'UIScreenListener_Armory_MainMenu_LWOfficerPack'.default.strOfficerMenuOption));
 		LeaderAbilityButton.ButtonBG.OnClickedDelegate = OnOfficerButtonCallback;
+
+		PathToLeaderAbilityButton = PathName(LeaderAbilityButton);
+
 		if (NextOnSelectionChanged == none)
 		{
 			NextOnSelectionChanged = List.OnSelectionChanged;
@@ -356,8 +368,11 @@ simulated function OnOfficerButtonCallback(UIButton kButton)
 {
 	local UIArmory_LWOfficerPromotion OfficerScreen;
 	local XComHQPresentationLayer HQPres;
+	local UIArmory_MainMenu ArmoryMainMenu;
 	
 	HQPres = `HQPRES;
+	ArmoryMainMenu = UIArmory_MainMenu(FindObject(PathToArmoryMainMenu, class'UIArmory_MainMenu'));
+
 	OfficerScreen = UIArmory_LWOfficerPromotion(HQPres.ScreenStack.Push(HQPres.Spawn(class'UIArmory_LWOfficerPromotion', HQPres), HQPres.Get3DMovie()));
 	OfficerScreen.InitPromotion(ArmoryMainMenu.GetUnitRef(), false);
 	// KDM : Previously, the officer pawn could be rotated when accessing the officer screen through the officer slot, but not when
@@ -369,6 +384,12 @@ simulated function OnOfficerButtonCallback(UIButton kButton)
 // Callback handler for list button info at bottom of screen
 simulated function OnSelectionChanged(UIList ContainerList, int ItemIndex)
 {
+	local UIArmory_MainMenu ArmoryMainMenu;
+	local UIListItemString LeaderAbilityButton;
+
+	LeaderAbilityButton = UIListItemString(FindObject(PathToLeaderAbilityButton, class'UIListItemString'));
+	ArmoryMainMenu = UIArmory_MainMenu(FindObject(PathToArmoryMainMenu, class'UIArmory_MainMenu'));
+
 	if (ContainerList.GetItem(ItemIndex) == LeaderAbilityButton) 
 	{
 		ArmoryMainMenu.MC.ChildSetString("descriptionText", "htmlText", class'UIUtilities_Text'.static.AddFontInfo(class'UIScreenListener_Armory_MainMenu_LWOfficerPack'.default.OfficerListItemDescription, true));
@@ -382,6 +403,9 @@ simulated function UIListItemString FindDismissListItem(UIList List)
 {
 	local int Idx;
 	local UIListItemString Current;
+	local UIArmory_MainMenu ArmoryMainMenu;
+
+	ArmoryMainMenu = UIArmory_MainMenu(FindObject(PathToArmoryMainMenu, class'UIArmory_MainMenu'));
 
 	for (Idx = 0; Idx < List.ItemCount ; Idx++)
 	{
@@ -625,7 +649,7 @@ event OnRemoved(UIScreen Screen)
 {
 	if (UIArmory_MainMenu(Screen) != none)
 	{
-		ArmoryMainMenu = none;
+		PathToArmoryMainMenu = "";
 		NextOnSelectionChanged = none;
 	}
 }

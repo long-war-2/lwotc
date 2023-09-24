@@ -10,17 +10,30 @@
 
 class UIScreenListener_Mission_ChosenStronghold extends UIScreenListener;
 
-var UIMission_ChosenStronghold ChosenStrongholdScreen;
-var UIButton Button1, Button2, LockedButton;
+var protected string PathToChosenStrongholdScreen;
+var protected string PathToButton1, PathToButton2, PathToLockedButton;
+
+//var UIMission_ChosenStronghold ChosenStrongholdScreen;
+//var UIButton Button1, Button2, LockedButton;
 
 event OnInit(UIScreen Screen)
 {
+	local UIMission_ChosenStronghold ChosenStrongholdScreen;
+	local UIButton Button1, Button2, LockedButton;
+
 	ChosenStrongholdScreen = UIMission_ChosenStronghold(Screen);
+
+	PathToChosenStrongholdScreen = PathName(ChosenStrongholdScreen);
+
 	// KDM : If CanTakeMission is true then LockedButton will be 'none'; if CanTakeMission is false then Button1 
 	// and Button2 will both be 'none'.
 	Button1 = ChosenStrongholdScreen.Button1;
 	Button2 = ChosenStrongholdScreen.Button2;
 	LockedButton = ChosenStrongholdScreen.LockedButton;
+
+	PathToButton1 = PathName(Button1);
+	PathToButton2 = PathName(Button2);
+	PathToLockedButton = PathName(LockedButton);
 
 	// KDM : Display parent-panel centered hotlinks for controller users, and parent-panel centered buttons
 	// for mouse and keyboard users.
@@ -87,23 +100,10 @@ event OnInit(UIScreen Screen)
 
 event OnRemoved(UIScreen Screen)
 {
-	if (Button1 != none)
-	{
-		Button1.OnSizeRealized = none;
-	}
-	if (Button2 != none)
-	{
-		Button2.OnSizeRealized = none;
-	}
-	if (LockedButton != none)
-	{
-		LockedButton.OnSizeRealized = none;
-	}
-
-	Button1 = none;
-	Button2 = none;
-	LockedButton = none;
-	ChosenStrongholdScreen = none;
+	PathToButton1 = "";
+	PathToButton2 = "";
+	PathToLockedButton = "";
+	PathToChosenStrongholdScreen = "";
 
 	`HQPRES.ScreenStack.UnsubscribeFromOnInputForScreen(Screen, OnChosenStrongholdMissionCommand);
 }
@@ -111,6 +111,9 @@ event OnRemoved(UIScreen Screen)
 simulated function RefreshNavigation()
 {
 	local bool SelectionSet;
+	local UIMission_ChosenStronghold ChosenStrongholdScreen;
+
+	ChosenStrongholdScreen = UIMission_ChosenStronghold(FindObject(PathToChosenStrongholdScreen, class'UIMission_ChosenStronghold'));
 
 	SelectionSet = false;
 
@@ -128,41 +131,53 @@ simulated function RefreshNavigation()
 		if (ChosenStrongholdScreen.CanTakeMission())
 		{
 			// KDM : Add the 'launch mission' and 'cancel mission' buttons to the Navigator.
-			SelectionSet = class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(ChosenStrongholdScreen, Button1, SelectionSet);
-			SelectionSet = class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(ChosenStrongholdScreen, Button2, SelectionSet);
+			SelectionSet = class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(ChosenStrongholdScreen, ChosenStrongholdScreen.Button1, SelectionSet);
+			SelectionSet = class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(ChosenStrongholdScreen, ChosenStrongholdScreen.Button2, SelectionSet);
 		}
 		else
 		{
 			// KDM : Add the 'locked mission' button to the Navigator.
-			class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(ChosenStrongholdScreen, LockedButton, SelectionSet);
+			class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(ChosenStrongholdScreen, ChosenStrongholdScreen.LockedButton, SelectionSet);
 		}
 	}
 }
 
 simulated function OnButtonSizeRealized()
 {
+
+	local UIMission_ChosenStronghold ChosenStrongholdScreen;
+
+	ChosenStrongholdScreen = UIMission_ChosenStronghold(FindObject(PathToChosenStrongholdScreen, class'UIMission_ChosenStronghold'));
+
 	if (ChosenStrongholdScreen != none)
 	{
-		Button1.SetX(-Button1.Width / 2.0);
-		Button1.SetY(10.0);
+		ChosenStrongholdScreen.Button1.SetX(-ChosenStrongholdScreen.Button1.Width / 2.0);
+		ChosenStrongholdScreen.Button1.SetY(10.0);
 
-		Button2.SetX(-Button2.Width / 2.0);
-		Button2.SetY(40.0);
+		ChosenStrongholdScreen.Button2.SetX(-ChosenStrongholdScreen.Button2.Width / 2.0);
+		ChosenStrongholdScreen.Button2.SetY(40.0);
 	}
 }
 
 simulated function OnLockedButtonSizeRealized()
 {
+	local UIMission_ChosenStronghold ChosenStrongholdScreen;
+
+	ChosenStrongholdScreen = UIMission_ChosenStronghold(FindObject(PathToChosenStrongholdScreen, class'UIMission_ChosenStronghold'));
+
 	if (ChosenStrongholdScreen != none)
 	{
-		LockedButton.SetX(200 - LockedButton.Width / 2.0);
-		LockedButton.SetY(125.0);
+		ChosenStrongholdScreen.LockedButton.SetX(200 - ChosenStrongholdScreen.LockedButton.Width / 2.0);
+		ChosenStrongholdScreen.LockedButton.SetY(125.0);
 	}
 }
 
 simulated protected function bool OnChosenStrongholdMissionCommand(UIScreen Screen, int cmd, int arg)
 {
 	local UIButton SelectedButton;
+	local UIMission_ChosenStronghold ChosenStrongholdScreen;
+
+	ChosenStrongholdScreen = UIMission_ChosenStronghold(FindObject(PathToChosenStrongholdScreen, class'UIMission_ChosenStronghold'));
 
 	if (!Screen.CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
 	{
@@ -180,13 +195,13 @@ simulated protected function bool OnChosenStrongholdMissionCommand(UIScreen Scre
 	// KDM : UIMission_ChosenStronghold.OnUnrealCommand would only 'click' on Button1 or Button2 if they were
 	// focused; since controller users use hotlinks remove this requirement.
 	case class'UIUtilities_Input'.const.FXS_BUTTON_A:
-		if (ChosenStrongholdScreen.CanTakeMission() && Button1 != none && Button1.bIsVisible)
+		if (ChosenStrongholdScreen.CanTakeMission() && ChosenStrongholdScreen.Button1 != none && ChosenStrongholdScreen.Button1.bIsVisible)
 		{
-			Button1.Click();
+			ChosenStrongholdScreen.Button1.Click();
 		}
-		else if (Button2 != none && Button2.bIsVisible)
+		else if (ChosenStrongholdScreen.Button2 != none && ChosenStrongholdScreen.Button2.bIsVisible)
 		{
-			Button2.Click();
+			ChosenStrongholdScreen.Button2.Click();
 		}
 		return true;
 
@@ -194,7 +209,7 @@ simulated protected function bool OnChosenStrongholdMissionCommand(UIScreen Scre
 	// This allows the B button to back out of the screen when the mission is unlocked, assuming certain conditions
 	// are met.
 	case class'UIUtilities_Input'.const.FXS_BUTTON_B:
-		if(ChosenStrongholdScreen.CanBackOut() && Button2 != none && Button2.bIsVisible)
+		if(ChosenStrongholdScreen.CanBackOut() && ChosenStrongholdScreen.Button2 != none && ChosenStrongholdScreen.Button2.bIsVisible)
 		{
 			ChosenStrongholdScreen.CloseScreen();
 			return true;

@@ -9,13 +9,19 @@
 
 class UIScreenListener_UFOAttack extends UIScreenListener;
 
-var UIUFOAttack UFOAttackScreen;
-var UIButton Button1;
+var private string PathToUFOAttackScreen;
+//var UIUFOAttack UFOAttackScreen;
+//var UIButton Button1;
 
 event OnInit(UIScreen Screen)
 {
+	local UIUFOAttack UFOAttackScreen;
+	local UIButton Button1;
+
 	UFOAttackScreen = UIUFOAttack(Screen);
 	Button1 = UFOAttackScreen.Button1;
+
+	PathToUFOAttackScreen = PathName(UFOAttackScreen);
 	
 	// KDM : Display parent-panel centered hotlinks for controller users, and parent-panel centered buttons
 	// for mouse and keyboard users.
@@ -48,13 +54,7 @@ event OnInit(UIScreen Screen)
 
 event OnRemoved(UIScreen Screen)
 {
-	if (Button1 != none)
-	{
-		Button1.OnSizeRealized = none;
-	}
-
-	Button1 = none;
-	UFOAttackScreen = none;
+	PathToUFOAttackScreen = "";
 
 	`HQPRES.ScreenStack.UnsubscribeFromOnInputForScreen(Screen, OnUFOAttackCommand);
 }
@@ -63,6 +63,9 @@ simulated function RefreshNavigation()
 {
 	local bool SelectionSet;
 	local UIPanel DefaultPanel;
+	local UIUFOAttack UFOAttackScreen;
+
+	UFOAttackScreen = UIUFOAttack(FindObject(PathToUFOAttackScreen, class'UIUFOAttack'));
 
 	SelectionSet = false;
 
@@ -83,22 +86,30 @@ simulated function RefreshNavigation()
 	if (!`ISCONTROLLERACTIVE)
 	{
 		// KDM : Add the 'launch mission' button to the Navigator.
-		class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(UFOAttackScreen, Button1, SelectionSet);
+		class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(UFOAttackScreen, UFOAttackScreen.Button1, SelectionSet);
 	}
 }
 
 simulated function OnButtonSizeRealized()
 {
+	local UIUFOAttack UFOAttackScreen;
+
+	UFOAttackScreen = UIUFOAttack(FindObject(PathToUFOAttackScreen, class'UIUFOAttack'));
+
 	if (UFOAttackScreen != none)
 	{
-		Button1.SetX(-Button1.Width / 2.0);
-		Button1.SetY(10.0);
+	if (UFOAttackScreen != none)
+		UFOAttackScreen.Button1.SetX(-UFOAttackScreen.Button1.Width / 2.0);
+		UFOAttackScreen.Button1.SetY(10.0);
 	}
 }
 
 simulated protected function bool OnUFOAttackCommand(UIScreen Screen, int cmd, int arg)
 {
 	local UIButton SelectedButton;
+	local UIUFOAttack UFOAttackScreen;
+
+	UFOAttackScreen = UIUFOAttack(FindObject(PathToUFOAttackScreen, class'UIUFOAttack'));
 
 	if (!Screen.CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
 	{
@@ -117,9 +128,9 @@ simulated protected function bool OnUFOAttackCommand(UIScreen Screen, int cmd, i
 	// KDM : UIUFOAttack.OnUnrealCommand would only 'click' on a button if it was selected; since controller users 
 	// use hotlinks remove this requirement.
 	case class'UIUtilities_Input'.const.FXS_BUTTON_A:
-		if (Button1 != none && Button1.bIsVisible)
+		if (UFOAttackScreen.Button1 != none && UFOAttackScreen.Button1.bIsVisible)
 		{
-			Button1.Click();
+			UFOAttackScreen.Button1.Click();
 			return true;
 		}
 		break;

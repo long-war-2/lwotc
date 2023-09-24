@@ -6,14 +6,23 @@
 
 class UIScreenListener_ViewObjectives extends UIScreenListener config(LW_Overhaul);
 
-var UIViewObjectives ObjectiveScreen;
-var UIPanel MouseEventPanel;
+var private string PathToObjectiveScreen;
+var private string PathToMouseEventPanel;
+
+//var UIViewObjectives ObjectiveScreen;
+//var UIPanel MouseEventPanel;
 
 var localized string ScrollObjectiveDescriptionStr;
 
 event OnInit(UIScreen Screen)
 {
+	local UIViewObjectives ObjectiveScreen;
+	local UIPanel MouseEventPanel;
+
 	ObjectiveScreen = UIViewObjectives(Screen);
+
+	PathToObjectiveScreen = PathName(ObjectiveScreen);
+
 	if (ObjectiveScreen.List != none)
 	{
 		// KDM : When list selection changes a new objective is being looked at; when this happens,
@@ -45,6 +54,7 @@ event OnInit(UIScreen Screen)
 			// KDM : 'Soft' hide the UIPanel so that it can still process mouse events.
 			MouseEventPanel.SetAlpha(0);
 			MouseEventPanel.ProcessMouseEvents(OnItemCardMouseEvent);
+			PathToMouseEventPanel = PathName(MouseEventPanel);
 		}
 	}
 	
@@ -54,6 +64,10 @@ event OnInit(UIScreen Screen)
 
 simulated function OnObjectiveSelectionChanged(UIList List, int Index)
 {
+	local UIViewObjectives ObjectiveScreen;
+
+	ObjectiveScreen = UIViewObjectives(FindObject(PathToObjectiveScreen, class'UIViewObjectives'));
+
 	if (ObjectiveScreen != none)
 	{
 		// KDM : Previously List.OnSelectionChanged was hooked up to ObjectiveScreen.SelectedItemChanged; 
@@ -73,6 +87,10 @@ simulated function OnObjectiveSelectionChanged(UIList List, int Index)
 
 simulated function OnItemCardMouseEvent(UIPanel Control, int cmd)
 {
+	local UIViewObjectives ObjectiveScreen;
+
+	ObjectiveScreen = UIViewObjectives(FindObject(PathToObjectiveScreen, class'UIViewObjectives'));
+
 	switch(cmd)
 	{
 	case class'UIUtilities_Input'.const.FXS_MOUSE_SCROLL_DOWN:
@@ -97,21 +115,9 @@ event OnReceiveFocus(UIScreen Screen)
 
 event OnRemoved(UIScreen Screen)
 {
-	if (MouseEventPanel != none)
-	{
-		MouseEventPanel.IgnoreMouseEvents();
-		MouseEventPanel.Remove();
-		MouseEventPanel = none;
-	}
 
-	if (ObjectiveScreen != none)
-	{
-		if (ObjectiveScreen.List != none)
-		{
-			ObjectiveScreen.List.OnSelectionChanged = none;
-		}
-		ObjectiveScreen = none;
-	}
+	PathToMouseEventPanel = "";
+	PathToObjectiveScreen = "";
 
 	`HQPRES.ScreenStack.UnsubscribeFromOnInputForScreen(Screen, OnViewObjectivesCommand);
 	RemoveNavHelp();

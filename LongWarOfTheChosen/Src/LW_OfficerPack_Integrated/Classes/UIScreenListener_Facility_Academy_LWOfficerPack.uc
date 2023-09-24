@@ -6,11 +6,13 @@
 
 class UIScreenListener_Facility_Academy_LWOfficerPack extends UIScreenListener dependsOn(UIScreenListener_Facility);
 
-var UIButton OfficerButton;
-var UIFacility_LWOfficerSlot Slot;
+//Tedster - none of these are actually used, yay
+
+//var UIButton OfficerButton;
+//var UIFacility_LWOfficerSlot Slot;
 var localized string strOfficerTrainButton;
-var UIPersonnel PersonnelSelection;
-var XComGameState_StaffSlot StaffSlot;
+//var UIPersonnel PersonnelSelection;
+//var XComGameState_StaffSlot StaffSlot;
 
 event OnInit(UIScreen Screen)
 {

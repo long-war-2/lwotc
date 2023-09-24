@@ -1386,6 +1386,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 
 		Template.AdditionalAbilities.AddItem('RapidFireSnapShot');
 	}
+
+	if(Template.DataName == 'RapidFire2' || Template.DataName == 'ChainShot2')
+	{
+		FixRapidFire2(Template);
+	}
 	
 	
 	// Steady Hands
@@ -4042,6 +4047,21 @@ function ModifyFacilityUpgrades(X2StrategyElementTemplate Template, int Difficul
 		{
 			// Modify the upgrade to simply unlock the extra engineer staff slot
 			FacilityUpgradeTemplate.OnUpgradeAddedFn = class'X2StrategyElement_DefaultFacilityUpgrades'.static.OnUpgradeAdded_UnlockStaffSlot;
+		}
+	}
+}
+
+static function FixRapidFire2(X2AbilityTemplate Template)
+{
+	local X2AbilityTrigger Trigger;
+	local X2AbilityTrigger_EventListener EventTrigger;
+
+	foreach Template.AbilityTriggers (Trigger)
+	{
+		EventTrigger = X2AbilityTrigger_EventListener(Trigger);
+		if(EventTrigger != none)
+		{
+			EventTrigger.ListenerData.Priority = 80;
 		}
 	}
 }
