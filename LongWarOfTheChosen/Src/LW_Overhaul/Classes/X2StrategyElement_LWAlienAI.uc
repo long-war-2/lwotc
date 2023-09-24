@@ -50,6 +50,7 @@ static function AddFortressDoom()
 	local XComGameStateHistory History;
 	local XComGameState NewGameState;
 	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_MissionSite MissionState;
 
 	History = `XCOMHISTORY;
 	AlienHQ = XComGameState_HeadquartersAlien(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
@@ -62,8 +63,12 @@ static function AddFortressDoom()
 
 	OnFortressDoomTimerComplete(AlienHQ, NewGameState);
 
-	// Complete the Avatar reveal project after 3 pips are added to the fortress so players know what they're up against.
-	if(AlienHQ.GetCurrentDoom(true) >= 3)
+	// Complete the Avatar reveal project after 2 pips are added to the fortress so players know what they're up against.
+	MissionState = AlienHQ.GetAndAddFortressMission(NewGameState);
+
+	`LWTrace("Current Doom:"@MissionState.Doom);
+
+	if(MissionState.Doom >= 2)
 	{
 		`LWTrace("Triggering Avatar Project reveal...");
 		class'XComGameState_Objective'.static.StartObjectiveByName(NewGameState, 'LW_T2_M1_N2_RevealAvatarProject');
