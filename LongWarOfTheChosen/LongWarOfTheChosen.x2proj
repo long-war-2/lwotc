@@ -724,6 +724,7 @@
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition_LiberationStage.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition_MaxRebels.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition_MinLiberatedRegions.uc" />
+    <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition_MinLiberatedRegionsLegendary.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition_MinRebels.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition_MinRebelsOnJob.uc" />
     <Content Include="Src\LW_Overhaul\Classes\X2LWActivityCondition_MinWorkingRebels.uc" />
