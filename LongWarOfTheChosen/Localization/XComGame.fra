@@ -2938,6 +2938,14 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Récupérer autant de ressources que possible"
 ObjectiveTextPools[1]="Évacuer tous les soldats XCOM"
 
+[BigSmashNGrab_LW X2MissionTemplate]
+DisplayName="Défoncer et Ramasser"
+Briefing="Piller un entrepôt ADVENT"
+PostMissionType="Défoncer et Ramasser"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Récupérer autant de ressources que possible"
+ObjectiveTextPools[1]="Évacuer tous les soldats XCOM"
+
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Marquer et récupérer les caisses d'ADVENT"
 ObjectiveTextPools[1]="Marquer et récupérer les caisses d'ADVENT"
@@ -2951,6 +2959,15 @@ ObjectiveTextPools[2]="Récupérer et extraire plus de ressources (Optionnel)"
 ObjectiveTextPools[3]="Évacuer tous les soldats XCOM"
 ObjectiveTextPools[4]="Défoncer et Ramasser"
 ObjectiveTextPools[5]="La Résistance a découvert un entrepôt ADVENT vulnérable rempli de matériel et de ressources de valeur. Forcez l'entrée, ramassez ce que vous pouvez et quittez la région avant que les renforts ADVENT n'arrivent. Il y a aura plusieurs Caches de Ressources a récupérer au cours de cette mission mais chaque soldat ne pourra en porter qu'un."
+
+[DefaultBigSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Obtenir des ressources ADVENT"
+ObjectiveTextPools[1]="Extraire les ressources ADVENT"
+ObjectiveTextPools[2]="Récupérer et extraire plus de ressources (Optionnel)"
+ObjectiveTextPools[3]="Évacuer tous les soldats XCOM"
+ObjectiveTextPools[4]="Défoncer et Ramasser"
+ObjectiveTextPools[5]="La Résistance a découvert un entrepôt ADVENT vulnérable rempli de matériel et de ressources de valeur. Forcez l'entrée, ramassez ce que vous pouvez et quittez la région avant que les renforts ADVENT n'arrivent. Il y a aura plusieurs Caches de Ressources a récupérer au cours de cette mission mais chaque soldat ne pourra en porter qu'un."
+
 
 [TroopManeuvers_LW X2MissionTemplate]
 DisplayName="Tendre une embuscade à une colonne de soldats d'ADVENT"

@@ -4578,13 +4578,21 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Recupera la massima quantità possibile di risorse "
 ObjectiveTextPools[1]="Estrai tutti i soldati XCOM"
 
+[BigSmashNGrab_LW X2MissionTemplate]
+DisplayName="Assalta e porta via"
+Briefing="Assalta un deposito della ADVENT"
+PostMissionType=" Assalta e porta via"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Recupera la massima quantità possibile di risorse "
+ObjectiveTextPools[1]="Estrai tutti i soldati XCOM"
+
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Segnala e recupera le casse della ADVENT"
 ObjectiveTextPools[1]="Segnala e recupera le casse della ADVENT"
 ObjectiveTextPools[2]="Estrai tutti i soldati XCOM"
 ObjectiveTextPools[3]="OPPURE: elimina tutti i bersagli nemici rimasti"
 
-[DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+[DefaultBigSmashNGrab_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Acquisisci risorse della ADVENT"
 ObjectiveTextPools[1]="Estrai le risorse della ADVENT acquisite"
 ObjectiveTextPools[2]="Recupera ed estrai risorse aggiuntive (Facoltativo) "

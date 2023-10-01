@@ -2844,6 +2844,14 @@ BriefingImage="img:///UILibrary_StrategyImages。X2StrategyMap。Alert_Resistanc
 ObjectiveTextPools[0]="儘可能多的獲取變種人資源"
 ObjectiveTextPools[1]="撤離所有XCOM士兵"
 
+[BigSmashNGrab_LW X2MissionTemplate]
+DisplayName="補給突襲"
+Briefing="突襲變種人補給站"
+PostMissionType="補給突襲"
+BriefingImage="img:///UILibrary_StrategyImages。X2StrategyMap。Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="儘可能多的獲取變種人資源"
+ObjectiveTextPools[1]="撤離所有XCOM士兵"
+
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="標記並回收變種人物資箱"
 ObjectiveTextPools[1]="標記並回收變種人物資箱"
@@ -2857,6 +2865,15 @@ ObjectiveTextPools[2]="找到額外的變種人資源(可選)"
 ObjectiveTextPools[3]="撤離所有XCOM士兵"
 ObjectiveTextPools[4]="補給突襲"
 ObjectiveTextPools[5]="反抗軍找到一個含有各種資源的變種人補給站。 突襲補給站，儘可能多的帶走這些資源，在敵人增員趕來之前撤離。 該任務將會有多個補給目標, 但是一名士兵只能帶走一個補給箱。"
+
+[DefaultBigSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="找到變種人資源"
+ObjectiveTextPools[1]="轉移變種人資源"
+ObjectiveTextPools[2]="找到額外的變種人資源(可選)"
+ObjectiveTextPools[3]="撤離所有XCOM士兵"
+ObjectiveTextPools[4]="補給突襲"
+ObjectiveTextPools[5]="反抗軍找到一個含有各種資源的變種人補給站。 突襲補給站，儘可能多的帶走這些資源，在敵人增員趕來之前撤離。 該任務將會有多個補給目標, 但是一名士兵只能帶走一個補給箱。"
+
 
 [TroopManeuvers_LW X2MissionTemplate]
 DisplayName="伏擊一支變種人列隊"
