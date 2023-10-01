@@ -53,7 +53,7 @@ static function EventListenerReturn PostEffectTickCheck(Object EventData, Object
 
 	`LWTrace("Trojan check: unit is mindcontrolled:" @OldTargetState.IsMindControlled() @". unit is stunned:" @OldTargetState.IsStunned());
 	// don't do anything if unit is still mind controlled or stunned
-	if(OldTargetState.IsMindControlled() || OldTargetState.IsStunned())
+	if(OldTargetState.IsMindControlled() || OldTargetState.IsStunned() || OldTargetState.AffectedByEffectNames.Find('FullOverride') != INDEX_NONE)
 		return ELR_NoInterrupt;
 
 	//NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Apply Trojan Virus Effects");
