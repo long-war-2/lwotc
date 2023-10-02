@@ -105,7 +105,7 @@ static function String GetDifficultyString(XComGameState_MissionSite MissionStat
 
 			DummyMissionSite = new class'XComGameState_MissionSite'(MissionState);
 			DummyMissionSite.Source = 'LWInfilListDummyMission';
-			DummyMissionSite.CacheSelectedMissionData(MissionState.SelectedMissionData.ForceLevel, MissionState.SelectedMissionData.AlertLevel + AlertModifier);
+			DummyMissionSite.CacheSelectedMissionData(MissionState.SelectedMissionData.ForceLevel, max(1, MissionState.SelectedMissionData.AlertLevel + AlertModifier));
 			DummyMissionSite.GetShadowChamberMissionInfo (EnemyUnits, Dummy);
 			`LWTrace("Schedule Selected for Dummy Mission:" @DummyMissionSite.SelectedMissionData.SelectedMissionScheduleName);
 			`LWTrace("Modified Alert check. Alert Modifier:" @AlertModifier @ ". Enemy Count: " @EnemyUnits);
