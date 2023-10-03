@@ -56,7 +56,7 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddDefaultSupplyConvoyMissionNarrativeTemplate());
     Templates.AddItem(AddDefaultRecruitRaidMissionNarrativeTemplate());
 	Templates.AddItem(AddDefaultSmashNGrabMissionNarrativeTemplate());
-	Templates.AddItem(AddDefaultBigSmashNGrabMissionNarrativeTemplate());
+	//Templates.AddItem(AddDefaultBigSmashNGrabMissionNarrativeTemplate());
 	Templates.AddItem(AddSupplyExtractionMissionNarrativeTemplate());
 
     return Templates;
