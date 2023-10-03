@@ -5025,6 +5025,14 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Recupera todos los recursos posibles"
 ObjectiveTextPools[1]="Extrae a todos los soldados de XCOM"
 
+[BigSmashNGrab_LW X2MissionTemplate]
+DisplayName="Robo Relámpago"
+Briefing="Asalta un almacén ADVENT"
+PostMissionType="Robo Relámpago"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Recupera todos los recursos posibles"
+ObjectiveTextPools[1]="Extrae a todos los soldados de XCOM"
+
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Señala y recupera las cajas de ADVENT."
 ObjectiveTextPools[1]="Neutraliza todos los objetivos enemigos."
@@ -5038,6 +5046,15 @@ ObjectiveTextPools[2]="Recupera y extrae recursos adicionales (Opcional)"
 ObjectiveTextPools[3]="Extrae a todos los soldados de XCOM"
 ObjectiveTextPools[4]="Robo relámpago"
 ObjectiveTextPools[5]="La resistencia ha descubierto un almacén ADVENT vulnerable lleno de suministros y recursos valiosos. Irrumpe, toma todo lo que puedas, y escapa antes de que lleguen los refuerzos. Habrán múltiples cajas de alijos en esta misión pero sólo podrán recoger 1 por persona."
+
+[DefaultBigSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Adquiere recursos de ADVENT"
+ObjectiveTextPools[1]="Extrae recursos de ADVENT"
+ObjectiveTextPools[2]="Recupera y extrae recursos adicionales (Opcional)"
+ObjectiveTextPools[3]="Extrae a todos los soldados de XCOM"
+ObjectiveTextPools[4]="Robo relámpago"
+ObjectiveTextPools[5]="La resistencia ha descubierto un almacén ADVENT vulnerable lleno de suministros y recursos valiosos. Irrumpe, toma todo lo que puedas, y escapa antes de que lleguen los refuerzos. Habrán múltiples cajas de alijos en esta misión pero sólo podrán recoger 1 por persona."
+
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
 FriendlyName="Alijo de recursos ADVENT"

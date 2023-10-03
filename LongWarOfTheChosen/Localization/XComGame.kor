@@ -4575,6 +4575,14 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="최대한 많은 자원을 회수하기"
 ObjectiveTextPools[1]="모든 XCOM 병사 탈출시키기"
 
+[BigSmashNGrab_LW X2MissionTemplate]
+DisplayName="탈취"
+Briefing="어드밴트 창고습격"
+PostMissionType="탈취"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="최대한 많은 자원을 회수하기"
+ObjectiveTextPools[1]="모든 XCOM 병사 탈출시키기"
+
 [SupplyExtraction_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="어드밴트 상자를 표시하고 회수하기"
 ObjectiveTextPools[1]="어드밴트 상자를 표시하고 회수하기"
@@ -4582,6 +4590,14 @@ ObjectiveTextPools[2]="모든 XCOM 병사 탈출시키기"
 ObjectiveTextPools[3]="또는: 남아있는 모든 적대적 목표물을 제거하기"
 
 [DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="어드밴트 자원 회수하기"
+ObjectiveTextPools[1]="어드밴트 자원 확보하기"
+ObjectiveTextPools[2]="추가자원을 회수 및 확보하기 (선택사항)"
+ObjectiveTextPools[3]="모든 XCOM 병사 탈출시키기"
+ObjectiveTextPools[4]="탈취"
+ObjectiveTextPools[5]="저항군이 유용한 자원들이 저장되어 있는 어드밴트 창고를 발견하였습니다. 침입하여 어드밴트의 지원군이 도착하기 전에 최대한 많은 자원을 확보하여 탈출하십시오. 여러 자원 캐시가 있지만, 병사들은 각각 한 개의 자원 캐시만 확보할 수 있습니다."
+
+[DefaultBigSmashNGrab_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="어드밴트 자원 회수하기"
 ObjectiveTextPools[1]="어드밴트 자원 확보하기"
 ObjectiveTextPools[2]="추가자원을 회수 및 확보하기 (선택사항)"

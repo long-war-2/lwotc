@@ -83,6 +83,7 @@ var config int PROPAGANDA_ADJACENT_VIGILANCE_RAND;
 
 var config int PROTECT_RESEARCH_REGIONAL_COOLDOWN_HOURS_MIN;
 var config int PROTECT_RESEARCH_REGIONAL_COOLDOWN_HOURS_MAX;
+var config int PROTECT_RESEARCH_FIRST_MONTH_POSSIBLE;
 
 var config int PROTECT_DATA_REGIONAL_COOLDOWN_HOURS_MIN;
 var config int PROTECT_DATA_REGIONAL_COOLDOWN_HOURS_MAX;
@@ -2938,6 +2939,8 @@ static function X2DataTemplate CreateProtectResearchTemplate()
 	local X2LWAlienActivityTemplate Template;
 	local X2LWActivityCondition_ResearchFacility ResearchFacility;
 	local X2LWActivityCooldown Cooldown;
+	local X2LWActivityCondition_Month TimeCondition;
+	local X2LWActivityCondition_MinLiberatedRegionsLegendary LibCondition;
 
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.ProtectResearchName);
 	Template.iPriority = 50; // 50 is default, lower priority gets created earlier
@@ -2963,6 +2966,16 @@ static function X2DataTemplate CreateProtectResearchTemplate()
 	Template.ActivityCreation.Conditions.AddItem(ResearchFacility);
 
 	Template.ActivityCreation.Conditions.AddItem(new class'X2LWActivityCondition_FacilityLeadItem'); // prevents creation if would create more items than there are facilities
+
+	//Add a time delay so you don't instantly get facility missions
+	TimeCondition = new class'X2LWActivityCondition_Month';
+	TimeCondition.FirstMonthPossible = default.PROTECT_RESEARCH_FIRST_MONTH_POSSIBLE;
+	Template.ActivityCreation.Conditions.AddItem(TimeCondition);
+
+	//Add Lib condition for Legendary;
+	LibCondition = new class'X2LWActivityCondition_MinLiberatedRegionsLegendary';
+	LibCondition.MaxAlienRegions = 15; // 1 region liberated
+	Template.ActivityCreation.Conditions.AddItem(LibCondition);
 
 	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
 	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;

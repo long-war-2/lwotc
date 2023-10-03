@@ -56,6 +56,7 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddDefaultSupplyConvoyMissionNarrativeTemplate());
     Templates.AddItem(AddDefaultRecruitRaidMissionNarrativeTemplate());
 	Templates.AddItem(AddDefaultSmashNGrabMissionNarrativeTemplate());
+	//Templates.AddItem(AddDefaultBigSmashNGrabMissionNarrativeTemplate());
 	Templates.AddItem(AddSupplyExtractionMissionNarrativeTemplate());
 
     return Templates;
@@ -1191,6 +1192,27 @@ static function X2MissionNarrativeTemplate AddDefaultSmashNGrabMissionNarrativeT
 	`CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultSmashNGrab_LW');
 
 	Template.MissionType = "SmashNGrab_LW";
+
+	Template.NarrativeMoments[0]="X2NarrativeMoments.TACTICAL.General.GenTactical_SecureRetreat";
+	Template.NarrativeMoments[1]="X2NarrativeMoments.TACTICAL.General.GenTactical_ConsiderRetreat";
+	Template.NarrativeMoments[2]="X2NarrativeMoments.TACTICAL.General.GenTactical_PartialEVAC";
+	Template.NarrativeMoments[3]="X2NarrativeMoments.TACTICAL.General.GenTactical_FullEVAC";
+	Template.NarrativeMoments[4]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
+	Template.NarrativeMoments[5]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroFailure";
+	Template.NarrativeMoments[6]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroTotalSuccess";
+	Template.NarrativeMoments[7]="X2NarrativeMoments.TACTICAL.Recover.SKY_RecoGEN_ItemSecured";
+	Template.NarrativeMoments[8]="X2NarrativeMoments.TACTICAL.RescueVIP.Central_Rescue_VIP_EvacDestroyed";
+
+	return Template;
+}
+
+static function X2MissionNarrativeTemplate AddDefaultBigSmashNGrabMissionNarrativeTemplate()
+{
+	local X2MissionNarrativeTemplate Template;
+
+	`CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultBigSmashNGrab_LW');
+
+	Template.MissionType = "Ted_BigSmashNGrab_LW";
 
 	Template.NarrativeMoments[0]="X2NarrativeMoments.TACTICAL.General.GenTactical_SecureRetreat";
 	Template.NarrativeMoments[1]="X2NarrativeMoments.TACTICAL.General.GenTactical_ConsiderRetreat";

@@ -273,6 +273,8 @@ static function X2AbilityTemplate AddHackRewardControlRobot_Mission()
 	ControlEffect = class'X2StatusEffects'.static.CreateMindControlStatusEffect(99, true, bInfiniteDuration);
 	// Rename effect so that Stasis doesn't cancel the hack.
 	ControlEffect.EffectName = 'FullOverride';
+	//remove the tick function so it douesn't visualize.
+	ControlEffect.EffectTickedVisualizationFn = none;
 	Template.AddTargetEffect(ControlEffect);
 
 	// Remove any pre-existing disorient.

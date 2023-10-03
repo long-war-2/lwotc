@@ -1101,6 +1101,7 @@ static function X2AbilityTemplate ParaMedikitHeal()
 	UnitPropertyCondition.ExcludeFullHealth = true;
 	UnitPropertyCondition.ExcludeRobotic = true;
 	UnitPropertyCondition.ExcludeTurret = true;
+	UnitPropertyCondition.FailOnNonUnits = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 
 	//Hack: Do this instead of ExcludeDead, to only exclude properly-dead or bleeding-out units.
@@ -1189,6 +1190,7 @@ static function X2AbilityTemplate ParaMedikitStabilize()
 	UnitPropertyCondition.ExcludeHostileToSource = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = false;
 	UnitPropertyCondition.IsBleedingOut = true;
+	UnitPropertyCondition.FailOnNonUnits = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 
 	RemoveEffects = new class'X2Effect_RemoveEffects';

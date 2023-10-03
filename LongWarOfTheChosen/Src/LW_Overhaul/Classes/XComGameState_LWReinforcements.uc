@@ -451,7 +451,7 @@ function int CheckForReinforcements()
 		`LWTrace("LWRNF: Applying multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value from mission/activity");
 		BucketFiller *= TmpValue;
 
-		TmpValue = TimerBucketModifier / ReinforcementModifiers();
+		TmpValue = TimerBucketModifier;
 		`LWTrace("LWRNF: Applying timer-based multiplier " $ TmpValue $ " to this turn's reinforcement bucket fill value");
 		BucketFiller *= TmpValue;
 

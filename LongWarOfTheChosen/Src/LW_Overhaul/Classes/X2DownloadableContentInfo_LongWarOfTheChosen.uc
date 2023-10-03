@@ -5411,3 +5411,97 @@ exec function LWOTC_SpawnChosenStrongholdMission(name ChosenName)
 
 	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 }
+
+exec function FindObjectiveSpawnInfo(name MissionName)
+{
+	local XComTacticalMissionManager MissionMgr;
+    local int idx,ObjectiveIdx;
+
+    MissionMgr = `TACTICALMISSIONMGR;
+    for(idx = 0; idx < MissionMgr.arrMissions.Length; idx++)
+    {
+       `LWTrace("arr missions idx" @ string(idx) @": mission name is" @ MissionMgr.arrMissions[idx].MissionName);
+    }
+    for(idx = 0; idx < MissionMgr.arrObjectiveSpawnInfo.Length;idx++)
+    {
+        `LWTrace("arr objective spawn info idx" @ string(idx) @": mission stype is" @ MissionMgr.arrObjectiveSpawnInfo[idx].sMissionType);
+    }
+    
+        idx = FindMissionIndex(MissionMgr.arrMissions,MissionName);
+        if(idx != INDEX_NONE)
+        {
+            `LWTrace("found mission at arrmissions with index" @ string(idx));
+            ObjectiveIdx = FindObjectiveSpawnInfoIndex(MissionMgr.arrObjectiveSpawnInfo,MissionMgr.arrMissions[idx].sType);
+            if(ObjectiveIdx != INDEX_NONE)
+            {
+                `LWTrace("found objective spawn info at index" @ string(ObjectiveIdx));
+				`LWTrace("Mission stuff:");
+				`LWTrace("Mission Name:"@MissionMgr.arrMissions[idx].MissionName);
+				`LWTrace("Mission Type:"@MissionMgr.arrMissions[idx].sType);
+				`LWTrace("Objective sType:"@MissionMgr.arrObjectiveSpawnInfo[ObjectiveIdx].sMissionType);
+				`LWTrace("iMinObjectives:"@MissionMgr.arrObjectiveSpawnInfo[ObjectiveIdx].iMinObjectives);
+				`LWTrace("iMaxObjectives:"@MissionMgr.arrObjectiveSpawnInfo[ObjectiveIdx].iMaxObjectives);
+            }
+            else
+            {
+                `LWTrace("error: did not find objective spawn info");
+            }  
+        }
+        else
+        {
+            `LWTrace("error: did not find this mission");
+        }
+    
+}
+
+static final function int FindMissionIndex(array<MissionDefinition> MissionDefs,name MissionName)
+{
+    return MissionDefs.Find('MissionName',MissionName);
+}
+
+static final function int FindObjectiveSpawnInfoIndex(array<ObjectiveSpawnInfo> SpawnInfo,String MissionType)
+{
+    return SpawnInfo.Find('sMissionType',MissionType);
+}
+
+exec function PrintKismetVariables(optional bool bAllVars)
+{
+    //local array<SequenceVariable> OutVariables;
+    local array<SequenceObject> OutObjects;
+    local SequenceObject SeqObj;
+    local SequenceVariable SeqVar;
+    local SeqVar_Int SeqVarTimer;
+    local Sequence CurrentSequence;
+
+    CurrentSequence = `XWORLDINFO.GetGameSequence();
+    if(CurrentSequence == none)
+    {
+        return;
+    }
+
+    CurrentSequence.FindSeqObjectsByClass(class'SequenceVariable', true, OutObjects);
+
+    foreach OutObjects(SeqObj)
+    {
+        SeqVar = SequenceVariable(SeqObj);
+        if(SeqVar != none)
+        {
+            SeqVarTimer = SeqVar_Int(SeqVar);
+            if(SeqVarTimer != none)
+            {
+                if(bAllVars)
+                {
+                    class'Helpers'.static.OutputMsg("Found KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+                }
+
+
+                    //class'Helpers'.static.OutputMsg("KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+                    //class'Helpers'.static.OutputMsg("Found KismetVariable To Adjust: " $ Adjustment);
+                    //SeqVarTimer.IntValue = SeqVarTimer.IntValue + Adjustment;
+                    `LWTrace("Named KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+                    class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+                
+            }
+        }
+    }
+}
