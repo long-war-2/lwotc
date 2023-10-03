@@ -2473,6 +2473,9 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		if (WeaponTemplate.DataName == 'Medikit')
 		{
 			WeaponTemplate.HideIfResearched = '';
+			WeaponTemplate.Abilities.AddItem('Sedate');
+			WeaponTemplate.Abilities.AddItem('ParaMedikitHeal');
+			WeaponTemplate.Abilities.AddItem('ParaMedikitStabilize');
 		}
 		if (class'X2Ability_ReaperAbilitySet_LW'.default.AlternativeMedikitNames.Find((WeaponTemplate.DataName)) != INDEX_NONE)
 		{
