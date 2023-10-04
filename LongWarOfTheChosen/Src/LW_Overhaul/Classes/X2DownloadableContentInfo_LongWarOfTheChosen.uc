@@ -212,8 +212,40 @@ static event OnPostTemplatesCreated()
 	UpdateChosenActivities();
 	UpdateChosenSabotages();
 	UpdateSitreps();
+	UpdateEncounterLists();
 	ModifyYellAbility();
 	
+}
+
+static function UpdateEncounterLists()
+{
+	local XComTacticalMissionManager MissionManager;
+	local X2CharacterTemplateManager CharacterTemplateMgr;
+	local X2CharacterTemplate TestTemplate;
+	local int i, j;
+
+	MissionManager = `TACTICALMISSIONMGR;
+	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+
+	// Loop over all encounter lists
+	for(i = MissionManager.SpawnDistributionLists.length-1; i >= 0; i--)
+	{
+		//CurrentList = MissionManager.SpawnDistributionLists[i];
+
+		// Loop over all entries in each list
+		for(j = MissionManager.SpawnDistributionLists[i].SpawnDistribution.Length-1; j >= 0; j--) 
+		{
+			//CurrentListEntry= CurrentList.SpawnDistribution[j];
+			TestTemplate = CharacterTemplateMgr.FindCharacterTemplate(MissionManager.SpawnDistributionLists[i].SpawnDistribution[j].Template);
+
+			// remove entry if invaid
+			if(TestTemplate == none)
+			{
+				`LWTrace("Removing nonexistant unit" @MissionManager.SpawnDistributionLists[i].SpawnDistribution[j].Template @ "From encounter list" @MissionManager.SpawnDistributionLists[i].ListID);
+				MissionManager.SpawnDistributionLists[i].SpawnDistribution.Remove(j, 1);
+			}
+		}
+	}
 }
 
 // Remove the red alert affect from the yell ability since it cause AI units to go into red alert
