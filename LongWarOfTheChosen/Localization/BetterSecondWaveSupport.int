@@ -25,3 +25,7 @@ Description="Allow Same Rank Abilities: Allows XCOM soldiers to purchase multipl
 Tooltip="Disable the Prime reactions on the Chosen, making them significantly easier to fight."
 Description="Baby Chosen: Chosen have their Prime Reactions disabled."
 ; End Translation
+
+[HybridDifficulty_LW SecondWaveOptionObject]
+Tooltip="Increases the Tactical Difficulty one level above the Strategy Layer Difficulty.  For when you want a harder Tactical layer but easier Strategy layer. Note: This is still early in testing. Does nothing if you're already on Legend, and changing difficulty mid-campaign will break this. Currently does not apply the changes to Gatecrasher.
+Description="[Beta] Hybrid Difficulty: Increases the Tactical Difficulty"

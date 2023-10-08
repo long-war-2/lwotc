@@ -5555,3 +5555,40 @@ exec function PrintKismetVariables(optional bool bAllVars)
         }
     }
 }
+
+//------------ Hybrid Difficulty Stuff -------------
+
+// InstallNewCampaign part called in LW_SMGPack_Integrated because it loads first
+
+exec function Ted_SetNewCustomDifficulty()
+{
+	local XComGameStateHistory History;
+	local XComGameState_CampaignSettings CampaignSettingsStateObject;
+	local XComGameState NewGameState;
+
+	History = `XCOMHISTORY;
+
+	CampaignSettingsStateObject = XComGameState_CampaignSettings(History.GetSingleGameStateObjectForClass(class'XComGameState_CampaignSettings', true));
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("set new custom difficulty");
+
+	CampaignSettingsStateObject = XComGameState_CampaignSettings(NewGameState.ModifyStateObject(class'XComGameState_CampaignSettings', CampaignSettingsStateObject.ObjectID));
+
+	CampaignSettingsStateObject.SetDifficulty(4);
+
+	`GAMERULES.SubmitGameState(NewGameState);
+}
+
+exec function Ted_CheckCurrentDifficulty()
+{
+	local XComGameStateHistory History;
+	local XComGameState_CampaignSettings CampaignSettingsStateObject;
+
+	History = `XCOMHISTORY;
+
+	CampaignSettingsStateObject = XComGameState_CampaignSettings(History.GetSingleGameStateObjectForClass(class'XComGameState_CampaignSettings', true));
+
+	`LWTrace("Current Tactical Difficulty:" @CampaignSettingsStateObject.GetTacticalDifficultyFromSettings());
+	`LWTrace("Current Strategy Difficulty:" @CampaignSettingsStateObject.GetStrategyDifficultyFromSettings());
+
+}
