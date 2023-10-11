@@ -2303,6 +2303,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 
 		Template.InitiativePriority = -100;
 
+		Template.Abilities.AddItem('WarlockReactionMobility_LW');
+
 		//Since they no longer have the ability by default
 		Template.Abilities.AddItem('ChosenSummonFollowers');
 
@@ -2331,6 +2333,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('ChosenLootAbility');
 		Template.Abilities.AddItem('TriggerDamagedTeleport_LW');
 		Template.Abilities.AddItem('MovingTarget_LW');
+
+		Template.Abilities.AddItem('HunterReactionMobility_LW');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;
