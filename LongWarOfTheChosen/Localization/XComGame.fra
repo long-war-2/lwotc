@@ -6667,8 +6667,8 @@ LocFlyOverText="Marque noire"
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="Fatalité"
 ; LWOTC translated (2)
-LocLongDescription="Gagnez un bonus de +100 en visée et en chances de coup critique avec votre <Ability:WeaponName/> contre les unités dont les PV actuels sont inférieurs ou égaux à <Ability:FATALITY_THRESHOLD/>% de leurs PV initiaux."
-LocHelpText="Gagnez un bonus de +100 en visée et en chances de coup critique avec votre <Ability:WeaponName/> contre les unités dont les PV actuels sont inférieurs ou égaux à <Ability:FATALITY_THRESHOLD/>% de leurs PV initiaux."
+LocLongDescription="Gagnez un bonus de +100 en visée et en chances de coup critique avec votre <Ability:BOUND_WEAPON_NAME/> contre les unités dont les PV actuels sont inférieurs ou égaux à <Ability:FATALITY_THRESHOLD/>% de leurs PV initiaux."
+LocHelpText="Gagnez un bonus de +100 en visée et en chances de coup critique avec votre <Ability:BOUND_WEAPON_NAME/> contre les unités dont les PV actuels sont inférieurs ou égaux à <Ability:FATALITY_THRESHOLD/>% de leurs PV initiaux."
 ; End translated (2)
 LocFlyOverText="Fatalité"
 
