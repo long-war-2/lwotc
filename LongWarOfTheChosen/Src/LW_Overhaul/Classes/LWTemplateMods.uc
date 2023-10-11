@@ -2326,6 +2326,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('LongWatch');
 		Template.Abilities.AddItem('quickdraw');
 		Template.Abilities.AddItem('ChosenImmuneMelee');
+		Template.Abilities.AddItem('Squadsight');
 		
 		Template.Abilities.AddItem('FreeGrenades');
 		Template.Abilities.AddItem('Infighter');
