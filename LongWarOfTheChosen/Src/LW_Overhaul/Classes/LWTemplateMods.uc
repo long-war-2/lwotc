@@ -2539,33 +2539,34 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 		case 'Warlock_PsiWeapon':
 			WeaponTemplate.Abilities.AddItem('ShieldAllyM1');
 			WeaponTemplate.BaseDamage = default.WARLOCKPSIM1_BASEDAMAGE;
-			WeaponTemplate.Abilities.RemoveItem('SpectralArmy');
-			WeaponTemplate.Abilities.RemoveItem('Corress');
+			//WeaponTemplate.Abilities.RemoveItem('SpectralArmy');
+			//WeaponTemplate.Abilities.RemoveItem('Corress');
 			break;
 
 		case 'WarlockM2_PsiWeapon':
 			WeaponTemplate.Abilities.AddItem('ShieldAllyM2');
 			WeaponTemplate.BaseDamage = default.WARLOCKPSIM2_BASEDAMAGE;
-			WeaponTemplate.Abilities.RemoveItem('SpectralArmyM2');
-			WeaponTemplate.Abilities.RemoveItem('CorressM2');
+			//WeaponTemplate.Abilities.RemoveItem('SpectralArmyM2');
+			//WeaponTemplate.Abilities.RemoveItem('CorressM2');
 			break;
 
 		case 'WarlockM3_PsiWeapon':
 			WeaponTemplate.Abilities.AddItem('ShieldAllyM3');
 			WeaponTemplate.BaseDamage = default.WARLOCKPSIM3_BASEDAMAGE;
-			WeaponTemplate.Abilities.RemoveItem('SpectralArmyM3');
-			WeaponTemplate.Abilities.RemoveItem('CorressM3');
+			//WeaponTemplate.Abilities.RemoveItem('SpectralArmyM3');
+			//WeaponTemplate.Abilities.RemoveItem('CorressM3');
 			break;
 
 		case 'WarlockM4_PsiWeapon':
 			WeaponTemplate.Abilities.AddItem('ShieldAllyM4');
 			WeaponTemplate.BaseDamage = default.WARLOCKPSIM4_BASEDAMAGE;
-			WeaponTemplate.Abilities.RemoveItem('SpectralArmyM4');
-			WeaponTemplate.Abilities.RemoveItem('CorressM4');
+			//WeaponTemplate.Abilities.RemoveItem('SpectralArmyM4');
+			//WeaponTemplate.Abilities.RemoveItem('CorressM4');
 			break;
 		case 'WarlockM5_PsiWeapon':
 			WeaponTemplate.Abilities.AddItem('ShieldAllyM5');
 			WeaponTemplate.BaseDamage = default.WARLOCKPSIM5_BASEDAMAGE;
+			WeaponTemplate.Abilities.AddItem('CorressM4');
 			break;
 
 		case 'ChosenRifle_XCOM':

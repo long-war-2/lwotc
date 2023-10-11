@@ -107,7 +107,6 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateWarlockMobilityAbility());
 	Templates.AddItem(CreateHunterMobilityAbility());
-		
 	
 	return Templates;
 }
