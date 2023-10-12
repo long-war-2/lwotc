@@ -134,7 +134,7 @@ static function X2DataTemplate CreateFindBigDepotTemplate()
 	Template.Narratives.AddItem('CovertActionNarrative_FindBigDepot_Templars');
 
 	Template.Risks.AddItem('CovertActionRisk_Ambush');
-	Template.Rewards.AddItem('Reward_Dummy_Mission');
+	Template.Rewards.AddItem('Reward_Supply_Mission');
 	return Template;
 }
 

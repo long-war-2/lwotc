@@ -30,7 +30,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Rewards.AddItem(CreateFactionInfluenceRewardTemplate());
 	Rewards.AddItem(CreateEnemyCorpsesRewardTemplate());
 	Rewards.AddItem(CreateDummyStatBoostRewardTemplate());
-	Rewards.AddItem(CreateDummyMissionBoostRewardTemplate());
+	Rewards.AddItem(CreateSupplyMissionRewardTemplate());
 	return Rewards;
 }
 
@@ -445,16 +445,34 @@ static function X2DataTemplate CreateDummyStatBoostRewardTemplate()
     return Template;
 }
 
-static function X2DataTemplate CreateDummyMissionBoostRewardTemplate()
+static function X2DataTemplate CreateSupplyMissionRewardTemplate()
 {
     local X2RewardTemplate Template;
 
-    `CREATE_X2Reward_TEMPLATE(Template, 'Reward_Dummy_Mission');
+    `CREATE_X2Reward_TEMPLATE(Template, 'Reward_Supply_Mission');
     Template.GenerateRewardFn = none;
     Template.SetRewardFn = none;
-    Template.GiveRewardFn = none;
+    Template.GiveRewardFn = CreateSupplyMissionReward;
     Template.GetRewardStringFn = none;
     Template.GetRewardIconFn = class'X2StrategyElement_DefaultRewards'.static.GetGenericRewardIcon;
 
     return Template;
+}
+
+static function CreateSupplyMissionReward(XComGameState NewGameState, XComGameState_Reward RewardState, optional StateObjectReference AuxRef, optional bool bOrder = false, optional int OrderHours = -1)
+{
+	local XComGameState_LWAlienActivity NewActivityState;
+	local X2LWAlienActivityTemplate ActivityTemplate;
+	local X2StrategyElementTemplateManager StrategyElementTemplateMgr;
+	local XComGameState_CovertAction ActionState;
+
+	ActionState = XComGameState_CovertAction(`XCOMHISTORY.GetGameStateForObjectID(AuxRef.ObjectID));
+
+	`LWTrace("Trying to spawn Big Supply Extract Mission");
+	StrategyElementTemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	ActivityTemplate = X2LWAlienActivityTemplate(StrategyElementTemplateMgr.FindStrategyElementTemplate('BigSupplyExtraction_LW'));
+
+	NewActivityState = ActivityTemplate.CreateInstanceFromTemplate(ActionState.Region, NewGameState);
+	NewActivityState.bNeedsUpdateDiscovery = true;
+	NewGameState.AddStateObject(NewActivityState);
 }

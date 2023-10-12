@@ -651,9 +651,9 @@ static function EventListenerReturn CAProcessCompletion(
 	local XComGameState_ResistanceFaction FactionState;
 	local X2CovertActionTemplate ActionTemplate;
 
-	local XComGameState_LWAlienActivity NewActivityState;
-	local X2LWAlienActivityTemplate ActivityTemplate;
-	local X2StrategyElementTemplateManager StrategyElementTemplateMgr;
+	//local XComGameState_LWAlienActivity NewActivityState;
+	//local X2LWAlienActivityTemplate ActivityTemplate;
+	//local X2StrategyElementTemplateManager StrategyElementTemplateMgr;
 
 	CAState = XComGameState_CovertAction(EventSource);
 	if (CAState == none) return ELR_NoInterrupt;
@@ -708,21 +708,21 @@ static function EventListenerReturn CAProcessCompletion(
 	}
 
 	// Spawn depot mission if was successful.
-	`LWTrace("Current CA name:"@CAState.GetMyTemplateName());
-	if(!class'Utilities_LW'.static.DidCovertActionFail(PrevCAState) && CAState.GetMyTemplateName() == 'CovertAction_BigSupplyDepot')
-	{
+	//`LWTrace("Current CA name:"@CAState.GetMyTemplateName());
+	//if(!class'Utilities_LW'.static.DidCovertActionFail(PrevCAState) && CAState.GetMyTemplateName() == 'CovertAction_BigSupplyDepot')
+	//{
 		// spawn mission here:
-		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Spawn Big Supply Extraction post covert");
-		`LWTrace("Trying to spawn Big Supply Extract Mission");
-		StrategyElementTemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
-		ActivityTemplate = X2LWAlienActivityTemplate(StrategyElementTemplateMgr.FindStrategyElementTemplate('BigSupplyExtraction_LW'));
+	//	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Spawn Big Supply Extraction post covert");
+	//	`LWTrace("Trying to spawn Big Supply Extract Mission");
+	//	StrategyElementTemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	//	ActivityTemplate = X2LWAlienActivityTemplate(StrategyElementTemplateMgr.FindStrategyElementTemplate('BigSupplyExtraction_LW'));
 
-		NewActivityState = ActivityTemplate.CreateInstanceFromTemplate(CAState.Region, NewGameState);
-		NewActivityState.bNeedsUpdateDiscovery = true;
-		NewGameState.AddStateObject(NewActivityState);
+	//	NewActivityState = ActivityTemplate.CreateInstanceFromTemplate(CAState.Region, NewGameState);
+	//	NewActivityState.bNeedsUpdateDiscovery = true;
+	//	NewGameState.AddStateObject(NewActivityState);
 
-		`GAMERULES.SubmitGameState(NewGameState);
-	}
+	//	`GAMERULES.SubmitGameState(NewGameState);
+	//}
 
 	// Now handle the Intense Training covert action
 	if (CAState.GetMyTemplateName() != 'CovertAction_IntenseTraining')
