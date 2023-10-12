@@ -36,6 +36,7 @@ var config int IMPACT_COMPENSATION_MAX_STACKS;
 
 var config float WARLOCK_MOBILITY_DEBUFF;
 var config float HUNTER_MOBILITY_DEBUFF;
+var config int HUNTER_MOB_PER_ATTACK;
 
 var config int UNSTOPPABLE_MIN_MOB;
 var const string ChosenSummonContextDesc;
@@ -107,6 +108,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	Templates.AddItem(CreateWarlockMobilityAbility());
 	Templates.AddItem(CreateHunterMobilityAbility());
+	Templates.AddItem(CreateHunterMobilityBoostAbility());
 	
 	return Templates;
 }
@@ -2250,6 +2252,43 @@ static function X2AbilityTemplate CreateHunterMobilityAbility()
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	//Template.BuildVisualizationFn = TypicalAbility_BuildVisualization; // Intentionally commented out
 	
+	return Template;
+}
+
+static function X2AbilityTemplate CreateHunterMobilityBoostAbility()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_PersistentStatChange StatChangeEffect;
+	local X2AbilityTrigger_EventListener Trigger;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'HunterReactionMobBoost_LW');
+
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_combatstims";
+	Template.AbilitySourceName = 'eAbilitySource_Standard';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.bShowActivation = false;
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+
+
+	Trigger = new class'X2AbilityTrigger_EventListener';
+	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
+	Trigger.ListenerData.EventID = 'UnitTakeEffectDamage';
+	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
+	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 2;
+	Template.AbilityTriggers.AddItem(Trigger);
+
+	StatChangeEffect = new class'X2Effect_PersistentStatChange';
+	StatChangeEffect.BuildPersistentEffect(1,false, false, false, eGameRule_PlayerTurnBegin);
+	StatChangeEffect.AddPersistentStatChange(eStat_Mobility,default.HUNTER_MOB_PER_ATTACK, MODOP_Addition);
+	StatChangeEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,, Template.AbilitySourceName);
+	StatChangeEffect.DuplicateResponse = eDupe_Allow;
+	Template.AddTargetEffect(StatChangeEffect);
+
+	Template.bSkipFireAction = true;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	return Template;
 }
 
