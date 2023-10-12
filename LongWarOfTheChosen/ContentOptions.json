@@ -31,6 +31,7 @@
         "Obj_BigSmashNGrab_LW",
         "Obj_SupplyConvoy_LW",
         "Obj_SupplyExtraction_LW",
+        "Obj_BigSupplyExtraction_LW",
         "Obj_TroopManeuvers_LW",
         "SubSystem_ContinuousRNF",
         "UMS_LWCommon",

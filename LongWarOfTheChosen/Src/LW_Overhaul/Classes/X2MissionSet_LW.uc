@@ -31,6 +31,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddMissionTemplate('SmashNGrab_LW'));
     //Templates.AddItem(AddMissionTemplate('BigSmashNGrab_LW'));
 	Templates.AddItem(AddMissionTemplate('SupplyExtraction_LW'));
+    Templates.AddItem(AddMissionTemplate('BigSupplyExtraction_LW'));
 
 	Templates.AddItem(AddMissionTemplate('AssaultNetworkTower_LW')); // used in ProtectRegion / Liberation chain
     

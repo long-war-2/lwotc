@@ -58,6 +58,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddDefaultSmashNGrabMissionNarrativeTemplate());
 	//Templates.AddItem(AddDefaultBigSmashNGrabMissionNarrativeTemplate());
 	Templates.AddItem(AddSupplyExtractionMissionNarrativeTemplate());
+    Templates.AddItem(AddBigSupplyExtractionMissionNarrativeTemplate());
 
     return Templates;
 }
@@ -1234,6 +1235,36 @@ static function X2MissionNarrativeTemplate AddSupplyExtractionMissionNarrativeTe
 	`CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'SupplyExtraction_LW');
 
 	Template.MissionType = "SupplyExtraction_LW";
+
+	Template.NarrativeMoments[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_XCOM_Taking_Losses";
+	Template.NarrativeMoments[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_XCOM_Marked_First_Crate";
+	Template.NarrativeMoments[2]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_XCOM_Marked_ADVENT_crate";
+	Template.NarrativeMoments[3]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Supplies_Recovered_Heavy_Losses";
+	Template.NarrativeMoments[4]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Squad_Wiped";
+	Template.NarrativeMoments[5]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_No_Supplies_Recovered";
+	Template.NarrativeMoments[6]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_No_Additional_Enemies";
+	Template.NarrativeMoments[7]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Mission_Complete";
+	Template.NarrativeMoments[8]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Mission_Aborted";
+	Template.NarrativeMoments[9]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Late_Crate_Recovered";
+	Template.NarrativeMoments[10]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Intro";
+	Template.NarrativeMoments[11]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_First_Crate_Sighted";
+	Template.NarrativeMoments[12]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_First_Crate_Recovered";
+	Template.NarrativeMoments[13]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_Dont_Destroy_Crates";
+	Template.NarrativeMoments[14]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_ADVENT_Marked_More_Crates";
+	Template.NarrativeMoments[15]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_ADVENT_Marked_LoS_Crate";
+	Template.NarrativeMoments[16]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_ADVENT_Marked_First_Crates";
+	Template.NarrativeMoments[17]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_ADVENT_Airlifted_First_Crate";
+
+	return Template;
+}
+
+static function X2MissionNarrativeTemplate AddBigSupplyExtractionMissionNarrativeTemplate()
+{
+	local X2MissionNarrativeTemplate Template;
+
+	`CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'BigSupplyExtraction_LW');
+
+	Template.MissionType = "BigSupplyExtraction_LW";
 
 	Template.NarrativeMoments[0]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_XCOM_Taking_Losses";
 	Template.NarrativeMoments[1]="XPACK_NarrativeMoments.X2_XP_CEN_T_Supply_Extract_XCOM_Marked_First_Crate";

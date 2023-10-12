@@ -30,6 +30,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Rewards.AddItem(CreateFactionInfluenceRewardTemplate());
 	Rewards.AddItem(CreateEnemyCorpsesRewardTemplate());
 	Rewards.AddItem(CreateDummyStatBoostRewardTemplate());
+	Rewards.AddItem(CreateDummyMissionBoostRewardTemplate());
 	return Rewards;
 }
 
@@ -435,6 +436,20 @@ static function X2DataTemplate CreateDummyStatBoostRewardTemplate()
     local X2RewardTemplate Template;
 
     `CREATE_X2Reward_TEMPLATE(Template, 'Reward_Dummy_StatBoost');
+    Template.GenerateRewardFn = none;
+    Template.SetRewardFn = none;
+    Template.GiveRewardFn = none;
+    Template.GetRewardStringFn = none;
+    Template.GetRewardIconFn = class'X2StrategyElement_DefaultRewards'.static.GetGenericRewardIcon;
+
+    return Template;
+}
+
+static function X2DataTemplate CreateDummyMissionBoostRewardTemplate()
+{
+    local X2RewardTemplate Template;
+
+    `CREATE_X2Reward_TEMPLATE(Template, 'Reward_Dummy_Mission');
     Template.GenerateRewardFn = none;
     Template.SetRewardFn = none;
     Template.GiveRewardFn = none;

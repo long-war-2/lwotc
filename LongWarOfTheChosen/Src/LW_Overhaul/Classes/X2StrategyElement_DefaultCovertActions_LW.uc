@@ -14,6 +14,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	CovertActions.AddItem(CreateIntenseTrainingTemplate());
 	CovertActions.AddItem(CreateResistanceMecTemplate());
 	CovertActions.AddItem(CreateRecruitRebelsTemplate());
+	CovertActions.AddItem(CreateFindBigDepotTemplate());
 
 	return CovertActions;
 }
@@ -119,6 +120,24 @@ static function X2DataTemplate CreateRecruitRebelsTemplate()
 	return Template;
 }
 
+static function X2DataTemplate CreateFindBigDepotTemplate()
+{
+	local X2CovertActionTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2CovertActionTemplate', Template, 'CovertAction_BigSupplyDepot');
+	
+	Template.ChooseLocationFn = ChooseRandomContactedRegion;
+	Template.OverworldMeshPath = "UI_3D.Overwold_Final.CovertAction";
+
+	Template.Narratives.AddItem('CovertActionNarrative_FindBigDepot_Skirmishers');
+	Template.Narratives.AddItem('CovertActionNarrative_FindBigDepot_Reapers');
+	Template.Narratives.AddItem('CovertActionNarrative_FindBigDepot_Templars');
+
+	Template.Risks.AddItem('CovertActionRisk_Ambush');
+	Template.Rewards.AddItem('Reward_Dummy_Mission');
+	return Template;
+}
+
 static function CovertActionSlot CreateDefaultSoldierSlot(name SlotName, optional int iMinRank, optional bool bRandomClass, optional bool bFactionClass)
 {
 	local CovertActionSlot SoldierSlot;
@@ -176,3 +195,4 @@ static function ChooseContactedRegionWithoutMEC(XComGameState NewGameState, XCom
 		ActionState.LocationEntity = RegionRefs[`SYNC_RAND_STATIC(RegionRefs.Length)];
 	}
 }
+

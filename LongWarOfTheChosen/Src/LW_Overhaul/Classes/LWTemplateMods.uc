@@ -2336,6 +2336,7 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		Template.Abilities.AddItem('MovingTarget_LW');
 
 		Template.Abilities.AddItem('HunterReactionMobility_LW');
+		Template.Abilities.AddItem('HunterReactionMobBoost_LW');
 
 		Template.ImmuneTypes.AddItem('Frost');
 		Template.InitiativePriority = -100;

@@ -54,6 +54,7 @@ static function UpdateCovertActions(X2StrategyElementTemplate Template, int Diff
 		case 'CovertAction_ResistanceContact':
 		case 'CovertAction_RecruitRebels':
 		case 'CovertAction_SharedAbilityPoints':
+		case 'CovertAction_BigSupplyDepot':
 			ConfigureModerateCovertAction(CATemplate);
 			break;
 		case 'CovertAction_ImproveComInt':

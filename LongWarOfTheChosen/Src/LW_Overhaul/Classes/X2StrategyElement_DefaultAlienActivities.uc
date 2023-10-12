@@ -248,6 +248,9 @@ static function array<X2DataTemplate> CreateTemplates()
     // Cheaty activity for mission test.
     AlienActivities.AddItem(CreateDebugMissionTemplate());
 
+	//New Big Supply Extraction activity test:
+	AlienActivities.AddItem(CreateBigSupplyExtractionTemplate());
+
 	return AlienActivities;
 }
 
@@ -3865,6 +3868,53 @@ static function RecruitRaidCompleted (bool bAlienSuccess, XComGameState_LWAlienA
 	{
 		RegionalAI.AddVigilance (NewGameState, default.VIGILANCE_CHANGE_ON_XCOM_RAID_WIN);
 	}
+}
+
+//#############################################################################################
+//---------------------------------- Big Supply Extraction ------------------------------------------
+//#############################################################################################
+
+static function X2DataTemplate CreateBigSupplyExtractionTemplate()
+{
+    local X2LWAlienActivityTemplate Template;
+    local MissionLayerInfo MissionLayer;
+	local X2LWActivityDetectionCalc DetectionCalc;
+	local X2LWActivityCondition_AlertVigilance AlertVigilance;
+
+    `CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, 'BigSupplyExtraction_LW');
+    // Add an arbitrary mission to the mission list. This won't really be used, it'll be overridden
+    // by the cheat command to force a particular mission kind.
+    MissionLayer.MissionFamilies.AddItem('BigSupplyExtraction_LW');
+	MissionLayer.Duration_Hours = 24*6;
+	MissionLayer.DurationRand_Hours = 24;
+    Template.MissionTree.AddItem(MissionLayer);
+
+ 	DetectionCalc = new class'X2LWActivityDetectionCalc';
+	DetectionCalc.SetAlwaysDetected(true);
+	Template.DetectionCalc = DetectionCalc;
+
+ 	//these define the requirements for creating each activity
+	Template.ActivityCreation = new class'X2LWActivityCreation';
+
+	AlertVigilance = new class'X2LWActivityCondition_AlertVigilance';
+	AlertVigilance.MinAlert = 9999; // never created normally, only via Covert Op
+	Template.ActivityCreation.Conditions.AddItem(AlertVigilance);
+
+	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
+	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
+
+	Template.OnActivityStartedFn = none;
+	Template.WasMissionSuccessfulFn = none;  // always one objective
+	Template.GetMissionForceLevelFn = GetTypicalMissionForceLevel; // use regional ForceLevel
+	Template.GetMissionAlertLevelFn = GetTypicalMissionAlertLevel;
+	Template.GetTimeUpdateFn = none;
+	Template.OnMissionExpireFn = none; // just remove the mission
+	Template.GetMissionRewardsFn = GetLogisticsReward;
+	Template.OnActivityUpdateFn = none;
+	Template.CanBeCompletedFn = none;  // can always be completed
+	Template.OnActivityCompletedFn = none;
+
+    return Template;
 }
 
 //#############################################################################################
