@@ -180,6 +180,8 @@ var localized string m_strInsufficientRebels;
 var config int COINOPS_MIN_VIGILANCE;
 var config int COINOPS_MIN_ALERT;
 
+var config int BIGSUPPLYEXTRACTION_MAX_ALERT;
+
 //helpers for checking for name typos
 var name ProtectRegionEarlyName;
 var name ProtectRegionMidName;
@@ -3916,6 +3918,22 @@ static function X2DataTemplate CreateBigSupplyExtractionTemplate()
 
     return Template;
 }
+
+static function int GetBigExtractMissionAlertLevel(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionSite, XComGameState NewGameState)
+{
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState;
+
+	RegionState = MissionSite.GetWorldRegion();
+	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState);
+
+	if(default.ACTIVITY_LOGGING_ENABLED)
+	{
+		`LWTRACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Alert Level =" $ min(RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier, default.BIGSUPPLYEXTRACTION_MAX_ALERT) );
+	}
+	return min(RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier, default.BIGSUPPLYEXTRACTION_MAX_ALERT);
+}
+
 
 //#############################################################################################
 //---------------------------------- MISSION TESTING ------------------------------------------

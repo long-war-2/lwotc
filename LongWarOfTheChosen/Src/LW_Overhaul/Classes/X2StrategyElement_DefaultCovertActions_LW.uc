@@ -126,7 +126,7 @@ static function X2DataTemplate CreateFindBigDepotTemplate()
 
 	`CREATE_X2TEMPLATE(class'X2CovertActionTemplate', Template, 'CovertAction_BigSupplyDepot');
 	
-	Template.ChooseLocationFn = ChooseRandomContactedRegion;
+	Template.ChooseLocationFn = ChooseRandomContactedUnliberatedRegion;
 	Template.OverworldMeshPath = "UI_3D.Overwold_Final.CovertAction";
 
 	Template.Narratives.AddItem('CovertActionNarrative_FindBigDepot_Skirmishers');
@@ -196,3 +196,38 @@ static function ChooseContactedRegionWithoutMEC(XComGameState NewGameState, XCom
 	}
 }
 
+static function ChooseRandomContactedUnliberatedRegion(XComGameState NewGameState, XComGameState_CovertAction ActionState, out array<StateObjectReference> ExcludeLocations)
+{
+	local XComGameStateHistory History;
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	local array<StateObjectReference> RegionRefs;
+	local array<StateObjectReference> UnliberatedRegionRefs;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		if (ExcludeLocations.Find('ObjectID', RegionState.GetReference().ObjectID) == INDEX_NONE && RegionState.HaveMadeContact())
+		{
+			RegionRefs.AddItem(RegionState.GetReference());
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
+
+			if(!RegionalAI.bLiberated)
+			{
+				UnliberatedRegionRefs.AddItem(RegionState.GetReference());
+			}
+
+		}
+	}
+
+	// Prefer regions without liberation
+	if (UnliberatedRegionRefs.Length > 0)
+	{
+		ActionState.LocationEntity = UnliberatedRegionRefs[`SYNC_RAND_STATIC(UnliberatedRegionRefs.Length)];
+	}
+	else
+	{
+		ActionState.LocationEntity = RegionRefs[`SYNC_RAND_STATIC(RegionRefs.Length)];
+	}
+}
