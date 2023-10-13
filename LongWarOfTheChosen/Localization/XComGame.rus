@@ -3019,6 +3019,10 @@ LocHelpText="Призывает метеориты пси-энергии, что
 LocFlyOverText="Пси-шторм"
 LocPromotionPopupText="Не может разрушить этажи зданий."
 
+[TheLostGrappler X2CharacterTemplate]
+strCharacterName="Странник-боец"
+
+
 [TheLostGrapplerHP2_LW X2CharacterTemplate]
 strCharacterName="Странник-боец"
 
@@ -3051,6 +3055,9 @@ strCharacterName="Странник-боец"
 
 [TheLostGrapplerHP12_LW X2CharacterTemplate]
 strCharacterName="Странник-боец"
+
+[TheLostBrute X2CharacterTemplate]
+strCharacterName="Странник-зверь"
 
 [TheLostBruteHP10_LW X2CharacterTemplate]
 strCharacterName="Странник-зверь"

@@ -5927,6 +5927,9 @@ LocFlyOverText="Tormenta de almas"
 LocPromotionPopupText="<Bullet> Invoca meteoros de energía psiónica dentro de un área objetivo a fin de infligir daño a los enemigos y destruir su cobertura.<br/><Bullet> El área de efecto de Tormenta de almas se centra en el lanzador.<br/><Bullet> No destruye muros ni tejados.<br/><Bullet/> Requiere una acción y finaliza tu turno.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/><Bullet/> Tormenta de almas tiene un radio de acción de 4 casillas.<br/>"
 ; End translated
 
+[TheLostGrappler X2CharacterTemplate]
+strCharacterName="Perdido destructor"
+
 [TheLostGrapplerHP2_LW X2CharacterTemplate]
 strCharacterName="Perdido destructor"
 
@@ -5959,6 +5962,9 @@ strCharacterName="Perdido destructor"
 
 [TheLostGrapplerHP12_LW X2CharacterTemplate]
 strCharacterName="Perdido destructor"
+
+[TheLostBrute X2CharacterTemplate]
+strCharacterName="Perdido bruto"
 
 [TheLostBruteHP10_LW X2CharacterTemplate]
 strCharacterName="Perdido bruto"

@@ -5922,6 +5922,9 @@ LocFlyOverText="Maelstrom"
 LocPromotionPopupText="<Bullet/> Invoque une tempête d'énergie psionique, centrée sur son utilisateur, qui inflige des dégâts à tous les ennemis situés dans un rayon de 4 cases et détruit les abris. Coûte 1 action et met fin au tour.<br/><Bullet/> Temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Cette capacité ne détruit que les abris tels que les murs, pas les planchers et les plafonds.<br/>"
 ; End translated (2)
 
+[TheLostGrappler X2CharacterTemplate]
+strCharacterName="Ombre avide"
+
 [TheLostGrapplerHP2_LW X2CharacterTemplate]
 strCharacterName="Ombre avide"
 
@@ -5954,6 +5957,9 @@ strCharacterName="Ombre avide"
 
 [TheLostGrapplerHP12_LW X2CharacterTemplate]
 strCharacterName="Ombre avide"
+
+[TheLostBrute X2CharacterTemplate]
+strCharacterName="Ombre brutale"
 
 [TheLostBruteHP10_LW X2CharacterTemplate]
 strCharacterName="Ombre brutale"

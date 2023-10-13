@@ -5720,6 +5720,9 @@ LocFlyOverText="灵魂风暴"
 LocPromotionPopupText="<Bullet> 召唤灵魂风暴对目标区域内的敌人造成伤害，并摧毁他们的掩体。<br/><Bullet> 灵魂风暴的影响范围以释放者为中心。<br/><Bullet> 不能破坏地板或天花板。<br/><Bullet/> 灵魂风暴需要一个行动点并结束你的回合。<br/><Bullet/> 灵魂风暴有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 灵魂风暴半径为4格。<br/>"
 ; End Translation (2)
 
+[TheLostGrappler X2CharacterTemplate]
+strCharacterName="利爪失魂者"
+
 [TheLostGrapplerHP2_LW X2CharacterTemplate]
 strCharacterName="利爪失魂者"
 
@@ -5752,6 +5755,9 @@ strCharacterName="利爪失魂者"
 
 [TheLostGrapplerHP12_LW X2CharacterTemplate]
 strCharacterName="利爪失魂者"
+
+[TheLostBrute X2CharacterTemplate]
+strCharacterName="残暴失魂者"
 
 [TheLostBruteHP10_LW X2CharacterTemplate]
 strCharacterName="残暴失魂者"
