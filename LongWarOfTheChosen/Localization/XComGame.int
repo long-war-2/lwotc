@@ -7062,7 +7062,7 @@ LocFriendlyName="Banish"
 LocLongDescription="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less than the previous one. Reveals the Reaper. "
 LocHelpText="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less than the previous one. Reveals the Reaper."
 LocFlyoverText="Banish"
-LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/><Bullet/> Banish shots can crit.<br/>"
+LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/><Bullet/> Banish shots can crit.<br/><Bullet/> Banish has a <Ability:SelfCooldown_LW/> turn cooldown."
 
 ;LWOTC needs translation(3)
 [TotalCombat X2AbilityTemplate]
