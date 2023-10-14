@@ -2903,6 +2903,23 @@ ObjectiveTextPools[4]="LWOTC Operación Reventador"
 ObjectiveTextPools[5]="¡Bienvenido a la primera misión de Long War of The Chosen! <br/> <br/>El objetivo es simple: matar a todos los enemigos. <br/> <br/>Esta es una de las pocas misiones que permite recuperar cadáveres enemigos, los cuales son necesarios para la investigación y construcción de muchos elementos. ¡Las muertes con explosivos y lanzallamas destruyen los cuerpos!"
 ; End translated
 
+[CovertOpsTroopManeuvers_LW X2MissionTemplate]
+DisplayName="Embosca a una columna de tropas de ADVENT."
+Briefing="Embosca a una columna de tropas de ADVENT."
+PostMissionType="Emboscar a tropas enemigas"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Guerrilla_Ops"
+ObjectiveTextPools[0]="Neutraliza todos los objetivos enemigos."
+
+[DefaultCovertOpsTroopManeuvers_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Neutraliza todos los objetivos enemigos."
+ObjectiveTextPools[1]="Extrae a todos los soldados de XCOM."
+ObjectiveTextPools[2]="Tiende una emboscada a las tropas enemigas."
+ObjectiveTextPools[3]="ADVENT suele trasladar a sus fuerzas en grupos grandes, pero hemos localizado una unidad solitaria más pequeña que es vulnerable. Un ataque a tiempo perjudicará los intereses de ADVENT en esta región y nos presentará una oportunidad única de hacernos con cadáveres enemigos para investigación."
+; LWOTC translated
+ObjectiveTextPools[4]="LWOTC Operación Reventador"
+ObjectiveTextPools[5]="¡Bienvenido a la primera misión de Long War of The Chosen! <br/> <br/>El objetivo es simple: matar a todos los enemigos. <br/> <br/>Esta es una de las pocas misiones que permite recuperar cadáveres enemigos, los cuales son necesarios para la investigación y construcción de muchos elementos. ¡Las muertes con explosivos y lanzallamas destruyen los cuerpos!"
+; End translated
+
 [Rendezvous_LW X2MissionTemplate]
 DisplayName="Reunión"
 Briefing="Interrumpe la reunión entre el espía y las fuerzas de ADVENT."

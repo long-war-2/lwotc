@@ -2789,6 +2789,23 @@ ObjectiveTextPools[4]="Операция \"Незванный Гость\" (LWOTC
 ObjectiveTextPools[5]="Добро пожаловать в первую миссию LWOTC!<br/><br/>Цель проста: убить всех врагов.<br/><br/>Обратите внимание, что это одна из немногих миссий, которая позволяет добывать вражеские трупы, которые необходимы для исследований и создания многих предметов. Убийства с помощью взрывчатки уничтожают трупы в LWOTC!"
 ; End Translation
 
+[CovertOpsTroopManeuvers_LW X2MissionTemplate]
+DisplayName="Устройте засаду на колонну \"Адвента\""
+Briefing="Устройте засаду на колонну \"Адвента\""
+PostMissionType="Устройте засаду на силы противника"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Guerrilla_Ops"
+ObjectiveTextPools[0]="Уничтожьте всех врагов"
+
+[DefaultCovertOpsTroopManeuvers_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Уничтожьте всех врагов"
+ObjectiveTextPools[1]="Эвакуируйте всех солдат XCOM"
+ObjectiveTextPools[2]="Устройте засаду на силы противника"
+ObjectiveTextPools[3]="Обычно \"Адвент\" перебрасывает войска большими группами, но нам удалось найти небольшое уязвимое подразделение. Выбрав момент, мы можем нанести удар, смешав карты \"Адвенту\" в этом регионе, а также запастись трупами врагов для исследований."
+; LWOTC Needs Translation
+ObjectiveTextPools[4]="Операция \"Незванный Гость\" (LWOTC)"
+ObjectiveTextPools[5]="Добро пожаловать в первую миссию LWOTC!<br/><br/>Цель проста: убить всех врагов.<br/><br/>Обратите внимание, что это одна из немногих миссий, которая позволяет добывать вражеские трупы, которые необходимы для исследований и создания многих предметов. Убийства с помощью взрывчатки уничтожают трупы в LWOTC!"
+; End Translation
+
 [Rendezvous_LW X2MissionTemplate]
 DisplayName="Тайная встреча"
 Briefing="Сорвать встречу между шпионом и силами \"Адвента\""

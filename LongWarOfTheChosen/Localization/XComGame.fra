@@ -2986,6 +2986,24 @@ ObjectiveTextPools[4]="Intrusion LWOTC"
 ObjectiveTextPools[5]="Bienvenue dans la première mission de LWOTC!<br/><br/>Votre objectif est simple: éliminer tous les ennemis présents dans la zone d'opération.<br/><br/> Il est important de noter que cette mission ne vous demande pas d'évacuer les lieux pour être menée à bien: vous pourrez donc récupérer les cadavres de vos ennemis une fois la mission achevée (les cadavres pourront être utilisés plus tard pour construire des objets). Dans LWOTC, éliminer une unité avec une arme explosive (grenade, roquette ou arme lourde) détruit son cadavre."
 ; End translated
 
+[CovertOpsTroopManeuvers_LW X2MissionTemplate]
+DisplayName="Tendre une embuscade à une colonne de soldats d'ADVENT"
+Briefing="Tendre une embuscade à une colonne de soldats d'ADVENT"
+PostMissionType="Tendre une embuscade aux forces ennemies"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Guerrilla_Ops"
+ObjectiveTextPools[0]="Neutraliser toutes les cibles ennemies"
+
+[DefaultCovertOpsTroopManeuvers_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Neutraliser toutes les cibles ennemies"
+ObjectiveTextPools[1]="Évacuer tous les soldats d'XCOM"
+ObjectiveTextPools[2]="Tendre une embuscade aux forces ennemies"
+ObjectiveTextPools[3]="ADVENT déploie généralement de grands groupes armés, mais nous avons localisé une petite unité isolée et vulnérable. Une attaque bien coordonnée pourrait affaiblir ADVENT dans la région et nous permettrait de récupérer les corps de nos ennemis pour effectuer des recherches."
+; LWOTC translated
+ObjectiveTextPools[4]="Intrusion LWOTC"
+ObjectiveTextPools[5]="Bienvenue dans la première mission de LWOTC!<br/><br/>Votre objectif est simple: éliminer tous les ennemis présents dans la zone d'opération.<br/><br/> Il est important de noter que cette mission ne vous demande pas d'évacuer les lieux pour être menée à bien: vous pourrez donc récupérer les cadavres de vos ennemis une fois la mission achevée (les cadavres pourront être utilisés plus tard pour construire des objets). Dans LWOTC, éliminer une unité avec une arme explosive (grenade, roquette ou arme lourde) détruit son cadavre."
+; End translated
+
+
 [Rendezvous_LW X2MissionTemplate]
 DisplayName="Rendez-vous"
 Briefing="Interrompre la rencontre entre l'espion et ADVENT"

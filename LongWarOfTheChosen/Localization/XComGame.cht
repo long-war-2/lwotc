@@ -2892,6 +2892,23 @@ ObjectiveTextPools[4]="LWOTC不速之客"
 ObjectiveTextPools[5]="歡迎來到LWOTC的第一個任務！<br/><br/>目標很簡單：擊殺所有的敵人。<br/><br/>請注意，這是為數不多可以獲得敵人屍體的任務之一，這些屍體是研究和建設許多項目所需要的。在LWOTC用爆炸物擊殺敵人會摧毀屍體！"
 ; End Translation
 
+[CovertOpsTroopManeuvers_LW X2MissionTemplate]
+DisplayName="伏擊一支變種人列隊"
+Briefing="伏擊一支變種人列隊"
+PostMissionType="伏擊敵方軍隊"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Guerrilla_Ops"
+ObjectiveTextPools[0]="消滅所有目標敵人"
+
+[DefaultCovertOpsTroopManeuvers_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="消滅所有目標敵人"
+ObjectiveTextPools[1]="撤離所有XCOM士兵"
+ObjectiveTextPools[2]="伏擊敵方軍隊"
+ObjectiveTextPools[3]="變種人通常以大群體的形式轉移他們的軍隊，但是我們還是找到了較小的容易攻擊的單位。一次時機恰當的突襲將會挫敗變種人在這片地區的勢力，並為我們提供將敵人屍體帶回研究的寶貴機會。"
+; LWOTC Needs Translation
+ObjectiveTextPools[4]="LWOTC不速之客"
+ObjectiveTextPools[5]="歡迎來到LWOTC的第一個任務！<br/><br/>目標很簡單：擊殺所有的敵人。<br/><br/>請注意，這是為數不多可以獲得敵人屍體的任務之一，這些屍體是研究和建設許多項目所需要的。在LWOTC用爆炸物擊殺敵人會摧毀屍體！"
+; End Translation
+
 [Rendezvous_LW X2MissionTemplate]
 DisplayName="集結點"
 Briefing="阻止間諜與變種人部隊的會面"

@@ -48,6 +48,7 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddMissionTemplate('AvengerDefense_LW'));
 
 	Templates.AddItem(AddMissionTemplate('TroopManeuvers_LW'));
+    Templates.AddItem(AddMissionTemplate('CovertOpsTroopManeuvers_LW'));
 	Templates.AddItem(AddMissionTemplate('AssaultAlienBase_LW'));
     Templates.AddItem(AddMissionTemplate('Jailbreak_LW'));
 	Templates.AddItem(AddMissionTemplate('Invasion_LW'));

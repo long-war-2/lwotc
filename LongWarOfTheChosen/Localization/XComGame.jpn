@@ -2582,6 +2582,23 @@ ObjectiveTextPools[4]="LWOTC Gatecrasher"
 ObjectiveTextPools[5]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies.<br/><br/>Note that this is one of the few missions that allows for retrieval of enemy corpses, which are needed for research and building many items. Kills with explosives destroy corpses in LWOTC!"
 ; End Translation
 
+[CovertOpsTroopManeuvers_LW X2MissionTemplate]
+DisplayName="アドヴェントの隊列を待ち伏せする"
+Briefing="アドヴェントの隊列を待ち伏せする"
+PostMissionType="敵兵を奇襲する"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Guerrilla_Ops"
+ObjectiveTextPools[0]="すべての敵ターゲットを無力化する"
+
+[DefaultCovertOpsTroopManeuvers_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="すべての敵ターゲットを無力化する"
+ObjectiveTextPools[1]="XCOM兵を全員撤収させる"
+ObjectiveTextPools[2]="敵兵を奇襲する"
+ObjectiveTextPools[3]="通常ならアドヴェントは大勢の部隊で移動するが、無防備な状態にある少数のユニットを発見した。タイミングを計って襲撃すれば、この地域のアドヴェントどもに一泡吹かせることができ、研究用のサンプルを入手する貴重なチャンスとなるだろう。"
+; LWOTC Needs Translation
+ObjectiveTextPools[4]="LWOTC Gatecrasher"
+ObjectiveTextPools[5]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies.<br/><br/>Note that this is one of the few missions that allows for retrieval of enemy corpses, which are needed for research and building many items. Kills with explosives destroy corpses in LWOTC!"
+; End Translation
+
 [Rendezvous_LW X2MissionTemplate]
 DisplayName="合流地点"
 Briefing="アドヴェントとスパイの合流を阻止する"

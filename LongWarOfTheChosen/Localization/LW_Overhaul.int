@@ -156,6 +156,11 @@ ActivityName="TroopManeuversActivity"
 ActivityObjectives[0]="Reduce Enemy Strength"
 +MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="ADVENT has left one of its combat units vulnerable to a raid by our forces.")
 
+[CovertOpsTroopManeuvers X2LWAlienActivityTemplate]
+ActivityName="CovertOpsTroopManeuversActivity"
+ActivityObjectives[0]="Destroy a Scouting Packagearty"
++MissionDescriptions=(MissionFamily="CovertOpsTroopManeuvers_LW", Description="ADVENT has left one of its scouting units vulnerable to a raid by our forces.")
+
 [HighValuePrisoner X2LWAlienActivityTemplate]
 ActivityName="HighValuePrisonerActivity"
 ActivityObjectives[0]="Free an Important Prisoner"
