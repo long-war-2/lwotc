@@ -15,6 +15,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	CovertActions.AddItem(CreateResistanceMecTemplate());
 	CovertActions.AddItem(CreateRecruitRebelsTemplate());
 	CovertActions.AddItem(CreateFindBigDepotTemplate());
+	CovertActions.AddItem(CreateFindAdventDetachmentTemplate());
 
 	return CovertActions;
 }
@@ -135,6 +136,24 @@ static function X2DataTemplate CreateFindBigDepotTemplate()
 
 	Template.Risks.AddItem('CovertActionRisk_Ambush');
 	Template.Rewards.AddItem('Reward_Supply_Mission');
+	return Template;
+}
+
+static function X2DataTemplate CreateFindAdventDetachmentTemplate()
+{
+	local X2CovertActionTemplate Template;
+
+	`CREATE_X2TEMPLATE(class'X2CovertActionTemplate', Template, 'CovertAction_FindAdventDetachment');
+	
+	Template.ChooseLocationFn = ChooseRandomContactedUnliberatedRegion;
+	Template.OverworldMeshPath = "UI_3D.Overwold_Final.CovertAction";
+
+	Template.Narratives.AddItem('CovertActionNarrative_FindAdventDetachment_Skirmishers');
+	Template.Narratives.AddItem('CovertActionNarrative_FindAdventDetachment_Reapers');
+	Template.Narratives.AddItem('CovertActionNarrative_FindAdventDetachment_Templars');
+
+	Template.Risks.AddItem('CovertActionRisk_Ambush');
+	Template.Rewards.AddItem('Reward_Detachment_Mission');
 	return Template;
 }
 

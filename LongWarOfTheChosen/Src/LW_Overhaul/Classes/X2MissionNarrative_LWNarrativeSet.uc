@@ -59,6 +59,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	//Templates.AddItem(AddDefaultBigSmashNGrabMissionNarrativeTemplate());
 	Templates.AddItem(AddSupplyExtractionMissionNarrativeTemplate());
     Templates.AddItem(AddBigSupplyExtractionMissionNarrativeTemplate());
+    Templates.AddItem(AddCovertOpsTroopManeuversNarrativeTemplate());
 
     return Templates;
 }
@@ -120,6 +121,25 @@ static function X2MissionNarrativeTemplate AddTroopManeuversNarrativeTemplate()
     `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultTroopManeuvers_LW');
 
     Template.MissionType="TroopManeuvers_LW";
+    Template.NarrativeMoments[0]="X2NarrativeMoments.TACTICAL.General.CEN_Gen_AreaSecured_02";
+    Template.NarrativeMoments[1]="X2NarrativeMoments.TACTICAL.General.GenTactical_SecureRetreat";
+    Template.NarrativeMoments[2]="X2NarrativeMoments.TACTICAL.General.GenTactical_ConsiderRetreat";
+    Template.NarrativeMoments[3]="X2NarrativeMoments.TACTICAL.General.GenTactical_PartialEVAC";
+    Template.NarrativeMoments[4]="X2NarrativeMoments.TACTICAL.General.GenTactical_FullEVAC";
+    Template.NarrativeMoments[5]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
+    Template.NarrativeMoments[6]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroFailure";
+    Template.NarrativeMoments[7]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroTotalSuccess";
+    
+    return Template;
+}
+
+static function X2MissionNarrativeTemplate AddCovertOpsTroopManeuversNarrativeTemplate()
+{
+    local X2MissionNarrativeTemplate Template;
+
+    `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultCovertOpsTroopManeuvers_LW');
+
+    Template.MissionType="CovertOpsTroopManeuvers_LW";
     Template.NarrativeMoments[0]="X2NarrativeMoments.TACTICAL.General.CEN_Gen_AreaSecured_02";
     Template.NarrativeMoments[1]="X2NarrativeMoments.TACTICAL.General.GenTactical_SecureRetreat";
     Template.NarrativeMoments[2]="X2NarrativeMoments.TACTICAL.General.GenTactical_ConsiderRetreat";

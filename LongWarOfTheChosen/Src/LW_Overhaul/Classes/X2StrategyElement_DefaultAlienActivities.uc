@@ -252,6 +252,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
 	//New Big Supply Extraction activity test:
 	AlienActivities.AddItem(CreateBigSupplyExtractionTemplate());
+	AlienActivities.AddItem(CreateCovertOpsTroopManeuversTemplate());
 
 	return AlienActivities;
 }
@@ -3181,6 +3182,69 @@ static function array<name> GetTroopManeuversRewards (XComGameState_LWAlienActiv
 	return RewardArray;
 }
 
+// Covert op version
+
+static function X2DataTemplate CreateCovertOpsTroopManeuversTemplate()
+{
+	local X2LWAlienActivityTemplate Template;
+	local MissionLayerInfo MissionLayer;
+	local X2LWActivityDetectionCalc DetectionCalc;
+	local X2LWActivityCondition_AlertVigilance AlertVigilance;
+
+	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, 'CovertOpsTroopManeuvers');
+
+	MissionLayer.MissionFamilies.AddItem('CovertOpsTroopManeuvers_LW');
+	MissionLayer.Duration_Hours = 24*5;
+	MissionLayer.DurationRand_Hours = 24;
+	MissionLayer.BaseInfiltrationModifier_Hours=-24;
+    Template.MissionTree.AddItem(MissionLayer);
+
+
+ 	DetectionCalc = new class'X2LWActivityDetectionCalc';
+	DetectionCalc.SetAlwaysDetected(true);
+	Template.DetectionCalc = DetectionCalc;
+
+ 	//these define the requirements for creating each activity
+	Template.ActivityCreation = new class'X2LWActivityCreation';
+
+	AlertVigilance = new class'X2LWActivityCondition_AlertVigilance';
+	AlertVigilance.MinAlert = 9999; // never created normally, only via Covert Op
+	Template.ActivityCreation.Conditions.AddItem(AlertVigilance);
+
+	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
+	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
+
+	Template.OnActivityStartedFn = none;
+	Template.WasMissionSuccessfulFn = none;  // always one objective
+	Template.GetMissionForceLevelFn = GetTypicalMissionForceLevel; // use regional ForceLevel
+	Template.GetMissionAlertLevelFn = GetCovertOpsTroopManeuversMissionAlertLevel;
+	Template.GetTimeUpdateFn = none;
+	Template.OnMissionExpireFn = none; // just remove the mission
+	Template.GetMissionRewardsFn = GetTroopManeuversRewards;
+	Template.OnActivityUpdateFn = none;
+	Template.CanBeCompletedFn = none;  // can always be completed
+	Template.OnActivityCompletedFn = none; // this one doesn't reduce strength
+
+	return Template;
+}
+
+// using this to cap this at str 4
+static function int GetCovertOpsTroopManeuversMissionAlertLevel(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionSite, XComGameState NewGameState)
+{
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState;
+
+	RegionState = MissionSite.GetWorldRegion();
+	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState);
+
+	if(default.ACTIVITY_LOGGING_ENABLED)
+	{
+		`LWTRACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Alert Level =" $ min(RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier, 4) );
+	}
+	return min(RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier, 4);
+}
+
+
 //#############################################################################################
 //---------------------------------- HIGH-VALUE PRISONER --------------------------------------
 //#############################################################################################
@@ -4363,11 +4427,14 @@ static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActi
 		case "DestroyObject_LW":
 		case "Jailbreak_LW":
 		case "TroopManeuvers_LW":
+		case "CovertOpsTroopManeuvers_LW":
 		case "ProtectDevice_LW":
 		case "SabotageCC":
 		case "SabotageCC_LW":
 		case "AssaultNetworkTower_LW":
 		case "SmashnGrab_LW":
+		case "SupplyExtraction_LW":
+		case "BigSupplyExtraction_LW":
 			ActivityTemplateName='ResAct_GuerrillaOpsCompleted';
 			break;
 		case "SecureUFO_LW":
@@ -4418,6 +4485,7 @@ static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActi
 		case "DestroyObject_LW":
 		case "Jailbreak_LW":
 		case "TroopManeuvers_LW":
+		case "CovertOpsTroopManeuvers_LW":
 		case "ProtectDevice_LW":
 		case "SabotageCC":
 		case "SabotageCC_LW":
@@ -4425,6 +4493,8 @@ static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActi
 		case "AssaultNetworkTower_LW":
 		case "Sabotage_LW":
 		case "SmashnGrab_LW":
+		case "SupplyExtraction_LW":
+		case "BigSupplyExtraction_LW":
 		case "AssaultAlienBase_LW":
 			if (!ActivityState.bFailedFromMissionExpiration)
 			{
