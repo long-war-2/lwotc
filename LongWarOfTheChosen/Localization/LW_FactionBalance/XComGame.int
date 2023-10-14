@@ -222,3 +222,8 @@ LocLongDescription= "Once per turn, gain a movement action after shooting with y
 LocHelpText="Once per turn, gain a movement action after shooting with your primary weapon at a unit that was damaged this turn. Cannot trigger on the same turn as Knife Encounters."
 LocPromotionPopupText="<Bullet/> Cheap Shot triggers if the target was previously damaged by any type of damage since the player's last turn, i.e. overwatch and damage over time during the enemy turn counts.<br/><Bullet/> Works for Light 'em Up, Chain Shot and Banish in addition to the standard shot.<br/><Bullet/> The movement action can be used to enter Shadow if it's off cooldown.<br/>"
 ; End Translation
+
+[TheBanisher_LW X2AbilityTemplate]
+LocFriendlyName="The Banisher"
+LocLongDescription="Decreases the per-shot aim penalty of Banish by 5, decreases its cooldown by 1, and adds 1 charge."
+LocHelpText="Decreases the per-shot aim penalty of Banish by 5, decreases its cooldown by 1, and adds 1 charge."

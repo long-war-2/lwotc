@@ -58,6 +58,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddChargeBattery());
 	Templates.AddItem(AddParamedic());
 	Templates.AddItem(AddCheapShotAbility());
+	Templates.AddItem(AddTheBanisherAbility());
 	
 	Templates.AddItem(ParaMedikitHeal());
 	Templates.AddItem(ParaMedikitStabilize());
@@ -1310,5 +1311,14 @@ static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameStat
 	Template.AddTargetEffect(CheapShotEffect);
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	return Template;
+}
+
+static function X2AbilityTemplate AddTheBanisherAbility()
+{
+	local X2AbilityTemplate Template;
+
+	Template = PurePassive('TheBanisher_LW', "img:///UILibrary_PerkIcons.UIPerk_reaper", false);
+
 	return Template;
 }

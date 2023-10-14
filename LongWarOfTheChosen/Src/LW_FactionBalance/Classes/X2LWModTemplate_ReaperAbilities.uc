@@ -430,13 +430,14 @@ static function ReplaceDeathDealerEffect(X2AbilityTemplate Template)
 
 static function UpdateBanish(X2AbilityTemplate Template)
 {
-	local X2AbilityCost Cost;
-	local X2AbilityCooldown Cooldown;
+	local X2AbilityCooldown_Banish Cooldown;
 	local X2Effect_BanishHitMod HitMod;
+	local X2AbilityCharges_BonusCharges Charges;
 
 	ChangeBanishHitCalc(Template);
 
-
+	// Tedster - readd the number of charges
+	/*
 	foreach Template.AbilityCosts(Cost)
 	{
 		if (Cost.isA('X2AbilityCost_Charges'))
@@ -445,10 +446,17 @@ static function UpdateBanish(X2AbilityTemplate Template)
 			break;
 		}
 	}
-
+	
 	Template.AbilityCharges = none;
+	*/
 
-	Cooldown = new class'X2AbilityCooldown';
+	Charges = new class'X2AbilityCharges_BonusCharges';
+	Charges.InitialCharges = 2;
+	Charges.BonusAbility = 'TheBanisher_LW';
+	Charges.BonusChargesCount = 1;
+	Template.AbilityCharges = Charges;
+
+	Cooldown = new class'X2AbilityCooldown_Banish';
 	Cooldown.iNumTurns = default.BANISH_COOLDOWN;
 	Template.AbilityCooldown = Cooldown;
 
