@@ -8,6 +8,7 @@ class X2Effect_BanishHitMod extends X2Effect_Persistent config (LW_FactionBalanc
 
 var config int BANISH_INITIAL_HIT_MOD;
 var config int BANISH_HIT_MOD;
+var config int BANISH_DMG_MOD;
 var config int THEBANISHER_HIT_BUFF;
 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
@@ -17,7 +18,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	//if (Attacker.IsImpaired(false) || Attacker.IsBurning())
 //		return;
 
-	if (AbilityState.GetMyTemplateName() == 'SoulReaperContinue' && AbilityState.GetMyTemplateName == 'SoulReaper')
+	if (AbilityState.GetMyTemplateName() == 'SoulReaperContinue' && AbilityState.GetMyTemplateName() == 'SoulReaper')
 	{
 
 		Attacker.GetUnitValue(class'X2LWModTemplate_ReaperAbilities'.default.BanishFiredTimes, UnitValue);
@@ -32,4 +33,16 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 		}
 		ShotModifiers.AddItem(ShotInfo);
 	}
+}
+
+function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGameState_Unit Attacker, Damageable TargetDamageable, XComGameState_Ability AbilityState, const out EffectAppliedData AppliedData, const int CurrentDamage, optional XComGameState NewGameState)
+{
+	local int DamageModifier;
+	local UnitValue UnitValue;
+
+	Attacker.GetUnitValue(class'X2LWModTemplate_ReaperAbilities'.default.BanishFiredTimes, UnitValue);
+
+	DamageModifier = UnitValue.fValue * default.BANISH_DMG_MOD;
+
+	return max(DamageModifier, (-CurrentDamage + 1)); // cap at 1 dmg
 }
