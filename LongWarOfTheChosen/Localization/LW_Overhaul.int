@@ -158,7 +158,7 @@ ActivityObjectives[0]="Reduce Enemy Strength"
 
 [CovertOpsTroopManeuvers X2LWAlienActivityTemplate]
 ActivityName="CovertOpsTroopManeuversActivity"
-ActivityObjectives[0]="Destroy a Scouting Packagearty"
+ActivityObjectives[0]="Destroy a Scouting Party"
 +MissionDescriptions=(MissionFamily="CovertOpsTroopManeuvers_LW", Description="ADVENT has left one of its scouting units vulnerable to a raid by our forces.")
 
 [HighValuePrisoner X2LWAlienActivityTemplate]
