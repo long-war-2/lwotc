@@ -23,6 +23,7 @@ var config int STING_RUPTURE;
 
 var config int BANISH_COOLDOWN;
 var const name BanishFiredTimes;
+var config bool USE_BANISH_CHARGES;
 
 var config int DEATH_DEALER_CRIT;
 var config int THEBANISHER_DEATH_DEALER_CRIT;
@@ -463,19 +464,24 @@ static function UpdateBanish(X2AbilityTemplate Template)
 			break;
 		}
 	}
-
-	BanishCost = new class'X2AbilityCost_BanishCharges';
-	BanishCost.NumCharges = 1;
-	Template.AbilityCosts.AddItem(BanishCost);
 	
-	Charges = new class'X2AbilityCharges_BonusCharges';
-	Charges.InitialCharges = 2;
-	Charges.BonusAbility = 'TheBanisher_LW';
-	Charges.BonusChargesCount = 1;
-	Template.AbilityCharges = Charges;
+	if(default.USE_BANISH_CHARGES)
+	{
+		BanishCost = new class'X2AbilityCost_BanishCharges';
+		BanishCost.NumCharges = 1;
+		Template.AbilityCosts.AddItem(BanishCost);
+	
+		Charges = new class'X2AbilityCharges_BonusCharges';
+		Charges.InitialCharges = 2;
+		Charges.BonusAbility = 'TheBanisher_LW';
+		Charges.BonusChargesCount = 1;
+		Template.AbilityCharges = Charges;
+	}
+	
 	
 	Cooldown = new class'X2AbilityCooldown_Banish';
 	Cooldown.iNumTurns = default.BANISH_COOLDOWN;
+	Cooldown.bUseCharges = default.USE_BANISH_CHARGES;
 	Template.AbilityCooldown = Cooldown;
 
 	HitMod = new class'X2Effect_BanishHitMod';
