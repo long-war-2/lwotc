@@ -42,6 +42,8 @@ var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T3;
 
 var config int ENCRYPTION_SERVER_CHANCE;
 
+var config bool bNerfFrostLegion;
+
 
 
 
@@ -1207,6 +1209,12 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					`LWDiversityTrace("Detected nonexistant follower" @ SpawnInfo.SelectedCharacterTemplateNames[k]);
 					swap = true;
 				}
+				if(default.bNerfFrostLegion && InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE && MissionState.TacticalGameplayTags.Find('SITREP_FrostPurge') == INDEX_NONE)
+				{
+					`LWDiversityTrace("Found Frost Legion in Encounter");
+					swap = true;
+				}
+
 				// Tedster - fix below check to check spawn entry and not character template MCPG setting.
 				if (CountMembers(SpawnInfo.SelectedCharacterTemplateNames[k], SpawnInfo.SelectedCharacterTemplateNames) > GetCharacterSpawnEntry(FollowerSpawnList, FollowerCharacterTemplate, ForceLevel).MaxCharactersPerGroup)
 				{
@@ -1270,6 +1278,16 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 						continue;
 
 					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+
+					if(default.bNerfFrostLegion && InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[idx]), "FROST") != INDEX_NONE)
+					{
+						// 50% chance to reroll frost legion
+						if(`SYNC_FRAND_STATIC > 0.5)
+						{
+							SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+						}
+					
+					}
 					//`LWTrace("Changed to" @SpawnInfo.SelectedCharacterTemplateNames[idx] );
 				}
 				//`LWTRACE ("Try" @ string (tries) @ CountMembers (FirstFollowerName, SpawnInfo.SelectedCharacterTemplateNames) @ string (PodSize));
