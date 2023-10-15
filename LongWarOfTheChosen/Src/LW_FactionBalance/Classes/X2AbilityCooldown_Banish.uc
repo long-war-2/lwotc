@@ -5,7 +5,7 @@ simulated function int GetNumTurns(XComGameState_Ability kAbility, XComGameState
 {
     if(kAbility.iCharges > 0)
     {
-        return 0;
+        return 1;
     }
     
     kAbility = XComGameState_Ability(NewGameState.ModifyStateObject(class'XComGameState_Ability', kAbility.ObjectID));
