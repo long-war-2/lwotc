@@ -1319,6 +1319,7 @@ static function X2AbilityTemplate AddTheBanisherAbility()
 	local X2AbilityTemplate Template;
 
 	Template = PurePassive('TheBanisher_LW', "img:///UILibrary_PerkIcons.UIPerk_reaper", false);
+	//Template.AdditionalAbilities.AddItem('KnifeEncountersExtendedRange');
 
 	return Template;
 }

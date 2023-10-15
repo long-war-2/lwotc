@@ -161,6 +161,15 @@ LocHelpText="Une fois par tour, gagnez une action bonus après avoir attaqué au
 LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois.<br/><Bullet/> Cette capacité ne peut pas être combinée avec la capacité Course et tir.<br/>"
 ; End translated (2)
 
+[KnifeEncountersExtendedRange X2AbilityTemplate]
+LocFriendlyName="Duel au couteau"
+LocFlyOverText="Duel au couteau"
+; LWOTC translated (2)
+LocLongDescription="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois."
+LocHelpText="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois."
+LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois.<br/><Bullet/> Cette capacité ne peut pas être combinée avec la capacité Course et tir.<br/>"
+; End translated (2)
+
 ; LWOTC translated (2)
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Ombre évanescente"

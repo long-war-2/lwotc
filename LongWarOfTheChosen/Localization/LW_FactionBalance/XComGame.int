@@ -164,6 +164,15 @@ LocHelpText="Once per turn, gain a bonus action after throwing a knife at an ene
 LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun, or Cheap Shot.<br/>"
 ;LWOTC End Translation(2)
 
+[KnifeEncountersExtendedRange X2AbilityTemplate]
+LocFriendlyName="Knife Encounters"
+LocFlyOverText="Knife Encounters"
+;LWOTC needs Translation(2)
+LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Cheap Shot."
+LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Cheap Shot."
+LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun, or Cheap Shot.<br/>"
+;LWOTC End Translation(2)
+
 ; LWOTC Needs Translation (2)
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Impersonal Edge"
@@ -224,6 +233,6 @@ LocPromotionPopupText="<Bullet/> Cheap Shot triggers if the target was previousl
 ; End Translation
 
 [TheBanisher_LW X2AbilityTemplate]
-LocFriendlyName="The Banisher"
-LocLongDescription="Decreases the per-shot aim penalty of Banish by 5, decreases its cooldown by 1, and adds 1 charge."
-LocHelpText="Decreases the per-shot aim penalty of Banish by 5, decreases its cooldown by 1, and adds 1 charge."
+LocFriendlyName="True Predator"
+LocLongDescription="Decreases the per-shot aim penalty of Banish by 5, adds 1 charge, and decreases its cooldown by 1. Increases the range of Knife Enounters by 1. Death Dealer now works against unflankable targets."
+LocHelpText="Decreases the per-shot aim penalty of Banish by 5, adds 1 charge, and decreases its cooldown by 1. Increases the range of Knife Enounters by 1. Death Dealer now works against unflankable targets. Note: The Knife Encounters ring does not properly update for this skill.  You have 2 tiles outside of the ring of Knife Encounters range."

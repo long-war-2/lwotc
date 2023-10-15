@@ -152,6 +152,14 @@ LocHelpText="Una vez por turno, gana una acción adicional después de lanzar un
 LocPromotionPopupText="<Bullet/> Una vez por turno, benefíciate de una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas.<br/><Bullet/> Un círculo rojo marcará el alcance de esta habilidad.<br/><Bullet/> Encuentros a cuchillo no se puede utilizar en el mismo turno que Apresurarse y Correr y disparar.<br/>"
 ; LWOTC translated
 
+[KnifeEncountersExtendedRange X2AbilityTemplate]
+LocFriendlyName="Encuentros a cuchillo"
+LocFlyOverText="Encuentros a cuchillo"
+;LWOTC needs Translation(2)
+LocLongDescription="Una vez por turno, gana una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas. No se puede utilizar en el mismo turno que Apresurarse."
+LocHelpText="Una vez por turno, gana una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas. No se puede utilizar en el mismo turno que Apresurarse."
+LocPromotionPopupText="<Bullet/> Una vez por turno, benefíciate de una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas.<br/><Bullet/> Un círculo rojo marcará el alcance de esta habilidad.<br/><Bullet/> Encuentros a cuchillo no se puede utilizar en el mismo turno que Apresurarse y Correr y disparar.<br/>"
+; LWOTC translated
 
 ; LWOTC translated
 

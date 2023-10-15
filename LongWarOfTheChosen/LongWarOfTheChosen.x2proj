@@ -1470,6 +1470,7 @@
     <Content Include="Content\LW_LaserPack_Integrated\FX_Lwotc_Laser_Shared.upk" />
     <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_CloseCombatSpecialist.upk" />
     <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_KnifeEncounters.upk" />
+    <Content Include="Content\LW_PerkPack_Integrated\LW_Perk_KnifeEncountersExtendedRange.upk" />
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Highway_LgObj_01.umap" />
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Highway_LgObj_02.umap" />
     <Content Include="Content\Maps\Plots\Wilderness\Plot_WLD_Ravine_LgObj_01.umap" />

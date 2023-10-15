@@ -154,6 +154,14 @@ LocLongDescription="Один раз за ход дает бонусное дей
 LocHelpText="Один раз за ход дает бонусное действие после метания ножа по цели в пределах <Ability:CLOSE_ENCOUNTERS_RANGE/> клеток."
 LocPromotionPopupText="<Bullet/> Один раз за ход дает бонусное действие после метания ножа по цели в пределах <Ability:CLOSE_ENCOUNTERS_RANGE/> клеток.<br/><Bullet/> Красный круг покажет дальность действия способности.<br/><Bullet/> Не может быть использовано в один ход со Стрельбой на бегу.<br/>"
 
+[KnifeEncountersExtendedRange X2AbilityTemplate]
+LocFriendlyName="Поножовщина"
+LocFlyOverText="Поножовщина"
+LocLongDescription="Один раз за ход дает бонусное действие после метания ножа по цели в пределах <Ability:CLOSE_ENCOUNTERS_RANGE/> клеток."
+LocHelpText="Один раз за ход дает бонусное действие после метания ножа по цели в пределах <Ability:CLOSE_ENCOUNTERS_RANGE/> клеток."
+LocPromotionPopupText="<Bullet/> Один раз за ход дает бонусное действие после метания ножа по цели в пределах <Ability:CLOSE_ENCOUNTERS_RANGE/> клеток.<br/><Bullet/> Красный круг покажет дальность действия способности.<br/><Bullet/> Не может быть использовано в один ход со Стрельбой на бегу.<br/>"
+
+
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="Смертельное лезвие"
 LocFlyOverText="Смертельное лезвие"

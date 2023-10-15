@@ -1721,6 +1721,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 	local AbilitySetupData Data, EmptyData;
 	local X2CharacterTemplate CharTemplate;
 	local int i;
+	local int index;
 
 	if (`XENGINE.IsMultiplayerGame()) { return; }
 
@@ -1837,6 +1838,26 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 		}
 	}
 	*/
+
+	// Swap KnifeEncounters for KnifeEncountersExtendedRange if present.
+
+	if(UnitState.HasAbilityFromAnySource('TheBanisher_LW'))
+	{
+		index = SetupData.Find('TemplateName', 'KnifeEncounters');
+		if (index != -1)
+		{
+			AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('KnifeEncountersExtendedRange');
+
+			if(AbilityTemplate != none)
+			{
+				Data = EmptyData;
+				Data.TemplateName = AbilityName;
+				Data.Template = AbilityTemplate;
+				SetupData[index]=(Data);  // swap the ability
+			}
+		}
+	}
+
 }
 
 static function bool ShouldApplyInfiltrationModifierToCharacter(X2CharacterTemplate CharTemplate)

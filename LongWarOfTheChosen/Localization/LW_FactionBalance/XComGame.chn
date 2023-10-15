@@ -154,6 +154,15 @@ LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格
 LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
 LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术或者暗箭伤人同时使用。<br/>"
 
+
+[KnifeEncountersExtendedRange X2AbilityTemplate]
+LocFriendlyName="刀锋相接"
+LocFlyOverText="刀锋相接"
+LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
+LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
+LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术或者暗箭伤人同时使用。<br/>"
+
+
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="冷漠边缘"
 LocFlyOverText="冷漠边缘"
