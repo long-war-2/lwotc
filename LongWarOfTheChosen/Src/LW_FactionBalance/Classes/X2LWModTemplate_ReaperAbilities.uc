@@ -464,6 +464,8 @@ static function UpdateBanish(X2AbilityTemplate Template)
 			break;
 		}
 	}
+
+	Template.AbilityCharges = none;
 	
 	if(default.USE_BANISH_CHARGES)
 	{

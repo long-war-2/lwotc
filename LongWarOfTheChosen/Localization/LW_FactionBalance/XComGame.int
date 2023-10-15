@@ -234,5 +234,5 @@ LocPromotionPopupText="<Bullet/> Cheap Shot triggers if the target was previousl
 
 [TheBanisher_LW X2AbilityTemplate]
 LocFriendlyName="True Predator"
-LocLongDescription="Decreases the per-shot aim penalty of Banish by 5, adds 1 charge, and decreases its cooldown by 1. Increases the range of Knife Enounters by 1. Death Dealer now works against unflankable targets."
-LocHelpText="Decreases the per-shot aim penalty of Banish by 5, adds 1 charge, and decreases its cooldown by 1. Increases the range of Knife Enounters by 1. Death Dealer now works against unflankable targets. Note: The Knife Encounters ring does not properly update for this skill.  You have 2 tiles outside of the ring of Knife Encounters range."
+LocLongDescription="Decreases the per-shot aim penalty of Banish by 5 and decreases its cooldown by 1. Increases the range of Knife Enounters by 1. Death Dealer now works against unflankable targets."
+LocHelpText="Decreases the per-shot aim penalty of Banish by 5 and decreases its cooldown by 1. Increases the range of Knife Enounters by 1. Death Dealer now works against unflankable targets. Note: The Knife Encounters ring does not properly update for this skill.  You have 2 tiles outside of the ring of Knife Encounters range."

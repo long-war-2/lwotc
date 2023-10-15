@@ -18,7 +18,7 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	//if (Attacker.IsImpaired(false) || Attacker.IsBurning())
 //		return;
 
-	if (AbilityState.GetMyTemplateName() == 'SoulReaperContinue' && AbilityState.GetMyTemplateName() == 'SoulReaper')
+	if (AbilityState.GetMyTemplateName() == 'SoulReaperContinue' || AbilityState.GetMyTemplateName() == 'SoulReaper')
 	{
 
 		Attacker.GetUnitValue(class'X2LWModTemplate_ReaperAbilities'.default.BanishFiredTimes, UnitValue);

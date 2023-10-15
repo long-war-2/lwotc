@@ -1871,6 +1871,7 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 				Data = EmptyData;
 				Data.TemplateName = AbilityName;
 				Data.Template = AbilityTemplate;
+				Data.SourceWeaponRef = UnitState.GetSecondaryWeapon().GetReference();
 				SetupData[index]=(Data);  // swap the ability
 			}
 		}
