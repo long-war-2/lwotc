@@ -1210,7 +1210,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					`LWDiversityTrace("Detected nonexistant follower" @ SpawnInfo.SelectedCharacterTemplateNames[k]);
 					swap = true;
 				}
-				if(default.bNerfFrostLegion && InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE && MissionState.TacticalGameplayTags.Find('SITREP_FrostPurge') == INDEX_NONE)
+				if(default.bNerfFrostLegion && (InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE) && MissionState.TacticalGameplayTags.Find('SITREP_FrostPurge') == INDEX_NONE)
 				{
 					`LWDiversityTrace("Found Frost Legion in Encounter");
 					swap = true;
@@ -1280,7 +1280,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 					SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
 
-					if(default.bNerfFrostLegion && InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[idx]), "FROST") != INDEX_NONE)
+					if(default.bNerfFrostLegion && (InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE))
 					{
 						// 50% chance to reroll frost legion
 						if(`SYNC_FRAND_STATIC > 0.5)
