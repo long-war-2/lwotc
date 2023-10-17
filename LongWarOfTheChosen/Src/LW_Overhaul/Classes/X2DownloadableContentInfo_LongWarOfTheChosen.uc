@@ -41,6 +41,7 @@ var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T2;
 var config array<ChosenStrengthWeighted> HUNTER_STRENGTHS_T3;
 
 var config int ENCRYPTION_SERVER_CHANCE;
+var config int ENCRYPTION_SERVER_MONTH;
 
 var config bool bNerfFrostLegion;
 
@@ -3085,9 +3086,15 @@ function bool CanActivateEncryptionServer()
 {
 	local XComGameStateHistory History;
 	local XComGameState_BlackMarket MarketState;
+	local XComGameState_HeadquartersResistance ResistanceHQ;
+
+	ResistanceHQ = XComGameState_HeadquartersResistance(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersResistance'));
 
 	History = `XCOMHISTORY;
 	MarketState = XComGameState_BlackMarket(History.GetSingleGameStateObjectForClass(class'XComGameState_BlackMarket'));
+
+	if (ResistanceHQ.NumMonths <= default.ENCRYPTION_SERVER_MONTH)
+		return false;
 
 	if(`SYNC_RAND_STATIC(100) < default.ENCRYPTION_SERVER_CHANCE)
 	{
