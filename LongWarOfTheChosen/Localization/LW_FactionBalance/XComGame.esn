@@ -224,3 +224,6 @@ LocPromotionPopupText="<Bullet/> Apresurarse se activa si el objetivo fue previa
 ; End translated
 
 
+[TheBanisher_LW X2AbilityTemplate]
+LocFriendlyName="Superdepredador"
+LocLongDescription="Reduce la penalidad de acierto por tiro en 5 y el tiempo de enfriamiento en 1 de Desterrar. Incrementa en 1 el rango de Encuentros a cuchillo. Distribuidor de Muerte funciona en enemigos que no se pueden exponer."
