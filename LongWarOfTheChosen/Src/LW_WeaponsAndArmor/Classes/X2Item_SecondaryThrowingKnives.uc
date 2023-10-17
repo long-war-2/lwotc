@@ -53,7 +53,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_CV_Secondary()
 
 	InitializeThrowingKnifeTemplate(Template);
 	Template.WeaponTech = 'conventional';
-	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI.UI_Kunai_CV";
+	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI_Kunai_CV";
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "MusashiCombatKnifeMod_LW.Archetypes.WP_Kunai";
 	Template.Tier = 1;
@@ -84,7 +84,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_MG_Secondary()
 
 	InitializeThrowingKnifeTemplate(Template);
 	Template.WeaponTech = 'magnetic';
-	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI.UI_Kunai_MG";
+	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI_Kunai_MG";
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "MusashiCombatKnifeMod_LW.Archetypes.WP_Kunai_MG";
 	Template.Tier = 3;
@@ -116,7 +116,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_BM_Secondary()
 
 	InitializeThrowingKnifeTemplate(Template);
 	Template.WeaponTech = 'beam';
-	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI.UI_Kunai_BM";
+	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI_Kunai_BM";
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "MusashiCombatKnifeMod_LW.Archetypes.WP_Kunai_BM";
 	Template.Tier = 5;
