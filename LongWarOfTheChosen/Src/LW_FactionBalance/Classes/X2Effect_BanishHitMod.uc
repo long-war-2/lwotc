@@ -40,6 +40,9 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 	local int DamageModifier;
 	local UnitValue UnitValue;
 
+	if(AbilityState.GetMyTemplateName() != 'SoulReaperContinue' && AbilityState.GetMyTemplateName() != 'SoulReaper')
+		return 0;
+
 	Attacker.GetUnitValue(class'X2LWModTemplate_ReaperAbilities'.default.BanishFiredTimes, UnitValue);
 
 	DamageModifier = UnitValue.fValue * default.BANISH_DMG_MOD;
