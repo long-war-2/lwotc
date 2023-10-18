@@ -725,3 +725,8 @@ ScrollObjectiveDescriptionStr="SCROLL OBJECTIVE DESCRIPTION"
 [X2Effect_ChosenLoot]
 m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> Rewarded for Killing the Chosen."
 
+[UISL_Shell_LWoTCVersion]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Long War Of The Chosen has been Updated!
+strMessage_Body = "Version 1.1.0 is now released, with lots of features and improvements, including:<ul><li>Reworked Chosen</li><li>New Covert Actions</li><li>New Maps for Network Tower Missions</li><li>Psi Shield Templar</li><li>QOL Improvements</li><li>Improved Mod Compatibility</li><li>Balance Tweaks for Classes, Heros, and More</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
+strDismiss_Button = "OK"
