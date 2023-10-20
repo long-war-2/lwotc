@@ -730,3 +730,9 @@ strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Long War Of The Chosen has been Updated!
 strMessage_Body = "Version 1.1.0 is now released, with lots of features and improvements, including:<ul><li>New 5 Tier Chosen system for Better Progression</li><li>New Covert Actions that Reward Infiltration Missions</li><li>New Maps for Network Tower Missions</li><li>Reworked Templar with Iridar's Psi Shield</li><li>QOL Improvements</li><li>Improved Mod Compatibility</li><li>Balance Tweaks for Classes, Heros, and More</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
 strDismiss_Button = "OK"
+
+[UISL_Shell_BetaPatchNotes]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Latest Beta Changes:"
+strMessage_Body = "<ul><li>Area Suppression now only uses 2 ammo but still requires 3 ammo to be activated, allowing one extra shot of area suppression and solving some edge case issues.</li><li>Attempted to pause healing for units that can be sent out while wounded, to fix more 'unit in two places at once' issues.</li></ul>"
+strDismiss_Button = "OK"
