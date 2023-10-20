@@ -2697,6 +2697,11 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 
 	AmmoCost = new class'X2AbilityCost_Ammo';	
 	AmmoCost.iAmmo = default.AREA_SUPPRESSION_AMMO_COST;
+	AmmoCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	AmmoCost = new class'X2AbilityCost_Ammo';	
+	AmmoCost.iAmmo = max(default.AREA_SUPPRESSION_AMMO_COST-1,0);
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
