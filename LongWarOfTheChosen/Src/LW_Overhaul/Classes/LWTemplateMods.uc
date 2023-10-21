@@ -2509,6 +2509,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			break;
 		case 'AdvPriestM3_PsiAmp':
 			WeaponTemplate.Abilities.AddItem('Solace');
+			// intentional fall-through so M3 gets both perks.
 		case 'AdvPriestM2_PsiAmp':
 			WeaponTemplate.Abilities.AddItem('MindShield');
 			break;
