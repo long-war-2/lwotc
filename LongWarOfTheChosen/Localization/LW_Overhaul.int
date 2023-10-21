@@ -734,5 +734,5 @@ strDismiss_Button = "OK"
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
 strMessage_Header = "Latest Beta Changes:"
-strMessage_Body = "<ul><li>Area Suppression now only uses 2 ammo but still requires 3 ammo to be activated, allowing one extra shot of area suppression and solving some edge case issues.</li><li>Attempted to pause healing for units that can be sent out while wounded, to fix more 'unit in two places at once' issues.</li></ul>"
+strMessage_Body = "<ul><li>Area Suppression now only uses 2 ammo but still requires 3 ammo to be activated, allowing one extra shot of area suppression and solving some edge case issues.</li><li>Attempted to pause healing for units that can be sent out while wounded, to fix more 'unit in two places at once' issues.</li><li>Added a forced lancer spawn to lower strength levels of the new covert op troop column.</li></ul>"
 strDismiss_Button = "OK"
