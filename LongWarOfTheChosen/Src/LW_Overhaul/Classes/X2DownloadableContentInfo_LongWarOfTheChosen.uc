@@ -5608,6 +5608,38 @@ exec function PrintKismetVariables(optional bool bAllVars)
     }
 }
 
+// borrowed from Rusty and modified for all healing project, not card
+exec function LWOTC_CheckHealingProjects()
+{
+	local XComGameState_Unit	                        UnitState;
+	
+    local XComGameStateHistory                          History;
+	local XComGameState_HeadquartersProjectHealSoldier			HealSoldierProject;
+
+	History = `XCOMHISTORY;
+
+	foreach History.IterateByClassType(class'XComGameState_HeadquartersProjectHealSoldier', HealSoldierProject)
+	{
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(HealSoldierProject.ProjectFocus.ObjectID));
+
+		class'Helpers'.static.OutputMsg("==============================================");
+		class'Helpers'.static.OutputMsg("HealProject found for" @UnitState.GetFullName());
+		class'Helpers'.static.OutputMsg(`SHOWVAR(UnitState.GetCurrentStat(eStat_HP)));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(UnitState.GetMaxStat(eStat_HP)));
+
+		class'Helpers'.static.OutputMsg(`SHOWVAR(HealSoldierProject.ProjectPointsRemaining));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(HealSoldierProject.BlocksRemaining));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(HealSoldierProject.PointsPerBlock));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(HealSoldierProject.BlockPointsRemaining));
+		//class'Helpers'.static.OutputMsg(`SHOWVAR(HealSoldierProject.bForcePaused));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(HealSoldierProject.GetProjectedNumHoursRemaining()));
+		class'Helpers'.static.OutputMsg(`SHOWVAR(HealSoldierProject.GetCurrentNumHoursRemaining()));
+
+		class'Helpers'.static.OutputMsg(`SHOWVAR(HealSoldierProject.GetCurrentWorkPerHour()));
+	}
+
+}
+
 //------------ Hybrid Difficulty Stuff -------------
 
 // InstallNewCampaign part called in LW_SMGPack_Integrated because it loads first
