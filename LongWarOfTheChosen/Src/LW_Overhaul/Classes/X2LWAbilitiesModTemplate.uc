@@ -50,6 +50,8 @@ var config float CHOSEN_REGENERATION_HEAL_VALUE_PCT;
 
 var config array<name> PISTOL_ABILITY_WEAPON_CATS;
 
+var config int PLATED_CRITDEF_BONUS;
+
 // Data structure for multi-shot abilities that need patching
 struct MultiShotAbility
 {
@@ -229,6 +231,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		case 'HackRewardControlRobot_Permanent_Fuller_Override':
 			PatchFullerOverride(Template);
 			break;
+		case 'PlatedVestBonus':
+			AddCritResistanceToPlatedVests(Template);
 		default:
 			break;
 
@@ -1468,6 +1472,16 @@ static function name GetMultiShotContinueUnitValueName(name AbilityName)
 static function MakeAbilityHostile(X2AbilityTemplate Template)
 {
 	Template.Hostility = eHostility_Offensive;
+}
+
+static function AddCritResistanceToPlatedVests(X2AbilityTemplate Template)
+{
+	local X2Effect_Resilience CritDefEffect;
+
+	CritDefEffect = new class'X2Effect_Resilience';
+	CritDefEffect.CritDef_Bonus = default.PLATED_CRITDEF_BONUS;
+	CritDefEffect.BuildPersistentEffect (1, true, false, false);
+	Template.AddTargetEffect(CritDefEffect);
 }
 
 defaultproperties
