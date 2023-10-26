@@ -734,5 +734,5 @@ strDismiss_Button = "OK"
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen RC19"
 strMessage_Header = "Latest Beta Changes:"
-strMessage_Body = "<ul><li>Modified Jailbreak parcels to prevent enemies from spawning in the jail cells (only Jailbreaks, doesn't affect VIP missions).</li><li>Nanoscale vest crit reduction decreased to -10. Tactical Vest now has the -25 crit defense so it is an actual upgrade for late game.</li></ul>"
+strMessage_Body = "<ul><li>Modified Jailbreak parcels to prevent enemies from spawning in the jail cells (only Jailbreaks, doesn't affect VIP missions).</li><li>Nanoscale vest crit reduction decreased to -10. Tactical Vest now has the -25 crit defense so it is an actual upgrade for late game.</li><li>Flagged some additional maps from map mod packs for the Large Map sitrep.</li></ul>"
 strDismiss_Button = "OK"

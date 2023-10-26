@@ -787,6 +787,11 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		{
 			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
 		}
+		else if (inStr(MapName,"EZR") != INDEX_NONE && inStr(MapName,"CTY") != INDEX_NONE )
+		{
+			// Catch Eclipsezr city maps.
+			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
+		}
 	}
 
 	// Start Issue #157
