@@ -988,15 +988,16 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local XComGameStateHistory History;
 	local XComGameState_BattleData BattleData;
 	local name								CharacterTemplateName, FirstFollowerName;
-	local int								idx, Tries, PodSize, k;
+	local int								idx, Tries, PodSize, k, numAttempts;
 	local X2CharacterTemplateManager		TemplateManager;
 	local X2CharacterTemplate				LeaderCharacterTemplate, FollowerCharacterTemplate, CurrentCharacterTemplate;
-	local bool								Swap, Satisfactory;
+	local bool								Swap, Satisfactory, bKeepTrying;
 	local XComGameState_MissionSite			MissionState;
 	local XComGameState_AIReinforcementSpawner	RNFSpawnerState;
 	local XComGameState_HeadquartersXCom XCOMHQ;
 	local array<SpawnDistributionListEntry>	LeaderSpawnList;
 	local array<SpawnDistributionListEntry>	FollowerSpawnList;
+
 
 	`LWDiversityTrace("Parsing Encounter : " $ EncounterName);
 
@@ -1282,14 +1283,22 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 					if(default.bNerfFrostLegion && (InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE))
 					{
-						// 50% chance to reroll frost legion
-						if(`SYNC_FRAND_STATIC > 0.5)
+						// 75% chance to reroll frost legion
+						if(`SYNC_FRAND_STATIC > 0.75)
 						{
-							SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
-
-							if((InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE))
+							numAttempts = 0;
+							while (numAttempts < 10 && bKeepTrying)
 							{
 								SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
+
+								if((InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE))
+								{
+								numAttempts+= 1;
+								}
+								else
+								{
+									bKeeptrying = false;
+								}
 							}
 						}
 					
