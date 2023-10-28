@@ -1477,7 +1477,10 @@
     <Content Include="Content\Plots\Plot_WLD_SupplyExtract_Ravine_Ted.umap" />
     <Content Include="Content\Plots\Plot_WLD_SupplyExtract_Ravine_Ted2.umap" />
     <Content Include="Content\Plots\Plot_WLD_SupplyExtract_LgObj_Stream_Ted.umap" />
+    <Content Include="Content\Plots\Plot_ABN_SupplyExtract_Waterfront_Train.umap" />
+    <Content Include="Content\Plots\Plot_ABN_SupplyExtract_Waterfront_Train2.umap" />
     <Content Include="Content\Plots\Plot_ABN_SupplyExtract_Waterfront2_Ted.umap" />
+    <Content Include="Content\Plots\Plot_ABN_SupplyExtract_Waterfront2_Train.umap" />
     <Content Include="Content\Plots\Plot_CTY_Extract_LgObj_Park_2.umap" />
     <Content Include="Content\Plots\Plot_CTY_Extract_LgObj_Plaza_2.umap" />
   </ItemGroup>
