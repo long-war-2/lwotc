@@ -2206,6 +2206,8 @@ static function X2AbilityTemplate CreateWarlockMobilityAbility()
     Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
     Template.AbilityTriggers.AddItem(Trigger);
 
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
 	StatChangeEffect = new class'X2Effect_PersistentStatChange';
 	StatChangeEffect.BuildPersistentEffect(1,false, false, false, eGameRule_PlayerTurnBegin);
 	StatChangeEffect.AddPersistentStatChange(eStat_Mobility,default.WARLOCK_MOBILITY_DEBUFF, MODOP_Multiplication);
@@ -2241,6 +2243,7 @@ static function X2AbilityTemplate CreateHunterMobilityAbility()
     Trigger.ListenerData.Filter = eFilter_Player;
     Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
     Template.AbilityTriggers.AddItem(Trigger);
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
 
 	StatChangeEffect = new class'X2Effect_PersistentStatChange';
 	StatChangeEffect.BuildPersistentEffect(1,false, false, false, eGameRule_PlayerTurnBegin);
