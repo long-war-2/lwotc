@@ -17,7 +17,7 @@ function Init(AvailableAction InAction, int NewTargetIndex)
 	ScatterAmountText = TacticalHUD.Spawn(class'UIScrollingTextField', TacticalHUD);
 	ScatterAmountText.bAnimateOnInit = false;
 	ScatterAmountText.InitScrollingText('AverageScatterText_LW', "", 400, 0, 0);
-	ScatterAmountText.SetHTMLText(class'UIUtilities_Text'.static.GetColoredText("± 1.4 Tiles", eUIState_Bad, class'UIUtilities_Text'.const.BODY_FONT_SIZE_3D));
+	ScatterAmountText.SetHTMLText(class'UIUtilities_Text'.static.GetColoredText("Â± 1.4 Tiles", eUIState_Bad, class'UIUtilities_Text'.const.BODY_FONT_SIZE_3D));
 	ScatterAmountText.ShowShadow(0);
 	ScatterAmountText.Show();
 }
