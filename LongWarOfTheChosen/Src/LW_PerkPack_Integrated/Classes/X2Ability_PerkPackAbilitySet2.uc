@@ -15,6 +15,7 @@ var config int REQUIRED_TO_HIT_FOR_OVERWATCH;
 var config float BONUS_SLICE_DAMAGE_PER_TILE;
 var config int MAX_SLICE_FLECHE_DAMAGE;
 var config array<name> REQUIRED_OVERWATCH_TO_HIT_EXCLUDED_ABILITIES;
+var config array<name> SNAP_SHOT_ABILITIES;
 
 const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
 

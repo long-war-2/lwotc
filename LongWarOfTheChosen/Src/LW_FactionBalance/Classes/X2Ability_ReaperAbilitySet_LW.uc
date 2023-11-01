@@ -608,9 +608,8 @@ static function X2AbilityTemplate AddDisablingShotSnapShot()
 	StunEffect.BonusStunActionsOnCrit = default.DisablingShotCritStunActions;
 	Template.AddTargetEffect(StunEffect);
 
-	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 0;
-	ActionPointCost.bAddWeaponTypicalCost = true;
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
