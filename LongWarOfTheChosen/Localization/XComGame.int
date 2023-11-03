@@ -6424,9 +6424,9 @@ LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Blinding
 LocFriendlyName = "Lead The Target"
 LocFlyOverText = "Lead The Target"
 ; LWOTC Needs Translation (3)
-LocHelpText = "Grants a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delays the shot until the target takes an action on their turn. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocLongDescription = "Grants a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delays the shot until the target takes an action on their turn. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText = "<Bullet/> Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the targeted enemy's turn. Takes two actions.<br/><Bullet/> Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocHelpText = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText = "<Bullet> To take the shot, you need line of sight to the enemy when it moves.<br/><Bullet/> Lead The Target ends if you haven't taken the shot until the start of your next turn.<br/><Bullet/> Costs two actions.<br/><Bullet/> Lead The Target is not a reaction attack, despite activating on enemy movement.<br/><Bullet/> Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation (3)
 
 [LeadTheTargetShot_LW X2AbilityTemplate]
