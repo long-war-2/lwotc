@@ -49,7 +49,7 @@ static function bool CanRankUpPsiSoldier(XComGameState_Unit Unit)
 
 	
 	`LWTrace("Is the operative yet to rank up?");
-	if (Unit.GetSoldierRank() + 1 < Unit.GetSoldierClassTemplate().GetMaxConfiguredRank() && !Unit.bRankedUp)
+	if (Unit.GetSoldierRank() < Unit.GetSoldierClassTemplate().GetMaxConfiguredRank() && !Unit.bRankedUp)
 	{
 		`LWTrace("Yes!");
 		NumKills = Unit.GetTotalNumKills();
