@@ -6443,7 +6443,7 @@ LocHelpText="Уменьшает бонус к защите от укрытий �
 ; LWOTC Translated
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="Избранный может устроить диверсию!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]=" "
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Избранный усложняет секретные задания!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Избранный обнаруживает деятельность Сопротивления!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Избранный может начать штурмовать Мститель!"

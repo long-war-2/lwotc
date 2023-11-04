@@ -6411,7 +6411,7 @@ SummaryText="Ein brutaler Angriff der Auserwählten, der für <Ability:CHOSEN_RE
 
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="Auserwählte können die Avenger sabotieren!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]=" "
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Erhöhtes Risiko bei verdeckten Aktionen!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Auserwählte können Rebellenaktivitäten behindern!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Auserwählte können die Avenger angreifen!"

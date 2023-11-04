@@ -6836,7 +6836,7 @@ SummaryText="De violentes représailles dirigées contre la résistance, qui a p
 ; LWOTC translated
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="L'Élu peut saboter le Talion!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]=" "
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="L'Élu augmente les risques des missions secrètes!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="L'Élu peut gêner les activités rebelles!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="L'Élu peut lancer un assaut contre le Talion!"

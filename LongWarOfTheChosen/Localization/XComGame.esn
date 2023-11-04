@@ -6839,7 +6839,7 @@ SummaryText="Una brutal represalia contra la Resistencia, reduciendo todos los i
 ; LWOTC translated
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="¡Los Elegidos pretenden hallar la forma de sabotear al Avenger!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]=" "
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="¡Los Elegidos aumentarán el peligro en las operaciones encubiertas!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="¡Los Elegidos se están planteando obstaculizar las actividades rebeldes!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="¡Es posible que los Elegidos organicen un asalto contra el Avenger!"

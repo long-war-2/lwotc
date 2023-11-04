@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC20 Changes:"
-strMessage_Body = "<ul><li>Modified Warlock AI so it shouldn't teleport unless completely unable to move.</li><li>Fixed Covering Fire not applying to Overwatch granted by Ready For Anything.</li></ul>"
+strMessage_Header = "RC22 Changes:"
+strMessage_Body = "<ul><li>Executioner changed to 15/15 aim/crit, Locked On changed to 20/10 aim/crit.</li><li>Another new building for Network Tower maps.</li><li>3 more abandoned city crate race maps for more diversity.</li><li>Bugfix for psi operatives not promoting to the last rank accidentally added during a refactor.</li><li>Removed double lancer pods at FL3.</li></ul>"
 strDismiss_Button = "OK"

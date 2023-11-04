@@ -6471,7 +6471,7 @@ SummaryText="Brutalne rozprawienie się z Ruchem Oporu, obniżające cały doch�
 
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="Wybrańcy mogą utrudniać działania rebeliantów!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]=" "
 KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Wybrańcy zwiększają ryzyko tajnych działań!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Wybrańcy mogą sabotować Avengera!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Wybrańcy mogą zaatakować Avengera!"
