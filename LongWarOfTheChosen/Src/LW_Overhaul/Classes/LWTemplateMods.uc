@@ -2167,6 +2167,10 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			Template.ImmuneTypes.AddItem('Poison');
 			Template.ImmuneTypes.AddItem(class'X2Item_DefaultDamageTypes'.default.ParthenogenicPoisonType);
 			Template.ImmuneTypes.AddItem('Fire');
+			Template.Abilities.AddItem('NoWallBreakOnGreenAlert');
+			break;
+		case 'Sectopod':
+			Template.Abilities.AddItem('NoWallBreakOnGreenAlert');
 			break;
 		case 'AdvStunLancerM2':
 			Template.Abilities.AddItem('HunkerDown');

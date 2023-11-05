@@ -234,7 +234,7 @@ static function EventListenerReturn OnScamperBegin(
 {
 	local array<int> AlivePodMembers;
 	local XComGameState_Unit PodLeaderUnit;
-	local XComGameState_Unit PodMember;
+	local XComGameState_Unit PodMember, CurrentMember;
 	local XComGameStateHistory History;
 	local XComGameState_AIGroup Group;
 	local bool IsYellow;
@@ -243,7 +243,7 @@ static function EventListenerReturn OnScamperBegin(
 	local XComGameState_MissionSite			MissionSite;
 	local XComGameState_LWPersistentSquad	SquadState;
 	local XComGameState_BattleData			BattleData;
-	local int i, NumSuccessfulReflexActions;
+	local int i, NumSuccessfulReflexActions, currentPodMember;
 
 	History = `XCOMHISTORY;
 	Group = XComGameState_AIGroup(EventSource);
@@ -256,6 +256,19 @@ static function EventListenerReturn OnScamperBegin(
 	// alive + the leader.
 	Group.GetLivingMembers(AlivePodMembers);
 	PodLeaderUnit = XComGameState_Unit(History.GetGameStateForObjectID(AlivePodMembers[0]));
+
+	foreach AlivePodMembers (currentPodMember)
+	{
+		CurrentMember = XComGameState_Unit(History.GetGameStateForObjectID(currentPodMember));
+		//`LWTrace("Remove wall 1");
+		//`LWTrace("Current member" @CurrentMember);
+		//`LWTrace("Current unit template:" @ CurrentMember.GetMyTemplateName());
+		if(CurrentMember != NONE)
+		{
+			CurrentMember = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', currentPodMember));
+			RemovePreventWallBreakEffect(CurrentMember, NewGameState);
+		}
+	}
 
 	`LWTrace(GetFuncName() $ ": Processing reflex move for pod leader " $ PodLeaderUnit.GetMyTemplateName());
 
@@ -948,6 +961,29 @@ private static function RemoveSightRadiusRestorationEffect(XComGameState_Unit Un
 		CurrentEffect = X2Effect_PersistentStatChangeRestoreDefault(EffectState.GetX2Effect());
 		if (CurrentEffect != none && CurrentEffect.StatTypesToRestore.Find(eStat_SightRadius) != INDEX_NONE)
 		{
+			EffectState.RemoveEffect(NewGameState, NewGameState, true);
+			break;
+		}
+	}
+}
+
+private static function RemovePreventWallBreakEffect(XComGameState_Unit UnitState, XComGameState NewGameState)
+{
+	local X2Effect_PersistentTraversalChange CurrentEffect;
+	local XComGameStateHistory History;
+	local XComGameState_Effect EffectState;
+	local StateObjectReference EffectRef;
+
+	History = `XCOMHISTORY;
+	foreach UnitState.AffectedByEffects(EffectRef)
+	{
+		EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+		CurrentEffect = X2Effect_PersistentTraversalChange(EffectState.GetX2Effect());
+		//`LWTrace("Current Effect:" @CurrentEffect);
+		//`LWTrace("CurrentEffect Name:" @CurrentEffect.EffectName);
+		if (CurrentEffect != none && CurrentEffect.EffectName == 'NoWallBreakingInGreenAlert')
+		{
+			`LWTrace("Removing Effect" @CurrentEffect);
 			EffectState.RemoveEffect(NewGameState, NewGameState, true);
 			break;
 		}

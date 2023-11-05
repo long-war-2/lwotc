@@ -21,6 +21,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddRebelHPUpgrade('RebelHPUpgrade_T1', default.REBEL_HP_UPGRADE_T1_AMOUNT));
 	Templates.AddItem(AddRebelHPUpgrade('RebelHPUpgrade_T2', default.REBEL_HP_UPGRADE_T2_AMOUNT));
 	Templates.AddItem(AddRebelGrenadeUpgrade());
+
+	Templates.AddItem(AddCantBreakWallsAbility());
 	
 	return Templates;
 }
@@ -247,6 +249,34 @@ static function X2AbilityTemplate AddRebelGrenadeUpgrade()
 	//TemporaryItemEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	TemporaryItemEffect.DuplicateResponse = eDupe_Ignore;
 	Template.AddTargetEffect(TemporaryItemEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddCantBreakWallsAbility()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_PersistentTraversalChange	TraversalChangeEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'NoWallBreakOnGreenAlert');
+
+	Template.bDontDisplayInAbilitySummary = true;
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+
+
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+
+	TraversalChangeEffect = new class'X2Effect_PersistentTraversalChange';
+	TraversalChangeEffect.BuildPersistentEffect(1, true, true);
+	TraversalChangeEffect.AddTraversalChange(eTraversal_BreakWall, false);
+	TraversalChangeEffect.EffectName = 'NoWallBreakingInGreenAlert';
+	Template.AddTargetEffect(TraversalChangeEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 
