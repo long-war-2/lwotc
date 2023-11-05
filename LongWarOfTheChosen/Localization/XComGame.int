@@ -5203,8 +5203,8 @@ LocPromotionPopupText="<Bullet/> Each shot in Fan Fire rolls a separate chance t
 
 ; LWOTC Needs Translation (2)
 [SoulSteal X2AbilityTemplate]
-LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns, but increases the cooldown of soulfire by 1."
-LocHelpText="Soulfire heals a wounded operative and grants ablative HP, but increases soulfire cooldown by 1"
+LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns."
+LocHelpText="Soulfire heals a wounded operative and grants ablative HP."
 LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative and provide 3/4/6 ablative hit point for 3 turns.<br/><Bullet/> An operative may increase to no more than 15 ablative HP when using Soul Steal."
 ; End Translation (2)
 
