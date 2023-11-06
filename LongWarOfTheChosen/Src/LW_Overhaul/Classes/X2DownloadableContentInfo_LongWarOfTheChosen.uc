@@ -5649,6 +5649,62 @@ exec function LWOTC_CheckHealingProjects()
 
 }
 
+
+exec function LWOTC_CheckCapturedSoldiers()
+{
+	local XComGameState_HeadquartersAlien AlienHQ;
+	local XComGameState_AdventChosen ChosenState;
+	local StateObjectReference CapturedSoldierRef;
+	local XComGameState_Unit UnitState;
+	local array<XComGameState_AdventChosen> AllChosen;
+	
+	AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+	AllChosen = AlienHQ.GetAllChosen();
+
+	// First collect any soldiers captured "normally", i.e. not by the Chosen
+	foreach AlienHQ.CapturedSoldiers(CapturedSoldierRef)
+	{
+		class'Helpers'.static.OutputMsg("Found captured soldier ID:" @ CapturedSoldierRef.ObjectID);
+		UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CapturedSoldierRef.ObjectID));
+		class'Helpers'.static.OutputMsg("Captured Soldier Name " @ UnitState.GetFirstName() @ UnitState.GetLastName());
+		class'Helpers'.static.OutputMsg("Captured Soldier Class:" @ UnitState.GetSoldierClassTemplateName());
+		// Check whether the soldier is already attached as a mission or covert action reward
+		if (!class'Helpers_LW'.static.IsRescueMissionAvailableForSoldier(CapturedSoldierRef))
+		{
+			`LWTrace("[RescueSoldier] Captured soldier (normal) available for rescue " $ CapturedSoldierRef.ObjectID);
+			class'Helpers'.static.OutputMsg("No current rescue mission for this soldier.");
+		}
+		else
+		{
+			class'Helpers'.static.OutputMsg("There's a mission somewhere for this unit.");
+		}
+	}
+
+	// Now collect any soldiers captured by the Chosen
+	foreach AllChosen(ChosenState)
+	{
+		foreach ChosenState.CapturedSoldiers(CapturedSoldierRef)
+		{
+			class'Helpers'.static.OutputMsg("Found captured soldier ID:" @ CapturedSoldierRef.ObjectID);
+			UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(CapturedSoldierRef.ObjectID));
+			class'Helpers'.static.OutputMsg("Captured Soldier Name " @ UnitState.GetFirstName() @ UnitState.GetLastName());
+			class'Helpers'.static.OutputMsg("Captured Soldier Class:" @ UnitState.GetSoldierClassTemplateName());
+			// Check whether the soldier is already attached as a mission or covert action reward
+			if (!class'Helpers_LW'.static.IsRescueMissionAvailableForSoldier(CapturedSoldierRef))
+			{
+				`LWTrace("[RescueSoldier] Captured soldier (Chosen - " $ ChosenState.GetMyTemplateName() $ ") available for rescue " $ CapturedSoldierRef.ObjectID);
+				class'Helpers'.static.OutputMsg("No current rescue mission for this soldier.");
+			}
+			else
+			{
+				class'Helpers'.static.OutputMsg("There's a mission somewhere for this unit.");
+			}
+		}
+	}
+
+}
+
+
 //------------ Hybrid Difficulty Stuff -------------
 
 // InstallNewCampaign part called in LW_SMGPack_Integrated because it loads first
@@ -5685,3 +5741,4 @@ exec function Ted_CheckCurrentDifficulty()
 	`LWTrace("Current Strategy Difficulty:" @CampaignSettingsStateObject.GetStrategyDifficultyFromSettings());
 
 }
+
