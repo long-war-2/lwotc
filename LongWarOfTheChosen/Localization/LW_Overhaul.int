@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC22 Changes:"
-strMessage_Body = "<ul><li>Executioner changed to 15/15 aim/crit, Locked On changed to 20/10 aim/crit.</li><li>Another new building for Network Tower maps.</li><li>3 more abandoned city crate race maps for more diversity.</li><li>Bugfix for psi operatives not promoting to the last rank accidentally added during a refactor.</li><li>Removed double lancer pods at FL3.</li></ul>"
+strMessage_Header = "RC23 Changes:"
+strMessage_Body = "<ul><li>Fixed some crashes that happened when loading saves.</li><li>Fixed Precision Shot damage modifier applying 2x.</li><li>Support for DABFL added. If DABFL is detected, LWoTC will short circuit its own DABFL-like code.</li></ul>"
 strDismiss_Button = "OK"
