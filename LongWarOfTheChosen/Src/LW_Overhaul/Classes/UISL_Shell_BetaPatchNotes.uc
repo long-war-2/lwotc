@@ -65,7 +65,7 @@ simulated function  CreatePanel_ConfigWarning_BetaNotes_LWoTC(UIPanel Screen)
 	WarningPanel_BetaNotes_LWoTC.SetPosition(WarningBkgGrnd_BetaNotes_LWoTC.X, WarningBkgGrnd_BetaNotes_LWoTC.Y);			//500, 300
 
 	WarningImage_BetaNotes_LWoTC = Screen.Spawn(class'UIImage', Screen);
-	WarningImage_BetaNotes_LWoTC.InitImage(, "img:///UILibrary_BetaNotes_LWoTC.SampleSquadIcons.SquadIcon0");
+	WarningImage_BetaNotes_LWoTC.InitImage(, "img:///UILibrary_LWOTC.SampleSquadIcons.SquadIcon0");
 	WarningImage_BetaNotes_LWoTC.SetScale(0.25);
 	WarningImage_BetaNotes_LWoTC.SetPosition(WarningBkgGrnd_BetaNotes_LWoTC.X + WarningBkgGrnd_BetaNotes_LWoTC.Width - 90, WarningBkgGrnd_BetaNotes_LWoTC.Y + 20);
 
