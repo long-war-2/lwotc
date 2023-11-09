@@ -19,27 +19,36 @@ var int					iVersion_Installed;
 
 var localized string	strMessage_Title, strMessage_Header, strMessage_Body, strDismiss_Button;
 
-var UIBGBox 		WarningBkgGrnd_LWoTC;
-var UIPanel 		WarningPanel_LWoTC;
-var UIImage			WarningImage_LWoTC;
-var UIX2PanelHeader WarningTitle_LWoTC;
-var UITextContainer WarningHeader_LWoTC, WarningBody_LWoTC;
-var UIButton		DismissButton_LWoTC;
+var string PathToPanelLWoTC;
 
 event OnInit(UIScreen Screen)
 {
+	local UIPanel		Screen_LWoTC;
 	// DO WE CREATE THIS OR NOT, YES TO FIRST WARNING = 0, YES TO TESTING = -1, YES TO EACH UPDATE = NEW > OLD
 	if(ShouldShowWarningMsg())
 	{
-		CreatePanel_ConfigWarning_LWoTC(Screen);
+		Screen_LWoTC = Screen.Spawn(class'UIPanel', Screen);
+		PathToPanelLWoTC = PathName(Screen_LWoTC);
+		Screen_LWoTC.InitPanel('PatchNotesScreen_LWoTC');
+		Screen_LWoTC.SetSize(1920, 1080);		
+		Screen_LWoTC.SetPosition(0, 0);			
+		CreatePanel_ConfigWarning_LWoTC(Screen_LWoTC);
 	}
 
 	return;
 }
 
-simulated function  CreatePanel_ConfigWarning_LWoTC(UIScreen Screen)
+simulated function  CreatePanel_ConfigWarning_LWoTC(UIPanel Screen)
 {
 	local int X, Y, W, H;
+
+	
+	local UIBGBox 		WarningBkgGrnd_LWoTC;
+	local UIPanel 		WarningPanel_LWoTC;
+	local UIImage			WarningImage_LWoTC;
+	local UIX2PanelHeader WarningTitle_LWoTC;
+	local UITextContainer WarningHeader_LWoTC, WarningBody_LWoTC;
+	local UIButton		DismissButton_LWoTC;
 
  	// pos x, 	pos y , 	width, 		height
 	X = 500;	Y = 300;	W = 800;	H = 420;
@@ -91,20 +100,21 @@ simulated function  CreatePanel_ConfigWarning_LWoTC(UIScreen Screen)
 	DismissButton_LWoTC.SetResizeToText(true);
 	DismissButton_LWoTC.AnchorTopCenter();			//AUTO
 	DismissButton_LWoTC.OriginTopCenter();			//AUTO
-	DismissButton_LWoTC.SetPosition(DismissButton_LWoTC.X - 60, WarningBkgGrnd_LWoTC.Y +375);
+	DismissButton_LWoTC.SetPosition(DismissButton_LWoTC.X - 60, WarningBkgGrnd_LWoTC.Y + 375);
 }
 
 // CLEAR EVERYTHING ON BUTTON PRESS
 simulated function DismissButton_LWoTCHandler(UIButton Button)
 {
-	DismissButton_LWoTC.Remove();
+	local UIPanel Panel;
+	Panel = UIPanel(FindObject(PathToPanelLWoTC, class'UIPanel'));
+	Panel.Remove();
+	PathToPanelLWoTC = "";
+}
 
-	WarningBody_LWoTC.Remove();
-	WarningHeader_LWoTC.Remove();
-	WarningTitle_LWoTC.Remove();
-	WarningImage_LWoTC.Remove();
-	WarningPanel_LWoTC.Remove();
-	WarningBkgGrnd_LWoTC.Remove();
+event OnRemoved(UIScreen Screen)
+{
+	PathToPanelLWoTC = "";
 }
 
 // SHOULD WE DISPLAY THE POPUP BASED ON CONFIG NUMBER
@@ -146,5 +156,5 @@ static function bool ShouldShowWarningMsg()
 defaultproperties
 {
 	ScreenClass = UIFinalShell;
-	iVersion_Installed = 1;
+	iVersion_Installed = 1; // 1
 }

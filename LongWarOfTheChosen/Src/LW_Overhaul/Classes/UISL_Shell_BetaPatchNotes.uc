@@ -19,92 +19,103 @@ var int					iVersion_Installed;
 
 var localized string	strMessage_Title, strMessage_Header, strMessage_Body, strDismiss_Button;
 
-var UIBGBox 		WarningBkgGrnd_LWoTC;
-var UIPanel 		WarningPanel_LWoTC;
-var UIImage			WarningImage_LWoTC;
-var UIX2PanelHeader WarningTitle_LWoTC;
-var UITextContainer WarningHeader_LWoTC, WarningBody_LWoTC;
-var UIButton		DismissButton_LWoTC;
+var string PathToPanelLWoTC;
+
 
 event OnInit(UIScreen Screen)
 {
+	local UIPanel		Screen_BetaNotes_LWoTC;
 	// DO WE CREATE THIS OR NOT, YES TO FIRST WARNING = 0, YES TO TESTING = -1, YES TO EACH UPDATE = NEW > OLD
 	if(ShouldShowWarningMsg())
 	{
-		CreatePanel_ConfigWarning_LWoTC(Screen);
+		Screen_BetaNotes_LWoTC = Screen.Spawn(class'UIPanel', Screen);
+		PathToPanelLWoTC = PathName(Screen_BetaNotes_LWoTC);
+		Screen_BetaNotes_LWoTC.InitPanel('BetaPatchNotesScreen_BetaNotes_LWoTC');
+		Screen_BetaNotes_LWoTC.SetSize(1920, 1080);		
+		Screen_BetaNotes_LWoTC.SetPosition(0, 0);			
+		CreatePanel_ConfigWarning_BetaNotes_LWoTC(Screen_BetaNotes_LWoTC);
 	}
 
 	return;
 }
 
-simulated function  CreatePanel_ConfigWarning_LWoTC(UIScreen Screen)
+simulated function  CreatePanel_ConfigWarning_BetaNotes_LWoTC(UIPanel Screen)
 {
 	local int X, Y, W, H;
+
+	local UIBGBox 		WarningBkgGrnd_BetaNotes_LWoTC;
+	local UIPanel 		WarningPanel_BetaNotes_LWoTC;
+	local UIImage			WarningImage_BetaNotes_LWoTC;
+	local UIX2PanelHeader WarningTitle_BetaNotes_LWoTC;
+	local UITextContainer WarningHeader_BetaNotes_LWoTC, WarningBody_BetaNotes_LWoTC;
+	local UIButton		DismissButton_BetaNotes_LWoTC;
+
 
  	// pos x, 	pos y , 	width, 		height
 	X = 500;	Y = 300;	W = 800;	H = 420;
 
 	// CREATE A PANEL WITH A BACKGROUND PANEL AND LITTLE IMAGE
-	WarningBkgGrnd_LWoTC = Screen.Spawn(class'UIBGBox', Screen);
-	WarningBkgGrnd_LWoTC.LibID = class'UIUtilities_Controls'.const.MC_X2Background;
-	WarningBkgGrnd_LWoTC.InitBG('ConfigPopup_BG_LWoTC', X, Y, W, H);
+	WarningBkgGrnd_BetaNotes_LWoTC = Screen.Spawn(class'UIBGBox', Screen);
+	WarningBkgGrnd_BetaNotes_LWoTC.LibID = class'UIUtilities_Controls'.const.MC_X2Background;
+	WarningBkgGrnd_BetaNotes_LWoTC.InitBG('ConfigPopup_BG_BetaNotes_LWoTC', X, Y, W, H);
 
-	WarningPanel_LWoTC = Screen.Spawn(class'UIPanel', Screen);
-	WarningPanel_LWoTC.InitPanel('ConfigPopup_LWoTC');
-	WarningPanel_LWoTC.SetSize(WarningBkgGrnd_LWoTC.Width, WarningBkgGrnd_LWoTC.Height);		//800, 420
-	WarningPanel_LWoTC.SetPosition(WarningBkgGrnd_LWoTC.X, WarningBkgGrnd_LWoTC.Y);			//500, 300
+	WarningPanel_BetaNotes_LWoTC = Screen.Spawn(class'UIPanel', Screen);
+	WarningPanel_BetaNotes_LWoTC.InitPanel('ConfigPopup_BetaNotes_LWoTC');
+	WarningPanel_BetaNotes_LWoTC.SetSize(WarningBkgGrnd_BetaNotes_LWoTC.Width, WarningBkgGrnd_BetaNotes_LWoTC.Height);		//800, 420
+	WarningPanel_BetaNotes_LWoTC.SetPosition(WarningBkgGrnd_BetaNotes_LWoTC.X, WarningBkgGrnd_BetaNotes_LWoTC.Y);			//500, 300
 
-	WarningImage_LWoTC = Screen.Spawn(class'UIImage', Screen);
-	WarningImage_LWoTC.InitImage(, "img:///UILibrary_LWOTC.SampleSquadIcons.SquadIcon0");
-	WarningImage_LWoTC.SetScale(0.25);
-	WarningImage_LWoTC.SetPosition(WarningBkgGrnd_LWoTC.X + WarningBkgGrnd_LWoTC.Width - 90, WarningBkgGrnd_LWoTC.Y + 20);
+	WarningImage_BetaNotes_LWoTC = Screen.Spawn(class'UIImage', Screen);
+	WarningImage_BetaNotes_LWoTC.InitImage(, "img:///UILibrary_BetaNotes_LWoTC.SampleSquadIcons.SquadIcon0");
+	WarningImage_BetaNotes_LWoTC.SetScale(0.25);
+	WarningImage_BetaNotes_LWoTC.SetPosition(WarningBkgGrnd_BetaNotes_LWoTC.X + WarningBkgGrnd_BetaNotes_LWoTC.Width - 90, WarningBkgGrnd_BetaNotes_LWoTC.Y + 20);
 
 	// CREATE A TITLE, COOL ONE WITH THE HAZARD BAR
-	WarningTitle_LWoTC = Screen.Spawn(class'UIX2PanelHeader', WarningPanel_LWoTC);
-	WarningTitle_LWoTC.InitPanelHeader('', class'UIUtilities_Text'.static.GetColoredText(strMessage_Title @ class'LWVersion'.static.GetShortVersionString(), eUIState_Bad, 32), "");	//red
-    WarningTitle_LWoTC.SetPosition(WarningTitle_LWoTC.X + 10, WarningTitle_LWoTC.Y + 10);		//510, 310
-    WarningTitle_LWoTC.SetHeaderWidth(WarningPanel_LWoTC.Width - 20);					//780
+	WarningTitle_BetaNotes_LWoTC = Screen.Spawn(class'UIX2PanelHeader', WarningPanel_BetaNotes_LWoTC);
+	WarningTitle_BetaNotes_LWoTC.InitPanelHeader('', class'UIUtilities_Text'.static.GetColoredText(strMessage_Title @ class'LWVersion'.static.GetShortVersionString(), eUIState_Bad, 32), "");	//red
+    WarningTitle_BetaNotes_LWoTC.SetPosition(WarningTitle_BetaNotes_LWoTC.X + 10, WarningTitle_BetaNotes_LWoTC.Y + 10);		//510, 310
+    WarningTitle_BetaNotes_LWoTC.SetHeaderWidth(WarningPanel_BetaNotes_LWoTC.Width - 20);					//780
 
 	// CREATE A ONE LINE HEADER
-	WarningHeader_LWoTC = Screen.Spawn(class'UITextContainer', WarningPanel_LWoTC);
-	WarningHeader_LWoTC.InitTextContainer();
-	WarningHeader_LWoTC.bAutoScroll = true;
-	WarningHeader_LWoTC.SetSize(WarningBkgGrnd_LWoTC.Width - 40, 30); 					//760, 30
-	WarningHeader_LWoTC.SetPosition(WarningHeader_LWoTC.X + 20, WarningHeader_LWoTC.Y +60);	//520, 360
+	WarningHeader_BetaNotes_LWoTC = Screen.Spawn(class'UITextContainer', WarningPanel_BetaNotes_LWoTC);
+	WarningHeader_BetaNotes_LWoTC.InitTextContainer();
+	WarningHeader_BetaNotes_LWoTC.bAutoScroll = true;
+	WarningHeader_BetaNotes_LWoTC.SetSize(WarningBkgGrnd_BetaNotes_LWoTC.Width - 40, 30); 					//760, 30
+	WarningHeader_BetaNotes_LWoTC.SetPosition(WarningHeader_BetaNotes_LWoTC.X + 20, WarningHeader_BetaNotes_LWoTC.Y +60);	//520, 360
 
-	WarningHeader_LWoTC.Text.SetHTMLText( class'UIUtilities_Text'.static.StyleText(strMessage_Header, eUITextStyle_Tooltip_H1, eUIState_Warning2));	//orange
+	WarningHeader_BetaNotes_LWoTC.Text.SetHTMLText( class'UIUtilities_Text'.static.StyleText(strMessage_Header, eUITextStyle_Tooltip_H1, eUIState_Warning2));	//orange
 	
 	// CREATE THE ACTUAL MESSAGE
-	WarningBody_LWoTC = Screen.Spawn(class'UITextContainer', WarningPanel_LWoTC);
-	WarningBody_LWoTC.InitTextContainer();
-	WarningBody_LWoTC.bAutoScroll = true;
-	WarningBody_LWoTC.SetSize(WarningBkgGrnd_LWoTC.Width - 40, WarningBkgGrnd_LWoTC.Height - 150);	//760, 270
-	WarningBody_LWoTC.SetPosition(WarningBody_LWoTC.X +20, WarningBody_LWoTC.Y + 90);					//520, 390
+	WarningBody_BetaNotes_LWoTC = Screen.Spawn(class'UITextContainer', WarningPanel_BetaNotes_LWoTC);
+	WarningBody_BetaNotes_LWoTC.InitTextContainer();
+	WarningBody_BetaNotes_LWoTC.bAutoScroll = true;
+	WarningBody_BetaNotes_LWoTC.SetSize(WarningBkgGrnd_BetaNotes_LWoTC.Width - 40, WarningBkgGrnd_BetaNotes_LWoTC.Height - 150);	//760, 270
+	WarningBody_BetaNotes_LWoTC.SetPosition(WarningBody_BetaNotes_LWoTC.X +20, WarningBody_BetaNotes_LWoTC.Y + 90);					//520, 390
 
-	WarningBody_LWoTC.Text.SetHTMLText( class'UIUtilities_Text'.static.StyleText(strMessage_Body, eUITextStyle_Tooltip_Body, eUIState_Normal));	//cyan
-    WarningBody_LWoTC.Text.SetHeight(WarningBody_LWoTC.Text.Height * 3.0f);                   
+	WarningBody_BetaNotes_LWoTC.Text.SetHTMLText( class'UIUtilities_Text'.static.StyleText(strMessage_Body, eUITextStyle_Tooltip_Body, eUIState_Normal));	//cyan
+    WarningBody_BetaNotes_LWoTC.Text.SetHeight(WarningBody_BetaNotes_LWoTC.Text.Height * 3.0f);                   
 
 	// CREATE A DISMISS BUTTON
-	DismissButton_LWoTC = Screen.Spawn(class'UIButton', WarningPanel_LWoTC);
-	DismissButton_LWoTC.InitButton('DismissButton_LWoTC', strDismiss_Button, DismissButton_LWoTCHandler, );
-	DismissButton_LWoTC.SetSize(760, 30); 
-	DismissButton_LWoTC.SetResizeToText(true);
-	DismissButton_LWoTC.AnchorTopCenter();			//AUTO
-	DismissButton_LWoTC.OriginTopCenter();			//AUTO
-	DismissButton_LWoTC.SetPosition(DismissButton_LWoTC.X - 60, WarningBkgGrnd_LWoTC.Y +375);
+	DismissButton_BetaNotes_LWoTC = Screen.Spawn(class'UIButton', WarningPanel_BetaNotes_LWoTC);
+	DismissButton_BetaNotes_LWoTC.InitButton('DismissButton_BetaNotes_LWoTC', strDismiss_Button, DismissButton_BetaNotes_LWoTCHandler, );
+	DismissButton_BetaNotes_LWoTC.SetSize(760, 30); 
+	DismissButton_BetaNotes_LWoTC.SetResizeToText(true);
+	DismissButton_BetaNotes_LWoTC.AnchorTopCenter();			//AUTO
+	DismissButton_BetaNotes_LWoTC.OriginTopCenter();			//AUTO
+	DismissButton_BetaNotes_LWoTC.SetPosition(DismissButton_BetaNotes_LWoTC.X - 60, WarningBkgGrnd_BetaNotes_LWoTC.Y +375);
 }
 
 // CLEAR EVERYTHING ON BUTTON PRESS
-simulated function DismissButton_LWoTCHandler(UIButton Button)
+simulated function DismissButton_BetaNotes_LWoTCHandler(UIButton Button)
 {
-	DismissButton_LWoTC.Remove();
+	local UIPanel Panel;
+	Panel = UIPanel(FindObject(PathToPanelLWoTC, class'UIPanel'));
+	Panel.Remove();
+	PathToPanelLWoTC = "";
+}
 
-	WarningBody_LWoTC.Remove();
-	WarningHeader_LWoTC.Remove();
-	WarningTitle_LWoTC.Remove();
-	WarningImage_LWoTC.Remove();
-	WarningPanel_LWoTC.Remove();
-	WarningBkgGrnd_LWoTC.Remove();
+event OnRemoved(UIScreen Screen)
+{
+	PathToPanelLWoTC = "";
 }
 
 // SHOULD WE DISPLAY THE POPUP BASED ON CONFIG NUMBER
@@ -146,5 +157,5 @@ static function bool ShouldShowWarningMsg()
 defaultproperties
 {
 	ScreenClass = UIFinalShell;
-	iVersion_Installed = 4;
+	iVersion_Installed = 5; // 5
 }
