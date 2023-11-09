@@ -1067,6 +1067,12 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		return;
 	}
 
+	if(class'Helpers_LW'.default.bDABFLActive)
+	{
+		`LWDiversityTrace("DABFL Detected, aborting.");
+		return;
+	}
+
 	// Get the corresponding spawn distribution lists for this mission.
 	GetLeaderSpawnDistributionList(EncounterName, MissionState, ForceLevel, LeaderSpawnList);
 	GetFollowerSpawnDistributionList(EncounterName, MissionState, ForceLevel, FollowerSpawnList);
@@ -1284,10 +1290,10 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					if(default.bNerfFrostLegion && (InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE))
 					{
 						// 75% chance to reroll frost legion
-						if(`SYNC_FRAND_STATIC > 0.75)
+						if(`SYNC_FRAND_STATIC < 0.8)
 						{
 							numAttempts = 0;
-							while (numAttempts < 10 && bKeepTrying)
+							while (numAttempts < 12 && bKeepTrying)
 							{
 								SpawnInfo.SelectedCharacterTemplateNames[idx] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
 
@@ -5270,6 +5276,7 @@ static function CacheInstalledMods()
 	class'Helpers_LW'.default.XCOM2RPGOverhaulActive = class'Helpers_LW'.static.IsModInstalled("XCOM2RPGOverhaul");
 	class'Helpers_LW'.default.bKirukaFactionOverhaulActive = class'Helpers_LW'.static.IsModInstalled("KirukasFactionSoldiersLWOTC");
 	class'Helpers_LW'.default.bNewTemplarModJamActive = class'Helpers_LW'.static.IsModInstalled("NewTemplarModJam");
+	class'Helpers_LW'.default.bDABFLActive = class'Helpers_LW'.static.IsModInstalled("DiverseAliensByForceLevelWOTC");
 
 	`LWTrace("cached bSmokeStopsFlanksActive: " @ class'Helpers_LW'.default.bSmokeStopsFlanksActive );
 	`LWTrace("cached bImprovedSmokeDefenseActive: " @class'Helpers_LW'.default.bImprovedSmokeDefenseActive);
@@ -5279,6 +5286,7 @@ static function CacheInstalledMods()
 	`LWTrace("cached XCOM2RPGOverhaulActive: " @class'Helpers_LW'.default.XCOM2RPGOverhaulActive);
 	`LWTrace("cached bKirukaFactionOverhaulActive: " @class'Helpers_LW'.default.bKirukaFactionOverhaulActive);
 	`LWTrace("cached bNewTemplarModJamActive: " @class'Helpers_LW'.default.bNewTemplarModJamActive);
+	`LWTrace("cached bDABFLActive: " @class'Helpers_LW'.default.bDABFLActive);
 
 }
 
