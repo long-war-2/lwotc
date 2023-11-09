@@ -1459,7 +1459,7 @@ static function X2AbilityTemplate AddPrecisionShotSnapShotAbility()
 	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
-	Template.AdditionalAbilities.AddItem('PrecisionShotCritDamage');
+	//Template.AdditionalAbilities.AddItem('PrecisionShotCritDamage');
 
 	ActionPointCondition = new class'X2Condition_UnitActionPoints';
 	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
@@ -1486,6 +1486,7 @@ static function X2AbilityTemplate PrecisionShotCritDamage()
     Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
     CritEffect = new class'X2Effect_PrecisionShotCritDamage';
     CritEffect.BuildPersistentEffect(1, true, false, false);
+	CritEffect.DuplicateResponse = eDupe_Refresh;
     CritEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
     Template.AddTargetEffect(CritEffect);
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
