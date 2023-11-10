@@ -6368,6 +6368,29 @@ LocLongDescription="每次用你的近战武器攻击，得到一个堆叠的伤
 LocHelpText="每次用你的近战武器攻击，得到一个堆叠的伤害提升你的近战攻击。增益取决于天选者的等级，T1/T2/T3/T4对应+<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>伤害。成功劫持后移除。"
 LocFlyOverText="嗜血"
 
+; LWOTC Translated (2)
+[UnholyAscension_LW X2AbilityTemplate]
+LocFriendlyName="邪恶的升华"
+LocLongDescription="冠军术士的护盾、命中、暴击、意志和灵能攻击加成翻倍，并提供暴击免疫的效果。"
+LocHelpText="冠军术士的护盾、命中、暴击、意志和灵能攻击加成翻倍，并提供暴击免疫的效果。"
+LocFlyOverText="邪恶的升华"
+
+[RuptureImmunity X2AbilityTemplate]
+LocFriendlyName="牢不可破"
+LocLongDescription="所有对你施加的撕裂效果将立即被移除。"
+LocHelpText="所有对你施加的撕裂效果将立即被移除。"
+LocFlyOverText="牢不可破"
+
+[TrackingShotMark X2AbilityTemplate]
+LocFriendlyName="追踪射击标记"
+LocHelpText="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
+LocLongDescription="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
+
+[TrackingShot X2AbilityTemplate]
+LocFriendlyName="追踪射击"
+LocHelpText="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
+LocLongDescription="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
+; End Translated (2)
 
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="精准刺击"
