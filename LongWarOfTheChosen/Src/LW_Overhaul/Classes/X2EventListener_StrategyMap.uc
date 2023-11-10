@@ -334,7 +334,7 @@ static function GetMissionSiteUIButtonToolTip(out string Title, out string Body,
 {
 	local int Hours, Days;
 	local float RemainingSeconds;
-	//local X2MissionTemplate MissionTemplate;
+	local X2MissionTemplate MissionTemplate;
 	local XComGameState_LWAlienActivity AlienActivity;
 	local XComGameState_LWPersistentSquad InfiltratingSquad;
 	local XComGameState_MissionSite MissionSite;
@@ -355,11 +355,11 @@ static function GetMissionSiteUIButtonToolTip(out string Title, out string Body,
 	{
 		Title = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(InfiltratingSquad.sSquadName);
 	}
-//	else
-//	{
-//		MissionTemplate = class'X2MissionTemplateManager'.static.GetMissionTemplateManager().FindMissionTemplate(MissionSite.GeneratedMission.Mission.MissionName);
-//		Title = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(MissionTemplate.PostMissionType);
-//	}
+	else if (MissionSite.GetMissionSource().DataName == 'MissionSource_LWSGenericMissionSource')
+	{
+		MissionTemplate = class'X2MissionTemplateManager'.static.GetMissionTemplateManager().FindMissionTemplate(MissionSite.GeneratedMission.Mission.MissionName);
+		Title = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(MissionTemplate.PostMissionType);
+	}
 
 	AlienActivity = class'XComGameState_LWAlienActivityManager'.static.FindAlienActivityByMission(MissionSite);
 	ParamTag = XGParamTag(`XEXPANDCONTEXT.FindTag("XGParam"));
