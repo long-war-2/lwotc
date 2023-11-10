@@ -6383,8 +6383,8 @@ LocFlyOverText="精神发狂"
 
 [YouCannotHide_LW X2AbilityTemplate]
 LocFriendlyName="无所遁形"
-LocHelpText="你的主武器增加30命中。"
-LocLongDescription="你的主武器增加30命中。"
+LocHelpText="你的<Ability:BOUND_WEAPON_NAME/>增加30命中。"
+LocLongDescription="你的<Ability:BOUND_WEAPON_NAME/>增加30命中。"
 LocFlyOverText="逃跑吧。"
 
 [RebelHPUpgrade_T1 X2AbilityTemplate]
