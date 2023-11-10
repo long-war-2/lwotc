@@ -6377,8 +6377,8 @@ LocFlyOverText="精准刺击"
 
 [PsychoticRage_LW X2AbilityTemplate]
 LocFriendlyName="精神发狂"
-LocHelpText="在35%或更少的生命值下获得50%的伤害提升。"
-LocLongDescription="在35%或更少的生命值下获得50%的伤害提升。"
+LocHelpText="在<Ability:PSYCHOTIC_RAGE_DMG_BONUS/>%或更少的生命值下获得<Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>%的伤害提升。"
+LocLongDescription="在<Ability:PSYCHOTIC_RAGE_DMG_BONUS/>%或更少的生命值下获得<Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>%的伤害提升。"
 LocFlyOverText="精神发狂"
 
 [YouCannotHide_LW X2AbilityTemplate]
