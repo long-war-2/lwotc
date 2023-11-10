@@ -6855,7 +6855,7 @@ LocPromotionPopupText="<Bullet/> 放逐中的每一次射击都有单独的命�
 
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="全面战斗"
-LocLongDescription="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加3格，爆炸半径增加1格。授予榴弹专用槽。"
+LocLongDescription="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加2格，爆炸半径增加1格。授予榴弹专用槽。"
 LocHelpText="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加2格，爆炸半径增加1格。授予榴弹专用槽。"
 LocPromotionPopupText="<Bullet/> 全面战斗让<Ability:ClassName/>的战术更为多样化，能够在需要的时候采取精准的行动。<br/><Bullet/> 消除榴弹的冷却时间。<br/><Bullet/> 授予爆炸挥发技能，因此它不会与该技能叠加。"
 
