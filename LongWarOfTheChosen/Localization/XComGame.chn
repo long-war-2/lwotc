@@ -6281,15 +6281,15 @@ LocFlyOverText="敏锐"
 
 [CombatReadiness X2AbilityTemplate]
 LocFriendlyName="战备状态"
-LocLongDescription="本回合内在掩体中获得可叠加的<Ability:COMBATREADINESS_AIM/>命中和<Ability:COMBATREADINESS_DEF/>防御加成，并移除大部分减益状态。"
-LocHelpText="本回合内在掩体中获得可叠加的<Ability:COMBATREADINESS_AIM/>命中和<Ability:COMBATREADINESS_DEF/>防御加成，并移除大部分减益状态。"
+LocLongDescription="本回合内在掩体中获得可叠加的<Ability:COMBAT_READINESS_EXPLOSIVE_DR/>%爆炸伤害减免和<Ability:COMBATREADINESS_DEF/>防御加成，并移除定身减益状态。"
+LocHelpText="本回合内在掩体中获得可叠加的<Ability:COMBAT_READINESS_EXPLOSIVE_DR/>%爆炸伤害减免和<Ability:COMBATREADINESS_DEF/>防御加成，并移除定身减益状态。"
 LocFlyOverText="战备状态"
 
 ;LWOTC needs translation
 [CombatReadinessPassive X2AbilityTemplate]
 LocFriendlyName="战备状态"
-LocLongDescription="本回合内在掩体中获得可叠加的<Ability:COMBATREADINESS_AIM/>命中和<Ability:COMBATREADINESS_DEF/>防御加成，并移除大部分减益状态。"
-LocHelpText="本回合内在掩体中获得可叠加的<Ability:COMBATREADINESS_AIM/>命中和<Ability:COMBATREADINESS_DEF/>防御加成，并移除大部分减益状态。"
+LocLongDescription="本回合内在掩体中获得可叠加的<Ability:COMBAT_READINESS_EXPLOSIVE_DR/>%爆炸伤害减免和<Ability:COMBATREADINESS_DEF/>防御加成，并移除定身减益状态。"
+LocHelpText="本回合内在掩体中获得可叠加的<Ability:COMBAT_READINESS_EXPLOSIVE_DR/>%爆炸伤害减免和<Ability:COMBATREADINESS_DEF/>防御加成，并移除定身减益状态。"
 LocFlyOverText="战备状态"
 ; End translation
 
