@@ -6762,6 +6762,18 @@ LocLongDescription="减少该士兵<Ability:GREATER_PADDING_BM/>HP的伤口恢�
 LocHelpText="减少该士兵伤口恢复时间。"
 LocPromotionPopupText="<Bullet/> 高级衬垫将士兵在战斗中受伤后必须治疗的生命值减少<Ability:GREATER_PADDING_BM/>。<br/><Bullet/> 它不影响遭受致命创伤和失血稳定的士兵。"
 
+[IRI_SoulShot X2AbilityTemplate]
+LocFriendlyName="灵魂射击"
+LocLongDescription="一种强大的基于命中的远程攻击，可以暴击，且不会结束回合。消耗1点专注。"
+LocHelpText="一种强大的基于命中的远程攻击，可以暴击，且不会结束回合。消耗1点专注。"
+LocPromotionPopupText="<Bullet/> 灵魂射击有+20的命中加成。<br/><Bullet/> 灵魂射击没有冷却时间。<br/><Bullet/> 伤害随着拳刃等级的提升而增加。"
+
+[IRI_TemplarShield X2AbilityTemplate]
+LocFriendlyName="圣殿之盾"
+LocLongDescription="使用碎片拳刃生成一个灵能护盾并获得<Ability:TEMPLAR_SHIELD_TAG/>护盾生命值，持续到下一个回合开始。可以使用气势发动。"
+LocHelpText="使用碎片拳刃生成一个灵能护盾并获得<Ability:TEMPLAR_SHIELD_TAG/>护盾生命值，持续到下一个回合开始。可以使用气势发动。"
+LocPromotionPopupText="<Bullet/> 使用后结束回合。<br/><Bullet/> 护盾强度将随着碎片拳刃的技术等级而增加。"
+
 [Indomitable X2AbilityTemplate]
 LocFriendlyName="百折不挠"
 LocHelpText="每回合一次，受到攻击时获得1专注。"
