@@ -6450,8 +6450,8 @@ LocFlyOverText="嗜血"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
 LocFriendlyName="霸气侧漏"
-LocLongDescription="当你的主武器造成暴击时，你的行动点将返还。"
-LocHelpText="当你的主武器造成暴击时，你的行动点将返还。"
+LocLongDescription="你的<Ability:BOUND_WEAPON_NAME/>暴击率增加+<Ability:OVERBEARING_SUPERIORITY_CRIT/>。当你使用<Ability:BOUND_WEAPON_NAME/>造成暴击时，行动点将返还。"
+LocHelpText="你的<Ability:BOUND_WEAPON_NAME/>暴击率增加+<Ability:OVERBEARING_SUPERIORITY_CRIT/>。当你使用<Ability:BOUND_WEAPON_NAME/>造成暴击时，行动点将返还。"
 LocFlyOverText="霸气侧漏"
 
 [DisruptorRifleCrit X2AbilityTemplate]
