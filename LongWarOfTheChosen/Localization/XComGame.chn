@@ -268,13 +268,14 @@ LocLongDescription="用你的臂套造成的攻击以及臂套武器制造的火
 LocHelpText="用你的臂套造成的攻击以及臂套武器制造的火焰，能造成+1的伤害。"
 LocPromotionPopupText="<Bullet/> 用你的臂套造成的攻击以及臂套武器制造的火焰，能造成+1的伤害。<br/><Bullet/> 该加成适用与火箭发射器和火焰喷射器武器，以及它们造成的火焰。<br/>"
 
-; LWOTC Needs Translation (2)
+; LWOTC Translated (4)
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震荡火箭"
 LocFlyOverText="震荡火箭"
-LocLongDescription="发射一枚特殊的火箭，造成的伤害有限但是有几率使范围内的有机体敌人眩晕或混乱，并留下烟雾。"
-LocHelpText="一种特殊的火箭能够使目标眩晕或混乱，并留下烟雾。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 眩晕几率基于目标的意志和士兵臂套的层级。<br/><Bullet/> 混乱几率基于目标的意志。<br/><Bullet/> 需要1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫所有效果，包括伤害。<br/><Bullet/> 外星人免疫此伤害。<br/>"
+LocLongDescription="发射一枚特殊的火箭，造成的伤害有限但是有几率使范围内的有机敌人眩晕或混乱。"
+LocHelpText="一种特殊的火箭，能够使目标眩晕或混乱<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 眩晕几率为20%。<br/><Bullet/> 混乱几率为100%，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 需要1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害。<br/>"
+; End Translated
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
