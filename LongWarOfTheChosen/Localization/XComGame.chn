@@ -6851,7 +6851,7 @@ LocFriendlyName="放逐"
 LocLongDescription="向一名目标持续开火直至将其击毙或耗尽弹药。 每次射击减少<Ability:BANISH_HIT_MOD/>命中。暴露死神的位置。 "
 LocHelpText="向一名目标持续开火直至将其击毙或耗尽弹药。 每次射击减少<Ability:BANISH_HIT_MOD/>命中。暴露死神的位置。"
 LocFlyoverText="放逐"
-LocPromotionPopupText="<Bullet/> 放逐中的每一次射击都有单独的命中几率。<br/><Bullet/> 只有1弹药时不能激活放逐。<br/><Bullet/> 放逐射击可以暴击。<br/>"
+LocPromotionPopupText="<Bullet/> 放逐中的每一次射击都有单独的命中几率。<br/><Bullet/> 只有1弹药时不能激活放逐。<br/><Bullet/> 放逐射击可以暴击。<br/><Bullet/> 在后续射击上会堆叠-1的伤害惩罚。<br/><Bullet/> 放逐有<Ability:SelfCooldown_LW/>回合冷却时间。"
 
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="全面战斗"
