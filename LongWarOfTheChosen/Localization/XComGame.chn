@@ -6251,10 +6251,10 @@ LocLongDescription="你的主武器攻击会让敌人流血。"
 LocHelpText="你的主武器攻击会让敌人流血。"
 
 [MindScorchDangerZone X2AbilityTemplate]
-LocFriendlyName="高压电"
-LocLongDescription="增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。"
-LocHelpText="增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。"
-LocPromotionPopupText="<Bullet/> 增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。"
+LocFriendlyName="心灵燃烧"
+LocLongDescription="增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。减少心灵灼烧1回合冷却时间。"
+LocHelpText="增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。减少心灵灼烧1回合冷却时间。"
+LocPromotionPopupText=""
 
 [MindScorchTerror X2AbilityTemplate]
 LocFriendlyName="恐怖主义"
