@@ -188,7 +188,7 @@ LocFriendlyName="驱逐"
 LocFlyOverText="驱逐"
 LocLongDescription="特殊的火焰喷射器射击，只能造成有限的伤害，但是能迫使敌人移动位置。"
 LocHelpText="特殊的火焰喷射器射击，迫使敌人移动位置。"
-LocPromotionPopupText="<Bullet/> 造成有限的伤害，有20%的几率使区域内的敌人着火。<br/><Bullet/> 狭窄的火焰喷射对环境影响较小。<br/><Bullet/> 被击中的单位将被迫移动，会触发反应射击。<br/><Bullet/> 每个任务可用一次，但是能够通过更高级的装备来获得额外的使用次数。<br/><Bullet/> 隐蔽状态时不能使用。"
+LocPromotionPopupText="<Bullet/> 造成有限的伤害，有75%的概率使区域内的敌人着火。<br/><Bullet/> 狭窄的火焰喷射对环境影响较小。<br/><Bullet/> 被击中的单位将被迫移动，会触发反应射击。<br/><Bullet/> 每个任务可用一次，但是能够通过更高级的装备来获得额外的使用次数。<br/><Bullet/> 隐蔽状态时不能使用。"
 
 ; LWOTC Needs Translation (2)
 [Burnout X2AbilityTemplate]
