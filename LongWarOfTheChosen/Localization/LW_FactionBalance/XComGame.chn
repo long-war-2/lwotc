@@ -78,9 +78,9 @@ LocPromotionPopupText="<Bullet/> 当敌人触发时，给圣殿骑士增加1点�
 
 [TemplarTerror X2AbilityTemplate]
 LocFriendlyName="恐吓"
-LocLongDescription="灵能闪电增加恐慌敌人效果。"
-LocHelpText="灵能闪电增加恐慌敌人效果。"
-LocPromotionPopupText="<Bullet/> 灵能闪电现在可以使敌人恐慌。<br/><Bullet/> 恐慌几率为<Ability:TERROR_STAT_CHECK_BASE_VALUE/>%同时受到圣殿骑士和目标意志力的影响。"
+LocLongDescription="灵能闪电的范围增加<Ability:VoltDangerZoneBonus/>格。灵能闪电增加恐慌敌人的效果。"
+LocHelpText="灵能闪电的范围增加<Ability:VoltDangerZoneBonus/>格。灵能闪电增加恐慌敌人的效果。"
+LocPromotionPopupText="<Bullet/> 灵能闪电现在可以使敌人恐慌。<br/><Bullet/> 基础恐慌几率为<Ability:TERROR_STAT_CHECK_BASE_VALUE/>%，同时会受到圣殿骑士和目标意志力的影响。"
 
 [Apotheosis X2AbilityTemplate]
 LocFriendlyName="神化"
