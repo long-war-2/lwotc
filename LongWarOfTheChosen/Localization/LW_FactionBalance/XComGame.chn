@@ -224,3 +224,7 @@ RendTheMarkedEffectName="撕裂标记"
 RendTheMarkedEffectDesc="在本回合剩余时间内从所有来源对目标的攻击获得投掷飞刀所施加的+<Ability:REND_THE_MARKED_CRIT/>暴击率。"
 ; End Translation
 
+[TheBanisher_LW X2AbilityTemplate]
+LocFriendlyName="真正捕食者"
+LocLongDescription="放逐在每次射击时的命中惩罚减少5点，并将其冷却时间降低1回合。刀锋相接的范围增加1格。死亡贩子现在对无侧翼的目标也能生效。"
+LocHelpText="放逐在每次射击时的命中惩罚减少5点，并将其冷却时间降低1回合。刀锋相接的范围增加1格。死亡贩子现在对无侧翼的目标也能生效。 注意: 刀锋相接的圆环视觉效果没有正确更新该技能。你在刀锋相接的圆环外还有2个格子的射程范围。"
