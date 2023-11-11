@@ -49,6 +49,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddDisablingShot());
 	Templates.AddItem(AddDisablingShotSnapShot());
 	Templates.AddItem(AddDisablingShotCritRemoval());
+	Templates.AddItem(AddDisablingShotSnapShotCritRemoval());
 	Templates.AddItem(AddDemolitionist());
 	Templates.AddItem(AddSilentKillerCooldownReduction());
 	Templates.AddItem(AddSilentKillerDurationExtension());
@@ -592,7 +593,7 @@ static function X2AbilityTemplate AddDisablingShotSnapShot()
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
 	Template.AddShooterEffectExclusions();
 	Template.ActivationSpeech = 'Reaper';
-	Template.AdditionalAbilities.AddItem('DisablingShotCritRemoval');
+	Template.AdditionalAbilities.AddItem('DisablingShotSnapShotCritRemoval');
 
 	VisibilityCondition = new class'X2Condition_Visibility';
 	VisibilityCondition.bRequireGameplayVisible = true;
@@ -737,6 +738,45 @@ static function X2AbilityTemplate AddDisablingShotCritRemoval()
 	DamageReductionEffect.Penalty = true;
 	DamageReductionEffect.DamageMod = default.DisablingShotDamagePenalty;
 	DamageReductionEffect.ActiveAbility = 'DisablingShot';
+	Template.AddShooterEffect(DamageReductionEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddDisablingShotSnapShotCritRemoval()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_CritRemoval CritRemovalEffect;
+	local X2Effect_AbilityDamageMult DamageReductionEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'DisablingShotSnapShotCritRemoval');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_standard";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	Template.bDontDisplayInAbilitySummary = true;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	CritRemovalEffect = new class'X2Effect_CritRemoval';
+	CritRemovalEffect.AbilityToActOn = 'DisablingShotSnapShot';
+	Template.AddShooterEffect(CritRemovalEffect);
+
+	// Also add damage reduction, similar to Kubikiri on a non-crit, but
+	// applies to all damage types.
+	DamageReductionEffect = new class'X2Effect_AbilityDamageMult';
+	DamageReductionEffect.Mult = true;
+	DamageReductionEffect.Penalty = true;
+	DamageReductionEffect.DamageMod = default.DisablingShotDamagePenalty;
+	DamageReductionEffect.ActiveAbility = 'DisablingShotSnapShot';
 	Template.AddShooterEffect(DamageReductionEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
