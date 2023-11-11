@@ -4983,12 +4983,12 @@ LocPromotionPopupText="<Bullet/> 合适的位置可以将对峙的威力发挥�
 LocPromotionPopupText="<Bullet/> 多重火力的每次攻击都有单独的命中率。<br/><Bullet/> 如果每一枪都命中，多重火力会造成毁灭性的伤害。<br/><Bullet/> 多重火力有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 ; End translation
 
-; LWOTC Needs Translation (2)
+; LWOTC Translated (2)
 [SoulSteal X2AbilityTemplate]
-LocLongDescription="灵魂火伤害的一半恢复灵能士兵的生命值，如果灵能士兵未受伤害，将其转化为护盾值。但使灵魂火的冷却时间提高1回合。"
-LocHelpText="灵魂火会恢复受伤士兵 的生命值，或者提供额外的护盾值。但使灵魂火的冷却时间提高1回合。"
-LocPromotionPopupText="<Bullet/> 灵魂汲取将会恢复受伤士兵的生命值，并提供3/4/6护盾值，持续3回合。<br/><Bullet/> 一名士兵最多可汲取15点护盾值。"
-; End Translation (2)
+LocLongDescription="灵魂火伤害的一半恢复灵能士兵的生命值，如果灵能士兵未受伤害，则将其转化为持续3回合的护盾。"
+LocHelpText="灵魂火会恢复受伤士兵的生命值并提供额外的护盾。"
+LocPromotionPopupText="<Bullet/> 灵魂汲取将会恢复受伤士兵的生命值，并提供3/4/6点护盾，持续3回合。<br/><Bullet/> 一名士兵最多可汲取15点护盾值。"
+; End Translated (2)
 
 ; LWOTC Needs Translation
 [Domination X2AbilityTemplate]
