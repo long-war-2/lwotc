@@ -1733,8 +1733,11 @@ static function PostReinforcementCreation(out name EncounterName, out PodSpawnIn
         }
 
         `LWTrace("... for M5 Chosen" @Encounter.SelectedCharacterTemplateNames[0]); //POST SWAP FOR LOGGING
-      
+
+	 	return; 
     }
+
+	PostEncounterCreation(EncounterName, Encounter, ForceLevel, AlertLevel, SourceObject);
 }
 
 // Increase the size of Lost Brutes (unless WWL is installed)
