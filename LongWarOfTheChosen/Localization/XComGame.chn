@@ -6975,7 +6975,7 @@ LocHelpText="当该单位处于隐蔽或暗影状态时，变种人安保哨塔�
 LocLongDescription="使穿戴者对负面精神状况免疫，如恐慌，心灵控制和眩晕。"
 
 [Sustain X2AbilityTemplate]
-LocLongDescription="如果该单位受到足以致命的伤害，他会立刻进入静滞状态，持续1回合，且生命值会降到1点。此能力每次任务发动一次。"
+LocLongDescription="该士兵的伤口恢复时间减少<Ability:SUSTAIN_WOUND_HP_REDUCTTION/>HP。如果该单位受到足以致命的伤害，他会立刻进入静滞状态，持续1回合，且生命值会降到1点。此能力每次任务发动一次。"
 LocHelpText="如果该单位受到足以致命的伤害，他会立刻进入静滞状态，持续1回合，且生命值会降到1点。此能力每次任务发动一次。"
 LocPromotionPopupText="<Bullet/>注意，在坚守状态下的单位在从静滞状态恢复时依然会受到状态效果如毒素或燃烧的伤害。<br/>"
 
