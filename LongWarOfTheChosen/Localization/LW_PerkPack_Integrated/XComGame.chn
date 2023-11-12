@@ -233,7 +233,7 @@ LocHelpText="进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Abili
 LocPromotionPopupText="<Bullet/> 进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴击伤害加成的射击。冷却时间<Ability:SelfCooldown_LW/>回合。<br/>"
 
 [PrecisionShotSnapShot X2AbilityTemplate]
-LocFriendlyName="精准射击"
+LocFriendlyName="精准射击（急射）"
 LocFlyOverText="精准射击"
 LocLongDescription="进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴击伤害加成的射击。冷却时间<Ability:SelfCooldown_LW/>回合。"
 LocHelpText="进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴击伤害加成的射击。冷却时间<Ability:SelfCooldown_LW/>回合。"
