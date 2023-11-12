@@ -5639,6 +5639,12 @@ ActionObjective="获取反抗军MEC"
 [CovertAction_RecruitRebels X2CovertActionTemplate]
 ActionObjective="招募反抗军"
 
+[CovertAction_BigSupplyDepot X2CovertActionTemplate]
+ActionObjective="寻找补给站"
+
+[CovertAction_FindAdventDetachment X2CovertActionTemplate]
+ActionObjective="定位变种人巡逻队"
+
 [CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
 ActionName="突袭变种人停尸房"
 ActionPreNarrative="我们发现了他们把被你消灭的敌人尸体扔到哪里去了。这可能是一个加速技术发展的机会。"
