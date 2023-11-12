@@ -1040,7 +1040,7 @@ LocFlyOverText="速射"
 LocPromotionPopupText="<Bullet/> 速射有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 
 [RapidFireSnapShot X2AbilityTemplate]
-LocFriendlyName="速射"
+LocFriendlyName="速射（急射）"
 LocLongDescription="连续向敌人开火两次。 每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。消耗一个行动点。"
 LocHelpText="连续向敌人开火两次。每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。"
 LocFlyOverText="速射"
