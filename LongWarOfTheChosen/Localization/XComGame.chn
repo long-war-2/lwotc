@@ -2141,6 +2141,12 @@ RewardDetails="获得随机的敌人尸体。"
 DisplayName="属性加成"
 ; End Translation
 
+[Reward_Supply_Mission X2RewardTemplate]
+DisplayName="大型补给夺取任务"
+
+[Reward_Detachment_Mission X2RewardTemplate]
+DisplayName="潜入伏击任务"
+
 ; POI Templates
 [POI_Rebels X2PointOfInterestTemplate]
 DisplayNames[0]="志愿者"
@@ -5705,6 +5711,36 @@ ActionPostNarrative="你的队伍说服了一些持不同政见者加入我们�
 ActionName="反抗军招募搜寻"
 ActionPreNarrative="我们了解到该地区有一小部分持不同政见者可能愿意直接帮助我们。进去看看能不能把他们招进反抗军避难所。"
 ActionPostNarrative="你的队伍说服了一些持不同政见者加入我们的事业。"
+
+[CovertActionNarrative_FindBigDepot_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="定位一个变种人补给站"
+ActionPreNarrative="我们得知了一个可能的大型物资储备地点。我们应该进行调查。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
+
+[CovertActionNarrative_FindBigDepot_Reapers X2CovertActionNarrativeTemplate]
+ActionName="定位一个变种人补给站"
+ActionPreNarrative="我们得知了一个可能的大型物资储备地点。我们应该进行调查。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
+
+[CovertActionNarrative_FindBigDepot_Templars X2CovertActionNarrativeTemplate]
+ActionName="定位一个变种人补给站"
+ActionPreNarrative="我们得知了一个可能的大型物资储备地点。我们应该进行调查。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
+
+[CovertActionNarrative_FindAdventDetachment_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="寻找单独的变种人巡逻队"
+ActionPreNarrative="我们得知了一个变种人侦察小队可能的位置。我们应该调查一下。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
+
+[CovertActionNarrative_FindAdventDetachment_Reapers X2CovertActionNarrativeTemplate]
+ActionName="寻找单独的变种人巡逻队"
+ActionPreNarrative="我们得知了一个变种人侦察小队可能的位置。我们应该调查一下。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
+
+[CovertActionNarrative_FindAdventDetachment_Templars X2CovertActionNarrativeTemplate]
+ActionName="寻找单独的变种人巡逻队"
+ActionPreNarrative="我们得知了一个变种人侦察小队可能的位置。我们应该调查一下。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
 
 [AbilityPoints X2ItemTemplate]
 FriendlyName="能力点"
