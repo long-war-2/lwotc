@@ -465,6 +465,7 @@ LocPromotionPopupText="<Bullet/> 枪林弹雨消耗<Ability:SelfAmmoCost/>弹药
 LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击可以对无掩体敌人（如狂战士，机械敌人）造成毁灭性的打击，或者增加命中加成。<br/>"
 
 [ChainShotSnapShot X2AbilityTemplate]
+LocFriendlyName="连环射击（急射）"
 LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击可以对无掩体敌人（如狂战士，机械敌人）造成毁灭性的打击，或者增加命中加成。<br/>"
 
 
