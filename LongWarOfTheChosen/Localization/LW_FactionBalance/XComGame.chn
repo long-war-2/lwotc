@@ -41,7 +41,7 @@ LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)眩晕敌人<Ability:
 ; End Translation (2)
 
 [DisablingShotSnapShot X2AbilityTemplate]
-LocFriendlyName="阻断射击"
+LocFriendlyName="阻断射击（急射）"
 LocLongDescription="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
 LocHelpText="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
 ; LWOTC Needs Translation (2)
