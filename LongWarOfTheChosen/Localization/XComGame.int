@@ -6264,8 +6264,8 @@ LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Avenger"
 LocFlyOverText="Avenger"
-LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has fired upon a visible ally."
-LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has fired upon a visible ally."
+LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action."
+LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action."
 LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot at.<br/><Bullet/> Can only activate during the enemy's turn.<br/><Bullet/> Can only trigger once per turn.<br/>"
 ; End Translation (2)
 
