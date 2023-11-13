@@ -10,51 +10,51 @@ m_strUnavailableToClass="UNAVAILABLE"
 [DepthPerceptionPCS X2EquipmentTemplate]
 FriendlyName="PCS: Depth Perception"
 FriendlyNamePlural="PCS: Depth Perception"
-BriefSummary="This cybernetic implant grants 5 aim and reduces enemies' dodge by 25 when you are at a higher elevation than your target."
+BriefSummary="This cybernetic implant grants <Ability:DP_AIM_BONUS> aim and reduces enemies' dodge by <Ability:DP_ANTIDODGE_BONUS> when you are at a higher elevation than your target."
 
 [HyperReactivePupilsPCS X2EquipmentTemplate]
 FriendlyName="PCS: Hyper-Reactive Pupils"
 FriendlyNamePlural="PCS: Hyper-Reactive Pupils"
-BriefSummary="This implant confers +10 aim for your next shot with your primary weapon after a shot misses."
+BriefSummary="This implant confers +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> aim for your next shot with your primary weapon after a shot misses."
 
 ; LWOTC Needs Translation
 [CombatAwarenessPCS X2EquipmentTemplate]
 FriendlyName="PCS: Combat Awareness"
 FriendlyNamePlural="PCS: Combat Awareness"
-BriefSummary="Grants 15 defense and a point of armor when on overwatch or suppression."
+BriefSummary="Grants <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> defense and <Ability:COMBAT_AWARENESS_BONUS_ARMOR> armor when on overwatch or suppressing."
 ; End Translation
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="PCS: Combat Rush"
 FriendlyNamePlural="PCS: Combat Rush"
-BriefSummary="When you kill an enemy, allies within 7 tiles temporarily receive bonuses to aim, critical chance and mobility. Five-turn cooldown."
+BriefSummary="When you kill an enemy, allies within <Ability:COMBAT_RUSH_RADIUS> tiles receive +<Ability:COMBAT_RUSH_AIM_BONUS> aim, +<Ability:COMBAT_RUSH_CRIT_BONUS> critical chance and +<Ability:COMBAT_RUSH_MOBILITY_BONUS> mobility for <Ability:COMBAT_RUSH_DURATION> turns. <Ability:COMBAT_RUSH_COOLDOWN> turn cooldown."
 
 [DamageControlPCS X2EquipmentTemplate]
 FriendlyName="PCS: Damage Control"
 FriendlyNamePlural="PCS: Damage Control"
-BriefSummary="The implant hardens your armor against enemy fire and grants 2 armor for 1 turn after you take damage."
+BriefSummary="The implant hardens your armor against enemy fire and grants <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor for <Ability:DAMAGE_CONTROL_DURATION> turn(s) after you take damage."
 
 [AbsorptionFieldsPCS X2EquipmentTemplate]
 FriendlyName="PCS: Impact Fields"
 FriendlyNamePlural="PCS: Impact Fields"
-BriefSummary="This shield projector implant may be activated to reduce incoming damage by 33% for two turns."
+BriefSummary="This shield projector implant may be activated as an action to reduce incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns. <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown."
 
 [BodyShieldPCS X2EquipmentTemplate]
 FriendlyName="PCS: Body Shield"
 FriendlyNamePlural="PCS: Body Shield"
-BriefSummary="The targeted enemy faces -20 aim and -50 critical chance against you."
+BriefSummary="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <BODY_SHIELD_COOLDOWN> turn cooldown."
 
 ; LWOTC Needs Translation
 [EmergencyLifeSupportPCS X2EquipmentTemplate]
 FriendlyName="PCS: Emergency Life Support"
 FriendlyNamePlural="PCS: Emergency Life Support"
-BriefSummary="This implant drastically increases the threshold of overkill damage needed to bypass bleedout, making it less likely that your soldier dies when fatally shot and extends bleed-out time by two turns."
+BriefSummary="This implant drastically increases the threshold of overkill damage needed to bypass bleedout, making it less likely that your soldier dies when fatally shot. Bleedout timer is extended by <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turns."
 ; End Translation
 
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="PCS: Iron Skin"
 FriendlyNamePlural="PCS: Iron Skin"
-BriefSummary="Incoming melee damage is reduced by 3."
+BriefSummary="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="PCS: Smart Macrophages"
@@ -185,9 +185,9 @@ LocPromotionPopupText="<Bullet/> Gain <Ability:INFIGHTER_DODGE_BONUS/> Dodge aga
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Depth Perception"
 LocFlyOverText="Depth Perception"
-LocLongDescription="Gain 5 aim and reduce enemies' dodge by 25 when at a higher elevation than your target."
-LocHelpText="Gain 5 aim and reduce enemies' dodge by 25 when at a higher elevation than your target."
-LocPromotionPopupText="<Bullet/> Gain 5 aim and reduce enemies' dodge by 25 when at a higher elevation than your target.<br/>"
+LocLongDescription="Gain <Ability:DP_AIM_BONUS> aim and reduce enemies' dodge by <Ability:DP_ANTIDODGE_BONUS> when at a higher elevation than your target."
+LocHelpText="Gain <Ability:DP_AIM_BONUS> aim and reduce enemies' dodge by <Ability:DP_ANTIDODGE_BONUS> when at a higher elevation than your target."
+LocPromotionPopupText="<Bullet/> Gain <Ability:DP_AIM_BONUS> aim and reduce enemies' dodge by <Ability:DP_ANTIDODGE_BONUS> when at a higher elevation than your target."
 
 [WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="Will to Survive"
@@ -334,8 +334,8 @@ LocFriendlyNameWhenConcealed="Overwatch (Concealed)"
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="Hyper-Reactive Pupils"
 LocFlyOverText="Hyper-Reactive Pupils"
-LocLongDescription="Gain +10 aim for your next shot with your primary weapon after a miss."
-LocHelpText="Gain +10 aim for your next shot with your primary weapon after a miss."
+LocLongDescription="Gain +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> aim for your next shot with your primary weapon after a miss."
+LocHelpText="Gain +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> aim for your next shot with your primary weapon after a miss."
 LocPromotionPopupText="<Bullet/> Bonus applies until the next time you hit a target or the mission ends.<br/><Bullet/> Area-of-Effect-based shots do not induce the bonus.<br/>"
 
 [SteadyWeapon X2AbilityTemplate]
@@ -480,16 +480,16 @@ LocPromotionPopupText="<Bullet/> Cancels overwatch on targeted unit.<br/><Bullet
 [DamageControl X2AbilityTemplate]
 LocFriendlyName="Damage Control"
 LocFlyOverText="Damage Control"
-LocLongDescription="After taking damage, gain 2 armor through the end of the turn."
-LocHelpText="After taking damage, gain 2 armor through the end of the turn."
-LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain 2 armor through the end of the next turn.
+LocLongDescription="After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the turn."
+LocHelpText="After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the turn."
+LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the next turn.
 
 [DamageControlPassive X2AbilityTemplate]
 LocFriendlyName="Damage Control"
 LocFlyOverText="Damage Control"
-LocLongDescription="After taking damage, gain 2 armor through the end of the turn."
-LocHelpText="After taking damage, gain 2 armor through the end of the turn."
-LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain 2 armor through the end of the next turn.
+LocLongDescription="After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the turn."
+LocHelpText="After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the turn."
+LocPromotionPopupText="<Bullet/> Your armor hardens temporarily after an impact. After taking damage, gain <Ability:DAMAGE_CONTROL_BONUS_ARMOR> armor through the end of the next turn.
 
 [Evasive X2AbilityTemplate]
 LocFriendlyName="Evasive"
@@ -563,9 +563,9 @@ LocPromotionPopupText="<Bullet/> Special shot against enemies with less than ful
 [CombatAwareness X2AbilityTemplate]
 LocFriendlyName="Combat Awareness"
 LocFlyOverText="Combat Awareness"
-LocLongDescription="Grants 15 defense and an armor point when in overwatch."
-LocHelpText="Grants 15 defense and an armor point when in overwatch."
-LocPromotionPopupText="<Bullet/> Gain 15 defense and an armor point when in overwatch.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
+LocLongDescription="Grants <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> defense and <Ability:COMBAT_AWARENESS_BONUS_ARMOR> armor when on overwatch or suppressing."
+LocHelpText="Grants <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> defense and <Ability:COMBAT_AWARENESS_BONUS_ARMOR> armor when on overwatch or suppressing."
+LocPromotionPopupText="<Bullet/> Gain <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> defense and <Ability:COMBAT_AWARENESS_BONUS_ARMOR> armor point when on overwatch or suppressing.<br/><Bullet/> This ability does not provide defensive bonuses if the unit is disoriented, stunned, panicking, on fire or otherwise impaired."
 
 [FieldSurgeon X2AbilityTemplate]
 LocFriendlyName="Field Surgeon"
@@ -657,15 +657,15 @@ LocPromotionPopupText="<Bullet/> Activate this ability before throwing or launch
 [CombatRush X2AbilityTemplate]
 LocFriendlyName="Combat Rush"
 LocFlyOverText="Combat Rush"
-LocLongDescription="When you kill an enemy, nearby allies temporarily receive bonuses to aim, critical chance and mobility. Five-turn cooldown."
-LocHelpText="When you kill an enemy, nearby allies receive temporary bonus to aim, crit chance and mobility."
-LocPromotionPopupText="<Bullet/> Combat Rush triggers when you kill an enemy unit and provides allies within seven tiles +10 aim, +10 critical chance and +1 mobility.<br/><Bullet/> The effect lasts until the end of the following turn after the kill.<br/><Bullet/> It can only trigger every five turns.<br/>"
+LocLongDescription="When you kill an enemy, allies within <Ability:COMBAT_RUSH_RADIUS> tiles receive +<Ability:COMBAT_RUSH_AIM_BONUS> aim, +<Ability:COMBAT_RUSH_CRIT_BONUS> critical chance and +<Ability:COMBAT_RUSH_MOBILITY_BONUS> mobility for <Ability:COMBAT_RUSH_DURATION> turns. <Ability:COMBAT_RUSH_COOLDOWN> turn cooldown."
+LocHelpText="When you kill an enemy, allies within <Ability:COMBAT_RUSH_RADIUS> tiles receive +<Ability:COMBAT_RUSH_AIM_BONUS> aim, +<Ability:COMBAT_RUSH_CRIT_BONUS> critical chance and +<Ability:COMBAT_RUSH_MOBILITY_BONUS> mobility for <Ability:COMBAT_RUSH_DURATION> turns. <Ability:COMBAT_RUSH_COOLDOWN> turn cooldown."
+LocPromotionPopupText="<Bullet/> Combat Rush triggers when you kill an enemy unit and provides allies within <Ability:COMBAT_RUSH_RADIUS> tiles +<Ability:COMBAT_RUSH_AIM_BONUS> aim, +<Ability:COMBAT_RUSH_CRIT_BONUS> critical chance and +<Ability:COMBAT_RUSH_MOBILITY_BONUS> mobility.<br/><Bullet/> The effect lasts for <Ability:COMBAT_RUSH_DURATION> after the kill.<br/><Bullet/> It can only trigger every <Ability:COMBAT_RUSH_COOLDOWN> turns.<br/>"
 
 [BroadcastCombatRush X2AbilityTemplate]
 LocFriendlyName="Combat Rush"
 LocFlyOverText="Combat Rush"
-LocLongDescription="Nearby ally grants you +10 aim, +10 critical chance and +1 mobility for two turns."
-LocHelpText="Nearby ally grants you +10 aim, +10 critical chance and +1 mobility for two turns."
+LocLongDescription="Nearby ally grants you +<Ability:COMBAT_RUSH_AIM_BONUS> aim, +<Ability:COMBAT_RUSH_CRIT_BONUS> critical chance and +<Ability:COMBAT_RUSH_MOBILITY_BONUS> mobility for <Ability:COMBAT_RUSH_DURATION> turns."
+LocHelpText="Nearby ally grants you +<Ability:COMBAT_RUSH_AIM_BONUS> aim, +<Ability:COMBAT_RUSH_CRIT_BONUS> critical chance and +<Ability:COMBAT_RUSH_MOBILITY_BONUS> mobility for <Ability:COMBAT_RUSH_DURATION> turns."
 
 ; LWOTC Needs Translation (2)
 [GrazingFire X2AbilityTemplate]
@@ -769,32 +769,31 @@ LocPromotionPopupText="<Bullet/> Attack an adjacent target with your sword.<br/>
 [AbsorptionFields X2AbilityTemplate]
 LocFriendlyName="Impact Fields"
 LocFlyOverText="Impact Fields"
-LocLongDescription="Activate a force field that reduces incoming damage by 33% for two turns. Six-turn cooldown."
-LocHelpText="Activate a force field that reduces incoming damage by 33% for two turns. Six-turn cooldown."
-LocPromotionPopupText="<Bullet/> Activate a force field that reduces incoming damage by 33% for two turns.<br/><Bullet/> Six-turn cooldown (including the turn in which it was activated).<br/><Bullet/> Uses one action and doesn't automatically end your turn.<br/><Bullet/> Armor-Piercing weapons do not mitigate this effect.<br/>"
+LocLongDescription="Use an action to activate a force field that reduces incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns. <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown."
+LocHelpText="Use an action to activate a force field that reduces incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns. <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown."
+LocPromotionPopupText="<Bullet/> Activate a force field that reduces incoming damage by 33% for <Ability:ABSORPTION_FIELDS_DURATION> turns.<br/><Bullet/> <Ability:ABSORPTION_FIELDS_COOLDOWN> turn cooldown.<br/><Bullet/> Uses one action and doesn't automatically end your turn.<br/><Bullet/> Armor-Piercing weapons do not mitigate this effect.<br/>"
 
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="Body Shield"
 LocFlyOverText="Body Shield"
-LocLongDescription="A targeted enemy receives -20 aim and -50 critical chance against the soldier."
-LocHelpText="The targeted enemy receives -20 aim and -50 critical chance against the soldier."
+LocLongDescription="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <BODY_SHIELD_COOLDOWN> turn cooldown."
+LocHelpText="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <BODY_SHIELD_COOLDOWN> turn cooldown."
 ; LWOTC Needs Translation
-LocPromotionPopupText="<Bullet/> A targeted enemy receives -20 aim and -50 critical chance against the soldier.<br/><Bullet/> This is a free action.<br/><Bullet/> Body Shield has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> A targeted enemy receives -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against this unit.<br/><Bullet/> This is a free action.<br/><Bullet/> Body Shield has a <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation
 
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="Emergency Life Support"
 LocFlyOverText="Emergency Life Support"
-LocLongDescription="Emergency Life Support ensures the first killing blow in a mission will not lead to instant death. It also extends the time before the soldier bleeds out and dies."
-LocHelpText="Ensures the first killing blow in a mission will not lead to instant death and extends bleed-out time."
-LocPromotionPopupText="<Bullet/> Emergency Life Support make the first check for bleeding out each mission an automatic success.<br/><Bullet/> Adds two turns to the bleedout timer.<br/>"
+LocLongDescription="This implant drastically increases the threshold of overkill damage needed to bypass bleedout, making it less likely that your soldier dies when fatally shot. Bleedout timer is extended by <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turns."
+LocPromotionPopupText="<Bullet/> Emergency Life Support drastically increases the threshold of overkill damage needed to bypass bleedout.<br/><Bullet/> Adds <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turns to the bleedout timer.<br/>"
 
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="Iron Skin"
 LocFlyOverText="Iron Skin"
-LocLongDescription="Incoming melee damage is reduced by 3."
-LocHelpText="Incoming melee damage is reduced by 3."
-LocPromotionPopupText="<Bullet/> Incoming melee damage is reduced by 3.<br/>"
+LocLongDescription="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
+LocHelpText="Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
+LocPromotionPopupText="<Bullet/> Incoming melee damage is reduced by <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/>"
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="Smart Macrophages"

@@ -5929,7 +5929,7 @@ ActionObjective="Recruit Rebels"
 ActionObjective="Find A Supply Depot"
 
 [CovertAction_FindAdventDetachment X2CovertActionTemplate]
-ActionObjective="Locate Advent Patrols"
+ActionObjective="Locate ADVENT Patrols"
 
 
 [CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
