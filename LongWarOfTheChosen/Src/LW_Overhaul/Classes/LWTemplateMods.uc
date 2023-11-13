@@ -2107,7 +2107,7 @@ function ReplacePlaceEvacAbility(X2CharacterTemplate Template, int Difficulty)
 	if (Template.Abilities.Find('PlaceEvacZone') != -1)
 	{
 		Template.Abilities.RemoveItem('PlaceEvacZone');
-		// Give them the flare instead; this ability gives PlaceDelatedEvacZone
+		// Give them the flare instead; this ability gives PlaceDelayedEvacZone
 		Template.Abilities.AddItem('GrantEvacFlare');
 	}
 }
