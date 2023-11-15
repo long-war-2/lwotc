@@ -233,6 +233,9 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'PlatedVestBonus':
 			AddCritResistanceToPlatedVests(Template);
+		case 'SpectralStunLance':
+			UpdateSpectralStunLance(Template);
+			break;
 		default:
 			break;
 
@@ -1482,6 +1485,30 @@ static function AddCritResistanceToPlatedVests(X2AbilityTemplate Template)
 	CritDefEffect.CritDef_Bonus = default.PLATED_CRITDEF_BONUS;
 	CritDefEffect.BuildPersistentEffect (1, true, false, false);
 	Template.AddTargetEffect(CritDefEffect);
+}
+
+static function UpdateSpectralStunLance(X2AbilityTemplate Template)
+{
+	local X2Effect_ApplyWeaponDamage WeaponDamageEffect;
+	local X2Effect_ImmediateAbilityActivation ImpairingAbilityEffect;
+
+
+	// nuke the existing effects
+	Template.AbilityTargetEffects.Length = 0;
+
+	// re-add the weapon damage effect, and the Stun Lancer's normal stun effect instead.
+	WeaponDamageEffect = new class'X2Effect_ApplyWeaponDamage';
+	WeaponDamageEffect.DamageTypes.AddItem('Electrical');
+	Template.AddTargetEffect(WeaponDamageEffect);
+
+	ImpairingAbilityEffect = new class 'X2Effect_ImmediateAbilityActivation';
+	ImpairingAbilityEffect.BuildPersistentEffect(1, false, true, , eGameRule_PlayerTurnBegin);
+	ImpairingAbilityEffect.EffectName = 'ImmediateStunImpair';
+	ImpairingAbilityEffect.AbilityName = 'StunImpairingAbility';
+	ImpairingAbilityEffect.bRemoveWhenTargetDies = true;
+	ImpairingAbilityEffect.VisualizationFn = class'X2Ability_StunLancer'.static.ImpairingAbilityEffectTriggeredVisualization;
+	Template.AddTargetEffect(ImpairingAbilityEffect);
+
 }
 
 defaultproperties

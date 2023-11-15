@@ -2273,6 +2273,12 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'TheLostDasherHP12':
 			Template.DefaultLoadout='TheLostDasherTier4_Loadout';
 			break;
+		case 'SpectralStunLancerM1':
+		case 'SpectralStunLancerM2':
+		case 'SpectralStunLancerM3':
+		case 'SpectralStunLancerM4':
+			Template.Abilities.AddItem('StunImpairingAbility');
+			break;
 		default:
 			break;
 	}
