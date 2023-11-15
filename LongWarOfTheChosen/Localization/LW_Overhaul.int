@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC23 Changes:"
-strMessage_Body = "<ul><li>Fixed some crashes that happened when loading saves.</li><li>Fixed Precision Shot damage modifier applying 2x.</li><li>Support for DABFL added. If DABFL is detected, LWoTC will short circuit its own DABFL-like code.</li></ul>"
+strMessage_Header = "RC24 Changes:"
+strMessage_Body = "<ul><li>Fixed issue with Spectral Stun Lancers applying daze effect they shouldn't apply.  now they behave like normal Stun Lancers.</li><li>Attempted to fix issue preventing evac from being called on missions that were infiltrating after switching from main release to beta.</li><li>Added new mod API to allow other mods to view and change LW Force level data in regions.</li><li>More localization updates for Russian, Simplified Chinese, and English localizations.</li></ul>"
 strDismiss_Button = "OK"
