@@ -902,8 +902,8 @@ LocHelpText="Grants 3 hit points and confers immunity to fire, acid and poison."
 [NanofiberVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="Nanoscale Vest"
 LocFlyOverText="Nanoscale Vest"
-LocLongDescription="Grants 2 hit points and enemies have a -25 to their critical chances against you."
-LocHelpText="Grants 2 hit points and enemies have a -25 to their critical chances against you."
+LocLongDescription="Grants <Ability:NANOFIBER_HEALTH_BONUS_LW> hit points and enemies have a -<Ability:NANOFIBER_CRITDEF_BONUS_LW> to their critical chances against you."
+LocHelpText="Grants <Ability:NANOFIBER_HEALTH_BONUS_LW> hit points and enemies have a -<Ability:NANOFIBER_CRITDEF_BONUS_LW> to their critical chances against you."
 
 [FireControl25 X2AbilityTemplate]
 LocFriendlyName="Fire Control (25)"
