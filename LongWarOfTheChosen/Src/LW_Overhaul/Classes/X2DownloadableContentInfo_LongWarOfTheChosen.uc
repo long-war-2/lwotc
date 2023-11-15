@@ -3559,6 +3559,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'NANOFIBER_CRITDEF_BONUS_LW':
 			Outstring = string(class'X2Ability_LW_GearAbilities'.default.NANOFIBER_CRITDEF_BONUS);
 			return true;
+		case 'PLATED_CRITDEF_BONUS':
+			Outstring = string(class'X2LWAbilitiesModTemplate'.default.PLATED_CRITDEF_BONUS);
+			return true;
 		case 'RESILIENCE_BONUS_LW':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.RESILIENCE_CRITDEF_BONUS);
 			return true;
@@ -3567,7 +3570,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'ALPHA_MIKE_FOXTROT_CRIT_DAMAGE_LW':
 			Outstring = string(class'X2Ability_LW_SharpshooterAbilitySet'.default.ALPHAMIKEFOXTROT_DAMAGE / 2);
-			return true;			
+			return true;
 		case 'ROCKETSCATTER':
 			TacticalHUD = UITacticalHUD(`SCREENSTACK.GetScreen(class'UITacticalHUD'));
 			if (TacticalHUD != none)

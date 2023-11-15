@@ -1427,7 +1427,7 @@ TacticalText="<Bullet/> Grants a <ABILITY:NANOFIBER_HEALTH_BONUS_LW/> hit point 
 FriendlyName="Tactical Vest"
 FriendlyNamePlural="Tactical Vests"
 BriefSummary="Shen has improved the traditional Nanoscale Vest with armored plating, providing reduced damage from armor protection against enemy attacks."
-TacticalText="<Bullet/> Grants 3 hit points to the soldier.\n<Bullet/> Provides 1 armor.\n<Bullet/> \n<Bullet/> Reduces Critical hit chance by -25.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 3 hit points to the soldier.\n<Bullet/> Provides 1 armor.\n<Bullet/> Enemies have a penalty of -<Ability:PLATED_CRITDEF_BONUS> critical chance against the soldier.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [HazmatVest X2EquipmentTemplate]
 FriendlyName="Hazmat Vest"
