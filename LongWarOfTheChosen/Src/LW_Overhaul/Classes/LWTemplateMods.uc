@@ -2107,7 +2107,7 @@ function ReplacePlaceEvacAbility(X2CharacterTemplate Template, int Difficulty)
 	if (Template.Abilities.Find('PlaceEvacZone') != -1)
 	{
 		Template.Abilities.RemoveItem('PlaceEvacZone');
-		// Give them the flare instead; this ability gives PlaceDelatedEvacZone
+		// Give them the flare instead; this ability gives PlaceDelayedEvacZone
 		Template.Abilities.AddItem('GrantEvacFlare');
 	}
 }
@@ -2272,6 +2272,12 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'TheLostDasherHP11':
 		case 'TheLostDasherHP12':
 			Template.DefaultLoadout='TheLostDasherTier4_Loadout';
+			break;
+		case 'SpectralStunLancerM1':
+		case 'SpectralStunLancerM2':
+		case 'SpectralStunLancerM3':
+		case 'SpectralStunLancerM4':
+			Template.Abilities.AddItem('StunImpairingAbility');
 			break;
 		default:
 			break;

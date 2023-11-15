@@ -13,6 +13,7 @@ static function array<X2DataTemplate> CreateTemplates()
 
     Templates.AddItem(CreateLWUnitInfoReturn());
 	Templates.AddItem(CreateLWUnitSquadInfoReturn());
+	Templates.AddItem(CreateLWRegionalAIListeners());
 
     return Templates;
 }
@@ -45,6 +46,18 @@ static function CHEventListenerTemplate CreateLWUnitSquadInfoReturn()
     //    Should listen to the event while on Avenger?
     Template.RegisterInStrategy = true;
     Template.AddCHEvent('GetLWUnitSquadInfo', LWUnitSquadInfoReturn, ELD_Immediate, 80);
+
+    return Template;
+}
+
+static function CHEventListenerTemplate CreateLWRegionalAIListeners()
+{
+	local CHEventListenerTemplate Template;
+
+    `CREATE_X2TEMPLATE(class'CHEventListenerTemplate', Template, 'Ted_LWRegionalFLReturn');
+	Template.RegisterInStrategy = true;
+    Template.AddCHEvent('GetLWRegionalForceLevel', OnGetLWRegionalForceLevel, ELD_Immediate, 80);
+	Template.AddCHEvent('SetLWRegionalForceLevel', OnSetLWRegionalForceLevel, ELD_Immediate, 80);
 
     return Template;
 }
@@ -166,3 +179,183 @@ static protected function EventListenerReturn LWUnitSquadInfoReturn(Object Event
 
 	return ELR_NoInterrupt;
 }
+
+
+/*
+	This Tuple gets the current LW Force Level for all regions.
+	Tuple inputs: none
+	Tuple outputs:
+	Tuple.Data[0] - Array Objects - Array of XCGS_WorldRegion.
+	Tuple.Data[1] - Array ints - Force Level for the Regions. Use matched index 
+
+	local XComLWTuple Tuple;
+
+	Tuple = new class'XComLWTuple';
+	Tuple.Id = 'GetLWRegionalForceLevel';
+	Tuple.Data.Add(2);
+
+	`XEVENTMGR.TriggerEvent('GetLWRegionalForceLevel', Tuple);
+
+ */
+
+static protected function EventListenerReturn OnGetLWRegionalForceLevel(Object EventData, Object EventSource, XComGameState GameState, Name Event, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XCOmGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	local int i;
+
+	Tuple = XComLWTuple(EventData);
+
+	if(Tuple == none || Tuple.Id != 'GetLWRegionalForceLevel' )
+	{
+		return ELR_NoInterrupt;
+	}
+
+	i=0;
+
+	Tuple.Data[0].kind = XComLWTVArrayObjects;
+	Tuple.Data[1].kind = XComLWTVArrayInts;
+
+	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+	{
+		if(RegionState != NONE)
+		{
+			
+			Tuple.Data[0].ao[i] = RegionState;
+
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
+			
+			Tuple.Data[1].ai[i] = RegionalAI.LocalForceLevel;
+
+			i += 1;
+		}
+	}
+
+	return ELR_NoInterrupt;
+}
+
+/*
+	This event adjusts the force level in a region, or in all regions, by the specified amount.
+
+	EventData: the below Tuple
+	EventSource: the XComGameState_WorldRegion you want to adjust (optional if Tuple.Data[0].b is set to true)
+	NewGameState: your updated Game State. You must submit it afterwards.
+
+	Tuple inputs:
+	Tuple.Data[0] - bool - if set to true, adjust FL in all regions.  If set to false, adjust FL in just specified region.
+	Tuple.Data[1] - int - value for the change in Force Level; can be negative.
+
+	Tuple outputs:
+	Tuple.Data[2] - bool - set to true if the change went through, set to false if it failed.
+
+	local XComLWTuple Tuple;
+
+	Tuple = new class'XComLWTuple';
+	Tuple.Id = 'SetLWRegionalForceLevel';
+	Tuple.Data.Add(4);
+	
+	Tuple.Data[0].kind = XComLWTVBool;
+	Tuple.Data[0].b = true;
+
+	Tuple.Data[1].kind = XComLWTVInt;
+	Tuple.Data[1].i = 1;
+
+	Tuple.Data[2].kind = XComLWTVBool;
+	Tuple.Data[2].b = false;
+
+	`XEVENTMGR.TriggerEvent('SetLWRegionalForceLevel', Tuple, RegionState, NewGameState);
+
+ */
+
+static protected function EventListenerReturn OnSetLWRegionalForceLevel(Object EventData, Object EventSource, XComGameState NewGameState, Name Event, Object CallbackData)
+{
+	local XComLWTuple Tuple;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
+	local XCOmGameState_WorldRegion RegionState;
+	local bool bAllRegions;
+	local XComGameStateHistory History;
+
+	Tuple = XComLWTuple(EventData);
+
+	History = `XCOMHISTORY;
+
+	if(Tuple == NONE || Tuple.Id != 'SetLWRegionalForceLevel')
+	{
+		return ELR_NoInterrupt;
+	}
+
+	if(NewGameState == NONE)
+	{
+		`LWTrace("SetRegionalFL Event called with no Game State");
+		Tuple.Data[2].b = false;
+		return ELR_NoInterrupt;
+	}
+
+	bAllRegions = Tuple.Data[0].b;
+	RegionState = XCOmGameState_WorldRegion(EventSource);
+
+	if(RegionState == NONE && !bAllRegions)
+	{
+		Tuple.Data[2].b = false;
+		return ELR_NoInterrupt;
+	}
+
+	if(!bAllRegions) // If just one region is being updated
+	{
+		RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
+
+		if(RegionalAI == NONE)
+		{
+			`LWTrace("SetRegionalFL event: no RegionalAI found");
+			Tuple.Data[2].b = false;
+			return ELR_NoInterrupt;
+		}
+
+		RegionalAI.LocalForceLevel += Tuple.Data[1].i;
+		
+		// Minimum FL of 1, if it goes below this, reset and return false.
+		if(RegionalAI.LocalForceLevel < 1)
+		{
+			RegionalAI.LocalForceLevel=1;
+			Tuple.Data[2].b = false;
+			return ELR_NoInterrupt;
+		}
+		else if(RegionalAI.LocalForceLevel > 99) // cap at 99 too
+		{
+			RegionalAI.LocalForceLevel=99;
+			Tuple.Data[2].b = false;
+			return ELR_NoInterrupt;
+		}
+	}
+	else // if all regions are being updated
+	{
+		foreach History.IterateByClassType(class'XComGameState_WorldRegion', RegionState)
+		{
+			RegionalAI = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState, true);
+
+			if(RegionalAI != NONE)
+			{
+				RegionalAI.LocalForceLevel += Tuple.Data[1].i;
+		
+				// Minimum FL of 1, if it goes below this, reset and return false.
+				if(RegionalAI.LocalForceLevel < 1)
+				{
+					RegionalAI.LocalForceLevel=1;
+					Tuple.Data[2].b = false;
+				}
+				else if(RegionalAI.LocalForceLevel > 99) // cap at 99 too
+				{
+					RegionalAI.LocalForceLevel=99;
+					Tuple.Data[2].b = false;
+				}
+			}
+		}
+
+	}
+	Tuple.Data[2].b = true;
+
+	return ELR_NoInterrupt;
+}
+
+
