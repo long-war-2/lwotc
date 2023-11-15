@@ -1881,6 +1881,18 @@ static function FinalizeUnitAbilitiesForInit(XComGameState_Unit UnitState, out a
 	}
 	*/
 
+	if(UnitState.HasItemOfTemplateType('EvacFlare') && SetupData.Find('TemplateName', 'GrantEvacFlare') == -1)
+	{
+		AbilityTemplate = AbilityTemplateMan.FindAbilityTemplate('GrantEvacFlare');
+		if (AbilityTemplate != none)
+			{
+				Data = EmptyData;
+				Data.TemplateName = 'GrantEvacFlare';
+				Data.Template = AbilityTemplate;
+				SetupData.AddItem(Data);  // return array -- we don't have to worry about additional abilities for this simple ability
+			}
+	}
+
 	// Swap KnifeEncounters for KnifeEncountersExtendedRange if present.
 
 	if(UnitState.HasAbilityFromAnySource('TheBanisher_LW'))
@@ -5753,3 +5765,73 @@ exec function Ted_CheckCurrentDifficulty()
 
 }
 
+exec function LWOTC_TestSetForceLevelTuple()
+{
+	local XComLWTuple Tuple;
+	local XComGameState NewGameState;
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Test LW FL tuple");
+
+	Tuple = new class'XComLWTuple';
+	Tuple.Id = 'SetLWRegionalForceLevel';
+	Tuple.Data.Add(4);
+	
+	Tuple.Data[0].kind = XComLWTVBool;
+	Tuple.Data[0].b = true;
+
+	Tuple.Data[1].kind = XComLWTVInt;
+	Tuple.Data[1].i = 2;
+
+	Tuple.Data[2].kind = XComLWTVBool;
+	Tuple.Data[2].b = false;
+
+	`XEVENTMGR.TriggerEvent('SetLWRegionalForceLevel', Tuple, , NewGameState);
+
+	`GAMERULES.SubmitGameState(NewGameState);
+}
+
+exec function LWOTC_TestSetForceLevelTupleLocal()
+{
+	local XComLWTuple Tuple;
+	local XComGameState NewGameState;
+	local XComGameState_WorldRegion RegionState;
+
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Test LW FL tuple");
+
+	RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(`XCOMHQ.StartingRegion.ObjectID));
+
+	Tuple = new class'XComLWTuple';
+	Tuple.Id = 'SetLWRegionalForceLevel';
+	Tuple.Data.Add(4);
+	
+	Tuple.Data[0].kind = XComLWTVBool;
+	Tuple.Data[0].b = false;
+
+	Tuple.Data[1].kind = XComLWTVInt;
+	Tuple.Data[1].i = 1;
+
+	Tuple.Data[2].kind = XComLWTVBool;
+	Tuple.Data[2].b = false;
+
+	`XEVENTMGR.TriggerEvent('SetLWRegionalForceLevel', Tuple, RegionState, NewGameState);
+
+	`GAMERULES.SubmitGameState(NewGameState);
+}
+
+exec function LWOTC_TestGetForceLevelTuple()
+{
+	local XComLWTuple Tuple;
+	local int i;
+
+	Tuple = new class'XComLWTuple';
+	Tuple.Id = 'GetLWRegionalForceLevel';
+	Tuple.Data.Add(2);
+
+	`XEVENTMGR.TriggerEvent('GetLWRegionalForceLevel', Tuple);
+
+	for(i=0; i < Tuple.Data[0].ao.Length; i++)
+	{
+		class'Helpers'.Static.OutputMsg("Region" @ `SHOWVAR(Tuple.Data[0].ao[i]));
+		class'Helpers'.Static.OutputMsg("FL"@ `SHOWVAR(Tuple.Data[1].ai[i]));
+	}
+}
