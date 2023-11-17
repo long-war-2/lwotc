@@ -233,6 +233,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 			break;
 		case 'PlatedVestBonus':
 			AddCritResistanceToPlatedVests(Template);
+			break;
 		case 'SpectralStunLance':
 			UpdateSpectralStunLance(Template);
 			break;
@@ -612,6 +613,7 @@ static function ReplaceWithDamageReductionExplosive(X2AbilityTemplate Template)
 	PaddingEffect = new class'X2Effect_Formidable';
 	PaddingEffect.ExplosiveDamageReduction = default.EXPLOSIVE_DAMAGE_REDUCTION;
 	PaddingEffect.Armor_Mitigation = 0;
+	PaddingEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, , , Template.AbilitySourceName);
 	Template.AddTargetEffect(PaddingEffect);
 }
 
