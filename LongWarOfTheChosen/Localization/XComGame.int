@@ -7243,7 +7243,7 @@ LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit point
 LocFriendlyName="Soul Shot"
 LocLongDescription="A powerful aim-based ranged attack that can crit and does not end turn. Costs 1 Focus."
 LocHelpText="A powerful aim-based ranged attack that can crit and does not end turn. Costs 1 Focus."
-LocPromotionPopupText="<Bullet/> Soul Shot has +20 bonus to Aim.</br><Bullet/> Soul Shot has no cooldown.</br><Bullet/> Damage increases with Gauntlet tier."
+LocPromotionPopupText="<Bullet/> Soul Shot has +20 bonus to Aim.<br/><Bullet/> Soul Shot has no cooldown.<br/><Bullet/> Damage increases with Gauntlet tier."
 
 [IRI_TemplarShield X2AbilityTemplate]
 LocFriendlyName="Templar Shield"
