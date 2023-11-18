@@ -3481,6 +3481,36 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'EVACDELAY_LW':
 			OutString = string(class'X2Ability_PlaceDelayedEvacZone'.static.GetEvacDelay());
 			return true;
+		case 'SHREDDER_ROUNDS_SHRED':
+			OutString = string(class'X2Item_LWUtilityItems'.default.SHREDDER_ROUNDS_SHRED);
+			return true;
+		case 'STILETTO_DMGMOD': // Stiletto Rounds
+			OutString = string(class'X2Item_LWUtilityItems'.default.STILETTO_DMGMOD);
+			return true;
+		case 'STILETTO_ALIEN_DMG': // Stiletto Rounds
+			OutString = string(class'X2Item_LWUtilityItems'.default.STILETTO_ALIEN_DMG);
+			return true;
+		case 'NEEDLE_DMGMOD': // Needle Rounds
+			OutString = string(class'X2Item_LWUtilityItems'.default.NEEDLE_DMGMOD);
+			return true;
+		case 'NEEDLE_ADVENT_DMG': // Needle Rounds
+			OutString = string(class'X2Item_LWUtilityItems'.default.NEEDLE_ADVENT_DMG);
+			return true;
+		case 'FLECHETTE_DMGMOD':
+			OutString = string(class'X2Item_LWUtilityItems'.default.FLECHETTE_DMGMOD);
+			return true;
+		case 'FLECHETTE_BONUS_DMG':
+			OutString = string(class'X2Item_LWUtilityItems'.default.FLECHETTE_BONUS_DMG);
+			return true;
+		case 'DRAGON_ROUNDS_APPLY_CHANCE':
+			OutString = string(class'LWTemplateMods'.default.DRAGON_ROUNDS_APPLY_CHANCE);
+			return true;
+		case 'VENOM_ROUNDS_APPLY_CHANCE':
+			OutString = string(class'LWTemplateMods'.default.VENOM_ROUNDS_APPLY_CHANCE);
+			return true;
+		case 'BLUESCREEN_DMGMOD':
+			OutString = string(class'X2Item_DefaultAmmo'.default.BLUESCREEN_DMGMOD);
+			return true;
 		case 'INDEPENDENT_TRACKING_BONUS_TURNS_LW':
 			OutString = string(class'X2Effect_LWHoloTarget'.default.INDEPENDENT_TARGETING_NUM_BONUS_TURNS);
 			return true;
@@ -3633,7 +3663,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'HEAT_WARHEADS_SHRED_LW':
 			Outstring = string(class'X2Ability_LW_GrenadierAbilitySet'.default.HEAT_WARHEADS_SHRED);
 			return true;
-		case 'NEEDLE_BONUS_UNARMORED_DMG_LW':
+		case 'NEEDLE_BONUS_UNARMORED_DMG_LW': // Needle Grenades
 			Outstring = string(class'X2Ability_LW_GrenadierAbilitySet'.default.NEEDLE_BONUS_UNARMORED_DMG);
 			return true;
 		case 'BLUESCREENBOMB_HACK_DEFENSE_CHANGE_LW':
