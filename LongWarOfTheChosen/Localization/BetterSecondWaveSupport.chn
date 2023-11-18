@@ -25,3 +25,7 @@ Description="同阶技能：用能力点购买同军阶的多个职业技能。"
 Tooltip="禁用天选者的主反应，使其更容易战斗。"
 Description="天选宝宝：天选者的主反应被禁用。"
 ; End Translation
+
+[HybridDifficulty_LW SecondWaveOptionObject]
+Tooltip="增加战术难度，比战略层难度高一级。适用于希望在战术层面更难但在战略层面较容易的情况。注意: 这仍处于早期测试阶段。如果已经在传奇难度上，该选项将不会产生任何效果，并且在战役进行中更改难度将破坏这一设定。目前不会对第一个任务应用这些更改。"
+Description="[Beta] 混合难度: 增加战术难度"

@@ -41,7 +41,7 @@ LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)眩晕敌人<Ability:
 ; End Translation (2)
 
 [DisablingShotSnapShot X2AbilityTemplate]
-LocFriendlyName="阻断射击"
+LocFriendlyName="阻断射击（急射）"
 LocLongDescription="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
 LocHelpText="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
 ; LWOTC Needs Translation (2)
@@ -56,8 +56,8 @@ LocPromotionPopupText="<Bullet/> 圣殿骑士增加<Ability:MeditationFocusRecov
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="超载"
-LocLongDescription="圣殿骑士的每一个专注点获得额外的命中和暴击率。"
-LocHelpText="圣殿骑士的每一个专注点获得额外的命中和暴击率。"
+LocLongDescription="圣殿骑士的每一个专注点使得近战攻击获得额外的命中和暴击率。"
+LocHelpText="圣殿骑士的每一个专注点使得近战攻击获得额外的命中和暴击率。"
 LocPromotionPopupText="<Bullet/> 每个专注点+<Ability:OverchargeAimBonus/>命中以及+<Ability:OverchargeCritBonus/>暴击率。<br/><Bullet/> 基于当前专注，而不是最大专注。"
 
 [VoltDangerZone X2AbilityTemplate]
@@ -78,9 +78,9 @@ LocPromotionPopupText="<Bullet/> 当敌人触发时，给圣殿骑士增加1点�
 
 [TemplarTerror X2AbilityTemplate]
 LocFriendlyName="恐吓"
-LocLongDescription="灵能闪电增加恐慌敌人效果。"
-LocHelpText="灵能闪电增加恐慌敌人效果。"
-LocPromotionPopupText="<Bullet/> 灵能闪电现在可以使敌人恐慌。<br/><Bullet/> 恐慌几率为<Ability:TERROR_STAT_CHECK_BASE_VALUE/>%同时受到圣殿骑士和目标意志力的影响。"
+LocLongDescription="灵能闪电的范围增加<Ability:VoltDangerZoneBonus/>格。灵能闪电增加恐慌敌人的效果。"
+LocHelpText="灵能闪电的范围增加<Ability:VoltDangerZoneBonus/>格。灵能闪电增加恐慌敌人的效果。"
+LocPromotionPopupText="<Bullet/> 灵能闪电现在可以使敌人恐慌。<br/><Bullet/> 基础恐慌几率为<Ability:TERROR_STAT_CHECK_BASE_VALUE/>%，同时会受到圣殿骑士和目标意志力的影响。"
 
 [Apotheosis X2AbilityTemplate]
 LocFriendlyName="神化"
@@ -224,3 +224,7 @@ RendTheMarkedEffectName="撕裂标记"
 RendTheMarkedEffectDesc="在本回合剩余时间内从所有来源对目标的攻击获得投掷飞刀所施加的+<Ability:REND_THE_MARKED_CRIT/>暴击率。"
 ; End Translation
 
+[TheBanisher_LW X2AbilityTemplate]
+LocFriendlyName="真正捕食者"
+LocLongDescription="放逐在每次射击时的命中惩罚减少5点，并将其冷却时间降低1回合。刀锋相接的范围增加1格。死亡贩子现在对无侧翼的目标也能生效。"
+LocHelpText="放逐在每次射击时的命中惩罚减少5点，并将其冷却时间降低1回合。刀锋相接的范围增加1格。死亡贩子现在对无侧翼的目标也能生效。 注意: 刀锋相接的圆环视觉效果没有正确更新该技能。你在刀锋相接的圆环外还有2个格子的射程范围。"

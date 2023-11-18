@@ -188,7 +188,7 @@ LocFriendlyName="驱逐"
 LocFlyOverText="驱逐"
 LocLongDescription="特殊的火焰喷射器射击，只能造成有限的伤害，但是能迫使敌人移动位置。"
 LocHelpText="特殊的火焰喷射器射击，迫使敌人移动位置。"
-LocPromotionPopupText="<Bullet/> 造成有限的伤害，有20%的几率使区域内的敌人着火。<br/><Bullet/> 狭窄的火焰喷射对环境影响较小。<br/><Bullet/> 被击中的单位将被迫移动，会触发反应射击。<br/><Bullet/> 每个任务可用一次，但是能够通过更高级的装备来获得额外的使用次数。<br/><Bullet/> 隐蔽状态时不能使用。"
+LocPromotionPopupText="<Bullet/> 造成有限的伤害，有75%的概率使区域内的敌人着火。<br/><Bullet/> 狭窄的火焰喷射对环境影响较小。<br/><Bullet/> 被击中的单位将被迫移动，会触发反应射击。<br/><Bullet/> 每个任务可用一次，但是能够通过更高级的装备来获得额外的使用次数。<br/><Bullet/> 隐蔽状态时不能使用。"
 
 ; LWOTC Needs Translation (2)
 [Burnout X2AbilityTemplate]
@@ -268,13 +268,14 @@ LocLongDescription="用你的臂套造成的攻击以及臂套武器制造的火
 LocHelpText="用你的臂套造成的攻击以及臂套武器制造的火焰，能造成+1的伤害。"
 LocPromotionPopupText="<Bullet/> 用你的臂套造成的攻击以及臂套武器制造的火焰，能造成+1的伤害。<br/><Bullet/> 该加成适用与火箭发射器和火焰喷射器武器，以及它们造成的火焰。<br/>"
 
-; LWOTC Needs Translation (2)
+; LWOTC Translated (4)
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="震荡火箭"
 LocFlyOverText="震荡火箭"
-LocLongDescription="发射一枚特殊的火箭，造成的伤害有限但是有几率使范围内的有机体敌人眩晕或混乱，并留下烟雾。"
-LocHelpText="一种特殊的火箭能够使目标眩晕或混乱，并留下烟雾。<Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 眩晕几率基于目标的意志和士兵臂套的层级。<br/><Bullet/> 混乱几率基于目标的意志。<br/><Bullet/> 需要1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫所有效果，包括伤害。<br/><Bullet/> 外星人免疫此伤害。<br/>"
+LocLongDescription="发射一枚特殊的火箭，造成的伤害有限但是有几率使范围内的有机敌人眩晕或混乱。"
+LocHelpText="一种特殊的火箭，能够使目标眩晕或混乱<Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> 每次任务1充能。<br/><Bullet/> 眩晕几率为20%。<br/><Bullet/> 混乱几率为100%，无视混乱抵抗（但不会无视免疫）。<br/><Bullet/> 需要1个行动点并结束士兵的回合。<br/><Bullet/> 精英原典和灵能僵尸免疫所有效果，包括伤害。<br/><Bullet/> 盟友不会受到这次攻击的伤害。<br/>"
+; End Translated
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -464,6 +465,7 @@ LocPromotionPopupText="<Bullet/> 枪林弹雨消耗<Ability:SelfAmmoCost/>弹药
 LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击可以对无掩体敌人（如狂战士，机械敌人）造成毁灭性的打击，或者增加命中加成。<br/>"
 
 [ChainShotSnapShot X2AbilityTemplate]
+LocFriendlyName="连环射击（急射）"
 LocPromotionPopupText="<Bullet/> 连环射击消耗<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 连环射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 连环射击可以对无掩体敌人（如狂战士，机械敌人）造成毁灭性的打击，或者增加命中加成。<br/>"
 
 
@@ -2138,6 +2140,12 @@ RewardDetails="获得随机的敌人尸体。"
 [Reward_Dummy_StatBoost X2RewardTemplate]
 DisplayName="属性加成"
 ; End Translation
+
+[Reward_Supply_Mission X2RewardTemplate]
+DisplayName="大型补给夺取任务"
+
+[Reward_Detachment_Mission X2RewardTemplate]
+DisplayName="潜入伏击任务"
 
 ; POI Templates
 [POI_Rebels X2PointOfInterestTemplate]
@@ -4982,12 +4990,12 @@ LocPromotionPopupText="<Bullet/> 合适的位置可以将对峙的威力发挥�
 LocPromotionPopupText="<Bullet/> 多重火力的每次攻击都有单独的命中率。<br/><Bullet/> 如果每一枪都命中，多重火力会造成毁灭性的伤害。<br/><Bullet/> 多重火力有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 ; End translation
 
-; LWOTC Needs Translation (2)
+; LWOTC Translated (2)
 [SoulSteal X2AbilityTemplate]
-LocLongDescription="灵魂火伤害的一半恢复灵能士兵的生命值，如果灵能士兵未受伤害，将其转化为护盾值。但使灵魂火的冷却时间提高1回合。"
-LocHelpText="灵魂火会恢复受伤士兵 的生命值，或者提供额外的护盾值。但使灵魂火的冷却时间提高1回合。"
-LocPromotionPopupText="<Bullet/> 灵魂汲取将会恢复受伤士兵的生命值，并提供3/4/6护盾值，持续3回合。<br/><Bullet/> 一名士兵最多可汲取15点护盾值。"
-; End Translation (2)
+LocLongDescription="灵魂火伤害的一半恢复灵能士兵的生命值，如果灵能士兵未受伤害，则将其转化为持续3回合的护盾。"
+LocHelpText="灵魂火会恢复受伤士兵的生命值并提供额外的护盾。"
+LocPromotionPopupText="<Bullet/> 灵魂汲取将会恢复受伤士兵的生命值，并提供3/4/6点护盾，持续3回合。<br/><Bullet/> 一名士兵最多可汲取15点护盾值。"
+; End Translated (2)
 
 ; LWOTC Needs Translation
 [Domination X2AbilityTemplate]
@@ -5638,6 +5646,12 @@ ActionObjective="获取反抗军MEC"
 [CovertAction_RecruitRebels X2CovertActionTemplate]
 ActionObjective="招募反抗军"
 
+[CovertAction_BigSupplyDepot X2CovertActionTemplate]
+ActionObjective="寻找补给站"
+
+[CovertAction_FindAdventDetachment X2CovertActionTemplate]
+ActionObjective="定位变种人巡逻队"
+
 [CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
 ActionName="突袭变种人停尸房"
 ActionPreNarrative="我们发现了他们把被你消灭的敌人尸体扔到哪里去了。这可能是一个加速技术发展的机会。"
@@ -5697,6 +5711,36 @@ ActionPostNarrative="你的队伍说服了一些持不同政见者加入我们�
 ActionName="反抗军招募搜寻"
 ActionPreNarrative="我们了解到该地区有一小部分持不同政见者可能愿意直接帮助我们。进去看看能不能把他们招进反抗军避难所。"
 ActionPostNarrative="你的队伍说服了一些持不同政见者加入我们的事业。"
+
+[CovertActionNarrative_FindBigDepot_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="定位一个变种人补给站"
+ActionPreNarrative="我们得知了一个可能的大型物资储备地点。我们应该进行调查。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
+
+[CovertActionNarrative_FindBigDepot_Reapers X2CovertActionNarrativeTemplate]
+ActionName="定位一个变种人补给站"
+ActionPreNarrative="我们得知了一个可能的大型物资储备地点。我们应该进行调查。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
+
+[CovertActionNarrative_FindBigDepot_Templars X2CovertActionNarrativeTemplate]
+ActionName="定位一个变种人补给站"
+ActionPreNarrative="我们得知了一个可能的大型物资储备地点。我们应该进行调查。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
+
+[CovertActionNarrative_FindAdventDetachment_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="寻找单独的变种人巡逻队"
+ActionPreNarrative="我们得知了一个变种人侦察小队可能的位置。我们应该调查一下。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
+
+[CovertActionNarrative_FindAdventDetachment_Reapers X2CovertActionNarrativeTemplate]
+ActionName="寻找单独的变种人巡逻队"
+ActionPreNarrative="我们得知了一个变种人侦察小队可能的位置。我们应该调查一下。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
+
+[CovertActionNarrative_FindAdventDetachment_Templars X2CovertActionNarrativeTemplate]
+ActionName="寻找单独的变种人巡逻队"
+ActionPreNarrative="我们得知了一个变种人侦察小队可能的位置。我们应该调查一下。"
+ActionPostNarrative="干得好。现在我们可以派遣一个小队进一步跟进。"
 
 [AbilityPoints X2ItemTemplate]
 FriendlyName="能力点"
@@ -6250,10 +6294,10 @@ LocLongDescription="你的主武器攻击会让敌人流血。"
 LocHelpText="你的主武器攻击会让敌人流血。"
 
 [MindScorchDangerZone X2AbilityTemplate]
-LocFriendlyName="高压电"
-LocLongDescription="增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。"
-LocHelpText="增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。"
-LocPromotionPopupText="<Bullet/> 增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。"
+LocFriendlyName="心灵燃烧"
+LocLongDescription="增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。减少心灵灼烧1回合冷却时间。"
+LocHelpText="增加<Ability:VoltDangerZoneBonus/>格心灵灼烧半径。减少心灵灼烧1回合冷却时间。"
+LocPromotionPopupText=""
 
 [MindScorchTerror X2AbilityTemplate]
 LocFriendlyName="恐怖主义"
@@ -6280,15 +6324,15 @@ LocFlyOverText="敏锐"
 
 [CombatReadiness X2AbilityTemplate]
 LocFriendlyName="战备状态"
-LocLongDescription="本回合内在掩体中获得可叠加的<Ability:COMBATREADINESS_AIM/>命中和<Ability:COMBATREADINESS_DEF/>防御加成，并移除大部分减益状态。"
-LocHelpText="本回合内在掩体中获得可叠加的<Ability:COMBATREADINESS_AIM/>命中和<Ability:COMBATREADINESS_DEF/>防御加成，并移除大部分减益状态。"
+LocLongDescription="本回合内在掩体中获得可叠加的<Ability:COMBAT_READINESS_EXPLOSIVE_DR/>%爆炸伤害减免和<Ability:COMBATREADINESS_DEF/>防御加成，并移除定身减益状态。"
+LocHelpText="本回合内在掩体中获得可叠加的<Ability:COMBAT_READINESS_EXPLOSIVE_DR/>%爆炸伤害减免和<Ability:COMBATREADINESS_DEF/>防御加成，并移除定身减益状态。"
 LocFlyOverText="战备状态"
 
 ;LWOTC needs translation
 [CombatReadinessPassive X2AbilityTemplate]
 LocFriendlyName="战备状态"
-LocLongDescription="本回合内在掩体中获得可叠加的<Ability:COMBATREADINESS_AIM/>命中和<Ability:COMBATREADINESS_DEF/>防御加成，并移除大部分减益状态。"
-LocHelpText="本回合内在掩体中获得可叠加的<Ability:COMBATREADINESS_AIM/>命中和<Ability:COMBATREADINESS_DEF/>防御加成，并移除大部分减益状态。"
+LocLongDescription="本回合内在掩体中获得可叠加的<Ability:COMBAT_READINESS_EXPLOSIVE_DR/>%爆炸伤害减免和<Ability:COMBATREADINESS_DEF/>防御加成，并移除定身减益状态。"
+LocHelpText="本回合内在掩体中获得可叠加的<Ability:COMBAT_READINESS_EXPLOSIVE_DR/>%爆炸伤害减免和<Ability:COMBATREADINESS_DEF/>防御加成，并移除定身减益状态。"
 LocFlyOverText="战备状态"
 ; End translation
 
@@ -6367,6 +6411,29 @@ LocLongDescription="每次用你的近战武器攻击，得到一个堆叠的伤
 LocHelpText="每次用你的近战武器攻击，得到一个堆叠的伤害提升你的近战攻击。增益取决于天选者的等级，T1/T2/T3/T4对应+<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>伤害。成功劫持后移除。"
 LocFlyOverText="嗜血"
 
+; LWOTC Translated (2)
+[UnholyAscension_LW X2AbilityTemplate]
+LocFriendlyName="邪恶的升华"
+LocLongDescription="冠军术士的护盾、命中、暴击、意志和灵能攻击加成翻倍，并提供暴击免疫的效果。"
+LocHelpText="冠军术士的护盾、命中、暴击、意志和灵能攻击加成翻倍，并提供暴击免疫的效果。"
+LocFlyOverText="邪恶的升华"
+
+[RuptureImmunity X2AbilityTemplate]
+LocFriendlyName="牢不可破"
+LocLongDescription="所有对你施加的撕裂效果将立即被移除。"
+LocHelpText="所有对你施加的撕裂效果将立即被移除。"
+LocFlyOverText="牢不可破"
+
+[TrackingShotMark X2AbilityTemplate]
+LocFriendlyName="追踪射击标记"
+LocHelpText="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
+LocLongDescription="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
+
+[TrackingShot X2AbilityTemplate]
+LocFriendlyName="追踪射击"
+LocHelpText="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
+LocLongDescription="在你的回合开始时，可以对一名对你暴露（侧袭）的敌人免费进行标记。对该目标的第一次射击保证命中，并且会返还行动点数。"
+; End Translated (2)
 
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="精准刺击"
@@ -6376,14 +6443,14 @@ LocFlyOverText="精准刺击"
 
 [PsychoticRage_LW X2AbilityTemplate]
 LocFriendlyName="精神发狂"
-LocHelpText="在35%或更少的生命值下获得50%的伤害提升。"
-LocLongDescription="在35%或更少的生命值下获得50%的伤害提升。"
+LocHelpText="在<Ability:PSYCHOTIC_RAGE_DMG_BONUS/>%或更少的生命值下获得<Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>%的伤害提升。"
+LocLongDescription="在<Ability:PSYCHOTIC_RAGE_DMG_BONUS/>%或更少的生命值下获得<Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>%的伤害提升。"
 LocFlyOverText="精神发狂"
 
 [YouCannotHide_LW X2AbilityTemplate]
 LocFriendlyName="无所遁形"
-LocHelpText="你的主武器增加30命中。"
-LocLongDescription="你的主武器增加30命中。"
+LocHelpText="你的<Ability:BOUND_WEAPON_NAME/>增加30命中。"
+LocLongDescription="你的<Ability:BOUND_WEAPON_NAME/>增加30命中。"
 LocFlyOverText="逃跑吧。"
 
 [RebelHPUpgrade_T1 X2AbilityTemplate]
@@ -6449,8 +6516,8 @@ LocFlyOverText="嗜血"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
 LocFriendlyName="霸气侧漏"
-LocLongDescription="当你的主武器造成暴击时，你的行动点将返还。"
-LocHelpText="当你的主武器造成暴击时，你的行动点将返还。"
+LocLongDescription="你的<Ability:BOUND_WEAPON_NAME/>暴击率增加+<Ability:OVERBEARING_SUPERIORITY_CRIT/>。当你使用<Ability:BOUND_WEAPON_NAME/>造成暴击时，行动点将返还。"
+LocHelpText="你的<Ability:BOUND_WEAPON_NAME/>暴击率增加+<Ability:OVERBEARING_SUPERIORITY_CRIT/>。当你使用<Ability:BOUND_WEAPON_NAME/>造成暴击时，行动点将返还。"
 LocFlyOverText="霸气侧漏"
 
 [DisruptorRifleCrit X2AbilityTemplate]
@@ -6761,6 +6828,18 @@ LocLongDescription="减少该士兵<Ability:GREATER_PADDING_BM/>HP的伤口恢�
 LocHelpText="减少该士兵伤口恢复时间。"
 LocPromotionPopupText="<Bullet/> 高级衬垫将士兵在战斗中受伤后必须治疗的生命值减少<Ability:GREATER_PADDING_BM/>。<br/><Bullet/> 它不影响遭受致命创伤和失血稳定的士兵。"
 
+[IRI_SoulShot X2AbilityTemplate]
+LocFriendlyName="灵魂射击"
+LocLongDescription="一种强大的基于命中的远程攻击，可以暴击，且不会结束回合。消耗1点专注。"
+LocHelpText="一种强大的基于命中的远程攻击，可以暴击，且不会结束回合。消耗1点专注。"
+LocPromotionPopupText="<Bullet/> 灵魂射击有+20的命中加成。<br/><Bullet/> 灵魂射击没有冷却时间。<br/><Bullet/> 伤害随着拳刃等级的提升而增加。"
+
+[IRI_TemplarShield X2AbilityTemplate]
+LocFriendlyName="圣殿之盾"
+LocLongDescription="使用碎片拳刃生成一个灵能护盾并获得<Ability:TEMPLAR_SHIELD_TAG/>护盾生命值，持续到下一个回合开始。可以使用气势发动。"
+LocHelpText="使用碎片拳刃生成一个灵能护盾并获得<Ability:TEMPLAR_SHIELD_TAG/>护盾生命值，持续到下一个回合开始。可以使用气势发动。"
+LocPromotionPopupText="<Bullet/> 使用后结束回合。<br/><Bullet/> 护盾强度将随着碎片拳刃的技术等级而增加。"
+
 [Indomitable X2AbilityTemplate]
 LocFriendlyName="百折不挠"
 LocHelpText="每回合一次，受到攻击时获得1专注。"
@@ -6803,8 +6882,8 @@ LocPromotionPopupText="<Bullet/> 标记持续3次伤害。<br/><Bullet/> 标记�
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="圣殿之怒"
-LocHelpText="每损失25%生命值给予25%伤害提升，最多50%伤害提升。使该士兵的伤口恢复时间减少8HP。"
-LocLongDescription="每损失25%生命值给予25%伤害提升，最多50%伤害提升。使该士兵的伤口恢复时间减少8HP。"
+LocHelpText="每损失25%生命值给予25%伤害提升，最多50%伤害提升。使该士兵的伤口恢复时间减少6HP。"
+LocLongDescription="每损失25%生命值给予25%伤害提升，最多50%伤害提升。使该士兵的伤口恢复时间减少6HP。"
 LocPromotionPopupText="<Bullet/> 如果士兵在执行任务期间进入失血状态，则伤口恢复不起作用。<br/>"
 LocFlyOverText="精神发狂"
 
@@ -6850,12 +6929,12 @@ LocFriendlyName="放逐"
 LocLongDescription="向一名目标持续开火直至将其击毙或耗尽弹药。 每次射击减少<Ability:BANISH_HIT_MOD/>命中。暴露死神的位置。 "
 LocHelpText="向一名目标持续开火直至将其击毙或耗尽弹药。 每次射击减少<Ability:BANISH_HIT_MOD/>命中。暴露死神的位置。"
 LocFlyoverText="放逐"
-LocPromotionPopupText="<Bullet/> 放逐中的每一次射击都有单独的命中几率。<br/><Bullet/> 只有1弹药时不能激活放逐。<br/><Bullet/> 放逐射击可以暴击。<br/>"
+LocPromotionPopupText="<Bullet/> 放逐中的每一次射击都有单独的命中几率。<br/><Bullet/> 只有1弹药时不能激活放逐。<br/><Bullet/> 放逐射击可以暴击。<br/><Bullet/> 在后续射击上会堆叠-1的伤害惩罚。<br/><Bullet/> 放逐有<Ability:SelfCooldown_LW/>回合冷却时间。"
 
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="全面战斗"
-LocLongDescription="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加3格，爆炸半径增加1格。授予榴弹专用槽。"
-LocHelpText="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加3格，爆炸半径增加1格。授予榴弹专用槽。"
+LocLongDescription="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加2格，爆炸半径增加1格。授予榴弹专用槽。"
+LocHelpText="获得+1移动力和+5命中，投掷榴弹或使用物品不会结束回合且榴弹不再有冷却时间。此外，榴弹投掷的距离增加2格，爆炸半径增加1格。授予榴弹专用槽。"
 LocPromotionPopupText="<Bullet/> 全面战斗让<Ability:ClassName/>的战术更为多样化，能够在需要的时候采取精准的行动。<br/><Bullet/> 消除榴弹的冷却时间。<br/><Bullet/> 授予爆炸挥发技能，因此它不会与该技能叠加。"
 
 [PackMaster_LW X2AbilityTemplate]
@@ -6939,7 +7018,7 @@ LocHelpText="当该单位处于隐蔽或暗影状态时，变种人安保哨塔�
 LocLongDescription="使穿戴者对负面精神状况免疫，如恐慌，心灵控制和眩晕。"
 
 [Sustain X2AbilityTemplate]
-LocLongDescription="如果该单位受到足以致命的伤害，他会立刻进入静滞状态，持续1回合，且生命值会降到1点。此能力每次任务发动一次。"
+LocLongDescription="该士兵的伤口恢复时间减少<Ability:SUSTAIN_WOUND_HP_REDUCTTION/>HP。如果该单位受到足以致命的伤害，他会立刻进入静滞状态，持续1回合，且生命值会降到1点。此能力每次任务发动一次。"
 LocHelpText="如果该单位受到足以致命的伤害，他会立刻进入静滞状态，持续1回合，且生命值会降到1点。此能力每次任务发动一次。"
 LocPromotionPopupText="<Bullet/>注意，在坚守状态下的单位在从静滞状态恢复时依然会受到状态效果如毒素或燃烧的伤害。<br/>"
 

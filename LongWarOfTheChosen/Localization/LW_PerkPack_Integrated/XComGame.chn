@@ -233,7 +233,7 @@ LocHelpText="进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Abili
 LocPromotionPopupText="<Bullet/> 进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴击伤害加成的射击。冷却时间<Ability:SelfCooldown_LW/>回合。<br/>"
 
 [PrecisionShotSnapShot X2AbilityTemplate]
-LocFriendlyName="精准射击"
+LocFriendlyName="精准射击（急射）"
 LocFlyOverText="精准射击"
 LocLongDescription="进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴击伤害加成的射击。冷却时间<Ability:SelfCooldown_LW/>回合。"
 LocHelpText="进行一次+<Ability:PRECISION_SHOT_CRIT_BONUS/>暴击率和<Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>%暴击伤害加成的射击。冷却时间<Ability:SelfCooldown_LW/>回合。"
@@ -1040,7 +1040,7 @@ LocFlyOverText="速射"
 LocPromotionPopupText="<Bullet/> 速射有<Ability:SelfCooldown_LW/>回合冷却时间。<br/>"
 
 [RapidFireSnapShot X2AbilityTemplate]
-LocFriendlyName="速射"
+LocFriendlyName="速射（急射）"
 LocLongDescription="连续向敌人开火两次。 每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。消耗一个行动点。"
 LocHelpText="连续向敌人开火两次。每次射击<Ability:RAPIDFIREPENALTY/>命中惩罚。"
 LocFlyOverText="速射"
