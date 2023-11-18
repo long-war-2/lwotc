@@ -802,72 +802,72 @@ LocFlyOverText="Steady Weapon"
 [Needle_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Needle Rounds"
 LocFlyOverText="Needle Rounds"
-LocLongDescription="Does +1 damage to all targets and +2 damage to nonrobotic ADVENT."
-LocHelpText="Does +1 damage to all targets and +2 damage to nonrobotic ADVENT."
+LocLongDescription="Your shots deal +<Ability:NEEDLE_DMGMOD> damage to all targets and +<Ability:NEEDLE_ADVENT_DMG> additional damage to nonrobotic ADVENT personnel."
+LocHelpText="Your shots deal +<Ability:NEEDLE_DMGMOD> damage to all targets and +<Ability:NEEDLE_ADVENT_DMG> additional damage to nonrobotic ADVENT personnel."
 
 [Shredder_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Shredder Rounds"
 LocFlyOverText="Shredder Rounds"
-LocLongDescription="Shreds 2 enemy armor with every hit."
-LocHelpText="Shreds 2 enemy armor with every hit."
+LocLongDescription="Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> armor."
+LocHelpText="Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> armor."
 
 [Flechette_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Flechette Rounds"
 LocFlyOverText="Flechette Rounds"
-LocLongDescription="Does +1 damage to all targets and +2 damage to unarmored targets."
-LocHelpText="Does +1 damage to all targets and +2 damage to unarmored targets."
+LocLongDescription="Your shots deal +<Ability:FLECHETTE_DMGMOD> damage to all targets and +<Ability:FLECHETTE_BONUS_DMG> additional damage to unarmored targets."
+LocHelpText="Your shots deal +<Ability:FLECHETTE_DMGMOD> damage to all targets and +<Ability:FLECHETTE_BONUS_DMG> additional damage to unarmored targets."
 
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Redscreen Rounds"
 LocFlyOverText="Redscreen Rounds"
 ; LWOTC Needs Translation
-LocLongDescription="Lowers target's hack defense by <Ability:REDSCREEN_EFFECT_LW/>. Does not stack, but does refresh."
-LocHelpText="Lowers target's hack defense by <Ability:REDSCREEN_EFFECT_LW/>. Does not stack, but does refresh."
+LocLongDescription="Your shots lower the target's hack defense by <Ability:REDSCREEN_EFFECT_LW/> on hit. Repeated hits do not stack, but do refresh the duration."
+LocHelpText="Your shots lower the target's hack defense by <Ability:REDSCREEN_EFFECT_LW/> on hit. Repeated hits do not stack, but do refresh the duration."
 ; Ends Translation
 
 ; LWOTC Needs Translation
 [Stiletto_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Stiletto Rounds"
 LocFlyOverText="Stiletto Rounds"
-LocLongDescription="Does +1 damage to all targets and +2 damage to nonrobotic aliens."
-LocHelpText="Does +1 damage to all targets and +2 damage to nonrobotic aliens."
+LocLongDescription="Your shots deal +<Ability:STILETTO_DMGMOD> damage to all targets and +<Ability:STILETTO_ALIEN_DMG> additional damage to nonrobotic aliens."
+LocHelpText="Your shots deal +<Ability:STILETTO_DMGMOD> damage to all targets and +<Ability:STILETTO_ALIEN_DMG> additional damage to nonrobotic aliens."
 ; Ends Translation
 
 [AP_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Armor Piercing Rounds"
 LocFlyOverText="Armor Piercing Rounds"
-LocLongDescription="Your hits ignore 2 armor."
-LocHelpText="Your hits ignore 2 armor."
+LocLongDescription="Your shots pierce <Ability:APROUNDSPIERCEBONUS> armor."
+LocHelpText="Your shots pierce <Ability:APROUNDSPIERCEBONUS> armor."
 
 [Tracer_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Tracer Rounds"
 LocFlyOverText="Tracer Rounds"
-LocLongDescription="Your weapons have +5 aim."
-LocHelpText="Your weapons have +5 aim."
+LocLongDescription="Your shots have +<Ability:TRACERROUNDSAIMBONUS> aim."
+LocHelpText="Your shots have +<Ability:TRACERROUNDSAIMBONUS> aim."
 
 [Talon_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Talon Rounds"
 LocFlyOverText="Talon Rounds"
-LocLongDescription="Your weapons have +10 crit chance and do +1 damage on critical hits."
-LocHelpText="Your weapons have +10 crit chance and do +1 damage on critical hits."
+LocLongDescription="Your shots have +<Ability:TALONROUNDSCRITCHANCE> crit chance and deal +<Ability:TALONROUNDSCRITDAMAGEBONUS> damage on critical hits."
+LocHelpText="Your shots have +<Ability:TALONROUNDSCRITCHANCE> crit chance and deal +<Ability:TALONROUNDSCRITDAMAGEBONUS> damage on critical hits."
 
 [Dragon_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Dragon Rounds"
 LocFlyOverText="Dragon Rounds"
-LocLongDescription="Your weapons do +1 damage and can set enemies on fire."
-LocHelpText="Your weapons do +1 damage and can set enemies on fire."
+LocLongDescription="Your shots deal +1 damage and have <Ability:DRAGON_ROUNDS_APPLY_CHANCE>% chance to set enemies on fire."
+LocHelpText="Your shots deal +1 damage and have <Ability:DRAGON_ROUNDS_APPLY_CHANCE>% chance to set enemies on fire."
 
 [Bluescreen_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Bluescreen Rounds"
 LocFlyOverText="Bluescreen Rounds"
-LocLongDescription="Your weapons do +3 damage to mechanical enemies and remove some defensive shields."
-LocHelpText="Your weapons do +3 damage to mechanical enemies and remove some defensive shields."
+LocLongDescription="Your shots deal +<Ability:BLUESCREEN_DMGMOD> damage to mechanical enemies and remove some defensive shields."
+LocHelpText="Your shots deal +<Ability:BLUESCREEN_DMGMOD> damage to mechanical enemies and remove some defensive shields."
 
 [Venom_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Venom Rounds"
 LocFlyOverText="Venom Rounds"
-LocLongDescription="Your weapons do +1 damage and may poison enemies."
-LocHelpText="Your weapons do +1 damage and may poison enemies."
+LocLongDescription="Your shots deal +1 damage and have <Ability:VENOM_ROUNDS_APPLY_CHANCE>% chance to poison enemies."
+LocHelpText="Your shots deal +1 damage and have <Ability:VENOM_ROUNDS_APPLY_CHANCE>% chance to poison enemies."
 
 [Ceramic_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Ceramic Plating"
@@ -1555,14 +1555,14 @@ TacticalText="<Bullet/> Grants 5 ablative armor points.<br/><Bullet/> These hit 
 [StilettoRounds X2AmmoTemplate]
 FriendlyName="Stiletto Rounds"
 FriendlyNamePlural="Stiletto Rounds"
-BriefSummary="Does +1 damage to all targets and +2 damage to nonrobotic aliens."
-TacticalText="<Bullet/> Does +2 damage to nonrobotic aliens.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+BriefSummary="Your shots deal +<Ability:STILETTO_DMGMOD> damage to all targets and +<Ability:STILETTO_ALIEN_DMG> additional damage to nonrobotic aliens."
+TacticalText="<Bullet/> Your shots deal +<Ability:STILETTO_DMGMOD> damage to all targets and +<Ability:STILETTO_ALIEN_DMG> additional damage to nonrobotic aliens.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
 
 [FlechetteRounds X2AmmoTemplate]
 FriendlyName="Flechette Rounds"
 FriendlyNamePlural="Flechette Rounds"
-BriefSummary="Does +1 damage to all targets and +2 damage to unarmored enemies."
-TacticalText="<Bullet/> Does +2 damage to unarmored targets.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+BriefSummary="Your shots deal +<Ability:FLECHETTE_DMGMOD> damage to all targets and +<Ability:FLECHETTE_BONUS_DMG> additional damage to unarmored targets."
+TacticalText="<Bullet/> Your shots deal +<Ability:FLECHETTE_DMGMOD> damage to all targets and +<Ability:FLECHETTE_BONUS_DMG> additional damage to unarmored targets.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
 
 [RedScreenRounds X2AmmoTemplate]
 FriendlyName="Redscreen Rounds"
@@ -1575,14 +1575,14 @@ TacticalText="<Bullet/> Lowers enemy hack defense by <Ability:REDSCREEN_EFFECT_L
 [NeedleRounds X2AmmoTemplate]
 FriendlyName="Needle Rounds"
 FriendlyNamePlural="Needle Rounds"
-BriefSummary="Does +1 damage to all targets and +2 damage to nonrobotic ADVENT personnel."
-TacticalText="<Bullet/> Does +2 damage to nonrobotic ADVENT personnel.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+BriefSummary="Your shots deal +<Ability:NEEDLE_DMGMOD> damage to all targets and +<Ability:NEEDLE_ADVENT_DMG> additional damage to nonrobotic ADVENT personnel."
+TacticalText="<Bullet/> Your shots deal +<Ability:NEEDLE_DMGMOD> damage to all targets and +<Ability:NEEDLE_ADVENT_DMG> additional damage to nonrobotic ADVENT personnel.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
 
 [FalconRounds X2AmmoTemplate]
 FriendlyName="Shredder Rounds"
 FriendlyNamePlural="Shredder Rounds"
-BriefSummary="Shreds 2 enemy armor with every hit."
-TacticalText="<Bullet/> Shreds 2 enemy armor with every hit.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+BriefSummary="Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> armor."
+TacticalText="<Bullet/> Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> armor.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
 
 [APRounds X2AmmoTemplate]
 BriefSummary="Hand machined from ultra strong, ultra light alien alloys, these deadly rounds will effectively bypass <Ability:APROUNDSPIERCEBONUS/> enemy armor to deal unmitigated damage."
