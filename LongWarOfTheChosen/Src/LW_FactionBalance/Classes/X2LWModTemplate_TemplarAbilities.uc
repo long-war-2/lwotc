@@ -13,6 +13,7 @@ var config int STUNSTRIKE_STUN_DURATION;
 var config int STUNSTRIKE_STUN_CHANCE;
 var config int VOLT_TILE_RADIUS;
 var config int VOLT_DANGER_ZONE_BONUS_RADIUS;
+var config int VOLT_TERRORIZE_BONUS;
 
 var config int ARCWAVE_T1_DAMAGE;
 var config int ARCWAVE_T2_DAMAGE;
@@ -92,6 +93,7 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 	local X2Condition_UnitProperty ShooterCondition;
 	local X2AbilityMultiTarget_Radius RadiusMultiTarget;
 	local AbilityGrantedBonusRadius DangerZoneBonus;
+	local AbilityGrantedBonusRadius TerrorizeBonus;
 
 	ShooterCondition = new class'X2Condition_UnitProperty';
 	ShooterCondition.ExcludeConcealed = true;
@@ -104,9 +106,13 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 	RadiusMultiTarget.bUseWeaponRadius = false;
 	RadiusMultiTarget.fTargetRadius = `TILESTOMETERS(default.VOLT_TILE_RADIUS) + 0.01;
 
-	DangerZoneBonus.RequiredAbility = 'TemplarTerror';
+	DangerZoneBonus.RequiredAbility = 'VoltDangerZone';
 	DangerZoneBonus.fBonusRadius = `TILESTOMETERS(default.VOLT_DANGER_ZONE_BONUS_RADIUS) + 0.01;
 	RadiusMultiTarget.AbilityBonusRadii.AddItem(DangerZoneBonus);
+
+	TerrorizeBonus.RequiredAbility = 'TemplarTerror';
+	TerrorizeBonus.fBonusRadius = `TILESTOMETERS(default.VOLT_TERRORIZE_BONUS) + 0.01;
+	RadiusMultiTarget.AbilityBonusRadii.AddItem(TerrorizeBonus);
 
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
