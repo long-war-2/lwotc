@@ -1446,6 +1446,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		Template.ConcealmentRule = eConceal_Never;
 	}
 
+	if(Template.Dataname == 'StandardMove')
+	{
+		FixStandardMove(Template);
+	}
+
 	// can't shoot when on FIRE
 	if (class'X2Ability_PerkPackAbilitySet'.default.NO_STANDARD_ATTACKS_WHEN_ON_FIRE)
 	{
@@ -2278,6 +2283,8 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 		case 'SpectralStunLancerM3':
 		case 'SpectralStunLancerM4':
 			Template.Abilities.AddItem('StunImpairingAbility');
+			// make them move before chosen
+			Template.InitiativePriority = -101;
 			break;
 		default:
 			break;
@@ -4083,6 +4090,24 @@ static function FixRapidFire2(X2AbilityTemplate Template)
 		if(EventTrigger != none)
 		{
 			EventTrigger.ListenerData.Priority = 80;
+		}
+	}
+}
+
+static function FixStandardMove(X2AbilityTemplate Template)
+{
+	local int i;
+	
+	
+	for(i = Template.AbilityCosts.Length-1; i >=0; i--)
+	{
+		if(Template.AbilityCosts[i].IsA('X2AbilityCost_ActionPoints'))
+		{
+			// Remove and re-add move-only AP type so it's at the end of the array and used before Momentum AP type.
+			X2AbilityCost_ActionPoints(Template.AbilityCosts[0]).AllowedTypes.RemoveItem(class'X2CharacterTemplateManager'.default.MoveActionPoint);
+			X2AbilityCost_ActionPoints(Template.AbilityCosts[0]).AllowedTypes.AddItem(class'X2CharacterTemplateManager'.default.MoveActionPoint);
+			// there should only be one of these on StandardMove
+			break;
 		}
 	}
 }
