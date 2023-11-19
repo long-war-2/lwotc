@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC24 Changes:"
-strMessage_Body = "<ul><li>Fixed issue with Spectral Stun Lancers applying daze effect they shouldn't apply.  now they behave like normal Stun Lancers.</li><li>Attempted to fix issue preventing evac from being called on missions that were infiltrating after switching from main release to beta.</li><li>Added new mod API to allow other mods to view and change LW Force level data in regions.</li><li>More localization updates for Russian, Simplified Chinese, and English localizations.</li></ul>"
+strMessage_Header = "RC25 Changes:"
+strMessage_Body = "<ul><li>Reordered Spectral Stun Lancers so they move before chosen on advent turn.</li><li>If a Templar has a Momentum AP and a Move-only AP, moving should now consume the move-only AP first instead of the Momentum AP</li><li>M1 Troopers no longer spawn at FL 12-13. M1 Mecs stop spawning after FL15. Mec Archers stop spawning after FL16.</li><li>More localization updates.</li></ul>"
 strDismiss_Button = "OK"
