@@ -28,6 +28,9 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddDefaultSupplyRaidATTMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultSupplyRaidTrainMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultSupplyRaidConvoyMissionNarrativeTemplate_LW());
+    Templates.AddItem(AddDefaultChosenSupplyRaidATTMissionNarrativeTemplate_LW());
+    Templates.AddItem(AddDefaultChosenSupplyRaidTrainMissionNarrativeTemplate_LW());
+    Templates.AddItem(AddDefaultChosenSupplyRaidConvoyMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultHackMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultHack_ADVMissionNarrativeTemplate_LW());
     Templates.AddItem(AddDefaultHack_TrainMissionNarrativeTemplate_LW());
@@ -432,6 +435,89 @@ static function X2MissionNarrativeTemplate AddDefaultSupplyRaidConvoyMissionNarr
     `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultSupplyRaidConvoy_LW');
 
     Template.MissionType = "SupplyRaidConvoy_LW";
+    Template.NarrativeMoments[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_TacIntroCVY";
+    Template.NarrativeMoments[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_ManyCratesDestroyed";
+    Template.NarrativeMoments[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_FirstCrateDestroyed";
+    Template.NarrativeMoments[3]="X2NarrativeMoments.TACTICAL.support.T_Support_Alien_Tech_Crate_Spotted_Central";
+    Template.NarrativeMoments[4]="X2NarrativeMoments.TACTICAL.General.CEN_Gen_BurnoutSecured_02";
+    Template.NarrativeMoments[5]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_AllCratesDestroyed";
+    Template.NarrativeMoments[6]="X2NarrativeMoments.TACTICAL.General.GenTactical_SecureRetreat";
+    Template.NarrativeMoments[7]="X2NarrativeMoments.TACTICAL.General.GenTactical_ConsiderRetreat";
+    Template.NarrativeMoments[8]="X2NarrativeMoments.TACTICAL.General.GenTactical_PartialEVAC";
+    Template.NarrativeMoments[9]="X2NarrativeMoments.TACTICAL.General.GenTactical_FullEVAC";
+    Template.NarrativeMoments[10]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
+    Template.NarrativeMoments[11]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroFailure";
+    Template.NarrativeMoments[12]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroPartialSuccess";
+    Template.NarrativeMoments[13]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroTotalSuccess";
+    Template.NarrativeMoments[14]="X2NarrativeMoments.TACTICAL.General.GenTactical_TacWinOnly";
+    Template.NarrativeMoments[15]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
+
+
+    return Template;
+}
+
+static function X2MissionNarrativeTemplate AddDefaultChosenSupplyRaidATTMissionNarrativeTemplate_LW()
+{
+    local X2MissionNarrativeTemplate Template;
+
+    `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultChosenSupplyRaidATT_LW');
+
+    Template.MissionType = "ChosenSupplyRaidATT_LW";
+    Template.NarrativeMoments[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_TacIntroATT";
+    Template.NarrativeMoments[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_ManyCratesDestroyed";
+    Template.NarrativeMoments[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_FirstCrateDestroyed";
+    Template.NarrativeMoments[3]="X2NarrativeMoments.TACTICAL.support.T_Support_Alien_Tech_Crate_Spotted_Central";
+    Template.NarrativeMoments[4]="X2NarrativeMoments.TACTICAL.General.CEN_Gen_BurnoutSecured_02";
+    Template.NarrativeMoments[5]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_AllCratesDestroyed";
+    Template.NarrativeMoments[6]="X2NarrativeMoments.TACTICAL.General.GenTactical_SecureRetreat";
+    Template.NarrativeMoments[7]="X2NarrativeMoments.TACTICAL.General.GenTactical_ConsiderRetreat";
+    Template.NarrativeMoments[8]="X2NarrativeMoments.TACTICAL.General.GenTactical_PartialEVAC";
+    Template.NarrativeMoments[9]="X2NarrativeMoments.TACTICAL.General.GenTactical_FullEVAC";
+    Template.NarrativeMoments[10]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
+    Template.NarrativeMoments[11]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroFailure";
+    Template.NarrativeMoments[12]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroPartialSuccess";
+    Template.NarrativeMoments[13]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroTotalSuccess";
+    Template.NarrativeMoments[14]="X2NarrativeMoments.TACTICAL.General.GenTactical_TacWinOnly";
+    Template.NarrativeMoments[15]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
+
+    return Template;
+}
+
+static function X2MissionNarrativeTemplate AddDefaultChosenSupplyRaidTrainMissionNarrativeTemplate_LW()
+{
+    local X2MissionNarrativeTemplate Template;
+
+    `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultChosenSupplyRaidTrain_LW');
+
+    Template.MissionType = "ChosenSupplyRaidTrain_LW";
+    Template.NarrativeMoments[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_TacIntroTRN";
+    Template.NarrativeMoments[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_ManyCratesDestroyed";
+    Template.NarrativeMoments[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_FirstCrateDestroyed";
+    Template.NarrativeMoments[3]="X2NarrativeMoments.TACTICAL.support.T_Support_Alien_Tech_Crate_Spotted_Central";
+    Template.NarrativeMoments[4]="X2NarrativeMoments.TACTICAL.General.CEN_Gen_BurnoutSecured_02";
+    Template.NarrativeMoments[5]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_AllCratesDestroyed";
+    Template.NarrativeMoments[6]="X2NarrativeMoments.TACTICAL.General.GenTactical_SecureRetreat";
+    Template.NarrativeMoments[7]="X2NarrativeMoments.TACTICAL.General.GenTactical_ConsiderRetreat";
+    Template.NarrativeMoments[8]="X2NarrativeMoments.TACTICAL.General.GenTactical_PartialEVAC";
+    Template.NarrativeMoments[9]="X2NarrativeMoments.TACTICAL.General.GenTactical_FullEVAC";
+    Template.NarrativeMoments[10]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
+    Template.NarrativeMoments[11]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroFailure";
+    Template.NarrativeMoments[12]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroPartialSuccess";
+    Template.NarrativeMoments[13]="X2NarrativeMoments.TACTICAL.General.GenTactical_MissionExtroTotalSuccess";
+    Template.NarrativeMoments[14]="X2NarrativeMoments.TACTICAL.General.GenTactical_TacWinOnly";
+    Template.NarrativeMoments[15]="X2NarrativeMoments.TACTICAL.General.GenTactical_SquadWipe";
+
+
+    return Template;
+}
+
+static function X2MissionNarrativeTemplate AddDefaultChosenSupplyRaidConvoyMissionNarrativeTemplate_LW()
+{
+    local X2MissionNarrativeTemplate Template;
+
+    `CREATE_X2MISSIONNARRATIVE_TEMPLATE(Template, 'DefaultChosenSupplyRaidConvoy_LW');
+
+    Template.MissionType = "ChosenSupplyRaidConvoy_LW";
     Template.NarrativeMoments[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_TacIntroCVY";
     Template.NarrativeMoments[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_ManyCratesDestroyed";
     Template.NarrativeMoments[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.SupplyRaid_FirstCrateDestroyed";
