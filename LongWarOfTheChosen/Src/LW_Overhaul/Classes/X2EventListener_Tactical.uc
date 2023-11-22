@@ -72,7 +72,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('UnitChangedTeam', ClearUnitStateValues, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('PlayerTurnEnded', RollForPerTurnWillLoss, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('OverrideR3Button', BindR3ToPlaceDelayedEvacZone, ELD_Immediate, GetListenerPriority());
-
+	Template.AddCHEvent('OverrideDamageRemovesReserveActionPoints', OnOverrideDamageRemovesReserveActionPoints, ELD_Immediate, GetListenerPriority());
 	// This seems to be causing stutter in the game, so commenting out for now.
 	// if (XCom_Perfect_Information_UIScreenListener.default.ENABLE_PERFECT_INFORMATION)
 	// {
@@ -1197,4 +1197,37 @@ static protected function EventListenerReturn HideFocusOnAssaults(
 	}
 
 	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OnOverrideDamageRemovesReserveActionPoints(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackObject)
+{
+    local XComGameState_Unit UnitState;
+    local XComLWTuple Tuple;
+    local bool bDamageRemovesReserveActionPoints;
+	local name ActionPointName;
+	local bool IsSuppression;
+
+    UnitState = XComGameState_Unit(EventSource);
+    Tuple = XComLWTuple(EventData);
+	
+	`LWTrace("Override Reserve AP listener");
+    bDamageRemovesReserveActionPoints = Tuple.Data[0].b;
+
+    foreach UnitState.ReserveActionPoints(ActionPointName)
+	{
+		if(ActionPointName == 'Suppression')
+		{
+			IsSuppression = true;
+			break;
+		}
+	}
+
+	if(IsSuppression && UnitState.HasSoldierAbility('DedicatedSuppression_LW'))
+	{
+		bDamageRemovesReserveActionPoints = false;
+	}
+
+    Tuple.Data[0].b = bDamageRemovesReserveActionPoints;
+
+    return ELR_NoInterrupt;
 }
