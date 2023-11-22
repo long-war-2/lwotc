@@ -2743,7 +2743,7 @@ PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_R
 PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_05"
 
 [ChosenSupplyLineRaidTrain_LW X2MissionTemplate]
-DisplayName="Raid the Chosen' Train"
+DisplayName="Raid the Chosen's Train"
 Briefing="Supply Line Raid - Chosen's Train"
 PostMissionType="Supply Raid"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
