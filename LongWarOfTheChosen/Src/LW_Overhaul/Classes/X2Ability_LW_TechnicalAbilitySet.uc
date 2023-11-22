@@ -1568,6 +1568,7 @@ static function X2AbilityTemplate CreateConcussionRocketAbility()
 	Template.bCrossClassEligible = false;
 	Template.Hostility = eHostility_Offensive;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
+	Template.bFriendlyFireWarning = false;
 
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 	Template.TargetingMethod = class'X2TargetingMethod_LWRocketLauncher';
