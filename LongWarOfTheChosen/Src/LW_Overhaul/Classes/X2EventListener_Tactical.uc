@@ -1222,7 +1222,7 @@ static function EventListenerReturn OnOverrideDamageRemovesReserveActionPoints(O
 		}
 	}
 
-	if(IsSuppression && UnitState.HasSoldierAbility('DedicatedSuppression_LW'))
+	if(IsSuppression && UnitState.HasAbilityFromAnySource('DedicatedSuppression_LW'))
 	{
 		bDamageRemovesReserveActionPoints = false;
 	}
