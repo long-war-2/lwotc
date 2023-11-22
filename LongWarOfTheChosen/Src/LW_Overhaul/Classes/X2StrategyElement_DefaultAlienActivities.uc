@@ -224,6 +224,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	AlienActivities.AddItem(CreateProtectRegionTemplate());
 	AlienActivities.AddItem(CreateCounterinsurgencyTemplate());
 	AlienActivities.AddItem(CreateReinforceTemplate());
+	AlienActivities.AddItem(CreateChosenReinforceTemplate());
 	AlienActivities.AddItem(CreateCOINResearchTemplate());
 	AlienActivities.AddItem(CreateCOINOpsTemplate());
 	AlienActivities.AddItem(CreateBuildResearchFacilityTemplate());
@@ -994,28 +995,20 @@ static function OnReinforceActivityComplete(bool bAlienSuccess, XComGameState_LW
 static function X2DataTemplate CreateChosenReinforceTemplate()
 {
 	local X2LWAlienActivityTemplate Template;
-	local X2LWActivityCondition_Month MonthRestriction;
+	//local X2LWActivityCondition_Month MonthRestriction;
 	local X2LWActivityDetectionCalc DetectionCalc;
-	local X2LWActivityCondition_AlertVigilance AlertVigilance;
+	//local X2LWActivityCondition_AlertVigilance AlertVigilance;
 
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.ChosenReinforceName);
-	Template.iPriority = 50; // 50 is default, lower priority gets created earlier
+	Template.iPriority = 100; // 50 is default, lower priority gets created earlier
 
 	//these define the requirements for creating each activity
-	Template.ActivityCreation = new class'X2LWActivityCreation_Reinforce';
-	Template.ActivityCreation.Conditions.AddItem(default.SingleActivityInRegion);
-	Template.ActivityCreation.Conditions.AddItem(default.AnyAlienRegion);
+	Template.ActivityCreation = new class'X2LWActivityCreation_ChosenAction';
+	Template.ActivityCreation.Conditions.AddItem(default.ContactedAlienRegion);
 
 	DetectionCalc = new class'X2LWActivityDetectionCalc';
 	DetectionCalc.SetAlwaysDetected(true);
 	Template.DetectionCalc = DetectionCalc;
-
- 	//these define the requirements for creating each activity
-	Template.ActivityCreation = new class'X2LWActivityCreation';
-
-	AlertVigilance = new class'X2LWActivityCondition_AlertVigilance';
-	AlertVigilance.MinAlert = 9999; // never created normally, only via console command
-	Template.ActivityCreation.Conditions.AddItem(AlertVigilance);
 
 	// required delegates
 	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
@@ -1026,7 +1019,7 @@ static function X2DataTemplate CreateChosenReinforceTemplate()
 
 	Template.WasMissionSuccessfulFn = none;  // always one objective
 	Template.GetMissionForceLevelFn = GetTypicalMissionForceLevel; // use regional ForceLevel
-	Template.GetMissionAlertLevelFn = GetReinforceAlertLevel; // Custom increased AlertLevel because of reinforcements
+	Template.GetMissionAlertLevelFn = GetTypicalMissionAlertLevel; // Custom increased AlertLevel because of reinforcements
 
 	Template.GetTimeUpdateFn = none;
 	Template.OnMissionExpireFn = none; // just remove the mission, handle in failure
@@ -1034,7 +1027,7 @@ static function X2DataTemplate CreateChosenReinforceTemplate()
 	Template.OnActivityUpdateFn = none;
 
 	Template.CanBeCompletedFn = none;  // can always be completed
-	Template.OnActivityCompletedFn = OnReinforceActivityComplete; // transfer of regional alert/force levels
+	Template.OnActivityCompletedFn = OnEmergencyOffworldReinforcementsComplete; // Add str to the region
 
 	return Template;
 }

@@ -921,6 +921,8 @@ static function bool WillChosenAppearOnMission(XComGameState_AdventChosen Chosen
 {
 	local XComGameState_MissionSiteChosenAssault ChosenAssaultMission;
 
+	`LWTrace("Checking Chosen" @ChosenState.GetChosenTemplate().CharacterGroupName);
+
 	// If the Chosen doesn't control the region, they won't appear on the mission
 	if (!ChosenState.ChosenControlsRegion(MissionState.Region))
 	{

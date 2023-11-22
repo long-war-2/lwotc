@@ -2402,6 +2402,21 @@ ObjectiveTextPools[0]="Avoid destroying critical supplies"
 ObjectiveTextPools[1]="Neutralize all enemy targets"
 ObjectiveTextPools[2]="Extract all XCOM soldiers"
 
+[DefaultChosenSupplyRaidATT_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Avoid destroying critical supplies"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+
+[DefaultChosenSupplyRaidTrain_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Avoid destroying critical supplies"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+
+[DefaultChosenSupplyRaidConvoy_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Avoid destroying critical supplies"
+ObjectiveTextPools[1]="Neutralize all enemy targets"
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+
 [DefaultDestroyRelay_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Neutralize all enemy targets"
 ObjectiveTextPools[1]="Destroy the Relay before transmission completes"
@@ -2708,6 +2723,45 @@ PostMissionType="Supply Raid"
 BriefingImage="img:///UILibrary_Common.Xcom_default"
 ObjectiveTextPools[0]="Neutralize all enemy targets"
 ObjectiveTextPools[1]="Secure supplies from ADVENT convoy"
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_05"
+
+[ChosenSupplyLineRaidATT_LW X2MissionTemplate]
+DisplayName="Raid the Chosen's Troop Transport"
+Briefing="Supply Line Raid - Chosen's Troop Transport"
+PostMissionType="Supply Raid"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+ObjectiveTextPools[1]="Secure supplies at transport station"
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Transport_05"
+
+[ChosenSupplyLineRaidTrain_LW X2MissionTemplate]
+DisplayName="Raid the Chosen' Train"
+Briefing="Supply Line Raid - Chosen's Train"
+PostMissionType="Supply Raid"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+ObjectiveTextPools[1]="Secure supplies on Chosen train"
+PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_01"
+PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_02"
+PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_03"
+PreMissionNarratives[3]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_04"
+PreMissionNarratives[4]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Train_05"
+
+[ChosenSupplyLineRaidConvoy_LW X2MissionTemplate]
+DisplayName="Raid the Chosen's Convoy"
+Briefing="Supply Line Raid - Chosen's Convoy"
+PostMissionType="Supply Raid"
+BriefingImage="img:///UILibrary_Common.Xcom_default"
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+ObjectiveTextPools[1]="Secure supplies from Chosen convoy"
 PreMissionNarratives[0]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_01"
 PreMissionNarratives[1]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_02"
 PreMissionNarratives[2]="X2NarrativeMoments.TACTICAL.SupplyRaid.Central_Supply_Raids_Advent_Convoy_03"
@@ -7074,6 +7128,10 @@ LocPromotionPopupText="You get an additional +<Ability:MOVING_TARGET_DEFENSE> De
 [ChosenAction_Retribution X2ChosenActionTemplate]
 SummaryText="A brutal crackdown on the Resistance, lowering all rebel income (intel, recruit and supply) in the region for <Ability:CHOSEN_RETRIBUTION_DURATION/> days."
 ; End Translation
+
+[ChosenAction_ReinforceRegion X2ChosenActionTemplate]
+DisplayName="Renforcement"
+SummaryText="Bring additional Advent forces onto the world."
 
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
