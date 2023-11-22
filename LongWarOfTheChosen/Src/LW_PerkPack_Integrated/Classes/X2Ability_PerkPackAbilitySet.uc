@@ -2659,6 +2659,8 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	local AbilityGrantedBonusRadius						DangerZoneBonus;
 	local X2Condition_UnitProperty						ShooterCondition;
 	local X2Condition_UnitEffects						SuppressedCondition;
+	local X2Condition_OwnerDoesNotHaveAbility			DoesNotHaveAbilityCondition;
+	local X2Condition_AbilityProperty					AbilityCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AreaSuppression');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AreaSuppression";
@@ -2740,6 +2742,14 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	
 	Template.AbilityMultiTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
 
+	DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
+	DoesNotHaveAbilityCondition.AbilityName = 'DedicatedSuppression_LW';
+
+	AbilityCondition = new class 'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('DedicatedSuppression_LW');
+
+	//First the non-steadfast effect
+
 	SuppressionEffect = new class'X2Effect_AreaSuppression';
 	SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
 	SuppressionEffect.bRemoveWhenTargetDies = true;
@@ -2748,9 +2758,26 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	SuppressionEffect.DuplicateResponse=eDupe_Allow;
 	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
 	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
+	SuppressionEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
+	
 	Template.AddTargetEffect(SuppressionEffect);
-	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	Template.AddMultiTargetEffect(SuppressionEffect);
+	
+	//Then the steadfast version
+	SuppressionEffect = new class'X2Effect_AreaSuppression';
+	SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	SuppressionEffect.bRemoveWhenTargetDies = true;
+	SuppressionEffect.bRemoveWhenSourceDamaged = false;
+	SuppressionEffect.bBringRemoveVisualizationForward = true;
+	SuppressionEffect.DuplicateResponse=eDupe_Allow;
+	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
+	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
+	SuppressionEffect.TargetConditions.AddItem(AbilityCondition);
+
+	Template.AddTargetEffect(SuppressionEffect);
+	Template.AddMultiTargetEffect(SuppressionEffect);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	Template.AddMultiTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	
 	Template.AdditionalAbilities.AddItem('AreaSuppressionShot_LW');

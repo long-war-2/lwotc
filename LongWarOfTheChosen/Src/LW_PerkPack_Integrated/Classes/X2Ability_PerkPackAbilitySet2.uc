@@ -43,6 +43,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddStingGrenades());
 	Templates.AddItem(AddFieldSurgeon());
 	Templates.AddItem(AddDamageInstanceTracker());
+	Templates.AddItem(CreateDedicatedSuppressionAbility());
 	
 	return Templates;
 }
@@ -1068,6 +1069,15 @@ static function X2AbilityTemplate AddDamageInstanceTracker()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	// No visualization for this ability
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateDedicatedSuppressionAbility()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('DedicatedSuppression_LW', "img:///UILibrary_XPerkIconPack_LW.UIPerk_suppression_defense2", , 'eAbilitySource_Perk');
 
 	return Template;
 }

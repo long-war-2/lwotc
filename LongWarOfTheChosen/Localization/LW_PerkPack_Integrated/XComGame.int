@@ -631,6 +631,11 @@ LocHelpText="Your flashbang grenades have a 50% chance to stun enemies."
 LocPromotionPopupText="<Bullet/> Your flashbang grenades have a 50% chance to stun enemies.<br/><Bullet/> Enemies' innate flashbang resistance does not affect stun chance.<br/>"
 ; End Translation
 
+[DedicatedSuppression_LW X2AbilityTemplate]
+LocFriendlyName="Dedicated Suppression"
+LocLongDescription="Taking damage no longer cancels Area Suppression."
+LocHelpText="Taking damage no longer canccels Area Suppression."
+
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="Sting Grenade"
 DenseSmokeGrenadeEffectDisplayDesc="Sting Grenades have a 50% chance to stun units within the grenades' area of effect."
