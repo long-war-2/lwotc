@@ -50,6 +50,8 @@ var config array<string> GuaranteeChosenInMissionTypes;
 
 var config array<string> NO_SIT_REP_MISSION_TYPES;
 
+var StateObjectReference AssociatedChosen;
+
 //#############################################################################################
 //----------------   REQUIRED FROM BASEOBJECT   -----------------------------------------------
 //#############################################################################################
