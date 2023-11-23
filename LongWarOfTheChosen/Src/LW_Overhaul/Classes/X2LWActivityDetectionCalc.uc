@@ -13,6 +13,10 @@ var config array <float> FORCE_LEVEL_DETECTION_MODIFIER_VETERAN;
 var config array <float> FORCE_LEVEL_DETECTION_MODIFIER_COMMANDER;
 var config array <float> FORCE_LEVEL_DETECTION_MODIFIER_LEGENDARY;
 
+var config bool BOOST_EARLY_DETECTION;
+var config float EARLY_DETECTION_CHANCE_BOOST;
+var config int EARLY_DETECTION_DAYS;
+
 struct DetectionModifierInfo
 {
 	var float   Value;
@@ -126,6 +130,9 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
 
+	local TDateTime GameStartDate, CurrentDate;
+	local int TimeToDays;
+
 	ResourcePool = ActivityState.MissionResourcePool;
 	if (ActivityTemplate.RequiredRebelMissionIncome > 0)
 		ResourcePool -= ActivityTemplate.RequiredRebelMissionIncome;
@@ -154,6 +161,25 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 			case 2: DetectionChance += default.FORCE_LEVEL_DETECTION_MODIFIER_COMMANDER[clamp(RegionalAI.LocalForceLevel, 1, 20)]; break;
 			case 3: DetectionChance += default.FORCE_LEVEL_DETECTION_MODIFIER_LEGENDARY[clamp(RegionalAI.LocalForceLevel, 1, 20)]; break;
 			default: break;
+		}
+	}
+
+	// New early campaign detection chancce boost system
+	if(default.BOOST_EARLY_DETECTION)
+	{
+		class'X2StrategyGameRulesetDataStructures'.static.SetTime( GameStartDate, 0, 0, 0,
+					class'X2StrategyGameRulesetDataStructures'.default.START_MONTH,
+					class'X2StrategyGameRulesetDataStructures'.default.START_DAY,
+					class'X2StrategyGameRulesetDataStructures'.default.START_YEAR );
+		
+		CurrentDate = `STRATEGYRULES.GameTime;
+
+		TimeToDays = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInDays( CurrentDate, GameStartDate );
+
+		//If we're within the time period
+		if(TimeToDays <= default.EARLY_DETECTION_DAYS)
+		{
+			DetectionChance += default.EARLY_DETECTION_CHANCE_BOOST;
 		}
 	}
 
