@@ -3194,7 +3194,7 @@ TemplarTutorialTitle="Templar Focus"
 TemplarTutorialText="Templars gain Focus during missions by using Rend, regardless of whether it hits or not. Focus can be spent on powerful abilities, some of which have increased effectiveness when used at higher Focus levels."
 
 TemplarMomentumTutorialTitle="Templar Momentum & Parry"
-TemplarMomentumTutorialText="After using Rend, Templars always trigger Momentum, a free movement action which allows them to return to the safety of cover or use One For All to tank some attacks. One For All grants the Templar bonus ablative while lowering their defense significantly."
+TemplarMomentumTutorialText="After using Rend, Templars always trigger Momentum, a free movement action which allows them to return to the safety of cover or use Templar Shield to tank some attacks. Templar Shield grants bonus ablative until the start of your next turn."
 
 SkirmisherTutorialTitle="Skirmisher"
 SkirmisherTutorialText="The Skirmisher is a mobile unit that can fire their Bullpup at flanked units to get an action back, allowing them to shoot again, move, throw a grenade, or do something else. The Grapple adds to their versatility, allowing the Skirmisher to quickly traverse the battlefield and get into advantageous positions."
