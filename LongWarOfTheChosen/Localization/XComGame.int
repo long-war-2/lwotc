@@ -327,7 +327,7 @@ LocFriendlyName="Failsafe"
 LocLongDescription="If you fail a hack, you prevent any negative effects from occurring."
 LocHelpText="If you fail a hack, you prevent any negative effects from occurring."
 LocFlyOverText="Failsafe"
-LocPromotionPopupText="<Bullet/> If you fail a hack, you prevent any negative effects from occurring."
+LocPromotionPopupText="<Bullet/> Negative effects prevented by Failsafe include losing squad concealment."
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="Full Override"
