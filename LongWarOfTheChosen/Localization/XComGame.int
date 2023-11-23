@@ -1034,7 +1034,7 @@ AbilityDescName="holotargeter"
 
 [Holotargeter_BM X2WeaponTemplate]
 FriendlyName="Holotargeter Mark III"
-FriendlyNamePlural="Holotargeters Mark IIIs"
+FriendlyNamePlural="Holotargeter Mark IIIs"
 BriefSummary="Allows targeting enemy units to provide aim bonuses to any members of the squad targeting this unit."
 TacticalText="<Bullet/> Grants 20 bonus aim to any unit attacking the Holotargeted unit."
 AbilityDescName="holotargeter"
