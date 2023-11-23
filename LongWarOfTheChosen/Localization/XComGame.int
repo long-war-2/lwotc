@@ -5751,6 +5751,10 @@ LocLongDescription="When you get a crit with any shot or ability, your human or 
 [LocationScout X2SitRepTemplate]
 Description="The resistance have placed low-range motion detectors throughout the AO that hook into your squad's comms. Your soldiers will be able to detect enemy units that are out of line of sight."
 
+[ChosenOnMissionSitrep X2SitrepTemplate]
+FriendlyName="Chosen Presence"
+Description="A Chosen's energy signature has been detected. Expect them to appear on this mission."
+
 ; LWOTC Needs Translation (2)
 [LargeMap X2SitRepTemplate]
 FriendlyName="Large Map"

@@ -906,7 +906,7 @@ static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
 			{
 				`LWTrace("    Chosen added!");
 				MissionState.TacticalGameplayTags.AddItem(class'Helpers_LW'.static.GetChosenActiveMissionTag(ChosenState));
-
+				MissionState.GeneratedMission.Sitreps.AddItem('ChosenOnMissionSitrep');
 				// Only one Chosen on the mission!
 				break;
 			}
