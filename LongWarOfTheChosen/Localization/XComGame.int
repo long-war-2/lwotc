@@ -474,10 +474,10 @@ LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissil
 
 [KnifeFighter X2AbilityTemplate]
 LocFriendlyName="Knife Fighter"
-LocLongDescription="You may make a melee attack with your knife against adjacent enemies."
-LocHelpText="Knife Attack"
+LocLongDescription="Attack an adjacent enemy with your knife."
+LocHelpText="Attack an adjacent enemy with your knife."
 LocFlyOverText="Knife Fighter"
-LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end your turn.<br/>"
+LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end your turn."
 
 [Combatives X2AbilityTemplate]
 LocFriendlyName="Combatives"
