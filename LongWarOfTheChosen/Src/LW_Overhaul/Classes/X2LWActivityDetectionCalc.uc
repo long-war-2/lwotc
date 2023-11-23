@@ -163,6 +163,7 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 			default: break;
 		}
 	}
+	//`LWTrace("GetDetectionChance: DetectionChance pre-early boost:" @DetectionChance);
 
 	// New early campaign detection chancce boost system
 	if(default.BOOST_EARLY_DETECTION)
@@ -183,9 +184,12 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 		}
 	}
 
+	//`LWTrace("GetDetectionChance: DetectionChance post early boost:" @DetectionChance);
+
 	//normalize for update rate
 	DetectionChance *= float(class'X2LWAlienActivityTemplate'.default.HOURS_BETWEEN_ALIEN_ACTIVITY_DETECTION_UPDATES) / 24.0;
 
+	//`LWTrace("GetDetectionChance: DetectionChance post normaliation for tick rate:" @DetectionChance);
 	return DetectionChance;
 }
 
