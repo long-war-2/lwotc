@@ -5868,3 +5868,13 @@ exec function LWOTC_TestGetForceLevelTuple()
 		class'Helpers'.Static.OutputMsg("FL"@ `SHOWVAR(Tuple.Data[1].ai[i]));
 	}
 }
+
+exec function LWOTC_AdvanceRNG(optional int numRolls = 1)
+{
+	local int i;
+
+	for(i=0; i<numrolls; i++)
+	{
+		`SYNC_FRAND_STATIC();
+	}
+}
