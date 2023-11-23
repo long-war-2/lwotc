@@ -183,7 +183,7 @@ LocFriendlyName="Phosphorus"
 LocFlyOverText="Phosphorus"
 LocLongDescription="Your flamethrower's base damage can now ignore fire immunities, and shred armor.""
 LocHelpText="Your flamethrower's base damage can now ignore fire immunities, and shred armor."
-LocPromotionPopupText="<Bullet/> Your flamethrower can now ignore fire immunities.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
+LocPromotionPopupText="<Bullet/> While you can now damage fire immune enemies, they still cannot be set on fire.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
 
 [Incinerator X2AbilityTemplate]
 LocFriendlyName="Incinerator"
