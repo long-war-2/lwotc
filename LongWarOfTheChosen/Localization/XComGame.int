@@ -965,7 +965,7 @@ FriendlyName="Plasma Pistol"
 FriendlyNamePlural="Plasma Pistols"
 UnknownUtilityCategory="Pistol"
 BriefSummary="The ultimate sidearm, this pistol integrates the aliens' plasma weapons technology to powerful effect."
-TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Plasma pistols are the most powerful handguns on Earth.\n<Bullet/> Pistols can be fired with a single actio.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges.<br/>"
+TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Plasma pistols are the most powerful handguns on Earth.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges.<br/>"
 
 [AlienHunterPistol_CV X2WeaponTemplate]
 UnknownUtilityCategory="Pistol"
