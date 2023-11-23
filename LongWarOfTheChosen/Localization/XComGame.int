@@ -1167,7 +1167,7 @@ AbilityDescName="crossbow"
 [Vektor_LS X2WeaponTemplate]
 FriendlyName="Laser Vektor Rifle"
 FriendlyNamePlural="Laser Vektor Rifles"
-BriefSummary="An experimental laser weapon design originating all the way from old-world russia, the Laser Vektor Rifle is close in performance to the traditional marksman rifles used by the Reapers. Now updated with modern alloy shielding and a compact power source, it is quite a formidable weapon in the hands of a skilled sniper."
+BriefSummary="An experimental laser weapon design originating all the way from old-world Russia, the Laser Vektor Rifle is close in performance to the traditional marksman rifles used by the Reapers. Now updated with modern alloy shielding and a compact power source, it is quite a formidable weapon in the hands of a skilled sniper."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.<br/><Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
 AbilityDescName="vektor rifle"
 
