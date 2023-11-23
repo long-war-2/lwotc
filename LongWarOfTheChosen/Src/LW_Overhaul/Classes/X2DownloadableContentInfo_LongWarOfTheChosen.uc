@@ -3832,6 +3832,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'UNSTOPPABLE_MIN_MOB':
 			Outstring = string(class'X2Ability_LW_ChosenAbilities'.default.UNSTOPPABLE_MIN_MOB);
 			return true;
+		case 'ROUST_DIRECT_APPLY_CHANCE':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_DIRECT_APPLY_CHANCE);
+			return true;
+		case 'ROUST_DAMAGE_PENALTY':
+			Outstring = string(int(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_DAMAGE_PENALTY * 100));
+			return true;
 		case 'NAPALM_X_BASEVALUE':
 			Outstring = string(class'X2AbilityToHitCalc_StatCheck_LWFlamethrower'.default.BaseValue);
 			return true;

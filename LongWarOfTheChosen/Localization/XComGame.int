@@ -196,8 +196,8 @@ LocPromotionPopupText="<Bullet/> Your flamethrower has an increased range and co
 LocFriendlyName="Roust"
 LocFlyOverText="Roust"
 LocLongDescription="Special Flamethrower shot that deals limited damage but forces enemies to change their position."
-LocHelpText="Special flamethrower shot that forces enemies to change their location."
-LocPromotionPopupText="<Bullet/> Has a 75% chance to set enemies in the area of effect on fire and deals limited damage.<br/><Bullet/> The narrow jet of flame has less impact on the environment.<br/><Bullet/> Units hit by the shot will be forced to move, often triggering overwatch fire.<br/><Bullet/> One use per mission, but can gain an additional use with additional gear.<br/><Bullet/> Cannot be used from concealment."
+LocHelpText="Special Flamethrower shot that deals limited damage but forces enemies to change their position."
+LocPromotionPopupText="<Bullet/> Has a <Ability:ROUST_DIRECT_APPLY_CHANCE>% chance to set enemies in the area of effect on fire and deals <Ability:ROUST_DAMAGE_PENALTY>% reduced damage.<br/><Bullet/> The narrow jet of flame has less impact on the environment.<br/><Bullet/> Units hit by the shot will be forced to move, often triggering overwatch fire.<br/><Bullet/> One use per mission, but can gain an additional use with additional gear.<br/><Bullet/> Cannot be used from concealment."
 
 ; LWOTC Needs Translation (2)
 [Burnout X2AbilityTemplate]
