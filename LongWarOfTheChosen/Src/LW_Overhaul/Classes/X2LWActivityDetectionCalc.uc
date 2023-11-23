@@ -130,7 +130,7 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
 
-	local TDateTime GameStartDate, CurrentDate;
+	local TDateTime GameStartDate;
 	local int TimeToDays;
 
 	ResourcePool = ActivityState.MissionResourcePool;
@@ -173,11 +173,10 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 					class'X2StrategyGameRulesetDataStructures'.default.START_DAY,
 					class'X2StrategyGameRulesetDataStructures'.default.START_YEAR );
 		
-		CurrentDate = `STRATEGYRULES.GameTime;
+		// Compares date the activity was started to start date.
+		TimeToDays = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInDays( ActivityState.DateTimeStarted, GameStartDate );
 
-		TimeToDays = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInDays( CurrentDate, GameStartDate );
-
-		//If we're within the time period
+		//If we're within the time period, boost the detection.
 		if(TimeToDays <= default.EARLY_DETECTION_DAYS)
 		{
 			DetectionChance += default.EARLY_DETECTION_CHANCE_BOOST;
