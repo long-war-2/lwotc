@@ -2098,7 +2098,7 @@ static function AddObjectivesToParcels()
 			// Exclude Sewer maps so that Tunnels don't dominate the map pool quite so hard.
 			if (PlotDef.strType == "Tunnels_Sewer")
 			{
-				//Convert them to Subway instead to group them together in one category.
+				//Convert them to Subway instead to group them together in one category if the player wants.
 				if(default.bSewersToSubway)
 				{
 					ParcelMgr.arrPlots[i].strType = "Tunnels_Subway";
