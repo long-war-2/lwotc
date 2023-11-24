@@ -42,4 +42,4 @@ static function EventListenerReturn OnUnitTakeEffectDamage(Object EventData, Obj
 	`GAMERULES.SubmitGameState(NewGameState);
 
     return ELR_NoInterrupt;
-}	
+}
