@@ -124,6 +124,8 @@ var config array<Name> SitrepsToDisable;
 
 var config bool bDisableRespeccingTemplars;
 
+var config bool bSewersToSubway;
+
 // End data and data structures
 //-----------------------------
 
@@ -2096,7 +2098,15 @@ static function AddObjectivesToParcels()
 			// Exclude Sewer maps so that Tunnels don't dominate the map pool quite so hard.
 			if (PlotDef.strType == "Tunnels_Sewer")
 			{
-				ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+				//Convert them to Subway instead to group them together in one category.
+				if(default.bSewersToSubway)
+				{
+					ParcelMgr.arrPlots[i].strType = "Tunnels_Subway";
+				}
+				else
+				{
+					ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+				}
 			}
 		}
 
