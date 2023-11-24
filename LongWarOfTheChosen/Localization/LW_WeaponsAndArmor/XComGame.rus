@@ -9,9 +9,9 @@ LocPromotionPopupText="<Bullet/> Бросок ножа не снимает Те�
 [KnifeJuggler_LW X2AbilityTemplate]
 LocFriendlyName="Мастер ножей"
 LocFlyOverText="Мастер ножей"
-LocLongDescription="Добавляет +<Ability:KnifeJugglerBonusDamage/> урона к броскам ножей и добавляет <Ability:KnifeJugglerExtraAmmo/> дополнительных."
-LocHelpText="Добавляет +<Ability:KnifeJugglerBonusDamage/> урона к броскам ножей и добавляет <Ability:KnifeJugglerExtraAmmo/> дополнительных."
-LocPromotionPopupText="<Bullet/> Добавляет +<Ability:KnifeJugglerBonusDamage/> урона к броскам ножей.<br/><Bullet/> И добавляет <Ability:KnifeJugglerExtraAmmo/> дополнительных."
+LocLongDescription="Добавляет +<Ability:KnifeJugglerBonusDamage/> урона к броскам ножей и добавляет <Ability:KnifeJugglerExtraAmmo/> дополнительно к запасу ножей и ещё 1 за каждое убийство из основного оружия."
+LocHelpText="Добавляет +<Ability:KnifeJugglerBonusDamage/> урона к броскам ножей и добавляет <Ability:KnifeJugglerExtraAmmo/> дополнительно к запасу ножей и ещё 1 за каждое убийство из основного оружия."
+LocPromotionPopupText="<Bullet/> Добавляет +<Ability:KnifeJugglerBonusDamage/> урона к броскам ножей.<br/><Bullet/> И добавляет <Ability:KnifeJugglerExtraAmmo/> дополнительно к запасу ножей и ещё 1 за каждое убийство из основного оружия."
 
 [Hailstorm_LW X2AbilityTemplate]
 LocFriendlyName="Железный ливень"
