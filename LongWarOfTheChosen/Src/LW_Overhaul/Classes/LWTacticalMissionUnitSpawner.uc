@@ -461,6 +461,7 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 	local StateObjectReference ItemReference;
 	local XComGameState_Item ItemState;
 	local XComGameState_BattleData BattleData;
+	//local XComGameState_HeadquartersXCom XComHQ;
 	local bool FoundTile;
 
 	if (!Outpost.HasLiaison())
@@ -521,7 +522,11 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		// captures, shaken effects, etc.
 		if (Unit.IsSoldier())
 		{
+			// needed?
+			//XComHQ = XComGameState_HeadquartersXCom(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersXCom', `XCOMHQ.ObjectID));
+			//XComHQ.Squad.AddItem(Unit.GetReference());
 			Unit.bSpawnedFromAvenger = true;
+			
 		}
 		Unit.SetVisibilityLocation(UnitTile);
 
@@ -539,14 +544,16 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		XComGameStateContext_TacticalGameRule(NewGameState.GetContext()).UnitRef = Unit.GetReference();
 		`TACTICALRULES.SubmitGameState(NewGameState);
 
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Initialize Unit Abilities");
+
 		 // make sure the visualizer has been created so self-applied abilities have a target in the world
 	   Unit.FindOrCreateVisualizer(NewGameState);
 
 		// add abilities
 		// Must happen after unit is submitted, or it gets confused about when the unit is in play or not 
 		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Adding Liaison Unit Abilities");
-		Unit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', Unit.ObjectID));
-		NewGameState.AddStateObject(Unit);
+		
+		Unit = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', Unit.ObjectID));
 		// add the items to the gamestate for ammo merging
 		foreach Unit.InventoryItems(ItemReference)
 		{
@@ -565,7 +572,8 @@ static function LoadLiaisonFromOutpost(XComGameState_LWOutpost Outpost,
 		}
 
 		`TACTICALRULES.SubmitGameState(NewGameState);
-		Unit.OnBeginTacticalPlay(NewGameState);
+		// Pavonis plz why is this here.
+		//Unit.OnBeginTacticalPlay(NewGameState);
 	}
 }
 
