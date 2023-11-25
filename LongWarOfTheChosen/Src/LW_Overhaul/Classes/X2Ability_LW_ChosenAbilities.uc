@@ -1647,6 +1647,12 @@ static function X2DataTemplate CreateChosenKidnap()
 	RemoveEffects.EffectNamesToRemove.AddItem('BloodThirst');
 	Template.AddShooterEffect(RemoveEffects);
 
+	// Clear bleedout from the target unit?
+	// Being done in ChosenKidnapTarget_AddedFn anyways.
+	//RemoveEffects = new class'X2Effect_RemoveEffects';
+	//RemoveEffects.EffectNamesToRemove.AddItem(class'X2StatusEffects'.default.BleedingOutName);
+	//Template.AddTargetEffect(RemoveEffects);
+
 	// Cannot target units being carried.
 	ExcludeEffects = new class'X2Condition_UnitEffects';
 	ExcludeEffects.AddExcludeEffect(class'X2Ability_CarryUnit'.default.CarryUnitEffectName, 'AA_UnitIsImmune');
@@ -1689,10 +1695,19 @@ static function ChosenKidnapTarget_AddedFn(X2Effect_Persistent PersistentEffect,
 {
 	local XComGameState_Unit KidnappedUnitState;
 	local X2EventManager EventManager;
+	local XComGameState_Effect BleedOutEffect;
 
 	EventManager = `XEVENTMGR;
 
 	KidnappedUnitState = XComGameState_Unit(kNewTargetState);
+
+	if (KidnappedUnitState.IsBleedingOut())
+	{
+				//  cleanse the effect so the unit is rendered unconscious
+		BleedOutEffect = KidnappedUnitState.GetUnitAffectedByEffectState(class'X2StatusEffects'.default.BleedingOutName);
+		BleedOutEffect.RemoveEffect(NewGameState, NewGameState, true);
+	}
+	
 	EventManager.TriggerEvent('UnitRemovedFromPlay', KidnappedUnitState, KidnappedUnitState, NewGameState);
 	EventManager.TriggerEvent('UnitCaptured', KidnappedUnitState, KidnappedUnitState, NewGameState);
 }
