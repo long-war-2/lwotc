@@ -34,21 +34,21 @@ LocPromotionPopupText="<Bullet/> Has just one charge and does not consume any st
 FriendlyName="Throwing Knife"
 FriendlyNamePlural="Throwing Knives"
 BriefSummary="A throwing knife made of our most advanced conventional steel alloys."
-TacticalText="<Bullet/> Throwing a knife will not break Shadow.<br/><Bullet/> Has a <Ability:THROWING_KNIFE_CV_BLEED_CHANCE/>% chance to cause bleeding, which deals <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> damage each turn for <Ability:THROWING_KNIFE_CV_BLEED_DURATION/> turn(s)."
+TacticalText="<Bullet/> Throwing a knife breaks concealment, but not Shadow.<br/><Bullet/> Has a <Ability:THROWING_KNIFE_CV_BLEED_CHANCE/>% chance to cause bleeding, which deals <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> damage each turn for <Ability:THROWING_KNIFE_CV_BLEED_DURATION/> turn(s)."
 AbilityDescName="throwing knife"
 
 [ThrowingKnife_MG_Secondary X2WeaponTemplate]
 FriendlyName="Alloy Throwing Knife"
 FriendlyNamePlural="Alloy Throwing Knives"
 BriefSummary="A throwing knife made of alien alloys."
-TacticalText="<Bullet/> Throwing a knife will not break Shadow.<br/><Bullet/> Has a <Ability:THROWING_KNIFE_MG_BLEED_CHANCE/>% chance to cause bleeding, which deals <Ability:THROWING_KNIFE_MG_BLEED_DAMAGE/> damage each turn for <Ability:THROWING_KNIFE_MG_BLEED_DURATION/> turn(s)."
+TacticalText="<Bullet/> Throwing a knife breaks concealment, but not Shadow.<br/><Bullet/> Has a <Ability:THROWING_KNIFE_MG_BLEED_CHANCE/>% chance to cause bleeding, which deals <Ability:THROWING_KNIFE_MG_BLEED_DAMAGE/> damage each turn for <Ability:THROWING_KNIFE_MG_BLEED_DURATION/> turn(s)."
 AbilityDescName="throwing knife"
 
 [ThrowingKnife_BM_Secondary X2WeaponTemplate]
 FriendlyName="Plasma Throwing Knife"
 FriendlyNamePlural="Plasma Throwing Knives"
 BriefSummary="A throwing knife with a plasma edge that cuts through armor like butter."
-TacticalText="<Bullet/> Throwing a knife will not break Shadow.<br/><Bullet/> Has a <Ability:THROWING_KNIFE_BM_BLEED_CHANCE/>% chance to cause bleeding, which deals <Ability:THROWING_KNIFE_BM_BLEED_DAMAGE/> damage each turn for <Ability:THROWING_KNIFE_BM_BLEED_DURATION/> turn(s)."
+TacticalText="<Bullet/> Throwing a knife breaks concealment, but not Shadow.<br/><Bullet/> Has a <Ability:THROWING_KNIFE_BM_BLEED_CHANCE/>% chance to cause bleeding, which deals <Ability:THROWING_KNIFE_BM_BLEED_DAMAGE/> damage each turn for <Ability:THROWING_KNIFE_BM_BLEED_DURATION/> turn(s)."
 AbilityDescName="throwing knife"
 ; End Translation (2)
 
