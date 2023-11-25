@@ -2,8 +2,8 @@
 [MusashiThrowKnifeSecondary_LW X2AbilityTemplate]
 LocFriendlyName="Throw Knife"
 LocFlyOverText="Throw Knife"
-LocLongDescription="Throws a single throwing knife at the target. Guaranteed to remain in Shadow."
-LocHelpText="Throws a single throwing knife at the target. Guaranteed to remain in Shadow."
+LocLongDescription="Throws a single throwing knife at the target. Breaks concealment, but not Shadow."
+LocHelpText="Throws a single throwing knife at the target. Breaks concealment, but not Shadow."
 LocPromotionPopupText="<Bullet/> Throwing a knife will not break Shadow or attract the Lost.<br/><Bullet/> This ability will break concealment."
 
 [KnifeJuggler_LW X2AbilityTemplate]
