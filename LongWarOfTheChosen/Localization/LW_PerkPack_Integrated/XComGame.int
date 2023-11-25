@@ -1612,3 +1612,9 @@ RandomNicknames_Female[3]="Iron Maiden"
 RandomNicknames_Female[4]="Shieldmaiden"
 RandomNickNames_Female[5]="Valkyrie"
 ;ALPHABETICAL ORDER
+
+; map name loc
+
+[XComGame.X2MPData_Shell]
+arrMPMapFriendlyNames[9]="Underground"
+arrMPMapFriendlyNames[10]="Underground"
