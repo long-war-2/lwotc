@@ -2286,6 +2286,9 @@ function GeneralCharacterMod(X2CharacterTemplate Template, int Difficulty)
 			// make them move before chosen
 			Template.InitiativePriority = -101;
 			break;
+		case 'HostileVIPCivilian':
+			Template.Abilities.AddItem('Shadowstep');
+			break;
 		default:
 			break;
 	}
