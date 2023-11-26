@@ -602,6 +602,15 @@ LocLongDescription="Your smoke grenades confer an additional 10 defense."
 LocHelpText="Your smoke grenades confer an additional 10 defense."
 LocPromotionPopupText="<Bullet/> Your smoke grenades confer an additional 10 defense to those within the smoke, for a total of 30.<br/>"
 
+
+[Collateral_LW X2AbilityTemplate]
+LocFriendlyName="Collateral Damage"
+LocLongDescription="Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area. Deals a small amount of damage to enemies. 3-turn cooldown and uses 2 ammo."
+LocHelpText="Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area."
+LocFlyOverText="Collateral Damage"
+LocPromotionPopupText="<Bullet/> Fire a barrage of <Ability:WeaponName/> rounds to a location, destroying cover within the area.<br/><Bullet/> Deals high environmental damage to all objects in the area of effect.<br/><Bullet/> Collateral Damage does 1-2/2/2-3 damage to enemies within the area of effect depending on tier of equipped <Ability:WeaponName/>.<br/><Bullet/> Costs 2 ammo and has a 3-turn cooldown.<br/>"
+
+
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Dense Smoke Grenade"
 FriendlyNamePlural="Dense Smoke Grenades"
