@@ -490,11 +490,11 @@ LocPromotionPopupText="<Bullet/> You will parry any grazed melee attack against 
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="Flush"
-LocLongDescription="Special shot with a bonus to hit that does little or no damage but confers defense and dodge penalties and forces target to change position if it hits."
-LocHelpText="Special shot that does little or no damage but confers defense and dodge penalties and forces target to change position."
+LocLongDescription="Special shot with +<Ability:FLUSH_AIM_BONUS> aim but -<Ability:FLUSH_DAMAGE_PENALTY>% reduced damage. If it hits, the target loses -<Ability:FLUSH_DEFENSE_REDUCTION> defense, -<Ability:FLUSH_DODGE_REDUCTION> dodge, and is forced to move."
+LocHelpText="Special shot with +<Ability:FLUSH_AIM_BONUS> aim but -<Ability:FLUSH_DAMAGE_PENALTY>% reduced damage. If it hits, the target loses -<Ability:FLUSH_DEFENSE_REDUCTION> defense, -<Ability:FLUSH_DODGE_REDUCTION> dodge, and is forced to move."
 LocFlyOverText="Flush"
 ; LWOTC needs translation (2)
-LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> +<Ability:FLUSH_AIM_BONUS/> bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DEFENSE_REDUCTION> defense and <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> The defense and dodge debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (2)
 str_FlushEffect="Flushed"
 
