@@ -5284,9 +5284,9 @@ LocFlyOverText="Double Tap"
 [RescueProtocol X2AbilityTemplate]
 LocFriendlyName="Rescue Protocol"
 LocFlyoverText="Rescue Protocol"
-LocLongDescription="Use your Gremlin to grant a movement action to an ally and grant them a small boost to dodge and mobility."
+LocLongDescription="Use your GREMLIN to grant a movement action to an ally and grant them a small boost to dodge and mobility."
 LocHelpText="Grant a movement action to an ally and grant them a small boost to dodge and mobility."
-LocPromotionPopupText="<Bullet/> Rescue Protocol grants +<Ability:RESCUE_BONUS_DODGE/> dodge and +<Ability:RESCUE_BONUS_MOBILITY/> mobility.<br/><Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/> An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action and does not end your turn.<br/><Bullet/> Rescue Protocol has <Ability:RESCUE_CV_CHARGES/> charges per mission.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
+LocPromotionPopupText="<Bullet/> Rescue Protocol grants +<Ability:RESCUE_BONUS_DODGE/> dodge and +<Ability:RESCUE_BONUS_MOBILITY/> mobility.<br/><Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/> An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action and does not end your turn.<br/><Bullet/> Rescue Protocol has <Ability:RESCUE_CV_CHARGES/> charges per mission.<br/><Bullet/> Charges increase with improved GREMLIN technology.<br/>"
 ; End Translation (3)
 
 [Blademaster X2AbilityTemplate]
