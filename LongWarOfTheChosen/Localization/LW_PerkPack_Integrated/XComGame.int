@@ -388,9 +388,9 @@ LocPromotionPopupText="<Bullet/> Your melee attacks against biological enemies i
 LocFriendlyName="Killer Instinct"
 LocFlyOverText="Killer Instinct"
 ; LWOTC Needs Translation
-LocLongDescription="Critical Hits while Run and Gun is active do <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% more damage for the rest of the turn."
-LocHelpText="Critical Hits while Run and Gun is active do <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% more damage for the rest of the turn."
-LocPromotionPopupText="<Bullet/> Critical Hits while Run and Gun is active do <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% more damage for the rest of the turn.<br/>"
+LocLongDescription="After activating Run and Gun, your critical hits deal <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% more damage for the rest of the turn."
+LocHelpText="After activating Run and Gun, your critical hits deal <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% more damage for the rest of the turn."
+LocPromotionPopupText="<Bullet/> The damage bonus is applied multiplicatively to total damage after usual damage calculation.<br/>"
 
 
 [ExtraConditioning X2AbilityTemplate]
