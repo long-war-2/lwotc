@@ -156,7 +156,7 @@ simulated function GetDamagePreview(StateObjectReference TargetRef, XComGameStat
 	local X2Effect_Persistent EffectTemplate;
 	local int EffectDmg;
 	local EffectAppliedData TestEffectParams;
-	local DamageModifierInfo DamageModInfo;
+	//local DamageModifierInfo DamageModInfo;
 
 	MinDamagePreview = BaseDamageValue;
 	MaxDamagePreview = BaseDamageValue;
