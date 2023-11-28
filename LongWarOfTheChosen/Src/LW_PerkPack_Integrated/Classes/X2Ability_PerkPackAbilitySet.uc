@@ -6,6 +6,8 @@
 
 class X2Ability_PerkPackAbilitySet extends X2Ability config (LW_SoldierSkills);
 
+`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+
 var config int CENTERMASS_DAMAGE;
 var config int LETHAL_DAMAGE;
 var config int DOUBLE_TAP_1ST_SHOT_AIM;
@@ -122,6 +124,7 @@ var config bool NO_STANDARD_ATTACKS_WHEN_ON_FIRE;
 var config bool NO_MELEE_ATTACKS_WHEN_ON_FIRE;
 var config int BOMBARD_BONUS_RANGE_TILES;
 var config int SHARPSHOOTERAIM_CRITBONUS;
+var config int MACROPHAGES_HEAL_AMT;
 
 var config int CE_USES_PER_TURN;
 var config int CE_MAX_TILES;
@@ -4195,6 +4198,7 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 
 	MacrophagesEffect = new class'X2Effect_SmartMacrophages';
 	MacrophagesEffect.BuildPersistentEffect(1, true, false);
+	MacrophagesEffect.EffectRemovedFn = OnSmartMacrophagesRemoved;
 	MacrophagesEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(MacrophagesEffect);
 
@@ -4202,6 +4206,7 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 	DamageImmunity.ImmuneTypes.AddItem('Acid');
 	DamageImmunity.ImmuneTypes.AddItem('Poison');
 	DamageImmunity.ImmuneTypes.AddItem(class'X2Item_DefaultDamageTypes'.default.ParthenogenicPoisonType); //this is chryssalid poison, special because it spawns cocoons
+	DamageImmunity.EffectName = 'SmartMacrophagesDamageImmunity';
 	DamageImmunity.BuildPersistentEffect(1, true, false, true);
 	Template.AddTargetEffect(DamageImmunity);
 	
@@ -4209,6 +4214,47 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
+}
+
+static function OnSmartMacrophagesRemoved(X2Effect_Persistent PersistentEffect, const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed)
+{
+	local XComGameStateHistory		History;
+	local X2Effect_SmartMacrophages MacrophagesEffect;
+	local XComGameState_Unit UnitState, SourceUnitState;
+
+	`LWTrace("test Smart Macrophages listener OnSmartMacrophagesRemoved");
+
+	MacrophagesEffect = X2Effect_SmartMacrophages(PersistentEffect);
+	if( MacrophagesEffect == NONE)
+	{
+		return;
+	}
+
+	History = `XCOMHISTORY;
+	SourceUnitState = XComGameState_Unit(History.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	`PPTRACE("Smart Macrophages: TargetUnit=" $ UnitState.GetFullName() $ ", SourceUnit=" $ SourceUnitState.GetFullName());
+
+	if(!MacrophagesEffect.SmartMacrophagesEffectIsValidForSource(SourceUnitState))
+	{
+		return;
+	}
+	`PPTRACE("Smart Macrophages: Source Unit Valid.");
+
+	if(UnitState == none) { return; }
+	if(UnitState.IsDead()) { return; }
+	if(UnitState.IsBleedingOut()) { return; }
+	if(!MacrophagesEffect.CanBeHealed(UnitState)) { return; }
+
+	`PPTRACE("Smart Macrophages: Target Unit Can Be Healed.");
+	// Actually set up GameState stuff now
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+
+	`PPTRACE("Smart Macrophages : Pre update LowestHP=" $ UnitState.LowestHP);
+	UnitState.LowestHP = min(UnitState.HighestHP,  UnitState.LowestHP+ default.MACROPHAGES_HEAL_AMT);
+	`PPTRACE("Smart Macrophages : Post update LowestHP=" $ UnitState.LowestHP);
+	UnitState.ModifyCurrentStat(eStat_HP, default.MACROPHAGES_HEAL_AMT);
+
 }
 
 static function X2AbilityTemplate AddMindMergeAbility()
