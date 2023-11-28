@@ -3599,6 +3599,18 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FIRESTORM_DAMAGE_BONUS_LW':
 			Outstring = string(int(class'X2Ability_LW_TechnicalAbilitySet'.default.FIRESTORM_DAMAGE_BONUS));
 			return true;
+		case 'CERAMIC_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.CERAMIC_PLATING_HP);
+			return true;
+		case 'ALLOY_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.ALLOY_PLATING_HP);
+			return true;
+		case 'CHITIN_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.CHITIN_PLATING_HP);
+			return true;
+		case 'CARAPACE_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.CARAPACE_PLATING_HP);
+			return true;
 		case 'NANOFIBER_HEALTH_BONUS_LW':
 			Outstring = string(class'X2Ability_ItemGrantedAbilitySet'.default.NANOFIBER_VEST_HP_BONUS);
 			return true;

@@ -872,26 +872,26 @@ LocHelpText="Your shots deal +1 damage and have <Ability:VENOM_ROUNDS_APPLY_CHAN
 [Ceramic_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Ceramic Plating"
 LocFlyOverText="Ceramic Plating"
-LocLongDescription="You gain 2 ablative hit points."
-LocHelpText="You gain 2 ablative hit points."
+LocLongDescription="You gain <Ability:CERAMIC_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:CERAMIC_PLATING_HP> ablative hit points."
 
 [Alloy_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Alloy Plating"
 LocFlyOverText="Alloy Plating"
-LocLongDescription="You gain 3 ablative hit points."
-LocHelpText="You gain 3 ablative hit points."
+LocLongDescription="You gain <Ability:ALLOY_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:ALLOY_PLATING_HP> ablative hit points."
 
 [Chitin_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Chitin Plating"
 LocFlyOverText="Chitin Plating"
-LocLongDescription="You gain 4 ablative hit points."
-LocHelpText="You gain 4 ablative hit points."
+LocLongDescription="You gain <Ability:CHITIN_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:CHITIN_PLATING_HP> ablative hit points."
 
 [Carapace_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Carapace Plating"
 LocFlyOverText="Carapace Plating"
-LocLongDescription="You gain 5 ablative hit points."
-LocHelpText="You gain 5 ablative hit points."
+LocLongDescription="You gain <Ability:CARAPACE_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:CARAPACE_PLATING_HP> ablative hit points."
 
 [HazmatVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="Hazmat Vest"
@@ -1522,8 +1522,8 @@ BriefSummary="The Superior Focus sim provides the affected soldier with the best
 FriendlyName="Ceramic Plating"
 FriendlyNamePlural="Ceramic Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 2 ablative armor points."
-TacticalText="<Bullet/> Grants 2 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of Ceramic Plating HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:CERAMIC_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:CERAMIC_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of Ceramic Plating HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [ChameleonSuit X2EquipmentTemplate]
 FriendlyName="Chameleon Suit"
@@ -1535,22 +1535,22 @@ TacticalText="<Bullet/> Significantly reduces infiltration time by this unit.\n<
 FriendlyName="Alloy Plating"
 FriendlyNamePlural="Alloy Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 3 ablative armor points."
-TacticalText="<Bullet/> Grants 3 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:ALLOY_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:ALLOY_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [ChitinPlating X2EquipmentTemplate]
 FriendlyName="Chitin Plating"
 FriendlyNamePlural="Chitin Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 4 ablative armor points."
-TacticalText="<Bullet/> Grants 4 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:CHITIN_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:CHITIN_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [CarapacePlating X2EquipmentTemplate]
 FriendlyName="Carapace Plating"
 FriendlyNamePlural="Carapace Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 5 ablative armor points."
-TacticalText="<Bullet/> Grants 5 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:CARAPACE_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:CARAPACE_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [StilettoRounds X2AmmoTemplate]
 FriendlyName="Stiletto Rounds"
