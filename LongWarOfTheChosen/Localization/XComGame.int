@@ -544,11 +544,11 @@ LocPromotionPopupText="<Bullet/> Rapidly loses accuracy beyond four tiles range.
 
 [BothBarrels X2AbilityTemplate]
 LocFriendlyName="Both Barrels"
-LocLongDescription="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."
-LocHelpText="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."
+LocLongDescription="Fire both barrels of your sawed-off shotgun at nearby enemy, dealing double damage."
+LocHelpText="Fire both barrels of your sawed-off shotgun at nearby enemy, dealing double damage."
 LocFlyOverText="Both Barrels"
 ;LWOTC needs translation
-LocPromotionPopupText="<Bullet/> Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage.<br/><Bullet/> Uses <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action.<br/>"
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action.<br/>"
 ; End Translation
 
 [PumpAction X2AbilityTemplate]
