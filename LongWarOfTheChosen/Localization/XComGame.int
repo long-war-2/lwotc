@@ -607,8 +607,8 @@ LocLongDescription="Using your Holotargeter no longer automatically ends your tu
 
 [HDHolo X2AbilityTemplate]
 LocFriendlyName="HiDef Holo"
-LocLongDescription="Your Holotargeted enemies are easier to critically hit."
-LocHelpText="Your Holotargeted enemies are easier to critically hit."
+LocLongDescription="Attacks against your Holotargeted enemies have a bonus to critical chance."
+LocHelpText="Attacks against your Holotargeted enemies have a bonus to critical chance."
 LocFlyOverText="HiDef Holo"
 LocPromotionPopupText="<Bullet/> The critical hit bonus is +<Ability:HDHOLO_CV_CRIT_BONUS_LW/> with the basic Holotargeter, but improves to +<Ability:HDHOLO_MG_CRIT_BONUS_LW/> and +<Ability:HDHOLO_BM_CRIT_BONUS_LW/> with advanced technology Holotargeting devices.<br/>"
 
