@@ -935,7 +935,7 @@ LocHelpText="Grants <Ability:NEUROWHIP_PSI_BONUS> psi offense at a cost of <Abil
 FriendlyName="Pistol"
 FriendlyNamePlural="Pistols"
 UnknownUtilityCategory="Pistol"
-BriefSummary="XCOM soldiers may carry high-caliber pistols in addition to their stndard weapons. With the proper training, soldiers can pose an enormous threat at close range."
+BriefSummary="XCOM soldiers may carry high-caliber pistols in addition to their standard weapons. With the proper training, soldiers can pose an enormous threat at close range."
 TacticalText="<Bullet/> Pistols can be much more than a sidearm in the hands of a trained soldier.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
 
 [LWPistol_LS X2WeaponTemplate]
