@@ -3676,6 +3676,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'NEEDLE_BONUS_UNARMORED_DMG_LW': // Needle Grenades
 			Outstring = string(class'X2Ability_LW_GrenadierAbilitySet'.default.NEEDLE_BONUS_UNARMORED_DMG);
 			return true;
+		case 'BOMBARD_BONUS_RANGE_TILES': // Needle Grenades
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.BOMBARD_BONUS_RANGE_TILES);
+			return true;
 		case 'BLUESCREENBOMB_HACK_DEFENSE_CHANGE_LW':
 			Outstring = string(-class'X2Ability_LW_GrenadierAbilitySet'.default.BLUESCREENBOMB_HACK_DEFENSE_CHANGE);
 			return true;

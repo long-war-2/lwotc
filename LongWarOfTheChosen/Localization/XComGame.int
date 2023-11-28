@@ -424,10 +424,10 @@ LocPromotionPopupText="<Bullet/> Grenades that do not innately shred any armor d
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
 ; LWOTC Needs Translation (2)
-LocLongDescription="You may throw or launch grenades two additional tiles."
-LocHelpText="You may throw or launch grenades two additional tiles."
+LocLongDescription="You may throw or launch grenades <Ability:BOMBARD_BONUS_RANGE_TILES> additional tiles."
+LocHelpText="You may throw or launch grenades <Ability:BOMBARD_BONUS_RANGE_TILES> additional tiles."
 LocFlyOverText="Bombardier"
-LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades.<br/>"
+LocPromotionPopupText="<Bullet/> This includes both launched and thrown grenades."
 ; End Translation (2)
 
 [BluescreenBombs X2AbilityTemplate]
