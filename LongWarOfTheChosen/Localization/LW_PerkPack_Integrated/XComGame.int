@@ -257,18 +257,18 @@ LocPromotionPopupText="<Bullet/> This is a special shot in which the soldier adj
 LocFriendlyName="Precision Shot"
 LocFlyOverText="Precision Shot"
 ; LWOTC needs translation (2)
-LocLongDescription="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocHelpText="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage.<br/><Bullet/> Precision Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocLongDescription="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> crit chance that deals <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% more damage if it crits. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> crit chance that deals <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% more damage if it crits. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> The damage bonus is applied multiplicatively to total damage after usual damage calculation."
 ; End translation (2)
 
 [PrecisionShotSnapShot X2AbilityTemplate]
 LocFriendlyName="Precision Shot (Snap Shot)"
 LocFlyOverText="Precision Shot (Snap Shot)"
 ; LWOTC needs translation (2)
-LocLongDescription="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocHelpText="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage.<br/><Bullet/> Precision Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocLongDescription="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> crit chance that deals <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% more damage if it crits. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> crit chance that deals <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% more damage if it crits. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> The damage bonus is applied multiplicatively to total damage after usual damage calculation."
 ; End translation (2)
 
 [CyclicFire X2AbilityTemplate]
