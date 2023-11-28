@@ -3620,6 +3620,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'PLATED_CRITDEF_BONUS':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.PLATED_CRITDEF_BONUS);
 			return true;
+		case 'HAZMAT_VEST_HP_BONUS':
+			Outstring = string(class'X2Ability_ItemGrantedAbilitySet'.default.HAZMAT_VEST_HP_BONUS);
+			return true;
 		case 'RESILIENCE_BONUS_LW':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.RESILIENCE_CRITDEF_BONUS);
 			return true;

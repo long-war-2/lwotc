@@ -896,8 +896,8 @@ LocHelpText="You gain <Ability:CARAPACE_PLATING_HP> ablative hit points."
 [HazmatVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="Hazmat Vest"
 LocFlyOverText="Hazmat Vest"
-LocLongDescription="Grants 3 hit points and confers immunity to fire, acid and poison."
-LocHelpText="Grants 3 hit points and confers immunity to fire, acid and poison."
+LocLongDescription="Grants <Ability:HAZMAT_VEST_HP_BONUS> hit points and confers immunity to fire, acid and poison."
+LocHelpText="Grants <Ability:HAZMAT_VEST_HP_BONUS> hit points and confers immunity to fire, acid and poison."
 
 [NanofiberVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="Nanoscale Vest"
@@ -1433,7 +1433,7 @@ TacticalText="<Bullet/> Grants 3 hit points to the soldier.\n<Bullet/> Provides 
 FriendlyName="Hazmat Vest"
 FriendlyNamePlural="Hazmat Vests"
 BriefSummary="By reinforcing the Nanoscale Vest with specialized materials, we are able to make our soldiers completely resistant to any environmental hazards like fire, acid or poison."
-TacticalText="<Bullet/> Increases soldier health by 3.\n<Bullet/> Provides immunity to fire, acid and poison.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Increases soldier health by <Ability:HAZMAT_VEST_HP_BONUS>.\n<Bullet/> Provides immunity to fire, acid and poison.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [Hellweave X2EquipmentTemplate]
 FriendlyName="Hellweave Vest"
