@@ -878,10 +878,10 @@ LocPromotionPopupText="<Bullet/> Death From Above can combo well with pistol abi
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
 LocFriendlyName="Implacable"
-LocLongDescription="If you score one or more kills on your turn, you are granted a single bonus move."
+LocLongDescription="Once per turn, killing an enemy grants you a movement-only action point."
 LocHelpText="Gain up to one move per turn after making a kill."
 LocFlyOverText="Implacable"
-LocPromotionPopupText="<Bullet/> The Fleche ability cannot be used after gaining a bonus move from Implacable.<br/>"
+LocPromotionPopupText=""
 
 [XComGame.VolatileMix X2AbilityTemplate]
 [VolatileMix X2AbilityTemplate]
