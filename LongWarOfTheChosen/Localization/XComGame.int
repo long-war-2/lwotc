@@ -969,13 +969,15 @@ TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage
 
 [AlienHunterPistol_CV X2WeaponTemplate]
 UnknownUtilityCategory="Pistol"
+TacticalText="<Bullet/> Shadowkeeper's strength is comparable to a conventional pistol, but has improved aim and chance to critical hit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit."
 
 [AlienHunterPistol_MG X2WeaponTemplate]
 UnknownUtilityCategory="Pistol"
+TacticalText="<Bullet/> Enhanced Shadowkeeper's strength is comparable to a Mag Pistol, but has improved aim and chance to critical hit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
 
 [AlienHunterPistol_BM X2WeaponTemplate]
 UnknownUtilityCategory="Pistol"
-TacticalText="<Bullet/> Powered Shadowkeeper's strength is comparable to a Plasma Pistol, but has improved aim and chance to critical hit.\n<Bullet/> Unlike the sniper rifle, pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
+TacticalText="<Bullet/> Powered Shadowkeeper's strength is comparable to a Plasma Pistol, but has improved aim and chance to critical hit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
 
 [SawedOffShotgun_CV X2WeaponTemplate]
 FriendlyName="Sawed-Off Shotgun"
