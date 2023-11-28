@@ -556,7 +556,7 @@ LocFriendlyName="Pump Action"
 LocLongDescription="Gain two extra ammo in your sawed-off shotgun."
 LocHelpText="Gain two extra ammo in your sawed-off shotgun."
 LocFlyOverText="Pump Action"
-LocPromotionPopupText="<Bullet/> Gain two extra ammo in your sawed-off shotgun.<br/>"
+LocPromotionPopupText=""
 
 [Fortify X2AbilityTemplate]
 LocFriendlyName="Fortify"
