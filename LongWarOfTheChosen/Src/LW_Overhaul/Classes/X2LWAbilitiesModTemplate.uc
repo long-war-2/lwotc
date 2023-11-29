@@ -1110,6 +1110,7 @@ static function ReworkPartingSilk(X2AbilityTemplate Template)
 		if (Condition.IsA('X2Condition_UnitProperty'))
 		{
 			X2Condition_UnitProperty(Condition).RequireUnitSelectedFromHQ = false;
+			X2Condition_UnitProperty(Condition).ExcludeRobotic = false;
 		}
 	}
 
