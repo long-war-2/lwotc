@@ -366,8 +366,8 @@ Description="Take control of this unit for rest of the mission and gain stat bon
 
 ; LWOTC Needs Translation (3)
 [ScanningProtocol X2AbilityTemplate]
-LocLongDescription="The GREMLIN can trigger an instant scan of the area, increasing the Specialist's sight radius substantially for one turn, and revealing any hidden or disguised enemies in view. Free Action."
-LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved Gremlins.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the Specialist is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
+LocLongDescription="The GREMLIN can trigger an instant scan of the area, increasing the <Ability:ClassName>'s sight radius substantially for one turn, and revealing any hidden or disguised enemies in view. Free Action."
+LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved GREMLINs.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the Specialist is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
 ; End Translation (3)
 
 ; End translation
