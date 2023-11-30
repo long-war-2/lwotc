@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC27 Changes:"
-strMessage_Body = "<ul><li>Fixed issue with Smart Macrophages PCS wound reduction effect not always working.</li><li>Dark VIPs now have Shadowstep so them running doesn't trigger overwatch (XCOM soldiers are briefed not to kill VIP unless absolutely necessary).</li><li>Updated the newer network tower maps to stop Advent from patrolling onto the spawn buildings.</li><li>Messed with Kismet in attempt to ensure 18 crates always spawn on the large supply extraction mission.</li><li>More Localization updates.</li></ul>"
+strMessage_Header = "RC28 Changes:"
+strMessage_Body = "<ul><li>Prevented Wounded units that have Conditioning PCSs equipped from being able to swap their PCS to avoid issues where unequipping the PCS can put the unit's HP below 0</li><li>Warlock HP reduced by 14% at all levels for all difficulties.</li><li>Assassin is now allowed to melee robotic units.</li><li>Assassin can no longer use Vanishing Wind when flanked.</li><li>Added a new sewer map that can be tested by turning on the new toggle. Depending on feedback, it may be classed as Subway in a future release.</li></ul>"
 strDismiss_Button = "OK"
