@@ -7457,3 +7457,6 @@ LocLongDescription="The unit would have died, but was saved and put into Stasis 
 LocHelpText="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
 ; End Translation
 
+[X2MPData_Shell]
+arrMPMapFriendlyNames[9]="Underground"
+arrMPMapFriendlyNames[10]="Underground"
