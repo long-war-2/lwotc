@@ -3512,6 +3512,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FLECHETTE_BONUS_DMG':
 			OutString = string(class'X2Item_LWUtilityItems'.default.FLECHETTE_BONUS_DMG);
 			return true;
+		case 'NEUROWHIP_PSI_BONUS':
+			OutString = string(class'X2Item_LWUtilityItems'.default.NEUROWHIP_PSI_BONUS);
+			return true;
+		case 'NEUROWHIP_WILL_MALUS':
+			OutString = string(class'X2Item_LWUtilityItems'.default.NEUROWHIP_WILL_MALUS);
+			return true;
 		case 'DRAGON_ROUNDS_APPLY_CHANCE':
 			OutString = string(class'LWTemplateMods'.default.DRAGON_ROUNDS_APPLY_CHANCE);
 			return true;

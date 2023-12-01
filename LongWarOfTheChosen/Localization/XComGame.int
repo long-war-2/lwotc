@@ -926,8 +926,8 @@ LocHelpText="This soldier will not take reaction shots with less than a 75% chan
 [Neurowhip_Ability X2AbilityTemplate]
 LocFriendlyName="Neurowhip"
 LocFlyoverText="Neurowhip"
-LocLongDescription="Grants 10 psi offense at a cost of 10 will."
-LocHelpText="Grants 10 psi offense at a cost of 10 will."
+LocLongDescription="Grants <Ability:NEUROWHIP_PSI_BONUS> psi offense at a cost of <Ability:NEUROWHIP_WILL_MALUS> will."
+LocHelpText="Grants <Ability:NEUROWHIP_PSI_BONUS> psi offense at a cost of <Ability:NEUROWHIP_WILL_MALUS> will."
 
 ;;;;;;;;;;;;;;;;;;;;  ITEM TEMPLATES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -1603,7 +1603,7 @@ TacticalText="<Bullet/> Grants a second standard rocket for the Technical's rock
 FriendlyName="Neurowhip"
 FriendlyNamePlural="Neurowhip"
 BriefSummary="Grants a bonus to Psi abilities at a cost to Will."
-TacticalText="<Bullet/> Grants 10 Psi Offense to the soldier, at a cost of 10 will."
+TacticalText="<Bullet/> Grants <Ability:NEUROWHIP_PSI_BONUS> Psi Offense to the soldier, at a cost of <Ability:NEUROWHIP_WILL_MALUS> will."
 UnknownUtilityCategory="Neurowhip"
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
