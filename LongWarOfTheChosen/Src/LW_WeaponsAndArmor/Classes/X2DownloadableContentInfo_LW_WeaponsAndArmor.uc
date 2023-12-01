@@ -272,6 +272,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'THROWING_KNIFE_BM_BLEED_DAMAGE':
 			OutString = string(class'X2Item_SecondaryThrowingKnives'.default.THROWING_KNIFE_BM_BLEED_DAMAGE);
 			return true;
+		case 'KNIFE_ENCOUNTERS_MAX_TILES':
+			OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.KNIFE_ENCOUNTERS_MAX_TILES);
+			return true;
+		case 'KNIFE_ENCOUNTERS_BANISHER_MAX_TILES':
+			OutString = string(class'X2Ability_ThrowingKnifeAbilitySet'.default.KNIFE_ENCOUNTERS_BANISHER_MAX_TILES);
+			return true;
 	}
 
 	return false;
