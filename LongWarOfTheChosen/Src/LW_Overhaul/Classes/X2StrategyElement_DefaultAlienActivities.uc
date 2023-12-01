@@ -3194,7 +3194,7 @@ static function X2DataTemplate CreateCovertOpsTroopManeuversTemplate()
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, 'CovertOpsTroopManeuvers');
 
 	MissionLayer.MissionFamilies.AddItem('CovertOpsTroopManeuvers_LW');
-	MissionLayer.Duration_Hours = 24*5;
+	MissionLayer.Duration_Hours = 24*5.5;
 	MissionLayer.DurationRand_Hours = 24;
 	MissionLayer.BaseInfiltrationModifier_Hours=-24;
     Template.MissionTree.AddItem(MissionLayer);
