@@ -6751,3 +6751,99 @@ LocHelpText="Die Einheit wäre gestorben, wurde jedoch gerettet und für 1 Runde
 [UITacticalHUD_ShotHUD]
 m_sShotChanceLabel="TREFFER"
 m_sCritChanceLabel="KRIT"
+
+[Overdrive X2AbilityTemplate]
+LocFriendlyName="Übersteuerung"
+LocLongDescription="Du erhältst in dieser Runde drei Aktionen und keine Aktion beendet deine Runde. Mehrfache Standardschüsse unterliegen einem kleinen Rückstoßabzug."
+LocHelpText="Du erhältst in dieser Runde drei Aktionen und keine Aktion beendet deine Runde. Mehrfache Standardschüsse unterliegen einem kleinen Rückstoßabzug."
+LocPromotionPopupText="<Bullet/> Solange Übersteuerung aktiv ist, wirst du nach jedem Standardschuss mit einem Rückstoßabzug in Höhe von <Ability:Overdrive_RecoilPenalty/> % belegt.<br/><Bullet/> Das Aktivieren von Übersteuerung ist kostenlos, löst jedoch eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden aus.<br/>"
+
+[Bulwark X2AbilityTemplate]
+LocFriendlyName="Schutzwehr"
+LocLongDescription="Du erhältst einen zusätzlichen Rüstungspunkt und gewährst allen angrenzenden Truppmitgliedern jederzeit volle Deckung."
+LocHelpText="Du erhältst einen zusätzlichen Rüstungspunkt und gewährst allen angrenzenden Truppmitgliedern jederzeit volle Deckung."
+LocPromotionPopupText="<Bullet/> Schutzwehr gewährt einen zusätzlichen Rüstungspunkt.<br/><Bullet/> Jedes Truppmitglied, das direkt neben dem SPARK steht, erhält den Verteidigungsbonus für volle Deckung.<br/>"
+
+[Arsenal X2AbilityTemplate]
+LocFriendlyName="Arsenal"
+LocLongDescription="Die BIT-Drohne kann schwere Waffen tragen und abfeuern."
+LocHelpText="Die BIT-Drohne kann schwere Waffen tragen und abfeuern."
+LocPromotionPopupText="<Bullet/> Arsenal ermöglicht der SPARK-Einheit das Tragen von schweren Waffen in ihrer Ausrüstung.<br/>"
+
+[Rainmaker X2AbilityTemplate]
+LocFriendlyName="Regenmacher"
+LocLongDescription="Ausgerüstete schwere Waffen richten +<Ability:Rainmaker_BonusDamage/> zusätzlichen Schaden an und verfügen über größere Wirkungsbereiche."
+LocHelpText="Ausgerüstete schwere Waffen richten mehr Schaden an und verfügen über größere Wirkungsbereiche."
+LocPromotionPopupText="<Bullet/> Regenmacher erhöht den Schaden aller schweren Waffen um +<Ability:Rainmaker_BonusDamage/>.<br/><Bullet/> Bei schweren Waffen mit kreisförmigen Wirkungsbereichen wird der Radius um +<Ability:Rainmaker_BonusRadius/> vergrößert.<br/><Bullet/> Bei Waffen mit kegelförmigen Wirkungsbereichen steigt der Durchmesser um +<Ability:Rainmaker_BonusDiameter/> und die Länge um +<Ability:Rainmaker_BonusLength/>.<br/>"
+
+[Intimidate X2AbilityTemplate]
+LocFriendlyName="Einschüchtern"
+LocLongDescription="Wenn du unter feindlichen Beschuss gerätst, besteht beim Feind die Chance, dass er in Panik gerät."
+LocHelpText="Wenn du unter feindlichen Beschuss gerätst, besteht beim Feind die Chance, dass er in Panik gerät."
+LocFlyOverText="Einschüchtern"
+LocPromotionPopupText="<Bullet/> Die Wahrscheinlichkeit, einen Angreifer mit Einschüchtern in Panik zu versetzen, steigt mit der Rüstungsstufe des SPARK.<br/><Bullet/> Einschüchtern kann durch Nahkampf- und Flächenangriffe ausgelöst werden.<br/><Bullet/> Einschüchtern wird nicht von Feuerschutz-Schüssen ausgelöst.<br/>"
+
+[IntimidateTrigger X2AbilityTemplate]
+LocFriendlyName="Einschüchtern"
+LocLongDescription="Wenn du unter feindlichen Beschuss gerätst, besteht bei allen sichtbaren Gegnern die Chance, dass sie in Panik geraten."
+LocHelpText="Wenn du unter feindlichen Beschuss gerätst, besteht bei allen sichtbaren Gegnern die Chance, dass sie in Panik geraten."
+LocFlyOverText="Einschüchtern"
+LocPromotionPopupText=""
+LocMissMessage="Einschüchtern gescheitert"
+
+[Repair X2AbilityTemplate]
+LocFriendlyName="Reparieren"
+LocLongDescription="Sende die BIT-Drohne zu einem beschädigten verbündeten Roboter aus, um ihn zu reparieren. Fortschrittliche BITs können mehr reparieren."
+LocHelpText="Sende die BIT-Drohne aus, um einen beschädigten verbündeten Roboter zu reparieren."
+LocFlyOverText="Reparieren"
+LocPromotionPopupText="<Bullet/> Reparieren stellt <Ability:Repair_HealHP/> Trefferpunkte wieder her.<br/><Bullet/> Nach der Verbesserung repariert deine BIT-Einheit mehr TP.<br/><Bullet/> Reparieren beendet deine Runde nicht, wenn es als deine erste Aktion eingesetzt wird.<br/><Bullet/> Reparieren verfügt über <Ability:Repair_Charges/> Ladungen pro Einsatz.<br/>"
+
+[AbsorptionField X2AbilityTemplate]
+LocFriendlyName="Kanalisierungsfeld"
+LocLongDescription="Bei jedem Angriff auf dich wird ein Teil der Energie in deine Waffe '<Ability:WeaponName>' kanalisiert. Diese Energie wird bei deinem nächsten Standardschuss freigesetzt."
+LocHelpText="Kanalisiere mit jedem Angriff auf dich Energie in deine <Ability:WeaponName> und setze sie mit deinem nächsten Standardschuss frei."
+LocFlyOverText="Kanalisierte Energie: +1"
+LocPromotionPopupText="<Bullet/> Jeder vom Kanalisierungsfeld kanalisierte Energiepunkt erhöht den Schaden des nächsten Angriffs mit der Waffe '<Ability:WeaponName>' um 1.<br/><Bullet/> Die im Kanalisierungsfeld gespeicherte Energie wird auch bei einem Fehlschuss freigesetzt.<br/>"
+
+[Sacrifice X2AbilityTemplate]
+LocFriendlyName="Opfern"
+LocLongDescription="Erzeuge ein Schutzfeld, das sämtliche Angriffe auf verbündete Einheiten innerhalb dieses Bereichs auf dich lenkt. Du erhältst einen Verteidigungs- und Rüstungsbonus, solange das Schutzfeld aktiv ist."
+LocHelpText="Erzeuge ein Schutzfeld, um feindliche Angriffe auf dich zu lenken."
+LocFlyOverText="Opfern"
+LocPromotionPopupText="<Bullet/> Der SPARK erhält +<Ability:Sacrifice_Defense/> Verteidigung und +<Ability:Sacrifice_Armor/> Rüstung, solange Opfern aktiv ist.<br/><Bullet/> Opfern hat eine Abklingzeit von <Ability:SelfCooldown_LW/> Runden.<br/>"
+
+[AdaptiveAim X2AbilityTemplate]
+LocFriendlyName="Adaptive Zielerfassung"
+LocLongDescription="Deine Standardschüsse erleiden keine Rückstoßabzüge, wenn Übersteuerung aktiv ist."
+LocHelpText="Deine Standardschüsse erleiden keine Rückstoßabzüge, wenn Übersteuerung aktiv ist."
+LocPromotionPopupText="<Bullet/> Die Adaptive Zielerfassung hebt den Zielsicherheitsabzug in Höhe von <Ability:Overdrive_RecoilPenalty/> % für aufeinanderfolgende Standardschüsse bei aktivierter Übersteuerung auf.<br/>"
+
+[Strike X2AbilityTemplate]
+LocFriendlyName="Attacke"
+LocLongDescription="Greife einen Gegner innerhalb der Bewegungsreichweite mit einem starken Nahkampfangriff an."
+LocHelpText="Greife einen Gegner innerhalb der Bewegungsreichweite mit einem starken Nahkampfangriff an."
+LocPromotionPopupText="<Bullet/> Du kannst die Attacke-Fähigkeit auslösen, indem du mit dem Bewegungscursor auf einen Feind zeigst.<br/><Bullet/> Ein SPARK kann eine \"Sprint\"-Bewegung durchführen und sich mit beiden Aktionen fortbewegen, dabei aber immer noch eine Attacke gegen einen Feind in der Nähe auslösen.<br/>"
+
+[WreckingBall X2AbilityTemplate]
+LocFriendlyName="Abrissbirne"
+LocLongDescription="Wenn Übersteuerung aktiv ist, kannst du beim Bewegen durch Wände und Deckungen hindurch brechen."
+LocHelpText="Wenn Übersteuerung aktiv ist, kannst du beim Bewegen durch Wände und Deckungen hindurch brechen."
+LocPromotionPopupText="<Bullet/> Abrissbirne kann genutzt werden, um Feinde für Flankenbeschuss freizulegen.<br/><Bullet/> Nutze Bewegungs-Wegpunkte, um dem SPARK eine optimale Route zur Zerstörung von Deckungen und der Umgebung vorzugeben.</br>"
+
+[Bombard X2AbilityTemplate]
+LocFriendlyName="Bombardement"
+LocLongDescription="Sende die BIT-Drohne zu einer beliebigen sichtbaren Position aus, um dort eine Explosion auszulösen. Fortschrittliche BITs verursachen mehr Schaden."
+LocHelpText="Sende die BIT-Drohne aus, um alle Einheiten innerhalb eines Bereichs mit einer Explosion zu treffen."
+LocPromotionPopupText="<Bullet/> Bombardement kann auf jede Position innerhalb der Truppsicht abgefeuert werden.<br/><Bullet/> Nach der Verbesserung richtet deine BIT-Einheit mit Bombardement mehr Schaden an.<br/>"
+
+[HunterProtocol X2AbilityTemplate]
+LocFriendlyName="Jagdprotokoll"
+LocLongDescription="Wenn ein Feind entdeckt wird, erhältst du mit einer Wahrscheinlichkeit von <Ability:HunterProtocol_Chance/> % einen kostenlosen Feuerschutzschuss."
+LocHelpText="Wenn ein Feind entdeckt wird, erhältst du mit einer Wahrscheinlichkeit von <Ability:HunterProtocol_Chance/> % einen kostenlosen Feuerschutzschuss."
+LocPromotionPopupText="<Bullet/> Das Jagdprotokoll macht den SPARK zu einer idealen Einheit für die Erkundung des Kriegsnebels, da jeder entdeckte Feind sofort angegriffen werden kann.<br/>"
+
+[Nova X2AbilityTemplate]
+LocFriendlyName="Nova"
+LocLongDescription="Setze eine Energieexplosion frei, die allen Einheiten in der Nähe Schaden zufügt. Dieser Angriff kostet keine Aktion und hat keine Abklingzeit, aber aufeinanderfolgende Novas fügen auch dem SPARK Schaden zu."
+LocHelpText="Trifft alle Einheiten in der Nähe mit einer Explosion. Aufeinanderfolgende Novas fügen auch dem SPARK Schaden zu."
+LocPromotionPopupText="<Bullet/> Nova kostet keine Aktionspunkte und hat keine Abklingzeit.<br/><Bullet/> Der erste Nova-Angriff in jedem Einsatz fügt dem SPARK noch keinen Schaden zu.<br/><Bullet/> Alle weiteren Nova-Angriffe fügen dem SPARK steigenden Schaden zu (steigt um <Ability:Nova_Damage/> pro Nova-Angriff).<br/>"

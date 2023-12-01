@@ -4727,3 +4727,99 @@ TacticalText="<Bullet/>プラズマブラスターは破壊エネルギーのビ
 
 [SparkRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/>SPARKによる使用を前提に設計された。エレリウム・フェイズキャノンこそが高威力ライフルの典型である。\n<Bullet/>特別訓練時をのぞき、メイン武器を発射するとその兵士のターンは終了する。<br/><Bullet/>プラズマ兵器は、攻撃対象への以後の攻撃に追加の1ダメージを与える。"
+
+[Overdrive X2AbilityTemplate]
+LocFriendlyName="オーバードライブ"
+LocLongDescription="このターンに3回行動する。行動によってターンが終了することはない。通常射撃を複数回行うと、若干の反動ペナルティを受ける。"
+LocHelpText="このターンに3回行動する。行動によってターンが終了することはない。通常射撃を複数回行うと、若干の反動ペナルティを受ける。"
+LocPromotionPopupText="<Bullet/>オーバードライブ発動中、通常射撃を行うごとに命中率<Ability:Overdrive_RecoilPenalty/>%の反動ペナルティを受ける。<br/><Bullet/>オーバードライブの発動に行動値は消費しないが、<Ability:SelfCooldown_LW/>ターンのクールダウンが発生する。<br/>"
+
+[Bulwark X2AbilityTemplate]
+LocFriendlyName="ブルウォーク"
+LocLongDescription="アーマーに1ポイントのボーナスがつき、隣接するすべての味方ユニットに常に高遮へい物を提供する。"
+LocHelpText="アーマーに1ポイントのボーナスがつき、隣接するすべての味方ユニットに常に高遮へい物を提供する。"
+LocPromotionPopupText="<Bullet/>ブルウォークはアーマーに1ポイント加算する。<br/><Bullet/>SPARKに隣接する味方は高遮へい物の防御ボーナスを得る。<br/>"
+
+[Arsenal X2AbilityTemplate]
+LocFriendlyName="アーセナル"
+LocLongDescription="BITが重火器を装備/発射できる。"
+LocHelpText="BITが重火器を装備/発射できる。"
+LocPromotionPopupText="<Bullet/>SPARKが重火器を装備可能になる。<br/>"
+
+[Rainmaker X2AbilityTemplate]
+LocFriendlyName="レインメーカー"
+LocLongDescription="装備している重火器のタメージが<Ability:Rainmaker_BonusDamage/>増加し、効果範囲が拡張される。"
+LocHelpText="装備している重火器のダメージが増加し、効果範囲が拡張される。"
+LocPromotionPopupText="<Bullet/>レインメーカーはすべての重火器によるダメージを<Ability:Rainmaker_BonusDamage/>加算する。<br/><Bullet/>円型の効果範囲をもつ重火器は効果半径が<Ability:Rainmaker_BonusRadius/>拡張される。<br/><Bullet/>円錐形の効果範囲をもつ重火器は効果直径+<Ability:Rainmaker_BonusDiameter/>、射程距離+<Ability:Rainmaker_BonusLength/>。<br/>"
+
+[Intimidate X2AbilityTemplate]
+LocFriendlyName="インティミデイト"
+LocLongDescription="攻撃のターゲットになると、その敵を一定確率でパニック状態にする。"
+LocHelpText="攻撃のターゲットになると、その敵を一定確率でパニック状態にする。"
+LocFlyOverText="インティミデイト"
+LocPromotionPopupText="<Bullet/>インティミデイトによって敵をパニック状態にする確率は、SPARKのアーマー値が高いほど大きくなる。<br/><Bullet/>インティミデイトは近接攻撃または範囲攻撃によって発動する。<br/><Bullet/>監視射撃の標的になった場合、インティミデイトは発動しない。<br/>"
+
+[IntimidateTrigger X2AbilityTemplate]
+LocFriendlyName="インティミデイト"
+LocLongDescription="攻撃のターゲットになると、視界内の敵を一定確率でパニック状態にする。"
+LocHelpText="攻撃のターゲットになると、視界内の敵を一定確率でパニック状態にする。"
+LocFlyOverText="インティミデイト"
+LocPromotionPopupText=""
+LocMissMessage="インティミデイト失敗"
+
+[Repair X2AbilityTemplate]
+LocFriendlyName="修復"
+LocLongDescription="BITは味方ロボットの修理を行うことができる。強化されたBITはより効果的に修理を行うことができる。"
+LocHelpText="BITは味方ロボットの修理を行うことができる。"
+LocFlyOverText="修復"
+LocPromotionPopupText="<Bullet/> 修復によって体力が<Ability:Repair_HealHP/>回復する。<br/><Bullet/>BITをアップグレードすることで修復によるHPの回復量が増加する。<br/><Bullet/>最初の行動として修復を行ってもターン終了とならない。<br/><Bullet/>修復は1ミッションにつき<Ability:Repair_Charges/>チャージ。<br/>"
+
+[AbsorptionField X2AbilityTemplate]
+LocFriendlyName="チャネリングフィールド"
+LocLongDescription="ターゲットになるたびに、そのエネルギーの一部が<Ability:WeaponName>に蓄えられ、次回通常射撃時に放出される。"
+LocHelpText="ターゲットになると、<Ability:WeaponName>にエネルギーが蓄えられ、次回通常射撃時に放出される。"
+LocFlyOverText="チャネルエネルギー：+1"
+LocPromotionPopupText="<Bullet/>チャネリングフィールドによって蓄えられたエネルギー1ポイントごとに、次の<Ability:WeaponName>による攻撃のダメージが1増加する。<br/><Bullet/>次の攻撃を外した場合でも、チャネリングフィールドに蓄えられたエネルギーは拡張する。<br/>"
+
+[Sacrifice X2AbilityTemplate]
+LocFriendlyName="サクリファイス"
+LocLongDescription="防御エリアを発生させ、エリア内にいるユニットへの攻撃をすべて引き受ける。発動中は防御力とアーマーにボーナスを得る。"
+LocHelpText="防御フィールドを発生させ、敵からの攻撃を引き受ける。"
+LocFlyOverText="サクリファイス"
+LocPromotionPopupText="<Bullet/>サクリファイス発動中はSPARKの防御力+<Ability:Sacrifice_Defense/>、アーマーが<Ability:Sacrifice_Armor/>加算される。<br/><Bullet/>サクリファイスはクールダウンに<Ability:SelfCooldown_LW/>ターンを要する。<br/>"
+
+[AdaptiveAim X2AbilityTemplate]
+LocFriendlyName="適応照準"
+LocLongDescription="オーバードライブ有効時、通常射撃の反動ペナルティがなくなる。"
+LocHelpText="オーバードライブ有効時、通常射撃の反動ペナルティがなくなる。"
+LocPromotionPopupText="<Bullet/>適応照準はオーバードライブ有効時に連続で通常射撃を行う際、<Ability:Overdrive_RecoilPenalty/>%の命中率ペナルティを除去する。<br/>"
+
+[Strike X2AbilityTemplate]
+LocFriendlyName="打撃"
+LocLongDescription="行動範囲内の敵に対して強力な近接攻撃を行うことができる。"
+LocHelpText="行動範囲内の敵に対して強力な近接攻撃を行うことができる。"
+LocPromotionPopupText="<Bullet/>打撃のアビリティは移動カーソルを敵の上に位置させることで発動できる。<br/><Bullet/>SPARKは行動値を2使って「ダッシュ」してから、隣接する敵に対して打撃を発動することができる。<br/>"
+
+[WreckingBall X2AbilityTemplate]
+LocFriendlyName="レッキング・ボール"
+LocLongDescription="オーバードライブ時、壁や遮へい物を破壊して通過できる。"
+LocHelpText="オーバードライブ時、壁や遮へい物を破壊して通過できる。"
+LocPromotionPopupText="<Bullet/>レッキング・ボールは、敵を挟撃射撃にさらすように使用できる。<br/><Bullet/>移動ウェイポイントを用いてSPARKを最適経路で誘導し、遮へい物やオブジェクトを破壊させよう。</br>"
+
+[Bombard X2AbilityTemplate]
+LocFriendlyName="ボンバード"
+LocLongDescription="BITが視界内の任意の場所で強力な爆発を引き起こす。強化されたBITはより大きなダメージを与える。"
+LocHelpText="BITが範囲内のすべての敵に爆発でダメージを与える。"
+LocPromotionPopupText="<Bullet/>部隊視界内の任意の場所を狙って発射可能。<br/><Bullet/>BITをアップグレードするとボンバードによるダメージが増加する。"
+
+[HunterProtocol X2AbilityTemplate]
+LocFriendlyName="ハンター・プロトコル"
+LocLongDescription="<Ability:HunterProtocol_Chance/>%の確率で非潜伏状態になった敵に監視射撃を行う。"
+LocHelpText="<Ability:HunterProtocol_Chance/>%の確率で非潜伏状態になった敵に監視射撃を行う。"
+LocPromotionPopupText="<Bullet/>ハンター・プロトコルによって、非潜伏状態の敵を即座に攻撃できるため、SPARKは混沌とした戦場での偵察活動に最適なユニットとなっている。<br/>"
+
+[Nova X2AbilityTemplate]
+LocFriendlyName="ノヴァ"
+LocLongDescription="エネルギーを爆発的に放出して、近くにいるすべてのユニットにダメージを与える。行動値は消費せず、クールダウン時間も発生しないが、初撃以降はノヴァを使用するたびにSPARKがダメージを受ける。"
+LocHelpText="すべてのユニットに爆発でダメージを与える。初撃以降はノヴァを使用するたびにSPARKがダメージを受ける。"
+LocPromotionPopupText="<Bullet/>ノヴァは行動値を消費せず、クールダウンもない。<br/><Bullet/> ミッション最初のノヴァ攻撃では、SPARKはダメージを受けない。<br/><Bullet/>ただし、初撃以降のノヴァ攻撃はSPARKに<Ability:Nova_Damage/>の蓄積ダメージを与えていく。<br/>"
