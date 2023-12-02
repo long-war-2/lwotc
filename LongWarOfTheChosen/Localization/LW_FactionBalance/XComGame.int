@@ -139,8 +139,8 @@ LocPromotionPopupText="<Bullet/> Improves the Skirmisher's mobility around the m
 ; LWOTC Needs Translation
 [Executioner X2AbilityTemplate]
 LocFriendlyName="Death Dealer"
-LocLongDescription="Grants +<Ability:DEATH_DEALER_CRIT/> crit chance. Critical shots against a flanked target while in Shadow will deal double critical damage."
-LocHelpText="Grants +<Ability:DEATH_DEALER_CRIT/> crit chance. Critical shots against a flanked target while in Shadow will deal double critical damage."
+LocLongDescription="Grants +<Ability:DEATH_DEALER_CRIT/> crit chance. Critical shots against flanked targets while in Shadow deal double damage."
+LocHelpText="Grants +<Ability:DEATH_DEALER_CRIT/> crit chance. Critical shots against flanked targets while in Shadow deal double damage."
 LocPromotionPopupText="<Bullet/> Use Shadow's increased mobility and smaller enemy detection radii to flank enemies and deal massive damage.<br/>"
 
 ; End Translation
@@ -159,18 +159,18 @@ LocPromotionPopupText="<Bullet/> Throwing knives apply a stacking +<Ability:REND
 LocFriendlyName="Knife Encounters"
 LocFlyOverText="Knife Encounters"
 ;LWOTC needs Translation(2)
-LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Cheap Shot."
-LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Cheap Shot."
-LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun, or Cheap Shot.<br/>"
+LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:KNIFE_ENCOUNTERS_MAX_TILES/> tiles. Cannot trigger on the same turn as Cheap Shot."
+LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:KNIFE_ENCOUNTERS_MAX_TILES/> tiles. Cannot trigger on the same turn as Cheap Shot."
+LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:KNIFE_ENCOUNTERS_MAX_TILES/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun, or Cheap Shot.<br/>"
 ;LWOTC End Translation(2)
 
 [KnifeEncountersExtendedRange X2AbilityTemplate]
 LocFriendlyName="Knife Encounters"
 LocFlyOverText="Knife Encounters"
 ;LWOTC needs Translation(2)
-LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Cheap Shot."
-LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles. Cannot trigger on the same turn as Cheap Shot."
-LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:CLOSE_ENCOUNTERS_RANGE/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun, or Cheap Shot.<br/>"
+LocLongDescription="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> tiles. Cannot trigger on the same turn as Cheap Shot."
+LocHelpText="Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> tiles. Cannot trigger on the same turn as Cheap Shot."
+LocPromotionPopupText="<Bullet/> Once per turn, gain a bonus action after throwing a knife at an enemy within <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> tiles.<br/><Bullet/> A red ring will mark the range of this ability.<br/><Bullet/> Knife Encounters cannot be used on the same turn as Run and Gun, or Cheap Shot.<br/>"
 ;LWOTC End Translation(2)
 
 ; LWOTC Needs Translation (2)
@@ -234,5 +234,5 @@ LocPromotionPopupText="<Bullet/> Cheap Shot triggers if the target was previousl
 
 [TheBanisher_LW X2AbilityTemplate]
 LocFriendlyName="True Predator"
-LocLongDescription="Decreases the per-shot aim penalty of Banish by 5 and decreases its cooldown by 1. Increases the range of Knife Enounters by 1. Death Dealer now works against unflankable targets."
-LocHelpText="Decreases the per-shot aim penalty of Banish by 5 and decreases its cooldown by 1. Increases the range of Knife Enounters by 1. Death Dealer now works against unflankable targets. Note: The Knife Encounters ring does not properly update for this skill.  You have 2 tiles outside of the ring of Knife Encounters range."
+LocLongDescription="Decreases the per-shot aim penalty of Banish by <Ability:THEBANISHER_HIT_BUFF> and decreases its cooldown by 1. Increases the range of Knife Enounters to <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>. Death Dealer now doubles the damage of critical hits against unflankable targets."
+LocHelpText="Decreases the per-shot aim penalty of Banish by <Ability:THEBANISHER_HIT_BUFF> and decreases its cooldown by 1. Increases the range of Knife Enounters to <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/>. Death Dealer now doubles the damage of critical hits against unflankable targets."

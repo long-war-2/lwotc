@@ -175,7 +175,7 @@ LocFlyOverText="Napalm-X"
 ; LWOTC Needs Translation (3)
 LocLongDescription="Your Flamethrower can now panic enemies."
 LocHelpText="Your Flamethrower can now panic enemies."
-LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/><Bullet/> The chance to panic is <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, depending on soldier's gauntlet tier, and is negatively affected by target's Will score."
+LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/><Bullet/> The chance to panic is <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, depending on soldier's gauntlet tier, and is negatively affected by target's Will score.<br/><Bullet/> Enemies hit by Roust are not affected by Napalm-X."
 ; End Translation (3)
 
 [PhosphorusPassive X2AbilityTemplate]
@@ -183,7 +183,7 @@ LocFriendlyName="Phosphorus"
 LocFlyOverText="Phosphorus"
 LocLongDescription="Your flamethrower's base damage can now ignore fire immunities, and shred armor.""
 LocHelpText="Your flamethrower's base damage can now ignore fire immunities, and shred armor."
-LocPromotionPopupText="<Bullet/> Your flamethrower can now ignore fire immunities.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
+LocPromotionPopupText="<Bullet/> While you can now damage fire immune enemies, they still cannot be set on fire.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
 
 [Incinerator X2AbilityTemplate]
 LocFriendlyName="Incinerator"
@@ -196,8 +196,8 @@ LocPromotionPopupText="<Bullet/> Your flamethrower has an increased range and co
 LocFriendlyName="Roust"
 LocFlyOverText="Roust"
 LocLongDescription="Special Flamethrower shot that deals limited damage but forces enemies to change their position."
-LocHelpText="Special flamethrower shot that forces enemies to change their location."
-LocPromotionPopupText="<Bullet/> Has a 75% chance to set enemies in the area of effect on fire and deals limited damage.<br/><Bullet/> The narrow jet of flame has less impact on the environment.<br/><Bullet/> Units hit by the shot will be forced to move, often triggering overwatch fire.<br/><Bullet/> One use per mission, but can gain an additional use with additional gear.<br/><Bullet/> Cannot be used from concealment."
+LocHelpText="Special Flamethrower shot that deals limited damage but forces enemies to change their position."
+LocPromotionPopupText="<Bullet/> Has a <Ability:ROUST_DIRECT_APPLY_CHANCE>% chance to set enemies in the area of effect on fire and deals <Ability:ROUST_DAMAGE_PENALTY>% reduced damage.<br/><Bullet/> The narrow jet of flame has less impact on the environment.<br/><Bullet/> Units hit by the shot will be forced to move, often triggering overwatch fire.<br/><Bullet/> One use per mission, but can gain an additional use with additional gear.<br/><Bullet/> Cannot be used from concealment."
 
 ; LWOTC Needs Translation (2)
 [Burnout X2AbilityTemplate]
@@ -234,14 +234,14 @@ LocFriendlyName="Firestorm"
 LocFlyOverText="Firestorm"
 LocLongDescription="Once per battle, attack all units in a complete circle around the soldier's position. Also grants immunity to fire damage."
 LocHelpText="Spray fire in a complete circle around your position."
-LocPromotionPopupText="<Bullet/> This will light fires and do fire damage to all enemies in a circle around the soldier's position, doing +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> bonus damage over regular Flamethrower attacks.<br/><Bullet/> Firestorm also grants immunity to fire damage.<br/><Bullet/> Requires one action point and will end the soldier's turn when used.<br/><Bullet/> Usable once per battle.<br/><Bullet/> It is not recommended the soldier uses Firestorm on rooftops."
+LocPromotionPopupText="<Bullet/> This will light fires and deal fire damage to all enemies in a circle around the soldier's position.<br/><Bullet/> Firestorm deals +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> bonus damage over regular Flamethrower attacks.<br/><Bullet/> Requires two action points and will end the soldier's turn when used.<br/><Bullet/> Usable once per battle.<br/><Bullet/> Firestorm also grants immunity to fire damage.<br/><Bullet/> It is not recommended the soldier uses Firestorm on rooftops."
 
 [Firestorm2 X2AbilityTemplate]
 LocFriendlyName="Test Firestorm"
 LocFlyOverText="Test Firestorm"
 LocLongDescription="Once per battle, attack all units in a complete circle around the soldier's position. Also grants immunity to fire damage."
 LocHelpText="Spray fire in a complete circle around your position."
-LocPromotionPopupText="<Bullet/> This will light fires and do fire damage to all enemies in a circle around the soldier's position, doing +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> bonus damage over regular Flamethrower attacks.<br/><Bullet/> Firestorm also grants immunity to fire damage.<br/><Bullet/> Requires one action point and will end the soldier's turn when used.<br/><Bullet/> Usable once per battle.<br/><Bullet/> It is not recommended the soldier uses Firestorm on rooftops."
+LocPromotionPopupText="<Bullet/> This will light fires and deal fire damage to all enemies in a circle around the soldier's position.<br/><Bullet/> Firestorm deals +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> bonus damage over regular Flamethrower attacks.<br/><Bullet/> Requires two action points and will end the soldier's turn when used.<br/><Bullet/> Usable once per battle.<br/><Bullet/> Firestorm also grants immunity to fire damage.<br/><Bullet/> It is not recommended the soldier uses Firestorm on rooftops."
 
 
 [TechnicalFireImmunity X2AbilityTemplate]
@@ -327,7 +327,7 @@ LocFriendlyName="Failsafe"
 LocLongDescription="If you fail a hack, you prevent any negative effects from occurring."
 LocHelpText="If you fail a hack, you prevent any negative effects from occurring."
 LocFlyOverText="Failsafe"
-LocPromotionPopupText="<Bullet/> If you fail a hack, you prevent any negative effects from occurring."
+LocPromotionPopupText="<Bullet/> Negative effects prevented by Failsafe include losing squad concealment."
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="Full Override"
@@ -366,8 +366,8 @@ Description="Take control of this unit for rest of the mission and gain stat bon
 
 ; LWOTC Needs Translation (3)
 [ScanningProtocol X2AbilityTemplate]
-LocLongDescription="The GREMLIN can trigger an instant scan of the area, increasing the Specialist's sight radius substantially for one turn, and revealing any hidden or disguised enemies in view. Free Action."
-LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved Gremlins.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the Specialist is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
+LocLongDescription="The GREMLIN can trigger an instant scan of the area, increasing the <Ability:ClassName>'s sight radius substantially for one turn, and revealing any hidden or disguised enemies in view. Free Action."
+LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved GREMLINs.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the Specialist is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
 ; End Translation (3)
 
 ; End translation
@@ -424,10 +424,10 @@ LocPromotionPopupText="<Bullet/> Grenades that do not innately shred any armor d
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
 ; LWOTC Needs Translation (2)
-LocLongDescription="You may throw or launch grenades two additional tiles."
-LocHelpText="You may throw or launch grenades two additional tiles."
+LocLongDescription="You may throw or launch grenades <Ability:BOMBARD_BONUS_RANGE_TILES> additional tiles."
+LocHelpText="You may throw or launch grenades <Ability:BOMBARD_BONUS_RANGE_TILES> additional tiles."
 LocFlyOverText="Bombardier"
-LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades.<br/>"
+LocPromotionPopupText="<Bullet/> This includes both launched and thrown grenades."
 ; End Translation (2)
 
 [BluescreenBombs X2AbilityTemplate]
@@ -474,10 +474,10 @@ LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissil
 
 [KnifeFighter X2AbilityTemplate]
 LocFriendlyName="Knife Fighter"
-LocLongDescription="You may make a melee attack with your knife against adjacent enemies."
-LocHelpText="Knife Attack"
+LocLongDescription="Attack an adjacent enemy with your knife."
+LocHelpText="Attack an adjacent enemy with your knife."
 LocFlyOverText="Knife Fighter"
-LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end your turn.<br/>"
+LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end your turn."
 
 [Combatives X2AbilityTemplate]
 LocFriendlyName="Combatives"
@@ -490,11 +490,11 @@ LocPromotionPopupText="<Bullet/> You will parry any grazed melee attack against 
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="Flush"
-LocLongDescription="Special shot with a bonus to hit that does little or no damage but confers defense and dodge penalties and forces target to change position if it hits."
-LocHelpText="Special shot that does little or no damage but confers defense and dodge penalties and forces target to change position."
+LocLongDescription="Special shot with +<Ability:FLUSH_AIM_BONUS> aim but -<Ability:FLUSH_DAMAGE_PENALTY>% reduced damage. If it hits, the target loses -<Ability:FLUSH_DEFENSE_REDUCTION> defense, -<Ability:FLUSH_DODGE_REDUCTION> dodge, and is forced to move."
+LocHelpText="Special shot with +<Ability:FLUSH_AIM_BONUS> aim but -<Ability:FLUSH_DAMAGE_PENALTY>% reduced damage. If it hits, the target loses -<Ability:FLUSH_DEFENSE_REDUCTION> defense, -<Ability:FLUSH_DODGE_REDUCTION> dodge, and is forced to move."
 LocFlyOverText="Flush"
 ; LWOTC needs translation (2)
-LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> +<Ability:FLUSH_AIM_BONUS/> bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DEFENSE_REDUCTION> defense and <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> The defense and dodge debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (2)
 str_FlushEffect="Flushed"
 
@@ -544,11 +544,11 @@ LocPromotionPopupText="<Bullet/> Rapidly loses accuracy beyond four tiles range.
 
 [BothBarrels X2AbilityTemplate]
 LocFriendlyName="Both Barrels"
-LocLongDescription="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."
-LocHelpText="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."
+LocLongDescription="Fire both barrels of your sawed-off shotgun at nearby enemy, dealing double damage."
+LocHelpText="Fire both barrels of your sawed-off shotgun at nearby enemy, dealing double damage."
 LocFlyOverText="Both Barrels"
 ;LWOTC needs translation
-LocPromotionPopupText="<Bullet/> Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage.<br/><Bullet/> Uses <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action.<br/>"
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action.<br/>"
 ; End Translation
 
 [PumpAction X2AbilityTemplate]
@@ -556,7 +556,7 @@ LocFriendlyName="Pump Action"
 LocLongDescription="Gain two extra ammo in your sawed-off shotgun."
 LocHelpText="Gain two extra ammo in your sawed-off shotgun."
 LocFlyOverText="Pump Action"
-LocPromotionPopupText="<Bullet/> Gain two extra ammo in your sawed-off shotgun.<br/>"
+LocPromotionPopupText=""
 
 [Fortify X2AbilityTemplate]
 LocFriendlyName="Fortify"
@@ -607,8 +607,8 @@ LocLongDescription="Using your Holotargeter no longer automatically ends your tu
 
 [HDHolo X2AbilityTemplate]
 LocFriendlyName="HiDef Holo"
-LocLongDescription="Your Holotargeted enemies are easier to critically hit."
-LocHelpText="Your Holotargeted enemies are easier to critically hit."
+LocLongDescription="Attacks against your Holotargeted enemies have a bonus to critical chance."
+LocHelpText="Attacks against your Holotargeted enemies have a bonus to critical chance."
 LocFlyOverText="HiDef Holo"
 LocPromotionPopupText="<Bullet/> The critical hit bonus is +<Ability:HDHOLO_CV_CRIT_BONUS_LW/> with the basic Holotargeter, but improves to +<Ability:HDHOLO_MG_CRIT_BONUS_LW/> and +<Ability:HDHOLO_BM_CRIT_BONUS_LW/> with advanced technology Holotargeting devices.<br/>"
 
@@ -781,20 +781,20 @@ LocFlyOverText="Elite Hair Trigger"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
-LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost after you use actions or take damage."
+LocHelpText="Steady Weapon: Bonus to aim and crit on next shot if you don't use another action or take damage"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
-LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost after you use actions or take damage."
+LocHelpText="Steady Weapon: Bonus to aim and crit on next shot if you don't use another action or take damage"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
-LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost after you use actions or take damage."
+LocHelpText="Steady Weapon: Bonus to aim and crit on next shot if you don't use another action or take damage"
 LocFlyOverText="Steady Weapon"
 
 ;End Translation (2)
@@ -872,32 +872,32 @@ LocHelpText="Your shots deal +1 damage and have <Ability:VENOM_ROUNDS_APPLY_CHAN
 [Ceramic_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Ceramic Plating"
 LocFlyOverText="Ceramic Plating"
-LocLongDescription="You gain 2 ablative hit points."
-LocHelpText="You gain 2 ablative hit points."
+LocLongDescription="You gain <Ability:CERAMIC_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:CERAMIC_PLATING_HP> ablative hit points."
 
 [Alloy_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Alloy Plating"
 LocFlyOverText="Alloy Plating"
-LocLongDescription="You gain 3 ablative hit points."
-LocHelpText="You gain 3 ablative hit points."
+LocLongDescription="You gain <Ability:ALLOY_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:ALLOY_PLATING_HP> ablative hit points."
 
 [Chitin_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Chitin Plating"
 LocFlyOverText="Chitin Plating"
-LocLongDescription="You gain 4 ablative hit points."
-LocHelpText="You gain 4 ablative hit points."
+LocLongDescription="You gain <Ability:CHITIN_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:CHITIN_PLATING_HP> ablative hit points."
 
 [Carapace_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Carapace Plating"
 LocFlyOverText="Carapace Plating"
-LocLongDescription="You gain 5 ablative hit points."
-LocHelpText="You gain 5 ablative hit points."
+LocLongDescription="You gain <Ability:CARAPACE_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:CARAPACE_PLATING_HP> ablative hit points."
 
 [HazmatVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="Hazmat Vest"
 LocFlyOverText="Hazmat Vest"
-LocLongDescription="Grants 3 hit points and confers immunity to fire, acid and poison."
-LocHelpText="Grants 3 hit points and confers immunity to fire, acid and poison."
+LocLongDescription="Grants <Ability:HAZMAT_VEST_HP_BONUS> hit points and confers immunity to fire, acid and poison."
+LocHelpText="Grants <Ability:HAZMAT_VEST_HP_BONUS> hit points and confers immunity to fire, acid and poison."
 
 [NanofiberVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="Nanoscale Vest"
@@ -926,8 +926,8 @@ LocHelpText="This soldier will not take reaction shots with less than a 75% chan
 [Neurowhip_Ability X2AbilityTemplate]
 LocFriendlyName="Neurowhip"
 LocFlyoverText="Neurowhip"
-LocLongDescription="Grants 10 psi offense at a cost of 10 will."
-LocHelpText="Grants 10 psi offense at a cost of 10 will."
+LocLongDescription="Grants <Ability:NEUROWHIP_PSI_BONUS> psi offense at a cost of <Ability:NEUROWHIP_WILL_MALUS> will."
+LocHelpText="Grants <Ability:NEUROWHIP_PSI_BONUS> psi offense at a cost of <Ability:NEUROWHIP_WILL_MALUS> will."
 
 ;;;;;;;;;;;;;;;;;;;;  ITEM TEMPLATES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -935,7 +935,7 @@ LocHelpText="Grants 10 psi offense at a cost of 10 will."
 FriendlyName="Pistol"
 FriendlyNamePlural="Pistols"
 UnknownUtilityCategory="Pistol"
-BriefSummary="XCOM soldiers may carry high-caliber pistols in addition to their stndard weapons. With the proper training, soldiers can pose an enormous threat at close range."
+BriefSummary="XCOM soldiers may carry high-caliber pistols in addition to their standard weapons. With the proper training, soldiers can pose an enormous threat at close range."
 TacticalText="<Bullet/> Pistols can be much more than a sidearm in the hands of a trained soldier.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
 
 [LWPistol_LS X2WeaponTemplate]
@@ -965,17 +965,19 @@ FriendlyName="Plasma Pistol"
 FriendlyNamePlural="Plasma Pistols"
 UnknownUtilityCategory="Pistol"
 BriefSummary="The ultimate sidearm, this pistol integrates the aliens' plasma weapons technology to powerful effect."
-TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Plasma pistols are the most powerful handguns on Earth.\n<Bullet/> Pistols can be fired with a single actio.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges.<br/>"
+TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Plasma pistols are the most powerful handguns on Earth.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges.<br/>"
 
 [AlienHunterPistol_CV X2WeaponTemplate]
 UnknownUtilityCategory="Pistol"
+TacticalText="<Bullet/> Shadowkeeper's strength is comparable to a conventional pistol, but has improved aim and chance to critical hit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit."
 
 [AlienHunterPistol_MG X2WeaponTemplate]
 UnknownUtilityCategory="Pistol"
+TacticalText="<Bullet/> Enhanced Shadowkeeper's strength is comparable to a Mag Pistol, but has improved aim and chance to critical hit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
 
 [AlienHunterPistol_BM X2WeaponTemplate]
 UnknownUtilityCategory="Pistol"
-TacticalText="<Bullet/> Powered Shadowkeeper's strength is comparable to a Plasma Pistol, but has improved aim and chance to critical hit.\n<Bullet/> Unlike the sniper rifle, pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
+TacticalText="<Bullet/> Powered Shadowkeeper's strength is comparable to a Plasma Pistol, but has improved aim and chance to critical hit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
 
 [SawedOffShotgun_CV X2WeaponTemplate]
 FriendlyName="Sawed-Off Shotgun"
@@ -1034,7 +1036,7 @@ AbilityDescName="holotargeter"
 
 [Holotargeter_BM X2WeaponTemplate]
 FriendlyName="Holotargeter Mark III"
-FriendlyNamePlural="Holotargeters Mark IIIs"
+FriendlyNamePlural="Holotargeter Mark IIIs"
 BriefSummary="Allows targeting enemy units to provide aim bonuses to any members of the squad targeting this unit."
 TacticalText="<Bullet/> Grants 20 bonus aim to any unit attacking the Holotargeted unit."
 AbilityDescName="holotargeter"
@@ -1167,7 +1169,7 @@ AbilityDescName="crossbow"
 [Vektor_LS X2WeaponTemplate]
 FriendlyName="Laser Vektor Rifle"
 FriendlyNamePlural="Laser Vektor Rifles"
-BriefSummary="An experimental laser weapon design originating all the way from old-world russia, the Laser Vektor Rifle is close in performance to the traditional marksman rifles used by the Reapers. Now updated with modern alloy shielding and a compact power source, it is quite a formidable weapon in the hands of a skilled sniper."
+BriefSummary="An experimental laser weapon design originating all the way from old-world Russia, the Laser Vektor Rifle is close in performance to the traditional marksman rifles used by the Reapers. Now updated with modern alloy shielding and a compact power source, it is quite a formidable weapon in the hands of a skilled sniper."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.<br/><Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
 AbilityDescName="vektor rifle"
 
@@ -1433,7 +1435,7 @@ TacticalText="<Bullet/> Grants 3 hit points to the soldier.\n<Bullet/> Provides 
 FriendlyName="Hazmat Vest"
 FriendlyNamePlural="Hazmat Vests"
 BriefSummary="By reinforcing the Nanoscale Vest with specialized materials, we are able to make our soldiers completely resistant to any environmental hazards like fire, acid or poison."
-TacticalText="<Bullet/> Increases soldier health by 3.\n<Bullet/> Provides immunity to fire, acid and poison.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Increases soldier health by <Ability:HAZMAT_VEST_HP_BONUS>.\n<Bullet/> Provides immunity to fire, acid and poison.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [Hellweave X2EquipmentTemplate]
 FriendlyName="Hellweave Vest"
@@ -1522,8 +1524,8 @@ BriefSummary="The Superior Focus sim provides the affected soldier with the best
 FriendlyName="Ceramic Plating"
 FriendlyNamePlural="Ceramic Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 2 ablative armor points."
-TacticalText="<Bullet/> Grants 2 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of Ceramic Plating HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:CERAMIC_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:CERAMIC_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of Ceramic Plating HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [ChameleonSuit X2EquipmentTemplate]
 FriendlyName="Chameleon Suit"
@@ -1535,22 +1537,22 @@ TacticalText="<Bullet/> Significantly reduces infiltration time by this unit.\n<
 FriendlyName="Alloy Plating"
 FriendlyNamePlural="Alloy Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 3 ablative armor points."
-TacticalText="<Bullet/> Grants 3 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:ALLOY_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:ALLOY_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [ChitinPlating X2EquipmentTemplate]
 FriendlyName="Chitin Plating"
 FriendlyNamePlural="Chitin Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 4 ablative armor points."
-TacticalText="<Bullet/> Grants 4 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:CHITIN_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:CHITIN_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [CarapacePlating X2EquipmentTemplate]
 FriendlyName="Carapace Plating"
 FriendlyNamePlural="Carapace Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 5 ablative armor points."
-TacticalText="<Bullet/> Grants 5 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:CARAPACE_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:CARAPACE_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [StilettoRounds X2AmmoTemplate]
 FriendlyName="Stiletto Rounds"
@@ -1603,7 +1605,7 @@ TacticalText="<Bullet/> Grants a second standard rocket for the Technical's rock
 FriendlyName="Neurowhip"
 FriendlyNamePlural="Neurowhip"
 BriefSummary="Grants a bonus to Psi abilities at a cost to Will."
-TacticalText="<Bullet/> Grants 10 Psi Offense to the soldier, at a cost of 10 will."
+TacticalText="<Bullet/> Grants <Ability:NEUROWHIP_PSI_BONUS> Psi Offense to the soldier, at a cost of <Ability:NEUROWHIP_WILL_MALUS> will."
 UnknownUtilityCategory="Neurowhip"
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
@@ -3190,7 +3192,7 @@ TemplarTutorialTitle="Templar Focus"
 TemplarTutorialText="Templars gain Focus during missions by using Rend, regardless of whether it hits or not. Focus can be spent on powerful abilities, some of which have increased effectiveness when used at higher Focus levels."
 
 TemplarMomentumTutorialTitle="Templar Momentum & Parry"
-TemplarMomentumTutorialText="After using Rend, Templars always trigger Momentum, a free movement action which allows them to return to the safety of cover or use One For All to tank some attacks. One For All grants the Templar bonus ablative while lowering their defense significantly."
+TemplarMomentumTutorialText="After using Rend, Templars always trigger Momentum, a free movement action which allows them to return to the safety of cover or use Templar Shield to tank some attacks. Templar Shield grants bonus ablative until the start of your next turn."
 
 SkirmisherTutorialTitle="Skirmisher"
 SkirmisherTutorialText="The Skirmisher is a mobile unit that can fire their Bullpup at flanked units to get an action back, allowing them to shoot again, move, throw a grenade, or do something else. The Grapple adds to their versatility, allowing the Skirmisher to quickly traverse the battlefield and get into advantageous positions."
@@ -5278,9 +5280,9 @@ LocFlyOverText="Double Tap"
 [RescueProtocol X2AbilityTemplate]
 LocFriendlyName="Rescue Protocol"
 LocFlyoverText="Rescue Protocol"
-LocLongDescription="Use your Gremlin to grant a movement action to an ally and grant them a small boost to dodge and mobility."
+LocLongDescription="Use your GREMLIN to grant a movement action to an ally and grant them a small boost to dodge and mobility."
 LocHelpText="Grant a movement action to an ally and grant them a small boost to dodge and mobility."
-LocPromotionPopupText="<Bullet/> Rescue Protocol grants +<Ability:RESCUE_BONUS_DODGE/> dodge and +<Ability:RESCUE_BONUS_MOBILITY/> mobility.<br/><Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/> An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action and does not end your turn.<br/><Bullet/> Rescue Protocol has <Ability:RESCUE_CV_CHARGES/> charges per mission.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
+LocPromotionPopupText="<Bullet/> Rescue Protocol grants +<Ability:RESCUE_BONUS_DODGE/> dodge and +<Ability:RESCUE_BONUS_MOBILITY/> mobility.<br/><Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/> An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action and does not end your turn.<br/><Bullet/> Rescue Protocol has <Ability:RESCUE_CV_CHARGES/> charges per mission.<br/><Bullet/> Charges increase with improved GREMLIN technology.<br/>"
 ; End Translation (3)
 
 [Blademaster X2AbilityTemplate]
@@ -5480,9 +5482,9 @@ LocPromotionPopupText="<Bullet/> Reduces Shadow's cooldown by 1 turn.<br/>"
 ; LWOTC Needs Translation (4)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="Blood Trail"
-LocLongDescription="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has been wounded this turn."
+LocLongDescription="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has taken damage after your previous turn."
 LocHelpText="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has been wounded this turn."
-LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Works with all weapons, including grenades.<br/>"
+LocPromotionPopupText="<Bullet/> The bonuses apply if the enemy has taken damage on your turn or its previous turn.<br/><Bullet/> Works with all weapons, including grenades.<br/>"
 ; End Translation (4)
 
 [PaleHorse X2AbilityTemplate]

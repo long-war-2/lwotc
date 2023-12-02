@@ -3530,6 +3530,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FLECHETTE_BONUS_DMG':
 			OutString = string(class'X2Item_LWUtilityItems'.default.FLECHETTE_BONUS_DMG);
 			return true;
+		case 'NEUROWHIP_PSI_BONUS':
+			OutString = string(class'X2Item_LWUtilityItems'.default.NEUROWHIP_PSI_BONUS);
+			return true;
+		case 'NEUROWHIP_WILL_MALUS':
+			OutString = string(class'X2Item_LWUtilityItems'.default.NEUROWHIP_WILL_MALUS);
+			return true;
 		case 'DRAGON_ROUNDS_APPLY_CHANCE':
 			OutString = string(class'LWTemplateMods'.default.DRAGON_ROUNDS_APPLY_CHANCE);
 			return true;
@@ -3611,6 +3617,18 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FIRESTORM_DAMAGE_BONUS_LW':
 			Outstring = string(int(class'X2Ability_LW_TechnicalAbilitySet'.default.FIRESTORM_DAMAGE_BONUS));
 			return true;
+		case 'CERAMIC_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.CERAMIC_PLATING_HP);
+			return true;
+		case 'ALLOY_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.ALLOY_PLATING_HP);
+			return true;
+		case 'CHITIN_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.CHITIN_PLATING_HP);
+			return true;
+		case 'CARAPACE_PLATING_HP':
+			Outstring = string(class'X2Ability_LW_GearAbilities'.default.CARAPACE_PLATING_HP);
+			return true;
 		case 'NANOFIBER_HEALTH_BONUS_LW':
 			Outstring = string(class'X2Ability_ItemGrantedAbilitySet'.default.NANOFIBER_VEST_HP_BONUS);
 			return true;
@@ -3619,6 +3637,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'PLATED_CRITDEF_BONUS':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.PLATED_CRITDEF_BONUS);
+			return true;
+		case 'HAZMAT_VEST_HP_BONUS':
+			Outstring = string(class'X2Ability_ItemGrantedAbilitySet'.default.HAZMAT_VEST_HP_BONUS);
 			return true;
 		case 'RESILIENCE_BONUS_LW':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.RESILIENCE_CRITDEF_BONUS);
@@ -3693,6 +3714,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'NEEDLE_BONUS_UNARMORED_DMG_LW': // Needle Grenades
 			Outstring = string(class'X2Ability_LW_GrenadierAbilitySet'.default.NEEDLE_BONUS_UNARMORED_DMG);
+			return true;
+		case 'BOMBARD_BONUS_RANGE_TILES': // Needle Grenades
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.BOMBARD_BONUS_RANGE_TILES);
 			return true;
 		case 'BLUESCREENBOMB_HACK_DEFENSE_CHANGE_LW':
 			Outstring = string(-class'X2Ability_LW_GrenadierAbilitySet'.default.BLUESCREENBOMB_HACK_DEFENSE_CHANGE);
@@ -3796,6 +3820,9 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		case 'FLUSH_AIM_BONUS':
 			Outstring = string(class'X2Ability_LW_GunnerAbilitySet'.default.FLUSH_AIM_BONUS);
 			return true;
+		case 'FLUSH_DAMAGE_PENALTY':
+			Outstring = string(int(class'X2Ability_LW_GunnerAbilitySet'.default.FLUSH_DAMAGE_PENALTY * 100));
+			return true;
 		case 'MIND_SCORCH_BURN_CHANCE':
 			Outstring = string(class'X2LWAbilitiesModTemplate'.default.MIND_SCORCH_BURN_CHANCE);
 			return true;
@@ -3849,6 +3876,12 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		case 'UNSTOPPABLE_MIN_MOB':
 			Outstring = string(class'X2Ability_LW_ChosenAbilities'.default.UNSTOPPABLE_MIN_MOB);
+			return true;
+		case 'ROUST_DIRECT_APPLY_CHANCE':
+			Outstring = string(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_DIRECT_APPLY_CHANCE);
+			return true;
+		case 'ROUST_DAMAGE_PENALTY':
+			Outstring = string(int(class'X2Ability_LW_TechnicalAbilitySet'.default.ROUST_DAMAGE_PENALTY * 100));
 			return true;
 		case 'NAPALM_X_BASEVALUE':
 			Outstring = string(class'X2AbilityToHitCalc_StatCheck_LWFlamethrower'.default.BaseValue);

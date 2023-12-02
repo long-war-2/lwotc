@@ -257,18 +257,18 @@ LocPromotionPopupText="<Bullet/> This is a special shot in which the soldier adj
 LocFriendlyName="Precision Shot"
 LocFlyOverText="Precision Shot"
 ; LWOTC needs translation (2)
-LocLongDescription="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocHelpText="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage.<br/><Bullet/> Precision Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocLongDescription="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> crit chance that deals <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% more damage if it crits. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> crit chance that deals <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% more damage if it crits. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> The damage bonus is applied multiplicatively to total damage after usual damage calculation."
 ; End translation (2)
 
 [PrecisionShotSnapShot X2AbilityTemplate]
 LocFriendlyName="Precision Shot (Snap Shot)"
 LocFlyOverText="Precision Shot (Snap Shot)"
 ; LWOTC needs translation (2)
-LocLongDescription="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocHelpText="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage. Has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText="<Bullet/> Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> bonus to critical chance and <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% bonus critical damage.<br/><Bullet/> Precision Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocLongDescription="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> crit chance that deals <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% more damage if it crits. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Take a special shot with +<Ability:PRECISION_SHOT_CRIT_BONUS/> crit chance that deals <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% more damage if it crits. Has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText="<Bullet/> The damage bonus is applied multiplicatively to total damage after usual damage calculation."
 ; End translation (2)
 
 [CyclicFire X2AbilityTemplate]
@@ -388,9 +388,9 @@ LocPromotionPopupText="<Bullet/> Your melee attacks against biological enemies i
 LocFriendlyName="Killer Instinct"
 LocFlyOverText="Killer Instinct"
 ; LWOTC Needs Translation
-LocLongDescription="Critical Hits while Run and Gun is active do <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% more damage for the rest of the turn."
-LocHelpText="Critical Hits while Run and Gun is active do <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% more damage for the rest of the turn."
-LocPromotionPopupText="<Bullet/> Critical Hits while Run and Gun is active do <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% more damage for the rest of the turn.<br/>"
+LocLongDescription="After activating Run and Gun, your critical hits deal <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% more damage for the rest of the turn."
+LocHelpText="After activating Run and Gun, your critical hits deal <Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% more damage for the rest of the turn."
+LocPromotionPopupText="<Bullet/> The damage bonus is applied multiplicatively to total damage after usual damage calculation.<br/>"
 
 
 [ExtraConditioning X2AbilityTemplate]
@@ -878,10 +878,10 @@ LocPromotionPopupText="<Bullet/> Death From Above can combo well with pistol abi
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
 LocFriendlyName="Implacable"
-LocLongDescription="If you score one or more kills on your turn, you are granted a single bonus move."
+LocLongDescription="Once per turn, killing an enemy grants you a movement-only action point."
 LocHelpText="Gain up to one move per turn after making a kill."
 LocFlyOverText="Implacable"
-LocPromotionPopupText="<Bullet/> The Fleche ability cannot be used after gaining a bonus move from Implacable.<br/>"
+LocPromotionPopupText=""
 
 [XComGame.VolatileMix X2AbilityTemplate]
 [VolatileMix X2AbilityTemplate]
