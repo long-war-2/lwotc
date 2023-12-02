@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC28 Changes:"
-strMessage_Body = "<ul><li>Prevented Wounded units that have Conditioning PCSs equipped from being able to swap their PCS to avoid issues where unequipping the PCS can put the unit's HP below 0</li><li>Warlock HP reduced by 14% at all levels for all difficulties.</li><li>Assassin is now allowed to melee robotic units.</li><li>Assassin can no longer use Vanishing Wind when flanked.</li><li>Added a new sewer map that can be tested by turning on the new toggle. Depending on feedback, it may be classed as Subway in a future release.</li></ul>"
+strMessage_Header = "RC29 Changes:"
+strMessage_Body = "<ul><li>Fixed issue with bugged Smash n Grab parcel added last update.</li><li>Fixed issue with Pod Diversity system ignoring plot gate requirements for units other than the codex and avatar.</li><li>Troop Column Covert Op duration reduced by 1 day, extra 12 hours added to its infiltration timer</li><li>Removed some Bradford voicelines from Smash n Grab and crate race missions.</li><li>Nerfed early detection bonus from 10 days to 5 days so it only applies to the first set of missions.</li><li>Firestorm no longer works with Quickburn (it was too powerful).</li></ul>"
 strDismiss_Button = "OK"

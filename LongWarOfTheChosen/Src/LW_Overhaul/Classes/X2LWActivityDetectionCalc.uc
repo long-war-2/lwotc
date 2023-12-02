@@ -165,7 +165,7 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 	}
 	//`LWTrace("GetDetectionChance: DetectionChance pre-early boost:" @DetectionChance);
 
-	// New early campaign detection chancce boost system
+	// New early campaign detection chance boost system
 	if(default.BOOST_EARLY_DETECTION)
 	{
 		class'X2StrategyGameRulesetDataStructures'.static.SetTime( GameStartDate, 0, 0, 0,

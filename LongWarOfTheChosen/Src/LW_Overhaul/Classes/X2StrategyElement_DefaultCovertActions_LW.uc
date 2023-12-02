@@ -152,6 +152,8 @@ static function X2DataTemplate CreateFindAdventDetachmentTemplate()
 	Template.Narratives.AddItem('CovertActionNarrative_FindAdventDetachment_Reapers');
 	Template.Narratives.AddItem('CovertActionNarrative_FindAdventDetachment_Templars');
 
+	Template.RequiredFactionInfluence = eFactionInfluence_Respected;
+
 	Template.Risks.AddItem('CovertActionRisk_Ambush');
 	Template.Rewards.AddItem('Reward_Detachment_Mission');
 	return Template;
