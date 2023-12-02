@@ -1103,6 +1103,10 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
 	}
 
+	// override native insisting every mission have a codex while certain tactical options are active
+	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
+
+
 	PodSize = SpawnInfo.SelectedCharacterTemplateNames.length;
 
 	TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
@@ -1119,8 +1123,6 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		`LWDiversityTrace("Swapping Nonexistant leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0] @ "and rerolling followers");
 	}
 
-	// override native insisting every mission have a codex while certain tactical options are active
-	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
 
 	// Swap out forced Codices on regular encounters
 	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == -1 && EncounterName != 'LoneCodex')
@@ -1217,6 +1219,11 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				if(FollowerCharacterTemplate == none)
 				{
 					`LWDiversityTrace("Detected nonexistant follower" @ SpawnInfo.SelectedCharacterTemplateNames[k]);
+					swap = true;
+				}
+				// Tedster - add check for plot gating here:
+				if(XCOMHQ.MeetsAllStrategyRequirements(FollowerCharacterTemplate.SpawnRequirements) == false)
+				{
 					swap = true;
 				}
 				if(default.bNerfFrostLegion && (InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE) && MissionState.TacticalGameplayTags.Find('SITREP_FrostPurge') == INDEX_NONE)
@@ -1518,6 +1525,11 @@ static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, 
 		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 			continue;
 
+		if(XCOMHQ.MeetsAllStrategyRequirements(CharacterTemplate.SpawnRequirements) == false)
+		{
+			continue;
+		}
+
 		TestWeight = GetCharacterSpawnWeight(SpawnList, CharacterTemplate, ForceLevel);
 		// this is a valid character type, so store off data for later random selection
 		if (TestWeight > 0.0)
@@ -1617,7 +1629,7 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 }
 
 // improved version that doesn't have nested loops
-static function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
 {
 	local X2CharacterTemplateManager CharacterTemplateMgr;
 	local X2CharacterTemplate CharacterTemplate;
@@ -1662,6 +1674,11 @@ static function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, ar
 
 		// if entry not in unit's supported follower list
 		if (SupportedFollowers.Find(SpawnEntry.Template) == -1)
+		{
+			continue;
+		}
+
+		if(XCOMHQ.MeetsAllStrategyRequirements(CharacterTemplate.SpawnRequirements) == false)
 		{
 			continue;
 		}
