@@ -6944,3 +6944,99 @@ LocPromotionPopupText="<Bullet/>注意，在堅守狀態下的單位在從靜滯
 LocLongDescription="該單位逃過一次致死攻擊，並進入靜滯狀態1回合。本次戰鬥中僅觸發一次。"
 LocHelpText="該單位逃過一次致死攻擊，並進入靜滯狀態1回合。本次戰鬥中僅觸發一次。"
 ; End Translation
+
+[Overdrive X2AbilityTemplate]
+LocFriendlyName="過載"
+LocLongDescription="本回合獲得3個行動點，使用該技能不會結束回合。多次標準射擊會受到少量後座力懲罰。"
+LocHelpText="本回合獲得3個行動點，使用該技能不會結束回合。多次標準射擊會受到少量後座力懲罰。"
+LocPromotionPopupText="<Bullet/>當「超載」啟動時，每次標準射擊後都會附加<Ability:Overdrive_RecoilPenalty/>%對瞄準的後座力懲罰。<br/><Bullet/>超載啟動無需行動點，但有<Ability:SelfCooldown_LW/>回合的冷卻時間。<br/>"
+
+[Bulwark X2AbilityTemplate]
+LocFriendlyName="壁壘"
+LocLongDescription="額外增加1點護甲值，並總能為附近的隊友提供全身掩體。"
+LocHelpText="額外增加1點護甲值，並總能為附近的隊友提供全身掩體。"
+LocPromotionPopupText="<Bullet/>壁壘增加1點護甲值。<br/><Bullet/>任何站在SPARK附近的隊友能獲得全身掩體的防禦加成。<br/>"
+
+[Arsenal X2AbilityTemplate]
+LocFriendlyName="兵工廠"
+LocLongDescription="BIT可以裝備並使用重武器。"
+LocHelpText="BIT可以裝備並使用重武器。"
+LocPromotionPopupText="<Bullet/>兵工廠能讓SPARK在裝備中配置重型武器。<br/>"
+
+[Rainmaker X2AbilityTemplate]
+LocFriendlyName="喚雨者"
+LocLongDescription="裝備的重裝武器造成+<Ability:Rainmaker_BonusDamage/>的傷害，並提升影響範圍。"
+LocHelpText="裝備的重裝武器能造成更大的傷害並影響更大的區域。"
+LocPromotionPopupText="<Bullet/>喚雨者讓所有重裝武器+<Ability:Rainmaker_BonusDamage/>點傷害。<br/><Bullet/>圓形範圍效果的重裝武器會+<Ability:Rainmaker_BonusRadius/>的效果半徑。<br/><Bullet/>錐形範圍效果的重裝武器會+<Ability:Rainmaker_BonusDiameter/>的效果直徑，長度+<Ability:Rainmaker_BonusLength/>。<br/>"
+
+[Intimidate X2AbilityTemplate]
+LocFriendlyName="恐嚇"
+LocLongDescription="當成為攻擊目標時，有機率使敵人恐慌。"
+LocHelpText="當成為攻擊目標時，有機率使敵人恐慌。"
+LocFlyOverText="恐嚇"
+LocPromotionPopupText="<Bullet/>恐嚇有機率讓攻擊者恐慌，更高階的SPARK裝甲則有更高的機率。<br/><Bullet/>恐嚇可以被任何近戰或範圍攻擊觸發。<br/><Bullet/>恐嚇不會在目標被監視射擊時觸發。<br/>"
+
+[IntimidateTrigger X2AbilityTemplate]
+LocFriendlyName="恐嚇"
+LocLongDescription="當被作為攻擊目標時，有機率使所有可見的敵人恐慌。"
+LocHelpText="當被作為攻擊目標時，有機率使所有可見的敵人恐慌。"
+LocFlyOverText="恐嚇"
+LocPromotionPopupText=""
+LocMissMessage="恐嚇失敗"
+
+[Repair X2AbilityTemplate]
+LocFriendlyName="修復"
+LocLongDescription="發送BIT前去修復受到傷害的機械友軍。高級BIT的修復能力會更強一點。"
+LocHelpText="發送BIT前去修復受到傷害的機械友軍。"
+LocFlyOverText="修復"
+LocPromotionPopupText="<Bullet/>修復會恢復<Ability:Repair_HealHP/>點生命值。<br/><Bullet/>升級後的BIT修復會恢復更多的生命值。<br/><Bullet/>在第一次行動時進行修復，不會結束你的回合。<br/><Bullet/>修復每次任務有<Ability:Repair_Charges/>次充能。<br/>"
+
+[AbsorptionField X2AbilityTemplate]
+LocFriendlyName="引導力場"
+LocLongDescription="每次你成為攻擊目標時，一部分的能量會引導至你的<Ability:WeaponName>。該能量會在你下一發標準射擊時釋放。"
+LocHelpText="在成為攻擊目標時，將能量引導至你的<Ability:WeaponName>，並用你下一發標準射擊釋放能量。"
+LocFlyOverText="已引導的能量：+1"
+LocPromotionPopupText="<Bullet/>被引導力場引導的每一點能量都會提升1點<Ability:WeaponName>下一次攻擊的傷害。<br/><Bullet/>即便下一發射擊未命中，引導力場中儲存的能量也會被消耗。<br/>"
+
+[Sacrifice X2AbilityTemplate]
+LocFriendlyName="犧牲"
+LocLongDescription="創造一個保護性的區域。任何對此區域單位的攻擊都會被重新指向你。技能發動時會獲得額外的防禦和護甲。"
+LocHelpText="創造一個保護性的區域，將敵人的攻擊重新指向你。"
+LocFlyOverText="犧牲"
+LocPromotionPopupText="<Bullet/>犧牲啟動時，SPARK+<Ability:Sacrifice_Defense/>點防禦以及+<Ability:Sacrifice_Armor/>點護甲。<br/><Bullet/>犧牲有<Ability:SelfCooldown_LW/>回合的冷卻時間。<br/>"
+
+[AdaptiveAim X2AbilityTemplate]
+LocFriendlyName="自適應瞄準"
+LocLongDescription="當「過載」啟動時，標準射擊不會受到後座力懲罰。"
+LocHelpText="當「過載」啟動時，標準射擊不會受到後座力懲罰。"
+LocPromotionPopupText="<Bullet/>當「超載」啟動時，自適應瞄準將會為連續的標準射擊減少<Ability:Overdrive_RecoilPenalty/>%的瞄準懲罰。<br/>"
+
+[Strike X2AbilityTemplate]
+LocFriendlyName="進擊"
+LocLongDescription="用強力的近戰技能攻擊移動範圍內的任何敵人。"
+LocHelpText="用強力的近戰技能攻擊移動範圍內的任何敵人。"
+LocPromotionPopupText="<Bullet/>將移動游標指向敵人便可發動「進擊」技能。<br/><Bullet/>SPARK可以消耗兩個行動點來進行「衝刺」，並且對鄰近敵人發動「進擊」。<br/>"
+
+[WreckingBall X2AbilityTemplate]
+LocFriendlyName="破壞球"
+LocLongDescription="當發動「過載」技能時，能夠在移動過程中衝破牆壁和掩體。"
+LocHelpText="當發動「過載」技能時，能夠在移動過程中衝破牆壁和掩體。"
+LocPromotionPopupText="<Bullet/>破壞球能夠用於將敵人暴露在夾擊之中。.<br/><Bullet/>使用移動路徑點指引SPARK前往合適的路徑以摧毀掩體和環境物體。</br>"
+
+[Bombard X2AbilityTemplate]
+LocFriendlyName="密集轟炸"
+LocLongDescription="往任何可見位置發射BIT，釋放一次強力的爆炸衝擊。高級BIT能造成更多傷害。"
+LocHelpText="發射BIT衝擊所有範圍內的單位。"
+LocPromotionPopupText="<Bullet/>密集轟炸可以發射到小隊視野中的任何位置。<br/><Bullet/>升級BIT可以使密集轟炸的傷害提升。<br/>"
+
+[HunterProtocol X2AbilityTemplate]
+LocFriendlyName="獵手協議"
+LocLongDescription="當一個敵人暴露時，有<Ability:HunterProtocol_Chance/>%的機率進行一次無消耗「監視」射擊。"
+LocHelpText="當一個敵人暴露時，有<Ability:HunterProtocol_Chance/>%的機率進行一次無消耗「監視」射擊。"
+LocPromotionPopupText="<Bullet/>獵手協議讓SPARK成為探索戰爭迷霧的理想單位，因為可以立刻攻擊任何被揭示的敵人。<br/>"
+
+[Nova X2AbilityTemplate]
+LocFriendlyName="新星"
+LocLongDescription="釋放一波能量，傷害附近的所有單位。此攻擊不消耗行動點數且不需要冷卻時間，但持續的新星會對SPARK造成傷害。"
+LocHelpText="衝擊附近所有單位。持續的新星將會對SPARK造成傷害。"
+LocPromotionPopupText="<Bullet/>新星無需行動點和冷卻時間。<br/><Bullet/>每個任務首次新星攻擊會對SPARK造成0點傷害。<br/><Bullet/>SPARK首次新星攻擊後的每次新星攻擊都會對SPARK造成一個疊加的<Ability:Nova_Damage/>點傷害。<br/>"

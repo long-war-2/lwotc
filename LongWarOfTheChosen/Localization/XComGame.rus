@@ -6880,3 +6880,100 @@ LocPromotionPopupText="<Bullet/> Имейте в виду, что спасенн
 LocLongDescription="Солдат получил смертельный урон, но был спасен и помещен в \"Стазис\" на 1 ход. Это одноразовая способность."
 LocHelpText="Солдат получил смертельный урон, но был спасен и помещен в \"Стазис\" на 1 ход. Это одноразовая способность."
 ; End Translation
+
+[Overdrive X2AbilityTemplate]
+LocFriendlyName="Овердрайв"
+LocLongDescription="Три действия в течение хода, ни одно из которых не завершает его. Последовательные стандартные выстрелы с небольшим штрафом от отдачи."
+LocHelpText="Три действия в течение хода, ни одно из которых не завершает его. Последовательные стандартные выстрелы с небольшим штрафом от отдачи."
+LocPromotionPopupText="<Bullet/> После каждого выстрела в режиме овердрайв добавляется штраф -<Ability:Overdrive_RecoilPenalty/>% к меткости.<br/><Bullet/> Овердрайв активируется без действия. Ходов до перезарядки: <Ability:SelfCooldown_LW/> <br/>"
+
+[Bulwark X2AbilityTemplate]
+LocFriendlyName="Бастион"
+LocLongDescription="Добавляет 1 ед. брони и позволяет выполнять роль высокого укрытия для всех союзников."
+LocHelpText="Добавляет 1 ед. брони и позволяет выполнять роль высокого укрытия для всех союзников."
+LocPromotionPopupText="<Bullet/> \"Бастион\" добавляет 1 единицу брони.<br/><Bullet/> Союзники по соседству с \"Искрой\" получают бонус к защите, как от высокого укрытия.<br/>"
+
+[Arsenal X2AbilityTemplate]
+LocFriendlyName="Арсенал"
+LocLongDescription="\"BIT\" способен использовать тяжелое вооружение"
+LocHelpText="\"BIT\" способен использовать тяжелое вооружение."
+LocPromotionPopupText="<Bullet/> Способность \"Арсенал\" позволяет \"Искре\" использовать тяжелое вооружение.<br/>"
+
+[Rainmaker X2AbilityTemplate]
+LocFriendlyName="Ливень"
+LocLongDescription="Используемое тяжелое оружие наносит +<Ability:Rainmaker_BonusDamage/> ед. урона в увеличенной зоне поражения."
+LocHelpText="Используемое тяжелое оружие наносит больше урона в увеличенной зоне поражения."
+LocPromotionPopupText="<Bullet/> \"Ливень\" добавляет <Ability:Rainmaker_BonusDamage/> ед. урона всему тяжелому оружию.<br/><Bullet/> Для тяжелого оружия с круглой зоной поражения радиус увеличивается на <Ability:Rainmaker_BonusRadius/>.<br/><Bullet/> Для оружия с конической зоной поражения диаметр увеличивается на <Ability:Rainmaker_BonusDiameter/>, а длина - на <Ability:Rainmaker_BonusLength/>.<br/>"
+
+[Intimidate X2AbilityTemplate]
+LocFriendlyName="Устрашение"
+LocLongDescription="Когда враг атакует, он может запаниковать."
+LocHelpText="Когда враг атакует, он может запаниковать."
+LocFlyOverText="Устрашение"
+LocPromotionPopupText="<Bullet/> Вероятность \"Устрашения\" повышается при улучшении брони \"Искры\".<br/><Bullet/> Способность активируется при атаках в рукопашной и по площади.<br/><Bullet/> Стрельба из режима \"наблюдения\" игнорируется.<br/>"
+
+[IntimidateTrigger X2AbilityTemplate]
+LocFriendlyName="Устрашение"
+LocLongDescription="Когда враг атакует, все видимые противники могут запаниковать."
+LocHelpText="Когда враг атакует, все видимые противники могут запаниковать."
+LocFlyOverText="Устрашение"
+LocPromotionPopupText=""
+LocMissMessage="Устрашение не удалось!"
+
+[Repair X2AbilityTemplate]
+LocFriendlyName="Ремонт"
+LocLongDescription="\"BIT\" способен подлететь к любому дружественному роботу и отремонтировать его. Улучшенные модели ремонтируют эффективнее."
+LocHelpText="\"BIT\" способен подлететь к любому дружественному роботу и отремонтировать его."
+LocFlyOverText="Ремонт"
+LocPromotionPopupText="<Bullet/> \"Ремонт\" восстанавливает <Ability:Repair_HealHP/> здоровья.<br/><Bullet/> Улучшение \"BIT\" позволяет восстанавливать больше ОЗ за раз.<br/><Bullet/> Использование способности \"Ремонт\" не заканчивает ход, если является первым действием.<br/><Bullet/> Используется не более <Ability:Repair_Charges/>-х раз за задание.<br/>"
+
+[AbsorptionField X2AbilityTemplate]
+LocFriendlyName="Поглощающее поле"
+LocLongDescription="Когда \"Искра\" попадает под обстрел, <Ability:WeaponName> заряжается энергией, которую можно использовать при следующем выстреле."
+LocHelpText="<Ability:WeaponName> при обстреле заряжается энергией, которую можно использовать при следующем выстреле."
+LocFlyOverText="Поглощение энергии: +1"
+LocPromotionPopupText="<Bullet/> С каждой единицей поглощенной энергии <Ability:WeaponName> наносит на 1 ед. больше урона при следующей атаке.<br/><Bullet/> Накопленная энергия расходуется даже в том случае, если выстрел не попадает в цель.<br/>"
+
+[Sacrifice X2AbilityTemplate]
+LocFriendlyName="Самопожертвование"
+LocLongDescription="Создает защищенную область, в которой все атаки по союзникам перенаправляются \"Искре\". Дает дополнительную броню и защиту на время действия способности."
+LocHelpText="Создает защищенную область, направляя на себя атаки противников."
+LocFlyOverText="Самопожертвование"
+LocPromotionPopupText="<Bullet/> Пока действует \"Самопожертвование\", \"Искра\" получает +<Ability:Sacrifice_Defense/> к защите и +<Ability:Sacrifice_Armor/> к броне.<br/><Bullet/> Перезарядка - <Ability:SelfCooldown_LW/> хода.<br/>"
+
+[AdaptiveAim X2AbilityTemplate]
+LocFriendlyName="Адаптивное прицеливание"
+LocLongDescription="В режиме овердрайв стандартные выстрелы не получают штраф за отдачу."
+LocHelpText="В режиме овердрайв стандартные выстрелы не получают штраф за отдачу."
+LocPromotionPopupText="<Bullet/> Адаптивное прицеливание устраняет штраф в <Ability:Overdrive_RecoilPenalty/>% меткости за последовательные выстрелы находясь в режиме овердрайв.<br/>"
+
+
+[Strike X2AbilityTemplate]
+LocFriendlyName="Рывок"
+LocLongDescription="Мощная рукопашная атака любой цели в пределах дистанции перемещения."
+LocHelpText="Мощная рукопашная атака любой цели в пределах дистанции перемещения."
+LocPromotionPopupText="<Bullet/> Чтобы активировать атаку, наведите курсор движения на противника.<br/><Bullet/> \"Искра\" подбежит вплотную к цели, потратив оба действия, и выполнит удар.<br/>"
+
+[WreckingBall X2AbilityTemplate]
+LocFriendlyName="Разрушитель"
+LocLongDescription="В режиме овердрайв \"Искра\" способен проходить через стены и укрытия."
+LocHelpText="В режиме овердрайв \"Искра\" способен проходить через стены и укрытия."
+LocPromotionPopupText="<Bullet/> \"Разрушитель\" позволяет подставить врагов под атаки с флага.<br/><Bullet/> Задайте \"Искре\" маршрут, который максимально эффективно разрушит вражеские укрытия.</br>"
+
+[Bombard X2AbilityTemplate]
+LocFriendlyName="Артобстрел"
+LocLongDescription="Запуск \"BIT\" в любую видимую точку, где он устраивает мощный взрыв. Улучшенные модели наносят больше урона."
+LocHelpText="Запуск \"BIT\", который атакует всех врагов в зоне действия."
+LocPromotionPopupText="<Bullet/> Способность \"Артобстрел\" можно применить по любой точке в пределах \"общего вида\".<br/><Bullet/> Улучшив \"BIT\", вы сможете наносить больше урона.<br/>"
+
+[HunterProtocol X2AbilityTemplate]
+LocFriendlyName="Протокол охоты"
+LocLongDescription="При обнаружении противника в режиме \"наблюдения\" есть <Ability:HunterProtocol_Chance/>% вероятность сделать выстрел."
+LocHelpText="При обнаружении противника в режиме \"наблюдения\" есть <Ability:HunterProtocol_Chance/>% вероятность сделать выстрел."
+LocPromotionPopupText="<Bullet/> \"Протокол охоты\" делает \"Искру\" идеальным разведчиком, поскольку позволяет немедленно атаковать обнаруженных противников.<br/>"
+
+[Nova X2AbilityTemplate]
+LocFriendlyName="Нова"
+LocLongDescription="Выброс энергии, наносящий урон всем бойцам вокруг. Не имеет стоимости и перезарядки, однако последовательные применения повреждают \"Искру\"."
+LocHelpText="Урон всем бойцам вокруг. Каждое последующее применение повреждает \"Искру\"."
+LocPromotionPopupText="<Bullet/> \"Нова\" не требует действий и мгновенно перезаряжается.<br/><Bullet/> Первое применение в течение каждого задания наносит 0 урона \"Искре\".<br/><Bullet/> Все последующие атаки после первой наносят \"Искре\" накапливающийся урон в <Ability:Nova_Damage/> ед.<br/>"

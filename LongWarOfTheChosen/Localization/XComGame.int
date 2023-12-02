@@ -7456,3 +7456,99 @@ LocHelpText="The unit would have died, but was saved and put into Stasis for 1 t
 [X2MPData_Shell]
 arrMPMapFriendlyNames[9]="Underground"
 arrMPMapFriendlyNames[10]="Underground"
+
+[Overdrive X2AbilityTemplate]
+LocFriendlyName="Overdrive"
+LocLongDescription="Take three actions this turn, and no action is turn-ending. Multiple Standard Shots incur a small recoil penalty."
+LocHelpText="Take three actions this turn, and no action is turn-ending. Multiple Standard Shots incur a small recoil penalty."
+LocPromotionPopupText="<Bullet/> A recoil penalty of <Ability:Overdrive_RecoilPenalty/> Aim is applied after each Standard Shot while Overdrive is active.<br/><Bullet/> Overdrive has no cost to activate, but has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+
+[Bulwark X2AbilityTemplate]
+LocFriendlyName="Bulwark"
+LocLongDescription="Gain a bonus point of Armor, and always provide high cover to all adjacent squadmates."
+LocHelpText="Gain a bonus point of Armor, and always provide high cover to all adjacent squadmates."
+LocPromotionPopupText="<Bullet/> Bulwark adds one point of Armor.<br/><Bullet/> Any squadmate standing adjacent to the SPARK will gain the high cover Defense bonus.<br/>"
+
+[Arsenal X2AbilityTemplate]
+LocFriendlyName="Arsenal"
+LocLongDescription="The BIT can equip and fire heavy weapons."
+LocHelpText="The BIT can equip and fire heavy weapons."
+LocPromotionPopupText="<Bullet/> Arsenal allows the SPARK to equip heavy weapons in their loadout.<br/>"
+
+[Rainmaker X2AbilityTemplate]
+LocFriendlyName="Rainmaker"
+LocLongDescription="Equipped heavy weapons deal +<Ability:Rainmaker_BonusDamage/> damage and have increased area of effect."
+LocHelpText="Equipped heavy weapons deal more damage and affect a larger area."
+LocPromotionPopupText="<Bullet/> Rainmaker adds +<Ability:Rainmaker_BonusDamage/> damage to all heavy weapons.<br/><Bullet/> Heavy weapons with circular areas of effect have their radius increased by +<Ability:Rainmaker_BonusRadius/>.<br/><Bullet/> Heavy weapons with conic areas of effect have their diameter increased by +<Ability:Rainmaker_BonusDiameter/> and length increased by +<Ability:Rainmaker_BonusLength/>.<br/>"
+
+[Intimidate X2AbilityTemplate]
+LocFriendlyName="Intimidate"
+LocLongDescription="When targeted by an attack, the enemy has a chance to panic."
+LocHelpText="When targeted by an attack, the enemy has a chance to panic."
+LocFlyOverText="Intimidate"
+LocPromotionPopupText="<Bullet/> Intimidate's chance to panic the attacker increases with higher tier SPARK armors.<br/><Bullet/> Intimidate can be triggered by melee and area of effect attacks.<br/><Bullet/> Intimidate will not trigger when targeted by Overwatch fire.<br/>"
+
+[IntimidateTrigger X2AbilityTemplate]
+LocFriendlyName="Intimidate"
+LocLongDescription="When targeted by an attack, all visible enemies have a chance to panic."
+LocHelpText="When targeted by an attack, all visible enemies have a chance to panic."
+LocFlyOverText="Intimidate"
+LocPromotionPopupText=""
+LocMissMessage="Intimidate Failed"
+
+[Repair X2AbilityTemplate]
+LocFriendlyName="Repair"
+LocLongDescription="Send the BIT to a damaged robotic ally and repair it. Advanced BITs can repair slightly more."
+LocHelpText="Send the BIT to repair a damaged robotic ally."
+LocFlyOverText="Repair"
+LocPromotionPopupText="<Bullet/> Repair will restore <Ability:Repair_HealHP/> health.<br/><Bullet/> Upgrading your BIT will lead to more HP repaired.<br/><Bullet/> Using Repair as your first action will not end your turn.<br/><Bullet/> Repair has <Ability:Repair_Charges/> charges per mission.<br/>"
+
+[AbsorptionField X2AbilityTemplate]
+LocFriendlyName="Channeling Field"
+LocLongDescription="Every time you are targeted, part of the energy is channeled to your <Ability:WeaponName>. This energy is unleashed with your next Standard Shot."
+LocHelpText="Channel energy to your <Ability:WeaponName> when targeted, and unleash it with your next Standard Shot."
+LocFlyOverText="Energy Channeled: +1"
+LocPromotionPopupText="<Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/><Bullet/> The energy stored by channeling field is expended even if the next shot misses.<br/>"
+
+[Sacrifice X2AbilityTemplate]
+LocFriendlyName="Sacrifice"
+LocLongDescription="Generate a protective field which redirects any attacks against allies inside it towards you. Gain bonus defense and armor while active."
+LocHelpText="Generate a protective field to redirect enemy attacks towards you."
+LocFlyOverText="Sacrifice"
+LocPromotionPopupText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+
+[AdaptiveAim X2AbilityTemplate]
+LocFriendlyName="Adaptive Aim"
+LocLongDescription="When Overdrive is active, Standard Shots do not incur recoil penalties."
+LocHelpText="When Overdrive is active, Standard Shots do not incur recoil penalties."
+LocPromotionPopupText="<Bullet/> Adaptive Aim eliminates the <Ability:Overdrive_RecoilPenalty/> Aim penalty for consecutive Standard Shots when Overdrive is active.<br/>"
+
+[Strike X2AbilityTemplate]
+LocFriendlyName="Strike"
+LocLongDescription="Attack any enemy within movement range with a powerful melee attack."
+LocHelpText="Attack any enemy within movement range with a powerful melee attack."
+LocPromotionPopupText="<Bullet/> You can trigger the Strike ability by placing the movement cursor over an enemy.<br/><Bullet/> A SPARK can perform a \"Dash\" move, using both actions to move, and still trigger a Strike against an adjacent enemy.<br/>"
+
+[WreckingBall X2AbilityTemplate]
+LocFriendlyName="Wrecking Ball"
+LocLongDescription="While Overdrive is active, break through walls and cover when moving."
+LocHelpText="While Overdrive is active, break through walls and cover when moving."
+LocPromotionPopupText="<Bullet/> Wrecking Ball can be used to expose enemies to flanking shots.<br/><Bullet/> Use movement waypoints to guide the SPARK on an optimal path for destroying cover and the environment.</br>"
+
+[Bombard X2AbilityTemplate]
+LocFriendlyName="Bombard"
+LocLongDescription="Launch the BIT to any visible location where it releases a powerful explosive blast. Advanced BITs do more damage."
+LocHelpText="Launch the BIT to blast all units in a radius."
+LocPromotionPopupText="<Bullet/> Bombard can be fired at any location within squadsight.<br/><Bullet/> Upgrading your BIT will lead to more Bombard damage.<br/>"
+
+[HunterProtocol X2AbilityTemplate]
+LocFriendlyName="Hunter Protocol"
+LocLongDescription="When an enemy is revealed, there is a <Ability:HunterProtocol_Chance/>% chance to take a free Overwatch shot."
+LocHelpText="When an enemy is revealed, there is a <Ability:HunterProtocol_Chance/>% chance to take a free Overwatch shot."
+LocPromotionPopupText="<Bullet/> Hunter Protocol makes the SPARK an ideal unit for scouting into the fog of war, since any revealed enemy can be instantly attacked.<br/>"
+
+[Nova X2AbilityTemplate]
+LocFriendlyName="Nova"
+LocLongDescription="Release a blast of energy, damaging all nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the SPARK."
+LocHelpText="Blast all nearby units. Consecutive Novas will damage the SPARK."
+LocPromotionPopupText="<Bullet/> Nova has no action point cost and no cooldown.<br/><Bullet/> The first Nova attack each mission will deal 0 damage to the SPARK.<br/><Bullet/> All Nova attacks after the first will deal a stacking <Ability:Nova_Damage/> damage to the SPARK.<br/>"

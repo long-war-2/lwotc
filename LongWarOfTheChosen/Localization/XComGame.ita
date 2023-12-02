@@ -4719,3 +4719,99 @@ TacticalText="<Bullet/> Il proiettore al plasma rilascia un raggio di energia de
 
 [SparkRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> Il cannone fasico all'elerium, progettato appositamente per infliggere il massimo dei danni con gli SPARK, è l'apice della tecnologia dei fucili.\n<Bullet/> Sparare con l'arma primaria conclude sempre il turno di un soldato, se non ha ricevuto addestramenti speciali.<br/><Bullet/> Le armi al plasma causano al bersaglio un ulteriore danno aggiuntivo ad ogni colpo."
+
+[Overdrive X2AbilityTemplate]
+LocFriendlyName="Overdrive"
+LocLongDescription="Esegui tre azioni che non concludono il turno corrente. Sparare più Colpi standard può causare una piccola penalità per il rinculo."
+LocHelpText="Esegui tre azioni che non concludono il turno corrente. Sparare più Colpi standard può causare una piccola penalità per il rinculo."
+LocPromotionPopupText="<Bullet/> Una penalità di rinculo di <Ability:Overdrive_RecoilPenalty/>punti percentuali alla Mira si applica a tutti i Colpi standard mentre Overdrive è attivo.<br/><Bullet/> Overdrive si attiva gratuitamente ma ha una ricarica di <Ability:SelfCooldown_LW/> turni.<br/>"
+
+[Bulwark X2AbilityTemplate]
+LocFriendlyName="Bastione"
+LocLongDescription="Ottiene un punto bonus di Armatura e fornisce sempre un riparo alto a tutti i compagni di squadra adiacenti."
+LocHelpText="Ottiene un punto bonus di Armatura e fornisce sempre un riparo alto a tutti i compagni di squadra adiacenti."
+LocPromotionPopupText="<Bullet/> Bastione aggiunge un punto di Armatura.<br/><Bullet/> I compagni di squadra adiacenti all'unità SPARK ottengono il bonus difensivo di un riparo alto.<br/>"
+
+[Arsenal X2AbilityTemplate]
+LocFriendlyName="Arsenale"
+LocLongDescription="Il BIT può montare e usare armi pesanti."
+LocHelpText="Il BIT può montare e usare armi pesanti."
+LocPromotionPopupText="<Bullet/> Arsenale consente allo SPARK di montare armi pesanti.<br/>"
+
+[Rainmaker X2AbilityTemplate]
+LocFriendlyName="Abbondanza"
+LocLongDescription="Le armi pesanti in uso infliggono +<Ability:Rainmaker_BonusDamage/> danni e hanno un'area d'effetto più ampia."
+LocHelpText="Le armi pesanti in uso infliggono più danni in un'area più ampia."
+LocPromotionPopupText="<Bullet/> Abbondanza aggiunge +<Ability:Rainmaker_BonusDamage/> danni a tutte le armi pesanti.<br/><Bullet/> Le armi pesanti con aree d'effetto circolari aumentano il raggio di azione di +<Ability:Rainmaker_BonusRadius/>.<br/><Bullet/> Le armi pesanti con area d'effetto conica aumentano il diametro di azione di +<Ability:Rainmaker_BonusDiameter/> e la distanza di +<Ability:Rainmaker_BonusLength/>.<br/>"
+
+[Intimidate X2AbilityTemplate]
+LocFriendlyName="Intimidazione"
+LocLongDescription="Quando viene bersagliato da un attacco, c'è una probabilità che il nemico vada nel panico."
+LocHelpText="Quando viene bersagliato da un attacco, c'è una probabilità che il nemico vada nel panico."
+LocFlyOverText="Intimidazione"
+LocPromotionPopupText="<Bullet/> Le probabilità di Intimidazione di causare il panico aumentano con i livelli più alti delle armature dello SPARK.<br/><Bullet/> Intimidazione può attivarsi con gli attacchi in mischia e con quelli ad area.<br/><Bullet/> Intimidazione non si attiva con il fuoco dei colpi di Guardia.<br/>"
+
+[IntimidateTrigger X2AbilityTemplate]
+LocFriendlyName="Intimidazione"
+LocLongDescription="Quando viene bersagliato da un attacco, c'è una probabilità che tutti i nemici visibili vadano nel panico."
+LocHelpText="Quando viene bersagliato da un attacco, c'è una probabilità che tutti i nemici visibili vadano nel panico."
+LocFlyOverText="Intimidazione"
+LocPromotionPopupText=""
+LocMissMessage="Intimidazione fallita"
+
+[Repair X2AbilityTemplate]
+LocFriendlyName="RIPARA"
+LocLongDescription="Invia il BIT a riparare un alleato robotico danneggiato. I BIT avanzati riparano un po' di più."
+LocHelpText="Invia il BIT a riparare un alleato robotico danneggiato."
+LocFlyOverText="Ripara"
+LocPromotionPopupText="<Bullet/> Ripara ripristina <Ability:Repair_HealHP/> salute.<br/><Bullet/> Potenzia il tuo BIT per riparare più PV.<br/><Bullet/> Usare Ripara come prima azione non conclude il turno.<br/><Bullet/> Ripara ha <Ability:Repair_Charges/> cariche per missione.<br/>"
+
+[AbsorptionField X2AbilityTemplate]
+LocFriendlyName="Campo canalizzante"
+LocLongDescription="Ogni volta che vieni attaccato, parte dell'energia viene incanalata nell'arma <Ability:WeaponName>. L'energia viene scaricata con il Colpo standard successivo."
+LocHelpText="Incanala l'energia nell'arma <Ability:WeaponName> quando vieni attaccato, scaricandola con il Colpo normale successivo."
+LocFlyOverText="Energia canalizzata: +1"
+LocPromotionPopupText="<Bullet/> Ogni punto di energia incanalato da Campo canalizzante aumenta di 1 i danni del successivo attacco con l'arma <Ability:WeaponName>.<br/><Bullet/> L'energia immagazzinata dalla canalizzazione viene consumata anche se il colpo va a vuoto.<br/>"
+
+[Sacrifice X2AbilityTemplate]
+LocFriendlyName="Sacrificio"
+LocLongDescription="Crea un campo protettivo che ridirige verso di te tutti gli attacchi rivolti agli alleati al suo interno. Ottieni un bonus a Difesa e Armatura mentre l'effetto è attivo."
+LocHelpText="Genera un campo protettivo che ridirige verso di te gli attacchi nemici."
+LocFlyOverText="Sacrificio"
+LocPromotionPopupText="<Bullet/> Lo SPARK ottiene +<Ability:Sacrifice_Defense/> difesa e +<Ability:Sacrifice_Armor/> armatura mentre Sacrificio è attivo.<br/><Bullet/> Sacrificio ha <Ability:SelfCooldown_LW/> turni di ricarica.<br/>"
+
+[AdaptiveAim X2AbilityTemplate]
+LocFriendlyName="Mira regolabile"
+LocLongDescription="Quando Overdrive è attivo, i Colpi standard non subiscono penalità di rinculo."
+LocHelpText="Quando Overdrive è attivo, i Colpi standard non subiscono penalità di rinculo."
+LocPromotionPopupText="<Bullet/> Mira regolabile elimina la penalità di <Ability:Overdrive_RecoilPenalty/> punti percentuali alla Mira per i Colpi standard consecutivi mentre Overdrive è attivo.<br/>"
+
+[Strike X2AbilityTemplate]
+LocFriendlyName="Strike"
+LocLongDescription="Attacca un nemico entro la portata di movimento con un potente assalto in mischia."
+LocHelpText="Attacca un nemico entro la portata di movimento con un potente assalto in mischia."
+LocPromotionPopupText="<Bullet/> Puoi attivare l'abilità Strike piazzando il cursore di movimento sopra un nemico.<br/><Bullet/> Lo SPARK può eseguire uno \"scatto\", usando entrambe le azioni per il movimento, attivando comunque lo Strike ai danni di un nemico adiacente.<br/>"
+
+[WreckingBall X2AbilityTemplate]
+LocFriendlyName="Demolizione"
+LocLongDescription="Se Overdrive è attivo, abbatte muri e ripari quando si muove."
+LocHelpText="Se Overdrive è attivo, abbatte muri e ripari quando si muove."
+LocPromotionPopupText="<Bullet/> Demolizione può esporre i nemici agli attacchi sul fianco.<br/><Bullet/> Usa le tappe dei movimenti in modo da guidare lo SPARK sul percorso ottimale per distruggere i ripari e l'ambiente.</br>"
+
+[Bombard X2AbilityTemplate]
+LocFriendlyName="Bombardamento"
+LocLongDescription="Invia il BIT in una posizione visibile, dove rilascia una potente scarica esplosiva. I BIT avanzati infliggono più danni."
+LocHelpText="Invia il BIT a colpire tutte le unità entro un raggio."
+LocPromotionPopupText="<Bullet/> Bombardamento può essere usato in ogni posizione all'interno della visuale di squadra.<br/><Bullet/> Potenziare il BIT aumenta i danni di Bombardamento.<br/>"
+
+[HunterProtocol X2AbilityTemplate]
+LocFriendlyName="Protocollo di caccia"
+LocLongDescription="Quando un nemico è rivelato, c'è una probabilità di <Ability:HunterProtocol_Chance/> punti percentuali di sparare un colpo di Guardia gratuito."
+LocHelpText="Quando un nemico è rivelato, c'è una probabilità di <Ability:HunterProtocol_Chance/> punti percentuali di sparare un colpo di Guardia gratuito."
+LocPromotionPopupText="<Bullet/> Il protocollo di caccia rende lo SPARK l'unità ideale per esplorare la nebbia di guerra, visto che ogni nemico rivelato può essere attaccato all'istante.<br/>"
+
+[Nova X2AbilityTemplate]
+LocFriendlyName="Nova"
+LocLongDescription="Rilascia una scarica di energia che danneggia tutti i nemici nelle vicinanze. Non costa un'azione e non ha ricarica, ma gli usi successivi danneggiano lo SPARK."
+LocHelpText="Colpisce tutti i nemici nelle vicinanze. Gli attacchi Nova successivi danneggiano lo SPARK."
+LocPromotionPopupText="<Bullet/> Nova non ha un costo in punti azione e non ha ricarica.<br/><Bullet/> Il primo attacco Nova di ogni missione infligge 0 danni allo SPARK.<br/><Bullet/> Gli attacchi Nova successivi infliggono un danno accumulabile di <Ability:Nova_Damage/> allo SPARK.<br/>"

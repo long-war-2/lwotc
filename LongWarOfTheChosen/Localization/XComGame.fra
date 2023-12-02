@@ -7180,6 +7180,101 @@ LocLongDescription="Cette unité a <Ability:FLASHBANG_RESIST_VALUE/>% de résist
 LocHelpText="Cette unité a <Ability:FLASHBANG_RESIST_VALUE/>% de résister aux désorientations provoquées par les grenades flash."
 ; End translated
 
+[Overdrive X2AbilityTemplate]
+LocFriendlyName="Overdrive"
+LocLongDescription="Trois actions utilisées pour ce tour, dont aucune n'y met fin. Des tirs normaux multiples entraînent une légère pénalité de recul."
+LocHelpText="Trois actions utilisées pour ce tour, dont aucune n'y met fin. Des tirs normaux multiples entraînent une légère pénalité de recul."
+LocPromotionPopupText="<Bullet/> Une pénalité de recul à la visée de <Ability:Overdrive_RecoilPenalty/> % s'applique après chaque tir normal lorsque l'Overdrive est activé. <br/><Bullet/> L'Overdrive ne consomme pas de point d'action, mais nécessite un temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/>"
+
+[Bulwark X2AbilityTemplate]
+LocFriendlyName="Rempart"
+LocLongDescription="L'armure gagne un point bonus. Offre toujours une couverture complète à tous les alliés adjacents."
+LocHelpText="L'armure gagne un point bonus. Offre toujours une couverture complète à tous les alliés adjacents."
+LocPromotionPopupText="<Bullet/> Le Rempart fait gagner un point d'armure. <br/><Bullet/> Tout allié adjacent au Spark voit sa défense améliorée par une couverture complète.<br/>"
+
+[Arsenal X2AbilityTemplate]
+LocFriendlyName="Arsenal"
+LocLongDescription="Le BOT peut s'équiper d'armes lourdes et tirer."
+LocHelpText="Le BOT peut s'équiper d'armes lourdes et tirer."
+LocPromotionPopupText="<Bullet/> L'Arsenal permet au Spark de s'équiper d'armes lourdes.<br/>"
+
+[Rainmaker X2AbilityTemplate]
+LocFriendlyName="Faiseur de pluie"
+LocLongDescription="Les armes lourdes équipées infligent <Ability:Rainmaker_BonusDamage/> point(s) de dégâts en plus et touchent une zone plus large."
+LocHelpText="Les armes lourdes équipées infligent plus de dégâts et touchent une zone plus large."
+LocPromotionPopupText="<Bullet/> La capacité Faiseur de pluie augmente de <Ability:Rainmaker_BonusDamage/> point(s) les dégâts infligés par les armes lourdes. <br/><Bullet/> Les armes lourdes à zone d'effet circulaire voient leur rayon augmenter de <Ability:Rainmaker_BonusRadius/>. <br/><Bullet/> Les armes lourdes à cône d'effet voient leur diamètre augmenter de <Ability:Rainmaker_BonusDiameter/> et leur longueur de <Ability:Rainmaker_BonusLength/>. <br/>"
+
+[Intimidate X2AbilityTemplate]
+LocFriendlyName="Intimidation"
+LocLongDescription="Si l'unité est la cible d'une attaque, l'ennemi a une chance d'être pris de panique."
+LocHelpText="Si l'unité est la cible d'une attaque, l'ennemi a une chance d'être pris de panique."
+LocFlyOverText="Intimidation"
+LocPromotionPopupText="<Bullet/> Les chances de faire paniquer l'attaquant avec l'Intimidation augmentent en fonction du blindage du Spark. <br/><Bullet/> L'Intimidation peut être déclenchée par les attaques au corps à corps ou à effet de zone. <br/><Bullet/> L'Intimidation ne se déclenchera pas si l'unité est visée par un tir de vigilance.<br/>"
+
+[IntimidateTrigger X2AbilityTemplate]
+LocFriendlyName="Intimidation"
+LocLongDescription="Si l'unité est la cible d'une attaque, tous les ennemis visibles ont une chance d'être pris de panique."
+LocHelpText="Si l'unité est la cible d'une attaque, tous les ennemis visibles ont une chance d'être pris de panique."
+LocFlyOverText="Intimidation"
+LocPromotionPopupText=""
+LocMissMessage="Échec de l'intimidation"
+
+[Repair X2AbilityTemplate]
+LocFriendlyName="Réparation"
+LocLongDescription="Envoyez le BOT réparer un allié robotique endommagé. Plus le BOT est avancé, plus les réparations sont efficaces."
+LocHelpText="Envoyez le BOT réparer un allié robotique endommagé."
+LocFlyOverText="Réparation"
+LocPromotionPopupText="<Bullet/> La capacité Réparation régénère <Ability:Repair_HealHP/> PV. <br/><Bullet/> Améliorez votre BOT pour des réparations plus efficaces. <br/><Bullet/> La Réparation peut être utilisée en début de tour sans y mettre fin. <br/><Bullet/> La Réparation peut être utilisée <Ability:Repair_Charges/> fois par mission. <br/>"
+
+[AbsorptionField X2AbilityTemplate]
+LocFriendlyName="Champ de canalisation"
+LocLongDescription="Chaque fois que vous êtes pris pour cible, une partie de l'énergie est canalisée dans votre <Ability:WeaponName>, avant d'être libérée à votre prochain tir normal."
+LocHelpText="Canalisez de l'énergie dans votre <Ability:WeaponName> lorsque vous êtes pris pour cible et libérez-la à votre prochain tir normal."
+LocFlyOverText="Énergie canalisée : +1"
+LocPromotionPopupText="<Bullet/> Chaque point d'énergie canalisé par le Champ de canalisation augmente d'un point les dégâts de la prochaine attaque avec votre <Ability:WeaponName>. <br/><Bullet/> L'énergie stockée par le champ de canalisation est dépensée même si le tir suivant ne touche pas sa cible.<br/>"
+
+[Sacrifice X2AbilityTemplate]
+LocFriendlyName="Sacrifice"
+LocLongDescription="Générez un champ de protection qui déviera toutes les attaques contre vos alliés sur vous. Tant que la capacité est activée, la défense et le blindage augmentent."
+LocHelpText="Générez un champ de protection qui déviera toutes les attaques ennemies sur vous."
+LocFlyOverText="Sacrifice"
+LocPromotionPopupText="<Bullet/> Lorsque le Sacrifice est activé, la défense du Spark augmente de <Ability:Sacrifice_Defense/> et son armure de <Ability:Sacrifice_Armor/>. <br/><Bullet/> Le Sacrifice nécessite un temps de rechargement de <Ability:SelfCooldown_LW/> tour(s). <br/>"
+
+[AdaptiveAim X2AbilityTemplate]
+LocFriendlyName="Visée adaptative"
+LocLongDescription="Lorsque l'Overdrive est activé, les tirs normaux n'ont pas de pénalité de recul."
+LocHelpText="Lorsque l'Overdrive est activé, les tirs normaux n'ont pas de pénalité de recul."
+LocPromotionPopupText="<Bullet/> La Visée adaptative élimine la pénalité de visée de <Ability:Overdrive_RecoilPenalty/> % pour les tirs normaux consécutifs lorsque l'Overdrive est activé.<br/>"
+
+[Strike X2AbilityTemplate]
+LocFriendlyName="Frappe"
+LocLongDescription="Portez une puissante attaque au corps à corps contre un ennemi à portée de déplacement."
+LocHelpText="Portez une puissante attaque au corps à corps contre un ennemi à portée de déplacement."
+LocPromotionPopupText="<Bullet/> Vous pouvez déclencher la capacité Frappe en plaçant le curseur sur un ennemi.<br/><Bullet/> Un Spark peut \"sprinter\" en utilisant ses deux actions tout en étant capable de lancer une Frappe sur un ennemi adjacent.<br/>"
+
+[WreckingBall X2AbilityTemplate]
+LocFriendlyName="Boulet de démolition"
+LocLongDescription="Lorsque l'Overdrive est activé, vous brisez les murs et les abris en vous déplaçant."
+LocHelpText="Lorsque l'Overdrive est activé, vous brisez les murs et les abris en vous déplaçant."
+LocPromotionPopupText="<Bullet/> Le Boulet de démolition permet d'exposer l'ennemi aux attaques à revers. <br/><Bullet/> Placez des repères pour guider le Spark de façon optimale afin de détruire des abris et l'environnement. </br>"
+
+[Bombard X2AbilityTemplate]
+LocFriendlyName="Bombardement"
+LocLongDescription="Vous lancez le BOT vers un point visible, où il déclenche une violente explosion. les BOT avancés font plus de dégâts."
+LocHelpText="Vous lancez le BOT et il explose, blessant les unités présentes dans le rayon de la déflagration."
+LocPromotionPopupText="<Bullet/> Le Bombardement peut être utilisé sur n'importe quel emplacement dans le champ de vision de l'escouade.<br/><Bullet/> Améliorez votre BOT pour faire plus de dégâts.<br/>"
+
+[HunterProtocol X2AbilityTemplate]
+LocFriendlyName="Protocole de chasseur"
+LocLongDescription="Lorsqu'un ennemi est dévoilé, vous avez <Ability:HunterProtocol_Chance/> % de chances d'effectuer un tir de vigilance gratuit."
+LocHelpText="Lorsqu'un ennemi est dévoilé, vous avez <Ability:HunterProtocol_Chance/> % de chances d'effectuer un tir de vigilance gratuit."
+LocPromotionPopupText="<Bullet/> Le Protocole de chasseur fait du Spark l'unité idéale pour partir en reconnaissance dans le brouillard de guerre, puisque tout ennemi découvert peut immédiatement être attaqué.<br/>"
+
+[Nova X2AbilityTemplate]
+LocFriendlyName="Nova"
+LocLongDescription="Relâche une explosion énergétique blessant toutes les unités à proximité. Ne coûte aucun point d'action et n'a pas besoin d'être rechargée, mais les Novas suivantes endommageront le Spark."
+LocHelpText="Explose en blessant toutes les unités à proximité. Les Novas suivantes endommageront le Spark."
+LocPromotionPopupText="<Bullet/> La capacité Nova ne consomme pas de point d'action et n'a pas besoin de se recharger. <br/><Bullet/> La première Nova de chaque mission ne fait perdre aucun PV au Spark. <br/><Bullet/> Toutes les Novas suivantes font systématiquement perdre <Ability:Nova_Damage/> PV au Spark (effet cumulatif). <br/>"
 
 ;;;;;;;;;;;;;;;;;;;;  SPECIFICITES FRA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; LWotC(FRA) - Was here before, can't say if I've to delete it

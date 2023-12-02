@@ -928,10 +928,10 @@ LocPromotionPopupText="<Bullet/> Lightning Hands can combo well with two-action 
 [XComGame.IntrusionProtocol X2AbilityTemplate]
 [IntrusionProtocol X2AbilityTemplate]
 LocFriendlyName="Hack"
-LocLongDescription="Attempt to remotely breach security on a network access point with your GREMLIN."
-LocHelpText="You can remotely hack targets with your GREMLIN."
+LocLongDescription="Attempt to remotely breach security on a network access point with your <Ability:BOUND_WEAPON_NAME/>."
+LocHelpText="You can remotely hack targets with your <Ability:BOUND_WEAPON_NAME/>."
 LocFlyOverText="Hack"
-LocPromotionPopupText="<Bullet/> Map items (chests, workstations, etc.) can be hacked from a distance using the GREMLIN.<br/>"
+LocPromotionPopupText="<Bullet/> Map items (chests, workstations, etc.) can be hacked from a distance using the <Ability:BOUND_WEAPON_NAME/>.<br/>"
 
 [XComGame.EverVigilant X2AbilityTemplate]
 [EverVigilant X2AbilityTemplate]

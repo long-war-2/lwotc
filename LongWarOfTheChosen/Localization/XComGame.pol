@@ -6794,3 +6794,99 @@ LocPromotionPopupText="<Bullet/> Uważaj, ponieważ podtrzymywana jednostka moż
 [SustainTriggered X2AbilityTemplate]
 LocLongDescription="Jednostka zginęłaby, ale została uratowana i umieszczona w Stazie na 1 turę. Taka sytuacja nie może się powtórzyć podczas tej misji."
 LocHelpText="Jednostka zginęłaby, ale została uratowana i umieszczona w Stazie na 1 turę. Taka sytuacja nie może się powtórzyć podczas tej misji.."
+
+[Overdrive X2AbilityTemplate]
+LocFriendlyName="Przeciążenie"
+LocLongDescription="Wykonaj trzy akcje w tej turze - żadna z nich nie zakończy tury. Oddanie kilku zwykłych strzałów skutkuje niewielką karą za odrzut."
+LocHelpText="Wykonaj trzy akcje w tej turze - żadna z nich nie zakończy tury. Oddanie kilku zwykłych strzałów skutkuje niewielką karą za odrzut."
+LocPromotionPopupText="<Bullet/> Kara <Ability:Overdrive_RecoilPenalty/>% do celności za odrzut jest naliczana po każdym zwykłym strzale, gdy działa przeciążenie.<br/><Bullet/> Nie trzeba płacić za uruchomienie przeciążenia, ale jego odnawianie trwa następującą liczbę tur: <Ability:SelfCooldown_LW/>.<br/>"
+
+[Bulwark X2AbilityTemplate]
+LocFriendlyName="Bastion"
+LocLongDescription="Zyskujesz dodatkowy punkt pancerza, a sąsiadujący z tobą członkowie drużyny zawsze mają wysoką osłonę."
+LocHelpText="Zyskujesz dodatkowy punkt pancerza, a sąsiadujący z tobą członkowie drużyny zawsze mają wysoką osłonę."
+LocPromotionPopupText="<Bullet/> Bastion daje dodatkowy punkt pancerza.<br/><Bullet/> Każdy członek drużyny stojący w sąsiedztwie Sparka otrzyma premię do obrony za wysoką osłonę.<br/>"
+
+[Arsenal X2AbilityTemplate]
+LocFriendlyName="Arsenał"
+LocLongDescription="BIT może korzystać z broni ciężkiej."
+LocHelpText="BIT może korzystać z broni ciężkiej."
+LocPromotionPopupText="<Bullet/> Arsenał pozwala wyposażyć Sparka w broń ciężką.<br/>"
+
+[Rainmaker X2AbilityTemplate]
+LocFriendlyName="Zaklinacz deszczu"
+LocLongDescription="Posiadana broń ciężka zadaje dodatkowo <Ability:Rainmaker_BonusDamage/> pkt. obrażeń i ma większe pole rażenia."
+LocHelpText="Posiadana broń ciężka zadaje poważniejsze obrażenia i ma większe pole rażenia."
+LocPromotionPopupText="<Bullet/> Zaklinacz deszczu dodaje <Ability:Rainmaker_BonusDamage/> pkt. obrażeń do wszystkich rodzajów broni ciężkiej.<br/><Bullet/> Broń ciężka o okrągłym polu rażenia zwiększa je o <Ability:Rainmaker_BonusRadius/>.<br/><Bullet/> Broń ciężka o stożkowym polu rażenia zwiększa jego średnicę o <Ability:Rainmaker_BonusDiameter/> i długość o <Ability:Rainmaker_BonusLength/>.<br/>"
+
+[Intimidate X2AbilityTemplate]
+LocFriendlyName="Zastraszenie"
+LocLongDescription="Szansa na wywołanie paniki u atakującego wroga, gdy jednostka zostanie wzięta na cel."
+LocHelpText="Szansa na wywołanie paniki u atakującego wroga, gdy jednostka zostanie wzięta na cel."
+LocFlyOverText="Zastraszenie"
+LocPromotionPopupText="<Bullet/> Szanse na wywołanie paniki u atakującego wzrastają wraz z wyższymi poziomami pancerzy Sparka.<br/><Bullet/> Zastraszenie może być wywołane przez ataki wręcz i obszarowe.<br/><Bullet/> Zastraszenie nie zadziała, gdy jednostka stanie się celem ostrzału w trybie warty.<br/>"
+
+[IntimidateTrigger X2AbilityTemplate]
+LocFriendlyName="Zastraszenie"
+LocLongDescription="Szansa na wywołanie paniki u każdego widocznego wroga, gdy jednostka zostanie wzięta na cel."
+LocHelpText="Szansa na wywołanie paniki u każdego widocznego wroga, gdy jednostka zostanie wzięta na cel."
+LocFlyOverText="Zastraszenie"
+LocPromotionPopupText=""
+LocMissMessage="Zastraszenie nieudane"
+
+[Repair X2AbilityTemplate]
+LocFriendlyName="Naprawa"
+LocLongDescription="Wyślij BIT-a do uszkodzonego mechanicznego sojusznika i napraw go. Zaawansowane BIT-y mogą naprawiać więcej."
+LocHelpText="Wyślij BIT-a, aby naprawił uszkodzonego mechanicznego sojusznika."
+LocFlyOverText="Naprawa"
+LocPromotionPopupText="<Bullet/> Naprawa przywróci <Ability:Repair_HealHP/> pkt. zdrowia.<br/><Bullet/> Ulepszenie BIT-a zwiększy liczbę naprawianych PZ.<br/><Bullet/> Użycie naprawy jako pierwszej akcji nie spowoduje zakończenia tury.<br/><Bullet/> Naprawa ma określoną liczbę ładunków na misję: <Ability:Repair_Charges/>.<br/>"
+
+[AbsorptionField X2AbilityTemplate]
+LocFriendlyName="Pole przesyłające"
+LocLongDescription="Za każdym razem, gdy stajesz się celem ataku, część energii jest przesyłana do twojej broni (<Ability:WeaponName>). Uwalniasz ją potem przy kolejnym zwykłym strzale."
+LocHelpText="Gdy jesteś celem ataku, przesyłasz energię do broni (<Ability:WeaponName>), a następnie uwalniasz ją przy zwykłym strzale."
+LocFlyOverText="Przesłana energia: +1"
+LocPromotionPopupText="<Bullet/> Każdy punkt energii używany przez pole przesyłające zwiększa obrażenia następnego ataku z twojej broni (<Ability:WeaponName>) o 1.<br/><Bullet/> Energia magazynowana przez pole przesyłające zostanie zużyta, nawet jeśli następny strzał chybi.<br/>"
+
+[Sacrifice X2AbilityTemplate]
+LocFriendlyName="Poświęcenie"
+LocLongDescription="Utworzenie obszaru ochronnego. Wszystkie ataki na znajdujących się w nim sojuszników zostaną skierowane na ciebie. Otrzymujesz w tym czasie premię do obrony i pancerza."
+LocHelpText="Utworzenie obszaru ochronnego, który przekierowuje na ciebie ataki wroga."
+LocFlyOverText="Poświęcenie"
+LocPromotionPopupText="<Bullet/> Spark otrzymuje +<Ability:Sacrifice_Defense/> do obrony i +<Ability:Sacrifice_Armor/> do pancerza, gdy działa poświęcenie.<br/><Bullet/> Odnawianie trwa następującą liczbę tur: <Ability:SelfCooldown_LW/>.<br/>"
+
+[AdaptiveAim X2AbilityTemplate]
+LocFriendlyName="Celowanie adaptacyjne"
+LocLongDescription="Gdy przeciążenie jest aktywne, zwykłe strzały nie są objęte karą za odrzut."
+LocHelpText="Gdy przeciążenie jest aktywne, zwykłe strzały nie są objęte karą za odrzut."
+LocPromotionPopupText="<Bullet/> Celowanie adaptacyjne znosi <Ability:Overdrive_RecoilPenalty/>% kary do celowania za kolejne zwykłe strzały, gdy działa przeciążenie.<br/>"
+
+[Strike X2AbilityTemplate]
+LocFriendlyName="Atak"
+LocLongDescription="Wykonaj potężny atak wręcz na dowolnego wroga, który znajduje się w zasięgu ruchu."
+LocHelpText="Wykonaj potężny atak wręcz na dowolnego wroga, który znajduje się w zasięgu ruchu."
+LocPromotionPopupText="<Bullet/> Możesz użyć ataku, naprowadzając kursor ruchu na wroga.<br/><Bullet/> Spark może wykonać ruch sprintem, zużywając obie akcje na przemieszczenie się, i nadal użyć ataku przeciwko wrogowi na sąsiednim polu.<br/>"
+
+[WreckingBall X2AbilityTemplate]
+LocFriendlyName="Kula do wyburzania"
+LocLongDescription="Gdy przeciążenie jest aktywne, podczas ruchu możesz przebijać się przez ściany i osłony."
+LocHelpText="Gdy przeciążenie jest aktywne, podczas ruchu możesz przebijać się przez ściany i osłony."
+LocPromotionPopupText="<Bullet/> Kula do wyburzania może służyć do odsłaniania wrogów na strzały z flanki.<br/><Bullet/> Użyj punktów nawigacyjnych ruchu, żeby poprowadzić Sparka optymalną drogą pozwalającą niszczyć osłony i otoczenie.</br>"
+
+[Bombard X2AbilityTemplate]
+LocFriendlyName="Bombardowanie"
+LocLongDescription="Wystrzel BIT-a na dowolną widoczną pozycję, gdzie spowoduje on potężną eksplozję. Zaawansowane BIT-y powodują większe obrażenia."
+LocHelpText="Wystrzel BIT-a, aby spowodować wybuch rażący wszystkie jednostki w zasięgu."
+LocPromotionPopupText="<Bullet/> Bombardowanie można przeprowadzić na dowolnej pozycji w zasięgu widoku drużynowego.<br/><Bullet/> Ulepszenie BIT-a zwiększy obrażenia zadawane przez bombardowanie.<br/>"
+
+[HunterProtocol X2AbilityTemplate]
+LocFriendlyName="Protokół myśliwego"
+LocLongDescription="Gdy wróg zostaje odkryty, istnieje <Ability:HunterProtocol_Chance/>% szans na oddanie darmowego strzału w trybie warty."
+LocHelpText="Gdy wróg zostaje odkryty, istnieje <Ability:HunterProtocol_Chance/>% szans na oddanie darmowego strzału w trybie warty."
+LocPromotionPopupText="<Bullet/> Dzięki protokołowi myśliwego Spark jest idealną jednostką zwiadowczą we mgle wojny, ponieważ może natychmiast zaatakować każdego wykrytego wroga.<br/>"
+
+[Nova X2AbilityTemplate]
+LocFriendlyName="Nova"
+LocLongDescription="Wywołaj wybuch energii zadający obrażenia wszystkim pobliskim jednostkom. Nie wymaga to akcji ani odnawiania, ale kolejne użycia powodują uszkadzanie Sparka."
+LocHelpText="Wybuch trafiający wszystkie pobliskie jednostki. Kolejne użycia powodują uszkadzanie Sparka."
+LocPromotionPopupText="<Bullet/> Nova nie zabiera punktów akcji i nie wymaga czasu na odnowienie.<br/><Bullet/> Pierwszy atak novą w każdej misji nie zada Sparkowi obrażeń.<br/><Bullet/> Wszystkie następne ataki novą zadadzą Sparkowi kumulujące się <Ability:Nova_Damage/> pkt. obrażeń.<br/>"

@@ -4726,3 +4726,99 @@ TacticalText="<Bullet/> 플라스마 블래스터는 파괴적인 에너지 빔�
 
 [SparkRifle_BM X2WeaponTemplate]
 TacticalText="<Bullet/> 엘레리움 페이즈캐넌은 SPARK의 피해량을 극대화시키도록 특별 설계된 소총으로, 강화 소총 기술의 전형입니다. <Bullet/> 특수 훈련을 받지 않은 한, 주요 무기를 발사하면 병사의 턴이 종료됩니다.<br/><Bullet/> 플라스마 무기들은 피해를 입힐 때마다 대상 유닛이 1의 추가 대미지를 더 받게 만듭니다."
+
+[Overdrive X2AbilityTemplate]
+LocFriendlyName="오버드라이브"
+LocLongDescription="이번 턴에 행동력 3개를 사용할 수 있으며 어떠한 행동도 곧바로 턴을 종료하지 않습니다. 일반 사격을 여러 번 하면 작은 반동 페널티를 받습니다."
+LocHelpText="이번 턴에 행동력 3개를 사용할 수 있으며 어떠한 행동도 곧바로 턴을 종료하지 않습니다. 일반 사격을 여러 번 하면 작은 반동 페널티를 받습니다."
+LocPromotionPopupText="<Bullet/> 오버드라이브 발동 시 일반 사격 후마다 <Ability:Overdrive_RecoilPenalty/>의 조준 페널티를 받습니다.<br/><Bullet/> 오버드라이브는 행동력을 소모하진 않지만, <Ability:SelfCooldown_LW/>턴 동안 쿨타임을 가집니다.<br/>"
+
+[Bulwark X2AbilityTemplate]
+LocFriendlyName="보루"
+LocLongDescription="보너스 방어구 포인트를 받고, 인접한 모든 분대원에게 완전 엄폐를 제공합니다."
+LocHelpText="보너스 방어구 포인트를 받고, 인접한 모든 분대원에게 완전 엄폐를 제공합니다."
+LocPromotionPopupText="<Bullet/> 보루는 1 방어구 포인트를 부여합니다.<br/><Bullet/> SPARK와 인접한 분대원은 완전 엄폐 보너스를 받습니다.<br/>"
+
+[Arsenal X2AbilityTemplate]
+LocFriendlyName="무기 공장"
+LocLongDescription="BIT는 중화기를 장착하고 사용할 수 있습니다."
+LocHelpText="BIT는 중화기를 장착하고 사용할 수 있습니다."
+LocPromotionPopupText="<Bullet/> 무기 공장은 SPARK가 중화기를 장착할 수 있게 합니다.<br/>"
+
+[Rainmaker X2AbilityTemplate]
+LocFriendlyName="레인메이커"
+LocLongDescription="장착한 중화기는 <Ability:Rainmaker_BonusDamage/>의 추가 대미지를 입히고 효과 범위가 늘어납니다."
+LocHelpText="장착한 중화기는 추가 대미지를 입히고 효과 범위가 늘어납니다."
+LocPromotionPopupText="<Bullet/> 레인메이커는 모든 중화기가 <Ability:Rainmaker_BonusDamage/>의 추가 대미지를 입히게 합니다.<br/><Bullet/> 원형 범위에 작용하는 중화기는 반경이 <Ability:Rainmaker_BonusRadius/>만큼 증가합니다.<br/><Bullet/> 원뿔형 범위에 작용하는 중화기는 직경이 <Ability:Rainmaker_BonusDiameter/>, 길이가 <Ability:Rainmaker_BonusLength/>만큼 증가합니다.<br/>"
+
+[Intimidate X2AbilityTemplate]
+LocFriendlyName="위협"
+LocLongDescription="적의 공격을 받으면, 일정 확률로 적을 공포 상태에 빠뜨립니다."
+LocHelpText="적의 공격을 받으면, 일정 확률로 적을 공포 상태에 빠뜨립니다."
+LocFlyOverText="위협"
+LocPromotionPopupText="<Bullet/> SPARK의 방어구가 높은 단계일수록 공격자를 공포 상태에 빠트릴 확률이 증가합니다.<br/><Bullet/> 위협은 근접 공격과 광역 공격으로 발동될 수 있습니다.<br/><Bullet/> 경계 사격으로는 위협이 발동되지 않습니다.<br/>"
+
+[IntimidateTrigger X2AbilityTemplate]
+LocFriendlyName="위협"
+LocLongDescription="적의 공격을 받으면, 일정 확률로 시야 내의 적을 공포 상태에 빠뜨립니다."
+LocHelpText="적의 공격을 받으면, 일정 확률로 시야 내의 적을 공포 상태에 빠뜨립니다."
+LocFlyOverText="위협"
+LocPromotionPopupText=""
+LocMissMessage="위협 실패"
+
+[Repair X2AbilityTemplate]
+LocFriendlyName="수리"
+LocLongDescription="BIT를 보내 대미지를 입은 아군 로봇을 수리합니다. 고급 BIT는 수리 능력이 약간 더 뛰어납니다."
+LocHelpText="BIT를 보내 대미지를 입은 아군 로봇을 수리합니다."
+LocFlyOverText="수리"
+LocPromotionPopupText="<Bullet/> 수리는 체력을 <Ability:Repair_HealHP/>만큼 치료시킵니다.<br/><Bullet/> BIT를 업그레이드하면 더 많은 체력을 치료할 수 있습니다.<br/><Bullet/> 수리를 첫 번째 행동으로 사용하면 턴이 종료되지 않습니다.<br/><Bullet/> 수리는 임무당 <Ability:Repair_Charges/>번씩 사용할 수 있습니다.<br/>"
+
+[AbsorptionField X2AbilityTemplate]
+LocFriendlyName="채널링 필드"
+LocLongDescription="공격을 받을 때마다 에너지의 일부가 <Ability:WeaponName>(으)로 채널링됩니다. 이 에너지는 다음번 일반 사격 시 방출됩니다."
+LocHelpText="공격을 받으면 에너지를 <Ability:WeaponName>(으)로 채널링합니다. 채널링된 에너지는 다음번 일반 사격 시 방출됩니다."
+LocFlyOverText="채널링된 에너지: +1"
+LocPromotionPopupText="<Bullet/> 채널링 필드로 채널링된 에너지는 1 포인트마다 다음번 <Ability:WeaponName> 사격 대미지를 1만큼 증가시킵니다.<br/><Bullet/> 다음번 사격이 빗나가도 채널링 필드로 저장된 에너지는 소모됩니다.<br/>"
+
+[Sacrifice X2AbilityTemplate]
+LocFriendlyName="희생"
+LocLongDescription="보호 필드를 생성하여 범위 내에 있는 아군을 향한 적의 공격을 이 유닛에게로 유도합니다. 능력 발동 시 방어력과 방어구 보너스를 얻습니다."
+LocHelpText="보호 필드를 생성하여 적의 공격을 이 유닛에게로 유도합니다."
+LocFlyOverText="희생"
+LocPromotionPopupText="<Bullet/> 희생 발동 시 SPARK는 <Ability:Sacrifice_Defense/>의 방어력과 <Ability:Sacrifice_Armor/>의 방어구 포인트를 얻습니다.<br/><Bullet/> 희생은 <Ability:SelfCooldown_LW/>턴 동안 쿨타임을 가집니다.<br/>"
+
+[AdaptiveAim X2AbilityTemplate]
+LocFriendlyName="적응 조준"
+LocLongDescription="오버드라이브 발동 후의 일반 사격은 더 이상 반동력 페널티를 주지 않습니다."
+LocHelpText="오버드라이브 발동 후의 일반 사격은 더 이상 반동력 페널티를 주지 않습니다."
+LocPromotionPopupText="<Bullet/> 적응 조준은 오버드라이브 발동 후의 연속 일반 사격이 주는 <Ability:Overdrive_RecoilPenalty/>의 조준 페널티를 상쇄합니다.<br/>"
+
+[Strike X2AbilityTemplate]
+LocFriendlyName="무쇠 주먹"
+LocLongDescription="이동 범위 내의 적에게 강력한 근접 공격을 가합니다."
+LocHelpText="이동 범위 내의 적에게 강력한 근접 공격을 가합니다."
+LocPromotionPopupText="<Bullet/> 이동 커서를 적 위에 놓으면 무쇠 주먹 능력을 사용할 수 있습니다.<br/><Bullet/> SPARK는 행동력 2개를 사용해서 \"돌진\"한 다음에도 인접한 적에게 무쇠 주먹을 사용할 수 있습니다.<br/>"
+
+[WreckingBall X2AbilityTemplate]
+LocFriendlyName="레킹 볼"
+LocLongDescription="오버드라이브를 발동하면 이동 시 벽과 엄폐물을 부수어 통과합니다."
+LocHelpText="오버드라이브를 발동하면 이동 시 벽과 엄폐물을 부수어 통과합니다."
+LocPromotionPopupText="<Bullet/> 레킹 볼은 적의 측면을 노출시키는 용도로 활용할 수 있습니다.<br/><Bullet/> SPARK가 엄폐물 및 환경을 파괴하기 위한 최적 경로로 이동할 수 있도록 경로를 설정하십시오.</br>"
+
+[Bombard X2AbilityTemplate]
+LocFriendlyName="폭격"
+LocLongDescription="BIT를 시야 내의 지점에 발사하여 강력한 폭발을 일으킵니다. 고급 BIT는 더 많은 대미지를 입힙니다."
+LocHelpText="BIT를 발사하여 범위 내의 모든 유닛을 폭발시킵니다."
+LocPromotionPopupText="<Bullet/> 폭격은 분대 시야 내 임의의 지역에 사용할 수 있습니다.<br/><Bullet/> BIT를 업그레이드하면 더 많은 대미지를 입힐 수 있습니다.<br/>"
+
+[HunterProtocol X2AbilityTemplate]
+LocFriendlyName="헌터 프로토콜"
+LocLongDescription="적을 발견하면, <Ability:HunterProtocol_Chance/>%의 확률로 행동력 소모 없이 경계 사격을 가합니다."
+LocHelpText="적을 발견하면, <Ability:HunterProtocol_Chance/>%의 확률로 행동력 소모 없이 경계 사격을 가합니다."
+LocPromotionPopupText="<Bullet/> 적 발견 즉시 공격이 가능하므로, 헌터 프로토콜은 SPARK가 전장의 안개 속에서 정찰 임무를 이상적으로 수행하게 해줍니다.<br/>"
+
+[Nova X2AbilityTemplate]
+LocFriendlyName="신성"
+LocLongDescription="에너지 폭발을 일으켜 주위의 모든 적에게 대미지를 입힙니다. 노바는 행동력을 소모하지 않고 쿨타임이 없으나, 연속으로 사용하면 SPARK는 대미지를 입습니다."
+LocHelpText="주위의 모든 적을 폭발시킵니다. 연속으로 노바를 사용하면 SPARK는 대미지를 입습니다."
+LocPromotionPopupText="<Bullet/> 노바는 행동력을 소모하지 않으며 쿨타임이 없습니다.<br/><Bullet/> 매번 임무에서 노바를 첫 번째로 사용하면 SPARK는 대미지를 입지 않습니다.<br/><Bullet/> 이후의 모든 노바 사용은 SPARK에 누적되는 <Ability:Nova_Damage/> 대미지를 입힙니다.<br/>"
