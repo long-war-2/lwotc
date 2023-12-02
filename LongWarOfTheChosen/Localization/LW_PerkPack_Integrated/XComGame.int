@@ -19,9 +19,9 @@ BriefSummary="This implant confers +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> aim
 
 ; LWOTC Needs Translation
 [CombatAwarenessPCS X2EquipmentTemplate]
-FriendlyName="PCS: Combat Awareness"
-FriendlyNamePlural="PCS: Combat Awareness"
-BriefSummary="Grants <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> defense and <Ability:COMBAT_AWARENESS_BONUS_ARMOR> armor when on overwatch or suppressing. Taking damage does not clear suppression."
+FriendlyName="PCS: Unwavering Stance"
+FriendlyNamePlural="PCS: Unwavering Stance"
+BriefSummary="Grants Combat Awareness and Dedicated Suppression: You have <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> defense and <Ability:COMBAT_AWARENESS_BONUS_ARMOR> armor when on overwatch or suppressing, and taking damage does not clear suppression."
 ; End Translation
 
 [CombatRushPCS X2EquipmentTemplate]
