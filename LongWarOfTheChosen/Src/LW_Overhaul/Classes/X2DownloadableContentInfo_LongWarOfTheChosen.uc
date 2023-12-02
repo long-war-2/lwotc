@@ -1224,7 +1224,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 				// Tedster - add check for plot gating here:
 				if(XCOMHQ.MeetsAllStrategyRequirements(FollowerCharacterTemplate.SpawnRequirements) == false)
 				{
-					swap = true;
+					// reroll the unit instead of shuffling all pods to allow codex to to be added to pods as defined followers.
+					SpawnInfo.SelectedCharacterTemplateNames[k] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
 				}
 				if(default.bNerfFrostLegion && (InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "FROST")!= INDEX_NONE || InStr(caps(SpawnInfo.SelectedCharacterTemplateNames[k]), "CRYO")!= INDEX_NONE) && MissionState.TacticalGameplayTags.Find('SITREP_FrostPurge') == INDEX_NONE)
 				{
