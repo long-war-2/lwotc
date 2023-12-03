@@ -1948,6 +1948,7 @@ static function X2AbilityTemplate ShootingSharp()
 	
 	CoverCondition = new class'XMBCondition_CoverType';
 	CoverCondition.ExcludedCoverTypes.AddItem(CT_None);
+	CoverCondition.bRequireCanTakeCover = true;
 
 	ShootingEffect.AbilityTargetConditions.AddItem(CoverCondition);
 
