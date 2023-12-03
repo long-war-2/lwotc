@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC29 Changes:"
-strMessage_Body = "<ul><li>Fixed issue with bugged Smash n Grab parcel added last update.</li><li>Fixed issue with Pod Diversity system ignoring plot gate requirements for units other than the codex and avatar.</li><li>Troop Column Covert Op duration reduced by 1 day, extra 12 hours added to its infiltration timer</li><li>Removed some Bradford voicelines from Smash n Grab and crate race missions.</li><li>Nerfed early detection bonus from 10 days to 5 days so it only applies to the first set of missions.</li><li>Firestorm no longer works with Quickburn (it was too powerful).</li></ul>"
+strMessage_Header = "RC30 Changes:"
+strMessage_Body = "<ul><li>3 City Center HQ assault maps added for testing. These likely won't be in the main 1.1 release but may be added soon afterwards depending on how they play.</li><li>Tweaked the Large Supply Extraction crate spawning so they don't spawn right next to XCOM, but are more concentrated at the depot.</li><li>Adjusted parcels and maps that the Large Supply Extraction mission can use.</li><li>Completely redid one of the Crate Race maps that didn't play well.</li><li>Decreased Advent Commando aim by 5 because it also has Lone Wolf.</li><li>Massive collection of localization updates from Copyrite.</li></ul>"
 strDismiss_Button = "OK"
