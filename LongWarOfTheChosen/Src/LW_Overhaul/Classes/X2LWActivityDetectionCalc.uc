@@ -132,6 +132,7 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 
 	local TDateTime GameStartDate;
 	local int TimeToDays;
+	local int DiffInHours;
 
 	ResourcePool = ActivityState.MissionResourcePool;
 	if (ActivityTemplate.RequiredRebelMissionIncome > 0)
@@ -163,7 +164,7 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 			default: break;
 		}
 	}
-	//`LWTrace("GetDetectionChance: DetectionChance pre-early boost:" @DetectionChance);
+	`LWTrace("GetDetectionChance: DetectionChance pre-early boost:" @DetectionChance);
 
 	// New early campaign detection chance boost system
 	if(default.BOOST_EARLY_DETECTION)
@@ -179,11 +180,12 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 		//If we're within the time period, boost the detection.
 		if(TimeToDays <= default.EARLY_DETECTION_DAYS)
 		{
-			DetectionChance += default.EARLY_DETECTION_CHANCE_BOOST;
+			DiffInHours = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInHours(class'XComGameState_GeoscapeEntity'.static.GetCurrentTime(), ActivityState.DateTimeStarted);
+			DetectionChance += (default.EARLY_DETECTION_CHANCE_BOOST * ((1+DiffInHours)/24.0));
 		}
 	}
 
-	//`LWTrace("GetDetectionChance: DetectionChance post early boost:" @DetectionChance);
+	`LWTrace("GetDetectionChance: DetectionChance post early boost:" @DetectionChance);
 
 	//normalize for update rate
 	DetectionChance *= float(class'X2LWAlienActivityTemplate'.default.HOURS_BETWEEN_ALIEN_ACTIVITY_DETECTION_UPDATES) / 24.0;
