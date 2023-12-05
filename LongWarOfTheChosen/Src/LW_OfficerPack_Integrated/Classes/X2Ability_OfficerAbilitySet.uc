@@ -740,6 +740,7 @@ static function X2AbilityTemplate AddCommandAbility()
 	ActionPointEffect = new class'X2Effect_GrantActionPoints';
     ActionPointEffect.NumActionPoints = 1;
     ActionPointEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
+    ActionPointEffect.bSelectUnit = true;
     Template.AddTargetEffect(ActionPointEffect);
 
 	ActionPointPersistEffect = new class'X2Effect_Persistent';
