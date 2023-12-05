@@ -58,7 +58,9 @@ function bool UnitAvailableForLiaisonDuty(StateObjectReference UnitRef)
     }
     else if (Unit.IsEngineer() || Unit.IsScientist())
     {
-        return !Unit.IsUnitCritical();
+        return (!Unit.IsUnitCritical()
+            && !Unit.IsInjured())
+        ;
     }
 
     return false;
