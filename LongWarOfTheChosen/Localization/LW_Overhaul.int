@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC30 Changes:"
-strMessage_Body = "<ul><li>3 City Center HQ assault maps added for testing. These likely won't be in the main 1.1 release but may be added soon afterwards depending on how they play.</li><li>Tweaked the Large Supply Extraction crate spawning so they don't spawn right next to XCOM, but are more concentrated at the depot.</li><li>Adjusted parcels and maps that the Large Supply Extraction mission can use.</li><li>Completely redid one of the Crate Race maps that didn't play well.</li><li>Decreased Advent Commando aim by 5 because it also has Lone Wolf.</li><li>Massive collection of localization updates from Copyrite.</li></ul>"
+strMessage_Header = "RC31 Changes:"
+strMessage_Body = "<ul><li>Added 1 new City Center Vehicle map for GOPS.</li><li>Fixed issue where Shooting Sharp applied to units that can't take cover but were standing next to cover.</li><li>Tweak boost logic for the early mission boost to be more consistent</li><li>Small localization fixes.</li></ul>"
 strDismiss_Button = "OK"
