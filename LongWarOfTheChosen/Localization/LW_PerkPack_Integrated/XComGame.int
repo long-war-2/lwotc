@@ -42,7 +42,7 @@ BriefSummary="This shield projector implant may be activated as an action to red
 [BodyShieldPCS X2EquipmentTemplate]
 FriendlyName="PCS: Body Shield"
 FriendlyNamePlural="PCS: Body Shield"
-BriefSummary="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <BODY_SHIELD_COOLDOWN> turn cooldown."
+BriefSummary="Target an enemy as a free action to confer it -<Ability:BODY_SHIELD_DEF_BONUS> aim and -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> critical chance against you for <Ability:BODY_SHIELD_DURATION> turns. <Ability:BODY_SHIELD_COOLDOWN> turn cooldown."
 
 ; LWOTC Needs Translation
 [EmergencyLifeSupportPCS X2EquipmentTemplate]
