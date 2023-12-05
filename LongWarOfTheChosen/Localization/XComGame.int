@@ -5444,7 +5444,7 @@ LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equa
 [StunStrike X2AbilityTemplate]
 LocLongDescription="Strike an enemy with Psionic force, stunning them. Costs 1 Focus."
 LocHelpText="Strike an enemy with Psionic force, stunning them. Costs 1 Focus."
-LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike does not end the Templar's turn.<br/><Bullet/> Stun Strike has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike costs one action and does not end the Templar's turn.<br/><Bullet/> Stun Strike has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Stun Strike cannot be used against targets that take more space than 1 tile."
 
 [BondmateTeamwork X2AbilityTemplate]
 LocHelpText="Grant an additional movement point to a bondmate. Has a single charge shared between bondmates."
@@ -6063,6 +6063,13 @@ LocFlyOverText="Soul Storm"
 ; LWOTC Needs Translation (2)
 LocPromotionPopupText="<Bullet>Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover.<br/><Bullet> Soul Storm area of effect is centered on the user.<br/><Bullet> Cannot destroy floors or ceilings.<br/><Bullet/> Soul Storm requires one action and end your turn.<br/><Bullet/> Soul Storm has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Soul Storm has a radius of 4 tiles.<br/>"
 ; End Translation (2)
+
+[Stasis X2AbilityTemplate]
+LocFriendlyName="Stasis"
+LocLongDescription="Completely stuns the target for 1 turn, but renders them immune to any damage or attack."
+LocHelpText="Completely stuns the target for 1 turn, but renders them immune to any damage or attack."
+LocFlyOverText="Stasis"
+LocPromotionPopupText="<Bullet/> Stasis costs one action point and does not end your turn.<br/><Bullet/> Stasis has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Stasis can be cast on both enemies and allies.<br/><Bullet/> Stasis cannot be used against targets that take more space than 1 tile.<br/><Bullet/> As Stasis completely removes an enemy unit from combat for a turn, it can be used defensively to protect vulnerable soldiers, or it can be used offensively to set up a coordinated attack.<br/>"
 
 [TheLostGrappler X2CharacterTemplate]
 strCharacterName="Lost Grappler"
