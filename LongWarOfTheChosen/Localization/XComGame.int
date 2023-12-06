@@ -7262,9 +7262,9 @@ LocPromotionPopupText="<bullet/> Ends turn when used.<br/><bullet/> Shield stren
 
 [Indomitable X2AbilityTemplate]
 LocFriendlyName="Indomitable"
-LocHelpText="Once per turn, gain 1 focus when you're attacked."
-LocLongDescription="Once per turn, gain 1 focus when you're attacked."
-LocPromotionPopupText"<Bullet/> Once per turn, gain 1 focus when you're attacked.<br/><Bullet/>Applies to both melee and ranged attacks.<br/>"
+LocHelpText="Once per turn, gain 1 focus when you're directly attacked."
+LocLongDescription="Once per turn, gain 1 focus when you're directly attacked."
+LocPromotionPopupText"<Bullet/> Once per turn, gain 1 focus when you're attacked.<br/><Bullet/>Applies to both melee and ranged attacks, but not to AOE attacks.<br/>"
 LocFlyOverText="Indomitable"
 
 [VoltFocusOnKills X2AbilityTemplate]
