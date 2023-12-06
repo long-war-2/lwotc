@@ -1076,7 +1076,9 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	}
 
 	// Get the corresponding spawn distribution lists for this mission.
+	`LWDiversityTrace("Getting Leader Spawn Distribution List: ");
 	GetLeaderSpawnDistributionList(EncounterName, MissionState, ForceLevel, LeaderSpawnList);
+	`LWDiversityTrace("Getting Follower Spawn Distribution List: ");
 	GetFollowerSpawnDistributionList(EncounterName, MissionState, ForceLevel, FollowerSpawnList);
 
 	//`LWTRACE("PE1");
@@ -1643,6 +1645,9 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 
 	local bool bCodexObjective, bAvatarObjective;
 
+	`LWDiversityTrace("SelectRandomPodFollower_Improved called with the following FL" @Forcelevel);
+	`LWDiversityTrace("SpawnList Length:" @SpawnList.Length);
+	`LWDiversityTrace("Supported Followers Length:" @SupportedFollowers.Length);
 	// setup
 	PossibleChars.Length = 0;
 	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
@@ -1712,6 +1717,7 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 	//failsafe
 	if (PossibleChars.length == 0)
 	{
+		`LWDiversityTrace("Select new Follower Failed, returning M1 Trooper");
 		return 'AdvTrooperM1';
 	}
 
@@ -2052,6 +2058,7 @@ static function AddObjectivesToParcels()
 {
 	local XComParcelManager ParcelMgr;
 	local PlotDefinition PlotDef;
+	local WeightedPlotType PlotTypeDef;
 	local int i, j, k;
 
 	// Go over the plot list and add new objectives to certain plots.
@@ -2120,6 +2127,7 @@ static function AddObjectivesToParcels()
 				if(default.bSewersToSubway)
 				{
 					ParcelMgr.arrPlots[i].strType = "Tunnels_Subway";
+					`LWTrace("Converting Map" @PlotDef.MapName @"from Sewer to Subway");
 				}
 				else
 				{
@@ -2129,6 +2137,31 @@ static function AddObjectivesToParcels()
 		}
 
 		i = 0;
+
+		if(default.bSewersToSubway)
+		{
+			PlotTypeDef.strPlotType = "Tunnels_Subway";
+
+			for(i = 0; i < ParcelMgr.arrAllParcelDefinitions.Length; i++)
+			{
+				if(ParcelMgr.arrAllParcelDefinitions[i].arrPlotTypes.Find('strPlotType', "Tunnels_Sewer") != INDEX_NONE && ParcelMgr.arrAllParcelDefinitions[i].arrPlotTypes.Find('strPlotType', "Tunnels_Subway") == INDEX_NONE)
+				{
+					ParcelMgr.arrAllParcelDefinitions[i].arrPlotTypes.AddItem(PlotTypeDef);
+					`LWTrace("Converting Parcel" @ParcelMgr.arrAllParcelDefinitions[i].MapName @"from Sewer to Subway");
+				}
+			}
+
+			i = 0;
+
+			for(i = 0; i < class'XComPlotCoverParcelManager'.default.arrAllPCPDefs.Length; i++)
+			{
+				if(class'XComPlotCoverParcelManager'.default.arrAllPCPDefs[i].arrPlotTypes.Find("Tunnels_Sewer") != INDEX_NONE && class'XComPlotCoverParcelManager'.default.arrAllPCPDefs[i].arrPlotTypes.Find("Tunnels_Subway") == INDEX_NONE)
+				{
+					class'XComPlotCoverParcelManager'.default.arrAllPCPDefs[i].arrPlotTypes.AddItem("Tunnels_Subway");
+					`LWTrace("Converting PCP" @class'XComPlotCoverParcelManager'.default.arrAllPCPDefs[i].MapName @ "from Sewers to Subway");
+				}
+			}
+		}
 	}
 }
 
@@ -5938,4 +5971,23 @@ exec function LWOTC_AdvanceRNG(optional int numRolls = 1)
 	{
 		`SYNC_FRAND_STATIC();
 	}
+}
+
+exec function LWOTC_Test_PrintPCPDefs()
+{
+	local XComPlotCoverParcelManager PCPManager;
+	local PCPDefinition PCPDef;
+	local string PCPPlotType;
+
+	PCPManager = new class'XComPlotCoverParcelManager';
+
+	foreach PCPManager.arrAllPCPDefs (PCPDef)
+	{
+		`LWTrace("PCP Def:" @PCPDef.MapName);
+		foreach PCPDef.arrPlotTypes (PCPPlotType)
+		{
+			`LWTrace("PCP plot type:" @PCPPlotType);
+		}
+	}
+
 }
