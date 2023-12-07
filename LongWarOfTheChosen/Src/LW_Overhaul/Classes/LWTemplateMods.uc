@@ -219,6 +219,8 @@ var config int FUSION_SWORD_FIRE_CHANCE;
 var config int KILLZONE_CONE_LENGTH;
 var config int KILLZONE_CONE_WIDTH;
 
+var config int WORKSHOP_ENG_BONUS;
+
 var config array<ItemTableEntry> ItemTable;
 var config array<TechTableEntry> TechTable;
 var config array<GTSTableEntry> GTSTable;
@@ -2716,12 +2718,14 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			GremlinTemplate.RevivalChargesBonus = 1;
 			GremlinTemplate.ScanningChargesBonus = 1;
 			GremlinTemplate.AidProtocolBonus = 5;
+			GremlinTemplate.BaseDamage.Damage = 5;
 		}
 		if (GremlinTemplate.DataName == 'Gremlin_BM')
 		{
 			GremlinTemplate.RevivalChargesBonus = 2;
 			GremlinTemplate.ScanningChargesBonus = 2;
 			GremlinTemplate.AidProtocolBonus = 10;
+			GremlinTemplate.BaseDamage.Damage = 8;
 		}
 		if (GremlinTemplate.DataName == 'SparkBit_MG')
 		{
@@ -3710,6 +3714,10 @@ function ReconfigFacilities(X2StrategyElementTemplate Template, int Difficulty)
 
 			// No longer mark it as being a priority/requiring attention
 			FacilityTemplate.bPriority = false;
+		}
+		if (FacilityTemplate.DataName == 'Workshop')
+		{
+			FacilityTemplate.EngineeringBonus = default.WORKSHOP_ENG_BONUS;
 		}
 		//if (FacilityTemplate.DataName == 'Storage') Didn't work
 		//{
