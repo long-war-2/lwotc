@@ -27,6 +27,9 @@ var config int ROUST_DIRECT_APPLY_CHANCE;
 var config int ROUST_CHARGES;
 var config float ROUST_DAMAGE_PENALTY;
 var config int ROUST_HIGH_PRESSURE_CHARGES;
+var config int ROUST_STATEFFECT_DURATION;
+var config int ROUST_MOB_REDUCTION;
+var config int ROUST_DEF_REDUCTION;
 
 // LW2 flamethrower targeting
 var config float INCINERATOR_RADIUS_MULTIPLIER;
@@ -340,6 +343,7 @@ static function X2AbilityTemplate CreateRoustAbility()
 	local X2AbilityCost_Charges					ChargeCost;
 	local X2Effect_FallBack						FallBackEffect;
 	local X2Condition_UnitEffects				SuppressedCondition;
+	local X2Effect_PersistentStatChange			StatChangeEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Roust');
 
@@ -414,6 +418,14 @@ static function X2AbilityTemplate CreateRoustAbility()
 	FireToWorldEffect.FireChance_Level2 = 0.00f;
 	FireToWorldEffect.FireChance_Level3 = 0.00f;
 	FireToWorldEffect.bCheckForLOSFromTargetLocation = false; //The flamethrower does its own LOS filtering
+
+	StatChangeEffect = new class'X2Effect_PersistentStatChange';
+	StatChangeEffect.BuildPersistentEffect(default.ROUST_STATEFFECT_DURATION, false, false, true, eGameRule_PlayerTurnBegin);
+	StatChangeEffect.AddPersistentStatChange(eStat_Mobility, -float(default.ROUST_MOB_REDUCTION));
+	StatChangeEffect.AddPersistentStatChange(eStat_Defense, -float(default.ROUST_DEF_REDUCTION));
+	StatChangeEffect.SetDisplayInfo (ePerkBuff_Penalty, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
+	StatChangeEffect.DuplicateResponse = eDupe_Allow;
+	Template.AddMultiTargetEffect(StatChangeEffect);
 
 	BurningEffect = class'X2StatusEffects'.static.CreateBurningStatusEffect(default.FLAMETHROWER_BURNING_BASE_DAMAGE, default.FLAMETHROWER_BURNING_DAMAGE_SPREAD);
 	BurningEffect.ApplyChance = default.ROUST_DIRECT_APPLY_CHANCE;
