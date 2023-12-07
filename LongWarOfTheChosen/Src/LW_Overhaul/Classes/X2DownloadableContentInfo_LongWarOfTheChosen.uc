@@ -1105,7 +1105,6 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		`LWDiversityTrace("Character[" $ idx $ "] = " $ CharacterTemplateName);
 	}
 
-	// override native insisting every mission have a codex while certain tactical options are active
 	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
 
 
@@ -1124,7 +1123,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 		SpawnInfo.SelectedCharacterTemplateNames[0] = SelectNewPodLeader(SpawnInfo, ForceLevel, LeaderSpawnList);
 		`LWDiversityTrace("Swapping Nonexistant leader for" @ SpawnInfo.SelectedCharacterTemplateNames[0] @ "and rerolling followers");
 	}
-
+	// override native insisting every mission have a codex while certain tactical options are active
 
 	// Swap out forced Codices on regular encounters
 	if (SpawnInfo.SelectedCharacterTemplateNames[0] == 'Cyberus' && InStr (EncounterName,"PROTECTED") == -1 && EncounterName != 'LoneCodex')
