@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC31 Changes:"
-strMessage_Body = "<ul><li>Fixed issue with map generation on Sewer maps coverted to Subway with new config option.</li><li>Fixed bug where Scientists and Engineers could be staffed as haven advisors while injured.</li><li>Fixed issue where Hive Queens didn't have valid followers for some boss pods.</li><li>On Lib5 missions, Advent will now converge on XCOM's location once the General dies, or less than 8 aliens are alive.</li><li>After using Command, the unit that received the AP will be selected automatically.</li><li>More localization fixes.</li></ul>"
+strMessage_Header = "RC33 Changes:"
+strMessage_Body = "<ul><li>Roust redone again: burn chance reduced to 50%, added new debuffs: -6 mobility and -10 defense to targets.</li><li>Building the Workshop now reduces the number of engineers needed for projects by 1.</li><li>Increased damage of Combat Protocol by 1 with Gremlin Mk2, and by 2 with Gremlin Mk3.</li><li>City Center HQ maps tweaked a bit to adjust spawn locations, one that was too cramped is given a new layout.</li></ul>"
 strDismiss_Button = "OK"
