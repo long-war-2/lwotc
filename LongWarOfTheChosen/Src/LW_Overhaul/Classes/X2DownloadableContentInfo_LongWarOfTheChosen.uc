@@ -45,6 +45,8 @@ var config int ENCRYPTION_SERVER_MONTH;
 
 var config bool bNerfFrostLegion;
 
+var config array<MissionDefinition> ReplacementMissionDefs;
+
 
 
 
@@ -219,7 +221,41 @@ static event OnPostTemplatesCreated()
 	UpdateSitreps();
 	UpdateEncounterLists();
 	ModifyYellAbility();
+	ModifyMissionSchedules();
 	
+}
+
+// Uses OPTC to update mission schedules instead of minus config
+static function ModifyMissionSchedules()
+{
+	local XComTacticalMissionManager MissionManager;
+	local int MissionIdx;
+	local name MissionName;
+	local MissionDefinition CurrentMissionDef;
+
+	MissionManager = `TACTICALMISSIONMGR;
+
+	foreach default.ReplacementMissionDefs (CurrentMissionDef)
+	{
+		MissionName = CurrentMissionDef.MissionName;
+		MissionIdx = MissionManager.arrMissions.Find('MissionName', MissionName);
+		if(MissionIdx != -1)
+		{
+			if(MissionManager.arrMissions[MissionIdx].sType == CurrentMissionDef.sType &&  MissionManager.arrMissions[MissionIdx].MissionName == MissionName)
+			{
+				MissionManager.arrMissions[MissionIdx] = CurrentMissionDef;
+				`LWTrace("Replacing mission def for mission " @CurrentMissionDef.MissionName @"Mission sType" @ CurrentMissionDef.sType,, 'TedLog');
+			}
+			else
+			{
+				`LWTrace("replacement Mission sType didn't match for mission Name" @CurrentMissionDef.MissionName,, 'TedLog'); 
+			}
+		}
+		else
+		{
+			`LWTrace("Couldn't find base missiondef to replace for mission name" @CurrentMissionDef.MissionName,, 'TedLog');
+		}
+	}
 }
 
 static function UpdateEncounterLists()
