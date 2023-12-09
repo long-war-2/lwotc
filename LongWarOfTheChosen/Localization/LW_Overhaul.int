@@ -733,6 +733,6 @@ strDismiss_Button = "OK"
 
 [UISL_Shell_BetaPatchNotes]
 strMessage_Title = "Long War Of The Chosen"
-strMessage_Header = "RC33 Changes:"
-strMessage_Body = "<ul><li>Roust redone again: burn chance reduced to 50%, added new debuffs: -6 mobility and -10 defense to targets.</li><li>Building the Workshop now reduces the number of engineers needed for projects by 1.</li><li>Increased damage of Combat Protocol by 1 with Gremlin Mk2, and by 2 with Gremlin Mk3.</li><li>City Center HQ maps tweaked a bit to adjust spawn locations, one that was too cramped is given a new layout.</li></ul>"
+strMessage_Header = "RC34 Changes:"
+strMessage_Body = "<ul><li>Roust redone again: burn chance reduced to 50%, added new debuffs: -6 mobility and -10 defense to targets.</li><li>Building the Workshop now reduces the number of engineers needed for projects by 1.</li><li>On the 'Defend' type Full retaliations with the Warlock, Advent reinforcements start 1 turn later.</li><li>Combat Protocol rework: Increased damage of Combat Protocol by 1 with Gremlin Mk2, and by 2 with Gremlin Mk3. Combat Protocol now is unlimited use, 3 turn cooldown.</li><li>City Center HQ maps tweaked a bit to adjust spawn locations, one that was too cramped is given a new layout.</li><li>Tweaked how CAD mission definition is set to try to fix issues where the X4 plant points don't spawn.</li></ul>"
 strDismiss_Button = "OK"
