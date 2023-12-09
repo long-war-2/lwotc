@@ -2591,6 +2591,7 @@ function ReconfigGear(X2ItemTemplate Template, int Difficulty)
 			WeaponTemplate.Abilities.AddItem('ShieldAllyM5');
 			WeaponTemplate.BaseDamage = default.WARLOCKPSIM5_BASEDAMAGE;
 			WeaponTemplate.Abilities.AddItem('CorressM4');
+			WeaponTemplate.Abilities.AddItem('SpectralArmyM4');
 			break;
 
 		case 'ChosenRifle_XCOM':
