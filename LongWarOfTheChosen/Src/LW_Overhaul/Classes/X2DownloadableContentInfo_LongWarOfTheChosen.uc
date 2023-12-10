@@ -1259,7 +1259,7 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 					swap = true;
 				}
 				// Tedster - add check for plot gating here:
-				if(XCOMHQ.MeetsAllStrategyRequirements(FollowerCharacterTemplate.SpawnRequirements) == false)
+				if(XCOMHQ.MeetsObjectiveRequirements(FollowerCharacterTemplate.SpawnRequirements.RequiredObjectives) == false)
 				{
 					// reroll the unit instead of shuffling all pods to allow codex to to be added to pods as defined followers.
 					SpawnInfo.SelectedCharacterTemplateNames[k] = SelectRandomPodFollower_Improved(SpawnInfo, LeaderCharacterTemplate.SupportedFollowers, ForceLevel, FollowerSpawnList);
@@ -2320,6 +2320,7 @@ static function MaybeAddChosenToMission(XComGameState StartState, XComGameState_
 	// Avenger Defense
 	if (default.SKIP_CHOSEN_OVERRIDE_MISSION_TYPES.Find(MissionState.GeneratedMission.Mission.sType) != INDEX_NONE)
 	{
+		`LWTrace("MaybeAddChosenToMission: Using Vanilla Chosen Behavior");
 		return;
 	}
 
@@ -5688,8 +5689,9 @@ exec function LWOTC_SpawnChosenStrongholdMission(name ChosenName)
 	{
 		return;
 	}
-
-	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("CHEAT: TriggerChosenAvengerAssault");
+	`LWTrace("Found Chosen" @ChosenState.GetMyTemplateName());
+	
+	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("CHEAT: New Chosen Stronghold stuff");
 	StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
 	RegionState = ChosenState.GetHomeRegion();
 
@@ -5701,9 +5703,13 @@ exec function LWOTC_SpawnChosenStrongholdMission(name ChosenName)
 	MissionSource = X2MissionSourceTemplate(StratMgr.FindStrategyElementTemplate('MissionSource_ChosenStronghold'));
 	MissionState = XComGameState_MissionSite(NewGameState.CreateNewStateObject(class'XComGameState_MissionSite'));
 	MissionState.BuildMission(MissionSource, RegionState.GetRandom2DLocationInRegion(), RegionState.GetReference(), MissionRewards);
+	`LWTrace("New Chosen Stronghold Mission Object ID:" @MissionState.GetReference().ObjectID);
 	MissionState.ResistanceFaction = ChosenState.RivalFaction;
 	ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
 	ChosenState.StrongholdMission = MissionState.GetReference();
+	
+	MissionState.SetMissionData(MissionRewards[0].GetMyTemplate(), false, 0);
+	
 
 	`XCOMGAME.GameRuleset.SubmitGameState(NewGameState);
 }
