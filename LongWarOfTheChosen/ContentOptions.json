@@ -36,7 +36,8 @@
         "SubSystem_ContinuousRNF",
         "UMS_LWCommon",
         "UMS_LWContinuousReinforcements",
-        "UMS_LWMissionTimer"
+        "UMS_LWMissionTimer",
+        "Obj_ChosenShowdown_LW"
     ],
     "sfStandalone": [
         "AdvGrenadeLauncher",
