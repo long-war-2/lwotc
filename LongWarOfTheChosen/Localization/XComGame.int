@@ -5208,7 +5208,7 @@ LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wou
 
 ; LWOTC Needs Translation
 [Domination X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Domination requires a contest of the Psi Operative's Psi Strength stat versus the Will of the target.<br/><Bullet/> If an attempted Domination fails, there is a 4 turn cooldown before another Domination can be attempted.<br/><Bullet/> If the Psi Operative dies or leaves the battlefield, the Domination is broken.<br/>"
+LocPromotionPopupText="<Bullet/> Domination requires a contest of the Psi Operative's Psi Strength stat versus the Will of the target.<br/><Bullet/> If an attempted Domination fails, there is a <Ability:SelfCooldown_LW> turn cooldown before another Domination can be attempted.<br/><Bullet/> If the Psi Operative dies or leaves the battlefield, the Domination is broken.<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation
