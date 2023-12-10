@@ -127,6 +127,7 @@ var config array<Name> SitrepsToDisable;
 var config bool bDisableRespeccingTemplars;
 
 var config bool bSewersToSubway;
+var config bool bEnableCityHQs;
 
 // End data and data structures
 //-----------------------------
@@ -2165,6 +2166,14 @@ static function AddObjectivesToParcels()
 					`LWTrace("Converting Map" @PlotDef.MapName @"from Sewer to Subway");
 				}
 				else
+				{
+					ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+				}
+			}
+
+			if (!bEnableCityHQs)
+			{
+				if (PlotDef.strType == "CityCenter" && PlotDef.ObjectiveTags[0] == "AssaultAlienBase_LW")
 				{
 					ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
 				}
