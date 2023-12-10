@@ -3720,5 +3720,5 @@ defaultproperties
 	Dissassemblybonustext = "Hack Bonus"
 	QuickZapEffectName="QuickZapCostRefund"
 	VampUnitValue="VampAmount"
-	CombatReadinessBonusText="Aim and defense bonus"
+	CombatReadinessBonusText="Aim and Explosive Resistance bonus"
 }
