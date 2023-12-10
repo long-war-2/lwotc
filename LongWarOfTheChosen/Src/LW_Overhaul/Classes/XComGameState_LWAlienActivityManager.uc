@@ -208,11 +208,21 @@ function UpdatePreMission(XComGameState StartGameState, XComGameState_MissionSit
 	RegionState = MissionState.GetWorldRegion();
 	if (RegionState == none) { return; }
 	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState);
+
+	if(RegionalAIState != None)
+	{
+		// Tedster - Set Force Level to regional FL if one exists
+		BattleData.SetForceLevel(RegionalAIState.LocalForceLevel);
+		`LWTrace("Updating BattleData with Regional Force Level.");
+	}
+
 	if (RegionalAIState != none && RegionalAIState.bLiberated)
 	{
+		
 		// set the popular support high so that civs won't be hostile
 		BattleData.SetPopularSupport(1000);
 		BattleData.SetMaxPopularSupport(1000);
+		
 	}
 }
 
@@ -363,13 +373,20 @@ static function UpdateMissionData(XComGameState_MissionSite MissionSite)
 	if(ActivityState != none && ActivityState.GetMyTemplate().GetMissionForceLevelFn != none)
 	{
 		ForceLevel = ActivityState.GetMyTemplate().GetMissionForceLevelFn(ActivityState, MissionSite, none);
+		`LWTrace("ActivityState Force Level:" @ForceLevel);
 	}
 	else
 	{
 		if(RegionalAIState != none)
+		{
 			ForceLevel = RegionalAIState.LocalForceLevel;
+			`LWTrace("Force Level pulled from Region:" @ForceLevel);
+		}
 		else
+		{
 			ForceLevel = AlienHQ.GetForceLevel();
+			`LWTrace("Force Level pulled from Alien HQ:" @ForceLevel);
+		}
 	}
 	ForceLevel = Clamp(ForceLevel, class'XComGameState_HeadquartersAlien'.default.AlienHeadquarters_StartingForceLevel, class'XComGameState_HeadquartersAlien'.default.AlienHeadquarters_MaxForceLevel);
 
