@@ -2171,7 +2171,7 @@ static function AddObjectivesToParcels()
 				}
 			}
 
-			if (!bEnableCityHQs)
+			if (!default.bEnableCityHQs)
 			{
 				if (PlotDef.strType == "CityCenter" && PlotDef.ObjectiveTags[0] == "AssaultAlienBase_LW")
 				{
