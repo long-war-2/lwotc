@@ -6011,17 +6011,17 @@ ActionPostNarrative="Nice job. Now we can send in a team to follow up further."
 
 [CovertActionNarrative_FindAdventDetachment_Skirmishers X2CovertActionNarrativeTemplate]
 ActionName="Locate Detached ADVENT Patrol"
-ActionPreNarrative="We've learned of the potential location of an Advent Scouting Party. We should investigate."
+ActionPreNarrative="We've learned of the potential location of an ADVENT Scouting Party. We should investigate."
 ActionPostNarrative="Nice job. Now we can send in a team to follow up further."
 
 [CovertActionNarrative_FindAdventDetachment_Reapers X2CovertActionNarrativeTemplate]
 ActionName="Locate Detached ADVENT Patrol"
-ActionPreNarrative="We've learned of the potential location of an Advent Scouting Party. We should investigate."
+ActionPreNarrative="We've learned of the potential location of an ADVENT Scouting Party. We should investigate."
 ActionPostNarrative="Nice job. Now we can send in a team to follow up further."
 
 [CovertActionNarrative_FindAdventDetachment_Templars X2CovertActionNarrativeTemplate]
 ActionName="Locate Detached ADVENT Patrol"
-ActionPreNarrative="We've learned of the potential location of an Advent Scouting Party. We should investigate."
+ActionPreNarrative="We've learned of the potential location of an ADVENT Scouting Party. We should investigate."
 ActionPostNarrative="Nice job. Now we can send in a team to follow up further."
 
 [AbilityPoints X2ItemTemplate]
