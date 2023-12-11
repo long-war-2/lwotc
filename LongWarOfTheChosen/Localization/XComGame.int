@@ -6894,7 +6894,7 @@ FriendlyName="Darklance"
 FriendlyNamePlural="Darklances"
 BriefSummary="This rifle belonging to the Chosen Hunter has probably seen more death than we can possibly imagine."
 ; LWOTC Needs Translation (2)
-TacticalText="<Bullet/> This rifle is capable of insane burst damage against units that have been marked for death.<br/><Bullet/> However because of its size it has proven to be difficult to reload for our operatives.<br/>"
+TacticalText="<Bullet/> This rifle is capable of insane burst damage against units that have been marked for death."
 ; End Translation (2)
 AbilityDescName="sniper rifle"
 
