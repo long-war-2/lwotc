@@ -2068,10 +2068,15 @@ static function X2AbilityTemplate AssassinBladestormAttack()
 {
 	local X2AbilityTemplate                 Template;
 	local array<name> SkipExclusions;
+	local X2Condition_NotItsOwnTurn Condition;
+
 	Template = class'X2Ability_RangerAbilitySet'.static.BladestormAttack('AssassinBladestormAttack');
 
 	SkipExclusions.AddItem(class'X2StatusEffects'.default.BurningName);
 	Template.AddShooterEffectExclusions(SkipExclusions);
+
+	Condition = new class'X2Condition_NotItsOwnTurn';
+	Template.AbilityShooterConditions.AddItem(Condition);
 
 	return Template;
 }
