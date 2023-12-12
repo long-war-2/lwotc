@@ -1,0 +1,48 @@
+[MusashiThrowKnifeSecondary_LW X2AbilityTemplate]
+LocFriendlyName="Rzuć nożem"
+LocFlyOverText="Rzuć nożem"
+LocLongDescription="Rzuca w cel jednym nożem do rzucania. Gwarantowane pozostanie w Cieniu."
+LocHelpText="Rzuca w cel jednym nożem do rzucania. Gwarantowane pozostanie w Cieniu."
+LocPromotionPopupText="<Bullet/> Rzucenie nożem nie złamie Cienia ani nie przyciągnie Zagubionych.<br/><Bullet/> Ta umiejętność przełamie ukrycie."
+
+[KnifeJuggler_LW X2AbilityTemplate]
+LocFriendlyName="Żongler nożami"
+LocFlyOverText="Żongler nożami"
+LocLongDescription="Dodaje +<Ability:KnifeJugglerBonusDamage/> dodatkowe obrażenia do noży do rzucania i zapewnia <Ability:KnifeJugglerExtraAmmo/> dodatkowe noże do rzucania. Każde zabicie bronią główną zapewnia ładunek noża."
+LocHelpText="Dodaje +<Ability:KnifeJugglerBonusDamage/> dodatkowe obrażenia do noży do rzucania i zapewnia <Ability:KnifeJugglerExtraAmmo/> dodatkowe noże do rzucania. Każde zabicie bronią główną zapewnia ładunek noża."
+LocPromotionPopupText="<Bullet/> Dodaje +<Ability:KnifeJugglerBonusDamage/> dodatkowe obrażenia do noży do rzucania.<br/><Bullet/> Dodaje <Ability:KnifeJugglerExtraAmmo/> dodatkowe ładunki za noże do rzucania.<br/><Bullet/> Każde zabicie bronią główną zapewnia ładunek noża.<br/>"
+
+[Hailstorm_LW X2AbilityTemplate]
+LocFriendlyName="Gradobicie"
+LocFlyOverText="Gradobicie"
+LocLongDescription="Rzuca trzy noże w krótkim odstępie czasu w cel. Gwarantowane pozostanie w Cieniu."
+LocHelpText="Rzuca trzy noże w krótkim odstępie czasu w cel. Gwarantowane pozostanie w Cieniu."
+LocPromotionPopupText="<Bullet/> Każdy nóż zachowuje wszelkie bonusy, takie jak obrażenia i efekty statusu, jakie ma pojedynczy rzut nożem.<br/><Bullet/> Noże nie korzystają z efektów zależnych od HP celu, chyba że ograniczenie zostało spełnione zanim rzucono pierwszy nóż."
+
+[ThrowingKnifeFaceoff_LW X2AbilityTemplate]
+LocFriendlyName="Walka z nożem"
+LocFlyOverText="Walka nożem"
+LocLongDescription="Rzuca nożem w każdy cel w zasięgu. Gwarantowane pozostanie w Cieniu."
+LocHelpText="Rzuca nożem w każdy cel w zasięgu. Gwarantowane pozostanie w Cieniu."
+LocPromotionPopupText="<Bullet/> Ma tylko jeden ładunek i nie zużywa żadnych standardowych ładunków noża do rzucania.<br/><Bullet/> Idealny podczas flankowania wielu wrogów.<br/>"
+
+[ThrowingKnife_CV_Secondary X2WeaponTemplate]
+FriendlyName="Nóż do rzucania"
+FriendlyNamePlural="Noże do rzucania"
+BriefSummary="Nóż do rzucania wykonany z naszych najbardziej zaawansowanych konwencjonalnych stopów stali."
+TacticalText="<Bullet/> Rzut nożem nie złamie Cienia.<br/><Bullet/> Ma <Ability:THROWING_KNIFE_CV_BLEED_CHANCE/>% szansy na wywołanie krwawienia, które zadaje <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> obrażeń w każdej turze przez < Ability:THROWING_KNIFE_CV_BLEED_DURATION/> turę(y).”
+AbilityDescName="nóż do rzucania"
+
+[ThrowingKnife_MG_Secondary X2WeaponTemplate]
+FriendlyName="Nóż do rzucania z obcych stopów"
+FriendlyNamePlural="Noże do rzucania z obcych stopów"
+BriefSummary="Nóż do rzucania wykonany z obcych stopów."
+TacticalText="<Bullet/> Rzut nożem nie złamie Cienia.<br/><Bullet/> Ma <Ability:THROWING_KNIFE_MG_BLEED_CHANCE/>% szansy na wywołanie krwawienia, które zadaje <Ability:THROWING_KNIFE_MG_BLEED_DAMAGE/> obrażeń w każdej turze przez < Ability:THROWING_KNIFE_MG_BLEED_DURATION/> tura(y).”
+AbilityDescName="nóż do rzucania"
+
+[ThrowingKnife_BM_Secondary X2WeaponTemplate]
+FriendlyName="Plazmowy nóż do rzucania"
+FriendlyNamePlural="Plazmowe noże do rzucania"
+BriefSummary="Nóż do rzucania z plazmowym ostrzem, który przecina zbroję jak masło."
+TacticalText="<Bullet/> Rzut nożem nie złamie Cienia.<br/><Bullet/> Ma <Ability:THROWING_KNIFE_BM_BLEED_CHANCE/>% szansy na wywołanie krwawienia, które zadaje <Ability:THROWING_KNIFE_BM_BLEED_DAMAGE/> obrażeń w każdej turze przez <Ability:THROWING_KNIFE_BM_BLEED_DURATION/> tura(y).”
+AbilityDescName="nóż do rzucania"

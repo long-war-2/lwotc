@@ -90,47 +90,47 @@ ActivityObjectives[1]="Zdobądź artefakty z UFO"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Znajdź trop"
-ActivityObjectives[1]="Zdobądź artefakty z UFO"
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="Odkryliśmy trop potencjalnej działalności ADVENT-u. Powinniśmy go sprawdzić.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="Odkryliśmy trop potencjalnej działalności ADVENT-u. Powinniśmy go sprawdzić.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="Nasz wywiad doprowadził nas do słabo chronionego UFO stojącego na ziemi.", MissionIndex=1)
+ActivityObjectives[0]="Znajdź ścieżki lotu wroga"
+ActivityObjectives[1]="Odzyskaj artefakty UFO"
++MissionDescriptions=(MissionFamily="Recover_LW", Description="Odkryliśmy potencjalny trop w sprawie zajęć ADVENT-u. Powinniśmy zbadać sprawę.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="Odkryliśmy potencjalny trop w sprawie zajęć ADVENT-u. Powinniśmy zbadać sprawę.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="Nasze dane wywiadowcze doprowadziły nas do podatnego na ataki UFO na ziemi.", MissionIndex=1)
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Znajdź trop"
-ActivityObjectives[1]="Zdobądź artefakty z UFO"
+ActivityObjectives[0]="Znajdź ścieżki lotu wroga"
+ActivityObjectives[1]="Odzyskaj artefakty UFO"
 
-+MissionDescriptions=(MissionFamily="Recover_LW", Description="Odkryliśmy trop potencjalnej działalności ADVENT-u. Powinniśmy go sprawdzić.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Hack_LW", Description="Odkryliśmy trop potencjalnej działalności ADVENT-u. Powinniśmy go sprawdzić.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Rescue_LW", Description="Dowiedzieliśmy się o więźniu ADVENT-u, który może dysponować informacjami na temat działalności wroga.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="Nasz wywiad doprowadził nas do słabo chronionego UFO stojącego na ziemi.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="Recover_LW", Description="Odkryliśmy potencjalny trop w sprawie zajęć ADVENT-u. Powinniśmy zbadać sprawę.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Hack_LW", Description="Odkryliśmy potencjalny trop w sprawie zajęć ADVENT-u. Powinniśmy zbadać sprawę.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Rescue_LW", Description="Odkryliśmy więźnia ADVENT-u, który może być potencjalnym tropem działań wroga.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="Nasze dane wywiadowcze doprowadziły nas do podatnego na ataki UFO na ziemi.", MissionIndex=1)
 
 [Invasion X2LWAlienActivityTemplate]
 ActivityName="InvasionActivity"
-ActivityObjectives[0]="Przeprowadź zasadzkę na wysunięty oddział ADVENT-u"
-ActivityObjectives[1]="Broń rządu tymczasowego"
+ActivityObjectives[0]="Zaatakuj siły natarcia ADVENT-u"
+ActivityObjectives[1]="Broń Rząd Tymczasowy"
 
-+MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="Wykryliśmy siły ADVENT-u wkraczające do tego regionu. Musimy je powstrzymać za wszelką cenę.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Invasion_LW", Description="ADVENT najeżdża ten region i atakuje tymczasowy rząd. Jeśli nie obronimy naszych ludzi, obcy znowu przejmą kontrolę nad tym obszarem.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="SupplyLineRaid_LW", Description="Wykryliśmy siły ADVENT-u wkraczające w ten region. Ważne jest, abyśmy powstrzymali ich natarcie.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Invasion_LW", Description="ADVENT dokonuje inwazji na ten region i atakuje Rząd Tymczasowy. Broń naszych ludzi, inaczej kosmici ponownie przejmą kontrolę nad regionem.", MissionIndex=1)
 
 [Foothold X2LWAlienActivityTemplate]
 ActivityName="FootholdActivity"
-ActivityObjectives[0]="Zaatakuj transportowiec szturmowy obcych"
-ActivityObjectives[1]="Broń rządu tymczasowego"
+ActivityObjectives[0]="Atak na lotniskowiec szturmowy UFO"
+ActivityObjectives[1]="Broń Rząd Tymczasowy"
 
-+MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="Obcy znów próbują zdobyć jakiś punkt zaczepienia na Ziemi. Możemy ich powstrzymać, atakując jeden z lądujących transportowców szturmowych.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Invasion_LW", Description="Obcy najeżdżają ten region i atakują tymczasowy rząd. Jeśli nie obronimy naszych ludzi, obcy znowu przejmą kontrolę nad tym obszarem.", MissionIndex=1)
++MissionDescriptions=(MissionFamily="SecureUFO_LW", Description="Obcy próbują odzyskać przyczółek na Ziemi. Możemy ich powstrzymać, atakując jeden z ich lotniskowców szturmowych, gdy ten wyląduje.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Invasion_LW", Description="Obcy atakują ten region i atakują Rząd Tymczasowy. Broń naszych ludzi, inaczej kosmici ponownie przejmą kontrolę nad regionem.", MissionIndex=1)
 
 [Propaganda X2LWAlienActivityTemplate]
 ActivityName="PropagandaActivity"
 ActivityObjectives[0]="Przyciągnij uwagę ADVENT-u"
-+MissionDescriptions=(MissionFamily="SabotageCC_LW", Description="Obcy pozostawili ośrodek miejski niemal bez ochrony. Możemy zaatakować jeden z ich pomników, żeby dać im coś do zrozumienia, ale musimy się liczyć z odpowiedzią ADVENT-u.", MissionIndex=0)
-+MissionDescriptions=(MissionFamily="Neutralize_LW", Description="Dowiedzieliśmy się, że wkrótce jeden z wysoko postawionych ludzkich przedstawicieli ADVENT-u przez krótki okres będzie słabiej chroniony. Możemy go wyeliminować, musimy jednak się liczyć z reakcją ADVENT-u.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SabotageCC_LW", Description="Obcy opuścili centrum miejskie stosunkowo bez ochrony. Możemy uderzyć w jeden z ich pomników, aby wysłać wiadomość, ale ADVENT z pewnością odpowie.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="Neutralize_LW", Description="Dowiedzieliśmy się, że urzędnik zajmujący wysokie stanowiska w administracji ADVENT-u będzie w najbliższej przyszłości stosunkowo pozbawiony ochrony przez krótki okres. Możemy go wyeliminować, ale ADVENT z pewnością to zauważy.", MissionIndex=0)
 
 [ProtectResearch X2LWAlienActivityTemplate]
 ActivityName="ProtectResearchActivity"
-ActivityObjectives[0]="Znajdź trop"
+ActivityObjectives[0]="Znajdź trop obiektu"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="Odkryliśmy trop potencjalnej działalności ADVENT-u. Powinniśmy go sprawdzić.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="Odkryliśmy trop potencjalnej działalności ADVENT-u. Powinniśmy go sprawdzić.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="DestroyObject_LW", Description="Odkryliśmy urządzenie ADVENT-u, które zakłóca komunikację ruchu oporu. Jeśli je zniszczymy, to być może zdobędziemy nowe informacje i źródła danych wywiadowczych.", MissionIndex=0)
@@ -161,6 +161,10 @@ ActivityObjectives[0]="Uwolnij ważnego więźnia"
 ActivityName="PoliticalPrisonersActivity"
 ActivityObjectives[0]="Uwolnij pojmanych rebeliantów"
 +MissionDescriptions=(MissionFamily="Jailbreak_LW", Description="Grupa członków ruchu oporu jest przetrzymywana w zabezpieczonym ośrodku. Mamy szansę, by ją uwolnić.", MissionIndex=0)
+
+[Logistics X2LWAlienActivityTemplate]
+ActivityObjectives[0]="Przejmij pamięć podręczną zasobów ADVENT-u"
++MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Ruch Ruchu Oporu poznał lokalizację kluczowych zasobów wroga, które możemy zdobyć na własny użytek.", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"
@@ -238,6 +242,13 @@ strDaysAndHours="<XGParam:IntValue0> d., <XGParam:IntValue1> godz."
 strMinusDaysAndHours="-<XGParam:IntValue0> d., <XGParam:IntValue1> godz."
 strPlusDaysAndHours="+<XGParam:IntValue0> d., <XGParam:IntValue1> godz."
 strMissionIndefinite="Nieograniczony czas trwania"
+strLiberationTitle="Modyfikator postępu wyzwolenia:"
+
+UpToText="Do"
+ExpectedActivityTextStr="Oczekiwana aktywność"
+BoostedActivityText="Oczekiwana aktywność (zwiększona)"
+BoostTextPre="Z"
+BoostTextPost="Wzmocnienie"
 
 [UIScreenListener_DropShipBriefing_MissionStart]
 strLaunchingInfiltration="WKRÓTCE NASTĄPI KONTAKT"
@@ -251,6 +262,10 @@ AblativeHPLabel="Ablacyjne PZ"
 
 [X2Ability_LW_TechnicalAbilitySet]
 strMaxScatter="\nMaksymalny rozrzut (w polach):"
+
+[X2Ability_LW_ChosenAbilities]
+ShieldedStatBuffsLocDescription="Dodatkowy cel, szansa na trafienie krytyczne, wola i atak psi."
+ImpactCompensationBuffDescription="Zmniejszenie wszystkich otrzymywanych obrażeń o <Ability:IMPACT_COMPENSATION_CURRENT_DR/>%"
 
 [XComGameState_LWListenerManager]
 ResistanceHQBodyText="Uzyskaj dostęp do informacji kryjówki ruchu oporu"
@@ -269,6 +284,11 @@ m_strTooltipAutofillSquad="Automatyczne uzupełnienie pustych miejsc w drużynie
 strTimeRemainingHoursOnly="<XGParam:IntValue0> godz."
 strTimeRemainingDaysAndHours="<XGParam:IntValue1> d., <XGParam:IntValue0> godz."
 
+strDarkEventExpiredTitle="Ciemne wydarzenie wygasło"
+strDarkEventExpiredText="wygasło"
+OpenResistanceManagementStr="OTWARTE ZARZĄDZANIE RUCHEM OPORU"
+OpenHavenManagementStr="OTWARTE ZARZĄDZANIE KRYJÓWKĄ"
+
 [X2EventListener_Soldiers]
 OnLiaisonDuty="Doradca kryjówki"
 OnInfiltrationMission="Infiltruje"
@@ -276,9 +296,7 @@ UnitAlreadyInSquad="Jednostka przypisana do innej drużyny"
 UnitInSquad="Jednostka jest już w drużynie"
 RankTooLow="Zbyt niska ranga"
 CannotModifyOnMissionSoldierTooltip="Nie można modyfikować żołnierza wykonującego misję"
-
-[X2Effect_LWHolotarget]
-HoloTargetEffectName="Na celowniku holograficznym"
+ReasonClassAbilityPickedAtRank="Wybrałeś już zdolność klasową tej rangi"
 
 [XComGameState_LWPersistentSquad]
 +DefaultSquadNames="Widmo"
@@ -318,7 +336,7 @@ HoloTargetEffectName="Na celowniku holograficznym"
 +TempSquadNames="Foxtrot"
 +TempSquadNames="Golf"
 +TempSquadNames="Hotel"
-+TempSquadNames="Indie"
++TempSquadNames="India"
 +TempSquadNames="Juliet"
 +TempSquadNames="Kilo"
 +TempSquadNames="Lima"
@@ -334,7 +352,6 @@ HoloTargetEffectName="Na celowniku holograficznym"
 +TempSquadNames="Victor"
 +TempSquadNames="Yankee"
 +TempSquadNames="Zulu"
-
 
 BackupSquadName="Drużyna XCOML <XGParam:StrValue0>"
 BackupTempSquadName="Tymczasowa drużyna: <XGParam:StrValue0>"
@@ -356,7 +373,8 @@ m_strInvasionConfirm="ZOBACZ MIEJSCE INWAZJI"
 m_strRepeatResearch="POWTÓRZ BADANIA"
 
 [UIScreenListener_ArmoryWeaponUpgrade_LW]
-strStripWeaponUpgradesButton="Usuń ulepszenia broni"
+strStripWeaponUpgradesButton="Usuń ulepszenia"
+StripAllWeaponUpgradesStr="Usuń ulepszenia nieaktywnych żołnierzy"
 strStripWeaponUpgradesTooltip="Usuwa wszystkie ulepszenia oraz modyfikacje broni i przenosi je do wspólnej puli"
 strStripWeaponUpgradeDialogueTitle="POTWIERDZENIE USUNIĘCIA WSZYSTKICH ULEPSZEŃ"
 strStripWeaponUpgradeDialogueText="Na pewno chcesz zdjąć wszystkie ulepszenia z tej broni i zwrócić je do wspólnej puli?"
@@ -392,6 +410,8 @@ strSquad="Drużyna"
 strStart="Start"
 strInfiltration="Infiltracja"
 
+strAreaOfOperations="Obszar operacji:"
+
 [UIScreenListener_SkyrangerArrives_LW]
 strLaunchInfiltration="ROZPOCZNIJ INFILTRACJĘ"
 strAbortInfiltration="PRZERWIJ INFILTRACJĘ"
@@ -403,6 +423,7 @@ TooltipBarracks_SquadManagement="Zarządzanie stałymi drużynami żołnierzy"
 
 [UIStrategyMapItem_Mission_LW]
 strRecon="Infiltr."
+InfiltrationTooltipString="INFILTRACJA"
 
 [UIMission_LWLaunchDelayedMission]
 m_strMission="INFILTRACJA"
@@ -470,7 +491,7 @@ m_strAdviserLabel="DK"
 m_strIncomeLabel="DOCHÓD"
 m_strRebelCountLabel="KRYJÓWKA"
 m_strADVENTUnitSingular="Legion"
-m_strADVENTUnitPlural="Legion."
+m_strADVENTUnitPlural="Legiony"
 
 m_strGlobalAlert="Globalna siła ADVENT-u:"
 m_strGlobalInsurgency="• Globalne zagrożenie ruchu oporu:"
@@ -482,6 +503,8 @@ m_strThreatHigh="Wysokie"
 m_strThreatVeryHigh="Bardzo wysokie"
 m_strLiberated="Wyzwolony"
 m_strResistanceManagementLevels="<XGParam:IntValue0> (C:<XGParam:IntValue1>)"
+ViewHavenStr="ZOBACZ KRYJÓWKĘ"
+FlyToHavenStr="LEĆ DO KRYJÓWKI"
 
 [UIOutpostManagement]
 m_strTitle="ZARZĄDZANIE KRYJÓWKĄ"
@@ -490,12 +513,16 @@ m_strName="Nazwisko"
 m_strMission="Misja"
 m_strBuildRadioRelay="Zbuduj przekaźnik radiowy"
 m_strLiaisonTitle="Doradca kryjówki"
+m_strEditLoadout="Zestaw doradców"
 ; 0=Alert, 1=Vigilance, 2=Force
 m_strRegionalInfo="Siła ADVENT-u: <XGParam:IntValue0/>"
 m_strResistanceMecs="MEC-i ruchu oporu: <XGParam:IntValue0/>"
 m_strProhibited="Zabronione"
 m_strCannotChangeLiaisonTitle="Nie można przenieść doradcy"
 m_strCannotChangeLiaison="W związku z aktywnymi misjami w regionie zmiana doradcy jest w tej chwili niemożliwa"
+ChangeJobStr="ZAMIEŃ PRACĘ"
+ChangeAllJobsStr="ZMIEŃ WSZYSTKIE PRACE"
+PerksStr="ATUTY" 
 
 [UIScreenListener_TacticalHUD]
 strEvacRequestTitle="Zgłoszono potrzebę ewakuacji"
@@ -559,6 +586,7 @@ m_strLiberatedCityPrefix="(Wyzwolone)"
 [XComGameState_LWOutPost]
 m_strProhibitedJobAlert="Z powodu ataku ADVENT-u członkom ruchu oporu w regionie o nazwie <XGParam:StrValue1/> przez <XGParam:IntValue0/> dni nie można przypisać zadań następującego typu: <XGParam:StrValue0/>. Wszyscy członkowie ruchu oporu wykonujący zadanie tego typu ukrywają się."
 m_strProhibitedJobEnded="Region: <XGParam:StrValue0/> - rebelianci wracają do realizacji wyznaczonych zadań (typ zadania: <XGParam:StrValue1/>)."
+m_strRetributionEnded="Członkowie ruchu oporu w <XGParam:StrValue0/> otrząsnęli się po jednej z kar Wybranych"
 
 [X2StrategyElement_DefaultAlienActivities]
 m_strInsufficientRebels="Potrzeba co najmniej <XGParam:IntValue0/> rebeliantów w kryjówce, aby nawiązać kontakt z sąsiadami"
@@ -570,36 +598,74 @@ m_strInvasionBody="Dowódco, ADVENT podjął próbę odbicia wyzwolonego regionu
 m_strInvasionFlare="PILNA WIADOMOŚĆ"
 m_strInvasionConfirm="ZOBACZ MIEJSCE INWAZJI"
 
+[UIScreenListener_ShellDifficulty]
+.Credits=""
+.Credits=Design Lead
+.Credits=John "JohnnyLump" Lumpkin
+.Credits=""
+.Credits=Technical Lead
+.Credits=Rachel "Amineri" Norman
+.Credits=""
+.Credits=Programmers
+.Credits=Jonathan "tracktwo" Emmett
+.Credits=Chris "chrisb" Boertien
+.Credits=""
+.Credits=Artists
+.Credits=James "JCLewis" Karlson
+.Credits=Chris "CapnBubs" Mansell
+.Credits=Dana "lfish" Henderson
+.Credits=Robert "BazserMazser" Bakos
+.Credits=Alexander "XMarksTheSpot" Behne
+.Credits=Percy Parache
+.Credits=""
+.Credits=Quality Assurance Lead
+.Credits=Tim "Bilfdoffle" Evans
+.Credits=""
+.Credits=Quality Assurance and Design Advisers
+.Credits=Matt "WyMANderly" Price
+.Credits=Xavier Wynns
+.Credits=Stephen "JoINrbs" Flavall 
+.Credits=Tim "deaconivory" Douglas
+.Credits=Caitlin McDonald, Paul "Kordolius" Massip, Benedict Jacka "Saph"
+.Credits=Colin "Thrair" Hendershot, Paul "Plockets" Giles, Gimrah, Ronar
+.Credits=""
+.Credits="Special Thanks"
+.Credits="Garrett Bittner, Casey Coleman, Garth DeAngelis"
+.Credits="Brian Hess, Sajjad Majid, Ryan McFall"
+.Credits="Kevin Schultz, Jake Solomon, Brittany Steiner, Iain Willows"
+.Credits="McDenny's 09, The Community Highlander Project"
+.Credits="RoboJumper, Bountygiver, xylthixlm, Beaglerush"
+.Credits="Our herd of spot translators on the PI forums"
+.Credits=""
+
 [UIUtilities_LW]
-m_strStripWeaponUpgrades=ZDEJMIJ WSZYSTKIE ULEPSZENIA BRONI
-m_strStripWeaponUpgradesLower=Zdejmij Wszystkie Ulepszenia Broni
-m_strStripWeaponUpgradesConfirm=POTWIERDŹ ZDJĘCIE WSZYSTKICH ULEPSZEŃ
-m_strStripWeaponUpgradesConfirmDesc=Potwierdź zdjęcie wszystkich ulepszeń ze wszystkich broni głównych, poza tymi używanymi przez żołnierzy wyznaczonych do obecnej misji. Ten sprzęt stanie się natychmiast dostępny dla wszystkich żołnierzy.
-m_strTooltipStripWeapons=Usuń wszystkie ulepszenia broni u wszystkich żołnierzy NIE WYBRANYCH do obecnej misji.
-
-m_strVIPCaptureReward=(Tylko pojmanie VIP-a)
-
-m_strInfiltrationMission="Infiltracja"
-m_strQuickResponseMission="Szybka reakcja"
-m_strFixedEvacLocation="Stały punkt ewakuacji"
-m_strFlareEvac="Wybór punktu ewakuacji"
+m_strInfiltrationMission="Misja infiltracyjna"
+m_strQuickResponseMission="Misja szybkiego reagowania"
+m_strFixedEvacLocation="Naprawiono ewakuację"
+m_strFlareEvac="Ewakuacja z flarą"
 m_strDelayedEvac="Opóźniona ewakuacja"
 m_strNoEvac="Brak ewakuacji"
-m_strMaxSquadSize="Maks. wielkość drużyny"
-m_strConcealedStart="Start w ukryciu"
-m_strRevealedStart="Start bez ukrycia"
-m_strObjectiveTimer="Czas na zadanie:"
-m_strExtractionTimer="Czas na ewakuację:"
+m_strMaxSquadSize="Maksymalny rozmiar oddziału"
+m_strConcealedStart="Ukryty początek"
+m_strRevealedStart="Ujawniony początek"
+m_strObjectiveTimer="Licznik celu misji:"
+m_strExtractionTimer="Licznik czasu ekstrakcji:"
 m_strEvacTimer="Przybycie Skyrangera:"
-m_strGetCorpses="Można zebrać ciała"
-m_strSweepObjective="Zniszcz siły wroga"
+m_strGetCorpses="Pełne odzyskanie"
+m_strSweepObjective="Cel przeszukiwania"
 m_strEvacRequired="Wymagana ewakuacja"
 m_strTurnSingular="Tura"
-m_strTurnPlural="Tur"
-m_strMinimumInfiltration="Wymaga <XGParam:IntValue0>% Infiltracji"
-m_strYellowAlert="Wysoka gotowość bojowa wroga"
+m_strTurnPlural="Tury"
+m_strMinimumInfiltration="Wymagana <XGParam:IntValue0>% infiltracja"
+m_strYellowAlert="Wrogowie w stanie najwyższej gotowości"
+m_sAverageScatterText="± <XGParam:StrValue0/> pola"
+m_strBullet="•"
 
-m_sAverageScatterText="Rozrzut ± <XGParam:StrValue0/>"
+m_strStripWeaponUpgrades=ZDEJMIJ WSZYSTKIE ULEPSZENIA BRONI
+m_strStripWeaponUpgradesLower=Zdejmij Wszystkie Ulepszenia Broni
+m_strStripWeaponUpgradesConfirm=POTWIERDŹ ZDJĘCIE WSZYSTKICH ULEPSZEŃ Z NIEAKTYWNYCH ŻOŁNIERZY
+m_strStripWeaponUpgradesConfirmDesc=Potwierdź usunięcie ulepszeń broni ze wszystkich niewyposażonych broni głównych, a także wszystkich broni głównych trzymanych przez nieaktywnych żołnierzy. Nie będzie to miało wpływu na broń podstawową trzymaną przez żołnierzy tajnych działań, a także żołnierzy wybranych do bieżących obowiązków misyjnych. Należy pamiętać, że to usunięcie jest trwałe; następnym razem, gdy zostanie wyposażona „pozbawiona” broń główna, konieczne będzie ponowne dodanie do niej ulepszeń broni.
+m_strTooltipStripWeapons=Usuń wszystkie ulepszenia broni z niewyposażonej broni głównej, a także broni głównej trzymanej przez nieaktywnych żołnierzy.
 
 m_strAllHandsToHangar=WSZYSCY DO HANGARU
 m_strAllHandsToHangarConfirm=POTWIERDŹ ROZKAZ "WSZYSCY DO HANGARU"
@@ -609,9 +675,20 @@ m_strTooltipAllHandsToHangar=Przerwij szkolenie wszystkich żołnierzy ze Szkoł
 m_strPrevHaven="POPRZ. KRYJÓWKA"
 m_strNextHaven="NAST. KRYJÓWKA"
 
-[Logistics X2LWAlienActivityTemplate]
-ActivityObjectives[0]="Przechwyć zapasy ADVENT-u"
-+MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="Ruch Oporu zdobył wiedzę na temat umiejscowienia istotnych dla przeciwnika zasobów, które możemy przechwycić i wykorzystać do naszych potrzeb.", MissionIndex=0)
+m_strVIPCaptureReward="(Tylko pojmanie VIP-a)"
+
+[UIListener_CampaignStartMenu]
+
+strDisabledTutorialTooltip="Samouczek jest wyłączony podczas grania w Long War of the Chosen"
+strDisabledNarrativeContentTooltip="Lost and Abandoned jest wyłączone podczas grania w Long War of the Chosen"
+strDisabledPrecisionExplosivesTooltip="Precyzyjne materiały wybuchowe są wyłączone podczas grania w Long War of the Chosen"
 
 [UICovertActionReport_LW]
-strCovertActionFailed="NIE WYKONANO"
+strCovertActionFailed="PORAŻKA"
+
+[UIScreenListener_ViewObjectives]
+ScrollObjectiveDescriptionStr="PRZEWIŃ OPIS CELÓW"
+
+[X2Effect_ChosenLoot]
+m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> Nagrodza za zabicie Wybrańca."
+

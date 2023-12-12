@@ -9,8 +9,11 @@
 class Helpers_LW extends Object config(GameCore) dependson(Engine);
 
 var config bool EnableLWTrace;
+var config bool EnableLWDiversityTrace;
 var config bool EnableLWDebug;
 var config bool EnableLWPMTrace;
+
+var config bool bUseTrueDifficultyCalc;
 
 var const string CHOSEN_SPAWN_TAG_SUFFIX;
 
@@ -158,6 +161,11 @@ var config bool bWOTCRevertOverwatchRulesActive;
 var config bool bWOTCCostBasedAbilityColorsActive;
 var config bool bWorldWarLostActive;
 var config bool XCOM2RPGOverhaulActive;
+
+var config bool bKirukaFactionOverhaulActive;
+var config bool bNewTemplarModJamActive;
+
+var config bool bDABFLActive;
 
 var config array<string> cachedInstalledModNames;
 

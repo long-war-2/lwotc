@@ -83,6 +83,7 @@ var config int PROPAGANDA_ADJACENT_VIGILANCE_RAND;
 
 var config int PROTECT_RESEARCH_REGIONAL_COOLDOWN_HOURS_MIN;
 var config int PROTECT_RESEARCH_REGIONAL_COOLDOWN_HOURS_MAX;
+var config int PROTECT_RESEARCH_FIRST_MONTH_POSSIBLE;
 
 var config int PROTECT_DATA_REGIONAL_COOLDOWN_HOURS_MIN;
 var config int PROTECT_DATA_REGIONAL_COOLDOWN_HOURS_MAX;
@@ -168,6 +169,7 @@ var config int RECRUIT_RAID_BUCKET;
 
 var config int ALIEN_BASE_DOOM_REMOVAL;
 
+var config int CHOSEN_KNOWLEDGE_GAIN_MISSIONS;
 var config int CHOSEN_ACTIVATE_AT_FL;
 var config array<int> CHOSEN_LEVEL_FL_THRESHOLDS;
 
@@ -177,6 +179,8 @@ var localized string m_strInsufficientRebels;
 
 var config int COINOPS_MIN_VIGILANCE;
 var config int COINOPS_MIN_ALERT;
+
+var config int BIGSUPPLYEXTRACTION_MAX_ALERT;
 
 //helpers for checking for name typos
 var name ProtectRegionEarlyName;
@@ -245,6 +249,10 @@ static function array<X2DataTemplate> CreateTemplates()
 
     // Cheaty activity for mission test.
     AlienActivities.AddItem(CreateDebugMissionTemplate());
+
+	//New Big Supply Extraction activity test:
+	AlienActivities.AddItem(CreateBigSupplyExtractionTemplate());
+	AlienActivities.AddItem(CreateCovertOpsTroopManeuversTemplate());
 
 	return AlienActivities;
 }
@@ -1815,6 +1823,15 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 	{
 		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 		Chosenstate.Level++;
+		// Tedster - Cap chosen levels at the length of the level FL thresholds array, which should line up with the max level value since both start at 0.
+		ChosenState.Level = MIN(default.CHOSEN_LEVEL_FL_THRESHOLDS.Length, Chosenstate.Level);
+
+		//5th tier of chosen created by using PostEncounterCreation
+		if(ChosenState.Level == 4)
+		{
+			ChosenState.Level = 3;
+		}
+
 		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
 		if (ChosenState.bMetXCom && !ChosenState.bDefeated)
 		{
@@ -1827,6 +1844,72 @@ static function TryIncreasingChosenLevel(int CurrentForceLevel)
 	`GAMERULES.SubmitGameState(NewGameState);
 }
 
+// version that takes in a NewGameState for DLCInfo use for patching existing campaigns.
+static function TryIncreasingChosenLevelWithGameState(int CurrentForceLevel, XComGameState NewGameState, XComGameState_AdventChosen ChosenState)
+{
+	local name OldTacticalTag, NewTacticalTag;
+	local int NewChosenLevel;
+
+		OldTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+
+		ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+		
+		//handle all force levels here.
+		switch (CurrentForceLevel)
+		{
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+			case 6:
+				NewChosenLevel = 0;
+				break;
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				NewChosenLevel = 1;
+				break;
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+				NewChosenLevel = 2;
+				break;
+			case 16:
+			case 17:
+			case 18:
+			case 19:
+			case 20:
+				NewChosenLevel = 3;
+				break;
+			// default catches FL21+ campaigns
+			default:
+				NewChosenLevel = 3;
+				break;
+		}
+		if(NewChosenLevel == ChosenState.Level)
+			return;
+
+		ChosenState.Level = NewChosenLevel;
+
+		if(ChosenState.Level > 3)
+		{
+			ChosenState.Level = 3;
+		}
+
+		NewTacticalTag = ChosenState.GetMyTemplate().GetSpawningTag(ChosenState.Level);
+		if (ChosenState.bMetXCom && !ChosenState.bDefeated)
+		{
+			ChosenState.bJustLeveledUp = true;
+		}
+		// Replace Old Tag with new Tag in missions
+		ChosenState.RemoveTacticalTagFromAllMissions(NewGameState, OldTacticalTag, NewTacticalTag);
+
+}
+
 static function ActivateChosenIfEnabled(XComGameState NewGameState)
 {
 	local XComGameState_HeadquartersAlien AlienHQ;
@@ -1835,7 +1918,9 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 	local int i;
 	if (!`SecondWaveEnabled('DisableChosen'))
 	{
+
 		AlienHQ = XComGameState_HeadquartersAlien(`XCOMHISTORY.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersAlien'));
+		AlienHQ = XComGameState_HeadquartersAlien(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersAlien', AlienHQ.ObjectID));
 		AlienHQ.OnChosenActivation(NewGameState);
 
 		AllChosen = AlienHQ.GetAllChosen();
@@ -1844,16 +1929,24 @@ static function ActivateChosenIfEnabled(XComGameState NewGameState)
 		//ALSO REMOVE ALL WEAKNESSES FROM THEM
 		foreach AllChosen(ChosenState)
 		{
-			ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
-			ChosenState.Strengths.length = 0;
-
-			for(i = ChosenState.Weaknesses.length - 1; i>=0; i--)
+			if (!ChosenState.bMetXCom)
 			{
-				if(ChosenState.Weaknesses[i] != 'ChosenSkirmisherAdversary' && 
-				ChosenState.Weaknesses[i] != 'ChosenTemplarAdversary' &&
-				ChosenState.Weaknesses[i] != 'ChosenReaperAdversary')
+				ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+				ChosenState.Strengths.length = 0;
+				
+
+				// Get them training and learning about XCOM straight away
+				ChosenState.bMetXCom = true;
+				ChosenState.NumEncounters++; 
+
+				for (i = ChosenState.Weaknesses.length - 1; i >= 0; i--)
 				{
-					ChosenState.Weaknesses.Remove(i,1);
+					if (ChosenState.Weaknesses[i] != 'ChosenSkirmisherAdversary' && 
+						ChosenState.Weaknesses[i] != 'ChosenTemplarAdversary' &&
+						ChosenState.Weaknesses[i] != 'ChosenReaperAdversary')
+					{
+						ChosenState.Weaknesses.Remove(i,1);
+					}
 				}
 			}
 		}
@@ -2852,6 +2945,8 @@ static function X2DataTemplate CreateProtectResearchTemplate()
 	local X2LWAlienActivityTemplate Template;
 	local X2LWActivityCondition_ResearchFacility ResearchFacility;
 	local X2LWActivityCooldown Cooldown;
+	local X2LWActivityCondition_Month TimeCondition;
+	local X2LWActivityCondition_MinLiberatedRegionsLegendary LibCondition;
 
 	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, default.ProtectResearchName);
 	Template.iPriority = 50; // 50 is default, lower priority gets created earlier
@@ -2877,6 +2972,16 @@ static function X2DataTemplate CreateProtectResearchTemplate()
 	Template.ActivityCreation.Conditions.AddItem(ResearchFacility);
 
 	Template.ActivityCreation.Conditions.AddItem(new class'X2LWActivityCondition_FacilityLeadItem'); // prevents creation if would create more items than there are facilities
+
+	//Add a time delay so you don't instantly get facility missions
+	TimeCondition = new class'X2LWActivityCondition_Month';
+	TimeCondition.FirstMonthPossible = default.PROTECT_RESEARCH_FIRST_MONTH_POSSIBLE;
+	Template.ActivityCreation.Conditions.AddItem(TimeCondition);
+
+	//Add Lib condition for Legendary;
+	LibCondition = new class'X2LWActivityCondition_MinLiberatedRegionsLegendary';
+	LibCondition.MaxAlienRegions = 15; // 1 region liberated
+	Template.ActivityCreation.Conditions.AddItem(LibCondition);
 
 	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
 	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
@@ -3076,6 +3181,69 @@ static function array<name> GetTroopManeuversRewards (XComGameState_LWAlienActiv
 	RewardArray[0] = 'Reward_Dummy_Materiel';
 	return RewardArray;
 }
+
+// Covert op version
+
+static function X2DataTemplate CreateCovertOpsTroopManeuversTemplate()
+{
+	local X2LWAlienActivityTemplate Template;
+	local MissionLayerInfo MissionLayer;
+	local X2LWActivityDetectionCalc DetectionCalc;
+	local X2LWActivityCondition_AlertVigilance AlertVigilance;
+
+	`CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, 'CovertOpsTroopManeuvers');
+
+	MissionLayer.MissionFamilies.AddItem('CovertOpsTroopManeuvers_LW');
+	MissionLayer.Duration_Hours = 24*5.5;
+	MissionLayer.DurationRand_Hours = 24;
+	MissionLayer.BaseInfiltrationModifier_Hours=-24;
+    Template.MissionTree.AddItem(MissionLayer);
+
+
+ 	DetectionCalc = new class'X2LWActivityDetectionCalc';
+	DetectionCalc.SetAlwaysDetected(true);
+	Template.DetectionCalc = DetectionCalc;
+
+ 	//these define the requirements for creating each activity
+	Template.ActivityCreation = new class'X2LWActivityCreation';
+
+	AlertVigilance = new class'X2LWActivityCondition_AlertVigilance';
+	AlertVigilance.MinAlert = 9999; // never created normally, only via Covert Op
+	Template.ActivityCreation.Conditions.AddItem(AlertVigilance);
+
+	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
+	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
+
+	Template.OnActivityStartedFn = none;
+	Template.WasMissionSuccessfulFn = none;  // always one objective
+	Template.GetMissionForceLevelFn = GetTypicalMissionForceLevel; // use regional ForceLevel
+	Template.GetMissionAlertLevelFn = GetCovertOpsTroopManeuversMissionAlertLevel;
+	Template.GetTimeUpdateFn = none;
+	Template.OnMissionExpireFn = none; // just remove the mission
+	Template.GetMissionRewardsFn = GetTroopManeuversRewards;
+	Template.OnActivityUpdateFn = none;
+	Template.CanBeCompletedFn = none;  // can always be completed
+	Template.OnActivityCompletedFn = none; // this one doesn't reduce strength
+
+	return Template;
+}
+
+// using this to cap this at str 4
+static function int GetCovertOpsTroopManeuversMissionAlertLevel(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionSite, XComGameState NewGameState)
+{
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState;
+
+	RegionState = MissionSite.GetWorldRegion();
+	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState);
+
+	if(default.ACTIVITY_LOGGING_ENABLED)
+	{
+		`LWTRACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Alert Level =" $ min(RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier, 4) );
+	}
+	return min(RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier, 4);
+}
+
 
 //#############################################################################################
 //---------------------------------- HIGH-VALUE PRISONER --------------------------------------
@@ -3769,6 +3937,69 @@ static function RecruitRaidCompleted (bool bAlienSuccess, XComGameState_LWAlienA
 }
 
 //#############################################################################################
+//---------------------------------- Big Supply Extraction ------------------------------------------
+//#############################################################################################
+
+static function X2DataTemplate CreateBigSupplyExtractionTemplate()
+{
+    local X2LWAlienActivityTemplate Template;
+    local MissionLayerInfo MissionLayer;
+	local X2LWActivityDetectionCalc DetectionCalc;
+	local X2LWActivityCondition_AlertVigilance AlertVigilance;
+
+    `CREATE_X2TEMPLATE(class'X2LWAlienActivityTemplate', Template, 'BigSupplyExtraction_LW');
+    // Add an arbitrary mission to the mission list. This won't really be used, it'll be overridden
+    // by the cheat command to force a particular mission kind.
+    MissionLayer.MissionFamilies.AddItem('BigSupplyExtraction_LW');
+	MissionLayer.Duration_Hours = 24*6;
+	MissionLayer.DurationRand_Hours = 24;
+    Template.MissionTree.AddItem(MissionLayer);
+
+ 	DetectionCalc = new class'X2LWActivityDetectionCalc';
+	DetectionCalc.SetAlwaysDetected(true);
+	Template.DetectionCalc = DetectionCalc;
+
+ 	//these define the requirements for creating each activity
+	Template.ActivityCreation = new class'X2LWActivityCreation';
+
+	AlertVigilance = new class'X2LWActivityCondition_AlertVigilance';
+	AlertVigilance.MinAlert = 9999; // never created normally, only via Covert Op
+	Template.ActivityCreation.Conditions.AddItem(AlertVigilance);
+
+	Template.OnMissionSuccessFn = TypicalEndActivityOnMissionSuccess;
+	Template.OnMissionFailureFn = TypicalAdvanceActivityOnMissionFailure;
+
+	Template.OnActivityStartedFn = none;
+	Template.WasMissionSuccessfulFn = none;  // always one objective
+	Template.GetMissionForceLevelFn = GetTypicalMissionForceLevel; // use regional ForceLevel
+	Template.GetMissionAlertLevelFn = GetTypicalMissionAlertLevel;
+	Template.GetTimeUpdateFn = none;
+	Template.OnMissionExpireFn = none; // just remove the mission
+	Template.GetMissionRewardsFn = GetLogisticsReward;
+	Template.OnActivityUpdateFn = none;
+	Template.CanBeCompletedFn = none;  // can always be completed
+	Template.OnActivityCompletedFn = none;
+
+    return Template;
+}
+
+static function int GetBigExtractMissionAlertLevel(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionSite, XComGameState NewGameState)
+{
+	local XComGameState_WorldRegion RegionState;
+	local XComGameState_WorldRegion_LWStrategyAI RegionalAIState;
+
+	RegionState = MissionSite.GetWorldRegion();
+	RegionalAIState = class'XComGameState_WorldRegion_LWStrategyAI'.static.GetRegionalAI(RegionState, NewGameState);
+
+	if(default.ACTIVITY_LOGGING_ENABLED)
+	{
+		`LWTRACE("Activity " $ ActivityState.GetMyTemplateName $ ": Mission Alert Level =" $ min(RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier, default.BIGSUPPLYEXTRACTION_MAX_ALERT) );
+	}
+	return min(RegionalAIState.LocalAlertLevel + ActivityState.GetMyTemplate().AlertLevelModifier, default.BIGSUPPLYEXTRACTION_MAX_ALERT);
+}
+
+
+//#############################################################################################
 //---------------------------------- MISSION TESTING ------------------------------------------
 //#############################################################################################
 
@@ -3880,6 +4111,9 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 	ActivityTemplate = ActivityState.GetMyTemplate();
 	NewGameState.AddStateObject(ActivityState);
 
+	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	if(RegionState == none)
+		RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
 
     // We need to apply the rewards immediately, but don't want to run them twice if we need to also defer the
     // activity update until we're back at the geoscape.
@@ -3890,6 +4124,8 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 			ExcludeIndices = GetRewardExcludeIndices(ActivityState, MissionState, NewGameState);
 		    GiveRewards(NewGameState, MissionState, ExcludeIndices);
 		    RecordResistanceActivity(true, ActivityState, MissionState, NewGameState);
+
+			IncreaseChosenKnowledge(RegionState, NewGameState);
 
 		    MissionState.RemoveEntity(NewGameState);
 	    }
@@ -3963,6 +4199,7 @@ static function TypicalAdvanceActivityOnMissionSuccess(XComGameState_LWAlienActi
 static function TypicalEndActivityOnMissionSuccess(XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
 {
 	local X2LWAlienActivityTemplate ActivityTemplate;
+	local XComGameState_WorldRegion RegionState;
 	local array<int> ExcludeIndices;
 
 	if(ActivityState == none)
@@ -3971,12 +4208,18 @@ static function TypicalEndActivityOnMissionSuccess(XComGameState_LWAlienActivity
 	ActivityTemplate = ActivityState.GetMyTemplate();
 	NewGameState.AddStateObject(ActivityState);
 
+	RegionState = XComGameState_WorldRegion(NewGameState.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+	if(RegionState == none)
+		RegionState = XComGameState_WorldRegion(`XCOMHISTORY.GetGameStateForObjectID(ActivityState.PrimaryRegion.ObjectID));
+
 	if (MissionState != none)
 	{
 		ExcludeIndices = GetRewardExcludeIndices(ActivityState, MissionState, NewGameState);
 
 		GiveRewards(NewGameState, MissionState, ExcludeIndices);
 		RecordResistanceActivity(true, ActivityState, MissionState, NewGameState);
+
+		IncreaseChosenKnowledge(RegionState, NewGameState);
 
 		MissionState.RemoveEntity(NewGameState);
 	}
@@ -4138,6 +4381,15 @@ static function AddVigilanceNearby (XComGameState NewGameState, XComGameState_Wo
 }
 
 
+static function IncreaseChosenKnowledge(XComGameState_WorldRegion RegionState, XComGameState NewGameState)
+{
+	local XComGameState_AdventChosen ChosenState;
+
+	ChosenState = RegionState.GetControllingChosen();
+	ChosenState = XComGameState_AdventChosen(NewGameState.ModifyStateObject(class'XComGameState_AdventChosen', ChosenState.ObjectID));
+	ChosenState.ModifyKnowledgeScore(NewGameState, default.CHOSEN_KNOWLEDGE_GAIN_MISSIONS);
+}
+
 static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActivity ActivityState, XComGameState_MissionSite MissionState, XComGameState NewGameState)
 {
 	local XComGameStateHistory History;
@@ -4175,11 +4427,14 @@ static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActi
 		case "DestroyObject_LW":
 		case "Jailbreak_LW":
 		case "TroopManeuvers_LW":
+		case "CovertOpsTroopManeuvers_LW":
 		case "ProtectDevice_LW":
 		case "SabotageCC":
 		case "SabotageCC_LW":
 		case "AssaultNetworkTower_LW":
 		case "SmashnGrab_LW":
+		case "SupplyExtraction_LW":
+		case "BigSupplyExtraction_LW":
 			ActivityTemplateName='ResAct_GuerrillaOpsCompleted';
 			break;
 		case "SecureUFO_LW":
@@ -4230,6 +4485,7 @@ static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActi
 		case "DestroyObject_LW":
 		case "Jailbreak_LW":
 		case "TroopManeuvers_LW":
+		case "CovertOpsTroopManeuvers_LW":
 		case "ProtectDevice_LW":
 		case "SabotageCC":
 		case "SabotageCC_LW":
@@ -4237,6 +4493,8 @@ static function RecordResistanceActivity(bool Success, XComGameState_LWAlienActi
 		case "AssaultNetworkTower_LW":
 		case "Sabotage_LW":
 		case "SmashnGrab_LW":
+		case "SupplyExtraction_LW":
+		case "BigSupplyExtraction_LW":
 		case "AssaultAlienBase_LW":
 			if (!ActivityState.bFailedFromMissionExpiration)
 			{
@@ -4581,6 +4839,7 @@ static function XComGameState_MissionSite GetRebelRaidMissionSite(XComGameState_
 
     return RaidMission;
 }
+
 
 
 

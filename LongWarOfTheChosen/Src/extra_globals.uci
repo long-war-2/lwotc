@@ -5,6 +5,8 @@
 /* LWS Overhaul trace messages, e.g. super log spam with lots of detail. Can be independently enabled/disabled via the Suppress directive in XComEngine.ini */
 `define LWTrace(msg,cond,tag) `Log(`msg, class'Helpers_LW'.default.EnableLWTrace, 'LWTrace')
 
+`define LWDiversityTrace(msg,cond,tag) `Log(`msg, class'Helpers_LW'.default.EnableLWDiversityTrace, 'LWDiversityTrace')
+
 `define LWOUTPOSTMGR class'XComGameState_LWOutpostManager'.static.GetOutpostManager()
 
 `define LWSQUADMGR class'XComGameState_LWSquadManager'.static.GetSquadManager()

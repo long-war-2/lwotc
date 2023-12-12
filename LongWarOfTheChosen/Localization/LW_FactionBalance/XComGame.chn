@@ -40,6 +40,14 @@ LocHelpText="用精确的射击击晕敌人，如果暴击则造成额外的眩�
 LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)眩晕敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击额外眩晕敌人<Ability:DisablingShotCritStunActions/>行动点, 但是射击不会造成暴击伤害。<br/><Bullet/> 阻断射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 阻断射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 只有化身和灵能僵尸不能被眩晕。"
 ; End Translation (2)
 
+[DisablingShotSnapShot X2AbilityTemplate]
+LocFriendlyName="阻断射击（急射）"
+LocLongDescription="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
+LocHelpText="用精确的射击击晕敌人，如果暴击则造成额外的眩晕持续时间。 射击不会造成暴击伤害。"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> 如果命中(包括擦伤)眩晕敌人<Ability:DisablingShotStunActions/>行动点。<br/><Bullet/> 如果暴击额外眩晕敌人<Ability:DisablingShotCritStunActions/>行动点, 但是射击不会造成暴击伤害。<br/><Bullet/> 阻断射击需要<Ability:SelfAmmoCost/>弹药。<br/><Bullet/> 阻断射击有<Ability:SelfCooldown_LW/>回合冷却时间。<br/><Bullet/> 只有化身和灵能僵尸不能被眩晕。"
+; End Translation (2)
+
 [Meditation X2AbilityTemplate]
 LocFriendlyName="冥想"
 LocLongDescription="圣殿骑士增加<Ability:MeditationFocusRecovery/>专注。"
@@ -48,8 +56,8 @@ LocPromotionPopupText="<Bullet/> 圣殿骑士增加<Ability:MeditationFocusRecov
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="超载"
-LocLongDescription="圣殿骑士的每一个专注点获得额外的命中和暴击率。"
-LocHelpText="圣殿骑士的每一个专注点获得额外的命中和暴击率。"
+LocLongDescription="圣殿骑士的每一个专注点使得近战攻击获得额外的命中和暴击率。"
+LocHelpText="圣殿骑士的每一个专注点使得近战攻击获得额外的命中和暴击率。"
 LocPromotionPopupText="<Bullet/> 每个专注点+<Ability:OverchargeAimBonus/>命中以及+<Ability:OverchargeCritBonus/>暴击率。<br/><Bullet/> 基于当前专注，而不是最大专注。"
 
 [VoltDangerZone X2AbilityTemplate]
@@ -70,9 +78,9 @@ LocPromotionPopupText="<Bullet/> 当敌人触发时，给圣殿骑士增加1点�
 
 [TemplarTerror X2AbilityTemplate]
 LocFriendlyName="恐吓"
-LocLongDescription="灵能闪电增加恐慌敌人效果。"
-LocHelpText="灵能闪电增加恐慌敌人效果。"
-LocPromotionPopupText="<Bullet/> 灵能闪电现在可以使敌人恐慌。<br/><Bullet/> 恐慌几率为<Ability:TERROR_STAT_CHECK_BASE_VALUE/>%同时受到圣殿骑士和目标意志力的影响。"
+LocLongDescription="灵能闪电的范围增加<Ability:VoltDangerZoneBonus/>格。灵能闪电增加恐慌敌人的效果。"
+LocHelpText="灵能闪电的范围增加<Ability:VoltDangerZoneBonus/>格。灵能闪电增加恐慌敌人的效果。"
+LocPromotionPopupText="<Bullet/> 灵能闪电现在可以使敌人恐慌。<br/><Bullet/> 基础恐慌几率为<Ability:TERROR_STAT_CHECK_BASE_VALUE/>%，同时会受到圣殿骑士和目标意志力的影响。"
 
 [Apotheosis X2AbilityTemplate]
 LocFriendlyName="神化"
@@ -146,6 +154,15 @@ LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格
 LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
 LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术或者暗箭伤人同时使用。<br/>"
 
+
+[KnifeEncountersExtendedRange X2AbilityTemplate]
+LocFriendlyName="刀锋相接"
+LocFlyOverText="刀锋相接"
+LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
+LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。不能在同一回合触发暗箭伤人。"
+LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格范围内的敌人投掷飞刀后获得额外行动。<br/><Bullet/> 一个红环将标记该能力的范围。<br/><Bullet/> 刀锋相接不能与奔袭战术或者暗箭伤人同时使用。<br/>"
+
+
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="冷漠边缘"
 LocFlyOverText="冷漠边缘"
@@ -207,3 +224,7 @@ RendTheMarkedEffectName="撕裂标记"
 RendTheMarkedEffectDesc="在本回合剩余时间内从所有来源对目标的攻击获得投掷飞刀所施加的+<Ability:REND_THE_MARKED_CRIT/>暴击率。"
 ; End Translation
 
+[TheBanisher_LW X2AbilityTemplate]
+LocFriendlyName="真正捕食者"
+LocLongDescription="放逐在每次射击时的命中惩罚减少5点，并将其冷却时间降低1回合。刀锋相接的范围增加1格。死亡贩子现在对无侧翼的目标也能生效。"
+LocHelpText="放逐在每次射击时的命中惩罚减少5点，并将其冷却时间降低1回合。刀锋相接的范围增加1格。死亡贩子现在对无侧翼的目标也能生效。 注意: 刀锋相接的圆环视觉效果没有正确更新该技能。你在刀锋相接的圆环外还有2个格子的射程范围。"

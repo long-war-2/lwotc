@@ -38,8 +38,8 @@ set some things up:
     or whatever is the equivalent with the git client tool you are using.
 
  4. Download the LWOTC media assets (video, graphics and sound) from
-    [this Dropbox link](https://www.dropbox.com/s/qrrnygrjydj8qbt/lwotc-content-with-cooking.zip?dl=0)
-    and unpack the resulting zip file into this project's *LongWarOfTheChosen* directory.
+    [this Google Drive link](https://drive.google.com/file/d/1wyjctso0NuHeHJp3DdQdPIlZ482st9ZY/view?usp=sharing)
+    and unpack the resulting zip file into this project's *LongWarOfTheChosen* directory. It should merge the contents of the *Content* and *ContentForCook* directories.
 
  5. Set up the following environment variables:
     * `XCOM2SDKPATH` — typically &lt;path to Steam&gt;\steamapps\common\XCOM 2 War Of The Chosen SDK

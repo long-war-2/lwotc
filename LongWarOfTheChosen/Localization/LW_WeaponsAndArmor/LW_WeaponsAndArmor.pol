@@ -1,0 +1,3 @@
+[X2Ability_ThrowingKnifeAbilitySet]
+RendTheMarkedEffectName="Naznaczenie"
+RendTheMarkedEffectDesc="Rzut nożami nakłada kumulującą się +<Ability:REND_THE_MARKED_CRIT/> szansę na trafienie krytyczne przeciwko celowi ze wszystkich źródeł przez pozostałą część tury."

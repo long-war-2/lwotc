@@ -1013,6 +1013,8 @@ static function X2DataTemplate ReadyForAnythingFlyover()
 {
 	local X2AbilityTemplate					Template;
 	local X2AbilityTrigger_EventListener	EventListener;
+	local X2Effect_CoveringFire             CoveringFireEffect;
+	local X2Condition_AbilityProperty       CoveringFireCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'ReadyForAnythingFlyover');
 
@@ -1030,6 +1032,15 @@ static function X2DataTemplate ReadyForAnythingFlyover()
 	EventListener.ListenerData.Filter = eFilter_Unit;
 	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_Self;
 	Template.AbilityTriggers.AddItem(EventListener);
+
+	// Tedster - apply Covering Fire effect here since this is fired by RFA.
+	CoveringFireEffect = new class'X2Effect_CoveringFire';
+	CoveringFireEffect.AbilityToActivate = 'OverwatchShot';
+	CoveringFireEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	CoveringFireCondition = new class'X2Condition_AbilityProperty';
+	CoveringFireCondition.OwnerHasSoldierAbilities.AddItem('CoveringFire');
+	CoveringFireEffect.TargetConditions.AddItem(CoveringFireCondition);
+	Template.AddTargetEffect(CoveringFireEffect);
 
 	Template.CinescriptCameraType = "Overwatch";
 

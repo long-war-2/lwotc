@@ -1,0 +1,19 @@
+[DisableTutorial SecondWaveOptionObject]
+Tooltip="Wyłącza samouczek Long War of the Chosen"
+Description="Bez trzymania za rękę: Wyłącz samouczek LWOTC."
+
+[DisableChosen SecondWaveOptionObject]
+Tooltip="Wyłącza Wybrańców, więc nie pojawią się w grze"
+Description="Wybrańcy na wakacjach: Wyłącza Wybrańców."
+
+[EnableResistanceOrders SecondWaveOptionObject]
+Tooltip="Włącza rozkazy ruchu oporu."
+Description="Dominacja strategiczna: umożliwia wykonywanie rozkazów ruchu oporu w XCOM."
+
+[AllowSameRankAbilities SecondWaveOptionObject]
+Tooltip="Umożliwia żołnierzom XCOM zakup wielu zdolności klasowych tej samej rangi za AP."
+Description="Zezwalaj na zdolności tej samej rangi: Umożliwia żołnierzom XCOM zakup wielu zdolności klasowych tej samej rangi za AP po zbudowaniu Centrum Szkoleniowego."
+
+[BabyChosen SecondWaveOptionObject]
+Tooltip="Wyłącza główne reakcje Wybrańców, dzięki czemu walka z nimi będzie znacznie łatwiejsza."
+Description="Dziecinni Wybrańcy: Wybrańcy mają wyłączone główne reakcje"

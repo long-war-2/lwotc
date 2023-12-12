@@ -48,13 +48,13 @@ static function bool CanRankUpPsiSoldier(XComGameState_Unit Unit)
 	}
 
 	
-	`Log("Is the operative yet to rank up?");
-	if (Unit.GetSoldierRank() + 1 < `GET_MAX_RANK && !Unit.bRankedUp)
+	`LWTrace("Is the operative yet to rank up?");
+	if (Unit.GetSoldierRank() < Unit.GetSoldierClassTemplate().GetMaxConfiguredRank() && !Unit.bRankedUp)
 	{
-		`Log("Yes!");
+		`LWTrace("Yes!");
 		NumKills = Unit.GetTotalNumKills();
 
-		`LOG ("Testing Psi Soldier XP; Kills" @ NumKills @ "Needed:" @ class'X2ExperienceConfig'.static.GetRequiredKills(Unit.GetSoldierRank() + 1));
+		`LWTrace ("Testing Psi Soldier XP; Kills" @ NumKills @ "Needed:" @ class'X2ExperienceConfig'.static.GetRequiredKills(Unit.GetSoldierRank() + 1));
 
 		if (	NumKills >= class'X2ExperienceConfig'.static.GetRequiredKills(Unit.GetSoldierRank() + 1)
 				&& Unit.GetStatus() != eStatus_PsiTesting

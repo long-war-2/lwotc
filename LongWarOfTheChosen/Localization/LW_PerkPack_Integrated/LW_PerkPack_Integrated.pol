@@ -37,9 +37,22 @@ TrojanVirusTriggered="<XGParam:StrValue0/!UnitName/> uruchamia wirus typu trojan
 [X2Effect_Savior]
 strSavior_WorldMessage="Zbawca: leczenie dodatkowych <XGParam:IntValue0/> pkt. zdrowia."
 
+[X2Effect_LWHolotarget]
+HoloTargetEffectName="Namierzony holograficznie"
+
 [X2Item_DenseSmokeGrenade]
 DenseSmokeGrenadeEffectDisplayName="Gęsty dym"
 DenseSmokeGrenadeEffectDisplayDesc="Gęsty dym daje tej jednostce premię do obrony."
 
 [X2Ability_PerkPackAbilitySet]
 LocCoveringFire="Ogień osłonowy"
+LocCoveringFireMalus="Ta jednostka została wybrana przez jednostkę nadzorującą ze zdolnością Ognia Osłaniającego, która przyznaje -10 do celowania przez resztę tury."
+LocSoulStealBuff="Kradzież duszy"
+LocSoulStealBuffHelpText="Kradzież duszy zapewnia ablacyjne punkty wytrzymałości, gdy się zagoi"
+
+[X2Effect_RegeneracjaPCT]
+HealedMessage="+<Heal/> Zregenerowano HP"
+
+[X2StatusEffects_LW]
+MaimedFriendlyName="Okaleczony"
+MaimedFriendlyDesc="Mobilność jednostki jest zredukowana do zera i dlatego nie może się ona poruszać. Nadal może strzelać i wykonywać inne zdolności niezwiązane z ruchem."

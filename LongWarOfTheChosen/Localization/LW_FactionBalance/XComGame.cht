@@ -40,6 +40,14 @@ LocHelpText="用精確的射擊擊暈敵人，如果暴擊則造成額外的眩�
 LocPromotionPopupText="<Bullet/> 如果命中(包括擦傷)眩暈敵人<Ability:DisablingShotStunActions/> 行動點。<br/><Bullet/> 如果暴擊額外眩暈敵人 <Ability:DisablingShotCritStunActions/> 行動點, 但是射擊不會造成暴擊傷害。<br/><Bullet/> 阻斷射擊需要 <Ability:SelfAmmoCost/> 彈藥。<br/><Bullet/> 阻斷射擊有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/><Bullet/> 只有化身和靈能殭屍不能被眩暈。"
 ; End Translation (2)
 
+[DisablingShotSnapShot X2AbilityTemplate]
+LocFriendlyName="阻斷射擊"
+LocLongDescription="用精確的射擊擊暈敵人，如果暴擊則造成額外的眩暈持續時間。 射擊不會造成暴擊傷害。"
+LocHelpText="用精確的射擊擊暈敵人，如果暴擊則造成額外的眩暈持續時間。 射擊不會造成暴擊傷害。"
+; LWOTC Needs Translation (2)
+LocPromotionPopupText="<Bullet/> 如果命中(包括擦傷)眩暈敵人<Ability:DisablingShotStunActions/> 行動點。<br/><Bullet/> 如果暴擊額外眩暈敵人 <Ability:DisablingShotCritStunActions/> 行動點, 但是射擊不會造成暴擊傷害。<br/><Bullet/> 阻斷射擊需要 <Ability:SelfAmmoCost/> 彈藥。<br/><Bullet/> 阻斷射擊有 <Ability:SelfCooldown_LW/> 回合冷卻時間。<br/><Bullet/> 只有化身和靈能殭屍不能被眩暈。"
+; End Translation (2)
+
 [Meditation X2AbilityTemplate]
 LocFriendlyName="冥想"
 LocLongDescription="聖殿騎士增加 <Ability:MeditationFocusRecovery/> 專注。"
@@ -145,6 +153,14 @@ LocFlyOverText="刀鋒相接"
 LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。不能在同一回合觸發暗箭傷人。"
 LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。不能在同一回合觸發暗箭傷人。"
 LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。<br/><Bullet/> 一個紅環將標記該能力的範圍。<br/><Bullet/> 刀鋒相接不能與奔襲戰術或者暗箭傷人同時使用。<br/>"
+
+[KnifeEncountersExtendedRange X2AbilityTemplate]
+LocFriendlyName="刀鋒相接"
+LocFlyOverText="刀鋒相接"
+LocLongDescription="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。不能在同一回合觸發暗箭傷人。"
+LocHelpText="每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。不能在同一回合觸發暗箭傷人。"
+LocPromotionPopupText="<Bullet/> 每回合一次，在向<Ability:CLOSE_ENCOUNTERS_RANGE/>格範圍內的敵人投擲飛刀後獲得額外行動。<br/><Bullet/> 一個紅環將標記該能力的範圍。<br/><Bullet/> 刀鋒相接不能與奔襲戰術或者暗箭傷人同時使用。<br/>"
+
 
 [ImpersonalEdge X2AbilityTemplate]
 LocFriendlyName="冷漠邊緣"

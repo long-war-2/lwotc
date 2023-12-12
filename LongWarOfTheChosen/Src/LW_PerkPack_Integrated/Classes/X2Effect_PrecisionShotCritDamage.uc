@@ -14,14 +14,20 @@ function float GetPostDefaultAttackingDamageModifier_CH(
 {
 	local float ExtraDamage;
 	
-	if (AbilityState.GetMyTemplateName() == 'PrecisionShot')
+	if (AbilityState.GetMyTemplateName() == 'PrecisionShot' || AbilityState.GetMyTemplateName() == 'PrecisionShotSnapShot')
 	{
 		//`LOG ("Checking PS");
 		if (AppliedData.AbilityResultContext.HitResult == eHit_Crit)
 		{
+			`LWTrace("Adding Extra Precision Shot Damage");
 			ExtraDamage = Max(1, CurrentDamage * default.PRECISION_SHOT_CRIT_DAMAGE_MODIFIER);
 		}
 	}
 
 	return ExtraDamage;
+}
+
+defaultproperties
+{
+	EffectName="PrecisionShotCritDamage"
 }

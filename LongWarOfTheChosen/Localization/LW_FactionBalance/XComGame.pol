@@ -1,0 +1,175 @@
+[LingeringShadow X2AbilityTemplate]
+LocFriendlyName="Utrzymujący się cień"
+LocLongDescription="Zapewnia +<Ability:LingeringShadowDefenseBonus/> obronę i +<Ability:LingeringShadowDodgeBonus/> unik na jedną turę, gdy Żniwiarz straci Cień."
+LocHelpText="Zapewnia +<Ability:LingeringShadowDefenseBonus/> obronę i +<Ability:LingeringShadowDodgeBonus/> unik na jedną turę, gdy Żniwiarz straci Cień."
+LocPromotionPopupText="<Bullet/> Zapewnia +<Ability:LingeringShadowDefenseBonus/> obronę i +<Ability:LingeringShadowDodgeBonus/> unik, gdy tylko Żniwiarz straci Cień, albo dlatego, że przełamie ukrycie, albo Cień wygaśnie.<br/><Bullet/> Trwa do początku następnej tury XCOM."
+
+[LingeringShadowTrigger X2AbilityTemplate]
+LocFriendlyName="Trwały cień"
+LocLongDescription="Zapewnia +<Ability:LingeringShadowDefenseBonus/> obronę i +<Ability:LingeringShadowDodgeBonus/> unik na jedną turę, gdy Żniwiarz straci Cień."
+LocHelpText="Zapewnia +<Ability:LingeringShadowDefenseBonus/> obronę i +<Ability:LingeringShadowDodgeBonus/> unik na jedną turę, gdy Żniwiarz straci Cień."
+
+[Demolitionist X2AbilityTemplate]
+LocFriendlyName="Rozbiórka"
+LocLongDescription="Żniwiarz zyskuje +<Ability:DemolitionistExtraChargeCount/> ładunek za zdalne uruchomienie i minę samonaprowadzającą."
+LocHelpText="Żniwiarz zyskuje +<Ability:DemolitionistExtraChargeCount/> ładunek za zdalne uruchomienie i minę samonaprowadzającą."
+LocPromotionPopupText="<Bullet/> Dodaje <Ability:DemolitionistExtraChargeCount/> dodatkowy ładunek do zdalnego startu i miny samonaprowadzającej.<br/>"
+
+[CripplingStrike X2AbilityTemplate]
+LocFriendlyName="Okaleczające uderzenie"
+LocLongDescription="Rzuć nożem, który powoduje okaleczenie celu na 1 turę (zero mobilności)."
+LocHelpText="Rzuć nożem, który powoduje okaleczenie celu na 1 turę (zero mobilności)."
+LocPromotionPopupText="<Bullet/> Rzuca nożem do rzucania, nie niszcząc Cienia.<br/><Bullet/> Stan okaleczenia zmniejsza mobilność celu do 0, unieruchamiając go.<br>"
+
+[Distraction_LW X2AbilityTemplate]
+LocFriendlyName="Odwrócenie uwagi"
+LocLongDescription="Claymore dezorientuje nie-robotycznych wrogów, gdy eksploduje."
+LocHelpText="Claymore dezorientuje nie-robotycznych wrogów, gdy eksploduje."
+LocPromotionPopupText="<Bullet/> Dodaje efekt dezorientacji, który dotyczy wszystkich jednostek organicznych złapanych w wyniku eksplozji.<br/>"
+
+[DisablingShot X2AbilityTemplate]
+LocFriendlyName="Wyłączanie strzału"
+LocLongDescription="Ogłusz wrogów precyzyjnym strzałem, z dodatkowym czasem ogłuszenia, jeśli strzał trafi krytycznie. Strzał nie może zadać obrażeń krytycznych."
+LocHelpText="Ogłusz wrogów precyzyjnym strzałem, z dodatkowym czasem ogłuszenia, jeśli strzał trafi krytycznie. Strzał nie może zadać obrażeń krytycznych."
+LocPromotionPopupText="<Bullet/> Ogłusza wrogów w przypadku akcji <Ability:DisablingShotStunActions/>, jeśli strzał trafi (w tym w przypadku dotknięcia).<br/><Bullet/> Ogłusza dodatkowe akcje <Ability:DisablingShotCritStunActions/> w przypadku, gdy strzał trafi krytycznie, ale strzał nie zada obrażeń krytycznych.<br/><Bullet/> Wyłączenie strzału wymaga amunicji <Ability:SelfAmmoCost/> do użycia.<br/><Bullet/> Wyłączenie strzału ma <Ability:SelfCooldown_LW /> skrócić czas odnowienia.<br/><Bullet/> Tylko Awatary i Zombie Psi nie mogą zostać ogłuszone."
+
+[Meditation X2AbilityTemplate]
+LocFriendlyName="Medytacja"
+LocLongDescription="Dodaje do <Ability:MeditationFocusRecovery/> skupienia Templariuszowi."
+LocHelpText="Dodaje do<Ability:MeditationFocusRecovery/> skupienia Templariuszowi."
+LocPromotionPopupText="<Bullet/> Dodaje <Ability:MeditationFocusRecovery/> punkty skupienia dla Templariusza.<br/><Bullet/> Kończy turę.<br/><Bullet/> Umiejętność wymaga <Ability:SelfCooldown_LW/> czasu odnowienia."
+
+[Overcharge_LW X2AbilityTemplate]
+LocFriendlyName="Przeciążenie"
+LocLongDescription="Zyskaj premię do celu i szansę na trafienie krytyczne za każdy punkt skupienia, jaki ma Templariusz."
+LocHelpText="Zyskaj premię do celu i szansę na trafienie krytyczne za każdy punkt skupienia, jaki ma Templariusz."
+LocPromotionPopupText="<Bullet/> Każdy punkt skupienia zapewnia +<Ability:OverchargeAimBonus/> cel i +<Ability:OverchargeCritBonus/> szansę na trafienie krytyczne.<br/><Bullet/> W oparciu o bieżące skupienie, a nie maksymalne skupienie."
+
+[VoltDangerZone X2AbilityTemplate]
+LocFriendlyName="Wysokie napięcie"
+LocLongDescription="Zyskaj <Ability:VoltDangerZoneBonus/>-dodatkowy promień pola dla napięcia."
+LocHelpText="Zyskaj <Ability:VoltDangerZoneBonus/>-dodatkowy promień pola dla napięcia."
+LocPromotionPopupText="<Bullet/> Zapewnia premię <Ability:VoltDangerZoneBonus/> do promienia napięcia."
+
+[TemplarVigilance X2AbilityTemplate]
+LocFriendlyName="Czujność"
+LocLongDescription="Zyskaj 1 punkt skupienia za każdym razem, gdy twoja drużyna aktywuje wrogą drużynę o rozmiarze 3 lub większym."
+LocHelpText="Zyskaj 1 punkt skupienia za każdym razem, gdy twoja drużyna aktywuje wrogą drużynę o rozmiarze 3 lub większym."
+LocPromotionPopupText="<Bullet/> Dodaje 1 punkt skupienia Templariuszowi, gdy wróg ucieka.<br/><Bullet/> Uruchamia się tylko wtedy, gdy w drużynie znajdują się co najmniej 3 jednostki.<br/><Bullet/> Jeśli posiada już maksymalne skupienie, wzmocnienie skupienia jest marnowane."
+
+[TemplarTerror X2AbilityTemplate]
+LocFriendlyName="Terror"
+LocLongDescription="Dodaje szansę na spanikowanie wrogów trafionych napięciem."
+LocHelpText="Dodaje szansę na spanikowanie wrogów trafionych napięciem."
+LocPromotionPopupText="<Bullet/> Napięcie może teraz spowodować panikę wroga.<br/><Bullet/> Szansa na wpadnięcie w panikę wynosi <Ability:TERROR_STAT_CHECK_BASE_VALUE/>% i wpływa na nią zarówno Wola Templariusza, jak i Wola celu.
+
+[Apotheosis X2AbilityTemplate]
+LocFriendlyName="Apoteoza"
+LocFlyoverText="Apoteoza!"
+LocLongDescription="Zostań bogiem, znacznie zwiększając swój unik, obrażenia i mobilność. Wymaga minimum 3 skupień i pochłania wszystko."
+LocHelpText="Zostań bogiem, znacznie zwiększając swój unik, obrażenia i mobilność. Wymaga minimum 3 skupień i pochłania wszystko."
+LocPromotionPopupText="<Bullet/> Darmowa akcja, która czyni Templariusza znacznie potężniejszym na dwie tury.<br/><Bullet/> Zwiększa wszystkie obrażenia o <Ability:ApotheosisDamageMultiplier/>% za każdy punkt skupienia powyżej 2.<br /><Bullet/> Zwiększa unik o <Ability:ApotheosisDodgeBonus/> za każdy punkt skupienia powyżej 2.<br/><Bullet/> Zwiększa mobilność o <Ability:ApotheosisMobilityBonus/> za każdy punkt skupienia powyżej 2.<br /><Pocisk/> Wymaga co najmniej 3 punktów skupienia.<br/><Pocisk/> Pochłania całe skupienie.<br/><Pocisk/> Templariusz może zyskać skupienie będąc pod wpływem Apoteozy."
+
+[ShadowGrenadier X2AbilityTemplate]
+LocFriendlyName="Grenadier Cienia"
+LocHelpText="Rzut lub wystrzelenie granatów nie niszczy już Cienia, a granaty nie mają czasu odnowienia."
+LocLongDescription="Rzut lub wystrzelenie granatów nie niszczy już Cienia, a granaty nie mają czasu odnowienia."
+LocPromotionPopupText="<Bullet/> Umożliwia żołnierzowi rzucanie lub wystrzeliwanie granatów bez niszczenia Cienia.<br/><Bullet/> Dodaje kieszeń na granat.<br/><Bullet/> Usuwa czas odnowienia granatów.<br/>"
+
+[PoisonedBlades X2AbilityTemplate]
+LocFriendlyName="Zatrute ostrza"
+LocHelpText="Rzut nożami powoduje zatrucie celu."
+LocLongDescription="Rzut nożami powoduje zatrucie celu."
+LocPromotionPopupText="<Bullet/> Jest to umiejętność pasywna, która dodaje truciznę do umiejętności rzucania nożem.<br/>"
+
+[ChargeBattery X2AbilityTemplate]
+LocFriendlyName="Ładowanie akumulator"
+LocFlyoverText="Cień: +1 tura"
+LocHelpText="Zużywa ładunek, aby przedłużyć czas działania Cienia o 1 turę."
+LocLongDescription="Zużywa ładunek, aby przedłużyć czas działania Cienia o 1 turę."
+LocPromotionPopupText="<Bullet/> Pozwala graczowi wydłużyć Cień o 1 turę.<br/><Bullet/> Można go użyć tylko w Cieniu.<br/><Bullet/> Ładowanie akumulatora jest akcją bezpłatną, lecz wymamaga <Ability:SelfCooldown_LW/> czasu odnowienia.<br/><Bullet/> Ładowanie akumulatora ma <Ability:CHARGE_BATTERY_CHARGES/> ładunki.<br/>"
+
+[SilentKillerDurationExtension X2AbilityTemplate]
+LocFriendlyName="Odśwież cień cichego zabójcy"
+LocFlyoverText="Cień: +1 tura"
+
+[Parkour_LW X2AbilityTemplate]
+LocFriendlyName="Parkour"
+LocHelpText="Czas odnowienia Chwytaka zostaje skrócony o jedną turę."
+LocLongDescription="Czas odnowienia Chwytaka zostaje skrócony o jedną turę."
+LocPromotionPopupText="<Bullet/> Poprawia mobilność na mapie.<br/>"
+
+[Executioner X2AbilityTemplate]
+LocFriendlyName="Sprzedawca śmierci"
+LocLongDescription="Zapewnia +<Ability:DEATH_DEALER_CRIT/> szansy na trafienie krytyczne. Krytyczne strzały przeciwko oflankowanemu celowi w Cieniu zadają podwójne obrażenia krytyczne."
+LocHelpText="Zapewnia +<Ability:DEATH_DEALER_CRIT/> szansę na trafienie krytyczne. Krytyczne strzały przeciwko oflankowanemu celowi w Cieniu zadają podwójne obrażenia krytyczne."
+LocPromotionPopupText="<Bullet/> Wykorzystaj zwiększoną mobilność Cienia i mniejsze promienie wykrywania wrogów, aby flankować wrogów i zadawać ogromne obrażenia.<br/>"
+
+[RendTheMarked X2AbilityTemplate]
+LocFriendlyName="Naznaczenie"
+LocHelpText="Rzut nożami nakłada kumulującą się szansę na trafienie krytyczne +<Ability:REND_THE_MARKED_CRIT/> przeciwko celowi ze wszystkich źródeł przez pozostałą część tury."
+LocLongDescription="Rzut nożami nakłada kumulującą się szansę na trafienie krytyczne +<Ability:REND_THE_MARKED_CRIT/> przeciwko celowi ze wszystkich źródeł przez pozostałą część tury."
+LocPromotionPopupText="<Bullet/> Rzucanie nożami nakłada kumulującą się szansę +<Ability:REND_THE_MARKED_CRIT/> na trafienie krytyczne przeciwko celowi ze wszystkich źródeł przez pozostałą część tury."
+
+[KnifeEncounters X2AbilityTemplate]
+LocFriendlyName="Spotkania z nożem"
+LocFlyOverText="Spotkania z nożem"
+LocLongDescription="Raz na turę zyskaj dodatkową akcję po rzuceniu nożem we wroga w promieniu <Ability:CLOSE_ENCOUNTERS_RANGE/> pól. Nie można aktywować w tej samej turze, co Tani Strzał."
+LocHelpText="Raz na turę zyskaj dodatkową akcję po rzuceniu nożem we wroga w promieniu <Ability:CLOSE_ENCOUNTERS_RANGE/> pól. Nie można aktywować w tej samej turze, co Tani Strzał."
+LocPromotionPopupText="<Bullet/> Raz na turę zyskujesz dodatkową akcję po rzuceniu nożem we wroga w promieniu <Ability:CLOSE_ENCOUNTERS_RANGE/> pól.<br/><Bullet/> Czerwony pierścień zaznaczy zasięg tej umiejętności. <br/><Bullet/> Spotkań z nożem nie można używać w tej samej turze, co Bieg i Strzał lub Tani Strzał.<br/>"
+
+[KnifeEncountersExtendedRange X2AbilityTemplate]
+LocFriendlyName="Spotkania z nożem"
+LocFlyOverText="Spotkania z nożem"
+LocLongDescription="Raz na turę zyskaj dodatkową akcję po rzuceniu nożem we wroga w promieniu <Ability:CLOSE_ENCOUNTERS_RANGE/> pól. Nie można aktywować w tej samej turze, co Tani Strzał."
+LocHelpText="Raz na turę zyskaj dodatkową akcję po rzuceniu nożem we wroga w promieniu <Ability:CLOSE_ENCOUNTERS_RANGE/> pól. Nie można aktywować w tej samej turze, co Tani Strzał."
+LocPromotionPopupText="<Bullet/> Raz na turę zyskujesz dodatkową akcję po rzuceniu nożem we wroga w promieniu <Ability:CLOSE_ENCOUNTERS_RANGE/> pól.<br/><Bullet/> Czerwony pierścień zaznaczy zasięg tej umiejętności. <br/><Bullet/> Spotkań z nożem nie można używać w tej samej turze, co Bieg i Strzał lub Tani Strzał.<br/>"
+
+[ImpersonalEdge X2AbilityTemplate]
+LocFriendlyName="Bezosobowa krawędź"
+LocFlyOverText="Bezosobowa krawędź"
+LocLongDescription="Kiedy zabijesz nożem do rzucania, skróć czas odnowienia Cienia o 1 i zyskaj kumulujące się +<Ability:IMPERSONAL_EDGE_AIM/> wzmocnienie celowania na 3 tury."
+LocHelpText="Kiedy zabijesz nożem do rzucania, skróć czas odnowienia Cienia o 1 i zyskaj kumulacyjny +<Ability:IMPERSONAL_EDGE_AIM/> wzmocnienie celowania na 3 tury."
+LocPromotionPopupText="Kiedy zabijesz nożem do rzucania, skróć czas odnowienia Cienia o 1 i zyskaj kumulacyjny +<Ability:IMPERSONAL_EDGE_AIM/> wzmocnienie celowania na 3 tury.<br/>"
+
+[ImpersonalEdgePassive X2AbilityTemplate]
+LocFriendlyName="Bezosobowa krawędź"
+LocFlyOverText="Bezosobowa krawędź"
+LocLongDescription="Kiedy zabijesz nożem do rzucania, skróć czas odnowienia Cienia o 1 i zyskaj kumulujące się +<Ability:IMPERSONAL_EDGE_AIM/> wzmocnienie celowania na 3 tury."
+LocHelpText="Kiedy zabijesz nożem do rzucania, skróć czas odnowienia Cienia o 1 i zyskaj kumulacyjny +<Ability:IMPERSONAL_EDGE_AIM/> wzmocnienie celowania na 3 tury."
+LocPromotionPopupText="Kiedy zabijesz nożem do rzucania, skróć czas odnowienia Cienia o 1 i zyskaj kumulacyjny +<Ability:IMPERSONAL_EDGE_AIM/> wzmocnienie celowania na 3 tury.<br/>"
+
+[BlueScreenKnives X2AbilityTemplate]
+LocFriendlyName="Noże z niebieskim ekranem"
+LocHelpText="Noże do rzucania zyskują +<Ability:BLUESCREEN_KNIVES_PIERCE/> przebijają i dezorientują jednostki robotyczne."
+LocLongDescription="Rzut nożami zyskuje +<Ability:BLUESCREEN_KNIVES_PIERCE/> przebija i dezorientuje jednostki robotyczne."
+LocPromotionPopupText="<Bullet/> Noże do rzucania zyskują +<Ability:BLUESCREEN_KNIVES_PIERCE/> przebijają i dezorientują jednostki robotyczne."
+
+[BattlefieldAwareness X2AbilityTemplate]
+LocFriendlyName="Świadomość pola bitwy"
+LocLongDescription="Jeśli zaliczysz zabójstwo podczas swojej tury, następny atak przeciwko tobie podczas tury wroga będzie spudłowany. Po użyciu zdolność wymaga czasu odnowienia <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>."
+LocHelpText="Jeśli zabijesz w swojej turze, następny atak przeciwko tobie w turze wroga nie będzie trafiony. Po użyciu zdolność wymaga czasu odnowienia <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>."
+LocFlyOverText="Świadomość pola bitwy"
+LocPromotionPopupText="<Bullet/> Kiedy Świadomość Pola Bitwy zostanie aktywowana, żołnierz jest odporny na następny atak zadający obrażenia podczas tury wroga, włączając w to ataki obszarowe.<br/>"
+
+
+[BattlefieldAwarenessPassive X2AbilityTemplate]
+LocFriendlyName="Świadomość pola bitwy"
+LocLongDescription="Jeśli zaliczysz zabójstwo podczas swojej tury, następny atak przeciwko tobie podczas tury wroga będzie spudłowany. Po użyciu zdolność wymaga czasu odnowienia <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>."
+LocHelpText="Jeśli zabijesz w swojej turze, następny atak przeciwko tobie w turze wroga nie będzie trafiony. Po użyciu zdolność wymaga czasu odnowienia <Ability:BATTLEFIELD_AWARENESS_COOLDOWN/>."
+LocFlyOverText="Świadomość pola bitwy"
+
+[BattlefieldAwarenessCooldown X2AbilityTemplate]
+LocFriendlyName="Czas odnowienia świadomości pola bitwy"
+LocLongDescription="Świadomość pola bitwy nie zostanie aktywowana, dopóki ten efekt się nie skończy."
+LocHelpText="Świadomość pola bitwy nie zostanie aktywowana, dopóki ten efekt się nie skończy."
+
+[CombatPresence X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Obecność bojowa może zostać użyta, aby wyciągnąć członków drużyny z trudnych sytuacji, w których potrzebują dodatkowego ataku lub ruchu.<br/><Bullet/> Umiejętność wymaga <Ability:SelfCooldown_LW/> czasu odnowienia.< br/>"
+
+[CheapShot X2AbilityTemplate]
+LocFriendlyName="Tani strzał"
+LocFlyOverText="Tani strzał"
+LocLongDescription= "Raz na turę zyskaj akcję ruchu po strzeleniu z broni głównej w jednostkę, która w tej turze została uszkodzona. Nie można aktywować w tej samej turze, co Spotkania z Nożami."
+LocHelpText="Raz na turę zyskaj akcję ruchu po strzeleniu z broni głównej do jednostki, która została uszkodzona w tej turze. Nie można aktywować w tej samej turze, co Spotkania z Nożami."
+LocPromotionPopupText="<Bullet/> Tani Strzał uruchamia się, jeśli cel został wcześniej uszkodzony przez jakikolwiek rodzaj obrażeń od ostatniej tury gracza, tj. Obserwacja i obrażenia w czasie podczas tury wroga.<br/><Bullet/> Działa dla Oświetlenia, Strzału Łańcuchowego i Wygnania oprócz standardowego strzału.<br/><Pocisk/> Akcji ruchu można użyć do wejścia w Cień, jeśli nie ma już czasu odnowienia.<br/>"

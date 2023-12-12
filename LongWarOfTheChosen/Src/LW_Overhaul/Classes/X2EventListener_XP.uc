@@ -223,7 +223,8 @@ static function EventListenerReturn OnAddMissionEncountersToUnits(Object EventDa
 					continue;
 				}
 			}
-
+			
+			// Tedster - for future reference - add thing that modifies max rank of Trial by Fire here.
 			if (UnitState.GetRank() < class'LW_OfficerPack_Integrated.X2Ability_OfficerAbilitySet'.default.TRIAL_BY_FIRE_RANK_CAP)
 			{
 				idx = default.CLASS_MISSION_EXPERIENCE_WEIGHTS.Find('SoldierClass', UnitState.GetSoldierClassTemplateName());

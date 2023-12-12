@@ -18,6 +18,12 @@ struct SitRepChance
 	var int Priority;       // Used for sorting, lower number == earlier in the array
 };
 
+struct DarkEventSitrepMapping
+{
+	var name DarkEventName;
+	var name DarkEventSitrepName;
+};
+
 // LWOTC: Base chance for a mission to have a sit rep
 var config float SIT_REP_CHANCE;
 var config float DARK_EVENT_SIT_REP_CHANCE;
@@ -25,6 +31,8 @@ var config int NUM_SITREPS_TO_ROLL; // allow configuring the number of additiona
 var config int NUM_SPECIAL_SITREPS_TO_ROLL; //allow configuring number of special sitreps to roll.
 var config int NUM_DARK_EVENT_SITREPS_TO_ROLL; // allow configuring the number of DE  sitreps to roll.
 var config bool ROLL_ADITIONAL_SITREPS_WITH_SPECIAL_SITREP; //allow rolling additional sitreps even if a special sitrep is rolled.
+
+var config array<DarkEventSitrepMapping> DARK_EVENT_SITREP_NAMES;
 
 // Special sit reps that are rolled separately from the standard mechanism
 // to ensure that they occur more frequently than they would otherwise do.
@@ -316,11 +324,21 @@ static function name PickActiveDarkEventSitRep(out array<name> ActiveSitRepDarkE
 
 static function name GetSitRepNameForDarkEvent(name DarkEventName)
 {
+	local DarkEventSitrepMapping SitrepMapping;
 	// We remove the "_" from the dark event name and append "SitRep" to get the
 	// name of the corresponding sit rep (if there is one).
 	//
 	// Special case for "Lost World" as the corresponding sit rep doesn't
 	// follow this convention.
+
+	// new handling for array mapping
+	foreach default.DARK_EVENT_SITREP_NAMES (SitrepMapping)
+	{
+		if(SitrepMapping.DarkEventName == DarkEventName)
+			return SitrepMapping.DarkEventSitrepName;
+	}
+
+	// if we didn't find something in the previous array, use old behavior.
 	return DarkEventName == 'DarkEvent_LostWorld' ? 'TheLost' : name(Repl(DarkEventName, "_", "") $ "SitRep");
 }
 

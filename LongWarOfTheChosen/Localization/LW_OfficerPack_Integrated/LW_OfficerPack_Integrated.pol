@@ -22,15 +22,15 @@ strAutoFillTooltip="Automatyczne uzupełnianie drużyny."
 strCommandRangeToggleTooltip="Kliknij, żeby przełączyć zasięg dowodzenia."
 
 [X2StrategyElement_LW_OTS_OfficerStaffSlot]
-;strOTSLocationDisplayString=<XGParam:StrValue0/> Training
+;strOTSLocationDisplayString=<XGParam:StrValue0/> Trening
 
-;[UIArmory_LWOfficerMenu]
-;m_strSelectAbility=SELECT Officer ABILITY:
-;m_strAbilityHeader=Officer ABILITIES:
-;m_strConfirmAbilityTitle=CONFIRM ABILITY SELECTION
-;m_strConfirmAbilityText=You can't remove or change abilities. Are you sure you want to learn <XGParam:StrValue0/>?
-;m_strAbilityLockedTitle=LOCKED
-;m_strAbilityLockedDescription=Get more combat experience to learn new abilities.
+[UIArmory_LWOfficerPromotion]
+m_strSelectAbility="WYBIERZ ZDOLNOŚĆ:"
+m_strAbilityHeader="ZDOLNOŚCI:"
+m_strConfirmAbilityTitle="ZATWIERDŹ WYBÓR ZDOLNOŚCI"
+m_strConfirmAbilityText="Nie możesz usuwać ani zmieniać zdolności. Na pewno chcesz się nauczyć: <XGParam:StrValue0/>?"
+m_strAbilityLockedTitle="ZABLOKOWANE"
+m_strAbilityLockedDescription="Zdobądź więcej doświadczenia w walce, żeby nauczyć się nowych zdolności."
 
 [UIArmory_LWOfficerPromotion]
 m_strSelectAbility="WYBIERZ ZDOLNOŚĆ:"

@@ -48,6 +48,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddBloodTrailBleedingAbility());
 	Templates.AddItem(AddDisablingShot());
 	Templates.AddItem(AddDisablingShotCritRemoval());
+	Templates.AddItem(AddDisablingShotSnapShotCritRemoval());
 	Templates.AddItem(AddDemolitionist());
 	Templates.AddItem(AddSilentKillerCooldownReduction());
 	Templates.AddItem(AddSilentKillerDurationExtension());
@@ -57,6 +58,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddChargeBattery());
 	Templates.AddItem(AddParamedic());
 	Templates.AddItem(AddCheapShotAbility());
+	Templates.AddItem(AddTheBanisherAbility());
 	
 	Templates.AddItem(ParaMedikitHeal());
 	Templates.AddItem(ParaMedikitStabilize());
@@ -486,7 +488,7 @@ static function X2AbilityTemplate AddDisablingShot()
 	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
 	Template.AddShooterEffectExclusions();
 	Template.ActivationSpeech = 'Reaper';
-	Template.AdditionalAbilities.AddItem('DisablingShotCritRemoval');
+	Template.AdditionalAbilities.AddItem('DisablingShotSnapShotCritRemoval');
 
 	VisibilityCondition = new class'X2Condition_Visibility';
 	VisibilityCondition.bRequireGameplayVisible = true;
@@ -502,9 +504,8 @@ static function X2AbilityTemplate AddDisablingShot()
 	StunEffect.BonusStunActionsOnCrit = default.DisablingShotCritStunActions;
 	Template.AddTargetEffect(StunEffect);
 
-	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = 0;
-	ActionPointCost.bAddWeaponTypicalCost = true;
+	ActionPointCost = new class'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
 	ActionPointCost.bConsumeAllPoints = true;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
@@ -619,6 +620,45 @@ static function X2AbilityTemplate AddDisablingShotCritRemoval()
 	DamageReductionEffect.Penalty = true;
 	DamageReductionEffect.DamageMod = default.DisablingShotDamagePenalty;
 	DamageReductionEffect.ActiveAbility = 'DisablingShot';
+	Template.AddShooterEffect(DamageReductionEffect);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddDisablingShotSnapShotCritRemoval()
+{
+	local X2AbilityTemplate Template;
+	local X2Effect_CritRemoval CritRemovalEffect;
+	local X2Effect_AbilityDamageMult DamageReductionEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'DisablingShotSnapShotCritRemoval');
+	Template.IconImage = "img:///UILibrary_PerkIcons.UIPerk_standard";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.Hostility = eHostility_Neutral;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.bShowActivation = false;
+	Template.bSkipFireAction = true;
+	Template.bDontDisplayInAbilitySummary = true;
+	Template.bDisplayInUITooltip = false;
+	Template.bDisplayInUITacticalText = false;
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	CritRemovalEffect = new class'X2Effect_CritRemoval';
+	CritRemovalEffect.AbilityToActOn = 'DisablingShotSnapShot';
+	Template.AddShooterEffect(CritRemovalEffect);
+
+	// Also add damage reduction, similar to Kubikiri on a non-crit, but
+	// applies to all damage types.
+	DamageReductionEffect = new class'X2Effect_AbilityDamageMult';
+	DamageReductionEffect.Mult = true;
+	DamageReductionEffect.Penalty = true;
+	DamageReductionEffect.DamageMod = default.DisablingShotDamagePenalty;
+	DamageReductionEffect.ActiveAbility = 'DisablingShotSnapShot';
 	Template.AddShooterEffect(DamageReductionEffect);
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -983,6 +1023,7 @@ static function X2AbilityTemplate ParaMedikitHeal()
 	UnitPropertyCondition.ExcludeFullHealth = true;
 	UnitPropertyCondition.ExcludeRobotic = true;
 	UnitPropertyCondition.ExcludeTurret = true;
+	UnitPropertyCondition.FailOnNonUnits = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 
 	//Hack: Do this instead of ExcludeDead, to only exclude properly-dead or bleeding-out units.
@@ -1071,6 +1112,7 @@ static function X2AbilityTemplate ParaMedikitStabilize()
 	UnitPropertyCondition.ExcludeHostileToSource = true;
 	UnitPropertyCondition.ExcludeFriendlyToSource = false;
 	UnitPropertyCondition.IsBleedingOut = true;
+	UnitPropertyCondition.FailOnNonUnits = true;
 	Template.AbilityTargetConditions.AddItem(UnitPropertyCondition);
 
 	RemoveEffects = new class'X2Effect_RemoveEffects';
@@ -1190,5 +1232,15 @@ static function ChargeBattery_BuildVisualization(XComGameState VisualizeGameStat
 	Template.AddTargetEffect(CheapShotEffect);
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	return Template;
+}
+
+static function X2AbilityTemplate AddTheBanisherAbility()
+{
+	local X2AbilityTemplate Template;
+
+	Template = PurePassive('TheBanisher_LW', "img:///UILibrary_PerkIcons.UIPerk_reaper", false);
+	//Template.AdditionalAbilities.AddItem('KnifeEncountersExtendedRange');
+
 	return Template;
 }

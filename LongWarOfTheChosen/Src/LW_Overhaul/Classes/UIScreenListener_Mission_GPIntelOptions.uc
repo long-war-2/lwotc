@@ -10,12 +10,19 @@
 
 class UIScreenListener_Mission_GPIntelOptions extends UIScreenListener;
 
-var UIMission_GPIntelOptions GPIntelOptionsScreen;
-var UIButton Button1, Button2, LockedButton;
+var private string PathToGPIntelOptionsScreen;
+//var UIMission_GPIntelOptions GPIntelOptionsScreen;
+//var UIButton Button1, Button2, LockedButton;
 
 event OnInit(UIScreen Screen)
 {
+	local UIMission_GPIntelOptions GPIntelOptionsScreen;
+	local UIButton Button1, Button2, LockedButton;
+
 	GPIntelOptionsScreen = UIMission_GPIntelOptions(Screen);
+
+	PathToGPIntelOptionsScreen = PathName(GPIntelOptionsScreen);
+
 	// KDM : If CanTakeMission is true then LockedButton will be 'none'; if CanTakeMission is false then Button1 
 	// and Button2 will both be 'none'. Buttons which are not 'none' will have the eUIButtonStyle_HOTLINK_BUTTON style
 	// and will resize according to their text.
@@ -83,23 +90,7 @@ event OnInit(UIScreen Screen)
 
 event OnRemoved(UIScreen Screen)
 {
-	if (Button1 != none)
-	{
-		Button1.OnSizeRealized = none;
-	}
-	if (Button2 != none)
-	{
-		Button2.OnSizeRealized = none;
-	}
-	if (LockedButton != none)
-	{
-		LockedButton.OnSizeRealized = none;
-	}
-
-	Button1 = none;
-	Button2 = none;
-	LockedButton = none;
-	GPIntelOptionsScreen = none;
+	PathToGPIntelOptionsScreen = "";
 
 	`HQPRES.ScreenStack.UnsubscribeFromOnInputForScreen(Screen, OnGPIntelOptionsMissionCommand);
 }
@@ -111,6 +102,9 @@ simulated function RefreshNavigation()
 	local UIList List;
 	local UIMechaListItem ListItem;
 	local UIPanel IntelPanel;
+	local UIMission_GPIntelOptions GPIntelOptionsScreen;
+
+	GPIntelOptionsScreen = UIMission_GPIntelOptions(FindObject(PathToGPIntelOptionsScreen, class'UIMission_GPIntelOptions'));
 
 	SelectionSet = false;
 
@@ -137,7 +131,7 @@ simulated function RefreshNavigation()
 		if (!`ISCONTROLLERACTIVE)
 		{
 			// KDM : Add the 'locked mission' button to the Navigator.
-			class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(GPIntelOptionsScreen, LockedButton, SelectionSet);
+			class'UIUtilities_LW'.static.AddBtnToNavigatorAndSelect(GPIntelOptionsScreen, GPIntelOptionsScreen.LockedButton, SelectionSet);
 		}
 
 		// KDM : If the mission is locked then disable all of the intel option buttons.
@@ -154,6 +148,8 @@ simulated function RefreshNavigation()
 
 simulated function OnButtonSizeRealized()
 {
+	local UIMission_GPIntelOptions GPIntelOptionsScreen;
+
 	// KDM : When using a mouse and keyboard, this function acts as an override for 
 	// UIMission_GPIntelOptions.OnButtonSizeRealized; therefore, we can simply exit.
 	if (!`ISCONTROLLERACTIVE)
@@ -161,38 +157,46 @@ simulated function OnButtonSizeRealized()
 		return;
 	}
 
+	GPIntelOptionsScreen = UIMission_GPIntelOptions(FindObject(PathToGPIntelOptionsScreen, class'UIMission_GPIntelOptions'));
+
 	if (GPIntelOptionsScreen != none)
 	{
-		Button1.SetX(-Button1.Width / 2.0);
-		Button1.SetY(10.0);
+		GPIntelOptionsScreen.Button1.SetX(-GPIntelOptionsScreen.Button1.Width / 2.0);
+		GPIntelOptionsScreen.Button1.SetY(10.0);
 
-		Button2.SetX(-Button2.Width / 2.0);
-		Button2.SetY(40.0);
+		GPIntelOptionsScreen.Button2.SetX(-GPIntelOptionsScreen.Button2.Width / 2.0);
+		GPIntelOptionsScreen.Button2.SetY(40.0);
 	}
 }
 
 simulated function OnLockedButtonSizeRealized()
 {
+	local UIMission_GPIntelOptions GPIntelOptionsScreen;
+
 	if (!`ISCONTROLLERACTIVE)
 	{
 		return;
 	}
 
+	GPIntelOptionsScreen = UIMission_GPIntelOptions(FindObject(PathToGPIntelOptionsScreen, class'UIMission_GPIntelOptions'));
+
 	if (GPIntelOptionsScreen != none)
 	{
-		LockedButton.SetX(225 - LockedButton.Width / 2.0);
-		LockedButton.SetY(85.0);
+		GPIntelOptionsScreen.LockedButton.SetX(225 - GPIntelOptionsScreen.LockedButton.Width / 2.0);
+		GPIntelOptionsScreen.LockedButton.SetY(85.0);
 	}
 }
 
 simulated protected function bool OnGPIntelOptionsMissionCommand(UIScreen Screen, int cmd, int arg)
 {
 	local UIButton SelectedButton;
+	local UIMission_GPIntelOptions GPIntelOptionsScreen;
 
 	if (!Screen.CheckInputIsReleaseOrDirectionRepeat(cmd, arg))
 	{
 		return false;
 	}
+	GPIntelOptionsScreen = UIMission_GPIntelOptions(FindObject(PathToGPIntelOptionsScreen, class'UIMission_GPIntelOptions'));
 
 	// KDM : Exit if the screen doesn't exist yet.
 	if (GPIntelOptionsScreen == none)

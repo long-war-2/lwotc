@@ -4,7 +4,10 @@
 //  PURPOSE: New staff slot templates for LW Overhaul
 //---------------------------------------------------------------------------------------
 
-class X2StrategyElement_DefaultStaffSlots_LW extends X2StrategyElement;
+class X2StrategyElement_DefaultStaffSlots_LW extends X2StrategyElement config(LW_Overhaul);
+
+var config bool LIMIT_INTENSE_TRAINING_OPS;
+var config int NUM_INTENSE_TRAINING_OPS;
 
 var localized string m_strLiaisonLocation;
 
@@ -141,7 +144,7 @@ static function bool IsUnitValidForCovertActionIntenseTrainingSlot(XComGameState
 	Unit = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(UnitInfo.UnitRef.ObjectID));
 	Unit.GetUnitValue('CAIntenseTrainingCount', UnitValue);
 
-	if (UnitValue.fValue >= 2)
+	if (UnitValue.fValue >= default.NUM_INTENSE_TRAINING_OPS && default.LIMIT_INTENSE_TRAINING_OPS)
 	{
 		// Unit has already been on the maximum number of allowed Intense
 		// Training covert actions.

@@ -38,7 +38,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 			case 'ChosenSword_T4':
 				return default.BLOODTHIRST_T4_DMG;
 			default:
-				return 0;
+				return default.BLOODTHIRST_T1_DMG;
 		}
 	}
 

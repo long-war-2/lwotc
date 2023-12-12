@@ -121,6 +121,7 @@ strCharacterName="Muton centurion"
 FriendlyName="Karabin centuriona"
 BriefSummary="XCOM zdobył wiele rodzajów standardowej broni osobistej piechoty. To najpopularniejsza wersja, zbliżona do karabinu używanego dwadzieścia lat temu. Nie dorównuje technologii magnetycznej ADVENT-u, ale można ją ulepszyć, korzystając z elementów zdobycznego uzbrojenia, gdy odblokuje się już standardowe podejście techniczne."
 TacticalText="<Bullet/> Oddanie strzału z broni głównej żołnierza zawsze kończy jego turę.\n<Bullet/> Jeżeli żołnierz strzeli, mając dostępne obie akcje, padną trzy strzały o mniejszej celności, ale większej łącznej skuteczności.\n<Bullet/> Używaj ulepszeń zdobytych na wrogach, żeby zwiększyć taktyczną przydatność karabinu szturmowego."
+AbilityDescName="karabin plazmowy"
 
 [MutonM2_LWGrenade X2GrenadeTemplate]
 FriendlyName="Granat obcych"
@@ -142,6 +143,7 @@ strCharacterName="Elitarny muton"
 
 [MutonM3_LW_Wpn X2WeaponTemplate]
 FriendlyName="Elitarne działko plazmowe"
+AbilityDescName="działko plazmowe"
 
 [MutonM3_LWGrenade X2GrenadeTemplate]
 FriendlyName="Granat obcych"
@@ -159,19 +161,22 @@ LaunchedAbilityHelpText="Wystrzel granat obcych we wskazane miejsce. Niszczy pan
 strCharacterName="Kobra"
 
 [NajaM2 X2CharacterTemplate]
-strCharacterName="Kobra serpens"
+strCharacterName="Kobra Serpens"
 
 [NajaM3 X2CharacterTemplate]
-strCharacterName="Elitarna kobra"
+strCharacterName="Elitarna Kobra"
 
 [NajaM1_WPN X2WeaponTemplate]
-FriendlyName="Karabin snajperski kobry"
+FriendlyName="Karabin snajperski Kobry"
+AbilityDescName="karabin snajperski"
 
 [NajaM2_WPN X2WeaponTemplate]
-FriendlyName="Karabin snajperski kobry"
+FriendlyName="Karabin snajperski Kobry"
+AbilityDescName="karabin snajperski"
 
 [NajaM3_WPN X2WeaponTemplate]
-FriendlyName="Karabin snajperski kobry"
+FriendlyName="Karabin snajperski Kobry"
+AbilityDescName="karabin snajperski"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Sidewinder ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -182,16 +187,19 @@ strCharacterName="Grzechotnik"
 strCharacterName="Grzechotnik serpens"
 
 [SidewinderM3 X2CharacterTemplate]
-strCharacterName="Elitarny grzechotnik"
+strCharacterName="Elitarny Grzechotnik"
 
 [SidewinderM1_WPN X2WeaponTemplate]
-FriendlyName="Znikacz grzechotnika"
+FriendlyName="Strzelba Grzechotnika"
+AbilityDescName="strzelba"
 
 [SidewinderM2_WPN X2WeaponTemplate]
-FriendlyName="Znikacz grzechotnika"
+FriendlyName="Strzelba Grzechotnika"
+AbilityDescName="strzelba"
 
 [SidewinderM3_WPN X2WeaponTemplate]
-FriendlyName="Znikacz grzechotnika"
+FriendlyName="Strzelba Grzechotnika"
+AbilityDescName="strzelba"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; Viper ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -199,23 +207,25 @@ FriendlyName="Znikacz grzechotnika"
 strCharacterName="Żmija serpens"
 
 [ViperM3_LW X2CharacterTemplate]
-strCharacterName="Elitarna żmija"
+strCharacterName="Elitarna Żmija"
 
 [ViperM2_LW_WPN X2WeaponTemplate]
 FriendlyName="Karabin wiązkowy"
+AbilityDescName="karabin plazmowy"
 
 [ViperM3_LW_WPN X2WeaponTemplate]
 FriendlyName="Karabin wiązkowy"
+AbilityDescName="karabin plazmowy"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; ArchonM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [ArchonM2_LW X2CharacterTemplate]
-strCharacterName="Wielki archon"
+strCharacterName="Wielki Archon"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; SectoidM2_LW ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [SectoidM2_LW X2CharacterTemplate]
-strCharacterName="Dowódca sektoidów"
+strCharacterName="Dowódzca Sektoidów"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvGunnerM1 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -224,18 +234,21 @@ strCharacterName="Artylerzysta ADVENT-u"
 
 [AdvGunnerM1_WPN X2WeaponTemplate]
 FriendlyName="Automag"
+AbilityDescName="działko"
 
 [AdvGunnerM2 X2CharacterTemplate]
 strCharacterName="Ciężki artylerzysta ADVENT-u"
 
 [AdvGunnerM2_WPN X2WeaponTemplate]
 FriendlyName="Automag"
+AbilityDescName="działko"
 
 [AdvGunnerM3 X2CharacterTemplate]
 strCharacterName="Elitarny artylerzysta ADVENT-u"
 
 [AdvGunnerM3_WPN X2WeaponTemplate]
 FriendlyName="Automag"
+AbilityDescName="działko"
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvSentryM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -245,18 +258,21 @@ strCharacterName="Wartownik ADVENT-u"
 
 [AdvSentryM1_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"
 
 [AdvSentryM2 X2CharacterTemplate]
 strCharacterName="Obrońca ADVENT-u"
 
 [AdvSentryM2_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"
 
 [AdvSentryM3 X2CharacterTemplate]
 strCharacterName="Strażnik ADVENT-u"
 
 [AdvSentryM3_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvGrenadierM1-3 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -337,9 +353,11 @@ strCharacterName="Dron łowczy ADVENT-u"
 
 [LWDroneM1_WPN X2WeaponTemplate]
 FriendlyName="Wstrząs drona"
+AbilityDescName="broń wstrząsowa"
 
 [LWDroneM2_WPN X2WeaponTemplate]
 FriendlyName="Elektrowstrząs drona"
+AbilityDescName="broń wstrząsowa"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM1 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -348,9 +366,11 @@ strCharacterName="MEC łucznik"
 
 [AdvMECArcher_WPN X2WeaponTemplate]
 FriendlyName="Minimag MEC-a"
+AbilityDescName="minigun"
 
 [AdvMECArcher_Shoulder_WPN X2WeaponTemplate]
 FriendlyName="Artyleria rakietowa"
+AbilityDescName="mikrorakiety"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;; AdvMecArcherM2 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -384,45 +404,53 @@ strCharacterName="Sierżant ADVENT-u"
 
 [AdvSergeantM1_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"
 
 [AdvSergeantM2 X2CharacterTemplate]
 strCharacterName="Starszy sierżant ADVENT-u"
 
 [AdvSergeantM2_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"
 
 [AdvShockTroop X2CharacterTemplate]
 strCharacterName="Uderzeniowiec ADVENT-u"
 
 [AdvShockTroop_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"
 
 [AdvCommando X2CharacterTemplate]
 strCharacterName="Komandos ADVENT-u"
 
 [AdvCommando_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"
 
 [AdvVanguard X2CharacterTemplate]
 strCharacterName="Gwardzista ADVENT-u"
 
 [AdvVanguard_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"
 
 [AdvScout X2CharacterTemplate]
 strCharacterName="Zwiadowca ADVENT-u"
 
 [AdvScout_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"
 
 [AdvGeneralM1_LW X2CharacterTemplate]
 strCharacterName="Generał ADVENT-u"
 
 [AdvGeneralM1_LW_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"
 
 [AdvGeneralM2_LW X2CharacterTemplate]
 strCharacterName="Generał ADVENT-u"
 
 [AdvGeneralM2_LW_WPN X2WeaponTemplate]
 FriendlyName="Karabin magnetyczny ADVENT-u"
+AbilityDescName="karabin magnetyczny"

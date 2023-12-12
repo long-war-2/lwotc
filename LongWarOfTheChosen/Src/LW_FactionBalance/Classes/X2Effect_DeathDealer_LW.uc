@@ -24,7 +24,7 @@ function int GetAttackingDamageModifier(XComGameState_Effect EffectState, XComGa
 
 	//  only add bonus damage on a crit, flanking, while in shadow
 	if (AppliedData.AbilityResultContext.HitResult == eHit_Crit && Attacker.IsSuperConcealed() &&
-		TargetUnit != none && class'Helpers_LW'.static.IsUnitFlankedBy(TargetUnit, Attacker))
+		TargetUnit != none && (class'Helpers_LW'.static.IsUnitFlankedBy(TargetUnit, Attacker) || (!TargetUnit.CanTakeCover() && Attacker.HasAbilityFromAnySource('TheBanisher_LW'))))
 	{
 		SourceWeapon = AbilityState.GetSourceWeapon();
 		SourceWeapon.GetBaseWeaponDamageValue(none, DamageValue);

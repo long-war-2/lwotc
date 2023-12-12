@@ -6,17 +6,17 @@
 //---------------------------------------------------------------------------------------
 class X2Item_LWHolotargeter extends X2Item config(GameData_WeaponData);
 
-// ***** UI Image definitions  *****
+//Â *****Â UI Image definitionsÂ Â *****
 var config string Holotargeter_CV_UIImage;
 var config string Holotargeter_MG_UIImage;
 var config string Holotargeter_BM_UIImage;
 
-// ***** Damage arrays for attack actions  *****
+//Â *****Â DamageÂ arraysÂ forÂ attackÂ actionsÂ Â *****
 var config WeaponDamageValue Holotargeter_CONVENTIONAL_BASEDAMAGE;
 var config WeaponDamageValue Holotargeter_MAGNETIC_BASEDAMAGE;
 var config WeaponDamageValue Holotargeter_BEAM_BASEDAMAGE;
 
-// ***** Core properties and variables for weapons *****
+//Â *****Â Core properties and variablesÂ forÂ weaponsÂ *****
 var config int Holotargeter_CONVENTIONAL_AIM;
 var config int Holotargeter_CONVENTIONAL_RADIUS;  // used only for multitargeting ability
 var config int Holotargeter_CONVENTIONAL_CRITCHANCE;
@@ -47,7 +47,7 @@ var config int Holotargeter_BEAM_ISUPPLIES;
 var config int Holotargeter_BEAM_TRADINGPOSTVALUE;
 var config int Holotargeter_BEAM_IPOINTS;
 
-// ***** Schematic properties *****
+//Â *****Â Schematic propertiesÂ *****
 var config int Holotargeter_MAGNETIC_SCHEMATIC_SUPPLYCOST;
 var config int Holotargeter_BEAM_SCHEMATIC_SUPPLYCOST;
 
