@@ -1410,6 +1410,13 @@ static function GetSpawnDistributionList(
 	local XComTacticalMissionManager MissionManager;
 	local name SpawnListID;
 	local int idx;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local X2CharacterTemplateManager TemplateManager;
+	local X2CharacterTemplate CharacterTemplate;
+	
+	TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+
+	XComHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
 
 	MissionManager = `TACTICALMISSIONMGR;
 
@@ -1455,10 +1462,20 @@ static function GetSpawnDistributionList(
 		{
 			foreach CurrentList.SpawnDistribution(CurrentListEntry)
 			{
-				if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
+			
+			if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
 				{
-					`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
-					SpawnList.AddItem(CurrentListEntry);
+					
+					CharacterTemplate = TemplateManager.FindCharacterTemplate(CurrentListEntry.Template);
+
+					if(CharacterTemplate != none)
+					{
+						if(XComHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == true)
+						{
+							`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+							SpawnList.AddItem(CurrentListEntry);
+						}
+					}
 				}
 			}
 		}
@@ -1564,7 +1581,7 @@ static function name SelectNewPodLeader(PodSpawnInfo SpawnInfo, int ForceLevel, 
 		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed)
 			continue;
 
-		if(XCOMHQ.MeetsAllStrategyRequirements(CharacterTemplate.SpawnRequirements) == false)
+		if(XCOMHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == false)
 		{
 			continue;
 		}
@@ -1670,8 +1687,8 @@ static function name SelectRandomPodFollower(PodSpawnInfo SpawnInfo, array<name>
 // improved version that doesn't have nested loops
 static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnInfo, array<name> SupportedFollowers, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
 {
-	local X2CharacterTemplateManager CharacterTemplateMgr;
-	local X2CharacterTemplate CharacterTemplate;
+//	local X2CharacterTemplateManager CharacterTemplateMgr;
+//	local X2CharacterTemplate CharacterTemplate;
 	local SpawnDistributionListEntry SpawnEntry;
 	local array<name> PossibleChars;
 	local array<float> PossibleWeights;
@@ -1686,11 +1703,12 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 	`LWDiversityTrace("Supported Followers Length:" @SupportedFollowers.Length);
 	// setup
 	PossibleChars.Length = 0;
-	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+//	CharacterTemplateMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
 	XCOMHQ = XComGameState_HeadquartersXCom(`XCOMHistory.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom', true));
 
 	bCodexObjective = (XCOMHQ.GetObjectiveStatus('T1_M2_S3_SKULLJACKCaptain') != eObjectiveState_Completed);
 	bAvatarObjective = (XCOMHQ.GetObjectiveStatus ('T1_M5_SKULLJACKCodex') != eObjectiveState_Completed);
+	`LWDiversityTrace("Passed Codex/Avatar Objective");
 
 	foreach SpawnList(SpawnEntry)
 	{
@@ -1700,13 +1718,15 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 			continue;
 		}
 
+		/*
+		This has been moved to the code that compiles the spawn distribution list instead.
 		// short circuit if unit template doesn't exist.
 		CharacterTemplate = CharacterTemplateMgr.FindCharacterTemplate(SpawnEntry.Template);
 		if(CharacterTemplate == none)
 		{
 			continue;
 		}
-
+		*/
 
 		// if entry out of force level range.
 		if (ForceLevel < SpawnEntry.MinForceLevel && ForceLevel > SpawnEntry.MaxForceLevel)
@@ -1720,17 +1740,12 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 			continue;
 		}
 
-		if(XCOMHQ.MeetsAllStrategyRequirements(CharacterTemplate.SpawnRequirements) == false)
-		{
-			continue;
-		}
-
 		// don't let cyberuses in yet
-		if (CharacterTemplate.DataName == 'Cyberus' && bCodexObjective)
+		if (SpawnEntry.Template == 'Cyberus' && bCodexObjective)
 			continue;
 
 		// don't let Avatars in yet
-		if (CharacterTemplate.DataName == 'AdvPsiWitchM3' && bAvatarObjective)
+		if (SpawnEntry.Template == 'AdvPsiWitchM3' && bAvatarObjective)
 			continue;
 
 		
@@ -1747,6 +1762,7 @@ static final function name SelectRandomPodFollower_Improved(PodSpawnInfo SpawnIn
 			PossibleChars.AddItem (SpawnEntry.Template);
 			PossibleWeights.AddItem (TestWeight);
 			TotalWeight += TestWeight;
+			`LWDiversityTrace("Unit" @SpawnEntry.Template @"Added to follower selection list");
 		}
 	}
 
