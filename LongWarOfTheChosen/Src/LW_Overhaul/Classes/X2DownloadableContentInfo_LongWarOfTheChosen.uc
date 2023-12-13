@@ -2176,6 +2176,7 @@ static function AddObjectivesToParcels()
 				if (PlotDef.strType == "CityCenter" && PlotDef.ObjectiveTags[0] == "AssaultAlienBase_LW")
 				{
 					ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+					`LWTrace("Removing Map" @PlotDef.MapName @"from Mission Generation");
 				}
 			}
 		}

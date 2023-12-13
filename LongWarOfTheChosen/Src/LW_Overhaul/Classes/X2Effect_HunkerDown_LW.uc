@@ -15,6 +15,7 @@ function GetToHitAsTargetModifiers(XComGameState_Effect EffectState, XComGameSta
 	{
 		if(X2TacticalGameRuleset(XComGameInfo(class'Engine'.static.GetCurrentWorldInfo().Game).GameRuleset).VisibilityMgr.GetVisibilityInfo(Attacker.ObjectID, Target.ObjectID, VisInfo))
 		{
+			// && !AbilityState.IsMeleeAbility() // If we want to make dash melee not affected, add this to the below if.
 			if (Target.CanTakeCover() && (VisInfo.TargetCover == CT_Midlevel || VisInfo.TargetCover == CT_Standing))
 			{
 				ShotInfo.ModType = eHit_Success;
