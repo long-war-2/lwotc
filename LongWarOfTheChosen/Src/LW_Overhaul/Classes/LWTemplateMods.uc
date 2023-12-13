@@ -1082,6 +1082,7 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 	
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_Panicked'))
 			{
+				X2Effect_Panicked(Template.AbilityTargetEffects[k]).bRemoveWhenSourceDies = false;
 				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MinStatContestResult = 4;
 				X2Effect_Panicked(Template.AbilityTargetEffects[k]).MaxStatContestResult = 24;
 			}
@@ -1092,6 +1093,11 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 					{
 						Template.AbilityTargetEffects.Remove(k, 1);
 					}
+			}
+
+			if (X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).EffectName == class'X2AbilityTemplateManager'.default.DisorientedName)
+			{
+				X2Effect_PersistentStatChange(Template.AbilityTargetEffects[k]).bRemoveWhenSourceDies = false;
 			}
 
 			// Compensate for the stat contest dilution. It's still less than it used to be.
