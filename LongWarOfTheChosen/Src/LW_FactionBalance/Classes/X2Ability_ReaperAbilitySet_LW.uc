@@ -676,7 +676,7 @@ static function X2Effect_DisablingShotStunned CreateDisablingShotStunnedEffect(i
 	local X2Condition_UnitProperty UnitPropCondition;
 
 	StunnedEffect = new class'X2Effect_DisablingShotStunned';
-	StunnedEffect.BuildPersistentEffect(1, true, true, false, eGameRule_UnitGroupTurnBegin);
+	StunnedEffect.BuildPersistentEffect(1, true, false, false, eGameRule_UnitGroupTurnBegin);
 	StunnedEffect.ApplyChance = 100;
 	StunnedEffect.StunLevel = StunLevel;
 	StunnedEffect.bIsImpairing = true;
