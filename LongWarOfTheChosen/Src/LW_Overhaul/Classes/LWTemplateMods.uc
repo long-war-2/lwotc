@@ -1732,6 +1732,19 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		NotHaywiredCondition = new class 'X2Condition_UnitEffects';
 		NotHaywiredCondition.AddExcludeEffect ('Haywired', 'AA_NoTargets'); 
 		Template.AbilityTargetConditions.AddItem(NotHaywiredCondition);
+
+		
+	}
+
+	if (Template.DataName == 'HackRewardShutdownTurret' || Template.DataName == 'HackRewardShutdownRobot')
+	{
+		for (k = Template.AbilityTargetEffects.length - 1; k >= 0; k--)
+		{
+			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_Stunned'))
+			{
+				X2Effect_Stunned(Template.AbilityTargetEffects[k]).bRemoveWhenSourceDies = false;
+			}
+		}
 	}
 
 	if (Template.DataName == 'Evac')
