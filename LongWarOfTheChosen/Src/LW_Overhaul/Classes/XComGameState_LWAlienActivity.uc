@@ -50,6 +50,10 @@ var config array<string> GuaranteeChosenInMissionTypes;
 
 var config array<string> NO_SIT_REP_MISSION_TYPES;
 
+var config array<name> LargeMaps;
+
+var config array<name> VeryLargeMaps;
+
 //#############################################################################################
 //----------------   REQUIRED FROM BASEOBJECT   -----------------------------------------------
 //#############################################################################################
@@ -791,6 +795,14 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		{
 			// Catch Eclipsezr city maps.
 			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
+		}
+		else if (default.LargeMaps.Find(MapName)!= INDEX_NONE)
+		{
+			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
+		}
+		else if (default.VeryLargeMaps.Find(MapName) != INDEX_NONE)
+		{
+			MissionState.GeneratedMission.SitReps.AddItem('VeryLargeMap');
 		}
 	}
 

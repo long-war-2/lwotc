@@ -300,6 +300,8 @@ var config WeaponDamageValue WARLOCKPSIM3_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM4_BASEDAMAGE;
 var config WeaponDamageValue WARLOCKPSIM5_BASEDAMAGE;
 
+var config array<name> AbilitiesToFixStun;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -1736,13 +1738,14 @@ function ModifyAbilitiesGeneral(X2AbilityTemplate Template, int Difficulty)
 		
 	}
 
-	if (Template.DataName == 'HackRewardShutdownTurret' || Template.DataName == 'HackRewardShutdownRobot')
+	if (default.AbilitiesToFixStun.Find(Template.DataName) != INDEX_NONE)
 	{
 		for (k = Template.AbilityTargetEffects.length - 1; k >= 0; k--)
 		{
 			if (Template.AbilityTargetEffects[k].IsA ('X2Effect_Stunned'))
 			{
 				X2Effect_Stunned(Template.AbilityTargetEffects[k]).bRemoveWhenSourceDies = false;
+				`LWTrace("Fixing Stun Effect on" @Template.DataName);
 			}
 		}
 	}
