@@ -24,4 +24,10 @@ Description="Desbloquea habilidades del mismo rango: Concede a los soldados de X
 [BabyChosen SecondWaveOptionObject]
 Tooltip="Desactiva las reacciones principales en los Elegidos consiguiendo rebajar exponencialmente la dificultad al combatir contra ellos."
 Description="Elegidos nerfeados: Los Elegidos tienen sus reacciones principales deshabilitadas."
+
+
+[HybridDifficulty_LW SecondWaveOptionObject]
+Tooltip="Aumenta la dificultad táctica un nivel por encima de la parte estratégica. Para cuando quieres una punto extra de complicadez táctico pero una capa de estrategia más fácil. No sirve si ya estás en Leyenda y, si cambias la dificultad en mitad de campaña, dejará de funcionar. Actualmente no se aplican los cambios a la primera misión (Operación Reventador)."
+Description="[Beta] Dificultad Híbrida: Incrementa la dificultad táctica."
+
 ; End translated

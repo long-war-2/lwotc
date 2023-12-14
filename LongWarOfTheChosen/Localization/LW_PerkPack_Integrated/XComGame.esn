@@ -13,47 +13,55 @@ LocCoveringFireMalus="Esta unidad ha sido apuntada por una unidad en guardia con
 [DepthPerceptionPCS X2EquipmentTemplate]
 FriendlyName="SCP: percepción de la profundidad"
 FriendlyNamePlural="SCP: percepción de la profundidad"
-BriefSummary="Este implante cibernético concede 5 de puntería y reduce la capacidad de esquivar del enemigo en 25 cuando estás en una elevación mayor que tu objetivo."
+BriefSummary="Este implante cibernético concede <Ability:DP_AIM_BONUS> de puntería y reduce la capacidad de esquivar del enemigo en <Ability:DP_ANTIDODGE_BONUS> cuando estás en una elevación mayor que tu objetivo."
 
 [HyperReactivePupilsPCS X2EquipmentTemplate]
 FriendlyName="SCP: Pupilas hiperreactivas"
 FriendlyNamePlural="SCP: Pupilas hiperreactivas"
-BriefSummary="Este implante confiere +10 de puntería para tu siguiente disparo con tu arma principal después de un fallo."
+BriefSummary="Este implante confiere +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> de puntería para tu siguiente disparo con tu arma principal después de un fallo."
+
+; LWOTC Translated
 
 [CombatAwarenessPCS X2EquipmentTemplate]
-FriendlyName="SCP: Percepción de combate"
-FriendlyNamePlural="SCP: Percepción de combate"
-BriefSummary="Concede 15 de defensa y un punto de blindaje cuando estás en guardia o conteniendo a un enemigo."
+FriendlyName="SCP: Postura férrea"
+FriendlyNamePlural="SCP: Postura férrea"
+BriefSummary="Implementas las habilidades Percepción de combate y Contención dedicada y te conviertes en el soldado de apoyo total: Concede <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> de defensa y <Ability:COMBAT_AWARENESS_BONUS_ARMOR> de blindaje cuando estás en guardia o conteniendo a un enemigo, y recibir impactos ya no cancela la contención."
+
+; End Translated
 
 [CombatRushPCS X2EquipmentTemplate]
 FriendlyName="SCP: Adrenalina de combate"
 FriendlyNamePlural="SCP: Adrenalina de combate"
-BriefSummary="Cuando matas a un enemigo, los aliados que estén a 7 casillas o menos reciben de forma temporal bonificaciones a la puntería, a la probabilidad de crítico y a la movilidad. Tiempo de enfriamiento de 5 turnos."
+BriefSummary="Cuando matas a un enemigo, los aliados que estén a <Ability:COMBAT_RUSH_RADIUS> casillas o menos reciben durante <Ability:COMBAT_RUSH_DURATION> turnos +<Ability:COMBAT_RUSH_AIM_BONUS> a la puntería, +<Ability:COMBAT_RUSH_CRIT_BONUS> a la probabilidad de crítico y +<Ability:COMBAT_RUSH_MOBILITY_BONUS> a la movilidad. Tiempo de enfriamiento de <Ability:COMBAT_RUSH_COOLDOWN> turnos."
 
 [DamageControlPCS X2EquipmentTemplate]
 FriendlyName="SCP: Control de daños"
 FriendlyNamePlural="SCP: Control de daños"
-BriefSummary="El implante endurece tu blindaje contra el fuego enemigo y concede 2 de blindaje durante 2 turnos después de recibir daño."
+BriefSummary="El implante endurece tu blindaje contra el fuego enemigo y concede <Ability:DAMAGE_CONTROL_BONUS_ARMOR> de blindaje durante <Ability:DAMAGE_CONTROL_DURATION> turno(s) después de recibir daño."
 
 [AbsorptionFieldsPCS X2EquipmentTemplate]
 FriendlyName="SCP: Campos de impacto"
 FriendlyNamePlural="SCP: Campos de impacto"
-BriefSummary="Este implante de proyector de escudo se puede activar para reducir el daño recibido un 33% durante 2 turnos."
+BriefSummary="Este implante de proyector de escudo se puede activar, como una acción, para reducir el daño recibido un 33% durante <Ability:ABSORPTION_FIELDS_DURATION> turnos. Tiempo de enfriamiento de <Ability:ABSORPTION_FIELDS_COOLDOWN> turnos."
 
 [BodyShieldPCS X2EquipmentTemplate]
 FriendlyName="SCP: Escudo corporal"
 FriendlyNamePlural="SCP: Escudo corporal"
-BriefSummary="El enemigo objetivo sufre -20 de puntería y -50 de probabilidad de crítico contra ti."
+BriefSummary="Acción gratuita. El enemigo objetivo sufre -<Ability:BODY_SHIELD_DEF_BONUS> de puntería y -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> de probabilidad de crítico contra ti durante <Ability:BODY_SHIELD_DURATION> turnos. Tiempo de enfriamiento de <Ability:BODY_SHIELD_COOLDOWN> turnos."
+
+; LWOTC Translated
 
 [EmergencyLifeSupportPCS X2EquipmentTemplate]
 FriendlyName="SCP: Soporte vital de emergencia"
 FriendlyNamePlural="SCP: Soporte vital de emergencia"
-BriefSummary="Este implante aumenta drásticamente el umbral de daño excesivo necesario para evitar el desangrado, lo que hace que sea menos probable que su soldado muera cuando le disparan fatalmente y extiende el tiempo de desangrado en 2 turnos."
+BriefSummary="Este implante aumenta drásticamente el umbral de daño excesivo necesario para evitar el desangrado, lo que hace que sea menos probable que su soldado muera cuando le disparan fatalmente y extiende el tiempo de desangrado en <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turnos."
+
+; End Translated
 
 [IronSkinPCS X2EquipmentTemplate]
 FriendlyName="SCP: Piel de hierro"
 FriendlyNamePlural="SCP: Piel de hierro"
-BriefSummary="El daño cuerpo a cuerpo recibido se reduce en 3."
+BriefSummary="El daño cuerpo a cuerpo recibido se reduce en <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
 
 [SmartMacrophagesPCS X2EquipmentTemplate]
 FriendlyName="SCP: Macrófagos inteligentes"
@@ -168,9 +176,9 @@ LocPromotionPopupText="<Bullet/> Obtienes 25 de capacidad de esquivar contra ata
 [DepthPerception X2AbilityTemplate]
 LocFriendlyName="Percepción de la profundidad"
 LocFlyOverText="Percepción de la profundidad"
-LocLongDescription="Obtienes 5 de puntería y reduce la capacidad de esquivar del enemigo en 25 cuando estás en una elevación mayor que tu objetivo."
-LocHelpText="Obtienes 5 de puntería y reduce la capacidad de esquivar del enemigo en 25 cuando estás en una elevación mayor que tu objetivo."
-LocPromotionPopupText="<Bullet/>Obtienes 5 de puntería y reduce la capacidad de esquivar del enemigo en 25 cuando estás en una elevación mayor que tu objetivo.<br/>"
+LocLongDescription="Obtienes <Ability:DP_AIM_BONUS> de puntería y reduce la capacidad de esquivar del enemigo en <Ability:DP_ANTIDODGE_BONUS> cuando estás en una elevación mayor que tu objetivo."
+LocHelpText="Obtienes <Ability:DP_AIM_BONUS> de puntería y reduce la capacidad de esquivar del enemigo en <Ability:DP_ANTIDODGE_BONUS> cuando estás en una elevación mayor que tu objetivo."
+LocPromotionPopupText="<Bullet/>Obtienes <Ability:DP_AIM_BONUS> de puntería y reduce la capacidad de esquivar del enemigo en <Ability:DP_ANTIDODGE_BONUS> cuando estás en una elevación mayor que tu objetivo.<br/>"
 
 [WilltoSurvive X2AbilityTemplate]
 LocFriendlyName="Voluntad de sobrevivir"
@@ -228,20 +236,24 @@ LocLongDescription="Efectúas un disparo muy certero con un +<Ability:WALK_FIRE_
 LocHelpText="Disparo especial: +<Ability:WALK_FIRE_AIM_BONUS> de puntería, -<Ability:WALK_FIRE_CRIT_MALUS> de probabilidad de crítico, <Ability:WALK_FIRE_DMG>% de daño, usa <Ability:SelfAmmoCost/> de munición."
 LocPromotionPopupText="<Bullet/> Se trata de un disparo especial en que el soldado ajusta su puntería en mitad de una ráfaga de arma automática. Confiere +<Ability:WALK_FIRE_AIM_BONUS> de puntería, -<Ability:WALK_FIRE_CRIT_MALUS> de probabilidad de crítico y causa <Ability:WALK_FIRE_DMG>% de daño.<br/><Bullet/> Consume <Ability:SelfAmmoCost/> de munición.<br/><Bullet/> Se puede usar una vez por turno.<br/><Bullet/> Requiere un arma de disparo de ráfaga; la habilidad no estará disponible cuando se equipe una escopeta o un fusil de francotirador como arma principal."
 
+; LWOTC translated (2)
+
 [PrecisionShot X2AbilityTemplate]
 LocFriendlyName="Disparo de precisión"
 LocFlyOverText="Disparo de precisión"
 LocLongDescription="Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
 LocHelpText="Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
-LocPromotionPopupText="<Bullet/> Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/>"
+LocPromotionPopupText="<Bullet/> La bonificación de daño se aplica multiplicativamente al daño total después del cálculo de daño habitual.<br/>"
+
 
 [PrecisionShotSnapShot X2AbilityTemplate]
-LocFriendlyName="Disparo de precisión"
-LocFlyOverText="Disparo de precisión"
+LocFriendlyName="Disparo de precisión (Disparo instantáneo)"
+LocFlyOverText="Disparo de precisión (Disparo instantáneo)"
 LocLongDescription="Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
 LocHelpText="Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos."
-LocPromotionPopupText="<Bullet/> Efectúas un disparo especial con una bonificación de +<Ability:PRECISION_SHOT_CRIT_BONUS/> a la probabilidad de crítico y del <Ability:PRECISION_SHOT_CRIT_DAMAGE_MODIFIER/>% al daño crítico. Tiempo de enfriamiento de <Ability:SelfCooldown_LW/> turnos.<br/>"
+LocPromotionPopupText="<Bullet/> La bonificación de daño se aplica multiplicativamente al daño total después del cálculo de daño habitual.<br/>"
 
+; End translated (2)
 
 [CyclicFire X2AbilityTemplate]
 LocFriendlyName="Fuego cíclico"
@@ -295,8 +307,8 @@ LocPromotionPopupText="<Bullet/> Alcance de 12 casillas.<br/><Bullet/> Tiempo de
 [HyperReactivePupils X2AbilityTemplate]
 LocFriendlyName="Pupilas hiperreactivas"
 LocFlyOverText="Pupilas hiperreactivas"
-LocLongDescription="Obtienes +10 de puntería para tu siguiente disparo con tu arma principal después de un fallo."
-LocHelpText="Obtienes +10 de puntería para tu siguiente disparo con tu arma principal después de un fallo."
+LocLongDescription="Obtienes +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> de puntería para tu siguiente disparo con tu arma principal después de un fallo."
+LocHelpText="Obtienes +<Ability:HYPERREACTIVE_PUPILS_AIM_BONUS> de puntería para tu siguiente disparo con tu arma principal después de un fallo."
 LocPromotionPopupText="<Bullet/> La bonificación se aplica hasta la siguiente vez que alcances al objetivo o la misión termine.<br/><Bullet/> Los disparos basados en área de efecto no conceden la bonificación.<br/>"
 
 [SteadyWeapon X2AbilityTemplate]
@@ -344,9 +356,9 @@ LocPromotionPopupText="<Bullet/> Tus ataques cuerpo a cuerpo contra enemigos bio
 [KillerInstinct X2AbilityTemplate]
 LocFriendlyName="Instinto asesino"
 LocFlyOverText="Instinto asesino"
-LocLongDescription="Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de daño total después de un golpe crítico durante el resto del turno."
-LocHelpText="Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de daño total después de un golpe crítico durante el resto del turno."
-LocPromotionPopupText="<Bullet/> Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% de daño total después de un golpe crítico durante el resto del turno.<br/>"
+LocLongDescription="Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% más de daño total después de un golpe crítico durante el resto del turno."
+LocHelpText="Activar Correr y disparar concede +<Ability:KILLER_INSTINCT_CRIT_DAMAGE_BONUS_PCT/>% más de daño total después de un golpe crítico durante el resto del turno."
+LocPromotionPopupText="<Bullet/> La bonificación de daño se aplica multiplicativamente al daño total después del cálculo de daño habitual.<br/>"
 
 [ExtraConditioning X2AbilityTemplate]
 LocFriendlyName="Condicionamiento extra"
@@ -427,16 +439,16 @@ LocPromotionPopupText="<Bullet/> Cancela la guardia sobre la unidad objetivo.<br
 [DamageControl X2AbilityTemplate]
 LocFriendlyName="Control de daños"
 LocFlyOverText="Control de daños"
-LocLongDescription="Después de recibir daño, obtienes 2 de blindaje hasta el final del siguiente turno."
-LocHelpText="Después de recibir daño, obtienes 2 de blindaje hasta el final del siguiente turno."
-LocPromotionPopupText="<Bullet/> Tu blindaje se endurece de forma temporal después de un impacto. Después de recibir daño, obtienes 2 de blindaje hasta el final del siguiente turno.<br/><Bullet/> Recibir varios impactos en turnos sucesivos amplía el tiempo.<br/>"
+LocLongDescription="Después de recibir daño, obtienes <Ability:DAMAGE_CONTROL_BONUS_ARMOR> de blindaje hasta el final del siguiente turno."
+LocHelpText="Después de recibir daño, obtienes <Ability:DAMAGE_CONTROL_BONUS_ARMOR> de blindaje hasta el final del siguiente turno."
+LocPromotionPopupText="<Bullet/> Tu blindaje se endurece de forma temporal después de un impacto: obtienes <Ability:DAMAGE_CONTROL_BONUS_ARMOR> de blindaje hasta el final del siguiente turno.<br/><Bullet/> Recibir varios golpes en turnos sucesivos amplía el tiempo.<br/>"
 
 [DamageControlPassive X2AbilityTemplate]
 LocFriendlyName="Control de daños"
 LocFlyOverText="Control de daños"
-LocLongDescription="Después de recibir daño, obtienes 2 de blindaje hasta el final del siguiente turno."
-LocHelpText="Después de recibir daño, obtienes 2 de blindaje hasta el final del siguiente turno."
-LocPromotionPopupText="<Bullet/> Después de recibir daño, obtienes 2 de blindaje hasta el final del siguiente turno.<br/><Bullet/> Recibir varios impactos en turnos sucesivos amplía el tiempo.<br/>"
+LocLongDescription="Después de recibir daño, obtienes <Ability:DAMAGE_CONTROL_BONUS_ARMOR> de blindaje hasta el final del siguiente turno."
+LocHelpText="Después de recibir daño, obtienes <Ability:DAMAGE_CONTROL_BONUS_ARMOR> de blindaje hasta el final del siguiente turno."
+LocPromotionPopupText="<Bullet/> Después de recibir daño, obtienes <Ability:DAMAGE_CONTROL_BONUS_ARMOR> de blindaje hasta el final del siguiente turno.<br/><Bullet/> Recibir varios impactos en turnos sucesivos amplía el tiempo.<br/>"
 
 [Evasive X2AbilityTemplate]
 LocFriendlyName="Evasivo"
@@ -503,9 +515,9 @@ LocPromotionPopupText="<Bullet/> Disparo especial contra enemigos que no tengan 
 [CombatAwareness X2AbilityTemplate]
 LocFriendlyName="Percepción de combate"
 LocFlyOverText="Percepción de combate"
-LocLongDescription="Concede 15 de defensa y un punto de blindaje cuando estás en guardia."
-LocHelpText="Concede 15 de defensa y un punto de blindaje cuando estás en guardia."
-LocPromotionPopupText="<Bullet/> Concede 15 de defensa y un punto de blindaje cuando estás en guardia.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
+LocLongDescription="Concede <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> de defensa y <Ability:COMBAT_AWARENESS_BONUS_ARMOR> de blindaje cuando estás en guardia o conteniendo."
+LocHelpText="Concede <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> de defensa y <Ability:COMBAT_AWARENESS_BONUS_ARMOR> de blindaje cuando estás en guardia o conteniendo."
+LocPromotionPopupText="<Bullet/> Concede <Ability:COMBAT_AWARENESS_BONUS_DEFENSE> de defensa y <Ability:COMBAT_AWARENESS_BONUS_ARMOR> de blindaje cuando estás en guardia o conteniendo.<br/><Bullet/> Esta habilidad no provee ventajas defensivas si la unidad está desorientada, aturdida, en pánico, en llamas or de alguna otra manera desabilitada."
 
 [FieldSurgeon X2AbilityTemplate]
 LocFriendlyName="Cirujano de campaña"
@@ -542,6 +554,14 @@ LocLongDescription="Tus granadas de humo confieren 10 de defensa adicional."
 LocHelpText="Tus granadas de humo confieren 10 de defensa adicional."
 LocPromotionPopupText="<Bullet/> Tus granadas de humo confieren 10 de defensa adicional a aquellos dentro del humo, para un total de 30.<br/>"
 
+[Collateral_LW X2AbilityTemplate]
+LocFriendlyName="Daños colaterales"
+LocLongDescription="Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área. Produce una pequeña cantidad de daño a los enemigos. 3 turnos de cooldown y requiere de 2 de munición."
+LocHelpText="Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área."
+LocFlyOverText="Daños colaterales"
+LocPromotionPopupText="<Bullet/> Dispara una ráfaga de balas <Ability:WeaponName/> a una ubicación, destruyendo la cobertura dentro del área.<br/><Bullet/> Causa un gran daño ambiental a todos los objetos en la zona de impacto.<br/><Bullet/> Daños colaterales afecta a los enemigos dentro del área de lanzamiento: dependiendo del tier equipado <Ability:WeaponName/>, 1-2/2/2-3 de daño.<br/><Bullet/> Cuesta 2 de munición y tiene 3 turnos de tiempo de enfriamiento.<br/>"
+
+
 [DenseSmokeGrenade X2GrenadeTemplate]
 FriendlyName="Granada de humo denso"
 FriendlyNamePlural="Granadas de humo denso"
@@ -569,6 +589,13 @@ LocLongDescription="Tus granadas cegadoras tienen un 50% de probabilidad de atur
 LocHelpText="Tus granadas cegadoras tienen un 50% de probabilidad de aturdir a los enemigos."
 LocPromotionPopupText="<Bullet/> Tus granadas cegadoras tienen un 50% de probabilidad de aturdir a los enemigos.<br/>"
 
+
+[DedicatedSuppression_LW X2AbilityTemplate]
+LocFriendlyName="Contención dedicada"
+LocLongDescription="Recibir daño ya no cancela la Contención y Contención de zona."
+LocHelpText="Recibir daño ya no cancela la Contención y Contención de zona."
+
+
 [X2Item_StingGrenade]
 DenseSmokeGrenadeEffectDisplayName="Granada aguijoneadora"
 DenseSmokeGrenadeEffectDisplayDesc="Las granadas aguijoneadoras tienen un 50% de probabilidad de aturdir a las unidades que haya en su área de efecto."
@@ -593,15 +620,15 @@ LocPromotionPopupText="<Bullet/> Activa esta habilidad antes de lanzar o tirar u
 [CombatRush X2AbilityTemplate]
 LocFriendlyName="Adrenalina de combate"
 LocFlyOverText="Adrenalina de combate"
-LocLongDescription="Cuando matas a un enemigo, los aliados cercanos reciben de forma temporal bonificaciones a la puntería, a la probabilidad de crítico y a la movilidad. Tiempo de enfriamiento de 5 turnos."
-LocHelpText="Cuando matas a un enemigo, los aliados cercanos reciben una bonificación temporal a la puntería, a la probabilidad de crítico y a la movilidad."
-LocPromotionPopupText="<Bullet/> Adrenalina del combate se activa cuando matas a una unidad enemiga, y concede +10 a la puntería, +10 a la probabilidad de crítico y +1 a la movilidad a los aliados que estén a 7 casillas o menos.<br/><Bullet/> El efecto dura hasta el final del siguiente turno después de causar la baja.<br/><Bullet/> Solo se puede activar cada 5 turnos.<br/>"
+LocLongDescription="Cuando matas a un enemigo, los aliados a <Ability:COMBAT_RUSH_RADIUS> casillas reciben +<Ability:COMBAT_RUSH_AIM_BONUS> a la puntería, +<Ability:COMBAT_RUSH_CRIT_BONUS> a la probabilidad de crítico y +<Ability:COMBAT_RUSH_MOBILITY_BONUS> a la movilidad durante +<Ability:COMBAT_RUSH_DURATION> rondas. Tiempo de enfriamiento de <Ability:COMBAT_RUSH_COOLDOWN> turnos."
+LocHelpText="Cuando matas a un enemigo, los aliados a <Ability:COMBAT_RUSH_RADIUS> casillas reciben +<Ability:COMBAT_RUSH_AIM_BONUS> a la puntería, +<Ability:COMBAT_RUSH_CRIT_BONUS> a la probabilidad de crítico y +<Ability:COMBAT_RUSH_MOBILITY_BONUS> a la movilidad durante +<Ability:COMBAT_RUSH_DURATION> rondas."
+LocPromotionPopupText="<Bullet/> Adrenalina del combate se activa cuando matas a una unidad enemiga, y concede +<Ability:COMBAT_RUSH_AIM_BONUS> a la puntería, +<Ability:COMBAT_RUSH_CRIT_BONUS> a la probabilidad de crítico y +<Ability:COMBAT_RUSH_MOBILITY_BONUS> a la movilidad de los aliados que estén a <Ability:COMBAT_RUSH_RADIUS> casillas o menos.<br/><Bullet/> El efecto dura <Ability:COMBAT_RUSH_DURATION> rondas.<br/><Bullet/> Sólo se puede activar cada <Ability:COMBAT_RUSH_COOLDOWN> turnos.<br/>"
 
 [BroadcastCombatRush X2AbilityTemplate]
 LocFriendlyName="Adrenalina de combate"
 LocFlyOverText="Adrenalina de combate"
-LocLongDescription="El aliado cercano te concede +10 de puntería, +10 de probabilidad de crítico y +1 de movilidad durante 2 turnos."
-LocHelpText="El aliado cercano te concede +10 de puntería, +10 de probabilidad de crítico y +1 de movilidad durante 2 turnos."
+LocLongDescription="El aliado cercano te concede +<Ability:COMBAT_RUSH_AIM_BONUS> de puntería, +<Ability:COMBAT_RUSH_CRIT_BONUS> de probabilidad de crítico y +<Ability:COMBAT_RUSH_MOBILITY_BONUS> de movilidad durante <Ability:COMBAT_RUSH_DURATION> turnos."
+LocHelpText="El aliado cercano te concede +<Ability:COMBAT_RUSH_AIM_BONUS> de puntería, +<Ability:COMBAT_RUSH_CRIT_BONUS> de probabilidad de crítico y +<Ability:COMBAT_RUSH_MOBILITY_BONUS> de movilidad durante <Ability:COMBAT_RUSH_DURATION> turnos."
 
 [GrazingFire X2AbilityTemplate]
 LocFriendlyName="Fuego de roce"
@@ -613,9 +640,9 @@ LocPromotionPopupText="<Bullet/> Los disparos fallados con el arma principal del
 [HeavyFrags X2AbilityTemplate]
 LocFriendlyName="Núcleos potenciados"
 LocFlyOverText="Núcleos potenciados"
-LocLongDescription="Las granadas explosivas causan 1 de daño adicional."
-LocHelpText="Las granadas explosivas causan 1 de daño adicional."
-LocPromotionPopupText="<Bullet/> Tus granadas tienen explosivos extra que causan daño adicional, pero se requiere entrenamiento especial para usarlas.<br/><Bullet/> Esto también se aplica a los efectos de la granada, como el fuego de las armas incendiarias.<br/>"
+LocLongDescription="Las granadas explosivas, y cualquier efecto de daño en el tiempo infligido por granadas, causan 1 de daño adicional."
+LocHelpText="Las granadas explosivas, y cualquier efecto de daño en el tiempo infligido por granadas,causan 1 de daño adicional."
+LocPromotionPopupText="<Bullet/> Tus granadas tienen explosivos extra que causan daño adicional, pero se requiere entrenamiento especial para usarlas.<br/><Bullet/> Esto también se aplica a los efectos pasivos de la granada, como el veneno, fuego, ácido...<br/>"
 
 [Airdrop X2AbilityTemplate]
 LocFriendlyName="Entrega por aire"
@@ -691,34 +718,32 @@ LocPromotionPopupText="<Bullet/> Atacas a un objetivo adyacente con la espada.<b
 [AbsorptionFields X2AbilityTemplate]
 LocFriendlyName="Campos de impacto"
 LocFlyOverText="Campos de impacto"
-LocLongDescription="Activa un campo de fuerza que reduce el daño recibido un 33% durante 2 turnos. Tiempo de enfriamiento de 6 turnos."
-LocHelpText="Activa un campo de fuerza que reduce el daño recibido un 33% durante 2 turnos. Tiempo de enfriamiento de 6 turnos."
-LocPromotionPopupText="<Bullet/> Activa un campo de fuerza que reduce el daño recibido un 33% durante 2 turnos.<br/><Bullet/> Tiempo de enfriamiento de 6 turnos (incluido el turno en el que se activó).<br/><Bullet/> Usa una acción y no finaliza automáticamente tu turno.<br/><Bullet/> Las armas de perforación de blindaje no mitigan este efecto.<br/>"
+LocLongDescription="Usa una acción para activar un campo de fuerza que reduce el daño recibido un 33% durante <Ability:ABSORPTION_FIELDS_DURATION> turnos. Tiempo de enfriamiento de <Ability:ABSORPTION_FIELDS_COOLDOWN> turnos."
+LocHelpText="Usa una acción para activar un campo de fuerza que reduce el daño recibido un 33% durante <Ability:ABSORPTION_FIELDS_DURATION> turnos. Tiempo de enfriamiento de <Ability:ABSORPTION_FIELDS_COOLDOWN> turnos."
+LocPromotionPopupText="<Bullet/>Activa un campo de fuerza que reduce el daño recibido un 33% durante <Ability:ABSORPTION_FIELDS_DURATION> turnos.<br/><Bullet/> Tiempo de enfriamiento de <Ability:ABSORPTION_FIELDS_COOLDOWN> turnos (incluido el turno en el que se activó).<br/><Bullet/> Usa una acción y no finaliza automáticamente tu turno.<br/><Bullet/> Las armas de perforación de blindaje no mitigan este efecto.<br/>"
 
 [BodyShield X2AbilityTemplate]
 LocFriendlyName="Escudo corporal"
 LocFlyOverText="Escudo corporal"
-LocLongDescription="Un enemigo objetivo sufre -20 de puntería y -50 de probabilidad de crítico contra el soldado."
-LocHelpText="El enemigo objetivo sufre -20 de puntería y -50 de probabilidad de crítico contra el soldado."
-LocPromotionPopupText="<Bullet/>Un enemigo objetivo sufre -20 de puntería y -50 de probabilidad de crítico contra el soldado.<br/>"
+LocLongDescription="Acción gratuita. El enemigo objetivo sufre -<Ability:BODY_SHIELD_DEF_BONUS> de puntería y -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> de probabilidad de crítico contra ti durante <Ability:BODY_SHIELD_DURATION> turnos. Tiempo de enfriamiento de <Ability:BODY_SHIELD_COOLDOWN> turnos."
+LocHelpText="Acción gratuita. El enemigo objetivo sufre -<Ability:BODY_SHIELD_DEF_BONUS> de puntería y -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> de probabilidad de crítico contra ti durante <Ability:BODY_SHIELD_DURATION> turnos. Tiempo de enfriamiento de <Ability:BODY_SHIELD_COOLDOWN> turnos."
 
 ; LWOTC translated
-LocPromotionPopupText="<Bullet/> Un enemigo objetivo sufre -20 de puntería y -50 de probabilidad de crítico contra el soldado.<br/><Bullet/> Acción sin coste.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown/> turnos."
+LocPromotionPopupText="<Bullet/> Un enemigo objetivo sufre -<Ability:BODY_SHIELD_DEF_BONUS> de puntería y -<Ability:BODY_SHIELD_ENEMY_CRIT_MALUS> de probabilidad de crítico contra el soldado.<br/><Bullet/> Acción sin coste.<br/><Bullet/> Tiempo de enfriamiento de <Ability:SelfCooldown/> turnos."
 ; End translated
 
 [EmergencyLifeSupport X2AbilityTemplate]
 LocFriendlyName="Soporte vital de emergencia"
 LocFlyOverText="Soporte vital de emergencia"
-LocLongDescription="Soporte vital de emergencia garantiza que el primer golpe mortal en una misión no cause la muerte instantánea. También aumenta el tiempo antes de que el soldado se desangre y muera."
-LocHelpText="Garantiza que el primer golpe mortal en una misión no cause la muerte instantánea y aumenta el tiempo de desangrado."
-LocPromotionPopupText="<Bullet/> Soporte vital de emergencia garantiza que el primer golpe mortal en una misión no cause la muerte instantánea.<br/><Bullet/> Añade 2 turnos al tiempo de desangrado.<br/>"
+LocLongDescription="Este implante aumenta drásticamente el umbral de daño excesivo necesario para evitar el desangrado, lo que hace que sea menos probable que su soldado muera cuando le disparan fatalmente y extiende el tiempo de desangrado en <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turnos."
+LocPromotionPopupText="<Bullet/> Soporte vital de emergencia incrementa drásticamente el umbral de daño excesivo para evitar la muerte crítica.<br/><Bullet/> Añade <Ability:EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS> turnos al tiempo de desangrado.<br/>"
 
 [IronSkin X2AbilityTemplate]
 LocFriendlyName="Piel de hierro"
 LocFlyOverText="Piel de hierro"
-LocLongDescription="El daño cuerpo a cuerpo recibido se reduce en 3."
-LocHelpText="El daño cuerpo a cuerpo recibido se reduce en 3."
-LocPromotionPopupText="<Bullet/> El daño cuerpo a cuerpo recibido se reduce en 3.<br/>"
+LocLongDescription="El daño cuerpo a cuerpo recibido se reduce en <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
+LocHelpText="El daño cuerpo a cuerpo recibido se reduce en <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>."
+LocPromotionPopupText="<Bullet/> El daño cuerpo a cuerpo recibido se reduce en <Ability:IRON_SKIN_MELEE_DAMAGE_REDUCTION>.<br/>"
 
 [SmartMacrophages X2AbilityTemplate]
 LocFriendlyName="Macrófagos inteligentes"
@@ -783,7 +808,7 @@ LocPromotionPopupText="<Bullet/> Muerte desde las alturas se combina bien con la
 [XComGame.Implacable X2AbilityTemplate]
 [Implacable X2AbilityTemplate]
 LocFriendlyName="Implacable"
-LocLongDescription="Si logras una o más bajas en tu turno se te concede un movimiento de bonificación."
+LocLongDescription="Una vez por turno, si logras una o más bajas se te concede un movimiento de bonificación."
 LocHelpText="Gana hasta un movimiento por turno después de una baja."
 LocFlyOverText="Implacable"
 ; LWOTC translated
@@ -832,10 +857,10 @@ LocPromotionPopupText="<Bullet/> Manos relámpago se puede combinar bien con hab
 [XComGame.IntrusionProtocol X2AbilityTemplate]
 [IntrusionProtocol X2AbilityTemplate]
 LocFriendlyName="Piratear"
-LocLongDescription="Intenta romper la seguridad de un punto de acceso de red de forma remota con tu GREMLIN."
-LocHelpText="Puedes piratear objetivos de forma remota con tu GREMLIN."
+LocLongDescription="Intenta romper la seguridad de un punto de acceso de red de forma remota con tu <Ability:BOUND_WEAPON_NAME/>."
+LocHelpText="Puedes piratear objetivos de forma remota con tu <Ability:BOUND_WEAPON_NAME/>."
 LocFlyOverText="Piratear"
-LocPromotionPopupText="<Bullet/> Los objetos del mapa (cajas, estaciones de trabajo, etc.) se pueden piratear a distancia con el GREMLIN.<br/>"
+LocPromotionPopupText="<Bullet/> Los objetos del mapa (cajas, estaciones de trabajo, etc.) se pueden piratear a distancia con el <Ability:BOUND_WEAPON_NAME/>.<br/>"
 
 [XComGame.EverVigilant X2AbilityTemplate]
 [EverVigilant X2AbilityTemplate]
@@ -1045,7 +1070,7 @@ LocPromotionPopupText="<Bullet/> Tiempo de reutilización de <Ability:SelfCooldo
 
 [RapidFireSnapShot X2AbilityTemplate]
 LocFriendlyName="Fuego rápido (Disparo instantáneo)"
-LocLongDescription="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería."
+LocLongDescription="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería. Puede usarse una vez por turno."
 LocHelpText="Dispara dos veces seguidas a un enemigo. Cada disparo sufre una penalización de <Ability:RAPIDFIREPENALTY/> en la puntería."
 LocFlyOverText="Fuego rápido"
 LocPromotionPopupText="<Bullet/> Tiempo de reutilización de <Ability:SelfCooldown_LW/> turnos. Fuego rápido es una habilidad devastadora para infligir daño a distancia.<br/>"
@@ -1060,3 +1085,10 @@ LocFlyOverText="Fuego rápido"
 RankNames[8]="Maestro"
 ShortNames[8]="Mstr."
 RankIcons[8]="UILibrary_LW_PerkPack.psirank_Master"
+
+
+
+[XComGame.X2MPData_Shell]
+arrMPMapFriendlyNames[9]="Subterráneo"
+arrMPMapFriendlyNames[10]="Subterráneo"
+
