@@ -49,6 +49,6 @@ defaultproperties
     MajorVersion = 1;
     MinorVersion = 1;
     PatchVersion = 0;
-    Classifier = "RC35.2"
+    Classifier = "RC36"
 
 }
