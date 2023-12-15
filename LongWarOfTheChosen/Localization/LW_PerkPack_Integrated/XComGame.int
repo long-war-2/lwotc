@@ -509,11 +509,11 @@ LocPromotionPopupText="<Bullet/> This ability will typically turn the first hit 
 LocFriendlyName="Snap Shot"
 LocFlyOverText="Snap Shot"
 LocHelpText="Shoot the target."
-LocLongDescription="You may take standard shots with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range."
-LocPromotionPopupText="<Bullet/> The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on those shots.<br/><Bullet/> The soldier may not enter overwatch with the sniper rifle after moving.<br/>
+;LocLongDescription="You may take standard shots with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range."
+;LocPromotionPopupText="<Bullet/> The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on those shots.<br/><Bullet/> The soldier may not enter overwatch with the sniper rifle after moving.<br/>
 
-;LocLongDescription="You may take standard shots and enter standard overwatch with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range on all shots."
-;LocPromotionPopupText="<Bullet/> This ability significantly alters the way the Sharpshooter operates: The soldier may now use the sniper rifle for standard shots and overwatch after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on all shots, regardless of whether the soldier has moved or not.<br/><Bullet/> Only works with Sniper Rifles.<br/><Bullet/> Reduces close range penalties by 1/3 relative to normal sniper rifles.<br/><Bullet/> After 5 tiles of squadsight, suffer an additional -20 aim per tile.<br/><Bullet/> Certain special shots and Long Watch still require both actions to use. Long Watch enables squadsight overwatch fire, but the range penalties still apply.<br/><Bullet/> The solder will not take an overwatch or Kill Zone shot without at least a 1% chance to hit."
+LocLongDescription="You may take standard shots with your sniper rifle after moving, but you suffer severe range penalties beyond 5 tiles of squadsight range on all shots."
+LocPromotionPopupText="<Bullet/> This ability significantly alters the way the Sharpshooter operates: The soldier may now use the sniper rifle for standard shots after moving, but suffers extreme aim penalties at targets beyond 22 tiles range on all shots, regardless of whether the soldier has moved or not.<br/><Bullet/> Only works with Sniper Rifles.<br/><Bullet/> Reduces close range penalties by <Ability:WPN_HANDLING_MODIFIER/> relative to normal sniper rifles.<br/><Bullet/> After 5 tiles of squadsight, suffer an additional -20 aim per tile.<br/><Bullet/> Certain special shots and Long Watch still require both actions to use. Long Watch enables squadsight overwatch fire, but the range penalties still apply.<br/><Bullet/> The solder will not take an overwatch or Kill Zone shot without at least a 1% chance to hit."
 
 [SnapShotOverwatch X2AbilityTemplate]
 LocFriendlyName="Overwatch"
