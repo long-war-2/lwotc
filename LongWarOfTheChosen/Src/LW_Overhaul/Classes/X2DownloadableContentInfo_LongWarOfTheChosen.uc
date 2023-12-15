@@ -1036,6 +1036,8 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	local XComGameState_HeadquartersXCom XCOMHQ;
 	local array<SpawnDistributionListEntry>	LeaderSpawnList;
 	local array<SpawnDistributionListEntry>	FollowerSpawnList;
+	local array<name> GoodUnits;
+	local array<name> BadUnits;
 
 
 	`LWDiversityTrace("Parsing Encounter : " $ EncounterName);
@@ -1114,9 +1116,9 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 
 	// Get the corresponding spawn distribution lists for this mission.
 	`LWDiversityTrace("Getting Leader Spawn Distribution List: ");
-	GetLeaderSpawnDistributionList(EncounterName, MissionState, ForceLevel, LeaderSpawnList);
+	GetLeaderSpawnDistributionList(EncounterName, MissionState, ForceLevel, LeaderSpawnList, GoodUnits, BadUnits);
 	`LWDiversityTrace("Getting Follower Spawn Distribution List: ");
-	GetFollowerSpawnDistributionList(EncounterName, MissionState, ForceLevel, FollowerSpawnList);
+	GetFollowerSpawnDistributionList(EncounterName, MissionState, ForceLevel, FollowerSpawnList, GoodUnits, Badunits);
 
 	//`LWTRACE("PE1");
 	RNFSpawnerState = XComGameState_AIReinforcementSpawner(SourceObject);
@@ -1388,14 +1390,14 @@ static function PostEncounterCreation(out name EncounterName, out PodSpawnInfo S
 	return;
 }
 
-static function GetLeaderSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static function GetLeaderSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList,out array<name> GoodUnits, out array<name> BadUnits )
 {
-	GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, true);
+	GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, true, GoodUnits, BadUnits);
 }
 
-static function GetFollowerSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList)
+static function GetFollowerSpawnDistributionList(name EncounterName, XComGameState_MissionSite MissionState, int ForceLevel, out array<SpawnDistributionListEntry> SpawnList, out array<name> GoodUnits, out array<name> BadUnits)
 {
-	GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, false);
+	GetSpawnDistributionList(EncounterName, MissionState, ForceLevel, SpawnList, false, GoodUnits, BadUnits);
 }
 
 static function GetSpawnDistributionList(
@@ -1403,7 +1405,9 @@ static function GetSpawnDistributionList(
 	XComGameState_MissionSite MissionState,
 	int ForceLevel,
 	out array<SpawnDistributionListEntry> SpawnList,
-	bool IsLeaderList)
+	bool IsLeaderList,
+	out array<name> GoodUnits,
+	out array<name> BadUnits)
 {
 	local SpawnDistributionList CurrentList;
 	local SpawnDistributionListEntry CurrentListEntry;
@@ -1413,6 +1417,7 @@ static function GetSpawnDistributionList(
 	local XComGameState_HeadquartersXCom XComHQ;
 	local X2CharacterTemplateManager TemplateManager;
 	local X2CharacterTemplate CharacterTemplate;
+
 	
 	TemplateManager = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
 
@@ -1466,15 +1471,36 @@ static function GetSpawnDistributionList(
 			if (ForceLevel >= CurrentListEntry.MinForceLevel && ForceLevel <= CurrentListEntry.MaxForceLevel)
 				{
 					
-					CharacterTemplate = TemplateManager.FindCharacterTemplate(CurrentListEntry.Template);
-
-					if(CharacterTemplate != none)
+					if(GoodUnits.Find(CurrentListEntry.Template) == INDEX_NONE)
 					{
-						if(XComHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == true)
+						if(BadUnits.Find(CurrentListEntry.Template) == INDEX_NONE)
 						{
-							`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
-							SpawnList.AddItem(CurrentListEntry);
+							CharacterTemplate = TemplateManager.FindCharacterTemplate(CurrentListEntry.Template);
+
+							if(CharacterTemplate != none)
+							{
+
+								if(XComHQ.MeetsObjectiveRequirements(CharacterTemplate.SpawnRequirements.RequiredObjectives) == true)
+								{
+									`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+									SpawnList.AddItem(CurrentListEntry);
+									GoodUnits.AddItem(CurrentListEntry.Template);
+								}
+								else
+								{
+									BadUnits.AddItem(CurrentListEntry.Template);
+								}
+							}
+							else
+							{
+								BadUnits.AddItem(CurrentListEntry.Template);
+							}
 						}
+					}
+					else
+					{
+						`LWDiversityTrace("Adding " $ CurrentListEntry.Template $ " to the merged spawn distribution list with spawn weight " $ CurrentListEntry.SpawnWeight);
+						SpawnList.AddItem(CurrentListEntry);
 					}
 				}
 			}
