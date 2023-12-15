@@ -129,6 +129,8 @@ var config bool bDisableRespeccingTemplars;
 var config bool bSewersToSubway;
 var config bool bEnableCityHQs;
 
+var config array<string> MapsToDisable;
+
 // End data and data structures
 //-----------------------------
 
@@ -2179,6 +2181,14 @@ static function AddObjectivesToParcels()
 		for (i = 0; i < ParcelMgr.arrPlots.Length; ++i)
 		{
 			PlotDef = ParcelMgr.arrPlots[i];
+
+			if(default.MapsToDisable.Find(PlotDef.MapName) != INDEX_NONE)
+			{
+				`LWTrace("Disabling map" @PlotDef.MapName @"from strategy due to config disable list.");
+				ParcelMgr.arrPlots[i].ExcludeFromStrategy = true;
+				continue;
+			}
+
 			if ((InStr(PlotDef.MapName, "_LgObj_") != INDEX_NONE || InStr(PlotDef.MapName, "_vlgObj_") != INDEX_NONE)
 					&& PlotDef.ObjectiveTags.Find("LargePlot") == INDEX_NONE)
 			{
