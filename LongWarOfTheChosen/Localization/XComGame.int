@@ -7142,6 +7142,10 @@ SummaryText="A brutal crackdown on the Resistance, lowering all rebel income (in
 DisplayName="Renforcement"
 SummaryText="Bring additional Advent forces onto the world."
 
+[ChosenAction_DoNothing X2ChosenActionTemplate]
+DisplayName="Combat Readiness"
+SummaryText="Not doing anything, just preparing."
+
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""

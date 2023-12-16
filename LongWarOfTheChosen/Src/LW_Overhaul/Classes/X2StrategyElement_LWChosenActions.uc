@@ -7,6 +7,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	local array<X2DataTemplate> Actions;
 
 	Actions.AddItem(CreateChosenReinforceTemplate());
+	Actions.AddItem(CreateChosenDoNothingTemplate());
 
 	return Actions;
 }
@@ -53,4 +54,13 @@ static function ActivateChosenReinforce(XComGameState NewGameState, StateObjectR
 static function OnChosenReinforceSelected(XComGameState NewGameState, XComGameState_ChosenAction ActionState)
 {
 	`LWTrace("Chosen RNF action selected by a chosen.");
+}
+
+static function X2DataTemplate CreateChosenDoNothingTemplate()
+{
+	local X2ChosenActionTemplate Template;
+	`CREATE_X2TEMPLATE(class'X2ChosenActionTemplate', Template, 'ChosenAction_DoNothing');
+	Template.Category = "ChosenAction";
+
+	return Template;
 }
