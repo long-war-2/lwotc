@@ -81,9 +81,10 @@ ActivityObjectives[0]="Ambush an ADVENT Construction Unit"
 ActivityObjectives[0]="Assault an Alien Research Lab"
 +MissionDescriptions=(MissionFamily="Sabotage_LW", Description="We have uncovered an important alien research facility. Let's burn it to the ground.", MissionIndex=0)
 
+; LWOTC Needs Translation
 [ScheduledOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="ScheduledOffworldReinforcementsActivity"
-ActivityObjectives[0]="Find Enemy Flight Paths"
+ActivityObjectives[0]="Find Enemy Flight Paths: Force Level UFO"
 ActivityObjectives[1]="Recover UFO artifacts"
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
@@ -92,7 +93,7 @@ ActivityObjectives[1]="Recover UFO artifacts"
 
 [EmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="EmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Find Enemy Flight Paths"
+ActivityObjectives[0]="Find Enemy Flight Paths: Standard UFO"
 ActivityObjectives[1]="Recover UFO artifacts"
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
@@ -100,8 +101,10 @@ ActivityObjectives[1]="Recover UFO artifacts"
 
 [SuperEmergencyOffworldReinforcements X2LWAlienActivityTemplate]
 ActivityName="SuperEmergencyOffworldReinforcementsActivity"
-ActivityObjectives[0]="Find Enemy Flight Paths"
+ActivityObjectives[0]="Find Enemy Flight Paths: Super UFO"
 ActivityObjectives[1]="Recover UFO artifacts"
+
+; End Translation
 
 +MissionDescriptions=(MissionFamily="Recover_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
 +MissionDescriptions=(MissionFamily="Hack_LW", Description="We have discovered a potential lead on ADVENT activities. We should investigate.", MissionIndex=0)
@@ -153,6 +156,11 @@ ActivityName="TroopManeuversActivity"
 ActivityObjectives[0]="Reduce Enemy Strength"
 +MissionDescriptions=(MissionFamily="TroopManeuvers_LW", Description="ADVENT has left one of its combat units vulnerable to a raid by our forces.")
 
+[CovertOpsTroopManeuvers X2LWAlienActivityTemplate]
+ActivityName="CovertOpsTroopManeuversActivity"
+ActivityObjectives[0]="Destroy a Scouting Party"
++MissionDescriptions=(MissionFamily="CovertOpsTroopManeuvers_LW", Description="ADVENT has left one of its scouting units vulnerable to a raid by our forces.")
+
 [HighValuePrisoner X2LWAlienActivityTemplate]
 ActivityName="HighValuePrisonerActivity"
 ActivityObjectives[0]="Free an Important Prisoner"
@@ -167,6 +175,11 @@ ActivityObjectives[0]="Free Captured Rebels"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Seize ADVENT resource cache"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="The Resistance has learned the location of vital enemy resources that we can acquire for our own uses.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="The Resistance has learned the location of vital enemy resources that we can acquire for our own uses.", MissionIndex=0)
+
+[BigSupplyExtraction_LW X2LWAlienActivityTemplate]
+ActivityObjectives[0]="Seize large ADVENT resource cache"
++MissionDescriptions=(MissionFamily="BigSupplyExtraction_LW", Description="The Resistance has learned the location of vital enemy resources that we can acquire for our own uses.", MissionIndex=0)
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"
@@ -712,3 +725,14 @@ ScrollObjectiveDescriptionStr="SCROLL OBJECTIVE DESCRIPTION"
 [X2Effect_ChosenLoot]
 m_strChosenLoot="(<XGParam:IntValue0/>) <XGParam:StrValue0/!ItemName/> Rewarded for Killing the Chosen."
 
+[UISL_Shell_LWoTCVersion]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "Long War Of The Chosen has been Updated!
+strMessage_Body = "Version 1.1.0 is now released, with lots of features and improvements, including:<ul><li>New 5 Tier Chosen system for Better Progression</li><li>New Covert Actions that Reward Infiltration Missions</li><li>New Maps for Network Tower and Crate Race Missions</li><li>Reworked Templar with Iridar's Psi Shield</li><li>QOL Improvements</li><li>Improved Mod Compatibility</li><li>Balance Tweaks for Classes, Heros, and More</li><li>Way more than I can fit here unless you want a giant scrollbar</li></ul>Check out the google doc linked on the Steam change notes, or visit the LWoTC discord!"
+strDismiss_Button = "OK"
+
+[UISL_Shell_BetaPatchNotes]
+strMessage_Title = "Long War Of The Chosen"
+strMessage_Header = "RC35 Changes:"
+strMessage_Body = "<ul><li>Fixed issue where Chosen respawned at full HP after killing the Sarcophagus.</li><li>Redid custom wilderness crate race maps to prevent crates from spawning on the roofs of trucks.</li><li>Fixed issue where Mind Merge provided no crit bonus with beam tier psi amp.</li><li>Fixed issue where some mission elements used AlienHQ Force Level instead of LW's regional Force Level.</li><li>Covert op version of the crate race mission rewards adjusted: Reduced supply rewards a bit, added PCSs, Weapon Upgrades, Elerium Cores, and Datapads to the crates.</li><li>Fixed issue where Hunter omnivision was not removed from all difficulty variants.</li><li>Fixed corpse requirement inconsistency for instant Spectre, Priest, and Purifier Autopsies.</li><li>Added a configuration toggle to enable/disable the City Center HQ maps for testing. Flipping it off doesn't change existing HQ's if they spawned with City Center maps, but future HQs will not use them.</li><li>Another round of Localization updates from Copyrite.</li></ul>"
+strDismiss_Button = "OK"

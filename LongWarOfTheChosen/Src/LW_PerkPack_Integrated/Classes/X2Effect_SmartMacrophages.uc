@@ -9,6 +9,8 @@ class X2Effect_SmartMacrophages extends X2Effect_Persistent config(LW_SoldierSki
 
 `include(LW_PerkPack_Integrated\LW_PerkPack.uci)
 
+// This thing is apparently not used on evac missions, this is also handled by the EffectRemovedFn set on the ability itself.
+
 function UnitEndedTacticalPlay(XComGameState_Effect EffectState, XComGameState_Unit UnitState)
 {
 	local XComGameStateHistory		History;
@@ -18,6 +20,7 @@ function UnitEndedTacticalPlay(XComGameState_Effect EffectState, XComGameState_U
 	SourceUnitState = XComGameState_Unit(History.GetGameStateForObjectID(EffectState.ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 
 	`PPTRACE("Smart Macrophages: TargetUnit=" $ UnitState.GetFullName() $ ", SourceUnit=" $ SourceUnitState.GetFullName());
+	`LWTrace("test Smart Macrophages listener UnitEndedTacticalPlay");
 
 	if(!SmartMacrophagesEffectIsValidForSource(SourceUnitState)) { return; }
 
@@ -31,12 +34,13 @@ function UnitEndedTacticalPlay(XComGameState_Effect EffectState, XComGameState_U
 	`PPTRACE("Smart Macrophages: Target Unit Can Be Healed.");
 
 	`PPTRACE("Smart Macrophages : Pre update LowestHP=" $ UnitState.LowestHP);
-	UnitState.LowestHP += 1;
+	UnitState.LowestHP = min(UnitState.HighestHP,  UnitState.LowestHP+ class'X2Ability_PerkPackAbilitySet'.default.MACROPHAGES_HEAL_AMT);
 	`PPTRACE("Smart Macrophages : Post update LowestHP=" $ UnitState.LowestHP);
-	UnitState.ModifyCurrentStat(eStat_HP, 1);
+	UnitState.ModifyCurrentStat(eStat_HP, class'X2Ability_PerkPackAbilitySet'.default.MACROPHAGES_HEAL_AMT);
 
 	super.UnitEndedTacticalPlay(EffectState, UnitState);
 }
+
 
 function bool CanBeHealed(XComGameState_Unit UnitState)
 {

@@ -630,6 +630,8 @@ static function EventListenerReturn CAOverrideRewardScalar(
 // We need to keep track of how many times units go on the Intense
 // Training covert action and how many covert actions have not
 // been ambushed (that have an ambush risk).
+// Also handles respawning failed golden path covert actions
+// Also handles spawning new mission for new big supply depot
 static function EventListenerReturn CAProcessCompletion(
 	Object EventData,
 	Object EventSource,
@@ -646,8 +648,17 @@ static function EventListenerReturn CAProcessCompletion(
 	local CovertActionStaffSlot StaffSlot;
 	local UnitValue UnitValue;
 
+	local XComGameState_ResistanceFaction FactionState;
+	local X2CovertActionTemplate ActionTemplate;
+
+	//local XComGameState_LWAlienActivity NewActivityState;
+	//local X2LWAlienActivityTemplate ActivityTemplate;
+	//local X2StrategyElementTemplateManager StrategyElementTemplateMgr;
+
 	CAState = XComGameState_CovertAction(EventSource);
 	if (CAState == none) return ELR_NoInterrupt;
+
+	PrevCAState = XComGameState_CovertAction(`XCOMHISTORY.GetPreviousGameStateForObject(CAState));
 
 	// We want to keep track of how many covert actions with an ambush
 	// risk have not been ambushed in a row. This is so we can increase
@@ -657,7 +668,8 @@ static function EventListenerReturn CAProcessCompletion(
 		// We need to get the last covert action state from history because
 		// the `bAmbushed` flag is cleared just before the covert action
 		// completion processing happens.
-		PrevCAState = XComGameState_CovertAction(`XCOMHISTORY.GetPreviousGameStateForObject(CAState));
+		// line moved above if block so that PrevCAState can be used elsewhere.
+		
 		if (PrevCAState.bAmbushed)
 		{
 			// Covert action was ambushed, so reset the counter
@@ -681,6 +693,36 @@ static function EventListenerReturn CAProcessCompletion(
 		RecalculateCovertActionRisks(NewGameState);
 		`GAMERULES.SubmitGameState(NewGameState);
 	}
+
+	// Handle respawning golden path covert action if it failed
+	//Grab the previous covert action template.
+	ActionTemplate = PrevCAState.GetMyTemplate();
+	if(class'Utilities_LW'.static.DidCovertActionFail(PrevCAState) && ActionTemplate.bGoldenPath)
+	{
+		NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Respawn golden path covert action");
+		FactionState = PrevCAState.GetFaction();
+		FactionState = XComGameState_ResistanceFaction(NewGameState.ModifyStateObject(class'XComGameState_ResistanceFaction', FactionState.ObjectID));
+		FactionState.GoldenPathActions.AddItem(FactionState.CreateCovertAction(NewGameState, ActionTemplate, ActionTemplate.RequiredFactionInfluence));
+
+		`GAMERULES.SubmitGameState(NewGameState);
+	}
+
+	// Spawn depot mission if was successful.
+	//`LWTrace("Current CA name:"@CAState.GetMyTemplateName());
+	//if(!class'Utilities_LW'.static.DidCovertActionFail(PrevCAState) && CAState.GetMyTemplateName() == 'CovertAction_BigSupplyDepot')
+	//{
+		// spawn mission here:
+	//	NewGameState = class'XComGameStateContext_ChangeContainer'.static.CreateChangeState("Spawn Big Supply Extraction post covert");
+	//	`LWTrace("Trying to spawn Big Supply Extract Mission");
+	//	StrategyElementTemplateMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+	//	ActivityTemplate = X2LWAlienActivityTemplate(StrategyElementTemplateMgr.FindStrategyElementTemplate('BigSupplyExtraction_LW'));
+
+	//	NewActivityState = ActivityTemplate.CreateInstanceFromTemplate(CAState.Region, NewGameState);
+	//	NewActivityState.bNeedsUpdateDiscovery = true;
+	//	NewGameState.AddStateObject(NewActivityState);
+
+	//	`GAMERULES.SubmitGameState(NewGameState);
+	//}
 
 	// Now handle the Intense Training covert action
 	if (CAState.GetMyTemplateName() != 'CovertAction_IntenseTraining')

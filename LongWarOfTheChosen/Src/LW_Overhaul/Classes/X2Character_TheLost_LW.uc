@@ -9,6 +9,7 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 
+	Templates.AddItem(CreateTemplate_TheLostBrute('TheLostBrute', 'TheLostBruteTier1_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostBrute('TheLostBruteHP10_LW', 'TheLostBruteTier1_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostBrute('TheLostBruteHP11_LW', 'TheLostBruteTier1_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostBrute('TheLostBruteHP12_LW', 'TheLostBruteTier2_Loadout'));
@@ -21,6 +22,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(CreateTemplate_TheLostBrute('TheLostBruteHP23_LW', 'TheLostBruteTier4_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostBrute('TheLostBruteHP25_LW', 'TheLostBruteTier4_Loadout'));
 
+	Templates.AddItem(CreateTemplate_TheLostGrappler('TheLostGrappler', 'TheLostGrapplerTier1_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostGrappler('TheLostGrapplerHP2_LW', 'TheLostGrapplerTier1_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostGrappler('TheLostGrapplerHP3_LW', 'TheLostGrapplerTier1_Loadout'));
 	Templates.AddItem(CreateTemplate_TheLostGrappler('TheLostGrapplerHP4_LW', 'TheLostGrapplerTier2_Loadout'));

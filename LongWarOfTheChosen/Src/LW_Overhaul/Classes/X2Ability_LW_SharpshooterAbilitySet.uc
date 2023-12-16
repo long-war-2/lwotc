@@ -23,10 +23,10 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddRapidTargeting());
 	Templates.AddItem(AddMultiTargeting());
 
-	Templates.AddItem(PurePassive('HDHolo', "img:///UILibrary_LW_Overhaul.LW_AbilityHDHolo", true));
-	Templates.AddItem(PurePassive('IndependentTracking', "img:///UILibrary_LW_Overhaul.LW_AbilityIndependentTracking", true));
-	Templates.AddItem(PurePassive('VitalPointTargeting', "img:///UILibrary_LW_Overhaul.LW_AbilityVitalPointTargeting", true));
-	Templates.AddItem(PurePassive('RapidTargeting_Passive', "img:///UILibrary_LW_Overhaul.LW_AbilityRapidTargeting", true));
+	Templates.AddItem(PurePassive('HDHolo', "img:///UILibrary_LWOTC.LW_AbilityHDHolo", true));
+	Templates.AddItem(PurePassive('IndependentTracking', "img:///UILibrary_LWOTC.LW_AbilityIndependentTracking", true));
+	Templates.AddItem(PurePassive('VitalPointTargeting', "img:///UILibrary_LWOTC.LW_AbilityVitalPointTargeting", true));
+	Templates.AddItem(PurePassive('RapidTargeting_Passive', "img:///UILibrary_LWOTC.LW_AbilityRapidTargeting", true));
 
 	Templates.AddItem(AddAlphaMikeFoxtrot());
 	Templates.AddItem(AddDoubleTap2());
@@ -42,12 +42,13 @@ static function X2AbilityTemplate AddHolotarget()
 	local X2Effect_LWHoloTarget				Effect;
 	local X2Condition_Visibility			TargetVisibilityCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty		IndependentTargetingCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Holotarget');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityHolotargeting";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityHolotargeting";
 	Template.bHideOnClassUnlock = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
 	//Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
@@ -101,6 +102,22 @@ static function X2AbilityTemplate AddHolotarget()
 	Effect.bApplyOnMiss = true;
 	Template.AddTargetEffect(Effect);
 
+	//independent targeting effect
+
+	Effect = new class'X2Effect_LWHoloTarget';
+	Effect.BuildPersistentEffect(1+class'X2Effect_LWHoloTarget'.default.INDEPENDENT_TARGETING_NUM_BONUS_TURNS, false, false, false, eGameRule_PlayerTurnBegin);
+	Effect.SetDisplayInfo(ePerkBuff_Penalty, class'X2Effect_LWHolotarget'.default.HoloTargetEffectName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Effect.bRemoveWhenTargetDies = true;
+	Effect.bUseSourcePlayerState = true;
+	Effect.bApplyOnHit = true;
+	Effect.bApplyOnMiss = true;
+
+	IndependentTargetingCondition = new class'X2Condition_AbilityProperty';
+	IndependentTargetingCondition.OwnerHasSoldierAbilities.AddItem('IndependentTracking');
+	Effect.TargetConditions.AddItem(IndependentTargetingCondition);
+
+	Template.AddTargetEffect(Effect);
+
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
@@ -115,12 +132,13 @@ static function X2AbilityTemplate AddRapidTargeting()
 	local X2AbilityCooldown                 Cooldown;
 	local X2Condition_Visibility			TargetVisibilityCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty		IndependentTargetingCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Rapidtargeting');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityRapidTargeting";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityRapidTargeting";
 	Template.bHideOnClassUnlock = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CORPORAL_PRIORITY;
 	Template.Hostility = eHostility_Neutral;
@@ -176,6 +194,22 @@ static function X2AbilityTemplate AddRapidTargeting()
 	Effect.bApplyOnMiss = true;
 	Template.AddTargetEffect(Effect);
 
+	//independent targeting effect
+
+	Effect = new class'X2Effect_LWHoloTarget';
+	Effect.BuildPersistentEffect(1+class'X2Effect_LWHoloTarget'.default.INDEPENDENT_TARGETING_NUM_BONUS_TURNS, false, false, false, eGameRule_PlayerTurnBegin);
+	Effect.SetDisplayInfo(ePerkBuff_Penalty, class'X2Effect_LWHolotarget'.default.HoloTargetEffectName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Effect.bRemoveWhenTargetDies = true;
+	Effect.bUseSourcePlayerState = true;
+	Effect.bApplyOnHit = true;
+	Effect.bApplyOnMiss = true;
+
+	IndependentTargetingCondition = new class'X2Condition_AbilityProperty';
+	IndependentTargetingCondition.OwnerHasSoldierAbilities.AddItem('IndependentTracking');
+	Effect.TargetConditions.AddItem(IndependentTargetingCondition);
+
+	Template.AddTargetEffect(Effect);
+
 	Template.AdditionalAbilities.AddItem('RapidTargeting_Passive');
 
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -194,12 +228,13 @@ static function X2AbilityTemplate AddMultiTargeting()
 	local X2Condition_Visibility			TargetVisibilityCondition;
 	local X2AbilityCooldown                 Cooldown;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty		IndependentTargetingCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Multitargeting');
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityMultiTargeting";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityMultiTargeting";
 	Template.bHideOnClassUnlock = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
 	//Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
@@ -263,6 +298,23 @@ static function X2AbilityTemplate AddMultiTargeting()
 	Template.AddTargetEffect(Effect);
 	Template.AddMultiTargetEffect(Effect);
 
+	//independent targeting effect
+
+	Effect = new class'X2Effect_LWHoloTarget';
+	Effect.BuildPersistentEffect(1+class'X2Effect_LWHoloTarget'.default.INDEPENDENT_TARGETING_NUM_BONUS_TURNS, false, false, false, eGameRule_PlayerTurnBegin);
+	Effect.SetDisplayInfo(ePerkBuff_Penalty, class'X2Effect_LWHolotarget'.default.HoloTargetEffectName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	Effect.bRemoveWhenTargetDies = true;
+	Effect.bUseSourcePlayerState = true;
+	Effect.bApplyOnHit = true;
+	Effect.bApplyOnMiss = true;
+
+	IndependentTargetingCondition = new class'X2Condition_AbilityProperty';
+	IndependentTargetingCondition.OwnerHasSoldierAbilities.AddItem('IndependentTracking');
+	Effect.TargetConditions.AddItem(IndependentTargetingCondition);
+
+	Template.AddTargetEffect(Effect);
+	Template.AddMultiTargetEffect(Effect);
+
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
@@ -278,7 +330,7 @@ static function X2AbilityTemplate AddAlphaMikeFoxtrot()
 	local X2Effect_PrimaryHitBonusDamage        DamageEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'AlphaMikeFoxtrot');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityAMF";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityAMF";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;

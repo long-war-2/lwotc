@@ -12,9 +12,12 @@ class X2Item_SecondaryThrowingKnives extends X2Item config(GameData_WeaponData);
 
 var config int THROWING_KNIFE_CHARGES;
 var config int THROWING_KNIFE_AIM;
-var config int THROWING_KNIFE_CRITCHANCE;
 var config int THROWING_KNIFE_ISOUNDRANGE;
 var config int THROWING_KNIFE_IENVIRONMENTDAMAGE;
+
+var config int THROWING_KNIFE_CV_CRITCHANCE;
+var config int THROWING_KNIFE_MG_CRITCHANCE;
+var config int THROWING_KNIFE_BM_CRITCHANCE;
 
 var config WeaponDamageValue THROWING_KNIFE_CV_BASEDAMAGE;
 var config WeaponDamageValue THROWING_KNIFE_MG_BASEDAMAGE;
@@ -50,7 +53,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_CV_Secondary()
 
 	InitializeThrowingKnifeTemplate(Template);
 	Template.WeaponTech = 'conventional';
-	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI.UI_Kunai_CV";
+	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI_Kunai_CV";
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "MusashiCombatKnifeMod_LW.Archetypes.WP_Kunai";
 	Template.Tier = 1;
@@ -59,6 +62,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_CV_Secondary()
 	Template.bInfiniteItem = true;
 	Template.CanBeBuilt = false;
 
+	Template.CritChance = default.THROWING_KNIFE_CV_CRITCHANCE;
 	Template.BaseDamage = default.THROWING_KNIFE_CV_BASEDAMAGE;
 
 	// Add chance to inflict bleeding
@@ -80,7 +84,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_MG_Secondary()
 
 	InitializeThrowingKnifeTemplate(Template);
 	Template.WeaponTech = 'magnetic';
-	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI.UI_Kunai_MG";
+	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI_Kunai_MG";
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "MusashiCombatKnifeMod_LW.Archetypes.WP_Kunai_MG";
 	Template.Tier = 3;
@@ -90,6 +94,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_MG_Secondary()
 	Template.CanBeBuilt = true;
 	Template.BaseItem = 'ThrowingKnife_CV_Secondary'; // Which item this will be upgraded from
 
+	Template.CritChance = default.THROWING_KNIFE_MG_CRITCHANCE;
 	Template.BaseDamage = default.THROWING_KNIFE_MG_BASEDAMAGE;
 
 	// Add chance to inflict bleeding
@@ -111,7 +116,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_BM_Secondary()
 
 	InitializeThrowingKnifeTemplate(Template);
 	Template.WeaponTech = 'beam';
-	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI.UI_Kunai_BM";
+	Template.strImage = "img:///MusashiCombatKnifeMod_LW.UI_Kunai_BM";
 	// This all the resources; sounds, animations, models, physics, the works.
 	Template.GameArchetype = "MusashiCombatKnifeMod_LW.Archetypes.WP_Kunai_BM";
 	Template.Tier = 5;
@@ -121,6 +126,7 @@ static function X2DataTemplate CreateTemplate_ThrowingKnife_BM_Secondary()
 	Template.CanBeBuilt = true;
 	Template.BaseItem = 'ThrowingKnife_MG_Secondary'; // Which item this will be upgraded from
 
+	Template.CritChance = default.THROWING_KNIFE_BM_CRITCHANCE;
 	Template.BaseDamage = default.THROWING_KNIFE_BM_BASEDAMAGE;
 
 	// Add chance to inflict bleeding
@@ -147,7 +153,6 @@ static function X2WeaponTemplate InitializeThrowingKnifeTemplate(X2WeaponTemplat
 
 	Template.RangeAccuracy = class'X2Item_SMGWeapon'.default.MIDSHORT_CONVENTIONAL_RANGE;
 	Template.Aim = default.THROWING_KNIFE_AIM;
-	Template.CritChance = default.THROWING_KNIFE_CRITCHANCE;
 	Template.iSoundRange = default.THROWING_KNIFE_ISOUNDRANGE;
 	Template.iEnvironmentDamage = default.THROWING_KNIFE_IENVIRONMENTDAMAGE;
 	Template.BaseDamage.DamageType = 'Melee';

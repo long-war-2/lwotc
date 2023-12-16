@@ -41,7 +41,7 @@ static function X2AbilityTemplate AddCombatives()
 {
 	local X2AbilityTemplate                 Template;
 
-	Template = PurePassive('Combatives', "img:///UILibrary_LW_Overhaul.LW_AbilityCombatives", false, 'eAbilitySource_Perk');
+	Template = PurePassive('Combatives', "img:///UILibrary_LWOTC.LW_AbilityCombatives", false, 'eAbilitySource_Perk');
 	Template.SetUIStatMarkup(class'XLocalizedData'.default.DodgeLabel, eStat_Dodge, default.COMBATIVES_DODGE, true);
 	Template.AdditionalAbilities.AddItem('CombativesAttack');
 	Template.AdditionalAbilities.AddiTEm('CombativesPreparation');
@@ -57,7 +57,7 @@ static function X2AbilityTemplate CombativesStats()
 	local X2Effect_AdditionalAnimSets			AnimSetEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CombativesStats');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_Ability_Combatives";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_Ability_Combatives";
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
@@ -94,7 +94,7 @@ static function X2AbilityTemplate AddCombativesAttack()
 	local X2Effect_RemoveEffects RemoveEffects;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CombativesAttack');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_Ability_Combatives";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_Ability_Combatives";
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.Hostility = eHostility_Offensive;
@@ -220,7 +220,7 @@ static function X2AbilityTemplate AddCombativesCounterattackAbility()
 	local X2AbilityTrigger_EventListener EventListener;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'CombativesCounterattack');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_Ability_Combatives";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_Ability_Combatives";
 
 	Template.bDontDisplayInAbilitySummary = true;
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -259,7 +259,7 @@ static function X2AbilityTemplate AddKnifeFighter()
 
 	Template.AbilitySourceName = 'eAbilitySource_Standard';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityKnifeFighter";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityKnifeFighter";
 	Template.bHideOnClassUnlock = false;
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SQUADDIE_PRIORITY;
 	Template.AbilityConfirmSound = "TacticalUI_SwordConfirm";
@@ -337,7 +337,7 @@ static function X2AbilityTemplate AddFlushAbility()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Flush');
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityFlush";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityFlush";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_AlwaysShow;
 	Template.bCrossClassEligible = true;

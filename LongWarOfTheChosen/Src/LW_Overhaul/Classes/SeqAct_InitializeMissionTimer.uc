@@ -39,7 +39,9 @@ var private int Turns;
 static function int GetInitialTimer(string MissionType, string MissionFamily)
 {
 	local XComGameState_KismetVariableModifier ModifierState;
+	local XComGameState_MissionSite MissionState;
 	local int TurnValue;
+	local name GameplayTag;
 
 	TurnValue = GetBaseTimer(MissionType, MissionFamily);
 
@@ -50,6 +52,23 @@ static function int GetInitialTimer(string MissionType, string MissionFamily)
 		{
 			TurnValue += ModifierState.Delta;
 			break;
+		}
+	}
+
+	// Hack to increase timer for Warlock on Full Retals.
+	if(MissionFamily == "Defend_LW")
+	{
+		MissionState = XComGameState_MissionSite(`XCOMHISTORY.GetGameStateForObjectID(`XCOMHQ.MissionRef.ObjectID));
+
+		foreach MissionState.TacticalGameplayTags (GameplayTag)
+		{
+			if(GamePlayTag =='Chosen_WarlockActive_LWOTC_ChosenTag' ||
+				GamePlayTag =='Chosen_WarlockActiveM2_LWOTC_ChosenTag' ||
+				GamePlayTag =='Chosen_WarlockActiveM3_LWOTC_ChosenTag' ||
+				GamePlayTag =='Chosen_WarlockActiveM4_LWOTC_ChosenTag'
+				)
+
+				TurnValue += 1;
 		}
 	}
 

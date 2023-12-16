@@ -39,6 +39,10 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 			{
 				ShotInfo.Value = Modifier;
 			}
+			else
+			{
+				ShotInfo.Value = AccBonus;
+			}
 			ShotInfo.ModType = eHit_Success;
             ShotInfo.Reason = FriendlyName;
             ShotModifiers.AddItem(ShotInfo);

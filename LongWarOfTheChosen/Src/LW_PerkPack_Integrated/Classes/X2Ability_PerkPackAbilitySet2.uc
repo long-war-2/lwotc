@@ -15,6 +15,12 @@ var config int REQUIRED_TO_HIT_FOR_OVERWATCH;
 var config float BONUS_SLICE_DAMAGE_PER_TILE;
 var config int MAX_SLICE_FLECHE_DAMAGE;
 var config array<name> REQUIRED_OVERWATCH_TO_HIT_EXCLUDED_ABILITIES;
+var config array<name> SNAP_SHOT_ABILITIES;
+
+var config int COLLATERAL_COOLDOWN;
+var config int COLLATERAL_AMMO;
+var config int COLLATERAL_RADIUS;
+var config int COLLATERAL_ENVDMG;
 
 const DAMAGED_COUNT_NAME = 'DamagedCountThisTurn';
 
@@ -42,6 +48,8 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddStingGrenades());
 	Templates.AddItem(AddFieldSurgeon());
 	Templates.AddItem(AddDamageInstanceTracker());
+	Templates.AddItem(CreateDedicatedSuppressionAbility());
+	Templates.AddItem(CreateCollateralAbility());
 	
 	return Templates;
 }
@@ -146,6 +154,7 @@ static function X2AbilityTemplate AddSnapShot()
 	//Template.OverrideAbilities.AddItem('SniperStandardFire');
 
 	Template.AdditionalAbilities.AddItem('SnapShotAimModifier');
+	Template.AdditionalAbilities.AddItem('WeaponHandling_LW');
 	//Template.AdditionalAbilities.AddItem('SnapShotOverwatch');
 
 	return Template;	
@@ -814,6 +823,25 @@ static function X2AbilityTemplate AddBastionPassive()
 	return PurePassive('BastionPassive', "img:///UILibrary_LW_PerkPack.LW_AbilityBastion", , 'eAbilitySource_Psionic');
 }
 
+final static function EventListenerReturn SolaceBastionCleanseListener(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackData)
+{
+	local XComGameState_Unit TargetUnit;
+	local XComGameState_Ability SourceAbility;
+
+	SourceAbility = XComGameState_Ability(CallbackData);
+	if (SourceAbility == None)
+	{
+		return ELR_NoInterrupt;
+	}
+
+	foreach `XCOMHISTORY.IterateByClassType(class'XComGameState_Unit', TargetUnit, , , GameState.HistoryIndex)
+	{
+		SourceAbility.AbilityTriggerAgainstSingleTarget(TargetUnit.GetReference(), false);
+	}
+
+	return ELR_NoInterrupt;
+}
+
 static function X2AbilityTemplate AddBastionCleanse()
 {
 	local X2AbilityTemplate                     Template;
@@ -837,7 +865,7 @@ static function X2AbilityTemplate AddBastionCleanse()
 	EventListener.ListenerData.Deferral = ELD_OnStateSubmitted;
 	EventListener.ListenerData.EventID = 'UnitMoveFinished';
 	EventListener.ListenerData.Filter = eFilter_None;
-	EventListener.ListenerData.EventFn = class'XComGameState_Ability'.static.SolaceCleanseListener;  // keep this, since it's generically just calling the associate ability
+	EventListener.ListenerData.EventFn = SolaceBastionCleanseListener;  // keep this, since it's generically just calling the associate ability
 	Template.AbilityTriggers.AddItem(EventListener);
 
 	//removes any ongoing effects
@@ -1047,6 +1075,85 @@ static function X2AbilityTemplate AddDamageInstanceTracker()
 
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	// No visualization for this ability
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateDedicatedSuppressionAbility()
+{
+	local X2AbilityTemplate		Template;
+
+	Template = PurePassive('DedicatedSuppression_LW', "img:///UILibrary_XPerkIconPack.UIPerk_suppression_defense2", , 'eAbilitySource_Perk');
+
+	return Template;
+}
+
+static function X2AbilityTemplate CreateCollateralAbility()
+{
+	local X2AbilityTemplate						Template;
+	local X2AbilityCost_Ammo					AmmoCost;
+	local X2AbilityCooldown						Cooldown;
+	local X2AbilityTarget_Cursor				CursorTarget;
+	local X2AbilityMultiTarget_Radius			RadiusMultiTarget;
+	local X2Effect_CollateralDamage				DamageEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Collateral_LW');
+
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_SERGEANT_PRIORITY;
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.IconImage = "img:///UILibrary_MW.UIPerk_collateral";
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+	Template.bLimitTargetIcons = true;
+
+	Template.AbilityCosts.AddItem(default.WeaponActionTurnEnding);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.COLLATERAL_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = default.COLLATERAL_AMMO;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	CursorTarget = new class'X2AbilityTarget_Cursor';
+	CursorTarget.bRestrictToWeaponRange = true;
+	Template.AbilityTargetStyle = CursorTarget;
+
+	// Slightly modified from Rocket Launcher template to let it get over blocking cover better
+	Template.TargetingMethod = class'X2TargetingMethod_Collateral';
+		
+	// Give it a radius multi-target
+	RadiusMultiTarget = new class'X2AbilityMultiTarget_Radius';
+	RadiusMultiTarget.fTargetRadius = `UNITSTOMETERS(default.COLLATERAL_RADIUS);
+	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
+
+	DamageEffect = new class'X2Effect_CollateralDamage';
+	DamageEffect.BONUS_MULT = 0.25;
+	DamageEffect.MIN_BONUS = 1;
+	DamageEffect.EnvironmentalDamageAmount = default.COLLATERAL_ENVDMG;
+	DamageEffect.AllowArmor = true;
+	DamageEffect.AddBonus = true;
+	Template.AddMultiTargetEffect(DamageEffect);
+	
+	Template.bOverrideVisualResult = true;
+	Template.OverrideVisualResult = eHit_Miss;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+	Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+//BEGIN AUTOGENERATED CODE: Template Overrides 'Demolition'
+	Template.bFrameEvenWhenUnitIsHidden = true;
+//END AUTOGENERATED CODE: Template Overrides 'Demolition'
 
 	return Template;
 }

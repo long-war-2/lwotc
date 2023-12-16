@@ -1,5 +1,5 @@
 /*.code-workspace
 BuildCache/
 PublishedFileID.Id
-*.upk
-*.umap
+/LongWarOfTheChosen/Content/
+/LongWarOfTheChosen/ContentForCook/

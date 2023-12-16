@@ -167,6 +167,8 @@ ActivityObjectives[0]="Libera i Ribelli Catturati"
 [Logistics X2LWAlienActivityTemplate]
 ActivityObjectives[0]="Appropriati dei Contenitori di Risorse ADVENT"
 +MissionDescriptions=(MissionFamily="SmashnGrab_LW", Description="La resistenza è venuta a conoscenza della posizione di alcune risorse essenziali al nemico, che potremmo acquisire e utilizzare a nostro vantaggio.", MissionIndex=0)
++MissionDescriptions=(MissionFamily="SupplyExtraction_LW", Description="La resistenza è venuta a conoscenza della posizione di alcune risorse essenziali al nemico, che potremmo acquisire e utilizzare a nostro vantaggio.", MissionIndex=0)
+
 
 [IntelRaid X2LWAlienActivityTemplate]
 ActivityName="IntelRaidActivity"

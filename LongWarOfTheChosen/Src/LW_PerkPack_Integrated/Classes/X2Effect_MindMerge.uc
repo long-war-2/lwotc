@@ -1,19 +1,24 @@
 class X2Effect_MindMerge extends X2Effect_ModifyStats;
 
-var float BaseWillincrease;
-var float BaseShieldHPIncrease;
-var float MindMergeWillDivisor;
+var int BaseShieldHPIncrease;
+var int BaseWillIncrease;
+var int BaseCritIncrease;
+
+var int AmpMGShieldHPBonus;
+var int AmpMGWillBonus;
+var int AmpMGCritBonus;
+
+var int AmpBMShieldHPBonus;
+var int AmpBMWillBonus;
+var int AmpBMCritBonus;
+
 var float MindMergeShieldHPDivisor;
-var float SoulMergeWillDivisor;
-var float SoulMergeShieldHPDivisor;
-var float AmpMGWillBonus;
-var float AmpMGShieldHPBonus;
-var float AmpBMWillBonus;
-var float AmpBMShieldHPBonus;
+var float MindMergeWillDivisor;
 var float MindMergeCritDivisor;
+
+var float SoulMergeShieldHPDivisor;
+var float SoulMergeWillDivisor;
 var float SoulMergeCritDivisor;
-var float AmpMGCritBonus;
-var float AMpBMCritBonus;
 
 protected simulated function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
 {
@@ -31,71 +36,77 @@ protected simulated function OnEffectAdded(const out EffectAppliedData ApplyEffe
 
 	Caster = XComGameState_Unit (NewGameState.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
 	Target = XComGameState_unit (kNewTargetState);
-    if(Caster == none)
-    {
-        Caster = XComGameState_Unit(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
-    }
+	if(Caster == none)
+	{
+		Caster = XComGameState_Unit(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	}
 	SourceItem = XComGameState_Item(NewGameState.GetGameStateForObjectID(ApplyEffectParameters.ItemStateObjectRef.ObjectID));
 	if(SourceItem == none)
-    {
-        SourceItem = XComGameState_Item(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(ApplyEffectParameters.ItemStateObjectRef.ObjectID));
-    }
-	
+	{
+		SourceItem = XComGameState_Item(class'XComGameStateHistory'.static.GetGameStateHistory().GetGameStateForObjectID(ApplyEffectParameters.ItemStateObjectRef.ObjectID));
+	}
+
+	// Add flat bonuses
+	ShieldHPChange.StatAmount = BaseShieldHPIncrease;
+	WillChange.StatAmount = BaseWillIncrease;
+	CritChange.StatAmount = BaseCritIncrease;
+
+	// Add mag tier bonuses
+	if (SourceItem.GetMyTemplateName() == 'PsiAmp_MG')
+	{
+		ShieldHPChange.StatAmount += AmpMGShieldHPBonus;
+		WillChange.StatAmount += AmpMGWillBonus;
+		CritChange.StatAmount += AmpMGCritBonus;
+	}
+
+	// Add beam tier bonuses
+	if (SourceItem.GetMyTemplateName() == 'PsiAmp_BM')
+	{
+		ShieldHPChange.StatAmount += AmpBMShieldHPBonus;
+		WillChange.StatAmount += AmpBMWillBonus;
+		CritChange.StatAmount += AmpBMCritBonus;
+	}
+
+	// Add per psi offense bonuses
 	SoulMergeRef = Caster.FindAbility('SoulMerge');
 	if (SoulMergeRef.ObjectID == 0)
 	{
-		WillChange.StatAmount = BaseWillIncrease + (Caster.GetCurrentStat(eStat_PsiOffense) / MindMergeWillDivisor);
-		ShieldHPChange.StatAmount = BaseShieldHPIncrease + (Caster.GetCurrentStat(eStat_PsiOffense) / MindMergeShieldHPDivisor);
+		if (MindMergeShieldHPDivisor > 0)
+		{
+			ShieldHPChange.StatAmount += Caster.GetCurrentStat(eStat_PsiOffense) / MindMergeShieldHPDivisor;
+		}
+		if (MindMergeWillDivisor > 0)
+		{
+			WillChange.StatAmount += Caster.GetCurrentStat(eStat_PsiOffense) / MindMergeWillDivisor;
+		}
 		if (MindMergeCritDivisor > 0)
 		{
-			CritChange.StatAmount = (Caster.GetCurrentStat(eStat_PsiOffense) / MindMergeCritDivisor);
-		}
-		else
-		{
-			CritChange.StatAmount = 0;
+			CritChange.StatAmount += Caster.GetCurrentStat(eStat_PsiOffense) / MindMergeCritDivisor;
 		}
 	}
 	else
 	{
-		WillChange.StatAmount = BaseWillIncrease + (Caster.GetCurrentStat(eStat_PsiOffense) / SoulMergeWillDivisor);
-		ShieldHPChange.StatAmount = BaseShieldHPIncrease + (Caster.GetCurrentStat(eStat_PsiOffense) / SoulMergeShieldHPDivisor);
+		if (SoulMergeShieldHPDivisor > 0)
+		{
+			ShieldHPChange.StatAmount += (Caster.GetCurrentStat(eStat_PsiOffense) / SoulMergeShieldHPDivisor);
+		}
+		if (SoulMergeWillDivisor > 0)
+		{
+			WillChange.StatAmount += (Caster.GetCurrentStat(eStat_PsiOffense) / SoulMergeWillDivisor);
+		}
 		if (SoulMergeCritDivisor > 0)
 		{
-			CritChange.StatAmount = (Caster.GetCurrentStat(eStat_PsiOffense) / SoulMergeCritDivisor);
-		}
-		else
-		{
-			CritChange.StatAmount = 0;
+			CritChange.StatAmount += (Caster.GetCurrentStat(eStat_PsiOffense) / SoulMergeCritDivisor);
 		}
 	}
-	if (SourceItem.GetMyTemplateName() == 'PsiAmp_MG')
-	{
-		WillChange.StatAmount += AmpMGWillBonus;
-		ShieldHPChange.StatAmount += AmpMGShieldHPBonus;
-		if ((SoulMergeRef.ObjectID == 0 && MindMergeCritDivisor > 0) || (SoulMergeRef.ObjectID != 0 && SoulMergeCritDivisor > 0))
-		{
-			CritChange.StatAmount += AmpMGCritBonus;
-		}
-	}
-	if (SourceItem.GetMyTemplateName() == 'PsiAmp_BM')
-	{
-		WillChange.StatAmount += AmpBMWillBonus;
-		ShieldHPChange.StatAmount += AmpBMShieldHPBonus;
-		if ((SoulMergeRef.ObjectID == 0 && MindMergeCritDivisor > 0) || (SoulMergeRef.ObjectID != 0 && SoulMergeCritDivisor > 0))
-		{
-			CritChange.StatAmount += AmpBMCritBonus;
-		}
-	}
-	
+
 	Target.SetUnitFloatValue('MindMergeShieldHP', ShieldHPChange.StatAmount, eCleanup_BeginTactical);
 	Target.SetUnitFloatValue('PreMindMergeShieldHP', Target.GetCurrentStat(eStat_ShieldHP), eCleanup_BeginTactical);
 
-	NewEffectState.StatChanges.AddItem(WillChange);
 	NewEffectState.StatChanges.AddItem(ShieldHPChange);
-	if (CritChange.StatAmount > 0)
-	{
-		NewEffectState.StatChanges.AddItem(CritChange);
-	}
+	NewEffectState.StatChanges.AddItem(WillChange);
+	NewEffectState.StatChanges.AddItem(CritChange);
+
 	super.OnEffectAdded(ApplyEffectParameters, kNewTargetState, NewGameState, NewEffectState);
 }
 
@@ -108,7 +119,7 @@ simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParame
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	PreRemovalShieldHP = UnitState.GetCurrentStat(eStat_ShieldHP);
 
-    super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
+	super.OnEffectRemoved(ApplyEffectParameters, NewGameState, bCleansed, RemovedEffectState);
 
 	UnitState = XComGameState_Unit(`XCOMHISTORY.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
 	UnitState.GetUnitValue('MindMergeShieldHP', MindMergeShieldHP);
@@ -127,6 +138,3 @@ simulated function OnEffectRemoved(const out EffectAppliedData ApplyEffectParame
 		NewGameState.AddStateObject(UnitState);
 	}
 }
-
-
-

@@ -2,8 +2,8 @@
 [MusashiThrowKnifeSecondary_LW X2AbilityTemplate]
 LocFriendlyName="Cuchillo arrojadizo"
 LocFlyOverText="Cuchillo arrojadizo"
-LocLongDescription="Lanza un cuchillo arrojadizo a un enemigo. No revela al Segador mientras permanece en Sombra."
-LocHelpText="Lanza un cuchillo arrojadizo a un enemigo. No revela al Segador mientras permanece en Sombra."
+LocLongDescription="Lanza un cuchillo arrojadizo a un enemigo. Rompe la ocultación normal pero no la de Sombra."
+LocHelpText="Lanza un cuchillo arrojadizo a un enemigo. Rompe la ocultación normal pero no la de Sombra."
 LocPromotionPopupText="<Bullet/> Lanzar un cuchillo no romperá Sombra ni atraerá a los perdidos..<br/><Bullet/> Esta habilidad sin embargo sí rompe la ocultación normal."
 
 [KnifeJuggler_LW X2AbilityTemplate]
@@ -34,21 +34,21 @@ LocPromotionPopupText="<Bullet/> Tiene sólo una carga y no consume ninguna carg
 FriendlyName="Cuchillo arrojadizo"
 FriendlyNamePlural="Cuchillos arrojadizos"
 BriefSummary="Un cuchillo arrojadizo fabricado con nuestras aleaciones de acero convencionales más avanzadas."
-TacticalText="<Bullet/> Lanzar un cuchillo no romperá Sombra.<br/><Bullet/> Probabilidad del <Ability:THROWING_KNIFE_CV_BLEED_CHANCE/>% en causar sangrado, generando <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> de daño cada turno durante <Ability:THROWING_KNIFE_CV_BLEED_DURATION/> turno(os)."
+TacticalText="<Bullet/> Lanzar un cuchillo romperá la ocultación básica, pero no la de Sombra.<br/><Bullet/> Probabilidad del <Ability:THROWING_KNIFE_CV_BLEED_CHANCE/>% en causar sangrado, generando <Ability:THROWING_KNIFE_CV_BLEED_DAMAGE/> de daño cada turno durante <Ability:THROWING_KNIFE_CV_BLEED_DURATION/> turno(os)."
 AbilityDescName="cuchillo arrojadizo"
 
 [ThrowingKnife_MG_Secondary X2WeaponTemplate]
 FriendlyName="Cuchillo arrojadizo de aleación"
 FriendlyNamePlural="Cuchillos arrojadizos de aleaciones"
 BriefSummary="Un cuchillo arrojadizo fabricado en aleaciones alienígenas."
-TacticalText="<Bullet/> Lanzar un cuchillo no romperá Sombra.<br/><Bullet/> Probabilidad del <Ability:THROWING_KNIFE_MG_BLEED_CHANCE/>% en causar sangrado, generando <Ability:THROWING_KNIFE_MG_BLEED_DAMAGE/> de daño cada turno durante <Ability:THROWING_KNIFE_MG_BLEED_DURATION/> turno(os)."
+TacticalText="<Bullet/> Lanzar un cuchillo romperá la ocultación básica, pero no la de Sombra.<br/><Bullet/> Probabilidad del <Ability:THROWING_KNIFE_MG_BLEED_CHANCE/>% en causar sangrado, generando <Ability:THROWING_KNIFE_MG_BLEED_DAMAGE/> de daño cada turno durante <Ability:THROWING_KNIFE_MG_BLEED_DURATION/> turno(os)."
 AbilityDescName="cuchillo arrojadizo"
 
 [ThrowingKnife_BM_Secondary X2WeaponTemplate]
 FriendlyName="Cuchillo arrojadizo de plasma"
 FriendlyNamePlural="Cuchillos arrojadizos de plasma"
 BriefSummary="Un cuchillo arrojadizo con un filo de plasma que atraviesa la armadura como si fuera mantequilla."
-TacticalText="<Bullet/> Lanzar un cuchillo no romperá Sombra.<br/><Bullet/> Probabilidad del <Ability:THROWING_KNIFE_BM_BLEED_CHANCE/>% en causar sangrado, generando <Ability:THROWING_KNIFE_BM_BLEED_DAMAGE/> de daño cada turno durante <Ability:THROWING_KNIFE_BM_BLEED_DURATION/> turno(os)."
+TacticalText="<Bullet/> Lanzar un cuchillo romperá la ocultación básica, pero no la de Sombra.<br/><Bullet/> Probabilidad del <Ability:THROWING_KNIFE_BM_BLEED_CHANCE/>% en causar sangrado, generando <Ability:THROWING_KNIFE_BM_BLEED_DAMAGE/> de daño cada turno durante <Ability:THROWING_KNIFE_BM_BLEED_DURATION/> turno(os)."
 AbilityDescName="cuchillo arrojadizo"
 ; End translated
 

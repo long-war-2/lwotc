@@ -22,7 +22,7 @@ function float GetPostDefaultDefendingDamageModifier_CH(
 	local int   Tiles;
 
 	Tiles = Attacker.TileDistanceBetween(Target);
-	if (Tiles < default.BRAWLER_MAX_TILES)
+	if (Tiles < default.BRAWLER_MAX_TILES || AbilityState.IsMeleeAbility())
 	{
 		return -CurrentDamage * default.BRAWLER_DR_PCT / 100;
 	}

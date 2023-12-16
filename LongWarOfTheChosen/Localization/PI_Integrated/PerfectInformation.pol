@@ -1,13 +1,60 @@
+[PI_MCMListener]
+MOD_NAME="Perfect Information"
+OPTIONS_HEADER="Opcje"
+
+DURATION_TITLE_DAMAGE="Czas trwania uszkodzeń"
+DURATION_DESCRIPTION_DAMAGE="Gwarantowany czas trwania uszkodzeń"
+
+FLYOVER_TITLE_XCOM="Pokaż uszkodzenia dla XCom"
+FLYOVER_TITLE_ENEMY="Pokaż uszkodzenia dla przeciwników"
+
+REACTION_FLYOVERS_TITLE="Pokaż tylko uszkodzenia z reakcji"
+AIM_ASSIST_FLYOVER_TITLE="Pokaż uszkodzenia wspomagania celowania"
+
+HIT_CHANCE_TITLE="Pokaż szansę na trafienie"
+CRIT_CHANCE_TITLE="Pokaż szansę na trafienie krytyczne"
+DODGE_CHANCE_TITLE="Pokaż szansę na unik"
+MISS_CHANCE_TITLE="Pokaż szansę na pudło"
+
+SHORT_STRING_TITLE="użyj krótkich linii"
+
+SHOW_GUARANTEED_HITS_TITLE="Pokaż gwarantowane trafienia"
+SHOW_GUARANTEED_MISS_TITLE="Pokaż gwarantowane pudła"
+
+REPEATER_TITLE="Pokaż powtarzane obrażenia"
+
+SHOW_ENEMY_STATS_TITLE="Pokaż podpowiedź dotyczącą statystyk wroga"
+
+SHOW_EXTRA_WEAPONSTATS_TITLE="Pokaż dodatkowe statystyki broni"
+
+SHOW_AIM_ASSIST_MAIN_HUD_TITLE="Pokaż wspomaganie celowania w oknie strzału"
+SHOW_MISS_CHANCE_MAIN_HUD_TITLE="Pokaż szansę na pudło w oknie strzału"
+
+AIM_LEFT_OF_CRIT_TITLE="Pokaż pozostałe celowanie krytyczne na pasku strzału"
+PREVIEW_MINIMUM_TITLE="Podgląd uszkodzeń pokazuje minimum"
+SHOW_DODGE_TITLE="Pokaż unik w oknie strzału"
+SHOW_CRIT_DMG_TITLE="Pokaż obrażenia krytyczne w oknie strzału"
+PREVIEW_HACKING_TITLE="Podgląd hackowania"
+
+SHOW_AIM_ASSIST_OVER_ENEMY_ICON_TITLE="Pokaż asysty celowania nad ikoną wroga"
+SHOW_MISS_CHANCE_OVER_ENEMY_ICON_TITLE="Pokaż ikonę nieudanej szansy nad wrogiem"
+
+SHOW_ALWAYS_SHOT_breakDOWN_HUD_TITLE="Zawsze pokazuj zestawienie strzałów"
+SHOW_MISS_CHANCE_breakDOWN_HUD_TITLE="Pokaż zestawienie szans na wygraną"
+SHOW_AIM_ASSIST_breakDOWN_HUD_TITLE="Pokaż zestawienie wspomagania celowania"
+
 [XCom_Perfect_Information_X2Action_ApplyWeaponDamageToUnit]
+//HIT_CHANCE_MSG ="TRAFIENIE:";
 HIT_CHANCE_MSG ="TRAFIENIE:";
 CRIT_CHANCE_MSG ="TRAF. KRYTYCZNE:";
+//DODGE_CHANCE_MSG ="UNIK:";
 DODGE_CHANCE_MSG ="UNIK:";
 MISS_CHANCE_MSG ="PUDŁO:";
 
-GUARANTEED_HIT_MSG ="- GWARANTOWANE TRAFIENIE";
-GUARANTEED_MISS_MSG ="- GWARANTOWANE PUDŁO";
+GUARANTEED_HIT_MSG =" - GWARANTOWANE TRAFIENIE";
+GUARANTEED_MISS_MSG =" - GWARANTOWANE PUDŁO";
 
-REPEATER_KILL_MSG ="- Automat:";
+REPEATER_KILL_MSG =" - Seria zabójstw: ";
 
 [XCom_Perfect_Information_UITacticalHUD_ShotWings]
 LOWER_DIFFICULTY_MSG = "NISKI POZ. TRUDNOŚCI";
@@ -16,8 +63,13 @@ SOLDIER_LOST_BONUS = "BONUS ZA UTRATĘ ŻOŁNIERZA";
 
 [XCom_Perfect_Information_UITacticalHUD_SoldierInfoTooltip]
 KILLS_LABEL = "Zabójstwa";
-ASSIST_LABEL = "Asysta";
+ASSIST_LABEL = "Asysty";
 FLANKING_CRIT_LABEL = "Traf. kryt. z flanki";
+
+[XCom_Perfect_Information_UITacticalHUD_EnemyTooltip]
+PrimaryBase = „Podstawa obrażeń”
+PrimarySpread = „Rozprzestrzenianie się obrażeń”
+PrimaryPlusOne = „Obrażenia +1”
 
 [XCom_Perfect_Information_UIEffectListItem]
 TURNS_REMAINING = "POZOSTAŁO TUR"

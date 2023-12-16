@@ -13,6 +13,10 @@ var config array <float> FORCE_LEVEL_DETECTION_MODIFIER_VETERAN;
 var config array <float> FORCE_LEVEL_DETECTION_MODIFIER_COMMANDER;
 var config array <float> FORCE_LEVEL_DETECTION_MODIFIER_LEGENDARY;
 
+var config bool BOOST_EARLY_DETECTION;
+var config float EARLY_DETECTION_CHANCE_BOOST;
+var config int EARLY_DETECTION_DAYS;
+
 struct DetectionModifierInfo
 {
 	var float   Value;
@@ -126,6 +130,10 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 	local XComGameState_WorldRegion RegionState;
 	local XComGameState_WorldRegion_LWStrategyAI RegionalAI;
 
+	local TDateTime GameStartDate;
+	local int TimeToDays;
+	local int DiffInHours;
+
 	ResourcePool = ActivityState.MissionResourcePool;
 	if (ActivityTemplate.RequiredRebelMissionIncome > 0)
 		ResourcePool -= ActivityTemplate.RequiredRebelMissionIncome;
@@ -156,10 +164,33 @@ function float GetDetectionChance(XComGameState_LWAlienActivity ActivityState, X
 			default: break;
 		}
 	}
+	`LWTrace("GetDetectionChance: DetectionChance pre-early boost:" @DetectionChance);
+
+	// New early campaign detection chance boost system
+	if(default.BOOST_EARLY_DETECTION)
+	{
+		class'X2StrategyGameRulesetDataStructures'.static.SetTime( GameStartDate, 0, 0, 0,
+					class'X2StrategyGameRulesetDataStructures'.default.START_MONTH,
+					class'X2StrategyGameRulesetDataStructures'.default.START_DAY,
+					class'X2StrategyGameRulesetDataStructures'.default.START_YEAR );
+		
+		// Compares date the activity was started to start date.
+		TimeToDays = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInDays( ActivityState.DateTimeStarted, GameStartDate );
+
+		//If we're within the time period, boost the detection.
+		if(TimeToDays <= default.EARLY_DETECTION_DAYS)
+		{
+			DiffInHours = class'X2StrategyGameRulesetDataStructures'.static.DifferenceInHours(class'XComGameState_GeoscapeEntity'.static.GetCurrentTime(), ActivityState.DateTimeStarted);
+			DetectionChance += (default.EARLY_DETECTION_CHANCE_BOOST * ((1+DiffInHours)/24.0));
+		}
+	}
+
+	`LWTrace("GetDetectionChance: DetectionChance post early boost:" @DetectionChance);
 
 	//normalize for update rate
 	DetectionChance *= float(class'X2LWAlienActivityTemplate'.default.HOURS_BETWEEN_ALIEN_ACTIVITY_DETECTION_UPDATES) / 24.0;
 
+	//`LWTrace("GetDetectionChance: DetectionChance post normaliation for tick rate:" @DetectionChance);
 	return DetectionChance;
 }
 

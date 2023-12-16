@@ -38,6 +38,13 @@ LocLongDescription="Aturde a los enemigos con un disparo preciso; la duración d
 LocHelpText="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
 LocPromotionPopupText="<Bullet/> Aturde a los enemigos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/> , pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> Solamente Avatares y Zombies Psiónicos no se verán afectados."
 
+[DisablingShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Sometimiento"
+LocLongDescription="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
+LocHelpText="Aturde a los enemigos con un disparo preciso; la duración del aturdimiento aumentará si el impacto es crítico (pero el disparo no podrá causar daño crítico)."
+LocPromotionPopupText="<Bullet/> Aturde a los enemigos durante <Ability:DisablingShotStunActions/> acciones si el disparo impacta (incluso si roza).<br/><Bullet/> Si el disparo es crítico acrecentará su duración en <Ability:DisablingShotCritStunActions/> , pero el disparo no infligirá el daño crítico.<br/><Bullet/> Sometimiento requiere <Ability:SelfAmmoCost/> de munición y tiene un tiempo de enfriamiento de <Ability:SelfCooldown/> turnos.<br/><Bullet/> Solamente Avatares y Zombies Psiónicos no se verán afectados."
+
+
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Meditación"
 LocLongDescription="Añade al Templario hasta <Ability:MeditationFocusRecovery/> de concentración."
@@ -46,8 +53,8 @@ LocPromotionPopupText="<Bullet/> Agrega al Templario <Ability:MeditationFocusRec
 
 [Overcharge_LW X2AbilityTemplate]
 LocFriendlyName="Heroísmo"
-LocLongDescription="Obtienes una bonificación de puntería y probabilidad crítica por cada punto de concentración que tenga el Templario"
-LocHelpText="Obtienes una bonificación de puntería y probabilidad crítica por cada punto de concentración que tenga el Templario"
+LocLongDescription="Obtienes una bonificación de puntería y probabilidad crítica en ataques cuerpo a cuerpo por cada punto de concentración que tenga el Templario."
+LocHelpText="Obtienes una bonificación de puntería y probabilidad crítica en ataques cuerpo a cuerpo por cada punto de concentración que tenga el Templario."
 LocPromotionPopupText="<Bullet/> Cada punto de concentración proporciona +<Ability:OverchargeAimBonus/> de puntería y +<Ability:OverchargeCritBonus/> a la probabilidad crítica.<br/><Bullet/> Tiene en cuenta el nivel de concentración actual y no el máximo."
 
 [VoltDangerZone X2AbilityTemplate]
@@ -66,8 +73,8 @@ LocPromotionPopupText="<Bullet/> Consigue 1 de concentración para el Templario 
 
 [TemplarTerror X2AbilityTemplate]
 LocFriendlyName="Aterrorizar"
-LocLongDescription="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio."
-LocHelpText="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio."
+LocLongDescription="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio. Además, se obtiene <Ability:VoltDangerZoneBonus/> de bonificación al radio de acción."
+LocHelpText="Agrega la posibilidad de producir pánico a los enemigos golpeados por Voltio. Además, se obtiene <Ability:VoltDangerZoneBonus/> de bonificación al radio de acción."
 LocPromotionPopupText="<Bullet/> Voltio ahora incorpora una posibilidad de generar pánico a los enemigos.<br/><Bullet/> Su probabilidad está basada en la fuerza Psiónica del Templario frente a la voluntad del objetivo."
 
 [Apotheosis X2AbilityTemplate]
@@ -145,6 +152,14 @@ LocHelpText="Una vez por turno, gana una acción adicional después de lanzar un
 LocPromotionPopupText="<Bullet/> Una vez por turno, benefíciate de una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas.<br/><Bullet/> Un círculo rojo marcará el alcance de esta habilidad.<br/><Bullet/> Encuentros a cuchillo no se puede utilizar en el mismo turno que Apresurarse y Correr y disparar.<br/>"
 ; LWOTC translated
 
+[KnifeEncountersExtendedRange X2AbilityTemplate]
+LocFriendlyName="Encuentros a cuchillo"
+LocFlyOverText="Encuentros a cuchillo"
+;LWOTC needs Translation(2)
+LocLongDescription="Una vez por turno, gana una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas. No se puede utilizar en el mismo turno que Apresurarse."
+LocHelpText="Una vez por turno, gana una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas. No se puede utilizar en el mismo turno que Apresurarse."
+LocPromotionPopupText="<Bullet/> Una vez por turno, benefíciate de una acción adicional después de lanzar un cuchillo a un enemigo en un radio de <Ability:CLOSE_ENCOUNTERS_RANGE/> casillas.<br/><Bullet/> Un círculo rojo marcará el alcance de esta habilidad.<br/><Bullet/> Encuentros a cuchillo no se puede utilizar en el mismo turno que Apresurarse y Correr y disparar.<br/>"
+; LWOTC translated
 
 ; LWOTC translated
 
@@ -208,4 +223,10 @@ LocHelpText="Una vez por turno obtén una acción de movimiento después de disp
 LocPromotionPopupText="<Bullet/> Apresurarse se activa si el objetivo fue previamente dañado desde el último turno del jugador por cualquier tipo de impacto, por ejemplo, con una guardia o daño periódico.<br/><Bullet/> Adicionalmente al disparo estándar, también funciona con Dáles caña, Disparo en cadena y Desterrar.<br/><Bullet/> La acción de movimiento se puede utilizar para entrar en Sombra si está fuera de tiempo de reutilización.<br/>"
 ; End translated
 
+; LWOTC translated
 
+[TheBanisher_LW X2AbilityTemplate]
+LocFriendlyName="Superdepredador"
+LocLongDescription="Reduce la penalidad de acierto por tiro en <Ability:THEBANISHER_HIT_BUFF> y el tiempo de enfriamiento en 1. Incrementa en <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> el rango de Encuentros a cuchillo. Distribuidor de Muerte ahora dobla el daño de golpes críticos contra enemigos flanqueados."
+LocHelpText="Reduce la penalidad de acierto por tiro en <Ability:THEBANISHER_HIT_BUFF> y el tiempo de enfriamiento en 1. Incrementa en <Ability:KNIFE_ENCOUNTERS_BANISHER_MAX_TILES/> el rango de Encuentros a cuchillo. Distribuidor de Muerte ahora dobla el daño de golpes críticos contra enemigos flanqueados."
+; End translated

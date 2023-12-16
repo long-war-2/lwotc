@@ -72,7 +72,7 @@ static function CHEventListenerTemplate CreateMiscellaneousListeners()
 	Template.AddCHEvent('UnitChangedTeam', ClearUnitStateValues, ELD_Immediate, GetListenerPriority());
 	Template.AddCHEvent('PlayerTurnEnded', RollForPerTurnWillLoss, ELD_OnStateSubmitted, GetListenerPriority());
 	Template.AddCHEvent('OverrideR3Button', BindR3ToPlaceDelayedEvacZone, ELD_Immediate, GetListenerPriority());
-
+	Template.AddCHEvent('OverrideDamageRemovesReserveActionPoints', OnOverrideDamageRemovesReserveActionPoints, ELD_Immediate, GetListenerPriority());
 	// This seems to be causing stutter in the game, so commenting out for now.
 	// if (XCom_Perfect_Information_UIScreenListener.default.ENABLE_PERFECT_INFORMATION)
 	// {
@@ -234,7 +234,7 @@ static function EventListenerReturn OnScamperBegin(
 {
 	local array<int> AlivePodMembers;
 	local XComGameState_Unit PodLeaderUnit;
-	local XComGameState_Unit PodMember;
+	local XComGameState_Unit PodMember, CurrentMember;
 	local XComGameStateHistory History;
 	local XComGameState_AIGroup Group;
 	local bool IsYellow;
@@ -243,7 +243,7 @@ static function EventListenerReturn OnScamperBegin(
 	local XComGameState_MissionSite			MissionSite;
 	local XComGameState_LWPersistentSquad	SquadState;
 	local XComGameState_BattleData			BattleData;
-	local int i, NumSuccessfulReflexActions;
+	local int i, NumSuccessfulReflexActions, currentPodMember;
 
 	History = `XCOMHISTORY;
 	Group = XComGameState_AIGroup(EventSource);
@@ -256,6 +256,19 @@ static function EventListenerReturn OnScamperBegin(
 	// alive + the leader.
 	Group.GetLivingMembers(AlivePodMembers);
 	PodLeaderUnit = XComGameState_Unit(History.GetGameStateForObjectID(AlivePodMembers[0]));
+
+	foreach AlivePodMembers (currentPodMember)
+	{
+		CurrentMember = XComGameState_Unit(History.GetGameStateForObjectID(currentPodMember));
+		//`LWTrace("Remove wall 1");
+		//`LWTrace("Current member" @CurrentMember);
+		//`LWTrace("Current unit template:" @ CurrentMember.GetMyTemplateName());
+		if(CurrentMember != NONE)
+		{
+			CurrentMember = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', currentPodMember));
+			RemovePreventWallBreakEffect(CurrentMember, NewGameState);
+		}
+	}
 
 	`LWTrace(GetFuncName() $ ": Processing reflex move for pod leader " $ PodLeaderUnit.GetMyTemplateName());
 
@@ -954,6 +967,29 @@ private static function RemoveSightRadiusRestorationEffect(XComGameState_Unit Un
 	}
 }
 
+private static function RemovePreventWallBreakEffect(XComGameState_Unit UnitState, XComGameState NewGameState)
+{
+	local X2Effect_PersistentTraversalChange CurrentEffect;
+	local XComGameStateHistory History;
+	local XComGameState_Effect EffectState;
+	local StateObjectReference EffectRef;
+
+	History = `XCOMHISTORY;
+	foreach UnitState.AffectedByEffects(EffectRef)
+	{
+		EffectState = XComGameState_Effect(History.GetGameStateForObjectID(EffectRef.ObjectID));
+		CurrentEffect = X2Effect_PersistentTraversalChange(EffectState.GetX2Effect());
+		//`LWTrace("Current Effect:" @CurrentEffect);
+		//`LWTrace("CurrentEffect Name:" @CurrentEffect.EffectName);
+		if (CurrentEffect != none && CurrentEffect.EffectName == 'NoWallBreakingInGreenAlert')
+		{
+			`LWTrace("Removing Effect" @CurrentEffect);
+			EffectState.RemoveEffect(NewGameState, NewGameState, true);
+			break;
+		}
+	}
+}
+
 // This listener clears the `eCleanup_BeginTurn` unit values on units that
 // swap teams. This fixes a problem where those unit values don't get cleared
 // when team swapping happens after the turn begins.
@@ -1161,4 +1197,37 @@ static protected function EventListenerReturn HideFocusOnAssaults(
 	}
 
 	return ELR_NoInterrupt;
+}
+
+static function EventListenerReturn OnOverrideDamageRemovesReserveActionPoints(Object EventData, Object EventSource, XComGameState GameState, Name EventID, Object CallbackObject)
+{
+    local XComGameState_Unit UnitState;
+    local XComLWTuple Tuple;
+    local bool bDamageRemovesReserveActionPoints;
+	local name ActionPointName;
+	local bool IsSuppression;
+
+    UnitState = XComGameState_Unit(EventSource);
+    Tuple = XComLWTuple(EventData);
+	
+	`LWTrace("Override Reserve AP listener");
+    bDamageRemovesReserveActionPoints = Tuple.Data[0].b;
+
+    foreach UnitState.ReserveActionPoints(ActionPointName)
+	{
+		if(ActionPointName == 'Suppression')
+		{
+			IsSuppression = true;
+			break;
+		}
+	}
+
+	if(IsSuppression && UnitState.HasAbilityFromAnySource('DedicatedSuppression_LW'))
+	{
+		bDamageRemovesReserveActionPoints = false;
+	}
+
+    Tuple.Data[0].b = bDamageRemovesReserveActionPoints;
+
+    return ELR_NoInterrupt;
 }

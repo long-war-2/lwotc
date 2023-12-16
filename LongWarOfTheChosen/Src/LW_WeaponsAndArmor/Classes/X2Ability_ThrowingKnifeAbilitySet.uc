@@ -15,6 +15,7 @@ var config int REND_THE_MARKED_CRIT;
 var config int IMPERSONAL_EDGE_AIM;
 var config int BLUESCREEN_KNIVES_PIERCE;
 var config int KNIFE_ENCOUNTERS_MAX_TILES;
+var config int KNIFE_ENCOUNTERS_BANISHER_MAX_TILES;
 var config array<name> KNIFE_ENCOUNTERS_ABILITY_NAMES;
 
 var localized string RendTheMarkedEffectName;
@@ -30,6 +31,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddHailstorm());
 	Templates.AddItem(AddThrowingKnifeFaceoff());
 	Templates.AddItem(AddKnifeEncounters());
+	Templates.AddItem(AddKnifeEncountersExtendedRange());
 	Templates.AddItem(ImpersonalEdgePassive());
 	Templates.AddItem(ImpersonalEdge());
 	Templates.AddItem(RendTheMarked());
@@ -594,6 +596,7 @@ static function X2AbilityTemplate AddKnifeEncounters()
 {
 	local X2AbilityTemplate							Template;
 	local X2Effect_CloseEncounters					ActionEffect;
+	//local X2Condition_AbilityProperty				AbilityProperty;
 	
 	`CREATE_X2ABILITY_TEMPLATE (Template, 'KnifeEncounters');
 	Template.IconImage = "img:///MusashiCombatKnifeMod_LW.UI.UIPerk_faceoff";
@@ -603,13 +606,46 @@ static function X2AbilityTemplate AddKnifeEncounters()
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SelfTarget;
 	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
-	//Template.bIsPassive = true;  // needs to be off to allow perks
+
 	ActionEffect = new class 'X2Effect_CloseEncounters';
 	ActionEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	ActionEffect.BuildPersistentEffect(1, true, false);
 	ActionEffect.MaxTiles = default.KNIFE_ENCOUNTERS_MAX_TILES;
 	ActionEffect.ApplicableAbilities = default.KNIFE_ENCOUNTERS_ABILITY_NAMES;
 	Template.AddTargetEffect(ActionEffect);
+
+	Template.bCrossClassEligible = false;
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	// Visualization handled in Effect
+	return Template;
+}
+
+
+static function X2AbilityTemplate AddKnifeEncountersExtendedRange()
+{
+	local X2AbilityTemplate							Template;
+	local X2Effect_CloseEncounters					ActionEffect;
+	//local X2Condition_AbilityProperty				AbilityProperty;
+
+	
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'KnifeEncountersExtendedRange');
+	Template.IconImage = "img:///MusashiCombatKnifeMod_LW.UI.UIPerk_faceoff";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
+	Template.OverrideAbilities.AddItem('KnifeEncounters');
+	//Template.bIsPassive = true;  // needs to be off to allow perks
+
+	ActionEffect = new class 'X2Effect_CloseEncounters';
+	ActionEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
+	ActionEffect.BuildPersistentEffect(1, true, false);
+	ActionEffect.MaxTiles = default.KNIFE_ENCOUNTERS_BANISHER_MAX_TILES;
+	ActionEffect.ApplicableAbilities = default.KNIFE_ENCOUNTERS_ABILITY_NAMES;
+	Template.AddTargetEffect(ActionEffect);
+
 	Template.bCrossClassEligible = false;
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	// Visualization handled in Effect

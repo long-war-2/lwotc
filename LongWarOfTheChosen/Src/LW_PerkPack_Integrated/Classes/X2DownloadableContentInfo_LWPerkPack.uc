@@ -26,6 +26,13 @@ static event OnLoadedSavedGame()
 /// </summary>
 static event InstallNewCampaign(XComGameState StartState)
 {
+	//short circuit if in shell:
+//	if(class'WorldInfo'.static.GetWorldInfo().GRI.GameClass.name == 'XComShell')
+//	{
+//		`LWTrace("InstallNewCampaign called in Shell, aborting.");
+//		return;
+//	}
+	
 	class'XComGameState_LWPerkPackOptions'.static.CreateModSettingsState_NewCampaign(class'XComGameState_LWPerkPackOptions', StartState);
 }
 
@@ -54,6 +61,10 @@ static function UpdateBaseGameThrowGrenade()
 	X2AbilityMultiTarget_Radius(LaunchGrenadeAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('VolatileMix', 1.0);
 	X2AbilityMultiTarget_Radius(ProximityMineAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('VolatileMix', 1.0);
 
+	X2AbilityMultiTarget_Radius(ThrowGrenadeAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('MistyMadness_LW', 2.0);
+	X2AbilityMultiTarget_Radius(LaunchGrenadeAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('MistyMadness_LW', 2.0);
+	X2AbilityMultiTarget_Radius(ProximityMineAbilityTemplate.AbilityMultiTargetStyle).AddAbilityBonusRadius('MistyMadness_LW', 2.0);
+	
 	`PPDEBUG ("Updated Grenades to respect VM radius increase");
 }
 
@@ -159,6 +170,9 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'CUTTHROAT_BONUS_CRIT_DAMAGE':
 			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.CUTTHROAT_BONUS_CRIT_DAMAGE);
 			return true;
+		case 'COVERING_FIRE_OFFENSE_MALUS':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.COVERING_FIRE_OFFENSE_MALUS);
+			return true;
 		case 'GHOSTWALKER_DETECTION_RANGE_REDUCTION':
 			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.GHOSTWALKER_DETECTION_RANGE_REDUCTION * 100));
 			return true;
@@ -185,6 +199,12 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'MAIM_COOLDOWN':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.MAIM_COOLDOWN);
+			return true;
+		case 'OVERBEARING_SUPERIORITY_CRIT':
+			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.OVERBEARING_SUPERIORITY_CRIT);
+			return true;
+		case 'TRIGGER_BOT_DAMAGE_PENALTY':
+			OutString = string(int(class'X2Ability_XMBPerkAbilitySet'.default.TRIGGER_BOT_DAMAGE_PENALTY * 100));
 			return true;
 		case 'LICKYOURWOUNDS_HEALAMOUNT':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.LICKYOURWOUNDS_HEALAMOUNT);
@@ -224,7 +244,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'STILETTO_ARMOR_PIERCING':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.STILETTO_ARMOR_PIERCING);
-			return true;		
+			return true;
 		case 'THATS_CLOSE_ENOUGH_TILE_RANGE':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.THATS_CLOSE_ENOUGH_TILE_RANGE);	
 			return true;
@@ -236,10 +256,10 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'NONE_SHALL_PASS_TILE_RANGE':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.NONE_SHALL_PASS_TILE_RANGE);	
-			return true;				
+			return true;
 		case 'BRUTALITY_TILE_RADIUS':
 			OutString = string(int(class'X2Ability_XMBPerkAbilitySet'.default.BRUTALITY_TILE_RADIUS));	
-			return true;					
+			return true;
 		case 'BRUTALITY_PANIC_CHANCE':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.BRUTALITY_PANIC_CHANCE);	
 			return true;
@@ -284,7 +304,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'SUPERCHARGE_HEAL':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.SUPERCHARGE_HEAL);
-			return true;	
+			return true;
 		case 'OVERKILL_DAMAGE':
 			OutString = string(class'X2Ability_XMBPerkAbilitySet'.default.OverkillBonusDamage);
 			return true;
@@ -365,7 +385,7 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 			return true;
 		case 'WALK_FIRE_CRIT_MALUS':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.WALK_FIRE_CRIT_MALUS);
-			return true;	
+			return true;
 		case 'GUNSLINGER_TILES_RANGE':
 			OutString = string(class'X2Ability_PerkPackAbilitySet'.default.GUNSLINGER_METERS_RANGE * 2 / 3);
 			return true;
@@ -430,16 +450,76 @@ static function bool AbilityTagExpandHandler_CH(string InString, out string OutS
 		case 'MAYHEM_DAMAGE_BONUS_PCT':
 			OutString = string(int(class'X2Effect_Mayhem'.default.MAYHEM_DAMAGE_BONUS_PCT));
 			return true;
+		case 'DP_AIM_BONUS': // Depth Perception
+			Outstring = string(class'X2Effect_DepthPerception'.default.DP_AIM_BONUS);
+			return true;
+		case 'DP_ANTIDODGE_BONUS': // Depth Perception
+			Outstring = string(class'X2Effect_DepthPerception'.default.DP_ANTIDODGE_BONUS);
+			return true;
+		case 'HYPERREACTIVE_PUPILS_AIM_BONUS':
+			Outstring = string(class'X2Effect_HyperReactivePupils'.default.HYPERREACTIVE_PUPILS_AIM_BONUS);
+			return true;
+		case 'COMBAT_AWARENESS_BONUS_ARMOR':
+			Outstring = string(class'X2Effect_CombatAwareness'.default.COMBAT_AWARENESS_BONUS_ARMOR);
+			return true;
+		case 'COMBAT_AWARENESS_BONUS_DEFENSE':
+			Outstring = string(class'X2Effect_CombatAwareness'.default.COMBAT_AWARENESS_BONUS_DEFENSE);
+			return true;
+		case 'COMBAT_RUSH_RADIUS':
+			Outstring = string(int(class'X2Ability_PerkPackAbilitySet'.default.COMBAT_RUSH_RADIUS));
+			return true;
+		case 'COMBAT_RUSH_COOLDOWN':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.COMBAT_RUSH_COOLDOWN);
+			return true;
+		case 'DAMAGE_CONTROL_DURATION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.DAMAGE_CONTROL_DURATION);
+			return true;
+		case 'DAMAGE_CONTROL_BONUS_ARMOR':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.DAMAGE_CONTROL_BONUS_ARMOR);
+			return true;
+		case 'ABSORPTION_FIELDS_COOLDOWN':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.ABSORPTION_FIELDS_COOLDOWN);
+			return true;
+		case 'ABSORPTION_FIELDS_DURATION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.ABSORPTION_FIELDS_DURATION);
+			return true;
+		case 'BODY_SHIELD_DEF_BONUS':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.BODY_SHIELD_DEF_BONUS);
+			return true;
+		case 'BODY_SHIELD_ENEMY_CRIT_MALUS':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.BODY_SHIELD_ENEMY_CRIT_MALUS);
+			return true;
+		case 'BODY_SHIELD_COOLDOWN':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.BODY_SHIELD_COOLDOWN);
+			return true;
+		case 'BODY_SHIELD_DURATION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.BODY_SHIELD_DURATION);
+			return true;
+		case 'EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS':
+			Outstring = string(class'X2Effect_EmergencyLifeSupport'.default.EMERGENCY_LIFE_SUPPORT_BONUS_BLEEDINGOUT_TURNS);
+			return true;
+		case 'IRON_SKIN_MELEE_DAMAGE_REDUCTION':
+			Outstring = string(class'X2Ability_PerkPackAbilitySet'.default.IRON_SKIN_MELEE_DAMAGE_REDUCTION);
+			return true;
 		case 'MOVING_TARGET_DEFENSE':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.MOVING_TARGET_DEFENSE);
 			return true;
 		case 'MOVING_TARGET_DODGE':
 			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.MOVING_TARGET_DODGE);
 			return true;
+		case 'HERO_SLAYER_DMG':
+			Outstring = string(int(class'X2Ability_XMBPerkAbilitySet'.default.HERO_SLAYER_DMG * 100));
+			return true;
+		case 'PSYCHOTIC_RAGE_BELOW_THRESHOLD':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.PSYCHOTIC_RAGE_BELOW_THRESHOLD);
+			return true;
+		case 'PSYCHOTIC_RAGE_DMG_BONUS':
+			Outstring = string(class'X2Ability_XMBPerkAbilitySet'.default.PSYCHOTIC_RAGE_DMG_BONUS);
+			return true;
         default:
             return false;
     }
-    return false;    
+    return false;
 }
 
 static function X2ItemTemplate GetItemBoundToAbilityFromUnit(XComGameState_Unit UnitState, name AbilityName, XComGameState GameState)

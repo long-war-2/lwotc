@@ -342,7 +342,7 @@ static function bool IsUnitOnMission(XComGameState_Unit UnitState)
 static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState NewGameState, optional bool bClearSlot = true)
 {
 	local XComGameState_StaffSlot StaffSlotState;
-	local XComGameState_HeadquartersProjectHealSoldier HealSparkProject;
+	local XComGameState_HeadquartersProjectHealSoldier HealProject;
 
 	if(bClearSlot)
 	{//If we're here, I'm going to assume you're allowed to be on the mission already, meaning that if you're in a slot you should be removed from it.
@@ -356,11 +356,11 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 	if (UnitState.GetStatus() == eStatus_Healing)
 	{
 		//and pause any healing project
-		HealSparkProject = GetHealSparkProject(UnitState.GetReference());
-		if (HealSparkProject != none)
+		HealProject = GetHealProject(UnitState.GetReference());
+		if (HealProject != none)
 		{
-			HealSparkProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersProjectHealSoldier', HealSparkProject.ObjectID));
-			HealSparkProject.PauseProject();
+			HealProject = XComGameState_HeadquartersProjectHealSoldier(NewGameState.ModifyStateObject(class'XComGameState_HeadquartersProjectHealSoldier', HealProject.ObjectID));
+			HealProject.PauseProject();
 		}
 	}
 
@@ -370,23 +370,23 @@ static function SetOnMissionStatus(XComGameState_Unit UnitState, XComGameState N
 
 //helper to retrieve spark heal project -- note that we can't retrieve the proper project, since it is in the DLC3.u
 // so instead we retrieve the parent heal project class and check using IsA
-static function XComGameState_HeadquartersProjectHealSoldier GetHealSparkProject(StateObjectReference UnitRef)
+static function XComGameState_HeadquartersProjectHealSoldier GetHealProject(StateObjectReference UnitRef)
 {
     local XComGameStateHistory History;
     local XComGameState_HeadquartersXCom XCOMHQ;
-    local XComGameState_HeadquartersProjectHealSoldier HealSparkProject;
+    local XComGameState_HeadquartersProjectHealSoldier HealProject;
     local int Idx;
 
     History = `XCOMHISTORY;
     XCOMHQ = `XCOMHQ;
     for(Idx = 0; Idx < XCOMHQ.Projects.Length; ++ Idx)
     {
-        HealSparkProject = XComGameState_HeadquartersProjectHealSoldier(History.GetGameStateForObjectID(XCOMHQ.Projects[Idx].ObjectID));
-        if(HealSparkProject != none && HealSparkProject.IsA('XComGameState_HeadquartersProjectHealSpark'))
+        HealProject = XComGameState_HeadquartersProjectHealSoldier(History.GetGameStateForObjectID(XCOMHQ.Projects[Idx].ObjectID));
+        if(HealProject != none && HealProject.IsA('XComGameState_HeadquartersProjectHealSoldier'))
         {
-            if(UnitRef == HealSparkProject.ProjectFocus)
+            if(UnitRef == HealProject.ProjectFocus)
             {
-                return HealSparkProject;
+                return HealProject;
             }
         }
     }

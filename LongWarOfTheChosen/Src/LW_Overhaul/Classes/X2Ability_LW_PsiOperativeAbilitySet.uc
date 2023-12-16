@@ -409,6 +409,9 @@ static function X2AbilityTemplate Create_SoulStorm()
 	DamageEffect.bIgnoreBaseDamage = true;
 	DamageEffect.DamageTag = 'SoulStorm';
 	DamageEffect.bIgnoreArmor = default.SOULSTORM_IGNORES_ARMOR;
+	//DamageEffect.EnvironmentalDamageAmount = default.SOULSTORM_ENVIRONMENAL_DAMAGE;
+	//DamageEffect.bApplyToWorldOnHit = true;
+   // DamageEffect.bApplyToWorldOnMiss = true;
 	Template.AddMultiTargetEffect(DamageEffect);
 
 	Template.AddMultiTargetEffect(new class'X2Effect_IRI_SoulStorm');	//	environmental destruction

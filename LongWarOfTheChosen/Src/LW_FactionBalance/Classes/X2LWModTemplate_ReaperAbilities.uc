@@ -23,8 +23,11 @@ var config int STING_RUPTURE;
 
 var config int BANISH_COOLDOWN;
 var const name BanishFiredTimes;
+var config bool USE_BANISH_CHARGES;
 
 var config int DEATH_DEALER_CRIT;
+var config int THEBANISHER_DEATH_DEALER_CRIT;
+
 var config int SHADOW_FLAT_MOB_BONUS;
 var localized string ShadowExpiredFlyover;
 
@@ -409,12 +412,26 @@ static function ReplaceDeathDealerEffect(X2AbilityTemplate Template)
 	local X2Effect_Executioner ExecutionerEffect;
 	local int i;
 	local X2Effect_ToHitModifier ToHitModifier;
+	//local X2Condition_AbilityProperty AbilityProperty;
 
 	ToHitModifier = new class'X2Effect_ToHitModifier';
 	ToHitModifier.BuildPersistentEffect(1, true, true, true);
 	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
 	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.DEATH_DEALER_CRIT, Template.LocFriendlyName);
 	Template.AddTargetEffect(ToHitModifier);
+
+	/*
+	//TheBanisher section:
+	AbilityProperty = new class'X2Condition_AbilityProperty';
+	AbilityProperty.OwnerHasSoldierAbilities.AddItem('TheBanisher_LW');
+
+	ToHitModifier = new class'X2Effect_ToHitModifier';
+	ToHitModifier.BuildPersistentEffect(1, true, true, true);
+	ToHitModifier.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,,Template.AbilitySourceName);
+	ToHitModifier.AddEffectHitModifier(eHit_Crit, default.THEBANISHER_DEATH_DEALER_CRIT, Template.LocFriendlyName);
+	ToHitModifier.ToHitConditions.AddItem(AbilityProperty); // Requires TheBanisher
+	Template.AddTargetEffect(ToHitModifier);
+	*/
 
 	// Remove the previous Pale Horse effect
 	for (i = Template.AbilityTargetEffects.Length - 1; i >= 0 ; i--)
@@ -430,13 +447,15 @@ static function ReplaceDeathDealerEffect(X2AbilityTemplate Template)
 
 static function UpdateBanish(X2AbilityTemplate Template)
 {
-	local X2AbilityCost Cost;
-	local X2AbilityCooldown Cooldown;
+	local X2AbilityCooldown_Banish Cooldown;
 	local X2Effect_BanishHitMod HitMod;
+	local X2AbilityCharges_BonusCharges Charges;
+	local X2AbilityCost Cost;
+	local X2AbilityCost_BanishCharges BanishCost;
 
 	ChangeBanishHitCalc(Template);
 
-
+	
 	foreach Template.AbilityCosts(Cost)
 	{
 		if (Cost.isA('X2AbilityCost_Charges'))
@@ -447,9 +466,24 @@ static function UpdateBanish(X2AbilityTemplate Template)
 	}
 
 	Template.AbilityCharges = none;
-
-	Cooldown = new class'X2AbilityCooldown';
+	
+	if(default.USE_BANISH_CHARGES)
+	{
+		BanishCost = new class'X2AbilityCost_BanishCharges';
+		BanishCost.NumCharges = 1;
+		Template.AbilityCosts.AddItem(BanishCost);
+	
+		Charges = new class'X2AbilityCharges_BonusCharges';
+		Charges.InitialCharges = 2;
+		Charges.BonusAbility = 'TheBanisher_LW';
+		Charges.BonusChargesCount = 1;
+		Template.AbilityCharges = Charges;
+	}
+	
+	
+	Cooldown = new class'X2AbilityCooldown_Banish';
 	Cooldown.iNumTurns = default.BANISH_COOLDOWN;
+	Cooldown.bUseCharges = default.USE_BANISH_CHARGES;
 	Template.AbilityCooldown = Cooldown;
 
 	HitMod = new class'X2Effect_BanishHitMod';
@@ -460,11 +494,35 @@ static function UpdateBanish(X2AbilityTemplate Template)
 
 static function UpdateBanish2(X2AbilityTemplate Template)
 {
-	ChangeBanishHitCalc(Template);
+	ChangeBanish2HitCalc(Template);
 }
 
 
 static function ChangeBanishHitCalc(X2AbilityTemplate Template)
+{
+	local X2Effect_SetUnitValue BanishCount;
+	local X2Condition_Visibility VisibilityCondition;
+	X2AbilityToHitCalc_StandardAim(Template.AbilityToHitCalc).bAllowCrit = true;
+
+	BanishCount = new class'X2Effect_SetUnitValue';
+	BanishCount.UnitName = default.BanishFiredTimes;
+	BanishCount.NewValueToSet = 1;
+	BanishCount.CleanupType = eCleanup_BeginTurn;
+	BanishCount.bApplyOnHit = true;
+	BanishCount.bApplyOnMiss = true;
+	Template.AddShooterEffect(BanishCount);
+
+		//make it work with squadsight
+	class 'Helpers_LW'.static.RemoveAbilityTargetConditions(Template,'X2Condition_Visibility');
+
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bAllowSquadsight = true;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+	
+}
+
+static function ChangeBanish2HitCalc(X2AbilityTemplate Template)
 {
 	local X2Effect_SetUnitValue BanishCount;
 	local X2Condition_Visibility VisibilityCondition;

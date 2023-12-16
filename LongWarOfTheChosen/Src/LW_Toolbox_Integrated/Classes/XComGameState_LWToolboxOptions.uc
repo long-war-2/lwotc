@@ -898,7 +898,17 @@ function UpdateWeaponTemplates_RandomizedDamage()
 
 	//restore difficulty settings
 	Settings.SetDifficulty(OriginalLowestDifficulty, , , , , true);
-	Settings.SetDifficulty(OriginalDifficulty, , , , , false);		
+	Settings.SetDifficulty(OriginalDifficulty, , , , , false);
+
+	if(`SecondWaveEnabled('HybridDifficulty_LW'))
+	{
+		Settings.SetDifficulty(`CAMPAIGNDIFFICULTYSETTING
+											, fmin(Settings.GetTacticalDifficultyFromSettings()+25.0, 75.0)
+											, Settings.GetStrategyDifficultyFromSettings()
+											,
+											,
+											,true);
+	}
 }
 
 // ======= RANDOMIZED INITIAL STATS ======= // 

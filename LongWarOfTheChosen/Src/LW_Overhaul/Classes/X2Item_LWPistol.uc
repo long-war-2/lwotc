@@ -65,7 +65,7 @@ static function X2DataTemplate CreateTemplate_LWPistol_Laser()
 
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'pistol';
-	Template.WeaponTech = 'pulse';
+	Template.WeaponTech = 'laser_lw';
 	Template.strImage = "img:///UILibrary_LW_LaserPack.Inv_Laser_Pistol";
 	Template.EquipSound = "Secondary_Weapon_Equip_Magnetic";
 	Template.Tier = 2;
@@ -120,8 +120,8 @@ static function X2DataTemplate CreateTemplate_LWPistol_Coil()
 
 	Template.ItemCat = 'weapon';
 	Template.WeaponCat = 'pistol';
-	Template.WeaponTech = 'magnetic';
-	Template.strImage = "img:///UILibrary_LW_Overhaul.InventoryArt.Inv_Coil_Pistol";
+	Template.WeaponTech = 'coilgun_lw';
+	Template.strImage = "img:///UILibrary_LWOTC.InventoryArt.Inv_Coil_Pistol";
 	Template.EquipSound = "Secondary_Weapon_Equip_Magnetic";
 	Template.Tier = 4;
 

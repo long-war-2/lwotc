@@ -7,7 +7,8 @@
 
 class UIScreenListener_FacilityUpgrade_LWOfficerPack extends UIScreenListener;
 
-var UIFacilityUpgrade ParentScreen;
+var string PathToParentScreen;
+//var UIFacilityUpgrade ParentScreen;
 
 // This event is triggered after a screen is initialized
 event OnInit(UIScreen Screen)
@@ -15,8 +16,11 @@ event OnInit(UIScreen Screen)
 	local string strTitle;
 	local UIText TextComponent;
 	local UIFacilityUpgrade_ListItem ListItem;
+	local UIFacilityUpgrade ParentScreen;
 
 	ParentScreen = UIFacilityUpgrade(Screen);
+
+	PathToParentScreen = PathName(ParentScreen);
 
 	// only update OTS
 	if (ParentScreen.GetFacility().GetMyTemplateName() == 'OfficerTrainingSchool')
@@ -35,6 +39,23 @@ event OnInit(UIScreen Screen)
 
 }
 
+private function UIFacilityUpgrade GetParentScreen()
+{   
+    local UIFacilityUpgrade ParentScreen;
+
+    if (PathToParentScreen != "")
+    {
+        ParentScreen = UIFacilityUpgrade(FindObject(PathToParentScreen, class'UIFacilityUpgrade'));
+        if (ParentScreen != none)
+        {
+            return ParentScreen;
+        }
+    }
+    ParentScreen = UIFacilityUpgrade(FindObject(PathToParentScreen, class'UIFacilityUpgrade'));
+    return ParentScreen;
+}
+
+
 // This event is triggered after a screen receives focus
 event OnReceiveFocus(UIScreen Screen)
 {
@@ -42,7 +63,8 @@ event OnReceiveFocus(UIScreen Screen)
 	local UIText TextComponent;
 	local UIFacilityUpgrade_ListItem ListItem;
 
-	ParentScreen = UIFacilityUpgrade(Screen);
+	local UIFacilityUpgrade ParentScreen;
+	ParentScreen = GetParentScreen();
 
 	// only update OTS
 	if (ParentScreen.GetFacility().GetMyTemplateName() == 'OfficerTrainingSchool')
@@ -67,12 +89,15 @@ event OnReceiveFocus(UIScreen Screen)
 event OnRemoved(UIScreen Screen)
 {
 	//clear reference to UIScreen so it can be garbage collected
-	ParentScreen = none;
+	PathToParentScreen = "";
 }
 
 function UIText GetTextChild()
 {
 	local array<UIPanel> TextChildren;
+	local UIFacilityUpgrade ParentScreen;
+
+	ParentScreen = GetParentScreen();
 
 	ParentScreen.m_kContainer.GetChildrenOfType(class'UIText', TextChildren);
 	return UIText(TextChildren[0]);
@@ -127,13 +152,17 @@ simulated function UpdateListItemData(UIFacilityUpgrade_ListItem ListItem)
 
 simulated function RefreshInfoPanel(UIList ContainerList, int ItemIndex)
 {
-	PopulateUpgradeCard(UIFacilityUpgrade_ListItem(ContainerList.GetItem(ItemIndex)).UpgradeTemplate, ParentScreen.FacilityRef);
+	PopulateUpgradeCard(UIFacilityUpgrade_ListItem(ContainerList.GetItem(ItemIndex)).UpgradeTemplate, UIFacilityUpgrade(FindObject(PathToParentScreen, class'UIFacilityUpgrade')).FacilityRef);
 }
 
 simulated function PopulateUpgradeCard(X2FacilityUpgradeTemplate UpgradeTemplate, StateObjectReference FacilityRef)
 {
 	local XComGameState_FacilityXCom Facility;
 	local string strDesc, strTitle, strRequirements, strImage, strUpkeep;
+
+	local UIFacilityUpgrade ParentScreen;
+
+	ParentScreen = GetParentScreen();
 
 	if( UpgradeTemplate == None )
 	{

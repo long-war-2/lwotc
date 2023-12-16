@@ -50,6 +50,10 @@ var config array<string> GuaranteeChosenInMissionTypes;
 
 var config array<string> NO_SIT_REP_MISSION_TYPES;
 
+var config array<string> LargeMaps;
+
+var config array<string> VeryLargeMaps;
+
 //#############################################################################################
 //----------------   REQUIRED FROM BASEOBJECT   -----------------------------------------------
 //#############################################################################################
@@ -787,6 +791,19 @@ function SetMissionData(name MissionFamily, XComGameState_MissionSite MissionSta
 		{
 			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
 		}
+		else if (inStr(MapName,"EZR") != INDEX_NONE && inStr(MapName,"CTY") != INDEX_NONE )
+		{
+			// Catch Eclipsezr city maps.
+			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
+		}
+		else if (default.LargeMaps.Find(MapName)!= INDEX_NONE)
+		{
+			MissionState.GeneratedMission.SitReps.AddItem('LargeMap');
+		}
+		else if (default.VeryLargeMaps.Find(MapName) != INDEX_NONE)
+		{
+			MissionState.GeneratedMission.SitReps.AddItem('VeryLargeMap');
+		}
 	}
 
 	// Start Issue #157
@@ -901,7 +918,7 @@ static function MaybeAddChosenToMission(XComGameState_MissionSite MissionState)
 			{
 				`LWTrace("    Chosen added!");
 				MissionState.TacticalGameplayTags.AddItem(class'Helpers_LW'.static.GetChosenActiveMissionTag(ChosenState));
-
+				MissionState.GeneratedMission.Sitreps.AddItem('ChosenOnMissionSitrep');
 				// Only one Chosen on the mission!
 				break;
 			}

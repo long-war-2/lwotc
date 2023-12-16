@@ -31,9 +31,9 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddArcthrowerStun());
 	Templates.AddItem(AddArcthrowerPassive());
 	Templates.AddItem(AddEMPulser());
-	Templates.AddItem(PurePassive('EMPulserPassive', "img:///UILibrary_LW_Overhaul.LW_AbilityEMPulser", true));  
+	Templates.AddItem(PurePassive('EMPulserPassive', "img:///UILibrary_LWOTC.LW_AbilityEMPulser", true));  
 	Templates.AddItem(StunGunner());
-	Templates.AddItem(PurePassive('Electroshock', "img:///UILibrary_LW_Overhaul.LW_AbilityElectroshock", true));  
+	Templates.AddItem(PurePassive('Electroshock', "img:///UILibrary_LWOTC.LW_AbilityElectroshock", true));  
 	Templates.AddItem(CreateStreetSweeper2Ability());
 	Templates.AddItem(CreateStreetSweeperBonusDamageAbility());
 	Templates.AddItem(CreateChainLightningAbility());
@@ -62,7 +62,7 @@ static function X2AbilityTemplate AddArcthrowerStun()
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ArcthrowerStun');
 
 	// Icon Properties
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityArcthrowerStun";  
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityArcthrowerStun";  
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_PISTOL_SHOT_PRIORITY;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.DisplayTargetHitChance = true;
@@ -168,7 +168,7 @@ static function X2AbilityTemplate AddArcthrowerPassive()
 	local X2Effect_Arcthrower		ArcthrowerEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'ArcthrowerPassive');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityStunGunner";  
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityStunGunner";  
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -216,7 +216,7 @@ static function X2Effect_ArcthrowerStunned CreateArcthrowerStunnedStatusEffect(i
 	local X2Condition_UnitProperty UnitPropCondition;
 
 	StunnedEffect = new class'X2Effect_ArcthrowerStunned';
-	StunnedEffect.BuildPersistentEffect(1, true, true, false, eGameRule_UnitGroupTurnBegin);
+	StunnedEffect.BuildPersistentEffect(1, true, false, false, eGameRule_UnitGroupTurnBegin);
 	StunnedEffect.ApplyChance = Chance;
 	//StunnedEffect.StunLevel = StunLevel;
 	StunnedEffect.bIsImpairing = true;
@@ -250,7 +250,7 @@ static function X2AbilityTemplate StunGunner()
 	local X2Effect_StunGunner		StunGunnerEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'StunGunner');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityStunGunner";  
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityStunGunner";  
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
@@ -289,7 +289,7 @@ static function X2AbilityTemplate AddEMPulser()
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'EMPulser');
 
 	// Icon Properties
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityEMPulser"; 
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityEMPulser"; 
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.STANDARD_PISTOL_SHOT_PRIORITY;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
 	Template.DisplayTargetHitChance = true;
@@ -427,7 +427,7 @@ static function X2AbilityTemplate CreateStreetSweeper2Ability()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityStreetSweeper2";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityStreetSweeper2";
 	Template.ActivationSpeech = 'Reaper';
 	Template.CinescriptCameraType = "StandardGunFiring";
 	Template.bCrossClassEligible = false;
@@ -554,7 +554,7 @@ static function X2AbilityTemplate CreateChainLightningAbility()
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_COLONEL_PRIORITY;
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityChainLightning";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityChainLightning";
 	Template.bCrossClassEligible = false;
 	Template.Hostility = eHostility_Offensive;
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);

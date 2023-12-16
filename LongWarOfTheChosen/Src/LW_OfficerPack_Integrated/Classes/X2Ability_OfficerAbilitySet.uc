@@ -50,6 +50,8 @@ var config array<float> COMMANDRANGE_DIFFICULTY_MULTIPLER;
 
 var const name OfficerSourceName; // change this once UI work is done
 
+var config array<string> KismetTimerVariableNames;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -77,7 +79,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddLeadershipAbility());
 	Templates.AddItem(AddEspritdeCorpsAbility());
 
-	Templates.AddItem(PurePassive('TrialByFire', "img:///UILibrary_LW_Overhaul.UIPerk_TrialByFire", true));
+	Templates.AddItem(PurePassive('TrialByFire', "img:///UILibrary_LWOTC.UIPerk_TrialByFire", true));
 
 	// Add the command bonus range ability templates, one for each officer rank.
 	// i == 1 is 2nd Lieutenant.
@@ -738,6 +740,7 @@ static function X2AbilityTemplate AddCommandAbility()
 	ActionPointEffect = new class'X2Effect_GrantActionPoints';
     ActionPointEffect.NumActionPoints = 1;
     ActionPointEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
+    ActionPointEffect.bSelectUnit = true;
     Template.AddTargetEffect(ActionPointEffect);
 
 	ActionPointPersistEffect = new class'X2Effect_Persistent';
@@ -772,7 +775,7 @@ static function X2AbilityTemplate AddInterventionAbility()
 	local X2Condition_HasEnoughIntel		IntelCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Intervention');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityIntervention";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityIntervention";
 	Template.AbilitySourceName = default.OfficerSourceName;
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
@@ -890,7 +893,10 @@ function XComGameState InterventionAbility_BuildGameState( XComGameStateContext 
 		{
 			UpdatedUiTimer.UiState = Normal_Blue;
 		}
+
+		AdjustKismetMissionTimerVariable(default.INTERVENTION_EXTRA_TURNS, NewGameState);
 	}
+	
 
 	//apply the intel cost
 	CostScalars.length = 0;
@@ -903,6 +909,78 @@ function XComGameState InterventionAbility_BuildGameState( XComGameStateContext 
 
 	//Return the game state we have created
 	return NewGameState;
+}
+
+//method that bypasses the Fxs KismetVariable Manager - modified from Rusty's code
+private function AdjustKismetMissionTimerVariable(int Adjustment, XComGameState NewGameState)
+{
+	local X2SitRepEffect_ModifyKismetVariable SitRep;
+
+	//PrintKismetVariables(default.KismetTimerVariableNames);
+
+	// !! NOTE !! -- Requires the ModifyKismetVariablesInternal to be UNPRIVITISED in srcOrig for compiling
+	// /*private*/ native function ModifyKismetVariablesInternal(XComGameState NewGameState);
+
+	SitRep = New class'X2SitRepEffect_ModifyKismetVariable';
+	SitRep.VariableNames = default.KismetTimerVariableNames;
+	SitRep.ValueAdjustment = Adjustment;
+	//SitRep.ModifyKismetVariables(); // Doesn't work due to the foreach looking for BattleData.ActiveSitReps
+	SitRep.ModifyKismetVariablesInternal(NewGameState);
+
+}
+
+function PrintKismetVariables(array<string> VariableNames, optional bool bAllVars)
+{
+	//local array<SequenceVariable> OutVariables;
+	local array<SequenceObject> OutObjects;
+	local SequenceObject SeqObj;
+	local SequenceVariable SeqVar;
+	local SeqVar_Int SeqVarTimer;
+	local Sequence CurrentSequence;
+
+	/*`XWORLDINFO.MyKismetVariableMgr.RebuildVariableMap();
+	`XWORLDINFO.MyKismetVariableMgr.GetVariable(name("Timer.TurnsRemaining"), OutVariables);
+
+	foreach OutVariables(SeqVar)
+	{
+		SeqVarTimer = SeqVar_Int(SeqVar);
+		if(SeqVarTimer != none)
+		{
+			if(SeqVarTimer.VarName == name("Timer.TurnsRemaining"))
+			{
+				class'Helpers'.static.OutputMsg("Found KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+				SeqVarTimer.IntValue = SeqVarTimer.IntValue + Adjustment;
+				class'Helpers'.static.OutputMsg("-NEW- KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+			}
+		}
+	}*/
+
+	CurrentSequence = `XWORLDINFO.GetGameSequence();
+	if(CurrentSequence == none)
+	{
+		return;
+	}
+
+	CurrentSequence.FindSeqObjectsByClass(class'SequenceVariable', true, OutObjects);
+
+	foreach OutObjects(SeqObj)
+	{
+		SeqVar = SequenceVariable(SeqObj);
+		if(SeqVar != none)
+		{
+			SeqVarTimer = SeqVar_Int(SeqVar);
+			if(SeqVarTimer != none)
+			{
+				if(VariableNames.Find(string(SeqVarTimer.VarName)) != INDEX_NONE)
+				{
+					//class'Helpers'.static.OutputMsg("KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+					//class'Helpers'.static.OutputMsg("Found KismetVariable To Adjust: " $ Adjustment);
+					//SeqVarTimer.IntValue = SeqVarTimer.IntValue + Adjustment;
+					class'Helpers'.static.OutputMsg("Named KismetVariable: " $ SeqVar.VarName $ ", Value= " $ SeqVarTimer.IntValue);
+				}
+			}
+		}
+	}
 }
 
 //code that attempts to increment the kismet timer int value
@@ -1024,7 +1102,7 @@ static function X2AbilityTemplate AddIncomingAbility()
 	local X2Condition_UnitActionPoints		ValidTargetCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Incoming');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityIncoming";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityIncoming";
 	Template.AbilitySourceName = default.OfficerSourceName;
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
@@ -1095,7 +1173,7 @@ static function X2AbilityTemplate AddJammerAbility()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Jammer');
 
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityJammer";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityJammer";
 	Template.AbilitySourceName = default.OfficerSourceName;
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
@@ -1200,7 +1278,7 @@ static function X2AbilityTemplate AddAirControllerAbility()
 	local X2Effect_AirController			AirControllerEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AirController');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityAirController";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityAirController";
 	Template.AbilitySourceName = default.OfficerSourceName;
 	Template.Hostility = eHostility_Neutral;
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
@@ -1226,7 +1304,7 @@ static function X2AbilityTemplate AddInfiltratorAbility()
 {
 	local X2AbilityTemplate                 Template;
 
-	Template = PurePassive('Infiltrator', "img:///UILibrary_LW_Overhaul.LW_AbilityInfiltrator", false, 'eAbilitySource_Perk');
+	Template = PurePassive('Infiltrator', "img:///UILibrary_LWOTC.LW_AbilityInfiltrator", false, 'eAbilitySource_Perk');
 	return Template;
 }
 
@@ -1433,7 +1511,7 @@ static function X2AbilityTemplate AddLeadershipAbility()
 	local x2Effect_Persistent					PersistentEffect;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Leadership');
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityLeadership";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityLeadership";
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
 	Template.AbilityToHitCalc = default.DeadEye;
@@ -1468,7 +1546,7 @@ static function X2AbilityTemplate AddEspritdeCorpsAbility()
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.eAbilityIconBehaviorHUD = EAbilityIconBehavior_NeverShow;
 	Template.Hostility = eHostility_Neutral;
-	Template.IconImage = "img:///UILibrary_LW_Overhaul.LW_AbilityLeadership";
+	Template.IconImage = "img:///UILibrary_LWOTC.LW_AbilityLeadership";
 
 	Template.AbilityToHitCalc = default.DeadEye;
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
@@ -1558,6 +1636,18 @@ static function ConfigureCommandRangeMultiTargetStyle(X2AbilityTemplate Template
 	Template.TargetingMethod = class'X2TargetingMethod_CommandRange';
 }
 
+//helper function to submit new game states        
+protected static function SubmitNewGameState(out XComGameState NewGameState)
+{
+    if (NewGameState.GetNumGameStateObjects() > 0)
+    {
+        `GAMERULES.SubmitGameState(NewGameState);
+    }
+    else
+    {
+        `XCOMHISTORY.CleanupPendingGameState(NewGameState);
+    }
+}
 
 DefaultProperties
 {

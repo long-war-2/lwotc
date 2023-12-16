@@ -175,7 +175,7 @@ LocFlyOverText="Napalm-X"
 ; LWOTC Needs Translation (3)
 LocLongDescription="Your Flamethrower can now panic enemies."
 LocHelpText="Your Flamethrower can now panic enemies."
-LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/><Bullet/> The chance to panic is <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, depending on soldier's gauntlet tier, and is negatively affected by target's Will score."
+LocPromotionPopupText="<Bullet/> Your Flamethrower can now panic enemies. Enemy units must pass a will check to avoid negative effects.<br/><Bullet/> The chance to panic is <Ability:NAPALM_X_BASEVALUE>% + <Ability:GAUNTLET_CONVENTIONAL_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_MAG_OPPOSED_STAT_STRENTH>/<Ability:GAUNTLET_BEAM_OPPOSED_STAT_STRENTH>%, depending on soldier's gauntlet tier, and is negatively affected by target's Will score.<br/><Bullet/> Enemies hit by Roust are not affected by Napalm-X."
 ; End Translation (3)
 
 [PhosphorusPassive X2AbilityTemplate]
@@ -183,7 +183,7 @@ LocFriendlyName="Phosphorus"
 LocFlyOverText="Phosphorus"
 LocLongDescription="Your flamethrower's base damage can now ignore fire immunities, and shred armor.""
 LocHelpText="Your flamethrower's base damage can now ignore fire immunities, and shred armor."
-LocPromotionPopupText="<Bullet/> Your flamethrower can now ignore fire immunities.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
+LocPromotionPopupText="<Bullet/> While you can now damage fire immune enemies, they still cannot be set on fire.<br/><Bullet/> Flamethrower attacks shred 1 armor.</br>"
 
 [Incinerator X2AbilityTemplate]
 LocFriendlyName="Incinerator"
@@ -195,9 +195,9 @@ LocPromotionPopupText="<Bullet/> Your flamethrower has an increased range and co
 [Roust X2AbilityTemplate]
 LocFriendlyName="Roust"
 LocFlyOverText="Roust"
-LocLongDescription="Special Flamethrower shot that does limited damage but forces enemies to change their position."
-LocHelpText="Special flamethrower shot that forces enemies to change their location."
-LocPromotionPopupText="<Bullet/> Has a 20% chance to set enemies in the area of effect on fire and does limited damage.<br/><Bullet/> The narrow jet of flame has less impact on the environment.<br/><Bullet/> Units hit by the shot will be forced to move, often triggering overwatch fire.<br/><Bullet/> One use per mission, but can gain an additional use with additional gear.<br/><Bullet/> Cannot be used from concealment."
+LocLongDescription="Special Flamethrower shot that deals limited damage but forces enemies to change their position and decreases their mobility and defense."
+LocHelpText="Special Flamethrower shot that deals limited damage but forces enemies to change their position and decreases their mobility and defense."
+LocPromotionPopupText="<Bullet/> Has a <Ability:ROUST_DIRECT_APPLY_CHANCE>% chance to set enemies in the area of effect on fire and deals <Ability:ROUST_DAMAGE_PENALTY>% reduced damage.<br/><Bullet/> The narrow jet of flame has less impact on the environment.<br/><Bullet/> Units hit by the shot will be forced to move, often triggering overwatch fire.<br/><Bullet/> One use per mission, but can gain an additional use with additional gear.<br/><Bullet/> Cannot be used from concealment."
 
 ; LWOTC Needs Translation (2)
 [Burnout X2AbilityTemplate]
@@ -234,7 +234,15 @@ LocFriendlyName="Firestorm"
 LocFlyOverText="Firestorm"
 LocLongDescription="Once per battle, attack all units in a complete circle around the soldier's position. Also grants immunity to fire damage."
 LocHelpText="Spray fire in a complete circle around your position."
-LocPromotionPopupText="<Bullet/> This will light fires and do fire damage to all enemies in a circle around the soldier's position, doing +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> bonus damage over regular Flamethrower attacks.<br/><Bullet/> Firestorm also grants immunity to fire damage.<br/><Bullet/> Requires one action point and will end the soldier's turn when used.<br/><Bullet/> Usable once per battle.<br/><Bullet/> It is not recommended the soldier uses Firestorm on rooftops."
+LocPromotionPopupText="<Bullet/> This will light fires and deal fire damage to all enemies in a circle around the soldier's position.<br/><Bullet/> Firestorm deals +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> bonus damage over regular Flamethrower attacks.<br/><Bullet/> Requires two action points and will end the soldier's turn when used.<br/><Bullet/> Usable once per battle.<br/><Bullet/> Firestorm also grants immunity to fire damage.<br/><Bullet/> It is not recommended the soldier uses Firestorm on rooftops."
+
+[Firestorm2 X2AbilityTemplate]
+LocFriendlyName="Test Firestorm"
+LocFlyOverText="Test Firestorm"
+LocLongDescription="Once per battle, attack all units in a complete circle around the soldier's position. Also grants immunity to fire damage."
+LocHelpText="Spray fire in a complete circle around your position."
+LocPromotionPopupText="<Bullet/> This will light fires and deal fire damage to all enemies in a circle around the soldier's position.<br/><Bullet/> Firestorm deals +<ABILITY:FIRESTORM_DAMAGE_BONUS_LW> bonus damage over regular Flamethrower attacks.<br/><Bullet/> Requires two action points and will end the soldier's turn when used.<br/><Bullet/> Usable once per battle.<br/><Bullet/> Firestorm also grants immunity to fire damage.<br/><Bullet/> It is not recommended the soldier uses Firestorm on rooftops."
+
 
 [TechnicalFireImmunity X2AbilityTemplate]
 LocFriendlyName="Fire Immunity"
@@ -278,14 +286,14 @@ LocLongDescription="Attacks with your gauntlet, and fires set by gauntlet weapon
 LocHelpText="Attacks with your gauntlet, and fires set by gauntlet weapons, do +1 damage."
 LocPromotionPopupText="<Bullet/> Attacks with your gauntlet, and fires set by gauntlet weapons, do +1 damage.<br/><Bullet/> This applies to both rocket launcher and flamethrower weapons, and the fires they set.<br/>"
 
-; LWOTC Needs Translation (2)
+; LWOTC Needs Translation (4)
 [ConcussionRocket X2AbilityTemplate]
 LocFriendlyName="Concussion Rocket"
 LocFlyOverText="Concussion Rocket"
-LocLongDescription="Fire a special rocket that does limited damage but has a chance to stun or disorient organic enemies within its area of effect and leaves a cloud of smoke."
-LocHelpText="Rocket that stuns or disorients targets and leaves a smoke cloud. <Ability:ROCKETSCATTER/>"
-LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun chances based on target's Will score and the soldier's gauntlet tier.<br/><Bullet/> Disorientation chances based on target's Will score only.<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> Elite Codexes and Psi Zombies are immune to all effects including damage.<br/><Bullet/> Allies cannot be injured by this attack.<br/>"
-; End Translation (2)
+LocLongDescription="Fire a special rocket that does limited damage but has a chance to stun or disorient organic enemies within its area of effect."
+LocHelpText="Rocket that stuns or disorients targets. <Ability:ROCKETSCATTER/>"
+LocPromotionPopupText="<Bullet/> One use per mission.<br/><Bullet/> Stun chance is 20% .<br/><Bullet/> Disorientation chance is 100% and bypasses disorient resist (but not immunity).<br/><Bullet/> Requires one action and ends the soldier's turn.<br/><Bullet/> Elite Codexes and Psi Zombies are immune to all effects including damage.<br/><Bullet/> Allies cannot be injured by this attack.<br/>"
+; End Translation (4)
 
 ;;;;;;;;;;;;;;;;;;;;  SHINOBI ABILITIES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -319,7 +327,7 @@ LocFriendlyName="Failsafe"
 LocLongDescription="If you fail a hack, you prevent any negative effects from occurring."
 LocHelpText="If you fail a hack, you prevent any negative effects from occurring."
 LocFlyOverText="Failsafe"
-LocPromotionPopupText="<Bullet/> If you fail a hack, you prevent any negative effects from occurring."
+LocPromotionPopupText="<Bullet/> Negative effects prevented by Failsafe include losing squad concealment."
 
 [FullOverride X2AbilityTemplate]
 LocFriendlyName="Full Override"
@@ -358,8 +366,8 @@ Description="Take control of this unit for rest of the mission and gain stat bon
 
 ; LWOTC Needs Translation (3)
 [ScanningProtocol X2AbilityTemplate]
-LocLongDescription="The GREMLIN can trigger an instant scan of the area, increasing the Specialist's sight radius substantially for one turn, and revealing any hidden or disguised enemies in view. Free Action."
-LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved Gremlins.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the Specialist is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
+LocLongDescription="The GREMLIN can trigger an instant scan of the area, increasing the <Ability:ClassName>'s sight radius substantially for one turn, and revealing any hidden or disguised enemies in view. Free Action."
+LocPromotionPopupText="<Bullet/> Scanning Protocol has <ABILITY:SCANNING_PROTOCOL_INITIAL_CHARGES_LW/> initial charges.<br/><Bullet/> Scanning Protocol gains bonus charges with improved GREMLINs.<br/><Bullet/> In addition to hidden and disguised enemies, enemies blocked from line of sight by walls or obstructions will also be revealed by Scanning Protocol.<br/><Bullet/> Scanning Protocol is a free action.<br/><Bullet/> If the Specialist is employed as Haven Adviser Scanning Protocol will reduce the chance of recruiting Faceless rebels by 40% (stacking cumulatively with other similar abilities).<br/>"
 ; End Translation (3)
 
 ; End translation
@@ -410,16 +418,16 @@ LocFriendlyName="HEAT Warheads"
 LocLongDescription="Your grenades now pierce up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor and shred <ABILITY:HEAT_WARHEADS_SHRED_LW/> additional point(s) of armor."
 LocHelpText="Your grenades now pierce up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor and shred <ABILITY:HEAT_WARHEADS_SHRED_LW/> additional point(s) of armor."
 LocFlyOverText="HEAT Warheads"
-LocPromotionPopupText="<Bullet/> Your grenades now pierce (ignore) up to <ABILITY:HEAT_WARHEADS_PIERCE_LW/> point(s) of armor and shred <ABILITY:HEAT_WARHEADS_SHRED_LW/> additional point(s) of armor.<br/>"
+LocPromotionPopupText="<Bullet/> Grenades that do not innately shred any armor do not benefit from the additional shred."
 ; End Translation
 
 [Bombard_LW X2AbilityTemplate]
 LocFriendlyName="Bombardier"
 ; LWOTC Needs Translation (2)
-LocLongDescription="You may throw or launch grenades two additional tiles."
-LocHelpText="You may throw or launch grenades two additional tiles."
+LocLongDescription="You may throw or launch grenades <Ability:BOMBARD_BONUS_RANGE_TILES> additional tiles."
+LocHelpText="You may throw or launch grenades <Ability:BOMBARD_BONUS_RANGE_TILES> additional tiles."
 LocFlyOverText="Bombardier"
-LocPromotionPopupText="<Bullet/> Your grenades have 2 tiles extra range.<br/><Bullet/> This includes both launched and thrown grenades.<br/>"
+LocPromotionPopupText="<Bullet/> This includes both launched and thrown grenades."
 ; End Translation (2)
 
 [BluescreenBombs X2AbilityTemplate]
@@ -466,10 +474,10 @@ LocPromotionPopupText="<Bullet/> Grenades, standard rockets, and MEC micromissil
 
 [KnifeFighter X2AbilityTemplate]
 LocFriendlyName="Knife Fighter"
-LocLongDescription="You may make a melee attack with your knife against adjacent enemies."
-LocHelpText="Knife Attack"
+LocLongDescription="Attack an adjacent enemy with your knife."
+LocHelpText="Attack an adjacent enemy with your knife."
 LocFlyOverText="Knife Fighter"
-LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end your turn.<br/>"
+LocPromotionPopupText="<Bullet/> Knife attacks use one action and do not end your turn."
 
 [Combatives X2AbilityTemplate]
 LocFriendlyName="Combatives"
@@ -482,11 +490,11 @@ LocPromotionPopupText="<Bullet/> You will parry any grazed melee attack against 
 
 [Flush X2AbilityTemplate]
 LocFriendlyName="Flush"
-LocLongDescription="Special shot with a bonus to hit that does little or no damage but confers defense and dodge penalties and forces target to change position if it hits."
-LocHelpText="Special shot that does little or no damage but confers defense and dodge penalties and forces target to change position."
+LocLongDescription="Special shot with +<Ability:FLUSH_AIM_BONUS> aim but -<Ability:FLUSH_DAMAGE_PENALTY>% reduced damage. If it hits, the target loses -<Ability:FLUSH_DEFENSE_REDUCTION> defense, -<Ability:FLUSH_DODGE_REDUCTION> dodge, and is forced to move."
+LocHelpText="Special shot with +<Ability:FLUSH_AIM_BONUS> aim but -<Ability:FLUSH_DAMAGE_PENALTY>% reduced damage. If it hits, the target loses -<Ability:FLUSH_DEFENSE_REDUCTION> defense, -<Ability:FLUSH_DODGE_REDUCTION> dodge, and is forced to move."
 LocFlyOverText="Flush"
 ; LWOTC needs translation (2)
-LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> +<Ability:FLUSH_AIM_BONUS/> bonus to aim.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment.<br/><Bullet/> Target loses <Ability:FLUSH_DEFENSE_REDUCTION> defense and <Ability:FLUSH_DODGE_REDUCTION> dodge. The debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns."
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Flush has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> The defense and dodge debuff lasts <Ability:FLUSH_STATEFFECT_DURATION> turns.<br/><Bullet/> Cannot crit or apply bonus ammo effects.<br/><Bullet/> Cannot be used from concealment."
 ; End Translation (2)
 str_FlushEffect="Flushed"
 
@@ -498,6 +506,26 @@ LocPromotionPopupText="<Bullet/> Hail of Bullets requires <Ability:SelfAmmoCost/
 
 [ChainShot X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Chain Shot requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Chain Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Chain Shot can be devastating against non-cover enemies, or when augmented with aim bonuses.<br/>"
+
+
+
+[ChainShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Chain Shot (Snap Shot)"
+LocLongDescription="Take a shot with an aim penalty of <Ability:CHAINSHOTPENALTY/>. If you hit the target, you take another shot on the target automatically."
+LocHelpText="Take a shot with an aim penalty of <Ability:CHAINSHOTPENALTY/>. If you hit the target, you take another shot on the target automatically."
+LocFlyOverText="Chain Shot"
+LocPromotionPopupText="<Bullet/> Chain Shot requires <Ability:SelfAmmoCost/> ammo points, and has a <Ability:SelfCooldown/> turn cooldown.<br/><Bullet/> Chain Shot can be devastating against non-cover enemies, or when augmented with aim bonuses.<br/>"
+
+
+[ChainShotSnapShot X2AbilityTemplate]
+LocPromotionPopupText="<Bullet/> Chain Shot requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Chain Shot has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Chain Shot can be devastating against non-cover enemies, or when augmented with aim bonuses.<br/>"
+
+[ChainShotSnapShot2 X2AbilityTemplate]
+LocFriendlyName="Chain Shot"
+LocFlyOverText="Chain Shot"
+LocPromotionPopupText=""
+
+
 
 [SaturationFire X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Saturation Fire requires <Ability:SelfAmmoCost/> ammo points.<br/><Bullet/> Saturation Fire has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Saturation Fire will take a standard shot at every enemy in the cone, and will damage or destroy random cover elements in the cone.<br/>"
@@ -516,11 +544,11 @@ LocPromotionPopupText="<Bullet/> Rapidly loses accuracy beyond four tiles range.
 
 [BothBarrels X2AbilityTemplate]
 LocFriendlyName="Both Barrels"
-LocLongDescription="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."
-LocHelpText="Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage."
+LocLongDescription="Fire both barrels of your sawed-off shotgun at nearby enemy, dealing double damage."
+LocHelpText="Fire both barrels of your sawed-off shotgun at nearby enemy, dealing double damage."
 LocFlyOverText="Both Barrels"
 ;LWOTC needs translation
-LocPromotionPopupText="<Bullet/> Fire both barrels of sawed-off shotgun at nearby enemy, doing double damage.<br/><Bullet/> Uses <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action.<br/>"
+LocPromotionPopupText="<Bullet/> Consumes <Ability:SelfAmmoCost/> ammo.<br/><Bullet/> Uses one action.<br/>"
 ; End Translation
 
 [PumpAction X2AbilityTemplate]
@@ -528,7 +556,7 @@ LocFriendlyName="Pump Action"
 LocLongDescription="Gain two extra ammo in your sawed-off shotgun."
 LocHelpText="Gain two extra ammo in your sawed-off shotgun."
 LocFlyOverText="Pump Action"
-LocPromotionPopupText="<Bullet/> Gain two extra ammo in your sawed-off shotgun.<br/>"
+LocPromotionPopupText=""
 
 [Fortify X2AbilityTemplate]
 LocFriendlyName="Fortify"
@@ -579,8 +607,8 @@ LocLongDescription="Using your Holotargeter no longer automatically ends your tu
 
 [HDHolo X2AbilityTemplate]
 LocFriendlyName="HiDef Holo"
-LocLongDescription="Your Holotargeted enemies are easier to critically hit."
-LocHelpText="Your Holotargeted enemies are easier to critically hit."
+LocLongDescription="Attacks against your Holotargeted enemies have a bonus to critical chance."
+LocHelpText="Attacks against your Holotargeted enemies have a bonus to critical chance."
 LocFlyOverText="HiDef Holo"
 LocPromotionPopupText="<Bullet/> The critical hit bonus is +<Ability:HDHOLO_CV_CRIT_BONUS_LW/> with the basic Holotargeter, but improves to +<Ability:HDHOLO_MG_CRIT_BONUS_LW/> and +<Ability:HDHOLO_BM_CRIT_BONUS_LW/> with advanced technology Holotargeting devices.<br/>"
 
@@ -753,20 +781,20 @@ LocFlyOverText="Elite Hair Trigger"
 
 [Stock_LW_Bsc_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
-LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_BSC_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost after you use actions or take damage."
+LocHelpText="Steady Weapon: Bonus to aim and crit on next shot if you don't use another action or take damage"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Adv_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
-LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_ADV_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost after you use actions or take damage."
+LocHelpText="Steady Weapon: Bonus to aim and crit on next shot if you don't use another action or take damage"
 LocFlyOverText="Steady Weapon"
 
 [Stock_LW_Sup_Ability X2AbilityTemplate]
 LocFriendlyName="Steady Weapon"
-LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost if you take non-shooting actions or are wounded."
-LocHelpText="Steady Weapon: Bonus to hit on next shot if you are not wounded nor take another action"
+LocLongDescription="Activate the Steady Weapon ability to gain +<Ability:STOCK_SUP_SW_AIM_BONUS/> aim and crit chance on your next shot with the equipped weapon. Bonus is lost after you use actions or take damage."
+LocHelpText="Steady Weapon: Bonus to aim and crit on next shot if you don't use another action or take damage"
 LocFlyOverText="Steady Weapon"
 
 ;End Translation (2)
@@ -774,108 +802,108 @@ LocFlyOverText="Steady Weapon"
 [Needle_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Needle Rounds"
 LocFlyOverText="Needle Rounds"
-LocLongDescription="Does +1 damage to all targets and +2 damage to nonrobotic ADVENT."
-LocHelpText="Does +1 damage to all targets and +2 damage to nonrobotic ADVENT."
+LocLongDescription="Your shots deal +<Ability:NEEDLE_DMGMOD> damage to all targets and +<Ability:NEEDLE_ADVENT_DMG> additional damage to nonrobotic ADVENT personnel."
+LocHelpText="Your shots deal +<Ability:NEEDLE_DMGMOD> damage to all targets and +<Ability:NEEDLE_ADVENT_DMG> additional damage to nonrobotic ADVENT personnel."
 
 [Shredder_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Shredder Rounds"
 LocFlyOverText="Shredder Rounds"
-LocLongDescription="Shreds 2 enemy armor with every hit."
-LocHelpText="Shreds 2 enemy armor with every hit."
+LocLongDescription="Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> armor."
+LocHelpText="Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> armor."
 
 [Flechette_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Flechette Rounds"
 LocFlyOverText="Flechette Rounds"
-LocLongDescription="Does +1 damage to all targets and +2 damage to unarmored targets."
-LocHelpText="Does +1 damage to all targets and +2 damage to unarmored targets."
+LocLongDescription="Your shots deal +<Ability:FLECHETTE_DMGMOD> damage to all targets and +<Ability:FLECHETTE_BONUS_DMG> additional damage to unarmored targets."
+LocHelpText="Your shots deal +<Ability:FLECHETTE_DMGMOD> damage to all targets and +<Ability:FLECHETTE_BONUS_DMG> additional damage to unarmored targets."
 
 [Redscreen_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Redscreen Rounds"
 LocFlyOverText="Redscreen Rounds"
 ; LWOTC Needs Translation
-LocLongDescription="Lowers target's hack defense by <Ability:REDSCREEN_EFFECT_LW/>. Does not stack, but does refresh."
-LocHelpText="Lowers target's hack defense by <Ability:REDSCREEN_EFFECT_LW/>. Does not stack, but does refresh."
+LocLongDescription="Your shots lower the target's hack defense by <Ability:REDSCREEN_EFFECT_LW/> on hit. Repeated hits do not stack, but do refresh the duration."
+LocHelpText="Your shots lower the target's hack defense by <Ability:REDSCREEN_EFFECT_LW/> on hit. Repeated hits do not stack, but do refresh the duration."
 ; Ends Translation
 
 ; LWOTC Needs Translation
 [Stiletto_Rounds_Ability X2AbilityTemplate]
 LocFriendlyName="Stiletto Rounds"
 LocFlyOverText="Stiletto Rounds"
-LocLongDescription="Does +1 damage to all targets and +2 damage to nonrobotic aliens."
-LocHelpText="Does +1 damage to all targets and +2 damage to nonrobotic aliens."
+LocLongDescription="Your shots deal +<Ability:STILETTO_DMGMOD> damage to all targets and +<Ability:STILETTO_ALIEN_DMG> additional damage to nonrobotic aliens."
+LocHelpText="Your shots deal +<Ability:STILETTO_DMGMOD> damage to all targets and +<Ability:STILETTO_ALIEN_DMG> additional damage to nonrobotic aliens."
 ; Ends Translation
 
 [AP_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Armor Piercing Rounds"
 LocFlyOverText="Armor Piercing Rounds"
-LocLongDescription="Your hits ignore 2 armor."
-LocHelpText="Your hits ignore 2 armor."
+LocLongDescription="Your shots pierce <Ability:APROUNDSPIERCEBONUS> armor."
+LocHelpText="Your shots pierce <Ability:APROUNDSPIERCEBONUS> armor."
 
 [Tracer_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Tracer Rounds"
 LocFlyOverText="Tracer Rounds"
-LocLongDescription="Your weapons have +5 aim."
-LocHelpText="Your weapons have +5 aim."
+LocLongDescription="Your shots have +<Ability:TRACERROUNDSAIMBONUS> aim."
+LocHelpText="Your shots have +<Ability:TRACERROUNDSAIMBONUS> aim."
 
 [Talon_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Talon Rounds"
 LocFlyOverText="Talon Rounds"
-LocLongDescription="Your weapons have +10 crit chance and do +1 damage on critical hits."
-LocHelpText="Your weapons have +10 crit chance and do +1 damage on critical hits."
+LocLongDescription="Your shots have +<Ability:TALONROUNDSCRITCHANCE> crit chance and deal +<Ability:TALONROUNDSCRITDAMAGEBONUS> damage on critical hits."
+LocHelpText="Your shots have +<Ability:TALONROUNDSCRITCHANCE> crit chance and deal +<Ability:TALONROUNDSCRITDAMAGEBONUS> damage on critical hits."
 
 [Dragon_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Dragon Rounds"
 LocFlyOverText="Dragon Rounds"
-LocLongDescription="Your weapons do +1 damage and can set enemies on fire."
-LocHelpText="Your weapons do +1 damage and can set enemies on fire."
+LocLongDescription="Your shots deal +1 damage and have <Ability:DRAGON_ROUNDS_APPLY_CHANCE>% chance to set enemies on fire."
+LocHelpText="Your shots deal +1 damage and have <Ability:DRAGON_ROUNDS_APPLY_CHANCE>% chance to set enemies on fire."
 
 [Bluescreen_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Bluescreen Rounds"
 LocFlyOverText="Bluescreen Rounds"
-LocLongDescription="Your weapons do +3 damage to mechanical enemies and remove some defensive shields."
-LocHelpText="Your weapons do +3 damage to mechanical enemies and remove some defensive shields."
+LocLongDescription="Your shots deal +<Ability:BLUESCREEN_DMGMOD> damage to mechanical enemies and remove some defensive shields."
+LocHelpText="Your shots deal +<Ability:BLUESCREEN_DMGMOD> damage to mechanical enemies and remove some defensive shields."
 
 [Venom_Rounds_Ability_PP X2AbilityTemplate]
 LocFriendlyName="Venom Rounds"
 LocFlyOverText="Venom Rounds"
-LocLongDescription="Your weapons do +1 damage and may poison enemies."
-LocHelpText="Your weapons do +1 damage and may poison enemies."
+LocLongDescription="Your shots deal +1 damage and have <Ability:VENOM_ROUNDS_APPLY_CHANCE>% chance to poison enemies."
+LocHelpText="Your shots deal +1 damage and have <Ability:VENOM_ROUNDS_APPLY_CHANCE>% chance to poison enemies."
 
 [Ceramic_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Ceramic Plating"
 LocFlyOverText="Ceramic Plating"
-LocLongDescription="You gain 2 ablative hit points."
-LocHelpText="You gain 2 ablative hit points."
+LocLongDescription="You gain <Ability:CERAMIC_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:CERAMIC_PLATING_HP> ablative hit points."
 
 [Alloy_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Alloy Plating"
 LocFlyOverText="Alloy Plating"
-LocLongDescription="You gain 3 ablative hit points."
-LocHelpText="You gain 3 ablative hit points."
+LocLongDescription="You gain <Ability:ALLOY_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:ALLOY_PLATING_HP> ablative hit points."
 
 [Chitin_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Chitin Plating"
 LocFlyOverText="Chitin Plating"
-LocLongDescription="You gain 4 ablative hit points."
-LocHelpText="You gain 4 ablative hit points."
+LocLongDescription="You gain <Ability:CHITIN_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:CHITIN_PLATING_HP> ablative hit points."
 
 [Carapace_Plating_Ability X2AbilityTemplate]
 LocFriendlyName="Carapace Plating"
 LocFlyOverText="Carapace Plating"
-LocLongDescription="You gain 5 ablative hit points."
-LocHelpText="You gain 5 ablative hit points."
+LocLongDescription="You gain <Ability:CARAPACE_PLATING_HP> ablative hit points."
+LocHelpText="You gain <Ability:CARAPACE_PLATING_HP> ablative hit points."
 
 [HazmatVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="Hazmat Vest"
 LocFlyOverText="Hazmat Vest"
-LocLongDescription="Grants 3 hit points and confers immunity to fire, acid and poison."
-LocHelpText="Grants 3 hit points and confers immunity to fire, acid and poison."
+LocLongDescription="Grants <Ability:HAZMAT_VEST_HP_BONUS> hit points and confers immunity to fire, acid and poison."
+LocHelpText="Grants <Ability:HAZMAT_VEST_HP_BONUS> hit points and confers immunity to fire, acid and poison."
 
 [NanofiberVestBonus_LW X2AbilityTemplate]
 LocFriendlyName="Nanoscale Vest"
 LocFlyOverText="Nanoscale Vest"
-LocLongDescription="Grants 2 hit points and enemies have a -25 to their critical chances against you."
-LocHelpText="Grants 2 hit points and enemies have a -25 to their critical chances against you."
+LocLongDescription="Grants <Ability:NANOFIBER_HEALTH_BONUS_LW> hit points and enemies have a -<Ability:NANOFIBER_CRITDEF_BONUS_LW> to their critical chances against you."
+LocHelpText="Grants <Ability:NANOFIBER_HEALTH_BONUS_LW> hit points and enemies have a -<Ability:NANOFIBER_CRITDEF_BONUS_LW> to their critical chances against you."
 
 [FireControl25 X2AbilityTemplate]
 LocFriendlyName="Fire Control (25)"
@@ -898,8 +926,8 @@ LocHelpText="This soldier will not take reaction shots with less than a 75% chan
 [Neurowhip_Ability X2AbilityTemplate]
 LocFriendlyName="Neurowhip"
 LocFlyoverText="Neurowhip"
-LocLongDescription="Grants 10 psi offense at a cost of 10 will."
-LocHelpText="Grants 10 psi offense at a cost of 10 will."
+LocLongDescription="Grants <Ability:NEUROWHIP_PSI_BONUS> psi offense at a cost of <Ability:NEUROWHIP_WILL_MALUS> will."
+LocHelpText="Grants <Ability:NEUROWHIP_PSI_BONUS> psi offense at a cost of <Ability:NEUROWHIP_WILL_MALUS> will."
 
 ;;;;;;;;;;;;;;;;;;;;  ITEM TEMPLATES ;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -907,7 +935,7 @@ LocHelpText="Grants 10 psi offense at a cost of 10 will."
 FriendlyName="Pistol"
 FriendlyNamePlural="Pistols"
 UnknownUtilityCategory="Pistol"
-BriefSummary="XCOM soldiers may carry high-caliber pistols in addition to their stndard weapons. With the proper training, soldiers can pose an enormous threat at close range."
+BriefSummary="XCOM soldiers may carry high-caliber pistols in addition to their standard weapons. With the proper training, soldiers can pose an enormous threat at close range."
 TacticalText="<Bullet/> Pistols can be much more than a sidearm in the hands of a trained soldier.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges."
 
 [LWPistol_LS X2WeaponTemplate]
@@ -937,17 +965,19 @@ FriendlyName="Plasma Pistol"
 FriendlyNamePlural="Plasma Pistols"
 UnknownUtilityCategory="Pistol"
 BriefSummary="The ultimate sidearm, this pistol integrates the aliens' plasma weapons technology to powerful effect."
-TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Plasma pistols are the most powerful handguns on Earth.\n<Bullet/> Pistols can be fired with a single actio.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges.<br/>"
+TacticalText="<Bullet/> Plasma weapons cause targets to take 1 additional damage on future hits.\n<Bullet/> Plasma pistols are the most powerful handguns on Earth.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Soldiers can train several abilities that dramatically enhance their use of pistols.\n<Bullet/> Pistols lose accuracy at long ranges.<br/>"
 
 [AlienHunterPistol_CV X2WeaponTemplate]
 UnknownUtilityCategory="Pistol"
+TacticalText="<Bullet/> Shadowkeeper's strength is comparable to a conventional pistol, but has improved aim and chance to critical hit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit."
 
 [AlienHunterPistol_MG X2WeaponTemplate]
 UnknownUtilityCategory="Pistol"
+TacticalText="<Bullet/> Enhanced Shadowkeeper's strength is comparable to a Mag Pistol, but has improved aim and chance to critical hit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
 
 [AlienHunterPistol_BM X2WeaponTemplate]
 UnknownUtilityCategory="Pistol"
-TacticalText="<Bullet/> Powered Shadowkeeper's strength is comparable to a Plasma Pistol, but has improved aim and chance to critical hit.\n<Bullet/> Unlike the sniper rifle, pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
+TacticalText="<Bullet/> Powered Shadowkeeper's strength is comparable to a Plasma Pistol, but has improved aim and chance to critical hit.\n<Bullet/> Pistols can be fired with a single action.\n<Bullet/> Kills made with the \"Shadowfall\" ability instantly conceal the unit.<br/><Bullet/> Plasma weapons also cause targets to take 1 additional damage on future hits."
 
 [SawedOffShotgun_CV X2WeaponTemplate]
 FriendlyName="Sawed-Off Shotgun"
@@ -1006,7 +1036,7 @@ AbilityDescName="holotargeter"
 
 [Holotargeter_BM X2WeaponTemplate]
 FriendlyName="Holotargeter Mark III"
-FriendlyNamePlural="Holotargeters Mark IIIs"
+FriendlyNamePlural="Holotargeter Mark IIIs"
 BriefSummary="Allows targeting enemy units to provide aim bonuses to any members of the squad targeting this unit."
 TacticalText="<Bullet/> Grants 20 bonus aim to any unit attacking the Holotargeted unit."
 AbilityDescName="holotargeter"
@@ -1139,7 +1169,7 @@ AbilityDescName="crossbow"
 [Vektor_LS X2WeaponTemplate]
 FriendlyName="Laser Vektor Rifle"
 FriendlyNamePlural="Laser Vektor Rifles"
-BriefSummary="An experimental laser weapon design originating all the way from old-world russia, the Laser Vektor Rifle is close in performance to the traditional marksman rifles used by the Reapers. Now updated with modern alloy shielding and a compact power source, it is quite a formidable weapon in the hands of a skilled sniper."
+BriefSummary="An experimental laser weapon design originating all the way from old-world Russia, the Laser Vektor Rifle is close in performance to the traditional marksman rifles used by the Reapers. Now updated with modern alloy shielding and a compact power source, it is quite a formidable weapon in the hands of a skilled sniper."
 TacticalText="<Bullet/> Laser weapons receive bonus aim.<br/><Bullet/> The Vektor Rifle range of weapons suffer a penalty to hit at close range, but can be used at squad sight range.<br/><Bullet/> The weapons incur an increasing aim penalty from 4 tiles beyond squad sight range.<br/><Bullet/> Use upgrades looted from enemies to improve the Vektor Rifle's tactical effectiveness."
 AbilityDescName="vektor rifle"
 
@@ -1399,13 +1429,13 @@ TacticalText="<Bullet/> Grants a <ABILITY:NANOFIBER_HEALTH_BONUS_LW/> hit point 
 FriendlyName="Tactical Vest"
 FriendlyNamePlural="Tactical Vests"
 BriefSummary="Shen has improved the traditional Nanoscale Vest with armored plating, providing reduced damage from armor protection against enemy attacks."
-TacticalText="<Bullet/> Grants 3 hit points to the soldier.\n<Bullet/> Provides 1 armor.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Grants 3 hit points to the soldier.\n<Bullet/> Provides 1 armor.\n<Bullet/> Enemies have a penalty of -<Ability:PLATED_CRITDEF_BONUS> critical chance against the soldier.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [HazmatVest X2EquipmentTemplate]
 FriendlyName="Hazmat Vest"
 FriendlyNamePlural="Hazmat Vests"
 BriefSummary="By reinforcing the Nanoscale Vest with specialized materials, we are able to make our soldiers completely resistant to any environmental hazards like fire, acid or poison."
-TacticalText="<Bullet/> Increases soldier health by 3.\n<Bullet/> Provides immunity to fire, acid and poison.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+TacticalText="<Bullet/> Increases soldier health by <Ability:HAZMAT_VEST_HP_BONUS>.\n<Bullet/> Provides immunity to fire, acid and poison.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [Hellweave X2EquipmentTemplate]
 FriendlyName="Hellweave Vest"
@@ -1494,8 +1524,8 @@ BriefSummary="The Superior Focus sim provides the affected soldier with the best
 FriendlyName="Ceramic Plating"
 FriendlyNamePlural="Ceramic Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 2 ablative armor points."
-TacticalText="<Bullet/> Grants 2 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of Ceramic Plating HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:CERAMIC_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:CERAMIC_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of Ceramic Plating HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [ChameleonSuit X2EquipmentTemplate]
 FriendlyName="Chameleon Suit"
@@ -1507,34 +1537,34 @@ TacticalText="<Bullet/> Significantly reduces infiltration time by this unit.\n<
 FriendlyName="Alloy Plating"
 FriendlyNamePlural="Alloy Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 3 ablative armor points."
-TacticalText="<Bullet/> Grants 3 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:ALLOY_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:ALLOY_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [ChitinPlating X2EquipmentTemplate]
 FriendlyName="Chitin Plating"
 FriendlyNamePlural="Chitin Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 4 ablative armor points."
-TacticalText="<Bullet/> Grants 4 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:CHITIN_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:CHITIN_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [CarapacePlating X2EquipmentTemplate]
 FriendlyName="Carapace Plating"
 FriendlyNamePlural="Carapace Plating"
 UnknownUtilityCategory="Plating"
-BriefSummary="Grants 5 ablative armor points."
-TacticalText="<Bullet/> Grants 5 ablative armor points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
+BriefSummary="Grants <Ability:CARAPACE_PLATING_HP> ablative hit points."
+TacticalText="<Bullet/> Grants <Ability:CARAPACE_PLATING_HP> ablative hit points.<br/><Bullet/> These hit points, once lost, cannot be regained for the remainder of the mission.<br/><Bullet/> Loss of ablative HP does not increase wound time.\n<Bullet/> Only one plating item and one vest can be equipped at a time."
 
 [StilettoRounds X2AmmoTemplate]
 FriendlyName="Stiletto Rounds"
 FriendlyNamePlural="Stiletto Rounds"
-BriefSummary="Does +1 damage to all targets and +2 damage to nonrobotic aliens."
-TacticalText="<Bullet/> Does +2 damage to nonrobotic aliens.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+BriefSummary="Your shots deal +<Ability:STILETTO_DMGMOD> damage to all targets and +<Ability:STILETTO_ALIEN_DMG> additional damage to nonrobotic aliens."
+TacticalText="<Bullet/> Your shots deal +<Ability:STILETTO_DMGMOD> damage to all targets and +<Ability:STILETTO_ALIEN_DMG> additional damage to nonrobotic aliens.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
 
 [FlechetteRounds X2AmmoTemplate]
 FriendlyName="Flechette Rounds"
 FriendlyNamePlural="Flechette Rounds"
-BriefSummary="Does +1 damage to all targets and +2 damage to unarmored enemies."
-TacticalText="<Bullet/> Does +2 damage to unarmored targets.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+BriefSummary="Your shots deal +<Ability:FLECHETTE_DMGMOD> damage to all targets and +<Ability:FLECHETTE_BONUS_DMG> additional damage to unarmored targets."
+TacticalText="<Bullet/> Your shots deal +<Ability:FLECHETTE_DMGMOD> damage to all targets and +<Ability:FLECHETTE_BONUS_DMG> additional damage to unarmored targets.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
 
 [RedScreenRounds X2AmmoTemplate]
 FriendlyName="Redscreen Rounds"
@@ -1547,14 +1577,14 @@ TacticalText="<Bullet/> Lowers enemy hack defense by <Ability:REDSCREEN_EFFECT_L
 [NeedleRounds X2AmmoTemplate]
 FriendlyName="Needle Rounds"
 FriendlyNamePlural="Needle Rounds"
-BriefSummary="Does +1 damage to all targets and +2 damage to nonrobotic ADVENT personnel."
-TacticalText="<Bullet/> Does +2 damage to nonrobotic ADVENT personnel.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+BriefSummary="Your shots deal +<Ability:NEEDLE_DMGMOD> damage to all targets and +<Ability:NEEDLE_ADVENT_DMG> additional damage to nonrobotic ADVENT personnel."
+TacticalText="<Bullet/> Your shots deal +<Ability:NEEDLE_DMGMOD> damage to all targets and +<Ability:NEEDLE_ADVENT_DMG> additional damage to nonrobotic ADVENT personnel.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
 
 [FalconRounds X2AmmoTemplate]
 FriendlyName="Shredder Rounds"
 FriendlyNamePlural="Shredder Rounds"
-BriefSummary="Shreds 2 enemy armor with every hit."
-TacticalText="<Bullet/> Shreds 2 enemy armor with every hit.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
+BriefSummary="Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> armor."
+TacticalText="<Bullet/> Your shots shred +<Ability:SHREDDER_ROUNDS_SHRED> armor.<br/><Bullet/> Only one ammo enhancement may be equipped at a time."
 
 [APRounds X2AmmoTemplate]
 BriefSummary="Hand machined from ultra strong, ultra light alien alloys, these deadly rounds will effectively bypass <Ability:APROUNDSPIERCEBONUS/> enemy armor to deal unmitigated damage."
@@ -1575,7 +1605,7 @@ TacticalText="<Bullet/> Grants a second standard rocket for the Technical's rock
 FriendlyName="Neurowhip"
 FriendlyNamePlural="Neurowhip"
 BriefSummary="Grants a bonus to Psi abilities at a cost to Will."
-TacticalText="<Bullet/> Grants 10 Psi Offense to the soldier, at a cost of 10 will."
+TacticalText="<Bullet/> Grants <Ability:NEUROWHIP_PSI_BONUS> Psi Offense to the soldier, at a cost of <Ability:NEUROWHIP_WILL_MALUS> will."
 UnknownUtilityCategory="Neurowhip"
 
 [SmashNGrabQuestItem X2EquipmentTemplate]
@@ -1589,83 +1619,83 @@ BriefSummary="A small package of valuable resources."
 DisplayName="Technical"
 ClassSummary="Our Technicals are trained to use certain heavy weaponry, the rocket launcher and flamethrower, to provide critical support during firefights."
 LeftAbilityTreeTitle="Rocketeer"
-RightAbilityTreeTitle="Fireman"
+RightAbilityTreeTitle="Pyrotech"
 
 +AbilityTreeTitles[0]="Rocketeer"
-+AbilityTreeTitles[1]=""
-+AbilityTreeTitles[2]="Fireman"
++AbilityTreeTitles[1]="Striker"
++AbilityTreeTitles[2]="Pyrotech"
 +AbilityTreeTitles[3]="XCOM"
 +AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
-RandomNickNames[0]="Angel"
-RandomNickNames[1]="Beta"
-RandomNickNames[2]="Bishop"
-RandomNickNames[3]="Bones"
-RandomNickNames[4]="Breaker"
-RandomNickNames[5]="Broker"
-RandomNickNames[6]="Crypto"
-RandomNickNames[7]="Cyber"
-RandomNickNames[8]="Cypher"
-RandomNickNames[9]="Data"
-RandomNickNames[10]="Deacon"
-RandomNickNames[11]="Dr. Feelgood"
-RandomNickNames[12]="Doc"
-RandomNickNames[13]="Feedback"
-RandomNickNames[14]="Firewall"
-RandomNickNames[15]="Genius"
-RandomNickNames[16]="Gizmo"
-RandomNickNames[17]="Glitch"
-RandomNickNames[18]="Hijack"
-RandomNickNames[19]="Jammer"
-RandomNickNames[20]="Jester"
-RandomNickNames[21]="Jolt"
-RandomNickNames[22]="Lightning"
-RandomNickNames[23]="Mayday"
-RandomNickNames[24]="Mega"
-RandomNickNames[25]="Newton"
-RandomNickNames[26]="Overdrive"
-RandomNickNames[27]="Patch"
-RandomNickNames[28]="Professor"
-RandomNickNames[29]="Ragtime"
-RandomNickNames[30]="Rascal"
-RandomNickNames[31]="Rattler"
-RandomNickNames[32]="Red"
-RandomNickNames[33]="Rift"
-RandomNickNames[34]="Ripcord"
-RandomNickNames[35]="Rogue"
-RandomNickNames[36]="Scorch"
-RandomNickNames[37]="Sentinel"
-RandomNickNames[38]="Shady"
-RandomNickNames[39]="Shakes"
-RandomNickNames[40]="Shifter"
-RandomNickNames[41]="Shrink"
-RandomNickNames[42]="Slider"
-RandomNickNames[43]="Solar"
-RandomNickNames[44]="Sonar"
-RandomNickNames[45]="Sparks"
-RandomNickNames[46]="Stitch"
-RandomNickNames[47]="Tapper"
-RandomNickNames[48]="Teardrop"
-RandomNickNames[49]="Tinker"
-RandomNickNames[50]="Turbo"
-RandomNickNames[51]="Venom"
-RandomNickNames[52]="Vapor"
-RandomNickNames[53]="Warbird"
-RandomNickNames[54]="Warden"
-RandomNickNames[55]="Whiskey"
-RandomNickNames[56]="Wild Thing"
-RandomNickNames[57]="Zulu"
++RandomNickNames="Angel"
++RandomNickNames="Beta"
++RandomNickNames="Bishop"
++RandomNickNames="Bones"
++RandomNickNames="Breaker"
++RandomNickNames="Broker"
++RandomNickNames="Crypto"
++RandomNickNames="Cyber"
++RandomNickNames="Cypher"
++RandomNickNames="Data"
++RandomNickNames="Deacon"
++RandomNickNames="Dr. Feelgood"
++RandomNickNames="Doc"
++RandomNickNames="Feedback"
++RandomNickNames="Firewall"
++RandomNickNames="Genius"
++RandomNickNames="Gizmo"
++RandomNickNames="Glitch"
++RandomNickNames="Hijack"
++RandomNickNames="Jammer"
++RandomNickNames="Jester"
++RandomNickNames="Jolt"
++RandomNickNames="Lightning"
++RandomNickNames="Mayday"
++RandomNickNames="Mega"
++RandomNickNames="Newton"
++RandomNickNames="Overdrive"
++RandomNickNames="Patch"
++RandomNickNames="Professor"
++RandomNickNames="Ragtime"
++RandomNickNames="Rascal"
++RandomNickNames="Rattler"
++RandomNickNames="Red"
++RandomNickNames="Rift"
++RandomNickNames="Ripcord"
++RandomNickNames="Rogue"
++RandomNickNames="Scorch"
++RandomNickNames="Sentinel"
++RandomNickNames="Shady"
++RandomNickNames="Shakes"
++RandomNickNames="Shifter"
++RandomNickNames="Shrink"
++RandomNickNames="Slider"
++RandomNickNames="Solar"
++RandomNickNames="Sonar"
++RandomNickNames="Sparks"
++RandomNickNames="Stitch"
++RandomNickNames="Tapper"
++RandomNickNames="Teardrop"
++RandomNickNames="Tinker"
++RandomNickNames="Turbo"
++RandomNickNames="Venom"
++RandomNickNames="Vapor"
++RandomNickNames="Warbird"
++RandomNickNames="Warden"
++RandomNickNames="Whiskey"
++RandomNickNames="Wild Thing"
++RandomNickNames="Zulu"
 ;ALPHABETICAL ORDER
-RandomNickNames_Male[0]="Candyman"
-RandomNickNames_Male[1]="Magic Man"
-RandomNickNames_Male[2]="Priest"
-RandomNickNames_Male[3]="Rainman"
-RandomNickNames_Male[4]="Rooster"
-RandomNickNames_Female[0]="Priestess"
-RandomNickNames_Female[1]="Wolfmother"
-RandomNickNames_Female[2]="Black Widow"
-RandomNickNames_Female[4]="Duchess"
++RandomNickNames_Male="Candyman"
++RandomNickNames_Male="Magic Man"
++RandomNickNames_Male="Priest"
++RandomNickNames_Male="Rainman"
++RandomNickNames_Male="Rooster"
++RandomNickNames_Female="Priestess"
++RandomNickNames_Female="Wolfmother"
++RandomNickNames_Female="Black Widow"
++RandomNickNames_Female="Duchess"
 ;ALPHABETICAL ORDER
 
 [LWS_Specialist X2SoldierClassTemplate]
@@ -1675,80 +1705,80 @@ LeftAbilityTreeTitle="Medic"
 RightAbilityTreeTitle="Hacker"
 
 +AbilityTreeTitles[0]="Medic"
-+AbilityTreeTitles[1]=""
++AbilityTreeTitles[1]="Watcher"
 +AbilityTreeTitles[2]="Hacker"
 +AbilityTreeTitles[3]="XCOM"
 +AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
-RandomNickNames[0]="Angel"
-RandomNickNames[1]="Beta"
-RandomNickNames[2]="Bishop"
-RandomNickNames[3]="Bones"
-RandomNickNames[4]="Breaker"
-RandomNickNames[5]="Broker"
-RandomNickNames[6]="Crypto"
-RandomNickNames[7]="Cyber"
-RandomNickNames[8]="Cypher"
-RandomNickNames[9]="Data"
-RandomNickNames[10]="Deacon"
-RandomNickNames[11]="Dr. Feelgood"
-RandomNickNames[12]="Doc"
-RandomNickNames[13]="Feedback"
-RandomNickNames[14]="Firewall"
-RandomNickNames[15]="Genius"
-RandomNickNames[16]="Gizmo"
-RandomNickNames[17]="Glitch"
-RandomNickNames[18]="Hijack"
-RandomNickNames[19]="Jammer"
-RandomNickNames[20]="Jester"
-RandomNickNames[21]="Jolt"
-RandomNickNames[22]="Lightning"
-RandomNickNames[23]="Mayday"
-RandomNickNames[24]="Mega"
-RandomNickNames[25]="Newton"
-RandomNickNames[26]="Overdrive"
-RandomNickNames[27]="Patch"
-RandomNickNames[28]="Professor"
-RandomNickNames[29]="Ragtime"
-RandomNickNames[30]="Rascal"
-RandomNickNames[31]="Rattler"
-RandomNickNames[32]="Red"
-RandomNickNames[33]="Rift"
-RandomNickNames[34]="Ripcord"
-RandomNickNames[35]="Rogue"
-RandomNickNames[36]="Scorch"
-RandomNickNames[37]="Sentinel"
-RandomNickNames[38]="Shady"
-RandomNickNames[39]="Shakes"
-RandomNickNames[40]="Shifter"
-RandomNickNames[41]="Shrink"
-RandomNickNames[42]="Slider"
-RandomNickNames[43]="Solar"
-RandomNickNames[44]="Sonar"
-RandomNickNames[45]="Sparks"
-RandomNickNames[46]="Stitch"
-RandomNickNames[47]="Tapper"
-RandomNickNames[48]="Teardrop"
-RandomNickNames[49]="Tinker"
-RandomNickNames[50]="Turbo"
-RandomNickNames[51]="Venom"
-RandomNickNames[52]="Vapor"
-RandomNickNames[53]="Warbird"
-RandomNickNames[54]="Warden"
-RandomNickNames[55]="Whiskey"
-RandomNickNames[56]="Wild Thing"
-RandomNickNames[57]="Zulu"
++RandomNickNames="Angel"
++RandomNickNames="Beta"
++RandomNickNames="Bishop"
++RandomNickNames="Bones"
++RandomNickNames="Breaker"
++RandomNickNames="Broker"
++RandomNickNames="Crypto"
++RandomNickNames="Cyber"
++RandomNickNames="Cypher"
++RandomNickNames="Data"
++RandomNickNames="Deacon"
++RandomNickNames="Dr. Feelgood"
++RandomNickNames="Doc"
++RandomNickNames="Feedback"
++RandomNickNames="Firewall"
++RandomNickNames="Genius"
++RandomNickNames="Gizmo"
++RandomNickNames="Glitch"
++RandomNickNames="Hijack"
++RandomNickNames="Jammer"
++RandomNickNames="Jester"
++RandomNickNames="Jolt"
++RandomNickNames="Lightning"
++RandomNickNames="Mayday"
++RandomNickNames="Mega"
++RandomNickNames="Newton"
++RandomNickNames="Overdrive"
++RandomNickNames="Patch"
++RandomNickNames="Professor"
++RandomNickNames="Ragtime"
++RandomNickNames="Rascal"
++RandomNickNames="Rattler"
++RandomNickNames="Red"
++RandomNickNames="Rift"
++RandomNickNames="Ripcord"
++RandomNickNames="Rogue"
++RandomNickNames="Scorch"
++RandomNickNames="Sentinel"
++RandomNickNames="Shady"
++RandomNickNames="Shakes"
++RandomNickNames="Shifter"
++RandomNickNames="Shrink"
++RandomNickNames="Slider"
++RandomNickNames="Solar"
++RandomNickNames="Sonar"
++RandomNickNames="Sparks"
++RandomNickNames="Stitch"
++RandomNickNames="Tapper"
++RandomNickNames="Teardrop"
++RandomNickNames="Tinker"
++RandomNickNames="Turbo"
++RandomNickNames="Venom"
++RandomNickNames="Vapor"
++RandomNickNames="Warbird"
++RandomNickNames="Warden"
++RandomNickNames="Whiskey"
++RandomNickNames="Wild Thing"
++RandomNickNames="Zulu"
 ;ALPHABETICAL ORDER
-RandomNickNames_Male[0]="Candyman"
-RandomNickNames_Male[1]="Magic Man"
-RandomNickNames_Male[2]="Priest"
-RandomNickNames_Male[3]="Rainman"
-RandomNickNames_Male[4]="Rooster"
-RandomNickNames_Female[0]="Priestess"
-RandomNickNames_Female[1]="Wolfmother"
-RandomNickNames_Female[2]="Black Widow"
-RandomNickNames_Female[4]="Duchess"
++RandomNickNames_Male="Candyman"
++RandomNickNames_Male="Magic Man"
++RandomNickNames_Male="Priest"
++RandomNickNames_Male="Rainman"
++RandomNickNames_Male="Rooster"
++RandomNickNames_Female="Priestess"
++RandomNickNames_Female="Wolfmother"
++RandomNickNames_Female="Black Widow"
++RandomNickNames_Female="Duchess"
 ;ALPHABETICAL ORDER
 
 
@@ -1759,143 +1789,142 @@ LeftAbilityTreeTitle="Boomer"
 RightAbilityTreeTitle="Support"
 
 +AbilityTreeTitles[0]="Boomer"
-+AbilityTreeTitles[1]=""
++AbilityTreeTitles[1]="Trooper"
 +AbilityTreeTitles[2]="Support"
 +AbilityTreeTitles[3]="XCOM"
 +AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
-RandomNickNames[0]="All Day"
-RandomNickNames[1]="All In"
-RandomNickNames[2]="Animal"
-RandomNickNames[3]="Baller"
-RandomNickNames[4]="Big Country"
-RandomNickNames[5]="Big Money"
-RandomNickNames[6]="Big Nasty"
-RandomNickNames[7]="Blaze"
-RandomNickNames[8]="Boom Boom"
-RandomNickNames[9]="Bomber"
-RandomNickNames[10]="Buddy"
-RandomNickNames[11]="Bulldog"
-RandomNickNames[12]="Bull Rush"
-RandomNickNames[13]="Claymore"
-RandomNickNames[14]="Demo"
-RandomNickNames[15]="Defcon"
-RandomNickNames[16]="Devil Dog"
-RandomNickNames[17]="Diesel"
-RandomNickNames[18]="Encore"
-RandomNickNames[19]="Fireball"
-RandomNickNames[20]="Fridge"
-RandomNickNames[21]="Gunner"
-RandomNickNames[22]="Hammer"
-RandomNickNames[23]="Hellfire"
-RandomNickNames[24]="Hightower"
-RandomNickNames[25]="Hoss"
-RandomNickNames[26]="Volcano"
-RandomNickNames[27]="Hurricane"
-RandomNickNames[28]="Junkyard"
-RandomNickNames[29]="Juggernaut"
-RandomNickNames[30]="Knockout"
-RandomNickNames[31]="Kong"
-RandomNickNames[32]="Mad Dog"
-RandomNickNames[33]="Meltdown"
-RandomNickNames[34]="Moose"
-RandomNickNames[35]="Nova"
-RandomNickNames[36]="Nasty"
-RandomNickNames[37]="Nitro"
-RandomNickNames[38]="Overlord"
-RandomNickNames[39]="Pitbull"
-RandomNickNames[40]="Pyro"
-RandomNickNames[41]="Redline"
-RandomNickNames[42]="Rhino"
-RandomNickNames[43]="Rocket"
-RandomNickNames[44]="Seabreeze"
-RandomNickNames[45]="Slab"
-RandomNickNames[46]="Smash"
-RandomNickNames[47]="Spitfire"
-RandomNickNames[48]="Smokey"
-RandomNickNames[49]="Swamp Thing"
-RandomNickNames[50]="T-Bone"
-RandomNickNames[51]="T-Rex"
-RandomNickNames[52]="Tank"
-RandomNickNames[53]="Thumper"
-RandomNickNames[54]="Thunder"
-RandomNickNames[55]="Tickle"
-RandomNickNames[56]="Tiny"
-RandomNickNames[57]="Titan"
-RandomNickNames[58]="Dynamite"
-RandomNickNames[59]="Torch"
-RandomNickNames[60]="Wardog"
-RandomNickNames[61]="Warhorse"
-RandomNickNames[62]="Wildchild"
++RandomNickNames="All Day"
++RandomNickNames="All In"
++RandomNickNames="Animal"
++RandomNickNames="Baller"
++RandomNickNames="Big Country"
++RandomNickNames="Big Money"
++RandomNickNames="Big Nasty"
++RandomNickNames="Blaze"
++RandomNickNames="Boom Boom"
++RandomNickNames="Bomber"
++RandomNickNames="Buddy"
++RandomNickNames="Bulldog"
++RandomNickNames="Bull Rush"
++RandomNickNames="Claymore"
++RandomNickNames="Demo"
++RandomNickNames="Defcon"
++RandomNickNames="Devil Dog"
++RandomNickNames="Diesel"
++RandomNickNames="Encore"
++RandomNickNames="Fireball"
++RandomNickNames="Fridge"
++RandomNickNames="Hammer"
++RandomNickNames="Hellfire"
++RandomNickNames="Hightower"
++RandomNickNames="Hoss"
++RandomNickNames="Volcano"
++RandomNickNames="Hurricane"
++RandomNickNames="Junkyard"
++RandomNickNames="Juggernaut"
++RandomNickNames="Knockout"
++RandomNickNames="Kong"
++RandomNickNames="Mad Dog"
++RandomNickNames="Meltdown"
++RandomNickNames="Moose"
++RandomNickNames="Nova"
++RandomNickNames="Nasty"
++RandomNickNames="Nitro"
++RandomNickNames="Overlord"
++RandomNickNames="Pitbull"
++RandomNickNames="Pyro"
++RandomNickNames="Redline"
++RandomNickNames="Rhino"
++RandomNickNames="Rocket"
++RandomNickNames="Seabreeze"
++RandomNickNames="Slab"
++RandomNickNames="Smash"
++RandomNickNames="Spitfire"
++RandomNickNames="Smokey"
++RandomNickNames="Swamp Thing"
++RandomNickNames="T-Bone"
++RandomNickNames="T-Rex"
++RandomNickNames="Tank"
++RandomNickNames="Thumper"
++RandomNickNames="Thunder"
++RandomNickNames="Tickle"
++RandomNickNames="Tiny"
++RandomNickNames="Titan"
++RandomNickNames="Dynamite"
++RandomNickNames="Torch"
++RandomNickNames="Wardog"
++RandomNickNames="Warhorse"
++RandomNickNames="Wildchild"
 ;ALPHABETICAL ORDER
-RandomNicknames_Male[0]="Barbarian"
-RandomNickNames_Male[1]="Big Boy"
-RandomNicknames_Male[2]="Boss Man"
-RandomNickNames_Male[3]="Cowboy"
-RandomNickNames_Male[4]="Meathead"
-RandomNickNames_Male[5]="Nero"
-RandomNickNames_Male[6]="Papa Bear"
-RandomNickNames_Male[7]="Wildman"
-RandomNickNames_Female[0]="Amazon"
-RandomNicknames_Female[1]="Boss Lady"
-RandomNickNames_Female[2]="Cowgirl"
-RandomNicknames_Female[3]="Domino"
-RandomNickNames_Female[4]="Freya"
-RandomNickNames_Female[5]="Mama Bear"
-RandomNickNames_Female[6]="Deep Six"
-RandomNickNames_Female[7]="Firebug"
++RandomNickNames_Male="Barbarian"
++RandomNickNames_Male="Big Boy"
++RandomNickNames_Male="Boss Man"
++RandomNickNames_Male="Cowboy"
++RandomNickNames_Male="Meathead"
++RandomNickNames_Male="Nero"
++RandomNickNames_Male="Papa Bear"
++RandomNickNames_Male="Wildman"
++RandomNickNames_Female="Amazon"
++RandomNickNames_Female="Boss Lady"
++RandomNickNames_Female="Cowgirl"
++RandomNickNames_Female="Domino"
++RandomNickNames_Female="Freya"
++RandomNickNames_Female="Mama Bear"
++RandomNickNames_Female="Deep Six"
++RandomNickNames_Female="Firebug"
 ;ALPHABETICAL ORDER
 
 
 [LWS_Gunner X2SoldierClassTemplate]
 DisplayName="Gunner"
 ClassSummary="The Gunner is trained to use heavy automatic weapons, able to cover the squad with suppressive fire or inflict significant damage in direct attacks."
-LeftAbilityTreeTitle="SAW Gunner"
-RightAbilityTreeTitle="Machinegunner"
+LeftAbilityTreeTitle="Cannoneer"
+RightAbilityTreeTitle="Oppressor"
 
-+AbilityTreeTitles[0]="SAW Gunner"
++AbilityTreeTitles[0]="Cannoneer"
 +AbilityTreeTitles[1]="Sentry"
-+AbilityTreeTitles[2]="Machinegunner"
++AbilityTreeTitles[2]="Oppressor"
 +AbilityTreeTitles[3]="XCOM"
 +AbilityTreeTitles[4]="Pistols"
 
-RandomNickNames[0]="Backfire"
-RandomNickNames[1]="Baja"
-RandomNickNames[2]="Bearcat"
-RandomNickNames[3]="Brutal"
-RandomNickNames[4]="Chainsaw"
-RandomNickNames[5]="Flounder"
-RandomNickNames[6]="Gameshow"
-RandomNickNames[7]="Gonzo"
-RandomNickNames[8]="Hawker"
-RandomNickNames[9]="Kozmo"
-RandomNickNames[10]="Lunchbox"
-RandomNickNames[11]="Mangler"
-RandomNickNames[12]="Meathook"
-RandomNickNames[13]="Moose"
-RandomNickNames[14]="Nanook"
-RandomNickNames[15]="Nugget"
-RandomNickNames[16]="Nuke"
-RandomNickNames[17]="Ogre"
-RandomNickNames[18]="Pancake"
-RandomNickNames[19]="Panzer"
-RandomNickNames[20]="Piston"
-RandomNickNames[21]="Slinger"
-RandomNickNames[22]="Sparrow"
-RandomNickNames[23]="Spike"
-RandomNickNames[24]="Yogi"
-RandomNickNames[25]="Zarfer"
-RandomNickNames_Male[0]="Chuckles"
-RandomNickNames_Male[1]="Dingus"
-RandomNickNames_Male[2]="Maniac"
-RandomNickNames_Male[3]="Knuckles"
-RandomNickNames_Male[4]="Walrus"
-RandomNickNames_Female[0]="Bubbles"
-RandomNickNames_Female[1]="Gadget"
-RandomNickNames_Female[2]="Giggles"
-RandomNickNames_Female[3]="Mango"
-RandomNickNames_Female[4]="Pepper"
++RandomNickNames="Backfire"
++RandomNickNames="Baja"
++RandomNickNames="Bearcat"
++RandomNickNames="Brutal"
++RandomNickNames="Chainsaw"
++RandomNickNames="Flounder"
++RandomNickNames="Gameshow"
++RandomNickNames="Gonzo"
++RandomNickNames="Hawker"
++RandomNickNames="Kozmo"
++RandomNickNames="Lunchbox"
++RandomNickNames="Mangler"
++RandomNickNames="Meathook"
++RandomNickNames="Moose"
++RandomNickNames="Nanook"
++RandomNickNames="Nugget"
++RandomNickNames="Nuke"
++RandomNickNames="Ogre"
++RandomNickNames="Pancake"
++RandomNickNames="Panzer"
++RandomNickNames="Piston"
++RandomNickNames="Slinger"
++RandomNickNames="Sparrow"
++RandomNickNames="Spike"
++RandomNickNames="Yogi"
++RandomNickNames="Zarfer"
++RandomNickNames_Male="Chuckles"
++RandomNickNames_Male="Dingus"
++RandomNickNames_Male="Maniac"
++RandomNickNames_Male="Knuckles"
++RandomNickNames_Male="Walrus"
++RandomNickNames_Female="Bubbles"
++RandomNickNames_Female="Gadget"
++RandomNickNames_Female="Giggles"
++RandomNickNames_Female="Mango"
++RandomNickNames_Female="Pepper"
 
 
 [LWS_Ranger X2SoldierClassTemplate]
@@ -1905,48 +1934,48 @@ LeftAbilityTreeTitle="Infantry"
 RightAbilityTreeTitle="Defender"
 
 +AbilityTreeTitles[0]="Infantry"
-+AbilityTreeTitles[1]=""
++AbilityTreeTitles[1]="Pointman"
 +AbilityTreeTitles[2]="Defender"
 +AbilityTreeTitles[3]="XCOM"
 +AbilityTreeTitles[4]="Pistols"
 
-RandomNickNames[0]="Bronco"
-RandomNickNames[1]="Buck"
-RandomNickNames[2]="Buckeye"
-RandomNickNames[3]="Cobalt"
-RandomNickNames[4]="Cowboy"
-RandomNickNames[5]="Digger"
-RandomNickNames[6]="Dinger"
-RandomNickNames[7]="Frosty"
-RandomNickNames[8]="Grunt"
-RandomNickNames[9]="Hollywood"
-RandomNickNames[10]="Hoss"
-RandomNickNames[11]="Howler"
-RandomNickNames[12]="Jaybird"
-RandomNickNames[13]="Jayhawk"
-RandomNickNames[14]="Judge"
-RandomNickNames[15]="Marlin"
-RandomNickNames[16]="Mustang"
-RandomNickNames[17]="Pappy"
-RandomNickNames[18]="Painter"
-RandomNickNames[19]="Pinto"
-RandomNickNames[20]="Rascal"
-RandomNickNames[21]="Rocky"
-RandomNickNames[22]="Scooter"
-RandomNickNames[23]="Skeeter"
-RandomNickNames[24]="Skids"
-RandomNickNames[25]="Stretch"
-RandomNickNames[26]="Thumper"
-RandomNickNames[27]="Werewolf"
-RandomNickNames_Male[0]="Dusty"
-RandomNickNames_Male[1]="Dutch"
-RandomNickNames_Male[2]="Husker"
-RandomNickNames_Male[3]="Slick"
-RandomNickNames_Male[4]="Pops"
-RandomNickNames_Female[0]="Aunty"
-RandomNickNames_Female[1]="Goodnight"
-RandomNickNames_Female[2]="Medusa"
-RandomNickNames_Female[3]="Sugar"
++RandomNickNames="Bronco"
++RandomNickNames="Buck"
++RandomNickNames="Buckeye"
++RandomNickNames="Cobalt"
++RandomNickNames="Cowboy"
++RandomNickNames="Digger"
++RandomNickNames="Dinger"
++RandomNickNames="Frosty"
++RandomNickNames="Grunt"
++RandomNickNames="Hollywood"
++RandomNickNames="Hoss"
++RandomNickNames="Howler"
++RandomNickNames="Jaybird"
++RandomNickNames="Jayhawk"
++RandomNickNames="Judge"
++RandomNickNames="Marlin"
++RandomNickNames="Mustang"
++RandomNickNames="Pappy"
++RandomNickNames="Painter"
++RandomNickNames="Pinto"
++RandomNickNames="Rascal"
++RandomNickNames="Rocky"
++RandomNickNames="Scooter"
++RandomNickNames="Skeeter"
++RandomNickNames="Skids"
++RandomNickNames="Stretch"
++RandomNickNames="Thumper"
++RandomNickNames="Werewolf"
++RandomNickNames_Male="Dusty"
++RandomNickNames_Male="Dutch"
++RandomNickNames_Male="Husker"
++RandomNickNames_Male="Slick"
++RandomNickNames_Male="Pops"
++RandomNickNames_Female="Aunty"
++RandomNickNames_Female="Goodnight"
++RandomNickNames_Female="Medusa"
++RandomNickNames_Female="Sugar"
 ;ALPHABETICAL ORDER
 
 [LWS_Sharpshooter X2SoldierClassTemplate]
@@ -1956,223 +1985,220 @@ LeftAbilityTreeTitle="Sniper"
 RightAbilityTreeTitle="Marksman"
 
 +AbilityTreeTitles[0]="Sniper"
-+AbilityTreeTitles[1]=""
++AbilityTreeTitles[1]="Spotter"
 +AbilityTreeTitles[2]="Marksman"
 +AbilityTreeTitles[3]="XCOM"
 +AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
-RandomNickNames[0]="Apex"
-RandomNickNames[1]="Ace"
-RandomNickNames[2]="Aftermath"
-RandomNickNames[3]="Alpha"
-RandomNickNames[4]="Blackjack"
-RandomNickNames[5]="Bullseye"
-RandomNickNames[6]="Bolt"
-RandomNickNames[7]="Big Shot"
-RandomNickNames[8]="Big Sleep"
-RandomNickNames[9]="Big Time"
-RandomNickNames[10]="Boss"
-RandomNickNames[11]="Bullseye"
-RandomNickNames[12]="Checkmate"
-RandomNickNames[13]="Chief"
-RandomNickNames[14]="Colt"
-RandomNickNames[15]="Dallas"
-RandomNickNames[16]="Deadbolt"
-RandomNickNames[17]="Deadeye"
-RandomNickNames[18]="Deadlock"
-RandomNickNames[19]="Deadwood"
-RandomNickNames[20]="D.O.A."
-RandomNickNames[21]="Eagle Eye"
-RandomNickNames[22]="Eight Ball"
-RandomNickNames[23]="Flatline"
-RandomNickNames[24]="Game Time"
-RandomNickNames[25]="Gangster"
-RandomNickNames[26]="Grave Digger"
-RandomNickNames[27]="Hat Trick"
-RandomNickNames[28]="Hawkeye"
-RandomNickNames[29]="Heater"
-RandomNickNames[30]="High Noon"
-RandomNickNames[31]="Hitman"
-RandomNickNames[32]="Hollywood"
-RandomNickNames[33]="Hype"
-RandomNickNames[34]="Icon"
-RandomNickNames[35]="Jackal"
-RandomNickNames[36]="Judge"
-RandomNickNames[37]="Lights Out"
-RandomNickNames[38]="Lockdown"
-RandomNickNames[39]="Long Shot"
-RandomNickNames[40]="Longwalker"
-RandomNickNames[41]="Needle"
-RandomNickNames[42]="Pale Rider"
-RandomNickNames[43]="Reaper"
-RandomNickNames[44]="Scratch"
-RandomNickNames[45]="Serial"
-RandomNickNames[46]="Sheriff"
-RandomNickNames[47]="Shooter"
-RandomNickNames[48]="Showtime"
-RandomNickNames[49]="Slick"
-RandomNickNames[50]="Slinger"
-RandomNickNames[51]="Stonecold"
-RandomNickNames[52]="The Cleaner"
-RandomNickNames[53]="The Kid"
-RandomNickNames[54]="The Truth"
-RandomNickNames[55]="Tombstone"
-RandomNickNames[56]="Top Notch"
-RandomNickNames[57]="Top Shelf"
-RandomNickNames[58]="Two Tap"
-RandomNickNames[59]="Undertaker"
-RandomNickNames[60]="Valentine"
++RandomNickNames="Apex"
++RandomNickNames="Ace"
++RandomNickNames="Aftermath"
++RandomNickNames="Alpha"
++RandomNickNames="Blackjack"
++RandomNickNames="Bullseye"
++RandomNickNames="Bolt"
++RandomNickNames="Big Shot"
++RandomNickNames="Big Sleep"
++RandomNickNames="Big Time"
++RandomNickNames="Boss"
++RandomNickNames="Bullseye"
++RandomNickNames="Checkmate"
++RandomNickNames="Chief"
++RandomNickNames="Colt"
++RandomNickNames="Dallas"
++RandomNickNames="Deadbolt"
++RandomNickNames="Deadeye"
++RandomNickNames="Deadlock"
++RandomNickNames="Deadwood"
++RandomNickNames="D.O.A."
++RandomNickNames="Eagle Eye"
++RandomNickNames="Eight Ball"
++RandomNickNames="Flatline"
++RandomNickNames="Game Time"
++RandomNickNames="Gangster"
++RandomNickNames="Grave Digger"
++RandomNickNames="Hat Trick"
++RandomNickNames="Hawkeye"
++RandomNickNames="Heater"
++RandomNickNames="High Noon"
++RandomNickNames="Hitman"
++RandomNickNames="Hollywood"
++RandomNickNames="Hype"
++RandomNickNames="Icon"
++RandomNickNames="Jackal"
++RandomNickNames="Judge"
++RandomNickNames="Lights Out"
++RandomNickNames="Lockdown"
++RandomNickNames="Long Shot"
++RandomNickNames="Longwalker"
++RandomNickNames="Needle"
++RandomNickNames="Pale Rider"
++RandomNickNames="Scratch"
++RandomNickNames="Serial"
++RandomNickNames="Sheriff"
++RandomNickNames="Shooter"
++RandomNickNames="Showtime"
++RandomNickNames="Slick"
++RandomNickNames="Slinger"
++RandomNickNames="Stonecold"
++RandomNickNames="The Cleaner"
++RandomNickNames="The Kid"
++RandomNickNames="The Truth"
++RandomNickNames="Tombstone"
++RandomNickNames="Top Notch"
++RandomNickNames="Top Shelf"
++RandomNickNames="Two Tap"
++RandomNickNames="Undertaker"
++RandomNickNames="Valentine"
 ;ALPHABETICAL ORDER
-RandomNicknames_Male[0]="Cowboy"
-RandomNickNames_Male[1]="Godfather"
-RandomNickNames_Male[2]="Mailman"
-RandomNickNames_Male[3]="Sandman"
-RandomNickNames_Male[4]="Slim"
-RandomNickNames_Male[5]="Taxman"
-RandomNickNames_Male[6]="Zeus"
-RandomNickNames_Female[0]="Baroness"
-RandomNickNames_Female[1]="Black Widow"
-RandomNicknames_Female[2]="Calamity"
-RandomNicknames_Female[3]="Queen Bee"
++RandomNickNames_Male="Cowboy"
++RandomNickNames_Male="Godfather"
++RandomNickNames_Male="Mailman"
++RandomNickNames_Male="Sandman"
++RandomNickNames_Male="Slim"
++RandomNickNames_Male="Taxman"
++RandomNickNames_Male="Zeus"
++RandomNickNames_Female="Baroness"
++RandomNickNames_Female="Black Widow"
++RandomNickNames_Female="Calamity"
++RandomNickNames_Female="Queen Bee"
 ;ALPHABETICAL ORDER
 
 [LWS_Assault X2SoldierClassTemplate]
 DisplayName="Assault"
 ClassSummary="The Assault serves as our primary close range unit, able to push in close and hold the line."
 LeftAbilityTreeTitle="Raider"
-RightAbilityTreeTitle="Breacher"
+RightAbilityTreeTitle="Crasher"
 
 +AbilityTreeTitles[0]="Raider"
-+AbilityTreeTitles[1]=""
-+AbilityTreeTitles[2]="Breacher"
++AbilityTreeTitles[1]="Zapper"
++AbilityTreeTitles[2]="Crasher"
 +AbilityTreeTitles[3]="XCOM"
 +AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
-RandomNickNames[0]="Bandit"
-RandomNickNames[1]="Blitz"
-RandomNickNames[2]="Brick"
-RandomNickNames[3]="Butcher"
-RandomNickNames[4]="Buzzsaw"
-RandomNickNames[5]="Cajun"
-RandomNickNames[6]="Chops"
-RandomNickNames[7]="Cobra"
-RandomNickNames[8]="Cougar"
-RandomNickNames[9]="Coyote"
-RandomNickNames[10]="Crash"
-RandomNickNames[11]="Diamond"
-RandomNickNames[12]="Enforcer"
-RandomNickNames[13]="Fatal"
-RandomNickNames[14]="Flash"
-RandomNickNames[15]="Fury"
-RandomNickNames[16]="Gator"
-RandomNickNames[17]="Ghost"
-RandomNickNames[18]="Gunner"
-RandomNickNames[19]="Hound Dog"
-RandomNickNames[20]="Ice"
-RandomNickNames[21]="Icepick"
-RandomNickNames[22]="Jaws"
-RandomNickNames[23]="Judgment Day"
-RandomNickNames[24]="Kinky"
-RandomNickNames[25]="Monster"
-RandomNickNames[26]="Mustang"
-RandomNickNames[27]="Paladin"
-RandomNickNames[28]="Pitbull"
-RandomNickNames[29]="Pathfinder"
-RandomNickNames[30]="Ringo"
-RandomNickNames[31]="Samurai"
-RandomNickNames[32]="Scorpion"
-RandomNickNames[33]="Shogun"
-RandomNickNames[34]="Shadow"
-RandomNickNames[35]="Slayer"
-RandomNickNames[36]="Snake"
-RandomNickNames[37]="Snake Eyes"
-RandomNickNames[38]="Solo"
-RandomNickNames[39]="Specter"
-RandomNickNames[40]="Spider"
-RandomNickNames[41]="Stalker"
-RandomNickNames[42]="Steel"
-RandomNickNames[43]="Stinger"
-RandomNickNames[44]="Templar"
-RandomNickNames[45]="Trojan"
-RandomNickNames[46]="Vandal"
-RandomNickNames[47]="Viking"
-RandomNickNames[48]="Warden"
-RandomNickNames[49]="Warlord"
-RandomNickNames[50]="Wolverine"
-RandomNickNames[51]="Wildchild"
-RandomNickNames[52]="Wildling"
-RandomNickNames[53]="Zulu"
++RandomNickNames="Bandit"
++RandomNickNames="Blitz"
++RandomNickNames="Brick"
++RandomNickNames="Butcher"
++RandomNickNames="Buzzsaw"
++RandomNickNames="Cajun"
++RandomNickNames="Chops"
++RandomNickNames="Cobra"
++RandomNickNames="Cougar"
++RandomNickNames="Coyote"
++RandomNickNames="Crash"
++RandomNickNames="Diamond"
++RandomNickNames="Enforcer"
++RandomNickNames="Fatal"
++RandomNickNames="Flash"
++RandomNickNames="Fury"
++RandomNickNames="Gator"
++RandomNickNames="Ghost"
++RandomNickNames="Hound Dog"
++RandomNickNames="Ice"
++RandomNickNames="Icepick"
++RandomNickNames="Jaws"
++RandomNickNames="Judgment Day"
++RandomNickNames="Kinky"
++RandomNickNames="Monster"
++RandomNickNames="Mustang"
++RandomNickNames="Paladin"
++RandomNickNames="Pitbull"
++RandomNickNames="Pathfinder"
++RandomNickNames="Ringo"
++RandomNickNames="Samurai"
++RandomNickNames="Scorpion"
++RandomNickNames="Shogun"
++RandomNickNames="Shadow"
++RandomNickNames="Slayer"
++RandomNickNames="Snake"
++RandomNickNames="Snake Eyes"
++RandomNickNames="Solo"
++RandomNickNames="Specter"
++RandomNickNames="Spider"
++RandomNickNames="Stalker"
++RandomNickNames="Steel"
++RandomNickNames="Stinger"
++RandomNickNames="Trojan"
++RandomNickNames="Vandal"
++RandomNickNames="Viking"
++RandomNickNames="Warden"
++RandomNickNames="Warlord"
++RandomNickNames="Wolverine"
++RandomNickNames="Wildchild"
++RandomNickNames="Wildling"
++RandomNickNames="Zulu"
 ;ALPHABETICAL ORDER
-RandomNickNames_Male[0]="Axeman"
-RandomNickNames_Male[1]="Duke"
-RandomNickNames_Male[2]="Rocky"
-RandomNickNames_Male[3]="Stallion"
-RandomNickNames_Male[4]="Wolfman"
++RandomNickNames_Male="Axeman"
++RandomNickNames_Male="Duke"
++RandomNickNames_Male="Rocky"
++RandomNickNames_Male="Stallion"
++RandomNickNames_Male="Wolfman"
 ;ALPHABETICAL ORDER
-RandomNickNames_Female[0]="Athena"
-RandomNickNames_Female[1]="Duchess"
-RandomNicknames_Female[2]="Iron Lady"
-RandomNicknames_Female[3]="Iron Maiden"
-RandomNicknames_Female[4]="Shieldmaiden"
-RandomNickNames_Female[5]="Valkyrie"
++RandomNickNames_Female="Athena"
++RandomNickNames_Female="Duchess"
++RandomNickNames_Female="Iron Lady"
++RandomNickNames_Female="Iron Maiden"
++RandomNickNames_Female="Shieldmaiden"
++RandomNickNames_Female="Valkyrie"
 ;ALPHABETICAL ORDER
 
 [LWS_Shinobi X2SoldierClassTemplate]
 DisplayName="Shinobi"
 ClassSummary="The Shinobi serves as our primary scouting unit, using a sword to deliver stealthy close-range attacks."
-LeftAbilityTreeTitle="Saboteur"
+LeftAbilityTreeTitle="Scout"
 RightAbilityTreeTitle="Kenshi"
 
-+AbilityTreeTitles[0]="Saboteur"
-+AbilityTreeTitles[1]=""
++AbilityTreeTitles[0]="Scout"
++AbilityTreeTitles[1]="Saboteur"
 +AbilityTreeTitles[2]="Kenshi"
 +AbilityTreeTitles[3]="XCOM"
 +AbilityTreeTitles[4]="Pistols"
 
 ;ALPHABETICAL ORDER
-RandomNickNames[0]="Clutch"
-RandomNickNames[1]="Cobra"
-RandomNickNames[2]="Dagger"
-RandomNickNames[3]="Dancer"
-RandomNickNames[4]="Dasher"
-RandomNickNames[5]="Dodger"
-RandomNickNames[6]="Dragon"
-RandomNickNames[7]="Fencer"
-RandomNickNames[8]="Flipper"
-RandomNickNames[9]="Furball"
-RandomNickNames[10]="Gopher"
-RandomNickNames[11]="Mace"
-RandomNickNames[12]="Midnight"
-RandomNickNames[13]="Neutron"
-RandomNickNames[14]="Painter"
-RandomNickNames[15]="Pasha"
-RandomNickNames[16]="Poacher"
-RandomNickNames[17]="Rattler"
-RandomNickNames[18]="Razor"
-RandomNickNames[19]="Ripper"
-RandomNickNames[20]="Royal"
-RandomNickNames[21]="Shady"
-RandomNickNames[22]="Sticks"
-RandomNickNames[23]="Spacebar"
-RandomNickNames[24]="Splinter"
-RandomNickNames[25]="Stalker"
-RandomNickNames[26]="Talon"
-RandomNickNames[27]="Undertaker"
-RandomNickNames[28]="Wildcat"
++RandomNickNames="Clutch"
++RandomNickNames="Cobra"
++RandomNickNames="Dagger"
++RandomNickNames="Dancer"
++RandomNickNames="Dasher"
++RandomNickNames="Dodger"
++RandomNickNames="Dragon"
++RandomNickNames="Fencer"
++RandomNickNames="Flipper"
++RandomNickNames="Furball"
++RandomNickNames="Gopher"
++RandomNickNames="Mace"
++RandomNickNames="Midnight"
++RandomNickNames="Neutron"
++RandomNickNames="Painter"
++RandomNickNames="Pasha"
++RandomNickNames="Poacher"
++RandomNickNames="Rattler"
++RandomNickNames="Razor"
++RandomNickNames="Ripper"
++RandomNickNames="Royal"
++RandomNickNames="Shady"
++RandomNickNames="Sticks"
++RandomNickNames="Spacebar"
++RandomNickNames="Splinter"
++RandomNickNames="Stalker"
++RandomNickNames="Talon"
++RandomNickNames="Undertaker"
++RandomNickNames="Wildcat"
 ;ALPHABETICAL ORDER
-RandomNickNames_Male[0]="Bender"
-RandomNickNames_Male[1]="Cochise"
-RandomNickNames_Male[2]="Slim"
-RandomNickNames_Male[3]="Jockey"
-RandomNickNames_Male[4]="Sandman"
-RandomNickNames_Male[5]="Swordsman"
++RandomNickNames_Male="Bender"
++RandomNickNames_Male="Cochise"
++RandomNickNames_Male="Slim"
++RandomNickNames_Male="Jockey"
++RandomNickNames_Male="Sandman"
++RandomNickNames_Male="Swordsman"
 ;ALPHABETICAL ORDER
-RandomNickNames_Female[0]="Panther"
-RandomNickNames_Female[1]="Siren"
-RandomNickNames_Female[2]="Sparkplug"
-RandomNickNames_Female[3]="Spitfire"
++RandomNickNames_Female="Panther"
++RandomNickNames_Female="Siren"
++RandomNickNames_Female="Sparkplug"
++RandomNickNames_Female="Spitfire"
 ;ALPHABETICAL ORDER
 
 [LW_RebelSoldier X2SoldierClassTemplate]
@@ -2225,6 +2251,12 @@ RewardDetails="You'll get a selection of random enemy corpses."
 [Reward_Dummy_StatBoost X2RewardTemplate]
 DisplayName="Stat Boosts"
 ; End Translation
+
+[Reward_Supply_Mission X2RewardTemplate]
+DisplayName="Large Supply Extraction Mission"
+
+[Reward_Detachment_Mission X2RewardTemplate]
+DisplayName="Troop Column Infiltration Mission"
 
 ; POI Templates
 [POI_Rebels X2PointOfInterestTemplate]
@@ -2928,10 +2960,26 @@ BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Op
 ObjectiveTextPools[0]="Secure and extract ADVENT supplies"
 ObjectiveTextPools[1]="Extract all XCOM soldiers"
 
+[BigSupplyExtraction_LW X2MissionTemplate]
+DisplayName="Extract ADVENT Supplies"
+Briefing="Procure ADVENT Supplies"
+PostMissionType="Smash and Grab"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Secure and extract ADVENT supplies"
+ObjectiveTextPools[1]="Extract all XCOM soldiers"
+
 [SmashNGrab_LW X2MissionTemplate]
 DisplayName="Smash and Grab"
 Briefing="Raid an ADVENT depot"
 PostMissionType="Smash and Grab"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
+ObjectiveTextPools[0]="Recover as many resources as possible"
+ObjectiveTextPools[1]="Extract all XCOM soldiers"
+
+[BigSmashNGrab_LW X2MissionTemplate]
+DisplayName="Big Smash and Grab"
+Briefing="Raid a large ADVENT depot"
+PostMissionType="Big Smash and Grab"
 BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Resistance_Ops_Appear"
 ObjectiveTextPools[0]="Recover as many resources as possible"
 ObjectiveTextPools[1]="Extract all XCOM soldiers"
@@ -2944,6 +2992,14 @@ ObjectiveTextPools[1]="Recover at least 4 crates"
 ObjectiveTextPools[2]="Extract all XCOM soldiers"
 ObjectiveTextPools[3]="OR: Eliminate all remaining hostile targets"
 
+[BigSupplyExtraction_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Mark and recover ADVENT crates"
+; LWOTC Needs Translation
+ObjectiveTextPools[1]="Recover at least 6 crates"
+; End Translation
+ObjectiveTextPools[2]="Extract all XCOM soldiers"
+ObjectiveTextPools[3]="OR: Eliminate all remaining hostile targets"
+
 [DefaultSmashNGrab_LW X2MissionNarrativeTemplate]
 ObjectiveTextPools[0]="Acquire ADVENT resources"
 ObjectiveTextPools[1]="Extract ADVENT resources"
@@ -2951,6 +3007,15 @@ ObjectiveTextPools[2]="Recover and extract additional resources (Optional)"
 ObjectiveTextPools[3]="Extract all XCOM soldiers"
 ObjectiveTextPools[4]="Smash and Grab"
 ObjectiveTextPools[5]="The Resistance has discovered a vulnerable ADVENT storehouse full of valuable supplies and resources. Break in, grab whatever you can, and get out before ADVENT's reinforcements arrive. There will be multiple objective caches on this mission, but soldiers may only carry one resource cache each."
+
+[DefaultBigSmashNGrab_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Acquire ADVENT resources"
+ObjectiveTextPools[1]="Extract ADVENT resources"
+ObjectiveTextPools[2]="Recover and extract additional resources (Optional)"
+ObjectiveTextPools[3]="Extract all XCOM soldiers"
+ObjectiveTextPools[4]="Smash and Grab"
+ObjectiveTextPools[5]="The Resistance has discovered a vulnerable ADVENT storehouse full of valuable supplies and resources. Break in, grab whatever you can, and get out before ADVENT's reinforcements arrive. There will be multiple objective caches on this mission, but soldiers may only carry one resource cache each."
+
 
 [TroopManeuvers_LW X2MissionTemplate]
 DisplayName="Ambush an ADVENT Troop Column"
@@ -2968,6 +3033,24 @@ ObjectiveTextPools[3]="ADVENT typically moves its forces in large groups, but we
 ObjectiveTextPools[4]="LWOTC Gatecrasher"
 ObjectiveTextPools[5]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies.<br/><br/>Note that this is one of the few missions that allows for retrieval of enemy corpses, which are needed for research and building many items. Kills with explosives destroy corpses in LWOTC!"
 ; End Translation
+
+[CovertOpsTroopManeuvers_LW X2MissionTemplate]
+DisplayName="Ambush an ADVENT Detachment"
+Briefing="Ambush an ADVENT Detachment"
+PostMissionType="Ambush enemy troops"
+BriefingImage="img:///UILibrary_StrategyImages.X2StrategyMap.Alert_Guerrilla_Ops"
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+
+[DefaultCovertOpsTroopManeuvers_LW X2MissionNarrativeTemplate]
+ObjectiveTextPools[0]="Neutralize all enemy targets"
+ObjectiveTextPools[1]="Extract all XCOM soldiers"
+ObjectiveTextPools[2]="Ambush enemy troops"
+ObjectiveTextPools[3]="ADVENT typically moves its forces in large groups, but we have located a smaller unit on its own that is vulnerable. A well-timed assault will damage ADVENT's interests in this region and afford us a rare opportunity to bring home enemy corpses for research."
+; LWOTC Needs Translation
+ObjectiveTextPools[4]="LWOTC Gatecrasher"
+ObjectiveTextPools[5]="Welcome to the first mission of LWOTC!<br/><br/>The objective is simple: kill all the enemies.<br/><br/>Note that this is one of the few missions that allows for retrieval of enemy corpses, which are needed for research and building many items. Kills with explosives destroy corpses in LWOTC!"
+; End Translation
+
 
 [Rendezvous_LW X2MissionTemplate]
 DisplayName="Rendezvous"
@@ -3109,7 +3192,7 @@ TemplarTutorialTitle="Templar Focus"
 TemplarTutorialText="Templars gain Focus during missions by using Rend, regardless of whether it hits or not. Focus can be spent on powerful abilities, some of which have increased effectiveness when used at higher Focus levels."
 
 TemplarMomentumTutorialTitle="Templar Momentum & Parry"
-TemplarMomentumTutorialText="After using Rend, Templars always trigger Momentum, a free movement action which allows them to return to the safety of cover or use One For All to tank some attacks. One For All grants the Templar bonus ablative while lowering their defense significantly."
+TemplarMomentumTutorialText="After using Rend, Templars always trigger Momentum, a free movement action which allows them to return to the safety of cover or use Templar Shield to tank some attacks. Templar Shield grants bonus ablative until the start of your next turn."
 
 SkirmisherTutorialTitle="Skirmisher"
 SkirmisherTutorialText="The Skirmisher is a mobile unit that can fire their Bullpup at flanked units to get an action back, allowing them to shoot again, move, throw a grenade, or do something else. The Grapple adds to their versatility, allowing the Skirmisher to quickly traverse the battlefield and get into advantageous positions."
@@ -3512,7 +3595,7 @@ Summary="The Hazmat Vest will provide a boost to hit points and immunity to fire
 
 [PlatedVestProject X2TechTemplate]
 DisplayName="Tactical Vest"
-Summary="The Tactical Vest will provide both armor and hit points."
+Summary="The Tactical Vest will provide armor, hit points, and critical hit resistance."
 
 [StasisVestProject X2TechTemplate]
 DisplayName="Stasis Vests"
@@ -5094,12 +5177,12 @@ TimerDefendSubtitle="Turns until Advent arrival"
 [InTheZone X2AbilityTemplate]
 LocPromotionPopupText="<Bullet/> Serial is meant to chain enemy kills in a single action, as every kill is essentially free.<br/><Bullet/> Every successful kill does result in a reduction to critical hit chance and damage, however.<br/><Bullet/> Serial has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
 
-;LWOTC needs translation
+;LWOTC needs translation (2)
 [Fuse X2AbilityTemplate]
-LocLongDescription="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative. Free action."
-LocHelpText="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative. Free action."
+LocLongDescription="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative."
+LocHelpText="If an enemy is carrying explosives, they can be remotely detonated by the Psi Operative."
 LocPromotionPopupText="<Bullet/> Fuse has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
-;End translation
+;End translation (2)
 
 [BulletShred X2AbilityTemplate]
 ; LWOTC needs translation (2)
@@ -5118,14 +5201,14 @@ LocPromotionPopupText="<Bullet/> Each shot in Fan Fire rolls a separate chance t
 
 ; LWOTC Needs Translation (2)
 [SoulSteal X2AbilityTemplate]
-LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns, but increases the cooldown of soulfire by 1."
-LocHelpText="Soulfire heals a wounded operative and grants ablative HP, but increases soulfire cooldown by 1"
+LocLongDescription="Soulfire transfers the damage done back to the Psi Operative as health and grants an ablative HP for 3 turns."
+LocHelpText="Soulfire heals a wounded operative and grants ablative HP."
 LocPromotionPopupText="<Bullet/> Soul Steal will replenish lost health for a wounded operative and provide 3/4/6 ablative hit point for 3 turns.<br/><Bullet/> An operative may increase to no more than 15 ablative HP when using Soul Steal."
 ; End Translation (2)
 
 ; LWOTC Needs Translation
 [Domination X2AbilityTemplate]
-LocPromotionPopupText="<Bullet/> Domination requires a contest of the Psi Operative's Psi Strength stat versus the Will of the target.<br/><Bullet/> If an attempted Domination fails, there is a 4 turn cooldown before another Domination can be attempted.<br/><Bullet/> If the Psi Operative dies or leaves the battlefield, the Domination is broken.<br/>"
+LocPromotionPopupText="<Bullet/> Domination requires a contest of the Psi Operative's Psi Strength stat versus the Will of the target.<br/><Bullet/> If an attempted Domination fails, there is a <Ability:SelfCooldown_LW> turn cooldown before another Domination can be attempted.<br/><Bullet/> If the Psi Operative dies or leaves the battlefield, the Domination is broken.<br/>"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -5134,8 +5217,8 @@ LocPromotionPopupText="<Bullet/> Generate an explosive field of Psionic energy t
 ; End Translation
 
 [CoveringFire X2AbilityTemplate]
-LocLongDescription="Reaction shots confer an aim malus on enemies and can now be triggered by any enemy action, not just movement."
-LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a temporary aim penalty upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not.<br/>"
+LocLongDescription="Reaction shots now trigger on any hostile action, not just movement. Additionally, they confer a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim on targets, even on a miss."
+LocPromotionPopupText="<Bullet/> If triggered by an enemy action, Covering Fire will trigger before the enemy action completes.<br/><Bullet/> In addition, having the Covering Fire ability confers a penalty of -<Ability:COVERING_FIRE_OFFENSE_MALUS> aim upon any units you take a reaction shot at, regardless of whether it was a covering fire shot or not."
 
 [GrenadeLauncher_MG X2GrenadeLauncherTemplate]
 BriefSummary="Our Advanced Grenade Launcher uses magnetic technology to propel grenades further than our conventional launcher."
@@ -5197,9 +5280,9 @@ LocFlyOverText="Double Tap"
 [RescueProtocol X2AbilityTemplate]
 LocFriendlyName="Rescue Protocol"
 LocFlyoverText="Rescue Protocol"
-LocLongDescription="Use your Gremlin to grant a movement action to an ally and grant them a small boost to dodge and mobility."
+LocLongDescription="Use your GREMLIN to grant a movement action to an ally and grant them a small boost to dodge and mobility."
 LocHelpText="Grant a movement action to an ally and grant them a small boost to dodge and mobility."
-LocPromotionPopupText="<Bullet/> Rescue Protocol grants +<Ability:RESCUE_BONUS_DODGE/> dodge and +<Ability:RESCUE_BONUS_MOBILITY/> mobility.<br/><Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/> An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action and does not end your turn.<br/><Bullet/> Rescue Protocol has <Ability:RESCUE_CV_CHARGES/> charges per mission.<br/><Bullet/> Charges increase with improved Gremlin technology.<br/>"
+LocPromotionPopupText="<Bullet/> Rescue Protocol grants +<Ability:RESCUE_BONUS_DODGE/> dodge and +<Ability:RESCUE_BONUS_MOBILITY/> mobility.<br/><Bullet/> Rescue Protocol can only be used on allies with no action points left.<br/><Bullet/> It cannot be used on concealed, suppressing or overwatching units.<br/><Bullet/> An ally cannot benefit from both Command and Rescue Protocol in the same turn.<br/><Bullet/> Uses one action and does not end your turn.<br/><Bullet/> Rescue Protocol has <Ability:RESCUE_CV_CHARGES/> charges per mission.<br/><Bullet/> Charges increase with improved GREMLIN technology.<br/>"
 ; End Translation (3)
 
 [Blademaster X2AbilityTemplate]
@@ -5331,7 +5414,8 @@ FocusLevelDescriptions[4]="Rend Damage +<Ability:FOCUS4RENDDAMAGE/>\nMobility +<
 LocPromotionPopupText="<Bullet/> Templars begin missions weaker than other soldiers, but can become extremely powerful at higher Focus levels.<br/><Bullet/> Focus is gained by attacking enemies with Rend (even misses count).<br/>"
 
 ; LWOTC Needs Translation (3)
-[Rend X2AbilityTemplate]
+[Rend_LW X2AbilityTemplate]
+LocFriendlyName="Rend"
 LocLongDescription="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on attacks."
 LocHelpText="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on attacks."
 LocPromotionPopupText="<Bullet/> Using Rend is the Templar's primary method for generating Focus.<br/><Bullet/> After casting Rend, the Templar will gain Momentum, allowing them one movement action. Use this to return to cover after attacking.<br/><Bullet/> Rend has a <Ability:RENDSTUNCHANCE/>% chance to Stun per Focus. Stunned targets will also be knocked back.<br/><Bullet/> Rend has a <Ability:RENDDISORIENTCHANCE/>% chance to Disorient per Focus.<br/>"
@@ -5360,7 +5444,7 @@ LocPromotionPopupText="<Bullet/> The pillar will last for a number of turns equa
 [StunStrike X2AbilityTemplate]
 LocLongDescription="Strike an enemy with Psionic force, stunning them. Costs 1 Focus."
 LocHelpText="Strike an enemy with Psionic force, stunning them. Costs 1 Focus."
-LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike does not end the Templar's turn.<br/><Bullet/> Stun Strike has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocPromotionPopupText="<Bullet/> Stun Strike has a <Ability:STUNSTRIKEHITCHANCE/>% chance to hit, increased by <Ability:STUNSTRIKEFOCUSHITCHANCE/>% for each Focus level.<br/><Bullet/> Stun Strike has a <Ability:STUNSTRIKE_STUN_CHANCE/>% chance to stun the target if successful.<br/><Bullet/> Stun Strike costs one action and does not end the Templar's turn.<br/><Bullet/> Stun Strike has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Stun Strike cannot be used against targets that take more space than 1 tile."
 
 [BondmateTeamwork X2AbilityTemplate]
 LocHelpText="Grant an additional movement point to a bondmate. Has a single charge shared between bondmates."
@@ -5398,9 +5482,9 @@ LocPromotionPopupText="<Bullet/> Reduces Shadow's cooldown by 1 turn.<br/>"
 ; LWOTC Needs Translation (4)
 [BloodTrail X2AbilityTemplate]
 LocFriendlyName="Blood Trail"
-LocLongDescription="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has been wounded this turn."
+LocLongDescription="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has taken damage after your previous turn."
 LocHelpText="Attacks deal +<Ability:BLOODTRAILDAMAGE/> damage and ignore up to <Ability:BLOOD_TRAIL_ANTIDODGE_BONUS/> Dodge if the target has been wounded this turn."
-LocPromotionPopupText="<Bullet/> Only applies on the same turn the enemy is damaged.<br/><Bullet/> Works with all weapons, including grenades.<br/>"
+LocPromotionPopupText="<Bullet/> The bonuses apply if the enemy has taken damage on your turn or its previous turn.<br/><Bullet/> Works with all weapons, including grenades.<br/>"
 ; End Translation (4)
 
 [PaleHorse X2AbilityTemplate]
@@ -5506,6 +5590,14 @@ LocPromotionPopupText="<Bullet/> Solace cleanses disorientation, mind control, p
 LocPromotionPopupText="<Bullet/> Ghosts start with Focus equal to the Templar's Focus level when created minus 1.<br/><Bullet/> Ghosts cannot gain Focus, and disappear when all Focus is spent, or their health reaches 0.<br/><Bullet/> Rend costs 1 Focus when used by Ghosts.<br/><Bullet/> Ghost must be cast on the corpse of a humanoid enemy, and cannot be cast on the same corpse twice.<br/><Bullet/> Ghost has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Ghosts cannot gain following abilities: Volt, Shield bash, Shield abilities, Deflect, Reflect, Solace, Void Conduit, Bladestorm, Apotheosis, Superior Aptitude, Ionic Storm and Sustain. <br/>"
 ; End Translation (2)
 
+; LWOTC Needs Translation (2)
+[VoidConduit X2AbilityTemplate]
+LocFriendlyName="Void Conduit"
+LocLongDescription="Trap a humanoid in a Psionic prison, immobilizing them for 2 actions and transferring their health to the Templar. Costs 1 Focus."
+LocHelpText="Immobilize a humanoid for 2 actions, and transfer their health to the Templar. Costs 1 Focus."
+LocPromotionPopupText="<Bullet/> Void Conduit will deal <Ability:VOIDCONDUITDMG/> damage initially, then drain <Ability:VOIDCONDUITACTIONDMG/> health per enemy action.<br/><Bullet/> Void Conduit lasts for 2 enemy actions.<br/><Bullet/> Void Conduit has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Targets trapped by Void Conduit cannot take actions or dodge, but can be targeted by other attacks.<br/>"
+; End Translation (2)
+
 ; LWOTC Needs Translation (3)
 ; (2) Shard and Caster gauntlet tactical text and the brief
 ; summaries for the caster gauntlets have been updated.
@@ -5582,6 +5674,14 @@ LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi of
 ; End Translation (3)
 LocFlyOverText="The Warlock's Greatest Champion"
 
+; LWOTC Needs Translation
+[ShieldAllyM5 X2AbilityTemplate]
+LocFriendlyName="The Warlock's Greatest Champion"
+LocHelpText="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription="Gives a shield, an aim, critical hit chance, will and Psi offense bonus to an ally. When the ally is alive, Warlock gains <Ability:SHIELD_ALLY_PCT_DR>% Damage Reduction. <Ability:SelfCooldown_LW/> turn cooldown."
+LocFlyOverText="The Warlock's Greatest Champion"
+; End Translation
+
 [PsiMindControl X2AbilityTemplate]
 LocFriendlyName="Mind Control"
 ; LWOTC Needs Translation (3)
@@ -5627,7 +5727,7 @@ LocFlyOverText="Get up!"
 [ChosenSummonFollowers X2AbilityTemplate]
 LocFriendlyName="Summon Followers"
 ; LWOTC Needs Translation (3)
-LocHelpText="Summon aliens. <Ability:SelfCooldown_LW/> turn cooldown."
+LocHelpText="Summon aliens."
 ; End Translation (3)
 LocLongDescription="Summon aliens."
 LocFlyOverText="Summonnin' ayys"
@@ -5648,6 +5748,10 @@ LocLongDescription="When you get a crit with any shot or ability, your human or 
 
 [LocationScout X2SitRepTemplate]
 Description="The resistance have placed low-range motion detectors throughout the AO that hook into your squad's comms. Your soldiers will be able to detect enemy units that are out of line of sight."
+
+[ChosenOnMissionSitrep X2SitrepTemplate]
+FriendlyName="Chosen Presence"
+Description="A Chosen's energy signature has been detected. Expect them to appear on this mission."
 
 ; LWOTC Needs Translation (2)
 [LargeMap X2SitRepTemplate]
@@ -5776,6 +5880,10 @@ Description="Enemies units are going to be significantly tougher to take down be
 FriendlyName="Under infiltration (impossible?)"
 Description="Enemies units are going to be so tough, the fight will be virtually impossible to win because you're underinfiltrating."
 
+[LargeDepot_LW X2SitRepTemplate]
+FriendlyName="Large Depot"
+Description="A larger than normal Advent shipment has been traced to this location. Extra crates will spawn."
+
 ; LWOTC Needs Translation (2)
 [ToughScaling X2AbilityTemplate]
 LocFriendlyName="Under infiltration (minor)"
@@ -5818,6 +5926,13 @@ ActionObjective="Obtain Resistance MEC"
 
 [CovertAction_RecruitRebels X2CovertActionTemplate]
 ActionObjective="Recruit Rebels"
+
+[CovertAction_BigSupplyDepot X2CovertActionTemplate]
+ActionObjective="Find A Supply Depot"
+
+[CovertAction_FindAdventDetachment X2CovertActionTemplate]
+ActionObjective="Locate ADVENT Patrols"
+
 
 [CovertActionNarrative_EnemyCorpses_Skirmishers X2CovertActionNarrativeTemplate]
 ActionName="Raid an Enemy Morgue"
@@ -5879,6 +5994,36 @@ ActionName="Search for Resistance Recruits"
 ActionPreNarrative="We've learned of a small group of dissidents in the region who may be willing to help us directly. Go in and see whether you can recruit them for the haven."
 ActionPostNarrative="Your team persuaded some of the dissidents to join our cause."
 
+[CovertActionNarrative_FindBigDepot_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Locate an ADVENT Supply Depot"
+ActionPreNarrative="We've learned of the potential location of a large supply cache. We should investigate."
+ActionPostNarrative="Nice job. Now we can send in a team to follow up further."
+
+[CovertActionNarrative_FindBigDepot_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Locate an ADVENT Supply Depot"
+ActionPreNarrative="We've learned of the potential location of a large supply cache. We should investigate."
+ActionPostNarrative="Nice job. Now we can send in a team to follow up further."
+
+[CovertActionNarrative_FindBigDepot_Templars X2CovertActionNarrativeTemplate]
+ActionName="Locate an ADVENT Supply Depot"
+ActionPreNarrative="We've learned of the potential location of a large supply cache. We should investigate."
+ActionPostNarrative="Nice job. Now we can send in a team to follow up further."
+
+[CovertActionNarrative_FindAdventDetachment_Skirmishers X2CovertActionNarrativeTemplate]
+ActionName="Locate Detached ADVENT Patrol"
+ActionPreNarrative="We've learned of the potential location of an ADVENT Scouting Party. We should investigate."
+ActionPostNarrative="Nice job. Now we can send in a team to follow up further."
+
+[CovertActionNarrative_FindAdventDetachment_Reapers X2CovertActionNarrativeTemplate]
+ActionName="Locate Detached ADVENT Patrol"
+ActionPreNarrative="We've learned of the potential location of an ADVENT Scouting Party. We should investigate."
+ActionPostNarrative="Nice job. Now we can send in a team to follow up further."
+
+[CovertActionNarrative_FindAdventDetachment_Templars X2CovertActionNarrativeTemplate]
+ActionName="Locate Detached ADVENT Patrol"
+ActionPreNarrative="We've learned of the potential location of an ADVENT Scouting Party. We should investigate."
+ActionPostNarrative="Nice job. Now we can send in a team to follow up further."
+
 [AbilityPoints X2ItemTemplate]
 FriendlyName="Ability Points"
 FriendlyNamePlural="Ability Points"
@@ -5919,6 +6064,16 @@ LocFlyOverText="Soul Storm"
 LocPromotionPopupText="<Bullet>Summon meteors of psionic energy to deal damage to enemies inside a target area, and destroy their cover.<br/><Bullet> Soul Storm area of effect is centered on the user.<br/><Bullet> Cannot destroy floors or ceilings.<br/><Bullet/> Soul Storm requires one action and end your turn.<br/><Bullet/> Soul Storm has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Soul Storm has a radius of 4 tiles.<br/>"
 ; End Translation (2)
 
+[Stasis X2AbilityTemplate]
+LocFriendlyName="Stasis"
+LocLongDescription="Completely stuns the target for 1 turn, but renders them immune to any damage or attack."
+LocHelpText="Completely stuns the target for 1 turn, but renders them immune to any damage or attack."
+LocFlyOverText="Stasis"
+LocPromotionPopupText="<Bullet/> Stasis costs one action point and does not end your turn.<br/><Bullet/> Stasis has a <Ability:SelfCooldown_LW/> turn cooldown.<br/><Bullet/> Stasis can be cast on both enemies and allies.<br/><Bullet/> Stasis cannot be used against targets that take more space than 1 tile.<br/><Bullet/> As Stasis completely removes an enemy unit from combat for a turn, it can be used defensively to protect vulnerable soldiers, or it can be used offensively to set up a coordinated attack.<br/>"
+
+[TheLostGrappler X2CharacterTemplate]
+strCharacterName="Lost Grappler"
+
 [TheLostGrapplerHP2_LW X2CharacterTemplate]
 strCharacterName="Lost Grappler"
 
@@ -5951,6 +6106,9 @@ strCharacterName="Lost Grappler"
 
 [TheLostGrapplerHP12_LW X2CharacterTemplate]
 strCharacterName="Lost Grappler"
+
+[TheLostBrute X2CharacterTemplate]
+strCharacterName="Lost Brute"
 
 [TheLostBruteHP10_LW X2CharacterTemplate]
 strCharacterName="Lost Brute"
@@ -6065,9 +6223,9 @@ LocPromotionPopupText="<Bullet/> Your ranged attacks gain <Ability:IMPULSE_AIM_B
 LocFriendlyName="Lock 'N Load"
 LocFlyOverText="Lock 'N Load"
 ; LWOTC Needs Translation (2)
-LocLongDescription="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
-LocHelpText="Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
-LocPromotionPopupText="<Bullet/> Kills with your primary weapon restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo.<br/>"
+LocLongDescription="Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
+LocHelpText="Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo."
+LocPromotionPopupText="<Bullet/> Kills with your <Ability:BOUND_WEAPON_NAME/> restore <Ability:LOCKNLOAD_AMMO_TO_RELOAD/> ammo.<br/>"
 ; End Translation (2)
 
 [TrenchWarfare_LW X2AbilityTemplate]
@@ -6115,8 +6273,8 @@ LocPromotionPopupText="<Bullet/> After throwing or launching a grenade, you will
 [Avenger_LW X2AbilityTemplate]
 LocFriendlyName="Avenger"
 LocFlyOverText="Avenger"
-LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has fired upon a visible ally."
-LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has fired upon a visible ally."
+LocLongDescription="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action."
+LocHelpText="Once per turn, take a reaction shot with your <Ability:WeaponName/> at a visible enemy that has taken an offensive action."
 LocPromotionPopupText="<Bullet/> Avenger will not activate if this unit is shot at.<br/><Bullet/> Can only activate during the enemy's turn.<br/><Bullet/> Can only trigger once per turn.<br/>"
 ; End Translation (2)
 
@@ -6205,9 +6363,9 @@ LocPromotionPopupText="<Bullet/> Will not trigger if soldier is concealed.<br/><
 [ScrapMetal_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal"
 LocFlyOverText="Scrap Metal: Recovered ammo"
-LocLongDescription="Kills with your primary weapon restore one sawed-off shotgun charge."
-LocHelpText="Kills with your primary weapon restore one sawed-off shotgun charge."
-LocPromotionPopupText="<Bullet/> Kills with your primary weapon restore one sawed-off shotgun charge.<br/><Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> This ability cannot grant ammo if the sawed-off shotgun charges are already at their starting value.<br/>"
+LocLongDescription="Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge."
+LocHelpText="Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge."
+LocPromotionPopupText="<Bullet/> Kills with your <Ability:BOUND_WEAPON_NAME/> restore one sawed-off shotgun charge.<br/><Bullet/> This does not apply to kills from using the sawed-off shotgun itself.<br/><Bullet/> This ability cannot grant ammo if the sawed-off shotgun charges are already at their starting value.<br/>"
 
 [ScrapMetalTrigger_LW X2AbilityTemplate]
 LocFriendlyName="Scrap Metal: Recovered ammo"
@@ -6255,9 +6413,9 @@ LocPromotionPopupText = "<Bullet/> All enemies within the <Ability:ClassName/>'s
 LocFriendlyName = "Apex Predator"
 LocFlyOverText = "Apex Predator"
 ; LWOTC Needs Translation (3)
-LocHelpText = "Critical hits with your primary weapon have a chance to panic the target and nearby enemies."
-LocLongDescription = "Critical hits with your primary weapon have a chance to panic the target and nearby enemies."
-LocPromotionPopupText = "<Bullet/> Critical hits with your primary weapon have a chance to panic the target and nearby (within <Ability:APEX_PREDATOR_PANIC_RADIUS/> tiles) enemies.<br/><Bullet/> The chance to panic is <Ability:APEX_PREDATOR_BASE_PANIC_CHANCE/>% and is negatively affected by target's Will."
+LocHelpText = "Critical hits with your <Ability:BOUND_WEAPON_NAME/> have a chance to panic the target and nearby enemies."
+LocLongDescription = "Critical hits with your <Ability:BOUND_WEAPON_NAME/> have a chance to panic the target and nearby enemies."
+LocPromotionPopupText = "<Bullet/> Critical hits with your <Ability:BOUND_WEAPON_NAME/> have a chance to panic the target and nearby (within <Ability:APEX_PREDATOR_PANIC_RADIUS/> tiles) enemies.<br/><Bullet/> The chance to panic is <Ability:APEX_PREDATOR_BASE_PANIC_CHANCE/>% and is negatively affected by target's Will."
 ; End Translation (3)
 
 [BlindingProtocol_LW X2AbilityTemplate]
@@ -6275,9 +6433,9 @@ LocPromotionPopupText = "<Bullet/> Works with Squadsight.<br/><Bullet/> Blinding
 LocFriendlyName = "Lead The Target"
 LocFlyOverText = "Lead The Target"
 ; LWOTC Needs Translation (3)
-LocHelpText = "Grants a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delays the shot until the target takes an action on their turn. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocLongDescription = "Grants a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delays the shot until the target takes an action on their turn. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
-LocPromotionPopupText = "<Bullet/> Carefully lead the target, granting a +<Ability:LEAD_TARGET_AIM_BONUS/>% increased chance to hit, but delaying the shot until the targeted enemy's turn. Takes two actions.<br/><Bullet/> Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+LocHelpText = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocLongDescription = "Take a delayed shot with +<Ability:LEAD_TARGET_AIM_BONUS/> Aim at an enemy if it moves. Costs two actions and has a <Ability:SelfCooldown_LW/> turn cooldown."
+LocPromotionPopupText = "<Bullet> To take the shot, you need line of sight to the enemy when it moves.<br/><Bullet/> Lead The Target ends if you haven't taken the shot until the start of your next turn.<br/><Bullet/> Costs two actions.<br/><Bullet/> Lead The Target is not a reaction attack, despite activating on enemy movement.<br/><Bullet/> Lead The Target has a <Ability:SelfCooldown_LW/> turn cooldown."
 ; End Translation (3)
 
 [LeadTheTargetShot_LW X2AbilityTemplate]
@@ -6361,6 +6519,18 @@ LocHelpText="When targeted by enemy fire, automatically fire back with your <Abi
 LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn."
 LocPromotionPopupText="<Bullet/> Return Fire will only trigger once per turn.<br/><Bullet/> Return Fire can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Return Fire will not trigger when targeted by overwatch fire.<br/>"
 
+[TriggerBot X2AbilityTemplate]
+LocFriendlyName="Trigger Bot"
+LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocPromotionPopupText="<Bullet/> Trigger Bot will only trigger once per turn.<br/><Bullet/> Trigger Bot can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Trigger Bot will not trigger when targeted by overwatch fire.<br/>"
+
+[TriggerBotShot X2AbilityTemplate]
+LocFriendlyName="Trigger Bot"
+LocHelpText="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocLongDescription="When targeted by enemy fire, automatically fire back with your <Ability:WeaponName/> once per turn with an attack that has a <Ability:TRIGGER_BOT_DAMAGE_PENALTY/>% damage penalty, but is a guaranteed hit."
+LocPromotionPopupText="<Bullet/> Trigger Bot will only trigger once per turn.<br/><Bullet/> Trigger Bot can be triggered by melee attacks and area of effect attacks.<br/><Bullet/> Trigger Bot will not trigger when targeted by overwatch fire.<br/>"
+
 [DeadeyeSnapShot X2AbilityTemplate]
 LocFriendlyName="Deadeye (Snap Shot)"
 LocLongDescription="Take a shot with a small aim penalty for a significant damage boost."
@@ -6398,44 +6568,44 @@ LocFlyOverText="Holy Warrior"
 [ChosenDragonRounds X2AbilityTemplate]
 LocFriendlyName="Infernal Fury"
 LocFlyOverText="Infernal Fury"
-LocLongDescription="Your primary weapon will set your enemies on fire."
-LocHelpText="Your primary weapon will set your enemies on fire."
+LocLongDescription="Your <Ability:BOUND_WEAPON_NAME/> will set your enemies on fire."
+LocHelpText="Your <Ability:BOUND_WEAPON_NAME/> will set your enemies on fire."
 
 [ChosenDragonRoundsPassive X2AbilityTemplate]
 LocFriendlyName="Infernal Fury"
 LocFlyOverText="Infernal Fury"
-LocLongDescription="Your primary weapon will set your enemies on fire."
-LocHelpText="Your primary weapon will set your enemies on fire."
+LocLongDescription="Your <Ability:BOUND_WEAPON_NAME/> will set your enemies on fire."
+LocHelpText="Your <Ability:BOUND_WEAPON_NAME/> will set your enemies on fire."
 
 [ChosenVenomRounds X2AbilityTemplate]
 LocFriendlyName="Toxic Nightmare"
 LocFlyOverText="Toxic Nightmare"
-LocLongDescription="Your Primary weapon attacks will poison enemies."
-LocHelpText="Your Primary weapon attacks will poison enemies."
+LocLongDescription="Your <Ability:BOUND_WEAPON_NAME/> attacks will poison enemies."
+LocHelpText="Your <Ability:BOUND_WEAPON_NAME/> attacks will poison enemies."
 
 [ChosenVenomRoundsPassive X2AbilityTemplate]
 LocFriendlyName="Toxic Nightmare"
 LocFlyOverText="Toxic Nightmare"
-LocLongDescription="Your Primary weapon attacks will poison enemies."
-LocHelpText="Your Primary weapon attacks will poison enemies."
+LocLongDescription="Your <Ability:BOUND_WEAPON_NAME/> attacks will poison enemies."
+LocHelpText="Your <Ability:BOUND_WEAPON_NAME/> attacks will poison enemies."
 
 [ChosenBleedingRounds X2AbilityTemplate]
 LocFriendlyName="Hit it where it hurts"
 LocFlyOverText="Hit it where it hurts"
-LocLongDescription="Your Primary weapon attacks will bleed enemies."
-LocHelpText="Your Primary weapon attacks will bleed enemies."
+LocLongDescription="Your <Ability:BOUND_WEAPON_NAME/> attacks will bleed enemies."
+LocHelpText="Your <Ability:BOUND_WEAPON_NAME/> attacks will bleed enemies."
 
 [ChosenBleedingRoundsPassive X2AbilityTemplate]
 LocFriendlyName="Hit it where it hurts"
 LocFlyOverText="Hit it where it hurts"
-LocLongDescription="Your Primary weapon attacks will bleed enemies."
-LocHelpText="Your Primary weapon attacks will bleed enemies."
+LocLongDescription="Your <Ability:BOUND_WEAPON_NAME/> attacks will bleed enemies."
+LocHelpText="Your <Ability:BOUND_WEAPON_NAME/> attacks will bleed enemies."
 
 [MindScorchDangerZone X2AbilityTemplate]
-LocFriendlyName="High Voltage"
-LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch."
-LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch."
-LocPromotionPopupText="<Bullet/> Provides a <Ability:VoltDangerZoneBonus/>-tile bonus to the radius of Mind Scorch."
+LocFriendlyName="Mind Combustion"
+LocLongDescription="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch, and reduce the cooldown of mind scorch by 1."
+LocHelpText="Gain <Ability:VoltDangerZoneBonus/>-tile bonus radius for Mind Scorch, and reduce the cooldown of mind scorch by 1."
+LocPromotionPopupText=""
 
 [MindScorchTerror X2AbilityTemplate]
 LocFriendlyName="Terrorize"
@@ -6465,18 +6635,23 @@ LocFlyOverText="Keen"
 ; LWOTC needs translation (2)
 [CombatReadiness X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
-LocHelpText="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn."
+LocLongDescription="Gain a stackable <Ability:COMBAT_READINESS_EXPLOSIVE_DR/>% explosive damage reduction and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
+LocHelpText="Gain a stackable <Ability:COMBAT_READINESS_EXPLOSIVE_DR/>% explosive damage reduction and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
 LocFlyOverText="Combat Readiness"
 ; End translation (2)
 
 ; LWOTC needs translation (2)
 [CombatReadinessPassive X2AbilityTemplate]
 LocFriendlyName="Combat Readiness"
-LocLongDescription="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
-LocHelpText="Gain a stackable <Ability:COMBATREADINESS_AIM/> aim and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn."
+LocLongDescription="Gain a stackable <Ability:COMBAT_READINESS_EXPLOSIVE_DR/>% explosive damage reduction and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
+LocHelpText="Gain a stackable <Ability:COMBAT_READINESS_EXPLOSIVE_DR/>% explosive damage reduction and <Ability:COMBATREADINESS_DEF/> defense bonus in cover for the rest of your turn, and remove the immobilize debuff."
 LocFlyOverText="Combat Readiness"
 ; End translation (2)
+
+[HunterReactionMobBoost_LW X2AbilityTemplate]
+LocFriendlyName="Enhanced Reactions"
+LocLongDescription="Gain +2 mobility per hit received this turn."
+LocFlyOverText="Gained Mobility"
 
 ; LWOTC needs translation
 [Banzai_LW X2AbilityTemplate]
@@ -6510,6 +6685,12 @@ strCharacterName="Assassin"
 strAcquiredText="Now a close-combat menace, the Assassin is a juggernaut that will run towards you and slash you whenever possible. Her initially-low, but ever-increasing damage cannot be underestimated."
 ;end translation (2)
 
+;LWOTC needs translation
+[ChosenAssassinM5 X2CharacterTemplate]
+strCharacterName="Assassin"
+strAcquiredText="Now a close-combat menace, the Assassin is a juggernaut that will run towards you and slash you whenever possible. Her initially-low, but ever-increasing damage cannot be underestimated."
+;end translation
+
 [ChosenWarlock X2CharacterTemplate]
 strCharacterName="Warlock"
 strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
@@ -6525,6 +6706,12 @@ strAcquiredText="The Elder's greatest champion is an incredibly dangerous suppor
 [ChosenWarlockM4 X2CharacterTemplate]
 strCharacterName="Warlock"
 strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+
+;LWOTC needs translation
+[ChosenWarlockM5 X2CharacterTemplate]
+strCharacterName="Warlock"
+strAcquiredText="The Elder's greatest champion is an incredibly dangerous support unit and the king of mid range, capable of completely disabling your troops and heavily buffing his."
+;end translation
 
 [ChosenSniper X2CharacterTemplate]
 strCharacterName="Hunter"
@@ -6542,19 +6729,86 @@ strAcquiredText="The Hunter is the master of long range combat, constantly kitin
 strCharacterName="Hunter"
 strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
 
+;LWOTC needs translation
+[ChosenSniperM5 X2CharacterTemplate]
+strCharacterName="Hunter"
+strAcquiredText="The Hunter is the master of long range combat, constantly kiting your troops while taking them down with his dangerous flank shots. Weak at close combat, but is not to be underestimated."
+;end translation
+
+;LWOTC needs translation
+[ChosenShotgun_T5 X2WeaponTemplate]
+FriendlyName="Chosen Ultra Shotgun"
+FriendlyNamePlural="Chosen Ultra Shotguns"
+BriefSummary="The Storm Gun fires a concentrated set of beam pulses, piercing and melting the target across a substantial surface area."
+TacticalText="<Bullet/> This is the most advanced shotgun-style weapon available in the XCOM arsenal.\n<Bullet/> Shotgun-style weapons are very effective at close range, but their accuracy drops off quickly at longer range.\n<Bullet/> Use upgrades looted from enemies to improve the Storm Gun's tactical effectiveness."
+AbilityDescName="shotgun"
+
+[ChosenSword_T5 X2WeaponTemplate]
+FriendlyName="Chosen Ultra Sword"
+FriendlyNamePlural="Chosen Ultra Swords"
+BriefSummary="The Fusion Blade encases a plasma-heated metallic core in a micro-thin magnetic field, enabling devastating melee attacks that are capable of setting enemies aflame."
+TacticalText="<Bullet/> This is the most advanced version of the Ranger's sword, dealing maximum damage with a chance to burn enemy targets."
+AbilityDescName="sword"
+
+[ChosenSniperRifle_T5 X2WeaponTemplate]
+FriendlyName="Chosen Ultra Sniper Rifle"
+FriendlyNamePlural="Chosen Ultra Sniper Rifles"
+BriefSummary="The aliens' focused beam technology has obvious applications for improving sniper rifles. The Plasma Lance is an unmatched sniper rifle."
+TacticalText="<Bullet/> This is the apex of sniper rifle technology.\n<Bullet/> Sniper rifles always require both actions to fire.\n<Bullet/> They are less accurate at close range, but deadly at a distance.\n<Bullet/> Use upgrades looted from enemies to improve the plasma sniper rifle's tactical effectiveness."
+AbilityDescName="sniper rifle"
+
+
+[ChosenSniperPistol_T5 X2WeaponTemplate]
+FriendlyName="Chosen Ultra Pistol"
+FriendlyNamePlural="Chosen Ultra Pistols"
+BriefSummary="The ultimate sidearm, this pistol integrates the aliens' beam weapons technology to powerful effect."
+TacticalText="<Bullet/> Beam pistols are the most powerful handguns on Earth.\n<Bullet/> Unlike the sniper rifle, pistols can be fired with a single action."
+
+[ChosenRifle_T5 X2WeaponTemplate]
+FriendlyName="Chosen Ultra Rifle"
+FriendlyNamePlural="Chosen Ultra Rifle"
+BriefSummary="Now that we've finally deciphered the aliens' devastating weapon technology and can develop beam weapons of our own, we can build rifles that will be the match of any enemy our soldiers encounter in the field."
+TacticalText="<Bullet/> The Plasma Rifle is a general purpose, supremely powerful primary infantry weapons system.\n<Bullet/> Firing the primary weapon always ends the soldier's turn.\n<Bullet/> Use upgrades looted from enemies to improve the Plasma Rifle's tactical effectiveness."
+AbilityDescName="assault rifle"
+;end translation
+
 ; LWOTC Needs Translation (2)
 [BloodThirst_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>/<Ability:BLOODTHIRST_T5_DMG/> damage for T1/T2/T3/T4/T5. Removed on a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>/<Ability:BLOODTHIRST_T5_DMG/> damage for T1/T2/T3/T4/T5. Removed on a successful kidnap."
 LocFlyOverText="Blood Thirst"
 
 [BloodThirstPassive_LW X2AbilityTemplate]
 LocFriendlyName="Blood Thirst"
-LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
-LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/> damage for T1/T2/T3/T4. Removed on a successful kidnap."
+LocLongDescription="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>/<Ability:BLOODTHIRST_T5_DMG/> damage for T1/T2/T3/T4/T5. Removed on a successful kidnap."
+LocHelpText="Every time you attack with your melee weapon, get a stackable damage boost to your melee attacks. Bonus depends on Chosen tier, +<Ability:BLOODTHIRST_T1_DMG/>/<Ability:BLOODTHIRST_T2_DMG/>/<Ability:BLOODTHIRST_T3_DMG/>/<Ability:BLOODTHIRST_T4_DMG/>/<Ability:BLOODTHIRST_T5_DMG/> damage for T1/T2/T3/T4/T5. Removed on a successful kidnap."
 LocFlyOverText="Blood Thirst"
 ; End Translation (2)
+
+; LWOTC Needs Translation (2)
+[UnholyAscension_LW X2AbilityTemplate]
+LocFriendlyName="Unholy Ascension"
+LocLongDescription="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
+LocHelpText="Warlock's Greatest Champion's Shield, Aim, Crit, Will, and Psi Offense bonuses are doubled and grant crit immunity."
+LocFlyOverText="Unholy Ascension"
+
+[RuptureImmunity X2AbilityTemplate]
+LocFriendlyName="Unbreakable"
+LocLongDescription="All Rupture Effects inflicted on you will be instantly removed."
+LocHelpText="All Rupture Effects inflicted on you will be instantly removed."
+LocFlyOverText="Unbreakable"
+
+[TrackingShotMark X2AbilityTemplate]
+LocFriendlyName="Tracking Shot Mark"
+LocHelpText="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
+LocLongDescription="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
+
+[TrackingShot X2AbilityTemplate]
+LocFriendlyName="Tracking Shot"
+LocHelpText="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
+LocLongDescription="At the start of your turn, mark an enemy that's flanked against you as a free action. Your first shot against that target is guaranteed to hit, and refunded."
+;end translation (2)
 
 [PreciseStrike_LW X2AbilityTemplate]
 LocFriendlyName="Precise strike"
@@ -6564,15 +6818,39 @@ LocFlyOverText="Precise strike"
 
 [PsychoticRage_LW X2AbilityTemplate]
 LocFriendlyName="Psychotic Rage"
-LocHelpText="Gain a 50% damage boost when at 35% hp or less"
-LocLongDescription="Gain a 50% damage boost when at 35% hp or less."
+LocHelpText="Gain a <Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>% damage boost when at <Ability:PSYCHOTIC_RAGE_DMG_BONUS/>% hp or less."
+LocLongDescription="Gain a <Ability:PSYCHOTIC_RAGE_BELOW_THRESHOLD/>% damage boost when at <Ability:PSYCHOTIC_RAGE_DMG_BONUS/>% hp or less."
 LocFlyOverText="Psychotic Rage"
+
+[HeroSlayer_LW X2AbilityTemplate]
+LocFriendlyName="Big Game Hunter"
+LocHelpText="You deal +<Ability:HERO_SLAYER_DMG/>% damage against hero classes."
+LocLongDescription="You deal +<Ability:HERO_SLAYER_DMG/>% damage against hero classes."
+LocFlyOverText="Big Game Hunter"
+
+[BloodBath_LW X2AbilityTemplate]
+LocFriendlyName="Blood Bath"
+LocHelpText="Harbor wave cone is wider by 2 tiles, and each enemy hit by it grants a blood thirst stack."
+LocLongDescription="Harbor wave cone is wider by 2 tiles, and each enemy hit by it grants a blood thirst stack."
+LocFlyOverText="Blood Bath"
+
+[MistyMadness_LW X2AbilityTemplate]
+LocFriendlyName="Misty Madness"
+LocHelpText="The radius of your mist grenade is increased by 2."
+LocLongDescription="The radius of your mist grenade is increased by 2."
+LocFlyOverText="Misty Madness"
+
+[Impenetrable_LW X2AbilityTemplate]
+LocFriendlyName="Impenetrable"
+LocHelpText="Impact Compensation Stacking limit is increased by 1."
+LocLongDescription="Impact Compensation Stacking limit is increased by 1."
+LocFlyOverText="Impenetrable"
 
 [YouCannotHide_LW X2AbilityTemplate]
 ; LWOTC Needs Translation (2)
 LocFriendlyName="You Cannot Hide"
-LocHelpText="Gain 100 aim with your primary weapon."
-LocLongDescription="Gain 100 aim with your primary weapon."
+LocHelpText="Gain 30 aim with your <Ability:BOUND_WEAPON_NAME/>."
+LocLongDescription="Gain 30 aim with your <Ability:BOUND_WEAPON_NAME/>."
 ; End Translation (2)
 LocFlyOverText="Run."
 
@@ -6616,7 +6894,7 @@ FriendlyName="Darklance"
 FriendlyNamePlural="Darklances"
 BriefSummary="This rifle belonging to the Chosen Hunter has probably seen more death than we can possibly imagine."
 ; LWOTC Needs Translation (2)
-TacticalText="<Bullet/> This rifle is capable of insane burst damage against units that have been marked for death.<br/>"
+TacticalText="<Bullet/> This rifle is capable of insane burst damage against units that have been marked for death."
 ; End Translation (2)
 AbilityDescName="sniper rifle"
 
@@ -6643,10 +6921,10 @@ LocFlyOverText="Blood Thirst"
 
 [OverbearingSuperiority_LW X2AbilityTemplate]
 LocFriendlyName="Overbearing Superiority"
-LocLongDescription="Whenever you get a critical hit with your primary weapon, your actions are refunded."
-;LWOTC Needs translation(2)
-LocHelpText="Whenever you get a critical hit with your primary weapon, your actions are refunded."
-;End Translation(2)
+;LWOTC Needs translation(3)
+LocLongDescription="Gain +<Ability:OVERBEARING_SUPERIORITY_CRIT/> Crit Chance with your <Ability:BOUND_WEAPON_NAME/>. Whenever you get a critical hit with your <Ability:BOUND_WEAPON_NAME/>, your actions are refunded."
+LocHelpText="Gain +<Ability:OVERBEARING_SUPERIORITY_CRIT/> Crit Chance with your <Ability:BOUND_WEAPON_NAME/>. Whenever you get a critical hit with your <Ability:BOUND_WEAPON_NAME/>, your actions are refunded."
+;End Translation(3)
 LocFlyOverText="Overbearing Superiority"
 
 [DisruptorRifleCrit X2AbilityTemplate]
@@ -6664,8 +6942,8 @@ LocFlyOverText="Mark For Death"
 [Fatality_LW X2AbilityTemplate]
 LocFriendlyName="Fatality"
 ;LWOTC Needs translation(2)
-LocLongDescription="Gain +100 aim and crit against units at 35% hp or lower with your <Ability:WeaponName/>."
-LocHelpText="Gain +100 aim and crit against units at 35% hp or lower with your <Ability:WeaponName/>."
+LocLongDescription="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your <Ability:BOUND_WEAPON_NAME/>."
+LocHelpText="Gain +100 aim and crit against units at <Ability:FATALITY_THRESHOLD>% hp or lower with your <Ability:BOUND_WEAPON_NAME/>."
 ;End Translation(2)
 LocFlyOverText="Fatality"
 
@@ -6693,7 +6971,7 @@ LocHelpText="Gain a stackable defence bonus after taking damage for this turn."
 
 [ComplexReload_LW X2AbilityTemplate]
 LocFriendlyName="Complex Reload"
-LocHelpText="Reload your primary weapon. Ends turn."
+LocHelpText="Reload your <Ability:BOUND_WEAPON_NAME/>. Ends turn."
 LocFlyOverText="Reloading"
 
 [XcomGame.X2StrategyGameRulesetDataStructures]
@@ -6715,18 +6993,18 @@ LocFlyOverText="Chosen Prime Reaction"
 
 [HunterPrimeReactionPassive X2AbilityTemplate]
 LocFriendlyName="Chosen Prime Reaction"
-LocLongDescription="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
+LocLongDescription="Gain a reduced mobility movement action or Combat Readiness after taking damage on XCOM's turn."
 LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocFlyOverText="Chosen Prime Reaction"
 
 [WarlockPrimeReactionPassive X2AbilityTemplate]
 LocFriendlyName="Chosen Prime Reaction"
-LocLongDescription="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
+LocLongDescription="Gain a reduced mobility movement action or Combat Readiness after taking damage on XCOM's turn."
 LocHelpText="Gain a movement action or Combat Readiness after taking damage on XCOM's turn."
 LocFlyOverText="Chosen Prime Reaction"
 
 ; LWOTC Needs Translation (3)
-[ChosenImmunitiesPassive X2AbilityTemplate]
+[ChosenImmunities X2AbilityTemplate]
 LocFriendlyName="Chosen Immunities"
 LocLongDescription="Chosen are immune to stun, disorient, and frost."
 LocHelpText="Chosen are immune to stun, disorient, and frost."
@@ -6746,9 +7024,9 @@ LocFlyOverText="Harbor Wave"
 [Brawler X2AbilityTemplate]
 LocFriendlyName="Brawler"
 LocFlyOverText="Brawler"
-LocLongDescription="Take <Ability:BRAWLER_DR_PCT>% less damage against attacks within four tiles."
-LocHelpText="Take <Ability:BRAWLER_DR_PCT>% less damage against attacks within four tiles."
-LocPromotionPopupText="<Bullet/> Take <Ability:BRAWLER_DR_PCT>% less damage against attacks within four tiles.<br/>"
+LocLongDescription="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles."
+LocHelpText="Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles."
+LocPromotionPopupText="<Bullet/>Take <Ability:BRAWLER_DR_PCT>% less damage from any melee attack, or attacks from within four tiles.<br/>"
 
 [InstantReactionTime X2AbilityTemplate]
 LocFriendlyName="Instant Reaction Time"
@@ -6809,11 +7087,11 @@ SummaryText="A brutal crackdown on the Resistance, lowering all rebel income (in
 ; LWOTC Needs Translation
 [XComGameState_AdventChosen]
 KnowledgeGainFirstBullet[eChosenKnowledge_Start]=""
-KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]="Chosen can hinder rebel activities!"
-KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Chosen increases risks on Covert Actions!"
-KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Chosen can sabotage the Avenger!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Saboteur]=" "
+KnowledgeGainFirstBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an additional dark event!"
+KnowledgeGainFirstBullet[eChosenKnowledge_Collector]="Chosen can hinder rebel activities!"
 KnowledgeGainFirstBullet[eChosenKnowledge_Raider]="Chosen can launch an assault on the Avenger!"
-KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]="Chosen can instigate an additional dark event!"
+KnowledgeGainSecondBullet[eChosenKnowledge_Sentinel]=""
 
 
 ; LWOTC Needs Translation (2)
@@ -6970,11 +7248,23 @@ LocLongDescription="Reduce wound recovery times for this soldier by <Ability:GRE
 LocHelpText="Reduce wound recovery times for most soldiers."
 LocPromotionPopupText="<Bullet/> Greater Padding reduces the number of hit points a soldier must heal after being wounded in battle by <Ability:GREATER_PADDING_BM/>.<br/><Bullet/> It does not affect soldiers who suffered killing wounds and are stabilized from bleeding out."
 
+[IRI_SoulShot X2AbilityTemplate]
+LocFriendlyName="Soul Shot"
+LocLongDescription="A powerful aim-based ranged attack that can crit and does not end turn. Costs 1 Focus."
+LocHelpText="A powerful aim-based ranged attack that can crit and does not end turn. Costs 1 Focus."
+LocPromotionPopupText="<Bullet/> Soul Shot has +20 bonus to Aim.<br/><Bullet/> Soul Shot has no cooldown.<br/><Bullet/> Damage increases with Gauntlet tier."
+
+[IRI_TemplarShield X2AbilityTemplate]
+LocFriendlyName="Templar Shield"
+LocLongDescription="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions."
+LocHelpText="Use your shard gauntlets to generate a psionic shield and gain <Ability:TEMPLAR_SHIELD_TAG/> Shield HP that will last until the start of your next turn. Can be used with Momentum actions."
+LocPromotionPopupText="<bullet/> Ends turn when used.<br/><bullet/> Shield strength will increase with shard gauntlets' tech level."
+
 [Indomitable X2AbilityTemplate]
 LocFriendlyName="Indomitable"
-LocHelpText="Once per turn, gain 1 focus when you're attacked."
-LocLongDescription="Once per turn, gain 1 focus when you're attacked."
-LocPromotionPopupText"<Bullet/> Once per turn, gain 1 focus when you're attacked.<br/><Bullet/>Applies to both melee and ranged attacks.<br/>"
+LocHelpText="Once per turn, gain 1 focus when you're directly attacked."
+LocLongDescription="Once per turn, gain 1 focus when you're directly attacked."
+LocPromotionPopupText"<Bullet/> Once per turn, gain 1 focus when you're attacked.<br/><Bullet/>Applies to both melee and ranged attacks, but not to AOE attacks.<br/>"
 LocFlyOverText="Indomitable"
 
 [VoltFocusOnKills X2AbilityTemplate]
@@ -7013,8 +7303,8 @@ LocPromotionPopupText="<Bullet/> Amplify will last for 3 damage instances.<br/><
 
 [CrusaderRage_LW X2AbilityTemplate]
 LocFriendlyName="Crusader's Rage"
-LocHelpText="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 8 HP"
-LocLongDescription="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 8 HP."
+LocHelpText="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 6 HP"
+LocLongDescription="Gain 25% damage boost for every 25% HP missing, up to 50% damage boost. Reduce wound recovery times for this soldier by 6 HP."
 LocPromotionPopupText="<Bullet/> Wound reduction does not work if the soldier entered a bleeding out state during the mission.<br/>"
 LocFlyOverText="Psychotic Rage"
 
@@ -7059,16 +7349,16 @@ LocHelpText="Run towards an Ally and heal stabilize with your medikit."
 
 [SoulReaper X2AbilityTemplate]
 LocFriendlyName="Banish"
-LocLongDescription="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less than the previous one. Reveals the Reaper. "
-LocHelpText="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less than the previous one. Reveals the Reaper."
+LocLongDescription="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less than the previous one. Reveals the Reaper."
+LocHelpText="Fire at a target until you run out of ammo or it dies. Each shot has <Ability:BANISH_HIT_MOD/> aim less than the previous one. Reveals the Reaper. Starts with Charges, once charges are expended, has a cooldown instead."
 LocFlyoverText="Banish"
-LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/><Bullet/> Banish shots can crit.<br/>"
+LocPromotionPopupText="<Bullet/> Each shot in Banish rolls a separate chance to hit.<br/><Bullet/> Banish cannot be activated with only 1 ammo remaining.<br/><Bullet/> Banish shots can crit.<br/><Bullet/> Banish has a <Ability:SelfCooldown_LW/> turn cooldown."
 
 ;LWOTC needs translation(3)
 [TotalCombat X2AbilityTemplate]
 LocFriendlyName="Total Combat"
-LocLongDescription="Gain 1 Mobility and 5 aim. Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 3 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
-LocHelpText="Gain 1 Mobility and 5 aim. Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 3 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
+LocLongDescription="Gain 1 Mobility and 5 aim. Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
+LocHelpText="Gain 1 Mobility and 5 aim. Throwing a grenade or using an item no longer ends the turn and grenades have no cooldown. In addition, you can throw grenades 2 tiles further and their radius is increased by 1. Grants a Grenade-only slot."
 LocPromotionPopupText="<Bullet/> Total Combat adds even more flexibility to the <Ability:ClassName/>'s turns, allowing actions to be taken exactly when needed.<br/><Bullet/> Removes the cooldown for grenades.<br/><Bullet/> Grants Volatile Mix, hence it does not stack with it."
 ;End Translation(3)
 
@@ -7087,11 +7377,17 @@ LocLongDescription="A powerful form of Overwatch. Instead of firing automaticall
 LocHelpText="A powerful form of Overwatch, capable of being used without any actions. Instead of firing automatically, perform any single action. Free action."
 LocPromotionPopupText="<Bullet/> This is a free action.<br/><Bullet/> Some actions are not available during Interrupt, like Overwatch.<br/><Bullet/> Interrupt has a <Ability:SelfCooldown_LW/> turn cooldown."
 
-[ArcWavePassive X2AbilityTemplate]
+[ArcWave_LW X2AbilityTemplate]
+LocFriendlyName="Rend"
+LocLongDescription="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on attacks."
+LocHelpText="Melee attack with a chance to stun or disorient the target. Triggers Momentum, and generates Focus on attacks."
+LocPromotionPopupText="<Bullet/> Using Rend is the Templar's primary method for generating Focus.<br/><Bullet/> After casting Rend, the Templar will gain Momentum, allowing them one movement action. Use this to return to cover after attacking.<br/><Bullet/> Rend has a <Ability:RENDSTUNCHANCE/>% chance to Stun per Focus. Stunned targets will also be knocked back.<br/><Bullet/> Rend has a <Ability:RENDDISORIENTCHANCE/>% chance to Disorient per Focus.<br/>"
+
+[ArcWavePassive_LW X2AbilityTemplate]
 LocFriendlyName="Arc Wave"
 LocLongDescription="Rend generates a wave of Psionic energy in the direction of the attack. Damage increases with Gauntlet tier."
 LocHelpText="Rend generates a wave of Psionic energy in the direction of the attack."
-LocPromotionPopupText="<Bullet/> Arc Wave does not affect the target of the original Rend attack.<br/><Bullet/> Arc Wave deals 4/7/10 damage depanding on weapon tier.<br/><Bullet/> Arc Wave travels through environmental objects.<br/>"
+LocPromotionPopupText="<Bullet/> Arc Wave does not affect the target of the original Rend attack.<br/><Bullet/> Arc Wave deals 4/7/10 damage depending on weapon tier.<br/><Bullet/> Arc Wave travels through environmental objects.<br/>"
 
 [IonicStorm X2AbilityTemplate]
 LocFriendlyName="Ionic Storm"
@@ -7102,8 +7398,8 @@ LocPromotionPopupText="<Bullet/> Ionic Storm's radius increases at higher Focus 
 
 ; LWOTC Needs Translation
 [Sabotage_LongRangeComms X2SabotageTemplate]
-SummaryText="We've been struggling to maintain long range communications after the recent sabotage by the Chosen. Our covert actions will be delayed by 2 weeks."
-ShortSummaryText="Our covert actions have been delayed by 2 weeks!"
+SummaryText="We've been struggling to maintain long range communications after the recent sabotage by the Chosen. Our covert actions will be delayed by 5 days."
+ShortSummaryText="Our covert actions have been delayed by 5 days!"
 ; End Translation
 
 ; LWOTC Needs Translation
@@ -7157,7 +7453,7 @@ LocHelpText="ADVENT security towers cannot see this unit when it's concealed or 
 LocLongDescription="Makes wearer immune to negative mental conditions such as panic, mind control and stuns."
 
 [Sustain X2AbilityTemplate]
-LocLongDescription="If the unit takes enough damage to be killed, they are immediately put in Stasis for 1 turn and their health is only reduced to 1 HP. This can only happen once per mission."
+LocLongDescription="Reduce wound recovery times for this soldier by <Ability:SUSTAIN_WOUND_HP_REDUCTTION/> HP. If the unit takes enough damage to be killed, they are immediately put in Stasis for 1 turn and their health is only reduced to 1 HP. This can only happen once per mission."
 LocHelpText="If the unit takes enough damage to be killed, they are immediately put in Stasis for 1 turn and their health is only reduced to 1 HP. This can only happen once per mission."
 LocPromotionPopupText="<Bullet/> Beware that a sustained unit may retain damaging status effects like poison or burning after emerging from Stasis.<br/>"
 
@@ -7165,3 +7461,103 @@ LocPromotionPopupText="<Bullet/> Beware that a sustained unit may retain damagin
 LocLongDescription="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
 LocHelpText="The unit would have died, but was saved and put into Stasis for 1 turn. This cannot happen again during this mission."
 ; End Translation
+
+[X2MPData_Shell]
+arrMPMapFriendlyNames[9]="Underground"
+arrMPMapFriendlyNames[10]="Underground"
+
+[Overdrive X2AbilityTemplate]
+LocFriendlyName="Overdrive"
+LocLongDescription="Take three actions this turn, and no action is turn-ending. Multiple Standard Shots incur a small recoil penalty."
+LocHelpText="Take three actions this turn, and no action is turn-ending. Multiple Standard Shots incur a small recoil penalty."
+LocPromotionPopupText="<Bullet/> A recoil penalty of <Ability:Overdrive_RecoilPenalty/> Aim is applied after each Standard Shot while Overdrive is active.<br/><Bullet/> Overdrive has no cost to activate, but has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+
+[Bulwark X2AbilityTemplate]
+LocFriendlyName="Bulwark"
+LocLongDescription="Gain a bonus point of Armor, and always provide high cover to all adjacent squadmates."
+LocHelpText="Gain a bonus point of Armor, and always provide high cover to all adjacent squadmates."
+LocPromotionPopupText="<Bullet/> Bulwark adds one point of Armor.<br/><Bullet/> Any squadmate standing adjacent to the SPARK will gain the high cover Defense bonus.<br/>"
+
+[Arsenal X2AbilityTemplate]
+LocFriendlyName="Arsenal"
+LocLongDescription="The BIT can equip and fire heavy weapons."
+LocHelpText="The BIT can equip and fire heavy weapons."
+LocPromotionPopupText="<Bullet/> Arsenal allows the SPARK to equip heavy weapons in their loadout.<br/>"
+
+[Rainmaker X2AbilityTemplate]
+LocFriendlyName="Rainmaker"
+LocLongDescription="Equipped heavy weapons deal +<Ability:Rainmaker_BonusDamage/> damage and have increased area of effect."
+LocHelpText="Equipped heavy weapons deal more damage and affect a larger area."
+LocPromotionPopupText="<Bullet/> Rainmaker adds +<Ability:Rainmaker_BonusDamage/> damage to all heavy weapons.<br/><Bullet/> Heavy weapons with circular areas of effect have their radius increased by +<Ability:Rainmaker_BonusRadius/>.<br/><Bullet/> Heavy weapons with conic areas of effect have their diameter increased by +<Ability:Rainmaker_BonusDiameter/> and length increased by +<Ability:Rainmaker_BonusLength/>.<br/>"
+
+[Intimidate X2AbilityTemplate]
+LocFriendlyName="Intimidate"
+LocLongDescription="When targeted by an attack, the enemy has a chance to panic."
+LocHelpText="When targeted by an attack, the enemy has a chance to panic."
+LocFlyOverText="Intimidate"
+LocPromotionPopupText="<Bullet/> Intimidate's chance to panic the attacker increases with higher tier SPARK armors.<br/><Bullet/> Intimidate can be triggered by melee and area of effect attacks.<br/><Bullet/> Intimidate will not trigger when targeted by Overwatch fire.<br/>"
+
+[IntimidateTrigger X2AbilityTemplate]
+LocFriendlyName="Intimidate"
+LocLongDescription="When targeted by an attack, all visible enemies have a chance to panic."
+LocHelpText="When targeted by an attack, all visible enemies have a chance to panic."
+LocFlyOverText="Intimidate"
+LocPromotionPopupText=""
+LocMissMessage="Intimidate Failed"
+
+[Repair X2AbilityTemplate]
+LocFriendlyName="Repair"
+LocLongDescription="Send the BIT to a damaged robotic ally and repair it. Advanced BITs can repair slightly more."
+LocHelpText="Send the BIT to repair a damaged robotic ally."
+LocFlyOverText="Repair"
+LocPromotionPopupText="<Bullet/> Repair will restore <Ability:Repair_HealHP/> health.<br/><Bullet/> Upgrading your BIT will lead to more HP repaired.<br/><Bullet/> Using Repair as your first action will not end your turn.<br/><Bullet/> Repair has <Ability:Repair_Charges/> charges per mission.<br/>"
+
+[AbsorptionField X2AbilityTemplate]
+LocFriendlyName="Channeling Field"
+LocLongDescription="Every time you are targeted, part of the energy is channeled to your <Ability:WeaponName>. This energy is unleashed with your next Standard Shot."
+LocHelpText="Channel energy to your <Ability:WeaponName> when targeted, and unleash it with your next Standard Shot."
+LocFlyOverText="Energy Channeled: +1"
+LocPromotionPopupText="<Bullet/> Each point of energy channeled by Channeling Field increases the damage of the next <Ability:WeaponName> attack by 1.<br/><Bullet/> The energy stored by channeling field is expended even if the next shot misses.<br/>"
+
+[Sacrifice X2AbilityTemplate]
+LocFriendlyName="Sacrifice"
+LocLongDescription="Generate a protective field which redirects any attacks against allies inside it towards you. Gain bonus defense and armor while active."
+LocHelpText="Generate a protective field to redirect enemy attacks towards you."
+LocFlyOverText="Sacrifice"
+LocPromotionPopupText="<Bullet/> The SPARK gains +<Ability:Sacrifice_Defense/> defense and +<Ability:Sacrifice_Armor/> armor while Sacrifice is active.<br/><Bullet/> Sacrifice has a <Ability:SelfCooldown_LW/> turn cooldown.<br/>"
+
+[AdaptiveAim X2AbilityTemplate]
+LocFriendlyName="Adaptive Aim"
+LocLongDescription="When Overdrive is active, Standard Shots do not incur recoil penalties."
+LocHelpText="When Overdrive is active, Standard Shots do not incur recoil penalties."
+LocPromotionPopupText="<Bullet/> Adaptive Aim eliminates the <Ability:Overdrive_RecoilPenalty/> Aim penalty for consecutive Standard Shots when Overdrive is active.<br/>"
+
+[Strike X2AbilityTemplate]
+LocFriendlyName="Strike"
+LocLongDescription="Attack any enemy within movement range with a powerful melee attack."
+LocHelpText="Attack any enemy within movement range with a powerful melee attack."
+LocPromotionPopupText="<Bullet/> You can trigger the Strike ability by placing the movement cursor over an enemy.<br/><Bullet/> A SPARK can perform a \"Dash\" move, using both actions to move, and still trigger a Strike against an adjacent enemy.<br/>"
+
+[WreckingBall X2AbilityTemplate]
+LocFriendlyName="Wrecking Ball"
+LocLongDescription="While Overdrive is active, break through walls and cover when moving."
+LocHelpText="While Overdrive is active, break through walls and cover when moving."
+LocPromotionPopupText="<Bullet/> Wrecking Ball can be used to expose enemies to flanking shots.<br/><Bullet/> Use movement waypoints to guide the SPARK on an optimal path for destroying cover and the environment.</br>"
+
+[Bombard X2AbilityTemplate]
+LocFriendlyName="Bombard"
+LocLongDescription="Launch the BIT to any visible location where it releases a powerful explosive blast. Advanced BITs do more damage."
+LocHelpText="Launch the BIT to blast all units in a radius."
+LocPromotionPopupText="<Bullet/> Bombard can be fired at any location within squadsight.<br/><Bullet/> Upgrading your BIT will lead to more Bombard damage.<br/>"
+
+[HunterProtocol X2AbilityTemplate]
+LocFriendlyName="Hunter Protocol"
+LocLongDescription="When an enemy is revealed, there is a <Ability:HunterProtocol_Chance/>% chance to take a free Overwatch shot."
+LocHelpText="When an enemy is revealed, there is a <Ability:HunterProtocol_Chance/>% chance to take a free Overwatch shot."
+LocPromotionPopupText="<Bullet/> Hunter Protocol makes the SPARK an ideal unit for scouting into the fog of war, since any revealed enemy can be instantly attacked.<br/>"
+
+[Nova X2AbilityTemplate]
+LocFriendlyName="Nova"
+LocLongDescription="Release a blast of energy, damaging all nearby units. This attack has no cost or cooldown, but consecutive Novas will damage the SPARK."
+LocHelpText="Blast all nearby units. Consecutive Novas will damage the SPARK."
+LocPromotionPopupText="<Bullet/> Nova has no action point cost and no cooldown.<br/><Bullet/> The first Nova attack each mission will deal 0 damage to the SPARK.<br/><Bullet/> All Nova attacks after the first will deal a stacking <Ability:Nova_Damage/> damage to the SPARK.<br/>"

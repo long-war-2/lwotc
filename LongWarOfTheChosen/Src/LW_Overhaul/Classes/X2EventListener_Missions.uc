@@ -20,6 +20,8 @@ var config array<name> LostSwarmIDsDiff3;
 
 var config array<MissionTypePlotTypeOverride> MISSION_PLOT_OVERRIDES;
 
+var config int numAdditionalCrateLargeDepot;
+
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -147,6 +149,18 @@ static function EventListenerReturn OnOverrideObjectiveSpawnCount(Object EventDa
 	{
 		`LWTRACE("Jailbreak mission overriding NumObjectivesToSpawn = " $ MissionSite.Rewards.Length);
 		Tuple.Data[1].i = MissionSite.Rewards.Length;
+	}
+
+	else if(MissionSite.GeneratedMission.Mission.sType == "SmashNGrab_LW")
+	{
+		`LWTrace("Smash N Grab Objective found.");
+
+		if(MIssionSite.TacticalGameplayTags.find('LargeDepot_LW_Sitrep') != INDEX_NONE)
+		{
+			Tuple.Data[1].i += default.numAdditionalCrateLargeDepot;
+		}
+
+
 	}
 
 	return ELR_NoInterrupt;

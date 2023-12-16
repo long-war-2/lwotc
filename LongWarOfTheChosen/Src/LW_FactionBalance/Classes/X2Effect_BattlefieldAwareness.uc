@@ -7,6 +7,15 @@ class X2Effect_BattlefieldAwareness extends X2Effect_Persistent;
 
 function bool ChangeHitResultForTarget(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit TargetUnit, XComGameState_Ability AbilityState, bool bIsPrimaryTarget, const EAbilityHitResult CurrentResult, out EAbilityHitResult NewHitResult)
 {
+	local bool DamagingAttack;
+
+	DamagingAttack = (X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).BaseDamage.Damage > 0 || X2WeaponTemplate(AbilityState.GetSourceWeapon().GetMyTemplate()).BaseDamage.PlusOne > 0); // attacking weapon
+
+	if(Attacker.GetTeam() == eTeam_XCom && !DamagingAttack)
+	{
+		return false;
+	}
+
 	if (TargetUnit.IsAbleToAct())
 	{	
 

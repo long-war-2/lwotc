@@ -6,6 +6,8 @@
 
 class X2Ability_PerkPackAbilitySet extends X2Ability config (LW_SoldierSkills);
 
+`include(LW_PerkPack_Integrated\LW_PerkPack.uci)
+
 var config int CENTERMASS_DAMAGE;
 var config int LETHAL_DAMAGE;
 var config int DOUBLE_TAP_1ST_SHOT_AIM;
@@ -94,18 +96,21 @@ var config int MIND_MERGE_MIN_ACTION_POINTS;
 var config int MIND_MERGE_DURATION;
 var config int MIND_MERGE_COOLDOWN;
 var config int SOUL_MERGE_COOLDOWN_REDUCTION;
-var config float MIND_MERGE_WILL_DIVISOR;
+var config int MIND_MERGE_FLAT_SHIELDHP;
+var config int MIND_MERGE_FLAT_WILL;
+var config int MIND_MERGE_FLAT_CRIT;
+var config int MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
+var config int MIND_MERGE_AMP_MG_WILL_BONUS;
+var config int MIND_MERGE_AMP_MG_CRIT_BONUS;
+var config int MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
+var config int MIND_MERGE_AMP_BM_WILL_BONUS;
+var config int MIND_MERGE_AMP_BM_CRIT_BONUS;
 var config float MIND_MERGE_SHIELDHP_DIVISOR;
-var config float SOUL_MERGE_WILL_DIVISOR;
-var config float SOUL_MERGE_SHIELDHP_DIVISOR;
-var config float MIND_MERGE_AMP_MG_WILL_BONUS;
-var config float MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
-var config float MIND_MERGE_AMP_BM_WILL_BONUS;
-var config float MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
+var config float MIND_MERGE_WILL_DIVISOR;
 var config float MIND_MERGE_CRIT_DIVISOR;
+var config float SOUL_MERGE_SHIELDHP_DIVISOR;
+var config float SOUL_MERGE_WILL_DIVISOR;
 var config float SOUL_MERGE_CRIT_DIVISOR;
-var config float MIND_MERGE_AMP_MG_CRIT_BONUS;
-var config float SOUL_MERGE_AMP_BM_CRIT_BONUS;
 var config float FORMIDABLE_EXPLOSIVES_DR;
 var config int FORMIDABLE_ARMOR_MITIGATION;
 var config int FORMIDABLE_ABLATIVE_HP;
@@ -122,6 +127,7 @@ var config bool NO_STANDARD_ATTACKS_WHEN_ON_FIRE;
 var config bool NO_MELEE_ATTACKS_WHEN_ON_FIRE;
 var config int BOMBARD_BONUS_RANGE_TILES;
 var config int SHARPSHOOTERAIM_CRITBONUS;
+var config int MACROPHAGES_HEAL_AMT;
 
 var config int CE_USES_PER_TURN;
 var config int CE_MAX_TILES;
@@ -165,6 +171,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(AddWalkFireAbility());
 	Templates.AddItem(WalkFireDamage()); //Additional Ability
 	Templates.AddItem(AddPrecisionShotAbility());
+	Templates.AddItem(AddPrecisionShotSnapShotAbility());
 	Templates.AddItem(PrecisionShotCritDamage()); //Additional Ability
 	Templates.AddItem(AddCyclicFireAbility());
 	Templates.AddItem(CyclicFire2()); //Additional Ability
@@ -1294,7 +1301,7 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	local X2AbilityCost_ActionPoints		ActionPointCost;
 	local X2AbilityCost_Ammo				AmmoCost;
 	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
-	local X2AbilityCooldown					Cooldown;	
+	local X2AbilityCooldown_Shared			Cooldown;	
 	local X2Effect_Knockback				KnockbackEffect;
 	local X2Condition_Visibility            VisibilityCondition;
 	local X2Condition_UnitEffects			SuppressedCondition;
@@ -1303,6 +1310,8 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityPrecisionShot";
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
 	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideIfOtherAvailable;
+	Template.HideIfAvailable.AddItem('PrecisionShotSnapShot');
 	Template.DisplayTargetHitChance = true;
 	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
 	Template.CinescriptCameraType = "StandardGunFiring";
@@ -1325,8 +1334,9 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	Template.AbilityToHitCalc = ToHitCalc;
 	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
 
-	Cooldown = new class'X2AbilityCooldown';
+	Cooldown = new class'X2AbilityCooldown_Shared';
     Cooldown.iNumTurns = default.PRECISION_SHOT_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('PrecisionShotSnapShot');
     Template.AbilityCooldown = Cooldown;
 
 	AmmoCost = new class'X2AbilityCost_Ammo';
@@ -1366,6 +1376,103 @@ static function X2AbilityTemplate AddPrecisionShotAbility()
 	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
 
 	Template.AdditionalAbilities.AddItem('PrecisionShotCritDamage');
+	Template.AdditionalAbilities.AddItem('PrecisionShotSnapShot');
+
+	return Template;
+}
+
+static function X2AbilityTemplate AddPrecisionShotSnapShotAbility()
+{
+	local X2AbilityTemplate					Template;
+	local X2AbilityCost_ActionPoints		ActionPointCost;
+	local X2AbilityCost_Ammo				AmmoCost;
+	local X2AbilityToHitCalc_StandardAim    ToHitCalc;
+	local X2AbilityCooldown_Shared					Cooldown;	
+	local X2Effect_Knockback				KnockbackEffect;
+	local X2Condition_Visibility            VisibilityCondition;
+	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_AbilityProperty   	AbilityCondition;
+	local X2Condition_UnitActionPoints		ActionPointCondition;
+
+	`CREATE_X2ABILITY_TEMPLATE (Template, 'PrecisionShotSnapShot');
+	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityPrecisionShot";
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_ShowIfAvailable;
+	Template.ShotHUDPriority = class'UIUtilities_Tactical'.const.CLASS_CAPTAIN_PRIORITY;
+	Template.DisplayTargetHitChance = true;
+	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
+	Template.CinescriptCameraType = "StandardGunFiring";
+	Template.TargetingMethod = class'X2TargetingMethod_OverTheShoulder';
+	Template.bCrossClassEligible = true;
+	Template.bUsesFiringCamera = true;
+	Template.Hostility = eHostility_Offensive;
+	Template.bPreventsTargetTeleport = false;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+	Template.AbilityTargetStyle = default.SimpleSingleTarget;
+
+	ActionPointCost = new class 'X2AbilityCost_ActionPoints';
+	ActionPointCost.iNumPoints = 1;
+	ActionPointCost.bConsumeAllPoints = true;
+	Template.AbilityCosts.AddItem(ActionPointCost);
+
+	ToHitCalc = new class'X2AbilityToHitCalc_StandardAim';
+	ToHitCalc.BuiltInCritMod = default.PRECISION_SHOT_CRIT_BONUS;
+	Template.AbilityToHitCalc = ToHitCalc;
+	Template.AbilityToHitOwnerOnMissCalc = ToHitCalc;
+
+	Cooldown = new class'X2AbilityCooldown_Shared';
+    Cooldown.iNumTurns = default.PRECISION_SHOT_COOLDOWN;
+	Cooldown.SharingCooldownsWith.AddItem('PrecisionShot');
+    Template.AbilityCooldown = Cooldown;
+
+	AmmoCost = new class'X2AbilityCost_Ammo';
+	AmmoCost.iAmmo = default.PRECISION_SHOT_AMMO_COST;
+	Template.AbilityCosts.AddItem(AmmoCost);
+	Template.bAllowAmmoEffects = true;
+		 
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AbilityTargetConditions.AddItem(default.LivingHostileTargetProperty);
+	Template.AddShooterEffectExclusions();
+
+	SuppressedCondition = new class'X2Condition_UnitEffects';
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	SuppressedCondition.AddExcludeEffect(class'X2Effect_AreaSuppression'.default.EffectName, 'AA_UnitIsSuppressed');
+	Template.AbilityShooterConditions.AddItem(SuppressedCondition);
+
+	VisibilityCondition = new class'X2Condition_Visibility';
+	VisibilityCondition.bRequireGameplayVisible = true;
+	VisibilityCondition.bAllowSquadsight = true;
+	Template.AbilityTargetConditions.AddItem(VisibilityCondition);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
+	Template.AssociatedPassives.AddItem('HoloTargeting');
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.ShredderDamageEffect());
+	Template.bAllowAmmoEffects = true;
+
+	KnockbackEffect = new class'X2Effect_Knockback';
+	KnockbackEffect.KnockbackDistance = 2;
+	Template.AddTargetEffect(KnockbackEffect);
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('SnapShot');
+	Template.AbilityShooterConditions.Additem(AbilityCondition);
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+    Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+    Template.BuildInterruptGameStateFn = TypicalAbility_BuildInterruptGameState;
+	
+	Template.SuperConcealmentLoss = class'X2AbilityTemplateManager'.default.SuperConcealmentStandardShotLoss;
+	Template.ChosenActivationIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotChosenActivationIncreasePerUse;
+	Template.LostSpawnIncreasePerUse = class'X2AbilityTemplateManager'.default.StandardShotLostSpawnIncreasePerUse;
+
+	//Template.AdditionalAbilities.AddItem('PrecisionShotCritDamage');
+
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.StandardActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
+	ActionPointCondition = new class'X2Condition_UnitActionPoints';
+	ActionPointCondition.AddActionPointCheck(1,class'X2CharacterTemplateManager'.default.RunAndGunActionPoint,false,eCheck_LessThanOrEqual);
+	Template.AbilityShooterConditions.AddItem(ActionPointCondition);
 
 	return Template;
 }
@@ -1385,6 +1492,7 @@ static function X2AbilityTemplate PrecisionShotCritDamage()
     Template.AbilityTriggers.AddItem(default.UnitPostBeginPlayTrigger);
     CritEffect = new class'X2Effect_PrecisionShotCritDamage';
     CritEffect.BuildPersistentEffect(1, true, false, false);
+	CritEffect.DuplicateResponse = eDupe_Refresh;
     CritEffect.SetDisplayInfo(ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, false,, Template.AbilitySourceName);
     Template.AddTargetEffect(CritEffect);
     Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
@@ -1528,6 +1636,7 @@ static function X2AbilityTemplate CyclicFire2()
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	Trigger.ListenerData.EventID = 'CyclicFire2';
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 80;
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_OriginalTarget;
 	Template.AbilityTriggers.AddItem(Trigger);
 
@@ -1589,6 +1698,7 @@ static function X2AbilityTemplate CyclicFire3()
 	Trigger.ListenerData.Deferral = ELD_OnStateSubmitted;
 	Trigger.ListenerData.EventID = 'CyclicFire3';
 	Trigger.ListenerData.Filter = eFilter_Unit;
+	Trigger.ListenerData.Priority = 80;
 	Trigger.ListenerData.EventFn = class'XComGameState_Ability'.static.AbilityTriggerEventListener_OriginalTarget;
 	Template.AbilityTriggers.AddItem(Trigger);
 
@@ -2295,6 +2405,8 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	local X2Condition_UnitInventory         UnitInventoryCondition;
 	local name								WeaponCategory;
 	local X2Condition_UnitEffects			SuppressedCondition;
+	local X2Condition_OwnerDoesNotHaveAbility	DoesNotHaveAbilityCondition;
+	local X2Condition_AbilityProperty AbilityCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'Suppression_LW');
 	Template.AbilitySourceName = 'eAbilitySource_Perk';
@@ -2325,6 +2437,13 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	}
 
 	Template.AddShooterEffectExclusions();
+
+	DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
+	DoesNotHaveAbilityCondition.AbilityName = 'DedicatedSuppression_LW';
+
+	AbilityCondition = new class 'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('DedicatedSuppression_LW');
+	
 	
 	SuppressedCondition = new class'X2Condition_UnitEffects';
 	SuppressedCondition.AddExcludeEffect(class'X2Effect_Suppression'.default.EffectName, 'AA_UnitIsSuppressed');
@@ -2341,17 +2460,30 @@ static function X2AbilityTemplate AddSuppressionAbility_LW()
 	Template.AbilityTargetStyle = default.SimpleSingleTarget;
 	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
 
+
+	//nonsteadfast
 	SuppressionEffect = new class'X2Effect_Suppression';
 	SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
 	SuppressionEffect.bRemoveWhenTargetDies = true;
 	SuppressionEffect.bRemoveWhenSourceDamaged = true;
 	SuppressionEffect.bBringRemoveVisualizationForward = true;
-	SuppressionEffect.DuplicateResponse=eDupe_Allow;
+	SuppressionEffect.DuplicateResponse=eDupe_Ignore;
 	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
 	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
+	SuppressionEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
 	Template.AddTargetEffect(SuppressionEffect);
-	Template.AddMultiTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
-	
+
+	//steadfast
+	SuppressionEffect = new class'X2Effect_Suppression';
+	SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	SuppressionEffect.bRemoveWhenTargetDies = true;
+	SuppressionEffect.bRemoveWhenSourceDamaged = false;
+	SuppressionEffect.bBringRemoveVisualizationForward = true;
+	SuppressionEffect.DuplicateResponse=eDupe_Ignore;
+	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
+	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
+	SuppressionEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(SuppressionEffect);
 	Template.AdditionalAbilities.AddItem('SuppressionShot_LW');
 	Template.AdditionalAbilities.AddItem('LockdownBonuses');
 	Template.AdditionalAbilities.AddItem('MayhemBonuses');
@@ -2555,6 +2687,8 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	local AbilityGrantedBonusRadius						DangerZoneBonus;
 	local X2Condition_UnitProperty						ShooterCondition;
 	local X2Condition_UnitEffects						SuppressedCondition;
+	local X2Condition_OwnerDoesNotHaveAbility			DoesNotHaveAbilityCondition;
+	local X2Condition_AbilityProperty					AbilityCondition;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'AreaSuppression');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AreaSuppression";
@@ -2594,6 +2728,11 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 
 	AmmoCost = new class'X2AbilityCost_Ammo';	
 	AmmoCost.iAmmo = default.AREA_SUPPRESSION_AMMO_COST;
+	AmmoCost.bFreeCost = true;
+	Template.AbilityCosts.AddItem(AmmoCost);
+
+	AmmoCost = new class'X2AbilityCost_Ammo';	
+	AmmoCost.iAmmo = max(default.AREA_SUPPRESSION_AMMO_COST-1,0);
 	Template.AbilityCosts.AddItem(AmmoCost);
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
@@ -2631,6 +2770,14 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	
 	Template.AbilityMultiTargetConditions.AddItem(default.LivingHostileUnitOnlyProperty);
 
+	DoesNotHaveAbilityCondition = new class 'X2Condition_OwnerDoesNotHaveAbility';
+	DoesNotHaveAbilityCondition.AbilityName = 'DedicatedSuppression_LW';
+
+	AbilityCondition = new class 'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('DedicatedSuppression_LW');
+
+	//First the non-steadfast effect
+
 	SuppressionEffect = new class'X2Effect_AreaSuppression';
 	SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
 	SuppressionEffect.bRemoveWhenTargetDies = true;
@@ -2639,9 +2786,26 @@ static function X2AbilityTemplate AddAreaSuppressionAbility()
 	SuppressionEffect.DuplicateResponse=eDupe_Allow;
 	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
 	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
+	SuppressionEffect.TargetConditions.AddItem(DoesNotHaveAbilityCondition);
+	
 	Template.AddTargetEffect(SuppressionEffect);
-	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	Template.AddMultiTargetEffect(SuppressionEffect);
+	
+	//Then the steadfast version
+	SuppressionEffect = new class'X2Effect_AreaSuppression';
+	SuppressionEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	SuppressionEffect.bRemoveWhenTargetDies = true;
+	SuppressionEffect.bRemoveWhenSourceDamaged = false;
+	SuppressionEffect.bBringRemoveVisualizationForward = true;
+	SuppressionEffect.DuplicateResponse=eDupe_Allow;
+	SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionTargetEffectDesc, Template.IconImage);
+	SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, class'X2Ability_GrenadierAbilitySet'.default.SuppressionSourceEffectDesc, Template.IconImage);
+	SuppressionEffect.TargetConditions.AddItem(AbilityCondition);
+
+	Template.AddTargetEffect(SuppressionEffect);
+	Template.AddMultiTargetEffect(SuppressionEffect);
+
+	Template.AddTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	Template.AddMultiTargetEffect(class'X2Ability_GrenadierAbilitySet'.static.HoloTargetEffect());
 	
 	Template.AdditionalAbilities.AddItem('AreaSuppressionShot_LW');
@@ -2980,6 +3144,7 @@ static function X2AbilityTemplate AddDamageControlAbility()
 	local X2AbilityTemplate						Template;	
 	local X2AbilityTrigger_EventListener		EventListener;
 	local X2Effect_DamageControl 				DamageControlEffect;
+	local X2AbilityCooldown                     Cooldown;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'DamageControl');
 	Template.IconImage = "img:///UILibrary_LW_PerkPack.LW_AbilityDamageControl";
@@ -2988,7 +3153,7 @@ static function X2AbilityTemplate AddDamageControlAbility()
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_NeverShow;
 	Template.AbilityToHitCalc = default.DeadEye;
     Template.AbilityTargetStyle = default.SelfTarget;
-	Template.bShowActivation = true;
+	Template.bShowActivation = false;
 	Template.bSkipFireAction = true;
 	//Template.bIsPassive = true;
 	Template.bDisplayInUITooltip = true;
@@ -3003,11 +3168,17 @@ static function X2AbilityTemplate AddDamageControlAbility()
 	EventListener.ListenerData.Filter = eFilter_Unit;
 	Template.AbilityTriggers.AddItem(EventListener);
 
+	// Add a cooldown to reduce flyover spam
+	Cooldown = new class'X2AbilityCooldown';
+    Cooldown.iNumTurns = 1;
+    Template.AbilityCooldown = Cooldown;
+
 	DamageControlEffect = new class'X2Effect_DamageControl';
 	DamageControlEffect.BuildPersistentEffect(default.DAMAGE_CONTROL_DURATION,false,true,,eGameRule_PlayerTurnBegin);
 	DamageControlEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyLongDescription(), Template.IconImage, true,,Template.AbilitySourceName);
 	DamageControlEffect.DuplicateResponse = eDupe_Refresh;
 	DamageControlEffect.BonusArmor = default.DAMAGE_CONTROL_BONUS_ARMOR;
+	DamageControlEffect.Flyover = Template.LocFriendlyName;
 	Template.AddTargetEffect(DamageControlEffect);
 
 
@@ -4030,6 +4201,7 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 
 	MacrophagesEffect = new class'X2Effect_SmartMacrophages';
 	MacrophagesEffect.BuildPersistentEffect(1, true, false);
+	MacrophagesEffect.EffectRemovedFn = OnSmartMacrophagesRemoved;
 	MacrophagesEffect.SetDisplayInfo (ePerkBuff_Passive, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect(MacrophagesEffect);
 
@@ -4037,6 +4209,7 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 	DamageImmunity.ImmuneTypes.AddItem('Acid');
 	DamageImmunity.ImmuneTypes.AddItem('Poison');
 	DamageImmunity.ImmuneTypes.AddItem(class'X2Item_DefaultDamageTypes'.default.ParthenogenicPoisonType); //this is chryssalid poison, special because it spawns cocoons
+	DamageImmunity.EffectName = 'SmartMacrophagesDamageImmunity';
 	DamageImmunity.BuildPersistentEffect(1, true, false, true);
 	Template.AddTargetEffect(DamageImmunity);
 	
@@ -4044,6 +4217,47 @@ static function X2AbilityTemplate AddSmartMacrophagesAbility()
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
 
 	return Template;
+}
+
+static function OnSmartMacrophagesRemoved(X2Effect_Persistent PersistentEffect, const out EffectAppliedData ApplyEffectParameters, XComGameState NewGameState, bool bCleansed)
+{
+	local XComGameStateHistory		History;
+	local X2Effect_SmartMacrophages MacrophagesEffect;
+	local XComGameState_Unit UnitState, SourceUnitState;
+
+	`LWTrace("test Smart Macrophages listener OnSmartMacrophagesRemoved");
+
+	MacrophagesEffect = X2Effect_SmartMacrophages(PersistentEffect);
+	if( MacrophagesEffect == NONE)
+	{
+		return;
+	}
+
+	History = `XCOMHISTORY;
+	SourceUnitState = XComGameState_Unit(History.GetGameStateForObjectID(ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	UnitState = XComGameState_Unit(History.GetGameStateForObjectID(ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+	`PPTRACE("Smart Macrophages: TargetUnit=" $ UnitState.GetFullName() $ ", SourceUnit=" $ SourceUnitState.GetFullName());
+
+	if(!MacrophagesEffect.SmartMacrophagesEffectIsValidForSource(SourceUnitState))
+	{
+		return;
+	}
+	`PPTRACE("Smart Macrophages: Source Unit Valid.");
+
+	if(UnitState == none) { return; }
+	if(UnitState.IsDead()) { return; }
+	if(UnitState.IsBleedingOut()) { return; }
+	if(!MacrophagesEffect.CanBeHealed(UnitState)) { return; }
+
+	`PPTRACE("Smart Macrophages: Target Unit Can Be Healed.");
+	// Actually set up GameState stuff now
+	UnitState = XComGameState_Unit(NewGameState.ModifyStateObject(class'XComGameState_Unit', ApplyEffectParameters.TargetStateObjectRef.ObjectID));
+
+	`PPTRACE("Smart Macrophages : Pre update LowestHP=" $ UnitState.LowestHP);
+	UnitState.LowestHP = min(UnitState.HighestHP,  UnitState.LowestHP+ default.MACROPHAGES_HEAL_AMT);
+	`PPTRACE("Smart Macrophages : Post update LowestHP=" $ UnitState.LowestHP);
+	UnitState.ModifyCurrentStat(eStat_HP, default.MACROPHAGES_HEAL_AMT);
+
 }
 
 static function X2AbilityTemplate AddMindMergeAbility()
@@ -4101,22 +4315,28 @@ static function X2AbilityTemplate AddMindMergeAbility()
 
 	MindMergeEffect = new class 'X2Effect_MindMerge';
 	MindMergeEffect.EffectName = 'MindMergeEffect';
-	MindMergeEffect.BaseWillIncrease = 0;
-	MindMergeEffect.BaseShieldHPIncrease = 1;
-	MindMergeEffect.MindMergeWillDivisor = default.MIND_MERGE_WILL_DIVISOR;
-	MindMergeEffect.MindMergeShieldHPDivisor = default.MIND_MERGE_SHIELDHP_DIVISOR;
-	MindMergeEffect.SoulMergeWillDivisor = default.SOUL_MERGE_WILL_DIVISOR;
-	MindMergeEffect.SoulMergeShieldHPDivisor = default.SOUL_MERGE_SHIELDHP_DIVISOR;
-	MindMergeEffect.AmpMGWillBonus = default.MIND_MERGE_AMP_MG_WILL_BONUS;
-	MindMergeEffect.AmpMGShieldHPBonus = default.MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
-	MindMergeEffect.AmpBMWillBonus = default.MIND_MERGE_AMP_BM_WILL_BONUS;
-	MindMergeEffect.AmpBMShieldHPBonus = default.MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
-	MindMergeEffect.MindMergeCritDivisor= default.MIND_MERGE_CRIT_DIVISOR;
-	MindMergeEffect.SoulMergeCritDivisor= default.SOUL_MERGE_CRIT_DIVISOR;
-	MindMergeEffect.AmpMGCritBonus= default.MIND_MERGE_AMP_MG_CRIT_BONUS;
-	MindMergeEffect.AMpBMCritBonus= default.SOUL_MERGE_AMP_BM_CRIT_BONUS;
 
-	MindMergeEffect.bRemoveWhenTargetDies=true;
+	MindMergeEffect.BaseShieldHPIncrease = default.MIND_MERGE_FLAT_SHIELDHP;
+	MindMergeEffect.BaseWillIncrease = default.MIND_MERGE_FLAT_WILL;
+	MindMergeEffect.BaseCritIncrease = default.MIND_MERGE_FLAT_CRIT;
+
+	MindMergeEffect.AmpMGShieldHPBonus = default.MIND_MERGE_AMP_MG_SHIELDHP_BONUS;
+	MindMergeEffect.AmpMGWillBonus = default.MIND_MERGE_AMP_MG_WILL_BONUS;
+	MindMergeEffect.AmpMGCritBonus = default.MIND_MERGE_AMP_MG_CRIT_BONUS;
+
+	MindMergeEffect.AmpBMShieldHPBonus = default.MIND_MERGE_AMP_BM_SHIELDHP_BONUS;
+	MindMergeEffect.AmpBMWillBonus = default.MIND_MERGE_AMP_BM_WILL_BONUS;
+	MindMergeEffect.AmpBMCritBonus = default.MIND_MERGE_AMP_BM_CRIT_BONUS;
+
+	MindMergeEffect.MindMergeShieldHPDivisor = default.MIND_MERGE_SHIELDHP_DIVISOR;
+	MindMergeEffect.MindMergeWillDivisor = default.MIND_MERGE_WILL_DIVISOR;
+	MindMergeEffect.MindMergeCritDivisor = default.MIND_MERGE_CRIT_DIVISOR;
+
+	MindMergeEffect.SoulMergeShieldHPDivisor = default.SOUL_MERGE_SHIELDHP_DIVISOR;
+	MindMergeEffect.SoulMergeWillDivisor = default.SOUL_MERGE_WILL_DIVISOR;
+	MindMergeEffect.SoulMergeCritDivisor = default.SOUL_MERGE_CRIT_DIVISOR;
+
+	MindMergeEffect.bRemoveWhenTargetDies = true;
 	MindMergeEffect.BuildPersistentEffect (1, false, true, false, eGameRule_PlayerTurnBegin);
 	MindMergeEFfect.SetDisplayInfo (ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage,,, Template.AbilitySourceName);
 	Template.AddTargetEffect (MindMergeEffect);

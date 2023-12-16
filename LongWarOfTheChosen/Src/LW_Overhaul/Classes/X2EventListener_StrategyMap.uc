@@ -222,12 +222,25 @@ static function EventListenerReturn OnOverrideMissionSiteTooltip(
 		`REDSCREEN("OnOverrideMissionSiteTooltip event triggered with invalid event source.");
 		return ELR_NoInterrupt;
 	}
+	Title = Tuple.Data[0].s;
+	Body = Tuple.Data[1].s;
 
-	GetMissionSiteUIButtonToolTip(Title, Body, MissionIcon);
-	Tuple.Data[0].Kind = XComLWTVString;
+	GetMissionSiteUIButtonToolTip(Title, Body,  MissionIcon);
+
 	Tuple.Data[0].s = Title;
-	Tuple.Data[1].Kind = XComLWTVString;
 	Tuple.Data[1].s = Body;
+/* 
+	if(Title != Tuple.Data[0].s)
+	{
+		Tuple.Data[0].Kind = XComLWTVString;
+		Tuple.Data[0].s = Title;
+	}
+
+	if(Body != Tuple.Data[1].s)
+	{
+		Tuple.Data[1].Kind = XComLWTVString;
+		Tuple.Data[1].s = Body;
+	} */
 	return ELR_NoInterrupt;
 }
 
@@ -243,6 +256,7 @@ static function EventListenerReturn CustomizeMissionSiteIconImage(
 	local XComLWTuple Tuple;
 	local XComGameState_MissionSite MissionSite;
 	local XComGameState_LWAlienActivity AlienActivity;
+	local string IconStr;
 	
 	Tuple = XComLWTuple(EventData);
 	if (Tuple == none)
@@ -258,7 +272,11 @@ static function EventListenerReturn CustomizeMissionSiteIconImage(
 	AlienActivity = class'XComGameState_LWAlienActivityManager'.static.FindAlienActivityByMission(MissionSite);
 	if (AlienActivity != none )
 	{
-		Tuple.Data[0].s = AlienActivity.GetMissionIconImage(MissionSite);
+		IconStr = AlienActivity.GetMissionIconImage(MissionSite);
+		if(IconStr != "")
+		{
+			Tuple.Data[0].s = IconStr;
+		}
 	}
 
 	return ELR_NoInterrupt;
@@ -337,7 +355,7 @@ static function GetMissionSiteUIButtonToolTip(out string Title, out string Body,
 	{
 		Title = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(InfiltratingSquad.sSquadName);
 	}
-	else
+	else if (MissionSite.GetMissionSource().DataName == 'MissionSource_LWSGenericMissionSource')
 	{
 		MissionTemplate = class'X2MissionTemplateManager'.static.GetMissionTemplateManager().FindMissionTemplate(MissionSite.GeneratedMission.Mission.MissionName);
 		Title = class'UIUtilities_Text'.static.CapsCheckForGermanScharfesS(MissionTemplate.PostMissionType);

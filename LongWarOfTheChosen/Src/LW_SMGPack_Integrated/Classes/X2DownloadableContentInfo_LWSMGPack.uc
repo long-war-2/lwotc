@@ -22,7 +22,13 @@ static event OnLoadedSavedGame()
 /// is contained in a strategy start state. Never add additional history frames inside of InstallNewCampaign, add new state objects to the start state
 /// or directly modify start state objects
 /// </summary>
-//static event InstallNewCampaign(XComGameState StartState);
+static event InstallNewCampaign(XComGameState StartState)
+{
+	if(`SecondWaveEnabled('HybridDifficulty_LW'))
+	{
+		SetHybridDifficulty(StartState);
+	}
+}
 
 /// <summary>
 /// Called after the Templates have been created (but before they are validated) while this DLC / Mod is installed.
@@ -244,3 +250,76 @@ static function AddFreeKillUpgrade(X2ItemTemplateManager ItemTemplateManager, Na
 	Template.AddUpgradeAttachment('SuppressorB', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Suppressor', "MagShotgun.Meshes.SM_MagShotgun_SuppressorB", "", 'SMG_MG', , "img:///UILibrary_SMG.magnetic.LWMagSMG_SuppressorB", "img:///UILibrary_StrategyImages.X2InventoryIcons.MagShotgun_SuppressorB_inv", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
 	Template.AddUpgradeAttachment('Suppressor', 'UIPawnLocation_WeaponUpgrade_AssaultRifle_Suppressor', "LWSMG_BM.Meshes.SK_LWBeamSMG_SuppressorA", "", 'SMG_BM', , "img:///UILibrary_SMG.Beam.LWBeamSMG_SuppressorA", "img:///UILibrary_SMG.Beam.Inv_LWBeamSMG_SuppressorA", "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_weaponIcon_barrel");
 }
+
+static function SetHybridDifficulty(XComGameState StartState)
+{
+	local XComGameState_CampaignSettings CampaignSettingsStateObject;
+	local XComGameState_SkyRanger SkyrangerState;
+	local XComGameState_MissionSite Mission;
+	local XComGameState_HeadquartersXCom XComHQ;
+	local X2StrategyElementTemplateManager StratMgr;
+	local X2MissionSourceTemplate MissionSource;
+	local XComGameState_WorldRegion RegionState;
+	local array<XComGameState_Reward> MissionRewards;
+	local X2RewardTemplate RewardTemplate;
+	local XComGameState_Reward RewardState;
+	local Vector2D v2Loc;
+	local XComGameStateHistory History;
+
+	History = `XCOMHISTORY;
+	XComHQ = XComGameState_HeadquartersXCom(History.GetSingleGameStateObjectForClass(class'XComGameState_HeadquartersXCom'));
+
+	foreach StartState.IteratebyClassType(class'XComGameState_CampaignSettings', CampaignSettingsStateObject)
+		break;
+
+	if(CampaignSettingsStateObject != none)
+	{
+		`LWTrace("Campaign Settings State Object ID:" @CampaignSettingsStateObject.ObjectID);
+		CampaignSettingsStateObject = XComGameState_CampaignSettings(StartState.ModifyStateObject(class'XComGameState_CampaignSettings', CampaignSettingsStateObject.ObjectID));
+		CampaignSettingsStateObject.SetDifficulty(`CAMPAIGNDIFFICULTYSETTING
+												, fmin(CampaignSettingsStateObject.GetTacticalDifficultyFromSettings()+25.0, 75.0)
+												, CampaignSettingsStateObject.GetStrategyDifficultyFromSettings()
+												,
+												,
+												,true);
+
+
+		foreach StartState.IteratebyClassType(class'XComGameState_MissionSite', Mission)
+		{
+			if(Mission.Source == 'MissionSource_Start')
+			break;
+		}
+
+		foreach StartState.IterateByClassType(class'XComGameState_SkyRanger', SkyrangerState)
+			break;
+	
+	// The below is a version of the CreateStartingMission function on XComGameState_HeadquartersAlien with the goal of rebuilding the one it creates
+		if(Mission != none && SkyRangerState != none && XComHQ != none)
+		{
+			`LWTrace("Trying to remake gatecrasher");
+			Mission = XComGameState_MissionSite(StartState.ModifyStateObject(class'XComGameState_MissionSite', Mission.ObjectID));
+
+			StratMgr = class'X2StrategyElementTemplateManager'.static.GetStrategyElementTemplateManager();
+
+			RegionState = XComGameState_WorldRegion(StartState.GetGameStateForObjectID(XComHQ.StartingRegion.ObjectID));
+
+			v2Loc.X = SkyrangerState.Location.X;
+			v2Loc.Y = SkyrangerState.Location.Y;
+
+			RewardTemplate = X2RewardTemplate(StratMgr.FindStrategyElementTemplate('Reward_None'));
+			RewardState = RewardTemplate.CreateInstanceFromTemplate(StartState);
+			MissionRewards.AddItem(RewardState);
+		
+			MissionSource = X2MissionSourceTemplate(StratMgr.FindStrategyElementTemplate('MissionSource_Start'));
+			Mission.BuildMission(MissionSource, v2Loc, RegionState.GetReference(), MissionRewards, true);
+			Mission.CacheSelectedMissionData(1,1);
+		}
+
+	}
+	else
+	{
+		`LWTrace("HybridDifficulty: Could not find Campaign Settings State Object to edit.");
+	}
+	
+}
+

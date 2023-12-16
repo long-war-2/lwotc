@@ -55,6 +55,7 @@ static function X2DataTemplate CreateStingGrenade()
 	UnitCondition.ExcludeFriendlyToSource = false;
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(default.STING_GRENADE_STUN_LEVEL, default.STING_GRENADE_STUN_CHANCE, false);
+	StunnedEffect.BuildPersistentEffect(1, true, false, false, eGameRule_UnitGroupTurnBegin);
 	StunnedEffect.SetDisplayInfo(ePerkBuff_Penalty, class'X2StatusEffects'.default.StunnedFriendlyName, class'X2StatusEffects'.default.StunnedFriendlyDesc, "img:///UILibrary_PerkIcons.UIPerk_stun");
 	StunnedEffect.TargetConditions.AddItem(UnitCondition);
 	Template.ThrownGrenadeEffects.AddItem(StunnedEffect);

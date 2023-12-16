@@ -29,7 +29,9 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddMissionTemplate('NeutralizeTarget_LW'));
     Templates.AddItem(AddMissionTemplate('NeutralizeTargetVehicle_LW'));
 	Templates.AddItem(AddMissionTemplate('SmashNGrab_LW'));
+    //Templates.AddItem(AddMissionTemplate('BigSmashNGrab_LW'));
 	Templates.AddItem(AddMissionTemplate('SupplyExtraction_LW'));
+    Templates.AddItem(AddMissionTemplate('BigSupplyExtraction_LW'));
 
 	Templates.AddItem(AddMissionTemplate('AssaultNetworkTower_LW')); // used in ProtectRegion / Liberation chain
     
@@ -46,6 +48,7 @@ static function array<X2DataTemplate> CreateTemplates()
     Templates.AddItem(AddMissionTemplate('AvengerDefense_LW'));
 
 	Templates.AddItem(AddMissionTemplate('TroopManeuvers_LW'));
+    Templates.AddItem(AddMissionTemplate('CovertOpsTroopManeuvers_LW'));
 	Templates.AddItem(AddMissionTemplate('AssaultAlienBase_LW'));
     Templates.AddItem(AddMissionTemplate('Jailbreak_LW'));
 	Templates.AddItem(AddMissionTemplate('Invasion_LW'));

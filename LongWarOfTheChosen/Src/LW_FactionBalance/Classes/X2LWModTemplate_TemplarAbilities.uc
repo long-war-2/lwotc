@@ -13,6 +13,7 @@ var config int STUNSTRIKE_STUN_DURATION;
 var config int STUNSTRIKE_STUN_CHANCE;
 var config int VOLT_TILE_RADIUS;
 var config int VOLT_DANGER_ZONE_BONUS_RADIUS;
+var config int VOLT_TERRORIZE_BONUS;
 
 var config int ARCWAVE_T1_DAMAGE;
 var config int ARCWAVE_T2_DAMAGE;
@@ -25,6 +26,7 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 	{
 		//refactor the start here so SingleRendFocus is only given to Rend and not Volt
 	case 'ArcWave':
+	case 'ArcWave_LW':
 		UpdateArcWave(Template);
 		MakeRendNotWorkWhenBurning(Template);
 	case 'TemplarBladestormAttack':
@@ -32,6 +34,8 @@ static function UpdateAbilities(X2AbilityTemplate Template, int Difficulty)
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
 		break;
 	case 'Rend':
+	case 'Rend_LW':
+
 		MakeRendNotWorkWhenBurning(Template);
 		// Allow Rend to miss and graze.
 		X2AbilityToHitCalc_StandardMelee(Template.AbilityToHitCalc).bGuaranteedHit = false;
@@ -89,6 +93,7 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 	local X2Condition_UnitProperty ShooterCondition;
 	local X2AbilityMultiTarget_Radius RadiusMultiTarget;
 	local AbilityGrantedBonusRadius DangerZoneBonus;
+	local AbilityGrantedBonusRadius TerrorizeBonus;
 
 	ShooterCondition = new class'X2Condition_UnitProperty';
 	ShooterCondition.ExcludeConcealed = true;
@@ -104,6 +109,10 @@ static function ModifyVoltTargeting(X2AbilityTemplate Template)
 	DangerZoneBonus.RequiredAbility = 'VoltDangerZone';
 	DangerZoneBonus.fBonusRadius = `TILESTOMETERS(default.VOLT_DANGER_ZONE_BONUS_RADIUS) + 0.01;
 	RadiusMultiTarget.AbilityBonusRadii.AddItem(DangerZoneBonus);
+
+	TerrorizeBonus.RequiredAbility = 'TemplarTerror';
+	TerrorizeBonus.fBonusRadius = `TILESTOMETERS(default.VOLT_TERRORIZE_BONUS) + 0.01;
+	RadiusMultiTarget.AbilityBonusRadii.AddItem(TerrorizeBonus);
 
 	Template.AbilityMultiTargetStyle = RadiusMultiTarget;
 
@@ -207,6 +216,7 @@ static function ModifyStunStrikeToStun(X2AbilityTemplate Template)
 	class'Helpers_LW'.static.RemoveAbilityTargetEffects(Template,'X2Effect_KnockBack');
 
 	StunnedEffect = class'X2StatusEffects'.static.CreateStunnedStatusEffect(default.STUNSTRIKE_STUN_DURATION, default.STUNSTRIKE_STUN_CHANCE, false);
+	StunnedEffect.bRemoveWhenSourceDies = false;
 	Template.AddTargetEffect(StunnedEffect);
 }
 

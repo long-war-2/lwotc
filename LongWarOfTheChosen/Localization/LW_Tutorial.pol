@@ -1,0 +1,66 @@
+[LWTutorial]
+CampaignStartTitle="Witaj w Long War of the Chosen"
+CampaignStartBody="LWOTC to całkowita modyfikacja XCOM 2 WOTC, która sprawia, że kampania jest trudniejsza i przypomina wojnę partyzancką.<br/><br/>Możesz wyłączyć ten samouczek, wybierając opcję Zmień poziom trudności > Opcje zaawansowane w menu gry."
+
+[X2EventListener_Tutorial]
+DroneSightedTitle="Nowy wróg: Dron"
+DroneSightedBody="Drony ADVENT-u to wytrzymałe roboty-zwiadowcy o dużym zasięgu wykrywania i broni do kontroli tłumu. Często można je spotkać samotnie patrolując i mogą pojawiać się wewnątrz budynków i na dachach."
+RainbowTrooperSightedTitle="Nowi wrogowie: piechota ADVENT-u"
+RainbowTrooperSightedBody="Oprócz podstawowego żołnierza ADVENT dysponuje teraz różnymi jednostkami piechoty:<ul><li>Strażnicy (niebiescy) specjalizują się w Warcie</li><li>Strzelcy (zieleni) noszą armatę zadającą duże obrażenia z możliwością tłumienia</li><li>Grenadierzy (czerwony) używają granatnika do kontroli tłumu i zadawania obrażeń</li><li>Rakietierzy (pomarańczowi) strzelają rakietami o dużej celności</li></ul>"
+HavenHighlightTitle="Przejrzyj kryjówkę"
+HavenHighlightBody="Kryjówki są niezbędne w Twojej kampanii, ponieważ służą do wyszukiwania misji w regionie. Ponadto możesz kontaktować się tylko z regionami, które są połączone z istniejącą kryjówką.<br/><br/>Kliknij przycisk pokazany po lewej stronie, aby otworzyć ekran zarządzania Kryjówką."
+FirstMissionDiscoveredTitle="Odkryto pierwszą misję"
+FirstMissionDiscoveredBody="Wykryłeś swoją pierwszą misję! Następnym krokiem jest przydzielenie oddziału do infiltracji.<br/><br/>Większość misji ma datę ważności, a infiltracja wymaga czasu. Zwiększ swoje szanse na osiągnięcie 100% infiltracji, wysyłając więcej rebeliantów do zadań wywiadowczych. Skanowanie przystani za pomocą Avengera dostarczy informacji wywiadowczych wartych 4 rebeliantów."
+FirstRetaliationTitle="Odwet ADVENT-u"
+FirstRetaliationBody="ADVENT bierze odwet! Są to misje szybkiego reagowania, których nie powinieneś ignorować.<br/><br/>Istnieje pełny odwet, który w przypadku zignorowania lub przegrania niszczy kryjówkę, oraz odwet specyficzny dla danego zadania, który, jeśli zostanie zignorowany, zabije rebeliantów wtym zadaniu. Twój doradca kryjówki będzie dostępny podczas misji wraz z grupą rebeliantów."
+CommandersQuartersEnteredTitle="LWOTC Help"
+CommandersQuartersEnteredBody="LWOTC dodaje kilka wpisów do Archiwów XCOM, które bardziej szczegółowo wyjaśniają niektóre podstawowe koncepcje, takie jak infiltracja i zarządzanie kryjówką.<br/><br/>Możesz także przeglądać wszystkie swoje kryjówki na jednym ekranie poprzez menu Zarządzanie ruchem oporu."
+
+GeneralChosenTitle="Wybrańcy"
+GeneralChosenBody="W tej misji pojawi się Wybraniec. W LWOTC odpowiadają na działalność XCOM, biorąc udział jedynie w odwecie (wywiad, zaopatrzenie, rekrutacja, pełne i inwazja). Nie pojawią się w innych misjach.<br/><br/>Ich celem w dalszym ciągu jest zdobycie wiedzy o lokalizacji Avengera i zaatakowanie go. Uwaga, obrona przed tym nie będzie łatwa!"
+
+TacticalChosenTitle="Wybrańcy w bitwie"
+TacticalChosenBody="Wybrańcy są znacznie bardziej niebezpieczni osobiście w LWOTC:<br/><ul><li>Są prawie odporni na trafienia krytyczne</li><li>Podejmują akcję („głowna reakcja”) za każdym razem, gdy XCOM zadaje im obrażenia podczas tury XCOM</li><li>Mogą porywać wykrwawiających się żołnierzy z dużej odległości, kosztem pełnej tury</li><li>Zyskują znaczną siłą na wyższym poziomie (użyj F1, gdy namierzasz ich aby zobaczyć dokładne informacje).</li></ul>"
+
+AssassinSightedTitle="Zabójczyni"
+AssassinSightedBody="Zabójczyni zmniejsza otrzymywane obrażenia z każdym kolejnym trafieniem, jakie otrzymuje w turze. Choć jej obrażenia od Miecza i Fal są początkowo niskie, w miarę ich używania będą zwiększać swoją moc, aż do momentu, gdy schwyta żołnierza. <br/><br/>Uważaj na rozmieszczenie jednostek, ponieważ może ona wykorzystać swoją główną reakcję, aby ciąć sąsiadującego żołnierza."
+
+WarlockSightedTitle="Czarnoksiężnik"
+WarlockSightedBody="Czarnoksiężnik posiada zdolność Największy Czempion Czarnoksiężnika, która może obrać za cel sojuszników. Dopóki ten sojusznik pozostanie przy życiu, Czarnoksiężnik otrzyma znacznie mniej obrażeń. Powinieneś także uważać na jego Spalenie Umysłem, które powoduje podpalenie obszaru wokół celu. <br/><br/>Jeśli umysł żołnierza jest kontrolowany, pamiętaj, że twoi żołnierze mogą użyć na nim Uderzenia Kolbą w LWOTC."
+
+HunterSightedTitle="Łowczy"
+HunterSightedBody="Łowczy będzie zachowywał dystans i próbował dobijać żołnierzy z bezpiecznej pozycji. Bądź ostrożny, gdy się zbliżysz: jego strzał z pistoletu wyłączy teraz broń XCOM, a on sam może rzucać swoimi granatami błyskowymi w ramach darmowej akcji."
+
+
+[UIScreenListener_HavenManagementTutorial]
+HavenManagementTitle="Zarządzanie kryjówką"
+HavenManagementBody="Kryjówki są domem dla grupy rebeliantów, którzy mogą podjąć się kilku zadań:<br/><ul><li>Wywiad – wykrywa misje</li><li>Rekrutacja – rekrutuje rebeliantów i nowicjuszy</li><li>Zaopatrzenie – generuje zaopatrzenie</li></ul><br/>Im więcej rebeliantów jest na służbie, tym więcej z niej zyskasz. Na razie zatrzymaj swoich rebeliantów na Wywiadzie."
+; LWOTC Needs Translation (2)
+HavenAdvisersTitle="Doradcy kryjówki"
+HavenAdvisersBody="Kliknij pole oznaczone (1) po lewej stronie, aby przypisać doradcę do kryjówki. Możesz przypisać jednego z:<br/><ul><li>Żołnierza — wykrywa Beztwarzowych i pomaga w rekrutacji</li><li>Naukowca — zwiększa wydajność pracy Wywiadu, ale nie uczestniczy już w badaniach</li><li> Inżynier – zwiększa wydajność pracy Zaopatrzenia.</li></ul><br/>Wykrywanie Bezimiennych pozwala na ich eksmisję."
+
+[UIScreenListener_PromotionScreenTutorial]
+PistolAbilitiesTutorialTitle="Umiejętności pistoletów"
+PistolAbilitiesTutorialBody="Umiejętności pistoletu są dostępne dla wszystkich twoich żołnierzy po zbudowaniu Centrum szkoleniowego, z wyjątkiem SPARKów i agentów Psi. Działają z pistoletami i pistoletami automatycznymi.\n\nPrzewiń ekran w dół, aby je zobaczyć!"
+
+[UIScreenListener_CovertActionsTutorial]
+CovertActionsTutorialTitle="Tajne działania"
+CovertActionsTutorialBody="W przeciwieństwie do zwykłego WOTC, Twoim agentom może się nie udać tajne działanie. Ryzyko niepowodzenia jest zmniejszane w zależności od liczby żołnierzy biorących udział w operacji. Im wyższe rangi, tym mniejsze ryzyko niepowodzenia.<br/><br/>Również ryzyko zasadzki wzrasta, im bardziej tajne działania są wykonywane bez wpadnięcia w zasadzkę. Ryzyko zostaje zresetowane, gdy ktoś wpadnie w zasadzkę."
+
+[UIScreenListener_InitialHavenTutorial]
+HavenHighlightTitle="Przejrzyj kryjówkę"
+HavenHighlightBody="Kryjówki są niezbędne w Twojej kampanii, ponieważ służą do wyszukiwania misji w regionie. Ponadto możesz kontaktować się tylko z regionami, które są połączone z istniejącą kryjówką.<br/><br/>Kliknij przycisk pokazany po lewej stronie, aby otworzyć ekran zarządzania Kryjówką."
+
+[UIScreenListener_MissionBriefTutorial]
+MissionBriefTutorialTitle="Odprawy Misji"
+MissionBriefTutorialBody="Wygaśnięcie misji określa, jak długo będziesz musiał infiltrować misję. Im więcej informacji wywiadowczych o misji wygenerujesz dzięki pracy wywiadowczej rebeliantów, tym wcześniej wykryjesz misje i tym dłużej będziesz musiał infiltrować.<br/><br/>Nie musisz wykonywać każdej misji, ale powinieneś zrobić ich tyle, ile możesz. Jeśli nie masz oddziału lub nie masz wystarczająco dużo czasu, nie bój się pominąć misji."
+MissionEnemyCountTitle="Liczebność wrogów"
+MissionEnemyCountBody="Liczba wrogów pokazana po lewej stronie jest przybliżoną liczbą wrogów, którzy będą na misji, jeśli osiągniesz 100% infiltracji.<br/><br/>Niedostateczna infiltracja (nieosiągająca 100%) skutkuje większą liczbą wrogów na misji. Nadmierna infiltracja ma szansę zmniejszyć liczebność wroga."
+
+[UIScreenListener_SquadSelectTutorial]
+SquadSelectInfiltrationTitle="Wybór oddziału"
+SquadSelectInfiltrationBody="Oprócz wyboru członków drużyny, którzy są wystarczająco silni do wykonania misji, musisz także wziąć pod uwagę czas infiltracji w LWOTC.<br/><br/>Każdy dodatkowy członek drużyny wykładniczo wydłuża czas infiltracji wykładniczo po czwartym żołnierzu. Niektóre zdolności i przedmioty takie jak Tłumiki mogą nieco skrócić czas infiltracji."
+
+[UIScreenListener_InfiltratingMissionTutorial]
+InfiltratingMissionTitle="Infiltruj misję"
+InfiltratingMissionBody="Misję możesz infiltrować w dowolnym momencie, ale niedostateczna infiltracja utrudnia misję. Możesz wydać Wywiad, aby przyspieszyć infiltrację, dzięki czemu zakończy się ona szybciej.<br/><br/>Możesz przerwać infiltrację w dowolnym momencie i uruchomić ją ponownie później, jeśli misja jeszcze nie wygasła. Ponowne uruchomienie ustawia infiltrację z powrotem na 0%."

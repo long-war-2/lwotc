@@ -9,13 +9,23 @@
 
 class UIScreenListener_Mission_ChosenAvengerAssault extends UIScreenListener;
 
-var UIMission_ChosenAvengerAssault ChosenAvengerAssaultScreen;
-var UIButton Button1;
+var protected string PathToChosenAvengerAssaultScreen;
+var protected string PathToButton1;
+
+//var UIMission_ChosenAvengerAssault ChosenAvengerAssaultScreen;
+//var UIButton Button1;
 
 event OnInit(UIScreen Screen)
 {
+	local UIMission_ChosenAvengerAssault ChosenAvengerAssaultScreen;
+	local UIButton Button1;
+
 	ChosenAvengerAssaultScreen = UIMission_ChosenAvengerAssault(Screen);
 	Button1 = ChosenAvengerAssaultScreen.Button1;
+
+	PathToChosenAvengerAssaultScreen = PathName(ChosenAvengerAssaultScreen);
+	PathToButton1 = PathName(Button1);
+
 	
 	// KDM : Display parent-panel centered hotlinks for controller users, and parent-panel centered buttons
 	// for mouse and keyboard users.
@@ -48,18 +58,18 @@ event OnInit(UIScreen Screen)
 
 event OnRemoved(UIScreen Screen)
 {
-	if (Button1 != none)
-	{
-		Button1.OnSizeRealized = none;
-	}
-
-	Button1 = none;
-	ChosenAvengerAssaultScreen = none;
+	PathToButton1 = "";
+	PathToChosenAvengerAssaultScreen = "";
 }
 
 simulated function RefreshNavigation()
 {
 	local bool SelectionSet;
+	local UIMission_ChosenAvengerAssault ChosenAvengerAssaultScreen;
+	local UIButton Button1;
+
+	ChosenAvengerAssaultScreen = UIMission_ChosenAvengerAssault(FindObject(PathToChosenAvengerAssaultScreen, class'UIMission_ChosenAvengerAssault'));
+	Button1 = UIButton(FindObject(PathToButton1, class'UIButton'));
 
 	SelectionSet = false;
 
@@ -81,6 +91,12 @@ simulated function RefreshNavigation()
 
 simulated function OnButtonSizeRealized()
 {
+	local UIMission_ChosenAvengerAssault ChosenAvengerAssaultScreen;
+	local UIButton Button1;
+
+	ChosenAvengerAssaultScreen = UIMission_ChosenAvengerAssault(FindObject(PathToChosenAvengerAssaultScreen, class'UIMission_ChosenAvengerAssault'));
+	Button1 = UIButton(FindObject(PathToButton1, class'UIButton'));
+
 	if (ChosenAvengerAssaultScreen != none)
 	{
 		Button1.SetX(-Button1.Width / 2.0);

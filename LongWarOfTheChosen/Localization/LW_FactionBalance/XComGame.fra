@@ -40,6 +40,14 @@ LocHelpText="Étourdit les ennemis à l'aide d'un tir précis. La durée de l'é
 LocPromotionPopupText="<Bullet/> Étourdit les ennemis durant <Ability:DisablingShotStunActions/> action(s) si le tir touche (même s'il ne s'agit que d'une écorchure).<br/><Bullet/> En cas de coup critique, la cible sera étourdie durant <Ability:DisablingShotCritStunActions/> action(s) de plus, mais le tir n'infligera pas de dégâts critiques.<br/><Bullet/> Nécessite <Ability:SelfAmmoCost/> munition(s) et un temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Seuls les avatars et les zombies psi ne peuvent pas être étourdis."
 ; End translated (2)
 
+[DisablingShotSnapShot X2AbilityTemplate]
+LocFriendlyName="Tir neutralisant"
+LocLongDescription="Étourdit les ennemis à l'aide d'un tir précis. La durée de l'étourdissement augmente en cas de coup critique. Ce tir ne peut pas infliger de dégâts critiques."
+LocHelpText="Étourdit les ennemis à l'aide d'un tir précis. La durée de l'étourdissement augmente en cas de coup critique. Ce tir ne peut pas infliger de dégâts critiques."
+; LWOTC translated (2)
+LocPromotionPopupText="<Bullet/> Étourdit les ennemis durant <Ability:DisablingShotStunActions/> action(s) si le tir touche (même s'il ne s'agit que d'une écorchure).<br/><Bullet/> En cas de coup critique, la cible sera étourdie durant <Ability:DisablingShotCritStunActions/> action(s) de plus, mais le tir n'infligera pas de dégâts critiques.<br/><Bullet/> Nécessite <Ability:SelfAmmoCost/> munition(s) et un temps de rechargement de <Ability:SelfCooldown_LW/> tour(s).<br/><Bullet/> Seuls les avatars et les zombies psi ne peuvent pas être étourdis."
+; End translated (2)
+
 [Meditation X2AbilityTemplate]
 LocFriendlyName="Méditation"
 LocLongDescription="Augmente de <Ability:MeditationFocusRecovery/> point(s) le niveau de concentration du Templier."
@@ -145,6 +153,15 @@ LocPromotionPopupText="Vos couteaux de lancer procurent un bonus cumulatif de +<
 
 
 [KnifeEncounters X2AbilityTemplate]
+LocFriendlyName="Duel au couteau"
+LocFlyOverText="Duel au couteau"
+; LWOTC translated (2)
+LocLongDescription="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois."
+LocHelpText="Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois."
+LocPromotionPopupText="<Bullet/> Une fois par tour, gagnez une action bonus après avoir attaqué au couteau un ennemi situé dans un rayon de <Ability:CLOSE_ENCOUNTERS_RANGE/> cases autour de votre position. Ne peut pas se déclencher durant le même tour que Tir sournois.<br/><Bullet/> Cette capacité ne peut pas être combinée avec la capacité Course et tir.<br/>"
+; End translated (2)
+
+[KnifeEncountersExtendedRange X2AbilityTemplate]
 LocFriendlyName="Duel au couteau"
 LocFlyOverText="Duel au couteau"
 ; LWOTC translated (2)
